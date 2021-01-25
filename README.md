@@ -1,6 +1,6 @@
 # NES Games Disassembly
 
-Each disassembly is compilable and editable.
+Each disassembly is equal to the original ROM, compilable and editable.
 
 Use **syntax_6502.xml** to highlight code in [Notepad++](https://notepad-plus-plus.org/).
 
