@@ -29,6 +29,7 @@ No special requirements. Just launch **assemble.bat** and wait until it's done.
 * Double Dragon II - The Revenge (J)
 * Ice Climber (J) [!]
 * Legend of Zelda, The (U) (PRG0) [!]
+* Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
 * Quarth (J) [!]
 * Super Mario Bros. (W) [!]
 * Tennis (JU) [!]
