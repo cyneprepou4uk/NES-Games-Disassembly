@@ -13,7 +13,6 @@ No special requirements. Just launch **assemble.bat** and wait until it's done.
 
 
 ## Current list (GoodNES)
-
 * Kunio-kun no Nekketsu Soccer League (J) [!]
 * Mappy (J) [!]
 * Son Son (J) [!]
@@ -21,15 +20,17 @@ No special requirements. Just launch **assemble.bat** and wait until it's done.
 * Tecmo World Cup Soccer (J) [!]
 * Yie Ar Kung-Fu (J) (V1.4) [!]
 
-## WIP or planning
-* Balloon Fight (J) [!]
-* Battle City (J) [!]
+## WIP
 * Castlevania III - Dracula's Curse (U) [!]
-* Danny Sullivan's Indy Heat (U) [!]
 * Double Dragon II - The Revenge (J)
-* Ice Climber (J) [!]
 * Legend of Zelda, The (U) (PRG0) [!]
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
+
+## Planning
+* Balloon Fight (J) [!]
+* Battle City (J) [!]
+* Danny Sullivan's Indy Heat (U) [!]
+* Ice Climber (J) [!]
 * Quarth (J) [!]
 * Super Mario Bros. (W) [!]
 * Tennis (JU) [!]
