@@ -2,8 +2,6 @@
 
 Each disassembly is equal to the original ROM, compilable and editable.
 
-Use **syntax_6502.xml** to highlight code in [Notepad++](https://notepad-plus-plus.org/).
-
 
 
 ## How to build
@@ -12,7 +10,17 @@ No special requirements. Just launch **assemble.bat** and wait until it's done.
 
 
 
-## Current list (GoodNES)
+## How to edit
+
+Use **syntax_6502.xml** to highlight code in [Notepad++](https://notepad-plus-plus.org/).
+
+Go to Language -> User Defined Language -> Define your language -> Export.
+
+My personal comments are marked with **bzk** text. Start with deleting garbage to free up some space.
+
+
+
+## Current games list (GoodNES)
 * Battle City (J) [!]
 * Kunio-kun no Nekketsu Soccer League (J) [!]
 * Mappy (J) [!]
@@ -27,7 +35,7 @@ No special requirements. Just launch **assemble.bat** and wait until it's done.
 * Legend of Zelda, The (U) (PRG0) [!]
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
 
-## Planning
+## Planning (maybe)
 * Balloon Fight (J) [!]
 * Danny Sullivan's Indy Heat (U) [!]
 * Ice Climber (J) [!]
