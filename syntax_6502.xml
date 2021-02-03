@@ -27,11 +27,11 @@
             <Keywords name="Keywords1">ADC AND ASL BCC BCS BEQ BIT BMI BNE BPL BRK BVC BVS CLC CLD CLI CLV CMP CPX CPY DEC DEX DEY EOR INC INX INY JMP JSR LDA LDX LDY LSR NOP ORA PHA PHP PLA PLP ROL ROR RTI RTS SBC SEC SED SEI STA STX STY TAX TAY TSX TXA TXS TYA ( )</Keywords>
             <Keywords name="Keywords2">$</Keywords>
             <Keywords name="Keywords3"># % con_</Keywords>
-            <Keywords name="Keywords4">@ bra_ b_</Keywords>
+            <Keywords name="Keywords4">@ bra_</Keywords>
             <Keywords name="Keywords5">_</Keywords>
-            <Keywords name="Keywords6">_ L_ loc_ sub_ ofs_ vec_</Keywords>
+            <Keywords name="Keywords6">loc_ sub_ ofs_ vec_</Keywords>
             <Keywords name="Keywords7">.import .export .res .if .else .elseif .endif .scope .endscope mac_</Keywords>
-            <Keywords name="Keywords8">&#x0442;&#x0430;&#x0431;&#x043B;&#x0438;&#x0446;&#x0430; table tbl t_ &#x0442;_</Keywords>
+            <Keywords name="Keywords8">tbl_</Keywords>
             <Keywords name="Delimiters">00&quot; 01 02&quot; 03.tex 04 05t 06( 07 08) 09ram 10 11_ 12 13 14 15 16 17 18 19 20 21 22 23</Keywords>
         </KeywordLists>
         <Styles>
