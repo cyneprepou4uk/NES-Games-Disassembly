@@ -13,6 +13,7 @@ No special requirements. Just launch **assemble.bat** and wait until it's done.
 
 
 ## Current list (GoodNES)
+* Battle City (J) [!]
 * Kunio-kun no Nekketsu Soccer League (J) [!]
 * Mappy (J) [!]
 * Son Son (J) [!]
@@ -28,7 +29,6 @@ No special requirements. Just launch **assemble.bat** and wait until it's done.
 
 ## Planning
 * Balloon Fight (J) [!]
-* Battle City (J) [!]
 * Danny Sullivan's Indy Heat (U) [!]
 * Ice Climber (J) [!]
 * Quarth (J) [!]
