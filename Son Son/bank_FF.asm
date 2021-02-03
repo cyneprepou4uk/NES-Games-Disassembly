@@ -522,38 +522,17 @@ C - - - - - 0x000357 00:8347: 28        PLP
 C - - - - - 0x000358 00:8348: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x000359 00:8349: 60        RTS
 - - - - - - 0x00035A 00:834A: A9 00     LDA #$00
 - - - - - - 0x00035C 00:834C: 9D 33 04  STA ram_0433,X
 - - - - - - 0x00035F 00:834F: 60        RTS
 
 
-; bzk мусор
-- - - - - - 0x000360 00:8350: 18        .byte $18   ; 
-- - - - - - 0x000361 00:8351: 01        .byte $01   ; 
-- - - - - - 0x000362 00:8352: 01        .byte $01   ; 
-- - - - - - 0x000363 00:8353: 28        .byte $28   ; 
-- - - - - - 0x000364 00:8354: 18        .byte $18   ; 
-- - - - - - 0x000365 00:8355: 0C        .byte $0C   ; 
-- - - - - - 0x000366 00:8356: 01        .byte $01   ; 
-- - - - - - 0x000367 00:8357: 30        .byte $30   ; 
-- - - - - - 0x000368 00:8358: 18        .byte $18   ; 
-- - - - - - 0x000369 00:8359: 0A        .byte $0A   ; 
-- - - - - - 0x00036A 00:835A: 01        .byte $01   ; 
-- - - - - - 0x00036B 00:835B: 38        .byte $38   ; 
-- - - - - - 0x00036C 00:835C: 18        .byte $18   ; 
-- - - - - - 0x00036D 00:835D: 02        .byte $02   ; 
-- - - - - - 0x00036E 00:835E: 01        .byte $01   ; 
-- - - - - - 0x00036F 00:835F: C0        .byte $C0   ; 
-- - - - - - 0x000370 00:8360: 18        .byte $18   ; 
-- - - - - - 0x000371 00:8361: 0C        .byte $0C   ; 
-- - - - - - 0x000372 00:8362: 01        .byte $01   ; 
-- - - - - - 0x000373 00:8363: C8        .byte $C8   ; 
-- - - - - - 0x000374 00:8364: 18        .byte $18   ; 
-- - - - - - 0x000375 00:8365: 0A        .byte $0A   ; 
-- - - - - - 0x000376 00:8366: 01        .byte $01   ; 
-- - - - - - 0x000377 00:8367: D0        .byte $D0   ; 
+; bzk garbage
+- - - - - - 0x000360 00:8350: 18        .byte $18, $01, $01, $28, $18, $0C, $01, $30   ; 
+- - - - - - 0x000368 00:8358: 18        .byte $18, $0A, $01, $38, $18, $02, $01, $C0   ; 
+- - - - - - 0x000370 00:8360: 18        .byte $18, $0C, $01, $C8, $18, $0A, $01, $D0   ; 
 
 
 
@@ -863,7 +842,7 @@ C - - - - - 0x000564 00:8554: 85 44     STA ram_0044
 C - - - - - 0x000566 00:8556: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x000567 00:8557: 60        RTS
 
 
@@ -1558,7 +1537,7 @@ C - - - - - 0x0008D2 00:88C2: A9 0D     LDA #$0D
 C - - - - - 0x0008D4 00:88C4: 4C ED 88  JMP loc_88ED
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x0008D7 00:88C7: 20 DA 88  JSR sub_88DA
 - - - - - - 0x0008DA 00:88CA: 4C E3 88  JMP loc_88E3
 
@@ -1581,7 +1560,7 @@ C - - - - - 0x0008EE 00:88DE: A9 00     LDA #$00
 C - - - - - 0x0008F0 00:88E0: 4C E9 88  JMP loc_88E9
 
 
-; bzk мусор
+; bzk garbage
 loc_88E3:
 - - - - - - 0x0008F3 00:88E3: A9 24     LDA #$24
 - - - - - - 0x0008F5 00:88E5: 85 31     STA ram_0031
@@ -1638,7 +1617,7 @@ C - - - - - 0x00093E 00:892E: A9 02     LDA #$02
 C - - - - - 0x000940 00:8930: 4C ED 88  JMP loc_88ED
 
 
-; bzk все байты FF
+; bzk optimize, all bytes = FF
 tbl_8933:
 - D 0 - I - 0x000943 00:8933: FF        .byte $FF   ; 
 - D 0 - I - 0x000944 00:8934: FF        .byte $FF   ; 
@@ -3312,7 +3291,7 @@ C - - - - - 0x001438 00:9428: D0 2D     BNE bra_9457
 C - - - - - 0x00143A 00:942A: 60        RTS
 
 
-; bzk опт
+; bzk optimize, move code up or move 0x001425 here
 bra_942B:
 C - - - - - 0x00143B 00:942B: A9 CB     LDA #< tbl_94CB
 C - - - - - 0x00143D 00:942D: 85 32     STA ram_0032
@@ -3378,7 +3357,7 @@ C - - - - - 0x0014AF 00:949F: 85 2E     STA ram_002E
 C - - - - - 0x0014B1 00:94A1: 4C 5E AC  JMP loc_AC5E
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x0014B4 00:94A4: A2 02     LDX #$02
 bra_94A6:
 - - - - - - 0x0014B6 00:94A6: BD 33 04  LDA ram_0433,X
@@ -3921,7 +3900,7 @@ sub_9665:
 C - - - - - 0x001675 00:9665: 20 72 9B  JSR sub_9B72
 C - - - - - 0x001678 00:9668: B0 35     BCS bra_969F_RTS
 C - - - - - 0x00167A 00:966A: 20 A0 96  JSR sub_96A0
-C - - - - - 0x00167D 00:966D: A5 C3     LDA ram_00C3    ; bzk INC
+C - - - - - 0x00167D 00:966D: A5 C3     LDA ram_00C3    ; bzk optimize, INC
 C - - - - - 0x00167F 00:966F: 18        CLC
 C - - - - - 0x001680 00:9670: 69 01     ADC #$01
 C - - - - - 0x001682 00:9672: 85 C3     STA ram_00C3
@@ -6419,91 +6398,18 @@ tbl_A1D9:
 - D 1 - - - 0x0021F1 00:A1E1: 50        .byte $50   ; 
 
 
-; bzk мусор
-- - - - - - 0x0021F2 00:A1E2: FF        .byte $FF   ; 
-- - - - - - 0x0021F3 00:A1E3: FF        .byte $FF   ; 
-- - - - - - 0x0021F4 00:A1E4: FF        .byte $FF   ; 
-- - - - - - 0x0021F5 00:A1E5: FF        .byte $FF   ; 
-- - - - - - 0x0021F6 00:A1E6: FF        .byte $FF   ; 
-- - - - - - 0x0021F7 00:A1E7: FF        .byte $FF   ; 
-- - - - - - 0x0021F8 00:A1E8: FF        .byte $FF   ; 
-- - - - - - 0x0021F9 00:A1E9: FF        .byte $FF   ; 
-- - - - - - 0x0021FA 00:A1EA: FF        .byte $FF   ; 
-- - - - - - 0x0021FB 00:A1EB: FF        .byte $FF   ; 
-- - - - - - 0x0021FC 00:A1EC: FF        .byte $FF   ; 
-- - - - - - 0x0021FD 00:A1ED: FF        .byte $FF   ; 
-- - - - - - 0x0021FE 00:A1EE: FF        .byte $FF   ; 
-- - - - - - 0x0021FF 00:A1EF: FF        .byte $FF   ; 
-- - - - - - 0x002200 00:A1F0: FF        .byte $FF   ; 
-- - - - - - 0x002201 00:A1F1: FF        .byte $FF   ; 
-- - - - - - 0x002202 00:A1F2: FF        .byte $FF   ; 
-- - - - - - 0x002203 00:A1F3: FF        .byte $FF   ; 
-- - - - - - 0x002204 00:A1F4: FF        .byte $FF   ; 
-- - - - - - 0x002205 00:A1F5: FF        .byte $FF   ; 
-- - - - - - 0x002206 00:A1F6: FF        .byte $FF   ; 
-- - - - - - 0x002207 00:A1F7: FF        .byte $FF   ; 
-- - - - - - 0x002208 00:A1F8: FF        .byte $FF   ; 
-- - - - - - 0x002209 00:A1F9: FF        .byte $FF   ; 
-- - - - - - 0x00220A 00:A1FA: FF        .byte $FF   ; 
-- - - - - - 0x00220B 00:A1FB: FF        .byte $FF   ; 
-- - - - - - 0x00220C 00:A1FC: FF        .byte $FF   ; 
-- - - - - - 0x00220D 00:A1FD: FF        .byte $FF   ; 
-- - - - - - 0x00220E 00:A1FE: FF        .byte $FF   ; 
-- - - - - - 0x00220F 00:A1FF: FF        .byte $FF   ; 
-- - - - - - 0x002210 00:A200: FF        .byte $FF   ; 
-- - - - - - 0x002211 00:A201: FF        .byte $FF   ; 
-- - - - - - 0x002212 00:A202: FF        .byte $FF   ; 
-- - - - - - 0x002213 00:A203: FF        .byte $FF   ; 
-- - - - - - 0x002214 00:A204: FF        .byte $FF   ; 
-- - - - - - 0x002215 00:A205: FF        .byte $FF   ; 
-- - - - - - 0x002216 00:A206: FF        .byte $FF   ; 
-- - - - - - 0x002217 00:A207: FF        .byte $FF   ; 
-- - - - - - 0x002218 00:A208: FF        .byte $FF   ; 
-- - - - - - 0x002219 00:A209: FF        .byte $FF   ; 
-- - - - - - 0x00221A 00:A20A: FF        .byte $FF   ; 
-- - - - - - 0x00221B 00:A20B: FF        .byte $FF   ; 
-- - - - - - 0x00221C 00:A20C: FF        .byte $FF   ; 
-- - - - - - 0x00221D 00:A20D: FF        .byte $FF   ; 
-- - - - - - 0x00221E 00:A20E: FF        .byte $FF   ; 
-- - - - - - 0x00221F 00:A20F: FF        .byte $FF   ; 
-- - - - - - 0x002220 00:A210: FF        .byte $FF   ; 
-- - - - - - 0x002221 00:A211: FF        .byte $FF   ; 
-- - - - - - 0x002222 00:A212: FF        .byte $FF   ; 
-- - - - - - 0x002223 00:A213: FF        .byte $FF   ; 
-- - - - - - 0x002224 00:A214: FF        .byte $FF   ; 
-- - - - - - 0x002225 00:A215: FF        .byte $FF   ; 
-- - - - - - 0x002226 00:A216: FF        .byte $FF   ; 
-- - - - - - 0x002227 00:A217: FF        .byte $FF   ; 
-- - - - - - 0x002228 00:A218: FF        .byte $FF   ; 
-- - - - - - 0x002229 00:A219: FF        .byte $FF   ; 
-- - - - - - 0x00222A 00:A21A: FF        .byte $FF   ; 
-- - - - - - 0x00222B 00:A21B: FF        .byte $FF   ; 
-- - - - - - 0x00222C 00:A21C: FF        .byte $FF   ; 
-- - - - - - 0x00222D 00:A21D: FF        .byte $FF   ; 
-- - - - - - 0x00222E 00:A21E: FF        .byte $FF   ; 
-- - - - - - 0x00222F 00:A21F: FF        .byte $FF   ; 
-- - - - - - 0x002230 00:A220: FF        .byte $FF   ; 
-- - - - - - 0x002231 00:A221: FF        .byte $FF   ; 
-- - - - - - 0x002232 00:A222: FF        .byte $FF   ; 
-- - - - - - 0x002233 00:A223: FF        .byte $FF   ; 
-- - - - - - 0x002234 00:A224: FF        .byte $FF   ; 
-- - - - - - 0x002235 00:A225: FF        .byte $FF   ; 
-- - - - - - 0x002236 00:A226: FF        .byte $FF   ; 
-- - - - - - 0x002237 00:A227: FF        .byte $FF   ; 
-- - - - - - 0x002238 00:A228: FF        .byte $FF   ; 
-- - - - - - 0x002239 00:A229: FF        .byte $FF   ; 
-- - - - - - 0x00223A 00:A22A: FF        .byte $FF   ; 
-- - - - - - 0x00223B 00:A22B: FF        .byte $FF   ; 
-- - - - - - 0x00223C 00:A22C: FF        .byte $FF   ; 
-- - - - - - 0x00223D 00:A22D: FF        .byte $FF   ; 
-- - - - - - 0x00223E 00:A22E: FF        .byte $FF   ; 
-- - - - - - 0x00223F 00:A22F: FF        .byte $FF   ; 
-- - - - - - 0x002240 00:A230: FF        .byte $FF   ; 
-- - - - - - 0x002241 00:A231: FF        .byte $FF   ; 
-- - - - - - 0x002242 00:A232: FF        .byte $FF   ; 
-- - - - - - 0x002243 00:A233: FF        .byte $FF   ; 
-- - - - - - 0x002244 00:A234: FF        .byte $FF   ; 
-- - - - - - 0x002245 00:A235: FF        .byte $FF   ; 
+; bzk garbage
+- - - - - - 0x0021F2 00:A1E2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x0021FA 00:A1EA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x002202 00:A1F2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00220A 00:A1FA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x002212 00:A202: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00221A 00:A20A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x002222 00:A212: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00222A 00:A21A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x002232 00:A222: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00223A 00:A22A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x002242 00:A232: FF        .byte $FF, $FF, $FF, $FF   ; 
 
 
 
@@ -6706,7 +6612,7 @@ loc_A38B:
 C D 1 - - - 0x00239B 00:A38B: C6 2F     DEC ram_002F
 C - - - - - 0x00239D 00:A38D: D0 AD     BNE bra_A33C_loop
 C - - - - - 0x00239F 00:A38F: 18        CLC
-C - - - - - 0x0023A0 00:A390: A5 35     LDA ram_0035    ; следующий спрайт, bzk предположительно не нужно изменять/проверять 0036
+C - - - - - 0x0023A0 00:A390: A5 35     LDA ram_0035    ; next sprite, bzk supposedly no need to change/check 0036
 C - - - - - 0x0023A2 00:A392: 69 04     ADC #$04
 C - - - - - 0x0023A4 00:A394: 85 35     STA ram_0035
 C - - - - - 0x0023A6 00:A396: A5 36     LDA ram_0036
@@ -6722,7 +6628,7 @@ C - - - - - 0x0023BB 00:A3AB: 20 BF A3  JSR sub_A3BF_increase_003B_index
 C - - - - - 0x0023BE 00:A3AE: 4C 8B A3  JMP loc_A38B
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x0023C1 00:A3B1: E6 35     INC ram_0035
 - - - - - - 0x0023C3 00:A3B3: D0 02     BNE bra_A3B7_RTS
 - - - - - - 0x0023C5 00:A3B5: E6 36     INC ram_0036
@@ -6752,7 +6658,7 @@ C - - - - - 0x0023D5 00:A3C5: 60        RTS
 sub_A3C6_increase_0032_index:
 C - - - - - 0x0023D6 00:A3C6: E6 32     INC ram_0032
 C - - - - - 0x0023D8 00:A3C8: F0 01     BEQ bra_A3CB_overflow
-C - - - - - 0x0023DA 00:A3CA: 60        RTS     ; bzk опт
+C - - - - - 0x0023DA 00:A3CA: 60        RTS     ; bzk optimize, BNE
 bra_A3CB_overflow:
 C - - - - - 0x0023DB 00:A3CB: E6 33     INC ram_0033
 C - - - - - 0x0023DD 00:A3CD: 60        RTS
@@ -9038,7 +8944,7 @@ _off004_AC49_1C:
 _off004_AC49_1D:
 _off004_AC49_1E:
 _off004_AC49_1F:
-loc_AC49:   ; bzk опт
+loc_AC49:   ; bzk optimize, move code up
 C D 1 - - - 0x002C59 00:AC49: A9 10     LDA #$10
 C - - - - - 0x002C5B 00:AC4B: 4C 50 AC  JMP loc_AC50
 
@@ -9224,7 +9130,7 @@ C - - - - - 0x002D76 00:AD66: 85 83     STA ram_0083
 C - - - - - 0x002D78 00:AD68: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x002D79 00:AD69: 84 BA     STY ram_00BA
 - - - - - - 0x002D7B 00:AD6B: A5 2E     LDA ram_002E
 - - - - - - 0x002D7D 00:AD6D: 29 0F     AND #$0F
@@ -9241,7 +9147,7 @@ C - - - - - 0x002D78 00:AD68: 60        RTS
 - - - - - - 0x002D92 00:AD82: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 sub_AD83:
 - - - - - - 0x002D93 00:AD83: B9 7F B1  LDA tbl_B17F,Y
 - - - - - - 0x002D96 00:AD86: 85 32     STA ram_0032
@@ -9459,14 +9365,14 @@ C - - - - - 0x002F14 00:AF04: 85 88     STA ram_0088
 C - - - - - 0x002F16 00:AF06: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x002F17 00:AF07: B9 6E 05  LDA ram_056E,Y
 - - - - - - 0x002F1A 00:AF0A: 85 8A     STA ram_008A
 - - - - - - 0x002F1C 00:AF0C: B9 91 05  LDA ram_0591,Y
 - - - - - - 0x002F1F 00:AF0F: 85 8B     STA ram_008B
 
 
-; bzk мусор
+; bzk garbage
 sub_AF11:
 - - - - - - 0x002F21 00:AF11: B9 4B 05  LDA ram_054B,Y
 - - - - - - 0x002F24 00:AF14: 85 83     STA ram_0083
@@ -9481,13 +9387,13 @@ sub_AF11:
 
 
 sub_AF26:
-loc_AF26:   ; bzk опт
+loc_AF26:   ; bzk optimize, move code up
 C - - - - - 0x002F36 00:AF26: 20 32 AF  JSR sub_AF32
 C - - - - - 0x002F39 00:AF29: 4C 47 AF  JMP loc_AF47
 
 
 
-sub_AF2C:   ; bzk опт
+sub_AF2C:   ; bzk optimize, move code up
 C - - - - - 0x002F3C 00:AF2C: 20 35 AF  JSR sub_AF35
 C - - - - - 0x002F3F 00:AF2F: 4C 4A AF  JMP loc_AF4A
 
@@ -9545,7 +9451,7 @@ C - - - - - 0x002F80 00:AF70: 85 86     STA ram_0086
 C - - - - - 0x002F82 00:AF72: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x002F83 00:AF73: A5 82     LDA ram_0082
 - - - - - - 0x002F85 00:AF75: 9D 28 05  STA ram_0528,X
 - - - - - - 0x002F88 00:AF78: A5 86     LDA ram_0086
@@ -9570,7 +9476,7 @@ C - - - - - 0x002F82 00:AF72: 60        RTS
 - - - - - - 0x002FBC 00:AFAC: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x002FBD 00:AFAD: 20 11 AF  JSR sub_AF11
 - - - - - - 0x002FC0 00:AFB0: 20 F2 AE  JSR sub_AEF2
 - - - - - - 0x002FC3 00:AFB3: 4C 26 AF  JMP loc_AF26
@@ -9994,72 +9900,16 @@ tbl_B13F:
 - D 1 - I - 0x00318E 00:B17E: FF        .byte $FF   ; 
 
 
-; bzk мусор
+; bzk garbage
 tbl_B17F:
-- - - - - - 0x00318F 00:B17F: 00        .byte $00   ; 
-- - - - - - 0x003190 00:B180: 00        .byte $00   ; 
-- - - - - - 0x003191 00:B181: 00        .byte $00   ; 
-- - - - - - 0x003192 00:B182: FF        .byte $FF   ; 
-- - - - - - 0x003193 00:B183: 61        .byte $61   ; 
-- - - - - - 0x003194 00:B184: 00        .byte $00   ; 
-- - - - - - 0x003195 00:B185: 14        .byte $14   ; 
-- - - - - - 0x003196 00:B186: FF        .byte $FF   ; 
-- - - - - - 0x003197 00:B187: B5        .byte $B5   ; 
-- - - - - - 0x003198 00:B188: 00        .byte $00   ; 
-- - - - - - 0x003199 00:B189: 4B        .byte $4B   ; 
-- - - - - - 0x00319A 00:B18A: FF        .byte $FF   ; 
-- - - - - - 0x00319B 00:B18B: EC        .byte $EC   ; 
-- - - - - - 0x00319C 00:B18C: 00        .byte $00   ; 
-- - - - - - 0x00319D 00:B18D: 9F        .byte $9F   ; 
-- - - - - - 0x00319E 00:B18E: FF        .byte $FF   ; 
-- - - - - - 0x00319F 00:B18F: 00        .byte $00   ; 
-- - - - - - 0x0031A0 00:B190: 01        .byte $01   ; 
-- - - - - - 0x0031A1 00:B191: 00        .byte $00   ; 
-- - - - - - 0x0031A2 00:B192: 00        .byte $00   ; 
-- - - - - - 0x0031A3 00:B193: EC        .byte $EC   ; 
-- - - - - - 0x0031A4 00:B194: 00        .byte $00   ; 
-- - - - - - 0x0031A5 00:B195: 61        .byte $61   ; 
-- - - - - - 0x0031A6 00:B196: 00        .byte $00   ; 
-- - - - - - 0x0031A7 00:B197: B5        .byte $B5   ; 
-- - - - - - 0x0031A8 00:B198: 00        .byte $00   ; 
-- - - - - - 0x0031A9 00:B199: B5        .byte $B5   ; 
-- - - - - - 0x0031AA 00:B19A: 00        .byte $00   ; 
-- - - - - - 0x0031AB 00:B19B: 61        .byte $61   ; 
-- - - - - - 0x0031AC 00:B19C: 00        .byte $00   ; 
-- - - - - - 0x0031AD 00:B19D: EC        .byte $EC   ; 
-- - - - - - 0x0031AE 00:B19E: 00        .byte $00   ; 
-- - - - - - 0x0031AF 00:B19F: 00        .byte $00   ; 
-- - - - - - 0x0031B0 00:B1A0: 00        .byte $00   ; 
-- - - - - - 0x0031B1 00:B1A1: 00        .byte $00   ; 
-- - - - - - 0x0031B2 00:B1A2: 01        .byte $01   ; 
-- - - - - - 0x0031B3 00:B1A3: 9F        .byte $9F   ; 
-- - - - - - 0x0031B4 00:B1A4: FF        .byte $FF   ; 
-- - - - - - 0x0031B5 00:B1A5: EC        .byte $EC   ; 
-- - - - - - 0x0031B6 00:B1A6: 00        .byte $00   ; 
-- - - - - - 0x0031B7 00:B1A7: 4B        .byte $4B   ; 
-- - - - - - 0x0031B8 00:B1A8: FF        .byte $FF   ; 
-- - - - - - 0x0031B9 00:B1A9: B5        .byte $B5   ; 
-- - - - - - 0x0031BA 00:B1AA: 00        .byte $00   ; 
-- - - - - - 0x0031BB 00:B1AB: 14        .byte $14   ; 
-- - - - - - 0x0031BC 00:B1AC: FF        .byte $FF   ; 
-- - - - - - 0x0031BD 00:B1AD: 61        .byte $61   ; 
-- - - - - - 0x0031BE 00:B1AE: 00        .byte $00   ; 
-- - - - - - 0x0031BF 00:B1AF: 00        .byte $00   ; 
-- - - - - - 0x0031C0 00:B1B0: FF        .byte $FF   ; 
-- - - - - - 0x0031C1 00:B1B1: 00        .byte $00   ; 
-- - - - - - 0x0031C2 00:B1B2: 00        .byte $00   ; 
-- - - - - - 0x0031C3 00:B1B3: 14        .byte $14   ; 
-- - - - - - 0x0031C4 00:B1B4: FF        .byte $FF   ; 
-- - - - - - 0x0031C5 00:B1B5: 9F        .byte $9F   ; 
-- - - - - - 0x0031C6 00:B1B6: FF        .byte $FF   ; 
-- - - - - - 0x0031C7 00:B1B7: 4B        .byte $4B   ; 
-- - - - - - 0x0031C8 00:B1B8: FF        .byte $FF   ; 
-- - - - - - 0x0031C9 00:B1B9: 4B        .byte $4B   ; 
-- - - - - - 0x0031CA 00:B1BA: FF        .byte $FF   ; 
-- - - - - - 0x0031CB 00:B1BB: 9F        .byte $9F   ; 
-- - - - - - 0x0031CC 00:B1BC: FF        .byte $FF   ; 
-- - - - - - 0x0031CD 00:B1BD: 14        .byte $14   ; 
-- - - - - - 0x0031CE 00:B1BE: FF        .byte $FF   ; 
+- - - - - - 0x00318F 00:B17F: 00        .byte $00, $00, $00, $FF, $61, $00, $14, $FF   ; 
+- - - - - - 0x003197 00:B187: B5        .byte $B5, $00, $4B, $FF, $EC, $00, $9F, $FF   ; 
+- - - - - - 0x00319F 00:B18F: 00        .byte $00, $01, $00, $00, $EC, $00, $61, $00   ; 
+- - - - - - 0x0031A7 00:B197: B5        .byte $B5, $00, $B5, $00, $61, $00, $EC, $00   ; 
+- - - - - - 0x0031AF 00:B19F: 00        .byte $00, $00, $00, $01, $9F, $FF, $EC, $00   ; 
+- - - - - - 0x0031B7 00:B1A7: 4B        .byte $4B, $FF, $B5, $00, $14, $FF, $61, $00   ; 
+- - - - - - 0x0031BF 00:B1AF: 00        .byte $00, $FF, $00, $00, $14, $FF, $9F, $FF   ; 
+- - - - - - 0x0031C7 00:B1B7: 4B        .byte $4B, $FF, $4B, $FF, $9F, $FF, $14, $FF   ; 
 
 
 
@@ -10094,7 +9944,7 @@ C - - - - - 0x0031F0 00:B1E0: 29 20     AND #$20
 C - - - - - 0x0031F2 00:B1E2: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x0031F3 00:B1E3: BD 33 04  LDA ram_0433,X
 - - - - - - 0x0031F6 00:B1E6: 29 40     AND #$40
 - - - - - - 0x0031F8 00:B1E8: 60        RTS
@@ -10146,7 +9996,7 @@ C - - - - - 0x003231 00:B221: 9D 33 04  STA ram_0433,X
 C - - - - - 0x003234 00:B224: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x003235 00:B225: BD 33 04  LDA ram_0433,X
 - - - - - - 0x003238 00:B228: 09 40     ORA #$40
 - - - - - - 0x00323A 00:B22A: 9D 33 04  STA ram_0433,X
@@ -10188,7 +10038,7 @@ C - - - - - 0x003267 00:B257: 9D 33 04  STA ram_0433,X
 C - - - - - 0x00326A 00:B25A: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00326B 00:B25B: BD 33 04  LDA ram_0433,X
 - - - - - - 0x00326E 00:B25E: 29 EF     AND #$EF
 - - - - - - 0x003270 00:B260: 9D 33 04  STA ram_0433,X
@@ -10257,7 +10107,7 @@ C - - - - - 0x0032C1 00:B2B1: 99 33 04  STA ram_0433,Y
 C - - - - - 0x0032C4 00:B2B4: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x0032C5 00:B2B5: A5 92     LDA ram_0092
 - - - - - - 0x0032C7 00:B2B7: 29 01     AND #$01
 - - - - - - 0x0032C9 00:B2B9: 60        RTS
@@ -11417,26 +11267,10 @@ C - - - - - 0x003B07 00:BAF7: 20 A0 82  JSR sub_82A0
 C - - - - - 0x003B0A 00:BAFA: 4C F1 BA  JMP loc_BAF1_loop
 
 
-; bzk мусор
-- - - - - - 0x003B0D 00:BAFD: FF        .byte $FF   ; 
-- - - - - - 0x003B0E 00:BAFE: FF        .byte $FF   ; 
-- - - - - - 0x003B0F 00:BAFF: FF        .byte $FF   ; 
-- - - - - - 0x003B10 00:BB00: FF        .byte $FF   ; 
-- - - - - - 0x003B11 00:BB01: FF        .byte $FF   ; 
-- - - - - - 0x003B12 00:BB02: FF        .byte $FF   ; 
-- - - - - - 0x003B13 00:BB03: FF        .byte $FF   ; 
-- - - - - - 0x003B14 00:BB04: FF        .byte $FF   ; 
-- - - - - - 0x003B15 00:BB05: FF        .byte $FF   ; 
-- - - - - - 0x003B16 00:BB06: FF        .byte $FF   ; 
-- - - - - - 0x003B17 00:BB07: FF        .byte $FF   ; 
-- - - - - - 0x003B18 00:BB08: FF        .byte $FF   ; 
-- - - - - - 0x003B19 00:BB09: FF        .byte $FF   ; 
-- - - - - - 0x003B1A 00:BB0A: FF        .byte $FF   ; 
-- - - - - - 0x003B1B 00:BB0B: FF        .byte $FF   ; 
-- - - - - - 0x003B1C 00:BB0C: FF        .byte $FF   ; 
-- - - - - - 0x003B1D 00:BB0D: FF        .byte $FF   ; 
-- - - - - - 0x003B1E 00:BB0E: FF        .byte $FF   ; 
-- - - - - - 0x003B1F 00:BB0F: FF        .byte $FF   ; 
+; bzk garbage
+- - - - - - 0x003B0D 00:BAFD: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x003B15 00:BB05: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x003B1D 00:BB0D: FF        .byte $FF, $FF, $FF   ; 
 
 
 
@@ -11448,7 +11282,7 @@ C - - - - - 0x003B22 00:BB12: BD 33 04  LDA ram_0433,X
 C - - - - - 0x003B25 00:BB15: F0 23     BEQ bra_BB3A
 C - - - - - 0x003B27 00:BB17: BD FA 05  LDA ram_05FA,X
 C - - - - - 0x003B2A 00:BB1A: C9 00     CMP #$00
-C - - - - - 0x003B2C 00:BB1C: F0 09     BEQ bra_BB27    ; bzk опт
+C - - - - - 0x003B2C 00:BB1C: F0 09     BEQ bra_BB27    ; bzk optimize, no need for CMP 00
 C - - - - - 0x003B2E 00:BB1E: A5 92     LDA ram_0092
 C - - - - - 0x003B30 00:BB20: 29 01     AND #$01
 C - - - - - 0x003B32 00:BB22: D0 16     BNE bra_BB3A
@@ -12056,7 +11890,7 @@ C - - - - - 0x003FA7 00:BF97: 4C 3A BB  JMP loc_BB3A
 
 
 
-sub_BF9A:   ; bzk опт
+sub_BF9A:   ; bzk optimize, move up to save cycles
 C - - - - - 0x003FAA 00:BF9A: BD B4 05  LDA ram_05B4,X
 C - - - - - 0x003FAD 00:BF9D: 4A        LSR
 C - - - - - 0x003FAE 00:BF9E: 4A        LSR
@@ -12325,7 +12159,7 @@ C - - - - - 0x0041E2 01:C1D2: 4C 3A BB  JMP loc_BB3A
 
 
 
-sub_C1D5:   ; bzk опт
+sub_C1D5:   ; bzk optimize, move up to save cycles
 C - - - - - 0x0041E5 01:C1D5: A9 34     LDA #$34
 C - - - - - 0x0041E7 01:C1D7: 9D 79 04  STA ram_0479,X
 C - - - - - 0x0041EA 01:C1DA: 60        RTS
@@ -13538,7 +13372,7 @@ C - - - - - 0x004B27 01:CB17: 4C EC CA  JMP loc_CAEC
 
 
 
-sub_CB1A:   ; bzk опт
+sub_CB1A:   ; bzk optimize, move up to save cycles
 C - - - - - 0x004B2A 01:CB1A: A5 73     LDA ram_0073
 C - - - - - 0x004B2C 01:CB1C: 29 F0     AND #$F0
 C - - - - - 0x004B2E 01:CB1E: 9D 4B 05  STA ram_054B,X
@@ -14263,7 +14097,7 @@ tbl_D07E:
 sub_D084:
 C - - - - - 0x005094 01:D084: BC 40 06  LDY ram_0640,X
 C - - - - - 0x005097 01:D087: A9 05     LDA #< ram_0005
-C - - - - - 0x005099 01:D089: 4C 91 D0  JMP loc_D091    ; bzk опт
+C - - - - - 0x005099 01:D089: 4C 91 D0  JMP loc_D091
 
 
 
@@ -14299,7 +14133,7 @@ C - - - - - 0x0050C3 01:D0B3: 4C 4B 91  JMP loc_914B
 
 
 
-sub_D0B6:   ; bzk опт
+sub_D0B6:   ; bzk optimize, move up to save cycles
 C - - - - - 0x0050C6 01:D0B6: A9 02     LDA #$02
 C - - - - - 0x0050C8 01:D0B8: 4C BD D0  JMP loc_D0BD
 
@@ -14747,7 +14581,7 @@ bra_D3FB:
 
 
 
-sub_D403:   ; bzk опт
+sub_D403:   ; bzk optimize, move up to save cycles
 C - - - - - 0x005413 01:D403: A9 21     LDA #$21
 C - - - - - 0x005415 01:D405: A0 14     LDY #$14
 C - - - - - 0x005417 01:D407: 4C 0C D4  JMP loc_D40C
@@ -15043,11 +14877,8 @@ tbl_D554:
 - D 2 - - - 0x00556B 01:D55B: 2F        .byte $2F   ; 
 
 
-; bzk мусор
-- - - - - - 0x00556C 01:D55C: FF        .byte $FF   ; 
-- - - - - - 0x00556D 01:D55D: FF        .byte $FF   ; 
-- - - - - - 0x00556E 01:D55E: FF        .byte $FF   ; 
-- - - - - - 0x00556F 01:D55F: FF        .byte $FF   ; 
+; bzk garbage
+- - - - - - 0x00556C 01:D55C: FF        .byte $FF, $FF, $FF, $FF   ; 
 
 
 
@@ -15250,7 +15081,7 @@ C - - - - - 0x005688 01:D678: AD 05 07  LDA ram_0705
 C - - - - - 0x00568B 01:D67B: 85 FC     STA ram_00FC
 C - - - - - 0x00568D 01:D67D: A9 20     LDA #$20
 C - - - - - 0x00568F 01:D67F: 85 41     STA ram_0041
-bra_D681:
+bra_D681_loop:
 C - - - - - 0x005691 01:D681: 46 FC     LSR ram_00FC
 C - - - - - 0x005693 01:D683: 66 FB     ROR ram_00FB
 C - - - - - 0x005695 01:D685: 66 FA     ROR ram_00FA
@@ -15260,7 +15091,7 @@ C - - - - - 0x00569B 01:D68B: B0 0A     BCS bra_D697
 bra_D68D:
 loc_D68D:
 C D 2 - - - 0x00569D 01:D68D: C6 41     DEC ram_0041
-C - - - - - 0x00569F 01:D68F: D0 F0     BNE bra_D681
+C - - - - - 0x00569F 01:D68F: D0 F0     BNE bra_D681_loop
 C - - - - - 0x0056A1 01:D691: 20 D2 D5  JSR sub_D5D2
 C - - - - - 0x0056A4 01:D694: 4C 00 D7  JMP loc_D700
 bra_D697:
@@ -15313,7 +15144,7 @@ C - - - - - 0x0056F3 01:D6E3: 0A        ASL
 C - - - - - 0x0056F4 01:D6E4: A8        TAY
 C - - - - - 0x0056F5 01:D6E5: B9 AB D9  LDA tbl_D9AB,Y
 C - - - - - 0x0056F8 01:D6E8: 85 3E     STA ram_003E
-C - - - - - 0x0056FA 01:D6EA: C8        INY     ; bzk опт
+C - - - - - 0x0056FA 01:D6EA: C8        INY     ; bzk optimize, table - 1 instead of INY
 C - - - - - 0x0056FB 01:D6EB: B9 AB D9  LDA tbl_D9AB,Y
 C - - - - - 0x0056FE 01:D6EE: 85 3F     STA ram_003F
 C - - - - - 0x005700 01:D6F0: A4 FD     LDY ram_00FD
@@ -15675,7 +15506,7 @@ C - - - - - 0x005911 01:D901: 85 FE     STA ram_00FE
 C - - - - - 0x005913 01:D903: C8        INY
 C - - - - - 0x005914 01:D904: B1 F2     LDA (ram_00F2),Y
 C - - - - - 0x005916 01:D906: 85 FF     STA ram_00FF
-C - - - - - 0x005918 01:D908: A2 00     LDX #$00    ; bzk опт, нахрена сохранять в стеке, можно просто в конце прочитать
+C - - - - - 0x005918 01:D908: A2 00     LDX #$00    ; bzk optimize, load A at the end instead of reading now and PHA/PLA
 C - - - - - 0x00591A 01:D90A: A1 FE     LDA (ram_00FE,X)
 C - - - - - 0x00591C 01:D90C: 48        PHA
 C - - - - - 0x00591D 01:D90D: A5 FE     LDA ram_00FE
@@ -15811,7 +15642,7 @@ tbl_D992:
 - D 2 - - - 0x0059B8 01:D9A8: 1B        .byte $1B   ; 
 
 
-; bzk опт
+; bzk optimize, LDA immediate
 tbl_D9A9:
 - D 2 - - - 0x0059B9 01:D9A9: 57        .byte < ram_0757
 
@@ -17762,13 +17593,8 @@ tbl_E0D5:
 - D 3 - I - 0x0060E9 01:E0D9: FF        .byte $FF   ; 
 
 
-; bzk мусор
-- - - - - - 0x0060EA 01:E0DA: FF        .byte $FF   ; 
-- - - - - - 0x0060EB 01:E0DB: FF        .byte $FF   ; 
-- - - - - - 0x0060EC 01:E0DC: FF        .byte $FF   ; 
-- - - - - - 0x0060ED 01:E0DD: FF        .byte $FF   ; 
-- - - - - - 0x0060EE 01:E0DE: FF        .byte $FF   ; 
-- - - - - - 0x0060EF 01:E0DF: FF        .byte $FF   ; 
+; bzk garbage
+- - - - - - 0x0060EA 01:E0DA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 
@@ -18005,16 +17831,16 @@ C - - - - - 0x00626A 01:E25A: A5 79     LDA ram_0079
 C - - - - - 0x00626C 01:E25C: 29 10     AND #$10
 C - - - - - 0x00626E 01:E25E: D0 05     BNE bra_E265
 C - - - - - 0x006270 01:E260: A9 FC     LDA #$FC
-C - - - - - 0x006272 01:E262: 4C 83 E2  JMP loc_E283    ; bzk опт
+C - - - - - 0x006272 01:E262: 4C 83 E2  JMP loc_E283    ; bzk optimize, BNE
 bra_E265:
 C - - - - - 0x006275 01:E265: A9 CF     LDA #$CF
-C - - - - - 0x006277 01:E267: 4C 7B E2  JMP loc_E27B    ; bzk опт
+C - - - - - 0x006277 01:E267: 4C 7B E2  JMP loc_E27B    ; bzk optimize, BNE
 bra_E26A:
 C - - - - - 0x00627A 01:E26A: A5 79     LDA ram_0079
 C - - - - - 0x00627C 01:E26C: 29 10     AND #$10
 C - - - - - 0x00627E 01:E26E: D0 05     BNE bra_E275
 C - - - - - 0x006280 01:E270: A9 F3     LDA #$F3
-C - - - - - 0x006282 01:E272: 4C 7F E2  JMP loc_E27F    ; bzk опт
+C - - - - - 0x006282 01:E272: 4C 7F E2  JMP loc_E27F    ; bzk optimize, BNE
 bra_E275:
 C - - - - - 0x006285 01:E275: A9 3F     LDA #$3F
 C - - - - - 0x006287 01:E277: 06 5B     ASL ram_005B
@@ -18032,13 +17858,13 @@ C - - - - - 0x006297 01:E287: 91 32     STA (ram_0032),Y
 C - - - - - 0x006299 01:E289: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00629A 01:E28A: 20 92 E2  JSR sub_E292
 - - - - - - 0x00629D 01:E28D: A9 50     LDA #$50
 - - - - - - 0x00629F 01:E28F: 4C C5 E2  JMP loc_E2C5
 
 
-; bzk мусор
+; bzk garbage
 sub_E292:
 - - - - - - 0x0062A2 01:E292: BD 28 05  LDA ram_0528,X
 - - - - - - 0x0062A5 01:E295: 29 F8     AND #$F8
@@ -18070,7 +17896,7 @@ sub_E292:
 - - - - - - 0x0062D4 01:E2C4: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 loc_E2C5:
 - - - - - - 0x0062D5 01:E2C5: 85 32     STA ram_0032
 - - - - - - 0x0062D7 01:E2C7: A9 00     LDA #$00
@@ -18377,15 +18203,8 @@ tbl_E428:
 - D 3 - - - 0x00648F 01:E47F: 00        .byte $00   ; 
 
 
-; bzk мусор?
-- - - - - - 0x006490 01:E480: 00        .byte $00   ; 
-- - - - - - 0x006491 01:E481: 00        .byte $00   ; 
-- - - - - - 0x006492 01:E482: 00        .byte $00   ; 
-- - - - - - 0x006493 01:E483: 00        .byte $00   ; 
-- - - - - - 0x006494 01:E484: 00        .byte $00   ; 
-- - - - - - 0x006495 01:E485: 00        .byte $00   ; 
-- - - - - - 0x006496 01:E486: 00        .byte $00   ; 
-- - - - - - 0x006497 01:E487: 00        .byte $00   ; 
+; bzk garbage?
+- - - - - - 0x006490 01:E480: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
 
 
 
@@ -25272,12 +25091,8 @@ C - - - - - 0x008002 01:FFF2: 90 F5     BCC bra_FFE9_loop
 C - - - - - 0x008004 01:FFF4: 60        RTS
 
 
-; bzk мусор
-- - - - - - 0x008005 01:FFF5: FF        .byte $FF   ; 
-- - - - - - 0x008006 01:FFF6: FF        .byte $FF   ; 
-- - - - - - 0x008007 01:FFF7: FF        .byte $FF   ; 
-- - - - - - 0x008008 01:FFF8: FF        .byte $FF   ; 
-- - - - - - 0x008009 01:FFF9: FF        .byte $FF   ; 
+; bzk garbage
+- - - - - - 0x008005 01:FFF5: FF        .byte $FF, $FF, $FF, $FF, $FF   ; 
 
 
 

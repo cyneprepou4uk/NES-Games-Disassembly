@@ -13,7 +13,7 @@ tbl_C000_prg_bank:
 - D 2 - - - 0x01C017 07:C007: 36        .byte $36   ; 07 0x00C010
 - D 2 - - - 0x01C018 07:C008: 37        .byte $37   ; 08 0x00E010
 
-; bzk unused
+; bzk garbage
 - - - - - - 0x01C019 07:C009: 3A        .byte $3A   ; 09 0x014010
 - - - - - - 0x01C01A 07:C00A: 3A        .byte $3A   ; 0A 0x014010
 
@@ -212,7 +212,7 @@ C - - - - - 0x01C10B 07:C0FB: 20 21 EA  JSR sub_EA21
 C - - - - - 0x01C10E 07:C0FE: 60        RTS
 
 
-; bzk unused
+; bzk garbage
 - - - - - - 0x01C10F 07:C0FF: 60        RTS
 
 
@@ -392,7 +392,7 @@ tbl_C21E:
 - D 2 - - - 0x01C23E 07:C22E: 47        .byte $47   ; 
 
 
-; bzk unused up to 0x01C67A
+; bzk garbage up to 0x01C67A
 - - - - - - 0x01C23F 07:C22F: BD 00 03  LDA ram_0300,X
 - - - - - - 0x01C242 07:C232: 29 40     AND #$40
 - - - - - - 0x01C244 07:C234: D0 0E     BNE bra_C244
@@ -1248,7 +1248,7 @@ tbl_C83A:
 - D 2 - - - 0x01C85A 07:C84A: 08        .byte $08   ; 
 
 
-; bzk unused
+; bzk garbage
 - - - - - - 0x01C85B 07:C84B: BA        .byte $BA   ; 
 
 
@@ -1484,7 +1484,7 @@ tbl_C9CE:
 - D 2 - I - 0x01C9E9 07:C9D9: 0F        .byte $0F, $11, $15, $30   ; 
 
 
-; bzk unused
+; bzk garbage
 - - - - - - 0x01C9ED 07:C9DD: BA        .byte $BA   ; 
 
 
@@ -1649,7 +1649,7 @@ tbl_CAEC:
 - D 2 - - - 0x01CB04 07:CAF4: 28        .byte $28   ; 
 
 
-; bzk unused
+; bzk garbage
 - - - - - - 0x01CB05 07:CAF5: BA        .byte $BA   ; 
 
 
@@ -6049,7 +6049,7 @@ tbl_E6F2_spr_colors:
 - D 3 - I - 0x01E791 07:E781: 27        .byte $27   ; 
 
 
-; bzk unused
+; bzk garbage
 - - - - - - 0x01E792 07:E782: BA        .byte $BA   ; 
 
 
@@ -6099,7 +6099,7 @@ tbl_E7A0_spr_colors:
 - D 3 - I - 0x01E7F4 07:E7E4: 0F        .byte $0F, $19, $26, $36   ; 11 (08)
 
 
-; bzk unused
+; bzk garbage
 - - - - - - 0x01E7F8 07:E7E8: BA        .byte $BA   ; 
 
 
@@ -7738,7 +7738,7 @@ C - - - - - 0x01F127 07:F117: A8        TAY
 C - - - - - 0x01F128 07:F118: 60        RTS
 
 
-; bzk unused
+; bzk garbage
 - - - - - - 0x01F129 07:F119: 98        TYA
 - - - - - - 0x01F12A 07:F11A: 48        PHA
 - - - - - - 0x01F12B 07:F11B: BD 0A 05  LDA ram_050A,X
@@ -9428,12 +9428,8 @@ C - - - - - 0x01FB53 07:FB43: A8        TAY
 C - - - - - 0x01FB54 07:FB44: 60        RTS
 
 
-; bzk unused
-- - - - - - 0x01FB55 07:FB45: 04        .byte $04   ; 
-- - - - - - 0x01FB56 07:FB46: 00        .byte $00   ; 
-- - - - - - 0x01FB57 07:FB47: 00        .byte $00   ; 
-- - - - - - 0x01FB58 07:FB48: 00        .byte $00   ; 
-- - - - - - 0x01FB59 07:FB49: 00        .byte $00   ; 
+; bzk garbage
+- - - - - - 0x01FB55 07:FB45: 04        .byte $04, $00, $00, $00, $00   ; 
 
 
 
@@ -10237,7 +10233,7 @@ bra_FF35_RTS:
 C - - - - - 0x01FF45 07:FF35: 60        RTS
 
 
-; bzk unused
+; bzk garbage
 - - - - - - 0x01FF46 07:FF36: 85 11     STA ram_0011
 - - - - - - 0x01FF48 07:FF38: A9 00     LDA #$00
 - - - - - - 0x01FF4A 07:FF3A: 85 10     STA ram_0010
@@ -10317,17 +10313,8 @@ tbl_FF8C:
 - D 3 - - - 0x01FFA2 07:FF92: 00        .byte $00   ; 
 
 
-; bzk unused
-- - - - - - 0x01FFA3 07:FF93: 00        .byte $00   ; 
-- - - - - - 0x01FFA4 07:FF94: 01        .byte $01   ; 
-- - - - - - 0x01FFA5 07:FF95: 02        .byte $02   ; 
-- - - - - - 0x01FFA6 07:FF96: 03        .byte $03   ; 
-- - - - - - 0x01FFA7 07:FF97: 04        .byte $04   ; 
-- - - - - - 0x01FFA8 07:FF98: 05        .byte $05   ; 
-- - - - - - 0x01FFA9 07:FF99: 06        .byte $06   ; 
-- - - - - - 0x01FFAA 07:FF9A: 07        .byte $07   ; 
-- - - - - - 0x01FFAB 07:FF9B: 08        .byte $08   ; 
-- - - - - - 0x01FFAC 07:FF9C: 09        .byte $09   ; 
+; bzk garbage
+- - - - - - 0x01FFA3 07:FF93: 00        .byte $00, $01, $02, $03, $04, $05, $06, $07, $08, $09   ; 
 
 
 
@@ -10402,7 +10389,7 @@ C - - - - - 0x020007 07:FFF7: AA        TAX
 C - - - - - 0x020008 07:FFF8: 60        RTS
 
 
-; bzk unused
+; bzk garbage
 - - - - - - 0x020009 07:FFF9: 8C        .byte $8C   ; 
 
 

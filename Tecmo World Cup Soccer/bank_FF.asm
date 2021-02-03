@@ -21,7 +21,7 @@ loc_0x00C01C:
 C D 2 - - - 0x00C01C 03:C00C: 4C F1 C5  JMP loc_C5F1
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00C01F 03:C00F: 4C FC C5  JMP loc_C5FC
 - - - - - - 0x00C022 03:C012: 4C 9E C7  JMP loc_C79E
 - - - - - - 0x00C025 03:C015: 4C B9 C6  JMP loc_C6B9
@@ -33,11 +33,11 @@ sub_0x00C028:
 C - - - - - 0x00C028 03:C018: 4C D4 CA  JMP loc_CAD4
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00C02B 03:C01B: 4C 20 CC  JMP loc_CC20
 
 
-; bzk мусор
+; bzk garbage
 loc_C01E:
 - - - - - - 0x00C02E 03:C01E: 4C 1E C0  JMP loc_C01E
 - - - - - - 0x00C031 03:C021: 4C A4 CB  JMP loc_CBA4
@@ -51,7 +51,7 @@ sub_0x00C03A_bytes_after_JSR:
 C - - - - - 0x00C03A 03:C02A: 4C BD CA  JMP loc_CABD_bytes_after_JSR
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00C03D 03:C02D: 4C 2B C9  JMP loc_C92B
 - - - - - - 0x00C040 03:C030: 4C 75 CB  JMP loc_CB75
 
@@ -70,7 +70,7 @@ sub_0x00C049:
 C - - - - - 0x00C049 03:C039: 4C 50 CB  JMP loc_CB50
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00C04C 03:C03C: 4C 5B C9  JMP loc_C95B
 - - - - - - 0x00C04F 03:C03F: 4C DA C9  JMP loc_C9DA
 
@@ -81,7 +81,7 @@ sub_0x00C052:
 C - - - - - 0x00C052 03:C042: 4C 1E C9  JMP loc_C91E
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00C055 03:C045: 4C 58 CB  JMP loc_CB58_prg_bankswitch
 
 
@@ -91,7 +91,7 @@ sub_0x00C058:
 C - - - - - 0x00C058 03:C048: 4C 9D C8  JMP loc_C89D
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00C05B 03:C04B: 4C 43 C8  JMP loc_C843
 - - - - - - 0x00C05E 03:C04E: 4C 7E C6  JMP loc_C67E
 
@@ -102,7 +102,7 @@ sub_0x00C061:
 C - - - - - 0x00C061 03:C051: 4C AF CA  JMP loc_CAAF
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00C064 03:C054: 4C 23 CC  JMP loc_CC23
 
 
@@ -116,7 +116,7 @@ sub_0x00C06A:
 C - - - - - 0x00C06A 03:C05A: 4C 2F C6  JMP loc_C62F
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00C06D 03:C05D: 4C 52 C6  JMP loc_C652
 - - - - - - 0x00C070 03:C060: 4C 61 C6  JMP loc_C661
 - - - - - - 0x00C073 03:C063: 4C 66 C6  JMP loc_C666
@@ -627,7 +627,7 @@ C - - - - - 0x00C42D 03:C41D: D0 F4     BNE bra_C413
 C - - - - - 0x00C42F 03:C41F: 20 25 C4  JSR sub_C425
 
 
-; bzk мусор
+; bzk garbage
 loc_C422:
 - - - - - - 0x00C432 03:C422: 4C 22 C4  JMP loc_C422
 
@@ -912,7 +912,7 @@ C - - - - - 0x00C607 03:C5F7: 95 01     STA ram_0001,X
 C - - - - - 0x00C609 03:C5F9: 4C 7A C5  JMP loc_C57A
 
 
-; bzk мусор
+; bzk garbage
 loc_C5FC:
 - - - - - - 0x00C60C 03:C5FC: B5 01     LDA ram_0001,X
 - - - - - - 0x00C60E 03:C5FE: F0 06     BEQ bra_C606_RTS
@@ -947,7 +947,7 @@ C - - - - - 0x00C632 03:C622: A6 00     LDX ram_0000
 C - - - - - 0x00C634 03:C624: 4C 7A C5  JMP loc_C57A
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00C637 03:C627: 20        .byte $20   ; 
 - - - - - - 0x00C638 03:C628: 40        .byte $40   ; 
 - - - - - - 0x00C639 03:C629: 18        .byte $18   ; 
@@ -998,7 +998,7 @@ C - - - - - 0x00C66C 03:C65C: 91 61     STA (ram_0061),Y
 C - - - - - 0x00C66E 03:C65E: 4C 55 DF  JMP loc_DF55
 
 
-; bzk мусор
+; bzk garbage
 loc_C661:
 - - - - - - 0x00C671 03:C661: A9 FF     LDA #$FF
 - - - - - - 0x00C673 03:C663: 4C 52 C6  JMP loc_C652
@@ -1577,7 +1577,7 @@ C - - - - - 0x00C956 03:C946: 91 61     STA (ram_0061),Y
 C - - - - - 0x00C958 03:C948: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00C959 03:C949: A0 00     LDY #$00
 - - - - - - 0x00C95B 03:C94B: B1 61     LDA (ram_0061),Y
 - - - - - - 0x00C95D 03:C94D: 09 04     ORA #$04
@@ -3657,7 +3657,7 @@ tbl_D6D4:
 - - - - - - 0x00D703 03:D6F3: 04        .byte $04   ; 
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00D704 03:D6F4: 20 6B DD  JSR sub_DD6B
 - - - - - - 0x00D707 03:D6F7: 8D E6 03  STA ram_03E6
 
@@ -3865,12 +3865,8 @@ tbl_D842:
 - D 2 - - - 0x00D85C 03:D84C: 05        .byte $05   ; 
 
 
-; bzk мусор
-- - - - - - 0x00D85D 03:D84D: FF        .byte $FF   ; 
-- - - - - - 0x00D85E 03:D84E: FF        .byte $FF   ; 
-- - - - - - 0x00D85F 03:D84F: FF        .byte $FF   ; 
-- - - - - - 0x00D860 03:D850: FF        .byte $FF   ; 
-- - - - - - 0x00D861 03:D851: FF        .byte $FF   ; 
+; bzk garbage
+- - - - - - 0x00D85D 03:D84D: FF        .byte $FF, $FF, $FF, $FF, $FF   ; 
 
 
 
@@ -4179,7 +4175,7 @@ C - - - - - 0x00DA37 03:DA27: D0 14     BNE bra_DA3D
 C - - - - - 0x00DA39 03:DA29: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00DA3A 03:DA2A: 38        SEC
 - - - - - - 0x00DA3B 03:DA2B: AD 26 04  LDA ram_0426
 - - - - - - 0x00DA3E 03:DA2E: F0 03     BEQ bra_DA33
@@ -5114,7 +5110,7 @@ C - - - - - 0x00E064 03:E054: 20 13 E6  JSR sub_E613
 C - - - - - 0x00E067 03:E057: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00E068 03:E058: AD 24 00  LDA a: ram_btn_hold
 - - - - - - 0x00E06B 03:E05B: AE AD 03  LDX ram_team_w_ball
 - - - - - - 0x00E06E 03:E05E: D0 03     BNE bra_E063
@@ -5160,12 +5156,12 @@ tbl_E083:
 - D 3 - - - 0x00E09D 03:E08D: A0        .byte $A0   ; 0A
 
 
-; bzk мусор? нереальные комбинации кнопок
-- - - - - - 0x00E09E 03:E08E: FF        .byte $FF   ; 
-- - - - - - 0x00E09F 03:E08F: FF        .byte $FF   ; 
-- - - - - - 0x00E0A0 03:E090: FF        .byte $FF   ; 
-- - - - - - 0x00E0A1 03:E091: FF        .byte $FF   ; 
-- - - - - - 0x00E0A2 03:E092: FF        .byte $FF   ; 
+; bzk garbage? unreal buttons combinations
+- - - - - - 0x00E09E 03:E08E: FF        .byte $FF   ; 0B
+- - - - - - 0x00E09F 03:E08F: FF        .byte $FF   ; 0C
+- - - - - - 0x00E0A0 03:E090: FF        .byte $FF   ; 0D
+- - - - - - 0x00E0A1 03:E091: FF        .byte $FF   ; 0E
+- - - - - - 0x00E0A2 03:E092: FF        .byte $FF   ; 0F
 
 
 
@@ -7478,7 +7474,7 @@ tbl_EFBF:
 - D 3 - - - 0x00EFD5 03:EFC5: 00        .byte $00   ; 
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00EFD6 03:EFC6: 0C        .byte $0C   ; 
 - - - - - - 0x00EFD7 03:EFC7: 0B        .byte $0B   ; 
 - - - - - - 0x00EFD8 03:EFC8: F6        .byte $F6   ; 
@@ -8722,7 +8718,7 @@ C - - - - - 0x00F92F 03:F91F: 20 2F C6  JSR sub_C62F
 C - - - - - 0x00F932 03:F922: 4C 55 DF  JMP loc_DF55
 
 
-; bzk мусор
+; bzk garbage
 loc_F925:
 - - - - - - 0x00F935 03:F925: A9 01     LDA #$01
 - - - - - - 0x00F937 03:F927: 20 52 C6  JSR sub_C652
@@ -9394,861 +9390,114 @@ tbl_FBFB:
 - D 3 - - - 0x00FC89 03:FC79: FF        .byte $FF   ; 
 
 
-; bzk мусор
-- - - - - - 0x00FC8A 03:FC7A: FF        .byte $FF   ; 
-- - - - - - 0x00FC8B 03:FC7B: FF        .byte $FF   ; 
-- - - - - - 0x00FC8C 03:FC7C: FF        .byte $FF   ; 
-- - - - - - 0x00FC8D 03:FC7D: FF        .byte $FF   ; 
-- - - - - - 0x00FC8E 03:FC7E: FF        .byte $FF   ; 
-- - - - - - 0x00FC8F 03:FC7F: FF        .byte $FF   ; 
-- - - - - - 0x00FC90 03:FC80: FF        .byte $FF   ; 
-- - - - - - 0x00FC91 03:FC81: FF        .byte $FF   ; 
-- - - - - - 0x00FC92 03:FC82: FF        .byte $FF   ; 
-- - - - - - 0x00FC93 03:FC83: FF        .byte $FF   ; 
-- - - - - - 0x00FC94 03:FC84: FF        .byte $FF   ; 
-- - - - - - 0x00FC95 03:FC85: FF        .byte $FF   ; 
-- - - - - - 0x00FC96 03:FC86: FF        .byte $FF   ; 
-- - - - - - 0x00FC97 03:FC87: FF        .byte $FF   ; 
-- - - - - - 0x00FC98 03:FC88: FF        .byte $FF   ; 
-- - - - - - 0x00FC99 03:FC89: FF        .byte $FF   ; 
-- - - - - - 0x00FC9A 03:FC8A: FF        .byte $FF   ; 
-- - - - - - 0x00FC9B 03:FC8B: FF        .byte $FF   ; 
-- - - - - - 0x00FC9C 03:FC8C: FF        .byte $FF   ; 
-- - - - - - 0x00FC9D 03:FC8D: FF        .byte $FF   ; 
-- - - - - - 0x00FC9E 03:FC8E: FF        .byte $FF   ; 
-- - - - - - 0x00FC9F 03:FC8F: FF        .byte $FF   ; 
-- - - - - - 0x00FCA0 03:FC90: FF        .byte $FF   ; 
-- - - - - - 0x00FCA1 03:FC91: FF        .byte $FF   ; 
-- - - - - - 0x00FCA2 03:FC92: FF        .byte $FF   ; 
-- - - - - - 0x00FCA3 03:FC93: FF        .byte $FF   ; 
-- - - - - - 0x00FCA4 03:FC94: FF        .byte $FF   ; 
-- - - - - - 0x00FCA5 03:FC95: FF        .byte $FF   ; 
-- - - - - - 0x00FCA6 03:FC96: FF        .byte $FF   ; 
-- - - - - - 0x00FCA7 03:FC97: FF        .byte $FF   ; 
-- - - - - - 0x00FCA8 03:FC98: FF        .byte $FF   ; 
-- - - - - - 0x00FCA9 03:FC99: FF        .byte $FF   ; 
-- - - - - - 0x00FCAA 03:FC9A: FF        .byte $FF   ; 
-- - - - - - 0x00FCAB 03:FC9B: FF        .byte $FF   ; 
-- - - - - - 0x00FCAC 03:FC9C: FF        .byte $FF   ; 
-- - - - - - 0x00FCAD 03:FC9D: FF        .byte $FF   ; 
-- - - - - - 0x00FCAE 03:FC9E: FF        .byte $FF   ; 
-- - - - - - 0x00FCAF 03:FC9F: FF        .byte $FF   ; 
-- - - - - - 0x00FCB0 03:FCA0: FF        .byte $FF   ; 
-- - - - - - 0x00FCB1 03:FCA1: FF        .byte $FF   ; 
-- - - - - - 0x00FCB2 03:FCA2: FF        .byte $FF   ; 
-- - - - - - 0x00FCB3 03:FCA3: FF        .byte $FF   ; 
-- - - - - - 0x00FCB4 03:FCA4: FF        .byte $FF   ; 
-- - - - - - 0x00FCB5 03:FCA5: FF        .byte $FF   ; 
-- - - - - - 0x00FCB6 03:FCA6: FF        .byte $FF   ; 
-- - - - - - 0x00FCB7 03:FCA7: FF        .byte $FF   ; 
-- - - - - - 0x00FCB8 03:FCA8: FF        .byte $FF   ; 
-- - - - - - 0x00FCB9 03:FCA9: FF        .byte $FF   ; 
-- - - - - - 0x00FCBA 03:FCAA: FF        .byte $FF   ; 
-- - - - - - 0x00FCBB 03:FCAB: FF        .byte $FF   ; 
-- - - - - - 0x00FCBC 03:FCAC: FF        .byte $FF   ; 
-- - - - - - 0x00FCBD 03:FCAD: FF        .byte $FF   ; 
-- - - - - - 0x00FCBE 03:FCAE: FF        .byte $FF   ; 
-- - - - - - 0x00FCBF 03:FCAF: FF        .byte $FF   ; 
-- - - - - - 0x00FCC0 03:FCB0: FF        .byte $FF   ; 
-- - - - - - 0x00FCC1 03:FCB1: FF        .byte $FF   ; 
-- - - - - - 0x00FCC2 03:FCB2: FF        .byte $FF   ; 
-- - - - - - 0x00FCC3 03:FCB3: FF        .byte $FF   ; 
-- - - - - - 0x00FCC4 03:FCB4: FF        .byte $FF   ; 
-- - - - - - 0x00FCC5 03:FCB5: FF        .byte $FF   ; 
-- - - - - - 0x00FCC6 03:FCB6: FF        .byte $FF   ; 
-- - - - - - 0x00FCC7 03:FCB7: FF        .byte $FF   ; 
-- - - - - - 0x00FCC8 03:FCB8: FF        .byte $FF   ; 
-- - - - - - 0x00FCC9 03:FCB9: FF        .byte $FF   ; 
-- - - - - - 0x00FCCA 03:FCBA: FF        .byte $FF   ; 
-- - - - - - 0x00FCCB 03:FCBB: FF        .byte $FF   ; 
-- - - - - - 0x00FCCC 03:FCBC: FF        .byte $FF   ; 
-- - - - - - 0x00FCCD 03:FCBD: FF        .byte $FF   ; 
-- - - - - - 0x00FCCE 03:FCBE: FF        .byte $FF   ; 
-- - - - - - 0x00FCCF 03:FCBF: FF        .byte $FF   ; 
-- - - - - - 0x00FCD0 03:FCC0: FF        .byte $FF   ; 
-- - - - - - 0x00FCD1 03:FCC1: FF        .byte $FF   ; 
-- - - - - - 0x00FCD2 03:FCC2: FF        .byte $FF   ; 
-- - - - - - 0x00FCD3 03:FCC3: FF        .byte $FF   ; 
-- - - - - - 0x00FCD4 03:FCC4: FF        .byte $FF   ; 
-- - - - - - 0x00FCD5 03:FCC5: FF        .byte $FF   ; 
-- - - - - - 0x00FCD6 03:FCC6: FF        .byte $FF   ; 
-- - - - - - 0x00FCD7 03:FCC7: FF        .byte $FF   ; 
-- - - - - - 0x00FCD8 03:FCC8: FF        .byte $FF   ; 
-- - - - - - 0x00FCD9 03:FCC9: FF        .byte $FF   ; 
-- - - - - - 0x00FCDA 03:FCCA: FF        .byte $FF   ; 
-- - - - - - 0x00FCDB 03:FCCB: FF        .byte $FF   ; 
-- - - - - - 0x00FCDC 03:FCCC: FF        .byte $FF   ; 
-- - - - - - 0x00FCDD 03:FCCD: FF        .byte $FF   ; 
-- - - - - - 0x00FCDE 03:FCCE: FF        .byte $FF   ; 
-- - - - - - 0x00FCDF 03:FCCF: FF        .byte $FF   ; 
-- - - - - - 0x00FCE0 03:FCD0: FF        .byte $FF   ; 
-- - - - - - 0x00FCE1 03:FCD1: FF        .byte $FF   ; 
-- - - - - - 0x00FCE2 03:FCD2: FF        .byte $FF   ; 
-- - - - - - 0x00FCE3 03:FCD3: FF        .byte $FF   ; 
-- - - - - - 0x00FCE4 03:FCD4: FF        .byte $FF   ; 
-- - - - - - 0x00FCE5 03:FCD5: FF        .byte $FF   ; 
-- - - - - - 0x00FCE6 03:FCD6: FF        .byte $FF   ; 
-- - - - - - 0x00FCE7 03:FCD7: FF        .byte $FF   ; 
-- - - - - - 0x00FCE8 03:FCD8: FF        .byte $FF   ; 
-- - - - - - 0x00FCE9 03:FCD9: FF        .byte $FF   ; 
-- - - - - - 0x00FCEA 03:FCDA: FF        .byte $FF   ; 
-- - - - - - 0x00FCEB 03:FCDB: FF        .byte $FF   ; 
-- - - - - - 0x00FCEC 03:FCDC: FF        .byte $FF   ; 
-- - - - - - 0x00FCED 03:FCDD: FF        .byte $FF   ; 
-- - - - - - 0x00FCEE 03:FCDE: FF        .byte $FF   ; 
-- - - - - - 0x00FCEF 03:FCDF: FF        .byte $FF   ; 
-- - - - - - 0x00FCF0 03:FCE0: FF        .byte $FF   ; 
-- - - - - - 0x00FCF1 03:FCE1: FF        .byte $FF   ; 
-- - - - - - 0x00FCF2 03:FCE2: FF        .byte $FF   ; 
-- - - - - - 0x00FCF3 03:FCE3: FF        .byte $FF   ; 
-- - - - - - 0x00FCF4 03:FCE4: FF        .byte $FF   ; 
-- - - - - - 0x00FCF5 03:FCE5: FF        .byte $FF   ; 
-- - - - - - 0x00FCF6 03:FCE6: FF        .byte $FF   ; 
-- - - - - - 0x00FCF7 03:FCE7: FF        .byte $FF   ; 
-- - - - - - 0x00FCF8 03:FCE8: FF        .byte $FF   ; 
-- - - - - - 0x00FCF9 03:FCE9: FF        .byte $FF   ; 
-- - - - - - 0x00FCFA 03:FCEA: FF        .byte $FF   ; 
-- - - - - - 0x00FCFB 03:FCEB: FF        .byte $FF   ; 
-- - - - - - 0x00FCFC 03:FCEC: FF        .byte $FF   ; 
-- - - - - - 0x00FCFD 03:FCED: FF        .byte $FF   ; 
-- - - - - - 0x00FCFE 03:FCEE: FF        .byte $FF   ; 
-- - - - - - 0x00FCFF 03:FCEF: FF        .byte $FF   ; 
-- - - - - - 0x00FD00 03:FCF0: FF        .byte $FF   ; 
-- - - - - - 0x00FD01 03:FCF1: FF        .byte $FF   ; 
-- - - - - - 0x00FD02 03:FCF2: FF        .byte $FF   ; 
-- - - - - - 0x00FD03 03:FCF3: FF        .byte $FF   ; 
-- - - - - - 0x00FD04 03:FCF4: FF        .byte $FF   ; 
-- - - - - - 0x00FD05 03:FCF5: FF        .byte $FF   ; 
-- - - - - - 0x00FD06 03:FCF6: FF        .byte $FF   ; 
-- - - - - - 0x00FD07 03:FCF7: FF        .byte $FF   ; 
-- - - - - - 0x00FD08 03:FCF8: FF        .byte $FF   ; 
-- - - - - - 0x00FD09 03:FCF9: FF        .byte $FF   ; 
-- - - - - - 0x00FD0A 03:FCFA: FF        .byte $FF   ; 
-- - - - - - 0x00FD0B 03:FCFB: FF        .byte $FF   ; 
-- - - - - - 0x00FD0C 03:FCFC: FF        .byte $FF   ; 
-- - - - - - 0x00FD0D 03:FCFD: FF        .byte $FF   ; 
-- - - - - - 0x00FD0E 03:FCFE: FF        .byte $FF   ; 
-- - - - - - 0x00FD0F 03:FCFF: FF        .byte $FF   ; 
-- - - - - - 0x00FD10 03:FD00: FF        .byte $FF   ; 
-- - - - - - 0x00FD11 03:FD01: FF        .byte $FF   ; 
-- - - - - - 0x00FD12 03:FD02: FF        .byte $FF   ; 
-- - - - - - 0x00FD13 03:FD03: FF        .byte $FF   ; 
-- - - - - - 0x00FD14 03:FD04: FF        .byte $FF   ; 
-- - - - - - 0x00FD15 03:FD05: FF        .byte $FF   ; 
-- - - - - - 0x00FD16 03:FD06: FF        .byte $FF   ; 
-- - - - - - 0x00FD17 03:FD07: FF        .byte $FF   ; 
-- - - - - - 0x00FD18 03:FD08: FF        .byte $FF   ; 
-- - - - - - 0x00FD19 03:FD09: FF        .byte $FF   ; 
-- - - - - - 0x00FD1A 03:FD0A: FF        .byte $FF   ; 
-- - - - - - 0x00FD1B 03:FD0B: FF        .byte $FF   ; 
-- - - - - - 0x00FD1C 03:FD0C: FF        .byte $FF   ; 
-- - - - - - 0x00FD1D 03:FD0D: FF        .byte $FF   ; 
-- - - - - - 0x00FD1E 03:FD0E: FF        .byte $FF   ; 
-- - - - - - 0x00FD1F 03:FD0F: FF        .byte $FF   ; 
-- - - - - - 0x00FD20 03:FD10: FF        .byte $FF   ; 
-- - - - - - 0x00FD21 03:FD11: FF        .byte $FF   ; 
-- - - - - - 0x00FD22 03:FD12: FF        .byte $FF   ; 
-- - - - - - 0x00FD23 03:FD13: FF        .byte $FF   ; 
-- - - - - - 0x00FD24 03:FD14: FF        .byte $FF   ; 
-- - - - - - 0x00FD25 03:FD15: FF        .byte $FF   ; 
-- - - - - - 0x00FD26 03:FD16: FF        .byte $FF   ; 
-- - - - - - 0x00FD27 03:FD17: FF        .byte $FF   ; 
-- - - - - - 0x00FD28 03:FD18: FF        .byte $FF   ; 
-- - - - - - 0x00FD29 03:FD19: FF        .byte $FF   ; 
-- - - - - - 0x00FD2A 03:FD1A: FF        .byte $FF   ; 
-- - - - - - 0x00FD2B 03:FD1B: FF        .byte $FF   ; 
-- - - - - - 0x00FD2C 03:FD1C: FF        .byte $FF   ; 
-- - - - - - 0x00FD2D 03:FD1D: FF        .byte $FF   ; 
-- - - - - - 0x00FD2E 03:FD1E: FF        .byte $FF   ; 
-- - - - - - 0x00FD2F 03:FD1F: FF        .byte $FF   ; 
-- - - - - - 0x00FD30 03:FD20: FF        .byte $FF   ; 
-- - - - - - 0x00FD31 03:FD21: FF        .byte $FF   ; 
-- - - - - - 0x00FD32 03:FD22: FF        .byte $FF   ; 
-- - - - - - 0x00FD33 03:FD23: FF        .byte $FF   ; 
-- - - - - - 0x00FD34 03:FD24: FF        .byte $FF   ; 
-- - - - - - 0x00FD35 03:FD25: FF        .byte $FF   ; 
-- - - - - - 0x00FD36 03:FD26: FF        .byte $FF   ; 
-- - - - - - 0x00FD37 03:FD27: FF        .byte $FF   ; 
-- - - - - - 0x00FD38 03:FD28: FF        .byte $FF   ; 
-- - - - - - 0x00FD39 03:FD29: FF        .byte $FF   ; 
-- - - - - - 0x00FD3A 03:FD2A: FF        .byte $FF   ; 
-- - - - - - 0x00FD3B 03:FD2B: FF        .byte $FF   ; 
-- - - - - - 0x00FD3C 03:FD2C: FF        .byte $FF   ; 
-- - - - - - 0x00FD3D 03:FD2D: FF        .byte $FF   ; 
-- - - - - - 0x00FD3E 03:FD2E: FF        .byte $FF   ; 
-- - - - - - 0x00FD3F 03:FD2F: FF        .byte $FF   ; 
-- - - - - - 0x00FD40 03:FD30: FF        .byte $FF   ; 
-- - - - - - 0x00FD41 03:FD31: FF        .byte $FF   ; 
-- - - - - - 0x00FD42 03:FD32: FF        .byte $FF   ; 
-- - - - - - 0x00FD43 03:FD33: FF        .byte $FF   ; 
-- - - - - - 0x00FD44 03:FD34: FF        .byte $FF   ; 
-- - - - - - 0x00FD45 03:FD35: FF        .byte $FF   ; 
-- - - - - - 0x00FD46 03:FD36: FF        .byte $FF   ; 
-- - - - - - 0x00FD47 03:FD37: FF        .byte $FF   ; 
-- - - - - - 0x00FD48 03:FD38: FF        .byte $FF   ; 
-- - - - - - 0x00FD49 03:FD39: FF        .byte $FF   ; 
-- - - - - - 0x00FD4A 03:FD3A: FF        .byte $FF   ; 
-- - - - - - 0x00FD4B 03:FD3B: FF        .byte $FF   ; 
-- - - - - - 0x00FD4C 03:FD3C: FF        .byte $FF   ; 
-- - - - - - 0x00FD4D 03:FD3D: FF        .byte $FF   ; 
-- - - - - - 0x00FD4E 03:FD3E: FF        .byte $FF   ; 
-- - - - - - 0x00FD4F 03:FD3F: FF        .byte $FF   ; 
-- - - - - - 0x00FD50 03:FD40: FF        .byte $FF   ; 
-- - - - - - 0x00FD51 03:FD41: FF        .byte $FF   ; 
-- - - - - - 0x00FD52 03:FD42: FF        .byte $FF   ; 
-- - - - - - 0x00FD53 03:FD43: FF        .byte $FF   ; 
-- - - - - - 0x00FD54 03:FD44: FF        .byte $FF   ; 
-- - - - - - 0x00FD55 03:FD45: FF        .byte $FF   ; 
-- - - - - - 0x00FD56 03:FD46: FF        .byte $FF   ; 
-- - - - - - 0x00FD57 03:FD47: FF        .byte $FF   ; 
-- - - - - - 0x00FD58 03:FD48: FF        .byte $FF   ; 
-- - - - - - 0x00FD59 03:FD49: FF        .byte $FF   ; 
-- - - - - - 0x00FD5A 03:FD4A: FF        .byte $FF   ; 
-- - - - - - 0x00FD5B 03:FD4B: FF        .byte $FF   ; 
-- - - - - - 0x00FD5C 03:FD4C: FF        .byte $FF   ; 
-- - - - - - 0x00FD5D 03:FD4D: FF        .byte $FF   ; 
-- - - - - - 0x00FD5E 03:FD4E: FF        .byte $FF   ; 
-- - - - - - 0x00FD5F 03:FD4F: FF        .byte $FF   ; 
-- - - - - - 0x00FD60 03:FD50: FF        .byte $FF   ; 
-- - - - - - 0x00FD61 03:FD51: FF        .byte $FF   ; 
-- - - - - - 0x00FD62 03:FD52: FF        .byte $FF   ; 
-- - - - - - 0x00FD63 03:FD53: FF        .byte $FF   ; 
-- - - - - - 0x00FD64 03:FD54: FF        .byte $FF   ; 
-- - - - - - 0x00FD65 03:FD55: FF        .byte $FF   ; 
-- - - - - - 0x00FD66 03:FD56: FF        .byte $FF   ; 
-- - - - - - 0x00FD67 03:FD57: FF        .byte $FF   ; 
-- - - - - - 0x00FD68 03:FD58: FF        .byte $FF   ; 
-- - - - - - 0x00FD69 03:FD59: FF        .byte $FF   ; 
-- - - - - - 0x00FD6A 03:FD5A: FF        .byte $FF   ; 
-- - - - - - 0x00FD6B 03:FD5B: FF        .byte $FF   ; 
-- - - - - - 0x00FD6C 03:FD5C: FF        .byte $FF   ; 
-- - - - - - 0x00FD6D 03:FD5D: FF        .byte $FF   ; 
-- - - - - - 0x00FD6E 03:FD5E: FF        .byte $FF   ; 
-- - - - - - 0x00FD6F 03:FD5F: FF        .byte $FF   ; 
-- - - - - - 0x00FD70 03:FD60: FF        .byte $FF   ; 
-- - - - - - 0x00FD71 03:FD61: FF        .byte $FF   ; 
-- - - - - - 0x00FD72 03:FD62: FF        .byte $FF   ; 
-- - - - - - 0x00FD73 03:FD63: FF        .byte $FF   ; 
-- - - - - - 0x00FD74 03:FD64: FF        .byte $FF   ; 
-- - - - - - 0x00FD75 03:FD65: FF        .byte $FF   ; 
-- - - - - - 0x00FD76 03:FD66: FF        .byte $FF   ; 
-- - - - - - 0x00FD77 03:FD67: FF        .byte $FF   ; 
-- - - - - - 0x00FD78 03:FD68: FF        .byte $FF   ; 
-- - - - - - 0x00FD79 03:FD69: FF        .byte $FF   ; 
-- - - - - - 0x00FD7A 03:FD6A: FF        .byte $FF   ; 
-- - - - - - 0x00FD7B 03:FD6B: FF        .byte $FF   ; 
-- - - - - - 0x00FD7C 03:FD6C: FF        .byte $FF   ; 
-- - - - - - 0x00FD7D 03:FD6D: FF        .byte $FF   ; 
-- - - - - - 0x00FD7E 03:FD6E: FF        .byte $FF   ; 
-- - - - - - 0x00FD7F 03:FD6F: FF        .byte $FF   ; 
-- - - - - - 0x00FD80 03:FD70: FF        .byte $FF   ; 
-- - - - - - 0x00FD81 03:FD71: FF        .byte $FF   ; 
-- - - - - - 0x00FD82 03:FD72: FF        .byte $FF   ; 
-- - - - - - 0x00FD83 03:FD73: FF        .byte $FF   ; 
-- - - - - - 0x00FD84 03:FD74: FF        .byte $FF   ; 
-- - - - - - 0x00FD85 03:FD75: FF        .byte $FF   ; 
-- - - - - - 0x00FD86 03:FD76: FF        .byte $FF   ; 
-- - - - - - 0x00FD87 03:FD77: FF        .byte $FF   ; 
-- - - - - - 0x00FD88 03:FD78: FF        .byte $FF   ; 
-- - - - - - 0x00FD89 03:FD79: FF        .byte $FF   ; 
-- - - - - - 0x00FD8A 03:FD7A: FF        .byte $FF   ; 
-- - - - - - 0x00FD8B 03:FD7B: FF        .byte $FF   ; 
-- - - - - - 0x00FD8C 03:FD7C: FF        .byte $FF   ; 
-- - - - - - 0x00FD8D 03:FD7D: FF        .byte $FF   ; 
-- - - - - - 0x00FD8E 03:FD7E: FF        .byte $FF   ; 
-- - - - - - 0x00FD8F 03:FD7F: FF        .byte $FF   ; 
-- - - - - - 0x00FD90 03:FD80: FF        .byte $FF   ; 
-- - - - - - 0x00FD91 03:FD81: FF        .byte $FF   ; 
-- - - - - - 0x00FD92 03:FD82: FF        .byte $FF   ; 
-- - - - - - 0x00FD93 03:FD83: FF        .byte $FF   ; 
-- - - - - - 0x00FD94 03:FD84: FF        .byte $FF   ; 
-- - - - - - 0x00FD95 03:FD85: FF        .byte $FF   ; 
-- - - - - - 0x00FD96 03:FD86: FF        .byte $FF   ; 
-- - - - - - 0x00FD97 03:FD87: FF        .byte $FF   ; 
-- - - - - - 0x00FD98 03:FD88: FF        .byte $FF   ; 
-- - - - - - 0x00FD99 03:FD89: FF        .byte $FF   ; 
-- - - - - - 0x00FD9A 03:FD8A: FF        .byte $FF   ; 
-- - - - - - 0x00FD9B 03:FD8B: FF        .byte $FF   ; 
-- - - - - - 0x00FD9C 03:FD8C: FF        .byte $FF   ; 
-- - - - - - 0x00FD9D 03:FD8D: FF        .byte $FF   ; 
-- - - - - - 0x00FD9E 03:FD8E: FF        .byte $FF   ; 
-- - - - - - 0x00FD9F 03:FD8F: FF        .byte $FF   ; 
-- - - - - - 0x00FDA0 03:FD90: FF        .byte $FF   ; 
-- - - - - - 0x00FDA1 03:FD91: FF        .byte $FF   ; 
-- - - - - - 0x00FDA2 03:FD92: FF        .byte $FF   ; 
-- - - - - - 0x00FDA3 03:FD93: FF        .byte $FF   ; 
-- - - - - - 0x00FDA4 03:FD94: FF        .byte $FF   ; 
-- - - - - - 0x00FDA5 03:FD95: FF        .byte $FF   ; 
-- - - - - - 0x00FDA6 03:FD96: FF        .byte $FF   ; 
-- - - - - - 0x00FDA7 03:FD97: FF        .byte $FF   ; 
-- - - - - - 0x00FDA8 03:FD98: FF        .byte $FF   ; 
-- - - - - - 0x00FDA9 03:FD99: FF        .byte $FF   ; 
-- - - - - - 0x00FDAA 03:FD9A: FF        .byte $FF   ; 
-- - - - - - 0x00FDAB 03:FD9B: FF        .byte $FF   ; 
-- - - - - - 0x00FDAC 03:FD9C: FF        .byte $FF   ; 
-- - - - - - 0x00FDAD 03:FD9D: FF        .byte $FF   ; 
-- - - - - - 0x00FDAE 03:FD9E: FF        .byte $FF   ; 
-- - - - - - 0x00FDAF 03:FD9F: FF        .byte $FF   ; 
-- - - - - - 0x00FDB0 03:FDA0: FF        .byte $FF   ; 
-- - - - - - 0x00FDB1 03:FDA1: FF        .byte $FF   ; 
-- - - - - - 0x00FDB2 03:FDA2: FF        .byte $FF   ; 
-- - - - - - 0x00FDB3 03:FDA3: FF        .byte $FF   ; 
-- - - - - - 0x00FDB4 03:FDA4: FF        .byte $FF   ; 
-- - - - - - 0x00FDB5 03:FDA5: FF        .byte $FF   ; 
-- - - - - - 0x00FDB6 03:FDA6: FF        .byte $FF   ; 
-- - - - - - 0x00FDB7 03:FDA7: FF        .byte $FF   ; 
-- - - - - - 0x00FDB8 03:FDA8: FF        .byte $FF   ; 
-- - - - - - 0x00FDB9 03:FDA9: FF        .byte $FF   ; 
-- - - - - - 0x00FDBA 03:FDAA: FF        .byte $FF   ; 
-- - - - - - 0x00FDBB 03:FDAB: FF        .byte $FF   ; 
-- - - - - - 0x00FDBC 03:FDAC: FF        .byte $FF   ; 
-- - - - - - 0x00FDBD 03:FDAD: FF        .byte $FF   ; 
-- - - - - - 0x00FDBE 03:FDAE: FF        .byte $FF   ; 
-- - - - - - 0x00FDBF 03:FDAF: FF        .byte $FF   ; 
-- - - - - - 0x00FDC0 03:FDB0: FF        .byte $FF   ; 
-- - - - - - 0x00FDC1 03:FDB1: FF        .byte $FF   ; 
-- - - - - - 0x00FDC2 03:FDB2: FF        .byte $FF   ; 
-- - - - - - 0x00FDC3 03:FDB3: FF        .byte $FF   ; 
-- - - - - - 0x00FDC4 03:FDB4: FF        .byte $FF   ; 
-- - - - - - 0x00FDC5 03:FDB5: FF        .byte $FF   ; 
-- - - - - - 0x00FDC6 03:FDB6: FF        .byte $FF   ; 
-- - - - - - 0x00FDC7 03:FDB7: FF        .byte $FF   ; 
-- - - - - - 0x00FDC8 03:FDB8: FF        .byte $FF   ; 
-- - - - - - 0x00FDC9 03:FDB9: FF        .byte $FF   ; 
-- - - - - - 0x00FDCA 03:FDBA: FF        .byte $FF   ; 
-- - - - - - 0x00FDCB 03:FDBB: FF        .byte $FF   ; 
-- - - - - - 0x00FDCC 03:FDBC: FF        .byte $FF   ; 
-- - - - - - 0x00FDCD 03:FDBD: FF        .byte $FF   ; 
-- - - - - - 0x00FDCE 03:FDBE: FF        .byte $FF   ; 
-- - - - - - 0x00FDCF 03:FDBF: FF        .byte $FF   ; 
-- - - - - - 0x00FDD0 03:FDC0: FF        .byte $FF   ; 
-- - - - - - 0x00FDD1 03:FDC1: FF        .byte $FF   ; 
-- - - - - - 0x00FDD2 03:FDC2: FF        .byte $FF   ; 
-- - - - - - 0x00FDD3 03:FDC3: FF        .byte $FF   ; 
-- - - - - - 0x00FDD4 03:FDC4: FF        .byte $FF   ; 
-- - - - - - 0x00FDD5 03:FDC5: FF        .byte $FF   ; 
-- - - - - - 0x00FDD6 03:FDC6: FF        .byte $FF   ; 
-- - - - - - 0x00FDD7 03:FDC7: FF        .byte $FF   ; 
-- - - - - - 0x00FDD8 03:FDC8: FF        .byte $FF   ; 
-- - - - - - 0x00FDD9 03:FDC9: FF        .byte $FF   ; 
-- - - - - - 0x00FDDA 03:FDCA: FF        .byte $FF   ; 
-- - - - - - 0x00FDDB 03:FDCB: FF        .byte $FF   ; 
-- - - - - - 0x00FDDC 03:FDCC: FF        .byte $FF   ; 
-- - - - - - 0x00FDDD 03:FDCD: FF        .byte $FF   ; 
-- - - - - - 0x00FDDE 03:FDCE: FF        .byte $FF   ; 
-- - - - - - 0x00FDDF 03:FDCF: FF        .byte $FF   ; 
-- - - - - - 0x00FDE0 03:FDD0: FF        .byte $FF   ; 
-- - - - - - 0x00FDE1 03:FDD1: FF        .byte $FF   ; 
-- - - - - - 0x00FDE2 03:FDD2: FF        .byte $FF   ; 
-- - - - - - 0x00FDE3 03:FDD3: FF        .byte $FF   ; 
-- - - - - - 0x00FDE4 03:FDD4: FF        .byte $FF   ; 
-- - - - - - 0x00FDE5 03:FDD5: FF        .byte $FF   ; 
-- - - - - - 0x00FDE6 03:FDD6: FF        .byte $FF   ; 
-- - - - - - 0x00FDE7 03:FDD7: FF        .byte $FF   ; 
-- - - - - - 0x00FDE8 03:FDD8: FF        .byte $FF   ; 
-- - - - - - 0x00FDE9 03:FDD9: FF        .byte $FF   ; 
-- - - - - - 0x00FDEA 03:FDDA: FF        .byte $FF   ; 
-- - - - - - 0x00FDEB 03:FDDB: FF        .byte $FF   ; 
-- - - - - - 0x00FDEC 03:FDDC: FF        .byte $FF   ; 
-- - - - - - 0x00FDED 03:FDDD: FF        .byte $FF   ; 
-- - - - - - 0x00FDEE 03:FDDE: FF        .byte $FF   ; 
-- - - - - - 0x00FDEF 03:FDDF: FF        .byte $FF   ; 
-- - - - - - 0x00FDF0 03:FDE0: FF        .byte $FF   ; 
-- - - - - - 0x00FDF1 03:FDE1: FF        .byte $FF   ; 
-- - - - - - 0x00FDF2 03:FDE2: FF        .byte $FF   ; 
-- - - - - - 0x00FDF3 03:FDE3: FF        .byte $FF   ; 
-- - - - - - 0x00FDF4 03:FDE4: FF        .byte $FF   ; 
-- - - - - - 0x00FDF5 03:FDE5: FF        .byte $FF   ; 
-- - - - - - 0x00FDF6 03:FDE6: FF        .byte $FF   ; 
-- - - - - - 0x00FDF7 03:FDE7: FF        .byte $FF   ; 
-- - - - - - 0x00FDF8 03:FDE8: FF        .byte $FF   ; 
-- - - - - - 0x00FDF9 03:FDE9: FF        .byte $FF   ; 
-- - - - - - 0x00FDFA 03:FDEA: FF        .byte $FF   ; 
-- - - - - - 0x00FDFB 03:FDEB: FF        .byte $FF   ; 
-- - - - - - 0x00FDFC 03:FDEC: FF        .byte $FF   ; 
-- - - - - - 0x00FDFD 03:FDED: FF        .byte $FF   ; 
-- - - - - - 0x00FDFE 03:FDEE: FF        .byte $FF   ; 
-- - - - - - 0x00FDFF 03:FDEF: FF        .byte $FF   ; 
-- - - - - - 0x00FE00 03:FDF0: FF        .byte $FF   ; 
-- - - - - - 0x00FE01 03:FDF1: FF        .byte $FF   ; 
-- - - - - - 0x00FE02 03:FDF2: FF        .byte $FF   ; 
-- - - - - - 0x00FE03 03:FDF3: FF        .byte $FF   ; 
-- - - - - - 0x00FE04 03:FDF4: FF        .byte $FF   ; 
-- - - - - - 0x00FE05 03:FDF5: FF        .byte $FF   ; 
-- - - - - - 0x00FE06 03:FDF6: FF        .byte $FF   ; 
-- - - - - - 0x00FE07 03:FDF7: FF        .byte $FF   ; 
-- - - - - - 0x00FE08 03:FDF8: FF        .byte $FF   ; 
-- - - - - - 0x00FE09 03:FDF9: FF        .byte $FF   ; 
-- - - - - - 0x00FE0A 03:FDFA: FF        .byte $FF   ; 
-- - - - - - 0x00FE0B 03:FDFB: FF        .byte $FF   ; 
-- - - - - - 0x00FE0C 03:FDFC: FF        .byte $FF   ; 
-- - - - - - 0x00FE0D 03:FDFD: FF        .byte $FF   ; 
-- - - - - - 0x00FE0E 03:FDFE: FF        .byte $FF   ; 
-- - - - - - 0x00FE0F 03:FDFF: FF        .byte $FF   ; 
-- - - - - - 0x00FE10 03:FE00: FF        .byte $FF   ; 
-- - - - - - 0x00FE11 03:FE01: FF        .byte $FF   ; 
-- - - - - - 0x00FE12 03:FE02: FF        .byte $FF   ; 
-- - - - - - 0x00FE13 03:FE03: FF        .byte $FF   ; 
-- - - - - - 0x00FE14 03:FE04: FF        .byte $FF   ; 
-- - - - - - 0x00FE15 03:FE05: FF        .byte $FF   ; 
-- - - - - - 0x00FE16 03:FE06: FF        .byte $FF   ; 
-- - - - - - 0x00FE17 03:FE07: FF        .byte $FF   ; 
-- - - - - - 0x00FE18 03:FE08: FF        .byte $FF   ; 
-- - - - - - 0x00FE19 03:FE09: FF        .byte $FF   ; 
-- - - - - - 0x00FE1A 03:FE0A: FF        .byte $FF   ; 
-- - - - - - 0x00FE1B 03:FE0B: FF        .byte $FF   ; 
-- - - - - - 0x00FE1C 03:FE0C: FF        .byte $FF   ; 
-- - - - - - 0x00FE1D 03:FE0D: FF        .byte $FF   ; 
-- - - - - - 0x00FE1E 03:FE0E: FF        .byte $FF   ; 
-- - - - - - 0x00FE1F 03:FE0F: FF        .byte $FF   ; 
-- - - - - - 0x00FE20 03:FE10: FF        .byte $FF   ; 
-- - - - - - 0x00FE21 03:FE11: FF        .byte $FF   ; 
-- - - - - - 0x00FE22 03:FE12: FF        .byte $FF   ; 
-- - - - - - 0x00FE23 03:FE13: FF        .byte $FF   ; 
-- - - - - - 0x00FE24 03:FE14: FF        .byte $FF   ; 
-- - - - - - 0x00FE25 03:FE15: FF        .byte $FF   ; 
-- - - - - - 0x00FE26 03:FE16: FF        .byte $FF   ; 
-- - - - - - 0x00FE27 03:FE17: FF        .byte $FF   ; 
-- - - - - - 0x00FE28 03:FE18: FF        .byte $FF   ; 
-- - - - - - 0x00FE29 03:FE19: FF        .byte $FF   ; 
-- - - - - - 0x00FE2A 03:FE1A: FF        .byte $FF   ; 
-- - - - - - 0x00FE2B 03:FE1B: FF        .byte $FF   ; 
-- - - - - - 0x00FE2C 03:FE1C: FF        .byte $FF   ; 
-- - - - - - 0x00FE2D 03:FE1D: FF        .byte $FF   ; 
-- - - - - - 0x00FE2E 03:FE1E: FF        .byte $FF   ; 
-- - - - - - 0x00FE2F 03:FE1F: FF        .byte $FF   ; 
-- - - - - - 0x00FE30 03:FE20: FF        .byte $FF   ; 
-- - - - - - 0x00FE31 03:FE21: FF        .byte $FF   ; 
-- - - - - - 0x00FE32 03:FE22: FF        .byte $FF   ; 
-- - - - - - 0x00FE33 03:FE23: FF        .byte $FF   ; 
-- - - - - - 0x00FE34 03:FE24: FF        .byte $FF   ; 
-- - - - - - 0x00FE35 03:FE25: FF        .byte $FF   ; 
-- - - - - - 0x00FE36 03:FE26: FF        .byte $FF   ; 
-- - - - - - 0x00FE37 03:FE27: FF        .byte $FF   ; 
-- - - - - - 0x00FE38 03:FE28: FF        .byte $FF   ; 
-- - - - - - 0x00FE39 03:FE29: FF        .byte $FF   ; 
-- - - - - - 0x00FE3A 03:FE2A: FF        .byte $FF   ; 
-- - - - - - 0x00FE3B 03:FE2B: FF        .byte $FF   ; 
-- - - - - - 0x00FE3C 03:FE2C: FF        .byte $FF   ; 
-- - - - - - 0x00FE3D 03:FE2D: FF        .byte $FF   ; 
-- - - - - - 0x00FE3E 03:FE2E: FF        .byte $FF   ; 
-- - - - - - 0x00FE3F 03:FE2F: FF        .byte $FF   ; 
-- - - - - - 0x00FE40 03:FE30: FF        .byte $FF   ; 
-- - - - - - 0x00FE41 03:FE31: FF        .byte $FF   ; 
-- - - - - - 0x00FE42 03:FE32: FF        .byte $FF   ; 
-- - - - - - 0x00FE43 03:FE33: FF        .byte $FF   ; 
-- - - - - - 0x00FE44 03:FE34: FF        .byte $FF   ; 
-- - - - - - 0x00FE45 03:FE35: FF        .byte $FF   ; 
-- - - - - - 0x00FE46 03:FE36: FF        .byte $FF   ; 
-- - - - - - 0x00FE47 03:FE37: FF        .byte $FF   ; 
-- - - - - - 0x00FE48 03:FE38: FF        .byte $FF   ; 
-- - - - - - 0x00FE49 03:FE39: FF        .byte $FF   ; 
-- - - - - - 0x00FE4A 03:FE3A: FF        .byte $FF   ; 
-- - - - - - 0x00FE4B 03:FE3B: FF        .byte $FF   ; 
-- - - - - - 0x00FE4C 03:FE3C: FF        .byte $FF   ; 
-- - - - - - 0x00FE4D 03:FE3D: FF        .byte $FF   ; 
-- - - - - - 0x00FE4E 03:FE3E: FF        .byte $FF   ; 
-- - - - - - 0x00FE4F 03:FE3F: FF        .byte $FF   ; 
-- - - - - - 0x00FE50 03:FE40: FF        .byte $FF   ; 
-- - - - - - 0x00FE51 03:FE41: FF        .byte $FF   ; 
-- - - - - - 0x00FE52 03:FE42: FF        .byte $FF   ; 
-- - - - - - 0x00FE53 03:FE43: FF        .byte $FF   ; 
-- - - - - - 0x00FE54 03:FE44: FF        .byte $FF   ; 
-- - - - - - 0x00FE55 03:FE45: FF        .byte $FF   ; 
-- - - - - - 0x00FE56 03:FE46: FF        .byte $FF   ; 
-- - - - - - 0x00FE57 03:FE47: FF        .byte $FF   ; 
-- - - - - - 0x00FE58 03:FE48: FF        .byte $FF   ; 
-- - - - - - 0x00FE59 03:FE49: FF        .byte $FF   ; 
-- - - - - - 0x00FE5A 03:FE4A: FF        .byte $FF   ; 
-- - - - - - 0x00FE5B 03:FE4B: FF        .byte $FF   ; 
-- - - - - - 0x00FE5C 03:FE4C: FF        .byte $FF   ; 
-- - - - - - 0x00FE5D 03:FE4D: FF        .byte $FF   ; 
-- - - - - - 0x00FE5E 03:FE4E: FF        .byte $FF   ; 
-- - - - - - 0x00FE5F 03:FE4F: FF        .byte $FF   ; 
-- - - - - - 0x00FE60 03:FE50: FF        .byte $FF   ; 
-- - - - - - 0x00FE61 03:FE51: FF        .byte $FF   ; 
-- - - - - - 0x00FE62 03:FE52: FF        .byte $FF   ; 
-- - - - - - 0x00FE63 03:FE53: FF        .byte $FF   ; 
-- - - - - - 0x00FE64 03:FE54: FF        .byte $FF   ; 
-- - - - - - 0x00FE65 03:FE55: FF        .byte $FF   ; 
-- - - - - - 0x00FE66 03:FE56: FF        .byte $FF   ; 
-- - - - - - 0x00FE67 03:FE57: FF        .byte $FF   ; 
-- - - - - - 0x00FE68 03:FE58: FF        .byte $FF   ; 
-- - - - - - 0x00FE69 03:FE59: FF        .byte $FF   ; 
-- - - - - - 0x00FE6A 03:FE5A: FF        .byte $FF   ; 
-- - - - - - 0x00FE6B 03:FE5B: FF        .byte $FF   ; 
-- - - - - - 0x00FE6C 03:FE5C: FF        .byte $FF   ; 
-- - - - - - 0x00FE6D 03:FE5D: FF        .byte $FF   ; 
-- - - - - - 0x00FE6E 03:FE5E: FF        .byte $FF   ; 
-- - - - - - 0x00FE6F 03:FE5F: FF        .byte $FF   ; 
-- - - - - - 0x00FE70 03:FE60: FF        .byte $FF   ; 
-- - - - - - 0x00FE71 03:FE61: FF        .byte $FF   ; 
-- - - - - - 0x00FE72 03:FE62: FF        .byte $FF   ; 
-- - - - - - 0x00FE73 03:FE63: FF        .byte $FF   ; 
-- - - - - - 0x00FE74 03:FE64: FF        .byte $FF   ; 
-- - - - - - 0x00FE75 03:FE65: FF        .byte $FF   ; 
-- - - - - - 0x00FE76 03:FE66: FF        .byte $FF   ; 
-- - - - - - 0x00FE77 03:FE67: FF        .byte $FF   ; 
-- - - - - - 0x00FE78 03:FE68: FF        .byte $FF   ; 
-- - - - - - 0x00FE79 03:FE69: FF        .byte $FF   ; 
-- - - - - - 0x00FE7A 03:FE6A: FF        .byte $FF   ; 
-- - - - - - 0x00FE7B 03:FE6B: FF        .byte $FF   ; 
-- - - - - - 0x00FE7C 03:FE6C: FF        .byte $FF   ; 
-- - - - - - 0x00FE7D 03:FE6D: FF        .byte $FF   ; 
-- - - - - - 0x00FE7E 03:FE6E: FF        .byte $FF   ; 
-- - - - - - 0x00FE7F 03:FE6F: FF        .byte $FF   ; 
-- - - - - - 0x00FE80 03:FE70: FF        .byte $FF   ; 
-- - - - - - 0x00FE81 03:FE71: FF        .byte $FF   ; 
-- - - - - - 0x00FE82 03:FE72: FF        .byte $FF   ; 
-- - - - - - 0x00FE83 03:FE73: FF        .byte $FF   ; 
-- - - - - - 0x00FE84 03:FE74: FF        .byte $FF   ; 
-- - - - - - 0x00FE85 03:FE75: FF        .byte $FF   ; 
-- - - - - - 0x00FE86 03:FE76: FF        .byte $FF   ; 
-- - - - - - 0x00FE87 03:FE77: FF        .byte $FF   ; 
-- - - - - - 0x00FE88 03:FE78: FF        .byte $FF   ; 
-- - - - - - 0x00FE89 03:FE79: FF        .byte $FF   ; 
-- - - - - - 0x00FE8A 03:FE7A: FF        .byte $FF   ; 
-- - - - - - 0x00FE8B 03:FE7B: FF        .byte $FF   ; 
-- - - - - - 0x00FE8C 03:FE7C: FF        .byte $FF   ; 
-- - - - - - 0x00FE8D 03:FE7D: FF        .byte $FF   ; 
-- - - - - - 0x00FE8E 03:FE7E: FF        .byte $FF   ; 
-- - - - - - 0x00FE8F 03:FE7F: FF        .byte $FF   ; 
-- - - - - - 0x00FE90 03:FE80: FF        .byte $FF   ; 
-- - - - - - 0x00FE91 03:FE81: FF        .byte $FF   ; 
-- - - - - - 0x00FE92 03:FE82: FF        .byte $FF   ; 
-- - - - - - 0x00FE93 03:FE83: FF        .byte $FF   ; 
-- - - - - - 0x00FE94 03:FE84: FF        .byte $FF   ; 
-- - - - - - 0x00FE95 03:FE85: FF        .byte $FF   ; 
-- - - - - - 0x00FE96 03:FE86: FF        .byte $FF   ; 
-- - - - - - 0x00FE97 03:FE87: FF        .byte $FF   ; 
-- - - - - - 0x00FE98 03:FE88: FF        .byte $FF   ; 
-- - - - - - 0x00FE99 03:FE89: FF        .byte $FF   ; 
-- - - - - - 0x00FE9A 03:FE8A: FF        .byte $FF   ; 
-- - - - - - 0x00FE9B 03:FE8B: FF        .byte $FF   ; 
-- - - - - - 0x00FE9C 03:FE8C: FF        .byte $FF   ; 
-- - - - - - 0x00FE9D 03:FE8D: FF        .byte $FF   ; 
-- - - - - - 0x00FE9E 03:FE8E: FF        .byte $FF   ; 
-- - - - - - 0x00FE9F 03:FE8F: FF        .byte $FF   ; 
-- - - - - - 0x00FEA0 03:FE90: FF        .byte $FF   ; 
-- - - - - - 0x00FEA1 03:FE91: FF        .byte $FF   ; 
-- - - - - - 0x00FEA2 03:FE92: FF        .byte $FF   ; 
-- - - - - - 0x00FEA3 03:FE93: FF        .byte $FF   ; 
-- - - - - - 0x00FEA4 03:FE94: FF        .byte $FF   ; 
-- - - - - - 0x00FEA5 03:FE95: FF        .byte $FF   ; 
-- - - - - - 0x00FEA6 03:FE96: FF        .byte $FF   ; 
-- - - - - - 0x00FEA7 03:FE97: FF        .byte $FF   ; 
-- - - - - - 0x00FEA8 03:FE98: FF        .byte $FF   ; 
-- - - - - - 0x00FEA9 03:FE99: FF        .byte $FF   ; 
-- - - - - - 0x00FEAA 03:FE9A: FF        .byte $FF   ; 
-- - - - - - 0x00FEAB 03:FE9B: FF        .byte $FF   ; 
-- - - - - - 0x00FEAC 03:FE9C: FF        .byte $FF   ; 
-- - - - - - 0x00FEAD 03:FE9D: FF        .byte $FF   ; 
-- - - - - - 0x00FEAE 03:FE9E: FF        .byte $FF   ; 
-- - - - - - 0x00FEAF 03:FE9F: FF        .byte $FF   ; 
-- - - - - - 0x00FEB0 03:FEA0: FF        .byte $FF   ; 
-- - - - - - 0x00FEB1 03:FEA1: FF        .byte $FF   ; 
-- - - - - - 0x00FEB2 03:FEA2: FF        .byte $FF   ; 
-- - - - - - 0x00FEB3 03:FEA3: FF        .byte $FF   ; 
-- - - - - - 0x00FEB4 03:FEA4: FF        .byte $FF   ; 
-- - - - - - 0x00FEB5 03:FEA5: FF        .byte $FF   ; 
-- - - - - - 0x00FEB6 03:FEA6: FF        .byte $FF   ; 
-- - - - - - 0x00FEB7 03:FEA7: FF        .byte $FF   ; 
-- - - - - - 0x00FEB8 03:FEA8: FF        .byte $FF   ; 
-- - - - - - 0x00FEB9 03:FEA9: FF        .byte $FF   ; 
-- - - - - - 0x00FEBA 03:FEAA: FF        .byte $FF   ; 
-- - - - - - 0x00FEBB 03:FEAB: FF        .byte $FF   ; 
-- - - - - - 0x00FEBC 03:FEAC: FF        .byte $FF   ; 
-- - - - - - 0x00FEBD 03:FEAD: FF        .byte $FF   ; 
-- - - - - - 0x00FEBE 03:FEAE: FF        .byte $FF   ; 
-- - - - - - 0x00FEBF 03:FEAF: FF        .byte $FF   ; 
-- - - - - - 0x00FEC0 03:FEB0: FF        .byte $FF   ; 
-- - - - - - 0x00FEC1 03:FEB1: FF        .byte $FF   ; 
-- - - - - - 0x00FEC2 03:FEB2: FF        .byte $FF   ; 
-- - - - - - 0x00FEC3 03:FEB3: FF        .byte $FF   ; 
-- - - - - - 0x00FEC4 03:FEB4: FF        .byte $FF   ; 
-- - - - - - 0x00FEC5 03:FEB5: FF        .byte $FF   ; 
-- - - - - - 0x00FEC6 03:FEB6: FF        .byte $FF   ; 
-- - - - - - 0x00FEC7 03:FEB7: FF        .byte $FF   ; 
-- - - - - - 0x00FEC8 03:FEB8: FF        .byte $FF   ; 
-- - - - - - 0x00FEC9 03:FEB9: FF        .byte $FF   ; 
-- - - - - - 0x00FECA 03:FEBA: FF        .byte $FF   ; 
-- - - - - - 0x00FECB 03:FEBB: FF        .byte $FF   ; 
-- - - - - - 0x00FECC 03:FEBC: FF        .byte $FF   ; 
-- - - - - - 0x00FECD 03:FEBD: FF        .byte $FF   ; 
-- - - - - - 0x00FECE 03:FEBE: FF        .byte $FF   ; 
-- - - - - - 0x00FECF 03:FEBF: FF        .byte $FF   ; 
-- - - - - - 0x00FED0 03:FEC0: FF        .byte $FF   ; 
-- - - - - - 0x00FED1 03:FEC1: FF        .byte $FF   ; 
-- - - - - - 0x00FED2 03:FEC2: FF        .byte $FF   ; 
-- - - - - - 0x00FED3 03:FEC3: FF        .byte $FF   ; 
-- - - - - - 0x00FED4 03:FEC4: FF        .byte $FF   ; 
-- - - - - - 0x00FED5 03:FEC5: FF        .byte $FF   ; 
-- - - - - - 0x00FED6 03:FEC6: FF        .byte $FF   ; 
-- - - - - - 0x00FED7 03:FEC7: FF        .byte $FF   ; 
-- - - - - - 0x00FED8 03:FEC8: FF        .byte $FF   ; 
-- - - - - - 0x00FED9 03:FEC9: FF        .byte $FF   ; 
-- - - - - - 0x00FEDA 03:FECA: FF        .byte $FF   ; 
-- - - - - - 0x00FEDB 03:FECB: FF        .byte $FF   ; 
-- - - - - - 0x00FEDC 03:FECC: FF        .byte $FF   ; 
-- - - - - - 0x00FEDD 03:FECD: FF        .byte $FF   ; 
-- - - - - - 0x00FEDE 03:FECE: FF        .byte $FF   ; 
-- - - - - - 0x00FEDF 03:FECF: FF        .byte $FF   ; 
-- - - - - - 0x00FEE0 03:FED0: FF        .byte $FF   ; 
-- - - - - - 0x00FEE1 03:FED1: FF        .byte $FF   ; 
-- - - - - - 0x00FEE2 03:FED2: FF        .byte $FF   ; 
-- - - - - - 0x00FEE3 03:FED3: FF        .byte $FF   ; 
-- - - - - - 0x00FEE4 03:FED4: FF        .byte $FF   ; 
-- - - - - - 0x00FEE5 03:FED5: FF        .byte $FF   ; 
-- - - - - - 0x00FEE6 03:FED6: FF        .byte $FF   ; 
-- - - - - - 0x00FEE7 03:FED7: FF        .byte $FF   ; 
-- - - - - - 0x00FEE8 03:FED8: FF        .byte $FF   ; 
-- - - - - - 0x00FEE9 03:FED9: FF        .byte $FF   ; 
-- - - - - - 0x00FEEA 03:FEDA: FF        .byte $FF   ; 
-- - - - - - 0x00FEEB 03:FEDB: FF        .byte $FF   ; 
-- - - - - - 0x00FEEC 03:FEDC: FF        .byte $FF   ; 
-- - - - - - 0x00FEED 03:FEDD: FF        .byte $FF   ; 
-- - - - - - 0x00FEEE 03:FEDE: FF        .byte $FF   ; 
-- - - - - - 0x00FEEF 03:FEDF: FF        .byte $FF   ; 
-- - - - - - 0x00FEF0 03:FEE0: FF        .byte $FF   ; 
-- - - - - - 0x00FEF1 03:FEE1: FF        .byte $FF   ; 
-- - - - - - 0x00FEF2 03:FEE2: FF        .byte $FF   ; 
-- - - - - - 0x00FEF3 03:FEE3: FF        .byte $FF   ; 
-- - - - - - 0x00FEF4 03:FEE4: FF        .byte $FF   ; 
-- - - - - - 0x00FEF5 03:FEE5: FF        .byte $FF   ; 
-- - - - - - 0x00FEF6 03:FEE6: FF        .byte $FF   ; 
-- - - - - - 0x00FEF7 03:FEE7: FF        .byte $FF   ; 
-- - - - - - 0x00FEF8 03:FEE8: FF        .byte $FF   ; 
-- - - - - - 0x00FEF9 03:FEE9: FF        .byte $FF   ; 
-- - - - - - 0x00FEFA 03:FEEA: FF        .byte $FF   ; 
-- - - - - - 0x00FEFB 03:FEEB: FF        .byte $FF   ; 
-- - - - - - 0x00FEFC 03:FEEC: FF        .byte $FF   ; 
-- - - - - - 0x00FEFD 03:FEED: FF        .byte $FF   ; 
-- - - - - - 0x00FEFE 03:FEEE: FF        .byte $FF   ; 
-- - - - - - 0x00FEFF 03:FEEF: FF        .byte $FF   ; 
-- - - - - - 0x00FF00 03:FEF0: FF        .byte $FF   ; 
-- - - - - - 0x00FF01 03:FEF1: FF        .byte $FF   ; 
-- - - - - - 0x00FF02 03:FEF2: FF        .byte $FF   ; 
-- - - - - - 0x00FF03 03:FEF3: FF        .byte $FF   ; 
-- - - - - - 0x00FF04 03:FEF4: FF        .byte $FF   ; 
-- - - - - - 0x00FF05 03:FEF5: FF        .byte $FF   ; 
-- - - - - - 0x00FF06 03:FEF6: FF        .byte $FF   ; 
-- - - - - - 0x00FF07 03:FEF7: FF        .byte $FF   ; 
-- - - - - - 0x00FF08 03:FEF8: FF        .byte $FF   ; 
-- - - - - - 0x00FF09 03:FEF9: FF        .byte $FF   ; 
-- - - - - - 0x00FF0A 03:FEFA: FF        .byte $FF   ; 
-- - - - - - 0x00FF0B 03:FEFB: FF        .byte $FF   ; 
-- - - - - - 0x00FF0C 03:FEFC: FF        .byte $FF   ; 
-- - - - - - 0x00FF0D 03:FEFD: FF        .byte $FF   ; 
-- - - - - - 0x00FF0E 03:FEFE: FF        .byte $FF   ; 
-- - - - - - 0x00FF0F 03:FEFF: FF        .byte $FF   ; 
-- - - - - - 0x00FF10 03:FF00: FF        .byte $FF   ; 
-- - - - - - 0x00FF11 03:FF01: FF        .byte $FF   ; 
-- - - - - - 0x00FF12 03:FF02: FF        .byte $FF   ; 
-- - - - - - 0x00FF13 03:FF03: FF        .byte $FF   ; 
-- - - - - - 0x00FF14 03:FF04: FF        .byte $FF   ; 
-- - - - - - 0x00FF15 03:FF05: FF        .byte $FF   ; 
-- - - - - - 0x00FF16 03:FF06: FF        .byte $FF   ; 
-- - - - - - 0x00FF17 03:FF07: FF        .byte $FF   ; 
-- - - - - - 0x00FF18 03:FF08: FF        .byte $FF   ; 
-- - - - - - 0x00FF19 03:FF09: FF        .byte $FF   ; 
-- - - - - - 0x00FF1A 03:FF0A: FF        .byte $FF   ; 
-- - - - - - 0x00FF1B 03:FF0B: FF        .byte $FF   ; 
-- - - - - - 0x00FF1C 03:FF0C: FF        .byte $FF   ; 
-- - - - - - 0x00FF1D 03:FF0D: FF        .byte $FF   ; 
-- - - - - - 0x00FF1E 03:FF0E: FF        .byte $FF   ; 
-- - - - - - 0x00FF1F 03:FF0F: FF        .byte $FF   ; 
-- - - - - - 0x00FF20 03:FF10: FF        .byte $FF   ; 
-- - - - - - 0x00FF21 03:FF11: FF        .byte $FF   ; 
-- - - - - - 0x00FF22 03:FF12: FF        .byte $FF   ; 
-- - - - - - 0x00FF23 03:FF13: FF        .byte $FF   ; 
-- - - - - - 0x00FF24 03:FF14: FF        .byte $FF   ; 
-- - - - - - 0x00FF25 03:FF15: FF        .byte $FF   ; 
-- - - - - - 0x00FF26 03:FF16: FF        .byte $FF   ; 
-- - - - - - 0x00FF27 03:FF17: FF        .byte $FF   ; 
-- - - - - - 0x00FF28 03:FF18: FF        .byte $FF   ; 
-- - - - - - 0x00FF29 03:FF19: FF        .byte $FF   ; 
-- - - - - - 0x00FF2A 03:FF1A: FF        .byte $FF   ; 
-- - - - - - 0x00FF2B 03:FF1B: FF        .byte $FF   ; 
-- - - - - - 0x00FF2C 03:FF1C: FF        .byte $FF   ; 
-- - - - - - 0x00FF2D 03:FF1D: FF        .byte $FF   ; 
-- - - - - - 0x00FF2E 03:FF1E: FF        .byte $FF   ; 
-- - - - - - 0x00FF2F 03:FF1F: FF        .byte $FF   ; 
-- - - - - - 0x00FF30 03:FF20: FF        .byte $FF   ; 
-- - - - - - 0x00FF31 03:FF21: FF        .byte $FF   ; 
-- - - - - - 0x00FF32 03:FF22: FF        .byte $FF   ; 
-- - - - - - 0x00FF33 03:FF23: FF        .byte $FF   ; 
-- - - - - - 0x00FF34 03:FF24: FF        .byte $FF   ; 
-- - - - - - 0x00FF35 03:FF25: FF        .byte $FF   ; 
-- - - - - - 0x00FF36 03:FF26: FF        .byte $FF   ; 
-- - - - - - 0x00FF37 03:FF27: FF        .byte $FF   ; 
-- - - - - - 0x00FF38 03:FF28: FF        .byte $FF   ; 
-- - - - - - 0x00FF39 03:FF29: FF        .byte $FF   ; 
-- - - - - - 0x00FF3A 03:FF2A: FF        .byte $FF   ; 
-- - - - - - 0x00FF3B 03:FF2B: FF        .byte $FF   ; 
-- - - - - - 0x00FF3C 03:FF2C: FF        .byte $FF   ; 
-- - - - - - 0x00FF3D 03:FF2D: FF        .byte $FF   ; 
-- - - - - - 0x00FF3E 03:FF2E: FF        .byte $FF   ; 
-- - - - - - 0x00FF3F 03:FF2F: FF        .byte $FF   ; 
-- - - - - - 0x00FF40 03:FF30: FF        .byte $FF   ; 
-- - - - - - 0x00FF41 03:FF31: FF        .byte $FF   ; 
-- - - - - - 0x00FF42 03:FF32: FF        .byte $FF   ; 
-- - - - - - 0x00FF43 03:FF33: FF        .byte $FF   ; 
-- - - - - - 0x00FF44 03:FF34: FF        .byte $FF   ; 
-- - - - - - 0x00FF45 03:FF35: FF        .byte $FF   ; 
-- - - - - - 0x00FF46 03:FF36: FF        .byte $FF   ; 
-- - - - - - 0x00FF47 03:FF37: FF        .byte $FF   ; 
-- - - - - - 0x00FF48 03:FF38: FF        .byte $FF   ; 
-- - - - - - 0x00FF49 03:FF39: FF        .byte $FF   ; 
-- - - - - - 0x00FF4A 03:FF3A: FF        .byte $FF   ; 
-- - - - - - 0x00FF4B 03:FF3B: FF        .byte $FF   ; 
-- - - - - - 0x00FF4C 03:FF3C: FF        .byte $FF   ; 
-- - - - - - 0x00FF4D 03:FF3D: FF        .byte $FF   ; 
-- - - - - - 0x00FF4E 03:FF3E: FF        .byte $FF   ; 
-- - - - - - 0x00FF4F 03:FF3F: FF        .byte $FF   ; 
-- - - - - - 0x00FF50 03:FF40: FF        .byte $FF   ; 
-- - - - - - 0x00FF51 03:FF41: FF        .byte $FF   ; 
-- - - - - - 0x00FF52 03:FF42: FF        .byte $FF   ; 
-- - - - - - 0x00FF53 03:FF43: FF        .byte $FF   ; 
-- - - - - - 0x00FF54 03:FF44: FF        .byte $FF   ; 
-- - - - - - 0x00FF55 03:FF45: FF        .byte $FF   ; 
-- - - - - - 0x00FF56 03:FF46: FF        .byte $FF   ; 
-- - - - - - 0x00FF57 03:FF47: FF        .byte $FF   ; 
-- - - - - - 0x00FF58 03:FF48: FF        .byte $FF   ; 
-- - - - - - 0x00FF59 03:FF49: FF        .byte $FF   ; 
-- - - - - - 0x00FF5A 03:FF4A: FF        .byte $FF   ; 
-- - - - - - 0x00FF5B 03:FF4B: FF        .byte $FF   ; 
-- - - - - - 0x00FF5C 03:FF4C: FF        .byte $FF   ; 
-- - - - - - 0x00FF5D 03:FF4D: FF        .byte $FF   ; 
-- - - - - - 0x00FF5E 03:FF4E: FF        .byte $FF   ; 
-- - - - - - 0x00FF5F 03:FF4F: FF        .byte $FF   ; 
-- - - - - - 0x00FF60 03:FF50: FF        .byte $FF   ; 
-- - - - - - 0x00FF61 03:FF51: FF        .byte $FF   ; 
-- - - - - - 0x00FF62 03:FF52: FF        .byte $FF   ; 
-- - - - - - 0x00FF63 03:FF53: FF        .byte $FF   ; 
-- - - - - - 0x00FF64 03:FF54: FF        .byte $FF   ; 
-- - - - - - 0x00FF65 03:FF55: FF        .byte $FF   ; 
-- - - - - - 0x00FF66 03:FF56: FF        .byte $FF   ; 
-- - - - - - 0x00FF67 03:FF57: FF        .byte $FF   ; 
-- - - - - - 0x00FF68 03:FF58: FF        .byte $FF   ; 
-- - - - - - 0x00FF69 03:FF59: FF        .byte $FF   ; 
-- - - - - - 0x00FF6A 03:FF5A: FF        .byte $FF   ; 
-- - - - - - 0x00FF6B 03:FF5B: FF        .byte $FF   ; 
-- - - - - - 0x00FF6C 03:FF5C: FF        .byte $FF   ; 
-- - - - - - 0x00FF6D 03:FF5D: FF        .byte $FF   ; 
-- - - - - - 0x00FF6E 03:FF5E: FF        .byte $FF   ; 
-- - - - - - 0x00FF6F 03:FF5F: FF        .byte $FF   ; 
-- - - - - - 0x00FF70 03:FF60: FF        .byte $FF   ; 
-- - - - - - 0x00FF71 03:FF61: FF        .byte $FF   ; 
-- - - - - - 0x00FF72 03:FF62: FF        .byte $FF   ; 
-- - - - - - 0x00FF73 03:FF63: FF        .byte $FF   ; 
-- - - - - - 0x00FF74 03:FF64: FF        .byte $FF   ; 
-- - - - - - 0x00FF75 03:FF65: FF        .byte $FF   ; 
-- - - - - - 0x00FF76 03:FF66: FF        .byte $FF   ; 
-- - - - - - 0x00FF77 03:FF67: FF        .byte $FF   ; 
-- - - - - - 0x00FF78 03:FF68: FF        .byte $FF   ; 
-- - - - - - 0x00FF79 03:FF69: FF        .byte $FF   ; 
-- - - - - - 0x00FF7A 03:FF6A: FF        .byte $FF   ; 
-- - - - - - 0x00FF7B 03:FF6B: FF        .byte $FF   ; 
-- - - - - - 0x00FF7C 03:FF6C: FF        .byte $FF   ; 
-- - - - - - 0x00FF7D 03:FF6D: FF        .byte $FF   ; 
-- - - - - - 0x00FF7E 03:FF6E: FF        .byte $FF   ; 
-- - - - - - 0x00FF7F 03:FF6F: FF        .byte $FF   ; 
-- - - - - - 0x00FF80 03:FF70: FF        .byte $FF   ; 
-- - - - - - 0x00FF81 03:FF71: FF        .byte $FF   ; 
-- - - - - - 0x00FF82 03:FF72: FF        .byte $FF   ; 
-- - - - - - 0x00FF83 03:FF73: FF        .byte $FF   ; 
-- - - - - - 0x00FF84 03:FF74: FF        .byte $FF   ; 
-- - - - - - 0x00FF85 03:FF75: FF        .byte $FF   ; 
-- - - - - - 0x00FF86 03:FF76: FF        .byte $FF   ; 
-- - - - - - 0x00FF87 03:FF77: FF        .byte $FF   ; 
-- - - - - - 0x00FF88 03:FF78: FF        .byte $FF   ; 
-- - - - - - 0x00FF89 03:FF79: FF        .byte $FF   ; 
-- - - - - - 0x00FF8A 03:FF7A: FF        .byte $FF   ; 
-- - - - - - 0x00FF8B 03:FF7B: FF        .byte $FF   ; 
-- - - - - - 0x00FF8C 03:FF7C: FF        .byte $FF   ; 
-- - - - - - 0x00FF8D 03:FF7D: FF        .byte $FF   ; 
-- - - - - - 0x00FF8E 03:FF7E: FF        .byte $FF   ; 
-- - - - - - 0x00FF8F 03:FF7F: FF        .byte $FF   ; 
-- - - - - - 0x00FF90 03:FF80: FF        .byte $FF   ; 
-- - - - - - 0x00FF91 03:FF81: FF        .byte $FF   ; 
-- - - - - - 0x00FF92 03:FF82: FF        .byte $FF   ; 
-- - - - - - 0x00FF93 03:FF83: FF        .byte $FF   ; 
-- - - - - - 0x00FF94 03:FF84: FF        .byte $FF   ; 
-- - - - - - 0x00FF95 03:FF85: FF        .byte $FF   ; 
-- - - - - - 0x00FF96 03:FF86: FF        .byte $FF   ; 
-- - - - - - 0x00FF97 03:FF87: FF        .byte $FF   ; 
-- - - - - - 0x00FF98 03:FF88: FF        .byte $FF   ; 
-- - - - - - 0x00FF99 03:FF89: FF        .byte $FF   ; 
-- - - - - - 0x00FF9A 03:FF8A: FF        .byte $FF   ; 
-- - - - - - 0x00FF9B 03:FF8B: FF        .byte $FF   ; 
-- - - - - - 0x00FF9C 03:FF8C: FF        .byte $FF   ; 
-- - - - - - 0x00FF9D 03:FF8D: FF        .byte $FF   ; 
-- - - - - - 0x00FF9E 03:FF8E: FF        .byte $FF   ; 
-- - - - - - 0x00FF9F 03:FF8F: FF        .byte $FF   ; 
-- - - - - - 0x00FFA0 03:FF90: FF        .byte $FF   ; 
-- - - - - - 0x00FFA1 03:FF91: FF        .byte $FF   ; 
-- - - - - - 0x00FFA2 03:FF92: FF        .byte $FF   ; 
-- - - - - - 0x00FFA3 03:FF93: FF        .byte $FF   ; 
-- - - - - - 0x00FFA4 03:FF94: FF        .byte $FF   ; 
-- - - - - - 0x00FFA5 03:FF95: FF        .byte $FF   ; 
-- - - - - - 0x00FFA6 03:FF96: FF        .byte $FF   ; 
-- - - - - - 0x00FFA7 03:FF97: FF        .byte $FF   ; 
-- - - - - - 0x00FFA8 03:FF98: FF        .byte $FF   ; 
-- - - - - - 0x00FFA9 03:FF99: FF        .byte $FF   ; 
-- - - - - - 0x00FFAA 03:FF9A: FF        .byte $FF   ; 
-- - - - - - 0x00FFAB 03:FF9B: FF        .byte $FF   ; 
-- - - - - - 0x00FFAC 03:FF9C: FF        .byte $FF   ; 
-- - - - - - 0x00FFAD 03:FF9D: FF        .byte $FF   ; 
-- - - - - - 0x00FFAE 03:FF9E: FF        .byte $FF   ; 
-- - - - - - 0x00FFAF 03:FF9F: FF        .byte $FF   ; 
-- - - - - - 0x00FFB0 03:FFA0: FF        .byte $FF   ; 
-- - - - - - 0x00FFB1 03:FFA1: FF        .byte $FF   ; 
-- - - - - - 0x00FFB2 03:FFA2: FF        .byte $FF   ; 
-- - - - - - 0x00FFB3 03:FFA3: FF        .byte $FF   ; 
-- - - - - - 0x00FFB4 03:FFA4: FF        .byte $FF   ; 
-- - - - - - 0x00FFB5 03:FFA5: FF        .byte $FF   ; 
-- - - - - - 0x00FFB6 03:FFA6: FF        .byte $FF   ; 
-- - - - - - 0x00FFB7 03:FFA7: FF        .byte $FF   ; 
-- - - - - - 0x00FFB8 03:FFA8: FF        .byte $FF   ; 
-- - - - - - 0x00FFB9 03:FFA9: FF        .byte $FF   ; 
-- - - - - - 0x00FFBA 03:FFAA: FF        .byte $FF   ; 
-- - - - - - 0x00FFBB 03:FFAB: FF        .byte $FF   ; 
-- - - - - - 0x00FFBC 03:FFAC: FF        .byte $FF   ; 
-- - - - - - 0x00FFBD 03:FFAD: FF        .byte $FF   ; 
-- - - - - - 0x00FFBE 03:FFAE: FF        .byte $FF   ; 
-- - - - - - 0x00FFBF 03:FFAF: FF        .byte $FF   ; 
-- - - - - - 0x00FFC0 03:FFB0: FF        .byte $FF   ; 
-- - - - - - 0x00FFC1 03:FFB1: FF        .byte $FF   ; 
-- - - - - - 0x00FFC2 03:FFB2: FF        .byte $FF   ; 
-- - - - - - 0x00FFC3 03:FFB3: FF        .byte $FF   ; 
-- - - - - - 0x00FFC4 03:FFB4: FF        .byte $FF   ; 
-- - - - - - 0x00FFC5 03:FFB5: FF        .byte $FF   ; 
-- - - - - - 0x00FFC6 03:FFB6: FF        .byte $FF   ; 
-- - - - - - 0x00FFC7 03:FFB7: FF        .byte $FF   ; 
-- - - - - - 0x00FFC8 03:FFB8: FF        .byte $FF   ; 
-- - - - - - 0x00FFC9 03:FFB9: FF        .byte $FF   ; 
-- - - - - - 0x00FFCA 03:FFBA: FF        .byte $FF   ; 
-- - - - - - 0x00FFCB 03:FFBB: FF        .byte $FF   ; 
-- - - - - - 0x00FFCC 03:FFBC: FF        .byte $FF   ; 
-- - - - - - 0x00FFCD 03:FFBD: FF        .byte $FF   ; 
-- - - - - - 0x00FFCE 03:FFBE: FF        .byte $FF   ; 
-- - - - - - 0x00FFCF 03:FFBF: FF        .byte $FF   ; 
-- - - - - - 0x00FFD0 03:FFC0: FF        .byte $FF   ; 
-- - - - - - 0x00FFD1 03:FFC1: FF        .byte $FF   ; 
-- - - - - - 0x00FFD2 03:FFC2: FF        .byte $FF   ; 
-- - - - - - 0x00FFD3 03:FFC3: FF        .byte $FF   ; 
-- - - - - - 0x00FFD4 03:FFC4: FF        .byte $FF   ; 
-- - - - - - 0x00FFD5 03:FFC5: FF        .byte $FF   ; 
-- - - - - - 0x00FFD6 03:FFC6: FF        .byte $FF   ; 
-- - - - - - 0x00FFD7 03:FFC7: FF        .byte $FF   ; 
-- - - - - - 0x00FFD8 03:FFC8: FF        .byte $FF   ; 
-- - - - - - 0x00FFD9 03:FFC9: FF        .byte $FF   ; 
-- - - - - - 0x00FFDA 03:FFCA: FF        .byte $FF   ; 
-- - - - - - 0x00FFDB 03:FFCB: FF        .byte $FF   ; 
-- - - - - - 0x00FFDC 03:FFCC: FF        .byte $FF   ; 
-- - - - - - 0x00FFDD 03:FFCD: FF        .byte $FF   ; 
-- - - - - - 0x00FFDE 03:FFCE: FF        .byte $FF   ; 
-- - - - - - 0x00FFDF 03:FFCF: FF        .byte $FF   ; 
+; bzk garbage
+- - - - - - 0x00FC8A 03:FC7A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FC92 03:FC82: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FC9A 03:FC8A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCA2 03:FC92: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCAA 03:FC9A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCB2 03:FCA2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCBA 03:FCAA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCC2 03:FCB2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCCA 03:FCBA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCD2 03:FCC2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCDA 03:FCCA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCE2 03:FCD2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCEA 03:FCDA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCF2 03:FCE2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FCFA 03:FCEA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD02 03:FCF2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD0A 03:FCFA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD12 03:FD02: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD1A 03:FD0A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD22 03:FD12: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD2A 03:FD1A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD32 03:FD22: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD3A 03:FD2A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD42 03:FD32: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD4A 03:FD3A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD52 03:FD42: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD5A 03:FD4A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD62 03:FD52: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD6A 03:FD5A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD72 03:FD62: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD7A 03:FD6A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD82 03:FD72: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD8A 03:FD7A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD92 03:FD82: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FD9A 03:FD8A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDA2 03:FD92: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDAA 03:FD9A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDB2 03:FDA2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDBA 03:FDAA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDC2 03:FDB2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDCA 03:FDBA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDD2 03:FDC2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDDA 03:FDCA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDE2 03:FDD2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDEA 03:FDDA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDF2 03:FDE2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FDFA 03:FDEA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE02 03:FDF2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE0A 03:FDFA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE12 03:FE02: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE1A 03:FE0A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE22 03:FE12: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE2A 03:FE1A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE32 03:FE22: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE3A 03:FE2A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE42 03:FE32: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE4A 03:FE3A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE52 03:FE42: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE5A 03:FE4A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE62 03:FE52: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE6A 03:FE5A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE72 03:FE62: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE7A 03:FE6A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE82 03:FE72: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE8A 03:FE7A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE92 03:FE82: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FE9A 03:FE8A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FEA2 03:FE92: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FEAA 03:FE9A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FEB2 03:FEA2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FEBA 03:FEAA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FEC2 03:FEB2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FECA 03:FEBA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FED2 03:FEC2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FEDA 03:FECA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FEE2 03:FED2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FEEA 03:FEDA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FEF2 03:FEE2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FEFA 03:FEEA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF02 03:FEF2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF0A 03:FEFA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF12 03:FF02: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF1A 03:FF0A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF22 03:FF12: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF2A 03:FF1A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF32 03:FF22: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF3A 03:FF2A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF42 03:FF32: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF4A 03:FF3A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF52 03:FF42: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF5A 03:FF4A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF62 03:FF52: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF6A 03:FF5A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF72 03:FF62: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF7A 03:FF6A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF82 03:FF72: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF8A 03:FF7A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF92 03:FF82: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FF9A 03:FF8A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFA2 03:FF92: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFAA 03:FF9A: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFB2 03:FFA2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFBA 03:FFAA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFC2 03:FFB2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFCA 03:FFBA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFD2 03:FFC2: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFDA 03:FFCA: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 
@@ -10258,41 +9507,12 @@ C - - - - - 0x00FFE2 03:FFD2: 8D 00 80  STA $8000
 C - - - - - 0x00FFE5 03:FFD5: 4C 03 C0  JMP loc_C003
 
 
-; bzk мусор
-- - - - - - 0x00FFE8 03:FFD8: 00        .byte $00   ; 
-- - - - - - 0x00FFE9 03:FFD9: 00        .byte $00   ; 
-- - - - - - 0x00FFEA 03:FFDA: 00        .byte $00   ; 
-- - - - - - 0x00FFEB 03:FFDB: 00        .byte $00   ; 
-- - - - - - 0x00FFEC 03:FFDC: 00        .byte $00   ; 
-- - - - - - 0x00FFED 03:FFDD: 00        .byte $00   ; 
-- - - - - - 0x00FFEE 03:FFDE: 00        .byte $00   ; 
-- - - - - - 0x00FFEF 03:FFDF: 00        .byte $00   ; 
-- - - - - - 0x00FFF0 03:FFE0: 00        .byte $00   ; 
-- - - - - - 0x00FFF1 03:FFE1: 00        .byte $00   ; 
-- - - - - - 0x00FFF2 03:FFE2: 00        .byte $00   ; 
-- - - - - - 0x00FFF3 03:FFE3: 00        .byte $00   ; 
-- - - - - - 0x00FFF4 03:FFE4: 00        .byte $00   ; 
-- - - - - - 0x00FFF5 03:FFE5: 00        .byte $00   ; 
-- - - - - - 0x00FFF6 03:FFE6: 00        .byte $00   ; 
-- - - - - - 0x00FFF7 03:FFE7: 00        .byte $00   ; 
-- - - - - - 0x00FFF8 03:FFE8: 00        .byte $00   ; 
-- - - - - - 0x00FFF9 03:FFE9: 00        .byte $00   ; 
-- - - - - - 0x00FFFA 03:FFEA: 00        .byte $00   ; 
-- - - - - - 0x00FFFB 03:FFEB: 00        .byte $00   ; 
-- - - - - - 0x00FFFC 03:FFEC: 00        .byte $00   ; 
-- - - - - - 0x00FFFD 03:FFED: 00        .byte $00   ; 
-- - - - - - 0x00FFFE 03:FFEE: 00        .byte $00   ; 
-- - - - - - 0x00FFFF 03:FFEF: 00        .byte $00   ; 
-- - - - - - 0x010000 03:FFF0: 00        .byte $00   ; 
-- - - - - - 0x010001 03:FFF1: 00        .byte $00   ; 
-- - - - - - 0x010002 03:FFF2: 00        .byte $00   ; 
-- - - - - - 0x010003 03:FFF3: 00        .byte $00   ; 
-- - - - - - 0x010004 03:FFF4: 00        .byte $00   ; 
-- - - - - - 0x010005 03:FFF5: 00        .byte $00   ; 
-- - - - - - 0x010006 03:FFF6: 00        .byte $00   ; 
-- - - - - - 0x010007 03:FFF7: 00        .byte $00   ; 
-- - - - - - 0x010008 03:FFF8: 00        .byte $00   ; 
-- - - - - - 0x010009 03:FFF9: 00        .byte $00   ; 
+; bzk garbage
+- - - - - - 0x00FFE8 03:FFD8: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
+- - - - - - 0x00FFF0 03:FFE0: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
+- - - - - - 0x00FFF8 03:FFE8: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
+- - - - - - 0x010000 03:FFF0: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
+- - - - - - 0x010008 03:FFF8: 00        .byte $00, $00   ; 
 
 
 
