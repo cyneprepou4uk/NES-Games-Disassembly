@@ -33,6 +33,7 @@ My personal comments are marked with **bzk** text. Start with deleting garbage t
 * Castlevania III - Dracula's Curse (U) [!]
 * Double Dragon II - The Revenge (J)
 * Legend of Zelda, The (U) (PRG0) [!]
+* Nuts & Milk (J) [!]
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
 
 ## Planning (maybe)
