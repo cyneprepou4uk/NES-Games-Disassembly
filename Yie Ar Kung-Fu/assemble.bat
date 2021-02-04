@@ -36,7 +36,7 @@ setlocal enableextensions
 FOR %%A IN ("!kungfu.nes") DO set "size=%%~zA"
 if %size% EQU 24592 (
     echo.
-    echo --------------------------------------------
+    echo -----------------------------------------------
     echo Done! Look for !kungfu.nes file in your folder.
     if exist !kungfu.bak (
         echo.
@@ -45,7 +45,7 @@ if %size% EQU 24592 (
         copy !kungfu.nes !kungfu.bak
         echo Backup created
     )
-    echo --------------------------------------------
+    echo -----------------------------------------------
     C:\windows\system32\timeout /T 10
 ) else (
     echo.
