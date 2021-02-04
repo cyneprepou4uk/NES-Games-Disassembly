@@ -321,7 +321,7 @@ ram_spr_T                       = $0201 ; 1    tile
 ram_spr_A                       = $0202 ; 1    attribute
 ram_spr_X                       = $0203 ; 1    X pos
 
-; sounds effects
+; sound effects
 ram_sounds                      = $0300 ; 6     label for 0300,X
     ram_sfx_pause                   = $0300 ; 6     
     ram_sfx_stage_load_1            = $0301 ; 1   when loading a stage
