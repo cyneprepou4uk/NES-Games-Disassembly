@@ -35,7 +35,7 @@ copy /A copy_*.lst _listing.txt
 del *.o + PRG_ROM.bin + copy_*
 
 :: create a copy of .nl file for original ROM
-if exist TWCS_original.nes (copy !twcs.nes.ram.nl TWCS_original.nes.ram.nl)
+if exist original_rom.nes (copy !twcs.nes.ram.nl original_rom.nes.ram.nl)
 
 :: check file size and display corresponding message
 setlocal enableextensions
