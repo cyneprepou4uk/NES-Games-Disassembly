@@ -113,14 +113,14 @@ ram_0062                        = $62 ; 8
 ram_0063                        = $63 ; 3   
 ram_0064                        = $64 ; 8   
 ram_0065                        = $65 ; 5   
-ram_p1_extra_life               = $66 ; 3   for 20.000 score, 00 = default, 01 = life was given already
-ram_p2_extra_life               = $67 ; 3   for 20.000 score, 00 = default, 01 = life was given already
-ram_0068                        = $68 ; 13   
+ram_p1_extra_life               = $66 ; 3    for 20.000 score, 00 = default, 01 = life was given already
+ram_p2_extra_life               = $67 ; 3    for 20.000 score, 00 = default, 01 = life was given already
+ram_game_over_flag              = $68 ; 13   80 = not game over, 27-01 - timer before game over text appear, 00 - game over flag
 ram_0069                        = $69 ; 3   
-ram_enemy_spawn_pos             = $6A ; 5   00 = left, 01 = center, 02 = right
+ram_enemy_spawn_pos             = $6A ; 5    00 = left, 01 = center, 02 = right
 ram_006B                        = $6B ; 6   
-ram_enemy_limit                 = $6C ; 4   max enemy tanks on the screen at once (05 for 1p mode and 07 for 2p mode)
-ram_pause_flag                  = $6D ; 8   00 = not paused, 01 = paused
+ram_enemy_limit                 = $6C ; 4    max enemy tanks on the screen at once (05 for 1p mode and 07 for 2p mode)
+ram_pause_flag                  = $6D ; 8    00 = not paused, 01 = paused
 ram_006E                        = $6E ; 18   
 
 ram_stun_timer                  = $6F ; 9       1p when hit by 2p
@@ -295,14 +295,20 @@ ram_clock_timer                 = $0100 ; 6    clock bonus
 ram_tank_upgrade                = $0101 ; 5         1p, collect star bonus to upgrade
     ram_0102                        = $0102 ; 1     2p
 
-ram_0103                        = $0103 ; 10   
-ram_0104                        = $0104 ; N/A
-ram_0105                        = $0105 ; 7   
-ram_0106                        = $0106 ; 7   
-ram_0107                        = $0107 ; 4   
-ram_0108                        = $0108 ; 7   
-ram_debug_address_index         = $0109 ; 5    index for 0000+
-ram_010A                        = $010A ; N/A
+ram_0103                        = $0103 ; 10        1p, ???
+    ram_0104                        = $0104 ; N/A   2p
+
+; game over message
+ram_go_msg_pos_X                = $0105 ; 7     start position
+ram_go_msg_pos_Y                = $0106 ; 7     start position
+ram_go_msg_mov_type             = $0107 ; 4     movement type, 00 = up, 01 = left, 02 = down, 03 = right
+ram_go_msg_timer                = $0108 ; 7     for how long msg will be displayed, decreases each 16 frames. if => 0A msg moves
+
+ram_debug_address_index         = $0109 ; 5     index for 0000+
+
+ram_010A                        = $010A ; N/A   ??? unused, but cleared at 0x002423 because get's in a middle by clearing together with other addresses
+
+; unused
 ram_010B                        = $010B ; N/A
 ram_010C                        = $010C ; N/A
 ram_010D                        = $010D ; N/A

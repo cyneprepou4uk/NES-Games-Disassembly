@@ -65,7 +65,7 @@ C - - - - - 0x0000C5 00:C0B5: 20 B0 C9  JSR sub_C9B0
 C - - - - - 0x0000C8 00:C0B8: 20 B4 D7  JSR sub_D7B4
 C - - - - - 0x0000CB 00:C0BB: 20 67 D4  JSR sub_D467
 bra_C0BE_constructor_was_already_used:
-C - - - - - 0x0000CE 00:C0BE: 20 13 E4  JSR sub_E413
+C - - - - - 0x0000CE 00:C0BE: 20 13 E4  JSR sub_E413_clear_some_tank_addresses
 C - - - - - 0x0000D1 00:C0C1: A9 10     LDA #$10
 C - - - - - 0x0000D3 00:C0C3: 85 90     STA ram_tank_pos_X
 C - - - - - 0x0000D5 00:C0C5: A9 18     LDA #$18
@@ -248,20 +248,21 @@ C - - - - - 0x000226 00:C216: 85 6D     STA ram_pause_flag
 C - - - - - 0x000228 00:C218: 8D 00 03  STA ram_sfx_pause
 bra_C21B_do_not_set_pause:
 C - - - - - 0x00022B 00:C21B: 20 F9 C8  JSR sub_C8F9_display_pause_text
-C - - - - - 0x00022E 00:C21E: 20 28 C7  JSR sub_C728
-C - - - - - 0x000231 00:C221: F0 D6     BEQ bra_C1F9_loop
+C - - - - - 0x00022E 00:C21E: 20 28 C7  JSR sub_C728_check_condition_for_stage_ending
+C - - - - - 0x000231 00:C221: F0 D6     BEQ bra_C1F9_loop   ; stage is not finished
 C - - - - - 0x000233 00:C223: A9 00     LDA #$00
 C - - - - - 0x000235 00:C225: 85 0A     STA ram_frame_cnt_hi
 C - - - - - 0x000237 00:C227: 85 0B     STA ram_frame_cnt_lo
 C - - - - - 0x000239 00:C229: 8D 11 03  STA ram_sfx_movement_player
 C - - - - - 0x00023C 00:C22C: 8D 12 03  STA ram_sfx_movement_enemy
-C - - - - - 0x00023F 00:C22F: AD 08 01  LDA ram_0108
+C - - - - - 0x00023F 00:C22F: AD 08 01  LDA ram_go_msg_timer
 C - - - - - 0x000242 00:C232: F0 04     BEQ bra_C238
-C - - - - - 0x000244 00:C234: A9 FE     LDA #$FE
+C - - - - - 0x000244 00:C234: A9 FE     LDA #$FE    ; additional time if game over message
 C - - - - - 0x000246 00:C236: 85 0A     STA ram_frame_cnt_hi
 bra_C238:
+bra_C238_loop:  ; gameplay is still going for some time before stange ends
 C - - - - - 0x000248 00:C238: 20 F6 D8  JSR sub_D8F6_wait_1_frame_
-C - - - - - 0x00024B 00:C23B: 20 A2 C2  JSR sub_C2A2
+C - - - - - 0x00024B 00:C23B: 20 A2 C2  JSR sub_C2A2_disable_buttons_if_game_over
 C - - - - - 0x00024E 00:C23E: 20 E6 C2  JSR sub_C2E6_main_battle_script
 C - - - - - 0x000251 00:C241: 20 3B E2  JSR sub_E23B
 C - - - - - 0x000254 00:C244: 20 A6 DE  JSR sub_DEA6
@@ -269,18 +270,18 @@ C - - - - - 0x000257 00:C247: 20 D8 E0  JSR sub_E0D8
 C - - - - - 0x00025A 00:C24A: 20 1D C3  JSR sub_C31D_water_palette_swap_handler
 C - - - - - 0x00025D 00:C24D: A5 0A     LDA ram_frame_cnt_hi
 C - - - - - 0x00025F 00:C24F: C9 02     CMP #$02
-C - - - - - 0x000261 00:C251: D0 E5     BNE bra_C238
+C - - - - - 0x000261 00:C251: D0 E5     BNE bra_C238_loop
 C - - - - - 0x000263 00:C253: 20 51 EA  JSR sub_EA51
 C - - - - - 0x000266 00:C256: 20 D4 CC  JSR sub_CCD4_score_after_stage_handler
 C - - - - - 0x000269 00:C259: E6 85     INC ram_stage
 C - - - - - 0x00026B 00:C25B: A5 85     LDA ram_stage
 C - - - - - 0x00026D 00:C25D: C9 47     CMP #$47
-C - - - - - 0x00026F 00:C25F: D0 08     BNE bra_C269
-C - - - - - 0x000271 00:C261: A9 01     LDA #$01
+C - - - - - 0x00026F 00:C25F: D0 08     BNE bra_C269_game_is_not_completed
+C - - - - - 0x000271 00:C261: A9 01     LDA #$01    ; set 1st stage again
 C - - - - - 0x000273 00:C263: 85 85     STA ram_stage
 C - - - - - 0x000275 00:C265: A9 00     LDA #$00
 C - - - - - 0x000277 00:C267: 85 46     STA ram_2nd_loop_flag
-bra_C269:
+bra_C269_game_is_not_completed:
 C - - - - - 0x000279 00:C269: A5 85     LDA ram_stage
 C - - - - - 0x00027B 00:C26B: C9 24     CMP #$24
 C - - - - - 0x00027D 00:C26D: D0 04     BNE bra_C273_still_1st_loop
@@ -290,19 +291,19 @@ bra_C273_still_1st_loop:
 C - - - - - 0x000283 00:C273: A5 51     LDA ram_lives
 C - - - - - 0x000285 00:C275: 18        CLC
 C - - - - - 0x000286 00:C276: 65 52     ADC ram_lives + 1
-C - - - - - 0x000288 00:C278: F0 09     BEQ bra_C283
-C - - - - - 0x00028A 00:C27A: A5 68     LDA ram_0068
-C - - - - - 0x00028C 00:C27C: C9 80     CMP #$80
-C - - - - - 0x00028E 00:C27E: D0 03     BNE bra_C283
-C - - - - - 0x000290 00:C280: 4C 59 C1  JMP loc_C159
-bra_C283:
+C - - - - - 0x000288 00:C278: F0 09     BEQ bra_C283_game_over    ; both players are dead
+C - - - - - 0x00028A 00:C27A: A5 68     LDA ram_game_over_flag
+C - - - - - 0x00028C 00:C27C: C9 80     CMP #con_not_game_over
+C - - - - - 0x00028E 00:C27E: D0 03     BNE bra_C283_game_over    ; game over
+C - - - - - 0x000290 00:C280: 4C 59 C1  JMP loc_C159    ; launch next staage
+bra_C283_game_over:     ; game over screen
 C - - - - - 0x000293 00:C283: 20 D9 C5  JSR sub_C5D9
-C - - - - - 0x000296 00:C286: 20 7D D9  JSR sub_D97D
+C - - - - - 0x000296 00:C286: 20 7D D9  JSR sub_D97D_check_hiscore_beaten
 C - - - - - 0x000299 00:C289: 98        TYA
-C - - - - - 0x00029A 00:C28A: F0 06     BEQ bra_C292
+C - - - - - 0x00029A 00:C28A: F0 06     BEQ bra_C292_hiscore_not_beaten
 C - - - - - 0x00029C 00:C28C: 20 4B C4  JSR sub_C44B
 C - - - - - 0x00029F 00:C28F: 20 95 C2  JSR sub_C295
-bra_C292:
+bra_C292_hiscore_not_beaten:
 C - - - - - 0x0002A2 00:C292: 4C 95 C0  JMP loc_C095
 
 
@@ -316,11 +317,11 @@ C - - - - - 0x0002B1 00:C2A1: 60        RTS
 
 
 
-sub_C2A2:
-C - - - - - 0x0002B2 00:C2A2: A5 68     LDA ram_0068
-C - - - - - 0x0002B4 00:C2A4: C9 80     CMP #$80
+sub_C2A2_disable_buttons_if_game_over:
+C - - - - - 0x0002B2 00:C2A2: A5 68     LDA ram_game_over_flag
+C - - - - - 0x0002B4 00:C2A4: C9 80     CMP #con_not_game_over
 C - - - - - 0x0002B6 00:C2A6: F0 0A     BEQ bra_C2B2_RTS
-C - - - - - 0x0002B8 00:C2A8: A9 00     LDA #$00
+C - - - - - 0x0002B8 00:C2A8: A9 00     LDA #$00    ; blocking controls
 C - - - - - 0x0002BA 00:C2AA: 85 06     STA ram_btn_hold
 C - - - - - 0x0002BC 00:C2AC: 85 07     STA ram_btn_hold + 1
 C - - - - - 0x0002BE 00:C2AE: 85 08     STA ram_btn_press
@@ -376,7 +377,7 @@ C - - - - - 0x000314 00:C304: 20 04 E6  JSR sub_E604_bullets_movement
 C - - - - - 0x000317 00:C307: 20 10 E9  JSR sub_E910_bullets_collision_with_bullets
 C - - - - - 0x00031A 00:C30A: 20 0C E7  JSR sub_E70C_bullets_collision_with_tanks
 C - - - - - 0x00031D 00:C30D: 20 72 E9  JSR sub_E972_bonus_handler
-C - - - - - 0x000320 00:C310: 20 72 C9  JSR sub_C972_gameover_plr_text_handler
+C - - - - - 0x000320 00:C310: 20 72 C9  JSR sub_C972_game_over_text_handler
 C - - - - - 0x000323 00:C313: 20 0B DB  JSR sub_DB0B_plr_movement_sfx_handler
 C - - - - - 0x000326 00:C316: 20 C8 C7  JSR sub_C7C8_print_lives_handler
 C - - - - - 0x000329 00:C319: 20 1D C3  JSR sub_C31D_water_palette_swap_handler
@@ -404,11 +405,11 @@ C - - - - - 0x000340 00:C330: 60        RTS
 
 sub_C331:
 C - - - - - 0x000341 00:C331: 20 09 E4  JSR sub_E409
-C - - - - - 0x000344 00:C334: 20 13 E4  JSR sub_E413
+C - - - - - 0x000344 00:C334: 20 13 E4  JSR sub_E413_clear_some_tank_addresses
 C - - - - - 0x000347 00:C337: A9 F0     LDA #$F0
-C - - - - - 0x000349 00:C339: 8D 06 01  STA ram_0106
+C - - - - - 0x000349 00:C339: 8D 06 01  STA ram_go_msg_pos_Y
 C - - - - - 0x00034C 00:C33C: A9 00     LDA #$00
-C - - - - - 0x00034E 00:C33E: 8D 08 01  STA ram_0108
+C - - - - - 0x00034E 00:C33E: 8D 08 01  STA ram_go_msg_timer
 C - - - - - 0x000351 00:C341: A5 51     LDA ram_lives
 C - - - - - 0x000353 00:C343: F0 05     BEQ bra_C34A
 C - - - - - 0x000355 00:C345: A2 00     LDX #$00
@@ -441,8 +442,8 @@ C - - - - - 0x00038A 00:C37A: 20 F6 D8  JSR sub_D8F6_wait_1_frame_
 C - - - - - 0x00038D 00:C37D: 20 30 C8  JSR sub_C830
 C - - - - - 0x000390 00:C380: 20 59 C8  JSR sub_C859
 C - - - - - 0x000393 00:C383: 20 2B E4  JSR sub_E42B
-C - - - - - 0x000396 00:C386: A9 80     LDA #$80
-C - - - - - 0x000398 00:C388: 85 68     STA ram_0068
+C - - - - - 0x000396 00:C386: A9 80     LDA #con_not_game_over
+C - - - - - 0x000398 00:C388: 85 68     STA ram_game_over_flag
 C - - - - - 0x00039A 00:C38A: A9 01     LDA #$01
 C - - - - - 0x00039C 00:C38C: 8D 12 03  STA ram_sfx_movement_enemy
 C - - - - - 0x00039F 00:C38F: 85 4C     STA ram_004C
@@ -534,7 +535,7 @@ C - - - - - 0x000439 00:C429: 20 E6 C2  JSR sub_C2E6_main_battle_script
 C - - - - - 0x00043C 00:C42C: 20 3B E2  JSR sub_E23B
 C - - - - - 0x00043F 00:C42F: 20 A6 DE  JSR sub_DEA6
 C - - - - - 0x000442 00:C432: 20 D8 E0  JSR sub_E0D8
-C - - - - - 0x000445 00:C435: 20 28 C7  JSR sub_C728
+C - - - - - 0x000445 00:C435: 20 28 C7  JSR sub_C728_check_condition_for_stage_ending
 C - - - - - 0x000448 00:C438: F0 E3     BEQ bra_C41D_loop
 C - - - - - 0x00044A 00:C43A: A9 00     LDA #$00
 C - - - - - 0x00044C 00:C43C: 85 0C     STA ram_buffer_index
@@ -928,7 +929,7 @@ C - - - - - 0x00070F 00:C6FF: A5 06     LDA ram_btn_hold
 C - - - - - 0x000711 00:C701: 20 51 E4  JSR sub_E451_check_dpad_buttons
 loc_C704:
 C D 2 - - - 0x000714 00:C704: A8        TAY
-C - - - - - 0x000715 00:C705: B9 D5 D3  LDA tbl_D3D5,Y
+C - - - - - 0x000715 00:C705: B9 D5 D3  LDA tbl_D3D5_speed_X,Y
 C - - - - - 0x000718 00:C708: 0A        ASL
 C - - - - - 0x000719 00:C709: 0A        ASL
 C - - - - - 0x00071A 00:C70A: 0A        ASL
@@ -936,7 +937,7 @@ C - - - - - 0x00071B 00:C70B: 0A        ASL
 C - - - - - 0x00071C 00:C70C: 18        CLC
 C - - - - - 0x00071D 00:C70D: 65 90     ADC ram_tank_pos_X
 C - - - - - 0x00071F 00:C70F: 85 90     STA ram_tank_pos_X
-C - - - - - 0x000721 00:C711: B9 D9 D3  LDA tbl_D3D9,Y
+C - - - - - 0x000721 00:C711: B9 D9 D3  LDA tbl_D3D9_speed_Y,Y
 C - - - - - 0x000724 00:C714: 0A        ASL
 C - - - - - 0x000725 00:C715: 0A        ASL
 C - - - - - 0x000726 00:C716: 0A        ASL
@@ -960,31 +961,31 @@ C - - - - - 0x000737 00:C727: 60        RTS
 
 
 
-sub_C728:
-C - - - - - 0x000738 00:C728: A5 68     LDA ram_0068
-C - - - - - 0x00073A 00:C72A: F0 0B     BEQ bra_C737
+sub_C728_check_condition_for_stage_ending:
+C - - - - - 0x000738 00:C728: A5 68     LDA ram_game_over_flag
+C - - - - - 0x00073A 00:C72A: F0 0B     BEQ bra_C737_it_is_game_over
 C - - - - - 0x00073C 00:C72C: A5 80     LDA ram_enemies_left_cnt
-C - - - - - 0x00073E 00:C72E: F0 1F     BEQ bra_C74F
+C - - - - - 0x00073E 00:C72E: F0 1F     BEQ bra_C74F_all_enemies_are_killed
 C - - - - - 0x000740 00:C730: A5 51     LDA ram_lives
 C - - - - - 0x000742 00:C732: 18        CLC
 C - - - - - 0x000743 00:C733: 65 52     ADC ram_lives + 1
-C - - - - - 0x000745 00:C735: D0 1B     BNE bra_C752
-bra_C737:
+C - - - - - 0x000745 00:C735: D0 1B     BNE bra_C752_someone_is_alive
+bra_C737_it_is_game_over:
 C - - - - - 0x000747 00:C737: A9 70     LDA #$70
-C - - - - - 0x000749 00:C739: 8D 05 01  STA ram_0105
+C - - - - - 0x000749 00:C739: 8D 05 01  STA ram_go_msg_pos_X
 C - - - - - 0x00074C 00:C73C: A9 F0     LDA #$F0
-C - - - - - 0x00074E 00:C73E: 8D 06 01  STA ram_0106
-C - - - - - 0x000751 00:C741: A9 00     LDA #$00
-C - - - - - 0x000753 00:C743: 8D 07 01  STA ram_0107
+C - - - - - 0x00074E 00:C73E: 8D 06 01  STA ram_go_msg_pos_Y
+C - - - - - 0x000751 00:C741: A9 00     LDA #$00    ; move up
+C - - - - - 0x000753 00:C743: 8D 07 01  STA ram_go_msg_mov_type
 C - - - - - 0x000756 00:C746: A9 11     LDA #$11
-C - - - - - 0x000758 00:C748: 8D 08 01  STA ram_0108
+C - - - - - 0x000758 00:C748: 8D 08 01  STA ram_go_msg_timer
 C - - - - - 0x00075B 00:C74B: A9 00     LDA #$00
 C - - - - - 0x00075D 00:C74D: 85 0B     STA ram_frame_cnt_lo
-bra_C74F:
-C - - - - - 0x00075F 00:C74F: A9 01     LDA #$01
+bra_C74F_all_enemies_are_killed:
+C - - - - - 0x00075F 00:C74F: A9 01     LDA #$01    ; end current stage
 C - - - - - 0x000761 00:C751: 60        RTS
-bra_C752:
-C - - - - - 0x000762 00:C752: A9 00     LDA #$00
+bra_C752_someone_is_alive:
+C - - - - - 0x000762 00:C752: A9 00     LDA #$00    ; do not end current stage yet
 C - - - - - 0x000764 00:C754: 60        RTS
 
 
@@ -1307,16 +1308,16 @@ C - - - - - 0x000957 00:C947: A9 03     LDA #$03
 C - - - - - 0x000959 00:C949: 85 04     STA ram_0004
 C - - - - - 0x00095B 00:C94B: A9 00     LDA #$00
 C - - - - - 0x00095D 00:C94D: 85 6E     STA ram_006E
-C - - - - - 0x00095F 00:C94F: AE 05 01  LDX ram_0105
-C - - - - - 0x000962 00:C952: AC 06 01  LDY ram_0106
+C - - - - - 0x00095F 00:C94F: AE 05 01  LDX ram_go_msg_pos_X
+C - - - - - 0x000962 00:C952: AC 06 01  LDY ram_go_msg_pos_Y
 C - - - - - 0x000965 00:C955: A9 79     LDA #$79
 C - - - - - 0x000967 00:C957: 85 53     STA ram_0053
 C - - - - - 0x000969 00:C959: 20 7B DA  JSR sub_DA7B
-C - - - - - 0x00096C 00:C95C: AD 05 01  LDA ram_0105
+C - - - - - 0x00096C 00:C95C: AD 05 01  LDA ram_go_msg_pos_X
 C - - - - - 0x00096F 00:C95F: 18        CLC
 C - - - - - 0x000970 00:C960: 69 10     ADC #$10
 C - - - - - 0x000972 00:C962: AA        TAX
-C - - - - - 0x000973 00:C963: AC 06 01  LDY ram_0106
+C - - - - - 0x000973 00:C963: AC 06 01  LDY ram_go_msg_pos_Y
 C - - - - - 0x000976 00:C966: A9 7D     LDA #$7D
 C - - - - - 0x000978 00:C968: 85 53     STA ram_0053
 C - - - - - 0x00097A 00:C96A: 20 7B DA  JSR sub_DA7B
@@ -1326,8 +1327,8 @@ C - - - - - 0x000981 00:C971: 60        RTS
 
 
 
-sub_C972_gameover_plr_text_handler:
-C - - - - - 0x000982 00:C972: AD 08 01  LDA ram_0108
+sub_C972_game_over_text_handler:
+C - - - - - 0x000982 00:C972: AD 08 01  LDA ram_go_msg_timer    ; no message
 C - - - - - 0x000985 00:C975: F0 38     BEQ bra_C9AF_RTS
 C - - - - - 0x000987 00:C977: A5 46     LDA ram_2nd_loop_flag
 C - - - - - 0x000989 00:C979: C9 02     CMP #con_flag_demo
@@ -1335,25 +1336,25 @@ C - - - - - 0x00098B 00:C97B: F0 32     BEQ bra_C9AF_RTS    ; it's a demo
 C - - - - - 0x00098D 00:C97D: A5 0B     LDA ram_frame_cnt_lo
 C - - - - - 0x00098F 00:C97F: 29 0F     AND #$0F
 C - - - - - 0x000991 00:C981: D0 0A     BNE bra_C98D
-C - - - - - 0x000993 00:C983: CE 08 01  DEC ram_0108
+C - - - - - 0x000993 00:C983: CE 08 01  DEC ram_go_msg_timer    ; decrease every 16 frames
 C - - - - - 0x000996 00:C986: D0 05     BNE bra_C98D
 - - - - - - 0x000998 00:C988: A9 F0     LDA #$F0
-- - - - - - 0x00099A 00:C98A: 8D 06 01  STA ram_0106
+- - - - - - 0x00099A 00:C98A: 8D 06 01  STA ram_go_msg_pos_Y
 bra_C98D:
-C - - - - - 0x00099D 00:C98D: AD 08 01  LDA ram_0108
+C - - - - - 0x00099D 00:C98D: AD 08 01  LDA ram_go_msg_timer
 C - - - - - 0x0009A0 00:C990: C9 0A     CMP #$0A
-C - - - - - 0x0009A2 00:C992: 90 18     BCC bra_C9AC
-C - - - - - 0x0009A4 00:C994: AD 07 01  LDA ram_0107
+C - - - - - 0x0009A2 00:C992: 90 18     BCC bra_C9AC_stop_moving_timer
+C - - - - - 0x0009A4 00:C994: AD 07 01  LDA ram_go_msg_mov_type
 C - - - - - 0x0009A7 00:C997: A8        TAY
-C - - - - - 0x0009A8 00:C998: B9 D5 D3  LDA tbl_D3D5,Y
+C - - - - - 0x0009A8 00:C998: B9 D5 D3  LDA tbl_D3D5_speed_X,Y
 C - - - - - 0x0009AB 00:C99B: 18        CLC
-C - - - - - 0x0009AC 00:C99C: 6D 05 01  ADC ram_0105
-C - - - - - 0x0009AF 00:C99F: 8D 05 01  STA ram_0105
-C - - - - - 0x0009B2 00:C9A2: B9 D9 D3  LDA tbl_D3D9,Y
+C - - - - - 0x0009AC 00:C99C: 6D 05 01  ADC ram_go_msg_pos_X
+C - - - - - 0x0009AF 00:C99F: 8D 05 01  STA ram_go_msg_pos_X
+C - - - - - 0x0009B2 00:C9A2: B9 D9 D3  LDA tbl_D3D9_speed_Y,Y
 C - - - - - 0x0009B5 00:C9A5: 18        CLC
-C - - - - - 0x0009B6 00:C9A6: 6D 06 01  ADC ram_0106
-C - - - - - 0x0009B9 00:C9A9: 8D 06 01  STA ram_0106
-bra_C9AC:
+C - - - - - 0x0009B6 00:C9A6: 6D 06 01  ADC ram_go_msg_pos_Y
+C - - - - - 0x0009B9 00:C9A9: 8D 06 01  STA ram_go_msg_pos_Y
+bra_C9AC_stop_moving_timer:
 C - - - - - 0x0009BC 00:C9AC: 20 47 C9  JSR sub_C947
 bra_C9AF_RTS:
 C - - - - - 0x0009BF 00:C9AF: 60        RTS
@@ -1375,7 +1376,7 @@ C - - - - - 0x0009CF 00:C9BF: 60        RTS
 sub_C9C0_title_screen_handler:
 C - - - - - 0x0009D0 00:C9C0: A9 03     LDA #$03
 C - - - - - 0x0009D2 00:C9C2: 85 4D     STA ram_bg_palette_id
-C - - - - - 0x0009D4 00:C9C4: 20 13 E4  JSR sub_E413
+C - - - - - 0x0009D4 00:C9C4: 20 13 E4  JSR sub_E413_clear_some_tank_addresses
 C - - - - - 0x0009D7 00:C9C7: A9 48     LDA #$48
 C - - - - - 0x0009D9 00:C9C9: 85 90     STA ram_tank_pos_X
 C - - - - - 0x0009DB 00:C9CB: 20 85 CA  JSR sub_CA85_calculate_cursor_position
@@ -2002,10 +2003,10 @@ C - - - - - 0x000E34 00:CE24: A5 83     LDA ram_game_mode
 C - - - - - 0x000E36 00:CE26: D0 03     BNE bra_CE2B    ; 2p mode
 C - - - - - 0x000E38 00:CE28: 4C E5 CE  JMP loc_CEE5
 bra_CE2B:
-C - - - - - 0x000E3B 00:CE2B: A5 68     LDA ram_0068
-C - - - - - 0x000E3D 00:CE2D: D0 03     BNE bra_CE32
+C - - - - - 0x000E3B 00:CE2B: A5 68     LDA ram_game_over_flag
+C - - - - - 0x000E3D 00:CE2D: D0 03     BNE bra_CE32_not_game_over_yet
 C - - - - - 0x000E3F 00:CE2F: 4C E5 CE  JMP loc_CEE5
-bra_CE32:
+bra_CE32_not_game_over_yet:
 C - - - - - 0x000E42 00:CE32: A5 7E     LDA ram_007E
 C - - - - - 0x000E44 00:CE34: C5 7D     CMP ram_007D
 C - - - - - 0x000E46 00:CE36: B0 55     BCS bra_CE8D
@@ -2376,9 +2377,9 @@ sub_D138_gain_extra_life_for_20000_pts:
     ; if both players scored enough simultaneously,
     ; p2 will gain life only when this code executes next time
     ; this was done probably to notify each player with individual sound
-C - - - - - 0x001148 00:D138: A5 68     LDA ram_0068
-C - - - - - 0x00114A 00:D13A: C9 80     CMP #$80
-C - - - - - 0x00114C 00:D13C: D0 2B     BNE bra_D169_RTS
+C - - - - - 0x001148 00:D138: A5 68     LDA ram_game_over_flag
+C - - - - - 0x00114A 00:D13A: C9 80     CMP #con_not_game_over
+C - - - - - 0x00114C 00:D13C: D0 2B     BNE bra_D169_RTS    ; don't give lifes if game over
 C - - - - - 0x00114E 00:D13E: A5 66     LDA ram_p1_extra_life
 C - - - - - 0x001150 00:D140: D0 0D     BNE bra_D14F    ; already gained
 C - - - - - 0x001152 00:D142: A5 17     LDA ram_p1_score + 2
@@ -2898,13 +2899,13 @@ tbl_D3D1_points_for_killing_enemy:
 
 
 
-tbl_D3D5:
+tbl_D3D5_speed_X:
 - D 2 - - - 0x0013E5 00:D3D5: 00        .byte $00   ; 00 Up
 - D 2 - - - 0x0013E6 00:D3D6: FF        .byte $FF   ; 01 Left
 - D 2 - - - 0x0013E7 00:D3D7: 00        .byte $00   ; 02 Down
 - D 2 - - - 0x0013E8 00:D3D8: 01        .byte $01   ; 03 Right
 
-tbl_D3D9:
+tbl_D3D9_speed_Y:
 - D 2 - - - 0x0013E9 00:D3D9: FF        .byte $FF   ; 00 Up
 - D 2 - - - 0x0013EA 00:D3DA: 00        .byte $00   ; 01 Left
 - D 2 - - - 0x0013EB 00:D3DB: 01        .byte $01   ; 02 Down
@@ -3823,7 +3824,7 @@ C - - - - - 0x00198C 00:D97C: 60        RTS
 
 
 
-sub_D97D:
+sub_D97D_check_hiscore_beaten:
 C - - - - - 0x00198D 00:D97D: A2 00     LDX #$00
 C - - - - - 0x00198F 00:D97F: A0 00     LDY #$00
 loc_D981:
@@ -4602,7 +4603,7 @@ C - - - - - 0x001E00 00:DDF0: D0 53     BNE bra_DE45_RTS
 C - - - - - 0x001E02 00:DDF2: B5 A0     LDA ram_tank_status,X
 C - - - - - 0x001E04 00:DDF4: 38        SEC
 C - - - - - 0x001E05 00:DDF5: E9 10     SBC #$10
-C - - - - - 0x001E07 00:DDF7: F0 0E     BEQ bra_DE07
+C - - - - - 0x001E07 00:DDF7: F0 0E     BEQ bra_DE07_tank_is_dead
 C - - - - - 0x001E09 00:DDF9: C9 10     CMP #$10
 C - - - - - 0x001E0B 00:DDFB: D0 05     BNE bra_DE02
 C - - - - - 0x001E0D 00:DDFD: 09 06     ORA #$06
@@ -4612,49 +4613,49 @@ C - - - - - 0x001E12 00:DE02: 09 03     ORA #$03
 loc_DE04:
 C D 2 - - - 0x001E14 00:DE04: 95 A0     STA ram_tank_status,X
 C - - - - - 0x001E16 00:DE06: 60        RTS
-bra_DE07:
+bra_DE07_tank_is_dead:
 C - - - - - 0x001E17 00:DE07: 95 A0     STA ram_tank_status,X
-C - - - - - 0x001E19 00:DE09: E0 02     CPX #$02
-C - - - - - 0x001E1B 00:DE0B: B0 08     BCS bra_DE15
+C - - - - - 0x001E19 00:DE09: E0 02     CPX #$02    ; check which tank is it
+C - - - - - 0x001E1B 00:DE0B: B0 08     BCS bra_DE15_it_is_enemy    ; not a player
 C - - - - - 0x001E1D 00:DE0D: D6 51     DEC ram_lives,X
-C - - - - - 0x001E1F 00:DE0F: F0 07     BEQ bra_DE18
+C - - - - - 0x001E1F 00:DE0F: F0 07     BEQ bra_DE18_no_more_lives_left
 C - - - - - 0x001E21 00:DE11: 20 63 E3  JSR sub_E363_tank_spawn_handler
 C - - - - - 0x001E24 00:DE14: 60        RTS
-bra_DE15:
+bra_DE15_it_is_enemy:
 C - - - - - 0x001E25 00:DE15: C6 80     DEC ram_enemies_left_cnt
 C - - - - - 0x001E27 00:DE17: 60        RTS
-bra_DE18:
-C - - - - - 0x001E28 00:DE18: A5 68     LDA ram_0068
-C - - - - - 0x001E2A 00:DE1A: C9 80     CMP #$80
-C - - - - - 0x001E2C 00:DE1C: D0 27     BNE bra_DE45_RTS
+bra_DE18_no_more_lives_left:
+C - - - - - 0x001E28 00:DE18: A5 68     LDA ram_game_over_flag
+C - - - - - 0x001E2A 00:DE1A: C9 80     CMP #con_not_game_over
+C - - - - - 0x001E2C 00:DE1C: D0 27     BNE bra_DE45_RTS    ; don't show message if game over
 C - - - - - 0x001E2E 00:DE1E: E0 01     CPX #$01
-C - - - - - 0x001E30 00:DE20: F0 12     BEQ bra_DE34
-C - - - - - 0x001E32 00:DE22: A5 52     LDA ram_lives + 1
+C - - - - - 0x001E30 00:DE20: F0 12     BEQ bra_DE34_it_is_p2
+C - - - - - 0x001E32 00:DE22: A5 52     LDA ram_lives + 1   ; bzk optimize, no need to check lives again if we already here
 C - - - - - 0x001E34 00:DE24: F0 1F     BEQ bra_DE45_RTS
-C - - - - - 0x001E36 00:DE26: A9 03     LDA #$03
-C - - - - - 0x001E38 00:DE28: 8D 07 01  STA ram_0107
+C - - - - - 0x001E36 00:DE26: A9 03     LDA #$03    ; move right
+C - - - - - 0x001E38 00:DE28: 8D 07 01  STA ram_go_msg_mov_type
 C - - - - - 0x001E3B 00:DE2B: A9 20     LDA #$20
-C - - - - - 0x001E3D 00:DE2D: 8D 05 01  STA ram_0105
-C - - - - - 0x001E40 00:DE30: 20 46 DE  JSR sub_DE46
+C - - - - - 0x001E3D 00:DE2D: 8D 05 01  STA ram_go_msg_pos_X
+C - - - - - 0x001E40 00:DE30: 20 46 DE  JSR sub_DE46_set_message_init_data
 C - - - - - 0x001E43 00:DE33: 60        RTS
-bra_DE34:
-C - - - - - 0x001E44 00:DE34: A5 51     LDA ram_lives
+bra_DE34_it_is_p2:
+C - - - - - 0x001E44 00:DE34: A5 51     LDA ram_lives   ; bzk optimize, no need to check lives again if we already here
 C - - - - - 0x001E46 00:DE36: F0 0D     BEQ bra_DE45_RTS
-C - - - - - 0x001E48 00:DE38: A9 01     LDA #$01
-C - - - - - 0x001E4A 00:DE3A: 8D 07 01  STA ram_0107
+C - - - - - 0x001E48 00:DE38: A9 01     LDA #$01    ; move left
+C - - - - - 0x001E4A 00:DE3A: 8D 07 01  STA ram_go_msg_mov_type
 C - - - - - 0x001E4D 00:DE3D: A9 C0     LDA #$C0
-C - - - - - 0x001E4F 00:DE3F: 8D 05 01  STA ram_0105
-C - - - - - 0x001E52 00:DE42: 20 46 DE  JSR sub_DE46
+C - - - - - 0x001E4F 00:DE3F: 8D 05 01  STA ram_go_msg_pos_X
+C - - - - - 0x001E52 00:DE42: 20 46 DE  JSR sub_DE46_set_message_init_data
 bra_DE45_RTS:
 C - - - - - 0x001E55 00:DE45: 60        RTS
 
 
 
-sub_DE46:
+sub_DE46_set_message_init_data:
 C - - - - - 0x001E56 00:DE46: A9 0D     LDA #$0D
-C - - - - - 0x001E58 00:DE48: 8D 08 01  STA ram_0108
+C - - - - - 0x001E58 00:DE48: 8D 08 01  STA ram_go_msg_timer
 C - - - - - 0x001E5B 00:DE4B: A9 D8     LDA #$D8
-C - - - - - 0x001E5D 00:DE4D: 8D 06 01  STA ram_0106
+C - - - - - 0x001E5D 00:DE4D: 8D 06 01  STA ram_go_msg_pos_Y
 C - - - - - 0x001E60 00:DE50: A9 00     LDA #$00
 C - - - - - 0x001E62 00:DE52: 85 0B     STA ram_frame_cnt_lo
 C - - - - - 0x001E64 00:DE54: 60        RTS
@@ -5474,13 +5475,13 @@ bra_E2CF:
 C - - - - - 0x0022DF 00:E2CF: 20 F5 CA  JSR sub_CAF5_draw_default_base
 bra_E2D2:
 loc_E2D2:
-C D 3 - - - 0x0022E2 00:E2D2: A5 68     LDA ram_0068
-C - - - - - 0x0022E4 00:E2D4: F0 2F     BEQ bra_E305_RTS
-C - - - - - 0x0022E6 00:E2D6: 30 2D     BMI bra_E305_RTS
-C - - - - - 0x0022E8 00:E2D8: A9 03     LDA #$03
+C D 3 - - - 0x0022E2 00:E2D2: A5 68     LDA ram_game_over_flag
+C - - - - - 0x0022E4 00:E2D4: F0 2F     BEQ bra_E305_RTS    ; game over already
+C - - - - - 0x0022E6 00:E2D6: 30 2D     BMI bra_E305_RTS    ; not game over
+C - - - - - 0x0022E8 00:E2D8: A9 03     LDA #$03            ; game over timer is currently ticking
 C - - - - - 0x0022EA 00:E2DA: 85 04     STA ram_0004
-C - - - - - 0x0022EC 00:E2DC: C6 68     DEC ram_0068
-C - - - - - 0x0022EE 00:E2DE: A5 68     LDA ram_0068
+C - - - - - 0x0022EC 00:E2DC: C6 68     DEC ram_game_over_flag
+C - - - - - 0x0022EE 00:E2DE: A5 68     LDA ram_game_over_flag
 C - - - - - 0x0022F0 00:E2E0: 4A        LSR
 C - - - - - 0x0022F1 00:E2E1: 4A        LSR
 C - - - - - 0x0022F2 00:E2E2: 38        SEC
@@ -5697,12 +5698,12 @@ C - - - - - 0x002422 00:E412: 60        RTS
 
 
 
-sub_E413:
+sub_E413_clear_some_tank_addresses:
 C - - - - - 0x002423 00:E413: A9 00     LDA #$00
 C - - - - - 0x002425 00:E415: A2 07     LDX #$07
 bra_E417_loop:
 C - - - - - 0x002427 00:E417: 95 A0     STA ram_tank_status,X
-C - - - - - 0x002429 00:E419: 9D 03 01  STA ram_0103,X
+C - - - - - 0x002429 00:E419: 9D 03 01  STA ram_0103,X      ; bzk also clears msg addresses 0105+, intended?
 C - - - - - 0x00242C 00:E41C: CA        DEX
 C - - - - - 0x00242D 00:E41D: 10 F8     BPL bra_E417_loop
 C - - - - - 0x00242F 00:E41F: 60        RTS
@@ -6358,10 +6359,10 @@ C - - - - - 0x0026B2 00:E6A2: B1 11     LDA (ram_0011),Y
 C - - - - - 0x0026B4 00:E6A4: 29 FC     AND #$FC
 C - - - - - 0x0026B6 00:E6A6: C9 C8     CMP #$C8
 C - - - - - 0x0026B8 00:E6A8: D0 1C     BNE bra_E6C6
-C - - - - - 0x0026BA 00:E6AA: A5 68     LDA ram_0068
-C - - - - - 0x0026BC 00:E6AC: F0 18     BEQ bra_E6C6
+C - - - - - 0x0026BA 00:E6AA: A5 68     LDA ram_game_over_flag
+C - - - - - 0x0026BC 00:E6AC: F0 18     BEQ bra_E6C6    ; game over
 C - - - - - 0x0026BE 00:E6AE: A9 27     LDA #$27
-C - - - - - 0x0026C0 00:E6B0: 85 68     STA ram_0068
+C - - - - - 0x0026C0 00:E6B0: 85 68     STA ram_game_over_flag  ; set timer
 C - - - - - 0x0026C2 00:E6B2: A9 01     LDA #$01
 C - - - - - 0x0026C4 00:E6B4: 8D 0B 03  STA ram_sfx_explosion_hq
 C - - - - - 0x0026C7 00:E6B7: 8D 07 03  STA ram_sfx_explosion_player
@@ -6882,8 +6883,8 @@ C - - - - - 0x002A0A 00:E9FA: 60        RTS
 
 
 ofs_E9FB_02_shovel:
-C - - J - - 0x002A0B 00:E9FB: A5 68     LDA ram_0068
-C - - - - - 0x002A0D 00:E9FD: 10 07     BPL bra_EA06_RTS
+C - - J - - 0x002A0B 00:E9FB: A5 68     LDA ram_game_over_flag
+C - - - - - 0x002A0D 00:E9FD: 10 07     BPL bra_EA06_RTS    ; game over
 C - - - - - 0x002A0F 00:E9FF: 20 9E CB  JSR sub_CB9E_draw_protected_base
 C - - - - - 0x002A12 00:EA02: A9 14     LDA #$14
 C - - - - - 0x002A14 00:EA04: 85 45     STA ram_shovel_timer

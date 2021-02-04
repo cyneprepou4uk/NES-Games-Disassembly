@@ -1,7 +1,8 @@
 ; keep your global constant values inside this file
 
 ; MISC
-con_flag_demo                   = $02 ; stored in   ram_2nd_loop_flag = $46
+con_flag_demo                   = $02 ; stored in       ram_2nd_loop_flag = $46
+con_not_game_over               = $80 ; for             ram_game_over_flag = $68
 
 
 
