@@ -1,6 +1,6 @@
 # NES Games Disassembly
 
-Each disassembly is equal to the original ROM, compilable and editable.
+Each source code is equal to the original ROM, compilable and editable.
 
 
 
