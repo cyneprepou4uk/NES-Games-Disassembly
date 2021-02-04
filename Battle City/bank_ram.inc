@@ -14,7 +14,7 @@ ram_btn_press                   = $08 ; 23      1p see bank_val.inc
 
 ram_frame_cnt_hi                = $0A ; 15   
 ram_frame_cnt_lo                = $0B ; 34   
-ram_buffer_index                = $0C ; 28   index for 0180,X
+ram_buffer_index                = $0C ; 28   index for 0180+
 ram_000D                        = $0D ; 5   
 ram_000E                        = $0E ; 5   
 ram_000F                        = $0F ; 4   
@@ -78,7 +78,7 @@ ram_hi_score                    = $3D ; 3           millions
     ram_0043                        = $43 ; N/A     ones
     ram_0044                        = $44 ; N/A     end token (FF)
 
-ram_shovel_timer                = $45 ; 5   shovel bonus
+ram_shovel_timer                = $45 ; 5    shovel bonus
 ram_2nd_loop_flag               = $46 ; 13   00 = stages 01-35, 01 = stages 36-70, 02 = demo flag (bonus pickup sound not playing)
 ram_0047                        = $47 ; 13   
 ram_0048                        = $48 ; 10   
@@ -161,7 +161,7 @@ ram_enemy_type_stage_cnt        = $8B ; 3           enemy type 100, how many tan
     ram_008D                        = $8D ; 1       enemy type 300
     ram_008E                        = $8E ; 1       enemy type 400
 
-ram_enemy_type_offset           = $8F ; 4       index for reading 008B,X
+ram_enemy_type_offset           = $8F ; 4       index for reading 008B+
 
 ram_tank_pos_X                  = $90 ; 35          1p
     ram_0091                        = $91 ; 1       2p
@@ -232,8 +232,8 @@ ram_bullet_pos_Y                = $C2 ; 15          1p 1st bullet
 ram_2nd_bullet_pos_Y            = $CA ; 1           1p 2nd bullet
     ram_00CB                        = $CB ; N/A     2p 2nd bullet
 
-ram_bullet_status               = $CC ; 31          1p, line 711 at russian disassembly 
-    ram_00CD                        = $CD ; N/A     2p
+ram_bullet_status               = $CC ; 31          1p 1st bullet, line 711 at russian disassembly 
+    ram_00CD                        = $CD ; N/A     2p 1st bullet
     ram_00CE                        = $CE ; N/A     enemy 6
     ram_00CF                        = $CF ; N/A     enemy 5
     ram_00D0                        = $D0 ; N/A     enemy 4
@@ -244,8 +244,8 @@ ram_bullet_status               = $CC ; 31          1p, line 711 at russian disa
 ram_2nd_bullet_status           = $D4 ; 2           1p 2nd bullet
     ram_00D5                        = $D5 ; N/A     2p 2nd bullet
 
-ram_bullet_property             = $D6 ; 7           1p, line 711 at russian disassembly 
-    ram_00D7                        = $D7 ; N/A     2p
+ram_bullet_property             = $D6 ; 7           1p 1st bullet, line 711 at russian disassembly 
+    ram_00D7                        = $D7 ; N/A     2p 1st bullet
     ram_00D8                        = $D8 ; N/A     enemy 6
     ram_00D9                        = $D9 ; N/A     enemy 5
     ram_00DA                        = $DA ; N/A     enemy 4
@@ -278,8 +278,8 @@ ram_00F0                        = $F0 ; 41   ($indirect),Y <32>
 ram_00F1                        = $F1 ; 3   
 ram_00F2                        = $F2 ; 2   ($indirect),Y <1>   
 ram_00F3                        = $F3 ; 1   
-ram_sfx_check_index             = $F4 ; 11   index for reading 0300,X
-ram_sfx_check_limit             = $F5 ; 4    limit for checking, 01 = 0300 only, 1C = 0300-031B range
+ram_sfx_check_index             = $F4 ; 11   index for reading 0300+
+ram_sfx_check_limit             = $F5 ; 4    limit for checking, 01 = 0300 only (pause), 1C = 0300-031B range
 ram_00F6                        = $F6 ; 4   
 ram_00F7                        = $F7 ; N/A
 ram_00F8                        = $F8 ; N/A
@@ -290,9 +290,9 @@ ram_00FC                        = $FC ; N/A
 ram_00FD                        = $FD ; 14   ($indirect) <1>   ($indirect),Y <2>   
 ram_00FE                        = $FE ; 5   
 ram_00FF                        = $FF ; N/A
-ram_clock_timer                 = $0100 ; 6   clock bonus
+ram_clock_timer                 = $0100 ; 6    clock bonus
 
-ram_tank_upgrade                = $0101 ; 5         1p
+ram_tank_upgrade                = $0101 ; 5         1p, collect star bonus to upgrade
     ram_0102                        = $0102 ; 1     2p
 
 ram_0103                        = $0103 ; 10   
@@ -301,7 +301,7 @@ ram_0105                        = $0105 ; 7
 ram_0106                        = $0106 ; 7   
 ram_0107                        = $0107 ; 4   
 ram_0108                        = $0108 ; 7   
-ram_debug_address_index         = $0109 ; 5    index for 0000,X
+ram_debug_address_index         = $0109 ; 5    index for 0000+
 ram_010A                        = $010A ; N/A
 ram_010B                        = $010B ; N/A
 ram_010C                        = $010C ; N/A
@@ -318,7 +318,7 @@ ram_ppu_buffer                  = $0180 ; 51
 ; OAM sprites
 ram_spr_Y                       = $0200 ; 2    Y pos
 ram_spr_T                       = $0201 ; 1    tile
-ram_spr_A                       = $0202 ; 1    arrtibute
+ram_spr_A                       = $0202 ; 1    attribute
 ram_spr_X                       = $0203 ; 1    X pos
 
 ; sounds effects
