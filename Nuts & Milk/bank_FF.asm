@@ -8824,207 +8824,207 @@ tbl_F5DA:
 
 tbl_F600_rounds_data:
 .scope
-@round_01:
-- D 3 - I - 0x003610 00:F600: 2A        .byte @round_02 - @round_01
+_round_01:
+- D 3 - I - 0x003610 00:F600: 2A        .byte _round_02 - _round_01
     .incbin "rounds/round_01.bin"
 
-@round_02:
-- D 3 - I - 0x00363A 00:F62A: 2E        .byte @round_03 - @round_02
+_round_02:
+- D 3 - I - 0x00363A 00:F62A: 2E        .byte _round_03 - _round_02
     .incbin "rounds/round_02.bin"
 
-@round_03:
-- D 3 - I - 0x003668 00:F658: 2E        .byte @round_04 - @round_03
+_round_03:
+- D 3 - I - 0x003668 00:F658: 2E        .byte _round_04 - _round_03
     .incbin "rounds/round_03.bin"
 
-@round_04:
-- D 3 - I - 0x003696 00:F686: 2C        .byte @round_05 - @round_04
+_round_04:
+- D 3 - I - 0x003696 00:F686: 2C        .byte _round_05 - _round_04
     .incbin "rounds/round_04.bin"
 
-@round_05:
-- D 3 - I - 0x0036C2 00:F6B2: 2C        .byte @round_06 - @round_05
+_round_05:
+- D 3 - I - 0x0036C2 00:F6B2: 2C        .byte _round_06 - _round_05
     .incbin "rounds/round_05.bin"
 
-@round_06:
-- D 3 - I - 0x0036EE 00:F6DE: 37        .byte @round_07 - @round_06
+_round_06:
+- D 3 - I - 0x0036EE 00:F6DE: 37        .byte _round_07 - _round_06
     .incbin "rounds/round_06.bin"
 
-@round_07:
-- D 3 - I - 0x003725 00:F715: 3B        .byte @round_08 - @round_07
+_round_07:
+- D 3 - I - 0x003725 00:F715: 3B        .byte _round_08 - _round_07
     .incbin "rounds/round_07.bin"
 
-@round_08:
-- D 3 - I - 0x003760 00:F750: 34        .byte @round_09 - @round_08
+_round_08:
+- D 3 - I - 0x003760 00:F750: 34        .byte _round_09 - _round_08
     .incbin "rounds/round_08.bin"
 
-@round_09:
-- D 3 - I - 0x003794 00:F784: 29        .byte @round_10 - @round_09
+_round_09:
+- D 3 - I - 0x003794 00:F784: 29        .byte _round_10 - _round_09
     .incbin "rounds/round_09.bin"
 
-@round_10:
-- D 3 - I - 0x0037BD 00:F7AD: 2D        .byte @round_11 - @round_10
+_round_10:
+- D 3 - I - 0x0037BD 00:F7AD: 2D        .byte _round_11 - _round_10
     .incbin "rounds/round_10.bin"
 
-@round_11:
-- D 3 - I - 0x0037EA 00:F7DA: 2A        .byte @round_12 - @round_11
+_round_11:
+- D 3 - I - 0x0037EA 00:F7DA: 2A        .byte _round_12 - _round_11
     .incbin "rounds/round_11.bin"
 
-@round_12:
-- D 3 - I - 0x003814 00:F804: 2F        .byte @round_13 - @round_12
+_round_12:
+- D 3 - I - 0x003814 00:F804: 2F        .byte _round_13 - _round_12
     .incbin "rounds/round_12.bin"
 
-@round_13:
-- D 3 - I - 0x003843 00:F833: 2F        .byte @round_14 - @round_13
+_round_13:
+- D 3 - I - 0x003843 00:F833: 2F        .byte _round_14 - _round_13
     .incbin "rounds/round_13.bin"
 
-@round_14:
-- D 3 - I - 0x003872 00:F862: 3F        .byte @round_15 - @round_14
+_round_14:
+- D 3 - I - 0x003872 00:F862: 3F        .byte _round_15 - _round_14
     .incbin "rounds/round_14.bin"
 
-@round_15:
-- D 3 - I - 0x0038B1 00:F8A1: 2B        .byte @round_16 - @round_15
+_round_15:
+- D 3 - I - 0x0038B1 00:F8A1: 2B        .byte _round_16 - _round_15
     .incbin "rounds/round_15.bin"
 
-@round_16:
-- D 3 - I - 0x0038DC 00:F8CC: 35        .byte @round_17 - @round_16
+_round_16:
+- D 3 - I - 0x0038DC 00:F8CC: 35        .byte _round_17 - _round_16
     .incbin "rounds/round_16.bin"
 
-@round_17:
-- D 3 - I - 0x003911 00:F901: 26        .byte @round_18 - @round_17
+_round_17:
+- D 3 - I - 0x003911 00:F901: 26        .byte _round_18 - _round_17
     .incbin "rounds/round_17.bin"
 
-@round_18:
-- D 3 - I - 0x003937 00:F927: 3F        .byte @round_19 - @round_18
+_round_18:
+- D 3 - I - 0x003937 00:F927: 3F        .byte _round_19 - _round_18
     .incbin "rounds/round_18.bin"
 
-@round_19:
-- D 3 - I - 0x003976 00:F966: 2B        .byte @round_20 - @round_19
+_round_19:
+- D 3 - I - 0x003976 00:F966: 2B        .byte _round_20 - _round_19
     .incbin "rounds/round_19.bin"
 
-@round_20:
-- D 3 - I - 0x0039A1 00:F991: 2F        .byte @round_21 - @round_20
+_round_20:
+- D 3 - I - 0x0039A1 00:F991: 2F        .byte _round_21 - _round_20
     .incbin "rounds/round_20.bin"
 
-@round_21:
-- D 3 - I - 0x0039D0 00:F9C0: 2C        .byte @round_22 - @round_21
+_round_21:
+- D 3 - I - 0x0039D0 00:F9C0: 2C        .byte _round_22 - _round_21
     .incbin "rounds/round_21.bin"
 
-@round_22:
-- D 3 - I - 0x0039FC 00:F9EC: 32        .byte @round_23 - @round_22
+_round_22:
+- D 3 - I - 0x0039FC 00:F9EC: 32        .byte _round_23 - _round_22
     .incbin "rounds/round_22.bin"
 
-@round_23:
-- D 3 - I - 0x003A2E 00:FA1E: 3A        .byte @round_24 - @round_23
+_round_23:
+- D 3 - I - 0x003A2E 00:FA1E: 3A        .byte _round_24 - _round_23
     .incbin "rounds/round_23.bin"
 
-@round_24:
-- D 3 - I - 0x003A68 00:FA58: 37        .byte @round_25 - @round_24
+_round_24:
+- D 3 - I - 0x003A68 00:FA58: 37        .byte _round_25 - _round_24
     .incbin "rounds/round_24.bin"
 
-@round_25:
-- D 3 - I - 0x003A9F 00:FA8F: 34        .byte @round_26 - @round_25
+_round_25:
+- D 3 - I - 0x003A9F 00:FA8F: 34        .byte _round_26 - _round_25
     .incbin "rounds/round_25.bin"
 
-@round_26:
-- D 3 - I - 0x003AD3 00:FAC3: 38        .byte @round_27 - @round_26
+_round_26:
+- D 3 - I - 0x003AD3 00:FAC3: 38        .byte _round_27 - _round_26
     .incbin "rounds/round_26.bin"
 
-@round_27:
-- D 3 - I - 0x003B0B 00:FAFB: 33        .byte @round_28 - @round_27
+_round_27:
+- D 3 - I - 0x003B0B 00:FAFB: 33        .byte _round_28 - _round_27
     .incbin "rounds/round_27.bin"
 
-@round_28:
-- D 3 - I - 0x003B3E 00:FB2E: 3B        .byte @round_29 - @round_28
+_round_28:
+- D 3 - I - 0x003B3E 00:FB2E: 3B        .byte _round_29 - _round_28
     .incbin "rounds/round_28.bin"
 
-@round_29:
-- D 3 - I - 0x003B79 00:FB69: 38        .byte @round_30 - @round_29
+_round_29:
+- D 3 - I - 0x003B79 00:FB69: 38        .byte _round_30 - _round_29
     .incbin "rounds/round_29.bin"
 
-@round_30:
-- D 3 - I - 0x003BB1 00:FBA1: 50        .byte @round_31 - @round_30
+_round_30:
+- D 3 - I - 0x003BB1 00:FBA1: 50        .byte _round_31 - _round_30
     .incbin "rounds/round_30.bin"
 
-@round_31:
-- D 3 - I - 0x003C01 00:FBF1: 2B        .byte @round_32 - @round_31
+_round_31:
+- D 3 - I - 0x003C01 00:FBF1: 2B        .byte _round_32 - _round_31
     .incbin "rounds/round_31.bin"
 
-@round_32:
-- D 3 - I - 0x003C2C 00:FC1C: 26        .byte @round_33 - @round_32
+_round_32:
+- D 3 - I - 0x003C2C 00:FC1C: 26        .byte _round_33 - _round_32
     .incbin "rounds/round_32.bin"
 
-@round_33:
-- D 3 - I - 0x003C52 00:FC42: 3B        .byte @round_34 - @round_33
+_round_33:
+- D 3 - I - 0x003C52 00:FC42: 3B        .byte _round_34 - _round_33
     .incbin "rounds/round_33.bin"
 
-@round_34:
-- D 3 - I - 0x003C8D 00:FC7D: 2D        .byte @round_35 - @round_34
+_round_34:
+- D 3 - I - 0x003C8D 00:FC7D: 2D        .byte _round_35 - _round_34
     .incbin "rounds/round_34.bin"
 
-@round_35:
-- D 3 - I - 0x003CBA 00:FCAA: 26        .byte @round_36 - @round_35
+_round_35:
+- D 3 - I - 0x003CBA 00:FCAA: 26        .byte _round_36 - _round_35
     .incbin "rounds/round_35.bin"
 
-@round_36:
-- D 3 - I - 0x003CE0 00:FCD0: 26        .byte @round_37 - @round_36
+_round_36:
+- D 3 - I - 0x003CE0 00:FCD0: 26        .byte _round_37 - _round_36
     .incbin "rounds/round_36.bin"
 
-@round_37:
-- D 3 - I - 0x003D06 00:FCF6: 2F        .byte @round_38 - @round_37
+_round_37:
+- D 3 - I - 0x003D06 00:FCF6: 2F        .byte _round_38 - _round_37
     .incbin "rounds/round_37.bin"
 
-@round_38:
-- D 3 - I - 0x003D35 00:FD25: 2E        .byte @round_39 - @round_38
+_round_38:
+- D 3 - I - 0x003D35 00:FD25: 2E        .byte _round_39 - _round_38
     .incbin "rounds/round_38.bin"
 
-@round_39:
-- D 3 - I - 0x003D63 00:FD53: 38        .byte @round_40 - @round_39
+_round_39:
+- D 3 - I - 0x003D63 00:FD53: 38        .byte _round_40 - _round_39
     .incbin "rounds/round_39.bin"
 
-@round_40:
-- D 3 - I - 0x003D9B 00:FD8B: 2F        .byte @round_41 - @round_40
+_round_40:
+- D 3 - I - 0x003D9B 00:FD8B: 2F        .byte _round_41 - _round_40
     .incbin "rounds/round_40.bin"
 
-@round_41:
-- D 3 - I - 0x003DCA 00:FDBA: 2E        .byte @round_42 - @round_41
+_round_41:
+- D 3 - I - 0x003DCA 00:FDBA: 2E        .byte _round_42 - _round_41
     .incbin "rounds/round_41.bin"
 
-@round_42:
-- D 3 - I - 0x003DF8 00:FDE8: 3D        .byte @round_43 - @round_42
+_round_42:
+- D 3 - I - 0x003DF8 00:FDE8: 3D        .byte _round_43 - _round_42
     .incbin "rounds/round_42.bin"
 
-@round_43:
-- D 3 - I - 0x003E35 00:FE25: 34        .byte @round_44 - @round_43
+_round_43:
+- D 3 - I - 0x003E35 00:FE25: 34        .byte _round_44 - _round_43
     .incbin "rounds/round_43.bin"
 
-@round_44:
-- D 3 - I - 0x003E69 00:FE59: 30        .byte @round_45 - @round_44
+_round_44:
+- D 3 - I - 0x003E69 00:FE59: 30        .byte _round_45 - _round_44
     .incbin "rounds/round_44.bin"
 
-@round_45:
-- D 3 - I - 0x003E99 00:FE89: 28        .byte @round_46 - @round_45
+_round_45:
+- D 3 - I - 0x003E99 00:FE89: 28        .byte _round_46 - _round_45
     .incbin "rounds/round_45.bin"
 
-@round_46:
-- D 3 - I - 0x003EC1 00:FEB1: 2B        .byte @round_47 - @round_46
+_round_46:
+- D 3 - I - 0x003EC1 00:FEB1: 2B        .byte _round_47 - _round_46
     .incbin "rounds/round_46.bin"
 
-@round_47:
-- D 3 - I - 0x003EEC 00:FEDC: 34        .byte @round_48 - @round_47
+_round_47:
+- D 3 - I - 0x003EEC 00:FEDC: 34        .byte _round_48 - _round_47
     .incbin "rounds/round_47.bin"
 
-@round_48:
-- D 3 - I - 0x003F20 00:FF10: 2C        .byte @round_49 - @round_48
+_round_48:
+- D 3 - I - 0x003F20 00:FF10: 2C        .byte _round_49 - _round_48
     .incbin "rounds/round_48.bin"
 
-@round_49:
-- D 3 - I - 0x003F4C 00:FF3C: 37        .byte @round_50 - @round_49
+_round_49:
+- D 3 - I - 0x003F4C 00:FF3C: 37        .byte _round_50 - _round_49
     .incbin "rounds/round_49.bin"
 
-@round_50:
-- - - - - - 0x003F83 00:FF73: 38        .byte @round_51 - @round_50
+_round_50:
+- - - - - - 0x003F83 00:FF73: 38        .byte _round_51 - _round_50
     .incbin "rounds/round_50.bin"
 
-@round_51:
+_round_51:
 .endscope
 
 
