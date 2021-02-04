@@ -42,7 +42,7 @@ setlocal enableextensions
 FOR %%A IN ("!twcs.nes") DO set "size=%%~zA"
 if %size% EQU 131088 (
     echo.
-    echo --------------------------------------------
+    echo ---------------------------------------------
     echo Done! Look for !twcs.nes file in your folder.
     if exist !twcs.bak (
         echo.
@@ -51,7 +51,7 @@ if %size% EQU 131088 (
         copy !twcs.nes !twcs.bak
         echo Backup created
     )
-    echo --------------------------------------------
+    echo ---------------------------------------------
     C:\windows\system32\timeout /T 10
 ) else (
     echo.
