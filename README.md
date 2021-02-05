@@ -23,6 +23,7 @@ My personal comments are marked with **bzk** text. Start with deleting garbage t
 ## Current games list (GoodNES)
 * Battle City (J) [!]
 * Kunio-kun no Nekketsu Soccer League (J) [!]
+* Legend of Zelda, The (U) (PRG0) [!]
 * Mappy (J) [!]
 * Nuts & Milk (J) [!]
 * Son Son (J) [!]
@@ -33,7 +34,6 @@ My personal comments are marked with **bzk** text. Start with deleting garbage t
 ## WIP
 * Castlevania III - Dracula's Curse (U) [!]
 * Double Dragon II - The Revenge (J)
-* Legend of Zelda, The (U) (PRG0) [!]
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
 
 ## Planning (maybe)
