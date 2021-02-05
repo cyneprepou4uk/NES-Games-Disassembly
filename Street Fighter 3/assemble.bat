@@ -80,13 +80,13 @@ if %size% EQU 655376 (
     echo Done! Look for !sf3.nes file in your folder.
     if exist !sf3.bak (
         echo.
-        C:\windows\system32\fc /A /B /T !sf3.nes !sf3.bak > nul && echo Perfect match || echo Differences found 
+        fc /A /B /T !sf3.nes !sf3.bak > nul && echo Perfect match || echo Differences found 
         echo.
         copy !sf3.nes !sf3.bak
         echo Backup created
     )
     echo --------------------------------------------
-    C:\windows\system32\timeout /T 10
+    timeout /T 10
 ) else (
     echo.
     echo --------------------------------------------------

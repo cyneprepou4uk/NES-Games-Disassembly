@@ -40,13 +40,13 @@ if %size% EQU 24592 (
     echo Done! Look for !mappy.nes file in your folder.
     if exist !mappy.bak (
         echo.
-        C:\windows\system32\fc /A /B /T !mappy.nes !mappy.bak > nul && echo Perfect match || echo Differences found 
+        fc /A /B /T !mappy.nes !mappy.bak > nul && echo Perfect match || echo Differences found 
         echo.
         copy !mappy.nes !mappy.bak
         echo Backup created
     )
     echo ----------------------------------------------
-    C:\windows\system32\timeout /T 10
+    timeout /T 10
 ) else (
     echo.
     echo --------------------------------------------------

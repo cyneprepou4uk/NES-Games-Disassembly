@@ -40,13 +40,13 @@ if %size% EQU 24592 (
     echo Done! Look for !battle.nes file in your folder.
     if exist !battle.bak (
         echo.
-        C:\windows\system32\fc /A /B /T !battle.nes !battle.bak > nul && echo Perfect match || echo Differences found 
+        fc /A /B /T !battle.nes !battle.bak > nul && echo Perfect match || echo Differences found 
         echo.
         copy !battle.nes !battle.bak
         echo Backup created
     )
     echo -----------------------------------------------
-    C:\windows\system32\timeout /T 10
+    timeout /T 10
 ) else (
     echo.
     echo --------------------------------------------------

@@ -40,13 +40,13 @@ if %size% EQU 24592 (
     echo Done! Look for !kungfu.nes file in your folder.
     if exist !kungfu.bak (
         echo.
-        C:\windows\system32\fc /A /B /T !kungfu.nes !kungfu.bak > nul && echo Perfect match || echo Differences found 
+        fc /A /B /T !kungfu.nes !kungfu.bak > nul && echo Perfect match || echo Differences found 
         echo.
         copy !kungfu.nes !kungfu.bak
         echo Backup created
     )
     echo -----------------------------------------------
-    C:\windows\system32\timeout /T 10
+    timeout /T 10
 ) else (
     echo.
     echo --------------------------------------------------
