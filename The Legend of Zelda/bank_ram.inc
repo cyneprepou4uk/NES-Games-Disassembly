@@ -1056,7 +1056,7 @@ ram_050F                        = $050F ; 4
 ram_0510                        = $0510 ; 7   
 ram_0511                        = $0511 ; 3   
 ram_0512                        = $0512 ; 3   
-ram_candle_usage_flag           = $0513 ; N/A   whether link has used the candle on the current screen, 00 = not used, 01 = was used
+ram_candle_usage_flag           = $0513 ; N/A   usage of the blue candle on the current screen, 00 = not used, 01 = was used
 ram_0514                        = $0514 ; 3   
 ram_0515                        = $0515 ; 3   
 ram_0516                        = $0516 ; N/A
@@ -1293,11 +1293,13 @@ ram_05FC                        = $05FC ; N/A
 ram_05FD                        = $05FD ; N/A
 ram_05FE                        = $05FE ; N/A
 ram_05FF                        = $05FF ; N/A
-ram_0600                        = $0600 ; 13   
-ram_0601                        = $0601 ; 16   
-ram_0602                        = $0602 ; 22   
-ram_0603                        = $0603 ; 12   
-ram_0604                        = $0604 ; 22   
+
+; music and sound effects
+ram_music                       = $0600 ; 13   
+ram_sfx_1                       = $0601 ; 16   
+ram_sfx_2                       = $0602 ; 22   
+ram_sfx_3                       = $0603 ; 12   
+ram_sfx_4                       = $0604 ; 22   
 ram_0605                        = $0605 ; 6   
 ram_0606                        = $0606 ; 8   
 ram_0607                        = $0607 ; 10   

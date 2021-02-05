@@ -3981,8 +3981,8 @@ C - - J - - 0x00904B 02:903B: A5 F8     LDA ram_btn_press
 C - - - - - 0x00904D 02:903D: 29 10     AND #con_btn_Start
 C - - - - - 0x00904F 02:903F: F0 1B     BEQ bra_905C_RTS
 C - - - - - 0x009051 02:9041: 85 F6     STA ram_00F6
-C - - - - - 0x009053 02:9043: A9 00     LDA #$00
-C - - - - - 0x009055 02:9045: 8D 00 06  STA ram_0600
+C - - - - - 0x009053 02:9043: A9 00     LDA #con_music_00
+C - - - - - 0x009055 02:9045: 8D 00 06  STA ram_music
 C - - - - - 0x009058 02:9048: 20 E9 6E  JSR sub_bat_6EE9
 C - - - - - 0x00905B 02:904B: A9 5A     LDA #$5A
 C - - - - - 0x00905D 02:904D: 8D 28 05  STA ram_0528
@@ -5181,8 +5181,8 @@ C - - - - - 0x009552 02:9542: 4C EA 94  JMP loc_94EA
 
 
 ofs_9545_02:
-C - - J - - 0x009555 02:9545: A9 80     LDA #$80
-C - - - - - 0x009557 02:9547: 8D 00 06  STA ram_0600
+C - - J - - 0x009555 02:9545: A9 80     LDA #con_music_title
+C - - - - - 0x009557 02:9547: 8D 00 06  STA ram_music
 C - - - - - 0x00955A 02:954A: A9 10     LDA #$10
 C - - - - - 0x00955C 02:954C: 4C A2 95  JMP loc_95A2
 
@@ -7025,8 +7025,8 @@ C - - - - - 0x009FF1 02:9FE1: 8D 20 04  STA ram_0420
 C - - - - - 0x009FF4 02:9FE4: 8D 21 04  STA ram_0421
 C - - - - - 0x009FF7 02:9FE7: 60        RTS
 bra_9FE8:
-C - - - - - 0x009FF8 02:9FE8: A9 08     LDA #$08
-C - - - - - 0x009FFA 02:9FEA: 8D 01 06  STA ram_0601
+C - - - - - 0x009FF8 02:9FE8: A9 08     LDA #con_sfx_1_08
+C - - - - - 0x009FFA 02:9FEA: 8D 01 06  STA ram_sfx_1
 C - - - - - 0x009FFD 02:9FED: A4 16     LDY ram_cur_save_slot
 C - - - - - 0x009FFF 02:9FEF: BE 08 9E  LDX tbl_9E08_offset,Y
 C - - - - - 0x00A002 02:9FF2: A0 04     LDY #$04
@@ -7158,9 +7158,9 @@ C - - - - - 0x00A0F2 02:A0E2: 69 2C     ADC #$2C
 C - - - - - 0x00A0F4 02:A0E4: 8D 1F 04  STA ram_041F
 bra_A0E7:
 loc_A0E7:
-C D 1 - - - 0x00A0F7 02:A0E7: A9 01     LDA #$01
+C D 1 - - - 0x00A0F7 02:A0E7: A9 01     LDA #$01    ; con_sfx_2_01
 C - - - - - 0x00A0F9 02:A0E9: 8D 28 04  STA ram_0428
-C - - - - - 0x00A0FC 02:A0EC: 8D 02 06  STA ram_0602
+C - - - - - 0x00A0FC 02:A0EC: 8D 02 06  STA ram_sfx_2
 bra_A0EF_RTS:
 C - - - - - 0x00A0FF 02:A0EF: 60        RTS
 
@@ -7209,8 +7209,8 @@ C - - - - - 0x00A140 02:A130: 29 C0     AND #con_btn_B + con_btn_A
 C - - - - - 0x00A142 02:A132: F0 57     BEQ bra_A18B
 C - - - - - 0x00A144 02:A134: C9 80     CMP #con_btn_A
 C - - - - - 0x00A146 02:A136: D0 22     BNE bra_A15A
-C - - - - - 0x00A148 02:A138: A0 20     LDY #$20
-C - - - - - 0x00A14A 02:A13A: 8C 04 06  STY ram_0604
+C - - - - - 0x00A148 02:A138: A0 20     LDY #con_sfx_4_20
+C - - - - - 0x00A14A 02:A13A: 8C 04 06  STY ram_sfx_4
 C - - - - - 0x00A14D 02:A13D: A0 02     LDY #$02
 bra_A13F:
 C - - - - - 0x00A14F 02:A13F: B9 22 04  LDA ram_0422,Y
@@ -7336,8 +7336,8 @@ C D 1 - - - 0x00A214 02:A204: A5 F8     LDA ram_btn_press
 C - - - - - 0x00A216 02:A206: 29 20     AND #con_btn_Select
 C - - - - - 0x00A218 02:A208: F0 49     BEQ bra_A253_RTS
 bra_A20A:
-C - - - - - 0x00A21A 02:A20A: A9 01     LDA #$01
-C - - - - - 0x00A21C 02:A20C: 8D 02 06  STA ram_0602
+C - - - - - 0x00A21A 02:A20A: A9 01     LDA #con_sfx_2_01
+C - - - - - 0x00A21C 02:A20C: 8D 02 06  STA ram_sfx_2
 C - - - - - 0x00A21F 02:A20F: E6 16     INC ram_cur_save_slot
 C - - - - - 0x00A221 02:A211: A4 16     LDY ram_cur_save_slot
 C - - - - - 0x00A223 02:A213: C0 04     CPY #$04
@@ -7929,8 +7929,8 @@ C - - - - - 0x00A5B0 02:A5A0: A5 F8     LDA ram_btn_press
 C - - - - - 0x00A5B2 02:A5A2: 29 20     AND #con_btn_Select
 C - - - - - 0x00A5B4 02:A5A4: F0 11     BEQ bra_A5B7
 bra_A5A6:
-C - - - - - 0x00A5B6 02:A5A6: A9 01     LDA #$01
-C - - - - - 0x00A5B8 02:A5A8: 8D 02 06  STA ram_0602
+C - - - - - 0x00A5B6 02:A5A6: A9 01     LDA #con_sfx_2_01
+C - - - - - 0x00A5B8 02:A5A8: 8D 02 06  STA ram_sfx_2
 C - - - - - 0x00A5BB 02:A5AB: E6 16     INC ram_cur_save_slot
 C - - - - - 0x00A5BD 02:A5AD: A5 16     LDA ram_cur_save_slot
 C - - - - - 0x00A5BF 02:A5AF: C9 05     CMP #$05
@@ -8516,8 +8516,8 @@ C - - - - - 0x00A9D4 02:A9C4: 29 3F     AND #$3F
 C - - - - - 0x00A9D6 02:A9C6: C9 25     CMP #$25
 C - - - - - 0x00A9D8 02:A9C8: F0 E1     BEQ bra_A9AB_loop
 C - - - - - 0x00A9DA 02:A9CA: 8D 05 03  STA ram_0305
-C - - - - - 0x00A9DD 02:A9CD: A9 10     LDA #$10
-C - - - - - 0x00A9DF 02:A9CF: 8D 04 06  STA ram_0604
+C - - - - - 0x00A9DD 02:A9CD: A9 10     LDA #con_sfx_4_10
+C - - - - - 0x00A9DF 02:A9CF: 8D 04 06  STA ram_sfx_4
 C - - - - - 0x00A9E2 02:A9D2: B1 00     LDA (ram_0000),Y
 C - - - - - 0x00A9E4 02:A9D4: 29 C0     AND #$C0
 C - - - - - 0x00A9E6 02:A9D6: F0 1C     BEQ bra_A9F4_RTS
@@ -8604,8 +8604,8 @@ C - - - - - 0x00AA5C 02:AA4C: 8D 15 03  STA ram_0315
 bra_AA4F_RTS:
 C - - - - - 0x00AA5F 02:AA4F: 60        RTS
 bra_AA50:
-C - - - - - 0x00AA60 02:AA50: A9 10     LDA #$10
-C - - - - - 0x00AA62 02:AA52: 8D 00 06  STA ram_0600
+C - - - - - 0x00AA60 02:AA50: A9 10     LDA #con_music_10
+C - - - - - 0x00AA62 02:AA52: 8D 00 06  STA ram_music
 C - - - - - 0x00AA65 02:AA55: A9 40     LDA #$40
 C - - - - - 0x00AA67 02:AA57: 85 28     STA ram_0028
 C - - - - - 0x00AA69 02:AA59: A9 40     LDA #$40
@@ -8818,8 +8818,8 @@ C - - - - - 0x00AB6B 02:AB5B: F0 1F     BEQ bra_AB7C
 C - - - - - 0x00AB6D 02:AB5D: 8D 05 03  STA ram_0305
 C - - - - - 0x00AB70 02:AB60: C9 24     CMP #$24
 C - - - - - 0x00AB72 02:AB62: F0 05     BEQ bra_AB69
-C - - - - - 0x00AB74 02:AB64: A9 10     LDA #$10
-C - - - - - 0x00AB76 02:AB66: 8D 04 06  STA ram_0604
+C - - - - - 0x00AB74 02:AB64: A9 10     LDA #con_sfx_4_10
+C - - - - - 0x00AB76 02:AB66: 8D 04 06  STA ram_sfx_4
 bra_AB69:
 C - - - - - 0x00AB79 02:AB69: EE 13 04  INC ram_0413
 C - - - - - 0x00AB7C 02:AB6C: B9 D3 AA  LDA tbl_AAD3,Y
