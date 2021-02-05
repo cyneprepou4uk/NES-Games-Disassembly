@@ -1,0 +1,494 @@
+downloaded from https://www.romhacking.net/documents/391/
+
+
+
+*******************NUTS $ MILK HEX VALUES*******************************************
+All coding found by Elbobelo
+to use for the Donkey Kong 2 hack
+
+024e = Level start select
+0254 = Level Demo starts
+0286 = Automatic Level Skipping
+
+02c4 = Nuts End Level 2 GFX$
+02c9 = Nuts End Level 2 Pallete
+
+0300 = How Many Levels?
+030f = Level plays over and over
+
+03d3 = 29 makes Nuts start upside down
+049C - 04a1 = Times for the first 6 levels
+04a2 - 04d3 = How Many small fireballs per bonus level 
+05CA = Select for Skip
+
+06ad = Jumping over baddies pnts Value
+06b7 = Blimp points value
+06bc = Items point value
+
+07f8 = Perfect Game Nuts $GFX
+
+0890 = menu during bonus ending
+
+0941 - 095f = Flower1, Flower2, Flower3, Flower4
+0961 - 0970 = Heart Palletes 1-4 
+0971 - 0997 = Bonus Heart Layout 
+
+0a84 = Blimp 500 Pts GFX$
+
+0a9d = Collision on/off
+0ab2 = Blimp Kills
+
+0ac8 = Blimp GFX$
+0aca = Blimp Pallette
+
+0acd = Heli GFX$
+0acf = Heli Pallette
+
+0ad0 - 0aff = Blimp Physics
+
+0b43 = Right Skid GFX$
+0b4c = Left Skid Position
+0b4e = Left Skid GFX$
+0b61 = Skid Pallete
+
+0b6a = 00 Blinking Skid frezzes68
+
+0b90 = Freezes Bonus Time (0a)(0b Default)
+0ba3 = Freeze Round Time (c7)(c6def)
+
+0be5 = MILK's Horizontal Postion
+0be7 = MILK's Verticle Position
+
+0bfa = Smoke Scrolls through palletes
+0bf4 = (02) 2 "Help"s. (35 END @LAST ITEM)(5B bADDIES DIE AFTER LAST ITEM)
+0bf5 = (b7) "Help" follows enemy )a2def)
+
+0bf6 = Smoke Horizontal GFX Pos
+0bf8 = Smoke Verticle GFX pos
+
+0bfa = (C0 = aNOTHER Milk)(4d) Milk takes its place)(7a = Nuts in jail)(BD = fALLS)(81 fireball instead)(8b fireball will blink)(90 fireball alt P)(81 Ce good for HELI)
+0bfb = (dd)(e5 = shows time left)
+0bfd = (37 skid blinks and follows)(f4 def)
+0c00 = 80 = Milk blinks(40 dead enemy blinks)
+0c02 = (42 = blinks behind House)(5a)(6e switches between "help"&blimp)(74 Alt pallettes)
+0c18 = (CD Bonus ending blends with level ending)(CC last level part in slow mo)
+0c19 = (AC) Level Ends After Collecting coins
+0c1b = (03 Collision point of ending level item) (0edef)
+oc1d = Baddies freezes after coins collected (33def)
+0c21 = (2fdef)(30 works with 0c1d)
+0c23 = (27)pallettes for ending Nuts
+0c24 = (db is ok)(66 fire in corner)
+
+0c28 = Nuts' End Level pos.
+0c2a = Nuts' End Level pos. Verticle
+0c2f = Nuts' End Level GFX$
+
+0c34 = small heart #1 Horizontal Pos.
+0c36 = small heart #1 Verticle Pos.
+
+0c3a = "" (A3 is good) (a2 is default)
+
+0c3b = Milk's #2 Horizontal GFX Position
+0c3d = Milk's #2 Verticle GFX position
+
+0c49 = Level ends when Baddie dies
+0c61 = (04) Baddies falls after items
+
+0c96 = Lvl Complete House GFX 1 ROW 1 Position
+0ca9 = Lvl Complete House GFX 1 ROW 2 Position
+0cc3 = Lvl Complete House GFX 3 ROW 1 Position
+0cd6 = Lvl Complete House GFX 3 ROW 2 Position
+0cec - 0d06 = Lvl complete House 1 & 3 GFX
+0d0c = Lvl Complete House GFX 2 ROW 1 Position
+0d17 = Lvl Complete House GFX 2 ROW 2 Position
+0d13 = House Ending screen 1 bottom half restored (20 def)
+0d3d - 0d42 = Lvl complete House 2 GFx
+
+0d4f = 2 blinking "Helps"
+
+0D69 = Milk GFX$ 
+0D6E = Milk Pallete (2? Puts into background)
+
+
+0D84 = "Help" GFX$ 
+0D89 = "Help" Pallete
+
+0D9A = small heart Recieved GFX$
+0D9F = small heart Recieved Pallete
+
+0dbb = Bonus Milk Verticle Pos.
+0dcb = Bonus Milk replaces item
+0dcf = Bonus Milk Hor Pos.
+
+0dde = "Help" Bonus Horizontal Pos.
+0de0 = "Help" Bonus Verticle Pos.
+
+0e18 = Nuts Bonus End Horizontal Pos.
+0e1a = Nuts Bonus End Verticle Pos.
+0e1f = Nuts Bonus GFX$
+
+0e24 = small heart Bonus Horizontal Pos.
+0e26 = small heart Bonus Verticle Pos.
+
+0e2b = Milk Bonus Horizontal Pos.
+0e2d = Milk Bonus Verticle Pos.
+
+0e60 - 0e6f = Milk Bonus Jumping Physics
+
+0e73 = bonus medium heart Horizontal pos. (18 replace Mario)
+0e75 = bonus medium heart Verticle pos.
+
+0E7A = Nuts Bonus 2 GFX$
+0E7F = Nuts Bonus 2 Pallette
+
+0ebf - 0ec2 = Big Heart position
+0ec3 - 0ec6 = Big Heart GFX$
+0ec7 - 0eca = Big Heart Pallette
+0ecb - 0ece = Big Heart position
+
+0ede = 1st fireball starting time
+0ee2 = 2nd fireball starting time
+0ee6 = 3rd fireball starting time
+0eea = 4th fireball starting time
+
+0ef0 - 0ef3 = fireball GFX$
+0ef4 - 0ef7 = fireball Pallete
+
+0efd = fireball speed (9Adef)(6E - start&stop)(9Bslow)(99fast)(3Dscootscoot)(31shortstops)(93stops)
+0f17 = (45) great behavior
+0f1b = direction/behavior
+0f23 = (d4) fireballs zig-zag down
+0f7b = fireballs gone GFX$
+0fa5 = 03 super fast
+ofb0 = fireballs fly strait (08-#2,)
+ofb7 = (01 flies straight)
+0fb9 = fireball's behavior
+0fc0 = downward distance
+0fd0 = (05) fireballs Down, strait, down, strait)
+0fd6 = upward distance
+ofd9 = (AA - fireballs go down,up,down) 15
+
+10bf = Bonus Items
+11a0 = milks graphics
+1134 = 800 pts GFX$
+
+113a = Coin#4 GFX$
+1140 = Coin#3 GFX$
+1146 = Coin#2 GFX$
+114c = Coin#1 GFX$
+1156 = Coin Pallete
+
+1244 = Spring #2 GFX$
+12a3 = Spring #1 GFX$
+
+1266 = only 1 spring resets
+1294 = Spring Bounce toggle
+12a1 = spring reset delay
+
+14ee = Baddie actio
+1504 = Baddie  jumps early
+151b = jump distance (random jumps)
+157c = Baddies's Speed
+1580 = Baddie speed
+1586 = Baddie speed (85 Def.)
+159b = Baddie Random Spawn
+15ed = 2nd Baddies glitch
+
+163c = 100 pts Pallete
+1644 = 100 pts GFX$
+
+1716 = Baddie Spawn #3 GFX$
+171c = Baddie Spawn #2 GFX$
+1722 = Baddie Spawn #1 GFX$
+
+1728 = Splash #3 GFX$
+172e = Splash #2 GFX$
+1734 = Splash #1 GFX$
+
+176e = (61)After baddies die they come back different
+178f = (45 baddies go up when they die)(50 Different Tile for death than fall)
+
+17a5 = Baddie's Dead GFX$
+
+183c = Baddie floats down
+1869 = Baddie fall forever
+1877 = Baddie speed
+188a = Baddie jumping direction
+188c = Baddie jumping distance (58 jumps 2 or 1 or falls fast)
+189a = Baddie animates during jumpS
+18a1 = Baddie frame skip
+18a6 = Baddie GFX$
+1a32 = baddie doesnt jump
+1a43 = (00 fixed baddie head bump)(04def)
+1a4d = Baddies Jumping height
+1a60 = Baddie Graphics
+1a69 = Baddie's bottom GFX$
+1adf = Nuts' speed
+
+1b09 = Nuts Splash GFX$ #4
+1b0f = Nuts Splash GFX$ #1
+1b13 = Dramatic splashes
+1b15 = Nuts Splash GFX$ #2
+1b1b = Nuts Splash GFX$ #3
+
+1b1c = What happens after splash (00 cool!)
+
+1b21 = Nuts Splash Pallete
+
+1b4d = Nuts dead GFX$
+
+1b57 = (0a = no death song)(09def)
+
+1c8a = Nuts thumps gfx$
+
+1d03 = jump very far LENGTH
+1df0 = Jumping button
+1e18 = (AD Nuts faces down when falls from ladder)(ACdef)
+1e30 = (50 change GFX$ when walking off)
+1e49 = climbs to the top of ladder
+1e85 = change GFX$ after hitting head
+1e53 = Falling off Height (0Bdef)
+1e8f = speed falling after hitting heAD
+1e8b = (00 -climbs walls)
+1e91 = "Nuts Hits his head" section
+1e99 = Nuts jumps on the ladder
+1ec2 = Depth of Nuts when Landing from jump
+
+1ec5 = 24 Nuts falls through floor after thumping
+1eb7 = Depth of Nuts when thumping
+1ebd = landing
+1ed4 = Thumps when u land (22)
+1ed7 = thumps while jumping strait up and down
+1edd = Jumps strait up when bouncing
+1ee4 = (06)thumps when you bounce (68)(7C short jump bounce)(9F change GFX)(B5 Falls on head when bounce) (dc crazy teleport)
+1ee6 = Bounce off walls (ff) (00def)
+1EEA = 21 thumps when bounce
+
+1f00 = Spring Start
+1f34 = Spring Lowjump Height
+1f4c = Spring Highjump Height 
+1f57 = Depth of Mario on Spring
+
+1fcc = Jump on platform B
+1fd0 = jump on platform A
+1fd4 = jump on ladders
+1fda = Jumping Height
+1fe5 - 1fee = Jumping Physics
+
+2002 = Nuts Bottom GFX$
+2039 = (60 can jump off walls)
+204e = wont fall while moving
+2064 = Fall sthrough half the floor
+2045 = Steps off ledge sooner <
+204c = steps off ledges sooner >
+207e = Nuts Right Wall Depth
+2085 = Nuts Left Wall depth
+2094 = Ceiling height
+20b0 = Baddie Right Wall Depth
+20b7 = Baddie Left Wall Depth
+20db = Baddie Behavior (e8 forces umbrella)
+20c8 = Baddie Glitch (fix = 7b)(def = CF)
+20cb & 20cd = Baddies glitch fix
+209d = walks through walls
+
+20fb = Ladder Climbing Down Speed
+2100 = Ladder Area???
+2101 = Ladder Climbing Up Speed
+
+2103 = Dir when pressing up
+210a = Dir when walking up
+2112 = Dir when Pressing down
+2119 = Dir facing when moving down
+2123 = Left walking speed 
+212b = dir facing when walking left
+213d = dir facing when walking right
+
+2147 - 2376 = Edit mode
+
+23a3 = Edit Blinking Cursor GFX$
+238e = Nuts falls through floor
+23e9 = Start of Pallete Hacking
+23f0 = Pallete starting ad$
+
+2400 = Where do the Changing Palletes start?
+2409 = how many palletes for the level (07)
+240f = How Many Colors Change? (10)(default = 8)
+2412 = Changing palletes starting ad$
+241C = I. Top. II. Pallete Switch.
+
+2428 = Water Pallet
+243b = water pos.
+2442 = Water GFX$
+244c = Row Under Water GFX$
+
+2498 - 24b1 = High Score Row GFX$
+24b5 - 24c5 = Info Bar Row1 GFX$
+24c9 - 24d9 = Info Bar Row2 GFX$
+24ea = 252b = Bonus Box GFX$
+252e - 2551 = House GFX$ 
+
+2557 = Nuts Lives Position
+2564 = Bonus value pos..
+256f = Level number pos.
+257e = Bonus Level points pos.
+2582 = What value is displayed (20 = lvl)
+258a = Player 1 pts pos.
+2599 = Top score pts. pos.
+25ac = plaYER 2 PTS. POS.
+
+28ca = Nuts Edit GFX$
+28cf = Nuts Pallette
+
+28e0 - 28fc = Nuts & item collision
+
+28fd = Item Graphics
+
+2931 = Purse Pallete
+
+2CAE = Title Screen Green
+2CB3 = Title Screen Blue
+
+2ddd = Beginning cursor GFX$
+2de2 = Cursor Pallete
+
+******SOUNDS and MUSIC*****
+
+325C = Bass Tempo
+
+338A - 3449 = Title Screen Song
+344D - 34A9 = Finish Level
+34AD - 34DC = Level Intro
+34E0 - 350F = Death Music
+3513 - 3552 = Level 1 music
+3554 - 3593 = Level 2 music
+3595 - 3499 = Coin sound
+35A1 - 35A2 = Jump
+35A4 - 35A6 = Spring
+35A7 = Landing Thummp
+35A9 - 35B8 = Death Song
+35C6 - 35C7 = Times Running out
+35C9 - 35E6 = "Go Nuts!"
+35EA - 35F1 = Nuts Falls
+
+*******Level Designs*****
+
+3610 - (2A) Level 1
+363A - (2E) Level 2
+3668 * (2E) Level 3
+3696 - (2c) Level 4
+36C2 - (2c) Level 5
+36EE - (37) Level 6
+3725 - (3B) Level 7
+3760 * (34) Level 8
+3794 - (29) Level 9
+37BD - (2d) Level 10
+37EA - (2a) Level 11
+3814 - (2F) Level 12
+3843 * (2F) Level 13
+3872 - (3F) Level 14
+38B1 - (2B) Level 15
+38DC - (35) Level 16
+3911 - (26) Level 17
+3937 * (3F) Level 18
+3976 - (2B) Level 19
+39A1 - (2F) Level 20
+39D0 - (2C) Level 21
+39FC - (32) Level 22
+3A2E * (3A) Level 23
+3A68 - (37) Level 24
+3A9F - (34) Level 25
+3AD3 - (38) Level 26
+3B0B - (33) Level 27
+3B3E * (3B) Level 28
+3B79 - (38) Level 29
+3BB1 - (50) Level 30
+3C01 - (2B) Level 31
+3C2C - (26) Level 32
+3c52 * (3B) Level 33
+3C78 - (32) Level 34
+3C8D - (2D) Level 35
+3CBA - (26) Level 36
+3CE0 - (26) Level 37
+3D06 * (2F) Level 38
+3D35 - (2E) Level 39
+3D63 - (38) Level 40
+3D9B - (2F) Level 41
+3DCA - (2E) Level 42
+3DF8 * (3D) Level 43
+3E35 - (34) Level 44
+3E69 - (30) Level 45
+3e99 - (28) Level 46
+3EC1 - (2B) Level 47
+3EEC * (34) Level 48
+3F20 - (2C) Level 49
+3F4C - (37) Level 50
+3F83 - (38) Level 51  
+4010 -> END = Graphics Data
+
+---------------------------------
+E = 34 = 35 - 36 - 37 - 38 - 39 - 3A - 3B - 40 - 41 - 42 - 43 - 44
+---------------------------------
+B = 2B = 30 - 31 - 32 - 33 - 34
+---------------------------------
+G = 27 = 28 - 29 - 2A - 2B - 30
+---------------------------------
+D = 22 = 23 - 24 - 25 - 26 - 27
+---------------------------------
+A = 19 = 1A - 1B - 20 - 21 - 22
+---------------------------------
+E = 14 = 15 - 16 - 17 - 18 - 19 -
+
+**** Songs Composed for soundtrack ****
+
+Staying alive = 23 25 81 31 81 25 23 81 1A 20 81 23 1A 81 20 23 81 1A 81 23 
+25 31 81 00
+I want u back = 18 81 81 81 81 81 81 81 1A 20 23 25 21 81 81 81 81 81 81 81 
+1A 20 21 22 23 24 25 81 81 81 20 81 81 81 21 81 81 81 18 81 81 81 1A 81 1A 
+81 23 23 81 18 81 23 25 28 25 28 81 00
+I want u back2= 28 81 28 81 28 27 81 27 81 25 25 23 20 23 20 21 21 20 81 20 
+1A 1A 23 20 23 24 25 81 81 81 20 81 81 81 21 81 81 81 18 81 81 81 1A 81 1A 
+81 23 23 81 18 81 23 25 28 25 28 81 00
+DK1 song = 
+3131388181818181343735328181818132323A818181818137393734818181813434408181818181393A40428181818135373981818181813435373581818181
+
+Mario Party DK song = 
+29813081338134812930813381348129308133813481368137368134813334812981308133813481293081338134813637813981378136813736813481818181
+SuperMario Underground = 
+202B192820298181818181202B192820298181818181243521322233818181818124352132223381818181812322208123812281188117812181202625242A292823221A19181781818181
+Super Mario Castle = 
+28212721262127212821292128212721282127212621272128212921282127212720262027202820272028202720262031243224312431243024312430242924
+DK 64 Castle = 
+14812181812081178116811581818181141617142021818122211916211917161414161714202181811422211614211481818181818181818181818181818181
+
+
+**** Original Level designs for Donkey Kong 2 hack ****
+
+Level 1 - 
+94343BFF76796358576C2390D4DDCC3CC0C3C0C323CD30ADCC6CCCCC96C46930CCC8C3CC385954C9 
+(MarioBros 1)
+Level 2 - 
+0C7B74FF313E212E5659FF30784CC7787CCC4BCB0C7FCCF4C70C0707C7B870B00C0F07CFF8C71CF490CC70 
+(Starman)
+Level 3 - 
+2D921607274DAD173457779BC0D80292C5C442CC28CC9C24C8852054C4C882C92954CCC0C2C80A8AECE8CCCCCC
+(Rook)
+Level 4 - 
+8582021992FF235CFFFFFF80D0DD85C338C893CCCC3DCDCC34CC9C833DCD3C3CCC343DCCC8DDCCC8C2 
+  (DK 1)
+Level 5 - 
+2B87FFFF6739339A2E6E94600C05021202D62CC08602C510CC0CC1CCCCCCCCCC0C811DC08186C2CCCE18CECCCC 
+(Left BeltLift)
+Level 6 - 
+22636CFF464936395659FFC0CCCCC8C5CC7FCCB2B4C20C42C22CC33CC2724C272CC33CC270C48794C4C9 
+(Mario Face)
+Level 7 - 
+378D2242FF949A060C77FFFF80CCCCD0D001C9CCCCCCCCCC4C276767637402636703422707722063740203722003422707722063 
+(Elbebelo)
+Level 8 - 
+174789855D5A2B3D4D2B6A70CC0CCADDA1CCEC0C9DCE8CE3C41DE3CC24E38C29E3CC60E3CC60E3 
+(Temple)
+Level 9 - 
+48727BFF939C838C252AFF30CCCC8545c56001616401696865688cc660380506c538c6364c635060c34cc6cc304649
+(Seven Blocks)
+37654BFFFF388428714D328E800A420F03074342530B27203C8ACA34CACEC324306C63A4302C282C20C70C0202721418382CCCA0CCCCCC
+(Snailmen)
