@@ -3,6 +3,10 @@
 .include "bank_val.inc"
 ; 0x004010-0x00650F
 
+; !!! bzk .org control commands here
+; take them into account when making
+; changes inside this file
+
 
 
 .export loc_0x0045E0
