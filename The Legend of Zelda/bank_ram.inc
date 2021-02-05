@@ -519,10 +519,11 @@ ram_01FE                        = $01FE ; N/A
 ram_01FF                        = $01FF ; 1   
 
 ; OAM sprites
-ram_spr_Y                       = $0200 ; 12   Y pos
-ram_spr_T                       = $0201 ; 11   tile
-ram_spr_A                       = $0202 ; 6    arrtibute
-ram_spr_X                       = $0203 ; 6    X pos
+ram_oam                         = $0200 ; 12
+    ram_spr_Y                       = ram_oam     ; 12   Y pos
+    ram_spr_T                       = ram_oam + 1 ; 11   tile
+    ram_spr_A                       = ram_oam + 2 ; 6    attribute
+    ram_spr_X                       = ram_oam + 3 ; 6    X pos
 
 ram_0300                        = $0300 ; 3   
 ram_0301                        = $0301 ; 16   

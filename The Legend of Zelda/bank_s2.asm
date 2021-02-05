@@ -1718,7 +1718,7 @@ sub_bat_7512:
 - D 1 - I - 0x006D94 01:7514: A2 00     LDX #$00
 bra_7516_loop:
 - D 1 - I - 0x006D96 01:7516: BD 0A 75  LDA tbl_750A,X
-- D 1 - I - 0x006D99 01:7519: 99 00 02  STA ram_spr_Y,Y
+- D 1 - I - 0x006D99 01:7519: 99 00 02  STA ram_oam,Y
 - D 1 - I - 0x006D9C 01:751C: E8        INX
 - D 1 - I - 0x006D9D 01:751D: 8A        TXA
 - D 1 - I - 0x006D9E 01:751E: 29 07     AND #$07

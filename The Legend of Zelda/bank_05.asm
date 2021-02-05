@@ -756,7 +756,7 @@ C - - - - - 0x0143C4 05:83B4: 85 E3     STA ram_00E3
 C - - - - - 0x0143C6 05:83B6: A0 03     LDY #$03
 bra_83B8_loop:
 C - - - - - 0x0143C8 05:83B8: B9 AE 83  LDA tbl_83AE_spr_data,Y
-C - - - - - 0x0143CB 05:83BB: 99 00 02  STA ram_spr_Y,Y
+C - - - - - 0x0143CB 05:83BB: 99 00 02  STA ram_oam,Y
 C - - - - - 0x0143CE 05:83BE: 88        DEY
 C - - - - - 0x0143CF 05:83BF: 10 F7     BPL bra_83B8_loop
 C - - - - - 0x0143D1 05:83C1: 60        RTS

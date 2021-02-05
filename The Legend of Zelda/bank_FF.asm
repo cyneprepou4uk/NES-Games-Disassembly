@@ -205,9 +205,9 @@ C - - - - - 0x01E4B3 07:E4A3: 09 1E     ORA #$1E
 bra_E4A5:
 C - - - - - 0x01E4B5 07:E4A5: 8D 01 20  STA $2001
 C - - - - - 0x01E4B8 07:E4A8: 85 FE     STA ram_00FE
-C - - - - - 0x01E4BA 07:E4AA: A9 00     LDA #$00
+C - - - - - 0x01E4BA 07:E4AA: A9 00     LDA #< ram_oam
 C - - - - - 0x01E4BC 07:E4AC: 8D 03 20  STA $2003
-C - - - - - 0x01E4BF 07:E4AF: A9 02     LDA #$02
+C - - - - - 0x01E4BF 07:E4AF: A9 02     LDA #> ram_oam
 C - - - - - 0x01E4C1 07:E4B1: 8D 14 40  STA $4014
 C - - - - - 0x01E4C4 07:E4B4: A9 00     LDA #$00
 C - - - - - 0x01E4C6 07:E4B6: 8D 05 20  STA $2005
