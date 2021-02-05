@@ -31,16 +31,13 @@ My personal comments are marked with **bzk** text. Start with deleting garbage t
 * Tecmo World Cup Soccer (J) [!]
 * Yie Ar Kung-Fu (J) (V1.4) [!]
 
-## WIP
-* Castlevania III - Dracula's Curse (U) [!]
-* Double Dragon II - The Revenge (J)
-* Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
-
-## Planning (maybe)
+## WIP or planning
 * Balloon Fight (J) [!]
+* Castlevania III - Dracula's Curse (U) [!]
 * Danny Sullivan's Indy Heat (U) [!]
+* Double Dragon II - The Revenge (J)
 * Ice Climber (J) [!]
-* Quarth (J) [!]
+* Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
 * Super Mario Bros. (W) [!]
 * Tennis (JU) [!]
 * Tetris (Tengen) [!]
