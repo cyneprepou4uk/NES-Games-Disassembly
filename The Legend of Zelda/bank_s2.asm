@@ -346,9 +346,9 @@ sub_bat_6DB7:
 
 
 tbl_bat_6DC3_direction:
-- D 1 - I - 0x006643 01:6DC3: 08        .byte con_dir_Up   ; 00
-- D 1 - I - 0x006644 01:6DC4: 04        .byte con_dir_Down   ; 01
-- D 1 - I - 0x006645 01:6DC5: 02        .byte con_dir_Left   ; 02
+- D 1 - I - 0x006643 01:6DC3: 08        .byte con_dir_Up      ; 00
+- D 1 - I - 0x006644 01:6DC4: 04        .byte con_dir_Down    ; 01
+- D 1 - I - 0x006645 01:6DC5: 02        .byte con_dir_Left    ; 02
 - D 1 - I - 0x006646 01:6DC6: 01        .byte con_dir_Right   ; 03
 
 
@@ -572,7 +572,7 @@ loc_bat_6EE9:
 - D 1 - I - 0x006769 01:6EE9: A9 80     LDA #$80    ; con_sfx_4_00  con_sfx_3_00
 - D 1 - I - 0x00676B 01:6EEB: 8D 04 06  STA ram_sfx_4
 - D 1 - I - 0x00676E 01:6EEE: 8D 03 06  STA ram_sfx_3
-- D 1 - I - 0x006771 01:6EF1: 0A        ASL
+- D 1 - I - 0x006771 01:6EF1: 0A        ASL ; A = 00
 - D 1 - I - 0x006772 01:6EF2: 8D 05 06  STA ram_0605
 - D 1 - I - 0x006775 01:6EF5: 8D 07 06  STA ram_0607
 - D 1 - I - 0x006778 01:6EF8: 60        RTS
@@ -609,7 +609,7 @@ bra_6F1B:
 - D 1 - I - 0x00679C 01:6F1C: C8        INY
 - D 1 - I - 0x00679D 01:6F1D: C8        INY
 - D 1 - I - 0x00679E 01:6F1E: C8        INY
-- D 1 - I - 0x00679F 01:6F1F: C0 00     CPY #$00
+- D 1 - I - 0x00679F 01:6F1F: C0 00     CPY #$00    ; bzk optimize, no need for CPY 00
 - D 1 - I - 0x0067A1 01:6F21: D0 02     BNE bra_6F25
 - D 1 - I - 0x0067A3 01:6F23: A0 20     LDY #$20
 bra_6F25:
@@ -773,10 +773,10 @@ bra_7003:
 
 
 tbl_700F_direction:
-- D 1 - I - 0x00688F 01:700F: 04        .byte con_dir_Down   ; 00
-- D 1 - I - 0x006890 01:7010: 08        .byte con_dir_Up   ; 01
+- D 1 - I - 0x00688F 01:700F: 04        .byte con_dir_Down    ; 00
+- D 1 - I - 0x006890 01:7010: 08        .byte con_dir_Up      ; 01
 - D 1 - I - 0x006891 01:7011: 01        .byte con_dir_Right   ; 02
-- D 1 - I - 0x006892 01:7012: 02        .byte con_dir_Left   ; 03
+- D 1 - I - 0x006892 01:7012: 02        .byte con_dir_Left    ; 03
 
 
 
@@ -1702,14 +1702,9 @@ bra_7507:
 
 
 tbl_750A:
-- D 1 - I - 0x006D8A 01:750A: 3D        .byte $3D   ; 00
-- D 1 - I - 0x006D8B 01:750B: 1C        .byte $1C   ; 01
-- D 1 - I - 0x006D8C 01:750C: 20        .byte $20   ; 02
-- D 1 - I - 0x006D8D 01:750D: 00        .byte $00   ; 03
-- D 1 - I - 0x006D8E 01:750E: DD        .byte $DD   ; 04
-- D 1 - I - 0x006D8F 01:750F: 1C        .byte $1C   ; 05
-- D 1 - I - 0x006D90 01:7510: 20        .byte $20   ; 06
-- D 1 - I - 0x006D91 01:7511: 00        .byte $00   ; 07
+; pos y, tile, attr, pos X
+- D 1 - I - 0x006D8A 01:750A: 3D        .byte $3D, $1C, $20, $00   ; 
+- D 1 - I - 0x006D8E 01:750E: DD        .byte $DD, $1C, $20, $00   ; 
 
 
 
@@ -1721,7 +1716,7 @@ bra_7516_loop:
 - D 1 - I - 0x006D99 01:7519: 99 00 02  STA ram_oam,Y
 - D 1 - I - 0x006D9C 01:751C: E8        INX
 - D 1 - I - 0x006D9D 01:751D: 8A        TXA
-- D 1 - I - 0x006D9E 01:751E: 29 07     AND #$07
+- D 1 - I - 0x006D9E 01:751E: 29 07     AND #$07    ; fill 16 sprites with these 8 bytes, bzk is it really necessary?
 - D 1 - I - 0x006DA0 01:7520: AA        TAX
 - D 1 - I - 0x006DA1 01:7521: C8        INY
 - D 1 - I - 0x006DA2 01:7522: C0 40     CPY #$40
@@ -1731,14 +1726,14 @@ bra_7516_loop:
 
 
 tbl_7527:
-- D 1 - I - 0x006DA7 01:7527: 08        .byte con_dir_Up   ; 00
+- D 1 - I - 0x006DA7 01:7527: 08        .byte con_dir_Up     ; 00
 - D 1 - I - 0x006DA8 01:7528: 02        .byte con_dir_Left   ; 01
 - D 1 - I - 0x006DA9 01:7529: 04        .byte con_dir_Down   ; 02
 - D 1 - I - 0x006DAA 01:752A: 02        .byte con_dir_Left   ; 03
 
 
 
-tbl_752B:   ; bzk опт
+tbl_752B:   ; bzk optimize, same bytes
 - D 1 - I - 0x006DAB 01:752B: 08        .byte $08   ; 00
 - D 1 - I - 0x006DAC 01:752C: 08        .byte $08   ; 01
 - D 1 - I - 0x006DAD 01:752D: 08        .byte $08   ; 02
@@ -2366,8 +2361,9 @@ tbl_76DF:
 
 
 
-tbl_77AB:   ; reading 2 bytes at a time (mostly)
+tbl_77AB:
 tbl_bat_77AB:
+; reading 2 bytes at a time (mostly)
 - D 1 - I - 0x00702B 01:77AB: 60        .byte $60   ; 
 - D 1 - I - 0x00702C 01:77AC: BC        .byte $BC   ; 
 - D 1 - I - 0x00702D 01:77AD: 64        .byte $64   ; 
@@ -2416,16 +2412,22 @@ sub_bat_77D4:
 - D 1 - I - 0x007054 01:77D4: 20 4F FA  JSR sub_0x01FA5F
 - D 1 - I - 0x007057 01:77D7: 98        TYA
 - D 1 - I - 0x007058 01:77D8: 4C DF 77  JMP loc_77DF
+
+
+
 loc_77DB:
 sub_bat_77DB:
 loc_bat_77DB:
 - D 1 - I - 0x00705B 01:77DB: A0 01     LDY #$01
 - D 1 - I - 0x00705D 01:77DD: D0 02     BNE bra_77E1
-loc_77DF:
+
+
+
+loc_77DF:   ; A = 02 03
 sub_bat_77DF:
 loc_bat_77DF:
 - D 1 - I - 0x00705F 01:77DF: A0 00     LDY #$00
-bra_77E1:
+bra_77E1:   ; Y = 01
 - D 1 - I - 0x007061 01:77E1: 84 0C     STY ram_000C
 - D 1 - I - 0x007063 01:77E3: BC 4F 03  LDY ram_034F,X
 sub_bat_77E6:
@@ -2580,6 +2582,7 @@ tbl_78B7:
 - D 1 - I - 0x007159 01:78D9: 29        .byte $29   ; 
 - D 1 - I - 0x00715A 01:78DA: 2B        .byte $2B   ; 
 - D 1 - I - 0x00715B 01:78DB: 2E        .byte $2E   ; 
+
 tbl_78DC:
 - D 1 - I - 0x00715C 01:78DC: 20        .byte $20   ; 
 - D 1 - I - 0x00715D 01:78DD: 82        .byte $82   ; 

@@ -3988,7 +3988,7 @@ C - - - - - 0x00905B 02:904B: A9 5A     LDA #$5A
 C - - - - - 0x00905D 02:904D: 8D 28 05  STA ram_0528
 C - - - - - 0x009060 02:9050: E6 13     INC ram_game_mode_sub
 C - - - - - 0x009062 02:9052: 20 25 E6  JSR sub_0x01E635_disable_rendering
-C - - - - - 0x009065 02:9055: 20 F7 E5  JSR sub_0x01E607
+C - - - - - 0x009065 02:9055: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x009068 02:9058: A9 12     LDA #$12
 C - - - - - 0x00906A 02:905A: 85 14     STA ram_0014
 bra_905C_RTS:
@@ -5323,7 +5323,7 @@ C - - - - - 0x00961B 02:960B: 60        RTS
 
 
 ofs_960C_02:
-C - - J - - 0x00961C 02:960C: 20 F7 E5  JSR sub_0x01E607
+C - - J - - 0x00961C 02:960C: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x00961F 02:960F: 20 2A 97  JSR sub_972A
 C - - - - - 0x009622 02:9612: 20 9D 97  JSR sub_979D
 C - - - - - 0x009625 02:9615: A5 15     LDA ram_frame_cnt
@@ -5662,7 +5662,7 @@ C - - - - - 0x00985D 02:984D: 8D 2C 04  STA ram_042C
 C - - - - - 0x009860 02:9850: 8D 2D 04  STA ram_042D
 C - - - - - 0x009863 02:9853: 60        RTS
 bra_9854:
-C - - - - - 0x009864 02:9854: 20 F7 E5  JSR sub_0x01E607
+C - - - - - 0x009864 02:9854: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x009867 02:9857: 20 9D 97  JSR sub_979D
 C - - - - - 0x00986A 02:985A: 60        RTS
 
@@ -8368,7 +8368,7 @@ ofs_A90F_00:
 C - - J - - 0x00A91F 02:A90F: 20 21 A9  JSR sub_A921
 C - - - - - 0x00A922 02:A912: A5 13     LDA ram_game_mode_sub
 C - - - - - 0x00A924 02:A914: F0 42     BEQ bra_A958_RTS
-C - - - - - 0x00A926 02:A916: 20 F7 E5  JSR sub_0x01E607
+C - - - - - 0x00A926 02:A916: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x00A929 02:A919: 20 31 F2  JSR sub_0x01F241
 C - - - - - 0x00A92C 02:A91C: A2 01     LDX #$01
 C - - - - - 0x00A92E 02:A91E: 4C CA 79  JMP loc_bat_79CA
@@ -8556,7 +8556,7 @@ C - - - - - 0x00AA11 02:AA01: 8D 0B 05  STA ram_050B
 C - - - - - 0x00AA14 02:AA04: 20 90 6C  JSR sub_bat_6C90
 C - - - - - 0x00AA17 02:AA07: 8D 12 04  STA ram_0412
 C - - - - - 0x00AA1A 02:AA0A: 8D 13 04  STA ram_0413
-C - - - - - 0x00AA1D 02:AA0D: 4C F7 E5  JMP loc_0x01E607
+C - - - - - 0x00AA1D 02:AA0D: 4C F7 E5  JMP loc_0x01E607_hide_all_sprites
 
 
 
@@ -8580,7 +8580,7 @@ tbl_AA1F:
 
 
 ofs_AA23_00:
-C - - J - - 0x00AA33 02:AA23: 20 F7 E5  JSR sub_0x01E607
+C - - J - - 0x00AA33 02:AA23: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x00AA36 02:AA26: EE 06 05  INC ram_0506
 C - - - - - 0x00AA39 02:AA29: AD 06 05  LDA ram_0506
 C - - - - - 0x00AA3C 02:AA2C: C9 C0     CMP #$C0
@@ -8656,7 +8656,7 @@ ofs_AAA9_01:
 ofs_AAA9_02:
 C - - J - - 0x00AAB9 02:AAA9: A5 4D     LDA ram_004D
 C - - - - - 0x00AABB 02:AAAB: F0 1A     BEQ bra_AAC7
-C - - - - - 0x00AABD 02:AAAD: 20 F7 E5  JSR sub_0x01E607
+C - - - - - 0x00AABD 02:AAAD: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x00AAC0 02:AAB0: A5 4D     LDA ram_004D
 C - - - - - 0x00AAC2 02:AAB2: C9 04     CMP #$04
 C - - - - - 0x00AAC4 02:AAB4: 90 10     BCC bra_AAC6_RTS
@@ -8838,7 +8838,7 @@ C - - - - - 0x00AB8E 02:AB7E: 60        RTS
 
 
 ofs_AB7F_04:
-C - - J - - 0x00AB8F 02:AB7F: 20 F7 E5  JSR sub_0x01E607
+C - - J - - 0x00AB8F 02:AB7F: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x00AB92 02:AB82: A2 02     LDX #$02
 C - - - - - 0x00AB94 02:AB84: A9 78     LDA #$78
 C - - - - - 0x00AB96 02:AB86: 95 70     STA ram_pos_X,X

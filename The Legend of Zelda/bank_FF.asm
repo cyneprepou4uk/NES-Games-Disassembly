@@ -10,8 +10,8 @@
 .export sub_0x01E47D
 .export vec_0x01E494_NMI
 .export sub_0x01E5F2_jump_to_pointers_after_JSR
-.export sub_0x01E607
-.export loc_0x01E607
+.export sub_0x01E607_hide_all_sprites
+.export loc_0x01E607_hide_all_sprites
 .export sub_0x01E618
 .export sub_0x01E635_disable_rendering
 .export loc_0x01E635_disable_rendering
@@ -169,7 +169,7 @@ C - - - - - 0x01E478 07:E468: A9 06     LDA #$06
 C - - - - - 0x01E47A 07:E46A: 8D 01 20  STA $2001
 sub_E46D:
 sub_0x01E47D:
-C - - - - - 0x01E47D 07:E46D: 20 F7 E5  JSR sub_E5F7
+C - - - - - 0x01E47D 07:E46D: 20 F7 E5  JSR sub_E5F7_hide_all_sprites
 C - - - - - 0x01E480 07:E470: 20 80 E5  JSR sub_E580
 C - - - - - 0x01E483 07:E473: 20 25 E6  JSR sub_E625_disable_rendering
 C - - - - - 0x01E486 07:E476: A9 20     LDA #$20
@@ -395,9 +395,9 @@ C - - - - - 0x01E604 07:E5F4: 6C 02 00  JMP (ram_0002)
 
 
 
-sub_E5F7:
-sub_0x01E607:
-loc_0x01E607:
+sub_E5F7_hide_all_sprites:
+sub_0x01E607_hide_all_sprites:
+loc_0x01E607_hide_all_sprites:
 C D 3 - - - 0x01E607 07:E5F7: A0 00     LDY #$00
 C - - - - - 0x01E609 07:E5F9: A2 40     LDX #$40
 bra_E5FB_loop:
@@ -407,7 +407,7 @@ C - - - - - 0x01E610 07:E600: C8        INY
 C - - - - - 0x01E611 07:E601: C8        INY
 C - - - - - 0x01E612 07:E602: C8        INY
 C - - - - - 0x01E613 07:E603: C8        INY
-C - - - - - 0x01E614 07:E604: CA        DEX
+C - - - - - 0x01E614 07:E604: CA        DEX ; bzk optimize, no need for X in this loop, use Y only
 C - - - - - 0x01E615 07:E605: D0 F4     BNE bra_E5FB_loop
 C - - - - - 0x01E617 07:E607: 60        RTS
 
@@ -450,10 +450,10 @@ C - - - - - 0x01E642 07:E632: A9 00     LDA #$00
 C - - - - - 0x01E644 07:E634: 8D 16 40  STA $4016
 C - - - - - 0x01E647 07:E637: 85 03     STA ram_0003
 C - - - - - 0x01E649 07:E639: 85 04     STA ram_0004
-C - - - - - 0x01E64B 07:E63B: AA        TAX
+C - - - - - 0x01E64B 07:E63B: AA        TAX ; X = 00
 C - - - - - 0x01E64C 07:E63C: 20 40 E6  JSR sub_E640
 C - - - - - 0x01E64F 07:E63F: E8        INX
-sub_E640:
+sub_E640:   ; X = 00
 bra_E640_loop:
 C - - - - - 0x01E650 07:E640: 85 02     STA ram_0002
 C - - - - - 0x01E652 07:E642: A9 01     LDA #$01
@@ -461,14 +461,14 @@ C - - - - - 0x01E654 07:E644: 8D 16 40  STA $4016
 C - - - - - 0x01E657 07:E647: A9 00     LDA #$00
 C - - - - - 0x01E659 07:E649: 8D 16 40  STA $4016
 C - - - - - 0x01E65C 07:E64C: A0 08     LDY #$08
-bra_E64E:
+bra_E64E_loop:
 C - - - - - 0x01E65E 07:E64E: BD 16 40  LDA $4016,X
 C - - - - - 0x01E661 07:E651: 4A        LSR
 C - - - - - 0x01E662 07:E652: 36 F8     ROL ram_btn_press,X
 C - - - - - 0x01E664 07:E654: 4A        LSR
 C - - - - - 0x01E665 07:E655: 26 00     ROL ram_0000
 C - - - - - 0x01E667 07:E657: 88        DEY
-C - - - - - 0x01E668 07:E658: D0 F4     BNE bra_E64E
+C - - - - - 0x01E668 07:E658: D0 F4     BNE bra_E64E_loop
 C - - - - - 0x01E66A 07:E65A: B5 F8     LDA ram_btn_press,X
 C - - - - - 0x01E66C 07:E65C: C5 02     CMP ram_0002
 C - - - - - 0x01E66E 07:E65E: D0 E0     BNE bra_E640_loop
@@ -989,10 +989,10 @@ C - - - - - 0x01E9C1 07:E9B1: E6 F3     INC ram_00F3
 C - - - - - 0x01E9C3 07:E9B3: A5 98     LDA ram_direction
 C - - - - - 0x01E9C5 07:E9B5: C9 04     CMP #con_dir_Down
 C - - - - - 0x01E9C7 07:E9B7: 90 04     BCC bra_E9BD
-C - - - - - 0x01E9C9 07:E9B9: A9 0F     LDA #$0F
+C - - - - - 0x01E9C9 07:E9B9: A9 0F     LDA #con_mirroring_hotisontal
 C - - - - - 0x01E9CB 07:E9BB: D0 02     BNE bra_E9BF
 bra_E9BD:
-C - - - - - 0x01E9CD 07:E9BD: A9 0E     LDA #$0E
+C - - - - - 0x01E9CD 07:E9BD: A9 0E     LDA #con_mirroring_vertical
 bra_E9BF:
 C - - - - - 0x01E9CF 07:E9BF: 20 98 FF  JSR sub_FF98_set_control_register
 bra_E9C2_RTS:
@@ -1009,7 +1009,7 @@ C - - - - - 0x01E9D8 07:E9C8: 4C 11 9E  JMP loc_0x009E21
 
 
 ofs_E9CB_13:
-C - - J - - 0x01E9DB 07:E9CB: A9 0F     LDA #$0F
+C - - J - - 0x01E9DB 07:E9CB: A9 0F     LDA #con_mirroring_hotisontal
 C - - - - - 0x01E9DD 07:E9CD: 20 98 FF  JSR sub_FF98_set_control_register
 C - - - - - 0x01E9E0 07:E9D0: A9 02     LDA #con_prg_bank + $02
 C - - - - - 0x01E9E2 07:E9D2: 20 AC FF  JSR sub_FFAC_prg_bankswitch
@@ -1092,7 +1092,7 @@ C - - - - - 0x01EA4C 07:EA3C: 60        RTS
 sub_EA3D:
 sub_0x01EA4D:
 loc_0x01EA4D:
-C D 3 - - - 0x01EA4D 07:EA3D: 20 F7 E5  JSR sub_E5F7
+C D 3 - - - 0x01EA4D 07:EA3D: 20 F7 E5  JSR sub_E5F7_hide_all_sprites
 C - - - - - 0x01EA50 07:EA40: 20 DE 71  JSR sub_bat_71DE
 C - - - - - 0x01EA53 07:EA43: 20 79 E6  JSR sub_E679
 C - - - - - 0x01EA56 07:EA46: A9 05     LDA #con_prg_bank + $05
@@ -1280,7 +1280,7 @@ C - - - - - 0x01EB77 07:EB67: 20 1E 84  JSR sub_0x01442E
 C - - - - - 0x01EB7A 07:EB6A: A5 E3     LDA ram_00E3
 C - - - - - 0x01EB7C 07:EB6C: D0 07     BNE bra_EB75_RTS
 C - - - - - 0x01EB7E 07:EB6E: 85 F3     STA ram_00F3
-C - - - - - 0x01EB80 07:EB70: A9 0F     LDA #$0F
+C - - - - - 0x01EB80 07:EB70: A9 0F     LDA #con_mirroring_hotisontal
 C - - - - - 0x01EB82 07:EB72: 20 98 FF  JSR sub_FF98_set_control_register
 bra_EB75_RTS:
 C - - - - - 0x01EB85 07:EB75: 60        RTS
@@ -1336,7 +1336,7 @@ ofs_EBAA_03:
 C - - J - - 0x01EBBA 07:EBAA: 20 48 72  JSR sub_bat_7248
 C - - - - - 0x01EBBD 07:EBAD: A5 7C     LDA ram_007C
 C - - - - - 0x01EBBF 07:EBAF: D0 47     BNE bra_EBF8_RTS
-C - - - - - 0x01EBC1 07:EBB1: A9 0F     LDA #$0F
+C - - - - - 0x01EBC1 07:EBB1: A9 0F     LDA #con_mirroring_hotisontal
 C - - - - - 0x01EBC3 07:EBB3: 20 98 FF  JSR sub_FF98_set_control_register
 C - - - - - 0x01EBC6 07:EBB6: A5 5A     LDA ram_005A
 C - - - - - 0x01EBC8 07:EBB8: F0 03     BEQ bra_EBBD
@@ -4463,7 +4463,7 @@ sub_0x01FECB:
 C - - - - - 0x01FECB 07:FEBB: A0 0C     LDY #$0C
 bra_FEBD_loop:
 C - - - - - 0x01FECD 07:FEBD: 88        DEY
-C - - - - - 0x01FECE 07:FEBE: F0 07     BEQ bra_FEC7
+C - - - - - 0x01FECE 07:FEBE: F0 07     BEQ bra_FEC7    ; bzk optimize, branch to RTS
 C - - - - - 0x01FED0 07:FEC0: B9 4F 03  LDA ram_034F,Y
 C - - - - - 0x01FED3 07:FEC3: D0 F8     BNE bra_FEBD_loop
 C - - - - - 0x01FED5 07:FEC5: 84 59     STY ram_0059
@@ -4596,20 +4596,20 @@ C - - - - - 0x01FF62 07:FF52: A9 00     LDA #$00
 C - - - - - 0x01FF64 07:FF54: 8D 00 20  STA $2000
 C - - - - - 0x01FF67 07:FF57: A2 FF     LDX #$FF
 C - - - - - 0x01FF69 07:FF59: 9A        TXS
-bra_FF5A:
+bra_FF5A_loop:
 C - - - - - 0x01FF6A 07:FF5A: AD 02 20  LDA $2002
 C - - - - - 0x01FF6D 07:FF5D: 29 80     AND #$80
-C - - - - - 0x01FF6F 07:FF5F: F0 F9     BEQ bra_FF5A
-bra_FF61:
+C - - - - - 0x01FF6F 07:FF5F: F0 F9     BEQ bra_FF5A_loop
+bra_FF61_loop:
 C - - - - - 0x01FF71 07:FF61: AD 02 20  LDA $2002
 C - - - - - 0x01FF74 07:FF64: 29 80     AND #$80
-C - - - - - 0x01FF76 07:FF66: F0 F9     BEQ bra_FF61
+C - - - - - 0x01FF76 07:FF66: F0 F9     BEQ bra_FF61_loop
 C - - - - - 0x01FF78 07:FF68: 09 FF     ORA #$FF
 C - - - - - 0x01FF7A 07:FF6A: 8D 00 80  STA $8000
 C - - - - - 0x01FF7D 07:FF6D: 8D 00 A0  STA $A000
 C - - - - - 0x01FF80 07:FF70: 8D 00 C0  STA $C000
 C - - - - - 0x01FF83 07:FF73: 8D 00 E0  STA $E000
-C - - - - - 0x01FF86 07:FF76: A9 0F     LDA #$0F
+C - - - - - 0x01FF86 07:FF76: A9 0F     LDA #con_mirroring_hotisontal
 C - - - - - 0x01FF88 07:FF78: 20 98 FF  JSR sub_FF98_set_control_register
 C - - - - - 0x01FF8B 07:FF7B: A9 00     LDA #$00
 C - - - - - 0x01FF8D 07:FF7D: 8D 00 A0  STA $A000
@@ -4628,6 +4628,8 @@ C - - - - - 0x01FFA5 07:FF95: 4C 40 E4  JMP loc_E440
 
 
 sub_FF98_set_control_register:
+; 0E = 0000 1110 = mirroring vertical 
+; 0F = 0000 1111 = mirroring horisontal
 C - - - - - 0x01FFA8 07:FF98: 8D 00 80  STA $8000
 C - - - - - 0x01FFAB 07:FF9B: 4A        LSR
 C - - - - - 0x01FFAC 07:FF9C: 8D 00 80  STA $8000

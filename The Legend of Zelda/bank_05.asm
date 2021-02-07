@@ -126,7 +126,7 @@ C - - - - - 0x014031 05:8021: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_
 
 ofs_8038_01:
 ofs_8038_02:
-C - - J - - 0x014048 05:8038: 20 F7 E5  JSR sub_0x01E607
+C - - J - - 0x014048 05:8038: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x01404B 05:803B: 20 DE 71  JSR sub_bat_71DE
 C - - - - - 0x01404E 05:803E: 20 79 E6  JSR sub_0x01E689
 C - - - - - 0x014051 05:8041: A9 EF     LDA #$EF
@@ -264,7 +264,7 @@ C - - - - - 0x014109 05:80F9: AD 54 02  LDA ram_spr_Y + $54
 C - - - - - 0x01410C 05:80FC: 48        PHA
 C - - - - - 0x01410D 05:80FD: AD 58 02  LDA ram_spr_Y + $58
 C - - - - - 0x014110 05:8100: 48        PHA
-C - - - - - 0x014111 05:8101: 20 F7 E5  JSR sub_0x01E607
+C - - - - - 0x014111 05:8101: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x014114 05:8104: 68        PLA
 C - - - - - 0x014115 05:8105: 8D 58 02  STA ram_spr_Y + $58
 C - - - - - 0x014118 05:8108: 68        PLA
@@ -2009,7 +2009,7 @@ C - - - - - 0x014A41 05:8A31: 20 98 FE  JSR sub_0x01FEA8
 C - - - - - 0x014A44 05:8A34: 20 3C F2  JSR sub_0x01F24C
 C - - - - - 0x014A47 05:8A37: A5 13     LDA ram_game_mode_sub
 C - - - - - 0x014A49 05:8A39: D0 25     BNE bra_8A60
-C - - - - - 0x014A4B 05:8A3B: 20 F7 E5  JSR sub_0x01E607
+C - - - - - 0x014A4B 05:8A3B: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x014A4E 05:8A3E: 20 79 E6  JSR sub_0x01E689
 C - - - - - 0x014A51 05:8A41: 20 29 89  JSR sub_8929
 C - - - - - 0x014A54 05:8A44: 20 8A E7  JSR sub_0x01E79A
@@ -8015,7 +8015,7 @@ tbl_A4EE:
 
 
 
-tbl_A4F2:
+tbl_A4F2:   ; loop counter
 - D 1 - - - 0x016502 05:A4F2: 01        .byte $01   ; 00
 - D 1 - - - 0x016503 05:A4F3: 01        .byte $01   ; 01
 - D 1 - - - 0x016504 05:A4F4: 02        .byte $02   ; 02
@@ -8114,7 +8114,7 @@ C - - - - - 0x01658E 05:A57E: 48        PHA
 C - - - - - 0x01658F 05:A57F: AA        TAX
 C - - - - - 0x016590 05:A580: BD F2 A4  LDA tbl_A4F2,X
 C - - - - - 0x016593 05:A583: AA        TAX
-bra_A584:
+bra_A584_loop:
 C - - - - - 0x016594 05:A584: B1 02     LDA (ram_0002),Y
 C - - - - - 0x016596 05:A586: 91 00     STA (ram_0000),Y
 C - - - - - 0x016598 05:A588: 20 80 72  JSR sub_bat_7280
@@ -8129,7 +8129,7 @@ C - - - - - 0x0165A9 05:A599: B0 03     BCS bra_A59E
 C - - - - - 0x0165AB 05:A59B: 20 74 72  JSR sub_bat_7274
 bra_A59E:
 C - - - - - 0x0165AE 05:A59E: CA        DEX
-C - - - - - 0x0165AF 05:A59F: 10 E3     BPL bra_A584
+C - - - - - 0x0165AF 05:A59F: 10 E3     BPL bra_A584_loop
 C - - - - - 0x0165B1 05:A5A1: C6 05     DEC ram_0005
 C - - - - - 0x0165B3 05:A5A3: D0 D8     BNE bra_A57D
 bra_A5A5:
@@ -8666,7 +8666,7 @@ C - - - - - 0x0168BA 05:A8AA: 60        RTS
 ofs_A8AB_04:
 C - - J - - 0x0168BB 05:A8AB: A5 28     LDA ram_0028
 C - - - - - 0x0168BD 05:A8AD: D0 FB     BNE bra_A8AA_RTS
-C - - - - - 0x0168BF 05:A8AF: 20 F7 E5  JSR sub_0x01E607
+C - - - - - 0x0168BF 05:A8AF: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x0168C2 05:A8B2: A5 FF     LDA ram_00FF
 C - - - - - 0x0168C4 05:A8B4: 29 FB     AND #$FB
 C - - - - - 0x0168C6 05:A8B6: 85 FF     STA ram_00FF

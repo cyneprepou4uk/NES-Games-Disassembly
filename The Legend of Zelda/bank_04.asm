@@ -2582,7 +2582,7 @@ bra_8E3C:
 
 
 tbl_8E42_direction:
-- D 0 - - - 0x010E52 04:8E42: 08        .byte con_dir_Up   ; 00
+- D 0 - - - 0x010E52 04:8E42: 08        .byte con_dir_Up     ; 00
 - D 0 - - - 0x010E53 04:8E43: 04        .byte con_dir_Down   ; 01
 
 
@@ -2776,7 +2776,7 @@ C - - - - - 0x010F83 04:8F73: 60        RTS
 
 tbl_8F74_direction:
 - D 0 - - - 0x010F84 04:8F74: 04        .byte con_dir_Down   ; 00
-- D 0 - - - 0x010F85 04:8F75: 08        .byte con_dir_Up   ; 01
+- D 0 - - - 0x010F85 04:8F75: 08        .byte con_dir_Up     ; 01
 
 
 
@@ -8549,14 +8549,14 @@ C - - - - - 0x01325D 04:B24D: 60        RTS
 
 
 tbl_B24E_direction:
-- D 1 - - - 0x01325E 04:B24E: 08        .byte con_dir_Up   ; 00
-- D 1 - - - 0x01325F 04:B24F: 09        .byte con_dir_09   ; 01
+- D 1 - - - 0x01325E 04:B24E: 08        .byte con_dir_Up      ; 00
+- D 1 - - - 0x01325F 04:B24F: 09        .byte con_dir_09      ; 01
 - D 1 - - - 0x013260 04:B250: 01        .byte con_dir_Right   ; 02
-- D 1 - - - 0x013261 04:B251: 05        .byte con_dir_05   ; 03
-- D 1 - - - 0x013262 04:B252: 04        .byte con_dir_Down   ; 04
-- D 1 - - - 0x013263 04:B253: 06        .byte con_dir_06   ; 05
-- D 1 - - - 0x013264 04:B254: 02        .byte con_dir_Left   ; 06
-- D 1 - - - 0x013265 04:B255: 0A        .byte con_dir_0A   ; 07
+- D 1 - - - 0x013261 04:B251: 05        .byte con_dir_05      ; 03
+- D 1 - - - 0x013262 04:B252: 04        .byte con_dir_Down    ; 04
+- D 1 - - - 0x013263 04:B253: 06        .byte con_dir_06      ; 05
+- D 1 - - - 0x013264 04:B254: 02        .byte con_dir_Left    ; 06
+- D 1 - - - 0x013265 04:B255: 0A        .byte con_dir_0A      ; 07
 
 
 

@@ -22,7 +22,7 @@
 
 
 ; bzk garbage
-ofs_BF50_RESET:
+vec_BF50_RESET:
 - - - - - - 0x003F60 00:BF50: 78        SEI
 - - - - - - 0x003F61 00:BF51: D8        CLD
 - - - - - - 0x003F62 00:BF52: A9 00     LDA #$00
@@ -42,7 +42,7 @@ bra_BF61_loop:
 - - - - - - 0x003F7D 00:BF6D: 8D 00 A0  STA $A000
 - - - - - - 0x003F80 00:BF70: 8D 00 C0  STA $C000
 - - - - - - 0x003F83 00:BF73: 8D 00 E0  STA $E000
-- - - - - - 0x003F86 00:BF76: A9 0F     LDA #$0F
+- - - - - - 0x003F86 00:BF76: A9 0F     LDA #con_mirroring_hotisontal
 - - - - - - 0x003F88 00:BF78: 20 98 BF  JSR sub_BF98_set_control_register
 - - - - - - 0x003F8B 00:BF7B: A9 00     LDA #$00
 - - - - - - 0x003F8D 00:BF7D: 8D 00 A0  STA $A000
@@ -54,7 +54,7 @@ bra_BF61_loop:
 - - - - - - 0x003F99 00:BF89: 8D 00 A0  STA $A000
 - - - - - - 0x003F9C 00:BF8C: 4A        LSR
 - - - - - - 0x003F9D 00:BF8D: 8D 00 A0  STA $A000
-- - - - - - 0x003FA0 00:BF90: A9 07     LDA #$07
+- - - - - - 0x003FA0 00:BF90: A9 07     LDA #con_prg_bank + $07
 - - - - - - 0x003FA2 00:BF92: 20 AC BF  JSR sub_BFAC_prg_bankswitch
 - - - - - - 0x003FA5 00:BF95: 4C 40 E4  JMP loc_0x01E450
 
@@ -106,5 +106,5 @@ loc_inc_0x003FBC_prg_bankswitch:
 ; vectors
 ; bzk garbage
 - - - - - - 0x00400A 00:BFFA: 84 E4     .word vec_0x01E494_NMI
-- - - - - - 0x00400C 00:BFFC: 50 BF     .word ofs_BF50_RESET
+- - - - - - 0x00400C 00:BFFC: 50 BF     .word vec_BF50_RESET
 - - - - - - 0x00400E 00:BFFE: F0 BF     .word $BFF0
