@@ -5,7 +5,7 @@
 ; MISC
 con_prg_bank                    = $00
 con_mirroring_vertical          = $0E
-con_mirroring_hotisontal        = $0F
+con_mirroring_horisontal        = $0F
 
 
 

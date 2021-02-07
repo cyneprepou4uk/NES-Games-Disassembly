@@ -989,7 +989,7 @@ C - - - - - 0x01E9C1 07:E9B1: E6 F3     INC ram_00F3
 C - - - - - 0x01E9C3 07:E9B3: A5 98     LDA ram_direction
 C - - - - - 0x01E9C5 07:E9B5: C9 04     CMP #con_dir_Down
 C - - - - - 0x01E9C7 07:E9B7: 90 04     BCC bra_E9BD
-C - - - - - 0x01E9C9 07:E9B9: A9 0F     LDA #con_mirroring_hotisontal
+C - - - - - 0x01E9C9 07:E9B9: A9 0F     LDA #con_mirroring_horisontal
 C - - - - - 0x01E9CB 07:E9BB: D0 02     BNE bra_E9BF
 bra_E9BD:
 C - - - - - 0x01E9CD 07:E9BD: A9 0E     LDA #con_mirroring_vertical
@@ -1009,7 +1009,7 @@ C - - - - - 0x01E9D8 07:E9C8: 4C 11 9E  JMP loc_0x009E21
 
 
 ofs_E9CB_13:
-C - - J - - 0x01E9DB 07:E9CB: A9 0F     LDA #con_mirroring_hotisontal
+C - - J - - 0x01E9DB 07:E9CB: A9 0F     LDA #con_mirroring_horisontal
 C - - - - - 0x01E9DD 07:E9CD: 20 98 FF  JSR sub_FF98_set_control_register
 C - - - - - 0x01E9E0 07:E9D0: A9 02     LDA #con_prg_bank + $02
 C - - - - - 0x01E9E2 07:E9D2: 20 AC FF  JSR sub_FFAC_prg_bankswitch
@@ -1280,7 +1280,7 @@ C - - - - - 0x01EB77 07:EB67: 20 1E 84  JSR sub_0x01442E
 C - - - - - 0x01EB7A 07:EB6A: A5 E3     LDA ram_00E3
 C - - - - - 0x01EB7C 07:EB6C: D0 07     BNE bra_EB75_RTS
 C - - - - - 0x01EB7E 07:EB6E: 85 F3     STA ram_00F3
-C - - - - - 0x01EB80 07:EB70: A9 0F     LDA #con_mirroring_hotisontal
+C - - - - - 0x01EB80 07:EB70: A9 0F     LDA #con_mirroring_horisontal
 C - - - - - 0x01EB82 07:EB72: 20 98 FF  JSR sub_FF98_set_control_register
 bra_EB75_RTS:
 C - - - - - 0x01EB85 07:EB75: 60        RTS
@@ -1336,7 +1336,7 @@ ofs_EBAA_03:
 C - - J - - 0x01EBBA 07:EBAA: 20 48 72  JSR sub_bat_7248
 C - - - - - 0x01EBBD 07:EBAD: A5 7C     LDA ram_007C
 C - - - - - 0x01EBBF 07:EBAF: D0 47     BNE bra_EBF8_RTS
-C - - - - - 0x01EBC1 07:EBB1: A9 0F     LDA #con_mirroring_hotisontal
+C - - - - - 0x01EBC1 07:EBB1: A9 0F     LDA #con_mirroring_horisontal
 C - - - - - 0x01EBC3 07:EBB3: 20 98 FF  JSR sub_FF98_set_control_register
 C - - - - - 0x01EBC6 07:EBB6: A5 5A     LDA ram_005A
 C - - - - - 0x01EBC8 07:EBB8: F0 03     BEQ bra_EBBD
@@ -4609,7 +4609,7 @@ C - - - - - 0x01FF7A 07:FF6A: 8D 00 80  STA $8000
 C - - - - - 0x01FF7D 07:FF6D: 8D 00 A0  STA $A000
 C - - - - - 0x01FF80 07:FF70: 8D 00 C0  STA $C000
 C - - - - - 0x01FF83 07:FF73: 8D 00 E0  STA $E000
-C - - - - - 0x01FF86 07:FF76: A9 0F     LDA #con_mirroring_hotisontal
+C - - - - - 0x01FF86 07:FF76: A9 0F     LDA #con_mirroring_horisontal
 C - - - - - 0x01FF88 07:FF78: 20 98 FF  JSR sub_FF98_set_control_register
 C - - - - - 0x01FF8B 07:FF7B: A9 00     LDA #$00
 C - - - - - 0x01FF8D 07:FF7D: 8D 00 A0  STA $A000
