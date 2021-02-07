@@ -578,7 +578,7 @@ C - - - - - 0x010282 04:8272: F0 04     BEQ bra_8278
 C - - - - - 0x010284 04:8274: C9 F0     CMP #$F0
 C - - - - - 0x010286 04:8276: D0 11     BNE bra_8289_RTS
 bra_8278:
-C - - - - - 0x010288 04:8278: A9 04     LDA #con_sfx_2_04
+C - - - - - 0x010288 04:8278: A9 04     LDA #con_sfx_2_secret_found
 C - - - - - 0x01028A 04:827A: 8D 02 06  STA ram_sfx_2
 C - - - - - 0x01028D 04:827D: E6 F7     INC ram_00F7
 C - - - - - 0x01028F 04:827F: A9 B0     LDA #$B0
@@ -1485,7 +1485,7 @@ C - - - - - 0x010799 04:8789: 60        RTS
 
 
 ofs_0x01079A_2F:
-- - - - - - 0x01079A 04:878A: A9 08     LDA #con_sfx_2_08
+- - - - - - 0x01079A 04:878A: A9 08     LDA #con_sfx_2_pick_up_item
 - - - - - - 0x01079C 04:878C: 8D 02 06  STA ram_sfx_2
 - - - - - - 0x01079F 04:878F: A9 78     LDA #$78
 - - - - - - 0x0107A1 04:8791: 95 70     STA ram_pos_X,X
@@ -2382,7 +2382,7 @@ C - - - - - 0x010D04 04:8CF4: A9 14     LDA #$14
 C - - - - - 0x010D06 04:8CF6: 85 AB     STA ram_00AB
 C - - - - - 0x010D08 04:8CF8: 20 14 73  JSR sub_bat_7314
 C - - - - - 0x010D0B 04:8CFB: D0 08     BNE bra_8D05
-C - - - - - 0x010D0D 04:8CFD: 20 81 90  JSR sub_9081
+C - - - - - 0x010D0D 04:8CFD: 20 81 90  JSR sub_9081_write_found_secret_sound
 C - - - - - 0x010D10 04:8D00: D0 03     BNE bra_8D05
 bra_8D02:
 C - - - - - 0x010D12 04:8D02: 88        DEY
@@ -2395,7 +2395,7 @@ C - - - - - 0x010D19 04:8D09: A5 00     LDA ram_0000
 C - - - - - 0x010D1B 04:8D0B: 48        PHA
 C - - - - - 0x010D1C 04:8D0C: C9 70     CMP #$70
 C - - - - - 0x010D1E 04:8D0E: D0 03     BNE bra_8D13
-C - - - - - 0x010D20 04:8D10: 20 81 90  JSR sub_9081
+C - - - - - 0x010D20 04:8D10: 20 81 90  JSR sub_9081_write_found_secret_sound
 bra_8D13:
 C - - - - - 0x010D23 04:8D13: E6 F7     INC ram_00F7
 C - - - - - 0x010D25 04:8D15: 68        PLA
@@ -2673,7 +2673,7 @@ sub_8EE0:   ; A = 24/70
 C - - - - - 0x010EF0 04:8EE0: E6 F7     INC ram_00F7
 C - - - - - 0x010EF2 04:8EE2: 20 62 E8  JSR sub_0x01E872
 C - - - - - 0x010EF5 04:8EE5: 20 5F B1  JSR sub_B15F
-C - - - - - 0x010EF8 04:8EE8: 4C 81 90  JMP loc_9081
+C - - - - - 0x010EF8 04:8EE8: 4C 81 90  JMP loc_9081_write_found_secret_sound
 
 
 
@@ -2806,7 +2806,7 @@ C - - - - - 0x010FAC 04:8F9C: 94 AC     STY ram_drop_id,X
 C - - - - - 0x010FAE 04:8F9E: 18        CLC
 C - - - - - 0x010FAF 04:8F9F: 69 06     ADC #$06
 C - - - - - 0x010FB1 04:8FA1: 95 84     STA ram_pos_Y,X
-C - - - - - 0x010FB3 04:8FA3: 20 81 90  JSR sub_9081
+C - - - - - 0x010FB3 04:8FA3: 20 81 90  JSR sub_9081_write_found_secret_sound
 C - - - - - 0x010FB6 04:8FA6: A9 40     LDA #$40
 C - - - - - 0x010FB8 04:8FA8: 85 AC     STA ram_drop_id
 C - - - - - 0x010FBA 04:8FAA: B9 73 8F  LDA tbl_8F74_direction - 1,Y
@@ -2949,9 +2949,9 @@ C - - - - - 0x011090 04:9080: 60        RTS
 
 
 
-sub_9081:
-loc_9081:
-C D 0 - - - 0x011091 04:9081: A9 04     LDA #con_sfx_2_04
+sub_9081_write_found_secret_sound:
+loc_9081_write_found_secret_sound:
+C D 0 - - - 0x011091 04:9081: A9 04     LDA #con_sfx_2_secret_found
 C - - - - - 0x011093 04:9083: 8D 02 06  STA ram_sfx_2
 C - - - - - 0x011096 04:9086: 60        RTS
 
@@ -5453,7 +5453,7 @@ sub_9F9A:
 C - - - - - 0x011FAA 04:9F9A: 85 00     STA ram_0000
 C - - - - - 0x011FAC 04:9F9C: AD 6C 06  LDA ram_066C
 C - - - - - 0x011FAF 04:9F9F: D0 DD     BNE bra_9F7E_RTS
-C - - - - - 0x011FB1 04:9FA1: A9 04     LDA #con_sfx_4_04
+C - - - - - 0x011FB1 04:9FA1: A9 04     LDA #con_sfx_4_energy_wave
 C - - - - - 0x011FB3 04:9FA3: 8D 04 06  STA ram_sfx_4
 C - - - - - 0x011FB6 04:9FA6: 4C 80 B1  JMP loc_B180
 
@@ -6204,7 +6204,7 @@ C - - - - - 0x012478 04:A468: 8D 01 06  STA ram_sfx_1
 C - - - - - 0x01247B 04:A46B: 20 54 7C  JSR sub_bat_7C54
 C - - - - - 0x01247E 04:A46E: 20 0D 80  JSR sub_800D
 bra_A471:
-C - - - - - 0x012481 04:A471: A9 01     LDA #con_sfx_4_01
+C - - - - - 0x012481 04:A471: A9 01     LDA #con_sfx_4_shield_block
 C - - - - - 0x012483 04:A473: 8D 04 06  STA ram_sfx_4
 C - - - - - 0x012486 04:A476: 60        RTS
 
@@ -7039,7 +7039,7 @@ C - - - - - 0x012986 04:A976: 85 AC     STA ram_drop_id
 C - - - - - 0x012988 04:A978: 85 28     STA ram_0028
 C - - - - - 0x01298A 04:A97A: A9 02     LDA #con_sfx_1_02
 C - - - - - 0x01298C 04:A97C: 8D 01 06  STA ram_sfx_1
-C - - - - - 0x01298F 04:A97F: A9 10     LDA #$10
+C - - - - - 0x01298F 04:A97F: A9 10     LDA #con_sfx_1_10
 C - - - - - 0x012991 04:A981: 20 7C 6D  JSR sub_bat_6D7C
 C - - - - - 0x012994 04:A984: 4C D6 FE  JMP loc_0x01FEE6
 
@@ -7065,7 +7065,7 @@ C - - - - - 0x0129B6 04:A9A6: 85 70     STA ram_pos_X
 C - - - - - 0x0129B8 04:A9A8: 85 84     STA ram_pos_Y
 C - - - - - 0x0129BA 04:A9AA: A9 02     LDA #con_dir_Left
 C - - - - - 0x0129BC 04:A9AC: 85 98     STA ram_direction
-C - - - - - 0x0129BE 04:A9AE: A9 06     LDA #con_music_06
+C - - - - - 0x0129BE 04:A9AE: A9 06     LDA #con_music_quest_complete
 C - - - - - 0x0129C0 04:A9B0: 8D 00 06  STA ram_music
 C - - - - - 0x0129C3 04:A9B3: A9 80     LDA #$80
 C - - - - - 0x0129C5 04:A9B5: 95 28     STA ram_0028,X
@@ -7533,7 +7533,7 @@ C - - - - - 0x012CAB 04:AC9B: 8D 1E 05  STA ram_051E
 C - - - - - 0x012CAE 04:AC9E: AD 1C 05  LDA ram_051C
 C - - - - - 0x012CB1 04:ACA1: C9 C0     CMP #$C0
 C - - - - - 0x012CB3 04:ACA3: D0 05     BNE bra_ACAA
-C - - - - - 0x012CB5 04:ACA5: A9 02     LDA #con_music_02
+C - - - - - 0x012CB5 04:ACA5: A9 02     LDA #con_music_boss_killed
 C - - - - - 0x012CB7 04:ACA7: 8D 00 06  STA ram_music
 bra_ACAA:
 C - - - - - 0x012CBA 04:ACAA: AD 1C 05  LDA ram_051C
@@ -7561,7 +7561,7 @@ C - - - - - 0x012CDB 04:ACCB: A5 28     LDA ram_0028
 C - - - - - 0x012CDD 04:ACCD: D0 0D     BNE bra_ACDC
 C - - - - - 0x012CDF 04:ACCF: 85 AC     STA ram_drop_id
 C - - - - - 0x012CE1 04:ACD1: 8D 05 05  STA ram_0505
-C - - - - - 0x012CE4 04:ACD4: A9 20     LDA #con_music_20
+C - - - - - 0x012CE4 04:ACD4: A9 20     LDA #con_music_final_dungeon
 C - - - - - 0x012CE6 04:ACD6: 8D 00 06  STA ram_music
 C - - - - - 0x012CE9 04:ACD9: EE 45 04  INC ram_0445
 bra_ACDC:
@@ -7657,7 +7657,7 @@ C - - - - - 0x012D7B 04:AD6B: 69 08     ADC #$08
 C - - - - - 0x012D7D 04:AD6D: 95 84     STA ram_pos_Y,X
 C - - - - - 0x012D7F 04:AD6F: 20 B1 AD  JSR sub_ADB1
 C - - - - - 0x012D82 04:AD72: 20 10 B0  JSR sub_B010
-C - - - - - 0x012D85 04:AD75: A9 02     LDA #con_music_02
+C - - - - - 0x012D85 04:AD75: A9 02     LDA #con_music_boss_killed
 C - - - - - 0x012D87 04:AD77: 8D 00 06  STA ram_music
 bra_AD7A:
 C - - - - - 0x012D8A 04:AD7A: 20 9F AF  JSR sub_AF9F
@@ -8488,7 +8488,7 @@ C - - - - - 0x013203 04:B1F3: 60        RTS
 
 
 loc_B1F4:
-C D 1 - - - 0x013204 04:B1F4: A9 08     LDA #con_sfx_2_08
+C D 1 - - - 0x013204 04:B1F4: A9 08     LDA #con_sfx_2_pick_up_item
 C - - - - - 0x013206 04:B1F6: 8D 02 06  STA ram_sfx_2
 C - - - - - 0x013209 04:B1F9: 20 0B B2  JSR sub_B20B
 C - - - - - 0x01320C 04:B1FC: A9 08     LDA #con_dir_Up

@@ -42,7 +42,7 @@ bra_BF61_loop:
 - - - - - - 0x003F7D 00:BF6D: 8D 00 A0  STA $A000
 - - - - - - 0x003F80 00:BF70: 8D 00 C0  STA $C000
 - - - - - - 0x003F83 00:BF73: 8D 00 E0  STA $E000
-- - - - - - 0x003F86 00:BF76: A9 0F     LDA #con_mirroring_horisontal
+- - - - - - 0x003F86 00:BF76: A9 0F     LDA #con_mirroring_H
 - - - - - - 0x003F88 00:BF78: 20 98 BF  JSR sub_BF98_set_control_register
 - - - - - - 0x003F8B 00:BF7B: A9 00     LDA #$00
 - - - - - - 0x003F8D 00:BF7D: 8D 00 A0  STA $A000

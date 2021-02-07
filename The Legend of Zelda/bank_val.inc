@@ -3,9 +3,9 @@
 
 
 ; MISC
-con_prg_bank                    = $00
-con_mirroring_vertical          = $0E
-con_mirroring_horisontal        = $0F
+con_prg_bank                    = $00 ; 
+con_mirroring_V                 = $0E ; vertical
+con_mirroring_H                 = $0F ; horisontal
 
 
 
@@ -46,7 +46,7 @@ con_GM_register                 = $0E ; register your name menu
 con_GM_elimination              = $0F ; eliminate slot menu
 con_GM_10                       = $10 ; 
 con_GM_11                       = $11 ; 
-con_GM_12                       = $12 ; 
+con_GM_triforce_collected       = $12 ; collect a piece of triforce
 con_GM_13                       = $13 ; 
 
 
@@ -70,21 +70,22 @@ con_dir_0D                      = $0D ; con_dir_Right + con_dir_Up + con_dir_Dow
 
 
 ; ram_music                     = $0600
-con_music_00                    = $00 ; 
-con_music_01                    = $01 ; 
-con_music_02                    = $02 ; 
-con_music_04                    = $04 ; 
-con_music_06                    = $06 ; 
-con_music_08                    = $08 ; 
-con_music_10                    = $10 ; 
-con_music_20                    = $20 ; 
-con_music_40                    = $40 ; 
+con_music_00                    = $00 ; bzk seems useless
+con_music_overworld             = $01 ; standart overworld theme
+con_music_boss_killed           = $02 ; 
+con_music_triforce              = $04 ; collect a piece of triforce
+con_music_quest_complete        = $06 ; 
+con_music_pick_up_item          = $08 ; important items like sword/bow
+con_music_credits               = $10 ; 
+con_music_final_dungeon         = $20 ; 
+con_music_dungeon               = $40 ; standart dungeon theme
 con_music_title                 = $80 ; title screen
 
 ; ram_sfx_1                     = $0601
 con_sfx_1_01                    = $01 ; 
 con_sfx_1_02                    = $02 ; 
-con_sfx_1_08                    = $08 ; 
+con_sfx_1_door                  = $04 ; open/close door in dungeons
+con_sfx_1_plr_hit               = $08 ; link is hit by something and loses hp
 con_sfx_1_10                    = $10 ; 
 con_sfx_1_20                    = $20 ; 
 con_sfx_1_40                    = $40 ; 
@@ -92,27 +93,31 @@ con_sfx_1_80                    = $80 ;
 
 ; ram_sfx_2                     = $0602
 con_sfx_2_00                    = $00 ; 
-con_sfx_2_01                    = $01 ; 
+con_sfx_2_cursor_select         = $01 ; in the menu with slots or pause menu
 con_sfx_2_02                    = $02 ; 
-con_sfx_2_04                    = $04 ; 
-con_sfx_2_08                    = $08 ; 
-con_sfx_2_10                    = $10 ; 
-con_sfx_2_20                    = $20 ; 
+con_sfx_2_secret_found          = $04 ; 
+con_sfx_2_pick_up_item          = $08 ; bomb, compass, clock, sword, etc
+con_sfx_2_flute                 = $10 ; using the flute item
+con_sfx_2_enemy_killed          = $20 ; 
 con_sfx_2_40                    = $40 ; 
-con_sfx_2_80                    = $80 ; 
+con_sfx_2_death                 = $80 ; link is dead music
 
 ; ram_sfx_3                     = $0603
 con_sfx_3_00                    = $00 ; 
-con_sfx_3_08                    = $08 ; 
+con_sfx_3_sword_swing           = $01 ; regular swing with the sword
+con_sfx_3_arrow_shoot           = $02 ; shooting with an arrow
+con_sfx_3_04                    = $04 ; 
+con_sfx_3_walking               = $08 ; walking in/out caves or something
+con_sfx_3_10                    = $10 ; 
 con_sfx_3_80                    = $80 ; 
 
 ; ram_sfx_4                     = $0604
 con_sfx_4_00                    = $00 ; 
-con_sfx_4_01                    = $01 ; 
-con_sfx_4_02                    = $02 ; 
-con_sfx_4_04                    = $04 ; 
-con_sfx_4_08                    = $08 ; 
-con_sfx_4_10                    = $10 ; 
-con_sfx_4_20                    = $20 ; 
-con_sfx_4_40                    = $40 ; 
+con_sfx_4_shield_block          = $01 ; 
+con_sfx_4_enemy_hit             = $02 ; link hits an enemy
+con_sfx_4_energy_wave           = $04 ; wave by some ghosts
+con_sfx_4_pick_up_item          = $08 ; key, small heart
+con_sfx_4_rupee                 = $10 ; rupee add/sbc, also when text is printing
+con_sfx_4_plant_bomb            = $20 ; bomb has been planted
+con_sfx_4_low_health            = $40 ; constant signals while health is low
 con_sfx_4_80                    = $80 ; 

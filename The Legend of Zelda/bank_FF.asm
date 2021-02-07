@@ -921,7 +921,7 @@ C - - - - - 0x01E930 07:E920: 20 E2 E5  JSR sub_E5E2_jump_to_pointers_after_JSR
 - D 3 - I - 0x01E951 07:E941: C3 E9     .word ofs_E9C3_0F_elimination
 - D 3 - I - 0x01E953 07:E943: 28 86     .word ofs_0x014638_10
 - D 3 - I - 0x01E955 07:E945: 2F 8A     .word ofs_0x014A3F_11
-- D 3 - I - 0x01E957 07:E947: 33 A8     .word ofs_0x016843_12
+- D 3 - I - 0x01E957 07:E947: 33 A8     .word ofs_0x016843_12_triforce_collected
 - D 3 - I - 0x01E959 07:E949: CB E9     .word ofs_E9CB_13
 
 
@@ -989,10 +989,10 @@ C - - - - - 0x01E9C1 07:E9B1: E6 F3     INC ram_00F3
 C - - - - - 0x01E9C3 07:E9B3: A5 98     LDA ram_direction
 C - - - - - 0x01E9C5 07:E9B5: C9 04     CMP #con_dir_Down
 C - - - - - 0x01E9C7 07:E9B7: 90 04     BCC bra_E9BD
-C - - - - - 0x01E9C9 07:E9B9: A9 0F     LDA #con_mirroring_horisontal
+C - - - - - 0x01E9C9 07:E9B9: A9 0F     LDA #con_mirroring_H
 C - - - - - 0x01E9CB 07:E9BB: D0 02     BNE bra_E9BF
 bra_E9BD:
-C - - - - - 0x01E9CD 07:E9BD: A9 0E     LDA #con_mirroring_vertical
+C - - - - - 0x01E9CD 07:E9BD: A9 0E     LDA #con_mirroring_V
 bra_E9BF:
 C - - - - - 0x01E9CF 07:E9BF: 20 98 FF  JSR sub_FF98_set_control_register
 bra_E9C2_RTS:
@@ -1009,7 +1009,7 @@ C - - - - - 0x01E9D8 07:E9C8: 4C 11 9E  JMP loc_0x009E21
 
 
 ofs_E9CB_13:
-C - - J - - 0x01E9DB 07:E9CB: A9 0F     LDA #con_mirroring_horisontal
+C - - J - - 0x01E9DB 07:E9CB: A9 0F     LDA #con_mirroring_H
 C - - - - - 0x01E9DD 07:E9CD: 20 98 FF  JSR sub_FF98_set_control_register
 C - - - - - 0x01E9E0 07:E9D0: A9 02     LDA #con_prg_bank + $02
 C - - - - - 0x01E9E2 07:E9D2: 20 AC FF  JSR sub_FFAC_prg_bankswitch
@@ -1156,7 +1156,7 @@ C - - - - - 0x01EA9B 07:EA8B: C9 0F     CMP #$0F
 C - - - - - 0x01EA9D 07:EA8D: D0 09     BNE bra_EA98
 C - - - - - 0x01EA9F 07:EA8F: A5 5A     LDA ram_005A
 C - - - - - 0x01EAA1 07:EA91: D0 05     BNE bra_EA98
-C - - - - - 0x01EAA3 07:EA93: A9 04     LDA #con_sfx_2_04
+C - - - - - 0x01EAA3 07:EA93: A9 04     LDA #con_sfx_2_secret_found
 C - - - - - 0x01EAA5 07:EA95: 8D 02 06  STA ram_sfx_2
 bra_EA98:
 C - - - - - 0x01EAA8 07:EA98: A2 20     LDX #$20
@@ -1280,7 +1280,7 @@ C - - - - - 0x01EB77 07:EB67: 20 1E 84  JSR sub_0x01442E
 C - - - - - 0x01EB7A 07:EB6A: A5 E3     LDA ram_00E3
 C - - - - - 0x01EB7C 07:EB6C: D0 07     BNE bra_EB75_RTS
 C - - - - - 0x01EB7E 07:EB6E: 85 F3     STA ram_00F3
-C - - - - - 0x01EB80 07:EB70: A9 0F     LDA #con_mirroring_horisontal
+C - - - - - 0x01EB80 07:EB70: A9 0F     LDA #con_mirroring_H
 C - - - - - 0x01EB82 07:EB72: 20 98 FF  JSR sub_FF98_set_control_register
 bra_EB75_RTS:
 C - - - - - 0x01EB85 07:EB75: 60        RTS
@@ -1336,7 +1336,7 @@ ofs_EBAA_03:
 C - - J - - 0x01EBBA 07:EBAA: 20 48 72  JSR sub_bat_7248
 C - - - - - 0x01EBBD 07:EBAD: A5 7C     LDA ram_007C
 C - - - - - 0x01EBBF 07:EBAF: D0 47     BNE bra_EBF8_RTS
-C - - - - - 0x01EBC1 07:EBB1: A9 0F     LDA #con_mirroring_horisontal
+C - - - - - 0x01EBC1 07:EBB1: A9 0F     LDA #con_mirroring_H
 C - - - - - 0x01EBC3 07:EBB3: 20 98 FF  JSR sub_FF98_set_control_register
 C - - - - - 0x01EBC6 07:EBB6: A5 5A     LDA ram_005A
 C - - - - - 0x01EBC8 07:EBB8: F0 03     BEQ bra_EBBD
@@ -1366,16 +1366,16 @@ C - - - - - 0x01EBED 07:EBDD: 4C C5 ED  JMP loc_EDC5
 
 
 tbl_EBE0_music_id:
-- D 3 - - - 0x01EBF0 07:EBE0: 01        .byte con_music_01   ; 00
-- D 3 - - - 0x01EBF1 07:EBE1: 40        .byte con_music_40   ; 01
-- D 3 - - - 0x01EBF2 07:EBE2: 40        .byte con_music_40   ; 02
-- D 3 - - - 0x01EBF3 07:EBE3: 40        .byte con_music_40   ; 03
-- D 3 - - - 0x01EBF4 07:EBE4: 40        .byte con_music_40   ; 04
-- D 3 - - - 0x01EBF5 07:EBE5: 40        .byte con_music_40   ; 05
-- D 3 - - - 0x01EBF6 07:EBE6: 40        .byte con_music_40   ; 06
-- D 3 - - - 0x01EBF7 07:EBE7: 40        .byte con_music_40   ; 07
-- D 3 - - - 0x01EBF8 07:EBE8: 40        .byte con_music_40   ; 08
-- D 3 - - - 0x01EBF9 07:EBE9: 20        .byte con_music_20   ; 09
+- D 3 - - - 0x01EBF0 07:EBE0: 01        .byte con_music_overworld   ; 00
+- D 3 - - - 0x01EBF1 07:EBE1: 40        .byte con_music_dungeon     ; 01
+- D 3 - - - 0x01EBF2 07:EBE2: 40        .byte con_music_dungeon     ; 02
+- D 3 - - - 0x01EBF3 07:EBE3: 40        .byte con_music_dungeon     ; 03
+- D 3 - - - 0x01EBF4 07:EBE4: 40        .byte con_music_dungeon     ; 04
+- D 3 - - - 0x01EBF5 07:EBE5: 40        .byte con_music_dungeon     ; 05
+- D 3 - - - 0x01EBF6 07:EBE6: 40        .byte con_music_dungeon     ; 06
+- D 3 - - - 0x01EBF7 07:EBE7: 40        .byte con_music_dungeon     ; 07
+- D 3 - - - 0x01EBF8 07:EBE8: 40        .byte con_music_dungeon     ; 08
+- D 3 - - - 0x01EBF9 07:EBE9: 20        .byte con_music_final_dungeon   ; 09
 
 
 
@@ -1540,7 +1540,7 @@ C - - - - - 0x01ED28 07:ED18: AD 6F 06  LDA ram_066F
 C - - - - - 0x01ED2B 07:ED1B: 29 0F     AND #$0F
 C - - - - - 0x01ED2D 07:ED1D: D0 08     BNE bra_ED27
 C - - - - - 0x01ED2F 07:ED1F: AD 04 06  LDA ram_sfx_4
-C - - - - - 0x01ED32 07:ED22: 09 40     ORA #con_sfx_4_40
+C - - - - - 0x01ED32 07:ED22: 09 40     ORA #con_sfx_4_low_health
 C - - - - - 0x01ED34 07:ED24: 8D 04 06  STA ram_sfx_4
 bra_ED27:
 C - - - - - 0x01ED37 07:ED27: A5 10     LDA ram_0010
@@ -1914,7 +1914,7 @@ tbl_EF66:
 
 
 ofs_0x01EF81_05:
-C - - J - - 0x01EF81 07:EF71: A9 10     LDA #con_sfx_2_10
+C - - J - - 0x01EF81 07:EF71: A9 10     LDA #con_sfx_2_flute
 C - - - - - 0x01EF83 07:EF73: 8D 02 06  STA ram_sfx_2
 C - - - - - 0x01EF86 07:EF76: A9 98     LDA #$98
 C - - - - - 0x01EF88 07:EF78: 85 3C     STA ram_003C
@@ -3127,7 +3127,7 @@ C - - - - - 0x01F6D6 07:F6C6: 29 77     AND #$77
 C - - - - - 0x01F6D8 07:F6C8: 95 AC     STA ram_drop_id,X
 C - - - - - 0x01F6DA 07:F6CA: E0 0D     CPX #$0D
 C - - - - - 0x01F6DC 07:F6CC: 90 1A     BCC bra_F6E8
-C - - - - - 0x01F6DE 07:F6CE: A0 02     LDY #$02
+C - - - - - 0x01F6DE 07:F6CE: A0 02     LDY #con_sfx_3_arrow_shoot
 C - - - - - 0x01F6E0 07:F6D0: 20 10 6E  JSR sub_bat_6E10
 bra_F6D3:
 loc_F6D3:
@@ -3346,7 +3346,7 @@ C - - - - - 0x01F82E 07:F81E: F0 03     BEQ bra_F823
 C - - - - - 0x01F830 07:F820: 0A        ASL
 C - - - - - 0x01F831 07:F821: B0 31     BCS bra_F854_RTS
 bra_F823:
-C - - - - - 0x01F833 07:F823: A9 04     LDA #con_sfx_4_04
+C - - - - - 0x01F833 07:F823: A9 04     LDA #con_sfx_4_energy_wave
 C - - - - - 0x01F835 07:F825: 8D 04 06  STA ram_sfx_4
 C - - - - - 0x01F838 07:F828: A9 80     LDA #$80
 bra_F82A:
@@ -3405,7 +3405,7 @@ C - - - - - 0x01F886 07:F876: AD 70 06  LDA ram_0670
 C - - - - - 0x01F889 07:F879: C9 80     CMP #$80
 C - - - - - 0x01F88B 07:F87B: 90 D7     BCC bra_F854_RTS
 bra_F87D:
-C - - - - - 0x01F88D 07:F87D: A9 01     LDA #$01
+C - - - - - 0x01F88D 07:F87D: A9 01     LDA #con_sfx_1_01
 C - - - - - 0x01F88F 07:F87F: 20 7C 6D  JSR sub_bat_6D7C
 C - - - - - 0x01F892 07:F882: A9 10     LDA #$10
 C - - - - - 0x01F894 07:F884: D0 A4     BNE bra_F82A
@@ -3534,7 +3534,7 @@ C - - - - - 0x01F959 07:F949: 29 0F     AND #$0F
 C - - - - - 0x01F95B 07:F94B: 48        PHA
 C - - - - - 0x01F95C 07:F94C: C9 03     CMP #$03
 C - - - - - 0x01F95E 07:F94E: D0 05     BNE bra_F955
-C - - - - - 0x01F960 07:F950: A9 10     LDA #$10
+C - - - - - 0x01F960 07:F950: A9 10     LDA #con_sfx_3_10
 C - - - - - 0x01F962 07:F952: 20 80 6D  JSR sub_bat_6D80
 bra_F955:
 C - - - - - 0x01F965 07:F955: 68        PLA
@@ -4439,7 +4439,7 @@ C - - - - - 0x01FEB5 07:FEA5: 60        RTS
 ofs_FEA6_5D:
 ofs_FEA6_5C:
 sub_0x01FEB6:
-C - - - - - 0x01FEB6 07:FEA6: A9 20     LDA #con_sfx_2_20
+C - - - - - 0x01FEB6 07:FEA6: A9 20     LDA #con_sfx_2_enemy_killed
 C - - - - - 0x01FEB8 07:FEA8: 8D 02 06  STA ram_sfx_2
 C - - - - - 0x01FEBB 07:FEAB: A9 10     LDA #$10
 C - - - - - 0x01FEBD 07:FEAD: 9D 05 04  STA ram_0405,X
@@ -4609,7 +4609,7 @@ C - - - - - 0x01FF7A 07:FF6A: 8D 00 80  STA $8000
 C - - - - - 0x01FF7D 07:FF6D: 8D 00 A0  STA $A000
 C - - - - - 0x01FF80 07:FF70: 8D 00 C0  STA $C000
 C - - - - - 0x01FF83 07:FF73: 8D 00 E0  STA $E000
-C - - - - - 0x01FF86 07:FF76: A9 0F     LDA #con_mirroring_horisontal
+C - - - - - 0x01FF86 07:FF76: A9 0F     LDA #con_mirroring_H
 C - - - - - 0x01FF88 07:FF78: 20 98 FF  JSR sub_FF98_set_control_register
 C - - - - - 0x01FF8B 07:FF7B: A9 00     LDA #$00
 C - - - - - 0x01FF8D 07:FF7D: 8D 00 A0  STA $A000
