@@ -185,19 +185,19 @@ bra_6CDB:
 - D 1 - I - 0x00655D 01:6CDD: 4A        LSR
 - D 1 - I - 0x00655E 01:6CDE: B0 B6     BCS bra_6C96_RTS
 - D 1 - I - 0x006560 01:6CE0: AD 7D 06  LDA ram_rupees_add
-- D 1 - I - 0x006563 01:6CE3: F0 0B     BEQ bra_6CF0
+- D 1 - I - 0x006563 01:6CE3: F0 0B     BEQ bra_6CF0_nothing_to_add
 - D 1 - I - 0x006565 01:6CE5: CE 7D 06  DEC ram_rupees_add
 - D 1 - I - 0x006568 01:6CE8: EE 6D 06  INC ram_rupees_cnt
 - D 1 - I - 0x00656B 01:6CEB: A9 10     LDA #con_sfx_4_rupee
 - D 1 - I - 0x00656D 01:6CED: 8D 04 06  STA ram_sfx_4
-bra_6CF0:
+bra_6CF0_nothing_to_add:
 - D 1 - I - 0x006570 01:6CF0: AD 7E 06  LDA ram_rupees_sbc
-- D 1 - I - 0x006573 01:6CF3: F0 0B     BEQ bra_6D00
+- D 1 - I - 0x006573 01:6CF3: F0 0B     BEQ bra_6D00_nothing_to_substract
 - D 1 - I - 0x006575 01:6CF5: CE 7E 06  DEC ram_rupees_sbc
 - D 1 - I - 0x006578 01:6CF8: CE 6D 06  DEC ram_rupees_cnt
 - D 1 - I - 0x00657B 01:6CFB: A9 10     LDA #con_sfx_4_rupee
 - D 1 - I - 0x00657D 01:6CFD: 8D 04 06  STA ram_sfx_4
-bra_6D00:
+bra_6D00_nothing_to_substract:
 sub_bat_6D00:
 - D 1 - I - 0x006580 01:6D00: A0 28     LDY #$28
 bra_6D02_loop:
