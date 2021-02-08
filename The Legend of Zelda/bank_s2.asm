@@ -12,8 +12,8 @@
 .export ofs_bat_6C90_bank_s2_asm_import
 .export sub_bat_6C90
 .export loc_bat_6C90
-.export loc_bat_6CC0
-.export sub_bat_6D00
+.export loc_bat_6CC0_count_rupees_and_update_hud_info
+.export sub_bat_6D00_update_hud_info
 .export sub_bat_6D7C
 .export sub_bat_6D80
 .export loc_bat_6D80
@@ -166,7 +166,7 @@ tbl_6C97_ppu_buffer_data:   ; 28h bytes
 
 
 
-loc_bat_6CC0:
+loc_bat_6CC0_count_rupees_and_update_hud_info:
 - D 1 - I - 0x006540 01:6CC0: A5 14     LDA ram_0014
 - D 1 - I - 0x006542 01:6CC2: D0 D2     BNE bra_6C96_RTS
 - D 1 - I - 0x006544 01:6CC4: AD 02 03  LDA ram_0302
@@ -198,7 +198,7 @@ bra_6CF0_nothing_to_add:
 - D 1 - I - 0x00657B 01:6CFB: A9 10     LDA #con_sfx_4_rupee
 - D 1 - I - 0x00657D 01:6CFD: 8D 04 06  STA ram_sfx_4
 bra_6D00_nothing_to_substract:
-sub_bat_6D00:
+sub_bat_6D00_update_hud_info:
 - D 1 - I - 0x006580 01:6D00: A0 28     LDY #$28
 bra_6D02_loop:
 - D 1 - I - 0x006582 01:6D02: B9 97 6C  LDA tbl_6C97_ppu_buffer_data,Y

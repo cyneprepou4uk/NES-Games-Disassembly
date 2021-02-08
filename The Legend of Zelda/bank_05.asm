@@ -2017,7 +2017,7 @@ C - - - - - 0x014A57 05:8A47: 20 59 B5  JSR sub_B559
 C - - - - - 0x014A5A 05:8A4A: A9 00     LDA #$00
 C - - - - - 0x014A5C 05:8A4C: 85 E0     STA ram_pause_flag
 C - - - - - 0x014A5E 05:8A4E: 8D 70 06  STA ram_0670
-C - - - - - 0x014A61 05:8A51: 20 00 6D  JSR sub_bat_6D00
+C - - - - - 0x014A61 05:8A51: 20 00 6D  JSR sub_bat_6D00_update_hud_info
 C - - - - - 0x014A64 05:8A54: E6 13     INC ram_game_mode_sub
 C - - - - - 0x014A66 05:8A56: A9 10     LDA #$10
 C - - - - - 0x014A68 05:8A58: 8D F0 04  STA ram_04F0

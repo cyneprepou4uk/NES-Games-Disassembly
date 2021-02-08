@@ -1594,7 +1594,7 @@ loc_0x01ED99:
 C D 3 - - - 0x01ED99 07:ED89: A9 05     LDA #con_prg_bank + $05
 C - - - - - 0x01ED9B 07:ED8B: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01ED9E 07:ED8E: 20 E6 B1  JSR sub_0x0171F6
-C - - - - - 0x01EDA1 07:ED91: 4C C0 6C  JMP loc_bat_6CC0
+C - - - - - 0x01EDA1 07:ED91: 4C C0 6C  JMP loc_bat_6CC0_count_rupees_and_update_hud_info
 
 
 ; bzk garbage
