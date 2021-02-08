@@ -428,13 +428,13 @@ C - - - - - 0x0002B6 00:C2A6: 20 3D CD  JSR sub_CD3D
 C - - - - - 0x0002B9 00:C2A9: 20 79 CE  JSR sub_CE79
 C - - - - - 0x0002BC 00:C2AC: A0 40     LDY #$40
 C - - - - - 0x0002BE 00:C2AE: A9 20     LDA #$20
-C - - - - - 0x0002C0 00:C2B0: 20 91 D1  JSR sub_D191
+C - - - - - 0x0002C0 00:C2B0: 20 91 D1  JSR sub_D191_set_spr_Y
 C - - - - - 0x0002C3 00:C2B3: A9 08     LDA #$08
-C - - - - - 0x0002C5 00:C2B5: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x0002C5 00:C2B5: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x0002C8 00:C2B8: A9 01     LDA #$01
-C - - - - - 0x0002CA 00:C2BA: 20 B7 D1  JSR sub_D1B7
+C - - - - - 0x0002CA 00:C2BA: 20 B7 D1  JSR sub_D1B7_set_spr_A
 C - - - - - 0x0002CD 00:C2BD: A9 44     LDA #$44
-C - - - - - 0x0002CF 00:C2BF: 20 C4 D1  JSR sub_D1C4
+C - - - - - 0x0002CF 00:C2BF: 20 C4 D1  JSR sub_D1C4_set_spr_X
 bra_C2C2:
 loc_C2C2:
 C D 2 - - - 0x0002D2 00:C2C2: A9 0C     LDA #$0C
@@ -1629,17 +1629,17 @@ C - - - - - 0x0009FE 00:C9EE: A9 02     LDA #$02
 C - - - - - 0x000A00 00:C9F0: 85 AF     STA ram_00AF
 C - - - - - 0x000A02 00:C9F2: A0 00     LDY #$00
 C - - - - - 0x000A04 00:C9F4: BD B7 CA  LDA tbl_CAB7,X
-C - - - - - 0x000A07 00:C9F7: 20 C4 D1  JSR sub_D1C4
+C - - - - - 0x000A07 00:C9F7: 20 C4 D1  JSR sub_D1C4_set_spr_X
 C - - - - - 0x000A0A 00:C9FA: BD B8 CA  LDA tbl_CAB8,X
-C - - - - - 0x000A0D 00:C9FD: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x000A0D 00:C9FD: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x000A10 00:CA00: AD 20 07  LDA ram_spr_Y + $20
 C - - - - - 0x000A13 00:CA03: C9 30     CMP #$30
 C - - - - - 0x000A15 00:CA05: B0 02     BCS bra_CA09
 C - - - - - 0x000A17 00:CA07: A9 30     LDA #$30
 bra_CA09:
-C - - - - - 0x000A19 00:CA09: 20 91 D1  JSR sub_D191
+C - - - - - 0x000A19 00:CA09: 20 91 D1  JSR sub_D191_set_spr_Y
 C - - - - - 0x000A1C 00:CA0C: BD BA CA  LDA tbl_CABA,X
-C - - - - - 0x000A1F 00:CA0F: 20 B7 D1  JSR sub_D1B7
+C - - - - - 0x000A1F 00:CA0F: 20 B7 D1  JSR sub_D1B7_set_spr_A
 bra_CA12_RTS:
 C - - - - - 0x000A22 00:CA12: 60        RTS
 bra_CA13:
@@ -1663,7 +1663,7 @@ C - - - - - 0x000A41 00:CA31: E0 00     CPX #$00
 C - - - - - 0x000A43 00:CA33: F0 30     BEQ bra_CA65
 bra_CA35:
 C - - - - - 0x000A45 00:CA35: 8A        TXA
-C - - - - - 0x000A46 00:CA36: 20 C4 D1  JSR sub_D1C4
+C - - - - - 0x000A46 00:CA36: 20 C4 D1  JSR sub_D1C4_set_spr_X
 C - - - - - 0x000A49 00:CA39: A6 AE     LDX ram_00AE
 C - - - - - 0x000A4B 00:CA3B: E0 2F     CPX #$2F
 C - - - - - 0x000A4D 00:CA3D: D0 02     BNE bra_CA41
@@ -1674,7 +1674,7 @@ C - - - - - 0x000A52 00:CA42: 86 AE     STX ram_00AE
 C - - - - - 0x000A54 00:CA44: AD 00 07  LDA ram_spr_Y
 C - - - - - 0x000A57 00:CA47: 18        CLC
 C - - - - - 0x000A58 00:CA48: 7D C0 CA  ADC tbl_CAC0,X
-C - - - - - 0x000A5B 00:CA4B: 20 91 D1  JSR sub_D191
+C - - - - - 0x000A5B 00:CA4B: 20 91 D1  JSR sub_D191_set_spr_Y
 C - - - - - 0x000A5E 00:CA4E: A6 AF     LDX ram_00AF
 C - - - - - 0x000A60 00:CA50: E0 06     CPX #$06
 C - - - - - 0x000A62 00:CA52: D0 02     BNE bra_CA56
@@ -1686,7 +1686,7 @@ C - - - - - 0x000A68 00:CA58: 86 AF     STX ram_00AF
 C - - - - - 0x000A6A 00:CA5A: AD 01 07  LDA ram_spr_T
 C - - - - - 0x000A6D 00:CA5D: 29 F8     AND #$F8
 C - - - - - 0x000A6F 00:CA5F: 05 AF     ORA ram_00AF
-C - - - - - 0x000A71 00:CA61: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x000A71 00:CA61: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x000A74 00:CA64: 60        RTS
 bra_CA65:
 - - - - - - 0x000A75 00:CA65: 20 A1 C9  JSR sub_C9A1
@@ -1699,7 +1699,7 @@ C - - - - - 0x000A80 00:CA70: 60        RTS
 bra_CA71:
 C - - - - - 0x000A81 00:CA71: A0 00     LDY #$00
 C - - - - - 0x000A83 00:CA73: A9 EC     LDA #$EC
-C - - - - - 0x000A85 00:CA75: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x000A85 00:CA75: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x000A88 00:CA78: 60        RTS
 
 
@@ -2175,10 +2175,10 @@ C - - - - - 0x000D4C 00:CD3C: 60        RTS
 sub_CD3D:
 C - - - - - 0x000D4D 00:CD3D: A8        TAY
 C - - - - - 0x000D4E 00:CD3E: A9 F8     LDA #$F8
-C - - - - - 0x000D50 00:CD40: 20 91 D1  JSR sub_D191
-C - - - - - 0x000D53 00:CD43: 20 A1 D1  JSR sub_D1A1
-C - - - - - 0x000D56 00:CD46: 20 B7 D1  JSR sub_D1B7
-C - - - - - 0x000D59 00:CD49: 20 C4 D1  JSR sub_D1C4
+C - - - - - 0x000D50 00:CD40: 20 91 D1  JSR sub_D191_set_spr_Y
+C - - - - - 0x000D53 00:CD43: 20 A1 D1  JSR sub_D1A1_set_spr_T
+C - - - - - 0x000D56 00:CD46: 20 B7 D1  JSR sub_D1B7_set_spr_A
+C - - - - - 0x000D59 00:CD49: 20 C4 D1  JSR sub_D1C4_set_spr_X
 C - - - - - 0x000D5C 00:CD4C: 60        RTS
 
 
@@ -2188,13 +2188,13 @@ C - - - - - 0x000D5D 00:CD4D: 86 40     STX ram_0040
 C - - - - - 0x000D5F 00:CD4F: 84 42     STY ram_0042
 C - - - - - 0x000D61 00:CD51: A0 80     LDY #$80
 C - - - - - 0x000D63 00:CD53: A5 42     LDA ram_0042
-C - - - - - 0x000D65 00:CD55: 20 91 D1  JSR sub_D191
+C - - - - - 0x000D65 00:CD55: 20 91 D1  JSR sub_D191_set_spr_Y
 C - - - - - 0x000D68 00:CD58: A9 E0     LDA #$E0
-C - - - - - 0x000D6A 00:CD5A: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x000D6A 00:CD5A: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x000D6D 00:CD5D: A9 21     LDA #$21
-C - - - - - 0x000D6F 00:CD5F: 20 B7 D1  JSR sub_D1B7
+C - - - - - 0x000D6F 00:CD5F: 20 B7 D1  JSR sub_D1B7_set_spr_A
 C - - - - - 0x000D72 00:CD62: A5 40     LDA ram_0040
-C - - - - - 0x000D74 00:CD64: 20 C4 D1  JSR sub_D1C4
+C - - - - - 0x000D74 00:CD64: 20 C4 D1  JSR sub_D1C4_set_spr_X
 C - - - - - 0x000D77 00:CD67: 60        RTS
 
 
@@ -2204,13 +2204,13 @@ C - - - - - 0x000D78 00:CD68: 86 40     STX ram_0040
 C - - - - - 0x000D7A 00:CD6A: 84 42     STY ram_0042
 C - - - - - 0x000D7C 00:CD6C: A0 70     LDY #$70
 C - - - - - 0x000D7E 00:CD6E: A5 42     LDA ram_0042
-C - - - - - 0x000D80 00:CD70: 20 91 D1  JSR sub_D191
+C - - - - - 0x000D80 00:CD70: 20 91 D1  JSR sub_D191_set_spr_Y
 C - - - - - 0x000D83 00:CD73: A9 E2     LDA #$E2
-C - - - - - 0x000D85 00:CD75: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x000D85 00:CD75: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x000D88 00:CD78: A9 00     LDA #$00
-C - - - - - 0x000D8A 00:CD7A: 20 B7 D1  JSR sub_D1B7
+C - - - - - 0x000D8A 00:CD7A: 20 B7 D1  JSR sub_D1B7_set_spr_A
 C - - - - - 0x000D8D 00:CD7D: A5 40     LDA ram_0040
-C - - - - - 0x000D8F 00:CD7F: 20 C4 D1  JSR sub_D1C4
+C - - - - - 0x000D8F 00:CD7F: 20 C4 D1  JSR sub_D1C4_set_spr_X
 C - - - - - 0x000D92 00:CD82: 60        RTS
 
 
@@ -2343,13 +2343,13 @@ sub_CE5F:
 C - - - - - 0x000E6F 00:CE5F: 20 79 CE  JSR sub_CE79
 C - - - - - 0x000E72 00:CE62: A0 40     LDY #$40
 C - - - - - 0x000E74 00:CE64: A9 48     LDA #$48
-C - - - - - 0x000E76 00:CE66: 20 91 D1  JSR sub_D191
+C - - - - - 0x000E76 00:CE66: 20 91 D1  JSR sub_D191_set_spr_Y
 C - - - - - 0x000E79 00:CE69: A9 08     LDA #$08
-C - - - - - 0x000E7B 00:CE6B: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x000E7B 00:CE6B: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x000E7E 00:CE6E: A9 01     LDA #$01
-C - - - - - 0x000E80 00:CE70: 20 B7 D1  JSR sub_D1B7
+C - - - - - 0x000E80 00:CE70: 20 B7 D1  JSR sub_D1B7_set_spr_A
 C - - - - - 0x000E83 00:CE73: A9 78     LDA #$78
-C - - - - - 0x000E85 00:CE75: 20 C4 D1  JSR sub_D1C4
+C - - - - - 0x000E85 00:CE75: 20 C4 D1  JSR sub_D1C4_set_spr_X
 C - - - - - 0x000E88 00:CE78: 60        RTS
 
 
@@ -2368,14 +2368,14 @@ sub_CE88:
 C - - - - - 0x000E98 00:CE88: A0 40     LDY #$40
 C - - - - - 0x000E9A 00:CE8A: A2 00     LDX #$00
 bra_CE8C_loop:
-C - - - - - 0x000E9C 00:CE8C: BD AF CE  LDA tbl_CEAF,X
-C - - - - - 0x000E9F 00:CE8F: 20 91 D1  JSR sub_D191
-C - - - - - 0x000EA2 00:CE92: BD B3 CE  LDA tbl_CEB3,X
-C - - - - - 0x000EA5 00:CE95: 20 A1 D1  JSR sub_D1A1
-C - - - - - 0x000EA8 00:CE98: BD B7 CE  LDA tbl_CEB7,X
-C - - - - - 0x000EAB 00:CE9B: 20 B7 D1  JSR sub_D1B7
-C - - - - - 0x000EAE 00:CE9E: BD BB CE  LDA tbl_CEBB,X
-C - - - - - 0x000EB1 00:CEA1: 20 C4 D1  JSR sub_D1C4
+C - - - - - 0x000E9C 00:CE8C: BD AF CE  LDA tbl_CEAF_spr_Y,X
+C - - - - - 0x000E9F 00:CE8F: 20 91 D1  JSR sub_D191_set_spr_Y
+C - - - - - 0x000EA2 00:CE92: BD B3 CE  LDA tbl_CEB3_spr_T,X
+C - - - - - 0x000EA5 00:CE95: 20 A1 D1  JSR sub_D1A1_set_spr_T
+C - - - - - 0x000EA8 00:CE98: BD B7 CE  LDA tbl_CEB7_spr_A,X
+C - - - - - 0x000EAB 00:CE9B: 20 B7 D1  JSR sub_D1B7_set_spr_A
+C - - - - - 0x000EAE 00:CE9E: BD BB CE  LDA tbl_CEBB_spr_X,X
+C - - - - - 0x000EB1 00:CEA1: 20 C4 D1  JSR sub_D1C4_set_spr_X
 C - - - - - 0x000EB4 00:CEA4: 98        TYA
 C - - - - - 0x000EB5 00:CEA5: 18        CLC
 C - - - - - 0x000EB6 00:CEA6: 69 10     ADC #$10
@@ -2387,25 +2387,25 @@ C - - - - - 0x000EBE 00:CEAE: 60        RTS
 
 
 
-tbl_CEAF:
+tbl_CEAF_spr_Y:
 - D 2 - - - 0x000EBF 00:CEAF: 34        .byte $34   ; 00
 - D 2 - - - 0x000EC0 00:CEB0: 34        .byte $34   ; 01
 - D 2 - - - 0x000EC1 00:CEB1: 44        .byte $44   ; 02
 - D 2 - - - 0x000EC2 00:CEB2: 44        .byte $44   ; 03
 
-tbl_CEB3:
+tbl_CEB3_spr_T:
 - D 2 - - - 0x000EC3 00:CEB3: 48        .byte $48   ; 00
 - D 2 - - - 0x000EC4 00:CEB4: 4A        .byte $4A   ; 01
 - D 2 - - - 0x000EC5 00:CEB5: 68        .byte $68   ; 02
 - D 2 - - - 0x000EC6 00:CEB6: 6A        .byte $6A   ; 03
 
-tbl_CEB7:
+tbl_CEB7_spr_A:
 - D 2 - - - 0x000EC7 00:CEB7: 01        .byte $01   ; 00
 - D 2 - - - 0x000EC8 00:CEB8: 01        .byte $01   ; 01
 - D 2 - - - 0x000EC9 00:CEB9: 01        .byte $01   ; 02
 - D 2 - - - 0x000ECA 00:CEBA: 01        .byte $01   ; 03
 
-tbl_CEBB:
+tbl_CEBB_spr_X:
 - D 2 - - - 0x000ECB 00:CEBB: 70        .byte $70   ; 00
 - D 2 - - - 0x000ECC 00:CEBC: 80        .byte $80   ; 01
 - D 2 - - - 0x000ECD 00:CEBD: 70        .byte $70   ; 02
@@ -2445,25 +2445,25 @@ tbl_CECC:
 
 
 
-tbl_CEDC:
+tbl_CEDC_spr_Y:
 - D 2 - - - 0x000EEC 00:CEDC: 38        .byte $38   ; 00
 - D 2 - - - 0x000EED 00:CEDD: 60        .byte $60   ; 01
 - D 2 - - - 0x000EEE 00:CEDE: 88        .byte $88   ; 02
 - D 2 - - - 0x000EEF 00:CEDF: B0        .byte $B0   ; 03
 
-tbl_CEE0:
+tbl_CEE0_spr_T:
 - D 2 - - - 0x000EF0 00:CEE0: 40        .byte $40   ; 00
 - D 2 - - - 0x000EF1 00:CEE1: 50        .byte $50   ; 01
 - D 2 - - - 0x000EF2 00:CEE2: 40        .byte $40   ; 02
 - D 2 - - - 0x000EF3 00:CEE3: 50        .byte $50   ; 03
 
-tbl_CEE4:
+tbl_CEE4_spr_A:
 - D 2 - - - 0x000EF4 00:CEE4: 03        .byte $03   ; 00
 - D 2 - - - 0x000EF5 00:CEE5: 03        .byte $03   ; 01
 - D 2 - - - 0x000EF6 00:CEE6: 03        .byte $03   ; 02
 - D 2 - - - 0x000EF7 00:CEE7: 03        .byte $03   ; 03
 
-tbl_CEE8:
+tbl_CEE8_spr_X:
 - D 2 - - - 0x000EF8 00:CEE8: 00        .byte $00   ; 00
 - D 2 - - - 0x000EF9 00:CEE9: F8        .byte $F8   ; 01
 - D 2 - - - 0x000EFA 00:CEEA: 00        .byte $00   ; 02
@@ -2530,13 +2530,13 @@ C - - - - - 0x000F4F 00:CF3F: C9 64     CMP #$64
 C - - - - - 0x000F51 00:CF41: D0 24     BNE bra_CF67_RTS
 C - - - - - 0x000F53 00:CF43: A4 45     LDY ram_0045
 C - - - - - 0x000F55 00:CF45: A6 44     LDX ram_0044
-C - - - - - 0x000F57 00:CF47: B9 DC CE  LDA tbl_CEDC,Y
+C - - - - - 0x000F57 00:CF47: B9 DC CE  LDA tbl_CEDC_spr_Y,Y
 C - - - - - 0x000F5A 00:CF4A: 9D 30 07  STA ram_spr_Y + $30,X
-C - - - - - 0x000F5D 00:CF4D: B9 E0 CE  LDA tbl_CEE0,Y
+C - - - - - 0x000F5D 00:CF4D: B9 E0 CE  LDA tbl_CEE0_spr_T,Y
 C - - - - - 0x000F60 00:CF50: 9D 31 07  STA ram_spr_T + $30,X
-C - - - - - 0x000F63 00:CF53: B9 E4 CE  LDA tbl_CEE4,Y
+C - - - - - 0x000F63 00:CF53: B9 E4 CE  LDA tbl_CEE4_spr_A,Y
 C - - - - - 0x000F66 00:CF56: 9D 32 07  STA ram_spr_A + $30,X
-C - - - - - 0x000F69 00:CF59: B9 E8 CE  LDA tbl_CEE8,Y
+C - - - - - 0x000F69 00:CF59: B9 E8 CE  LDA tbl_CEE8_spr_X,Y
 C - - - - - 0x000F6C 00:CF5C: 9D 33 07  STA ram_spr_X + $30,X
 C - - - - - 0x000F6F 00:CF5F: A9 01     LDA #$01
 C - - - - - 0x000F71 00:CF61: 85 58     STA ram_0058
@@ -2838,15 +2838,15 @@ bra_D13D:
 C - - - - - 0x00114D 00:D13D: 8A        TXA
 C - - - - - 0x00114E 00:D13E: A4 08     LDY ram_0008
 C - - - - - 0x001150 00:D140: 85 5B     STA ram_005B
-C - - - - - 0x001152 00:D142: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x001152 00:D142: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x001155 00:D145: A9 02     LDA #$02
 C - - - - - 0x001157 00:D147: 85 5C     STA ram_005C
-C - - - - - 0x001159 00:D149: 20 B7 D1  JSR sub_D1B7
+C - - - - - 0x001159 00:D149: 20 B7 D1  JSR sub_D1B7_set_spr_A
 C - - - - - 0x00115C 00:D14C: A5 5A     LDA ram_005A
 C - - - - - 0x00115E 00:D14E: 38        SEC
 C - - - - - 0x00115F 00:D14F: E9 01     SBC #$01
 C - - - - - 0x001161 00:D151: 85 5A     STA ram_005A
-C - - - - - 0x001163 00:D153: 20 91 D1  JSR sub_D191
+C - - - - - 0x001163 00:D153: 20 91 D1  JSR sub_D191_set_spr_Y
 C - - - - - 0x001166 00:D156: 60        RTS
 bra_D157:
 C - - - - - 0x001167 00:D157: A5 08     LDA ram_0008
@@ -2865,7 +2865,7 @@ C - - - - - 0x001177 00:D167: 18        CLC
 C - - - - - 0x001178 00:D168: 65 8F     ADC ram_008F
 C - - - - - 0x00117A 00:D16A: 85 5A     STA ram_005A
 C - - - - - 0x00117C 00:D16C: A4 08     LDY ram_0008
-C - - - - - 0x00117E 00:D16E: 20 91 D1  JSR sub_D191
+C - - - - - 0x00117E 00:D16E: 20 91 D1  JSR sub_D191_set_spr_Y
 C - - - - - 0x001181 00:D171: C9 A0     CMP #$A0
 C - - - - - 0x001183 00:D173: 90 1B     BCC bra_D190_RTS
 C - - - - - 0x001185 00:D175: A9 00     LDA #$00
@@ -2877,7 +2877,7 @@ C - - - - - 0x00118E 00:D17E: 38        SEC
 C - - - - - 0x00118F 00:D17F: E5 8F     SBC ram_008F
 C - - - - - 0x001191 00:D181: 85 5A     STA ram_005A
 C - - - - - 0x001193 00:D183: A4 08     LDY ram_0008
-C - - - - - 0x001195 00:D185: 20 91 D1  JSR sub_D191
+C - - - - - 0x001195 00:D185: 20 91 D1  JSR sub_D191_set_spr_Y
 C - - - - - 0x001198 00:D188: C9 60     CMP #$60
 C - - - - - 0x00119A 00:D18A: B0 04     BCS bra_D190_RTS
 C - - - - - 0x00119C 00:D18C: A9 01     LDA #$01
@@ -2888,7 +2888,7 @@ C D 2 - - - 0x0011A0 00:D190: 60        RTS
 
 
 
-sub_D191:
+sub_D191_set_spr_Y:
 C - - - - - 0x0011A1 00:D191: 99 00 07  STA ram_spr_Y,Y
 C - - - - - 0x0011A4 00:D194: 99 04 07  STA ram_spr_Y + $04,Y
 C - - - - - 0x0011A7 00:D197: 18        CLC
@@ -2899,7 +2899,7 @@ C - - - - - 0x0011B0 00:D1A0: 60        RTS
 
 
 
-sub_D1A1:
+sub_D1A1_set_spr_T:
 C - - - - - 0x0011B1 00:D1A1: 99 01 07  STA ram_spr_T,Y
 C - - - - - 0x0011B4 00:D1A4: 18        CLC
 C - - - - - 0x0011B5 00:D1A5: 69 01     ADC #$01
@@ -2914,7 +2914,7 @@ C - - - - - 0x0011C6 00:D1B6: 60        RTS
 
 
 
-sub_D1B7:
+sub_D1B7_set_spr_A:
 C - - - - - 0x0011C7 00:D1B7: 99 02 07  STA ram_spr_A,Y
 C - - - - - 0x0011CA 00:D1BA: 99 06 07  STA ram_spr_A + $04,Y
 C - - - - - 0x0011CD 00:D1BD: 99 0A 07  STA ram_spr_A + $08,Y
@@ -2923,7 +2923,7 @@ C - - - - - 0x0011D3 00:D1C3: 60        RTS
 
 
 
-sub_D1C4:
+sub_D1C4_set_spr_X:
 C - - - - - 0x0011D4 00:D1C4: 99 03 07  STA ram_spr_X,Y
 C - - - - - 0x0011D7 00:D1C7: 99 0F 07  STA ram_spr_X + $0C,Y
 C - - - - - 0x0011DA 00:D1CA: 18        CLC
@@ -2952,10 +2952,10 @@ C - - - - - 0x0011F0 00:D1E0: A5 8F     LDA ram_008F
 C - - - - - 0x0011F2 00:D1E2: F0 0E     BEQ bra_D1F2_RTS
 C - - - - - 0x0011F4 00:D1E4: A9 60     LDA #$60
 C - - - - - 0x0011F6 00:D1E6: A0 E0     LDY #$E0
-C - - - - - 0x0011F8 00:D1E8: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x0011F8 00:D1E8: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x0011FB 00:D1EB: A9 60     LDA #$60
 C - - - - - 0x0011FD 00:D1ED: A0 F0     LDY #$F0
-C - - - - - 0x0011FF 00:D1EF: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x0011FF 00:D1EF: 20 A1 D1  JSR sub_D1A1_set_spr_T
 bra_D1F2_RTS:
 C - - - - - 0x001202 00:D1F2: 60        RTS
 
@@ -3005,7 +3005,7 @@ C - - - - - 0x00123F 00:D22F: A9 00     LDA #$00
 C - - - - - 0x001241 00:D231: 91 02     STA (ram_0002),Y
 C - - - - - 0x001243 00:D233: A9 C0     LDA #$C0
 C - - - - - 0x001245 00:D235: A4 45     LDY ram_0045
-C - - - - - 0x001247 00:D237: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x001247 00:D237: 20 A1 D1  JSR sub_D1A1_set_spr_T
 bra_D23A_RTS:
 C - - - - - 0x00124A 00:D23A: 60        RTS
 
@@ -3064,7 +3064,7 @@ C - - - - - 0x00129E 00:D28E: A9 03     LDA #$03
 C - - - - - 0x0012A0 00:D290: 91 02     STA (ram_0002),Y
 C - - - - - 0x0012A2 00:D292: A9 C2     LDA #$C2
 C - - - - - 0x0012A4 00:D294: A4 45     LDY ram_0045
-C - - - - - 0x0012A6 00:D296: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x0012A6 00:D296: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x0012A9 00:D299: A9 00     LDA #$00
 C - - - - - 0x0012AB 00:D29B: 85 44     STA ram_0044
 C - - - - - 0x0012AD 00:D29D: 20 C8 F0  JSR sub_F0C8
@@ -3461,13 +3461,13 @@ C - - - - - 0x001555 00:D545: A5 8F     LDA ram_008F
 C - - - - - 0x001557 00:D547: F0 15     BEQ bra_D55E_RTS
 C - - - - - 0x001559 00:D549: A9 60     LDA #$60
 C - - - - - 0x00155B 00:D54B: A0 40     LDY #$40
-C - - - - - 0x00155D 00:D54D: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x00155D 00:D54D: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x001560 00:D550: A9 60     LDA #$60
 C - - - - - 0x001562 00:D552: A0 50     LDY #$50
-C - - - - - 0x001564 00:D554: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x001564 00:D554: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x001567 00:D557: A9 60     LDA #$60
 C - - - - - 0x001569 00:D559: A0 60     LDY #$60
-C - - - - - 0x00156B 00:D55B: 20 A1 D1  JSR sub_D1A1
+C - - - - - 0x00156B 00:D55B: 20 A1 D1  JSR sub_D1A1_set_spr_T
 bra_D55E_RTS:
 C - - - - - 0x00156E 00:D55E: 60        RTS
 
@@ -6454,7 +6454,7 @@ tbl_E8ED_empty_block_data:
 - - - - - - 0x002903 00:E8F3: 00        .byte $00   ; 
 - - - - - - 0x002904 00:E8F4: 00        .byte $00   ; 
 
-; bzk last 3 bytes of data for each block are garbage (4 bytes in 0x0028FD)
+; bzk last 3 bytes of data for each block are unused (4 bytes in 0x0028FD)
 ; because the game does a lazy (but fast) index calculation
 ; block index * 8
 
@@ -6696,7 +6696,7 @@ C - - - - - 0x002A2E 00:EA1E: E8        INX
 C - - - - - 0x002A2F 00:EA1F: D0 F7     BNE bra_EA18_loop
 C - - - - - 0x002A31 00:EA21: 60        RTS
 bra_EA22:
-; bzk garbage, never used because you can only always edit round 01h
+; bzk garbage, never used because you can only edit round 01h
 ; Full Lever Editor hidden functions
 ; https://tcrf.net/Nuts_%26_Milk
 - - - - - - 0x002A32 00:EA22: A0 01     LDY #$01
