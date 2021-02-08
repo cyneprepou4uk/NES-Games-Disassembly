@@ -198,7 +198,7 @@ bra_6CF0_nothing_to_add:
 - D 1 - I - 0x00657B 01:6CFB: A9 10     LDA #con_sfx_4_rupee
 - D 1 - I - 0x00657D 01:6CFD: 8D 04 06  STA ram_sfx_4
 bra_6D00_nothing_to_substract:
-sub_bat_6D00_update_hud_info:
+sub_bat_6D00_update_hud_info:   ; when link is dead
 - D 1 - I - 0x006580 01:6D00: A0 28     LDY #$28
 bra_6D02_loop:
 - D 1 - I - 0x006582 01:6D02: B9 97 6C  LDA tbl_6C97_ppu_buffer_data,Y
