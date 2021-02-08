@@ -234,7 +234,7 @@ loc_6D46:
 - D 1 - I - 0x0065C6 01:6D46: A2 0E     LDX #$0E
 - D 1 - I - 0x0065C8 01:6D48: AD 58 06  LDA ram_bombs_cnt
 - D 1 - I - 0x0065CB 01:6D4B: A0 27     LDY #$27
-- D 1 - I - 0x0065CD 01:6D4D: 4C 50 6D  JMP loc_6D50
+- D 1 - I - 0x0065CD 01:6D4D: 4C 50 6D  JMP loc_6D50    ; bzk optimize, no need for JMP here
 
 
 
