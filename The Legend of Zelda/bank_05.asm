@@ -16,7 +16,7 @@
 .export sub_0x0147D6
 .export sub_0x014939
 .export sub_0x014A23
-.export ofs_0x014A3F_11
+.export ofs_0x014A3F_11_death
 .export sub_0x014ABD
 .export loc_0x014B04
 .export loc_0x014B9B
@@ -2003,7 +2003,7 @@ C - - - - - 0x014A3E 05:8A2E: 60        RTS
 
 
 
-ofs_0x014A3F_11:
+ofs_0x014A3F_11_death:
 C - - J - - 0x014A3F 05:8A2F: A2 00     LDX #$00
 C - - - - - 0x014A41 05:8A31: 20 98 FE  JSR sub_0x01FEA8
 C - - - - - 0x014A44 05:8A34: 20 3C F2  JSR sub_0x01F24C

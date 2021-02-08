@@ -3010,11 +3010,11 @@ loc_bat_7B4F:
 bra_7B5B:
 - D 1 - I - 0x0073DB 01:7B5B: AC 62 06  LDY ram_0662
 - D 1 - I - 0x0073DE 01:7B5E: F0 07     BEQ bra_7B67
-bra_7B60:
+bra_7B60_loop:
 - D 1 - I - 0x0073E0 01:7B60: 46 0D     LSR ram_000D
 - D 1 - I - 0x0073E2 01:7B62: 66 0E     ROR ram_000E
 - D 1 - I - 0x0073E4 01:7B64: 88        DEY
-- D 1 - I - 0x0073E5 01:7B65: D0 F9     BNE bra_7B60
+- D 1 - I - 0x0073E5 01:7B65: D0 F9     BNE bra_7B60_loop
 bra_7B67:
 - D 1 - I - 0x0073E7 01:7B67: A9 00     LDA #$00
 - D 1 - I - 0x0073E9 01:7B69: 8D 27 06  STA ram_0627
@@ -3029,7 +3029,7 @@ bra_7B67:
 - D 1 - I - 0x0073FD 01:7B7D: AD 6F 06  LDA ram_066F
 - D 1 - I - 0x007400 01:7B80: 29 0F     AND #$0F
 - D 1 - I - 0x007402 01:7B82: C5 0D     CMP ram_000D
-- D 1 - I - 0x007404 01:7B84: 90 23     BCC bra_7BA9
+- D 1 - I - 0x007404 01:7B84: 90 23     BCC bra_7BA9_death
 - D 1 - I - 0x007406 01:7B86: AD 6F 06  LDA ram_066F
 - D 1 - I - 0x007409 01:7B89: 38        SEC
 - D 1 - I - 0x00740A 01:7B8A: E5 0D     SBC ram_000D
@@ -3042,19 +3042,19 @@ bra_7B90:
 - D 1 - I - 0x007416 01:7B96: 85 0E     STA ram_000E
 - D 1 - I - 0x007418 01:7B98: AD 6F 06  LDA ram_066F
 - D 1 - I - 0x00741B 01:7B9B: 29 0F     AND #$0F
-- D 1 - I - 0x00741D 01:7B9D: F0 0A     BEQ bra_7BA9
+- D 1 - I - 0x00741D 01:7B9D: F0 0A     BEQ bra_7BA9_death
 - D 1 - I - 0x00741F 01:7B9F: CE 6F 06  DEC ram_066F
 - D 1 - I - 0x007422 01:7BA2: A9 FF     LDA #$FF
 - D 1 - I - 0x007424 01:7BA4: 8D 70 06  STA ram_0670
 - D 1 - I - 0x007427 01:7BA7: D0 BE     BNE bra_7B67
-bra_7BA9:
+bra_7BA9_death:
 - D 1 - I - 0x007429 01:7BA9: AD 6F 06  LDA ram_066F
 - D 1 - I - 0x00742C 01:7BAC: 29 F0     AND #$F0
 - D 1 - I - 0x00742E 01:7BAE: 8D 6F 06  STA ram_066F
 - D 1 - I - 0x007431 01:7BB1: 20 A3 EB  JSR sub_0x01EBB3
 - D 1 - I - 0x007434 01:7BB4: 8D 70 06  STA ram_0670
 - D 1 - I - 0x007437 01:7BB7: 85 AC     STA ram_drop_id
-- D 1 - I - 0x007439 01:7BB9: A9 11     LDA #con_GM_11
+- D 1 - I - 0x007439 01:7BB9: A9 11     LDA #con_GM_death
 - D 1 - I - 0x00743B 01:7BBB: 85 12     STA ram_game_mode_main
 - D 1 - I - 0x00743D 01:7BBD: A9 04     LDA #con_dir_Down
 - D 1 - I - 0x00743F 01:7BBF: 85 98     STA ram_direction

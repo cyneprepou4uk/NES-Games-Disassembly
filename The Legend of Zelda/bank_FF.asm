@@ -920,7 +920,7 @@ C - - - - - 0x01E930 07:E920: 20 E2 E5  JSR sub_E5E2_jump_to_pointers_after_JSR
 - D 3 - I - 0x01E94F 07:E93F: C3 E9     .word ofs_E9C3_0E_register
 - D 3 - I - 0x01E951 07:E941: C3 E9     .word ofs_E9C3_0F_elimination
 - D 3 - I - 0x01E953 07:E943: 28 86     .word ofs_0x014638_10
-- D 3 - I - 0x01E955 07:E945: 2F 8A     .word ofs_0x014A3F_11
+- D 3 - I - 0x01E955 07:E945: 2F 8A     .word ofs_0x014A3F_11_death
 - D 3 - I - 0x01E957 07:E947: 33 A8     .word ofs_0x016843_12_triforce_collected
 - D 3 - I - 0x01E959 07:E949: CB E9     .word ofs_E9CB_13
 
@@ -1267,7 +1267,7 @@ C - - - - - 0x01EB47 07:EB37: 20 E2 E5  JSR sub_E5E2_jump_to_pointers_after_JSR
 - D 3 - I - 0x01EB66 07:EB56: F0 9E     .word ofs_0x009F00_0E_register
 - D 3 - I - 0x01EB68 07:EB58: C5 9F     .word ofs_0x009FD5_0F_elimination
 - D 3 - I - 0x01EB6A 07:EB5A: 7E EB     .word ofs_EB7E_10
-- D 3 - I - 0x01EB6C 07:EB5C: 86 EB     .word ofs_EB86_11
+- D 3 - I - 0x01EB6C 07:EB5C: 86 EB     .word ofs_EB86_11_death
 - D 3 - I - 0x01EB6E 07:EB5E: 8E EB     .word ofs_EB8E_12
 - D 3 - I - 0x01EB70 07:EB60: 10 AA     .word ofs_0x00AA20_13
 
@@ -1301,7 +1301,7 @@ C - - - - - 0x01EB93 07:EB83: 4C 8B 8B  JMP loc_0x014B9B
 
 
 
-ofs_EB86_11:
+ofs_EB86_11_death:
 C - - J - - 0x01EB96 07:EB86: A9 05     LDA #con_prg_bank + $05
 C - - - - - 0x01EB98 07:EB88: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01EB9B 07:EB8B: 4C 7D 8C  JMP loc_0x014C8D

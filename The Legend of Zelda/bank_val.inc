@@ -45,7 +45,7 @@ con_GM_0D                       = $0D ;
 con_GM_register                 = $0E ; register your name menu
 con_GM_elimination              = $0F ; eliminate slot menu
 con_GM_10                       = $10 ; 
-con_GM_11                       = $11 ; 
+con_GM_death                    = $11 ; link is dead
 con_GM_triforce_collected       = $12 ; collect a piece of triforce
 con_GM_13                       = $13 ; 
 
