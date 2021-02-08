@@ -503,7 +503,7 @@ C - - - - - 0x0003FB 00:C3EB: A9 D2     LDA #> tbl_D299_txt___battle
 C - - - - - 0x0003FD 00:C3ED: 85 14     STA ram_0014
 C - - - - - 0x0003FF 00:C3EF: A9 99     LDA #< tbl_D299_txt___battle
 C - - - - - 0x000401 00:C3F1: 85 13     STA ram_0013
-C - - - - - 0x000403 00:C3F3: 20 D2 D8  JSR sub_D8D2
+C - - - - - 0x000403 00:C3F3: 20 D2 D8  JSR sub_D8D2_draw_huge_letters
 C - - - - - 0x000406 00:C3F6: A2 3C     LDX #$3C
 C - - - - - 0x000408 00:C3F8: 86 56     STX ram_0056
 C - - - - - 0x00040A 00:C3FA: A0 78     LDY #$78
@@ -512,7 +512,7 @@ C - - - - - 0x00040E 00:C3FE: A9 D2     LDA #> tbl_D2A0_txt___city
 C - - - - - 0x000410 00:C400: 85 14     STA ram_0014
 C - - - - - 0x000412 00:C402: A9 A0     LDA #< tbl_D2A0_txt___city
 C - - - - - 0x000414 00:C404: 85 13     STA ram_0013
-C - - - - - 0x000416 00:C406: 20 D2 D8  JSR sub_D8D2
+C - - - - - 0x000416 00:C406: 20 D2 D8  JSR sub_D8D2_draw_huge_letters
 C - - - - - 0x000419 00:C409: 20 B4 D7  JSR sub_D7B4
 C - - - - - 0x00041C 00:C40C: 20 67 D4  JSR sub_D467
 C - - - - - 0x00041F 00:C40F: 20 31 C3  JSR sub_C331
@@ -566,7 +566,7 @@ C - - - - - 0x000473 00:C463: A9 D2     LDA #> tbl_D2B5_txt___hiscore
 C - - - - - 0x000475 00:C465: 85 14     STA ram_0014
 C - - - - - 0x000477 00:C467: A9 B5     LDA #< tbl_D2B5_txt___hiscore
 C - - - - - 0x000479 00:C469: 85 13     STA ram_0013
-C - - - - - 0x00047B 00:C46B: 20 D2 D8  JSR sub_D8D2
+C - - - - - 0x00047B 00:C46B: 20 D2 D8  JSR sub_D8D2_draw_huge_letters
 C - - - - - 0x00047E 00:C46E: 20 51 D9  JSR sub_D951
 C - - - - - 0x000481 00:C471: 20 B4 D7  JSR sub_D7B4
 C - - - - - 0x000484 00:C474: 20 67 D4  JSR sub_D467
@@ -772,7 +772,7 @@ C - - - - - 0x000601 00:C5F1: A9 D3     LDA #> tbl_D343_txt___game
 C - - - - - 0x000603 00:C5F3: 85 14     STA ram_0014
 C - - - - - 0x000605 00:C5F5: A9 43     LDA #< tbl_D343_txt___game
 C - - - - - 0x000607 00:C5F7: 85 13     STA ram_0013
-C - - - - - 0x000609 00:C5F9: 20 D2 D8  JSR sub_D8D2
+C - - - - - 0x000609 00:C5F9: 20 D2 D8  JSR sub_D8D2_draw_huge_letters
 C - - - - - 0x00060C 00:C5FC: A2 3C     LDX #$3C
 C - - - - - 0x00060E 00:C5FE: 86 56     STX ram_0056
 C - - - - - 0x000610 00:C600: A0 78     LDY #$78
@@ -781,7 +781,7 @@ C - - - - - 0x000614 00:C604: A9 D3     LDA #> tbl_D348_txt___over
 C - - - - - 0x000616 00:C606: 85 14     STA ram_0014
 C - - - - - 0x000618 00:C608: A9 48     LDA #< tbl_D348_txt___over
 C - - - - - 0x00061A 00:C60A: 85 13     STA ram_0013
-C - - - - - 0x00061C 00:C60C: 20 D2 D8  JSR sub_D8D2
+C - - - - - 0x00061C 00:C60C: 20 D2 D8  JSR sub_D8D2_draw_huge_letters
 C - - - - - 0x00061F 00:C60F: 20 B4 D7  JSR sub_D7B4
 C - - - - - 0x000622 00:C612: 20 67 D4  JSR sub_D467
 C - - - - - 0x000625 00:C615: A9 00     LDA #$00
@@ -2433,7 +2433,7 @@ C - - - - - 0x0011A1 00:D191: A9 D2     LDA #> tbl_D299_txt___battle
 C - - - - - 0x0011A3 00:D193: 85 14     STA ram_0014
 C - - - - - 0x0011A5 00:D195: A9 99     LDA #< tbl_D299_txt___battle
 C - - - - - 0x0011A7 00:D197: 85 13     STA ram_0013
-C - - - - - 0x0011A9 00:D199: 20 D2 D8  JSR sub_D8D2
+C - - - - - 0x0011A9 00:D199: 20 D2 D8  JSR sub_D8D2_draw_huge_letters
 C - - - - - 0x0011AC 00:D19C: A2 3C     LDX #$3C
 C - - - - - 0x0011AE 00:D19E: 86 56     STX ram_0056
 C - - - - - 0x0011B0 00:D1A0: A0 56     LDY #$56
@@ -2442,7 +2442,7 @@ C - - - - - 0x0011B4 00:D1A4: A9 D2     LDA #> tbl_D2A0_txt___city
 C - - - - - 0x0011B6 00:D1A6: 85 14     STA ram_0014
 C - - - - - 0x0011B8 00:D1A8: A9 A0     LDA #< tbl_D2A0_txt___city
 C - - - - - 0x0011BA 00:D1AA: 85 13     STA ram_0013
-C - - - - - 0x0011BC 00:D1AC: 20 D2 D8  JSR sub_D8D2
+C - - - - - 0x0011BC 00:D1AC: 20 D2 D8  JSR sub_D8D2_draw_huge_letters
 C - - - - - 0x0011BF 00:D1AF: 20 B4 D7  JSR sub_D7B4
 C - - - - - 0x0011C2 00:D1B2: 20 67 D4  JSR sub_D467
 C - - - - - 0x0011C5 00:D1B5: A9 30     LDA #$30
@@ -3704,7 +3704,7 @@ C - - - - - 0x0018E1 00:D8D1: 60        RTS
 
 
 
-sub_D8D2:
+sub_D8D2_draw_huge_letters:
 C - - - - - 0x0018E2 00:D8D2: A0 00     LDY #$00
 C - - - - - 0x0018E4 00:D8D4: 84 5F     STY ram_005F
 loc_D8D6:
@@ -3817,7 +3817,7 @@ bra_D96F:
 C - - - - - 0x00197F 00:D96F: A9 00     LDA #$00
 C - - - - - 0x001981 00:D971: 85 14     STA ram_0014
 C - - - - - 0x001983 00:D973: 84 13     STY ram_0013
-C - - - - - 0x001985 00:D975: 20 D2 D8  JSR sub_D8D2
+C - - - - - 0x001985 00:D975: 20 D2 D8  JSR sub_D8D2_draw_huge_letters
 C - - - - - 0x001988 00:D978: A9 00     LDA #$00
 C - - - - - 0x00198A 00:D97A: 85 60     STA ram_0060
 C - - - - - 0x00198C 00:D97C: 60        RTS
