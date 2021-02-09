@@ -4160,7 +4160,7 @@ C - - J - - 0x00A5EF 02:A5DF: A9 00     LDA #$00
 C - - - - - 0x00A5F1 02:A5E1: 8D 07 06  STA ram_0607
 C - - - - - 0x00A5F4 02:A5E4: A9 00     LDA #$00   ; bzk optimize, loading the same value twice
 C - - - - - 0x00A5F6 02:A5E6: 85 10     STA ram_0010
-C - - - - - 0x00A5F8 02:A5E8: 8D 56 06  STA ram_0656
+C - - - - - 0x00A5F8 02:A5E8: 8D 56 06  STA ram_item_slot_index      ; con_item_sword
 C - - - - - 0x00A5FB 02:A5EB: 20 25 E6  JSR sub_0x01E635_disable_rendering
 C - - - - - 0x00A5FE 02:A5EE: A5 16     LDA ram_cur_save_slot
 C - - - - - 0x00A600 02:A5F0: C9 03     CMP #$03
@@ -4174,15 +4174,15 @@ bra_A5FE_cursor_at_some_slot:
 C - - - - - 0x00A60E 02:A5FE: 20 25 E6  JSR sub_0x01E635_disable_rendering
 C - - - - - 0x00A611 02:A601: 20 F1 6D  JSR sub_bat_6FD1
 C - - - - - 0x00A614 02:A604: A0 27     LDY #$27
-bra_A606_loop:
+bra_A606_loop:  ; items 0657-067E
 C - - - - - 0x00A616 02:A606: B1 00     LDA (ram_0000),Y
-C - - - - - 0x00A618 02:A608: 99 57 06  STA ram_0657,Y
+C - - - - - 0x00A618 02:A608: 99 57 06  STA ram_items,Y
 C - - - - - 0x00A61B 02:A60B: 88        DEY
 C - - - - - 0x00A61C 02:A60C: 10 F8     BPL bra_A606_loop
 C - - - - - 0x00A61E 02:A60E: A9 00     LDA #$00
 C - - - - - 0x00A620 02:A610: 8D 2E 05  STA ram_052E
 C - - - - - 0x00A623 02:A613: 85 AC     STA ram_drop_id
-C - - - - - 0x00A625 02:A615: 8D 6C 06  STA ram_066C
+C - - - - - 0x00A625 02:A615: 8D 6C 06  STA ram_item_clock
 C - - - - - 0x00A628 02:A618: A8        TAY
 bra_A619_loop:
 C - - - - - 0x00A629 02:A619: B1 02     LDA (ram_0002),Y
@@ -4301,8 +4301,8 @@ C - - - - - 0x00A6CB 02:A6BB: 20 37 A4  JSR sub_A437
 C - - - - - 0x00A6CE 02:A6BE: 20 2A 9D  JSR sub_9D2A
 C - - - - - 0x00A6D1 02:A6C1: 20 F1 6D  JSR sub_bat_6FD1
 C - - - - - 0x00A6D4 02:A6C4: A0 27     LDY #$27
-bra_A6C6_loop:
-C - - - - - 0x00A6D6 02:A6C6: B9 57 06  LDA ram_0657,Y
+bra_A6C6_loop:  ; items 0657-067E
+C - - - - - 0x00A6D6 02:A6C6: B9 57 06  LDA ram_items,Y
 C - - - - - 0x00A6D9 02:A6C9: 91 C0     STA (ram_00C0),Y
 C - - - - - 0x00A6DB 02:A6CB: 88        DEY
 C - - - - - 0x00A6DC 02:A6CC: 10 F8     BPL bra_A6C6_loop
@@ -4324,7 +4324,7 @@ C - - - - - 0x00A6FC 02:A6EC: B1 0C     LDA (ram_000C),Y
 C - - - - - 0x00A6FE 02:A6EE: 91 C4     STA (ram_00C4),Y
 C - - - - - 0x00A700 02:A6F0: 88        DEY
 C - - - - - 0x00A701 02:A6F1: 10 F9     BPL bra_A6EC_loop
-C - - - - - 0x00A703 02:A6F3: AD 6F 06  LDA ram_066F
+C - - - - - 0x00A703 02:A6F3: AD 6F 06  LDA ram_item_066F
 C - - - - - 0x00A706 02:A6F6: 29 F0     AND #$F0
 C - - - - - 0x00A708 02:A6F8: 48        PHA
 C - - - - - 0x00A709 02:A6F9: 4A        LSR
@@ -4334,9 +4334,9 @@ C - - - - - 0x00A70C 02:A6FC: 4A        LSR
 C - - - - - 0x00A70D 02:A6FD: 85 0A     STA ram_000A
 C - - - - - 0x00A70F 02:A6FF: 68        PLA
 C - - - - - 0x00A710 02:A700: 05 0A     ORA ram_000A
-C - - - - - 0x00A712 02:A702: 8D 6F 06  STA ram_066F
+C - - - - - 0x00A712 02:A702: 8D 6F 06  STA ram_item_066F
 C - - - - - 0x00A715 02:A705: A9 FF     LDA #$FF
-C - - - - - 0x00A717 02:A707: 8D 70 06  STA ram_0670
+C - - - - - 0x00A717 02:A707: 8D 70 06  STA ram_item_0670
 C - - - - - 0x00A71A 02:A70A: 20 19 A8  JSR sub_A819
 C - - - - - 0x00A71D 02:A70D: A0 00     LDY #$00
 bra_A70F_loop:
@@ -4510,7 +4510,7 @@ C - - - - - 0x00A830 02:A820: B9 A4 A6  LDA tbl_A6A4,Y
 C - - - - - 0x00A833 02:A823: 85 0D     STA ram_000D
 C - - - - - 0x00A835 02:A825: A0 01     LDY #$01
 bra_A827_loop:
-C - - - - - 0x00A837 02:A827: B9 6F 06  LDA ram_066F,Y
+C - - - - - 0x00A837 02:A827: B9 6F 06  LDA ram_item_066F,Y
 C - - - - - 0x00A83A 02:A82A: 91 0C     STA (ram_000C),Y
 C - - - - - 0x00A83C 02:A82C: 88        DEY
 C - - - - - 0x00A83D 02:A82D: 10 F8     BPL bra_A827_loop
@@ -5950,15 +5950,15 @@ C - - - - - 0x00AF7F 02:AF6F: CA        DEX
 C - - - - - 0x00AF80 02:AF70: CA        DEX
 C - - - - - 0x00AF81 02:AF71: 10 E9     BPL bra_AF5C_loop
 C - - - - - 0x00AF83 02:AF73: A0 27     LDY #$27
-bra_AF75_loop:  ; clear 0657-067E
-C - - - - - 0x00AF85 02:AF75: 99 57 06  STA ram_0657,Y
+bra_AF75_loop:  ; clear items 0657-067E
+C - - - - - 0x00AF85 02:AF75: 99 57 06  STA ram_items,Y
 C - - - - - 0x00AF88 02:AF78: 88        DEY
 C - - - - - 0x00AF89 02:AF79: 10 FA     BPL bra_AF75_loop
 C - - - - - 0x00AF8B 02:AF7B: A9 22     LDA #$22
-C - - - - - 0x00AF8D 02:AF7D: 8D 6F 06  STA ram_066F
-C - - - - - 0x00AF90 02:AF80: CE 70 06  DEC ram_0670    ; FF
+C - - - - - 0x00AF8D 02:AF7D: 8D 6F 06  STA ram_item_066F
+C - - - - - 0x00AF90 02:AF80: CE 70 06  DEC ram_item_0670    ; FF
 C - - - - - 0x00AF93 02:AF83: A9 08     LDA #$08
-C - - - - - 0x00AF95 02:AF85: 8D 7C 06  STA ram_067C
+C - - - - - 0x00AF95 02:AF85: 8D 7C 06  STA ram_item_067C
 C - - - - - 0x00AF98 02:AF88: A4 16     LDY ram_cur_save_slot
 C - - - - - 0x00AF9A 02:AF8A: A9 01     LDA #$01
 C - - - - - 0x00AF9C 02:AF8C: 99 2D 06  STA ram_current_quest,Y

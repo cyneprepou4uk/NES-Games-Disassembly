@@ -121,3 +121,50 @@ con_sfx_4_rupee                 = $10 ; rupee add/sbc, also when text is printin
 con_sfx_4_plant_bomb            = $20 ; bomb has been planted
 con_sfx_4_low_health            = $40 ; constant signals while health is low
 con_sfx_4_80                    = $80 ; 
+
+
+
+; ram_item_slot_index           = $0656
+; ram_items                     = $0657
+; used as 0657,Y with Y checks
+; needed comments at 0x014E2C
+con_item_sword                  = $00 ; 0657
+con_item_bomb                   = $01 ; 0658
+con_item_arrow                  = $02 ; 0659
+con_item_bow                    = $03 ; 065A
+con_item_candle                 = $04 ; 065B
+con_item_05                     = $05 ; 065C flute
+con_item_06                     = $06 ; 065D meat
+con_item_potion                 = $07 ; 065E
+con_item_08                     = $08 ; 065F staff
+con_item_09                     = $09 ; 0660
+con_item_0A                     = $0A ; 0661
+con_item_0B                     = $0B ; 0662
+con_item_0C                     = $0C ; 0663
+con_item_0D                     = $0D ; 0664
+con_item_0E                     = $0E ; 0665
+con_item_letter                 = $0F ; 0666
+con_item_compass                = $10 ; 0667 dungeon 1-8
+con_item_map                    = $11 ; 0668 dungeon 1-8
+con_item_d9_compass             = $12 ; 0669 dungeon 9
+con_item_d9_map                 = $13 ; 066A dungeon 9
+con_item_14                     = $14 ; 066B
+con_item_15                     = $15 ; 066C
+con_item_16                     = $16 ; 066D
+con_item_17                     = $17 ; 066E
+con_item_18                     = $18 ; 066F
+con_item_19                     = $19 ; 0670
+con_item_1A                     = $1A ; 0671
+con_item_1B                     = $1B ; 0672
+con_item_1C                     = $1C ; 0673
+con_item_1D                     = $1D ; 0674
+con_item_1E                     = $1E ; 0675
+con_item_1F                     = $1F ; 0676
+con_item_20                     = $20 ; 0677
+con_item_21                     = $21 ; 0678
+con_item_22                     = $22 ; 0679
+con_item_23                     = $23 ; 067A
+con_item_24                     = $24 ; 067B
+con_item_25                     = $25 ; 067C
+con_item_rup_adc                = $26 ; 067D
+con_item_rup_sbc                = $27 ; 067E

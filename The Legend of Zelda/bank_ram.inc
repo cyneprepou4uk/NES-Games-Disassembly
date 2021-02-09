@@ -1381,47 +1381,48 @@ ram_0652                        = $0652 ; N/A
 ram_0653                        = $0653 ; N/A
 ram_0654                        = $0654 ; N/A
 ram_0655                        = $0655 ; N/A
-ram_0656                        = $0656 ; 12   
-ram_0657                        = $0657 ; 20   
-ram_bombs_cnt                   = $0658 ; 1    how many bombs do you have
-ram_0659                        = $0659 ; 2   
-ram_065A                        = $065A ; 2   
-ram_065B                        = $065B ; N/A
-ram_065C                        = $065C ; N/A
-ram_065D                        = $065D ; 1   
-ram_065E                        = $065E ; 4   
-ram_065F                        = $065F ; N/A
-ram_0660                        = $0660 ; 1   
-ram_0661                        = $0661 ; 1   
-ram_0662                        = $0662 ; N/A
-ram_0663                        = $0663 ; 1   
-ram_0664                        = $0664 ; 1   
-ram_0665                        = $0665 ; 1   
-ram_0666                        = $0666 ; 3   
-ram_0667                        = $0667 ; N/A
-ram_0668                        = $0668 ; N/A
-ram_0669                        = $0669 ; N/A
-ram_066A                        = $066A ; N/A
-ram_066B                        = $066B ; N/A
-ram_066C                        = $066C ; 23   
-ram_rupees_cnt                  = $066D ; 4    how many rupees do you have
-ram_keys_cnt                    = $066E ; 2    how many keys do you have
-ram_066F                        = $066F ; 13   
-ram_0670                        = $0670 ; 9   
-ram_0671                        = $0671 ; 3   
-ram_0672                        = $0672 ; 2   
-ram_0673                        = $0673 ; N/A
-ram_0674                        = $0674 ; 1   
-ram_0675                        = $0675 ; 3   
-ram_0676                        = $0676 ; 1   
-ram_0677                        = $0677 ; N/A
-ram_0678                        = $0678 ; N/A
-ram_0679                        = $0679 ; N/A
-ram_067A                        = $067A ; N/A
-ram_067B                        = $067B ; N/A
-ram_067C                        = $067C ; 3   
-ram_rupees_add                  = $067D ; 2    how much to add
-ram_rupees_sbc                  = $067E ; 6    how much to substract
+ram_item_slot_index             = $0656 ; 12    for 0657,X
+ram_items                       = $0657 ; 20   
+    ram_item_sword                  = $0657 ; 20   00 = none, 01 = wooden, 02 = white, 03 = magical
+    ram_item_bombs                  = $0658 ; 1    how many bombs do you have
+    ram_item_arrow                  = $0659 ; 2    00 = don't have, 01 = golden, 02 = blue
+    ram_item_bow                    = $065A ; 2    00 = don't have, 01 = have
+    ram_item_candle                 = $065B ; N/A
+    ram_065C                        = $065C ; N/A  flute
+    ram_item_meat                   = $065D ; 1   
+    ram_item_potion                 = $065E ; 4    00 = none, 01 = ???, 02 = ???, ?? = ???
+    ram_065F                        = $065F ; N/A  staff
+    ram_item_0660                   = $0660 ; 1   
+    ram_item_0661                   = $0661 ; 1   
+    ram_item_0662                   = $0662 ; N/A
+    ram_item_0663                   = $0663 ; 1   
+    ram_item_0664                   = $0664 ; 1   
+    ram_item_0665                   = $0665 ; 1   
+    ram_item_letter                 = $0666 ; 3    00 = don't have, 01 = ???, 02 = ???
+    ram_item_compass                = $0667 ; N/A  dungeon 1-8 compass
+    ram_item_map                    = $0668 ; N/A  dungeon 1-8 map
+    ram_item_d9_compass             = $0669 ; N/A  dungeon 9 compass
+    ram_item_d9_map                 = $066A ; N/A  dungeon 9 map
+    ram_066B                        = $066B ; N/A
+    ram_item_clock                  = $066C ; 23   00 = disabled, 01 = active
+    ram_item_rupees                 = $066D ; 4    how many rupees do you have
+    ram_item_keys                   = $066E ; 2    how many keys do you have
+    ram_item_066F                   = $066F ; 13   
+    ram_item_0670                   = $0670 ; 9   
+    ram_item_0671                   = $0671 ; 3   
+    ram_item_0672                   = $0672 ; 2   
+    ram_0673                        = $0673 ; N/A
+    ram_item_boomerang              = $0674 ; 1    00 = don't have, 01 = have
+    ram_item_mag_boomerang          = $0675 ; 3    00 = don't have, 01 = have
+    ram_item_mag_shield             = $0676 ; 1    00 = don't have, 01 = have
+    ram_0677                        = $0677 ; N/A
+    ram_0678                        = $0678 ; N/A
+    ram_0679                        = $0679 ; N/A
+    ram_067A                        = $067A ; N/A
+    ram_067B                        = $067B ; N/A
+    ram_item_067C                   = $067C ; 3   
+    ram_rupees_adc                  = $067D ; 2    how much to add
+    ram_rupees_sbc                  = $067E ; 6    how much to substract
 ram_067F                        = $067F ; N/A
 ram_0680                        = $0680 ; N/A
 ram_0681                        = $0681 ; N/A

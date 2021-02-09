@@ -277,7 +277,7 @@ C - - - - - 0x010081 04:8071: B5 C0     LDA ram_00C0,X
 C - - - - - 0x010083 04:8073: F0 03     BEQ bra_8078
 C - - - - - 0x010085 04:8075: 4C B8 EE  JMP loc_0x01EEC8
 bra_8078:
-C - - - - - 0x010088 04:8078: AD 6C 06  LDA ram_066C
+C - - - - - 0x010088 04:8078: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x01008B 04:807B: 15 3D     ORA ram_003D,X
 C - - - - - 0x01008D 04:807D: D0 24     BNE bra_80A3_RTS
 C - - - - - 0x01008F 04:807F: 4C 94 80  JMP loc_8094
@@ -462,7 +462,7 @@ bra_81AE:
 C - - - - - 0x0101BE 04:81AE: B4 28     LDY ram_0028,X
 C - - - - - 0x0101C0 04:81B0: D0 40     BNE bra_81F2_RTS
 C - - - - - 0x0101C2 04:81B2: 85 00     STA ram_0000
-C - - - - - 0x0101C4 04:81B4: AD 6C 06  LDA ram_066C
+C - - - - - 0x0101C4 04:81B4: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x0101C7 04:81B7: 15 3D     ORA ram_003D,X
 C - - - - - 0x0101C9 04:81B9: D0 37     BNE bra_81F2_RTS
 C - - - - - 0x0101CB 04:81BB: A5 00     LDA ram_0000
@@ -930,7 +930,7 @@ C - - - - - 0x01048E 04:847E: 4C DF 77  JMP loc_bat_77DF
 ofs_0x010491_1B:
 ofs_0x010491_1C:
 ofs_0x010491_1D:
-C - - J - - 0x010491 04:8481: AD 6C 06  LDA ram_066C
+C - - J - - 0x010491 04:8481: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x010494 04:8484: 0D 06 05  ORA ram_0506
 C - - - - - 0x010497 04:8487: D0 06     BNE bra_848F
 C - - - - - 0x010499 04:8489: 20 A1 84  JSR sub_84A1
@@ -1497,7 +1497,7 @@ C - - - - - 0x0107A7 04:8797: 60        RTS
 
 
 ofs_0x0107A8_11:
-C - - J - - 0x0107A8 04:8798: AD 6C 06  LDA ram_066C
+C - - J - - 0x0107A8 04:8798: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x0107AB 04:879B: D0 FA     BNE bra_8797_RTS
 C - - - - - 0x0107AD 04:879D: 20 6D 8A  JSR sub_8A6D
 C - - - - - 0x0107B0 04:87A0: B5 AC     LDA ram_drop_id,X
@@ -1569,7 +1569,7 @@ C - - - - - 0x01081D 04:880D: 9D 51 04  STA ram_0451,X
 C - - - - - 0x010820 04:8810: F0 1B     BEQ bra_882D
 C - - - - - 0x010822 04:8812: C0 10     CPY #$10
 C - - - - - 0x010824 04:8814: D0 13     BNE bra_8829
-C - - - - - 0x010826 04:8816: AD 6C 06  LDA ram_066C
+C - - - - - 0x010826 04:8816: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x010829 04:8819: 15 3D     ORA ram_003D,X
 C - - - - - 0x01082B 04:881B: D0 0C     BNE bra_8829
 C - - - - - 0x01082D 04:881D: A5 00     LDA ram_0000
@@ -1755,7 +1755,7 @@ C - - - - - 0x01090A 04:88FA: F0 06     BEQ bra_8902
 bra_88FF:
 - - - - - - 0x01090F 04:88FF: 4C CB 89  JMP loc_89CB
 bra_8902:
-C - - - - - 0x010912 04:8902: AD 6C 06  LDA ram_066C
+C - - - - - 0x010912 04:8902: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x010915 04:8905: 15 3D     ORA ram_003D,X
 C - - - - - 0x010917 04:8907: D0 F6     BNE bra_88FF
 C - - - - - 0x010919 04:8909: B5 AC     LDA ram_drop_id,X
@@ -2168,7 +2168,7 @@ C - - - - - 0x010BB5 04:8BA5: F0 06     BEQ bra_8BAD
 C - - - - - 0x010BB7 04:8BA7: 20 B8 EE  JSR sub_0x01EEC8
 C - - - - - 0x010BBA 04:8BAA: 4C F6 8B  JMP loc_8BF6
 bra_8BAD:
-C - - - - - 0x010BBD 04:8BAD: AD 6C 06  LDA ram_066C
+C - - - - - 0x010BBD 04:8BAD: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x010BC0 04:8BB0: 15 3D     ORA ram_003D,X
 C - - - - - 0x010BC2 04:8BB2: D0 42     BNE bra_8BF6
 C - - - - - 0x010BC4 04:8BB4: B5 98     LDA ram_direction,X
@@ -2595,7 +2595,7 @@ C - - - - - 0x010E56 04:8E46: D0 4A     BNE bra_8E92
 C - - - - - 0x010E58 04:8E48: BD 4F 03  LDA ram_034F,X
 C - - - - - 0x010E5B 04:8E4B: C9 65     CMP #$65
 C - - - - - 0x010E5D 04:8E4D: F0 05     BEQ bra_8E54
-C - - - - - 0x010E5F 04:8E4F: AD 65 06  LDA ram_0665
+C - - - - - 0x010E5F 04:8E4F: AD 65 06  LDA ram_item_0665
 C - - - - - 0x010E62 04:8E52: F0 3D     BEQ bra_8E91_RTS
 bra_8E54:
 C - - - - - 0x010E64 04:8E54: 20 5A 8F  JSR sub_8F5A
@@ -2781,7 +2781,7 @@ tbl_8F74_direction:
 
 
 ofs_0x010F86_61:
-C - - J - - 0x010F86 04:8F76: AD 60 06  LDA ram_0660
+C - - J - - 0x010F86 04:8F76: AD 60 06  LDA ram_item_0660
 C - - - - - 0x010F89 04:8F79: F0 34     BEQ bra_8FAF_RTS
 C - - - - - 0x010F8B 04:8F7B: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x010F8D 04:8F7D: D0 31     BNE bra_8FB0
@@ -2854,7 +2854,7 @@ C - - - - - 0x010FFC 04:8FEC: 4C 0C 79  JMP loc_bat_790C
 
 
 ofs_0x010FFF_22:
-- - - - - - 0x010FFF 04:8FEF: AD 6C 06  LDA ram_066C
+- - - - - - 0x010FFF 04:8FEF: AD 6C 06  LDA ram_item_clock
 - - - - - - 0x011002 04:8FF2: D0 06     BNE bra_8FFA
 - - - - - - 0x011004 04:8FF4: 20 05 90  JSR sub_9005
 - - - - - - 0x011007 04:8FF7: 20 88 B2  JSR sub_B288
@@ -2899,7 +2899,7 @@ C - - - - - 0x01103C 04:902C: 20 B8 EE  JSR sub_0x01EEC8
 bra_902F:
 C - - - - - 0x01103F 04:902F: 4C 3F 90  JMP loc_903F
 bra_9032:
-C - - - - - 0x011042 04:9032: AD 6C 06  LDA ram_066C
+C - - - - - 0x011042 04:9032: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011045 04:9035: 15 3D     ORA ram_003D,X
 C - - - - - 0x011047 04:9037: D0 F6     BNE bra_902F
 C - - - - - 0x011049 04:9039: 20 57 90  JSR sub_9057
@@ -3135,7 +3135,7 @@ C - - - - - 0x011191 04:9181: 20 B8 EE  JSR sub_0x01EEC8
 bra_9184:
 C - - - - - 0x011194 04:9184: 4C D3 91  JMP loc_91D3
 bra_9187:
-C - - - - - 0x011197 04:9187: AD 6C 06  LDA ram_066C
+C - - - - - 0x011197 04:9187: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x01119A 04:918A: 15 3D     ORA ram_003D,X
 C - - - - - 0x01119C 04:918C: D0 F6     BNE bra_9184
 C - - - - - 0x01119E 04:918E: B5 98     LDA ram_direction,X
@@ -3326,7 +3326,7 @@ ofs_0x0112E6_28:
 C - - J - - 0x0112E6 04:92D6: B5 98     LDA ram_direction,X
 C - - - - - 0x0112E8 04:92D8: 9D F8 03  STA ram_03F8,X
 C - - - - - 0x0112EB 04:92DB: 48        PHA
-C - - - - - 0x0112EC 04:92DC: AD 6C 06  LDA ram_066C
+C - - - - - 0x0112EC 04:92DC: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x0112EF 04:92DF: 15 3D     ORA ram_003D,X
 C - - - - - 0x0112F1 04:92E1: D0 21     BNE bra_9304
 C - - - - - 0x0112F3 04:92E3: 20 D0 EF  JSR sub_0x01EFE0
@@ -3441,7 +3441,7 @@ bra_93B1:
 - - - - - - 0x0113C5 04:93B5: F0 26     BEQ bra_93DD
 - - - - - - 0x0113C7 04:93B7: C0 10     CPY #$10
 - - - - - - 0x0113C9 04:93B9: D0 1E     BNE bra_93D9
-- - - - - - 0x0113CB 04:93BB: AD 6C 06  LDA ram_066C
+- - - - - - 0x0113CB 04:93BB: AD 6C 06  LDA ram_item_clock
 - - - - - - 0x0113CE 04:93BE: 15 3D     ORA ram_003D,X
 - - - - - - 0x0113D0 04:93C0: D0 17     BNE bra_93D9
 - - - - - - 0x0113D2 04:93C2: A9 57     LDA #$57
@@ -3574,7 +3574,7 @@ C - - - - - 0x0114A7 04:9497: 60        RTS
 ofs_0x0114A8_41:
 C - - J - - 0x0114A8 04:9498: B5 98     LDA ram_direction,X
 C - - - - - 0x0114AA 04:949A: F0 65     BEQ bra_9501_RTS
-C - - - - - 0x0114AC 04:949C: AD 6C 06  LDA ram_066C
+C - - - - - 0x0114AC 04:949C: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x0114AF 04:949F: D0 06     BNE bra_94A7
 C - - - - - 0x0114B1 04:94A1: 20 02 95  JSR sub_9502
 C - - - - - 0x0114B4 04:94A4: 20 88 B2  JSR sub_B288
@@ -3782,7 +3782,7 @@ C - - - - - 0x0115FD 04:95ED: 4C 10 96  JMP loc_9610
 ofs_0x011600_18:
 ofs_0x011600_38:
 ofs_0x011600_39:
-C - - J - - 0x011600 04:95F0: AD 6C 06  LDA ram_066C
+C - - J - - 0x011600 04:95F0: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011603 04:95F3: 15 3D     ORA ram_003D,X
 C - - - - - 0x011605 04:95F5: D0 1C     BNE bra_9613
 C - - - - - 0x011607 04:95F7: AC 1B 05  LDY ram_051B
@@ -4025,7 +4025,7 @@ C - - - - - 0x011793 04:9783: 4C DB 77  JMP loc_bat_77DB
 
 
 ofs_0x011796_3D:
-C - - J - - 0x011796 04:9786: AD 6C 06  LDA ram_066C
+C - - J - - 0x011796 04:9786: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011799 04:9789: D0 06     BNE bra_9791
 C - - - - - 0x01179B 04:978B: 20 A2 97  JSR sub_97A2
 C - - - - - 0x01179E 04:978E: 20 EF 97  JSR sub_97EF
@@ -4781,7 +4781,7 @@ ofs_0x011BB2_16:
 C - - J - - 0x011BB2 04:9BA2: E0 01     CPX #$01
 C - - - - - 0x011BB4 04:9BA4: D0 00     BNE bra_9BA6
 bra_9BA6:
-C - - - - - 0x011BB6 04:9BA6: AD 6C 06  LDA ram_066C
+C - - - - - 0x011BB6 04:9BA6: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011BB9 04:9BA9: 15 3D     ORA ram_003D,X
 C - - - - - 0x011BBB 04:9BAB: D0 4D     BNE bra_9BFA
 C - - - - - 0x011BBD 04:9BAD: A5 15     LDA ram_frame_cnt
@@ -5000,7 +5000,7 @@ bra_9D2A:
 - - - - - - 0x011D40 04:9D30: C9 60     CMP #$60
 - - - - - - 0x011D42 04:9D32: 90 0A     BCC bra_9D3E
 - - - - - - 0x011D44 04:9D34: A9 00     LDA #$00
-- - - - - - 0x011D46 04:9D36: 8D 76 06  STA ram_0676
+- - - - - - 0x011D46 04:9D36: 8D 76 06  STA ram_item_mag_shield
 - - - - - - 0x011D49 04:9D39: A9 C0     LDA #$C0
 - - - - - - 0x011D4B 04:9D3B: 9D 2C 04  STA ram_042C,X
 bra_9D3E:
@@ -5075,7 +5075,7 @@ tbl_9D8B_pos_Y:
 ofs_9D9B_00:
 C - - J - - 0x011DAB 04:9D9B: A9 80     LDA #$80
 C - - - - - 0x011DAD 04:9D9D: 20 6E 80  JSR sub_806E
-C - - - - - 0x011DB0 04:9DA0: AD 6C 06  LDA ram_066C
+C - - - - - 0x011DB0 04:9DA0: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011DB3 04:9DA3: 15 3D     ORA ram_003D,X
 C - - - - - 0x011DB5 04:9DA5: D0 15     BNE bra_9DBC_RTS
 C - - - - - 0x011DB7 04:9DA7: B5 98     LDA ram_direction,X
@@ -5121,7 +5121,7 @@ C - - - - - 0x011DF0 04:9DE0: 4C DB 77  JMP loc_bat_77DB
 
 
 ofs_0x011DF3_23:
-C - - J - - 0x011DF3 04:9DE3: AD 6C 06  LDA ram_066C
+C - - J - - 0x011DF3 04:9DE3: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011DF6 04:9DE6: D0 0C     BNE bra_9DF4
 C - - - - - 0x011DF8 04:9DE8: 20 F7 9D  JSR sub_9DF7
 C - - - - - 0x011DFB 04:9DEB: 20 58 9F  JSR sub_9F58
@@ -5451,7 +5451,7 @@ bra_9F98:
 C - - - - - 0x011FA8 04:9F98: A9 58     LDA #$58
 sub_9F9A:
 C - - - - - 0x011FAA 04:9F9A: 85 00     STA ram_0000
-C - - - - - 0x011FAC 04:9F9C: AD 6C 06  LDA ram_066C
+C - - - - - 0x011FAC 04:9F9C: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011FAF 04:9F9F: D0 DD     BNE bra_9F7E_RTS
 C - - - - - 0x011FB1 04:9FA1: A9 04     LDA #con_sfx_4_energy_wave
 C - - - - - 0x011FB3 04:9FA3: 8D 04 06  STA ram_sfx_4
@@ -5460,7 +5460,7 @@ C - - - - - 0x011FB6 04:9FA6: 4C 80 B1  JMP loc_B180
 
 
 ofs_0x011FB9_24:
-C - - J - - 0x011FB9 04:9FA9: AD 6C 06  LDA ram_066C
+C - - J - - 0x011FB9 04:9FA9: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011FBC 04:9FAC: F0 03     BEQ bra_9FB1
 - - - - - - 0x011FBE 04:9FAE: 4C 40 A0  JMP loc_A040
 bra_9FB1:
@@ -7108,7 +7108,7 @@ ofs_0x0129FB_3A:
 ofs_0x0129FB_3B:
 C - - J - - 0x0129FB 04:A9EB: B5 98     LDA ram_direction,X
 C - - - - - 0x0129FD 04:A9ED: F0 FB     BEQ bra_A9EA_RTS
-C - - - - - 0x0129FF 04:A9EF: AD 6C 06  LDA ram_066C
+C - - - - - 0x0129FF 04:A9EF: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x012A02 04:A9F2: D0 0E     BNE bra_AA02
 C - - - - - 0x012A04 04:A9F4: 20 24 AB  JSR sub_AB24
 C - - - - - 0x012A07 04:A9F7: E0 05     CPX #$05
@@ -7979,7 +7979,7 @@ C - - - - - 0x012F3F 04:AF2F: 20 96 7C  JSR sub_bat_7C96
 bra_AF32_RTS:
 C - - - - - 0x012F42 04:AF32: 60        RTS
 bra_AF33:
-C - - - - - 0x012F43 04:AF33: AD 59 06  LDA ram_0659
+C - - - - - 0x012F43 04:AF33: AD 59 06  LDA ram_item_arrow
 C - - - - - 0x012F46 04:AF36: C9 02     CMP #$02
 C - - - - - 0x012F48 04:AF38: D0 F8     BNE bra_AF32_RTS
 C - - - - - 0x012F4A 04:AF3A: A9 00     LDA #$00
