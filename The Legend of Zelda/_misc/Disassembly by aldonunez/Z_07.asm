@@ -564,10 +564,7 @@ ClearNameTable:
     LDX #$04                    ; Fill one nametable with the tile.
     CMP #$20
     BCS :+
-; TODO: ???
-; Unknown block
-    .BYTE $A6, $02
-
+    LDX $02                     ; TODO: ???
 :
     LDY #$00
     LDA $01
@@ -1404,9 +1401,9 @@ ClearRoomHistory:
     BPL @Loop
     RTS
 
+; Each element is the offset of a palette row starting from
+; row 4. Index by save slot number.
 SaveSlotToPaletteRowOffset:
-    ; Each element is the offset of a palette row starting from
-    ; row 4. Index by save slot number.
     .BYTE $00, $04, $08
 
 InitMode3_Sub1:
@@ -1924,7 +1921,6 @@ BeginUpdateWorld:
     BEQ @NextObject
     LDA ObjType, X
     JSR UpdateObject
-    ; TODO:
     ; If the object is autonomous and not checking collisions itself,
     ; then see about checking collisions and drawing on its behalf.
     ;
@@ -1936,11 +1932,10 @@ BeginUpdateWorld:
     LDA ObjAttr, X
     AND #$01                    ; Self checks collisions and draws
     BNE @NextObject
-    ; TODO:
-    ; If attribute = 0, then it indicates not to skip drawing. So, animate and draw.
+    ; If no attribute 1, then it indicates not to skip drawing. So, animate and draw.
     ;
     LDA ObjAttr, X
-    AND #$04                    ; TODO: Skip drawing or self-draw?
+    AND #$04                    ; Self-draw attribute
     BNE :+
     JSR AnimateAndDrawObjectWalking
 :
@@ -1960,8 +1955,7 @@ BeginUpdateWorld:
     ; Before the first frame of mode 5, the current object slot variable
     ; was set to $B in 05:87B9 (InitMode_EnterRoom).
     ;
-    ; TODO:
-    ; Can you call this the last slot for dynamically allocated objects?
+    ; This can also be called the last slot for dynamically allocated objects.
     ;
     LDA #$0B
     STA CurObjIndex
@@ -2313,9 +2307,9 @@ Obj_Shove:
     BNE ResetShoveInfo
     ; Since it's Link, shove in the opposite direction that he's facing.
     ;
-; Unknown block
-    .BYTE $A5, $98, $20, $13, $70, $85, $C0
-
+    LDA ObjDir
+    JSR GetOppositeDir
+    STA ObjShoveDir
 @Exit:
     RTS
 
@@ -2783,9 +2777,9 @@ MoveObject:
     STA ObjX, X
     RTS
 
+; Up, down, left, right.
+;
 PlayerScreenEdgeBounds:
-    ;Up, down, left, right.
-    ;
     .BYTE $3D, $DD, $00, $F0
 
 ; Params:
@@ -2857,14 +2851,14 @@ Walker_CheckTileCollision:
     ; and go try to turn to an unblocked direction in order to move.
     ;
     LDA ObjAttr, X
-    AND #$10                    ; TODO: Unknown object attribute
+    AND #$10                    ; "Reverse when blocked" object attribute
     BNE Reverse
     LDA ObjInputDir, X
     STA $0F
     JMP TryNextDir
 
 Reverse:
-    ; TODO:
+    ; UNKNOWN:
     ; This seems to be unused code triggered by object attribute $10.
     ; But $10 is not used in the object attribute array at 07:FAEF.
     ;
@@ -3085,13 +3079,13 @@ Walker_AltDir_EndLoop:
     STA $0E
     RTS
 
+; Description:
+; Search for an unblocked direction. Set facing direction to it,
+; if one is found.
+;
+; If not at a square boundary, then return.
+;
 _FaceUnblockedDir:
-    ; Description:
-    ; Search for an unblocked direction. Set facing direction to it,
-    ; if one is found.
-    ;
-    ; If not at a square boundary, then return.
-    ;
     LDA ObjGridOffset, X
     BNE L1F1FC_Exit
     ; Else reset [0E] to start the search for an unblocked direction.
@@ -3154,10 +3148,10 @@ Link_EndMoveAndDraw_Bank4:
     LDA #$04
     JMP SwitchBank
 
+; Description:
+; Draw Link without animating by keeping the animation counter fixed.
+;
 Link_EndMoveAndDraw:
-    ; Description:
-    ; Draw Link without animating by keeping the animation counter fixed.
-    ;
     LDA #$06
     STA ObjAnimCounter
     BNE Link_EndMoveAndAnimate
@@ -3405,10 +3399,10 @@ Link_EndMoveAndAnimate:
 L1F36A_Exit:
     RTS
 
+; Sprite attributes that flip each corner of the spread shot
+; differently: H, H-V, V, 0
+;
 SwordShotSpreadBaseAttr:
-    ; Sprite attributes that flip each corner of the spread shot
-    ; differently: H, H-V, V, 0
-    ;
     .BYTE $40, $C0, $80, $00
 
 UpdateSwordShotOrMagicShot:
@@ -3801,13 +3795,13 @@ BoomerangQSpeedFracsX:
 RDirectionToWeaponFrame:
     .BYTE $00, $00, $01, $01
 
+; The base sprite attribute for weapon sprites, 1 for each
+; direction in reverse direction order: up, down, left, right
+;
+; All of them are 0, except for the element for "down".
+; That one flips the vertical sword or rod image so that it points down.
+;
 RDirectionToWeaponBaseAttribute:
-    ; The base sprite attribute for weapon sprites, 1 for each
-    ; direction in reverse direction order: up, down, left, right
-    ;
-    ; All of them are 0, except for the element for "down".
-    ; That one flips the vertical sword or rod image so that it points down.
-    ;
     .BYTE $00, $80, $00, $00
 
 RDirectionToOffsetsX:
@@ -4334,23 +4328,23 @@ UpdateRodOrArrow:
     BCS UpdateSwordOrRod
     JMP UpdateArrowOrBoomerang
 
+; 4 sets of horizontal offsets, one for each state of weapon.
+; Each set contains 4 offsets in reverse direction index order:
+; up, down, left, right
+;
+; These offsets are added to player X to get weapon X.
+;
 PlayerToWeaponOffsetsX:
-    ; 4 sets of horizontal offsets, one for each state of weapon.
-    ; Each set contains 4 offsets in reverse direction index order:
-    ; up, down, left, right
-    ;
-    ; These offsets are added to player X to get weapon X.
-    ;
     .BYTE $FF, $01, $00, $F8, $FF, $01, $F5, $0B
     .BYTE $FF, $01, $F9, $07, $FF, $01, $FD, $03
 
+; 4 sets of vertical offsets, one for each state of weapon.
+; Each set contains 4 offsets in reverse direction index order:
+; up, down, left, right
+;
+; These offsets are added to player Y to get weapon Y.
+;
 PlayerToWeaponOffsetsY:
-    ; 4 sets of vertical offsets, one for each state of weapon.
-    ; Each set contains 4 offsets in reverse direction index order:
-    ; up, down, left, right
-    ;
-    ; These offsets are added to player Y to get weapon Y.
-    ;
     .BYTE $F7, $F2, $F5, $F5, $F6, $0D, $03, $03
     .BYTE $F7, $09, $03, $03, $FF, $05, $03, $03
 
@@ -5463,7 +5457,7 @@ UpdateMetaObjectEnd:
     LDA #$60
     STA ObjType, X
     STA ObjUninitialized, X     ; Flag it uninitialized.
-    LDA #$81                    ; TODO: ?
+    LDA #$81                    ; "Custom collision check and drawing" + "Reverse after hitting Link"
     STA ObjAttr, X
     JSR SetUpDroppedItem
 @Reset:
@@ -5811,10 +5805,11 @@ FindEmptyMonsterSlot:
     RTS
 
 InitTileObjOrItem:
-    ; TODO: Describe attribute $81. 1 is self-check collisions and draw.
-    ;
     ; Set object attribute to $81, and go reset metastate and timer;
     ; so that the object is ready to start updating itself.
+    ;
+    ; Obj attr $81 = "Custom check collision and drawing"
+    ;              + "Reverse after hitting Link"
     ;
     LDA #$81
     STA ObjAttr, X

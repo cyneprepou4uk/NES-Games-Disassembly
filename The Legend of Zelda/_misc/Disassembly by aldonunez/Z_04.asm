@@ -1515,9 +1515,6 @@ UpdateNormalZolOrGel:
 ZolGelDelays:
     .BYTE $18, $28, $38, $48, $08, $18, $28, $38
 
-; TODO:
-; Or call this BigShove like in Loz?
-;
 ; Returns:
 ; C: 1 if blocked
 ;
@@ -1582,14 +1579,14 @@ StatueFireballStartTimes:
 StatuePatternToBasePositionIndex:
     .BYTE $00, $04, $06
 
+; A list of coordinates divided into sets for each pattern.
+;
 StatueXs:
-    ; A list of coordinates divided into sets for each pattern.
-    ;
     .BYTE $24, $C8, $24, $C8, $64, $88, $48, $A8
 
+; A list of coordinates divided into sets for each pattern.
+;
 StatueYs:
-    ; A list of coordinates divided into sets for each pattern.
-    ;
     .BYTE $C0, $BC, $64, $5C, $94, $8C, $82, $86
 
 UpdateStatues:
@@ -2136,9 +2133,11 @@ UpdateMonsterArrow:
     ; so that it flies right away.
     ;
     LDY ObjRefId, X
-; Unknown block
-    .BYTE $B9, $4F, $03, $D0, $02, $95, $28, $4C
-    .BYTE $7B, $F5
+    LDA ObjType, Y
+    BNE :+
+    STA ObjTimer, X
+:
+    JMP DrawArrow
 
 @UpdateBase:
     JSR UpdateArrowOrBoomerang
@@ -2230,14 +2229,14 @@ JumperYOffsets:
     .BYTE $00, $00, $00, $00, $00, $20, $20, $00
     .BYTE $00, $E0, $E0
 
+; Logically, this array would be 33 bytes: 3 sets of 11 bytes,
+; 1 byte for each 8-way direction
+;
+; But because Boulder does not need the upward accelerations,
+; the elements for those are used for the starting speeds
+; at 04:88F2.
+;
 JumperYAccelerations:
-    ; Logically, this array would be 33 bytes: 3 sets of 11 bytes,
-    ; 1 byte for each 8-way direction
-    ;
-    ; But because Boulder does not need the upward accelerations,
-    ; the elements for those are used for the starting speeds
-    ; at 04:88F2.
-    ;
     .BYTE $00, $40, $40, $00, $00, $40, $40, $00
     .BYTE $00, $30, $30, $00, $80, $80, $00, $00
     .BYTE $80, $80, $00, $00, $50, $50, $60, $60
@@ -2502,7 +2501,7 @@ Jumper_AnimateAndCheckCollisions:
     ;
     LDA #$06
     JSR Anim_AdvanceAnimCounterAndSetObjPosForSpriteDescriptor
-    LDA ObjAnimFrame, X         ; TODO: The movement frame determines the frame image.
+    LDA ObjAnimFrame, X         ; The animation frame determines the frame image.
     JSR DrawObjectNotMirroredAndCheckLinkCollision
     ; If the boulder's Y < $F0, return.
     ;
@@ -3351,8 +3350,7 @@ DrawArmosAndCheckCollisions:
     ; Else check for all collisions.
     ;
     JSR CheckMonsterCollisions
-    ; TODO: Why?
-    ; If the armos has died, then set object type to $5D.
+    ; If the armos has died, then set object type to $5D (dead dummy).
     ;
     LDA ObjMetastate, X
     BEQ :+
@@ -3677,9 +3675,7 @@ UpdateRockOrGravestone:
     BEQ @ReplaceTiles
     ; Else use an armos tile ($C0). Dead code?
     ;
-; Unknown block
-    .BYTE $A9, $C0
-
+    LDA #$C0
 @ReplaceTiles:
     ; Change the tiles at the end location.
     ;
@@ -4841,9 +4837,7 @@ InitAquamentus:
     ;
     LDA #$E2
     STA ObjInvincibilityMask, X
-    ; TODO: ?
-    ;
-    LDA #$10
+    LDA #$10                    ; Play Aquamentus/Gleeok/Ganon roar.
     STA SampleRequest
     ; The monster goes at ($B0, $80).
     ;
@@ -4854,9 +4848,7 @@ InitAquamentus:
     RTS
 
 InitDigdogger1:
-    ; TODO: ?
-    ;
-    LDA #$40
+    LDA #$40                    ; Play Digdogger/Manhandla/Patra roar.
     STA SampleRequest
     ; Set a random 8-way direction.
     ;
@@ -4899,9 +4891,7 @@ InitDigdogger2:
     RTS
 
 InitDodongo:
-    ; TODO: ?
-    ;
-    LDA #$20
+    LDA #$20                    ; Play Dodongo/Gohma roar.
     STA SampleRequest
     ; Randomly face left or right.
     ;
@@ -5201,10 +5191,14 @@ L_Digdogger_AfterFlute:
     ; b. all object updates are paused until the flute timer expires
     ; c. the flute timer lasts longer
     ;
-; Unknown block
-    .BYTE $29, $07, $D0, $0A, $BD, $6B, $04, $49
-    .BYTE $01, $9D, $6B, $04, $F0, $76, $4C, $58
-    .BYTE $96
+    AND #$07
+    BNE :+
+    LDA Digdogger_ObjIsChild, X
+    EOR #$01
+    STA Digdogger_ObjIsChild, X
+    BEQ CheckBigDigdoggerCollisions
+:
+    JMP L_Digdogger_DrawAsLittle
 
 @MakeChildren:
     ; Decrement flute state to 1.
@@ -6278,15 +6272,15 @@ Dodongo_IsBombInRange:
     LDA $08
     RTS
 
+; Two sets of frame image numbers: 1 set for each animation frame.
+; Each set contains 5 frame image numbers, indexed by direction.
+;
+; But these are not typical direction indexes. Instead a
+; 5-way index is used.
+; A direction shifted right once becomes a 5-way index.
+; The fourth element is unused.
+;
 DodongoFrameImages:
-    ; Two sets of frame image numbers: 1 set for each animation frame.
-    ; Each set contains 5 frame image numbers, indexed by direction.
-    ;
-    ; But these are not typical direction indexes. Instead a
-    ; 5-way index is used.
-    ; A direction shifted right once becomes a 5-way index.
-    ; The fourth element is unused.
-    ;
     .BYTE $00, $01, $06, $FF, $08, $02, $03, $06
     .BYTE $FF, $08
 
@@ -7030,14 +7024,14 @@ DrawVire:
     ADC ObjAnimFrame, X
     JMP DrawObjectMirrored
 
+; Description:
+; Blue Wizzrobe has two states: walking and teleporting.
+; When walking, the object timer is set. When teleporting,
+; the teleporting distance remaining is set.
+;
+; If we have the magic clock, then only go draw and check collisions.
+;
 UpdateBlueWizzrobe:
-    ; Description:
-    ; Blue Wizzrobe has two states: walking and teleporting.
-    ; When walking, the object timer is set. When teleporting,
-    ; the teleporting distance remaining is set.
-    ;
-    ; If we have the magic clock, then only go draw and check collisions.
-    ;
     LDA InvClock
     BNE L_Wizzrobe_DrawAndCheckCollisions
     JSR BlueWizzrobe_WalkOrTeleport
@@ -7156,19 +7150,19 @@ BlueWizzrobe_MoveAndCheckTile:
 @Exit:
     RTS
 
+; Description:
+; Increment the turn counter. Then turn toward Link
+; when the turn counter is a multiple of $40.
+;
+; Increment the turn counter.
+;
 BlueWizzrobe_AdvanceCounterAndTurnTowardLinkIfNeeded:
-    ; Description:
-    ; Increment the turn counter. Then turn toward Link
-    ; when the turn counter is a multiple of $40.
-    ;
-    ; Increment the turn counter.
-    ;
     INC BlueWizzrobe_ObjTurnCounter, X
+; Description:
+; When the counter is a multiple of $40, switch between facing
+; toward Link horizontally or vertically. All other times, return.
+;
 L_BlueWizzrobe_TurnTowardLinkIfNeeded:
-    ; Description:
-    ; When the counter is a multiple of $40, switch between facing
-    ; toward Link horizontally or vertically. All other times, return.
-    ;
     LDA BlueWizzrobe_ObjTurnCounter, X
     AND #$3F
     BNE L11EAF_Exit
@@ -7653,9 +7647,7 @@ GleeokSegmentYs:
     .BYTE $6F, $74, $79, $7E, $83, $88
 
 InitGleeok:
-    ; TODO: ?
-    ;
-    LDA #$10
+    LDA #$10                    ; Play Aquamentus/Gleeok/Ganon roar.
     STA SampleRequest
     ; Loop 6 times to initialize each segment of 4 necks.
     ;
@@ -7692,7 +7684,7 @@ InitGleeok:
     ;
     LDA #$00
     STA ObjMetastate+1, X
-    STA ObjUninitialized+2, X   ; TODO: Is this a mistake? (+2)
+    STA ObjUninitialized+2, X   ; UNKNOWN: Is this a mistake? (+2 instead of +1)
     ; Invincible to everything but the sword.
     ;
     LDA #$FE
@@ -7753,9 +7745,7 @@ ManhandlaSegmentOffsetsY:
     .BYTE $F0, $10, $00, $00, $00
 
 InitManhandla:
-    ; TODO: ?
-    ;
-    LDA #$40
+    LDA #$40                    ; Play Digdogger/Manhandla/Patra roar.
     STA SampleRequest
     ; Choose a random 8-way direction.
     ;
@@ -7822,9 +7812,7 @@ InitManhandla:
     RTS
 
 InitGohma:
-    ; TODO: ?
-    ;
-    LDA #$20
+    LDA #$20                    ; Play Dodongo/Gohma roar.
     STA SampleRequest
     ; Invincible to everything but arrows.
     ;
@@ -8845,8 +8833,6 @@ L_Gleeok_StoreRefSegDistance:
     INX
     CPX #$03
     BCC :-
-    ; TODO:
-    ;
     ; [04D8] is the quarter horizontal distance from the head to the base.
     ; It represents the reference distance from each segment to the base.
     ; Multiples of it are used to mark the reference point of each segment.
@@ -8955,7 +8941,7 @@ Gleeok_StretchNeck:
     ;
     LDA ObjX+3, X
     SEC
-    SBC ObjX+3, X               ; TODO: seems to be a mistake. shout probably be ObjX+2,X
+    SBC ObjX+3, X               ; UNKNOWN: This should probably be ObjX+2, as with ObjY below.
     JSR Abs
     CMP GleeokPrimarySegmentLimits
     BCC :+
@@ -9053,10 +9039,12 @@ L_Gleeok_ExpandHorizontally:
 Gleeok_ContractSegmentX:
     ; Move toward the next segment horizontally.
     ;
-; Unknown block
-    .BYTE $B5, $72, $A8, $C8, $C8, $D5, $73, $90
-    .BYTE $04
-
+    LDA ObjX+2, X
+    TAY
+    INY
+    INY
+    CMP ObjX+3, X
+    BCC L_Gleeok_SetSegmentX
 L_Gleeok_DecSegmentX:
     DEY
     DEY
@@ -9070,9 +9058,9 @@ Gleeok_ContractSegment:
     ; Randomly, 50% of the time, go move toward the next segment horizontally.
     ; Else go move vertically.
     ;
-; Unknown block
-    .BYTE $A5, $18, $10, $EC, $30, $D2
-
+    LDA Random
+    BPL Gleeok_ContractSegmentX
+    BMI Gleeok_ContractSegmentY
 ; Description:
 ; This block applies to heads and the bottom segment of a neck.
 ; These are drawn with sprites that come first in order, so that
@@ -9539,7 +9527,6 @@ InitLamnola:
     STA ObjType+1, Y
     DEY
     BPL :-
-    ; TODO:
     ; Only the heads in slots 5 and $A have a direction and [0380][X] set.
     ;
     LDA #$08
@@ -9581,9 +9568,7 @@ InitPatra:
     STA Flyer_ObjSpeed, X
     LDA #$40
     STA FlyingMaxSpeedFrac
-    ; TODO: set [0601] to $40
-    ;
-    STA SampleRequest
+    STA SampleRequest           ; Play Digdogger/Manhandla/Patra roar.
     ; Set object timer to $FF. When it runs out, the maneuver will be switched.
     ;
     LDA #$FF
@@ -9625,7 +9610,7 @@ InitGanon:
     ;
     LDA #$02
     STA SampleRequest
-    LDA #$10
+    LDA #$10                    ; Play Aquamentus/Gleeok/Ganon roar.
     JSR PlaySample
     JMP ResetObjMetastateAndTimer
 
@@ -10073,10 +10058,10 @@ Lamnola_Move:
 @Exit:
     RTS
 
+; TODO:
+; Was this intended to be an array of two elements?
+;
 PatraManeuverTime:
-    ; TODO:
-    ; Was this intended to be an array of two elements?
-    ;
     .BYTE $FF
 
 ; Unknown block
@@ -10341,20 +10326,18 @@ UpdateGanon_JumpTable:
     .ADDR Ganon_ScenePhase1
     .ADDR Ganon_ScenePhase2
 
+; Description:
+; Lift up the Triforce of Courage while the room is dark.
+;
+; Lift the Triforce of Courage -- represented with a triforce piece.
+;
 Ganon_ScenePhase0:
-    ; Description:
-    ; Lift up the Triforce of Courage while the room is dark.
-    ;
-    ; Lift the Triforce of Courage -- represented with a triforce piece.
-    ;
     LDA #$1B
     STA ItemTypeToLift
     ; If Link's timer has not expired, then go do nothing until the last frame.
     ;
     LDA ObjTimer
-    ; TODO: Unnamed label is too far
-    ;
-    BNE :+
+    BNE @CheckTimeToShout
     ; Once the timer expires, it's time to brighten the room.
     ;
     ; Save the current object slot.
@@ -10391,10 +10374,9 @@ Ganon_ScenePhase0:
     ;
     INC Ganon_ScenePhase
     BNE Ganon_DrawBodyFrame0
-:
-    ; TODO: Find out the sample. Add it to comment below, and to label.
-    ;
-    ; If timer = 1, then
+@CheckTimeToShout:
+    ; If timer = 1, then play Boss hit/hurt sound effect.
+    ; In this case, I think it means Ganon is shouting.
     ;
     CMP #$01
     BNE :+
@@ -10403,12 +10385,12 @@ Ganon_ScenePhase0:
 :
     RTS
 
+; Description:
+; Lift up the Triforce of Courage while the room is light.
+;
+; Lift the Triforce of Courage -- represented with a triforce piece.
+;
 Ganon_ScenePhase1:
-    ; Description:
-    ; Lift up the Triforce of Courage while the room is light.
-    ;
-    ; Lift the Triforce of Courage -- represented with a triforce piece.
-    ;
     LDA #$1B
     STA ItemTypeToLift
     ; If Link's timer hasn't expired, then go draw Ganon.
@@ -10434,12 +10416,12 @@ Ganon_DrawBodyFrame0:
     STA Ganon_ObjAnimationFrame, X
     JMP Ganon_DrawBody
 
+; Description:
+; Fighting Ganon.
+;
+; If Ganon is dying, go handle it.
+;
 Ganon_ScenePhase2:
-    ; Description:
-    ; Fighting Ganon.
-    ;
-    ; If Ganon is dying, go handle it.
-    ;
     LDA Ganon_ObjPhase, X
     BNE Ganon_Dying
     JSR Ganon_CheckCollisions
@@ -10462,10 +10444,10 @@ Ganon_ScenePhase2:
     ;
     CMP #$01
     BNE L_Ganon_DrawBody
+; Description:
+; Put Ganon at Y=$A0, and a random X of $30 or $B0.
+;
 Ganon_RandomizeLocation:
-    ; Description:
-    ; Put Ganon at Y=$A0, and a random X of $30 or $B0.
-    ;
     LDA #$A0
     STA ObjY, X
     LDA FrameCounter
@@ -10884,7 +10866,7 @@ Ganon_CheckCollisions:
     STY $00
     JSR CheckLinkCollisionPreinit
 @SkipLinkCollision:
-    ; If Ganon is not in state 0, then he's red.
+    ; If Ganon is not in state 0, then he's brown.
     ; Go check collision with an arrow.
     ;
     LDA ObjState, X
@@ -10896,13 +10878,11 @@ Ganon_CheckCollisions:
     BNE @Exit
     LDY #$0D                    ; Sword slot
     JSR CheckMonsterSwordCollision
-    ; TODO: is red the right description of this color and state?
-    ;
-    ; If Ganon has died, according to the usual collision check rules
+    ; If Ganon has died according to the usual collision check rules
     ; (HP = 0), then:
     ; 1. Restore HP to the initial value $F0
     ; 2. Set state to $FF to note that Ganon is vulnerable to silver arrows
-    ; 3. Change palette row 7 to make Ganon red
+    ; 3. Change palette row 7 to make Ganon brown
     ;
     LDA ObjMetastate, X
     BEQ @CheckHarmed
@@ -11080,9 +11060,9 @@ PlayBossDeathCry:
     STA EffectRequest
     RTS
 
+; Types of objects that do not drop items.
+;
 NoDropMonsterTypes:
-    ; Types of objects that do not drop items.
-    ;
     .BYTE $5D, $14, $15, $1B, $1C, $1D, $17
 
 DropItemMonsterTypes0:
@@ -11096,24 +11076,24 @@ DropItemMonsterTypes2:
     .BYTE $09, $0A, $03, $01, $12, $06, $0B, $24
     .BYTE $30
 
+; Multiples of $A to index the base of each row of items in DropItemTable.
+;
 DropItemSetBaseOffsets:
-    ; Multiples of $A to index the base of each row of items in DropItemTable.
-    ;
     .BYTE $00, $0A, $14, $1E
 
+; Top drop an item, a random value must be less than the
+; element for the monster group.
+;
 DropItemRates:
-    ; Top drop an item, a random value must be less than the
-    ; element for the monster group.
-    ;
     .BYTE $50, $98, $68, $68
 
+; ID's for items dropped by monsters.
+; WorldKillCycle addresses the column.
+;
+; Monsters are arranged in groups that determine the row.
+; There are four rows.
+;
 DropItemTable:
-    ; ID's for items dropped by monsters.
-    ; WorldKillCycle addresses the column.
-    ;
-    ; Monsters are arranged in groups that determine the row.
-    ; There are four rows.
-    ;
     .BYTE $22, $18, $22, $18, $23, $18, $22, $22
     .BYTE $18, $18, $0F, $18, $22, $18, $0F, $22
     .BYTE $21, $18, $18, $18, $22, $00, $18, $21
@@ -11191,7 +11171,6 @@ SetUpDroppedItem:
     TAY
     LDA DropItemTable, Y
     STA $00                     ; [00] Dropped item ID
-    ; TODO: Is this really what [0627] represents?
     ; If the global kill count = $10, set the dropped item to a fairy.
     ;
     LDA #$23
@@ -11718,14 +11697,14 @@ DeferBounce:
 L13307_Exit:
     RTS
 
+; Description:
+; Turn towards the player a number of times.
+; Then go to state 1. After each turn delay $10 frames.
+;
+;
+; Delay until timer = 0.
+;
 Flyer_Chase:
-    ; Description:
-    ; Turn towards the player a number of times.
-    ; Then go to state 1. After each turn delay $10 frames.
-    ;
-    ;
-    ; Delay until timer = 0.
-    ;
     LDA ObjTimer, X
     BNE L13307_Exit             ; If timer is not expired, then return.
     ; Decrease the turn counter.
@@ -11855,14 +11834,14 @@ TestDir:
     CMP #$07
     BCS NextLoopRight
     BCC SetDir8ForIndex
+; Description:
+; Delay and turn randomly a number of times.
+; The go to state 1. After each turn, delay $10 frames.
+;
+;
+; Delay until timer = 0.
+;
 Flyer_Wander:
-    ; Description:
-    ; Delay and turn randomly a number of times.
-    ; The go to state 1. After each turn, delay $10 frames.
-    ;
-    ;
-    ; Delay until timer = 0.
-    ;
     LDA ObjTimer, X
     BNE L133AC_Exit
     ; Decrease the turn counter.

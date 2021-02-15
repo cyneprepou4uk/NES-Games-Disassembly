@@ -45,16 +45,7 @@
 .EXPORT UpdateWhirlwind_Full
 
 PersonTextAddrs:
-    .BYTE $4C, $80, $77, $80, $A1, $80, $B9, $80
-    .BYTE $E3, $80, $05, $81, $2D, $81, $52, $81
-    .BYTE $79, $81, $97, $81, $AE, $81, $D2, $81
-    .BYTE $F8, $81, $2C, $82, $41, $82, $58, $82
-    .BYTE $7D, $82, $94, $82, $B8, $82, $CD, $82
-    .BYTE $F5, $82, $0D, $83, $4D, $83, $70, $83
-    .BYTE $9C, $83, $C6, $83, $F0, $83, $1C, $84
-    .BYTE $3F, $84, $6D, $84, $90, $84, $B8, $84
-    .BYTE $E3, $84, $0E, $85, $26, $85, $53, $85
-    .BYTE $68, $85, $7E, $85
+.INCLUDE "dat/PersonTextAddrs.inc"
 
 PersonText:
 .INCBIN "dat/PersonText.dat"
@@ -816,8 +807,7 @@ UpdateCavePersonState_TalkOrShopOrDoorCharge:
     ;
     BEQ @Take
     BCC @Take
-; Unknown block
-    .BYTE $60
+    RTS
 
 @Take:
     JSR SetRoomFlagUWItemState
@@ -1945,8 +1935,8 @@ SummonWhirlwind:
     ;
     LSR $00
     BCC @LoopTriforcePiece
-; Unknown block
-    .BYTE $66, $00, $4C, $BC, $A0
+    ROR $00
+    JMP @LoopTriforcePiece
 
 @MakeWhirlwind:
     ; If already summoned or in the middle of teleporting, then
@@ -2129,18 +2119,26 @@ TakePowerTriforce:
     STA ObjState
     RTS
 
-_UnknownPaletteTransferRecord:
+PaletteRow7TransferRecord:
     .BYTE $3F, $1C, $04, $0F, $07, $17, $27, $FF
 
-_UnknownColorTriples:
+; First: Ganon brown state
+; Second: Ganon blue state
+; Third: Ashes and Triforce
+;
+GanonColorTriples:
     .BYTE $07, $17, $30, $16, $2C, $3C, $27, $06
     .BYTE $16
 
-; Unknown block
-    .BYTE $A0, $02, $D0, $06, $A0, $05, $D0, $02
-
+ReplaceGanonBrownPaletteRow:
+    LDY #$02
+    BNE :+
+ReplaceGanonBluePaletteRow:
+    LDY #$05
+    BNE :+
 ReplaceAshesPaletteRow:
     LDY #$08
+:
     TYA
     PHA
     ; Get the dynamic transfer buf length, so we write from were we last wrote.
@@ -2150,7 +2148,7 @@ ReplaceAshesPaletteRow:
     ;
     LDY #$00
 @CopyPaletteRecord:
-    LDA _UnknownPaletteTransferRecord, Y
+    LDA PaletteRow7TransferRecord, Y
     STA DynTileBuf, X
     INX
     INY
@@ -2161,18 +2159,17 @@ ReplaceAshesPaletteRow:
     STX DynTileBufLen
     PLA
     TAY
-    ; TODO:
     ; Replace the last 3 color bytes (brown shades) that we just
-    ; copied to the dynamic transfer buf with ... (are they colors
-    ; for the pile of ashes?)
+    ; copied to the dynamic transfer buf with the colors of the
+    ; pile of ashes.
     ;
     ; Note that here the dynamic transfer buf is being written with
     ; absolute offsets, instead of relative ones used in copying
-    ; the base palette row transfer record.
+    ; the base/template palette row transfer record.
     ;
     LDX #$02
 @ReplaceColors:
-    LDA _UnknownColorTriples, Y
+    LDA GanonColorTriples, Y
     STA DynTileBuf+4, X
     DEY
     DEX
@@ -2292,7 +2289,9 @@ CheckPassiveTileObjects:
     CLC
     ADC LinkToSquareOffsetsY, Y
     STA ObjY, X
-    ; TODO: ?
+    ; Return, if the empty slot we found indicates it was initialized.
+    ; I don't know how it would get in this state, because when
+    ; a monster is destroyed, type is assigned 0, and it's uninitialized.
     ;
     LDA ObjUninitialized, X
     BEQ @ExitX0
@@ -2331,8 +2330,6 @@ CheckPassiveTileObjects:
     LDA #$22                    ; Flying Ghini
 :
     STA ObjType, X
-    ; TODO: ?
-    ;
     JSR ResetObjMetastate
     LDA #$3F                    ; Fade in for $3F frames.
     STA ObjTimer, X
@@ -2875,7 +2872,7 @@ FormatStatusBarText:
     STA $01
     LDA #$0A                    ; Put an "A" in formatting buffer.
     JSR FormatCharDoublet
-    LDX #$08                    ; TODO: ?
+    LDX #$08                    ; UNKNOWN: Why? X is overwritten in the procedure.
     JSR CopyTripletToTextBuf
     JMP @FormatBombCount        ; Have the magic key. Skip formatting key count.
 
@@ -3050,9 +3047,10 @@ FetchFileAAddressSet:
     BPL :-
     ; Put the address of the profile's whole
     ; WorldFlags block in [$0E:0F].
-    LDA #$7F
+    ;
+    LDA #<WorldFlags
     STA $0E
-    LDA #$06
+    LDA #>WorldFlags
     STA $0F
     RTS
 
@@ -3295,7 +3293,7 @@ ShowLinkSpritesBehindHorizontalDoors:
     INY
     CPY #$00
     BNE :+
-    LDY #$20                    ; TODO: Is this ever run?
+    LDY #$20                    ; UNKNOWN: This looks unreachable.
 :
     DEX
     BPL @LoopSprite
@@ -3606,12 +3604,6 @@ MoveShot:
     PLA
     ; If [0E] is set, keep the original value in grid offset,
     ; or else add the new amount to it.
-    ;
-    ; TODO:
-    ; But I'm not clear about where [0E] was last set.
-    ; At least with a player's shot, [0E] was last written in
-    ; 77E7 DrawObjectWithAnim to draw Link. It was set to
-    ; animation index 0. But is that always the case?
     ;
     LDY $0E
     BNE :+
@@ -4276,39 +4268,39 @@ ItemIdToSlot:
     .BYTE $16, $17, $18, $1A, $1F, $1D, $1E, $07
     .BYTE $07, $15, $19, $14
 
+; Each byte describes an item. The high nibble is the type.
+; The low nibble is the value. Its meaning depends on the type.
+;
+; 0x - individuals
+; * unique: value is boolean: you have it or you don't; also value indicates palette row sprite attribute.
+; * bit mask: value doesn't matter.
+;
+; 1x - amounts
+; Value is an amount to add.
+;
+; 2x - grades
+; Value is a grade and palette row. Picking up an item with a lower grade won't change the inventory.
+;
+; 3x - error?
+; Produces an item value of $FF.
+;
 ItemIdToDescriptor:
-    ; Each byte describes an item. The high nibble is the type.
-    ; The low nibble is the value. Its meaning depends on the type.
-    ;
-    ; 0x - individuals
-    ; * unique: value is boolean: you have it or you don't; also value indicates palette row sprite attribute.
-    ; * bit mask: value doesn't matter.
-    ;
-    ; 1x - amounts
-    ; Value is an amount to add.
-    ;
-    ; 2x - grades
-    ; Value is a grade and palette row. Picking up an item with a lower grade won't change the inventory.
-    ;
-    ; 3x - error?
-    ; Produces an item value of $FF.
-    ;
     .BYTE $14, $21, $22, $23, $01, $01, $21, $22
     .BYTE $21, $22, $01, $01, $01, $01, $01, $15
     .BYTE $01, $01, $21, $22, $01, $01, $01, $01
     .BYTE $11, $11, $10, $01, $01, $01, $01, $11
     .BYTE $22, $01, $10, $12
 
+; Maps an item slot to a value used in calculating the
+; sprite palette row attribute.
+;
+; For most items, the value is the sprite palette row attribute
+; itself.
+;
+; Some items will use the value as an amount to add to the
+; item value in the slot.
+;
 ItemSlotToPaletteOffsetsOrValues:
-    ; Maps an item slot to a value used in calculating the
-    ; sprite palette row attribute.
-    ;
-    ; For most items, the value is the sprite palette row attribute
-    ; itself.
-    ;
-    ; Some items will use the value as an amount to add to the
-    ; item value in the slot.
-    ;
     .BYTE $FF, $01, $FF, $00, $00, $02, $02, $00
     .BYTE $01, $00, $02, $00, $00, $02, $02, $01
     .BYTE $02, $02, $02, $02, $02, $02, $02, $02
@@ -4763,12 +4755,15 @@ BlankPrioritySpriteTemplates:
     .BYTE $3D, $1C, $20, $00, $DD, $1C, $20, $00
 
 WriteBlankPrioritySprites:
-    ; TODO: Why are their Y coordinates $3D and $DD?
+    ; UNKNOWN: Why are their Y coordinates $3D and $DD?
     ; Those values are the highest and lowest that Link can normally take.
     ;
     ; Repeat two sprites in the first $10 records. They have
     ; transparent tile $1C, priority 1 (behind BG), and X=0.
     ; The first of the pair has Y=$3D, and the second one has Y=$DD.
+    ;
+    ; These sprites are first in the list. So they are used for things
+    ; that must be shown above everything else, including Link.
     ;
     LDY #$00
     LDX #$00
@@ -4882,7 +4877,7 @@ MapScreenPosToPpuAddr:
     STA $01
     RTS
 
-Unknown_758A:
+Filler_6DFA:
     .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .BYTE $FF, $FF
 
@@ -5546,10 +5541,6 @@ ObjTypeToDamagePoints:
 ; [09]: 0 for Link damage type (none)
 ; [0C]: 1 if objects collide
 ; [034B]: ShotCollidesWithLink
-;
-; TODO:
-; Returns:
-; Y: 0
 ;
 CheckLinkCollision:
     JSR GetObjectMiddle
@@ -6341,7 +6332,7 @@ CheckMonsterSlenderWeaponCollision2:
     ; [04] := (weapon X + 6)
     ; A    := (weapon Y + 8)
     ;
-    ; TODO: Shouldn't it be based on the weapon's direction?
+    ; Shouldn't it be based on the weapon's direction?
     ;
     LDA ObjDir
     AND #$0C
@@ -6360,7 +6351,7 @@ CheckMonsterSlenderWeaponCollision2:
     ; [04] := (weapon X + 8)
     ; A    := (weapon Y + 6)
     ;
-    ; TODO: Shouldn't it be based on the weapon's direction?
+    ; Shouldn't it be based on the weapon's direction?
     ;
     LDA a:ObjX, Y
     CLC
@@ -6611,9 +6602,11 @@ BeginShove:
     ;
     LDA a:ObjDir, Y
     STA $08
-    ; TODO:
     ; If the monster's attribute "reverse after hit Link" is set, then
     ; combine the shove direction with $40.
+    ;
+    ; TODO:
+    ; But the shoving routing doesn't read this flag.
     ;
     LDA ObjAttr, X
     AND #$80
@@ -6666,7 +6659,7 @@ BeginShove:
 @Exit2:
     RTS
 
-Unknown_7EE1:
+Filler_7751:
     .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
