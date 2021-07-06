@@ -81,12 +81,12 @@ C - - - - - 0x008071 02:8061: CA        DEX
 C - - - - - 0x008072 02:8062: F0 12     BEQ bra_8076_RTS
 C - - - - - 0x008074 02:8064: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x008077 02:8067: A5 F5     LDA ram_btn_press
-C - - - - - 0x008079 02:8069: 29 D0     AND #con_btns__ABS
+C - - - - - 0x008079 02:8069: 29 D0     AND #con_btns_SAB
 C - - - - - 0x00807B 02:806B: F0 F1     BEQ bra_805E_loop
 bra_806D_loop:
 C - - - - - 0x00807D 02:806D: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x008080 02:8070: A5 F7     LDA ram_btn_hold
-C - - - - - 0x008082 02:8072: 29 D0     AND #con_btns__ABS
+C - - - - - 0x008082 02:8072: 29 D0     AND #con_btns_SAB
 C - - - - - 0x008084 02:8074: D0 F7     BNE bra_806D_loop
 bra_8076_RTS:
 C - - - - - 0x008086 02:8076: 60        RTS
@@ -244,12 +244,12 @@ bra_8140:
 C - - - - - 0x008150 02:8140: 20 EA EE  JSR sub_0x00EEFA
 C - - - - - 0x008153 02:8143: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x008156 02:8146: A5 F5     LDA ram_btn_press
-C - - - - - 0x008158 02:8148: 29 D0     AND #con_btns__ABS
+C - - - - - 0x008158 02:8148: 29 D0     AND #con_btns_SAB
 C - - - - - 0x00815A 02:814A: F0 D8     BEQ bra_8124_loop
 bra_814C_loop:
 C - - - - - 0x00815C 02:814C: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x00815F 02:814F: A5 F7     LDA ram_btn_hold
-C - - - - - 0x008161 02:8151: 29 D0     AND #con_btns__ABS
+C - - - - - 0x008161 02:8151: 29 D0     AND #con_btns_SAB
 C - - - - - 0x008163 02:8153: D0 F7     BNE bra_814C_loop
 C - - - - - 0x008165 02:8155: 60        RTS
 
@@ -792,12 +792,12 @@ C - - - - - 0x00843F 02:842F: 20 FB F5  JSR sub_0x00F60B_write_palette
 bra_8432_loop:
 C - - - - - 0x008442 02:8432: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x008445 02:8435: A5 F5     LDA ram_btn_press
-C - - - - - 0x008447 02:8437: 29 D0     AND #con_btns__ABS
+C - - - - - 0x008447 02:8437: 29 D0     AND #con_btns_SAB
 C - - - - - 0x008449 02:8439: F0 F7     BEQ bra_8432_loop
 bra_843B_loop:
 C - - - - - 0x00844B 02:843B: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x00844E 02:843E: A5 F7     LDA ram_btn_hold
-C - - - - - 0x008450 02:8440: 29 D0     AND #con_btns__ABS
+C - - - - - 0x008450 02:8440: 29 D0     AND #con_btns_SAB
 C - - - - - 0x008452 02:8442: D0 F7     BNE bra_843B_loop
 C - - - - - 0x008454 02:8444: 60        RTS
 
@@ -2060,7 +2060,7 @@ bra_9216_loop:
 C D 0 - - - 0x009226 02:9216: 20 52 92  JSR sub_9252
 C - - - - - 0x009229 02:9219: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x00922C 02:921C: A5 F5     LDA ram_btn_press
-C - - - - - 0x00922E 02:921E: 29 D0     AND #con_btns__ABS
+C - - - - - 0x00922E 02:921E: 29 D0     AND #con_btns_SAB
 C - - - - - 0x009230 02:9220: D0 0D     BNE bra_922F_RTS
 C - - - - - 0x009232 02:9222: A5 F5     LDA ram_btn_press
 C - - - - - 0x009234 02:9224: 4A        LSR
