@@ -369,7 +369,7 @@ C - - - - - 0x0002FC 00:C2EC: 20 F1 DB  JSR sub_DBF1_tank_movement
 C - - - - - 0x0002FF 00:C2EF: 20 FA E1  JSR sub_E1FA
 C - - - - - 0x000302 00:C2F2: 20 2E E0  JSR sub_E02E_bullets_status_handler
 C - - - - - 0x000305 00:C2F5: 20 A9 E2  JSR sub_E2A9_HQ_handler
-C - - - - - 0x000308 00:C2F8: 20 7C E2  JSR sub_invincibility_handler
+C - - - - - 0x000308 00:C2F8: 20 7C E2  JSR sub_E27C_invincibility_handler
 C - - - - - 0x00030B 00:C2FB: 20 22 E1  JSR sub_E122
 C - - - - - 0x00030E 00:C2FE: 20 62 E1  JSR sub_E162
 C - - - - - 0x000311 00:C301: 20 48 DB  JSR sub_DB48_enemy_spawn_handler
@@ -3847,14 +3847,14 @@ C - - - - - 0x0019AA 00:D99A: D0 F7     BNE bra_D993
 C - - - - - 0x0019AC 00:D99C: A0 01     LDY #$01
 bra_D99E:
 C - - - - - 0x0019AE 00:D99E: A2 00     LDX #$00
-loc_D9A0:
+loc_D9A0_loop:
 C D 2 - - - 0x0019B0 00:D9A0: B5 1D     LDA ram_p2_score,X
 C - - - - - 0x0019B2 00:D9A2: D5 3D     CMP ram_hi_score,X
 C - - - - - 0x0019B4 00:D9A4: D0 08     BNE bra_D9AE
 C - - - - - 0x0019B6 00:D9A6: E8        INX
 C - - - - - 0x0019B7 00:D9A7: E0 07     CPX #$07
 C - - - - - 0x0019B9 00:D9A9: F0 12     BEQ bra_D9BD_RTS
-C - - - - - 0x0019BB 00:D9AB: 4C A0 D9  JMP loc_D9A0
+C - - - - - 0x0019BB 00:D9AB: 4C A0 D9  JMP loc_D9A0_loop
 bra_D9AE:
 C - - - - - 0x0019BE 00:D9AE: 30 0D     BMI bra_D9BD_RTS
 - - - - - - 0x0019C0 00:D9B0: A2 00     LDX #$00
@@ -5420,7 +5420,7 @@ C D 3 - - - 0x00228B 00:E27B: 60        RTS
 
 
 
-sub_invincibility_handler:
+sub_E27C_invincibility_handler:
 C - - - - - 0x00228C 00:E27C: A9 01     LDA #$01    ; 1p and 2p
 C - - - - - 0x00228E 00:E27E: 85 5A     STA ram_obj_loop_cnt
 bra_E280_loop:
@@ -6427,7 +6427,7 @@ C - - - - - 0x00272A 00:E71A: 4C 7A E7  JMP loc_E77A
 bra_E71D:
 C - - - - - 0x00272D 00:E71D: A9 07     LDA #$07
 C - - - - - 0x00272F 00:E71F: 85 5B     STA ram_005B
-bra_E721:
+bra_E721_loop:
 C - - - - - 0x002731 00:E721: A4 5B     LDY ram_005B
 C - - - - - 0x002733 00:E723: B9 CC 00  LDA ram_bullet_status,Y
 C - - - - - 0x002736 00:E726: 29 F0     AND #$F0
@@ -6474,7 +6474,7 @@ loc_E772:
 C D 3 - - - 0x002782 00:E772: C6 5B     DEC ram_005B
 C - - - - - 0x002784 00:E774: A5 5B     LDA ram_005B
 C - - - - - 0x002786 00:E776: C9 01     CMP #$01
-C - - - - - 0x002788 00:E778: D0 A7     BNE bra_E721
+C - - - - - 0x002788 00:E778: D0 A7     BNE bra_E721_loop
 loc_E77A:
 C D 3 - - - 0x00278A 00:E77A: C6 5A     DEC ram_obj_loop_cnt
 C - - - - - 0x00278C 00:E77C: 10 92     BPL bra_E710_loop
@@ -6744,7 +6744,7 @@ C - - - - - 0x002930 00:E920: C9 40     CMP #$40
 C - - - - - 0x002932 00:E922: D0 49     BNE bra_E96D
 C - - - - - 0x002934 00:E924: A9 09     LDA #$09
 C - - - - - 0x002936 00:E926: 85 5B     STA ram_005B
-bra_E928:
+bra_E928_loop:
 C - - - - - 0x002938 00:E928: A5 5B     LDA ram_005B
 C - - - - - 0x00293A 00:E92A: A8        TAY
 C - - - - - 0x00293B 00:E92B: 29 07     AND #$07
@@ -6782,7 +6782,7 @@ C - - - - - 0x002974 00:E964: 95 CC     STA ram_bullet_status,X
 C - - - - - 0x002976 00:E966: 99 CC 00  STA ram_bullet_status,Y
 bra_E969:
 C - - - - - 0x002979 00:E969: C6 5B     DEC ram_005B
-C - - - - - 0x00297B 00:E96B: 10 BB     BPL bra_E928
+C - - - - - 0x00297B 00:E96B: 10 BB     BPL bra_E928_loop
 bra_E96D:
 C - - - - - 0x00297D 00:E96D: C6 5A     DEC ram_obj_loop_cnt
 C - - - - - 0x00297F 00:E96F: 10 A3     BPL bra_E914_loop
@@ -6911,7 +6911,7 @@ C - - J - - 0x002A27 00:EA17: A9 07     LDA #$07
 C - - - - - 0x002A29 00:EA19: 85 5A     STA ram_obj_loop_cnt
 C - - - - - 0x002A2B 00:EA1B: A9 01     LDA #$01
 C - - - - - 0x002A2D 00:EA1D: 8D 0A 03  STA ram_sfx_explosion_enemy
-bra_EA20:
+bra_EA20_loop:
 C - - - - - 0x002A30 00:EA20: A4 5A     LDY ram_obj_loop_cnt
 C - - - - - 0x002A32 00:EA22: B9 A0 00  LDA ram_tank_status,Y
 C - - - - - 0x002A35 00:EA25: 10 0E     BPL bra_EA35
@@ -6925,7 +6925,7 @@ bra_EA35:
 C - - - - - 0x002A45 00:EA35: C6 5A     DEC ram_obj_loop_cnt
 C - - - - - 0x002A47 00:EA37: A5 5A     LDA ram_obj_loop_cnt
 C - - - - - 0x002A49 00:EA39: C9 01     CMP #$01
-C - - - - - 0x002A4B 00:EA3B: D0 E3     BNE bra_EA20
+C - - - - - 0x002A4B 00:EA3B: D0 E3     BNE bra_EA20_loop
 C - - - - - 0x002A4D 00:EA3D: 60        RTS
 
 

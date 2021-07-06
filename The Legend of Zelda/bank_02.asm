@@ -4008,13 +4008,13 @@ C - - - - - 0x00A504 02:A4F4: 0A        ASL
 C - - - - - 0x00A505 02:A4F5: 0A        ASL
 C - - - - - 0x00A506 02:A4F6: AA        TAX
 C - - - - - 0x00A507 02:A4F7: A0 03     LDY #$03
-bra_A4F9:
+bra_A4F9_loop:
 C - - - - - 0x00A509 02:A4F9: BD 38 06  LDA ram_slot_name,X
 C - - - - - 0x00A50C 02:A4FC: 99 02 03  STA ram_0302,Y
 C - - - - - 0x00A50F 02:A4FF: E8        INX
 C - - - - - 0x00A510 02:A500: C8        INY
 C - - - - - 0x00A511 02:A501: C0 0B     CPY #$0B
-C - - - - - 0x00A513 02:A503: D0 F4     BNE bra_A4F9
+C - - - - - 0x00A513 02:A503: D0 F4     BNE bra_A4F9_loop
 C - - - - - 0x00A515 02:A505: A5 16     LDA ram_cur_save_slot
 C - - - - - 0x00A517 02:A507: 0A        ASL
 C - - - - - 0x00A518 02:A508: A8        TAY

@@ -157,7 +157,7 @@ ram_0094                        = $94 ; N/A
 ram_0095                        = $95 ; N/A
 ram_0096                        = $96 ; N/A
 ram_0097                        = $97 ; 11   
-ram_direction                   = $98 ; 247     link
+ram_direction                   = $98 ; 247         link
     ram_0099                        = $99 ; 7       enemy1
     ram_009A                        = $9A ; 2       enemy2
     ram_009B                        = $9B ; N/A     enemy3
@@ -1351,36 +1351,19 @@ ram_slot_active_flag            = $0633 ; 10        1st slot, 00 = free slot, 01
     ram_0635                        = $0635 ; N/A   3rd slot
     ram_0636                        = $0636 ; 1     register
     ram_0637                        = $0637 ; 1     elimination
-ram_slot_name                   = $0638 ; 7         1st slot
-    ram_0639                        = $0639 ; N/A   2nd slot
-    ram_063A                        = $063A ; N/A   3rd slot
-ram_063B                        = $063B ; N/A
-ram_063C                        = $063C ; N/A
-ram_063D                        = $063D ; N/A
-ram_063E                        = $063E ; N/A
-ram_063F                        = $063F ; N/A
-ram_0640                        = $0640 ; N/A
-ram_0641                        = $0641 ; N/A
-ram_0642                        = $0642 ; N/A
-ram_0643                        = $0643 ; N/A
-ram_0644                        = $0644 ; N/A
-ram_0645                        = $0645 ; N/A
-ram_0646                        = $0646 ; N/A
-ram_0647                        = $0647 ; N/A
-ram_0648                        = $0648 ; N/A
-ram_0649                        = $0649 ; N/A
-ram_064A                        = $064A ; N/A
-ram_064B                        = $064B ; N/A
-ram_064C                        = $064C ; N/A
-ram_064D                        = $064D ; N/A
-ram_064E                        = $064E ; N/A
-ram_064F                        = $064F ; N/A
+
+; 0638-063F (08) 1st slot
+; 0640-0647 (08) 2nd slot
+; 0648-064F (08) 3rd slot
+ram_slot_name                   = $0638 ; 7   
+
 ram_0650                        = $0650 ; 3   
 ram_0651                        = $0651 ; N/A
 ram_0652                        = $0652 ; N/A
 ram_0653                        = $0653 ; N/A
 ram_0654                        = $0654 ; N/A
 ram_0655                        = $0655 ; N/A
+
 ram_item_slot_index             = $0656 ; 12    for 0657,X
 ram_items                       = $0657 ; 20   
     ram_item_sword                  = $0657 ; 20   00 = none, 01 = wooden, 02 = white, 03 = magical
