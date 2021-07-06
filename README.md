@@ -36,6 +36,8 @@ Lua script will take care of it before compilation. You just write new code as u
 * Tecmo World Cup Soccer (J) [!]
 * Yie Ar Kung-Fu (J) (V1.4) [!]
 
+
+
 ## WIP or planning
 * Balloon Fight (J) [!]
 * Castlevania III - Dracula's Curse (U) [!]
@@ -48,3 +50,8 @@ Lua script will take care of it before compilation. You just write new code as u
 * Tennis (JU) [!]
 * Tetris (Tengen) [!]
 * Urban Champion (W) [!]
+
+
+
+## RHDN topic
+https://www.romhacking.net/forum/index.php?topic=32220.0
