@@ -22,6 +22,7 @@ My personal comments are marked with **bzk** text. Start with deleting garbage t
 
 ## Current games list (GoodNES)
 * Battle City (J) [!]
+* Bugs Bunny Crazy Castle, The (U) [!]
 * Kunio-kun no Nekketsu Soccer League (J) [!]
 * Legend of Zelda, The (U) (PRG0) [!]
 * Mappy (J) [!]
@@ -36,6 +37,7 @@ My personal comments are marked with **bzk** text. Start with deleting garbage t
 * Castlevania III - Dracula's Curse (U) [!]
 * Danny Sullivan's Indy Heat (U) [!]
 * Double Dragon II - The Revenge (J)
+* Dr. Mario (JU) (PRG0) [!]
 * Ice Climber (J) [!]
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
 * Super Mario Bros. (W) [!]
