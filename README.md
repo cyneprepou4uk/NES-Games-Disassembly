@@ -14,7 +14,7 @@ No special requirements. Just launch `assemble.bat` and wait until it's done.
 
 Use `syntax_6502.xml` to highlight code in [Notepad++](https://notepad-plus-plus.org/).
 
-Go to Language -> User Defined Language -> Define your language -> Export.
+Go to Language -> User Defined Language -> Define your language -> Import.
 
 My personal comments are marked with `bzk` text. Start with deleting garbage to free up some space.
 
