@@ -1323,13 +1323,13 @@ C - - - - - 0x00C870 03:8860: BD 4D 03  LDA ram_игрок_Y_lo,X
 C - - - - - 0x00C873 03:8863: 48        PHA
 C - - - - - 0x00C874 03:8864: BD 60 03  LDA ram_игрок_Y_hi,X
 C - - - - - 0x00C877 03:8867: 48        PHA
-C - - - - - 0x00C878 03:8868: BD CB 89  LDA tbl_89CB,X
+C - - - - - 0x00C878 03:8868: BD CB 89  LDA tbl_89D5 - $0A,X
 C - - - - - 0x00C87B 03:886B: 9D 14 03  STA ram_игрок_X_lo,X
-C - - - - - 0x00C87E 03:886E: BD CD 89  LDA tbl_89CD,X
+C - - - - - 0x00C87E 03:886E: BD CD 89  LDA tbl_89D7 - $0A,X
 C - - - - - 0x00C881 03:8871: 9D 27 03  STA ram_игрок_X_hi,X
-C - - - - - 0x00C884 03:8874: BD CF 89  LDA tbl_89CF,X
+C - - - - - 0x00C884 03:8874: BD CF 89  LDA tbl_89D9 - $0A,X
 C - - - - - 0x00C887 03:8877: 9D 4D 03  STA ram_игрок_Y_lo,X
-C - - - - - 0x00C88A 03:887A: BD D1 89  LDA tbl_89D1,X
+C - - - - - 0x00C88A 03:887A: BD D1 89  LDA tbl_89DB - $0A,X
 C - - - - - 0x00C88D 03:887D: 9D 60 03  STA ram_игрок_Y_hi,X
 C - - - - - 0x00C890 03:8880: A0 0C     LDY #$0C
 C - - - - - 0x00C892 03:8882: 20 32 C0  JSR sub_0x01C042
@@ -1625,26 +1625,14 @@ off_89B5_03:
 - D 0 - I - 0x00C9D8 03:89C8: CB        .byte $CB   ; 
 - D 0 - I - 0x00C9D9 03:89C9: 03        .byte $03   ; 
 - D 0 - I - 0x00C9DA 03:89CA: 57        .byte $57   ; 
-
-
-
-tbl_89CB:
 - D 0 - I - 0x00C9DB 03:89CB: 00        .byte $00   ; 
 - D 0 - I - 0x00C9DC 03:89CC: D9        .byte $D9   ; 
-
-tbl_89CD:
 - D 0 - I - 0x00C9DD 03:89CD: 03        .byte $03   ; 
 - D 0 - I - 0x00C9DE 03:89CE: 6F        .byte $6F   ; 
-
-tbl_89CF:
 - D 0 - I - 0x00C9DF 03:89CF: 00        .byte $00   ; 
 - D 0 - I - 0x00C9E0 03:89D0: E7        .byte $E7   ; 
-
-tbl_89D1:
 - - - - - - 0x00C9E1 03:89D1: 03        .byte $03   ; 
 - - - - - - 0x00C9E2 03:89D2: 7F        .byte $7F   ; 
-
-; bzk мусор?
 - - - - - - 0x00C9E3 03:89D3: 00        .byte $00   ; 
 - - - - - - 0x00C9E4 03:89D4: F3        .byte $F3   ; 
 
