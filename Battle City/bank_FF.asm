@@ -1469,19 +1469,19 @@ C - - - - - 0x000A76 00:CA66: 6C 11 00  JMP (ram_0011)
 
 
 tbl_CA69_game_mode_handler:
-- D 2 - - - 0x000A79 00:CA69: 6F CA     .word ofs_CA6F_00_1_player
-- D 2 - - - 0x000A7B 00:CA6B: 74 CA     .word ofs_CA74_01_2_players
-- D 2 - - - 0x000A7D 00:CA6D: 7E CA     .word ofs_CA7E_02_construction
+- D 2 - - - 0x000A79 00:CA69: 6F CA     .word ofs_000_CA6F_00_1_player
+- D 2 - - - 0x000A7B 00:CA6B: 74 CA     .word ofs_000_CA74_01_2_players
+- D 2 - - - 0x000A7D 00:CA6D: 7E CA     .word ofs_000_CA7E_02_construction
 
 
 
-ofs_CA6F_00_1_player:
+ofs_000_CA6F_00_1_player:
 C - - J - - 0x000A7F 00:CA6F: A9 05     LDA #$05
 C - - - - - 0x000A81 00:CA71: 4C 76 CA  JMP loc_CA76    ; bzk optimize, BNE
 
 
 
-ofs_CA74_01_2_players:
+ofs_000_CA74_01_2_players:
 C - - J - - 0x000A84 00:CA74: A9 07     LDA #$07
 loc_CA76:   ; A = 05
 C D 2 - - - 0x000A86 00:CA76: 85 6C     STA ram_enemy_limit
@@ -1490,7 +1490,7 @@ C - - - - - 0x000A8B 00:CA7B: 4C 59 C1  JMP loc_C159
 
 
 
-ofs_CA7E_02_construction:
+ofs_000_CA7E_02_construction:
 C - - J - - 0x000A8E 00:CA7E: A9 07     LDA #$07
 C - - - - - 0x000A90 00:CA80: 85 6C     STA ram_enemy_limit
 C - - - - - 0x000A92 00:CA82: 4C AE C0  JMP loc_C0AE_construction_handler
