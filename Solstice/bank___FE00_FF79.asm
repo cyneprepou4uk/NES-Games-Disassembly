@@ -114,7 +114,7 @@ bra_FEA3:
 - - - - - - 0x007EB5 01:FEA5: 8E 8E 07  STX ram_sfx_1
 - - - - - - 0x007EB8 01:FEA8: 8E 8F 07  STX ram_sfx_2
 bra_FEAB:
-- - - - - - 0x007EBB 01:FEAB: 20 F4 C2  JSR sub_0x014304
+- - - - - - 0x007EBB 01:FEAB: 20 F4 C2  JSR sub_0x014304_update_music_driver
 - - - - - - 0x007EBE 01:FEAE: 8D 90 07  STA ram_0790
 - - - - - - 0x007EC1 01:FEB1: 68        PLA
 - - - - - - 0x007EC2 01:FEB2: 85 FF     STA ram_prg_bank

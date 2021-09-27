@@ -24,7 +24,7 @@
 .export sub_0x0141F6_play_music
 .export sub_0x014256_disable_music_driver
 .export sub_0x014299_play_sfx
-.export sub_0x014304
+.export sub_0x014304_update_music_driver
 
 
 
@@ -3974,7 +3974,7 @@ C - - - - - 0x014303 05:C2F3: 60        RTS
 
 
 
-sub_0x014304:
+sub_0x014304_update_music_driver:
 C - - - - - 0x014304 05:C2F4: AD E1 07  LDA ram_07E1
 C - - - - - 0x014307 05:C2F7: 30 03     BMI bra_C2FC
 C - - - - - 0x014309 05:C2F9: 4C 56 C5  JMP loc_C556
