@@ -1664,9 +1664,9 @@ C - - - - - 0x000B41 00:8B31: 4C EB 8A  JMP loc_8AEB
 
 sub_8B34_copy_from_ppu_to_buffer:
 C - - - - - 0x000B44 00:8B34: A2 07     LDX #$07
-C - - - - - 0x000B46 00:8B36: AD 07 20  LDA $2007
+C - - - - - 0x000B46 00:8B36: AD 07 20  LDA $2007   ; dummy read
 bra_8B39_loop:
-C - - - - - 0x000B49 00:8B39: AD 07 20  LDA $2007
+C - - - - - 0x000B49 00:8B39: AD 07 20  LDA $2007   ; actual read
 C - - - - - 0x000B4C 00:8B3C: 95 9D     STA ram_009D,X
 C - - - - - 0x000B4E 00:8B3E: CA        DEX
 C - - - - - 0x000B4F 00:8B3F: 10 F8     BPL bra_8B39_loop
@@ -2120,9 +2120,9 @@ C - - - - - 0x000E6E 00:8E5E: 8D 06 20  STA $2006
 C - - - - - 0x000E71 00:8E61: A9 00     LDA #< $1D00
 C - - - - - 0x000E73 00:8E63: 8D 06 20  STA $2006
 C - - - - - 0x000E76 00:8E66: A0 00     LDY #$00
-C - - - - - 0x000E78 00:8E68: AD 07 20  LDA $2007
+C - - - - - 0x000E78 00:8E68: AD 07 20  LDA $2007   ; dummy read
 bra_8E6B_loop:
-C - - - - - 0x000E7B 00:8E6B: AD 07 20  LDA $2007
+C - - - - - 0x000E7B 00:8E6B: AD 07 20  LDA $2007   ; actual read
 C - - - - - 0x000E7E 00:8E6E: 99 00 03  STA ram_0300,Y
 C - - - - - 0x000E81 00:8E71: AD 07 20  LDA $2007
 C - - - - - 0x000E84 00:8E74: 99 D4 05  STA ram_05D4,Y
@@ -2773,8 +2773,8 @@ C - - - - - 0x001256 00:9246: B0 13     BCS bra_925B_RTS
 C - - - - - 0x001258 00:9248: 20 76 92  JSR sub_9276
 C - - - - - 0x00125B 00:924B: A5 2C     LDA ram_002C
 C - - - - - 0x00125D 00:924D: 49 FF     EOR #$FF
-C - - - - - 0x00125F 00:924F: CD 07 20  CMP $2007
-C - - - - - 0x001262 00:9252: 2D 07 20  AND $2007
+C - - - - - 0x00125F 00:924F: CD 07 20  CMP $2007   ; dummy read
+C - - - - - 0x001262 00:9252: 2D 07 20  AND $2007   ; actual read
 C - - - - - 0x001265 00:9255: 20 AE 92  JSR sub_92AE
 C - - - - - 0x001268 00:9258: 8D 07 20  STA $2007
 bra_925B_RTS:
@@ -2788,8 +2788,8 @@ C - - - - - 0x00126E 00:925E: B0 15     BCS bra_9275_RTS
 C - - - - - 0x001270 00:9260: C0 40     CPY #$40
 C - - - - - 0x001272 00:9262: B0 11     BCS bra_9275_RTS
 C - - - - - 0x001274 00:9264: 20 76 92  JSR sub_9276
-C - - - - - 0x001277 00:9267: AD 07 20  LDA $2007
-C - - - - - 0x00127A 00:926A: AD 07 20  LDA $2007
+C - - - - - 0x001277 00:9267: AD 07 20  LDA $2007   ; dummy read
+C - - - - - 0x00127A 00:926A: AD 07 20  LDA $2007   ; actual read
 C - - - - - 0x00127D 00:926D: 05 2C     ORA ram_002C
 C - - - - - 0x00127F 00:926F: 20 AE 92  JSR sub_92AE
 C - - - - - 0x001282 00:9272: 8D 07 20  STA $2007
@@ -3392,12 +3392,12 @@ C - - - - - 0x00159F 00:958F: 8D 06 20  STA $2006
 C - - - - - 0x0015A2 00:9592: A9 00     LDA #$00
 C - - - - - 0x0015A4 00:9594: 85 0D     STA ram_000D
 C - - - - - 0x0015A6 00:9596: A0 07     LDY #$07
-C - - - - - 0x0015A8 00:9598: AD 07 20  LDA $2007
+C - - - - - 0x0015A8 00:9598: AD 07 20  LDA $2007   ; dummy read
 C - - - - - 0x0015AB 00:959B: A5 0E     LDA ram_000E
 C - - - - - 0x0015AD 00:959D: 2D 9F 07  AND ram_credits
 C - - - - - 0x0015B0 00:95A0: F0 0F     BEQ bra_95B1
 bra_95A2_loop:
-C - - - - - 0x0015B2 00:95A2: AD 07 20  LDA $2007
+C - - - - - 0x0015B2 00:95A2: AD 07 20  LDA $2007   ; actual read
 bra_95A5_loop:
 C - - - - - 0x0015B5 00:95A5: 4A        LSR
 C - - - - - 0x0015B6 00:95A6: 90 02     BCC bra_95AA
@@ -6257,6 +6257,8 @@ C - - - - - 0x00259F 00:A58F: B5 2D     LDA ram_pos_X_obj,X
 C - - - - - 0x0025A1 00:A591: 29 07     AND #$07
 C - - - - - 0x0025A3 00:A593: F0 3C     BEQ bra_A5D1
 C - - - - - 0x0025A5 00:A595: A5 28     LDA ram_0028
+; bzk Y can be 03+ here
+; bzk bug probably, 0300 buffer is not enough, code reads sprite data
 C - - - - - 0x0025A7 00:A597: 39 F1 02  AND ram_0301 - $10,Y
 C - - - - - 0x0025AA 00:A59A: 85 0D     STA ram_000D
 C - - - - - 0x0025AC 00:A59C: F0 04     BEQ bra_A5A2
@@ -6264,6 +6266,8 @@ C - - - - - 0x0025AE 00:A59E: C6 0F     DEC ram_000F
 C - - - - - 0x0025B0 00:A5A0: C6 0F     DEC ram_000F
 bra_A5A2:
 C - - - - - 0x0025B2 00:A5A2: A5 28     LDA ram_0028
+; bzk Y can be 03+ here
+; bzk bug probably, 0300 buffer is not enough, code reads sprite data
 C - - - - - 0x0025B4 00:A5A4: 39 F0 02  AND ram_0300 - $10,Y
 C - - - - - 0x0025B7 00:A5A7: F0 04     BEQ bra_A5AD
 C - - - - - 0x0025B9 00:A5A9: E6 0F     INC ram_000F
@@ -6291,6 +6295,8 @@ bra_A5CE:
 C - - - - - 0x0025DE 00:A5CE: A9 FF     LDA #$FF
 C - - - - - 0x0025E0 00:A5D0: 60        RTS
 bra_A5D1:
+; bzk Y can be 00+ here
+; bzk bug probably, 0300 buffer is not enough, code reads sprite data
 C - - - - - 0x0025E1 00:A5D1: A5 28     LDA ram_0028
 C - - - - - 0x0025E3 00:A5D3: 39 F0 02  AND ram_0300 - $10,Y
 C - - - - - 0x0025E6 00:A5D6: D0 F6     BNE bra_A5CE
@@ -6300,7 +6306,7 @@ C - - - - - 0x0025EA 00:A5DA: 60        RTS
 
 
 
-sub_A5DB:   ; !!! 0300?
+sub_A5DB:
 C - - - - - 0x0025EB 00:A5DB: A9 00     LDA #$00
 C - - - - - 0x0025ED 00:A5DD: 85 0F     STA ram_000F
 C - - - - - 0x0025EF 00:A5DF: B5 2D     LDA ram_pos_X_obj,X
@@ -6344,6 +6350,8 @@ bra_A624:
 C - - - - - 0x002634 00:A624: A9 FF     LDA #$FF
 C - - - - - 0x002636 00:A626: 60        RTS
 bra_A627:
+; bzk Y can be 00+ here
+; bzk bug probably, 0300 buffer is not enough, code reads sprite data
 C - - - - - 0x002637 00:A627: A5 28     LDA ram_0028
 C - - - - - 0x002639 00:A629: 39 FF 02  AND ram_0300 - 1,Y
 C - - - - - 0x00263C 00:A62C: D0 F6     BNE bra_A624
@@ -6688,8 +6696,8 @@ C - - - - - 0x002855 00:A845: 85 ED     STA ram_00ED
 bra_A847:
 C - - - - - 0x002857 00:A847: 84 08     STY ram_0008
 C - - - - - 0x002859 00:A849: 20 14 AC  JSR sub_AC14
-C - - - - - 0x00285C 00:A84C: AD 07 20  LDA $2007
-C - - - - - 0x00285F 00:A84F: AD 07 20  LDA $2007
+C - - - - - 0x00285C 00:A84C: AD 07 20  LDA $2007   ; dummy read
+C - - - - - 0x00285F 00:A84F: AD 07 20  LDA $2007   ; actual read
 C - - - - - 0x002862 00:A852: A4 08     LDY ram_0008
 C - - - - - 0x002864 00:A854: 20 FB FE  JSR sub_inc_FEFB
 C - - - - - 0x002867 00:A857: C8        INY
@@ -6779,8 +6787,8 @@ C D 1 - - - 0x0028F5 00:A8E5: 60        RTS
 
 sub_A8E6:
 C - - - - - 0x0028F6 00:A8E6: 20 14 AC  JSR sub_AC14
-C - - - - - 0x0028F9 00:A8E9: AD 07 20  LDA $2007
-C - - - - - 0x0028FC 00:A8EC: AD 07 20  LDA $2007
+C - - - - - 0x0028F9 00:A8E9: AD 07 20  LDA $2007   ; dummy read
+C - - - - - 0x0028FC 00:A8EC: AD 07 20  LDA $2007   ; actual read
 C - - - - - 0x0028FF 00:A8EF: 48        PHA
 C - - - - - 0x002900 00:A8F0: 20 58 B5  JSR sub_B558
 C - - - - - 0x002903 00:A8F3: 68        PLA
@@ -7223,10 +7231,10 @@ C - - - - - 0x002BE1 00:ABD1: B0 2E     BCS bra_AC01
 bra_ABD3_loop:
 C - - - - - 0x002BE3 00:ABD3: A5 2C     LDA ram_002C
 C - - - - - 0x002BE5 00:ABD5: 20 6C B5  JSR sub_B56C
-C - - - - - 0x002BE8 00:ABD8: AD 07 20  LDA $2007
+C - - - - - 0x002BE8 00:ABD8: AD 07 20  LDA $2007   ; dummy read
 C - - - - - 0x002BEB 00:ABDB: A2 00     LDX #$00
 bra_ABDD_loop:
-C - - - - - 0x002BED 00:ABDD: AD 07 20  LDA $2007
+C - - - - - 0x002BED 00:ABDD: AD 07 20  LDA $2007   ; actual read
 C - - - - - 0x002BF0 00:ABE0: D5 BD     CMP ram_00BD,X
 C - - - - - 0x002BF2 00:ABE2: D0 15     BNE bra_ABF9
 C - - - - - 0x002BF4 00:ABE4: E8        INX
@@ -7291,8 +7299,8 @@ C - - - - - 0x002C44 00:AC34: 60        RTS
 
 sub_AC35:
 C - - - - - 0x002C45 00:AC35: 20 14 AC  JSR sub_AC14
-C - - - - - 0x002C48 00:AC38: AD 07 20  LDA $2007
-C - - - - - 0x002C4B 00:AC3B: AD 07 20  LDA $2007
+C - - - - - 0x002C48 00:AC38: AD 07 20  LDA $2007   ; dummy read
+C - - - - - 0x002C4B 00:AC3B: AD 07 20  LDA $2007   ; actual read
 C - - - - - 0x002C4E 00:AC3E: 20 58 B5  JSR sub_B558
 C - - - - - 0x002C51 00:AC41: A0 00     LDY #$00
 C - - - - - 0x002C53 00:AC43: B1 EB     LDA (ram_00EB),Y
@@ -8758,10 +8766,10 @@ C - - - - - 0x003567 00:B557: 60        RTS
 
 sub_B558:
 C - - - - - 0x003568 00:B558: 20 6C B5  JSR sub_B56C
-C - - - - - 0x00356B 00:B55B: AD 07 20  LDA $2007
+C - - - - - 0x00356B 00:B55B: AD 07 20  LDA $2007   ; dummy read
 C - - - - - 0x00356E 00:B55E: A0 00     LDY #$00
 bra_B560_loop:
-C - - - - - 0x003570 00:B560: AD 07 20  LDA $2007
+C - - - - - 0x003570 00:B560: AD 07 20  LDA $2007   ; actual read
 C - - - - - 0x003573 00:B563: 99 BD 00  STA ram_00BD,Y
 C - - - - - 0x003576 00:B566: C8        INY
 C - - - - - 0x003577 00:B567: C0 10     CPY #$10

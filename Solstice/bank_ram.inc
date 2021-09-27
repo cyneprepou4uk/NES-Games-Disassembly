@@ -509,13 +509,13 @@ ram_01FF                                = $01FF ; N/A
 
 ; 0200-02FF (100) oam
 ram_oam                                 = $0200
-ram_spr_Y                               = $0200 ; 25   
-ram_spr_T                               = $0201 ; 17   
-ram_spr_A                               = $0202 ; 16   
-ram_spr_X                               = $0203 ; 17   
+ram_spr_Y                               = $0200
+ram_spr_T                               = $0201
+ram_spr_A                               = $0202
+ram_spr_X                               = $0203
 
 
-; !!! 0300? банк 00
+
 ram_0300                                = $0300 ; 31   
 ram_0301                                = $0301 ; 12   
 ram_0302                                = $0302 ; 5   
