@@ -173,26 +173,26 @@ sub_C105:
 C - - - - - 0x000115 00:C105: E6 09     INC ram_0009
 C - - - - - 0x000117 00:C107: A5 00     LDA ram_0000
 C - - - - - 0x000119 00:C109: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- D 2 - I - 0x00011C 00:C10C: 1E C1     .word ofs_C11E_00_RTS
-- D 2 - I - 0x00011E 00:C10E: 1E C1     .word ofs_C11E_01_RTS
-- D 2 - I - 0x000120 00:C110: 64 C1     .word ofs_C164_02
-- D 2 - I - 0x000122 00:C112: 1F C1     .word ofs_C11F_03
-- D 2 - I - 0x000124 00:C114: 1E C1     .word ofs_C11E_04_RTS
-- D 2 - I - 0x000126 00:C116: D3 C7     .word ofs_C7D3_05
-- D 2 - I - 0x000128 00:C118: 8F C1     .word ofs_C18F_06
-- D 2 - I - 0x00012A 00:C11A: 1E C1     .word ofs_C11E_07_RTS
-- D 2 - I - 0x00012C 00:C11C: 1E C1     .word ofs_C11E_08_RTS
+- D 2 - I - 0x00011C 00:C10C: 1E C1     .word ofs_000_C11E_00_RTS
+- D 2 - I - 0x00011E 00:C10E: 1E C1     .word ofs_000_C11E_01_RTS
+- D 2 - I - 0x000120 00:C110: 64 C1     .word ofs_000_C164_02
+- D 2 - I - 0x000122 00:C112: 1F C1     .word ofs_000_C11F_03
+- D 2 - I - 0x000124 00:C114: 1E C1     .word ofs_000_C11E_04_RTS
+- D 2 - I - 0x000126 00:C116: D3 C7     .word ofs_000_C7D3_05
+- D 2 - I - 0x000128 00:C118: 8F C1     .word ofs_000_C18F_06
+- D 2 - I - 0x00012A 00:C11A: 1E C1     .word ofs_000_C11E_07_RTS
+- D 2 - I - 0x00012C 00:C11C: 1E C1     .word ofs_000_C11E_08_RTS
 
 
 
-ofs_C11E_00_RTS:
-ofs_C11E_01_RTS:
-ofs_C11E_04_RTS:
-ofs_C11E_07_RTS:
-ofs_C11E_08_RTS:
+ofs_000_C11E_00_RTS:
+ofs_000_C11E_01_RTS:
+ofs_000_C11E_04_RTS:
+ofs_000_C11E_07_RTS:
+ofs_000_C11E_08_RTS:
 bra_C11E_RTS:
 C - - J - - 0x00012E 00:C11E: 60        RTS
-ofs_C11F_03:
+ofs_000_C11F_03:
 C - - J - - 0x00012F 00:C11F: A6 01     LDX ram_0001
 C - - - - - 0x000131 00:C121: F0 1C     BEQ bra_C13F
 C - - - - - 0x000133 00:C123: CA        DEX
@@ -234,7 +234,7 @@ C - - - - - 0x000173 00:C163: 60        RTS
 
 
 
-ofs_C164_02:
+ofs_000_C164_02:
 C - - J - - 0x000174 00:C164: A6 01     LDX ram_0001
 C - - - - - 0x000176 00:C166: F0 B6     BEQ bra_C11E_RTS
 C - - - - - 0x000178 00:C168: E0 01     CPX #$01
@@ -262,7 +262,7 @@ C - - - - - 0x00019C 00:C18C: 4C 28 C3  JMP loc_C328
 
 
 
-ofs_C18F_06:
+ofs_000_C18F_06:
 C - - J - - 0x00019F 00:C18F: A5 60     LDA ram_lives
 C - - - - - 0x0001A1 00:C191: D0 07     BNE bra_C19A_RTS
 C - - - - - 0x0001A3 00:C193: A0 01     LDY #$01
@@ -303,19 +303,19 @@ tbl_C1B0:
 
 sub_C1B9:
 C - - - - - 0x0001C9 00:C1B9: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- D 2 - I - 0x0001CC 00:C1BC: CE C1     .word ofs_C1CE_00
-- D 2 - I - 0x0001CE 00:C1BE: FD C1     .word ofs_C1FD_01
-- D 2 - I - 0x0001D0 00:C1C0: 17 C2     .word ofs_C217_02
-- D 2 - I - 0x0001D2 00:C1C2: 54 C2     .word ofs_C254_03
-- D 2 - I - 0x0001D4 00:C1C4: 91 C2     .word ofs_C291_04
-- D 2 - I - 0x0001D6 00:C1C6: FB C2     .word ofs_C2FB_05
-- D 2 - I - 0x0001D8 00:C1C8: 09 C3     .word ofs_C309_06
-- D 2 - I - 0x0001DA 00:C1CA: 31 C3     .word ofs_C331_07
-- D 2 - I - 0x0001DC 00:C1CC: 50 C3     .word ofs_C350_08
+- D 2 - I - 0x0001CC 00:C1BC: CE C1     .word ofs_001_C1CE_00
+- D 2 - I - 0x0001CE 00:C1BE: FD C1     .word ofs_001_C1FD_01
+- D 2 - I - 0x0001D0 00:C1C0: 17 C2     .word ofs_001_C217_02
+- D 2 - I - 0x0001D2 00:C1C2: 54 C2     .word ofs_001_C254_03
+- D 2 - I - 0x0001D4 00:C1C4: 91 C2     .word ofs_001_C291_04
+- D 2 - I - 0x0001D6 00:C1C6: FB C2     .word ofs_001_C2FB_05
+- D 2 - I - 0x0001D8 00:C1C8: 09 C3     .word ofs_001_C309_06
+- D 2 - I - 0x0001DA 00:C1CA: 31 C3     .word ofs_001_C331_07
+- D 2 - I - 0x0001DC 00:C1CC: 50 C3     .word ofs_001_C350_08
 
 
 
-ofs_C1CE_00:
+ofs_001_C1CE_00:
 C - - J - - 0x0001DE 00:C1CE: A6 01     LDX ram_0001
 C - - - - - 0x0001E0 00:C1D0: D0 1D     BNE bra_C1EF
 C - - - - - 0x0001E2 00:C1D2: 20 E1 C1  JSR sub_C1E1
@@ -348,7 +348,7 @@ C - - - - - 0x00020A 00:C1FA: 4C DB C2  JMP loc_C2DB
 
 
 
-ofs_C1FD_01:
+ofs_001_C1FD_01:
 C - - J - - 0x00020D 00:C1FD: C6 02     DEC ram_0002
 C - - - - - 0x00020F 00:C1FF: F0 03     BEQ bra_C204
 C - - - - - 0x000211 00:C201: 4C 2D C6  JMP loc_C62D
@@ -363,7 +363,7 @@ C - - - - - 0x000224 00:C214: 4C D9 C2  JMP loc_C2D9
 
 
 
-ofs_C217_02:
+ofs_001_C217_02:
 C - - J - - 0x000227 00:C217: A6 01     LDX ram_0001
 C - - - - - 0x000229 00:C219: F0 26     BEQ bra_C241
 C - - - - - 0x00022B 00:C21B: CA        DEX
@@ -401,7 +401,7 @@ C - - - - - 0x000263 00:C253: 60        RTS
 
 
 
-ofs_C254_03:
+ofs_001_C254_03:
 C - - J - - 0x000264 00:C254: A6 01     LDX ram_0001
 C - - - - - 0x000266 00:C256: F0 FB     BEQ bra_C253_RTS
 C - - - - - 0x000268 00:C258: A2 66     LDX #$66
@@ -438,7 +438,7 @@ C - - - - - 0x0002A0 00:C290: 60        RTS
 
 
 
-ofs_C291_04:
+ofs_001_C291_04:
 C - - J - - 0x0002A1 00:C291: A6 01     LDX ram_0001
 C - - - - - 0x0002A3 00:C293: F0 51     BEQ bra_C2E6
 C - - - - - 0x0002A5 00:C295: CA        DEX
@@ -497,7 +497,7 @@ C - - - - - 0x000308 00:C2F8: 4C 4F C2  JMP loc_C24F
 
 
 
-ofs_C2FB_05:
+ofs_001_C2FB_05:
 C - - J - - 0x00030B 00:C2FB: 20 87 C8  JSR sub_C887
 C - - - - - 0x00030E 00:C2FE: A9 08     LDA #$08
 C - - - - - 0x000310 00:C300: A6 0B     LDX ram_000B
@@ -508,7 +508,7 @@ C - - - - - 0x000318 00:C308: 60        RTS
 
 
 
-ofs_C309_06:
+ofs_001_C309_06:
 C - - J - - 0x000319 00:C309: A5 60     LDA ram_lives
 C - - - - - 0x00031B 00:C30B: D0 0F     BNE bra_C31C
 C - - - - - 0x00031D 00:C30D: A5 03     LDA ram_0003
@@ -535,7 +535,7 @@ C - - - - - 0x00033E 00:C32E: 4C DF C2  JMP loc_C2DF
 
 
 
-ofs_C331_07:
+ofs_001_C331_07:
 C - - J - - 0x000341 00:C331: C6 02     DEC ram_0002
 C - - - - - 0x000343 00:C333: F0 01     BEQ bra_C336
 bra_C335_RTS:
@@ -556,7 +556,7 @@ C - - - - - 0x00035D 00:C34D: 4C 9B D6  JMP loc_D69B
 
 
 
-ofs_C350_08:
+ofs_001_C350_08:
 C - - J - - 0x000360 00:C350: E6 60     INC ram_lives
 C - - - - - 0x000362 00:C352: A9 00     LDA #$00
 C - - - - - 0x000364 00:C354: 85 D2     STA ram_00D2
@@ -1162,7 +1162,7 @@ bra_C68C:
 C - - - - - 0x00069C 00:C68C: 20 02 C7  JSR sub_C702
 C - - - - - 0x00069F 00:C68F: 20 CD C6  JSR sub_C6CD_display_stage_in_hud
 C - - - - - 0x0006A2 00:C692: 20 A6 C6  JSR sub_C6A6_display_score_in_hud
-ofs_C695_01:
+ofs_002_C695_01:
 C - - - - - 0x0006A5 00:C695: A5 03     LDA ram_0003
 sub_C697:
 C - - - - - 0x0006A7 00:C697: 30 1A     BMI bra_C6B3
@@ -1176,7 +1176,7 @@ C - - - - - 0x0006B3 00:C6A3: 4C BD C6  JMP loc_C6BD_write_hi_score
 
 
 sub_C6A6_display_score_in_hud:
-ofs_C6A6_00_display_score_in_hud:
+ofs_002_C6A6_00_display_score_in_hud:
 C - - - - - 0x0006B6 00:C6A6: A9 CC     LDA #< $20CC
 C - - - - - 0x0006B8 00:C6A8: 85 80     STA ram_0080
 C - - - - - 0x0006BA 00:C6AA: A9 20     LDA #> $20CC
@@ -1198,8 +1198,8 @@ C - - - - - 0x0006D5 00:C6C5: 20 DA C6  JSR sub_C6DA_write_score_to_ppu
 C - - - - - 0x0006D8 00:C6C8: 88        DEY
 C - - - - - 0x0006D9 00:C6C9: CA        DEX
 C - - - - - 0x0006DA 00:C6CA: D0 F6     BNE bra_C6C2_loop
-ofs_C6CC_02_RTS:
-ofs_C6CC_03_RTS:
+ofs_002_C6CC_02_RTS:
+ofs_002_C6CC_03_RTS:
 C - - - - - 0x0006DC 00:C6CC: 60        RTS
 
 
@@ -1238,10 +1238,10 @@ C - - - - - 0x000701 00:C6F1: B0 FA     BCS bra_C6ED_RTS
 C - - - - - 0x000703 00:C6F3: A5 09     LDA ram_0009
 C - - - - - 0x000705 00:C6F5: 29 03     AND #$03
 C - - - - - 0x000707 00:C6F7: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- D 2 - I - 0x00070A 00:C6FA: A6 C6     .word ofs_C6A6_00_display_score_in_hud
-- D 2 - I - 0x00070C 00:C6FC: 95 C6     .word ofs_C695_01
-- D 2 - I - 0x00070E 00:C6FE: CC C6     .word ofs_C6CC_02_RTS
-- D 2 - I - 0x000710 00:C700: CC C6     .word ofs_C6CC_03_RTS
+- D 2 - I - 0x00070A 00:C6FA: A6 C6     .word ofs_002_C6A6_00_display_score_in_hud
+- D 2 - I - 0x00070C 00:C6FC: 95 C6     .word ofs_002_C695_01
+- D 2 - I - 0x00070E 00:C6FE: CC C6     .word ofs_002_C6CC_02_RTS
+- D 2 - I - 0x000710 00:C700: CC C6     .word ofs_002_C6CC_03_RTS
 
 
 
@@ -1399,7 +1399,7 @@ C - - - - - 0x0007E2 00:C7D2: 60        RTS
 
 
 sub_C7D3:
-ofs_C7D3_05:
+ofs_000_C7D3_05:
 C - - - - - 0x0007E3 00:C7D3: A5 67     LDA ram_0067
 C - - - - - 0x0007E5 00:C7D5: D0 03     BNE bra_C7DA_RTS
 C - - - - - 0x0007E7 00:C7D7: 20 DD C7  JSR sub_C7DD
@@ -3685,54 +3685,54 @@ C - - - - - 0x001140 00:D130: D0 00     BNE bra_D132    ; bzk optimize, useless
 bra_D132:
 C - - - - - 0x001142 00:D132: A5 9A     LDA ram_player_state
 C - - - - - 0x001144 00:D134: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- D 2 - I - 0x001147 00:D137: 97 D3     .word ofs_D397_00
-- D 2 - I - 0x001149 00:D139: 07 D3     .word ofs_D307_01
-- D 2 - I - 0x00114B 00:D13B: 03 D3     .word ofs_D303_02
-- - - - - - 0x00114D 00:D13D: 97 D3     .word ofs_D397_03
-- D 2 - I - 0x00114F 00:D13F: 37 D3     .word ofs_D337_04
-- D 2 - I - 0x001151 00:D141: 44 D3     .word ofs_D344_05
-- D 2 - I - 0x001153 00:D143: 48 D3     .word ofs_D348_06
-- - - - - - 0x001155 00:D145: 97 D3     .word ofs_D397_07
-- D 2 - I - 0x001157 00:D147: C1 D1     .word ofs_D1C1_08
-- D 2 - I - 0x001159 00:D149: E2 D2     .word ofs_D2E2_09
-- D 2 - I - 0x00115B 00:D14B: C1 D2     .word ofs_D2C1_0A
-- - - - - - 0x00115D 00:D14D: 97 D3     .word ofs_D397_0B
-- - - - - - 0x00115F 00:D14F: 97 D3     .word ofs_D397_0C
-- - - - - - 0x001161 00:D151: 97 D3     .word ofs_D397_0D
-- - - - - - 0x001163 00:D153: 97 D3     .word ofs_D397_0E
-- - - - - - 0x001165 00:D155: 97 D3     .word ofs_D397_0F
-- D 2 - I - 0x001167 00:D157: 4C D3     .word ofs_D34C_10
-- D 2 - I - 0x001169 00:D159: 6F D3     .word ofs_D36F_11
-- D 2 - I - 0x00116B 00:D15B: 66 D3     .word ofs_D366_12
-- - - - - - 0x00116D 00:D15D: 97 D3     .word ofs_D397_13
-- D 2 - I - 0x00116F 00:D15F: 55 D3     .word ofs_D355_14
-- D 2 - I - 0x001171 00:D161: 62 D3     .word ofs_D362_15
-- D 2 - I - 0x001173 00:D163: 5E D3     .word ofs_D35E_16
-- - - - - - 0x001175 00:D165: 97 D3     .word ofs_D397_17
-- D 2 - I - 0x001177 00:D167: C1 D1     .word ofs_D1C1_18
-- D 2 - I - 0x001179 00:D169: E2 D2     .word ofs_D2E2_19
-- D 2 - I - 0x00117B 00:D16B: C1 D2     .word ofs_D2C1_1A
-- - - - - - 0x00117D 00:D16D: 97 D3     .word ofs_D397_1B
-- - - - - - 0x00117F 00:D16F: 97 D3     .word ofs_D397_1C
-- - - - - - 0x001181 00:D171: 97 D3     .word ofs_D397_1D
-- - - - - - 0x001183 00:D173: 97 D3     .word ofs_D397_1E
-- - - - - - 0x001185 00:D175: 97 D3     .word ofs_D397_1F
-- D 2 - I - 0x001187 00:D177: 73 D3     .word ofs_D373_20
-- D 2 - I - 0x001189 00:D179: 7C D3     .word ofs_D37C_21
-- D 2 - I - 0x00118B 00:D17B: 80 D3     .word ofs_D380_22
-- - - - - - 0x00118D 00:D17D: 97 D3     .word ofs_D397_23
-- D 2 - I - 0x00118F 00:D17F: 84 D3     .word ofs_D384_24
-- D 2 - I - 0x001191 00:D181: 87 D3     .word ofs_D387_25
-- D 2 - I - 0x001193 00:D183: 8A D3     .word ofs_D38A_26
-- - - - - - 0x001195 00:D185: 97 D3     .word ofs_D397_27
-- - - - - - 0x001197 00:D187: C1 D1     .word ofs_D1C1_28
-- - - - - - 0x001199 00:D189: E2 D2     .word ofs_D2E2_29
-- - - - - - 0x00119B 00:D18B: 48 D3     .word ofs_D348_2A
-- - - - - - 0x00119D 00:D18D: 97 D3     .word ofs_D397_2B
-- - - - - - 0x00119F 00:D18F: 97 D3     .word ofs_D397_2C
-- - - - - - 0x0011A1 00:D191: 97 D3     .word ofs_D397_2D
-- - - - - - 0x0011A3 00:D193: 97 D3     .word ofs_D397_2E
-- - - - - - 0x0011A5 00:D195: 97 D3     .word ofs_D397_2F
+- D 2 - I - 0x001147 00:D137: 97 D3     .word ofs_003_D397_00
+- D 2 - I - 0x001149 00:D139: 07 D3     .word ofs_003_D307_01
+- D 2 - I - 0x00114B 00:D13B: 03 D3     .word ofs_003_D303_02
+- - - - - - 0x00114D 00:D13D: 97 D3     .word ofs_003_D397_03
+- D 2 - I - 0x00114F 00:D13F: 37 D3     .word ofs_003_D337_04
+- D 2 - I - 0x001151 00:D141: 44 D3     .word ofs_003_D344_05
+- D 2 - I - 0x001153 00:D143: 48 D3     .word ofs_003_D348_06
+- - - - - - 0x001155 00:D145: 97 D3     .word ofs_003_D397_07
+- D 2 - I - 0x001157 00:D147: C1 D1     .word ofs_003_D1C1_08
+- D 2 - I - 0x001159 00:D149: E2 D2     .word ofs_003_D2E2_09
+- D 2 - I - 0x00115B 00:D14B: C1 D2     .word ofs_003_D2C1_0A
+- - - - - - 0x00115D 00:D14D: 97 D3     .word ofs_003_D397_0B
+- - - - - - 0x00115F 00:D14F: 97 D3     .word ofs_003_D397_0C
+- - - - - - 0x001161 00:D151: 97 D3     .word ofs_003_D397_0D
+- - - - - - 0x001163 00:D153: 97 D3     .word ofs_003_D397_0E
+- - - - - - 0x001165 00:D155: 97 D3     .word ofs_003_D397_0F
+- D 2 - I - 0x001167 00:D157: 4C D3     .word ofs_003_D34C_10
+- D 2 - I - 0x001169 00:D159: 6F D3     .word ofs_003_D36F_11
+- D 2 - I - 0x00116B 00:D15B: 66 D3     .word ofs_003_D366_12
+- - - - - - 0x00116D 00:D15D: 97 D3     .word ofs_003_D397_13
+- D 2 - I - 0x00116F 00:D15F: 55 D3     .word ofs_003_D355_14
+- D 2 - I - 0x001171 00:D161: 62 D3     .word ofs_003_D362_15
+- D 2 - I - 0x001173 00:D163: 5E D3     .word ofs_003_D35E_16
+- - - - - - 0x001175 00:D165: 97 D3     .word ofs_003_D397_17
+- D 2 - I - 0x001177 00:D167: C1 D1     .word ofs_003_D1C1_18
+- D 2 - I - 0x001179 00:D169: E2 D2     .word ofs_003_D2E2_19
+- D 2 - I - 0x00117B 00:D16B: C1 D2     .word ofs_003_D2C1_1A
+- - - - - - 0x00117D 00:D16D: 97 D3     .word ofs_003_D397_1B
+- - - - - - 0x00117F 00:D16F: 97 D3     .word ofs_003_D397_1C
+- - - - - - 0x001181 00:D171: 97 D3     .word ofs_003_D397_1D
+- - - - - - 0x001183 00:D173: 97 D3     .word ofs_003_D397_1E
+- - - - - - 0x001185 00:D175: 97 D3     .word ofs_003_D397_1F
+- D 2 - I - 0x001187 00:D177: 73 D3     .word ofs_003_D373_20
+- D 2 - I - 0x001189 00:D179: 7C D3     .word ofs_003_D37C_21
+- D 2 - I - 0x00118B 00:D17B: 80 D3     .word ofs_003_D380_22
+- - - - - - 0x00118D 00:D17D: 97 D3     .word ofs_003_D397_23
+- D 2 - I - 0x00118F 00:D17F: 84 D3     .word ofs_003_D384_24
+- D 2 - I - 0x001191 00:D181: 87 D3     .word ofs_003_D387_25
+- D 2 - I - 0x001193 00:D183: 8A D3     .word ofs_003_D38A_26
+- - - - - - 0x001195 00:D185: 97 D3     .word ofs_003_D397_27
+- - - - - - 0x001197 00:D187: C1 D1     .word ofs_003_D1C1_28
+- - - - - - 0x001199 00:D189: E2 D2     .word ofs_003_D2E2_29
+- - - - - - 0x00119B 00:D18B: 48 D3     .word ofs_003_D348_2A
+- - - - - - 0x00119D 00:D18D: 97 D3     .word ofs_003_D397_2B
+- - - - - - 0x00119F 00:D18F: 97 D3     .word ofs_003_D397_2C
+- - - - - - 0x0011A1 00:D191: 97 D3     .word ofs_003_D397_2D
+- - - - - - 0x0011A3 00:D193: 97 D3     .word ofs_003_D397_2E
+- - - - - - 0x0011A5 00:D195: 97 D3     .word ofs_003_D397_2F
 
 
 
@@ -3779,9 +3779,9 @@ bra_D1BE:
 
 
 
-ofs_D1C1_08:
-ofs_D1C1_18:
-ofs_D1C1_28:
+ofs_003_D1C1_08:
+ofs_003_D1C1_18:
+ofs_003_D1C1_28:
 C - - J - - 0x0011D1 00:D1C1: A5 BC     LDA ram_00BC
 C - - - - - 0x0011D3 00:D1C3: 20 9C D3  JSR sub_D39C
 loc_D1C6:
@@ -3959,8 +3959,8 @@ bra_D2BB:
 
 
 bra_D2C1:
-ofs_D2C1_0A:
-ofs_D2C1_1A:
+ofs_003_D2C1_0A:
+ofs_003_D2C1_1A:
 C - - J - - 0x0012D1 00:D2C1: A9 00     LDA #$00
 C - - - - - 0x0012D3 00:D2C3: 20 9C D3  JSR sub_D39C
 C - - - - - 0x0012D6 00:D2C6: A5 BC     LDA ram_00BC
@@ -3980,9 +3980,9 @@ C - - - - - 0x0012EC 00:D2DC: A9 09     LDA #con_state_jump + con_state_move_rig
 C - - - - - 0x0012EE 00:D2DE: 85 9A     STA ram_player_state
 C - - - - - 0x0012F0 00:D2E0: D0 00     BNE bra_D2E2    ; bzk optimize, useless
 bra_D2E2:
-ofs_D2E2_09:
-ofs_D2E2_19:
-ofs_D2E2_29:
+ofs_003_D2E2_09:
+ofs_003_D2E2_19:
+ofs_003_D2E2_29:
 C - - J - - 0x0012F2 00:D2E2: A9 01     LDA #$01
 C - - - - - 0x0012F4 00:D2E4: 20 9C D3  JSR sub_D39C
 C - - - - - 0x0012F7 00:D2E7: A5 BC     LDA ram_00BC
@@ -4004,13 +4004,13 @@ C - - - - - 0x001311 00:D301: D0 BE     BNE bra_D2C1
 
 
 
-ofs_D303_02:
+ofs_003_D303_02:
 C - - J - - 0x001313 00:D303: A9 00     LDA #$00
 C - - - - - 0x001315 00:D305: F0 02     BEQ bra_D309
 
 
 
-ofs_D307_01:
+ofs_003_D307_01:
 C - - J - - 0x001317 00:D307: A9 01     LDA #$01
 bra_D309:
 C - - - - - 0x001319 00:D309: 20 9C D3  JSR sub_D39C
@@ -4043,7 +4043,7 @@ C - - - - - 0x001346 00:D336: 60        RTS
 
 
 
-ofs_D337_04:
+ofs_003_D337_04:
 C - - J - - 0x001347 00:D337: A5 BC     LDA ram_00BC
 bra_D339:
 C - - - - - 0x001349 00:D339: 20 9C D3  JSR sub_D39C
@@ -4054,20 +4054,20 @@ C - - - - - 0x001352 00:D342: D0 55     BNE bra_D399
 
 
 
-ofs_D344_05:
+ofs_003_D344_05:
 C - - J - - 0x001354 00:D344: A9 01     LDA #$01
 C - - - - - 0x001356 00:D346: D0 F1     BNE bra_D339
 
 
 
-ofs_D348_06:
-ofs_D348_2A:
+ofs_003_D348_06:
+ofs_003_D348_2A:
 C - - J - - 0x001358 00:D348: A9 00     LDA #$00
 C - - - - - 0x00135A 00:D34A: F0 ED     BEQ bra_D339
 
 
 
-ofs_D34C_10:
+ofs_003_D34C_10:
 C - - J - - 0x00135C 00:D34C: A5 BC     LDA ram_00BC
 C - - - - - 0x00135E 00:D34E: 20 9C D3  JSR sub_D39C
 C - - - - - 0x001361 00:D351: A9 03     LDA #$03
@@ -4075,25 +4075,25 @@ C - - - - - 0x001363 00:D353: D0 44     BNE bra_D399
 
 
 
-ofs_D355_14:
+ofs_003_D355_14:
 C - - J - - 0x001365 00:D355: A5 BC     LDA ram_00BC
 bra_D357:
 C - - - - - 0x001367 00:D357: 20 9C D3  JSR sub_D39C
 C - - - - - 0x00136A 00:D35A: A9 06     LDA #$06
 C - - - - - 0x00136C 00:D35C: D0 3B     BNE bra_D399
-ofs_D35E_16:
+ofs_003_D35E_16:
 C - - J - - 0x00136E 00:D35E: A9 00     LDA #$00
 C - - - - - 0x001370 00:D360: F0 F5     BEQ bra_D357
 
 
 
-ofs_D362_15:
+ofs_003_D362_15:
 C - - J - - 0x001372 00:D362: A9 01     LDA #$01
 C - - - - - 0x001374 00:D364: D0 F1     BNE bra_D357
 
 
 
-ofs_D366_12:
+ofs_003_D366_12:
 C - - J - - 0x001376 00:D366: A9 00     LDA #$00
 bra_D368:
 C - - - - - 0x001378 00:D368: 20 9C D3  JSR sub_D39C
@@ -4102,13 +4102,13 @@ C - - - - - 0x00137D 00:D36D: D0 2A     BNE bra_D399
 
 
 
-ofs_D36F_11:
+ofs_003_D36F_11:
 C - - J - - 0x00137F 00:D36F: A9 01     LDA #$01
 C - - - - - 0x001381 00:D371: D0 F5     BNE bra_D368
 
 
 
-ofs_D373_20:
+ofs_003_D373_20:
 C - - J - - 0x001383 00:D373: A5 BC     LDA ram_00BC
 bra_D375:
 C - - - - - 0x001385 00:D375: 20 9C D3  JSR sub_D39C
@@ -4117,25 +4117,25 @@ C - - - - - 0x00138A 00:D37A: D0 1D     BNE bra_D399
 
 
 
-ofs_D37C_21:
+ofs_003_D37C_21:
 C - - J - - 0x00138C 00:D37C: A9 01     LDA #$01
 C - - - - - 0x00138E 00:D37E: D0 F5     BNE bra_D375
 
 
 
-ofs_D380_22:
+ofs_003_D380_22:
 C - - J - - 0x001390 00:D380: A9 00     LDA #$00
 C - - - - - 0x001392 00:D382: F0 F1     BEQ bra_D375
 
 
 
-ofs_D384_24:
+ofs_003_D384_24:
 C - - J - - 0x001394 00:D384: A5 BC     LDA ram_00BC
 C - - - - - 0x001396 00:D386: 2C        .byte $2C   ; BIT
-ofs_D387_25:
+ofs_003_D387_25:
 C - - - - - 0x001397 00:D387: A9 01     LDA #$01
 C - - - - - 0x001399 00:D389: 2C        .byte $2C   ; BIT
-ofs_D38A_26:
+ofs_003_D38A_26:
 C - - - - - 0x00139A 00:D38A: A9 00     LDA #$00
 C - - - - - 0x00139C 00:D38C: 20 9C D3  JSR sub_D39C
 C - - - - - 0x00139F 00:D38F: A9 08     LDA #$08
@@ -4148,28 +4148,28 @@ C - - - - - 0x0013A1 00:D391: D0 06     BNE bra_D399
 
 
 
-ofs_D397_00:
-ofs_D397_03:
-ofs_D397_07:
-ofs_D397_0B:
-ofs_D397_0C:
-ofs_D397_0D:
-ofs_D397_0E:
-ofs_D397_0F:
-ofs_D397_13:
-ofs_D397_17:
-ofs_D397_1B:
-ofs_D397_1C:
-ofs_D397_1D:
-ofs_D397_1E:
-ofs_D397_1F:
-ofs_D397_23:
-ofs_D397_27:
-ofs_D397_2B:
-ofs_D397_2C:
-ofs_D397_2D:
-ofs_D397_2E:
-ofs_D397_2F:
+ofs_003_D397_00:
+ofs_003_D397_03:
+ofs_003_D397_07:
+ofs_003_D397_0B:
+ofs_003_D397_0C:
+ofs_003_D397_0D:
+ofs_003_D397_0E:
+ofs_003_D397_0F:
+ofs_003_D397_13:
+ofs_003_D397_17:
+ofs_003_D397_1B:
+ofs_003_D397_1C:
+ofs_003_D397_1D:
+ofs_003_D397_1E:
+ofs_003_D397_1F:
+ofs_003_D397_23:
+ofs_003_D397_27:
+ofs_003_D397_2B:
+ofs_003_D397_2C:
+ofs_003_D397_2D:
+ofs_003_D397_2E:
+ofs_003_D397_2F:
 C - - J - - 0x0013A7 00:D397: A9 00     LDA #$00
 bra_D399:
 C - - - - - 0x0013A9 00:D399: 85 B6     STA ram_player_animation
@@ -4289,17 +4289,17 @@ C - - - - - 0x001449 00:D439: A5 9A     LDA ram_player_state
 C - - - - - 0x00144B 00:D43B: 85 9B     STA ram_009B
 C - - - - - 0x00144D 00:D43D: A5 9C     LDA ram_009C
 C - - - - - 0x00144F 00:D43F: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- D 2 - I - 0x001452 00:D442: 50 D4     .word ofs_D450_00
-- D 2 - I - 0x001454 00:D444: 8B D4     .word ofs_D48B_01
-- D 2 - I - 0x001456 00:D446: 67 D4     .word ofs_D467_02
-- D 2 - I - 0x001458 00:D448: F1 D4     .word ofs_D4F1_03
-- D 2 - I - 0x00145A 00:D44A: 14 D5     .word ofs_D514_04
-- D 2 - I - 0x00145C 00:D44C: 25 D5     .word ofs_D525_05
-- D 2 - I - 0x00145E 00:D44E: 98 D6     .word ofs_D698_06
+- D 2 - I - 0x001452 00:D442: 50 D4     .word ofs_004_D450_00
+- D 2 - I - 0x001454 00:D444: 8B D4     .word ofs_004_D48B_01
+- D 2 - I - 0x001456 00:D446: 67 D4     .word ofs_004_D467_02
+- D 2 - I - 0x001458 00:D448: F1 D4     .word ofs_004_D4F1_03
+- D 2 - I - 0x00145A 00:D44A: 14 D5     .word ofs_004_D514_04
+- D 2 - I - 0x00145C 00:D44C: 25 D5     .word ofs_004_D525_05
+- D 2 - I - 0x00145E 00:D44E: 98 D6     .word ofs_004_D698_06
 
 
 
-ofs_D450_00:
+ofs_004_D450_00:
 C - - J - - 0x001460 00:D450: A9 8B     LDA #$8B
 C - - - - - 0x001462 00:D452: 20 45 CE  JSR sub_CE45
 C - - - - - 0x001465 00:D455: A9 CC     LDA #$CC
@@ -4315,7 +4315,7 @@ C - - - - - 0x001476 00:D466: 60        RTS
 
 
 
-ofs_D467_02:
+ofs_004_D467_02:
 C - - J - - 0x001477 00:D467: A5 DB     LDA ram_hp_player
 C - - - - - 0x001479 00:D469: D0 19     BNE bra_D484
 C - - - - - 0x00147B 00:D46B: A9 50     LDA #$50
@@ -4338,7 +4338,7 @@ C - - - - - 0x00149A 00:D48A: 60        RTS
 
 
 
-ofs_D48B_01:
+ofs_004_D48B_01:
 C - - J - - 0x00149B 00:D48B: A5 BD     LDA ram_jump_timer
 C - - - - - 0x00149D 00:D48D: D0 06     BNE bra_D495_RTS
 C - - - - - 0x00149F 00:D48F: A5 7D     LDA ram_007D
@@ -4411,7 +4411,7 @@ tbl_D4E9_victory_actions:
 
 
 
-ofs_D4F1_03:
+ofs_004_D4F1_03:
 C - - J - - 0x001501 00:D4F1: A5 7D     LDA ram_007D
 C - - - - - 0x001503 00:D4F3: F0 03     BEQ bra_D4F8
 C - - - - - 0x001505 00:D4F5: C6 7D     DEC ram_007D
@@ -4434,9 +4434,9 @@ C - - - - - 0x001521 00:D511: 4C 35 C7  JMP loc_C735
 
 
 
-ofs_D514_04:
-ofs_D514_01:
-ofs_D514_03:
+ofs_004_D514_04:
+ofs_005_D514_01:
+ofs_005_D514_03:
 C - - J - - 0x001524 00:D514: A5 7D     LDA ram_007D
 C - - - - - 0x001526 00:D516: F0 07     BEQ bra_D51F
 C - - - - - 0x001528 00:D518: C6 7D     DEC ram_007D
@@ -4458,7 +4458,7 @@ C - - - - - 0x001532 00:D522: 4C 98 D6  JMP loc_D698
 
 
 
-ofs_D525_05:
+ofs_004_D525_05:
 C - - J - - 0x001535 00:D525: A5 68     LDA ram_enemy_type
 C - - - - - 0x001537 00:D527: C9 04     CMP #$04
 C - - - - - 0x001539 00:D529: D0 F7     BNE bra_D522
@@ -4629,15 +4629,15 @@ C D 2 - - - 0x001646 00:D636: A9 0A     LDA #$0A
 C - - - - - 0x001648 00:D638: 85 73     STA ram_0073
 C - - - - - 0x00164A 00:D63A: A5 9C     LDA ram_009C
 C - - - - - 0x00164C 00:D63C: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- D 2 - I - 0x00164F 00:D63F: 49 D6     .word ofs_D649_00
-- D 2 - I - 0x001651 00:D641: 14 D5     .word ofs_D514_01
-- D 2 - I - 0x001653 00:D643: 65 D6     .word ofs_D665_02
-- D 2 - I - 0x001655 00:D645: 14 D5     .word ofs_D514_03
-- D 2 - I - 0x001657 00:D647: 98 D6     .word ofs_D698_04
+- D 2 - I - 0x00164F 00:D63F: 49 D6     .word ofs_005_D649_00
+- D 2 - I - 0x001651 00:D641: 14 D5     .word ofs_005_D514_01
+- D 2 - I - 0x001653 00:D643: 65 D6     .word ofs_005_D665_02
+- D 2 - I - 0x001655 00:D645: 14 D5     .word ofs_005_D514_03
+- D 2 - I - 0x001657 00:D647: 98 D6     .word ofs_005_D698_04
 
 
 
-ofs_D649_00:
+ofs_005_D649_00:
 C - - J - - 0x001659 00:D649: A2 02     LDX #$02
 C - - - - - 0x00165B 00:D64B: 86 D5     STX ram_00D5
 C - - - - - 0x00165D 00:D64D: A9 1B     LDA #$1B
@@ -4656,7 +4656,7 @@ C - - - - - 0x001674 00:D664: 60        RTS
 
 
 
-ofs_D665_02:
+ofs_005_D665_02:
 C - - J - - 0x001675 00:D665: A5 B1     LDA ram_00B1
 C - - - - - 0x001677 00:D667: C9 10     CMP #$10
 C - - - - - 0x001679 00:D669: D0 F3     BNE bra_D65E
@@ -4683,8 +4683,8 @@ C - - - - - 0x0016A5 00:D695: 4C 60 D6  JMP loc_D660
 
 
 loc_D698:
-ofs_D698_06:
-ofs_D698_04:
+ofs_004_D698_06:
+ofs_005_D698_04:
 C D 2 - - - 0x0016A8 00:D698: E6 0B     INC ram_000B
 C - - - - - 0x0016AA 00:D69A: 60        RTS
 
@@ -4709,13 +4709,13 @@ C D 2 - - - 0x0016BF 00:D6AF: A5 B5     LDA ram_00B5
 C - - - - - 0x0016C1 00:D6B1: D0 2C     BNE bra_D6DF_RTS
 C - - - - - 0x0016C3 00:D6B3: A5 B7     LDA ram_00B7
 C - - - - - 0x0016C5 00:D6B5: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- D 2 - I - 0x0016C8 00:D6B8: BE D6     .word ofs_D6BE_00
-- D 2 - I - 0x0016CA 00:D6BA: E4 D6     .word ofs_D6E4_01
-- - - - - - 0x0016CC 00:D6BC: FC D6     .word ofs_D6FC_02
+- D 2 - I - 0x0016C8 00:D6B8: BE D6     .word ofs_006_D6BE_00
+- D 2 - I - 0x0016CA 00:D6BA: E4 D6     .word ofs_006_D6E4_01
+- - - - - - 0x0016CC 00:D6BC: FC D6     .word ofs_006_D6FC_02
 
 
 
-ofs_D6BE_00:
+ofs_006_D6BE_00:
 C - - J - - 0x0016CE 00:D6BE: E6 6C     INC ram_006C
 C - - - - - 0x0016D0 00:D6C0: A6 6C     LDX ram_006C
 C - - - - - 0x0016D2 00:D6C2: BD 09 D7  LDA tbl_D709,X
@@ -4739,7 +4739,7 @@ C - - - - - 0x0016EF 00:D6DF: 60        RTS
 bra_D6E0:
 C - - - - - 0x0016F0 00:D6E0: A9 01     LDA #$01
 C - - - - - 0x0016F2 00:D6E2: 85 B7     STA ram_00B7
-ofs_D6E4_01:
+ofs_006_D6E4_01:
 C - - - - - 0x0016F4 00:D6E4: A5 D6     LDA ram_dist_betw_fighters
 C - - - - - 0x0016F6 00:D6E6: C9 02     CMP #$02
 C - - - - - 0x0016F8 00:D6E8: 90 1A     BCC bra_D704
@@ -4753,7 +4753,7 @@ bra_D6F4:
 - - - - - - 0x001706 00:D6F6: 85 B7     STA ram_00B7
 - - - - - - 0x001708 00:D6F8: A9 20     LDA #$20
 - - - - - - 0x00170A 00:D6FA: 85 7D     STA ram_007D
-ofs_D6FC_02:
+ofs_006_D6FC_02:
 - - - - - - 0x00170C 00:D6FC: C6 7D     DEC ram_007D
 - - - - - - 0x00170E 00:D6FE: F0 04     BEQ bra_D704
 - - - - - - 0x001710 00:D700: A0 00     LDY #con_state_idle
@@ -7526,13 +7526,13 @@ C - - - - - 0x00257C 00:E56C: D0 97     BNE bra_E505
 C - - - - - 0x00257E 00:E56E: E6 6D     INC ram_006D
 C - - - - - 0x002580 00:E570: A5 D6     LDA ram_dist_betw_fighters
 C - - - - - 0x002582 00:E572: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- D 3 - I - 0x002585 00:E575: 36 E6     .word ofs_E636_00
-- D 3 - I - 0x002587 00:E577: 89 E5     .word ofs_E589_01
-- D 3 - I - 0x002589 00:E579: 89 E5     .word ofs_E589_02
-- D 3 - I - 0x00258B 00:E57B: 8C E5     .word ofs_E58C_03
-- D 3 - I - 0x00258D 00:E57D: 4B E6     .word ofs_E64B_04
-- D 3 - I - 0x00258F 00:E57F: 9E E5     .word ofs_E59E_05
-- D 3 - I - 0x002591 00:E581: 9B E5     .word ofs_E59B_06
+- D 3 - I - 0x002585 00:E575: 36 E6     .word ofs_007_E636_00
+- D 3 - I - 0x002587 00:E577: 89 E5     .word ofs_007_E589_01
+- D 3 - I - 0x002589 00:E579: 89 E5     .word ofs_007_E589_02
+- D 3 - I - 0x00258B 00:E57B: 8C E5     .word ofs_007_E58C_03
+- D 3 - I - 0x00258D 00:E57D: 4B E6     .word ofs_007_E64B_04
+- D 3 - I - 0x00258F 00:E57F: 9E E5     .word ofs_007_E59E_05
+- D 3 - I - 0x002591 00:E581: 9B E5     .word ofs_007_E59B_06
 
 
 
@@ -7546,13 +7546,13 @@ tbl_E583:
 
 
 
-ofs_E589_01:    ; bzk optimize
-ofs_E589_02:
+ofs_007_E589_01:    ; bzk optimize
+ofs_007_E589_02:
 C - - J - - 0x002599 00:E589: 4C D8 EB  JMP loc_EBD8
 
 
 
-ofs_E58C_03:
+ofs_007_E58C_03:
 C - - J - - 0x00259C 00:E58C: A5 09     LDA ram_0009
 C - - - - - 0x00259E 00:E58E: 4A        LSR
 C - - - - - 0x00259F 00:E58F: 4A        LSR
@@ -7565,30 +7565,30 @@ C - - - - - 0x0025A8 00:E598: 4C 4B E6  JMP loc_E64B
 
 
 
-ofs_E59B_06:    ; bzk optimize
+ofs_007_E59B_06:    ; bzk optimize
 C - - J - - 0x0025AB 00:E59B: 4C 4B E6  JMP loc_E64B
 
 
 
 bra_E59E:
 loc_E59E:
-ofs_E59E_05:
+ofs_007_E59E_05:
 C - - J - - 0x0025AE 00:E59E: A5 68     LDA ram_enemy_type
 C - - - - - 0x0025B0 00:E5A0: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- D 3 - I - 0x0025B3 00:E5A3: AD E5     .word ofs_E5AD_00
-- D 3 - I - 0x0025B5 00:E5A5: B8 E6     .word ofs_E6B8_01
-- D 3 - I - 0x0025B7 00:E5A7: B0 E5     .word ofs_E5B0_02
-- D 3 - I - 0x0025B9 00:E5A9: F4 E5     .word ofs_E5F4_03
-- D 3 - I - 0x0025BB 00:E5AB: F7 E5     .word ofs_E5F7_04
+- D 3 - I - 0x0025B3 00:E5A3: AD E5     .word ofs_008_E5AD_00
+- D 3 - I - 0x0025B5 00:E5A5: B8 E6     .word ofs_008_E6B8_01
+- D 3 - I - 0x0025B7 00:E5A7: B0 E5     .word ofs_008_E5B0_02
+- D 3 - I - 0x0025B9 00:E5A9: F4 E5     .word ofs_008_E5F4_03
+- D 3 - I - 0x0025BB 00:E5AB: F7 E5     .word ofs_008_E5F7_04
 
 
 
-ofs_E5AD_00:    ; bzk optimize
+ofs_008_E5AD_00:    ; bzk optimize
 C - - J - - 0x0025BD 00:E5AD: 4C 4B E6  JMP loc_E64B
 
 
 
-ofs_E5B0_02:
+ofs_008_E5B0_02:
 C - - J - - 0x0025C0 00:E5B0: AD 00 07  LDA ram_0700
 C - - - - - 0x0025C3 00:E5B3: F0 05     BEQ bra_E5BA
 C - - - - - 0x0025C5 00:E5B5: CE 00 07  DEC ram_0700
@@ -7628,12 +7628,12 @@ C - - - - - 0x002601 00:E5F1: 4C 5F E7  JMP loc_E75F
 
 
 
-ofs_E5F4_03:    ; bzk optimize
+ofs_008_E5F4_03:    ; bzk optimize
 C - - J - - 0x002604 00:E5F4: 4C 56 E6  JMP loc_E656
 
 
 
-ofs_E5F7_04:
+ofs_008_E5F7_04:
 C - - J - - 0x002607 00:E5F7: A5 C1     LDA ram_00C1
 C - - - - - 0x002609 00:E5F9: 29 0E     AND #$0E
 C - - - - - 0x00260B 00:E5FB: D0 02     BNE bra_E5FF
@@ -7676,7 +7676,7 @@ C - - - - - 0x002643 00:E633: 4C 5F E7  JMP loc_E75F
 
 
 
-ofs_E636_00:
+ofs_007_E636_00:
 C - - J - - 0x002646 00:E636: A5 BD     LDA ram_jump_timer
 C - - - - - 0x002648 00:E638: D0 0E     BNE bra_E648
 C - - - - - 0x00264A 00:E63A: A5 68     LDA ram_enemy_type
@@ -7700,7 +7700,7 @@ C - - - - - 0x002658 00:E648: 4C B4 E8  JMP loc_E8B4
 
 bra_E64B:
 loc_E64B:
-ofs_E64B_04:
+ofs_007_E64B_04:
 C D 3 - - - 0x00265B 00:E64B: A9 01     LDA #$01
 C - - - - - 0x00265D 00:E64D: 85 CE     STA ram_enemy_animation
 C - - - - - 0x00265F 00:E64F: A5 CF     LDA ram_00CF
@@ -7773,7 +7773,7 @@ C - - - - - 0x0026C5 00:E6B5: 4C BA EC  JMP loc_ECBA
 
 
 
-ofs_E6B8_01:
+ofs_008_E6B8_01:
 C - - J - - 0x0026C8 00:E6B8: AD 00 07  LDA ram_0700
 C - - - - - 0x0026CB 00:E6BB: F0 05     BEQ bra_E6C2
 C - - - - - 0x0026CD 00:E6BD: CE 00 07  DEC ram_0700
@@ -8875,147 +8875,147 @@ C - - - - - 0x002C4C 00:EC3C: 60        RTS
 
 sub_EC3D:
 C - - - - - 0x002C4D 00:EC3D: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- D 3 - I - 0x002C50 00:EC40: 4A EC     .word ofs_EC4A_00
-- D 3 - I - 0x002C52 00:EC42: 70 EC     .word ofs_EC70_01
-- D 3 - I - 0x002C54 00:EC44: 95 EC     .word ofs_EC95_02
-- D 3 - I - 0x002C56 00:EC46: BA EC     .word ofs_ECBA_03
-- D 3 - I - 0x002C58 00:EC48: E4 EC     .word ofs_ECE4_04
+- D 3 - I - 0x002C50 00:EC40: 4A EC     .word ofs_009_EC4A_00
+- D 3 - I - 0x002C52 00:EC42: 70 EC     .word ofs_009_EC70_01
+- D 3 - I - 0x002C54 00:EC44: 95 EC     .word ofs_009_EC95_02
+- D 3 - I - 0x002C56 00:EC46: BA EC     .word ofs_009_ECBA_03
+- D 3 - I - 0x002C58 00:EC48: E4 EC     .word ofs_009_ECE4_04
 
 
 
 loc_EC4A:
-ofs_EC4A_00:
+ofs_009_EC4A_00:
 C - - J - - 0x002C5A 00:EC4A: A5 C3     LDA ram_00C3
 C - - - - - 0x002C5C 00:EC4C: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- - - - - - 0x002C5F 00:EC4F: 01 ED     .word ofs_ED01_00
-- D 3 - I - 0x002C61 00:EC51: 16 ED     .word ofs_ED16_01
-- D 3 - I - 0x002C63 00:EC53: 1A ED     .word ofs_ED1A_02
-- D 3 - I - 0x002C65 00:EC55: 1E ED     .word ofs_ED1E_03
-- D 3 - I - 0x002C67 00:EC57: 22 ED     .word ofs_ED22_04
-- D 3 - I - 0x002C69 00:EC59: 12 ED     .word ofs_ED12_05
-- - - - - - 0x002C6B 00:EC5B: 36 ED     .word ofs_ED36_06
-- D 3 - I - 0x002C6D 00:EC5D: 63 EC     .word ofs_EC63_07
-- - - - - - 0x002C6F 00:EC5F: 6A EC     .word ofs_EC6A_08
-- - - - - - 0x002C71 00:EC61: 41 ED     .word ofs_ED41_09
+- - - - - - 0x002C5F 00:EC4F: 01 ED     .word ofs_010_ED01_00
+- D 3 - I - 0x002C61 00:EC51: 16 ED     .word ofs_010_ED16_01
+- D 3 - I - 0x002C63 00:EC53: 1A ED     .word ofs_010_ED1A_02
+- D 3 - I - 0x002C65 00:EC55: 1E ED     .word ofs_010_ED1E_03
+- D 3 - I - 0x002C67 00:EC57: 22 ED     .word ofs_010_ED22_04
+- D 3 - I - 0x002C69 00:EC59: 12 ED     .word ofs_010_ED12_05
+- - - - - - 0x002C6B 00:EC5B: 36 ED     .word ofs_010_ED36_06
+- D 3 - I - 0x002C6D 00:EC5D: 63 EC     .word ofs_010_EC63_07
+- - - - - - 0x002C6F 00:EC5F: 6A EC     .word ofs_010_EC6A_08
+- - - - - - 0x002C71 00:EC61: 41 ED     .word ofs_010_ED41_09
 
 
 
-ofs_EC63_07:
+ofs_010_EC63_07:
 C - - J - - 0x002C73 00:EC63: A9 00     LDA #$00
 C - - - - - 0x002C75 00:EC65: 85 7C     STA ram_007C
 C - - - - - 0x002C77 00:EC67: 4C 41 E6  JMP loc_E641
 
 
 
-ofs_EC6A_08:
+ofs_010_EC6A_08:
 - - - - - - 0x002C7A 00:EC6A: 20 1F EB  JSR sub_EB1F
 - - - - - - 0x002C7D 00:EC6D: 4C 4A EC  JMP loc_EC4A
 
 
 
 loc_EC70:
-ofs_EC70_01:
+ofs_009_EC70_01:
 C D 3 J - - 0x002C80 00:EC70: A5 C3     LDA ram_00C3
 C - - - - - 0x002C82 00:EC72: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- - - - - - 0x002C85 00:EC75: 01 ED     .word ofs_ED01_00
-- D 3 - I - 0x002C87 00:EC77: 2A ED     .word ofs_ED2A_01
-- D 3 - I - 0x002C89 00:EC79: 22 ED     .word ofs_ED22_02
-- D 3 - I - 0x002C8B 00:EC7B: 0E ED     .word ofs_ED0E_03
-- D 3 - I - 0x002C8D 00:EC7D: 36 ED     .word ofs_ED36_04
-- - - - - - 0x002C8F 00:EC7F: 39 ED     .word ofs_ED39_05
-- - - - - - 0x002C91 00:EC81: 12 ED     .word ofs_ED12_06
-- D 3 - I - 0x002C93 00:EC83: 1E ED     .word ofs_ED1E_07
-- - - - - - 0x002C95 00:EC85: 8F EC     .word ofs_EC8F_08
-- - - - - - 0x002C97 00:EC87: 41 ED     .word ofs_ED41_09
-- D 3 - I - 0x002C99 00:EC89: 16 ED     .word ofs_ED16_0A
-- D 3 - I - 0x002C9B 00:EC8B: 1A ED     .word ofs_ED1A_0B
-- D 3 - I - 0x002C9D 00:EC8D: 1E ED     .word ofs_ED1E_0C
+- - - - - - 0x002C85 00:EC75: 01 ED     .word ofs_010_ED01_00
+- D 3 - I - 0x002C87 00:EC77: 2A ED     .word ofs_010_ED2A_01
+- D 3 - I - 0x002C89 00:EC79: 22 ED     .word ofs_010_ED22_02
+- D 3 - I - 0x002C8B 00:EC7B: 0E ED     .word ofs_010_ED0E_03
+- D 3 - I - 0x002C8D 00:EC7D: 36 ED     .word ofs_010_ED36_04
+- - - - - - 0x002C8F 00:EC7F: 39 ED     .word ofs_010_ED39_05
+- - - - - - 0x002C91 00:EC81: 12 ED     .word ofs_010_ED12_06
+- D 3 - I - 0x002C93 00:EC83: 1E ED     .word ofs_010_ED1E_07
+- - - - - - 0x002C95 00:EC85: 8F EC     .word ofs_010_EC8F_08
+- - - - - - 0x002C97 00:EC87: 41 ED     .word ofs_010_ED41_09
+- D 3 - I - 0x002C99 00:EC89: 16 ED     .word ofs_010_ED16_0A
+- D 3 - I - 0x002C9B 00:EC8B: 1A ED     .word ofs_010_ED1A_0B
+- D 3 - I - 0x002C9D 00:EC8D: 1E ED     .word ofs_010_ED1E_0C
 
 
 
-ofs_EC8F_08:
+ofs_010_EC8F_08:
 - - - - - - 0x002C9F 00:EC8F: 20 1F EB  JSR sub_EB1F
 - - - - - - 0x002CA2 00:EC92: 4C 70 EC  JMP loc_EC70
 
 
 
-ofs_EC95_02:
+ofs_009_EC95_02:
 loc_EC95:
 C - - J - - 0x002CA5 00:EC95: A5 C3     LDA ram_00C3
 C - - - - - 0x002CA7 00:EC97: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- - - - - - 0x002CAA 00:EC9A: 01 ED     .word ofs_ED01_00
-- - - - - - 0x002CAC 00:EC9C: 16 ED     .word ofs_ED16_01
-- D 3 - I - 0x002CAE 00:EC9E: 1A ED     .word ofs_ED1A_02
-- D 3 - I - 0x002CB0 00:ECA0: 1E ED     .word ofs_ED1E_03
-- D 3 - I - 0x002CB2 00:ECA2: 22 ED     .word ofs_ED22_04
-- D 3 - I - 0x002CB4 00:ECA4: 12 ED     .word ofs_ED12_05
-- - - - - - 0x002CB6 00:ECA6: 36 ED     .word ofs_ED36_06
-- D 3 - I - 0x002CB8 00:ECA8: 39 ED     .word ofs_ED39_07
-- - - - - - 0x002CBA 00:ECAA: B4 EC     .word ofs_ECB4_08
-- - - - - - 0x002CBC 00:ECAC: 41 ED     .word ofs_ED41_09
-- - - - - - 0x002CBE 00:ECAE: 16 ED     .word ofs_ED16_0A
-- - - - - - 0x002CC0 00:ECB0: 1A ED     .word ofs_ED1A_0B
-- - - - - - 0x002CC2 00:ECB2: 1E ED     .word ofs_ED1E_0C
+- - - - - - 0x002CAA 00:EC9A: 01 ED     .word ofs_010_ED01_00
+- - - - - - 0x002CAC 00:EC9C: 16 ED     .word ofs_010_ED16_01
+- D 3 - I - 0x002CAE 00:EC9E: 1A ED     .word ofs_010_ED1A_02
+- D 3 - I - 0x002CB0 00:ECA0: 1E ED     .word ofs_010_ED1E_03
+- D 3 - I - 0x002CB2 00:ECA2: 22 ED     .word ofs_010_ED22_04
+- D 3 - I - 0x002CB4 00:ECA4: 12 ED     .word ofs_010_ED12_05
+- - - - - - 0x002CB6 00:ECA6: 36 ED     .word ofs_010_ED36_06
+- D 3 - I - 0x002CB8 00:ECA8: 39 ED     .word ofs_010_ED39_07
+- - - - - - 0x002CBA 00:ECAA: B4 EC     .word ofs_010_ECB4_08
+- - - - - - 0x002CBC 00:ECAC: 41 ED     .word ofs_010_ED41_09
+- - - - - - 0x002CBE 00:ECAE: 16 ED     .word ofs_010_ED16_0A
+- - - - - - 0x002CC0 00:ECB0: 1A ED     .word ofs_010_ED1A_0B
+- - - - - - 0x002CC2 00:ECB2: 1E ED     .word ofs_010_ED1E_0C
 
 
 
-ofs_ECB4_08:
+ofs_010_ECB4_08:
 - - - - - - 0x002CC4 00:ECB4: 20 1F EB  JSR sub_EB1F
 - - - - - - 0x002CC7 00:ECB7: 4C 95 EC  JMP loc_EC95
 
 
 
 loc_ECBA:
-ofs_ECBA_03:
+ofs_009_ECBA_03:
 C D 3 J - - 0x002CCA 00:ECBA: A5 C3     LDA ram_00C3
 C - - - - - 0x002CCC 00:ECBC: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- - - - - - 0x002CCF 00:ECBF: 01 ED     .word ofs_ED01_00
-- - - - - - 0x002CD1 00:ECC1: 2A ED     .word ofs_ED2A_01
-- D 3 - I - 0x002CD3 00:ECC3: 1A ED     .word ofs_ED1A_02
-- D 3 - I - 0x002CD5 00:ECC5: 22 ED     .word ofs_ED22_03
-- D 3 - I - 0x002CD7 00:ECC7: 16 ED     .word ofs_ED16_04
-- D 3 - I - 0x002CD9 00:ECC9: 12 ED     .word ofs_ED12_05
-- - - - - - 0x002CDB 00:ECCB: 36 ED     .word ofs_ED36_06
-- D 3 - I - 0x002CDD 00:ECCD: D9 EC     .word ofs_ECD9_07
-- - - - - - 0x002CDF 00:ECCF: DE EC     .word ofs_ECDE_08
-- - - - - - 0x002CE1 00:ECD1: 41 ED     .word ofs_ED41_09
-- D 3 - I - 0x002CE3 00:ECD3: 2A ED     .word ofs_ED2A_0A
-- D 3 - I - 0x002CE5 00:ECD5: 1A ED     .word ofs_ED1A_0B
-- D 3 - I - 0x002CE7 00:ECD7: 1E ED     .word ofs_ED1E_0C
+- - - - - - 0x002CCF 00:ECBF: 01 ED     .word ofs_010_ED01_00
+- - - - - - 0x002CD1 00:ECC1: 2A ED     .word ofs_010_ED2A_01
+- D 3 - I - 0x002CD3 00:ECC3: 1A ED     .word ofs_010_ED1A_02
+- D 3 - I - 0x002CD5 00:ECC5: 22 ED     .word ofs_010_ED22_03
+- D 3 - I - 0x002CD7 00:ECC7: 16 ED     .word ofs_010_ED16_04
+- D 3 - I - 0x002CD9 00:ECC9: 12 ED     .word ofs_010_ED12_05
+- - - - - - 0x002CDB 00:ECCB: 36 ED     .word ofs_010_ED36_06
+- D 3 - I - 0x002CDD 00:ECCD: D9 EC     .word ofs_010_ECD9_07
+- - - - - - 0x002CDF 00:ECCF: DE EC     .word ofs_010_ECDE_08
+- - - - - - 0x002CE1 00:ECD1: 41 ED     .word ofs_010_ED41_09
+- D 3 - I - 0x002CE3 00:ECD3: 2A ED     .word ofs_010_ED2A_0A
+- D 3 - I - 0x002CE5 00:ECD5: 1A ED     .word ofs_010_ED1A_0B
+- D 3 - I - 0x002CE7 00:ECD7: 1E ED     .word ofs_010_ED1E_0C
 
 
 
-ofs_ECD9_07:
+ofs_010_ECD9_07:
 C - - J - - 0x002CE9 00:ECD9: A9 00     LDA #$00
 C - - - - - 0x002CEB 00:ECDB: 4C 41 E6  JMP loc_E641
 
 
 
-ofs_ECDE_08:
+ofs_010_ECDE_08:
 - - - - - - 0x002CEE 00:ECDE: 20 1F EB  JSR sub_EB1F
 - - - - - - 0x002CF1 00:ECE1: 4C BA EC  JMP loc_ECBA
 
 
 
-ofs_ECE4_04:
+ofs_009_ECE4_04:
 C - - J - - 0x002CF4 00:ECE4: A5 C3     LDA ram_00C3
 C - - - - - 0x002CF6 00:ECE6: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- - - - - - 0x002CF9 00:ECE9: 01 ED     .word ofs_ED01_00
-- D 3 - I - 0x002CFB 00:ECEB: 16 ED     .word ofs_ED16_01
-- D 3 - I - 0x002CFD 00:ECED: 22 ED     .word ofs_ED22_02
-- D 3 - I - 0x002CFF 00:ECEF: 1E ED     .word ofs_ED1E_03
-- D 3 - I - 0x002D01 00:ECF1: 12 ED     .word ofs_ED12_04
-- D 3 - I - 0x002D03 00:ECF3: 1A ED     .word ofs_ED1A_05
-- - - - - - 0x002D05 00:ECF5: 36 ED     .word ofs_ED36_06
-- - - - - - 0x002D07 00:ECF7: 39 ED     .word ofs_ED39_07
-- - - - - - 0x002D09 00:ECF9: 3C ED     .word ofs_ED3C_08
-- - - - - - 0x002D0B 00:ECFB: 41 ED     .word ofs_ED41_09
-- - - - - - 0x002D0D 00:ECFD: 2A ED     .word ofs_ED2A_0A
-- - - - - - 0x002D0F 00:ECFF: 2A ED     .word ofs_ED2A_0B
+- - - - - - 0x002CF9 00:ECE9: 01 ED     .word ofs_010_ED01_00
+- D 3 - I - 0x002CFB 00:ECEB: 16 ED     .word ofs_010_ED16_01
+- D 3 - I - 0x002CFD 00:ECED: 22 ED     .word ofs_010_ED22_02
+- D 3 - I - 0x002CFF 00:ECEF: 1E ED     .word ofs_010_ED1E_03
+- D 3 - I - 0x002D01 00:ECF1: 12 ED     .word ofs_010_ED12_04
+- D 3 - I - 0x002D03 00:ECF3: 1A ED     .word ofs_010_ED1A_05
+- - - - - - 0x002D05 00:ECF5: 36 ED     .word ofs_010_ED36_06
+- - - - - - 0x002D07 00:ECF7: 39 ED     .word ofs_010_ED39_07
+- - - - - - 0x002D09 00:ECF9: 3C ED     .word ofs_010_ED3C_08
+- - - - - - 0x002D0B 00:ECFB: 41 ED     .word ofs_010_ED41_09
+- - - - - - 0x002D0D 00:ECFD: 2A ED     .word ofs_010_ED2A_0A
+- - - - - - 0x002D0F 00:ECFF: 2A ED     .word ofs_010_ED2A_0B
 
 
 
-ofs_ED01_00:
+ofs_010_ED01_00:
 - - - - - - 0x002D11 00:ED01: A9 00     LDA #$00
 - - - - - - 0x002D13 00:ED03: 85 7C     STA ram_007C
 - - - - - - 0x002D15 00:ED05: A9 01     LDA #$01
@@ -9028,37 +9028,37 @@ ofs_ED01_00:
 
 
 
-ofs_ED0E_03:
+ofs_010_ED0E_03:
 C - - J - - 0x002D1E 00:ED0E: A9 01     LDA #$01
 C - - - - - 0x002D20 00:ED10: D0 32     BNE bra_ED44
 
-ofs_ED12_05:
-ofs_ED12_06:
-ofs_ED12_04:
+ofs_010_ED12_05:
+ofs_010_ED12_06:
+ofs_010_ED12_04:
 C - - J - - 0x002D22 00:ED12: A9 02     LDA #$02
 C - - - - - 0x002D24 00:ED14: D0 2E     BNE bra_ED44
 
-ofs_ED16_01:
-ofs_ED16_0A:
-ofs_ED16_04:
+ofs_010_ED16_01:
+ofs_010_ED16_0A:
+ofs_010_ED16_04:
 C - - J - - 0x002D26 00:ED16: A9 03     LDA #$03
 C - - - - - 0x002D28 00:ED18: D0 2A     BNE bra_ED44
 
-ofs_ED1A_02:
-ofs_ED1A_0B:
-ofs_ED1A_05:
+ofs_010_ED1A_02:
+ofs_010_ED1A_0B:
+ofs_010_ED1A_05:
 C - - J - - 0x002D2A 00:ED1A: A9 04     LDA #$04
 C - - - - - 0x002D2C 00:ED1C: D0 26     BNE bra_ED44
 
-ofs_ED1E_03:
-ofs_ED1E_07:
-ofs_ED1E_0C:
+ofs_010_ED1E_03:
+ofs_010_ED1E_07:
+ofs_010_ED1E_0C:
 C - - J - - 0x002D2E 00:ED1E: A9 05     LDA #$05
 C - - - - - 0x002D30 00:ED20: D0 22     BNE bra_ED44
 
-ofs_ED22_04:
-ofs_ED22_02:
-ofs_ED22_03:
+ofs_010_ED22_04:
+ofs_010_ED22_02:
+ofs_010_ED22_03:
 C - - J - - 0x002D32 00:ED22: A9 06     LDA #$06
 C - - - - - 0x002D34 00:ED24: D0 1E     BNE bra_ED44
 
@@ -9067,9 +9067,9 @@ C - - - - - 0x002D34 00:ED24: D0 1E     BNE bra_ED44
 - - - - - - 0x002D36 00:ED26: A9 07     LDA #$07
 - - - - - - 0x002D38 00:ED28: D0 1A     BNE bra_ED44
 
-ofs_ED2A_01:
-ofs_ED2A_0A:
-ofs_ED2A_0B:
+ofs_010_ED2A_01:
+ofs_010_ED2A_0A:
+ofs_010_ED2A_0B:
 C - - J - - 0x002D3A 00:ED2A: A9 08     LDA #$08
 C - - - - - 0x002D3C 00:ED2C: D0 16     BNE bra_ED44
 
@@ -9082,25 +9082,25 @@ C - - - - - 0x002D3C 00:ED2C: D0 16     BNE bra_ED44
 
 
 
-ofs_ED36_06:
-ofs_ED36_04:
+ofs_010_ED36_06:
+ofs_010_ED36_04:
 C - - J - - 0x002D46 00:ED36: 4C 4B E6  JMP loc_E64B
 
 
 
-ofs_ED39_05:
-ofs_ED39_07:
+ofs_010_ED39_05:
+ofs_010_ED39_07:
 C - - J - - 0x002D49 00:ED39: 4C 41 E6  JMP loc_E641
 
 
 
-ofs_ED3C_08:
+ofs_010_ED3C_08:
 - - - - - - 0x002D4C 00:ED3C: A9 15     LDA #$15
 - - - - - - 0x002D4E 00:ED3E: 4C 50 ED  JMP loc_ED50
 
 
 
-ofs_ED41_09:
+ofs_010_ED41_09:
 - - - - - - 0x002D51 00:ED41: 4C AD E8  JMP loc_E8AD
 
 
@@ -13148,22 +13148,22 @@ C - - - - - 0x003E13 00:FE03: 4C 56 FE  JMP loc_FE56
 bra_FE06:
 C - - - - - 0x003E16 00:FE06: A5 68     LDA ram_enemy_type
 C - - - - - 0x003E18 00:FE08: 20 E9 D0  JSR sub_D0E9_read_pointers_after_JSR
-- D 3 - I - 0x003E1B 00:FE0B: 15 FE     .word ofs_FE15_00
-- D 3 - I - 0x003E1D 00:FE0D: 1A FE     .word ofs_FE1A_01
-- D 3 - I - 0x003E1F 00:FE0F: 34 FE     .word ofs_FE34_02
-- D 3 - I - 0x003E21 00:FE11: 38 FE     .word ofs_FE38_03
-- D 3 - I - 0x003E23 00:FE13: 52 FE     .word ofs_FE52_04
+- D 3 - I - 0x003E1B 00:FE0B: 15 FE     .word ofs_011_FE15_00
+- D 3 - I - 0x003E1D 00:FE0D: 1A FE     .word ofs_011_FE1A_01
+- D 3 - I - 0x003E1F 00:FE0F: 34 FE     .word ofs_011_FE34_02
+- D 3 - I - 0x003E21 00:FE11: 38 FE     .word ofs_011_FE38_03
+- D 3 - I - 0x003E23 00:FE13: 52 FE     .word ofs_011_FE52_04
 
 
 
-ofs_FE15_00:
+ofs_011_FE15_00:
 C - - J - - 0x003E25 00:FE15: A9 0C     LDA #$0C
 bra_FE17:
 C - - - - - 0x003E27 00:FE17: 4C 57 C4  JMP loc_C457
 
 
 
-ofs_FE1A_01:
+ofs_011_FE1A_01:
 C - - J - - 0x003E2A 00:FE1A: A9 00     LDA #$00
 C - - - - - 0x003E2C 00:FE1C: 8D 03 02  STA ram_spr_X
 C - - - - - 0x003E2F 00:FE1F: 8D 07 02  STA ram_spr_X + $04
@@ -13177,13 +13177,13 @@ C - - - - - 0x003E42 00:FE32: D0 E3     BNE bra_FE17
 
 
 
-ofs_FE34_02:
+ofs_011_FE34_02:
 C - - J - - 0x003E44 00:FE34: A9 0E     LDA #$0E
 C - - - - - 0x003E46 00:FE36: D0 DF     BNE bra_FE17
 
 
 
-ofs_FE38_03:
+ofs_011_FE38_03:
 C - - J - - 0x003E48 00:FE38: A9 00     LDA #$00
 C - - - - - 0x003E4A 00:FE3A: 8D 02 02  STA ram_spr_A
 C - - - - - 0x003E4D 00:FE3D: 8D 06 02  STA ram_spr_A + $04
@@ -13197,7 +13197,7 @@ C - - - - - 0x003E60 00:FE50: D0 C5     BNE bra_FE17
 
 
 
-ofs_FE52_04:
+ofs_011_FE52_04:
 C - - J - - 0x003E62 00:FE52: A9 10     LDA #$10
 C - - - - - 0x003E64 00:FE54: D0 C1     BNE bra_FE17
 
