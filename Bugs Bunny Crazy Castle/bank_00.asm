@@ -39,7 +39,6 @@
     .incbin "stages/stage_1F.bin"
 
 
-
 ; bzk garbage
 - - - - - - 0x003C10 00:BC00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x003C18 00:BC08: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 

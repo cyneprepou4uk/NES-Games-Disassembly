@@ -15,14 +15,14 @@
 
 
 tbl_0x008010_script_handlers:
-- D 0 - - - 0x008010 02:8000: F4 80     .word ofs_80F4_00_logo_and_title
-- D 0 - - - 0x008012 02:8002: 07 84     .word ofs_8407_01_final_cutscene
-- D 0 - - - 0x008014 02:8004: F9 91     .word ofs_91F9_02_load_stage
-- D 0 - - - 0x008016 02:8006: 91 94     .word ofs_9491_03_stage_complete
-- D 0 - - - 0x008018 02:8008: 44 95     .word ofs_9544_04_messages
-- D 0 - - - 0x00801A 02:800A: 5F 90     .word ofs_905F_05_game_over
-- D 0 - - - 0x00801C 02:800C: EA 8D     .word ofs_8DEA_06_menu
-- D 0 - - - 0x00801E 02:800E: 9F 8F     .word ofs_8F9F_07_generate_password
+- D 0 - - - 0x008010 02:8000: F4 80     .word ofs_000_80F4_00_logo_and_title
+- D 0 - - - 0x008012 02:8002: 07 84     .word ofs_000_8407_01_final_cutscene
+- D 0 - - - 0x008014 02:8004: F9 91     .word ofs_000_91F9_02_load_stage
+- D 0 - - - 0x008016 02:8006: 91 94     .word ofs_000_9491_03_stage_complete
+- D 0 - - - 0x008018 02:8008: 44 95     .word ofs_000_9544_04_messages
+- D 0 - - - 0x00801A 02:800A: 5F 90     .word ofs_000_905F_05_game_over
+- D 0 - - - 0x00801C 02:800C: EA 8D     .word ofs_000_8DEA_06_menu
+- D 0 - - - 0x00801E 02:800E: 9F 8F     .word ofs_000_8F9F_07_generate_password
 
 
 
@@ -81,12 +81,12 @@ C - - - - - 0x008071 02:8061: CA        DEX
 C - - - - - 0x008072 02:8062: F0 12     BEQ bra_8076_RTS
 C - - - - - 0x008074 02:8064: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x008077 02:8067: A5 F5     LDA ram_btn_press
-C - - - - - 0x008079 02:8069: 29 D0     AND #con_btns_SAB
+C - - - - - 0x008079 02:8069: 29 D0     AND #con_btns__ABS
 C - - - - - 0x00807B 02:806B: F0 F1     BEQ bra_805E_loop
 bra_806D_loop:
 C - - - - - 0x00807D 02:806D: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x008080 02:8070: A5 F7     LDA ram_btn_hold
-C - - - - - 0x008082 02:8072: 29 D0     AND #con_btns_SAB
+C - - - - - 0x008082 02:8072: 29 D0     AND #con_btns__ABS
 C - - - - - 0x008084 02:8074: D0 F7     BNE bra_806D_loop
 bra_8076_RTS:
 C - - - - - 0x008086 02:8076: 60        RTS
@@ -198,7 +198,7 @@ C - - - - - 0x008103 02:80F3: 60        RTS
 
 
 
-ofs_80F4_00_logo_and_title:
+ofs_000_80F4_00_logo_and_title:
 C - - J - - 0x008104 02:80F4: 20 10 80  JSR sub_8010
 loc_80F7:
 C D 0 - - - 0x008107 02:80F7: A9 03     LDA #$03
@@ -244,12 +244,12 @@ bra_8140:
 C - - - - - 0x008150 02:8140: 20 EA EE  JSR sub_0x00EEFA
 C - - - - - 0x008153 02:8143: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x008156 02:8146: A5 F5     LDA ram_btn_press
-C - - - - - 0x008158 02:8148: 29 D0     AND #con_btns_SAB
+C - - - - - 0x008158 02:8148: 29 D0     AND #con_btns__ABS
 C - - - - - 0x00815A 02:814A: F0 D8     BEQ bra_8124_loop
 bra_814C_loop:
 C - - - - - 0x00815C 02:814C: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x00815F 02:814F: A5 F7     LDA ram_btn_hold
-C - - - - - 0x008161 02:8151: 29 D0     AND #con_btns_SAB
+C - - - - - 0x008161 02:8151: 29 D0     AND #con_btns__ABS
 C - - - - - 0x008163 02:8153: D0 F7     BNE bra_814C_loop
 C - - - - - 0x008165 02:8155: 60        RTS
 
@@ -769,7 +769,7 @@ tbl_83E7_palette:
 
 
 
-ofs_8407_01_final_cutscene:
+ofs_000_8407_01_final_cutscene:
 C - - J - - 0x008417 02:8407: A9 00     LDA #$00
 C - - - - - 0x008419 02:8409: 85 26     STA ram_0026
 C - - - - - 0x00841B 02:840B: 85 27     STA ram_0027
@@ -792,12 +792,12 @@ C - - - - - 0x00843F 02:842F: 20 FB F5  JSR sub_0x00F60B_write_palette
 bra_8432_loop:
 C - - - - - 0x008442 02:8432: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x008445 02:8435: A5 F5     LDA ram_btn_press
-C - - - - - 0x008447 02:8437: 29 D0     AND #con_btns_SAB
+C - - - - - 0x008447 02:8437: 29 D0     AND #con_btns__ABS
 C - - - - - 0x008449 02:8439: F0 F7     BEQ bra_8432_loop
 bra_843B_loop:
 C - - - - - 0x00844B 02:843B: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x00844E 02:843E: A5 F7     LDA ram_btn_hold
-C - - - - - 0x008450 02:8440: 29 D0     AND #con_btns_SAB
+C - - - - - 0x008450 02:8440: 29 D0     AND #con_btns__ABS
 C - - - - - 0x008452 02:8442: D0 F7     BNE bra_843B_loop
 C - - - - - 0x008454 02:8444: 60        RTS
 
@@ -1471,7 +1471,7 @@ C - - - - - 0x008D4D 02:8D3D: 20 5F ED  JSR sub_0x00ED6F_draw_screen_handler
 
 
 
-ofs_8DEA_06_menu:
+ofs_000_8DEA_06_menu:
 C - - J - - 0x008DFA 02:8DEA: 20 CD 91  JSR sub_91CD
 C - - - - - 0x008DFD 02:8DED: A9 09     LDA #con_music_menu
 C - - - - - 0x008DFF 02:8DEF: 20 A2 F7  JSR sub_0x00F7B2_play_sound
@@ -1670,12 +1670,12 @@ C - - - - - 0x008F40 02:8F30: 60        RTS
 
 sub_8F31:
 C - - - - - 0x008F41 02:8F31: 20 78 EF  JSR sub_0x00EF88_jump_to_pointers_after_jsr
-- D 0 - I - 0x008F44 02:8F34: 41 8F     .word ofs_8F41_00
-- D 0 - I - 0x008F46 02:8F36: 38 8F     .word ofs_8F38_01
+- D 0 - I - 0x008F44 02:8F34: 41 8F     .word ofs_001_8F41_00
+- D 0 - I - 0x008F46 02:8F36: 38 8F     .word ofs_001_8F38_01
 
 
 
-ofs_8F38_01:
+ofs_001_8F38_01:
 C - - J - - 0x008F48 02:8F38: 20 4A 8F  JSR sub_8F4A
 C - - - - - 0x008F4B 02:8F3B: A9 24     LDA #$24
 C - - - - - 0x008F4D 02:8F3D: 20 03 B0  JSR sub_B003
@@ -1684,7 +1684,7 @@ C - - - - - 0x008F50 02:8F40: 60        RTS
 
 
 sub_8F41:
-ofs_8F41_00:
+ofs_001_8F41_00:
 C - - J - - 0x008F51 02:8F41: 20 4A 8F  JSR sub_8F4A
 C - - - - - 0x008F54 02:8F44: B5 76     LDA ram_0076,X
 C - - - - - 0x008F56 02:8F46: 20 03 B0  JSR sub_B003
@@ -1722,7 +1722,7 @@ tbl_8F61:
 
 
 
-ofs_8F9F_07_generate_password:
+ofs_000_8F9F_07_generate_password:
 ; between stages
 C - - J - - 0x008FAF 02:8F9F: 20 EA 91  JSR sub_91EA
 C - - - - - 0x008FB2 02:8FA2: 20 CD 91  JSR sub_91CD
@@ -1816,7 +1816,7 @@ tbl_9052:
 
 
 
-ofs_905F_05_game_over:
+ofs_000_905F_05_game_over:
 C - - J - - 0x00906F 02:905F: 20 CD 91  JSR sub_91CD
 C - - - - - 0x009072 02:9062: A9 16     LDA #con_music_game_over
 C - - - - - 0x009074 02:9064: 20 A2 F7  JSR sub_0x00F7B2_play_sound
@@ -2044,7 +2044,7 @@ C - - - - - 0x009208 02:91F8: 60        RTS
 
 
 
-ofs_91F9_02_load_stage:
+ofs_000_91F9_02_load_stage:
 C - - J - - 0x009209 02:91F9: 20 EA 91  JSR sub_91EA
 C - - - - - 0x00920C 02:91FC: 20 CD 91  JSR sub_91CD
 C - - - - - 0x00920F 02:91FF: A9 09     LDA #con_music_menu
@@ -2060,7 +2060,7 @@ bra_9216_loop:
 C D 0 - - - 0x009226 02:9216: 20 52 92  JSR sub_9252
 C - - - - - 0x009229 02:9219: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x00922C 02:921C: A5 F5     LDA ram_btn_press
-C - - - - - 0x00922E 02:921E: 29 D0     AND #con_btns_SAB
+C - - - - - 0x00922E 02:921E: 29 D0     AND #con_btns__ABS
 C - - - - - 0x009230 02:9220: D0 0D     BNE bra_922F_RTS
 C - - - - - 0x009232 02:9222: A5 F5     LDA ram_btn_press
 C - - - - - 0x009234 02:9224: 4A        LSR
@@ -2414,7 +2414,7 @@ C - - - - - 0x0094A0 02:9490: 60        RTS
 
 
 
-ofs_9491_03_stage_complete:
+ofs_000_9491_03_stage_complete:
 C - - J - - 0x0094A1 02:9491: A5 9E     LDA ram_009E
 C - - - - - 0x0094A3 02:9493: 29 03     AND #$03
 C - - - - - 0x0094A5 02:9495: 85 95     STA ram_0095
@@ -2518,7 +2518,7 @@ C - - - - - 0x009553 02:9543: 60        RTS
 
 
 
-ofs_9544_04_messages:
+ofs_000_9544_04_messages:
 C - - J - - 0x009554 02:9544: A2 00     LDX #$00
 bra_9546_loop:
 C - - - - - 0x009556 02:9546: BD 30 06  LDA ram_msg_state,X

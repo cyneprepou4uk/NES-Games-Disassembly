@@ -1996,8 +1996,8 @@ C - - - - - 0x00CCF9 03:CCE9: E6 7A     INC ram_007A
 C - - - - - 0x00CCFB 03:CCEB: A5 7A     LDA ram_007A
 C - - - - - 0x00CCFD 03:CCED: 29 01     AND #$01
 C - - - - - 0x00CCFF 03:CCEF: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
-- D 2 - I - 0x00CD02 03:CCF2: 29 CD     .word ofs_CD29_00
-- D 2 - I - 0x00CD04 03:CCF4: 4C CD     .word ofs_CD4C_01
+- D 2 - I - 0x00CD02 03:CCF2: 29 CD     .word ofs_002_CD29_00
+- D 2 - I - 0x00CD04 03:CCF4: 4C CD     .word ofs_002_CD4C_01
 
 
 
@@ -2030,7 +2030,7 @@ C - - - - - 0x00CD38 03:CD28: 60        RTS
 
 
 
-ofs_CD29_00:
+ofs_002_CD29_00:
 C - - J - - 0x00CD39 03:CD29: 20 6B CD  JSR sub_CD6B
 C - - - - - 0x00CD3C 03:CD2C: 20 28 EA  JSR sub_EA28_messages
 C - - - - - 0x00CD3F 03:CD2F: 20 2B CE  JSR sub_CE2B
@@ -2052,7 +2052,7 @@ C - - - - - 0x00CD5B 03:CD4B: 60        RTS
 
 
 
-ofs_CD4C_01:
+ofs_002_CD4C_01:
 C - - J - - 0x00CD5C 03:CD4C: A2 E0     LDX #$E0
 bra_CD4E_loop:
 C - - - - - 0x00CD5E 03:CD4E: BD 00 05  LDA ram_obj_state,X
@@ -2582,26 +2582,26 @@ C - - - - - 0x00D04E 03:D03E: 60        RTS
 bra_D03F:
 C - - - - - 0x00D04F 03:D03F: BD 10 05  LDA ram_0510,X
 C - - - - - 0x00D052 03:D042: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
-- D 2 - I - 0x00D055 03:D045: 09 D1     .word ofs_D109_00
-- D 2 - I - 0x00D057 03:D047: 15 D1     .word ofs_D115_01
-- D 2 - I - 0x00D059 03:D049: 21 D1     .word ofs_D121_02
-- D 2 - I - 0x00D05B 03:D04B: 2D D1     .word ofs_D12D_03
-- D 2 - I - 0x00D05D 03:D04D: 39 D1     .word ofs_D139_04
-- D 2 - I - 0x00D05F 03:D04F: 39 D1     .word ofs_D139_05
-- D 2 - I - 0x00D061 03:D051: B7 D0     .word ofs_D0B7_06
-- D 2 - I - 0x00D063 03:D053: 71 D0     .word ofs_D071_07
-- D 2 - I - 0x00D065 03:D055: 5F D0     .word ofs_D05F_08
-- D 2 - I - 0x00D067 03:D057: 59 D0     .word ofs_D059_09
+- D 2 - I - 0x00D055 03:D045: 09 D1     .word ofs_003_D109_00
+- D 2 - I - 0x00D057 03:D047: 15 D1     .word ofs_003_D115_01
+- D 2 - I - 0x00D059 03:D049: 21 D1     .word ofs_003_D121_02
+- D 2 - I - 0x00D05B 03:D04B: 2D D1     .word ofs_003_D12D_03
+- D 2 - I - 0x00D05D 03:D04D: 39 D1     .word ofs_003_D139_04
+- D 2 - I - 0x00D05F 03:D04F: 39 D1     .word ofs_003_D139_05
+- D 2 - I - 0x00D061 03:D051: B7 D0     .word ofs_003_D0B7_06
+- D 2 - I - 0x00D063 03:D053: 71 D0     .word ofs_003_D071_07
+- D 2 - I - 0x00D065 03:D055: 5F D0     .word ofs_003_D05F_08
+- D 2 - I - 0x00D067 03:D057: 59 D0     .word ofs_003_D059_09
 
 
 
-ofs_D059_09:
+ofs_003_D059_09:
 C - - J - - 0x00D069 03:D059: 20 65 D2  JSR sub_D265_move_obj_1_pixel_up
 C - - - - - 0x00D06C 03:D05C: 4C 62 D0  JMP loc_D062
 
 
 
-ofs_D05F_08:
+ofs_003_D05F_08:
 C - - J - - 0x00D06F 03:D05F: 20 53 D2  JSR sub_D253_move_obj_1_pixel_down
 loc_D062:
 C D 2 - - - 0x00D072 03:D062: FE 0E 05  INC ram_050E,X
@@ -2615,7 +2615,7 @@ C - - - - - 0x00D080 03:D070: 60        RTS
 
 
 
-ofs_D071_07:
+ofs_003_D071_07:
 C - - J - - 0x00D081 03:D071: 20 65 D2  JSR sub_D265_move_obj_1_pixel_up
 C - - - - - 0x00D084 03:D074: FE 0E 05  INC ram_050E,X
 C - - - - - 0x00D087 03:D077: BD 0E 05  LDA ram_050E,X
@@ -2652,7 +2652,7 @@ C - - - - - 0x00D0C6 03:D0B6: 60        RTS
 
 
 
-ofs_D0B7_06:
+ofs_003_D0B7_06:
 C - - J - - 0x00D0C7 03:D0B7: 20 53 D2  JSR sub_D253_move_obj_1_pixel_down
 C - - - - - 0x00D0CA 03:D0BA: FE 0E 05  INC ram_050E,X
 C - - - - - 0x00D0CD 03:D0BD: BD 0E 05  LDA ram_050E,X
@@ -2693,7 +2693,7 @@ C - - - - - 0x00D118 03:D108: 60        RTS
 
 
 
-ofs_D109_00:
+ofs_003_D109_00:
 C - - J - - 0x00D119 03:D109: BD 11 05  LDA ram_0511,X
 C - - - - - 0x00D11C 03:D10C: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
 - D 2 - I - 0x00D11F 03:D10F: BC D1     .word ofs_D1BC_00
@@ -2702,7 +2702,7 @@ C - - - - - 0x00D11C 03:D10C: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
 
 
 
-ofs_D115_01:
+ofs_003_D115_01:
 C - - J - - 0x00D125 03:D115: BD 11 05  LDA ram_0511,X
 C - - - - - 0x00D128 03:D118: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
 - D 2 - I - 0x00D12B 03:D11B: BC D1     .word ofs_D1BC_00
@@ -2711,7 +2711,7 @@ C - - - - - 0x00D128 03:D118: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
 
 
 
-ofs_D121_02:
+ofs_003_D121_02:
 C - - J - - 0x00D131 03:D121: BD 11 05  LDA ram_0511,X
 C - - - - - 0x00D134 03:D124: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
 - D 2 - I - 0x00D137 03:D127: CE D1     .word ofs_D1CE_00
@@ -2720,7 +2720,7 @@ C - - - - - 0x00D134 03:D124: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
 
 
 
-ofs_D12D_03:
+ofs_003_D12D_03:
 C - - J - - 0x00D13D 03:D12D: BD 11 05  LDA ram_0511,X
 C - - - - - 0x00D140 03:D130: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
 - D 2 - I - 0x00D143 03:D133: CE D1     .word ofs_D1CE_00
@@ -2729,20 +2729,20 @@ C - - - - - 0x00D140 03:D130: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
 
 
 
-ofs_D139_04:
-ofs_D139_05:
+ofs_003_D139_04:
+ofs_003_D139_05:
 C - - J - - 0x00D149 03:D139: BD 11 05  LDA ram_0511,X
 C - - - - - 0x00D14C 03:D13C: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
-- D 2 - I - 0x00D14F 03:D13F: 4B D1     .word ofs_D14B_00
-- D 2 - I - 0x00D151 03:D141: 6F D1     .word ofs_D16F_01
-- D 2 - I - 0x00D153 03:D143: A0 D1     .word ofs_D1A0_02
-- D 2 - I - 0x00D155 03:D145: A0 D1     .word ofs_D1A0_03
-- D 2 - I - 0x00D157 03:D147: A0 D1     .word ofs_D1A0_04
-- D 2 - I - 0x00D159 03:D149: AB D1     .word ofs_D1AB_05
+- D 2 - I - 0x00D14F 03:D13F: 4B D1     .word ofs_004_D14B_00
+- D 2 - I - 0x00D151 03:D141: 6F D1     .word ofs_004_D16F_01
+- D 2 - I - 0x00D153 03:D143: A0 D1     .word ofs_004_D1A0_02
+- D 2 - I - 0x00D155 03:D145: A0 D1     .word ofs_004_D1A0_03
+- D 2 - I - 0x00D157 03:D147: A0 D1     .word ofs_004_D1A0_04
+- D 2 - I - 0x00D159 03:D149: AB D1     .word ofs_004_D1AB_05
 
 
 
-ofs_D14B_00:
+ofs_004_D14B_00:
 C - - J - - 0x00D15B 03:D14B: FE 0E 05  INC ram_050E,X
 C - - - - - 0x00D15E 03:D14E: BD 0E 05  LDA ram_050E,X
 C - - - - - 0x00D161 03:D151: C9 40     CMP #$40
@@ -2764,7 +2764,7 @@ C - - - - - 0x00D17E 03:D16E: 60        RTS
 
 
 
-ofs_D16F_01:
+ofs_004_D16F_01:
 C - - J - - 0x00D17F 03:D16F: FE 0E 05  INC ram_050E,X
 C - - - - - 0x00D182 03:D172: BD 0E 05  LDA ram_050E,X
 C - - - - - 0x00D185 03:D175: C9 40     CMP #$40
@@ -2790,9 +2790,9 @@ C - - - - - 0x00D1AF 03:D19F: 60        RTS
 
 
 
-ofs_D1A0_02:
-ofs_D1A0_03:
-ofs_D1A0_04:
+ofs_004_D1A0_02:
+ofs_004_D1A0_03:
+ofs_004_D1A0_04:
 C - - J - - 0x00D1B0 03:D1A0: FE 0E 05  INC ram_050E,X
 C - - - - - 0x00D1B3 03:D1A3: BD 0E 05  LDA ram_050E,X
 C - - - - - 0x00D1B6 03:D1A6: C9 10     CMP #$10
@@ -2801,7 +2801,7 @@ C - - - - - 0x00D1BA 03:D1AA: 60        RTS
 
 
 
-ofs_D1AB_05:
+ofs_004_D1AB_05:
 C - - J - - 0x00D1BB 03:D1AB: FE 0E 05  INC ram_050E,X
 C - - - - - 0x00D1BE 03:D1AE: BD 0E 05  LDA ram_050E,X
 C - - - - - 0x00D1C1 03:D1B1: C9 10     CMP #$10
@@ -2916,7 +2916,7 @@ C - - - - - 0x00D262 03:D252: 60        RTS
 
 
 sub_D253_move_obj_1_pixel_down:
-ofs_D253_01_move_obj_1_pixel_down:
+ofs_006_D253_01_move_obj_1_pixel_down:
 C - - - - - 0x00D263 03:D253: BD 03 05  LDA ram_pos_Y_lo_obj,X
 C - - - - - 0x00D266 03:D256: 38        SEC
 C - - - - - 0x00D267 03:D257: E9 01     SBC #$01
@@ -2929,7 +2929,7 @@ C - - - - - 0x00D274 03:D264: 60        RTS
 
 
 sub_D265_move_obj_1_pixel_up:
-ofs_D265_03_move_obj_1_pixel_up:
+ofs_006_D265_03_move_obj_1_pixel_up:
 C - - - - - 0x00D275 03:D265: BD 03 05  LDA ram_pos_Y_lo_obj,X
 C - - - - - 0x00D278 03:D268: 18        CLC
 C - - - - - 0x00D279 03:D269: 69 01     ADC #$01
@@ -2942,7 +2942,7 @@ C - - - - - 0x00D286 03:D276: 60        RTS
 
 
 sub_D277_move_obj_1_pixel_left:
-ofs_D277_02_move_obj_1_pixel_left:
+ofs_006_D277_02_move_obj_1_pixel_left:
 C - - - - - 0x00D287 03:D277: BD 01 05  LDA ram_pos_X_lo_obj,X
 C - - - - - 0x00D28A 03:D27A: 38        SEC
 C - - - - - 0x00D28B 03:D27B: E9 01     SBC #$01
@@ -2955,7 +2955,7 @@ C - - - - - 0x00D298 03:D288: 60        RTS
 
 
 sub_D289_move_obj_1_pixel_right:
-ofs_D289_00_move_obj_1_pixel_right:
+ofs_006_D289_00_move_obj_1_pixel_right:
 C - - - - - 0x00D299 03:D289: BD 01 05  LDA ram_pos_X_lo_obj,X
 C - - - - - 0x00D29C 03:D28C: 18        CLC
 C - - - - - 0x00D29D 03:D28D: 69 01     ADC #$01
@@ -3101,46 +3101,46 @@ tbl_D36F:
 
 
 _off004_D379_00:
-- D 2 - I - 0x00D389 03:D379: 8F D3     .word ofs_00_D38F_00
-- D 2 - I - 0x00D38B 03:D37B: 95 D3     .word ofs_00_D395_01
-- D 2 - I - 0x00D38D 03:D37D: 9B D3     .word ofs_00_D39B_02
-- D 2 - I - 0x00D38F 03:D37F: A1 D3     .word ofs_00_D3A1_03
-- D 2 - I - 0x00D391 03:D381: A7 D3     .word ofs_00_D3A7_04
-- D 2 - I - 0x00D393 03:D383: B3 D3     .word ofs_00_D3B3_05
-- D 2 - I - 0x00D395 03:D385: 8D D3     .word ofs_00_D38D_06
-- D 2 - I - 0x00D397 03:D387: 8D D3     .word ofs_00_D38D_07
-- D 2 - I - 0x00D399 03:D389: 8D D3     .word ofs_00_D38D_08
-- D 2 - I - 0x00D39B 03:D38B: 8D D3     .word ofs_00_D38D_09
+- D 2 - I - 0x00D389 03:D379: 8F D3     .word _off006_00_D38F_00
+- D 2 - I - 0x00D38B 03:D37B: 95 D3     .word _off006_00_D395_01
+- D 2 - I - 0x00D38D 03:D37D: 9B D3     .word _off006_00_D39B_02
+- D 2 - I - 0x00D38F 03:D37F: A1 D3     .word _off006_00_D3A1_03
+- D 2 - I - 0x00D391 03:D381: A7 D3     .word _off006_00_D3A7_04
+- D 2 - I - 0x00D393 03:D383: B3 D3     .word _off006_00_D3B3_05
+- D 2 - I - 0x00D395 03:D385: 8D D3     .word _off006_00_D38D_06
+- D 2 - I - 0x00D397 03:D387: 8D D3     .word _off006_00_D38D_07
+- D 2 - I - 0x00D399 03:D389: 8D D3     .word _off006_00_D38D_08
+- D 2 - I - 0x00D39B 03:D38B: 8D D3     .word _off006_00_D38D_09
 
 
 
-ofs_00_D38D_06:
-ofs_00_D38D_07:
-ofs_00_D38D_08:
-ofs_00_D38D_09:
+_off006_00_D38D_06:
+_off006_00_D38D_07:
+_off006_00_D38D_08:
+_off006_00_D38D_09:
 - D 2 - I - 0x00D39D 03:D38D: E9 D3     .word off_D3E9_00
 
-ofs_00_D38F_00:
+_off006_00_D38F_00:
 - D 2 - I - 0x00D39F 03:D38F: D1 D3     .word off_D3D1_00
 - D 2 - I - 0x00D3A1 03:D391: D7 D3     .word off_D3D7_01
 - D 2 - I - 0x00D3A3 03:D393: E9 D3     .word off_D3E9_02
 
-ofs_00_D395_01:
+_off006_00_D395_01:
 - D 2 - I - 0x00D3A5 03:D395: D1 D3     .word off_D3D1_00
 - D 2 - I - 0x00D3A7 03:D397: E0 D3     .word off_D3E0_01
 - D 2 - I - 0x00D3A9 03:D399: E9 D3     .word off_D3E9_02
 
-ofs_00_D39B_02:
+_off006_00_D39B_02:
 - D 2 - I - 0x00D3AB 03:D39B: D4 D3     .word off_D3D4_00
 - D 2 - I - 0x00D3AD 03:D39D: D7 D3     .word off_D3D7_01
 - D 2 - I - 0x00D3AF 03:D39F: EC D3     .word off_D3EC_02
 
-ofs_00_D3A1_03:
+_off006_00_D3A1_03:
 - D 2 - I - 0x00D3B1 03:D3A1: D4 D3     .word off_D3D4_00
 - D 2 - I - 0x00D3B3 03:D3A3: E0 D3     .word off_D3E0_01
 - D 2 - I - 0x00D3B5 03:D3A5: EC D3     .word off_D3EC_02
 
-ofs_00_D3A7_04:
+_off006_00_D3A7_04:
 - D 2 - I - 0x00D3B7 03:D3A7: BF D3     .word off_D3BF_00
 - D 2 - I - 0x00D3B9 03:D3A9: C1 D3     .word off_D3C1_01
 - D 2 - I - 0x00D3BB 03:D3AB: C4 D3     .word off_D3C4_02
@@ -3148,7 +3148,7 @@ ofs_00_D3A7_04:
 - D 2 - I - 0x00D3BF 03:D3AF: C8 D3     .word off_D3C8_04
 - D 2 - I - 0x00D3C1 03:D3B1: CA D3     .word off_D3CA_05
 
-ofs_00_D3B3_05:
+_off006_00_D3B3_05:
 - D 2 - I - 0x00D3C3 03:D3B3: CC D3     .word off_D3CC_00
 - D 2 - I - 0x00D3C5 03:D3B5: CE D3     .word off_D3CE_01
 - D 2 - I - 0x00D3C7 03:D3B7: C4 D3     .word off_D3C4_02
@@ -3238,46 +3238,46 @@ off_D3EC_02:
 
 
 _off004_D3EF_01:
-- D 2 - I - 0x00D3FF 03:D3EF: 05 D4     .word ofs_01_D405_00
-- D 2 - I - 0x00D401 03:D3F1: 0B D4     .word ofs_01_D40B_01
-- D 2 - I - 0x00D403 03:D3F3: 11 D4     .word ofs_01_D411_02
-- D 2 - I - 0x00D405 03:D3F5: 17 D4     .word ofs_01_D417_03
-- D 2 - I - 0x00D407 03:D3F7: 1D D4     .word ofs_01_D41D_04
-- D 2 - I - 0x00D409 03:D3F9: 29 D4     .word ofs_01_D429_05
-- D 2 - I - 0x00D40B 03:D3FB: 03 D4     .word ofs_01_D403_06
-- D 2 - I - 0x00D40D 03:D3FD: 03 D4     .word ofs_01_D403_07
-- D 2 - I - 0x00D40F 03:D3FF: 03 D4     .word ofs_01_D403_08
-- D 2 - I - 0x00D411 03:D401: 03 D4     .word ofs_01_D403_09
+- D 2 - I - 0x00D3FF 03:D3EF: 05 D4     .word _off006_01_D405_00
+- D 2 - I - 0x00D401 03:D3F1: 0B D4     .word _off006_01_D40B_01
+- D 2 - I - 0x00D403 03:D3F3: 11 D4     .word _off006_01_D411_02
+- D 2 - I - 0x00D405 03:D3F5: 17 D4     .word _off006_01_D417_03
+- D 2 - I - 0x00D407 03:D3F7: 1D D4     .word _off006_01_D41D_04
+- D 2 - I - 0x00D409 03:D3F9: 29 D4     .word _off006_01_D429_05
+- D 2 - I - 0x00D40B 03:D3FB: 03 D4     .word _off006_01_D403_06
+- D 2 - I - 0x00D40D 03:D3FD: 03 D4     .word _off006_01_D403_07
+- D 2 - I - 0x00D40F 03:D3FF: 03 D4     .word _off006_01_D403_08
+- D 2 - I - 0x00D411 03:D401: 03 D4     .word _off006_01_D403_09
 
 
 
-ofs_01_D403_06:
-ofs_01_D403_07:
-ofs_01_D403_08:
-ofs_01_D403_09:
+_off006_01_D403_06:
+_off006_01_D403_07:
+_off006_01_D403_08:
+_off006_01_D403_09:
 - D 2 - I - 0x00D413 03:D403: 4B D4     .word off_D44B_00
 
-ofs_01_D405_00:
+_off006_01_D405_00:
 - D 2 - I - 0x00D415 03:D405: 3B D4     .word off_D43B_00
 - D 2 - I - 0x00D417 03:D407: 41 D4     .word off_D441_01
 - D 2 - I - 0x00D419 03:D409: 4B D4     .word off_D44B_02
 
-ofs_01_D40B_01:
+_off006_01_D40B_01:
 - D 2 - I - 0x00D41B 03:D40B: 3B D4     .word off_D43B_00
 - D 2 - I - 0x00D41D 03:D40D: 46 D4     .word off_D446_01
 - D 2 - I - 0x00D41F 03:D40F: 4B D4     .word off_D44B_02
 
-ofs_01_D411_02:
+_off006_01_D411_02:
 - D 2 - I - 0x00D421 03:D411: 3E D4     .word off_D43E_00
 - D 2 - I - 0x00D423 03:D413: 41 D4     .word off_D441_01
 - D 2 - I - 0x00D425 03:D415: 4E D4     .word off_D44E_02
 
-ofs_01_D417_03:
+_off006_01_D417_03:
 - D 2 - I - 0x00D427 03:D417: 3E D4     .word off_D43E_00
 - D 2 - I - 0x00D429 03:D419: 46 D4     .word off_D446_01
 - D 2 - I - 0x00D42B 03:D41B: 4E D4     .word off_D44E_02
 
-ofs_01_D41D_04:
+_off006_01_D41D_04:
 - D 2 - I - 0x00D42D 03:D41D: 35 D4     .word off_D435_00
 - D 2 - I - 0x00D42F 03:D41F: 35 D4     .word off_D435_01
 - D 2 - I - 0x00D431 03:D421: C4 D3     .word off_D3C4_02
@@ -3285,7 +3285,7 @@ ofs_01_D41D_04:
 - D 2 - I - 0x00D435 03:D425: C8 D3     .word off_D3C8_04
 - D 2 - I - 0x00D437 03:D427: CA D3     .word off_D3CA_05
 
-ofs_01_D429_05:
+_off006_01_D429_05:
 - D 2 - I - 0x00D439 03:D429: 38 D4     .word off_D438_00
 - D 2 - I - 0x00D43B 03:D42B: 38 D4     .word off_D438_01
 - D 2 - I - 0x00D43D 03:D42D: C4 D3     .word off_D3C4_02
@@ -3349,8 +3349,8 @@ _off004_D451_02:
 - - - - - - 0x00D463 03:D453: 00 00     .word $0000 ; 01
 - - - - - - 0x00D465 03:D455: 00 00     .word $0000 ; 02
 - - - - - - 0x00D467 03:D457: 00 00     .word $0000 ; 03
-- D 2 - I - 0x00D469 03:D459: 65 D4     .word ofs_02_D465_04
-- D 2 - I - 0x00D46B 03:D45B: 71 D4     .word ofs_02_D471_05
+- D 2 - I - 0x00D469 03:D459: 65 D4     .word _off006_02_D465_04
+- D 2 - I - 0x00D46B 03:D45B: 71 D4     .word _off006_02_D471_05
 - - - - - - 0x00D46D 03:D45D: 00 00     .word $0000 ; 06
 - - - - - - 0x00D46F 03:D45F: 00 00     .word $0000 ; 07
 - - - - - - 0x00D471 03:D461: 00 00     .word $0000 ; 08
@@ -3358,7 +3358,7 @@ _off004_D451_02:
 
 
 
-ofs_02_D465_04:
+_off006_02_D465_04:
 - D 2 - I - 0x00D475 03:D465: 7D D4     .word off_D47D_00
 - D 2 - I - 0x00D477 03:D467: 7D D4     .word off_D47D_01
 - D 2 - I - 0x00D479 03:D469: C4 D3     .word off_D3C4_02
@@ -3366,7 +3366,7 @@ ofs_02_D465_04:
 - D 2 - I - 0x00D47D 03:D46D: C8 D3     .word off_D3C8_04
 - D 2 - I - 0x00D47F 03:D46F: CA D3     .word off_D3CA_05
 
-ofs_02_D471_05:
+_off006_02_D471_05:
 - D 2 - I - 0x00D481 03:D471: 80 D4     .word off_D480_00
 - D 2 - I - 0x00D483 03:D473: 80 D4     .word off_D480_01
 - D 2 - I - 0x00D485 03:D475: C4 D3     .word off_D3C4_02
@@ -3395,8 +3395,8 @@ _off004_D483_03:
 - - - - - - 0x00D495 03:D485: 00 00     .word $0000 ; 01
 - - - - - - 0x00D497 03:D487: 00 00     .word $0000 ; 02
 - - - - - - 0x00D499 03:D489: 00 00     .word $0000 ; 03
-- D 2 - I - 0x00D49B 03:D48B: 97 D4     .word ofs_03_D497_04
-- D 2 - I - 0x00D49D 03:D48D: A3 D4     .word ofs_03_D4A3_05
+- D 2 - I - 0x00D49B 03:D48B: 97 D4     .word _off006_03_D497_04
+- D 2 - I - 0x00D49D 03:D48D: A3 D4     .word _off006_03_D4A3_05
 - - - - - - 0x00D49F 03:D48F: 00 00     .word $0000 ; 06
 - - - - - - 0x00D4A1 03:D491: 00 00     .word $0000 ; 07
 - - - - - - 0x00D4A3 03:D493: 00 00     .word $0000 ; 08
@@ -3404,7 +3404,7 @@ _off004_D483_03:
 
 
 
-ofs_03_D497_04:
+_off006_03_D497_04:
 - D 2 - I - 0x00D4A7 03:D497: AF D4     .word off_D4AF_00
 - D 2 - I - 0x00D4A9 03:D499: AF D4     .word off_D4AF_01
 - D 2 - I - 0x00D4AB 03:D49B: C4 D3     .word off_D3C4_02
@@ -3412,7 +3412,7 @@ ofs_03_D497_04:
 - D 2 - I - 0x00D4AF 03:D49F: C8 D3     .word off_D3C8_04
 - D 2 - I - 0x00D4B1 03:D4A1: CA D3     .word off_D3CA_05
 
-ofs_03_D4A3_05:
+_off006_03_D4A3_05:
 - D 2 - I - 0x00D4B3 03:D4A3: B2 D4     .word off_D4B2_00
 - D 2 - I - 0x00D4B5 03:D4A5: B2 D4     .word off_D4B2_01
 - D 2 - I - 0x00D4B7 03:D4A7: C4 D3     .word off_D3C4_02
@@ -3441,8 +3441,8 @@ _off004_D4B5_04:
 - - - - - - 0x00D4C7 03:D4B7: 00 00     .word $0000 ; 01
 - - - - - - 0x00D4C9 03:D4B9: 00 00     .word $0000 ; 02
 - - - - - - 0x00D4CB 03:D4BB: 00 00     .word $0000 ; 03
-- D 2 - I - 0x00D4CD 03:D4BD: C9 D4     .word ofs_04_D4C9_04
-- - - - - - 0x00D4CF 03:D4BF: D5 D4     .word ofs_04_D4D5_05
+- D 2 - I - 0x00D4CD 03:D4BD: C9 D4     .word _off006_04_D4C9_04
+- - - - - - 0x00D4CF 03:D4BF: D5 D4     .word _off006_04_D4D5_05
 - - - - - - 0x00D4D1 03:D4C1: 00 00     .word $0000 ; 06
 - - - - - - 0x00D4D3 03:D4C3: 00 00     .word $0000 ; 07
 - - - - - - 0x00D4D5 03:D4C5: 00 00     .word $0000 ; 08
@@ -3450,7 +3450,7 @@ _off004_D4B5_04:
 
 
 
-ofs_04_D4C9_04:
+_off006_04_D4C9_04:
 - D 2 - I - 0x00D4D9 03:D4C9: E1 D4     .word off_D4E1_00
 - D 2 - I - 0x00D4DB 03:D4CB: E1 D4     .word off_D4E1_01
 - D 2 - I - 0x00D4DD 03:D4CD: C4 D3     .word off_D3C4_02
@@ -3458,7 +3458,7 @@ ofs_04_D4C9_04:
 - D 2 - I - 0x00D4E1 03:D4D1: C8 D3     .word off_D3C8_04
 - D 2 - I - 0x00D4E3 03:D4D3: CA D3     .word off_D3CA_05
 
-ofs_04_D4D5_05:
+_off006_04_D4D5_05:
 - - - - - - 0x00D4E5 03:D4D5: E4 D4     .word off_D4E4_00
 - - - - - - 0x00D4E7 03:D4D7: E4 D4     .word off_D4E4_01
 - - - - - - 0x00D4E9 03:D4D9: C4 D3     .word off_D3C4_02
@@ -5829,14 +5829,14 @@ C - - - - - 0x00E5C9 03:E5B9: A8        TAY
 C - - - - - 0x00E5CA 03:E5BA: B9 94 E6  LDA tbl_E694,Y
 C - - - - - 0x00E5CD 03:E5BD: 9D 16 05  STA ram_0516,X
 C - - - - - 0x00E5D0 03:E5C0: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
-- D 3 - I - 0x00E5D3 03:E5C3: CB E5     .word ofs_E5CB_00
-- D 3 - I - 0x00E5D5 03:E5C5: 4D E6     .word ofs_E64D_01
-- D 3 - I - 0x00E5D7 03:E5C7: FF E5     .word ofs_E5FF_02
-- D 3 - I - 0x00E5D9 03:E5C9: 19 E6     .word ofs_E619_03
+- D 3 - I - 0x00E5D3 03:E5C3: CB E5     .word ofs_005_E5CB_00
+- D 3 - I - 0x00E5D5 03:E5C5: 4D E6     .word ofs_005_E64D_01
+- D 3 - I - 0x00E5D7 03:E5C7: FF E5     .word ofs_005_E5FF_02
+- D 3 - I - 0x00E5D9 03:E5C9: 19 E6     .word ofs_005_E619_03
 
 
 
-ofs_E5CB_00:
+ofs_005_E5CB_00:
 C - - J - - 0x00E5DB 03:E5CB: BD 17 05  LDA ram_0517,X
 C - - - - - 0x00E5DE 03:E5CE: C9 03     CMP #$03
 C - - - - - 0x00E5E0 03:E5D0: F0 01     BEQ bra_E5D3
@@ -5867,7 +5867,7 @@ C - - - - - 0x00E60E 03:E5FE: 60        RTS
 
 
 
-ofs_E5FF_02:
+ofs_005_E5FF_02:
 C - - J - - 0x00E60F 03:E5FF: BD 17 05  LDA ram_0517,X
 C - - - - - 0x00E612 03:E602: C9 03     CMP #$03
 C - - - - - 0x00E614 03:E604: F0 01     BEQ bra_E607
@@ -5884,7 +5884,7 @@ C - - - - - 0x00E626 03:E616: 4C E2 E5  JMP loc_E5E2
 
 
 
-ofs_E619_03:
+ofs_005_E619_03:
 C - - J - - 0x00E629 03:E619: BD 17 05  LDA ram_0517,X
 C - - - - - 0x00E62C 03:E61C: C9 04     CMP #$04
 C - - - - - 0x00E62E 03:E61E: F0 01     BEQ bra_E621
@@ -5915,7 +5915,7 @@ C - - - - - 0x00E65C 03:E64C: 60        RTS
 
 
 
-ofs_E64D_01:
+ofs_005_E64D_01:
 C - - J - - 0x00E65D 03:E64D: BD 17 05  LDA ram_0517,X
 C - - - - - 0x00E660 03:E650: C9 04     CMP #$04
 C - - - - - 0x00E662 03:E652: F0 01     BEQ bra_E655
@@ -6016,10 +6016,10 @@ tbl_E6AC:
 sub_E6BC:
 C - - - - - 0x00E6CC 03:E6BC: BD 16 05  LDA ram_0516,X
 C - - - - - 0x00E6CF 03:E6BF: 20 78 EF  JSR sub_EF78_jump_to_pointers_after_jsr
-- D 3 - I - 0x00E6D2 03:E6C2: 89 D2     .word ofs_D289_00_move_obj_1_pixel_right
-- D 3 - I - 0x00E6D4 03:E6C4: 53 D2     .word ofs_D253_01_move_obj_1_pixel_down
-- D 3 - I - 0x00E6D6 03:E6C6: 77 D2     .word ofs_D277_02_move_obj_1_pixel_left
-- D 3 - I - 0x00E6D8 03:E6C8: 65 D2     .word ofs_D265_03_move_obj_1_pixel_up
+- D 3 - I - 0x00E6D2 03:E6C2: 89 D2     .word ofs_006_D289_00_move_obj_1_pixel_right
+- D 3 - I - 0x00E6D4 03:E6C4: 53 D2     .word ofs_006_D253_01_move_obj_1_pixel_down
+- D 3 - I - 0x00E6D6 03:E6C6: 77 D2     .word ofs_006_D277_02_move_obj_1_pixel_left
+- D 3 - I - 0x00E6D8 03:E6C8: 65 D2     .word ofs_006_D265_03_move_obj_1_pixel_up
 
 
 
@@ -9468,16 +9468,16 @@ sub_F7FF_select_music_handler:
 C - - - - - 0x00F80F 03:F7FF: A0 00     LDY #$00
 C - - - - - 0x00F811 03:F801: B1 45     LDA (ram_0045),Y
 C - - - - - 0x00F813 03:F803: 20 73 FE  JSR sub_FE73_jump_to_pointers_after_jsr_2
-- D 3 - I - 0x00F816 03:F806: 10 F8     .word ofs_F810_00
-- D 3 - I - 0x00F818 03:F808: 7A F8     .word ofs_F87A_01
-- - - - - - 0x00F81A 03:F80A: 84 F8     .word ofs_F884_02   ; bzk never used
-- D 3 - I - 0x00F81C 03:F80C: B0 F8     .word ofs_F8B0_03
-- - - - - - 0x00F81E 03:F80E: B0 F8     .word ofs_F8B0_04   ; bzk never used
+- D 3 - I - 0x00F816 03:F806: 10 F8     .word ofs_007_F810_00
+- D 3 - I - 0x00F818 03:F808: 7A F8     .word ofs_007_F87A_01
+- - - - - - 0x00F81A 03:F80A: 84 F8     .word ofs_007_F884_02   ; bzk never used
+- D 3 - I - 0x00F81C 03:F80C: B0 F8     .word ofs_007_F8B0_03
+- - - - - - 0x00F81E 03:F80E: B0 F8     .word ofs_007_F8B0_04   ; bzk never used
 
 
 
 sub_F810:
-ofs_F810_00:
+ofs_007_F810_00:
 C - - - - - 0x00F820 03:F810: A2 00     LDX #$00
 C - - - - - 0x00F822 03:F812: A0 01     LDY #$01
 C - - - - - 0x00F824 03:F814: 20 49 F8  JSR sub_F849
@@ -9533,7 +9533,7 @@ C - - - - - 0x00F889 03:F879: 60        RTS
 
 
 
-ofs_F87A_01:
+ofs_007_F87A_01:
 C - - J - - 0x00F88A 03:F87A: 20 10 F8  JSR sub_F810
 C - - - - - 0x00F88D 03:F87D: A5 44     LDA ram_0044
 C - - - - - 0x00F88F 03:F87F: 85 3A     STA ram_003A
@@ -9542,7 +9542,7 @@ C - - - - - 0x00F893 03:F883: 60        RTS
 
 
 
-ofs_F884_02:
+ofs_007_F884_02:
 - - - - - - 0x00F894 03:F884: A2 60     LDX #$60
 - - - - - - 0x00F896 03:F886: A0 01     LDY #$01
 - - - - - - 0x00F898 03:F888: 20 49 F8  JSR sub_F849
@@ -9566,8 +9566,8 @@ ofs_F884_02:
 
 
 
-ofs_F8B0_03:
-ofs_F8B0_04:
+ofs_007_F8B0_03:
+ofs_007_F8B0_04:
 C - - J - - 0x00F8C0 03:F8B0: A0 03     LDY #$03
 C - - - - - 0x00F8C2 03:F8B2: A2 A8     LDX #$A8
 C - - - - - 0x00F8C4 03:F8B4: 20 49 F8  JSR sub_F849
