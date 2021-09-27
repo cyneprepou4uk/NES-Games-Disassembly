@@ -5,165 +5,165 @@
 
 
 
-.export ofs_0x010025_53
-.export ofs_0x010025_55
-.export ofs_0x010025_56
-.export ofs_0x010025_57
-.export ofs_0x010025_58
-.export ofs_0x010025_59
-.export ofs_0x010025_5A
-.export ofs_0x010029_54
-.export ofs_0x010035_01
-.export ofs_0x010035_02
-.export ofs_0x010035_03
-.export ofs_0x010035_04
-.export ofs_0x010035_05
-.export ofs_0x010035_06
-.export ofs_0x010035_12
-.export ofs_0x010035_13
-.export ofs_0x010035_14
-.export ofs_0x010035_16
-.export ofs_0x010035_17
-.export ofs_0x010035_2A
-.export ofs_0x010035_30
-.export ofs_0x01005F_40
-.export ofs_0x010129_05
-.export ofs_0x010129_06
-.export ofs_0x010207_68
-.export ofs_0x0102E7_53
-.export ofs_0x0102E7_54
-.export ofs_0x0102E7_57
-.export ofs_0x0102E7_58
-.export ofs_0x0102E7_59
-.export ofs_0x0102E7_5A
+.export ofs_005_0x010025_53
+.export ofs_005_0x010025_55
+.export ofs_005_0x010025_56
+.export ofs_005_0x010025_57
+.export ofs_005_0x010025_58
+.export ofs_005_0x010025_59
+.export ofs_005_0x010025_5A
+.export ofs_005_0x010029_54
+.export ofs_005_0x010035_01
+.export ofs_005_0x010035_02
+.export ofs_005_0x010035_03
+.export ofs_005_0x010035_04
+.export ofs_005_0x010035_05
+.export ofs_005_0x010035_06
+.export ofs_005_0x010035_12
+.export ofs_005_0x010035_13
+.export ofs_005_0x010035_14
+.export ofs_005_0x010035_16
+.export ofs_005_0x010035_17
+.export ofs_005_0x010035_2A
+.export ofs_005_0x010035_30
+.export ofs_004_0x01005F_40
+.export ofs_004_0x010129_05
+.export ofs_004_0x010129_06
+.export ofs_004_0x010207_68
+.export ofs_004_0x0102E7_53
+.export ofs_004_0x0102E7_54
+.export ofs_004_0x0102E7_57
+.export ofs_004_0x0102E7_58
+.export ofs_004_0x0102E7_59
+.export ofs_004_0x0102E7_5A
 .export sub_0x010356
 .export loc_0x010356
-.export ofs_0x0103A9_55
-.export ofs_0x0103A9_56
-.export ofs_0x010425_2B
-.export ofs_0x010425_2C
-.export ofs_0x010425_2D
-.export ofs_0x01042D_1B
-.export ofs_0x010445_1C
-.export ofs_0x010445_1D
-.export ofs_0x01044E_2B
-.export ofs_0x01044E_2C
-.export ofs_0x01044E_2D
-.export ofs_0x010491_1B
-.export ofs_0x010491_1C
-.export ofs_0x010491_1D
-.export ofs_0x0104DB_13
-.export ofs_0x010571_15
-.export ofs_0x010578_14
-.export ofs_0x010578_15
+.export ofs_004_0x0103A9_55
+.export ofs_004_0x0103A9_56
+.export ofs_005_0x010425_2B
+.export ofs_005_0x010425_2C
+.export ofs_005_0x010425_2D
+.export ofs_005_0x01042D_1B
+.export ofs_005_0x010445_1C
+.export ofs_005_0x010445_1D
+.export ofs_004_0x01044E_2B
+.export ofs_004_0x01044E_2C
+.export ofs_004_0x01044E_2D
+.export ofs_004_0x010491_1B
+.export ofs_004_0x010491_1C
+.export ofs_004_0x010491_1D
+.export ofs_004_0x0104DB_13
+.export ofs_005_0x010571_15
+.export ofs_004_0x010578_14
+.export ofs_004_0x010578_15
 .export sub_0x010660
 .export sub_0x0106F0
-.export ofs_0x010747_1F
-.export ofs_0x01074C_20
-.export ofs_0x01074F_0D
-.export ofs_0x01074F_0E
-.export ofs_0x01075E_0F
-.export ofs_0x01075E_10
-.export ofs_0x010765_07
-.export ofs_0x010765_09
-.export ofs_0x010765_21
-.export ofs_0x010769_08
-.export ofs_0x010769_0A
-.export ofs_0x010785_1A
-.export ofs_0x01079A_2F
-.export ofs_0x0107A8_11
-.export ofs_0x0107CF_03
-.export ofs_0x0107CF_04
-.export ofs_0x0107DC_01
-.export ofs_0x0107DC_02
-.export ofs_0x01084F_5B
-.export ofs_0x010896_1F
-.export ofs_0x010908_0D
-.export ofs_0x010908_0E
-.export ofs_0x010908_20
-.export ofs_0x010A75_0F
-.export ofs_0x010B19_10
-.export ofs_0x010C0F_07
-.export ofs_0x010C0F_08
-.export ofs_0x010C0F_09
-.export ofs_0x010C0F_0A
-.export ofs_0x010C7B_21
-.export ofs_0x010CD0_1E
-.export ofs_0x010CD0_22
-.export ofs_0x010D60_1E
-.export ofs_0x010DA0_2F
-.export ofs_0x010E54_62
-.export ofs_0x010E54_65
-.export ofs_0x010E54_66
-.export ofs_0x010EFB_63
-.export ofs_0x010EFB_67
-.export ofs_0x010F1E_64
+.export ofs_005_0x010747_1F
+.export ofs_005_0x01074C_20
+.export ofs_005_0x01074F_0D
+.export ofs_005_0x01074F_0E
+.export ofs_005_0x01075E_0F
+.export ofs_005_0x01075E_10
+.export ofs_005_0x010765_07
+.export ofs_005_0x010765_09
+.export ofs_005_0x010765_21
+.export ofs_005_0x010769_08
+.export ofs_005_0x010769_0A
+.export ofs_005_0x010785_1A
+.export ofs_005_0x01079A_2F
+.export ofs_004_0x0107A8_11
+.export ofs_004_0x0107CF_03
+.export ofs_004_0x0107CF_04
+.export ofs_004_0x0107DC_01
+.export ofs_004_0x0107DC_02
+.export ofs_004_0x01084F_5B
+.export ofs_004_0x010896_1F
+.export ofs_004_0x010908_0D
+.export ofs_004_0x010908_0E
+.export ofs_004_0x010908_20
+.export ofs_004_0x010A75_0F
+.export ofs_004_0x010B19_10
+.export ofs_004_0x010C0F_07
+.export ofs_004_0x010C0F_08
+.export ofs_004_0x010C0F_09
+.export ofs_004_0x010C0F_0A
+.export ofs_004_0x010C7B_21
+.export ofs_005_0x010CD0_1E
+.export ofs_005_0x010CD0_22
+.export ofs_004_0x010D60_1E
+.export ofs_004_0x010DA0_2F
+.export ofs_004_0x010E54_62
+.export ofs_004_0x010E54_65
+.export ofs_004_0x010E54_66
+.export ofs_004_0x010EFB_63
+.export ofs_004_0x010EFB_67
+.export ofs_004_0x010F1E_64
 .export loc_0x010F42
-.export ofs_0x010F86_61
-.export ofs_0x010FFF_22
-.export ofs_0x011038_1A
-.export ofs_0x0110F4_27
-.export ofs_0x0112D2_28
-.export ofs_0x0112E6_28
-.export ofs_0x011387_2A
-.export ofs_0x0113F2_41
-.export ofs_0x011457_3D
-.export ofs_0x01146A_38
-.export ofs_0x011489_39
-.export ofs_0x011497_31
-.export ofs_0x011497_32
-.export ofs_0x0114A8_41
-.export ofs_0x011600_18
-.export ofs_0x011600_38
-.export ofs_0x011600_39
-.export ofs_0x011796_3D
-.export ofs_0x0118B9_31
-.export ofs_0x0118B9_32
-.export ofs_0x011B30_0B
-.export ofs_0x011B30_0C
-.export ofs_0x011B46_30
-.export ofs_0x011B5B_0B
-.export ofs_0x011B5B_0C
-.export ofs_0x011BB2_16
-.export ofs_0x011CD9_17
-.export ofs_0x011D67_12
-.export ofs_0x011DF3_23
-.export ofs_0x011FB9_24
-.export ofs_0x01209D_42
-.export ofs_0x01209D_43
-.export ofs_0x01209D_44
-.export ofs_0x01209D_45
-.export ofs_0x01211C_3C
-.export ofs_0x012171_33
-.export ofs_0x012171_34
-.export ofs_0x012189_46
-.export ofs_0x012197_3C
-.export ofs_0x012326_33
-.export ofs_0x012326_34
+.export ofs_004_0x010F86_61
+.export ofs_004_0x010FFF_22
+.export ofs_004_0x011038_1A
+.export ofs_004_0x0110F4_27
+.export ofs_005_0x0112D2_28
+.export ofs_004_0x0112E6_28
+.export ofs_004_0x011387_2A
+.export ofs_005_0x0113F2_41
+.export ofs_005_0x011457_3D
+.export ofs_005_0x01146A_38
+.export ofs_005_0x011489_39
+.export ofs_005_0x011497_31
+.export ofs_005_0x011497_32
+.export ofs_004_0x0114A8_41
+.export ofs_004_0x011600_18
+.export ofs_004_0x011600_38
+.export ofs_004_0x011600_39
+.export ofs_004_0x011796_3D
+.export ofs_004_0x0118B9_31
+.export ofs_004_0x0118B9_32
+.export ofs_005_0x011B30_0B
+.export ofs_005_0x011B30_0C
+.export ofs_004_0x011B46_30
+.export ofs_004_0x011B5B_0B
+.export ofs_004_0x011B5B_0C
+.export ofs_004_0x011BB2_16
+.export ofs_004_0x011CD9_17
+.export ofs_004_0x011D67_12
+.export ofs_004_0x011DF3_23
+.export ofs_004_0x011FB9_24
+.export ofs_005_0x01209D_42
+.export ofs_005_0x01209D_43
+.export ofs_005_0x01209D_44
+.export ofs_005_0x01209D_45
+.export ofs_005_0x01211C_3C
+.export ofs_005_0x012171_33
+.export ofs_005_0x012171_34
+.export ofs_005_0x012189_46
+.export ofs_004_0x012197_3C
+.export ofs_004_0x012326_33
+.export ofs_004_0x012326_34
 .export loc_0x012450
-.export ofs_0x012487_46
-.export ofs_0x0124EE_42
-.export ofs_0x0124EE_43
-.export ofs_0x0124EE_44
-.export ofs_0x0124EE_45
-.export ofs_0x0128DA_37
-.export ofs_0x0128F4_3A
-.export ofs_0x0128F4_3B
-.export ofs_0x01293E_47
-.export ofs_0x01293E_48
-.export ofs_0x01297F_3E
-.export ofs_0x012997_37
-.export ofs_0x0129E8_3F
-.export ofs_0x0129FB_3A
-.export ofs_0x0129FB_3B
-.export ofs_0x012B76_47
-.export ofs_0x012B76_48
-.export ofs_0x012BEA_25
-.export ofs_0x012BEA_26
-.export ofs_0x012C8D_3E
+.export ofs_004_0x012487_46
+.export ofs_004_0x0124EE_42
+.export ofs_004_0x0124EE_43
+.export ofs_004_0x0124EE_44
+.export ofs_004_0x0124EE_45
+.export ofs_005_0x0128DA_37
+.export ofs_005_0x0128F4_3A
+.export ofs_005_0x0128F4_3B
+.export ofs_005_0x01293E_47
+.export ofs_005_0x01293E_48
+.export ofs_005_0x01297F_3E
+.export ofs_004_0x012997_37
+.export ofs_004_0x0129E8_3F
+.export ofs_004_0x0129FB_3A
+.export ofs_004_0x0129FB_3B
+.export ofs_004_0x012B76_47
+.export ofs_004_0x012B76_48
+.export ofs_004_0x012BEA_25
+.export ofs_004_0x012BEA_26
+.export ofs_004_0x012C8D_3E
 .export sub_0x013010
 .export sub_0x01307A
-.export ofs_0x01310C_60
+.export ofs_004_0x01310C_60
 .export sub_0x0131CE
 .export loc_0x0131CE
 
@@ -187,17 +187,17 @@ C - - - - - 0x010022 04:8012: 4C 10 B0  JMP loc_B010
 
 
 
-ofs_0x010025_53:
-ofs_0x010025_55:
-ofs_0x010025_56:
-ofs_0x010025_57:
-ofs_0x010025_58:
-ofs_0x010025_59:
-ofs_0x010025_5A:
+ofs_005_0x010025_53:
+ofs_005_0x010025_55:
+ofs_005_0x010025_56:
+ofs_005_0x010025_57:
+ofs_005_0x010025_58:
+ofs_005_0x010025_59:
+ofs_005_0x010025_5A:
 C - - J - - 0x010025 04:8015: A9 C0     LDA #$C0
 C - - - - - 0x010027 04:8017: D0 02     BNE bra_801B
 
-ofs_0x010029_54:
+ofs_005_0x010029_54:
 - - - - - - 0x010029 04:8019: A9 E0     LDA #$E0
 bra_801B:
 C - - - - - 0x01002B 04:801B: 9D BC 03  STA ram_03BC,X
@@ -211,19 +211,19 @@ C - - - - - 0x01002E 04:801E: 4C DA FE  JMP loc_0x01FEEA
 
 
 loc_8025:
-ofs_0x010035_01:
-ofs_0x010035_02:
-ofs_0x010035_03:
-ofs_0x010035_04:
-ofs_0x010035_05:
-ofs_0x010035_06:
-ofs_0x010035_12:
-ofs_0x010035_13:
-ofs_0x010035_14:
-ofs_0x010035_16:
-ofs_0x010035_17:
-ofs_0x010035_2A:
-ofs_0x010035_30:
+ofs_005_0x010035_01:
+ofs_005_0x010035_02:
+ofs_005_0x010035_03:
+ofs_005_0x010035_04:
+ofs_005_0x010035_05:
+ofs_005_0x010035_06:
+ofs_005_0x010035_12:
+ofs_005_0x010035_13:
+ofs_005_0x010035_14:
+ofs_005_0x010035_16:
+ofs_005_0x010035_17:
+ofs_005_0x010035_2A:
+ofs_005_0x010035_30:
 C D 0 - - - 0x010035 04:8025: B5 98     LDA ram_direction,X
 C - - - - - 0x010037 04:8027: D0 25     BNE bra_804E_RTS
 C - - - - - 0x010039 04:8029: A0 02     LDY #$02
@@ -253,7 +253,7 @@ C - - - - - 0x01005E 04:804E: 60        RTS
 
 
 
-ofs_0x01005F_40:
+ofs_004_0x01005F_40:
 C - - J - - 0x01005F 04:804F: 20 A7 7A  JSR sub_bat_7AA7
 C - - - - - 0x010062 04:8052: A9 02     LDA #$02
 C - - - - - 0x010064 04:8054: 20 88 79  JSR sub_bat_7988
@@ -376,8 +376,8 @@ C - - - - - 0x010126 04:8116: 4C 90 81  JMP loc_8190
 
 
 sub_8119:
-ofs_0x010129_05:
-ofs_0x010129_06:
+ofs_004_0x010129_05:
+ofs_004_0x010129_06:
 C - - J - - 0x010129 04:8119: BD 50 03  LDA ram_0350,X
 C - - - - - 0x01012C 04:811C: C9 1E     CMP #$1E
 C - - - - - 0x01012E 04:811E: F0 04     BEQ bra_8124
@@ -502,17 +502,17 @@ tbl_81F3:
 
 
 
-ofs_0x010207_68:
+ofs_004_0x010207_68:
 C - - J - - 0x010207 04:81F7: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x010209 04:81F9: 29 03     AND #$03
 C - - - - - 0x01020B 04:81FB: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
-- D 0 - I - 0x01020E 04:81FE: 04 82     .word ofs_8204_00
-- D 0 - I - 0x010210 04:8200: 63 82     .word ofs_8263_01
-- D 0 - I - 0x010212 04:8202: 89 82     .word ofs_8289_02_RTS
+- D 0 - I - 0x01020E 04:81FE: 04 82     .word ofs_014_8204_00
+- D 0 - I - 0x010210 04:8200: 63 82     .word ofs_014_8263_01
+- D 0 - I - 0x010212 04:8202: 89 82     .word ofs_014_8289_02_RTS
 
 
 
-ofs_8204_00:
+ofs_014_8204_00:
 C - - J - - 0x010214 04:8204: AD 4D 03  LDA ram_034D
 C - - - - - 0x010217 04:8207: F0 54     BEQ bra_825D
 C - - - - - 0x010219 04:8209: A5 70     LDA ram_pos_X
@@ -567,7 +567,7 @@ C - - - - - 0x010272 04:8262: 60        RTS
 
 
 
-ofs_8263_01:
+ofs_014_8263_01:
 C - - J - - 0x010273 04:8263: B5 98     LDA ram_direction,X
 C - - - - - 0x010275 04:8265: 85 0F     STA ram_000F
 C - - - - - 0x010277 04:8267: 20 8D F0  JSR sub_0x01F09D
@@ -586,7 +586,7 @@ C - - - - - 0x010291 04:8281: 20 62 E8  JSR sub_0x01E872
 C - - - - - 0x010294 04:8284: F6 AC     INC ram_drop_id,X
 C - - - - - 0x010296 04:8286: EE CF 04  INC ram_04CF
 bra_8289_RTS:
-ofs_8289_02_RTS:
+ofs_014_8289_02_RTS:
 C - - - - - 0x010299 04:8289: 60        RTS
 
 
@@ -657,12 +657,12 @@ tbl_82D3_pos_Y:
 
 
 
-ofs_0x0102E7_53:
-ofs_0x0102E7_54:
-ofs_0x0102E7_57:
-ofs_0x0102E7_58:
-ofs_0x0102E7_59:
-ofs_0x0102E7_5A:
+ofs_004_0x0102E7_53:
+ofs_004_0x0102E7_54:
+ofs_004_0x0102E7_57:
+ofs_004_0x0102E7_58:
+ofs_004_0x0102E7_59:
+ofs_004_0x0102E7_5A:
 C - - J - - 0x0102E7 04:82D7: B5 98     LDA ram_direction,X
 C - - - - - 0x0102E9 04:82D9: 85 0F     STA ram_000F
 C - - - - - 0x0102EB 04:82DB: B5 AC     LDA ram_drop_id,X
@@ -787,8 +787,8 @@ tbl_8390:
 
 
 
-ofs_0x0103A9_55:
-ofs_0x0103A9_56:
+ofs_004_0x0103A9_55:
+ofs_004_0x0103A9_56:
 C - - J - - 0x0103A9 04:8399: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x0103AB 04:839B: D0 2F     BNE bra_83CC
 C - - - - - 0x0103AD 04:839D: 9D 51 04  STA ram_0451,X
@@ -849,9 +849,9 @@ C - - - - - 0x010424 04:8414: 60        RTS
 
 
 
-ofs_0x010425_2B:
-ofs_0x010425_2C:
-ofs_0x010425_2D:
+ofs_005_0x010425_2B:
+ofs_005_0x010425_2C:
+ofs_005_0x010425_2D:
 C - - J - - 0x010425 04:8415: A9 40     LDA #$40
 C - - - - - 0x010427 04:8417: 9D BC 03  STA ram_03BC,X
 C - - - - - 0x01042A 04:841A: 4C 25 80  JMP loc_8025
@@ -859,7 +859,7 @@ C - - - - - 0x01042A 04:841A: 4C 25 80  JMP loc_8025
 
 
 sub_841D:
-ofs_0x01042D_1B:
+ofs_005_0x01042D_1B:
 C - - J - - 0x01042D 04:841D: B5 18     LDA ram_indiv_random,X
 C - - - - - 0x01042F 04:841F: 29 07     AND #$07
 C - - - - - 0x010431 04:8421: A8        TAY
@@ -874,8 +874,8 @@ C - - - - - 0x010444 04:8434: 60        RTS
 
 
 
-ofs_0x010445_1C:
-ofs_0x010445_1D:
+ofs_005_0x010445_1C:
+ofs_005_0x010445_1D:
 C - - J - - 0x010445 04:8435: 20 1D 84  JSR sub_841D
 C - - - - - 0x010448 04:8438: A9 7F     LDA #$7F
 C - - - - - 0x01044A 04:843A: 9D 1F 04  STA ram_041F,X
@@ -883,9 +883,9 @@ C - - - - - 0x01044D 04:843D: 60        RTS
 
 
 
-ofs_0x01044E_2B:
-ofs_0x01044E_2C:
-ofs_0x01044E_2D:
+ofs_004_0x01044E_2B:
+ofs_004_0x01044E_2C:
+ofs_004_0x01044E_2D:
 C - - J - - 0x01044E 04:843E: A9 40     LDA #$40
 C - - - - - 0x010450 04:8440: 20 6E 80  JSR sub_806E
 C - - - - - 0x010453 04:8443: BD 4F 03  LDA ram_034F,X
@@ -927,9 +927,9 @@ C - - - - - 0x01048E 04:847E: 4C DF 77  JMP loc_bat_77DF
 
 
 
-ofs_0x010491_1B:
-ofs_0x010491_1C:
-ofs_0x010491_1D:
+ofs_004_0x010491_1B:
+ofs_004_0x010491_1C:
+ofs_004_0x010491_1D:
 C - - J - - 0x010491 04:8481: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x010494 04:8484: 0D 06 05  ORA ram_0506
 C - - - - - 0x010497 04:8487: D0 06     BNE bra_848F
@@ -977,7 +977,7 @@ C - - - - - 0x0104DA 04:84CA: 60        RTS
 
 
 
-ofs_0x0104DB_13:
+ofs_004_0x0104DB_13:
 C - - J - - 0x0104DB 04:84CB: 20 E1 84  JSR sub_84E1
 C - - - - - 0x0104DE 04:84CE: 20 2C 85  JSR sub_852C
 C - - - - - 0x0104E1 04:84D1: 20 93 FA  JSR sub_0x01FAA3
@@ -1082,15 +1082,15 @@ C - - - - - 0x010570 04:8560: 60        RTS
 
 
 
-ofs_0x010571_15:
+ofs_005_0x010571_15:
 C - - J - - 0x010571 04:8561: A9 02     LDA #$02
 C - - - - - 0x010573 04:8563: 95 AC     STA ram_drop_id,X
 C - - - - - 0x010575 04:8565: 4C 25 80  JMP loc_8025
 
 
 
-ofs_0x010578_14:
-ofs_0x010578_15:
+ofs_004_0x010578_14:
+ofs_004_0x010578_15:
 C - - J - - 0x010578 04:8568: 20 8F 85  JSR sub_858F
 C - - - - - 0x01057B 04:856B: 20 29 86  JSR sub_8629
 C - - - - - 0x01057E 04:856E: B5 70     LDA ram_pos_X,X
@@ -1419,13 +1419,13 @@ tbl_8733_direction:
 
 
 
-ofs_0x010747_1F:
+ofs_005_0x010747_1F:
 C - - J - - 0x010747 04:8737: A9 00     LDA #$00
 C - - - - - 0x010749 04:8739: 8D 15 05  STA ram_0515
-ofs_0x01074C_20:
+ofs_005_0x01074C_20:
 C - - - - - 0x01074C 04:873C: 20 D6 FE  JSR sub_0x01FEE6
-ofs_0x01074F_0D:
-ofs_0x01074F_0E:
+ofs_005_0x01074F_0D:
+ofs_005_0x01074F_0E:
 C - - J - - 0x01074F 04:873F: B5 19     LDA ram_indiv_random + 1,X
 C - - - - - 0x010751 04:8741: 29 03     AND #$03
 C - - - - - 0x010753 04:8743: A8        TAY
@@ -1438,19 +1438,19 @@ C - - - - - 0x01075D 04:874D: 60        RTS
 
 
 
-ofs_0x01075E_0F:
-ofs_0x01075E_10:
+ofs_005_0x01075E_0F:
+ofs_005_0x01075E_10:
 C - - J - - 0x01075E 04:874E: A9 05     LDA #$05
 C - - - - - 0x010760 04:8750: 85 4D     STA ram_004D
 C - - - - - 0x010762 04:8752: 20 D6 FE  JSR sub_0x01FEE6
-ofs_0x010765_07:
-ofs_0x010765_09:
-ofs_0x010765_21:
+ofs_005_0x010765_07:
+ofs_005_0x010765_09:
+ofs_005_0x010765_21:
 C - - J - - 0x010765 04:8755: A9 20     LDA #$20
 C - - - - - 0x010767 04:8757: D0 02     BNE bra_875B
 
-ofs_0x010769_08:
-ofs_0x010769_0A:
+ofs_005_0x010769_08:
+ofs_005_0x010769_0A:
 C - - J - - 0x010769 04:8759: A9 30     LDA #$30
 bra_875B:
 C - - - - - 0x01076B 04:875B: 9D BC 03  STA ram_03BC,X
@@ -1470,7 +1470,7 @@ C - - - - - 0x010782 04:8772: 4C 25 80  JMP loc_8025
 
 
 
-ofs_0x010785_1A:
+ofs_005_0x010785_1A:
 C - - J - - 0x010785 04:8775: 20 D6 FE  JSR sub_0x01FEE6
 C - - - - - 0x010788 04:8778: A9 08     LDA #con_dir_Up
 C - - - - - 0x01078A 04:877A: 95 98     STA ram_direction,X
@@ -1484,7 +1484,7 @@ C - - - - - 0x010799 04:8789: 60        RTS
 
 
 
-ofs_0x01079A_2F:
+ofs_005_0x01079A_2F:
 - - - - - - 0x01079A 04:878A: A9 08     LDA #con_sfx_2_pick_up_item
 - - - - - - 0x01079C 04:878C: 8D 02 06  STA ram_sfx_2
 - - - - - - 0x01079F 04:878F: A9 78     LDA #$78
@@ -1496,7 +1496,7 @@ C - - - - - 0x0107A7 04:8797: 60        RTS
 
 
 
-ofs_0x0107A8_11:
+ofs_004_0x0107A8_11:
 C - - J - - 0x0107A8 04:8798: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x0107AB 04:879B: D0 FA     BNE bra_8797_RTS
 C - - - - - 0x0107AD 04:879D: 20 6D 8A  JSR sub_8A6D
@@ -1518,8 +1518,8 @@ C - - - - - 0x0107CC 04:87BC: 4C B1 FE  JMP loc_0x01FEC1
 
 
 
-ofs_0x0107CF_03:
-ofs_0x0107CF_04:
+ofs_004_0x0107CF_03:
+ofs_004_0x0107CF_04:
 C - - J - - 0x0107CF 04:87BF: A9 A0     LDA #$A0
 C - - - - - 0x0107D1 04:87C1: 9D 1F 04  STA ram_041F,X
 C - - - - - 0x0107D4 04:87C4: 20 94 80  JSR sub_8094
@@ -1528,8 +1528,8 @@ C - - - - - 0x0107D9 04:87C9: 4C D1 87  JMP loc_87D1
 
 
 
-ofs_0x0107DC_01:
-ofs_0x0107DC_02:
+ofs_004_0x0107DC_01:
+ofs_004_0x0107DC_02:
 C - - J - - 0x0107DC 04:87CC: 20 19 81  JSR sub_8119
 C - - - - - 0x0107DF 04:87CF: A0 57     LDY #$57
 loc_87D1:
@@ -1600,7 +1600,7 @@ C - - - - - 0x01084E 04:883E: 60        RTS
 
 
 
-ofs_0x01084F_5B:
+ofs_004_0x01084F_5B:
 C - - J - - 0x01084F 04:883F: A9 80     LDA #$80
 C - - - - - 0x010851 04:8841: 9D BC 03  STA ram_03BC,X
 C - - - - - 0x010854 04:8844: B5 28     LDA ram_0028,X
@@ -1639,7 +1639,7 @@ C - - - - - 0x010893 04:8883: 4C 4C 83  JMP loc_834C
 
 
 
-ofs_0x010896_1F:
+ofs_004_0x010896_1F:
 C - - J - - 0x010896 04:8886: B5 28     LDA ram_0028,X
 C - - - - - 0x010898 04:8888: D0 3F     BNE bra_88C9_RTS
 C - - - - - 0x01089A 04:888A: AD 15 05  LDA ram_0515
@@ -1746,9 +1746,9 @@ tbl_88F5_offset:
 
 
 
-ofs_0x010908_0D:
-ofs_0x010908_0E:
-ofs_0x010908_20:
+ofs_004_0x010908_0D:
+ofs_004_0x010908_0E:
+ofs_004_0x010908_20:
 C - - J - - 0x010908 04:88F8: B5 C0     LDA ram_00C0,X
 C - - - - - 0x01090A 04:88FA: F0 06     BEQ bra_8902
 - - - - - - 0x01090C 04:88FC: 4C B8 EE  JMP loc_0x01EEC8
@@ -1967,7 +1967,7 @@ tbl_8A5F:
 
 
 
-ofs_0x010A75_0F:
+ofs_004_0x010A75_0F:
 C - - J - - 0x010A75 04:8A65: A9 A0     LDA #$A0
 C - - - - - 0x010A77 04:8A67: 9D 1F 04  STA ram_041F,X
 C - - - - - 0x010A7A 04:8A6A: 20 94 80  JSR sub_8094
@@ -2077,7 +2077,7 @@ tbl_8B03:
 
 
 
-ofs_0x010B19_10:
+ofs_004_0x010B19_10:
 C - - J - - 0x010B19 04:8B09: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x010B1B 04:8B0B: F0 03     BEQ bra_8B10
 C - - - - - 0x010B1D 04:8B0D: 4C 9D 8B  JMP loc_8B9D
@@ -2217,10 +2217,10 @@ C - - - - - 0x010C0B 04:8BFB: 4C A6 8A  JMP loc_8AA6
 
 
 
-ofs_0x010C0F_07:
-ofs_0x010C0F_08:
-ofs_0x010C0F_09:
-ofs_0x010C0F_0A:
+ofs_004_0x010C0F_07:
+ofs_004_0x010C0F_08:
+ofs_004_0x010C0F_09:
+ofs_004_0x010C0F_0A:
 C - - J - - 0x010C0F 04:8BFF: A9 A0     LDA #$A0
 C - - - - - 0x010C11 04:8C01: BC 4F 03  LDY ram_034F,X
 C - - - - - 0x010C14 04:8C04: C0 09     CPY #$09
@@ -2283,7 +2283,7 @@ C - - - - - 0x010C78 04:8C68: 4C D0 79  JMP loc_bat_79D0
 
 
 
-ofs_0x010C7B_21:
+ofs_004_0x010C7B_21:
 C - - J - - 0x010C7B 04:8C6B: A9 FF     LDA #$FF
 C - - - - - 0x010C7D 04:8C6D: 20 6E 80  JSR sub_806E
 C - - - - - 0x010C80 04:8C70: 20 8D 8C  JSR sub_8C8D
@@ -2351,8 +2351,8 @@ tbl_8CB9_pos_X:
 
 
 
-ofs_0x010CD0_1E:
-ofs_0x010CD0_22:
+ofs_005_0x010CD0_1E:
+ofs_005_0x010CD0_22:
 C - - J - - 0x010CD0 04:8CC0: B5 28     LDA ram_0028,X
 C - - - - - 0x010CD2 04:8CC2: 9D 92 04  STA ram_0492,X
 C - - - - - 0x010CD5 04:8CC5: D0 64     BNE bra_8D2B
@@ -2431,7 +2431,7 @@ C - - - - - 0x010D58 04:8D48: D0 F7     BNE bra_8D41_RTS
 
 
 
-ofs_0x010D60_1E:
+ofs_004_0x010D60_1E:
 C - - J - - 0x010D60 04:8D50: 20 19 81  JSR sub_8119
 C - - - - - 0x010D63 04:8D53: B5 C0     LDA ram_00C0,X
 C - - - - - 0x010D65 04:8D55: D0 12     BNE bra_8D69
@@ -2467,7 +2467,7 @@ C - - - - - 0x010D9D 04:8D8D: 4C A7 7A  JMP loc_bat_7AA7
 
 
 
-ofs_0x010DA0_2F:
+ofs_004_0x010DA0_2F:
 - - - - - - 0x010DA0 04:8D90: 20 23 B2  JSR sub_B223
 - - - - - - 0x010DA3 04:8D93: A5 AD     LDA ram_drop_id + 1
 - - - - - - 0x010DA5 04:8D95: D0 19     BNE bra_8DB0
@@ -2587,9 +2587,9 @@ tbl_8E42_direction:
 
 
 
-ofs_0x010E54_62:
-ofs_0x010E54_65:
-ofs_0x010E54_66:
+ofs_004_0x010E54_62:
+ofs_004_0x010E54_65:
+ofs_004_0x010E54_66:
 C - - J - - 0x010E54 04:8E44: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x010E56 04:8E46: D0 4A     BNE bra_8E92
 C - - - - - 0x010E58 04:8E48: BD 4F 03  LDA ram_034F,X
@@ -2677,8 +2677,8 @@ C - - - - - 0x010EF8 04:8EE8: 4C 81 90  JMP loc_9081_write_found_secret_sound
 
 
 
-ofs_0x010EFB_63:
-ofs_0x010EFB_67:
+ofs_004_0x010EFB_63:
+ofs_004_0x010EFB_67:
 C - - J - - 0x010EFB 04:8EEB: 20 5A 8F  JSR sub_8F5A
 C - - - - - 0x010EFE 04:8EEE: B0 1D     BCS bra_8F0D_RTS
 C - - - - - 0x010F00 04:8EF0: A0 10     LDY #$10
@@ -2700,7 +2700,7 @@ C - - - - - 0x010F1D 04:8F0D: 60        RTS
 
 
 
-ofs_0x010F1E_64:
+ofs_004_0x010F1E_64:
 C - - J - - 0x010F1E 04:8F0E: 20 5A 8F  JSR sub_8F5A
 C - - - - - 0x010F21 04:8F11: B0 2B     BCS bra_8F3E_RTS
 C - - - - - 0x010F23 04:8F13: A0 10     LDY #$10
@@ -2780,7 +2780,7 @@ tbl_8F74_direction:
 
 
 
-ofs_0x010F86_61:
+ofs_004_0x010F86_61:
 C - - J - - 0x010F86 04:8F76: AD 60 06  LDA ram_item_0660
 C - - - - - 0x010F89 04:8F79: F0 34     BEQ bra_8FAF_RTS
 C - - - - - 0x010F8B 04:8F7B: B5 AC     LDA ram_drop_id,X
@@ -2853,7 +2853,7 @@ C - - - - - 0x010FFC 04:8FEC: 4C 0C 79  JMP loc_bat_790C
 
 
 
-ofs_0x010FFF_22:
+ofs_004_0x010FFF_22:
 - - - - - - 0x010FFF 04:8FEF: AD 6C 06  LDA ram_item_clock
 - - - - - - 0x011002 04:8FF2: D0 06     BNE bra_8FFA
 - - - - - - 0x011004 04:8FF4: 20 05 90  JSR sub_9005
@@ -2892,7 +2892,7 @@ bra_9025:
 
 
 
-ofs_0x011038_1A:
+ofs_004_0x011038_1A:
 C - - J - - 0x011038 04:9028: B5 C0     LDA ram_00C0,X
 C - - - - - 0x01103A 04:902A: F0 06     BEQ bra_9032
 C - - - - - 0x01103C 04:902C: 20 B8 EE  JSR sub_0x01EEC8
@@ -3044,7 +3044,7 @@ tbl_90E2:
 
 
 
-ofs_0x0110F4_27:
+ofs_004_0x0110F4_27:
 C - - J - - 0x0110F4 04:90E4: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x0110F6 04:90E6: F0 03     BEQ bra_90EB
 C - - - - - 0x0110F8 04:90E8: 4C 7D 91  JMP loc_917D
@@ -3309,7 +3309,7 @@ C - - - - - 0x0112D1 04:92C1: 60        RTS
 
 
 
-ofs_0x0112D2_28:
+ofs_005_0x0112D2_28:
 C - - J - - 0x0112D2 04:92C2: A9 10     LDA #$10
 C - - - - - 0x0112D4 04:92C4: 9D 85 04  STA ram_0485,X
 C - - - - - 0x0112D7 04:92C7: A4 16     LDY ram_cur_save_slot
@@ -3322,7 +3322,7 @@ C - - - - - 0x0112E3 04:92D3: 4C 25 80  JMP loc_8025
 
 
 
-ofs_0x0112E6_28:
+ofs_004_0x0112E6_28:
 C - - J - - 0x0112E6 04:92D6: B5 98     LDA ram_direction,X
 C - - - - - 0x0112E8 04:92D8: 9D F8 03  STA ram_03F8,X
 C - - - - - 0x0112EB 04:92DB: 48        PHA
@@ -3407,7 +3407,7 @@ C - - - - - 0x011385 04:9375: 90 BB     BCC bra_9332
 
 
 
-ofs_0x011387_2A:
+ofs_004_0x011387_2A:
 C - - J - - 0x011387 04:9377: A9 80     LDA #$80
 C - - - - - 0x011389 04:9379: 20 6E 80  JSR sub_806E
 C - - - - - 0x01138C 04:937C: 20 D0 79  JSR sub_bat_79D0
@@ -3467,7 +3467,7 @@ C - - - - - 0x0113F1 04:93E1: 60        RTS
 
 
 
-ofs_0x0113F2_41:
+ofs_005_0x0113F2_41:
 C - - J - - 0x0113F2 04:93E2: A0 09     LDY #$09
 bra_93E4_loop:
 C - - - - - 0x0113F4 04:93E4: A9 80     LDA #$80
@@ -3514,7 +3514,7 @@ C - - - - - 0x011456 04:9446: 60        RTS
 
 
 
-ofs_0x011457_3D:
+ofs_005_0x011457_3D:
 C - - J - - 0x011457 04:9447: A9 E2     LDA #$E2
 C - - - - - 0x011459 04:9449: 9D B2 04  STA ram_04B2,X
 C - - - - - 0x01145C 04:944C: A9 10     LDA #con_sfx_1_10
@@ -3528,7 +3528,7 @@ C - - - - - 0x011469 04:9459: 60        RTS
 
 
 sub_945A:
-ofs_0x01146A_38:
+ofs_005_0x01146A_38:
 C - - J - - 0x01146A 04:945A: A9 40     LDA #con_sfx_1_40
 C - - - - - 0x01146C 04:945C: 8D 01 06  STA ram_sfx_1
 C - - - - - 0x01146F 04:945F: B5 18     LDA ram_indiv_random,X
@@ -3546,7 +3546,7 @@ C - - - - - 0x011488 04:9478: 60        RTS
 
 
 
-ofs_0x011489_39:
+ofs_005_0x011489_39:
 C - - J - - 0x011489 04:9479: 20 5A 94  JSR sub_945A
 C - - - - - 0x01148C 04:947C: A9 38     LDA #$38
 C - - - - - 0x01148E 04:947E: 9D 4F 03  STA ram_034F,X
@@ -3556,8 +3556,8 @@ C - - - - - 0x011496 04:9486: 60        RTS
 
 
 
-ofs_0x011497_31:
-ofs_0x011497_32:
+ofs_005_0x011497_31:
+ofs_005_0x011497_32:
 C - - J - - 0x011497 04:9487: A9 20     LDA #con_sfx_1_20
 C - - - - - 0x011499 04:9489: 8D 01 06  STA ram_sfx_1
 C - - - - - 0x01149C 04:948C: A0 01     LDY #$01    ; con_dir_Right
@@ -3571,7 +3571,7 @@ C - - - - - 0x0114A7 04:9497: 60        RTS
 
 
 
-ofs_0x0114A8_41:
+ofs_004_0x0114A8_41:
 C - - J - - 0x0114A8 04:9498: B5 98     LDA ram_direction,X
 C - - - - - 0x0114AA 04:949A: F0 65     BEQ bra_9501_RTS
 C - - - - - 0x0114AC 04:949C: AD 6C 06  LDA ram_item_clock
@@ -3779,9 +3779,9 @@ C - - - - - 0x0115FD 04:95ED: 4C 10 96  JMP loc_9610
 
 
 
-ofs_0x011600_18:
-ofs_0x011600_38:
-ofs_0x011600_39:
+ofs_004_0x011600_18:
+ofs_004_0x011600_38:
+ofs_004_0x011600_39:
 C - - J - - 0x011600 04:95F0: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011603 04:95F3: 15 3D     ORA ram_003D,X
 C - - - - - 0x011605 04:95F5: D0 1C     BNE bra_9613
@@ -4024,7 +4024,7 @@ C - - - - - 0x011793 04:9783: 4C DB 77  JMP loc_bat_77DB
 
 
 
-ofs_0x011796_3D:
+ofs_004_0x011796_3D:
 C - - J - - 0x011796 04:9786: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011799 04:9789: D0 06     BNE bra_9791
 C - - - - - 0x01179B 04:978B: 20 A2 97  JSR sub_97A2
@@ -4227,8 +4227,8 @@ C - - - - - 0x0118B6 04:98A6: 4C AF 79  JMP loc_bat_79AF
 
 
 
-ofs_0x0118B9_31:
-ofs_0x0118B9_32:
+ofs_004_0x0118B9_31:
+ofs_004_0x0118B9_32:
 C - - J - - 0x0118B9 04:98A9: 20 BD 98  JSR sub_98BD
 C - - - - - 0x0118BC 04:98AC: 20 5F 99  JSR sub_995F
 C - - - - - 0x0118BF 04:98AF: 20 B9 99  JSR sub_99B9
@@ -4662,8 +4662,8 @@ C - - - - - 0x011B10 04:9B00: 60        RTS
 
 
 
-ofs_0x011B30_0B:
-ofs_0x011B30_0C:
+ofs_005_0x011B30_0B:
+ofs_005_0x011B30_0C:
 C - - J - - 0x011B30 04:9B20: A9 F6     LDA #$F6
 C - - - - - 0x011B32 04:9B22: 9D B2 04  STA ram_04B2,X
 C - - - - - 0x011B35 04:9B25: A9 20     LDA #$20
@@ -4677,7 +4677,7 @@ C - - - - - 0x011B43 04:9B33: 4C 25 80  JMP loc_8025
 
 
 
-ofs_0x011B46_30:
+ofs_004_0x011B46_30:
 C - - J - - 0x011B46 04:9B36: A9 80     LDA #$80
 C - - - - - 0x011B48 04:9B38: 20 6E 80  JSR sub_806E
 C - - - - - 0x011B4B 04:9B3B: 20 D0 79  JSR sub_bat_79D0
@@ -4689,8 +4689,8 @@ C - - - - - 0x011B58 04:9B48: 4C DF 77  JMP loc_bat_77DF
 
 
 
-ofs_0x011B5B_0B:
-ofs_0x011B5B_0C:
+ofs_004_0x011B5B_0B:
+ofs_004_0x011B5B_0C:
 C - - J - - 0x011B5B 04:9B4B: A9 80     LDA #$80
 C - - - - - 0x011B5D 04:9B4D: 20 6E 80  JSR sub_806E
 C - - - - - 0x011B60 04:9B50: 20 D0 79  JSR sub_bat_79D0
@@ -4777,7 +4777,7 @@ tbl_9B9E_direction:
 
 
 
-ofs_0x011BB2_16:
+ofs_004_0x011BB2_16:
 C - - J - - 0x011BB2 04:9BA2: E0 01     CPX #$01
 C - - - - - 0x011BB4 04:9BA4: D0 00     BNE bra_9BA6
 bra_9BA6:
@@ -4949,7 +4949,7 @@ C - - - - - 0x011CD8 04:9CC8: 60        RTS
 
 
 
-ofs_0x011CD9_17:
+ofs_004_0x011CD9_17:
 C - - J - - 0x011CD9 04:9CC9: BD 2C 04  LDA ram_042C,X
 C - - - - - 0x011CDC 04:9CCC: D0 49     BNE bra_9D17
 C - - - - - 0x011CDE 04:9CCE: A9 80     LDA #$80
@@ -5016,7 +5016,7 @@ bra_9D3E:
 
 
 
-ofs_0x011D67_12:
+ofs_004_0x011D67_12:
 C - - J - - 0x011D67 04:9D57: 20 82 9D  JSR sub_9D82
 C - - - - - 0x011D6A 04:9D5A: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x011D6C 04:9D5C: C9 02     CMP #$02
@@ -5120,7 +5120,7 @@ C - - - - - 0x011DF0 04:9DE0: 4C DB 77  JMP loc_bat_77DB
 
 
 
-ofs_0x011DF3_23:
+ofs_004_0x011DF3_23:
 C - - J - - 0x011DF3 04:9DE3: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011DF6 04:9DE6: D0 0C     BNE bra_9DF4
 C - - - - - 0x011DF8 04:9DE8: 20 F7 9D  JSR sub_9DF7
@@ -5459,7 +5459,7 @@ C - - - - - 0x011FB6 04:9FA6: 4C 80 B1  JMP loc_B180
 
 
 
-ofs_0x011FB9_24:
+ofs_004_0x011FB9_24:
 C - - J - - 0x011FB9 04:9FA9: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x011FBC 04:9FAC: F0 03     BEQ bra_9FB1
 - - - - - - 0x011FBE 04:9FAE: 4C 40 A0  JMP loc_A040
@@ -5632,10 +5632,10 @@ tbl_A087:
 
 
 
-ofs_0x01209D_42:
-ofs_0x01209D_43:
-ofs_0x01209D_44:
-ofs_0x01209D_45:
+ofs_005_0x01209D_42:
+ofs_005_0x01209D_43:
+ofs_005_0x01209D_44:
+ofs_005_0x01209D_45:
 C - - J - - 0x01209D 04:A08D: A9 10     LDA #con_sfx_1_10
 C - - - - - 0x01209F 04:A08F: 8D 01 06  STA ram_sfx_1
 C - - - - - 0x0120A2 04:A092: A2 05     LDX #$05
@@ -5709,7 +5709,7 @@ tbl_A107:
 
 
 
-ofs_0x01211C_3C:
+ofs_005_0x01211C_3C:
 C - - J - - 0x01211C 04:A10C: A9 40     LDA #con_sfx_1_40
 C - - - - - 0x01211E 04:A10E: 8D 01 06  STA ram_sfx_1
 C - - - - - 0x012121 04:A111: B5 18     LDA ram_indiv_random,X
@@ -5750,8 +5750,8 @@ C - - - - - 0x012170 04:A160: 60        RTS
 
 
 
-ofs_0x012171_33:
-ofs_0x012171_34:
+ofs_005_0x012171_33:
+ofs_005_0x012171_34:
 C - - J - - 0x012171 04:A161: A9 20     LDA #con_sfx_1_20
 C - - - - - 0x012173 04:A163: 8D 01 06  STA ram_sfx_1
 C - - - - - 0x012176 04:A166: A9 FB     LDA #$FB
@@ -5765,7 +5765,7 @@ C - - - - - 0x012186 04:A176: 4C D6 FE  JMP loc_0x01FEE6
 
 
 
-ofs_0x012189_46:
+ofs_005_0x012189_46:
 C - - J - - 0x012189 04:A179: 20 1D 84  JSR sub_841D
 C - - - - - 0x01218C 04:A17C: A9 E0     LDA #$E0
 C - - - - - 0x01218E 04:A17E: 8D D1 04  STA ram_04D1
@@ -5775,7 +5775,7 @@ C - - - - - 0x012196 04:A186: 60        RTS
 
 
 
-ofs_0x012197_3C:
+ofs_004_0x012197_3C:
 C - - J - - 0x012197 04:A187: E0 05     CPX #$05
 C - - - - - 0x012199 04:A189: D0 41     BNE bra_A1CC
 C - - - - - 0x01219B 04:A18B: AD 83 03  LDA ram_0383
@@ -6003,8 +6003,8 @@ C - - - - - 0x012323 04:A313: 4C DF 77  JMP loc_bat_77DF
 
 
 
-ofs_0x012326_33:
-ofs_0x012326_34:
+ofs_004_0x012326_33:
+ofs_004_0x012326_34:
 C - - J - - 0x012326 04:A316: BD 51 04  LDA ram_0451,X
 C - - - - - 0x012329 04:A319: D0 16     BNE bra_A331
 C - - - - - 0x01232B 04:A31B: A9 01     LDA #con_dir_Right
@@ -6210,7 +6210,7 @@ C - - - - - 0x012486 04:A476: 60        RTS
 
 
 
-ofs_0x012487_46:
+ofs_004_0x012487_46:
 C - - J - - 0x012487 04:A477: 20 AC A4  JSR sub_A4AC
 C - - - - - 0x01248A 04:A47A: 20 88 B2  JSR sub_B288
 C - - - - - 0x01248D 04:A47D: BD 37 04  LDA ram_0437,X
@@ -6295,10 +6295,10 @@ tbl_A4DA:
 
 
 
-ofs_0x0124EE_42:
-ofs_0x0124EE_43:
-ofs_0x0124EE_44:
-ofs_0x0124EE_45:
+ofs_004_0x0124EE_42:
+ofs_004_0x0124EE_43:
+ofs_004_0x0124EE_44:
+ofs_004_0x0124EE_45:
 C - - J - - 0x0124EE 04:A4DE: 20 25 A8  JSR sub_A825
 C - - - - - 0x0124F1 04:A4E1: AD 50 03  LDA ram_0350
 C - - - - - 0x0124F4 04:A4E4: 38        SEC
@@ -6941,7 +6941,7 @@ tbl_A8C5:
 
 
 
-ofs_0x0128DA_37:
+ofs_005_0x0128DA_37:
 C - - J - - 0x0128DA 04:A8CA: A2 05     LDX #$05
 bra_A8CC_loop:
 C - - - - - 0x0128DC 04:A8CC: BD BF A8  LDA tbl_A8C0 - 1,X
@@ -6958,8 +6958,8 @@ C - - - - - 0x0128F3 04:A8E3: 60        RTS
 
 
 
-ofs_0x0128F4_3A:
-ofs_0x0128F4_3B:
+ofs_005_0x0128F4_3A:
+ofs_005_0x0128F4_3B:
 C - - J - - 0x0128F4 04:A8E4: A0 09     LDY #$09
 bra_A8E6_loop:
 C - - - - - 0x0128F6 04:A8E6: A9 40     LDA #$40
@@ -6994,8 +6994,8 @@ C - - - - - 0x01293D 04:A92D: 60        RTS
 
 
 
-ofs_0x01293E_47:
-ofs_0x01293E_48:
+ofs_005_0x01293E_47:
+ofs_005_0x01293E_48:
 C - - J - - 0x01293E 04:A92E: A9 FE     LDA #$FE
 C - - - - - 0x012940 04:A930: 9D B2 04  STA ram_04B2,X
 C - - - - - 0x012943 04:A933: A9 80     LDA #$80
@@ -7031,7 +7031,7 @@ C - - - - - 0x01297E 04:A96E: 60        RTS
 
 
 
-ofs_0x01297F_3E:
+ofs_005_0x01297F_3E:
 C - - J - - 0x01297F 04:A96F: A9 FA     LDA #$FA
 C - - - - - 0x012981 04:A971: 9D B2 04  STA ram_04B2,X
 C - - - - - 0x012984 04:A974: A9 40     LDA #$40
@@ -7045,7 +7045,7 @@ C - - - - - 0x012994 04:A984: 4C D6 FE  JMP loc_0x01FEE6
 
 
 
-ofs_0x012997_37:
+ofs_004_0x012997_37:
 C - - J - - 0x012997 04:A987: 20 CA 79  JSR sub_bat_79CA
 C - - - - - 0x01299A 04:A98A: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x01299C 04:A98C: D0 2A     BNE bra_A9B8
@@ -7090,7 +7090,7 @@ C - - - - - 0x0129E5 04:A9D5: 4C D8 E8  JMP loc_0x01E8E8
 
 
 
-ofs_0x0129E8_3F:
+ofs_004_0x0129E8_3F:
 C - - J - - 0x0129E8 04:A9D8: A9 06     LDA #$06
 C - - - - - 0x0129EA 04:A9DA: 20 76 84  JSR sub_8476
 C - - - - - 0x0129ED 04:A9DD: 20 D0 79  JSR sub_bat_79D0
@@ -7104,8 +7104,8 @@ C - - - - - 0x0129FA 04:A9EA: 60        RTS
 
 
 
-ofs_0x0129FB_3A:
-ofs_0x0129FB_3B:
+ofs_004_0x0129FB_3A:
+ofs_004_0x0129FB_3B:
 C - - J - - 0x0129FB 04:A9EB: B5 98     LDA ram_direction,X
 C - - - - - 0x0129FD 04:A9ED: F0 FB     BEQ bra_A9EA_RTS
 C - - - - - 0x0129FF 04:A9EF: AD 6C 06  LDA ram_item_clock
@@ -7329,8 +7329,8 @@ tbl_AB64:
 
 
 
-ofs_0x012B76_47:
-ofs_0x012B76_48:
+ofs_004_0x012B76_47:
+ofs_004_0x012B76_48:
 C - - J - - 0x012B76 04:AB66: 20 AE AB  JSR sub_ABAE
 C - - - - - 0x012B79 04:AB69: A9 00     LDA #$00
 C - - - - - 0x012B7B 04:AB6B: 9D 6B 04  STA ram_046B,X
@@ -7414,8 +7414,8 @@ tbl_ABD8:
 
 
 
-ofs_0x012BEA_25:
-ofs_0x012BEA_26:
+ofs_004_0x012BEA_25:
+ofs_004_0x012BEA_26:
 C - - J - - 0x012BEA 04:ABDA: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x012BEC 04:ABDC: D0 3F     BNE bra_AC1D
 C - - - - - 0x012BEE 04:ABDE: E0 02     CPX #$02
@@ -7509,7 +7509,7 @@ C - - - - - 0x012C8A 04:AC7A: 4C DF 77  JMP loc_bat_77DF
 
 
 
-ofs_0x012C8D_3E:
+ofs_004_0x012C8D_3E:
 C - - J - - 0x012C8D 04:AC7D: AD 45 04  LDA ram_0445
 C - - - - - 0x012C90 04:AC80: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
 - D 1 - I - 0x012C93 04:AC83: 89 AC     .word ofs_AC89_00
@@ -8327,7 +8327,7 @@ tbl_B0F8:
 
 
 
-ofs_0x01310C_60:
+ofs_004_0x01310C_60:
 C - - J - - 0x01310C 04:B0FC: A5 15     LDA ram_frame_cnt
 C - - - - - 0x01310E 04:B0FE: 4A        LSR
 C - - - - - 0x01310F 04:B0FF: 90 03     BCC bra_B104

@@ -2032,7 +2032,7 @@ tbl_8814:   ; continue 0x004822
 
 ofs_8815_01:
 ofs_8815_07:
-ofs_8815_00:
+ofs_026_8815_00:
 C - - J - - 0x004825 01:8815: 20 1B F2  JSR sub_0x01F22B
 C - - - - - 0x004828 01:8818: A5 29     LDA ram_0029
 C - - - - - 0x00482A 01:881A: D0 5D     BNE bra_8879_RTS
@@ -2301,7 +2301,7 @@ C - - J - - 0x004A06 01:89F6: 60        RTS
 
 ofs_89F7_03:
 ofs_89F7_06:
-ofs_89F7_02:
+ofs_026_89F7_02:
 C - - J - - 0x004A07 01:89F7: A9 2A     LDA #$2A
 C - - - - - 0x004A09 01:89F9: 4C F2 87  JMP loc_87F2
 
@@ -2312,16 +2312,16 @@ C D 0 - - - 0x004A0C 01:89FC: AD 14 88  LDA tbl_8814
 C - - - - - 0x004A0F 01:89FF: 8D 5F 04  STA ram_045F
 C - - - - - 0x004A12 01:8A02: A5 10     LDA ram_0010
 C - - - - - 0x004A14 01:8A04: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
-- - - - - - 0x004A17 01:8A07: AD 8C     .word ofs_8CAD_00_RTS
-- - - - - - 0x004A19 01:8A09: 23 8A     .word ofs_8A23_01
-- - - - - - 0x004A1B 01:8A0B: 23 8A     .word ofs_8A23_02
-- - - - - - 0x004A1D 01:8A0D: 69 8A     .word ofs_8A69_03
-- - - - - - 0x004A1F 01:8A0F: 69 8A     .word ofs_8A69_04
-- D 0 - I - 0x004A21 01:8A11: 23 8A     .word ofs_8A23_05
-- - - - - - 0x004A23 01:8A13: 69 8A     .word ofs_8A69_06
-- D 0 - I - 0x004A25 01:8A15: 23 8A     .word ofs_8A23_07
-- - - - - - 0x004A27 01:8A17: 69 8A     .word ofs_8A69_08
-- D 0 - I - 0x004A29 01:8A19: 84 8A     .word ofs_8A84_09
+- - - - - - 0x004A17 01:8A07: AD 8C     .word ofs_025_8CAD_00_RTS
+- - - - - - 0x004A19 01:8A09: 23 8A     .word ofs_025_8A23_01
+- - - - - - 0x004A1B 01:8A0B: 23 8A     .word ofs_025_8A23_02
+- - - - - - 0x004A1D 01:8A0D: 69 8A     .word ofs_025_8A69_03
+- - - - - - 0x004A1F 01:8A0F: 69 8A     .word ofs_025_8A69_04
+- D 0 - I - 0x004A21 01:8A11: 23 8A     .word ofs_025_8A23_05
+- - - - - - 0x004A23 01:8A13: 69 8A     .word ofs_025_8A69_06
+- D 0 - I - 0x004A25 01:8A15: 23 8A     .word ofs_025_8A23_07
+- - - - - - 0x004A27 01:8A17: 69 8A     .word ofs_025_8A69_08
+- D 0 - I - 0x004A29 01:8A19: 84 8A     .word ofs_025_8A84_09
 
 
 
@@ -2337,10 +2337,10 @@ tbl_8A1B:
 
 
 
-ofs_8A23_01:
-ofs_8A23_02:
-ofs_8A23_05:
-ofs_8A23_07:
+ofs_025_8A23_01:
+ofs_025_8A23_02:
+ofs_025_8A23_05:
+ofs_025_8A23_07:
 C - - J - - 0x004A33 01:8A23: A9 78     LDA #$78
 C - - - - - 0x004A35 01:8A25: A0 80     LDY #$80
 C - - - - - 0x004A37 01:8A27: 20 A3 86  JSR sub_86A3
@@ -2388,10 +2388,10 @@ tbl_8A61:
 
 
 
-ofs_8A69_03:
-ofs_8A69_04:
-ofs_8A69_06:
-ofs_8A69_08:
+ofs_025_8A69_03:
+ofs_025_8A69_04:
+ofs_025_8A69_06:
+ofs_025_8A69_08:
 - - - - - - 0x004A79 01:8A69: A9 78     LDA #$78
 - - - - - - 0x004A7B 01:8A6B: A0 80     LDY #$80
 - - - - - - 0x004A7D 01:8A6D: 20 A3 86  JSR sub_86A3
@@ -2413,7 +2413,7 @@ tbl_8A80:
 
 
 
-ofs_8A84_09:
+ofs_025_8A84_09:
 C - - J - - 0x004A94 01:8A84: A9 78     LDA #$78
 C - - - - - 0x004A96 01:8A86: A0 80     LDY #$80
 C - - - - - 0x004A98 01:8A88: 20 A3 86  JSR sub_86A3
@@ -2736,14 +2736,14 @@ C - - - - - 0x004C7C 01:8C6C: 20 DF 77  JSR sub_bat_77DF
 bra_8C6F:
 C - - - - - 0x004C7F 01:8C6F: A5 AD     LDA ram_drop_id + 1
 C - - - - - 0x004C81 01:8C71: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
-- D 0 - I - 0x004C84 01:8C74: 15 88     .word ofs_8815_00
-- D 0 - I - 0x004C86 01:8C76: 7C 8C     .word ofs_8C7C_01
-- D 0 - I - 0x004C88 01:8C78: F7 89     .word ofs_89F7_02
-- D 0 - I - 0x004C8A 01:8C7A: 99 8C     .word ofs_8C99_03
+- D 0 - I - 0x004C84 01:8C74: 15 88     .word ofs_026_8815_00
+- D 0 - I - 0x004C86 01:8C76: 7C 8C     .word ofs_026_8C7C_01
+- D 0 - I - 0x004C88 01:8C78: F7 89     .word ofs_026_89F7_02
+- D 0 - I - 0x004C8A 01:8C7A: 99 8C     .word ofs_026_8C99_03
 
 
 
-ofs_8C7C_01:
+ofs_026_8C7C_01:
 C - - J - - 0x004C8C 01:8C7C: A0 0F     LDY #$0F
 C - - - - - 0x004C8E 01:8C7E: B9 AC 00  LDA ram_drop_id,Y
 C - - - - - 0x004C91 01:8C81: 0A        ASL
@@ -2761,7 +2761,7 @@ C - - - - - 0x004CA6 01:8C96: 4C F2 87  JMP loc_87F2
 
 
 
-ofs_8C99_03:
+ofs_026_8C99_03:
 C - - J - - 0x004CA9 01:8C99: 20 23 F2  JSR sub_0x01F233
 C - - - - - 0x004CAC 01:8C9C: A5 29     LDA ram_0029
 C - - - - - 0x004CAE 01:8C9E: D0 0D     BNE bra_8CAD_RTS
@@ -2771,7 +2771,7 @@ C - - - - - 0x004CB5 01:8CA5: 8D 5D 06  STA ram_item_meat
 C - - - - - 0x004CB8 01:8CA8: 85 AC     STA ram_drop_id
 C - - - - - 0x004CBA 01:8CAA: 8D 50 03  STA ram_0350
 bra_8CAD_RTS:
-ofs_8CAD_00_RTS:
+ofs_025_8CAD_00_RTS:
 C - - - - - 0x004CBD 01:8CAD: 60        RTS
 
 

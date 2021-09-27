@@ -45,12 +45,12 @@
 .export sub_bat_704A
 .export sub_bat_706F
 .export sub_bat_70AB
-.export ofs_bat_70DD_01_bomb
+.export ofs_021_bat_70DD_01_bomb
 .export loc_bat_7114
 .export sub_bat_7116
 .export sub_bat_711B
 .export sub_bat_711F
-.export ofs_bat_714F_04
+.export ofs_021_bat_714F_04
 .export sub_bat_714F
 .export sub_bat_718A
 .export sub_bat_718C
@@ -909,7 +909,7 @@ bra_70DC_RTS:
 
 
 
-ofs_bat_70DD_01_bomb:    ; bzk optimize, up to 0x006992 can be moved to bank_05 
+ofs_021_bat_70DD_01_bomb:    ; bzk optimize, up to 0x006992 can be moved to bank_05 
 - D 1 - I - 0x00695D 01:70DD: AD 58 06  LDA ram_item_bombs
 - D 1 - I - 0x006960 01:70E0: F0 FA     BEQ bra_70DC_RTS
 - D 1 - I - 0x006962 01:70E2: A2 10     LDX #$10
@@ -985,7 +985,7 @@ bra_714E_RTS:
 
 
 
-ofs_bat_714F_04:
+ofs_021_bat_714F_04:
 sub_bat_714F:
 - D 1 - I - 0x0069CF 01:714F: A2 10     LDX #$10
 - D 1 - I - 0x0069D1 01:7151: B5 AC     LDA ram_drop_id,X
