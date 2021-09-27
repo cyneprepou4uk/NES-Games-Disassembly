@@ -5352,18 +5352,18 @@ C - - - - - 0x0021CE 00:E1BE: 4C 69 E1  JMP loc_E169_loop
 
 
 tbl_E1C1_level_editor_control:   ; press buttons to do something in the editor
-- D 3 - - - 0x0021D1 00:E1C1: 9D E2     .word ofs_E29D_00_A
-- D 3 - - - 0x0021D3 00:E1C3: 15 E2     .word ofs_E215_01_B
-- D 3 - - - 0x0021D5 00:E1C5: 2E E2     .word ofs_E22E_02_Select
-- D 3 - - - 0x0021D7 00:E1C7: D1 E1     .word ofs_E1D1_03_Start
-- D 3 - - - 0x0021D9 00:E1C9: D7 E2     .word ofs_E2D7_04_Up
-- D 3 - - - 0x0021DB 00:E1CB: E5 E2     .word ofs_E2E5_05_Down
-- D 3 - - - 0x0021DD 00:E1CD: F3 E2     .word ofs_E2F3_06_Left
-- D 3 - - - 0x0021DF 00:E1CF: 01 E3     .word ofs_E301_07_Right
+- D 3 - - - 0x0021D1 00:E1C1: 9D E2     .word ofs_000_E29D_00_A
+- D 3 - - - 0x0021D3 00:E1C3: 15 E2     .word ofs_000_E215_01_B
+- D 3 - - - 0x0021D5 00:E1C5: 2E E2     .word ofs_000_E22E_02_Select
+- D 3 - - - 0x0021D7 00:E1C7: D1 E1     .word ofs_000_E1D1_03_Start
+- D 3 - - - 0x0021D9 00:E1C9: D7 E2     .word ofs_000_E2D7_04_Up
+- D 3 - - - 0x0021DB 00:E1CB: E5 E2     .word ofs_000_E2E5_05_Down
+- D 3 - - - 0x0021DD 00:E1CD: F3 E2     .word ofs_000_E2F3_06_Left
+- D 3 - - - 0x0021DF 00:E1CF: 01 E3     .word ofs_000_E301_07_Right
 
 
 
-ofs_E1D1_03_Start:
+ofs_000_E1D1_03_Start:
 C - - J - - 0x0021E1 00:E1D1: A9 00     LDA #$00
 C - - - - - 0x0021E3 00:E1D3: 85 8E     STA ram_008E
 C - - - - - 0x0021E5 00:E1D5: 68        PLA
@@ -5411,7 +5411,7 @@ bra_E208_loop:  ; clear 0600-06FF
 
 
 
-ofs_E215_01_B:
+ofs_000_E215_01_B:
 C - - J - - 0x002225 00:E215: A5 1A     LDA ram_btn_hold
 C - - - - - 0x002227 00:E217: 29 0F     AND #con_btns_Dpad
 C - - - - - 0x002229 00:E219: D0 13     BNE bra_E22E
@@ -5428,7 +5428,7 @@ bra_E229:
 C - - - - - 0x002239 00:E229: 86 2A     STX ram_002A
 C - - - - - 0x00223B 00:E22B: 4C 41 E2  JMP loc_E241
 bra_E22E:
-ofs_E22E_02_Select:
+ofs_000_E22E_02_Select:
 C - - J - - 0x00223E 00:E22E: A6 2A     LDX ram_002A
 C - - - - - 0x002240 00:E230: E0 00     CPX #$00    ; bzk optimize, no need for CPX 00
 C - - - - - 0x002242 00:E232: D0 02     BNE bra_E236
@@ -5502,7 +5502,7 @@ C - - - - - 0x0022AC 00:E29C: 60        RTS
 
 
 
-ofs_E29D_00_A:
+ofs_000_E29D_00_A:
 C - - J - - 0x0022AD 00:E29D: 20 75 E9  JSR sub_E975
 C - - - - - 0x0022B0 00:E2A0: 20 6D E3  JSR sub_E36D
 C - - - - - 0x0022B3 00:E2A3: A0 00     LDY #$00
@@ -5531,7 +5531,7 @@ C - - - - - 0x0022E6 00:E2D6: 60        RTS
 
 
 
-ofs_E2D7_04_Up:
+ofs_000_E2D7_04_Up:
 C - - J - - 0x0022E7 00:E2D7: A6 29     LDX ram_0029
 C - - - - - 0x0022E9 00:E2D9: E0 02     CPX #$02
 C - - - - - 0x0022EB 00:E2DB: D0 02     BNE bra_E2DF
@@ -5543,7 +5543,7 @@ C - - - - - 0x0022F2 00:E2E2: 4C 0F E3  JMP loc_E30F
 
 
 
-ofs_E2E5_05_Down:
+ofs_000_E2E5_05_Down:
 C - - J - - 0x0022F5 00:E2E5: A6 29     LDX ram_0029
 C - - - - - 0x0022F7 00:E2E7: E0 0B     CPX #$0B
 C - - - - - 0x0022F9 00:E2E9: D0 02     BNE bra_E2ED
@@ -5555,7 +5555,7 @@ C - - - - - 0x002300 00:E2F0: 4C 0F E3  JMP loc_E30F
 
 
 
-ofs_E2F3_06_Left:
+ofs_000_E2F3_06_Left:
 C - - J - - 0x002303 00:E2F3: A6 28     LDX ram_0028
 C - - - - - 0x002305 00:E2F5: E0 00     CPX #$00
 C - - - - - 0x002307 00:E2F7: D0 02     BNE bra_E2FB
@@ -5567,7 +5567,7 @@ C - - - - - 0x00230E 00:E2FE: 4C 0F E3  JMP loc_E30F
 
 
 
-ofs_E301_07_Right:
+ofs_000_E301_07_Right:
 C - - J - - 0x002311 00:E301: A6 28     LDX ram_0028
 C - - - - - 0x002313 00:E303: E0 0F     CPX #$0F
 C - - - - - 0x002315 00:E305: D0 02     BNE bra_E309
