@@ -1598,8 +1598,7 @@ C - - - - - 0x01EDA1 07:ED91: 4C C0 6C  JMP loc_bat_6CC0_count_rupees_and_update
 
 
 ; bzk garbage
-- - - - - - 0x01EDA4 07:ED94: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x01EDAC 07:ED9C: FF        .byte $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x01EDA4 07:ED94: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 
@@ -3808,8 +3807,7 @@ C - - - - - 0x01FAF3 07:FAE3: 60        RTS
 
 
 ; bzk garbage
-- - - - - - 0x01FAF4 07:FAE4: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x01FAFC 07:FAEC: FF        .byte $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x01FAF4 07:FAE4: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 
@@ -4583,8 +4581,7 @@ loc_0x01FF44:
 
 
 ; bzk garbage
-- - - - - - 0x01FF53 07:FF43: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x01FF5B 07:FF4B: FF        .byte $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x01FF53 07:FF43: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 
@@ -4658,12 +4655,9 @@ C - - - - - 0x01FFCF 07:FFBF: 60        RTS
 
 
 ; bzk garbage
-- - - - - - 0x01FFD0 07:FFC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x01FFD8 07:FFC8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x01FFE0 07:FFD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x01FFE8 07:FFD8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x01FFF0 07:FFE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x01FFF8 07:FFE8: FF        .byte $FF, $FF, $FF   ; 
+- - - - - - 0x01FFD0 07:FFC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x01FFE0 07:FFD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x01FFF0 07:FFE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 ; bzk garbage
