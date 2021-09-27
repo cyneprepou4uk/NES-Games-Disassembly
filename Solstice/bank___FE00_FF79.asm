@@ -95,7 +95,7 @@ C - - - - - 0x007E95 01:FE85: 60        RTS
 
 
 
-loc_inc_FE86:
+loc_inc_FE86_play_sfx:
 C D 3 - - - 0x007E96 01:FE86: A5 FF     LDA ram_prg_bank
 C - - - - - 0x007E98 01:FE88: 29 10     AND #$10
 C - - - - - 0x007E9A 01:FE8A: 09 02     ORA #con_prg_bank + $02

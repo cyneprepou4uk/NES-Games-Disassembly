@@ -9391,7 +9391,7 @@ C - - - - - 0x003983 00:B973: EA        NOP
 C - - - - - 0x003984 00:B974: EA        NOP
 C - - - - - 0x003985 00:B975: EA        NOP
 bra_B976:
-C - - - - - 0x003986 00:B976: 4C 86 FE  JMP loc_inc_FE86
+C - - - - - 0x003986 00:B976: 4C 86 FE  JMP loc_inc_FE86_play_sfx
 
 
 
