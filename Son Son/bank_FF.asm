@@ -562,20 +562,20 @@ tbl_8368:
 
 tbl_837C:
 - - - - - - 0x00038C 00:837C: 00        .word $0000   ; 
-- D 0 - - - 0x00038E 00:837E: 90 83     .word ofs_8390_01 - 1
-- D 0 - - - 0x000390 00:8380: 89 88     .word ofs_8889_02 - 1
-- D 0 - - - 0x000392 00:8382: E0 E0     .word ofs_E0E0_03 - 1
-- D 0 - - - 0x000394 00:8384: C1 B2     .word ofs_B2C1_04 - 1
-- D 0 - - - 0x000396 00:8386: D4 B2     .word ofs_B2D4_05 - 1
-- D 0 - - - 0x000398 00:8388: 10 BB     .word ofs_BB10_06 - 1
-- D 0 - - - 0x00039A 00:838A: C8 FE     .word ofs_FEC8_07 - 1
-- D 0 - - - 0x00039C 00:838C: 33 FF     .word ofs_FF33_08 - 1
-- D 0 - - - 0x00039E 00:838E: 36 A2     .word ofs_A236_09 - 1
+- D 0 - - - 0x00038E 00:837E: 90 83     .word ofs_000_8390_01 - 1
+- D 0 - - - 0x000390 00:8380: 89 88     .word ofs_000_8889_02 - 1
+- D 0 - - - 0x000392 00:8382: E0 E0     .word ofs_000_E0E0_03 - 1
+- D 0 - - - 0x000394 00:8384: C1 B2     .word ofs_000_B2C1_04 - 1
+- D 0 - - - 0x000396 00:8386: D4 B2     .word ofs_000_B2D4_05 - 1
+- D 0 - - - 0x000398 00:8388: 10 BB     .word ofs_000_BB10_06 - 1
+- D 0 - - - 0x00039A 00:838A: C8 FE     .word ofs_000_FEC8_07 - 1
+- D 0 - - - 0x00039C 00:838C: 33 FF     .word ofs_000_FF33_08 - 1
+- D 0 - - - 0x00039E 00:838E: 36 A2     .word ofs_000_A236_09 - 1
 
 
 
 loc_8390:
-ofs_8390_01:
+ofs_000_8390_01:
 C D 0 - - - 0x0003A0 00:8390: 20 93 89  JSR sub_8993
 C - - - - - 0x0003A3 00:8393: A9 00     LDA #$00
 C - - - - - 0x0003A5 00:8395: 85 60     STA ram_0060
@@ -1497,7 +1497,7 @@ tbl_8869:
 
 
 
-ofs_8889_02:
+ofs_000_8889_02:
 C - - - - - 0x000899 00:8889: A9 00     LDA #$00
 C - - - - - 0x00089B 00:888B: 85 5D     STA ram_005D
 C - - - - - 0x00089D 00:888D: 8D 81 07  STA ram_0781
@@ -6414,7 +6414,7 @@ tbl_A1D9:
 
 
 loc_A236:
-ofs_A236_09:
+ofs_000_A236_09:
 C D 1 - - - 0x002246 00:A236: A2 00     LDX #$00
 C - - - - - 0x002248 00:A238: A0 00     LDY #$00
 bra_A23A:
@@ -10118,7 +10118,7 @@ C - - - - - 0x0032C4 00:B2B4: 60        RTS
 
 
 
-ofs_B2C1_04:
+ofs_000_B2C1_04:
 C - - - - - 0x0032D1 00:B2C1: A2 00     LDX #$00
 C - - - - - 0x0032D3 00:B2C3: BD 33 04  LDA ram_0433,X
 C - - - - - 0x0032D6 00:B2C6: C9 FF     CMP #$FF
@@ -10131,7 +10131,7 @@ C - - - - - 0x0032E1 00:B2D1: 4C E4 B2  JMP loc_B2E4
 
 
 
-ofs_B2D4_05:
+ofs_000_B2D4_05:
 C - - - - - 0x0032E4 00:B2D4: A2 01     LDX #$01
 C - - - - - 0x0032E6 00:B2D6: BD 33 04  LDA ram_0433,X
 C - - - - - 0x0032E9 00:B2D9: C9 FF     CMP #$FF
@@ -11275,7 +11275,7 @@ C - - - - - 0x003B0A 00:BAFA: 4C F1 BA  JMP loc_BAF1_loop
 
 
 loc_BB10:
-ofs_BB10_06:
+ofs_000_BB10_06:
 C D 1 - - - 0x003B20 00:BB10: A2 02     LDX #$02
 bra_BB12_loop:
 C - - - - - 0x003B22 00:BB12: BD 33 04  LDA ram_0433,X
@@ -11309,39 +11309,39 @@ C - - - - - 0x003B52 00:BB42: 4C 10 BB  JMP loc_BB10
 
 
 tbl_BB45:
-- D 1 - - - 0x003B55 00:BB45: F7 BB     .word ofs_BBF7_00
-- - - - - - 0x003B57 00:BB47: 1D BD     .word ofs_BD1D_01
-- D 1 - - - 0x003B59 00:BB49: 1D BD     .word ofs_BD1D_02
-- D 1 - - - 0x003B5B 00:BB4B: 1D BD     .word ofs_BD1D_03
-- D 1 - - - 0x003B5D 00:BB4D: DB BD     .word ofs_BDDB_04
-- D 1 - - - 0x003B5F 00:BB4F: A7 BF     .word ofs_BFA7_05
-- D 1 - - - 0x003B61 00:BB51: 19 C2     .word ofs_C219_06
-- D 1 - - - 0x003B63 00:BB53: 0D C3     .word ofs_C30D_07
-- D 1 - - - 0x003B65 00:BB55: DE C3     .word ofs_C3DE_08
-- D 1 - - - 0x003B67 00:BB57: 24 C5     .word ofs_C524_09
-- D 1 - - - 0x003B69 00:BB59: 0F C6     .word ofs_C60F_0A
-- D 1 - - - 0x003B6B 00:BB5B: E8 CC     .word ofs_CCE8_0B
-- D 1 - - - 0x003B6D 00:BB5D: 65 C7     .word ofs_C765_0C
-- D 1 - - - 0x003B6F 00:BB5F: AD C8     .word ofs_C8AD_0D
-- D 1 - - - 0x003B71 00:BB61: 2A CB     .word ofs_CB2A_0E
-- D 1 - - - 0x003B73 00:BB63: B2 CD     .word ofs_CDB2_0F
-- D 1 - - - 0x003B75 00:BB65: 40 CE     .word ofs_CE40_10
-- D 1 - - - 0x003B77 00:BB67: 8A CE     .word ofs_CE8A_11
-- D 1 - - - 0x003B79 00:BB69: 1D BD     .word ofs_BD1D_12
-- D 1 - - - 0x003B7B 00:BB6B: CD D0     .word ofs_D0CD_13
-- D 1 - - - 0x003B7D 00:BB6D: 23 D1     .word ofs_D123_14
-- D 1 - - - 0x003B7F 00:BB6F: 81 D1     .word ofs_D181_15
-- D 1 - - - 0x003B81 00:BB71: C0 D1     .word ofs_D1C0_16
-- D 1 - - - 0x003B83 00:BB73: FC D1     .word ofs_D1FC_17
-- D 1 - - - 0x003B85 00:BB75: 36 D2     .word ofs_D236_18
-- D 1 - - - 0x003B87 00:BB77: AD D2     .word ofs_D2AD_19
-- D 1 - - - 0x003B89 00:BB79: 24 D3     .word ofs_D324_1A
-- D 1 - - - 0x003B8B 00:BB7B: 64 D3     .word ofs_D364_1B
-- D 1 - - - 0x003B8D 00:BB7D: 83 D3     .word ofs_D383_1C
-- D 1 - - - 0x003B8F 00:BB7F: 95 D3     .word ofs_D395_1D
-- D 1 - - - 0x003B91 00:BB81: A7 D3     .word ofs_D3A7_1E
-- D 1 - - - 0x003B93 00:BB83: CD D3     .word ofs_D3CD_1F
-- D 1 - - - 0x003B95 00:BB85: CF BB     .word ofs_BBCF_20
+- D 1 - - - 0x003B55 00:BB45: F7 BB     .word ofs_001_BBF7_00
+- - - - - - 0x003B57 00:BB47: 1D BD     .word ofs_001_BD1D_01
+- D 1 - - - 0x003B59 00:BB49: 1D BD     .word ofs_001_BD1D_02
+- D 1 - - - 0x003B5B 00:BB4B: 1D BD     .word ofs_001_BD1D_03
+- D 1 - - - 0x003B5D 00:BB4D: DB BD     .word ofs_001_BDDB_04
+- D 1 - - - 0x003B5F 00:BB4F: A7 BF     .word ofs_001_BFA7_05
+- D 1 - - - 0x003B61 00:BB51: 19 C2     .word ofs_001_C219_06
+- D 1 - - - 0x003B63 00:BB53: 0D C3     .word ofs_001_C30D_07
+- D 1 - - - 0x003B65 00:BB55: DE C3     .word ofs_001_C3DE_08
+- D 1 - - - 0x003B67 00:BB57: 24 C5     .word ofs_001_C524_09
+- D 1 - - - 0x003B69 00:BB59: 0F C6     .word ofs_001_C60F_0A
+- D 1 - - - 0x003B6B 00:BB5B: E8 CC     .word ofs_001_CCE8_0B
+- D 1 - - - 0x003B6D 00:BB5D: 65 C7     .word ofs_001_C765_0C
+- D 1 - - - 0x003B6F 00:BB5F: AD C8     .word ofs_001_C8AD_0D
+- D 1 - - - 0x003B71 00:BB61: 2A CB     .word ofs_001_CB2A_0E
+- D 1 - - - 0x003B73 00:BB63: B2 CD     .word ofs_001_CDB2_0F
+- D 1 - - - 0x003B75 00:BB65: 40 CE     .word ofs_001_CE40_10
+- D 1 - - - 0x003B77 00:BB67: 8A CE     .word ofs_001_CE8A_11
+- D 1 - - - 0x003B79 00:BB69: 1D BD     .word ofs_001_BD1D_12
+- D 1 - - - 0x003B7B 00:BB6B: CD D0     .word ofs_001_D0CD_13
+- D 1 - - - 0x003B7D 00:BB6D: 23 D1     .word ofs_001_D123_14
+- D 1 - - - 0x003B7F 00:BB6F: 81 D1     .word ofs_001_D181_15
+- D 1 - - - 0x003B81 00:BB71: C0 D1     .word ofs_001_D1C0_16
+- D 1 - - - 0x003B83 00:BB73: FC D1     .word ofs_001_D1FC_17
+- D 1 - - - 0x003B85 00:BB75: 36 D2     .word ofs_001_D236_18
+- D 1 - - - 0x003B87 00:BB77: AD D2     .word ofs_001_D2AD_19
+- D 1 - - - 0x003B89 00:BB79: 24 D3     .word ofs_001_D324_1A
+- D 1 - - - 0x003B8B 00:BB7B: 64 D3     .word ofs_001_D364_1B
+- D 1 - - - 0x003B8D 00:BB7D: 83 D3     .word ofs_001_D383_1C
+- D 1 - - - 0x003B8F 00:BB7F: 95 D3     .word ofs_001_D395_1D
+- D 1 - - - 0x003B91 00:BB81: A7 D3     .word ofs_001_D3A7_1E
+- D 1 - - - 0x003B93 00:BB83: CD D3     .word ofs_001_D3CD_1F
+- D 1 - - - 0x003B95 00:BB85: CF BB     .word ofs_001_BBCF_20
 
 
 
@@ -11385,7 +11385,7 @@ C - - - - - 0x003BDE 00:BBCE: 60        RTS
 
 
 
-ofs_BBCF_20:
+ofs_001_BBCF_20:
 C - - J - - 0x003BDF 00:BBCF: A9 0F     LDA #$0F
 C - - - - - 0x003BE1 00:BBD1: 9D 79 04  STA ram_0479,X
 C - - - - - 0x003BE4 00:BBD4: A9 70     LDA #$70
@@ -11407,7 +11407,7 @@ C - - - - - 0x003C04 00:BBF4: 4C 3A BB  JMP loc_BB3A
 
 
 
-ofs_BBF7_00:
+ofs_001_BBF7_00:
 C - - J - - 0x003C07 00:BBF7: 20 BF B1  JSR sub_B1BF_check_bit0
 C - - - - - 0x003C0A 00:BBFA: F0 03     BEQ bra_BBFF
 C - - - - - 0x003C0C 00:BBFC: 4C 42 BC  JMP loc_BC42
@@ -11576,10 +11576,10 @@ C - - - - - 0x003D2C 00:BD1C: 60        RTS
 
 
 
-ofs_BD1D_01:
-ofs_BD1D_02:
-ofs_BD1D_03:
-ofs_BD1D_12:
+ofs_001_BD1D_01:
+ofs_001_BD1D_02:
+ofs_001_BD1D_03:
+ofs_001_BD1D_12:
 C - - J - - 0x003D2D 00:BD1D: 20 2E B2  JSR sub_B22E_set_bit7
 C - - - - - 0x003D30 00:BD20: 20 C5 AE  JSR sub_AEC5
 C - - - - - 0x003D33 00:BD23: B0 5C     BCS bra_BD81
@@ -11679,7 +11679,7 @@ C - - - - - 0x003DEA 00:BDDA: 60        RTS
 
 
 
-ofs_BDDB_04:
+ofs_001_BDDB_04:
 C - - J - - 0x003DEB 00:BDDB: 20 C5 B1  JSR sub_B1C5_check_bit1
 C - - - - - 0x003DEE 00:BDDE: D0 4B     BNE bra_BE2B
 C - - - - - 0x003DF0 00:BDE0: DE D7 05  DEC ram_05D7,X
@@ -11902,7 +11902,7 @@ C - - - - - 0x003FB6 00:BFA6: 60        RTS
 
 
 
-ofs_BFA7_05:
+ofs_001_BFA7_05:
 C - - J - - 0x003FB7 00:BFA7: 20 C5 B1  JSR sub_B1C5_check_bit1
 C - - - - - 0x003FBA 00:BFAA: D0 46     BNE bra_BFF2
 C - - - - - 0x003FBC 00:BFAC: 20 F8 B1  JSR sub_B1F8_set_bit1
@@ -12204,7 +12204,7 @@ C - - - - - 0x004228 01:C218: 60        RTS
 
 
 
-ofs_C219_06:
+ofs_001_C219_06:
 C - - J - - 0x004229 01:C219: 20 C5 B1  JSR sub_B1C5_check_bit1
 C - - - - - 0x00422C 01:C21C: D0 2D     BNE bra_C24B
 C - - - - - 0x00422E 01:C21E: DE D7 05  DEC ram_05D7,X
@@ -12317,7 +12317,7 @@ C - - - - - 0x00431A 01:C30A: 4C 37 BB  JMP loc_BB37
 
 
 
-ofs_C30D_07:
+ofs_001_C30D_07:
 C - - J - - 0x00431D 01:C30D: 20 C5 B1  JSR sub_B1C5_check_bit1
 C - - - - - 0x004320 01:C310: D0 22     BNE bra_C334
 C - - - - - 0x004322 01:C312: DE D7 05  DEC ram_05D7,X
@@ -12411,7 +12411,7 @@ C - - - - - 0x0043EB 01:C3DB: 4C 37 BB  JMP loc_BB37
 
 
 
-ofs_C3DE_08:
+ofs_001_C3DE_08:
 C - - J - - 0x0043EE 01:C3DE: 20 C5 B1  JSR sub_B1C5_check_bit1
 C - - - - - 0x0043F1 01:C3E1: D0 20     BNE bra_C403
 C - - - - - 0x0043F3 01:C3E3: DE D7 05  DEC ram_05D7,X
@@ -12571,7 +12571,7 @@ C - - - - - 0x004533 01:C523: 60        RTS
 
 
 
-ofs_C524_09:
+ofs_001_C524_09:
 C - - J - - 0x004534 01:C524: 20 C5 B1  JSR sub_B1C5_check_bit1
 C - - - - - 0x004537 01:C527: D0 18     BNE bra_C541
 C - - - - - 0x004539 01:C529: DE D7 05  DEC ram_05D7,X
@@ -12684,7 +12684,7 @@ C - - - - - 0x00461E 01:C60E: 60        RTS
 
 
 
-ofs_C60F_0A:
+ofs_001_C60F_0A:
 C - - J - - 0x00461F 01:C60F: 20 C5 B1  JSR sub_B1C5_check_bit1
 C - - - - - 0x004622 01:C612: D0 25     BNE bra_C639
 C - - - - - 0x004624 01:C614: DE D7 05  DEC ram_05D7,X
@@ -12861,7 +12861,7 @@ C - - - - - 0x004774 01:C764: 60        RTS
 
 
 
-ofs_C765_0C:
+ofs_001_C765_0C:
 C - - J - - 0x004775 01:C765: BD 79 04  LDA ram_0479,X
 C - - - - - 0x004778 01:C768: C9 70     CMP #$70
 C - - - - - 0x00477A 01:C76A: 90 03     BCC bra_C76F
@@ -13030,7 +13030,7 @@ C - - - - - 0x0048BA 01:C8AA: 4C ED D5  JMP loc_D5ED
 
 
 
-ofs_C8AD_0D:
+ofs_001_C8AD_0D:
 C - - J - - 0x0048BD 01:C8AD: 20 BF B1  JSR sub_B1BF_check_bit0
 C - - - - - 0x0048C0 01:C8B0: F0 59     BEQ bra_C90B
 C - - - - - 0x0048C2 01:C8B2: 4C 08 CA  JMP loc_CA08
@@ -13383,7 +13383,7 @@ C - - - - - 0x004B39 01:CB29: 60        RTS
 
 
 
-ofs_CB2A_0E:
+ofs_001_CB2A_0E:
 C - - J - - 0x004B3A 01:CB2A: 20 00 B0  JSR sub_B000
 C - - - - - 0x004B3D 01:CB2D: A9 0C     LDA #$0C
 C - - - - - 0x004B3F 01:CB2F: 9D B4 05  STA ram_05B4,X
@@ -13630,7 +13630,7 @@ C - - - - - 0x004CF7 01:CCE7: 60        RTS
 
 
 
-ofs_CCE8_0B:
+ofs_001_CCE8_0B:
 C - - J - - 0x004CF8 01:CCE8: 20 00 B0  JSR sub_B000
 C - - - - - 0x004CFB 01:CCEB: 20 BF B1  JSR sub_B1BF_check_bit0
 C - - - - - 0x004CFE 01:CCEE: F0 03     BEQ bra_CCF3
@@ -13731,7 +13731,7 @@ C - - - - - 0x004DBF 01:CDAF: 4C F8 CC  JMP loc_CCF8
 
 
 
-ofs_CDB2_0F:
+ofs_001_CDB2_0F:
 C - - J - - 0x004DC2 01:CDB2: 20 BF B1  JSR sub_B1BF_check_bit0
 C - - - - - 0x004DC5 01:CDB5: D0 0B     BNE bra_CDC2
 C - - - - - 0x004DC7 01:CDB7: A9 00     LDA #$00
@@ -13799,7 +13799,7 @@ C - - - - - 0x004E4D 01:CE3D: 4C 37 BB  JMP loc_BB37
 
 
 
-ofs_CE40_10:
+ofs_001_CE40_10:
 C - - J - - 0x004E50 01:CE40: A9 00     LDA #$00
 C - - - - - 0x004E52 01:CE42: 9D E2 04  STA ram_04E2,X
 C - - - - - 0x004E55 01:CE45: A9 50     LDA #$50
@@ -13833,7 +13833,7 @@ C - - - - - 0x004E94 01:CE84: 4C 37 BB  JMP loc_BB37
 
 
 
-ofs_CE8A_11:
+ofs_001_CE8A_11:
 C - - J - - 0x004E9A 01:CE8A: 20 C5 B1  JSR sub_B1C5_check_bit1
 C - - - - - 0x004E9D 01:CE8D: D0 18     BNE bra_CEA7
 C - - - - - 0x004E9F 01:CE8F: DE D7 05  DEC ram_05D7,X
@@ -14153,7 +14153,7 @@ C - - - - - 0x0050DA 01:D0CA: 4C 51 91  JMP loc_9151
 
 
 
-ofs_D0CD_13:
+ofs_001_D0CD_13:
 C - - J - - 0x0050DD 01:D0CD: 20 9E D2  JSR sub_D29E
 C - - - - - 0x0050E0 01:D0D0: 20 BF B1  JSR sub_B1BF_check_bit0
 C - - - - - 0x0050E3 01:D0D3: D0 0B     BNE bra_D0E0
@@ -14196,7 +14196,7 @@ C - - - - - 0x005130 01:D120: 4C 37 BB  JMP loc_BB37
 
 
 
-ofs_D123_14:
+ofs_001_D123_14:
 C - - J - - 0x005133 01:D123: A9 01     LDA #$01
 C - - - - - 0x005135 01:D125: 9D 9C 04  STA ram_049C,X
 C - - - - - 0x005138 01:D128: 20 9E D2  JSR sub_D29E
@@ -14243,7 +14243,7 @@ C - - - - - 0x00518E 01:D17E: 4C 37 BB  JMP loc_BB37
 
 
 
-ofs_D181_15:
+ofs_001_D181_15:
 C - - J - - 0x005191 01:D181: 20 9E D2  JSR sub_D29E
 C - - - - - 0x005194 01:D184: 20 BF B1  JSR sub_B1BF_check_bit0
 C - - - - - 0x005197 01:D187: D0 15     BNE bra_D19E
@@ -14275,7 +14275,7 @@ C - - - - - 0x0051CD 01:D1BD: 4C 3A BB  JMP loc_BB3A
 
 
 
-ofs_D1C0_16:
+ofs_001_D1C0_16:
 C - - J - - 0x0051D0 01:D1C0: 20 9E D2  JSR sub_D29E
 C - - - - - 0x0051D3 01:D1C3: 20 BF B1  JSR sub_B1BF_check_bit0
 C - - - - - 0x0051D6 01:D1C6: D0 15     BNE bra_D1DD
@@ -14305,7 +14305,7 @@ C - - - - - 0x005209 01:D1F9: 4C 37 BB  JMP loc_BB37
 
 
 
-ofs_D1FC_17:
+ofs_001_D1FC_17:
 C - - J - - 0x00520C 01:D1FC: 20 9E D2  JSR sub_D29E
 C - - - - - 0x00520F 01:D1FF: 20 BF B1  JSR sub_B1BF_check_bit0
 C - - - - - 0x005212 01:D202: D0 10     BNE bra_D214
@@ -14335,7 +14335,7 @@ C - - - - - 0x005243 01:D233: 4C 37 BB  JMP loc_BB37
 
 
 
-ofs_D236_18:
+ofs_001_D236_18:
 C - - J - - 0x005246 01:D236: A9 08     LDA #$08
 C - - - - - 0x005248 01:D238: 9D 9C 04  STA ram_049C,X
 C - - - - - 0x00524B 01:D23B: 20 40 B2  JSR sub_B240_clear_bit1
@@ -14398,7 +14398,7 @@ C - - - - - 0x0052BC 01:D2AC: 60        RTS
 
 
 
-ofs_D2AD_19:
+ofs_001_D2AD_19:
 C - - J - - 0x0052BD 01:D2AD: 20 BF B1  JSR sub_B1BF_check_bit0
 C - - - - - 0x0052C0 01:D2B0: D0 15     BNE bra_D2C7
 C - - - - - 0x0052C2 01:D2B2: 20 1C D3  JSR sub_D31C
@@ -14458,7 +14458,7 @@ C - - - - - 0x005331 01:D321: 4C 48 E3  JMP loc_E348
 
 
 
-ofs_D324_1A:
+ofs_001_D324_1A:
 C - - J - - 0x005334 01:D324: A9 27     LDA #$27
 C - - - - - 0x005336 01:D326: 9D 28 05  STA ram_0528,X
 C - - - - - 0x005339 01:D329: A9 20     LDA #$20
@@ -14492,7 +14492,7 @@ C - - - - - 0x005371 01:D361: 4C 37 BB  JMP loc_BB37
 
 
 
-ofs_D364_1B:
+ofs_001_D364_1B:
 C - - J - - 0x005374 01:D364: BC 40 06  LDY ram_0640,X
 C - - - - - 0x005377 01:D367: 20 97 B2  JSR sub_B297_check_bit5
 C - - - - - 0x00537A 01:D36A: F0 0F     BEQ bra_D37B
@@ -14508,7 +14508,7 @@ C - - - - - 0x005390 01:D380: 4C 3A BB  JMP loc_BB3A
 
 
 
-ofs_D383_1C:
+ofs_001_D383_1C:
 C - - J - - 0x005393 01:D383: A9 0D     LDA #$0D
 C - - - - - 0x005395 01:D385: 9D 79 04  STA ram_0479,X
 C - - - - - 0x005398 01:D388: A9 02     LDA #$02
@@ -14519,7 +14519,7 @@ C - - - - - 0x0053A2 01:D392: 4C B6 D3  JMP loc_D3B6
 
 
 
-ofs_D395_1D:
+ofs_001_D395_1D:
 C - - J - - 0x0053A5 01:D395: A9 0C     LDA #$0C
 C - - - - - 0x0053A7 01:D397: 9D 79 04  STA ram_0479,X
 C - - - - - 0x0053AA 01:D39A: A9 01     LDA #$01
@@ -14530,7 +14530,7 @@ C - - - - - 0x0053B4 01:D3A4: 4C B6 D3  JMP loc_D3B6
 
 
 
-ofs_D3A7_1E:
+ofs_001_D3A7_1E:
 C - - J - - 0x0053B7 01:D3A7: A9 0E     LDA #$0E
 C - - - - - 0x0053B9 01:D3A9: 9D 79 04  STA ram_0479,X
 C - - - - - 0x0053BC 01:D3AC: A9 00     LDA #$00
@@ -14551,7 +14551,7 @@ C - - - - - 0x0053DA 01:D3CA: 4C 3A BB  JMP loc_BB3A
 
 
 
-ofs_D3CD_1F:
+ofs_001_D3CD_1F:
 C - - J - - 0x0053DD 01:D3CD: A5 DF     LDA ram_00DF
 C - - - - - 0x0053DF 01:D3CF: C9 04     CMP #$04
 C - - - - - 0x0053E1 01:D3D1: F0 06     BEQ bra_D3D9
@@ -15373,26 +15373,26 @@ C - - - - - 0x005860 01:D850: 6C FE 00  JMP (ram_00FE)
 
 
 tbl_D853:
-- D 2 - - - 0x005863 01:D853: 73 D8     .word ofs_D873_F0
-- - - - - - 0x005865 01:D855: C1 D8     .word ofs_D8C1_F1
-- D 2 - - - 0x005867 01:D857: 7F D8     .word ofs_D87F_F2
-- - - - - - 0x005869 01:D859: 9B D8     .word ofs_D89B_F3
-- - - - - - 0x00586B 01:D85B: E9 D8     .word ofs_D8E9_F4
-- - - - - - 0x00586D 01:D85D: 9B D8     .word ofs_D89B_F5
-- D 2 - - - 0x00586F 01:D85F: D9 D8     .word ofs_D8D9_F6
-- - - - - - 0x005871 01:D861: 9B D8     .word ofs_D89B_F7
-- - - - - - 0x005873 01:D863: 9B D8     .word ofs_D89B_F8
-- - - - - - 0x005875 01:D865: 9B D8     .word ofs_D89B_F9
-- - - - - - 0x005877 01:D867: 9B D8     .word ofs_D89B_FA
-- - - - - - 0x005879 01:D869: 9B D8     .word ofs_D89B_FB
-- - - - - - 0x00587B 01:D86B: 9B D8     .word ofs_D89B_FC
-- - - - - - 0x00587D 01:D86D: 9B D8     .word ofs_D89B_FD
-- - - - - - 0x00587F 01:D86F: 9B D8     .word ofs_D89B_FE
-- D 2 - - - 0x005881 01:D871: 9B D8     .word ofs_D89B_FF
+- D 2 - - - 0x005863 01:D853: 73 D8     .word ofs_002_D873_F0
+- - - - - - 0x005865 01:D855: C1 D8     .word ofs_002_D8C1_F1
+- D 2 - - - 0x005867 01:D857: 7F D8     .word ofs_002_D87F_F2
+- - - - - - 0x005869 01:D859: 9B D8     .word ofs_002_D89B_F3
+- - - - - - 0x00586B 01:D85B: E9 D8     .word ofs_002_D8E9_F4
+- - - - - - 0x00586D 01:D85D: 9B D8     .word ofs_002_D89B_F5
+- D 2 - - - 0x00586F 01:D85F: D9 D8     .word ofs_002_D8D9_F6
+- - - - - - 0x005871 01:D861: 9B D8     .word ofs_002_D89B_F7
+- - - - - - 0x005873 01:D863: 9B D8     .word ofs_002_D89B_F8
+- - - - - - 0x005875 01:D865: 9B D8     .word ofs_002_D89B_F9
+- - - - - - 0x005877 01:D867: 9B D8     .word ofs_002_D89B_FA
+- - - - - - 0x005879 01:D869: 9B D8     .word ofs_002_D89B_FB
+- - - - - - 0x00587B 01:D86B: 9B D8     .word ofs_002_D89B_FC
+- - - - - - 0x00587D 01:D86D: 9B D8     .word ofs_002_D89B_FD
+- - - - - - 0x00587F 01:D86F: 9B D8     .word ofs_002_D89B_FE
+- D 2 - - - 0x005881 01:D871: 9B D8     .word ofs_002_D89B_FF
 
 
 
-ofs_D873_F0:
+ofs_002_D873_F0:
 C - - J - - 0x005883 01:D873: A4 FD     LDY ram_00FD
 C - - - - - 0x005885 01:D875: A9 00     LDA #$00
 C - - - - - 0x005887 01:D877: 91 F2     STA (ram_00F2),Y
@@ -15401,7 +15401,7 @@ C - - - - - 0x00588C 01:D87C: 4C BC D7  JMP loc_D7BC
 
 
 
-ofs_D87F_F2:
+ofs_002_D87F_F2:
 C - - J - - 0x00588F 01:D87F: 20 F9 D8  JSR sub_D8F9
 C - - - - - 0x005892 01:D882: 85 43     STA ram_0043
 C - - - - - 0x005894 01:D884: 20 F9 D8  JSR sub_D8F9
@@ -15419,17 +15419,17 @@ C - - - - - 0x0058A8 01:D898: 4C BC D7  JMP loc_D7BC
 
 
 
-ofs_D89B_F3:
-ofs_D89B_F5:
-ofs_D89B_F7:
-ofs_D89B_F8:
-ofs_D89B_F9:
-ofs_D89B_FA:
-ofs_D89B_FB:
-ofs_D89B_FC:
-ofs_D89B_FD:
-ofs_D89B_FE:
-ofs_D89B_FF:
+ofs_002_D89B_F3:
+ofs_002_D89B_F5:
+ofs_002_D89B_F7:
+ofs_002_D89B_F8:
+ofs_002_D89B_F9:
+ofs_002_D89B_FA:
+ofs_002_D89B_FB:
+ofs_002_D89B_FC:
+ofs_002_D89B_FD:
+ofs_002_D89B_FE:
+ofs_002_D89B_FF:
 C - - J - - 0x0058AB 01:D89B: A4 FD     LDY ram_00FD
 C - - - - - 0x0058AD 01:D89D: B1 F2     LDA (ram_00F2),Y
 C - - - - - 0x0058AF 01:D89F: C9 05     CMP #$05
@@ -15453,7 +15453,7 @@ C - - - - - 0x0058CE 01:D8BE: 4C 2D D8  JMP loc_D82D
 
 
 
-ofs_D8C1_F1:
+ofs_002_D8C1_F1:
 - - - - - - 0x0058D1 01:D8C1: 20 F9 D8  JSR sub_D8F9
 - - - - - - 0x0058D4 01:D8C4: 48        PHA
 - - - - - - 0x0058D5 01:D8C5: A5 FD     LDA ram_00FD
@@ -15470,7 +15470,7 @@ ofs_D8C1_F1:
 
 
 
-ofs_D8D9_F6:
+ofs_002_D8D9_F6:
 C - - J - - 0x0058E9 01:D8D9: 20 F9 D8  JSR sub_D8F9
 C - - - - - 0x0058EC 01:D8DC: 48        PHA
 C - - - - - 0x0058ED 01:D8DD: A5 FD     LDA ram_00FD
@@ -15483,7 +15483,7 @@ C - - - - - 0x0058F6 01:D8E6: 4C BC D7  JMP loc_D7BC
 
 
 
-ofs_D8E9_F4:
+ofs_002_D8E9_F4:
 - - - - - - 0x0058F9 01:D8E9: 20 F9 D8  JSR sub_D8F9
 - - - - - - 0x0058FC 01:D8EC: 48        PHA
 - - - - - - 0x0058FD 01:D8ED: A5 FD     LDA ram_00FD
@@ -17599,7 +17599,7 @@ tbl_E0D5:
 
 
 loc_E0E0:
-ofs_E0E0_03:
+ofs_000_E0E0_03:
 C D 3 - - - 0x0060F0 01:E0E0: 18        CLC
 C - - - - - 0x0060F1 01:E0E1: A5 72     LDA ram_0072
 C - - - - - 0x0060F3 01:E0E3: 65 6B     ADC ram_006B
@@ -24944,7 +24944,7 @@ tbl_FE38:
 
 
 
-ofs_FEC8_07:
+ofs_000_FEC8_07:
 C - - - - - 0x007ED8 01:FEC8: A2 00     LDX #$00
 C - - - - - 0x007EDA 01:FECA: A9 80     LDA #$80
 C - - - - - 0x007EDC 01:FECC: 9D 33 04  STA ram_0433,X
@@ -24993,7 +24993,7 @@ C - - - - - 0x007F40 01:FF30: 20 63 82  JSR sub_8263
 
 
 
-ofs_FF33_08:
+ofs_000_FF33_08:
 C - - - - - 0x007F43 01:FF33: A2 01     LDX #$01
 C - - - - - 0x007F45 01:FF35: A9 80     LDA #$80
 C - - - - - 0x007F47 01:FF37: 9D 33 04  STA ram_0433,X
