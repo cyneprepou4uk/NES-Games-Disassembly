@@ -31,6 +31,7 @@ Lua script will take care of it before compilation. You just write new code as u
 * Legend of Zelda, The (U) (PRG0) [!]
 * Mappy (J) [!]
 * Nuts & Milk (J) [!]
+* Solstice - The Quest for the Staff of Demnos (U) [!]
 * Son Son (J) [!]
 * Street Fighter III (9 Fighter) (Unl)
 * Tecmo World Cup Soccer (J) [!]
@@ -46,7 +47,6 @@ Lua script will take care of it before compilation. You just write new code as u
 * Dr. Mario (JU) (PRG0) [!]
 * Ice Climber (J) [!]
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
-* Solstice - The Quest for the Staff of Demnos (U) [!]
 * Super Mario Bros. (W) [!]
 * Tennis (JU) [!]
 * Tetris (Tengen) [!]
