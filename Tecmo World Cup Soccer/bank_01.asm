@@ -1611,18 +1611,18 @@ C - - - - - 0x00493D 01:892D: 4A        LSR
 C - - - - - 0x00493E 01:892E: 4A        LSR
 C - - - - - 0x00493F 01:892F: 4A        LSR
 C - - - - - 0x004940 01:8930: 20 2A C0  JSR sub_0x00C03A_bytes_after_JSR
-- - - - - - 0x004943 01:8933: 41 89     .word ofs_8941_00
-- D 0 - I - 0x004945 01:8935: 41 89     .word ofs_8941_01
-- D 0 - I - 0x004947 01:8937: 47 89     .word ofs_8947_02
-- D 0 - I - 0x004949 01:8939: 68 89     .word ofs_8968_03
-- D 0 - I - 0x00494B 01:893B: B0 89     .word ofs_89B0_04
-- - - - - - 0x00494D 01:893D: C0 89     .word ofs_89C0_05
-- D 0 - I - 0x00494F 01:893F: EA 89     .word ofs_89EA_06
+- - - - - - 0x004943 01:8933: 41 89     .word ofs_001_8941_00
+- D 0 - I - 0x004945 01:8935: 41 89     .word ofs_001_8941_01
+- D 0 - I - 0x004947 01:8937: 47 89     .word ofs_001_8947_02
+- D 0 - I - 0x004949 01:8939: 68 89     .word ofs_001_8968_03
+- D 0 - I - 0x00494B 01:893B: B0 89     .word ofs_001_89B0_04
+- - - - - - 0x00494D 01:893D: C0 89     .word ofs_001_89C0_05
+- D 0 - I - 0x00494F 01:893F: EA 89     .word ofs_001_89EA_06
 
 
 
-ofs_8941_00:
-ofs_8941_01:
+ofs_001_8941_00:
+ofs_001_8941_01:
 C - - J - - 0x004951 01:8941: A9 00     LDA #$00
 C - - - - - 0x004953 01:8943: 20 5A C0  JSR sub_0x00C06A
 C - - - - - 0x004956 01:8946: 60        RTS
@@ -1630,7 +1630,7 @@ C - - - - - 0x004956 01:8946: 60        RTS
 
 
 sub_8947:
-ofs_8947_02:
+ofs_001_8947_02:
 C - - J - - 0x004957 01:8947: A0 01     LDY #$01
 C - - - - - 0x004959 01:8949: B1 2A     LDA (ram_002A),Y
 sub_894B:
@@ -1654,7 +1654,7 @@ C - - - - - 0x004977 01:8967: 60        RTS
 
 
 
-ofs_8968_03:
+ofs_001_8968_03:
 C - - - - - 0x004978 01:8968: A0 01     LDY #$01
 C - - - - - 0x00497A 01:896A: B1 2A     LDA (ram_002A),Y
 C - - - - - 0x00497C 01:896C: 29 1F     AND #$1F
@@ -1705,7 +1705,7 @@ C - - - - - 0x0049BF 01:89AF: 60        RTS
 
 
 loc_89B0:
-ofs_89B0_04:
+ofs_001_89B0_04:
 C D 0 J - - 0x0049C0 01:89B0: A9 11     LDA #$11
 C - - - - - 0x0049C2 01:89B2: 20 5A C0  JSR sub_0x00C06A
 C - - - - - 0x0049C5 01:89B5: A0 00     LDY #$00
@@ -1718,7 +1718,7 @@ C - - - - - 0x0049CF 01:89BF: 60        RTS
 
 
 loc_89C0:
-ofs_89C0_05:
+ofs_001_89C0_05:
 C D 0 - - - 0x0049D0 01:89C0: A0 19     LDY #$19
 C - - - - - 0x0049D2 01:89C2: B1 61     LDA (ram_0061),Y
 bra_89C4_loop:
@@ -1745,7 +1745,7 @@ C - - - - - 0x0049F9 01:89E9: 60        RTS
 
 
 
-ofs_89EA_06:
+ofs_001_89EA_06:
 C - - J - - 0x0049FA 01:89EA: 20 47 89  JSR sub_8947
 C - - - - - 0x0049FD 01:89ED: A9 15     LDA #$15
 C - - - - - 0x0049FF 01:89EF: 20 5A C0  JSR sub_0x00C06A
@@ -11530,178 +11530,92 @@ _off011_BA99_7E:
 _off011_BA99_7F:
 ; bzk garbage
 - - - - - - 0x007AA9 01:BA99: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007AB0 01:BAA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007AB8 01:BAA8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007AC0 01:BAB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007AC8 01:BAB8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007AD0 01:BAC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007AD8 01:BAC8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007AE0 01:BAD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007AE8 01:BAD8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007AF0 01:BAE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007AF8 01:BAE8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B00 01:BAF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B08 01:BAF8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B10 01:BB00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B18 01:BB08: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B20 01:BB10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B28 01:BB18: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B30 01:BB20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B38 01:BB28: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B40 01:BB30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B48 01:BB38: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B50 01:BB40: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B58 01:BB48: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B60 01:BB50: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B68 01:BB58: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B70 01:BB60: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B78 01:BB68: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B80 01:BB70: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B88 01:BB78: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B90 01:BB80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007B98 01:BB88: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BA0 01:BB90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BA8 01:BB98: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BB0 01:BBA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BB8 01:BBA8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BC0 01:BBB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BC8 01:BBB8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BD0 01:BBC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BD8 01:BBC8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BE0 01:BBD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BE8 01:BBD8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BF0 01:BBE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007BF8 01:BBE8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C00 01:BBF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C08 01:BBF8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C10 01:BC00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C18 01:BC08: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C20 01:BC10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C28 01:BC18: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C30 01:BC20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C38 01:BC28: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C40 01:BC30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C48 01:BC38: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C50 01:BC40: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C58 01:BC48: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C60 01:BC50: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C68 01:BC58: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C70 01:BC60: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C78 01:BC68: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C80 01:BC70: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C88 01:BC78: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C90 01:BC80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007C98 01:BC88: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CA0 01:BC90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CA8 01:BC98: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CB0 01:BCA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CB8 01:BCA8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CC0 01:BCB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CC8 01:BCB8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CD0 01:BCC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CD8 01:BCC8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CE0 01:BCD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CE8 01:BCD8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CF0 01:BCE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CF8 01:BCE8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D00 01:BCF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D08 01:BCF8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D10 01:BD00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D18 01:BD08: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D20 01:BD10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D28 01:BD18: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D30 01:BD20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D38 01:BD28: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D40 01:BD30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D48 01:BD38: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D50 01:BD40: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D58 01:BD48: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D60 01:BD50: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D68 01:BD58: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D70 01:BD60: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D78 01:BD68: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D80 01:BD70: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D88 01:BD78: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D90 01:BD80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D98 01:BD88: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DA0 01:BD90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DA8 01:BD98: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DB0 01:BDA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DB8 01:BDA8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DC0 01:BDB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DC8 01:BDB8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DD0 01:BDC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DD8 01:BDC8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DE0 01:BDD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DE8 01:BDD8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DF0 01:BDE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007DF8 01:BDE8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E00 01:BDF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E08 01:BDF8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E10 01:BE00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E18 01:BE08: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E20 01:BE10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E28 01:BE18: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E30 01:BE20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E38 01:BE28: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E40 01:BE30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E48 01:BE38: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E50 01:BE40: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E58 01:BE48: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E60 01:BE50: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E68 01:BE58: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E70 01:BE60: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E78 01:BE68: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E80 01:BE70: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E88 01:BE78: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E90 01:BE80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007E98 01:BE88: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007EA0 01:BE90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007EA8 01:BE98: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007EB0 01:BEA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007EB8 01:BEA8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007EC0 01:BEB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007EC8 01:BEB8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007ED0 01:BEC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007ED8 01:BEC8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007EE0 01:BED0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007EE8 01:BED8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007EF0 01:BEE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007EF8 01:BEE8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F00 01:BEF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F08 01:BEF8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F10 01:BF00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F18 01:BF08: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F20 01:BF10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F28 01:BF18: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F30 01:BF20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F38 01:BF28: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F40 01:BF30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F48 01:BF38: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F50 01:BF40: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F58 01:BF48: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F60 01:BF50: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F68 01:BF58: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F70 01:BF60: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F78 01:BF68: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F80 01:BF70: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F88 01:BF78: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F90 01:BF80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007F98 01:BF88: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FA0 01:BF90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FA8 01:BF98: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FB0 01:BFA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FB8 01:BFA8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FC0 01:BFB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FC8 01:BFB8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FD0 01:BFC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FD8 01:BFC8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FE0 01:BFD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FE8 01:BFD8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FF0 01:BFE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007FF8 01:BFE8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x008000 01:BFF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x008008 01:BFF8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007AB0 01:BAA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007AC0 01:BAB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007AD0 01:BAC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007AE0 01:BAD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007AF0 01:BAE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007B00 01:BAF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007B10 01:BB00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007B20 01:BB10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007B30 01:BB20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007B40 01:BB30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007B50 01:BB40: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007B60 01:BB50: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007B70 01:BB60: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007B80 01:BB70: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007B90 01:BB80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007BA0 01:BB90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007BB0 01:BBA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007BC0 01:BBB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007BD0 01:BBC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007BE0 01:BBD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007BF0 01:BBE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007C00 01:BBF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007C10 01:BC00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007C20 01:BC10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007C30 01:BC20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007C40 01:BC30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007C50 01:BC40: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007C60 01:BC50: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007C70 01:BC60: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007C80 01:BC70: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007C90 01:BC80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007CA0 01:BC90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007CB0 01:BCA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007CC0 01:BCB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007CD0 01:BCC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007CE0 01:BCD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007CF0 01:BCE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007D00 01:BCF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007D10 01:BD00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007D20 01:BD10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007D30 01:BD20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007D40 01:BD30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007D50 01:BD40: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007D60 01:BD50: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007D70 01:BD60: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007D80 01:BD70: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007D90 01:BD80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007DA0 01:BD90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007DB0 01:BDA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007DC0 01:BDB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007DD0 01:BDC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007DE0 01:BDD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007DF0 01:BDE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007E00 01:BDF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007E10 01:BE00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007E20 01:BE10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007E30 01:BE20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007E40 01:BE30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007E50 01:BE40: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007E60 01:BE50: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007E70 01:BE60: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007E80 01:BE70: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007E90 01:BE80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007EA0 01:BE90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007EB0 01:BEA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007EC0 01:BEB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007ED0 01:BEC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007EE0 01:BED0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007EF0 01:BEE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007F00 01:BEF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007F10 01:BF00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007F20 01:BF10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007F30 01:BF20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007F40 01:BF30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007F50 01:BF40: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007F60 01:BF50: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007F70 01:BF60: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007F80 01:BF70: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007F90 01:BF80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007FA0 01:BF90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007FB0 01:BFA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007FC0 01:BFB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007FD0 01:BFC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007FE0 01:BFD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007FF0 01:BFE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x008000 01:BFF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 
