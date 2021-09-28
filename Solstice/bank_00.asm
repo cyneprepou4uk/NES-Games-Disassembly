@@ -26316,14 +26316,10 @@ _off009_F979_07:
 
 ; bzk garbage
 - - - - - - 0x007CC9 01:FCB9: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CD0 01:FCC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CD8 01:FCC8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CE0 01:FCD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CE8 01:FCD8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CF0 01:FCE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007CF8 01:FCE8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D00 01:FCF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x007D08 01:FCF8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007CD0 01:FCC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007CE0 01:FCD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007CF0 01:FCE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x007D00 01:FCF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 
