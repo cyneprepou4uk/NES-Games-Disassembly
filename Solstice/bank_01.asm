@@ -2892,33 +2892,39 @@ C - - - - - 0x00BDCE 02:BDBE: 60        RTS
 tbl_BDBF:
 - D 1 - I - 0x00BDCF 02:BDBF: FE        .byte $FE   ; 
 - D 1 - I - 0x00BDD0 02:BDC0: 4A 21     .word $214A
-- D 1 - I - 0x00BDD2 02:BDC2: 49        .byte $49, $4A, $4B, $4C, $4D, $4E, $4F, $50   ; 
-- D 1 - I - 0x00BDDA 02:BDCA: 51        .byte $51, $52, $53   ; 
+;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
+- D 1 - I - 0x00BDD2 02:BDC2: 49        .byte                                                   $49, $4A, $4B, $4C, $4D, $4E   ; 
+- D 1 - I - 0x00BDD8 02:BDC8: 4F        .byte $4F, $50, $51, $52, $53   ; 
 
 - D 1 - I - 0x00BDDD 02:BDCD: FE        .byte $FE   ; 
 - D 1 - I - 0x00BDDE 02:BDCE: 6A 21     .word $216A
-- D 1 - I - 0x00BDE0 02:BDD0: 54        .byte $54, $55, $56, $57, $58, $59, $5A, $5B   ; 
-- D 1 - I - 0x00BDE8 02:BDD8: 5C        .byte $5C, $5D, $5E   ; 
+;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
+- D 1 - I - 0x00BDE0 02:BDD0: 54        .byte                                                   $54, $55, $56, $57, $58, $59   ; 
+- D 1 - I - 0x00BDE6 02:BDD6: 5A        .byte $5A, $5B, $5C, $5D, $5E   ; 
 
 - D 1 - I - 0x00BDEB 02:BDDB: FE        .byte $FE   ; 
 - D 1 - I - 0x00BDEC 02:BDDC: CA 21     .word $21CA
-- D 1 - I - 0x00BDEE 02:BDDE: 3D        .byte $3D, $19, $1F, $00, $20, $13, $1D, $13   ; 
-- D 1 - I - 0x00BDF6 02:BDE6: 1E        .byte $1E, $0F, $0E   ; 
+;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
+- D 1 - I - 0x00BDEE 02:BDDE: 3D        .byte                                                   $3D, $19, $1F, $00, $20, $13   ; 
+- D 1 - I - 0x00BDF4 02:BDE4: 1D        .byte $1D, $13, $1E, $0F, $0E   ; 
 
 - D 1 - I - 0x00BDF9 02:BDE9: FE        .byte $FE   ; 
 - D 1 - I - 0x00BDFA 02:BDEA: EB 21     .word $21EB
-- D 1 - I - 0x00BDFC 02:BDEC: 01        .byte $01, $01, $01, $00, $1C, $19, $19, $17   ; 
-- D 1 - I - 0x00BE04 02:BDF4: 1D        .byte $1D   ; 
+;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
+- D 1 - I - 0x00BDFC 02:BDEC: 01        .byte                                                        $01, $01, $01, $00, $1C   ; 
+- D 1 - I - 0x00BE01 02:BDF1: 19        .byte $19, $19, $17, $1D   ; 
 
 - D 1 - I - 0x00BE05 02:BDF5: FE        .byte $FE   ; 
 - D 1 - I - 0x00BE06 02:BDF6: 29 22     .word $2229
-- D 1 - I - 0x00BE08 02:BDF8: 3D        .byte $3D, $19, $1F, $00, $0D, $19, $17, $1A   ; 
-- D 1 - I - 0x00BE10 02:BE00: 16        .byte $16, $0F, $1E, $0F, $0E   ; 
+;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
+- D 1 - I - 0x00BE08 02:BDF8: 3D        .byte                                              $3D, $19, $1F, $00, $0D, $19, $17   ; 
+- D 1 - I - 0x00BE0F 02:BDFF: 1A        .byte $1A, $16, $0F, $1E, $0F, $0E   ; 
 
 - D 1 - I - 0x00BE15 02:BE05: FE        .byte $FE   ; 
 - D 1 - I - 0x00BE16 02:BE06: 49 22     .word $2249
-- D 1 - I - 0x00BE18 02:BE08: 01        .byte $01, $01, $40, $01, $01, $00, $1A, $0F   ; 
-- D 1 - I - 0x00BE20 02:BE10: 1C        .byte $1C, $0D, $0F, $18, $1E   ; 
+;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
+- D 1 - I - 0x00BE18 02:BE08: 01        .byte                                              $01, $01, $40, $01, $01, $00, $1A   ; 
+- D 1 - I - 0x00BE1F 02:BE0F: 0F        .byte $0F, $1C, $0D, $0F, $18, $1E   ; 
 
 - D 1 - I - 0x00BE25 02:BE15: FF        .byte $FF   ; 
 
@@ -3722,683 +3728,392 @@ tbl_C0C5_hi:
 
 
 _off015_C14A_03:
-- D 2 - I - 0x00C15A 03:C14A: 01        .byte $01   ; 
-- D 2 - I - 0x00C15B 03:C14B: 03        .byte $03   ; 
-- D 2 - I - 0x00C15C 03:C14C: 07        .byte $07   ; 
-- D 2 - I - 0x00C15D 03:C14D: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C15E 03:C14E: 7F        .byte $7F   ; 
-- D 2 - I - 0x00C15F 03:C14F: FF        .byte $FF   ; 
-- D 2 - I - 0x00C160 03:C150: FF        .byte $FF   ; 
-- D 2 - I - 0x00C161 03:C151: 7F        .byte $7F   ; 
-- D 2 - I - 0x00C162 03:C152: 01        .byte $01   ; 
-- D 2 - I - 0x00C163 03:C153: 02        .byte $02   ; 
-- D 2 - I - 0x00C164 03:C154: 04        .byte $04   ; 
-- D 2 - I - 0x00C165 03:C155: 1C        .byte $1C   ; 
-- D 2 - I - 0x00C166 03:C156: 68        .byte $68   ; 
-- D 2 - I - 0x00C167 03:C157: 88        .byte $88   ; 
-- D 2 - I - 0x00C168 03:C158: 87        .byte $87   ; 
-- D 2 - I - 0x00C169 03:C159: 40        .byte $40   ; 
-- D 2 - I - 0x00C16A 03:C15A: E0        .byte $E0   ; 
-- D 2 - I - 0x00C16B 03:C15B: F0        .byte $F0   ; 
-- D 2 - I - 0x00C16C 03:C15C: F8        .byte $F8   ; 
-- D 2 - I - 0x00C16D 03:C15D: F8        .byte $F8   ; 
-- D 2 - I - 0x00C16E 03:C15E: FC        .byte $FC   ; 
-- D 2 - I - 0x00C16F 03:C15F: FE        .byte $FE   ; 
-- D 2 - I - 0x00C170 03:C160: FE        .byte $FE   ; 
-- D 2 - I - 0x00C171 03:C161: FC        .byte $FC   ; 
-- D 2 - I - 0x00C172 03:C162: E0        .byte $E0   ; 
-- D 2 - I - 0x00C173 03:C163: 10        .byte $10   ; 
-- D 2 - I - 0x00C174 03:C164: 08        .byte $08   ; 
-- D 2 - I - 0x00C175 03:C165: 28        .byte $28   ; 
-- D 2 - I - 0x00C176 03:C166: 1C        .byte $1C   ; 
-- D 2 - I - 0x00C177 03:C167: 12        .byte $12   ; 
-- D 2 - I - 0x00C178 03:C168: E2        .byte $E2   ; 
-- D 2 - I - 0x00C179 03:C169: 04        .byte $04   ; 
-- D 2 - I - 0x00C17A 03:C16A: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C17B 03:C16B: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C17C 03:C16C: 38        .byte $38   ; 
-- D 2 - I - 0x00C17D 03:C16D: 7F        .byte $7F   ; 
-- D 2 - I - 0x00C17E 03:C16E: 7F        .byte $7F   ; 
-- D 2 - I - 0x00C17F 03:C16F: FF        .byte $FF   ; 
-- D 2 - I - 0x00C180 03:C170: BF        .byte $BF   ; 
-- D 2 - I - 0x00C181 03:C171: 9F        .byte $9F   ; 
-- D 2 - I - 0x00C182 03:C172: 30        .byte $30   ; 
-- D 2 - I - 0x00C183 03:C173: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C184 03:C174: 2F        .byte $2F   ; 
-- D 2 - I - 0x00C185 03:C175: 57        .byte $57   ; 
-- D 2 - I - 0x00C186 03:C176: 53        .byte $53   ; 
-- D 2 - I - 0x00C187 03:C177: D0        .byte $D0   ; 
-- D 2 - I - 0x00C188 03:C178: F0        .byte $F0   ; 
-- D 2 - I - 0x00C189 03:C179: F8        .byte $F8   ; 
-- D 2 - I - 0x00C18A 03:C17A: F8        .byte $F8   ; 
-- D 2 - I - 0x00C18B 03:C17B: F8        .byte $F8   ; 
-- D 2 - I - 0x00C18C 03:C17C: 3C        .byte $3C   ; 
-- D 2 - I - 0x00C18D 03:C17D: FE        .byte $FE   ; 
-- D 2 - I - 0x00C18E 03:C17E: FF        .byte $FF   ; 
-- D 2 - I - 0x00C18F 03:C17F: FF        .byte $FF   ; 
-- D 2 - I - 0x00C190 03:C180: FF        .byte $FF   ; 
-- D 2 - I - 0x00C191 03:C181: FF        .byte $FF   ; 
-- D 2 - I - 0x00C192 03:C182: 18        .byte $18   ; 
-- D 2 - I - 0x00C193 03:C183: F8        .byte $F8   ; 
-- D 2 - I - 0x00C194 03:C184: EC        .byte $EC   ; 
-- D 2 - I - 0x00C195 03:C185: C2        .byte $C2   ; 
-- D 2 - I - 0x00C196 03:C186: 01        .byte $01   ; 
-- D 2 - I - 0x00C197 03:C187: 21        .byte $21   ; 
-- D 2 - I - 0x00C198 03:C188: 19        .byte $19   ; 
-- D 2 - I - 0x00C199 03:C189: 1D        .byte $1D   ; 
-- D 2 - I - 0x00C19A 03:C18A: 7F        .byte $7F   ; 
-- D 2 - I - 0x00C19B 03:C18B: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C19C 03:C18C: 13        .byte $13   ; 
-- D 2 - I - 0x00C19D 03:C18D: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C19E 03:C18E: 07        .byte $07   ; 
-- D 2 - I - 0x00C19F 03:C18F: 04        .byte $04   ; 
-- D 2 - I - 0x00C1A0 03:C190: 04        .byte $04   ; 
-- D 2 - I - 0x00C1A1 03:C191: 03        .byte $03   ; 
-- D 2 - I - 0x00C1A2 03:C192: 6F        .byte $6F   ; 
-- D 2 - I - 0x00C1A3 03:C193: 1C        .byte $1C   ; 
-- D 2 - I - 0x00C1A4 03:C194: 1E        .byte $1E   ; 
-- D 2 - I - 0x00C1A5 03:C195: 1E        .byte $1E   ; 
-- D 2 - I - 0x00C1A6 03:C196: 07        .byte $07   ; 
-- D 2 - I - 0x00C1A7 03:C197: 07        .byte $07   ; 
-- D 2 - I - 0x00C1A8 03:C198: 07        .byte $07   ; 
-- D 2 - I - 0x00C1A9 03:C199: 03        .byte $03   ; 
-- D 2 - I - 0x00C1AA 03:C19A: FF        .byte $FF   ; 
-- D 2 - I - 0x00C1AB 03:C19B: FF        .byte $FF   ; 
-- D 2 - I - 0x00C1AC 03:C19C: F9        .byte $F9   ; 
-- D 2 - I - 0x00C1AD 03:C19D: FE        .byte $FE   ; 
-- D 2 - I - 0x00C1AE 03:C19E: F8        .byte $F8   ; 
-- D 2 - I - 0x00C1AF 03:C19F: 70        .byte $70   ; 
-- D 2 - I - 0x00C1B0 03:C1A0: 20        .byte $20   ; 
-- D 2 - I - 0x00C1B1 03:C1A1: C0        .byte $C0   ; 
-- D 2 - I - 0x00C1B2 03:C1A2: F9        .byte $F9   ; 
-- D 2 - I - 0x00C1B3 03:C1A3: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C1B4 03:C1A4: 0F        .byte $0F   ; 
-- D 2 - I - 0x00C1B5 03:C1A5: 0E        .byte $0E   ; 
-- D 2 - I - 0x00C1B6 03:C1A6: 98        .byte $98   ; 
-- D 2 - I - 0x00C1B7 03:C1A7: D0        .byte $D0   ; 
-- D 2 - I - 0x00C1B8 03:C1A8: E0        .byte $E0   ; 
-- D 2 - I - 0x00C1B9 03:C1A9: C0        .byte $C0   ; 
-
-
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0000, $60
 
 _off015_C1AA_04:
-- D 2 - I - 0x00C1BA 03:C1AA: 01        .byte $01   ; 
-- D 2 - I - 0x00C1BB 03:C1AB: 03        .byte $03   ; 
-- D 2 - I - 0x00C1BC 03:C1AC: 07        .byte $07   ; 
-- D 2 - I - 0x00C1BD 03:C1AD: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C1BE 03:C1AE: 7F        .byte $7F   ; 
-- D 2 - I - 0x00C1BF 03:C1AF: FF        .byte $FF   ; 
-- D 2 - I - 0x00C1C0 03:C1B0: FF        .byte $FF   ; 
-- D 2 - I - 0x00C1C1 03:C1B1: 7F        .byte $7F   ; 
-- D 2 - I - 0x00C1C2 03:C1B2: 01        .byte $01   ; 
-- D 2 - I - 0x00C1C3 03:C1B3: 02        .byte $02   ; 
-- D 2 - I - 0x00C1C4 03:C1B4: 04        .byte $04   ; 
-- D 2 - I - 0x00C1C5 03:C1B5: 1C        .byte $1C   ; 
-- D 2 - I - 0x00C1C6 03:C1B6: 68        .byte $68   ; 
-- D 2 - I - 0x00C1C7 03:C1B7: 88        .byte $88   ; 
-- D 2 - I - 0x00C1C8 03:C1B8: 87        .byte $87   ; 
-- D 2 - I - 0x00C1C9 03:C1B9: 40        .byte $40   ; 
-- D 2 - I - 0x00C1CA 03:C1BA: E0        .byte $E0   ; 
-- D 2 - I - 0x00C1CB 03:C1BB: F0        .byte $F0   ; 
-- D 2 - I - 0x00C1CC 03:C1BC: F8        .byte $F8   ; 
-- D 2 - I - 0x00C1CD 03:C1BD: F8        .byte $F8   ; 
-- D 2 - I - 0x00C1CE 03:C1BE: FC        .byte $FC   ; 
-- D 2 - I - 0x00C1CF 03:C1BF: FE        .byte $FE   ; 
-- D 2 - I - 0x00C1D0 03:C1C0: FE        .byte $FE   ; 
-- D 2 - I - 0x00C1D1 03:C1C1: FC        .byte $FC   ; 
-- D 2 - I - 0x00C1D2 03:C1C2: E0        .byte $E0   ; 
-- D 2 - I - 0x00C1D3 03:C1C3: 10        .byte $10   ; 
-- D 2 - I - 0x00C1D4 03:C1C4: 08        .byte $08   ; 
-- D 2 - I - 0x00C1D5 03:C1C5: 28        .byte $28   ; 
-- D 2 - I - 0x00C1D6 03:C1C6: 1C        .byte $1C   ; 
-- D 2 - I - 0x00C1D7 03:C1C7: 12        .byte $12   ; 
-- D 2 - I - 0x00C1D8 03:C1C8: E2        .byte $E2   ; 
-- D 2 - I - 0x00C1D9 03:C1C9: 04        .byte $04   ; 
-- D 2 - I - 0x00C1DA 03:C1CA: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C1DB 03:C1CB: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C1DC 03:C1CC: 38        .byte $38   ; 
-- D 2 - I - 0x00C1DD 03:C1CD: 7F        .byte $7F   ; 
-- D 2 - I - 0x00C1DE 03:C1CE: 7F        .byte $7F   ; 
-- D 2 - I - 0x00C1DF 03:C1CF: 5F        .byte $5F   ; 
-- D 2 - I - 0x00C1E0 03:C1D0: 5F        .byte $5F   ; 
-- D 2 - I - 0x00C1E1 03:C1D1: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C1E2 03:C1D2: 30        .byte $30   ; 
-- D 2 - I - 0x00C1E3 03:C1D3: 2F        .byte $2F   ; 
-- D 2 - I - 0x00C1E4 03:C1D4: 2F        .byte $2F   ; 
-- D 2 - I - 0x00C1E5 03:C1D5: 57        .byte $57   ; 
-- D 2 - I - 0x00C1E6 03:C1D6: 73        .byte $73   ; 
-- D 2 - I - 0x00C1E7 03:C1D7: 70        .byte $70   ; 
-- D 2 - I - 0x00C1E8 03:C1D8: 70        .byte $70   ; 
-- D 2 - I - 0x00C1E9 03:C1D9: 38        .byte $38   ; 
-- D 2 - I - 0x00C1EA 03:C1DA: F8        .byte $F8   ; 
-- D 2 - I - 0x00C1EB 03:C1DB: F8        .byte $F8   ; 
-- D 2 - I - 0x00C1EC 03:C1DC: 38        .byte $38   ; 
-- D 2 - I - 0x00C1ED 03:C1DD: FC        .byte $FC   ; 
-- D 2 - I - 0x00C1EE 03:C1DE: FE        .byte $FE   ; 
-- D 2 - I - 0x00C1EF 03:C1DF: FE        .byte $FE   ; 
-- D 2 - I - 0x00C1F0 03:C1E0: FF        .byte $FF   ; 
-- D 2 - I - 0x00C1F1 03:C1E1: FF        .byte $FF   ; 
-- D 2 - I - 0x00C1F2 03:C1E2: 18        .byte $18   ; 
-- D 2 - I - 0x00C1F3 03:C1E3: F8        .byte $F8   ; 
-- D 2 - I - 0x00C1F4 03:C1E4: E8        .byte $E8   ; 
-- D 2 - I - 0x00C1F5 03:C1E5: C4        .byte $C4   ; 
-- D 2 - I - 0x00C1F6 03:C1E6: 02        .byte $02   ; 
-- D 2 - I - 0x00C1F7 03:C1E7: 02        .byte $02   ; 
-- D 2 - I - 0x00C1F8 03:C1E8: 49        .byte $49   ; 
-- D 2 - I - 0x00C1F9 03:C1E9: 31        .byte $31   ; 
-- D 2 - I - 0x00C1FA 03:C1EA: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C1FB 03:C1EB: 0F        .byte $0F   ; 
-- D 2 - I - 0x00C1FC 03:C1EC: 17        .byte $17   ; 
-- D 2 - I - 0x00C1FD 03:C1ED: 23        .byte $23   ; 
-- D 2 - I - 0x00C1FE 03:C1EE: 27        .byte $27   ; 
-- D 2 - I - 0x00C1FF 03:C1EF: 1D        .byte $1D   ; 
-- D 2 - I - 0x00C200 03:C1F0: 01        .byte $01   ; 
-- D 2 - I - 0x00C201 03:C1F1: 00        .byte $00   ; 
-- D 2 - I - 0x00C202 03:C1F2: 17        .byte $17   ; 
-- D 2 - I - 0x00C203 03:C1F3: 08        .byte $08   ; 
-- D 2 - I - 0x00C204 03:C1F4: 1D        .byte $1D   ; 
-- D 2 - I - 0x00C205 03:C1F5: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C206 03:C1F6: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C207 03:C1F7: 1D        .byte $1D   ; 
-- D 2 - I - 0x00C208 03:C1F8: 01        .byte $01   ; 
-- D 2 - I - 0x00C209 03:C1F9: 00        .byte $00   ; 
-- D 2 - I - 0x00C20A 03:C1FA: FF        .byte $FF   ; 
-- D 2 - I - 0x00C20B 03:C1FB: FF        .byte $FF   ; 
-- D 2 - I - 0x00C20C 03:C1FC: F6        .byte $F6   ; 
-- D 2 - I - 0x00C20D 03:C1FD: F2        .byte $F2   ; 
-- D 2 - I - 0x00C20E 03:C1FE: 7C        .byte $7C   ; 
-- D 2 - I - 0x00C20F 03:C1FF: 10        .byte $10   ; 
-- D 2 - I - 0x00C210 03:C200: 30        .byte $30   ; 
-- D 2 - I - 0x00C211 03:C201: E0        .byte $E0   ; 
-- D 2 - I - 0x00C212 03:C202: D1        .byte $D1   ; 
-- D 2 - I - 0x00C213 03:C203: 19        .byte $19   ; 
-- D 2 - I - 0x00C214 03:C204: 1E        .byte $1E   ; 
-- D 2 - I - 0x00C215 03:C205: 9E        .byte $9E   ; 
-- D 2 - I - 0x00C216 03:C206: FC        .byte $FC   ; 
-- D 2 - I - 0x00C217 03:C207: F0        .byte $F0   ; 
-- D 2 - I - 0x00C218 03:C208: F0        .byte $F0   ; 
-- D 2 - I - 0x00C219 03:C209: E0        .byte $E0   ; 
-
-
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0060, $60
 
 _off015_C20A_05:
-- D 2 - I - 0x00C21A 03:C20A: 01        .byte $01   ; 
-- D 2 - I - 0x00C21B 03:C20B: 03        .byte $03   ; 
-- D 2 - I - 0x00C21C 03:C20C: 07        .byte $07   ; 
-- D 2 - I - 0x00C21D 03:C20D: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C21E 03:C20E: 7F        .byte $7F   ; 
-- D 2 - I - 0x00C21F 03:C20F: FF        .byte $FF   ; 
-- D 2 - I - 0x00C220 03:C210: FF        .byte $FF   ; 
-- D 2 - I - 0x00C221 03:C211: 7F        .byte $7F   ; 
-- D 2 - I - 0x00C222 03:C212: 01        .byte $01   ; 
-- D 2 - I - 0x00C223 03:C213: 02        .byte $02   ; 
-- D 2 - I - 0x00C224 03:C214: 04        .byte $04   ; 
-- D 2 - I - 0x00C225 03:C215: 1C        .byte $1C   ; 
-- D 2 - I - 0x00C226 03:C216: 68        .byte $68   ; 
-- D 2 - I - 0x00C227 03:C217: 88        .byte $88   ; 
-- D 2 - I - 0x00C228 03:C218: 87        .byte $87   ; 
-- D 2 - I - 0x00C229 03:C219: 40        .byte $40   ; 
-- D 2 - I - 0x00C22A 03:C21A: E0        .byte $E0   ; 
-- D 2 - I - 0x00C22B 03:C21B: F0        .byte $F0   ; 
-- D 2 - I - 0x00C22C 03:C21C: F8        .byte $F8   ; 
-- D 2 - I - 0x00C22D 03:C21D: F8        .byte $F8   ; 
-- D 2 - I - 0x00C22E 03:C21E: FC        .byte $FC   ; 
-- D 2 - I - 0x00C22F 03:C21F: FE        .byte $FE   ; 
-- D 2 - I - 0x00C230 03:C220: FE        .byte $FE   ; 
-- D 2 - I - 0x00C231 03:C221: FC        .byte $FC   ; 
-- D 2 - I - 0x00C232 03:C222: E0        .byte $E0   ; 
-- D 2 - I - 0x00C233 03:C223: 10        .byte $10   ; 
-- D 2 - I - 0x00C234 03:C224: 08        .byte $08   ; 
-- D 2 - I - 0x00C235 03:C225: 28        .byte $28   ; 
-- D 2 - I - 0x00C236 03:C226: 1C        .byte $1C   ; 
-- D 2 - I - 0x00C237 03:C227: 12        .byte $12   ; 
-- D 2 - I - 0x00C238 03:C228: E2        .byte $E2   ; 
-- D 2 - I - 0x00C239 03:C229: 04        .byte $04   ; 
-- D 2 - I - 0x00C23A 03:C22A: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C23B 03:C22B: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C23C 03:C22C: 38        .byte $38   ; 
-- D 2 - I - 0x00C23D 03:C22D: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C23E 03:C22E: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C23F 03:C22F: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C240 03:C230: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C241 03:C231: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C242 03:C232: 30        .byte $30   ; 
-- D 2 - I - 0x00C243 03:C233: 1F        .byte $1F   ; 
-- D 2 - I - 0x00C244 03:C234: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C245 03:C235: 37        .byte $37   ; 
-- D 2 - I - 0x00C246 03:C236: 33        .byte $33   ; 
-- D 2 - I - 0x00C247 03:C237: 30        .byte $30   ; 
-- D 2 - I - 0x00C248 03:C238: 10        .byte $10   ; 
-- D 2 - I - 0x00C249 03:C239: 18        .byte $18   ; 
-- D 2 - I - 0x00C24A 03:C23A: F8        .byte $F8   ; 
-- D 2 - I - 0x00C24B 03:C23B: F8        .byte $F8   ; 
-- D 2 - I - 0x00C24C 03:C23C: 38        .byte $38   ; 
-- D 2 - I - 0x00C24D 03:C23D: FC        .byte $FC   ; 
-- D 2 - I - 0x00C24E 03:C23E: FE        .byte $FE   ; 
-- D 2 - I - 0x00C24F 03:C23F: FE        .byte $FE   ; 
-- D 2 - I - 0x00C250 03:C240: FE        .byte $FE   ; 
-- D 2 - I - 0x00C251 03:C241: FE        .byte $FE   ; 
-- D 2 - I - 0x00C252 03:C242: 18        .byte $18   ; 
-- D 2 - I - 0x00C253 03:C243: F8        .byte $F8   ; 
-- D 2 - I - 0x00C254 03:C244: E8        .byte $E8   ; 
-- D 2 - I - 0x00C255 03:C245: C4        .byte $C4   ; 
-- D 2 - I - 0x00C256 03:C246: 02        .byte $02   ; 
-- D 2 - I - 0x00C257 03:C247: 42        .byte $42   ; 
-- D 2 - I - 0x00C258 03:C248: 42        .byte $42   ; 
-- D 2 - I - 0x00C259 03:C249: 42        .byte $42   ; 
-- D 2 - I - 0x00C25A 03:C24A: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C25B 03:C24B: 3F        .byte $3F   ; 
-- D 2 - I - 0x00C25C 03:C24C: 3E        .byte $3E   ; 
-- D 2 - I - 0x00C25D 03:C24D: 5E        .byte $5E   ; 
-- D 2 - I - 0x00C25E 03:C24E: 8F        .byte $8F   ; 
-- D 2 - I - 0x00C25F 03:C24F: 8E        .byte $8E   ; 
-- D 2 - I - 0x00C260 03:C250: 70        .byte $70   ; 
-- D 2 - I - 0x00C261 03:C251: 00        .byte $00   ; 
-- D 2 - I - 0x00C262 03:C252: 2F        .byte $2F   ; 
-- D 2 - I - 0x00C263 03:C253: 21        .byte $21   ; 
-- D 2 - I - 0x00C264 03:C254: 23        .byte $23   ; 
-- D 2 - I - 0x00C265 03:C255: 73        .byte $73   ; 
-- D 2 - I - 0x00C266 03:C256: F9        .byte $F9   ; 
-- D 2 - I - 0x00C267 03:C257: FE        .byte $FE   ; 
-- D 2 - I - 0x00C268 03:C258: 70        .byte $70   ; 
-- D 2 - I - 0x00C269 03:C259: 00        .byte $00   ; 
-- D 2 - I - 0x00C26A 03:C25A: FC        .byte $FC   ; 
-- D 2 - I - 0x00C26B 03:C25B: FE        .byte $FE   ; 
-- D 2 - I - 0x00C26C 03:C25C: 7E        .byte $7E   ; 
-- D 2 - I - 0x00C26D 03:C25D: 3D        .byte $3D   ; 
-- D 2 - I - 0x00C26E 03:C25E: E1        .byte $E1   ; 
-- D 2 - I - 0x00C26F 03:C25F: 26        .byte $26   ; 
-- D 2 - I - 0x00C270 03:C260: 18        .byte $18   ; 
-- D 2 - I - 0x00C271 03:C261: 00        .byte $00   ; 
-- D 2 - I - 0x00C272 03:C262: 84        .byte $84   ; 
-- D 2 - I - 0x00C273 03:C263: 86        .byte $86   ; 
-- D 2 - I - 0x00C274 03:C264: CA        .byte $CA   ; 
-- D 2 - I - 0x00C275 03:C265: F7        .byte $F7   ; 
-- D 2 - I - 0x00C276 03:C266: FF        .byte $FF   ; 
-- D 2 - I - 0x00C277 03:C267: 3E        .byte $3E   ; 
-- D 2 - I - 0x00C278 03:C268: 18        .byte $18   ; 
-- D 2 - I - 0x00C279 03:C269: 00        .byte $00   ; 
-
-
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $00C0, $60
 
 _off015_C26A_00:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0000, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0120, $60
 
 _off015_C2CA_01:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0060, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0180, $60
 
 _off015_C32A_02:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $00C0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $01E0, $60
 
 _off015_C38A_09:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0120, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0240, $60
 
 _off015_C3EA_0A:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0180, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $02A0, $60
 
 _off015_C44A_0B:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $01E0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0300, $60
 
 tbl_0x00C4BA:
 _off015_C4AA_06:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0240, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0360, $60
 
 _off015_C50A_07:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $02A0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $03C0, $60
 
 _off015_C56A_08:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0300, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0420, $60
 
 _off015_C5CA_0C:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0360, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0480, $60
 
 _off015_C62A_0D:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $03C0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $04E0, $60
 
 _off015_C68A_0E:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0420, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0540, $60
 
 _off015_C6EA_0F:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0480, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $05A0, $60
 
 _off015_C74A_10:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $04E0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0600, $60
 
 _off015_C7AA_11:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0540, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0660, $60
 
 _off015_C80A_12:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $05A0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $06C0, $60
 
 _off015_C86A_13:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0600, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0720, $60
 
 _off015_C8CA_14:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0660, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0780, $60
 
 _off015_C92A_15:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $06C0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $07E0, $60
 
 _off015_C98A_16:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0720, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0840, $60
 
 _off015_C9EA_17:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0780, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $08A0, $60
 
 _off015_CA4A_18:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $07E0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0900, $60
 
 _off015_CAAA_19:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0840, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0960, $60
 
 _off015_CB0A_1A:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $08A0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $09C0, $60
 
 _off015_CB6A_1B:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0900, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0A20, $60
 
 _off015_CBCA_1C:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0960, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0A80, $60
 
 _off015_CC2A_1D:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $09C0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0AE0, $60
 
 _off015_CC8A_1E:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0A20, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0B40, $60
 
 _off015_CCEA_1F:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0A80, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0BA0, $60
 
 _off015_CD4A_20:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0AE0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0C00, $60
 
 _off015_CDAA_21:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0B40, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0C60, $60
 
 _off015_CE0A_22:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0BA0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0CC0, $60
 
 _off015_CE6A_27:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0C00, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0D20, $60
 
 _off015_CECA_28:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0C60, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0D80, $60
 
 _off015_CF2A_29:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0CC0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0DE0, $60
 
 _off015_CF8A_2A:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0D20, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0E40, $60
 
 _off015_CFEA_2B:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0D80, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0EA0, $60
 
 _off015_D04A_2C:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0DE0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0F00, $60
 
 _off015_D0AA_2D:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0E40, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0F60, $60
 
 _off015_D10A_2E:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0EA0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $0FC0, $60
 
 _off015_D16A_2F:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0F00, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1020, $60
 
 _off015_D1CA_30:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0F60, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1080, $60
 
 _off015_D22A_31:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $0FC0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $10E0, $60
 
 _off015_D28A_32:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1020, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1140, $60
 
 _off015_D2EA_33:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1080, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $11A0, $60
 
 _off015_D34A_34:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $10E0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1200, $60
 
 _off015_D3AA_35:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1140, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1260, $60
 
 _off015_D40A_36:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $11A0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $12C0, $60
 
 _off015_D46A_37:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1200, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1320, $60
 
 _off015_D4CA_38:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1260, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1380, $60
 
 _off015_D52A_39:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $12C0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $13E0, $60
 
 _off015_D58A_3A:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1320, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1440, $60
 
 _off015_D5EA_3B:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1380, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $14A0, $60
 
 _off015_D64A_3C:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $13E0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1500, $60
 
 _off015_D6AA_23:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1440, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1560, $60
 
 _off015_D70A_24:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $14A0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $15C0, $60
 
 _off015_D76A_25:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1500, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1620, $60
 
 _off015_D7CA_26:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1560, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1680, $60
 
 _off015_D82A_3D:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $15C0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $16E0, $60
 
 _off015_D88A_3E:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1620, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1740, $60
 
 _off015_D8EA_3F:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1680, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $17A0, $60
 
 _off015_D94A_40:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $16E0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1800, $60
 
 _off015_D9AA_41:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1740, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1860, $60
 
 _off015_DA0A_42:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $17A0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $18C0, $60
 
 _off015_DA6A_43:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1800, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1920, $60
 
 _off015_DACA_44:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1860, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1980, $60
 
 _off015_DB2A_45:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $18C0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $19E0, $60
 
 _off015_DB8A_46:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1920, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1A40, $60
 
 _off015_DBEA_47:
 _off015_DBEA_48:
 _off015_DBEA_49:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1980, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1AA0, $60
 
 _off015_DC4A_4A:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $19E0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1B00, $60
 
 _off015_DCAA_4B:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1A40, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1B60, $60
 
 _off015_DD0A_4C:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1AA0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1BC0, $60
 
 _off015_DD6A_4D:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1B00, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1C20, $60
 
 _off015_DDCA_4E:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1B60, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1C80, $60
 
 _off015_DE2A_4F:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1BC0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1CE0, $60
 
 _off015_DE8A_50:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1C20, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1D40, $60
 
 _off015_DEEA_51:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1C80, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1DA0, $60
 
 _off015_DF4A_52:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1CE0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1E00, $60
 
 _off015_DFAA_53:
 _off015_DFAA_54:
 _off015_DFAA_55:
 _off015_DFAA_56:
 _off015_DFAA_57:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1D40, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1E60, $60
 
 _off015_E00A_58:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1DA0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1EC0, $60
 
 _off015_E06A_59:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1E00, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1F20, $60
 
 _off015_E0CA_5A:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1E60, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1F80, $60
 
 _off015_E12A_5B:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1EC0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $1FE0, $60
 
 _off015_E18A_5C:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1F20, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2040, $60
 
 _off015_E1EA_5D:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1F80, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $20A0, $60
 
 _off015_E24A_5E:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $1FE0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2100, $60
 
 _off015_E2AA_5F:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2040, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2160, $60
 
 _off015_E30A_60:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $20A0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $21C0, $60
 
 _off015_E36A_61:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2100, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2220, $60
 
 _off015_E3CA_62:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2160, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2280, $60
 
 _off015_E42A_63:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $21C0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $22E0, $60
 
 _off015_E48A_64:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2220, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2340, $60
 
 _off015_E4EA_65:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2280, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $23A0, $60
 
 _off015_E54A_66:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $22E0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2400, $60
 
 _off015_E5AA_67:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2340, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2460, $60
 
 _off015_E60A_68:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $23A0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $24C0, $60
 
 _off015_E66A_69:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2400, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2520, $60
 
 _off015_E6CA_6A:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2460, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2580, $60
 
 _off015_E72A_6B:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $24C0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $25E0, $60
 
 _off015_E78A_6C:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2520, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2640, $60
 
 _off015_E7EA_6D:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2580, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $26A0, $60
 
 _off015_E84A_6E:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $25E0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2700, $60
 
 _off015_E8AA_6F:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2640, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2760, $60
 
 _off015_E90A_70:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $26A0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $27C0, $60
 
 _off015_E96A_71:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2700, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2820, $60
 
 _off015_E9CA_72:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2760, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2880, $60
 
 _off015_EA2A_73:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $27C0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $28E0, $60
 
 _off015_EA8A_74:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2820, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2940, $60
 
 _off015_EAEA_75:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2880, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $29A0, $60
 
 _off015_EB4A_76:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $28E0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2A00, $60
 
 _off015_EBAA_77:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2940, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2A60, $60
 
 _off015_EC0A_78:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $29A0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2AC0, $60
 
 _off015_EC6A_79:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2A00, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2B20, $60
 
 _off015_ECCA_7A:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2A60, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2B80, $60
 
 _off015_ED2A_7B:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2AC0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2BE0, $60
 
 _off015_ED8A_7C:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2B20, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2C40, $60
 
 _off015_EDEA_7D:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2B80, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2CA0, $60
 
 _off015_EE4A_7E:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2BE0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2D00, $60
 
 _off015_EEAA_7F:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2C40, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2D60, $60
 
 _off015_EF0A_80:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2CA0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2DC0, $60
 
 _off015_EF6A_81:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2D00, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2E20, $60
 
 _off015_EFCA_82:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2D60, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2E80, $60
 
 _off015_F02A_83:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2DC0, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2EE0, $60
 
 _off015_F08A_84:
-    .incbin "incbin/chr/01___C26A_F0E9.chr", $2E20, $60
+    .incbin "incbin/chr/01___C14A_F0E9.chr", $2F40, $60
 
 
 
