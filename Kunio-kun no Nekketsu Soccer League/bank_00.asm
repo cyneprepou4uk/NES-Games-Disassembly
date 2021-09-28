@@ -11424,112 +11424,14 @@ loop_1_ADEE:
 - - - - - - 0x002E25 00:AE15: 34 AD     .word loc_AD34
 
 
-; bzk мусор
-- - - - - - 0x002E27 00:AE17: FF        .byte $FF   ; 
-- - - - - - 0x002E28 00:AE18: FF        .byte $FF   ; 
-- - - - - - 0x002E29 00:AE19: FF        .byte $FF   ; 
-- - - - - - 0x002E2A 00:AE1A: FF        .byte $FF   ; 
-- - - - - - 0x002E2B 00:AE1B: FF        .byte $FF   ; 
-- - - - - - 0x002E2C 00:AE1C: FF        .byte $FF   ; 
-- - - - - - 0x002E2D 00:AE1D: FF        .byte $FF   ; 
-- - - - - - 0x002E2E 00:AE1E: FF        .byte $FF   ; 
-- - - - - - 0x002E2F 00:AE1F: FF        .byte $FF   ; 
-- - - - - - 0x002E30 00:AE20: FF        .byte $FF   ; 
-- - - - - - 0x002E31 00:AE21: FF        .byte $FF   ; 
-- - - - - - 0x002E32 00:AE22: FF        .byte $FF   ; 
-- - - - - - 0x002E33 00:AE23: FF        .byte $FF   ; 
-- - - - - - 0x002E34 00:AE24: FF        .byte $FF   ; 
-- - - - - - 0x002E35 00:AE25: FF        .byte $FF   ; 
-- - - - - - 0x002E36 00:AE26: FF        .byte $FF   ; 
-- - - - - - 0x002E37 00:AE27: FF        .byte $FF   ; 
-- - - - - - 0x002E38 00:AE28: FF        .byte $FF   ; 
-- - - - - - 0x002E39 00:AE29: FF        .byte $FF   ; 
-- - - - - - 0x002E3A 00:AE2A: FF        .byte $FF   ; 
-- - - - - - 0x002E3B 00:AE2B: FF        .byte $FF   ; 
-- - - - - - 0x002E3C 00:AE2C: FF        .byte $FF   ; 
-- - - - - - 0x002E3D 00:AE2D: FF        .byte $FF   ; 
-- - - - - - 0x002E3E 00:AE2E: FF        .byte $FF   ; 
-- - - - - - 0x002E3F 00:AE2F: FF        .byte $FF   ; 
-- - - - - - 0x002E40 00:AE30: FF        .byte $FF   ; 
-- - - - - - 0x002E41 00:AE31: FF        .byte $FF   ; 
-- - - - - - 0x002E42 00:AE32: FF        .byte $FF   ; 
-- - - - - - 0x002E43 00:AE33: FF        .byte $FF   ; 
-- - - - - - 0x002E44 00:AE34: FF        .byte $FF   ; 
-- - - - - - 0x002E45 00:AE35: FF        .byte $FF   ; 
-- - - - - - 0x002E46 00:AE36: FF        .byte $FF   ; 
-- - - - - - 0x002E47 00:AE37: FF        .byte $FF   ; 
-- - - - - - 0x002E48 00:AE38: FF        .byte $FF   ; 
-- - - - - - 0x002E49 00:AE39: FF        .byte $FF   ; 
-- - - - - - 0x002E4A 00:AE3A: FF        .byte $FF   ; 
-- - - - - - 0x002E4B 00:AE3B: FF        .byte $FF   ; 
-- - - - - - 0x002E4C 00:AE3C: FF        .byte $FF   ; 
-- - - - - - 0x002E4D 00:AE3D: FF        .byte $FF   ; 
-- - - - - - 0x002E4E 00:AE3E: FF        .byte $FF   ; 
-- - - - - - 0x002E4F 00:AE3F: FF        .byte $FF   ; 
-- - - - - - 0x002E50 00:AE40: FF        .byte $FF   ; 
-- - - - - - 0x002E51 00:AE41: FF        .byte $FF   ; 
-- - - - - - 0x002E52 00:AE42: FF        .byte $FF   ; 
-- - - - - - 0x002E53 00:AE43: FF        .byte $FF   ; 
-- - - - - - 0x002E54 00:AE44: FF        .byte $FF   ; 
-- - - - - - 0x002E55 00:AE45: FF        .byte $FF   ; 
-- - - - - - 0x002E56 00:AE46: FF        .byte $FF   ; 
-- - - - - - 0x002E57 00:AE47: FF        .byte $FF   ; 
-- - - - - - 0x002E58 00:AE48: FF        .byte $FF   ; 
-- - - - - - 0x002E59 00:AE49: FF        .byte $FF   ; 
-- - - - - - 0x002E5A 00:AE4A: FF        .byte $FF   ; 
-- - - - - - 0x002E5B 00:AE4B: FF        .byte $FF   ; 
-- - - - - - 0x002E5C 00:AE4C: FF        .byte $FF   ; 
-- - - - - - 0x002E5D 00:AE4D: FF        .byte $FF   ; 
-- - - - - - 0x002E5E 00:AE4E: FF        .byte $FF   ; 
-- - - - - - 0x002E5F 00:AE4F: FF        .byte $FF   ; 
-- - - - - - 0x002E60 00:AE50: FF        .byte $FF   ; 
-- - - - - - 0x002E61 00:AE51: FF        .byte $FF   ; 
-- - - - - - 0x002E62 00:AE52: FF        .byte $FF   ; 
-- - - - - - 0x002E63 00:AE53: FF        .byte $FF   ; 
-- - - - - - 0x002E64 00:AE54: FF        .byte $FF   ; 
-- - - - - - 0x002E65 00:AE55: FF        .byte $FF   ; 
-- - - - - - 0x002E66 00:AE56: FF        .byte $FF   ; 
-- - - - - - 0x002E67 00:AE57: FF        .byte $FF   ; 
-- - - - - - 0x002E68 00:AE58: FF        .byte $FF   ; 
-- - - - - - 0x002E69 00:AE59: FF        .byte $FF   ; 
-- - - - - - 0x002E6A 00:AE5A: FF        .byte $FF   ; 
-- - - - - - 0x002E6B 00:AE5B: FF        .byte $FF   ; 
-- - - - - - 0x002E6C 00:AE5C: FF        .byte $FF   ; 
-- - - - - - 0x002E6D 00:AE5D: FF        .byte $FF   ; 
-- - - - - - 0x002E6E 00:AE5E: FF        .byte $FF   ; 
-- - - - - - 0x002E6F 00:AE5F: FF        .byte $FF   ; 
-- - - - - - 0x002E70 00:AE60: FF        .byte $FF   ; 
-- - - - - - 0x002E71 00:AE61: FF        .byte $FF   ; 
-- - - - - - 0x002E72 00:AE62: FF        .byte $FF   ; 
-- - - - - - 0x002E73 00:AE63: FF        .byte $FF   ; 
-- - - - - - 0x002E74 00:AE64: FF        .byte $FF   ; 
-- - - - - - 0x002E75 00:AE65: FF        .byte $FF   ; 
-- - - - - - 0x002E76 00:AE66: FF        .byte $FF   ; 
-- - - - - - 0x002E77 00:AE67: FF        .byte $FF   ; 
-- - - - - - 0x002E78 00:AE68: FF        .byte $FF   ; 
-- - - - - - 0x002E79 00:AE69: FF        .byte $FF   ; 
-- - - - - - 0x002E7A 00:AE6A: FF        .byte $FF   ; 
-- - - - - - 0x002E7B 00:AE6B: FF        .byte $FF   ; 
-- - - - - - 0x002E7C 00:AE6C: FF        .byte $FF   ; 
-- - - - - - 0x002E7D 00:AE6D: FF        .byte $FF   ; 
-- - - - - - 0x002E7E 00:AE6E: FF        .byte $FF   ; 
-- - - - - - 0x002E7F 00:AE6F: FF        .byte $FF   ; 
-- - - - - - 0x002E80 00:AE70: FF        .byte $FF   ; 
-- - - - - - 0x002E81 00:AE71: FF        .byte $FF   ; 
-- - - - - - 0x002E82 00:AE72: FF        .byte $FF   ; 
-- - - - - - 0x002E83 00:AE73: FF        .byte $FF   ; 
-- - - - - - 0x002E84 00:AE74: FF        .byte $FF   ; 
-- - - - - - 0x002E85 00:AE75: FF        .byte $FF   ; 
-- - - - - - 0x002E86 00:AE76: FF        .byte $FF   ; 
-- - - - - - 0x002E87 00:AE77: FF        .byte $FF   ; 
-- - - - - - 0x002E88 00:AE78: FF        .byte $FF   ; 
-- - - - - - 0x002E89 00:AE79: FF        .byte $FF   ; 
-- - - - - - 0x002E8A 00:AE7A: FF        .byte $FF   ; 
-- - - - - - 0x002E8B 00:AE7B: FF        .byte $FF   ; 
-- - - - - - 0x002E8C 00:AE7C: FF        .byte $FF   ; 
-- - - - - - 0x002E8D 00:AE7D: FF        .byte $FF   ; 
-- - - - - - 0x002E8E 00:AE7E: FF        .byte $FF   ; 
-- - - - - - 0x002E8F 00:AE7F: FF        .byte $FF   ; 
+; bzk garbage
+- - - - - - 0x002E27 00:AE17: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x002E30 00:AE20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x002E40 00:AE30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x002E50 00:AE40: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x002E60 00:AE50: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x002E70 00:AE60: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x002E80 00:AE70: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 
@@ -15581,7 +15483,7 @@ C D 1 - - - 0x003FF1 00:BFE1: 10 80     BPL bra_BF63
 C - - - - - 0x003FF3 00:BFE3: 30 8C     BMI bra_BF71
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x003FF5 00:BFE5: 60        RTS
 
 
@@ -15612,7 +15514,7 @@ C D 1 - - - 0x004008 00:BFF8: A9 1A     LDA #$1A
 C - - - - - 0x00400A 00:BFFA: 4C 50 C0  JMP loc_0x01C060
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x00400D 00:BFFD: FF        .byte $FF   ; 
 ; !!!
 - D 1 - - - 0x00400E 00:BFFE: FF        .byte $FF   ; 

@@ -224,7 +224,7 @@ C - - - - - 0x00C19C 03:818C: D0 DE     BNE bra_816C
 C - - - - - 0x00C19E 03:818E: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 loc_818F:
 - - - - - - 0x00C19F 03:818F: A9 00     LDA #$00
 - - - - - - 0x00C1A1 03:8191: 4C 8F 81  JMP loc_818F
@@ -11713,42 +11713,10 @@ C - - - - - 0x00FFE9 03:BFD9: 10 F1     BPL bra_BFCC
 C - - - - - 0x00FFEB 03:BFDB: 60        RTS
 
 
-; bzk мусор
-- - - - - - 0x00FFEC 03:BFDC: FF        .byte $FF   ; 
-- - - - - - 0x00FFED 03:BFDD: FF        .byte $FF   ; 
-- - - - - - 0x00FFEE 03:BFDE: FF        .byte $FF   ; 
-- - - - - - 0x00FFEF 03:BFDF: FF        .byte $FF   ; 
-- - - - - - 0x00FFF0 03:BFE0: FF        .byte $FF   ; 
-- - - - - - 0x00FFF1 03:BFE1: FF        .byte $FF   ; 
-- - - - - - 0x00FFF2 03:BFE2: FF        .byte $FF   ; 
-- - - - - - 0x00FFF3 03:BFE3: FF        .byte $FF   ; 
-- - - - - - 0x00FFF4 03:BFE4: FF        .byte $FF   ; 
-- - - - - - 0x00FFF5 03:BFE5: FF        .byte $FF   ; 
-- - - - - - 0x00FFF6 03:BFE6: FF        .byte $FF   ; 
-- - - - - - 0x00FFF7 03:BFE7: FF        .byte $FF   ; 
-- - - - - - 0x00FFF8 03:BFE8: FF        .byte $FF   ; 
-- - - - - - 0x00FFF9 03:BFE9: FF        .byte $FF   ; 
-- - - - - - 0x00FFFA 03:BFEA: FF        .byte $FF   ; 
-- - - - - - 0x00FFFB 03:BFEB: FF        .byte $FF   ; 
-- - - - - - 0x00FFFC 03:BFEC: FF        .byte $FF   ; 
-- - - - - - 0x00FFFD 03:BFED: FF        .byte $FF   ; 
-- - - - - - 0x00FFFE 03:BFEE: FF        .byte $FF   ; 
-- - - - - - 0x00FFFF 03:BFEF: FF        .byte $FF   ; 
-- - - - - - 0x010000 03:BFF0: FF        .byte $FF   ; 
-- - - - - - 0x010001 03:BFF1: FF        .byte $FF   ; 
-- - - - - - 0x010002 03:BFF2: FF        .byte $FF   ; 
-- - - - - - 0x010003 03:BFF3: FF        .byte $FF   ; 
-- - - - - - 0x010004 03:BFF4: FF        .byte $FF   ; 
-- - - - - - 0x010005 03:BFF5: FF        .byte $FF   ; 
-- - - - - - 0x010006 03:BFF6: FF        .byte $FF   ; 
-- - - - - - 0x010007 03:BFF7: FF        .byte $FF   ; 
-- - - - - - 0x010008 03:BFF8: FF        .byte $FF   ; 
-- - - - - - 0x010009 03:BFF9: FF        .byte $FF   ; 
-- - - - - - 0x01000A 03:BFFA: FF        .byte $FF   ; 
-- - - - - - 0x01000B 03:BFFB: FF        .byte $FF   ; 
-- - - - - - 0x01000C 03:BFFC: FF        .byte $FF   ; 
-- - - - - - 0x01000D 03:BFFD: FF        .byte $FF   ; 
-- - - - - - 0x01000E 03:BFFE: FF        .byte $FF   ; 
+; bzk garbage
+- - - - - - 0x00FFEC 03:BFDC: FF        .byte $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFF0 03:BFE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x010000 03:BFF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 

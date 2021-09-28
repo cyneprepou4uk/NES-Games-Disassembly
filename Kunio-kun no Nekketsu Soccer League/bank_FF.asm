@@ -5987,7 +5987,7 @@ C - - - - - 0x01E21F 07:E20F: EE F9 05  INC ram_флаг_готового_ста
 C - - - - - 0x01E222 07:E212: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x01E223 07:E213: 06        .byte $06   ; 
 - - - - - - 0x01E224 07:E214: 26        .byte $26   ; 
 - - - - - - 0x01E225 07:E215: 46        .byte $46   ; 
@@ -7177,57 +7177,11 @@ C - - - - - 0x01E802 07:E7F2: 20 D3 EE  JSR sub_EED3_prg_bankswitch
 C - - - - - 0x01E805 07:E7F5: 60        RTS
 
 
-; bzk мусор
-- - - - - - 0x01E806 07:E7F6: F8        .byte $F8   ; 
-- - - - - - 0x01E807 07:E7F7: E7        .byte $E7   ; 
-- - - - - - 0x01E808 07:E7F8: 00        .byte $00   ; 
-- - - - - - 0x01E809 07:E7F9: 02        .byte $02   ; 
-- - - - - - 0x01E80A 07:E7FA: 02        .byte $02   ; 
-- - - - - - 0x01E80B 07:E7FB: 02        .byte $02   ; 
-- - - - - - 0x01E80C 07:E7FC: 02        .byte $02   ; 
-- - - - - - 0x01E80D 07:E7FD: 02        .byte $02   ; 
-- - - - - - 0x01E80E 07:E7FE: 02        .byte $02   ; 
-- - - - - - 0x01E80F 07:E7FF: 02        .byte $02   ; 
-- - - - - - 0x01E810 07:E800: 02        .byte $02   ; 
-- - - - - - 0x01E811 07:E801: 02        .byte $02   ; 
-- - - - - - 0x01E812 07:E802: 02        .byte $02   ; 
-- - - - - - 0x01E813 07:E803: 02        .byte $02   ; 
-- - - - - - 0x01E814 07:E804: 02        .byte $02   ; 
-- - - - - - 0x01E815 07:E805: 02        .byte $02   ; 
-- - - - - - 0x01E816 07:E806: 02        .byte $02   ; 
-- - - - - - 0x01E817 07:E807: 02        .byte $02   ; 
-- - - - - - 0x01E818 07:E808: 02        .byte $02   ; 
-- - - - - - 0x01E819 07:E809: 02        .byte $02   ; 
-- - - - - - 0x01E81A 07:E80A: 02        .byte $02   ; 
-- - - - - - 0x01E81B 07:E80B: 02        .byte $02   ; 
-- - - - - - 0x01E81C 07:E80C: 02        .byte $02   ; 
-- - - - - - 0x01E81D 07:E80D: 02        .byte $02   ; 
-- - - - - - 0x01E81E 07:E80E: 02        .byte $02   ; 
-- - - - - - 0x01E81F 07:E80F: 02        .byte $02   ; 
-- - - - - - 0x01E820 07:E810: 02        .byte $02   ; 
-- - - - - - 0x01E821 07:E811: 02        .byte $02   ; 
-- - - - - - 0x01E822 07:E812: 02        .byte $02   ; 
-- - - - - - 0x01E823 07:E813: 02        .byte $02   ; 
-- - - - - - 0x01E824 07:E814: 02        .byte $02   ; 
-- - - - - - 0x01E825 07:E815: 02        .byte $02   ; 
-- - - - - - 0x01E826 07:E816: 02        .byte $02   ; 
-- - - - - - 0x01E827 07:E817: 02        .byte $02   ; 
-- - - - - - 0x01E828 07:E818: 02        .byte $02   ; 
-- - - - - - 0x01E829 07:E819: 02        .byte $02   ; 
-- - - - - - 0x01E82A 07:E81A: 02        .byte $02   ; 
-- - - - - - 0x01E82B 07:E81B: 02        .byte $02   ; 
-- - - - - - 0x01E82C 07:E81C: 02        .byte $02   ; 
-- - - - - - 0x01E82D 07:E81D: 02        .byte $02   ; 
-- - - - - - 0x01E82E 07:E81E: 02        .byte $02   ; 
-- - - - - - 0x01E82F 07:E81F: 02        .byte $02   ; 
-- - - - - - 0x01E830 07:E820: 02        .byte $02   ; 
-- - - - - - 0x01E831 07:E821: 02        .byte $02   ; 
-- - - - - - 0x01E832 07:E822: 02        .byte $02   ; 
-- - - - - - 0x01E833 07:E823: 02        .byte $02   ; 
-- - - - - - 0x01E834 07:E824: 02        .byte $02   ; 
-- - - - - - 0x01E835 07:E825: 02        .byte $02   ; 
-- - - - - - 0x01E836 07:E826: 02        .byte $02   ; 
-- - - - - - 0x01E837 07:E827: 04        .byte $04   ; 
+; bzk garbage
+- - - - - - 0x01E806 07:E7F6: F8        .byte $F8, $E7, $00, $02, $02, $02, $02, $02, $02, $02   ; 
+- - - - - - 0x01E810 07:E800: 02        .byte $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02   ; 
+- - - - - - 0x01E820 07:E810: 02        .byte $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02   ; 
+- - - - - - 0x01E830 07:E820: 02        .byte $02, $02, $02, $02, $02, $02, $02, $04   ; 
 
 
 
@@ -8577,7 +8531,7 @@ C - - - - - 0x01EF80 07:EF70: 20 5A EE  JSR sub_EE5A
 C - - - - - 0x01EF83 07:EF73: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x01EF84 07:EF74: 20 A9 EC  JSR sub_ECA9
 - - - - - - 0x01EF87 07:EF77: 20 71 EE  JSR sub_EE71
 - - - - - - 0x01EF8A 07:EF7A: A5 4C     LDA ram_для_2000
@@ -9253,7 +9207,7 @@ C - - - - - 0x01F403 07:F3F3: 8D FA 05  STA ram_05FA
 C - - - - - 0x01F406 07:F3F6: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x01F407 07:F3F7: A5 2C     LDA ram_002C
 - - - - - - 0x01F409 07:F3F9: 49 FF     EOR #$FF
 - - - - - - 0x01F40B 07:F3FB: 18        CLC
@@ -9646,7 +9600,7 @@ C - - - - - 0x01F63F 07:F62F: 18        CLC
 C - - - - - 0x01F640 07:F630: 60        RTS
 
 
-; bzk мусор
+; bzk garbage
 - - - - - - 0x01F641 07:F631: 85 2C     STA ram_002C
 - - - - - - 0x01F643 07:F633: 85 2E     STA ram_002E
 - - - - - - 0x01F645 07:F635: A9 00     LDA #$00
@@ -10864,55 +10818,10 @@ C - - - - - 0x01FE1B 07:FE0B: 90 E5     BCC bra_FDF2
 C - - - - - 0x01FE1D 07:FE0D: 4C D4 C3  JMP loc_C3D4
 
 
-; bzk мусор
-- - - - - - 0x01FE20 07:FE10: FF        .byte $FF   ; 
-- - - - - - 0x01FE21 07:FE11: FF        .byte $FF   ; 
-- - - - - - 0x01FE22 07:FE12: FF        .byte $FF   ; 
-- - - - - - 0x01FE23 07:FE13: FF        .byte $FF   ; 
-- - - - - - 0x01FE24 07:FE14: FF        .byte $FF   ; 
-- - - - - - 0x01FE25 07:FE15: FF        .byte $FF   ; 
-- - - - - - 0x01FE26 07:FE16: FF        .byte $FF   ; 
-- - - - - - 0x01FE27 07:FE17: FF        .byte $FF   ; 
-- - - - - - 0x01FE28 07:FE18: FF        .byte $FF   ; 
-- - - - - - 0x01FE29 07:FE19: FF        .byte $FF   ; 
-- - - - - - 0x01FE2A 07:FE1A: FF        .byte $FF   ; 
-- - - - - - 0x01FE2B 07:FE1B: FF        .byte $FF   ; 
-- - - - - - 0x01FE2C 07:FE1C: FF        .byte $FF   ; 
-- - - - - - 0x01FE2D 07:FE1D: FF        .byte $FF   ; 
-- - - - - - 0x01FE2E 07:FE1E: FF        .byte $FF   ; 
-- - - - - - 0x01FE2F 07:FE1F: FF        .byte $FF   ; 
-- - - - - - 0x01FE30 07:FE20: FF        .byte $FF   ; 
-- - - - - - 0x01FE31 07:FE21: FF        .byte $FF   ; 
-- - - - - - 0x01FE32 07:FE22: FF        .byte $FF   ; 
-- - - - - - 0x01FE33 07:FE23: FF        .byte $FF   ; 
-- - - - - - 0x01FE34 07:FE24: FF        .byte $FF   ; 
-- - - - - - 0x01FE35 07:FE25: FF        .byte $FF   ; 
-- - - - - - 0x01FE36 07:FE26: FF        .byte $FF   ; 
-- - - - - - 0x01FE37 07:FE27: FF        .byte $FF   ; 
-- - - - - - 0x01FE38 07:FE28: FF        .byte $FF   ; 
-- - - - - - 0x01FE39 07:FE29: FF        .byte $FF   ; 
-- - - - - - 0x01FE3A 07:FE2A: FF        .byte $FF   ; 
-- - - - - - 0x01FE3B 07:FE2B: FF        .byte $FF   ; 
-- - - - - - 0x01FE3C 07:FE2C: FF        .byte $FF   ; 
-- - - - - - 0x01FE3D 07:FE2D: FF        .byte $FF   ; 
-- - - - - - 0x01FE3E 07:FE2E: FF        .byte $FF   ; 
-- - - - - - 0x01FE3F 07:FE2F: FF        .byte $FF   ; 
-- - - - - - 0x01FE40 07:FE30: FF        .byte $FF   ; 
-- - - - - - 0x01FE41 07:FE31: FF        .byte $FF   ; 
-- - - - - - 0x01FE42 07:FE32: FF        .byte $FF   ; 
-- - - - - - 0x01FE43 07:FE33: FF        .byte $FF   ; 
-- - - - - - 0x01FE44 07:FE34: FF        .byte $FF   ; 
-- - - - - - 0x01FE45 07:FE35: FF        .byte $FF   ; 
-- - - - - - 0x01FE46 07:FE36: FF        .byte $FF   ; 
-- - - - - - 0x01FE47 07:FE37: FF        .byte $FF   ; 
-- - - - - - 0x01FE48 07:FE38: FF        .byte $FF   ; 
-- - - - - - 0x01FE49 07:FE39: FF        .byte $FF   ; 
-- - - - - - 0x01FE4A 07:FE3A: FF        .byte $FF   ; 
-- - - - - - 0x01FE4B 07:FE3B: FF        .byte $FF   ; 
-- - - - - - 0x01FE4C 07:FE3C: FF        .byte $FF   ; 
-- - - - - - 0x01FE4D 07:FE3D: FF        .byte $FF   ; 
-- - - - - - 0x01FE4E 07:FE3E: FF        .byte $FF   ; 
-- - - - - - 0x01FE4F 07:FE3F: FF        .byte $FF   ; 
+; bzk garbage
+- - - - - - 0x01FE20 07:FE10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x01FE30 07:FE20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x01FE40 07:FE30: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 
@@ -10921,54 +10830,10 @@ C - - - - - 0x01FE1D 07:FE0D: 4C D4 C3  JMP loc_C3D4
 ; - D 0 - - A 0x01FE50 07:FE40: FF        .byte $FF   ; 
 
 
-; bzk мусор
-- - - - - - 0x01FFD1 07:FFC1: 74        .byte $74   ; 
-- - - - - - 0x01FFD2 07:FFC2: B0        .byte $B0   ; 
-- - - - - - 0x01FFD3 07:FFC3: A2        .byte $A2   ; 
-- - - - - - 0x01FFD4 07:FFC4: B4        .byte $B4   ; 
-- - - - - - 0x01FFD5 07:FFC5: 89        .byte $89   ; 
-- - - - - - 0x01FFD6 07:FFC6: 67        .byte $67   ; 
-- - - - - - 0x01FFD7 07:FFC7: 35        .byte $35   ; 
-- - - - - - 0x01FFD8 07:FFC8: 6D        .byte $6D   ; 
-- - - - - - 0x01FFD9 07:FFC9: 2B        .byte $2B   ; 
-- - - - - - 0x01FFDA 07:FFCA: 37        .byte $37   ; 
-- - - - - - 0x01FFDB 07:FFCB: B6        .byte $B6   ; 
-- - - - - - 0x01FFDC 07:FFCC: 45        .byte $45   ; 
-- - - - - - 0x01FFDD 07:FFCD: A5        .byte $A5   ; 
-- - - - - - 0x01FFDE 07:FFCE: A9        .byte $A9   ; 
-- - - - - - 0x01FFDF 07:FFCF: C5        .byte $C5   ; 
-- - - - - - 0x01FFE0 07:FFD0: A4        .byte $A4   ; 
-- - - - - - 0x01FFE1 07:FFD1: 42        .byte $42   ; 
-- - - - - - 0x01FFE2 07:FFD2: 34        .byte $34   ; 
-- - - - - - 0x01FFE3 07:FFD3: 26        .byte $26   ; 
-- - - - - - 0x01FFE4 07:FFD4: 54        .byte $54   ; 
-- - - - - - 0x01FFE5 07:FFD5: 44        .byte $44   ; 
-- - - - - - 0x01FFE6 07:FFD6: 44        .byte $44   ; 
-- - - - - - 0x01FFE7 07:FFD7: 04        .byte $04   ; 
-- - - - - - 0x01FFE8 07:FFD8: 44        .byte $44   ; 
-- - - - - - 0x01FFE9 07:FFD9: 00        .byte $00   ; 
-- - - - - - 0x01FFEA 07:FFDA: 4A        .byte $4A   ; 
-- - - - - - 0x01FFEB 07:FFDB: 44        .byte $44   ; 
-- - - - - - 0x01FFEC 07:FFDC: 00        .byte $00   ; 
-- - - - - - 0x01FFED 07:FFDD: 00        .byte $00   ; 
-- - - - - - 0x01FFEE 07:FFDE: 00        .byte $00   ; 
-- - - - - - 0x01FFEF 07:FFDF: 00        .byte $00   ; 
-- - - - - - 0x01FFF0 07:FFE0: FF        .byte $FF   ; 
-- - - - - - 0x01FFF1 07:FFE1: FF        .byte $FF   ; 
-- - - - - - 0x01FFF2 07:FFE2: FF        .byte $FF   ; 
-- - - - - - 0x01FFF3 07:FFE3: FF        .byte $FF   ; 
-- - - - - - 0x01FFF4 07:FFE4: FF        .byte $FF   ; 
-- - - - - - 0x01FFF5 07:FFE5: FF        .byte $FF   ; 
-- - - - - - 0x01FFF6 07:FFE6: FF        .byte $FF   ; 
-- - - - - - 0x01FFF7 07:FFE7: FF        .byte $FF   ; 
-- - - - - - 0x01FFF8 07:FFE8: FF        .byte $FF   ; 
-- - - - - - 0x01FFF9 07:FFE9: FF        .byte $FF   ; 
-- - - - - - 0x01FFFA 07:FFEA: FF        .byte $FF   ; 
-- - - - - - 0x01FFFB 07:FFEB: FF        .byte $FF   ; 
-- - - - - - 0x01FFFC 07:FFEC: FF        .byte $FF   ; 
-- - - - - - 0x01FFFD 07:FFED: FF        .byte $FF   ; 
-- - - - - - 0x01FFFE 07:FFEE: FF        .byte $FF   ; 
-- - - - - - 0x01FFFF 07:FFEF: FF        .byte $FF   ; 
+; bzk garbage
+- - - - - - 0x01FFD1 07:FFC1: 74        .byte $74, $B0, $A2, $B4, $89, $67, $35, $6D, $2B, $37, $B6, $45, $A5, $A9, $C5   ; 
+- - - - - - 0x01FFE0 07:FFD0: A4        .byte $A4, $42, $34, $26, $54, $44, $44, $04, $44, $00, $4A, $44, $00, $00, $00, $00   ; 
+- - - - - - 0x01FFF0 07:FFE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x020000 07:FFF0: 00        .byte $00   ; 
 
 
