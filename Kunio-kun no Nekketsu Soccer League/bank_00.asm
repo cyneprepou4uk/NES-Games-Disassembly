@@ -517,95 +517,95 @@ C - - - - - 0x00037A 00:836A: 18        CLC
 C - - - - - 0x00037B 00:836B: 6C 02 00  JMP (ram_0002)
 
 tbl_836E_lo:
-- D 0 - - - 0x00037E 00:836E: AE        .byte < ofs_83AE_C0
-- D 0 - - - 0x00037F 00:836F: B3        .byte < ofs_83B3_C1
-- D 0 - - - 0x000380 00:8370: BB        .byte < ofs_83BB_C2
-- D 0 - - - 0x000381 00:8371: BF        .byte < ofs_83BF_C3
-- D 0 - - - 0x000382 00:8372: E3        .byte < ofs_83E3_C4
-- D 0 - - - 0x000383 00:8373: E7        .byte < ofs_83E7_C5
-- - - - - - 0x000384 00:8374: FA        .byte < ofs_83FA_C6
-- D 0 - - - 0x000385 00:8375: 01        .byte < ofs_8401_C7
-- - - - - - 0x000386 00:8376: 0C        .byte < ofs_840C_C8
-- D 0 - - - 0x000387 00:8377: 13        .byte < ofs_8413_C9
-- D 0 - - - 0x000388 00:8378: 1C        .byte < ofs_841C_CA
-- D 0 - - - 0x000389 00:8379: 25        .byte < ofs_8425_CB
-- D 0 - - - 0x00038A 00:837A: 42        .byte < ofs_8442_CC
-- D 0 - - - 0x00038B 00:837B: 49        .byte < ofs_8449_CD
-- D 0 - - - 0x00038C 00:837C: FB        .byte < ofs_84FB_CE
-- D 0 - - - 0x00038D 00:837D: 0E        .byte < ofs_850E_CF
-- D 0 - - - 0x00038E 00:837E: 21        .byte < ofs_8521_D0
-- D 0 - - - 0x00038F 00:837F: 2F        .byte < ofs_852F_D1
-- D 0 - - - 0x000390 00:8380: 4C        .byte < ofs_854C_D2
-- D 0 - - - 0x000391 00:8381: 59        .byte < ofs_8559_D3
-- D 0 - - - 0x000392 00:8382: E4        .byte < ofs_84E4_D4
-- - - - - - 0x000393 00:8383: D6        .byte < ofs_84D6_D5
-- - - - - - 0x000394 00:8384: 2E        .byte < ofs_842E_D6
-- - - - - - 0x000395 00:8385: 38        .byte < ofs_8438_D7
-- D 0 - - - 0x000396 00:8386: CF        .byte < ofs_84CF_D8
-- - - - - - 0x000397 00:8387: B5        .byte < ofs_84B5_D9
-- D 0 - - - 0x000398 00:8388: C0        .byte < ofs_85C0_DA
-- D 0 - - - 0x000399 00:8389: D0        .byte < ofs_85D0_DB
-- - - - - - 0x00039A 00:838A: EC        .byte < ofs_85EC_DC
-- - - - - - 0x00039B 00:838B: F6        .byte < ofs_85F6_DD
-- D 0 - - - 0x00039C 00:838C: 00        .byte < ofs_8600_DE
-- - - - - - 0x00039D 00:838D: A9        .byte < ofs_84A9_DF
+- D 0 - - - 0x00037E 00:836E: AE        .byte < ofs_000_83AE_C0
+- D 0 - - - 0x00037F 00:836F: B3        .byte < ofs_000_83B3_C1
+- D 0 - - - 0x000380 00:8370: BB        .byte < ofs_000_83BB_C2
+- D 0 - - - 0x000381 00:8371: BF        .byte < ofs_000_83BF_C3
+- D 0 - - - 0x000382 00:8372: E3        .byte < ofs_000_83E3_C4
+- D 0 - - - 0x000383 00:8373: E7        .byte < ofs_000_83E7_C5
+- - - - - - 0x000384 00:8374: FA        .byte < ofs_000_83FA_C6
+- D 0 - - - 0x000385 00:8375: 01        .byte < ofs_000_8401_C7
+- - - - - - 0x000386 00:8376: 0C        .byte < ofs_000_840C_C8
+- D 0 - - - 0x000387 00:8377: 13        .byte < ofs_000_8413_C9
+- D 0 - - - 0x000388 00:8378: 1C        .byte < ofs_000_841C_CA
+- D 0 - - - 0x000389 00:8379: 25        .byte < ofs_000_8425_CB
+- D 0 - - - 0x00038A 00:837A: 42        .byte < ofs_000_8442_CC
+- D 0 - - - 0x00038B 00:837B: 49        .byte < ofs_000_8449_CD
+- D 0 - - - 0x00038C 00:837C: FB        .byte < ofs_000_84FB_CE
+- D 0 - - - 0x00038D 00:837D: 0E        .byte < ofs_000_850E_CF
+- D 0 - - - 0x00038E 00:837E: 21        .byte < ofs_000_8521_D0
+- D 0 - - - 0x00038F 00:837F: 2F        .byte < ofs_000_852F_D1
+- D 0 - - - 0x000390 00:8380: 4C        .byte < ofs_000_854C_D2
+- D 0 - - - 0x000391 00:8381: 59        .byte < ofs_000_8559_D3
+- D 0 - - - 0x000392 00:8382: E4        .byte < ofs_000_84E4_D4
+- - - - - - 0x000393 00:8383: D6        .byte < ofs_000_84D6_D5
+- - - - - - 0x000394 00:8384: 2E        .byte < ofs_000_842E_D6
+- - - - - - 0x000395 00:8385: 38        .byte < ofs_000_8438_D7
+- D 0 - - - 0x000396 00:8386: CF        .byte < ofs_000_84CF_D8
+- - - - - - 0x000397 00:8387: B5        .byte < ofs_000_84B5_D9
+- D 0 - - - 0x000398 00:8388: C0        .byte < ofs_000_85C0_DA
+- D 0 - - - 0x000399 00:8389: D0        .byte < ofs_000_85D0_DB
+- - - - - - 0x00039A 00:838A: EC        .byte < ofs_000_85EC_DC
+- - - - - - 0x00039B 00:838B: F6        .byte < ofs_000_85F6_DD
+- D 0 - - - 0x00039C 00:838C: 00        .byte < ofs_000_8600_DE
+- - - - - - 0x00039D 00:838D: A9        .byte < ofs_000_84A9_DF
 
 tbl_838E_hi:
-- D 0 - - - 0x00039E 00:838E: 83        .byte > ofs_83AE_C0
-- D 0 - - - 0x00039F 00:838F: 83        .byte > ofs_83B3_C1
-- D 0 - - - 0x0003A0 00:8390: 83        .byte > ofs_83BB_C2
-- D 0 - - - 0x0003A1 00:8391: 83        .byte > ofs_83BF_C3
-- D 0 - - - 0x0003A2 00:8392: 83        .byte > ofs_83E3_C4
-- D 0 - - - 0x0003A3 00:8393: 83        .byte > ofs_83E7_C5
-- - - - - - 0x0003A4 00:8394: 83        .byte > ofs_83FA_C6
-- D 0 - - - 0x0003A5 00:8395: 84        .byte > ofs_8401_C7
-- - - - - - 0x0003A6 00:8396: 84        .byte > ofs_840C_C8
-- D 0 - - - 0x0003A7 00:8397: 84        .byte > ofs_8413_C9
-- D 0 - - - 0x0003A8 00:8398: 84        .byte > ofs_841C_CA
-- D 0 - - - 0x0003A9 00:8399: 84        .byte > ofs_8425_CB
-- D 0 - - - 0x0003AA 00:839A: 84        .byte > ofs_8442_CC
-- D 0 - - - 0x0003AB 00:839B: 84        .byte > ofs_8449_CD
-- D 0 - - - 0x0003AC 00:839C: 84        .byte > ofs_84FB_CE
-- D 0 - - - 0x0003AD 00:839D: 85        .byte > ofs_850E_CF
-- D 0 - - - 0x0003AE 00:839E: 85        .byte > ofs_8521_D0
-- D 0 - - - 0x0003AF 00:839F: 85        .byte > ofs_852F_D1
-- D 0 - - - 0x0003B0 00:83A0: 85        .byte > ofs_854C_D2
-- D 0 - - - 0x0003B1 00:83A1: 85        .byte > ofs_8559_D3
-- D 0 - - - 0x0003B2 00:83A2: 84        .byte > ofs_84E4_D4
-- - - - - - 0x0003B3 00:83A3: 84        .byte > ofs_84D6_D5
-- - - - - - 0x0003B4 00:83A4: 84        .byte > ofs_842E_D6
-- - - - - - 0x0003B5 00:83A5: 84        .byte > ofs_8438_D7
-- D 0 - - - 0x0003B6 00:83A6: 84        .byte > ofs_84CF_D8
-- - - - - - 0x0003B7 00:83A7: 84        .byte > ofs_84B5_D9
-- D 0 - - - 0x0003B8 00:83A8: 85        .byte > ofs_85C0_DA
-- D 0 - - - 0x0003B9 00:83A9: 85        .byte > ofs_85D0_DB
-- - - - - - 0x0003BA 00:83AA: 85        .byte > ofs_85EC_DC
-- - - - - - 0x0003BB 00:83AB: 85        .byte > ofs_85F6_DD
-- D 0 - - - 0x0003BC 00:83AC: 86        .byte > ofs_8600_DE
-- - - - - - 0x0003BD 00:83AD: 84        .byte > ofs_84A9_DF
+- D 0 - - - 0x00039E 00:838E: 83        .byte > ofs_000_83AE_C0
+- D 0 - - - 0x00039F 00:838F: 83        .byte > ofs_000_83B3_C1
+- D 0 - - - 0x0003A0 00:8390: 83        .byte > ofs_000_83BB_C2
+- D 0 - - - 0x0003A1 00:8391: 83        .byte > ofs_000_83BF_C3
+- D 0 - - - 0x0003A2 00:8392: 83        .byte > ofs_000_83E3_C4
+- D 0 - - - 0x0003A3 00:8393: 83        .byte > ofs_000_83E7_C5
+- - - - - - 0x0003A4 00:8394: 83        .byte > ofs_000_83FA_C6
+- D 0 - - - 0x0003A5 00:8395: 84        .byte > ofs_000_8401_C7
+- - - - - - 0x0003A6 00:8396: 84        .byte > ofs_000_840C_C8
+- D 0 - - - 0x0003A7 00:8397: 84        .byte > ofs_000_8413_C9
+- D 0 - - - 0x0003A8 00:8398: 84        .byte > ofs_000_841C_CA
+- D 0 - - - 0x0003A9 00:8399: 84        .byte > ofs_000_8425_CB
+- D 0 - - - 0x0003AA 00:839A: 84        .byte > ofs_000_8442_CC
+- D 0 - - - 0x0003AB 00:839B: 84        .byte > ofs_000_8449_CD
+- D 0 - - - 0x0003AC 00:839C: 84        .byte > ofs_000_84FB_CE
+- D 0 - - - 0x0003AD 00:839D: 85        .byte > ofs_000_850E_CF
+- D 0 - - - 0x0003AE 00:839E: 85        .byte > ofs_000_8521_D0
+- D 0 - - - 0x0003AF 00:839F: 85        .byte > ofs_000_852F_D1
+- D 0 - - - 0x0003B0 00:83A0: 85        .byte > ofs_000_854C_D2
+- D 0 - - - 0x0003B1 00:83A1: 85        .byte > ofs_000_8559_D3
+- D 0 - - - 0x0003B2 00:83A2: 84        .byte > ofs_000_84E4_D4
+- - - - - - 0x0003B3 00:83A3: 84        .byte > ofs_000_84D6_D5
+- - - - - - 0x0003B4 00:83A4: 84        .byte > ofs_000_842E_D6
+- - - - - - 0x0003B5 00:83A5: 84        .byte > ofs_000_8438_D7
+- D 0 - - - 0x0003B6 00:83A6: 84        .byte > ofs_000_84CF_D8
+- - - - - - 0x0003B7 00:83A7: 84        .byte > ofs_000_84B5_D9
+- D 0 - - - 0x0003B8 00:83A8: 85        .byte > ofs_000_85C0_DA
+- D 0 - - - 0x0003B9 00:83A9: 85        .byte > ofs_000_85D0_DB
+- - - - - - 0x0003BA 00:83AA: 85        .byte > ofs_000_85EC_DC
+- - - - - - 0x0003BB 00:83AB: 85        .byte > ofs_000_85F6_DD
+- D 0 - - - 0x0003BC 00:83AC: 86        .byte > ofs_000_8600_DE
+- - - - - - 0x0003BD 00:83AD: 84        .byte > ofs_000_84A9_DF
 
 
 
-ofs_83AE_C0:
+ofs_000_83AE_C0:
 C - - J - - 0x0003BE 00:83AE: B1 00     LDA (ram_0000),Y
 C - - - - - 0x0003C0 00:83B0: 4C 90 82  JMP loc_8290
 
 
 
-ofs_83B3_C1:
+ofs_000_83B3_C1:
 C - - J - - 0x0003C3 00:83B3: B1 00     LDA (ram_0000),Y
 C - - - - - 0x0003C5 00:83B5: 7D 39 07  ADC ram_0739,X
 C - - - - - 0x0003C8 00:83B8: 4C 90 82  JMP loc_8290
 
 
 
-ofs_83BB_C2:
+ofs_000_83BB_C2:
 C - - J - - 0x0003CB 00:83BB: B1 00     LDA (ram_0000),Y
 C - - - - - 0x0003CD 00:83BD: 90 16     BCC bra_83D5
 
 
 
-ofs_83BF_C3:
+ofs_000_83BF_C3:
 C - - J - - 0x0003CF 00:83BF: B1 00     LDA (ram_0000),Y
 C - - - - - 0x0003D1 00:83C1: 30 0A     BMI bra_83CD
 C - - - - - 0x0003D3 00:83C3: 7D 42 07  ADC ram_0742,X
@@ -627,13 +627,13 @@ C - - - - - 0x0003F2 00:83E2: 60        RTS
 
 
 
-ofs_83E3_C4:
+ofs_000_83E3_C4:
 C - - J - - 0x0003F3 00:83E3: B1 00     LDA (ram_0000),Y
 C - - - - - 0x0003F5 00:83E5: 90 05     BCC bra_83EC
 
 
 
-ofs_83E7_C5:
+ofs_000_83E7_C5:
 C - - J - - 0x0003F7 00:83E7: B1 00     LDA (ram_0000),Y
 C - - - - - 0x0003F9 00:83E9: 7D 4B 07  ADC ram_074B,X
 bra_83EC:
@@ -647,7 +647,7 @@ C - - - - - 0x000409 00:83F9: 60        RTS
 
 
 
-ofs_83FA_C6:
+ofs_000_83FA_C6:
 - - - - - - 0x00040A 00:83FA: B1 00     LDA (ram_0000),Y
 - - - - - - 0x00040C 00:83FC: 9D 8E 07  STA ram_078E,X
 - - - - - - 0x00040F 00:83FF: C8        INY
@@ -655,7 +655,7 @@ ofs_83FA_C6:
 
 
 
-ofs_8401_C7:
+ofs_000_8401_C7:
 C - - J - - 0x000411 00:8401: B1 00     LDA (ram_0000),Y
 C - - - - - 0x000413 00:8403: 9D 9E 07  STA ram_079E,X
 C - - - - - 0x000416 00:8406: BD 8A 07  LDA ram_078A,X
@@ -663,7 +663,7 @@ C - - - - - 0x000419 00:8409: 4C 70 82  JMP loc_8270
 
 
 
-ofs_840C_C8:
+ofs_000_840C_C8:
 - - - - - - 0x00041C 00:840C: B1 00     LDA (ram_0000),Y
 - - - - - - 0x00041E 00:840E: 9D 9A 07  STA ram_079A,X
 - - - - - - 0x000421 00:8411: C8        INY
@@ -671,7 +671,7 @@ ofs_840C_C8:
 
 
 
-ofs_8413_C9:
+ofs_000_8413_C9:
 C - - J - - 0x000423 00:8413: BD 8A 07  LDA ram_078A,X
 C - - - - - 0x000426 00:8416: 9D 30 07  STA ram_0730,X
 C - - - - - 0x000429 00:8419: 38        SEC
@@ -679,7 +679,7 @@ C - - - - - 0x00042A 00:841A: B0 09     BCS bra_8425
 
 
 
-ofs_841C_CA:
+ofs_000_841C_CA:
 C - - J - - 0x00042C 00:841C: BD 0C 07  LDA ram_070C,X
 C - - - - - 0x00042F 00:841F: 09 10     ORA #$10
 C - - - - - 0x000431 00:8421: 9D 0C 07  STA ram_070C,X
@@ -688,7 +688,7 @@ C - - - - - 0x000434 00:8424: 60        RTS
 
 
 bra_8425:
-ofs_8425_CB:
+ofs_000_8425_CB:
 C - - J - - 0x000435 00:8425: BD 0C 07  LDA ram_070C,X
 C - - - - - 0x000438 00:8428: 09 80     ORA #$80
 C - - - - - 0x00043A 00:842A: 9D 0C 07  STA ram_070C,X
@@ -696,7 +696,7 @@ C - - - - - 0x00043D 00:842D: 60        RTS
 
 
 
-ofs_842E_D6:
+ofs_000_842E_D6:
 - - - - - - 0x00043E 00:842E: BD 15 07  LDA ram_0715,X
 - - - - - - 0x000441 00:8431: 09 08     ORA #$08
 - - - - - - 0x000443 00:8433: 9D 15 07  STA ram_0715,X
@@ -704,7 +704,7 @@ ofs_842E_D6:
 
 
 
-ofs_8438_D7:
+ofs_000_8438_D7:
 - - - - - - 0x000448 00:8438: BD 15 07  LDA ram_0715,X
 - - - - - - 0x00044B 00:843B: 29 F7     AND #$F7
 - - - - - - 0x00044D 00:843D: 9D 15 07  STA ram_0715,X
@@ -712,7 +712,7 @@ ofs_8438_D7:
 
 
 
-ofs_8442_CC:
+ofs_000_8442_CC:
 C - - J - - 0x000452 00:8442: B1 00     LDA (ram_0000),Y
 C - - - - - 0x000454 00:8444: 8D 05 07  STA ram_0705
 C - - - - - 0x000457 00:8447: C8        INY
@@ -720,7 +720,7 @@ C - - - - - 0x000458 00:8448: 60        RTS
 
 
 
-ofs_8449_CD:
+ofs_000_8449_CD:
 C - - J - - 0x000459 00:8449: E0 03     CPX #$03
 C - - - - - 0x00045B 00:844B: F0 0B     BEQ bra_8458
 C - - - - - 0x00045D 00:844D: 8A        TXA
@@ -784,7 +784,7 @@ C - - - - - 0x0004B8 00:84A8: 60        RTS
 
 
 
-ofs_84A9_DF:
+ofs_000_84A9_DF:
 - - - - - - 0x0004B9 00:84A9: B1 00     LDA (ram_0000),Y
 - - - - - - 0x0004BB 00:84AB: 20 9E 82  JSR sub_829E
 - - - - - - 0x0004BE 00:84AE: B1 00     LDA (ram_0000),Y
@@ -794,7 +794,7 @@ ofs_84A9_DF:
 
 
 
-ofs_84B5_D9:
+ofs_000_84B5_D9:
 - - - - - - 0x0004C5 00:84B5: B1 00     LDA (ram_0000),Y
 - - - - - - 0x0004C7 00:84B7: 8D E6 07  STA ram_07E6
 - - - - - - 0x0004CA 00:84BA: A5 00     LDA ram_0000
@@ -813,7 +813,7 @@ ofs_84B5_D9:
 
 
 
-ofs_84CF_D8:
+ofs_000_84CF_D8:
 C - - J - - 0x0004DF 00:84CF: B1 00     LDA (ram_0000),Y
 C - - - - - 0x0004E1 00:84D1: 9D A2 07  STA ram_07A2,X
 C - - - - - 0x0004E4 00:84D4: C8        INY
@@ -821,7 +821,7 @@ C - - - - - 0x0004E5 00:84D5: 60        RTS
 
 
 
-ofs_84D6_D5:
+ofs_000_84D6_D5:
 - - - - - - 0x0004E6 00:84D6: A9 00     LDA #$00
 - - - - - - 0x0004E8 00:84D8: 8D 15 40  STA $4015
 - - - - - - 0x0004EB 00:84DB: AD E5 07  LDA ram_07E5
@@ -831,7 +831,7 @@ ofs_84D6_D5:
 
 
 
-ofs_84E4_D4:
+ofs_000_84E4_D4:
 C - - J - - 0x0004F4 00:84E4: 8A        TXA
 C - - - - - 0x0004F5 00:84E5: 0A        ASL
 C - - - - - 0x0004F6 00:84E6: 0A        ASL
@@ -848,7 +848,7 @@ C - - - - - 0x00050A 00:84FA: 60        RTS
 
 
 
-ofs_84FB_CE:
+ofs_000_84FB_CE:
 C - - J - - 0x00050B 00:84FB: BD 54 07  LDA ram_0754,X
 C - - - - - 0x00050E 00:84FE: D0 05     BNE bra_8505
 C - - - - - 0x000510 00:8500: B1 00     LDA (ram_0000),Y
@@ -863,7 +863,7 @@ C - - - - - 0x00051D 00:850D: 60        RTS
 
 
 
-ofs_850E_CF:
+ofs_000_850E_CF:
 C - - J - - 0x00051E 00:850E: BD 5D 07  LDA ram_075D,X
 C - - - - - 0x000521 00:8511: D0 05     BNE bra_8518
 C - - - - - 0x000523 00:8513: B1 00     LDA (ram_0000),Y
@@ -879,7 +879,7 @@ C - - - - - 0x000530 00:8520: 60        RTS
 
 
 bra_8521:
-ofs_8521_D0:
+ofs_000_8521_D0:
 C - - - - - 0x000531 00:8521: B1 00     LDA (ram_0000),Y
 C - - - - - 0x000533 00:8523: 48        PHA
 C - - - - - 0x000534 00:8524: C8        INY
@@ -892,7 +892,7 @@ C - - - - - 0x00053E 00:852E: 60        RTS
 
 
 
-ofs_852F_D1:
+ofs_000_852F_D1:
 C - - J - - 0x00053F 00:852F: B1 00     LDA (ram_0000),Y
 C - - - - - 0x000541 00:8531: 48        PHA
 C - - - - - 0x000542 00:8532: C8        INY
@@ -913,7 +913,7 @@ C - - - - - 0x00055B 00:854B: 60        RTS
 
 
 
-ofs_854C_D2:
+ofs_000_854C_D2:
 C - - J - - 0x00055C 00:854C: BD 66 07  LDA ram_0766,X
 C - - - - - 0x00055F 00:854F: 85 00     STA ram_0000
 C - - - - - 0x000561 00:8551: BD 6F 07  LDA ram_076F,X
@@ -924,7 +924,7 @@ C - - - - - 0x000568 00:8558: 60        RTS
 
 
 sub_8559:
-ofs_8559_D3:
+ofs_000_8559_D3:
 C - - J - - 0x000569 00:8559: A9 80     LDA #$80
 C - - - - - 0x00056B 00:855B: 9D 0C 07  STA ram_070C,X
 C - - - - - 0x00056E 00:855E: A9 00     LDA #$00
@@ -978,7 +978,7 @@ C - - - - - 0x0005CF 00:85BF: 60        RTS
 
 
 
-ofs_85C0_DA:
+ofs_000_85C0_DA:
 C - - J - - 0x0005D0 00:85C0: B1 00     LDA (ram_0000),Y
 C - - - - - 0x0005D2 00:85C2: 9D 78 07  STA ram_0778,X
 C - - - - - 0x0005D5 00:85C5: BD 15 07  LDA ram_0715,X
@@ -990,7 +990,7 @@ C - - - - - 0x0005DF 00:85CF: 60        RTS
 
 
 
-ofs_85D0_DB:
+ofs_000_85D0_DB:
 C - - J - - 0x0005E0 00:85D0: B1 00     LDA (ram_0000),Y
 C - - - - - 0x0005E2 00:85D2: 9D B6 07  STA ram_07B6,X
 C - - - - - 0x0005E5 00:85D5: C8        INY
@@ -1008,7 +1008,7 @@ C - - - - - 0x0005FB 00:85EB: 60        RTS
 
 
 
-ofs_85EC_DC:
+ofs_000_85EC_DC:
 - - - - - - 0x0005FC 00:85EC: BD 15 07  LDA ram_0715,X
 - - - - - - 0x0005FF 00:85EF: 09 10     ORA #$10
 - - - - - - 0x000601 00:85F1: 9D 15 07  STA ram_0715,X
@@ -1017,7 +1017,7 @@ ofs_85EC_DC:
 
 
 
-ofs_85F6_DD:
+ofs_000_85F6_DD:
 - - - - - - 0x000606 00:85F6: BD 15 07  LDA ram_0715,X
 - - - - - - 0x000609 00:85F9: 29 EF     AND #$EF
 - - - - - - 0x00060B 00:85FB: 9D 15 07  STA ram_0715,X
@@ -1026,7 +1026,7 @@ ofs_85F6_DD:
 
 
 
-ofs_8600_DE:
+ofs_000_8600_DE:
 C - - J - - 0x000610 00:8600: B1 00     LDA (ram_0000),Y
 C - - - - - 0x000612 00:8602: 8D 41 07  STA ram_0741
 C - - - - - 0x000615 00:8605: C8        INY
@@ -11795,20 +11795,20 @@ loc_B059:
 C D 1 - - - 0x003069 00:B059: 38        SEC
 C - - - - - 0x00306A 00:B05A: E9 F0     SBC #$F0
 C - - - - - 0x00306C 00:B05C: 20 53 C0  JSR sub_0x01C063
-- D 1 - I - 0x00306F 00:B05F: 73 B0     .word ofs_B073_F0
-- D 1 - I - 0x003071 00:B061: 7E B0     .word ofs_B07E_F1
-- D 1 - I - 0x003073 00:B063: 89 B0     .word ofs_B089_F2
-- - - - - - 0x003075 00:B065: 92 B0     .word ofs_B092_F3
-- D 1 - I - 0x003077 00:B067: A4 B0     .word ofs_B0A4_F4
-- D 1 - I - 0x003079 00:B069: E9 B0     .word ofs_B0E9_F5
-- - - - - - 0x00307B 00:B06B: F6 B0     .word ofs_B0F6_F6_RTS
-- D 1 - I - 0x00307D 00:B06D: F7 B0     .word ofs_B0F7_F7
-- D 1 - I - 0x00307F 00:B06F: 0F B1     .word ofs_B10F_F8
-- - - - - - 0x003081 00:B071: A0 B0     .word ofs_B0A0_F9
+- D 1 - I - 0x00306F 00:B05F: 73 B0     .word ofs_001_B073_F0
+- D 1 - I - 0x003071 00:B061: 7E B0     .word ofs_001_B07E_F1
+- D 1 - I - 0x003073 00:B063: 89 B0     .word ofs_001_B089_F2
+- - - - - - 0x003075 00:B065: 92 B0     .word ofs_001_B092_F3
+- D 1 - I - 0x003077 00:B067: A4 B0     .word ofs_001_B0A4_F4
+- D 1 - I - 0x003079 00:B069: E9 B0     .word ofs_001_B0E9_F5
+- - - - - - 0x00307B 00:B06B: F6 B0     .word ofs_001_B0F6_F6_RTS
+- D 1 - I - 0x00307D 00:B06D: F7 B0     .word ofs_001_B0F7_F7
+- D 1 - I - 0x00307F 00:B06F: 0F B1     .word ofs_001_B10F_F8
+- - - - - - 0x003081 00:B071: A0 B0     .word ofs_001_B0A0_F9
 
 
 
-ofs_B073_F0:
+ofs_001_B073_F0:
 C - - J - - 0x003083 00:B073: A9 84     LDA #$84
 C - - - - - 0x003085 00:B075: 8D 05 06  STA ram_0605
 C - - - - - 0x003088 00:B078: A9 FF     LDA #$FF
@@ -11817,7 +11817,7 @@ C - - - - - 0x00308D 00:B07D: 60        RTS
 
 
 
-ofs_B07E_F1:
+ofs_001_B07E_F1:
 C - - J - - 0x00308E 00:B07E: A9 88     LDA #$88
 C - - - - - 0x003090 00:B080: 8D 05 06  STA ram_0605
 C - - - - - 0x003093 00:B083: A9 FF     LDA #$FF
@@ -11826,7 +11826,7 @@ C - - - - - 0x003098 00:B088: 60        RTS
 
 
 
-ofs_B089_F2:
+ofs_001_B089_F2:
 C - - J - - 0x003099 00:B089: AD 05 06  LDA ram_0605
 C - - - - - 0x00309C 00:B08C: 09 20     ORA #$20
 C - - - - - 0x00309E 00:B08E: 8D 05 06  STA ram_0605
@@ -11834,7 +11834,7 @@ C - - - - - 0x0030A1 00:B091: 60        RTS
 
 
 
-ofs_B092_F3:
+ofs_001_B092_F3:
 - - - - - - 0x0030A2 00:B092: A9 0F     LDA #$0F
 bra_B094:
 - - - - - - 0x0030A4 00:B094: 8D 0D 06  STA ram_060D
@@ -11845,13 +11845,13 @@ bra_B094:
 
 
 
-ofs_B0A0_F9:
+ofs_001_B0A0_F9:
 - - - - - - 0x0030B0 00:B0A0: A9 4A     LDA #$4A
 - - - - - - 0x0030B2 00:B0A2: D0 F0     BNE bra_B094
 
 
 
-ofs_B0A4_F4:
+ofs_001_B0A4_F4:
 C - - J - - 0x0030B4 00:B0A4: AD 05 06  LDA ram_0605
 C - - - - - 0x0030B7 00:B0A7: 09 10     ORA #$10
 C - - - - - 0x0030B9 00:B0A9: 8D 05 06  STA ram_0605
@@ -11884,7 +11884,7 @@ C - - - - - 0x0030F8 00:B0E8: 60        RTS
 
 
 
-ofs_B0E9_F5:
+ofs_001_B0E9_F5:
 C - - J - - 0x0030F9 00:B0E9: A9 00     LDA #$00
 C - - - - - 0x0030FB 00:B0EB: 8D 05 06  STA ram_0605
 C - - - - - 0x0030FE 00:B0EE: A5 28     LDA ram_0028
@@ -11895,12 +11895,12 @@ C - - - - - 0x003105 00:B0F5: 60        RTS
 
 
 
-ofs_B0F6_F6_RTS:
+ofs_001_B0F6_F6_RTS:
 - - - - - - 0x003106 00:B0F6: 60        RTS
 
 
 
-ofs_B0F7_F7:
+ofs_001_B0F7_F7:
 C - - J - - 0x003107 00:B0F7: AD 0F 06  LDA ram_060F
 C - - - - - 0x00310A 00:B0FA: 18        CLC
 C - - - - - 0x00310B 00:B0FB: 69 40     ADC #$40
@@ -11914,7 +11914,7 @@ C - - - - - 0x00311E 00:B10E: 60        RTS
 
 
 
-ofs_B10F_F8:
+ofs_001_B10F_F8:
 C - - J - - 0x00311F 00:B10F: AD 05 06  LDA ram_0605
 C - - - - - 0x003122 00:B112: 29 F3     AND #$F3
 C - - - - - 0x003124 00:B114: 8D 05 06  STA ram_0605
@@ -15404,10 +15404,10 @@ C - - - - - 0x003F1D 00:BF0D: 85 1C     STA ram_001C
 C - - - - - 0x003F1F 00:BF0F: BD 1F BF  LDA tbl_BF1F,X
 C - - - - - 0x003F22 00:BF12: 29 03     AND #$03
 C - - - - - 0x003F24 00:BF14: 20 53 C0  JSR sub_0x01C063
-- D 1 - I - 0x003F27 00:BF17: 39 BF     .word ofs_BF39_00
-- D 1 - I - 0x003F29 00:BF19: 45 BF     .word ofs_BF45_01
-- D 1 - I - 0x003F2B 00:BF1B: 54 BF     .word ofs_BF54_02
-- D 1 - I - 0x003F2D 00:BF1D: 5D BF     .word ofs_BF5D_03
+- D 1 - I - 0x003F27 00:BF17: 39 BF     .word ofs_002_BF39_00
+- D 1 - I - 0x003F29 00:BF19: 45 BF     .word ofs_002_BF45_01
+- D 1 - I - 0x003F2B 00:BF1B: 54 BF     .word ofs_002_BF54_02
+- D 1 - I - 0x003F2D 00:BF1D: 5D BF     .word ofs_002_BF5D_03
 
 
 
@@ -15438,7 +15438,7 @@ C - - - - - 0x003F48 00:BF38: 60        RTS
 
 
 
-ofs_BF39_00:
+ofs_002_BF39_00:
 C - - J - - 0x003F49 00:BF39: 20 7C BF  JSR sub_BF7C
 C - - - - - 0x003F4C 00:BF3C: 20 AA BF  JSR sub_BFAA
 C - - - - - 0x003F4F 00:BF3F: 20 BA BF  JSR sub_BFBA
@@ -15446,7 +15446,7 @@ C - - - - - 0x003F52 00:BF42: 4C 2B BF  JMP loc_BF2B
 
 
 
-ofs_BF45_01:
+ofs_002_BF45_01:
 C - - J - - 0x003F55 00:BF45: 20 7C BF  JSR sub_BF7C
 C - - - - - 0x003F58 00:BF48: 20 C6 BF  JSR sub_BFC6
 C - - - - - 0x003F5B 00:BF4B: 20 AA BF  JSR sub_BFAA
@@ -15455,14 +15455,14 @@ C - - - - - 0x003F61 00:BF51: 4C 2B BF  JMP loc_BF2B
 
 
 
-ofs_BF54_02:
+ofs_002_BF54_02:
 C - - J - - 0x003F64 00:BF54: 20 BA BF  JSR sub_BFBA
 C - - - - - 0x003F67 00:BF57: 20 B2 BF  JSR sub_BFB2
 C - - - - - 0x003F6A 00:BF5A: 4C 2B BF  JMP loc_BF2B
 
 
 
-ofs_BF5D_03:
+ofs_002_BF5D_03:
 C - - J - - 0x003F6D 00:BF5D: 20 DE BF  JSR sub_BFDE
 C - - - - - 0x003F70 00:BF60: 4C 2B BF  JMP loc_BF2B
 

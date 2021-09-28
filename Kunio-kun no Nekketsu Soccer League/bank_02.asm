@@ -10692,28 +10692,28 @@ sub_AA66:
 loc_AA6B:
 C D 1 - - - 0x00AA7B 02:AA6B: A5 59     LDA ram_подтип_экрана
 C - - - - - 0x00AA7D 02:AA6D: 20 53 C0  JSR sub_0x01C063
-- D 1 - I - 0x00AA80 02:AA70: 88 AA     .word ofs_AA88_00
-- D 1 - I - 0x00AA82 02:AA72: D9 AA     .word ofs_AAD9_01
-- D 1 - I - 0x00AA84 02:AA74: 78 AB     .word ofs_AB78_02
-- D 1 - I - 0x00AA86 02:AA76: DE AB     .word ofs_ABDE_03
-- D 1 - I - 0x00AA88 02:AA78: FE AB     .word ofs_ABFE_04
-- D 1 - I - 0x00AA8A 02:AA7A: 43 AC     .word ofs_AC43_05
-- D 1 - I - 0x00AA8C 02:AA7C: A9 AC     .word ofs_ACA9_06
-- D 1 - I - 0x00AA8E 02:AA7E: BD AC     .word ofs_ACBD_07
-- D 1 - I - 0x00AA90 02:AA80: 43 AC     .word ofs_AC43_08
-- D 1 - I - 0x00AA92 02:AA82: A9 AC     .word ofs_ACA9_09
-- D 1 - I - 0x00AA94 02:AA84: BD AC     .word ofs_ACBD_0A
-- D 1 - I - 0x00AA96 02:AA86: CE AB     .word ofs_ABCE_0B
+- D 1 - I - 0x00AA80 02:AA70: 88 AA     .word ofs_005_AA88_00
+- D 1 - I - 0x00AA82 02:AA72: D9 AA     .word ofs_005_AAD9_01
+- D 1 - I - 0x00AA84 02:AA74: 78 AB     .word ofs_005_AB78_02
+- D 1 - I - 0x00AA86 02:AA76: DE AB     .word ofs_005_ABDE_03
+- D 1 - I - 0x00AA88 02:AA78: FE AB     .word ofs_005_ABFE_04
+- D 1 - I - 0x00AA8A 02:AA7A: 43 AC     .word ofs_005_AC43_05
+- D 1 - I - 0x00AA8C 02:AA7C: A9 AC     .word ofs_005_ACA9_06
+- D 1 - I - 0x00AA8E 02:AA7E: BD AC     .word ofs_005_ACBD_07
+- D 1 - I - 0x00AA90 02:AA80: 43 AC     .word ofs_005_AC43_08
+- D 1 - I - 0x00AA92 02:AA82: A9 AC     .word ofs_005_ACA9_09
+- D 1 - I - 0x00AA94 02:AA84: BD AC     .word ofs_005_ACBD_0A
+- D 1 - I - 0x00AA96 02:AA86: CE AB     .word ofs_005_ABCE_0B
 
 
 
-ofs_AA88_00:
+ofs_005_AA88_00:
 C - - J - - 0x00AA98 02:AA88: A9 80     LDA #$80
 C - - - - - 0x00AA9A 02:AA8A: 85 4F     STA ram_флаг_NMI
 C - - - - - 0x00AA9C 02:AA8C: 20 49 AE  JSR sub_AE49
 C - - - - - 0x00AA9F 02:AA8F: 20 3D AE  JSR sub_AE3D
 C - - - - - 0x00AAA2 02:AA92: 20 3D AE  JSR sub_AE3D
-ofs_AA95_08:
+ofs_013_AA95_08:
 C - - - - - 0x00AAA5 02:AA95: A9 00     LDA #$00
 C - - - - - 0x00AAA7 02:AA97: 20 68 C0  JSR sub_0x01C078
 C - - - - - 0x00AAAA 02:AA9A: 20 62 C0  JSR sub_0x01C072
@@ -10745,8 +10745,8 @@ C - - - - - 0x00AAE8 02:AAD8: 60        RTS
 
 
 
-ofs_AAD9_09:
-ofs_AAD9_01:
+ofs_013_AAD9_09:
+ofs_005_AAD9_01:
 C - - J - - 0x00AAE9 02:AAD9: 20 01 AE  JSR sub_AE01
 C - - - - - 0x00AAEC 02:AADC: 2C B2 05  BIT ram_флаг_яркости
 C - - - - - 0x00AAEF 02:AADF: 30 03     BMI bra_AAE4
@@ -10865,7 +10865,7 @@ tbl_AB48:
 
 
 
-ofs_AB78_02:
+ofs_005_AB78_02:
 C - - J - - 0x00AB88 02:AB78: 20 3D AE  JSR sub_AE3D
 C - - - - - 0x00AB8B 02:AB7B: 20 49 AE  JSR sub_AE49
 C - - - - - 0x00AB8E 02:AB7E: A9 0E     LDA #$0E
@@ -10905,7 +10905,7 @@ C - - - - - 0x00ABDD 02:ABCD: 60        RTS
 
 
 
-ofs_ABCE_0B:
+ofs_005_ABCE_0B:
 C - - J - - 0x00ABDE 02:ABCE: 20 33 B0  JSR sub_B033
 C - - - - - 0x00ABE1 02:ABD1: 20 5C C0  JSR sub_0x01C06C
 C - - - - - 0x00ABE4 02:ABD4: 2C B2 05  BIT ram_флаг_яркости
@@ -10917,7 +10917,7 @@ C - - - - - 0x00ABED 02:ABDD: 60        RTS
 
 
 
-ofs_ABDE_03:
+ofs_005_ABDE_03:
 C - - J - - 0x00ABEE 02:ABDE: 20 33 B0  JSR sub_B033
 C - - - - - 0x00ABF1 02:ABE1: 20 7C AE  JSR sub_AE7C
 C - - - - - 0x00ABF4 02:ABE4: 30 10     BMI bra_ABF6
@@ -10937,7 +10937,7 @@ C - - - - - 0x00AC0D 02:ABFD: 60        RTS
 
 
 
-ofs_ABFE_04:
+ofs_005_ABFE_04:
 C - - J - - 0x00AC0E 02:ABFE: A9 01     LDA #$01
 C - - - - - 0x00AC10 02:AC00: 8D 57 00  STA a: ram_опция_режим_сложность
 C - - - - - 0x00AC13 02:AC03: A9 00     LDA #$00
@@ -10973,8 +10973,8 @@ C - - - - - 0x00AC52 02:AC42: 60        RTS
 
 
 
-ofs_AC43_05:
-ofs_AC43_08:
+ofs_005_AC43_05:
+ofs_005_AC43_08:
 C - - J - - 0x00AC53 02:AC43: 20 3D AE  JSR sub_AE3D
 C - - - - - 0x00AC56 02:AC46: 20 49 AE  JSR sub_AE49
 C - - - - - 0x00AC59 02:AC49: A9 00     LDA #$00
@@ -11020,8 +11020,8 @@ C - - - - - 0x00ACB8 02:ACA8: 60        RTS
 
 
 
-ofs_ACA9_06:
-ofs_ACA9_09:
+ofs_005_ACA9_06:
+ofs_005_ACA9_09:
 C - - J - - 0x00ACB9 02:ACA9: 20 91 AD  JSR sub_AD91
 C - - - - - 0x00ACBC 02:ACAC: 20 2F AA  JSR sub_AA2F
 C - - - - - 0x00ACBF 02:ACAF: 20 1B AA  JSR sub_AA1B
@@ -11034,8 +11034,8 @@ C - - - - - 0x00ACCC 02:ACBC: 60        RTS
 
 
 
-ofs_ACBD_07:
-ofs_ACBD_0A:
+ofs_005_ACBD_07:
+ofs_005_ACBD_0A:
 C - - J - - 0x00ACCD 02:ACBD: 20 9B AE  JSR sub_AE9B
 C - - - - - 0x00ACD0 02:ACC0: 20 F8 AC  JSR sub_ACF8
 C - - - - - 0x00ACD3 02:ACC3: 20 20 AA  JSR sub_AA20
@@ -11079,13 +11079,13 @@ C - - - - - 0x00AD17 02:AD07: A9 80     LDA #$80
 C - - - - - 0x00AD19 02:AD09: 8D 89 05  STA ram_таймер_демо_lo
 C - - - - - 0x00AD1C 02:AD0C: A5 95     LDA ram_номер_кадра_анимации + 1
 C - - - - - 0x00AD1E 02:AD0E: 20 53 C0  JSR sub_0x01C063
-- D 1 - I - 0x00AD21 02:AD11: 17 AD     .word ofs_AD17_00
-- D 1 - I - 0x00AD23 02:AD13: 28 AD     .word ofs_AD28_01
-- D 1 - I - 0x00AD25 02:AD15: 3B AD     .word ofs_AD3B_02
+- D 1 - I - 0x00AD21 02:AD11: 17 AD     .word ofs_006_AD17_00
+- D 1 - I - 0x00AD23 02:AD13: 28 AD     .word ofs_006_AD28_01
+- D 1 - I - 0x00AD25 02:AD15: 3B AD     .word ofs_006_AD3B_02
 
 
 
-ofs_AD17_00:
+ofs_006_AD17_00:
 C - - J - - 0x00AD27 02:AD17: 20 91 AD  JSR sub_AD91
 C - - - - - 0x00AD2A 02:AD1A: AD 27 03  LDA ram_игрок_X_hi
 C - - - - - 0x00AD2D 02:AD1D: D0 1B     BNE bra_AD3A_RTS
@@ -11096,7 +11096,7 @@ C - - - - - 0x00AD36 02:AD26: B0 10     BCS bra_AD38
 
 
 
-ofs_AD28_01:
+ofs_006_AD28_01:
 C - - J - - 0x00AD38 02:AD28: A5 08     LDA ram_одноразовые_кнопки
 C - - - - - 0x00AD3A 02:AD2A: D0 0C     BNE bra_AD38
 C - - - - - 0x00AD3C 02:AD2C: AD 14 03  LDA ram_игрок_X_lo
@@ -11111,7 +11111,7 @@ C - - - - - 0x00AD4A 02:AD3A: 60        RTS
 
 
 
-ofs_AD3B_02:
+ofs_006_AD3B_02:
 C - - J - - 0x00AD4B 02:AD3B: A0 E0     LDY #$E0
 C - - - - - 0x00AD4D 02:AD3D: AD 14 03  LDA ram_игрок_X_lo
 C - - - - - 0x00AD50 02:AD40: C9 E0     CMP #$E0
@@ -11413,28 +11413,28 @@ tbl_AEE5:
 loc_AEF7_сценка_кунио:
 C D 1 - - - 0x00AF07 02:AEF7: A5 9E     LDA ram_сценка_кунио
 C - - - - - 0x00AF09 02:AEF9: 20 53 C0  JSR sub_0x01C063
-- D 1 - I - 0x00AF0C 02:AEFC: 04 AF     .word ofs_AF04_00
-- D 1 - I - 0x00AF0E 02:AEFE: 04 AF     .word ofs_AF04_01
-- D 1 - I - 0x00AF10 02:AF00: 96 AF     .word ofs_AF96_02
-- D 1 - I - 0x00AF12 02:AF02: F4 AF     .word ofs_AFF4_03
+- D 1 - I - 0x00AF0C 02:AEFC: 04 AF     .word ofs_007_AF04_00
+- D 1 - I - 0x00AF0E 02:AEFE: 04 AF     .word ofs_007_AF04_01
+- D 1 - I - 0x00AF10 02:AF00: 96 AF     .word ofs_007_AF96_02
+- D 1 - I - 0x00AF12 02:AF02: F4 AF     .word ofs_007_AFF4_03
 
 
 
-ofs_AF04_00:
-ofs_AF04_01:
+ofs_007_AF04_00:
+ofs_007_AF04_01:
 C - - J - - 0x00AF14 02:AF04: A5 95     LDA ram_номер_кадра_анимации + 1
 C - - - - - 0x00AF16 02:AF06: 20 53 C0  JSR sub_0x01C063
-- D 1 - I - 0x00AF19 02:AF09: 17 AF     .word ofs_AF17_00
-- D 1 - I - 0x00AF1B 02:AF0B: 2B AF     .word ofs_AF2B_01
-- D 1 - I - 0x00AF1D 02:AF0D: 32 AF     .word ofs_AF32_02
-- D 1 - I - 0x00AF1F 02:AF0F: 6A AF     .word ofs_AF6A_03
-- D 1 - I - 0x00AF21 02:AF11: 7B AF     .word ofs_AF7B_04
-- D 1 - I - 0x00AF23 02:AF13: 8A AF     .word ofs_AF8A_05
-- D 1 - I - 0x00AF25 02:AF15: 2A AF     .word ofs_AF2A_06_RTS
+- D 1 - I - 0x00AF19 02:AF09: 17 AF     .word ofs_008_AF17_00
+- D 1 - I - 0x00AF1B 02:AF0B: 2B AF     .word ofs_008_AF2B_01
+- D 1 - I - 0x00AF1D 02:AF0D: 32 AF     .word ofs_008_AF32_02
+- D 1 - I - 0x00AF1F 02:AF0F: 6A AF     .word ofs_008_AF6A_03
+- D 1 - I - 0x00AF21 02:AF11: 7B AF     .word ofs_008_AF7B_04
+- D 1 - I - 0x00AF23 02:AF13: 8A AF     .word ofs_008_AF8A_05
+- D 1 - I - 0x00AF25 02:AF15: 2A AF     .word ofs_008_AF2A_06_RTS
 
 
 
-ofs_AF17_00:
+ofs_008_AF17_00:
 C - - J - - 0x00AF27 02:AF17: AD 27 03  LDA ram_игрок_X_hi
 C - - - - - 0x00AF2A 02:AF1A: D0 0E     BNE bra_AF2A_RTS
 C - - - - - 0x00AF2C 02:AF1C: AD 14 03  LDA ram_игрок_X_lo
@@ -11447,19 +11447,19 @@ bra_AF28:
 loc_AF28:
 C D 1 - - - 0x00AF38 02:AF28: E6 95     INC ram_номер_кадра_анимации + 1
 bra_AF2A_RTS:
-ofs_AF2A_06_RTS:
+ofs_008_AF2A_06_RTS:
 C - - - - - 0x00AF3A 02:AF2A: 60        RTS
 
 
 
-ofs_AF2B_01:
+ofs_008_AF2B_01:
 C - - J - - 0x00AF3B 02:AF2B: A9 0E     LDA #$0E
 C - - - - - 0x00AF3D 02:AF2D: 8D 59 04  STA ram_игрок_номер_движения
 C - - - - - 0x00AF40 02:AF30: D0 F6     BNE bra_AF28
 
 
 
-ofs_AF32_02:
+ofs_008_AF32_02:
 C - - J - - 0x00AF42 02:AF32: 20 05 C0  JSR sub_0x01C015
 C - - - - - 0x00AF45 02:AF35: AD 92 03  LDA ram_мяч_Z_lo
 C - - - - - 0x00AF48 02:AF38: C9 40     CMP #$40
@@ -11501,7 +11501,7 @@ tbl_AF60:
 
 
 
-ofs_AF6A_03:
+ofs_008_AF6A_03:
 C - - J - - 0x00AF7A 02:AF6A: AD 92 03  LDA ram_мяч_Z_lo
 C - - - - - 0x00AF7D 02:AF6D: C5 96     CMP ram_номер_кадра_анимации + 2
 C - - - - - 0x00AF7F 02:AF6F: B0 09     BCS bra_AF7A_RTS
@@ -11514,7 +11514,7 @@ C - - - - - 0x00AF8A 02:AF7A: 60        RTS
 
 
 
-ofs_AF7B_04:
+ofs_008_AF7B_04:
 C - - J - - 0x00AF8B 02:AF7B: AD 92 03  LDA ram_мяч_Z_lo
 C - - - - - 0x00AF8E 02:AF7E: C5 96     CMP ram_номер_кадра_анимации + 2
 C - - - - - 0x00AF90 02:AF80: B0 F8     BCS bra_AF7A_RTS
@@ -11524,7 +11524,7 @@ C - - - - - 0x00AF97 02:AF87: 4C 28 AF  JMP loc_AF28
 
 
 
-ofs_AF8A_05:
+ofs_008_AF8A_05:
 C - - J - - 0x00AF9A 02:AF8A: AD 33 03  LDA ram_мяч_X_hi
 C - - - - - 0x00AF9D 02:AF8D: F0 9B     BEQ bra_AF2A_RTS
 C - - - - - 0x00AF9F 02:AF8F: A9 21     LDA #$21
@@ -11533,18 +11533,18 @@ C - - - - - 0x00AFA4 02:AF94: D0 92     BNE bra_AF28
 
 
 
-ofs_AF96_02:
+ofs_007_AF96_02:
 C - - J - - 0x00AFA6 02:AF96: A5 95     LDA ram_номер_кадра_анимации + 1
 C - - - - - 0x00AFA8 02:AF98: 20 53 C0  JSR sub_0x01C063
-- D 1 - I - 0x00AFAB 02:AF9B: A5 AF     .word ofs_AFA5_00
-- D 1 - I - 0x00AFAD 02:AF9D: B9 AF     .word ofs_AFB9_01
-- D 1 - I - 0x00AFAF 02:AF9F: C7 AF     .word ofs_AFC7_02
-- D 1 - I - 0x00AFB1 02:AFA1: E2 AF     .word ofs_AFE2_03
-- D 1 - I - 0x00AFB3 02:AFA3: B8 AF     .word ofs_AFB8_04_RTS
+- D 1 - I - 0x00AFAB 02:AF9B: A5 AF     .word ofs_009_AFA5_00
+- D 1 - I - 0x00AFAD 02:AF9D: B9 AF     .word ofs_009_AFB9_01
+- D 1 - I - 0x00AFAF 02:AF9F: C7 AF     .word ofs_009_AFC7_02
+- D 1 - I - 0x00AFB1 02:AFA1: E2 AF     .word ofs_009_AFE2_03
+- D 1 - I - 0x00AFB3 02:AFA3: B8 AF     .word ofs_009_AFB8_04_RTS
 
 
 
-ofs_AFA5_00:
+ofs_009_AFA5_00:
 C - - J - - 0x00AFB5 02:AFA5: AD 27 03  LDA ram_игрок_X_hi
 C - - - - - 0x00AFB8 02:AFA8: D0 0E     BNE bra_AFB8_RTS
 C - - - - - 0x00AFBA 02:AFAA: AD 14 03  LDA ram_игрок_X_lo
@@ -11556,12 +11556,12 @@ C - - - - - 0x00AFC3 02:AFB3: 20 9A AD  JSR sub_AD9A
 bra_AFB6:
 C - - - - - 0x00AFC6 02:AFB6: E6 95     INC ram_номер_кадра_анимации + 1
 bra_AFB8_RTS:
-ofs_AFB8_04_RTS:
+ofs_009_AFB8_04_RTS:
 C - - - - - 0x00AFC8 02:AFB8: 60        RTS
 
 
 
-ofs_AFB9_01:
+ofs_009_AFB9_01:
 C - - J - - 0x00AFC9 02:AFB9: AD 59 04  LDA ram_игрок_номер_движения
 C - - - - - 0x00AFCC 02:AFBC: C9 81     CMP #$81
 C - - - - - 0x00AFCE 02:AFBE: D0 F8     BNE bra_AFB8_RTS
@@ -11571,7 +11571,7 @@ C - - - - - 0x00AFD5 02:AFC5: D0 EF     BNE bra_AFB6
 
 
 
-ofs_AFC7_02:
+ofs_009_AFC7_02:
 C - - J - - 0x00AFD7 02:AFC7: A5 97     LDA ram_номер_кадра_анимации + 3
 C - - - - - 0x00AFD9 02:AFC9: C9 02     CMP #$02
 C - - - - - 0x00AFDB 02:AFCB: B0 10     BCS bra_AFDD
@@ -11589,7 +11589,7 @@ C - - - - - 0x00AFF1 02:AFE1: 60        RTS
 
 
 
-ofs_AFE2_03:
+ofs_009_AFE2_03:
 C - - J - - 0x00AFF2 02:AFE2: AD 14 03  LDA ram_игрок_X_lo
 C - - - - - 0x00AFF5 02:AFE5: C9 20     CMP #$20
 C - - - - - 0x00AFF7 02:AFE7: B0 CF     BCS bra_AFB8_RTS
@@ -11601,16 +11601,16 @@ C - - - - - 0x00B002 02:AFF2: D0 C4     BNE bra_AFB8_RTS
 
 
 
-ofs_AFF4_03:
+ofs_007_AFF4_03:
 C - - J - - 0x00B004 02:AFF4: A5 95     LDA ram_номер_кадра_анимации + 1
 C - - - - - 0x00B006 02:AFF6: 20 53 C0  JSR sub_0x01C063
-- D 1 - I - 0x00B009 02:AFF9: FF AF     .word ofs_AFFF_00
-- D 1 - I - 0x00B00B 02:AFFB: 17 B0     .word ofs_B017_01
-- D 1 - I - 0x00B00D 02:AFFD: 2E B0     .word ofs_B02E_02
+- D 1 - I - 0x00B009 02:AFF9: FF AF     .word ofs_010_AFFF_00
+- D 1 - I - 0x00B00B 02:AFFB: 17 B0     .word ofs_010_B017_01
+- D 1 - I - 0x00B00D 02:AFFD: 2E B0     .word ofs_010_B02E_02
 
 
 
-ofs_AFFF_00:
+ofs_010_AFFF_00:
 C - - J - - 0x00B00F 02:AFFF: A9 01     LDA #$01
 C - - - - - 0x00B011 02:B001: 85 04     STA ram_удержанные_кнопки
 C - - - - - 0x00B013 02:B003: AD 20 03  LDA ram_мяч_X_lo
@@ -11628,7 +11628,7 @@ C - - - - - 0x00B026 02:B016: 60        RTS
 
 
 
-ofs_B017_01:
+ofs_010_B017_01:
 C - - J - - 0x00B027 02:B017: A9 01     LDA #$01
 C - - - - - 0x00B029 02:B019: 85 04     STA ram_удержанные_кнопки
 C - - - - - 0x00B02B 02:B01B: AD 27 03  LDA ram_игрок_X_hi
@@ -11642,7 +11642,7 @@ C - - - - - 0x00B03C 02:B02C: D0 E6     BNE bra_B014
 
 
 
-ofs_B02E_02:
+ofs_010_B02E_02:
 C - - J - - 0x00B03E 02:B02E: A9 02     LDA #$02
 C - - - - - 0x00B040 02:B030: 85 04     STA ram_удержанные_кнопки
 C - - - - - 0x00B042 02:B032: 60        RTS
@@ -11730,31 +11730,31 @@ C - - - - - 0x00B0A8 02:B098: 85 2D     STA ram_002D
 C - - - - - 0x00B0AA 02:B09A: 6C 2C 00  JMP (ram_002C)
 
 tbl_B09D:
-- - - - - - 0x00B0AD 02:B09D: BB B0     .word ofs_B0BB_00_RTS
-- D 1 - - - 0x00B0AF 02:B09F: BC B0     .word ofs_B0BC_01
-- D 1 - - - 0x00B0B1 02:B0A1: D9 B0     .word ofs_B0D9_02
-- D 1 - - - 0x00B0B3 02:B0A3: 74 B1     .word ofs_B174_03
-- D 1 - - - 0x00B0B5 02:B0A5: E9 B0     .word ofs_B0E9_04
-- D 1 - - - 0x00B0B7 02:B0A7: E9 B0     .word ofs_B0E9_05
-- D 1 - - - 0x00B0B9 02:B0A9: FC B0     .word ofs_B0FC_06
-- D 1 - - - 0x00B0BB 02:B0AB: 1C B1     .word ofs_B11C_07
-- D 1 - - - 0x00B0BD 02:B0AD: 8A B1     .word ofs_B18A_08
-- D 1 - - - 0x00B0BF 02:B0AF: CE B1     .word ofs_B1CE_09
-- - - - - - 0x00B0C1 02:B0B1: E6 B1     .word ofs_B1E6_0A
-- D 1 - - - 0x00B0C3 02:B0B3: FB B1     .word ofs_B1FB_0B
-- D 1 - - - 0x00B0C5 02:B0B5: BC B0     .word ofs_B0BC_0C
-- D 1 - - - 0x00B0C7 02:B0B7: E9 B0     .word ofs_B0E9_0D
-- - - - - - 0x00B0C9 02:B0B9: FB B1     .word ofs_B1FB_0E
+- - - - - - 0x00B0AD 02:B09D: BB B0     .word ofs_011_B0BB_00_RTS
+- D 1 - - - 0x00B0AF 02:B09F: BC B0     .word ofs_011_B0BC_01
+- D 1 - - - 0x00B0B1 02:B0A1: D9 B0     .word ofs_011_B0D9_02
+- D 1 - - - 0x00B0B3 02:B0A3: 74 B1     .word ofs_011_B174_03
+- D 1 - - - 0x00B0B5 02:B0A5: E9 B0     .word ofs_011_B0E9_04
+- D 1 - - - 0x00B0B7 02:B0A7: E9 B0     .word ofs_011_B0E9_05
+- D 1 - - - 0x00B0B9 02:B0A9: FC B0     .word ofs_011_B0FC_06
+- D 1 - - - 0x00B0BB 02:B0AB: 1C B1     .word ofs_011_B11C_07
+- D 1 - - - 0x00B0BD 02:B0AD: 8A B1     .word ofs_011_B18A_08
+- D 1 - - - 0x00B0BF 02:B0AF: CE B1     .word ofs_011_B1CE_09
+- - - - - - 0x00B0C1 02:B0B1: E6 B1     .word ofs_011_B1E6_0A
+- D 1 - - - 0x00B0C3 02:B0B3: FB B1     .word ofs_011_B1FB_0B
+- D 1 - - - 0x00B0C5 02:B0B5: BC B0     .word ofs_011_B0BC_0C
+- D 1 - - - 0x00B0C7 02:B0B7: E9 B0     .word ofs_011_B0E9_0D
+- - - - - - 0x00B0C9 02:B0B9: FB B1     .word ofs_011_B1FB_0E
 
 
 
-ofs_B0BB_00_RTS:
+ofs_011_B0BB_00_RTS:
 - - - - - - 0x00B0CB 02:B0BB: 60        RTS
 
 
 
-ofs_B0BC_01:
-ofs_B0BC_0C:
+ofs_011_B0BC_01:
+ofs_011_B0BC_0C:
 C - - J - - 0x00B0CC 02:B0BC: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B0CF 02:B0BF: 30 06     BMI bra_B0C7
 C - - - - - 0x00B0D1 02:B0C1: 20 82 B2  JSR sub_B282
@@ -11771,7 +11771,7 @@ C - - - - - 0x00B0E8 02:B0D8: 60        RTS
 
 
 
-ofs_B0D9_02:
+ofs_011_B0D9_02:
 C - - J - - 0x00B0E9 02:B0D9: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B0EC 02:B0DC: 30 06     BMI bra_B0E4
 C - - - - - 0x00B0EE 02:B0DE: 20 82 B2  JSR sub_B282
@@ -11782,9 +11782,9 @@ C - - - - - 0x00B0F6 02:B0E6: 4C C9 B0  JMP loc_B0C9
 
 
 
-ofs_B0E9_04:
-ofs_B0E9_05:
-ofs_B0E9_0D:
+ofs_011_B0E9_04:
+ofs_011_B0E9_05:
+ofs_011_B0E9_0D:
 C - - J - - 0x00B0F9 02:B0E9: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B0FC 02:B0EC: 30 09     BMI bra_B0F7
 C - - - - - 0x00B0FE 02:B0EE: 20 82 B2  JSR sub_B282
@@ -11796,7 +11796,7 @@ C - - - - - 0x00B109 02:B0F9: 4C C9 B0  JMP loc_B0C9
 
 
 
-ofs_B0FC_06:
+ofs_011_B0FC_06:
 C - - J - - 0x00B10C 02:B0FC: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B10F 02:B0FF: 30 03     BMI bra_B104
 C - - - - - 0x00B111 02:B101: 20 82 B2  JSR sub_B282
@@ -11815,7 +11815,7 @@ C D 1 - - - 0x00B12B 02:B11B: 60        RTS
 
 
 
-ofs_B11C_07:
+ofs_011_B11C_07:
 C - - J - - 0x00B12C 02:B11C: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B12F 02:B11F: 30 06     BMI bra_B127
 C - - - - - 0x00B131 02:B121: 20 82 B2  JSR sub_B282
@@ -11874,7 +11874,7 @@ tbl_B164:
 
 
 
-ofs_B174_03:
+ofs_011_B174_03:
 C - - J - - 0x00B184 02:B174: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B187 02:B177: 30 06     BMI bra_B17F
 C - - - - - 0x00B189 02:B179: 20 82 B2  JSR sub_B282
@@ -11887,7 +11887,7 @@ C - - - - - 0x00B197 02:B187: 4C 0F B1  JMP loc_B10F
 
 
 
-ofs_B18A_08:
+ofs_011_B18A_08:
 C - - J - - 0x00B19A 02:B18A: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B19D 02:B18D: 30 15     BMI bra_B1A4
 C - - - - - 0x00B19F 02:B18F: 20 82 B2  JSR sub_B282
@@ -11922,7 +11922,7 @@ C - - - - - 0x00B1DD 02:B1CD: 60        RTS
 
 
 
-ofs_B1CE_09:
+ofs_011_B1CE_09:
 C - - J - - 0x00B1DE 02:B1CE: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B1E1 02:B1D1: 30 D1     BMI bra_B1A4
 C - - - - - 0x00B1E3 02:B1D3: 20 82 B2  JSR sub_B282
@@ -11936,7 +11936,7 @@ C - - - - - 0x00B1F3 02:B1E3: 4C 9A B1  JMP loc_B19A
 
 
 
-ofs_B1E6_0A:
+ofs_011_B1E6_0A:
 - - - - - - 0x00B1F6 02:B1E6: BD 59 04  LDA ram_игрок_номер_движения,X
 - - - - - - 0x00B1F9 02:B1E9: 30 B9     BMI bra_B1A4
 - - - - - - 0x00B1FB 02:B1EB: 20 82 B2  JSR sub_B282
@@ -11948,8 +11948,8 @@ ofs_B1E6_0A:
 
 
 
-ofs_B1FB_0B:
-ofs_B1FB_0E:
+ofs_011_B1FB_0B:
+ofs_011_B1FB_0E:
 C - - J - - 0x00B20B 02:B1FB: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B20E 02:B1FE: 30 47     BMI bra_B247
 C - - - - - 0x00B210 02:B200: 20 82 B2  JSR sub_B282
@@ -12938,84 +12938,84 @@ C - - - - - 0x00B6FA 02:B6EA: 85 2D     STA ram_002D
 C - - - - - 0x00B6FC 02:B6EC: 6C 2C 00  JMP (ram_002C)
 
 tbl_B6EF:
-- - - - - - 0x00B6FF 02:B6EF: 45 B7     .word ofs_B745_00_RTS
-- D 1 - - - 0x00B701 02:B6F1: 46 B7     .word ofs_B746_01
-- D 1 - - - 0x00B703 02:B6F3: 46 B7     .word ofs_B746_02
-- D 1 - - - 0x00B705 02:B6F5: 2C B8     .word ofs_B82C_03
-- D 1 - - - 0x00B707 02:B6F7: 46 B7     .word ofs_B746_04
-- - - - - - 0x00B709 02:B6F9: 46 B7     .word ofs_B746_05
-- - - - - - 0x00B70B 02:B6FB: 46 B7     .word ofs_B746_06
-- - - - - - 0x00B70D 02:B6FD: 46 B7     .word ofs_B746_07
-- - - - - - 0x00B70F 02:B6FF: 2C B8     .word ofs_B82C_08
-- - - - - - 0x00B711 02:B701: 46 B7     .word ofs_B746_09
-- - - - - - 0x00B713 02:B703: 46 B7     .word ofs_B746_0A
-- - - - - - 0x00B715 02:B705: 46 B7     .word ofs_B746_0B
-- - - - - - 0x00B717 02:B707: 46 B7     .word ofs_B746_0C
-- - - - - - 0x00B719 02:B709: 46 B7     .word ofs_B746_0D
-- - - - - - 0x00B71B 02:B70B: 46 B7     .word ofs_B746_0E
-- - - - - - 0x00B71D 02:B70D: 46 B7     .word ofs_B746_0F
-- - - - - - 0x00B71F 02:B70F: 46 B7     .word ofs_B746_10
-- - - - - - 0x00B721 02:B711: 46 B7     .word ofs_B746_11
-- D 1 - - - 0x00B723 02:B713: 46 B7     .word ofs_B746_12
-- - - - - - 0x00B725 02:B715: 46 B7     .word ofs_B746_13
-- - - - - - 0x00B727 02:B717: 46 B7     .word ofs_B746_14
-- - - - - - 0x00B729 02:B719: 46 B7     .word ofs_B746_15
-- - - - - - 0x00B72B 02:B71B: 46 B7     .word ofs_B746_16
-- D 1 - - - 0x00B72D 02:B71D: 46 B7     .word ofs_B746_17
-- D 1 - - - 0x00B72F 02:B71F: BD B7     .word ofs_B7BD_18
-- D 1 - - - 0x00B731 02:B721: D3 B7     .word ofs_B7D3_19
-- - - - - - 0x00B733 02:B723: D3 B7     .word ofs_B7D3_1A
-- - - - - - 0x00B735 02:B725: 58 B7     .word ofs_B758_1B
-- - - - - - 0x00B737 02:B727: D3 B7     .word ofs_B7D3_1C
-- - - - - - 0x00B739 02:B729: 58 B7     .word ofs_B758_1D
-- - - - - - 0x00B73B 02:B72B: 9B B7     .word ofs_B79B_1E
-- - - - - - 0x00B73D 02:B72D: F8 B7     .word ofs_B7F8_1F
-- - - - - - 0x00B73F 02:B72F: 46 B7     .word ofs_B746_20
-- - - - - - 0x00B741 02:B731: 46 B7     .word ofs_B746_21
-- - - - - - 0x00B743 02:B733: 12 B8     .word ofs_B812_22
-- - - - - - 0x00B745 02:B735: 46 B7     .word ofs_B746_23
-- - - - - - 0x00B747 02:B737: 46 B7     .word ofs_B746_24
-- - - - - - 0x00B749 02:B739: 46 B7     .word ofs_B746_25
-- - - - - - 0x00B74B 02:B73B: 2C B8     .word ofs_B82C_26
-- - - - - - 0x00B74D 02:B73D: D3 B7     .word ofs_B7D3_27
-- - - - - - 0x00B74F 02:B73F: 74 B7     .word ofs_B774_28
-- - - - - - 0x00B751 02:B741: 46 B7     .word ofs_B746_29
-- - - - - - 0x00B753 02:B743: 74 B7     .word ofs_B774_2A
+- - - - - - 0x00B6FF 02:B6EF: 45 B7     .word ofs_012_B745_00_RTS
+- D 1 - - - 0x00B701 02:B6F1: 46 B7     .word ofs_012_B746_01
+- D 1 - - - 0x00B703 02:B6F3: 46 B7     .word ofs_012_B746_02
+- D 1 - - - 0x00B705 02:B6F5: 2C B8     .word ofs_012_B82C_03
+- D 1 - - - 0x00B707 02:B6F7: 46 B7     .word ofs_012_B746_04
+- - - - - - 0x00B709 02:B6F9: 46 B7     .word ofs_012_B746_05
+- - - - - - 0x00B70B 02:B6FB: 46 B7     .word ofs_012_B746_06
+- - - - - - 0x00B70D 02:B6FD: 46 B7     .word ofs_012_B746_07
+- - - - - - 0x00B70F 02:B6FF: 2C B8     .word ofs_012_B82C_08
+- - - - - - 0x00B711 02:B701: 46 B7     .word ofs_012_B746_09
+- - - - - - 0x00B713 02:B703: 46 B7     .word ofs_012_B746_0A
+- - - - - - 0x00B715 02:B705: 46 B7     .word ofs_012_B746_0B
+- - - - - - 0x00B717 02:B707: 46 B7     .word ofs_012_B746_0C
+- - - - - - 0x00B719 02:B709: 46 B7     .word ofs_012_B746_0D
+- - - - - - 0x00B71B 02:B70B: 46 B7     .word ofs_012_B746_0E
+- - - - - - 0x00B71D 02:B70D: 46 B7     .word ofs_012_B746_0F
+- - - - - - 0x00B71F 02:B70F: 46 B7     .word ofs_012_B746_10
+- - - - - - 0x00B721 02:B711: 46 B7     .word ofs_012_B746_11
+- D 1 - - - 0x00B723 02:B713: 46 B7     .word ofs_012_B746_12
+- - - - - - 0x00B725 02:B715: 46 B7     .word ofs_012_B746_13
+- - - - - - 0x00B727 02:B717: 46 B7     .word ofs_012_B746_14
+- - - - - - 0x00B729 02:B719: 46 B7     .word ofs_012_B746_15
+- - - - - - 0x00B72B 02:B71B: 46 B7     .word ofs_012_B746_16
+- D 1 - - - 0x00B72D 02:B71D: 46 B7     .word ofs_012_B746_17
+- D 1 - - - 0x00B72F 02:B71F: BD B7     .word ofs_012_B7BD_18
+- D 1 - - - 0x00B731 02:B721: D3 B7     .word ofs_012_B7D3_19
+- - - - - - 0x00B733 02:B723: D3 B7     .word ofs_012_B7D3_1A
+- - - - - - 0x00B735 02:B725: 58 B7     .word ofs_012_B758_1B
+- - - - - - 0x00B737 02:B727: D3 B7     .word ofs_012_B7D3_1C
+- - - - - - 0x00B739 02:B729: 58 B7     .word ofs_012_B758_1D
+- - - - - - 0x00B73B 02:B72B: 9B B7     .word ofs_012_B79B_1E
+- - - - - - 0x00B73D 02:B72D: F8 B7     .word ofs_012_B7F8_1F
+- - - - - - 0x00B73F 02:B72F: 46 B7     .word ofs_012_B746_20
+- - - - - - 0x00B741 02:B731: 46 B7     .word ofs_012_B746_21
+- - - - - - 0x00B743 02:B733: 12 B8     .word ofs_012_B812_22
+- - - - - - 0x00B745 02:B735: 46 B7     .word ofs_012_B746_23
+- - - - - - 0x00B747 02:B737: 46 B7     .word ofs_012_B746_24
+- - - - - - 0x00B749 02:B739: 46 B7     .word ofs_012_B746_25
+- - - - - - 0x00B74B 02:B73B: 2C B8     .word ofs_012_B82C_26
+- - - - - - 0x00B74D 02:B73D: D3 B7     .word ofs_012_B7D3_27
+- - - - - - 0x00B74F 02:B73F: 74 B7     .word ofs_012_B774_28
+- - - - - - 0x00B751 02:B741: 46 B7     .word ofs_012_B746_29
+- - - - - - 0x00B753 02:B743: 74 B7     .word ofs_012_B774_2A
 
 
 
-ofs_B745_00_RTS:
+ofs_012_B745_00_RTS:
 - - - - - - 0x00B755 02:B745: 60        RTS
 
 
 
-ofs_B746_01:
-ofs_B746_02:
-ofs_B746_04:
-ofs_B746_05:
-ofs_B746_06:
-ofs_B746_07:
-ofs_B746_09:
-ofs_B746_0A:
-ofs_B746_0B:
-ofs_B746_0C:
-ofs_B746_0D:
-ofs_B746_0E:
-ofs_B746_0F:
-ofs_B746_10:
-ofs_B746_11:
-ofs_B746_12:
-ofs_B746_13:
-ofs_B746_14:
-ofs_B746_15:
-ofs_B746_16:
-ofs_B746_17:
-ofs_B746_20:
-ofs_B746_21:
-ofs_B746_23:
-ofs_B746_24:
-ofs_B746_25:
-ofs_B746_29:
+ofs_012_B746_01:
+ofs_012_B746_02:
+ofs_012_B746_04:
+ofs_012_B746_05:
+ofs_012_B746_06:
+ofs_012_B746_07:
+ofs_012_B746_09:
+ofs_012_B746_0A:
+ofs_012_B746_0B:
+ofs_012_B746_0C:
+ofs_012_B746_0D:
+ofs_012_B746_0E:
+ofs_012_B746_0F:
+ofs_012_B746_10:
+ofs_012_B746_11:
+ofs_012_B746_12:
+ofs_012_B746_13:
+ofs_012_B746_14:
+ofs_012_B746_15:
+ofs_012_B746_16:
+ofs_012_B746_17:
+ofs_012_B746_20:
+ofs_012_B746_21:
+ofs_012_B746_23:
+ofs_012_B746_24:
+ofs_012_B746_25:
+ofs_012_B746_29:
 C - - J - - 0x00B756 02:B746: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B759 02:B749: 30 06     BMI bra_B751
 C - - - - - 0x00B75B 02:B74B: 20 82 B2  JSR sub_B282
@@ -13027,8 +13027,8 @@ C - - - - - 0x00B767 02:B757: 60        RTS
 
 
 
-ofs_B758_1B:
-ofs_B758_1D:
+ofs_012_B758_1B:
+ofs_012_B758_1D:
 - - - - - - 0x00B768 02:B758: BD 59 04  LDA ram_игрок_номер_движения,X
 - - - - - - 0x00B76B 02:B75B: 30 06     BMI bra_B763
 - - - - - - 0x00B76D 02:B75D: 20 82 B2  JSR sub_B282
@@ -13046,8 +13046,8 @@ bra_B763:
 
 
 
-ofs_B774_28:
-ofs_B774_2A:
+ofs_012_B774_28:
+ofs_012_B774_2A:
 - - - - - - 0x00B784 02:B774: BD 59 04  LDA ram_игрок_номер_движения,X
 - - - - - - 0x00B787 02:B777: 30 06     BMI bra_B77F
 - - - - - - 0x00B789 02:B779: 20 82 B2  JSR sub_B282
@@ -13071,7 +13071,7 @@ sub_B788:
 
 
 
-ofs_B79B_1E:
+ofs_012_B79B_1E:
 - - - - - - 0x00B7AB 02:B79B: BD 59 04  LDA ram_игрок_номер_движения,X
 - - - - - - 0x00B7AE 02:B79E: 30 0E     BMI bra_B7AE
 bra_B7A0:
@@ -13090,7 +13090,7 @@ C - - - - - 0x00B7CC 02:B7BC: 60        RTS
 
 
 
-ofs_B7BD_18:
+ofs_012_B7BD_18:
 C - - J - - 0x00B7CD 02:B7BD: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B7D0 02:B7C0: 30 16     BMI bra_B7D8
 C - - - - - 0x00B7D2 02:B7C2: 20 82 B2  JSR sub_B282
@@ -13102,10 +13102,10 @@ C - - - - - 0x00B7E0 02:B7D0: 4C E1 B7  JMP loc_B7E1
 
 
 
-ofs_B7D3_19:
-ofs_B7D3_1A:
-ofs_B7D3_1C:
-ofs_B7D3_27:
+ofs_012_B7D3_19:
+ofs_012_B7D3_1A:
+ofs_012_B7D3_1C:
+ofs_012_B7D3_27:
 C - - J - - 0x00B7E3 02:B7D3: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B7E6 02:B7D6: 10 C8     BPL bra_B7A0
 bra_B7D8:
@@ -13126,7 +13126,7 @@ C - - - - - 0x00B807 02:B7F7: 60        RTS
 
 
 
-ofs_B7F8_1F:
+ofs_012_B7F8_1F:
 - - - - - - 0x00B808 02:B7F8: BD 59 04  LDA ram_игрок_номер_движения,X
 - - - - - - 0x00B80B 02:B7FB: 30 41     BMI bra_B83E
 - - - - - - 0x00B80D 02:B7FD: 20 82 B2  JSR sub_B282
@@ -13140,7 +13140,7 @@ ofs_B7F8_1F:
 
 
 
-ofs_B812_22:
+ofs_012_B812_22:
 - - - - - - 0x00B822 02:B812: BD 59 04  LDA ram_игрок_номер_движения,X
 - - - - - - 0x00B825 02:B815: 30 27     BMI bra_B83E
 - - - - - - 0x00B827 02:B817: 20 82 B2  JSR sub_B282
@@ -13154,9 +13154,9 @@ ofs_B812_22:
 
 
 
-ofs_B82C_03:
-ofs_B82C_08:
-ofs_B82C_26:
+ofs_012_B82C_03:
+ofs_012_B82C_08:
+ofs_012_B82C_26:
 C - - J - - 0x00B83C 02:B82C: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00B83F 02:B82F: 30 0D     BMI bra_B83E
 C - - - - - 0x00B841 02:B831: 20 82 B2  JSR sub_B282
@@ -13889,21 +13889,21 @@ sub_BB3C:
 loc_BB5D:
 - - - - - - 0x00BB6D 02:BB5D: A5 59     LDA ram_подтип_экрана
 - - - - - - 0x00BB6F 02:BB5F: 20 53 C0  JSR sub_0x01C063
-- - - - - - 0x00BB72 02:BB62: 78 BB     .word ofs_BB78_00
-- - - - - - 0x00BB74 02:BB64: B1 BB     .word ofs_BBB1_01
-- - - - - - 0x00BB76 02:BB66: CE BB     .word ofs_BBCE_02
-- - - - - - 0x00BB78 02:BB68: 00 BD     .word ofs_BD00_03
-- - - - - - 0x00BB7A 02:BB6A: C0 BD     .word ofs_BDC0_04
-- - - - - - 0x00BB7C 02:BB6C: 42 BE     .word ofs_BE42_05
-- - - - - - 0x00BB7E 02:BB6E: 59 BE     .word ofs_BE59_06
-- - - - - - 0x00BB80 02:BB70: 76 BE     .word ofs_BE76_07
-- - - - - - 0x00BB82 02:BB72: 95 AA     .word ofs_AA95_08
-- - - - - - 0x00BB84 02:BB74: D9 AA     .word ofs_AAD9_09
-- - - - - - 0x00BB86 02:BB76: 95 BE     .word ofs_BE95_0A
+- - - - - - 0x00BB72 02:BB62: 78 BB     .word ofs_013_BB78_00
+- - - - - - 0x00BB74 02:BB64: B1 BB     .word ofs_013_BBB1_01
+- - - - - - 0x00BB76 02:BB66: CE BB     .word ofs_013_BBCE_02
+- - - - - - 0x00BB78 02:BB68: 00 BD     .word ofs_013_BD00_03
+- - - - - - 0x00BB7A 02:BB6A: C0 BD     .word ofs_013_BDC0_04
+- - - - - - 0x00BB7C 02:BB6C: 42 BE     .word ofs_013_BE42_05
+- - - - - - 0x00BB7E 02:BB6E: 59 BE     .word ofs_013_BE59_06
+- - - - - - 0x00BB80 02:BB70: 76 BE     .word ofs_013_BE76_07
+- - - - - - 0x00BB82 02:BB72: 95 AA     .word ofs_013_AA95_08
+- - - - - - 0x00BB84 02:BB74: D9 AA     .word ofs_013_AAD9_09
+- - - - - - 0x00BB86 02:BB76: 95 BE     .word ofs_013_BE95_0A
 
 
 
-ofs_BB78_00:
+ofs_013_BB78_00:
 - - - - - - 0x00BB88 02:BB78: 20 62 C0  JSR sub_0x01C072
 - - - - - - 0x00BB8B 02:BB7B: A9 F0     LDA #$F0
 - - - - - - 0x00BB8D 02:BB7D: 8D 56 00  STA a: ram_ограничитель_Y_спрайтов
@@ -13934,7 +13934,7 @@ bra_BBB0_RTS:
 
 
 
-ofs_BBB1_01:
+ofs_013_BBB1_01:
 - - - - - - 0x00BBC1 02:BBB1: 20 5C C0  JSR sub_0x01C06C
 - - - - - - 0x00BBC4 02:BBB4: 20 3C BB  JSR sub_BB3C
 - - - - - - 0x00BBC7 02:BBB7: 20 1B AA  JSR sub_AA1B
@@ -13949,7 +13949,7 @@ ofs_BBB1_01:
 
 
 
-ofs_BBCE_02:
+ofs_013_BBCE_02:
 - - - - - - 0x00BBDE 02:BBCE: 20 C8 BE  JSR sub_BEC8
 - - - - - - 0x00BBE1 02:BBD1: 20 7C AE  JSR sub_AE7C
 - - - - - - 0x00BBE4 02:BBD4: 50 DA     BVC bra_BBB0_RTS
@@ -14114,7 +14114,7 @@ tbl_BCD0:
 
 
 
-ofs_BD00_03:
+ofs_013_BD00_03:
 - - - - - - 0x00BD10 02:BD00: 20 D4 BE  JSR sub_BED4
 - - - - - - 0x00BD13 02:BD03: 20 5C C0  JSR sub_0x01C06C
 - - - - - - 0x00BD16 02:BD06: 20 7C AE  JSR sub_AE7C
@@ -14208,7 +14208,7 @@ bra_BDB6:
 
 
 
-ofs_BDC0_04:
+ofs_013_BDC0_04:
 - - - - - - 0x00BDD0 02:BDC0: 20 66 BA  JSR sub_BA66
 - - - - - - 0x00BDD3 02:BDC3: A5 7C     LDA ram_007C
 - - - - - - 0x00BDD5 02:BDC5: 85 74     STA ram_номер_анимации
@@ -14262,7 +14262,7 @@ bra_BE41_RTS:
 
 
 
-ofs_BE42_05:
+ofs_013_BE42_05:
 - - - - - - 0x00BE52 02:BE42: 20 C8 BE  JSR sub_BEC8
 - - - - - - 0x00BE55 02:BE45: 20 5C C0  JSR sub_0x01C06C
 - - - - - - 0x00BE58 02:BE48: 20 7C AE  JSR sub_AE7C
@@ -14275,7 +14275,7 @@ ofs_BE42_05:
 
 
 
-ofs_BE59_06:
+ofs_013_BE59_06:
 - - - - - - 0x00BE69 02:BE59: 20 C8 BE  JSR sub_BEC8
 - - - - - - 0x00BE6C 02:BE5C: 20 9B BE  JSR sub_BE9B
 - - - - - - 0x00BE6F 02:BE5F: 90 E0     BCC bra_BE41_RTS
@@ -14291,7 +14291,7 @@ ofs_BE59_06:
 
 
 
-ofs_BE76_07:
+ofs_013_BE76_07:
 - - - - - - 0x00BE86 02:BE76: 20 71 C0  JSR sub_0x01C081
 - - - - - - 0x00BE89 02:BE79: 20 C8 BE  JSR sub_BEC8
 - - - - - - 0x00BE8C 02:BE7C: AD 05 06  LDA ram_0605
@@ -14308,7 +14308,7 @@ bra_BE94_RTS:
 
 
 
-ofs_BE95_0A:
+ofs_013_BE95_0A:
 - - - - - - 0x00BEA5 02:BE95: A2 0C     LDX #$0C
 - - - - - - 0x00BEA7 02:BE97: 20 65 C0  JSR sub_0x01C075
 - - - - - - 0x00BEAA 02:BE9A: 60        RTS

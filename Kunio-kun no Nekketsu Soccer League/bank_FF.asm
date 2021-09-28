@@ -1007,26 +1007,26 @@ C - - - - - 0x01C4AE 07:C49E: 85 2D     STA ram_002D
 C - - - - - 0x01C4B0 07:C4A0: 6C 2C 00  JMP (ram_002C)
 
 tbl_C4A3:
-- D 2 - - - 0x01C4B3 07:C4A3: AB C4     .word ofs_C4AB_00
-- D 2 - - - 0x01C4B5 07:C4A5: B1 C4     .word ofs_C4B1_01
-- D 2 - - - 0x01C4B7 07:C4A7: B7 C4     .word ofs_C4B7_02
-- - - - - - 0x01C4B9 07:C4A9: BD C4     .word ofs_C4BD_03
+- D 2 - - - 0x01C4B3 07:C4A3: AB C4     .word ofs_024_C4AB_00
+- D 2 - - - 0x01C4B5 07:C4A5: B1 C4     .word ofs_024_C4B1_01
+- D 2 - - - 0x01C4B7 07:C4A7: B7 C4     .word ofs_024_C4B7_02
+- - - - - - 0x01C4B9 07:C4A9: BD C4     .word ofs_024_C4BD_03
 
 
 
-ofs_C4AB_00:
+ofs_024_C4AB_00:
 C - - J - - 0x01C4BB 07:C4AB: 20 06 C5  JSR sub_C506
 C - - - - - 0x01C4BE 07:C4AE: 4C C3 C4  JMP loc_C4C3
 
-ofs_C4B1_01:
+ofs_024_C4B1_01:
 C - - J - - 0x01C4C1 07:C4B1: 20 5D C2  JSR sub_C25D
 C - - - - - 0x01C4C4 07:C4B4: 4C C3 C4  JMP loc_C4C3
 
-ofs_C4B7_02:
+ofs_024_C4B7_02:
 C - - J - - 0x01C4C7 07:C4B7: 20 DA C2  JSR sub_C2DA
 C - - - - - 0x01C4CA 07:C4BA: 4C C3 C4  JMP loc_C4C3
 
-ofs_C4BD_03:
+ofs_024_C4BD_03:
 - - - - - - 0x01C4CD 07:C4BD: 20 6C C2  JSR sub_C26C
 - - - - - - 0x01C4D0 07:C4C0: 4C C3 C4  JMP loc_C4C3
 
@@ -1092,23 +1092,23 @@ C - - - - - 0x01C52A 07:C51A: 85 2D     STA ram_002D
 C - - - - - 0x01C52C 07:C51C: 6C 2C 00  JMP (ram_002C)
 
 tbl_C51F:
-- D 2 - - - 0x01C52F 07:C51F: 39 C5     .word ofs_C539_00
-- D 2 - - - 0x01C531 07:C521: 7D C5     .word ofs_C57D_01
-- D 2 - - - 0x01C533 07:C523: 15 C6     .word ofs_C615_02
-- D 2 - - - 0x01C535 07:C525: 99 C6     .word ofs_C699_03
-- D 2 - - - 0x01C537 07:C527: 1E C7     .word ofs_C71E_04
-- D 2 - - - 0x01C539 07:C529: 7D C7     .word ofs_C77D_05
-- D 2 - - - 0x01C53B 07:C52B: D0 C7     .word ofs_C7D0_06
-- D 2 - - - 0x01C53D 07:C52D: 43 C7     .word ofs_C743_07
-- D 2 - - - 0x01C53F 07:C52F: 7D C7     .word ofs_C77D_08
-- D 2 - - - 0x01C541 07:C531: 5D C7     .word ofs_C75D_09
-- D 2 - - - 0x01C543 07:C533: 77 C7     .word ofs_C777_0A
-- - - - - - 0x01C545 07:C535: 43 C7     .word ofs_C743_0B
-- - - - - - 0x01C547 07:C537: 7D C7     .word ofs_C77D_0C
+- D 2 - - - 0x01C52F 07:C51F: 39 C5     .word ofs_025_C539_00
+- D 2 - - - 0x01C531 07:C521: 7D C5     .word ofs_025_C57D_01
+- D 2 - - - 0x01C533 07:C523: 15 C6     .word ofs_025_C615_02
+- D 2 - - - 0x01C535 07:C525: 99 C6     .word ofs_025_C699_03
+- D 2 - - - 0x01C537 07:C527: 1E C7     .word ofs_025_C71E_04
+- D 2 - - - 0x01C539 07:C529: 7D C7     .word ofs_025_C77D_05
+- D 2 - - - 0x01C53B 07:C52B: D0 C7     .word ofs_025_C7D0_06
+- D 2 - - - 0x01C53D 07:C52D: 43 C7     .word ofs_025_C743_07
+- D 2 - - - 0x01C53F 07:C52F: 7D C7     .word ofs_025_C77D_08
+- D 2 - - - 0x01C541 07:C531: 5D C7     .word ofs_025_C75D_09
+- D 2 - - - 0x01C543 07:C533: 77 C7     .word ofs_025_C777_0A
+- - - - - - 0x01C545 07:C535: 43 C7     .word ofs_025_C743_0B
+- - - - - - 0x01C547 07:C537: 7D C7     .word ofs_025_C77D_0C
 
 
 
-ofs_C539_00:
+ofs_025_C539_00:
 C - - J - - 0x01C549 07:C539: A9 C0     LDA #$C0
 C - - - - - 0x01C54B 07:C53B: 8D 4F 00  STA a: ram_флаг_NMI
 C - - - - - 0x01C54E 07:C53E: 20 5A EF  JSR sub_EF5A
@@ -1137,7 +1137,7 @@ C - - - - - 0x01C58A 07:C57A: 4C 98 C6  JMP loc_C698_RTS
 
 
 
-ofs_C57D_01:
+ofs_025_C57D_01:
 C - - J - - 0x01C58D 07:C57D: 20 71 C2  JSR sub_C271
 C - - - - - 0x01C590 07:C580: 20 6A BD  JSR sub_0x01BD7A
 C - - - - - 0x01C593 07:C583: 20 CC BE  JSR sub_0x01BEDC
@@ -1210,7 +1210,7 @@ C - - - - - 0x01C622 07:C612: 4C 98 C6  JMP loc_C698_RTS
 
 
 
-ofs_C615_02:
+ofs_025_C615_02:
 C - - J - - 0x01C625 07:C615: AD 08 00  LDA a: ram_одноразовые_кнопки
 C - - - - - 0x01C628 07:C618: 29 10     AND #$10
 C - - - - - 0x01C62A 07:C61A: F0 1E     BEQ bra_C63A
@@ -1274,7 +1274,7 @@ C D 2 - - - 0x01C6A8 07:C698: 60        RTS
 
 
 
-ofs_C699_03:
+ofs_025_C699_03:
 C - - J - - 0x01C6A9 07:C699: AD AB 05  LDA ram_флаг_обновл_тайлов_экр
 C - - - - - 0x01C6AC 07:C69C: 29 CF     AND #$CF
 C - - - - - 0x01C6AE 07:C69E: 8D AB 05  STA ram_флаг_обновл_тайлов_экр
@@ -1335,7 +1335,7 @@ C - - - - - 0x01C72B 07:C71B: 4C 98 C6  JMP loc_C698_RTS
 
 
 
-ofs_C71E_04:
+ofs_025_C71E_04:
 C - - J - - 0x01C72E 07:C71E: 20 D5 C2  JSR sub_C2D5
 C - - - - - 0x01C731 07:C721: 20 1F CA  JSR sub_CA1F
 C - - - - - 0x01C734 07:C724: 20 58 CA  JSR sub_CA58
@@ -1354,8 +1354,8 @@ C - - - - - 0x01C750 07:C740: 4C 98 C6  JMP loc_C698_RTS
 
 
 
-ofs_C743_07:
-ofs_C743_0B:
+ofs_025_C743_07:
+ofs_025_C743_0B:
 C - - J - - 0x01C753 07:C743: 20 D5 C2  JSR sub_C2D5
 C - - - - - 0x01C756 07:C746: 20 1F CA  JSR sub_CA1F
 C - - - - - 0x01C759 07:C749: 20 58 CA  JSR sub_CA58
@@ -1368,7 +1368,7 @@ C - - - - - 0x01C76A 07:C75A: 4C 35 C7  JMP loc_C735
 
 
 
-ofs_C75D_09:
+ofs_025_C75D_09:
 C - - J - - 0x01C76D 07:C75D: 20 62 C2  JSR sub_C262
 C - - - - - 0x01C770 07:C760: 20 1F CA  JSR sub_CA1F
 C - - - - - 0x01C773 07:C763: 20 58 CA  JSR sub_CA58
@@ -1381,15 +1381,15 @@ C - - - - - 0x01C784 07:C774: 4C 35 C7  JMP loc_C735
 
 
 
-ofs_C777_0A:
+ofs_025_C777_0A:
 C - - J - - 0x01C787 07:C777: 20 67 C2  JSR sub_C267
 C - - - - - 0x01C78A 07:C77A: 4C 86 C7  JMP loc_C786
 
 
 
-ofs_C77D_05:
-ofs_C77D_08:
-ofs_C77D_0C:
+ofs_025_C77D_05:
+ofs_025_C77D_08:
+ofs_025_C77D_0C:
 C - - J - - 0x01C78D 07:C77D: 20 EE CA  JSR sub_CAEE
 C - - - - - 0x01C790 07:C780: 20 42 BE  JSR sub_0x01BE52
 C - - - - - 0x01C793 07:C783: 20 85 C2  JSR sub_C285
@@ -1433,7 +1433,7 @@ C D 2 - - - 0x01C7DD 07:C7CD: 4C 98 C6  JMP loc_C698_RTS
 
 
 
-ofs_C7D0_06:
+ofs_025_C7D0_06:
 C - - J - - 0x01C7E0 07:C7D0: 20 0B DE  JSR sub_DE0B
 C - - - - - 0x01C7E3 07:C7D3: 20 47 DE  JSR sub_DE47
 C - - - - - 0x01C7E6 07:C7D6: 20 EE CA  JSR sub_CAEE
@@ -2030,21 +2030,21 @@ C - - - - - 0x01CBF3 07:CBE3: 85 2D     STA ram_002D
 C - - - - - 0x01CBF5 07:CBE5: 6C 2C 00  JMP (ram_002C)
 
 tbl_CBE8:
-- D 2 - - - 0x01CBF8 07:CBE8: F4 CB     .word ofs_CBF4_00_RTS
-- D 2 - - - 0x01CBFA 07:CBEA: F5 CB     .word ofs_CBF5_01
-- D 2 - - - 0x01CBFC 07:CBEC: 0B CC     .word ofs_CC0B_02
-- D 2 - - - 0x01CBFE 07:CBEE: 0B CC     .word ofs_CC0B_03
-- D 2 - - - 0x01CC00 07:CBF0: 0B CC     .word ofs_CC0B_04
-- D 2 - - - 0x01CC02 07:CBF2: 0B CC     .word ofs_CC0B_05
+- D 2 - - - 0x01CBF8 07:CBE8: F4 CB     .word ofs_026_CBF4_00_RTS
+- D 2 - - - 0x01CBFA 07:CBEA: F5 CB     .word ofs_026_CBF5_01
+- D 2 - - - 0x01CBFC 07:CBEC: 0B CC     .word ofs_026_CC0B_02
+- D 2 - - - 0x01CBFE 07:CBEE: 0B CC     .word ofs_026_CC0B_03
+- D 2 - - - 0x01CC00 07:CBF0: 0B CC     .word ofs_026_CC0B_04
+- D 2 - - - 0x01CC02 07:CBF2: 0B CC     .word ofs_026_CC0B_05
 
 
 
-ofs_CBF4_00_RTS:
+ofs_026_CBF4_00_RTS:
 C - - J - - 0x01CC04 07:CBF4: 60        RTS
 
 
 
-ofs_CBF5_01:
+ofs_026_CBF5_01:
 C - - J - - 0x01CC05 07:CBF5: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x01CC08 07:CBF8: 30 05     BMI bra_CBFF
 C - - - - - 0x01CC0A 07:CBFA: 09 80     ORA #$80
@@ -2058,10 +2058,10 @@ C - - - - - 0x01CC18 07:CC08: 4C 9C CC  JMP loc_CC9C
 
 
 
-ofs_CC0B_02:
-ofs_CC0B_03:
-ofs_CC0B_04:
-ofs_CC0B_05:
+ofs_026_CC0B_02:
+ofs_026_CC0B_03:
+ofs_026_CC0B_04:
+ofs_026_CC0B_05:
 C - - J - - 0x01CC1B 07:CC0B: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x01CC1E 07:CC0E: 30 05     BMI bra_CC15
 C - - - - - 0x01CC20 07:CC10: 09 80     ORA #$80
@@ -7395,16 +7395,16 @@ C - - - - - 0x01E95F 07:E94F: 0A        ASL
 C - - - - - 0x01E960 07:E950: 2A        ROL
 C - - - - - 0x01E961 07:E951: 2A        ROL
 C - - - - - 0x01E962 07:E952: 20 8F EC  JSR sub_EC8F
-- D 3 - I - 0x01E965 07:E955: 5E E9     .word ofs_E95E_00
-- D 3 - I - 0x01E967 07:E957: 6F E9     .word ofs_E96F_01
-- D 3 - I - 0x01E969 07:E959: 80 E9     .word ofs_E980_02
-- D 3 - I - 0x01E96B 07:E95B: A3 E9     .word ofs_E9A3_03
+- D 3 - I - 0x01E965 07:E955: 5E E9     .word ofs_027_E95E_00
+- D 3 - I - 0x01E967 07:E957: 6F E9     .word ofs_027_E96F_01
+- D 3 - I - 0x01E969 07:E959: 80 E9     .word ofs_027_E980_02
+- D 3 - I - 0x01E96B 07:E95B: A3 E9     .word ofs_027_E9A3_03
 bra_E95D_RTS:
 C - - - - - 0x01E96D 07:E95D: 60        RTS
 
 
 
-ofs_E95E_00:
+ofs_027_E95E_00:
 C - - J - - 0x01E96E 07:E95E: A5 1C     LDA ram_001C
 C - - - - - 0x01E970 07:E960: 29 3F     AND #$3F
 C - - - - - 0x01E972 07:E962: AA        TAX
@@ -7417,7 +7417,7 @@ C - - - - - 0x01E97C 07:E96C: 4C 46 E9  JMP loc_E946
 
 
 
-ofs_E96F_01:
+ofs_027_E96F_01:
 C - - J - - 0x01E97F 07:E96F: A5 1C     LDA ram_001C
 C - - - - - 0x01E981 07:E971: 29 3F     AND #$3F
 C - - - - - 0x01E983 07:E973: AA        TAX
@@ -7430,7 +7430,7 @@ C - - - - - 0x01E98D 07:E97D: 4C 46 E9  JMP loc_E946
 
 
 
-ofs_E980_02:
+ofs_027_E980_02:
 C - - J - - 0x01E990 07:E980: A5 1C     LDA ram_001C
 C - - - - - 0x01E992 07:E982: 29 3F     AND #$3F
 C - - - - - 0x01E994 07:E984: 85 1D     STA ram_001D
@@ -7452,7 +7452,7 @@ C - - - - - 0x01E9B0 07:E9A0: 4C 46 E9  JMP loc_E946
 
 
 
-ofs_E9A3_03:
+ofs_027_E9A3_03:
 C - - J - - 0x01E9B3 07:E9A3: A5 1C     LDA ram_001C
 C - - - - - 0x01E9B5 07:E9A5: 29 3F     AND #$3F
 C - - - - - 0x01E9B7 07:E9A7: 85 1D     STA ram_001D
@@ -10551,7 +10551,7 @@ tbl_FBAA:
 
 
 
-loc_FBBB:
+vec_FBBB_NMI:
 C D 3 - - - 0x01FBCB 07:FBBB: 24 4F     BIT ram_флаг_NMI
 C - - - - - 0x01FBCD 07:FBBD: 30 04     BMI bra_FBC3
 C - - - - - 0x01FBCF 07:FBBF: 50 0A     BVC bra_FBCB
@@ -10704,7 +10704,7 @@ C - - - - - 0x01FCE8 07:FCD8: 40        RTI
 
 
 
-loc_FCD9:
+vec_FCD9_IRQ:
 C D 3 - - - 0x01FCE9 07:FCD9: 48        PHA
 C - - - - - 0x01FCEA 07:FCDA: 8A        TXA
 C - - - - - 0x01FCEB 07:FCDB: 48        PHA
@@ -10796,7 +10796,7 @@ C - - - - - 0x01FD9C 07:FD8C: 4C 0A FD  JMP loc_FD0A
 
 
 
-loc_FD8F:
+vec_FD8F_RESET:
 C D 3 - - - 0x01FD9F 07:FD8F: 78        SEI
 C - - - - - 0x01FDA0 07:FD90: D8        CLD
 C - - - - - 0x01FDA1 07:FD91: A9 08     LDA #$08
@@ -10974,11 +10974,14 @@ C - - - - - 0x01FE1D 07:FE0D: 4C D4 C3  JMP loc_C3D4
 
 
 ofs_FFF1:
-C - - - - - 0x020001 07:FFF1: 4C BB FB  JMP loc_FBBB
+C - - - - - 0x020001 07:FFF1: 4C BB FB  JMP vec_FBBB_NMI
+
 ofs_FFF4:
-C - - - - - 0x020004 07:FFF4: 4C 8F FD  JMP loc_FD8F
+C - - - - - 0x020004 07:FFF4: 4C 8F FD  JMP vec_FD8F_RESET
+
 ofs_FFF7:
-C - - - - - 0x020007 07:FFF7: 4C D9 FC  JMP loc_FCD9
+C - - - - - 0x020007 07:FFF7: 4C D9 FC  JMP vec_FCD9_IRQ
+
 .segment "VECTORS"
 - D 3 - - - 0x02000A 07:FFFA: F1 FF     .word ofs_FFF1
 - D 3 - - - 0x02000C 07:FFFC: F4 FF     .word ofs_FFF4

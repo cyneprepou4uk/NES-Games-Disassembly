@@ -531,56 +531,57 @@ C - - - - - 0x00C35F 03:834F: 85 2C     STA ram_002C
 C - - - - - 0x00C361 03:8351: B9 5A 83  LDA tbl_8359 + 1,Y
 C - - - - - 0x00C364 03:8354: 85 2D     STA ram_002D
 C - - - - - 0x00C366 03:8356: 6C 2C 00  JMP (ram_002C)
+
 tbl_8359:
-- D 0 - - - 0x00C369 03:8359: B1 83     .word ofs_83B1_00
-- - - - - - 0x00C36B 03:835B: C4 86     .word ofs_86C4_01
-- D 0 - - - 0x00C36D 03:835D: 3F 87     .word ofs_873F_02
-- - - - - - 0x00C36F 03:835F: 60 87     .word ofs_8760_03
-- D 0 - - - 0x00C371 03:8361: 34 87     .word ofs_8734_04
-- D 0 - - - 0x00C373 03:8363: CA 83     .word ofs_83CA_05
-- D 0 - - - 0x00C375 03:8365: F7 85     .word ofs_85F7_06
-- - - - - - 0x00C377 03:8367: B9 84     .word ofs_84B9_07
-- D 0 - - - 0x00C379 03:8369: D1 84     .word ofs_84D1_08
-- D 0 - - - 0x00C37B 03:836B: 29 85     .word ofs_8529_09
-- D 0 - - - 0x00C37D 03:836D: 36 86     .word ofs_8636_0A
-- D 0 - - - 0x00C37F 03:836F: 63 87     .word ofs_8763_0B
-- D 0 - - - 0x00C381 03:8371: D1 87     .word ofs_87D1_0C
-- D 0 - - - 0x00C383 03:8373: 58 88     .word ofs_8858_0D
-- D 0 - - - 0x00C385 03:8375: DD 89     .word ofs_89DD_0E
-- D 0 - - - 0x00C387 03:8377: C8 8A     .word ofs_8AC8_0F
-- - - - - - 0x00C389 03:8379: AB 8F     .word ofs_8FAB_10
-- - - - - - 0x00C38B 03:837B: BB 8F     .word ofs_8FBB_11
-- - - - - - 0x00C38D 03:837D: BB 8F     .word ofs_8FBB_12
-- - - - - - 0x00C38F 03:837F: BB 8F     .word ofs_8FBB_13
-- - - - - - 0x00C391 03:8381: 3E 90     .word ofs_903E_14
-- D 0 - - - 0x00C393 03:8383: B7 90     .word ofs_90B7_15
-- D 0 - - - 0x00C395 03:8385: CC 90     .word ofs_90CC_16
-- D 0 - - - 0x00C397 03:8387: F1 90     .word ofs_90F1_17
-- D 0 - - - 0x00C399 03:8389: B7 90     .word ofs_90B7_18
-- D 0 - - - 0x00C39B 03:838B: CC 90     .word ofs_90CC_19
-- D 0 - - - 0x00C39D 03:838D: F7 90     .word ofs_90F7_1A
-- D 0 - - - 0x00C39F 03:838F: 06 91     .word ofs_9106_1B
-- D 0 - - - 0x00C3A1 03:8391: B7 90     .word ofs_90B7_1C
-- D 0 - - - 0x00C3A3 03:8393: 2F 91     .word ofs_912F_1D
-- D 0 - - - 0x00C3A5 03:8395: CC 90     .word ofs_90CC_1E
-- D 0 - - - 0x00C3A7 03:8397: F7 90     .word ofs_90F7_1F
-- D 0 - - - 0x00C3A9 03:8399: 58 91     .word ofs_9158_20
-- - - - - - 0x00C3AB 03:839B: B9 84     .word ofs_84B9_21
-- D 0 - - - 0x00C3AD 03:839D: 58 91     .word ofs_9158_22
-- D 0 - - - 0x00C3AF 03:839F: 0B 92     .word ofs_920B_23
-- D 0 - - - 0x00C3B1 03:83A1: EC 92     .word ofs_92EC_24
-- D 0 - - - 0x00C3B3 03:83A3: 76 93     .word ofs_9376_25
-- D 0 - - - 0x00C3B5 03:83A5: 93 94     .word ofs_9493_26
-- D 0 - - - 0x00C3B7 03:83A7: A5 94     .word ofs_94A5_27
-- D 0 - - - 0x00C3B9 03:83A9: 33 95     .word ofs_9533_28
-- D 0 - - - 0x00C3BB 03:83AB: 2F 96     .word ofs_962F_29
-- D 0 - - - 0x00C3BD 03:83AD: 9D 96     .word ofs_969D_2A
-- D 0 - - - 0x00C3BF 03:83AF: 2D 97     .word ofs_972D_2B
+- D 0 - - - 0x00C369 03:8359: B1 83     .word ofs_014_83B1_00
+- - - - - - 0x00C36B 03:835B: C4 86     .word ofs_014_86C4_01
+- D 0 - - - 0x00C36D 03:835D: 3F 87     .word ofs_014_873F_02
+- - - - - - 0x00C36F 03:835F: 60 87     .word ofs_014_8760_03
+- D 0 - - - 0x00C371 03:8361: 34 87     .word ofs_014_8734_04
+- D 0 - - - 0x00C373 03:8363: CA 83     .word ofs_014_83CA_05
+- D 0 - - - 0x00C375 03:8365: F7 85     .word ofs_014_85F7_06
+- - - - - - 0x00C377 03:8367: B9 84     .word ofs_014_84B9_07
+- D 0 - - - 0x00C379 03:8369: D1 84     .word ofs_014_84D1_08
+- D 0 - - - 0x00C37B 03:836B: 29 85     .word ofs_014_8529_09
+- D 0 - - - 0x00C37D 03:836D: 36 86     .word ofs_014_8636_0A
+- D 0 - - - 0x00C37F 03:836F: 63 87     .word ofs_014_8763_0B
+- D 0 - - - 0x00C381 03:8371: D1 87     .word ofs_014_87D1_0C
+- D 0 - - - 0x00C383 03:8373: 58 88     .word ofs_014_8858_0D
+- D 0 - - - 0x00C385 03:8375: DD 89     .word ofs_014_89DD_0E
+- D 0 - - - 0x00C387 03:8377: C8 8A     .word ofs_014_8AC8_0F
+- - - - - - 0x00C389 03:8379: AB 8F     .word ofs_014_8FAB_10
+- - - - - - 0x00C38B 03:837B: BB 8F     .word ofs_014_8FBB_11
+- - - - - - 0x00C38D 03:837D: BB 8F     .word ofs_014_8FBB_12
+- - - - - - 0x00C38F 03:837F: BB 8F     .word ofs_014_8FBB_13
+- - - - - - 0x00C391 03:8381: 3E 90     .word ofs_014_903E_14
+- D 0 - - - 0x00C393 03:8383: B7 90     .word ofs_014_90B7_15
+- D 0 - - - 0x00C395 03:8385: CC 90     .word ofs_014_90CC_16
+- D 0 - - - 0x00C397 03:8387: F1 90     .word ofs_014_90F1_17
+- D 0 - - - 0x00C399 03:8389: B7 90     .word ofs_014_90B7_18
+- D 0 - - - 0x00C39B 03:838B: CC 90     .word ofs_014_90CC_19
+- D 0 - - - 0x00C39D 03:838D: F7 90     .word ofs_014_90F7_1A
+- D 0 - - - 0x00C39F 03:838F: 06 91     .word ofs_014_9106_1B
+- D 0 - - - 0x00C3A1 03:8391: B7 90     .word ofs_014_90B7_1C
+- D 0 - - - 0x00C3A3 03:8393: 2F 91     .word ofs_014_912F_1D
+- D 0 - - - 0x00C3A5 03:8395: CC 90     .word ofs_014_90CC_1E
+- D 0 - - - 0x00C3A7 03:8397: F7 90     .word ofs_014_90F7_1F
+- D 0 - - - 0x00C3A9 03:8399: 58 91     .word ofs_014_9158_20
+- - - - - - 0x00C3AB 03:839B: B9 84     .word ofs_014_84B9_21
+- D 0 - - - 0x00C3AD 03:839D: 58 91     .word ofs_014_9158_22
+- D 0 - - - 0x00C3AF 03:839F: 0B 92     .word ofs_014_920B_23
+- D 0 - - - 0x00C3B1 03:83A1: EC 92     .word ofs_014_92EC_24
+- D 0 - - - 0x00C3B3 03:83A3: 76 93     .word ofs_014_9376_25
+- D 0 - - - 0x00C3B5 03:83A5: 93 94     .word ofs_014_9493_26
+- D 0 - - - 0x00C3B7 03:83A7: A5 94     .word ofs_014_94A5_27
+- D 0 - - - 0x00C3B9 03:83A9: 33 95     .word ofs_014_9533_28
+- D 0 - - - 0x00C3BB 03:83AB: 2F 96     .word ofs_014_962F_29
+- D 0 - - - 0x00C3BD 03:83AD: 9D 96     .word ofs_014_969D_2A
+- D 0 - - - 0x00C3BF 03:83AF: 2D 97     .word ofs_014_972D_2B
 
 
 
 loc_83B1:
-ofs_83B1_00:
+ofs_014_83B1_00:
 C D 0 J - - 0x00C3C1 03:83B1: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00C3C4 03:83B4: 29 7F     AND #$7F
 C - - - - - 0x00C3C6 03:83B6: C9 21     CMP #$21
@@ -598,7 +599,7 @@ C - - - - - 0x00C3D9 03:83C9: 60        RTS
 
 
 loc_83CA:
-ofs_83CA_05:
+ofs_014_83CA_05:
 C D 0 J - - 0x00C3DA 03:83CA: 20 0D 84  JSR sub_840D
 C - - - - - 0x00C3DD 03:83CD: E0 0A     CPX #$0A
 C - - - - - 0x00C3DF 03:83CF: 90 10     BCC bra_83E1
@@ -722,8 +723,8 @@ C D 0 - - - 0x00C4C8 03:84B8: 60        RTS
 
 
 loc_84B9:
-ofs_84B9_07:
-ofs_84B9_21:
+ofs_014_84B9_07:
+ofs_014_84B9_21:
 C D 0 - - - 0x00C4C9 03:84B9: BD 5C 06  LDA ram_интеллект_бота,X
 C - - - - - 0x00C4CC 03:84BC: C9 21     CMP #$21
 C - - - - - 0x00C4CE 03:84BE: D0 06     BNE bra_84C6
@@ -745,7 +746,7 @@ tbl_84CD:
 
 
 
-ofs_84D1_08:
+ofs_014_84D1_08:
 C - - J - - 0x00C4E1 03:84D1: AD 57 00  LDA a: ram_опция_режим_сложность
 C - - - - - 0x00C4E4 03:84D4: 29 03     AND #$03
 C - - - - - 0x00C4E6 03:84D6: D0 16     BNE bra_84EE
@@ -799,7 +800,7 @@ tbl_8525:
 
 
 loc_8529:
-ofs_8529_09:
+ofs_014_8529_09:
 C D 0 J - - 0x00C539 03:8529: AD 57 00  LDA a: ram_опция_режим_сложность
 C - - - - - 0x00C53C 03:852C: 29 03     AND #$03
 C - - - - - 0x00C53E 03:852E: D0 16     BNE bra_8546
@@ -919,7 +920,7 @@ C - - - - - 0x00C604 03:85F4: 4C 5A 85  JMP loc_855A
 
 
 loc_85F7:
-ofs_85F7_06:
+ofs_014_85F7_06:
 C D 0 J - - 0x00C607 03:85F7: 86 22     STX ram_0022
 C - - - - - 0x00C609 03:85F9: 8A        TXA
 C - - - - - 0x00C60A 03:85FA: 49 01     EOR #$01
@@ -955,7 +956,7 @@ C - - - - - 0x00C645 03:8635: 60        RTS
 
 
 loc_8636:
-ofs_8636_0A:
+ofs_014_8636_0A:
 C D 0 J - - 0x00C646 03:8636: 8A        TXA
 C - - - - - 0x00C647 03:8637: 29 01     AND #$01
 C - - - - - 0x00C649 03:8639: A8        TAY
@@ -1031,7 +1032,7 @@ C - - - - - 0x00C6CD 03:86BD: 49 FF     EOR #$FF
 C - - - - - 0x00C6CF 03:86BF: 69 04     ADC #$04
 C - - - - - 0x00C6D1 03:86C1: 9D 2C 06  STA ram_062C,X
 bra_86C4:
-ofs_86C4_01:
+ofs_014_86C4_01:
 C - - - - - 0x00C6D4 03:86C4: 20 37 AE  JSR sub_AE37
 C - - - - - 0x00C6D7 03:86C7: 20 5F 98  JSR sub_985F
 C - - - - - 0x00C6DA 03:86CA: BD B0 04  LDA ram_смена_угла_движения,X
@@ -1139,7 +1140,7 @@ off_871C_02:
 
 
 
-ofs_8734_04:
+ofs_014_8734_04:
 C - - J - - 0x00C744 03:8734: A9 09     LDA #$09
 C - - - - - 0x00C746 03:8736: 9D 79 04  STA ram_игрок_номер_действия,X
 C - - - - - 0x00C749 03:8739: A9 FF     LDA #$FF
@@ -1148,7 +1149,7 @@ C - - - - - 0x00C74E 03:873E: 60        RTS
 
 
 
-ofs_873F_02:
+ofs_014_873F_02:
 C - - J - - 0x00C74F 03:873F: BD 86 04  LDA ram_игрок_состояние,X
 C - - - - - 0x00C752 03:8742: 10 05     BPL bra_8749
 C - - - - - 0x00C754 03:8744: A9 39     LDA #$39
@@ -1171,12 +1172,12 @@ C - - - - - 0x00C76F 03:875F: 60        RTS
 
 
 
-ofs_8760_03:
+ofs_014_8760_03:
 - - - - - - 0x00C770 03:8760: 4C F7 85  JMP loc_85F7
 
 
 
-ofs_8763_0B:
+ofs_014_8763_0B:
 C - - J - - 0x00C773 03:8763: 8A        TXA
 C - - - - - 0x00C774 03:8764: 29 01     AND #$01
 C - - - - - 0x00C776 03:8766: A8        TAY
@@ -1242,7 +1243,7 @@ C - - - - - 0x00C7E0 03:87D0: 60        RTS
 
 
 
-ofs_87D1_0C:
+ofs_014_87D1_0C:
 C - - J - - 0x00C7E1 03:87D1: 8A        TXA
 C - - - - - 0x00C7E2 03:87D2: 29 01     AND #$01
 C - - - - - 0x00C7E4 03:87D4: A8        TAY
@@ -1314,7 +1315,7 @@ C - - - - - 0x00C867 03:8857: 60        RTS
 
 
 loc_8858:
-ofs_8858_0D:
+ofs_014_8858_0D:
 C D 0 J - - 0x00C868 03:8858: BD 14 03  LDA ram_игрок_X_lo,X
 C - - - - - 0x00C86B 03:885B: 48        PHA
 C - - - - - 0x00C86C 03:885C: BD 27 03  LDA ram_игрок_X_hi,X
@@ -1656,7 +1657,7 @@ tbl_89DB:
 
 
 
-ofs_89DD_0E:
+ofs_014_89DD_0E:
 C - - J - - 0x00C9ED 03:89DD: 20 4C 9B  JSR sub_9B4C
 C - - - - - 0x00C9F0 03:89E0: B9 C4 8A  LDA tbl_8AC4,Y
 C - - - - - 0x00C9F3 03:89E3: CD 45 00  CMP a: ram_рандом
@@ -1794,7 +1795,7 @@ tbl_8AC4:
 
 
 
-ofs_8AC8_0F:
+ofs_014_8AC8_0F:
 C - - J - - 0x00CAD8 03:8AC8: AD 57 00  LDA a: ram_опция_режим_сложность
 C - - - - - 0x00CADB 03:8ACB: 29 03     AND #$03
 C - - - - - 0x00CADD 03:8ACD: D0 16     BNE bra_8AE5
@@ -2280,22 +2281,22 @@ off_8E15_00:
 off_8E15_04:
 off_8E15_08:
 off_8E15_0C:
-- D 0 - I - 0x00CE25 03:8E15: 06 8F     .word ofs_8F06_00
-- D 0 - I - 0x00CE27 03:8E17: D9 8E     .word ofs_8ED9_01
-- D 0 - I - 0x00CE29 03:8E19: DF 8E     .word ofs_8EDF_02
-- D 0 - I - 0x00CE2B 03:8E1B: C7 8E     .word ofs_8EC7_03
-- D 0 - I - 0x00CE2D 03:8E1D: C7 8E     .word ofs_8EC7_04
-- D 0 - I - 0x00CE2F 03:8E1F: B8 8E     .word ofs_8EB8_05
-- D 0 - I - 0x00CE31 03:8E21: D9 8E     .word ofs_8ED9_06
-- D 0 - I - 0x00CE33 03:8E23: DF 8E     .word ofs_8EDF_07
-- D 0 - I - 0x00CE35 03:8E25: D6 8E     .word ofs_8ED6_08
-- D 0 - I - 0x00CE37 03:8E27: DF 8E     .word ofs_8EDF_09
-- D 0 - I - 0x00CE39 03:8E29: D9 8E     .word ofs_8ED9_0A
-- - - - - - 0x00CE3B 03:8E2B: D6 8E     .word ofs_8ED6_0B
-- - - - - - 0x00CE3D 03:8E2D: B8 8E     .word ofs_8EB8_0C
-- - - - - - 0x00CE3F 03:8E2F: D9 8E     .word ofs_8ED9_0D
-- - - - - - 0x00CE41 03:8E31: DF 8E     .word ofs_8EDF_0E
-- - - - - - 0x00CE43 03:8E33: C7 8E     .word ofs_8EC7_0F
+- D 0 - I - 0x00CE25 03:8E15: 06 8F     .word ofs_015_8F06_00
+- D 0 - I - 0x00CE27 03:8E17: D9 8E     .word ofs_015_8ED9_01
+- D 0 - I - 0x00CE29 03:8E19: DF 8E     .word ofs_015_8EDF_02
+- D 0 - I - 0x00CE2B 03:8E1B: C7 8E     .word ofs_015_8EC7_03
+- D 0 - I - 0x00CE2D 03:8E1D: C7 8E     .word ofs_015_8EC7_04
+- D 0 - I - 0x00CE2F 03:8E1F: B8 8E     .word ofs_015_8EB8_05
+- D 0 - I - 0x00CE31 03:8E21: D9 8E     .word ofs_015_8ED9_06
+- D 0 - I - 0x00CE33 03:8E23: DF 8E     .word ofs_015_8EDF_07
+- D 0 - I - 0x00CE35 03:8E25: D6 8E     .word ofs_015_8ED6_08
+- D 0 - I - 0x00CE37 03:8E27: DF 8E     .word ofs_015_8EDF_09
+- D 0 - I - 0x00CE39 03:8E29: D9 8E     .word ofs_015_8ED9_0A
+- - - - - - 0x00CE3B 03:8E2B: D6 8E     .word ofs_015_8ED6_0B
+- - - - - - 0x00CE3D 03:8E2D: B8 8E     .word ofs_015_8EB8_0C
+- - - - - - 0x00CE3F 03:8E2F: D9 8E     .word ofs_015_8ED9_0D
+- - - - - - 0x00CE41 03:8E31: DF 8E     .word ofs_015_8EDF_0E
+- - - - - - 0x00CE43 03:8E33: C7 8E     .word ofs_015_8EC7_0F
 
 
 
@@ -2308,107 +2309,107 @@ off_8E35_0A:
 off_8E35_0D:
 off_8E35_0E:
 off_8E35_0F:
-- D 0 - I - 0x00CE45 03:8E35: B5 8E     .word ofs_8EB5_00
-- D 0 - I - 0x00CE47 03:8E37: B8 8E     .word ofs_8EB8_01
-- D 0 - I - 0x00CE49 03:8E39: D9 8E     .word ofs_8ED9_02
-- - - - - - 0x00CE4B 03:8E3B: B8 8E     .word ofs_8EB8_03
-- D 0 - I - 0x00CE4D 03:8E3D: B5 8E     .word ofs_8EB5_04
-- D 0 - I - 0x00CE4F 03:8E3F: B8 8E     .word ofs_8EB8_05
-- D 0 - I - 0x00CE51 03:8E41: B8 8E     .word ofs_8EB8_06
-- - - - - - 0x00CE53 03:8E43: B8 8E     .word ofs_8EB8_07
-- D 0 - I - 0x00CE55 03:8E45: B5 8E     .word ofs_8EB5_08
-- D 0 - I - 0x00CE57 03:8E47: D9 8E     .word ofs_8ED9_09
-- D 0 - I - 0x00CE59 03:8E49: DF 8E     .word ofs_8EDF_0A
-- - - - - - 0x00CE5B 03:8E4B: 12 8F     .word ofs_8F12_0B
-- - - - - - 0x00CE5D 03:8E4D: B5 8E     .word ofs_8EB5_0C
-- - - - - - 0x00CE5F 03:8E4F: D9 8E     .word ofs_8ED9_0D
-- - - - - - 0x00CE61 03:8E51: DF 8E     .word ofs_8EDF_0E
-- - - - - - 0x00CE63 03:8E53: C7 8E     .word ofs_8EC7_0F
+- D 0 - I - 0x00CE45 03:8E35: B5 8E     .word ofs_015_8EB5_00
+- D 0 - I - 0x00CE47 03:8E37: B8 8E     .word ofs_015_8EB8_01
+- D 0 - I - 0x00CE49 03:8E39: D9 8E     .word ofs_015_8ED9_02
+- - - - - - 0x00CE4B 03:8E3B: B8 8E     .word ofs_015_8EB8_03
+- D 0 - I - 0x00CE4D 03:8E3D: B5 8E     .word ofs_015_8EB5_04
+- D 0 - I - 0x00CE4F 03:8E3F: B8 8E     .word ofs_015_8EB8_05
+- D 0 - I - 0x00CE51 03:8E41: B8 8E     .word ofs_015_8EB8_06
+- - - - - - 0x00CE53 03:8E43: B8 8E     .word ofs_015_8EB8_07
+- D 0 - I - 0x00CE55 03:8E45: B5 8E     .word ofs_015_8EB5_08
+- D 0 - I - 0x00CE57 03:8E47: D9 8E     .word ofs_015_8ED9_09
+- D 0 - I - 0x00CE59 03:8E49: DF 8E     .word ofs_015_8EDF_0A
+- - - - - - 0x00CE5B 03:8E4B: 12 8F     .word ofs_015_8F12_0B
+- - - - - - 0x00CE5D 03:8E4D: B5 8E     .word ofs_015_8EB5_0C
+- - - - - - 0x00CE5F 03:8E4F: D9 8E     .word ofs_015_8ED9_0D
+- - - - - - 0x00CE61 03:8E51: DF 8E     .word ofs_015_8EDF_0E
+- - - - - - 0x00CE63 03:8E53: C7 8E     .word ofs_015_8EC7_0F
 
 
 
 off_8E55_02:
-- - - - - - 0x00CE65 03:8E55: C7 8E     .word ofs_8EC7_00
-- - - - - - 0x00CE67 03:8E57: D9 8E     .word ofs_8ED9_01
-- - - - - - 0x00CE69 03:8E59: 0C 8F     .word ofs_8F0C_02
-- - - - - - 0x00CE6B 03:8E5B: 0C 8F     .word ofs_8F0C_03
-- - - - - - 0x00CE6D 03:8E5D: C7 8E     .word ofs_8EC7_04
-- - - - - - 0x00CE6F 03:8E5F: C7 8E     .word ofs_8EC7_05
-- - - - - - 0x00CE71 03:8E61: C7 8E     .word ofs_8EC7_06
-- - - - - - 0x00CE73 03:8E63: C7 8E     .word ofs_8EC7_07
-- - - - - - 0x00CE75 03:8E65: C7 8E     .word ofs_8EC7_08
-- - - - - - 0x00CE77 03:8E67: 12 8F     .word ofs_8F12_09
-- - - - - - 0x00CE79 03:8E69: C7 8E     .word ofs_8EC7_0A
-- - - - - - 0x00CE7B 03:8E6B: C7 8E     .word ofs_8EC7_0B
-- - - - - - 0x00CE7D 03:8E6D: C7 8E     .word ofs_8EC7_0C
-- - - - - - 0x00CE7F 03:8E6F: C7 8E     .word ofs_8EC7_0D
-- - - - - - 0x00CE81 03:8E71: 12 8F     .word ofs_8F12_0E
-- - - - - - 0x00CE83 03:8E73: 12 8F     .word ofs_8F12_0F
+- - - - - - 0x00CE65 03:8E55: C7 8E     .word ofs_015_8EC7_00
+- - - - - - 0x00CE67 03:8E57: D9 8E     .word ofs_015_8ED9_01
+- - - - - - 0x00CE69 03:8E59: 0C 8F     .word ofs_015_8F0C_02
+- - - - - - 0x00CE6B 03:8E5B: 0C 8F     .word ofs_015_8F0C_03
+- - - - - - 0x00CE6D 03:8E5D: C7 8E     .word ofs_015_8EC7_04
+- - - - - - 0x00CE6F 03:8E5F: C7 8E     .word ofs_015_8EC7_05
+- - - - - - 0x00CE71 03:8E61: C7 8E     .word ofs_015_8EC7_06
+- - - - - - 0x00CE73 03:8E63: C7 8E     .word ofs_015_8EC7_07
+- - - - - - 0x00CE75 03:8E65: C7 8E     .word ofs_015_8EC7_08
+- - - - - - 0x00CE77 03:8E67: 12 8F     .word ofs_015_8F12_09
+- - - - - - 0x00CE79 03:8E69: C7 8E     .word ofs_015_8EC7_0A
+- - - - - - 0x00CE7B 03:8E6B: C7 8E     .word ofs_015_8EC7_0B
+- - - - - - 0x00CE7D 03:8E6D: C7 8E     .word ofs_015_8EC7_0C
+- - - - - - 0x00CE7F 03:8E6F: C7 8E     .word ofs_015_8EC7_0D
+- - - - - - 0x00CE81 03:8E71: 12 8F     .word ofs_015_8F12_0E
+- - - - - - 0x00CE83 03:8E73: 12 8F     .word ofs_015_8F12_0F
 
 
 
 off_8E75_06:
-- - - - - - 0x00CE85 03:8E75: 0C 8F     .word ofs_8F0C_00
-- - - - - - 0x00CE87 03:8E77: B8 8E     .word ofs_8EB8_01
-- - - - - - 0x00CE89 03:8E79: B8 8E     .word ofs_8EB8_02
-- - - - - - 0x00CE8B 03:8E7B: 0C 8F     .word ofs_8F0C_03
-- - - - - - 0x00CE8D 03:8E7D: 2E 8F     .word ofs_8F2E_04
-- - - - - - 0x00CE8F 03:8E7F: B8 8E     .word ofs_8EB8_05
-- - - - - - 0x00CE91 03:8E81: B8 8E     .word ofs_8EB8_06
-- - - - - - 0x00CE93 03:8E83: 0C 8F     .word ofs_8F0C_07
-- - - - - - 0x00CE95 03:8E85: 0C 8F     .word ofs_8F0C_08
-- - - - - - 0x00CE97 03:8E87: B8 8E     .word ofs_8EB8_09
-- - - - - - 0x00CE99 03:8E89: B8 8E     .word ofs_8EB8_0A
-- - - - - - 0x00CE9B 03:8E8B: D9 8E     .word ofs_8ED9_0B
-- - - - - - 0x00CE9D 03:8E8D: 2E 8F     .word ofs_8F2E_0C
-- - - - - - 0x00CE9F 03:8E8F: B8 8E     .word ofs_8EB8_0D
-- - - - - - 0x00CEA1 03:8E91: B8 8E     .word ofs_8EB8_0E
-- - - - - - 0x00CEA3 03:8E93: D9 8E     .word ofs_8ED9_0F
+- - - - - - 0x00CE85 03:8E75: 0C 8F     .word ofs_015_8F0C_00
+- - - - - - 0x00CE87 03:8E77: B8 8E     .word ofs_015_8EB8_01
+- - - - - - 0x00CE89 03:8E79: B8 8E     .word ofs_015_8EB8_02
+- - - - - - 0x00CE8B 03:8E7B: 0C 8F     .word ofs_015_8F0C_03
+- - - - - - 0x00CE8D 03:8E7D: 2E 8F     .word ofs_015_8F2E_04
+- - - - - - 0x00CE8F 03:8E7F: B8 8E     .word ofs_015_8EB8_05
+- - - - - - 0x00CE91 03:8E81: B8 8E     .word ofs_015_8EB8_06
+- - - - - - 0x00CE93 03:8E83: 0C 8F     .word ofs_015_8F0C_07
+- - - - - - 0x00CE95 03:8E85: 0C 8F     .word ofs_015_8F0C_08
+- - - - - - 0x00CE97 03:8E87: B8 8E     .word ofs_015_8EB8_09
+- - - - - - 0x00CE99 03:8E89: B8 8E     .word ofs_015_8EB8_0A
+- - - - - - 0x00CE9B 03:8E8B: D9 8E     .word ofs_015_8ED9_0B
+- - - - - - 0x00CE9D 03:8E8D: 2E 8F     .word ofs_015_8F2E_0C
+- - - - - - 0x00CE9F 03:8E8F: B8 8E     .word ofs_015_8EB8_0D
+- - - - - - 0x00CEA1 03:8E91: B8 8E     .word ofs_015_8EB8_0E
+- - - - - - 0x00CEA3 03:8E93: D9 8E     .word ofs_015_8ED9_0F
 
 
 
 off_8E95_0B:
-- - - - - - 0x00CEA5 03:8E95: C7 8E     .word ofs_8EC7_00
-- - - - - - 0x00CEA7 03:8E97: C7 8E     .word ofs_8EC7_01
-- - - - - - 0x00CEA9 03:8E99: 3A 8F     .word ofs_8F3A_02
-- - - - - - 0x00CEAB 03:8E9B: 3A 8F     .word ofs_8F3A_03
-- - - - - - 0x00CEAD 03:8E9D: 12 8F     .word ofs_8F12_04
-- - - - - - 0x00CEAF 03:8E9F: D9 8E     .word ofs_8ED9_05
-- - - - - - 0x00CEB1 03:8EA1: 0C 8F     .word ofs_8F0C_06
-- - - - - - 0x00CEB3 03:8EA3: 0C 8F     .word ofs_8F0C_07
-- - - - - - 0x00CEB5 03:8EA5: DF 8E     .word ofs_8EDF_08
-- - - - - - 0x00CEB7 03:8EA7: 3A 8F     .word ofs_8F3A_09
-- - - - - - 0x00CEB9 03:8EA9: 3A 8F     .word ofs_8F3A_0A
-- - - - - - 0x00CEBB 03:8EAB: C7 8E     .word ofs_8EC7_0B
-- - - - - - 0x00CEBD 03:8EAD: 12 8F     .word ofs_8F12_0C
-- - - - - - 0x00CEBF 03:8EAF: C7 8E     .word ofs_8EC7_0D
-- - - - - - 0x00CEC1 03:8EB1: C7 8E     .word ofs_8EC7_0E
-- - - - - - 0x00CEC3 03:8EB3: C7 8E     .word ofs_8EC7_0F
+- - - - - - 0x00CEA5 03:8E95: C7 8E     .word ofs_015_8EC7_00
+- - - - - - 0x00CEA7 03:8E97: C7 8E     .word ofs_015_8EC7_01
+- - - - - - 0x00CEA9 03:8E99: 3A 8F     .word ofs_015_8F3A_02
+- - - - - - 0x00CEAB 03:8E9B: 3A 8F     .word ofs_015_8F3A_03
+- - - - - - 0x00CEAD 03:8E9D: 12 8F     .word ofs_015_8F12_04
+- - - - - - 0x00CEAF 03:8E9F: D9 8E     .word ofs_015_8ED9_05
+- - - - - - 0x00CEB1 03:8EA1: 0C 8F     .word ofs_015_8F0C_06
+- - - - - - 0x00CEB3 03:8EA3: 0C 8F     .word ofs_015_8F0C_07
+- - - - - - 0x00CEB5 03:8EA5: DF 8E     .word ofs_015_8EDF_08
+- - - - - - 0x00CEB7 03:8EA7: 3A 8F     .word ofs_015_8F3A_09
+- - - - - - 0x00CEB9 03:8EA9: 3A 8F     .word ofs_015_8F3A_0A
+- - - - - - 0x00CEBB 03:8EAB: C7 8E     .word ofs_015_8EC7_0B
+- - - - - - 0x00CEBD 03:8EAD: 12 8F     .word ofs_015_8F12_0C
+- - - - - - 0x00CEBF 03:8EAF: C7 8E     .word ofs_015_8EC7_0D
+- - - - - - 0x00CEC1 03:8EB1: C7 8E     .word ofs_015_8EC7_0E
+- - - - - - 0x00CEC3 03:8EB3: C7 8E     .word ofs_015_8EC7_0F
 
 
 
-bra_8EB5:
-ofs_8EB5_00:
-ofs_8EB5_04:
-ofs_8EB5_08:
-ofs_8EB5_0C:
+ofs_015_8EB5_00:
+ofs_015_8EB5_04:
+ofs_015_8EB5_08:
+ofs_015_8EB5_0C:
 loc_8EB5:
+bra_8EB5:
 C - - J - - 0x00CEC5 03:8EB5: 4C CE 8B  JMP loc_8BCE
 
 
 
 loc_8EB8:
-ofs_8EB8_05:
-ofs_8EB8_0C:
-ofs_8EB8_01:
-ofs_8EB8_03:
-ofs_8EB8_06:
-ofs_8EB8_07:
-ofs_8EB8_02:
-ofs_8EB8_09:
-ofs_8EB8_0A:
-ofs_8EB8_0D:
-ofs_8EB8_0E:
+ofs_015_8EB8_05:
+ofs_015_8EB8_0C:
+ofs_015_8EB8_01:
+ofs_015_8EB8_03:
+ofs_015_8EB8_06:
+ofs_015_8EB8_07:
+ofs_015_8EB8_02:
+ofs_015_8EB8_09:
+ofs_015_8EB8_0A:
+ofs_015_8EB8_0D:
+ofs_015_8EB8_0E:
 C D 0 J - - 0x00CEC8 03:8EB8: 8A        TXA
 C - - - - - 0x00CEC9 03:8EB9: 29 01     AND #$01
 C - - - - - 0x00CECB 03:8EBB: B9 D3 05  LDA ram_05D3,Y
@@ -2419,20 +2420,20 @@ C - - - - - 0x00CED4 03:8EC4: 4C BB 8F  JMP loc_8FBB
 
 
 
-ofs_8EC7_03:
-ofs_8EC7_04:
-ofs_8EC7_0F:
-ofs_8EC7_00:
-ofs_8EC7_05:
-ofs_8EC7_06:
-ofs_8EC7_07:
-ofs_8EC7_08:
-ofs_8EC7_0A:
-ofs_8EC7_0B:
-ofs_8EC7_0C:
-ofs_8EC7_0D:
-ofs_8EC7_01:
-ofs_8EC7_0E:
+ofs_015_8EC7_03:
+ofs_015_8EC7_04:
+ofs_015_8EC7_0F:
+ofs_015_8EC7_00:
+ofs_015_8EC7_05:
+ofs_015_8EC7_06:
+ofs_015_8EC7_07:
+ofs_015_8EC7_08:
+ofs_015_8EC7_0A:
+ofs_015_8EC7_0B:
+ofs_015_8EC7_0C:
+ofs_015_8EC7_0D:
+ofs_015_8EC7_01:
+ofs_015_8EC7_0E:
 C - - J - - 0x00CED7 03:8EC7: 8A        TXA
 C - - - - - 0x00CED8 03:8EC8: 29 01     AND #$01
 C - - - - - 0x00CEDA 03:8ECA: B9 D3 05  LDA ram_05D3,Y
@@ -2443,21 +2444,21 @@ C - - - - - 0x00CEE3 03:8ED3: 4C 0B 92  JMP loc_920B
 
 
 
-ofs_8ED6_08:
-ofs_8ED6_0B:
+ofs_015_8ED6_08:
+ofs_015_8ED6_0B:
 C - - J - - 0x00CEE6 03:8ED6: 4C 04 8D  JMP loc_8D04
 
 
 
-ofs_8ED9_01:
-ofs_8ED9_06:
-ofs_8ED9_0A:
-ofs_8ED9_0D:
-ofs_8ED9_02:
-ofs_8ED9_09:
-ofs_8ED9_0B:
-ofs_8ED9_0F:
-ofs_8ED9_05:
+ofs_015_8ED9_01:
+ofs_015_8ED9_06:
+ofs_015_8ED9_0A:
+ofs_015_8ED9_0D:
+ofs_015_8ED9_02:
+ofs_015_8ED9_09:
+ofs_015_8ED9_0B:
+ofs_015_8ED9_0F:
+ofs_015_8ED9_05:
 C - - J - - 0x00CEE9 03:8ED9: A9 10     LDA #$10
 C - - - - - 0x00CEEB 03:8EDB: 9D 79 04  STA ram_игрок_номер_действия,X
 C - - - - - 0x00CEEE 03:8EDE: 60        RTS
@@ -2465,12 +2466,12 @@ C - - - - - 0x00CEEE 03:8EDE: 60        RTS
 
 
 loc_8EDF:
-ofs_8EDF_02:
-ofs_8EDF_07:
-ofs_8EDF_09:
-ofs_8EDF_0E:
-ofs_8EDF_0A:
-ofs_8EDF_08:
+ofs_015_8EDF_02:
+ofs_015_8EDF_07:
+ofs_015_8EDF_09:
+ofs_015_8EDF_0E:
+ofs_015_8EDF_0A:
+ofs_015_8EDF_08:
 C D 0 - - - 0x00CEEF 03:8EDF: A4 2C     LDY ram_002C
 C - - - - - 0x00CEF1 03:8EE1: B9 4D 03  LDA ram_игрок_Y_lo,Y
 C - - - - - 0x00CEF4 03:8EE4: 38        SEC
@@ -2492,19 +2493,19 @@ C - - - - - 0x00CF15 03:8F05: 60        RTS
 
 
 
-ofs_8F06_00:
+ofs_015_8F06_00:
 C - - J - - 0x00CF16 03:8F06: A9 0F     LDA #$0F
 C - - - - - 0x00CF18 03:8F08: 9D 79 04  STA ram_игрок_номер_действия,X
 C - - - - - 0x00CF1B 03:8F0B: 60        RTS
 
 
 
-ofs_8F0C_02:
-ofs_8F0C_03:
-ofs_8F0C_00:
-ofs_8F0C_07:
-ofs_8F0C_08:
-ofs_8F0C_06:
+ofs_015_8F0C_02:
+ofs_015_8F0C_03:
+ofs_015_8F0C_00:
+ofs_015_8F0C_07:
+ofs_015_8F0C_08:
+ofs_015_8F0C_06:
 - - - - - - 0x00CF1C 03:8F0C: A9 0D     LDA #$0D
 - - - - - - 0x00CF1E 03:8F0E: 9D 79 04  STA ram_игрок_номер_действия,X
 - - - - - - 0x00CF21 03:8F11: 60        RTS
@@ -2512,12 +2513,12 @@ ofs_8F0C_06:
 
 
 loc_8F12:
-ofs_8F12_0B:
-ofs_8F12_09:
-ofs_8F12_0E:
-ofs_8F12_0F:
-ofs_8F12_04:
-ofs_8F12_0C:
+ofs_015_8F12_0B:
+ofs_015_8F12_09:
+ofs_015_8F12_0E:
+ofs_015_8F12_0F:
+ofs_015_8F12_04:
+ofs_015_8F12_0C:
 C D 0 - - - 0x00CF22 03:8F12: BD 86 04  LDA ram_игрок_состояние,X
 C - - - - - 0x00CF25 03:8F15: 29 10     AND #$10
 C - - - - - 0x00CF27 03:8F17: F0 05     BEQ bra_8F1E
@@ -2536,8 +2537,8 @@ C - - - - - 0x00CF3D 03:8F2D: 60        RTS
 
 
 
-ofs_8F2E_04:
-ofs_8F2E_0C:
+ofs_015_8F2E_04:
+ofs_015_8F2E_0C:
 - - - - - - 0x00CF3E 03:8F2E: BD B0 04  LDA ram_смена_угла_движения,X
 - - - - - - 0x00CF41 03:8F31: 18        CLC
 - - - - - - 0x00CF42 03:8F32: 69 80     ADC #$80
@@ -2546,10 +2547,10 @@ ofs_8F2E_0C:
 
 
 
-ofs_8F3A_02:
-ofs_8F3A_03:
-ofs_8F3A_09:
-ofs_8F3A_0A:
+ofs_015_8F3A_02:
+ofs_015_8F3A_03:
+ofs_015_8F3A_09:
+ofs_015_8F3A_0A:
 - - - - - - 0x00CF4A 03:8F3A: 8A        TXA
 - - - - - - 0x00CF4B 03:8F3B: 29 01     AND #$01
 - - - - - - 0x00CF4D 03:8F3D: B9 D3 05  LDA ram_05D3,Y
@@ -2625,7 +2626,7 @@ C - - - - - 0x00CFBA 03:8FAA: 60        RTS
 
 
 
-ofs_8FAB_10:
+ofs_014_8FAB_10:
 - - - - - - 0x00CFBB 03:8FAB: 8A        TXA
 - - - - - - 0x00CFBC 03:8FAC: 29 01     AND #$01
 - - - - - - 0x00CFBE 03:8FAE: A8        TAY
@@ -2638,9 +2639,9 @@ ofs_8FAB_10:
 
 
 loc_8FBB:
-ofs_8FBB_11:
-ofs_8FBB_12:
-ofs_8FBB_13:
+ofs_014_8FBB_11:
+ofs_014_8FBB_12:
+ofs_014_8FBB_13:
 C D 0 - - - 0x00CFCB 03:8FBB: BD 60 03  LDA ram_игрок_Y_hi,X
 C - - - - - 0x00CFCE 03:8FBE: D0 0A     BNE bra_8FCA
 C - - - - - 0x00CFD0 03:8FC0: BD 4D 03  LDA ram_игрок_Y_lo,X
@@ -2717,7 +2718,7 @@ C - - - - - 0x00D04D 03:903D: 60        RTS
 
 
 loc_903E:
-ofs_903E_14:
+ofs_014_903E_14:
 C D 0 - - - 0x00D04E 03:903E: 8A        TXA
 C - - - - - 0x00D04F 03:903F: 29 01     AND #$01
 C - - - - - 0x00D051 03:9041: 0A        ASL
@@ -2798,9 +2799,9 @@ tbl_90B2:
 
 
 
-ofs_90B7_15:
-ofs_90B7_18:
-ofs_90B7_1C:
+ofs_014_90B7_15:
+ofs_014_90B7_18:
+ofs_014_90B7_1C:
 C - - J - - 0x00D0C7 03:90B7: A9 0C     LDA #$0C
 C - - - - - 0x00D0C9 03:90B9: 85 1F     STA ram_001F
 C - - - - - 0x00D0CB 03:90BB: 20 1A AE  JSR sub_AE1A
@@ -2814,9 +2815,9 @@ C - - - - - 0x00D0DB 03:90CB: 60        RTS
 
 
 
-ofs_90CC_16:
-ofs_90CC_19:
-ofs_90CC_1E:
+ofs_014_90CC_16:
+ofs_014_90CC_19:
+ofs_014_90CC_1E:
 C - - J - - 0x00D0DC 03:90CC: AD 17 05  LDA ram_подающий_X_lo
 C - - - - - 0x00D0DF 03:90CF: 85 32     STA ram_0032
 C - - - - - 0x00D0E1 03:90D1: AD 18 05  LDA ram_подающий_X_hi
@@ -2836,15 +2837,15 @@ C - - - - - 0x00D100 03:90F0: 60        RTS
 
 
 
-ofs_90F1_17:
+ofs_014_90F1_17:
 C - - J - - 0x00D101 03:90F1: A9 16     LDA #$16
 C - - - - - 0x00D103 03:90F3: 9D 79 04  STA ram_игрок_номер_действия,X
 C - - - - - 0x00D106 03:90F6: 60        RTS
 
 
 
-ofs_90F7_1A:
-ofs_90F7_1F:
+ofs_014_90F7_1A:
+ofs_014_90F7_1F:
 C - - J - - 0x00D107 03:90F7: A9 1A     LDA #$1A
 C - - - - - 0x00D109 03:90F9: 9D 79 04  STA ram_игрок_номер_действия,X
 C - - - - - 0x00D10C 03:90FC: 8A        TXA
@@ -2856,7 +2857,7 @@ C - - - - - 0x00D115 03:9105: 60        RTS
 
 
 
-ofs_9106_1B:
+ofs_014_9106_1B:
 C - - J - - 0x00D116 03:9106: BD 14 03  LDA ram_игрок_X_lo,X
 C - - - - - 0x00D119 03:9109: 9D 20 06  STA ram_0620,X
 C - - - - - 0x00D11C 03:910C: BD 27 03  LDA ram_игрок_X_hi,X
@@ -2876,7 +2877,7 @@ C - - - - - 0x00D13E 03:912E: 60        RTS
 
 
 
-ofs_912F_1D:
+ofs_014_912F_1D:
 C - - J - - 0x00D13F 03:912F: BD 4D 03  LDA ram_игрок_Y_lo,X
 C - - - - - 0x00D142 03:9132: 9D 38 06  STA ram_0638,X
 C - - - - - 0x00D145 03:9135: BD 60 03  LDA ram_игрок_Y_hi,X
@@ -2896,8 +2897,8 @@ C - - - - - 0x00D167 03:9157: 60        RTS
 
 
 
-ofs_9158_20:
-ofs_9158_22:
+ofs_014_9158_20:
+ofs_014_9158_22:
 C - - J - - 0x00D168 03:9158: BD 5C 06  LDA ram_интеллект_бота,X
 C - - - - - 0x00D16B 03:915B: C9 22     CMP #$22
 C - - - - - 0x00D16D 03:915D: D0 06     BNE bra_9165
@@ -3037,7 +3038,7 @@ tbl_91FB:
 
 
 loc_920B:
-ofs_920B_23:
+ofs_014_920B_23:
 C D 0 J - - 0x00D21B 03:920B: 8A        TXA
 C - - - - - 0x00D21C 03:920C: 29 01     AND #$01
 C - - - - - 0x00D21E 03:920E: 0A        ASL
@@ -3089,15 +3090,15 @@ C - - - - - 0x00D26E 03:925E: 85 2D     STA ram_002D
 C - - - - - 0x00D270 03:9260: 6C 2C 00  JMP (ram_002C)
 
 tbl_9263:
-- D 0 - - - 0x00D273 03:9263: 6B 92     .word ofs_926B_00
-- D 0 - - - 0x00D275 03:9265: 6B 92     .word ofs_926B_01
-- D 0 - - - 0x00D277 03:9267: AD 92     .word ofs_92AD_02
-- D 0 - - - 0x00D279 03:9269: AD 92     .word ofs_92AD_03
+- D 0 - - - 0x00D273 03:9263: 6B 92     .word ofs_016_926B_00
+- D 0 - - - 0x00D275 03:9265: 6B 92     .word ofs_016_926B_01
+- D 0 - - - 0x00D277 03:9267: AD 92     .word ofs_016_92AD_02
+- D 0 - - - 0x00D279 03:9269: AD 92     .word ofs_016_92AD_03
 
 
 
-ofs_926B_00:
-ofs_926B_01:
+ofs_016_926B_00:
+ofs_016_926B_01:
 C - - J - - 0x00D27B 03:926B: BD F1 04  LDA ram_номер_скилла,X
 C - - - - - 0x00D27E 03:926E: 29 04     AND #$04
 C - - - - - 0x00D280 03:9270: F0 0C     BEQ bra_927E
@@ -3135,8 +3136,8 @@ C - - - - - 0x00D2BC 03:92AC: 60        RTS
 
 bra_92AD:
 loc_92AD:
-ofs_92AD_02:
-ofs_92AD_03:
+ofs_016_92AD_02:
+ofs_016_92AD_03:
 C D 0 - - - 0x00D2BD 03:92AD: BD 86 04  LDA ram_игрок_состояние,X
 C - - - - - 0x00D2C0 03:92B0: 10 28     BPL bra_92DA
 C - - - - - 0x00D2C2 03:92B2: AD 46 00  LDA a: ram_рандом + 1
@@ -3172,7 +3173,7 @@ loc_92E8:
 C D 0 - - - 0x00D2F8 03:92E8: 9D 79 04  STA ram_игрок_номер_действия,X
 C - - - - - 0x00D2FB 03:92EB: 60        RTS
 loc_92EC:
-ofs_92EC_24:
+ofs_014_92EC_24:
 C D 0 J - - 0x00D2FC 03:92EC: A0 0C     LDY #$0C
 C - - - - - 0x00D2FE 03:92EE: B9 99 03  LDA ram_игрок_Z_hi,Y
 C - - - - - 0x00D301 03:92F1: 30 0A     BMI bra_92FD
@@ -3255,7 +3256,7 @@ tbl_9372:
 
 
 loc_9376:
-ofs_9376_25:
+ofs_014_9376_25:
 C D 0 J - - 0x00D386 03:9376: A0 0C     LDY #$0C
 C - - - - - 0x00D388 03:9378: B9 99 03  LDA ram_игрок_Z_hi,Y
 C - - - - - 0x00D38B 03:937B: 30 0A     BMI bra_9387
@@ -3411,7 +3412,7 @@ tbl_948F:
 
 
 
-ofs_9493_26:
+ofs_014_9493_26:
 C - - J - - 0x00D4A3 03:9493: 8A        TXA
 C - - - - - 0x00D4A4 03:9494: 29 01     AND #$01
 C - - - - - 0x00D4A6 03:9496: A8        TAY
@@ -3427,7 +3428,7 @@ tbl_94A3:
 
 
 
-ofs_94A5_27:
+ofs_014_94A5_27:
 C - - J - - 0x00D4B5 03:94A5: 8A        TXA
 C - - - - - 0x00D4B6 03:94A6: 38        SEC
 C - - - - - 0x00D4B7 03:94A7: E9 0A     SBC #$0A
@@ -3513,7 +3514,7 @@ tbl_952E:
 
 
 
-ofs_9533_28:
+ofs_014_9533_28:
 C - - J - - 0x00D543 03:9533: 8A        TXA
 C - - - - - 0x00D544 03:9534: 49 01     EOR #$01
 C - - - - - 0x00D546 03:9536: 29 01     AND #$01
@@ -3642,7 +3643,7 @@ bra_962C:
 
 
 
-ofs_962F_29:
+ofs_014_962F_29:
 C - - J - - 0x00D63F 03:962F: BD 60 03  LDA ram_игрок_Y_hi,X
 C - - - - - 0x00D642 03:9632: D0 0A     BNE bra_963E
 C - - - - - 0x00D644 03:9634: BD 4D 03  LDA ram_игрок_Y_lo,X
@@ -3696,7 +3697,7 @@ C - - - - - 0x00D6AC 03:969C: 60        RTS
 
 
 
-ofs_969D_2A:
+ofs_014_969D_2A:
 C - - J - - 0x00D6AD 03:969D: AD D6 04  LDA ram_игрок_с_мячом
 C - - - - - 0x00D6B0 03:96A0: A8        TAY
 C - - - - - 0x00D6B1 03:96A1: 29 01     AND #$01
@@ -3778,7 +3779,7 @@ tbl_9729:
 
 
 
-ofs_972D_2B:
+ofs_014_972D_2B:
 C - - J - - 0x00D73D 03:972D: AD 92 04  LDA ram_мяч_состояние
 C - - - - - 0x00D740 03:9730: 29 40     AND #$40
 C - - - - - 0x00D742 03:9732: D0 12     BNE bra_9746
@@ -4656,14 +4657,14 @@ C - - - - - 0x00DCE4 03:9CD4: 85 2D     STA ram_002D
 C - - - - - 0x00DCE6 03:9CD6: 6C 2C 00  JMP (ram_002C)
 
 tbl_9CD9:
-- D 0 - - - 0x00DCE9 03:9CD9: E1 9C     .word ofs_9CE1_00
-- D 0 - - - 0x00DCEB 03:9CDB: 2C 9D     .word ofs_9D2C_01
-- D 0 - - - 0x00DCED 03:9CDD: 60 9D     .word ofs_9D60_02
-- D 0 - - - 0x00DCEF 03:9CDF: 73 9D     .word ofs_9D73_03
+- D 0 - - - 0x00DCE9 03:9CD9: E1 9C     .word ofs_017_9CE1_00
+- D 0 - - - 0x00DCEB 03:9CDB: 2C 9D     .word ofs_017_9D2C_01
+- D 0 - - - 0x00DCED 03:9CDD: 60 9D     .word ofs_017_9D60_02
+- D 0 - - - 0x00DCEF 03:9CDF: 73 9D     .word ofs_017_9D73_03
 
 
 
-ofs_9CE1_00:
+ofs_017_9CE1_00:
 C - - J - - 0x00DCF1 03:9CE1: 20 94 9E  JSR sub_9E94
 C - - - - - 0x00DCF4 03:9CE4: 20 4A 9E  JSR sub_9E4A
 C - - - - - 0x00DCF7 03:9CE7: 29 01     AND #$01
@@ -4705,7 +4706,7 @@ tbl_9D2A:
 
 
 
-ofs_9D2C_01:
+ofs_017_9D2C_01:
 C - - J - - 0x00DD3C 03:9D2C: BD 7A 06  LDA ram_направление_паса_команды,X
 C - - - - - 0x00DD3F 03:9D2F: 29 0F     AND #$0F
 C - - - - - 0x00DD41 03:9D31: A8        TAY
@@ -4732,7 +4733,7 @@ C - - - - - 0x00DD6F 03:9D5F: 60        RTS
 
 
 
-ofs_9D60_02:
+ofs_017_9D60_02:
 C - - J - - 0x00DD70 03:9D60: 20 94 9E  JSR sub_9E94
 C - - - - - 0x00DD73 03:9D63: 20 4A 9E  JSR sub_9E4A
 C - - - - - 0x00DD76 03:9D66: 29 04     AND #$04
@@ -4744,7 +4745,7 @@ C - - - - - 0x00DD82 03:9D72: 60        RTS
 
 
 
-ofs_9D73_03:
+ofs_017_9D73_03:
 C - - J - - 0x00DD83 03:9D73: 20 94 9E  JSR sub_9E94
 C - - - - - 0x00DD86 03:9D76: 20 4A 9E  JSR sub_9E4A
 C - - - - - 0x00DD89 03:9D79: 29 08     AND #$08
@@ -5296,14 +5297,14 @@ C - - - - - 0x00E060 03:A050: 85 2D     STA ram_002D
 C - - - - - 0x00E062 03:A052: 6C 2C 00  JMP (ram_002C)
 
 tbl_A055:
-- D 1 - - - 0x00E065 03:A055: 5D A0     .word ofs_A05D_00
-- D 1 - - - 0x00E067 03:A057: 7E A0     .word ofs_A07E_01
-- D 1 - - - 0x00E069 03:A059: AF A0     .word ofs_A0AF_02
-- D 1 - - - 0x00E06B 03:A05B: C3 A0     .word ofs_A0C3_03
+- D 1 - - - 0x00E065 03:A055: 5D A0     .word ofs_018_A05D_00
+- D 1 - - - 0x00E067 03:A057: 7E A0     .word ofs_018_A07E_01
+- D 1 - - - 0x00E069 03:A059: AF A0     .word ofs_018_A0AF_02
+- D 1 - - - 0x00E06B 03:A05B: C3 A0     .word ofs_018_A0C3_03
 
 
 
-ofs_A05D_00:
+ofs_018_A05D_00:
 C - - J - - 0x00E06D 03:A05D: 20 EC A0  JSR sub_A0EC
 C - - - - - 0x00E070 03:A060: F0 10     BEQ bra_A072
 C - - - - - 0x00E072 03:A062: 30 45     BMI bra_A0A9
@@ -5324,7 +5325,7 @@ C D 1 - - - 0x00E08D 03:A07D: 60        RTS
 
 
 
-ofs_A07E_01:
+ofs_018_A07E_01:
 C - - J - - 0x00E08E 03:A07E: 20 EC A0  JSR sub_A0EC
 C - - - - - 0x00E091 03:A081: F0 10     BEQ bra_A093
 C - - - - - 0x00E093 03:A083: 30 24     BMI bra_A0A9
@@ -5354,7 +5355,7 @@ C - - - - - 0x00E0BE 03:A0AE: 60        RTS
 
 
 
-ofs_A0AF_02:
+ofs_018_A0AF_02:
 C - - J - - 0x00E0BF 03:A0AF: 20 D7 A0  JSR sub_A0D7
 C - - - - - 0x00E0C2 03:A0B2: 30 03     BMI bra_A0B7
 C - - - - - 0x00E0C4 03:A0B4: 4C A9 A0  JMP loc_A0A9
@@ -5368,7 +5369,7 @@ C - - - - - 0x00E0D2 03:A0C2: 60        RTS
 
 
 
-ofs_A0C3_03:
+ofs_018_A0C3_03:
 C - - J - - 0x00E0D3 03:A0C3: 20 D7 A0  JSR sub_A0D7
 C - - - - - 0x00E0D6 03:A0C6: 30 03     BMI bra_A0CB
 C - - - - - 0x00E0D8 03:A0C8: 4C A9 A0  JMP loc_A0A9
