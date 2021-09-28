@@ -39,18 +39,22 @@ Lua script will take care of it before compilation. You just write new code as u
 
 
 
-## WIP or planning
-* Balloon Fight (J) [!]
+## WIP
 * Castlevania III - Dracula's Curse (U) [!]
 * Danny Sullivan's Indy Heat (U) [!]
 * Double Dragon II - The Revenge (J)
 * Dr. Mario (JU) (PRG0) [!]
-* Ice Climber (J) [!]
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
 * Super Mario Bros. (W) [!]
 * Tennis (JU) [!]
-* Tetris (Tengen) [!]
 * Urban Champion (W) [!]
+
+
+
+## Planning
+* Balloon Fight (J) [!]
+* Ice Climber (J) [!]
+* Tetris (Tengen) [!]
 
 
 
