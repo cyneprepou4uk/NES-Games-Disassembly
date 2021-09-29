@@ -86,10 +86,10 @@
 .export loc_0x01FAA3
 .export sub_0x01FEA8
 .export sub_0x01FEB6
-.export sub_0x01FEC1
-.export loc_0x01FEC1
-.export sub_0x01FEC3
-.export loc_0x01FEC3
+.export sub_0x01FEC1_destroy_object
+.export loc_0x01FEC1_destroy_object
+.export sub_0x01FEC3_create_object
+.export loc_0x01FEC3_create_object
 .export sub_0x01FECB
 .export sub_0x01FEE6
 .export loc_0x01FEE6
@@ -151,10 +151,10 @@ C - - - - - 0x01E456 07:E446: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01E459 07:E449: 20 AC B4  JSR sub_0x0174BC
 C - - - - - 0x01E45C 07:E44C: 20 E8 B4  JSR sub_0x0174F8
 C - - - - - 0x01E45F 07:E44F: 20 5E E4  JSR sub_E45E
-C - - - - - 0x01E462 07:E452: A5 FF     LDA ram_00FF
+C - - - - - 0x01E462 07:E452: A5 FF     LDA ram_for_2000
 C - - - - - 0x01E464 07:E454: 09 A0     ORA #$A0
 C - - - - - 0x01E466 07:E456: 8D 00 20  STA $2000
-C - - - - - 0x01E469 07:E459: 85 FF     STA ram_00FF
+C - - - - - 0x01E469 07:E459: 85 FF     STA ram_for_2000
 loc_E45B_infinite_loop:
 C D 3 - - - 0x01E46B 07:E45B: 4C 5B E4  JMP loc_E45B_infinite_loop
 
@@ -184,16 +184,16 @@ C - - - - - 0x01E491 07:E481: 4C 94 E5  JMP loc_E594_clear_nmt
 
 vec_E484_NMI:
 vec_0x01E494_NMI:
-C - - - - - 0x01E494 07:E484: A5 FF     LDA ram_00FF
+C - - - - - 0x01E494 07:E484: A5 FF     LDA ram_for_2000
 C - - - - - 0x01E496 07:E486: A6 5C     LDX ram_005C
 C - - - - - 0x01E498 07:E488: F0 02     BEQ bra_E48C
 C - - - - - 0x01E49A 07:E48A: 49 02     EOR #$02
 bra_E48C:
 C - - - - - 0x01E49C 07:E48C: 29 7F     AND #$7F
-C - - - - - 0x01E49E 07:E48E: 85 FF     STA ram_00FF
+C - - - - - 0x01E49E 07:E48E: 85 FF     STA ram_for_2000
 C - - - - - 0x01E4A0 07:E490: 29 7E     AND #$7E
 C - - - - - 0x01E4A2 07:E492: 8D 00 20  STA $2000
-C - - - - - 0x01E4A5 07:E495: A5 FE     LDA ram_00FE
+C - - - - - 0x01E4A5 07:E495: A5 FE     LDA ram_for_2001
 C - - - - - 0x01E4A7 07:E497: A4 E3     LDY ram_00E3
 C - - - - - 0x01E4A9 07:E499: D0 08     BNE bra_E4A3
 C - - - - - 0x01E4AB 07:E49B: A4 14     LDY ram_0014
@@ -204,7 +204,7 @@ bra_E4A3:
 C - - - - - 0x01E4B3 07:E4A3: 09 1E     ORA #$1E
 bra_E4A5:
 C - - - - - 0x01E4B5 07:E4A5: 8D 01 20  STA $2001
-C - - - - - 0x01E4B8 07:E4A8: 85 FE     STA ram_00FE
+C - - - - - 0x01E4B8 07:E4A8: 85 FE     STA ram_for_2001
 C - - - - - 0x01E4BA 07:E4AA: A9 00     LDA #< ram_oam
 C - - - - - 0x01E4BC 07:E4AC: 8D 03 20  STA $2003
 C - - - - - 0x01E4BF 07:E4AF: A9 02     LDA #> ram_oam
@@ -248,11 +248,11 @@ C - - - - - 0x01E512 07:E502: C9 13     CMP #con_GM_13
 C - - - - - 0x01E514 07:E504: D0 12     BNE bra_E518
 bra_E506:
 C - - - - - 0x01E516 07:E506: AD 02 20  LDA $2002
-C - - - - - 0x01E519 07:E509: A5 FD     LDA ram_00FD
+C - - - - - 0x01E519 07:E509: A5 FD     LDA ram_scroll_X
 C - - - - - 0x01E51B 07:E50B: 8D 05 20  STA $2005
-C - - - - - 0x01E51E 07:E50E: A5 FC     LDA ram_00FC
+C - - - - - 0x01E51E 07:E50E: A5 FC     LDA ram_scroll_Y
 C - - - - - 0x01E520 07:E510: 8D 05 20  STA $2005
-C - - - - - 0x01E523 07:E513: A5 FF     LDA ram_00FF
+C - - - - - 0x01E523 07:E513: A5 FF     LDA ram_for_2000
 C - - - - - 0x01E525 07:E515: 8D 00 20  STA $2000
 bra_E518:
 C - - - - - 0x01E528 07:E518: A5 E1     LDA ram_00E1
@@ -311,10 +311,10 @@ bra_E570:
 C - - - - - 0x01E580 07:E570: 20 30 EB  JSR sub_EB30_game_mode_routines
 loc_E573:
 C D 3 - - - 0x01E583 07:E573: AD 02 20  LDA $2002
-C - - - - - 0x01E586 07:E576: A5 FF     LDA ram_00FF
+C - - - - - 0x01E586 07:E576: A5 FF     LDA ram_for_2000
 C - - - - - 0x01E588 07:E578: 09 80     ORA #$80
 C - - - - - 0x01E58A 07:E57A: 8D 00 20  STA $2000
-C - - - - - 0x01E58D 07:E57D: 85 FF     STA ram_00FF
+C - - - - - 0x01E58D 07:E57D: 85 FF     STA ram_for_2000
 C - - - - - 0x01E58F 07:E57F: 40        RTI
 
 
@@ -322,12 +322,12 @@ C - - - - - 0x01E58F 07:E57F: 40        RTI
 sub_E580:
 C - - - - - 0x01E590 07:E580: A9 00     LDA #$00
 C - - - - - 0x01E592 07:E582: 8D 05 20  STA $2005
-C - - - - - 0x01E595 07:E585: 85 FD     STA ram_00FD
+C - - - - - 0x01E595 07:E585: 85 FD     STA ram_scroll_X
 C - - - - - 0x01E597 07:E587: 8D 05 20  STA $2005
-C - - - - - 0x01E59A 07:E58A: 85 FC     STA ram_00FC
+C - - - - - 0x01E59A 07:E58A: 85 FC     STA ram_scroll_Y
 C - - - - - 0x01E59C 07:E58C: A9 30     LDA #$30
 C - - - - - 0x01E59E 07:E58E: 8D 00 20  STA $2000
-C - - - - - 0x01E5A1 07:E591: 85 FF     STA ram_00FF
+C - - - - - 0x01E5A1 07:E591: 85 FF     STA ram_for_2000
 C - - - - - 0x01E5A3 07:E593: 60        RTS
 
 
@@ -337,10 +337,10 @@ C D 3 - - - 0x01E5A4 07:E594: 85 00     STA ram_0000
 C - - - - - 0x01E5A6 07:E596: 86 01     STX ram_0001
 C - - - - - 0x01E5A8 07:E598: 84 02     STY ram_0002
 C - - - - - 0x01E5AA 07:E59A: AD 02 20  LDA $2002
-C - - - - - 0x01E5AD 07:E59D: A5 FF     LDA ram_00FF
+C - - - - - 0x01E5AD 07:E59D: A5 FF     LDA ram_for_2000
 C - - - - - 0x01E5AF 07:E59F: 29 FB     AND #$FB
 C - - - - - 0x01E5B1 07:E5A1: 8D 00 20  STA $2000
-C - - - - - 0x01E5B4 07:E5A4: 85 FF     STA ram_00FF
+C - - - - - 0x01E5B4 07:E5A4: 85 FF     STA ram_for_2000
 C - - - - - 0x01E5B6 07:E5A6: A5 00     LDA ram_0000
 C - - - - - 0x01E5B8 07:E5A8: 8D 06 20  STA $2006
 C - - - - - 0x01E5BB 07:E5AB: A0 00     LDY #$00
@@ -438,7 +438,7 @@ sub_0x01E635_disable_rendering:
 loc_0x01E635_disable_rendering:
 C D 3 - - - 0x01E635 07:E625: A9 00     LDA #$00
 C - - - - - 0x01E637 07:E627: 8D 01 20  STA $2001
-C - - - - - 0x01E63A 07:E62A: 85 FE     STA ram_00FE
+C - - - - - 0x01E63A 07:E62A: 85 FE     STA ram_for_2001
 C - - - - - 0x01E63C 07:E62C: 60        RTS
 
 
@@ -451,9 +451,9 @@ C - - - - - 0x01E644 07:E634: 8D 16 40  STA $4016
 C - - - - - 0x01E647 07:E637: 85 03     STA ram_0003
 C - - - - - 0x01E649 07:E639: 85 04     STA ram_0004
 C - - - - - 0x01E64B 07:E63B: AA        TAX ; X = 00
-C - - - - - 0x01E64C 07:E63C: 20 40 E6  JSR sub_E640
-C - - - - - 0x01E64F 07:E63F: E8        INX
-sub_E640:   ; X = 00
+C - - - - - 0x01E64C 07:E63C: 20 40 E6  JSR sub_E640_read_player_input
+C - - - - - 0x01E64F 07:E63F: E8        INX ; 01
+sub_E640_read_player_input:   ; X = 00
 bra_E640_loop:
 C - - - - - 0x01E650 07:E640: 85 02     STA ram_0002
 C - - - - - 0x01E652 07:E642: A9 01     LDA #$01
@@ -588,12 +588,12 @@ C - - - - - 0x01E703 07:E6F3: A5 AB     LDA ram_00AB
 C - - - - - 0x01E705 07:E6F5: C9 3F     CMP #$3F
 C - - - - - 0x01E707 07:E6F7: F0 F0     BEQ bra_E6E9_RTS
 C - - - - - 0x01E709 07:E6F9: A2 01     LDX #$01
-C - - - - - 0x01E70B 07:E6FB: AD 50 03  LDA ram_0350
-C - - - - - 0x01E70E 07:E6FE: C9 17     CMP #$17
+C - - - - - 0x01E70B 07:E6FB: AD 50 03  LDA ram_obj_id + 1
+C - - - - - 0x01E70E 07:E6FE: C9 17     CMP #con_obj_id_17
 C - - - - - 0x01E710 07:E700: F0 DB     BEQ bra_E6DD
-C - - - - - 0x01E712 07:E702: C9 2A     CMP #$2A
+C - - - - - 0x01E712 07:E702: C9 2A     CMP #con_obj_id_2A
 C - - - - - 0x01E714 07:E704: F0 D7     BEQ bra_E6DD
-C - - - - - 0x01E716 07:E706: C9 30     CMP #$30
+C - - - - - 0x01E716 07:E706: C9 30     CMP #con_obj_id_30
 C - - - - - 0x01E718 07:E708: F0 D3     BEQ bra_E6DD
 C - - - - - 0x01E71A 07:E70A: A2 13     LDX #$13
 loc_E70C:
@@ -990,11 +990,11 @@ C - - - - - 0x01E9C3 07:E9B3: A5 98     LDA ram_direction
 C - - - - - 0x01E9C5 07:E9B5: C9 04     CMP #con_dir_Down
 C - - - - - 0x01E9C7 07:E9B7: 90 04     BCC bra_E9BD
 C - - - - - 0x01E9C9 07:E9B9: A9 0F     LDA #con_mirroring_H
-C - - - - - 0x01E9CB 07:E9BB: D0 02     BNE bra_E9BF
+C - - - - - 0x01E9CB 07:E9BB: D0 02     BNE bra_E9BF    ; jmp
 bra_E9BD:
 C - - - - - 0x01E9CD 07:E9BD: A9 0E     LDA #con_mirroring_V
 bra_E9BF:
-C - - - - - 0x01E9CF 07:E9BF: 20 98 FF  JSR sub_FF98_set_control_register
+C - - - - - 0x01E9CF 07:E9BF: 20 98 FF  JSR sub_FF98_set_mirroring
 bra_E9C2_RTS:
 C - - - - - 0x01E9D2 07:E9C2: 60        RTS
 
@@ -1010,7 +1010,7 @@ C - - - - - 0x01E9D8 07:E9C8: 4C 11 9E  JMP loc_0x009E21
 
 ofs_001_E9CB_13:
 C - - J - - 0x01E9DB 07:E9CB: A9 0F     LDA #con_mirroring_H
-C - - - - - 0x01E9DD 07:E9CD: 20 98 FF  JSR sub_FF98_set_control_register
+C - - - - - 0x01E9DD 07:E9CD: 20 98 FF  JSR sub_FF98_set_mirroring
 C - - - - - 0x01E9E0 07:E9D0: A9 02     LDA #con_prg_bank + $02
 C - - - - - 0x01E9E2 07:E9D2: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01E9E5 07:E9D5: 4C 00 A9  JMP loc_0x00A910
@@ -1046,7 +1046,7 @@ C D 3 - - - 0x01EA10 07:EA00: A0 05     LDY #$05
 C - - - - - 0x01EA12 07:EA02: A9 00     LDA #$00
 C - - - - - 0x01EA14 07:EA04: 8D 29 05  STA ram_0529
 bra_EA07:
-C - - - - - 0x01EA17 07:EA07: 99 21 06  STA ram_0621,Y
+C - - - - - 0x01EA17 07:EA07: 99 21 06  STA ram_room_history,Y
 C - - - - - 0x01EA1A 07:EA0A: 88        DEY
 C - - - - - 0x01EA1B 07:EA0B: 10 FA     BPL bra_EA07
 C - - - - - 0x01EA1D 07:EA0D: 60        RTS
@@ -1122,15 +1122,15 @@ tbl_EA59:
 - D 3 - - - 0x01EA71 07:EA61: 7C        .byte $7C   ; 08
 
 tbl_EA62:
-- D 3 - - - 0x01EA72 07:EA62: 3D        .byte $3D   ; 00
-- D 3 - - - 0x01EA73 07:EA63: 3E        .byte $3E   ; 01
-- D 3 - - - 0x01EA74 07:EA64: 38        .byte $38   ; 02
-- D 3 - - - 0x01EA75 07:EA65: 39        .byte $39   ; 03
-- D 3 - - - 0x01EA76 07:EA66: 32        .byte $32   ; 04
-- D 3 - - - 0x01EA77 07:EA67: 31        .byte $31   ; 05
-- D 3 - - - 0x01EA78 07:EA68: 43        .byte $43   ; 06
-- D 3 - - - 0x01EA79 07:EA69: 44        .byte $44   ; 07
-- D 3 - - - 0x01EA7A 07:EA6A: 45        .byte $45   ; 08
+- D 3 - - - 0x01EA72 07:EA62: 3D        .byte con_obj_id_3D   ; 00
+- D 3 - - - 0x01EA73 07:EA63: 3E        .byte con_obj_id_3E   ; 01
+- D 3 - - - 0x01EA74 07:EA64: 38        .byte con_obj_id_38   ; 02
+- D 3 - - - 0x01EA75 07:EA65: 39        .byte con_obj_id_39   ; 03
+- D 3 - - - 0x01EA76 07:EA66: 32        .byte con_obj_id_32   ; 04
+- D 3 - - - 0x01EA77 07:EA67: 31        .byte con_obj_id_31   ; 05
+- D 3 - - - 0x01EA78 07:EA68: 43        .byte con_obj_id_43   ; 06
+- D 3 - - - 0x01EA79 07:EA69: 44        .byte con_obj_id_44   ; 07
+- D 3 - - - 0x01EA7A 07:EA6A: 45        .byte con_obj_id_45   ; 08
 
 
 
@@ -1140,16 +1140,16 @@ C - - - - - 0x01EA7E 07:EA6E: 20 3C F2  JSR sub_F23C
 C - - - - - 0x01EA81 07:EA71: A5 10     LDA ram_0010
 C - - - - - 0x01EA83 07:EA73: F0 14     BEQ bra_EA89
 C - - - - - 0x01EA85 07:EA75: A0 08     LDY #$08
-C - - - - - 0x01EA87 07:EA77: AD 50 03  LDA ram_0350
+C - - - - - 0x01EA87 07:EA77: AD 50 03  LDA ram_obj_id + 1
 bra_EA7A_loop:
 C - - - - - 0x01EA8A 07:EA7A: D9 62 EA  CMP tbl_EA62,Y
 C - - - - - 0x01EA8D 07:EA7D: D0 05     BNE bra_EA84
 C - - - - - 0x01EA8F 07:EA7F: BE 59 EA  LDX tbl_EA59,Y
-C - - - - - 0x01EA92 07:EA82: D0 45     BNE bra_EAC9
+C - - - - - 0x01EA92 07:EA82: D0 45     BNE bra_EAC9    ; jmp
 bra_EA84:
 C - - - - - 0x01EA94 07:EA84: 88        DEY
 C - - - - - 0x01EA95 07:EA85: 10 F3     BPL bra_EA7A_loop
-C - - - - - 0x01EA97 07:EA87: 30 33     BMI bra_EABC
+C - - - - - 0x01EA97 07:EA87: 30 33     BMI bra_EABC    ; jmp
 bra_EA89:
 C - - - - - 0x01EA99 07:EA89: A5 EB     LDA ram_map_location
 C - - - - - 0x01EA9B 07:EA8B: C9 0F     CMP #$0F
@@ -1160,12 +1160,12 @@ C - - - - - 0x01EAA3 07:EA93: A9 04     LDA #con_sfx_2_secret_found
 C - - - - - 0x01EAA5 07:EA95: 8D 02 06  STA ram_sfx_2
 bra_EA98:
 C - - - - - 0x01EAA8 07:EA98: A2 20     LDX #$20
-C - - - - - 0x01EAAA 07:EA9A: AD 5A 03  LDA ram_035A
-C - - - - - 0x01EAAD 07:EA9D: C9 65     CMP #$65
+C - - - - - 0x01EAAA 07:EA9A: AD 5A 03  LDA ram_obj_id + 11
+C - - - - - 0x01EAAD 07:EA9D: C9 65     CMP #con_obj_id_65
 C - - - - - 0x01EAAF 07:EA9F: F0 28     BEQ bra_EAC9
-C - - - - - 0x01EAB1 07:EAA1: C9 66     CMP #$66
+C - - - - - 0x01EAB1 07:EAA1: C9 66     CMP #con_obj_id_66
 C - - - - - 0x01EAB3 07:EAA3: F0 06     BEQ bra_EAAB
-C - - - - - 0x01EAB5 07:EAA5: C9 62     CMP #$62
+C - - - - - 0x01EAB5 07:EAA5: C9 62     CMP #con_obj_id_62
 C - - - - - 0x01EAB7 07:EAA7: D0 0F     BNE bra_EAB8
 C - - - - - 0x01EAB9 07:EAA9: A2 24     LDX #$24
 bra_EAAB:
@@ -1206,23 +1206,23 @@ C - - - - - 0x01EAF2 07:EAE2: 20 3A B8  JSR sub_0x01784A
 C - - - - - 0x01EAF5 07:EAE5: A0 00     LDY #$00
 C - - - - - 0x01EAF7 07:EAE7: A2 05     LDX #$05
 C - - - - - 0x01EAF9 07:EAE9: A5 EB     LDA ram_map_location
-bra_EAEB:
-C - - - - - 0x01EAFB 07:EAEB: DD 21 06  CMP ram_0621,X
-C - - - - - 0x01EAFE 07:EAEE: D0 01     BNE bra_EAF1
+bra_EAEB_loop:
+C - - - - - 0x01EAFB 07:EAEB: DD 21 06  CMP ram_room_history,X
+C - - - - - 0x01EAFE 07:EAEE: D0 01     BNE bra_EAF1_no_match
 C - - - - - 0x01EB00 07:EAF0: C8        INY
-bra_EAF1:
+bra_EAF1_no_match:
 C - - - - - 0x01EB01 07:EAF1: CA        DEX
-C - - - - - 0x01EB02 07:EAF2: 10 F7     BPL bra_EAEB
+C - - - - - 0x01EB02 07:EAF2: 10 F7     BPL bra_EAEB_loop
 C - - - - - 0x01EB04 07:EAF4: C0 00     CPY #$00
 C - - - - - 0x01EB06 07:EAF6: D0 15     BNE bra_EB0D
-C - - - - - 0x01EB08 07:EAF8: AE 20 06  LDX ram_0620
-C - - - - - 0x01EB0B 07:EAFB: 9D 21 06  STA ram_0621,X
-C - - - - - 0x01EB0E 07:EAFE: EE 20 06  INC ram_0620
-C - - - - - 0x01EB11 07:EB01: AD 20 06  LDA ram_0620
+C - - - - - 0x01EB08 07:EAF8: AE 20 06  LDX ram_history_id
+C - - - - - 0x01EB0B 07:EAFB: 9D 21 06  STA ram_room_history,X
+C - - - - - 0x01EB0E 07:EAFE: EE 20 06  INC ram_history_id
+C - - - - - 0x01EB11 07:EB01: AD 20 06  LDA ram_history_id
 C - - - - - 0x01EB14 07:EB04: C9 06     CMP #$06
-C - - - - - 0x01EB16 07:EB06: 90 05     BCC bra_EB0D
+C - - - - - 0x01EB16 07:EB06: 90 05     BCC bra_EB0D    ; if not overflow
 C - - - - - 0x01EB18 07:EB08: A9 00     LDA #$00
-C - - - - - 0x01EB1A 07:EB0A: 8D 20 06  STA ram_0620
+C - - - - - 0x01EB1A 07:EB0A: 8D 20 06  STA ram_history_id
 bra_EB0D:
 C - - - - - 0x01EB1D 07:EB0D: A5 12     LDA ram_game_mode_main
 C - - - - - 0x01EB1F 07:EB0F: C9 05     CMP #con_GM_05
@@ -1281,7 +1281,7 @@ C - - - - - 0x01EB7A 07:EB6A: A5 E3     LDA ram_00E3
 C - - - - - 0x01EB7C 07:EB6C: D0 07     BNE bra_EB75_RTS
 C - - - - - 0x01EB7E 07:EB6E: 85 F3     STA ram_00F3
 C - - - - - 0x01EB80 07:EB70: A9 0F     LDA #con_mirroring_H
-C - - - - - 0x01EB82 07:EB72: 20 98 FF  JSR sub_FF98_set_control_register
+C - - - - - 0x01EB82 07:EB72: 20 98 FF  JSR sub_FF98_set_mirroring
 bra_EB75_RTS:
 C - - - - - 0x01EB85 07:EB75: 60        RTS
 
@@ -1337,7 +1337,7 @@ C - - J - - 0x01EBBA 07:EBAA: 20 48 72  JSR sub_bat_7248
 C - - - - - 0x01EBBD 07:EBAD: A5 7C     LDA ram_007C
 C - - - - - 0x01EBBF 07:EBAF: D0 47     BNE bra_EBF8_RTS
 C - - - - - 0x01EBC1 07:EBB1: A9 0F     LDA #con_mirroring_H
-C - - - - - 0x01EBC3 07:EBB3: 20 98 FF  JSR sub_FF98_set_control_register
+C - - - - - 0x01EBC3 07:EBB3: 20 98 FF  JSR sub_FF98_set_mirroring
 C - - - - - 0x01EBC6 07:EBB6: A5 5A     LDA ram_005A
 C - - - - - 0x01EBC8 07:EBB8: F0 03     BEQ bra_EBBD
 C - - - - - 0x01EBCA 07:EBBA: 4C F2 EB  JMP loc_EBF2
@@ -1512,18 +1512,19 @@ C - - - - - 0x01ECE8 07:ECD8: A5 62     LDA ram_0062
 C - - - - - 0x01ECEA 07:ECDA: 49 FF     EOR #$FF
 C - - - - - 0x01ECEC 07:ECDC: 85 62     STA ram_0062
 bra_ECDE:
+bra_ECDE_loop:
 C - - - - - 0x01ECEE 07:ECDE: AE 40 03  LDX ram_0340
 C - - - - - 0x01ECF1 07:ECE1: 20 98 FE  JSR sub_FE98
-C - - - - - 0x01ECF4 07:ECE4: BD 4F 03  LDA ram_034F,X
-C - - - - - 0x01ECF7 07:ECE7: F0 25     BEQ bra_ED0E
-C - - - - - 0x01ECF9 07:ECE9: BD 4F 03  LDA ram_034F,X  ; bzk optimize, loading the same value twice
+C - - - - - 0x01ECF4 07:ECE4: BD 4F 03  LDA ram_obj_id,X
+C - - - - - 0x01ECF7 07:ECE7: F0 25     BEQ bra_ED0E_next    ; if not exist
+C - - - - - 0x01ECF9 07:ECE9: BD 4F 03  LDA ram_obj_id,X  ; bzk optimize, loading the same value twice
 C - - - - - 0x01ECFC 07:ECEC: 20 74 FB  JSR sub_FB74
 C - - - - - 0x01ECFF 07:ECEF: AE 40 03  LDX ram_0340
 C - - - - - 0x01ED02 07:ECF2: BD 05 04  LDA ram_0405,X
-C - - - - - 0x01ED05 07:ECF5: D0 17     BNE bra_ED0E
+C - - - - - 0x01ED05 07:ECF5: D0 17     BNE bra_ED0E_next
 C - - - - - 0x01ED07 07:ECF7: BD BF 04  LDA ram_04BF,X
 C - - - - - 0x01ED0A 07:ECFA: 29 01     AND #$01
-C - - - - - 0x01ED0C 07:ECFC: D0 10     BNE bra_ED0E
+C - - - - - 0x01ED0C 07:ECFC: D0 10     BNE bra_ED0E_next
 C - - - - - 0x01ED0E 07:ECFE: BD BF 04  LDA ram_04BF,X
 C - - - - - 0x01ED11 07:ED01: 29 04     AND #$04
 C - - - - - 0x01ED13 07:ED03: D0 03     BNE bra_ED08
@@ -1531,9 +1532,9 @@ C - - - - - 0x01ED15 07:ED05: 20 D4 77  JSR sub_bat_77D4
 bra_ED08:
 C - - - - - 0x01ED18 07:ED08: AE 40 03  LDX ram_0340
 C - - - - - 0x01ED1B 07:ED0B: 20 D0 79  JSR sub_bat_79D0
-bra_ED0E:
+bra_ED0E_next:
 C - - - - - 0x01ED1E 07:ED0E: CE 40 03  DEC ram_0340
-C - - - - - 0x01ED21 07:ED11: D0 CB     BNE bra_ECDE
+C - - - - - 0x01ED21 07:ED11: D0 CB     BNE bra_ECDE_loop
 C - - - - - 0x01ED23 07:ED13: A9 0B     LDA #$0B
 C - - - - - 0x01ED25 07:ED15: 8D 40 03  STA ram_0340
 C - - - - - 0x01ED28 07:ED18: AD 6F 06  LDA ram_item_066F
@@ -1844,8 +1845,8 @@ C - - - - - 0x01EF15 07:EF05: B5 C0     LDA ram_00C0,X
 C - - - - - 0x01EF17 07:EF07: 29 0F     AND #$0F
 C - - - - - 0x01EF19 07:EF09: 20 B6 6F  JSR sub_bat_6FB6
 C - - - - - 0x01EF1C 07:EF0C: F0 D6     BEQ bra_EEE4
-C - - - - - 0x01EF1E 07:EF0E: AD 50 03  LDA ram_0350
-C - - - - - 0x01EF21 07:EF11: C9 36     CMP #$36
+C - - - - - 0x01EF1E 07:EF0E: AD 50 03  LDA ram_obj_id + 1
+C - - - - - 0x01EF21 07:EF11: C9 36     CMP #con_obj_id_36
 C - - - - - 0x01EF23 07:EF13: F0 08     BEQ bra_EF1D
 C - - - - - 0x01EF25 07:EF15: C9 4B     CMP #$4B
 C - - - - - 0x01EF27 07:EF17: 90 0B     BCC bra_EF24
@@ -1946,13 +1947,13 @@ bra_EFA4:
 C - - - - - 0x01EFB4 07:EFA4: AD 1A 05  LDA ram_051A
 C - - - - - 0x01EFB7 07:EFA7: D0 0F     BNE bra_EFB8_RTS
 C - - - - - 0x01EFB9 07:EFA9: A0 09     LDY #$09
-bra_EFAB:
+bra_EFAB_loop:
 C - - - - - 0x01EFBB 07:EFAB: 88        DEY
 C - - - - - 0x01EFBC 07:EFAC: 30 0A     BMI bra_EFB8_RTS
-C - - - - - 0x01EFBE 07:EFAE: B9 50 03  LDA ram_0350,Y
-C - - - - - 0x01EFC1 07:EFB1: D0 F8     BNE bra_EFAB
-C - - - - - 0x01EFC3 07:EFB3: A9 5E     LDA #$5E
-C - - - - - 0x01EFC5 07:EFB5: 99 50 03  STA ram_0350,Y
+C - - - - - 0x01EFBE 07:EFAE: B9 50 03  LDA ram_obj_id + 1,Y
+C - - - - - 0x01EFC1 07:EFB1: D0 F8     BNE bra_EFAB_loop
+C - - - - - 0x01EFC3 07:EFB3: A9 5E     LDA #con_obj_id_5E
+C - - - - - 0x01EFC5 07:EFB5: 99 50 03  STA ram_obj_id + 1,Y
 bra_EFB8_RTS:
 C - - - - - 0x01EFC8 07:EFB8: 60        RTS
 bra_EFB9:
@@ -1997,7 +1998,7 @@ C - - - - - 0x01F004 07:EFF4: BD F8 03  LDA ram_03F8,X
 C - - - - - 0x01F007 07:EFF7: F0 08     BEQ bra_F001
 C - - - - - 0x01F009 07:EFF9: 20 13 70  JSR sub_bat_7013
 C - - - - - 0x01F00C 07:EFFC: B9 C3 6D  LDA tbl_bat_6DC3_direction,Y
-C - - - - - 0x01F00F 07:EFFF: D0 02     BNE bra_F003
+C - - - - - 0x01F00F 07:EFFF: D0 02     BNE bra_F003    ; jmp
 bra_F001:
 C - - - - - 0x01F011 07:F001: A9 00     LDA #$00
 bra_F003:
@@ -2021,8 +2022,8 @@ C - - - - - 0x01F02F 07:F01F: D0 42     BNE bra_F063
 C - - - - - 0x01F031 07:F021: A9 01     LDA #con_prg_bank + $01
 C - - - - - 0x01F033 07:F023: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01F036 07:F026: 20 3E A1  JSR sub_0x00614E
-C - - - - - 0x01F039 07:F029: AD 50 03  LDA ram_0350
-C - - - - - 0x01F03C 07:F02C: C9 36     CMP #$36
+C - - - - - 0x01F039 07:F029: AD 50 03  LDA ram_obj_id + 1
+C - - - - - 0x01F03C 07:F02C: C9 36     CMP #con_obj_id_36
 C - - - - - 0x01F03E 07:F02E: F0 08     BEQ bra_F038
 C - - - - - 0x01F040 07:F030: C9 4B     CMP #$4B
 C - - - - - 0x01F042 07:F032: 90 07     BCC bra_F03B
@@ -2378,7 +2379,7 @@ C - - - - - 0x01F228 07:F218: 4C AC FF  JMP loc_FFAC_prg_bankswitch
 
 sub_0x01F22B:
 C - - - - - 0x01F22B 07:F21B: 20 31 F2  JSR sub_F231
-loc_F21E:
+loc_F21E_back_to_bank_01:
 C D 3 - - - 0x01F22E 07:F21E: A9 01     LDA #con_prg_bank + $01
 C - - - - - 0x01F230 07:F220: 4C AC FF  JMP loc_FFAC_prg_bankswitch
 
@@ -2386,7 +2387,7 @@ C - - - - - 0x01F230 07:F220: 4C AC FF  JMP loc_FFAC_prg_bankswitch
 
 sub_0x01F233:
 C - - - - - 0x01F233 07:F223: 20 3C F2  JSR sub_F23C
-C - - - - - 0x01F236 07:F226: 4C 1E F2  JMP loc_F21E
+C - - - - - 0x01F236 07:F226: 4C 1E F2  JMP loc_F21E_back_to_bank_01
 
 
 
@@ -2401,7 +2402,7 @@ sub_F231:
 sub_0x01F241:
 C - - - - - 0x01F241 07:F231: A9 06     LDA #$06
 C - - - - - 0x01F243 07:F233: 8D D0 03  STA ram_03D0
-C - - - - - 0x01F246 07:F236: D0 04     BNE bra_F23C
+C - - - - - 0x01F246 07:F236: D0 04     BNE bra_F23C    ; jmp
 
 
 
@@ -2492,8 +2493,8 @@ C - - - - - 0x01F2DC 07:F2CC: A5 84     LDA ram_pos_Y
 C - - - - - 0x01F2DE 07:F2CE: 18        CLC
 C - - - - - 0x01F2DF 07:F2CF: 79 01 F2  ADC tbl_F201_pos_Y,Y
 C - - - - - 0x01F2E2 07:F2D2: 95 84     STA ram_pos_Y,X
-C - - - - - 0x01F2E4 07:F2D4: A9 5F     LDA #$5F
-C - - - - - 0x01F2E6 07:F2D6: 9D 4F 03  STA ram_034F,X
+C - - - - - 0x01F2E4 07:F2D4: A9 5F     LDA #con_obj_id_5F
+C - - - - - 0x01F2E6 07:F2D6: 9D 4F 03  STA ram_obj_id,X
 C - - - - - 0x01F2E9 07:F2D9: 20 E4 EE  JSR sub_EEE4
 C - - - - - 0x01F2EC 07:F2DC: 9D F0 04  STA ram_04F0,X
 C - - - - - 0x01F2EF 07:F2DF: A9 01     LDA #$01
@@ -2597,7 +2598,7 @@ C - - - - - 0x01F384 07:F374: 90 03     BCC bra_F379
 C - - - - - 0x01F386 07:F376: 4C 1D F4  JMP loc_F41D
 bra_F379:
 C - - - - - 0x01F389 07:F379: BD 94 03  LDA ram_0394,X
-C - - - - - 0x01F38C 07:F37C: D0 00     BNE bra_F37E
+C - - - - - 0x01F38C 07:F37C: D0 00     BNE bra_F37E    ; bzk optimize, useless branch
 bra_F37E:
 C - - - - - 0x01F38E 07:F37E: B5 98     LDA ram_direction,X
 C - - - - - 0x01F390 07:F380: 20 27 70  JSR sub_bat_7027
@@ -2634,10 +2635,10 @@ bra_F3BB:
 C - - - - - 0x01F3CB 07:F3BB: A0 22     LDY #$22
 C - - - - - 0x01F3CD 07:F3BD: E0 0D     CPX #$0D
 C - - - - - 0x01F3CF 07:F3BF: B0 09     BCS bra_F3CA
-C - - - - - 0x01F3D1 07:F3C1: BD 4F 03  LDA ram_034F,X
-C - - - - - 0x01F3D4 07:F3C4: C9 57     CMP #$57
+C - - - - - 0x01F3D1 07:F3C1: BD 4F 03  LDA ram_obj_id,X
+C - - - - - 0x01F3D4 07:F3C4: C9 57     CMP #con_obj_id_57
 C - - - - - 0x01F3D6 07:F3C6: F0 09     BEQ bra_F3D1
-C - - - - - 0x01F3D8 07:F3C8: D0 05     BNE bra_F3CF
+C - - - - - 0x01F3D8 07:F3C8: D0 05     BNE bra_F3CF    ; jmp
 bra_F3CA:
 C - - - - - 0x01F3DA 07:F3CA: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x01F3DC 07:F3CC: 0A        ASL
@@ -2676,7 +2677,7 @@ C - - - - - 0x01F3EC 07:F3DC: F0 35     BEQ bra_F413
 - - - - - - 0x01F418 07:F408: B9 98 00  LDA ram_direction,Y
 - - - - - - 0x01F41B 07:F40B: 95 98     STA ram_direction,X
 - - - - - - 0x01F41D 07:F40D: A9 4F     LDA #$4F
-- - - - - - 0x01F41F 07:F40F: 95 28     STA ram_0028,X
+- - - - - - 0x01F41F 07:F40F: 95 28     STA ram_obj_timer,X
 loc_F411:
 bra_F411:
 C D 3 - - - 0x01F421 07:F411: A2 0E     LDX #$0E
@@ -2777,7 +2778,7 @@ C - - - - - 0x01F4B0 07:F4A0: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x01F4B2 07:F4A2: F0 FB     BEQ bra_F49F_RTS
 C - - - - - 0x01F4B4 07:F4A4: 0A        ASL
 C - - - - - 0x01F4B5 07:F4A5: 90 72     BCC bra_F519
-C - - - - - 0x01F4B7 07:F4A7: B5 28     LDA ram_0028,X
+C - - - - - 0x01F4B7 07:F4A7: B5 28     LDA ram_obj_timer,X
 C - - - - - 0x01F4B9 07:F4A9: D0 0E     BNE bra_F4B9
 - - - - - - 0x01F4BB 07:F4AB: F6 AC     INC ram_drop_id,X
 - - - - - - 0x01F4BD 07:F4AD: B5 AC     LDA ram_drop_id,X
@@ -2785,7 +2786,7 @@ C - - - - - 0x01F4B9 07:F4A9: D0 0E     BNE bra_F4B9
 - - - - - - 0x01F4C1 07:F4B1: C9 03     CMP #$03
 - - - - - - 0x01F4C3 07:F4B3: F0 2D     BEQ bra_F4E2
 - - - - - - 0x01F4C5 07:F4B5: A9 FF     LDA #$FF
-- - - - - - 0x01F4C7 07:F4B7: 95 28     STA ram_0028,X
+- - - - - - 0x01F4C7 07:F4B7: 95 28     STA ram_obj_timer,X
 bra_F4B9:
 C - - - - - 0x01F4C9 07:F4B9: AD 5F 03  LDA ram_035F
 C - - - - - 0x01F4CC 07:F4BC: C9 03     CMP #$03
@@ -2921,8 +2922,8 @@ C - - - - - 0x01F55B 07:F54B: 0A        ASL
 C - - - - - 0x01F55C 07:F54C: B0 27     BCS bra_F575
 C - - - - - 0x01F55E 07:F54E: E0 0D     CPX #$0D
 C - - - - - 0x01F560 07:F550: B0 07     BCS bra_F559
-C - - - - - 0x01F562 07:F552: BD 4F 03  LDA ram_034F,X
-C - - - - - 0x01F565 07:F555: C9 5B     CMP #$5B
+C - - - - - 0x01F562 07:F552: BD 4F 03  LDA ram_obj_id,X
+C - - - - - 0x01F565 07:F555: C9 5B     CMP #con_obj_id_5B
 C - - - - - 0x01F567 07:F557: F0 22     BEQ bra_F57B
 bra_F559:
 C - - - - - 0x01F569 07:F559: E0 12     CPX #$12
@@ -2960,8 +2961,8 @@ loc_F592:
 C D 3 - - - 0x01F5A2 07:F592: 85 04     STA ram_0004
 C - - - - - 0x01F5A4 07:F594: E0 0D     CPX #$0D
 C - - - - - 0x01F5A6 07:F596: B0 0E     BCS bra_F5A6
-C - - - - - 0x01F5A8 07:F598: BD 4F 03  LDA ram_034F,X
-C - - - - - 0x01F5AB 07:F59B: C9 5B     CMP #$5B
+C - - - - - 0x01F5A8 07:F598: BD 4F 03  LDA ram_obj_id,X
+C - - - - - 0x01F5AB 07:F59B: C9 5B     CMP #con_obj_id_5B
 C - - - - - 0x01F5AD 07:F59D: D0 07     BNE bra_F5A6
 C - - - - - 0x01F5AF 07:F59F: A5 04     LDA ram_0004
 C - - - - - 0x01F5B1 07:F5A1: 18        CLC
@@ -2991,8 +2992,8 @@ C - - - - - 0x01F5D3 07:F5C3: A9 40     LDA #$40
 C - - - - - 0x01F5D5 07:F5C5: 95 AC     STA ram_drop_id,X
 C - - - - - 0x01F5D7 07:F5C7: E0 0D     CPX #$0D
 C - - - - - 0x01F5D9 07:F5C9: B0 07     BCS bra_F5D2
-C - - - - - 0x01F5DB 07:F5CB: BD 4F 03  LDA ram_034F,X
-C - - - - - 0x01F5DE 07:F5CE: C9 5B     CMP #$5B
+C - - - - - 0x01F5DB 07:F5CB: BD 4F 03  LDA ram_obj_id,X
+C - - - - - 0x01F5DE 07:F5CE: C9 5B     CMP #con_obj_id_5B
 C - - - - - 0x01F5E0 07:F5D0: F0 04     BEQ bra_F5D6
 bra_F5D2:
 C - - - - - 0x01F5E2 07:F5D2: E0 12     CPX #$12
@@ -3015,8 +3016,8 @@ C - - - - - 0x01F5FB 07:F5EB: 95 AC     STA ram_drop_id,X
 bra_F5ED:
 C - - - - - 0x01F5FD 07:F5ED: E0 0D     CPX #$0D
 C - - - - - 0x01F5FF 07:F5EF: B0 07     BCS bra_F5F8
-C - - - - - 0x01F601 07:F5F1: BD 4F 03  LDA ram_034F,X
-C - - - - - 0x01F604 07:F5F4: C9 5B     CMP #$5B
+C - - - - - 0x01F601 07:F5F1: BD 4F 03  LDA ram_obj_id,X
+C - - - - - 0x01F604 07:F5F4: C9 5B     CMP #con_obj_id_5B
 C - - - - - 0x01F606 07:F5F6: F0 07     BEQ bra_F5FF
 bra_F5F8:
 C - - - - - 0x01F608 07:F5F8: E0 12     CPX #$12
@@ -3087,12 +3088,12 @@ C - - - - - 0x01F686 07:F676: C9 30     CMP #$30
 C - - - - - 0x01F688 07:F678: 90 08     BCC bra_F682
 C - - - - - 0x01F68A 07:F67A: A0 50     LDY #$50
 C - - - - - 0x01F68C 07:F67C: C9 70     CMP #$70
-C - - - - - 0x01F68E 07:F67E: 90 02     BCC bra_F682
+C - - - - - 0x01F68E 07:F67E: 90 02     BCC bra_F682    ; if not overflow
 C - - - - - 0x01F690 07:F680: A0 70     LDY #$70
 bra_F682:
 C - - - - - 0x01F692 07:F682: 98        TYA
 C - - - - - 0x01F693 07:F683: BC 2C 04  LDY ram_042C,X
-C - - - - - 0x01F696 07:F686: 99 28 00  STA ram_0028,Y
+C - - - - - 0x01F696 07:F686: 99 28 00  STA ram_obj_timer,Y
 C - - - - - 0x01F699 07:F689: A9 00     LDA #$00
 C - - - - - 0x01F69B 07:F68B: 99 AC 00  STA ram_drop_id,Y
 C - - - - - 0x01F69E 07:F68E: 4C 46 83  JMP loc_0x010356
@@ -3427,10 +3428,10 @@ C - - - - - 0x01F8B4 07:F8A4: 20 1F 70  JSR sub_bat_701F
 C - - - - - 0x01F8B7 07:F8A7: C9 10     CMP #$10
 C - - - - - 0x01F8B9 07:F8A9: D0 1A     BNE bra_F8C5
 C - - - - - 0x01F8BB 07:F8AB: A9 3F     LDA #$3F
-C - - - - - 0x01F8BD 07:F8AD: 95 28     STA ram_0028,X
+C - - - - - 0x01F8BD 07:F8AD: 95 28     STA ram_obj_timer,X
 C - - - - - 0x01F8BF 07:F8AF: F6 AC     INC ram_drop_id,X
 bra_F8B1:
-C - - - - - 0x01F8C1 07:F8B1: B5 28     LDA ram_0028,X
+C - - - - - 0x01F8C1 07:F8B1: B5 28     LDA ram_obj_timer,X
 C - - - - - 0x01F8C3 07:F8B3: F0 A0     BEQ bra_F855
 C - - - - - 0x01F8C5 07:F8B5: A5 10     LDA ram_0010
 C - - - - - 0x01F8C7 07:F8B7: F0 0C     BEQ bra_F8C5
@@ -3520,13 +3521,13 @@ C - - - - - 0x01F940 07:F930: C9 10     CMP #$10
 C - - - - - 0x01F942 07:F932: F0 03     BEQ bra_F937
 C - - - - - 0x01F944 07:F934: 4C 86 F8  JMP loc_F886
 bra_F937:
-C - - - - - 0x01F947 07:F937: B5 28     LDA ram_0028,X
+C - - - - - 0x01F947 07:F937: B5 28     LDA ram_obj_timer,X
 C - - - - - 0x01F949 07:F939: D0 73     BNE bra_F9AE
 C - - - - - 0x01F94B 07:F93B: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x01F94D 07:F93D: 29 0F     AND #$0F
 C - - - - - 0x01F94F 07:F93F: A8        TAY
 C - - - - - 0x01F950 07:F940: B9 1D F9  LDA tbl_F91E - 1,Y
-C - - - - - 0x01F953 07:F943: 95 28     STA ram_0028,X
+C - - - - - 0x01F953 07:F943: 95 28     STA ram_obj_timer,X
 C - - - - - 0x01F955 07:F945: F6 AC     INC ram_drop_id,X
 C - - - - - 0x01F957 07:F947: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x01F959 07:F949: 29 0F     AND #$0F
@@ -3540,7 +3541,7 @@ C - - - - - 0x01F965 07:F955: 68        PLA
 C - - - - - 0x01F966 07:F956: C9 05     CMP #$05
 C - - - - - 0x01F968 07:F958: D0 06     BNE bra_F960
 C - - - - - 0x01F96A 07:F95A: 20 55 F8  JSR sub_F855
-C - - - - - 0x01F96D 07:F95D: 95 28     STA ram_0028,X
+C - - - - - 0x01F96D 07:F95D: 95 28     STA ram_obj_timer,X
 bra_F95F_RTS:
 C - - - - - 0x01F96F 07:F95F: 60        RTS
 bra_F960:
@@ -3668,11 +3669,11 @@ C - - - - - 0x01FA24 07:FA14: B0 11     BCS bra_FA27
 C - - - - - 0x01FA26 07:FA16: 29 0F     AND #$0F
 C - - - - - 0x01FA28 07:FA18: 20 C9 F9  JSR sub_F9C9
 loc_FA1B:
-C D 3 - - - 0x01FA2B 07:FA1B: B5 28     LDA ram_0028,X
+C D 3 - - - 0x01FA2B 07:FA1B: B5 28     LDA ram_obj_timer,X
 C - - - - - 0x01FA2D 07:FA1D: D0 07     BNE bra_FA26_RTS
 bra_FA1F:
 C - - - - - 0x01FA2F 07:FA1F: A9 06     LDA #$06
-C - - - - - 0x01FA31 07:FA21: 95 28     STA ram_0028,X
+C - - - - - 0x01FA31 07:FA21: 95 28     STA ram_obj_timer,X
 C - - - - - 0x01FA33 07:FA23: FE 05 04  INC ram_0405,X
 bra_FA26_RTS:
 C - - - - - 0x01FA36 07:FA26: 60        RTS
@@ -3960,15 +3961,15 @@ C D 3 - - - 0x01FB8A 07:FB7A: 68        PLA
 C D 3 - - - 0x01FB8B 07:FB7B: BC 92 04  LDY ram_0492,X
 C D 3 - - - 0x01FB8E 07:FB7E: 84 0F     STY ram_000F
 C D 3 - - - 0x01FB90 07:FB80: F0 1B     BEQ bra_FB9D
-C D 3 - - - 0x01FB92 07:FB82: BD 4F 03  LDA ram_034F,X
-C D 3 - - - 0x01FB95 07:FB85: C9 1E     CMP #$1E
+C D 3 - - - 0x01FB92 07:FB82: BD 4F 03  LDA ram_obj_id,X
+C D 3 - - - 0x01FB95 07:FB85: C9 1E     CMP #con_obj_id_1E
 C D 3 - - - 0x01FB97 07:FB87: F0 0C     BEQ bra_FB95
-C D 3 - - - 0x01FB99 07:FB89: C9 22     CMP #$22
+C D 3 - - - 0x01FB99 07:FB89: C9 22     CMP #con_obj_id_22
 C D 3 - - - 0x01FB9B 07:FB8B: F0 08     BEQ bra_FB95
 C - - - - - 0x01FB9D 07:FB8D: C9 53     CMP #$53
 C - - - - - 0x01FB9F 07:FB8F: B0 04     BCS bra_FB95
 C - - - - - 0x01FBA1 07:FB91: A9 07     LDA #$07
-C - - - - - 0x01FBA3 07:FB93: 95 28     STA ram_0028,X
+C - - - - - 0x01FBA3 07:FB93: 95 28     STA ram_obj_timer,X
 bra_FB95:
 C - - - - - 0x01FBA5 07:FB95: A9 00     LDA #$00
 C - - - - - 0x01FBA7 07:FB97: 9D 92 04  STA ram_0492,X
@@ -3983,7 +3984,7 @@ C - - - - - 0x01FBB7 07:FBA7: 90 08     BCC bra_FBB1
 C - - - - - 0x01FBB9 07:FBA9: A9 01     LDA #con_prg_bank + $01
 C - - - - - 0x01FBBB 07:FBAB: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01FBBE 07:FBAE: 4C DB 86  JMP loc_0x0046EB
-bra_FBB1:   ; ram_034F,X
+bra_FBB1:   ; ram_obj_id,X
 C - - - - - 0x01FBC1 07:FBB1: 20 E2 E5  JSR sub_E5E2_jump_to_pointers_after_JSR
 - - - - - - 0x01FBC4 07:FBB4: 94 FC     .word ofs_FC94_00_RTS
 - D 3 - I - 0x01FBC6 07:FBB6: CC 87     .word ofs_004_0x0107DC_01
@@ -4114,13 +4115,13 @@ bra_FC95:
 C - - - - - 0x01FCA5 07:FC95: BD 05 04  LDA ram_0405,X
 C - - - - - 0x01FCA8 07:FC98: 29 10     AND #$10
 C - - - - - 0x01FCAA 07:FC9A: F0 3B     BEQ bra_FCD7
-C - - - - - 0x01FCAC 07:FC9C: BD 4F 03  LDA ram_034F,X
+C - - - - - 0x01FCAC 07:FC9C: BD 4F 03  LDA ram_obj_id,X
 C - - - - - 0x01FCAF 07:FC9F: 9D 12 04  STA ram_0412,X
-C - - - - - 0x01FCB2 07:FCA2: C9 5D     CMP #$5D
+C - - - - - 0x01FCB2 07:FCA2: C9 5D     CMP #con_obj_id_5D
 C - - - - - 0x01FCB4 07:FCA4: F0 21     BEQ bra_FCC7
-C - - - - - 0x01FCB6 07:FCA6: C9 14     CMP #$14
+C - - - - - 0x01FCB6 07:FCA6: C9 14     CMP #con_obj_id_14
 C - - - - - 0x01FCB8 07:FCA8: F0 1D     BEQ bra_FCC7
-C - - - - - 0x01FCBA 07:FCAA: C9 1C     CMP #$1C
+C - - - - - 0x01FCBA 07:FCAA: C9 1C     CMP #con_obj_id_1C
 C - - - - - 0x01FCBC 07:FCAC: F0 19     BEQ bra_FCC7
 C - - - - - 0x01FCBE 07:FCAE: AD 2A 05  LDA ram_052A
 C - - - - - 0x01FCC1 07:FCB1: 18        CLC
@@ -4130,13 +4131,13 @@ C - - - - - 0x01FCC6 07:FCB6: D0 02     BNE bra_FCBA
 C - - - - - 0x01FCC8 07:FCB8: A9 00     LDA #$00
 bra_FCBA:
 C - - - - - 0x01FCCA 07:FCBA: 8D 2A 05  STA ram_052A
-C - - - - - 0x01FCCD 07:FCBD: BD 4F 03  LDA ram_034F,X
-C - - - - - 0x01FCD0 07:FCC0: C9 11     CMP #$11
+C - - - - - 0x01FCCD 07:FCBD: BD 4F 03  LDA ram_obj_id,X
+C - - - - - 0x01FCD0 07:FCC0: C9 11     CMP #con_obj_id_11
 C - - - - - 0x01FCD2 07:FCC2: F0 03     BEQ bra_FCC7
-C - - - - - 0x01FCD4 07:FCC4: EE 4F 03  INC ram_034F
+C - - - - - 0x01FCD4 07:FCC4: EE 4F 03  INC ram_obj_id
 bra_FCC7:
-C - - - - - 0x01FCD7 07:FCC7: A9 60     LDA #$60
-C - - - - - 0x01FCD9 07:FCC9: 9D 4F 03  STA ram_034F,X
+C - - - - - 0x01FCD7 07:FCC7: A9 60     LDA #con_obj_id_60
+C - - - - - 0x01FCD9 07:FCC9: 9D 4F 03  STA ram_obj_id,X
 C - - - - - 0x01FCDC 07:FCCC: 9D 92 04  STA ram_0492,X
 C - - - - - 0x01FCDF 07:FCCF: A9 81     LDA #$81
 C - - - - - 0x01FCE1 07:FCD1: 9D BF 04  STA ram_04BF,X
@@ -4153,14 +4154,14 @@ C - - - - - 0x01FCEF 07:FCDF: D0 5B     BNE bra_FD3C
 C - - - - - 0x01FCF1 07:FCE1: AD CD 04  LDA ram_04CD
 C - - - - - 0x01FCF4 07:FCE4: 29 08     AND #$08
 C - - - - - 0x01FCF6 07:FCE6: F0 54     BEQ bra_FD3C
-C - - - - - 0x01FCF8 07:FCE8: BD 4F 03  LDA ram_034F,X
-C - - - - - 0x01FCFB 07:FCEB: C9 11     CMP #$11
+C - - - - - 0x01FCF8 07:FCE8: BD 4F 03  LDA ram_obj_id,X
+C - - - - - 0x01FCFB 07:FCEB: C9 11     CMP #con_obj_id_11
 C - - - - - 0x01FCFD 07:FCED: F0 4D     BEQ bra_FD3C
-C - - - - - 0x01FCFF 07:FCEF: C9 40     CMP #$40
+C - - - - - 0x01FCFF 07:FCEF: C9 40     CMP #con_obj_id_40
 C - - - - - 0x01FD01 07:FCF1: F0 49     BEQ bra_FD3C
-C - - - - - 0x01FD03 07:FCF3: C9 1E     CMP #$1E
+C - - - - - 0x01FD03 07:FCF3: C9 1E     CMP #con_obj_id_1E
 C - - - - - 0x01FD05 07:FCF5: F0 45     BEQ bra_FD3C
-C - - - - - 0x01FD07 07:FCF7: C9 2E     CMP #$2E
+C - - - - - 0x01FD07 07:FCF7: C9 2E     CMP #con_obj_id_2E
 C - - - - - 0x01FD09 07:FCF9: F0 41     BEQ bra_FD3C
 C - - - - - 0x01FD0B 07:FCFB: C9 53     CMP #$53
 C - - - - - 0x01FD0D 07:FCFD: B0 3D     BCS bra_FD3C
@@ -4201,26 +4202,26 @@ bra_FD3C:
 C - - - - - 0x01FD4C 07:FD3C: A9 04     LDA #con_prg_bank + $04
 C - - - - - 0x01FD4E 07:FD3E: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01FD51 07:FD41: AE 40 03  LDX ram_0340
-C - - - - - 0x01FD54 07:FD44: BC 4F 03  LDY ram_034F,X
-C - - - - - 0x01FD57 07:FD47: C0 1E     CPY #$1E
+C - - - - - 0x01FD54 07:FD44: BC 4F 03  LDY ram_obj_id,X
+C - - - - - 0x01FD57 07:FD47: C0 1E     CPY #con_obj_id_1E
 C - - - - - 0x01FD59 07:FD49: F0 0B     BEQ bra_FD56
-C - - - - - 0x01FD5B 07:FD4B: C0 22     CPY #$22
+C - - - - - 0x01FD5B 07:FD4B: C0 22     CPY #con_obj_id_22
 C - - - - - 0x01FD5D 07:FD4D: F0 07     BEQ bra_FD56
 C - - - - - 0x01FD5F 07:FD4F: C0 53     CPY #$53
 C - - - - - 0x01FD61 07:FD51: B0 03     BCS bra_FD56
 C - - - - - 0x01FD63 07:FD53: 8A        TXA
-C - - - - - 0x01FD64 07:FD54: 95 28     STA ram_0028,X
+C - - - - - 0x01FD64 07:FD54: 95 28     STA ram_obj_timer,X
 bra_FD56:
 C - - - - - 0x01FD66 07:FD56: B9 EF FA  LDA tbl_FAF0 - 1,Y
 C - - - - - 0x01FD69 07:FD59: 9D BF 04  STA ram_04BF,X
 C - - - - - 0x01FD6C 07:FD5C: 98        TYA
-C - - - - - 0x01FD6D 07:FD5D: 85 00     STA ram_0000
+C - - - - - 0x01FD6D 07:FD5D: 85 00     STA ram_0000    ; obj id copy
 C - - - - - 0x01FD6F 07:FD5F: 4A        LSR
 C - - - - - 0x01FD70 07:FD60: A8        TAY
 C - - - - - 0x01FD71 07:FD61: B9 4E FB  LDA tbl_FB4E,Y
 C - - - - - 0x01FD74 07:FD64: 20 00 B0  JSR sub_0x013010
 C - - - - - 0x01FD77 07:FD67: 9D 85 04  STA ram_0485,X
-C - - - - - 0x01FD7A 07:FD6A: A5 00     LDA ram_0000
+C - - - - - 0x01FD7A 07:FD6A: A5 00     LDA ram_0000    ; obj id copy
 C - - - - - 0x01FD7C 07:FD6C: C9 6A     CMP #$6A
 C - - - - - 0x01FD7E 07:FD6E: 90 08     BCC bra_FD78
 C - - - - - 0x01FD80 07:FD70: A9 01     LDA #con_prg_bank + $01
@@ -4230,7 +4231,7 @@ bra_FD78:
 C - - - - - 0x01FD88 07:FD78: C9 5F     CMP #$5F
 C - - - - - 0x01FD8A 07:FD7A: 90 03     BCC bra_FD7F
 C - - - - - 0x01FD8C 07:FD7C: 4C CA FE  JMP loc_FECA
-bra_FD7F:   ; ram_034F,X
+bra_FD7F:   ; ram_obj_id,X
 C - - - - - 0x01FD8F 07:FD7F: 20 E2 E5  JSR sub_E5E2_jump_to_pointers_after_JSR
 - - - - - - 0x01FD92 07:FD82: 94 FC     .word ofs_FC94_00_RTS
 - D 3 - I - 0x01FD94 07:FD84: 25 80     .word ofs_005_0x010035_01
@@ -4445,14 +4446,15 @@ C - - - - - 0x01FEC0 07:FEB0: 60        RTS
 
 
 
-sub_0x01FEC1:
-loc_0x01FEC1:
-C D 3 - - - 0x01FEC1 07:FEB1: A9 00     LDA #$00
-sub_0x01FEC3:
-loc_0x01FEC3:
-C D 3 - - - 0x01FEC3 07:FEB3: 9D 4F 03  STA ram_034F,X
+sub_0x01FEC1_destroy_object:
+loc_0x01FEC1_destroy_object:
+C D 3 - - - 0x01FEC1 07:FEB1: A9 00     LDA #con_obj_id_00
+sub_0x01FEC3_create_object:
+loc_0x01FEC3_create_object:
+; bzk optimize, transfer all this to SRAM (or here isntead)
+C D 3 - - - 0x01FEC3 07:FEB3: 9D 4F 03  STA ram_obj_id,X
 C - - - - - 0x01FEC6 07:FEB6: A9 00     LDA #$00
-C - - - - - 0x01FEC8 07:FEB8: 4C A5 71  JMP loc_bat_71A5
+C - - - - - 0x01FEC8 07:FEB8: 4C A5 71  JMP loc_bat_71A5_reset_obj_stats
 
 
 
@@ -4462,7 +4464,7 @@ C - - - - - 0x01FECB 07:FEBB: A0 0C     LDY #$0C
 bra_FEBD_loop:
 C - - - - - 0x01FECD 07:FEBD: 88        DEY
 C - - - - - 0x01FECE 07:FEBE: F0 07     BEQ bra_FEC7    ; bzk optimize, branch to RTS
-C - - - - - 0x01FED0 07:FEC0: B9 4F 03  LDA ram_034F,Y
+C - - - - - 0x01FED0 07:FEC0: B9 4F 03  LDA ram_obj_id,Y
 C - - - - - 0x01FED3 07:FEC3: D0 F8     BNE bra_FEBD_loop
 C - - - - - 0x01FED5 07:FEC5: 84 59     STY ram_0059
 bra_FEC7:
@@ -4491,7 +4493,7 @@ ofs_005_FED6_27:
 sub_0x01FEE6:
 loc_0x01FEE6:
 C D 3 - - - 0x01FEE6 07:FED6: A9 00     LDA #$00
-C - - - - - 0x01FEE8 07:FED8: 95 28     STA ram_0028,X
+C - - - - - 0x01FEE8 07:FED8: 95 28     STA ram_obj_timer,X
 loc_FEDA:
 ofs_005_FEDA_5A:
 ofs_005_FEDA_5B:
@@ -4585,8 +4587,8 @@ loc_0x01FF44:
 
 
 
-loc_0x01FF60_RESET_vector:
 vec_FF50_RESET:
+loc_0x01FF60_RESET_vector:
 C - - - - - 0x01FF60 07:FF50: 78        SEI
 C - - - - - 0x01FF61 07:FF51: D8        CLD
 C - - - - - 0x01FF62 07:FF52: A9 00     LDA #$00
@@ -4607,7 +4609,7 @@ C - - - - - 0x01FF7D 07:FF6D: 8D 00 A0  STA $A000
 C - - - - - 0x01FF80 07:FF70: 8D 00 C0  STA $C000
 C - - - - - 0x01FF83 07:FF73: 8D 00 E0  STA $E000
 C - - - - - 0x01FF86 07:FF76: A9 0F     LDA #con_mirroring_H
-C - - - - - 0x01FF88 07:FF78: 20 98 FF  JSR sub_FF98_set_control_register
+C - - - - - 0x01FF88 07:FF78: 20 98 FF  JSR sub_FF98_set_mirroring
 C - - - - - 0x01FF8B 07:FF7B: A9 00     LDA #$00
 C - - - - - 0x01FF8D 07:FF7D: 8D 00 A0  STA $A000
 C - - - - - 0x01FF90 07:FF80: 4A        LSR
@@ -4624,9 +4626,7 @@ C - - - - - 0x01FFA5 07:FF95: 4C 40 E4  JMP loc_E440
 
 
 
-sub_FF98_set_control_register:
-; 0E = 0000 1110 = mirroring vertical 
-; 0F = 0000 1111 = mirroring horisontal
+sub_FF98_set_mirroring:
 C - - - - - 0x01FFA8 07:FF98: 8D 00 80  STA $8000
 C - - - - - 0x01FFAB 07:FF9B: 4A        LSR
 C - - - - - 0x01FFAC 07:FF9C: 8D 00 80  STA $8000

@@ -1434,7 +1434,7 @@ C - - - - - 0x0095A7 02:9597: 4C EA 94  JMP loc_94EA
 ofs_959A_02:
 C - - J - - 0x0095AA 02:959A: E6 5C     INC ram_005C
 C - - - - - 0x0095AC 02:959C: A9 10     LDA #$10
-C - - - - - 0x0095AE 02:959E: 85 FC     STA ram_00FC
+C - - - - - 0x0095AE 02:959E: 85 FC     STA ram_scroll_Y
 C - - - - - 0x0095B0 02:95A0: A9 02     LDA #$02
 loc_95A2:
 C D 0 - - - 0x0095B2 02:95A2: 85 14     STA ram_0014
@@ -1463,16 +1463,16 @@ ofs_008_95C1_00:
 C - - J - - 0x0095D1 02:95C1: A5 15     LDA ram_frame_cnt
 C - - - - - 0x0095D3 02:95C3: 29 01     AND #$01
 C - - - - - 0x0095D5 02:95C5: F0 11     BEQ bra_95D8
-C - - - - - 0x0095D7 02:95C7: E6 FC     INC ram_00FC
-C - - - - - 0x0095D9 02:95C9: A5 FC     LDA ram_00FC
+C - - - - - 0x0095D7 02:95C7: E6 FC     INC ram_scroll_Y
+C - - - - - 0x0095D9 02:95C9: A5 FC     LDA ram_scroll_Y
 C - - - - - 0x0095DB 02:95CB: C9 F0     CMP #$F0
 C - - - - - 0x0095DD 02:95CD: D0 09     BNE bra_95D8
 C - - - - - 0x0095DF 02:95CF: EE 15 04  INC ram_0415
 C - - - - - 0x0095E2 02:95D2: A9 00     LDA #$00
-C - - - - - 0x0095E4 02:95D4: 85 FC     STA ram_00FC
+C - - - - - 0x0095E4 02:95D4: 85 FC     STA ram_scroll_Y
 C - - - - - 0x0095E6 02:95D6: E6 5C     INC ram_005C
 bra_95D8:
-C - - - - - 0x0095E8 02:95D8: A5 FC     LDA ram_00FC
+C - - - - - 0x0095E8 02:95D8: A5 FC     LDA ram_scroll_Y
 C - - - - - 0x0095EA 02:95DA: C9 08     CMP #$08
 C - - - - - 0x0095EC 02:95DC: D0 0D     BNE bra_95EB_RTS
 C - - - - - 0x0095EE 02:95DE: AD 15 04  LDA ram_0415
@@ -1530,13 +1530,13 @@ C - - - - - 0x00964B 02:963B: EE 2D 04  INC ram_042D
 bra_963E_RTS:
 C - - - - - 0x00964E 02:963E: 60        RTS
 bra_963F:
-C - - - - - 0x00964F 02:963F: E6 FC     INC ram_00FC
-C - - - - - 0x009651 02:9641: A5 FC     LDA ram_00FC
+C - - - - - 0x00964F 02:963F: E6 FC     INC ram_scroll_Y
+C - - - - - 0x009651 02:9641: A5 FC     LDA ram_scroll_Y
 C - - - - - 0x009653 02:9643: C9 F0     CMP #$F0
 C - - - - - 0x009655 02:9645: D0 06     BNE bra_964D
 C - - - - - 0x009657 02:9647: E6 5C     INC ram_005C
 C - - - - - 0x009659 02:9649: A9 00     LDA #$00
-C - - - - - 0x00965B 02:964B: 85 FC     STA ram_00FC
+C - - - - - 0x00965B 02:964B: 85 FC     STA ram_scroll_Y
 bra_964D:
 C - - - - - 0x00965D 02:964D: AD 1B 04  LDA ram_041B
 C - - - - - 0x009660 02:9650: 29 07     AND #$07
@@ -3927,7 +3927,7 @@ C - - - - - 0x00A4BF 02:A4AF: A0 04     LDY #$04
 C - - - - - 0x00A4C1 02:A4B1: A9 00     LDA #$00
 C - - - - - 0x00A4C3 02:A4B3: 8D 29 05  STA ram_0529
 bra_A4B6:
-C - - - - - 0x00A4C6 02:A4B6: 99 21 06  STA ram_0621,Y
+C - - - - - 0x00A4C6 02:A4B6: 99 21 06  STA ram_room_history,Y
 C - - - - - 0x00A4C9 02:A4B9: 88        DEY
 C - - - - - 0x00A4CA 02:A4BA: 10 FA     BPL bra_A4B6
 C - - - - - 0x00A4CC 02:A4BC: 60        RTS
@@ -4522,7 +4522,7 @@ C - - - - - 0x00A92E 02:A91E: 4C CA 79  JMP loc_bat_79CA
 
 
 sub_A921:
-C - - - - - 0x00A931 02:A921: A5 28     LDA ram_0028
+C - - - - - 0x00A931 02:A921: A5 28     LDA ram_obj_timer
 C - - - - - 0x00A933 02:A923: D0 14     BNE bra_A939_RTS
 C - - - - - 0x00A935 02:A925: AD 09 06  LDA ram_0609
 C - - - - - 0x00A938 02:A928: D0 0F     BNE bra_A939_RTS
@@ -4531,7 +4531,7 @@ C - - - - - 0x00A93D 02:A92D: A5 7C     LDA ram_007C
 C - - - - - 0x00A93F 02:A92F: C9 11     CMP #$11
 C - - - - - 0x00A941 02:A931: B0 06     BCS bra_A939_RTS
 C - - - - - 0x00A943 02:A933: A9 80     LDA #$80
-C - - - - - 0x00A945 02:A935: 85 28     STA ram_0028
+C - - - - - 0x00A945 02:A935: 85 28     STA ram_obj_timer
 C - - - - - 0x00A947 02:A937: E6 13     INC ram_game_mode_sub
 bra_A939_RTS:
 C - - - - - 0x00A949 02:A939: 60        RTS
@@ -4612,7 +4612,7 @@ C - - J - - 0x00A98F 02:A97F: 20 95 A9  JSR sub_A995
 C - - - - - 0x00A992 02:A982: A5 AD     LDA ram_drop_id + 1
 C - - - - - 0x00A994 02:A984: F0 06     BEQ bra_A98C_RTS
 C - - - - - 0x00A996 02:A986: A9 50     LDA #$50
-C - - - - - 0x00A998 02:A988: 85 29     STA ram_0029
+C - - - - - 0x00A998 02:A988: 85 29     STA ram_obj_timer + 1
 C - - - - - 0x00A99A 02:A98A: E6 13     INC ram_game_mode_sub
 bra_A98C_RTS:
 C - - - - - 0x00A99C 02:A98C: 60        RTS
@@ -4637,10 +4637,10 @@ tbl_A992:
 
 sub_A995:
 C - - - - - 0x00A9A5 02:A995: 20 31 F2  JSR sub_0x01F241
-C - - - - - 0x00A9A8 02:A998: A5 29     LDA ram_0029
+C - - - - - 0x00A9A8 02:A998: A5 29     LDA ram_obj_timer + 1
 C - - - - - 0x00A9AA 02:A99A: D0 58     BNE bra_A9F4_RTS
 C - - - - - 0x00A9AC 02:A99C: A9 06     LDA #$06
-C - - - - - 0x00A9AE 02:A99E: 85 29     STA ram_0029
+C - - - - - 0x00A9AE 02:A99E: 85 29     STA ram_obj_timer + 1
 C - - - - - 0x00A9B0 02:A9A0: A0 04     LDY #$04
 bra_A9A2_loop:
 C - - - - - 0x00A9B2 02:A9A2: B9 8D A9  LDA tbl_A98D,Y
@@ -4688,7 +4688,7 @@ C - - - - - 0x00AA04 02:A9F4: 60        RTS
 
 
 ofs_012_A9F5_03:
-C - - J - - 0x00AA05 02:A9F5: A5 29     LDA ram_0029
+C - - J - - 0x00AA05 02:A9F5: A5 29     LDA ram_obj_timer + 1
 C - - - - - 0x00AA07 02:A9F7: D0 FB     BNE bra_A9F4_RTS
 C - - - - - 0x00AA09 02:A9F9: 20 E9 6E  JSR sub_bat_6EE9
 C - - - - - 0x00AA0C 02:A9FC: E6 13     INC ram_game_mode_sub
@@ -4753,7 +4753,7 @@ bra_AA50:
 C - - - - - 0x00AA60 02:AA50: A9 10     LDA #con_music_credits
 C - - - - - 0x00AA62 02:AA52: 8D 00 06  STA ram_music
 C - - - - - 0x00AA65 02:AA55: A9 40     LDA #$40
-C - - - - - 0x00AA67 02:AA57: 85 28     STA ram_0028
+C - - - - - 0x00AA67 02:AA57: 85 28     STA ram_obj_timer
 C - - - - - 0x00AA69 02:AA59: A9 40     LDA #$40
 C - - - - - 0x00AA6B 02:AA5B: 85 4D     STA ram_004D
 C - - - - - 0x00AA6D 02:AA5D: E6 13     INC ram_game_mode_sub
@@ -4810,7 +4810,7 @@ C - - - - - 0x00AAC6 02:AAB6: 20 62 AA  JSR sub_AA62
 C - - - - - 0x00AAC9 02:AAB9: A5 13     LDA ram_game_mode_sub
 C - - - - - 0x00AACB 02:AABB: C9 01     CMP #$01
 C - - - - - 0x00AACD 02:AABD: D0 07     BNE bra_AAC6_RTS
-C - - - - - 0x00AACF 02:AABF: A5 28     LDA ram_0028
+C - - - - - 0x00AACF 02:AABF: A5 28     LDA ram_obj_timer
 C - - - - - 0x00AAD1 02:AAC1: D0 03     BNE bra_AAC6_RTS
 C - - - - - 0x00AAD3 02:AAC3: 20 3C AB  JSR sub_AB3C
 bra_AAC6_RTS:
@@ -4993,10 +4993,10 @@ C - - - - - 0x00AB9A 02:AB8A: 95 84     STA ram_pos_Y,X
 C - - - - - 0x00AB9C 02:AB8C: A9 0E     LDA #$0E
 C - - - - - 0x00AB9E 02:AB8E: 20 0E E7  JSR sub_0x01E71E
 C - - - - - 0x00ABA1 02:AB91: A2 02     LDX #$02
-C - - - - - 0x00ABA3 02:AB93: A9 3E     LDA #$3E
-C - - - - - 0x00ABA5 02:AB95: 9D 4F 03  STA ram_034F,X
+C - - - - - 0x00ABA3 02:AB93: A9 3E     LDA #con_obj_id_3E
+C - - - - - 0x00ABA5 02:AB95: 9D 4F 03  STA ram_obj_id,X
 C - - - - - 0x00ABA8 02:AB98: 20 B8 AB  JSR sub_ABB8
-C - - - - - 0x00ABAB 02:AB9B: A5 28     LDA ram_0028
+C - - - - - 0x00ABAB 02:AB9B: A5 28     LDA ram_obj_timer
 C - - - - - 0x00ABAD 02:AB9D: D0 DF     BNE bra_AB7E_RTS
 C - - - - - 0x00ABAF 02:AB9F: A5 F8     LDA ram_btn_press
 C - - - - - 0x00ABB1 02:ABA1: 29 10     AND #con_btn_Start
@@ -5044,13 +5044,13 @@ C - - - - - 0x00ABEB 02:ABDB: 85 58     STA ram_0058
 C - - - - - 0x00ABED 02:ABDD: 90 03     BCC bra_ABE2
 C - - - - - 0x00ABEF 02:ABDF: EE 0B 05  INC ram_050B
 bra_ABE2:
-C - - - - - 0x00ABF2 02:ABE2: A5 FC     LDA ram_00FC
+C - - - - - 0x00ABF2 02:ABE2: A5 FC     LDA ram_scroll_Y
 C - - - - - 0x00ABF4 02:ABE4: 69 00     ADC #$00
-C - - - - - 0x00ABF6 02:ABE6: 85 FC     STA ram_00FC
+C - - - - - 0x00ABF6 02:ABE6: 85 FC     STA ram_scroll_Y
 C - - - - - 0x00ABF8 02:ABE8: C9 F0     CMP #$F0
 C - - - - - 0x00ABFA 02:ABEA: A9 00     LDA #$00
 C - - - - - 0x00ABFC 02:ABEC: 90 05     BCC bra_ABF3
-C - - - - - 0x00ABFE 02:ABEE: 85 FC     STA ram_00FC
+C - - - - - 0x00ABFE 02:ABEE: 85 FC     STA ram_scroll_Y
 C - - - - - 0x00AC00 02:ABF0: EE E2 00  INC a: ram_00E2
 bra_ABF3:
 C - - - - - 0x00AC03 02:ABF3: 2A        ROL
@@ -5064,12 +5064,12 @@ bra_AC00:
 C - - - - - 0x00AC10 02:AC00: AD E2 00  LDA a: ram_00E2
 C - - - - - 0x00AC13 02:AC03: D9 C0 AB  CMP tbl_ABC0,Y
 C - - - - - 0x00AC16 02:AC06: 90 0D     BCC bra_AC15_RTS
-C - - - - - 0x00AC18 02:AC08: A5 FC     LDA ram_00FC
+C - - - - - 0x00AC18 02:AC08: A5 FC     LDA ram_scroll_Y
 C - - - - - 0x00AC1A 02:AC0A: D9 C2 AB  CMP tbl_ABC2,Y
 C - - - - - 0x00AC1D 02:AC0D: 90 06     BCC bra_AC15_RTS
 C - - - - - 0x00AC1F 02:AC0F: E6 13     INC ram_game_mode_sub
 C - - - - - 0x00AC21 02:AC11: A9 40     LDA #$40
-C - - - - - 0x00AC23 02:AC13: 85 28     STA ram_0028
+C - - - - - 0x00AC23 02:AC13: 85 28     STA ram_obj_timer
 bra_AC15_RTS:
 C - - - - - 0x00AC25 02:AC15: 60        RTS
 
