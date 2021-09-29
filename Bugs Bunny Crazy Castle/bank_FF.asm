@@ -16,7 +16,7 @@
 .export sub_0x00ED10
 .export sub_0x00ED6F_draw_screen_handler
 .export sub_0x00EE82_read_joystick_regs
-.export sub_0x00EEDD
+.export sub_0x00EEDD_wait_1_frame_
 .export sub_0x00EEFA
 .export sub_0x00EF88_jump_to_pointers_after_jsr
 .export sub_0x00F1C0
@@ -876,9 +876,9 @@ C - - - - - 0x00C55C 03:C54C: 20 38 F6  JSR sub_F638
 C - - - - - 0x00C55F 03:C54F: A9 00     LDA #$00
 C - - - - - 0x00C561 03:C551: 85 24     STA ram_0024
 C - - - - - 0x00C563 03:C553: 20 EA EE  JSR sub_EEEA
-C - - - - - 0x00C566 03:C556: 20 CD EE  JSR sub_EECD
+C - - - - - 0x00C566 03:C556: 20 CD EE  JSR sub_EECD_wait_1_frame_
 C - - - - - 0x00C569 03:C559: 20 DF F5  JSR sub_F5DF
-C - - - - - 0x00C56C 03:C55C: 20 CD EE  JSR sub_EECD
+C - - - - - 0x00C56C 03:C55C: 20 CD EE  JSR sub_EECD_wait_1_frame_
 C - - - - - 0x00C56F 03:C55F: 20 A6 C6  JSR sub_C6A6_calculate_stage_data_pointers
 C - - - - - 0x00C572 03:C562: 20 F7 C6  JSR sub_C6F7_put_stuff_inside_stage_x_y_pos
 C - - - - - 0x00C575 03:C565: A5 9A     LDA ram_prg_bank
@@ -7285,24 +7285,15 @@ off_E1_EB2D:
 
 
 ; bzk garbage
-- - - - - - 0x00EB81 03:EB71: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EB88 03:EB78: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EB90 03:EB80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EB98 03:EB88: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBA0 03:EB90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBA8 03:EB98: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBB0 03:EBA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBB8 03:EBA8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBC0 03:EBB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBC8 03:EBB8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBD0 03:EBC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBD8 03:EBC8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBE0 03:EBD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBE8 03:EBD8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBF0 03:EBE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EBF8 03:EBE8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EC00 03:EBF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00EC08 03:EBF8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00EB81 03:EB71: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00EB90 03:EB80: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00EBA0 03:EB90: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00EBB0 03:EBA0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00EBC0 03:EBB0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00EBD0 03:EBC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00EBE0 03:EBD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00EBF0 03:EBE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00EC00 03:EBF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
 
 
@@ -7456,7 +7447,7 @@ C - - - - - 0x00ED0F 03:ECFF: 60        RTS
 
 sub_ED00:
 sub_0x00ED10:
-C - - - - - 0x00ED10 03:ED00: 20 CD EE  JSR sub_EECD
+C - - - - - 0x00ED10 03:ED00: 20 CD EE  JSR sub_EECD_wait_1_frame_
 C - - - - - 0x00ED13 03:ED03: A5 33     LDA ram_chr_bank_1
 C - - - - - 0x00ED15 03:ED05: 20 A2 EC  JSR sub_ECA2_chr_bankswitch_1
 C - - - - - 0x00ED18 03:ED08: A5 34     LDA ram_chr_bank_2
@@ -7774,8 +7765,8 @@ C - - - - - 0x00EEDC 03:EECC: 60        RTS
 
 
 
-sub_EECD:
-sub_0x00EEDD:
+sub_EECD_wait_1_frame_:
+sub_0x00EEDD_wait_1_frame_:
 C - - - - - 0x00EEDD 03:EECD: A5 F0     LDA ram_00F0
 C - - - - - 0x00EEDF 03:EECF: 09 02     ORA #$02
 C - - - - - 0x00EEE1 03:EED1: 85 F0     STA ram_00F0
@@ -7834,7 +7825,7 @@ C - - - - - 0x00EF17 03:EF07: 4C FA EE  JMP loc_EEFA_loop   ; bzk optimize
 bra_EF0A:
 C - - - - - 0x00EF1A 03:EF0A: A9 00     LDA #$00
 C - - - - - 0x00EF1C 03:EF0C: 85 24     STA ram_0024
-C - - - - - 0x00EF1E 03:EF0E: 20 CD EE  JSR sub_EECD
+C - - - - - 0x00EF1E 03:EF0E: 20 CD EE  JSR sub_EECD_wait_1_frame_
 C - - - - - 0x00EF21 03:EF11: 68        PLA
 C - - - - - 0x00EF22 03:EF12: AA        TAX
 C - - - - - 0x00EF23 03:EF13: 60        RTS
@@ -8307,7 +8298,7 @@ C - - - - - 0x00F1C6 03:F1B6: 20 FD F1  JSR sub_F1FD
 loc_F1B9:
 C - - - - - 0x00F1C9 03:F1B9: 20 64 EE  JSR sub_EE64
 C - - - - - 0x00F1CC 03:F1BC: 20 EA EE  JSR sub_EEEA
-C - - - - - 0x00F1CF 03:F1BF: 20 CD EE  JSR sub_EECD
+C - - - - - 0x00F1CF 03:F1BF: 20 CD EE  JSR sub_EECD_wait_1_frame_
 C - - - - - 0x00F1D2 03:F1C2: A5 FE     LDA ram_for_2001
 C - - - - - 0x00F1D4 03:F1C4: 8D 01 20  STA $2001
 C - - - - - 0x00F1D7 03:F1C7: A6 11     LDX ram_0011
@@ -9084,7 +9075,7 @@ bra_F5EB:
 C - - - - - 0x00F5FB 03:F5EB: 85 FE     STA ram_for_2001
 C - - - - - 0x00F5FD 03:F5ED: A9 01     LDA #$01
 C - - - - - 0x00F5FF 03:F5EF: 20 DA EE  JSR sub_EEDA
-C - - - - - 0x00F602 03:F5F2: 20 CD EE  JSR sub_EECD
+C - - - - - 0x00F602 03:F5F2: 20 CD EE  JSR sub_EECD_wait_1_frame_
 C - - - - - 0x00F605 03:F5F5: 60        RTS
 
 
@@ -9183,11 +9174,11 @@ C - - - - - 0x00F688 03:F678: 60        RTS
 
 sub_F679:
 C - - - - - 0x00F689 03:F679: 20 F6 F5  JSR sub_F5F6
-C - - - - - 0x00F68C 03:F67C: 20 CD EE  JSR sub_EECD
-C - - - - - 0x00F68F 03:F67F: 20 CD EE  JSR sub_EECD
-C - - - - - 0x00F692 03:F682: 20 CD EE  JSR sub_EECD
-C - - - - - 0x00F695 03:F685: 20 CD EE  JSR sub_EECD
-C - - - - - 0x00F698 03:F688: 20 CD EE  JSR sub_EECD
+C - - - - - 0x00F68C 03:F67C: 20 CD EE  JSR sub_EECD_wait_1_frame_
+C - - - - - 0x00F68F 03:F67F: 20 CD EE  JSR sub_EECD_wait_1_frame_
+C - - - - - 0x00F692 03:F682: 20 CD EE  JSR sub_EECD_wait_1_frame_
+C - - - - - 0x00F695 03:F685: 20 CD EE  JSR sub_EECD_wait_1_frame_
+C - - - - - 0x00F698 03:F688: 20 CD EE  JSR sub_EECD_wait_1_frame_
 C - - - - - 0x00F69B 03:F68B: 60        RTS
 
 
@@ -10768,12 +10759,9 @@ C - - - - - 0x00FFCE 03:FFBE: 60        RTS
 
 ; bzk garbage
 - - - - - - 0x00FFCF 03:FFBF: FF        .byte $FF   ; 
-- - - - - - 0x00FFD0 03:FFC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00FFD8 03:FFC8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00FFE0 03:FFD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00FFE8 03:FFD8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00FFF0 03:FFE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-- - - - - - 0x00FFF8 03:FFE8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFD0 03:FFC0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFE0 03:FFD0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+- - - - - - 0x00FFF0 03:FFE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x010000 03:FFF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x010006 03:FFF6: 95 EF     .word $EF95     ; vec_EF95_NMI
 - - - - - - 0x010008 03:FFF8: 95 EF     .word $EF95     ; vec_EF95_NMI
