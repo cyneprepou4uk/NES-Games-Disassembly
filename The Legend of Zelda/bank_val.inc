@@ -9,8 +9,8 @@ con_mirroring_H                         = $0F ; horisontal
 
 
 
-; ram_btn_press                         = $F8
-; ram_btn_hold                          = $FA
+; ram_btn_press                         = $00F8
+; ram_btn_hold                          = $00FA
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -24,7 +24,7 @@ con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn
 
 
 
-; ram_game_mode_main                    = $12
+; ram_game_mode_main                    = $0012
 ; needed comments at 0x014550   0x01459C   0x00A607
 ;                    0x0090D6   0x01F192
 ;                    0x01EB45 & 0x01E92E - rename offsets
@@ -51,7 +51,7 @@ con_GM_13                               = $13 ;
 
 
 
-; ram_direction                         = $98
+; ram_direction                         = $0098
 con_dir_00                              = $00 ; 
 con_dir_Right                           = $01 ; 
 con_dir_Left                            = $02 ; 
