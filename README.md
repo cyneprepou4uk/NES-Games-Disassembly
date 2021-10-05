@@ -27,6 +27,7 @@ Lua script will take care of it before compilation. You just write new code as u
 ## Current games list (GoodNES)
 * Battle City (J) [!]
 * Bugs Bunny Crazy Castle, The (U) [!]
+* Double Dragon II - The Revenge (J)
 * Kunio-kun no Nekketsu Soccer League (J) [!]
 * Legend of Zelda, The (U) (PRG0) [!]
 * Mappy (J) [!]
@@ -42,7 +43,6 @@ Lua script will take care of it before compilation. You just write new code as u
 ## WIP
 * Castlevania III - Dracula's Curse (U) [!]
 * Danny Sullivan's Indy Heat (U) [!]
-* Double Dragon II - The Revenge (J)
 * Dr. Mario (JU) (PRG0) [!]
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
 * Super Mario Bros. (W) [!]
