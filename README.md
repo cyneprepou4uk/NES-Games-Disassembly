@@ -44,6 +44,7 @@ Lua script will take care of it before compilation. You just write new code as u
 * Castlevania III - Dracula's Curse (U) [!]
 * Danny Sullivan's Indy Heat (U) [!]
 * Dr. Mario (JU) (PRG0) [!]
+* Ice Climber (J) [!]
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
 * Super Mario Bros. (W) [!]
 * Tennis (JU) [!]
@@ -53,7 +54,6 @@ Lua script will take care of it before compilation. You just write new code as u
 
 ## Planning
 * Balloon Fight (J) [!]
-* Ice Climber (J) [!]
 * Tetris (Tengen) [!]
 
 
