@@ -13,10 +13,10 @@ start /wait lua53 preparations.lua
 :: -U = no need to use .import
 :: -l = create listing file
 :: -g = create debug file
-ca65 -U -l -g copy_bank_00.asm
-ca65 -U -l -g copy_bank_01.asm
-ca65 -U -l -g copy_bank_02.asm
-ca65 -U -l -g copy_bank_FF.asm
+ca65 -U -l copy_bank_00.lst -g copy_bank_00.asm
+ca65 -U -l copy_bank_01.lst -g copy_bank_01.asm
+ca65 -U -l copy_bank_02.lst -g copy_bank_02.asm
+ca65 -U -l copy_bank_FF.lst -g copy_bank_FF.asm
 
 :: assemble code into binaries
 ld65 -C ld65.cfg -o PRG_ROM.bin --dbgfile _debug.txt ^
