@@ -547,7 +547,7 @@ C - - - - - 0x010249 04:8239: D9 F3 81  CMP tbl_81F3,Y
 C - - - - - 0x01024C 04:823C: D0 1F     BNE bra_825D
 C - - - - - 0x01024E 04:823E: FE 12 04  INC ram_0412,X
 C - - - - - 0x010251 04:8241: BC 12 04  LDY ram_0412,X
-C - - - - - 0x010254 04:8244: C0 10     CPY #$10
+C - - - - - 0x010254 04:8244: C0 10     CPY #$10    ; timer to keep pushing block in dungeon to open a secret
 C - - - - - 0x010256 04:8246: 90 1A     BCC bra_8262_RTS
 C - - - - - 0x010258 04:8248: 95 98     STA ram_direction,X
 C - - - - - 0x01025A 04:824A: F6 AC     INC ram_drop_id,X
@@ -908,7 +908,7 @@ C - - - - - 0x010473 04:8463: BD 4F 03  LDA ram_obj_id,X
 C - - - - - 0x010476 04:8466: C9 2B     CMP #con_obj_id_2B
 C - - - - - 0x010478 04:8468: D0 05     BNE bra_846F
 C - - - - - 0x01047A 04:846A: A9 10     LDA #$10
-C - - - - - 0x01047C 04:846C: 85 4C     STA ram_004C
+C - - - - - 0x01047C 04:846C: 85 4C     STA ram_sword_disable_timer
 bra_846E_RTS:
 C - - - - - 0x01047E 04:846E: 60        RTS
 bra_846F:
@@ -8181,49 +8181,49 @@ tbl_B03E:
 tbl_B042:
 ; offset via 0x01304A
 ; 00
-- D 1 - - - 0x013052 04:B042: 22        .byte $22   ; 
-- D 1 - - - 0x013053 04:B043: 18        .byte $18   ; 
-- D 1 - - - 0x013054 04:B044: 22        .byte $22   ; 
-- D 1 - - - 0x013055 04:B045: 18        .byte $18   ; 
-- D 1 - - - 0x013056 04:B046: 23        .byte $23   ; 
-- D 1 - - - 0x013057 04:B047: 18        .byte $18   ; 
-- D 1 - - - 0x013058 04:B048: 22        .byte $22   ; 
-- D 1 - - - 0x013059 04:B049: 22        .byte $22   ; 
-- D 1 - - - 0x01305A 04:B04A: 18        .byte $18   ; 
-- D 1 - - - 0x01305B 04:B04B: 18        .byte $18   ; 
+- D 1 - - - 0x013052 04:B042: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x013053 04:B043: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x013054 04:B044: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x013055 04:B045: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x013056 04:B046: 23        .byte con_drop_id_23   ; 
+- D 1 - - - 0x013057 04:B047: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x013058 04:B048: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x013059 04:B049: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x01305A 04:B04A: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x01305B 04:B04B: 18        .byte con_drop_id_18   ; 
 ; 0A
-- D 1 - - - 0x01305C 04:B04C: 0F        .byte $0F   ; 
-- D 1 - - - 0x01305D 04:B04D: 18        .byte $18   ; 
-- D 1 - - - 0x01305E 04:B04E: 22        .byte $22   ; 
-- D 1 - - - 0x01305F 04:B04F: 18        .byte $18   ; 
-- D 1 - - - 0x013060 04:B050: 0F        .byte $0F   ; 
-- D 1 - - - 0x013061 04:B051: 22        .byte $22   ; 
-- D 1 - - - 0x013062 04:B052: 21        .byte $21   ; 
-- D 1 - - - 0x013063 04:B053: 18        .byte $18   ; 
-- D 1 - - - 0x013064 04:B054: 18        .byte $18   ; 
-- D 1 - - - 0x013065 04:B055: 18        .byte $18   ; 
+- D 1 - - - 0x01305C 04:B04C: 0F        .byte con_drop_id_0F   ; 
+- D 1 - - - 0x01305D 04:B04D: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x01305E 04:B04E: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x01305F 04:B04F: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x013060 04:B050: 0F        .byte con_drop_id_0F   ; 
+- D 1 - - - 0x013061 04:B051: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x013062 04:B052: 21        .byte con_drop_id_21   ; 
+- D 1 - - - 0x013063 04:B053: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x013064 04:B054: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x013065 04:B055: 18        .byte con_drop_id_18   ; 
 ; 14
-- D 1 - - - 0x013066 04:B056: 22        .byte $22   ; 
-- D 1 - - - 0x013067 04:B057: 00        .byte $00   ; 
-- D 1 - - - 0x013068 04:B058: 18        .byte $18   ; 
-- D 1 - - - 0x013069 04:B059: 21        .byte $21   ; 
-- D 1 - - - 0x01306A 04:B05A: 18        .byte $18   ; 
-- D 1 - - - 0x01306B 04:B05B: 22        .byte $22   ; 
-- D 1 - - - 0x01306C 04:B05C: 00        .byte $00   ; 
-- D 1 - - - 0x01306D 04:B05D: 18        .byte $18   ; 
-- D 1 - - - 0x01306E 04:B05E: 00        .byte $00   ; 
-- D 1 - - - 0x01306F 04:B05F: 22        .byte $22   ; 
+- D 1 - - - 0x013066 04:B056: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x013067 04:B057: 00        .byte con_drop_id_00   ; 
+- D 1 - - - 0x013068 04:B058: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x013069 04:B059: 21        .byte con_drop_id_21   ; 
+- D 1 - - - 0x01306A 04:B05A: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x01306B 04:B05B: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x01306C 04:B05C: 00        .byte con_drop_id_00   ; 
+- D 1 - - - 0x01306D 04:B05D: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x01306E 04:B05E: 00        .byte con_drop_id_00   ; 
+- D 1 - - - 0x01306F 04:B05F: 22        .byte con_drop_id_22   ; 
 ; 1E
-- D 1 - - - 0x013070 04:B060: 22        .byte $22   ; 
-- D 1 - - - 0x013071 04:B061: 22        .byte $22   ; 
-- D 1 - - - 0x013072 04:B062: 23        .byte $23   ; 
-- D 1 - - - 0x013073 04:B063: 18        .byte $18   ; 
-- D 1 - - - 0x013074 04:B064: 22        .byte $22   ; 
-- D 1 - - - 0x013075 04:B065: 23        .byte $23   ; 
-- D 1 - - - 0x013076 04:B066: 22        .byte $22   ; 
-- D 1 - - - 0x013077 04:B067: 22        .byte $22   ; 
-- D 1 - - - 0x013078 04:B068: 22        .byte $22   ; 
-- D 1 - - - 0x013079 04:B069: 18        .byte $18   ; 
+- D 1 - - - 0x013070 04:B060: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x013071 04:B061: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x013072 04:B062: 23        .byte con_drop_id_23   ; 
+- D 1 - - - 0x013073 04:B063: 18        .byte con_drop_id_18   ; 
+- D 1 - - - 0x013074 04:B064: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x013075 04:B065: 23        .byte con_drop_id_23   ; 
+- D 1 - - - 0x013076 04:B066: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x013077 04:B067: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x013078 04:B068: 22        .byte con_drop_id_22   ; 
+- D 1 - - - 0x013079 04:B069: 18        .byte con_drop_id_18   ; 
 
 
 

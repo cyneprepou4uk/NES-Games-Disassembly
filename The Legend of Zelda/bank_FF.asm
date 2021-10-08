@@ -56,7 +56,7 @@
 .export sub_0x01EEF4
 .export loc_0x01EEF4
 .export sub_0x01EEF6
-.export ofs_021_0x01EF81_05
+.export ofs_021_0x01EF81_05_flute
 .export sub_0x01EFE0
 .export sub_0x01F09D
 .export loc_0x01F159
@@ -632,13 +632,13 @@ C D 3 - - - 0x01E745 07:E735: BD 57 06  LDA ram_items,X
 C - - - - - 0x01E748 07:E738: 85 04     STA ram_0004
 loc_E73A:
 C D 3 - - - 0x01E74A 07:E73A: BD EC 72  LDA tbl_bat_72EC,X
-C - - - - - 0x01E74D 07:E73D: E0 16     CPX #con_item_16
+C - - - - - 0x01E74D 07:E73D: E0 16     CPX #con_item_rupees
 C - - - - - 0x01E74F 07:E73F: F0 0C     BEQ bra_E74D
-C - - - - - 0x01E751 07:E741: E0 1A     CPX #con_item_1A
+C - - - - - 0x01E751 07:E741: E0 1A     CPX #con_item_triforce
 C - - - - - 0x01E753 07:E743: F0 08     BEQ bra_E74D
 C - - - - - 0x01E755 07:E745: E0 1B     CPX #con_item_1B
 C - - - - - 0x01E757 07:E747: F0 04     BEQ bra_E74D
-C - - - - - 0x01E759 07:E749: E0 19     CPX #con_item_19
+C - - - - - 0x01E759 07:E749: E0 19     CPX #con_item_hearts_2
 C - - - - - 0x01E75B 07:E74B: D0 09     BNE bra_E756
 bra_E74D:
 C - - - - - 0x01E75D 07:E74D: A5 15     LDA ram_frame_cnt
@@ -656,7 +656,7 @@ C - - - - - 0x01E76E 07:E75E: E0 02     CPX #con_item_arrow
 C - - - - - 0x01E770 07:E760: F0 11     BEQ bra_E773
 C - - - - - 0x01E772 07:E762: E0 07     CPX #con_item_potion
 C - - - - - 0x01E774 07:E764: F0 0D     BEQ bra_E773
-C - - - - - 0x01E776 07:E766: E0 0B     CPX #con_item_0B
+C - - - - - 0x01E776 07:E766: E0 0B     CPX #con_item_ring
 C - - - - - 0x01E778 07:E768: F0 09     BEQ bra_E773
 bra_E76A:
 loc_E76A:
@@ -676,7 +676,7 @@ C - - - - - 0x01E790 07:E780: 4C 6A E7  JMP loc_E76A
 bra_E783:
 - - - - - - 0x01E793 07:E783: A2 07     LDX #con_item_potion
 - - - - - - 0x01E795 07:E785: 8E 56 06  STX ram_item_slot_index
-- - - - - - 0x01E798 07:E788: D0 16     BNE bra_E7A0
+- - - - - - 0x01E798 07:E788: D0 16     BNE bra_E7A0    ; jmp
 
 
 
@@ -684,7 +684,7 @@ loc_E78A:
 sub_E78A:
 sub_0x01E79A:
 C D 3 - - - 0x01E79A 07:E78A: AE 56 06  LDX ram_item_slot_index
-C - - - - - 0x01E79D 07:E78D: F0 26     BEQ bra_E7B5
+C - - - - - 0x01E79D 07:E78D: F0 26     BEQ bra_E7B5_check_boomerangs
 C - - - - - 0x01E79F 07:E78F: BD 57 06  LDA ram_items,X
 C - - - - - 0x01E7A2 07:E792: F0 5A     BEQ bra_E7EE
 C - - - - - 0x01E7A4 07:E794: E0 0F     CPX #con_item_letter
@@ -703,9 +703,9 @@ C - - - - - 0x01E7BA 07:E7AA: A9 05     LDA #con_prg_bank + $05
 C - - - - - 0x01E7BC 07:E7AC: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01E7BF 07:E7AF: 20 1C B8  JSR sub_0x01782C
 C - - - - - 0x01E7C2 07:E7B2: 4C D7 E7  JMP loc_E7D7
-bra_E7B5:
+bra_E7B5_check_boomerangs:
 C - - - - - 0x01E7C5 07:E7B5: A2 1E     LDX #$1E
-bra_E7B7_loop:  ; con_item_1D   con_item_1E
+bra_E7B7_loop:  ; con_item_boomerang   con_item_mag_boomerang
 C - - - - - 0x01E7C7 07:E7B7: BD 57 06  LDA ram_items,X
 C - - - - - 0x01E7CA 07:E7BA: D0 E4     BNE bra_E7A0
 C - - - - - 0x01E7CC 07:E7BC: CA        DEX
@@ -743,7 +743,7 @@ C - - - - - 0x01E802 07:E7F2: AD 66 06  LDA ram_item_letter
 C - - - - - 0x01E805 07:E7F5: F0 D4     BEQ bra_E7CB
 C - - - - - 0x01E807 07:E7F7: A2 0F     LDX #con_item_letter
 C - - - - - 0x01E809 07:E7F9: 8E 56 06  STX ram_item_slot_index
-C - - - - - 0x01E80C 07:E7FC: D0 C8     BNE bra_E7C6
+C - - - - - 0x01E80C 07:E7FC: D0 C8     BNE bra_E7C6    ; jmp
 sub_E7FE:
 C - - - - - 0x01E80E 07:E7FE: AD 05 05  LDA ram_0505
 C - - - - - 0x01E811 07:E801: F0 56     BEQ bra_E859_RTS
@@ -1913,7 +1913,7 @@ tbl_EF66:
 
 
 
-ofs_021_0x01EF81_05:
+ofs_021_0x01EF81_05_flute:
 C - - J - - 0x01EF81 07:EF71: A9 10     LDA #con_sfx_2_flute
 C - - - - - 0x01EF83 07:EF73: 8D 02 06  STA ram_sfx_2
 C - - - - - 0x01EF86 07:EF76: A9 98     LDA #$98
@@ -2660,7 +2660,7 @@ C - - - - - 0x01F3EC 07:F3DC: F0 35     BEQ bra_F413
 - - - - - - 0x01F3F4 07:F3E4: 48        PHA
 - - - - - - 0x01F3F5 07:F3E5: A9 00     LDA #$00
 - - - - - - 0x01F3F7 07:F3E7: 8D 13 05  STA ram_candle_usage_flag
-- - - - - - 0x01F3FA 07:F3EA: 20 4F 71  JSR sub_bat_714F
+- - - - - - 0x01F3FA 07:F3EA: 20 4F 71  JSR sub_bat_714F_candle
 - - - - - - 0x01F3FD 07:F3ED: 68        PLA
 - - - - - - 0x01F3FE 07:F3EE: 8D 13 05  STA ram_candle_usage_flag
 - - - - - - 0x01F401 07:F3F1: 68        PLA
@@ -2824,6 +2824,7 @@ tbl_F4E5:
 - D 3 - - - 0x01F4FB 07:F4EB: 02        .byte $02   ; 06
 - D 3 - - - 0x01F4FC 07:F4EC: 01        .byte $01   ; 07
 - D 3 - - - 0x01F4FD 07:F4ED: 03        .byte $03   ; 08
+
 tbl_F4EE:
 - D 3 - - - 0x01F4FE 07:F4EE: 00        .byte $00   ; 00
 - D 3 - - - 0x01F4FF 07:F4EF: 00        .byte $00   ; 01
@@ -2847,6 +2848,7 @@ tbl_F4F7:
 - - - - - - 0x01F50D 07:F4FD: 70        .byte $70   ; 06
 - - - - - - 0x01F50E 07:F4FE: 78        .byte $78   ; 07
 - D 3 - - - 0x01F50F 07:F4FF: 80        .byte $80   ; 08
+
 tbl_F500:
 - D 3 - - - 0x01F510 07:F500: 80        .byte $80   ; 00
 - D 3 - - - 0x01F511 07:F501: 78        .byte $78   ; 01
@@ -3150,7 +3152,7 @@ C - - - - - 0x01F701 07:F6F1: A9 00     LDA #$00
 C - - - - - 0x01F703 07:F6F3: 85 01     STA ram_0001
 C - - - - - 0x01F705 07:F6F5: B9 E5 F4  LDA tbl_F4E5,Y
 C - - - - - 0x01F708 07:F6F8: 85 0C     STA ram_000C
-C - - - - - 0x01F70A 07:F6FA: 98        TYA
+C - - - - - 0x01F70A 07:F6FA: 98        TYA ; bzk optimize, useless
 C - - - - - 0x01F70B 07:F6FB: B9 EE F4  LDA tbl_F4EE,Y
 C - - - - - 0x01F70E 07:F6FE: 85 04     STA ram_0004
 C - - - - - 0x01F710 07:F700: A0 00     LDY #$00

@@ -2999,7 +2999,7 @@ C - - - - - 0x006077 01:A067: AD 23 05  LDA ram_0523
 C - - - - - 0x00607A 01:A06A: 29 07     AND #$07
 C - - - - - 0x00607C 01:A06C: A8        TAY
 C - - - - - 0x00607D 01:A06D: B9 10 A0  LDA tbl_A010,Y
-C - - - - - 0x006080 01:A070: 85 EA     STA ram_00EA
+C - - - - - 0x006080 01:A070: 85 EA     STA ram_flute_map_location
 C - - - - - 0x006082 01:A072: EE 22 05  INC ram_0522
 bra_A075:
 C - - - - - 0x006085 01:A075: B5 70     LDA ram_pos_X,X

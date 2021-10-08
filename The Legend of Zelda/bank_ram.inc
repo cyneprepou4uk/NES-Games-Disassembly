@@ -68,7 +68,7 @@ ram_0048                                = $0048 ; N/A
 ram_0049                                = $0049 ; N/A
 ram_004A                                = $004A ; 2   
 ram_004B                                = $004B ; 2   
-ram_004C                                = $004C ; 2   
+ram_sword_disable_timer                 = $004C ; decreased at 0x01E544
 ram_004D                                = $004D ; 6   
 ram_004E                                = $004E ; N/A
 ram_004F                                = $004F ; N/A
@@ -216,12 +216,12 @@ ram_00E5                                = $00E5 ; 6
 ram_00E6                                = $00E6 ; 2   
 ram_00E7                                = $00E7 ; 4   
 ram_00E8                                = $00E8 ; 6   
-ram_00E9                                = $00E9 ; 17   
-ram_00EA                                = $00EA ; 2   
+ram_00E9                                = $00E9 ; 17  
+ 
+ram_flute_map_location                  = $00EA ; 
+ram_map_location                        = $00EB ; current overworld screen id
+ram_next_map_location                   = $00EC ; 
 
-ram_map_location                        = $00EB ; 70   overworld screen id
-
-ram_00EC                                = $00EC ; 7   
 ram_00ED                                = $00ED ; 4   
 ram_00EE                                = $00EE ; 21   
 ram_00EF                                = $00EF ; 3   
@@ -928,26 +928,10 @@ ram_049A                                = $049A ; N/A
 ram_049B                                = $049B ; N/A
 ram_049C                                = $049C ; N/A
 ram_049D                                = $049D ; N/A
+
+; 049E-04B1 (14) 
 ram_049E                                = $049E ; 19   
-ram_049F                                = $049F ; N/A
-ram_04A0                                = $04A0 ; N/A
-ram_04A1                                = $04A1 ; N/A
-ram_04A2                                = $04A2 ; N/A
-ram_04A3                                = $04A3 ; N/A
-ram_04A4                                = $04A4 ; N/A
-ram_04A5                                = $04A5 ; N/A
-ram_04A6                                = $04A6 ; N/A
-ram_04A7                                = $04A7 ; N/A
-ram_04A8                                = $04A8 ; N/A
-ram_04A9                                = $04A9 ; N/A
-ram_04AA                                = $04AA ; N/A
-ram_04AB                                = $04AB ; N/A
-ram_04AC                                = $04AC ; N/A
-ram_04AD                                = $04AD ; N/A
-ram_04AE                                = $04AE ; N/A
-ram_04AF                                = $04AF ; N/A
-ram_04B0                                = $04B0 ; N/A
-ram_04B1                                = $04B1 ; N/A
+
 ram_04B2                                = $04B2 ; 10   
 ram_04B3                                = $04B3 ; 2   
 ram_04B4                                = $04B4 ; N/A
@@ -1075,7 +1059,9 @@ ram_052B                                = $052B ; 3
 ram_052C                                = $052C ; 2   
 ram_052D                                = $052D ; 2   
 ram_052E                                = $052E ; 4   
-ram_052F                                = $052F ; N/A
+
+ram_correct_path_counter                = $052F ; 
+
 ram_0530                                = $0530 ; 5   
 ram_0531                                = $0531 ; N/A
 ram_0532                                = $0532 ; N/A
