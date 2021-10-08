@@ -10,8 +10,8 @@ rm -f *.o PRG_ROM.bin copy_*
 Return
 
 # :: create a copy of .nl file for original ROM
-if [ -f "TMNT_original.nes" ]; then
-    cp -f !${NES_OUTPUT_SIMPLE_NAME}.nes.ram.nl TMNT_original.nes.ram.nl
+if [ -f "${NES_OUTPUT_SIMPLE_NAME}_original.nes" ]; then
+    cp -f !${NES_OUTPUT_SIMPLE_NAME}.nes.ram.nl ${NES_OUTPUT_SIMPLE_NAME}_original.nes.ram.nl
 fi
 
 # :: check file size and display corresponding message
