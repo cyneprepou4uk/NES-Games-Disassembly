@@ -13,12 +13,12 @@ NES_OUTPUT_SIMPLE_NAME=dd2
 NES_OUTPUT_FILE_SIZE=262160
 
 # common function(s)
-source ../os_support.sh
+source ../Scripts/os_support.sh
 # environment function(s)
-source ../env.sh
+source ../Scripts/env.sh
 
 # assemble-header function(s)
-source ../assemble_header.sh
+source ../Scripts/assemble_header.sh
 
 # :: assemble code into binaries
 ld65 -C ld65.cfg -o PRG_ROM.bin --dbgfile _debug.txt copy_bank_*.o
@@ -33,4 +33,4 @@ cat header.bin PRG_ROM.bin CHR_ROM.chr CHR_screens.chr > !${NES_OUTPUT_SIMPLE_NA
 Return
 
 # assemble-footer function(s) support
-source ../assemble_footer.sh
+source ../Scripts/assemble_footer.sh

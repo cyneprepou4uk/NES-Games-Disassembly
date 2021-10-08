@@ -13,12 +13,12 @@ NES_OUTPUT_SIMPLE_NAME=sf3
 NES_OUTPUT_FILE_SIZE=655376
 
 # common function(s)
-source ../os_support.sh
+source ../Scripts/os_support.sh
 # environment function(s)
-source ../env.sh
+source ../Scripts/env.sh
 
 # assemble-header function(s)
-source ../assemble_header.sh
+source ../Scripts/assemble_header.sh
 
 # :: assemble code into binaries
 ld65 -C ld65.cfg --dbgfile _debug.txt copy_bank_*.o
@@ -29,4 +29,4 @@ cat header.bin copy_bank_*.bin CHR_ROM.chr > !${NES_OUTPUT_SIMPLE_NAME}.nes
 Return
 
 # assemble-footer function(s) support
-source ../assemble_footer.sh
+source ../Scripts/assemble_footer.sh
