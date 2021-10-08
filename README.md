@@ -8,7 +8,7 @@ Each source code is equal to the original ROM, compilable and editable.
 
 No special requirements (for Windows users). Just launch `assemble.bat` and wait until it's done.
 
-If you have any other OS, try using `assemble.sh` instead. Cretits to [gb-2312](https://github.com/gb-2312)
+If you have any other OS, try using `assemble.sh` instead. All credits goes to [gb-2312](https://github.com/gb-2312).
 
 
 
