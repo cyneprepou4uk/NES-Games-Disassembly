@@ -13,13 +13,13 @@ NES_OUTPUT_SIMPLE_NAME=son
 NES_OUTPUT_FILE_SIZE=40976
 
 # common function(s)
-source ../Scripts/os_support.sh
+source ../_scripts/os_support.sh
 # environment function(s)
-source ../Scripts/env.sh
+source ../_scripts/env.sh
 
 # assemble-header function(s)
-source ../Scripts/assemble_header.sh
+source ../_scripts/assemble_header.sh
 # assemble-standard function(s) support
-source ../Scripts/assemble_standard.sh
+source ../_scripts/assemble_standard.sh
 # assemble-footer function(s) support
-source ../Scripts/assemble_footer.sh
+source ../_scripts/assemble_footer.sh
