@@ -31,17 +31,23 @@ Return() {
 }
 
 Installer() {
-  if [ $# != 1 ]; then
-    echowarn "Installer only supported for one argument!"
+  # check argument(s) is empty?
+  if [ ! -n "$1" ]; then
+    echowarn "[Installer] missing input argument(s)!"
     exit 254
   fi
-  if [[ -x "/usr/bin/apt-get" ]]; then
-    apt-get -y install $1
-  elif [[ -x "/usr/bin/yum" ]] ; then
-    yum -y install $1
-  else
-    echowarn "No supported package manager installed on system"
-  fi
+  # install multiple package(s)
+  while [ "$#" -ge "1" ];do
+    if [[ -x "/usr/bin/apt-get" ]]; then
+      apt-get -y install $1
+    elif [[ -x "/usr/bin/yum" ]] ; then
+      yum -y install $1
+    else
+      echowarn "No supported package manager installed on system: [$1]"
+    fi
+    # must be shift for $1, otherwise infinite-loop...
+    shift
+  done
 }
 
 today=""
