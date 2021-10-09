@@ -3,8 +3,8 @@
 
 # check cc65 compiler
 
-EXEC_PACKAGES_FOLDER=../InstallPackages/bin
-INSTALL_PACKAGES_FOLDER=../InstallPackages/packages
+EXEC_PACKAGES_FOLDER=../_install_packages/bin
+INSTALL_PACKAGES_FOLDER=../_install_packages/packages
 
 CC65_VERSION=2.19
 CC65_INSTALL_PACKAGE_VERSION=cc65-${CC65_VERSION}
