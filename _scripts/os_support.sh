@@ -30,6 +30,20 @@ Return() {
   fi
 }
 
+Installer() {
+  if [ $# != 1 ]; then
+    echowarn "Installer only supported for one argument!"
+    exit 254
+  fi
+  if [[ -x "/usr/bin/apt-get" ]]; then
+    apt-get -y install $1
+  elif [[ -x "/usr/bin/yum" ]] ; then
+    yum -y install $1
+  else
+    echowarn "No supported package manager installed on system"
+  fi
+}
+
 today=""
 month=""
 case ${OS_VERSION} in
