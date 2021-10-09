@@ -37,7 +37,7 @@ Installer() {
     exit 254
   fi
   # install multiple package(s)
-  while [ "$#" -ge "1" ];do
+  while [ "$#" -ge "1" ]; do
     if [[ -x "/usr/bin/apt-get" ]]; then
       apt-get -y install $1
     elif [[ -x "/usr/bin/yum" ]] ; then
