@@ -1822,19 +1822,6 @@ ram_07EC                        = $07EC ; N/A
 ram_07ED                        = $07ED ; N/A
 ram_07EE                        = $07EE ; N/A
 ram_07EF                        = $07EF ; 2   
-ram_07F0                        = $07F0 ; N/A
-ram_07F1                        = $07F1 ; N/A
-ram_07F2                        = $07F2 ; N/A
-ram_07F3                        = $07F3 ; N/A
-ram_07F4                        = $07F4 ; N/A
-ram_07F5                        = $07F5 ; N/A
-ram_07F6                        = $07F6 ; N/A
-ram_07F7                        = $07F7 ; N/A
-ram_07F8                        = $07F8 ; N/A
-ram_07F9                        = $07F9 ; N/A
-ram_07FA                        = $07FA ; N/A
-ram_07FB                        = $07FB ; N/A
-ram_07FC                        = $07FC ; N/A
-ram_07FD                        = $07FD ; N/A
-ram_07FE                        = $07FE ; N/A
-ram_07FF                        = $07FF ; N/A
+
+; 07F0-07FF (10) 
+ram_reset_check                 = $07F0 ; values 01-10

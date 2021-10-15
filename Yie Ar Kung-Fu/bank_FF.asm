@@ -24,11 +24,11 @@ C - - - - - 0x000031 00:C021: 9A        TXS
 C - - - - - 0x000032 00:C022: A2 10     LDX #$10
 bra_C024_loop:
 C - - - - - 0x000034 00:C024: 8A        TXA
-C - - - - - 0x000035 00:C025: DD EF 07  CMP ram_07EF,X
-C - - - - - 0x000038 00:C028: D0 03     BNE bra_C02D
+C - - - - - 0x000035 00:C025: DD EF 07  CMP ram_reset_check - 1,X
+C - - - - - 0x000038 00:C028: D0 03     BNE bra_C02D_check_failed
 - - - - - - 0x00003A 00:C02A: CA        DEX
 - - - - - - 0x00003B 00:C02B: D0 F7     BNE bra_C024_loop
-bra_C02D:
+bra_C02D_check_failed:
 C - - - - - 0x00003D 00:C02D: 86 82     STX ram_0082
 C - - - - - 0x00003F 00:C02F: A0 EF     LDY #$EF
 C - - - - - 0x000041 00:C031: A9 07     LDA #$07
@@ -57,7 +57,7 @@ C - - - - - 0x000065 00:C055: A9 00     LDA #$00
 C - - - - - 0x000067 00:C057: 85 00     STA ram_0000
 bra_C059_loop:
 C - - - - - 0x000069 00:C059: 8A        TXA
-C - - - - - 0x00006A 00:C05A: 9D EF 07  STA ram_07EF,X
+C - - - - - 0x00006A 00:C05A: 9D EF 07  STA ram_reset_check - 1,X
 C - - - - - 0x00006D 00:C05D: CA        DEX
 C - - - - - 0x00006E 00:C05E: D0 F9     BNE bra_C059_loop
 C - - - - - 0x000070 00:C060: 20 13 C4  JSR sub_C413
