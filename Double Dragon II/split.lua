@@ -18,7 +18,7 @@ end
 
 
 
-print("Splinning files...")
+print("Splitting files...")
 
 
 
