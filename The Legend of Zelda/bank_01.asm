@@ -3312,7 +3312,7 @@ C - - - - - 0x00623B 01:A22B: F0 0E     BEQ bra_A23B
 C - - - - - 0x00623D 01:A22D: A9 BB     LDA #$BB
 C - - - - - 0x00623F 01:A22F: 85 02     STA ram_0002
 C - - - - - 0x006241 01:A231: A2 08     LDX #$08
-C - - - - - 0x006243 01:A233: AD 9E 04  LDA ram_049E
+C - - - - - 0x006243 01:A233: AD 9E 04  LDA ram_collision_tile
 bra_A236:
 C - - - - - 0x006246 01:A236: E6 02     INC ram_0002
 C - - - - - 0x006248 01:A238: CA        DEX

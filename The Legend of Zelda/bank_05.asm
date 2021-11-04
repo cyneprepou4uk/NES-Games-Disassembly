@@ -1974,8 +1974,8 @@ C - - - - - 0x014A15 05:8A05: 48        PHA
 C - - - - - 0x014A16 05:8A06: 20 F4 ED  JSR sub_0x01EE04
 C - - - - - 0x014A19 05:8A09: 68        PLA
 C - - - - - 0x014A1A 05:8A0A: A8        TAY
-C - - - - - 0x014A1B 05:8A0B: BD 9E 04  LDA ram_049E,X
-C - - - - - 0x014A1E 05:8A0E: CD 4A 03  CMP ram_034A
+C - - - - - 0x014A1B 05:8A0B: BD 9E 04  LDA ram_collision_tile,X
+C - - - - - 0x014A1E 05:8A0E: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x014A21 05:8A11: B0 1A     BCS bra_8A2D
 sub_0x014A23:
 C - - - - - 0x014A23 05:8A13: A5 70     LDA ram_pos_X
@@ -2226,7 +2226,7 @@ C - - - - - 0x014B98 05:8B88: 4C E9 6E  JMP loc_bat_6EE9
 
 
 loc_0x014B9B:
-C D 0 - - - 0x014B9B 05:8B8B: AD 9E 04  LDA ram_049E
+C D 0 - - - 0x014B9B 05:8B8B: AD 9E 04  LDA ram_collision_tile
 C - - - - - 0x014B9E 05:8B8E: C9 24     CMP #$24
 C - - - - - 0x014BA0 05:8B90: D0 0F     BNE bra_8BA1
 C - - - - - 0x014BA2 05:8B92: A5 15     LDA ram_frame_cnt
@@ -2985,8 +2985,8 @@ C - - - - - 0x01500F 05:8FFF: 20 FA ED  JSR sub_0x01EE0A
 C - - - - - 0x015012 05:9002: 68        PLA
 C - - - - - 0x015013 05:9003: 85 84     STA ram_pos_Y
 C - - - - - 0x015015 05:9005: A5 0F     LDA ram_000F
-C - - - - - 0x015017 05:9007: AC 9E 04  LDY ram_049E
-C - - - - - 0x01501A 05:900A: CC 4A 03  CPY ram_034A
+C - - - - - 0x015017 05:9007: AC 9E 04  LDY ram_collision_tile
+C - - - - - 0x01501A 05:900A: CC 4A 03  CPY ram_min_collision_tile
 C - - - - - 0x01501D 05:900D: 90 BE     BCC bra_8FCD
 bra_900F:
 C - - - - - 0x01501F 05:900F: A9 00     LDA #$00
@@ -7762,13 +7762,13 @@ tbl_B054:
 - D 1 - - - 0x017065 05:B055: E0        .byte $E0   ; 01
 - D 1 - - - 0x017066 05:B056: 4E        .byte $4E   ; 02
 - D 1 - - - 0x017067 05:B057: CD        .byte $CD   ; 03
-- D 1 - - - 0x017068 05:B058: 89        .byte $89   ; 04
+- D 1 - - - 0x017068 05:B058: 89        .byte $89   ; 04 minimal collision
 ; Y = 05
 - D 1 - - - 0x017069 05:B059: 21        .byte $21   ; 00
 - D 1 - - - 0x01706A 05:B05A: D0        .byte $D0   ; 01
 - D 1 - - - 0x01706B 05:B05B: 5E        .byte $5E   ; 02
 - D 1 - - - 0x01706C 05:B05C: BD        .byte $BD   ; 03
-- D 1 - - - 0x01706D 05:B05D: 78        .byte $78   ; 04
+- D 1 - - - 0x01706D 05:B05D: 78        .byte $78   ; 04 minimal collision
 
 
 
@@ -8259,7 +8259,7 @@ C - - - - - 0x0172F1 05:B2E1: 98        TYA
 C - - - - - 0x0172F2 05:B2E2: 48        PHA
 C - - - - - 0x0172F3 05:B2E3: E6 0B     INC ram_000B
 C - - - - - 0x0172F5 05:B2E5: 20 FA ED  JSR sub_0x01EE0A
-C - - - - - 0x0172F8 05:B2E8: CD 4A 03  CMP ram_034A
+C - - - - - 0x0172F8 05:B2E8: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x0172FB 05:B2EB: B0 06     BCS bra_B2F3
 C - - - - - 0x0172FD 05:B2ED: A5 0F     LDA ram_000F
 C - - - - - 0x0172FF 05:B2EF: 85 0D     STA ram_000D
@@ -8339,7 +8339,7 @@ C - - - - - 0x017376 05:B366: A9 60     LDA #$60
 C - - - - - 0x017378 05:B368: 85 00     STA ram_0000
 C - - - - - 0x01737A 05:B36A: A5 10     LDA ram_0010
 C - - - - - 0x01737C 05:B36C: D0 19     BNE bra_B387
-C - - - - - 0x01737E 05:B36E: AD 9E 04  LDA ram_049E
+C - - - - - 0x01737E 05:B36E: AD 9E 04  LDA ram_collision_tile
 C - - - - - 0x017381 05:B371: C9 74     CMP #$74
 C - - - - - 0x017383 05:B373: F0 04     BEQ bra_B379
 C - - - - - 0x017385 05:B375: C9 75     CMP #$75
@@ -8443,7 +8443,7 @@ C - - - - - 0x017425 05:B415: 29 0F     AND #$0F
 C - - - - - 0x017427 05:B417: C9 0D     CMP #$0D
 C - - - - - 0x017429 05:B419: D0 53     BNE bra_B46E_RTS
 C - - - - - 0x01742B 05:B41B: 20 F4 ED  JSR sub_0x01EE04
-C - - - - - 0x01742E 05:B41E: AD 9E 04  LDA ram_049E
+C - - - - - 0x01742E 05:B41E: AD 9E 04  LDA ram_collision_tile
 C - - - - - 0x017431 05:B421: A4 10     LDY ram_0010
 C - - - - - 0x017433 05:B423: F0 4A     BEQ bra_B46F
 C - - - - - 0x017435 05:B425: C9 70     CMP #$70
@@ -8501,7 +8501,7 @@ C - - - - - 0x01748B 05:B47B: 90 F1     BCC bra_B46E_RTS
 C - - - - - 0x01748D 05:B47D: C9 74     CMP #$74
 C - - - - - 0x01748F 05:B47F: B0 ED     BCS bra_B46E_RTS
 C - - - - - 0x017491 05:B481: A9 70     LDA #$70
-C - - - - - 0x017493 05:B483: 8D 9E 04  STA ram_049E
+C - - - - - 0x017493 05:B483: 8D 9E 04  STA ram_collision_tile
 bra_B486:
 C - - - - - 0x017496 05:B486: 20 64 B4  JSR sub_B464
 C - - - - - 0x017499 05:B489: A4 EB     LDY ram_map_location

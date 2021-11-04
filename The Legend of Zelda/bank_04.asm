@@ -675,7 +675,7 @@ C - - - - - 0x0102F8 04:82E8: B0 0C     BCS bra_82F6
 C - - - - - 0x0102FA 04:82EA: B5 28     LDA ram_obj_timer,X
 C - - - - - 0x0102FC 04:82EC: D0 10     BNE bra_82FE
 C - - - - - 0x0102FE 04:82EE: 20 FA ED  JSR sub_0x01EE0A
-C - - - - - 0x010301 04:82F1: CD 4A 03  CMP ram_034A
+C - - - - - 0x010301 04:82F1: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x010304 04:82F4: B0 45     BCS bra_833B
 bra_82F6:
 C - - - - - 0x010306 04:82F6: 20 B8 6F  JSR sub_bat_6FB8
@@ -1199,7 +1199,7 @@ C - - - - - 0x010615 04:8605: 85 0F     STA ram_000F
 C - - - - - 0x010617 04:8607: BD 94 03  LDA ram_0394,X
 C - - - - - 0x01061A 04:860A: D0 08     BNE bra_8614
 C - - - - - 0x01061C 04:860C: 20 FA ED  JSR sub_0x01EE0A
-C - - - - - 0x01061F 04:860F: CD 4A 03  CMP ram_034A
+C - - - - - 0x01061F 04:860F: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x010622 04:8612: B0 14     BCS bra_8628_RTS
 bra_8614:
 C - - - - - 0x010624 04:8614: 20 B8 6F  JSR sub_bat_6FB8
@@ -2150,7 +2150,7 @@ C - - - - - 0x010B90 04:8B80: C9 30     CMP #$30
 C - - - - - 0x010B92 04:8B82: B0 C9     BCS bra_8B4D_RTS
 bra_8B84:
 C - - - - - 0x010B94 04:8B84: 20 F4 ED  JSR sub_0x01EE04
-C - - - - - 0x010B97 04:8B87: CD 4A 03  CMP ram_034A
+C - - - - - 0x010B97 04:8B87: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x010B9A 04:8B8A: B0 C1     BCS bra_8B4D_RTS
 C - - - - - 0x010B9C 04:8B8C: EE 10 05  INC ram_0510
 C - - - - - 0x010B9F 04:8B8F: A9 01     LDA #$01
@@ -2174,7 +2174,7 @@ C - - - - - 0x010BC2 04:8BB2: D0 42     BNE bra_8BF6
 C - - - - - 0x010BC4 04:8BB4: B5 98     LDA ram_direction,X
 C - - - - - 0x010BC6 04:8BB6: 85 0F     STA ram_000F
 C - - - - - 0x010BC8 04:8BB8: 20 FA ED  JSR sub_0x01EE0A
-C - - - - - 0x010BCB 04:8BBB: CD 4A 03  CMP ram_034A
+C - - - - - 0x010BCB 04:8BBB: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x010BCE 04:8BBE: B0 1A     BCS bra_8BDA
 C - - - - - 0x010BD0 04:8BC0: 20 B8 6F  JSR sub_bat_6FB8
 C - - - - - 0x010BD3 04:8BC3: F0 15     BEQ bra_8BDA
@@ -4928,8 +4928,8 @@ C - - - - - 0x011CBD 04:9CAD: 60        RTS
 sub_9CAE:
 C - - - - - 0x011CBE 04:9CAE: A0 00     LDY #$00
 C - - - - - 0x011CC0 04:9CB0: 20 10 EE  JSR sub_0x01EE20
-C - - - - - 0x011CC3 04:9CB3: BD 9E 04  LDA ram_049E,X
-C - - - - - 0x011CC6 04:9CB6: CD 4A 03  CMP ram_034A
+C - - - - - 0x011CC3 04:9CB3: BD 9E 04  LDA ram_collision_tile,X
+C - - - - - 0x011CC6 04:9CB6: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x011CC9 04:9CB9: 9D 1F 04  STA ram_041F,X
 C - - - - - 0x011CCC 04:9CBC: 60        RTS
 
@@ -5399,8 +5399,8 @@ C - - - - - 0x011F5A 04:9F4A: 60        RTS
 
 sub_9F4B:
 C - - - - - 0x011F5B 04:9F4B: 20 F4 ED  JSR sub_0x01EE04
-C - - - - - 0x011F5E 04:9F4E: BD 9E 04  LDA ram_049E,X
-C - - - - - 0x011F61 04:9F51: CD 4A 03  CMP ram_034A
+C - - - - - 0x011F5E 04:9F4E: BD 9E 04  LDA ram_collision_tile,X
+C - - - - - 0x011F61 04:9F51: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x011F64 04:9F54: 9D 1F 04  STA ram_041F,X
 C - - - - - 0x011F67 04:9F57: 60        RTS
 
@@ -7246,7 +7246,7 @@ C - - - - - 0x012AFD 04:AAED: D0 E9     BNE bra_AAD8
 C - - - - - 0x012AFF 04:AAEF: F0 F4     BEQ bra_AAE5
 bra_AAF1:
 C - - - - - 0x012B01 04:AAF1: 20 FA ED  JSR sub_0x01EE0A
-C - - - - - 0x012B04 04:AAF4: CD 4A 03  CMP ram_034A
+C - - - - - 0x012B04 04:AAF4: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x012B07 04:AAF7: B0 EA     BCS bra_AAE3
 bra_AAF9_RTS:
 C - - - - - 0x012B09 04:AAF9: 60        RTS

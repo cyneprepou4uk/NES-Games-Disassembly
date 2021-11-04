@@ -587,11 +587,14 @@ ram_0342                                = $0342 ; N/A
 ram_0343                                = $0343 ; 6   
 ram_0344                                = $0344 ; 3   
 ram_0345                                = $0345 ; N/A
+
+; 0346-034A (05) some screen data, set via 0x01707D
 ram_0346                                = $0346 ; 1   
 ram_0347                                = $0347 ; N/A
 ram_0348                                = $0348 ; N/A
 ram_0349                                = $0349 ; N/A
-ram_034A                                = $034A ; 14   
+ram_min_collision_tile                  = $034A ; minimal tile id to collide with, objects walk through lower values
+
 ram_034B                                = $034B ; 3   
 ram_034C                                = $034C ; 3   
 ram_034D                                = $034D ; 3   
@@ -930,7 +933,7 @@ ram_049C                                = $049C ; N/A
 ram_049D                                = $049D ; N/A
 
 ; 049E-04B1 (14) 
-ram_049E                                = $049E ; 19   
+ram_collision_tile                      = $049E ; a tile that object is currently colliding with
 
 ram_04B2                                = $04B2 ; 10   
 ram_04B3                                = $04B3 ; 2   

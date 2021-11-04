@@ -104,7 +104,6 @@
 
 
 
-
 tbl_E400:   ; bzk the very 1st byte is dpcm
 tbl_0x01E410:
 - D 3 - - A 0x01E410 07:E400: 30 65     .word ram_6530
@@ -1663,7 +1662,7 @@ tbl_EDEB:
 sub_0x01EE04:
 C - - - - - 0x01EE04 07:EDF4: A0 00     LDY #$00
 C - - - - - 0x01EE06 07:EDF6: 84 0F     STY ram_000F
-C - - - - - 0x01EE08 07:EDF8: F0 16     BEQ bra_EE10
+C - - - - - 0x01EE08 07:EDF8: F0 16     BEQ bra_EE10    ; jmp
 
 
 
@@ -1739,7 +1738,7 @@ C - - - - - 0x01EE6D 07:EE5D: 4A        LSR
 C - - - - - 0x01EE6E 07:EE5E: 4A        LSR
 C - - - - - 0x01EE6F 07:EE5F: A8        TAY
 C - - - - - 0x01EE70 07:EE60: B1 00     LDA (ram_0000),Y
-C - - - - - 0x01EE72 07:EE62: 9D 9E 04  STA ram_049E,X
+C - - - - - 0x01EE72 07:EE62: 9D 9E 04  STA ram_collision_tile,X
 C - - - - - 0x01EE75 07:EE65: A5 0F     LDA ram_000F
 C - - - - - 0x01EE77 07:EE67: 29 0C     AND #$0C
 C - - - - - 0x01EE79 07:EE69: F0 0F     BEQ bra_EE7A
@@ -1748,14 +1747,14 @@ C - - - - - 0x01EE7C 07:EE6C: 18        CLC
 C - - - - - 0x01EE7D 07:EE6D: 69 16     ADC #$16
 C - - - - - 0x01EE7F 07:EE6F: A8        TAY
 C - - - - - 0x01EE80 07:EE70: B1 00     LDA (ram_0000),Y
-C - - - - - 0x01EE82 07:EE72: DD 9E 04  CMP ram_049E,X
+C - - - - - 0x01EE82 07:EE72: DD 9E 04  CMP ram_collision_tile,X
 C - - - - - 0x01EE85 07:EE75: 90 03     BCC bra_EE7A
-C - - - - - 0x01EE87 07:EE77: 9D 9E 04  STA ram_049E,X
+C - - - - - 0x01EE87 07:EE77: 9D 9E 04  STA ram_collision_tile,X
 bra_EE7A:
-C - - - - - 0x01EE8A 07:EE7A: BD 9E 04  LDA ram_049E,X
+C - - - - - 0x01EE8A 07:EE7A: BD 9E 04  LDA ram_collision_tile,X
 C - - - - - 0x01EE8D 07:EE7D: A4 10     LDY ram_0010
 C - - - - - 0x01EE8F 07:EE7F: D0 36     BNE bra_EEB7_RTS
-C - - - - - 0x01EE91 07:EE81: BD 9E 04  LDA ram_049E,X
+C - - - - - 0x01EE91 07:EE81: BD 9E 04  LDA ram_collision_tile,X
 C - - - - - 0x01EE94 07:EE84: A0 09     LDY #$09
 bra_EE86_loop:
 C - - - - - 0x01EE96 07:EE86: 88        DEY
@@ -1764,7 +1763,7 @@ C - - - - - 0x01EE99 07:EE89: D9 EB ED  CMP tbl_EDEB,Y
 C - - - - - 0x01EE9C 07:EE8C: D0 F8     BNE bra_EE86_loop
 C - - - - - 0x01EE9E 07:EE8E: A9 26     LDA #$26
 bra_EE90:
-C - - - - - 0x01EEA0 07:EE90: 9D 9E 04  STA ram_049E,X
+C - - - - - 0x01EEA0 07:EE90: 9D 9E 04  STA ram_collision_tile,X
 C - - - - - 0x01EEA3 07:EE93: E0 00     CPX #$00
 C - - - - - 0x01EEA5 07:EE95: D0 1D     BNE bra_EEB4
 C - - - - - 0x01EEA7 07:EE97: A5 EB     LDA ram_map_location
@@ -1780,9 +1779,9 @@ C - - - - - 0x01EEB9 07:EEA9: A5 84     LDA ram_pos_Y
 C - - - - - 0x01EEBB 07:EEAB: C9 56     CMP #$56
 C - - - - - 0x01EEBD 07:EEAD: B0 05     BCS bra_EEB4
 C - - - - - 0x01EEBF 07:EEAF: A9 26     LDA #$26
-C - - - - - 0x01EEC1 07:EEB1: 8D 9E 04  STA ram_049E
+C - - - - - 0x01EEC1 07:EEB1: 8D 9E 04  STA ram_collision_tile
 bra_EEB4:
-C - - - - - 0x01EEC4 07:EEB4: BD 9E 04  LDA ram_049E,X
+C - - - - - 0x01EEC4 07:EEB4: BD 9E 04  LDA ram_collision_tile,X
 bra_EEB7_RTS:
 C - - - - - 0x01EEC7 07:EEB7: 60        RTS
 
@@ -1838,7 +1837,7 @@ C - - - - - 0x01EF07 07:EEF7: B5 C0     LDA ram_00C0,X
 C - - - - - 0x01EF09 07:EEF9: 29 0F     AND #$0F
 C - - - - - 0x01EF0B 07:EEFB: 85 0F     STA ram_000F
 C - - - - - 0x01EF0D 07:EEFD: 20 FA ED  JSR sub_EDFA
-C - - - - - 0x01EF10 07:EF00: CD 4A 03  CMP ram_034A
+C - - - - - 0x01EF10 07:EF00: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x01EF13 07:EF03: B0 DF     BCS bra_EEE4
 bra_EF05:
 C - - - - - 0x01EF15 07:EF05: B5 C0     LDA ram_00C0,X
@@ -2162,7 +2161,7 @@ bra_F110:
 - - - - - - 0x01F123 07:F113: 4C 98 F1  JMP loc_F198
 bra_F116:
 C - - - - - 0x01F126 07:F116: 20 FA ED  JSR sub_EDFA
-C - - - - - 0x01F129 07:F119: CD 4A 03  CMP ram_034A
+C - - - - - 0x01F129 07:F119: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x01F12C 07:F11C: 90 30     BCC bra_F14E
 C - - - - - 0x01F12E 07:F11E: E0 00     CPX #$00
 C - - - - - 0x01F130 07:F120: F0 11     BEQ bra_F133
@@ -2322,7 +2321,7 @@ C - - - - - 0x01F1F6 07:F1E6: 20 A0 F1  JSR sub_F1A0
 C - - - - - 0x01F1F9 07:F1E9: 85 0F     STA ram_000F
 C - - - - - 0x01F1FB 07:F1EB: F0 0F     BEQ bra_F1FC_RTS
 C - - - - - 0x01F1FD 07:F1ED: 20 FA ED  JSR sub_EDFA
-C - - - - - 0x01F200 07:F1F0: CD 4A 03  CMP ram_034A
+C - - - - - 0x01F200 07:F1F0: CD 4A 03  CMP ram_min_collision_tile
 C - - - - - 0x01F203 07:F1F3: B0 F1     BCS bra_F1E6
 C - - - - - 0x01F205 07:F1F5: 20 B8 6F  JSR sub_bat_6FB8
 C - - - - - 0x01F208 07:F1F8: F0 EC     BEQ bra_F1E6
@@ -2505,14 +2504,14 @@ C D 3 - - - 0x01F2F3 07:F2E3: A2 00     LDX #$00
 C - - - - - 0x01F2F5 07:F2E5: A5 12     LDA ram_game_mode_main
 C - - - - - 0x01F2F7 07:F2E7: C9 05     CMP #con_GM_05
 C - - - - - 0x01F2F9 07:F2E9: D0 12     BNE bra_F2FD
-C - - - - - 0x01F2FB 07:F2EB: AD 9E 04  LDA ram_049E
+C - - - - - 0x01F2FB 07:F2EB: AD 9E 04  LDA ram_collision_tile
 C - - - - - 0x01F2FE 07:F2EE: 48        PHA
 C - - - - - 0x01F2FF 07:F2EF: A9 05     LDA #con_prg_bank + $05
 C - - - - - 0x01F301 07:F2F1: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01F304 07:F2F4: 20 F4 B3  JSR sub_0x017404
 C - - - - - 0x01F307 07:F2F7: A2 00     LDX #$00
 C - - - - - 0x01F309 07:F2F9: 68        PLA
-C - - - - - 0x01F30A 07:F2FA: 8D 9E 04  STA ram_049E
+C - - - - - 0x01F30A 07:F2FA: 8D 9E 04  STA ram_collision_tile
 bra_F2FD:
 C - - - - - 0x01F30D 07:F2FD: 20 3C FA  JSR sub_FA3C
 C - - - - - 0x01F310 07:F300: A5 12     LDA ram_game_mode_main
@@ -4562,7 +4561,7 @@ C - - - - - 0x01FF2C 07:FF1C: 8D 08 03  STA ram_0308
 C - - - - - 0x01FF2F 07:FF1F: C0 0A     CPY #$0A
 C - - - - - 0x01FF31 07:FF21: D0 05     BNE bra_FF28_RTS
 C - - - - - 0x01FF33 07:FF23: A9 99     LDA #$99
-C - - - - - 0x01FF35 07:FF25: 8D 4A 03  STA ram_034A
+C - - - - - 0x01FF35 07:FF25: 8D 4A 03  STA ram_min_collision_tile
 bra_FF28_RTS:
 C - - - - - 0x01FF38 07:FF28: 60        RTS
 bra_FF29:
