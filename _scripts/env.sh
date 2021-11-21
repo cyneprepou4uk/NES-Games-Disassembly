@@ -29,7 +29,7 @@ function check_cc65_env() {
         if [[ $result = [Yy][Ee][Ss] ]] || [[ $result = [Yy] ]]; then
             currentPwd=`pwd`
             echoerror "Your computer has not install [cc65] compiler, wait a moment and prepare install environment..."
-            curl -o -k ${INSTALL_PACKAGES_FOLDER}/${CC65_INSTALL_PACKAGE_VERSION}.tar.gz "https://codeload.github.com/cc65/cc65/tar.gz/refs/tags/V${CC65_VERSION}"
+            curl -k -o ${INSTALL_PACKAGES_FOLDER}/${CC65_INSTALL_PACKAGE_VERSION}.tar.gz "https://codeload.github.com/cc65/cc65/tar.gz/refs/tags/V${CC65_VERSION}"
             cd ${INSTALL_PACKAGES_FOLDER} && tar xvzf ${CC65_INSTALL_PACKAGE_VERSION}.tar.gz && cd ${CC65_INSTALL_PACKAGE_VERSION}
             Return
 
@@ -58,7 +58,7 @@ function check_lua_env() {
         if [[ $result = [Yy][Ee][Ss] ]] || [[ $result = [Yy] ]]; then
             currentPwd=`pwd`
             echoerror "Your computer has not install [lua] compiler, wait a moment and prepare install environment..."
-            curl -o -k ${INSTALL_PACKAGES_FOLDER}/${LUA_INSTALL_PACKAGE_VERSION}.tar.gz "https://www.lua.org/ftp/${LUA_INSTALL_PACKAGE_VERSION}.tar.gz"
+            curl -k -o ${INSTALL_PACKAGES_FOLDER}/${LUA_INSTALL_PACKAGE_VERSION}.tar.gz "https://www.lua.org/ftp/${LUA_INSTALL_PACKAGE_VERSION}.tar.gz"
             cd ${INSTALL_PACKAGES_FOLDER} && tar xvzf ${LUA_INSTALL_PACKAGE_VERSION}.tar.gz && cd ${LUA_INSTALL_PACKAGE_VERSION}
             Return
 
