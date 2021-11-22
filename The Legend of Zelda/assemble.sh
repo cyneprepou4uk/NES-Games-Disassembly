@@ -13,6 +13,11 @@ NES_IGNORE_COMPILE_ASM_ARRAY=(bank_s1.asm copy_bank_s1.asm bank_s2.asm copy_bank
 NES_OUTPUT_SIMPLE_NAME=zelda
 NES_OUTPUT_FILE_SIZE=131088
 
+# navigate to the directory
+BASH_EXEC_DIR=$(dirname $0)
+# goto directory
+cd $BASH_EXEC_DIR
+
 # common function(s)
 source ../_scripts/os_support.sh
 # environment function(s)

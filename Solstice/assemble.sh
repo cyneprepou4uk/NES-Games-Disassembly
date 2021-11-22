@@ -13,6 +13,11 @@ NES_IGNORE_COMPILE_ASM_ARRAY=(bank___FF7B_FFF8.asm copy_bank___FF7B_FFF8.asm ban
 NES_OUTPUT_SIMPLE_NAME=solstice
 NES_OUTPUT_FILE_SIZE=131088
 
+# navigate to the directory
+BASH_EXEC_DIR=$(dirname $0)
+# goto directory
+cd $BASH_EXEC_DIR
+
 # common function(s)
 source ../_scripts/os_support.sh
 # environment function(s)

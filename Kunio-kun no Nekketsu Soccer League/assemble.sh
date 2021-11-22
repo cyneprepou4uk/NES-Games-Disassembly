@@ -12,6 +12,11 @@
 NES_OUTPUT_SIMPLE_NAME=goal3
 NES_OUTPUT_FILE_SIZE=262160
 
+# navigate to the directory
+BASH_EXEC_DIR=$(dirname $0)
+# goto directory
+cd $BASH_EXEC_DIR
+
 # common function(s)
 source ../_scripts/os_support.sh
 # environment function(s)
