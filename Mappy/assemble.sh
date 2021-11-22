@@ -13,9 +13,9 @@ NES_OUTPUT_SIMPLE_NAME=mappy
 NES_OUTPUT_FILE_SIZE=24592
 
 # navigate to the directory
-BASH_EXEC_DIR=$(dirname $0)
+BASH_EXEC_DIR=$(dirname "$0")
 # goto directory
-cd $BASH_EXEC_DIR
+cd "${BASH_EXEC_DIR}"
 
 # common function(s)
 source ../_scripts/os_support.sh
