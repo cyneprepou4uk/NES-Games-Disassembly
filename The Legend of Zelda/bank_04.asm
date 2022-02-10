@@ -3312,10 +3312,11 @@ C - - J - - 0x0112D2 04:92C2: A9 10     LDA #$10
 C - - - - - 0x0112D4 04:92C4: 9D 85 04  STA ram_0485,X
 C - - - - - 0x0112D7 04:92C7: A4 16     LDY ram_cur_save_slot
 C - - - - - 0x0112D9 04:92C9: B9 2D 06  LDA ram_current_quest,Y
-C - - - - - 0x0112DC 04:92CC: F0 05     BEQ bra_92D3
+C - - - - - 0x0112DC 04:92CC: F0 05     BEQ bra_92D3_1st_quest
+; if 2nd quest
 C - - - - - 0x0112DE 04:92CE: A9 40     LDA #$40
 C - - - - - 0x0112E0 04:92D0: 9D 85 04  STA ram_0485,X
-bra_92D3:
+bra_92D3_1st_quest:
 C - - - - - 0x0112E3 04:92D3: 4C 25 80  JMP loc_8025
 
 
@@ -3381,11 +3382,12 @@ C - - - - - 0x011353 04:9343: A9 02     LDA #$02
 C - - - - - 0x011355 04:9345: 20 88 79  JSR sub_bat_7988
 C - - - - - 0x011358 04:9348: A4 16     LDY ram_cur_save_slot
 C - - - - - 0x01135A 04:934A: B9 2D 06  LDA ram_current_quest,Y
-C - - - - - 0x01135D 04:934D: F0 07     BEQ bra_9356
+C - - - - - 0x01135D 04:934D: F0 07     BEQ bra_9356_1st_quest
+; if 2nd quest
 C - - - - - 0x01135F 04:934F: A5 15     LDA ram_frame_cnt
 C - - - - - 0x011361 04:9351: 29 03     AND #$03
 C - - - - - 0x011363 04:9353: 20 88 79  JSR sub_bat_7988
-bra_9356:
+bra_9356_1st_quest:
 C - - - - - 0x011366 04:9356: BD E4 03  LDA ram_03E4,X
 C - - - - - 0x011369 04:9359: 20 DF 77  JSR sub_bat_77DF
 C - - - - - 0x01136C 04:935C: 4C D0 79  JMP loc_bat_79D0
@@ -3416,6 +3418,7 @@ C - - - - - 0x011396 04:9386: 85 01     STA ram_0001
 C - - - - - 0x011398 04:9388: A4 16     LDY ram_cur_save_slot
 C - - - - - 0x01139A 04:938A: B9 2D 06  LDA ram_current_quest,Y
 C - - - - - 0x01139D 04:938D: F0 52     BEQ bra_93E1_RTS
+; if 2nd quest
 - - - - - - 0x01139F 04:938F: BD 51 04  LDA ram_0451,X
 - - - - - - 0x0113A2 04:9392: D0 06     BNE bra_939A
 - - - - - - 0x0113A4 04:9394: B5 18     LDA ram_indiv_random,X

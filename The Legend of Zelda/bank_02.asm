@@ -4199,7 +4199,8 @@ C - - - - - 0x00A678 02:A668: 68        PLA
 C - - - - - 0x00A679 02:A669: 85 00     STA ram_0000
 C - - - - - 0x00A67B 02:A66B: A4 04     LDY ram_0004
 C - - - - - 0x00A67D 02:A66D: B9 2D 06  LDA ram_current_quest,Y
-C - - - - - 0x00A680 02:A670: F0 1D     BEQ bra_A68F
+C - - - - - 0x00A680 02:A670: F0 1D     BEQ bra_A68F_1st_quest
+; if 2nd quest
 C - - - - - 0x00A682 02:A672: AC 43 03  LDY ram_0343
 C - - - - - 0x00A685 02:A675: A5 01     LDA ram_0001
 C - - - - - 0x00A687 02:A677: 38        SEC
@@ -4213,7 +4214,7 @@ C - - - - - 0x00A697 02:A687: A5 00     LDA ram_0000
 C - - - - - 0x00A699 02:A689: 18        CLC
 C - - - - - 0x00A69A 02:A68A: 69 0C     ADC #$0C
 C - - - - - 0x00A69C 02:A68C: 99 83 02  STA ram_spr_X + $80,Y
-bra_A68F:
+bra_A68F_1st_quest:
 C - - - - - 0x00A69F 02:A68F: A5 01     LDA ram_0001
 C - - - - - 0x00A6A1 02:A691: 18        CLC
 C - - - - - 0x00A6A2 02:A692: 69 18     ADC #$18
@@ -5058,9 +5059,10 @@ C - - - - - 0x00AC04 02:ABF4: 85 5C     STA ram_005C
 C - - - - - 0x00AC06 02:ABF6: A0 00     LDY #$00
 C - - - - - 0x00AC08 02:ABF8: A6 16     LDX ram_cur_save_slot
 C - - - - - 0x00AC0A 02:ABFA: BD 2D 06  LDA ram_current_quest,X
-C - - - - - 0x00AC0D 02:ABFD: F0 01     BEQ bra_AC00
+C - - - - - 0x00AC0D 02:ABFD: F0 01     BEQ bra_AC00_1st_quest
+; if 2nd quest
 C - - - - - 0x00AC0F 02:ABFF: C8        INY
-bra_AC00:
+bra_AC00_1st_quest:
 C - - - - - 0x00AC10 02:AC00: AD E2 00  LDA a: ram_00E2
 C - - - - - 0x00AC13 02:AC03: D9 C0 AB  CMP tbl_ABC0,Y
 C - - - - - 0x00AC16 02:AC06: 90 0D     BCC bra_AC15_RTS
@@ -5753,13 +5755,15 @@ C - - - - - 0x00AE7C 02:AE6C: C0 17     CPY #$17
 C - - - - - 0x00AE7E 02:AE6E: B0 72     BCS bra_AEE2
 C - - - - - 0x00AE80 02:AE70: A6 16     LDX ram_cur_save_slot
 C - - - - - 0x00AE82 02:AE72: BD 2D 06  LDA ram_current_quest,X
-C - - - - - 0x00AE85 02:AE75: D0 04     BNE bra_AE7B
+C - - - - - 0x00AE85 02:AE75: D0 04     BNE bra_AE7B    ; if 2nd quest
+; if 1st quest
 C - - - - - 0x00AE87 02:AE77: C0 10     CPY #$10
 C - - - - - 0x00AE89 02:AE79: B0 64     BCS bra_AEDF
 bra_AE7B:
 C - - - - - 0x00AE8B 02:AE7B: A6 16     LDX ram_cur_save_slot
 C - - - - - 0x00AE8D 02:AE7D: BD 2D 06  LDA ram_current_quest,X
-C - - - - - 0x00AE90 02:AE80: F0 08     BEQ bra_AE8A
+C - - - - - 0x00AE90 02:AE80: F0 08     BEQ bra_AE8A    ; if 1st quest
+; if 2nd quest
 C - - - - - 0x00AE92 02:AE82: C0 0C     CPY #$0C
 C - - - - - 0x00AE94 02:AE84: 90 04     BCC bra_AE8A
 C - - - - - 0x00AE96 02:AE86: C0 10     CPY #$10

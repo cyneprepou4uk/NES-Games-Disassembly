@@ -1740,14 +1740,18 @@ _off004_91F7_0A:
 _off004_91F7_0E:
 - D 0 - I - 0x009207 02:91F7: 08        .byte $08   ; 
 - D 0 - I - 0x009208 02:91F8: 06        .byte $06   ; 
-- D 0 - I - 0x009209 02:91F9: 05        .byte $05   ; 
+
+- D 0 - I - 0x009209 02:91F9: 05        .byte (@end - @start) / 2
+@start:
 - D 0 - I - 0x00920A 02:91FA: 7E 92     .word off_927E_00
 - D 0 - I - 0x00920C 02:91FC: 97 92     .word off_9297_01
 - D 0 - I - 0x00920E 02:91FE: AC 92     .word off_92AC_02
 - D 0 - I - 0x009210 02:9200: B3 92     .word off_92B3_03
 - D 0 - I - 0x009212 02:9202: BA 92     .word off_92BA_04
-- D 0 - I - 0x009214 02:9204: 0C        .byte $0C   ; 
-- D 0 - I - 0x009215 02:9205: 0A        .byte $0A   ; 
+@end:
+
+- D 0 - I - 0x009214 02:9204: 0C        .byte $0C   ; rows
+- D 0 - I - 0x009215 02:9205: 0A        .byte $0A   ; columns
 - D 0 - I - 0x009216 02:9206: 00        .byte $00, $00, $00, $00, $00, $00, $01, $02, $03, $04, $00, $00   ; 
 - D 0 - I - 0x009222 02:9212: 00        .byte $00, $00, $00, $00, $00, $00, $05, $06, $07, $08, $09, $00   ; 
 - D 0 - I - 0x00922E 02:921E: 00        .byte $00, $00, $00, $00, $00, $00, $0A, $0B, $0C, $00, $00, $00   ; 
@@ -1861,7 +1865,9 @@ _off005_92C5_0C:
 _off004_9D25_02:
 - D 0 - I - 0x009D35 02:9D25: 08        .byte $08   ; 
 - D 0 - I - 0x009D36 02:9D26: 06        .byte $06   ; 
-- D 0 - I - 0x009D37 02:9D27: 0A        .byte $0A   ; 
+
+- D 0 - I - 0x009D37 02:9D27: 0A        .byte (@end - @start) / 2
+@start:
 - D 0 - I - 0x009D38 02:9D28: B6 9D     .word off_9DB6_00
 - D 0 - I - 0x009D3A 02:9D2A: BC 9D     .word off_9DBC_01
 - D 0 - I - 0x009D3C 02:9D2C: C2 9D     .word off_9DC2_02
@@ -1872,8 +1878,10 @@ _off004_9D25_02:
 - D 0 - I - 0x009D46 02:9D36: E5 9D     .word off_9DE5_07
 - D 0 - I - 0x009D48 02:9D38: F2 9D     .word off_9DF2_08
 - D 0 - I - 0x009D4A 02:9D3A: 24 9E     .word off_9E24_09
-- D 0 - I - 0x009D4C 02:9D3C: 0C        .byte $0C   ; 
-- D 0 - I - 0x009D4D 02:9D3D: 0A        .byte $0A   ; 
+@end:
+
+- D 0 - I - 0x009D4C 02:9D3C: 0C        .byte $0C   ; rows
+- D 0 - I - 0x009D4D 02:9D3D: 0A        .byte $0A   ; columns
 - D 0 - I - 0x009D4E 02:9D3E: 01        .byte $01, $02, $03, $04, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - D 0 - I - 0x009D5A 02:9D4A: 05        .byte $05, $06, $07, $08, $00, $00, $09, $0A, $00, $00, $00, $00   ; 
 - D 0 - I - 0x009D66 02:9D56: 0B        .byte $0B, $0C, $0D, $0E, $00, $00, $0F, $10, $11, $00, $00, $00   ; 
@@ -2049,7 +2057,9 @@ off_9E24_09:
 _off004_9E2D_0C:
 - D 0 - I - 0x009E3D 02:9E2D: 08        .byte $08   ; 
 - D 0 - I - 0x009E3E 02:9E2E: 06        .byte $06   ; 
-- D 0 - I - 0x009E3F 02:9E2F: 11        .byte $11   ; 
+
+- D 0 - I - 0x009E3F 02:9E2F: 11        .byte (@end - @start) / 2
+@start:
 - D 0 - I - 0x009E40 02:9E30: CC 9E     .word off_9ECC_00
 - D 0 - I - 0x009E42 02:9E32: DA 9E     .word off_9EDA_01
 - D 0 - I - 0x009E44 02:9E34: E8 9E     .word off_9EE8_02
@@ -2067,8 +2077,10 @@ _off004_9E2D_0C:
 - D 0 - I - 0x009E5C 02:9E4C: 8D 9F     .word off_9F8D_0E
 - D 0 - I - 0x009E5E 02:9E4E: 93 9F     .word off_9F93_0F
 - D 0 - I - 0x009E60 02:9E50: 99 9F     .word off_9F99_10
-- D 0 - I - 0x009E62 02:9E52: 0C        .byte $0C   ; 
-- D 0 - I - 0x009E63 02:9E53: 0A        .byte $0A   ; 
+@end:
+
+- D 0 - I - 0x009E62 02:9E52: 0C        .byte $0C   ; rows
+- D 0 - I - 0x009E63 02:9E53: 0A        .byte $0A   ; columns
 - D 0 - I - 0x009E64 02:9E54: 7D        .byte $7D, $7E, $7F, $80, $00, $00, $00, $00, $00, $00, $00, $81   ; 
 - D 0 - I - 0x009E70 02:9E60: 7E        .byte $7E, $82, $83, $84, $00, $00, $09, $0A, $00, $00, $00, $85   ; 
 - D 0 - I - 0x009E7C 02:9E6C: 7E        .byte $7E, $86, $87, $88, $00, $00, $0F, $10, $11, $00, $89, $85   ; 
@@ -2373,7 +2385,9 @@ _off004_A78F_08:
 _off004_A78F_10:
 - D 1 - I - 0x00A79F 02:A78F: 08        .byte $08   ; 
 - D 1 - I - 0x00A7A0 02:A790: 06        .byte $06   ; 
-- D 1 - I - 0x00A7A1 02:A791: 08        .byte $08   ; 
+
+- D 1 - I - 0x00A7A1 02:A791: 08        .byte (@end - @start) / 2
+@start:
 - D 1 - I - 0x00A7A2 02:A792: 1C A8     .word off_A81C_00
 - D 1 - I - 0x00A7A4 02:A794: 59 A8     .word off_A859_01
 - D 1 - I - 0x00A7A6 02:A796: 5F A8     .word off_A85F_02
@@ -2382,8 +2396,10 @@ _off004_A78F_10:
 - D 1 - I - 0x00A7AC 02:A79C: 7A A8     .word off_A87A_05
 - D 1 - I - 0x00A7AE 02:A79E: 83 A8     .word off_A883_06
 - D 1 - I - 0x00A7B0 02:A7A0: 89 A8     .word off_A889_07
-- D 1 - I - 0x00A7B2 02:A7A2: 0C        .byte $0C   ; 
-- D 1 - I - 0x00A7B3 02:A7A3: 0A        .byte $0A   ; 
+@end:
+
+- D 1 - I - 0x00A7B2 02:A7A2: 0C        .byte $0C   ; rows
+- D 1 - I - 0x00A7B3 02:A7A3: 0A        .byte $0A   ; columns
 - D 1 - I - 0x00A7B4 02:A7A4: 01        .byte $01, $02, $03, $01, $04, $05, $06, $07, $08, $01, $09, $0A   ; 
 - D 1 - I - 0x00A7C0 02:A7B0: 01        .byte $01, $0B, $0C, $0D, $01, $01, $0E, $0F, $10, $11, $12, $13   ; 
 - D 1 - I - 0x00A7CC 02:A7BC: 01        .byte $01, $14, $15, $16, $00, $00, $00, $00, $17, $18, $19, $1A   ; 
@@ -2553,12 +2569,16 @@ _off005_A890_12:
 _off004_AB20_12:
 - D 1 - I - 0x00AB30 02:AB20: 08        .byte $08   ; 
 - D 1 - I - 0x00AB31 02:AB21: 06        .byte $06   ; 
-- D 1 - I - 0x00AB32 02:AB22: 03        .byte $03   ; 
+
+- D 1 - I - 0x00AB32 02:AB22: 03        .byte (@end - @start) / 2
+@start:
 - D 1 - I - 0x00AB33 02:AB23: A3 AB     .word off_ABA3_00
 - D 1 - I - 0x00AB35 02:AB25: AA AB     .word off_ABAA_01
 - D 1 - I - 0x00AB37 02:AB27: B1 AB     .word off_ABB1_02
-- D 1 - I - 0x00AB39 02:AB29: 0C        .byte $0C   ; 
-- D 1 - I - 0x00AB3A 02:AB2A: 0A        .byte $0A   ; 
+@end:
+
+- D 1 - I - 0x00AB39 02:AB29: 0C        .byte $0C   ; rows
+- D 1 - I - 0x00AB3A 02:AB2A: 0A        .byte $0A   ; columns
 - D 1 - I - 0x00AB3B 02:AB2B: 00        .byte $00, $00, $00, $00, $01, $02, $03, $04, $05, $00, $00, $00   ; 
 - D 1 - I - 0x00AB47 02:AB37: 00        .byte $00, $00, $00, $00, $06, $07, $08, $09, $00, $00, $00, $00   ; 
 - D 1 - I - 0x00AB53 02:AB43: 00        .byte $00, $00, $00, $00, $0A, $0B, $0C, $0D, $0E, $00, $00, $00   ; 
@@ -2613,14 +2633,18 @@ _off005_ABB8_00:
 _off004_B908_00:
 - D 1 - I - 0x00B918 02:B908: 06        .byte $06   ; 
 - D 1 - I - 0x00B919 02:B909: 0A        .byte $0A   ; 
-- D 1 - I - 0x00B91A 02:B90A: 05        .byte $05   ; 
+
+- D 1 - I - 0x00B91A 02:B90A: 05        .byte (@end - @start) / 2
+@start:
 - D 1 - I - 0x00B91B 02:B90B: 67 BA     .word off_BA67_00
 - D 1 - I - 0x00B91D 02:B90D: 6E BA     .word off_BA6E_01
 - D 1 - I - 0x00B91F 02:B90F: 7C BA     .word off_BA7C_02
 - D 1 - I - 0x00B921 02:B911: 87 BA     .word off_BA87_03
 - D 1 - I - 0x00B923 02:B913: 9B BA     .word off_BA9B_04
-- D 1 - I - 0x00B925 02:B915: 10        .byte $10   ; 
-- D 1 - I - 0x00B926 02:B916: 14        .byte $14   ; 
+@end:
+
+- D 1 - I - 0x00B925 02:B915: 10        .byte $10   ; rows
+- D 1 - I - 0x00B926 02:B916: 14        .byte $14   ; columns
 - D 1 - I - 0x00B927 02:B917: 00        .byte $00, $00, $00, $00, $00, $00, $00, $01, $02, $03, $00, $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x00B937 02:B927: 00        .byte $00, $00, $00, $00, $00, $00, $00, $04, $05, $06, $07, $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x00B947 02:B937: 00        .byte $00, $00, $00, $00, $00, $00, $08, $09, $0A, $0B, $0C, $0D, $00, $00, $00, $00   ; 

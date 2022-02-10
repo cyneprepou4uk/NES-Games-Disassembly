@@ -1,6 +1,6 @@
 ; bzk code must be placed at the same address in all banks
 ; after dealing with FF7A and FFF9 in all banks, 2 includes can be merged
-; currently they are separated in order to assebmle into identical original ROM
+; currently they are separated in order to assemble into identical original ROM
 
 
 

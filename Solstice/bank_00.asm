@@ -2529,7 +2529,7 @@ tbl_9117:
 - D 0 - - - 0x001130 00:9120: FF        .byte $FF   ; 
 - - - - - - 0x001131 00:9121: 00        .byte $00   ; 
 - - - - - - 0x001132 00:9122: 00        .byte $00   ; 
-; 0C (3)
+; 0C (03)
 - D 0 - - - 0x001133 00:9123: FF        .byte $FF   ; 
 - D 0 - - - 0x001134 00:9124: FF        .byte $FF   ; 
 - - - - - - 0x001135 00:9125: 00        .byte $00   ; 
@@ -2936,7 +2936,7 @@ C - - - - - 0x001344 00:9334: 8D 8A 07  STA ram_078A
 C - - - - - 0x001347 00:9337: 20 CE 93  JSR sub_93CE_give_bonus_for_pickup_item
 C - - - - - 0x00134A 00:933A: A9 00     LDA #$00
 C - - - - - 0x00134C 00:933C: 9D 3C 07  STA ram_obj_id,X
-C - - - - - 0x00134F 00:933F: F0 18     BEQ bra_9359
+C - - - - - 0x00134F 00:933F: F0 18     BEQ bra_9359    ; bra
 bra_9341:
 C - - - - - 0x001351 00:9341: 8D 6D 07  STA ram_076D
 C - - - - - 0x001354 00:9344: A9 00     LDA #$00
@@ -3185,12 +3185,12 @@ C - - - - - 0x00147F 00:946F: 60        RTS
 
 
 ofs_005_9470_credit:
-C - - - - - 0x001480 00:9470: B9 8F 93  LDA tbl_947A - $EB,Y
+C - - - - - 0x001480 00:9470: B9 8F 93  LDA tbl_947A_credits - $EB,Y
 C - - - - - 0x001483 00:9473: 0D 9F 07  ORA ram_credits
 C - - - - - 0x001486 00:9476: 8D 9F 07  STA ram_credits
 C - - - - - 0x001489 00:9479: 60        RTS
 
-tbl_947A:
+tbl_947A_credits:
 - D 0 - - - 0x00148A 00:947A: 80        .byte $80   ; EB
 - D 0 - - - 0x00148B 00:947B: 40        .byte $40   ; EC
 - D 0 - - - 0x00148C 00:947C: 20        .byte $20   ; ED
@@ -3403,7 +3403,7 @@ C - - - - - 0x0015B5 00:95A5: 4A        LSR
 C - - - - - 0x0015B6 00:95A6: 90 02     BCC bra_95AA
 C - - - - - 0x0015B8 00:95A8: E6 0D     INC ram_000D
 bra_95AA:
-C - - - - - 0x0015BA 00:95AA: 09 00     ORA #$00    ; checking A for being = 00
+C - - - - - 0x0015BA 00:95AA: 09 00     ORA #$00    ; this instruction only updates N and Z flags, for checking A for being = 00
 C - - - - - 0x0015BC 00:95AC: D0 F7     BNE bra_95A5_loop
 C - - - - - 0x0015BE 00:95AE: 88        DEY
 C - - - - - 0x0015BF 00:95AF: 10 F1     BPL bra_95A2_loop
@@ -3433,7 +3433,7 @@ C - - - - - 0x0015DF 00:95CF: 98        TYA
 C - - - - - 0x0015E0 00:95D0: 0A        ASL
 C - - - - - 0x0015E1 00:95D1: 0A        ASL
 C - - - - - 0x0015E2 00:95D2: AA        TAX
-C - - - - - 0x0015E3 00:95D3: B9 7A 94  LDA tbl_947A,Y
+C - - - - - 0x0015E3 00:95D3: B9 7A 94  LDA tbl_947A_credits,Y
 C - - - - - 0x0015E6 00:95D6: 48        PHA
 C - - - - - 0x0015E7 00:95D7: 0D B9 07  ORA ram_07B9
 C - - - - - 0x0015EA 00:95DA: 8D B9 07  STA ram_07B9
@@ -3479,8 +3479,9 @@ bra_9636_loop:
 C - - - - - 0x001646 00:9636: 8D 07 20  STA $2007
 C - - - - - 0x001649 00:9639: CA        DEX
 C - - - - - 0x00164A 00:963A: 10 FA     BPL bra_9636_loop
+; magic boots, keys and staff pieces
 C - - - - - 0x00164C 00:963C: A2 D0     LDX #$D0
-bra_963E:
+bra_963E_loop:
 C - - - - - 0x00164E 00:963E: 86 0F     STX ram_000F
 C - - - - - 0x001650 00:9640: 8A        TXA
 C - - - - - 0x001651 00:9641: 38        SEC
@@ -3495,7 +3496,7 @@ bra_9650:
 C - - - - - 0x001660 00:9650: A6 0F     LDX ram_000F
 C - - - - - 0x001662 00:9652: E8        INX
 C - - - - - 0x001663 00:9653: E0 DB     CPX #$DB
-C - - - - - 0x001665 00:9655: D0 E7     BNE bra_963E
+C - - - - - 0x001665 00:9655: D0 E7     BNE bra_963E_loop
 C - - - - - 0x001667 00:9657: A2 EB     LDX #$EB
 C - - - - - 0x001669 00:9659: AD B9 07  LDA ram_07B9
 C - - - - - 0x00166C 00:965C: 85 0F     STA ram_000F

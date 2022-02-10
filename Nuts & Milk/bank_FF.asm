@@ -3532,13 +3532,13 @@ C - - - - - 0x0015CC 00:D5BC: 20 47 D6  JSR sub_D647
 C - - - - - 0x0015CF 00:D5BF: 20 F3 D5  JSR sub_D5F3
 C - - - - - 0x0015D2 00:D5C2: A2 00     LDX #$00
 C - - - - - 0x0015D4 00:D5C4: A0 00     LDY #$00
-bra_D5C6:
+bra_D5C6_loop:
 C - - - - - 0x0015D6 00:D5C6: B5 58     LDA ram_0058,X
 C - - - - - 0x0015D8 00:D5C8: 91 06     STA (ram_0006),Y
 C - - - - - 0x0015DA 00:D5CA: C8        INY
 C - - - - - 0x0015DB 00:D5CB: E8        INX
 C - - - - - 0x0015DC 00:D5CC: C0 08     CPY #$08
-C - - - - - 0x0015DE 00:D5CE: D0 F6     BNE bra_D5C6
+C - - - - - 0x0015DE 00:D5CE: D0 F6     BNE bra_D5C6_loop
 C - - - - - 0x0015E0 00:D5D0: A0 00     LDY #$00
 bra_D5D2_loop:
 C - - - - - 0x0015E2 00:D5D2: B9 D0 00  LDA ram_00D0,Y

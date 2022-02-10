@@ -27712,7 +27712,7 @@ tbl_0x01F154_credit_icon:
     .incbin "incbin/chr/FF___F144_FDFF.chr"
 ; bzk bug, code keeps reading tiles foward up to FEF3, which messes up credit icon at the bottom
 ; you need to either add 4 additional 00 bytes to the file (and maybe tell the code to stop reading)
-; or add F4h 00 bytes to the file withoud modifying the code (best case scenario)
+; or add F4h 00 bytes to the file without modifying the code (best case scenario)
 ; or fix credit background screen to not show that tile at all, which probably won't be noticeable
 ; note that a proper chr file should contain at least 4 more 00 bytes anyway
 

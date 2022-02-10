@@ -6963,11 +6963,12 @@ C - - - - - 0x0168C4 05:A8B4: 29 FB     AND #$FB
 C - - - - - 0x0168C6 05:A8B6: 85 FF     STA ram_for_2000
 C - - - - - 0x0168C8 05:A8B8: 8D 00 20  STA $2000
 C - - - - - 0x0168CB 05:A8BB: 4C 47 B5  JMP loc_B547
+
+
+
 bra_A8BE:
 C - - - - - 0x0168CE 05:A8BE: 20 F4 A9  JSR sub_A9F4
 C - - - - - 0x0168D1 05:A8C1: 4C 73 AB  JMP loc_AB73
-
-
 
 sub_A8C4:
 C - - - - - 0x0168D4 05:A8C4: 20 30 AB  JSR sub_AB30

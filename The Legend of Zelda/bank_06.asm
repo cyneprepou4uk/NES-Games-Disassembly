@@ -77,13 +77,14 @@ C - - - - - 0x018059 06:8049: 0A        ASL
 C - - - - - 0x01805A 06:804A: AA        TAX
 C - - - - - 0x01805B 06:804B: A4 16     LDY ram_cur_save_slot
 C - - - - - 0x01805D 06:804D: B9 2D 06  LDA ram_current_quest,Y
-C - - - - - 0x018060 06:8050: D0 0C     BNE bra_805E
+C - - - - - 0x018060 06:8050: D0 0C     BNE bra_805E_2nd_quest
+; if 1st quest
 C - - - - - 0x018062 06:8052: BD 00 80  LDA tbl_8000,X
 C - - - - - 0x018065 06:8055: 85 00     STA ram_0000
 C - - - - - 0x018067 06:8057: E8        INX
 C - - - - - 0x018068 06:8058: BD 00 80  LDA tbl_8000,X
 C - - - - - 0x01806B 06:805B: 4C 67 80  JMP loc_8067
-bra_805E:
+bra_805E_2nd_quest:
 C - - - - - 0x01806E 06:805E: BD 2A 80  LDA tbl_802A,X
 C - - - - - 0x018071 06:8061: 85 00     STA ram_0000
 C - - - - - 0x018073 06:8063: E8        INX
@@ -204,6 +205,7 @@ sub_0x018119:
 C - - - - - 0x018119 06:8109: A4 16     LDY ram_cur_save_slot
 C - - - - - 0x01811B 06:810B: B9 2D 06  LDA ram_current_quest,Y
 C - - - - - 0x01811E 06:810E: F0 1C     BEQ bra_812C_RTS
+; if 2nd quest
 C - - - - - 0x018120 06:8110: A5 10     LDA ram_0010
 C - - - - - 0x018122 06:8112: F0 19     BEQ bra_812D
 C - - - - - 0x018124 06:8114: AA        TAX
