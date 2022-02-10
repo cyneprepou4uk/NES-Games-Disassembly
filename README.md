@@ -30,19 +30,19 @@ Lua script will take care of it before compilation. You just write new code as u
 
 
 
-## Current games list (GoodNES)
-* F599A07E Battle City (J) [!]
-* DB0C3656 Bugs Bunny Crazy Castle, The (U) [!]
-* 8CF69E4B Double Dragon II - The Revenge (J)
-* 61C27F7B Kunio-kun no Nekketsu Soccer League (J) [!]
-* D7AE93DF Legend of Zelda, The (U) (PRG0) [!]
-* 3F0E8E0A Mappy (J) [!]
-* 11879FE8 Nuts & Milk (J) [!]
-* 1D60732E Solstice - The Quest for the Staff of Demnos (U) [!]
-* F7C8F42D Son Son (J) [!]
-* 22CDD2F6 Street Fighter III (9 Fighter) (Unl)
-* 19F24980 Tecmo World Cup Soccer (J) [!]
-* 0D526208 Yie Ar Kung-Fu (J) (V1.4) [!]
+## Current games list (GoodNES) + CRC32
+* Battle City (J) [!] `F599A07E`
+* Bugs Bunny Crazy Castle, The (U) [!] `DB0C3656`
+* Double Dragon II - The Revenge (J) `8CF69E4B`
+* Kunio-kun no Nekketsu Soccer League (J) [!] `61C27F7B`
+* Legend of Zelda, The (U) (PRG0) [!] `D7AE93DF`
+* Mappy (J) [!] `3F0E8E0A`
+* Nuts & Milk (J) [!] `11879FE8`
+* Solstice - The Quest for the Staff of Demnos (U) [!] `1D60732E`
+* Son Son (J) [!] `F7C8F42D`
+* Street Fighter III (9 Fighter) (Unl) `22CDD2F6`
+* Tecmo World Cup Soccer (J) [!] `19F24980`
+* Yie Ar Kung-Fu (J) (V1.4) [!] `0D526208`
 
 
 
