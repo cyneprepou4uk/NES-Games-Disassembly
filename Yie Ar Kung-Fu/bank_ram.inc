@@ -83,7 +83,7 @@ ram_004D                        = $004D ; N/A
 ram_004E                        = $004E ; N/A
 ram_004F                        = $004F ; N/A
 
-ram_game_mode                   = $0050 ; 14   00 - level 1 (always facing opponent, 01 = level 2 (dpad facing)
+ram_game_mode                   = $0050 ; 14   00 - level 1 (always facing opponent), 01 = level 2 (dpad facing)
 
 ram_0051                        = $0051 ; 1   
 ram_0052                        = $0052 ; N/A
@@ -146,8 +146,11 @@ ram_007C                        = $007C ; 8
 ram_007D                        = $007D ; 22   
 ram_007E                        = $007E ; 10   
 ram_007F                        = $007F ; 10   
+
+; sometimes are used as lo + hi for 2006
 ram_0080                        = $0080 ; 33   ($indirect) <1>   ($indirect),Y <12>   
 ram_0081                        = $0081 ; 18   
+
 ram_0082                        = $0082 ; 14   ($indirect),Y <3>   
 ram_0083                        = $0083 ; 3   
 ram_0084                        = $0084 ; 14   ($indirect),Y <5>   
