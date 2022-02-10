@@ -5,6 +5,10 @@
 
 
 
+con_include_bank = $01
+
+
+
 .export ofs_0x008010_0E_check_if_room_was_visited
 .export ofs_0x00801A_0C_set_room_visited_flag
 .export ofs_0x00802A_0D_clear_room_visited_flag
@@ -4484,21 +4488,8 @@ tbl_F0EB:
 
 
 
-.segment "BANK_01_i1"
-.include "copy_bank___FE00_FF79.asm"
-
-
-
-- - - - - - 0x00FF8A 03:FF7A: 00        .byte $00   ; difference within banks
-
-
-
-.segment "BANK_01_i2"
-.include "copy_bank___FF7B_FFF8.asm"
-
-
-
-- - - - - - 0x010009 03:FFF9: 01        .byte $01   ; difference within banks
+.segment "BANK_01_i"
+.include "copy_bank___FE00_FFF9.asm"
 
 
 

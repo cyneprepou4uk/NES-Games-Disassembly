@@ -5,6 +5,10 @@
 
 
 
+con_include_bank = $00
+
+
+
 .export loc_inc_0x000010
 .export tbl_inc_0x003A91_nmi_handler_lo
 .export tbl_inc_0x003A98_nmi_handler_hi
@@ -45,7 +49,7 @@ C - - - - - 0x000054 00:8044: 20 5E BA  JSR sub_BA5E
 C - - - - - 0x000057 00:8047: A9 06     LDA #$06
 C - - - - - 0x000059 00:8049: 8D A9 07  STA ram_07A9
 C - - - - - 0x00005C 00:804C: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
-C - - - - - 0x00005F 00:804F: AD 7A FF  LDA tbl_FF7A
+C - - - - - 0x00005F 00:804F: AD 7A FF  LDA tbl_inc_FF7A
 C - - - - - 0x000062 00:8052: D0 03     BNE bra_8057_skip
 
 
@@ -26584,22 +26588,8 @@ tbl_FD00_mirror:
 
 
 
-.segment "BANK_00_i1"
-.include "copy_bank___FE00_FF79.asm"
-
-
-
-tbl_FF7A:
-- D 3 - - - 0x007F8A 01:FF7A: 01        .byte $01   ; difference within banks
-
-
-
-.segment "BANK_00_i2"
-.include "copy_bank___FF7B_FFF8.asm"
-
-
-
-- - - - - - 0x008009 01:FFF9: 00        .byte $00   ; difference within banks
+.segment "BANK_00_i"
+.include "copy_bank___FE00_FFF9.asm"
 
 
 

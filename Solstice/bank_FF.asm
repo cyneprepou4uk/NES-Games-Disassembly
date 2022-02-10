@@ -5,6 +5,10 @@
 
 
 
+con_include_bank = $03
+
+
+
 .export tbl_0x018010_room_data_lo
 .export tbl_0x01810D_room_data_hi
 .export ofs_0x01820A_15
@@ -27718,21 +27722,8 @@ tbl_0x01F154_credit_icon:
 
 
 
-.segment "BANK_FF_i1"
-.include "copy_bank___FE00_FF79.asm"
-
-
-
-- - - - - - 0x01FF8A 07:FF7A: 00        .byte $00   ; difference within banks
-
-
-
-.segment "BANK_FF_i2"
-.include "copy_bank___FF7B_FFF8.asm"
-
-
-
-- - - - - - 0x020009 07:FFF9: 03        .byte $03   ; difference within banks
+.segment "BANK_FF_i"
+.include "copy_bank___FE00_FFF9.asm"
 
 
 

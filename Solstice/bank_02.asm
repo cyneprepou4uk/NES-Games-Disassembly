@@ -5,6 +5,10 @@
 
 
 
+con_include_bank = $02
+
+
+
 .export ofs_0x010080_0B_prepare_static_screen
 .export ofs_0x01035B_0F_draw_scroll_content_1
 .export ofs_0x0103BF_10_draw_scroll_content_2
@@ -17202,20 +17206,8 @@ sub_84_FDF8:
 
 
 
-.segment "BANK_02_i1"
-.include "copy_bank___FE00_FF79.asm"
-
-
-- - - - - - 0x017F8A 05:FF7A: 00        .byte $00   ; difference within banks
-
-
-
-.segment "BANK_02_i2"
-.include "copy_bank___FF7B_FFF8.asm"
-
-
-
-- - - - - - 0x018009 05:FFF9: 02        .byte $02   ; difference within banks
+.segment "BANK_02_i"
+.include "copy_bank___FE00_FFF9.asm"
 
 
 
