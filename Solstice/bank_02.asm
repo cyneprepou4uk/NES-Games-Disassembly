@@ -2047,12 +2047,12 @@ C D 1 - I - 0x0125DD 04:A5CD: 20 04 84  JSR sub_8404
 C D 1 - I - 0x0125E0 04:A5D0: 68        PLA
 C D 1 - I - 0x0125E1 04:A5D1: 48        PHA
 C D 1 - I - 0x0125E2 04:A5D2: AA        TAX
-C D 1 - I - 0x0125E3 04:A5D3: 20 96 A8  JSR sub_A896
+C D 1 - I - 0x0125E3 04:A5D3: 20 96 A8  JSR sub_A896_write_item_bg_attributes_and_palette
 C D 1 - I - 0x0125E6 04:A5D6: 68        PLA
 C D 1 - I - 0x0125E7 04:A5D7: AA        TAX
-C D 1 - I - 0x0125E8 04:A5D8: BD 8A AA  LDA tbl_AA8A_lo,X
+C D 1 - I - 0x0125E8 04:A5D8: BD 8A AA  LDA tbl_AA8A_item_pickup_text_lo,X
 C D 1 - I - 0x0125EB 04:A5DB: 85 22     STA ram_0022
-C D 1 - I - 0x0125ED 04:A5DD: BD BD AA  LDA tbl_AABD_hi,X
+C D 1 - I - 0x0125ED 04:A5DD: BD BD AA  LDA tbl_AABD_item_pickup_text_hi,X
 C D 1 - I - 0x0125F0 04:A5E0: 85 23     STA ram_0023
 C D 1 - I - 0x0125F2 04:A5E2: A9 00     LDA #$00
 loc_A5E4_write_to_ppu:
@@ -2344,10 +2344,10 @@ tbl_A85E:
 
 
 
-sub_A896:
-C D 1 - I - 0x0128A6 04:A896: BD DC A8  LDA tbl_A8DC_lo,X
+sub_A896_write_item_bg_attributes_and_palette:
+C D 1 - I - 0x0128A6 04:A896: BD DC A8  LDA tbl_A8DC_item_bg_data_lo,X
 C D 1 - I - 0x0128A9 04:A899: 85 22     STA ram_0022
-C D 1 - I - 0x0128AB 04:A89B: BD 0F A9  LDA tbl_A90F_hi,X
+C D 1 - I - 0x0128AB 04:A89B: BD 0F A9  LDA tbl_A90F_item_bg_data_hi,X
 C D 1 - I - 0x0128AE 04:A89E: 85 23     STA ram_0023
 C D 1 - I - 0x0128B0 04:A8A0: A9 23     LDA #> $23CA
 C D 1 - I - 0x0128B2 04:A8A2: 85 27     STA ram_0027
@@ -2389,7 +2389,7 @@ C D 1 - I - 0x0128EB 04:A8DB: 60        RTS
 
 
 
-tbl_A8DC_lo:
+tbl_A8DC_item_bg_data_lo:
 - D 1 - I - 0x0128EC 04:A8DC: 61        .byte < _off014_AA61_00   ; 
 - D 1 - I - 0x0128ED 04:A8DD: 61        .byte < _off014_AA61_01   ; 
 - D 1 - I - 0x0128EE 04:A8DE: 61        .byte < _off014_AA61_02   ; 
@@ -2442,7 +2442,7 @@ tbl_A8DC_lo:
 - D 1 - I - 0x01291D 04:A90D: 61        .byte < _off014_AA61_31   ; 
 - D 1 - I - 0x01291E 04:A90E: 61        .byte < _off014_AA61_32   ; 
 
-tbl_A90F_hi:
+tbl_A90F_item_bg_data_hi:
 - D 1 - I - 0x01291F 04:A90F: AA        .byte > _off014_AA61_00   ; 
 - D 1 - I - 0x012920 04:A910: AA        .byte > _off014_AA61_01   ; 
 - D 1 - I - 0x012921 04:A911: AA        .byte > _off014_AA61_02   ; 
@@ -2499,12 +2499,13 @@ tbl_A90F_hi:
 
 _off014_A942_1D:
 _off014_A942_27:
+; attributes
 - D 1 - I - 0x012952 04:A942: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012957 04:A947: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x01295C 04:A94C: A5        .byte $A5, $A5, $A5, $A5, $A5   ; 
 - D 1 - I - 0x012961 04:A951: AA        .byte $AA, $AA, $AA, $AA, $AA   ; 
 - D 1 - I - 0x012966 04:A956: FA        .byte $FA, $FA, $FA, $FA, $FA   ; 
-
+; palette
 - D 1 - I - 0x01296B 04:A95B: 0F        .byte $0F, $06, $16, $21   ; 
 - D 1 - I - 0x01296F 04:A95F: 0F        .byte $0F, $20, $29, $21   ; 
 - D 1 - I - 0x012973 04:A963: 0F        .byte $0F, $19, $29, $21   ; 
@@ -2518,12 +2519,13 @@ _off014_A96B_24:
 _off014_A96B_26:
 _off014_A96B_28:
 _off014_A96B_2A:
+; attributes
 - D 1 - I - 0x01297B 04:A96B: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012980 04:A970: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012985 04:A975: A5        .byte $A5, $A5, $A5, $A5, $A5   ; 
 - D 1 - I - 0x01298A 04:A97A: AA        .byte $AA, $AA, $AA, $AA, $AA   ; 
 - D 1 - I - 0x01298F 04:A97F: FA        .byte $FA, $FA, $FA, $FA, $FA   ; 
-
+; palette
 - D 1 - I - 0x012994 04:A984: 0F        .byte $0F, $06, $16, $21   ; 
 - D 1 - I - 0x012998 04:A988: 0F        .byte $0F, $20, $28, $21   ; 
 - D 1 - I - 0x01299C 04:A98C: 0F        .byte $0F, $18, $28, $21   ; 
@@ -2534,12 +2536,13 @@ _off014_A96B_2A:
 _off014_A994_20:
 _off014_A994_25:
 _off014_A994_29:
+; attributes
 - D 1 - I - 0x0129A4 04:A994: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x0129A9 04:A999: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x0129AE 04:A99E: A5        .byte $A5, $A5, $A5, $A5, $A5   ; 
 - D 1 - I - 0x0129B3 04:A9A3: AA        .byte $AA, $AA, $AA, $AA, $AA   ; 
 - D 1 - I - 0x0129B8 04:A9A8: FA        .byte $FA, $FA, $FA, $FA, $FA   ; 
-
+; palette
 - D 1 - I - 0x0129BD 04:A9AD: 0F        .byte $0F, $06, $16, $21   ; 
 - D 1 - I - 0x0129C1 04:A9B1: 0F        .byte $0F, $20, $24, $21   ; 
 - D 1 - I - 0x0129C5 04:A9B5: 0F        .byte $0F, $14, $24, $21   ; 
@@ -2552,12 +2555,13 @@ _off014_A9BD_1E:
 _off014_A9BD_1F:
 _off014_A9BD_21:
 _off014_A9BD_23:
+; attributes
 - D 1 - I - 0x0129CD 04:A9BD: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x0129D2 04:A9C2: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x0129D7 04:A9C7: A5        .byte $A5, $A5, $A5, $A5, $A5   ; 
 - D 1 - I - 0x0129DC 04:A9CC: AA        .byte $AA, $AA, $AA, $AA, $AA   ; 
 - D 1 - I - 0x0129E1 04:A9D1: FA        .byte $FA, $FA, $FA, $FA, $FA   ; 
-
+; palette
 - D 1 - I - 0x0129E6 04:A9D6: 0F        .byte $0F, $06, $16, $21   ; 
 - D 1 - I - 0x0129EA 04:A9DA: 0F        .byte $0F, $20, $23, $21   ; 
 - D 1 - I - 0x0129EE 04:A9DE: 0F        .byte $0F, $13, $23, $21   ; 
@@ -2569,12 +2573,13 @@ _off014_A9E6_11:
 _off014_A9E6_12:
 _off014_A9E6_13:
 _off014_A9E6_14:
+; attributes
 - D 1 - I - 0x0129F6 04:A9E6: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x0129FB 04:A9EB: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012A00 04:A9F0: A5        .byte $A5, $A5, $A5, $A5, $A5   ; 
 - D 1 - I - 0x012A05 04:A9F5: AA        .byte $AA, $AA, $AA, $AA, $AA   ; 
 - D 1 - I - 0x012A0A 04:A9FA: FA        .byte $FA, $FA, $FA, $FA, $FA   ; 
-
+; palette
 - D 1 - I - 0x012A0F 04:A9FF: 0F        .byte $0F, $18, $28, $38   ; 
 - D 1 - I - 0x012A13 04:AA03: 0F        .byte $0F, $18, $28, $38   ; 
 - D 1 - I - 0x012A17 04:AA07: 0F        .byte $0F, $18, $28, $38   ; 
@@ -2583,12 +2588,13 @@ _off014_A9E6_14:
 
 
 _off014_AA0F_10:
+; attributes
 - D 1 - I - 0x012A1F 04:AA0F: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012A24 04:AA14: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012A29 04:AA19: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012A2E 04:AA1E: 50        .byte $50, $50, $50, $50, $50   ; 
 - D 1 - I - 0x012A33 04:AA23: 55        .byte $55, $55, $55, $55, $55   ; 
-
+; palette
 - D 1 - I - 0x012A38 04:AA28: 0F        .byte $0F, $09, $19, $29   ; 
 - D 1 - I - 0x012A3C 04:AA2C: 0F        .byte $0F, $18, $28, $38   ; 
 - D 1 - I - 0x012A40 04:AA30: 0F        .byte $0F, $06, $16, $26   ; 
@@ -2602,12 +2608,13 @@ _off014_AA38_17:
 _off014_AA38_18:
 _off014_AA38_19:
 _off014_AA38_1A:
+; attributes
 - D 1 - I - 0x012A48 04:AA38: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012A4D 04:AA3D: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012A52 04:AA42: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012A57 04:AA47: 50        .byte $50, $50, $50, $50, $50   ; 
 - D 1 - I - 0x012A5C 04:AA4C: 55        .byte $55, $55, $55, $55, $55   ; 
-
+; palette
 - D 1 - I - 0x012A61 04:AA51: 0F        .byte $0F, $16, $00, $21   ; 
 - D 1 - I - 0x012A65 04:AA55: 0F        .byte $0F, $18, $28, $38   ; 
 - D 1 - I - 0x012A69 04:AA59: 0F        .byte $0F, $06, $16, $26   ; 
@@ -2639,12 +2646,13 @@ _off014_AA61_2F:
 _off014_AA61_30:
 _off014_AA61_31:
 _off014_AA61_32:
+; attributes
 - D 1 - I - 0x012A71 04:AA61: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012A76 04:AA66: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012A7B 04:AA6B: 00        .byte $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x012A80 04:AA70: 50        .byte $50, $50, $50, $50, $50   ; 
 - D 1 - I - 0x012A85 04:AA75: 55        .byte $55, $55, $55, $55, $55   ; 
-
+; palette
 - D 1 - I - 0x012A8A 04:AA7A: 0F        .byte $0F, $11, $21, $31   ; 
 - D 1 - I - 0x012A8E 04:AA7E: 0F        .byte $0F, $18, $28, $38   ; 
 - D 1 - I - 0x012A92 04:AA82: 0F        .byte $0F, $06, $16, $26   ; 
@@ -2652,7 +2660,7 @@ _off014_AA61_32:
 
 
 
-tbl_AA8A_lo:
+tbl_AA8A_item_pickup_text_lo:
 - D 1 - I - 0x012A9A 04:AA8A: FC        .byte < _off011_AAFC_00   ; 
 - D 1 - I - 0x012A9B 04:AA8B: FC        .byte < _off011_AAFC_01   ; 
 - D 1 - I - 0x012A9C 04:AA8C: FC        .byte < _off011_AAFC_02   ; 
@@ -2707,7 +2715,7 @@ tbl_AA8A_lo:
 
 
 
-tbl_AABD_hi:
+tbl_AABD_item_pickup_text_hi:
 - D 1 - I - 0x012ACD 04:AABD: AA        .byte > _off011_AAFC_00   ; 
 - D 1 - I - 0x012ACE 04:AABE: AA        .byte > _off011_AAFC_01   ; 
 - D 1 - I - 0x012ACF 04:AABF: AA        .byte > _off011_AAFC_02   ; 

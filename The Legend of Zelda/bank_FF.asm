@@ -4477,7 +4477,7 @@ C - - - - - 0x01FED9 07:FEC9: 60        RTS
 loc_FECA:
 C D 3 - - - 0x01FEDA 07:FECA: A9 81     LDA #$81
 C - - - - - 0x01FEDC 07:FECC: 9D BF 04  STA ram_04BF,X
-C - - - - - 0x01FEDF 07:FECF: D0 05     BNE bra_FED6
+C - - - - - 0x01FEDF 07:FECF: D0 05     BNE bra_FED6    ; jmp
 
 
 

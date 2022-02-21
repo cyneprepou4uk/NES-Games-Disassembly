@@ -451,9 +451,9 @@ C - - - - - 0x00036C 00:835C: A9 A4     LDA #< $23A4
 C - - - - - 0x00036E 00:835E: 85 26     STA ram_0026
 C - - - - - 0x000370 00:8360: A9 23     LDA #> $23A4
 C - - - - - 0x000372 00:8362: 85 27     STA ram_0027
-C - - - - - 0x000374 00:8364: A9 76     LDA #< tbl_0x00BE86
+C - - - - - 0x000374 00:8364: A9 76     LDA #< tbl_0x00BE86_ending_credits
 C - - - - - 0x000376 00:8366: 85 22     STA ram_0022
-C - - - - - 0x000378 00:8368: A9 BE     LDA #> tbl_0x00BE86
+C - - - - - 0x000378 00:8368: A9 BE     LDA #> tbl_0x00BE86_ending_credits
 C - - - - - 0x00037A 00:836A: 85 23     STA ram_0023
 C - - - - - 0x00037C 00:836C: A9 00     LDA #$00
 C - - - - - 0x00037E 00:836E: 8D BB 07  STA ram_pos_Y_scroll
