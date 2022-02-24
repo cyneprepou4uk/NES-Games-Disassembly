@@ -3621,7 +3621,7 @@ C - - - - - 0x00640F 01:A3FF: F5 70     SBC ram_pos_X,X
 C - - - - - 0x006411 01:A401: 20 1F 70  JSR sub_bat_701F
 C - - - - - 0x006414 01:A404: C9 09     CMP #$09
 C - - - - - 0x006416 01:A406: B0 0E     BCS bra_A416
-C - - - - - 0x006418 01:A408: 20 A3 74  JSR sub_bat_74A3
+C - - - - - 0x006418 01:A408: 20 A3 74  JSR sub_bat_74A3_increase_rupees_and_add_sfx
 C - - - - - 0x00641B 01:A40B: 20 B1 FE  JSR sub_0x01FEC1_destroy_object
 C - - - - - 0x00641E 01:A40E: A9 00     LDA #$00
 C - - - - - 0x006420 01:A410: 8D 4E 03  STA ram_034E

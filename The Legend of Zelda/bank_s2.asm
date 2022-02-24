@@ -76,7 +76,7 @@
 .export sub_bat_733F
 .export sub_bat_7370
 .export sub_bat_746C
-.export sub_bat_74A3
+.export sub_bat_74A3_increase_rupees_and_add_sfx
 .export sub_bat_74B7
 .export sub_bat_7512
 .export sub_bat_752F_check_secret_correct_path
@@ -1466,7 +1466,7 @@ bra_73B8_RTS:
 bra_73B9:
 - D 1 - I - 0x006C39 01:73B9: A0 04     LDY #$04
 bra_73BB_loop:
-- D 1 - I - 0x006C3B 01:73BB: 20 A3 74  JSR sub_74A3
+- D 1 - I - 0x006C3B 01:73BB: 20 A3 74  JSR sub_74A3_increase_rupees_and_add_sfx
 - D 1 - I - 0x006C3E 01:73BE: 88        DEY
 - D 1 - I - 0x006C3F 01:73BF: 10 FA     BPL bra_73BB_loop
 - D 1 - I - 0x006C41 01:73C1: 60        RTS
@@ -1478,15 +1478,15 @@ bra_73C2:
 - D 1 - I - 0x006C44 01:73C4: D0 4D     BNE bra_7413
 - D 1 - I - 0x006C46 01:73C6: C0 18     CPY #con_item_hearts_1
 - D 1 - I - 0x006C48 01:73C8: F0 3A     BEQ bra_7404
-- D 1 - I - 0x006C4A 01:73CA: C0 1C     CPY #con_item_1C
+- D 1 - I - 0x006C4A 01:73CA: C0 1C     CPY #con_item_5_rupees
 - D 1 - I - 0x006C4C 01:73CC: F0 EB     BEQ bra_73B9
-- D 1 - I - 0x006C4E 01:73CE: C0 16     CPY #con_item_rupees
+- D 1 - I - 0x006C4E 01:73CE: C0 16     CPY #con_item_1_rupee
 - D 1 - I - 0x006C50 01:73D0: F0 3E     BEQ bra_7410
 - D 1 - I - 0x006C52 01:73D2: C0 19     CPY #con_item_hearts_2
 - D 1 - I - 0x006C54 01:73D4: F0 75     BEQ bra_744B
 - D 1 - I - 0x006C56 01:73D6: C0 17     CPY #con_item_keys
 - D 1 - I - 0x006C58 01:73D8: D0 03     BNE bra_73DD
-- D 1 - I - 0x006C5A 01:73DA: 20 AC 74  JSR sub_74AC
+- D 1 - I - 0x006C5A 01:73DA: 20 AC 74  JSR sub_74AC_set_item_pickup_sfx
 bra_73DD:
 - D 1 - I - 0x006C5D 01:73DD: C0 14     CPY #con_item_14
 - D 1 - I - 0x006C5F 01:73DF: F0 6D     BEQ bra_744E
@@ -1517,11 +1517,11 @@ bra_7404:
 - D 1 - I - 0x006C8B 01:740B: 69 11     ADC #$11
 - D 1 - I - 0x006C8D 01:740D: 4C B5 73  JMP loc_73B5
 bra_7410:
-- D 1 - I - 0x006C90 01:7410: 4C A3 74  JMP loc_74A3
+- D 1 - I - 0x006C90 01:7410: 4C A3 74  JMP loc_74A3_increase_rupees_and_add_sfx
 bra_7413:
 - D 1 - I - 0x006C93 01:7413: C9 20     CMP #$20
 - D 1 - I - 0x006C95 01:7415: D0 D2     BNE bra_73E9
-- D 1 - I - 0x006C97 01:7417: F0 6B     BEQ bra_7484
+- D 1 - I - 0x006C97 01:7417: F0 6B     BEQ bra_7484    ; jmp
 bra_7419:
 - D 1 - I - 0x006C99 01:7419: A5 10     LDA ram_0010
 - D 1 - I - 0x006C9B 01:741B: F0 2D     BEQ bra_744A_RTS
@@ -1552,7 +1552,7 @@ bra_7433:
 bra_744A_RTS:
 - D 1 - I - 0x006CCA 01:744A: 60        RTS
 bra_744B:
-- D 1 - I - 0x006CCB 01:744B: 20 AC 74  JSR sub_74AC
+- D 1 - I - 0x006CCB 01:744B: 20 AC 74  JSR sub_74AC_set_item_pickup_sfx
 bra_744E:
 - D 1 - I - 0x006CCE 01:744E: A5 0A     LDA ram_000A
 - D 1 - I - 0x006CD0 01:7450: 85 01     STA ram_0001
@@ -1614,9 +1614,9 @@ bra_7484:
 
 
 
-sub_74A3:
-loc_74A3:
-sub_bat_74A3:
+sub_74A3_increase_rupees_and_add_sfx:
+loc_74A3_increase_rupees_and_add_sfx:
+sub_bat_74A3_increase_rupees_and_add_sfx:
 - D 1 - I - 0x006D23 01:74A3: A9 01     LDA #con_sfx_2_cursor_select
 - D 1 - I - 0x006D25 01:74A5: 8D 02 06  STA ram_sfx_2
 - D 1 - I - 0x006D28 01:74A8: EE 7D 06  INC ram_rupees_adc
@@ -1625,7 +1625,7 @@ bra_74AB_RTS:
 
 
 
-sub_74AC:
+sub_74AC_set_item_pickup_sfx:
 - D 1 - I - 0x006D2C 01:74AC: A9 00     LDA #con_sfx_2_00
 - D 1 - I - 0x006D2E 01:74AE: 8D 02 06  STA ram_sfx_2
 - D 1 - I - 0x006D31 01:74B1: A9 08     LDA #con_sfx_4_pick_up_item

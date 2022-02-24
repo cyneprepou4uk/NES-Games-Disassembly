@@ -7572,7 +7572,7 @@ C - - - - - 0x012CF1 04:ACE1: 4C B5 AE  JMP loc_AEB5
 ofs_ACE4_02:
 C - - J - - 0x012CF4 04:ACE4: BD 2C 04  LDA ram_042C,X
 C - - - - - 0x012CF7 04:ACE7: D0 64     BNE bra_AD4D
-C - - - - - 0x012CF9 04:ACE9: 20 E4 AE  JSR sub_AEE4
+C - - - - - 0x012CF9 04:ACE9: 20 E4 AE  JSR sub_AEE4_trying_to_kill_ganon
 C - - - - - 0x012CFC 04:ACEC: 20 00 80  JSR sub_8000
 C - - - - - 0x012CFF 04:ACEF: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x012D01 04:ACF1: D0 3C     BNE bra_AD2F
@@ -7935,7 +7935,7 @@ C - - - - - 0x012EF3 04:AEE3: 60        RTS
 
 
 
-sub_AEE4:
+sub_AEE4_trying_to_kill_ganon:
 C - - - - - 0x012EF4 04:AEE4: B5 70     LDA ram_pos_X,X
 C - - - - - 0x012EF6 04:AEE6: 18        CLC
 C - - - - - 0x012EF7 04:AEE7: 69 10     ADC #$10
@@ -7980,6 +7980,7 @@ bra_AF33:
 C - - - - - 0x012F43 04:AF33: AD 59 06  LDA ram_item_arrow
 C - - - - - 0x012F46 04:AF36: C9 02     CMP #$02
 C - - - - - 0x012F48 04:AF38: D0 F8     BNE bra_AF32_RTS
+; if silver arrow
 C - - - - - 0x012F4A 04:AF3A: A9 00     LDA #$00
 C - - - - - 0x012F4C 04:AF3C: 85 06     STA ram_0006
 C - - - - - 0x012F4E 04:AF3E: A0 12     LDY #$12

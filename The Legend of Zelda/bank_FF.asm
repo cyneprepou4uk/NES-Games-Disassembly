@@ -631,7 +631,7 @@ C D 3 - - - 0x01E745 07:E735: BD 57 06  LDA ram_items,X
 C - - - - - 0x01E748 07:E738: 85 04     STA ram_0004
 loc_E73A:
 C D 3 - - - 0x01E74A 07:E73A: BD EC 72  LDA tbl_bat_72EC,X
-C - - - - - 0x01E74D 07:E73D: E0 16     CPX #con_item_rupees
+C - - - - - 0x01E74D 07:E73D: E0 16     CPX #con_item_1_rupee
 C - - - - - 0x01E74F 07:E73F: F0 0C     BEQ bra_E74D
 C - - - - - 0x01E751 07:E741: E0 1A     CPX #con_item_triforce
 C - - - - - 0x01E753 07:E743: F0 08     BEQ bra_E74D
