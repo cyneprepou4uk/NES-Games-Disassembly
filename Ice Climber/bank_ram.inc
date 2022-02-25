@@ -65,7 +65,7 @@ ram_0033                                = $0033 ; N/A
 ram_0034                                = $0034 ; 5   
 ram_0035                                = $0035 ; N/A
 ram_0036                                = $0036 ; N/A
-ram_0037                                = $0037 ; 5   
+ram_0037                                = $0037 ; 5   conter for holding dpad at logo screen
 ram_0038                                = $0038 ; 1   
 ram_0039                                = $0039 ; 1   
 ram_003A                                = $003A ; 2   
@@ -91,7 +91,7 @@ ram_004B                                = $004B ; 1
 ram_004C                                = $004C ; N/A
 ram_004D                                = $004D ; 7   
 
-ram_spawn_timer_lo_bird                 = $004E ; 6   
+ram_spawn_timer_lo_bird                 = $004E ; 6   also a timer before demo plays at logo
 
 ram_004F                                = $004F ; N/A
 ram_0050                                = $0050 ; 6   
