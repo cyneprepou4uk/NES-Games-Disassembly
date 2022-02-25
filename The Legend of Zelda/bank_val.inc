@@ -6,6 +6,7 @@
 con_prg_bank                            = $00 ; 
 con_mirroring_V                         = $0E ; vertical
 con_mirroring_H                         = $0F ; horisontal
+con_map_location                        = $00 ; 
 
 
 
@@ -347,8 +348,8 @@ con_item_bomb                           = $01 ; 0658
 con_item_arrow                          = $02 ; 0659
 con_item_bow                            = $03 ; 065A
 con_item_candle                         = $04 ; 065B
-con_item_flute                          = $05 ; 065C flute
-con_item_meat                           = $06 ; 065D meat
+con_item_flute                          = $05 ; 065C
+con_item_meat                           = $06 ; 065D
 con_item_potion                         = $07 ; 065E
 con_item_rod                            = $08 ; 065F staff
 con_item_raft                           = $09 ; 0660

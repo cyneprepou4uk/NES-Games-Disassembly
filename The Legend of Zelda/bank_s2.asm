@@ -56,7 +56,7 @@
 .export sub_bat_718C
 .export loc_bat_71A5_reset_obj_stats
 .export sub_bat_71BB
-.export sub_bat_71DE
+.export sub_bat_71DE_draw_dot_on_minimap
 .export loc_bat_71ED
 .export sub_bat_7240
 .export sub_bat_7248
@@ -853,7 +853,7 @@ bra_7087:
 - D 1 - I - 0x00690A 01:708A: E5 04     SBC ram_0004
 - D 1 - I - 0x00690C 01:708C: C9 08     CMP #$08
 - D 1 - I - 0x00690E 01:708E: 90 18     BCC bra_70A8
-bra_7090:
+bra_7090_loop:
 - D 1 - I - 0x006910 01:7090: A5 00     LDA ram_0000
 - D 1 - I - 0x006912 01:7092: 18        CLC
 - D 1 - I - 0x006913 01:7093: 65 01     ADC ram_0001
@@ -866,7 +866,7 @@ bra_7090:
 - D 1 - I - 0x006920 01:70A0: E5 04     SBC ram_0004
 - D 1 - I - 0x006922 01:70A2: 85 03     STA ram_0003
 - D 1 - I - 0x006924 01:70A4: C5 04     CMP ram_0004
-- D 1 - I - 0x006926 01:70A6: B0 E8     BCS bra_7090
+- D 1 - I - 0x006926 01:70A6: B0 E8     BCS bra_7090_loop
 bra_70A8:
 - D 1 - I - 0x006928 01:70A8: A4 00     LDY ram_0000
 - D 1 - I - 0x00692A 01:70AA: 60        RTS
@@ -1021,7 +1021,7 @@ bra_7166:
 sub_bat_718A:
 - D 1 - I - 0x006A0A 01:718A: A4 EB     LDY ram_map_location
 sub_bat_718C:
-- D 1 - I - 0x006A0C 01:718C: B9 FE 6A  LDA ram_6AFE,Y
+- D 1 - I - 0x006A0C 01:718C: B9 FE 6A  LDA ram_6AFE_map_data,Y
 - D 1 - I - 0x006A0F 01:718F: 29 30     AND #$30
 - D 1 - I - 0x006A11 01:7191: 4A        LSR
 - D 1 - I - 0x006A12 01:7192: 4A        LSR
@@ -1084,7 +1084,7 @@ bra_71DD_RTS:
 
 
 
-sub_bat_71DE:
+sub_bat_71DE_draw_dot_on_minimap:
 - D 1 - I - 0x006A5E 01:71DE: A5 12     LDA ram_game_mode_main
 - D 1 - I - 0x006A60 01:71E0: C9 09     CMP #con_GM_09
 - D 1 - I - 0x006A62 01:71E2: F0 5B     BEQ bra_723F_RTS
@@ -1092,7 +1092,7 @@ sub_bat_71DE:
 - D 1 - I - 0x006A67 01:71E7: D0 56     BNE bra_723F_RTS
 - D 1 - I - 0x006A69 01:71E9: A5 EB     LDA ram_map_location
 - D 1 - I - 0x006A6B 01:71EB: A2 00     LDX #$00
-loc_bat_71ED:
+loc_bat_71ED:   ; X = 04
 - D 1 - I - 0x006A6D 01:71ED: 48        PHA
 - D 1 - I - 0x006A6E 01:71EE: 29 70     AND #$70
 - D 1 - I - 0x006A70 01:71F0: 4A        LSR
@@ -1728,7 +1728,7 @@ sub_bat_752F_check_secret_correct_path:
 - D 1 - I - 0x006DAF 01:752F: AE 2F 05  LDX ram_correct_path_counter
 - D 1 - I - 0x006DB2 01:7532: A5 98     LDA ram_direction
 - D 1 - I - 0x006DB4 01:7534: A4 EB     LDY ram_map_location
-- D 1 - I - 0x006DB6 01:7536: C0 61     CPY #$61
+- D 1 - I - 0x006DB6 01:7536: C0 61     CPY #con_map_location + $61
 - D 1 - I - 0x006DB8 01:7538: D0 1E     BNE bra_7558_not_forest_maze
 - D 1 - I - 0x006DBA 01:753A: DD 27 75  CMP tbl_7527_forest_maze,X
 - D 1 - I - 0x006DBD 01:753D: D0 10     BNE bra_754F_incorrect_path
@@ -2488,7 +2488,7 @@ loc_7868:
 - D 1 - I - 0x0070E8 01:7868: BC F0 04  LDY ram_04F0,X
 - D 1 - I - 0x0070EB 01:786B: F0 18     BEQ bra_7885
 - D 1 - I - 0x0070ED 01:786D: A0 01     LDY #$01
-bra_786F:
+bra_786F_loop:
 - D 1 - I - 0x0070EF 01:786F: B9 04 00  LDA ram_0004,Y
 - D 1 - I - 0x0070F2 01:7872: 29 FC     AND #$FC
 - D 1 - I - 0x0070F4 01:7874: 99 04 00  STA ram_0004,Y
@@ -2497,7 +2497,7 @@ bra_786F:
 - D 1 - I - 0x0070FC 01:787C: 19 04 00  ORA ram_0004,Y
 - D 1 - I - 0x0070FF 01:787F: 99 04 00  STA ram_0004,Y
 - D 1 - I - 0x007102 01:7882: 88        DEY
-- D 1 - I - 0x007103 01:7883: 10 EA     BPL bra_786F
+- D 1 - I - 0x007103 01:7883: 10 EA     BPL bra_786F_loop
 bra_7885:
 sub_bat_7885:
 - D 1 - I - 0x007105 01:7885: AE 43 03  LDX ram_0343
@@ -2680,8 +2680,8 @@ bra_796A:
 bra_7975:
 - D 1 - I - 0x0071F5 01:7975: A9 07     LDA #$07
 - D 1 - I - 0x0071F7 01:7977: 85 0A     STA ram_000A
-loc_7979:
 bra_7979:
+loc_7979:
 - D 1 - I - 0x0071F9 01:7979: A5 02     LDA ram_0002
 - D 1 - I - 0x0071FB 01:797B: 85 03     STA ram_0003
 - D 1 - I - 0x0071FD 01:797D: A5 05     LDA ram_0005
@@ -2940,6 +2940,7 @@ sub_bat_7AC5:
 - D 1 - I - 0x007350 01:7AD0: BD 4F 03  LDA ram_obj_id,X
 - D 1 - I - 0x007353 01:7AD3: C9 53     CMP #$53
 - D 1 - I - 0x007355 01:7AD5: 90 08     BCC bra_7ADF
+; if projectile
 - D 1 - I - 0x007357 01:7AD7: B5 AC     LDA ram_drop_id,X
 - D 1 - I - 0x007359 01:7AD9: 29 F0     AND #$F0
 - D 1 - I - 0x00735B 01:7ADB: C9 10     CMP #$10
@@ -2958,15 +2959,15 @@ bra_7ADF:
 - D 1 - I - 0x007372 01:7AF2: F0 45     BEQ bra_7B39_RTS
 - D 1 - I - 0x007374 01:7AF4: BD 4F 03  LDA ram_obj_id,X
 - D 1 - I - 0x007377 01:7AF7: C9 53     CMP #$53
-- D 1 - I - 0x007379 01:7AF9: 90 3F     BCC bra_7B3A
+- D 1 - I - 0x007379 01:7AF9: 90 3F     BCC bra_7B3A_getting_hit
 - D 1 - I - 0x00737B 01:7AFB: EE 4B 03  INC ram_034B
 - D 1 - I - 0x00737E 01:7AFE: C9 56     CMP #$56
-- D 1 - I - 0x007380 01:7B00: F0 38     BEQ bra_7B3A
+- D 1 - I - 0x007380 01:7B00: F0 38     BEQ bra_7B3A_getting_hit
 - D 1 - I - 0x007382 01:7B02: C9 5A     CMP #$5A
-- D 1 - I - 0x007384 01:7B04: F0 34     BEQ bra_7B3A
+- D 1 - I - 0x007384 01:7B04: F0 34     BEQ bra_7B3A_getting_hit
 - D 1 - I - 0x007386 01:7B06: A5 AC     LDA ram_drop_id
 - D 1 - I - 0x007388 01:7B08: 29 F0     AND #$F0
-- D 1 - I - 0x00738A 01:7B0A: D0 2E     BNE bra_7B3A
+- D 1 - I - 0x00738A 01:7B0A: D0 2E     BNE bra_7B3A_getting_hit
 - D 1 - I - 0x00738C 01:7B0C: A5 98     LDA ram_direction
 - D 1 - I - 0x00738E 01:7B0E: 15 98     ORA ram_direction,X
 - D 1 - I - 0x007390 01:7B10: 29 0C     AND #con_dir__UD
@@ -2976,23 +2977,24 @@ bra_7ADF:
 - D 1 - I - 0x007398 01:7B18: 15 98     ORA ram_direction,X
 - D 1 - I - 0x00739A 01:7B1A: 29 03     AND #con_dir__LR
 - D 1 - I - 0x00739C 01:7B1C: C9 03     CMP #con_dir__LR
-- D 1 - I - 0x00739E 01:7B1E: D0 1A     BNE bra_7B3A
+- D 1 - I - 0x00739E 01:7B1E: D0 1A     BNE bra_7B3A_getting_hit
 bra_7B20:
 - D 1 - I - 0x0073A0 01:7B20: BD 4F 03  LDA ram_obj_id,X
 - D 1 - I - 0x0073A3 01:7B23: C9 55     CMP #$55
-- D 1 - I - 0x0073A5 01:7B25: 90 09     BCC bra_7B30
+- D 1 - I - 0x0073A5 01:7B25: 90 09     BCC bra_7B30_normal_projectile
 - D 1 - I - 0x0073A7 01:7B27: C9 5B     CMP #$5B
-- D 1 - I - 0x0073A9 01:7B29: B0 05     BCS bra_7B30
+- D 1 - I - 0x0073A9 01:7B29: B0 05     BCS bra_7B30_normal_projectile
+; 55-5A magic projectile
 - D 1 - I - 0x0073AB 01:7B2B: AD 76 06  LDA ram_item_mag_shield
-- D 1 - I - 0x0073AE 01:7B2E: F0 0A     BEQ bra_7B3A
-bra_7B30:
+- D 1 - I - 0x0073AE 01:7B2E: F0 0A     BEQ bra_7B3A_getting_hit    ; if no magic shield
+bra_7B30_normal_projectile:
 - D 1 - I - 0x0073B0 01:7B30: A9 01     LDA #con_sfx_4_shield_block
 - D 1 - I - 0x0073B2 01:7B32: 8D 04 06  STA ram_sfx_4
 - D 1 - I - 0x0073B5 01:7B35: A9 00     LDA #$00
 - D 1 - I - 0x0073B7 01:7B37: 85 06     STA ram_0006
 bra_7B39_RTS:
 - D 1 - I - 0x0073B9 01:7B39: 60        RTS
-bra_7B3A:
+bra_7B3A_getting_hit:
 - D 1 - I - 0x0073BA 01:7B3A: 20 26 7E  JSR sub_7E26
 - D 1 - I - 0x0073BD 01:7B3D: E6 0C     INC ram_000C
 - D 1 - I - 0x0073BF 01:7B3F: BC 4F 03  LDY ram_obj_id,X
@@ -3048,7 +3050,7 @@ bra_7B90:
 - D 1 - I - 0x00741F 01:7B9F: CE 6F 06  DEC ram_item_066F
 - D 1 - I - 0x007422 01:7BA2: A9 FF     LDA #$FF
 - D 1 - I - 0x007424 01:7BA4: 8D 70 06  STA ram_item_0670
-- D 1 - I - 0x007427 01:7BA7: D0 BE     BNE bra_7B67
+- D 1 - I - 0x007427 01:7BA7: D0 BE     BNE bra_7B67    ; jmp
 bra_7BA9_death:
 - D 1 - I - 0x007429 01:7BA9: AD 6F 06  LDA ram_item_066F
 - D 1 - I - 0x00742C 01:7BAC: 29 F0     AND #$F0
@@ -3096,7 +3098,7 @@ loc_7BE2:
 - D 1 - I - 0x007478 01:7BF8: BD B2 04  LDA ram_04B2,X
 - D 1 - I - 0x00747B 01:7BFB: 25 09     AND ram_0009
 - D 1 - I - 0x00747D 01:7BFD: F0 03     BEQ bra_7C02
-- D 1 - I - 0x00747F 01:7BFF: 20 C5 7D  JSR sub_7DC5
+- D 1 - I - 0x00747F 01:7BFF: 20 C5 7D  JSR sub_7DC5_shield_block_sfx
 bra_7C02:
 - D 1 - I - 0x007482 01:7C02: A9 50     LDA #$50
 - D 1 - I - 0x007484 01:7C04: 99 AC 00  STA ram_drop_id,Y
@@ -3163,7 +3165,7 @@ bra_7C69:
 - D 1 - I - 0x0074ED 01:7C6D: F0 F9     BEQ bra_7C68_RTS
 - D 1 - I - 0x0074EF 01:7C6F: C9 08     CMP #$08
 - D 1 - I - 0x0074F1 01:7C71: F0 F5     BEQ bra_7C68_RTS
-- D 1 - I - 0x0074F3 01:7C73: 4C C5 7D  JMP loc_7DC5
+- D 1 - I - 0x0074F3 01:7C73: 4C C5 7D  JMP loc_7DC5_shield_block_sfx
 bra_7C76:
 - D 1 - I - 0x0074F6 01:7C76: EE 27 06  INC ram_kill_counter
 - D 1 - I - 0x0074F9 01:7C79: A5 50     LDA ram_0050
@@ -3319,7 +3321,7 @@ sub_bat_7D5F:
 - D 1 - I - 0x0075E8 01:7D68: A9 01     LDA #$01
 - D 1 - I - 0x0075EA 01:7D6A: 85 09     STA ram_0009
 - D 1 - I - 0x0075EC 01:7D6C: A9 20     LDA #$20
-- D 1 - I - 0x0075EE 01:7D6E: D0 CC     BNE bra_7D3C
+- D 1 - I - 0x0075EE 01:7D6E: D0 CC     BNE bra_7D3C    ; jmp
 bra_7D70:
 - D 1 - I - 0x0075F0 01:7D70: C9 20     CMP #$20
 - D 1 - I - 0x0075F2 01:7D72: B0 56     BCS bra_7DCA_RTS
@@ -3361,14 +3363,14 @@ bra_7DB5:
 - D 1 - I - 0x007635 01:7DB5: B9 98 00  LDA ram_direction,Y
 - D 1 - I - 0x007638 01:7DB8: 15 98     ORA ram_direction,X
 - D 1 - I - 0x00763A 01:7DBA: C9 0C     CMP #con_dir__UD
-- D 1 - I - 0x00763C 01:7DBC: F0 07     BEQ bra_7DC5
+- D 1 - I - 0x00763C 01:7DBC: F0 07     BEQ bra_7DC5_shield_block_sfx
 - D 1 - I - 0x00763E 01:7DBE: C9 03     CMP #con_dir__LR
-- D 1 - I - 0x007640 01:7DC0: F0 03     BEQ bra_7DC5
+- D 1 - I - 0x007640 01:7DC0: F0 03     BEQ bra_7DC5_shield_block_sfx
 bra_7DC2:
 - D 1 - I - 0x007642 01:7DC2: 4C 26 7E  JMP loc_7E26
-sub_7DC5:
-loc_7DC5:
-bra_7DC5:
+sub_7DC5_shield_block_sfx:
+loc_7DC5_shield_block_sfx:
+bra_7DC5_shield_block_sfx:
 - D 1 - I - 0x007645 01:7DC5: A9 01     LDA #con_sfx_4_shield_block
 - D 1 - I - 0x007647 01:7DC7: 8D 04 06  STA ram_sfx_4
 bra_7DCA_RTS:
@@ -3459,7 +3461,7 @@ bra_7E33:
 - D 1 - I - 0x0076C9 01:7E49: A5 98     LDA ram_direction
 - D 1 - I - 0x0076CB 01:7E4B: 29 03     AND #con_dir__LR
 - D 1 - I - 0x0076CD 01:7E4D: D0 08     BNE bra_7E57
-- D 1 - I - 0x0076CF 01:7E4F: F0 13     BEQ bra_7E64
+- D 1 - I - 0x0076CF 01:7E4F: F0 13     BEQ bra_7E64    ; jmp
 bra_7E51:
 - D 1 - I - 0x0076D1 01:7E51: A5 0B     LDA ram_000B
 - D 1 - I - 0x0076D3 01:7E53: C9 04     CMP #$04

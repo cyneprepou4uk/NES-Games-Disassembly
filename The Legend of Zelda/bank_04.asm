@@ -1366,7 +1366,7 @@ C - - - - - 0x0106EC 04:86DC: 60        RTS
 
 sub_0x0106F0:
 C - - - - - 0x0106F0 04:86E0: A4 EB     LDY ram_map_location
-C - - - - - 0x0106F2 04:86E2: B9 7E 68  LDA ram_687E,Y
+C - - - - - 0x0106F2 04:86E2: B9 7E 68  LDA ram_687E_map_data,Y
 C - - - - - 0x0106F5 04:86E5: 29 08     AND #$08
 C - - - - - 0x0106F7 04:86E7: F0 49     BEQ bra_8732_RTS
 C - - - - - 0x0106F9 04:86E9: AD 14 05  LDA ram_0514
@@ -2332,13 +2332,13 @@ C - - - - - 0x010CBF 04:8CAF: 4C A7 7A  JMP loc_bat_7AA7
 
 
 tbl_8CB2:
-- D 0 - - - 0x010CC2 04:8CB2: 24        .byte $24   ; 00
-- D 0 - - - 0x010CC3 04:8CB3: 0B        .byte $0B   ; 01
-- D 0 - - - 0x010CC4 04:8CB4: 1C        .byte $1C   ; 02
-- D 0 - - - 0x010CC5 04:8CB5: 22        .byte $22   ; 03
-- D 0 - - - 0x010CC6 04:8CB6: 34        .byte $34   ; 04
-- D 0 - - - 0x010CC7 04:8CB7: 3D        .byte $3D   ; 05
-- D 0 - - - 0x010CC8 04:8CB8: 4E        .byte $4E   ; 06
+- D 0 - - - 0x010CC2 04:8CB2: 24        .byte con_map_location + $24   ; 00
+- D 0 - - - 0x010CC3 04:8CB3: 0B        .byte con_map_location + $0B   ; 01
+- D 0 - - - 0x010CC4 04:8CB4: 1C        .byte con_map_location + $1C   ; 02
+- D 0 - - - 0x010CC5 04:8CB5: 22        .byte con_map_location + $22   ; 03
+- D 0 - - - 0x010CC6 04:8CB6: 34        .byte con_map_location + $34   ; 04
+- D 0 - - - 0x010CC7 04:8CB7: 3D        .byte con_map_location + $3D   ; 05
+- D 0 - - - 0x010CC8 04:8CB8: 4E        .byte con_map_location + $4E   ; 06
 
 tbl_8CB9_pos_X:
 - D 0 - - - 0x010CC9 04:8CB9: E0        .byte $E0   ; 00
@@ -2787,7 +2787,7 @@ C - - - - - 0x010F8B 04:8F7B: B5 AC     LDA ram_drop_id,X
 C - - - - - 0x010F8D 04:8F7D: D0 31     BNE bra_8FB0
 C - - - - - 0x010F8F 04:8F7F: A9 80     LDA #$80
 C - - - - - 0x010F91 04:8F81: A4 EB     LDY ram_map_location
-C - - - - - 0x010F93 04:8F83: C0 55     CPY #$55
+C - - - - - 0x010F93 04:8F83: C0 55     CPY #con_map_location + $55
 C - - - - - 0x010F95 04:8F85: F0 02     BEQ bra_8F89
 C - - - - - 0x010F97 04:8F87: A9 60     LDA #$60
 bra_8F89:
@@ -8475,7 +8475,7 @@ C - - - - - 0x0131F9 04:B1E9: 60        RTS
 sub_B1EA:
 C - - - - - 0x0131FA 04:B1EA: A5 10     LDA ram_0010
 C - - - - - 0x0131FC 04:B1EC: F0 05     BEQ bra_B1F3_RTS
-C - - - - - 0x0131FE 04:B1EE: B9 7E 6A  LDA ram_6A7E,Y
+C - - - - - 0x0131FE 04:B1EE: B9 7E 6A  LDA ram_6A7E_map_data,Y
 C - - - - - 0x013201 04:B1F1: 29 80     AND #$80
 bra_B1F3_RTS:
 C - - - - - 0x013203 04:B1F3: 60        RTS
