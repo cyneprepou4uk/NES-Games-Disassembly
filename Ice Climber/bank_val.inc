@@ -32,20 +32,27 @@ con_music_pause                         = $20 ; set pause
 con_music_unpause                       = $40 ; unset pause
 con_music_off                           = $80 ; turn off current music
 
-; ram_sfx_1                             = $00FE
-con_sfx_1_00                            = $00 ; 
-con_sfx_1_01                            = $01 ; 
-con_sfx_1_02                            = $02 ; 
-con_sfx_1_04                            = $04 ; 
-con_sfx_1_08                            = $08 ; 
-con_sfx_1_10                            = $10 ; 
 
-; ram_sfx_2                             = $00FF
+; ram_sfx_1                             = $00FC
+con_sfx_1_00                            = $00 ; 
+con_sfx_1_plr_game_over                 = $01 ; 
+con_sfx_1_block_placed_or_destroyed     = $02 ; 
+con_sfx_1_04                            = $04 ; 
+
+; ram_sfx_2                             = $00FE
 con_sfx_2_00                            = $00 ; 
-con_sfx_2_01                            = $01 ; death
-con_sfx_2_02                            = $02 ; bear jump
-con_sfx_2_04                            = $04 ; player jump
-con_sfx_2_08                            = $08 ; hit seal or ice piece with hammer
+con_sfx_2_kill_bird                     = $01 ; 
+con_sfx_2_02                            = $02 ; 
+con_sfx_2_04                            = $04 ; 
+con_sfx_2_08                            = $08 ; 
+con_sfx_2_collect_fruit                 = $10 ; 
+
+; ram_sfx_3                             = $00FF
+con_sfx_3_00                            = $00 ; 
+con_sfx_3_plr_deadh                     = $01 ; 
+con_sfx_3_bear_jump                     = $02 ; 
+con_sfx_3_plr_jump                      = $04 ; 
+con_sfx_3_kill_seal_or_ice              = $08 ; hit seal or ice piece with hammer
 
 
 

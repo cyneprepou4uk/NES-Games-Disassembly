@@ -263,10 +263,9 @@ ram_00ED                                = $00ED ; N/A
 ram_00EE                                = $00EE ; N/A
 ram_00EF                                = $00EF ; N/A
 
-ram_copy_sfx_2                          = $00F0 ; copy of 00FF?
-ram_copy_sfx_1                          = $00F1 ; copy of 00FE?
-
-ram_00F2                                = $00F2 ; 5  
+ram_copy_sfx_3                          = $00F0 ; copy of 00FF?
+ram_copy_sfx_2                          = $00F1 ; copy of 00FE?
+ram_copy_sfx_1                          = $00F2 ; copy of 00FC?
  
 ram_music_2                             = $00F3 ; currently playing music?
 
@@ -280,12 +279,12 @@ ram_00FA                                = $00FA ; 3
 
 ram_music_1                             = $00FB ; music you want to play?
 
-ram_copy_music                          = $00FC ; copy of 00FB?
+ram_sfx_1                               = $00FC ; 6   
 
 ram_00FD                                = $00FD ; N/A
 
-ram_sfx_1                               = $00FE ; 
-ram_sfx_2                               = $00FF ; 
+ram_sfx_2                               = $00FE ; 
+ram_sfx_3                               = $00FF ; 
 
 ram_0100                                = $0100 ; N/A
 ram_0101                                = $0101 ; N/A
@@ -651,16 +650,17 @@ ram_035C                                = $035C ; N/A
 ram_035D                                = $035D ; N/A
 ram_035E                                = $035E ; N/A
 ram_035F                                = $035F ; N/A
-ram_0360                                = $0360 ; 6   
-ram_0361                                = $0361 ; 3   
-ram_0362                                = $0362 ; 1   
-ram_0363                                = $0363 ; 1   
-ram_0364                                = $0364 ; 2   
-ram_0365                                = $0365 ; 1   
-ram_0366                                = $0366 ; 1   
-ram_0367                                = $0367 ; N/A
-ram_0368                                = $0368 ; N/A
-ram_0369                                = $0369 ; N/A
+
+; 0360-0369 (0A) counters for players
+; 0360-0364 = 1p
+; 0365-0369 = 2p
+ram_plr_counters                        = $0360
+    ram_plr_counter_stage_bonus             = $0360 ; 6   thousands of points you get for completing bonus level
+    ram_plr_counter_fruits                  = $0361 ; 3   
+    ram_plr_counter_ice                     = $0362 ; 1   
+    ram_plr_counter_birds                   = $0363 ; 1   
+    ram_plr_counter_blocks                  = $0364 ; 2   
+
 ram_036A                                = $036A ; N/A
 ram_036B                                = $036B ; N/A
 ram_036C                                = $036C ; N/A
