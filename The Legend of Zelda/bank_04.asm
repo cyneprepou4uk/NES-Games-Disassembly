@@ -170,7 +170,7 @@
 
 
 sub_8000:
-C - - - - - 0x010010 04:8000: BD F0 04  LDA ram_04F0,X
+C - - - - - 0x010010 04:8000: BD F0 04  LDA ram_invinc_timer,X
 C - - - - - 0x010013 04:8003: C9 10     CMP #$10
 C - - - - - 0x010015 04:8005: D0 05     BNE bra_800C_RTS
 C - - - - - 0x010017 04:8007: A9 02     LDA #con_sfx_1_02
@@ -1054,7 +1054,7 @@ C - - - - - 0x01053E 04:852E: D0 30     BNE bra_8560_RTS
 C - - - - - 0x010540 04:8530: 20 29 86  JSR sub_8629
 C - - - - - 0x010543 04:8533: BD 05 04  LDA ram_0405,X
 C - - - - - 0x010546 04:8536: D0 28     BNE bra_8560_RTS
-C - - - - - 0x010548 04:8538: BD F0 04  LDA ram_04F0,X
+C - - - - - 0x010548 04:8538: BD F0 04  LDA ram_invinc_timer,X
 C - - - - - 0x01054B 04:853B: F0 23     BEQ bra_8560_RTS
 C - - - - - 0x01054D 04:853D: A0 00     LDY #$00
 C - - - - - 0x01054F 04:853F: B5 84     LDA ram_pos_Y,X
@@ -1555,7 +1555,7 @@ C - - - - - 0x010803 04:87F3: A5 01     LDA ram_0001
 C - - - - - 0x010805 04:87F5: 84 00     STY ram_0000
 C - - - - - 0x010807 04:87F7: 48        PHA
 C - - - - - 0x010808 04:87F8: A0 00     LDY #$00
-C - - - - - 0x01080A 04:87FA: BD F0 04  LDA ram_04F0,X
+C - - - - - 0x01080A 04:87FA: BD F0 04  LDA ram_invinc_timer,X
 C - - - - - 0x01080D 04:87FD: D0 0D     BNE bra_880C
 C - - - - - 0x01080F 04:87FF: BC 51 04  LDY ram_0451,X
 C - - - - - 0x010812 04:8802: 88        DEY
@@ -2763,7 +2763,7 @@ C - - - - - 0x010F72 04:8F62: 4A        LSR
 C - - - - - 0x010F73 04:8F63: F0 0D     BEQ bra_8F72
 C - - - - - 0x010F75 04:8F65: A8        TAY
 C - - - - - 0x010F76 04:8F66: B9 57 8F  LDA tbl_8F57,Y
-C - - - - - 0x010F79 04:8F69: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x010F79 04:8F69: A4 16     LDY ram_current_save_slot
 C - - - - - 0x010F7B 04:8F6B: D9 2D 06  CMP ram_current_quest,Y
 C - - - - - 0x010F7E 04:8F6E: F0 02     BEQ bra_8F72
 C - - - - - 0x010F80 04:8F70: 38        SEC
@@ -3310,7 +3310,7 @@ C - - - - - 0x0112D1 04:92C1: 60        RTS
 ofs_005_0x0112D2_28:
 C - - J - - 0x0112D2 04:92C2: A9 10     LDA #$10
 C - - - - - 0x0112D4 04:92C4: 9D 85 04  STA ram_0485,X
-C - - - - - 0x0112D7 04:92C7: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x0112D7 04:92C7: A4 16     LDY ram_current_save_slot
 C - - - - - 0x0112D9 04:92C9: B9 2D 06  LDA ram_current_quest,Y
 C - - - - - 0x0112DC 04:92CC: F0 05     BEQ bra_92D3_1st_quest
 ; if 2nd quest
@@ -3380,7 +3380,7 @@ C - - - - - 0x011350 04:9340: 4A        LSR
 C - - - - - 0x011351 04:9341: 85 0F     STA ram_000F
 C - - - - - 0x011353 04:9343: A9 02     LDA #$02
 C - - - - - 0x011355 04:9345: 20 88 79  JSR sub_bat_7988
-C - - - - - 0x011358 04:9348: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x011358 04:9348: A4 16     LDY ram_current_save_slot
 C - - - - - 0x01135A 04:934A: B9 2D 06  LDA ram_current_quest,Y
 C - - - - - 0x01135D 04:934D: F0 07     BEQ bra_9356_1st_quest
 ; if 2nd quest
@@ -3415,7 +3415,7 @@ C - - - - - 0x01138F 04:937F: A9 08     LDA #$08
 C - - - - - 0x011391 04:9381: 20 76 84  JSR sub_8476
 C - - - - - 0x011394 04:9384: A9 20     LDA #$20
 C - - - - - 0x011396 04:9386: 85 01     STA ram_0001
-C - - - - - 0x011398 04:9388: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x011398 04:9388: A4 16     LDY ram_current_save_slot
 C - - - - - 0x01139A 04:938A: B9 2D 06  LDA ram_current_quest,Y
 C - - - - - 0x01139D 04:938D: F0 52     BEQ bra_93E1_RTS
 ; if 2nd quest
@@ -3428,7 +3428,7 @@ bra_939A:
 - - - - - - 0x0113AA 04:939A: A5 01     LDA ram_0001
 - - - - - - 0x0113AC 04:939C: 48        PHA
 - - - - - - 0x0113AD 04:939D: A0 00     LDY #$00
-- - - - - - 0x0113AF 04:939F: BD F0 04  LDA ram_04F0,X
+- - - - - - 0x0113AF 04:939F: BD F0 04  LDA ram_invinc_timer,X
 - - - - - - 0x0113B2 04:93A2: D0 0D     BNE bra_93B1
 - - - - - - 0x0113B4 04:93A4: BC 51 04  LDY ram_0451,X
 - - - - - - 0x0113B7 04:93A7: 88        DEY
@@ -3610,8 +3610,8 @@ C - - - - - 0x0114E8 04:94D8: C9 41     CMP #con_obj_id_41
 C - - - - - 0x0114EA 04:94DA: D0 F8     BNE bra_94D4_loop
 C - - - - - 0x0114EC 04:94DC: A9 11     LDA #$11
 C - - - - - 0x0114EE 04:94DE: 99 29 00  STA ram_obj_timer + 1,Y
-C - - - - - 0x0114F1 04:94E1: BD F0 04  LDA ram_04F0,X
-C - - - - - 0x0114F4 04:94E4: 99 F1 04  STA ram_04F1,Y
+C - - - - - 0x0114F1 04:94E1: BD F0 04  LDA ram_invinc_timer,X
+C - - - - - 0x0114F4 04:94E4: 99 F1 04  STA ram_invinc_timer + 1,Y
 C - - - - - 0x0114F7 04:94E7: B5 70     LDA ram_pos_X,X
 C - - - - - 0x0114F9 04:94E9: 99 71 00  STA ram_pos_X + 1,Y
 C - - - - - 0x0114FC 04:94EC: B5 84     LDA ram_pos_Y,X
@@ -3685,12 +3685,13 @@ C - - - - - 0x011562 04:9552: E0 05     CPX #$05
 C - - - - - 0x011564 04:9554: F0 02     BEQ bra_9558
 C - - - - - 0x011566 04:9556: A0 05     LDY #$05
 bra_9558:
+bra_9558_loop:
 C - - - - - 0x011568 04:9558: B9 82 03  LDA ram_0382,Y
 C - - - - - 0x01156B 04:955B: 99 81 03  STA ram_0381,Y
 C - - - - - 0x01156E 04:955E: 99 99 00  STA ram_direction + 1,Y
 C - - - - - 0x011571 04:9561: C8        INY
 C - - - - - 0x011572 04:9562: C6 00     DEC ram_0000
-C - - - - - 0x011574 04:9564: D0 F2     BNE bra_9558
+C - - - - - 0x011574 04:9564: D0 F2     BNE bra_9558_loop
 C - - - - - 0x011576 04:9566: B5 98     LDA ram_direction,X
 C - - - - - 0x011578 04:9568: 9D 80 03  STA ram_0380,X
 bra_956B_RTS:
@@ -4194,7 +4195,7 @@ C - - - - - 0x011876 04:9866: B5 84     LDA ram_pos_Y,X
 C - - - - - 0x011878 04:9868: 18        CLC
 C - - - - - 0x011879 04:9869: 79 40 98  ADC tbl_9840_pos_Y,Y
 C - - - - - 0x01187C 04:986C: 85 01     STA ram_0001
-C - - - - - 0x01187E 04:986E: BD F0 04  LDA ram_04F0,X
+C - - - - - 0x01187E 04:986E: BD F0 04  LDA ram_invinc_timer,X
 C - - - - - 0x011881 04:9871: 29 03     AND #$03
 C - - - - - 0x011883 04:9873: 49 03     EOR #$03
 C - - - - - 0x011885 04:9875: 85 03     STA ram_0003
@@ -4365,7 +4366,7 @@ C - - - - - 0x01196E 04:995E: 60        RTS
 
 sub_995F:
 C - - - - - 0x01196F 04:995F: 20 8A 99  JSR sub_998A
-C - - - - - 0x011972 04:9962: BD F0 04  LDA ram_04F0,X
+C - - - - - 0x011972 04:9962: BD F0 04  LDA ram_invinc_timer,X
 C - - - - - 0x011975 04:9965: D0 19     BNE bra_9980
 C - - - - - 0x011977 04:9967: B5 98     LDA ram_direction,X
 C - - - - - 0x011979 04:9969: C9 04     CMP #$04
@@ -4378,7 +4379,7 @@ C - - - - - 0x011983 04:9973: 95 70     STA ram_pos_X,X
 C - - - - - 0x011985 04:9975: 20 8A 99  JSR sub_998A
 C - - - - - 0x011988 04:9978: 68        PLA
 C - - - - - 0x011989 04:9979: 95 70     STA ram_pos_X,X
-C - - - - - 0x01198B 04:997B: BD F0 04  LDA ram_04F0,X
+C - - - - - 0x01198B 04:997B: BD F0 04  LDA ram_invinc_timer,X
 C - - - - - 0x01198E 04:997E: F0 09     BEQ bra_9989_RTS
 bra_9980:
 C - - - - - 0x011990 04:9980: 20 52 99  JSR sub_9952
@@ -5099,7 +5100,7 @@ C - - - - - 0x011DCF 04:9DBF: D0 0F     BNE bra_9DD0_RTS
 C - - - - - 0x011DD1 04:9DC1: 20 D0 79  JSR sub_bat_79D0
 C - - - - - 0x011DD4 04:9DC4: BD 05 04  LDA ram_0405,X
 C - - - - - 0x011DD7 04:9DC7: D0 07     BNE bra_9DD0_RTS
-C - - - - - 0x011DD9 04:9DC9: BD F0 04  LDA ram_04F0,X
+C - - - - - 0x011DD9 04:9DC9: BD F0 04  LDA ram_invinc_timer,X
 C - - - - - 0x011DDC 04:9DCC: F0 02     BEQ bra_9DD0_RTS
 C - - - - - 0x011DDE 04:9DCE: F6 AC     INC ram_drop_id,X
 bra_9DD0_RTS:
@@ -5587,7 +5588,7 @@ loc_A040:
 C D 1 - - - 0x012050 04:A040: A9 F6     LDA #$F6
 C - - - - - 0x012052 04:A042: 9D B2 04  STA ram_04B2,X
 C - - - - - 0x012055 04:A045: 20 2D 7A  JSR sub_bat_7A2D
-C - - - - - 0x012058 04:A048: BD F0 04  LDA ram_04F0,X
+C - - - - - 0x012058 04:A048: BD F0 04  LDA ram_invinc_timer,X
 C - - - - - 0x01205B 04:A04B: D0 14     BNE bra_A061
 C - - - - - 0x01205D 04:A04D: A0 0E     LDY #$0E
 C - - - - - 0x01205F 04:A04F: 20 9D 7C  JSR sub_bat_7C9D
@@ -5870,7 +5871,7 @@ C - - - - - 0x012242 04:A232: 95 98     STA ram_direction,X
 C - - - - - 0x012244 04:A234: E0 05     CPX #$05
 C - - - - - 0x012246 04:A236: D0 05     BNE bra_A23D
 C - - - - - 0x012248 04:A238: A9 00     LDA #$00
-C - - - - - 0x01224A 04:A23A: 9D F0 04  STA ram_04F0,X
+C - - - - - 0x01224A 04:A23A: 9D F0 04  STA ram_invinc_timer,X
 bra_A23D:
 C - - - - - 0x01224D 04:A23D: 20 00 80  JSR sub_8000
 C - - - - - 0x012250 04:A240: BD 05 04  LDA ram_0405,X
@@ -6231,7 +6232,7 @@ C - - - - - 0x0124AC 04:A49C: 20 DB 77  JSR sub_bat_77DB
 C - - - - - 0x0124AF 04:A49F: 20 D0 79  JSR sub_bat_79D0
 C - - - - - 0x0124B2 04:A4A2: 20 DA FE  JSR sub_0x01FEEA
 C - - - - - 0x0124B5 04:A4A5: 20 E6 EE  JSR sub_0x01EEF6
-C - - - - - 0x0124B8 04:A4A8: 9D F0 04  STA ram_04F0,X
+C - - - - - 0x0124B8 04:A4A8: 9D F0 04  STA ram_invinc_timer,X
 C - - - - - 0x0124BB 04:A4AB: 60        RTS
 
 
@@ -6890,7 +6891,7 @@ C - - - - - 0x01286F 04:A85F: 69 57     ADC #$57
 C - - - - - 0x012871 04:A861: 99 00 02  STA ram_spr_Y,Y
 C - - - - - 0x012874 04:A864: BD 09 A8  LDA tbl_A809_spt_T,X
 C - - - - - 0x012877 04:A867: 99 01 02  STA ram_spr_T,Y
-C - - - - - 0x01287A 04:A86A: AD F5 04  LDA ram_04F5
+C - - - - - 0x01287A 04:A86A: AD F5 04  LDA ram_invinc_timer + 5
 C - - - - - 0x01287D 04:A86D: D0 02     BNE bra_A871
 C - - - - - 0x01287F 04:A86F: A9 03     LDA #$03
 bra_A871:
@@ -7037,7 +7038,7 @@ C - - - - - 0x012988 04:A978: 85 28     STA ram_obj_timer
 C - - - - - 0x01298A 04:A97A: A9 02     LDA #con_sfx_1_02
 C - - - - - 0x01298C 04:A97C: 8D 01 06  STA ram_sfx_1
 C - - - - - 0x01298F 04:A97F: A9 10     LDA #con_sfx_1_10
-C - - - - - 0x012991 04:A981: 20 7C 6D  JSR sub_bat_6D7C
+C - - - - - 0x012991 04:A981: 20 7C 6D  JSR sub_bat_6D7C_set_sfx_1
 C - - - - - 0x012994 04:A984: 4C D6 FE  JMP loc_0x01FEE6
 
 
@@ -7155,8 +7156,8 @@ C - - - - - 0x012A55 04:AA45: CD E7 04  CMP ram_04E7
 C - - - - - 0x012A58 04:AA48: D0 F7     BNE bra_AA41_loop
 C - - - - - 0x012A5A 04:AA4A: A9 11     LDA #$11
 C - - - - - 0x012A5C 04:AA4C: 99 29 00  STA ram_obj_timer + 1,Y
-C - - - - - 0x012A5F 04:AA4F: BD F0 04  LDA ram_04F0,X
-C - - - - - 0x012A62 04:AA52: 99 F1 04  STA ram_04F1,Y
+C - - - - - 0x012A5F 04:AA4F: BD F0 04  LDA ram_invinc_timer,X
+C - - - - - 0x012A62 04:AA52: 99 F1 04  STA ram_invinc_timer + 1,Y
 C - - - - - 0x012A65 04:AA55: B5 70     LDA ram_pos_X,X
 C - - - - - 0x012A67 04:AA57: 99 71 00  STA ram_pos_X + 1,Y
 C - - - - - 0x012A6A 04:AA5A: B5 84     LDA ram_pos_Y,X
@@ -7944,7 +7945,7 @@ C - - - - - 0x012EFB 04:AEEB: B5 84     LDA ram_pos_Y,X
 C - - - - - 0x012EFD 04:AEED: 18        CLC
 C - - - - - 0x012EFE 04:AEEE: 69 10     ADC #$10
 C - - - - - 0x012F00 04:AEF0: 85 03     STA ram_0003
-C - - - - - 0x012F02 04:AEF2: AD F0 04  LDA ram_04F0
+C - - - - - 0x012F02 04:AEF2: AD F0 04  LDA ram_invinc_timer
 C - - - - - 0x012F05 04:AEF5: D0 0D     BNE bra_AF04
 C - - - - - 0x012F07 04:AEF7: 85 06     STA ram_0006
 C - - - - - 0x012F09 04:AEF9: 85 09     STA ram_0009
@@ -7966,7 +7967,7 @@ C - - - - - 0x012F28 04:AF18: 9D 85 04  STA ram_0485,X
 C - - - - - 0x012F2B 04:AF1B: D6 AC     DEC ram_drop_id,X
 C - - - - - 0x012F2D 04:AF1D: 20 6D AF  JSR sub_AF6D
 bra_AF20:
-C - - - - - 0x012F30 04:AF20: BD F0 04  LDA ram_04F0,X
+C - - - - - 0x012F30 04:AF20: BD F0 04  LDA ram_invinc_timer,X
 C - - - - - 0x012F33 04:AF23: F0 07     BEQ bra_AF2C
 C - - - - - 0x012F35 04:AF25: 20 00 80  JSR sub_8000
 C - - - - - 0x012F38 04:AF28: A9 40     LDA #$40
@@ -7992,7 +7993,7 @@ C - - - - - 0x012F5A 04:AF4A: A5 06     LDA ram_0006
 C - - - - - 0x012F5C 04:AF4C: F0 E4     BEQ bra_AF32_RTS
 C - - - - - 0x012F5E 04:AF4E: FE 2C 04  INC ram_042C,X
 C - - - - - 0x012F61 04:AF51: A9 28     LDA #$28
-C - - - - - 0x012F63 04:AF53: 9D F0 04  STA ram_04F0,X
+C - - - - - 0x012F63 04:AF53: 9D F0 04  STA ram_invinc_timer,X
 C - - - - - 0x012F66 04:AF56: A9 08     LDA #$08
 C - - - - - 0x012F68 04:AF58: 9D 78 04  STA ram_0478,X
 C - - - - - 0x012F6B 04:AF5B: 60        RTS
@@ -8386,7 +8387,7 @@ C - - - - - 0x013171 04:B161: 9D 4F 03  STA ram_obj_id,X
 C - - - - - 0x013174 04:B164: 20 E6 EE  JSR sub_0x01EEF6
 C - - - - - 0x013177 04:B167: 95 28     STA ram_obj_timer,X
 C - - - - - 0x013179 04:B169: 95 AC     STA ram_drop_id,X
-C - - - - - 0x01317B 04:B16B: 9D F0 04  STA ram_04F0,X
+C - - - - - 0x01317B 04:B16B: 9D F0 04  STA ram_invinc_timer,X
 C - - - - - 0x01317E 04:B16E: A9 FF     LDA #$FF
 C - - - - - 0x013180 04:B170: 9D 92 04  STA ram_0492,X
 C - - - - - 0x013183 04:B173: A9 01     LDA #$01
@@ -8473,8 +8474,9 @@ C - - - - - 0x0131F9 04:B1E9: 60        RTS
 
 
 sub_B1EA:
-C - - - - - 0x0131FA 04:B1EA: A5 10     LDA ram_0010
-C - - - - - 0x0131FC 04:B1EC: F0 05     BEQ bra_B1F3_RTS
+C - - - - - 0x0131FA 04:B1EA: A5 10     LDA ram_dungeon_level
+C - - - - - 0x0131FC 04:B1EC: F0 05     BEQ bra_B1F3_RTS    ; if overworld
+; if dungeon
 C - - - - - 0x0131FE 04:B1EE: B9 7E 6A  LDA ram_6A7E_map_data,Y
 C - - - - - 0x013201 04:B1F1: 29 80     AND #$80
 bra_B1F3_RTS:
@@ -8502,7 +8504,7 @@ C - - - - - 0x01321D 04:B20D: 9D 12 04  STA ram_0412,X
 C - - - - - 0x013220 04:B210: 9D 2C 04  STA ram_042C,X
 C - - - - - 0x013223 04:B213: 9D 37 04  STA ram_0437,X
 C - - - - - 0x013226 04:B216: 9D 44 04  STA ram_0444,X
-C - - - - - 0x013229 04:B219: 9D F0 04  STA ram_04F0,X
+C - - - - - 0x013229 04:B219: 9D F0 04  STA ram_invinc_timer,X
 C - - - - - 0x01322C 04:B21C: 60        RTS
 
 

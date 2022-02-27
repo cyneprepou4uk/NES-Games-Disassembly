@@ -75,8 +75,9 @@ sub_0x00C054_fill_ppu_with_tiles_3:
 C - - - - - 0x00C054 03:8044: 20 25 E6  JSR sub_0x01E635_disable_rendering
 C - - - - - 0x00C057 03:8047: AD 02 20  LDA $2002
 C - - - - - 0x00C05A 03:804A: 20 5E 80  JSR sub_805E
-C - - - - - 0x00C05D 03:804D: A5 10     LDA ram_0010
-C - - - - - 0x00C05F 03:804F: D0 13     BNE bra_8064_entering_dungeon
+C - - - - - 0x00C05D 03:804D: A5 10     LDA ram_dungeon_level
+C - - - - - 0x00C05F 03:804F: D0 13     BNE bra_8064_entering_dungeon    ; if dungeon
+; if overworld
 bra_8051_loop:
 C - - - - - 0x00C061 03:8051: 20 91 80  JSR sub_8091_select_tiles_and_counter
 C - - - - - 0x00C064 03:8054: 20 DC 80  JSR sub_80DC_write_to_ppu
@@ -135,7 +136,7 @@ C - - - - - 0x00C0BB 03:80AB: 60        RTS
 
 
 sub_80AC_select_tiles:
-C - - - - - 0x00C0BC 03:80AC: A5 10     LDA ram_0010
+C - - - - - 0x00C0BC 03:80AC: A5 10     LDA ram_dungeon_level
 C - - - - - 0x00C0BE 03:80AE: 0A        ASL
 C - - - - - 0x00C0BF 03:80AF: AA        TAX
 C - - - - - 0x00C0C0 03:80B0: BD 00 80  LDA tbl_8000_tiles,X
@@ -148,7 +149,7 @@ C - - - - - 0x00C0CB 03:80BB: 60        RTS
 
 
 sub_80BC_select_tiles:
-C - - - - - 0x00C0CC 03:80BC: A5 10     LDA ram_0010
+C - - - - - 0x00C0CC 03:80BC: A5 10     LDA ram_dungeon_level
 C - - - - - 0x00C0CE 03:80BE: 0A        ASL
 C - - - - - 0x00C0CF 03:80BF: AA        TAX
 C - - - - - 0x00C0D0 03:80C0: BD 14 80  LDA tbl_8014_tiles,X

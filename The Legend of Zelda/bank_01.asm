@@ -985,7 +985,7 @@ C - - - - - 0x004A09 01:89F9: 4C F2 87  JMP loc_87F2
 loc_0x004A0C:
 C D 0 - - - 0x004A0C 01:89FC: AD 14 88  LDA tbl_8814_ppu_lo
 C - - - - - 0x004A0F 01:89FF: 8D 5F 04  STA ram_045F
-C - - - - - 0x004A12 01:8A02: A5 10     LDA ram_0010
+C - - - - - 0x004A12 01:8A02: A5 10     LDA ram_dungeon_level
 C - - - - - 0x004A14 01:8A04: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
 - - - - - - 0x004A17 01:8A07: AD 8C     .word ofs_025_8CAD_00_RTS
 - - - - - - 0x004A19 01:8A09: 23 8A     .word ofs_025_8A23_01
@@ -1140,7 +1140,7 @@ C - - - - - 0x004AE8 01:8AD8: 60        RTS
 
 
 loc_0x004AE9:
-C D 0 - - - 0x004AE9 01:8AD9: A5 10     LDA ram_0010
+C D 0 - - - 0x004AE9 01:8AD9: A5 10     LDA ram_dungeon_level
 C - - - - - 0x004AEB 01:8ADB: C9 03     CMP #$03
 C - - - - - 0x004AED 01:8ADD: 90 08     BCC bra_8AE7
 C - - - - - 0x004AEF 01:8ADF: C9 05     CMP #$05
@@ -1250,10 +1250,10 @@ C - - - - - 0x004B8B 01:8B7B: 6D 7E 06  ADC ram_rupees_sbc
 C - - - - - 0x004B8E 01:8B7E: 8D 7E 06  STA ram_rupees_sbc
 C - - - - - 0x004B91 01:8B81: A9 08     LDA #con_sfx_4_pick_up_item
 C - - - - - 0x004B93 01:8B83: 8D 04 06  STA ram_sfx_4
-C - - - - - 0x004B96 01:8B86: AD 7C 06  LDA ram_item_067C
+C - - - - - 0x004B96 01:8B86: AD 7C 06  LDA ram_item_max_bombs
 C - - - - - 0x004B99 01:8B89: 18        CLC
 C - - - - - 0x004B9A 01:8B8A: 69 04     ADC #$04
-C - - - - - 0x004B9C 01:8B8C: 8D 7C 06  STA ram_item_067C
+C - - - - - 0x004B9C 01:8B8C: 8D 7C 06  STA ram_item_max_bombs
 C - - - - - 0x004B9F 01:8B8F: 8D 58 06  STA ram_item_bombs
 C - - - - - 0x004BA2 01:8B92: 4C 8D 8C  JMP loc_8C8D
 
@@ -1700,7 +1700,7 @@ C - - - - - 0x0060A2 01:A092: 95 C0     STA ram_00C0,X
 C - - - - - 0x0060A4 01:A094: 95 D3     STA ram_00D3,X
 C - - - - - 0x0060A6 01:A096: 95 28     STA ram_obj_timer,X
 C - - - - - 0x0060A8 01:A098: 95 AC     STA ram_drop_id,X
-C - - - - - 0x0060AA 01:A09A: 9D F0 04  STA ram_04F0,X
+C - - - - - 0x0060AA 01:A09A: 9D F0 04  STA ram_invinc_timer,X
 C - - - - - 0x0060AD 01:A09D: A9 FF     LDA #$FF
 C - - - - - 0x0060AF 01:A09F: 9D 92 04  STA ram_0492,X
 C - - - - - 0x0060B2 01:A0A2: A9 01     LDA #$01

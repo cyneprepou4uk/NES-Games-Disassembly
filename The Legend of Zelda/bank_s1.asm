@@ -5,8 +5,8 @@
 
 ; SRAM_1 (from bank_06)
 
-; do not move these tables, because some of them
-; are modified via code as SRAM addresses
+; do not move these tables (don't edit .org as well), because
+; some of them are modified via code as SRAM addresses
 
 .org $67F0
 

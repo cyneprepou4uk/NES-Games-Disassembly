@@ -21,7 +21,9 @@ ram_000C                                = $000C ; 41   ($indirect),Y <8>
 ram_000D                                = $000D ; 25   
 ram_000E                                = $000E ; 39   ($indirect),Y <2>   
 ram_000F                                = $000F ; 93   
-ram_0010                                = $0010 ; 76   00 = overworld?, 01-08 = dungeon id, 09 = final dungeon?
+
+ram_dungeon_level                       = $0010 ; 76   00 = no dungeon (overworld), 01-09 = dungeo id (09 is final dungeon)
+
 ram_0011                                = $0011 ; 25   
 
 ram_game_mode_main                      = $0012 ; what's happening in the game, see bank_val.inc
@@ -29,7 +31,9 @@ ram_game_mode_sub                       = $0013 ; subtype of 0012
 
 ram_0014                                = $0014 ; 23   
 ram_frame_cnt                           = $0015 ; 46   
-ram_cur_save_slot                       = $0016 ; 76   
+
+ram_current_save_slot                   = $0016 ; 76 
+  
 ram_0017                                = $0017 ; 3   
 
 ; 0018-0024 (0D) 
@@ -999,26 +1003,10 @@ ram_04EC                                = $04EC ; N/A
 ram_04ED                                = $04ED ; N/A
 ram_04EE                                = $04EE ; N/A
 ram_04EF                                = $04EF ; N/A
-ram_04F0                                = $04F0 ; 27   
-ram_04F1                                = $04F1 ; 2   
-ram_04F2                                = $04F2 ; N/A
-ram_04F3                                = $04F3 ; N/A
-ram_04F4                                = $04F4 ; N/A
-ram_04F5                                = $04F5 ; 1   
-ram_04F6                                = $04F6 ; N/A
-ram_04F7                                = $04F7 ; N/A
-ram_04F8                                = $04F8 ; N/A
-ram_04F9                                = $04F9 ; N/A
-ram_04FA                                = $04FA ; N/A
-ram_04FB                                = $04FB ; N/A
-ram_04FC                                = $04FC ; N/A
-ram_04FD                                = $04FD ; N/A
-ram_04FE                                = $04FE ; N/A
-ram_04FF                                = $04FF ; N/A
-ram_0500                                = $0500 ; N/A
-ram_0501                                = $0501 ; N/A
-ram_0502                                = $0502 ; N/A
-ram_0503                                = $0503 ; N/A
+
+; 04F0-0503 (14) invincibility
+ram_invinc_timer                        = $04F0 ; 27   
+
 ram_0504                                = $0504 ; 2   
 ram_0505                                = $0505 ; 7   
 ram_0506                                = $0506 ; 5   
@@ -1355,7 +1343,7 @@ ram_items                               = $0657 ; 20
     ram_065F                                = $065F ; N/A  staff
     ram_item_0660                           = $0660 ; 1   
     ram_item_0661                           = $0661 ; 1   
-    ram_item_0662                           = $0662 ; N/A
+    ram_item_ring                           = $0662 ; N/A
     ram_item_0663                           = $0663 ; 1   
     ram_item_0664                           = $0664 ; 1   
     ram_item_0665                           = $0665 ; 1   
@@ -1371,7 +1359,7 @@ ram_items                               = $0657 ; 20
     ram_item_066F                           = $066F ; 13   
     ram_item_0670                           = $0670 ; 9   
     ram_item_0671                           = $0671 ; 3   
-    ram_item_0672                           = $0672 ; 2   
+    ram_item_0672                           = $0672 ; 2    LastBossDefeated
     ram_0673                                = $0673 ; N/A
     ram_item_boomerang                      = $0674 ; 1    00 = don't have, 01 = have
     ram_item_mag_boomerang                  = $0675 ; 3    00 = don't have, 01 = have
@@ -1381,7 +1369,7 @@ ram_items                               = $0657 ; 20
     ram_0679                                = $0679 ; N/A
     ram_067A                                = $067A ; N/A
     ram_067B                                = $067B ; N/A
-    ram_item_067C                           = $067C ; 3   
+    ram_item_max_bombs                      = $067C ; 3    maximum amount of bombs you can carry
     ram_rupees_adc                          = $067D ; 2    how much to add
     ram_rupees_sbc                          = $067E ; 6    how much to substract
 
@@ -3961,7 +3949,7 @@ ram_687D                                = $687D ; N/A
 ; 687E-68FD (80) 
 ram_687E_map_data                       = $687E ; 8   
 ; 0000 00xx = nametable attributes set 0x0143E8
-; 0000 0x00 = 
+; 0000 0x00 = sfx_3 ?
 ; 0000 x000 = 
 ; xxxx 0000 = link pos X when he walks out of the cave
 

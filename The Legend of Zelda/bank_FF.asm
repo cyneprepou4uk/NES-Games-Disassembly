@@ -84,7 +84,7 @@
 .export sub_0x01FA99
 .export sub_0x01FAA3
 .export loc_0x01FAA3
-.export sub_0x01FEA8
+.export sub_0x01FEA8_decrease_invincibility_timer
 .export sub_0x01FEB6
 .export sub_0x01FEC1_destroy_object
 .export loc_0x01FEC1_destroy_object
@@ -495,8 +495,9 @@ C - - - - - 0x01E688 07:E678: 60        RTS
 
 sub_E679:
 sub_0x01E689:
-C - - - - - 0x01E689 07:E679: A5 10     LDA ram_0010
-C - - - - - 0x01E68B 07:E67B: F0 50     BEQ bra_E6CD_RTS
+C - - - - - 0x01E689 07:E679: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01E68B 07:E67B: F0 50     BEQ bra_E6CD_RTS    ; if overworld
+; if dungeon
 C - - - - - 0x01E68D 07:E67D: A9 05     LDA #con_prg_bank + $05
 C - - - - - 0x01E68F 07:E67F: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01E692 07:E682: 20 EB B5  JSR sub_0x0175FB
@@ -508,8 +509,9 @@ C - - - - - 0x01E69C 07:E68C: 4C ED 71  JMP loc_bat_71ED
 
 
 sub_0x01E69F:
-C - - - - - 0x01E69F 07:E68F: A4 10     LDY ram_0010
-C - - - - - 0x01E6A1 07:E691: F0 25     BEQ bra_E6B8
+C - - - - - 0x01E69F 07:E68F: A4 10     LDY ram_dungeon_level
+C - - - - - 0x01E6A1 07:E691: F0 25     BEQ bra_E6B8    ; if overworld
+; if dungeon
 C - - - - - 0x01E6A3 07:E693: A5 98     LDA ram_direction
 C - - - - - 0x01E6A5 07:E695: 85 02     STA ram_0002
 C - - - - - 0x01E6A7 07:E697: A9 05     LDA #con_prg_bank + $05
@@ -793,8 +795,9 @@ bra_E848:
 C - - - - - 0x01E858 07:E848: A9 00     LDA #$00
 C - - - - - 0x01E85A 07:E84A: 85 AC     STA ram_drop_id
 C - - - - - 0x01E85C 07:E84C: 8D 05 05  STA ram_0505
-C - - - - - 0x01E85F 07:E84F: A4 10     LDY ram_0010
-C - - - - - 0x01E861 07:E851: F0 06     BEQ bra_E859_RTS
+C - - - - - 0x01E85F 07:E84F: A4 10     LDY ram_dungeon_level
+C - - - - - 0x01E861 07:E851: F0 06     BEQ bra_E859_RTS    ; if overworld
+; if dungeon
 C - - - - - 0x01E863 07:E853: B9 E0 EB  LDA tbl_EBE0_gameplay_music,Y
 C - - - - - 0x01E866 07:E856: 8D 00 06  STA ram_music
 bra_E859_RTS:
@@ -1073,8 +1076,9 @@ tbl_0x01EA1E:
 
 
 ofs_002_EA11_01:
-C - - J - - 0x01EA21 07:EA11: A5 10     LDA ram_0010
-C - - - - - 0x01EA23 07:EA13: D0 07     BNE bra_EA1C
+C - - J - - 0x01EA21 07:EA11: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01EA23 07:EA13: D0 07     BNE bra_EA1C    ; if dungeon
+; if overworld
 C - - - - - 0x01EA25 07:EA15: AD 26 05  LDA ram_0526
 C - - - - - 0x01EA28 07:EA18: C9 FF     CMP #$FF
 C - - - - - 0x01EA2A 07:EA1A: D0 03     BNE bra_EA1F
@@ -1089,7 +1093,7 @@ C - - - - - 0x01EA38 07:EA28: 8D 26 05  STA ram_0526
 bra_EA2B:
 sub_0x01EA3B:
 loc_0x01EA3B:
-C D 3 - - - 0x01EA3B 07:EA2B: A6 16     LDX ram_cur_save_slot
+C D 3 - - - 0x01EA3B 07:EA2B: A6 16     LDX ram_current_save_slot
 C - - - - - 0x01EA3D 07:EA2D: BC 0E EA  LDY tbl_EA0E,X
 C - - - - - 0x01EA40 07:EA30: B9 04 68  LDA ram_6804,Y
 C - - - - - 0x01EA43 07:EA33: 8D 92 6B  STA ram_6B7E_unk_data + $14
@@ -1148,8 +1152,9 @@ tbl_EA62:
 ofs_001_EA6B_05:
 C - - J - - 0x01EA7B 07:EA6B: 20 3D EA  JSR sub_EA3D
 C - - - - - 0x01EA7E 07:EA6E: 20 3C F2  JSR sub_F23C
-C - - - - - 0x01EA81 07:EA71: A5 10     LDA ram_0010
-C - - - - - 0x01EA83 07:EA73: F0 14     BEQ bra_EA89
+C - - - - - 0x01EA81 07:EA71: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01EA83 07:EA73: F0 14     BEQ bra_EA89    ; if overworld
+; if dungeon
 C - - - - - 0x01EA85 07:EA75: A0 08     LDY #$08
 C - - - - - 0x01EA87 07:EA77: AD 50 03  LDA ram_obj_id + 1
 bra_EA7A_loop:
@@ -1204,8 +1209,9 @@ C - - - - - 0x01EADB 07:EACB: A9 05     LDA #con_prg_bank + $05
 C - - - - - 0x01EADD 07:EACD: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01EAE0 07:EAD0: 20 5E B0  JSR sub_0x01706E
 sub_0x01EAE3:
-C - - - - - 0x01EAE3 07:EAD3: A5 10     LDA ram_0010
-C - - - - - 0x01EAE5 07:EAD5: F0 06     BEQ bra_EADD
+C - - - - - 0x01EAE3 07:EAD3: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01EAE5 07:EAD5: F0 06     BEQ bra_EADD    ; if overworld
+; if dungeon
 C - - - - - 0x01EAE7 07:EAD7: 20 C6 E6  JSR sub_E6C6
 C - - - - - 0x01EAEA 07:EADA: 20 12 75  JSR sub_bat_7512
 bra_EADD:
@@ -1238,8 +1244,9 @@ bra_EB0D:
 C - - - - - 0x01EB1D 07:EB0D: A5 12     LDA ram_game_mode_main
 C - - - - - 0x01EB1F 07:EB0F: C9 05     CMP #con_GM_05
 C - - - - - 0x01EB21 07:EB11: D0 0C     BNE bra_EB1F
-C - - - - - 0x01EB23 07:EB13: A5 10     LDA ram_0010
-C - - - - - 0x01EB25 07:EB15: F0 0B     BEQ bra_EB22
+C - - - - - 0x01EB23 07:EB13: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01EB25 07:EB15: F0 0B     BEQ bra_EB22    ; if overworld
+; if dungeon
 C - - - - - 0x01EB27 07:EB17: A9 05     LDA #con_prg_bank + $05
 C - - - - - 0x01EB29 07:EB19: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01EB2C 07:EB1C: 20 28 93  JSR sub_0x015338
@@ -1392,7 +1399,7 @@ tbl_EBE0_gameplay_music:
 
 loc_EBEA:
 bra_EBEA:
-C D 3 - - - 0x01EBFA 07:EBEA: A4 10     LDY ram_0010
+C D 3 - - - 0x01EBFA 07:EBEA: A4 10     LDY ram_dungeon_level
 C - - - - - 0x01EBFC 07:EBEC: B9 E0 EB  LDA tbl_EBE0_gameplay_music,Y
 C - - - - - 0x01EBFF 07:EBEF: 8D 00 06  STA ram_music
 bra_EBF2:
@@ -1402,8 +1409,9 @@ C - - - - - 0x01EC05 07:EBF5: 8D 94 03  STA ram_0394
 bra_EBF8_RTS:
 C - - - - - 0x01EC08 07:EBF8: 60        RTS
 bra_EBF9:
-C - - - - - 0x01EC09 07:EBF9: A5 10     LDA ram_0010
-C - - - - - 0x01EC0B 07:EBFB: D0 ED     BNE bra_EBEA
+C - - - - - 0x01EC09 07:EBF9: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01EC0B 07:EBFB: D0 ED     BNE bra_EBEA    ; if dungeon
+; if overworld
 C - - - - - 0x01EC0D 07:EBFD: A5 65     LDA ram_0065
 C - - - - - 0x01EC0F 07:EBFF: C9 24     CMP #$24
 C - - - - - 0x01EC11 07:EC01: D0 E7     BNE bra_EBEA
@@ -1476,10 +1484,10 @@ C - - - - - 0x01EC89 07:EC79: 60        RTS
 bra_EC7A:
 C - - - - - 0x01EC8A 07:EC7A: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x01EC8D 07:EC7D: F0 09     BEQ bra_EC88
-C - - - - - 0x01EC8F 07:EC7F: AD F0 04  LDA ram_04F0
+C - - - - - 0x01EC8F 07:EC7F: AD F0 04  LDA ram_invinc_timer
 C - - - - - 0x01EC92 07:EC82: 18        CLC
 C - - - - - 0x01EC93 07:EC83: 69 10     ADC #$10
-C - - - - - 0x01EC95 07:EC85: 8D F0 04  STA ram_04F0
+C - - - - - 0x01EC95 07:EC85: 8D F0 04  STA ram_invinc_timer
 bra_EC88:
 C - - - - - 0x01EC98 07:EC88: 20 A0 ED  JSR sub_EDA0
 C - - - - - 0x01EC9B 07:EC8B: A5 11     LDA ram_0011
@@ -1525,7 +1533,7 @@ C - - - - - 0x01ECEC 07:ECDC: 85 62     STA ram_0062
 bra_ECDE:
 bra_ECDE_loop:
 C - - - - - 0x01ECEE 07:ECDE: AE 40 03  LDX ram_0340
-C - - - - - 0x01ECF1 07:ECE1: 20 98 FE  JSR sub_FE98
+C - - - - - 0x01ECF1 07:ECE1: 20 98 FE  JSR sub_FE98_decrease_invincibility_timer
 C - - - - - 0x01ECF4 07:ECE4: BD 4F 03  LDA ram_obj_id,X
 C - - - - - 0x01ECF7 07:ECE7: F0 25     BEQ bra_ED0E_next    ; if not exist
 C - - - - - 0x01ECF9 07:ECE9: BD 4F 03  LDA ram_obj_id,X  ; bzk optimize, loading the same value twice
@@ -1555,8 +1563,9 @@ C - - - - - 0x01ED2F 07:ED1F: AD 04 06  LDA ram_sfx_4
 C - - - - - 0x01ED32 07:ED22: 09 40     ORA #con_sfx_4_low_health
 C - - - - - 0x01ED34 07:ED24: 8D 04 06  STA ram_sfx_4
 bra_ED27:
-C - - - - - 0x01ED37 07:ED27: A5 10     LDA ram_0010
-C - - - - - 0x01ED39 07:ED29: F0 24     BEQ bra_ED4F
+C - - - - - 0x01ED37 07:ED27: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01ED39 07:ED29: F0 24     BEQ bra_ED4F    ; if overworld
+; if dungeon
 C - - - - - 0x01ED3B 07:ED2B: A9 04     LDA #con_prg_bank + $04
 C - - - - - 0x01ED3D 07:ED2D: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01ED40 07:ED30: 20 50 86  JSR sub_0x010660
@@ -1580,7 +1589,7 @@ C - - - - - 0x01ED6A 07:ED5A: 29 04     AND #$04
 C - - - - - 0x01ED6C 07:ED5C: 0A        ASL
 C - - - - - 0x01ED6D 07:ED5D: 0A        ASL
 C - - - - - 0x01ED6E 07:ED5E: 0A        ASL
-C - - - - - 0x01ED6F 07:ED5F: 20 80 6D  JSR sub_bat_6D80
+C - - - - - 0x01ED6F 07:ED5F: 20 80 6D  JSR sub_bat_6D80_set_sfx_3
 bra_ED62:
 C - - - - - 0x01ED72 07:ED62: A9 04     LDA #con_prg_bank + $04
 C - - - - - 0x01ED74 07:ED64: 20 AC FF  JSR sub_FFAC_prg_bankswitch
@@ -1617,7 +1626,7 @@ C - - - - - 0x01EDA1 07:ED91: 4C C0 6C  JMP loc_bat_6CC0_count_rupees_and_update
 sub_EDA0:
 sub_0x01EDB0:
 C - - - - - 0x01EDB0 07:EDA0: A2 00     LDX #$00
-C - - - - - 0x01EDB2 07:EDA2: 20 98 FE  JSR sub_FE98
+C - - - - - 0x01EDB2 07:EDA2: 20 98 FE  JSR sub_FE98_decrease_invincibility_timer
 C - - - - - 0x01EDB5 07:EDA5: A5 AC     LDA ram_drop_id
 C - - - - - 0x01EDB7 07:EDA7: 29 C0     AND #$C0
 C - - - - - 0x01EDB9 07:EDA9: C9 40     CMP #$40
@@ -1638,8 +1647,9 @@ C D 3 - - - 0x01EDD5 07:EDC5: A5 12     LDA ram_game_mode_main
 C - - - - - 0x01EDD7 07:EDC7: C9 0A     CMP #con_GM_0A
 C - - - - - 0x01EDD9 07:EDC9: F0 1F     BEQ bra_EDEA_RTS
 C - - - - - 0x01EDDB 07:EDCB: 20 3C F2  JSR sub_F23C
-C - - - - - 0x01EDDE 07:EDCE: A5 10     LDA ram_0010
-C - - - - - 0x01EDE0 07:EDD0: F0 03     BEQ bra_EDD5
+C - - - - - 0x01EDDE 07:EDCE: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01EDE0 07:EDD0: F0 03     BEQ bra_EDD5    ; if overworld
+; if dungeon
 C - - - - - 0x01EDE2 07:EDD2: 20 FB 6E  JSR sub_bat_6EFB
 bra_EDD5:
 C - - - - - 0x01EDE5 07:EDD5: A2 00     LDX #$00
@@ -1764,8 +1774,9 @@ C - - - - - 0x01EE85 07:EE75: 90 03     BCC bra_EE7A
 C - - - - - 0x01EE87 07:EE77: 9D 9E 04  STA ram_collision_tile,X
 bra_EE7A:
 C - - - - - 0x01EE8A 07:EE7A: BD 9E 04  LDA ram_collision_tile,X
-C - - - - - 0x01EE8D 07:EE7D: A4 10     LDY ram_0010
-C - - - - - 0x01EE8F 07:EE7F: D0 36     BNE bra_EEB7_RTS
+C - - - - - 0x01EE8D 07:EE7D: A4 10     LDY ram_dungeon_level
+C - - - - - 0x01EE8F 07:EE7F: D0 36     BNE bra_EEB7_RTS    ; if dungeon
+; if overworld
 C - - - - - 0x01EE91 07:EE81: BD 9E 04  LDA ram_collision_tile,X
 C - - - - - 0x01EE94 07:EE84: A0 09     LDY #$09
 bra_EE86_loop:
@@ -1929,12 +1940,13 @@ C - - J - - 0x01EF81 07:EF71: A9 10     LDA #con_sfx_2_flute
 C - - - - - 0x01EF83 07:EF73: 8D 02 06  STA ram_sfx_2
 C - - - - - 0x01EF86 07:EF76: A9 98     LDA #$98
 C - - - - - 0x01EF88 07:EF78: 85 3C     STA ram_003C
-C - - - - - 0x01EF8A 07:EF7A: A5 10     LDA ram_0010
-C - - - - - 0x01EF8C 07:EF7C: D0 49     BNE bra_EFC7
+C - - - - - 0x01EF8A 07:EF7A: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01EF8C 07:EF7C: D0 49     BNE bra_EFC7    ; if dungeon
+; if overworld
 C - - - - - 0x01EF8E 07:EF7E: A5 12     LDA ram_game_mode_main
 C - - - - - 0x01EF90 07:EF80: C9 05     CMP #con_GM_05
 C - - - - - 0x01EF92 07:EF82: D0 34     BNE bra_EFB8_RTS
-C - - - - - 0x01EF94 07:EF84: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x01EF94 07:EF84: A4 16     LDY ram_current_save_slot
 C - - - - - 0x01EF96 07:EF86: B9 2D 06  LDA ram_current_quest,Y
 C - - - - - 0x01EF99 07:EF89: 48        PHA
 C - - - - - 0x01EF9A 07:EF8A: A5 EB     LDA ram_map_location
@@ -1944,13 +1956,13 @@ C - - - - - 0x01EF9E 07:EF8E: D9 66 EF  CMP tbl_EF66,Y
 C - - - - - 0x01EFA1 07:EF91: F0 05     BEQ bra_EF98
 C - - - - - 0x01EFA3 07:EF93: 88        DEY
 C - - - - - 0x01EFA4 07:EF94: 10 F8     BPL bra_EF8E_loop
-C - - - - - 0x01EFA6 07:EF96: 30 21     BMI bra_EFB9
+C - - - - - 0x01EFA6 07:EF96: 30 21     BMI bra_EFB9    ; jmp
 bra_EF98:
 C - - - - - 0x01EFA8 07:EF98: C0 00     CPY #$00
 C - - - - - 0x01EFAA 07:EF9A: D0 05     BNE bra_EFA1
 C - - - - - 0x01EFAC 07:EF9C: 68        PLA
 C - - - - - 0x01EFAD 07:EF9D: D0 1B     BNE bra_EFBA
-C - - - - - 0x01EFAF 07:EF9F: F0 03     BEQ bra_EFA4
+C - - - - - 0x01EFAF 07:EF9F: F0 03     BEQ bra_EFA4    ; jmp
 bra_EFA1:
 C - - - - - 0x01EFB1 07:EFA1: 68        PLA
 C - - - - - 0x01EFB2 07:EFA2: F0 16     BEQ bra_EFBA
@@ -2060,8 +2072,9 @@ C - - - - - 0x01F065 07:F055: A5 12     LDA ram_game_mode_main
 C - - - - - 0x01F067 07:F057: C9 09     CMP #con_GM_09
 C - - - - - 0x01F069 07:F059: F0 0B     BEQ bra_F066
 bra_F05B:
-C - - - - - 0x01F06B 07:F05B: A5 10     LDA ram_0010
-C - - - - - 0x01F06D 07:F05D: F0 07     BEQ bra_F066
+C - - - - - 0x01F06B 07:F05B: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01F06D 07:F05D: F0 07     BEQ bra_F066    ; if overworld
+; if dungeon
 C - - - - - 0x01F06F 07:F05F: A5 53     LDA ram_0053
 C - - - - - 0x01F071 07:F061: D0 03     BNE bra_F066
 bra_F063:
@@ -2069,8 +2082,9 @@ C - - - - - 0x01F073 07:F063: 20 B8 6F  JSR sub_bat_6FB8
 bra_F066:
 C - - - - - 0x01F076 07:F066: E0 00     CPX #$00
 C - - - - - 0x01F078 07:F068: D0 14     BNE bra_F07E
-C - - - - - 0x01F07A 07:F06A: A5 10     LDA ram_0010
-C - - - - - 0x01F07C 07:F06C: F0 10     BEQ bra_F07E
+C - - - - - 0x01F07A 07:F06A: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01F07C 07:F06C: F0 10     BEQ bra_F07E    ; if overworld
+; if dungeon
 C - - - - - 0x01F07E 07:F06E: A5 12     LDA ram_game_mode_main
 C - - - - - 0x01F080 07:F070: C9 09     CMP #con_GM_09
 C - - - - - 0x01F082 07:F072: F0 0A     BEQ bra_F07E
@@ -2188,16 +2202,18 @@ C - - - - - 0x01F13E 07:F12E: A5 0E     LDA ram_000E
 C - - - - - 0x01F140 07:F130: D0 E4     BNE bra_F116
 C - - - - - 0x01F142 07:F132: 60        RTS
 bra_F133:
-C - - - - - 0x01F143 07:F133: A5 10     LDA ram_0010
-C - - - - - 0x01F145 07:F135: D0 08     BNE bra_F13F
+C - - - - - 0x01F143 07:F133: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01F145 07:F135: D0 08     BNE bra_F13F    ; if dungeon
+; if overworld
 C - - - - - 0x01F147 07:F137: A9 01     LDA #con_prg_bank + $01
 C - - - - - 0x01F149 07:F139: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01F14C 07:F13C: 20 23 A2  JSR sub_0x006233
 bra_F13F:
 C - - - - - 0x01F14F 07:F13F: 20 49 F1  JSR sub_F149
 C - - - - - 0x01F152 07:F142: 85 F8     STA ram_btn_press
-C - - - - - 0x01F154 07:F144: A5 10     LDA ram_0010
-C - - - - - 0x01F156 07:F146: F0 06     BEQ bra_F14E
+C - - - - - 0x01F154 07:F144: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01F156 07:F146: F0 06     BEQ bra_F14E    ; if overworld
+; if dungeon
 bra_F148_RTS:
 C - - - - - 0x01F158 07:F148: 60        RTS
 
@@ -2248,7 +2264,7 @@ C - - - - - 0x01F19A 07:F18A: 85 0F     STA ram_000F
 C - - - - - 0x01F19C 07:F18C: 85 AC     STA ram_drop_id
 C - - - - - 0x01F19E 07:F18E: 85 C0     STA ram_00C0
 C - - - - - 0x01F1A0 07:F190: 85 D3     STA ram_00D3
-C - - - - - 0x01F1A2 07:F192: 8D F0 04  STA ram_04F0
+C - - - - - 0x01F1A2 07:F192: 8D F0 04  STA ram_invinc_timer
 bra_F195:
 C - - - - - 0x01F1A5 07:F195: A2 00     LDX #$00
 C - - - - - 0x01F1A7 07:F197: 60        RTS
@@ -2419,8 +2435,9 @@ C - - - - - 0x01F246 07:F236: D0 04     BNE bra_F23C    ; jmp
 
 sub_0x01F248:
 loc_0x01F248:
-C D 3 - - - 0x01F248 07:F238: A5 10     LDA ram_0010
-C - - - - - 0x01F24A 07:F23A: D0 C0     BNE bra_F1FC_RTS
+C D 3 - - - 0x01F248 07:F238: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01F24A 07:F23A: D0 C0     BNE bra_F1FC_RTS    ; if dungeon
+; if overworld
 bra_F23C:
 sub_F23C:
 sub_0x01F24C:
@@ -2450,8 +2467,9 @@ bra_F265:
 C - - - - - 0x01F275 07:F265: A5 12     LDA ram_game_mode_main
 C - - - - - 0x01F277 07:F267: C9 05     CMP #con_GM_05
 C - - - - - 0x01F279 07:F269: D0 EA     BNE bra_F255
-C - - - - - 0x01F27B 07:F26B: A5 10     LDA ram_0010
-C - - - - - 0x01F27D 07:F26D: D0 0E     BNE bra_F27D
+C - - - - - 0x01F27B 07:F26B: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01F27D 07:F26D: D0 0E     BNE bra_F27D    ; if dungeon
+; if overworld
 C - - - - - 0x01F27F 07:F26F: A5 EB     LDA ram_map_location
 C - - - - - 0x01F281 07:F271: A0 05     LDY #$05
 bra_F273_loop:
@@ -2475,8 +2493,9 @@ C - - - - - 0x01F2A2 07:F292: A2 00     LDX #$00
 C - - - - - 0x01F2A4 07:F294: A5 98     LDA ram_direction
 C - - - - - 0x01F2A6 07:F296: 85 0F     STA ram_000F
 C - - - - - 0x01F2A8 07:F298: 20 FA ED  JSR sub_EDFA
-C - - - - - 0x01F2AB 07:F29B: A4 10     LDY ram_0010
-C - - - - - 0x01F2AD 07:F29D: F0 06     BEQ bra_F2A5
+C - - - - - 0x01F2AB 07:F29B: A4 10     LDY ram_dungeon_level
+C - - - - - 0x01F2AD 07:F29D: F0 06     BEQ bra_F2A5    ; if overworld
+; if dungeon
 C - - - - - 0x01F2AF 07:F29F: C9 F4     CMP #$F4
 C - - - - - 0x01F2B1 07:F2A1: F0 0A     BEQ bra_F2AD
 C - - - - - 0x01F2B3 07:F2A3: D0 3E     BNE bra_F2E3
@@ -2507,7 +2526,7 @@ C - - - - - 0x01F2E2 07:F2D2: 95 84     STA ram_pos_Y,X
 C - - - - - 0x01F2E4 07:F2D4: A9 5F     LDA #con_obj_id_5F
 C - - - - - 0x01F2E6 07:F2D6: 9D 4F 03  STA ram_obj_id,X
 C - - - - - 0x01F2E9 07:F2D9: 20 E4 EE  JSR sub_EEE4
-C - - - - - 0x01F2EC 07:F2DC: 9D F0 04  STA ram_04F0,X
+C - - - - - 0x01F2EC 07:F2DC: 9D F0 04  STA ram_invinc_timer,X
 C - - - - - 0x01F2EF 07:F2DF: A9 01     LDA #$01
 C - - - - - 0x01F2F1 07:F2E1: 95 AC     STA ram_drop_id,X
 bra_F2E3:
@@ -2529,8 +2548,9 @@ C - - - - - 0x01F30D 07:F2FD: 20 3C FA  JSR sub_FA3C
 C - - - - - 0x01F310 07:F300: A5 12     LDA ram_game_mode_main
 C - - - - - 0x01F312 07:F302: C9 09     CMP #con_GM_09
 C - - - - - 0x01F314 07:F304: F0 04     BEQ bra_F30A
-C - - - - - 0x01F316 07:F306: A5 10     LDA ram_0010
-C - - - - - 0x01F318 07:F308: D0 04     BNE bra_F30E
+C - - - - - 0x01F316 07:F306: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01F318 07:F308: D0 04     BNE bra_F30E    ; if dungeon
+; if overworld
 bra_F30A:
 C - - - - - 0x01F31A 07:F30A: E6 01     INC ram_0001
 C - - - - - 0x01F31C 07:F30C: E6 01     INC ram_0001
@@ -2742,8 +2762,9 @@ C - - - - - 0x01F469 07:F459: B5 84     LDA ram_pos_Y,X
 C - - - - - 0x01F46B 07:F45B: 18        CLC
 C - - - - - 0x01F46C 07:F45C: 65 03     ADC ram_0003
 C - - - - - 0x01F46E 07:F45E: 85 01     STA ram_0001
-C - - - - - 0x01F470 07:F460: A4 10     LDY ram_0010
-C - - - - - 0x01F472 07:F462: F0 08     BEQ bra_F46C
+C - - - - - 0x01F470 07:F460: A4 10     LDY ram_dungeon_level
+C - - - - - 0x01F472 07:F462: F0 08     BEQ bra_F46C    ; if overworld
+; if dungeon
 C - - - - - 0x01F474 07:F464: C9 3E     CMP #$3E
 C - - - - - 0x01F476 07:F466: 90 0D     BCC bra_F475
 C - - - - - 0x01F478 07:F468: C9 E8     CMP #$E8
@@ -3419,7 +3440,7 @@ C - - - - - 0x01F889 07:F879: C9 80     CMP #$80
 C - - - - - 0x01F88B 07:F87B: 90 D7     BCC bra_F854_RTS
 bra_F87D:
 C - - - - - 0x01F88D 07:F87D: A9 01     LDA #con_sfx_1_01
-C - - - - - 0x01F88F 07:F87F: 20 7C 6D  JSR sub_bat_6D7C
+C - - - - - 0x01F88F 07:F87F: 20 7C 6D  JSR sub_bat_6D7C_set_sfx_1
 C - - - - - 0x01F892 07:F882: A9 10     LDA #$10
 C - - - - - 0x01F894 07:F884: D0 A4     BNE bra_F82A
 loc_F886:
@@ -3446,8 +3467,9 @@ C - - - - - 0x01F8BF 07:F8AF: F6 AC     INC ram_drop_id,X
 bra_F8B1:
 C - - - - - 0x01F8C1 07:F8B1: B5 28     LDA ram_obj_timer,X
 C - - - - - 0x01F8C3 07:F8B3: F0 A0     BEQ bra_F855
-C - - - - - 0x01F8C5 07:F8B5: A5 10     LDA ram_0010
-C - - - - - 0x01F8C7 07:F8B7: F0 0C     BEQ bra_F8C5
+C - - - - - 0x01F8C5 07:F8B5: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01F8C7 07:F8B7: F0 0C     BEQ bra_F8C5    ; if overworld
+; if dungeon
 C - - - - - 0x01F8C9 07:F8B9: 8A        TXA
 C - - - - - 0x01F8CA 07:F8BA: 48        PHA
 C - - - - - 0x01F8CB 07:F8BB: A9 04     LDA #con_prg_bank + $04
@@ -3464,7 +3486,7 @@ C - - - - - 0x01F8E0 07:F8D0: A9 00     LDA #$00
 C - - - - - 0x01F8E2 07:F8D2: 85 0C     STA ram_000C
 C - - - - - 0x01F8E4 07:F8D4: A0 40     LDY #$40
 C - - - - - 0x01F8E6 07:F8D6: 20 E6 77  JSR sub_bat_77E6
-C - - - - - 0x01F8E9 07:F8D9: AD F0 04  LDA ram_04F0
+C - - - - - 0x01F8E9 07:F8D9: AD F0 04  LDA ram_invinc_timer
 C - - - - - 0x01F8EC 07:F8DC: D0 3F     BNE bra_F91D_RTS
 C - - - - - 0x01F8EE 07:F8DE: 86 00     STX ram_0000
 C - - - - - 0x01F8F0 07:F8E0: A2 00     LDX #$00
@@ -3548,7 +3570,7 @@ C - - - - - 0x01F95B 07:F94B: 48        PHA
 C - - - - - 0x01F95C 07:F94C: C9 03     CMP #$03
 C - - - - - 0x01F95E 07:F94E: D0 05     BNE bra_F955
 C - - - - - 0x01F960 07:F950: A9 10     LDA #con_sfx_3_10
-C - - - - - 0x01F962 07:F952: 20 80 6D  JSR sub_bat_6D80
+C - - - - - 0x01F962 07:F952: 20 80 6D  JSR sub_bat_6D80_set_sfx_3
 bra_F955:
 C - - - - - 0x01F965 07:F955: 68        PLA
 C - - - - - 0x01F966 07:F956: C9 05     CMP #$05
@@ -3560,8 +3582,9 @@ C - - - - - 0x01F96F 07:F95F: 60        RTS
 bra_F960:
 C - - - - - 0x01F970 07:F960: C9 04     CMP #$04
 C - - - - - 0x01F972 07:F962: D0 4A     BNE bra_F9AE
-C - - - - - 0x01F974 07:F964: A5 10     LDA ram_0010
-C - - - - - 0x01F976 07:F966: F0 46     BEQ bra_F9AE
+C - - - - - 0x01F974 07:F964: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01F976 07:F966: F0 46     BEQ bra_F9AE    ; if overworld
+; if dungeon
 C - - - - - 0x01F978 07:F968: A5 12     LDA ram_game_mode_main
 C - - - - - 0x01F97A 07:F96A: C9 09     CMP #con_GM_09
 C - - - - - 0x01F97C 07:F96C: F0 40     BEQ bra_F9AE
@@ -4162,8 +4185,9 @@ C - - - - - 0x01FCE7 07:FCD7: 4C DA FE  JMP loc_FEDA
 
 loc_FCDA:
 C D 3 - - - 0x01FCEA 07:FCDA: AE 40 03  LDX ram_0340
-C - - - - - 0x01FCED 07:FCDD: A5 10     LDA ram_0010
-C - - - - - 0x01FCEF 07:FCDF: D0 5B     BNE bra_FD3C
+C - - - - - 0x01FCED 07:FCDD: A5 10     LDA ram_dungeon_level
+C - - - - - 0x01FCEF 07:FCDF: D0 5B     BNE bra_FD3C    ; if dungeon
+; if overworld
 C - - - - - 0x01FCF1 07:FCE1: AD CD 04  LDA ram_04CD
 C - - - - - 0x01FCF4 07:FCE4: 29 08     AND #$08
 C - - - - - 0x01FCF6 07:FCE6: F0 54     BEQ bra_FD3C
@@ -4435,14 +4459,14 @@ C - - - - - 0x01FEA5 07:FE95: 4C 5A 8C  JMP loc_0x004C6A
 
 
 
-sub_FE98:
-sub_0x01FEA8:
-C - - - - - 0x01FEA8 07:FE98: BD F0 04  LDA ram_04F0,X
+sub_FE98_decrease_invincibility_timer:
+sub_0x01FEA8_decrease_invincibility_timer:
+C - - - - - 0x01FEA8 07:FE98: BD F0 04  LDA ram_invinc_timer,X
 C - - - - - 0x01FEAB 07:FE9B: F0 08     BEQ bra_FEA5_RTS
 C - - - - - 0x01FEAD 07:FE9D: A5 15     LDA ram_frame_cnt
 C - - - - - 0x01FEAF 07:FE9F: 4A        LSR
 C - - - - - 0x01FEB0 07:FEA0: B0 03     BCS bra_FEA5_RTS
-C - - - - - 0x01FEB2 07:FEA2: DE F0 04  DEC ram_04F0,X
+C - - - - - 0x01FEB2 07:FEA2: DE F0 04  DEC ram_invinc_timer,X
 bra_FEA5_RTS:
 C - - - - - 0x01FEB5 07:FEA5: 60        RTS
 

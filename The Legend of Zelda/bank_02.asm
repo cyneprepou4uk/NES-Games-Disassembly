@@ -183,7 +183,7 @@ C - - - - - 0x00906C 02:905C: 60        RTS
 ofs_006_905D_02:
 C - - J - - 0x00906D 02:905D: 20 25 E6  JSR sub_0x01E635_disable_rendering
 C - - - - - 0x009070 02:9060: A9 00     LDA #$00
-C - - - - - 0x009072 02:9062: 85 16     STA ram_cur_save_slot
+C - - - - - 0x009072 02:9062: 85 16     STA ram_current_save_slot
 C - - - - - 0x009074 02:9064: 20 F1 6D  JSR sub_bat_6FD1
 C - - - - - 0x009077 02:9067: A0 02     LDY #$02
 bra_9069_loop:
@@ -192,11 +192,11 @@ C - - - - - 0x00907B 02:906B: 99 33 06  STA ram_slot_active_flag,Y
 C - - - - - 0x00907E 02:906E: D0 13     BNE bra_9083
 C - - - - - 0x009080 02:9070: 98        TYA
 C - - - - - 0x009081 02:9071: 48        PHA
-C - - - - - 0x009082 02:9072: 84 16     STY ram_cur_save_slot
+C - - - - - 0x009082 02:9072: 84 16     STY ram_current_save_slot
 C - - - - - 0x009084 02:9074: 20 F1 6D  JSR sub_bat_6FD1
 C - - - - - 0x009087 02:9077: 20 5D A3  JSR sub_A35D
 C - - - - - 0x00908A 02:907A: A9 00     LDA #$00
-C - - - - - 0x00908C 02:907C: 85 16     STA ram_cur_save_slot
+C - - - - - 0x00908C 02:907C: 85 16     STA ram_current_save_slot
 C - - - - - 0x00908E 02:907E: 20 F1 6D  JSR sub_bat_6FD1
 C - - - - - 0x009091 02:9081: 68        PLA
 C - - - - - 0x009092 02:9082: A8        TAY
@@ -1931,7 +1931,7 @@ tbl_9D00_save_slot_addresses:
 
 sub_9D2A:
 C - - - - - 0x009D3A 02:9D2A: A9 FF     LDA #$FF
-C - - - - - 0x009D3C 02:9D2C: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x009D3C 02:9D2C: A4 16     LDY ram_current_save_slot
 bra_9D2E_loop:
 C - - - - - 0x009D3E 02:9D2E: 18        CLC
 C - - - - - 0x009D3F 02:9D2F: 69 0E     ADC #$0E
@@ -2171,7 +2171,7 @@ tbl_9E0E_offset:
 
 loc_0x009E21:
 C D 0 - - - 0x009E21 02:9E11: A9 00     LDA #$00
-C - - - - - 0x009E23 02:9E13: 85 16     STA ram_cur_save_slot
+C - - - - - 0x009E23 02:9E13: 85 16     STA ram_current_save_slot
 C - - - - - 0x009E25 02:9E15: 20 DE 9F  JSR sub_9FDE
 C - - - - - 0x009E28 02:9E18: 20 25 E6  JSR sub_0x01E635_disable_rendering
 C - - - - - 0x009E2B 02:9E1B: A5 13     LDA ram_game_mode_sub
@@ -2180,12 +2180,12 @@ C - - - - - 0x009E2F 02:9E1F: 20 6D E4  JSR sub_0x01E47D
 bra_9E22:
 C - - - - - 0x009E32 02:9E22: 20 2A 9D  JSR sub_9D2A
 C - - - - - 0x009E35 02:9E25: 20 37 A4  JSR sub_A437
-C - - - - - 0x009E38 02:9E28: E6 16     INC ram_cur_save_slot
-C - - - - - 0x009E3A 02:9E2A: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x009E38 02:9E28: E6 16     INC ram_current_save_slot
+C - - - - - 0x009E3A 02:9E2A: A5 16     LDA ram_current_save_slot
 C - - - - - 0x009E3C 02:9E2C: C9 03     CMP #$03
 C - - - - - 0x009E3E 02:9E2E: D0 F2     BNE bra_9E22
 C - - - - - 0x009E40 02:9E30: A9 00     LDA #$00
-C - - - - - 0x009E42 02:9E32: 85 16     STA ram_cur_save_slot
+C - - - - - 0x009E42 02:9E32: 85 16     STA ram_current_save_slot
 C - - - - - 0x009E44 02:9E34: A2 1C     LDX #$1C
 bra_9E36_loop:
 C - - - - - 0x009E46 02:9E36: BD 41 9D  LDA tbl_9D41,X
@@ -2272,17 +2272,17 @@ C - - - - - 0x009ECB 02:9EBB: C9 0F     CMP #con_GM_elimination
 C - - - - - 0x009ECD 02:9EBD: F0 11     BEQ bra_9ED0
 C - - - - - 0x009ECF 02:9EBF: A2 03     LDX #$03
 C - - - - - 0x009ED1 02:9EC1: A0 FF     LDY #$FF
-C - - - - - 0x009ED3 02:9EC3: 84 16     STY ram_cur_save_slot
+C - - - - - 0x009ED3 02:9EC3: 84 16     STY ram_current_save_slot
 bra_9EC5_loop:
 C - - - - - 0x009ED5 02:9EC5: C8        INY
-C - - - - - 0x009ED6 02:9EC6: E6 16     INC ram_cur_save_slot
+C - - - - - 0x009ED6 02:9EC6: E6 16     INC ram_current_save_slot
 C - - - - - 0x009ED8 02:9EC8: B9 33 06  LDA ram_slot_active_flag,Y
 C - - - - - 0x009EDB 02:9ECB: F0 03     BEQ bra_9ED0
 C - - - - - 0x009EDD 02:9ECD: CA        DEX
 C - - - - - 0x009EDE 02:9ECE: 10 F5     BPL bra_9EC5_loop
 bra_9ED0:
 C - - - - - 0x009EE0 02:9ED0: 20 8E A1  JSR sub_A18E
-C - - - - - 0x009EE3 02:9ED3: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x009EE3 02:9ED3: A5 16     LDA ram_current_save_slot
 C - - - - - 0x009EE5 02:9ED5: C9 03     CMP #$03
 C - - - - - 0x009EE7 02:9ED7: D0 05     BNE bra_9EDE
 C - - - - - 0x009EE9 02:9ED9: A9 F8     LDA #$F8
@@ -2310,7 +2310,7 @@ ofs_003_0x009F00_0E_register:
 C - - J - - 0x009F00 02:9EF0: A5 F8     LDA ram_btn_press
 C - - - - - 0x009F02 02:9EF2: 29 10     AND #con_btn_Start
 C - - - - - 0x009F04 02:9EF4: F0 06     BEQ bra_9EFC
-C - - - - - 0x009F06 02:9EF6: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x009F06 02:9EF6: A5 16     LDA ram_current_save_slot
 C - - - - - 0x009F08 02:9EF8: C9 03     CMP #$03
 C - - - - - 0x009F0A 02:9EFA: F0 03     BEQ bra_9EFF
 bra_9EFC:
@@ -2320,10 +2320,10 @@ C - - - - - 0x009F0F 02:9EFF: A9 00     LDA #$00
 C - - - - - 0x009F11 02:9F01: 8D 07 06  STA ram_0607
 C - - - - - 0x009F14 02:9F04: 8D 25 04  STA ram_0425
 C - - - - - 0x009F17 02:9F07: 8D 23 04  STA ram_0423
-C - - - - - 0x009F1A 02:9F0A: 85 16     STA ram_cur_save_slot
+C - - - - - 0x009F1A 02:9F0A: 85 16     STA ram_current_save_slot
 C - - - - - 0x009F1C 02:9F0C: AA        TAX
 loc_9F0D_loop:
-C D 0 - - - 0x009F1D 02:9F0D: A4 16     LDY ram_cur_save_slot
+C D 0 - - - 0x009F1D 02:9F0D: A4 16     LDY ram_current_save_slot
 C - - - - - 0x009F1F 02:9F0F: A9 FF     LDA #$FF
 C - - - - - 0x009F21 02:9F11: 99 2A 65  STA ram_slot_something,Y
 C - - - - - 0x009F24 02:9F14: 98        TYA
@@ -2398,15 +2398,15 @@ C - - - - - 0x009F9C 02:9F8C: AD 26 04  LDA ram_0426
 C - - - - - 0x009F9F 02:9F8F: F0 03     BEQ bra_9F94
 C - - - - - 0x009FA1 02:9F91: 20 C8 A3  JSR sub_A3C8
 bra_9F94:
-C - - - - - 0x009FA4 02:9F94: E6 16     INC ram_cur_save_slot
-C - - - - - 0x009FA6 02:9F96: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x009FA4 02:9F94: E6 16     INC ram_current_save_slot
+C - - - - - 0x009FA6 02:9F96: A5 16     LDA ram_current_save_slot
 C - - - - - 0x009FA8 02:9F98: C9 03     CMP #$03
 C - - - - - 0x009FAA 02:9F9A: F0 03     BEQ bra_9F9F
 C - - - - - 0x009FAC 02:9F9C: 4C 0D 9F  JMP loc_9F0D_loop
 bra_9F9F:
 C - - - - - 0x009FAF 02:9F9F: A9 00     LDA #$00
 C - - - - - 0x009FB1 02:9FA1: 8D 26 04  STA ram_0426
-C - - - - - 0x009FB4 02:9FA4: 85 16     STA ram_cur_save_slot
+C - - - - - 0x009FB4 02:9FA4: 85 16     STA ram_current_save_slot
 C - - - - - 0x009FB6 02:9FA6: 20 DE 9F  JSR sub_9FDE
 C - - - - - 0x009FB9 02:9FA9: A9 01     LDA #$01
 C - - - - - 0x009FBB 02:9FAB: 85 11     STA ram_0011
@@ -2415,7 +2415,7 @@ C - - - - - 0x009FBD 02:9FAD: 4C 03 A8  JMP loc_A803
 
 
 loc_9FB0:
-C D 0 - - - 0x009FC0 02:9FB0: A5 16     LDA ram_cur_save_slot
+C D 0 - - - 0x009FC0 02:9FB0: A5 16     LDA ram_current_save_slot
 C - - - - - 0x009FC2 02:9FB2: C9 03     CMP #$03
 C - - - - - 0x009FC4 02:9FB4: F0 03     BEQ bra_9FB9
 C - - - - - 0x009FC6 02:9FB6: 20 11 A0  JSR sub_A011
@@ -2433,7 +2433,7 @@ C - - - - - 0x009FD7 02:9FC7: C9 10     CMP #con_btn_Start
 C - - - - - 0x009FD9 02:9FC9: F0 03     BEQ bra_9FCE
 C - - - - - 0x009FDB 02:9FCB: 4C 04 A2  JMP loc_A204
 bra_9FCE:
-C - - - - - 0x009FDE 02:9FCE: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x009FDE 02:9FCE: A5 16     LDA ram_current_save_slot
 C - - - - - 0x009FE0 02:9FD0: C9 03     CMP #$03
 C - - - - - 0x009FE2 02:9FD2: D0 14     BNE bra_9FE8
 C - - - - - 0x009FE4 02:9FD4: A9 0E     LDA #con_GM_register
@@ -2449,7 +2449,7 @@ C - - - - - 0x009FF7 02:9FE7: 60        RTS
 bra_9FE8:
 C - - - - - 0x009FF8 02:9FE8: A9 08     LDA #con_sfx_1_plr_hit
 C - - - - - 0x009FFA 02:9FEA: 8D 01 06  STA ram_sfx_1
-C - - - - - 0x009FFD 02:9FED: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x009FFD 02:9FED: A4 16     LDY ram_current_save_slot
 C - - - - - 0x009FFF 02:9FEF: BE 08 9E  LDX tbl_9E08_offset,Y
 C - - - - - 0x00A002 02:9FF2: A0 04     LDY #$04
 bra_9FF4_loop:
@@ -2611,7 +2611,7 @@ C - - - - - 0x00A11A 02:A10A: 60        RTS
 loc_A10B:
 C D 1 - - - 0x00A11B 02:A10B: AD 20 04  LDA ram_0420
 C - - - - - 0x00A11E 02:A10E: D0 1E     BNE bra_A12E
-C - - - - - 0x00A120 02:A110: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A120 02:A110: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A122 02:A112: C0 03     CPY #$03
 C - - - - - 0x00A124 02:A114: F0 F4     BEQ bra_A10A_RTS
 C - - - - - 0x00A126 02:A116: B9 0B 9E  LDA tbl_9E0B,Y
@@ -2660,7 +2660,7 @@ C - - - - - 0x00A180 02:A170: AD 23 04  LDA ram_0423
 C - - - - - 0x00A183 02:A173: 38        SEC
 C - - - - - 0x00A184 02:A174: E9 08     SBC #$08
 C - - - - - 0x00A186 02:A176: 8D 23 04  STA ram_0423
-C - - - - - 0x00A189 02:A179: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A189 02:A179: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A18B 02:A17B: B9 0B 9E  LDA tbl_9E0B,Y
 C - - - - - 0x00A18E 02:A17E: 8D 21 04  STA ram_0421
 C - - - - - 0x00A191 02:A181: A5 70     LDA ram_pos_X
@@ -2680,7 +2680,7 @@ C - - - - - 0x00A1A0 02:A190: B9 F7 9D  LDA tbl_9DF7_spr_data,Y
 C - - - - - 0x00A1A3 02:A193: 99 01 02  STA ram_spr_T,Y
 C - - - - - 0x00A1A6 02:A196: 88        DEY
 C - - - - - 0x00A1A7 02:A197: 10 F7     BPL bra_A190_loop
-C - - - - - 0x00A1A9 02:A199: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A1A9 02:A199: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A1AB 02:A19B: B9 AF 9D  LDA tbl_9DAF_pos_Y,Y
 C - - - - - 0x00A1AE 02:A19E: 85 84     STA ram_pos_Y
 C - - - - - 0x00A1B0 02:A1A0: 8D 00 02  STA ram_spr_Y
@@ -2760,12 +2760,12 @@ C - - - - - 0x00A218 02:A208: F0 49     BEQ bra_A253_RTS
 bra_A20A:
 C - - - - - 0x00A21A 02:A20A: A9 01     LDA #con_sfx_2_cursor_select
 C - - - - - 0x00A21C 02:A20C: 8D 02 06  STA ram_sfx_2
-C - - - - - 0x00A21F 02:A20F: E6 16     INC ram_cur_save_slot
-C - - - - - 0x00A221 02:A211: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A21F 02:A20F: E6 16     INC ram_current_save_slot
+C - - - - - 0x00A221 02:A211: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A223 02:A213: C0 04     CPY #$04
 C - - - - - 0x00A225 02:A215: D0 04     BNE bra_A21B
 C - - - - - 0x00A227 02:A217: A0 00     LDY #$00
-C - - - - - 0x00A229 02:A219: 84 16     STY ram_cur_save_slot
+C - - - - - 0x00A229 02:A219: 84 16     STY ram_current_save_slot
 bra_A21B:
 C - - - - - 0x00A22B 02:A21B: B9 AF 9D  LDA tbl_9DAF_pos_Y,Y
 C - - - - - 0x00A22E 02:A21E: 8D 00 02  STA ram_spr_Y
@@ -2788,7 +2788,7 @@ C - - - - - 0x00A24E 02:A23E: 85 70     STA ram_pos_X
 C - - - - - 0x00A250 02:A240: A9 00     LDA #$00
 C - - - - - 0x00A252 02:A242: 8D 20 04  STA ram_0420
 C - - - - - 0x00A255 02:A245: 8D 21 04  STA ram_0421
-C - - - - - 0x00A258 02:A248: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A258 02:A248: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A25A 02:A24A: C0 03     CPY #$03
 C - - - - - 0x00A25C 02:A24C: F0 05     BEQ bra_A253_RTS
 C - - - - - 0x00A25E 02:A24E: B9 33 06  LDA ram_slot_active_flag,Y
@@ -2858,14 +2858,14 @@ ofs_006_A2A0_01:
 ofs_009_A2A0_00:
 C - - J - - 0x00A2B0 02:A2A0: 20 25 E6  JSR sub_0x01E635_disable_rendering
 C - - - - - 0x00A2B3 02:A2A3: A9 00     LDA #$00
-C - - - - - 0x00A2B5 02:A2A5: 85 16     STA ram_cur_save_slot
+C - - - - - 0x00A2B5 02:A2A5: 85 16     STA ram_current_save_slot
 bra_A2A7_loop:
-C - - - - - 0x00A2B7 02:A2A7: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A2B7 02:A2A7: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A2B9 02:A2A9: B9 2A 65  LDA ram_slot_something,Y
 C - - - - - 0x00A2BC 02:A2AC: D0 1F     BNE bra_A2CD
 C - - - - - 0x00A2BE 02:A2AE: 20 2A 9D  JSR sub_9D2A
 C - - - - - 0x00A2C1 02:A2B1: 20 E1 A3  JSR sub_A3E1
-C - - - - - 0x00A2C4 02:A2B4: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x00A2C4 02:A2B4: A5 16     LDA ram_current_save_slot
 C - - - - - 0x00A2C6 02:A2B6: 0A        ASL
 C - - - - - 0x00A2C7 02:A2B7: A8        TAY
 C - - - - - 0x00A2C8 02:A2B8: B9 9C 6D  LDA ram_6D9C,Y
@@ -2880,14 +2880,14 @@ C - - - - - 0x00A2DA 02:A2CA: 4C FC A2  JMP loc_A2FC
 bra_A2CD:
 C - - - - - 0x00A2DD 02:A2CD: 20 F1 6D  JSR sub_bat_6FD1
 C - - - - - 0x00A2E0 02:A2D0: 20 07 A3  JSR sub_A307
-C - - - - - 0x00A2E3 02:A2D3: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A2E3 02:A2D3: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A2E5 02:A2D5: B9 1E 65  LDA ram_651E,Y
 C - - - - - 0x00A2E8 02:A2D8: C9 5A     CMP #$5A
 C - - - - - 0x00A2EA 02:A2DA: D0 1A     BNE bra_A2F6
 C - - - - - 0x00A2EC 02:A2DC: B9 21 65  LDA ram_6521,Y
 C - - - - - 0x00A2EF 02:A2DF: C9 A5     CMP #$A5
 C - - - - - 0x00A2F1 02:A2E1: D0 13     BNE bra_A2F6
-C - - - - - 0x00A2F3 02:A2E3: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x00A2F3 02:A2E3: A5 16     LDA ram_current_save_slot
 C - - - - - 0x00A2F5 02:A2E5: 0A        ASL
 C - - - - - 0x00A2F6 02:A2E6: A8        TAY
 C - - - - - 0x00A2F7 02:A2E7: B9 24 65  LDA ram_6524,Y
@@ -2902,8 +2902,8 @@ C - - - - - 0x00A306 02:A2F6: 20 F1 6D  JSR sub_bat_6FD1
 C - - - - - 0x00A309 02:A2F9: 20 5D A3  JSR sub_A35D
 bra_A2FC:
 loc_A2FC:
-C D 1 - - - 0x00A30C 02:A2FC: E6 16     INC ram_cur_save_slot
-C - - - - - 0x00A30E 02:A2FE: A5 16     LDA ram_cur_save_slot
+C D 1 - - - 0x00A30C 02:A2FC: E6 16     INC ram_current_save_slot
+C - - - - - 0x00A30E 02:A2FE: A5 16     LDA ram_current_save_slot
 C - - - - - 0x00A310 02:A300: C9 03     CMP #$03
 C - - - - - 0x00A312 02:A302: D0 A3     BNE bra_A2A7_loop
 C - - - - - 0x00A314 02:A304: E6 13     INC ram_game_mode_sub
@@ -2999,7 +2999,7 @@ C - - - - - 0x00A3A3 02:A393: 91 0A     STA (ram_000A),Y
 C - - - - - 0x00A3A5 02:A395: 91 0C     STA (ram_000C),Y
 C - - - - - 0x00A3A7 02:A397: 20 F1 6D  JSR sub_bat_6FD1
 C - - - - - 0x00A3AA 02:A39A: 20 07 A3  JSR sub_A307
-C - - - - - 0x00A3AD 02:A39D: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A3AD 02:A39D: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A3AF 02:A39F: A9 00     LDA #$00
 C - - - - - 0x00A3B1 02:A3A1: 99 33 06  STA ram_slot_active_flag,Y
 C - - - - - 0x00A3B4 02:A3A4: 99 2D 06  STA ram_current_quest,Y
@@ -3024,7 +3024,7 @@ C - - - - - 0x00A3D7 02:A3C7: 60        RTS
 
 sub_A3C8:
 C - - - - - 0x00A3D8 02:A3C8: 20 E1 A3  JSR sub_A3E1
-C - - - - - 0x00A3DB 02:A3CB: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A3DB 02:A3CB: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A3DD 02:A3CD: A9 00     LDA #$00
 C - - - - - 0x00A3DF 02:A3CF: 99 2A 65  STA ram_slot_something,Y
 C - - - - - 0x00A3E2 02:A3D2: 98        TYA
@@ -3128,7 +3128,7 @@ C - - - - - 0x00A47F 02:A46F: 91 CC     STA (ram_00CC),Y
 C - - - - - 0x00A481 02:A471: 20 2A 9D  JSR sub_9D2A
 C - - - - - 0x00A484 02:A474: 20 E1 A3  JSR sub_A3E1
 C - - - - - 0x00A487 02:A477: A9 FF     LDA #$FF
-C - - - - - 0x00A489 02:A479: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A489 02:A479: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A48B 02:A47B: 99 2A 65  STA ram_slot_something,Y
 C - - - - - 0x00A48E 02:A47E: 60        RTS
 
@@ -3136,7 +3136,7 @@ C - - - - - 0x00A48E 02:A47E: 60        RTS
 
 ofs_009_A47F_01:
 C - - J - - 0x00A48F 02:A47F: A9 00     LDA #$00
-C - - - - - 0x00A491 02:A481: 85 16     STA ram_cur_save_slot
+C - - - - - 0x00A491 02:A481: 85 16     STA ram_current_save_slot
 C - - - - - 0x00A493 02:A483: 20 F1 6D  JSR sub_bat_6FD1
 C - - - - - 0x00A496 02:A486: A0 0B     LDY #$0B
 C - - - - - 0x00A498 02:A488: A2 00     LDX #$00
@@ -3190,7 +3190,7 @@ C - - - - - 0x00A4D6 02:A4C6: B9 54 A2  LDA tbl_A254,Y
 C - - - - - 0x00A4D9 02:A4C9: 99 02 03  STA ram_0302,Y
 C - - - - - 0x00A4DC 02:A4CC: 88        DEY
 C - - - - - 0x00A4DD 02:A4CD: 10 F7     BPL bra_A4C6_loop
-C - - - - - 0x00A4DF 02:A4CF: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A4DF 02:A4CF: A4 16     LDY ram_current_save_slot
 bra_A4D1:
 C - - - - - 0x00A4E1 02:A4D1: AD 03 03  LDA ram_0303
 C - - - - - 0x00A4E4 02:A4D4: 18        CLC
@@ -3206,7 +3206,7 @@ C - - - - - 0x00A4F8 02:A4E8: 8D 02 03  STA ram_0302
 C - - - - - 0x00A4FB 02:A4EB: 8D 16 03  STA ram_0316
 C - - - - - 0x00A4FE 02:A4EE: 88        DEY
 C - - - - - 0x00A4FF 02:A4EF: 10 E0     BPL bra_A4D1
-C - - - - - 0x00A501 02:A4F1: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x00A501 02:A4F1: A5 16     LDA ram_current_save_slot
 C - - - - - 0x00A503 02:A4F3: 0A        ASL
 C - - - - - 0x00A504 02:A4F4: 0A        ASL
 C - - - - - 0x00A505 02:A4F5: 0A        ASL
@@ -3219,7 +3219,7 @@ C - - - - - 0x00A50F 02:A4FF: E8        INX
 C - - - - - 0x00A510 02:A500: C8        INY
 C - - - - - 0x00A511 02:A501: C0 0B     CPY #$0B
 C - - - - - 0x00A513 02:A503: D0 F4     BNE bra_A4F9_loop
-C - - - - - 0x00A515 02:A505: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x00A515 02:A505: A5 16     LDA ram_current_save_slot
 C - - - - - 0x00A517 02:A507: 0A        ASL
 C - - - - - 0x00A518 02:A508: A8        TAY
 C - - - - - 0x00A519 02:A509: B9 50 06  LDA ram_0650,Y
@@ -3229,7 +3229,7 @@ C - - - - - 0x00A51F 02:A50F: B9 50 06  LDA ram_0650,Y
 C - - - - - 0x00A522 02:A512: 85 0F     STA ram_000F
 C - - - - - 0x00A524 02:A514: A0 0C     LDY #$0C
 C - - - - - 0x00A526 02:A516: 20 79 6E  JSR sub_bat_6E79
-C - - - - - 0x00A529 02:A519: E6 16     INC ram_cur_save_slot
+C - - - - - 0x00A529 02:A519: E6 16     INC ram_current_save_slot
 C - - - - - 0x00A52B 02:A51B: E6 13     INC ram_game_mode_sub
 C - - - - - 0x00A52D 02:A51D: 60        RTS
 
@@ -3281,11 +3281,11 @@ C - - - - - 0x00A57D 02:A56D: A5 0A     LDA ram_000A
 C - - - - - 0x00A57F 02:A56F: C9 03     CMP #$03
 C - - - - - 0x00A581 02:A571: D0 BE     BNE bra_A531_loop
 C - - - - - 0x00A583 02:A573: A0 FF     LDY #$FF
-C - - - - - 0x00A585 02:A575: 84 16     STY ram_cur_save_slot
+C - - - - - 0x00A585 02:A575: 84 16     STY ram_current_save_slot
 C - - - - - 0x00A587 02:A577: 8C 26 05  STY ram_0526
 bra_A57A:
 C - - - - - 0x00A58A 02:A57A: C8        INY
-C - - - - - 0x00A58B 02:A57B: E6 16     INC ram_cur_save_slot
+C - - - - - 0x00A58B 02:A57B: E6 16     INC ram_current_save_slot
 C - - - - - 0x00A58D 02:A57D: B9 33 06  LDA ram_slot_active_flag,Y
 C - - - - - 0x00A590 02:A580: F0 F8     BEQ bra_A57A
 C - - - - - 0x00A592 02:A582: A9 00     LDA #$00
@@ -3329,14 +3329,14 @@ C - - - - - 0x00A5B4 02:A5A4: F0 11     BEQ bra_A5B7
 bra_A5A6:
 C - - - - - 0x00A5B6 02:A5A6: A9 01     LDA #con_sfx_2_cursor_select
 C - - - - - 0x00A5B8 02:A5A8: 8D 02 06  STA ram_sfx_2
-C - - - - - 0x00A5BB 02:A5AB: E6 16     INC ram_cur_save_slot
-C - - - - - 0x00A5BD 02:A5AD: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x00A5BB 02:A5AB: E6 16     INC ram_current_save_slot
+C - - - - - 0x00A5BD 02:A5AD: A5 16     LDA ram_current_save_slot
 C - - - - - 0x00A5BF 02:A5AF: C9 05     CMP #$05
 C - - - - - 0x00A5C1 02:A5B1: D0 04     BNE bra_A5B7
 C - - - - - 0x00A5C3 02:A5B3: A9 00     LDA #$00
-C - - - - - 0x00A5C5 02:A5B5: 85 16     STA ram_cur_save_slot
+C - - - - - 0x00A5C5 02:A5B5: 85 16     STA ram_current_save_slot
 bra_A5B7:
-C - - - - - 0x00A5C7 02:A5B7: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A5C7 02:A5B7: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A5C9 02:A5B9: B9 33 06  LDA ram_slot_active_flag,Y
 C - - - - - 0x00A5CC 02:A5BC: F0 E8     BEQ bra_A5A6
 C - - - - - 0x00A5CE 02:A5BE: A0 02     LDY #$02
@@ -3345,7 +3345,7 @@ C - - - - - 0x00A5D0 02:A5C0: B9 89 A5  LDA tbl_A589_cursor_spr_data,Y
 C - - - - - 0x00A5D3 02:A5C3: 99 01 02  STA ram_spr_T,Y
 C - - - - - 0x00A5D6 02:A5C6: 88        DEY
 C - - - - - 0x00A5D7 02:A5C7: 10 F7     BPL bra_A5C0_loop
-C - - - - - 0x00A5D9 02:A5C9: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A5D9 02:A5C9: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A5DB 02:A5CB: B9 8C A5  LDA tbl_A58C_cursor_spr_Y,Y
 C - - - - - 0x00A5DE 02:A5CE: 8D 00 02  STA ram_spr_Y
 C - - - - - 0x00A5E1 02:A5D1: A9 58     LDA #$58
@@ -3363,13 +3363,13 @@ ofs_010_A5DF_01:
 C - - J - - 0x00A5EF 02:A5DF: A9 00     LDA #$00
 C - - - - - 0x00A5F1 02:A5E1: 8D 07 06  STA ram_0607
 C - - - - - 0x00A5F4 02:A5E4: A9 00     LDA #$00   ; bzk optimize, loading the same value twice
-C - - - - - 0x00A5F6 02:A5E6: 85 10     STA ram_0010
+C - - - - - 0x00A5F6 02:A5E6: 85 10     STA ram_dungeon_level
 C - - - - - 0x00A5F8 02:A5E8: 8D 56 06  STA ram_item_slot_index      ; con_item_sword
 C - - - - - 0x00A5FB 02:A5EB: 20 25 E6  JSR sub_0x01E635_disable_rendering
-C - - - - - 0x00A5FE 02:A5EE: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x00A5FE 02:A5EE: A5 16     LDA ram_current_save_slot
 C - - - - - 0x00A600 02:A5F0: C9 03     CMP #$03
 C - - - - - 0x00A602 02:A5F2: 90 0A     BCC bra_A5FE_cursor_at_some_slot
-C - - - - - 0x00A604 02:A5F4: A5 16     LDA ram_cur_save_slot   ; bzk optimize, loading the same value twice
+C - - - - - 0x00A604 02:A5F4: A5 16     LDA ram_current_save_slot   ; bzk optimize, loading the same value twice
 C - - - - - 0x00A606 02:A5F6: 18        CLC
 C - - - - - 0x00A607 02:A5F7: 69 0B     ADC #$0B    ; con_GM_register   con_GM_elimination
 C - - - - - 0x00A609 02:A5F9: 85 12     STA ram_game_mode_main
@@ -3511,13 +3511,13 @@ C - - - - - 0x00A6D6 02:A6C6: B9 57 06  LDA ram_items,Y
 C - - - - - 0x00A6D9 02:A6C9: 91 C0     STA (ram_00C0),Y
 C - - - - - 0x00A6DB 02:A6CB: 88        DEY
 C - - - - - 0x00A6DC 02:A6CC: 10 F8     BPL bra_A6C6_loop
-C - - - - - 0x00A6DE 02:A6CE: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A6DE 02:A6CE: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A6E0 02:A6D0: B9 30 06  LDA ram_death_cnt,Y
 C - - - - - 0x00A6E3 02:A6D3: A0 00     LDY #$00
 C - - - - - 0x00A6E5 02:A6D5: 91 CA     STA (ram_00CA),Y
 C - - - - - 0x00A6E7 02:A6D7: A9 01     LDA #$01
 C - - - - - 0x00A6E9 02:A6D9: 91 C6     STA (ram_00C6),Y
-C - - - - - 0x00A6EB 02:A6DB: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A6EB 02:A6DB: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A6ED 02:A6DD: 99 33 06  STA ram_slot_active_flag,Y
 C - - - - - 0x00A6F0 02:A6E0: B9 2D 06  LDA ram_current_quest,Y
 C - - - - - 0x00A6F3 02:A6E3: A0 00     LDY #$00
@@ -3569,12 +3569,12 @@ C - - - - - 0x00A743 02:A733: 60        RTS
 
 
 ofs_011_A734_01:
-C - - J - - 0x00A744 02:A734: A4 16     LDY ram_cur_save_slot
+C - - J - - 0x00A744 02:A734: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A746 02:A736: B9 2A 65  LDA ram_slot_something,Y
 C - - - - - 0x00A749 02:A739: D0 1C     BNE bra_A757
 C - - - - - 0x00A74B 02:A73B: 20 2A 9D  JSR sub_9D2A
 C - - - - - 0x00A74E 02:A73E: 20 E1 A3  JSR sub_A3E1
-C - - - - - 0x00A751 02:A741: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x00A751 02:A741: A5 16     LDA ram_current_save_slot
 C - - - - - 0x00A753 02:A743: 0A        ASL
 C - - - - - 0x00A754 02:A744: A8        TAY
 C - - - - - 0x00A755 02:A745: B9 9C 6D  LDA ram_6D9C,Y
@@ -3589,7 +3589,7 @@ bra_A757:
 C - - - - - 0x00A767 02:A757: E6 13     INC ram_game_mode_sub
 C - - - - - 0x00A769 02:A759: 60        RTS
 bra_A75A:
-- - - - - - 0x00A76A 02:A75A: A4 16     LDY ram_cur_save_slot
+- - - - - - 0x00A76A 02:A75A: A4 16     LDY ram_current_save_slot
 - - - - - - 0x00A76C 02:A75C: A9 FF     LDA #$FF
 - - - - - - 0x00A76E 02:A75E: 99 2A 65  STA ram_slot_something,Y
 - - - - - - 0x00A771 02:A761: E6 13     INC ram_game_mode_sub
@@ -3598,7 +3598,7 @@ bra_A75A:
 
 
 sub_A764:
-C - - - - - 0x00A774 02:A764: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A774 02:A764: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A776 02:A766: A9 00     LDA #$00
 C - - - - - 0x00A778 02:A768: 99 1E 65  STA ram_651E,Y
 C - - - - - 0x00A77B 02:A76B: 99 21 65  STA ram_6521,Y
@@ -3632,7 +3632,7 @@ C - - - - - 0x00A7AE 02:A79E: B1 0A     LDA (ram_000A),Y
 C - - - - - 0x00A7B0 02:A7A0: 48        PHA
 C - - - - - 0x00A7B1 02:A7A1: B1 0C     LDA (ram_000C),Y
 C - - - - - 0x00A7B3 02:A7A3: 48        PHA
-C - - - - - 0x00A7B4 02:A7A4: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A7B4 02:A7A4: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A7B6 02:A7A6: 68        PLA
 C - - - - - 0x00A7B7 02:A7A7: 99 2D 06  STA ram_current_quest,Y
 C - - - - - 0x00A7BA 02:A7AA: 68        PLA
@@ -3667,7 +3667,7 @@ C - - - - - 0x00A7E7 02:A7D7: D0 E4     BNE bra_A7BD_loop
 C - - - - - 0x00A7E9 02:A7D9: A5 0F     LDA ram_000F
 C - - - - - 0x00A7EB 02:A7DB: C9 07     CMP #$07
 C - - - - - 0x00A7ED 02:A7DD: D0 DE     BNE bra_A7BD_loop
-C - - - - - 0x00A7EF 02:A7DF: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A7EF 02:A7DF: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A7F1 02:A7E1: A9 5A     LDA #$5A
 C - - - - - 0x00A7F3 02:A7E3: 99 1E 65  STA ram_651E,Y
 C - - - - - 0x00A7F6 02:A7E6: A9 A5     LDA #$A5
@@ -3680,7 +3680,7 @@ C - - - - - 0x00A801 02:A7F1: 99 24 65  STA ram_6524,Y
 C - - - - - 0x00A804 02:A7F4: C8        INY
 C - - - - - 0x00A805 02:A7F5: B9 9C 6D  LDA ram_6D9D - 1,Y
 C - - - - - 0x00A808 02:A7F8: 99 24 65  STA ram_6524,Y
-C - - - - - 0x00A80B 02:A7FB: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A80B 02:A7FB: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A80D 02:A7FD: A9 FF     LDA #$FF
 C - - - - - 0x00A80F 02:A7FF: 99 2A 65  STA ram_slot_something,Y
 C - - - - - 0x00A812 02:A802: 60        RTS
@@ -3698,7 +3698,7 @@ C - - - - - 0x00A81B 02:A80B: 60        RTS
 
 
 sub_A80C:
-C - - - - - 0x00A81C 02:A80C: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A81C 02:A80C: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A81E 02:A80E: B9 A7 A6  LDA tbl_A6A7,Y
 C - - - - - 0x00A821 02:A811: 85 0C     STA ram_000C
 C - - - - - 0x00A823 02:A813: B9 AA A6  LDA tbl_A6AA,Y
@@ -3708,7 +3708,7 @@ C - - - - - 0x00A828 02:A818: 60        RTS
 
 
 sub_A819:
-C - - - - - 0x00A829 02:A819: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00A829 02:A819: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00A82B 02:A81B: B9 A1 A6  LDA tbl_A6A1,Y
 C - - - - - 0x00A82E 02:A81E: 85 0C     STA ram_000C
 C - - - - - 0x00A830 02:A820: B9 A4 A6  LDA tbl_A6A4,Y
@@ -3920,7 +3920,7 @@ C - - - - - 0x00AA22 02:AA12: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_
 - D 1 - I - 0x00AA27 02:AA17: A9 AA     .word ofs_013_AAA9_01
 - D 1 - I - 0x00AA29 02:AA19: A9 AA     .word ofs_013_AAA9_02
 - D 1 - I - 0x00AA2B 02:AA1B: C4 AB     .word ofs_013_ABC4_03
-- D 1 - I - 0x00AA2D 02:AA1D: 7F AB     .word ofs_013_AB7F_04
+- D 1 - I - 0x00AA2D 02:AA1D: 7F AB     .word ofs_013_AB7F_04_preparations_for_2nd_quest
 
 
 
@@ -4190,7 +4190,7 @@ C - - - - - 0x00AB8E 02:AB7E: 60        RTS
 
 
 
-ofs_013_AB7F_04:
+ofs_013_AB7F_04_preparations_for_2nd_quest:
 C - - J - - 0x00AB8F 02:AB7F: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
 C - - - - - 0x00AB92 02:AB82: A2 02     LDX #$02
 C - - - - - 0x00AB94 02:AB84: A9 78     LDA #$78
@@ -4263,7 +4263,7 @@ bra_ABF3:
 C - - - - - 0x00AC03 02:ABF3: 2A        ROL
 C - - - - - 0x00AC04 02:ABF4: 85 5C     STA ram_005C
 C - - - - - 0x00AC06 02:ABF6: A0 00     LDY #$00
-C - - - - - 0x00AC08 02:ABF8: A6 16     LDX ram_cur_save_slot
+C - - - - - 0x00AC08 02:ABF8: A6 16     LDX ram_current_save_slot
 C - - - - - 0x00AC0A 02:ABFA: BD 2D 06  LDA ram_current_quest,X
 C - - - - - 0x00AC0D 02:ABFD: F0 01     BEQ bra_AC00_1st_quest
 ; if 2nd quest
@@ -4658,14 +4658,14 @@ C - - - - - 0x00AE77 02:AE67: 90 79     BCC bra_AEE2
 C - - - - - 0x00AE79 02:AE69: AC 0E 05  LDY ram_050E
 C - - - - - 0x00AE7C 02:AE6C: C0 17     CPY #$17
 C - - - - - 0x00AE7E 02:AE6E: B0 72     BCS bra_AEE2
-C - - - - - 0x00AE80 02:AE70: A6 16     LDX ram_cur_save_slot
+C - - - - - 0x00AE80 02:AE70: A6 16     LDX ram_current_save_slot
 C - - - - - 0x00AE82 02:AE72: BD 2D 06  LDA ram_current_quest,X
 C - - - - - 0x00AE85 02:AE75: D0 04     BNE bra_AE7B    ; if 2nd quest
 ; if 1st quest
 C - - - - - 0x00AE87 02:AE77: C0 10     CPY #$10
 C - - - - - 0x00AE89 02:AE79: B0 64     BCS bra_AEDF
 bra_AE7B:
-C - - - - - 0x00AE8B 02:AE7B: A6 16     LDX ram_cur_save_slot
+C - - - - - 0x00AE8B 02:AE7B: A6 16     LDX ram_current_save_slot
 C - - - - - 0x00AE8D 02:AE7D: BD 2D 06  LDA ram_current_quest,X
 C - - - - - 0x00AE90 02:AE80: F0 08     BEQ bra_AE8A    ; if 1st quest
 ; if 2nd quest
@@ -4697,7 +4697,7 @@ C - - - - - 0x00AEBD 02:AEAD: C0 0C     CPY #$0C
 C - - - - - 0x00AEBF 02:AEAF: 90 2E     BCC bra_AEDF
 C - - - - - 0x00AEC1 02:AEB1: C0 11     CPY #$11
 C - - - - - 0x00AEC3 02:AEB3: D0 2A     BNE bra_AEDF
-C - - - - - 0x00AEC5 02:AEB5: A5 16     LDA ram_cur_save_slot
+C - - - - - 0x00AEC5 02:AEB5: A5 16     LDA ram_current_save_slot
 C - - - - - 0x00AEC7 02:AEB7: 0A        ASL
 C - - - - - 0x00AEC8 02:AEB8: 0A        ASL
 C - - - - - 0x00AEC9 02:AEB9: 0A        ASL
@@ -4710,7 +4710,7 @@ C - - - - - 0x00AED3 02:AEC3: C8        INY
 C - - - - - 0x00AED4 02:AEC4: E8        INX
 C - - - - - 0x00AED5 02:AEC5: E0 08     CPX #$08
 C - - - - - 0x00AED7 02:AEC7: 90 F4     BCC bra_AEBD_loop
-C - - - - - 0x00AED9 02:AEC9: AC 16 00  LDY a: ram_cur_save_slot
+C - - - - - 0x00AED9 02:AEC9: AC 16 00  LDY a: ram_current_save_slot
 C - - - - - 0x00AEDC 02:AECC: B9 30 06  LDA ram_death_cnt,Y
 C - - - - - 0x00AEDF 02:AECF: 20 55 6E  JSR sub_bat_6E55
 C - - - - - 0x00AEE2 02:AED2: A2 02     LDX #$02
@@ -4819,8 +4819,8 @@ C - - - - - 0x00AF8B 02:AF7B: A9 22     LDA #$22
 C - - - - - 0x00AF8D 02:AF7D: 8D 6F 06  STA ram_item_066F
 C - - - - - 0x00AF90 02:AF80: CE 70 06  DEC ram_item_0670    ; FF
 C - - - - - 0x00AF93 02:AF83: A9 08     LDA #$08
-C - - - - - 0x00AF95 02:AF85: 8D 7C 06  STA ram_item_067C
-C - - - - - 0x00AF98 02:AF88: A4 16     LDY ram_cur_save_slot
+C - - - - - 0x00AF95 02:AF85: 8D 7C 06  STA ram_item_max_bombs
+C - - - - - 0x00AF98 02:AF88: A4 16     LDY ram_current_save_slot
 C - - - - - 0x00AF9A 02:AF8A: A9 01     LDA #$01
 C - - - - - 0x00AF9C 02:AF8C: 99 2D 06  STA ram_current_quest,Y
 C - - - - - 0x00AF9F 02:AF8F: 60        RTS
