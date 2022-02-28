@@ -1725,7 +1725,7 @@ loc_8859:
 C D 0 - - - 0x014869 05:8859: 8D 94 03  STA ram_0394
 C - - - - - 0x01486C 05:885C: 20 5E B0  JSR sub_B05E
 C - - - - - 0x01486F 05:885F: A2 0B     LDX #$0B
-C - - - - - 0x014871 05:8861: 8E 40 03  STX ram_0340
+C - - - - - 0x014871 05:8861: 8E 40 03  STX ram_obj_index
 bra_8864:
 C - - - - - 0x014874 05:8864: DE 92 04  DEC ram_0492,X
 C - - - - - 0x014877 05:8867: 20 E4 EE  JSR sub_0x01EEF4
@@ -2310,7 +2310,7 @@ C - - - - - 0x014BF7 05:8BE7: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_
 
 
 sub_8BFA:
-C - - - - - 0x014C0A 05:8BFA: AC 40 03  LDY ram_0340
+C - - - - - 0x014C0A 05:8BFA: AC 40 03  LDY ram_obj_index
 bra_8BFD_loop:
 C - - - - - 0x014C0D 05:8BFD: B9 50 03  LDA ram_obj_id + 1,Y
 C - - - - - 0x014C10 05:8C00: F0 0C     BEQ bra_8C0E    ; if not exist
@@ -2352,7 +2352,7 @@ C - - - - - 0x014C3B 05:8C2B: F0 04     BEQ bra_8C31    ; if not exist
 C - - - - - 0x014C3D 05:8C2D: C9 53     CMP #$53
 C - - - - - 0x014C3F 05:8C2F: 90 F5     BCC bra_8C26
 bra_8C31:
-C - - - - - 0x014C41 05:8C31: AC 40 03  LDY ram_0340
+C - - - - - 0x014C41 05:8C31: AC 40 03  LDY ram_obj_index
 bra_8C34:
 C - - - - - 0x014C44 05:8C34: B9 50 03  LDA ram_obj_id + 1,Y
 C - - - - - 0x014C47 05:8C37: F0 0E     BEQ bra_8C47    ; if not exist

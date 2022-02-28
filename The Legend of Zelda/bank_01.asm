@@ -1943,7 +1943,7 @@ C - - - - - 0x006205 01:A1F5: 9D 06 03  STA ram_0306,X
 C - - - - - 0x006208 01:A1F8: 88        DEY
 C - - - - - 0x006209 01:A1F9: CA        DEX
 C - - - - - 0x00620A 01:A1FA: 10 F6     BPL bra_A1F2_loop
-C - - - - - 0x00620C 01:A1FC: AE 40 03  LDX ram_0340
+C - - - - - 0x00620C 01:A1FC: AE 40 03  LDX ram_obj_index
 C - - - - - 0x00620F 01:A1FF: 60        RTS
 
 
@@ -2163,7 +2163,7 @@ C - - - - - 0x00633A 01:A32A: A0 03     LDY #$03
 bra_A32C_loop:
 C - - - - - 0x00633C 01:A32C: 98        TYA
 C - - - - - 0x00633D 01:A32D: 18        CLC
-C - - - - - 0x00633E 01:A32E: 6D 40 03  ADC ram_0340
+C - - - - - 0x00633E 01:A32E: 6D 40 03  ADC ram_obj_index
 C - - - - - 0x006341 01:A331: AA        TAX
 C - - - - - 0x006342 01:A332: B9 0E A3  LDA tbl_A30E,Y
 C - - - - - 0x006345 01:A335: 95 70     STA ram_pos_X,X

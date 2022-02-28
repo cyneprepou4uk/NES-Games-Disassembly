@@ -587,7 +587,7 @@ ram_033C                                = $033C ; N/A
 ram_033D                                = $033D ; N/A
 ram_033E                                = $033E ; N/A
 ram_033F                                = $033F ; 4   
-ram_0340                                = $0340 ; 23   
+ram_obj_index                           = $0340 ; 23   
 ram_0341                                = $0341 ; 3   
 ram_0342                                = $0342 ; N/A
 ram_0343                                = $0343 ; 6   
@@ -599,6 +599,7 @@ ram_0346                                = $0346 ; 1
 ram_0347                                = $0347 ; N/A
 ram_0348                                = $0348 ; N/A
 ram_0349                                = $0349 ; N/A
+
 ram_min_collision_tile                  = $034A ; minimal tile id to collide with, objects walk through lower values
 
 ram_034B                                = $034B ; 3   
