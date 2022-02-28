@@ -55,6 +55,7 @@ C - - - - - 0x007E56 01:FE46: 19 7B FF  ORA tbl_FF7B_prg_bank,Y
 C - - - - - 0x007E59 01:FE49: 85 FF     STA ram_prg_bank
 C - - - - - 0x007E5B 01:FE4B: 8D F8 FF  STA $FFF8
 - - - - - - 0x007E5E 01:FE4E: 20 5C FE  JSR sub_FE5C
+; bzk optimize, loading same A from 004A
 - - - - - - 0x007E61 01:FE51: 85 4A     STA ram_004A
 - - - - - - 0x007E63 01:FE53: 68        PLA
 - - - - - - 0x007E64 01:FE54: 85 FF     STA ram_prg_bank

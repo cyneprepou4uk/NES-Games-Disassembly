@@ -7,6 +7,7 @@
 
 con_prg_bank                            = $00 ; 
 con_tile_id                             = $00 ; 
+con_room_id                             = $00 ; 
 
 
 

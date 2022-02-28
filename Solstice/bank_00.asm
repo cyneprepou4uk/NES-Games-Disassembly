@@ -461,7 +461,7 @@ C - - - - - 0x000381 00:8371: A2 06     LDX #$06
 C - - - - - 0x000383 00:8373: 20 BF B6  JSR sub_B6BF_wait_for_nmi
 C - - - - - 0x000386 00:8376: A2 70     LDX #< tbl_BC70
 C - - - - - 0x000388 00:8378: A0 BC     LDY #> tbl_BC70
-C - - - - - 0x00038A 00:837A: 20 B9 BF  JSR sub_BFB9
+C - - - - - 0x00038A 00:837A: 20 B9 BF  JSR sub_BFB9_write_palette_to_buffer_from_table
 C - - - - - 0x00038D 00:837D: A0 0D     LDY #$0D
 bra_837F_loop:
 C - - - - - 0x00038F 00:837F: A2 3C     LDX #$3C
@@ -600,15 +600,15 @@ C - - - - - 0x00044F 00:843F: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
 C - - - - - 0x000452 00:8442: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
 C - - - - - 0x000455 00:8445: 20 49 A7  JSR sub_A749
 C - - - - - 0x000458 00:8448: 20 F6 B6  JSR sub_B6F6_hide_all_sprites   ; bzk optimize, sprites are probably hidden already
-C - - - - - 0x00045B 00:844B: 20 19 BC  JSR sub_BC19
+C - - - - - 0x00045B 00:844B: 20 19 BC  JSR sub_BC19_write_black_palette_to_buffer
 C - - - - - 0x00045E 00:844E: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
 - D 0 - I - 0x000461 00:8451: 63        .byte con_bsw_21
 C - - - - - 0x000462 00:8452: A9 00     LDA #$00
 C - - - - - 0x000464 00:8454: 85 00     STA ram_0000
-C - - - - - 0x000466 00:8456: 20 19 BC  JSR sub_BC19
+C - - - - - 0x000466 00:8456: 20 19 BC  JSR sub_BC19_write_black_palette_to_buffer
 C - - - - - 0x000469 00:8459: A2 D5     LDX #< tbl_86D5
 C - - - - - 0x00046B 00:845B: A0 86     LDY #> tbl_86D5
-C - - - - - 0x00046D 00:845D: 20 B9 BF  JSR sub_BFB9
+C - - - - - 0x00046D 00:845D: 20 B9 BF  JSR sub_BFB9_write_palette_to_buffer_from_table
 C - - - - - 0x000470 00:8460: A2 01     LDX #$01
 C - - - - - 0x000472 00:8462: 20 BF B6  JSR sub_B6BF_wait_for_nmi
 C - - - - - 0x000475 00:8465: A2 04     LDX #$04
@@ -876,10 +876,10 @@ C - - - - - 0x0005DF 00:85CF: 10 D1     BPL bra_85A2_loop
 C - - - - - 0x0005E1 00:85D1: A9 00     LDA #$00
 loc_85D3:
 C D 0 - - - 0x0005E3 00:85D3: 8D 9D 07  STA ram_079D
-C - - - - - 0x0005E6 00:85D6: 20 19 BC  JSR sub_BC19
+C - - - - - 0x0005E6 00:85D6: 20 19 BC  JSR sub_BC19_write_black_palette_to_buffer
 C - - - - - 0x0005E9 00:85D9: A2 D5     LDX #< tbl_86D5
 C - - - - - 0x0005EB 00:85DB: A0 86     LDY #> tbl_86D5
-C - - - - - 0x0005ED 00:85DD: 20 B9 BF  JSR sub_BFB9
+C - - - - - 0x0005ED 00:85DD: 20 B9 BF  JSR sub_BFB9_write_palette_to_buffer_from_table
 C - - - - - 0x0005F0 00:85E0: A2 01     LDX #$01
 C - - - - - 0x0005F2 00:85E2: 20 BF B6  JSR sub_B6BF_wait_for_nmi
 bra_85E5_loop:
@@ -1120,7 +1120,7 @@ tbl_86D5:
 
 sub_86F5:
 C - - - - - 0x000705 00:86F5: 86 09     STX ram_0009
-C - - - - - 0x000707 00:86F7: 20 19 BC  JSR sub_BC19
+C - - - - - 0x000707 00:86F7: 20 19 BC  JSR sub_BC19_write_black_palette_to_buffer
 C - - - - - 0x00070A 00:86FA: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
 C - - - - - 0x00070D 00:86FD: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
 C - - - - - 0x000710 00:8700: A6 09     LDX ram_0009
@@ -1257,10 +1257,11 @@ C - - - - - 0x0007FF 00:87EF: A9 80     LDA #$80    ; set potion usage flag
 C - - - - - 0x000801 00:87F1: 8D 88 07  STA ram_potion_id
 loc_87F4:
 C D 0 - - - 0x000804 00:87F4: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
+; bzk optimize, storing the same value
 C - - - - - 0x000807 00:87F7: A5 15     LDA ram_current_room
 loc_87F9:
 C D 0 - - - 0x000809 00:87F9: 85 15     STA ram_current_room
-C - - - - - 0x00080B 00:87FB: C9 FE     CMP #$FE
+C - - - - - 0x00080B 00:87FB: C9 FE     CMP #con_room_id + $FE
 C - - - - - 0x00080D 00:87FD: D0 01     BNE bra_8800
 C - - - - - 0x00080F 00:87FF: 60        RTS
 bra_8800:
@@ -1566,6 +1567,7 @@ C - - - - - 0x000A7F 00:8A6F: 85 35     STA ram_pos_Z_obj
 C - - - - - 0x000A81 00:8A71: AD 69 07  LDA ram_0769
 C - - - - - 0x000A84 00:8A74: 8D 68 07  STA ram_0768
 C - - - - - 0x000A87 00:8A77: A5 15     LDA ram_current_room
+; bzk optimize, storing the same value at 87F9
 C - - - - - 0x000A89 00:8A79: 4C F9 87  JMP loc_87F9
 bra_8A7C_RTS:
 C - - - - - 0x000A8C 00:8A7C: 60        RTS
@@ -1653,7 +1655,7 @@ bra_8B13:
 C - - - - - 0x000B23 00:8B13: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
 C - - - - - 0x000B26 00:8B16: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
 - D 0 - I - 0x000B29 00:8B19: 6C        .byte con_bsw_24
-C - - - - - 0x000B2A 00:8B1A: 20 C2 8C  JSR sub_8CC2_set_palette
+C - - - - - 0x000B2A 00:8B1A: 20 C2 8C  JSR sub_8CC2_write_palette_to_buffer_2
 C - - - - - 0x000B2D 00:8B1D: A9 10     LDA #$10
 C - - - - - 0x000B2F 00:8B1F: 8D 01 01  STA ram_buffer_palette + $01
 C - - - - - 0x000B32 00:8B22: A9 20     LDA #$20
@@ -1716,7 +1718,7 @@ C - - - - - 0x000B7F 00:8B6F: 29 7F     AND #$7F    ; clear potion usage flag
 C - - - - - 0x000B81 00:8B71: 8D 88 07  STA ram_potion_id
 C - - - - - 0x000B84 00:8B74: 20 D6 8C  JSR sub_8CD6
 C - - - - - 0x000B87 00:8B77: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
-C - - - - - 0x000B8A 00:8B7A: 20 C2 8C  JSR sub_8CC2_set_palette
+C - - - - - 0x000B8A 00:8B7A: 20 C2 8C  JSR sub_8CC2_write_palette_to_buffer_2
 C - - - - - 0x000B8D 00:8B7D: 20 06 92  JSR sub_9206
 C - - - - - 0x000B90 00:8B80: A2 00     LDX #$00
 C - - - - - 0x000B92 00:8B82: A0 00     LDY #$00
@@ -1892,10 +1894,10 @@ C - - - - - 0x000CCF 00:8CBF: 4C 0A 88  JMP loc_880A
 
 
 
-sub_8CC2_set_palette:
+sub_8CC2_write_palette_to_buffer_2:
 C - - - - - 0x000CD2 00:8CC2: A2 1F     LDX #$1F
 bra_8CC4_loop:
-C - - - - - 0x000CD4 00:8CC4: BD F9 B7  LDA tbl_B7F9_palette,X
+C - - - - - 0x000CD4 00:8CC4: BD F9 B7  LDA tbl_B7F9_palette_2,X
 C - - - - - 0x000CD7 00:8CC7: 9D 00 01  STA ram_buffer_palette,X
 C - - - - - 0x000CDA 00:8CCA: CA        DEX
 C - - - - - 0x000CDB 00:8CCB: 10 F7     BPL bra_8CC4_loop
@@ -1904,8 +1906,8 @@ C - - - - - 0x000CDD 00:8CCD: 60        RTS
 
 
 tbl_8CCE:
-- D 0 - - - 0x000CDE 00:8CCE: 57        .byte $57   ; 
-- D 0 - - - 0x000CDF 00:8CCF: F0        .byte $F0   ; 
+- D 0 - - - 0x000CDE 00:8CCE: 57        .byte $57   ; 00
+- D 0 - - - 0x000CDF 00:8CCF: F0        .byte $F0   ; 01
 
 
 
@@ -1980,7 +1982,7 @@ C - - - - - 0x000D49 00:8D39: CA        DEX
 C - - - - - 0x000D4A 00:8D3A: 10 F8     BPL bra_8D34_loop
 C - - - - - 0x000D4C 00:8D3C: A9 57     LDA #$57
 C - - - - - 0x000D4E 00:8D3E: 8D 91 07  STA ram_jump_height
-C - - - - - 0x000D51 00:8D41: A9 00     LDA #$00
+C - - - - - 0x000D51 00:8D41: A9 00     LDA #con_room_id + $00
 C - - - - - 0x000D53 00:8D43: 85 15     STA ram_current_room
 C - - - - - 0x000D55 00:8D45: A9 04     LDA #$04
 C - - - - - 0x000D57 00:8D47: 8D 89 07  STA ram_lives
@@ -3339,42 +3341,42 @@ C - - - - - 0x001573 00:9563: 60        RTS
 
 tbl_9564:
 ; 00 (00)
-- D 0 - - - 0x001574 00:9564: B2        .byte $B2   ; 
+- D 0 - - - 0x001574 00:9564: B2        .byte con_room_id + $B2   ; 
 - D 0 - - - 0x001575 00:9565: 1C        .byte $1C   ; 
 - D 0 - - - 0x001576 00:9566: 1C        .byte $1C   ; 
 - D 0 - - - 0x001577 00:9567: 10        .byte $10   ; 
 
-- D 0 - - - 0x001578 00:9568: C3        .byte $C3   ; 
+- D 0 - - - 0x001578 00:9568: C3        .byte con_room_id + $C3   ; 
 - D 0 - - - 0x001579 00:9569: 4E        .byte $4E   ; 
 - D 0 - - - 0x00157A 00:956A: 0C        .byte $0C   ; 
 - D 0 - - - 0x00157B 00:956B: 10        .byte $10   ; 
 
 
 ; 08 (01)
-- D 0 - - - 0x00157C 00:956C: 7B        .byte $7B   ; 
+- D 0 - - - 0x00157C 00:956C: 7B        .byte con_room_id + $7B   ; 
 - D 0 - - - 0x00157D 00:956D: 0C        .byte $0C   ; 
 - D 0 - - - 0x00157E 00:956E: 0C        .byte $0C   ; 
 - D 0 - - - 0x00157F 00:956F: 10        .byte $10   ; 
 
-- D 0 - - - 0x001580 00:9570: 7C        .byte $7C   ; 
+- D 0 - - - 0x001580 00:9570: 7C        .byte con_room_id + $7C   ; 
 - D 0 - - - 0x001581 00:9571: 0C        .byte $0C   ; 
 - D 0 - - - 0x001582 00:9572: 0C        .byte $0C   ; 
 - D 0 - - - 0x001583 00:9573: 10        .byte $10   ; 
 
 
 ; 10 (02)
-- D 0 - - - 0x001584 00:9574: ED        .byte $ED   ; 
+- D 0 - - - 0x001584 00:9574: ED        .byte con_room_id + $ED   ; 
 - D 0 - - - 0x001585 00:9575: 0C        .byte $0C   ; 
 - D 0 - - - 0x001586 00:9576: 0C        .byte $0C   ; 
 - D 0 - - - 0x001587 00:9577: 10        .byte $10   ; 
 
-- D 0 - - - 0x001588 00:9578: EE        .byte $EE   ; 
+- D 0 - - - 0x001588 00:9578: EE        .byte con_room_id + $EE   ; 
 - D 0 - - - 0x001589 00:9579: 1C        .byte $1C   ; 
 - D 0 - - - 0x00158A 00:957A: 1C        .byte $1C   ; 
 - D 0 - - - 0x00158B 00:957B: 10        .byte $10   ; 
 
 
-; bzk garbage
+; bzk garbage? possible usage at 0x001538
 - - - - - - 0x00158C 00:957C: FF        .byte $FF   ; 
 
 
@@ -3524,42 +3526,42 @@ C - - - - - 0x001683 00:9673: 60        RTS
 
 tbl_9674:
 ; 00 (00)
-- D 0 - - - 0x001684 00:9674: 0D        .byte $0D   ; 
+- D 0 - - - 0x001684 00:9674: 0D        .byte con_room_id + $0D   ; 
 - D 0 - - - 0x001685 00:9675: 2C        .byte $2C   ; 
 - D 0 - - - 0x001686 00:9676: 2C        .byte $2C   ; 
 - D 0 - - - 0x001687 00:9677: 18        .byte $18   ; 
 ; 04 (01)
-- D 0 - - - 0x001688 00:9678: 42        .byte $42   ; 
+- D 0 - - - 0x001688 00:9678: 42        .byte con_room_id + $42   ; 
 - D 0 - - - 0x001689 00:9679: 2C        .byte $2C   ; 
 - D 0 - - - 0x00168A 00:967A: 0C        .byte $0C   ; 
 - D 0 - - - 0x00168B 00:967B: 18        .byte $18   ; 
 ; 08 (02)
-- D 0 - - - 0x00168C 00:967C: 25        .byte $25   ; 
+- D 0 - - - 0x00168C 00:967C: 25        .byte con_room_id + $25   ; 
 - D 0 - - - 0x00168D 00:967D: 0C        .byte $0C   ; 
 - D 0 - - - 0x00168E 00:967E: 4C        .byte $4C   ; 
 - D 0 - - - 0x00168F 00:967F: 18        .byte $18   ; 
 ; 0C (03)
-- D 0 - - - 0x001690 00:9680: C9        .byte $C9   ; 
+- D 0 - - - 0x001690 00:9680: C9        .byte con_room_id + $C9   ; 
 - D 0 - - - 0x001691 00:9681: 0C        .byte $0C   ; 
 - D 0 - - - 0x001692 00:9682: 0C        .byte $0C   ; 
 - D 0 - - - 0x001693 00:9683: 18        .byte $18   ; 
 ; 10 (04)
-- D 0 - - - 0x001694 00:9684: A8        .byte $A8   ; 
+- D 0 - - - 0x001694 00:9684: A8        .byte con_room_id + $A8   ; 
 - D 0 - - - 0x001695 00:9685: 0C        .byte $0C   ; 
 - D 0 - - - 0x001696 00:9686: 1C        .byte $1C   ; 
 - D 0 - - - 0x001697 00:9687: 40        .byte $40   ; 
 ; 14 (05)
-- D 0 - - - 0x001698 00:9688: 6D        .byte $6D   ; 
+- D 0 - - - 0x001698 00:9688: 6D        .byte con_room_id + $6D   ; 
 - D 0 - - - 0x001699 00:9689: 0C        .byte $0C   ; 
 - D 0 - - - 0x00169A 00:968A: 2C        .byte $2C   ; 
 - D 0 - - - 0x00169B 00:968B: 18        .byte $18   ; 
 ; 18 (06)
-- D 0 - - - 0x00169C 00:968C: 57        .byte $57   ; 
+- D 0 - - - 0x00169C 00:968C: 57        .byte con_room_id + $57   ; 
 - D 0 - - - 0x00169D 00:968D: 0C        .byte $0C   ; 
 - D 0 - - - 0x00169E 00:968E: 0C        .byte $0C   ; 
 - D 0 - - - 0x00169F 00:968F: 18        .byte $18   ; 
 ; 1C (07)
-- D 0 - - - 0x0016A0 00:9690: F0        .byte $F0   ; 
+- D 0 - - - 0x0016A0 00:9690: F0        .byte con_room_id + $F0   ; 
 - D 0 - - - 0x0016A1 00:9691: 2C        .byte $2C   ; 
 - D 0 - - - 0x0016A2 00:9692: 2C        .byte $2C   ; 
 - D 0 - - - 0x0016A3 00:9693: 18        .byte $18   ; 
@@ -4651,8 +4653,9 @@ sub_9CE4:
 C - - - - - 0x001CF4 00:9CE4: 48        PHA
 C - - - - - 0x001CF5 00:9CE5: 84 08     STY ram_0008
 C - - - - - 0x001CF7 00:9CE7: A5 15     LDA ram_current_room
-C - - - - - 0x001CF9 00:9CE9: C9 F3     CMP #$F3
+C - - - - - 0x001CF9 00:9CE9: C9 F3     CMP #con_room_id + $F3
 C - - - - - 0x001CFB 00:9CEB: D0 11     BNE bra_9CFE
+; F3
 C - - - - - 0x001CFD 00:9CED: 68        PLA
 C - - - - - 0x001CFE 00:9CEE: C9 08     CMP #$08
 C - - - - - 0x001D00 00:9CF0: D0 4B     BNE bra_9D3D
@@ -4672,7 +4675,10 @@ C D 0 - - - 0x001D18 00:9D08: B1 22     LDA (ram_0022),Y
 C - - - - - 0x001D1A 00:9D0A: C9 FF     CMP #$FF
 C - - - - - 0x001D1C 00:9D0C: F0 2E     BEQ bra_9D3C_FF
 C - - - - - 0x001D1E 00:9D0E: C5 15     CMP ram_current_room
-C - - - - - 0x001D20 00:9D10: D0 1F     BNE bra_9D31
+C - - - - - 0x001D20 00:9D10: D0 1F     BNE bra_9D31_room_does_not_match
+; bzk optimize, if room was found, the loop goes on anyway
+; need to quit the loop at the end in that case, no reason to search other rooms
+; probably the code is similar to 0x001DA3, where the same room can orrur several times in a table
 C - - - - - 0x001D22 00:9D12: C8        INY
 C - - - - - 0x001D23 00:9D13: B1 22     LDA (ram_0022),Y
 C - - - - - 0x001D25 00:9D15: 38        SEC
@@ -4696,7 +4702,7 @@ C D 0 - - - 0x001D3C 00:9D2C: 08        PHP
 C - - - - - 0x001D3D 00:9D2D: A4 08     LDY ram_0008
 C - - - - - 0x001D3F 00:9D2F: 28        PLP
 C - - - - - 0x001D40 00:9D30: 60        RTS
-bra_9D31:
+bra_9D31_room_does_not_match:
 C - - - - - 0x001D41 00:9D31: C8        INY
 C - - - - - 0x001D42 00:9D32: C8        INY
 bra_9D33:
@@ -4716,51 +4722,63 @@ C - - - - - 0x001D51 00:9D41: 60        RTS
 
 
 tbl_9D42:
-- D 0 - I - 0x001D52 00:9D42: B1        .byte $B1   ; 
+; bzk optimize, 3rd byte is always 00
+- D 0 - I - 0x001D52 00:9D42: B1        .byte con_room_id + $B1   ; 
 - D 0 - I - 0x001D53 00:9D43: D2        .byte $D2   ; 
 - D 0 - I - 0x001D54 00:9D44: 00        .byte $00   ; 
 - - - - - - 0x001D55 00:9D45: 08        .byte $08   ; 
-- D 0 - I - 0x001D56 00:9D46: B2        .byte $B2   ; 
+
+- D 0 - I - 0x001D56 00:9D46: B2        .byte con_room_id + $B2   ; 
 - D 0 - I - 0x001D57 00:9D47: D2        .byte $D2   ; 
 - D 0 - I - 0x001D58 00:9D48: 00        .byte $00   ; 
 - - - - - - 0x001D59 00:9D49: 02        .byte $02   ; 
-- D 0 - I - 0x001D5A 00:9D4A: A4        .byte $A4   ; 
+
+- D 0 - I - 0x001D5A 00:9D4A: A4        .byte con_room_id + $A4   ; 
 - D 0 - I - 0x001D5B 00:9D4B: D4        .byte $D4   ; 
 - D 0 - I - 0x001D5C 00:9D4C: 00        .byte $00   ; 
 - - - - - - 0x001D5D 00:9D4D: 08        .byte $08   ; 
-- D 0 - I - 0x001D5E 00:9D4E: B0        .byte $B0   ; 
+
+- D 0 - I - 0x001D5E 00:9D4E: B0        .byte con_room_id + $B0   ; 
 - D 0 - I - 0x001D5F 00:9D4F: D4        .byte $D4   ; 
 - D 0 - I - 0x001D60 00:9D50: 00        .byte $00   ; 
 - - - - - - 0x001D61 00:9D51: 02        .byte $02   ; 
-- D 0 - I - 0x001D62 00:9D52: A5        .byte $A5   ; 
+
+- D 0 - I - 0x001D62 00:9D52: A5        .byte con_room_id + $A5   ; 
 - D 0 - I - 0x001D63 00:9D53: D4        .byte $D4   ; 
 - D 0 - I - 0x001D64 00:9D54: 00        .byte $00   ; 
 - - - - - - 0x001D65 00:9D55: 08        .byte $08   ; 
-- D 0 - I - 0x001D66 00:9D56: A6        .byte $A6   ; 
+
+- D 0 - I - 0x001D66 00:9D56: A6        .byte con_room_id + $A6   ; 
 - D 0 - I - 0x001D67 00:9D57: D4        .byte $D4   ; 
 - D 0 - I - 0x001D68 00:9D58: 00        .byte $00   ; 
 - - - - - - 0x001D69 00:9D59: 02        .byte $02   ; 
-- D 0 - I - 0x001D6A 00:9D5A: EB        .byte $EB   ; 
+
+- D 0 - I - 0x001D6A 00:9D5A: EB        .byte con_room_id + $EB   ; 
 - D 0 - I - 0x001D6B 00:9D5B: D3        .byte $D3   ; 
 - D 0 - I - 0x001D6C 00:9D5C: 00        .byte $00   ; 
 - - - - - - 0x001D6D 00:9D5D: 01        .byte $01   ; 
-- D 0 - I - 0x001D6E 00:9D5E: D2        .byte $D2   ; 
+
+- D 0 - I - 0x001D6E 00:9D5E: D2        .byte con_room_id + $D2   ; 
 - D 0 - I - 0x001D6F 00:9D5F: FE        .byte $FE   ; 
 - D 0 - I - 0x001D70 00:9D60: 00        .byte $00   ; 
 - D 0 - I - 0x001D71 00:9D61: 04        .byte $04   ; 
-- D 0 - I - 0x001D72 00:9D62: 45        .byte $45   ; 
+
+- D 0 - I - 0x001D72 00:9D62: 45        .byte con_room_id + $45   ; 
 - D 0 - I - 0x001D73 00:9D63: FF        .byte $FF   ; 
 - D 0 - I - 0x001D74 00:9D64: 00        .byte $00   ; 
 - - - - - - 0x001D75 00:9D65: 02        .byte $02   ; 
-- D 0 - I - 0x001D76 00:9D66: 47        .byte $47   ; 
+
+- D 0 - I - 0x001D76 00:9D66: 47        .byte con_room_id + $47   ; 
 - D 0 - I - 0x001D77 00:9D67: FF        .byte $FF   ; 
 - D 0 - I - 0x001D78 00:9D68: 00        .byte $00   ; 
 - - - - - - 0x001D79 00:9D69: 08        .byte $08   ; 
-- D 0 - I - 0x001D7A 00:9D6A: F7        .byte $F7   ; 
+
+- D 0 - I - 0x001D7A 00:9D6A: F7        .byte con_room_id + $F7   ; 
 - D 0 - I - 0x001D7B 00:9D6B: FD        .byte $FD   ; 
 - D 0 - I - 0x001D7C 00:9D6C: 00        .byte $00   ; 
 - D 0 - I - 0x001D7D 00:9D6D: 04        .byte $04   ; 
-- D 0 - I - 0x001D7E 00:9D6E: FF        .byte $FF   ; 
+
+- D 0 - I - 0x001D7E 00:9D6E: FF        .byte $FF   ; end token
 
 
 
@@ -4773,8 +4791,9 @@ C - - - - - 0x001D88 00:9D78: A9 9D     LDA #> tbl_9DD3
 C - - - - - 0x001D8A 00:9D7A: 85 23     STA ram_0023
 C - - - - - 0x001D8C 00:9D7C: A0 00     LDY #$00
 C - - - - - 0x001D8E 00:9D7E: A5 15     LDA ram_current_room
-C - - - - - 0x001D90 00:9D80: C9 E0     CMP #$E0
+C - - - - - 0x001D90 00:9D80: C9 E0     CMP #con_room_id + $E0
 C - - - - - 0x001D92 00:9D82: D0 0F     BNE bra_9D93
+; E0
 C - - - - - 0x001D94 00:9D84: AD 95 07  LDA ram_staff_pieces
 C - - - - - 0x001D97 00:9D87: 29 1F     AND #$1F
 C - - - - - 0x001D99 00:9D89: C9 1F     CMP #$1F
@@ -4788,7 +4807,7 @@ C D 0 - - - 0x001DA3 00:9D93: B1 22     LDA (ram_0022),Y
 C - - - - - 0x001DA5 00:9D95: C9 FF     CMP #$FF
 C - - - - - 0x001DA7 00:9D97: F0 39     BEQ bra_9DD2_RTS
 C - - - - - 0x001DA9 00:9D99: C5 15     CMP ram_current_room
-C - - - - - 0x001DAB 00:9D9B: D0 2A     BNE bra_9DC7
+C - - - - - 0x001DAB 00:9D9B: D0 2A     BNE bra_9DC7_room_does_not_match
 C - - - - - 0x001DAD 00:9D9D: C8        INY
 C - - - - - 0x001DAE 00:9D9E: B1 22     LDA (ram_0022),Y
 C - - - - - 0x001DB0 00:9DA0: 38        SEC
@@ -4818,15 +4837,15 @@ C - - - - - 0x001DD2 00:9DC2: D0 F4     BNE bra_9DB8_loop
 C - - - - - 0x001DD4 00:9DC4: 88        DEY
 C - - - - - 0x001DD5 00:9DC5: 88        DEY
 C - - - - - 0x001DD6 00:9DC6: 88        DEY
-bra_9DC7:
+bra_9DC7_room_does_not_match:
 C - - - - - 0x001DD7 00:9DC7: C8        INY
 C - - - - - 0x001DD8 00:9DC8: C8        INY
 bra_9DC9:
 C - - - - - 0x001DD9 00:9DC9: C8        INY
 C - - - - - 0x001DDA 00:9DCA: C8        INY
-C - - - - - 0x001DDB 00:9DCB: D0 02     BNE bra_9DCF
+C - - - - - 0x001DDB 00:9DCB: D0 02     BNE bra_9DCF_not_overflow
 - - - - - - 0x001DDD 00:9DCD: E6 23     INC ram_0023
-bra_9DCF:
+bra_9DCF_not_overflow:
 C - - - - - 0x001DDF 00:9DCF: 4C 93 9D  JMP loc_9D93_loop
 bra_9DD2_RTS:
 C - - - - - 0x001DE2 00:9DD2: 60        RTS
@@ -4834,43 +4853,52 @@ C - - - - - 0x001DE2 00:9DD2: 60        RTS
 
 
 tbl_9DD3:
-- D 0 - I - 0x001DE3 00:9DD3: E4        .byte $E4   ; 
+- D 0 - I - 0x001DE3 00:9DD3: E4        .byte con_room_id + $E4   ; 
 - D 0 - I - 0x001DE4 00:9DD4: FE        .byte $FE   ; 
 - D 0 - I - 0x001DE5 00:9DD5: 00        .byte $00   ; 
 - D 0 - I - 0x001DE6 00:9DD6: 01        .byte $01   ; 
-- D 0 - I - 0x001DE7 00:9DD7: E4        .byte $E4   ; 
+
+- D 0 - I - 0x001DE7 00:9DD7: E4        .byte con_room_id + $E4   ; 
 - D 0 - I - 0x001DE8 00:9DD8: FE        .byte $FE   ; 
 - D 0 - I - 0x001DE9 00:9DD9: FF        .byte $FF   ; 
 - D 0 - I - 0x001DEA 00:9DDA: 02        .byte $02   ; 
-- D 0 - I - 0x001DEB 00:9DDB: D2        .byte $D2   ; 
+
+- D 0 - I - 0x001DEB 00:9DDB: D2        .byte con_room_id + $D2   ; 
 - D 0 - I - 0x001DEC 00:9DDC: FE        .byte $FE   ; 
 - D 0 - I - 0x001DED 00:9DDD: FF        .byte $FF   ; 
 - D 0 - I - 0x001DEE 00:9DDE: 02        .byte $02   ; 
-- D 0 - I - 0x001DEF 00:9DDF: 0C        .byte $0C   ; 
+
+- D 0 - I - 0x001DEF 00:9DDF: 0C        .byte con_room_id + $0C   ; 
 - D 0 - I - 0x001DF0 00:9DE0: D1        .byte $D1   ; 
 - D 0 - I - 0x001DF1 00:9DE1: 00        .byte $00   ; 
 - D 0 - I - 0x001DF2 00:9DE2: 03        .byte $03   ; 
-- D 0 - I - 0x001DF3 00:9DE3: 46        .byte $46   ; 
+
+- D 0 - I - 0x001DF3 00:9DE3: 46        .byte con_room_id + $46   ; 
 - D 0 - I - 0x001DF4 00:9DE4: FF        .byte $FF   ; 
 - D 0 - I - 0x001DF5 00:9DE5: 00        .byte $00   ; 
 - D 0 - I - 0x001DF6 00:9DE6: 01        .byte $01   ; 
-- D 0 - I - 0x001DF7 00:9DE7: 46        .byte $46   ; 
+
+- D 0 - I - 0x001DF7 00:9DE7: 46        .byte con_room_id + $46   ; 
 - D 0 - I - 0x001DF8 00:9DE8: FF        .byte $FF   ; 
 - D 0 - I - 0x001DF9 00:9DE9: FF        .byte $FF   ; 
 - D 0 - I - 0x001DFA 00:9DEA: 02        .byte $02   ; 
-- D 0 - I - 0x001DFB 00:9DEB: 45        .byte $45   ; 
+
+- D 0 - I - 0x001DFB 00:9DEB: 45        .byte con_room_id + $45   ; 
 - D 0 - I - 0x001DFC 00:9DEC: FF        .byte $FF   ; 
 - D 0 - I - 0x001DFD 00:9DED: FF        .byte $FF   ; 
 - D 0 - I - 0x001DFE 00:9DEE: 01        .byte $01   ; 
-- D 0 - I - 0x001DFF 00:9DEF: FA        .byte $FA   ; 
+
+- D 0 - I - 0x001DFF 00:9DEF: FA        .byte con_room_id + $FA   ; 
 - D 0 - I - 0x001E00 00:9DF0: FD        .byte $FD   ; 
 - D 0 - I - 0x001E01 00:9DF1: 00        .byte $00   ; 
 - D 0 - I - 0x001E02 00:9DF2: 01        .byte $01   ; 
-- D 0 - I - 0x001E03 00:9DF3: FA        .byte $FA   ; 
+
+- D 0 - I - 0x001E03 00:9DF3: FA        .byte con_room_id + $FA   ; 
 - D 0 - I - 0x001E04 00:9DF4: FD        .byte $FD   ; 
 - D 0 - I - 0x001E05 00:9DF5: FF        .byte $FF   ; 
 - D 0 - I - 0x001E06 00:9DF6: 02        .byte $02   ; 
-- D 0 - I - 0x001E07 00:9DF7: FF        .byte $FF   ; 
+
+- D 0 - I - 0x001E07 00:9DF7: FF        .byte $FF   ; end token
 
 
 
@@ -6573,7 +6601,7 @@ sub_A754:
 C - - - - - 0x002764 00:A754: 85 15     STA ram_current_room
 C - - - - - 0x002766 00:A756: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
 C - - - - - 0x002769 00:A759: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
-C - - - - - 0x00276C 00:A75C: 20 0D BC  JSR sub_BC0D
+C - - - - - 0x00276C 00:A75C: 20 0D BC  JSR sub_BC0D_write_palette_to_buffer_1
 C - - - - - 0x00276F 00:A75F: A5 15     LDA ram_current_room
 C - - - - - 0x002771 00:A761: 20 BF FE  JSR sub_inc_FEBF_prepare_room_data_pointers
 loc_A764_analyze_room_data:
@@ -9168,7 +9196,7 @@ C - - - - - 0x0037E8 00:B7D8: 60        RTS
 
 
 
-tbl_B7D9:
+tbl_B7D9_palette_1:
 - D 1 - - - 0x0037E9 00:B7D9: 0F        .byte $0F, $16, $29, $20   ; 
 - D 1 - - - 0x0037ED 00:B7DD: 0F        .byte $0F, $16, $22, $30   ; 
 - D 1 - - - 0x0037F1 00:B7E1: 0F        .byte $0F, $20, $16, $26   ; 
@@ -9181,7 +9209,7 @@ tbl_B7D9:
 
 
 
-tbl_B7F9_palette:
+tbl_B7F9_palette_2:
 - D 1 - - - 0x003809 00:B7F9: 0F        .byte $0F, $37, $17, $27   ; 
 - D 1 - - - 0x00380D 00:B7FD: 0F        .byte $0F, $09, $12, $22   ; 
 - D 1 - - - 0x003811 00:B801: 0F        .byte $0F, $1C, $2C, $16   ; 
@@ -9575,13 +9603,13 @@ C - - - - - 0x003ABF 00:BAAF: 4C E2 BB  JMP loc_BBE2
 
 
 tbl_BAB2:
-- D 1 - - - 0x003AC2 00:BAB2: 0A        .byte $0A   ; 01
-- D 1 - - - 0x003AC3 00:BAB3: 11        .byte $11   ; 02
-- D 1 - - - 0x003AC4 00:BAB4: 70        .byte $70   ; 03
-- D 1 - - - 0x003AC5 00:BAB5: B8        .byte $B8   ; 04
-- D 1 - - - 0x003AC6 00:BAB6: 2B        .byte $2B   ; 05
-- D 1 - - - 0x003AC7 00:BAB7: C5        .byte $C5   ; 06
-- - - - - - 0x003AC8 00:BAB8: F7        .byte $F7   ; 07
+- D 1 - - - 0x003AC2 00:BAB2: 0A        .byte con_room_id + $0A   ; 01
+- D 1 - - - 0x003AC3 00:BAB3: 11        .byte con_room_id + $11   ; 02
+- D 1 - - - 0x003AC4 00:BAB4: 70        .byte con_room_id + $70   ; 03
+- D 1 - - - 0x003AC5 00:BAB5: B8        .byte con_room_id + $B8   ; 04
+- D 1 - - - 0x003AC6 00:BAB6: 2B        .byte con_room_id + $2B   ; 05
+- D 1 - - - 0x003AC7 00:BAB7: C5        .byte con_room_id + $C5   ; 06
+- - - - - - 0x003AC8 00:BAB8: F7        .byte con_room_id + $F7   ; 07
 
 tbl_BAB9:
 - D 1 - - - 0x003AC9 00:BAB9: 08        .byte $08   ; 01
@@ -9652,7 +9680,7 @@ _off001_BACE_07:
 - D 1 - I - 0x003B01 00:BAF1: 0C        .byte $0C   ; 
 - D 1 - I - 0x003B02 00:BAF2: FE        .byte $FE   ; 
 - D 1 - I - 0x003B03 00:BAF3: 14        .byte $14   ; 
-- D 1 - I - 0x003B04 00:BAF4: FF        .byte $FF   ; 
+- D 1 - I - 0x003B04 00:BAF4: FF        .byte $FF   ; end token
 
 
 
@@ -9709,7 +9737,7 @@ _off001_BAF5_02:
 - D 1 - I - 0x003B36 00:BB26: 18        .byte $18   ; 
 - D 1 - I - 0x003B37 00:BB27: FE        .byte $FE   ; 
 - D 1 - I - 0x003B38 00:BB28: 5A        .byte $5A   ; 
-- D 1 - I - 0x003B39 00:BB29: FF        .byte $FF   ; 
+- D 1 - I - 0x003B39 00:BB29: FF        .byte $FF   ; end token
 
 
 
@@ -9744,7 +9772,7 @@ _off001_BB2A_03:
 - D 1 - I - 0x003B55 00:BB45: 14        .byte $14   ; 
 - D 1 - I - 0x003B56 00:BB46: FE        .byte $FE   ; 
 - D 1 - I - 0x003B57 00:BB47: 32        .byte $32   ; 
-- D 1 - I - 0x003B58 00:BB48: FF        .byte $FF   ; 
+- D 1 - I - 0x003B58 00:BB48: FF        .byte $FF   ; end token
 
 
 
@@ -9779,7 +9807,7 @@ _off001_BB49_04:
 - D 1 - I - 0x003B74 00:BB64: 1C        .byte $1C   ; 
 - D 1 - I - 0x003B75 00:BB65: FE        .byte $FE   ; 
 - D 1 - I - 0x003B76 00:BB66: 32        .byte $32   ; 
-- D 1 - I - 0x003B77 00:BB67: FF        .byte $FF   ; 
+- D 1 - I - 0x003B77 00:BB67: FF        .byte $FF   ; end token
 
 
 
@@ -9824,7 +9852,7 @@ _off001_BB68_05:
 - D 1 - I - 0x003B9D 00:BB8D: 20        .byte $20   ; 
 - D 1 - I - 0x003B9E 00:BB8E: FE        .byte $FE   ; 
 - D 1 - I - 0x003B9F 00:BB8F: 4B        .byte $4B   ; 
-- D 1 - I - 0x003BA0 00:BB90: FF        .byte $FF   ; 
+- D 1 - I - 0x003BA0 00:BB90: FF        .byte $FF   ; end token
 
 
 
@@ -9843,7 +9871,7 @@ _off001_BB91_06:
 - D 1 - I - 0x003BAC 00:BB9C: 01        .byte $01   ; 
 - D 1 - I - 0x003BAD 00:BB9D: FE        .byte $FE   ; 
 - D 1 - I - 0x003BAE 00:BB9E: 32        .byte $32   ; 
-- D 1 - I - 0x003BAF 00:BB9F: FF        .byte $FF   ; 
+- D 1 - I - 0x003BAF 00:BB9F: FF        .byte $FF   ; end token
 
 
 
@@ -9888,6 +9916,7 @@ C D 1 - - - 0x003BF2 00:BBE2: A0 00     LDY #$00
 C - - - - - 0x003BF4 00:BBE4: B1 4D     LDA (ram_004D),Y
 C - - - - - 0x003BF6 00:BBE6: C9 FE     CMP #$FE
 C - - - - - 0x003BF8 00:BBE8: D0 09     BNE bra_BBF3
+; FE
 C - - - - - 0x003BFA 00:BBEA: C8        INY
 C - - - - - 0x003BFB 00:BBEB: B1 4D     LDA (ram_004D),Y
 C - - - - - 0x003BFD 00:BBED: 8D A5 07  STA ram_07A5
@@ -9910,10 +9939,13 @@ bra_BC0A:
 loc_BC0A:
 C D 1 - - - 0x003C1A 00:BC0A: 85 0B     STA ram_000B
 C - - - - - 0x003C1C 00:BC0C: 60        RTS
-sub_BC0D:
+
+
+
+sub_BC0D_write_palette_to_buffer_1:
 C - - - - - 0x003C1D 00:BC0D: A2 1F     LDX #$1F
 bra_BC0F_loop:
-C - - - - - 0x003C1F 00:BC0F: BD D9 B7  LDA tbl_B7D9,X
+C - - - - - 0x003C1F 00:BC0F: BD D9 B7  LDA tbl_B7D9_palette_1,X
 C - - - - - 0x003C22 00:BC12: 9D 00 01  STA ram_buffer_palette,X
 C - - - - - 0x003C25 00:BC15: CA        DEX
 C - - - - - 0x003C26 00:BC16: 10 F7     BPL bra_BC0F_loop
@@ -9921,7 +9953,8 @@ C - - - - - 0x003C28 00:BC18: 60        RTS
 
 
 
-sub_BC19:
+sub_BC19_write_black_palette_to_buffer:
+; fill with 0F
 C - - - - - 0x003C29 00:BC19: A9 0F     LDA #$0F
 C - - - - - 0x003C2B 00:BC1B: A0 1F     LDY #$1F
 bra_BC1D_loop:
@@ -9999,7 +10032,7 @@ C - - - - - 0x003CC0 00:BCB0: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
 C - - - - - 0x003CC3 00:BCB3: A9 00     LDA #$00    ; con_tile_id + $00
 C - - - - - 0x003CC5 00:BCB5: 85 9E     STA ram_009E
 C - - - - - 0x003CC7 00:BCB7: 20 CF B6  JSR sub_B6CF_fill_nametables_and_hide_all_sprites
-C - - - - - 0x003CCA 00:BCBA: 20 19 BC  JSR sub_BC19
+C - - - - - 0x003CCA 00:BCBA: 20 19 BC  JSR sub_BC19_write_black_palette_to_buffer
 C - - - - - 0x003CCD 00:BCBD: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
 - D 1 - I - 0x003CD0 00:BCC0: 51        .byte con_bsw_1B
 C - - - - - 0x003CD1 00:BCC1: A2 04     LDX #$04
@@ -10013,7 +10046,7 @@ C - - - - - 0x003CE0 00:BCD0: 88        DEY
 C - - - - - 0x003CE1 00:BCD1: D0 FA     BNE bra_BCCD_loop
 C - - - - - 0x003CE3 00:BCD3: A2 30     LDX #< tbl_BC30
 C - - - - - 0x003CE5 00:BCD5: A0 BC     LDY #> tbl_BC30
-C - - - - - 0x003CE7 00:BCD7: 20 B9 BF  JSR sub_BFB9
+C - - - - - 0x003CE7 00:BCD7: 20 B9 BF  JSR sub_BFB9_write_palette_to_buffer_from_table
 C - - - - - 0x003CEA 00:BCDA: A0 5C     LDY #$5C
 bra_BCDC_loop:
 C - - - - - 0x003CEC 00:BCDC: 20 0D BE  JSR sub_BE0D_wait_for_nmi_2
@@ -10021,7 +10054,7 @@ C - - - - - 0x003CEF 00:BCDF: 88        DEY
 C - - - - - 0x003CF0 00:BCE0: D0 FA     BNE bra_BCDC_loop
 C - - - - - 0x003CF2 00:BCE2: A2 50     LDX #< tbl_BC50
 C - - - - - 0x003CF4 00:BCE4: A0 BC     LDY #> tbl_BC50
-C - - - - - 0x003CF6 00:BCE6: 20 B9 BF  JSR sub_BFB9
+C - - - - - 0x003CF6 00:BCE6: 20 B9 BF  JSR sub_BFB9_write_palette_to_buffer_from_table
 C - - - - - 0x003CF9 00:BCE9: A0 64     LDY #$64
 bra_BCEB_loop:
 C - - - - - 0x003CFB 00:BCEB: 20 0D BE  JSR sub_BE0D_wait_for_nmi_2
@@ -10065,7 +10098,7 @@ C - - - - - 0x003D38 00:BD28: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
 C - - - - - 0x003D3C 00:BD2C: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
 - D 1 - I - 0x003D3F 00:BD2F: 45        .byte con_bsw_17
 C - - - - - 0x003D40 00:BD30: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
-C - - - - - 0x003D43 00:BD33: 20 19 BC  JSR sub_BC19
+C - - - - - 0x003D43 00:BD33: 20 19 BC  JSR sub_BC19_write_black_palette_to_buffer
 C - - - - - 0x003D46 00:BD36: AD A7 07  LDA ram_07A7
 C - - - - - 0x003D49 00:BD39: F0 18     BEQ bra_BD53
 C - - - - - 0x003D4B 00:BD3B: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
@@ -10440,7 +10473,7 @@ C - - - - - 0x003F3E 00:BF2E: A2 04     LDX #$04
 C - - - - - 0x003F40 00:BF30: 20 BF B6  JSR sub_B6BF_wait_for_nmi
 C - - - - - 0x003F43 00:BF33: A2 30     LDX #< tbl_BC30
 C - - - - - 0x003F45 00:BF35: A0 BC     LDY #> tbl_BC30
-C - - - - - 0x003F47 00:BF37: 20 B9 BF  JSR sub_BFB9
+C - - - - - 0x003F47 00:BF37: 20 B9 BF  JSR sub_BFB9_write_palette_to_buffer_from_table
 bra_BF3A_infinite_loop:
 C - - - - - 0x003F4A 00:BF3A: A5 0A     LDA ram_buttons
 C - - - - - 0x003F4C 00:BF3C: 29 F0     AND #con_btns_SSAB
@@ -10483,7 +10516,7 @@ C - - - - - 0x003F8C 00:BF7C: A2 03     LDX #con_music_continue
 C - - - - - 0x003F8E 00:BF7E: 20 4D FF  JSR sub_inc_FF4D_play_music
 C - - - - - 0x003F91 00:BF81: A2 30     LDX #< tbl_BC30
 C - - - - - 0x003F93 00:BF83: A0 BC     LDY #> tbl_BC30
-C - - - - - 0x003F95 00:BF85: 20 B9 BF  JSR sub_BFB9
+C - - - - - 0x003F95 00:BF85: 20 B9 BF  JSR sub_BFB9_write_palette_to_buffer_from_table
 bra_BF88:
 C - - - - - 0x003F98 00:BF88: A0 36     LDY #$36
 bra_BF8A_loop:
@@ -10514,7 +10547,7 @@ C - - - - - 0x003FC8 00:BFB8: 60        RTS
 
 
 
-sub_BFB9:
+sub_BFB9_write_palette_to_buffer_from_table:
 C - - - - - 0x003FC9 00:BFB9: 86 0D     STX ram_000D
 C - - - - - 0x003FCB 00:BFBB: 84 0E     STY ram_000E
 C - - - - - 0x003FCD 00:BFBD: A0 1F     LDY #$1F
@@ -10646,6 +10679,7 @@ C - - - - - 0x00408D 01:C07D: A9 00     LDA #$00
 C - - - - - 0x00408F 01:C07F: 85 27     STA ram_0027
 C - - - - - 0x004091 01:C081: B1 22     LDA (ram_0022),Y
 C - - - - - 0x004093 01:C083: C8        INY
+; * 10h
 C - - - - - 0x004094 01:C084: 0A        ASL
 C - - - - - 0x004095 01:C085: 0A        ASL
 C - - - - - 0x004096 01:C086: 26 27     ROL ram_0027
@@ -16169,6 +16203,7 @@ tbl_D590:
 - D 2 - I - 0x0055AE 01:D59E: 0C        .byte $0C   ; 
 - D 2 - I - 0x0055AF 01:D59F: 3F        .byte $3F   ; 
 - D 2 - I - 0x0055B0 01:D5A0: 3F        .byte $3F   ; 
+
 - D 2 - I - 0x0055B1 01:D5A1: 73        .byte $73   ; 
 - D 2 - I - 0x0055B2 01:D5A2: 00        .byte $00   ; 
 - D 2 - I - 0x0055B3 01:D5A3: 00        .byte $00   ; 
@@ -16186,6 +16221,7 @@ tbl_D590:
 - D 2 - I - 0x0055BF 01:D5AF: 00        .byte $00   ; 
 - D 2 - I - 0x0055C0 01:D5B0: 00        .byte $00   ; 
 - D 2 - I - 0x0055C1 01:D5B1: CC        .byte $CC   ; 
+
 - D 2 - I - 0x0055C2 01:D5B2: 74        .byte $74   ; 
 - D 2 - I - 0x0055C3 01:D5B3: 03        .byte $03   ; 
 - D 2 - I - 0x0055C4 01:D5B4: 00        .byte $00   ; 
@@ -16203,6 +16239,7 @@ tbl_D590:
 - D 2 - I - 0x0055D0 01:D5C0: 03        .byte $03   ; 
 - D 2 - I - 0x0055D1 01:D5C1: 00        .byte $00   ; 
 - D 2 - I - 0x0055D2 01:D5C2: 00        .byte $00   ; 
+
 - D 2 - I - 0x0055D3 01:D5C3: 75        .byte $75   ; 
 - D 2 - I - 0x0055D4 01:D5C4: FC        .byte $FC   ; 
 - D 2 - I - 0x0055D5 01:D5C5: FC        .byte $FC   ; 
@@ -16241,6 +16278,7 @@ tbl_D5D4:
 - D 2 - I - 0x0055F2 01:D5E2: 00        .byte $00   ; 
 - D 2 - I - 0x0055F3 01:D5E3: 00        .byte $00   ; 
 - D 2 - I - 0x0055F4 01:D5E4: 33        .byte $33   ; 
+
 - D 2 - I - 0x0055F5 01:D5E5: 77        .byte $77   ; 
 - D 2 - I - 0x0055F6 01:D5E6: 00        .byte $00   ; 
 - D 2 - I - 0x0055F7 01:D5E7: 00        .byte $00   ; 
@@ -16258,6 +16296,7 @@ tbl_D5D4:
 - D 2 - I - 0x005603 01:D5F3: 30        .byte $30   ; 
 - D 2 - I - 0x005604 01:D5F4: FC        .byte $FC   ; 
 - D 2 - I - 0x005605 01:D5F5: FC        .byte $FC   ; 
+
 - D 2 - I - 0x005606 01:D5F6: 78        .byte $78   ; 
 - D 2 - I - 0x005607 01:D5F7: 3F        .byte $3F   ; 
 - D 2 - I - 0x005608 01:D5F8: 3F        .byte $3F   ; 
@@ -16275,6 +16314,7 @@ tbl_D5D4:
 - D 2 - I - 0x005614 01:D604: 3F        .byte $3F   ; 
 - D 2 - I - 0x005615 01:D605: 00        .byte $00   ; 
 - D 2 - I - 0x005616 01:D606: 00        .byte $00   ; 
+
 - D 2 - I - 0x005617 01:D607: 79        .byte $79   ; 
 - D 2 - I - 0x005618 01:D608: C0        .byte $C0   ; 
 - D 2 - I - 0x005619 01:D609: 00        .byte $00   ; 
