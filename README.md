@@ -34,6 +34,7 @@ Lua script will take care of it before compilation. You just write new code as u
 * Battle City (J) [!] `F599A07E`
 * Bugs Bunny Crazy Castle, The (U) [!] `DB0C3656`
 * Double Dragon II - The Revenge (J) `8CF69E4B`
+* Excitebike (JU) [!] `2BB33C69`
 * Ice Climber (J) [!] `80C41616`
 * Kunio-kun no Nekketsu Soccer League (J) [!] `61C27F7B`
 * Legend of Zelda, The (U) (PRG0) [!] `D7AE93DF`
