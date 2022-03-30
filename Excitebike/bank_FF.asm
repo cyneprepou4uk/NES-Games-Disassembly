@@ -667,7 +667,7 @@ C - - - - - 0x0002ED 00:C2DD: A9 38     LDA #$38
 C - - - - - 0x0002EF 00:C2DF: 85 31     STA ram_0031
 C - - - - - 0x0002F1 00:C2E1: A9 0F     LDA #$0F
 C - - - - - 0x0002F3 00:C2E3: 8D 15 40  STA $4015
-C - - - - - 0x0002F6 00:C2E6: AD 80 C0  LDA $C080
+C - - - - - 0x0002F6 00:C2E6: AD 80 C0  LDA tbl_C080
 C - - - - - 0x0002F9 00:C2E9: 8D 00 02  STA ram_spr_Y
 bra_C2EC_RTS:
 C - - - - - 0x0002FC 00:C2EC: 60        RTS
@@ -5310,7 +5310,7 @@ bra_DDAE:
 C - - - - - 0x001DBE 00:DDAE: 85 90     STA ram_0090
 C - - - - - 0x001DC0 00:DDB0: A2 01     LDX #$01
 C - - - - - 0x001DC2 00:DDB2: A5 B8     LDA ram_00B8
-C - - - - - 0x001DC4 00:DDB4: CD C4 D8  CMP $D8C4
+C - - - - - 0x001DC4 00:DDB4: CD C4 D8  CMP tbl_D8C4
 C - - - - - 0x001DC7 00:DDB7: D0 01     BNE bra_DDBA
 C - - - - - 0x001DC9 00:DDB9: CA        DEX
 bra_DDBA:
