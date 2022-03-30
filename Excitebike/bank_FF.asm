@@ -1648,6 +1648,8 @@ C - - - - - 0x000878 00:C868: 60        RTS
 ofs_001_C869_02_02:
 ofs_001_C869_07_01:
 ofs_001_C869_05_02:
+; clear 004D-00EF
+; bzk optimize
 C - - J - - 0x000879 00:C869: A9 00     LDA #$00
 C - - - - - 0x00087B 00:C86B: A2 EF     LDX #$EF
 bra_C86D_loop:
@@ -10368,7 +10370,7 @@ C - - - - - 0x00353E 00:F52E: F0 0A     BEQ bra_F53A
 - - - - - - 0x003542 00:F532: 85 EE     STA ram_00EE
 - - - - - - 0x003544 00:F534: 85 ED     STA ram_00ED
 - - - - - - 0x003546 00:F536: A9 7F     LDA #$7F
-- - - - - - 0x003548 00:F538: D0 53     BNE bra_F58D
+- - - - - - 0x003548 00:F538: D0 53     BNE bra_F58D    ; jmp
 bra_F53A:
 C - - - - - 0x00354A 00:F53A: E6 ED     INC ram_00ED
 C - - - - - 0x00354C 00:F53C: A4 ED     LDY ram_00ED
@@ -10551,7 +10553,7 @@ sub_F676:
 C - - - - - 0x003686 00:F676: A2 0A     LDX #$0A
 C - - - - - 0x003688 00:F678: A9 FC     LDA #$FC
 bra_F67A_loop:
-C - - - - - 0x00368A 00:F67A: 9D 03 03  STA ram_0303,X
+C - - - - - 0x00368A 00:F67A: 9D 03 03  STA ram_0304 - 1,X
 C - - - - - 0x00368D 00:F67D: CA        DEX
 C - - - - - 0x00368E 00:F67E: D0 FA     BNE bra_F67A_loop
 C - - - - - 0x003690 00:F680: 60        RTS
@@ -11525,6 +11527,7 @@ tbl_FBA5:
 - D 3 - - - 0x003BE0 00:FBD0: 0E        .byte $0E   ; 
 - D 3 - - - 0x003BE1 00:FBD1: 0E        .byte $0E   ; 
 - D 3 - - - 0x003BE2 00:FBD2: 0D        .byte $0D   ; 
+
 tbl_FBD3:
 - D 3 - - - 0x003BE3 00:FBD3: 30        .byte $30   ; 
 - D 3 - - - 0x003BE4 00:FBD4: 31        .byte $31   ; 
@@ -11557,6 +11560,7 @@ tbl_FBD3:
 - D 3 - - - 0x003BFF 00:FBEF: 38        .byte $38   ; 
 - D 3 - - - 0x003C00 00:FBF0: 36        .byte $36   ; 
 - D 3 - - - 0x003C01 00:FBF1: 35        .byte $35   ; 
+
 tbl_FBF2:
 - D 3 - - - 0x003C02 00:FBF2: 34        .byte $34   ; 
 - D 3 - - - 0x003C03 00:FBF3: 10        .byte $10   ; 
@@ -12389,7 +12393,16 @@ _off_001_FF64_00:
 
 vec_FFF0_IRQ:
 _off_001_FFF0_07:
-- - - - - - 0x004000 00:FFF0: 83        .byte $83, $00, $04, $14, $04, $14, $04, $14, $04, $D4   ; 
+- - - - - - 0x004000 00:FFF0: 83        .byte $83   ; 
+- - - - - - 0x004001 00:FFF1: 00        .byte $00   ; 
+- - - - - - 0x004002 00:FFF2: 04        .byte $04   ; 
+- - - - - - 0x004003 00:FFF3: 14        .byte $14   ; 
+- - - - - - 0x004004 00:FFF4: 04        .byte $04   ; 
+- - - - - - 0x004005 00:FFF5: 14        .byte $14   ; 
+- - - - - - 0x004006 00:FFF6: 04        .byte $04   ; 
+- - - - - - 0x004007 00:FFF7: 14        .byte $14   ; 
+- - - - - - 0x004008 00:FFF8: 04        .byte $04   ; 
+- - - - - - 0x004009 00:FFF9: D4        .byte $D4   ; 
 
 
 
