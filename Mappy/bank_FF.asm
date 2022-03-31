@@ -2086,7 +2086,7 @@ C - - - - - 0x000C4F 00:CC3F: F0 E0     BEQ bra_CC21_loop   ; jmp
 
 tbl_CC41:
 - D 2 - - - 0x000C51 00:CC41: 4B CC     .word off_CC4B_00
-- D 2 - - - 0x000C53 00:CC43: 60 CC     .word off_CC60_02
+- D 2 - - - 0x000C53 00:CC43: 60 CC     .word off_CC60_02_logo_screen
 - D 2 - - - 0x000C55 00:CC45: EF CC     .word off_CCEF_04
 - D 2 - - - 0x000C57 00:CC47: 03 CD     .word off_CD03_06
 - D 2 - - - 0x000C59 00:CC49: 17 CD     .word off_CD17_08
@@ -2104,7 +2104,7 @@ off_CC4B_00:
 
 
 
-off_CC60_02:
+off_CC60_02_logo_screen:
 - D 2 - I - 0x000C70 00:CC60: 20        .byte $20   ; counter
 - D 2 - I - 0x000C71 00:CC61: 00 3F     .word $3F00 ; ppu
 - D 2 - I - 0x000C73 00:CC63: 0F        .byte $0F, $30, $16, $21   ; backround palette
