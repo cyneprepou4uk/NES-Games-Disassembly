@@ -616,7 +616,7 @@ tbl_C356:
 - D 2 - - - 0x00037C 00:C36C: F6 C5     .word ofs_000_C5F6_16
 - D 2 - - - 0x00037E 00:C36E: 1E C6     .word ofs_000_C61E_18
 - - - - - - 0x000380 00:C370: 4F C1     .word ofs_000_C14F_1A_RTS
-- D 2 - - - 0x000382 00:C372: 87 C6     .word ofs_000_C687_1C
+- D 2 - - - 0x000382 00:C372: 87 C6     .word ofs_000_C687_1C_NAMCOT
 - D 2 - - - 0x000384 00:C374: AC C6     .word ofs_000_C6AC_1E
 - D 2 - - - 0x000386 00:C376: C1 C6     .word ofs_000_C6C1_20
 - D 2 - - - 0x000388 00:C378: 7C C3     .word ofs_000_C37C_22
@@ -1208,14 +1208,14 @@ C - - - - - 0x000696 00:C686: 60        RTS
 
 
 
-ofs_000_C687_1C:
+ofs_000_C687_1C_NAMCOT:
 C - - J - - 0x000697 00:C687: A9 02     LDA #$02
 C - - - - - 0x000699 00:C689: 85 13     STA ram_0013
 C - - - - - 0x00069B 00:C68B: A9 00     LDA #$00
 C - - - - - 0x00069D 00:C68D: 85 14     STA ram_0014
-C - - - - - 0x00069F 00:C68F: A9 F4     LDA #$F4
+C - - - - - 0x00069F 00:C68F: A9 F4     LDA #$F4    ; initial tile
 C - - - - - 0x0006A1 00:C691: 85 12     STA ram_0012
-C - - - - - 0x0006A3 00:C693: A9 08     LDA #$08
+C - - - - - 0x0006A3 00:C693: A9 08     LDA #$08    ; counter
 C - - - - - 0x0006A5 00:C695: 85 17     STA ram_0017
 bra_C697_loop:
 C - - - - - 0x0006A7 00:C697: 20 15 C4  JSR sub_C415_write_spr_data
@@ -2003,14 +2003,14 @@ C - - - - - 0x000BCE 00:CBBE: A0 04     LDY #$04
 C - - - - - 0x000BD0 00:CBC0: 20 D9 D5  JSR sub_D5D9
 C - - - - - 0x000BD3 00:CBC3: A0 08     LDY #$08
 C - - - - - 0x000BD5 00:CBC5: 20 D9 D5  JSR sub_D5D9
-C - - - - - 0x000BD8 00:CBC8: A9 B0     LDA #$B0
+C - - - - - 0x000BD8 00:CBC8: A9 B0     LDA #$B0    ; tiles for MAPPY at the logo
 C - - - - - 0x000BDA 00:CBCA: 85 10     STA ram_0010
 C - - - - - 0x000BDC 00:CBCC: A0 00     LDY #$00
 bra_CBCE_loop:
 C - - - - - 0x000BDE 00:CBCE: A2 14     LDX #$14
-C - - - - - 0x000BE0 00:CBD0: B9 EE CB  LDA tbl_CBED + 1,Y
+C - - - - - 0x000BE0 00:CBD0: B9 EE CB  LDA tbl_CBED_ppu + 1,Y
 C - - - - - 0x000BE3 00:CBD3: 8D 06 20  STA $2006
-C - - - - - 0x000BE6 00:CBD6: B9 ED CB  LDA tbl_CBED,Y
+C - - - - - 0x000BE6 00:CBD6: B9 ED CB  LDA tbl_CBED_ppu,Y
 C - - - - - 0x000BE9 00:CBD9: 8D 06 20  STA $2006
 bra_CBDC_loop:
 C - - - - - 0x000BEC 00:CBDC: A5 10     LDA ram_0010
@@ -2026,7 +2026,7 @@ C - - - - - 0x000BFC 00:CBEC: 60        RTS
 
 
 
-tbl_CBED:
+tbl_CBED_ppu:
 - D 2 - - - 0x000BFD 00:CBED: 07 21     .word $2107
 - D 2 - - - 0x000BFF 00:CBEF: 27 21     .word $2127
 - D 2 - - - 0x000C01 00:CBF1: 47 21     .word $2147
@@ -2086,16 +2086,16 @@ C - - - - - 0x000C4F 00:CC3F: F0 E0     BEQ bra_CC21_loop   ; jmp
 
 tbl_CC41:
 - D 2 - - - 0x000C51 00:CC41: 4B CC     .word off_CC4B_00
-- D 2 - - - 0x000C53 00:CC43: 60 CC     .word off_CC60_01
-- D 2 - - - 0x000C55 00:CC45: EF CC     .word off_CCEF_02
-- D 2 - - - 0x000C57 00:CC47: 03 CD     .word off_CD03_03
-- D 2 - - - 0x000C59 00:CC49: 17 CD     .word off_CD17_04
+- D 2 - - - 0x000C53 00:CC43: 60 CC     .word off_CC60_02
+- D 2 - - - 0x000C55 00:CC45: EF CC     .word off_CCEF_04
+- D 2 - - - 0x000C57 00:CC47: 03 CD     .word off_CD03_06
+- D 2 - - - 0x000C59 00:CC49: 17 CD     .word off_CD17_08
 
 
 
 off_CC4B_00:
-- D 2 - I - 0x000C5B 00:CC4B: 11        .byte $11   ; 
-- D 2 - I - 0x000C5C 00:CC4C: 4B 20     .word $204B
+- D 2 - I - 0x000C5B 00:CC4B: 11        .byte $11   ; counter
+- D 2 - I - 0x000C5C 00:CC4C: 4B 20     .word $204B ; ppu
 - D 2 - I - 0x000C5E 00:CC4E: A0        .byte $A0, $A1, $A2, $A3, $A4, $A5, $A6, $A7   ; HI-SCORE
 - D 2 - I - 0x000C66 00:CC56: 00        .byte $00, $00, $00, $AC, $AD, $00, $00, $00   ; MP
 - D 2 - I - 0x000C6E 00:CC5E: AE        .byte $AE   ; 
@@ -2104,90 +2104,90 @@ off_CC4B_00:
 
 
 
-off_CC60_01:
-- D 2 - I - 0x000C70 00:CC60: 20        .byte $20   ; 
-- D 2 - I - 0x000C71 00:CC61: 00 3F     .word $3F00
-- D 2 - I - 0x000C73 00:CC63: 0F        .byte $0F, $30, $16, $21   ; 
+off_CC60_02:
+- D 2 - I - 0x000C70 00:CC60: 20        .byte $20   ; counter
+- D 2 - I - 0x000C71 00:CC61: 00 3F     .word $3F00 ; ppu
+- D 2 - I - 0x000C73 00:CC63: 0F        .byte $0F, $30, $16, $21   ; backround palette
 - D 2 - I - 0x000C77 00:CC67: 0F        .byte $0F, $16, $17, $13   ; 
 - D 2 - I - 0x000C7B 00:CC6B: 0F        .byte $0F, $27, $29, $13   ; 
 - D 2 - I - 0x000C7F 00:CC6F: 0F        .byte $0F, $29, $21, $13   ; 
 
-- D 2 - I - 0x000C83 00:CC73: 0F        .byte $0F, $10, $11, $36   ; 
+- D 2 - I - 0x000C83 00:CC73: 0F        .byte $0F, $10, $11, $36   ; sprite palette
 - D 2 - I - 0x000C87 00:CC77: 0F        .byte $0F, $25, $11, $27   ; 
 - D 2 - I - 0x000C8B 00:CC7B: 0F        .byte $0F, $16, $11, $36   ; 
 - D 2 - I - 0x000C8F 00:CC7F: 0F        .byte $0F, $30, $30, $30   ; 
 
-- D 2 - I - 0x000C93 00:CC83: 06        .byte $06   ; 
-- D 2 - I - 0x000C94 00:CC84: D1 23     .word $23D1
+- D 2 - I - 0x000C93 00:CC83: 06        .byte $06   ; counter
+- D 2 - I - 0x000C94 00:CC84: D1 23     .word $23D1 ; ppu
 - D 2 - I - 0x000C96 00:CC86: 55        .byte $55, $55, $55, $AA, $FF, $FF   ; nametable attributes
 
-- D 2 - I - 0x000C9C 00:CC8C: 15        .byte $15   ; 
-- D 2 - I - 0x000C9D 00:CC8D: 45 20     .word $2045
-- D 2 - I - 0x000C9F 00:CC8F: A8        .byte $A8, $AA, $AB, $00, $00, $00, $A0, $A1   ; 
+- D 2 - I - 0x000C9C 00:CC8C: 15        .byte $15   ; counter
+- D 2 - I - 0x000C9D 00:CC8D: 45 20     .word $2045 ; ppu
+- D 2 - I - 0x000C9F 00:CC8F: A8        .byte $A8, $AA, $AB, $00, $00, $00, $A0, $A1   ; 1UP HI-SCORE 2UP
 - D 2 - I - 0x000CA7 00:CC97: A2        .byte $A2, $A3, $A4, $A5, $A6, $A7, $00, $00   ; 
 - D 2 - I - 0x000CAF 00:CC9F: 00        .byte $00, $00, $A9, $AA, $AB   ; 
 
-- D 2 - I - 0x000CB4 00:CCA4: 08        .byte $08   ; 
-- D 2 - I - 0x000CB5 00:CCA5: EB 21     .word $21EB
-- D 2 - I - 0x000CB7 00:CCA7: 02        .byte $02, $00, $1A, $16, $0B, $23, $0F, $1C   ; 
+- D 2 - I - 0x000CB4 00:CCA4: 08        .byte $08   ; counter
+- D 2 - I - 0x000CB5 00:CCA5: EB 21     .word $21EB ; ppu
+- D 2 - I - 0x000CB7 00:CCA7: 02        .byte $02, $00, $1A, $16, $0B, $23, $0F, $1C   ; 1 PLAYER
 
-- D 2 - I - 0x000CBF 00:CCAF: 09        .byte $09   ; 
-- D 2 - I - 0x000CC0 00:CCB0: 2B 22     .word $222B
-- D 2 - I - 0x000CC2 00:CCB2: 03        .byte $03, $00, $1A, $16, $0B, $23, $0F, $1C, $1D   ; 
+- D 2 - I - 0x000CBF 00:CCAF: 09        .byte $09   ; counter
+- D 2 - I - 0x000CC0 00:CCB0: 2B 22     .word $222B ; ppu
+- D 2 - I - 0x000CC2 00:CCB2: 03        .byte $03, $00, $1A, $16, $0B, $23, $0F, $1C, $1D   ; 2 PLAYERS
 
-- D 2 - I - 0x000CCB 00:CCBB: 01        .byte $01   ; 
-- D 2 - I - 0x000CCC 00:CCBC: 8B 22     .word $228B
-- D 2 - I - 0x000CCE 00:CCBE: 27        .byte $27   ; 
+- D 2 - I - 0x000CCB 00:CCBB: 01        .byte $01   ; counter
+- D 2 - I - 0x000CCC 00:CCBC: 8B 22     .word $228B ; ppu
+- D 2 - I - 0x000CCE 00:CCBE: 27        .byte $27   ; half of the letter N from NAMCOT
 
-- D 2 - I - 0x000CCF 00:CCBF: 16        .byte $16   ; 
-- D 2 - I - 0x000CD0 00:CCC0: E5 22     .word $22E5
-- D 2 - I - 0x000CD2 00:CCC2: 26        .byte $26, $00, $02, $0A, $09, $04, $00, $02   ; 
+- D 2 - I - 0x000CCF 00:CCBF: 16        .byte $16   ; counter
+- D 2 - I - 0x000CD0 00:CCC0: E5 22     .word $22E5 ; ppu
+- D 2 - I - 0x000CD2 00:CCC2: 26        .byte $26, $00, $02, $0A, $09, $04, $00, $02   ; @ 1993 1994 NAMCO LTD.
 - D 2 - I - 0x000CDA 00:CCCA: 0A        .byte $0A, $09, $05, $00, $18, $0B, $17, $0D   ; 
 - D 2 - I - 0x000CE2 00:CCD2: 19        .byte $19, $00, $16, $1E, $0E, $25   ; 
 
-- D 2 - I - 0x000CE8 00:CCD8: 13        .byte $13   ; 
-- D 2 - I - 0x000CE9 00:CCD9: 27 23     .word $2327
-- D 2 - I - 0x000CEB 00:CCDB: 0B        .byte $0B, $16, $16, $00, $1C, $13, $11, $12   ; 
+- D 2 - I - 0x000CE8 00:CCD8: 13        .byte $13   ; counter
+- D 2 - I - 0x000CE9 00:CCD9: 27 23     .word $2327 ; ppu
+- D 2 - I - 0x000CEB 00:CCDB: 0B        .byte $0B, $16, $16, $00, $1C, $13, $11, $12   ; ALL RIGHTS RESERVED
 - D 2 - I - 0x000CF3 00:CCE3: 1E        .byte $1E, $1D, $00, $1C, $0F, $1D, $0F, $1C   ; 
 - D 2 - I - 0x000CFB 00:CCEB: 20        .byte $20, $0F, $0E   ; 
 
-- D 2 - I - 0x000CFE 00:CCEE: 00        .byte $00   ; 
+- D 2 - I - 0x000CFE 00:CCEE: 00        .byte $00   ; end token
 
 
 
-off_CCEF_02:
-- D 2 - I - 0x000CFF 00:CCEF: 10        .byte $10   ; 
-- D 2 - I - 0x000D00 00:CCF0: 00 3F     .word $3F00
-- D 2 - I - 0x000D02 00:CCF2: 0F        .byte $0F, $30, $16, $21   ; 
+off_CCEF_04:
+- D 2 - I - 0x000CFF 00:CCEF: 10        .byte $10   ; counter
+- D 2 - I - 0x000D00 00:CCF0: 00 3F     .word $3F00 ; ppu
+- D 2 - I - 0x000D02 00:CCF2: 0F        .byte $0F, $30, $16, $21   ; backround palette
 - D 2 - I - 0x000D06 00:CCF6: 0F        .byte $0F, $16, $36, $17   ; 
 - D 2 - I - 0x000D0A 00:CCFA: 0F        .byte $0F, $19, $11, $36   ; 
 - D 2 - I - 0x000D0E 00:CCFE: 0F        .byte $0F, $29, $19, $13   ; 
 
-- D 2 - I - 0x000D12 00:CD02: 00        .byte $00   ; 
+- D 2 - I - 0x000D12 00:CD02: 00        .byte $00   ; end token
 
 
 
-off_CD03_03:
-- D 2 - I - 0x000D13 00:CD03: 10        .byte $10   ; 
-- D 2 - I - 0x000D14 00:CD04: 00 3F     .word $3F00
-- D 2 - I - 0x000D16 00:CD06: 0F        .byte $0F, $30, $16, $21   ; 
+off_CD03_06:
+- D 2 - I - 0x000D13 00:CD03: 10        .byte $10   ; counter
+- D 2 - I - 0x000D14 00:CD04: 00 3F     .word $3F00 ; ppu
+- D 2 - I - 0x000D16 00:CD06: 0F        .byte $0F, $30, $16, $21   ; backround palette
 - D 2 - I - 0x000D1A 00:CD0A: 0F        .byte $0F, $11, $36, $17   ; 
 - D 2 - I - 0x000D1E 00:CD0E: 0F        .byte $0F, $19, $11, $36   ; 
 - D 2 - I - 0x000D22 00:CD12: 0F        .byte $0F, $29, $19, $13   ; 
 
-- D 2 - I - 0x000D26 00:CD16: 00        .byte $00   ; 
+- D 2 - I - 0x000D26 00:CD16: 00        .byte $00   ; end token
 
 
 
-off_CD17_04:
-- D 2 - I - 0x000D27 00:CD17: 10        .byte $10   ; 
-- D 2 - I - 0x000D28 00:CD18: 00 3F     .word $3F00
-- D 2 - I - 0x000D2A 00:CD1A: 0F        .byte $0F, $30, $16, $21   ; 
+off_CD17_08:
+- D 2 - I - 0x000D27 00:CD17: 10        .byte $10   ; counter
+- D 2 - I - 0x000D28 00:CD18: 00 3F     .word $3F00 ; ppu
+- D 2 - I - 0x000D2A 00:CD1A: 0F        .byte $0F, $30, $16, $21   ; backround palette
 - D 2 - I - 0x000D2E 00:CD1E: 0F        .byte $0F, $19, $36, $17   ; 
 - D 2 - I - 0x000D32 00:CD22: 0F        .byte $0F, $19, $11, $36   ; 
 - D 2 - I - 0x000D36 00:CD26: 0F        .byte $0F, $29, $19, $13   ; 
 
-- D 2 - I - 0x000D3A 00:CD2A: 00        .byte $00   ; 
+- D 2 - I - 0x000D3A 00:CD2A: 00        .byte $00   ; end token
 
 
 
