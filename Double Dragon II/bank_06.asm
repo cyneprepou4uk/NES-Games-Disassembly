@@ -499,16 +499,16 @@ C - - - - - 0x01828C 06:827C: 60        RTS
 
 ; bzk optimize
 tbl_827D:
-- D 0 - - - 0x01828D 06:827D: 02        .byte $02   ; easy
-- D 0 - - - 0x01828E 06:827E: 02        .byte $02   ; normal
-- D 0 - - - 0x01828F 06:827F: 02        .byte $02   ; difficult
+- D 0 - - - 0x01828D 06:827D: 02        .byte $02   ; 00 easy
+- D 0 - - - 0x01828E 06:827E: 02        .byte $02   ; 01 normal
+- D 0 - - - 0x01828F 06:827F: 02        .byte $02   ; 02 difficult
 
 
 ; bzk optimize
 tbl_8280:
-- D 0 - - - 0x018290 06:8280: 01        .byte $01   ; easy
-- D 0 - - - 0x018291 06:8281: 01        .byte $01   ; normal
-- D 0 - - - 0x018292 06:8282: 01        .byte $01   ; difficult
+- D 0 - - - 0x018290 06:8280: 01        .byte $01   ; 00 easy
+- D 0 - - - 0x018291 06:8281: 01        .byte $01   ; 01 normal
+- D 0 - - - 0x018292 06:8282: 01        .byte $01   ; 02 difficult
 
 
 
@@ -552,16 +552,16 @@ C - - - - - 0x0182D4 06:82C4: 60        RTS
 
 ; bzk optimize
 tbl_82C5:
-- D 0 - - - 0x0182D5 06:82C5: 03        .byte $03   ; easy
-- D 0 - - - 0x0182D6 06:82C6: 03        .byte $03   ; normal
-- D 0 - - - 0x0182D7 06:82C7: 03        .byte $03   ; difficult
+- D 0 - - - 0x0182D5 06:82C5: 03        .byte $03   ; 00 easy
+- D 0 - - - 0x0182D6 06:82C6: 03        .byte $03   ; 01 normal
+- D 0 - - - 0x0182D7 06:82C7: 03        .byte $03   ; 02 difficult
 
 
 ; bzk optimize
 tbl_82C8:
-- D 0 - - - 0x0182D8 06:82C8: 06        .byte $06   ; easy
-- D 0 - - - 0x0182D9 06:82C9: 06        .byte $06   ; normal
-- D 0 - - - 0x0182DA 06:82CA: 06        .byte $06   ; difficult
+- D 0 - - - 0x0182D8 06:82C8: 06        .byte $06   ; 00 easy
+- D 0 - - - 0x0182D9 06:82C9: 06        .byte $06   ; 01 normal
+- D 0 - - - 0x0182DA 06:82CA: 06        .byte $06   ; 02 difficult
 
 
 
@@ -2626,13 +2626,14 @@ C - - - - - 0x018F53 06:8F43: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x018F55 06:8F45: 8D 24 04  STA ram_0424
 C - - - - - 0x018F58 06:8F48: 0A        ASL
 C - - - - - 0x018F59 06:8F49: AA        TAX
-C - - - - - 0x018F5A 06:8F4A: 90 0D     BCC bra_8F59
+C - - - - - 0x018F5A 06:8F4A: 90 0D     BCC bra_8F59_00_7F
+; 80-FF
 C - - - - - 0x018F5C 06:8F4C: BD A5 8F  LDA tbl_8FA5,X
 C - - - - - 0x018F5F 06:8F4F: 85 29     STA ram_0029
 C - - - - - 0x018F61 06:8F51: BD A6 8F  LDA tbl_8FA5 + 1,X
 C - - - - - 0x018F64 06:8F54: 85 2A     STA ram_002A
 C - - - - - 0x018F66 06:8F56: 4C 63 8F  JMP loc_8F63
-bra_8F59:
+bra_8F59_00_7F:
 C - - - - - 0x018F69 06:8F59: BD 6D 8F  LDA tbl_8F6D,X
 C - - - - - 0x018F6C 06:8F5C: 85 29     STA ram_0029
 C - - - - - 0x018F6E 06:8F5E: BD 6E 8F  LDA tbl_8F6D + 1,X
@@ -2681,8 +2682,8 @@ tbl_8F6D:
 
 
 tbl_8FA5:
-- D 0 - - - 0x018FB5 06:8FA5: C6 92     .word ofs_012_92C6_00
-- D 0 - - - 0x018FB7 06:8FA7: CE 92     .word ofs_012_92CE_01
+- D 0 - - - 0x018FB5 06:8FA5: C6 92     .word ofs_012_92C6_80
+- D 0 - - - 0x018FB7 06:8FA7: CE 92     .word ofs_012_92CE_81
 
 
 
@@ -2804,28 +2805,28 @@ sub_904E:
 C - - - - - 0x01905E 06:904E: A0 01     LDY #$01
 C - - - - - 0x019060 06:9050: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019062 06:9052: 8D A8 04  STA ram_04A8
-C - - - - - 0x019065 06:9055: C8        INY
+C - - - - - 0x019065 06:9055: C8        INY ; 02
 C - - - - - 0x019066 06:9056: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019068 06:9058: 8D A9 04  STA ram_04A9
-C - - - - - 0x01906B 06:905B: C8        INY
+C - - - - - 0x01906B 06:905B: C8        INY ; 03
 C - - - - - 0x01906C 06:905C: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x01906E 06:905E: 8D AA 04  STA ram_04AA
-C - - - - - 0x019071 06:9061: C8        INY
+C - - - - - 0x019071 06:9061: C8        INY ; 04
 C - - - - - 0x019072 06:9062: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019074 06:9064: 8D AB 04  STA ram_04AB
-C - - - - - 0x019077 06:9067: C8        INY
+C - - - - - 0x019077 06:9067: C8        INY ; 05
 C - - - - - 0x019078 06:9068: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x01907A 06:906A: 8D AC 04  STA ram_04AC
-C - - - - - 0x01907D 06:906D: C8        INY
+C - - - - - 0x01907D 06:906D: C8        INY ; 06
 C - - - - - 0x01907E 06:906E: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019080 06:9070: 8D AD 04  STA ram_04AD
-C - - - - - 0x019083 06:9073: C8        INY
+C - - - - - 0x019083 06:9073: C8        INY ; 07
 C - - - - - 0x019084 06:9074: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019086 06:9076: 8D AE 04  STA ram_04AE
-C - - - - - 0x019089 06:9079: C8        INY
+C - - - - - 0x019089 06:9079: C8        INY ; 08
 C - - - - - 0x01908A 06:907A: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x01908C 06:907C: 8D AF 04  STA ram_04AF
-C - - - - - 0x01908F 06:907F: C8        INY
+C - - - - - 0x01908F 06:907F: C8        INY ; 09
 C - - - - - 0x019090 06:9080: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019092 06:9082: 8D B0 04  STA ram_04B0
 C - - - - - 0x019095 06:9085: 60        RTS
@@ -3201,7 +3202,7 @@ C - - - - - 0x0192D5 06:92C5: 60        RTS
 
 
 
-ofs_012_92C6_00:
+ofs_012_92C6_80:
 C - - J - - 0x0192D6 06:92C6: 68        PLA
 C - - - - - 0x0192D7 06:92C7: 68        PLA
 C - - - - - 0x0192D8 06:92C8: EE 23 04  INC ram_mission_lo
@@ -3209,7 +3210,7 @@ C - - - - - 0x0192DB 06:92CB: 4C 18 8F  JMP loc_8F18
 
 
 
-ofs_012_92CE_01:
+ofs_012_92CE_81:
 C - - J - - 0x0192DE 06:92CE: A5 34     LDA ram_game_mode
 C - - - - - 0x0192E0 06:92D0: 09 01     ORA #$01
 C - - - - - 0x0192E2 06:92D2: 85 34     STA ram_game_mode
@@ -3348,7 +3349,8 @@ loc_93B4:
 C D 0 - - - 0x0193C4 06:93B4: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x0193C6 06:93B6: 9D 20 04  STA ram_hp_enemy,X
 C - - - - - 0x0193C9 06:93B9: AD 35 04  LDA ram_difficulty
-C - - - - - 0x0193CC 06:93BC: D0 1D     BNE bra_93DB
+C - - - - - 0x0193CC 06:93BC: D0 1D     BNE bra_93DB    ; if not easy
+; if easy
 C - - - - - 0x0193CE 06:93BE: 5E 20 04  LSR ram_hp_enemy,X
 C - - - - - 0x0193D1 06:93C1: F0 12     BEQ bra_93D5
 C - - - - - 0x0193D3 06:93C3: BD 20 04  LDA ram_hp_enemy,X
@@ -3549,9 +3551,9 @@ C - - - - - 0x0194E0 06:94D0: F0 15     BEQ bra_94E7    ; jmp
 
 tbl_94E4:
 tbl_0x0194F4:
-- - - - - - 0x0194F4 06:94E4: 02        .byte $02   ; easy
-- - - - - - 0x0194F5 06:94E5: 0C        .byte $0C   ; norm
-- - - - - - 0x0194F6 06:94E6: 0F        .byte $0F   ; diff
+- - - - - - 0x0194F4 06:94E4: 02        .byte $02   ; 00 easy
+- - - - - - 0x0194F5 06:94E5: 0C        .byte $0C   ; 01 normal
+- - - - - - 0x0194F6 06:94E6: 0F        .byte $0F   ; 02 difficult
 
 
 
@@ -8669,7 +8671,8 @@ bra_ABE4:
 C - - - - - 0x01ABF4 06:ABE4: A9 01     LDA #$01
 C - - - - - 0x01ABF6 06:ABE6: 85 19     STA ram_0019
 C - - - - - 0x01ABF8 06:ABE8: AD 35 04  LDA ram_difficulty
-C - - - - - 0x01ABFB 06:ABEB: F0 0D     BEQ bra_ABFA
+C - - - - - 0x01ABFB 06:ABEB: F0 0D     BEQ bra_ABFA    ; if easy
+; if not easy
 C - - - - - 0x01ABFD 06:ABED: C9 02     CMP #$02
 C - - - - - 0x01ABFF 06:ABEF: F0 07     BEQ bra_ABF8
 C - - - - - 0x01AC01 06:ABF1: AD A5 04  LDA ram_04A5_counter
@@ -9781,7 +9784,7 @@ C - - - - - 0x01B1FB 06:B1EB: 8D 4B 06  STA ram_064B
 C - - - - - 0x01B1FE 06:B1EE: A9 80     LDA #$80
 C - - - - - 0x01B200 06:B1F0: F0 05     BEQ bra_B1F7    ; bzk optimize, useless branch
 C - - - - - 0x01B202 06:B1F2: AC 35 04  LDY ram_difficulty
-C - - - - - 0x01B205 06:B1F5: 10 02     BPL bra_B1F9
+C - - - - - 0x01B205 06:B1F5: 10 02     BPL bra_B1F9    ; bzk can difficulty be 80+?
 bra_B1F7:
 - - - - - - 0x01B207 06:B1F7: A0 01     LDY #$01
 bra_B1F9:
@@ -11614,7 +11617,8 @@ C - - - - - 0x01BAB7 06:BAA7: 8D A4 03  STA ram_03A4
 bra_BAAA:
 C - - - - - 0x01BABA 06:BAAA: A0 1F     LDY #$1F
 C - - - - - 0x01BABC 06:BAAC: AD 35 04  LDA ram_difficulty
-C - - - - - 0x01BABF 06:BAAF: F0 08     BEQ bra_BAB9
+C - - - - - 0x01BABF 06:BAAF: F0 08     BEQ bra_BAB9    ; if easy
+; if not easy
 C - - - - - 0x01BAC1 06:BAB1: A0 1E     LDY #$1E
 C - - - - - 0x01BAC3 06:BAB3: C9 01     CMP #$01
 C - - - - - 0x01BAC5 06:BAB5: F0 02     BEQ bra_BAB9
@@ -11735,7 +11739,8 @@ C - - - - - 0x01BB69 06:BB59: D0 07     BNE bra_BB62    ; jmp
 
 ; bzk garbage
 - - - - - - 0x01BB6B 06:BB5B: AD 35 04  LDA ram_difficulty
-- - - - - - 0x01BB6E 06:BB5E: F0 E6     BEQ bra_BB46
+- - - - - - 0x01BB6E 06:BB5E: F0 E6     BEQ bra_BB46    ; if easy
+; if not easy
 - - - - - - 0x01BB70 06:BB60: 85 19     STA ram_0019
 
 
@@ -11807,6 +11812,7 @@ C - - - - - 0x01BBCB 06:BBBB: 90 4B     BCC bra_BC08
 C - - - - - 0x01BBCD 06:BBBD: A0 21     LDY #$21
 C - - - - - 0x01BBCF 06:BBBF: AD 35 04  LDA ram_difficulty
 C - - - - - 0x01BBD2 06:BBC2: D0 06     BNE bra_BBCA
+; if easy
 C - - - - - 0x01BBD4 06:BBC4: A9 80     LDA #$80
 C - - - - - 0x01BBD6 06:BBC6: F0 40     BEQ bra_BC08    ; bzk optimize, useless branch
 C - - - - - 0x01BBD8 06:BBC8: D0 08     BNE bra_BBD2    ; jmp
@@ -11888,6 +11894,7 @@ C - - - - - 0x01BC4B 06:BC3B: 90 D0     BCC bra_BC0D
 C - - - - - 0x01BC4D 06:BC3D: A0 4F     LDY #$4F
 C - - - - - 0x01BC4F 06:BC3F: AD 35 04  LDA ram_difficulty
 C - - - - - 0x01BC52 06:BC42: D0 04     BNE bra_BC48
+; if easy
 C - - - - - 0x01BC54 06:BC44: A9 80     LDA #$80
 C - - - - - 0x01BC56 06:BC46: F0 C5     BEQ bra_BC0D    ; bzk optimize, useless branch
 bra_BC48:
@@ -12110,6 +12117,7 @@ C - - - - - 0x01BDB4 06:BDA4: 90 F6     BCC bra_BD9C
 C - - - - - 0x01BDB6 06:BDA6: A0 29     LDY #$29
 C - - - - - 0x01BDB8 06:BDA8: AD 35 04  LDA ram_difficulty
 C - - - - - 0x01BDBB 06:BDAB: D0 06     BNE bra_BDB3
+; if easy
 C - - - - - 0x01BDBD 06:BDAD: A9 80     LDA #$80
 C - - - - - 0x01BDBF 06:BDAF: F0 DC     BEQ bra_BD8D    ; bzk optimize, useless branch
 C - - - - - 0x01BDC1 06:BDB1: D0 08     BNE bra_BDBB    ; jmp

@@ -7235,7 +7235,7 @@ C - - - - - 0x01ED4C 07:ED3C: A9 00     LDA #$00
 C - - - - - 0x01ED4E 07:ED3E: A2 02     LDX #$02
 C - - - - - 0x01ED50 07:ED40: A0 07     LDY #$07
 C - - - - - 0x01ED52 07:ED42: 20 4E FD  JSR sub_FD4E_clear_0200_07FF
-C - - - - - 0x01ED55 07:ED45: A9 01     LDA #$01
+C - - - - - 0x01ED55 07:ED45: A9 01     LDA #$01    ; normal
 C - - - - - 0x01ED57 07:ED47: 8D 35 04  STA ram_difficulty
 C - - - - - 0x01ED5A 07:ED4A: A2 00     LDX #$00
 C - - - - - 0x01ED5C 07:ED4C: AC 02 01  LDY ram_0102
@@ -7251,7 +7251,7 @@ C - - - - - 0x01ED6C 07:ED5C: 85 34     STA ram_game_mode
 C - - - - - 0x01ED6E 07:ED5E: 85 35     STA ram_game_flags_1
 C - - - - - 0x01ED70 07:ED60: 8D 34 04  STA ram_0434
 C - - - - - 0x01ED73 07:ED63: 8D 22 04  STA ram_mission_hi
-C - - - - - 0x01ED76 07:ED66: A9 01     LDA #$01
+C - - - - - 0x01ED76 07:ED66: A9 01     LDA #$01    ; normal
 C - - - - - 0x01ED78 07:ED68: 8D 35 04  STA ram_difficulty
 C - - - - - 0x01ED7B 07:ED6B: A9 00     LDA #con_music_off
 C - - - - - 0x01ED7D 07:ED6D: 20 10 FC  JSR sub_FC10_play_sound
@@ -8114,8 +8114,9 @@ sub_F29C:
 
 tbl_F2E7:
 ; bzk bug, this table should have 3 bytes instead of 2
-- - - - - - 0x01F2F7 07:F2E7: 09        .byte $09   ; easy
-- - - - - - 0x01F2F8 07:F2E8: 0A        .byte $0A   ; normal
+- - - - - - 0x01F2F7 07:F2E7: 09        .byte $09   ; 00 easy
+- - - - - - 0x01F2F8 07:F2E8: 0A        .byte $0A   ; 01 normal
+
 
 
 sub_F2E9:
@@ -8538,9 +8539,9 @@ tbl_F59D:
 
 
 tbl_F5A3:
-- D 3 - - - 0x01F5B3 07:F5A3: 04 23     .word $2304 ; 00
-- D 3 - - - 0x01F5B5 07:F5A5: 0B 23     .word $230B ; 01
-- D 3 - - - 0x01F5B7 07:F5A7: 14 23     .word $2314 ; 02
+- D 3 - - - 0x01F5B3 07:F5A3: 04 23     .word $2304 ; 00 easy
+- D 3 - - - 0x01F5B5 07:F5A5: 0B 23     .word $230B ; 01 normal
+- D 3 - - - 0x01F5B7 07:F5A7: 14 23     .word $2314 ; 02 difficult
 
 
 
@@ -8725,11 +8726,13 @@ bra_F6BD_loop:
 C - - - - - 0x01F6CD 07:F6BD: B1 29     LDA (ram_0029),Y
 C - - - - - 0x01F6CF 07:F6BF: C9 01     CMP #$01
 C - - - - - 0x01F6D1 07:F6C1: D0 04     BNE bra_F6C7_not_a_control_byte
+; 01
 C - - - - - 0x01F6D3 07:F6C3: C8        INY
 C - - - - - 0x01F6D4 07:F6C4: 4C AC F6  JMP loc_F6AC_loop
 bra_F6C7_not_a_control_byte:
 C - - - - - 0x01F6D7 07:F6C7: C9 00     CMP #$00
 C - - - - - 0x01F6D9 07:F6C9: F0 09     BEQ bra_F6D4_RTS    ; if not end token
+; 00
 C - - - - - 0x01F6DB 07:F6CB: 20 D5 F6  JSR sub_F6D5_convert_byte_into_tile
 C - - - - - 0x01F6DE 07:F6CE: 8D 07 20  STA $2007
 C - - - - - 0x01F6E1 07:F6D1: C8        INY
@@ -8747,7 +8750,7 @@ sub_F6D5_convert_byte_into_tile:
 ; 30-39 = +BA
 ; 41-5A = +8F
 ; the rest cases are byte = tile
-    ; bytes 02-1F, 22-2B, 2D, 2F, 3A-40, 5B-FF
+    ; these bytes are 02-1F, 22-2B, 2D, 2F, 3A-40, 5B-FF
 C - - - - - 0x01F6E5 07:F6D5: C9 20     CMP #$20
 C - - - - - 0x01F6E7 07:F6D7: D0 03     BNE bra_F6DC
 C - - - - - 0x01F6E9 07:F6D9: A9 00     LDA #$00    ; space
@@ -8828,7 +8831,7 @@ _off020_F721_00:
 - D 3 - I - 0x01F76E 07:F75E: 4F        .byte $4F, $52, $4D, $41, $4C, $20, $20, $20   ; 
 - D 3 - I - 0x01F776 07:F766: 44        .byte $44, $49, $46, $46, $49, $43, $55, $4C   ; 
 - D 3 - I - 0x01F77E 07:F76E: 54        .byte $54   ; 
-- D 3 - I - 0x01F77F 07:F76F: 00        .byte $00   ; 
+- D 3 - I - 0x01F77F 07:F76F: 00        .byte $00   ; end token
 
 
 
@@ -8864,7 +8867,7 @@ _off020_F770_01:
 - - - - - - 0x01F7D1 07:F7C1: CA 22     .word $22CA
 - - - - - - 0x01F7D3 07:F7C3: 53        .byte $53, $55, $50, $52, $45, $4D, $45, $20   ; 
 - - - - - - 0x01F7DB 07:F7CB: 4D        .byte $4D, $41, $53, $54, $45, $52   ; 
-- - - - - - 0x01F7E1 07:F7D1: 00        .byte $00   ; 
+- - - - - - 0x01F7E1 07:F7D1: 00        .byte $00   ; end token
 
 
 
@@ -8872,7 +8875,7 @@ _off020_F7D2_02:
 - D 3 - I - 0x01F7E2 07:F7D2: CB 21     .word $21CB
 - D 3 - I - 0x01F7E4 07:F7D4: 47        .byte $47, $41, $4D, $45, $20, $4F, $56, $45   ; 
 - D 3 - I - 0x01F7EC 07:F7DC: 52        .byte $52   ; 
-- D 3 - I - 0x01F7ED 07:F7DD: 00        .byte $00   ; 
+- D 3 - I - 0x01F7ED 07:F7DD: 00        .byte $00   ; end token
 
 
 
@@ -8896,7 +8899,7 @@ _off020_F7DE_03:
 - - - - - - 0x01F81C 07:F80C: 20        .byte $20, $53, $45, $4C, $45, $43, $54, $20   ; 
 - - - - - - 0x01F824 07:F814: 47        .byte $47, $41, $4D, $45, $20, $4C, $45, $56   ; 
 - - - - - - 0x01F82C 07:F81C: 45        .byte $45, $4C, $2E   ; 
-- - - - - - 0x01F82F 07:F81F: 00        .byte $00   ; 
+- - - - - - 0x01F82F 07:F81F: 00        .byte $00   ; end token
 
 
 
@@ -8907,28 +8910,28 @@ _off020_F820_04:
 
 - D 3 - I - 0x01F83B 07:F82B: 8B 21     .word $218B
 - D 3 - I - 0x01F83D 07:F82D: 53        .byte $53, $54, $41, $52, $54   ; 
-- D 3 - I - 0x01F842 07:F832: 00        .byte $00   ; 
+- D 3 - I - 0x01F842 07:F832: 00        .byte $00   ; end token
 
 
 
 _off020_F833_05:
 - - - - - - 0x01F843 07:F833: 47 21     .word $2147
 - - - - - - 0x01F845 07:F835: 50        .byte $50, $52, $41, $43, $54, $49, $43, $45   ; 
-- - - - - - 0x01F84D 07:F83D: 00        .byte $00   ; 
+- - - - - - 0x01F84D 07:F83D: 00        .byte $00   ; end token
 
 
 
 _off020_F83E_06:
 - - - - - - 0x01F84E 07:F83E: 49 21     .word $2149
 - - - - - - 0x01F850 07:F840: 4E        .byte $4E, $4F, $56, $49, $43, $45   ; 
-- - - - - - 0x01F856 07:F846: 00        .byte $00   ; 
+- - - - - - 0x01F856 07:F846: 00        .byte $00   ; end token
 
 
 
 _off020_F847_07:
 - - - - - - 0x01F857 07:F847: 46 21     .word $2146
 - - - - - - 0x01F859 07:F849: 20        .byte $20, $4D, $41, $53, $54, $45, $52, $20   ; 
-- - - - - - 0x01F861 07:F851: 00        .byte $00   ; 
+- - - - - - 0x01F861 07:F851: 00        .byte $00   ; end token
 
 
 
@@ -8978,7 +8981,7 @@ _off020_F852_08:
 - - - - - - 0x01F903 07:F8F3: 4E        .byte $4E, $49, $4E, $54, $45, $4E, $44, $4F   ; 
 - - - - - - 0x01F90B 07:F8FB: 20        .byte $20, $4F, $46, $20, $41, $4D, $45, $52   ; 
 - - - - - - 0x01F913 07:F903: 49        .byte $49, $43, $41, $20, $49, $4E, $43, $2E   ; 
-- - - - - - 0x01F91B 07:F90B: 00        .byte $00   ; 
+- - - - - - 0x01F91B 07:F90B: 00        .byte $00   ; end token
 
 
 
@@ -9017,7 +9020,7 @@ _off020_F90C_09:
 - - - - - - 0x01F997 07:F987: 49        .byte $49, $4F, $52, $20, $4C, $45, $56, $45   ; 
 - - - - - - 0x01F99F 07:F98F: 4C        .byte $4C, $20, $41, $57, $41, $49, $54, $53   ; 
 - - - - - - 0x01F9A7 07:F997: 20        .byte $20, $59, $4F, $55, $2E   ; 
-- - - - - - 0x01F9AC 07:F99C: 00        .byte $00   ; 
+- - - - - - 0x01F9AC 07:F99C: 00        .byte $00   ; end token
 
 
 
@@ -9077,7 +9080,7 @@ _off020_F99D_0A:
 - - - - - - 0x01FA82 07:FA72: EA 22     .word $22EA
 - - - - - - 0x01FA84 07:FA74: 47        .byte $47, $4F, $4F, $44, $20, $4C, $55, $43   ; 
 - - - - - - 0x01FA8C 07:FA7C: 4B        .byte $4B, $21   ; 
-- - - - - - 0x01FA8E 07:FA7E: 00        .byte $00   ; 
+- - - - - - 0x01FA8E 07:FA7E: 00        .byte $00   ; end token
 
 
 
@@ -9085,7 +9088,7 @@ _off020_FA7F_0B_sample_version:
 - D 3 - I - 0x01FA8F 07:FA7F: EA 22     .word $22EA
 - D 3 - I - 0x01FA91 07:FA81: 53        .byte $53, $41, $4D, $50, $4C, $45, $20, $56   ; 
 - D 3 - I - 0x01FA99 07:FA89: 45        .byte $45, $52, $53, $49, $4F, $4E, $20   ; 
-- D 3 - I - 0x01FAA0 07:FA90: 00        .byte $00   ; 
+- D 3 - I - 0x01FAA0 07:FA90: 00        .byte $00   ; end token
 
 
 

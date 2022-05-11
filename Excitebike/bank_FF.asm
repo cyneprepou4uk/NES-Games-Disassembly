@@ -856,6 +856,9 @@ C - - - - - 0x000411 00:C401: A9 2D     LDA #$2D
 C - - - - - 0x000413 00:C403: 85 34     STA ram_0034
 C - - - - - 0x000415 00:C405: A9 B0     LDA #$B0
 C - - - - - 0x000417 00:C407: D0 E6     BNE bra_C3EF    ; jmp
+
+
+
 sub_C409:
 C - - - - - 0x000419 00:C409: A9 FA     LDA #$FA
 C - - - - - 0x00041B 00:C40B: 8D 01 02  STA ram_spr_T
@@ -1461,7 +1464,7 @@ C - - - - - 0x000749 00:C739: 20 2F C3  JSR sub_C32F
 C - - - - - 0x00074C 00:C73C: 20 16 C7  JSR sub_C716
 C - - - - - 0x00074F 00:C73F: 20 92 C7  JSR sub_C792
 - - - - - - 0x000752 00:C742: 90 0D     BCC bra_C751
-bra_C744:
+bra_C744_loop:
 - - - - - - 0x000754 00:C744: A9 19     LDA #$19
 - - - - - - 0x000756 00:C746: 85 45     STA ram_0045
 bra_C748:
@@ -1497,13 +1500,13 @@ bra_C762:
 - - - - - - 0x00078B 00:C77B: E0 00     CPX #$00
 - - - - - - 0x00078D 00:C77D: D0 C9     BNE bra_C748
 - - - - - - 0x00078F 00:C77F: 20 39 C3  JSR sub_C339
-bra_C782:
+bra_C782_infinite_loop:
 - - - - - - 0x000792 00:C782: A5 45     LDA ram_0045
-- - - - - - 0x000794 00:C784: D0 FC     BNE bra_C782
+- - - - - - 0x000794 00:C784: D0 FC     BNE bra_C782_infinite_loop
 - - - - - - 0x000796 00:C786: 20 2F C3  JSR sub_C32F
 - - - - - - 0x000799 00:C789: 20 26 C7  JSR sub_C726
 - - - - - - 0x00079C 00:C78C: 20 92 C7  JSR sub_C792
-- - - - - - 0x00079F 00:C78F: B0 B3     BCS bra_C744
+- - - - - - 0x00079F 00:C78F: B0 B3     BCS bra_C744_loop
 - - - - - - 0x0007A1 00:C791: 60        RTS
 
 

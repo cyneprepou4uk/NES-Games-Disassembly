@@ -6997,7 +6997,7 @@ C - - - - - 0x002A8E 00:EA7E: A5 6D     LDA ram_pause_flag
 C - - - - - 0x002A90 00:EA80: D0 06     BNE bra_EA88_game_is_paused
 C - - - - - 0x002A92 00:EA82: A9 1C     LDA #$1C    ; check all sfx addresses 0300-031B
 C - - - - - 0x002A94 00:EA84: 85 F5     STA ram_sfx_check_limit
-C - - - - - 0x002A96 00:EA86: 10 04     BPL bra_EA8C
+C - - - - - 0x002A96 00:EA86: 10 04     BPL bra_EA8C    ; jmp
 bra_EA88_game_is_paused:
 C - - - - - 0x002A98 00:EA88: A9 01     LDA #$01    ; check only pause sfx address 0300
 C - - - - - 0x002A9A 00:EA8A: 85 F5     STA ram_sfx_check_limit
@@ -7121,7 +7121,7 @@ C - - - - - 0x002B56 00:EB46: 38        SEC
 C - - - - - 0x002B57 00:EB47: E9 01     SBC #$01
 C - - - - - 0x002B59 00:EB49: 91 F0     STA (ram_00F0),Y
 C - - - - - 0x002B5B 00:EB4B: F0 38     BEQ bra_EB85
-C - - - - - 0x002B5D 00:EB4D: D0 DF     BNE bra_EB2E
+C - - - - - 0x002B5D 00:EB4D: D0 DF     BNE bra_EB2E    ; jmp
 
 
 
@@ -7149,7 +7149,7 @@ C - - - - - 0x002B8A 00:EB7A: D0 0C     BNE bra_EB88
 C - - - - - 0x002B8C 00:EB7C: 20 BE EC  JSR sub_ECBE
 C - - - - - 0x002B8F 00:EB7F: A0 03     LDY #$03
 C - - - - - 0x002B91 00:EB81: 91 F0     STA (ram_00F0),Y
-C - - - - - 0x002B93 00:EB83: 10 03     BPL bra_EB88
+C - - - - - 0x002B93 00:EB83: 10 03     BPL bra_EB88    ; jmp
 bra_EB85:
 C - - - - - 0x002B95 00:EB85: 20 AF EC  JSR sub_ECAF
 bra_EB88:
@@ -7319,7 +7319,7 @@ C - - - - - 0x002C8E 00:EC7E: 4C 88 EB  JMP loc_EB88
 
 ofs_005_EC81_F0:
 C - - J - - 0x002C91 00:EC81: A2 00     LDX #$00
-C - - - - - 0x002C93 00:EC83: F0 05     BEQ bra_EC8A
+C - - - - - 0x002C93 00:EC83: F0 05     BEQ bra_EC8A    ; jmp
 
 ofs_005_EC85_F1:
 C - - J - - 0x002C95 00:EC85: A2 01     LDX #$01
@@ -7331,7 +7331,7 @@ bra_EC8A:
 C - - - - - 0x002C9A 00:EC8A: 20 BE EC  JSR sub_ECBE
 C - - - - - 0x002C9D 00:EC8D: F6 F6     INC ram_00F6,X
 C - - - - - 0x002C9F 00:EC8F: D5 F6     CMP ram_00F6,X
-C - - - - - 0x002CA1 00:EC91: D0 12     BNE bra_ECA5    ; bzk
+C - - - - - 0x002CA1 00:EC91: D0 12     BNE bra_ECA5
 C - - - - - 0x002CA3 00:EC93: A9 00     LDA #$00
 C - - - - - 0x002CA5 00:EC95: 95 F6     STA ram_00F6,X
 C - - - - - 0x002CA7 00:EC97: F0 00     BEQ bra_EC99    ; bzk optimize, useless branch

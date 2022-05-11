@@ -821,7 +821,7 @@ ram_lives                               = $0432 ;
 
 ram_0434                                = $0434 ; 7   
 
-ram_difficulty                          = $0435 ; 
+ram_difficulty                          = $0435 ; 00 = easy, 01 = normal, 02 = difficult
 
 ram_0436                                = $0436 ; N/A
 ram_0437                                = $0437 ; N/A

@@ -40,12 +40,12 @@ C - - - - - 0x008039 02:8029: A9 02     LDA #$02
 C - - - - - 0x00803B 02:802B: 85 33     STA ram_chr_bank_1
 C - - - - - 0x00803D 02:802D: 85 34     STA ram_chr_bank_2
 C - - - - - 0x00803F 02:802F: 20 00 ED  JSR sub_0x00ED10
-C - - - - - 0x008042 02:8032: 20 53 80  JSR sub_8053
+C - - - - - 0x008042 02:8032: 20 53 80  JSR sub_8053_wait_30_frames_
 C - - - - - 0x008045 02:8035: 20 77 80  JSR sub_8077
 C - - - - - 0x008048 02:8038: A2 F0     LDX #$F0
 C - - - - - 0x00804A 02:803A: 20 5E 80  JSR sub_805E
 C - - - - - 0x00804D 02:803D: 20 A8 80  JSR sub_80A8
-C - - - - - 0x008050 02:8040: 4C 53 80  JMP loc_8053
+C - - - - - 0x008050 02:8040: 4C 53 80  JMP loc_8053_wait_30_frames_
 
 
 
@@ -62,8 +62,8 @@ C - - - - - 0x008062 02:8052: 60        RTS
 
 
 
-sub_8053:
-loc_8053:
+sub_8053_wait_30_frames_:
+loc_8053_wait_30_frames_:
 C D 0 - - - 0x008063 02:8053: A2 00     LDX #$00
 bra_8055_loop:
 C - - - - - 0x008065 02:8055: 20 CD EE  JSR sub_0x00EEDD_wait_1_frame_

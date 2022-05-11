@@ -5709,18 +5709,22 @@ C - - - - - 0x009FBF 02:9FAF: B5 5C     LDA ram_animation_counter,X
 C - - - - - 0x009FC1 02:9FB1: A8        TAY
 C - - - - - 0x009FC2 02:9FB2: B1 29     LDA (ram_0029),Y
 C - - - - - 0x009FC4 02:9FB4: 10 13     BPL bra_9FC9
+; 80-FF
 C - - - - - 0x009FC6 02:9FB6: C9 FE     CMP #$FE
 C - - - - - 0x009FC8 02:9FB8: D0 0A     BNE bra_9FC4
+; FE
 C - - - - - 0x009FCA 02:9FBA: A9 00     LDA #$00
 C - - - - - 0x009FCC 02:9FBC: A8        TAY
 C - - - - - 0x009FCD 02:9FBD: 95 5C     STA ram_animation_counter,X
 C - - - - - 0x009FCF 02:9FBF: B1 29     LDA (ram_0029),Y
 C - - - - - 0x009FD1 02:9FC1: 4C C9 9F  JMP loc_9FC9
 bra_9FC4:
+; 80-FD, FF
 C - - - - - 0x009FD4 02:9FC4: 29 7F     AND #$7F
 C - - - - - 0x009FD6 02:9FC6: 95 43     STA ram_state,X
 C - - - - - 0x009FD8 02:9FC8: 60        RTS
 bra_9FC9:
+; 00-7F
 loc_9FC9:
 C D 0 - - - 0x009FD9 02:9FC9: 95 C7     STA ram_animation_id,X
 C - - - - - 0x009FDB 02:9FCB: B1 2B     LDA (ram_002B),Y
@@ -5859,7 +5863,8 @@ C - - - - - 0x00A096 02:A086: AD 22 04  LDA ram_mission_hi
 C - - - - - 0x00A099 02:A089: C9 09     CMP #$09
 C - - - - - 0x00A09B 02:A08B: D0 73     BNE bra_A100
 C - - - - - 0x00A09D 02:A08D: AD 35 04  LDA ram_difficulty
-C - - - - - 0x00A0A0 02:A090: D0 09     BNE bra_A09B
+C - - - - - 0x00A0A0 02:A090: D0 09     BNE bra_A09B    ; if not easy
+; if easy
 C - - - - - 0x00A0A2 02:A092: AC 5D 06  LDY ram_065D
 C - - - - - 0x00A0A5 02:A095: B9 EC A0  LDA tbl_A0EC,Y
 C - - - - - 0x00A0A8 02:A098: 4C A1 A0  JMP loc_A0A1
@@ -5868,6 +5873,7 @@ C - - - - - 0x00A0AB 02:A09B: AC 5D 06  LDY ram_065D
 C - - - - - 0x00A0AE 02:A09E: B9 D8 A0  LDA tbl_A0D8,Y
 loc_A0A1:
 C D 1 - - - 0x00A0B1 02:A0A1: 10 15     BPL bra_A0B8
+; 80-FF
 C - - - - - 0x00A0B3 02:A0A3: EE 5E 06  INC ram_065E
 C - - - - - 0x00A0B6 02:A0A6: 29 7F     AND #$7F
 C - - - - - 0x00A0B8 02:A0A8: CD 5E 06  CMP ram_065E
@@ -5877,12 +5883,15 @@ C - - - - - 0x00A0C0 02:A0B0: A9 00     LDA #$00
 C - - - - - 0x00A0C2 02:A0B2: 8D 5E 06  STA ram_065E
 C - - - - - 0x00A0C5 02:A0B5: 4C D7 A0  JMP loc_A0D7_RTS
 bra_A0B8:
+; 00-7F
 C - - - - - 0x00A0C8 02:A0B8: C9 7F     CMP #$7F
 C - - - - - 0x00A0CA 02:A0BA: D0 08     BNE bra_A0C4
+; 7F
 C - - - - - 0x00A0CC 02:A0BC: A9 00     LDA #$00
 C - - - - - 0x00A0CE 02:A0BE: 8D 5D 06  STA ram_065D
 C - - - - - 0x00A0D1 02:A0C1: 4C D7 A0  JMP loc_A0D7_RTS
 bra_A0C4:
+; 00-7E
 C - - - - - 0x00A0D4 02:A0C4: 85 19     STA ram_0019
 C - - - - - 0x00A0D6 02:A0C6: 29 70     AND #$70
 C - - - - - 0x00A0D8 02:A0C8: 4A        LSR
@@ -5968,8 +5977,10 @@ C - - - - - 0x00A113 02:A103: 60        RTS
 
 loc_A10C:
 C D 1 - - - 0x00A11C 02:A10C: AD 35 04  LDA ram_difficulty
+; bzk optimize, BNE without CMP
 C - - - - - 0x00A11F 02:A10F: C9 00     CMP #$00
-C - - - - - 0x00A121 02:A111: D0 03     BNE bra_A116
+C - - - - - 0x00A121 02:A111: D0 03     BNE bra_A116    ; if not easy
+; if easy
 C - - - - - 0x00A123 02:A113: 4C F8 A2  JMP loc_A2F8
 bra_A116:
 C - - - - - 0x00A126 02:A116: C9 01     CMP #$01
@@ -7129,9 +7140,9 @@ C - - - - - 0x00A9EB 02:A9DB: 60        RTS
 
 ; bzk optimize
 tbl_A9DC:
-- D 1 - - - 0x00A9EC 02:A9DC: 10        .byte $10   ; 00
-- D 1 - - - 0x00A9ED 02:A9DD: 10        .byte $10   ; 01
-- D 1 - - - 0x00A9EE 02:A9DE: 10        .byte $10   ; 02
+- D 1 - - - 0x00A9EC 02:A9DC: 10        .byte $10   ; 00 easy
+- D 1 - - - 0x00A9ED 02:A9DD: 10        .byte $10   ; 01 normal
+- D 1 - - - 0x00A9EE 02:A9DE: 10        .byte $10   ; 02 difficult
 
 
 

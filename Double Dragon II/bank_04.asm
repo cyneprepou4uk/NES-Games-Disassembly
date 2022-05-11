@@ -727,7 +727,8 @@ C - - - - - 0x010504 04:84F4: AD 22 04  LDA ram_mission_hi
 C - - - - - 0x010507 04:84F7: C9 06     CMP #$06
 C - - - - - 0x010509 04:84F9: D0 57     BNE bra_8552
 C - - - - - 0x01050B 04:84FB: AD 35 04  LDA ram_difficulty
-C - - - - - 0x01050E 04:84FE: F0 52     BEQ bra_8552
+C - - - - - 0x01050E 04:84FE: F0 52     BEQ bra_8552    ; if easy
+; if not easy
 C - - - - - 0x010510 04:8500: BD 59 03  LDA ram_0359,X
 C - - - - - 0x010513 04:8503: C9 04     CMP #$04
 C - - - - - 0x010515 04:8505: 90 4B     BCC bra_8552
@@ -10903,9 +10904,11 @@ C - - - - - 0x013520 04:B510: B9 38 B5  LDA tbl_B538,Y
 C - - - - - 0x013523 04:B513: F0 1C     BEQ bra_B531
 C - - - - - 0x013525 04:B515: 85 19     STA ram_0019
 C - - - - - 0x013527 04:B517: AD 35 04  LDA ram_difficulty
-C - - - - - 0x01352A 04:B51A: F0 0A     BEQ bra_B526
+C - - - - - 0x01352A 04:B51A: F0 0A     BEQ bra_B526    ; if easy
+; if not easy
 C - - - - - 0x01352C 04:B51C: C9 01     CMP #$01
-C - - - - - 0x01352E 04:B51E: F0 04     BEQ bra_B524
+C - - - - - 0x01352E 04:B51E: F0 04     BEQ bra_B524    ; if normal
+; if difficult
 C - - - - - 0x013530 04:B520: A9 00     LDA #$00
 C - - - - - 0x013532 04:B522: 85 19     STA ram_0019
 bra_B524:
