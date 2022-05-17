@@ -1961,11 +1961,12 @@ bra_EF98:
 C - - - - - 0x01EFA8 07:EF98: C0 00     CPY #$00
 C - - - - - 0x01EFAA 07:EF9A: D0 05     BNE bra_EFA1
 C - - - - - 0x01EFAC 07:EF9C: 68        PLA ; ram_current_quest
-C - - - - - 0x01EFAD 07:EF9D: D0 1B     BNE bra_EFBA
-C - - - - - 0x01EFAF 07:EF9F: F0 03     BEQ bra_EFA4    ; jmp
+C - - - - - 0x01EFAD 07:EF9D: D0 1B     BNE bra_EFBA    ; if 2nd quest
+C - - - - - 0x01EFAF 07:EF9F: F0 03     BEQ bra_EFA4    ; jmp if 1st quest
 bra_EFA1:
-C - - - - - 0x01EFB1 07:EFA1: 68        PLA
-C - - - - - 0x01EFB2 07:EFA2: F0 16     BEQ bra_EFBA
+C - - - - - 0x01EFB1 07:EFA1: 68        PLA ; ram_current_quest
+C - - - - - 0x01EFB2 07:EFA2: F0 16     BEQ bra_EFBA    ; if 1st quest
+; if 2nd quest
 bra_EFA4:
 C - - - - - 0x01EFB4 07:EFA4: AD 1A 05  LDA ram_051A
 C - - - - - 0x01EFB7 07:EFA7: D0 0F     BNE bra_EFB8_RTS
