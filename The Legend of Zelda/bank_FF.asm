@@ -1960,7 +1960,7 @@ C - - - - - 0x01EFA6 07:EF96: 30 21     BMI bra_EFB9    ; jmp
 bra_EF98:
 C - - - - - 0x01EFA8 07:EF98: C0 00     CPY #$00
 C - - - - - 0x01EFAA 07:EF9A: D0 05     BNE bra_EFA1
-C - - - - - 0x01EFAC 07:EF9C: 68        PLA
+C - - - - - 0x01EFAC 07:EF9C: 68        PLA ; ram_current_quest
 C - - - - - 0x01EFAD 07:EF9D: D0 1B     BNE bra_EFBA
 C - - - - - 0x01EFAF 07:EF9F: F0 03     BEQ bra_EFA4    ; jmp
 bra_EFA1:
