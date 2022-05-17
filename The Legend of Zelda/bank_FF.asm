@@ -1920,7 +1920,7 @@ C - - - - - 0x01EF75 07:EF65: 60        RTS
 
 
 
-tbl_EF66:
+tbl_EF66_map_locations:
 - D 3 - - - 0x01EF76 07:EF66: 42        .byte con_map_location + $42   ; 00
 - D 3 - - - 0x01EF77 07:EF67: 06        .byte con_map_location + $06   ; 01
 - D 3 - - - 0x01EF78 07:EF68: 29        .byte con_map_location + $29   ; 02
@@ -1952,18 +1952,20 @@ C - - - - - 0x01EF99 07:EF89: 48        PHA
 C - - - - - 0x01EF9A 07:EF8A: A5 EB     LDA ram_map_location
 C - - - - - 0x01EF9C 07:EF8C: A0 0A     LDY #$0A
 bra_EF8E_loop:
-C - - - - - 0x01EF9E 07:EF8E: D9 66 EF  CMP tbl_EF66,Y
-C - - - - - 0x01EFA1 07:EF91: F0 05     BEQ bra_EF98
+C - - - - - 0x01EF9E 07:EF8E: D9 66 EF  CMP tbl_EF66_map_locations,Y
+C - - - - - 0x01EFA1 07:EF91: F0 05     BEQ bra_EF98_match_found
 C - - - - - 0x01EFA3 07:EF93: 88        DEY
 C - - - - - 0x01EFA4 07:EF94: 10 F8     BPL bra_EF8E_loop
-C - - - - - 0x01EFA6 07:EF96: 30 21     BMI bra_EFB9    ; jmp
-bra_EF98:
+C - - - - - 0x01EFA6 07:EF96: 30 21     BMI bra_EFB9_no_matches_found    ; jmp
+bra_EF98_match_found:
 C - - - - - 0x01EFA8 07:EF98: C0 00     CPY #$00
 C - - - - - 0x01EFAA 07:EF9A: D0 05     BNE bra_EFA1
+; if location 00
 C - - - - - 0x01EFAC 07:EF9C: 68        PLA ; ram_current_quest
 C - - - - - 0x01EFAD 07:EF9D: D0 1B     BNE bra_EFBA    ; if 2nd quest
 C - - - - - 0x01EFAF 07:EF9F: F0 03     BEQ bra_EFA4    ; jmp if 1st quest
 bra_EFA1:
+; if not location 00
 C - - - - - 0x01EFB1 07:EFA1: 68        PLA ; ram_current_quest
 C - - - - - 0x01EFB2 07:EFA2: F0 16     BEQ bra_EFBA    ; if 1st quest
 ; if 2nd quest
@@ -1980,7 +1982,7 @@ C - - - - - 0x01EFC3 07:EFB3: A9 5E     LDA #con_obj_id_5E
 C - - - - - 0x01EFC5 07:EFB5: 99 50 03  STA ram_obj_id + 1,Y
 bra_EFB8_RTS:
 C - - - - - 0x01EFC8 07:EFB8: 60        RTS
-bra_EFB9:
+bra_EFB9_no_matches_found:
 C - - - - - 0x01EFC9 07:EFB9: 68        PLA
 bra_EFBA:
 C - - - - - 0x01EFCA 07:EFBA: A9 01     LDA #con_prg_bank + $01
