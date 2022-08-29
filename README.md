@@ -40,6 +40,7 @@ Lua script will take care of it before compilation. You just write new code as u
 * Legend of Zelda, The (U) (PRG0) [!] `D7AE93DF`
 * Mappy (J) [!] `3F0E8E0A`
 * Nuts & Milk (J) [!] `11879FE8`
+* Pac-Man (J) (V1.1) [!] `D747B639`
 * Solstice - The Quest for the Staff of Demnos (U) [!] `1D60732E`
 * Son Son (J) [!] `F7C8F42D`
 * Street Fighter III (9 Fighter) (Unl) `22CDD2F6`
