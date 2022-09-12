@@ -95,7 +95,7 @@ con_music_06                            = $06 ;
 
 
 
-; ram_obj_id                         = $073C need comments at 0x001EB3
+; ram_obj_id                            = $073C need comments at 0x001EB3
 ; con_obj_id_00                         = $00 ; 
 con_obj_id_01                           = $01 ; Troll that changes direction clock-wise when it reaches wall
 con_obj_id_02                           = $02 ; same as above but counter-clock wise

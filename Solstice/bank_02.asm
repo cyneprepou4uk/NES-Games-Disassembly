@@ -3723,7 +3723,7 @@ bra_C216_loop:
 C - - - - - 0x014226 05:C216: 99 4E 00  STA ram_004F - 1,Y
 C - - - - - 0x014229 05:C219: 88        DEY
 C - - - - - 0x01422A 05:C21A: D0 FA     BNE bra_C216_loop
-C - - - - - 0x01422C 05:C21C: C8        INY ; 02
+C - - - - - 0x01422C 05:C21C: C8        INY ; 01
 C - - - - - 0x01422D 05:C21D: 84 83     STY ram_0083
 C - - - - - 0x01422F 05:C21F: 84 84     STY ram_0084
 C - - - - - 0x014231 05:C221: 84 85     STY ram_0085
@@ -3734,8 +3734,8 @@ bra_C229_loop:
 C - - - - - 0x014239 05:C229: 99 1F 01  STA ram_0120 - 1,Y
 C - - - - - 0x01423C 05:C22C: 88        DEY
 C - - - - - 0x01423D 05:C22D: D0 FA     BNE bra_C229_loop
-C - - - - - 0x01423F 05:C22F: 8C E5 07  STY ram_07E5    ; 01
-C - - - - - 0x014242 05:C232: 88        DEY ; 00
+C - - - - - 0x01423F 05:C22F: 8C E5 07  STY ram_07E5    ; 00
+C - - - - - 0x014242 05:C232: 88        DEY ; FF
 C - - - - - 0x014243 05:C233: 8C E1 07  STY ram_07E1
 C - - - - - 0x014246 05:C236: 8C E2 07  STY ram_07E2
 C - - - - - 0x014249 05:C239: 8C E3 07  STY ram_07E3
@@ -3781,7 +3781,7 @@ C - - - - - 0x01429C 05:C28C: 85 9B     STA ram_009B
 C - - - - - 0x01429E 05:C28E: BD 4D D7  LDA tbl_D74D_hi,X
 C - - - - - 0x0142A1 05:C291: 85 9C     STA ram_009C
 C - - - - - 0x0142A3 05:C293: A0 00     LDY #$00
-bra_C295:
+bra_C295_loop:
 C - - - - - 0x0142A5 05:C295: B1 9B     LDA (ram_009B),Y
 C - - - - - 0x0142A7 05:C297: 30 5A     BMI bra_C2F3_RTS
 C - - - - - 0x0142A9 05:C299: AA        TAX
@@ -3807,7 +3807,7 @@ C - - - - - 0x0142CB 05:C2BB: 8D 59 01  STA ram_0159
 C - - - - - 0x0142CE 05:C2BE: 8D 4D 01  STA ram_014D
 C - - - - - 0x0142D1 05:C2C1: 8D 53 01  STA ram_0153
 C - - - - - 0x0142D4 05:C2C4: C8        INY
-C - - - - - 0x0142D5 05:C2C5: D0 CE     BNE bra_C295
+C - - - - - 0x0142D5 05:C2C5: D0 CE     BNE bra_C295_loop
 bra_C2C7:
 C - - - - - 0x0142D7 05:C2C7: E0 05     CPX #$05
 C - - - - - 0x0142D9 05:C2C9: D0 25     BNE bra_C2F0
@@ -3827,7 +3827,7 @@ C - - - - - 0x0142FC 05:C2EC: A9 FF     LDA #$FF
 C - - - - - 0x0142FE 05:C2EE: 85 8C     STA ram_008C
 bra_C2F0:
 C - - - - - 0x014300 05:C2F0: C8        INY
-C - - - - - 0x014301 05:C2F1: D0 A2     BNE bra_C295
+C - - - - - 0x014301 05:C2F1: D0 A2     BNE bra_C295_loop
 bra_C2F3_RTS:
 C - - - - - 0x014303 05:C2F3: 60        RTS
 
