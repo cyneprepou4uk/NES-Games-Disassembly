@@ -101,7 +101,7 @@ end
 local inc_file, err = io.open("copy_bank_ram.inc", "r")
 if err ~= nil then PrintError(err) end
 
-local nl_file, err = io.open("!goal5.nes.ram.nl", "w+")
+local nl_file, err = io.open("!goal3.nes.ram.nl", "w+")
 if err ~= nil then PrintError(err) end
 io.output(nl_file)
 
