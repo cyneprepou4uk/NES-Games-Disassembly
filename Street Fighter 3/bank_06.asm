@@ -1,5 +1,6 @@
 .segment "BANK_06"
 .include "copy_bank_ram.inc"
+.org $8000  ; for listing file
 ; 0x00C010-0x00E00F
 
 ; reading from 0x01C746

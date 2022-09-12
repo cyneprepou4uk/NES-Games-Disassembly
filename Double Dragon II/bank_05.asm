@@ -1,6 +1,7 @@
 .segment "BANK_05"
 .include "bank_ram.inc"
 .include "bank_val.inc"
+.org $8000  ; for listing file
 ; 0x014010-0x01800F
 
 

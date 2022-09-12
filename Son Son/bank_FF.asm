@@ -1,5 +1,6 @@
 .segment "BANK_FF"
 .include "bank_ram.inc"
+.org $8000  ; for listing file
 ; 0x000010-0x00800F
 
 vec_8000_RESET:

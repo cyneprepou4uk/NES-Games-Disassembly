@@ -1,7 +1,7 @@
 .segment "BANK_00"
 .include "copy_bank_ram.inc"
+.org $8000  ; for listing file
 ; 0x000010-0x00400F
-; абвгдеё
 
 .export sub_0x000010
 sub_0x000010:

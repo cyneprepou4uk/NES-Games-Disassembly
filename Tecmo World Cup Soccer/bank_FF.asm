@@ -1,5 +1,6 @@
 .segment "BANK_FF"
 .include "bank_ram.inc"
+.org $C000  ; for listing file
 ; 0x00C010-0x01000F
 
 vec_C000_NMI:

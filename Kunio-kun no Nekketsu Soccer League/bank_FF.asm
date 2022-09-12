@@ -1,5 +1,6 @@
 .segment "BANK_FF"
 .include "copy_bank_ram.inc"
+.org $C000  ; for listing file
 ; 0x01C010-0x02000F
 
 .export tbl_0x01C010

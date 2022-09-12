@@ -1,5 +1,6 @@
 .segment "BANK_08"
 .include "copy_bank_ram.inc"
+.org $8000  ; for listing file
 ; 0x010010-0x01200F
 
 .export tbl_0x010010_screens

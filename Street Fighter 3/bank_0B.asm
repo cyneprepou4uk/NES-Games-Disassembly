@@ -1,5 +1,6 @@
 .segment "BANK_0B"
 .include "copy_bank_ram.inc"
+.org $8000  ; for listing file
 ; 0x016010-0x01800F
 
 .export sub_0x016010
