@@ -350,7 +350,7 @@ C - - - - - 0x0081EB 02:81DB: 60        RTS
 sub_81DC:
 C - - - - - 0x0081EC 02:81DC: A9 00     LDA #$00
 C - - - - - 0x0081EE 02:81DE: 85 6B     STA ram_006B
-bra_81E0:
+bra_81E0_loop:
 C - - - - - 0x0081F0 02:81E0: A9 00     LDA #$00
 C - - - - - 0x0081F2 02:81E2: 85 68     STA ram_stage_id_1
 C - - - - - 0x0081F4 02:81E4: A5 67     LDA ram_0067
@@ -382,7 +382,7 @@ C - - - - - 0x00821E 02:820E: A5 6C     LDA ram_006C
 C - - - - - 0x008220 02:8210: D0 07     BNE bra_8219
 C - - - - - 0x008222 02:8212: A5 6B     LDA ram_006B
 C - - - - - 0x008224 02:8214: C9 08     CMP #$08
-C - - - - - 0x008226 02:8216: 90 C8     BCC bra_81E0
+C - - - - - 0x008226 02:8216: 90 C8     BCC bra_81E0_loop
 C - - - - - 0x008228 02:8218: 60        RTS
 bra_8219:
 C - - - - - 0x008229 02:8219: A5 68     LDA ram_stage_id_1
@@ -392,15 +392,15 @@ C - - - - - 0x00822F 02:821F: C9 02     CMP #$02
 C - - - - - 0x008231 02:8221: F0 06     BEQ bra_8229
 C - - - - - 0x008233 02:8223: A5 66     LDA ram_0066
 C - - - - - 0x008235 02:8225: C9 F0     CMP #$F0
-C - - - - - 0x008237 02:8227: 90 B7     BCC bra_81E0
+C - - - - - 0x008237 02:8227: 90 B7     BCC bra_81E0_loop
 bra_8229:
 C - - - - - 0x008239 02:8229: A5 64     LDA ram_0064
 C - - - - - 0x00823B 02:822B: C9 F0     CMP #$F0
-C - - - - - 0x00823D 02:822D: 90 B1     BCC bra_81E0
+C - - - - - 0x00823D 02:822D: 90 B1     BCC bra_81E0_loop
 bra_822F:
 C - - - - - 0x00823F 02:822F: A5 62     LDA ram_0062
 C - - - - - 0x008241 02:8231: C9 F0     CMP #$F0
-C - - - - - 0x008243 02:8233: 90 AB     BCC bra_81E0
+C - - - - - 0x008243 02:8233: 90 AB     BCC bra_81E0_loop
 C - - - - - 0x008245 02:8235: 60        RTS
 
 
@@ -1564,8 +1564,8 @@ C - - - - - 0x008EA0 02:8E90: A5 F7     LDA ram_btn_hold
 C - - - - - 0x008EA2 02:8E92: D0 F9     BNE bra_8E8D_loop
 C - - - - - 0x008EA4 02:8E94: A9 00     LDA #$00
 C - - - - - 0x008EA6 02:8E96: 85 60     STA ram_0060
-bra_8E98:
-loc_8E98:
+loc_8E98_loop:
+bra_8E98_loop:
 C D 0 - - - 0x008EA8 02:8E98: 20 0E 8F  JSR sub_8F0E
 C - - - - - 0x008EAB 02:8E9B: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x008EAE 02:8E9E: A5 F7     LDA ram_btn_hold
@@ -1585,16 +1585,16 @@ C - - - - - 0x008EC2 02:8EB2: 4A        LSR
 C - - - - - 0x008EC3 02:8EB3: B0 11     BCS bra_8EC6    ; if B
 C - - - - - 0x008EC5 02:8EB5: 4A        LSR
 C - - - - - 0x008EC6 02:8EB6: B0 03     BCS bra_8EBB    ; if A
-C - - - - - 0x008EC8 02:8EB8: 4C 98 8E  JMP loc_8E98
+C - - - - - 0x008EC8 02:8EB8: 4C 98 8E  JMP loc_8E98_loop
 bra_8EBB:
 C - - - - - 0x008ECB 02:8EBB: E0 03     CPX #$03
-C - - - - - 0x008ECD 02:8EBD: F0 D9     BEQ bra_8E98
+C - - - - - 0x008ECD 02:8EBD: F0 D9     BEQ bra_8E98_loop
 C - - - - - 0x008ECF 02:8EBF: 20 41 8F  JSR sub_8F41
 C - - - - - 0x008ED2 02:8EC2: E8        INX
 C - - - - - 0x008ED3 02:8EC3: 4C F0 8E  JMP loc_8EF0
 bra_8EC6:
 C - - - - - 0x008ED6 02:8EC6: E0 00     CPX #$00
-C - - - - - 0x008ED8 02:8EC8: F0 CE     BEQ bra_8E98
+C - - - - - 0x008ED8 02:8EC8: F0 CE     BEQ bra_8E98_loop
 C - - - - - 0x008EDA 02:8ECA: 20 41 8F  JSR sub_8F41
 C - - - - - 0x008EDD 02:8ECD: CA        DEX
 C - - - - - 0x008EDE 02:8ECE: 4C F0 8E  JMP loc_8EF0
@@ -1629,7 +1629,7 @@ C - - - - - 0x008F0F 02:8EFF: C8        INY
 C - - - - - 0x008F10 02:8F00: C0 10     CPY #$10
 C - - - - - 0x008F12 02:8F02: D0 F1     BNE bra_8EF5_loop
 bra_8F04:
-C - - - - - 0x008F14 02:8F04: 4C 98 8E  JMP loc_8E98
+C - - - - - 0x008F14 02:8F04: 4C 98 8E  JMP loc_8E98_loop
 bra_8F07:
 C - - - - - 0x008F17 02:8F07: 20 41 8F  JSR sub_8F41
 C - - - - - 0x008F1A 02:8F0A: 20 25 B0  JSR sub_B025
@@ -1800,11 +1800,11 @@ C - - - - - 0x00904B 02:903B: A9 00     LDA #$00
 C - - - - - 0x00904D 02:903D: 85 24     STA ram_0024
 C - - - - - 0x00904F 02:903F: 20 EA EE  JSR sub_0x00EEFA
 C - - - - - 0x009052 02:9042: 20 8A 92  JSR sub_928A
-bra_9045:
+bra_9045_loop:
 C - - - - - 0x009055 02:9045: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x009058 02:9048: A5 F5     LDA ram_btn_press
 C - - - - - 0x00905A 02:904A: 29 F0     AND #con_btns_AB + con_btns_SS
-C - - - - - 0x00905C 02:904C: F0 F7     BEQ bra_9045
+C - - - - - 0x00905C 02:904C: F0 F7     BEQ bra_9045_loop
 C - - - - - 0x00905E 02:904E: 20 38 F6  JSR sub_0x00F648
 C - - - - - 0x009061 02:9051: 60        RTS
 
@@ -1831,11 +1831,11 @@ C - - - - - 0x009089 02:9079: A9 00     LDA #$00
 C - - - - - 0x00908B 02:907B: 85 24     STA ram_0024
 C - - - - - 0x00908D 02:907D: 20 EA EE  JSR sub_0x00EEFA
 C - - - - - 0x009090 02:9080: 20 8A 92  JSR sub_928A
-bra_9083:
+bra_9083_loop:
 C - - - - - 0x009093 02:9083: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x009096 02:9086: A5 F5     LDA ram_btn_press
 C - - - - - 0x009098 02:9088: 29 F0     AND #con_btns_AB + con_btns_SS
-C - - - - - 0x00909A 02:908A: F0 F7     BEQ bra_9083
+C - - - - - 0x00909A 02:908A: F0 F7     BEQ bra_9083_loop
 C - - - - - 0x00909C 02:908C: 20 CD 91  JSR sub_91CD
 C - - - - - 0x00909F 02:908F: A9 07     LDA #con_music_07
 C - - - - - 0x0090A1 02:9091: 20 A2 F7  JSR sub_0x00F7B2_play_sound
@@ -2471,16 +2471,16 @@ bra_94F0:
 C - - - - - 0x009500 02:94F0: 88        DEY
 C - - - - - 0x009501 02:94F1: D0 E1     BNE bra_94D4_loop
 C - - - - - 0x009503 02:94F3: A0 00     LDY #$00
-bra_94F5:
+bra_94F5_loop:
 C - - - - - 0x009505 02:94F5: B9 A2 00  LDA ram_00A2,Y
 C - - - - - 0x009508 02:94F8: D9 B2 00  CMP ram_00B2,Y
 C - - - - - 0x00950B 02:94FB: F0 04     BEQ bra_9501
 C - - - - - 0x00950D 02:94FD: 10 14     BPL bra_9513
-C - - - - - 0x00950F 02:94FF: 30 05     BMI bra_9506
+C - - - - - 0x00950F 02:94FF: 30 05     BMI bra_9506    ; jmp
 bra_9501:
 C - - - - - 0x009511 02:9501: C8        INY
 C - - - - - 0x009512 02:9502: C0 08     CPY #$08
-C - - - - - 0x009514 02:9504: D0 EF     BNE bra_94F5
+C - - - - - 0x009514 02:9504: D0 EF     BNE bra_94F5_loop
 bra_9506:
 C - - - - - 0x009516 02:9506: A0 00     LDY #$00
 bra_9508_loop:

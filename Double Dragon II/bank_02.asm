@@ -7730,11 +7730,11 @@ C - - - - - 0x00ACE9 02:ACD9: 85 29     STA ram_0029
 C - - - - - 0x00ACEB 02:ACDB: A9 00     LDA #$00
 C - - - - - 0x00ACED 02:ACDD: 85 2A     STA ram_002A
 C - - - - - 0x00ACEF 02:ACDF: A0 05     LDY #$05
-bra_ACE1:
+bra_ACE1_loop:
 C - - - - - 0x00ACF1 02:ACE1: 06 29     ASL ram_0029
 C - - - - - 0x00ACF3 02:ACE3: 26 2A     ROL ram_002A
 C - - - - - 0x00ACF5 02:ACE5: 88        DEY
-C - - - - - 0x00ACF6 02:ACE6: D0 F9     BNE bra_ACE1
+C - - - - - 0x00ACF6 02:ACE6: D0 F9     BNE bra_ACE1_loop
 C - - - - - 0x00ACF8 02:ACE8: A5 2A     LDA ram_002A
 C - - - - - 0x00ACFA 02:ACEA: 18        CLC
 C - - - - - 0x00ACFB 02:ACEB: 69 20     ADC #$20
@@ -7771,7 +7771,7 @@ C - - - - - 0x00AD2C 02:AD1C: E0 04     CPX #$04
 C - - - - - 0x00AD2E 02:AD1E: 90 EC     BCC bra_AD0C_loop
 C - - - - - 0x00AD30 02:AD20: A9 00     LDA #$00
 C - - - - - 0x00AD32 02:AD22: 85 19     STA ram_0019
-bra_AD24:
+bra_AD24_loop:
 C - - - - - 0x00AD34 02:AD24: A6 19     LDX ram_0019
 C - - - - - 0x00AD36 02:AD26: 86 1B     STX ram_001B
 C - - - - - 0x00AD38 02:AD28: E8        INX
@@ -7784,7 +7784,7 @@ C - - - - - 0x00AD44 02:AD34: A5 19     LDA ram_0019
 C - - - - - 0x00AD46 02:AD36: 85 1B     STA ram_001B
 C - - - - - 0x00AD48 02:AD38: 20 D8 B3  JSR sub_B3D8
 C - - - - - 0x00AD4B 02:AD3B: B0 4D     BCS bra_AD8A
-bra_AD3D:
+bra_AD3D_loop:
 C - - - - - 0x00AD4D 02:AD3D: 2C 34 00  BIT a: ram_game_mode
 C - - - - - 0x00AD50 02:AD40: 70 06     BVS bra_AD48
 C - - - - - 0x00AD52 02:AD42: A5 1A     LDA ram_001A
@@ -7819,12 +7819,12 @@ bra_AD82:
 C - - - - - 0x00AD92 02:AD82: E6 1A     INC ram_001A
 C - - - - - 0x00AD94 02:AD84: A5 1A     LDA ram_001A
 C - - - - - 0x00AD96 02:AD86: C9 08     CMP #$08
-C - - - - - 0x00AD98 02:AD88: 90 B3     BCC bra_AD3D
+C - - - - - 0x00AD98 02:AD88: 90 B3     BCC bra_AD3D_loop
 bra_AD8A:
 C - - - - - 0x00AD9A 02:AD8A: E6 19     INC ram_0019
 C - - - - - 0x00AD9C 02:AD8C: A5 19     LDA ram_0019
 C - - - - - 0x00AD9E 02:AD8E: C9 04     CMP #$04
-C - - - - - 0x00ADA0 02:AD90: 90 92     BCC bra_AD24
+C - - - - - 0x00ADA0 02:AD90: 90 92     BCC bra_AD24_loop
 C - - - - - 0x00ADA2 02:AD92: 60        RTS
 
 
@@ -11099,13 +11099,13 @@ C - - - - - 0x00BE39 02:BE29: B9 88 04  LDA ram_score_player + 2,Y
 C - - - - - 0x00BE3C 02:BE2C: CD 8E 04  CMP ram_score_hi + 2
 C - - - - - 0x00BE3F 02:BE2F: 90 2C     BCC bra_BE5D_RTS
 C - - - - - 0x00BE41 02:BE31: F0 02     BEQ bra_BE35
-- - - - - - 0x00BE43 02:BE33: B0 16     BCS bra_BE4B
+- - - - - - 0x00BE43 02:BE33: B0 16     BCS bra_BE4B    ; jmp
 bra_BE35:
 C - - - - - 0x00BE45 02:BE35: B9 87 04  LDA ram_score_player + 1,Y
 C - - - - - 0x00BE48 02:BE38: CD 8D 04  CMP ram_score_hi + 1
 C - - - - - 0x00BE4B 02:BE3B: 90 20     BCC bra_BE5D_RTS
 C - - - - - 0x00BE4D 02:BE3D: F0 02     BEQ bra_BE41
-C - - - - - 0x00BE4F 02:BE3F: B0 0A     BCS bra_BE4B
+C - - - - - 0x00BE4F 02:BE3F: B0 0A     BCS bra_BE4B    ; jmp
 bra_BE41:
 C - - - - - 0x00BE51 02:BE41: B9 86 04  LDA ram_score_player,Y
 C - - - - - 0x00BE54 02:BE44: CD 8C 04  CMP ram_score_hi
@@ -11195,7 +11195,7 @@ C - - - - - 0x00BF13 02:BF03: C9 03     CMP #$03
 C - - - - - 0x00BF15 02:BF05: D0 4F     BNE bra_BF56_RTS
 C - - - - - 0x00BF17 02:BF07: A9 01     LDA #$01
 C - - - - - 0x00BF19 02:BF09: 85 19     STA ram_0019
-bra_BF0B:
+bra_BF0B_loop:
 C - - - - - 0x00BF1B 02:BF0B: A9 03     LDA #$03
 C - - - - - 0x00BF1D 02:BF0D: 85 1A     STA ram_001A
 C - - - - - 0x00BF1F 02:BF0F: A5 19     LDA ram_0019
@@ -11206,7 +11206,7 @@ C - - - - - 0x00BF28 02:BF18: A9 00     LDA #$00
 C - - - - - 0x00BF2A 02:BF1A: 85 1C     STA ram_001C
 C - - - - - 0x00BF2C 02:BF1C: 20 D8 B3  JSR sub_B3D8
 C - - - - - 0x00BF2F 02:BF1F: B0 31     BCS bra_BF52
-bra_BF21:
+bra_BF21_loop:
 C - - - - - 0x00BF31 02:BF21: A6 1A     LDX ram_001A
 C - - - - - 0x00BF33 02:BF23: BD 49 06  LDA ram_0649,X
 C - - - - - 0x00BF36 02:BF26: C9 02     CMP #$02
@@ -11232,10 +11232,10 @@ C - - - - - 0x00BF59 02:BF49: 85 0F     STA ram_000F
 C - - - - - 0x00BF5B 02:BF4B: 20 5B BF  JSR sub_BF5B
 bra_BF4E:
 C - - - - - 0x00BF5E 02:BF4E: C6 1A     DEC ram_001A
-C - - - - - 0x00BF60 02:BF50: 10 CF     BPL bra_BF21
+C - - - - - 0x00BF60 02:BF50: 10 CF     BPL bra_BF21_loop
 bra_BF52:
 C - - - - - 0x00BF62 02:BF52: C6 19     DEC ram_0019
-C - - - - - 0x00BF64 02:BF54: 10 B5     BPL bra_BF0B
+C - - - - - 0x00BF64 02:BF54: 10 B5     BPL bra_BF0B_loop
 bra_BF56_RTS:
 C - - - - - 0x00BF66 02:BF56: 60        RTS
 

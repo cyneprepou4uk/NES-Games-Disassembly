@@ -1393,7 +1393,7 @@ C - - - - - 0x0009EE 00:C9DE: 85 4F     STA ram_scroll_pos_Y
 C - - - - - 0x0009F0 00:C9E0: 85 4A     STA ram_hidden_cutscene_cnt
 C - - - - - 0x0009F2 00:C9E2: A9 02     LDA #$02
 C - - - - - 0x0009F4 00:C9E4: 85 50     STA ram_base_nmt
-bra_C9E6:
+bra_C9E6_loop:
 C - - - - - 0x0009F6 00:C9E6: 20 F6 D8  JSR sub_D8F6_wait_1_frame_
 C - - - - - 0x0009F9 00:C9E9: A5 0B     LDA ram_frame_cnt_lo
 C - - - - - 0x0009FB 00:C9EB: 29 03     AND #$03
@@ -1445,7 +1445,7 @@ C - - - - - 0x000A4C 00:CA3C: 60        RTS
 bra_CA3D_still_waiting_for_demo:
 C - - - - - 0x000A4D 00:CA3D: A5 08     LDA ram_btn_press
 C - - - - - 0x000A4F 00:CA3F: 29 08     AND #con_btn_Start
-C - - - - - 0x000A51 00:CA41: F0 A3     BEQ bra_C9E6
+C - - - - - 0x000A51 00:CA41: F0 A3     BEQ bra_C9E6_loop
 C - - - - - 0x000A53 00:CA43: A5 4B     LDA ram_constr_usage_cnt
 C - - - - - 0x000A55 00:CA45: C9 07     CMP #$07    ; go to construction and back 7 times
 C - - - - - 0x000A57 00:CA47: D0 09     BNE bra_CA52
@@ -3540,13 +3540,13 @@ C - - - - - 0x0017C6 00:D7B6: 85 11     STA ram_0011
 C - - - - - 0x0017C8 00:D7B8: A8        TAY
 C - - - - - 0x0017C9 00:D7B9: A9 04     LDA #$04
 C - - - - - 0x0017CB 00:D7BB: 85 12     STA ram_0012
-bra_D7BD:
+bra_D7BD_loop:
 C - - - - - 0x0017CD 00:D7BD: 20 71 D7  JSR sub_D771
 C - - - - - 0x0017D0 00:D7C0: A9 01     LDA #$01
 C - - - - - 0x0017D2 00:D7C2: 20 AA D7  JSR sub_D7AA
 C - - - - - 0x0017D5 00:D7C5: A5 12     LDA ram_0012
 C - - - - - 0x0017D7 00:D7C7: C9 08     CMP #$08
-C - - - - - 0x0017D9 00:D7C9: D0 F2     BNE bra_D7BD
+C - - - - - 0x0017D9 00:D7C9: D0 F2     BNE bra_D7BD_loop
 C - - - - - 0x0017DB 00:D7CB: 60        RTS
 
 
@@ -5245,7 +5245,7 @@ sub_E162:
 C - - - - - 0x002172 00:E162: AD 00 01  LDA ram_clock_timer
 C - - - - - 0x002175 00:E165: D0 19     BNE bra_E180_RTS
 C - - - - - 0x002177 00:E167: A2 07     LDX #$07
-bra_E169:
+bra_E169_loop:
 C - - - - - 0x002179 00:E169: B5 A0     LDA ram_tank_status,X
 C - - - - - 0x00217B 00:E16B: 10 0E     BPL bra_E17B
 C - - - - - 0x00217D 00:E16D: C9 E0     CMP #$E0
@@ -5257,7 +5257,7 @@ C - - - - - 0x002188 00:E178: 20 8C E0  JSR sub_E08C
 bra_E17B:
 C - - - - - 0x00218B 00:E17B: CA        DEX
 C - - - - - 0x00218C 00:E17C: E0 01     CPX #$01
-C - - - - - 0x00218E 00:E17E: D0 E9     BNE bra_E169
+C - - - - - 0x00218E 00:E17E: D0 E9     BNE bra_E169_loop
 bra_E180_RTS:
 C - - - - - 0x002190 00:E180: 60        RTS
 
@@ -6603,7 +6603,7 @@ C - - - - - 0x00285D 00:E84D: 4C B5 E8  JMP loc_E8B5
 bra_E850:
 C - - - - - 0x002860 00:E850: A9 09     LDA #$09
 C - - - - - 0x002862 00:E852: 85 5B     STA ram_005B
-bra_E854:
+bra_E854_loop:
 C - - - - - 0x002864 00:E854: A5 5B     LDA ram_005B
 C - - - - - 0x002866 00:E856: 29 06     AND #$06
 C - - - - - 0x002868 00:E858: D0 57     BNE bra_E8B1
@@ -6655,7 +6655,7 @@ C - - - - - 0x0028BE 00:E8AE: 4C B5 E8  JMP loc_E8B5
 bra_E8B1:
 loc_E8B1:
 C D 3 - - - 0x0028C1 00:E8B1: C6 5B     DEC ram_005B
-C - - - - - 0x0028C3 00:E8B3: 10 9F     BPL bra_E854
+C - - - - - 0x0028C3 00:E8B3: 10 9F     BPL bra_E854_loop
 loc_E8B5:
 C D 3 - - - 0x0028C5 00:E8B5: C6 5A     DEC ram_obj_loop_cnt
 C - - - - - 0x0028C7 00:E8B7: 10 8A     BPL bra_E843_loop
@@ -6675,7 +6675,7 @@ tbl_E8BA_points_for_killing_enemy:
 sub_E8BE:
 C - - - - - 0x0028CE 00:E8BE: A9 01     LDA #$01
 C - - - - - 0x0028D0 00:E8C0: 8D 09 03  STA ram_sfx_bonus_appear
-bra_E8C3:
+bra_E8C3_loop:
 C - - - - - 0x0028D3 00:E8C3: 20 4D D4  JSR sub_D44D_roll_rng
 C - - - - - 0x0028D6 00:E8C6: 29 03     AND #$03
 C - - - - - 0x0028D8 00:E8C8: 20 02 E9  JSR sub_E902
@@ -6690,7 +6690,7 @@ C - - - - - 0x0028EB 00:E8DB: A9 00     LDA #$00
 C - - - - - 0x0028ED 00:E8DD: 85 62     STA ram_0062
 C - - - - - 0x0028EF 00:E8DF: 20 72 E9  JSR sub_E972_bonus_handler
 C - - - - - 0x0028F2 00:E8E2: A5 62     LDA ram_0062
-C - - - - - 0x0028F4 00:E8E4: D0 DD     BNE bra_E8C3
+C - - - - - 0x0028F4 00:E8E4: D0 DD     BNE bra_E8C3_loop
 C - - - - - 0x0028F6 00:E8E6: 20 4D D4  JSR sub_D44D_roll_rng
 C - - - - - 0x0028F9 00:E8E9: 29 07     AND #$07
 C - - - - - 0x0028FB 00:E8EB: A8        TAY
@@ -7047,13 +7047,13 @@ C - - - - - 0x002AE2 00:EAD2: 0A        ASL
 C - - - - - 0x002AE3 00:EAD3: AA        TAX
 C - - - - - 0x002AE4 00:EAD4: A9 04     LDA #$04
 C - - - - - 0x002AE6 00:EAD6: 85 FD     STA ram_00FD
-bra_EAD8:
+bra_EAD8_loop:
 C - - - - - 0x002AE8 00:EAD8: C8        INY
 C - - - - - 0x002AE9 00:EAD9: B1 F0     LDA (ram_00F0),Y
 C - - - - - 0x002AEB 00:EADB: 9D 00 40  STA $4000,X
 C - - - - - 0x002AEE 00:EADE: E8        INX
 C - - - - - 0x002AEF 00:EADF: C6 FD     DEC ram_00FD
-C - - - - - 0x002AF1 00:EAE1: D0 F5     BNE bra_EAD8
+C - - - - - 0x002AF1 00:EAE1: D0 F5     BNE bra_EAD8_loop
 bra_EAE3:
 loc_EAE3:
 C D 3 - - - 0x002AF3 00:EAE3: 18        CLC
@@ -7068,7 +7068,7 @@ C - - - - - 0x002B00 00:EAF0: A5 F4     LDA ram_sfx_check_index
 C - - - - - 0x002B02 00:EAF2: C5 F5     CMP ram_sfx_check_limit
 C - - - - - 0x002B04 00:EAF4: 90 AB     BCC bra_EAA1_loop
 C - - - - - 0x002B06 00:EAF6: A2 00     LDX #$00
-bra_EAF8:
+bra_EAF8_loop:
 C - - - - - 0x002B08 00:EAF8: 86 FD     STX ram_00FD
 C - - - - - 0x002B0A 00:EAFA: B5 F9     LDA ram_00F9,X
 C - - - - - 0x002B0C 00:EAFC: D0 0C     BNE bra_EB0A
@@ -7084,7 +7084,7 @@ bra_EB0A:
 C - - - - - 0x002B1A 00:EB0A: A6 FD     LDX ram_00FD
 C - - - - - 0x002B1C 00:EB0C: E8        INX
 C - - - - - 0x002B1D 00:EB0D: E0 04     CPX #$04
-C - - - - - 0x002B1F 00:EB0F: 90 E7     BCC bra_EAF8
+C - - - - - 0x002B1F 00:EB0F: 90 E7     BCC bra_EAF8_loop
 C - - - - - 0x002B21 00:EB11: A0 00     LDY #$00
 C - - - - - 0x002B23 00:EB13: 84 F4     STY ram_sfx_check_index
 C - - - - - 0x002B25 00:EB15: A9 1C     LDA #$1C

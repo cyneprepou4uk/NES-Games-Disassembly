@@ -237,7 +237,7 @@ C - - - - - 0x00C191 03:C181: 4C 4B C0  JMP loc_C04B
 
 
 
-bra_C184:
+bra_C184_loop:
 - - - - - - 0x00C194 03:C184: A9 00     LDA #$00
 - - - - - - 0x00C196 03:C186: 20 A2 F7  JSR sub_F7A2_play_sound
 bra_C189_loop:
@@ -262,7 +262,7 @@ bra_C1AE_player_exists:
 C - - - - - 0x00C1BE 03:C1AE: 20 72 EE  JSR sub_EE72_read_joystick_regs
 C - - - - - 0x00C1C1 03:C1B1: A5 F5     LDA ram_btn_press
 C - - - - - 0x00C1C3 03:C1B3: 29 30     AND #con_btns_SS
-C - - - - - 0x00C1C5 03:C1B5: D0 CD     BNE bra_C184
+C - - - - - 0x00C1C5 03:C1B5: D0 CD     BNE bra_C184_loop
 C - - - - - 0x00C1C7 03:C1B7: AD 0B 05  LDA ram_obj_input
 C - - - - - 0x00C1CA 03:C1BA: 29 F3     AND #con_btns_UD ^ $FF
 C - - - - - 0x00C1CC 03:C1BC: 8D 0B 05  STA ram_obj_input
@@ -7305,12 +7305,12 @@ C - - - - - 0x00EC13 03:EC03: 8D FF 9F  STA $9FFF
 C - - - - - 0x00EC16 03:EC06: D8        CLD
 C - - - - - 0x00EC17 03:EC07: A2 00     LDX #$00
 C - - - - - 0x00EC19 03:EC09: 8E 00 20  STX $2000
-bra_EC0C_loop:
+bra_EC0C_infinite_loop:
 C - - - - - 0x00EC1C 03:EC0C: AD 02 20  LDA $2002
-C - - - - - 0x00EC1F 03:EC0F: 10 FB     BPL bra_EC0C_loop
-bra_EC11_loop:
+C - - - - - 0x00EC1F 03:EC0F: 10 FB     BPL bra_EC0C_infinite_loop
+bra_EC11_infinite_loop:
 C - - - - - 0x00EC21 03:EC11: AD 02 20  LDA $2002
-C - - - - - 0x00EC24 03:EC14: 10 FB     BPL bra_EC11_loop
+C - - - - - 0x00EC24 03:EC14: 10 FB     BPL bra_EC11_infinite_loop
 C - - - - - 0x00EC26 03:EC16: A2 FE     LDX #$FE
 C - - - - - 0x00EC28 03:EC18: 9A        TXS
 C - - - - - 0x00EC29 03:EC19: A9 00     LDA #$00
@@ -7575,7 +7575,7 @@ bra_EDC9_print_tile_loop:
 C - - - - - 0x00EDD9 03:EDC9: 20 D1 ED  JSR sub_EDD1
 C - - - - - 0x00EDDC 03:EDCC: CA        DEX
 C - - - - - 0x00EDDD 03:EDCD: D0 FA     BNE bra_EDC9_print_tile_loop
-C - - - - - 0x00EDDF 03:EDCF: F0 D1     BEQ bra_EDA2_loop
+C - - - - - 0x00EDDF 03:EDCF: F0 D1     BEQ bra_EDA2_loop   ; jmp
 
 
 
@@ -7641,7 +7641,7 @@ bra_EE26:
 - - - - - - 0x00EE36 03:EE26: 20 2E EE  JSR sub_EE2E
 - - - - - - 0x00EE39 03:EE29: CA        DEX
 - - - - - - 0x00EE3A 03:EE2A: D0 FA     BNE bra_EE26
-- - - - - - 0x00EE3C 03:EE2C: F0 D1     BEQ bra_EDFF_loop
+- - - - - - 0x00EE3C 03:EE2C: F0 D1     BEQ bra_EDFF_loop   ; jmp
 
 
 
@@ -7743,7 +7743,7 @@ C - - - - - 0x00EEB2 03:EEA2: 8E 16 40  STX $4016
 C - - - - - 0x00EEB5 03:EEA5: CA        DEX
 C - - - - - 0x00EEB6 03:EEA6: 8E 16 40  STX $4016
 C - - - - - 0x00EEB9 03:EEA9: A2 08     LDX #$08
-bra_EEAB:
+bra_EEAB_loop:
 C - - - - - 0x00EEBB 03:EEAB: AD 16 40  LDA $4016
 C - - - - - 0x00EEBE 03:EEAE: 4A        LSR
 C - - - - - 0x00EEBF 03:EEAF: 26 F5     ROL ram_btn_press
@@ -7755,7 +7755,7 @@ C - - - - - 0x00EEC8 03:EEB8: 26 F6     ROL ram_btn_press + 1
 C - - - - - 0x00EECA 03:EEBA: 4A        LSR
 C - - - - - 0x00EECB 03:EEBB: 26 11     ROL ram_0011
 C - - - - - 0x00EECD 03:EEBD: CA        DEX
-C - - - - - 0x00EECE 03:EEBE: D0 EB     BNE bra_EEAB
+C - - - - - 0x00EECE 03:EEBE: D0 EB     BNE bra_EEAB_loop
 C - - - - - 0x00EED0 03:EEC0: A5 10     LDA ram_0010
 C - - - - - 0x00EED2 03:EEC2: 05 F5     ORA ram_btn_press
 C - - - - - 0x00EED4 03:EEC4: 85 F5     STA ram_btn_press
@@ -8070,7 +8070,7 @@ loc_F067:
 
 
 
-bra_F07F:
+bra_F07F_loop:
 C - - - - - 0x00F08F 03:F07F: AD 02 20  LDA $2002
 C - - - - - 0x00F092 03:F082: BD 81 03  LDA ram_0381,X
 C - - - - - 0x00F095 03:F085: 8D 06 20  STA $2006
@@ -8093,7 +8093,7 @@ C - - - - - 0x00F0B4 03:F0A4: 88        DEY
 C - - - - - 0x00F0B5 03:F0A5: D0 F3     BNE bra_F09A_loop
 sub_F0A7:
 C - - - - - 0x00F0B7 03:F0A7: AC 80 03  LDY ram_0380
-C - - - - - 0x00F0BA 03:F0AA: D0 D3     BNE bra_F07F
+C - - - - - 0x00F0BA 03:F0AA: D0 D3     BNE bra_F07F_loop
 C - - - - - 0x00F0BC 03:F0AC: A9 00     LDA #$00
 C - - - - - 0x00F0BE 03:F0AE: 8D 06 20  STA $2006
 C - - - - - 0x00F0C1 03:F0B1: 8D 06 20  STA $2006
@@ -8119,12 +8119,12 @@ loc_F0CF:
 C D 3 - - - 0x00F0DF 03:F0CF: AD 02 20  LDA $2002
 C - - - - - 0x00F0E2 03:F0D2: 20 F1 F0  JSR sub_F0F1_set_ppu_3F00
 C - - - - - 0x00F0E5 03:F0D5: A8        TAY
-bra_F0D6:
+bra_F0D6_loop:
 C - - - - - 0x00F0E6 03:F0D6: B9 00 04  LDA ram_0400,Y
 C - - - - - 0x00F0E9 03:F0D9: 8D 07 20  STA $2007
 C - - - - - 0x00F0EC 03:F0DC: C8        INY
 C - - - - - 0x00F0ED 03:F0DD: C0 20     CPY #$20
-C - - - - - 0x00F0EF 03:F0DF: D0 F5     BNE bra_F0D6
+C - - - - - 0x00F0EF 03:F0DF: D0 F5     BNE bra_F0D6_loop
 C - - - - - 0x00F0F1 03:F0E1: A5 18     LDA ram_0018
 C - - - - - 0x00F0F3 03:F0E3: 29 BF     AND #$BF
 C - - - - - 0x00F0F5 03:F0E5: 85 18     STA ram_0018
@@ -9855,10 +9855,10 @@ C - - - - - 0x00FAED 03:FADD: F0 3C     BEQ bra_FB1B
 C - - - - - 0x00FAEF 03:FADF: 38        SEC
 C - - - - - 0x00FAF0 03:FAE0: E9 04     SBC #$04
 C - - - - - 0x00FAF2 03:FAE2: 90 37     BCC bra_FB1B
-bra_FAE4:
+bra_FAE4_loop:
 C - - - - - 0x00FAF4 03:FAE4: 38        SEC
 C - - - - - 0x00FAF5 03:FAE5: E9 0C     SBC #$0C
-C - - - - - 0x00FAF7 03:FAE7: B0 FB     BCS bra_FAE4
+C - - - - - 0x00FAF7 03:FAE7: B0 FB     BCS bra_FAE4_loop
 C - - - - - 0x00FAF9 03:FAE9: 69 0C     ADC #$0C
 C - - - - - 0x00FAFB 03:FAEB: 85 48     STA ram_0048
 C - - - - - 0x00FAFD 03:FAED: 0A        ASL

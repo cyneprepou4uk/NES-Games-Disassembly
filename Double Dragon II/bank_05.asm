@@ -255,7 +255,7 @@ C - - - - - 0x0141C1 05:81B1: 8D FF 07  STA ram_sound_id
 C - - - - - 0x0141C4 05:81B4: 20 26 80  JSR sub_8026_load_sound_into_engine
 bra_81B7:
 C - - - - - 0x0141C7 05:81B7: A2 07     LDX #$07
-bra_81B9:
+bra_81B9_loop:
 C - - - - - 0x0141C9 05:81B9: 8E 38 07  STX ram_0738
 C - - - - - 0x0141CC 05:81BC: BD 30 07  LDA ram_0730,X
 C - - - - - 0x0141CF 05:81BF: F0 03     BEQ bra_81C4
@@ -267,31 +267,31 @@ C - - - - - 0x0141D9 05:81C9: 20 A6 85  JSR sub_85A6
 bra_81CC:
 C - - - - - 0x0141DC 05:81CC: CA        DEX
 C - - - - - 0x0141DD 05:81CD: E0 03     CPX #$03
-C - - - - - 0x0141DF 05:81CF: D0 E8     BNE bra_81B9
+C - - - - - 0x0141DF 05:81CF: D0 E8     BNE bra_81B9_loop
 C - - - - - 0x0141E1 05:81D1: 2C FE 07  BIT ram_game_flags_2
 C - - - - - 0x0141E4 05:81D4: 70 2E     BVS bra_8204_RTS
-bra_81D6:
+bra_81D6_loop:
 C - - - - - 0x0141E6 05:81D6: 8E 38 07  STX ram_0738
 C - - - - - 0x0141E9 05:81D9: 20 52 88  JSR sub_8852
 C - - - - - 0x0141EC 05:81DC: 20 A6 85  JSR sub_85A6
 C - - - - - 0x0141EF 05:81DF: 20 E8 85  JSR sub_85E8
 C - - - - - 0x0141F2 05:81E2: AE 38 07  LDX ram_0738
 C - - - - - 0x0141F5 05:81E5: CA        DEX
-C - - - - - 0x0141F6 05:81E6: 10 EE     BPL bra_81D6
+C - - - - - 0x0141F6 05:81E6: 10 EE     BPL bra_81D6_loop
 C - - - - - 0x0141F8 05:81E8: AD 39 07  LDA ram_0739
 C - - - - - 0x0141FB 05:81EB: 18        CLC
 C - - - - - 0x0141FC 05:81EC: 6D 3B 07  ADC ram_073B
 C - - - - - 0x0141FF 05:81EF: 8D 3B 07  STA ram_073B
 C - - - - - 0x014202 05:81F2: 90 10     BCC bra_8204_RTS
 C - - - - - 0x014204 05:81F4: A2 03     LDX #$03
-bra_81F6:
+bra_81F6_loop:
 C - - - - - 0x014206 05:81F6: BD 30 07  LDA ram_0730,X
 C - - - - - 0x014209 05:81F9: F0 06     BEQ bra_8201
 C - - - - - 0x01420B 05:81FB: 8E 38 07  STX ram_0738
 C - - - - - 0x01420E 05:81FE: 20 0B 82  JSR sub_820B
 bra_8201:
 C - - - - - 0x014211 05:8201: CA        DEX
-C - - - - - 0x014212 05:8202: 10 F2     BPL bra_81F6
+C - - - - - 0x014212 05:8202: 10 F2     BPL bra_81F6_loop
 bra_8204_RTS:
 C - - - - - 0x014214 05:8204: 60        RTS
 
@@ -324,9 +324,9 @@ C - - - - - 0x014239 05:8229: 85 00     STA ram_0000
 C - - - - - 0x01423B 05:822B: BD 44 07  LDA ram_0744,X
 C - - - - - 0x01423E 05:822E: 85 01     STA ram_0001
 C - - - - - 0x014240 05:8230: A0 00     LDY #$00
-bra_8232:
+bra_8232_loop:
 C - - - - - 0x014242 05:8232: 20 45 82  JSR sub_8245
-C - - - - - 0x014245 05:8235: 90 FB     BCC bra_8232
+C - - - - - 0x014245 05:8235: 90 FB     BCC bra_8232_loop
 C - - - - - 0x014247 05:8237: 20 D0 88  JSR sub_88D0
 C - - - - - 0x01424A 05:823A: A5 00     LDA ram_0000
 C - - - - - 0x01424C 05:823C: 9D 3C 07  STA ram_073C,X
@@ -563,7 +563,7 @@ C - - - - - 0x01438B 05:837B: 30 0A     BMI bra_8387
 C - - - - - 0x01438D 05:837D: 7D 5C 07  ADC ram_075C,X
 C - - - - - 0x014390 05:8380: 90 0D     BCC bra_838F
 C - - - - - 0x014392 05:8382: FE 54 07  INC ram_0754,X
-C - - - - - 0x014395 05:8385: B0 08     BCS bra_838F
+C - - - - - 0x014395 05:8385: B0 08     BCS bra_838F    ; jmp
 bra_8387:
 C - - - - - 0x014397 05:8387: 7D 5C 07  ADC ram_075C,X
 C - - - - - 0x01439A 05:838A: B0 03     BCS bra_838F
@@ -624,7 +624,7 @@ ofs_017_83CD_C9:
 C - - J - - 0x0143DD 05:83CD: BD 94 07  LDA ram_0794,X
 C - - - - - 0x0143E0 05:83D0: 9D 4C 07  STA ram_074C,X
 C - - - - - 0x0143E3 05:83D3: 38        SEC
-C - - - - - 0x0143E4 05:83D4: B0 09     BCS bra_83DF
+C - - - - - 0x0143E4 05:83D4: B0 09     BCS bra_83DF    ; jmp
 
 
 
@@ -1033,7 +1033,7 @@ C - - - - - 0x01463B 05:862B: C8        INY
 C - - - - - 0x01463C 05:862C: 98        TYA
 C - - - - - 0x01463D 05:862D: 09 80     ORA #$80
 C - - - - - 0x01463F 05:862F: 9D B9 07  STA ram_07B9,X
-C - - - - - 0x014642 05:8632: D0 4E     BNE bra_8682
+C - - - - - 0x014642 05:8632: D0 4E     BNE bra_8682    ; jmp
 bra_8634:
 C - - - - - 0x014644 05:8634: 88        DEY
 C - - - - - 0x014645 05:8635: B1 00     LDA (ram_0000),Y
@@ -1048,7 +1048,7 @@ C - - - - - 0x014653 05:8643: 30 09     BMI bra_864E
 C - - - - - 0x014655 05:8645: 7D B0 07  ADC ram_07B0,X
 C - - - - - 0x014658 05:8648: 90 15     BCC bra_865F
 C - - - - - 0x01465A 05:864A: A9 FF     LDA #$FF
-C - - - - - 0x01465C 05:864C: B0 07     BCS bra_8655
+C - - - - - 0x01465C 05:864C: B0 07     BCS bra_8655    ; jmp
 bra_864E:
 C - - - - - 0x01465E 05:864E: 7D B0 07  ADC ram_07B0,X
 C - - - - - 0x014661 05:8651: B0 0C     BCS bra_865F
@@ -1057,7 +1057,7 @@ bra_8655:
 C - - - - - 0x014665 05:8655: 9D B0 07  STA ram_07B0,X
 C - - - - - 0x014668 05:8658: A9 00     LDA #$00
 C - - - - - 0x01466A 05:865A: 9D B9 07  STA ram_07B9,X
-C - - - - - 0x01466D 05:865D: F0 23     BEQ bra_8682
+C - - - - - 0x01466D 05:865D: F0 23     BEQ bra_8682    ; jmp
 bra_865F:
 C - - - - - 0x01466F 05:865F: 9D B0 07  STA ram_07B0,X
 C - - - - - 0x014672 05:8662: B0 1E     BCS bra_8682
@@ -1361,7 +1361,7 @@ C - - - - - 0x014849 05:8839: B0 0A     BCS bra_8845
 C - - - - - 0x01484B 05:883B: BD 34 07  LDA ram_0734,X
 C - - - - - 0x01484E 05:883E: D0 11     BNE bra_8851_RTS
 C - - - - - 0x014850 05:8840: 8C F1 07  STY ram_STA_40xx_RTS + 1
-C - - - - - 0x014853 05:8843: F0 06     BEQ bra_884B
+C - - - - - 0x014853 05:8843: F0 06     BEQ bra_884B    ; jmp
 bra_8845:
 C - - - - - 0x014855 05:8845: 98        TYA
 C - - - - - 0x014856 05:8846: 29 0F     AND #$0F
