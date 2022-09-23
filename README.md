@@ -63,19 +63,20 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 
 
 ## WIP
-* Castlevania III - Dracula's Curse (U) [!]
-* Dr. Mario (JU) (PRG0) [!]
-* Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
-* Super Mario Bros. (W) [!]
-* Tennis (JU) [!]
-* Urban Champion (W) [!]
+* Castlevania III - Dracula's Curse (U) [!] `7CC9C669`
+* Dr. Mario (JU) (PRG0) [!] `B1F7E3E9`
+* Ninja Gaiden III - The Ancient Ship of Doom (U) [!] `BABD39FA`
+* Super Mario Bros. (W) [!] `3337EC46`
+* Tennis (JU) [!] `5F457C00`
+* Urban Champion (W) [!] `0770CDAA`
 
 
 
 ## Planning
-* Balloon Fight (J) [!]
-* Contra Force (U) [!]
-* Ghosts 'N Goblins (U) [!]
-* Mighty Final Fight (U) [!]
-* River City Ransom (U) [!]
-* Tetris (Tengen) [!]
+* Balloon Fight (J) [!] `A0DABE0A`
+* Bubble Bobble (U) [!] `D3A91B41`
+* Contra Force (U) [!] `83D69922`
+* Ghosts 'N Goblins (U) [!] `87ED54AA`
+* Mighty Final Fight (U) [!] `15EB0BEE`
+* River City Ransom (U) [!] `C3508F7E`
+* Tetris (Tengen) [!] `88F071C3`
