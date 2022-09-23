@@ -33,6 +33,7 @@ Lua script will take care of it before compilation. You just write new code as u
 ## Current games list (GoodNES) + CRC32
 * Battle City (J) [!] `F599A07E`
 * Bugs Bunny Crazy Castle, The (U) [!] `DB0C3656`
+* Danny Sullivan's Indy Heat (U) [!] `311B5A58`
 * Double Dragon II - The Revenge (J) `8CF69E4B`
 * Excitebike (JU) [!] `2BB33C69`
 * Ice Climber (J) [!] `80C41616`
@@ -51,7 +52,6 @@ Lua script will take care of it before compilation. You just write new code as u
 
 ## WIP
 * Castlevania III - Dracula's Curse (U) [!]
-* Danny Sullivan's Indy Heat (U) [!]
 * Dr. Mario (JU) (PRG0) [!]
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!]
 * Super Mario Bros. (W) [!]
