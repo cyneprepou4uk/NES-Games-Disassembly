@@ -19,18 +19,21 @@ Do not delete or edit folders `_scripts` and `_install_packages`, unless you kno
 
 
 
-
-## How to edit
+## Syntax highlighting
 
 Use `syntax_6502.xml` to highlight code in [Notepad++](https://notepad-plus-plus.org/).
 
 Go to Language -> User Defined Language -> Define your language -> Import.
 
+
+
+## How to edit a disassemmbly
+
 My personal comments are marked with `bzk` text. Start with deleting garbage to free up some space.
 
 And don't worry about stuff like `C - - - - - 0x00009C 00:C08C: A9 00     LDA #$00`.
 
-Lua script will take care of it before compilation. You just write new code as usual, like this `LDA #$00`.
+`preparations.lua` script will take care of it before compilation. You just write new code as usual, like this `LDA #$00`.
 
 
 
