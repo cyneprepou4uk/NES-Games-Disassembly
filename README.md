@@ -2,6 +2,10 @@
 
 Each source code is equal to the original ROM, compilable and editable.
 
+All of them were made by my BZK 6502 Disassembler tool
+
+https://github.com/cyneprepou4uk/BZK-6502-Disassembler
+
 
 
 ## How to build
