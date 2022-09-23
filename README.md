@@ -10,7 +10,7 @@ No special requirements (for Windows users). Just launch `assemble.bat` and wait
 
 If you have any other OS, try using `sh assemble.sh` in terminal instead. All credits goes to [gb-2312](https://github.com/gb-2312).
 
-**Please do not ~~delete~~ or edit folders `_scripts` and `_install_packages`, unless you know how it works**.
+Do not delete or edit folders `_scripts` and `_install_packages`, unless you know how it works.
 
 
 
@@ -62,6 +62,10 @@ Lua script will take care of it before compilation. You just write new code as u
 
 ## Planning
 * Balloon Fight (J) [!]
+* Contra Force (U) [!]
+* Ghosts 'N Goblins (U) [!]
+* Mighty Final Fight (U) [!]
+* River City Ransom (U) [!]
 * Tetris (Tengen) [!]
 
 
