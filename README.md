@@ -8,7 +8,7 @@ Leave your suggestions at [RHDN](https://www.romhacking.net/forum/index.php?topi
 
 
 
-## How to build
+## How to build a disassembly
 
 ### Windows
 
@@ -37,6 +37,8 @@ My personal comments are marked with `bzk` text. Start with deleting garbage to 
 And don't worry about stuff like `C - - - - - 0x00009C 00:C08C: A9 00     LDA #$00`.
 
 `preparations.lua` script will take care of it before compilation. You just write new code as usual, like this `LDA #$00`.
+
+You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\s..\s..\s\s` regex if necessary.
 
 
 
