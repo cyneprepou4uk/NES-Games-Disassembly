@@ -18,7 +18,7 @@ No special requirements. Just launch `assemble.bat` and wait until it's done.
 
 Try using `sh assemble.sh` in terminal instead. All credits goes to [gb-2312](https://github.com/gb-2312).
 
-Do not delete or edit folders `_scripts` and `_install_packages`, unless you know how it works.
+Do not delete or edit `_scripts` and `_install_packages` folders, unless you know how it works.
 
 
 
