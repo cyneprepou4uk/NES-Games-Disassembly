@@ -90,10 +90,10 @@ C - - - - - 0x0000C0 00:C0B0: D0 15     BNE bra_C0C7
 bra_C0B2_loop:
 - - - - - - 0x0000C2 00:C0B2: B9 77 00  LDA ram_data_p2,Y
 - - - - - - 0x0000C5 00:C0B5: 85 00     STA ram_0000
-- - - - - - 0x0000C7 00:C0B7: B9 67 00  LDA ram_p1_data,Y
+- - - - - - 0x0000C7 00:C0B7: B9 67 00  LDA ram_data_p1,Y
 - - - - - - 0x0000CA 00:C0BA: 99 77 00  STA ram_data_p2,Y
 - - - - - - 0x0000CD 00:C0BD: A5 00     LDA ram_0000
-- - - - - - 0x0000CF 00:C0BF: 99 67 00  STA ram_p1_data,Y
+- - - - - - 0x0000CF 00:C0BF: 99 67 00  STA ram_data_p1,Y
 - - - - - - 0x0000D2 00:C0C2: C8        INY
 - - - - - - 0x0000D3 00:C0C3: C0 10     CPY #$10
 - - - - - - 0x0000D5 00:C0C5: D0 EB     BNE bra_C0B2_loop
@@ -223,10 +223,10 @@ C - - - - - 0x0001B9 00:C1A9: C8        INY
 C - - - - - 0x0001BA 00:C1AA: C0 10     CPY #$10
 C - - - - - 0x0001BC 00:C1AC: D0 F5     BNE bra_C1A3_loop
 C - - - - - 0x0001BE 00:C1AE: A9 2D     LDA #con_tile + $2D
-C - - - - - 0x0001C0 00:C1B0: 85 6C     STA ram_p1_power_pellet_tile
-C - - - - - 0x0001C2 00:C1B2: 85 6D     STA ram_p1_power_pellet_tile + 1
-C - - - - - 0x0001C4 00:C1B4: 85 6E     STA ram_p1_power_pellet_tile + 2
-C - - - - - 0x0001C6 00:C1B6: 85 6F     STA ram_p1_power_pellet_tile + 3
+C - - - - - 0x0001C0 00:C1B0: 85 6C     STA ram_power_pellet_tile_p1
+C - - - - - 0x0001C2 00:C1B2: 85 6D     STA ram_power_pellet_tile_p1 + 1
+C - - - - - 0x0001C4 00:C1B4: 85 6E     STA ram_power_pellet_tile_p1 + 2
+C - - - - - 0x0001C6 00:C1B6: 85 6F     STA ram_power_pellet_tile_p1 + 3
 C - - - - - 0x0001C8 00:C1B8: A9 FF     LDA #$FF
 C - - - - - 0x0001CA 00:C1BA: 8D 3F 02  STA ram_ppu_buffer_score
 C - - - - - 0x0001CD 00:C1BD: 85 48     STA ram_flag_demo
@@ -1352,25 +1352,25 @@ C - - - - - 0x0009B9 00:C9A9: 20 79 E3  JSR sub_E379
 C - - - - - 0x0009BC 00:C9AC: A5 48     LDA ram_flag_demo
 C - - - - - 0x0009BE 00:C9AE: F0 06     BEQ bra_C9B6
 C - - - - - 0x0009C0 00:C9B0: A9 01     LDA #$01
-C - - - - - 0x0009C2 00:C9B2: 85 67     STA ram_p1_lives
+C - - - - - 0x0009C2 00:C9B2: 85 67     STA ram_lives_p1
 C - - - - - 0x0009C4 00:C9B4: D0 17     BNE bra_C9CD    ; jmp
 bra_C9B6:
 C - - - - - 0x0009C6 00:C9B6: A9 00     LDA #$00
 C - - - - - 0x0009C8 00:C9B8: A8        TAY
 bra_C9B9_loop:
 ; 0067-0086
-C - - - - - 0x0009C9 00:C9B9: 99 67 00  STA ram_p1_data,Y
+C - - - - - 0x0009C9 00:C9B9: 99 67 00  STA ram_data_p1,Y
 C - - - - - 0x0009CC 00:C9BC: C8        INY
 C - - - - - 0x0009CD 00:C9BD: C0 20     CPY #$20
 C - - - - - 0x0009CF 00:C9BF: D0 F8     BNE bra_C9B9_loop
 C - - - - - 0x0009D1 00:C9C1: A9 03     LDA #$03
-C - - - - - 0x0009D3 00:C9C3: 85 67     STA ram_p1_lives
+C - - - - - 0x0009D3 00:C9C3: 85 67     STA ram_lives_p1
 C - - - - - 0x0009D5 00:C9C5: 85 77     STA ram_lives_p2
 C - - - - - 0x0009D7 00:C9C7: 8D 00 06  STA ram_sfx_plr_ready
 C - - - - - 0x0009DA 00:C9CA: 8D 01 06  STA ram_sfx_plr_ready + 1
 bra_C9CD:
 C - - - - - 0x0009DD 00:C9CD: A9 FF     LDA #$FF
-C - - - - - 0x0009DF 00:C9CF: 85 68     STA ram_p1_stage
+C - - - - - 0x0009DF 00:C9CF: 85 68     STA ram_stage_p1
 C - - - - - 0x0009E1 00:C9D1: 85 78     STA ram_stage_p2
 C - - - - - 0x0009E3 00:C9D3: 8D 45 02  STA ram_ppu_buffer_hiscore
 C - - - - - 0x0009E6 00:C9D6: A9 88     LDA #$88
@@ -1535,7 +1535,7 @@ C - - - - - 0x000B06 00:CAF6: E6 06     INC ram_0006
 C - - - - - 0x000B08 00:CAF8: E6 07     INC ram_0007
 C - - - - - 0x000B0A 00:CAFA: A5 69     LDA ram_0069
 C - - - - - 0x000B0C 00:CAFC: D0 04     BNE bra_CB02
-C - - - - - 0x000B0E 00:CAFE: A5 68     LDA ram_p1_stage
+C - - - - - 0x000B0E 00:CAFE: A5 68     LDA ram_stage_p1
 C - - - - - 0x000B10 00:CB00: D0 18     BNE bra_CB1A
 bra_CB02:
 C - - - - - 0x000B12 00:CB02: C6 04     DEC ram_0004
@@ -1594,7 +1594,7 @@ C - - - - - 0x000B6B 00:CB5B: F0 02     BEQ bra_CB5F
 C - - - - - 0x000B6D 00:CB5D: A9 08     LDA #$08
 bra_CB5F:
 C - - - - - 0x000B6F 00:CB5F: 85 00     STA ram_0000
-C - - - - - 0x000B71 00:CB61: A5 67     LDA ram_p1_lives
+C - - - - - 0x000B71 00:CB61: A5 67     LDA ram_lives_p1
 C - - - - - 0x000B73 00:CB63: 38        SEC
 C - - - - - 0x000B74 00:CB64: E9 01     SBC #$01
 C - - - - - 0x000B76 00:CB66: 0A        ASL
@@ -1794,7 +1794,7 @@ C - - - - - 0x000C8C 00:CC7C: 4C DD C9  JMP loc_C9DD
 bra_CC7F:
 C - - - - - 0x000C8F 00:CC7F: A5 48     LDA ram_flag_demo
 C - - - - - 0x000C91 00:CC81: D0 3C     BNE bra_CCBF
-C - - - - - 0x000C93 00:CC83: C6 67     DEC ram_p1_lives
+C - - - - - 0x000C93 00:CC83: C6 67     DEC ram_lives_p1
 C - - - - - 0x000C95 00:CC85: D0 0D     BNE bra_CC94
 C - - - - - 0x000C97 00:CC87: A9 00     LDA #$00
 C - - - - - 0x000C99 00:CC89: 85 87     STA ram_0087
@@ -1813,7 +1813,7 @@ C - - - - - 0x000CAE 00:CC9E: F0 04     BEQ bra_CCA4
 C - - - - - 0x000CB0 00:CCA0: A5 77     LDA ram_lives_p2
 C - - - - - 0x000CB2 00:CCA2: D0 26     BNE bra_CCCA
 bra_CCA4:
-C - - - - - 0x000CB4 00:CCA4: A5 67     LDA ram_p1_lives
+C - - - - - 0x000CB4 00:CCA4: A5 67     LDA ram_lives_p1
 C - - - - - 0x000CB6 00:CCA6: D0 3B     BNE bra_CCE3
 C - - - - - 0x000CB8 00:CCA8: 85 69     STA ram_0069
 C - - - - - 0x000CBA 00:CCAA: A5 46     LDA ram_current_player
@@ -1821,10 +1821,10 @@ C - - - - - 0x000CBC 00:CCAC: F0 11     BEQ bra_CCBF
 ; transfer data between two ranges using 0000 as intermediary
 C - - - - - 0x000CBE 00:CCAE: A2 0F     LDX #$0F
 bra_CCB0_loop:
-C - - - - - 0x000CC0 00:CCB0: B5 67     LDA ram_p1_data,X
+C - - - - - 0x000CC0 00:CCB0: B5 67     LDA ram_data_p1,X
 C - - - - - 0x000CC2 00:CCB2: 85 00     STA ram_0000
 C - - - - - 0x000CC4 00:CCB4: B5 77     LDA ram_data_p2,X
-C - - - - - 0x000CC6 00:CCB6: 95 67     STA ram_p1_data,X
+C - - - - - 0x000CC6 00:CCB6: 95 67     STA ram_data_p1,X
 C - - - - - 0x000CC8 00:CCB8: A5 00     LDA ram_0000
 C - - - - - 0x000CCA 00:CCBA: 95 77     STA ram_data_p2,X
 C - - - - - 0x000CCC 00:CCBC: CA        DEX
@@ -1840,10 +1840,10 @@ bra_CCCA:
 ; bzk optimize, same code as 0x000CBE, create a subroutine instead
 C - - - - - 0x000CDA 00:CCCA: A2 0F     LDX #$0F
 bra_CCCC_loop:
-C - - - - - 0x000CDC 00:CCCC: B5 67     LDA ram_p1_data,X
+C - - - - - 0x000CDC 00:CCCC: B5 67     LDA ram_data_p1,X
 C - - - - - 0x000CDE 00:CCCE: 85 00     STA ram_0000
 C - - - - - 0x000CE0 00:CCD0: B5 77     LDA ram_data_p2,X
-C - - - - - 0x000CE2 00:CCD2: 95 67     STA ram_p1_data,X
+C - - - - - 0x000CE2 00:CCD2: 95 67     STA ram_data_p1,X
 C - - - - - 0x000CE4 00:CCD4: A5 00     LDA ram_0000
 C - - - - - 0x000CE6 00:CCD6: 95 77     STA ram_data_p2,X
 C - - - - - 0x000CE8 00:CCD8: CA        DEX
@@ -1895,7 +1895,7 @@ C - - - - - 0x000D2F 00:CD1F: A9 00     LDA #$00
 C - - - - - 0x000D31 00:CD21: 85 1A     STA ram_obj_pos_X_hi
 C - - - - - 0x000D33 00:CD23: 85 1C     STA ram_obj_pos_Y_hi
 C - - - - - 0x000D35 00:CD25: 85 87     STA ram_0087
-C - - - - - 0x000D37 00:CD27: A5 68     LDA ram_p1_stage
+C - - - - - 0x000D37 00:CD27: A5 68     LDA ram_stage_p1
 C - - - - - 0x000D39 00:CD29: C9 01     CMP #$01
 C - - - - - 0x000D3B 00:CD2B: F0 18     BEQ bra_CD45
 C - - - - - 0x000D3D 00:CD2D: E6 87     INC ram_0087
@@ -2133,16 +2133,16 @@ C - - - - - 0x000E87 00:CE77: A5 69     LDA ram_0069
 C - - - - - 0x000E89 00:CE79: D0 1E     BNE bra_CE99
 C - - - - - 0x000E8B 00:CE7B: 85 8B     STA ram_008B
 C - - - - - 0x000E8D 00:CE7D: A9 01     LDA #con_tile + $01
-C - - - - - 0x000E8F 00:CE7F: 85 6C     STA ram_p1_power_pellet_tile
-C - - - - - 0x000E91 00:CE81: 85 6D     STA ram_p1_power_pellet_tile + 1
-C - - - - - 0x000E93 00:CE83: 85 6E     STA ram_p1_power_pellet_tile + 2
-C - - - - - 0x000E95 00:CE85: 85 6F     STA ram_p1_power_pellet_tile + 3
+C - - - - - 0x000E8F 00:CE7F: 85 6C     STA ram_power_pellet_tile_p1
+C - - - - - 0x000E91 00:CE81: 85 6D     STA ram_power_pellet_tile_p1 + 1
+C - - - - - 0x000E93 00:CE83: 85 6E     STA ram_power_pellet_tile_p1 + 2
+C - - - - - 0x000E95 00:CE85: 85 6F     STA ram_power_pellet_tile_p1 + 3
 C - - - - - 0x000E97 00:CE87: A9 C0     LDA #$C0
-C - - - - - 0x000E99 00:CE89: 85 6A     STA ram_p1_pellet_cnt
-C - - - - - 0x000E9B 00:CE8B: A5 68     LDA ram_p1_stage
+C - - - - - 0x000E99 00:CE89: 85 6A     STA ram_pellet_cnt_p1
+C - - - - - 0x000E9B 00:CE8B: A5 68     LDA ram_stage_p1
 C - - - - - 0x000E9D 00:CE8D: C9 16     CMP #$16
 C - - - - - 0x000E9F 00:CE8F: F0 02     BEQ bra_CE93
-C - - - - - 0x000EA1 00:CE91: E6 68     INC ram_p1_stage
+C - - - - - 0x000EA1 00:CE91: E6 68     INC ram_stage_p1
 bra_CE93:
 C - - - - - 0x000EA3 00:CE93: 20 80 D0  JSR sub_D080
 C - - - - - 0x000EA6 00:CE96: 20 5C E2  JSR sub_E25C
@@ -2152,7 +2152,7 @@ C - - - - - 0x000EAC 00:CE9C: 20 FA CF  JSR sub_CFFA
 C - - - - - 0x000EAF 00:CE9F: 20 CD E4  JSR sub_E4CD
 C - - - - - 0x000EB2 00:CEA2: 20 3B E5  JSR sub_E53B
 C - - - - - 0x000EB5 00:CEA5: 20 7C E4  JSR sub_E47C
-C - - - - - 0x000EB8 00:CEA8: A6 68     LDX ram_p1_stage
+C - - - - - 0x000EB8 00:CEA8: A6 68     LDX ram_stage_p1
 C - - - - - 0x000EBA 00:CEAA: A9 00     LDA #$00
 C - - - - - 0x000EBC 00:CEAC: 18        CLC
 bra_CEAD_loop:
@@ -2224,7 +2224,7 @@ C - - - - - 0x000F2E 00:CF1E: C8        INY
 C - - - - - 0x000F2F 00:CF1F: E8        INX
 C - - - - - 0x000F30 00:CF20: A9 C0     LDA #$C0
 C - - - - - 0x000F32 00:CF22: 38        SEC
-C - - - - - 0x000F33 00:CF23: E5 6A     SBC ram_p1_pellet_cnt
+C - - - - - 0x000F33 00:CF23: E5 6A     SBC ram_pellet_cnt_p1
 C - - - - - 0x000F35 00:CF25: 85 01     STA ram_0001
 bra_CF27_loop:
 C - - - - - 0x000F37 00:CF27: A5 01     LDA ram_0001
@@ -2329,11 +2329,11 @@ C - - - - - 0x000FE3 00:CFD3: C0 0C     CPY #$0C
 C - - - - - 0x000FE5 00:CFD5: D0 F5     BNE bra_CFCC_loop
 C - - - - - 0x000FE7 00:CFD7: A0 00     LDY #$00
 bra_CFD9_loop:
-C - - - - - 0x000FE9 00:CFD9: B9 6C 00  LDA ram_p1_power_pellet_tile,Y  ; 006C 006D 006E 006F
+C - - - - - 0x000FE9 00:CFD9: B9 6C 00  LDA ram_power_pellet_tile_p1,Y  ; 006C 006D 006E 006F
 C - - - - - 0x000FEC 00:CFDC: C9 02     CMP #con_tile + $02
 C - - - - - 0x000FEE 00:CFDE: D0 05     BNE bra_CFE5
 C - - - - - 0x000FF0 00:CFE0: A9 01     LDA #con_tile + $01
-C - - - - - 0x000FF2 00:CFE2: 99 6C 00  STA ram_p1_power_pellet_tile,Y  ; 006C 006D 006E 006F
+C - - - - - 0x000FF2 00:CFE2: 99 6C 00  STA ram_power_pellet_tile_p1,Y  ; 006C 006D 006E 006F
 bra_CFE5:
 C - - - - - 0x000FF5 00:CFE5: C8        INY
 C - - - - - 0x000FF6 00:CFE6: C0 04     CPY #$04
@@ -2560,7 +2560,7 @@ bra_D174:
 C - - - - - 0x001184 00:D174: A5 D3     LDA ram_00D3
 C - - - - - 0x001186 00:D176: F0 1F     BEQ bra_D197
 C - - - - - 0x001188 00:D178: 18        CLC
-C - - - - - 0x001189 00:D179: 65 6A     ADC ram_p1_pellet_cnt
+C - - - - - 0x001189 00:D179: 65 6A     ADC ram_pellet_cnt_p1
 C - - - - - 0x00118B 00:D17B: C9 C0     CMP #$C0
 C - - - - - 0x00118D 00:D17D: D0 18     BNE bra_D197
 C - - - - - 0x00118F 00:D17F: 20 EB D1  JSR sub_D1EB
@@ -2597,7 +2597,7 @@ C - - - - - 0x0011C2 00:D1B2: A6 D4     LDX ram_00D4
 C - - - - - 0x0011C4 00:D1B4: E0 02     CPX #$02
 C - - - - - 0x0011C6 00:D1B6: F0 17     BEQ bra_D1CF
 C - - - - - 0x0011C8 00:D1B8: B5 8D     LDA ram_008D,X
-C - - - - - 0x0011CA 00:D1BA: C5 6A     CMP ram_p1_pellet_cnt
+C - - - - - 0x0011CA 00:D1BA: C5 6A     CMP ram_pellet_cnt_p1
 C - - - - - 0x0011CC 00:D1BC: D0 11     BNE bra_D1CF
 C - - - - - 0x0011CE 00:D1BE: E6 D4     INC ram_00D4
 C - - - - - 0x0011D0 00:D1C0: A9 01     LDA #$01
@@ -2666,7 +2666,7 @@ tbl_D205:
 
 
 sub_D20F:
-C - - - - - 0x00121F 00:D20F: A5 6A     LDA ram_p1_pellet_cnt
+C - - - - - 0x00121F 00:D20F: A5 6A     LDA ram_pellet_cnt_p1
 C - - - - - 0x001221 00:D211: D0 01     BNE bra_D214
 C - - - - - 0x001223 00:D213: 60        RTS
 bra_D214:
@@ -3894,7 +3894,7 @@ C - - - - - 0x0018F1 00:D8E1: 8D 09 06  STA ram_0609
 C - - - - - 0x0018F4 00:D8E4: 60        RTS
 bra_D8E5:
 C - - - - - 0x0018F5 00:D8E5: A0 00     LDY #$00
-C - - - - - 0x0018F7 00:D8E7: A5 6A     LDA ram_p1_pellet_cnt
+C - - - - - 0x0018F7 00:D8E7: A5 6A     LDA ram_pellet_cnt_p1
 C - - - - - 0x0018F9 00:D8E9: C9 88     CMP #$88
 C - - - - - 0x0018FB 00:D8EB: B0 06     BCS bra_D8F3
 C - - - - - 0x0018FD 00:D8ED: C8        INY
@@ -4516,7 +4516,7 @@ bra_DDD0:
 ; each 16 frames
 C - - - - - 0x001DE0 00:DDD0: AA        TAX
 bra_DDD1_loop:
-C - - - - - 0x001DE1 00:DDD1: B5 6C     LDA ram_p1_power_pellet_tile,X
+C - - - - - 0x001DE1 00:DDD1: B5 6C     LDA ram_power_pellet_tile_p1,X
 C - - - - - 0x001DE3 00:DDD3: C9 07     CMP #con_tile + $07
 C - - - - - 0x001DE5 00:DDD5: F0 0A     BEQ bra_DDE1
 C - - - - - 0x001DE7 00:DDD7: C9 01     CMP #con_tile + $01
@@ -4526,7 +4526,7 @@ C - - - - - 0x001DED 00:DDDD: D0 02     BNE bra_DDE1    ; jmp
 bra_DDDF:
 C - - - - - 0x001DEF 00:DDDF: A9 01     LDA #con_tile + $01
 bra_DDE1:
-C - - - - - 0x001DF1 00:DDE1: 95 6C     STA ram_p1_power_pellet_tile,X
+C - - - - - 0x001DF1 00:DDE1: 95 6C     STA ram_power_pellet_tile_p1,X
 C - - - - - 0x001DF3 00:DDE3: E8        INX
 C - - - - - 0x001DF4 00:DDE4: E0 04     CPX #$04
 C - - - - - 0x001DF6 00:DDE6: D0 E9     BNE bra_DDD1_loop
@@ -4621,7 +4621,7 @@ C - - - - - 0x001E9D 00:DE8D: B9 CF DE  LDA tbl_DECF,Y
 C - - - - - 0x001EA0 00:DE90: 8D 06 20  STA $2006
 C - - - - - 0x001EA3 00:DE93: B9 D0 DE  LDA tbl_DECF + 1,Y
 C - - - - - 0x001EA6 00:DE96: 8D 06 20  STA $2006
-C - - - - - 0x001EA9 00:DE99: B5 6C     LDA ram_p1_power_pellet_tile,X
+C - - - - - 0x001EA9 00:DE99: B5 6C     LDA ram_power_pellet_tile_p1,X
 C - - - - - 0x001EAB 00:DE9B: 8D 07 20  STA $2007
 C - - - - - 0x001EAE 00:DE9E: C8        INY
 C - - - - - 0x001EAF 00:DE9F: C8        INY
@@ -4700,7 +4700,7 @@ C - - - - - 0x001F25 00:DF15: F0 01     BEQ bra_DF18
 C - - - - - 0x001F27 00:DF17: E8        INX
 bra_DF18:
 C - - - - - 0x001F28 00:DF18: A9 07     LDA #con_tile + $07
-C - - - - - 0x001F2A 00:DF1A: 95 6C     STA ram_p1_power_pellet_tile,X
+C - - - - - 0x001F2A 00:DF1A: 95 6C     STA ram_power_pellet_tile_p1,X
 C - - - - - 0x001F2C 00:DF1C: A2 04     LDX #$04
 bra_DF1E:
 C - - - - - 0x001F2E 00:DF1E: A9 00     LDA #$00
@@ -4738,7 +4738,7 @@ C - - - - - 0x001F6A 00:DF5A: A9 07     LDA #con_tile + $07
 C - - - - - 0x001F6C 00:DF5C: 8D 2A 02  STA ram_obj_ppu_tile_now
 C - - - - - 0x001F6F 00:DF5F: BD A7 DF  LDA tbl_DFA6_points + 1,X
 C - - - - - 0x001F72 00:DF62: 85 DC     STA ram_00DC
-C - - - - - 0x001F74 00:DF64: C6 6A     DEC ram_p1_pellet_cnt
+C - - - - - 0x001F74 00:DF64: C6 6A     DEC ram_pellet_cnt_p1
 C - - - - - 0x001F76 00:DF66: D0 0C     BNE bra_DF74
 C - - - - - 0x001F78 00:DF68: A9 0C     LDA #con_script_stage_clear
 C - - - - - 0x001F7A 00:DF6A: 85 3F     STA ram_script
@@ -4747,7 +4747,7 @@ C - - - - - 0x001F7E 00:DF6E: 85 87     STA ram_0087
 C - - - - - 0x001F80 00:DF70: A9 48     LDA #$48    ; pause timer
 C - - - - - 0x001F82 00:DF72: 85 4C     STA ram_004C
 bra_DF74:
-C - - - - - 0x001F84 00:DF74: A5 6A     LDA ram_p1_pellet_cnt
+C - - - - - 0x001F84 00:DF74: A5 6A     LDA ram_pellet_cnt_p1
 C - - - - - 0x001F86 00:DF76: C9 37     CMP #$37
 C - - - - - 0x001F88 00:DF78: F0 04     BEQ bra_DF7E_spawn_fruit
 C - - - - - 0x001F8A 00:DF7A: C9 86     CMP #$86
@@ -4767,7 +4767,7 @@ C - - - - - 0x001FA3 00:DF93: 85 2E     STA ram_obj_pos_X_hi + $14
 C - - - - - 0x001FA5 00:DF95: A9 80     LDA #$80
 C - - - - - 0x001FA7 00:DF97: 85 30     STA ram_obj_pos_Y_hi + $14
 bra_DF99_skip_fruit_spawn:
-C - - - - - 0x001FA9 00:DF99: A5 6A     LDA ram_p1_pellet_cnt
+C - - - - - 0x001FA9 00:DF99: A5 6A     LDA ram_pellet_cnt_p1
 C - - - - - 0x001FAB 00:DF9B: 29 01     AND #$01
 C - - - - - 0x001FAD 00:DF9D: A8        TAY
 C - - - - - 0x001FAE 00:DF9E: A9 01     LDA #$01
@@ -4967,8 +4967,8 @@ C - - - - - 0x0020C4 00:E0B4: D0 5A     BNE bra_E110
 C - - - - - 0x0020C6 00:E0B6: A9 01     LDA #$01
 C - - - - - 0x0020C8 00:E0B8: 85 6B     STA ram_006B
 C - - - - - 0x0020CA 00:E0BA: 8D 02 06  STA ram_0602
-C - - - - - 0x0020CD 00:E0BD: E6 67     INC ram_p1_lives
-C - - - - - 0x0020CF 00:E0BF: A5 67     LDA ram_p1_lives
+C - - - - - 0x0020CD 00:E0BD: E6 67     INC ram_lives_p1
+C - - - - - 0x0020CF 00:E0BF: A5 67     LDA ram_lives_p1
 C - - - - - 0x0020D1 00:E0C1: 38        SEC
 C - - - - - 0x0020D2 00:E0C2: E9 02     SBC #$02
 C - - - - - 0x0020D4 00:E0C4: 0A        ASL
@@ -5637,7 +5637,7 @@ tbl_E4B6:
 
 
 sub_E4CD:
-C - - - - - 0x0024DD 00:E4CD: A5 67     LDA ram_p1_lives
+C - - - - - 0x0024DD 00:E4CD: A5 67     LDA ram_lives_p1
 C - - - - - 0x0024DF 00:E4CF: D0 01     BNE bra_E4D2
 - - - - - - 0x0024E1 00:E4D1: 60        RTS
 bra_E4D2:
@@ -5717,7 +5717,7 @@ C - - - - - 0x002559 00:E549: 85 0D     STA ram_000D
 C - - - - - 0x00255B 00:E54B: A9 05     LDA #$05
 C - - - - - 0x00255D 00:E54D: 85 0B     STA ram_000B
 C - - - - - 0x00255F 00:E54F: 85 0C     STA ram_000C
-C - - - - - 0x002561 00:E551: A5 68     LDA ram_p1_stage
+C - - - - - 0x002561 00:E551: A5 68     LDA ram_stage_p1
 C - - - - - 0x002563 00:E553: 85 02     STA ram_0002
 C - - - - - 0x002565 00:E555: 38        SEC
 C - - - - - 0x002566 00:E556: E9 07     SBC #$07
@@ -5821,7 +5821,7 @@ C - - - - - 0x00260F 00:E5FF: A9 3F     LDA #> $3F1D
 C - - - - - 0x002611 00:E601: 8D 06 20  STA $2006
 C - - - - - 0x002614 00:E604: A9 1D     LDA #< $3F1D
 C - - - - - 0x002616 00:E606: 8D 06 20  STA $2006
-C - - - - - 0x002619 00:E609: A5 68     LDA ram_p1_stage
+C - - - - - 0x002619 00:E609: A5 68     LDA ram_stage_p1
 C - - - - - 0x00261B 00:E60B: C9 10     CMP #$10
 C - - - - - 0x00261D 00:E60D: 90 02     BCC bra_E611
 C - - - - - 0x00261F 00:E60F: A9 0F     LDA #$0F
