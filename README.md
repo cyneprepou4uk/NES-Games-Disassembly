@@ -2,9 +2,9 @@
 
 Each source code is equal to the original ROM, compilable and editable.
 
-All of them were made by my BZK 6502 Disassembler tool
+All of them were made by my [BZK 6502 Disassembler](https://github.com/cyneprepou4uk/BZK-6502-Disassembler) tool.
 
-https://github.com/cyneprepou4uk/BZK-6502-Disassembler
+Leave your suggestions at [RHDN](https://www.romhacking.net/forum/index.php?topic=32220.0) topic.
 
 
 
@@ -19,7 +19,6 @@ No special requirements. Just launch `assemble.bat` and wait until it's done.
 Try using `sh assemble.sh` in terminal instead. All credits goes to [gb-2312](https://github.com/gb-2312).
 
 Do not delete or edit folders `_scripts` and `_install_packages`, unless you know how it works.
-
 
 
 
@@ -78,8 +77,3 @@ And don't worry about stuff like `C - - - - - 0x00009C 00:C08C: A9 00     LDA #$
 * Mighty Final Fight (U) [!]
 * River City Ransom (U) [!]
 * Tetris (Tengen) [!]
-
-
-
-## RHDN topic
-https://www.romhacking.net/forum/index.php?topic=32220.0
