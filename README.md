@@ -2,7 +2,7 @@
 
 Each source code is equal to the original ROM, compilable and editable.
 
-All of them were made by my [BZK 6502 Disassembler](https://github.com/cyneprepou4uk/BZK-6502-Disassembler) scripts.
+All of them were made with my [BZK 6502 Disassembler](https://github.com/cyneprepou4uk/BZK-6502-Disassembler) scripts.
 
 Leave your suggestions at [RHDN](https://www.romhacking.net/forum/index.php?topic=32220.0) topic.
 
