@@ -27,7 +27,7 @@ tbl_0x008010_script_handlers:
 
 
 
-sub_8010:
+sub_8010_kemco_logo_handler:
 C - - - - - 0x008020 02:8010: 20 43 80  JSR sub_8043
 C - - - - - 0x008023 02:8013: A9 FF     LDA #$FF
 C - - - - - 0x008025 02:8015: 20 B0 F1  JSR sub_0x00F1C0
@@ -42,10 +42,10 @@ C - - - - - 0x00803B 02:802B: 85 33     STA ram_chr_bank_1
 C - - - - - 0x00803D 02:802D: 85 34     STA ram_chr_bank_2
 C - - - - - 0x00803F 02:802F: 20 00 ED  JSR sub_0x00ED10
 C - - - - - 0x008042 02:8032: 20 53 80  JSR sub_8053_wait_30_frames_
-C - - - - - 0x008045 02:8035: 20 77 80  JSR sub_8077
+C - - - - - 0x008045 02:8035: 20 77 80  JSR sub_8077_lightening_kemco_logo
 C - - - - - 0x008048 02:8038: A2 F0     LDX #$F0
-C - - - - - 0x00804A 02:803A: 20 5E 80  JSR sub_805E
-C - - - - - 0x00804D 02:803D: 20 A8 80  JSR sub_80A8
+C - - - - - 0x00804A 02:803A: 20 5E 80  JSR sub_805E_skipping_kemco_logo
+C - - - - - 0x00804D 02:803D: 20 A8 80  JSR sub_80A8_darkening_kemco_logo
 C - - - - - 0x008050 02:8040: 4C 53 80  JMP loc_8053_wait_30_frames_
 
 
@@ -54,7 +54,7 @@ sub_8043:
 C - - - - - 0x008053 02:8043: A2 00     LDX #$00
 bra_8045_loop:
 C - - - - - 0x008055 02:8045: A9 0F     LDA #$0F
-C - - - - - 0x008057 02:8047: 9D 00 04  STA ram_0400,X
+C - - - - - 0x008057 02:8047: 9D 00 04  STA ram_pal_buffer_2,X
 C - - - - - 0x00805A 02:804A: E8        INX
 C - - - - - 0x00805B 02:804B: E0 20     CPX #$20
 C - - - - - 0x00805D 02:804D: D0 F6     BNE bra_8045_loop
@@ -75,7 +75,7 @@ C - - - - - 0x00806D 02:805D: 60        RTS
 
 
 
-sub_805E:
+sub_805E_skipping_kemco_logo:
 bra_805E_loop:
 C - - - - - 0x00806E 02:805E: 20 CD EE  JSR sub_0x00EEDD_wait_1_frame_
 C - - - - - 0x008071 02:8061: CA        DEX
@@ -94,15 +94,15 @@ C - - - - - 0x008086 02:8076: 60        RTS
 
 
 
-sub_8077:
+sub_8077_lightening_kemco_logo:
 C - - - - - 0x008087 02:8077: A2 00     LDX #$00
 bra_8079_loop:
-C - - - - - 0x008089 02:8079: BD 99 80  LDA tbl_8099,X
-C - - - - - 0x00808C 02:807C: 8D 01 04  STA ram_0401
-C - - - - - 0x00808F 02:807F: BD 9A 80  LDA tbl_8099 + 1,X
-C - - - - - 0x008092 02:8082: 8D 02 04  STA ram_0402
-C - - - - - 0x008095 02:8085: BD 9B 80  LDA tbl_8099 + 2,X
-C - - - - - 0x008098 02:8088: 8D 03 04  STA ram_0403
+C - - - - - 0x008089 02:8079: BD 99 80  LDA tbl_8099_logo_pal_lightening,X
+C - - - - - 0x00808C 02:807C: 8D 01 04  STA ram_pal_buffer_2 + 1
+C - - - - - 0x00808F 02:807F: BD 9A 80  LDA tbl_8099_logo_pal_lightening + 1,X
+C - - - - - 0x008092 02:8082: 8D 02 04  STA ram_pal_buffer_2 + 2
+C - - - - - 0x008095 02:8085: BD 9B 80  LDA tbl_8099_logo_pal_lightening + 2,X
+C - - - - - 0x008098 02:8088: 8D 03 04  STA ram_pal_buffer_2 + 3
 C - - - - - 0x00809B 02:808B: 20 F6 F5  JSR sub_0x00F606
 C - - - - - 0x00809E 02:808E: 20 D9 80  JSR sub_80D9_wait_6_frames_
 C - - - - - 0x0080A1 02:8091: E8        INX
@@ -114,38 +114,24 @@ C - - - - - 0x0080A8 02:8098: 60        RTS
 
 
 
-tbl_8099:
-- D 0 - - - 0x0080A9 02:8099: 02        .byte $02   ; 
-- D 0 - - - 0x0080AA 02:809A: 02        .byte $02   ; 
-- D 0 - - - 0x0080AB 02:809B: 0F        .byte $0F   ; 
-
-- D 0 - - - 0x0080AC 02:809C: 12        .byte $12   ; 
-- D 0 - - - 0x0080AD 02:809D: 12        .byte $12   ; 
-- D 0 - - - 0x0080AE 02:809E: 01        .byte $01   ; 
-
-- D 0 - - - 0x0080AF 02:809F: 12        .byte $12   ; 
-- D 0 - - - 0x0080B0 02:80A0: 12        .byte $12   ; 
-- D 0 - - - 0x0080B1 02:80A1: 11        .byte $11   ; 
-
-- D 0 - - - 0x0080B2 02:80A2: 12        .byte $12   ; 
-- D 0 - - - 0x0080B3 02:80A3: 12        .byte $12   ; 
-- D 0 - - - 0x0080B4 02:80A4: 21        .byte $21   ; 
-
-- D 0 - - - 0x0080B5 02:80A5: 12        .byte $12   ; 
-- D 0 - - - 0x0080B6 02:80A6: 12        .byte $12   ; 
-- D 0 - - - 0x0080B7 02:80A7: 31        .byte $31   ; 
+tbl_8099_logo_pal_lightening:
+- D 0 - - - 0x0080A9 02:8099: 02        .byte $02, $02, $0F   ; 00
+- D 0 - - - 0x0080AC 02:809C: 12        .byte $12, $12, $01   ; 03
+- D 0 - - - 0x0080AF 02:809F: 12        .byte $12, $12, $11   ; 06
+- D 0 - - - 0x0080B2 02:80A2: 12        .byte $12, $12, $21   ; 09
+- D 0 - - - 0x0080B5 02:80A5: 12        .byte $12, $12, $31   ; 0C
 
 
 
-sub_80A8:
+sub_80A8_darkening_kemco_logo:
 C - - - - - 0x0080B8 02:80A8: A2 00     LDX #$00
 bra_80AA_loop:
 C - - - - - 0x0080BA 02:80AA: BD CA 80  LDA tbl_80CA,X
-C - - - - - 0x0080BD 02:80AD: 8D 01 04  STA ram_0401
+C - - - - - 0x0080BD 02:80AD: 8D 01 04  STA ram_pal_buffer_2 + 1
 C - - - - - 0x0080C0 02:80B0: BD CB 80  LDA tbl_80CA + 1,X
-C - - - - - 0x0080C3 02:80B3: 8D 02 04  STA ram_0402
+C - - - - - 0x0080C3 02:80B3: 8D 02 04  STA ram_pal_buffer_2 + 2
 C - - - - - 0x0080C6 02:80B6: BD CC 80  LDA tbl_80CA + 2,X
-C - - - - - 0x0080C9 02:80B9: 8D 03 04  STA ram_0403
+C - - - - - 0x0080C9 02:80B9: 8D 03 04  STA ram_pal_buffer_2 + 3
 C - - - - - 0x0080CC 02:80BC: 20 F6 F5  JSR sub_0x00F606
 C - - - - - 0x0080CF 02:80BF: 20 D9 80  JSR sub_80D9_wait_6_frames_
 C - - - - - 0x0080D2 02:80C2: E8        INX
@@ -158,25 +144,11 @@ C - - - - - 0x0080D9 02:80C9: 60        RTS
 
 
 tbl_80CA:
-- D 0 - - - 0x0080DA 02:80CA: 12        .byte $12   ; 
-- D 0 - - - 0x0080DB 02:80CB: 12        .byte $12   ; 
-- D 0 - - - 0x0080DC 02:80CC: 21        .byte $21   ; 
-
-- D 0 - - - 0x0080DD 02:80CD: 12        .byte $12   ; 
-- D 0 - - - 0x0080DE 02:80CE: 12        .byte $12   ; 
-- D 0 - - - 0x0080DF 02:80CF: 11        .byte $11   ; 
-
-- D 0 - - - 0x0080E0 02:80D0: 02        .byte $02   ; 
-- D 0 - - - 0x0080E1 02:80D1: 12        .byte $12   ; 
-- D 0 - - - 0x0080E2 02:80D2: 01        .byte $01   ; 
-
-- D 0 - - - 0x0080E3 02:80D3: 0F        .byte $0F   ; 
-- D 0 - - - 0x0080E4 02:80D4: 02        .byte $02   ; 
-- D 0 - - - 0x0080E5 02:80D5: 0F        .byte $0F   ; 
-
-- D 0 - - - 0x0080E6 02:80D6: 0F        .byte $0F   ; 
-- D 0 - - - 0x0080E7 02:80D7: 0F        .byte $0F   ; 
-- D 0 - - - 0x0080E8 02:80D8: 0F        .byte $0F   ; 
+- D 0 - - - 0x0080DA 02:80CA: 12        .byte $12, $12, $21   ; 00
+- D 0 - - - 0x0080DD 02:80CD: 12        .byte $12, $12, $11   ; 03
+- D 0 - - - 0x0080E0 02:80D0: 02        .byte $02, $12, $01   ; 06
+- D 0 - - - 0x0080E3 02:80D3: 0F        .byte $0F, $02, $0F   ; 09
+- D 0 - - - 0x0080E6 02:80D6: 0F        .byte $0F, $0F, $0F   ; 0C
 
 
 
@@ -200,7 +172,7 @@ C - - - - - 0x008103 02:80F3: 60        RTS
 
 
 ofs_000_80F4_00_logo_and_title:
-C - - J - - 0x008104 02:80F4: 20 10 80  JSR sub_8010
+C - - J - - 0x008104 02:80F4: 20 10 80  JSR sub_8010_kemco_logo_handler
 loc_80F7:
 C D 0 - - - 0x008107 02:80F7: A9 03     LDA #$03
 C - - - - - 0x008109 02:80F9: 85 34     STA ram_chr_bank_2
@@ -473,10 +445,10 @@ C - - - - - 0x0082AA 02:829A: 85 21     STA ram_0021
 C - - - - - 0x0082AC 02:829C: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x0082AF 02:829F: A5 69     LDA ram_stage_id_2
 C - - - - - 0x0082B1 02:82A1: 18        CLC
-C - - - - - 0x0082B2 02:82A2: 69 02     ADC #$02
+C - - - - - 0x0082B2 02:82A2: 69 02     ADC #< $0002
 C - - - - - 0x0082B4 02:82A4: 85 1C     STA ram_001C
 C - - - - - 0x0082B6 02:82A6: A5 6A     LDA ram_006A
-C - - - - - 0x0082B8 02:82A8: 69 00     ADC #$00
+C - - - - - 0x0082B8 02:82A8: 69 00     ADC #> $0002
 C - - - - - 0x0082BA 02:82AA: 85 1D     STA ram_001D
 C - - - - - 0x0082BC 02:82AC: B9 16 83  LDA tbl_8315 + 1,Y
 C - - - - - 0x0082BF 02:82AF: 85 22     STA ram_0022
@@ -1553,10 +1525,10 @@ C - - - - - 0x008E8A 02:8E7A: 20 2B F2  JSR sub_0x00F23B
 C - - - - - 0x008E8D 02:8E7D: 20 CD EE  JSR sub_0x00EEDD_wait_1_frame_
 C - - - - - 0x008E90 02:8E80: A9 00     LDA #$00
 C - - - - - 0x008E92 02:8E82: AA        TAX
-C - - - - - 0x008E93 02:8E83: 85 76     STA ram_0076
-C - - - - - 0x008E95 02:8E85: 85 77     STA ram_0077
-C - - - - - 0x008E97 02:8E87: 85 78     STA ram_0078
-C - - - - - 0x008E99 02:8E89: 85 79     STA ram_0079
+C - - - - - 0x008E93 02:8E83: 85 76     STA ram_psw_letter
+C - - - - - 0x008E95 02:8E85: 85 77     STA ram_psw_letter + 1
+C - - - - - 0x008E97 02:8E87: 85 78     STA ram_psw_letter + 2
+C - - - - - 0x008E99 02:8E89: 85 79     STA ram_psw_letter + 3
 C - - - - - 0x008E9B 02:8E8B: 85 9F     STA ram_009F
 bra_8E8D_loop:
 C - - - - - 0x008E9D 02:8E8D: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
@@ -1599,23 +1571,23 @@ C - - - - - 0x008EDA 02:8ECA: 20 41 8F  JSR sub_8F41
 C - - - - - 0x008EDD 02:8ECD: CA        DEX
 C - - - - - 0x008EDE 02:8ECE: 4C F0 8E  JMP loc_8EF0
 bra_8ED1:
-C - - - - - 0x008EE1 02:8ED1: B5 76     LDA ram_0076,X
+C - - - - - 0x008EE1 02:8ED1: B5 76     LDA ram_psw_letter,X
 C - - - - - 0x008EE3 02:8ED3: C9 23     CMP #$23
 C - - - - - 0x008EE5 02:8ED5: F0 05     BEQ bra_8EDC
-C - - - - - 0x008EE7 02:8ED7: F6 76     INC ram_0076,X
+C - - - - - 0x008EE7 02:8ED7: F6 76     INC ram_psw_letter,X
 C - - - - - 0x008EE9 02:8ED9: 4C F0 8E  JMP loc_8EF0
 bra_8EDC:
 C - - - - - 0x008EEC 02:8EDC: A9 00     LDA #$00
-C - - - - - 0x008EEE 02:8EDE: 95 76     STA ram_0076,X
+C - - - - - 0x008EEE 02:8EDE: 95 76     STA ram_psw_letter,X
 C - - - - - 0x008EF0 02:8EE0: 4C F0 8E  JMP loc_8EF0
 bra_8EE3:
 C - - - - - 0x008EF3 02:8EE3: A9 23     LDA #$23
-C - - - - - 0x008EF5 02:8EE5: 95 76     STA ram_0076,X
+C - - - - - 0x008EF5 02:8EE5: 95 76     STA ram_psw_letter,X
 C - - - - - 0x008EF7 02:8EE7: 4C F0 8E  JMP loc_8EF0
 bra_8EEA:
-C - - - - - 0x008EFA 02:8EEA: B5 76     LDA ram_0076,X
+C - - - - - 0x008EFA 02:8EEA: B5 76     LDA ram_psw_letter,X
 C - - - - - 0x008EFC 02:8EEC: F0 F5     BEQ bra_8EE3
-C - - - - - 0x008EFE 02:8EEE: D6 76     DEC ram_0076,X
+C - - - - - 0x008EFE 02:8EEE: D6 76     DEC ram_psw_letter,X
 loc_8EF0:
 C D 0 - - - 0x008F00 02:8EF0: A9 00     LDA #$00
 C - - - - - 0x008F02 02:8EF2: 85 60     STA ram_0060
@@ -2504,10 +2476,10 @@ C - - - - - 0x009533 02:9523: A5 6B     LDA ram_006B
 C - - - - - 0x009535 02:9525: 99 32 06  STA ram_pos_X_hi_msg,Y
 C - - - - - 0x009538 02:9528: A5 6C     LDA ram_006C
 C - - - - - 0x00953A 02:952A: 38        SEC
-C - - - - - 0x00953B 02:952B: E9 10     SBC #$10
+C - - - - - 0x00953B 02:952B: E9 10     SBC #< $0010
 C - - - - - 0x00953D 02:952D: 99 33 06  STA ram_pos_Y_lo_msg,Y
 C - - - - - 0x009540 02:9530: A5 6D     LDA ram_006D
-C - - - - - 0x009542 02:9532: E9 00     SBC #$00
+C - - - - - 0x009542 02:9532: E9 00     SBC #> $0010
 C - - - - - 0x009544 02:9534: 99 34 06  STA ram_pos_Y_hi_msg,Y
 C - - - - - 0x009547 02:9537: A9 00     LDA #$00
 C - - - - - 0x009549 02:9539: 99 35 06  STA ram_msg_timer,Y
@@ -2551,11 +2523,11 @@ C - - - - - 0x00957F 02:956F: 85 77     STA ram_0077
 C - - - - - 0x009581 02:9571: BD 33 06  LDA ram_pos_Y_lo_msg,X
 C - - - - - 0x009584 02:9574: 85 78     STA ram_0078
 C - - - - - 0x009586 02:9576: 38        SEC
-C - - - - - 0x009587 02:9577: E9 01     SBC #$01
+C - - - - - 0x009587 02:9577: E9 01     SBC #< $0001
 C - - - - - 0x009589 02:9579: 9D 33 06  STA ram_pos_Y_lo_msg,X
 C - - - - - 0x00958C 02:957C: BD 34 06  LDA ram_pos_Y_hi_msg,X
 C - - - - - 0x00958F 02:957F: 85 79     STA ram_0079
-C - - - - - 0x009591 02:9581: E9 00     SBC #$00
+C - - - - - 0x009591 02:9581: E9 00     SBC #> $0001
 C - - - - - 0x009593 02:9583: 9D 34 06  STA ram_pos_Y_hi_msg,X
 C - - - - - 0x009596 02:9586: 20 07 CF  JSR sub_0x00CF17
 C - - - - - 0x009599 02:9589: BD 36 06  LDA ram_msg_id,X
@@ -7469,22 +7441,22 @@ C - - - - - 0x00B034 02:B024: 60        RTS
 
 
 sub_B025:
-C - - - - - 0x00B035 02:B025: A4 76     LDY ram_0076
+C - - - - - 0x00B035 02:B025: A4 76     LDY ram_psw_letter
 C - - - - - 0x00B037 02:B027: B9 FD B0  LDA tbl_B0FD,Y
 C - - - - - 0x00B03A 02:B02A: 85 64     STA ram_0064
 C - - - - - 0x00B03C 02:B02C: C9 20     CMP #$20
 C - - - - - 0x00B03E 02:B02E: B0 49     BCS bra_B079
-C - - - - - 0x00B040 02:B030: A4 77     LDY ram_0077
+C - - - - - 0x00B040 02:B030: A4 77     LDY ram_psw_letter + 1
 C - - - - - 0x00B042 02:B032: B9 FD B0  LDA tbl_B0FD,Y
 C - - - - - 0x00B045 02:B035: 85 65     STA ram_0065
 C - - - - - 0x00B047 02:B037: C9 20     CMP #$20
 C - - - - - 0x00B049 02:B039: B0 3E     BCS bra_B079
-C - - - - - 0x00B04B 02:B03B: A4 78     LDY ram_0078
+C - - - - - 0x00B04B 02:B03B: A4 78     LDY ram_psw_letter + 2
 C - - - - - 0x00B04D 02:B03D: B9 FD B0  LDA tbl_B0FD,Y
 C - - - - - 0x00B050 02:B040: 85 66     STA ram_0066
 C - - - - - 0x00B052 02:B042: C9 20     CMP #$20
 C - - - - - 0x00B054 02:B044: B0 33     BCS bra_B079
-C - - - - - 0x00B056 02:B046: A4 79     LDY ram_0079
+C - - - - - 0x00B056 02:B046: A4 79     LDY ram_psw_letter + 3
 C - - - - - 0x00B058 02:B048: B9 FD B0  LDA tbl_B0FD,Y
 C - - - - - 0x00B05B 02:B04B: 85 67     STA ram_0067
 C - - - - - 0x00B05D 02:B04D: C9 20     CMP #$20
@@ -7703,3267 +7675,1856 @@ tbl_0x00B390_stage_objects:
 ; 00
 - D 1 - I - 0x00B390 02:B380: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B391 02:B381: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B392 02:B382: 04        .byte $04   ; player 00 pos X
-- D 1 - I - 0x00B393 02:B383: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B394 02:B384: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B395 02:B385: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B396 02:B386: 0B        .byte $0B   ; enemy 02 pos X
-- D 1 - I - 0x00B397 02:B387: 03        .byte $03   ; enemy 02 pos Y
-- D 1 - I - 0x00B398 02:B388: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B399 02:B389: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B39A 02:B38A: 18        .byte $18   ; enemy 04 pos X
-- D 1 - I - 0x00B39B 02:B38B: 06        .byte $06   ; enemy 04 pos Y
-- D 1 - I - 0x00B39C 02:B38C: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B39D 02:B38D: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B39E 02:B38E: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B39F 02:B38F: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B3A0 02:B390: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B3A1 02:B391: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B3A2 02:B392: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00B3A3 02:B393: 09        .byte $09   ; carrot 00 pos Y
-- D 1 - I - 0x00B3A4 02:B394: 03        .byte $03   ; carrot 01 pos X
-- D 1 - I - 0x00B3A5 02:B395: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00B3A6 02:B396: 08        .byte $08   ; carrot 02 pos X
-- D 1 - I - 0x00B3A7 02:B397: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00B3A8 02:B398: 12        .byte $12   ; carrot 03 pos X
-- D 1 - I - 0x00B3A9 02:B399: 03        .byte $03   ; carrot 03 pos Y
-- D 1 - I - 0x00B3AA 02:B39A: 17        .byte $17   ; carrot 04 pos X
-- D 1 - I - 0x00B3AB 02:B39B: 03        .byte $03   ; carrot 04 pos Y
-- D 1 - I - 0x00B3AC 02:B39C: 17        .byte $17   ; carrot 05 pos X
-- D 1 - I - 0x00B3AD 02:B39D: 09        .byte $09   ; carrot 05 pos Y
-- D 1 - I - 0x00B3AE 02:B39E: 1C        .byte $1C   ; carrot 06 pos X
-- D 1 - I - 0x00B3AF 02:B39F: 03        .byte $03   ; carrot 06 pos Y
-- D 1 - I - 0x00B3B0 02:B3A0: 1C        .byte $1C   ; carrot 07 pos X
-- D 1 - I - 0x00B3B1 02:B3A1: 06        .byte $06   ; carrot 07 pos Y
-- D 1 - I - 0x00B3B2 02:B3A2: 11        .byte $11   ; thing 00 id
-- D 1 - I - 0x00B3B3 02:B3A3: 06        .byte $06   ; thing 00 pos X
-- D 1 - I - 0x00B3B4 02:B3A4: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00B3B5 02:B3A5: 00        .byte $00   ; 
-- D 1 - I - 0x00B3B6 02:B3A6: 15        .byte $15   ; thing 01 id
-- D 1 - I - 0x00B3B7 02:B3A7: 03        .byte $03   ; thing 01 pos X
-- D 1 - I - 0x00B3B8 02:B3A8: 02        .byte $02   ; thing 01 pos Y
-- - - - - - 0x00B3B9 02:B3A9: 00        .byte $00   ; 
-- D 1 - I - 0x00B3BA 02:B3AA: 15        .byte $15   ; thing 02 id
-- D 1 - I - 0x00B3BB 02:B3AB: 0C        .byte $0C   ; thing 02 pos X
-- D 1 - I - 0x00B3BC 02:B3AC: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00B3BD 02:B3AD: 00        .byte $00   ; 
-- D 1 - I - 0x00B3BE 02:B3AE: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B3BF 02:B3AF: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B3C0 02:B3B0: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B3C1 02:B3B1: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B392 02:B382: 04        .byte $04, $0C   ; 00
+- D 1 - I - 0x00B394 02:B384: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B396 02:B386: 0B        .byte $0B, $03   ; 02
+- D 1 - I - 0x00B398 02:B388: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B39A 02:B38A: 18        .byte $18, $06   ; 04
+- D 1 - I - 0x00B39C 02:B38C: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B39E 02:B38E: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B3A0 02:B390: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B3A2 02:B392: 01        .byte $01, $09   ; 00
+- D 1 - I - 0x00B3A4 02:B394: 03        .byte $03, $02   ; 01
+- D 1 - I - 0x00B3A6 02:B396: 08        .byte $08, $06   ; 02
+- D 1 - I - 0x00B3A8 02:B398: 12        .byte $12, $03   ; 03
+- D 1 - I - 0x00B3AA 02:B39A: 17        .byte $17, $03   ; 04
+- D 1 - I - 0x00B3AC 02:B39C: 17        .byte $17, $09   ; 05
+- D 1 - I - 0x00B3AE 02:B39E: 1C        .byte $1C, $03   ; 06
+- D 1 - I - 0x00B3B0 02:B3A0: 1C        .byte $1C, $06   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B3B2 02:B3A2: 11        .byte $11, $06, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B3B6 02:B3A6: 15        .byte $15, $03, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B3BA 02:B3AA: 15        .byte $15, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B3BE 02:B3AE: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 01
 - D 1 - I - 0x00B3C2 02:B3B2: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B3C3 02:B3B3: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B3C4 02:B3B4: 02        .byte $02   ; player 00 pos X
-- D 1 - I - 0x00B3C5 02:B3B5: 08        .byte $08   ; player 00 pos Y
-- D 1 - I - 0x00B3C6 02:B3B6: 1D        .byte $1D   ; enemy 01 pos X
-- D 1 - I - 0x00B3C7 02:B3B7: 05        .byte $05   ; enemy 01 pos Y
-- D 1 - I - 0x00B3C8 02:B3B8: 0E        .byte $0E   ; enemy 02 pos X
-- D 1 - I - 0x00B3C9 02:B3B9: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00B3CA 02:B3BA: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B3CB 02:B3BB: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B3CC 02:B3BC: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B3CD 02:B3BD: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B3CE 02:B3BE: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B3CF 02:B3BF: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B3D0 02:B3C0: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B3D1 02:B3C1: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B3D2 02:B3C2: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B3D3 02:B3C3: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B3D4 02:B3C4: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00B3D5 02:B3C5: 0C        .byte $0C   ; carrot 00 pos Y
-- D 1 - I - 0x00B3D6 02:B3C6: 02        .byte $02   ; carrot 01 pos X
-- D 1 - I - 0x00B3D7 02:B3C7: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00B3D8 02:B3C8: 0C        .byte $0C   ; carrot 02 pos X
-- D 1 - I - 0x00B3D9 02:B3C9: 02        .byte $02   ; carrot 02 pos Y
-- D 1 - I - 0x00B3DA 02:B3CA: 08        .byte $08   ; carrot 03 pos X
-- D 1 - I - 0x00B3DB 02:B3CB: 08        .byte $08   ; carrot 03 pos Y
-- D 1 - I - 0x00B3DC 02:B3CC: 11        .byte $11   ; carrot 04 pos X
-- D 1 - I - 0x00B3DD 02:B3CD: 02        .byte $02   ; carrot 04 pos Y
-- D 1 - I - 0x00B3DE 02:B3CE: 1E        .byte $1E   ; carrot 05 pos X
-- D 1 - I - 0x00B3DF 02:B3CF: 02        .byte $02   ; carrot 05 pos Y
-- D 1 - I - 0x00B3E0 02:B3D0: 1E        .byte $1E   ; carrot 06 pos X
-- D 1 - I - 0x00B3E1 02:B3D1: 07        .byte $07   ; carrot 06 pos Y
-- D 1 - I - 0x00B3E2 02:B3D2: 19        .byte $19   ; carrot 07 pos X
-- D 1 - I - 0x00B3E3 02:B3D3: 0B        .byte $0B   ; carrot 07 pos Y
-- D 1 - I - 0x00B3E4 02:B3D4: 0A        .byte $0A   ; thing 00 id
-- D 1 - I - 0x00B3E5 02:B3D5: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00B3E6 02:B3D6: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00B3E7 02:B3D7: 00        .byte $00   ; 
-- D 1 - I - 0x00B3E8 02:B3D8: 0D        .byte $0D   ; thing 01 id
-- D 1 - I - 0x00B3E9 02:B3D9: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00B3EA 02:B3DA: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00B3EB 02:B3DB: 00        .byte $00   ; 
-- D 1 - I - 0x00B3EC 02:B3DC: 1C        .byte $1C   ; thing 02 id
-- D 1 - I - 0x00B3ED 02:B3DD: 05        .byte $05   ; thing 02 pos X
-- D 1 - I - 0x00B3EE 02:B3DE: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00B3EF 02:B3DF: 00        .byte $00   ; 
-- D 1 - I - 0x00B3F0 02:B3E0: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B3F1 02:B3E1: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B3F2 02:B3E2: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B3F3 02:B3E3: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B3C4 02:B3B4: 02        .byte $02, $08   ; 00
+- D 1 - I - 0x00B3C6 02:B3B6: 1D        .byte $1D, $05   ; 01
+- D 1 - I - 0x00B3C8 02:B3B8: 0E        .byte $0E, $02   ; 02
+- D 1 - I - 0x00B3CA 02:B3BA: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B3CC 02:B3BC: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B3CE 02:B3BE: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B3D0 02:B3C0: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B3D2 02:B3C2: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B3D4 02:B3C4: 01        .byte $01, $0C   ; 00
+- D 1 - I - 0x00B3D6 02:B3C6: 02        .byte $02, $02   ; 01
+- D 1 - I - 0x00B3D8 02:B3C8: 0C        .byte $0C, $02   ; 02
+- D 1 - I - 0x00B3DA 02:B3CA: 08        .byte $08, $08   ; 03
+- D 1 - I - 0x00B3DC 02:B3CC: 11        .byte $11, $02   ; 04
+- D 1 - I - 0x00B3DE 02:B3CE: 1E        .byte $1E, $02   ; 05
+- D 1 - I - 0x00B3E0 02:B3D0: 1E        .byte $1E, $07   ; 06
+- D 1 - I - 0x00B3E2 02:B3D2: 19        .byte $19, $0B   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B3E4 02:B3D4: 0A        .byte $0A, $02, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B3E8 02:B3D8: 0D        .byte $0D, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B3EC 02:B3DC: 1C        .byte $1C, $05, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B3F0 02:B3E0: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 02
 - D 1 - I - 0x00B3F4 02:B3E4: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B3F5 02:B3E5: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B3F6 02:B3E6: 02        .byte $02   ; player 00 pos X
-- D 1 - I - 0x00B3F7 02:B3E7: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B3F8 02:B3E8: 0A        .byte $0A   ; enemy 01 pos X
-- D 1 - I - 0x00B3F9 02:B3E9: 06        .byte $06   ; enemy 01 pos Y
-- D 1 - I - 0x00B3FA 02:B3EA: 0C        .byte $0C   ; enemy 02 pos X
-- D 1 - I - 0x00B3FB 02:B3EB: 03        .byte $03   ; enemy 02 pos Y
-- D 1 - I - 0x00B3FC 02:B3EC: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B3FD 02:B3ED: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B3FE 02:B3EE: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B3FF 02:B3EF: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B400 02:B3F0: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B401 02:B3F1: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B402 02:B3F2: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B403 02:B3F3: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B404 02:B3F4: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B405 02:B3F5: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B406 02:B3F6: 05        .byte $05   ; carrot 00 pos X
-- D 1 - I - 0x00B407 02:B3F7: 09        .byte $09   ; carrot 00 pos Y
-- D 1 - I - 0x00B408 02:B3F8: 06        .byte $06   ; carrot 01 pos X
-- D 1 - I - 0x00B409 02:B3F9: 06        .byte $06   ; carrot 01 pos Y
-- D 1 - I - 0x00B40A 02:B3FA: 0B        .byte $0B   ; carrot 02 pos X
-- D 1 - I - 0x00B40B 02:B3FB: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00B40C 02:B3FC: 11        .byte $11   ; carrot 03 pos X
-- D 1 - I - 0x00B40D 02:B3FD: 03        .byte $03   ; carrot 03 pos Y
-- D 1 - I - 0x00B40E 02:B3FE: 13        .byte $13   ; carrot 04 pos X
-- D 1 - I - 0x00B40F 02:B3FF: 06        .byte $06   ; carrot 04 pos Y
-- D 1 - I - 0x00B410 02:B400: 1D        .byte $1D   ; carrot 05 pos X
-- D 1 - I - 0x00B411 02:B401: 0B        .byte $0B   ; carrot 05 pos Y
-- D 1 - I - 0x00B412 02:B402: 1D        .byte $1D   ; carrot 06 pos X
-- D 1 - I - 0x00B413 02:B403: 02        .byte $02   ; carrot 06 pos Y
-- D 1 - I - 0x00B414 02:B404: 10        .byte $10   ; carrot 07 pos X
-- D 1 - I - 0x00B415 02:B405: 09        .byte $09   ; carrot 07 pos Y
-- D 1 - I - 0x00B416 02:B406: 16        .byte $16   ; thing 00 id
-- D 1 - I - 0x00B417 02:B407: 03        .byte $03   ; thing 00 pos X
-- D 1 - I - 0x00B418 02:B408: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00B419 02:B409: 00        .byte $00   ; 
-- D 1 - I - 0x00B41A 02:B40A: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00B41B 02:B40B: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00B41C 02:B40C: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00B41D 02:B40D: 00        .byte $00   ; 
-- D 1 - I - 0x00B41E 02:B40E: 19        .byte $19   ; thing 02 id
-- D 1 - I - 0x00B41F 02:B40F: 02        .byte $02   ; thing 02 pos X
-- D 1 - I - 0x00B420 02:B410: 02        .byte $02   ; thing 02 pos Y
-- - - - - - 0x00B421 02:B411: 00        .byte $00   ; 
-- D 1 - I - 0x00B422 02:B412: 19        .byte $19   ; thing 03 id
-- D 1 - I - 0x00B423 02:B413: 08        .byte $08   ; thing 03 pos X
-- D 1 - I - 0x00B424 02:B414: 03        .byte $03   ; thing 03 pos Y
-- - - - - - 0x00B425 02:B415: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B3F6 02:B3E6: 02        .byte $02, $0C   ; 00
+- D 1 - I - 0x00B3F8 02:B3E8: 0A        .byte $0A, $06   ; 01
+- D 1 - I - 0x00B3FA 02:B3EA: 0C        .byte $0C, $03   ; 02
+- D 1 - I - 0x00B3FC 02:B3EC: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B3FE 02:B3EE: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B400 02:B3F0: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B402 02:B3F2: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B404 02:B3F4: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B406 02:B3F6: 05        .byte $05, $09   ; 00
+- D 1 - I - 0x00B408 02:B3F8: 06        .byte $06, $06   ; 01
+- D 1 - I - 0x00B40A 02:B3FA: 0B        .byte $0B, $06   ; 02
+- D 1 - I - 0x00B40C 02:B3FC: 11        .byte $11, $03   ; 03
+- D 1 - I - 0x00B40E 02:B3FE: 13        .byte $13, $06   ; 04
+- D 1 - I - 0x00B410 02:B400: 1D        .byte $1D, $0B   ; 05
+- D 1 - I - 0x00B412 02:B402: 1D        .byte $1D, $02   ; 06
+- D 1 - I - 0x00B414 02:B404: 10        .byte $10, $09   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B416 02:B406: 16        .byte $16, $03, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B41A 02:B40A: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B41E 02:B40E: 19        .byte $19, $02, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B422 02:B412: 19        .byte $19, $08, con_item_id_potion, $00   ; 
+
+
+
 ; 03
 - D 1 - I - 0x00B426 02:B416: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B427 02:B417: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B428 02:B418: 0C        .byte $0C   ; player 00 pos X
-- D 1 - I - 0x00B429 02:B419: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B42A 02:B41A: 0D        .byte $0D   ; enemy 01 pos X
-- D 1 - I - 0x00B42B 02:B41B: 02        .byte $02   ; enemy 01 pos Y
-- D 1 - I - 0x00B42C 02:B41C: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00B42D 02:B41D: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00B42E 02:B41E: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B42F 02:B41F: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B430 02:B420: 18        .byte $18   ; enemy 04 pos X
-- D 1 - I - 0x00B431 02:B421: 06        .byte $06   ; enemy 04 pos Y
-- D 1 - I - 0x00B432 02:B422: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B433 02:B423: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B434 02:B424: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B435 02:B425: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B436 02:B426: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B437 02:B427: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B438 02:B428: 07        .byte $07   ; carrot 00 pos X
-- D 1 - I - 0x00B439 02:B429: 06        .byte $06   ; carrot 00 pos Y
-- D 1 - I - 0x00B43A 02:B42A: 08        .byte $08   ; carrot 01 pos X
-- D 1 - I - 0x00B43B 02:B42B: 09        .byte $09   ; carrot 01 pos Y
-- D 1 - I - 0x00B43C 02:B42C: 01        .byte $01   ; carrot 02 pos X
-- D 1 - I - 0x00B43D 02:B42D: 0C        .byte $0C   ; carrot 02 pos Y
-- D 1 - I - 0x00B43E 02:B42E: 11        .byte $11   ; carrot 03 pos X
-- D 1 - I - 0x00B43F 02:B42F: 05        .byte $05   ; carrot 03 pos Y
-- D 1 - I - 0x00B440 02:B430: 11        .byte $11   ; carrot 04 pos X
-- D 1 - I - 0x00B441 02:B431: 08        .byte $08   ; carrot 04 pos Y
-- D 1 - I - 0x00B442 02:B432: 12        .byte $12   ; carrot 05 pos X
-- D 1 - I - 0x00B443 02:B433: 02        .byte $02   ; carrot 05 pos Y
-- D 1 - I - 0x00B444 02:B434: 16        .byte $16   ; carrot 06 pos X
-- D 1 - I - 0x00B445 02:B435: 09        .byte $09   ; carrot 06 pos Y
-- D 1 - I - 0x00B446 02:B436: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B447 02:B437: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B448 02:B438: 11        .byte $11   ; thing 00 id
-- D 1 - I - 0x00B449 02:B439: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00B44A 02:B43A: 03        .byte $03   ; thing 00 pos Y
-- - - - - - 0x00B44B 02:B43B: 00        .byte $00   ; 
-- D 1 - I - 0x00B44C 02:B43C: 19        .byte $19   ; thing 01 id
-- D 1 - I - 0x00B44D 02:B43D: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00B44E 02:B43E: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00B44F 02:B43F: 00        .byte $00   ; 
-- D 1 - I - 0x00B450 02:B440: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B451 02:B441: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B452 02:B442: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B453 02:B443: 00        .byte $00   ; 
-- D 1 - I - 0x00B454 02:B444: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B455 02:B445: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B456 02:B446: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B457 02:B447: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B428 02:B418: 0C        .byte $0C, $0C   ; 00
+- D 1 - I - 0x00B42A 02:B41A: 0D        .byte $0D, $02   ; 01
+- D 1 - I - 0x00B42C 02:B41C: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00B42E 02:B41E: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B430 02:B420: 18        .byte $18, $06   ; 04
+- D 1 - I - 0x00B432 02:B422: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B434 02:B424: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B436 02:B426: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B438 02:B428: 07        .byte $07, $06   ; 00
+- D 1 - I - 0x00B43A 02:B42A: 08        .byte $08, $09   ; 01
+- D 1 - I - 0x00B43C 02:B42C: 01        .byte $01, $0C   ; 02
+- D 1 - I - 0x00B43E 02:B42E: 11        .byte $11, $05   ; 03
+- D 1 - I - 0x00B440 02:B430: 11        .byte $11, $08   ; 04
+- D 1 - I - 0x00B442 02:B432: 12        .byte $12, $02   ; 05
+- D 1 - I - 0x00B444 02:B434: 16        .byte $16, $09   ; 06
+- D 1 - I - 0x00B446 02:B436: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B448 02:B438: 11        .byte $11, $02, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00B44C 02:B43C: 19        .byte $19, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B450 02:B440: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B454 02:B444: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 04
 - D 1 - I - 0x00B458 02:B448: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B459 02:B449: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B45A 02:B44A: 0E        .byte $0E   ; player 00 pos X
-- D 1 - I - 0x00B45B 02:B44B: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B45C 02:B44C: 18        .byte $18   ; enemy 01 pos X
-- D 1 - I - 0x00B45D 02:B44D: 03        .byte $03   ; enemy 01 pos Y
-- D 1 - I - 0x00B45E 02:B44E: 0C        .byte $0C   ; enemy 02 pos X
-- D 1 - I - 0x00B45F 02:B44F: 03        .byte $03   ; enemy 02 pos Y
-- D 1 - I - 0x00B460 02:B450: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B461 02:B451: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B462 02:B452: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B463 02:B453: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B464 02:B454: 05        .byte $05   ; enemy 05 pos X
-- D 1 - I - 0x00B465 02:B455: 03        .byte $03   ; enemy 05 pos Y
-- D 1 - I - 0x00B466 02:B456: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B467 02:B457: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B468 02:B458: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B469 02:B459: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B46A 02:B45A: 08        .byte $08   ; carrot 00 pos X
-- D 1 - I - 0x00B46B 02:B45B: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00B46C 02:B45C: 0F        .byte $0F   ; carrot 01 pos X
-- D 1 - I - 0x00B46D 02:B45D: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00B46E 02:B45E: 0B        .byte $0B   ; carrot 02 pos X
-- D 1 - I - 0x00B46F 02:B45F: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00B470 02:B460: 0D        .byte $0D   ; carrot 03 pos X
-- D 1 - I - 0x00B471 02:B461: 09        .byte $09   ; carrot 03 pos Y
-- D 1 - I - 0x00B472 02:B462: 13        .byte $13   ; carrot 04 pos X
-- D 1 - I - 0x00B473 02:B463: 03        .byte $03   ; carrot 04 pos Y
-- D 1 - I - 0x00B474 02:B464: 11        .byte $11   ; carrot 05 pos X
-- D 1 - I - 0x00B475 02:B465: 08        .byte $08   ; carrot 05 pos Y
-- D 1 - I - 0x00B476 02:B466: 1E        .byte $1E   ; carrot 06 pos X
-- D 1 - I - 0x00B477 02:B467: 02        .byte $02   ; carrot 06 pos Y
-- D 1 - I - 0x00B478 02:B468: 1A        .byte $1A   ; carrot 07 pos X
-- D 1 - I - 0x00B479 02:B469: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B47A 02:B46A: 09        .byte $09   ; thing 00 id
-- D 1 - I - 0x00B47B 02:B46B: 06        .byte $06   ; thing 00 pos X
-- D 1 - I - 0x00B47C 02:B46C: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00B47D 02:B46D: 00        .byte $00   ; 
-- D 1 - I - 0x00B47E 02:B46E: 10        .byte $10   ; thing 01 id
-- D 1 - I - 0x00B47F 02:B46F: 02        .byte $02   ; thing 01 pos X
-- D 1 - I - 0x00B480 02:B470: 01        .byte $01   ; thing 01 pos Y
-- - - - - - 0x00B481 02:B471: 00        .byte $00   ; 
-- D 1 - I - 0x00B482 02:B472: 14        .byte $14   ; thing 02 id
-- D 1 - I - 0x00B483 02:B473: 06        .byte $06   ; thing 02 pos X
-- D 1 - I - 0x00B484 02:B474: 02        .byte $02   ; thing 02 pos Y
-- - - - - - 0x00B485 02:B475: 00        .byte $00   ; 
-- D 1 - I - 0x00B486 02:B476: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B487 02:B477: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B488 02:B478: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B489 02:B479: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B45A 02:B44A: 0E        .byte $0E, $0C   ; 00
+- D 1 - I - 0x00B45C 02:B44C: 18        .byte $18, $03   ; 01
+- D 1 - I - 0x00B45E 02:B44E: 0C        .byte $0C, $03   ; 02
+- D 1 - I - 0x00B460 02:B450: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B462 02:B452: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B464 02:B454: 05        .byte $05, $03   ; 05
+- D 1 - I - 0x00B466 02:B456: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B468 02:B458: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B46A 02:B45A: 08        .byte $08, $02   ; 00
+- D 1 - I - 0x00B46C 02:B45C: 0F        .byte $0F, $02   ; 01
+- D 1 - I - 0x00B46E 02:B45E: 0B        .byte $0B, $06   ; 02
+- D 1 - I - 0x00B470 02:B460: 0D        .byte $0D, $09   ; 03
+- D 1 - I - 0x00B472 02:B462: 13        .byte $13, $03   ; 04
+- D 1 - I - 0x00B474 02:B464: 11        .byte $11, $08   ; 05
+- D 1 - I - 0x00B476 02:B466: 1E        .byte $1E, $02   ; 06
+- D 1 - I - 0x00B478 02:B468: 1A        .byte $1A, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B47A 02:B46A: 09        .byte $09, $06, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B47E 02:B46E: 10        .byte $10, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B482 02:B472: 14        .byte $14, $06, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B486 02:B476: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 05
 - D 1 - I - 0x00B48A 02:B47A: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B48B 02:B47B: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B48C 02:B47C: 04        .byte $04   ; player 00 pos X
-- D 1 - I - 0x00B48D 02:B47D: 08        .byte $08   ; player 00 pos Y
-- D 1 - I - 0x00B48E 02:B47E: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B48F 02:B47F: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B490 02:B480: 08        .byte $08   ; enemy 02 pos X
-- D 1 - I - 0x00B491 02:B481: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00B492 02:B482: 12        .byte $12   ; enemy 03 pos X
-- D 1 - I - 0x00B493 02:B483: 05        .byte $05   ; enemy 03 pos Y
-- D 1 - I - 0x00B494 02:B484: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B495 02:B485: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B496 02:B486: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B497 02:B487: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B498 02:B488: 15        .byte $15   ; enemy 06 pos X
-- D 1 - I - 0x00B499 02:B489: 0B        .byte $0B   ; enemy 06 pos Y
-- D 1 - I - 0x00B49A 02:B48A: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B49B 02:B48B: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B49C 02:B48C: 0D        .byte $0D   ; carrot 00 pos X
-- D 1 - I - 0x00B49D 02:B48D: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00B49E 02:B48E: 05        .byte $05   ; carrot 01 pos X
-- D 1 - I - 0x00B49F 02:B48F: 05        .byte $05   ; carrot 01 pos Y
-- D 1 - I - 0x00B4A0 02:B490: 05        .byte $05   ; carrot 02 pos X
-- D 1 - I - 0x00B4A1 02:B491: 0B        .byte $0B   ; carrot 02 pos Y
-- D 1 - I - 0x00B4A2 02:B492: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00B4A3 02:B493: 0B        .byte $0B   ; carrot 03 pos Y
-- D 1 - I - 0x00B4A4 02:B494: 17        .byte $17   ; carrot 04 pos X
-- D 1 - I - 0x00B4A5 02:B495: 02        .byte $02   ; carrot 04 pos Y
-- D 1 - I - 0x00B4A6 02:B496: 1A        .byte $1A   ; carrot 05 pos X
-- D 1 - I - 0x00B4A7 02:B497: 05        .byte $05   ; carrot 05 pos Y
-- D 1 - I - 0x00B4A8 02:B498: 1A        .byte $1A   ; carrot 06 pos X
-- D 1 - I - 0x00B4A9 02:B499: 0B        .byte $0B   ; carrot 06 pos Y
-- D 1 - I - 0x00B4AA 02:B49A: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B4AB 02:B49B: 08        .byte $08   ; carrot 07 pos Y
-- D 1 - I - 0x00B4AC 02:B49C: 0F        .byte $0F   ; thing 00 id
-- D 1 - I - 0x00B4AD 02:B49D: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00B4AE 02:B49E: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00B4AF 02:B49F: 00        .byte $00   ; 
-- D 1 - I - 0x00B4B0 02:B4A0: 13        .byte $13   ; thing 01 id
-- D 1 - I - 0x00B4B1 02:B4A1: 05        .byte $05   ; thing 01 pos X
-- D 1 - I - 0x00B4B2 02:B4A2: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00B4B3 02:B4A3: 00        .byte $00   ; 
-- D 1 - I - 0x00B4B4 02:B4A4: 19        .byte $19   ; thing 02 id
-- D 1 - I - 0x00B4B5 02:B4A5: 05        .byte $05   ; thing 02 pos X
-- D 1 - I - 0x00B4B6 02:B4A6: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B4B7 02:B4A7: 00        .byte $00   ; 
-- D 1 - I - 0x00B4B8 02:B4A8: 1B        .byte $1B   ; thing 03 id
-- D 1 - I - 0x00B4B9 02:B4A9: 08        .byte $08   ; thing 03 pos X
-- D 1 - I - 0x00B4BA 02:B4AA: 03        .byte $03   ; thing 03 pos Y
-- - - - - - 0x00B4BB 02:B4AB: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B48C 02:B47C: 04        .byte $04, $08   ; 00
+- D 1 - I - 0x00B48E 02:B47E: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B490 02:B480: 08        .byte $08, $02   ; 02
+- D 1 - I - 0x00B492 02:B482: 12        .byte $12, $05   ; 03
+- D 1 - I - 0x00B494 02:B484: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B496 02:B486: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B498 02:B488: 15        .byte $15, $0B   ; 06
+- D 1 - I - 0x00B49A 02:B48A: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B49C 02:B48C: 0D        .byte $0D, $02   ; 00
+- D 1 - I - 0x00B49E 02:B48E: 05        .byte $05, $05   ; 01
+- D 1 - I - 0x00B4A0 02:B490: 05        .byte $05, $0B   ; 02
+- D 1 - I - 0x00B4A2 02:B492: 0E        .byte $0E, $0B   ; 03
+- D 1 - I - 0x00B4A4 02:B494: 17        .byte $17, $02   ; 04
+- D 1 - I - 0x00B4A6 02:B496: 1A        .byte $1A, $05   ; 05
+- D 1 - I - 0x00B4A8 02:B498: 1A        .byte $1A, $0B   ; 06
+- D 1 - I - 0x00B4AA 02:B49A: 1E        .byte $1E, $08   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B4AC 02:B49C: 0F        .byte $0F, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B4B0 02:B4A0: 13        .byte $13, $05, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B4B4 02:B4A4: 19        .byte $19, $05, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B4B8 02:B4A8: 1B        .byte $1B, $08, con_item_id_potion, $00   ; 
+
+
+
 ; 06
 - D 1 - I - 0x00B4BC 02:B4AC: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B4BD 02:B4AD: 01        .byte $01   ; stage type
-- D 1 - I - 0x00B4BE 02:B4AE: 10        .byte $10   ; player 00 pos X
-- D 1 - I - 0x00B4BF 02:B4AF: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B4C0 02:B4B0: 16        .byte $16   ; enemy 01 pos X
-- D 1 - I - 0x00B4C1 02:B4B1: 0C        .byte $0C   ; enemy 01 pos Y
-- D 1 - I - 0x00B4C2 02:B4B2: 01        .byte $01   ; enemy 02 pos X
-- D 1 - I - 0x00B4C3 02:B4B3: 06        .byte $06   ; enemy 02 pos Y
-- D 1 - I - 0x00B4C4 02:B4B4: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B4C5 02:B4B5: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B4C6 02:B4B6: 10        .byte $10   ; enemy 04 pos X
-- D 1 - I - 0x00B4C7 02:B4B7: 03        .byte $03   ; enemy 04 pos Y
-- D 1 - I - 0x00B4C8 02:B4B8: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B4C9 02:B4B9: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B4CA 02:B4BA: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B4CB 02:B4BB: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B4CC 02:B4BC: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B4CD 02:B4BD: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B4CE 02:B4BE: 06        .byte $06   ; carrot 00 pos X
-- D 1 - I - 0x00B4CF 02:B4BF: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00B4D0 02:B4C0: 11        .byte $11   ; carrot 01 pos X
-- D 1 - I - 0x00B4D1 02:B4C1: 03        .byte $03   ; carrot 01 pos Y
-- D 1 - I - 0x00B4D2 02:B4C2: 0E        .byte $0E   ; carrot 02 pos X
-- D 1 - I - 0x00B4D3 02:B4C3: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00B4D4 02:B4C4: 16        .byte $16   ; carrot 03 pos X
-- D 1 - I - 0x00B4D5 02:B4C5: 06        .byte $06   ; carrot 03 pos Y
-- D 1 - I - 0x00B4D6 02:B4C6: 06        .byte $06   ; carrot 04 pos X
-- D 1 - I - 0x00B4D7 02:B4C7: 0C        .byte $0C   ; carrot 04 pos Y
-- D 1 - I - 0x00B4D8 02:B4C8: 11        .byte $11   ; carrot 05 pos X
-- D 1 - I - 0x00B4D9 02:B4C9: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00B4DA 02:B4CA: 1A        .byte $1A   ; carrot 06 pos X
-- D 1 - I - 0x00B4DB 02:B4CB: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00B4DC 02:B4CC: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B4DD 02:B4CD: 09        .byte $09   ; carrot 07 pos Y
-- D 1 - I - 0x00B4DE 02:B4CE: 14        .byte $14   ; thing 00 id
-- D 1 - I - 0x00B4DF 02:B4CF: 03        .byte $03   ; thing 00 pos X
-- D 1 - I - 0x00B4E0 02:B4D0: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00B4E1 02:B4D1: 00        .byte $00   ; 
-- D 1 - I - 0x00B4E2 02:B4D2: 09        .byte $09   ; thing 01 id
-- D 1 - I - 0x00B4E3 02:B4D3: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00B4E4 02:B4D4: 02        .byte $02   ; thing 01 pos Y
-- - - - - - 0x00B4E5 02:B4D5: 00        .byte $00   ; 
-- D 1 - I - 0x00B4E6 02:B4D6: 1C        .byte $1C   ; thing 02 id
-- D 1 - I - 0x00B4E7 02:B4D7: 03        .byte $03   ; thing 02 pos X
-- D 1 - I - 0x00B4E8 02:B4D8: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00B4E9 02:B4D9: 00        .byte $00   ; 
-- D 1 - I - 0x00B4EA 02:B4DA: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B4EB 02:B4DB: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B4EC 02:B4DC: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B4ED 02:B4DD: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B4BE 02:B4AE: 10        .byte $10, $0C   ; 00
+- D 1 - I - 0x00B4C0 02:B4B0: 16        .byte $16, $0C   ; 01
+- D 1 - I - 0x00B4C2 02:B4B2: 01        .byte $01, $06   ; 02
+- D 1 - I - 0x00B4C4 02:B4B4: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B4C6 02:B4B6: 10        .byte $10, $03   ; 04
+- D 1 - I - 0x00B4C8 02:B4B8: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B4CA 02:B4BA: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B4CC 02:B4BC: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B4CE 02:B4BE: 06        .byte $06, $03   ; 00
+- D 1 - I - 0x00B4D0 02:B4C0: 11        .byte $11, $03   ; 01
+- D 1 - I - 0x00B4D2 02:B4C2: 0E        .byte $0E, $06   ; 02
+- D 1 - I - 0x00B4D4 02:B4C4: 16        .byte $16, $06   ; 03
+- D 1 - I - 0x00B4D6 02:B4C6: 06        .byte $06, $0C   ; 04
+- D 1 - I - 0x00B4D8 02:B4C8: 11        .byte $11, $0C   ; 05
+- D 1 - I - 0x00B4DA 02:B4CA: 1A        .byte $1A, $0C   ; 06
+- D 1 - I - 0x00B4DC 02:B4CC: 1E        .byte $1E, $09   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B4DE 02:B4CE: 14        .byte $14, $03, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B4E2 02:B4D2: 09        .byte $09, $0C, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B4E6 02:B4D6: 1C        .byte $1C, $03, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B4EA 02:B4DA: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 07
 - D 1 - I - 0x00B4EE 02:B4DE: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B4EF 02:B4DF: 01        .byte $01   ; stage type
-- D 1 - I - 0x00B4F0 02:B4E0: 08        .byte $08   ; player 00 pos X
-- D 1 - I - 0x00B4F1 02:B4E1: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B4F2 02:B4E2: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B4F3 02:B4E3: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B4F4 02:B4E4: 01        .byte $01   ; enemy 02 pos X
-- D 1 - I - 0x00B4F5 02:B4E5: 06        .byte $06   ; enemy 02 pos Y
-- D 1 - I - 0x00B4F6 02:B4E6: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B4F7 02:B4E7: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B4F8 02:B4E8: 12        .byte $12   ; enemy 04 pos X
-- D 1 - I - 0x00B4F9 02:B4E9: 02        .byte $02   ; enemy 04 pos Y
-- D 1 - I - 0x00B4FA 02:B4EA: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B4FB 02:B4EB: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B4FC 02:B4EC: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B4FD 02:B4ED: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B4FE 02:B4EE: 1D        .byte $1D   ; enemy 07 pos X
-- D 1 - I - 0x00B4FF 02:B4EF: 0C        .byte $0C   ; enemy 07 pos Y
-- D 1 - I - 0x00B500 02:B4F0: 05        .byte $05   ; carrot 00 pos X
-- D 1 - I - 0x00B501 02:B4F1: 04        .byte $04   ; carrot 00 pos Y
-- D 1 - I - 0x00B502 02:B4F2: 04        .byte $04   ; carrot 01 pos X
-- D 1 - I - 0x00B503 02:B4F3: 04        .byte $04   ; carrot 01 pos Y
-- D 1 - I - 0x00B504 02:B4F4: 01        .byte $01   ; carrot 02 pos X
-- D 1 - I - 0x00B505 02:B4F5: 09        .byte $09   ; carrot 02 pos Y
-- D 1 - I - 0x00B506 02:B4F6: 01        .byte $01   ; carrot 03 pos X
-- D 1 - I - 0x00B507 02:B4F7: 0C        .byte $0C   ; carrot 03 pos Y
-- D 1 - I - 0x00B508 02:B4F8: 09        .byte $09   ; carrot 04 pos X
-- D 1 - I - 0x00B509 02:B4F9: 06        .byte $06   ; carrot 04 pos Y
-- D 1 - I - 0x00B50A 02:B4FA: 15        .byte $15   ; carrot 05 pos X
-- D 1 - I - 0x00B50B 02:B4FB: 06        .byte $06   ; carrot 05 pos Y
-- D 1 - I - 0x00B50C 02:B4FC: 1D        .byte $1D   ; carrot 06 pos X
-- D 1 - I - 0x00B50D 02:B4FD: 05        .byte $05   ; carrot 06 pos Y
-- D 1 - I - 0x00B50E 02:B4FE: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B50F 02:B4FF: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B510 02:B500: 0C        .byte $0C   ; thing 00 id
-- D 1 - I - 0x00B511 02:B501: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00B512 02:B502: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00B513 02:B503: 00        .byte $00   ; 
-- D 1 - I - 0x00B514 02:B504: 14        .byte $14   ; thing 01 id
-- D 1 - I - 0x00B515 02:B505: 02        .byte $02   ; thing 01 pos X
-- D 1 - I - 0x00B516 02:B506: 03        .byte $03   ; thing 01 pos Y
-- - - - - - 0x00B517 02:B507: 00        .byte $00   ; 
-- D 1 - I - 0x00B518 02:B508: 1C        .byte $1C   ; thing 02 id
-- D 1 - I - 0x00B519 02:B509: 0C        .byte $0C   ; thing 02 pos X
-- D 1 - I - 0x00B51A 02:B50A: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00B51B 02:B50B: 00        .byte $00   ; 
-- D 1 - I - 0x00B51C 02:B50C: 19        .byte $19   ; thing 03 id
-- D 1 - I - 0x00B51D 02:B50D: 09        .byte $09   ; thing 03 pos X
-- D 1 - I - 0x00B51E 02:B50E: 05        .byte $05   ; thing 03 pos Y
-- - - - - - 0x00B51F 02:B50F: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B4F0 02:B4E0: 08        .byte $08, $0C   ; 00
+- D 1 - I - 0x00B4F2 02:B4E2: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B4F4 02:B4E4: 01        .byte $01, $06   ; 02
+- D 1 - I - 0x00B4F6 02:B4E6: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B4F8 02:B4E8: 12        .byte $12, $02   ; 04
+- D 1 - I - 0x00B4FA 02:B4EA: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B4FC 02:B4EC: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B4FE 02:B4EE: 1D        .byte $1D, $0C   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B500 02:B4F0: 05        .byte $05, $04   ; 00
+- D 1 - I - 0x00B502 02:B4F2: 04        .byte $04, $04   ; 01
+- D 1 - I - 0x00B504 02:B4F4: 01        .byte $01, $09   ; 02
+- D 1 - I - 0x00B506 02:B4F6: 01        .byte $01, $0C   ; 03
+- D 1 - I - 0x00B508 02:B4F8: 09        .byte $09, $06   ; 04
+- D 1 - I - 0x00B50A 02:B4FA: 15        .byte $15, $06   ; 05
+- D 1 - I - 0x00B50C 02:B4FC: 1D        .byte $1D, $05   ; 06
+- D 1 - I - 0x00B50E 02:B4FE: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B510 02:B500: 0C        .byte $0C, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B514 02:B504: 14        .byte $14, $02, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00B518 02:B508: 1C        .byte $1C, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B51C 02:B50C: 19        .byte $19, $09, $05, $00   ; 
+
+
+
 ; 08
 - D 1 - I - 0x00B520 02:B510: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B521 02:B511: 02        .byte $02   ; stage type
-- D 1 - I - 0x00B522 02:B512: 05        .byte $05   ; player 00 pos X
-- D 1 - I - 0x00B523 02:B513: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B524 02:B514: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B525 02:B515: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B526 02:B516: 02        .byte $02   ; enemy 02 pos X
-- D 1 - I - 0x00B527 02:B517: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00B528 02:B518: 1D        .byte $1D   ; enemy 03 pos X
-- D 1 - I - 0x00B529 02:B519: 05        .byte $05   ; enemy 03 pos Y
-- D 1 - I - 0x00B52A 02:B51A: 0E        .byte $0E   ; enemy 04 pos X
-- D 1 - I - 0x00B52B 02:B51B: 02        .byte $02   ; enemy 04 pos Y
-- D 1 - I - 0x00B52C 02:B51C: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B52D 02:B51D: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B52E 02:B51E: 0D        .byte $0D   ; enemy 06 pos X
-- D 1 - I - 0x00B52F 02:B51F: 08        .byte $08   ; enemy 06 pos Y
-- D 1 - I - 0x00B530 02:B520: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B531 02:B521: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B532 02:B522: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00B533 02:B523: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00B534 02:B524: 18        .byte $18   ; carrot 01 pos X
-- D 1 - I - 0x00B535 02:B525: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00B536 02:B526: 17        .byte $17   ; carrot 02 pos X
-- D 1 - I - 0x00B537 02:B527: 05        .byte $05   ; carrot 02 pos Y
-- D 1 - I - 0x00B538 02:B528: 07        .byte $07   ; carrot 03 pos X
-- D 1 - I - 0x00B539 02:B529: 08        .byte $08   ; carrot 03 pos Y
-- D 1 - I - 0x00B53A 02:B52A: 12        .byte $12   ; carrot 04 pos X
-- D 1 - I - 0x00B53B 02:B52B: 08        .byte $08   ; carrot 04 pos Y
-- D 1 - I - 0x00B53C 02:B52C: 06        .byte $06   ; carrot 05 pos X
-- D 1 - I - 0x00B53D 02:B52D: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00B53E 02:B52E: 0B        .byte $0B   ; carrot 06 pos X
-- D 1 - I - 0x00B53F 02:B52F: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00B540 02:B530: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B541 02:B531: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B542 02:B532: 12        .byte $12   ; thing 00 id
-- D 1 - I - 0x00B543 02:B533: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00B544 02:B534: 02        .byte $02   ; thing 00 pos Y
-- - - - - - 0x00B545 02:B535: 00        .byte $00   ; 
-- D 1 - I - 0x00B546 02:B536: 1E        .byte $1E   ; thing 01 id
-- D 1 - I - 0x00B547 02:B537: 05        .byte $05   ; thing 01 pos X
-- D 1 - I - 0x00B548 02:B538: 03        .byte $03   ; thing 01 pos Y
-- - - - - - 0x00B549 02:B539: 00        .byte $00   ; 
-- D 1 - I - 0x00B54A 02:B53A: 19        .byte $19   ; thing 02 id
-- D 1 - I - 0x00B54B 02:B53B: 0C        .byte $0C   ; thing 02 pos X
-- D 1 - I - 0x00B54C 02:B53C: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00B54D 02:B53D: 00        .byte $00   ; 
-- D 1 - I - 0x00B54E 02:B53E: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B54F 02:B53F: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B550 02:B540: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B551 02:B541: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B522 02:B512: 05        .byte $05, $0C   ; 00
+- D 1 - I - 0x00B524 02:B514: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B526 02:B516: 02        .byte $02, $02   ; 02
+- D 1 - I - 0x00B528 02:B518: 1D        .byte $1D, $05   ; 03
+- D 1 - I - 0x00B52A 02:B51A: 0E        .byte $0E, $02   ; 04
+- D 1 - I - 0x00B52C 02:B51C: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B52E 02:B51E: 0D        .byte $0D, $08   ; 06
+- D 1 - I - 0x00B530 02:B520: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B532 02:B522: 01        .byte $01, $02   ; 00
+- D 1 - I - 0x00B534 02:B524: 18        .byte $18, $02   ; 01
+- D 1 - I - 0x00B536 02:B526: 17        .byte $17, $05   ; 02
+- D 1 - I - 0x00B538 02:B528: 07        .byte $07, $08   ; 03
+- D 1 - I - 0x00B53A 02:B52A: 12        .byte $12, $08   ; 04
+- D 1 - I - 0x00B53C 02:B52C: 06        .byte $06, $0C   ; 05
+- D 1 - I - 0x00B53E 02:B52E: 0B        .byte $0B, $0C   ; 06
+- D 1 - I - 0x00B540 02:B530: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B542 02:B532: 12        .byte $12, $02, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B546 02:B536: 1E        .byte $1E, $05, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00B54A 02:B53A: 19        .byte $19, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B54E 02:B53E: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 09
 - D 1 - I - 0x00B552 02:B542: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B553 02:B543: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B554 02:B544: 09        .byte $09   ; player 00 pos X
-- D 1 - I - 0x00B555 02:B545: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B556 02:B546: 17        .byte $17   ; enemy 01 pos X
-- D 1 - I - 0x00B557 02:B547: 0C        .byte $0C   ; enemy 01 pos Y
-- D 1 - I - 0x00B558 02:B548: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00B559 02:B549: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00B55A 02:B54A: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B55B 02:B54B: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B55C 02:B54C: 01        .byte $01   ; enemy 04 pos X
-- D 1 - I - 0x00B55D 02:B54D: 02        .byte $02   ; enemy 04 pos Y
-- D 1 - I - 0x00B55E 02:B54E: 1A        .byte $1A   ; enemy 05 pos X
-- D 1 - I - 0x00B55F 02:B54F: 02        .byte $02   ; enemy 05 pos Y
-- D 1 - I - 0x00B560 02:B550: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B561 02:B551: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B562 02:B552: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B563 02:B553: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B564 02:B554: 06        .byte $06   ; carrot 00 pos X
-- D 1 - I - 0x00B565 02:B555: 05        .byte $05   ; carrot 00 pos Y
-- D 1 - I - 0x00B566 02:B556: 02        .byte $02   ; carrot 01 pos X
-- D 1 - I - 0x00B567 02:B557: 0C        .byte $0C   ; carrot 01 pos Y
-- D 1 - I - 0x00B568 02:B558: 0C        .byte $0C   ; carrot 02 pos X
-- D 1 - I - 0x00B569 02:B559: 09        .byte $09   ; carrot 02 pos Y
-- D 1 - I - 0x00B56A 02:B55A: 14        .byte $14   ; carrot 03 pos X
-- D 1 - I - 0x00B56B 02:B55B: 06        .byte $06   ; carrot 03 pos Y
-- D 1 - I - 0x00B56C 02:B55C: 1E        .byte $1E   ; carrot 04 pos X
-- D 1 - I - 0x00B56D 02:B55D: 05        .byte $05   ; carrot 04 pos Y
-- D 1 - I - 0x00B56E 02:B55E: 15        .byte $15   ; carrot 05 pos X
-- D 1 - I - 0x00B56F 02:B55F: 09        .byte $09   ; carrot 05 pos Y
-- D 1 - I - 0x00B570 02:B560: 1B        .byte $1B   ; carrot 06 pos X
-- D 1 - I - 0x00B571 02:B561: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00B572 02:B562: 0E        .byte $0E   ; carrot 07 pos X
-- D 1 - I - 0x00B573 02:B563: 05        .byte $05   ; carrot 07 pos Y
-- D 1 - I - 0x00B574 02:B564: 1C        .byte $1C   ; thing 00 id
-- D 1 - I - 0x00B575 02:B565: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00B576 02:B566: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00B577 02:B567: 00        .byte $00   ; 
-- D 1 - I - 0x00B578 02:B568: 03        .byte $03   ; thing 01 id
-- D 1 - I - 0x00B579 02:B569: 05        .byte $05   ; thing 01 pos X
-- D 1 - I - 0x00B57A 02:B56A: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00B57B 02:B56B: 00        .byte $00   ; 
-- D 1 - I - 0x00B57C 02:B56C: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B57D 02:B56D: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B57E 02:B56E: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B57F 02:B56F: 00        .byte $00   ; 
-- D 1 - I - 0x00B580 02:B570: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B581 02:B571: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B582 02:B572: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B583 02:B573: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B554 02:B544: 09        .byte $09, $0C   ; 00
+- D 1 - I - 0x00B556 02:B546: 17        .byte $17, $0C   ; 01
+- D 1 - I - 0x00B558 02:B548: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00B55A 02:B54A: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B55C 02:B54C: 01        .byte $01, $02   ; 04
+- D 1 - I - 0x00B55E 02:B54E: 1A        .byte $1A, $02   ; 05
+- D 1 - I - 0x00B560 02:B550: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B562 02:B552: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B564 02:B554: 06        .byte $06, $05   ; 00
+- D 1 - I - 0x00B566 02:B556: 02        .byte $02, $0C   ; 01
+- D 1 - I - 0x00B568 02:B558: 0C        .byte $0C, $09   ; 02
+- D 1 - I - 0x00B56A 02:B55A: 14        .byte $14, $06   ; 03
+- D 1 - I - 0x00B56C 02:B55C: 1E        .byte $1E, $05   ; 04
+- D 1 - I - 0x00B56E 02:B55E: 15        .byte $15, $09   ; 05
+- D 1 - I - 0x00B570 02:B560: 1B        .byte $1B, $0C   ; 06
+- D 1 - I - 0x00B572 02:B562: 0E        .byte $0E, $05   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B574 02:B564: 1C        .byte $1C, $02, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B578 02:B568: 03        .byte $03, $05, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B57C 02:B56C: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B580 02:B570: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 0A
 - D 1 - I - 0x00B584 02:B574: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B585 02:B575: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B586 02:B576: 03        .byte $03   ; player 00 pos X
-- D 1 - I - 0x00B587 02:B577: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B588 02:B578: 04        .byte $04   ; enemy 01 pos X
-- D 1 - I - 0x00B589 02:B579: 03        .byte $03   ; enemy 01 pos Y
-- D 1 - I - 0x00B58A 02:B57A: 10        .byte $10   ; enemy 02 pos X
-- D 1 - I - 0x00B58B 02:B57B: 03        .byte $03   ; enemy 02 pos Y
-- D 1 - I - 0x00B58C 02:B57C: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B58D 02:B57D: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B58E 02:B57E: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B58F 02:B57F: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B590 02:B580: 1D        .byte $1D   ; enemy 05 pos X
-- D 1 - I - 0x00B591 02:B581: 0C        .byte $0C   ; enemy 05 pos Y
-- D 1 - I - 0x00B592 02:B582: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B593 02:B583: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B594 02:B584: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B595 02:B585: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B596 02:B586: 06        .byte $06   ; carrot 00 pos X
-- D 1 - I - 0x00B597 02:B587: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00B598 02:B588: 06        .byte $06   ; carrot 01 pos X
-- D 1 - I - 0x00B599 02:B589: 09        .byte $09   ; carrot 01 pos Y
-- D 1 - I - 0x00B59A 02:B58A: 0D        .byte $0D   ; carrot 02 pos X
-- D 1 - I - 0x00B59B 02:B58B: 09        .byte $09   ; carrot 02 pos Y
-- D 1 - I - 0x00B59C 02:B58C: 12        .byte $12   ; carrot 03 pos X
-- D 1 - I - 0x00B59D 02:B58D: 03        .byte $03   ; carrot 03 pos Y
-- D 1 - I - 0x00B59E 02:B58E: 14        .byte $14   ; carrot 04 pos X
-- D 1 - I - 0x00B59F 02:B58F: 06        .byte $06   ; carrot 04 pos Y
-- D 1 - I - 0x00B5A0 02:B590: 1B        .byte $1B   ; carrot 05 pos X
-- D 1 - I - 0x00B5A1 02:B591: 03        .byte $03   ; carrot 05 pos Y
-- D 1 - I - 0x00B5A2 02:B592: 1C        .byte $1C   ; carrot 06 pos X
-- D 1 - I - 0x00B5A3 02:B593: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00B5A4 02:B594: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B5A5 02:B595: 07        .byte $07   ; carrot 07 pos Y
-- D 1 - I - 0x00B5A6 02:B596: 0B        .byte $0B   ; thing 00 id
-- D 1 - I - 0x00B5A7 02:B597: 06        .byte $06   ; thing 00 pos X
-- D 1 - I - 0x00B5A8 02:B598: 02        .byte $02   ; thing 00 pos Y
-- - - - - - 0x00B5A9 02:B599: 00        .byte $00   ; 
-- D 1 - I - 0x00B5AA 02:B59A: 1C        .byte $1C   ; thing 01 id
-- D 1 - I - 0x00B5AB 02:B59B: 03        .byte $03   ; thing 01 pos X
-- D 1 - I - 0x00B5AC 02:B59C: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00B5AD 02:B59D: 00        .byte $00   ; 
-- D 1 - I - 0x00B5AE 02:B59E: 1D        .byte $1D   ; thing 02 id
-- D 1 - I - 0x00B5AF 02:B59F: 09        .byte $09   ; thing 02 pos X
-- D 1 - I - 0x00B5B0 02:B5A0: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B5B1 02:B5A1: 00        .byte $00   ; 
-- D 1 - I - 0x00B5B2 02:B5A2: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B5B3 02:B5A3: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B5B4 02:B5A4: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B5B5 02:B5A5: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B586 02:B576: 03        .byte $03, $0C   ; 00
+- D 1 - I - 0x00B588 02:B578: 04        .byte $04, $03   ; 01
+- D 1 - I - 0x00B58A 02:B57A: 10        .byte $10, $03   ; 02
+- D 1 - I - 0x00B58C 02:B57C: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B58E 02:B57E: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B590 02:B580: 1D        .byte $1D, $0C   ; 05
+- D 1 - I - 0x00B592 02:B582: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B594 02:B584: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B596 02:B586: 06        .byte $06, $03   ; 00
+- D 1 - I - 0x00B598 02:B588: 06        .byte $06, $09   ; 01
+- D 1 - I - 0x00B59A 02:B58A: 0D        .byte $0D, $09   ; 02
+- D 1 - I - 0x00B59C 02:B58C: 12        .byte $12, $03   ; 03
+- D 1 - I - 0x00B59E 02:B58E: 14        .byte $14, $06   ; 04
+- D 1 - I - 0x00B5A0 02:B590: 1B        .byte $1B, $03   ; 05
+- D 1 - I - 0x00B5A2 02:B592: 1C        .byte $1C, $0C   ; 06
+- D 1 - I - 0x00B5A4 02:B594: 1E        .byte $1E, $07   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B5A6 02:B596: 0B        .byte $0B, $06, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B5AA 02:B59A: 1C        .byte $1C, $03, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B5AE 02:B59E: 1D        .byte $1D, $09, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B5B2 02:B5A2: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 0B
 - D 1 - I - 0x00B5B6 02:B5A6: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B5B7 02:B5A7: 02        .byte $02   ; stage type
-- D 1 - I - 0x00B5B8 02:B5A8: 12        .byte $12   ; player 00 pos X
-- D 1 - I - 0x00B5B9 02:B5A9: 04        .byte $04   ; player 00 pos Y
-- D 1 - I - 0x00B5BA 02:B5AA: 01        .byte $01   ; enemy 01 pos X
-- D 1 - I - 0x00B5BB 02:B5AB: 0C        .byte $0C   ; enemy 01 pos Y
-- D 1 - I - 0x00B5BC 02:B5AC: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00B5BD 02:B5AD: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00B5BE 02:B5AE: 1E        .byte $1E   ; enemy 03 pos X
-- D 1 - I - 0x00B5BF 02:B5AF: 0C        .byte $0C   ; enemy 03 pos Y
-- D 1 - I - 0x00B5C0 02:B5B0: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B5C1 02:B5B1: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B5C2 02:B5B2: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B5C3 02:B5B3: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B5C4 02:B5B4: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B5C5 02:B5B5: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B5C6 02:B5B6: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B5C7 02:B5B7: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B5C8 02:B5B8: 03        .byte $03   ; carrot 00 pos X
-- D 1 - I - 0x00B5C9 02:B5B9: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00B5CA 02:B5BA: 08        .byte $08   ; carrot 01 pos X
-- D 1 - I - 0x00B5CB 02:B5BB: 06        .byte $06   ; carrot 01 pos Y
-- D 1 - I - 0x00B5CC 02:B5BC: 1C        .byte $1C   ; carrot 02 pos X
-- D 1 - I - 0x00B5CD 02:B5BD: 05        .byte $05   ; carrot 02 pos Y
-- D 1 - I - 0x00B5CE 02:B5BE: 1B        .byte $1B   ; carrot 03 pos X
-- D 1 - I - 0x00B5CF 02:B5BF: 08        .byte $08   ; carrot 03 pos Y
-- D 1 - I - 0x00B5D0 02:B5C0: 0F        .byte $0F   ; carrot 04 pos X
-- D 1 - I - 0x00B5D1 02:B5C1: 09        .byte $09   ; carrot 04 pos Y
-- D 1 - I - 0x00B5D2 02:B5C2: 14        .byte $14   ; carrot 05 pos X
-- D 1 - I - 0x00B5D3 02:B5C3: 0A        .byte $0A   ; carrot 05 pos Y
-- D 1 - I - 0x00B5D4 02:B5C4: 06        .byte $06   ; carrot 06 pos X
-- D 1 - I - 0x00B5D5 02:B5C5: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00B5D6 02:B5C6: 1B        .byte $1B   ; carrot 07 pos X
-- D 1 - I - 0x00B5D7 02:B5C7: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B5D8 02:B5C8: 0D        .byte $0D   ; thing 00 id
-- D 1 - I - 0x00B5D9 02:B5C9: 06        .byte $06   ; thing 00 pos X
-- D 1 - I - 0x00B5DA 02:B5CA: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00B5DB 02:B5CB: 00        .byte $00   ; 
-- D 1 - I - 0x00B5DC 02:B5CC: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00B5DD 02:B5CD: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00B5DE 02:B5CE: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00B5DF 02:B5CF: 00        .byte $00   ; 
-- D 1 - I - 0x00B5E0 02:B5D0: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B5E1 02:B5D1: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B5E2 02:B5D2: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B5E3 02:B5D3: 00        .byte $00   ; 
-- D 1 - I - 0x00B5E4 02:B5D4: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B5E5 02:B5D5: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B5E6 02:B5D6: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B5E7 02:B5D7: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B5B8 02:B5A8: 12        .byte $12, $04   ; 00
+- D 1 - I - 0x00B5BA 02:B5AA: 01        .byte $01, $0C   ; 01
+- D 1 - I - 0x00B5BC 02:B5AC: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00B5BE 02:B5AE: 1E        .byte $1E, $0C   ; 03
+- D 1 - I - 0x00B5C0 02:B5B0: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B5C2 02:B5B2: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B5C4 02:B5B4: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B5C6 02:B5B6: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B5C8 02:B5B8: 03        .byte $03, $02   ; 00
+- D 1 - I - 0x00B5CA 02:B5BA: 08        .byte $08, $06   ; 01
+- D 1 - I - 0x00B5CC 02:B5BC: 1C        .byte $1C, $05   ; 02
+- D 1 - I - 0x00B5CE 02:B5BE: 1B        .byte $1B, $08   ; 03
+- D 1 - I - 0x00B5D0 02:B5C0: 0F        .byte $0F, $09   ; 04
+- D 1 - I - 0x00B5D2 02:B5C2: 14        .byte $14, $0A   ; 05
+- D 1 - I - 0x00B5D4 02:B5C4: 06        .byte $06, $0C   ; 06
+- D 1 - I - 0x00B5D6 02:B5C6: 1B        .byte $1B, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B5D8 02:B5C8: 0D        .byte $0D, $06, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B5DC 02:B5CC: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B5E0 02:B5D0: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B5E4 02:B5D4: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 0C
 - D 1 - I - 0x00B5E8 02:B5D8: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B5E9 02:B5D9: 02        .byte $02   ; stage type
-- D 1 - I - 0x00B5EA 02:B5DA: 18        .byte $18   ; player 00 pos X
-- D 1 - I - 0x00B5EB 02:B5DB: 02        .byte $02   ; player 00 pos Y
-- D 1 - I - 0x00B5EC 02:B5DC: 03        .byte $03   ; enemy 01 pos X
-- D 1 - I - 0x00B5ED 02:B5DD: 09        .byte $09   ; enemy 01 pos Y
-- D 1 - I - 0x00B5EE 02:B5DE: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00B5EF 02:B5DF: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00B5F0 02:B5E0: 03        .byte $03   ; enemy 03 pos X
-- D 1 - I - 0x00B5F1 02:B5E1: 02        .byte $02   ; enemy 03 pos Y
-- D 1 - I - 0x00B5F2 02:B5E2: 0B        .byte $0B   ; enemy 04 pos X
-- D 1 - I - 0x00B5F3 02:B5E3: 0C        .byte $0C   ; enemy 04 pos Y
-- D 1 - I - 0x00B5F4 02:B5E4: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B5F5 02:B5E5: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B5F6 02:B5E6: 17        .byte $17   ; enemy 06 pos X
-- D 1 - I - 0x00B5F7 02:B5E7: 0C        .byte $0C   ; enemy 06 pos Y
-- D 1 - I - 0x00B5F8 02:B5E8: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B5F9 02:B5E9: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B5FA 02:B5EA: 0E        .byte $0E   ; carrot 00 pos X
-- D 1 - I - 0x00B5FB 02:B5EB: 04        .byte $04   ; carrot 00 pos Y
-- D 1 - I - 0x00B5FC 02:B5EC: 01        .byte $01   ; carrot 01 pos X
-- D 1 - I - 0x00B5FD 02:B5ED: 05        .byte $05   ; carrot 01 pos Y
-- D 1 - I - 0x00B5FE 02:B5EE: 1E        .byte $1E   ; carrot 02 pos X
-- D 1 - I - 0x00B5FF 02:B5EF: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00B600 02:B5F0: 07        .byte $07   ; carrot 03 pos X
-- D 1 - I - 0x00B601 02:B5F1: 08        .byte $08   ; carrot 03 pos Y
-- D 1 - I - 0x00B602 02:B5F2: 0B        .byte $0B   ; carrot 04 pos X
-- D 1 - I - 0x00B603 02:B5F3: 09        .byte $09   ; carrot 04 pos Y
-- D 1 - I - 0x00B604 02:B5F4: 05        .byte $05   ; carrot 05 pos X
-- D 1 - I - 0x00B605 02:B5F5: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00B606 02:B5F6: 14        .byte $14   ; carrot 06 pos X
-- D 1 - I - 0x00B607 02:B5F7: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00B608 02:B5F8: 1C        .byte $1C   ; carrot 07 pos X
-- D 1 - I - 0x00B609 02:B5F9: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B60A 02:B5FA: 06        .byte $06   ; thing 00 id
-- D 1 - I - 0x00B60B 02:B5FB: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00B60C 02:B5FC: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00B60D 02:B5FD: 00        .byte $00   ; 
-- D 1 - I - 0x00B60E 02:B5FE: 04        .byte $04   ; thing 01 id
-- D 1 - I - 0x00B60F 02:B5FF: 02        .byte $02   ; thing 01 pos X
-- D 1 - I - 0x00B610 02:B600: 03        .byte $03   ; thing 01 pos Y
-- - - - - - 0x00B611 02:B601: 00        .byte $00   ; 
-- D 1 - I - 0x00B612 02:B602: 17        .byte $17   ; thing 02 id
-- D 1 - I - 0x00B613 02:B603: 09        .byte $09   ; thing 02 pos X
-- D 1 - I - 0x00B614 02:B604: 03        .byte $03   ; thing 02 pos Y
-- - - - - - 0x00B615 02:B605: 00        .byte $00   ; 
-- D 1 - I - 0x00B616 02:B606: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B617 02:B607: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B618 02:B608: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B619 02:B609: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B5EA 02:B5DA: 18        .byte $18, $02   ; 00
+- D 1 - I - 0x00B5EC 02:B5DC: 03        .byte $03, $09   ; 01
+- D 1 - I - 0x00B5EE 02:B5DE: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00B5F0 02:B5E0: 03        .byte $03, $02   ; 03
+- D 1 - I - 0x00B5F2 02:B5E2: 0B        .byte $0B, $0C   ; 04
+- D 1 - I - 0x00B5F4 02:B5E4: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B5F6 02:B5E6: 17        .byte $17, $0C   ; 06
+- D 1 - I - 0x00B5F8 02:B5E8: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B5FA 02:B5EA: 0E        .byte $0E, $04   ; 00
+- D 1 - I - 0x00B5FC 02:B5EC: 01        .byte $01, $05   ; 01
+- D 1 - I - 0x00B5FE 02:B5EE: 1E        .byte $1E, $06   ; 02
+- D 1 - I - 0x00B600 02:B5F0: 07        .byte $07, $08   ; 03
+- D 1 - I - 0x00B602 02:B5F2: 0B        .byte $0B, $09   ; 04
+- D 1 - I - 0x00B604 02:B5F4: 05        .byte $05, $0C   ; 05
+- D 1 - I - 0x00B606 02:B5F6: 14        .byte $14, $0C   ; 06
+- D 1 - I - 0x00B608 02:B5F8: 1C        .byte $1C, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B60A 02:B5FA: 06        .byte $06, $02, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B60E 02:B5FE: 04        .byte $04, $02, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00B612 02:B602: 17        .byte $17, $09, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00B616 02:B606: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 0D
 - D 1 - I - 0x00B61A 02:B60A: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B61B 02:B60B: 01        .byte $01   ; stage type
-- D 1 - I - 0x00B61C 02:B60C: 14        .byte $14   ; player 00 pos X
-- D 1 - I - 0x00B61D 02:B60D: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B61E 02:B60E: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B61F 02:B60F: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B620 02:B610: 03        .byte $03   ; enemy 02 pos X
-- D 1 - I - 0x00B621 02:B611: 09        .byte $09   ; enemy 02 pos Y
-- D 1 - I - 0x00B622 02:B612: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B623 02:B613: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B624 02:B614: 14        .byte $14   ; enemy 04 pos X
-- D 1 - I - 0x00B625 02:B615: 06        .byte $06   ; enemy 04 pos Y
-- D 1 - I - 0x00B626 02:B616: 1C        .byte $1C   ; enemy 05 pos X
-- D 1 - I - 0x00B627 02:B617: 04        .byte $04   ; enemy 05 pos Y
-- D 1 - I - 0x00B628 02:B618: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B629 02:B619: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B62A 02:B61A: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B62B 02:B61B: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B62C 02:B61C: 02        .byte $02   ; carrot 00 pos X
-- D 1 - I - 0x00B62D 02:B61D: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00B62E 02:B61E: 04        .byte $04   ; carrot 01 pos X
-- D 1 - I - 0x00B62F 02:B61F: 06        .byte $06   ; carrot 01 pos Y
-- D 1 - I - 0x00B630 02:B620: 0C        .byte $0C   ; carrot 02 pos X
-- D 1 - I - 0x00B631 02:B621: 03        .byte $03   ; carrot 02 pos Y
-- D 1 - I - 0x00B632 02:B622: 14        .byte $14   ; carrot 03 pos X
-- D 1 - I - 0x00B633 02:B623: 09        .byte $09   ; carrot 03 pos Y
-- D 1 - I - 0x00B634 02:B624: 1A        .byte $1A   ; carrot 04 pos X
-- D 1 - I - 0x00B635 02:B625: 07        .byte $07   ; carrot 04 pos Y
-- D 1 - I - 0x00B636 02:B626: 1B        .byte $1B   ; carrot 05 pos X
-- D 1 - I - 0x00B637 02:B627: 09        .byte $09   ; carrot 05 pos Y
-- D 1 - I - 0x00B638 02:B628: 1E        .byte $1E   ; carrot 06 pos X
-- D 1 - I - 0x00B639 02:B629: 07        .byte $07   ; carrot 06 pos Y
-- D 1 - I - 0x00B63A 02:B62A: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B63B 02:B62B: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B63C 02:B62C: 11        .byte $11   ; thing 00 id
-- D 1 - I - 0x00B63D 02:B62D: 03        .byte $03   ; thing 00 pos X
-- D 1 - I - 0x00B63E 02:B62E: 02        .byte $02   ; thing 00 pos Y
-- - - - - - 0x00B63F 02:B62F: 00        .byte $00   ; 
-- D 1 - I - 0x00B640 02:B630: 1C        .byte $1C   ; thing 01 id
-- D 1 - I - 0x00B641 02:B631: 09        .byte $09   ; thing 01 pos X
-- D 1 - I - 0x00B642 02:B632: 02        .byte $02   ; thing 01 pos Y
-- - - - - - 0x00B643 02:B633: 00        .byte $00   ; 
-- D 1 - I - 0x00B644 02:B634: 08        .byte $08   ; thing 02 id
-- D 1 - I - 0x00B645 02:B635: 05        .byte $05   ; thing 02 pos X
-- D 1 - I - 0x00B646 02:B636: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00B647 02:B637: 00        .byte $00   ; 
-- D 1 - I - 0x00B648 02:B638: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B649 02:B639: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B64A 02:B63A: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B64B 02:B63B: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B61C 02:B60C: 14        .byte $14, $0C   ; 00
+- D 1 - I - 0x00B61E 02:B60E: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B620 02:B610: 03        .byte $03, $09   ; 02
+- D 1 - I - 0x00B622 02:B612: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B624 02:B614: 14        .byte $14, $06   ; 04
+- D 1 - I - 0x00B626 02:B616: 1C        .byte $1C, $04   ; 05
+- D 1 - I - 0x00B628 02:B618: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B62A 02:B61A: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B62C 02:B61C: 02        .byte $02, $03   ; 00
+- D 1 - I - 0x00B62E 02:B61E: 04        .byte $04, $06   ; 01
+- D 1 - I - 0x00B630 02:B620: 0C        .byte $0C, $03   ; 02
+- D 1 - I - 0x00B632 02:B622: 14        .byte $14, $09   ; 03
+- D 1 - I - 0x00B634 02:B624: 1A        .byte $1A, $07   ; 04
+- D 1 - I - 0x00B636 02:B626: 1B        .byte $1B, $09   ; 05
+- D 1 - I - 0x00B638 02:B628: 1E        .byte $1E, $07   ; 06
+- D 1 - I - 0x00B63A 02:B62A: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B63C 02:B62C: 11        .byte $11, $03, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B640 02:B630: 1C        .byte $1C, $09, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B644 02:B634: 08        .byte $08, $05, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B648 02:B638: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 0E
 - D 1 - I - 0x00B64C 02:B63C: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B64D 02:B63D: 01        .byte $01   ; stage type
-- D 1 - I - 0x00B64E 02:B63E: 0E        .byte $0E   ; player 00 pos X
-- D 1 - I - 0x00B64F 02:B63F: 0A        .byte $0A   ; player 00 pos Y
-- D 1 - I - 0x00B650 02:B640: 18        .byte $18   ; enemy 01 pos X
-- D 1 - I - 0x00B651 02:B641: 08        .byte $08   ; enemy 01 pos Y
-- D 1 - I - 0x00B652 02:B642: 09        .byte $09   ; enemy 02 pos X
-- D 1 - I - 0x00B653 02:B643: 05        .byte $05   ; enemy 02 pos Y
-- D 1 - I - 0x00B654 02:B644: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B655 02:B645: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B656 02:B646: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B657 02:B647: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B658 02:B648: 01        .byte $01   ; enemy 05 pos X
-- D 1 - I - 0x00B659 02:B649: 0C        .byte $0C   ; enemy 05 pos Y
-- D 1 - I - 0x00B65A 02:B64A: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B65B 02:B64B: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B65C 02:B64C: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B65D 02:B64D: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B65E 02:B64E: 03        .byte $03   ; carrot 00 pos X
-- D 1 - I - 0x00B65F 02:B64F: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00B660 02:B650: 02        .byte $02   ; carrot 01 pos X
-- D 1 - I - 0x00B661 02:B651: 07        .byte $07   ; carrot 01 pos Y
-- D 1 - I - 0x00B662 02:B652: 07        .byte $07   ; carrot 02 pos X
-- D 1 - I - 0x00B663 02:B653: 08        .byte $08   ; carrot 02 pos Y
-- D 1 - I - 0x00B664 02:B654: 0A        .byte $0A   ; carrot 03 pos X
-- D 1 - I - 0x00B665 02:B655: 02        .byte $02   ; carrot 03 pos Y
-- D 1 - I - 0x00B666 02:B656: 14        .byte $14   ; carrot 04 pos X
-- D 1 - I - 0x00B667 02:B657: 05        .byte $05   ; carrot 04 pos Y
-- D 1 - I - 0x00B668 02:B658: 1D        .byte $1D   ; carrot 05 pos X
-- D 1 - I - 0x00B669 02:B659: 05        .byte $05   ; carrot 05 pos Y
-- D 1 - I - 0x00B66A 02:B65A: 17        .byte $17   ; carrot 06 pos X
-- D 1 - I - 0x00B66B 02:B65B: 08        .byte $08   ; carrot 06 pos Y
-- D 1 - I - 0x00B66C 02:B65C: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B66D 02:B65D: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B66E 02:B65E: 04        .byte $04   ; thing 00 id
-- D 1 - I - 0x00B66F 02:B65F: 0C        .byte $0C   ; thing 00 pos X
-- D 1 - I - 0x00B670 02:B660: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00B671 02:B661: 00        .byte $00   ; 
-- D 1 - I - 0x00B672 02:B662: 05        .byte $05   ; thing 01 id
-- D 1 - I - 0x00B673 02:B663: 03        .byte $03   ; thing 01 pos X
-- D 1 - I - 0x00B674 02:B664: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00B675 02:B665: 00        .byte $00   ; 
-- D 1 - I - 0x00B676 02:B666: 10        .byte $10   ; thing 02 id
-- D 1 - I - 0x00B677 02:B667: 0A        .byte $0A   ; thing 02 pos X
-- D 1 - I - 0x00B678 02:B668: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00B679 02:B669: 00        .byte $00   ; 
-- D 1 - I - 0x00B67A 02:B66A: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B67B 02:B66B: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B67C 02:B66C: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B67D 02:B66D: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B64E 02:B63E: 0E        .byte $0E, $0A   ; 00
+- D 1 - I - 0x00B650 02:B640: 18        .byte $18, $08   ; 01
+- D 1 - I - 0x00B652 02:B642: 09        .byte $09, $05   ; 02
+- D 1 - I - 0x00B654 02:B644: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B656 02:B646: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B658 02:B648: 01        .byte $01, $0C   ; 05
+- D 1 - I - 0x00B65A 02:B64A: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B65C 02:B64C: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B65E 02:B64E: 03        .byte $03, $03   ; 00
+- D 1 - I - 0x00B660 02:B650: 02        .byte $02, $07   ; 01
+- D 1 - I - 0x00B662 02:B652: 07        .byte $07, $08   ; 02
+- D 1 - I - 0x00B664 02:B654: 0A        .byte $0A, $02   ; 03
+- D 1 - I - 0x00B666 02:B656: 14        .byte $14, $05   ; 04
+- D 1 - I - 0x00B668 02:B658: 1D        .byte $1D, $05   ; 05
+- D 1 - I - 0x00B66A 02:B65A: 17        .byte $17, $08   ; 06
+- D 1 - I - 0x00B66C 02:B65C: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B66E 02:B65E: 04        .byte $04, $0C, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B672 02:B662: 05        .byte $05, $03, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B676 02:B666: 10        .byte $10, $0A, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B67A 02:B66A: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 0F
 - D 1 - I - 0x00B67E 02:B66E: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B67F 02:B66F: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B680 02:B670: 05        .byte $05   ; player 00 pos X
-- D 1 - I - 0x00B681 02:B671: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B682 02:B672: 0F        .byte $0F   ; enemy 01 pos X
-- D 1 - I - 0x00B683 02:B673: 05        .byte $05   ; enemy 01 pos Y
-- D 1 - I - 0x00B684 02:B674: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00B685 02:B675: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00B686 02:B676: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B687 02:B677: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B688 02:B678: 1E        .byte $1E   ; enemy 04 pos X
-- D 1 - I - 0x00B689 02:B679: 04        .byte $04   ; enemy 04 pos Y
-- D 1 - I - 0x00B68A 02:B67A: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B68B 02:B67B: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B68C 02:B67C: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B68D 02:B67D: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B68E 02:B67E: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B68F 02:B67F: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B690 02:B680: 02        .byte $02   ; carrot 00 pos X
-- D 1 - I - 0x00B691 02:B681: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00B692 02:B682: 05        .byte $05   ; carrot 01 pos X
-- D 1 - I - 0x00B693 02:B683: 0A        .byte $0A   ; carrot 01 pos Y
-- D 1 - I - 0x00B694 02:B684: 07        .byte $07   ; carrot 02 pos X
-- D 1 - I - 0x00B695 02:B685: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00B696 02:B686: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00B697 02:B687: 02        .byte $02   ; carrot 03 pos Y
-- D 1 - I - 0x00B698 02:B688: 14        .byte $14   ; carrot 04 pos X
-- D 1 - I - 0x00B699 02:B689: 08        .byte $08   ; carrot 04 pos Y
-- D 1 - I - 0x00B69A 02:B68A: 18        .byte $18   ; carrot 05 pos X
-- D 1 - I - 0x00B69B 02:B68B: 03        .byte $03   ; carrot 05 pos Y
-- D 1 - I - 0x00B69C 02:B68C: 1A        .byte $1A   ; carrot 06 pos X
-- D 1 - I - 0x00B69D 02:B68D: 09        .byte $09   ; carrot 06 pos Y
-- D 1 - I - 0x00B69E 02:B68E: 1D        .byte $1D   ; carrot 07 pos X
-- D 1 - I - 0x00B69F 02:B68F: 04        .byte $04   ; carrot 07 pos Y
-- D 1 - I - 0x00B6A0 02:B690: 07        .byte $07   ; thing 00 id
-- D 1 - I - 0x00B6A1 02:B691: 03        .byte $03   ; thing 00 pos X
-- D 1 - I - 0x00B6A2 02:B692: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00B6A3 02:B693: 00        .byte $00   ; 
-- D 1 - I - 0x00B6A4 02:B694: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00B6A5 02:B695: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00B6A6 02:B696: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00B6A7 02:B697: 00        .byte $00   ; 
-- D 1 - I - 0x00B6A8 02:B698: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B6A9 02:B699: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B6AA 02:B69A: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B6AB 02:B69B: 00        .byte $00   ; 
-- D 1 - I - 0x00B6AC 02:B69C: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B6AD 02:B69D: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B6AE 02:B69E: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B6AF 02:B69F: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B680 02:B670: 05        .byte $05, $0C   ; 00
+- D 1 - I - 0x00B682 02:B672: 0F        .byte $0F, $05   ; 01
+- D 1 - I - 0x00B684 02:B674: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00B686 02:B676: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B688 02:B678: 1E        .byte $1E, $04   ; 04
+- D 1 - I - 0x00B68A 02:B67A: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B68C 02:B67C: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B68E 02:B67E: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B690 02:B680: 02        .byte $02, $03   ; 00
+- D 1 - I - 0x00B692 02:B682: 05        .byte $05, $0A   ; 01
+- D 1 - I - 0x00B694 02:B684: 07        .byte $07, $06   ; 02
+- D 1 - I - 0x00B696 02:B686: 0E        .byte $0E, $02   ; 03
+- D 1 - I - 0x00B698 02:B688: 14        .byte $14, $08   ; 04
+- D 1 - I - 0x00B69A 02:B68A: 18        .byte $18, $03   ; 05
+- D 1 - I - 0x00B69C 02:B68C: 1A        .byte $1A, $09   ; 06
+- D 1 - I - 0x00B69E 02:B68E: 1D        .byte $1D, $04   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B6A0 02:B690: 07        .byte $07, $03, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B6A4 02:B694: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B6A8 02:B698: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B6AC 02:B69C: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 10
 - D 1 - I - 0x00B6B0 02:B6A0: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00B6B1 02:B6A1: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B6B2 02:B6A2: 09        .byte $09   ; player 00 pos X
-- D 1 - I - 0x00B6B3 02:B6A3: 1B        .byte $1B   ; player 00 pos Y
-- D 1 - I - 0x00B6B4 02:B6A4: 01        .byte $01   ; enemy 01 pos X
-- D 1 - I - 0x00B6B5 02:B6A5: 05        .byte $05   ; enemy 01 pos Y
-- D 1 - I - 0x00B6B6 02:B6A6: 01        .byte $01   ; enemy 02 pos X
-- D 1 - I - 0x00B6B7 02:B6A7: 0E        .byte $0E   ; enemy 02 pos Y
-- D 1 - I - 0x00B6B8 02:B6A8: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B6B9 02:B6A9: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B6BA 02:B6AA: 01        .byte $01   ; enemy 04 pos X
-- D 1 - I - 0x00B6BB 02:B6AB: 1B        .byte $1B   ; enemy 04 pos Y
-- D 1 - I - 0x00B6BC 02:B6AC: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B6BD 02:B6AD: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B6BE 02:B6AE: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B6BF 02:B6AF: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B6C0 02:B6B0: 08        .byte $08   ; enemy 07 pos X
-- D 1 - I - 0x00B6C1 02:B6B1: 12        .byte $12   ; enemy 07 pos Y
-- D 1 - I - 0x00B6C2 02:B6B2: 07        .byte $07   ; carrot 00 pos X
-- D 1 - I - 0x00B6C3 02:B6B3: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00B6C4 02:B6B4: 03        .byte $03   ; carrot 01 pos X
-- D 1 - I - 0x00B6C5 02:B6B5: 08        .byte $08   ; carrot 01 pos Y
-- D 1 - I - 0x00B6C6 02:B6B6: 0E        .byte $0E   ; carrot 02 pos X
-- D 1 - I - 0x00B6C7 02:B6B7: 08        .byte $08   ; carrot 02 pos Y
-- D 1 - I - 0x00B6C8 02:B6B8: 07        .byte $07   ; carrot 03 pos X
-- D 1 - I - 0x00B6C9 02:B6B9: 0C        .byte $0C   ; carrot 03 pos Y
-- D 1 - I - 0x00B6CA 02:B6BA: 03        .byte $03   ; carrot 04 pos X
-- D 1 - I - 0x00B6CB 02:B6BB: 11        .byte $11   ; carrot 04 pos Y
-- D 1 - I - 0x00B6CC 02:B6BC: 0D        .byte $0D   ; carrot 05 pos X
-- D 1 - I - 0x00B6CD 02:B6BD: 11        .byte $11   ; carrot 05 pos Y
-- D 1 - I - 0x00B6CE 02:B6BE: 07        .byte $07   ; carrot 06 pos X
-- D 1 - I - 0x00B6CF 02:B6BF: 18        .byte $18   ; carrot 06 pos Y
-- D 1 - I - 0x00B6D0 02:B6C0: 0E        .byte $0E   ; carrot 07 pos X
-- D 1 - I - 0x00B6D1 02:B6C1: 18        .byte $18   ; carrot 07 pos Y
-- D 1 - I - 0x00B6D2 02:B6C2: 06        .byte $06   ; thing 00 id
-- D 1 - I - 0x00B6D3 02:B6C3: 18        .byte $18   ; thing 00 pos X
-- D 1 - I - 0x00B6D4 02:B6C4: 03        .byte $03   ; thing 00 pos Y
-- - - - - - 0x00B6D5 02:B6C5: 00        .byte $00   ; 
-- D 1 - I - 0x00B6D6 02:B6C6: 04        .byte $04   ; thing 01 id
-- D 1 - I - 0x00B6D7 02:B6C7: 08        .byte $08   ; thing 01 pos X
-- D 1 - I - 0x00B6D8 02:B6C8: 02        .byte $02   ; thing 01 pos Y
-- - - - - - 0x00B6D9 02:B6C9: 00        .byte $00   ; 
-- D 1 - I - 0x00B6DA 02:B6CA: 01        .byte $01   ; thing 02 id
-- D 1 - I - 0x00B6DB 02:B6CB: 11        .byte $11   ; thing 02 pos X
-- D 1 - I - 0x00B6DC 02:B6CC: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00B6DD 02:B6CD: 00        .byte $00   ; 
-- D 1 - I - 0x00B6DE 02:B6CE: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B6DF 02:B6CF: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B6E0 02:B6D0: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B6E1 02:B6D1: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B6B2 02:B6A2: 09        .byte $09, $1B   ; 00
+- D 1 - I - 0x00B6B4 02:B6A4: 01        .byte $01, $05   ; 01
+- D 1 - I - 0x00B6B6 02:B6A6: 01        .byte $01, $0E   ; 02
+- D 1 - I - 0x00B6B8 02:B6A8: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B6BA 02:B6AA: 01        .byte $01, $1B   ; 04
+- D 1 - I - 0x00B6BC 02:B6AC: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B6BE 02:B6AE: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B6C0 02:B6B0: 08        .byte $08, $12   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B6C2 02:B6B2: 07        .byte $07, $02   ; 00
+- D 1 - I - 0x00B6C4 02:B6B4: 03        .byte $03, $08   ; 01
+- D 1 - I - 0x00B6C6 02:B6B6: 0E        .byte $0E, $08   ; 02
+- D 1 - I - 0x00B6C8 02:B6B8: 07        .byte $07, $0C   ; 03
+- D 1 - I - 0x00B6CA 02:B6BA: 03        .byte $03, $11   ; 04
+- D 1 - I - 0x00B6CC 02:B6BC: 0D        .byte $0D, $11   ; 05
+- D 1 - I - 0x00B6CE 02:B6BE: 07        .byte $07, $18   ; 06
+- D 1 - I - 0x00B6D0 02:B6C0: 0E        .byte $0E, $18   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B6D2 02:B6C2: 06        .byte $06, $18, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00B6D6 02:B6C6: 04        .byte $04, $08, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B6DA 02:B6CA: 01        .byte $01, $11, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B6DE 02:B6CE: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 11
 - D 1 - I - 0x00B6E2 02:B6D2: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B6E3 02:B6D3: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B6E4 02:B6D4: 02        .byte $02   ; player 00 pos X
-- D 1 - I - 0x00B6E5 02:B6D5: 08        .byte $08   ; player 00 pos Y
-- D 1 - I - 0x00B6E6 02:B6D6: 0E        .byte $0E   ; enemy 01 pos X
-- D 1 - I - 0x00B6E7 02:B6D7: 03        .byte $03   ; enemy 01 pos Y
-- D 1 - I - 0x00B6E8 02:B6D8: 12        .byte $12   ; enemy 02 pos X
-- D 1 - I - 0x00B6E9 02:B6D9: 06        .byte $06   ; enemy 02 pos Y
-- D 1 - I - 0x00B6EA 02:B6DA: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B6EB 02:B6DB: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B6EC 02:B6DC: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B6ED 02:B6DD: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B6EE 02:B6DE: 1D        .byte $1D   ; enemy 05 pos X
-- D 1 - I - 0x00B6EF 02:B6DF: 0B        .byte $0B   ; enemy 05 pos Y
-- D 1 - I - 0x00B6F0 02:B6E0: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B6F1 02:B6E1: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B6F2 02:B6E2: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B6F3 02:B6E3: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B6F4 02:B6E4: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00B6F5 02:B6E5: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00B6F6 02:B6E6: 02        .byte $02   ; carrot 01 pos X
-- D 1 - I - 0x00B6F7 02:B6E7: 05        .byte $05   ; carrot 01 pos Y
-- D 1 - I - 0x00B6F8 02:B6E8: 09        .byte $09   ; carrot 02 pos X
-- D 1 - I - 0x00B6F9 02:B6E9: 08        .byte $08   ; carrot 02 pos Y
-- D 1 - I - 0x00B6FA 02:B6EA: 0F        .byte $0F   ; carrot 03 pos X
-- D 1 - I - 0x00B6FB 02:B6EB: 03        .byte $03   ; carrot 03 pos Y
-- D 1 - I - 0x00B6FC 02:B6EC: 11        .byte $11   ; carrot 04 pos X
-- D 1 - I - 0x00B6FD 02:B6ED: 09        .byte $09   ; carrot 04 pos Y
-- D 1 - I - 0x00B6FE 02:B6EE: 16        .byte $16   ; carrot 05 pos X
-- D 1 - I - 0x00B6FF 02:B6EF: 06        .byte $06   ; carrot 05 pos Y
-- D 1 - I - 0x00B700 02:B6F0: 1C        .byte $1C   ; carrot 06 pos X
-- D 1 - I - 0x00B701 02:B6F1: 03        .byte $03   ; carrot 06 pos Y
-- D 1 - I - 0x00B702 02:B6F2: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B703 02:B6F3: 0B        .byte $0B   ; carrot 07 pos Y
-- D 1 - I - 0x00B704 02:B6F4: 09        .byte $09   ; thing 00 id
-- D 1 - I - 0x00B705 02:B6F5: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00B706 02:B6F6: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00B707 02:B6F7: 00        .byte $00   ; 
-- D 1 - I - 0x00B708 02:B6F8: 11        .byte $11   ; thing 01 id
-- D 1 - I - 0x00B709 02:B6F9: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00B70A 02:B6FA: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00B70B 02:B6FB: 00        .byte $00   ; 
-- D 1 - I - 0x00B70C 02:B6FC: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B70D 02:B6FD: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B70E 02:B6FE: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B70F 02:B6FF: 00        .byte $00   ; 
-- D 1 - I - 0x00B710 02:B700: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B711 02:B701: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B712 02:B702: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B713 02:B703: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B6E4 02:B6D4: 02        .byte $02, $08   ; 00
+- D 1 - I - 0x00B6E6 02:B6D6: 0E        .byte $0E, $03   ; 01
+- D 1 - I - 0x00B6E8 02:B6D8: 12        .byte $12, $06   ; 02
+- D 1 - I - 0x00B6EA 02:B6DA: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B6EC 02:B6DC: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B6EE 02:B6DE: 1D        .byte $1D, $0B   ; 05
+- D 1 - I - 0x00B6F0 02:B6E0: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B6F2 02:B6E2: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B6F4 02:B6E4: 01        .byte $01, $03   ; 00
+- D 1 - I - 0x00B6F6 02:B6E6: 02        .byte $02, $05   ; 01
+- D 1 - I - 0x00B6F8 02:B6E8: 09        .byte $09, $08   ; 02
+- D 1 - I - 0x00B6FA 02:B6EA: 0F        .byte $0F, $03   ; 03
+- D 1 - I - 0x00B6FC 02:B6EC: 11        .byte $11, $09   ; 04
+- D 1 - I - 0x00B6FE 02:B6EE: 16        .byte $16, $06   ; 05
+- D 1 - I - 0x00B700 02:B6F0: 1C        .byte $1C, $03   ; 06
+- D 1 - I - 0x00B702 02:B6F2: 1E        .byte $1E, $0B   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B704 02:B6F4: 09        .byte $09, $02, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B708 02:B6F8: 11        .byte $11, $0C, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B70C 02:B6FC: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B710 02:B700: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 12
 - D 1 - I - 0x00B714 02:B704: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B715 02:B705: 01        .byte $01   ; stage type
-- D 1 - I - 0x00B716 02:B706: 03        .byte $03   ; player 00 pos X
-- D 1 - I - 0x00B717 02:B707: 0A        .byte $0A   ; player 00 pos Y
-- D 1 - I - 0x00B718 02:B708: 07        .byte $07   ; enemy 01 pos X
-- D 1 - I - 0x00B719 02:B709: 03        .byte $03   ; enemy 01 pos Y
-- D 1 - I - 0x00B71A 02:B70A: 14        .byte $14   ; enemy 02 pos X
-- D 1 - I - 0x00B71B 02:B70B: 08        .byte $08   ; enemy 02 pos Y
-- D 1 - I - 0x00B71C 02:B70C: 07        .byte $07   ; enemy 03 pos X
-- D 1 - I - 0x00B71D 02:B70D: 0C        .byte $0C   ; enemy 03 pos Y
-- D 1 - I - 0x00B71E 02:B70E: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B71F 02:B70F: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B720 02:B710: 12        .byte $12   ; enemy 05 pos X
-- D 1 - I - 0x00B721 02:B711: 0C        .byte $0C   ; enemy 05 pos Y
-- D 1 - I - 0x00B722 02:B712: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B723 02:B713: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B724 02:B714: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B725 02:B715: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B726 02:B716: 02        .byte $02   ; carrot 00 pos X
-- D 1 - I - 0x00B727 02:B717: 06        .byte $06   ; carrot 00 pos Y
-- D 1 - I - 0x00B728 02:B718: 02        .byte $02   ; carrot 01 pos X
-- D 1 - I - 0x00B729 02:B719: 0A        .byte $0A   ; carrot 01 pos Y
-- D 1 - I - 0x00B72A 02:B71A: 09        .byte $09   ; carrot 02 pos X
-- D 1 - I - 0x00B72B 02:B71B: 03        .byte $03   ; carrot 02 pos Y
-- D 1 - I - 0x00B72C 02:B71C: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00B72D 02:B71D: 0C        .byte $0C   ; carrot 03 pos Y
-- D 1 - I - 0x00B72E 02:B71E: 10        .byte $10   ; carrot 04 pos X
-- D 1 - I - 0x00B72F 02:B71F: 0C        .byte $0C   ; carrot 04 pos Y
-- D 1 - I - 0x00B730 02:B720: 14        .byte $14   ; carrot 05 pos X
-- D 1 - I - 0x00B731 02:B721: 03        .byte $03   ; carrot 05 pos Y
-- D 1 - I - 0x00B732 02:B722: 1D        .byte $1D   ; carrot 06 pos X
-- D 1 - I - 0x00B733 02:B723: 05        .byte $05   ; carrot 06 pos Y
-- D 1 - I - 0x00B734 02:B724: 1D        .byte $1D   ; carrot 07 pos X
-- D 1 - I - 0x00B735 02:B725: 0A        .byte $0A   ; carrot 07 pos Y
-- D 1 - I - 0x00B736 02:B726: 0B        .byte $0B   ; thing 00 id
-- D 1 - I - 0x00B737 02:B727: 08        .byte $08   ; thing 00 pos X
-- D 1 - I - 0x00B738 02:B728: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00B739 02:B729: 00        .byte $00   ; 
-- D 1 - I - 0x00B73A 02:B72A: 17        .byte $17   ; thing 01 id
-- D 1 - I - 0x00B73B 02:B72B: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00B73C 02:B72C: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00B73D 02:B72D: 00        .byte $00   ; 
-- D 1 - I - 0x00B73E 02:B72E: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B73F 02:B72F: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B740 02:B730: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B741 02:B731: 00        .byte $00   ; 
-- D 1 - I - 0x00B742 02:B732: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B743 02:B733: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B744 02:B734: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B745 02:B735: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B716 02:B706: 03        .byte $03, $0A   ; 00
+- D 1 - I - 0x00B718 02:B708: 07        .byte $07, $03   ; 01
+- D 1 - I - 0x00B71A 02:B70A: 14        .byte $14, $08   ; 02
+- D 1 - I - 0x00B71C 02:B70C: 07        .byte $07, $0C   ; 03
+- D 1 - I - 0x00B71E 02:B70E: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B720 02:B710: 12        .byte $12, $0C   ; 05
+- D 1 - I - 0x00B722 02:B712: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B724 02:B714: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B726 02:B716: 02        .byte $02, $06   ; 00
+- D 1 - I - 0x00B728 02:B718: 02        .byte $02, $0A   ; 01
+- D 1 - I - 0x00B72A 02:B71A: 09        .byte $09, $03   ; 02
+- D 1 - I - 0x00B72C 02:B71C: 0E        .byte $0E, $0C   ; 03
+- D 1 - I - 0x00B72E 02:B71E: 10        .byte $10, $0C   ; 04
+- D 1 - I - 0x00B730 02:B720: 14        .byte $14, $03   ; 05
+- D 1 - I - 0x00B732 02:B722: 1D        .byte $1D, $05   ; 06
+- D 1 - I - 0x00B734 02:B724: 1D        .byte $1D, $0A   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B736 02:B726: 0B        .byte $0B, $08, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B73A 02:B72A: 17        .byte $17, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B73E 02:B72E: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B742 02:B732: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 13
 - D 1 - I - 0x00B746 02:B736: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B747 02:B737: 01        .byte $01   ; stage type
-- D 1 - I - 0x00B748 02:B738: 0A        .byte $0A   ; player 00 pos X
-- D 1 - I - 0x00B749 02:B739: 09        .byte $09   ; player 00 pos Y
-- D 1 - I - 0x00B74A 02:B73A: 01        .byte $01   ; enemy 01 pos X
-- D 1 - I - 0x00B74B 02:B73B: 09        .byte $09   ; enemy 01 pos Y
-- D 1 - I - 0x00B74C 02:B73C: 16        .byte $16   ; enemy 02 pos X
-- D 1 - I - 0x00B74D 02:B73D: 0C        .byte $0C   ; enemy 02 pos Y
-- D 1 - I - 0x00B74E 02:B73E: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B74F 02:B73F: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B750 02:B740: 16        .byte $16   ; enemy 04 pos X
-- D 1 - I - 0x00B751 02:B741: 04        .byte $04   ; enemy 04 pos Y
-- D 1 - I - 0x00B752 02:B742: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B753 02:B743: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B754 02:B744: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B755 02:B745: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B756 02:B746: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B757 02:B747: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B758 02:B748: 03        .byte $03   ; carrot 00 pos X
-- D 1 - I - 0x00B759 02:B749: 09        .byte $09   ; carrot 00 pos Y
-- D 1 - I - 0x00B75A 02:B74A: 08        .byte $08   ; carrot 01 pos X
-- D 1 - I - 0x00B75B 02:B74B: 06        .byte $06   ; carrot 01 pos Y
-- D 1 - I - 0x00B75C 02:B74C: 0A        .byte $0A   ; carrot 02 pos X
-- D 1 - I - 0x00B75D 02:B74D: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00B75E 02:B74E: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00B75F 02:B74F: 0C        .byte $0C   ; carrot 03 pos Y
-- D 1 - I - 0x00B760 02:B750: 11        .byte $11   ; carrot 04 pos X
-- D 1 - I - 0x00B761 02:B751: 09        .byte $09   ; carrot 04 pos Y
-- D 1 - I - 0x00B762 02:B752: 13        .byte $13   ; carrot 05 pos X
-- D 1 - I - 0x00B763 02:B753: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00B764 02:B754: 1D        .byte $1D   ; carrot 06 pos X
-- D 1 - I - 0x00B765 02:B755: 03        .byte $03   ; carrot 06 pos Y
-- D 1 - I - 0x00B766 02:B756: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B767 02:B757: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B768 02:B758: 0D        .byte $0D   ; thing 00 id
-- D 1 - I - 0x00B769 02:B759: 03        .byte $03   ; thing 00 pos X
-- D 1 - I - 0x00B76A 02:B75A: 03        .byte $03   ; thing 00 pos Y
-- - - - - - 0x00B76B 02:B75B: 00        .byte $00   ; 
-- D 1 - I - 0x00B76C 02:B75C: 13        .byte $13   ; thing 01 id
-- D 1 - I - 0x00B76D 02:B75D: 08        .byte $08   ; thing 01 pos X
-- D 1 - I - 0x00B76E 02:B75E: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00B76F 02:B75F: 00        .byte $00   ; 
-- D 1 - I - 0x00B770 02:B760: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B771 02:B761: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B772 02:B762: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B773 02:B763: 00        .byte $00   ; 
-- D 1 - I - 0x00B774 02:B764: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B775 02:B765: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B776 02:B766: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B777 02:B767: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B748 02:B738: 0A        .byte $0A, $09   ; 00
+- D 1 - I - 0x00B74A 02:B73A: 01        .byte $01, $09   ; 01
+- D 1 - I - 0x00B74C 02:B73C: 16        .byte $16, $0C   ; 02
+- D 1 - I - 0x00B74E 02:B73E: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B750 02:B740: 16        .byte $16, $04   ; 04
+- D 1 - I - 0x00B752 02:B742: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B754 02:B744: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B756 02:B746: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B758 02:B748: 03        .byte $03, $09   ; 00
+- D 1 - I - 0x00B75A 02:B74A: 08        .byte $08, $06   ; 01
+- D 1 - I - 0x00B75C 02:B74C: 0A        .byte $0A, $06   ; 02
+- D 1 - I - 0x00B75E 02:B74E: 0E        .byte $0E, $0C   ; 03
+- D 1 - I - 0x00B760 02:B750: 11        .byte $11, $09   ; 04
+- D 1 - I - 0x00B762 02:B752: 13        .byte $13, $0C   ; 05
+- D 1 - I - 0x00B764 02:B754: 1D        .byte $1D, $03   ; 06
+- D 1 - I - 0x00B766 02:B756: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B768 02:B758: 0D        .byte $0D, $03, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00B76C 02:B75C: 13        .byte $13, $08, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B770 02:B760: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B774 02:B764: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 14
 - D 1 - I - 0x00B778 02:B768: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B779 02:B769: 02        .byte $02   ; stage type
-- D 1 - I - 0x00B77A 02:B76A: 0B        .byte $0B   ; player 00 pos X
-- D 1 - I - 0x00B77B 02:B76B: 09        .byte $09   ; player 00 pos Y
-- D 1 - I - 0x00B77C 02:B76C: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B77D 02:B76D: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B77E 02:B76E: 01        .byte $01   ; enemy 02 pos X
-- D 1 - I - 0x00B77F 02:B76F: 06        .byte $06   ; enemy 02 pos Y
-- D 1 - I - 0x00B780 02:B770: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B781 02:B771: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B782 02:B772: 1C        .byte $1C   ; enemy 04 pos X
-- D 1 - I - 0x00B783 02:B773: 06        .byte $06   ; enemy 04 pos Y
-- D 1 - I - 0x00B784 02:B774: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B785 02:B775: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B786 02:B776: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B787 02:B777: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B788 02:B778: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B789 02:B779: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B78A 02:B77A: 05        .byte $05   ; carrot 00 pos X
-- D 1 - I - 0x00B78B 02:B77B: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00B78C 02:B77C: 0B        .byte $0B   ; carrot 01 pos X
-- D 1 - I - 0x00B78D 02:B77D: 03        .byte $03   ; carrot 01 pos Y
-- D 1 - I - 0x00B78E 02:B77E: 11        .byte $11   ; carrot 02 pos X
-- D 1 - I - 0x00B78F 02:B77F: 03        .byte $03   ; carrot 02 pos Y
-- D 1 - I - 0x00B790 02:B780: 17        .byte $17   ; carrot 03 pos X
-- D 1 - I - 0x00B791 02:B781: 03        .byte $03   ; carrot 03 pos Y
-- D 1 - I - 0x00B792 02:B782: 1E        .byte $1E   ; carrot 04 pos X
-- D 1 - I - 0x00B793 02:B783: 06        .byte $06   ; carrot 04 pos Y
-- D 1 - I - 0x00B794 02:B784: 0A        .byte $0A   ; carrot 05 pos X
-- D 1 - I - 0x00B795 02:B785: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00B796 02:B786: 10        .byte $10   ; carrot 06 pos X
-- D 1 - I - 0x00B797 02:B787: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00B798 02:B788: 16        .byte $16   ; carrot 07 pos X
-- D 1 - I - 0x00B799 02:B789: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B79A 02:B78A: 13        .byte $13   ; thing 00 id
-- D 1 - I - 0x00B79B 02:B78B: 06        .byte $06   ; thing 00 pos X
-- D 1 - I - 0x00B79C 02:B78C: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00B79D 02:B78D: 00        .byte $00   ; 
-- D 1 - I - 0x00B79E 02:B78E: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00B79F 02:B78F: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00B7A0 02:B790: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00B7A1 02:B791: 00        .byte $00   ; 
-- D 1 - I - 0x00B7A2 02:B792: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B7A3 02:B793: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B7A4 02:B794: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B7A5 02:B795: 00        .byte $00   ; 
-- D 1 - I - 0x00B7A6 02:B796: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B7A7 02:B797: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B7A8 02:B798: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B7A9 02:B799: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B77A 02:B76A: 0B        .byte $0B, $09   ; 00
+- D 1 - I - 0x00B77C 02:B76C: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B77E 02:B76E: 01        .byte $01, $06   ; 02
+- D 1 - I - 0x00B780 02:B770: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B782 02:B772: 1C        .byte $1C, $06   ; 04
+- D 1 - I - 0x00B784 02:B774: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B786 02:B776: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B788 02:B778: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B78A 02:B77A: 05        .byte $05, $03   ; 00
+- D 1 - I - 0x00B78C 02:B77C: 0B        .byte $0B, $03   ; 01
+- D 1 - I - 0x00B78E 02:B77E: 11        .byte $11, $03   ; 02
+- D 1 - I - 0x00B790 02:B780: 17        .byte $17, $03   ; 03
+- D 1 - I - 0x00B792 02:B782: 1E        .byte $1E, $06   ; 04
+- D 1 - I - 0x00B794 02:B784: 0A        .byte $0A, $0C   ; 05
+- D 1 - I - 0x00B796 02:B786: 10        .byte $10, $0C   ; 06
+- D 1 - I - 0x00B798 02:B788: 16        .byte $16, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B79A 02:B78A: 13        .byte $13, $06, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B79E 02:B78E: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B7A2 02:B792: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B7A6 02:B796: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 15
 - D 1 - I - 0x00B7AA 02:B79A: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00B7AB 02:B79B: 01        .byte $01   ; stage type
-- D 1 - I - 0x00B7AC 02:B79C: 0D        .byte $0D   ; player 00 pos X
-- D 1 - I - 0x00B7AD 02:B79D: 0E        .byte $0E   ; player 00 pos Y
-- D 1 - I - 0x00B7AE 02:B79E: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B7AF 02:B79F: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B7B0 02:B7A0: 0D        .byte $0D   ; enemy 02 pos X
-- D 1 - I - 0x00B7B1 02:B7A1: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00B7B2 02:B7A2: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B7B3 02:B7A3: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B7B4 02:B7A4: 01        .byte $01   ; enemy 04 pos X
-- D 1 - I - 0x00B7B5 02:B7A5: 0B        .byte $0B   ; enemy 04 pos Y
-- D 1 - I - 0x00B7B6 02:B7A6: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B7B7 02:B7A7: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B7B8 02:B7A8: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B7B9 02:B7A9: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B7BA 02:B7AA: 09        .byte $09   ; enemy 07 pos X
-- D 1 - I - 0x00B7BB 02:B7AB: 1B        .byte $1B   ; enemy 07 pos Y
-- D 1 - I - 0x00B7BC 02:B7AC: 08        .byte $08   ; carrot 00 pos X
-- D 1 - I - 0x00B7BD 02:B7AD: 05        .byte $05   ; carrot 00 pos Y
-- D 1 - I - 0x00B7BE 02:B7AE: 08        .byte $08   ; carrot 01 pos X
-- D 1 - I - 0x00B7BF 02:B7AF: 08        .byte $08   ; carrot 01 pos Y
-- D 1 - I - 0x00B7C0 02:B7B0: 06        .byte $06   ; carrot 02 pos X
-- D 1 - I - 0x00B7C1 02:B7B1: 0E        .byte $0E   ; carrot 02 pos Y
-- D 1 - I - 0x00B7C2 02:B7B2: 0D        .byte $0D   ; carrot 03 pos X
-- D 1 - I - 0x00B7C3 02:B7B3: 11        .byte $11   ; carrot 03 pos Y
-- D 1 - I - 0x00B7C4 02:B7B4: 02        .byte $02   ; carrot 04 pos X
-- D 1 - I - 0x00B7C5 02:B7B5: 12        .byte $12   ; carrot 04 pos Y
-- D 1 - I - 0x00B7C6 02:B7B6: 01        .byte $01   ; carrot 05 pos X
-- D 1 - I - 0x00B7C7 02:B7B7: 18        .byte $18   ; carrot 05 pos Y
-- D 1 - I - 0x00B7C8 02:B7B8: 0B        .byte $0B   ; carrot 06 pos X
-- D 1 - I - 0x00B7C9 02:B7B9: 18        .byte $18   ; carrot 06 pos Y
-- D 1 - I - 0x00B7CA 02:B7BA: 0C        .byte $0C   ; carrot 07 pos X
-- D 1 - I - 0x00B7CB 02:B7BB: 1B        .byte $1B   ; carrot 07 pos Y
-- D 1 - I - 0x00B7CC 02:B7BC: 0C        .byte $0C   ; thing 00 id
-- D 1 - I - 0x00B7CD 02:B7BD: 14        .byte $14   ; thing 00 pos X
-- D 1 - I - 0x00B7CE 02:B7BE: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00B7CF 02:B7BF: 00        .byte $00   ; 
-- D 1 - I - 0x00B7D0 02:B7C0: 0C        .byte $0C   ; thing 01 id
-- D 1 - I - 0x00B7D1 02:B7C1: 08        .byte $08   ; thing 01 pos X
-- D 1 - I - 0x00B7D2 02:B7C2: 02        .byte $02   ; thing 01 pos Y
-- - - - - - 0x00B7D3 02:B7C3: 00        .byte $00   ; 
-- D 1 - I - 0x00B7D4 02:B7C4: 02        .byte $02   ; thing 02 id
-- D 1 - I - 0x00B7D5 02:B7C5: 0B        .byte $0B   ; thing 02 pos X
-- D 1 - I - 0x00B7D6 02:B7C6: 02        .byte $02   ; thing 02 pos Y
-- - - - - - 0x00B7D7 02:B7C7: 00        .byte $00   ; 
-- D 1 - I - 0x00B7D8 02:B7C8: 01        .byte $01   ; thing 03 id
-- D 1 - I - 0x00B7D9 02:B7C9: 05        .byte $05   ; thing 03 pos X
-- D 1 - I - 0x00B7DA 02:B7CA: 04        .byte $04   ; thing 03 pos Y
-- - - - - - 0x00B7DB 02:B7CB: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B7AC 02:B79C: 0D        .byte $0D, $0E   ; 00
+- D 1 - I - 0x00B7AE 02:B79E: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B7B0 02:B7A0: 0D        .byte $0D, $02   ; 02
+- D 1 - I - 0x00B7B2 02:B7A2: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B7B4 02:B7A4: 01        .byte $01, $0B   ; 04
+- D 1 - I - 0x00B7B6 02:B7A6: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B7B8 02:B7A8: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B7BA 02:B7AA: 09        .byte $09, $1B   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B7BC 02:B7AC: 08        .byte $08, $05   ; 00
+- D 1 - I - 0x00B7BE 02:B7AE: 08        .byte $08, $08   ; 01
+- D 1 - I - 0x00B7C0 02:B7B0: 06        .byte $06, $0E   ; 02
+- D 1 - I - 0x00B7C2 02:B7B2: 0D        .byte $0D, $11   ; 03
+- D 1 - I - 0x00B7C4 02:B7B4: 02        .byte $02, $12   ; 04
+- D 1 - I - 0x00B7C6 02:B7B6: 01        .byte $01, $18   ; 05
+- D 1 - I - 0x00B7C8 02:B7B8: 0B        .byte $0B, $18   ; 06
+- D 1 - I - 0x00B7CA 02:B7BA: 0C        .byte $0C, $1B   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B7CC 02:B7BC: 0C        .byte $0C, $14, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B7D0 02:B7C0: 0C        .byte $0C, $08, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B7D4 02:B7C4: 02        .byte $02, $0B, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B7D8 02:B7C8: 01        .byte $01, $05, con_item_id_glove, $00   ; 
+
+
+
 ; 16
 - D 1 - I - 0x00B7DC 02:B7CC: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00B7DD 02:B7CD: 02        .byte $02   ; stage type
-- D 1 - I - 0x00B7DE 02:B7CE: 07        .byte $07   ; player 00 pos X
-- D 1 - I - 0x00B7DF 02:B7CF: 11        .byte $11   ; player 00 pos Y
-- D 1 - I - 0x00B7E0 02:B7D0: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B7E1 02:B7D1: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B7E2 02:B7D2: 05        .byte $05   ; enemy 02 pos X
-- D 1 - I - 0x00B7E3 02:B7D3: 05        .byte $05   ; enemy 02 pos Y
-- D 1 - I - 0x00B7E4 02:B7D4: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B7E5 02:B7D5: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B7E6 02:B7D6: 04        .byte $04   ; enemy 04 pos X
-- D 1 - I - 0x00B7E7 02:B7D7: 0E        .byte $0E   ; enemy 04 pos Y
-- D 1 - I - 0x00B7E8 02:B7D8: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B7E9 02:B7D9: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B7EA 02:B7DA: 09        .byte $09   ; enemy 06 pos X
-- D 1 - I - 0x00B7EB 02:B7DB: 17        .byte $17   ; enemy 06 pos Y
-- D 1 - I - 0x00B7EC 02:B7DC: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B7ED 02:B7DD: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B7EE 02:B7DE: 02        .byte $02   ; carrot 00 pos X
-- D 1 - I - 0x00B7EF 02:B7DF: 09        .byte $09   ; carrot 00 pos Y
-- D 1 - I - 0x00B7F0 02:B7E0: 0B        .byte $0B   ; carrot 01 pos X
-- D 1 - I - 0x00B7F1 02:B7E1: 03        .byte $03   ; carrot 01 pos Y
-- D 1 - I - 0x00B7F2 02:B7E2: 0A        .byte $0A   ; carrot 02 pos X
-- D 1 - I - 0x00B7F3 02:B7E3: 0B        .byte $0B   ; carrot 02 pos Y
-- D 1 - I - 0x00B7F4 02:B7E4: 02        .byte $02   ; carrot 03 pos X
-- D 1 - I - 0x00B7F5 02:B7E5: 11        .byte $11   ; carrot 03 pos Y
-- D 1 - I - 0x00B7F6 02:B7E6: 0B        .byte $0B   ; carrot 04 pos X
-- D 1 - I - 0x00B7F7 02:B7E7: 14        .byte $14   ; carrot 04 pos Y
-- D 1 - I - 0x00B7F8 02:B7E8: 01        .byte $01   ; carrot 05 pos X
-- D 1 - I - 0x00B7F9 02:B7E9: 16        .byte $16   ; carrot 05 pos Y
-- D 1 - I - 0x00B7FA 02:B7EA: 01        .byte $01   ; carrot 06 pos X
-- D 1 - I - 0x00B7FB 02:B7EB: 1A        .byte $1A   ; carrot 06 pos Y
-- D 1 - I - 0x00B7FC 02:B7EC: 0A        .byte $0A   ; carrot 07 pos X
-- D 1 - I - 0x00B7FD 02:B7ED: 1A        .byte $1A   ; carrot 07 pos Y
-- D 1 - I - 0x00B7FE 02:B7EE: 0C        .byte $0C   ; thing 00 id
-- D 1 - I - 0x00B7FF 02:B7EF: 14        .byte $14   ; thing 00 pos X
-- D 1 - I - 0x00B800 02:B7F0: 03        .byte $03   ; thing 00 pos Y
-- - - - - - 0x00B801 02:B7F1: 00        .byte $00   ; 
-- D 1 - I - 0x00B802 02:B7F2: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00B803 02:B7F3: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00B804 02:B7F4: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00B805 02:B7F5: 00        .byte $00   ; 
-- D 1 - I - 0x00B806 02:B7F6: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B807 02:B7F7: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B808 02:B7F8: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B809 02:B7F9: 00        .byte $00   ; 
-- D 1 - I - 0x00B80A 02:B7FA: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B80B 02:B7FB: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B80C 02:B7FC: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B80D 02:B7FD: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B7DE 02:B7CE: 07        .byte $07, $11   ; 00
+- D 1 - I - 0x00B7E0 02:B7D0: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B7E2 02:B7D2: 05        .byte $05, $05   ; 02
+- D 1 - I - 0x00B7E4 02:B7D4: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B7E6 02:B7D6: 04        .byte $04, $0E   ; 04
+- D 1 - I - 0x00B7E8 02:B7D8: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B7EA 02:B7DA: 09        .byte $09, $17   ; 06
+- D 1 - I - 0x00B7EC 02:B7DC: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B7EE 02:B7DE: 02        .byte $02, $09   ; 00
+- D 1 - I - 0x00B7F0 02:B7E0: 0B        .byte $0B, $03   ; 01
+- D 1 - I - 0x00B7F2 02:B7E2: 0A        .byte $0A, $0B   ; 02
+- D 1 - I - 0x00B7F4 02:B7E4: 02        .byte $02, $11   ; 03
+- D 1 - I - 0x00B7F6 02:B7E6: 0B        .byte $0B, $14   ; 04
+- D 1 - I - 0x00B7F8 02:B7E8: 01        .byte $01, $16   ; 05
+- D 1 - I - 0x00B7FA 02:B7EA: 01        .byte $01, $1A   ; 06
+- D 1 - I - 0x00B7FC 02:B7EC: 0A        .byte $0A, $1A   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B7FE 02:B7EE: 0C        .byte $0C, $14, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00B802 02:B7F2: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B806 02:B7F6: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B80A 02:B7FA: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 17
 - D 1 - I - 0x00B80E 02:B7FE: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00B80F 02:B7FF: 02        .byte $02   ; stage type
-- D 1 - I - 0x00B810 02:B800: 06        .byte $06   ; player 00 pos X
-- D 1 - I - 0x00B811 02:B801: 0B        .byte $0B   ; player 00 pos Y
-- D 1 - I - 0x00B812 02:B802: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B813 02:B803: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B814 02:B804: 0B        .byte $0B   ; enemy 02 pos X
-- D 1 - I - 0x00B815 02:B805: 03        .byte $03   ; enemy 02 pos Y
-- D 1 - I - 0x00B816 02:B806: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B817 02:B807: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B818 02:B808: 06        .byte $06   ; enemy 04 pos X
-- D 1 - I - 0x00B819 02:B809: 11        .byte $11   ; enemy 04 pos Y
-- D 1 - I - 0x00B81A 02:B80A: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B81B 02:B80B: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B81C 02:B80C: 05        .byte $05   ; enemy 06 pos X
-- D 1 - I - 0x00B81D 02:B80D: 1A        .byte $1A   ; enemy 06 pos Y
-- D 1 - I - 0x00B81E 02:B80E: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B81F 02:B80F: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B820 02:B810: 05        .byte $05   ; carrot 00 pos X
-- D 1 - I - 0x00B821 02:B811: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00B822 02:B812: 04        .byte $04   ; carrot 01 pos X
-- D 1 - I - 0x00B823 02:B813: 06        .byte $06   ; carrot 01 pos Y
-- D 1 - I - 0x00B824 02:B814: 0C        .byte $0C   ; carrot 02 pos X
-- D 1 - I - 0x00B825 02:B815: 07        .byte $07   ; carrot 02 pos Y
-- D 1 - I - 0x00B826 02:B816: 06        .byte $06   ; carrot 03 pos X
-- D 1 - I - 0x00B827 02:B817: 0E        .byte $0E   ; carrot 03 pos Y
-- D 1 - I - 0x00B828 02:B818: 01        .byte $01   ; carrot 04 pos X
-- D 1 - I - 0x00B829 02:B819: 14        .byte $14   ; carrot 04 pos Y
-- D 1 - I - 0x00B82A 02:B81A: 0E        .byte $0E   ; carrot 05 pos X
-- D 1 - I - 0x00B82B 02:B81B: 0F        .byte $0F   ; carrot 05 pos Y
-- D 1 - I - 0x00B82C 02:B81C: 08        .byte $08   ; carrot 06 pos X
-- D 1 - I - 0x00B82D 02:B81D: 14        .byte $14   ; carrot 06 pos Y
-- D 1 - I - 0x00B82E 02:B81E: 07        .byte $07   ; carrot 07 pos X
-- D 1 - I - 0x00B82F 02:B81F: 17        .byte $17   ; carrot 07 pos Y
-- D 1 - I - 0x00B830 02:B820: 09        .byte $09   ; thing 00 id
-- D 1 - I - 0x00B831 02:B821: 0B        .byte $0B   ; thing 00 pos X
-- D 1 - I - 0x00B832 02:B822: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00B833 02:B823: 00        .byte $00   ; 
-- D 1 - I - 0x00B834 02:B824: 03        .byte $03   ; thing 01 id
-- D 1 - I - 0x00B835 02:B825: 1A        .byte $1A   ; thing 01 pos X
-- D 1 - I - 0x00B836 02:B826: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00B837 02:B827: 00        .byte $00   ; 
-- D 1 - I - 0x00B838 02:B828: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B839 02:B829: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B83A 02:B82A: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B83B 02:B82B: 00        .byte $00   ; 
-- D 1 - I - 0x00B83C 02:B82C: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B83D 02:B82D: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B83E 02:B82E: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B83F 02:B82F: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B810 02:B800: 06        .byte $06, $0B   ; 00
+- D 1 - I - 0x00B812 02:B802: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B814 02:B804: 0B        .byte $0B, $03   ; 02
+- D 1 - I - 0x00B816 02:B806: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B818 02:B808: 06        .byte $06, $11   ; 04
+- D 1 - I - 0x00B81A 02:B80A: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B81C 02:B80C: 05        .byte $05, $1A   ; 06
+- D 1 - I - 0x00B81E 02:B80E: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B820 02:B810: 05        .byte $05, $02   ; 00
+- D 1 - I - 0x00B822 02:B812: 04        .byte $04, $06   ; 01
+- D 1 - I - 0x00B824 02:B814: 0C        .byte $0C, $07   ; 02
+- D 1 - I - 0x00B826 02:B816: 06        .byte $06, $0E   ; 03
+- D 1 - I - 0x00B828 02:B818: 01        .byte $01, $14   ; 04
+- D 1 - I - 0x00B82A 02:B81A: 0E        .byte $0E, $0F   ; 05
+- D 1 - I - 0x00B82C 02:B81C: 08        .byte $08, $14   ; 06
+- D 1 - I - 0x00B82E 02:B81E: 07        .byte $07, $17   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B830 02:B820: 09        .byte $09, $0B, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B834 02:B824: 03        .byte $03, $1A, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B838 02:B828: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B83C 02:B82C: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 18
 - D 1 - I - 0x00B840 02:B830: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00B841 02:B831: 01        .byte $01   ; stage type
-- D 1 - I - 0x00B842 02:B832: 0C        .byte $0C   ; player 00 pos X
-- D 1 - I - 0x00B843 02:B833: 1B        .byte $1B   ; player 00 pos Y
-- D 1 - I - 0x00B844 02:B834: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B845 02:B835: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B846 02:B836: 07        .byte $07   ; enemy 02 pos X
-- D 1 - I - 0x00B847 02:B837: 0D        .byte $0D   ; enemy 02 pos Y
-- D 1 - I - 0x00B848 02:B838: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B849 02:B839: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B84A 02:B83A: 03        .byte $03   ; enemy 04 pos X
-- D 1 - I - 0x00B84B 02:B83B: 10        .byte $10   ; enemy 04 pos Y
-- D 1 - I - 0x00B84C 02:B83C: 0D        .byte $0D   ; enemy 05 pos X
-- D 1 - I - 0x00B84D 02:B83D: 14        .byte $14   ; enemy 05 pos Y
-- D 1 - I - 0x00B84E 02:B83E: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B84F 02:B83F: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B850 02:B840: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B851 02:B841: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B852 02:B842: 08        .byte $08   ; carrot 00 pos X
-- D 1 - I - 0x00B853 02:B843: 06        .byte $06   ; carrot 00 pos Y
-- D 1 - I - 0x00B854 02:B844: 07        .byte $07   ; carrot 01 pos X
-- D 1 - I - 0x00B855 02:B845: 0B        .byte $0B   ; carrot 01 pos Y
-- D 1 - I - 0x00B856 02:B846: 08        .byte $08   ; carrot 02 pos X
-- D 1 - I - 0x00B857 02:B847: 0B        .byte $0B   ; carrot 02 pos Y
-- D 1 - I - 0x00B858 02:B848: 07        .byte $07   ; carrot 03 pos X
-- D 1 - I - 0x00B859 02:B849: 10        .byte $10   ; carrot 03 pos Y
-- D 1 - I - 0x00B85A 02:B84A: 0D        .byte $0D   ; carrot 04 pos X
-- D 1 - I - 0x00B85B 02:B84B: 10        .byte $10   ; carrot 04 pos Y
-- D 1 - I - 0x00B85C 02:B84C: 07        .byte $07   ; carrot 05 pos X
-- D 1 - I - 0x00B85D 02:B84D: 13        .byte $13   ; carrot 05 pos Y
-- D 1 - I - 0x00B85E 02:B84E: 04        .byte $04   ; carrot 06 pos X
-- D 1 - I - 0x00B85F 02:B84F: 14        .byte $14   ; carrot 06 pos Y
-- D 1 - I - 0x00B860 02:B850: 04        .byte $04   ; carrot 07 pos X
-- D 1 - I - 0x00B861 02:B851: 1B        .byte $1B   ; carrot 07 pos Y
-- D 1 - I - 0x00B862 02:B852: 0A        .byte $0A   ; thing 00 id
-- D 1 - I - 0x00B863 02:B853: 09        .byte $09   ; thing 00 pos X
-- D 1 - I - 0x00B864 02:B854: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00B865 02:B855: 00        .byte $00   ; 
-- D 1 - I - 0x00B866 02:B856: 02        .byte $02   ; thing 01 id
-- D 1 - I - 0x00B867 02:B857: 14        .byte $14   ; thing 01 pos X
-- D 1 - I - 0x00B868 02:B858: 03        .byte $03   ; thing 01 pos Y
-- - - - - - 0x00B869 02:B859: 00        .byte $00   ; 
-- D 1 - I - 0x00B86A 02:B85A: 02        .byte $02   ; thing 02 id
-- D 1 - I - 0x00B86B 02:B85B: 1B        .byte $1B   ; thing 02 pos X
-- D 1 - I - 0x00B86C 02:B85C: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00B86D 02:B85D: 00        .byte $00   ; 
-- D 1 - I - 0x00B86E 02:B85E: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B86F 02:B85F: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B870 02:B860: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B871 02:B861: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B842 02:B832: 0C        .byte $0C, $1B   ; 00
+- D 1 - I - 0x00B844 02:B834: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B846 02:B836: 07        .byte $07, $0D   ; 02
+- D 1 - I - 0x00B848 02:B838: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B84A 02:B83A: 03        .byte $03, $10   ; 04
+- D 1 - I - 0x00B84C 02:B83C: 0D        .byte $0D, $14   ; 05
+- D 1 - I - 0x00B84E 02:B83E: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B850 02:B840: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B852 02:B842: 08        .byte $08, $06   ; 00
+- D 1 - I - 0x00B854 02:B844: 07        .byte $07, $0B   ; 01
+- D 1 - I - 0x00B856 02:B846: 08        .byte $08, $0B   ; 02
+- D 1 - I - 0x00B858 02:B848: 07        .byte $07, $10   ; 03
+- D 1 - I - 0x00B85A 02:B84A: 0D        .byte $0D, $10   ; 04
+- D 1 - I - 0x00B85C 02:B84C: 07        .byte $07, $13   ; 05
+- D 1 - I - 0x00B85E 02:B84E: 04        .byte $04, $14   ; 06
+- D 1 - I - 0x00B860 02:B850: 04        .byte $04, $1B   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B862 02:B852: 0A        .byte $0A, $09, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B866 02:B856: 02        .byte $02, $14, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00B86A 02:B85A: 02        .byte $02, $1B, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B86E 02:B85E: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 19
 - D 1 - I - 0x00B872 02:B862: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B873 02:B863: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B874 02:B864: 02        .byte $02   ; player 00 pos X
-- D 1 - I - 0x00B875 02:B865: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B876 02:B866: 16        .byte $16   ; enemy 01 pos X
-- D 1 - I - 0x00B877 02:B867: 02        .byte $02   ; enemy 01 pos Y
-- D 1 - I - 0x00B878 02:B868: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00B879 02:B869: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00B87A 02:B86A: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B87B 02:B86B: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B87C 02:B86C: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B87D 02:B86D: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B87E 02:B86E: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B87F 02:B86F: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B880 02:B870: 1B        .byte $1B   ; enemy 06 pos X
-- D 1 - I - 0x00B881 02:B871: 0B        .byte $0B   ; enemy 06 pos Y
-- D 1 - I - 0x00B882 02:B872: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B883 02:B873: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B884 02:B874: 03        .byte $03   ; carrot 00 pos X
-- D 1 - I - 0x00B885 02:B875: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00B886 02:B876: 03        .byte $03   ; carrot 01 pos X
-- D 1 - I - 0x00B887 02:B877: 06        .byte $06   ; carrot 01 pos Y
-- D 1 - I - 0x00B888 02:B878: 05        .byte $05   ; carrot 02 pos X
-- D 1 - I - 0x00B889 02:B879: 09        .byte $09   ; carrot 02 pos Y
-- D 1 - I - 0x00B88A 02:B87A: 07        .byte $07   ; carrot 03 pos X
-- D 1 - I - 0x00B88B 02:B87B: 03        .byte $03   ; carrot 03 pos Y
-- D 1 - I - 0x00B88C 02:B87C: 0E        .byte $0E   ; carrot 04 pos X
-- D 1 - I - 0x00B88D 02:B87D: 02        .byte $02   ; carrot 04 pos Y
-- D 1 - I - 0x00B88E 02:B87E: 11        .byte $11   ; carrot 05 pos X
-- D 1 - I - 0x00B88F 02:B87F: 08        .byte $08   ; carrot 05 pos Y
-- D 1 - I - 0x00B890 02:B880: 1C        .byte $1C   ; carrot 06 pos X
-- D 1 - I - 0x00B891 02:B881: 05        .byte $05   ; carrot 06 pos Y
-- D 1 - I - 0x00B892 02:B882: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B893 02:B883: 08        .byte $08   ; carrot 07 pos Y
-- D 1 - I - 0x00B894 02:B884: 15        .byte $15   ; thing 00 id
-- D 1 - I - 0x00B895 02:B885: 05        .byte $05   ; thing 00 pos X
-- D 1 - I - 0x00B896 02:B886: 02        .byte $02   ; thing 00 pos Y
-- - - - - - 0x00B897 02:B887: 00        .byte $00   ; 
-- D 1 - I - 0x00B898 02:B888: 04        .byte $04   ; thing 01 id
-- D 1 - I - 0x00B899 02:B889: 09        .byte $09   ; thing 01 pos X
-- D 1 - I - 0x00B89A 02:B88A: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00B89B 02:B88B: 00        .byte $00   ; 
-- D 1 - I - 0x00B89C 02:B88C: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B89D 02:B88D: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B89E 02:B88E: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B89F 02:B88F: 00        .byte $00   ; 
-- D 1 - I - 0x00B8A0 02:B890: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B8A1 02:B891: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B8A2 02:B892: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B8A3 02:B893: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B874 02:B864: 02        .byte $02, $0C   ; 00
+- D 1 - I - 0x00B876 02:B866: 16        .byte $16, $02   ; 01
+- D 1 - I - 0x00B878 02:B868: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00B87A 02:B86A: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B87C 02:B86C: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B87E 02:B86E: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B880 02:B870: 1B        .byte $1B, $0B   ; 06
+- D 1 - I - 0x00B882 02:B872: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B884 02:B874: 03        .byte $03, $03   ; 00
+- D 1 - I - 0x00B886 02:B876: 03        .byte $03, $06   ; 01
+- D 1 - I - 0x00B888 02:B878: 05        .byte $05, $09   ; 02
+- D 1 - I - 0x00B88A 02:B87A: 07        .byte $07, $03   ; 03
+- D 1 - I - 0x00B88C 02:B87C: 0E        .byte $0E, $02   ; 04
+- D 1 - I - 0x00B88E 02:B87E: 11        .byte $11, $08   ; 05
+- D 1 - I - 0x00B890 02:B880: 1C        .byte $1C, $05   ; 06
+- D 1 - I - 0x00B892 02:B882: 1E        .byte $1E, $08   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B894 02:B884: 15        .byte $15, $05, con_item_id_box, $00   ; 
+- D 1 - I - 0x00B898 02:B888: 04        .byte $04, $09, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B89C 02:B88C: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B8A0 02:B890: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 1A
 - D 1 - I - 0x00B8A4 02:B894: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B8A5 02:B895: 00        .byte $00   ; stage type
-- D 1 - I - 0x00B8A6 02:B896: 05        .byte $05   ; player 00 pos X
-- D 1 - I - 0x00B8A7 02:B897: 09        .byte $09   ; player 00 pos Y
-- D 1 - I - 0x00B8A8 02:B898: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B8A9 02:B899: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B8AA 02:B89A: 07        .byte $07   ; enemy 02 pos X
-- D 1 - I - 0x00B8AB 02:B89B: 03        .byte $03   ; enemy 02 pos Y
-- D 1 - I - 0x00B8AC 02:B89C: 11        .byte $11   ; enemy 03 pos X
-- D 1 - I - 0x00B8AD 02:B89D: 02        .byte $02   ; enemy 03 pos Y
-- D 1 - I - 0x00B8AE 02:B89E: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B8AF 02:B89F: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B8B0 02:B8A0: 1B        .byte $1B   ; enemy 05 pos X
-- D 1 - I - 0x00B8B1 02:B8A1: 0C        .byte $0C   ; enemy 05 pos Y
-- D 1 - I - 0x00B8B2 02:B8A2: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B8B3 02:B8A3: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B8B4 02:B8A4: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B8B5 02:B8A5: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B8B6 02:B8A6: 03        .byte $03   ; carrot 00 pos X
-- D 1 - I - 0x00B8B7 02:B8A7: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00B8B8 02:B8A8: 0A        .byte $0A   ; carrot 01 pos X
-- D 1 - I - 0x00B8B9 02:B8A9: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00B8BA 02:B8AA: 0D        .byte $0D   ; carrot 02 pos X
-- D 1 - I - 0x00B8BB 02:B8AB: 05        .byte $05   ; carrot 02 pos Y
-- D 1 - I - 0x00B8BC 02:B8AC: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00B8BD 02:B8AD: 09        .byte $09   ; carrot 03 pos Y
-- D 1 - I - 0x00B8BE 02:B8AE: 13        .byte $13   ; carrot 04 pos X
-- D 1 - I - 0x00B8BF 02:B8AF: 05        .byte $05   ; carrot 04 pos Y
-- D 1 - I - 0x00B8C0 02:B8B0: 13        .byte $13   ; carrot 05 pos X
-- D 1 - I - 0x00B8C1 02:B8B1: 09        .byte $09   ; carrot 05 pos Y
-- D 1 - I - 0x00B8C2 02:B8B2: 18        .byte $18   ; carrot 06 pos X
-- D 1 - I - 0x00B8C3 02:B8B3: 03        .byte $03   ; carrot 06 pos Y
-- D 1 - I - 0x00B8C4 02:B8B4: 19        .byte $19   ; carrot 07 pos X
-- D 1 - I - 0x00B8C5 02:B8B5: 06        .byte $06   ; carrot 07 pos Y
-- D 1 - I - 0x00B8C6 02:B8B6: 04        .byte $04   ; thing 00 id
-- D 1 - I - 0x00B8C7 02:B8B7: 06        .byte $06   ; thing 00 pos X
-- D 1 - I - 0x00B8C8 02:B8B8: 05        .byte $05   ; thing 00 pos Y
-- - - - - - 0x00B8C9 02:B8B9: 00        .byte $00   ; 
-- D 1 - I - 0x00B8CA 02:B8BA: 1B        .byte $1B   ; thing 01 id
-- D 1 - I - 0x00B8CB 02:B8BB: 09        .byte $09   ; thing 01 pos X
-- D 1 - I - 0x00B8CC 02:B8BC: 05        .byte $05   ; thing 01 pos Y
-- - - - - - 0x00B8CD 02:B8BD: 00        .byte $00   ; 
-- D 1 - I - 0x00B8CE 02:B8BE: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B8CF 02:B8BF: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B8D0 02:B8C0: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B8D1 02:B8C1: 00        .byte $00   ; 
-- D 1 - I - 0x00B8D2 02:B8C2: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B8D3 02:B8C3: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B8D4 02:B8C4: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B8D5 02:B8C5: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B8A6 02:B896: 05        .byte $05, $09   ; 00
+- D 1 - I - 0x00B8A8 02:B898: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B8AA 02:B89A: 07        .byte $07, $03   ; 02
+- D 1 - I - 0x00B8AC 02:B89C: 11        .byte $11, $02   ; 03
+- D 1 - I - 0x00B8AE 02:B89E: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B8B0 02:B8A0: 1B        .byte $1B, $0C   ; 05
+- D 1 - I - 0x00B8B2 02:B8A2: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B8B4 02:B8A4: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B8B6 02:B8A6: 03        .byte $03, $03   ; 00
+- D 1 - I - 0x00B8B8 02:B8A8: 0A        .byte $0A, $02   ; 01
+- D 1 - I - 0x00B8BA 02:B8AA: 0D        .byte $0D, $05   ; 02
+- D 1 - I - 0x00B8BC 02:B8AC: 0E        .byte $0E, $09   ; 03
+- D 1 - I - 0x00B8BE 02:B8AE: 13        .byte $13, $05   ; 04
+- D 1 - I - 0x00B8C0 02:B8B0: 13        .byte $13, $09   ; 05
+- D 1 - I - 0x00B8C2 02:B8B2: 18        .byte $18, $03   ; 06
+- D 1 - I - 0x00B8C4 02:B8B4: 19        .byte $19, $06   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B8C6 02:B8B6: 04        .byte $04, $06, con_item_id_10t, $00   ; 
+- D 1 - I - 0x00B8CA 02:B8BA: 1B        .byte $1B, $09, con_item_id_10t, $00   ; 
+- D 1 - I - 0x00B8CE 02:B8BE: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B8D2 02:B8C2: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 1B
 - D 1 - I - 0x00B8D6 02:B8C6: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B8D7 02:B8C7: 02        .byte $02   ; stage type
-- D 1 - I - 0x00B8D8 02:B8C8: 1D        .byte $1D   ; player 00 pos X
-- D 1 - I - 0x00B8D9 02:B8C9: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B8DA 02:B8CA: 0C        .byte $0C   ; enemy 01 pos X
-- D 1 - I - 0x00B8DB 02:B8CB: 02        .byte $02   ; enemy 01 pos Y
-- D 1 - I - 0x00B8DC 02:B8CC: 0F        .byte $0F   ; enemy 02 pos X
-- D 1 - I - 0x00B8DD 02:B8CD: 08        .byte $08   ; enemy 02 pos Y
-- D 1 - I - 0x00B8DE 02:B8CE: 0A        .byte $0A   ; enemy 03 pos X
-- D 1 - I - 0x00B8DF 02:B8CF: 0C        .byte $0C   ; enemy 03 pos Y
-- D 1 - I - 0x00B8E0 02:B8D0: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B8E1 02:B8D1: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B8E2 02:B8D2: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B8E3 02:B8D3: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B8E4 02:B8D4: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B8E5 02:B8D5: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B8E6 02:B8D6: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B8E7 02:B8D7: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B8E8 02:B8D8: 02        .byte $02   ; carrot 00 pos X
-- D 1 - I - 0x00B8E9 02:B8D9: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00B8EA 02:B8DA: 0E        .byte $0E   ; carrot 01 pos X
-- D 1 - I - 0x00B8EB 02:B8DB: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00B8EC 02:B8DC: 13        .byte $13   ; carrot 02 pos X
-- D 1 - I - 0x00B8ED 02:B8DD: 02        .byte $02   ; carrot 02 pos Y
-- D 1 - I - 0x00B8EE 02:B8DE: 1E        .byte $1E   ; carrot 03 pos X
-- D 1 - I - 0x00B8EF 02:B8DF: 02        .byte $02   ; carrot 03 pos Y
-- D 1 - I - 0x00B8F0 02:B8E0: 11        .byte $11   ; carrot 04 pos X
-- D 1 - I - 0x00B8F1 02:B8E1: 08        .byte $08   ; carrot 04 pos Y
-- D 1 - I - 0x00B8F2 02:B8E2: 06        .byte $06   ; carrot 05 pos X
-- D 1 - I - 0x00B8F3 02:B8E3: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00B8F4 02:B8E4: 0B        .byte $0B   ; carrot 06 pos X
-- D 1 - I - 0x00B8F5 02:B8E5: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00B8F6 02:B8E6: 15        .byte $15   ; carrot 07 pos X
-- D 1 - I - 0x00B8F7 02:B8E7: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B8F8 02:B8E8: 10        .byte $10   ; thing 00 id
-- D 1 - I - 0x00B8F9 02:B8E9: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00B8FA 02:B8EA: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00B8FB 02:B8EB: 00        .byte $00   ; 
-- D 1 - I - 0x00B8FC 02:B8EC: 16        .byte $16   ; thing 01 id
-- D 1 - I - 0x00B8FD 02:B8ED: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00B8FE 02:B8EE: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00B8FF 02:B8EF: 00        .byte $00   ; 
-- D 1 - I - 0x00B900 02:B8F0: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B901 02:B8F1: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B902 02:B8F2: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B903 02:B8F3: 00        .byte $00   ; 
-- D 1 - I - 0x00B904 02:B8F4: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B905 02:B8F5: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B906 02:B8F6: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B907 02:B8F7: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B8D8 02:B8C8: 1D        .byte $1D, $0C   ; 00
+- D 1 - I - 0x00B8DA 02:B8CA: 0C        .byte $0C, $02   ; 01
+- D 1 - I - 0x00B8DC 02:B8CC: 0F        .byte $0F, $08   ; 02
+- D 1 - I - 0x00B8DE 02:B8CE: 0A        .byte $0A, $0C   ; 03
+- D 1 - I - 0x00B8E0 02:B8D0: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B8E2 02:B8D2: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B8E4 02:B8D4: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B8E6 02:B8D6: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B8E8 02:B8D8: 02        .byte $02, $02   ; 00
+- D 1 - I - 0x00B8EA 02:B8DA: 0E        .byte $0E, $02   ; 01
+- D 1 - I - 0x00B8EC 02:B8DC: 13        .byte $13, $02   ; 02
+- D 1 - I - 0x00B8EE 02:B8DE: 1E        .byte $1E, $02   ; 03
+- D 1 - I - 0x00B8F0 02:B8E0: 11        .byte $11, $08   ; 04
+- D 1 - I - 0x00B8F2 02:B8E2: 06        .byte $06, $0C   ; 05
+- D 1 - I - 0x00B8F4 02:B8E4: 0B        .byte $0B, $0C   ; 06
+- D 1 - I - 0x00B8F6 02:B8E6: 15        .byte $15, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B8F8 02:B8E8: 10        .byte $10, $02, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B8FC 02:B8EC: 16        .byte $16, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B900 02:B8F0: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B904 02:B8F4: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 1C
 - D 1 - I - 0x00B908 02:B8F8: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B909 02:B8F9: 02        .byte $02   ; stage type
-- D 1 - I - 0x00B90A 02:B8FA: 13        .byte $13   ; player 00 pos X
-- D 1 - I - 0x00B90B 02:B8FB: 02        .byte $02   ; player 00 pos Y
-- D 1 - I - 0x00B90C 02:B8FC: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B90D 02:B8FD: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B90E 02:B8FE: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00B90F 02:B8FF: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00B910 02:B900: 0B        .byte $0B   ; enemy 03 pos X
-- D 1 - I - 0x00B911 02:B901: 02        .byte $02   ; enemy 03 pos Y
-- D 1 - I - 0x00B912 02:B902: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B913 02:B903: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B914 02:B904: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B915 02:B905: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B916 02:B906: 0C        .byte $0C   ; enemy 06 pos X
-- D 1 - I - 0x00B917 02:B907: 06        .byte $06   ; enemy 06 pos Y
-- D 1 - I - 0x00B918 02:B908: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B919 02:B909: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B91A 02:B90A: 0A        .byte $0A   ; carrot 00 pos X
-- D 1 - I - 0x00B91B 02:B90B: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00B91C 02:B90C: 15        .byte $15   ; carrot 01 pos X
-- D 1 - I - 0x00B91D 02:B90D: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00B91E 02:B90E: 13        .byte $13   ; carrot 02 pos X
-- D 1 - I - 0x00B91F 02:B90F: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00B920 02:B910: 02        .byte $02   ; carrot 03 pos X
-- D 1 - I - 0x00B921 02:B911: 07        .byte $07   ; carrot 03 pos Y
-- D 1 - I - 0x00B922 02:B912: 1D        .byte $1D   ; carrot 04 pos X
-- D 1 - I - 0x00B923 02:B913: 07        .byte $07   ; carrot 04 pos Y
-- D 1 - I - 0x00B924 02:B914: 0C        .byte $0C   ; carrot 05 pos X
-- D 1 - I - 0x00B925 02:B915: 09        .byte $09   ; carrot 05 pos Y
-- D 1 - I - 0x00B926 02:B916: 18        .byte $18   ; carrot 06 pos X
-- D 1 - I - 0x00B927 02:B917: 09        .byte $09   ; carrot 06 pos Y
-- D 1 - I - 0x00B928 02:B918: 0C        .byte $0C   ; carrot 07 pos X
-- D 1 - I - 0x00B929 02:B919: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B92A 02:B91A: 1C        .byte $1C   ; thing 00 id
-- D 1 - I - 0x00B92B 02:B91B: 0C        .byte $0C   ; thing 00 pos X
-- D 1 - I - 0x00B92C 02:B91C: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00B92D 02:B91D: 00        .byte $00   ; 
-- D 1 - I - 0x00B92E 02:B91E: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00B92F 02:B91F: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00B930 02:B920: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00B931 02:B921: 00        .byte $00   ; 
-- D 1 - I - 0x00B932 02:B922: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B933 02:B923: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B934 02:B924: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B935 02:B925: 00        .byte $00   ; 
-- D 1 - I - 0x00B936 02:B926: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B937 02:B927: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B938 02:B928: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B939 02:B929: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B90A 02:B8FA: 13        .byte $13, $02   ; 00
+- D 1 - I - 0x00B90C 02:B8FC: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B90E 02:B8FE: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00B910 02:B900: 0B        .byte $0B, $02   ; 03
+- D 1 - I - 0x00B912 02:B902: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B914 02:B904: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B916 02:B906: 0C        .byte $0C, $06   ; 06
+- D 1 - I - 0x00B918 02:B908: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B91A 02:B90A: 0A        .byte $0A, $02   ; 00
+- D 1 - I - 0x00B91C 02:B90C: 15        .byte $15, $02   ; 01
+- D 1 - I - 0x00B91E 02:B90E: 13        .byte $13, $06   ; 02
+- D 1 - I - 0x00B920 02:B910: 02        .byte $02, $07   ; 03
+- D 1 - I - 0x00B922 02:B912: 1D        .byte $1D, $07   ; 04
+- D 1 - I - 0x00B924 02:B914: 0C        .byte $0C, $09   ; 05
+- D 1 - I - 0x00B926 02:B916: 18        .byte $18, $09   ; 06
+- D 1 - I - 0x00B928 02:B918: 0C        .byte $0C, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B92A 02:B91A: 1C        .byte $1C, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B92E 02:B91E: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B932 02:B922: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B936 02:B926: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 1D
 - D 1 - I - 0x00B93A 02:B92A: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B93B 02:B92B: 01        .byte $01   ; stage type
-- D 1 - I - 0x00B93C 02:B92C: 02        .byte $02   ; player 00 pos X
-- D 1 - I - 0x00B93D 02:B92D: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B93E 02:B92E: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B93F 02:B92F: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B940 02:B930: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00B941 02:B931: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00B942 02:B932: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00B943 02:B933: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00B944 02:B934: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00B945 02:B935: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00B946 02:B936: 10        .byte $10   ; enemy 05 pos X
-- D 1 - I - 0x00B947 02:B937: 07        .byte $07   ; enemy 05 pos Y
-- D 1 - I - 0x00B948 02:B938: 19        .byte $19   ; enemy 06 pos X
-- D 1 - I - 0x00B949 02:B939: 0C        .byte $0C   ; enemy 06 pos Y
-- D 1 - I - 0x00B94A 02:B93A: 09        .byte $09   ; enemy 07 pos X
-- D 1 - I - 0x00B94B 02:B93B: 02        .byte $02   ; enemy 07 pos Y
-- D 1 - I - 0x00B94C 02:B93C: 05        .byte $05   ; carrot 00 pos X
-- D 1 - I - 0x00B94D 02:B93D: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00B94E 02:B93E: 13        .byte $13   ; carrot 01 pos X
-- D 1 - I - 0x00B94F 02:B93F: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00B950 02:B940: 19        .byte $19   ; carrot 02 pos X
-- D 1 - I - 0x00B951 02:B941: 02        .byte $02   ; carrot 02 pos Y
-- D 1 - I - 0x00B952 02:B942: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00B953 02:B943: 07        .byte $07   ; carrot 03 pos Y
-- D 1 - I - 0x00B954 02:B944: 16        .byte $16   ; carrot 04 pos X
-- D 1 - I - 0x00B955 02:B945: 07        .byte $07   ; carrot 04 pos Y
-- D 1 - I - 0x00B956 02:B946: 09        .byte $09   ; carrot 05 pos X
-- D 1 - I - 0x00B957 02:B947: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00B958 02:B948: 15        .byte $15   ; carrot 06 pos X
-- D 1 - I - 0x00B959 02:B949: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00B95A 02:B94A: 1D        .byte $1D   ; carrot 07 pos X
-- D 1 - I - 0x00B95B 02:B94B: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B95C 02:B94C: 10        .byte $10   ; thing 00 id
-- D 1 - I - 0x00B95D 02:B94D: 0C        .byte $0C   ; thing 00 pos X
-- D 1 - I - 0x00B95E 02:B94E: 09        .byte $09   ; thing 00 pos Y
-- - - - - - 0x00B95F 02:B94F: 00        .byte $00   ; 
-- D 1 - I - 0x00B960 02:B950: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00B961 02:B951: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00B962 02:B952: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00B963 02:B953: 00        .byte $00   ; 
-- D 1 - I - 0x00B964 02:B954: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B965 02:B955: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B966 02:B956: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B967 02:B957: 00        .byte $00   ; 
-- D 1 - I - 0x00B968 02:B958: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B969 02:B959: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B96A 02:B95A: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B96B 02:B95B: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B93C 02:B92C: 02        .byte $02, $0C   ; 00
+- D 1 - I - 0x00B93E 02:B92E: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B940 02:B930: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00B942 02:B932: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00B944 02:B934: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00B946 02:B936: 10        .byte $10, $07   ; 05
+- D 1 - I - 0x00B948 02:B938: 19        .byte $19, $0C   ; 06
+- D 1 - I - 0x00B94A 02:B93A: 09        .byte $09, $02   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B94C 02:B93C: 05        .byte $05, $02   ; 00
+- D 1 - I - 0x00B94E 02:B93E: 13        .byte $13, $02   ; 01
+- D 1 - I - 0x00B950 02:B940: 19        .byte $19, $02   ; 02
+- D 1 - I - 0x00B952 02:B942: 0E        .byte $0E, $07   ; 03
+- D 1 - I - 0x00B954 02:B944: 16        .byte $16, $07   ; 04
+- D 1 - I - 0x00B956 02:B946: 09        .byte $09, $0C   ; 05
+- D 1 - I - 0x00B958 02:B948: 15        .byte $15, $0C   ; 06
+- D 1 - I - 0x00B95A 02:B94A: 1D        .byte $1D, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B95C 02:B94C: 10        .byte $10, $0C, con_item_id_sign_03, $00   ; 
+- D 1 - I - 0x00B960 02:B950: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B964 02:B954: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B968 02:B958: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 1E
 - D 1 - I - 0x00B96C 02:B95C: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B96D 02:B95D: 01        .byte $01   ; stage type
-- D 1 - I - 0x00B96E 02:B95E: 11        .byte $11   ; player 00 pos X
-- D 1 - I - 0x00B96F 02:B95F: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00B970 02:B960: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B971 02:B961: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B972 02:B962: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00B973 02:B963: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00B974 02:B964: 08        .byte $08   ; enemy 03 pos X
-- D 1 - I - 0x00B975 02:B965: 02        .byte $02   ; enemy 03 pos Y
-- D 1 - I - 0x00B976 02:B966: 09        .byte $09   ; enemy 04 pos X
-- D 1 - I - 0x00B977 02:B967: 0C        .byte $0C   ; enemy 04 pos Y
-- D 1 - I - 0x00B978 02:B968: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B979 02:B969: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B97A 02:B96A: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B97B 02:B96B: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B97C 02:B96C: 17        .byte $17   ; enemy 07 pos X
-- D 1 - I - 0x00B97D 02:B96D: 05        .byte $05   ; enemy 07 pos Y
-- D 1 - I - 0x00B97E 02:B96E: 05        .byte $05   ; carrot 00 pos X
-- D 1 - I - 0x00B97F 02:B96F: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00B980 02:B970: 01        .byte $01   ; carrot 01 pos X
-- D 1 - I - 0x00B981 02:B971: 0C        .byte $0C   ; carrot 01 pos Y
-- D 1 - I - 0x00B982 02:B972: 07        .byte $07   ; carrot 02 pos X
-- D 1 - I - 0x00B983 02:B973: 0C        .byte $0C   ; carrot 02 pos Y
-- D 1 - I - 0x00B984 02:B974: 0C        .byte $0C   ; carrot 03 pos X
-- D 1 - I - 0x00B985 02:B975: 08        .byte $08   ; carrot 03 pos Y
-- D 1 - I - 0x00B986 02:B976: 16        .byte $16   ; carrot 04 pos X
-- D 1 - I - 0x00B987 02:B977: 02        .byte $02   ; carrot 04 pos Y
-- D 1 - I - 0x00B988 02:B978: 13        .byte $13   ; carrot 05 pos X
-- D 1 - I - 0x00B989 02:B979: 08        .byte $08   ; carrot 05 pos Y
-- D 1 - I - 0x00B98A 02:B97A: 1C        .byte $1C   ; carrot 06 pos X
-- D 1 - I - 0x00B98B 02:B97B: 02        .byte $02   ; carrot 06 pos Y
-- D 1 - I - 0x00B98C 02:B97C: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00B98D 02:B97D: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B98E 02:B97E: 13        .byte $13   ; thing 00 id
-- D 1 - I - 0x00B98F 02:B97F: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00B990 02:B980: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00B991 02:B981: 00        .byte $00   ; 
-- D 1 - I - 0x00B992 02:B982: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00B993 02:B983: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00B994 02:B984: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00B995 02:B985: 00        .byte $00   ; 
-- D 1 - I - 0x00B996 02:B986: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B997 02:B987: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B998 02:B988: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B999 02:B989: 00        .byte $00   ; 
-- D 1 - I - 0x00B99A 02:B98A: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B99B 02:B98B: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B99C 02:B98C: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B99D 02:B98D: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B96E 02:B95E: 11        .byte $11, $0C   ; 00
+- D 1 - I - 0x00B970 02:B960: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B972 02:B962: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00B974 02:B964: 08        .byte $08, $02   ; 03
+- D 1 - I - 0x00B976 02:B966: 09        .byte $09, $0C   ; 04
+- D 1 - I - 0x00B978 02:B968: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B97A 02:B96A: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B97C 02:B96C: 17        .byte $17, $05   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B97E 02:B96E: 05        .byte $05, $02   ; 00
+- D 1 - I - 0x00B980 02:B970: 01        .byte $01, $0C   ; 01
+- D 1 - I - 0x00B982 02:B972: 07        .byte $07, $0C   ; 02
+- D 1 - I - 0x00B984 02:B974: 0C        .byte $0C, $08   ; 03
+- D 1 - I - 0x00B986 02:B976: 16        .byte $16, $02   ; 04
+- D 1 - I - 0x00B988 02:B978: 13        .byte $13, $08   ; 05
+- D 1 - I - 0x00B98A 02:B97A: 1C        .byte $1C, $02   ; 06
+- D 1 - I - 0x00B98C 02:B97C: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B98E 02:B97E: 13        .byte $13, $02, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B992 02:B982: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B996 02:B986: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B99A 02:B98A: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 1F
 - D 1 - I - 0x00B99E 02:B98E: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B99F 02:B98F: 02        .byte $02   ; stage type
-- D 1 - I - 0x00B9A0 02:B990: 09        .byte $09   ; player 00 pos X
-- D 1 - I - 0x00B9A1 02:B991: 09        .byte $09   ; player 00 pos Y
-- D 1 - I - 0x00B9A2 02:B992: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B9A3 02:B993: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B9A4 02:B994: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00B9A5 02:B995: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00B9A6 02:B996: 14        .byte $14   ; enemy 03 pos X
-- D 1 - I - 0x00B9A7 02:B997: 02        .byte $02   ; enemy 03 pos Y
-- D 1 - I - 0x00B9A8 02:B998: 10        .byte $10   ; enemy 04 pos X
-- D 1 - I - 0x00B9A9 02:B999: 06        .byte $06   ; enemy 04 pos Y
-- D 1 - I - 0x00B9AA 02:B99A: 1C        .byte $1C   ; enemy 05 pos X
-- D 1 - I - 0x00B9AB 02:B99B: 08        .byte $08   ; enemy 05 pos Y
-- D 1 - I - 0x00B9AC 02:B99C: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00B9AD 02:B99D: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00B9AE 02:B99E: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B9AF 02:B99F: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B9B0 02:B9A0: 08        .byte $08   ; carrot 00 pos X
-- D 1 - I - 0x00B9B1 02:B9A1: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00B9B2 02:B9A2: 12        .byte $12   ; carrot 01 pos X
-- D 1 - I - 0x00B9B3 02:B9A3: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00B9B4 02:B9A4: 02        .byte $02   ; carrot 02 pos X
-- D 1 - I - 0x00B9B5 02:B9A5: 03        .byte $03   ; carrot 02 pos Y
-- D 1 - I - 0x00B9B6 02:B9A6: 15        .byte $15   ; carrot 03 pos X
-- D 1 - I - 0x00B9B7 02:B9A7: 05        .byte $05   ; carrot 03 pos Y
-- D 1 - I - 0x00B9B8 02:B9A8: 12        .byte $12   ; carrot 04 pos X
-- D 1 - I - 0x00B9B9 02:B9A9: 09        .byte $09   ; carrot 04 pos Y
-- D 1 - I - 0x00B9BA 02:B9AA: 07        .byte $07   ; carrot 05 pos X
-- D 1 - I - 0x00B9BB 02:B9AB: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00B9BC 02:B9AC: 12        .byte $12   ; carrot 06 pos X
-- D 1 - I - 0x00B9BD 02:B9AD: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00B9BE 02:B9AE: 19        .byte $19   ; carrot 07 pos X
-- D 1 - I - 0x00B9BF 02:B9AF: 0B        .byte $0B   ; carrot 07 pos Y
-- D 1 - I - 0x00B9C0 02:B9B0: 11        .byte $11   ; thing 00 id
-- D 1 - I - 0x00B9C1 02:B9B1: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00B9C2 02:B9B2: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00B9C3 02:B9B3: 00        .byte $00   ; 
-- D 1 - I - 0x00B9C4 02:B9B4: 0E        .byte $0E   ; thing 01 id
-- D 1 - I - 0x00B9C5 02:B9B5: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00B9C6 02:B9B6: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00B9C7 02:B9B7: 00        .byte $00   ; 
-- D 1 - I - 0x00B9C8 02:B9B8: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00B9C9 02:B9B9: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00B9CA 02:B9BA: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00B9CB 02:B9BB: 00        .byte $00   ; 
-- D 1 - I - 0x00B9CC 02:B9BC: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00B9CD 02:B9BD: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00B9CE 02:B9BE: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00B9CF 02:B9BF: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B9A0 02:B990: 09        .byte $09, $09   ; 00
+- D 1 - I - 0x00B9A2 02:B992: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B9A4 02:B994: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00B9A6 02:B996: 14        .byte $14, $02   ; 03
+- D 1 - I - 0x00B9A8 02:B998: 10        .byte $10, $06   ; 04
+- D 1 - I - 0x00B9AA 02:B99A: 1C        .byte $1C, $08   ; 05
+- D 1 - I - 0x00B9AC 02:B99C: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00B9AE 02:B99E: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B9B0 02:B9A0: 08        .byte $08, $02   ; 00
+- D 1 - I - 0x00B9B2 02:B9A2: 12        .byte $12, $02   ; 01
+- D 1 - I - 0x00B9B4 02:B9A4: 02        .byte $02, $03   ; 02
+- D 1 - I - 0x00B9B6 02:B9A6: 15        .byte $15, $05   ; 03
+- D 1 - I - 0x00B9B8 02:B9A8: 12        .byte $12, $09   ; 04
+- D 1 - I - 0x00B9BA 02:B9AA: 07        .byte $07, $0C   ; 05
+- D 1 - I - 0x00B9BC 02:B9AC: 12        .byte $12, $0C   ; 06
+- D 1 - I - 0x00B9BE 02:B9AE: 19        .byte $19, $0B   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B9C0 02:B9B0: 11        .byte $11, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B9C4 02:B9B4: 0E        .byte $0E, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B9C8 02:B9B8: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00B9CC 02:B9BC: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 20
 - D 1 - I - 0x00B9D0 02:B9C0: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00B9D1 02:B9C1: 02        .byte $02   ; stage type
-- D 1 - I - 0x00B9D2 02:B9C2: 15        .byte $15   ; player 00 pos X
-- D 1 - I - 0x00B9D3 02:B9C3: 03        .byte $03   ; player 00 pos Y
-- D 1 - I - 0x00B9D4 02:B9C4: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00B9D5 02:B9C5: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00B9D6 02:B9C6: 02        .byte $02   ; enemy 02 pos X
-- D 1 - I - 0x00B9D7 02:B9C7: 09        .byte $09   ; enemy 02 pos Y
-- D 1 - I - 0x00B9D8 02:B9C8: 0D        .byte $0D   ; enemy 03 pos X
-- D 1 - I - 0x00B9D9 02:B9C9: 09        .byte $09   ; enemy 03 pos Y
-- D 1 - I - 0x00B9DA 02:B9CA: 16        .byte $16   ; enemy 04 pos X
-- D 1 - I - 0x00B9DB 02:B9CB: 0C        .byte $0C   ; enemy 04 pos Y
-- D 1 - I - 0x00B9DC 02:B9CC: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00B9DD 02:B9CD: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00B9DE 02:B9CE: 04        .byte $04   ; enemy 06 pos X
-- D 1 - I - 0x00B9DF 02:B9CF: 02        .byte $02   ; enemy 06 pos Y
-- D 1 - I - 0x00B9E0 02:B9D0: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00B9E1 02:B9D1: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00B9E2 02:B9D2: 0B        .byte $0B   ; carrot 00 pos X
-- D 1 - I - 0x00B9E3 02:B9D3: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00B9E4 02:B9D4: 03        .byte $03   ; carrot 01 pos X
-- D 1 - I - 0x00B9E5 02:B9D5: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00B9E6 02:B9D6: 04        .byte $04   ; carrot 02 pos X
-- D 1 - I - 0x00B9E7 02:B9D7: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00B9E8 02:B9D8: 1B        .byte $1B   ; carrot 03 pos X
-- D 1 - I - 0x00B9E9 02:B9D9: 06        .byte $06   ; carrot 03 pos Y
-- D 1 - I - 0x00B9EA 02:B9DA: 17        .byte $17   ; carrot 04 pos X
-- D 1 - I - 0x00B9EB 02:B9DB: 09        .byte $09   ; carrot 04 pos Y
-- D 1 - I - 0x00B9EC 02:B9DC: 1E        .byte $1E   ; carrot 05 pos X
-- D 1 - I - 0x00B9ED 02:B9DD: 0A        .byte $0A   ; carrot 05 pos Y
-- D 1 - I - 0x00B9EE 02:B9DE: 03        .byte $03   ; carrot 06 pos X
-- D 1 - I - 0x00B9EF 02:B9DF: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00B9F0 02:B9E0: 0B        .byte $0B   ; carrot 07 pos X
-- D 1 - I - 0x00B9F1 02:B9E1: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00B9F2 02:B9E2: 13        .byte $13   ; thing 00 id
-- D 1 - I - 0x00B9F3 02:B9E3: 09        .byte $09   ; thing 00 pos X
-- D 1 - I - 0x00B9F4 02:B9E4: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00B9F5 02:B9E5: 00        .byte $00   ; 
-- D 1 - I - 0x00B9F6 02:B9E6: 09        .byte $09   ; thing 01 id
-- D 1 - I - 0x00B9F7 02:B9E7: 03        .byte $03   ; thing 01 pos X
-- D 1 - I - 0x00B9F8 02:B9E8: 01        .byte $01   ; thing 01 pos Y
-- - - - - - 0x00B9F9 02:B9E9: 00        .byte $00   ; 
-- D 1 - I - 0x00B9FA 02:B9EA: 01        .byte $01   ; thing 02 id
-- D 1 - I - 0x00B9FB 02:B9EB: 02        .byte $02   ; thing 02 pos X
-- D 1 - I - 0x00B9FC 02:B9EC: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00B9FD 02:B9ED: 00        .byte $00   ; 
-- D 1 - I - 0x00B9FE 02:B9EE: 0D        .byte $0D   ; thing 03 id
-- D 1 - I - 0x00B9FF 02:B9EF: 0C        .byte $0C   ; thing 03 pos X
-- D 1 - I - 0x00BA00 02:B9F0: 04        .byte $04   ; thing 03 pos Y
-- - - - - - 0x00BA01 02:B9F1: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00B9D2 02:B9C2: 15        .byte $15, $03   ; 00
+- D 1 - I - 0x00B9D4 02:B9C4: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00B9D6 02:B9C6: 02        .byte $02, $09   ; 02
+- D 1 - I - 0x00B9D8 02:B9C8: 0D        .byte $0D, $09   ; 03
+- D 1 - I - 0x00B9DA 02:B9CA: 16        .byte $16, $0C   ; 04
+- D 1 - I - 0x00B9DC 02:B9CC: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00B9DE 02:B9CE: 04        .byte $04, $02   ; 06
+- D 1 - I - 0x00B9E0 02:B9D0: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00B9E2 02:B9D2: 0B        .byte $0B, $03   ; 00
+- D 1 - I - 0x00B9E4 02:B9D4: 03        .byte $03, $02   ; 01
+- D 1 - I - 0x00B9E6 02:B9D6: 04        .byte $04, $06   ; 02
+- D 1 - I - 0x00B9E8 02:B9D8: 1B        .byte $1B, $06   ; 03
+- D 1 - I - 0x00B9EA 02:B9DA: 17        .byte $17, $09   ; 04
+- D 1 - I - 0x00B9EC 02:B9DC: 1E        .byte $1E, $0A   ; 05
+- D 1 - I - 0x00B9EE 02:B9DE: 03        .byte $03, $0C   ; 06
+- D 1 - I - 0x00B9F0 02:B9E0: 0B        .byte $0B, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00B9F2 02:B9E2: 13        .byte $13, $09, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00B9F6 02:B9E6: 09        .byte $09, $03, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B9FA 02:B9EA: 01        .byte $01, $02, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00B9FE 02:B9EE: 0D        .byte $0D, $0C, con_item_id_glove, $00   ; 
+
+
+
 ; 21
 - D 1 - I - 0x00BA02 02:B9F2: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BA03 02:B9F3: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BA04 02:B9F4: 01        .byte $01   ; player 00 pos X
-- D 1 - I - 0x00BA05 02:B9F5: 15        .byte $15   ; player 00 pos Y
-- D 1 - I - 0x00BA06 02:B9F6: 0C        .byte $0C   ; enemy 01 pos X
-- D 1 - I - 0x00BA07 02:B9F7: 02        .byte $02   ; enemy 01 pos Y
-- D 1 - I - 0x00BA08 02:B9F8: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00BA09 02:B9F9: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00BA0A 02:B9FA: 0E        .byte $0E   ; enemy 03 pos X
-- D 1 - I - 0x00BA0B 02:B9FB: 14        .byte $14   ; enemy 03 pos Y
-- D 1 - I - 0x00BA0C 02:B9FC: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00BA0D 02:B9FD: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00BA0E 02:B9FE: 04        .byte $04   ; enemy 05 pos X
-- D 1 - I - 0x00BA0F 02:B9FF: 0B        .byte $0B   ; enemy 05 pos Y
-- D 1 - I - 0x00BA10 02:BA00: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BA11 02:BA01: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BA12 02:BA02: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BA13 02:BA03: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BA14 02:BA04: 0B        .byte $0B   ; carrot 00 pos X
-- D 1 - I - 0x00BA15 02:BA05: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00BA16 02:BA06: 0B        .byte $0B   ; carrot 01 pos X
-- D 1 - I - 0x00BA17 02:BA07: 08        .byte $08   ; carrot 01 pos Y
-- D 1 - I - 0x00BA18 02:BA08: 01        .byte $01   ; carrot 02 pos X
-- D 1 - I - 0x00BA19 02:BA09: 0B        .byte $0B   ; carrot 02 pos Y
-- D 1 - I - 0x00BA1A 02:BA0A: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00BA1B 02:BA0B: 0D        .byte $0D   ; carrot 03 pos Y
-- D 1 - I - 0x00BA1C 02:BA0C: 02        .byte $02   ; carrot 04 pos X
-- D 1 - I - 0x00BA1D 02:BA0D: 0E        .byte $0E   ; carrot 04 pos Y
-- D 1 - I - 0x00BA1E 02:BA0E: 0B        .byte $0B   ; carrot 05 pos X
-- D 1 - I - 0x00BA1F 02:BA0F: 14        .byte $14   ; carrot 05 pos Y
-- D 1 - I - 0x00BA20 02:BA10: 07        .byte $07   ; carrot 06 pos X
-- D 1 - I - 0x00BA21 02:BA11: 1B        .byte $1B   ; carrot 06 pos Y
-- D 1 - I - 0x00BA22 02:BA12: 0E        .byte $0E   ; carrot 07 pos X
-- D 1 - I - 0x00BA23 02:BA13: 1B        .byte $1B   ; carrot 07 pos Y
-- D 1 - I - 0x00BA24 02:BA14: 04        .byte $04   ; thing 00 id
-- D 1 - I - 0x00BA25 02:BA15: 0E        .byte $0E   ; thing 00 pos X
-- D 1 - I - 0x00BA26 02:BA16: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BA27 02:BA17: 00        .byte $00   ; 
-- D 1 - I - 0x00BA28 02:BA18: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00BA29 02:BA19: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00BA2A 02:BA1A: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00BA2B 02:BA1B: 00        .byte $00   ; 
-- D 1 - I - 0x00BA2C 02:BA1C: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BA2D 02:BA1D: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BA2E 02:BA1E: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BA2F 02:BA1F: 00        .byte $00   ; 
-- D 1 - I - 0x00BA30 02:BA20: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BA31 02:BA21: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BA32 02:BA22: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BA33 02:BA23: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BA04 02:B9F4: 01        .byte $01, $15   ; 00
+- D 1 - I - 0x00BA06 02:B9F6: 0C        .byte $0C, $02   ; 01
+- D 1 - I - 0x00BA08 02:B9F8: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00BA0A 02:B9FA: 0E        .byte $0E, $14   ; 03
+- D 1 - I - 0x00BA0C 02:B9FC: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00BA0E 02:B9FE: 04        .byte $04, $0B   ; 05
+- D 1 - I - 0x00BA10 02:BA00: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BA12 02:BA02: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BA14 02:BA04: 0B        .byte $0B, $02   ; 00
+- D 1 - I - 0x00BA16 02:BA06: 0B        .byte $0B, $08   ; 01
+- D 1 - I - 0x00BA18 02:BA08: 01        .byte $01, $0B   ; 02
+- D 1 - I - 0x00BA1A 02:BA0A: 0E        .byte $0E, $0D   ; 03
+- D 1 - I - 0x00BA1C 02:BA0C: 02        .byte $02, $0E   ; 04
+- D 1 - I - 0x00BA1E 02:BA0E: 0B        .byte $0B, $14   ; 05
+- D 1 - I - 0x00BA20 02:BA10: 07        .byte $07, $1B   ; 06
+- D 1 - I - 0x00BA22 02:BA12: 0E        .byte $0E, $1B   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BA24 02:BA14: 04        .byte $04, $0E, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BA28 02:BA18: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BA2C 02:BA1C: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BA30 02:BA20: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 22
 - D 1 - I - 0x00BA34 02:BA24: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BA35 02:BA25: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BA36 02:BA26: 02        .byte $02   ; player 00 pos X
-- D 1 - I - 0x00BA37 02:BA27: 1B        .byte $1B   ; player 00 pos Y
-- D 1 - I - 0x00BA38 02:BA28: 09        .byte $09   ; enemy 01 pos X
-- D 1 - I - 0x00BA39 02:BA29: 04        .byte $04   ; enemy 01 pos Y
-- D 1 - I - 0x00BA3A 02:BA2A: 02        .byte $02   ; enemy 02 pos X
-- D 1 - I - 0x00BA3B 02:BA2B: 0A        .byte $0A   ; enemy 02 pos Y
-- D 1 - I - 0x00BA3C 02:BA2C: 0D        .byte $0D   ; enemy 03 pos X
-- D 1 - I - 0x00BA3D 02:BA2D: 14        .byte $14   ; enemy 03 pos Y
-- D 1 - I - 0x00BA3E 02:BA2E: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00BA3F 02:BA2F: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00BA40 02:BA30: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BA41 02:BA31: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BA42 02:BA32: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BA43 02:BA33: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BA44 02:BA34: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BA45 02:BA35: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BA46 02:BA36: 0D        .byte $0D   ; carrot 00 pos X
-- D 1 - I - 0x00BA47 02:BA37: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00BA48 02:BA38: 03        .byte $03   ; carrot 01 pos X
-- D 1 - I - 0x00BA49 02:BA39: 04        .byte $04   ; carrot 01 pos Y
-- D 1 - I - 0x00BA4A 02:BA3A: 04        .byte $04   ; carrot 02 pos X
-- D 1 - I - 0x00BA4B 02:BA3B: 07        .byte $07   ; carrot 02 pos Y
-- D 1 - I - 0x00BA4C 02:BA3C: 0D        .byte $0D   ; carrot 03 pos X
-- D 1 - I - 0x00BA4D 02:BA3D: 0A        .byte $0A   ; carrot 03 pos Y
-- D 1 - I - 0x00BA4E 02:BA3E: 08        .byte $08   ; carrot 04 pos X
-- D 1 - I - 0x00BA4F 02:BA3F: 14        .byte $14   ; carrot 04 pos Y
-- D 1 - I - 0x00BA50 02:BA40: 03        .byte $03   ; carrot 05 pos X
-- D 1 - I - 0x00BA51 02:BA41: 17        .byte $17   ; carrot 05 pos Y
-- D 1 - I - 0x00BA52 02:BA42: 0C        .byte $0C   ; carrot 06 pos X
-- D 1 - I - 0x00BA53 02:BA43: 17        .byte $17   ; carrot 06 pos Y
-- D 1 - I - 0x00BA54 02:BA44: 08        .byte $08   ; carrot 07 pos X
-- D 1 - I - 0x00BA55 02:BA45: 1B        .byte $1B   ; carrot 07 pos Y
-- D 1 - I - 0x00BA56 02:BA46: 06        .byte $06   ; thing 00 id
-- D 1 - I - 0x00BA57 02:BA47: 0A        .byte $0A   ; thing 00 pos X
-- D 1 - I - 0x00BA58 02:BA48: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BA59 02:BA49: 00        .byte $00   ; 
-- D 1 - I - 0x00BA5A 02:BA4A: 06        .byte $06   ; thing 01 id
-- D 1 - I - 0x00BA5B 02:BA4B: 14        .byte $14   ; thing 01 pos X
-- D 1 - I - 0x00BA5C 02:BA4C: 05        .byte $05   ; thing 01 pos Y
-- - - - - - 0x00BA5D 02:BA4D: 00        .byte $00   ; 
-- D 1 - I - 0x00BA5E 02:BA4E: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BA5F 02:BA4F: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BA60 02:BA50: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BA61 02:BA51: 00        .byte $00   ; 
-- D 1 - I - 0x00BA62 02:BA52: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BA63 02:BA53: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BA64 02:BA54: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BA65 02:BA55: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BA36 02:BA26: 02        .byte $02, $1B   ; 00
+- D 1 - I - 0x00BA38 02:BA28: 09        .byte $09, $04   ; 01
+- D 1 - I - 0x00BA3A 02:BA2A: 02        .byte $02, $0A   ; 02
+- D 1 - I - 0x00BA3C 02:BA2C: 0D        .byte $0D, $14   ; 03
+- D 1 - I - 0x00BA3E 02:BA2E: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00BA40 02:BA30: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BA42 02:BA32: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BA44 02:BA34: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BA46 02:BA36: 0D        .byte $0D, $02   ; 00
+- D 1 - I - 0x00BA48 02:BA38: 03        .byte $03, $04   ; 01
+- D 1 - I - 0x00BA4A 02:BA3A: 04        .byte $04, $07   ; 02
+- D 1 - I - 0x00BA4C 02:BA3C: 0D        .byte $0D, $0A   ; 03
+- D 1 - I - 0x00BA4E 02:BA3E: 08        .byte $08, $14   ; 04
+- D 1 - I - 0x00BA50 02:BA40: 03        .byte $03, $17   ; 05
+- D 1 - I - 0x00BA52 02:BA42: 0C        .byte $0C, $17   ; 06
+- D 1 - I - 0x00BA54 02:BA44: 08        .byte $08, $1B   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BA56 02:BA46: 06        .byte $06, $0A, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BA5A 02:BA4A: 06        .byte $06, $14, con_item_id_10t, $00   ; 
+- D 1 - I - 0x00BA5E 02:BA4E: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BA62 02:BA52: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 23
 - D 1 - I - 0x00BA66 02:BA56: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BA67 02:BA57: 02        .byte $02   ; stage type
-- D 1 - I - 0x00BA68 02:BA58: 0A        .byte $0A   ; player 00 pos X
-- D 1 - I - 0x00BA69 02:BA59: 1A        .byte $1A   ; player 00 pos Y
-- D 1 - I - 0x00BA6A 02:BA5A: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BA6B 02:BA5B: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BA6C 02:BA5C: 01        .byte $01   ; enemy 02 pos X
-- D 1 - I - 0x00BA6D 02:BA5D: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00BA6E 02:BA5E: 0E        .byte $0E   ; enemy 03 pos X
-- D 1 - I - 0x00BA6F 02:BA5F: 02        .byte $02   ; enemy 03 pos Y
-- D 1 - I - 0x00BA70 02:BA60: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00BA71 02:BA61: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00BA72 02:BA62: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BA73 02:BA63: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BA74 02:BA64: 07        .byte $07   ; enemy 06 pos X
-- D 1 - I - 0x00BA75 02:BA65: 14        .byte $14   ; enemy 06 pos Y
-- D 1 - I - 0x00BA76 02:BA66: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BA77 02:BA67: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BA78 02:BA68: 03        .byte $03   ; carrot 00 pos X
-- D 1 - I - 0x00BA79 02:BA69: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00BA7A 02:BA6A: 0D        .byte $0D   ; carrot 01 pos X
-- D 1 - I - 0x00BA7B 02:BA6B: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00BA7C 02:BA6C: 03        .byte $03   ; carrot 02 pos X
-- D 1 - I - 0x00BA7D 02:BA6D: 08        .byte $08   ; carrot 02 pos Y
-- D 1 - I - 0x00BA7E 02:BA6E: 0B        .byte $0B   ; carrot 03 pos X
-- D 1 - I - 0x00BA7F 02:BA6F: 08        .byte $08   ; carrot 03 pos Y
-- D 1 - I - 0x00BA80 02:BA70: 03        .byte $03   ; carrot 04 pos X
-- D 1 - I - 0x00BA81 02:BA71: 0E        .byte $0E   ; carrot 04 pos Y
-- D 1 - I - 0x00BA82 02:BA72: 0B        .byte $0B   ; carrot 05 pos X
-- D 1 - I - 0x00BA83 02:BA73: 0E        .byte $0E   ; carrot 05 pos Y
-- D 1 - I - 0x00BA84 02:BA74: 03        .byte $03   ; carrot 06 pos X
-- D 1 - I - 0x00BA85 02:BA75: 14        .byte $14   ; carrot 06 pos Y
-- D 1 - I - 0x00BA86 02:BA76: 0B        .byte $0B   ; carrot 07 pos X
-- D 1 - I - 0x00BA87 02:BA77: 14        .byte $14   ; carrot 07 pos Y
-- D 1 - I - 0x00BA88 02:BA78: 04        .byte $04   ; thing 00 id
-- D 1 - I - 0x00BA89 02:BA79: 0B        .byte $0B   ; thing 00 pos X
-- D 1 - I - 0x00BA8A 02:BA7A: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BA8B 02:BA7B: 00        .byte $00   ; 
-- D 1 - I - 0x00BA8C 02:BA7C: 07        .byte $07   ; thing 01 id
-- D 1 - I - 0x00BA8D 02:BA7D: 1A        .byte $1A   ; thing 01 pos X
-- D 1 - I - 0x00BA8E 02:BA7E: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BA8F 02:BA7F: 00        .byte $00   ; 
-- D 1 - I - 0x00BA90 02:BA80: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BA91 02:BA81: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BA92 02:BA82: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BA93 02:BA83: 00        .byte $00   ; 
-- D 1 - I - 0x00BA94 02:BA84: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BA95 02:BA85: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BA96 02:BA86: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BA97 02:BA87: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BA68 02:BA58: 0A        .byte $0A, $1A   ; 00
+- D 1 - I - 0x00BA6A 02:BA5A: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BA6C 02:BA5C: 01        .byte $01, $02   ; 02
+- D 1 - I - 0x00BA6E 02:BA5E: 0E        .byte $0E, $02   ; 03
+- D 1 - I - 0x00BA70 02:BA60: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00BA72 02:BA62: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BA74 02:BA64: 07        .byte $07, $14   ; 06
+- D 1 - I - 0x00BA76 02:BA66: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BA78 02:BA68: 03        .byte $03, $02   ; 00
+- D 1 - I - 0x00BA7A 02:BA6A: 0D        .byte $0D, $02   ; 01
+- D 1 - I - 0x00BA7C 02:BA6C: 03        .byte $03, $08   ; 02
+- D 1 - I - 0x00BA7E 02:BA6E: 0B        .byte $0B, $08   ; 03
+- D 1 - I - 0x00BA80 02:BA70: 03        .byte $03, $0E   ; 04
+- D 1 - I - 0x00BA82 02:BA72: 0B        .byte $0B, $0E   ; 05
+- D 1 - I - 0x00BA84 02:BA74: 03        .byte $03, $14   ; 06
+- D 1 - I - 0x00BA86 02:BA76: 0B        .byte $0B, $14   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BA88 02:BA78: 04        .byte $04, $0B, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BA8C 02:BA7C: 07        .byte $07, $1A, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BA90 02:BA80: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BA94 02:BA84: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 24
 - D 1 - I - 0x00BA98 02:BA88: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BA99 02:BA89: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BA9A 02:BA8A: 04        .byte $04   ; player 00 pos X
-- D 1 - I - 0x00BA9B 02:BA8B: 09        .byte $09   ; player 00 pos Y
-- D 1 - I - 0x00BA9C 02:BA8C: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BA9D 02:BA8D: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BA9E 02:BA8E: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00BA9F 02:BA8F: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00BAA0 02:BA90: 0E        .byte $0E   ; enemy 03 pos X
-- D 1 - I - 0x00BAA1 02:BA91: 02        .byte $02   ; enemy 03 pos Y
-- D 1 - I - 0x00BAA2 02:BA92: 1D        .byte $1D   ; enemy 04 pos X
-- D 1 - I - 0x00BAA3 02:BA93: 0C        .byte $0C   ; enemy 04 pos Y
-- D 1 - I - 0x00BAA4 02:BA94: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BAA5 02:BA95: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BAA6 02:BA96: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BAA7 02:BA97: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BAA8 02:BA98: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BAA9 02:BA99: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BAAA 02:BA9A: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BAAB 02:BA9B: 05        .byte $05   ; carrot 00 pos Y
-- D 1 - I - 0x00BAAC 02:BA9C: 05        .byte $05   ; carrot 01 pos X
-- D 1 - I - 0x00BAAD 02:BA9D: 0C        .byte $0C   ; carrot 01 pos Y
-- D 1 - I - 0x00BAAE 02:BA9E: 04        .byte $04   ; carrot 02 pos X
-- D 1 - I - 0x00BAAF 02:BA9F: 04        .byte $04   ; carrot 02 pos Y
-- D 1 - I - 0x00BAB0 02:BAA0: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00BAB1 02:BAA1: 09        .byte $09   ; carrot 03 pos Y
-- D 1 - I - 0x00BAB2 02:BAA2: 10        .byte $10   ; carrot 04 pos X
-- D 1 - I - 0x00BAB3 02:BAA3: 04        .byte $04   ; carrot 04 pos Y
-- D 1 - I - 0x00BAB4 02:BAA4: 1A        .byte $1A   ; carrot 05 pos X
-- D 1 - I - 0x00BAB5 02:BAA5: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00BAB6 02:BAA6: 13        .byte $13   ; carrot 06 pos X
-- D 1 - I - 0x00BAB7 02:BAA7: 02        .byte $02   ; carrot 06 pos Y
-- D 1 - I - 0x00BAB8 02:BAA8: 1D        .byte $1D   ; carrot 07 pos X
-- D 1 - I - 0x00BAB9 02:BAA9: 06        .byte $06   ; carrot 07 pos Y
-- D 1 - I - 0x00BABA 02:BAAA: 0E        .byte $0E   ; thing 00 id
-- D 1 - I - 0x00BABB 02:BAAB: 0C        .byte $0C   ; thing 00 pos X
-- D 1 - I - 0x00BABC 02:BAAC: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BABD 02:BAAD: 00        .byte $00   ; 
-- D 1 - I - 0x00BABE 02:BAAE: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00BABF 02:BAAF: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00BAC0 02:BAB0: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00BAC1 02:BAB1: 00        .byte $00   ; 
-- D 1 - I - 0x00BAC2 02:BAB2: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BAC3 02:BAB3: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BAC4 02:BAB4: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BAC5 02:BAB5: 00        .byte $00   ; 
-- D 1 - I - 0x00BAC6 02:BAB6: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BAC7 02:BAB7: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BAC8 02:BAB8: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BAC9 02:BAB9: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BA9A 02:BA8A: 04        .byte $04, $09   ; 00
+- D 1 - I - 0x00BA9C 02:BA8C: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BA9E 02:BA8E: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00BAA0 02:BA90: 0E        .byte $0E, $02   ; 03
+- D 1 - I - 0x00BAA2 02:BA92: 1D        .byte $1D, $0C   ; 04
+- D 1 - I - 0x00BAA4 02:BA94: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BAA6 02:BA96: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BAA8 02:BA98: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BAAA 02:BA9A: 01        .byte $01, $05   ; 00
+- D 1 - I - 0x00BAAC 02:BA9C: 05        .byte $05, $0C   ; 01
+- D 1 - I - 0x00BAAE 02:BA9E: 04        .byte $04, $04   ; 02
+- D 1 - I - 0x00BAB0 02:BAA0: 0E        .byte $0E, $09   ; 03
+- D 1 - I - 0x00BAB2 02:BAA2: 10        .byte $10, $04   ; 04
+- D 1 - I - 0x00BAB4 02:BAA4: 1A        .byte $1A, $0C   ; 05
+- D 1 - I - 0x00BAB6 02:BAA6: 13        .byte $13, $02   ; 06
+- D 1 - I - 0x00BAB8 02:BAA8: 1D        .byte $1D, $06   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BABA 02:BAAA: 0E        .byte $0E, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BABE 02:BAAE: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BAC2 02:BAB2: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BAC6 02:BAB6: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 25
 - D 1 - I - 0x00BACA 02:BABA: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BACB 02:BABB: 02        .byte $02   ; stage type
-- D 1 - I - 0x00BACC 02:BABC: 15        .byte $15   ; player 00 pos X
-- D 1 - I - 0x00BACD 02:BABD: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00BACE 02:BABE: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BACF 02:BABF: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BAD0 02:BAC0: 09        .byte $09   ; enemy 02 pos X
-- D 1 - I - 0x00BAD1 02:BAC1: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00BAD2 02:BAC2: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00BAD3 02:BAC3: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00BAD4 02:BAC4: 17        .byte $17   ; enemy 04 pos X
-- D 1 - I - 0x00BAD5 02:BAC5: 02        .byte $02   ; enemy 04 pos Y
-- D 1 - I - 0x00BAD6 02:BAC6: 15        .byte $15   ; enemy 05 pos X
-- D 1 - I - 0x00BAD7 02:BAC7: 09        .byte $09   ; enemy 05 pos Y
-- D 1 - I - 0x00BAD8 02:BAC8: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BAD9 02:BAC9: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BADA 02:BACA: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BADB 02:BACB: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BADC 02:BACC: 03        .byte $03   ; carrot 00 pos X
-- D 1 - I - 0x00BADD 02:BACD: 05        .byte $05   ; carrot 00 pos Y
-- D 1 - I - 0x00BADE 02:BACE: 13        .byte $13   ; carrot 01 pos X
-- D 1 - I - 0x00BADF 02:BACF: 03        .byte $03   ; carrot 01 pos Y
-- D 1 - I - 0x00BAE0 02:BAD0: 19        .byte $19   ; carrot 02 pos X
-- D 1 - I - 0x00BAE1 02:BAD1: 05        .byte $05   ; carrot 02 pos Y
-- D 1 - I - 0x00BAE2 02:BAD2: 1D        .byte $1D   ; carrot 03 pos X
-- D 1 - I - 0x00BAE3 02:BAD3: 05        .byte $05   ; carrot 03 pos Y
-- D 1 - I - 0x00BAE4 02:BAD4: 04        .byte $04   ; carrot 04 pos X
-- D 1 - I - 0x00BAE5 02:BAD5: 09        .byte $09   ; carrot 04 pos Y
-- D 1 - I - 0x00BAE6 02:BAD6: 0D        .byte $0D   ; carrot 05 pos X
-- D 1 - I - 0x00BAE7 02:BAD7: 09        .byte $09   ; carrot 05 pos Y
-- D 1 - I - 0x00BAE8 02:BAD8: 16        .byte $16   ; carrot 06 pos X
-- D 1 - I - 0x00BAE9 02:BAD9: 09        .byte $09   ; carrot 06 pos Y
-- D 1 - I - 0x00BAEA 02:BADA: 08        .byte $08   ; carrot 07 pos X
-- D 1 - I - 0x00BAEB 02:BADB: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BAEC 02:BADC: 0D        .byte $0D   ; thing 00 id
-- D 1 - I - 0x00BAED 02:BADD: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00BAEE 02:BADE: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BAEF 02:BADF: 00        .byte $00   ; 
-- D 1 - I - 0x00BAF0 02:BAE0: 18        .byte $18   ; thing 01 id
-- D 1 - I - 0x00BAF1 02:BAE1: 09        .byte $09   ; thing 01 pos X
-- D 1 - I - 0x00BAF2 02:BAE2: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BAF3 02:BAE3: 00        .byte $00   ; 
-- D 1 - I - 0x00BAF4 02:BAE4: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BAF5 02:BAE5: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BAF6 02:BAE6: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BAF7 02:BAE7: 00        .byte $00   ; 
-- D 1 - I - 0x00BAF8 02:BAE8: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BAF9 02:BAE9: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BAFA 02:BAEA: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BAFB 02:BAEB: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BACC 02:BABC: 15        .byte $15, $0C   ; 00
+- D 1 - I - 0x00BACE 02:BABE: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BAD0 02:BAC0: 09        .byte $09, $02   ; 02
+- D 1 - I - 0x00BAD2 02:BAC2: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00BAD4 02:BAC4: 17        .byte $17, $02   ; 04
+- D 1 - I - 0x00BAD6 02:BAC6: 15        .byte $15, $09   ; 05
+- D 1 - I - 0x00BAD8 02:BAC8: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BADA 02:BACA: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BADC 02:BACC: 03        .byte $03, $05   ; 00
+- D 1 - I - 0x00BADE 02:BACE: 13        .byte $13, $03   ; 01
+- D 1 - I - 0x00BAE0 02:BAD0: 19        .byte $19, $05   ; 02
+- D 1 - I - 0x00BAE2 02:BAD2: 1D        .byte $1D, $05   ; 03
+- D 1 - I - 0x00BAE4 02:BAD4: 04        .byte $04, $09   ; 04
+- D 1 - I - 0x00BAE6 02:BAD6: 0D        .byte $0D, $09   ; 05
+- D 1 - I - 0x00BAE8 02:BAD8: 16        .byte $16, $09   ; 06
+- D 1 - I - 0x00BAEA 02:BADA: 08        .byte $08, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BAEC 02:BADC: 0D        .byte $0D, $02, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BAF0 02:BAE0: 18        .byte $18, $09, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BAF4 02:BAE4: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BAF8 02:BAE8: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 26
 - D 1 - I - 0x00BAFC 02:BAEC: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BAFD 02:BAED: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BAFE 02:BAEE: 0E        .byte $0E   ; player 00 pos X
-- D 1 - I - 0x00BAFF 02:BAEF: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00BB00 02:BAF0: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BB01 02:BAF1: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BB02 02:BAF2: 07        .byte $07   ; enemy 02 pos X
-- D 1 - I - 0x00BB03 02:BAF3: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00BB04 02:BAF4: 15        .byte $15   ; enemy 03 pos X
-- D 1 - I - 0x00BB05 02:BAF5: 04        .byte $04   ; enemy 03 pos Y
-- D 1 - I - 0x00BB06 02:BAF6: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00BB07 02:BAF7: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00BB08 02:BAF8: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BB09 02:BAF9: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BB0A 02:BAFA: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BB0B 02:BAFB: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BB0C 02:BAFC: 1B        .byte $1B   ; enemy 07 pos X
-- D 1 - I - 0x00BB0D 02:BAFD: 09        .byte $09   ; enemy 07 pos Y
-- D 1 - I - 0x00BB0E 02:BAFE: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BB0F 02:BAFF: 0C        .byte $0C   ; carrot 00 pos Y
-- D 1 - I - 0x00BB10 02:BB00: 02        .byte $02   ; carrot 01 pos X
-- D 1 - I - 0x00BB11 02:BB01: 07        .byte $07   ; carrot 01 pos Y
-- D 1 - I - 0x00BB12 02:BB02: 0A        .byte $0A   ; carrot 02 pos X
-- D 1 - I - 0x00BB13 02:BB03: 02        .byte $02   ; carrot 02 pos Y
-- D 1 - I - 0x00BB14 02:BB04: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00BB15 02:BB05: 02        .byte $02   ; carrot 03 pos Y
-- D 1 - I - 0x00BB16 02:BB06: 0D        .byte $0D   ; carrot 04 pos X
-- D 1 - I - 0x00BB17 02:BB07: 09        .byte $09   ; carrot 04 pos Y
-- D 1 - I - 0x00BB18 02:BB08: 10        .byte $10   ; carrot 05 pos X
-- D 1 - I - 0x00BB19 02:BB09: 05        .byte $05   ; carrot 05 pos Y
-- D 1 - I - 0x00BB1A 02:BB0A: 15        .byte $15   ; carrot 06 pos X
-- D 1 - I - 0x00BB1B 02:BB0B: 09        .byte $09   ; carrot 06 pos Y
-- D 1 - I - 0x00BB1C 02:BB0C: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BB1D 02:BB0D: 09        .byte $09   ; carrot 07 pos Y
-- D 1 - I - 0x00BB1E 02:BB0E: 08        .byte $08   ; thing 00 id
-- D 1 - I - 0x00BB1F 02:BB0F: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00BB20 02:BB10: 03        .byte $03   ; thing 00 pos Y
-- - - - - - 0x00BB21 02:BB11: 00        .byte $00   ; 
-- D 1 - I - 0x00BB22 02:BB12: 14        .byte $14   ; thing 01 id
-- D 1 - I - 0x00BB23 02:BB13: 04        .byte $04   ; thing 01 pos X
-- D 1 - I - 0x00BB24 02:BB14: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BB25 02:BB15: 00        .byte $00   ; 
-- D 1 - I - 0x00BB26 02:BB16: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BB27 02:BB17: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BB28 02:BB18: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BB29 02:BB19: 00        .byte $00   ; 
-- D 1 - I - 0x00BB2A 02:BB1A: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BB2B 02:BB1B: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BB2C 02:BB1C: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BB2D 02:BB1D: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BAFE 02:BAEE: 0E        .byte $0E, $0C   ; 00
+- D 1 - I - 0x00BB00 02:BAF0: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BB02 02:BAF2: 07        .byte $07, $02   ; 02
+- D 1 - I - 0x00BB04 02:BAF4: 15        .byte $15, $04   ; 03
+- D 1 - I - 0x00BB06 02:BAF6: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00BB08 02:BAF8: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BB0A 02:BAFA: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BB0C 02:BAFC: 1B        .byte $1B, $09   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BB0E 02:BAFE: 01        .byte $01, $0C   ; 00
+- D 1 - I - 0x00BB10 02:BB00: 02        .byte $02, $07   ; 01
+- D 1 - I - 0x00BB12 02:BB02: 0A        .byte $0A, $02   ; 02
+- D 1 - I - 0x00BB14 02:BB04: 0E        .byte $0E, $02   ; 03
+- D 1 - I - 0x00BB16 02:BB06: 0D        .byte $0D, $09   ; 04
+- D 1 - I - 0x00BB18 02:BB08: 10        .byte $10, $05   ; 05
+- D 1 - I - 0x00BB1A 02:BB0A: 15        .byte $15, $09   ; 06
+- D 1 - I - 0x00BB1C 02:BB0C: 1E        .byte $1E, $09   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BB1E 02:BB0E: 08        .byte $08, $02, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00BB22 02:BB12: 14        .byte $14, $04, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BB26 02:BB16: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BB2A 02:BB1A: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 27
 - D 1 - I - 0x00BB2E 02:BB1E: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BB2F 02:BB1F: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BB30 02:BB20: 0E        .byte $0E   ; player 00 pos X
-- D 1 - I - 0x00BB31 02:BB21: 02        .byte $02   ; player 00 pos Y
-- D 1 - I - 0x00BB32 02:BB22: 08        .byte $08   ; enemy 01 pos X
-- D 1 - I - 0x00BB33 02:BB23: 0C        .byte $0C   ; enemy 01 pos Y
-- D 1 - I - 0x00BB34 02:BB24: 1E        .byte $1E   ; enemy 02 pos X
-- D 1 - I - 0x00BB35 02:BB25: 0C        .byte $0C   ; enemy 02 pos Y
-- D 1 - I - 0x00BB36 02:BB26: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00BB37 02:BB27: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00BB38 02:BB28: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00BB39 02:BB29: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00BB3A 02:BB2A: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BB3B 02:BB2B: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BB3C 02:BB2C: 1D        .byte $1D   ; enemy 06 pos X
-- D 1 - I - 0x00BB3D 02:BB2D: 02        .byte $02   ; enemy 06 pos Y
-- D 1 - I - 0x00BB3E 02:BB2E: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BB3F 02:BB2F: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BB40 02:BB30: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BB41 02:BB31: 0C        .byte $0C   ; carrot 00 pos Y
-- D 1 - I - 0x00BB42 02:BB32: 03        .byte $03   ; carrot 01 pos X
-- D 1 - I - 0x00BB43 02:BB33: 05        .byte $05   ; carrot 01 pos Y
-- D 1 - I - 0x00BB44 02:BB34: 0C        .byte $0C   ; carrot 02 pos X
-- D 1 - I - 0x00BB45 02:BB35: 05        .byte $05   ; carrot 02 pos Y
-- D 1 - I - 0x00BB46 02:BB36: 13        .byte $13   ; carrot 03 pos X
-- D 1 - I - 0x00BB47 02:BB37: 02        .byte $02   ; carrot 03 pos Y
-- D 1 - I - 0x00BB48 02:BB38: 12        .byte $12   ; carrot 04 pos X
-- D 1 - I - 0x00BB49 02:BB39: 0C        .byte $0C   ; carrot 04 pos Y
-- D 1 - I - 0x00BB4A 02:BB3A: 1C        .byte $1C   ; carrot 05 pos X
-- D 1 - I - 0x00BB4B 02:BB3B: 05        .byte $05   ; carrot 05 pos Y
-- D 1 - I - 0x00BB4C 02:BB3C: 1E        .byte $1E   ; carrot 06 pos X
-- D 1 - I - 0x00BB4D 02:BB3D: 02        .byte $02   ; carrot 06 pos Y
-- D 1 - I - 0x00BB4E 02:BB3E: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BB4F 02:BB3F: 09        .byte $09   ; carrot 07 pos Y
-- D 1 - I - 0x00BB50 02:BB40: 0C        .byte $0C   ; thing 00 id
-- D 1 - I - 0x00BB51 02:BB41: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00BB52 02:BB42: 05        .byte $05   ; thing 00 pos Y
-- - - - - - 0x00BB53 02:BB43: 00        .byte $00   ; 
-- D 1 - I - 0x00BB54 02:BB44: 0C        .byte $0C   ; thing 01 id
-- D 1 - I - 0x00BB55 02:BB45: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00BB56 02:BB46: 01        .byte $01   ; thing 01 pos Y
-- - - - - - 0x00BB57 02:BB47: 00        .byte $00   ; 
-- D 1 - I - 0x00BB58 02:BB48: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BB59 02:BB49: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BB5A 02:BB4A: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BB5B 02:BB4B: 00        .byte $00   ; 
-- D 1 - I - 0x00BB5C 02:BB4C: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BB5D 02:BB4D: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BB5E 02:BB4E: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BB5F 02:BB4F: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BB30 02:BB20: 0E        .byte $0E, $02   ; 00
+- D 1 - I - 0x00BB32 02:BB22: 08        .byte $08, $0C   ; 01
+- D 1 - I - 0x00BB34 02:BB24: 1E        .byte $1E, $0C   ; 02
+- D 1 - I - 0x00BB36 02:BB26: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00BB38 02:BB28: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00BB3A 02:BB2A: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BB3C 02:BB2C: 1D        .byte $1D, $02   ; 06
+- D 1 - I - 0x00BB3E 02:BB2E: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BB40 02:BB30: 01        .byte $01, $0C   ; 00
+- D 1 - I - 0x00BB42 02:BB32: 03        .byte $03, $05   ; 01
+- D 1 - I - 0x00BB44 02:BB34: 0C        .byte $0C, $05   ; 02
+- D 1 - I - 0x00BB46 02:BB36: 13        .byte $13, $02   ; 03
+- D 1 - I - 0x00BB48 02:BB38: 12        .byte $12, $0C   ; 04
+- D 1 - I - 0x00BB4A 02:BB3A: 1C        .byte $1C, $05   ; 05
+- D 1 - I - 0x00BB4C 02:BB3C: 1E        .byte $1E, $02   ; 06
+- D 1 - I - 0x00BB4E 02:BB3E: 1E        .byte $1E, $09   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BB50 02:BB40: 0C        .byte $0C, $02, con_item_id_10t, $00   ; 
+- D 1 - I - 0x00BB54 02:BB44: 0C        .byte $0C, $0C, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BB58 02:BB48: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BB5C 02:BB4C: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 28
 - D 1 - I - 0x00BB60 02:BB50: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BB61 02:BB51: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BB62 02:BB52: 0C        .byte $0C   ; player 00 pos X
-- D 1 - I - 0x00BB63 02:BB53: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00BB64 02:BB54: 06        .byte $06   ; enemy 01 pos X
-- D 1 - I - 0x00BB65 02:BB55: 03        .byte $03   ; enemy 01 pos Y
-- D 1 - I - 0x00BB66 02:BB56: 0D        .byte $0D   ; enemy 02 pos X
-- D 1 - I - 0x00BB67 02:BB57: 05        .byte $05   ; enemy 02 pos Y
-- D 1 - I - 0x00BB68 02:BB58: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00BB69 02:BB59: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00BB6A 02:BB5A: 1B        .byte $1B   ; enemy 04 pos X
-- D 1 - I - 0x00BB6B 02:BB5B: 03        .byte $03   ; enemy 04 pos Y
-- D 1 - I - 0x00BB6C 02:BB5C: 1A        .byte $1A   ; enemy 05 pos X
-- D 1 - I - 0x00BB6D 02:BB5D: 0C        .byte $0C   ; enemy 05 pos Y
-- D 1 - I - 0x00BB6E 02:BB5E: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BB6F 02:BB5F: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BB70 02:BB60: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BB71 02:BB61: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BB72 02:BB62: 04        .byte $04   ; carrot 00 pos X
-- D 1 - I - 0x00BB73 02:BB63: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00BB74 02:BB64: 06        .byte $06   ; carrot 01 pos X
-- D 1 - I - 0x00BB75 02:BB65: 06        .byte $06   ; carrot 01 pos Y
-- D 1 - I - 0x00BB76 02:BB66: 01        .byte $01   ; carrot 02 pos X
-- D 1 - I - 0x00BB77 02:BB67: 0C        .byte $0C   ; carrot 02 pos Y
-- D 1 - I - 0x00BB78 02:BB68: 12        .byte $12   ; carrot 03 pos X
-- D 1 - I - 0x00BB79 02:BB69: 03        .byte $03   ; carrot 03 pos Y
-- D 1 - I - 0x00BB7A 02:BB6A: 1E        .byte $1E   ; carrot 04 pos X
-- D 1 - I - 0x00BB7B 02:BB6B: 03        .byte $03   ; carrot 04 pos Y
-- D 1 - I - 0x00BB7C 02:BB6C: 19        .byte $19   ; carrot 05 pos X
-- D 1 - I - 0x00BB7D 02:BB6D: 06        .byte $06   ; carrot 05 pos Y
-- D 1 - I - 0x00BB7E 02:BB6E: 0C        .byte $0C   ; carrot 06 pos X
-- D 1 - I - 0x00BB7F 02:BB6F: 06        .byte $06   ; carrot 06 pos Y
-- D 1 - I - 0x00BB80 02:BB70: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BB81 02:BB71: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BB82 02:BB72: 09        .byte $09   ; thing 00 id
-- D 1 - I - 0x00BB83 02:BB73: 03        .byte $03   ; thing 00 pos X
-- D 1 - I - 0x00BB84 02:BB74: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00BB85 02:BB75: 00        .byte $00   ; 
-- D 1 - I - 0x00BB86 02:BB76: 10        .byte $10   ; thing 01 id
-- D 1 - I - 0x00BB87 02:BB77: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00BB88 02:BB78: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BB89 02:BB79: 00        .byte $00   ; 
-- D 1 - I - 0x00BB8A 02:BB7A: 18        .byte $18   ; thing 02 id
-- D 1 - I - 0x00BB8B 02:BB7B: 0C        .byte $0C   ; thing 02 pos X
-- D 1 - I - 0x00BB8C 02:BB7C: 07        .byte $07   ; thing 02 pos Y
-- - - - - - 0x00BB8D 02:BB7D: 00        .byte $00   ; 
-- D 1 - I - 0x00BB8E 02:BB7E: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BB8F 02:BB7F: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BB90 02:BB80: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BB91 02:BB81: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BB62 02:BB52: 0C        .byte $0C, $0C   ; 00
+- D 1 - I - 0x00BB64 02:BB54: 06        .byte $06, $03   ; 01
+- D 1 - I - 0x00BB66 02:BB56: 0D        .byte $0D, $05   ; 02
+- D 1 - I - 0x00BB68 02:BB58: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00BB6A 02:BB5A: 1B        .byte $1B, $03   ; 04
+- D 1 - I - 0x00BB6C 02:BB5C: 1A        .byte $1A, $0C   ; 05
+- D 1 - I - 0x00BB6E 02:BB5E: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BB70 02:BB60: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BB72 02:BB62: 04        .byte $04, $03   ; 00
+- D 1 - I - 0x00BB74 02:BB64: 06        .byte $06, $06   ; 01
+- D 1 - I - 0x00BB76 02:BB66: 01        .byte $01, $0C   ; 02
+- D 1 - I - 0x00BB78 02:BB68: 12        .byte $12, $03   ; 03
+- D 1 - I - 0x00BB7A 02:BB6A: 1E        .byte $1E, $03   ; 04
+- D 1 - I - 0x00BB7C 02:BB6C: 19        .byte $19, $06   ; 05
+- D 1 - I - 0x00BB7E 02:BB6E: 0C        .byte $0C, $06   ; 06
+- D 1 - I - 0x00BB80 02:BB70: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BB82 02:BB72: 09        .byte $09, $03, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BB86 02:BB76: 10        .byte $10, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BB8A 02:BB7A: 18        .byte $18, $0C, con_item_id_sign_01, $00   ; 
+- D 1 - I - 0x00BB8E 02:BB7E: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 29
 - D 1 - I - 0x00BB92 02:BB82: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BB93 02:BB83: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BB94 02:BB84: 11        .byte $11   ; player 00 pos X
-- D 1 - I - 0x00BB95 02:BB85: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00BB96 02:BB86: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BB97 02:BB87: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BB98 02:BB88: 02        .byte $02   ; enemy 02 pos X
-- D 1 - I - 0x00BB99 02:BB89: 0C        .byte $0C   ; enemy 02 pos Y
-- D 1 - I - 0x00BB9A 02:BB8A: 09        .byte $09   ; enemy 03 pos X
-- D 1 - I - 0x00BB9B 02:BB8B: 05        .byte $05   ; enemy 03 pos Y
-- D 1 - I - 0x00BB9C 02:BB8C: 1B        .byte $1B   ; enemy 04 pos X
-- D 1 - I - 0x00BB9D 02:BB8D: 02        .byte $02   ; enemy 04 pos Y
-- D 1 - I - 0x00BB9E 02:BB8E: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BB9F 02:BB8F: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BBA0 02:BB90: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BBA1 02:BB91: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BBA2 02:BB92: 1C        .byte $1C   ; enemy 07 pos X
-- D 1 - I - 0x00BBA3 02:BB93: 07        .byte $07   ; enemy 07 pos Y
-- D 1 - I - 0x00BBA4 02:BB94: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BBA5 02:BB95: 06        .byte $06   ; carrot 00 pos Y
-- D 1 - I - 0x00BBA6 02:BB96: 01        .byte $01   ; carrot 01 pos X
-- D 1 - I - 0x00BBA7 02:BB97: 0C        .byte $0C   ; carrot 01 pos Y
-- D 1 - I - 0x00BBA8 02:BB98: 08        .byte $08   ; carrot 02 pos X
-- D 1 - I - 0x00BBA9 02:BB99: 03        .byte $03   ; carrot 02 pos Y
-- D 1 - I - 0x00BBAA 02:BB9A: 0C        .byte $0C   ; carrot 03 pos X
-- D 1 - I - 0x00BBAB 02:BB9B: 0C        .byte $0C   ; carrot 03 pos Y
-- D 1 - I - 0x00BBAC 02:BB9C: 11        .byte $11   ; carrot 04 pos X
-- D 1 - I - 0x00BBAD 02:BB9D: 02        .byte $02   ; carrot 04 pos Y
-- D 1 - I - 0x00BBAE 02:BB9E: 17        .byte $17   ; carrot 05 pos X
-- D 1 - I - 0x00BBAF 02:BB9F: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00BBB0 02:BBA0: 1E        .byte $1E   ; carrot 06 pos X
-- D 1 - I - 0x00BBB1 02:BBA1: 07        .byte $07   ; carrot 06 pos Y
-- D 1 - I - 0x00BBB2 02:BBA2: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BBB3 02:BBA3: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BBB4 02:BBA4: 0E        .byte $0E   ; thing 00 id
-- D 1 - I - 0x00BBB5 02:BBA5: 0C        .byte $0C   ; thing 00 pos X
-- D 1 - I - 0x00BBB6 02:BBA6: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00BBB7 02:BBA7: 00        .byte $00   ; 
-- D 1 - I - 0x00BBB8 02:BBA8: 14        .byte $14   ; thing 01 id
-- D 1 - I - 0x00BBB9 02:BBA9: 05        .byte $05   ; thing 01 pos X
-- D 1 - I - 0x00BBBA 02:BBAA: 03        .byte $03   ; thing 01 pos Y
-- - - - - - 0x00BBBB 02:BBAB: 00        .byte $00   ; 
-- D 1 - I - 0x00BBBC 02:BBAC: 19        .byte $19   ; thing 02 id
-- D 1 - I - 0x00BBBD 02:BBAD: 02        .byte $02   ; thing 02 pos X
-- D 1 - I - 0x00BBBE 02:BBAE: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00BBBF 02:BBAF: 00        .byte $00   ; 
-- D 1 - I - 0x00BBC0 02:BBB0: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BBC1 02:BBB1: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BBC2 02:BBB2: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BBC3 02:BBB3: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BB94 02:BB84: 11        .byte $11, $0C   ; 00
+- D 1 - I - 0x00BB96 02:BB86: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BB98 02:BB88: 02        .byte $02, $0C   ; 02
+- D 1 - I - 0x00BB9A 02:BB8A: 09        .byte $09, $05   ; 03
+- D 1 - I - 0x00BB9C 02:BB8C: 1B        .byte $1B, $02   ; 04
+- D 1 - I - 0x00BB9E 02:BB8E: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BBA0 02:BB90: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BBA2 02:BB92: 1C        .byte $1C, $07   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BBA4 02:BB94: 01        .byte $01, $06   ; 00
+- D 1 - I - 0x00BBA6 02:BB96: 01        .byte $01, $0C   ; 01
+- D 1 - I - 0x00BBA8 02:BB98: 08        .byte $08, $03   ; 02
+- D 1 - I - 0x00BBAA 02:BB9A: 0C        .byte $0C, $0C   ; 03
+- D 1 - I - 0x00BBAC 02:BB9C: 11        .byte $11, $02   ; 04
+- D 1 - I - 0x00BBAE 02:BB9E: 17        .byte $17, $0C   ; 05
+- D 1 - I - 0x00BBB0 02:BBA0: 1E        .byte $1E, $07   ; 06
+- D 1 - I - 0x00BBB2 02:BBA2: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BBB4 02:BBA4: 0E        .byte $0E, $0C, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BBB8 02:BBA8: 14        .byte $14, $05, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00BBBC 02:BBAC: 19        .byte $19, $02, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BBC0 02:BBB0: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 2A
 - D 1 - I - 0x00BBC4 02:BBB4: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BBC5 02:BBB5: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BBC6 02:BBB6: 10        .byte $10   ; player 00 pos X
-- D 1 - I - 0x00BBC7 02:BBB7: 07        .byte $07   ; player 00 pos Y
-- D 1 - I - 0x00BBC8 02:BBB8: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BBC9 02:BBB9: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BBCA 02:BBBA: 05        .byte $05   ; enemy 02 pos X
-- D 1 - I - 0x00BBCB 02:BBBB: 09        .byte $09   ; enemy 02 pos Y
-- D 1 - I - 0x00BBCC 02:BBBC: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00BBCD 02:BBBD: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00BBCE 02:BBBE: 19        .byte $19   ; enemy 04 pos X
-- D 1 - I - 0x00BBCF 02:BBBF: 09        .byte $09   ; enemy 04 pos Y
-- D 1 - I - 0x00BBD0 02:BBC0: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BBD1 02:BBC1: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BBD2 02:BBC2: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BBD3 02:BBC3: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BBD4 02:BBC4: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BBD5 02:BBC5: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BBD6 02:BBC6: 02        .byte $02   ; carrot 00 pos X
-- D 1 - I - 0x00BBD7 02:BBC7: 06        .byte $06   ; carrot 00 pos Y
-- D 1 - I - 0x00BBD8 02:BBC8: 05        .byte $05   ; carrot 01 pos X
-- D 1 - I - 0x00BBD9 02:BBC9: 0C        .byte $0C   ; carrot 01 pos Y
-- D 1 - I - 0x00BBDA 02:BBCA: 06        .byte $06   ; carrot 02 pos X
-- D 1 - I - 0x00BBDB 02:BBCB: 09        .byte $09   ; carrot 02 pos Y
-- D 1 - I - 0x00BBDC 02:BBCC: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00BBDD 02:BBCD: 04        .byte $04   ; carrot 03 pos Y
-- D 1 - I - 0x00BBDE 02:BBCE: 12        .byte $12   ; carrot 04 pos X
-- D 1 - I - 0x00BBDF 02:BBCF: 07        .byte $07   ; carrot 04 pos Y
-- D 1 - I - 0x00BBE0 02:BBD0: 19        .byte $19   ; carrot 05 pos X
-- D 1 - I - 0x00BBE1 02:BBD1: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00BBE2 02:BBD2: 1A        .byte $1A   ; carrot 06 pos X
-- D 1 - I - 0x00BBE3 02:BBD3: 03        .byte $03   ; carrot 06 pos Y
-- D 1 - I - 0x00BBE4 02:BBD4: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BBE5 02:BBD5: 09        .byte $09   ; carrot 07 pos Y
-- D 1 - I - 0x00BBE6 02:BBD6: 04        .byte $04   ; thing 00 id
-- D 1 - I - 0x00BBE7 02:BBD7: 03        .byte $03   ; thing 00 pos X
-- D 1 - I - 0x00BBE8 02:BBD8: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BBE9 02:BBD9: 00        .byte $00   ; 
-- D 1 - I - 0x00BBEA 02:BBDA: 1B        .byte $1B   ; thing 01 id
-- D 1 - I - 0x00BBEB 02:BBDB: 03        .byte $03   ; thing 01 pos X
-- D 1 - I - 0x00BBEC 02:BBDC: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BBED 02:BBDD: 00        .byte $00   ; 
-- D 1 - I - 0x00BBEE 02:BBDE: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BBEF 02:BBDF: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BBF0 02:BBE0: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BBF1 02:BBE1: 00        .byte $00   ; 
-- D 1 - I - 0x00BBF2 02:BBE2: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BBF3 02:BBE3: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BBF4 02:BBE4: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BBF5 02:BBE5: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BBC6 02:BBB6: 10        .byte $10, $07   ; 00
+- D 1 - I - 0x00BBC8 02:BBB8: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BBCA 02:BBBA: 05        .byte $05, $09   ; 02
+- D 1 - I - 0x00BBCC 02:BBBC: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00BBCE 02:BBBE: 19        .byte $19, $09   ; 04
+- D 1 - I - 0x00BBD0 02:BBC0: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BBD2 02:BBC2: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BBD4 02:BBC4: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BBD6 02:BBC6: 02        .byte $02, $06   ; 00
+- D 1 - I - 0x00BBD8 02:BBC8: 05        .byte $05, $0C   ; 01
+- D 1 - I - 0x00BBDA 02:BBCA: 06        .byte $06, $09   ; 02
+- D 1 - I - 0x00BBDC 02:BBCC: 0E        .byte $0E, $04   ; 03
+- D 1 - I - 0x00BBDE 02:BBCE: 12        .byte $12, $07   ; 04
+- D 1 - I - 0x00BBE0 02:BBD0: 19        .byte $19, $0C   ; 05
+- D 1 - I - 0x00BBE2 02:BBD2: 1A        .byte $1A, $03   ; 06
+- D 1 - I - 0x00BBE4 02:BBD4: 1E        .byte $1E, $09   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BBE6 02:BBD6: 04        .byte $04, $03, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BBEA 02:BBDA: 1B        .byte $1B, $03, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BBEE 02:BBDE: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BBF2 02:BBE2: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 2B
 - D 1 - I - 0x00BBF6 02:BBE6: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BBF7 02:BBE7: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BBF8 02:BBE8: 0C        .byte $0C   ; player 00 pos X
-- D 1 - I - 0x00BBF9 02:BBE9: 09        .byte $09   ; player 00 pos Y
-- D 1 - I - 0x00BBFA 02:BBEA: 02        .byte $02   ; enemy 01 pos X
-- D 1 - I - 0x00BBFB 02:BBEB: 0C        .byte $0C   ; enemy 01 pos Y
-- D 1 - I - 0x00BBFC 02:BBEC: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00BBFD 02:BBED: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00BBFE 02:BBEE: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00BBFF 02:BBEF: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00BC00 02:BBF0: 10        .byte $10   ; enemy 04 pos X
-- D 1 - I - 0x00BC01 02:BBF1: 0C        .byte $0C   ; enemy 04 pos Y
-- D 1 - I - 0x00BC02 02:BBF2: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BC03 02:BBF3: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BC04 02:BBF4: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BC05 02:BBF5: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BC06 02:BBF6: 1A        .byte $1A   ; enemy 07 pos X
-- D 1 - I - 0x00BC07 02:BBF7: 02        .byte $02   ; enemy 07 pos Y
-- D 1 - I - 0x00BC08 02:BBF8: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BC09 02:BBF9: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00BC0A 02:BBFA: 01        .byte $01   ; carrot 01 pos X
-- D 1 - I - 0x00BC0B 02:BBFB: 0C        .byte $0C   ; carrot 01 pos Y
-- D 1 - I - 0x00BC0C 02:BBFC: 03        .byte $03   ; carrot 02 pos X
-- D 1 - I - 0x00BC0D 02:BBFD: 05        .byte $05   ; carrot 02 pos Y
-- D 1 - I - 0x00BC0E 02:BBFE: 0A        .byte $0A   ; carrot 03 pos X
-- D 1 - I - 0x00BC0F 02:BBFF: 03        .byte $03   ; carrot 03 pos Y
-- D 1 - I - 0x00BC10 02:BC00: 0F        .byte $0F   ; carrot 04 pos X
-- D 1 - I - 0x00BC11 02:BC01: 0C        .byte $0C   ; carrot 04 pos Y
-- D 1 - I - 0x00BC12 02:BC02: 1B        .byte $1B   ; carrot 05 pos X
-- D 1 - I - 0x00BC13 02:BC03: 02        .byte $02   ; carrot 05 pos Y
-- D 1 - I - 0x00BC14 02:BC04: 1A        .byte $1A   ; carrot 06 pos X
-- D 1 - I - 0x00BC15 02:BC05: 05        .byte $05   ; carrot 06 pos Y
-- D 1 - I - 0x00BC16 02:BC06: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BC17 02:BC07: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BC18 02:BC08: 10        .byte $10   ; thing 00 id
-- D 1 - I - 0x00BC19 02:BC09: 09        .byte $09   ; thing 00 pos X
-- D 1 - I - 0x00BC1A 02:BC0A: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00BC1B 02:BC0B: 00        .byte $00   ; 
-- D 1 - I - 0x00BC1C 02:BC0C: 14        .byte $14   ; thing 01 id
-- D 1 - I - 0x00BC1D 02:BC0D: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00BC1E 02:BC0E: 02        .byte $02   ; thing 01 pos Y
-- - - - - - 0x00BC1F 02:BC0F: 00        .byte $00   ; 
-- D 1 - I - 0x00BC20 02:BC10: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BC21 02:BC11: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BC22 02:BC12: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BC23 02:BC13: 00        .byte $00   ; 
-- D 1 - I - 0x00BC24 02:BC14: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BC25 02:BC15: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BC26 02:BC16: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BC27 02:BC17: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BBF8 02:BBE8: 0C        .byte $0C, $09   ; 00
+- D 1 - I - 0x00BBFA 02:BBEA: 02        .byte $02, $0C   ; 01
+- D 1 - I - 0x00BBFC 02:BBEC: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00BBFE 02:BBEE: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00BC00 02:BBF0: 10        .byte $10, $0C   ; 04
+- D 1 - I - 0x00BC02 02:BBF2: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BC04 02:BBF4: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BC06 02:BBF6: 1A        .byte $1A, $02   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BC08 02:BBF8: 01        .byte $01, $02   ; 00
+- D 1 - I - 0x00BC0A 02:BBFA: 01        .byte $01, $0C   ; 01
+- D 1 - I - 0x00BC0C 02:BBFC: 03        .byte $03, $05   ; 02
+- D 1 - I - 0x00BC0E 02:BBFE: 0A        .byte $0A, $03   ; 03
+- D 1 - I - 0x00BC10 02:BC00: 0F        .byte $0F, $0C   ; 04
+- D 1 - I - 0x00BC12 02:BC02: 1B        .byte $1B, $02   ; 05
+- D 1 - I - 0x00BC14 02:BC04: 1A        .byte $1A, $05   ; 06
+- D 1 - I - 0x00BC16 02:BC06: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BC18 02:BC08: 10        .byte $10, $09, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00BC1C 02:BC0C: 14        .byte $14, $0C, con_item_id_box, $00   ; 
+- D 1 - I - 0x00BC20 02:BC10: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BC24 02:BC14: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 2C
 - D 1 - I - 0x00BC28 02:BC18: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BC29 02:BC19: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BC2A 02:BC1A: 0D        .byte $0D   ; player 00 pos X
-- D 1 - I - 0x00BC2B 02:BC1B: 06        .byte $06   ; player 00 pos Y
-- D 1 - I - 0x00BC2C 02:BC1C: 02        .byte $02   ; enemy 01 pos X
-- D 1 - I - 0x00BC2D 02:BC1D: 0C        .byte $0C   ; enemy 01 pos Y
-- D 1 - I - 0x00BC2E 02:BC1E: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00BC2F 02:BC1F: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00BC30 02:BC20: 17        .byte $17   ; enemy 03 pos X
-- D 1 - I - 0x00BC31 02:BC21: 09        .byte $09   ; enemy 03 pos Y
-- D 1 - I - 0x00BC32 02:BC22: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00BC33 02:BC23: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00BC34 02:BC24: 07        .byte $07   ; enemy 05 pos X
-- D 1 - I - 0x00BC35 02:BC25: 02        .byte $02   ; enemy 05 pos Y
-- D 1 - I - 0x00BC36 02:BC26: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BC37 02:BC27: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BC38 02:BC28: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BC39 02:BC29: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BC3A 02:BC2A: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BC3B 02:BC2B: 06        .byte $06   ; carrot 00 pos Y
-- D 1 - I - 0x00BC3C 02:BC2C: 09        .byte $09   ; carrot 01 pos X
-- D 1 - I - 0x00BC3D 02:BC2D: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00BC3E 02:BC2E: 08        .byte $08   ; carrot 02 pos X
-- D 1 - I - 0x00BC3F 02:BC2F: 0C        .byte $0C   ; carrot 02 pos Y
-- D 1 - I - 0x00BC40 02:BC30: 0F        .byte $0F   ; carrot 03 pos X
-- D 1 - I - 0x00BC41 02:BC31: 06        .byte $06   ; carrot 03 pos Y
-- D 1 - I - 0x00BC42 02:BC32: 16        .byte $16   ; carrot 04 pos X
-- D 1 - I - 0x00BC43 02:BC33: 02        .byte $02   ; carrot 04 pos Y
-- D 1 - I - 0x00BC44 02:BC34: 16        .byte $16   ; carrot 05 pos X
-- D 1 - I - 0x00BC45 02:BC35: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00BC46 02:BC36: 1E        .byte $1E   ; carrot 06 pos X
-- D 1 - I - 0x00BC47 02:BC37: 06        .byte $06   ; carrot 06 pos Y
-- D 1 - I - 0x00BC48 02:BC38: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BC49 02:BC39: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BC4A 02:BC3A: 09        .byte $09   ; thing 00 id
-- D 1 - I - 0x00BC4B 02:BC3B: 09        .byte $09   ; thing 00 pos X
-- D 1 - I - 0x00BC4C 02:BC3C: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BC4D 02:BC3D: 00        .byte $00   ; 
-- D 1 - I - 0x00BC4E 02:BC3E: 10        .byte $10   ; thing 01 id
-- D 1 - I - 0x00BC4F 02:BC3F: 06        .byte $06   ; thing 01 pos X
-- D 1 - I - 0x00BC50 02:BC40: 06        .byte $06   ; thing 01 pos Y
-- - - - - - 0x00BC51 02:BC41: 00        .byte $00   ; 
-- D 1 - I - 0x00BC52 02:BC42: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BC53 02:BC43: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BC54 02:BC44: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BC55 02:BC45: 00        .byte $00   ; 
-- D 1 - I - 0x00BC56 02:BC46: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BC57 02:BC47: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BC58 02:BC48: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BC59 02:BC49: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BC2A 02:BC1A: 0D        .byte $0D, $06   ; 00
+- D 1 - I - 0x00BC2C 02:BC1C: 02        .byte $02, $0C   ; 01
+- D 1 - I - 0x00BC2E 02:BC1E: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00BC30 02:BC20: 17        .byte $17, $09   ; 03
+- D 1 - I - 0x00BC32 02:BC22: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00BC34 02:BC24: 07        .byte $07, $02   ; 05
+- D 1 - I - 0x00BC36 02:BC26: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BC38 02:BC28: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BC3A 02:BC2A: 01        .byte $01, $06   ; 00
+- D 1 - I - 0x00BC3C 02:BC2C: 09        .byte $09, $02   ; 01
+- D 1 - I - 0x00BC3E 02:BC2E: 08        .byte $08, $0C   ; 02
+- D 1 - I - 0x00BC40 02:BC30: 0F        .byte $0F, $06   ; 03
+- D 1 - I - 0x00BC42 02:BC32: 16        .byte $16, $02   ; 04
+- D 1 - I - 0x00BC44 02:BC34: 16        .byte $16, $0C   ; 05
+- D 1 - I - 0x00BC46 02:BC36: 1E        .byte $1E, $06   ; 06
+- D 1 - I - 0x00BC48 02:BC38: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BC4A 02:BC3A: 09        .byte $09, $09, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BC4E 02:BC3E: 10        .byte $10, $06, con_item_id_sign_00, $00   ; 
+- D 1 - I - 0x00BC52 02:BC42: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BC56 02:BC46: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 2D
 - D 1 - I - 0x00BC5A 02:BC4A: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BC5B 02:BC4B: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BC5C 02:BC4C: 11        .byte $11   ; player 00 pos X
-- D 1 - I - 0x00BC5D 02:BC4D: 09        .byte $09   ; player 00 pos Y
-- D 1 - I - 0x00BC5E 02:BC4E: 05        .byte $05   ; enemy 01 pos X
-- D 1 - I - 0x00BC5F 02:BC4F: 02        .byte $02   ; enemy 01 pos Y
-- D 1 - I - 0x00BC60 02:BC50: 01        .byte $01   ; enemy 02 pos X
-- D 1 - I - 0x00BC61 02:BC51: 06        .byte $06   ; enemy 02 pos Y
-- D 1 - I - 0x00BC62 02:BC52: 06        .byte $06   ; enemy 03 pos X
-- D 1 - I - 0x00BC63 02:BC53: 09        .byte $09   ; enemy 03 pos Y
-- D 1 - I - 0x00BC64 02:BC54: 1A        .byte $1A   ; enemy 04 pos X
-- D 1 - I - 0x00BC65 02:BC55: 06        .byte $06   ; enemy 04 pos Y
-- D 1 - I - 0x00BC66 02:BC56: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BC67 02:BC57: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BC68 02:BC58: 1A        .byte $1A   ; enemy 06 pos X
-- D 1 - I - 0x00BC69 02:BC59: 09        .byte $09   ; enemy 06 pos Y
-- D 1 - I - 0x00BC6A 02:BC5A: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BC6B 02:BC5B: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BC6C 02:BC5C: 02        .byte $02   ; carrot 00 pos X
-- D 1 - I - 0x00BC6D 02:BC5D: 04        .byte $04   ; carrot 00 pos Y
-- D 1 - I - 0x00BC6E 02:BC5E: 02        .byte $02   ; carrot 01 pos X
-- D 1 - I - 0x00BC6F 02:BC5F: 0A        .byte $0A   ; carrot 01 pos Y
-- D 1 - I - 0x00BC70 02:BC60: 0F        .byte $0F   ; carrot 02 pos X
-- D 1 - I - 0x00BC71 02:BC61: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00BC72 02:BC62: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00BC73 02:BC63: 09        .byte $09   ; carrot 03 pos Y
-- D 1 - I - 0x00BC74 02:BC64: 12        .byte $12   ; carrot 04 pos X
-- D 1 - I - 0x00BC75 02:BC65: 02        .byte $02   ; carrot 04 pos Y
-- D 1 - I - 0x00BC76 02:BC66: 17        .byte $17   ; carrot 05 pos X
-- D 1 - I - 0x00BC77 02:BC67: 09        .byte $09   ; carrot 05 pos Y
-- D 1 - I - 0x00BC78 02:BC68: 1C        .byte $1C   ; carrot 06 pos X
-- D 1 - I - 0x00BC79 02:BC69: 04        .byte $04   ; carrot 06 pos Y
-- D 1 - I - 0x00BC7A 02:BC6A: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BC7B 02:BC6B: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BC7C 02:BC6C: 10        .byte $10   ; thing 00 id
-- D 1 - I - 0x00BC7D 02:BC6D: 0C        .byte $0C   ; thing 00 pos X
-- D 1 - I - 0x00BC7E 02:BC6E: 02        .byte $02   ; thing 00 pos Y
-- - - - - - 0x00BC7F 02:BC6F: 00        .byte $00   ; 
-- D 1 - I - 0x00BC80 02:BC70: 0B        .byte $0B   ; thing 01 id
-- D 1 - I - 0x00BC81 02:BC71: 02        .byte $02   ; thing 01 pos X
-- D 1 - I - 0x00BC82 02:BC72: 03        .byte $03   ; thing 01 pos Y
-- - - - - - 0x00BC83 02:BC73: 00        .byte $00   ; 
-- D 1 - I - 0x00BC84 02:BC74: 18        .byte $18   ; thing 02 id
-- D 1 - I - 0x00BC85 02:BC75: 02        .byte $02   ; thing 02 pos X
-- D 1 - I - 0x00BC86 02:BC76: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00BC87 02:BC77: 00        .byte $00   ; 
-- D 1 - I - 0x00BC88 02:BC78: 03        .byte $03   ; thing 03 id
-- D 1 - I - 0x00BC89 02:BC79: 09        .byte $09   ; thing 03 pos X
-- D 1 - I - 0x00BC8A 02:BC7A: 04        .byte $04   ; thing 03 pos Y
-- - - - - - 0x00BC8B 02:BC7B: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BC5C 02:BC4C: 11        .byte $11, $09   ; 00
+- D 1 - I - 0x00BC5E 02:BC4E: 05        .byte $05, $02   ; 01
+- D 1 - I - 0x00BC60 02:BC50: 01        .byte $01, $06   ; 02
+- D 1 - I - 0x00BC62 02:BC52: 06        .byte $06, $09   ; 03
+- D 1 - I - 0x00BC64 02:BC54: 1A        .byte $1A, $06   ; 04
+- D 1 - I - 0x00BC66 02:BC56: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BC68 02:BC58: 1A        .byte $1A, $09   ; 06
+- D 1 - I - 0x00BC6A 02:BC5A: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BC6C 02:BC5C: 02        .byte $02, $04   ; 00
+- D 1 - I - 0x00BC6E 02:BC5E: 02        .byte $02, $0A   ; 01
+- D 1 - I - 0x00BC70 02:BC60: 0F        .byte $0F, $06   ; 02
+- D 1 - I - 0x00BC72 02:BC62: 0E        .byte $0E, $09   ; 03
+- D 1 - I - 0x00BC74 02:BC64: 12        .byte $12, $02   ; 04
+- D 1 - I - 0x00BC76 02:BC66: 17        .byte $17, $09   ; 05
+- D 1 - I - 0x00BC78 02:BC68: 1C        .byte $1C, $04   ; 06
+- D 1 - I - 0x00BC7A 02:BC6A: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BC7C 02:BC6C: 10        .byte $10, $0C, con_item_id_box, $00   ; 
+- D 1 - I - 0x00BC80 02:BC70: 0B        .byte $0B, $02, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00BC84 02:BC74: 18        .byte $18, $02, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BC88 02:BC78: 03        .byte $03, $09, con_item_id_glove, $00   ; 
+
+
+
 ; 2E
 - D 1 - I - 0x00BC8C 02:BC7C: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BC8D 02:BC7D: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BC8E 02:BC7E: 02        .byte $02   ; player 00 pos X
-- D 1 - I - 0x00BC8F 02:BC7F: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00BC90 02:BC80: 01        .byte $01   ; enemy 01 pos X
-- D 1 - I - 0x00BC91 02:BC81: 06        .byte $06   ; enemy 01 pos Y
-- D 1 - I - 0x00BC92 02:BC82: 11        .byte $11   ; enemy 02 pos X
-- D 1 - I - 0x00BC93 02:BC83: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00BC94 02:BC84: 19        .byte $19   ; enemy 03 pos X
-- D 1 - I - 0x00BC95 02:BC85: 0C        .byte $0C   ; enemy 03 pos Y
-- D 1 - I - 0x00BC96 02:BC86: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00BC97 02:BC87: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00BC98 02:BC88: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BC99 02:BC89: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BC9A 02:BC8A: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BC9B 02:BC8B: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BC9C 02:BC8C: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BC9D 02:BC8D: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BC9E 02:BC8E: 0B        .byte $0B   ; carrot 00 pos X
-- D 1 - I - 0x00BC9F 02:BC8F: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00BCA0 02:BC90: 12        .byte $12   ; carrot 01 pos X
-- D 1 - I - 0x00BCA1 02:BC91: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00BCA2 02:BC92: 07        .byte $07   ; carrot 02 pos X
-- D 1 - I - 0x00BCA3 02:BC93: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00BCA4 02:BC94: 0C        .byte $0C   ; carrot 03 pos X
-- D 1 - I - 0x00BCA5 02:BC95: 06        .byte $06   ; carrot 03 pos Y
-- D 1 - I - 0x00BCA6 02:BC96: 14        .byte $14   ; carrot 04 pos X
-- D 1 - I - 0x00BCA7 02:BC97: 06        .byte $06   ; carrot 04 pos Y
-- D 1 - I - 0x00BCA8 02:BC98: 0B        .byte $0B   ; carrot 05 pos X
-- D 1 - I - 0x00BCA9 02:BC99: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00BCAA 02:BC9A: 10        .byte $10   ; carrot 06 pos X
-- D 1 - I - 0x00BCAB 02:BC9B: 0A        .byte $0A   ; carrot 06 pos Y
-- D 1 - I - 0x00BCAC 02:BC9C: 1C        .byte $1C   ; carrot 07 pos X
-- D 1 - I - 0x00BCAD 02:BC9D: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BCAE 02:BC9E: 09        .byte $09   ; thing 00 id
-- D 1 - I - 0x00BCAF 02:BC9F: 06        .byte $06   ; thing 00 pos X
-- D 1 - I - 0x00BCB0 02:BCA0: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BCB1 02:BCA1: 00        .byte $00   ; 
-- D 1 - I - 0x00BCB2 02:BCA2: 16        .byte $16   ; thing 01 id
-- D 1 - I - 0x00BCB3 02:BCA3: 06        .byte $06   ; thing 01 pos X
-- D 1 - I - 0x00BCB4 02:BCA4: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BCB5 02:BCA5: 00        .byte $00   ; 
-- D 1 - I - 0x00BCB6 02:BCA6: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BCB7 02:BCA7: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BCB8 02:BCA8: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BCB9 02:BCA9: 00        .byte $00   ; 
-- D 1 - I - 0x00BCBA 02:BCAA: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BCBB 02:BCAB: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BCBC 02:BCAC: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BCBD 02:BCAD: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BC8E 02:BC7E: 02        .byte $02, $0C   ; 00
+- D 1 - I - 0x00BC90 02:BC80: 01        .byte $01, $06   ; 01
+- D 1 - I - 0x00BC92 02:BC82: 11        .byte $11, $02   ; 02
+- D 1 - I - 0x00BC94 02:BC84: 19        .byte $19, $0C   ; 03
+- D 1 - I - 0x00BC96 02:BC86: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00BC98 02:BC88: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BC9A 02:BC8A: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BC9C 02:BC8C: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BC9E 02:BC8E: 0B        .byte $0B, $02   ; 00
+- D 1 - I - 0x00BCA0 02:BC90: 12        .byte $12, $02   ; 01
+- D 1 - I - 0x00BCA2 02:BC92: 07        .byte $07, $06   ; 02
+- D 1 - I - 0x00BCA4 02:BC94: 0C        .byte $0C, $06   ; 03
+- D 1 - I - 0x00BCA6 02:BC96: 14        .byte $14, $06   ; 04
+- D 1 - I - 0x00BCA8 02:BC98: 0B        .byte $0B, $0C   ; 05
+- D 1 - I - 0x00BCAA 02:BC9A: 10        .byte $10, $0A   ; 06
+- D 1 - I - 0x00BCAC 02:BC9C: 1C        .byte $1C, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BCAE 02:BC9E: 09        .byte $09, $06, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BCB2 02:BCA2: 16        .byte $16, $06, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BCB6 02:BCA6: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BCBA 02:BCAA: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 2F
 - D 1 - I - 0x00BCBE 02:BCAE: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BCBF 02:BCAF: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BCC0 02:BCB0: 07        .byte $07   ; player 00 pos X
-- D 1 - I - 0x00BCC1 02:BCB1: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00BCC2 02:BCB2: 08        .byte $08   ; enemy 01 pos X
-- D 1 - I - 0x00BCC3 02:BCB3: 02        .byte $02   ; enemy 01 pos Y
-- D 1 - I - 0x00BCC4 02:BCB4: 13        .byte $13   ; enemy 02 pos X
-- D 1 - I - 0x00BCC5 02:BCB5: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00BCC6 02:BCB6: 16        .byte $16   ; enemy 03 pos X
-- D 1 - I - 0x00BCC7 02:BCB7: 06        .byte $06   ; enemy 03 pos Y
-- D 1 - I - 0x00BCC8 02:BCB8: 13        .byte $13   ; enemy 04 pos X
-- D 1 - I - 0x00BCC9 02:BCB9: 09        .byte $09   ; enemy 04 pos Y
-- D 1 - I - 0x00BCCA 02:BCBA: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BCCB 02:BCBB: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BCCC 02:BCBC: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BCCD 02:BCBD: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BCCE 02:BCBE: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BCCF 02:BCBF: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BCD0 02:BCC0: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BCD1 02:BCC1: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00BCD2 02:BCC2: 01        .byte $01   ; carrot 01 pos X
-- D 1 - I - 0x00BCD3 02:BCC3: 06        .byte $06   ; carrot 01 pos Y
-- D 1 - I - 0x00BCD4 02:BCC4: 0E        .byte $0E   ; carrot 02 pos X
-- D 1 - I - 0x00BCD5 02:BCC5: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00BCD6 02:BCC6: 0F        .byte $0F   ; carrot 03 pos X
-- D 1 - I - 0x00BCD7 02:BCC7: 0C        .byte $0C   ; carrot 03 pos Y
-- D 1 - I - 0x00BCD8 02:BCC8: 10        .byte $10   ; carrot 04 pos X
-- D 1 - I - 0x00BCD9 02:BCC9: 02        .byte $02   ; carrot 04 pos Y
-- D 1 - I - 0x00BCDA 02:BCCA: 10        .byte $10   ; carrot 05 pos X
-- D 1 - I - 0x00BCDB 02:BCCB: 06        .byte $06   ; carrot 05 pos Y
-- D 1 - I - 0x00BCDC 02:BCCC: 1E        .byte $1E   ; carrot 06 pos X
-- D 1 - I - 0x00BCDD 02:BCCD: 06        .byte $06   ; carrot 06 pos Y
-- D 1 - I - 0x00BCDE 02:BCCE: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BCDF 02:BCCF: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BCE0 02:BCD0: 0A        .byte $0A   ; thing 00 id
-- D 1 - I - 0x00BCE1 02:BCD1: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00BCE2 02:BCD2: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00BCE3 02:BCD3: 00        .byte $00   ; 
-- D 1 - I - 0x00BCE4 02:BCD4: 17        .byte $17   ; thing 01 id
-- D 1 - I - 0x00BCE5 02:BCD5: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00BCE6 02:BCD6: 02        .byte $02   ; thing 01 pos Y
-- - - - - - 0x00BCE7 02:BCD7: 00        .byte $00   ; 
-- D 1 - I - 0x00BCE8 02:BCD8: 0D        .byte $0D   ; thing 02 id
-- D 1 - I - 0x00BCE9 02:BCD9: 0C        .byte $0C   ; thing 02 pos X
-- D 1 - I - 0x00BCEA 02:BCDA: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00BCEB 02:BCDB: 00        .byte $00   ; 
-- D 1 - I - 0x00BCEC 02:BCDC: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BCED 02:BCDD: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BCEE 02:BCDE: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BCEF 02:BCDF: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BCC0 02:BCB0: 07        .byte $07, $0C   ; 00
+- D 1 - I - 0x00BCC2 02:BCB2: 08        .byte $08, $02   ; 01
+- D 1 - I - 0x00BCC4 02:BCB4: 13        .byte $13, $02   ; 02
+- D 1 - I - 0x00BCC6 02:BCB6: 16        .byte $16, $06   ; 03
+- D 1 - I - 0x00BCC8 02:BCB8: 13        .byte $13, $09   ; 04
+- D 1 - I - 0x00BCCA 02:BCBA: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BCCC 02:BCBC: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BCCE 02:BCBE: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BCD0 02:BCC0: 01        .byte $01, $02   ; 00
+- D 1 - I - 0x00BCD2 02:BCC2: 01        .byte $01, $06   ; 01
+- D 1 - I - 0x00BCD4 02:BCC4: 0E        .byte $0E, $06   ; 02
+- D 1 - I - 0x00BCD6 02:BCC6: 0F        .byte $0F, $0C   ; 03
+- D 1 - I - 0x00BCD8 02:BCC8: 10        .byte $10, $02   ; 04
+- D 1 - I - 0x00BCDA 02:BCCA: 10        .byte $10, $06   ; 05
+- D 1 - I - 0x00BCDC 02:BCCC: 1E        .byte $1E, $06   ; 06
+- D 1 - I - 0x00BCDE 02:BCCE: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BCE0 02:BCD0: 0A        .byte $0A, $02, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00BCE4 02:BCD4: 17        .byte $17, $0C, con_item_id_box, $00   ; 
+- D 1 - I - 0x00BCE8 02:BCD8: 0D        .byte $0D, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BCEC 02:BCDC: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 30
 - D 1 - I - 0x00BCF0 02:BCE0: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BCF1 02:BCE1: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BCF2 02:BCE2: 10        .byte $10   ; player 00 pos X
-- D 1 - I - 0x00BCF3 02:BCE3: 0B        .byte $0B   ; player 00 pos Y
-- D 1 - I - 0x00BCF4 02:BCE4: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BCF5 02:BCE5: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BCF6 02:BCE6: 02        .byte $02   ; enemy 02 pos X
-- D 1 - I - 0x00BCF7 02:BCE7: 0C        .byte $0C   ; enemy 02 pos Y
-- D 1 - I - 0x00BCF8 02:BCE8: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00BCF9 02:BCE9: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00BCFA 02:BCEA: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00BCFB 02:BCEB: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00BCFC 02:BCEC: 19        .byte $19   ; enemy 05 pos X
-- D 1 - I - 0x00BCFD 02:BCED: 0C        .byte $0C   ; enemy 05 pos Y
-- D 1 - I - 0x00BCFE 02:BCEE: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BCFF 02:BCEF: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BD00 02:BCF0: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BD01 02:BCF1: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BD02 02:BCF2: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BD03 02:BCF3: 0C        .byte $0C   ; carrot 00 pos Y
-- D 1 - I - 0x00BD04 02:BCF4: 09        .byte $09   ; carrot 01 pos X
-- D 1 - I - 0x00BD05 02:BCF5: 0C        .byte $0C   ; carrot 01 pos Y
-- D 1 - I - 0x00BD06 02:BCF6: 0D        .byte $0D   ; carrot 02 pos X
-- D 1 - I - 0x00BD07 02:BCF7: 0C        .byte $0C   ; carrot 02 pos Y
-- D 1 - I - 0x00BD08 02:BCF8: 0F        .byte $0F   ; carrot 03 pos X
-- D 1 - I - 0x00BD09 02:BCF9: 05        .byte $05   ; carrot 03 pos Y
-- D 1 - I - 0x00BD0A 02:BCFA: 10        .byte $10   ; carrot 04 pos X
-- D 1 - I - 0x00BD0B 02:BCFB: 03        .byte $03   ; carrot 04 pos Y
-- D 1 - I - 0x00BD0C 02:BCFC: 12        .byte $12   ; carrot 05 pos X
-- D 1 - I - 0x00BD0D 02:BCFD: 0A        .byte $0A   ; carrot 05 pos Y
-- D 1 - I - 0x00BD0E 02:BCFE: 14        .byte $14   ; carrot 06 pos X
-- D 1 - I - 0x00BD0F 02:BCFF: 0B        .byte $0B   ; carrot 06 pos Y
-- D 1 - I - 0x00BD10 02:BD00: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BD11 02:BD01: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BD12 02:BD02: 0E        .byte $0E   ; thing 00 id
-- D 1 - I - 0x00BD13 02:BD03: 08        .byte $08   ; thing 00 pos X
-- D 1 - I - 0x00BD14 02:BD04: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BD15 02:BD05: 00        .byte $00   ; 
-- D 1 - I - 0x00BD16 02:BD06: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00BD17 02:BD07: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00BD18 02:BD08: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00BD19 02:BD09: 00        .byte $00   ; 
-- D 1 - I - 0x00BD1A 02:BD0A: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BD1B 02:BD0B: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BD1C 02:BD0C: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BD1D 02:BD0D: 00        .byte $00   ; 
-- D 1 - I - 0x00BD1E 02:BD0E: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BD1F 02:BD0F: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BD20 02:BD10: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BD21 02:BD11: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BCF2 02:BCE2: 10        .byte $10, $0B   ; 00
+- D 1 - I - 0x00BCF4 02:BCE4: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BCF6 02:BCE6: 02        .byte $02, $0C   ; 02
+- D 1 - I - 0x00BCF8 02:BCE8: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00BCFA 02:BCEA: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00BCFC 02:BCEC: 19        .byte $19, $0C   ; 05
+- D 1 - I - 0x00BCFE 02:BCEE: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BD00 02:BCF0: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BD02 02:BCF2: 01        .byte $01, $0C   ; 00
+- D 1 - I - 0x00BD04 02:BCF4: 09        .byte $09, $0C   ; 01
+- D 1 - I - 0x00BD06 02:BCF6: 0D        .byte $0D, $0C   ; 02
+- D 1 - I - 0x00BD08 02:BCF8: 0F        .byte $0F, $05   ; 03
+- D 1 - I - 0x00BD0A 02:BCFA: 10        .byte $10, $03   ; 04
+- D 1 - I - 0x00BD0C 02:BCFC: 12        .byte $12, $0A   ; 05
+- D 1 - I - 0x00BD0E 02:BCFE: 14        .byte $14, $0B   ; 06
+- D 1 - I - 0x00BD10 02:BD00: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BD12 02:BD02: 0E        .byte $0E, $08, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BD16 02:BD06: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BD1A 02:BD0A: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BD1E 02:BD0E: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 31
 - D 1 - I - 0x00BD22 02:BD12: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BD23 02:BD13: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BD24 02:BD14: 03        .byte $03   ; player 00 pos X
-- D 1 - I - 0x00BD25 02:BD15: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00BD26 02:BD16: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BD27 02:BD17: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BD28 02:BD18: 09        .byte $09   ; enemy 02 pos X
-- D 1 - I - 0x00BD29 02:BD19: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00BD2A 02:BD1A: 13        .byte $13   ; enemy 03 pos X
-- D 1 - I - 0x00BD2B 02:BD1B: 08        .byte $08   ; enemy 03 pos Y
-- D 1 - I - 0x00BD2C 02:BD1C: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00BD2D 02:BD1D: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00BD2E 02:BD1E: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BD2F 02:BD1F: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BD30 02:BD20: 19        .byte $19   ; enemy 06 pos X
-- D 1 - I - 0x00BD31 02:BD21: 05        .byte $05   ; enemy 06 pos Y
-- D 1 - I - 0x00BD32 02:BD22: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BD33 02:BD23: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BD34 02:BD24: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BD35 02:BD25: 08        .byte $08   ; carrot 00 pos Y
-- D 1 - I - 0x00BD36 02:BD26: 03        .byte $03   ; carrot 01 pos X
-- D 1 - I - 0x00BD37 02:BD27: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00BD38 02:BD28: 04        .byte $04   ; carrot 02 pos X
-- D 1 - I - 0x00BD39 02:BD29: 08        .byte $08   ; carrot 02 pos Y
-- D 1 - I - 0x00BD3A 02:BD2A: 0D        .byte $0D   ; carrot 03 pos X
-- D 1 - I - 0x00BD3B 02:BD2B: 03        .byte $03   ; carrot 03 pos Y
-- D 1 - I - 0x00BD3C 02:BD2C: 11        .byte $11   ; carrot 04 pos X
-- D 1 - I - 0x00BD3D 02:BD2D: 02        .byte $02   ; carrot 04 pos Y
-- D 1 - I - 0x00BD3E 02:BD2E: 1D        .byte $1D   ; carrot 05 pos X
-- D 1 - I - 0x00BD3F 02:BD2F: 02        .byte $02   ; carrot 05 pos Y
-- D 1 - I - 0x00BD40 02:BD30: 1C        .byte $1C   ; carrot 06 pos X
-- D 1 - I - 0x00BD41 02:BD31: 08        .byte $08   ; carrot 06 pos Y
-- D 1 - I - 0x00BD42 02:BD32: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BD43 02:BD33: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BD44 02:BD34: 14        .byte $14   ; thing 00 id
-- D 1 - I - 0x00BD45 02:BD35: 0C        .byte $0C   ; thing 00 pos X
-- D 1 - I - 0x00BD46 02:BD36: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BD47 02:BD37: 00        .byte $00   ; 
-- D 1 - I - 0x00BD48 02:BD38: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00BD49 02:BD39: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00BD4A 02:BD3A: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00BD4B 02:BD3B: 00        .byte $00   ; 
-- D 1 - I - 0x00BD4C 02:BD3C: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BD4D 02:BD3D: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BD4E 02:BD3E: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BD4F 02:BD3F: 00        .byte $00   ; 
-- D 1 - I - 0x00BD50 02:BD40: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BD51 02:BD41: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BD52 02:BD42: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BD53 02:BD43: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BD24 02:BD14: 03        .byte $03, $0C   ; 00
+- D 1 - I - 0x00BD26 02:BD16: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BD28 02:BD18: 09        .byte $09, $02   ; 02
+- D 1 - I - 0x00BD2A 02:BD1A: 13        .byte $13, $08   ; 03
+- D 1 - I - 0x00BD2C 02:BD1C: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00BD2E 02:BD1E: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BD30 02:BD20: 19        .byte $19, $05   ; 06
+- D 1 - I - 0x00BD32 02:BD22: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BD34 02:BD24: 01        .byte $01, $08   ; 00
+- D 1 - I - 0x00BD36 02:BD26: 03        .byte $03, $02   ; 01
+- D 1 - I - 0x00BD38 02:BD28: 04        .byte $04, $08   ; 02
+- D 1 - I - 0x00BD3A 02:BD2A: 0D        .byte $0D, $03   ; 03
+- D 1 - I - 0x00BD3C 02:BD2C: 11        .byte $11, $02   ; 04
+- D 1 - I - 0x00BD3E 02:BD2E: 1D        .byte $1D, $02   ; 05
+- D 1 - I - 0x00BD40 02:BD30: 1C        .byte $1C, $08   ; 06
+- D 1 - I - 0x00BD42 02:BD32: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BD44 02:BD34: 14        .byte $14, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BD48 02:BD38: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BD4C 02:BD3C: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BD50 02:BD40: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 32
 - D 1 - I - 0x00BD54 02:BD44: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BD55 02:BD45: 02        .byte $02   ; stage type
-- D 1 - I - 0x00BD56 02:BD46: 04        .byte $04   ; player 00 pos X
-- D 1 - I - 0x00BD57 02:BD47: 09        .byte $09   ; player 00 pos Y
-- D 1 - I - 0x00BD58 02:BD48: 05        .byte $05   ; enemy 01 pos X
-- D 1 - I - 0x00BD59 02:BD49: 03        .byte $03   ; enemy 01 pos Y
-- D 1 - I - 0x00BD5A 02:BD4A: 19        .byte $19   ; enemy 02 pos X
-- D 1 - I - 0x00BD5B 02:BD4B: 03        .byte $03   ; enemy 02 pos Y
-- D 1 - I - 0x00BD5C 02:BD4C: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00BD5D 02:BD4D: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00BD5E 02:BD4E: 14        .byte $14   ; enemy 04 pos X
-- D 1 - I - 0x00BD5F 02:BD4F: 09        .byte $09   ; enemy 04 pos Y
-- D 1 - I - 0x00BD60 02:BD50: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BD61 02:BD51: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BD62 02:BD52: 1C        .byte $1C   ; enemy 06 pos X
-- D 1 - I - 0x00BD63 02:BD53: 0C        .byte $0C   ; enemy 06 pos Y
-- D 1 - I - 0x00BD64 02:BD54: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BD65 02:BD55: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BD66 02:BD56: 02        .byte $02   ; carrot 00 pos X
-- D 1 - I - 0x00BD67 02:BD57: 06        .byte $06   ; carrot 00 pos Y
-- D 1 - I - 0x00BD68 02:BD58: 10        .byte $10   ; carrot 01 pos X
-- D 1 - I - 0x00BD69 02:BD59: 06        .byte $06   ; carrot 01 pos Y
-- D 1 - I - 0x00BD6A 02:BD5A: 0E        .byte $0E   ; carrot 02 pos X
-- D 1 - I - 0x00BD6B 02:BD5B: 09        .byte $09   ; carrot 02 pos Y
-- D 1 - I - 0x00BD6C 02:BD5C: 17        .byte $17   ; carrot 03 pos X
-- D 1 - I - 0x00BD6D 02:BD5D: 09        .byte $09   ; carrot 03 pos Y
-- D 1 - I - 0x00BD6E 02:BD5E: 1B        .byte $1B   ; carrot 04 pos X
-- D 1 - I - 0x00BD6F 02:BD5F: 09        .byte $09   ; carrot 04 pos Y
-- D 1 - I - 0x00BD70 02:BD60: 05        .byte $05   ; carrot 05 pos X
-- D 1 - I - 0x00BD71 02:BD61: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00BD72 02:BD62: 10        .byte $10   ; carrot 06 pos X
-- D 1 - I - 0x00BD73 02:BD63: 0C        .byte $0C   ; carrot 06 pos Y
-- D 1 - I - 0x00BD74 02:BD64: 1B        .byte $1B   ; carrot 07 pos X
-- D 1 - I - 0x00BD75 02:BD65: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BD76 02:BD66: 0C        .byte $0C   ; thing 00 id
-- D 1 - I - 0x00BD77 02:BD67: 06        .byte $06   ; thing 00 pos X
-- D 1 - I - 0x00BD78 02:BD68: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00BD79 02:BD69: 00        .byte $00   ; 
-- D 1 - I - 0x00BD7A 02:BD6A: 19        .byte $19   ; thing 01 id
-- D 1 - I - 0x00BD7B 02:BD6B: 0C        .byte $0C   ; thing 01 pos X
-- D 1 - I - 0x00BD7C 02:BD6C: 02        .byte $02   ; thing 01 pos Y
-- - - - - - 0x00BD7D 02:BD6D: 00        .byte $00   ; 
-- D 1 - I - 0x00BD7E 02:BD6E: 02        .byte $02   ; thing 02 id
-- D 1 - I - 0x00BD7F 02:BD6F: 03        .byte $03   ; thing 02 pos X
-- D 1 - I - 0x00BD80 02:BD70: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00BD81 02:BD71: 00        .byte $00   ; 
-- D 1 - I - 0x00BD82 02:BD72: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BD83 02:BD73: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BD84 02:BD74: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BD85 02:BD75: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BD56 02:BD46: 04        .byte $04, $09   ; 00
+- D 1 - I - 0x00BD58 02:BD48: 05        .byte $05, $03   ; 01
+- D 1 - I - 0x00BD5A 02:BD4A: 19        .byte $19, $03   ; 02
+- D 1 - I - 0x00BD5C 02:BD4C: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00BD5E 02:BD4E: 14        .byte $14, $09   ; 04
+- D 1 - I - 0x00BD60 02:BD50: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BD62 02:BD52: 1C        .byte $1C, $0C   ; 06
+- D 1 - I - 0x00BD64 02:BD54: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BD66 02:BD56: 02        .byte $02, $06   ; 00
+- D 1 - I - 0x00BD68 02:BD58: 10        .byte $10, $06   ; 01
+- D 1 - I - 0x00BD6A 02:BD5A: 0E        .byte $0E, $09   ; 02
+- D 1 - I - 0x00BD6C 02:BD5C: 17        .byte $17, $09   ; 03
+- D 1 - I - 0x00BD6E 02:BD5E: 1B        .byte $1B, $09   ; 04
+- D 1 - I - 0x00BD70 02:BD60: 05        .byte $05, $0C   ; 05
+- D 1 - I - 0x00BD72 02:BD62: 10        .byte $10, $0C   ; 06
+- D 1 - I - 0x00BD74 02:BD64: 1B        .byte $1B, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BD76 02:BD66: 0C        .byte $0C, $06, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BD7A 02:BD6A: 19        .byte $19, $0C, con_item_id_box, $00   ; 
+- D 1 - I - 0x00BD7E 02:BD6E: 02        .byte $02, $03, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BD82 02:BD72: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 33
 - D 1 - I - 0x00BD86 02:BD76: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BD87 02:BD77: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BD88 02:BD78: 06        .byte $06   ; player 00 pos X
-- D 1 - I - 0x00BD89 02:BD79: 06        .byte $06   ; player 00 pos Y
-- D 1 - I - 0x00BD8A 02:BD7A: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BD8B 02:BD7B: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BD8C 02:BD7C: 16        .byte $16   ; enemy 02 pos X
-- D 1 - I - 0x00BD8D 02:BD7D: 06        .byte $06   ; enemy 02 pos Y
-- D 1 - I - 0x00BD8E 02:BD7E: 0C        .byte $0C   ; enemy 03 pos X
-- D 1 - I - 0x00BD8F 02:BD7F: 0C        .byte $0C   ; enemy 03 pos Y
-- D 1 - I - 0x00BD90 02:BD80: 19        .byte $19   ; enemy 04 pos X
-- D 1 - I - 0x00BD91 02:BD81: 09        .byte $09   ; enemy 04 pos Y
-- D 1 - I - 0x00BD92 02:BD82: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BD93 02:BD83: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BD94 02:BD84: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BD95 02:BD85: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BD96 02:BD86: 1D        .byte $1D   ; enemy 07 pos X
-- D 1 - I - 0x00BD97 02:BD87: 03        .byte $03   ; enemy 07 pos Y
-- D 1 - I - 0x00BD98 02:BD88: 02        .byte $02   ; carrot 00 pos X
-- D 1 - I - 0x00BD99 02:BD89: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00BD9A 02:BD8A: 04        .byte $04   ; carrot 01 pos X
-- D 1 - I - 0x00BD9B 02:BD8B: 0C        .byte $0C   ; carrot 01 pos Y
-- D 1 - I - 0x00BD9C 02:BD8C: 0A        .byte $0A   ; carrot 02 pos X
-- D 1 - I - 0x00BD9D 02:BD8D: 0C        .byte $0C   ; carrot 02 pos Y
-- D 1 - I - 0x00BD9E 02:BD8E: 0D        .byte $0D   ; carrot 03 pos X
-- D 1 - I - 0x00BD9F 02:BD8F: 03        .byte $03   ; carrot 03 pos Y
-- D 1 - I - 0x00BDA0 02:BD90: 11        .byte $11   ; carrot 04 pos X
-- D 1 - I - 0x00BDA1 02:BD91: 03        .byte $03   ; carrot 04 pos Y
-- D 1 - I - 0x00BDA2 02:BD92: 15        .byte $15   ; carrot 05 pos X
-- D 1 - I - 0x00BDA3 02:BD93: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00BDA4 02:BD94: 1B        .byte $1B   ; carrot 06 pos X
-- D 1 - I - 0x00BDA5 02:BD95: 03        .byte $03   ; carrot 06 pos Y
-- D 1 - I - 0x00BDA6 02:BD96: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BDA7 02:BD97: 0C        .byte $0C   ; carrot 07 pos Y
-- D 1 - I - 0x00BDA8 02:BD98: 06        .byte $06   ; thing 00 id
-- D 1 - I - 0x00BDA9 02:BD99: 03        .byte $03   ; thing 00 pos X
-- D 1 - I - 0x00BDAA 02:BD9A: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BDAB 02:BD9B: 00        .byte $00   ; 
-- D 1 - I - 0x00BDAC 02:BD9C: 1D        .byte $1D   ; thing 01 id
-- D 1 - I - 0x00BDAD 02:BD9D: 06        .byte $06   ; thing 01 pos X
-- D 1 - I - 0x00BDAE 02:BD9E: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BDAF 02:BD9F: 00        .byte $00   ; 
-- D 1 - I - 0x00BDB0 02:BDA0: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BDB1 02:BDA1: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BDB2 02:BDA2: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BDB3 02:BDA3: 00        .byte $00   ; 
-- D 1 - I - 0x00BDB4 02:BDA4: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BDB5 02:BDA5: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BDB6 02:BDA6: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BDB7 02:BDA7: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BD88 02:BD78: 06        .byte $06, $06   ; 00
+- D 1 - I - 0x00BD8A 02:BD7A: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BD8C 02:BD7C: 16        .byte $16, $06   ; 02
+- D 1 - I - 0x00BD8E 02:BD7E: 0C        .byte $0C, $0C   ; 03
+- D 1 - I - 0x00BD90 02:BD80: 19        .byte $19, $09   ; 04
+- D 1 - I - 0x00BD92 02:BD82: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BD94 02:BD84: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BD96 02:BD86: 1D        .byte $1D, $03   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BD98 02:BD88: 02        .byte $02, $03   ; 00
+- D 1 - I - 0x00BD9A 02:BD8A: 04        .byte $04, $0C   ; 01
+- D 1 - I - 0x00BD9C 02:BD8C: 0A        .byte $0A, $0C   ; 02
+- D 1 - I - 0x00BD9E 02:BD8E: 0D        .byte $0D, $03   ; 03
+- D 1 - I - 0x00BDA0 02:BD90: 11        .byte $11, $03   ; 04
+- D 1 - I - 0x00BDA2 02:BD92: 15        .byte $15, $0C   ; 05
+- D 1 - I - 0x00BDA4 02:BD94: 1B        .byte $1B, $03   ; 06
+- D 1 - I - 0x00BDA6 02:BD96: 1E        .byte $1E, $0C   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BDA8 02:BD98: 06        .byte $06, $03, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BDAC 02:BD9C: 1D        .byte $1D, $06, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BDB0 02:BDA0: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BDB4 02:BDA4: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 34
 - D 1 - I - 0x00BDB8 02:BDA8: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BDB9 02:BDA9: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BDBA 02:BDAA: 0A        .byte $0A   ; player 00 pos X
-- D 1 - I - 0x00BDBB 02:BDAB: 1B        .byte $1B   ; player 00 pos Y
-- D 1 - I - 0x00BDBC 02:BDAC: 0B        .byte $0B   ; enemy 01 pos X
-- D 1 - I - 0x00BDBD 02:BDAD: 02        .byte $02   ; enemy 01 pos Y
-- D 1 - I - 0x00BDBE 02:BDAE: 03        .byte $03   ; enemy 02 pos X
-- D 1 - I - 0x00BDBF 02:BDAF: 0B        .byte $0B   ; enemy 02 pos Y
-- D 1 - I - 0x00BDC0 02:BDB0: 0B        .byte $0B   ; enemy 03 pos X
-- D 1 - I - 0x00BDC1 02:BDB1: 05        .byte $05   ; enemy 03 pos Y
-- D 1 - I - 0x00BDC2 02:BDB2: 08        .byte $08   ; enemy 04 pos X
-- D 1 - I - 0x00BDC3 02:BDB3: 0E        .byte $0E   ; enemy 04 pos Y
-- D 1 - I - 0x00BDC4 02:BDB4: 07        .byte $07   ; enemy 05 pos X
-- D 1 - I - 0x00BDC5 02:BDB5: 08        .byte $08   ; enemy 05 pos Y
-- D 1 - I - 0x00BDC6 02:BDB6: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BDC7 02:BDB7: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BDC8 02:BDB8: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BDC9 02:BDB9: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BDCA 02:BDBA: 09        .byte $09   ; carrot 00 pos X
-- D 1 - I - 0x00BDCB 02:BDBB: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00BDCC 02:BDBC: 03        .byte $03   ; carrot 01 pos X
-- D 1 - I - 0x00BDCD 02:BDBD: 05        .byte $05   ; carrot 01 pos Y
-- D 1 - I - 0x00BDCE 02:BDBE: 0D        .byte $0D   ; carrot 02 pos X
-- D 1 - I - 0x00BDCF 02:BDBF: 0B        .byte $0B   ; carrot 02 pos Y
-- D 1 - I - 0x00BDD0 02:BDC0: 03        .byte $03   ; carrot 03 pos X
-- D 1 - I - 0x00BDD1 02:BDC1: 0E        .byte $0E   ; carrot 03 pos Y
-- D 1 - I - 0x00BDD2 02:BDC2: 0D        .byte $0D   ; carrot 04 pos X
-- D 1 - I - 0x00BDD3 02:BDC3: 14        .byte $14   ; carrot 04 pos Y
-- D 1 - I - 0x00BDD4 02:BDC4: 0C        .byte $0C   ; carrot 05 pos X
-- D 1 - I - 0x00BDD5 02:BDC5: 16        .byte $16   ; carrot 05 pos Y
-- D 1 - I - 0x00BDD6 02:BDC6: 0D        .byte $0D   ; carrot 06 pos X
-- D 1 - I - 0x00BDD7 02:BDC7: 1A        .byte $1A   ; carrot 06 pos Y
-- D 1 - I - 0x00BDD8 02:BDC8: 04        .byte $04   ; carrot 07 pos X
-- D 1 - I - 0x00BDD9 02:BDC9: 1B        .byte $1B   ; carrot 07 pos Y
-- D 1 - I - 0x00BDDA 02:BDCA: 04        .byte $04   ; thing 00 id
-- D 1 - I - 0x00BDDB 02:BDCB: 05        .byte $05   ; thing 00 pos X
-- D 1 - I - 0x00BDDC 02:BDCC: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00BDDD 02:BDCD: 00        .byte $00   ; 
-- D 1 - I - 0x00BDDE 02:BDCE: 0C        .byte $0C   ; thing 01 id
-- D 1 - I - 0x00BDDF 02:BDCF: 17        .byte $17   ; thing 01 pos X
-- D 1 - I - 0x00BDE0 02:BDD0: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00BDE1 02:BDD1: 00        .byte $00   ; 
-- D 1 - I - 0x00BDE2 02:BDD2: 07        .byte $07   ; thing 02 id
-- D 1 - I - 0x00BDE3 02:BDD3: 0B        .byte $0B   ; thing 02 pos X
-- D 1 - I - 0x00BDE4 02:BDD4: 05        .byte $05   ; thing 02 pos Y
-- - - - - - 0x00BDE5 02:BDD5: 00        .byte $00   ; 
-- D 1 - I - 0x00BDE6 02:BDD6: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BDE7 02:BDD7: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BDE8 02:BDD8: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BDE9 02:BDD9: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BDBA 02:BDAA: 0A        .byte $0A, $1B   ; 00
+- D 1 - I - 0x00BDBC 02:BDAC: 0B        .byte $0B, $02   ; 01
+- D 1 - I - 0x00BDBE 02:BDAE: 03        .byte $03, $0B   ; 02
+- D 1 - I - 0x00BDC0 02:BDB0: 0B        .byte $0B, $05   ; 03
+- D 1 - I - 0x00BDC2 02:BDB2: 08        .byte $08, $0E   ; 04
+- D 1 - I - 0x00BDC4 02:BDB4: 07        .byte $07, $08   ; 05
+- D 1 - I - 0x00BDC6 02:BDB6: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BDC8 02:BDB8: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BDCA 02:BDBA: 09        .byte $09, $02   ; 00
+- D 1 - I - 0x00BDCC 02:BDBC: 03        .byte $03, $05   ; 01
+- D 1 - I - 0x00BDCE 02:BDBE: 0D        .byte $0D, $0B   ; 02
+- D 1 - I - 0x00BDD0 02:BDC0: 03        .byte $03, $0E   ; 03
+- D 1 - I - 0x00BDD2 02:BDC2: 0D        .byte $0D, $14   ; 04
+- D 1 - I - 0x00BDD4 02:BDC4: 0C        .byte $0C, $16   ; 05
+- D 1 - I - 0x00BDD6 02:BDC6: 0D        .byte $0D, $1A   ; 06
+- D 1 - I - 0x00BDD8 02:BDC8: 04        .byte $04, $1B   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BDDA 02:BDCA: 04        .byte $04, $05, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00BDDE 02:BDCE: 0C        .byte $0C, $17, con_item_id_bucket, $00   ; 
+- D 1 - I - 0x00BDE2 02:BDD2: 07        .byte $07, $0B, con_item_id_10t, $00   ; 
+- D 1 - I - 0x00BDE6 02:BDD6: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 35
 - D 1 - I - 0x00BDEA 02:BDDA: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BDEB 02:BDDB: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BDEC 02:BDDC: 09        .byte $09   ; player 00 pos X
-- D 1 - I - 0x00BDED 02:BDDD: 03        .byte $03   ; player 00 pos Y
-- D 1 - I - 0x00BDEE 02:BDDE: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BDEF 02:BDDF: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BDF0 02:BDE0: 0E        .byte $0E   ; enemy 02 pos X
-- D 1 - I - 0x00BDF1 02:BDE1: 0F        .byte $0F   ; enemy 02 pos Y
-- D 1 - I - 0x00BDF2 02:BDE2: 02        .byte $02   ; enemy 03 pos X
-- D 1 - I - 0x00BDF3 02:BDE3: 0B        .byte $0B   ; enemy 03 pos Y
-- D 1 - I - 0x00BDF4 02:BDE4: 01        .byte $01   ; enemy 04 pos X
-- D 1 - I - 0x00BDF5 02:BDE5: 17        .byte $17   ; enemy 04 pos Y
-- D 1 - I - 0x00BDF6 02:BDE6: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BDF7 02:BDE7: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BDF8 02:BDE8: 08        .byte $08   ; enemy 06 pos X
-- D 1 - I - 0x00BDF9 02:BDE9: 1B        .byte $1B   ; enemy 06 pos Y
-- D 1 - I - 0x00BDFA 02:BDEA: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BDFB 02:BDEB: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BDFC 02:BDEC: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BDFD 02:BDED: 03        .byte $03   ; carrot 00 pos Y
-- D 1 - I - 0x00BDFE 02:BDEE: 07        .byte $07   ; carrot 01 pos X
-- D 1 - I - 0x00BDFF 02:BDEF: 07        .byte $07   ; carrot 01 pos Y
-- D 1 - I - 0x00BE00 02:BDF0: 0E        .byte $0E   ; carrot 02 pos X
-- D 1 - I - 0x00BE01 02:BDF1: 07        .byte $07   ; carrot 02 pos Y
-- D 1 - I - 0x00BE02 02:BDF2: 05        .byte $05   ; carrot 03 pos X
-- D 1 - I - 0x00BE03 02:BDF3: 13        .byte $13   ; carrot 03 pos Y
-- D 1 - I - 0x00BE04 02:BDF4: 07        .byte $07   ; carrot 04 pos X
-- D 1 - I - 0x00BE05 02:BDF5: 0B        .byte $0B   ; carrot 04 pos Y
-- D 1 - I - 0x00BE06 02:BDF6: 05        .byte $05   ; carrot 05 pos X
-- D 1 - I - 0x00BE07 02:BDF7: 0F        .byte $0F   ; carrot 05 pos Y
-- D 1 - I - 0x00BE08 02:BDF8: 01        .byte $01   ; carrot 06 pos X
-- D 1 - I - 0x00BE09 02:BDF9: 1B        .byte $1B   ; carrot 06 pos Y
-- D 1 - I - 0x00BE0A 02:BDFA: 0C        .byte $0C   ; carrot 07 pos X
-- D 1 - I - 0x00BE0B 02:BDFB: 1B        .byte $1B   ; carrot 07 pos Y
-- D 1 - I - 0x00BE0C 02:BDFC: 02        .byte $02   ; thing 00 id
-- D 1 - I - 0x00BE0D 02:BDFD: 0F        .byte $0F   ; thing 00 pos X
-- D 1 - I - 0x00BE0E 02:BDFE: 03        .byte $03   ; thing 00 pos Y
-- - - - - - 0x00BE0F 02:BDFF: 00        .byte $00   ; 
-- D 1 - I - 0x00BE10 02:BE00: 05        .byte $05   ; thing 01 id
-- D 1 - I - 0x00BE11 02:BE01: 0B        .byte $0B   ; thing 01 pos X
-- D 1 - I - 0x00BE12 02:BE02: 03        .byte $03   ; thing 01 pos Y
-- - - - - - 0x00BE13 02:BE03: 00        .byte $00   ; 
-- D 1 - I - 0x00BE14 02:BE04: 0E        .byte $0E   ; thing 02 id
-- D 1 - I - 0x00BE15 02:BE05: 17        .byte $17   ; thing 02 pos X
-- D 1 - I - 0x00BE16 02:BE06: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00BE17 02:BE07: 00        .byte $00   ; 
-- D 1 - I - 0x00BE18 02:BE08: 0E        .byte $0E   ; thing 03 id
-- D 1 - I - 0x00BE19 02:BE09: 03        .byte $03   ; thing 03 pos X
-- D 1 - I - 0x00BE1A 02:BE0A: 04        .byte $04   ; thing 03 pos Y
-- - - - - - 0x00BE1B 02:BE0B: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BDEC 02:BDDC: 09        .byte $09, $03   ; 00
+- D 1 - I - 0x00BDEE 02:BDDE: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BDF0 02:BDE0: 0E        .byte $0E, $0F   ; 02
+- D 1 - I - 0x00BDF2 02:BDE2: 02        .byte $02, $0B   ; 03
+- D 1 - I - 0x00BDF4 02:BDE4: 01        .byte $01, $17   ; 04
+- D 1 - I - 0x00BDF6 02:BDE6: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BDF8 02:BDE8: 08        .byte $08, $1B   ; 06
+- D 1 - I - 0x00BDFA 02:BDEA: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BDFC 02:BDEC: 01        .byte $01, $03   ; 00
+- D 1 - I - 0x00BDFE 02:BDEE: 07        .byte $07, $07   ; 01
+- D 1 - I - 0x00BE00 02:BDF0: 0E        .byte $0E, $07   ; 02
+- D 1 - I - 0x00BE02 02:BDF2: 05        .byte $05, $13   ; 03
+- D 1 - I - 0x00BE04 02:BDF4: 07        .byte $07, $0B   ; 04
+- D 1 - I - 0x00BE06 02:BDF6: 05        .byte $05, $0F   ; 05
+- D 1 - I - 0x00BE08 02:BDF8: 01        .byte $01, $1B   ; 06
+- D 1 - I - 0x00BE0A 02:BDFA: 0C        .byte $0C, $1B   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BE0C 02:BDFC: 02        .byte $02, $0F, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00BE10 02:BE00: 05        .byte $05, $0B, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00BE14 02:BE04: 0E        .byte $0E, $17, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BE18 02:BE08: 0E        .byte $0E, $03, con_item_id_glove, $00   ; 
+
+
+
 ; 36
 - D 1 - I - 0x00BE1C 02:BE0C: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BE1D 02:BE0D: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BE1E 02:BE0E: 09        .byte $09   ; player 00 pos X
-- D 1 - I - 0x00BE1F 02:BE0F: 1B        .byte $1B   ; player 00 pos Y
-- D 1 - I - 0x00BE20 02:BE10: 06        .byte $06   ; enemy 01 pos X
-- D 1 - I - 0x00BE21 02:BE11: 02        .byte $02   ; enemy 01 pos Y
-- D 1 - I - 0x00BE22 02:BE12: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00BE23 02:BE13: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00BE24 02:BE14: 01        .byte $01   ; enemy 03 pos X
-- D 1 - I - 0x00BE25 02:BE15: 11        .byte $11   ; enemy 03 pos Y
-- D 1 - I - 0x00BE26 02:BE16: 0A        .byte $0A   ; enemy 04 pos X
-- D 1 - I - 0x00BE27 02:BE17: 0B        .byte $0B   ; enemy 04 pos Y
-- D 1 - I - 0x00BE28 02:BE18: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BE29 02:BE19: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BE2A 02:BE1A: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BE2B 02:BE1B: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BE2C 02:BE1C: 01        .byte $01   ; enemy 07 pos X
-- D 1 - I - 0x00BE2D 02:BE1D: 14        .byte $14   ; enemy 07 pos Y
-- D 1 - I - 0x00BE2E 02:BE1E: 04        .byte $04   ; carrot 00 pos X
-- D 1 - I - 0x00BE2F 02:BE1F: 05        .byte $05   ; carrot 00 pos Y
-- D 1 - I - 0x00BE30 02:BE20: 0A        .byte $0A   ; carrot 01 pos X
-- D 1 - I - 0x00BE31 02:BE21: 05        .byte $05   ; carrot 01 pos Y
-- D 1 - I - 0x00BE32 02:BE22: 07        .byte $07   ; carrot 02 pos X
-- D 1 - I - 0x00BE33 02:BE23: 08        .byte $08   ; carrot 02 pos Y
-- D 1 - I - 0x00BE34 02:BE24: 03        .byte $03   ; carrot 03 pos X
-- D 1 - I - 0x00BE35 02:BE25: 0B        .byte $0B   ; carrot 03 pos Y
-- D 1 - I - 0x00BE36 02:BE26: 01        .byte $01   ; carrot 04 pos X
-- D 1 - I - 0x00BE37 02:BE27: 0E        .byte $0E   ; carrot 04 pos Y
-- D 1 - I - 0x00BE38 02:BE28: 05        .byte $05   ; carrot 05 pos X
-- D 1 - I - 0x00BE39 02:BE29: 14        .byte $14   ; carrot 05 pos Y
-- D 1 - I - 0x00BE3A 02:BE2A: 0E        .byte $0E   ; carrot 06 pos X
-- D 1 - I - 0x00BE3B 02:BE2B: 14        .byte $14   ; carrot 06 pos Y
-- D 1 - I - 0x00BE3C 02:BE2C: 0C        .byte $0C   ; carrot 07 pos X
-- D 1 - I - 0x00BE3D 02:BE2D: 17        .byte $17   ; carrot 07 pos Y
-- D 1 - I - 0x00BE3E 02:BE2E: 0A        .byte $0A   ; thing 00 id
-- D 1 - I - 0x00BE3F 02:BE2F: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00BE40 02:BE30: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00BE41 02:BE31: 00        .byte $00   ; 
-- D 1 - I - 0x00BE42 02:BE32: 07        .byte $07   ; thing 01 id
-- D 1 - I - 0x00BE43 02:BE33: 0E        .byte $0E   ; thing 01 pos X
-- D 1 - I - 0x00BE44 02:BE34: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BE45 02:BE35: 00        .byte $00   ; 
-- D 1 - I - 0x00BE46 02:BE36: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BE47 02:BE37: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BE48 02:BE38: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BE49 02:BE39: 00        .byte $00   ; 
-- D 1 - I - 0x00BE4A 02:BE3A: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BE4B 02:BE3B: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BE4C 02:BE3C: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BE4D 02:BE3D: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BE1E 02:BE0E: 09        .byte $09, $1B   ; 00
+- D 1 - I - 0x00BE20 02:BE10: 06        .byte $06, $02   ; 01
+- D 1 - I - 0x00BE22 02:BE12: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00BE24 02:BE14: 01        .byte $01, $11   ; 03
+- D 1 - I - 0x00BE26 02:BE16: 0A        .byte $0A, $0B   ; 04
+- D 1 - I - 0x00BE28 02:BE18: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BE2A 02:BE1A: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BE2C 02:BE1C: 01        .byte $01, $14   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BE2E 02:BE1E: 04        .byte $04, $05   ; 00
+- D 1 - I - 0x00BE30 02:BE20: 0A        .byte $0A, $05   ; 01
+- D 1 - I - 0x00BE32 02:BE22: 07        .byte $07, $08   ; 02
+- D 1 - I - 0x00BE34 02:BE24: 03        .byte $03, $0B   ; 03
+- D 1 - I - 0x00BE36 02:BE26: 01        .byte $01, $0E   ; 04
+- D 1 - I - 0x00BE38 02:BE28: 05        .byte $05, $14   ; 05
+- D 1 - I - 0x00BE3A 02:BE2A: 0E        .byte $0E, $14   ; 06
+- D 1 - I - 0x00BE3C 02:BE2C: 0C        .byte $0C, $17   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BE3E 02:BE2E: 0A        .byte $0A, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BE42 02:BE32: 07        .byte $07, $0E, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BE46 02:BE36: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BE4A 02:BE3A: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 37
 - D 1 - I - 0x00BE4E 02:BE3E: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BE4F 02:BE3F: 02        .byte $02   ; stage type
-- D 1 - I - 0x00BE50 02:BE40: 02        .byte $02   ; player 00 pos X
-- D 1 - I - 0x00BE51 02:BE41: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00BE52 02:BE42: 0D        .byte $0D   ; enemy 01 pos X
-- D 1 - I - 0x00BE53 02:BE43: 02        .byte $02   ; enemy 01 pos Y
-- D 1 - I - 0x00BE54 02:BE44: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00BE55 02:BE45: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00BE56 02:BE46: 07        .byte $07   ; enemy 03 pos X
-- D 1 - I - 0x00BE57 02:BE47: 15        .byte $15   ; enemy 03 pos Y
-- D 1 - I - 0x00BE58 02:BE48: 03        .byte $03   ; enemy 04 pos X
-- D 1 - I - 0x00BE59 02:BE49: 1A        .byte $1A   ; enemy 04 pos Y
-- D 1 - I - 0x00BE5A 02:BE4A: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BE5B 02:BE4B: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BE5C 02:BE4C: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BE5D 02:BE4D: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BE5E 02:BE4E: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BE5F 02:BE4F: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BE60 02:BE50: 0B        .byte $0B   ; carrot 00 pos X
-- D 1 - I - 0x00BE61 02:BE51: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00BE62 02:BE52: 03        .byte $03   ; carrot 01 pos X
-- D 1 - I - 0x00BE63 02:BE53: 09        .byte $09   ; carrot 01 pos Y
-- D 1 - I - 0x00BE64 02:BE54: 0B        .byte $0B   ; carrot 02 pos X
-- D 1 - I - 0x00BE65 02:BE55: 0A        .byte $0A   ; carrot 02 pos Y
-- D 1 - I - 0x00BE66 02:BE56: 05        .byte $05   ; carrot 03 pos X
-- D 1 - I - 0x00BE67 02:BE57: 0F        .byte $0F   ; carrot 03 pos Y
-- D 1 - I - 0x00BE68 02:BE58: 07        .byte $07   ; carrot 04 pos X
-- D 1 - I - 0x00BE69 02:BE59: 11        .byte $11   ; carrot 04 pos Y
-- D 1 - I - 0x00BE6A 02:BE5A: 0E        .byte $0E   ; carrot 05 pos X
-- D 1 - I - 0x00BE6B 02:BE5B: 12        .byte $12   ; carrot 05 pos Y
-- D 1 - I - 0x00BE6C 02:BE5C: 01        .byte $01   ; carrot 06 pos X
-- D 1 - I - 0x00BE6D 02:BE5D: 18        .byte $18   ; carrot 06 pos Y
-- D 1 - I - 0x00BE6E 02:BE5E: 0E        .byte $0E   ; carrot 07 pos X
-- D 1 - I - 0x00BE6F 02:BE5F: 18        .byte $18   ; carrot 07 pos Y
-- D 1 - I - 0x00BE70 02:BE60: 06        .byte $06   ; thing 00 id
-- D 1 - I - 0x00BE71 02:BE61: 09        .byte $09   ; thing 00 pos X
-- D 1 - I - 0x00BE72 02:BE62: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BE73 02:BE63: 00        .byte $00   ; 
-- D 1 - I - 0x00BE74 02:BE64: 0D        .byte $0D   ; thing 01 id
-- D 1 - I - 0x00BE75 02:BE65: 1A        .byte $1A   ; thing 01 pos X
-- D 1 - I - 0x00BE76 02:BE66: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BE77 02:BE67: 00        .byte $00   ; 
-- D 1 - I - 0x00BE78 02:BE68: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BE79 02:BE69: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BE7A 02:BE6A: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BE7B 02:BE6B: 00        .byte $00   ; 
-- D 1 - I - 0x00BE7C 02:BE6C: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BE7D 02:BE6D: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BE7E 02:BE6E: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BE7F 02:BE6F: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BE50 02:BE40: 02        .byte $02, $0C   ; 00
+- D 1 - I - 0x00BE52 02:BE42: 0D        .byte $0D, $02   ; 01
+- D 1 - I - 0x00BE54 02:BE44: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00BE56 02:BE46: 07        .byte $07, $15   ; 03
+- D 1 - I - 0x00BE58 02:BE48: 03        .byte $03, $1A   ; 04
+- D 1 - I - 0x00BE5A 02:BE4A: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BE5C 02:BE4C: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BE5E 02:BE4E: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BE60 02:BE50: 0B        .byte $0B, $02   ; 00
+- D 1 - I - 0x00BE62 02:BE52: 03        .byte $03, $09   ; 01
+- D 1 - I - 0x00BE64 02:BE54: 0B        .byte $0B, $0A   ; 02
+- D 1 - I - 0x00BE66 02:BE56: 05        .byte $05, $0F   ; 03
+- D 1 - I - 0x00BE68 02:BE58: 07        .byte $07, $11   ; 04
+- D 1 - I - 0x00BE6A 02:BE5A: 0E        .byte $0E, $12   ; 05
+- D 1 - I - 0x00BE6C 02:BE5C: 01        .byte $01, $18   ; 06
+- D 1 - I - 0x00BE6E 02:BE5E: 0E        .byte $0E, $18   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BE70 02:BE60: 06        .byte $06, $09, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BE74 02:BE64: 0D        .byte $0D, $1A, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BE78 02:BE68: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BE7C 02:BE6C: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 38
 - D 1 - I - 0x00BE80 02:BE70: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BE81 02:BE71: 02        .byte $02   ; stage type
-- D 1 - I - 0x00BE82 02:BE72: 0C        .byte $0C   ; player 00 pos X
-- D 1 - I - 0x00BE83 02:BE73: 1A        .byte $1A   ; player 00 pos Y
-- D 1 - I - 0x00BE84 02:BE74: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BE85 02:BE75: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BE86 02:BE76: 01        .byte $01   ; enemy 02 pos X
-- D 1 - I - 0x00BE87 02:BE77: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00BE88 02:BE78: 04        .byte $04   ; enemy 03 pos X
-- D 1 - I - 0x00BE89 02:BE79: 0A        .byte $0A   ; enemy 03 pos Y
-- D 1 - I - 0x00BE8A 02:BE7A: 0B        .byte $0B   ; enemy 04 pos X
-- D 1 - I - 0x00BE8B 02:BE7B: 10        .byte $10   ; enemy 04 pos Y
-- D 1 - I - 0x00BE8C 02:BE7C: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BE8D 02:BE7D: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BE8E 02:BE7E: 01        .byte $01   ; enemy 06 pos X
-- D 1 - I - 0x00BE8F 02:BE7F: 1A        .byte $1A   ; enemy 06 pos Y
-- D 1 - I - 0x00BE90 02:BE80: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BE91 02:BE81: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BE92 02:BE82: 03        .byte $03   ; carrot 00 pos X
-- D 1 - I - 0x00BE93 02:BE83: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00BE94 02:BE84: 0C        .byte $0C   ; carrot 01 pos X
-- D 1 - I - 0x00BE95 02:BE85: 04        .byte $04   ; carrot 01 pos Y
-- D 1 - I - 0x00BE96 02:BE86: 01        .byte $01   ; carrot 02 pos X
-- D 1 - I - 0x00BE97 02:BE87: 07        .byte $07   ; carrot 02 pos Y
-- D 1 - I - 0x00BE98 02:BE88: 0A        .byte $0A   ; carrot 03 pos X
-- D 1 - I - 0x00BE99 02:BE89: 0D        .byte $0D   ; carrot 03 pos Y
-- D 1 - I - 0x00BE9A 02:BE8A: 0A        .byte $0A   ; carrot 04 pos X
-- D 1 - I - 0x00BE9B 02:BE8B: 10        .byte $10   ; carrot 04 pos Y
-- D 1 - I - 0x00BE9C 02:BE8C: 02        .byte $02   ; carrot 05 pos X
-- D 1 - I - 0x00BE9D 02:BE8D: 11        .byte $11   ; carrot 05 pos Y
-- D 1 - I - 0x00BE9E 02:BE8E: 01        .byte $01   ; carrot 06 pos X
-- D 1 - I - 0x00BE9F 02:BE8F: 17        .byte $17   ; carrot 06 pos Y
-- D 1 - I - 0x00BEA0 02:BE90: 0E        .byte $0E   ; carrot 07 pos X
-- D 1 - I - 0x00BEA1 02:BE91: 17        .byte $17   ; carrot 07 pos Y
-- D 1 - I - 0x00BEA2 02:BE92: 09        .byte $09   ; thing 00 id
-- D 1 - I - 0x00BEA3 02:BE93: 10        .byte $10   ; thing 00 pos X
-- D 1 - I - 0x00BEA4 02:BE94: 03        .byte $03   ; thing 00 pos Y
-- - - - - - 0x00BEA5 02:BE95: 00        .byte $00   ; 
-- D 1 - I - 0x00BEA6 02:BE96: 07        .byte $07   ; thing 01 id
-- D 1 - I - 0x00BEA7 02:BE97: 19        .byte $19   ; thing 01 pos X
-- D 1 - I - 0x00BEA8 02:BE98: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BEA9 02:BE99: 00        .byte $00   ; 
-- D 1 - I - 0x00BEAA 02:BE9A: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BEAB 02:BE9B: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BEAC 02:BE9C: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BEAD 02:BE9D: 00        .byte $00   ; 
-- D 1 - I - 0x00BEAE 02:BE9E: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BEAF 02:BE9F: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BEB0 02:BEA0: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BEB1 02:BEA1: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BE82 02:BE72: 0C        .byte $0C, $1A   ; 00
+- D 1 - I - 0x00BE84 02:BE74: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BE86 02:BE76: 01        .byte $01, $02   ; 02
+- D 1 - I - 0x00BE88 02:BE78: 04        .byte $04, $0A   ; 03
+- D 1 - I - 0x00BE8A 02:BE7A: 0B        .byte $0B, $10   ; 04
+- D 1 - I - 0x00BE8C 02:BE7C: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BE8E 02:BE7E: 01        .byte $01, $1A   ; 06
+- D 1 - I - 0x00BE90 02:BE80: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BE92 02:BE82: 03        .byte $03, $02   ; 00
+- D 1 - I - 0x00BE94 02:BE84: 0C        .byte $0C, $04   ; 01
+- D 1 - I - 0x00BE96 02:BE86: 01        .byte $01, $07   ; 02
+- D 1 - I - 0x00BE98 02:BE88: 0A        .byte $0A, $0D   ; 03
+- D 1 - I - 0x00BE9A 02:BE8A: 0A        .byte $0A, $10   ; 04
+- D 1 - I - 0x00BE9C 02:BE8C: 02        .byte $02, $11   ; 05
+- D 1 - I - 0x00BE9E 02:BE8E: 01        .byte $01, $17   ; 06
+- D 1 - I - 0x00BEA0 02:BE90: 0E        .byte $0E, $17   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BEA2 02:BE92: 09        .byte $09, $10, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00BEA6 02:BE96: 07        .byte $07, $19, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BEAA 02:BE9A: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BEAE 02:BE9E: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 39
 - D 1 - I - 0x00BEB2 02:BEA2: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BEB3 02:BEA3: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BEB4 02:BEA4: 07        .byte $07   ; player 00 pos X
-- D 1 - I - 0x00BEB5 02:BEA5: 02        .byte $02   ; player 00 pos Y
-- D 1 - I - 0x00BEB6 02:BEA6: 01        .byte $01   ; enemy 01 pos X
-- D 1 - I - 0x00BEB7 02:BEA7: 0F        .byte $0F   ; enemy 01 pos Y
-- D 1 - I - 0x00BEB8 02:BEA8: 00        .byte $00   ; enemy 02 pos X
-- D 1 - I - 0x00BEB9 02:BEA9: 00        .byte $00   ; enemy 02 pos Y
-- D 1 - I - 0x00BEBA 02:BEAA: 0E        .byte $0E   ; enemy 03 pos X
-- D 1 - I - 0x00BEBB 02:BEAB: 1B        .byte $1B   ; enemy 03 pos Y
-- D 1 - I - 0x00BEBC 02:BEAC: 0E        .byte $0E   ; enemy 04 pos X
-- D 1 - I - 0x00BEBD 02:BEAD: 09        .byte $09   ; enemy 04 pos Y
-- D 1 - I - 0x00BEBE 02:BEAE: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BEBF 02:BEAF: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BEC0 02:BEB0: 0E        .byte $0E   ; enemy 06 pos X
-- D 1 - I - 0x00BEC1 02:BEB1: 12        .byte $12   ; enemy 06 pos Y
-- D 1 - I - 0x00BEC2 02:BEB2: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BEC3 02:BEB3: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BEC4 02:BEB4: 0B        .byte $0B   ; carrot 00 pos X
-- D 1 - I - 0x00BEC5 02:BEB5: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00BEC6 02:BEB6: 03        .byte $03   ; carrot 01 pos X
-- D 1 - I - 0x00BEC7 02:BEB7: 08        .byte $08   ; carrot 01 pos Y
-- D 1 - I - 0x00BEC8 02:BEB8: 02        .byte $02   ; carrot 02 pos X
-- D 1 - I - 0x00BEC9 02:BEB9: 0B        .byte $0B   ; carrot 02 pos Y
-- D 1 - I - 0x00BECA 02:BEBA: 0D        .byte $0D   ; carrot 03 pos X
-- D 1 - I - 0x00BECB 02:BEBB: 0C        .byte $0C   ; carrot 03 pos Y
-- D 1 - I - 0x00BECC 02:BEBC: 08        .byte $08   ; carrot 04 pos X
-- D 1 - I - 0x00BECD 02:BEBD: 0F        .byte $0F   ; carrot 04 pos Y
-- D 1 - I - 0x00BECE 02:BEBE: 02        .byte $02   ; carrot 05 pos X
-- D 1 - I - 0x00BECF 02:BEBF: 18        .byte $18   ; carrot 05 pos Y
-- D 1 - I - 0x00BED0 02:BEC0: 0E        .byte $0E   ; carrot 06 pos X
-- D 1 - I - 0x00BED1 02:BEC1: 18        .byte $18   ; carrot 06 pos Y
-- D 1 - I - 0x00BED2 02:BEC2: 02        .byte $02   ; carrot 07 pos X
-- D 1 - I - 0x00BED3 02:BEC3: 1B        .byte $1B   ; carrot 07 pos Y
-- D 1 - I - 0x00BED4 02:BEC4: 09        .byte $09   ; thing 00 id
-- D 1 - I - 0x00BED5 02:BEC5: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00BED6 02:BEC6: 01        .byte $01   ; thing 00 pos Y
-- - - - - - 0x00BED7 02:BEC7: 00        .byte $00   ; 
-- D 1 - I - 0x00BED8 02:BEC8: 0D        .byte $0D   ; thing 01 id
-- D 1 - I - 0x00BED9 02:BEC9: 1B        .byte $1B   ; thing 01 pos X
-- D 1 - I - 0x00BEDA 02:BECA: 03        .byte $03   ; thing 01 pos Y
-- - - - - - 0x00BEDB 02:BECB: 00        .byte $00   ; 
-- D 1 - I - 0x00BEDC 02:BECC: 01        .byte $01   ; thing 02 id
-- D 1 - I - 0x00BEDD 02:BECD: 18        .byte $18   ; thing 02 pos X
-- D 1 - I - 0x00BEDE 02:BECE: 04        .byte $04   ; thing 02 pos Y
-- - - - - - 0x00BEDF 02:BECF: 00        .byte $00   ; 
-- D 1 - I - 0x00BEE0 02:BED0: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BEE1 02:BED1: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BEE2 02:BED2: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BEE3 02:BED3: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BEB4 02:BEA4: 07        .byte $07, $02   ; 00
+- D 1 - I - 0x00BEB6 02:BEA6: 01        .byte $01, $0F   ; 01
+- D 1 - I - 0x00BEB8 02:BEA8: 00        .byte $00, $00   ; 02
+- D 1 - I - 0x00BEBA 02:BEAA: 0E        .byte $0E, $1B   ; 03
+- D 1 - I - 0x00BEBC 02:BEAC: 0E        .byte $0E, $09   ; 04
+- D 1 - I - 0x00BEBE 02:BEAE: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BEC0 02:BEB0: 0E        .byte $0E, $12   ; 06
+- D 1 - I - 0x00BEC2 02:BEB2: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BEC4 02:BEB4: 0B        .byte $0B, $02   ; 00
+- D 1 - I - 0x00BEC6 02:BEB6: 03        .byte $03, $08   ; 01
+- D 1 - I - 0x00BEC8 02:BEB8: 02        .byte $02, $0B   ; 02
+- D 1 - I - 0x00BECA 02:BEBA: 0D        .byte $0D, $0C   ; 03
+- D 1 - I - 0x00BECC 02:BEBC: 08        .byte $08, $0F   ; 04
+- D 1 - I - 0x00BECE 02:BEBE: 02        .byte $02, $18   ; 05
+- D 1 - I - 0x00BED0 02:BEC0: 0E        .byte $0E, $18   ; 06
+- D 1 - I - 0x00BED2 02:BEC2: 02        .byte $02, $1B   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BED4 02:BEC4: 09        .byte $09, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BED8 02:BEC8: 0D        .byte $0D, $1B, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00BEDC 02:BECC: 01        .byte $01, $18, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BEE0 02:BED0: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 3A
 - D 1 - I - 0x00BEE4 02:BED4: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BEE5 02:BED5: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BEE6 02:BED6: 0E        .byte $0E   ; player 00 pos X
-- D 1 - I - 0x00BEE7 02:BED7: 07        .byte $07   ; player 00 pos Y
-- D 1 - I - 0x00BEE8 02:BED8: 1A        .byte $1A   ; enemy 01 pos X
-- D 1 - I - 0x00BEE9 02:BED9: 03        .byte $03   ; enemy 01 pos Y
-- D 1 - I - 0x00BEEA 02:BEDA: 02        .byte $02   ; enemy 02 pos X
-- D 1 - I - 0x00BEEB 02:BEDB: 0C        .byte $0C   ; enemy 02 pos Y
-- D 1 - I - 0x00BEEC 02:BEDC: 12        .byte $12   ; enemy 03 pos X
-- D 1 - I - 0x00BEED 02:BEDD: 03        .byte $03   ; enemy 03 pos Y
-- D 1 - I - 0x00BEEE 02:BEDE: 00        .byte $00   ; enemy 04 pos X
-- D 1 - I - 0x00BEEF 02:BEDF: 00        .byte $00   ; enemy 04 pos Y
-- D 1 - I - 0x00BEF0 02:BEE0: 08        .byte $08   ; enemy 05 pos X
-- D 1 - I - 0x00BEF1 02:BEE1: 0C        .byte $0C   ; enemy 05 pos Y
-- D 1 - I - 0x00BEF2 02:BEE2: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BEF3 02:BEE3: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BEF4 02:BEE4: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BEF5 02:BEE5: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BEF6 02:BEE6: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BEF7 02:BEE7: 06        .byte $06   ; carrot 00 pos Y
-- D 1 - I - 0x00BEF8 02:BEE8: 03        .byte $03   ; carrot 01 pos X
-- D 1 - I - 0x00BEF9 02:BEE9: 0C        .byte $0C   ; carrot 01 pos Y
-- D 1 - I - 0x00BEFA 02:BEEA: 0A        .byte $0A   ; carrot 02 pos X
-- D 1 - I - 0x00BEFB 02:BEEB: 05        .byte $05   ; carrot 02 pos Y
-- D 1 - I - 0x00BEFC 02:BEEC: 0B        .byte $0B   ; carrot 03 pos X
-- D 1 - I - 0x00BEFD 02:BEED: 06        .byte $06   ; carrot 03 pos Y
-- D 1 - I - 0x00BEFE 02:BEEE: 0C        .byte $0C   ; carrot 04 pos X
-- D 1 - I - 0x00BEFF 02:BEEF: 0C        .byte $0C   ; carrot 04 pos Y
-- D 1 - I - 0x00BF00 02:BEF0: 10        .byte $10   ; carrot 05 pos X
-- D 1 - I - 0x00BF01 02:BEF1: 05        .byte $05   ; carrot 05 pos Y
-- D 1 - I - 0x00BF02 02:BEF2: 18        .byte $18   ; carrot 06 pos X
-- D 1 - I - 0x00BF03 02:BEF3: 07        .byte $07   ; carrot 06 pos Y
-- D 1 - I - 0x00BF04 02:BEF4: 1A        .byte $1A   ; carrot 07 pos X
-- D 1 - I - 0x00BF05 02:BEF5: 0A        .byte $0A   ; carrot 07 pos Y
-- D 1 - I - 0x00BF06 02:BEF6: 09        .byte $09   ; thing 00 id
-- D 1 - I - 0x00BF07 02:BEF7: 09        .byte $09   ; thing 00 pos X
-- D 1 - I - 0x00BF08 02:BEF8: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BF09 02:BEF9: 00        .byte $00   ; 
-- D 1 - I - 0x00BF0A 02:BEFA: 17        .byte $17   ; thing 01 id
-- D 1 - I - 0x00BF0B 02:BEFB: 0A        .byte $0A   ; thing 01 pos X
-- D 1 - I - 0x00BF0C 02:BEFC: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BF0D 02:BEFD: 00        .byte $00   ; 
-- D 1 - I - 0x00BF0E 02:BEFE: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BF0F 02:BEFF: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BF10 02:BF00: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BF11 02:BF01: 00        .byte $00   ; 
-- D 1 - I - 0x00BF12 02:BF02: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BF13 02:BF03: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BF14 02:BF04: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BF15 02:BF05: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BEE6 02:BED6: 0E        .byte $0E, $07   ; 00
+- D 1 - I - 0x00BEE8 02:BED8: 1A        .byte $1A, $03   ; 01
+- D 1 - I - 0x00BEEA 02:BEDA: 02        .byte $02, $0C   ; 02
+- D 1 - I - 0x00BEEC 02:BEDC: 12        .byte $12, $03   ; 03
+- D 1 - I - 0x00BEEE 02:BEDE: 00        .byte $00, $00   ; 04
+- D 1 - I - 0x00BEF0 02:BEE0: 08        .byte $08, $0C   ; 05
+- D 1 - I - 0x00BEF2 02:BEE2: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BEF4 02:BEE4: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BEF6 02:BEE6: 01        .byte $01, $06   ; 00
+- D 1 - I - 0x00BEF8 02:BEE8: 03        .byte $03, $0C   ; 01
+- D 1 - I - 0x00BEFA 02:BEEA: 0A        .byte $0A, $05   ; 02
+- D 1 - I - 0x00BEFC 02:BEEC: 0B        .byte $0B, $06   ; 03
+- D 1 - I - 0x00BEFE 02:BEEE: 0C        .byte $0C, $0C   ; 04
+- D 1 - I - 0x00BF00 02:BEF0: 10        .byte $10, $05   ; 05
+- D 1 - I - 0x00BF02 02:BEF2: 18        .byte $18, $07   ; 06
+- D 1 - I - 0x00BF04 02:BEF4: 1A        .byte $1A, $0A   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BF06 02:BEF6: 09        .byte $09, $09, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BF0A 02:BEFA: 17        .byte $17, $0A, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BF0E 02:BEFE: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BF12 02:BF02: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 3B
 - D 1 - I - 0x00BF16 02:BF06: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BF17 02:BF07: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BF18 02:BF08: 06        .byte $06   ; player 00 pos X
-- D 1 - I - 0x00BF19 02:BF09: 02        .byte $02   ; player 00 pos Y
-- D 1 - I - 0x00BF1A 02:BF0A: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BF1B 02:BF0B: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BF1C 02:BF0C: 05        .byte $05   ; enemy 02 pos X
-- D 1 - I - 0x00BF1D 02:BF0D: 0C        .byte $0C   ; enemy 02 pos Y
-- D 1 - I - 0x00BF1E 02:BF0E: 0C        .byte $0C   ; enemy 03 pos X
-- D 1 - I - 0x00BF1F 02:BF0F: 05        .byte $05   ; enemy 03 pos Y
-- D 1 - I - 0x00BF20 02:BF10: 0D        .byte $0D   ; enemy 04 pos X
-- D 1 - I - 0x00BF21 02:BF11: 11        .byte $11   ; enemy 04 pos Y
-- D 1 - I - 0x00BF22 02:BF12: 01        .byte $01   ; enemy 05 pos X
-- D 1 - I - 0x00BF23 02:BF13: 11        .byte $11   ; enemy 05 pos Y
-- D 1 - I - 0x00BF24 02:BF14: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BF25 02:BF15: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BF26 02:BF16: 08        .byte $08   ; enemy 07 pos X
-- D 1 - I - 0x00BF27 02:BF17: 18        .byte $18   ; enemy 07 pos Y
-- D 1 - I - 0x00BF28 02:BF18: 02        .byte $02   ; carrot 00 pos X
-- D 1 - I - 0x00BF29 02:BF19: 05        .byte $05   ; carrot 00 pos Y
-- D 1 - I - 0x00BF2A 02:BF1A: 02        .byte $02   ; carrot 01 pos X
-- D 1 - I - 0x00BF2B 02:BF1B: 0C        .byte $0C   ; carrot 01 pos Y
-- D 1 - I - 0x00BF2C 02:BF1C: 09        .byte $09   ; carrot 02 pos X
-- D 1 - I - 0x00BF2D 02:BF1D: 0C        .byte $0C   ; carrot 02 pos Y
-- D 1 - I - 0x00BF2E 02:BF1E: 06        .byte $06   ; carrot 03 pos X
-- D 1 - I - 0x00BF2F 02:BF1F: 10        .byte $10   ; carrot 03 pos Y
-- D 1 - I - 0x00BF30 02:BF20: 08        .byte $08   ; carrot 04 pos X
-- D 1 - I - 0x00BF31 02:BF21: 13        .byte $13   ; carrot 04 pos Y
-- D 1 - I - 0x00BF32 02:BF22: 01        .byte $01   ; carrot 05 pos X
-- D 1 - I - 0x00BF33 02:BF23: 1A        .byte $1A   ; carrot 05 pos Y
-- D 1 - I - 0x00BF34 02:BF24: 0E        .byte $0E   ; carrot 06 pos X
-- D 1 - I - 0x00BF35 02:BF25: 1A        .byte $1A   ; carrot 06 pos Y
-- D 1 - I - 0x00BF36 02:BF26: 0E        .byte $0E   ; carrot 07 pos X
-- D 1 - I - 0x00BF37 02:BF27: 11        .byte $11   ; carrot 07 pos Y
-- D 1 - I - 0x00BF38 02:BF28: 0E        .byte $0E   ; thing 00 id
-- D 1 - I - 0x00BF39 02:BF29: 0C        .byte $0C   ; thing 00 pos X
-- D 1 - I - 0x00BF3A 02:BF2A: 04        .byte $04   ; thing 00 pos Y
-- - - - - - 0x00BF3B 02:BF2B: 00        .byte $00   ; 
-- D 1 - I - 0x00BF3C 02:BF2C: 07        .byte $07   ; thing 01 id
-- D 1 - I - 0x00BF3D 02:BF2D: 0F        .byte $0F   ; thing 01 pos X
-- D 1 - I - 0x00BF3E 02:BF2E: 04        .byte $04   ; thing 01 pos Y
-- - - - - - 0x00BF3F 02:BF2F: 00        .byte $00   ; 
-- D 1 - I - 0x00BF40 02:BF30: 06        .byte $06   ; thing 02 id
-- D 1 - I - 0x00BF41 02:BF31: 05        .byte $05   ; thing 02 pos X
-- D 1 - I - 0x00BF42 02:BF32: 08        .byte $08   ; thing 02 pos Y
-- - - - - - 0x00BF43 02:BF33: 00        .byte $00   ; 
-- D 1 - I - 0x00BF44 02:BF34: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BF45 02:BF35: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BF46 02:BF36: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BF47 02:BF37: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BF18 02:BF08: 06        .byte $06, $02   ; 00
+- D 1 - I - 0x00BF1A 02:BF0A: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BF1C 02:BF0C: 05        .byte $05, $0C   ; 02
+- D 1 - I - 0x00BF1E 02:BF0E: 0C        .byte $0C, $05   ; 03
+- D 1 - I - 0x00BF20 02:BF10: 0D        .byte $0D, $11   ; 04
+- D 1 - I - 0x00BF22 02:BF12: 01        .byte $01, $11   ; 05
+- D 1 - I - 0x00BF24 02:BF14: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BF26 02:BF16: 08        .byte $08, $18   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BF28 02:BF18: 02        .byte $02, $05   ; 00
+- D 1 - I - 0x00BF2A 02:BF1A: 02        .byte $02, $0C   ; 01
+- D 1 - I - 0x00BF2C 02:BF1C: 09        .byte $09, $0C   ; 02
+- D 1 - I - 0x00BF2E 02:BF1E: 06        .byte $06, $10   ; 03
+- D 1 - I - 0x00BF30 02:BF20: 08        .byte $08, $13   ; 04
+- D 1 - I - 0x00BF32 02:BF22: 01        .byte $01, $1A   ; 05
+- D 1 - I - 0x00BF34 02:BF24: 0E        .byte $0E, $1A   ; 06
+- D 1 - I - 0x00BF36 02:BF26: 0E        .byte $0E, $11   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BF38 02:BF28: 0E        .byte $0E, $0C, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BF3C 02:BF2C: 07        .byte $07, $0F, con_item_id_glove, $00   ; 
+- D 1 - I - 0x00BF40 02:BF30: 06        .byte $06, $05, con_item_id_sign_02, $00   ; 
+- D 1 - I - 0x00BF44 02:BF34: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 3C
 - D 1 - I - 0x00BF48 02:BF38: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BF49 02:BF39: 02        .byte $02   ; stage type
-- D 1 - I - 0x00BF4A 02:BF3A: 14        .byte $14   ; player 00 pos X
-- D 1 - I - 0x00BF4B 02:BF3B: 0C        .byte $0C   ; player 00 pos Y
-- D 1 - I - 0x00BF4C 02:BF3C: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BF4D 02:BF3D: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BF4E 02:BF3E: 08        .byte $08   ; enemy 02 pos X
-- D 1 - I - 0x00BF4F 02:BF3F: 0C        .byte $0C   ; enemy 02 pos Y
-- D 1 - I - 0x00BF50 02:BF40: 12        .byte $12   ; enemy 03 pos X
-- D 1 - I - 0x00BF51 02:BF41: 02        .byte $02   ; enemy 03 pos Y
-- D 1 - I - 0x00BF52 02:BF42: 1D        .byte $1D   ; enemy 04 pos X
-- D 1 - I - 0x00BF53 02:BF43: 06        .byte $06   ; enemy 04 pos Y
-- D 1 - I - 0x00BF54 02:BF44: 1E        .byte $1E   ; enemy 05 pos X
-- D 1 - I - 0x00BF55 02:BF45: 0C        .byte $0C   ; enemy 05 pos Y
-- D 1 - I - 0x00BF56 02:BF46: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BF57 02:BF47: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BF58 02:BF48: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BF59 02:BF49: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BF5A 02:BF4A: 01        .byte $01   ; carrot 00 pos X
-- D 1 - I - 0x00BF5B 02:BF4B: 08        .byte $08   ; carrot 00 pos Y
-- D 1 - I - 0x00BF5C 02:BF4C: 09        .byte $09   ; carrot 01 pos X
-- D 1 - I - 0x00BF5D 02:BF4D: 0C        .byte $0C   ; carrot 01 pos Y
-- D 1 - I - 0x00BF5E 02:BF4E: 14        .byte $14   ; carrot 02 pos X
-- D 1 - I - 0x00BF5F 02:BF4F: 08        .byte $08   ; carrot 02 pos Y
-- D 1 - I - 0x00BF60 02:BF50: 16        .byte $16   ; carrot 03 pos X
-- D 1 - I - 0x00BF61 02:BF51: 04        .byte $04   ; carrot 03 pos Y
-- D 1 - I - 0x00BF62 02:BF52: 1A        .byte $1A   ; carrot 04 pos X
-- D 1 - I - 0x00BF63 02:BF53: 06        .byte $06   ; carrot 04 pos Y
-- D 1 - I - 0x00BF64 02:BF54: 1C        .byte $1C   ; carrot 05 pos X
-- D 1 - I - 0x00BF65 02:BF55: 0C        .byte $0C   ; carrot 05 pos Y
-- D 1 - I - 0x00BF66 02:BF56: 1D        .byte $1D   ; carrot 06 pos X
-- D 1 - I - 0x00BF67 02:BF57: 09        .byte $09   ; carrot 06 pos Y
-- D 1 - I - 0x00BF68 02:BF58: 1E        .byte $1E   ; carrot 07 pos X
-- D 1 - I - 0x00BF69 02:BF59: 04        .byte $04   ; carrot 07 pos Y
-- D 1 - I - 0x00BF6A 02:BF5A: 00        .byte $00   ; thing 00 id
-- D 1 - I - 0x00BF6B 02:BF5B: 00        .byte $00   ; thing 00 pos X
-- D 1 - I - 0x00BF6C 02:BF5C: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00BF6D 02:BF5D: 00        .byte $00   ; 
-- D 1 - I - 0x00BF6E 02:BF5E: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00BF6F 02:BF5F: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00BF70 02:BF60: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00BF71 02:BF61: 00        .byte $00   ; 
-- D 1 - I - 0x00BF72 02:BF62: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BF73 02:BF63: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BF74 02:BF64: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BF75 02:BF65: 00        .byte $00   ; 
-- D 1 - I - 0x00BF76 02:BF66: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BF77 02:BF67: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BF78 02:BF68: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BF79 02:BF69: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BF4A 02:BF3A: 14        .byte $14, $0C   ; 00
+- D 1 - I - 0x00BF4C 02:BF3C: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BF4E 02:BF3E: 08        .byte $08, $0C   ; 02
+- D 1 - I - 0x00BF50 02:BF40: 12        .byte $12, $02   ; 03
+- D 1 - I - 0x00BF52 02:BF42: 1D        .byte $1D, $06   ; 04
+- D 1 - I - 0x00BF54 02:BF44: 1E        .byte $1E, $0C   ; 05
+- D 1 - I - 0x00BF56 02:BF46: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BF58 02:BF48: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BF5A 02:BF4A: 01        .byte $01, $08   ; 00
+- D 1 - I - 0x00BF5C 02:BF4C: 09        .byte $09, $0C   ; 01
+- D 1 - I - 0x00BF5E 02:BF4E: 14        .byte $14, $08   ; 02
+- D 1 - I - 0x00BF60 02:BF50: 16        .byte $16, $04   ; 03
+- D 1 - I - 0x00BF62 02:BF52: 1A        .byte $1A, $06   ; 04
+- D 1 - I - 0x00BF64 02:BF54: 1C        .byte $1C, $0C   ; 05
+- D 1 - I - 0x00BF66 02:BF56: 1D        .byte $1D, $09   ; 06
+- D 1 - I - 0x00BF68 02:BF58: 1E        .byte $1E, $04   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BF6A 02:BF5A: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BF6E 02:BF5E: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BF72 02:BF62: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BF76 02:BF66: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 3D
 - D 1 - I - 0x00BF7A 02:BF6A: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BF7B 02:BF6B: 00        .byte $00   ; stage type
-- D 1 - I - 0x00BF7C 02:BF6C: 0D        .byte $0D   ; player 00 pos X
-- D 1 - I - 0x00BF7D 02:BF6D: 08        .byte $08   ; player 00 pos Y
-- D 1 - I - 0x00BF7E 02:BF6E: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BF7F 02:BF6F: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BF80 02:BF70: 0A        .byte $0A   ; enemy 02 pos X
-- D 1 - I - 0x00BF81 02:BF71: 02        .byte $02   ; enemy 02 pos Y
-- D 1 - I - 0x00BF82 02:BF72: 01        .byte $01   ; enemy 03 pos X
-- D 1 - I - 0x00BF83 02:BF73: 0E        .byte $0E   ; enemy 03 pos Y
-- D 1 - I - 0x00BF84 02:BF74: 0D        .byte $0D   ; enemy 04 pos X
-- D 1 - I - 0x00BF85 02:BF75: 16        .byte $16   ; enemy 04 pos Y
-- D 1 - I - 0x00BF86 02:BF76: 0D        .byte $0D   ; enemy 05 pos X
-- D 1 - I - 0x00BF87 02:BF77: 1A        .byte $1A   ; enemy 05 pos Y
-- D 1 - I - 0x00BF88 02:BF78: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BF89 02:BF79: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BF8A 02:BF7A: 0B        .byte $0B   ; enemy 07 pos X
-- D 1 - I - 0x00BF8B 02:BF7B: 1B        .byte $1B   ; enemy 07 pos Y
-- D 1 - I - 0x00BF8C 02:BF7C: 0B        .byte $0B   ; carrot 00 pos X
-- D 1 - I - 0x00BF8D 02:BF7D: 05        .byte $05   ; carrot 00 pos Y
-- D 1 - I - 0x00BF8E 02:BF7E: 0D        .byte $0D   ; carrot 01 pos X
-- D 1 - I - 0x00BF8F 02:BF7F: 0E        .byte $0E   ; carrot 01 pos Y
-- D 1 - I - 0x00BF90 02:BF80: 07        .byte $07   ; carrot 02 pos X
-- D 1 - I - 0x00BF91 02:BF81: 0E        .byte $0E   ; carrot 02 pos Y
-- D 1 - I - 0x00BF92 02:BF82: 0E        .byte $0E   ; carrot 03 pos X
-- D 1 - I - 0x00BF93 02:BF83: 13        .byte $13   ; carrot 03 pos Y
-- D 1 - I - 0x00BF94 02:BF84: 01        .byte $01   ; carrot 04 pos X
-- D 1 - I - 0x00BF95 02:BF85: 16        .byte $16   ; carrot 04 pos Y
-- D 1 - I - 0x00BF96 02:BF86: 02        .byte $02   ; carrot 05 pos X
-- D 1 - I - 0x00BF97 02:BF87: 1A        .byte $1A   ; carrot 05 pos Y
-- D 1 - I - 0x00BF98 02:BF88: 0E        .byte $0E   ; carrot 06 pos X
-- D 1 - I - 0x00BF99 02:BF89: 1A        .byte $1A   ; carrot 06 pos Y
-- D 1 - I - 0x00BF9A 02:BF8A: 04        .byte $04   ; carrot 07 pos X
-- D 1 - I - 0x00BF9B 02:BF8B: 1B        .byte $1B   ; carrot 07 pos Y
-- D 1 - I - 0x00BF9C 02:BF8C: 0B        .byte $0B   ; thing 00 id
-- D 1 - I - 0x00BF9D 02:BF8D: 02        .byte $02   ; thing 00 pos X
-- D 1 - I - 0x00BF9E 02:BF8E: 03        .byte $03   ; thing 00 pos Y
-- - - - - - 0x00BF9F 02:BF8F: 00        .byte $00   ; 
-- D 1 - I - 0x00BFA0 02:BF90: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00BFA1 02:BF91: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00BFA2 02:BF92: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00BFA3 02:BF93: 00        .byte $00   ; 
-- D 1 - I - 0x00BFA4 02:BF94: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BFA5 02:BF95: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BFA6 02:BF96: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BFA7 02:BF97: 00        .byte $00   ; 
-- D 1 - I - 0x00BFA8 02:BF98: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BFA9 02:BF99: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BFAA 02:BF9A: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BFAB 02:BF9B: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BF7C 02:BF6C: 0D        .byte $0D, $08   ; 00
+- D 1 - I - 0x00BF7E 02:BF6E: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BF80 02:BF70: 0A        .byte $0A, $02   ; 02
+- D 1 - I - 0x00BF82 02:BF72: 01        .byte $01, $0E   ; 03
+- D 1 - I - 0x00BF84 02:BF74: 0D        .byte $0D, $16   ; 04
+- D 1 - I - 0x00BF86 02:BF76: 0D        .byte $0D, $1A   ; 05
+- D 1 - I - 0x00BF88 02:BF78: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BF8A 02:BF7A: 0B        .byte $0B, $1B   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BF8C 02:BF7C: 0B        .byte $0B, $05   ; 00
+- D 1 - I - 0x00BF8E 02:BF7E: 0D        .byte $0D, $0E   ; 01
+- D 1 - I - 0x00BF90 02:BF80: 07        .byte $07, $0E   ; 02
+- D 1 - I - 0x00BF92 02:BF82: 0E        .byte $0E, $13   ; 03
+- D 1 - I - 0x00BF94 02:BF84: 01        .byte $01, $16   ; 04
+- D 1 - I - 0x00BF96 02:BF86: 02        .byte $02, $1A   ; 05
+- D 1 - I - 0x00BF98 02:BF88: 0E        .byte $0E, $1A   ; 06
+- D 1 - I - 0x00BF9A 02:BF8A: 04        .byte $04, $1B   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BF9C 02:BF8C: 0B        .byte $0B, $02, con_item_id_potion, $00   ; 
+- D 1 - I - 0x00BFA0 02:BF90: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BFA4 02:BF94: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BFA8 02:BF98: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 3E
 - D 1 - I - 0x00BFAC 02:BF9C: 00        .byte $00   ; scroll type
 - D 1 - I - 0x00BFAD 02:BF9D: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BFAE 02:BF9E: 13        .byte $13   ; player 00 pos X
-- D 1 - I - 0x00BFAF 02:BF9F: 04        .byte $04   ; player 00 pos Y
-- D 1 - I - 0x00BFB0 02:BFA0: 00        .byte $00   ; enemy 01 pos X
-- D 1 - I - 0x00BFB1 02:BFA1: 00        .byte $00   ; enemy 01 pos Y
-- D 1 - I - 0x00BFB2 02:BFA2: 05        .byte $05   ; enemy 02 pos X
-- D 1 - I - 0x00BFB3 02:BFA3: 06        .byte $06   ; enemy 02 pos Y
-- D 1 - I - 0x00BFB4 02:BFA4: 08        .byte $08   ; enemy 03 pos X
-- D 1 - I - 0x00BFB5 02:BFA5: 0C        .byte $0C   ; enemy 03 pos Y
-- D 1 - I - 0x00BFB6 02:BFA6: 0B        .byte $0B   ; enemy 04 pos X
-- D 1 - I - 0x00BFB7 02:BFA7: 06        .byte $06   ; enemy 04 pos Y
-- D 1 - I - 0x00BFB8 02:BFA8: 16        .byte $16   ; enemy 05 pos X
-- D 1 - I - 0x00BFB9 02:BFA9: 09        .byte $09   ; enemy 05 pos Y
-- D 1 - I - 0x00BFBA 02:BFAA: 00        .byte $00   ; enemy 06 pos X
-- D 1 - I - 0x00BFBB 02:BFAB: 00        .byte $00   ; enemy 06 pos Y
-- D 1 - I - 0x00BFBC 02:BFAC: 19        .byte $19   ; enemy 07 pos X
-- D 1 - I - 0x00BFBD 02:BFAD: 09        .byte $09   ; enemy 07 pos Y
-- D 1 - I - 0x00BFBE 02:BFAE: 06        .byte $06   ; carrot 00 pos X
-- D 1 - I - 0x00BFBF 02:BFAF: 06        .byte $06   ; carrot 00 pos Y
-- D 1 - I - 0x00BFC0 02:BFB0: 08        .byte $08   ; carrot 01 pos X
-- D 1 - I - 0x00BFC1 02:BFB1: 09        .byte $09   ; carrot 01 pos Y
-- D 1 - I - 0x00BFC2 02:BFB2: 0C        .byte $0C   ; carrot 02 pos X
-- D 1 - I - 0x00BFC3 02:BFB3: 06        .byte $06   ; carrot 02 pos Y
-- D 1 - I - 0x00BFC4 02:BFB4: 10        .byte $10   ; carrot 03 pos X
-- D 1 - I - 0x00BFC5 02:BFB5: 0A        .byte $0A   ; carrot 03 pos Y
-- D 1 - I - 0x00BFC6 02:BFB6: 15        .byte $15   ; carrot 04 pos X
-- D 1 - I - 0x00BFC7 02:BFB7: 09        .byte $09   ; carrot 04 pos Y
-- D 1 - I - 0x00BFC8 02:BFB8: 18        .byte $18   ; carrot 05 pos X
-- D 1 - I - 0x00BFC9 02:BFB9: 02        .byte $02   ; carrot 05 pos Y
-- D 1 - I - 0x00BFCA 02:BFBA: 19        .byte $19   ; carrot 06 pos X
-- D 1 - I - 0x00BFCB 02:BFBB: 07        .byte $07   ; carrot 06 pos Y
-- D 1 - I - 0x00BFCC 02:BFBC: 1D        .byte $1D   ; carrot 07 pos X
-- D 1 - I - 0x00BFCD 02:BFBD: 06        .byte $06   ; carrot 07 pos Y
-- D 1 - I - 0x00BFCE 02:BFBE: 00        .byte $00   ; thing 00 id
-- D 1 - I - 0x00BFCF 02:BFBF: 00        .byte $00   ; thing 00 pos X
-- D 1 - I - 0x00BFD0 02:BFC0: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00BFD1 02:BFC1: 00        .byte $00   ; 
-- D 1 - I - 0x00BFD2 02:BFC2: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00BFD3 02:BFC3: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00BFD4 02:BFC4: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00BFD5 02:BFC5: 00        .byte $00   ; 
-- D 1 - I - 0x00BFD6 02:BFC6: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00BFD7 02:BFC7: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00BFD8 02:BFC8: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00BFD9 02:BFC9: 00        .byte $00   ; 
-- D 1 - I - 0x00BFDA 02:BFCA: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00BFDB 02:BFCB: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00BFDC 02:BFCC: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00BFDD 02:BFCD: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BFAE 02:BF9E: 13        .byte $13, $04   ; 00
+- D 1 - I - 0x00BFB0 02:BFA0: 00        .byte $00, $00   ; 01
+- D 1 - I - 0x00BFB2 02:BFA2: 05        .byte $05, $06   ; 02
+- D 1 - I - 0x00BFB4 02:BFA4: 08        .byte $08, $0C   ; 03
+- D 1 - I - 0x00BFB6 02:BFA6: 0B        .byte $0B, $06   ; 04
+- D 1 - I - 0x00BFB8 02:BFA8: 16        .byte $16, $09   ; 05
+- D 1 - I - 0x00BFBA 02:BFAA: 00        .byte $00, $00   ; 06
+- D 1 - I - 0x00BFBC 02:BFAC: 19        .byte $19, $09   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BFBE 02:BFAE: 06        .byte $06, $06   ; 00
+- D 1 - I - 0x00BFC0 02:BFB0: 08        .byte $08, $09   ; 01
+- D 1 - I - 0x00BFC2 02:BFB2: 0C        .byte $0C, $06   ; 02
+- D 1 - I - 0x00BFC4 02:BFB4: 10        .byte $10, $0A   ; 03
+- D 1 - I - 0x00BFC6 02:BFB6: 15        .byte $15, $09   ; 04
+- D 1 - I - 0x00BFC8 02:BFB8: 18        .byte $18, $02   ; 05
+- D 1 - I - 0x00BFCA 02:BFBA: 19        .byte $19, $07   ; 06
+- D 1 - I - 0x00BFCC 02:BFBC: 1D        .byte $1D, $06   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00BFCE 02:BFBE: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BFD2 02:BFC2: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BFD6 02:BFC6: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00BFDA 02:BFCA: 00        .byte $00, $00, $00, $00   ; 
+
+
+
 ; 3F
 - D 1 - I - 0x00BFDE 02:BFCE: 01        .byte $01   ; scroll type
 - D 1 - I - 0x00BFDF 02:BFCF: 01        .byte $01   ; stage type
-- D 1 - I - 0x00BFE0 02:BFD0: 08        .byte $08   ; player 00 pos X
-- D 1 - I - 0x00BFE1 02:BFD1: 1B        .byte $1B   ; player 00 pos Y
-- D 1 - I - 0x00BFE2 02:BFD2: 08        .byte $08   ; enemy 01 pos X
-- D 1 - I - 0x00BFE3 02:BFD3: 05        .byte $05   ; enemy 01 pos Y
-- D 1 - I - 0x00BFE4 02:BFD4: 04        .byte $04   ; enemy 02 pos X
-- D 1 - I - 0x00BFE5 02:BFD5: 06        .byte $06   ; enemy 02 pos Y
-- D 1 - I - 0x00BFE6 02:BFD6: 00        .byte $00   ; enemy 03 pos X
-- D 1 - I - 0x00BFE7 02:BFD7: 00        .byte $00   ; enemy 03 pos Y
-- D 1 - I - 0x00BFE8 02:BFD8: 0D        .byte $0D   ; enemy 04 pos X
-- D 1 - I - 0x00BFE9 02:BFD9: 0A        .byte $0A   ; enemy 04 pos Y
-- D 1 - I - 0x00BFEA 02:BFDA: 00        .byte $00   ; enemy 05 pos X
-- D 1 - I - 0x00BFEB 02:BFDB: 00        .byte $00   ; enemy 05 pos Y
-- D 1 - I - 0x00BFEC 02:BFDC: 0E        .byte $0E   ; enemy 06 pos X
-- D 1 - I - 0x00BFED 02:BFDD: 13        .byte $13   ; enemy 06 pos Y
-- D 1 - I - 0x00BFEE 02:BFDE: 00        .byte $00   ; enemy 07 pos X
-- D 1 - I - 0x00BFEF 02:BFDF: 00        .byte $00   ; enemy 07 pos Y
-- D 1 - I - 0x00BFF0 02:BFE0: 0A        .byte $0A   ; carrot 00 pos X
-- D 1 - I - 0x00BFF1 02:BFE1: 02        .byte $02   ; carrot 00 pos Y
-- D 1 - I - 0x00BFF2 02:BFE2: 0C        .byte $0C   ; carrot 01 pos X
-- D 1 - I - 0x00BFF3 02:BFE3: 02        .byte $02   ; carrot 01 pos Y
-- D 1 - I - 0x00BFF4 02:BFE4: 07        .byte $07   ; carrot 02 pos X
-- D 1 - I - 0x00BFF5 02:BFE5: 08        .byte $08   ; carrot 02 pos Y
-- D 1 - I - 0x00BFF6 02:BFE6: 03        .byte $03   ; carrot 03 pos X
-- D 1 - I - 0x00BFF7 02:BFE7: 09        .byte $09   ; carrot 03 pos Y
-- D 1 - I - 0x00BFF8 02:BFE8: 01        .byte $01   ; carrot 04 pos X
-- D 1 - I - 0x00BFF9 02:BFE9: 0B        .byte $0B   ; carrot 04 pos Y
-- D 1 - I - 0x00BFFA 02:BFEA: 0E        .byte $0E   ; carrot 05 pos X
-- D 1 - I - 0x00BFFB 02:BFEB: 0D        .byte $0D   ; carrot 05 pos Y
-- D 1 - I - 0x00BFFC 02:BFEC: 09        .byte $09   ; carrot 06 pos X
-- D 1 - I - 0x00BFFD 02:BFED: 15        .byte $15   ; carrot 06 pos Y
-- D 1 - I - 0x00BFFE 02:BFEE: 03        .byte $03   ; carrot 07 pos X
-- D 1 - I - 0x00BFFF 02:BFEF: 16        .byte $16   ; carrot 07 pos Y
-- D 1 - I - 0x00C000 02:BFF0: 00        .byte $00   ; thing 00 id
-- D 1 - I - 0x00C001 02:BFF1: 00        .byte $00   ; thing 00 pos X
-- D 1 - I - 0x00C002 02:BFF2: 00        .byte $00   ; thing 00 pos Y
-- - - - - - 0x00C003 02:BFF3: 00        .byte $00   ; 
-- D 1 - I - 0x00C004 02:BFF4: 00        .byte $00   ; thing 01 id
-- D 1 - I - 0x00C005 02:BFF5: 00        .byte $00   ; thing 01 pos X
-- D 1 - I - 0x00C006 02:BFF6: 00        .byte $00   ; thing 01 pos Y
-- - - - - - 0x00C007 02:BFF7: 00        .byte $00   ; 
-- D 1 - I - 0x00C008 02:BFF8: 00        .byte $00   ; thing 02 id
-- D 1 - I - 0x00C009 02:BFF9: 00        .byte $00   ; thing 02 pos X
-- D 1 - I - 0x00C00A 02:BFFA: 00        .byte $00   ; thing 02 pos Y
-- - - - - - 0x00C00B 02:BFFB: 00        .byte $00   ; 
-- D 1 - I - 0x00C00C 02:BFFC: 00        .byte $00   ; thing 03 id
-- D 1 - I - 0x00C00D 02:BFFD: 00        .byte $00   ; thing 03 pos X
-- D 1 - I - 0x00C00E 02:BFFE: 00        .byte $00   ; thing 03 pos Y
-- - - - - - 0x00C00F 02:BFFF: 00        .byte $00   ; 
+; characters X, Y (00 = player, 01-07 = enemies)
+- D 1 - I - 0x00BFE0 02:BFD0: 08        .byte $08, $1B   ; 00
+- D 1 - I - 0x00BFE2 02:BFD2: 08        .byte $08, $05   ; 01
+- D 1 - I - 0x00BFE4 02:BFD4: 04        .byte $04, $06   ; 02
+- D 1 - I - 0x00BFE6 02:BFD6: 00        .byte $00, $00   ; 03
+- D 1 - I - 0x00BFE8 02:BFD8: 0D        .byte $0D, $0A   ; 04
+- D 1 - I - 0x00BFEA 02:BFDA: 00        .byte $00, $00   ; 05
+- D 1 - I - 0x00BFEC 02:BFDC: 0E        .byte $0E, $13   ; 06
+- D 1 - I - 0x00BFEE 02:BFDE: 00        .byte $00, $00   ; 07
+; carrots X, Y
+- D 1 - I - 0x00BFF0 02:BFE0: 0A        .byte $0A, $02   ; 00
+- D 1 - I - 0x00BFF2 02:BFE2: 0C        .byte $0C, $02   ; 01
+- D 1 - I - 0x00BFF4 02:BFE4: 07        .byte $07, $08   ; 02
+- D 1 - I - 0x00BFF6 02:BFE6: 03        .byte $03, $09   ; 03
+- D 1 - I - 0x00BFF8 02:BFE8: 01        .byte $01, $0B   ; 04
+- D 1 - I - 0x00BFFA 02:BFEA: 0E        .byte $0E, $0D   ; 05
+- D 1 - I - 0x00BFFC 02:BFEC: 09        .byte $09, $15   ; 06
+- D 1 - I - 0x00BFFE 02:BFEE: 03        .byte $03, $16   ; 07
+; items X, Y, id, unused byte
+- D 1 - I - 0x00C000 02:BFF0: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00C004 02:BFF4: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00C008 02:BFF8: 00        .byte $00, $00, $00, $00   ; 
+- D 1 - I - 0x00C00C 02:BFFC: 00        .byte $00, $00, $00, $00   ; 
 
 
 

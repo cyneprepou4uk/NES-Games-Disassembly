@@ -25,17 +25,43 @@ con_btns_SAB                            = con_btn_Start + con_btn_A + con_btn_B 
 
 
 
+; ram_obj_state                         = $0500
+con_obj_state_null                      = $00 ; doesn't exist
+con_obj_state_01                        = $01 ; 
+con_obj_state_02                        = $02 ; 
+con_obj_state_04                        = $04 ; 
+con_obj_state_08                        = $08 ; 
+con_obj_state_10                        = $10 ; 
+con_obj_state_20                        = $20 ; 
+con_obj_state_40                        = $40 ; 
+con_obj_state_exists                    = $80 ; 
+
+
+
+; ram_item_state                        = $0610
+con_item_state_null                     = $00 ; doesn't exist
+con_item_state_01                       = $01 ; 
+con_item_state_02                       = $02 ; 
+con_item_state_04                       = $04 ; 
+con_item_state_08                       = $08 ; 
+con_item_state_10                       = $10 ; 
+con_item_state_20                       = $20 ; 
+con_item_state_40                       = $40 ; 
+con_item_state_exists                   = $80 ; 
+
+
+
 ; ram_item_id                           = $0615
-con_item_bucket                         = $00 ; 
-con_item_strongbox                      = $01 ; 
-con_item_box                            = $02 ; 
-con_item_vial                           = $03 ; 
-con_item_glove                          = $04 ; 
-con_item_10t                            = $05 ; 
-con_item_sign_00                        = $06 ; no carrot signs to access bonus levels
-con_item_sign_01                        = $07 ; 
-con_item_sign_02                        = $08 ; 
-con_item_sign_03                        = $09 ; 
+con_item_id_bucket                      = $00 ; 
+con_item_id_strongbox                   = $01 ; 
+con_item_id_box                         = $02 ; 
+con_item_id_potion                      = $03 ; invulnerability
+con_item_id_glove                       = $04 ; 
+con_item_id_10t                         = $05 ; 
+con_item_id_sign_00                     = $06 ; no carrot signs to access bonus levels
+con_item_id_sign_01                     = $07 ; 
+con_item_id_sign_02                     = $08 ; 
+con_item_id_sign_03                     = $09 ; 
 
 
 ; ram_0044                              = $0044
