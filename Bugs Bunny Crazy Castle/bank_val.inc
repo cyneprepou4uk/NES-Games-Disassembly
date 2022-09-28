@@ -53,7 +53,7 @@ con_item_state_exists                   = $80 ;
 
 ; ram_item_id                           = $0615
 con_item_id_bucket                      = $00 ; 
-con_item_id_strongbox                   = $01 ; 
+con_item_id_safe                        = $01 ; 
 con_item_id_box                         = $02 ; 
 con_item_id_potion                      = $03 ; invulnerability
 con_item_id_glove                       = $04 ; 
@@ -65,12 +65,13 @@ con_item_id_sign_03                     = $09 ;
 
 
 ; ram_0044                              = $0044
+; need comments at 0x009E10
 con_music_title                         = $01 ; title screen
 con_music_soundtrack_1                  = $02 ; bricks stage soundtrack
 con_music_final                         = $03 ; final cutscene
-con_music_04                            = $04 ; unused, same as 15
+; con_music_04                          = $04 ; unused, same as 15
 con_music_soundtrack_2                  = $05 ; concrete stage soundtrack
-con_music_06                            = $06 ; unused, same as 15
+; con_music_06                          = $06 ; unused, same as 15
 con_music_07                            = $07 ; 
 con_music_stage_complete_1              = $08 ; pipes stage
 con_music_menu                          = $09 ; 
@@ -83,7 +84,7 @@ con_sound_player_death                  = $0F ;
 con_sound_pick_up_item                  = $10 ; 
 con_sound_push_item                     = $11 ; 
 con_sound_enemy_death                   = $12 ; 
-con_sound_13                            = $13 ; unused
+; con_sound_13                          = $13 ; unused
 con_sound_14                            = $14 ; 
 con_music_stage_complete_2              = $15 ; bricks and concrete stage
 con_music_game_over                     = $16 ; 

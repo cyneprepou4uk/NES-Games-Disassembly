@@ -7694,7 +7694,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00B3AE 02:B39E: 1C        .byte $1C, $03   ; 06
 - D 1 - I - 0x00B3B0 02:B3A0: 1C        .byte $1C, $06   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00B3B2 02:B3A2: 11        .byte $11, $06, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B3B2 02:B3A2: 11        .byte $11, $06, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00B3B6 02:B3A6: 15        .byte $15, $03, con_item_id_box, $00   ; 
 - D 1 - I - 0x00B3BA 02:B3AA: 15        .byte $15, $0C, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00B3BE 02:B3AE: 00        .byte $00, $00, $00, $00   ; 
@@ -7811,7 +7811,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00B478 02:B468: 1A        .byte $1A, $0C   ; 07
 ; items X, Y, id, unused byte
 - D 1 - I - 0x00B47A 02:B46A: 09        .byte $09, $06, con_item_id_bucket, $00   ; 
-- D 1 - I - 0x00B47E 02:B46E: 10        .byte $10, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B47E 02:B46E: 10        .byte $10, $02, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00B482 02:B472: 14        .byte $14, $06, con_item_id_box, $00   ; 
 - D 1 - I - 0x00B486 02:B476: 00        .byte $00, $00, $00, $00   ; 
 
@@ -7839,7 +7839,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00B4A8 02:B498: 1A        .byte $1A, $0B   ; 06
 - D 1 - I - 0x00B4AA 02:B49A: 1E        .byte $1E, $08   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00B4AC 02:B49C: 0F        .byte $0F, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B4AC 02:B49C: 0F        .byte $0F, $02, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00B4B0 02:B4A0: 13        .byte $13, $05, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00B4B4 02:B4A4: 19        .byte $19, $05, con_item_id_bucket, $00   ; 
 - D 1 - I - 0x00B4B8 02:B4A8: 1B        .byte $1B, $08, con_item_id_potion, $00   ; 
@@ -7897,7 +7897,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00B50C 02:B4FC: 1D        .byte $1D, $05   ; 06
 - D 1 - I - 0x00B50E 02:B4FE: 1E        .byte $1E, $0C   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00B510 02:B500: 0C        .byte $0C, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B510 02:B500: 0C        .byte $0C, $02, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00B514 02:B504: 14        .byte $14, $02, con_item_id_potion, $00   ; 
 - D 1 - I - 0x00B518 02:B508: 1C        .byte $1C, $0C, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00B51C 02:B50C: 19        .byte $19, $09, $05, $00   ; 
@@ -8100,7 +8100,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00B66A 02:B65A: 17        .byte $17, $08   ; 06
 - D 1 - I - 0x00B66C 02:B65C: 1E        .byte $1E, $0C   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00B66E 02:B65E: 04        .byte $04, $0C, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B66E 02:B65E: 04        .byte $04, $0C, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00B672 02:B662: 05        .byte $05, $03, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00B676 02:B666: 10        .byte $10, $0A, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00B67A 02:B66A: 00        .byte $00, $00, $00, $00   ; 
@@ -8274,7 +8274,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00B796 02:B786: 10        .byte $10, $0C   ; 06
 - D 1 - I - 0x00B798 02:B788: 16        .byte $16, $0C   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00B79A 02:B78A: 13        .byte $13, $06, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B79A 02:B78A: 13        .byte $13, $06, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00B79E 02:B78E: 00        .byte $00, $00, $00, $00   ; 
 - D 1 - I - 0x00B7A2 02:B792: 00        .byte $00, $00, $00, $00   ; 
 - D 1 - I - 0x00B7A6 02:B796: 00        .byte $00, $00, $00, $00   ; 
@@ -8303,7 +8303,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00B7C8 02:B7B8: 0B        .byte $0B, $18   ; 06
 - D 1 - I - 0x00B7CA 02:B7BA: 0C        .byte $0C, $1B   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00B7CC 02:B7BC: 0C        .byte $0C, $14, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B7CC 02:B7BC: 0C        .byte $0C, $14, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00B7D0 02:B7C0: 0C        .byte $0C, $08, con_item_id_box, $00   ; 
 - D 1 - I - 0x00B7D4 02:B7C4: 02        .byte $02, $0B, con_item_id_box, $00   ; 
 - D 1 - I - 0x00B7D8 02:B7C8: 01        .byte $01, $05, con_item_id_glove, $00   ; 
@@ -8593,7 +8593,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00B9BC 02:B9AC: 12        .byte $12, $0C   ; 06
 - D 1 - I - 0x00B9BE 02:B9AE: 19        .byte $19, $0B   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00B9C0 02:B9B0: 11        .byte $11, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B9C0 02:B9B0: 11        .byte $11, $02, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00B9C4 02:B9B4: 0E        .byte $0E, $0C, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00B9C8 02:B9B8: 00        .byte $00, $00, $00, $00   ; 
 - D 1 - I - 0x00B9CC 02:B9BC: 00        .byte $00, $00, $00, $00   ; 
@@ -8623,7 +8623,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00B9F0 02:B9E0: 0B        .byte $0B, $0C   ; 07
 ; items X, Y, id, unused byte
 - D 1 - I - 0x00B9F2 02:B9E2: 13        .byte $13, $09, con_item_id_bucket, $00   ; 
-- D 1 - I - 0x00B9F6 02:B9E6: 09        .byte $09, $03, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00B9F6 02:B9E6: 09        .byte $09, $03, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00B9FA 02:B9EA: 01        .byte $01, $02, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00B9FE 02:B9EE: 0D        .byte $0D, $0C, con_item_id_glove, $00   ; 
 
@@ -8826,7 +8826,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00BB4E 02:BB3E: 1E        .byte $1E, $09   ; 07
 ; items X, Y, id, unused byte
 - D 1 - I - 0x00BB50 02:BB40: 0C        .byte $0C, $02, con_item_id_10t, $00   ; 
-- D 1 - I - 0x00BB54 02:BB44: 0C        .byte $0C, $0C, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BB54 02:BB44: 0C        .byte $0C, $0C, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00BB58 02:BB48: 00        .byte $00, $00, $00, $00   ; 
 - D 1 - I - 0x00BB5C 02:BB4C: 00        .byte $00, $00, $00, $00   ; 
 
@@ -8854,7 +8854,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00BB7E 02:BB6E: 0C        .byte $0C, $06   ; 06
 - D 1 - I - 0x00BB80 02:BB70: 1E        .byte $1E, $0C   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00BB82 02:BB72: 09        .byte $09, $03, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BB82 02:BB72: 09        .byte $09, $03, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00BB86 02:BB76: 10        .byte $10, $0C, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00BB8A 02:BB7A: 18        .byte $18, $0C, con_item_id_sign_01, $00   ; 
 - D 1 - I - 0x00BB8E 02:BB7E: 00        .byte $00, $00, $00, $00   ; 
@@ -8883,7 +8883,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00BBB0 02:BBA0: 1E        .byte $1E, $07   ; 06
 - D 1 - I - 0x00BBB2 02:BBA2: 1E        .byte $1E, $0C   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00BBB4 02:BBA4: 0E        .byte $0E, $0C, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BBB4 02:BBA4: 0E        .byte $0E, $0C, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00BBB8 02:BBA8: 14        .byte $14, $05, con_item_id_potion, $00   ; 
 - D 1 - I - 0x00BBBC 02:BBAC: 19        .byte $19, $02, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00BBC0 02:BBB0: 00        .byte $00, $00, $00, $00   ; 
@@ -9144,7 +9144,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00BD72 02:BD62: 10        .byte $10, $0C   ; 06
 - D 1 - I - 0x00BD74 02:BD64: 1B        .byte $1B, $0C   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00BD76 02:BD66: 0C        .byte $0C, $06, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BD76 02:BD66: 0C        .byte $0C, $06, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00BD7A 02:BD6A: 19        .byte $19, $0C, con_item_id_box, $00   ; 
 - D 1 - I - 0x00BD7E 02:BD6E: 02        .byte $02, $03, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00BD82 02:BD72: 00        .byte $00, $00, $00, $00   ; 
@@ -9260,7 +9260,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00BE3A 02:BE2A: 0E        .byte $0E, $14   ; 06
 - D 1 - I - 0x00BE3C 02:BE2C: 0C        .byte $0C, $17   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00BE3E 02:BE2E: 0A        .byte $0A, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BE3E 02:BE2E: 0A        .byte $0A, $02, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00BE42 02:BE32: 07        .byte $07, $0E, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00BE46 02:BE36: 00        .byte $00, $00, $00, $00   ; 
 - D 1 - I - 0x00BE4A 02:BE3A: 00        .byte $00, $00, $00, $00   ; 
@@ -9347,7 +9347,7 @@ tbl_0x00B390_stage_objects:
 - D 1 - I - 0x00BED0 02:BEC0: 0E        .byte $0E, $18   ; 06
 - D 1 - I - 0x00BED2 02:BEC2: 02        .byte $02, $1B   ; 07
 ; items X, Y, id, unused byte
-- D 1 - I - 0x00BED4 02:BEC4: 09        .byte $09, $02, con_item_id_strongbox, $00   ; 
+- D 1 - I - 0x00BED4 02:BEC4: 09        .byte $09, $02, con_item_id_safe, $00   ; 
 - D 1 - I - 0x00BED8 02:BEC8: 0D        .byte $0D, $1B, con_item_id_potion, $00   ; 
 - D 1 - I - 0x00BEDC 02:BECC: 01        .byte $01, $18, con_item_id_glove, $00   ; 
 - D 1 - I - 0x00BEE0 02:BED0: 00        .byte $00, $00, $00, $00   ; 

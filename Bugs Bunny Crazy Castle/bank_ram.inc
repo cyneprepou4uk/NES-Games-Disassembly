@@ -346,7 +346,9 @@ ram_btn_hold                            = $00F7 ; 008080 00815F 00844E 008EA0 00
 ram_00F9                                = $00F9 ; 00EC37 
 
 ram_00FA                                = $00FA ; 00EC37 00ED03 00ED0D 00F046 00F212 00F37A 00F4F7 00F52C 
-ram_00FB                                = $00FB ; 00EC37 00EEAF 
+
+; bzk useless, holds 00
+ram_00FB_byte_00                        = $00FB ; 00EC37 00EEAF 
 
 ram_scroll_X                            = $00FC ; 00EC37 00F116 00F12E 00F1DB 
 ram_scroll_Y                            = $00FD ; 00EC37 00F11A 00F133 00F1E0 

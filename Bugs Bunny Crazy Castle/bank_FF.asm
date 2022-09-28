@@ -939,20 +939,11 @@ tbl_C68A_palette_spr:
 - D 2 - - - 0x00C6A6 03:C696: 0F        .byte $0F, $06, $26, $38   ; 
 
 
-; bzk garbage
-- - - - - - 0x00C6AA 03:C69A: 0F        .byte $0F   ; 
-
-
-
-tbl_C69B:
-; 00
-- D 2 - - - 0x00C6AB 03:C69B: 21        .byte $21, $16, $37   ; 
-- - - - - - 0x00C6AE 03:C69E: 0F        .byte $0F   ; placeholder
-; 01
-- D 2 - - - 0x00C6AF 03:C69F: 00        .byte $00, $37, $30   ; 
-- - - - - - 0x00C6B2 03:C6A2: 0F        .byte $0F   ; placeholder
-; 02
-- D 2 - - - 0x00C6B3 03:C6A3: 17        .byte $17, $26, $30   ; 
+tbl_C69A:
+; 1st byte at teach line is a placeholder
+- - - - - - 0x00C6AA 03:C69A: 0F        .byte $0F, $21, $16, $37   ; 02
+- - - - - - 0x00C6AE 03:C69E: 0F        .byte $0F, $00, $37, $30   ; 03
+- - - - - - 0x00C6B2 03:C6A2: 0F        .byte $0F, $17, $26, $30   ; 04
 
 
 
@@ -1136,11 +1127,11 @@ C - - - - - 0x00C7F0 03:C7E0: E9 02     SBC #$02
 C - - - - - 0x00C7F2 03:C7E2: 0A        ASL
 C - - - - - 0x00C7F3 03:C7E3: 0A        ASL
 C - - - - - 0x00C7F4 03:C7E4: A8        TAY
-C - - - - - 0x00C7F5 03:C7E5: B9 9B C6  LDA tbl_C69B,Y
+C - - - - - 0x00C7F5 03:C7E5: B9 9B C6  LDA tbl_C69A + 1,Y
 C - - - - - 0x00C7F8 03:C7E8: 85 D9     STA ram_pal_buffer_1 + $19
-C - - - - - 0x00C7FA 03:C7EA: B9 9C C6  LDA tbl_C69B + 1,Y
+C - - - - - 0x00C7FA 03:C7EA: B9 9C C6  LDA tbl_C69A + 2,Y
 C - - - - - 0x00C7FD 03:C7ED: 85 DA     STA ram_pal_buffer_1 + $1A
-C - - - - - 0x00C7FF 03:C7EF: B9 9D C6  LDA tbl_C69B + 2,Y
+C - - - - - 0x00C7FF 03:C7EF: B9 9D C6  LDA tbl_C69A + 3,Y
 C - - - - - 0x00C802 03:C7F2: 85 DB     STA ram_pal_buffer_1 + $1B
 bra_C7F4:
 C - - - - - 0x00C804 03:C7F4: 68        PLA
@@ -1151,13 +1142,13 @@ C - - - - - 0x00C806 03:C7F6: 60        RTS
 
 tbl_C7F7:
 - D 2 - - - 0x00C807 03:C7F7: 00        .byte $00   ; 00
-- D 2 - - - 0x00C808 03:C7F8: 01        .byte $01   ; 01
-- D 2 - - - 0x00C809 03:C7F9: 01        .byte $01   ; 02
-- D 2 - - - 0x00C80A 03:C7FA: 01        .byte $01   ; 03
-- D 2 - - - 0x00C80B 03:C7FB: 01        .byte $01   ; 04
-- D 2 - - - 0x00C80C 03:C7FC: 02        .byte $02   ; 05
-- D 2 - - - 0x00C80D 03:C7FD: 03        .byte $03   ; 06
-- D 2 - - - 0x00C80E 03:C7FE: 04        .byte $04   ; 07
+- D 2 - - - 0x00C808 03:C7F8: 01        .byte $01   ; 20
+- D 2 - - - 0x00C809 03:C7F9: 01        .byte $01   ; 40
+- D 2 - - - 0x00C80A 03:C7FA: 01        .byte $01   ; 60
+- D 2 - - - 0x00C80B 03:C7FB: 01        .byte $01   ; 80
+- D 2 - - - 0x00C80C 03:C7FC: 02        .byte $02   ; A0
+- D 2 - - - 0x00C80D 03:C7FD: 03        .byte $03   ; C0
+- D 2 - - - 0x00C80E 03:C7FE: 04        .byte $04   ; E0
 
 
 
@@ -5021,7 +5012,7 @@ C - - - - - 0x00E128 03:E118: 60        RTS
 
 tbl_E119:
 - D 3 - - - 0x00E129 03:E119: 50        .byte $50   ; 00 con_item_id_bucket
-- D 3 - - - 0x00E12A 03:E11A: 20        .byte $20   ; 01 con_item_id_strongbox
+- D 3 - - - 0x00E12A 03:E11A: 20        .byte $20   ; 01 con_item_id_safe
 - D 3 - - - 0x00E12B 03:E11B: 30        .byte $30   ; 02 con_item_id_box
 - - - - - - 0x00E12C 03:E11C: 50        .byte $50   ; 03 con_item_id_potion
 - - - - - - 0x00E12D 03:E11D: 80        .byte $80   ; 04 con_item_id_glove
@@ -6741,7 +6732,7 @@ C - - - - - 0x00ED2B 03:ED1B: 60        RTS
 - - - - - - 0x00ED36 03:ED26: 20 C6 F5  JSR sub_F5C6
 - - - - - - 0x00ED39 03:ED29: 20 E3 EE  JSR sub_EEE3
 - - - - - - 0x00ED3C 03:ED2C: 20 DF F5  JSR sub_F5DF
-- - - - - - 0x00ED3F 03:ED2F: 20 5A EE  JSR sub_EE5A
+- - - - - - 0x00ED3F 03:ED2F: 20 5A EE  JSR sub_EE5A_disable_nmi
 - - - - - - 0x00ED42 03:ED32: 20 0E ED  JSR sub_ED0E_increase_indirect_0037
 - - - - - - 0x00ED45 03:ED35: AD 02 20  LDA $2002
 - - - - - - 0x00ED48 03:ED38: A9 24     LDA #> $2400
@@ -6752,7 +6743,7 @@ C - - - - - 0x00ED2B 03:ED1B: 60        RTS
 - - - - - - 0x00ED54 03:ED44: 85 1F     STA ram_001F
 - - - - - - 0x00ED56 03:ED46: 85 1C     STA ram_001C
 - - - - - - 0x00ED58 03:ED48: 20 FF ED  JSR sub_EDFF
-- - - - - - 0x00ED5B 03:ED4B: 20 64 EE  JSR sub_EE64
+- - - - - - 0x00ED5B 03:ED4B: 20 64 EE  JSR sub_EE64_enable_nmi
 - - - - - - 0x00ED5E 03:ED4E: 20 D1 F5  JSR sub_F5D1
 - - - - - - 0x00ED61 03:ED51: 20 EA EE  JSR sub_EEEA
 - - - - - - 0x00ED64 03:ED54: 20 F6 F5  JSR sub_F5F6
@@ -6778,7 +6769,7 @@ C - - - - - 0x00ED78 03:ED68: 48        PHA
 C - - - - - 0x00ED79 03:ED69: 20 C6 F5  JSR sub_F5C6
 C - - - - - 0x00ED7C 03:ED6C: 20 E3 EE  JSR sub_EEE3
 C - - - - - 0x00ED7F 03:ED6F: 20 DF F5  JSR sub_F5DF
-C - - - - - 0x00ED82 03:ED72: 20 5A EE  JSR sub_EE5A
+C - - - - - 0x00ED82 03:ED72: 20 5A EE  JSR sub_EE5A_disable_nmi
 C - - - - - 0x00ED85 03:ED75: 20 0E ED  JSR sub_ED0E_increase_indirect_0037
 C - - - - - 0x00ED88 03:ED78: AD 02 20  LDA $2002
 C - - - - - 0x00ED8B 03:ED7B: A9 20     LDA #> $2000
@@ -6789,7 +6780,7 @@ C - - - - - 0x00ED95 03:ED85: 85 1E     STA ram_001E
 C - - - - - 0x00ED97 03:ED87: 85 1F     STA ram_001F
 C - - - - - 0x00ED99 03:ED89: 85 1C     STA ram_001C
 C - - - - - 0x00ED9B 03:ED8B: 20 A2 ED  JSR sub_EDA2_decompressing_screen_data
-C - - - - - 0x00ED9E 03:ED8E: 20 64 EE  JSR sub_EE64
+C - - - - - 0x00ED9E 03:ED8E: 20 64 EE  JSR sub_EE64_enable_nmi
 C - - - - - 0x00EDA1 03:ED91: 20 D1 F5  JSR sub_F5D1
 C - - - - - 0x00EDA4 03:ED94: 20 EA EE  JSR sub_EEEA
 C - - - - - 0x00EDA7 03:ED97: 20 F6 F5  JSR sub_F5F6
@@ -6937,7 +6928,7 @@ C - - - - - 0x00EE69 03:EE59: 60        RTS
 
 
 
-sub_EE5A:
+sub_EE5A_disable_nmi:
 C - - - - - 0x00EE6A 03:EE5A: A5 FF     LDA ram_for_2000
 C - - - - - 0x00EE6C 03:EE5C: 29 7F     AND #$7F
 C - - - - - 0x00EE6E 03:EE5E: 85 FF     STA ram_for_2000
@@ -6946,7 +6937,7 @@ C - - - - - 0x00EE73 03:EE63: 60        RTS
 
 
 
-sub_EE64:
+sub_EE64_enable_nmi:
 C - - - - - 0x00EE74 03:EE64: AD 02 20  LDA $2002
 C - - - - - 0x00EE77 03:EE67: A5 FF     LDA ram_for_2000
 C - - - - - 0x00EE79 03:EE69: 09 80     ORA #$80
@@ -6997,7 +6988,8 @@ C - - - - - 0x00EEAE 03:EE9E: 60        RTS
 
 
 sub_EE9F_read_input:
-C - - - - - 0x00EEAF 03:EE9F: A6 FB     LDX ram_00FB
+; bzk optimize, LDX 01
+C - - - - - 0x00EEAF 03:EE9F: A6 FB     LDX ram_00FB_byte_00
 C - - - - - 0x00EEB1 03:EEA1: E8        INX
 C - - - - - 0x00EEB2 03:EEA2: 8E 16 40  STX $4016
 C - - - - - 0x00EEB5 03:EEA5: CA        DEX
@@ -7187,6 +7179,7 @@ C - - - - - 0x00EFA7 03:EF97: 48        PHA
 C - - - - - 0x00EFA8 03:EF98: 98        TYA
 C - - - - - 0x00EFA9 03:EF99: 48        PHA
 C - - - - - 0x00EFAA 03:EF9A: AD 02 20  LDA $2002
+; disable nmi
 C - - - - - 0x00EFAD 03:EF9D: A5 FF     LDA ram_for_2000
 C - - - - - 0x00EFAF 03:EF9F: 29 7F     AND #$7F
 C - - - - - 0x00EFB1 03:EFA1: 85 FF     STA ram_for_2000
@@ -7215,6 +7208,7 @@ C - - - - - 0x00EFDE 03:EFCE: 20 FC F0  JSR sub_F0FC
 C - - - - - 0x00EFE1 03:EFD1: E6 25     INC ram_frame_cnt_1
 C - - - - - 0x00EFE3 03:EFD3: 20 D1 F8  JSR sub_F8D1
 C - - - - - 0x00EFE6 03:EFD6: AD 02 20  LDA $2002
+; enable nmi
 C - - - - - 0x00EFE9 03:EFD9: A5 FF     LDA ram_for_2000
 C - - - - - 0x00EFEB 03:EFDB: 09 80     ORA #$80
 C - - - - - 0x00EFED 03:EFDD: 85 FF     STA ram_for_2000
@@ -7558,7 +7552,7 @@ C - - - - - 0x00F1C3 03:F1B3: 20 F6 F1  JSR sub_F1F6
 loc_F1B6:
 C - - - - - 0x00F1C6 03:F1B6: 20 FD F1  JSR sub_F1FD
 loc_F1B9:
-C - - - - - 0x00F1C9 03:F1B9: 20 64 EE  JSR sub_EE64
+C - - - - - 0x00F1C9 03:F1B9: 20 64 EE  JSR sub_EE64_enable_nmi
 C - - - - - 0x00F1CC 03:F1BC: 20 EA EE  JSR sub_EEEA
 C - - - - - 0x00F1CF 03:F1BF: 20 CD EE  JSR sub_EECD_wait_1_frame_
 C - - - - - 0x00F1D2 03:F1C2: A5 FE     LDA ram_for_2001
@@ -7585,7 +7579,7 @@ sub_F1E5:
 C - - - - - 0x00F1F5 03:F1E5: 85 10     STA ram_0010
 C - - - - - 0x00F1F7 03:F1E7: 86 11     STX ram_0011
 C - - - - - 0x00F1F9 03:F1E9: 84 12     STY ram_0012
-C - - - - - 0x00F1FB 03:F1EB: 20 5A EE  JSR sub_EE5A
+C - - - - - 0x00F1FB 03:F1EB: 20 5A EE  JSR sub_EE5A_disable_nmi
 C - - - - - 0x00F1FE 03:F1EE: A5 FE     LDA ram_for_2001
 C - - - - - 0x00F200 03:F1F0: 29 E7     AND #$E7
 C - - - - - 0x00F202 03:F1F2: 8D 01 20  STA $2001
