@@ -22,7 +22,7 @@ C - - - - - 0x007E29 01:FE19: E8        INX ; X = 00    con_prg_bank + $00
 C - - - - - 0x007E2A 01:FE1A: 8E 10 40  STX $4010
 C - - - - - 0x007E2D 01:FE1D: 8E 03 20  STX $2003
 C - - - - - 0x007E30 01:FE20: 8E F8 FF  STX $FFF8
-C - - - - - 0x007E33 01:FE23: 4C 00 80  JMP loc_inc_0x000010
+C - - - - - 0x007E33 01:FE23: 4C 00 80  JMP loc_inc_0x000010_RESET
 
 
 
@@ -78,8 +78,8 @@ sub_FE5C:
 
 vec_FE69_NMI:
 C D 3 - - - 0x007E79 01:FE69: 48        PHA
-C - - - - - 0x007E7A 01:FE6A: 8E B0 07  STX ram_07B0
-C - - - - - 0x007E7D 01:FE6D: 8C B1 07  STY ram_07B1
+C - - - - - 0x007E7A 01:FE6A: 8E B0 07  STX ram_save_X
+C - - - - - 0x007E7D 01:FE6D: 8C B1 07  STY ram_save_Y
 C - - - - - 0x007E80 01:FE70: A5 FF     LDA ram_prg_bank
 C - - - - - 0x007E82 01:FE72: 48        PHA
 C - - - - - 0x007E83 01:FE73: 29 10     AND #$10
@@ -118,8 +118,8 @@ bra_FEAB:
 - - - - - - 0x007EC1 01:FEB1: 68        PLA
 - - - - - - 0x007EC2 01:FEB2: 85 FF     STA ram_prg_bank
 - - - - - - 0x007EC4 01:FEB4: 8D F8 FF  STA $FFF8
-C - - - - - 0x007EC7 01:FEB7: AE B0 07  LDX ram_07B0
-C - - - - - 0x007ECA 01:FEBA: AC B1 07  LDY ram_07B1
+C - - - - - 0x007EC7 01:FEB7: AE B0 07  LDX ram_save_X
+C - - - - - 0x007ECA 01:FEBA: AC B1 07  LDY ram_save_Y
 C - - - - - 0x007ECD 01:FEBD: 68        PLA
 C - - - - - 0x007ECE 01:FEBE: 40        RTI
 
@@ -138,7 +138,7 @@ C - - - - - 0x007ED9 01:FEC9: 8D F8 FF  STA $FFF8
 - - - - - - 0x007EDF 01:FECF: 85 16     STA ram_0016
 - - - - - - 0x007EE1 01:FED1: BD FD 80  LDA tbl_0x01810D_room_data_hi,X
 - - - - - - 0x007EE4 01:FED4: 85 17     STA ram_0017
-- - - - - - 0x007EE6 01:FED6: 4C 5C FF  JMP loc_FF5C
+- - - - - - 0x007EE6 01:FED6: 4C 5C FF  JMP loc_FF5C_restore_prg_bank
 
 
 
@@ -235,7 +235,7 @@ C - - - - - 0x007F62 01:FF52: 09 02     ORA #con_prg_bank + $02
 C - - - - - 0x007F64 01:FF54: 85 FF     STA ram_prg_bank
 C - - - - - 0x007F66 01:FF56: 8D F8 FF  STA $FFF8
 - - - - - - 0x007F69 01:FF59: 20 E6 C1  JSR sub_0x0141F6_play_music
-loc_FF5C:
+loc_FF5C_restore_prg_bank:
 - - - - - - 0x007F6C 01:FF5C: 68        PLA
 - - - - - - 0x007F6D 01:FF5D: 85 FF     STA ram_prg_bank
 C - - - - - 0x007F6F 01:FF5F: 8D F8 FF  STA $FFF8
@@ -254,7 +254,7 @@ C - - - - - 0x007F7D 01:FF6D: 09 02     ORA #con_prg_bank + $02
 C - - - - - 0x007F7F 01:FF6F: 85 FF     STA ram_prg_bank
 C - - - - - 0x007F81 01:FF71: 8D F8 FF  STA $FFF8
 - - - - - - 0x007F84 01:FF74: 20 46 C2  JSR sub_0x014256_disable_music_driver
-- - - - - - 0x007F87 01:FF77: 4C 5C FF  JMP loc_FF5C
+- - - - - - 0x007F87 01:FF77: 4C 5C FF  JMP loc_FF5C_restore_prg_bank
 
 
 
