@@ -1736,7 +1736,7 @@ _off003_8B57_00:
 _off005_8B77_06:
 _off005_8B77_0A:
 _off005_8B77_0E:
-    .incbin "incbin/chr/02___8B77_91F6.chr"
+    .incbin "incbin/chr/01___8B77_91F6.chr"
 
 
 
@@ -1863,7 +1863,7 @@ off_92BA_04:
 
 _off005_92C5_02:
 _off005_92C5_0C:
-    .incbin "incbin/chr/02___92C5_9D24.chr"
+    .incbin "incbin/chr/01___92C5_9D24.chr"
 
 
 
@@ -2381,7 +2381,7 @@ off_9F99_10:
 _off005_9F9F_04:
 _off005_9F9F_08:
 _off005_9F9F_10:
-    .incbin "incbin/chr/02___9F9F_A78E.chr"
+    .incbin "incbin/chr/01___9F9F_A78E.chr"
 
 
 
@@ -2567,7 +2567,7 @@ off_A889_07:
 
 
 _off005_A890_12:
-    .incbin "incbin/chr/02___A890_AB1F.chr"
+    .incbin "incbin/chr/01___A890_AB1F.chr"
 
 
 
@@ -2631,7 +2631,7 @@ off_ABB1_02:
 
 
 _off005_ABB8_00:
-    .incbin "incbin/chr/02___ABB8_B907.chr"
+    .incbin "incbin/chr/01___ABB8_B907.chr"
 
 
 
