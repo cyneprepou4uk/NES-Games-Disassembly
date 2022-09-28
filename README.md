@@ -58,6 +58,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 * Son Son (J) [!] `F7C8F42D`
 * Street Fighter III (9 Fighter) (Unl) `22CDD2F6`
 * Tecmo World Cup Soccer (J) [!] `19F24980`
+* Tennis (JU) [!] `5F457C00`
 * Yie Ar Kung-Fu (J) (V1.4) [!] `0D526208`
 
 
@@ -67,7 +68,6 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 * Dr. Mario (JU) (PRG0) [!] `B1F7E3E9`
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!] `BABD39FA`
 * Super Mario Bros. (W) [!] `3337EC46`
-* Tennis (JU) [!] `5F457C00`
 * Urban Champion (W) [!] `0770CDAA`
 
 
