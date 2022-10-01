@@ -13,7 +13,7 @@
 .export loc_0x01804E
 .export sub_0x01809C
 .export sub_0x018119
-.export sub_0x01A090
+.export sub_0x01A090_write_buffer_to_ppu
 
 
 
@@ -65,7 +65,7 @@ tbl_802A:
 
 
 loc_0x01804E:
-C D 0 - - - 0x01804E 06:803E: A5 13     LDA ram_game_mode_sub
+C D 0 - - - 0x01804E 06:803E: A5 13     LDA ram_subscript
 C - - - - - 0x018050 06:8040: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
 - D 0 - I - 0x018053 06:8043: 47 80     .word ofs_027_8047_00
 - D 0 - I - 0x018055 06:8045: 70 80     .word ofs_027_8070_01
@@ -110,7 +110,7 @@ C - - - - - 0x01808D 06:807D: 85 01     STA ram_0001
 C - - - - - 0x01808F 06:807F: 20 B5 80  JSR sub_80B5_set_copy_range_6B7E_6C7D
 C - - - - - 0x018092 06:8082: 20 D7 80  JSR sub_80D7_copy_bat_table_to_bat
 C - - - - - 0x018095 06:8085: A9 00     LDA #$00
-C - - - - - 0x018097 06:8087: 85 13     STA ram_game_mode_sub
+C - - - - - 0x018097 06:8087: 85 13     STA ram_subscript
 C - - - - - 0x018099 06:8089: E6 11     INC ram_0011
 C - - - - - 0x01809B 06:808B: 60        RTS
 
@@ -126,7 +126,7 @@ C - - - - - 0x0180A7 06:8097: 85 01     STA ram_0001
 C - - - - - 0x0180A9 06:8099: 20 C6 80  JSR sub_80C6
 C - - - - - 0x0180AC 06:809C: 20 D7 80  JSR sub_80D7_copy_bat_table_to_bat
 C - - - - - 0x0180AF 06:809F: A9 00     LDA #$00
-C - - - - - 0x0180B1 06:80A1: 85 13     STA ram_game_mode_sub
+C - - - - - 0x0180B1 06:80A1: 85 13     STA ram_subscript
 C - - - - - 0x0180B3 06:80A3: 60        RTS
 
 
@@ -150,8 +150,8 @@ C - - - - - 0x0180C4 06:80B4: 60        RTS
 
 sub_80B5_set_copy_range_6B7E_6C7D:
 .scope
-tmp_copy_start = ram_6B7E_unk_data
-tmp_copy_end   = ram_6B7E_unk_data + $100 - 1
+tmp_copy_start = ram_6B7E_palette_buffer
+tmp_copy_end   = ram_6B7E_palette_buffer + $100 - 1
 C - - - - - 0x0180C5 06:80B5: A9 7E     LDA #< tmp_copy_start
 C - - - - - 0x0180C7 06:80B7: 85 02     STA ram_0002
 C - - - - - 0x0180C9 06:80B9: A9 6B     LDA #> tmp_copy_start
@@ -189,23 +189,23 @@ C - - - - - 0x0180F1 06:80E1: D0 09     BNE bra_80EC_not_finished
 C - - - - - 0x0180F3 06:80E3: A5 03     LDA ram_0003
 C - - - - - 0x0180F5 06:80E5: C5 05     CMP ram_0005    ; max addr hi
 C - - - - - 0x0180F7 06:80E7: D0 03     BNE bra_80EC_not_finished
-C - - - - - 0x0180F9 06:80E9: E6 13     INC ram_game_mode_sub
+C - - - - - 0x0180F9 06:80E9: E6 13     INC ram_subscript
 C - - - - - 0x0180FB 06:80EB: 60        RTS
 bra_80EC_not_finished:
 ; bzk optimize, INC lo + BNE check + INC hi if needed
 C - - - - - 0x0180FC 06:80EC: A5 02     LDA ram_0002
 C - - - - - 0x0180FE 06:80EE: 18        CLC
-C - - - - - 0x0180FF 06:80EF: 69 01     ADC #$01
+C - - - - - 0x0180FF 06:80EF: 69 01     ADC #< $0001
 C - - - - - 0x018101 06:80F1: 85 02     STA ram_0002
 C - - - - - 0x018103 06:80F3: A5 03     LDA ram_0003
-C - - - - - 0x018105 06:80F5: 69 00     ADC #$00
+C - - - - - 0x018105 06:80F5: 69 00     ADC #> $0001
 C - - - - - 0x018107 06:80F7: 85 03     STA ram_0003
 C - - - - - 0x018109 06:80F9: A5 00     LDA ram_0000
 C - - - - - 0x01810B 06:80FB: 18        CLC
-C - - - - - 0x01810C 06:80FC: 69 01     ADC #$01
+C - - - - - 0x01810C 06:80FC: 69 01     ADC #< $0001
 C - - - - - 0x01810E 06:80FE: 85 00     STA ram_0000
 C - - - - - 0x018110 06:8100: A5 01     LDA ram_0001
-C - - - - - 0x018112 06:8102: 69 00     ADC #$00
+C - - - - - 0x018112 06:8102: 69 00     ADC #> $0001
 C - - - - - 0x018114 06:8104: 85 01     STA ram_0001
 C - - - - - 0x018116 06:8106: 4C D9 80  JMP loc_80D9_loop
 
@@ -1275,8 +1275,7 @@ _off010_9300_00:
 - D 0 - I - 0x01933E 06:932E: 00        .byte $00   ; 
 - D 0 - I - 0x01933F 06:932F: 77        .byte $77   ; 
 - D 0 - I - 0x019340 06:9330: 2A        .byte $2A   ; 
-- D 0 - I - 0x019341 06:9331: 7F        .byte $7F   ; 
-- D 0 - I - 0x019342 06:9332: 06        .byte $06   ; 
+- D 0 - I - 0x019341 06:9331: 7F 06     .word ram_067F
 - D 0 - I - 0x019343 06:9333: 00        .byte $00   ; 
 - D 0 - I - 0x019344 06:9334: 1D        .byte $1D   ; 
 - D 0 - I - 0x019345 06:9335: 23        .byte $23   ; 
@@ -1508,8 +1507,7 @@ _off010_93FC_01:
 - D 0 - I - 0x01943A 06:942A: 00        .byte $00   ; 
 - D 0 - I - 0x01943B 06:942B: 73        .byte $73   ; 
 - D 0 - I - 0x01943C 06:942C: 36        .byte $36   ; 
-- D 0 - I - 0x01943D 06:942D: FF        .byte $FF   ; 
-- D 0 - I - 0x01943E 06:942E: 06        .byte $06   ; 
+- D 0 - I - 0x01943D 06:942D: FF 06     .word ram_06FF
 - D 0 - I - 0x01943F 06:942F: 01        .byte $01   ; 
 - D 0 - I - 0x019440 06:9430: 7F        .byte $7F   ; 
 - D 0 - I - 0x019441 06:9431: FF        .byte $FF   ; 
@@ -1741,8 +1739,7 @@ _off010_94F8_02:
 - D 0 - I - 0x019536 06:9526: B0        .byte $B0   ; 
 - D 0 - I - 0x019537 06:9527: 7D        .byte $7D   ; 
 - D 0 - I - 0x019538 06:9528: 0D        .byte $0D   ; 
-- D 0 - I - 0x019539 06:9529: FF        .byte $FF   ; 
-- D 0 - I - 0x01953A 06:952A: 06        .byte $06   ; 
+- D 0 - I - 0x019539 06:9529: FF 06     .word ram_06FF
 - D 0 - I - 0x01953B 06:952B: 02        .byte $02   ; 
 - D 0 - I - 0x01953C 06:952C: FF        .byte $FF   ; 
 - D 0 - I - 0x01953D 06:952D: FF        .byte $FF   ; 
@@ -1974,8 +1971,7 @@ _off010_95F4_03:
 - D 0 - I - 0x019632 06:9622: C0        .byte $C0   ; 
 - D 0 - I - 0x019633 06:9623: 7C        .byte $7C   ; 
 - D 0 - I - 0x019634 06:9624: 3D        .byte $3D   ; 
-- D 0 - I - 0x019635 06:9625: FF        .byte $FF   ; 
-- D 0 - I - 0x019636 06:9626: 06        .byte $06   ; 
+- D 0 - I - 0x019635 06:9625: FF 06     .word ram_06FF
 - D 0 - I - 0x019637 06:9627: 03        .byte $03   ; 
 - D 0 - I - 0x019638 06:9628: FF        .byte $FF   ; 
 - D 0 - I - 0x019639 06:9629: FF        .byte $FF   ; 
@@ -2207,8 +2203,7 @@ _off010_96F0_04:
 - D 0 - I - 0x01972E 06:971E: 10        .byte $10   ; 
 - D 0 - I - 0x01972F 06:971F: 71        .byte $71   ; 
 - D 0 - I - 0x019730 06:9720: 03        .byte $03   ; 
-- D 0 - I - 0x019731 06:9721: FF        .byte $FF   ; 
-- D 0 - I - 0x019732 06:9722: 06        .byte $06   ; 
+- D 0 - I - 0x019731 06:9721: FF 06     .word ram_06FF
 - D 0 - I - 0x019733 06:9723: 04        .byte $04   ; 
 - D 0 - I - 0x019734 06:9724: 60        .byte $60   ; 
 - D 0 - I - 0x019735 06:9725: FF        .byte $FF   ; 
@@ -2440,8 +2435,7 @@ _off010_97EC_05:
 - D 0 - I - 0x01982A 06:981A: F0        .byte $F0   ; 
 - D 0 - I - 0x01982B 06:981B: 76        .byte $76   ; 
 - D 0 - I - 0x01982C 06:981C: 14        .byte $14   ; 
-- D 0 - I - 0x01982D 06:981D: FF        .byte $FF   ; 
-- D 0 - I - 0x01982E 06:981E: 06        .byte $06   ; 
+- D 0 - I - 0x01982D 06:981D: FF 06     .word ram_06FF
 - D 0 - I - 0x01982F 06:981F: 05        .byte $05   ; 
 - D 0 - I - 0x019830 06:9820: 07        .byte $07   ; 
 - D 0 - I - 0x019831 06:9821: 04        .byte $04   ; 
@@ -2673,8 +2667,7 @@ _off010_98E8_06:
 - D 0 - I - 0x019926 06:9916: C8        .byte $C8   ; 
 - D 0 - I - 0x019927 06:9917: 79        .byte $79   ; 
 - D 0 - I - 0x019928 06:9918: 0C        .byte $0C   ; 
-- D 0 - I - 0x019929 06:9919: FF        .byte $FF   ; 
-- D 0 - I - 0x01992A 06:991A: 06        .byte $06   ; 
+- D 0 - I - 0x019929 06:9919: FF 06     .word ram_06FF
 - D 0 - I - 0x01992B 06:991B: 06        .byte $06   ; 
 - D 0 - I - 0x01992C 06:991C: 08        .byte $08   ; 
 - D 0 - I - 0x01992D 06:991D: 75        .byte $75   ; 
@@ -2906,8 +2899,7 @@ _off010_99E4_07:
 - D 0 - I - 0x019A22 06:9A12: C8        .byte $C8   ; 
 - D 0 - I - 0x019A23 06:9A13: 79        .byte $79   ; 
 - D 0 - I - 0x019A24 06:9A14: 2B        .byte $2B   ; 
-- D 0 - I - 0x019A25 06:9A15: 7F        .byte $7F   ; 
-- D 0 - I - 0x019A26 06:9A16: 07        .byte $07   ; 
+- D 0 - I - 0x019A25 06:9A15: 7F 07     .word ram_077F
 - D 0 - I - 0x019A27 06:9A17: 07        .byte $07   ; 
 - D 0 - I - 0x019A28 06:9A18: 7B        .byte $7B   ; 
 - D 0 - I - 0x019A29 06:9A19: 4A        .byte $4A   ; 
@@ -3139,8 +3131,7 @@ _off010_9AE0_08:
 - D 0 - I - 0x019B1E 06:9B0E: B0        .byte $B0   ; 
 - D 0 - I - 0x019B1F 06:9B0F: 7E        .byte $7E   ; 
 - D 0 - I - 0x019B20 06:9B10: 2C        .byte $2C   ; 
-- D 0 - I - 0x019B21 06:9B11: 7F        .byte $7F   ; 
-- D 0 - I - 0x019B22 06:9B12: 07        .byte $07   ; 
+- D 0 - I - 0x019B21 06:9B11: 7F 07     .word ram_077F
 - D 0 - I - 0x019B23 06:9B13: 08        .byte $08   ; 
 - D 0 - I - 0x019B24 06:9B14: 2F        .byte $2F   ; 
 - D 0 - I - 0x019B25 06:9B15: 0F        .byte $0F   ; 
@@ -3372,8 +3363,7 @@ _off010_9BDC_09:
 - D 0 - I - 0x019C1A 06:9C0A: 00        .byte $00   ; 
 - D 0 - I - 0x019C1B 06:9C0B: 76        .byte $76   ; 
 - D 0 - I - 0x019C1C 06:9C0C: 32        .byte $32   ; 
-- D 0 - I - 0x019C1D 06:9C0D: 7F        .byte $7F   ; 
-- D 0 - I - 0x019C1E 06:9C0E: 07        .byte $07   ; 
+- D 0 - I - 0x019C1D 06:9C0D: 7F 07     .word ram_077F
 - D 0 - I - 0x019C1F 06:9C0F: 09        .byte $09   ; 
 - D 0 - I - 0x019C20 06:9C10: 60        .byte $60   ; 
 - D 0 - I - 0x019C21 06:9C11: 70        .byte $70   ; 
@@ -3634,85 +3624,85 @@ ofs_9CD8_bank_s1_asm_export:
 
 
 
-tbl_A000:
-- D 1 - - - 0x01A010 06:A000: 02 03     .word ram_0302
-- D 1 - - - 0x01A012 06:A002: FE A3     .word _off000_A3FE_01
-- D 1 - - - 0x01A014 06:A004: B4 A2     .word _off000_A2B4_02
-- D 1 - - - 0x01A016 06:A006: 14 68     .word _off000_bat_6814_03
-- D 1 - - - 0x01A018 06:A008: 8E A2     .word _off000_A28E_04
-- D 1 - - - 0x01A01A 06:A00A: 96 A2     .word _off000_A296_05
-- D 1 - - - 0x01A01C 06:A00C: 1C 68     .word _off000_bat_681C_06
-- D 1 - - - 0x01A01E 06:A00E: D3 A2     .word _off000_A2D3_07
-- D 1 - - - 0x01A020 06:A010: 69 A8     .word _off000_A869_08
-- D 1 - - - 0x01A022 06:A012: F0 67     .word _off000_bat_67F0_09
-- D 1 - - - 0x01A024 06:A014: 00 A1     .word _off000_A100_0A
-- D 1 - - - 0x01A026 06:A016: 83 A1     .word _off000_A183_0B
-- D 1 - - - 0x01A028 06:A018: 7E 6B     .word ram_6B7E_unk_data
-- - - - - - 0x01A02A 06:A01A: 02 03     .word ram_0302
-- - - - - - 0x01A02C 06:A01C: 02 03     .word ram_0302
-- D 1 - - - 0x01A02E 06:A01E: 1D A2     .word _off000_A21D_0F
-- D 1 - - - 0x01A030 06:A020: 45 A2     .word _off000_A245_10
-- - - - - - 0x01A032 06:A022: 4D A2     .word _off000_A24D_11
-- D 1 - - - 0x01A034 06:A024: 55 A2     .word _off000_A255_12
-- D 1 - - - 0x01A036 06:A026: 69 A2     .word _off000_A269_13
-- - - - - - 0x01A038 06:A028: 02 03     .word ram_0302
-- D 1 - - - 0x01A03A 06:A02A: 26 A2     .word _off000_A226_15
-- D 1 - - - 0x01A03C 06:A02C: C8 A3     .word _off000_A3C8_16
-- - - - - - 0x01A03E 06:A02E: 1C 68     .word _off000_bat_681C_17
-- D 1 - - - 0x01A040 06:A030: 16 A3     .word _off000_A316_18
-- D 1 - - - 0x01A042 06:A032: 23 A3     .word _off000_A323_19
-- D 1 - - - 0x01A044 06:A034: 37 A3     .word _off000_A337_1A
-- D 1 - - - 0x01A046 06:A036: 02 A2     .word _off000_A202_1B
-- D 1 - - - 0x01A048 06:A038: 48 A3     .word _off000_A348_1C
-- D 1 - - - 0x01A04A 06:A03A: 50 A3     .word _off000_A350_1D
-- D 1 - - - 0x01A04C 06:A03C: 60 A3     .word _off000_A360_1E
-- D 1 - - - 0x01A04E 06:A03E: 5D A2     .word _off000_A25D_1F
-- D 1 - - - 0x01A050 06:A040: 78 A3     .word _off000_A378_20
-- D 1 - - - 0x01A052 06:A042: 9C A3     .word _off000_A39C_21
-- D 1 - - - 0x01A054 06:A044: CD 6B     .word ram_6BCD
-- D 1 - - - 0x01A056 06:A046: D0 A3     .word _off000_A3D0_23
-- D 1 - - - 0x01A058 06:A048: B0 A3     .word _off000_A3B0_24
-- D 1 - - - 0x01A05A 06:A04A: B9 A3     .word _off000_A3B9_25
-- D 1 - - - 0x01A05C 06:A04C: BE A3     .word _off000_A3BE_26
-- D 1 - - - 0x01A05E 06:A04E: C3 A3     .word _off000_A3C3_27
-- D 1 - - - 0x01A060 06:A050: 2F A2     .word _off000_A22F_28
-- D 1 - - - 0x01A062 06:A052: 47 68     .word _off000_bat_6847_29
-- D 1 - - - 0x01A064 06:A054: 4F 68     .word _off000_bat_684F_2A
-- D 1 - - - 0x01A066 06:A056: 59 68     .word _off000_bat_6859_2B
-- D 1 - - - 0x01A068 06:A058: 65 68     .word _off000_bat_6865_2C
-- D 1 - - - 0x01A06A 06:A05A: 35 A2     .word _off000_A235_2D
-- D 1 - - - 0x01A06C 06:A05C: 73 68     .word _off000_bat_6873_2E
-- D 1 - - - 0x01A06E 06:A05E: E8 A3     .word _off000_A3E8_2F
-- D 1 - - - 0x01A070 06:A060: F4 A3     .word _off000_A3F4_30
-- D 1 - - - 0x01A072 06:A062: F9 A3     .word _off000_A3F9_31
-- - - - - - 0x01A074 06:A064: 02 03     .word ram_0302
-- - - - - - 0x01A076 06:A066: 02 03     .word ram_0302
-- - - - - - 0x01A078 06:A068: 02 03     .word ram_0302
-- D 1 - - - 0x01A07A 06:A06A: 0A A2     .word _off000_A20A_35
-- D 1 - - - 0x01A07C 06:A06C: 9E A2     .word _off000_A29E_36
-- - - - - - 0x01A07E 06:A06E: 02 03     .word ram_0302
-- - - - - - 0x01A080 06:A070: 02 03     .word ram_0302
-- - - - - - 0x01A082 06:A072: 02 03     .word ram_0302
-- - - - - - 0x01A084 06:A074: 02 03     .word ram_0302
-- D 1 - - - 0x01A086 06:A076: A6 A2     .word _off000_A2A6_3B
-- D 1 - - - 0x01A088 06:A078: 72 A2     .word _off000_A272_3C
-- D 1 - - - 0x01A08A 06:A07A: 7E A2     .word _off000_A27E_3D
-- D 1 - - - 0x01A08C 06:A07C: 86 A2     .word _off000_A286_3E
-- - - - - - 0x01A08E 06:A07E: 02 03     .word ram_0302
+tbl_A000_ppu_data:
+- D 1 - - - 0x01A010 06:A000: 02 03     .word ram_0302  ; 00
+- D 1 - - - 0x01A012 06:A002: FE A3     .word _off000_A3FE_02_lore_and_items
+- D 1 - - - 0x01A014 06:A004: B4 A2     .word _off000_A2B4_04_continue
+- D 1 - - - 0x01A016 06:A006: 14 68     .word _off000_bat_6814_06
+- D 1 - - - 0x01A018 06:A008: 8E A2     .word _off000_A28E_08
+- D 1 - - - 0x01A01A 06:A00A: 96 A2     .word _off000_A296_0A
+- D 1 - - - 0x01A01C 06:A00C: 1C 68     .word _off000_bat_681C_0C
+- D 1 - - - 0x01A01E 06:A00E: D3 A2     .word _off000_A2D3_0E_hud
+- D 1 - - - 0x01A020 06:A010: 69 A8     .word _off000_A869_10_title_screen
+- D 1 - - - 0x01A022 06:A012: F0 67     .word _off000_bat_67F0_12
+- D 1 - - - 0x01A024 06:A014: 00 A1     .word _off000_A100_14
+- D 1 - - - 0x01A026 06:A016: 83 A1     .word _off000_A183_16
+- D 1 - - - 0x01A028 06:A018: 7E 6B     .word ram_6B7E_palette_buffer ; 18
+- - - - - - 0x01A02A 06:A01A: 02 03     .word ram_0302  ; 1A unused
+- - - - - - 0x01A02C 06:A01C: 02 03     .word ram_0302  ; 1C unused
+- D 1 - - - 0x01A02E 06:A01E: 1D A2     .word _off000_A21D_1E
+- D 1 - - - 0x01A030 06:A020: 45 A2     .word _off000_A245_20
+- - - - - - 0x01A032 06:A022: 4D A2     .word _off000_A24D_22
+- D 1 - - - 0x01A034 06:A024: 55 A2     .word _off000_A255_24
+- D 1 - - - 0x01A036 06:A026: 69 A2     .word _off000_A269_26
+- - - - - - 0x01A038 06:A028: 02 03     .word ram_0302  ; 28 unused
+- D 1 - - - 0x01A03A 06:A02A: 26 A2     .word _off000_A226_2A
+- D 1 - - - 0x01A03C 06:A02C: C8 A3     .word _off000_A3C8_2C
+- - - - - - 0x01A03E 06:A02E: 1C 68     .word _off000_bat_681C_2E   ; unused
+- D 1 - - - 0x01A040 06:A030: 16 A3     .word _off000_A316_30
+- D 1 - - - 0x01A042 06:A032: 23 A3     .word _off000_A323_32
+- D 1 - - - 0x01A044 06:A034: 37 A3     .word _off000_A337_34
+- D 1 - - - 0x01A046 06:A036: 02 A2     .word _off000_A202_36
+- D 1 - - - 0x01A048 06:A038: 48 A3     .word _off000_A348_38
+- D 1 - - - 0x01A04A 06:A03A: 50 A3     .word _off000_A350_3A
+- D 1 - - - 0x01A04C 06:A03C: 60 A3     .word _off000_A360_3C
+- D 1 - - - 0x01A04E 06:A03E: 5D A2     .word _off000_A25D_3E_cave_palette
+- D 1 - - - 0x01A050 06:A040: 78 A3     .word _off000_A378_40
+- D 1 - - - 0x01A052 06:A042: 9C A3     .word _off000_A39C_42
+- D 1 - - - 0x01A054 06:A044: CD 6B     .word ram_6BCD  ; 44
+- D 1 - - - 0x01A056 06:A046: D0 A3     .word _off000_A3D0_46_game_over
+- D 1 - - - 0x01A058 06:A048: B0 A3     .word _off000_A3B0_48
+- D 1 - - - 0x01A05A 06:A04A: B9 A3     .word _off000_A3B9_4A
+- D 1 - - - 0x01A05C 06:A04C: BE A3     .word _off000_A3BE_4C
+- D 1 - - - 0x01A05E 06:A04E: C3 A3     .word _off000_A3C3_4E
+- D 1 - - - 0x01A060 06:A050: 2F A2     .word _off000_A22F_50
+- D 1 - - - 0x01A062 06:A052: 47 68     .word _off000_bat_6847_52
+- D 1 - - - 0x01A064 06:A054: 4F 68     .word _off000_bat_684F_54
+- D 1 - - - 0x01A066 06:A056: 59 68     .word _off000_bat_6859_56
+- D 1 - - - 0x01A068 06:A058: 65 68     .word _off000_bat_6865_58
+- D 1 - - - 0x01A06A 06:A05A: 35 A2     .word _off000_A235_5A
+- D 1 - - - 0x01A06C 06:A05C: 73 68     .word _off000_bat_6873_5C
+- D 1 - - - 0x01A06E 06:A05E: E8 A3     .word _off000_A3E8_5E
+- D 1 - - - 0x01A070 06:A060: F4 A3     .word _off000_A3F4_60
+- D 1 - - - 0x01A072 06:A062: F9 A3     .word _off000_A3F9_62
+- - - - - - 0x01A074 06:A064: 02 03     .word ram_0302  ; 64 unused
+- - - - - - 0x01A076 06:A066: 02 03     .word ram_0302  ; 66 unused
+- - - - - - 0x01A078 06:A068: 02 03     .word ram_0302  ; 68 unused
+- D 1 - - - 0x01A07A 06:A06A: 0A A2     .word _off000_A20A_6A
+- D 1 - - - 0x01A07C 06:A06C: 9E A2     .word _off000_A29E_6C
+- - - - - - 0x01A07E 06:A06E: 02 03     .word ram_0302  ; 6E unused
+- - - - - - 0x01A080 06:A070: 02 03     .word ram_0302  ; 70 unused
+- - - - - - 0x01A082 06:A072: 02 03     .word ram_0302  ; 72 unused
+- - - - - - 0x01A084 06:A074: 02 03     .word ram_0302  ; 74 unused
+- D 1 - - - 0x01A086 06:A076: A6 A2     .word _off000_A2A6_76
+- D 1 - - - 0x01A088 06:A078: 72 A2     .word _off000_A272_78
+- D 1 - - - 0x01A08A 06:A07A: 7E A2     .word _off000_A27E_7A
+- D 1 - - - 0x01A08C 06:A07C: 86 A2     .word _off000_A286_7C
+- - - - - - 0x01A08E 06:A07E: 02 03     .word ram_0302  ; 7E unused
 
 
 
-sub_0x01A090:
-C - - - - - 0x01A090 06:A080: A6 14     LDX ram_0014
-C - - - - - 0x01A092 06:A082: BD 00 A0  LDA tbl_A000,X
+sub_0x01A090_write_buffer_to_ppu:
+C - - - - - 0x01A090 06:A080: A6 14     LDX ram_ppu_load_index
+C - - - - - 0x01A092 06:A082: BD 00 A0  LDA tbl_A000_ppu_data,X
 C - - - - - 0x01A095 06:A085: 85 00     STA ram_0000
-C - - - - - 0x01A097 06:A087: BD 01 A0  LDA tbl_A000 + 1,X
+C - - - - - 0x01A097 06:A087: BD 01 A0  LDA tbl_A000_ppu_data + 1,X
 C - - - - - 0x01A09A 06:A08A: 85 01     STA ram_0001
 C - - - - - 0x01A09C 06:A08C: 20 F6 A0  JSR sub_A0F6_write_to_ppu
 C - - - - - 0x01A09F 06:A08F: A9 3F     LDA #$3F
 C - - - - - 0x01A0A1 06:A091: 8D 00 03  STA ram_0300
-C - - - - - 0x01A0A4 06:A094: A2 00     LDX #$00
-C - - - - - 0x01A0A6 06:A096: 86 14     STX ram_0014
+C - - - - - 0x01A0A4 06:A094: A2 00     LDX #$00    ; con_ppu_buf_00
+C - - - - - 0x01A0A6 06:A096: 86 14     STX ram_ppu_load_index
 C - - - - - 0x01A0A8 06:A098: 86 5C     STX ram_005C
 C - - - - - 0x01A0AA 06:A09A: 8E 01 03  STX ram_0301
 C - - - - - 0x01A0AD 06:A09D: CA        DEX ; FF
@@ -3761,6 +3751,7 @@ C - - - - - 0x01A0E1 06:A0D1: B1 00     LDA (ram_0000),Y
 C - - - - - 0x01A0E3 06:A0D3: 8D 07 20  STA $2007
 C - - - - - 0x01A0E6 06:A0D6: CA        DEX
 C - - - - - 0x01A0E7 06:A0D7: D0 F5     BNE bra_A0CE_loop
+; X = 00
 C - - - - - 0x01A0E9 06:A0D9: 68        PLA ; pull ppu_hi
 C - - - - - 0x01A0EA 06:A0DA: C9 3F     CMP #$3F
 C - - - - - 0x01A0EC 06:A0DC: D0 0C     BNE bra_A0EA_not_palette
@@ -3781,11 +3772,12 @@ C - - - - - 0x01A106 06:A0F6: AE 02 20  LDX $2002
 C - - - - - 0x01A109 06:A0F9: A0 00     LDY #$00
 C - - - - - 0x01A10B 06:A0FB: B1 00     LDA (ram_0000),Y
 C - - - - - 0x01A10D 06:A0FD: 10 A3     BPL bra_A0A2_loop
+; FF
 C - - - - - 0x01A10F 06:A0FF: 60        RTS
 
 
 
-_off000_A100_0A:
+_off000_A100_14:
 - D 1 - I - 0x01A110 06:A100: 23 C0     .dbyt $23C0
 - D 1 - I - 0x01A112 06:A102: 7F        .byte $00 + $40 + $3F   ; 
 - D 1 - I - 0x01A113 06:A103: 00        .byte $00   ; 
@@ -3844,7 +3836,7 @@ _off000_A100_0A:
 
 - D 1 - I - 0x01A161 06:A151: 21 13     .dbyt $2113
 - D 1 - I - 0x01A163 06:A153: 06        .byte $00 + $00 + $06   ; 
-- D 1 - I - 0x01A164 06:A154: 24        .byte $24, $15, $12, $0F, $0E, $24   ; 
+- D 1 - I - 0x01A164 06:A154: 24        .byte $24, $15, $12, $0F, $0E, $24   ; LIFE
 
 - D 1 - I - 0x01A16A 06:A15A: 22 A6     .dbyt $22A6
 - D 1 - I - 0x01A16C 06:A15C: 12        .byte $00 + $00 + $12   ; 
@@ -3855,11 +3847,11 @@ _off000_A100_0A:
 - D 1 - I - 0x01A181 06:A171: 10        .byte $00 + $00 + $10   ; 
 - D 1 - I - 0x01A182 06:A172: 0E        .byte $0E, $15, $12, $16, $12, $17, $0A, $1D, $12, $18, $17, $24, $16, $18, $0D, $0E   ; 
 
-- D 1 - I - 0x01A192 06:A182: FF        .byte $FF   ; 
+- D 1 - I - 0x01A192 06:A182: FF        .byte $FF   ; end token
 
 
 
-_off000_A183_0B:
+_off000_A183_16:
 - D 1 - I - 0x01A193 06:A183: 22 05     .dbyt $2205
 - D 1 - I - 0x01A195 06:A185: 01        .byte $00 + $00 + $01   ; 
 - D 1 - I - 0x01A196 06:A186: 69        .byte $69   ; 
@@ -3912,20 +3904,20 @@ _off000_A183_0B:
 - D 1 - I - 0x01A1FE 06:A1EE: 00        .byte $00, $24, $01, $24, $02, $24, $03, $24, $04, $24, $05, $24, $06, $24, $07, $24   ; 
 - D 1 - I - 0x01A20E 06:A1FE: 08        .byte $08, $24, $09   ; 
 
-- D 1 - I - 0x01A211 06:A201: FF        .byte $FF   ; 
+- D 1 - I - 0x01A211 06:A201: FF        .byte $FF   ; end token
 
 
 
-_off000_A202_1B:
+_off000_A202_36:
 - D 1 - I - 0x01A212 06:A202: 3F 1C     .dbyt $3F1C
 - D 1 - I - 0x01A214 06:A204: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A215 06:A205: 0F        .byte $0F, $16, $2C, $3C   ; 
 
-- D 1 - I - 0x01A219 06:A209: FF        .byte $FF   ; 
+- D 1 - I - 0x01A219 06:A209: FF        .byte $FF   ; end token
 
 
 
-_off000_A20A_35:
+_off000_A20A_6A:
 - D 1 - I - 0x01A21A 06:A20A: 3F 08     .dbyt $3F08
 - D 1 - I - 0x01A21C 06:A20C: 08        .byte $00 + $00 + $08   ; 
 - D 1 - I - 0x01A21D 06:A20D: 0F        .byte $0F, $22, $10, $00   ; 
@@ -3935,11 +3927,11 @@ _off000_A20A_35:
 - D 1 - I - 0x01A227 06:A217: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A228 06:A218: 0F        .byte $0F, $27, $06, $16   ; 
 
-- D 1 - I - 0x01A22C 06:A21C: FF        .byte $FF   ; 
+- D 1 - I - 0x01A22C 06:A21C: FF        .byte $FF   ; end token
 
 
 
-_off000_A21D_0F:
+_off000_A21D_1E:
 - D 1 - I - 0x01A22D 06:A21D: 21 A4     .dbyt $21A4
 - D 1 - I - 0x01A22F 06:A21F: 58        .byte $00 + $40 + $18   ; 
 - D 1 - I - 0x01A230 06:A220: 24        .byte $24   ; 
@@ -3948,11 +3940,11 @@ _off000_A21D_0F:
 - D 1 - I - 0x01A233 06:A223: 58        .byte $00 + $40 + $18   ; 
 - D 1 - I - 0x01A234 06:A224: 24        .byte $24   ; 
 
-- D 1 - I - 0x01A235 06:A225: FF        .byte $FF   ; 
+- D 1 - I - 0x01A235 06:A225: FF        .byte $FF   ; end token
 
 
 
-_off000_A226_15:
+_off000_A226_2A:
 - D 1 - I - 0x01A236 06:A226: 21 E4     .dbyt $21E4
 - D 1 - I - 0x01A238 06:A228: 58        .byte $00 + $40 + $18   ; 
 - D 1 - I - 0x01A239 06:A229: 24        .byte $24   ; 
@@ -3961,66 +3953,66 @@ _off000_A226_15:
 - D 1 - I - 0x01A23C 06:A22C: 4D        .byte $00 + $40 + $0D   ; 
 - D 1 - I - 0x01A23D 06:A22D: 24        .byte $24   ; 
 
-- D 1 - I - 0x01A23E 06:A22E: FF        .byte $FF   ; 
+- D 1 - I - 0x01A23E 06:A22E: FF        .byte $FF   ; end token
 
 
 
-_off000_A22F_28:
+_off000_A22F_50:
 - D 1 - I - 0x01A23F 06:A22F: 2A CF     .dbyt $2ACF
 - D 1 - I - 0x01A241 06:A231: 02        .byte $00 + $00 + $02   ; 
 - D 1 - I - 0x01A242 06:A232: ED        .byte $ED, $EE   ; 
 
-- D 1 - I - 0x01A244 06:A234: FF        .byte $FF   ; 
+- D 1 - I - 0x01A244 06:A234: FF        .byte $FF   ; end token
 
 
 
-_off000_A235_2D:
+_off000_A235_5A:
 - D 1 - I - 0x01A245 06:A235: 2B 6A     .dbyt $2B6A
 - D 1 - I - 0x01A247 06:A237: 0C        .byte $00 + $00 + $0C   ; 
 - D 1 - I - 0x01A248 06:A238: EB        .byte $EB, $EF, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $F0, $EC   ; 
 
-- D 1 - I - 0x01A254 06:A244: FF        .byte $FF   ; 
+- D 1 - I - 0x01A254 06:A244: FF        .byte $FF   ; end token
 
 
 
-_off000_A245_10:
+_off000_A245_20:
 - D 1 - I - 0x01A255 06:A245: 3F 1C     .dbyt $3F1C
 - D 1 - I - 0x01A257 06:A247: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A258 06:A248: 0F        .byte $0F, $30, $00, $12   ; 
 
-- D 1 - I - 0x01A25C 06:A24C: FF        .byte $FF   ; 
+- D 1 - I - 0x01A25C 06:A24C: FF        .byte $FF   ; end token
 
 
 
-_off000_A24D_11:
+_off000_A24D_22:
 - - - - - - 0x01A25D 06:A24D: 3F 1C     .dbyt $3F1C
 - - - - - - 0x01A25F 06:A24F: 04        .byte $00 + $00 + $04   ; 
 - - - - - - 0x01A260 06:A250: 0F        .byte $0F, $1A, $37, $12   ; 
 
-- - - - - - 0x01A264 06:A254: FF        .byte $FF   ; 
+- - - - - - 0x01A264 06:A254: FF        .byte $FF   ; end token
 
 
 
-_off000_A255_12:
+_off000_A255_24:
 - D 1 - I - 0x01A265 06:A255: 3F 1C     .dbyt $3F1C
 - D 1 - I - 0x01A267 06:A257: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A268 06:A258: 0F        .byte $0F, $17, $37, $12   ; 
 
-- D 1 - I - 0x01A26C 06:A25C: FF        .byte $FF   ; 
+- D 1 - I - 0x01A26C 06:A25C: FF        .byte $FF   ; end token
 
 
 
-_off000_A25D_1F:
+_off000_A25D_3E_cave_palette:
 - D 1 - I - 0x01A26D 06:A25D: 3F 08     .dbyt $3F08
 - D 1 - I - 0x01A26F 06:A25F: 08        .byte $00 + $00 + $08   ; 
 - D 1 - I - 0x01A270 06:A260: 0F        .byte $0F, $30, $00, $12   ; 
 - D 1 - I - 0x01A274 06:A264: 0F        .byte $0F, $07, $0F, $17   ; 
 
-- D 1 - I - 0x01A278 06:A268: FF        .byte $FF   ; 
+- D 1 - I - 0x01A278 06:A268: FF        .byte $FF   ; end token
 
 
 
-_off000_A269_13:
+_off000_A269_26:
 - D 1 - I - 0x01A279 06:A269: 23 D0     .dbyt $23D0
 - D 1 - I - 0x01A27B 06:A26B: 60        .byte $00 + $40 + $20   ; 
 - D 1 - I - 0x01A27C 06:A26C: AA        .byte $AA   ; 
@@ -4029,103 +4021,103 @@ _off000_A269_13:
 - D 1 - I - 0x01A27F 06:A26F: 50        .byte $00 + $40 + $10   ; 
 - D 1 - I - 0x01A280 06:A270: AA        .byte $AA   ; 
 
-- D 1 - I - 0x01A281 06:A271: FF        .byte $FF   ; 
+- D 1 - I - 0x01A281 06:A271: FF        .byte $FF   ; end token
 
 
 
-_off000_A272_3C:
+_off000_A272_78:
 - D 1 - I - 0x01A282 06:A272: 3F 08     .dbyt $3F08
 - D 1 - I - 0x01A284 06:A274: 08        .byte $00 + $00 + $08   ; 
 - D 1 - I - 0x01A285 06:A275: 0F        .byte $0F, $30, $30, $30   ; 
 - D 1 - I - 0x01A289 06:A279: 0F        .byte $0F, $30, $30, $30   ; 
 
-- D 1 - I - 0x01A28D 06:A27D: FF        .byte $FF   ; 
+- D 1 - I - 0x01A28D 06:A27D: FF        .byte $FF   ; end token
 
 
 
-_off000_A27E_3D:
+_off000_A27E_7A:
 - D 1 - I - 0x01A28E 06:A27E: 3F 1C     .dbyt $3F1C
 - D 1 - I - 0x01A290 06:A280: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A291 06:A281: 0F        .byte $0F, $0F, $1C, $16   ; 
 
-- D 1 - I - 0x01A295 06:A285: FF        .byte $FF   ; 
+- D 1 - I - 0x01A295 06:A285: FF        .byte $FF   ; end token
 
 
 
-_off000_A286_3E:
+_off000_A286_7C:
 - D 1 - I - 0x01A296 06:A286: 3F 1C     .dbyt $3F1C
 - D 1 - I - 0x01A298 06:A288: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A299 06:A289: 0F        .byte $0F, $2A, $1A, $0C   ; 
 
-- D 1 - I - 0x01A29D 06:A28D: FF        .byte $FF   ; 
+- D 1 - I - 0x01A29D 06:A28D: FF        .byte $FF   ; end token
 
 
 
-_off000_A28E_04:
+_off000_A28E_08:
 - D 1 - I - 0x01A29E 06:A28E: 3F 1C     .dbyt $3F1C
 - D 1 - I - 0x01A2A0 06:A290: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A2A1 06:A291: 0F        .byte $0F, $0A, $29, $30   ; 
 
-- D 1 - I - 0x01A2A5 06:A295: FF        .byte $FF   ; 
+- D 1 - I - 0x01A2A5 06:A295: FF        .byte $FF   ; end token
 
 
 
-_off000_A296_05:
+_off000_A296_0A:
 - D 1 - I - 0x01A2A6 06:A296: 3F 1C     .dbyt $3F1C
 - D 1 - I - 0x01A2A8 06:A298: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A2A9 06:A299: 0F        .byte $0F, $17, $27, $30   ; 
 
-- D 1 - I - 0x01A2AD 06:A29D: FF        .byte $FF   ; 
+- D 1 - I - 0x01A2AD 06:A29D: FF        .byte $FF   ; end token
 
 
 
-_off000_A29E_36:
+_off000_A29E_6C:
 - D 1 - I - 0x01A2AE 06:A29E: 22 CD     .dbyt $22CD
 - D 1 - I - 0x01A2B0 06:A2A0: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A2B1 06:A2A1: 62        .byte $62, $01, $00, $00   ; 
 
-- D 1 - I - 0x01A2B5 06:A2A5: FF        .byte $FF   ; 
+- D 1 - I - 0x01A2B5 06:A2A5: FF        .byte $FF   ; end token
 
 
 
-_off000_A2A6_3B:
+_off000_A2A6_76:
 - D 1 - I - 0x01A2B6 06:A2A6: 22 CB     .dbyt $22CB
 - D 1 - I - 0x01A2B8 06:A2A8: 0A        .byte $00 + $00 + $0A   ; 
 - D 1 - I - 0x01A2B9 06:A2A9: 62        .byte $62, $01, $24, $24, $24, $24, $24, $62, $05, $00   ; 
 
-- D 1 - I - 0x01A2C3 06:A2B3: FF        .byte $FF   ; 
+- D 1 - I - 0x01A2C3 06:A2B3: FF        .byte $FF   ; end token
 
 
 
-_off000_A2B4_02:
+_off000_A2B4_04_continue:
 - D 1 - I - 0x01A2C4 06:A2B4: 23 C0     .dbyt $23C0
 - D 1 - I - 0x01A2C6 06:A2B6: 7F        .byte $00 + $40 + $3F   ; 
 - D 1 - I - 0x01A2C7 06:A2B7: 00        .byte $00   ; 
 
 - D 1 - I - 0x01A2C8 06:A2B8: 21 4A     .dbyt $214A
 - D 1 - I - 0x01A2CA 06:A2BA: 08        .byte $00 + $00 + $08   ; 
-- D 1 - I - 0x01A2CB 06:A2BB: 0C        .byte $0C, $18, $17, $1D, $12, $17, $1E, $0E   ; 
+- D 1 - I - 0x01A2CB 06:A2BB: 0C        .byte $0C, $18, $17, $1D, $12, $17, $1E, $0E   ; CONTINUE
 
 - D 1 - I - 0x01A2D3 06:A2C3: 21 AA     .dbyt $21AA
 - D 1 - I - 0x01A2D5 06:A2C5: 04        .byte $00 + $00 + $04   ; 
-- D 1 - I - 0x01A2D6 06:A2C6: 1C        .byte $1C, $0A, $1F, $0E   ; 
+- D 1 - I - 0x01A2D6 06:A2C6: 1C        .byte $1C, $0A, $1F, $0E   ; SAVE
 
 - D 1 - I - 0x01A2DA 06:A2CA: 22 0A     .dbyt $220A
 - D 1 - I - 0x01A2DC 06:A2CC: 05        .byte $00 + $00 + $05   ; 
-- D 1 - I - 0x01A2DD 06:A2CD: 1B        .byte $1B, $0E, $1D, $1B, $22   ; 
+- D 1 - I - 0x01A2DD 06:A2CD: 1B        .byte $1B, $0E, $1D, $1B, $22   ; RETRY
 
-- D 1 - I - 0x01A2E2 06:A2D2: FF        .byte $FF   ; 
+- D 1 - I - 0x01A2E2 06:A2D2: FF        .byte $FF   ; end token
 
 
 
-_off000_A2D3_07:
+_off000_A2D3_0E_hud:
 - D 1 - I - 0x01A2E3 06:A2D3: 23 C2     .dbyt $23C2
 - D 1 - I - 0x01A2E5 06:A2D5: 0E        .byte $00 + $00 + $0E   ; 
 - D 1 - I - 0x01A2E6 06:A2D6: 40        .byte $40, $00, $00, $44, $55, $55, $00, $00, $04, $00, $00, $44, $55, $55   ; 
 
 - D 1 - I - 0x01A2F4 06:A2E4: 20 6F     .dbyt $206F
 - D 1 - I - 0x01A2F6 06:A2E6: 0E        .byte $00 + $00 + $0E   ; 
-- D 1 - I - 0x01A2F7 06:A2E7: 69        .byte $69, $0B, $6B, $69, $0A, $6B, $24, $24, $62, $15, $12, $0F, $0E, $62   ; 
+- D 1 - I - 0x01A2F7 06:A2E7: 69        .byte $69, $0B, $6B, $69, $0A, $6B, $24, $24, $62, $15, $12, $0F, $0E, $62   ; B A -LIFE-
 
 - D 1 - I - 0x01A305 06:A2F5: 20 CF     .dbyt $20CF
 - D 1 - I - 0x01A307 06:A2F7: 06        .byte $00 + $00 + $06   ; 
@@ -4151,20 +4143,20 @@ _off000_A2D3_07:
 - D 1 - I - 0x01A320 06:A310: 84        .byte $80 + $00 + $04   ; 
 - D 1 - I - 0x01A321 06:A311: F7        .byte $F7, $24, $F9, $61   ; 
 
-- D 1 - I - 0x01A325 06:A315: FF        .byte $FF   ; 
+- D 1 - I - 0x01A325 06:A315: FF        .byte $FF   ; end token
 
 
 
-_off000_A316_18:
+_off000_A316_30:
 - D 1 - I - 0x01A326 06:A316: 29 84     .dbyt $2984
 - D 1 - I - 0x01A328 06:A318: 09        .byte $00 + $00 + $09   ; 
 - D 1 - I - 0x01A329 06:A319: 12        .byte $12, $17, $1F, $0E, $17, $1D, $18, $1B, $22   ; 
 
-- D 1 - I - 0x01A332 06:A322: FF        .byte $FF   ; 
+- D 1 - I - 0x01A332 06:A322: FF        .byte $FF   ; end token
 
 
 
-_off000_A323_19:
+_off000_A323_32:
 - D 1 - I - 0x01A333 06:A323: 29 C7     .dbyt $29C7
 - D 1 - I - 0x01A335 06:A325: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A336 06:A326: 69        .byte $69, $6A, $6A, $6B   ; 
@@ -4181,11 +4173,11 @@ _off000_A323_19:
 - D 1 - I - 0x01A344 06:A334: 01        .byte $00 + $00 + $01   ; 
 - D 1 - I - 0x01A345 06:A335: 6B        .byte $6B   ; 
 
-- D 1 - I - 0x01A346 06:A336: FF        .byte $FF   ; 
+- D 1 - I - 0x01A346 06:A336: FF        .byte $FF   ; end token
 
 
 
-_off000_A337_1A:
+_off000_A337_34:
 - D 1 - I - 0x01A347 06:A337: 29 E7     .dbyt $29E7
 - D 1 - I - 0x01A349 06:A339: C2        .byte $80 + $40 + $02   ; 
 - D 1 - I - 0x01A34A 06:A33A: 6C        .byte $6C   ; 
@@ -4202,28 +4194,29 @@ _off000_A337_1A:
 - D 1 - I - 0x01A355 06:A345: C4        .byte $80 + $40 + $04   ; 
 - D 1 - I - 0x01A356 06:A346: 6C        .byte $6C   ; 
 
-- D 1 - I - 0x01A357 06:A347: FF        .byte $FF   ; 
+- D 1 - I - 0x01A357 06:A347: FF        .byte $FF   ; end token
 
 
 
-_off000_A348_1C:
+_off000_A348_38:
 - D 1 - I - 0x01A358 06:A348: 2A 27     .dbyt $2A27
 - D 1 - I - 0x01A35A 06:A34A: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A35B 06:A34B: 6E        .byte $6E, $6A, $6A, $6D   ; 
-- D 1 - I - 0x01A35F 06:A34F: FF        .byte $FF   ; 
+
+- D 1 - I - 0x01A35F 06:A34F: FF        .byte $FF   ; end token
 
 
 
-_off000_A350_1D:
+_off000_A350_3A:
 - D 1 - I - 0x01A360 06:A350: 2A 42     .dbyt $2A42
 - D 1 - I - 0x01A362 06:A352: 0C        .byte $00 + $00 + $0C   ; 
 - D 1 - I - 0x01A363 06:A353: 1E        .byte $1E, $1C, $0E, $24, $0B, $24, $0B, $1E, $1D, $1D, $18, $17   ; 
 
-- D 1 - I - 0x01A36F 06:A35F: FF        .byte $FF   ; 
+- D 1 - I - 0x01A36F 06:A35F: FF        .byte $FF   ; end token
 
 
 
-_off000_A360_1E:
+_off000_A360_3C:
 - D 1 - I - 0x01A370 06:A360: 2A 64     .dbyt $2A64
 - D 1 - I - 0x01A372 06:A362: 08        .byte $00 + $00 + $08   ; 
 - D 1 - I - 0x01A373 06:A363: 0F        .byte $0F, $18, $1B, $24, $1D, $11, $12, $1C   ; 
@@ -4240,11 +4233,11 @@ _off000_A360_1E:
 - D 1 - I - 0x01A385 06:A375: 01        .byte $00 + $00 + $01   ; 
 - D 1 - I - 0x01A386 06:A376: 6D        .byte $6D   ; 
 
-- D 1 - I - 0x01A387 06:A377: FF        .byte $FF   ; 
+- D 1 - I - 0x01A387 06:A377: FF        .byte $FF   ; end token
 
 
 
-_off000_A378_20:
+_off000_A378_40:
 - D 1 - I - 0x01A388 06:A378: 2B 43     .dbyt $2B43
 - D 1 - I - 0x01A38A 06:A37A: 07        .byte $00 + $00 + $07   ; 
 - D 1 - I - 0x01A38B 06:A37B: 0C        .byte $0C, $18, $16, $19, $0A, $1C, $1C   ; 
@@ -4257,20 +4250,20 @@ _off000_A378_20:
 - D 1 - I - 0x01A39A 06:A38A: 10        .byte $00 + $00 + $10   ; 
 - D 1 - I - 0x01A39B 06:A38B: F5        .byte $F5, $F5, $FD, $F5, $F5, $FD, $F5, $F5, $FD, $F5, $F5, $F5, $FD, $F5, $F5, $F5   ; 
 
-- D 1 - I - 0x01A3AB 06:A39B: FF        .byte $FF   ; 
+- D 1 - I - 0x01A3AB 06:A39B: FF        .byte $FF   ; end token
 
 
 
-_off000_A39C_21:
+_off000_A39C_42:
 - D 1 - I - 0x01A3AC 06:A39C: 2B AC     .dbyt $2BAC
 - D 1 - I - 0x01A3AE 06:A39E: 10        .byte $00 + $00 + $10   ; 
 - D 1 - I - 0x01A3AF 06:A39F: F5        .byte $F5, $FE, $F5, $F5, $F5, $FE, $F5, $F5, $F5, $F5, $FE, $F5, $F5, $F5, $FE, $F5   ; 
 
-- D 1 - I - 0x01A3BF 06:A3AF: FF        .byte $FF   ; 
+- D 1 - I - 0x01A3BF 06:A3AF: FF        .byte $FF   ; end token
 
 
 
-_off000_A3B0_24:
+_off000_A3B0_48:
 - D 1 - I - 0x01A3C0 06:A3B0: 2B D9     .dbyt $2BD9
 - D 1 - I - 0x01A3C2 06:A3B2: 43        .byte $00 + $40 + $03   ; 
 - D 1 - I - 0x01A3C3 06:A3B3: 05        .byte $05   ; 
@@ -4279,92 +4272,93 @@ _off000_A3B0_24:
 - D 1 - I - 0x01A3C6 06:A3B6: 4B        .byte $00 + $40 + $0B   ; 
 - D 1 - I - 0x01A3C7 06:A3B7: 00        .byte $00   ; 
 
-- D 1 - I - 0x01A3C8 06:A3B8: FF        .byte $FF   ; 
+- D 1 - I - 0x01A3C8 06:A3B8: FF        .byte $FF   ; end token
 
 
 
-_off000_A3B9_25:
+_off000_A3B9_4A:
 - D 1 - I - 0x01A3C9 06:A3B9: 2B E9     .dbyt $2BE9
 - D 1 - I - 0x01A3CB 06:A3BB: 56        .byte $00 + $40 + $16   ; 
 - D 1 - I - 0x01A3CC 06:A3BC: 55        .byte $55   ; 
 
-- D 1 - I - 0x01A3CD 06:A3BD: FF        .byte $FF   ; 
+- D 1 - I - 0x01A3CD 06:A3BD: FF        .byte $FF   ; end token
 
 
 
-_off000_A3BE_26:
+_off000_A3BE_4C:
 - D 1 - I - 0x01A3CE 06:A3BE: 2B A0     .dbyt $2BA0
 - D 1 - I - 0x01A3D0 06:A3C0: 60        .byte $00 + $40 + $20   ; 
 - D 1 - I - 0x01A3D1 06:A3C1: 24        .byte $24   ; 
 
-- D 1 - I - 0x01A3D2 06:A3C2: FF        .byte $FF   ; 
+- D 1 - I - 0x01A3D2 06:A3C2: FF        .byte $FF   ; end token
 
 
 
-_off000_A3C3_27:
+_off000_A3C3_4E:
 - D 1 - I - 0x01A3D3 06:A3C3: 28 E0     .dbyt $28E0
 - D 1 - I - 0x01A3D5 06:A3C5: 60        .byte $00 + $40 + $20   ; 
 - D 1 - I - 0x01A3D6 06:A3C6: 24        .byte $24   ; 
 
-- D 1 - I - 0x01A3D7 06:A3C7: FF        .byte $FF   ; 
+- D 1 - I - 0x01A3D7 06:A3C7: FF        .byte $FF   ; end token
 
 
 
-_off000_A3C8_16:
+_off000_A3C8_2C:
 - D 1 - I - 0x01A3D8 06:A3C8: 3F 10     .dbyt $3F10
 - D 1 - I - 0x01A3DA 06:A3CA: 04        .byte $00 + $00 + $04   ; 
 - D 1 - I - 0x01A3DB 06:A3CB: 0F        .byte $0F, $10, $30, $00   ; 
-- D 1 - I - 0x01A3DF 06:A3CF: FF        .byte $FF   ; 
+
+- D 1 - I - 0x01A3DF 06:A3CF: FF        .byte $FF   ; end token
 
 
 
-_off000_A3D0_23:
+_off000_A3D0_46_game_over:
 - D 1 - I - 0x01A3E0 06:A3D0: 23 E3     .dbyt $23E3
 - D 1 - I - 0x01A3E2 06:A3D2: 03        .byte $00 + $00 + $03   ; 
 - D 1 - I - 0x01A3E3 06:A3D3: 0F        .byte $0F, $0F, $CF   ; 
 
 - D 1 - I - 0x01A3E6 06:A3D6: 22 4C     .dbyt $224C
 - D 1 - I - 0x01A3E8 06:A3D8: 0A        .byte $00 + $00 + $0A   ; 
-- D 1 - I - 0x01A3E9 06:A3D9: 10        .byte $10, $0A, $16, $0E, $24, $18, $1F, $0E, $1B, $24   ; 
+- D 1 - I - 0x01A3E9 06:A3D9: 10        .byte $10, $0A, $16, $0E, $24, $18, $1F, $0E, $1B, $24   ; GAME OVER
 
 - D 1 - I - 0x01A3F3 06:A3E3: 22 6C     .dbyt $226C
 - D 1 - I - 0x01A3F5 06:A3E5: 4A        .byte $00 + $40 + $0A   ; 
 - D 1 - I - 0x01A3F6 06:A3E6: 24        .byte $24   ; 
 
-- D 1 - I - 0x01A3F7 06:A3E7: FF        .byte $FF   ; 
+- D 1 - I - 0x01A3F7 06:A3E7: FF        .byte $FF   ; end token
 
 
 
-_off000_A3E8_2F:
+_off000_A3E8_5E:
 - D 1 - I - 0x01A3F8 06:A3E8: 3F 08     .dbyt $3F08
 - D 1 - I - 0x01A3FA 06:A3EA: 08        .byte $00 + $00 + $08   ; 
 
 - D 1 - I - 0x01A3FB 06:A3EB: 0F        .byte $0F, $17, $16, $26   ; 
 - D 1 - I - 0x01A3FF 06:A3EF: 0F        .byte $0F, $17, $16, $26   ; 
 
-- D 1 - I - 0x01A403 06:A3F3: FF        .byte $FF   ; 
+- D 1 - I - 0x01A403 06:A3F3: FF        .byte $FF   ; end token
 
 
 
-_off000_A3F4_30:
+_off000_A3F4_60:
 - D 1 - I - 0x01A404 06:A3F4: 23 D0     .dbyt $23D0
 - D 1 - I - 0x01A406 06:A3F6: 58        .byte $00 + $40 + $18   ; 
 - D 1 - I - 0x01A407 06:A3F7: FF        .byte $FF   ; 
 
-- D 1 - I - 0x01A408 06:A3F8: FF        .byte $FF   ; 
+- D 1 - I - 0x01A408 06:A3F8: FF        .byte $FF   ; end token
 
 
 
-_off000_A3F9_31:
+_off000_A3F9_62:
 - D 1 - I - 0x01A409 06:A3F9: 23 E8     .dbyt $23E8
 - D 1 - I - 0x01A40B 06:A3FB: 58        .byte $00 + $40 + $18   ; 
 - D 1 - I - 0x01A40C 06:A3FC: FF        .byte $FF   ; 
 
-- D 1 - I - 0x01A40D 06:A3FD: FF        .byte $FF   ; 
+- D 1 - I - 0x01A40D 06:A3FD: FF        .byte $FF   ; end token
 
 
 
-_off000_A3FE_01:
+_off000_A3FE_02_lore_and_items:
 - D 1 - I - 0x01A40E 06:A3FE: 20 00     .dbyt $2000
 - D 1 - I - 0x01A410 06:A400: 20        .byte $00 + $00 + $20   ; 
 - D 1 - I - 0x01A411 06:A401: 24        .byte $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24   ; 
@@ -4533,11 +4527,11 @@ _off000_A3FE_01:
 - D 1 - I - 0x01A875 06:A865: 02        .byte $00 + $00 + $02   ; 
 - D 1 - I - 0x01A876 06:A866: FF        .byte $FF, $FF   ; 
 
-- D 1 - I - 0x01A878 06:A868: FF        .byte $FF   ; 
+- D 1 - I - 0x01A878 06:A868: FF        .byte $FF   ; end token
 
 
 
-_off000_A869_08:
+_off000_A869_10_title_screen:
 - D 1 - I - 0x01A879 06:A869: 20 00     .dbyt $2000
 - D 1 - I - 0x01A87B 06:A86B: 20        .byte $00 + $00 + $20   ; 
 - D 1 - I - 0x01A87C 06:A86C: 24        .byte $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24   ; 
@@ -4698,7 +4692,7 @@ _off000_A869_08:
 - D 1 - I - 0x01ACB9 06:ACA9: 00        .byte $00, $0A, $0A, $0A, $0A, $0A, $0A, $00, $00, $00, $C0, $30, $00, $00, $00, $00   ; 
 - D 1 - I - 0x01ACC9 06:ACB9: 00        .byte $00, $00, $CC, $33, $00, $00, $00, $00, $00, $20, $FC, $F3, $00, $00, $F0, $F0   ; 
 
-- D 1 - I - 0x01ACD9 06:ACC9: FF        .byte $FF   ; 
+- D 1 - I - 0x01ACD9 06:ACC9: FF        .byte $FF   ; end token
 
 
 ; bzk garbage

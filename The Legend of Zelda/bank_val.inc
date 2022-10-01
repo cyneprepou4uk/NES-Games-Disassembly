@@ -65,30 +65,30 @@ con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn
 
 
 
-; ram_game_mode_main                    = $0012
+; ram_script                    = $0012
 ; needed comments at 0x014550   0x01459C   0x00A607
 ;                    0x0090D6   0x01F192
 ;                    0x01EB45 & 0x01E92E - rename offsets
-con_GM_title_screen                     = $00 ; logo and manual
-con_GM_slot_selection                   = $01 ; menu with 3 slots and 2 options
-con_GM_02                               = $02 ; 
-con_GM_03                               = $03 ; 
-con_GM_04                               = $04 ; 
-con_GM_05                               = $05 ; 
-con_GM_06                               = $06 ; 
-con_GM_07                               = $07 ; not found but defenitely was used, probably set by INC
-con_GM_08                               = $08 ; 
-con_GM_09                               = $09 ; 
-con_GM_0A                               = $0A ; 
-con_GM_0B                               = $0B ; 
-con_GM_0C                               = $0C ; 
-con_GM_0D                               = $0D ; 
-con_GM_register                         = $0E ; register your name menu
-con_GM_elimination                      = $0F ; eliminate slot menu
-con_GM_10                               = $10 ; 
-con_GM_death                            = $11 ; link is dead
-con_GM_triforce_collected               = $12 ; collect a piece of triforce
-con_GM_13                               = $13 ; 
+con_script_title_screen                 = $00 ; logo and manual
+con_script_slot_selection               = $01 ; menu with 3 slots and 2 options
+con_script_02                           = $02 ; 
+con_script_03                           = $03 ; 
+con_script_04                           = $04 ; 
+con_script_05                           = $05 ; 
+con_script_06                           = $06 ; 
+con_script_07                           = $07 ; not found but defenitely was used, probably set by INC
+con_script_08                           = $08 ; 
+con_script_09                           = $09 ; 
+con_script_0A                           = $0A ; 
+con_script_0B                           = $0B ; 
+con_script_0C                           = $0C ; 
+con_script_0D                           = $0D ; 
+con_script_register                     = $0E ; register your name menu
+con_script_elimination                  = $0F ; eliminate slot menu
+con_script_10                           = $10 ; 
+con_script_death                        = $11 ; link is dead
+con_script_triforce_collected           = $12 ; collect a piece of triforce
+con_script_13                           = $13 ; 
 
 
 
@@ -151,7 +151,76 @@ con_msg_25                              = $25 ; EYES OF SKULL HAS A SECRET.
 
 
 
-; ram_obj_id                            = $034F
+; ram_ppu_load_index                    = $0014
+; need comments at 0x01A010
+con_ppu_buf_00                          = $00 ; 
+con_ppu_buf_lore_and_items              = $02 ; guide screen after title screen
+con_ppu_buf_continue                          = $04 ; 
+con_ppu_buf_06                          = $06 ; palette
+con_ppu_buf_08                          = $08 ; palette
+con_ppu_buf_0A                          = $0A ; palette
+con_ppu_buf_0C                          = $0C ; 
+con_ppu_buf_hud                         = $0E ; 
+con_ppu_buf_title_screen                = $10 ; 
+con_ppu_buf_12                          = $12 ; palette
+con_ppu_buf_14                          = $14 ; 
+con_ppu_buf_16                          = $16 ; 
+con_ppu_buf_overworld_palette           = $18 ; 
+; con_ppu_buf_1A                        = $1A ; 
+; con_ppu_buf_1C                        = $1C ; 
+con_ppu_buf_1E                          = $1E ; 
+con_ppu_buf_20                          = $20 ; palette
+con_ppu_buf_22                          = $22 ; palette
+con_ppu_buf_24                          = $24 ; palette
+con_ppu_buf_26                          = $26 ; attributes
+; con_ppu_buf_28                        = $28 ; 
+con_ppu_buf_2A                          = $2A ; 
+con_ppu_buf_2C                          = $2C ; palette (death)
+; con_ppu_buf_2E                        = $2E ; 
+con_ppu_buf_30                          = $30 ; 
+con_ppu_buf_32                          = $32 ; 
+con_ppu_buf_34                          = $34 ; 
+con_ppu_buf_36                          = $36 ; palette
+con_ppu_buf_38                          = $38 ; 
+con_ppu_buf_3A                          = $3A ; 
+con_ppu_buf_3C                          = $3C ; 
+con_ppu_buf_cave_palette                = $3E ; palette
+con_ppu_buf_40                          = $40 ; 
+con_ppu_buf_42                          = $42 ; 
+con_ppu_buf_44_minimap                  = $44 ; 
+con_ppu_buf_46_game_over                = $46 ; 
+con_ppu_buf_48                          = $48 ; attributes
+con_ppu_buf_4A                          = $4A ; attributes
+con_ppu_buf_4C                          = $4C ; 
+con_ppu_buf_4E                          = $4E ; 
+con_ppu_buf_50                          = $50 ; 
+con_ppu_buf_52                          = $52 ; 
+con_ppu_buf_54                          = $54 ; 
+con_ppu_buf_56                          = $56 ; 
+con_ppu_buf_58                          = $58 ; 
+con_ppu_buf_5A                          = $5A ; 
+con_ppu_buf_5C                          = $5C ; 
+con_ppu_buf_5E                          = $5E ; palette (death)
+con_ppu_buf_60                          = $60 ; attributes (death)
+con_ppu_buf_62                          = $62 ; attributes (death)
+; con_ppu_buf_64                        = $64 ; 
+; con_ppu_buf_66                        = $66 ; 
+; con_ppu_buf_68                        = $68 ; 
+con_ppu_buf_6A                          = $6A ; palette
+con_ppu_buf_6C                          = $6C ; 
+; con_ppu_buf_6E                        = $6E ; 
+; con_ppu_buf_70                        = $70 ; 
+; con_ppu_buf_72                        = $72 ; 
+; con_ppu_buf_74                        = $74 ; 
+con_ppu_buf_76                          = $76 ; 
+con_ppu_buf_78                          = $78 ; palette
+con_ppu_buf_7A                          = $7A ; palette
+con_ppu_buf_7C                          = $7C ; palette
+; con_ppu_buf_7E                        = $7E ; 
+
+
+
+; ram_obj_id                            = $0350
 ; need comments at 0x01FBC4
 con_obj_id_00                           = $00 ; 
 con_obj_id_01                           = $01 ; Lynel
@@ -292,7 +361,7 @@ con_music_triforce                      = $04 ; collect a piece of triforce
 con_music_quest_complete                = $06 ; 
 con_music_pick_up_item                  = $08 ; important items like sword/bow
 con_music_credits                       = $10 ; 
-con_music_final_dungeon                 = $20 ; 
+con_music_final_dungeon                 = $20 ; dungeon 9 theme
 con_music_dungeon                       = $40 ; standart dungeon theme
 con_music_title                         = $80 ; title screen
 
@@ -324,6 +393,8 @@ con_sfx_3_arrow_shoot                   = $02 ; shooting with an arrow
 con_sfx_3_04                            = $04 ; 
 con_sfx_3_walking                       = $08 ; walking in/out caves or something
 con_sfx_3_10                            = $10 ; 
+con_sfx_3_ocean                         = $20 ; sound of the ocean at the beach
+; con_sfx_3_40                          = $40 ; 
 con_sfx_3_80                            = $80 ; 
 
 ; ram_sfx_4                             = $0604
@@ -334,7 +405,7 @@ con_sfx_4_energy_wave                   = $04 ; wave by some ghosts
 con_sfx_4_pick_up_item                  = $08 ; key, small heart
 con_sfx_4_rupee                         = $10 ; rupee add/sbc, also when text is printing
 con_sfx_4_plant_bomb                    = $20 ; bomb has been planted
-con_sfx_4_low_health                    = $40 ; constant signals while health is low
+con_sfx_4_low_health                    = $40 ; constant annoying signals while health is low
 con_sfx_4_80                            = $80 ; 
 
 
