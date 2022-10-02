@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_IGNORE_COMPILE_ASM_ARRAY=(bank___FF7B_FFF8.asm copy_bank___FF7B_FFF8.asm bank___FE00_FF79.asm copy_bank___FE00_FF79.asm)
+NES_IGNORE_COMPILE_ASM_ARRAY=(bank___FE00_FFF9.asm copy_bank___FE00_FFF9.asm)
 NES_OUTPUT_SIMPLE_NAME=solstice
 NES_OUTPUT_FILE_SIZE=131088
 
