@@ -24,7 +24,14 @@ source ../_scripts/env.sh
 
 # assemble-header function(s)
 source ../_scripts/assemble_header.sh
-# assemble-standard function(s) support
-source ../_scripts/assemble_standard.sh
+
+# :: assemble code into binaries
+ld65 -C ld65.cfg --dbgfile _debug.txt copy_bank_*.o
+Return
+
+# :: join header, prg and chr into a single ROM file
+cat header.bin copy_bank_*.bin CHR_ROM.chr > !${NES_OUTPUT_SIMPLE_NAME}.nes
+Return
+
 # assemble-footer function(s) support
 source ../_scripts/assemble_footer.sh
