@@ -15,14 +15,14 @@
 .export ofs_bat_67F0_bank_s1_asm_import
 .export _off000_bat_67F0_12
 .export _off000_bat_6814_06
-.export _off000_bat_681C_0C
+.export _off000_bat_681C_0C_level_text
 .export _off000_bat_681C_2E
-.export tbl_bat_6827
+.export tbl_bat_6827_columns
 .export _off000_bat_6847_52
 .export _off000_bat_684F_54
 .export _off000_bat_6859_56
 .export _off000_bat_6865_58
-.export _off000_bat_6873_5C
+.export _off000_bat_6873_5C_triforce_text
 
 
 
@@ -31,75 +31,49 @@ ofs_bat_67F0_bank_s1_asm_import:    ; start position of SRAM_1
 
 
 _off000_bat_67F0_12:
-- D 0 - I - 0x019CE8 06:67F0: 3F        .byte $3F   ; 
-- D 0 - I - 0x019CE9 06:67F1: 00        .byte $00   ; 
+; ram_67F0
+- D 0 - I - 0x019CE8 06:67F0: 3F        .dbyt $3F00
 - D 0 - I - 0x019CEA 06:67F2: 20        .byte $20   ; 
-- D 0 - I - 0x019CEB 06:67F3: 0F        .byte $0F   ; 
-- D 0 - I - 0x019CEC 06:67F4: 30        .byte $30   ; 
-- D 0 - I - 0x019CED 06:67F5: 00        .byte $00   ; 
-- D 0 - I - 0x019CEE 06:67F6: 12        .byte $12   ; 
-- D 0 - I - 0x019CEF 06:67F7: 0F        .byte $0F   ; 
-- D 0 - I - 0x019CF0 06:67F8: 16        .byte $16   ; 
-- D 0 - I - 0x019CF1 06:67F9: 27        .byte $27   ; 
-- D 0 - I - 0x019CF2 06:67FA: 36        .byte $36   ; 
-- D 0 - I - 0x019CF3 06:67FB: 0F        .byte $0F   ; 
-- D 0 - I - 0x019CF4 06:67FC: 0C        .byte $0C   ; 
-- D 0 - I - 0x019CF5 06:67FD: 1C        .byte $1C   ; 
-- D 0 - I - 0x019CF6 06:67FE: 2C        .byte $2C   ; 
-- D 0 - I - 0x019CF7 06:67FF: 0F        .byte $0F   ; 
-- D 0 - I - 0x019CF8 06:6800: 12        .byte $12   ; 
-- D 0 - I - 0x019CF9 06:6801: 1C        .byte $1C   ; 
-- D 0 - I - 0x019CFA 06:6802: 2C        .byte $2C   ; 
-- D 0 - I - 0x019CFB 06:6803: 0F        .byte $0F   ; 
-- D 0 - I - 0x019CFC 06:6804: 29        .byte $29   ; ram_6804
-- D 0 - I - 0x019CFD 06:6805: 27        .byte $27   ; 
-- D 0 - I - 0x019CFE 06:6806: 07        .byte $07   ; 
-- D 0 - I - 0x019CFF 06:6807: 0F        .byte $0F   ; 
-- D 0 - I - 0x019D00 06:6808: 22        .byte $22   ; ram_6808
-- D 0 - I - 0x019D01 06:6809: 27        .byte $27   ; 
-- D 0 - I - 0x019D02 06:680A: 07        .byte $07   ; 
-- D 0 - I - 0x019D03 06:680B: 0F        .byte $0F   ; 
-- D 0 - I - 0x019D04 06:680C: 26        .byte $26   ; ram_680C
-- D 0 - I - 0x019D05 06:680D: 27        .byte $27   ; 
-- D 0 - I - 0x019D06 06:680E: 07        .byte $07   ; 
-- D 0 - I - 0x019D07 06:680F: 0F        .byte $0F   ; 
-- D 0 - I - 0x019D08 06:6810: 15        .byte $15   ; ram_6810
-- D 0 - I - 0x019D09 06:6811: 27        .byte $27   ; 
-- D 0 - I - 0x019D0A 06:6812: 30        .byte $30   ; 
+- D 0 - I - 0x019CEB 06:67F3: 0F        .byte $0F, $30, $00, $12   ; 
+- D 0 - I - 0x019CEF 06:67F7: 0F        .byte $0F, $16, $27, $36   ; 
+- D 0 - I - 0x019CF3 06:67FB: 0F        .byte $0F, $0C, $1C, $2C   ; 
+- D 0 - I - 0x019CF7 06:67FF: 0F        .byte $0F, $12, $1C, $2C   ; 
+; ram_6804
+- D 0 - I - 0x019CFB 06:6803: 0F        .byte $0F, $29, $27, $07   ; 
+; ram_6808
+- D 0 - I - 0x019CFF 06:6807: 0F        .byte $0F, $22, $27, $07   ; 
+; ram_680C
+- D 0 - I - 0x019D03 06:680B: 0F        .byte $0F, $26, $27, $07   ; 
+; ram_6810
+- D 0 - I - 0x019D07 06:680F: 0F        .byte $0F, $15, $27, $30   ; 
 - D 0 - I - 0x019D0B 06:6813: FF        .byte $FF   ; end token
 
 
 
 _off000_bat_6814_06:
-- D 0 - I - 0x019D0C 06:6814: 3F        .byte $3F   ; 
-- D 0 - I - 0x019D0D 06:6815: 1C        .byte $1C   ; 
+; ram_6814
+- D 0 - I - 0x019D0C 06:6814: 3F        .dbyt $3F1C
 - D 0 - I - 0x019D0E 06:6816: 04        .byte $04   ; 
-- D 0 - I - 0x019D0F 06:6817: 0F        .byte $0F   ; ram_6817
-- D 0 - I - 0x019D10 06:6818: 0F        .byte $0F   ; 
-- D 0 - I - 0x019D11 06:6819: 0F        .byte $0F   ; 
-- D 0 - I - 0x019D12 06:681A: 0F        .byte $0F   ; 
+; ram_6817
+- D 0 - I - 0x019D0F 06:6817: 0F        .byte $0F, $0F, $0F, $0F   ; 
 - D 0 - I - 0x019D13 06:681B: FF        .byte $FF   ; end token
 
 
 
-_off000_bat_681C_0C:
+_off000_bat_681C_0C_level_text:
 _off000_bat_681C_2E:
-- D 0 - I - 0x019D14 06:681C: 20        .byte $20   ; 
-- D 0 - I - 0x019D15 06:681D: 42        .byte $42   ; 
+; ram_681C
+- D 0 - I - 0x019D14 06:681C: 20        .dbyt $2042
 - D 0 - I - 0x019D16 06:681E: 07        .byte $07   ; 
-- D 0 - I - 0x019D17 06:681F: 15        .byte $15   ; 
-- D 0 - I - 0x019D18 06:6820: 0E        .byte $0E   ; 
-- D 0 - I - 0x019D19 06:6821: 1F        .byte $1F   ; 
-- D 0 - I - 0x019D1A 06:6822: 0E        .byte $0E   ; 
-- D 0 - I - 0x019D1B 06:6823: 15        .byte $15   ; 
-- D 0 - I - 0x019D1C 06:6824: 62        .byte $62   ; 
-- D 0 - I - 0x019D1D 06:6825: 00        .byte $00   ; ram_6825
+; ram_6825
+- D 0 - I - 0x019D17 06:681F: 15        .byte $15, $0E, $1F, $0E, $15, $62, $00   ; LEVEL-0
 - D 0 - I - 0x019D1E 06:6826: FF        .byte $FF   ; end token
 
 
 
-tbl_bat_6827:
-- D 0 - I - 0x019D1F 06:6827: D8 9B     .word _off006_0x015BE8_00   ; ram_6827   ram_6828
+tbl_bat_6827_columns:
+; ram_6827_tbl_bat_columns
+- D 0 - I - 0x019D1F 06:6827: D8 9B     .word _off006_0x015BE8_00
 - D 0 - I - 0x019D21 06:6829: 0D 9C     .word _off006_0x015C1D_10
 - D 0 - I - 0x019D23 06:682B: 3E 9C     .word _off006_0x015C4E_20
 - D 0 - I - 0x019D25 06:682D: 80 9C     .word _off006_0x015C90_30
@@ -119,8 +93,8 @@ tbl_bat_6827:
 
 
 _off000_bat_6847_52:
-- D 0 - I - 0x019D3F 06:6847: 2A        .byte $2A   ; 
-- D 0 - I - 0x019D40 06:6848: EE        .byte $EE   ; 
+; ram_6847
+- D 0 - I - 0x019D3F 06:6847: 2A        .dbyt $2AEE
 - D 0 - I - 0x019D41 06:6849: 04        .byte $04   ; 
 - D 0 - I - 0x019D42 06:684A: ED        .byte $ED   ; 
 - D 0 - I - 0x019D43 06:684B: E9        .byte $E9   ; ram_684B
@@ -131,8 +105,8 @@ _off000_bat_6847_52:
 
 
 _off000_bat_684F_54:
-- D 0 - I - 0x019D47 06:684F: 2B        .byte $2B   ; 
-- D 0 - I - 0x019D48 06:6850: 0D        .byte $0D   ; 
+; ram_684F
+- D 0 - I - 0x019D47 06:684F: 2B        .dbyt $2B0D
 - D 0 - I - 0x019D49 06:6851: 06        .byte $06   ; 
 - D 0 - I - 0x019D4A 06:6852: ED        .byte $ED   ; 
 - D 0 - I - 0x019D4B 06:6853: E9        .byte $E9   ; ram_6853
@@ -145,8 +119,8 @@ _off000_bat_684F_54:
 
 
 _off000_bat_6859_56:
-- D 0 - I - 0x019D51 06:6859: 2B        .byte $2B   ; 
-- D 0 - I - 0x019D52 06:685A: 2C        .byte $2C   ; 
+; ram_6859
+- D 0 - I - 0x019D51 06:6859: 2B        .dbyt $2B2C
 - D 0 - I - 0x019D53 06:685B: 08        .byte $08   ; 
 - D 0 - I - 0x019D54 06:685C: ED        .byte $ED   ; 
 - D 0 - I - 0x019D55 06:685D: E9        .byte $E9   ; ram_685D
@@ -161,8 +135,8 @@ _off000_bat_6859_56:
 
 
 _off000_bat_6865_58:
-- D 0 - I - 0x019D5D 06:6865: 2B        .byte $2B   ; 
-- D 0 - I - 0x019D5E 06:6866: 4B        .byte $4B   ; 
+; ram_6865
+- D 0 - I - 0x019D5D 06:6865: 2B        .dbyt $2B4B
 - D 0 - I - 0x019D5F 06:6867: 0A        .byte $0A   ; 
 - D 0 - I - 0x019D60 06:6868: ED        .byte $ED   ; 
 - D 0 - I - 0x019D61 06:6869: E9        .byte $E9   ; ram_6869
@@ -178,18 +152,14 @@ _off000_bat_6865_58:
 
 
 
-_off000_bat_6873_5C:
-- D 0 - I - 0x019D6B 06:6873: 2B        .byte $2B   ; 
-- D 0 - I - 0x019D6C 06:6874: AC        .byte $AC   ; 
+_off000_bat_6873_5C_triforce_text:
+; ram_6873
+- D 0 - I - 0x019D6B 06:6873: 2B        .dbyt $2BAC
 - D 0 - I - 0x019D6D 06:6875: 08        .byte $08   ; 
-- D 0 - I - 0x019D6E 06:6876: 1D        .byte $1D   ; 
-- D 0 - I - 0x019D6F 06:6877: 1B        .byte $1B   ; 
-- D 0 - I - 0x019D70 06:6878: 12        .byte $12   ; 
-- D 0 - I - 0x019D71 06:6879: 0F        .byte $0F   ; 
-- D 0 - I - 0x019D72 06:687A: 18        .byte $18   ; 
-- D 0 - I - 0x019D73 06:687B: 1B        .byte $1B   ; 
-- D 0 - I - 0x019D74 06:687C: 0C        .byte $0C   ; 
-- D 0 - I - 0x019D75 06:687D: 0E        .byte $0E   ; 
+- D 0 - I - 0x019D6E 06:6876: 1D        .byte $1D, $1B, $12, $0F, $18, $1B, $0C, $0E   ; 
+; bzk warning, no end token
+; code is probably relying on 687D always being 80+
+                                       ;.byte $FF   ; end token
 
 
 

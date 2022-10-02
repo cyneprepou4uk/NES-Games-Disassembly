@@ -10,6 +10,34 @@ con_map_location                        = $00 ;
 
 
 
+; ram_btn_press                         = $00F8
+; ram_btn_hold                          = $00FA
+con_btn_Right                           = $01 ; 
+con_btn_Left                            = $02 ; 
+con_btn_Down                            = $04 ; 
+con_btn_Up                              = $08 ; 
+con_btn_Start                           = $10 ; 
+con_btn_Select                          = $20 ; 
+con_btn_B                               = $40 ; 
+con_btn_A                               = $80 ; 
+        
+con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn_Down + con_btn_Up  ; 0F
+
+
+
+; ram_obj_state                         = $00AC
+con_obj_state_00                        = $00 ; 
+con_obj_state_01                        = $01 ; 
+con_obj_state_02                        = $02 ; 
+con_obj_state_04                        = $04 ; 
+con_obj_state_08                        = $08 ; 
+con_obj_state_10                        = $10 ; 
+con_obj_state_20                        = $20 ; 
+con_obj_state_freeze                    = $40 ; 
+con_obj_state_80                        = $80 ; if manually set, link will constantly play walning animation, also A and B will have no effect
+con_obj_state_FF                        = $FF ; ???
+
+
 ; ram_drop_id                           = $00AC
 con_drop_id_00                          = $00 ; bomb
 con_drop_id_01                          = $01 ; wooden sword
@@ -47,21 +75,6 @@ con_drop_id_20                          = $20 ; red potion
 con_drop_id_21                          = $21 ; clock
 con_drop_id_22                          = $22 ; small heart
 con_drop_id_23                          = $23 ; fairy flying around
-
-
-
-; ram_btn_press                         = $00F8
-; ram_btn_hold                          = $00FA
-con_btn_Right                           = $01 ; 
-con_btn_Left                            = $02 ; 
-con_btn_Down                            = $04 ; 
-con_btn_Up                              = $08 ; 
-con_btn_Start                           = $10 ; 
-con_btn_Select                          = $20 ; 
-con_btn_B                               = $40 ; 
-con_btn_A                               = $80 ; 
-        
-con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn_Down + con_btn_Up  ; 0F
 
 
 
@@ -154,12 +167,12 @@ con_msg_25                              = $25 ; EYES OF SKULL HAS A SECRET.
 ; ram_ppu_load_index                    = $0014
 ; need comments at 0x01A010
 con_ppu_buf_00                          = $00 ; 
-con_ppu_buf_lore_and_items              = $02 ; guide screen after title screen
-con_ppu_buf_continue                          = $04 ; 
+con_ppu_buf_guide                       = $02 ; guide screen with lore and items after title screen 
+con_ppu_buf_continue                    = $04 ; 
 con_ppu_buf_06                          = $06 ; palette
 con_ppu_buf_08                          = $08 ; palette
 con_ppu_buf_0A                          = $0A ; palette
-con_ppu_buf_0C                          = $0C ; 
+con_ppu_buf_level_text                  = $0C ; 
 con_ppu_buf_hud                         = $0E ; 
 con_ppu_buf_title_screen                = $10 ; 
 con_ppu_buf_12                          = $12 ; palette
@@ -199,7 +212,7 @@ con_ppu_buf_54                          = $54 ;
 con_ppu_buf_56                          = $56 ; 
 con_ppu_buf_58                          = $58 ; 
 con_ppu_buf_5A                          = $5A ; 
-con_ppu_buf_5C                          = $5C ; 
+con_ppu_buf_triforce_text               = $5C ; 
 con_ppu_buf_5E                          = $5E ; palette (death)
 con_ppu_buf_60                          = $60 ; attributes (death)
 con_ppu_buf_62                          = $62 ; attributes (death)
@@ -221,8 +234,9 @@ con_ppu_buf_7C                          = $7C ; palette
 
 
 ; ram_obj_id                            = $0350
-; need comments at 0x01FBC4
-con_obj_id_00                           = $00 ; 
+; ram_copy_obj_id                       = $035F
+; need comments at 0x01FBC4 0x01FD92
+con_obj_id_null                         = $00 ; 
 con_obj_id_01                           = $01 ; Lynel
 con_obj_id_02                           = $02 ; Lynel
 con_obj_id_03                           = $03 ; Moblin
@@ -454,3 +468,16 @@ con_item_24                             = $24 ; 067B
 con_item_max_bombs                      = $25 ; 067C
 con_item_rup_adc                        = $26 ; 067D
 con_item_rup_sbc                        = $27 ; 067E
+
+
+
+; ram_obj_attr                          = $04C0
+con_04C0_00                             = $00 ; 
+con_04C0_01                             = $01 ; Self checks collisions and draws
+con_04C0_02                             = $02 ; 
+con_04C0_04                             = $04 ; Self-draw attribute
+con_04C0_08                             = $08 ; 
+con_04C0_10                             = $10 ; Reverse when blocked. bzk there are 2 checks for this bit, but no code ever sets if
+con_04C0_20                             = $20 ; 
+con_04C0_40                             = $40 ; 
+con_04C0_80                             = $80 ; 

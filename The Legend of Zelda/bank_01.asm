@@ -353,11 +353,11 @@ bra_85EA:
 ; 00-6D, 71, 72
 C - - - - - 0x0045FA 01:85EA: 20 14 73  JSR sub_bat_7314_check_map_bit4
 C - - - - - 0x0045FD 01:85ED: F0 0A     BEQ bra_85F9
-C - - - - - 0x0045FF 01:85EF: A9 00     LDA #con_obj_id_00
+C - - - - - 0x0045FF 01:85EF: A9 00     LDA #con_obj_id_null
 C - - - - - 0x004601 01:85F1: 8D 50 03  STA ram_obj_id
-sub_85F4_clear_drop:
-C - - - - - 0x004604 01:85F4: A9 00     LDA #$00
-C - - - - - 0x004606 01:85F6: 85 AC     STA ram_drop_id
+sub_85F4_unfreeze_link:
+C - - - - - 0x004604 01:85F4: A9 00     LDA #con_obj_state_00
+C - - - - - 0x004606 01:85F6: 85 AC     STA ram_obj_state
 C - - - - - 0x004608 01:85F8: 60        RTS
 bra_85F9:
 C - - - - - 0x004609 01:85F9: AD 50 03  LDA ram_obj_id
@@ -463,11 +463,11 @@ sub_86A3_spawn_old_man:
 C - - - - - 0x0046B3 01:86A3: 95 70     STA ram_pos_X,X
 C - - - - - 0x0046B5 01:86A5: 94 84     STY ram_pos_Y,X
 C - - - - - 0x0046B7 01:86A7: A9 00     LDA #$00
-C - - - - - 0x0046B9 01:86A9: 9D 85 04  STA ram_0485,X
-C - - - - - 0x0046BC 01:86AC: A9 81     LDA #$81
-C - - - - - 0x0046BE 01:86AE: 9D BF 04  STA ram_04BF,X
-C - - - - - 0x0046C1 01:86B1: A9 40     LDA #$40
-C - - - - - 0x0046C3 01:86B3: 85 AC     STA ram_drop_id     ; that's probably not a ram_drop_id
+C - - - - - 0x0046B9 01:86A9: 9D 85 04  STA ram_hp - 1,X
+C - - - - - 0x0046BC 01:86AC: A9 81     LDA #con_04C0_01 + con_04C0_80
+C - - - - - 0x0046BE 01:86AE: 9D BF 04  STA ram_obj_attr - 1,X
+C - - - - - 0x0046C1 01:86B1: A9 40     LDA #con_obj_state_freeze
+C - - - - - 0x0046C3 01:86B3: 85 AC     STA ram_obj_state
 C - - - - - 0x0046C5 01:86B5: A9 40     LDA #con_obj_id_40
 C - - - - - 0x0046C7 01:86B7: 8D 51 03  STA ram_obj_id + 1
 C - - - - - 0x0046CA 01:86BA: 8D 52 03  STA ram_obj_id + 2
@@ -503,7 +503,7 @@ tbl_86CA:
 
 
 loc_0x0046EB:
-C D 0 - - - 0x0046EB 01:86DB: A5 AD     LDA ram_drop_id + 1
+C D 0 - - - 0x0046EB 01:86DB: A5 AD     LDA ram_obj_state + 1
 C - - - - - 0x0046ED 01:86DD: C9 04     CMP #$04
 C - - - - - 0x0046EF 01:86DF: D0 06     BNE bra_86E7
 C - - - - - 0x0046F1 01:86E1: A5 15     LDA ram_frame_cnt
@@ -524,10 +524,10 @@ C - - - - - 0x00470F 01:86FF: A5 F8     LDA ram_btn_press
 C - - - - - 0x004711 01:8701: 29 40     AND #con_btn_B
 C - - - - - 0x004713 01:8703: D0 0A     BNE bra_870F
 bra_8705:
-C - - - - - 0x004715 01:8705: A5 AC     LDA ram_drop_id
-C - - - - - 0x004717 01:8707: C9 40     CMP #$40
+C - - - - - 0x004715 01:8705: A5 AC     LDA ram_obj_state
+C - - - - - 0x004717 01:8707: C9 40     CMP #con_obj_state_freeze
 C - - - - - 0x004719 01:8709: D0 03     BNE bra_870E_RTS
-C - - - - - 0x00471B 01:870B: 20 F4 85  JSR sub_85F4_clear_drop
+C - - - - - 0x00471B 01:870B: 20 F4 85  JSR sub_85F4_unfreeze_link
 bra_870E_RTS:
 C - - - - - 0x00471E 01:870E: 60        RTS
 bra_870F:
@@ -539,7 +539,7 @@ C - - - - - 0x004729 01:8719: 8D 56 06  STA ram_item_slot_index
 bra_871C:
 C - - - - - 0x00472C 01:871C: 20 49 87  JSR sub_8749
 bra_871F:
-C - - - - - 0x00472F 01:871F: A5 AD     LDA ram_drop_id + 1
+C - - - - - 0x00472F 01:871F: A5 AD     LDA ram_obj_state + 1
 C - - - - - 0x004731 01:8721: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
 - D 0 - I - 0x004734 01:8724: 8B 87     .word ofs_029_878B_00
 - D 0 - I - 0x004736 01:8726: 15 88     .word ofs_029_8815_01
@@ -662,7 +662,7 @@ sub_87F2:   ; 1E
 loc_87F2:   ; 1E 2A 76
 C D 0 - - - 0x004802 01:87F2: 85 14     STA ram_ppu_load_index
 bra_87F4:
-C - - - - - 0x004804 01:87F4: E6 AD     INC ram_drop_id + 1
+C - - - - - 0x004804 01:87F4: E6 AD     INC ram_obj_state + 1
 C - - - - - 0x004806 01:87F6: 60        RTS
 
 
@@ -756,8 +756,8 @@ C - - - - - 0x00487A 01:886A: B9 12 88  LDA tbl_8812_ppu_lo,Y
 C - - - - - 0x00487D 01:886D: 8D 5F 04  STA ram_045F
 C - - - - - 0x004880 01:8870: C0 02     CPY #$02
 C - - - - - 0x004882 01:8872: D0 05     BNE bra_8879_RTS
-C - - - - - 0x004884 01:8874: E6 AD     INC ram_drop_id + 1
-C - - - - - 0x004886 01:8876: 20 F4 85  JSR sub_85F4_clear_drop
+C - - - - - 0x004884 01:8874: E6 AD     INC ram_obj_state + 1
+C - - - - - 0x004886 01:8876: 20 F4 85  JSR sub_85F4_unfreeze_link
 bra_8879_RTS:
 C - - - - - 0x004889 01:8879: 60        RTS
 
@@ -768,7 +768,7 @@ C - - J - - 0x00488A 01:887A: AD 13 04  LDA ram_0413
 C - - - - - 0x00488D 01:887D: 4A        LSR
 C - - - - - 0x00488E 01:887E: B0 18     BCS bra_8898
 C - - - - - 0x004890 01:8880: A9 08     LDA #$08
-C - - - - - 0x004892 01:8882: 85 AD     STA ram_drop_id + 1
+C - - - - - 0x004892 01:8882: 85 AD     STA ram_obj_state + 1
 C - - - - - 0x004894 01:8884: AD 50 03  LDA ram_obj_id
 C - - - - - 0x004897 01:8887: C9 71     CMP #con_obj_id_71
 C - - - - - 0x004899 01:8889: D0 0C     BNE bra_8897_RTS
@@ -815,7 +815,7 @@ C - - - - - 0x0048DB 01:88CB: F0 0E     BEQ bra_88DB
 - - - - - - 0x0048E8 01:88D8: 20 DE 89  JSR sub_89DE
 bra_88DB:
 C - - - - - 0x0048EB 01:88DB: A9 05     LDA #$05
-C - - - - - 0x0048ED 01:88DD: 85 AD     STA ram_drop_id + 1
+C - - - - - 0x0048ED 01:88DD: 85 AD     STA ram_obj_state + 1
 C - - - - - 0x0048EF 01:88DF: 60        RTS
 bra_88E0:
 C - - - - - 0x0048F0 01:88E0: AD 13 04  LDA ram_0413
@@ -914,7 +914,7 @@ C - - - - - 0x004990 01:8980: A9 08     LDA #con_sfx_4_pick_up_item
 C - - - - - 0x004992 01:8982: 8D 04 06  STA ram_sfx_4
 C - - - - - 0x004995 01:8985: 20 0C 73  JSR sub_bat_730C_set_map_bit4
 C - - - - - 0x004998 01:8988: A9 08     LDA #$08
-C - - - - - 0x00499A 01:898A: 85 AD     STA ram_drop_id + 1
+C - - - - - 0x00499A 01:898A: 85 AD     STA ram_obj_state + 1
 C - - - - - 0x00499C 01:898C: AD 31 04  LDA ram_0431
 C - - - - - 0x00499F 01:898F: 4C D6 89  JMP loc_89D6
 bra_8992:
@@ -931,7 +931,7 @@ C - - - - - 0x0049B6 01:89A6: 88        DEY
 C - - - - - 0x0049B7 01:89A7: 10 F7     BPL bra_89A0_loop
 C - - - - - 0x0049B9 01:89A9: 20 92 87  JSR sub_8792
 C - - - - - 0x0049BC 01:89AC: A9 08     LDA #$08
-C - - - - - 0x0049BE 01:89AE: 85 AD     STA ram_drop_id + 1
+C - - - - - 0x0049BE 01:89AE: 85 AD     STA ram_obj_state + 1
 C - - - - - 0x0049C0 01:89B0: A0 01     LDY #$01
 C - - - - - 0x0049C2 01:89B2: AD 48 04  LDA ram_0448
 C - - - - - 0x0049C5 01:89B5: 20 E6 89  JSR sub_89E6
@@ -1046,8 +1046,8 @@ C - - - - - 0x004A5F 01:8A4F: 8D 5F 04  STA ram_045F
 bra_8A52:
 C - - - - - 0x004A62 01:8A52: 20 14 73  JSR sub_bat_7314_check_map_bit4
 C - - - - - 0x004A65 01:8A55: F0 07     BEQ bra_8A5E
-- - - - - - 0x004A67 01:8A57: A9 00     LDA #$00
-- - - - - - 0x004A69 01:8A59: 85 AC     STA ram_drop_id
+- - - - - - 0x004A67 01:8A57: A9 00     LDA #con_obj_state_00
+- - - - - - 0x004A69 01:8A59: 85 AC     STA ram_obj_state
 - - - - - - 0x004A6B 01:8A5B: 4C B1 FE  JMP loc_0x01FEC1_destroy_object
 bra_8A5E:
 C - - - - - 0x004A6E 01:8A5E: 4C D3 8A  JMP loc_8AD3
@@ -1111,8 +1111,8 @@ C - - - - - 0x004AB4 01:8AA4: C9 FF     CMP #$FF
 C - - - - - 0x004AB6 01:8AA6: D0 0B     BNE bra_8AB3_RTS
 C - - - - - 0x004AB8 01:8AA8: A9 01     LDA #$01
 C - - - - - 0x004ABA 01:8AAA: 8D CE 04  STA ram_04CE
-C - - - - - 0x004ABD 01:8AAD: 4A        LSR
-C - - - - - 0x004ABE 01:8AAE: 85 AC     STA ram_drop_id
+C - - - - - 0x004ABD 01:8AAD: 4A        LSR ; 00    con_obj_state_00
+C - - - - - 0x004ABE 01:8AAE: 85 AC     STA ram_obj_state
 C - - - - - 0x004AC0 01:8AB0: 20 B1 FE  JSR sub_0x01FEC1_destroy_object
 bra_8AB3_RTS:
 C - - - - - 0x004AC3 01:8AB3: 60        RTS
@@ -1129,8 +1129,8 @@ C - - - - - 0x004AD0 01:8AC0: AD 14 88  LDA tbl_8814_ppu_lo
 C - - - - - 0x004AD3 01:8AC3: 8D 5F 04  STA ram_045F
 C - - - - - 0x004AD6 01:8AC6: 20 14 73  JSR sub_bat_7314_check_map_bit4
 C - - - - - 0x004AD9 01:8AC9: F0 08     BEQ bra_8AD3
-- - - - - - 0x004ADB 01:8ACB: A9 00     LDA #$00    ; con_obj_id_00
-- - - - - - 0x004ADD 01:8ACD: 85 AC     STA ram_drop_id
+- - - - - - 0x004ADB 01:8ACB: A9 00     LDA #$00    ; con_obj_id_null   con_obj_state_00
+- - - - - - 0x004ADD 01:8ACD: 85 AC     STA ram_obj_state
 - - - - - - 0x004ADF 01:8ACF: 8D 50 03  STA ram_obj_id
 - - - - - - 0x004AE2 01:8AD2: 60        RTS
 bra_8AD3:
@@ -1154,7 +1154,7 @@ bra_8AE7:
 C - - - - - 0x004AF7 01:8AE7: 4C 11 8B  JMP loc_8B11
 bra_8AEA_07:
 C - - - - - 0x004AFA 01:8AEA: 20 9D 8B  JSR sub_8B9D
-C - - - - - 0x004AFD 01:8AED: A5 AD     LDA ram_drop_id + 1
+C - - - - - 0x004AFD 01:8AED: A5 AD     LDA ram_obj_state + 1
 C - - - - - 0x004AFF 01:8AEF: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
 - D 0 - I - 0x004B02 01:8AF2: F8 8A     .word ofs_029_8AF8_00
 - D 0 - I - 0x004B04 01:8AF4: 15 88     .word ofs_029_8815_01
@@ -1165,7 +1165,7 @@ C - - - - - 0x004AFF 01:8AEF: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_
 ofs_029_8AF8_00:
 C - - J - - 0x004B08 01:8AF8: A9 00     LDA #$00
 C - - - - - 0x004B0A 01:8AFA: 8D 16 04  STA ram_0416
-C - - - - - 0x004B0D 01:8AFD: E6 AD     INC ram_drop_id + 1
+C - - - - - 0x004B0D 01:8AFD: E6 AD     INC ram_obj_state + 1
 ofs_029_8AFF_02_RTS:
 C - - - - - 0x004B0F 01:8AFF: 60        RTS
 
@@ -1184,7 +1184,7 @@ C - - - - - 0x004B20 01:8B10: 60        RTS
 
 
 loc_8B11:
-C D 0 - - - 0x004B21 01:8B11: A5 AD     LDA ram_drop_id + 1
+C D 0 - - - 0x004B21 01:8B11: A5 AD     LDA ram_obj_state + 1
 C - - - - - 0x004B23 01:8B13: C9 04     CMP #$04
 C - - - - - 0x004B25 01:8B15: D0 06     BNE bra_8B1D
 C - - - - - 0x004B27 01:8B17: A5 15     LDA ram_frame_cnt
@@ -1203,7 +1203,7 @@ C - - - - - 0x004B3F 01:8B2F: A9 18     LDA #$18
 C - - - - - 0x004B41 01:8B31: A2 13     LDX #$13
 C - - - - - 0x004B43 01:8B33: 20 0E E7  JSR sub_0x01E71E
 bra_8B36:
-C - - - - - 0x004B46 01:8B36: A5 AD     LDA ram_drop_id + 1
+C - - - - - 0x004B46 01:8B36: A5 AD     LDA ram_obj_state + 1
 C - - - - - 0x004B48 01:8B38: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
 - D 0 - I - 0x004B4B 01:8B3B: 45 8B     .word ofs_029_8B45_00
 - D 0 - I - 0x004B4D 01:8B3D: 15 88     .word ofs_029_8815_01
@@ -1222,7 +1222,7 @@ C - - - - - 0x004B5E 01:8B4E: 85 14     STA ram_ppu_load_index
 bra_8B50:
 C - - - - - 0x004B60 01:8B50: A9 0A     LDA #$0A
 C - - - - - 0x004B62 01:8B52: 85 29     STA ram_obj_timer + 1
-C - - - - - 0x004B64 01:8B54: E6 AD     INC ram_drop_id + 1
+C - - - - - 0x004B64 01:8B54: E6 AD     INC ram_obj_state + 1
 C - - - - - 0x004B66 01:8B56: 60        RTS
 
 
@@ -1279,7 +1279,7 @@ C - - - - - 0x004BB3 01:8BA3: 4C DB 77  JMP loc_bat_77DB
 
 
 loc_0x004BB6:
-C D 0 - - - 0x004BB6 01:8BA6: A5 AD     LDA ram_drop_id + 1
+C D 0 - - - 0x004BB6 01:8BA6: A5 AD     LDA ram_obj_state + 1
 C - - - - - 0x004BB8 01:8BA8: C9 04     CMP #$04
 C - - - - - 0x004BBA 01:8BAA: D0 06     BNE bra_8BB2
 C - - - - - 0x004BBC 01:8BAC: A5 15     LDA ram_frame_cnt
@@ -1289,7 +1289,7 @@ bra_8BB2:
 C - - - - - 0x004BC2 01:8BB2: 20 9D 8B  JSR sub_8B9D
 C - - - - - 0x004BC5 01:8BB5: 20 CB 8B  JSR sub_8BCB
 bra_8BB8:
-C - - - - - 0x004BC8 01:8BB8: A5 AD     LDA ram_drop_id + 1
+C - - - - - 0x004BC8 01:8BB8: A5 AD     LDA ram_obj_state + 1
 C - - - - - 0x004BCA 01:8BBA: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
 - D 0 - I - 0x004BCD 01:8BBD: E6 8B     .word ofs_029_8BE6_00
 - D 0 - I - 0x004BCF 01:8BBF: 15 88     .word ofs_029_8815_01
@@ -1401,7 +1401,7 @@ C - - - - - 0x004C67 01:8C57: 4C 8D 8C  JMP loc_8C8D
 
 
 loc_0x004C6A:
-C D 0 - - - 0x004C6A 01:8C5A: A5 AD     LDA ram_drop_id + 1
+C D 0 - - - 0x004C6A 01:8C5A: A5 AD     LDA ram_obj_state + 1
 C - - - - - 0x004C6C 01:8C5C: C9 03     CMP #$03
 C - - - - - 0x004C6E 01:8C5E: D0 06     BNE bra_8C66
 C - - - - - 0x004C70 01:8C60: A5 15     LDA ram_frame_cnt
@@ -1412,7 +1412,7 @@ C - - - - - 0x004C76 01:8C66: 20 00 8B  JSR sub_8B00
 C - - - - - 0x004C79 01:8C69: 20 93 FA  JSR sub_0x01FAA3
 C - - - - - 0x004C7C 01:8C6C: 20 DF 77  JSR sub_bat_77DF
 bra_8C6F:
-C - - - - - 0x004C7F 01:8C6F: A5 AD     LDA ram_drop_id + 1
+C - - - - - 0x004C7F 01:8C6F: A5 AD     LDA ram_obj_state + 1
 C - - - - - 0x004C81 01:8C71: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
 - D 0 - I - 0x004C84 01:8C74: 15 88     .word ofs_026_8815_00
 - D 0 - I - 0x004C86 01:8C76: 7C 8C     .word ofs_026_8C7C_01
@@ -1423,11 +1423,11 @@ C - - - - - 0x004C81 01:8C71: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_
 
 ofs_026_8C7C_01:
 C - - J - - 0x004C8C 01:8C7C: A0 0F     LDY #$0F
-C - - - - - 0x004C8E 01:8C7E: B9 AC 00  LDA ram_drop_id,Y
+C - - - - - 0x004C8E 01:8C7E: B9 AC 00  LDA ram_obj_state,Y
 C - - - - - 0x004C91 01:8C81: 0A        ASL
 C - - - - - 0x004C92 01:8C82: 90 29     BCC bra_8CAD_RTS
-C - - - - - 0x004C94 01:8C84: A9 40     LDA #$40
-C - - - - - 0x004C96 01:8C86: 85 AC     STA ram_drop_id
+C - - - - - 0x004C94 01:8C84: A9 40     LDA #con_obj_state_freeze
+C - - - - - 0x004C96 01:8C86: 85 AC     STA ram_obj_state
 C - - - - - 0x004C98 01:8C88: A9 04     LDA #con_sfx_2_secret_found
 C - - - - - 0x004C9A 01:8C8A: 8D 02 06  STA ram_sfx_2
 loc_8C8D:
@@ -1443,10 +1443,11 @@ ofs_026_8C99_03:
 C - - J - - 0x004CA9 01:8C99: 20 23 F2  JSR sub_0x01F233
 C - - - - - 0x004CAC 01:8C9C: A5 29     LDA ram_obj_timer + 1
 C - - - - - 0x004CAE 01:8C9E: D0 0D     BNE bra_8CAD_RTS
+; A = 00    con_obj_state_00
 C - - - - - 0x004CB0 01:8CA0: A0 0F     LDY #$0F
-C - - - - - 0x004CB2 01:8CA2: 99 AC 00  STA ram_drop_id,Y
+C - - - - - 0x004CB2 01:8CA2: 99 AC 00  STA ram_obj_state,Y
 C - - - - - 0x004CB5 01:8CA5: 8D 5D 06  STA ram_item_meat
-C - - - - - 0x004CB8 01:8CA8: 85 AC     STA ram_drop_id
+C - - - - - 0x004CB8 01:8CA8: 85 AC     STA ram_obj_state
 C - - - - - 0x004CBA 01:8CAA: 8D 50 03  STA ram_obj_id
 bra_8CAD_RTS:
 ofs_025_8CAD_00_RTS:
@@ -1631,14 +1632,14 @@ tbl_A010:
 
 
 loc_0x006028:
-C D 1 - - - 0x006028 01:A018: A5 AC     LDA ram_drop_id
-C - - - - - 0x00602A 01:A01A: 29 40     AND #$40
+C D 1 - - - 0x006028 01:A018: A5 AC     LDA ram_obj_state
+C - - - - - 0x00602A 01:A01A: 29 40     AND #con_obj_state_freeze
 C - - - - - 0x00602C 01:A01C: A8        TAY
 C - - - - - 0x00602D 01:A01D: A9 02     LDA #$02
 C - - - - - 0x00602F 01:A01F: 18        CLC
 C - - - - - 0x006030 01:A020: 75 70     ADC ram_pos_X,X
 C - - - - - 0x006032 01:A022: 95 70     STA ram_pos_X,X
-C - - - - - 0x006034 01:A024: C0 40     CPY #$40
+C - - - - - 0x006034 01:A024: C0 40     CPY #con_obj_state_freeze
 C - - - - - 0x006036 01:A026: D0 21     BNE bra_A049
 C - - - - - 0x006038 01:A028: AC 22 05  LDY ram_0522
 C - - - - - 0x00603B 01:A02B: F0 1C     BEQ bra_A049
@@ -1647,8 +1648,8 @@ C - - - - - 0x00603F 01:A02F: 88        DEY
 C - - - - - 0x006040 01:A030: F0 43     BEQ bra_A075
 C - - - - - 0x006042 01:A032: C9 80     CMP #$80
 C - - - - - 0x006044 01:A034: D0 3F     BNE bra_A075
-C - - - - - 0x006046 01:A036: 0A        ASL
-C - - - - - 0x006047 01:A037: 85 AC     STA ram_drop_id
+C - - - - - 0x006046 01:A036: 0A        ASL ; 00    con_obj_state_00
+C - - - - - 0x006047 01:A037: 85 AC     STA ram_obj_state
 C - - - - - 0x006049 01:A039: 8D 22 05  STA ram_0522
 C - - - - - 0x00604C 01:A03C: 9D 4F 03  STA ram_obj_id - 1,X
 C - - - - - 0x00604F 01:A03F: 8A        TXA
@@ -1667,8 +1668,8 @@ C - - - - - 0x006064 01:A054: 4A        LSR ; A = 00
 C - - - - - 0x006065 01:A055: 85 C0     STA ram_00C0
 C - - - - - 0x006067 01:A057: 85 D3     STA ram_00D3
 C - - - - - 0x006069 01:A059: 85 5A     STA ram_005A
-C - - - - - 0x00606B 01:A05B: A9 40     LDA #$40
-C - - - - - 0x00606D 01:A05D: 85 AC     STA ram_drop_id
+C - - - - - 0x00606B 01:A05B: A9 40     LDA #con_obj_state_freeze
+C - - - - - 0x00606D 01:A05D: 85 AC     STA ram_obj_state
 C - - - - - 0x00606F 01:A05F: A9 F8     LDA #$F8
 C - - - - - 0x006071 01:A061: 8D 48 02  STA ram_spr_Y + $48
 C - - - - - 0x006074 01:A064: 8D 4C 02  STA ram_spr_Y + $4C
@@ -1697,15 +1698,15 @@ C D 1 - - - 0x00609A 01:A08A: 4C 05 A1  JMP loc_A105
 
 
 sub_A08D_destroy_object:
-C - - - - - 0x00609D 01:A08D: A9 00     LDA #$00    ; con_obj_id_00
+C - - - - - 0x00609D 01:A08D: A9 00     LDA #$00    ; con_obj_id_null   con_obj_state_00
 C - - - - - 0x00609F 01:A08F: 9D 4F 03  STA ram_obj_id - 1,X
 C - - - - - 0x0060A2 01:A092: 95 C0     STA ram_00C0,X
 C - - - - - 0x0060A4 01:A094: 95 D3     STA ram_00D3,X
 C - - - - - 0x0060A6 01:A096: 95 28     STA ram_obj_timer,X
-C - - - - - 0x0060A8 01:A098: 95 AC     STA ram_drop_id,X
+C - - - - - 0x0060A8 01:A098: 95 AC     STA ram_obj_state,X
 C - - - - - 0x0060AA 01:A09A: 9D F0 04  STA ram_invinc_timer,X
 C - - - - - 0x0060AD 01:A09D: A9 FF     LDA #$FF
-C - - - - - 0x0060AF 01:A09F: 9D 92 04  STA ram_0492,X
+C - - - - - 0x0060AF 01:A09F: 9D 92 04  STA ram_0493_obj - 1,X
 C - - - - - 0x0060B2 01:A0A2: A9 01     LDA #$01
 C - - - - - 0x0060B4 01:A0A4: 9D 05 04  STA ram_0405,X
 C - - - - - 0x0060B7 01:A0A7: 60        RTS
@@ -1745,8 +1746,8 @@ bra_A0E0:
 C - - - - - 0x0060F0 01:A0E0: AD 08 05  LDA ram_0508
 C - - - - - 0x0060F3 01:A0E3: 0D 22 05  ORA ram_0522
 C - - - - - 0x0060F6 01:A0E6: D0 1C     BNE bra_A104_RTS
-C - - - - - 0x0060F8 01:A0E8: 20 BB FE  JSR sub_0x01FECB
-C - - - - - 0x0060FB 01:A0EB: F0 17     BEQ bra_A104_RTS
+C - - - - - 0x0060F8 01:A0E8: 20 BB FE  JSR sub_0x01FECB_search_for_free_object
+C - - - - - 0x0060FB 01:A0EB: F0 17     BEQ bra_A104_RTS    ; if no free objects
 C - - - - - 0x0060FD 01:A0ED: EE 08 05  INC ram_0508
 C - - - - - 0x006100 01:A0F0: 98        TYA
 C - - - - - 0x006101 01:A0F1: AA        TAX
@@ -1794,8 +1795,8 @@ loc_0x006131:
 C D 1 - - - 0x006131 01:A121: AD 22 05  LDA ram_0522
 C - - - - - 0x006134 01:A124: F0 15     BEQ bra_A13B
 C - - - - - 0x006136 01:A126: EE 22 05  INC ram_0522
-C - - - - - 0x006139 01:A129: A9 40     LDA #$40
-C - - - - - 0x00613B 01:A12B: 85 AC     STA ram_drop_id
+C - - - - - 0x006139 01:A129: A9 40     LDA #con_obj_state_freeze
+C - - - - - 0x00613B 01:A12B: 85 AC     STA ram_obj_state
 C - - - - - 0x00613D 01:A12D: A2 09     LDX #$09
 C - - - - - 0x00613F 01:A12F: AD 23 05  LDA ram_0523
 C - - - - - 0x006142 01:A132: 29 07     AND #$07
@@ -1820,7 +1821,7 @@ C - - - - - 0x00615D 01:A14D: F0 04     BEQ bra_A153
 C - - - - - 0x00615F 01:A14F: C9 66     CMP #con_obj_id_66
 C - - - - - 0x006161 01:A151: D0 25     BNE bra_A178
 bra_A153:
-C - - - - - 0x006163 01:A153: B5 AC     LDA ram_drop_id,X
+C - - - - - 0x006163 01:A153: B5 AC     LDA ram_obj_state,X
 C - - - - - 0x006165 01:A155: C9 01     CMP #$01
 C - - - - - 0x006167 01:A157: D0 1F     BNE bra_A178
 C - - - - - 0x006169 01:A159: A5 70     LDA ram_pos_X
@@ -1872,8 +1873,8 @@ C - - - - - 0x0061B0 01:A1A0: A9 20     LDA #con_music_final_dungeon
 C - - - - - 0x0061B2 01:A1A2: 8D 00 06  STA ram_music
 C - - - - - 0x0061B5 01:A1A5: A9 01     LDA #$01
 C - - - - - 0x0061B7 01:A1A7: 8D 72 06  STA ram_item_0672
-C - - - - - 0x0061BA 01:A1AA: 4A        LSR
-C - - - - - 0x0061BB 01:A1AB: 85 AC     STA ram_drop_id
+C - - - - - 0x0061BA 01:A1AA: 4A        LSR ; 00    con_obj_state_00
+C - - - - - 0x0061BB 01:A1AB: 85 AC     STA ram_obj_state
 C - - - - - 0x0061BD 01:A1AD: 8D 09 05  STA ram_0509
 bra_A1B0_RTS:
 C - - - - - 0x0061C0 01:A1B0: 60        RTS
@@ -1884,8 +1885,8 @@ loc_0x0061C1:
 C D 1 - - - 0x0061C1 01:A1B1: EE 09 05  INC ram_0509
 C - - - - - 0x0061C4 01:A1B4: A9 C0     LDA #$C0
 C - - - - - 0x0061C6 01:A1B6: 85 28     STA ram_obj_timer
-C - - - - - 0x0061C8 01:A1B8: A9 40     LDA #$40
-C - - - - - 0x0061CA 01:A1BA: 85 AC     STA ram_drop_id
+C - - - - - 0x0061C8 01:A1B8: A9 40     LDA #con_obj_state_freeze
+C - - - - - 0x0061CA 01:A1BA: 85 AC     STA ram_obj_state
 C - - - - - 0x0061CC 01:A1BC: 60        RTS
 
 
@@ -2029,9 +2030,9 @@ C - - - - - 0x00627D 01:A26D: 69 08     ADC #$08
 C - - - - - 0x00627F 01:A26F: 85 01     STA ram_0001
 bra_A271:
 loc_A271:
-C D 1 - - - 0x006281 01:A271: 20 BB FE  JSR sub_0x01FECB
-C - - - - - 0x006284 01:A274: F0 55     BEQ bra_A2CB
-C - - - - - 0x006286 01:A276: A6 59     LDX ram_0059
+C D 1 - - - 0x006281 01:A271: 20 BB FE  JSR sub_0x01FECB_search_for_free_object
+C - - - - - 0x006284 01:A274: F0 55     BEQ bra_A2CB    ; if no free objects
+C - - - - - 0x006286 01:A276: A6 59     LDX ram_free_obj_index
 C - - - - - 0x006288 01:A278: A5 98     LDA ram_direction
 C - - - - - 0x00628A 01:A27A: 20 13 70  JSR sub_bat_7013
 C - - - - - 0x00628D 01:A27D: A5 00     LDA ram_0000
@@ -2042,7 +2043,7 @@ C - - - - - 0x006295 01:A285: A5 01     LDA ram_0001
 C - - - - - 0x006297 01:A287: 18        CLC
 C - - - - - 0x006298 01:A288: 79 1F A2  ADC tbl_A21F,Y
 C - - - - - 0x00629B 01:A28B: 95 84     STA ram_pos_Y,X
-C - - - - - 0x00629D 01:A28D: BD 92 04  LDA ram_0492,X
+C - - - - - 0x00629D 01:A28D: BD 92 04  LDA ram_0493_obj - 1,X
 C - - - - - 0x0062A0 01:A290: F0 39     BEQ bra_A2CB
 C - - - - - 0x0062A2 01:A292: A0 0B     LDY #$0B
 C - - - - - 0x0062A4 01:A294: 86 03     STX ram_0003
@@ -2057,7 +2058,7 @@ C - - - - - 0x0062B4 01:A2A4: D5 84     CMP ram_pos_Y,X
 C - - - - - 0x0062B6 01:A2A6: D0 0C     BNE bra_A2B4
 C - - - - - 0x0062B8 01:A2A8: B9 4F 03  LDA ram_obj_id - 1,Y
 C - - - - - 0x0062BB 01:A2AB: D0 1E     BNE bra_A2CB    ; if exist
-- - - - - - 0x0062BD 01:A2AD: B9 92 04  LDA ram_0492,Y
+- - - - - - 0x0062BD 01:A2AD: B9 92 04  LDA ram_0493_obj - 1,Y
 - - - - - - 0x0062C0 01:A2B0: F0 19     BEQ bra_A2CB
 - - - - - - 0x0062C2 01:A2B2: D0 03     BNE bra_A2B7    ; jmp
 bra_A2B4:
@@ -2108,7 +2109,7 @@ tbl_A2D8:
 
 
 loc_0x0062F2:
-C D 1 - - - 0x0062F2 01:A2E2: BD BF 04  LDA ram_04BF,X
+C D 1 - - - 0x0062F2 01:A2E2: BD BF 04  LDA ram_obj_attr - 1,X
 C - - - - - 0x0062F5 01:A2E5: 85 01     STA ram_0001
 C - - - - - 0x0062F7 01:A2E7: A9 35     LDA #con_obj_id_35
 C - - - - - 0x0062F9 01:A2E9: 85 00     STA ram_0000
@@ -2129,9 +2130,9 @@ sub_A2FE:
 C - - - - - 0x00630E 01:A2FE: A5 00     LDA ram_0000
 C - - - - - 0x006310 01:A300: 9D 4F 03  STA ram_obj_id - 1,X
 C - - - - - 0x006313 01:A303: A9 00     LDA #$00
-C - - - - - 0x006315 01:A305: 9D 92 04  STA ram_0492,X
+C - - - - - 0x006315 01:A305: 9D 92 04  STA ram_0493_obj - 1,X
 C - - - - - 0x006318 01:A308: A5 01     LDA ram_0001
-C - - - - - 0x00631A 01:A30A: 9D BF 04  STA ram_04BF,X
+C - - - - - 0x00631A 01:A30A: 9D BF 04  STA ram_obj_attr - 1,X
 C - - - - - 0x00631D 01:A30D: 60        RTS
 
 
@@ -2155,7 +2156,7 @@ tbl_A314:
 
 
 loc_0x00632A:
-C D 1 - - - 0x00632A 01:A31A: BD BF 04  LDA ram_04BF,X
+C D 1 - - - 0x00632A 01:A31A: BD BF 04  LDA ram_obj_attr - 1,X
 C - - - - - 0x00632D 01:A31D: 85 01     STA ram_0001
 C - - - - - 0x00632F 01:A31F: A0 05     LDY #$05
 C - - - - - 0x006331 01:A321: A9 49     LDA #con_obj_id_49
@@ -2191,7 +2192,7 @@ tbl_A344_direction:
 
 
 loc_0x00635A:
-C D 1 - - - 0x00635A 01:A34A: B5 AC     LDA ram_drop_id,X
+C D 1 - - - 0x00635A 01:A34A: B5 AC     LDA ram_obj_state,X
 C - - - - - 0x00635C 01:A34C: D0 4B     BNE bra_A399
 C - - - - - 0x00635E 01:A34E: A5 84     LDA ram_pos_Y
 C - - - - - 0x006360 01:A350: 38        SEC
@@ -2213,7 +2214,7 @@ C - - - - - 0x00637B 01:A36B: 98        TYA
 C - - - - - 0x00637C 01:A36C: 95 98     STA ram_direction,X
 C - - - - - 0x00637E 01:A36E: 3D 43 A3  AND tbl_A344_direction - 1,X
 C - - - - - 0x006381 01:A371: F0 07     BEQ bra_A37A
-C - - - - - 0x006383 01:A373: F6 AC     INC ram_drop_id,X
+C - - - - - 0x006383 01:A373: F6 AC     INC ram_obj_state,X
 C - - - - - 0x006385 01:A375: A9 70     LDA #$70
 C - - - - - 0x006387 01:A377: 9D BC 03  STA ram_03BC,X
 bra_A37A:
@@ -2254,7 +2255,7 @@ C - - - - - 0x0063C9 01:A3B9: B4 84     LDY ram_pos_Y,X
 C - - - - - 0x0063CB 01:A3BB: A9 90     LDA #$90
 C - - - - - 0x0063CD 01:A3BD: 85 00     STA ram_0000
 bra_A3BF:
-C - - - - - 0x0063CF 01:A3BF: B5 AC     LDA ram_drop_id,X
+C - - - - - 0x0063CF 01:A3BF: B5 AC     LDA ram_obj_state,X
 C - - - - - 0x0063D1 01:A3C1: 29 01     AND #$01
 C - - - - - 0x0063D3 01:A3C3: F0 1C     BEQ bra_A3E1
 C - - - - - 0x0063D5 01:A3C5: 98        TYA
@@ -2268,7 +2269,7 @@ C - - - - - 0x0063E2 01:A3D2: 20 13 70  JSR sub_bat_7013
 C - - - - - 0x0063E5 01:A3D5: 95 98     STA ram_direction,X
 C - - - - - 0x0063E7 01:A3D7: A9 20     LDA #$20
 C - - - - - 0x0063E9 01:A3D9: 9D BC 03  STA ram_03BC,X
-C - - - - - 0x0063EC 01:A3DC: F6 AC     INC ram_drop_id,X
+C - - - - - 0x0063EC 01:A3DC: F6 AC     INC ram_obj_state,X
 bra_A3DE:
 C - - - - - 0x0063EE 01:A3DE: 4C EB A3  JMP loc_A3EB
 bra_A3E1:
@@ -2276,7 +2277,7 @@ C - - - - - 0x0063F1 01:A3E1: 98        TYA
 C - - - - - 0x0063F2 01:A3E2: DD 80 03  CMP ram_0380,X
 C - - - - - 0x0063F5 01:A3E5: D0 04     BNE bra_A3EB
 C - - - - - 0x0063F7 01:A3E7: A9 00     LDA #$00
-C - - - - - 0x0063F9 01:A3E9: 95 AC     STA ram_drop_id,X
+C - - - - - 0x0063F9 01:A3E9: 95 AC     STA ram_obj_state,X
 bra_A3EB:
 loc_A3EB:   ; bzk optimize, JMP into JMP
 C D 1 - - - 0x0063FB 01:A3EB: 4C BA 79  JMP loc_bat_79BA

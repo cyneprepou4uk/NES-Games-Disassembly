@@ -3626,12 +3626,12 @@ ofs_9CD8_bank_s1_asm_export:
 
 tbl_A000_ppu_data:
 - D 1 - - - 0x01A010 06:A000: 02 03     .word ram_0302  ; 00
-- D 1 - - - 0x01A012 06:A002: FE A3     .word _off000_A3FE_02_lore_and_items
+- D 1 - - - 0x01A012 06:A002: FE A3     .word _off000_A3FE_02_guide
 - D 1 - - - 0x01A014 06:A004: B4 A2     .word _off000_A2B4_04_continue
 - D 1 - - - 0x01A016 06:A006: 14 68     .word _off000_bat_6814_06
 - D 1 - - - 0x01A018 06:A008: 8E A2     .word _off000_A28E_08
 - D 1 - - - 0x01A01A 06:A00A: 96 A2     .word _off000_A296_0A
-- D 1 - - - 0x01A01C 06:A00C: 1C 68     .word _off000_bat_681C_0C
+- D 1 - - - 0x01A01C 06:A00C: 1C 68     .word _off000_bat_681C_0C_level_text
 - D 1 - - - 0x01A01E 06:A00E: D3 A2     .word _off000_A2D3_0E_hud
 - D 1 - - - 0x01A020 06:A010: 69 A8     .word _off000_A869_10_title_screen
 - D 1 - - - 0x01A022 06:A012: F0 67     .word _off000_bat_67F0_12
@@ -3671,7 +3671,7 @@ tbl_A000_ppu_data:
 - D 1 - - - 0x01A066 06:A056: 59 68     .word _off000_bat_6859_56
 - D 1 - - - 0x01A068 06:A058: 65 68     .word _off000_bat_6865_58
 - D 1 - - - 0x01A06A 06:A05A: 35 A2     .word _off000_A235_5A
-- D 1 - - - 0x01A06C 06:A05C: 73 68     .word _off000_bat_6873_5C
+- D 1 - - - 0x01A06C 06:A05C: 73 68     .word _off000_bat_6873_5C_triforce_text
 - D 1 - - - 0x01A06E 06:A05E: E8 A3     .word _off000_A3E8_5E
 - D 1 - - - 0x01A070 06:A060: F4 A3     .word _off000_A3F4_60
 - D 1 - - - 0x01A072 06:A062: F9 A3     .word _off000_A3F9_62
@@ -4358,7 +4358,7 @@ _off000_A3F9_62:
 
 
 
-_off000_A3FE_02_lore_and_items:
+_off000_A3FE_02_guide:
 - D 1 - I - 0x01A40E 06:A3FE: 20 00     .dbyt $2000
 - D 1 - I - 0x01A410 06:A400: 20        .byte $00 + $00 + $20   ; 
 - D 1 - I - 0x01A411 06:A401: 24        .byte $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24, $24   ; 
