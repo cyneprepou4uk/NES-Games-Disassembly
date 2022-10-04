@@ -77,6 +77,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 * Bubble Bobble (U) [!] `D3A91B41`
 * Contra Force (U) [!] `83D69922`
 * Ghosts 'N Goblins (U) [!] `87ED54AA`
+* Little Mermaid, The (U) [!] `08EB97DB`
 * Mighty Final Fight (U) [!] `15EB0BEE`
 * River City Ransom (U) [!] `C3508F7E`
 * Tetris (Tengen) [!] `88F071C3`
