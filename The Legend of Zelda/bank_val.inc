@@ -7,6 +7,7 @@ con_prg_bank                            = $00 ;
 con_mirroring_V                         = $0E ; vertical
 con_mirroring_H                         = $0F ; horisontal
 con_map_location                        = $00 ; 
+con_collision_tile                      = $00 ; 
 
 
 
@@ -25,7 +26,7 @@ con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn
 
 
 
-; ram_obj_state                         = $00AC
+; ram_state_obj                         = $00AC
 con_obj_state_00                        = $00 ; 
 con_obj_state_01                        = $01 ; 
 con_obj_state_02                        = $02 ; 
@@ -38,7 +39,7 @@ con_obj_state_80                        = $80 ; if manually set, link will const
 con_obj_state_FF                        = $FF ; ???
 
 
-; ram_drop_id                           = $00AC
+; ram_drop_id                           = $00AB
 con_drop_id_00                          = $00 ; bomb
 con_drop_id_01                          = $01 ; wooden sword
 con_drop_id_02                          = $02 ; white sword
@@ -78,7 +79,8 @@ con_drop_id_23                          = $23 ; fairy flying around
 
 
 
-; ram_script                    = $0012
+; ram_script                            = $0012
+; ram_next_script                       = $005B
 ; needed comments at 0x014550   0x01459C   0x00A607
 ;                    0x0090D6   0x01F192
 ;                    0x01EB45 & 0x01E92E - rename offsets
@@ -91,10 +93,10 @@ con_script_05                           = $05 ;
 con_script_06                           = $06 ; 
 con_script_07                           = $07 ; not found but defenitely was used, probably set by INC
 con_script_08                           = $08 ; 
-con_script_09                           = $09 ; 
+con_script_09                           = $09 ; предположительно темная комната с луком/другим предметом
 con_script_0A                           = $0A ; 
-con_script_0B                           = $0B ; 
-con_script_0C                           = $0C ; 
+con_script_0B                           = $0B ; предположительно пещера со стариком и огнями
+con_script_0C                           = $0C ; предположительно пещера со стариком и огнями
 con_script_0D                           = $0D ; 
 con_script_register                     = $0E ; register your name menu
 con_script_elimination                  = $0F ; eliminate slot menu
@@ -105,21 +107,21 @@ con_script_13                           = $13 ;
 
 
 
-; ram_direction                         = $0098
+; ram_dir_obj                         = $0098
 con_dir_00                              = $00 ; 
 con_dir_Right                           = $01 ; 
 con_dir_Left                            = $02 ; 
 con_dir__LR                             = $03 ; con_dir_Left + con_dir_Right
 con_dir_Down                            = $04 ; 
-con_dir_05                              = $05 ; 
-con_dir_06                              = $06 ; 
-con_dir_07                              = $07 ; unused?
+con_dir__DR                             = $05 ; con_dir_Down + con_dir_Right
+con_dir__DL                             = $06 ; con_dir_Down + con_dir_Left
+; con_dir_07                              = $07 ; 
 con_dir_Up                              = $08 ; 
-con_dir_09                              = $09 ; 
-con_dir_0A                              = $0A ; 
-con_dir_0B                              = $0B ; unused?
+con_dir__UR                             = $09 ; con_dir_Up + con_dir_Right
+con_dir__UL                             = $0A ; con_dir_Up + con_dir_Left
+; con_dir_0B                              = $0B ; 
 con_dir__UD                             = $0C ; con_dir_Up + con_dir_Down
-con_dir_0D                              = $0D ; con_dir_Right + con_dir_Up + con_dir_Down ?
+con_dir__RUD                            = $0D ; con_dir_Right + con_dir_Up + con_dir_Down
 
 
 
@@ -233,27 +235,27 @@ con_ppu_buf_7C                          = $7C ; palette
 
 
 
-; ram_obj_id                            = $0350
+; ram_obj_id_enemy                      = $0350
 ; ram_copy_obj_id                       = $035F
 ; need comments at 0x01FBC4 0x01FD92
 con_obj_id_null                         = $00 ; 
-con_obj_id_01                           = $01 ; Lynel
-con_obj_id_02                           = $02 ; Lynel
-con_obj_id_03                           = $03 ; Moblin
-con_obj_id_04                           = $04 ; Moblin
-con_obj_id_05                           = $05 ; Goriya
-con_obj_id_06                           = $06 ; Goriya
-con_obj_id_07                           = $07 ; Octorock
-con_obj_id_08                           = $08 ; Octorock
-con_obj_id_09                           = $09 ; Octorock
-con_obj_id_0A                           = $0A ; Octorock
+con_obj_id_01                           = $01 ; Lynel (blue)+
+con_obj_id_02                           = $02 ; Lynel (red)+
+con_obj_id_03                           = $03 ; Moblin (blue)+
+con_obj_id_04                           = $04 ; Moblin (red)+
+con_obj_id_05                           = $05 ; Goriya (blue)+
+con_obj_id_06                           = $06 ; Goriya (red)+
+con_obj_id_07                           = $07 ; Octorock (red slow)+
+con_obj_id_08                           = $08 ; Octorock (red fast)+
+con_obj_id_09                           = $09 ; Octorock (blue slow)+
+con_obj_id_0A                           = $0A ; Octorock (blue fast)+
 con_obj_id_0B                           = $0B ; Darknut
 con_obj_id_0C                           = $0C ; Darknut
-con_obj_id_0D                           = $0D ; TektiteOrBoulder
-con_obj_id_0E                           = $0E ; TektiteOrBoulder
-con_obj_id_0F                           = $0F ; BlueLeever
-con_obj_id_10                           = $10 ; RedLeever
-con_obj_id_11                           = $11 ; Zora
+con_obj_id_0D                           = $0D ; TektiteOrBoulder+
+con_obj_id_0E                           = $0E ; TektiteOrBoulder+
+con_obj_id_0F                           = $0F ; BlueLeever+
+con_obj_id_10                           = $10 ; RedLeever+
+con_obj_id_11                           = $11 ; Zora+
 con_obj_id_12                           = $12 ; Vire
 con_obj_id_13                           = $13 ; Zol
 con_obj_id_14                           = $14 ; Gel
@@ -261,24 +263,24 @@ con_obj_id_15                           = $15 ; Gel
 con_obj_id_16                           = $16 ; PolsVoice
 con_obj_id_17                           = $17 ; LikeLike
 con_obj_id_18                           = $18 ; Digdogger
-con_obj_id_19                           = $19 ; unused?
-con_obj_id_1A                           = $1A ; Peahat
+con_obj_id_19                           = $19 ; ???
+con_obj_id_1A                           = $1A ; Peahat+
 con_obj_id_1B                           = $1B ; Keese
 con_obj_id_1C                           = $1C ; Keese
 con_obj_id_1D                           = $1D ; Keese
 con_obj_id_1E                           = $1E ; Armos
 con_obj_id_1F                           = $1F ; BoulderSet
 con_obj_id_20                           = $20 ; TektiteOrBoulder
-con_obj_id_21                           = $21 ; Ghini
-con_obj_id_22                           = $22 ; FlyingGhini
+con_obj_id_21                           = $21 ; Ghini+
+con_obj_id_22                           = $22 ; FlyingGhini+
 con_obj_id_23                           = $23 ; BlueWizzrobe
 con_obj_id_24                           = $24 ; RedWizzrobe
 con_obj_id_25                           = $25 ; PatraChild
 con_obj_id_26                           = $26 ; PatraChild
 con_obj_id_27                           = $27 ; Wallmaster
 con_obj_id_28                           = $28 ; Rope
-con_obj_id_29                           = $29 ; unused?
-con_obj_id_2A                           = $2A ; Stalfos
+con_obj_id_29                           = $29 ; ???
+con_obj_id_2A                           = $2A ; Stalfos+
 con_obj_id_2B                           = $2B ; Bubble
 con_obj_id_2C                           = $2C ; Bubble
 con_obj_id_2D                           = $2D ; Bubble
@@ -331,7 +333,7 @@ con_obj_id_5B                           = $5B ; MonsterArrow
 con_obj_id_5C                           = $5C ; ArrowOrBoomerang
 con_obj_id_5D                           = $5D ; DeadDummy
 con_obj_id_5E                           = $5E ; FluteSecret
-con_obj_id_5F                           = $5F ; unused?
+con_obj_id_5F                           = $5F ; ???
 con_obj_id_60                           = $60 ; Item
 con_obj_id_61                           = $61 ; Dock
 con_obj_id_62                           = $62 ; RockOrGravestone
@@ -341,7 +343,7 @@ con_obj_id_65                           = $65 ; RockOrGravestone
 con_obj_id_66                           = $66 ; RockOrGravestone
 con_obj_id_67                           = $67 ; RockWall
 con_obj_id_68                           = $68 ; Block
-con_obj_id_69                           = $69 ; unused?
+con_obj_id_69                           = $69 ; ???
 con_obj_id_6A                           = $6A ; 
 con_obj_id_6B                           = $6B ; 
 con_obj_id_6C                           = $6C ; 
@@ -471,7 +473,7 @@ con_item_rup_sbc                        = $27 ; 067E
 
 
 
-; ram_obj_attr                          = $04C0
+; ram_attr_enemy                          = $04C0
 con_04C0_00                             = $00 ; 
 con_04C0_01                             = $01 ; Self checks collisions and draws
 con_04C0_02                             = $02 ; 
