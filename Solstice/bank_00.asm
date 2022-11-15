@@ -157,7 +157,7 @@ C - - - - - 0x000130 00:8120: 20 63 FF  JSR sub_inc_FF63
 C - - - - - 0x000133 00:8123: 68        PLA
 C - - - - - 0x000134 00:8124: AA        TAX
 C - - - - - 0x000135 00:8125: F0 1B     BEQ bra_8142
-C - - - - - 0x000137 00:8127: 20 45 81  JSR sub_8145
+C - - - - - 0x000137 00:8127: 20 45 81  JSR sub_8145_add_02_to_each_potion
 C - - - - - 0x00013A 00:812A: A9 03     LDA #$03
 C - - - - - 0x00013C 00:812C: 8D 89 07  STA ram_lives
 C - - - - - 0x00013F 00:812F: A9 00     LDA #$00
@@ -172,16 +172,16 @@ C - - - - - 0x000152 00:8142: 4C 77 80  JMP loc_8077
 
 
 
-sub_8145:
+sub_8145_add_02_to_each_potion:
 C - - - - - 0x000155 00:8145: A2 03     LDX #$03
 bra_8147_loop:
 C - - - - - 0x000157 00:8147: BD 84 07  LDA ram_potion_amount,X
 C - - - - - 0x00015A 00:814A: 18        CLC
 C - - - - - 0x00015B 00:814B: 69 02     ADC #$02
 C - - - - - 0x00015D 00:814D: C9 05     CMP #$05
-C - - - - - 0x00015F 00:814F: 90 02     BCC bra_8153
+C - - - - - 0x00015F 00:814F: 90 02     BCC bra_8153_not_overflow
 C - - - - - 0x000161 00:8151: A9 04     LDA #$04
-bra_8153:
+bra_8153_not_overflow:
 C - - - - - 0x000163 00:8153: 9D 84 07  STA ram_potion_amount,X
 C - - - - - 0x000166 00:8156: CA        DEX
 C - - - - - 0x000167 00:8157: 10 EE     BPL bra_8147_loop
@@ -1307,7 +1307,7 @@ C - - - - - 0x000861 00:8851: C9 3F     CMP #$3F
 C - - - - - 0x000863 00:8853: D0 06     BNE bra_885B    ; if not all pieces collected
 ; if all pieces collected
 C - - - - - 0x000865 00:8855: 20 FD 92  JSR sub_92FD_execute_blue_potion_effect
-C - - - - - 0x000868 00:8858: 20 45 81  JSR sub_8145
+C - - - - - 0x000868 00:8858: 20 45 81  JSR sub_8145_add_02_to_each_potion
 bra_885B:
 C - - - - - 0x00086B 00:885B: AE B8 07  LDX ram_potion_flag_blue
 C - - - - - 0x00086E 00:885E: F0 14     BEQ bra_8874_skip_palette
