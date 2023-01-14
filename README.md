@@ -42,7 +42,9 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 
 
 
-## Current games list (GoodNES) + CRC32
+## Games list (GoodNES) + CRC32
+
+### Disassembled
 * Battle City (J) [!] `F599A07E`
 * Bugs Bunny Crazy Castle, The (U) [!] `DB0C3656`
 * Danny Sullivan's Indy Heat (U) [!] `311B5A58`
@@ -63,7 +65,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 
 
 
-## WIP
+### WIP
 * Castlevania III - Dracula's Curse (U) [!] `7CC9C669`
 * Contra Force (U) [!] `83D69922`
 * Dr. Mario (JU) (PRG0) [!] `B1F7E3E9`
@@ -74,7 +76,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 
 
 
-## Planning
+### Planning
 * Balloon Fight (J) [!] `A0DABE0A`
 * Bubble Bobble (U) [!] `D3A91B41`
 * Ghosts 'N Goblins (U) [!] `87ED54AA`
