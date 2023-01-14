@@ -65,7 +65,9 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 
 ## WIP
 * Castlevania III - Dracula's Curse (U) [!] `7CC9C669`
+* Contra Force (U) [!] `83D69922`
 * Dr. Mario (JU) (PRG0) [!] `B1F7E3E9`
+* Little Mermaid, The (U) [!] `08EB97DB`
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!] `BABD39FA`
 * Super Mario Bros. (W) [!] `3337EC46`
 * Urban Champion (W) [!] `0770CDAA`
@@ -75,9 +77,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 ## Planning
 * Balloon Fight (J) [!] `A0DABE0A`
 * Bubble Bobble (U) [!] `D3A91B41`
-* Contra Force (U) [!] `83D69922`
 * Ghosts 'N Goblins (U) [!] `87ED54AA`
-* Little Mermaid, The (U) [!] `08EB97DB`
 * Mighty Final Fight (U) [!] `15EB0BEE`
 * River City Ransom (U) [!] `C3508F7E`
 * Tetris (Tengen) [!] `88F071C3`
