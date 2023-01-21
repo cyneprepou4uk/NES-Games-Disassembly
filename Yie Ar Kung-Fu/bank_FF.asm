@@ -178,6 +178,9 @@ ofs_000_C11E_07_RTS:
 ofs_000_C11E_08_RTS:
 bra_C11E_RTS:
 C - - J - - 0x00012E 00:C11E: 60        RTS
+
+
+
 ofs_000_C11F_03:
 C - - J - - 0x00012F 00:C11F: A6 01     LDX ram_0001
 C - - - - - 0x000131 00:C121: F0 1C     BEQ bra_C13F
@@ -1028,22 +1031,22 @@ C - - - - - 0x000611 00:C601: 60        RTS
 
 
 sub_C602:
-C - - - - - 0x000612 00:C602: A2 5D     LDX #$5D
+C - - - - - 0x000612 00:C602: A2 5D     LDX #$5D    ; < ram_score
 C - - - - - 0x000614 00:C604: A5 03     LDA ram_0003
 C - - - - - 0x000616 00:C606: 29 20     AND #$20
 C - - - - - 0x000618 00:C608: 08        PHP
 C - - - - - 0x000619 00:C609: F0 02     BEQ bra_C60D
-- - - - - - 0x00061B 00:C60B: A2 5A     LDX #$5A
+- - - - - - 0x00061B 00:C60B: A2 5A     LDX #$5A    ; < ram_unk_score
 bra_C60D:
 C - - - - - 0x00061D 00:C60D: A9 00     LDA #$00
 bra_C60F_loop:
-C - - - - - 0x00061F 00:C60F: 95 00     STA ram_0000,X
+C - - - - - 0x00061F 00:C60F: 95 00     STA ram_score - $5D,X
 C - - - - - 0x000621 00:C611: E8        INX
 C - - - - - 0x000622 00:C612: D0 FB     BNE bra_C60F_loop
 C - - - - - 0x000624 00:C614: A2 FD     LDX #$FD
 bra_C616_loop:
 C - - - - - 0x000626 00:C616: BD FA FE  LDA tbl_FFF7 - $FD,X
-C - - - - - 0x000629 00:C619: 95 63     STA ram_0063,X
+C - - - - - 0x000629 00:C619: 95 63     STA ram_lives - $FD + $100,X  ; 0060 0061 0062
 C - - - - - 0x00062B 00:C61B: E8        INX
 C - - - - - 0x00062C 00:C61C: D0 F8     BNE bra_C616_loop
 C - - - - - 0x00062E 00:C61E: 28        PLP
@@ -1052,8 +1055,8 @@ C - - - - - 0x000631 00:C621: 60        RTS
 bra_C622:
 - - - - - - 0x000632 00:C622: A2 20     LDX #$20
 bra_C624_loop:
-- - - - - - 0x000634 00:C624: B5 5F     LDA ram_005F,X
-- - - - - - 0x000636 00:C626: 9D FF 00  STA a: ram_00FF,X
+- - - - - - 0x000634 00:C624: B5 5F     LDA ram_lives - 1,X
+- - - - - - 0x000636 00:C626: 9D FF 00  STA a: ram_0100 - 1,X
 - - - - - - 0x000639 00:C629: CA        DEX
 - - - - - - 0x00063A 00:C62A: D0 F8     BNE bra_C624_loop
 - - - - - - 0x00063C 00:C62C: 60        RTS
@@ -1151,7 +1154,7 @@ C - - - - - 0x0006C3 00:C6B3: A9 C3     LDA #< $20C3
 C - - - - - 0x0006C5 00:C6B5: 85 80     STA ram_0080
 C - - - - - 0x0006C7 00:C6B7: A9 20     LDA #> $20C3
 C - - - - - 0x0006C9 00:C6B9: 85 81     STA ram_0081
-C - - - - - 0x0006CB 00:C6BB: A0 5A     LDY #< ram_005A
+C - - - - - 0x0006CB 00:C6BB: A0 5A     LDY #< ram_unk_score
 loc_C6BD_write_hi_score:
 C D 2 - - - 0x0006CD 00:C6BD: 20 F4 C5  JSR sub_C5F4_set_2006
 C - - - - - 0x0006D0 00:C6C0: A2 03     LDX #$03
@@ -1255,7 +1258,7 @@ C - - - - - 0x00074E 00:C73E: 60        RTS
 bra_C73F:
 C - - - - - 0x00074F 00:C73F: A9 5D     LDA #< ram_score
 C - - - - - 0x000751 00:C741: 90 02     BCC bra_C745
-- - - - - - 0x000753 00:C743: A9 5A     LDA #< ram_005A
+- - - - - - 0x000753 00:C743: A9 5A     LDA #< ram_unk_score
 bra_C745:
 C - - - - - 0x000755 00:C745: 85 8C     STA ram_008C
 C - - - - - 0x000757 00:C747: A0 00     LDY #$00
@@ -3164,23 +3167,23 @@ C - - - - - 0x000E7D 00:CE6D: 94 02     STY ram_0002,X
 C - - - - - 0x000E7F 00:CE6F: 0A        ASL
 C - - - - - 0x000E80 00:CE70: A8        TAY
 C - - - - - 0x000E81 00:CE71: B9 40 CB  LDA tbl_CB42_sound - 2,Y
-C - - - - - 0x000E84 00:CE74: 95 03     STA ram_0003,X
+C - - - - - 0x000E84 00:CE74: 95 03     STA ram_0013 - $10,X  ; 0013 0024 0035 0046
 C - - - - - 0x000E86 00:CE76: 85 F2     STA ram_00F2
 C - - - - - 0x000E88 00:CE78: B9 41 CB  LDA tbl_CB42_sound - 1,Y
-C - - - - - 0x000E8B 00:CE7B: 95 04     STA ram_0004,X
+C - - - - - 0x000E8B 00:CE7B: 95 04     STA ram_0014 - $10,X  ; 0014 0025 0036 0047
 C - - - - - 0x000E8D 00:CE7D: 85 F3     STA ram_00F3
 C - - - - - 0x000E8F 00:CE7F: A0 01     LDY #$01
-C - - - - - 0x000E91 00:CE81: 94 00     STY ram_0000,X
+C - - - - - 0x000E91 00:CE81: 94 00     STY ram_0010 - $10,X  ; 0010 0021 0032 0043
 C - - - - - 0x000E93 00:CE83: 88        DEY
-C - - - - - 0x000E94 00:CE84: 94 07     STY ram_btn_hold,X
-C - - - - - 0x000E96 00:CE86: 94 08     STY ram_0008,X
+C - - - - - 0x000E94 00:CE84: 94 07     STY ram_0017 - $10,X
+C - - - - - 0x000E96 00:CE86: 94 08     STY ram_0018 - $10,X
 C - - - - - 0x000E98 00:CE88: B1 F2     LDA (ram_00F2),Y
 C - - - - - 0x000E9A 00:CE8A: 29 F0     AND #$F0
 C - - - - - 0x000E9C 00:CE8C: C9 20     CMP #$20
 C - - - - - 0x000E9E 00:CE8E: F0 01     BEQ bra_CE91
 C - - - - - 0x000EA0 00:CE90: C8        INY
 bra_CE91:
-C - - - - - 0x000EA1 00:CE91: 94 0A     STY ram_000A,X
+C - - - - - 0x000EA1 00:CE91: 94 0A     STY ram_001A - $10,X
 bra_CE93:
 C - - - - - 0x000EA3 00:CE93: A9 00     LDA #$00
 C - - - - - 0x000EA5 00:CE95: A4 16     LDY ram_0016
@@ -3192,7 +3195,7 @@ C - - - - - 0x000EAD 00:CE9D: 99 00 40  STA $4000,Y
 C - - - - - 0x000EB0 00:CEA0: 99 01 40  STA $4001,Y
 C - - - - - 0x000EB3 00:CEA3: A5 27     LDA ram_0027
 C - - - - - 0x000EB5 00:CEA5: 29 3F     AND #$3F
-C - - - - - 0x000EB7 00:CEA7: 95 02     STA ram_0002,X
+C - - - - - 0x000EB7 00:CEA7: 95 02     STA ram_0012 - $10,X
 bra_CEA9:
 C - - - - - 0x000EB9 00:CEA9: A6 49     LDX ram_0049
 C - - - - - 0x000EBB 00:CEAB: A4 38     LDY ram_0038
@@ -12887,9 +12890,9 @@ tbl_FF80:
 
 
 tbl_FFF7:
-- D 3 - - - 0x004007 00:FFF7: 03        .byte $03   ; 
-- D 3 - - - 0x004008 00:FFF8: 01        .byte $01   ; 
-- D 3 - - - 0x004009 00:FFF9: 03        .byte $03   ; 
+- D 3 - - - 0x004007 00:FFF7: 03        .byte $03   ; FD
+- D 3 - - - 0x004008 00:FFF8: 01        .byte $01   ; FE
+- D 3 - - - 0x004009 00:FFF9: 03        .byte $03   ; FF
 
 
 
