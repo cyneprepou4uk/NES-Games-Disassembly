@@ -194,7 +194,7 @@ ram_score_hi                    = $0061 ; 000099 002122 002142 00241B
 
 
 ; 0067-0076 (10) 1st player data (or current player), same array as for 2nd player
-ram_data_p1                     = $0067
+ram_data_p1                     = $0067 ; for common links
 ram_lives_p1                    = $0067 ; 000099 0009C2 0009C9 0009D3 000B71 000C93 000CB4 000CC0 000CC6 000CDC 000CE2 0020CD 0020CF 0024DD 
 ; current level/stage/round
 ram_stage_p1                    = $0068 ; 000099 0009C9 0009DF 000B0E 000CC0 000CC6 000CDC 000CE2 000D37 000E9B 000EA1 000EB8 002561 002619 
@@ -220,7 +220,7 @@ ram_0076                        = $0076 ; 000099 0009C9 000CC0 000CC6 000CDC 000
 
 
 ; 0077-0086 (10) 2nd player data (or backup player), same array as for 1st player
-ram_data_p2                     = $0077
+ram_data_p2                     = $0077 ; for common links
 ram_lives_p2                    = $0077 ; 000099 0009C9 0009D5 000CB0 000CC4 000CCA 000CE0 000CE6 000DDA 
 ram_stage_p2                    = $0078 ; 000099 0009C9 0009E1 000CC4 000CCA 000CE0 000CE6 
 ; ram_0079                        = $0079 ; 000099 0009C9 000CC4 000CCA 000CE0 000CE6 

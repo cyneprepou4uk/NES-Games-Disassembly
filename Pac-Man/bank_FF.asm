@@ -401,7 +401,7 @@ tbl_C329_logo_text:
 ; 03
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 2 - - - 0x00036A 00:C35A: 22 AC     .dbyt $22AC
-- D 2 - - - 0x00036C 00:C35C: 23        .byte $23, $24, $25, $26   ; 
+- D 2 - - - 0x00036C 00:C35C: 23        .byte                                                             $23, $24, $25, $26   ; 
 - D 2 - - - 0x000370 00:C360: 27        .byte $27, $28, $29, $2A, $2B   ; 
 - D 2 - - - 0x000375 00:C365: FF        .byte $FF   ; end token
 ; 04
@@ -6917,11 +6917,11 @@ tbl_EC68:
 
 
 tbl_EC74:
-; some kind of special case (tbl_EB42 doesn't have index 03)
+; some kind of special case (tbl_EB42 doesn't have index 03 (4th byte out of 6))
 - D 3 - - - 0x002C84 00:EC74: 01        .byte $01, $07, $11, $20   ; 
 
 
-; !!! расшифровать
+; todo
 tbl_EC78:
 ; 00
 - D 3 - I - 0x002C88 00:EC78: 2D        .byte $2D   ; 
@@ -7819,7 +7819,7 @@ con_sfx_F3                              = $F3 ;
 con_sfx_F5                              = $F5 ; 
 
 
-; !!! расшифровать
+; todo
 _off001_F0AE_02:
 - D 3 - I - 0x0030BE 00:F0AE: 01        .byte $01   ; 
 - D 3 - I - 0x0030BF 00:F0AF: 03        .byte $03   ; 
