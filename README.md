@@ -47,6 +47,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 ### Disassembled
 * Battle City (J) [!] `F599A07E`
 * Bugs Bunny Crazy Castle, The (U) [!] `DB0C3656`
+* Contra Force (U) [!] `83D69922`
 * Danny Sullivan's Indy Heat (U) [!] `311B5A58`
 * Double Dragon II - The Revenge (J) `8CF69E4B`
 * Excitebike (JU) [!] `2BB33C69`
@@ -67,7 +68,6 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 
 ### WIP
 * Castlevania III - Dracula's Curse (U) [!] `7CC9C669`
-* Contra Force (U) [!] `83D69922`
 * Dr. Mario (JU) (PRG0) [!] `B1F7E3E9`
 * Little Mermaid, The (U) [!] `08EB97DB`
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!] `BABD39FA`
