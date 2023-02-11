@@ -1,0 +1,61 @@
+Exit positions explained.
+
+First byte:
+
+First bit: 
+0X = none
+1X = ceiling
+2X = hole
+3X = ceiling+hole
+
+Second bit:
+X0 = none
+X1 = bottom-left
+X2 = bottom-right
+X3 = bottom-left + bottom right
+X4 = top-right
+X5 = top-right + bottom-left
+X6 = top-right + bottom-right
+X7 = top-right + bottom-right + bottom-left
+X8 = top-left
+X9 = top-left + bottom-left
+XA = top-left + bottom-right
+XB = top-left + bottom-left + bottom-right
+XC = top-left + top-right
+XD = top-left + top-right + bottom-left
+XE = top-left + top-right + bottom-right
+XF = top+left + top-right + bottom-left + bottom right
+
+Then, two bytes for each exit:
+
+Goes in this order: hole -> ceiling -> top-left -> top-right -> bottom-right -> bottom-left.
+
+1st byte: Exit position
+2nd byte: Destination room ID(ie $34)
+For ceiling or hole, the order is reversed! So first destination and then exit position,
+although position for those are always set to $00 in the original.
+
+Position is little odd, since its just one byte(vs 2 in block data),
+so it starts at lowest(00), then goes "forward" by one from its original position(01 and so on),
+then when it hits wall, it loops back to lowest, but one Z-axis higher.
+Note that the game doesn't check room size, so it always assumes its
+the largest room, so exit can go out of bounds in some cases.
+
+As you can see, the destination room ID and position is swapped for some reason,
+on ceiling/floor exits compared to side exits lol.
+
+Example:
+;exit positions
+.byte $2B   ; Hole, + top-left + bottom-left + bottom-right
+;room exit 1, hole
+.byte $69   ; destination room ID
+.byte $00   ; no position cuz' hole
+;room exit 2, top-left
+.byte $12   ; Z, X/Y pos
+.byte $32   ; destination room ID
+;room exit 2, bottom-right
+.byte $23   ; Z, X/Y pos
+.byte $34   ; destination room ID
+;room exit 3, bottom-left
+.byte $00   ; Z, X/Y pos
+.byte $33   ; destination room ID

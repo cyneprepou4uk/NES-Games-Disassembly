@@ -1,0 +1,215 @@
+Solstice room data layout.
+
+So this is how room data works and is laid out:
+
+In bank_FF is where all the rooms are (search for ";room data").
+Its worth noting that in the original game, room ID A2 does not exist, theres also one unused room(that gets skipped over and has no ID).
+Intro and ending have their own room. 
+For keys, detanators, credits etc see "Solstice dissembly JP32's notes slash directory.txt", their location and explanations how they work are within "bank_00".
+
+I've commented out some rooms in bank_FF, but not all of them because that would take forever, but with this documentation you can decode them yourself ;).
+
+Also please check "Keys, detanators, credits, staff-piece requiments, teleporters.txt" if you wonder how they work.
+
+The room data order is following:
+
+1. base attributes 
+2. sprites/objects
+3. wall attributes
+4. floor attributes
+5. secondary floor tiles
+6. room exits attributes
+7. normal blocks
+8. special blocks
+----
+
+In detail:
+
+1. Base attributes
+
+First three bytes are rooms palette, each room can have its own unique palette.
+
+Then is one byte for room size, its table is in bank_00 (search for ";room sizes table"), there isn't really reason to edit it since the original game already has all sizes you'll ever need, and going above 7x7 or below 3x3 works, but its buggy and useless.
+All possible values are in the "List of possible values for room stuff.txt".
+tl;dr is (hex) 00 is largest and 18 is smallest.
+---
+
+2. Sprites/objects
+
+Data/code/etc is in bank_00.asm(search for ";Enemy sprites", work in progress).
+
+First byte terminates how many sprites there are in the room, 00 if none, 03 for three(max).
+
+Then 5 bytes for each sprite:
+
+1. Sprite ID (refer to bank_val.inc)
+2. Sprites X/Y position(one bit for each), these are in half-steps compared to blocks in the room!
+3. Sprite direction and Z position(one bit for each), Z is also half-step!
+4. & 5. is the palette, last one is always black/$0F!
+---
+
+3. wall attributes
+
+Four bytes, its worth noting that both can have different graphics!
+This is unused feature as the original game always has both as same.
+All possible values for graphics are in the "List of possible values for room stuff.txt"
+
+1. NW wall pattern
+2. NE wall pattern
+3. NW wall graphics
+4. NE wall graphics
+
+Patterns are in Binary converted to hexadecimal (11111111 -> FF for example).
+---
+
+4. floor attributes
+
+9 bytes in total.
+
+1. Secondary floor tiles
+2. Primary floor tiles
+
+First bit if the floor interacts with player:
+0X. normal floor
+8X. interacts with player
+The interaction is tied to graphics.
+
+Second bit is the graphics, they are listed in "List of possible values for room stuff.txt". 
+"xA" is hole, and "x1" & "x9" are spikes.
+
+If there is room exit defined to floor, then floor tile "8A" acts like hole player can enter into(if not it acts like floor). 
+If its "81" or "89", then they act like spikes/death.
+
+Then there is following that sets secondary floor tiles, like wall patterns, they are binary converted to hexadecimal. 
+If room only uses one/primary floor type, then these all should be "$FF" or so does the original game.
+
+1. 1st	X row
+2. 2nd	X row
+3. 3th	X row
+4. 4th	X row
+5. 5th	X row
+6. 6th	X row
+7. 7th	X row
+
+11111111 -> FF, all secondary
+00111100 -> 3C, (see room ID 37)
+01111100 -> 7C, (see room ID 1E)
+0 = primary, 1 = secondary
+
+There is some limitation/bug, however. 
+For example, if you have room that has secondary as normal floor tiles, and primary as spikes, and then set 1st X row to have normal tiles, and same with lowest Y "line", they will show up in-game as spikes, but behaves like normal tiles. Note that this was tested in 7x7 room.
+
+This is some weird hardcoded behavior or bug(more likely), as the original game only used secondary tiles in very few rooms and 1st X row and lowest Y-line always were normal floor tiles.
+---
+
+6. Room exits attributes
+
+One byte + 2 more for each exit(5 max).
+
+This is surprisingly complex so for your own sanity its in "Room exit position.txt",
+but its like this:
+
+1. Exit positions
+
+1. Position
+2. Destination room ID
+---
+
+7. Normal blocks
+
+One byte + 4 or 12 bytes for each blocks.
+
+1. How many blocks there in the room, "00" if none
+
+Blocks:
+1. Graphics(refer to "List of possible values for room stuff.txt")
+2. X/Y position
+3. Z-position
+4. Tile setting, "80" to set tiles automatically, "00" to manually
+
+Now theres the fun part, the game can automatically assemble and set the tiles and graphics for each block, but it can quickly run out of tiles in the PPU, so it loops back and starts to override tiles(and game becomes unstable), because it doesn't handle duplicate tiles that well. 
+So to have more blocks in the room you need to manually assign ALL 8x8 12 tiles blocks uses, the game loads the unique tiles it needs to PPU, but you need to write them manually.
+
+So you just have to use emulator PPU viewer to locate the required tiles, they start around $80 - $85, first the game draws "automatic" blocks/tiles and then the manual ones, and then special blocks after that.
+
+Its also worth noting that the order is important, its like layers in photoshop, so first in the list is the "bottomest" one, and the one after is drawn over it and so on.
+
+So if 4th byte is set to manual, "00", then after 4th byte is:
+
+Top row:
+1. 1st tile, top-left
+2. 2nd tile, middle
+3. 3rd tile, middle
+4. 4th byte top-right
+Middle row:
+5. 1st tile, middle-left
+6. 2nd tile, middle
+7. 3rd tile, middle
+8. 4th byte middle-right
+Bottom row:
+9. 1st tile, bottom-left
+10. 2nd tile, middle
+11. 3rd tile, middle
+12. 4th byte bottom-right
+
+If this still sounds confusing(trust me, it has mind of its own sometimes), then boot up the game, go into any of the more complex rooms, open up name table viewer and PPU viewers, and then enter room, and then frame-advance and go frame-by-frame and look and the viewers and observe how the game builds up the room.
+---
+
+8. special blocks
+
+One byte + 12 bytes for each blocks
+
+1. How many special blocks there in the room, "00" if none.
+
+If room has no blocks whatsoever, then theres two "00" in row after exits.
+
+Blocks:
+1. Graphics(refer to "List of possible values for room stuff.txt")
+2. X/Y position
+3. Z-position
+4. Special block type
+And then manual 8x8 tiles:
+Top row:
+1. 1st tile, top-left
+2. 2nd tile, middle
+3. 3rd tile, middle
+4. 4th byte top-right
+Middle row:
+5. 1st tile, middle-left
+6. 2nd tile, middle
+7. 3rd tile, middle
+8. 4th byte middle-right
+Bottom row:
+9. 1st tile, bottom-left
+10. 2nd tile, middle
+11. 3rd tile, middle
+12. 4th byte bottom-right
+
+Special blocks always requires graphics to be set manually.
+
+Possible values for special block types:
+00 escalator that pushes to SE/bottom-right
+01 escalator that pushes to SW/bottom-left
+02 escalator that pushes to NW/top-left
+03 escalator that pushes to NE/top-right
+04 block that disappears when you jump in top of it
+05 invisible block that appears when you jump in top of it
+06 large spikes
+07 teleporter (the bottom part)
+
+Special block special notes:
+
+Disappearing block requires a lot more work, it requires 12 tiles three times.
+
+1st, 12 bytes for blocks tiles AFTER touching it
+2nd, Sprite priority for AFTER tiles, as in should sprites be behind or above the tiles
+3rd, 12 bytes for blocks tiles BEFORE touching it
+
+For 2nd:
+if they are set to "FF", sprites go behind the block.
+if they are set to "00" sprites go above the block.
+
+To get the teleporter block to function, it need its attributes to be set in the table in bank_00, search for ";Teleporters" or it just makes the noise. Teleporters needs to be paired with each other, or they dont function!
+---
+
+

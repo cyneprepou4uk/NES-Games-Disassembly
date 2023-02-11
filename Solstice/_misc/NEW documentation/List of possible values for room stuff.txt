@@ -1,0 +1,105 @@
+List of possible values for room stuff.
+
+
+Room sizes
+Hex 	X Y
+00		7x7 (largest)
+01 		7x6 
+02 		6x7
+03  		7x5
+04  		5x7
+05 	 	7x4
+06  		4x7
+07  		7x3
+08  		3x7
+09  		6x6
+0A 		6x5
+0B 		5x6
+0C 		6x4
+0D  	4x6
+0E 	 	6x3
+0F 	 	3x6
+10 		5x5
+11 		5x4
+12 		4x5
+13 	 	5x3
+14		3x5
+15  		4x4
+16 		4x3
+17 	 	3x4
+18  		3x3 (smallest)
+---
+
+Floor graphics:
+00 Basic tiles
+01 Small spikes 
+02 Dithered small tiles
+03 dot-pattern 
+04 dot-pattern but different outline
+05 rounded-edge tiles
+06 Cave dot pattern
+07 Dithered small&large tiles
+08 small-tiles
+09 small spikes but different outline
+0A hole/nothing
+0B another dot-pattern with different outline
+---
+
+Wall Graphics:
+00 Main castle 1 + windows 
+01 Main castle 1 no windows
+02 caves of doomed souls + torch 
+03 Wood-like looking wall + window 
+04 Castle-walls with odd shading 
+05 Same as above but normal
+06 Blood-gardens 
+07 Main castle 2 + windows
+08 stonehedge gardens
+09 stonehedge gardens but taller
+0a stonehedge gardens but middle?
+0b stonehedge gardens but lower?
+0c gardens of pain cut trees
+0d gardens of pain normal trees
+0e gardens of pain normal trees but taller
+0f caves of doomed souls no torches and tall
+10 same as above?
+11 same as above again?
+12 Mains castle 2 no windows (later areas)
+13 same as above?
+14 blood gardens again?
+15 Blood gardens but tall
+16 Gardens of pain wood but tall
+Note: tall = if theres door on NW or NE wall (Z axis for door higher than 0) then tall variation is used
+ ---
+
+Block Graphics:
+00 Basic square block
+01 Oreo circle
+02 marshmallow block
+03 escalator block (NW/SW)
+04 escalator block (SW/NE)
+05 outline/transparent block
+06 Square oreo block
+07 square fired-egg
+08 duplicate of 07 
+09 upside-down square fired-egg
+0a spikes 
+0b chimney
+0c chimneys base
+0d cactus's(?) base
+0e cactus's(?) tip
+0f top of teleporter
+10 base of the teleporter
+11 nothing/transparent
+---
+
+Special block attributes:
+00 escalator that pushes to SE/bottom-right
+01 escalator that pushes to SW/bottom-left
+02 escalator that pushes to NW/top-left
+03 escalator that pushes to NE/top-right
+04 block that disappears when you jump in top of it
+05 invisible block that appears when you jump in top of it
+06 large spikes
+07 teleporter (the bottom part)
+---

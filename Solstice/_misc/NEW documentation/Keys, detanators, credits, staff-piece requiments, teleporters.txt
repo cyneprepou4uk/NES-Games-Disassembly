@@ -1,0 +1,143 @@
+Keys, detanators, credits, staff-piece requiments, teleporters explanation.
+
+Note, exits in rooms EC, FB, E6 are always open from the other side, I guess the dev's figured out theres no need to hide them,  as you cant access those rooms from the other side without hacking or cheating.
+
+Tables and codes are in "Bank_00.asm", since there is dissembly now I wont be listing hex-addresses anymore.
+-
+
+Teleporters:
+(search for ";Teleporters" in bank_00.asm)
+
+These comes in pairs, so they must be linked into each other.
+Its possible to have "one-way teleporter", but the "first" one needs to be room with teleporter base block, and then the "second" one is the destination.
+Unlike room data, first bit is the acual X/Y position(as in reverse) for some reason, and Z position is "normal"(one block).
+
+Eight bytes
+
+first:
+1. destination room ID
+2. X position
+3. Y position
+4. Z position
+
+second:
+1. destination room ID
+2. X position
+3. Y position
+4. Z position
+
+etc
+---
+
+Credit checkpoints
+(search for ";Credit checkpoints" in bank_00.asm)
+
+"Room ID" is what room you appear after using that continue, so it should match up with what room credit item is in the room data in "bank_FF".
+Unlike room data, first bit is the actual X/Y/Z position(as in reverse) for some reason, and Z is doubled.
+
+There are 8 credits, and it goes in this order EB->EC->ED->EE-EF->F0->F1->F2
+
+Four bytes each:
+1. Room ID
+2. X position
+3. Y position
+4. Z position
+
+etc
+---
+
+Keys and detonators part 1.
+(search for ";Keys and detonators" in bank_00.asm).
+
+It seems like FE(sprite 29), FD(sprite 2D) and FF(sprite 2B) are detanators, logic behind that is unknown.
+
+This is in two diffrent tables, this part reveals/hides exits(hiding is "unused" feature, by-product due to second table).
+
+1. room ID
+2. what sprite ID triggers the effect
+3. intial status
+4. which exit to reveal
+
+So room ID is the room, and sprite ID is what causes status to flip and fourth decides which exit.
+
+Third byte values:
+00 invisible
+FF visible
+
+So if its 00, then the exit is "hidden" before you take key or trigger detonator, if its FF then its reverse, so obaining key hides the exit!
+So game just swaps the status around.
+
+Fourth byte values:
+01 = SW bottom-left
+02 = SE bottom-right
+04 = NE top-right
+08 = NW top-left
+---
+
+Keys and detonators part 2.
+(search for ";more detonator and key stuff" in bank_00.asm).
+
+This part hides/reveals sprites.
+
+So room ID is the room, and sprite ID is what causes status to flip and fourth decides which sprite.
+So how the game makes detonator to go into "used" state is by making the active one intially visible, and due to its effect it causes itself to go invisible, and because of the part 1 table it revels the exit, and then another one is used to make the triggered detonator to visible.
+
+
+1. room ID
+2. what sprite ID triggers the effect
+3. intial status
+4. sprite slot(s)
+
+Third byte values:
+00 invisible
+FF visible
+
+Fourth byte values:
+00 nothing
+01 sprite slot 1 
+02 sprite slot 2
+03 sprite slots 2&3
+04 sprite slot 3
+05 sprite slots 1&3
+06 sprite slots 2&3
+07 ALL sprites
+note, these were tested on room with all three sprite slots used.
+---
+
+Staff piece requiment checks:
+
+Search for ";6 staff pieces check" in bank_00.asm).
+This code below is check if player has all staff pieces, if player doesnt have all of them, it hides the exit, if player has all of them, the exit is revealed
+
+"CMP #con_room_id + $F3" part is the room ID
+few lines below:
+"CMP #$08" is what exit is hidden (see "Keys and detonators part 1" for possible values)
+few lines below:
+"CMP #$3F" this is how many staff pieces are required
+
+possible values:
+00 none
+01 one
+03 two
+07 three
+0F four
+1F five
+3F six
+--
+
+Search for ";5 staff pieces check" in bank_00.asm).
+This code below is check if player has 5 staff pieces, if player doesnt have them, then the sprites are hidden.
+
+"CMP #con_room_id + $E0" part is the room ID
+few lines below:
+"CMP #$1F" how many staff pieces are required
+
+possible values:
+00 none
+01 one
+03 two
+07 three
+0F four
+1F five
+3F six
+---
