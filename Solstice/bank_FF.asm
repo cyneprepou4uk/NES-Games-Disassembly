@@ -821,11 +821,8 @@ tbl_836F:
 
 
 _off000_8388_A2:
-;RA2
 ;room ID #A2 does not exists, it points to room ID #00
 _off000_8388_00:
-;R00
-
 ;room base attributes
 - D 0 - I - 0x018398 06:8388: 27        .byte $27, $17, $37   ; room palette
 - D 0 - I - 0x01839B 06:838B: 13        .byte $13   ; room size
@@ -858,7 +855,6 @@ _off000_8388_00:
 ;3rd exit, bottom-left
 - D 0 - I - 0x0183AF 06:839F: 00        .byte $00   ; Z&X/Y position
 - D 0 - I - 0x0183B0 06:83A0: 0C        .byte $0C   ; destination room ID
-
 ;normal blocks
 - D 0 - I - 0x0183B1 06:83A1: 06        .byte $06   ; how many
 ;normal block 1
@@ -866,7 +862,7 @@ _off000_8388_00:
 - D 0 - I - 0x0183B3 06:83A3: 01        .byte $01   ; X/Y position
 - D 0 - I - 0x0183B4 06:83A4: 00        .byte $00   ; Z position
 - D 0 - I - 0x0183B5 06:83A5: 80        .byte $80   ; tile setting
-;...block 2
+;block 2
 - D 0 - I - 0x0183B6 06:83A6: 00        .byte $00   ; graphics
 - D 0 - I - 0x0183B7 06:83A7: 01        .byte $01   ; X/Y position
 - D 0 - I - 0x0183B8 06:83A8: 01        .byte $01   ; Z position
@@ -876,25 +872,21 @@ _off000_8388_00:
 - D 0 - I - 0x0183BB 06:83AB: 01        .byte $01   ; X/Y position
 - D 0 - I - 0x0183BC 06:83AC: 02        .byte $02   ; Z position
 - D 0 - I - 0x0183BD 06:83AD: 80        .byte $80   ; tile setting
-
 ;block 4
 - D 0 - I - 0x0183BE 06:83AE: 00        .byte $00   ; graphics
 - D 0 - I - 0x0183BF 06:83AF: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x0183C0 06:83B0: 00        .byte $00   ; Z position
 - D 0 - I - 0x0183C1 06:83B1: 80        .byte $80   ; tile setting
-
 ;block 5
 - D 0 - I - 0x0183C2 06:83B2: 00        .byte $00   ; graphics
 - D 0 - I - 0x0183C3 06:83B3: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x0183C4 06:83B4: 01        .byte $01   ; Z position
 - D 0 - I - 0x0183C5 06:83B5: 80        .byte $80   ; tile setting
-
 ;block 6
 - D 0 - I - 0x0183C6 06:83B6: 00        .byte $00   ; graphics
 - D 0 - I - 0x0183C7 06:83B7: 21        .byte $21   ; X/Y position
 - D 0 - I - 0x0183C8 06:83B8: 00        .byte $00   ; Z position
 - D 0 - I - 0x0183C9 06:83B9: 80        .byte $80   ; tile setting
-
 ;special blocks
 - D 0 - I - 0x0183CA 06:83BA: 00        .byte $00   ; how many
 
@@ -902,7 +894,6 @@ _off000_8388_00:
 ; bzk garbage, unused room
 ; early version of room #00 that only has one exit to room #01
 
-;R N/A
 ;room base attributes
 - - - - - - 0x0183CB 06:83BB: 27        .byte $27, $17, $37   ; room palette
 - - - - - - 0x0183CE 06:83BE: 13        .byte $13   ; room size
@@ -936,55 +927,51 @@ _off000_8388_00:
 - - - - - - 0x0183E2 06:83D2: 01        .byte $01   ; X/Y position
 - - - - - - 0x0183E3 06:83D3: 00        .byte $00   ; Z position
 - - - - - - 0x0183E4 06:83D4: 80        .byte $80   ; tile setting
-
-;block 
+;block 2
 - - - - - - 0x0183E5 06:83D5: 00        .byte $00   ; graphics
 - - - - - - 0x0183E6 06:83D6: 01        .byte $01   ; X/Y position
 - - - - - - 0x0183E7 06:83D7: 01        .byte $01   ; Z position
 - - - - - - 0x0183E8 06:83D8: 80        .byte $80   ; tile setting
-
-;block 
+;block 3
 - - - - - - 0x0183E9 06:83D9: 00        .byte $00   ; graphics
 - - - - - - 0x0183EA 06:83DA: 01        .byte $01   ; X/Y position
 - - - - - - 0x0183EB 06:83DB: 02        .byte $02   ; Z position
 - - - - - - 0x0183EC 06:83DC: 80        .byte $80   ; tile setting
-
-;block 
+;block 4
 - - - - - - 0x0183ED 06:83DD: 00        .byte $00   ; graphics
 - - - - - - 0x0183EE 06:83DE: 11        .byte $11   ; X/Y position
 - - - - - - 0x0183EF 06:83DF: 00        .byte $00   ; X/Y position
 - - - - - - 0x0183F0 06:83E0: 80        .byte $80   ; tile setting
-
-;block 
+;block 5
 - - - - - - 0x0183F1 06:83E1: 00        .byte $00   ; graphics
 - - - - - - 0x0183F2 06:83E2: 11        .byte $11   ; X/Y position
 - - - - - - 0x0183F3 06:83E3: 01        .byte $01   ; Z position
 - - - - - - 0x0183F4 06:83E4: 80        .byte $80   ; tile setting
-
-;block 
+;block 6
 - - - - - - 0x0183F5 06:83E5: 00        .byte $00   ; graphics
 - - - - - - 0x0183F6 06:83E6: 21        .byte $21   ; X/Y position
 - - - - - - 0x0183F7 06:83E7: 00        .byte $00   ; Z position
 - - - - - - 0x0183F8 06:83E8: 80        .byte $80   ; tile setting
-
 ;Sspecial blocks
 - - - - - - 0x0183F9 06:83E9: 00        .byte $00   ; how many
 
 
 
 _off000_83EA_01:
+;room base attributes
 - D 0 - I - 0x0183FA 06:83EA: 28        .byte $28, $18, $38   ; room palette
 - D 0 - I - 0x0183FD 06:83ED: 17        .byte $17   ; room size
 ;sprites
 - D 0 - I - 0x0183FE 06:83EE: 00        .byte $00   ; how many
-
+;walls attributes
 - D 0 - I - 0x0183FF 06:83EF: 40        .byte $40   ; NW wall pattern
 - D 0 - I - 0x018400 06:83F0: 00        .byte $00   ; NE wall pattern
 - D 0 - I - 0x018401 06:83F1: 00        .byte $00   ; NW wall graphics
 - D 0 - I - 0x018402 06:83F2: 00        .byte $00   ; NE wall graphics
+;floors
 - D 0 - I - 0x018403 06:83F3: 00        .byte $00   ; secondary floor tiles
 - D 0 - I - 0x018404 06:83F4: 00        .byte $00   ; primary floor tiles
-
+;secondary floor tiles
 - D 0 - I - 0x018405 06:83F5: FF        .byte $FF   ; secondary X floor tiles
 - D 0 - I - 0x018406 06:83F6: FF        .byte $FF   ; 
 - D 0 - I - 0x018407 06:83F7: FF        .byte $FF   ; 
@@ -992,12 +979,12 @@ _off000_83EA_01:
 - - - - - - 0x018409 06:83F9: FF        .byte $FF   ; 
 - - - - - - 0x01840A 06:83FA: FF        .byte $FF   ; 
 - - - - - - 0x01840B 06:83FB: FF        .byte $FF   ; 
-
+;room exit positions
 - D 0 - I - 0x01840C 06:83FC: 09        .byte $09   ; exit(s) position(s)
-
+;exit 1
 - D 0 - I - 0x01840D 06:83FD: 00        .byte $00   ; Z, X/Y position
 - D 0 - I - 0x01840E 06:83FE: 05        .byte $05   ; destination room ID
-
+;exit 2
 - D 0 - I - 0x01840F 06:83FF: 01        .byte $01   ; Z, X/Y position
 - D 0 - I - 0x018410 06:8400: 00        .byte $00   ; destination room ID
 ;normal blocks
@@ -1008,30 +995,35 @@ _off000_83EA_01:
 
 
 _off000_8403_02:
+;room base attributes
 - D 0 - I - 0x018413 06:8403: 26        .byte $26, $16, $36   ; room palette
 - D 0 - I - 0x018416 06:8406: 08        .byte $08   ; room size
 ;sprites
 - D 0 - I - 0x018417 06:8407: 03        .byte $03   ; how many
+;sprite 1
 - D 0 - I - 0x018418 06:8408: 1A        .byte con_obj_id_1A   ; 
 - D 0 - I - 0x018419 06:8409: 22        .byte $22   ; sprite X/Y position
 - D 0 - I - 0x01841A 06:840A: 04        .byte $04   ; sprite direction and Z-position
 - D 0 - I - 0x01841B 06:840B: 1A        .byte $1A, $2A   ; palette
+;sprite 2
 - D 0 - I - 0x01841D 06:840D: 1A        .byte con_obj_id_1A   ; 
 - D 0 - I - 0x01841E 06:840E: 0A        .byte $0A   ; sprite X/Y position
 - D 0 - I - 0x01841F 06:840F: 24        .byte $24   ; sprite direction and Z-position
 - D 0 - I - 0x018420 06:8410: 11        .byte $11, $21   ; palette
+;sprite 3
 - D 0 - I - 0x018422 06:8412: 1A        .byte con_obj_id_1A   ; 
 - D 0 - I - 0x018423 06:8413: 4A        .byte $4A   ; sprite X/Y position
 - D 0 - I - 0x018424 06:8414: 24        .byte $24   ; sprite direction and Z-position
 - D 0 - I - 0x018425 06:8415: 18        .byte $18, $28   ; palette
-
+;walls attributes
 - D 0 - I - 0x018427 06:8417: FF        .byte $FF   ; NW wall pattern
 - D 0 - I - 0x018428 06:8418: 00        .byte $00   ; NE wall pattern
 - D 0 - I - 0x018429 06:8419: 81        .byte $81   ; NW wall graphics
 - D 0 - I - 0x01842A 06:841A: 00        .byte $00   ; NE wall graphics
+;floors
 - D 0 - I - 0x01842B 06:841B: 81        .byte $81   ; secondary floor tiles
 - D 0 - I - 0x01842C 06:841C: 81        .byte $81   ; primary floor tiles
-
+;secondary floor tiles
 - D 0 - I - 0x01842D 06:841D: FF        .byte $FF   ; secondary X floor tiles
 - D 0 - I - 0x01842E 06:841E: FF        .byte $FF   ; 
 - D 0 - I - 0x01842F 06:841F: FF        .byte $FF   ; 
@@ -1039,12 +1031,12 @@ _off000_8403_02:
 - D 0 - I - 0x018431 06:8421: FF        .byte $FF   ; 
 - D 0 - I - 0x018432 06:8422: FF        .byte $FF   ; 
 - D 0 - I - 0x018433 06:8423: FF        .byte $FF   ; 
-
+;room exit positions
 - D 0 - I - 0x018434 06:8424: 0A        .byte $0A   ; exit(s) position(s)
-
+;exit 1
 - D 0 - I - 0x018435 06:8425: 28        .byte $28   ; Z, X/Y position
 - D 0 - I - 0x018436 06:8426: 03        .byte $03   ; destination room ID
-
+;exit 2
 - D 0 - I - 0x018437 06:8427: 28        .byte $28   ; Z, X/Y position
 - D 0 - I - 0x018438 06:8428: 00        .byte $00   ; destination room ID
 ;Normal blocks
@@ -1054,63 +1046,61 @@ _off000_8403_02:
 - D 0 - I - 0x01843B 06:842B: 00        .byte $00   ; X/Y position
 - D 0 - I - 0x01843C 06:842C: 04        .byte $04   ; Z position
 - D 0 - I - 0x01843D 06:842D: 80        .byte $80   ; tile setting
-
 ;block 2
 - D 0 - I - 0x01843E 06:842E: 00        .byte $00   ; graphics
 - D 0 - I - 0x01843F 06:842F: 10        .byte $10   ; X/Y position
 - D 0 - I - 0x018440 06:8430: 04        .byte $04   ; Z position
 - D 0 - I - 0x018441 06:8431: 80        .byte $80   ; tile setting
-
 ;block 3
 - D 0 - I - 0x018442 06:8432: 00        .byte $00   ; graphics
 - D 0 - I - 0x018443 06:8433: 20        .byte $20   ; X/Y position
 - D 0 - I - 0x018444 06:8434: 04        .byte $04   ; Z position
 - D 0 - I - 0x018445 06:8435: 80        .byte $80   ; tile setting
-
 ;block 4
 - D 0 - I - 0x018446 06:8436: 00        .byte $00   ; graphics
 - D 0 - I - 0x018447 06:8437: 06        .byte $06   ; X/Y position
 - D 0 - I - 0x018448 06:8438: 04        .byte $04   ; Z position
 - D 0 - I - 0x018449 06:8439: 80        .byte $80   ; tile setting
-
 ;block 5
 - D 0 - I - 0x01844A 06:843A: 00        .byte $00   ; graphics
 - D 0 - I - 0x01844B 06:843B: 16        .byte $16   ; X/Y position
 - D 0 - I - 0x01844C 06:843C: 04        .byte $04   ; Z position
 - D 0 - I - 0x01844D 06:843D: 80        .byte $80   ; tile setting
-
 ;block 6
 - D 0 - I - 0x01844E 06:843E: 00        .byte $00   ; graphics
 - D 0 - I - 0x01844F 06:843F: 26        .byte $26   ; X/Y position
 - D 0 - I - 0x018450 06:8440: 04        .byte $04   ; Z position
 - D 0 - I - 0x018451 06:8441: 80        .byte $80   ; tile setting
-
 ;special blocks
 - D 0 - I - 0x018452 06:8442: 00        .byte $00   ; how many
 
 
 
 _off000_8443_03:
+;room base attributes
 - D 0 - I - 0x018453 06:8443: 10        .byte $10, $00, $20   ; room palette
 - D 0 - I - 0x018456 06:8446: 10        .byte $10   ; room size
-
+;sprites
 - D 0 - I - 0x018457 06:8447: 02        .byte $02   ; how many
+;sprite 1
 - D 0 - I - 0x018458 06:8448: 02        .byte con_obj_id_02   ; 
 - D 0 - I - 0x018459 06:8449: 00        .byte $00   ; sprite X/Y position
 - D 0 - I - 0x01845A 06:844A: 10        .byte $10   ; sprite direction and Z-position
 - D 0 - I - 0x01845B 06:844B: 12        .byte $12, $29   ; palette
+;sprite 2
 - D 0 - I - 0x01845D 06:844D: 02        .byte con_obj_id_02   ; 
 - D 0 - I - 0x01845E 06:844E: 88        .byte $88   ; sprite X/Y position
 - D 0 - I - 0x01845F 06:844F: 30        .byte $30   ; sprite direction and Z-position
 - D 0 - I - 0x018460 06:8450: 06        .byte $06, $2A   ; palette
-
+;walls attributes
 - D 0 - I - 0x018462 06:8452: 50        .byte $50   ; NW wall pattern
 - D 0 - I - 0x018463 06:8453: 00        .byte $00   ; NE wall pattern
 - D 0 - I - 0x018464 06:8454: 00        .byte $00   ; NW wall graphics
 - D 0 - I - 0x018465 06:8455: 00        .byte $00   ; NE wall graphics
+;floors
 - D 0 - I - 0x018466 06:8456: 00        .byte $00   ; secondary floor tiles
 - D 0 - I - 0x018467 06:8457: 00        .byte $00   ; primary floor tiles
-
+;secondary floor tiles
 - D 0 - I - 0x018468 06:8458: FF        .byte $FF   ; secondary X floor tiles
 - D 0 - I - 0x018469 06:8459: FF        .byte $FF   ; 
 - D 0 - I - 0x01846A 06:845A: FF        .byte $FF   ; 
@@ -1118,18 +1108,17 @@ _off000_8443_03:
 - D 0 - I - 0x01846C 06:845C: FF        .byte $FF   ; 
 - - - - - - 0x01846D 06:845D: FF        .byte $FF   ; 
 - - - - - - 0x01846E 06:845E: FF        .byte $FF   ; 
-
+;room exit positions
 - D 0 - I - 0x01846F 06:845F: 07        .byte $07   ; exit(s) position(s)
-
+;exit 1
 - D 0 - I - 0x018470 06:8460: 01        .byte $01   ; Z, X/Y position
 - D 0 - I - 0x018471 06:8461: 04        .byte $04   ; destination room ID
-
+;exit 2
 - D 0 - I - 0x018472 06:8462: 02        .byte $02   ; Z, X/Y position
 - D 0 - I - 0x018473 06:8463: 02        .byte $02   ; destination room ID
-
+;exit 3
 - D 0 - I - 0x018474 06:8464: 01        .byte $01   ; Z, X/Y position
 - D 0 - I - 0x018475 06:8465: 08        .byte $08   ; destination room ID
-
 ;Normal blocks
 - D 0 - I - 0x018476 06:8466: 0B        .byte $0B   ; how many
 ;block 1
@@ -1142,43 +1131,36 @@ _off000_8443_03:
 - D 0 - I - 0x01847C 06:846C: 12        .byte $12   ; X/Y position
 - D 0 - I - 0x01847D 06:846D: 00        .byte $00   ; Z position
 - D 0 - I - 0x01847E 06:846E: 80        .byte $80   ; tile setting
-
 ;block 3
 - D 0 - I - 0x01847F 06:846F: 00        .byte $00   ; graphics
 - D 0 - I - 0x018480 06:8470: 13        .byte $13   ; X/Y position
 - D 0 - I - 0x018481 06:8471: 00        .byte $00   ; Z position
 - D 0 - I - 0x018482 06:8472: 80        .byte $80   ; tile setting
-
 ;block 4
 - D 0 - I - 0x018483 06:8473: 00        .byte $00   ; graphics
 - D 0 - I - 0x018484 06:8474: 21        .byte $21   ; X/Y position
 - D 0 - I - 0x018485 06:8475: 00        .byte $00   ; Z position
 - D 0 - I - 0x018486 06:8476: 80        .byte $80   ; tile setting
-
 ;block 5
 - D 0 - I - 0x018487 06:8477: 00        .byte $00   ; graphics
 - D 0 - I - 0x018488 06:8478: 22        .byte $22   ; X/Y position
 - D 0 - I - 0x018489 06:8479: 01        .byte $01   ; Z position
 - D 0 - I - 0x01848A 06:847A: 80        .byte $80   ; tile setting
-
 ;block 6
 - D 0 - I - 0x01848B 06:847B: 00        .byte $00   ; graphics
 - D 0 - I - 0x01848C 06:847C: 22        .byte $22   ; X/Y position
 - D 0 - I - 0x01848D 06:847D: 02        .byte $02   ; Z position
 - D 0 - I - 0x01848E 06:847E: 80        .byte $80   ; tile setting
-
 ;block 7
 - D 0 - I - 0x01848F 06:847F: 00        .byte $00   ; graphics
 - D 0 - I - 0x018490 06:8480: 23        .byte $23   ; X/Y position
 - D 0 - I - 0x018491 06:8481: 00        .byte $00   ; Z position
 - D 0 - I - 0x018492 06:8482: 80        .byte $80   ; tile setting
-
 ;block 8
 - D 0 - I - 0x018493 06:8483: 00        .byte $00   ; graphics
 - D 0 - I - 0x018494 06:8484: 31        .byte $31   ; X/Y position
 - D 0 - I - 0x018495 06:8485: 00        .byte $00   ; Z position
 - D 0 - I - 0x018496 06:8486: 80        .byte $80   ; tile setting
-
 ;block 9
 - D 0 - I - 0x018497 06:8487: 00        .byte $00   ; graphics
 - D 0 - I - 0x018498 06:8488: 32        .byte $32   ; X/Y position
@@ -1245,18 +1227,20 @@ _off000_8443_03:
 
 
 _off000_84B8_04:
+;room base attributes
 - D 0 - I - 0x0184C8 06:84B8: 28        .byte $28, $18, $38   ; room palette
 - D 0 - I - 0x0184CB 06:84BB: 18        .byte $18   ; room size
-
+;sprite 
 - D 0 - I - 0x0184CC 06:84BC: 00        .byte $00   ; how many
-
+;walls attributes
 - D 0 - I - 0x0184CD 06:84BD: 40        .byte $40   ; NW wall pattern
 - D 0 - I - 0x0184CE 06:84BE: 40        .byte $40   ; NE wall pattern
 - D 0 - I - 0x0184CF 06:84BF: 00        .byte $00   ; NW wall graphics
 - D 0 - I - 0x0184D0 06:84C0: 00        .byte $00   ; NE wall graphics
+;floors
 - D 0 - I - 0x0184D1 06:84C1: 00        .byte $00   ; secondary floor tiles
 - D 0 - I - 0x0184D2 06:84C2: 00        .byte $00   ; primary floor tiles
-
+;secondary floor tiles
 - D 0 - I - 0x0184D3 06:84C3: FF        .byte $FF   ; secondary X floor tiles
 - D 0 - I - 0x0184D4 06:84C4: FF        .byte $FF   ; 
 - D 0 - I - 0x0184D5 06:84C5: FF        .byte $FF   ; 
@@ -1264,29 +1248,27 @@ _off000_84B8_04:
 - - - - - - 0x0184D7 06:84C7: FF        .byte $FF   ; 
 - - - - - - 0x0184D8 06:84C8: FF        .byte $FF   ; 
 - - - - - - 0x0184D9 06:84C9: FF        .byte $FF   ; 
-
+;room exit positions
 - D 0 - I - 0x0184DA 06:84CA: 03        .byte $03   ; exit(s) position(s)
-
+;exit 1
 - D 0 - I - 0x0184DB 06:84CB: 00        .byte $00   ; Z, X/Y position
 - D 0 - I - 0x0184DC 06:84CC: 05        .byte $05   ; destination room ID
-
+;exit 2
 - D 0 - I - 0x0184DD 06:84CD: 00        .byte $00   ; Z, X/Y position
 - D 0 - I - 0x0184DE 06:84CE: 03        .byte $03   ; destination room ID
 ;Normal blocks
 - D 0 - I - 0x0184DF 06:84CF: 03        .byte $03   ; how many
-
+;block 1
 - D 0 - I - 0x0184E0 06:84D0: 00        .byte $00   ; graphics
 - D 0 - I - 0x0184E1 06:84D1: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x0184E2 06:84D2: 00        .byte $00   ; Z position
 - D 0 - I - 0x0184E3 06:84D3: 80        .byte $80   ; tile setting
-
-
+;block 2
 - D 0 - I - 0x0184E4 06:84D4: 0C        .byte $0C   ; graphics
 - D 0 - I - 0x0184E5 06:84D5: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x0184E6 06:84D6: 01        .byte $01   ; Z position
 - D 0 - I - 0x0184E7 06:84D7: 80        .byte $80   ; tile setting
-
-
+;block 3
 - D 0 - I - 0x0184E8 06:84D8: 0B        .byte $0B   ; graphics
 - D 0 - I - 0x0184E9 06:84D9: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x0184EA 06:84DA: 04        .byte $04   ; Z position
@@ -1298,26 +1280,30 @@ _off000_84B8_04:
 
 
 _off000_84DD_05:
+;room base attributes
 - D 0 - I - 0x0184ED 06:84DD: 26        .byte $26, $16, $36   ; room palette
 - D 0 - I - 0x0184F0 06:84E0: 08        .byte $08   ; room size
-
+;sprites
 - D 0 - I - 0x0184F1 06:84E1: 02        .byte $02   ; how many
+;sprite 1
 - D 0 - I - 0x0184F2 06:84E2: 39        .byte con_obj_id_39   ; 
 - D 0 - I - 0x0184F3 06:84E3: 46        .byte $46   ; sprite X/Y position
 - D 0 - I - 0x0184F4 06:84E4: 20        .byte $20   ; sprite direction and Z-position
 - D 0 - I - 0x0184F5 06:84E5: 15        .byte $15, $29   ; palette
+;sprite 2
 - D 0 - I - 0x0184F7 06:84E7: 3A        .byte con_obj_id_3A   ; 
 - D 0 - I - 0x0184F8 06:84E8: 48        .byte $48   ; sprite X/Y position
 - D 0 - I - 0x0184F9 06:84E9: 00        .byte $00   ; sprite direction and Z-position
 - D 0 - I - 0x0184FA 06:84EA: 18        .byte $18, $2B   ; palette
-
+;walls attributes
 - D 0 - I - 0x0184FC 06:84EC: FF        .byte $FF   ; NW wall pattern
 - D 0 - I - 0x0184FD 06:84ED: FF        .byte $FF   ; NE wall pattern
 - D 0 - I - 0x0184FE 06:84EE: 81        .byte $81   ; NW wall graphics
 - D 0 - I - 0x0184FF 06:84EF: 81        .byte $81   ; NE wall graphics
+;floors
 - D 0 - I - 0x018500 06:84F0: 00        .byte $00   ; secondary floor tiles
 - D 0 - I - 0x018501 06:84F1: 00        .byte $00   ; primary floor tiles
-
+;secondary floor tiles
 - D 0 - I - 0x018502 06:84F2: FF        .byte $FF   ; secondary X floor tiles
 - D 0 - I - 0x018503 06:84F3: FF        .byte $FF   ; 
 - D 0 - I - 0x018504 06:84F4: FF        .byte $FF   ; 
@@ -1325,18 +1311,17 @@ _off000_84DD_05:
 - D 0 - I - 0x018506 06:84F6: FF        .byte $FF   ; 
 - D 0 - I - 0x018507 06:84F7: FF        .byte $FF   ; 
 - D 0 - I - 0x018508 06:84F8: FF        .byte $FF   ; 
-
+;room exit positions
 - D 0 - I - 0x018509 06:84F9: 0E        .byte $0E   ; exit(s) position(s)
-
+;exit 1
 - D 0 - I - 0x01850A 06:84FA: 18        .byte $18   ; Z, X/Y position
 - D 0 - I - 0x01850B 06:84FB: 04        .byte $04   ; destination room ID
-
+;exit 2
 - D 0 - I - 0x01850C 06:84FC: 1C        .byte $1C   ; Z, X/Y position
 - D 0 - I - 0x01850D 06:84FD: 06        .byte $06   ; destination room ID
-
+;exit 3
 - D 0 - I - 0x01850E 06:84FE: 10        .byte $10   ; Z, X/Y position
 - D 0 - I - 0x01850F 06:84FF: 01        .byte $01   ; destination room ID
-
 ;Normal blocks
 - D 0 - I - 0x018510 06:8500: 0D        .byte $0D   ; how many
 ;block 1
@@ -1344,43 +1329,36 @@ _off000_84DD_05:
 - D 0 - I - 0x018512 06:8502: 00        .byte $00   ; X/Y position
 - D 0 - I - 0x018513 06:8503: 02        .byte $02   ; Z position
 - D 0 - I - 0x018514 06:8504: 80        .byte $80   ; tile setting
-
 ;block 2
 - D 0 - I - 0x018515 06:8505: 00        .byte $00   ; graphics
 - D 0 - I - 0x018516 06:8506: 10        .byte $10   ; X/Y position
 - D 0 - I - 0x018517 06:8507: 02        .byte $02   ; Z position
 - D 0 - I - 0x018518 06:8508: 80        .byte $80   ; tile setting
-
 ;block 3
 - D 0 - I - 0x018519 06:8509: 00        .byte $00   ; graphics
 - D 0 - I - 0x01851A 06:850A: 20        .byte $20   ; X/Y position
 - D 0 - I - 0x01851B 06:850B: 02        .byte $02   ; Z position
 - D 0 - I - 0x01851C 06:850C: 80        .byte $80   ; tile setting
-
 ;block 4
 - D 0 - I - 0x01851D 06:850D: 00        .byte $00   ; graphics
 - D 0 - I - 0x01851E 06:850E: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x01851F 06:850F: 02        .byte $02   ; Z position
 - D 0 - I - 0x018520 06:8510: 80        .byte $80   ; tile setting
-
 ;block 5
 - D 0 - I - 0x018521 06:8511: 00        .byte $00   ; graphics
 - D 0 - I - 0x018522 06:8512: 21        .byte $21   ; X/Y position
 - D 0 - I - 0x018523 06:8513: 00        .byte $00   ; Z position
 - D 0 - I - 0x018524 06:8514: 80        .byte $80   ; tile setting
-
 ;block 6
 - D 0 - I - 0x018525 06:8515: 00        .byte $00   ; graphics
 - D 0 - I - 0x018526 06:8516: 21        .byte $21   ; X/Y position
 - D 0 - I - 0x018527 06:8517: 01        .byte $01   ; Z position
 - D 0 - I - 0x018528 06:8518: 80        .byte $80   ; tile setting
-
 ;block 7
 - D 0 - I - 0x018529 06:8519: 00        .byte $00   ; graphics
 - D 0 - I - 0x01852A 06:851A: 22        .byte $22   ; X/Y position
 - D 0 - I - 0x01852B 06:851B: 00        .byte $00   ; Z position
 - D 0 - I - 0x01852C 06:851C: 80        .byte $80   ; tile setting
-
 ;block 8
 - D 0 - I - 0x01852D 06:851D: 00        .byte $00   ; graphics
 - D 0 - I - 0x01852E 06:851E: 05        .byte $05   ; X/Y position
