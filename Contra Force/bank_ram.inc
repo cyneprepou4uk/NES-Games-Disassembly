@@ -103,7 +103,9 @@ ram_003B                        = $003B ; 00A111 00AEA9 00B6AA 00B6D5 0148F9 014
 ram_003C                        = $003C ; 0085E2 00864B 008692 0088C7 0088CD 0088F3 00A28E 00A378 00A80C 00A821 00B418 00E0D4 00E140 01E1B1 01E1D4 01E254 01E276 01E3A7 01E3E4 01E855 01E9C0 01EA55 01EB54 01EBB8 01FD5D 
 ram_003D                        = $003D ; 00E225 00E234 00E259 00E27A 015706 015B2C 015B3E 01DA89 01E851 01E9A7 01EBB4 01FD5D 
 ram_003E                        = $003E ; 01D59F 01D979 01D97F 01FD5D 
-ram_003F                        = $003F ; 01D01D 01F877 01FD5D 
+
+; bzk useless address, always 3D value
+ram_garbage_loop_counter        = $003F ; 01D01D 01F877 01FD5D 
 
 ; 0040-0041 (02) 
 ram_btn_press_1                 = $0040 ; 00A31E 0141F3 014A5F 016471 0171DB 01D07B 01D0F6 01D105 01D76F 01DA30 01F311 01FD5D 01FFCA 
@@ -1021,7 +1023,9 @@ ram_036A                        = $036A ; 01FD65
 
 ram_036B                        = $036B ; 007FDA 00A55B 00A563 00A56A 01664F 01FD65 
 
-ram_036C                        = $036C ; 01FD65 01FEDA 01FEEA 
+; temp, used only in 1 subroutine
+ram_save_Y                      = $036C ; 01FD65 01FEDA 01FEEA 
+
 ram_036D                        = $036D ; 0159DB 0159EE 01DD0E 01DD38 01FD65 
 ram_036E                        = $036E ; 00E51D 0148D1 014979 014985 01498F 014A78 014A86 014A89 014A91 014A9F 014AAD 01FD65 
 ram_036F                        = $036F ; 00E520 01FD65 

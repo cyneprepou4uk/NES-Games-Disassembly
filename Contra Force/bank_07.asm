@@ -5658,7 +5658,13 @@ C - - - - - 0x00FDFF 03:BDEF: A9 00     LDA #$00
 C - - - - - 0x00FE01 03:BDF1: 9D AA 07  STA ram_07AA_unk,X
 C - - - - - 0x00FE04 03:BDF4: 9D B4 07  STA ram_07B4_unk,X
 C - - - - - 0x00FE07 03:BDF7: 4C 1C BE  JMP loc_BE1C
+
+
+; bzk garbage
 - - - - - - 0x00FE0A 03:BDFA: 4C EF BE  JMP loc_BEEF_RTS
+
+
+
 bra_BDFD:
 C - - - - - 0x00FE0D 03:BDFD: A5 01     LDA ram_0001
 C - - - - - 0x00FE0F 03:BDFF: C9 04     CMP #$04

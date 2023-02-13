@@ -432,7 +432,7 @@ C - - - - - 0x01D017 07:D007: C9 03     CMP #$03
 C - - - - - 0x01D019 07:D009: D0 02     BNE bra_D00D
 C - - - - - 0x01D01B 07:D00B: A0 3D     LDY #$3D
 bra_D00D:
-C - - - - - 0x01D01D 07:D00D: 84 3F     STY ram_003F
+C - - - - - 0x01D01D 07:D00D: 84 3F     STY ram_garbage_loop_counter    ; bzk optimize, Y is always 3D despite conditions
 ; bzk optimize, code is executed each frame
 ; I suppose there is no need to constantly overwite this address
 ; it should be one only once here 0x01436E
@@ -1158,6 +1158,7 @@ C - - - - - 0x01D46D 07:D45D: D0 18     BNE bra_D477
 ; bzk optimize, in bank 00 and 02, instead of FF pointers, point directly
 ; to where needed from the start. remove FF comparsion and
 ; this part of code up to 0x01D485
+; although this still could be necessary because of writes to additional addresses
 C - - - - - 0x01D46F 07:D45F: 85 1B     STA ram_001B
 C - - - - - 0x01D471 07:D461: A9 08     LDA #$08
 C - - - - - 0x01D473 07:D463: 85 1F     STA ram_001F
@@ -7428,9 +7429,9 @@ C - - - - - 0x01F5A6 07:F596: 4C 47 F5  JMP loc_F547
 
 
 sub_F599:
-C - - - - - 0x01F5A9 07:F599: A9 B0     LDA #$B0
+C - - - - - 0x01F5A9 07:F599: A9 B0     LDA #< ram_03B0
 C - - - - - 0x01F5AB 07:F59B: 85 02     STA ram_0002
-C - - - - - 0x01F5AD 07:F59D: A9 03     LDA #$03
+C - - - - - 0x01F5AD 07:F59D: A9 03     LDA #> ram_03B0
 C - - - - - 0x01F5AF 07:F59F: 85 03     STA ram_0003
 C - - - - - 0x01F5B1 07:F5A1: 60        RTS
 
@@ -7626,7 +7627,7 @@ C - - - - - 0x01F6A3 07:F693: 60        RTS
 
 
 sub_0x01F6A4:
-C - - - - - 0x01F6A4 07:F694: A9 14     LDA #$14    ; con_F3D6_
+C - - - - - 0x01F6A4 07:F694: A9 14     LDA #$14    ; con_F3D6_14
 C - - - - - 0x01F6A6 07:F696: 8D 33 03  STA ram_0333
 C - - - - - 0x01F6A9 07:F699: 20 B3 F3  JSR sub_F3B3
 C - - - - - 0x01F6AC 07:F69C: 60        RTS
@@ -7970,7 +7971,7 @@ C - - - - - 0x01F86B 07:F85B: 8E 06 20  STX $2006
 C - - - - - 0x01F86E 07:F85E: AD 02 20  LDA $2002
 C - - - - - 0x01F871 07:F861: 8C 05 20  STY $2005
 C - - - - - 0x01F874 07:F864: 8C 05 20  STY $2005
-C - - - - - 0x01F877 07:F867: A4 3F     LDY ram_003F
+C - - - - - 0x01F877 07:F867: A4 3F     LDY ram_garbage_loop_counter
 bra_F869_garbage_loop:
 C - - - - - 0x01F879 07:F869: 88        DEY
 C - - - - - 0x01F87A 07:F86A: D0 FD     BNE bra_F869_garbage_loop
@@ -8283,21 +8284,21 @@ C - - - - - 0x01FA4F 07:FA3F: A9 00     LDA #$00
 C - - - - - 0x01FA51 07:FA41: 85 0E     STA ram_000E
 C - - - - - 0x01FA53 07:FA43: A2 02     LDX #$02
 C - - - - - 0x01FA55 07:FA45: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FA58 07:FA48: E8        INX
+C - - - - - 0x01FA58 07:FA48: E8        INX ; 03
 C - - - - - 0x01FA59 07:FA49: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FA5C 07:FA4C: E8        INX
+C - - - - - 0x01FA5C 07:FA4C: E8        INX ; 04
 C - - - - - 0x01FA5D 07:FA4D: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FA60 07:FA50: E8        INX
+C - - - - - 0x01FA60 07:FA50: E8        INX ; 05
 C - - - - - 0x01FA61 07:FA51: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FA64 07:FA54: E8        INX
+C - - - - - 0x01FA64 07:FA54: E8        INX ; 06
 C - - - - - 0x01FA65 07:FA55: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FA68 07:FA58: E8        INX
+C - - - - - 0x01FA68 07:FA58: E8        INX ; 07
 C - - - - - 0x01FA69 07:FA59: 20 E6 FA  JSR sub_FAE6
 C - - - - - 0x01FA6C 07:FA5C: A9 01     LDA #$01
 C - - - - - 0x01FA6E 07:FA5E: 85 0E     STA ram_000E
-C - - - - - 0x01FA70 07:FA60: E8        INX
+C - - - - - 0x01FA70 07:FA60: E8        INX ; 08
 C - - - - - 0x01FA71 07:FA61: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FA74 07:FA64: E8        INX
+C - - - - - 0x01FA74 07:FA64: E8        INX ; 09
 C - - - - - 0x01FA75 07:FA65: 4C E6 FA  JMP loc_FAE6
 
 
@@ -8307,11 +8308,11 @@ C - - - - - 0x01FA78 07:FA68: A9 02     LDA #$02
 C - - - - - 0x01FA7A 07:FA6A: 85 0E     STA ram_000E
 C - - - - - 0x01FA7C 07:FA6C: A2 12     LDX #$12
 C - - - - - 0x01FA7E 07:FA6E: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FA81 07:FA71: E8        INX
+C - - - - - 0x01FA81 07:FA71: E8        INX ; 13
 C - - - - - 0x01FA82 07:FA72: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FA85 07:FA75: E8        INX
+C - - - - - 0x01FA85 07:FA75: E8        INX ; 14
 C - - - - - 0x01FA86 07:FA76: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FA89 07:FA79: E8        INX
+C - - - - - 0x01FA89 07:FA79: E8        INX ; 15
 C - - - - - 0x01FA8A 07:FA7A: 4C E6 FA  JMP loc_FAE6
 
 
@@ -8321,21 +8322,21 @@ C - - - - - 0x01FA8D 07:FA7D: A9 00     LDA #$00
 C - - - - - 0x01FA8F 07:FA7F: 85 0E     STA ram_000E
 C - - - - - 0x01FA91 07:FA81: A2 02     LDX #$02
 C - - - - - 0x01FA93 07:FA83: 20 E0 FA  JSR sub_FAE0
-C - - - - - 0x01FA96 07:FA86: E8        INX
+C - - - - - 0x01FA96 07:FA86: E8        INX ; 03
 C - - - - - 0x01FA97 07:FA87: 20 E0 FA  JSR sub_FAE0
-C - - - - - 0x01FA9A 07:FA8A: E8        INX
+C - - - - - 0x01FA9A 07:FA8A: E8        INX ; 04
 C - - - - - 0x01FA9B 07:FA8B: 20 E0 FA  JSR sub_FAE0
-C - - - - - 0x01FA9E 07:FA8E: E8        INX
+C - - - - - 0x01FA9E 07:FA8E: E8        INX ; 05
 C - - - - - 0x01FA9F 07:FA8F: 20 E0 FA  JSR sub_FAE0
-C - - - - - 0x01FAA2 07:FA92: E8        INX
+C - - - - - 0x01FAA2 07:FA92: E8        INX ; 06
 C - - - - - 0x01FAA3 07:FA93: 20 E0 FA  JSR sub_FAE0
-C - - - - - 0x01FAA6 07:FA96: E8        INX
+C - - - - - 0x01FAA6 07:FA96: E8        INX ; 07
 C - - - - - 0x01FAA7 07:FA97: 20 E0 FA  JSR sub_FAE0
 C - - - - - 0x01FAAA 07:FA9A: A9 01     LDA #$01
 C - - - - - 0x01FAAC 07:FA9C: 85 0E     STA ram_000E
-C - - - - - 0x01FAAE 07:FA9E: E8        INX
+C - - - - - 0x01FAAE 07:FA9E: E8        INX ; 08
 C - - - - - 0x01FAAF 07:FA9F: 20 E0 FA  JSR sub_FAE0
-C - - - - - 0x01FAB2 07:FAA2: E8        INX
+C - - - - - 0x01FAB2 07:FAA2: E8        INX ; 09
 C - - - - - 0x01FAB3 07:FAA3: 4C E0 FA  JMP loc_FAE0
 
 
@@ -8345,21 +8346,21 @@ C D 3 - - - 0x01FAB6 07:FAA6: A9 01     LDA #$01
 C - - - - - 0x01FAB8 07:FAA8: 85 0E     STA ram_000E
 C - - - - - 0x01FABA 07:FAAA: A2 0A     LDX #$0A
 C - - - - - 0x01FABC 07:FAAC: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FABF 07:FAAF: E8        INX
+C - - - - - 0x01FABF 07:FAAF: E8        INX ; 0B
 C - - - - - 0x01FAC0 07:FAB0: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FAC3 07:FAB3: E8        INX
+C - - - - - 0x01FAC3 07:FAB3: E8        INX ; 0C
 C - - - - - 0x01FAC4 07:FAB4: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FAC7 07:FAB7: E8        INX
+C - - - - - 0x01FAC7 07:FAB7: E8        INX ; 0D
 C - - - - - 0x01FAC8 07:FAB8: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FACB 07:FABB: E8        INX
+C - - - - - 0x01FACB 07:FABB: E8        INX ; 0E
 C - - - - - 0x01FACC 07:FABC: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FACF 07:FABF: E8        INX
+C - - - - - 0x01FACF 07:FABF: E8        INX ; 0F
 C - - - - - 0x01FAD0 07:FAC0: 20 E6 FA  JSR sub_FAE6
 C - - - - - 0x01FAD3 07:FAC3: A9 02     LDA #$02
 C - - - - - 0x01FAD5 07:FAC5: 85 0E     STA ram_000E
-C - - - - - 0x01FAD7 07:FAC7: E8        INX
+C - - - - - 0x01FAD7 07:FAC7: E8        INX ; 10
 C - - - - - 0x01FAD8 07:FAC8: 20 E6 FA  JSR sub_FAE6
-C - - - - - 0x01FADB 07:FACB: E8        INX
+C - - - - - 0x01FADB 07:FACB: E8        INX ; 11
 C - - - - - 0x01FADC 07:FACC: 4C E6 FA  JMP loc_FAE6
 
 
@@ -8592,8 +8593,7 @@ C - - - - - 0x01FC3C 07:FC2C: 4C 4C F3  JMP loc_F34C_prg_bankswitch
 
 
 
-; !!!
-; палитра?
+; todo
 off_FC2F_00:
 - D 3 - I - 0x01FC3F 07:FC2F: 0E        .byte $0E   ; 
 - - - - - - 0x01FC40 07:FC30: 1B        .byte $1B   ; 
@@ -9098,14 +9098,14 @@ sub_FECA_add_music_to_queue:
 loc_FECA_add_music_to_queue:
 loc_0x01FEDA_add_music_to_queue:
 sub_0x01FEDA_add_music_to_queue:
-C D 3 - - - 0x01FEDA 07:FECA: 8C 6C 03  STY ram_036C
+C D 3 - - - 0x01FEDA 07:FECA: 8C 6C 03  STY ram_save_Y
 C - - - - - 0x01FEDD 07:FECD: AC 62 03  LDY ram_sound_hist_index_1
 C - - - - - 0x01FEE0 07:FED0: 99 90 03  STA ram_sound_history,Y
 C - - - - - 0x01FEE3 07:FED3: C8        INY
 C - - - - - 0x01FEE4 07:FED4: 98        TYA
 C - - - - - 0x01FEE5 07:FED5: 29 0F     AND #$0F
 C - - - - - 0x01FEE7 07:FED7: 8D 62 03  STA ram_sound_hist_index_1
-C - - - - - 0x01FEEA 07:FEDA: AC 6C 03  LDY ram_036C
+C - - - - - 0x01FEEA 07:FEDA: AC 6C 03  LDY ram_save_Y
 bra_FEDD_RTS:
 C - - - - - 0x01FEED 07:FEDD: 60        RTS
 

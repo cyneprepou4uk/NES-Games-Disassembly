@@ -3295,6 +3295,7 @@ C - - - - - 0x009187 02:9177: 60        RTS
 sub_9178_stage_AND_01:
 sub_0x009188_stage_AND_01:
 ; check if stage is side view or upper view
+; bzk optimize, same code as 0x01F69F
 C - - - - - 0x009188 02:9178: A5 75     LDA ram_stage
 C - - - - - 0x00918A 02:917A: 29 01     AND #$01
 C - - - - - 0x00918C 02:917C: 60        RTS
