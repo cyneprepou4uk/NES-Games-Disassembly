@@ -3383,8 +3383,7 @@ tbl_9564:
 - D 0 - - - 0x00158A 00:957A: 1C        .byte $1C   ; Y pos
 - D 0 - - - 0x00158B 00:957B: 10        .byte $10   ; Z pos
 
-- - - - - - 0x00158C 00:957C: FF        .byte $FF   ; End of the table
-
+- - - - - - 0x00158C 00:957C: FF        .byte $FF   ; bzk garbage? possible usage at 0x001538
 
 
 sub_957D:
@@ -4739,7 +4738,7 @@ C - - - - - 0x001D51 00:9D41: 60        RTS
 ;this part hides exits.
 
 ;first byte is the room ID
-;second byte is what item ID "opens" the exit, detanotars has mind of their own.
+;second byte is what item ID "opens" the exit
 ;third byte, intial status, 00 invisible, FF visible
 ;fourth byte values:
 ; 01 = SW bottom-left
@@ -4748,7 +4747,7 @@ C - - - - - 0x001D51 00:9D41: 60        RTS
 ; 08 = NW top-left
 
 tbl_9D42:
-
+; bzk optimize, 3rd byte is always 00
 - D 0 - I - 0x001D52 00:9D42: B1        .byte con_room_id + $B1   ; room ID
 - D 0 - I - 0x001D53 00:9D43: D2        .byte $D2   ; key, sprite D2
 - D 0 - I - 0x001D54 00:9D44: 00        .byte $00   ; invisible

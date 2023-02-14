@@ -2233,7 +2233,7 @@ _off012_A6E8_02:
 
 
 
-_off012_A786_03:    
+_off012_A786_03:    ; bzk bug   
 ;unused, removed third page
 ;becuase of this sometimes on some emulators there is 1 frame odd flash
 
@@ -2368,7 +2368,7 @@ tbl_A85E:
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x0128A0 04:A890: 02        .byte                                                                  $02, $01   ; 
 
-- D 1 - I - 0x0128A2 04:A892: FE        .byte $FE   ; line break
+- D 1 - I - 0x0128A2 04:A892: FE        .byte $FE   ; bzk useless?
 - D 1 - I - 0x0128A3 04:A893: 10 21     .word $2110	; position
 ;... removed text?
 - D 1 - I - 0x0128A5 04:A895: FF        .byte $FF   ; end
