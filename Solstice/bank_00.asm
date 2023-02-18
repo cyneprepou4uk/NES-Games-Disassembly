@@ -158,7 +158,7 @@ C - - - - - 0x000133 00:8123: 68        PLA
 C - - - - - 0x000134 00:8124: AA        TAX
 C - - - - - 0x000135 00:8125: F0 1B     BEQ bra_8142
 C - - - - - 0x000137 00:8127: 20 45 81  JSR sub_8145_add_02_to_each_potion
-C - - - - - 0x00013A 00:812A: A9 03     LDA #$03	;lives after continue
+C - - - - - 0x00013A 00:812A: A9 03     LDA #$03	; lives after continue
 C - - - - - 0x00013C 00:812C: 8D 89 07  STA ram_lives
 C - - - - - 0x00013F 00:812F: A9 00     LDA #$00
 C - - - - - 0x000141 00:8131: 8D 83 07  STA ram_0783
@@ -177,7 +177,7 @@ C - - - - - 0x000155 00:8145: A2 03     LDX #$03
 bra_8147_loop:
 C - - - - - 0x000157 00:8147: BD 84 07  LDA ram_potion_amount,X
 C - - - - - 0x00015A 00:814A: 18        CLC
-C - - - - - 0x00015B 00:814B: 69 02     ADC #$02	;how much to add into potions after continue
+C - - - - - 0x00015B 00:814B: 69 02     ADC #$02	; how much to add into potions after continue
 C - - - - - 0x00015D 00:814D: C9 05     CMP #$05
 C - - - - - 0x00015F 00:814F: 90 02     BCC bra_8153_not_overflow
 C - - - - - 0x000161 00:8151: A9 04     LDA #$04
@@ -1105,8 +1105,8 @@ tbl_86D0:
 - D 0 - - - 0x0006E4 00:86D4: 12        .byte $12   ; 04
 
 
-;intro&endung room palettes
-;the actual room data is in bank_FF, but its palette is overridden with this
+; intro&endung room palettes
+; the actual room data is in bank_FF, but its palette is overridden with this
 tbl_86D5:
 - D 0 - I - 0x0006E5 00:86D5: 0F        .byte $0F, $19, $09, $29   ; room palette
 - D 0 - I - 0x0006E9 00:86D9: 0F        .byte $0F, $0F, $0F, $0F   ; not used
@@ -1231,7 +1231,7 @@ tbl_87BC:
 
 sub_87C6:
 C - - - - - 0x0007D6 00:87C6: AD 95 07  LDA ram_staff_pieces
-C - - - - - 0x0007D9 00:87C9: C9 3F     CMP #$3F	;some check for all staff pieces?
+C - - - - - 0x0007D9 00:87C9: C9 3F     CMP #$3F	; some check for all staff pieces?
 C - - - - - 0x0007DB 00:87CB: F0 15     BEQ bra_87E2_RTS    ; if all pieces collected
 C - - - - - 0x0007DD 00:87CD: A5 0A     LDA ram_buttons
 C - - - - - 0x0007DF 00:87CF: 0A        ASL
@@ -1304,8 +1304,8 @@ loc_884A:
 C D 0 - - - 0x00085A 00:884A: A9 00     LDA #$00
 C - - - - - 0x00085C 00:884C: 85 20     STA ram_0020
 C - - - - - 0x00085E 00:884E: AD 95 07  LDA ram_staff_pieces
-C - - - - - 0x000861 00:8851: C9 3F     CMP #$3F	;check for all staff pieces, 3F = 6/all.
-;this activates the all-staff pieces effect but not the message
+C - - - - - 0x000861 00:8851: C9 3F     CMP #$3F	; check for all staff pieces, 3F = 6/all.
+; this activates the all-staff pieces effect but not the message
 C - - - - - 0x000863 00:8853: D0 06     BNE bra_885B    ; if not all pieces collected
 ; if all pieces collected
 C - - - - - 0x000865 00:8855: 20 FD 92  JSR sub_92FD_execute_blue_potion_effect
@@ -1961,7 +1961,7 @@ C - - - - - 0x000D26 00:8D16: 60        RTS
 
 sub_8D17_set_default_player_stats:
 C - - - - - 0x000D27 00:8D17: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
-C - - - - - 0x000D2A 00:8D1A: A9 02     LDA #$02	;how many potions player starts with
+C - - - - - 0x000D2A 00:8D1A: A9 02     LDA #$02	; how many potions player starts with
 C - - - - - 0x000D2C 00:8D1C: A2 03     LDX #$03
 bra_8D1E_loop:
 C - - - - - 0x000D2E 00:8D1E: 9D 84 07  STA ram_potion_amount,X
@@ -1985,13 +1985,13 @@ C - - - - - 0x000D49 00:8D39: CA        DEX
 C - - - - - 0x000D4A 00:8D3A: 10 F8     BPL bra_8D34_loop
 C - - - - - 0x000D4C 00:8D3C: A9 57     LDA #$57
 C - - - - - 0x000D4E 00:8D3E: 8D 91 07  STA ram_jump_height
-C - - - - - 0x000D51 00:8D41: A9 00     LDA #con_room_id + $00	;starting room ID
+C - - - - - 0x000D51 00:8D41: A9 00     LDA #con_room_id + $00	; starting room ID
 C - - - - - 0x000D53 00:8D43: 85 15     STA ram_current_room
-C - - - - - 0x000D55 00:8D45: A9 04     LDA #$04	;How many lives player starts with
+C - - - - - 0x000D55 00:8D45: A9 04     LDA #$04	; How many lives player starts with
 C - - - - - 0x000D57 00:8D47: 8D 89 07  STA ram_lives
 C - - - - - 0x000D5A 00:8D4A: A2 01     LDX #$01
 C - - - - - 0x000D5C 00:8D4C: 20 BF B6  JSR sub_B6BF_wait_for_nmi
-C - - - - - 0x000D5F 00:8D4F: A2 08     LDX #$08	;starting room XY position
+C - - - - - 0x000D5F 00:8D4F: A2 08     LDX #$08	; starting room XY position
 C - - - - - 0x000D61 00:8D51: 86 2D     STX ram_pos_X_obj
 C - - - - - 0x000D63 00:8D53: 86 31     STX ram_pos_Y_obj
 C - - - - - 0x000D65 00:8D55: A2 40     LDX #$40
@@ -3020,7 +3020,7 @@ loc_93CD_RTS:
 C D 0 - - - 0x0013DD 00:93CD: 60        RTS
 
 
-;item stuff
+; item stuff
 
 sub_93CE_give_bonus_for_pickup_item:
 C - - - - - 0x0013DE 00:93CE: A8        TAY
@@ -3138,7 +3138,7 @@ tbl_940B_hi:
 - D 0 - - - 0x00144C 00:943C: 94        .byte > ( ofs_005_9470_credit - 1 )   ; F1
 - D 0 - - - 0x00144D 00:943D: 94        .byte > ( ofs_005_9470_credit - 1 )   ; F2
 
-;keys
+; keys
 ofs_005_943E_D1_key_top_left:
 C - - - - - 0x00144E 00:943E: A9 01     LDA #$01
 C - - - - - 0x001450 00:9440: 2C        .byte $2C   ; BIT opcode
@@ -3155,27 +3155,27 @@ C - - - - - 0x00145C 00:944C: 8D 96 07  STA ram_keys
 C - - - - - 0x00145F 00:944F: 60        RTS
 
 
-;staff pieces
+; staff pieces
 ofs_005_9450_staff_piece:
 C - - - - - 0x001460 00:9450: 38        SEC
 C - - - - - 0x001461 00:9451: 2E 95 07  ROL ram_staff_pieces
 C - - - - - 0x001464 00:9454: 60        RTS
 
 
-;lives
+; lives
 ofs_005_9455_hat:
 C - - - - - 0x001465 00:9455: EE 89 07  INC ram_lives
 C - - - - - 0x001468 00:9458: 60        RTS
 
 
-;magic boots
+; magic boots
 ofs_005_9459_D0_magic_boots:
 C - - - - - 0x001469 00:9459: A9 5F     LDA #$5F
 C - - - - - 0x00146B 00:945B: 8D 91 07  STA ram_jump_height
 C - - - - - 0x00146E 00:945E: 60        RTS
 
 
-;potions
+; potions
 ofs_005_9468_potion_green:
 C - - - - - 0x00146F 00:945F: A0 00     LDY #$00
 C - - - - - 0x001471 00:9461: 2C        .byte $2C   ; BIT opcode
@@ -3187,12 +3187,12 @@ C - - - - - 0x001475 00:9465: 2C A0 02  LDY #$02
 C - - - - - 0x001477 00:9467: 2C        .byte $2C   ; BIT opcode
 ofs_005_9468_potion_blue:
 C - - - - - 0x001478 00:9468: 2C A0 03  LDY #$03
-C - - - - - 0x00147A 00:946A: A9 04     LDA #$04	;By how much increase potion when picked up
+C - - - - - 0x00147A 00:946A: A9 04     LDA #$04	; By how much increase potion when picked up
 C - - - - - 0x00147C 00:946C: 99 84 07  STA ram_potion_amount,Y
 C - - - - - 0x00147F 00:946F: 60        RTS
 
 
-;credits
+; credits
 ofs_005_9470_credit:
 C - - - - - 0x001480 00:9470: B9 8F 93  LDA tbl_947A_credits - $EB,Y
 C - - - - - 0x001483 00:9473: 0D 9F 07  ORA ram_credits
@@ -3341,14 +3341,14 @@ C - - - - - 0x001572 00:9562: 38        SEC
 C - - - - - 0x001573 00:9563: 60        RTS
 
 
-;Teleporters
-;these comes in pairs, so they must be linked into each other.
-;Unlike room data, first bit is the acual X/Y position(as in reverse) for some reason.
-;and Z position is normal(one block)
+; Teleporters
+; these comes in pairs, so they must be linked into each other.
+; Unlike room data, first bit is the acual X/Y position(as in reverse) for some reason.
+; and Z position is normal(one block)
 
 tbl_9564:
 
-;First pair
+; First pair
 - D 0 - - - 0x001574 00:9564: B2        .byte con_room_id + $B2   ; Destination room ID
 - D 0 - - - 0x001575 00:9565: 1C        .byte $1C   ; X pos
 - D 0 - - - 0x001576 00:9566: 1C        .byte $1C   ; Y pos
@@ -3360,7 +3360,7 @@ tbl_9564:
 - D 0 - - - 0x00157B 00:956B: 10        .byte $10   ; Z pos
 
 
-;Second pair
+; Second pair
 - D 0 - - - 0x00157C 00:956C: 7B        .byte con_room_id + $7B   ; Destination room ID
 - D 0 - - - 0x00157D 00:956D: 0C        .byte $0C   ; X pos
 - D 0 - - - 0x00157E 00:956E: 0C        .byte $0C   ; Y pos
@@ -3372,7 +3372,7 @@ tbl_9564:
 - D 0 - - - 0x001583 00:9573: 10        .byte $10   ; Z pos
 
 
-;Third pair
+; Third pair
 - D 0 - - - 0x001584 00:9574: ED        .byte con_room_id + $ED   ; Destination room ID
 - D 0 - - - 0x001585 00:9575: 0C        .byte $0C   ; X pos
 - D 0 - - - 0x001586 00:9576: 0C        .byte $0C   ; Y pos
@@ -3529,51 +3529,51 @@ C - - - - - 0x001683 00:9673: 60        RTS
 
 
 
-;Credit checkpoints
-;room ID is what room you appear after using that continue,
-;so it should match up with what room credit item is in.
-;Unlike room data, first bit is the actual X/Y/Z position(as in reverse) for some reason.
-;and Z is doubled
+; Credit checkpoints
+; room ID is what room you appear after using that continue,
+; so it should match up with what room credit item is in.
+; Unlike room data, first bit is the actual X/Y/Z position(as in reverse) for some reason.
+; and Z is doubled
 
 tbl_9674:
 
-;credit 00 / sprite EB
-- D 0 - - - 0x001684 00:9674: 0D        .byte con_room_id + $0D   ;  room ID
+; credit 00 / sprite EB
+- D 0 - - - 0x001684 00:9674: 0D        .byte con_room_id + $0D   ; room ID
 - D 0 - - - 0x001685 00:9675: 2C        .byte $2C   ; X position
 - D 0 - - - 0x001686 00:9676: 2C        .byte $2C   ; Y position
 - D 0 - - - 0x001687 00:9677: 18        .byte $18   ; Z position
 ; credit 01 / sprite EC
-- D 0 - - - 0x001688 00:9678: 42        .byte con_room_id + $42   ;  room ID
+- D 0 - - - 0x001688 00:9678: 42        .byte con_room_id + $42   ; room ID
 - D 0 - - - 0x001689 00:9679: 2C        .byte $2C   ; X position
 - D 0 - - - 0x00168A 00:967A: 0C        .byte $0C   ; Y position
 - D 0 - - - 0x00168B 00:967B: 18        .byte $18   ; Z position
 ; credit 02 / sprite ED
-- D 0 - - - 0x00168C 00:967C: 25        .byte con_room_id + $25   ;  room ID
+- D 0 - - - 0x00168C 00:967C: 25        .byte con_room_id + $25   ; room ID
 - D 0 - - - 0x00168D 00:967D: 0C        .byte $0C   ; X position
 - D 0 - - - 0x00168E 00:967E: 4C        .byte $4C   ; Y position
 - D 0 - - - 0x00168F 00:967F: 18        .byte $18   ; Z position
 ; credit 03 / sprite EE
-- D 0 - - - 0x001690 00:9680: C9        .byte con_room_id + $C9   ;  room ID
+- D 0 - - - 0x001690 00:9680: C9        .byte con_room_id + $C9   ; room ID
 - D 0 - - - 0x001691 00:9681: 0C        .byte $0C   ; X position
 - D 0 - - - 0x001692 00:9682: 0C        .byte $0C   ; Y position
 - D 0 - - - 0x001693 00:9683: 18        .byte $18   ; Z position
 ; credit 04 / sprite EF
-- D 0 - - - 0x001694 00:9684: A8        .byte con_room_id + $A8   ;  room ID
+- D 0 - - - 0x001694 00:9684: A8        .byte con_room_id + $A8   ; room ID
 - D 0 - - - 0x001695 00:9685: 0C        .byte $0C   ; X position
 - D 0 - - - 0x001696 00:9686: 1C        .byte $1C   ; Y position
 - D 0 - - - 0x001697 00:9687: 40        .byte $40   ; Z position
 ; credit 05 / sprite F0
-- D 0 - - - 0x001698 00:9688: 6D        .byte con_room_id + $6D   ;  room ID
+- D 0 - - - 0x001698 00:9688: 6D        .byte con_room_id + $6D   ; room ID
 - D 0 - - - 0x001699 00:9689: 0C        .byte $0C   ; X position
 - D 0 - - - 0x00169A 00:968A: 2C        .byte $2C   ; Y position
 - D 0 - - - 0x00169B 00:968B: 18        .byte $18   ; Z position
 ; credit 06 / sprite F1
-- D 0 - - - 0x00169C 00:968C: 57        .byte con_room_id + $57   ;  room ID
+- D 0 - - - 0x00169C 00:968C: 57        .byte con_room_id + $57   ; room ID
 - D 0 - - - 0x00169D 00:968D: 0C        .byte $0C   ; X position
 - D 0 - - - 0x00169E 00:968E: 0C        .byte $0C   ; Y position
 - D 0 - - - 0x00169F 00:968F: 18        .byte $18   ; Z position
 ; credit 07 / sprite F2
-- D 0 - - - 0x0016A0 00:9690: F0        .byte con_room_id + $F0   ;  room ID
+- D 0 - - - 0x0016A0 00:9690: F0        .byte con_room_id + $F0   ; room ID
 - D 0 - - - 0x0016A1 00:9691: 2C        .byte $2C   ; X position
 - D 0 - - - 0x0016A2 00:9692: 2C        .byte $2C   ; Y position
 - D 0 - - - 0x0016A3 00:9693: 18        .byte $18   ; Z position
@@ -4320,7 +4320,7 @@ C - - - - - 0x001BB5 00:9BA5: A4 08     LDY ram_0008
 C - - - - - 0x001BB7 00:9BA7: 60        RTS
 
 
-;graphics for pickable blocks?
+; graphics for pickable blocks?
 tbl_9BA8_animation:
 - D 0 - - - 0x001BB8 00:9BA8: 1B        .byte $1B   ; 80
 - D 0 - - - 0x001BB9 00:9BA9: 1E        .byte $1E   ; 81
@@ -4659,22 +4659,22 @@ tbl_9CA3:
 - D 0 - - - 0x001CF2 00:9CE2: 17        .byte $17   ; 40
 - D 0 - - - 0x001CF3 00:9CE3: 17        .byte $17   ; 41 bzk bug, other 2 tables should have 41 index as well
 
-;6 staff pieces check
-;this code below is check if player has all staff pieces,
-;if player doesnt have all of them, it hides the exit,
-;if player has all of them, the exit is revealed
+; 6 staff pieces check
+; this code below is check if player has all staff pieces,
+; if player doesnt have all of them, it hides the exit,
+; if player has all of them, the exit is revealed
 
 sub_9CE4:
 C - - - - - 0x001CF4 00:9CE4: 48        PHA
 C - - - - - 0x001CF5 00:9CE5: 84 08     STY ram_0008
 C - - - - - 0x001CF7 00:9CE7: A5 15     LDA ram_current_room
-C - - - - - 0x001CF9 00:9CE9: C9 F3     CMP #con_room_id + $F3	;room ID, in what room to hide exit in
+C - - - - - 0x001CF9 00:9CE9: C9 F3     CMP #con_room_id + $F3	; room ID, in what room to hide exit in
 C - - - - - 0x001CFB 00:9CEB: D0 11     BNE bra_9CFE
 C - - - - - 0x001CFD 00:9CED: 68        PLA
-C - - - - - 0x001CFE 00:9CEE: C9 08     CMP #$08	;what exit is hidden (control+f "tbl_9D42" for possible values)
+C - - - - - 0x001CFE 00:9CEE: C9 08     CMP #$08	; what exit is hidden (control+f "tbl_9D42" for possible values)
 C - - - - - 0x001D00 00:9CF0: D0 4B     BNE bra_9D3D
 C - - - - - 0x001D02 00:9CF2: AD 95 07  LDA ram_staff_pieces
-C - - - - - 0x001D05 00:9CF5: C9 3F     CMP #$3F	;how many staff pieces are required, 3F = all
+C - - - - - 0x001D05 00:9CF5: C9 3F     CMP #$3F	; how many staff pieces are required, 3F = all
 C - - - - - 0x001D07 00:9CF7: F0 44     BEQ bra_9D3D    ; if all pieces collected
 C - - - - - 0x001D09 00:9CF9: A9 00     LDA #$00
 C - - - - - 0x001D0B 00:9CFB: 4C 2C 9D  JMP loc_9D2C
@@ -4734,13 +4734,13 @@ C - - - - - 0x001D4F 00:9D3F: A9 FF     LDA #$FF
 C - - - - - 0x001D51 00:9D41: 60        RTS
 
 
-;Keys and detonators
-;this part hides exits.
+; Keys and detonators
+; this part hides exits.
 
-;first byte is the room ID
-;second byte is what item ID "opens" the exit
-;third byte, intial status, 00 invisible, FF visible
-;fourth byte values:
+; first byte is the room ID
+; second byte is what item ID "opens" the exit
+; third byte, intial status, 00 invisible, FF visible
+; fourth byte values:
 ; 01 = SW bottom-left
 ; 02 = SE bottom-right
 ; 04 = NE top-right
@@ -4805,7 +4805,7 @@ tbl_9D42:
 
 - D 0 - I - 0x001D7E 00:9D6E: FF        .byte $FF   ; end token
 
-;5 staff pieces check
+; 5 staff pieces check
 
 sub_9D6F:
 C - - - - - 0x001D7F 00:9D6F: AD 6A 07  LDA ram_076A
@@ -4816,11 +4816,11 @@ C - - - - - 0x001D88 00:9D78: A9 9D     LDA #> tbl_9DD3
 C - - - - - 0x001D8A 00:9D7A: 85 23     STA ram_0023
 C - - - - - 0x001D8C 00:9D7C: A0 00     LDY #$00
 C - - - - - 0x001D8E 00:9D7E: A5 15     LDA ram_current_room
-C - - - - - 0x001D90 00:9D80: C9 E0     CMP #con_room_id + $E0	;in what room all sprites are hidden until 5 staff pieces are collected
+C - - - - - 0x001D90 00:9D80: C9 E0     CMP #con_room_id + $E0	; in what room all sprites are hidden until 5 staff pieces are collected
 C - - - - - 0x001D92 00:9D82: D0 0F     BNE bra_9D93
 C - - - - - 0x001D94 00:9D84: AD 95 07  LDA ram_staff_pieces
 C - - - - - 0x001D97 00:9D87: 29 1F     AND #$1F
-C - - - - - 0x001D99 00:9D89: C9 1F     CMP #$1F	;how many staff pieces are required, 1F = 5
+C - - - - - 0x001D99 00:9D89: C9 1F     CMP #$1F	; how many staff pieces are required, 1F = 5
 C - - - - - 0x001D9B 00:9D8B: F0 45     BEQ bra_9DD2_RTS
 - - - - - - 0x001D9D 00:9D8D: A0 03     LDY #$03
 - - - - - - 0x001D9F 00:9D8F: A9 FF     LDA #$FF
@@ -4874,84 +4874,84 @@ C - - - - - 0x001DDF 00:9DCF: 4C 93 9D  JMP loc_9D93_loop
 bra_9DD2_RTS:
 C - - - - - 0x001DE2 00:9DD2: 60        RTS
 
-;more detonator and key stuff
-;This part hides/reveals sprites.
+; more detonator and key stuff
+; This part hides/reveals sprites.
 
-;So room ID is the room, and sprite ID is what causes status to flip and fourth decides which sprite.
-;So how the game makes detonator to go into "used" state is by making the active one intially visible,
-;and due to its effect it causes itself to go invisible, and because of the part 1 table it revels the exit, 
-;and then another one is used to make the triggered detonator to visible.
-;the 5&6-staff piece-sprites/exit-appear are seperate checks.
+; So room ID is the room, and sprite ID is what causes status to flip and fourth decides which sprite.
+; So how the game makes detonator to go into "used" state is by making the active one intially visible,
+; and due to its effect it causes itself to go invisible, and because of the part 1 table it revels the exit, 
+; and then another one is used to make the triggered detonator to visible.
+; the 5&6-staff piece-sprites/exit-appear are seperate checks.
 
 
-;first byte, room ID
-;second byte, what sprite ID triggers the effect
-;third byte, intial status, 00 invisible, FF visible
-;fourth byte:
-;00 nothing, sprite is visible
-;01 sprite slot 1 
-;02 sprite slot 2
-;03 sprite slots 2&3
-;04 sprite slot 3
-;05 sprite slots 1&3
-;06 sprite slots 2&3
-;07 ALL sprites
-;rest repeats same starting from 00
-;note, these were tested on room with all three sprite slots used
+; first byte, room ID
+; second byte, what sprite ID triggers the effect
+; third byte, intial status, 00 invisible, FF visible
+; fourth byte:
+; 00 nothing, sprite is visible
+; 01 sprite slot 1 
+; 02 sprite slot 2
+; 03 sprite slots 2&3
+; 04 sprite slot 3
+; 05 sprite slots 1&3
+; 06 sprite slots 2&3
+; 07 ALL sprites
+; rest repeats same starting from 00
+; note, these were tested on room with all three sprite slots used
 
 
 
 tbl_9DD3:
 
-;detonator in room E4
+; detonator in room E4
 - D 0 - I - 0x001DE3 00:9DD3: E4        .byte con_room_id + $E4   ; room ID
 - D 0 - I - 0x001DE4 00:9DD4: FE        .byte $FE   ; sprite 29 detonator
 - D 0 - I - 0x001DE5 00:9DD5: 00        .byte $00   ; invisible
 - D 0 - I - 0x001DE6 00:9DD6: 01        .byte $01   ; sprite slot 1, triggered detonator
-;detonator in room E4
+; detonator in room E4
 - D 0 - I - 0x001DE7 00:9DD7: E4        .byte con_room_id + $E4   ; room ID
 - D 0 - I - 0x001DE8 00:9DD8: FE        .byte $FE   ; sprite 29 detonator
 - D 0 - I - 0x001DE9 00:9DD9: FF        .byte $FF   ; visible
 - D 0 - I - 0x001DEA 00:9DDA: 02        .byte $02   ; sprite slot 2, detonator
 
-;blasting bomb in room D2
-;so triggering detanator sprite 29 causes sprite slot 2 to go "invisible"
+; blasting bomb in room D2
+; so triggering detanator sprite 29 causes sprite slot 2 to go "invisible"
 - D 0 - I - 0x001DEB 00:9DDB: D2        .byte con_room_id + $D2   ; room ID
 - D 0 - I - 0x001DEC 00:9DDC: FE        .byte $FE   ; sprite 29 detonator
 - D 0 - I - 0x001DED 00:9DDD: FF        .byte $FF   ; visible
 - D 0 - I - 0x001DEE 00:9DDE: 02        .byte $02   ; sprite slot 2, blasting bomb
 
-;This makes sprites appear in room 0C
+; This makes sprites appear in room 0C
 - D 0 - I - 0x001DEF 00:9DDF: 0C        .byte con_room_id + $0C   ; room ID
 - D 0 - I - 0x001DF0 00:9DE0: D1        .byte $D1   ; Sprite ID, key D1
 - D 0 - I - 0x001DF1 00:9DE1: 00        .byte $00   ; invisible
 - D 0 - I - 0x001DF2 00:9DE2: 03        .byte $03   ; sprite slots 2&3
 
-;detanator
+; detanator
 - D 0 - I - 0x001DF3 00:9DE3: 46        .byte con_room_id + $46   ; room ID
 - D 0 - I - 0x001DF4 00:9DE4: FF        .byte $FF   ; sprite 2B detonator
 - D 0 - I - 0x001DF5 00:9DE5: 00        .byte $00   ; invisible
 - D 0 - I - 0x001DF6 00:9DE6: 01        .byte $01   ; sprite slot 1
 
-;detanator
+; detanator
 - D 0 - I - 0x001DF7 00:9DE7: 46        .byte con_room_id + $46   ; room ID
 - D 0 - I - 0x001DF8 00:9DE8: FF        .byte $FF   ; sprite 2B detonator
 - D 0 - I - 0x001DF9 00:9DE9: FF        .byte $FF   ; visible
 - D 0 - I - 0x001DFA 00:9DEA: 02        .byte $02   ; sprite slot 2
 
-;blasting bomb
+; blasting bomb
 - D 0 - I - 0x001DFB 00:9DEB: 45        .byte con_room_id + $45   ; room ID
 - D 0 - I - 0x001DFC 00:9DEC: FF        .byte $FF   ; sprite 2B detonator
 - D 0 - I - 0x001DFD 00:9DED: FF        .byte $FF   ; visible
 - D 0 - I - 0x001DFE 00:9DEE: 01        .byte $01   ; sprite slot 1
 
-;detanator
+; detanator
 - D 0 - I - 0x001DFF 00:9DEF: FA        .byte con_room_id + $FA   ; room ID
 - D 0 - I - 0x001E00 00:9DF0: FD        .byte $FD   ; sprite 2D detonator
 - D 0 - I - 0x001E01 00:9DF1: 00        .byte $00   ; invisible
 - D 0 - I - 0x001E02 00:9DF2: 01        .byte $01   ; sprite slot 1
 
-;detanator
+; detanator
 - D 0 - I - 0x001E03 00:9DF3: FA        .byte con_room_id + $FA   ; room ID
 - D 0 - I - 0x001E04 00:9DF4: FD        .byte $FD   ; sprite 2D detonator
 - D 0 - I - 0x001E05 00:9DF5: FF        .byte $FF   ; visible
@@ -5202,9 +5202,9 @@ tbl_9EE5_enemy_handler_lo:
 - D 0 - - - 0x001F36 00:9F26: E5        .byte < ( ofs_enemy_handler_9FE6_41 - 1 )   ; 
 
 
-;Enemy stuff
+; Enemy stuff
 
-;Detonator #1/room E4
+; Detonator #1/room E4
 ofs_enemy_handler_9F27_29:
 C - - - - - 0x001F37 00:9F27: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x001F3A 00:9F2A: 29 20     AND #$20
@@ -5225,14 +5225,14 @@ C - - - - - 0x001F5A 00:9F4A: 8D 9C 07  STA ram_079C
 C - - - - - 0x001F5D 00:9F4D: A9 09     LDA #con_sfx_09
 C - - - - - 0x001F5F 00:9F4F: 8D 8E 07  STA ram_sfx_1
 bra_9F52:
-;Triggered detonator #1/room E4
+; Triggered detonator #1/room E4
 ofs_enemy_handler_9F52_2A:
 C - - - - - 0x001F62 00:9F52: A9 80     LDA #$80
 C - - - - - 0x001F64 00:9F54: 9D 40 07  STA ram_obj_direction_1,X
 C - - - - - 0x001F67 00:9F57: 4C 7E 99  JMP loc_997E
 
 
-;Detonator #2/room 46
+; Detonator #2/room 46
 ofs_enemy_handler_9F5A_2B:
 ; bzk optimize, same as 0x001F37 except write to 079C
 C - - - - - 0x001F6A 00:9F5A: BD 40 07  LDA ram_obj_direction_1,X
@@ -5254,7 +5254,7 @@ C - - - - - 0x001F8D 00:9F7D: 8D 9C 07  STA ram_079C
 C - - - - - 0x001F90 00:9F80: A9 09     LDA #con_sfx_09
 C - - - - - 0x001F92 00:9F82: 8D 8E 07  STA ram_sfx_1
 bra_9F85:
-;triggered detonator #2/room 46
+; triggered detonator #2/room 46
 ofs_enemy_handler_9F85_2C:
 ; bzk optimize, same as 0x001F62
 C - - - - - 0x001F95 00:9F85: A9 80     LDA #$80
@@ -5262,7 +5262,7 @@ C - - - - - 0x001F97 00:9F87: 9D 40 07  STA ram_obj_direction_1,X
 C - - - - - 0x001F9A 00:9F8A: 4C 7E 99  JMP loc_997E
 
 
-;Detonator #3/room FA
+; Detonator #3/room FA
 ofs_enemy_handler_9F8D_2D:
 ; bzk optimize, same as 0x001F37 except write to 079C
 C - - - - - 0x001F9D 00:9F8D: BD 40 07  LDA ram_obj_direction_1,X
@@ -5284,7 +5284,7 @@ C - - - - - 0x001FC0 00:9FB0: 8D 9C 07  STA ram_079C
 C - - - - - 0x001FC3 00:9FB3: A9 09     LDA #con_sfx_09
 C - - - - - 0x001FC5 00:9FB5: 8D 8E 07  STA ram_sfx_1
 bra_9FB8:
-;Triggered detonator #3/room FA
+; Triggered detonator #3/room FA
 ofs_enemy_handler_9FB8_2E:
 ; bzk optimize, same as 0x001F62
 C - - - - - 0x001FC8 00:9FB8: A9 80     LDA #$80
@@ -5292,7 +5292,7 @@ C - - - - - 0x001FCA 00:9FBA: 9D 40 07  STA ram_obj_direction_1,X
 C - - - - - 0x001FCD 00:9FBD: 4C 7E 99  JMP loc_997E
 
 
-;Blasting bomb
+; Blasting bomb
 ofs_enemy_handler_9FC0_25:
 C - - - - - 0x001FD0 00:9FC0: A5 21     LDA ram_frame_counter
 C - - - - - 0x001FD2 00:9FC2: 4A        LSR
@@ -5311,25 +5311,25 @@ bra_9FD7:
 C - - - - - 0x001FE7 00:9FD7: 4C 7E 99  JMP loc_997E
 
 
-;spider, that moves counter-clock wise and climbs up walls, only used in room DD
+; spider, that moves counter-clock wise and climbs up walls, only used in room DD
 ofs_enemy_handler_9FDA_40:
-C - - - - - 0x001FEA 00:9FDA: 20 E4 A2  JSR sub_A2E4_set_animation_4	;get graphics
-C - - - - - 0x001FED 00:9FDD: 4C EF 9F  JMP loc_9FEF					;jump to AI
+C - - - - - 0x001FEA 00:9FDA: 20 E4 A2  JSR sub_A2E4_set_animation_4	; get graphics
+C - - - - - 0x001FED 00:9FDD: 4C EF 9F  JMP loc_9FEF					; jump to AI
 
 
-;Troll that moves counter-clock wise and climbs up walls, only used in room 8A
-;lots of duplicates? Removed sprites, as these ID's feel little random?
+; Troll that moves counter-clock wise and climbs up walls, only used in room 8A
+; lots of duplicates? Removed sprites, as these ID's feel little random?
 ofs_enemy_handler_9FE0_1C:
 ofs_enemy_handler_9FE0_1F:
 ofs_enemy_handler_9FE0_38:
 ofs_enemy_handler_9FE0_39:
 ofs_enemy_handler_9FE0_3A:
-C - - - - - 0x001FF0 00:9FE0: 20 47 A3  JSR sub_A347_set_animation_7	;get graphics
-C - - - - - 0x001FF3 00:9FE3: 4C EF 9F  JMP loc_9FEF					;jump to AI
+C - - - - - 0x001FF0 00:9FE0: 20 47 A3  JSR sub_A347_set_animation_7	; get graphics
+C - - - - - 0x001FF3 00:9FE3: 4C EF 9F  JMP loc_9FEF					; jump to AI
 
 
-;ghost that moves counter-clock wise and climbs up walls, only used in room AC
-;also lots of removed sprites
+; ghost that moves counter-clock wise and climbs up walls, only used in room AC
+; also lots of removed sprites
 ofs_enemy_handler_9FE6_1D:
 ofs_enemy_handler_9FE6_20:
 ofs_enemy_handler_9FE6_23:
@@ -5337,21 +5337,21 @@ ofs_enemy_handler_9FE6_3B:
 ofs_enemy_handler_9FE6_3C:
 ofs_enemy_handler_9FE6_3D:
 ofs_enemy_handler_9FE6_41:
-C - - - - - 0x001FF6 00:9FE6: 20 2D A3  JSR sub_A32D_set_animation_6	;get graphics
-C - - - - - 0x001FF9 00:9FE9: 4C EF 9F  JMP loc_9FEF					;jump to AI
+C - - - - - 0x001FF6 00:9FE6: 20 2D A3  JSR sub_A32D_set_animation_6	; get graphics
+C - - - - - 0x001FF9 00:9FE9: 4C EF 9F  JMP loc_9FEF					; jump to AI
 
 
-;skeleton that moves counter-clock wise and climbs up walls, only used in room AC
+; skeleton that moves counter-clock wise and climbs up walls, only used in room AC
 ofs_enemy_handler_9FEC_1E:
 ofs_enemy_handler_9FEC_21:
 ofs_enemy_handler_9FEC_22:
 ofs_enemy_handler_9FEC_3E:
 ofs_enemy_handler_9FEC_3F:
-C - - - - - 0x001FFC 00:9FEC: 20 0E A3  JSR sub_A30E_set_animation_5	;get graphics
-loc_9FEF:	;jump to this AI
-;AI for enemy that has gravity and moves in circles,
-;and changes direction when it hits wall or block
-;or climbs it, its odd
+C - - - - - 0x001FFC 00:9FEC: 20 0E A3  JSR sub_A30E_set_animation_5	; get graphics
+loc_9FEF:	; jump to this AI
+; AI for enemy that has gravity and moves in circles,
+; and changes direction when it hits wall or block
+; or climbs it, its odd
 C D 0 - - - 0x001FFF 00:9FEF: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
 - D 0 - I - 0x002002 00:9FF2: 4E        .byte con_bsw_1A
 C - - - - - 0x002003 00:9FF3: BD 40 07  LDA ram_obj_direction_1,X
@@ -5445,24 +5445,24 @@ bra_A06F:
 C - - - - - 0x00207F 00:A06F: 4C 7E 99  JMP loc_997E
 
 
-;Floating block that falls when you stand on top of it
+; Floating block that falls when you stand on top of it
 ofs_enemy_handler_A072_07:
 C - - - - - 0x002082 00:A072: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x002085 00:A075: 09 80     ORA #$80
 C - - - - - 0x002087 00:A077: 9D 40 07  STA ram_obj_direction_1,X
 C - - - - - 0x00208A 00:A07A: 20 7E 99  JSR sub_997E
-C - - - - - 0x00208D 00:A07D: 4C 8D A0  JMP loc_A08D	;jump to code that makes it fall down
+C - - - - - 0x00208D 00:A07D: 4C 8D A0  JMP loc_A08D	; jump to code that makes it fall down
 
 
 ; X/Y-moving thin platform that falls down when player stand on top of it
-;unused!
+; unused!
 ofs_enemy_handler_A080_09:
 - - - - - - 0x002090 00:A080: 20 CC A1  JSR sub_A1CC
 - - - - - - 0x002093 00:A083: DE 50 07  DEC ram_0750_obj,X
 - - - - - - 0x002096 00:A086: 10 27     BPL bra_A0AF_RTS
 - - - - - - 0x002098 00:A088: A9 04     LDA #$04
 - - - - - - 0x00209A 00:A08A: 9D 50 07  STA ram_0750_obj,X
-loc_A08D:	;makes block/platform fall down when player stand on it
+loc_A08D:	; makes block/platform fall down when player stand on it
 C D 1 - - - 0x00209D 00:A08D: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x0020A0 00:A090: 29 20     AND #$20
 C - - - - - 0x0020A2 00:A092: F0 1B     BEQ bra_A0AF_RTS
@@ -5514,14 +5514,14 @@ C - - - - - 0x0020ED 00:A0DD: 4C 7E 99  JMP loc_997E
 
 
 ; Leg monster, moves randomly
-;unused!
+; unused!
 ofs_enemy_handler_A0E0_35:
 - - - - - - 0x0020F0 00:A0E0: 20 96 A2  JSR sub_A296_set_animation_1
 - - - - - - 0x0020F3 00:A0E3: 4C F2 A1  JMP loc_A1F2
 
 
 ; Tusk Demon, moves radomly
-;unused!
+; unused!
 ofs_enemy_handler_A0E6_32:
 - - - - - - 0x0020F6 00:A0E6: 20 B0 A2  JSR sub_A2B0_set_animation_2
 - - - - - - 0x0020F9 00:A0E9: 4C F2 A1  JMP loc_A1F2
@@ -5534,7 +5534,7 @@ C - - - - - 0x0020FF 00:A0EF: 4C F2 A1  JMP loc_A1F2
 
 
 ; Lanky three legged spider, moves randomly
-;unused!
+; unused!
 ofs_enemy_handler_A0F2_26:
 - - - - - - 0x002102 00:A0F2: 20 E4 A2  JSR sub_A2E4_set_animation_4
 - - - - - - 0x002105 00:A0F5: 4C F2 A1  JMP loc_A1F2
@@ -5559,7 +5559,7 @@ C - - - - - 0x002117 00:A107: 4C F2 A1  JMP loc_A1F2
 
 
 ; Leg monster, moves back and forth
-;unused!
+; unused!
 ofs_enemy_handler_A10A_36:
 - - - - - - 0x00211A 00:A10A: 20 96 A2  JSR sub_A296_set_animation_1
 - - - - - - 0x00211D 00:A10D: 4C CC A1  JMP loc_A1CC
@@ -5578,7 +5578,7 @@ C - - - - - 0x002129 00:A119: 4C CC A1  JMP loc_A1CC
 
 
 ; spider, moves back and forth
-;unused!
+; unused!
 ofs_enemy_handler_A11C_27:
 - - - - - - 0x00212C 00:A11C: 20 E4 A2  JSR sub_A2E4_set_animation_4
 - - - - - - 0x00212F 00:A11F: 4C CC A1  JMP loc_A1CC
@@ -5591,59 +5591,59 @@ C - - - - - 0x002135 00:A125: 4C CC A1  JMP loc_A1CC
 
 
 ; Skeleton that moves back and forth 
-;unused!
+; unused!
 ofs_enemy_handler_A128_0D:
 - - - - - - 0x002138 00:A128: 20 0E A3  JSR sub_A30E_set_animation_5
 - - - - - - 0x00213B 00:A12B: 4C CC A1  JMP loc_A1CC
 
 
 ; Leg monster, chases you
-;the only leg monster that gets used in one throw-away room :(
+; the only leg monster that gets used in one throw-away room :(
 ofs_enemy_handler_A12E_37:
 C - - - - - 0x00213E 00:A12E: 20 96 A2  JSR sub_A296_set_animation_1
-C - - - - - 0x002141 00:A131: 4C 5B A1  JMP loc_A15B ;Jump to chancing AI
+C - - - - - 0x002141 00:A131: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
 
 
 ; Tusk Demon, chases you
 ofs_enemy_handler_A134_34:
 C - - - - - 0x002144 00:A134: 20 B0 A2  JSR sub_A2B0_set_animation_2
-C - - - - - 0x002147 00:A137: 4C 5B A1  JMP loc_A15B ;Jump to chancing AI
+C - - - - - 0x002147 00:A137: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
 
 
 ; Worm, chases you
 ofs_enemy_handler_A13A_31:
 C - - - - - 0x00214A 00:A13A: 20 CA A2  JSR sub_A2CA_set_animation_3
-C - - - - - 0x00214D 00:A13D: 4C 5B A1  JMP loc_A15B ;Jump to chancing AI
+C - - - - - 0x00214D 00:A13D: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
 
 
 ; spider, chases you
 ofs_enemy_handler_A140_28:
 C - - - - - 0x002150 00:A140: 20 E4 A2  JSR sub_A2E4_set_animation_4
-C - - - - - 0x002153 00:A143: 4C 5B A1  JMP loc_A15B ;Jump to chancing AI
+C - - - - - 0x002153 00:A143: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
 
 
 ; Ghost that chases you
 ofs_enemy_handler_A146_0F:
 C - - - - - 0x002156 00:A146: 20 2D A3  JSR sub_A32D_set_animation_6
-C - - - - - 0x002159 00:A149: 4C 5B A1  JMP loc_A15B ;Jump to chancing AI
+C - - - - - 0x002159 00:A149: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
 
 
 ; Skeleton that chases you
 ofs_enemy_handler_A14C_10:
 C - - - - - 0x00215C 00:A14C: 20 0E A3  JSR sub_A30E_set_animation_5
-C - - - - - 0x00215F 00:A14F: 4C 5B A1  JMP loc_A15B ;Jump to chancing AI
+C - - - - - 0x00215F 00:A14F: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
 
 
 ; Troll that chases you
 ofs_enemy_handler_A152_11:
 C - - - - - 0x002162 00:A152: 20 47 A3  JSR sub_A347_set_animation_7
-C - - - - - 0x002165 00:A155: 4C 5B A1  JMP loc_A15B ;Jump to chancing AI
+C - - - - - 0x002165 00:A155: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
 
 
 ; Slime Ball that chases you
 ofs_enemy_handler_A158_12:
 C - - - - - 0x002168 00:A158: 20 66 A3  JSR sub_A366_set_animation_8
-loc_A15B:	;AI for enemy that chases the player
+loc_A15B:	; AI for enemy that chases the player
 C D 1 - - - 0x00216B 00:A15B: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x00216E 00:A15E: 20 7C A3  JSR sub_A37C
 C - - - - - 0x002171 00:A161: A0 FF     LDY #$FF
@@ -5703,8 +5703,8 @@ bra_A1BA:
 C - - - - - 0x0021CA 00:A1BA: 4C 7E 99  JMP loc_997E
 
 
-;moving X/Y moving thin platform
-;has same Z-gravity as the one-off crystall ball
+; moving X/Y moving thin platform
+; has same Z-gravity as the one-off crystall ball
 ofs_enemy_handler_A1BD_1A:
 C - - - - - 0x0021CD 00:A1BD: B5 35     LDA ram_pos_Z_obj,X
 C - - - - - 0x0021CF 00:A1BF: 29 F8     AND #$F8
@@ -5714,7 +5714,7 @@ C - - - - - 0x0021D4 00:A1C4: 95 35     STA ram_pos_Z_obj,X
 C - - - - - 0x0021D6 00:A1C6: 4C CC A1  JMP loc_A1CC
 
 
-;Troll that moves back and forth 
+; Troll that moves back and forth 
 ofs_enemy_handler_A1C9_0E:
 C - - - - - 0x0021D9 00:A1C9: 20 47 A3  JSR sub_A347_set_animation_7
 loc_A1CC:
@@ -5742,7 +5742,7 @@ C - - - - - 0x0021FE 00:A1EE: 60        RTS
 ; Slime Ball that moves around randomly
 ofs_enemy_handler_A1EF_05:
 C - - - - - 0x0021FF 00:A1EF: 20 66 A3  JSR sub_A366_set_animation_8
-loc_A1F2:	;AI for enemies that move around randomly
+loc_A1F2:	; AI for enemies that move around randomly
 C D 1 - - - 0x002202 00:A1F2: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x002205 00:A1F5: 20 7C A3  JSR sub_A37C
 C - - - - - 0x002208 00:A1F8: 90 13     BCC bra_A20D
@@ -5771,7 +5771,7 @@ bra_A221:
 C - - - - - 0x002231 00:A221: 4C 7E 99  JMP loc_997E
 
 
-;Troll that moves in circles, but goes counter-clock wise
+; Troll that moves in circles, but goes counter-clock wise
 ofs_enemy_handler_A224_02:
 C - - - - - 0x002234 00:A224: 20 47 A3  JSR sub_A347_set_animation_7
 C - - - - - 0x002237 00:A227: BD 48 07  LDA ram_0748_obj,X
@@ -5794,7 +5794,7 @@ bra_A248:
 C - - - - - 0x002258 00:A248: 4C 7E 99  JMP loc_997E
 
 
-;Troll that choses direction at random, only used in room 18
+; Troll that choses direction at random, only used in room 18
 ofs_enemy_handler_A24B_03:
 C - - - - - 0x00225B 00:A24B: 20 47 A3  JSR sub_A347_set_animation_7
 C - - - - - 0x00225E 00:A24E: BD 48 07  LDA ram_0748_obj,X
@@ -5815,7 +5815,7 @@ bra_A26C:
 C - - - - - 0x00227C 00:A26C: 4C 7E 99  JMP loc_997E
 
 
-;Troll that moves in circles
+; Troll that moves in circles
 ofs_enemy_handler_A26F_01:
 C - - - - - 0x00227F 00:A26F: 20 47 A3  JSR sub_A347_set_animation_7
 C - - - - - 0x002282 00:A272: BD 48 07  LDA ram_0748_obj,X
@@ -5838,9 +5838,9 @@ bra_A293:
 C - - - - - 0x0022A3 00:A293: 4C 7E 99  JMP loc_997E
 
 
-;Animations/graphics for enemies
+; Animations/graphics for enemies
 
-;Leg monster enemy
+; Leg monster enemy
 sub_A296_set_animation_1:
 ; bzk optimize, a common subroutine for all cases below
 ; copy from 0x0022A6 to 0x0022AD + RTS
@@ -5866,7 +5866,7 @@ tbl_A2AC:
 - D 1 - - - 0x0022BF 00:A2AF: 40        .byte $40   ; 03
 
 
-;Tusk demon enemy
+; Tusk demon enemy
 sub_A2B0_set_animation_2:
 C - - - - - 0x0022C0 00:A2B0: A5 21     LDA ram_frame_counter
 C - - - - - 0x0022C2 00:A2B2: 4A        LSR
@@ -5889,7 +5889,7 @@ tbl_A2C6:
 - D 1 - - - 0x0022D9 00:A2C9: 75        .byte $75   ; 03
 
 
-;Worm enemy
+; Worm enemy
 sub_A2CA_set_animation_3:
 C - - - - - 0x0022DA 00:A2CA: A5 21     LDA ram_frame_counter
 C - - - - - 0x0022DC 00:A2CC: 4A        LSR
@@ -5912,7 +5912,7 @@ tbl_A2E0:
 - D 1 - - - 0x0022F3 00:A2E3: 6D        .byte $6D   ; 03
 
 
-;Spider enemy
+; Spider enemy
 sub_A2E4_set_animation_4:
 C - - - - - 0x0022F4 00:A2E4: A5 21     LDA ram_frame_counter
 C - - - - - 0x0022F6 00:A2E6: 4A        LSR
@@ -5942,7 +5942,7 @@ C - - - - - 0x00231A 00:A30A: 9D 38 07  STA ram_animation_id,X
 C - - - - - 0x00231D 00:A30D: 60        RTS
 
 
-;skeleton enemy
+; skeleton enemy
 sub_A30E_set_animation_5:
 C - - - - - 0x00231E 00:A30E: A5 21     LDA ram_frame_counter
 C - - - - - 0x002320 00:A310: 4A        LSR
@@ -5968,7 +5968,7 @@ tbl_A329:
 - D 1 - - - 0x00233C 00:A32C: 32        .byte $32   ; 03
 
 
-;ghost enemy
+; ghost enemy
 sub_A32D_set_animation_6:
 C - - - - - 0x00233D 00:A32D: A5 21     LDA ram_frame_counter
 C - - - - - 0x00233F 00:A32F: 4A        LSR
@@ -5991,7 +5991,7 @@ tbl_A343:
 - D 1 - - - 0x002356 00:A346: 2A        .byte $2A   ; 03
 
 
-;troll enemy
+; troll enemy
 sub_A347_set_animation_7:
 C - - - - - 0x002357 00:A347: A5 21     LDA ram_frame_counter
 C - - - - - 0x002359 00:A349: 4A        LSR
@@ -6017,7 +6017,7 @@ tbl_A362:
 - D 1 - - - 0x002375 00:A365: 0D        .byte $0D   ; 03
 
 
-;slime ball enemy
+; slime ball enemy
 sub_A366_set_animation_8:
 C - - - - - 0x002376 00:A366: A5 21     LDA ram_frame_counter
 C - - - - - 0x002378 00:A368: 4A        LSR
@@ -6036,7 +6036,7 @@ tbl_A375:
 - D 1 - - - 0x002388 00:A378: 19        .byte $19   ; 03
 
 
-;enemy is frozen by yellow potion?
+; enemy is frozen by yellow potion?
 bra_A379_object_frozen:
 C - - - - - 0x002389 00:A379: 68        PLA
 C - - - - - 0x00238A 00:A37A: 18        CLC
@@ -9288,24 +9288,24 @@ C - - - - - 0x0037E2 00:B7D2: AD 1F 01  LDA ram_buffer_palette + $1F
 C - - - - - 0x0037E5 00:B7D5: 8D 07 20  STA $2007
 C - - - - - 0x0037E8 00:B7D8: 60        RTS
 
-;default palettes for rooms, sprites and player
+; default palettes for rooms, sprites and player
 
 tbl_B7D9_palette_1:
 - D 1 - - - 0x0037E9 00:B7D9: 0F        .byte $0F, $16, $29, $20   ; default room palette
 - D 1 - - - 0x0037ED 00:B7DD: 0F        .byte $0F, $16, $22, $30   ; not used
 - D 1 - - - 0x0037F1 00:B7E1: 0F        .byte $0F, $20, $16, $26   ; not used
 - D 1 - - - 0x0037F5 00:B7E5: 0F        .byte $0F, $0F, $0F, $0F   ; not used
-;gets overriden by room data
-;I dont think last three are ever used outside of this
+; gets overriden by room data
+; I dont think last three are ever used outside of this
 
 - D 1 - - - 0x0037F9 00:B7E9: 0F        .byte $0F, $25, $13, $0F   ; Player palette
 - D 1 - - - 0x0037FD 00:B7ED: 0F        .byte $0F, $14, $25, $0F   ; default sprite 1 palette
 - D 1 - - - 0x003801 00:B7F1: 0F        .byte $0F, $15, $25, $0F   ; default sprite 2 palette
 - D 1 - - - 0x003805 00:B7F5: 0F        .byte $0F, $16, $25, $0F   ; default sprite 3 palette
-;last three gets overriden by room data
+; last three gets overriden by room data
 
 
-;pause menu palettes
+; pause menu palettes
 
 tbl_B7F9_palette_2:
 - D 1 - - - 0x003809 00:B7F9: 0F        .byte $0F, $37, $17, $27   ; map
@@ -9698,9 +9698,9 @@ C - - - - - 0x003ABA 00:BAAA: A9 00     LDA #$00
 C - - - - - 0x003ABC 00:BAAC: 8D A5 07  STA ram_07A5
 C - - - - - 0x003ABF 00:BAAF: 4C E2 BB  JMP loc_BBE2
 
-;gameplay demo
+; gameplay demo
 
-;starting room ID's
+; starting room ID's
 tbl_BAB2:
 - D 1 - - - 0x003AC2 00:BAB2: 0A        .byte con_room_id + $0A   ; 01, 2nd
 - D 1 - - - 0x003AC3 00:BAB3: 11        .byte con_room_id + $11   ; 02, 3rd
@@ -9719,7 +9719,7 @@ tbl_BAB9:
 - D 1 - - - 0x003ACE 00:BABE: 02        .byte $02   ; 06
 - - - - - - 0x003ACF 00:BABF: 01        .byte $01   ; 07
 
-;pointers
+; pointers
 tbl_BAC0_lo:
 - D 1 - - - 0x003AD0 00:BAC0: CE        .byte < _off001_BACE_01   ; 
 - D 1 - - - 0x003AD1 00:BAC1: F5        .byte < _off001_BAF5_02   ; 
@@ -9739,7 +9739,7 @@ tbl_BAC7_hi:
 - - - - - - 0x003ADD 00:BACD: BA        .byte > _off001_BACE_07   ; 
 
 
-;input data?
+; input data?
 _off001_BACE_01:
 _off001_BACE_07:
 - D 1 - I - 0x003ADE 00:BACE: FE        .byte $FE   ; 
@@ -9783,7 +9783,7 @@ _off001_BACE_07:
 - D 1 - I - 0x003B04 00:BAF4: FF        .byte $FF   ; end token
 
 
-;input data?
+; input data?
 _off001_BAF5_02:
 - D 1 - I - 0x003B05 00:BAF5: FE        .byte $FE   ; 
 - D 1 - I - 0x003B06 00:BAF6: 0A        .byte $0A   ; 
@@ -9840,7 +9840,7 @@ _off001_BAF5_02:
 - D 1 - I - 0x003B39 00:BB29: FF        .byte $FF   ; end token
 
 
-;input data?
+; input data?
 _off001_BB2A_03:
 - D 1 - I - 0x003B3A 00:BB2A: FE        .byte $FE   ; 
 - D 1 - I - 0x003B3B 00:BB2B: 01        .byte $01   ; 
@@ -9875,7 +9875,7 @@ _off001_BB2A_03:
 - D 1 - I - 0x003B58 00:BB48: FF        .byte $FF   ; end token
 
 
-;input data?
+; input data?
 _off001_BB49_04:
 - D 1 - I - 0x003B59 00:BB49: FE        .byte $FE   ; 
 - D 1 - I - 0x003B5A 00:BB4A: 01        .byte $01   ; 
@@ -9910,7 +9910,7 @@ _off001_BB49_04:
 - D 1 - I - 0x003B77 00:BB67: FF        .byte $FF   ; end token
 
 
-;input data?
+; input data?
 _off001_BB68_05:
 - D 1 - I - 0x003B78 00:BB68: FE        .byte $FE   ; 
 - D 1 - I - 0x003B79 00:BB69: 01        .byte $01   ; 
@@ -9955,7 +9955,7 @@ _off001_BB68_05:
 - D 1 - I - 0x003BA0 00:BB90: FF        .byte $FF   ; end token
 
 
-;input data?
+; input data?
 _off001_BB91_06:
 - D 1 - I - 0x003BA1 00:BB91: FE        .byte $FE   ; 
 - D 1 - I - 0x003BA2 00:BB92: 01        .byte $01   ; 
@@ -10073,9 +10073,9 @@ bra_BC26_loop:
 - - - - - - 0x003C3D 00:BC2D: 10 F7     BPL bra_BC26_loop
 - - - - - - 0x003C3F 00:BC2F: 60        RTS
 
-;logo palettes
-;palettes for "csg imagesoft inc" presents, title screen
-;intial palette for "csg imagesoft inc" presents
+; logo palettes
+; palettes for "csg imagesoft inc" presents, title screen
+; intial palette for "csg imagesoft inc" presents
 tbl_BC30:
 - D 1 - I - 0x003C40 00:BC30: 0F        .byte $0F, $00, $10, $20   ; outside tiles for the "lines"
 - D 1 - I - 0x003C44 00:BC34: 0F        .byte $0F, $2B, $24, $20   ; csg imagesoft inc palette
@@ -10088,7 +10088,7 @@ tbl_BC30:
 - D 1 - I - 0x003C5C 00:BC4C: 0F        .byte $0F, $0F, $0F, $0F   ; blank
 
 
-;palette for "csg imagesoft inc" after "presents" text is done fading in
+; palette for "csg imagesoft inc" after "presents" text is done fading in
 tbl_BC50:
 - D 1 - I - 0x003C60 00:BC50: 0F        .byte $0F, $00, $10, $20   ; outside tiles for the "lines"
 - D 1 - I - 0x003C64 00:BC54: 0F        .byte $0F, $2B, $24, $20   ; csg imagesoft inc palette
@@ -10101,7 +10101,7 @@ tbl_BC50:
 - D 1 - I - 0x003C7C 00:BC6C: 0F        .byte $0F, $0F, $0F, $0F   ; blank
 
 
-;palette for "the end" screen
+; palette for "the end" screen
 tbl_BC70:
 - D 1 - I - 0x003C80 00:BC70: 0F        .byte $0F, $00, $10, $20   ; "the end" & text
 - D 1 - I - 0x003C84 00:BC74: 0F        .byte $0F, $0F, $0F, $0F   ; blank
@@ -10114,8 +10114,8 @@ tbl_BC70:
 - D 1 - I - 0x003C9C 00:BC8C: 0F        .byte $0F, $0F, $0F, $0F   ; blank
 
 
-;title screen palette screen 2 (copyright text)
-;the acual title screen is on bank_01 at "_off003_8B57_00:"
+; title screen palette screen 2 (copyright text)
+; the acual title screen is on bank_01 at "_off003_8B57_00:"
 tbl_BC90:
 - D 1 - - - 0x003CA0 00:BC90: 0F        .byte $0F, $18, $28, $38   ; solstice logo
 - D 1 - - - 0x003CA4 00:BC94: 0F        .byte $0F, $14, $24, $34   ; first text row 
@@ -10946,7 +10946,7 @@ tbl_C113:
 - D 2 - - - 0x00413A 01:C12A: 09        .byte $09   ; 17
 - D 2 - - - 0x00413B 01:C12B: 09        .byte $09   ; 18
 
-;room sizes table
+; room sizes table
 
 tbl_C12C_room_ppu_pos:
 tbl_C12C_room_size_1:

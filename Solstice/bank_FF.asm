@@ -816,28 +816,28 @@ tbl_836F:
 - D 0 - - - 0x018397 06:8387: 09        .byte $09   ; 18
 
 
-;room data
-;for more details, read the full documentation in the _misc folder
+; room data
+; for more details, read the full documentation in the _misc folder
 
 
 
 _off000_8388_A2:
-;room ID #A2 does not exist
+; room ID #A2 does not exist
 _off000_8388_00:
-;room base attributes
+; room base attributes
 - D 0 - I - 0x018398 06:8388: 27        .byte $27, $17, $37   ; room palette
 - D 0 - I - 0x01839B 06:838B: 13        .byte $13   ; room size
-;Sprites
+; Sprites
 - D 0 - I - 0x01839C 06:838C: 00        .byte $00   ; how many sprites
-;walls attributes
+; walls attributes
 - D 0 - I - 0x01839D 06:838D: 40        .byte $40   ; NW wall pattern
 - D 0 - I - 0x01839E 06:838E: FF        .byte $FF   ; NE wall pattern
 - D 0 - I - 0x01839F 06:838F: 00        .byte $00   ; NW wall graphics
 - D 0 - I - 0x0183A0 06:8390: 81        .byte $81   ; NE wall graphics
-;floor attributes
+; floor attributes
 - D 0 - I - 0x0183A1 06:8391: 00        .byte $00   ; secondary tiles
 - D 0 - I - 0x0183A2 06:8392: 00        .byte $00   ; primariry tiles
-;secondary floor tiles
+; secondary floor tiles
 - D 0 - I - 0x0183A3 06:8393: FF        .byte $FF   ; 1st X row
 - D 0 - I - 0x0183A4 06:8394: FF        .byte $FF   ; 2nd X row
 - D 0 - I - 0x0183A5 06:8395: FF        .byte $FF   ; 3rd X row
@@ -845,70 +845,70 @@ _off000_8388_00:
 - - - - - - 0x0183A7 06:8397: FF        .byte $FF   ; 5th X row
 - - - - - - 0x0183A8 06:8398: FF        .byte $FF   ; 6th X row
 - - - - - - 0x0183A9 06:8399: FF        .byte $FF   ; 7th X row
-;room exit positions
+; room exit positions
 - D 0 - I - 0x0183AA 06:839A: 0D        .byte $0D   ; positions
-;1st exit, top-left
+; 1st exit, top-left
 - D 0 - I - 0x0183AB 06:839B: 02        .byte $02   ; Z&X/Y position
 - D 0 - I - 0x0183AC 06:839C: 02        .byte $02   ; destination room ID
-;2nd exit, top-right
+; 2nd exit, top-right
 - D 0 - I - 0x0183AD 06:839D: 18        .byte $18   ; Z&X/Y position
 - D 0 - I - 0x0183AE 06:839E: 01        .byte $01   ; destination room ID
-;3rd exit, bottom-left
+; 3rd exit, bottom-left
 - D 0 - I - 0x0183AF 06:839F: 00        .byte $00   ; Z&X/Y position
 - D 0 - I - 0x0183B0 06:83A0: 0C        .byte $0C   ; destination room ID
-;normal blocks
+; normal blocks
 - D 0 - I - 0x0183B1 06:83A1: 06        .byte $06   ; how many
-;normal block 1
+; normal block 1
 - D 0 - I - 0x0183B2 06:83A2: 00        .byte $00   ; graphics
 - D 0 - I - 0x0183B3 06:83A3: 01        .byte $01   ; X/Y position
 - D 0 - I - 0x0183B4 06:83A4: 00        .byte $00   ; Z position
 - D 0 - I - 0x0183B5 06:83A5: 80        .byte $80   ; tile setting
-;block 2
+; block 2
 - D 0 - I - 0x0183B6 06:83A6: 00        .byte $00   ; graphics
 - D 0 - I - 0x0183B7 06:83A7: 01        .byte $01   ; X/Y position
 - D 0 - I - 0x0183B8 06:83A8: 01        .byte $01   ; Z position
 - D 0 - I - 0x0183B9 06:83A9: 80        .byte $80   ; tile setting
-;block 3
+; block 3
 - D 0 - I - 0x0183BA 06:83AA: 00        .byte $00   ; graphics
 - D 0 - I - 0x0183BB 06:83AB: 01        .byte $01   ; X/Y position
 - D 0 - I - 0x0183BC 06:83AC: 02        .byte $02   ; Z position
 - D 0 - I - 0x0183BD 06:83AD: 80        .byte $80   ; tile setting
-;block 4
+; block 4
 - D 0 - I - 0x0183BE 06:83AE: 00        .byte $00   ; graphics
 - D 0 - I - 0x0183BF 06:83AF: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x0183C0 06:83B0: 00        .byte $00   ; Z position
 - D 0 - I - 0x0183C1 06:83B1: 80        .byte $80   ; tile setting
-;block 5
+; block 5
 - D 0 - I - 0x0183C2 06:83B2: 00        .byte $00   ; graphics
 - D 0 - I - 0x0183C3 06:83B3: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x0183C4 06:83B4: 01        .byte $01   ; Z position
 - D 0 - I - 0x0183C5 06:83B5: 80        .byte $80   ; tile setting
-;block 6
+; block 6
 - D 0 - I - 0x0183C6 06:83B6: 00        .byte $00   ; graphics
 - D 0 - I - 0x0183C7 06:83B7: 21        .byte $21   ; X/Y position
 - D 0 - I - 0x0183C8 06:83B8: 00        .byte $00   ; Z position
 - D 0 - I - 0x0183C9 06:83B9: 80        .byte $80   ; tile setting
-;special blocks
+; special blocks
 - D 0 - I - 0x0183CA 06:83BA: 00        .byte $00   ; how many
 
 
 ; bzk garbage, unused room
 ; early version of room #00 that only has one exit to room #01
 
-;room base attributes
+; room base attributes
 - - - - - - 0x0183CB 06:83BB: 27        .byte $27, $17, $37   ; room palette
 - - - - - - 0x0183CE 06:83BE: 13        .byte $13   ; room size
-;sprites
+; sprites
 - - - - - - 0x0183CF 06:83BF: 00        .byte $00   ; how many
-;walls attributes
+; walls attributes
 - - - - - - 0x0183D0 06:83C0: 00        .byte $00   ; NW wall pattern
 - - - - - - 0x0183D1 06:83C1: FF        .byte $FF   ; NE wall pattern
 - - - - - - 0x0183D2 06:83C2: 00        .byte $00   ; NW wall graphics
 - - - - - - 0x0183D3 06:83C3: 81        .byte $81   ; NE wall graphics
-;floors
+; floors
 - - - - - - 0x0183D4 06:83C4: 00        .byte $00   ; secondary floor tiles
 - - - - - - 0x0183D5 06:83C5: 00        .byte $00   ; primary floor tiles
-;secondary floor tiles
+; secondary floor tiles
 - - - - - - 0x0183D6 06:83C6: FF        .byte $FF   ; 1st X row
 - - - - - - 0x0183D7 06:83C7: FF        .byte $FF   ; 2nd X row
 - - - - - - 0x0183D8 06:83C8: FF        .byte $FF   ; 3rd X row
@@ -916,63 +916,63 @@ _off000_8388_00:
 - - - - - - 0x0183DA 06:83CA: FF        .byte $FF   ; 5th X row
 - - - - - - 0x0183DB 06:83CB: FF        .byte $FF   ; 6th X row
 - - - - - - 0x0183DC 06:83CC: FF        .byte $FF   ; 7th X row
-;room exit positions
+; room exit positions
 - - - - - - 0x0183DD 06:83CD: 04        .byte $04   ; positions
-;1st exit, top-right
+; 1st exit, top-right
 - - - - - - 0x0183DE 06:83CE: 18        .byte $18   ; Z&X/Y position
 - - - - - - 0x0183DF 06:83CF: 01        .byte $01   ; Destination room ID
-;normal blocks
-- - - - - - 0x0183E0 06:83D0: 06        .byte $06   ;how many
-;block 1
+; normal blocks
+- - - - - - 0x0183E0 06:83D0: 06        .byte $06   ; how many
+; block 1
 - - - - - - 0x0183E1 06:83D1: 00        .byte $00   ; graphics
 - - - - - - 0x0183E2 06:83D2: 01        .byte $01   ; X/Y position
 - - - - - - 0x0183E3 06:83D3: 00        .byte $00   ; Z position
 - - - - - - 0x0183E4 06:83D4: 80        .byte $80   ; tile setting
-;block 2
+; block 2
 - - - - - - 0x0183E5 06:83D5: 00        .byte $00   ; graphics
 - - - - - - 0x0183E6 06:83D6: 01        .byte $01   ; X/Y position
 - - - - - - 0x0183E7 06:83D7: 01        .byte $01   ; Z position
 - - - - - - 0x0183E8 06:83D8: 80        .byte $80   ; tile setting
-;block 3
+; block 3
 - - - - - - 0x0183E9 06:83D9: 00        .byte $00   ; graphics
 - - - - - - 0x0183EA 06:83DA: 01        .byte $01   ; X/Y position
 - - - - - - 0x0183EB 06:83DB: 02        .byte $02   ; Z position
 - - - - - - 0x0183EC 06:83DC: 80        .byte $80   ; tile setting
-;block 4
+; block 4
 - - - - - - 0x0183ED 06:83DD: 00        .byte $00   ; graphics
 - - - - - - 0x0183EE 06:83DE: 11        .byte $11   ; X/Y position
 - - - - - - 0x0183EF 06:83DF: 00        .byte $00   ; X/Y position
 - - - - - - 0x0183F0 06:83E0: 80        .byte $80   ; tile setting
-;block 5
+; block 5
 - - - - - - 0x0183F1 06:83E1: 00        .byte $00   ; graphics
 - - - - - - 0x0183F2 06:83E2: 11        .byte $11   ; X/Y position
 - - - - - - 0x0183F3 06:83E3: 01        .byte $01   ; Z position
 - - - - - - 0x0183F4 06:83E4: 80        .byte $80   ; tile setting
-;block 6
+; block 6
 - - - - - - 0x0183F5 06:83E5: 00        .byte $00   ; graphics
 - - - - - - 0x0183F6 06:83E6: 21        .byte $21   ; X/Y position
 - - - - - - 0x0183F7 06:83E7: 00        .byte $00   ; Z position
 - - - - - - 0x0183F8 06:83E8: 80        .byte $80   ; tile setting
-;Sspecial blocks
+; Sspecial blocks
 - - - - - - 0x0183F9 06:83E9: 00        .byte $00   ; how many
 
 
 
 _off000_83EA_01:
-;room base attributes
+; room base attributes
 - D 0 - I - 0x0183FA 06:83EA: 28        .byte $28, $18, $38   ; room palette
 - D 0 - I - 0x0183FD 06:83ED: 17        .byte $17   ; room size
-;sprites
+; sprites
 - D 0 - I - 0x0183FE 06:83EE: 00        .byte $00   ; how many
-;walls attributes
+; walls attributes
 - D 0 - I - 0x0183FF 06:83EF: 40        .byte $40   ; NW wall pattern
 - D 0 - I - 0x018400 06:83F0: 00        .byte $00   ; NE wall pattern
 - D 0 - I - 0x018401 06:83F1: 00        .byte $00   ; NW wall graphics
 - D 0 - I - 0x018402 06:83F2: 00        .byte $00   ; NE wall graphics
-;floors
+; floors
 - D 0 - I - 0x018403 06:83F3: 00        .byte $00   ; secondary floor tiles
 - D 0 - I - 0x018404 06:83F4: 00        .byte $00   ; primary floor tiles
-;secondary floor tiles
+; secondary floor tiles
 - D 0 - I - 0x018405 06:83F5: FF        .byte $FF   ; secondary X floor tiles
 - D 0 - I - 0x018406 06:83F6: FF        .byte $FF   ; 
 - D 0 - I - 0x018407 06:83F7: FF        .byte $FF   ; 
@@ -980,51 +980,51 @@ _off000_83EA_01:
 - - - - - - 0x018409 06:83F9: FF        .byte $FF   ; 
 - - - - - - 0x01840A 06:83FA: FF        .byte $FF   ; 
 - - - - - - 0x01840B 06:83FB: FF        .byte $FF   ; 
-;room exit positions
+; room exit positions
 - D 0 - I - 0x01840C 06:83FC: 09        .byte $09   ; exit(s) position(s)
-;exit 1
+; exit 1
 - D 0 - I - 0x01840D 06:83FD: 00        .byte $00   ; Z, X/Y position
 - D 0 - I - 0x01840E 06:83FE: 05        .byte $05   ; destination room ID
-;exit 2
+; exit 2
 - D 0 - I - 0x01840F 06:83FF: 01        .byte $01   ; Z, X/Y position
 - D 0 - I - 0x018410 06:8400: 00        .byte $00   ; destination room ID
-;normal blocks
+; normal blocks
 - D 0 - I - 0x018411 06:8401: 00        .byte $00   ; how many
-;special blocks
+; special blocks
 - D 0 - I - 0x018412 06:8402: 00        .byte $00   ; how many
 
 
 
 _off000_8403_02:
-;room base attributes
+; room base attributes
 - D 0 - I - 0x018413 06:8403: 26        .byte $26, $16, $36   ; room palette
 - D 0 - I - 0x018416 06:8406: 08        .byte $08   ; room size
-;sprites
+; sprites
 - D 0 - I - 0x018417 06:8407: 03        .byte $03   ; how many
-;sprite 1
+; sprite 1
 - D 0 - I - 0x018418 06:8408: 1A        .byte con_obj_id_1A   ; 
 - D 0 - I - 0x018419 06:8409: 22        .byte $22   ; sprite X/Y position
 - D 0 - I - 0x01841A 06:840A: 04        .byte $04   ; sprite direction and Z-position
 - D 0 - I - 0x01841B 06:840B: 1A        .byte $1A, $2A   ; palette
-;sprite 2
+; sprite 2
 - D 0 - I - 0x01841D 06:840D: 1A        .byte con_obj_id_1A   ; 
 - D 0 - I - 0x01841E 06:840E: 0A        .byte $0A   ; sprite X/Y position
 - D 0 - I - 0x01841F 06:840F: 24        .byte $24   ; sprite direction and Z-position
 - D 0 - I - 0x018420 06:8410: 11        .byte $11, $21   ; palette
-;sprite 3
+; sprite 3
 - D 0 - I - 0x018422 06:8412: 1A        .byte con_obj_id_1A   ; 
 - D 0 - I - 0x018423 06:8413: 4A        .byte $4A   ; sprite X/Y position
 - D 0 - I - 0x018424 06:8414: 24        .byte $24   ; sprite direction and Z-position
 - D 0 - I - 0x018425 06:8415: 18        .byte $18, $28   ; palette
-;walls attributes
+; walls attributes
 - D 0 - I - 0x018427 06:8417: FF        .byte $FF   ; NW wall pattern
 - D 0 - I - 0x018428 06:8418: 00        .byte $00   ; NE wall pattern
 - D 0 - I - 0x018429 06:8419: 81        .byte $81   ; NW wall graphics
 - D 0 - I - 0x01842A 06:841A: 00        .byte $00   ; NE wall graphics
-;floors
+; floors
 - D 0 - I - 0x01842B 06:841B: 81        .byte $81   ; secondary floor tiles
 - D 0 - I - 0x01842C 06:841C: 81        .byte $81   ; primary floor tiles
-;secondary floor tiles
+; secondary floor tiles
 - D 0 - I - 0x01842D 06:841D: FF        .byte $FF   ; secondary X floor tiles
 - D 0 - I - 0x01842E 06:841E: FF        .byte $FF   ; 
 - D 0 - I - 0x01842F 06:841F: FF        .byte $FF   ; 
@@ -1032,75 +1032,75 @@ _off000_8403_02:
 - D 0 - I - 0x018431 06:8421: FF        .byte $FF   ; 
 - D 0 - I - 0x018432 06:8422: FF        .byte $FF   ; 
 - D 0 - I - 0x018433 06:8423: FF        .byte $FF   ; 
-;room exit positions
+; room exit positions
 - D 0 - I - 0x018434 06:8424: 0A        .byte $0A   ; exit(s) position(s)
-;exit 1
+; exit 1
 - D 0 - I - 0x018435 06:8425: 28        .byte $28   ; Z, X/Y position
 - D 0 - I - 0x018436 06:8426: 03        .byte $03   ; destination room ID
-;exit 2
+; exit 2
 - D 0 - I - 0x018437 06:8427: 28        .byte $28   ; Z, X/Y position
 - D 0 - I - 0x018438 06:8428: 00        .byte $00   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x018439 06:8429: 06        .byte $06   ; how many
-;block 1
+; block 1
 - D 0 - I - 0x01843A 06:842A: 00        .byte $00   ; graphics
 - D 0 - I - 0x01843B 06:842B: 00        .byte $00   ; X/Y position
 - D 0 - I - 0x01843C 06:842C: 04        .byte $04   ; Z position
 - D 0 - I - 0x01843D 06:842D: 80        .byte $80   ; tile setting
-;block 2
+; block 2
 - D 0 - I - 0x01843E 06:842E: 00        .byte $00   ; graphics
 - D 0 - I - 0x01843F 06:842F: 10        .byte $10   ; X/Y position
 - D 0 - I - 0x018440 06:8430: 04        .byte $04   ; Z position
 - D 0 - I - 0x018441 06:8431: 80        .byte $80   ; tile setting
-;block 3
+; block 3
 - D 0 - I - 0x018442 06:8432: 00        .byte $00   ; graphics
 - D 0 - I - 0x018443 06:8433: 20        .byte $20   ; X/Y position
 - D 0 - I - 0x018444 06:8434: 04        .byte $04   ; Z position
 - D 0 - I - 0x018445 06:8435: 80        .byte $80   ; tile setting
-;block 4
+; block 4
 - D 0 - I - 0x018446 06:8436: 00        .byte $00   ; graphics
 - D 0 - I - 0x018447 06:8437: 06        .byte $06   ; X/Y position
 - D 0 - I - 0x018448 06:8438: 04        .byte $04   ; Z position
 - D 0 - I - 0x018449 06:8439: 80        .byte $80   ; tile setting
-;block 5
+; block 5
 - D 0 - I - 0x01844A 06:843A: 00        .byte $00   ; graphics
 - D 0 - I - 0x01844B 06:843B: 16        .byte $16   ; X/Y position
 - D 0 - I - 0x01844C 06:843C: 04        .byte $04   ; Z position
 - D 0 - I - 0x01844D 06:843D: 80        .byte $80   ; tile setting
-;block 6
+; block 6
 - D 0 - I - 0x01844E 06:843E: 00        .byte $00   ; graphics
 - D 0 - I - 0x01844F 06:843F: 26        .byte $26   ; X/Y position
 - D 0 - I - 0x018450 06:8440: 04        .byte $04   ; Z position
 - D 0 - I - 0x018451 06:8441: 80        .byte $80   ; tile setting
-;special blocks
+; special blocks
 - D 0 - I - 0x018452 06:8442: 00        .byte $00   ; how many
 
 
 _off000_8443_03:
-;room base attributes
+; room base attributes
 - D 0 - I - 0x018453 06:8443: 10        .byte $10, $00, $20   ; room palette
 - D 0 - I - 0x018456 06:8446: 10        .byte $10   ; room size
-;sprites
+; sprites
 - D 0 - I - 0x018457 06:8447: 02        .byte $02   ; how many
-;sprite 1
+; sprite 1
 - D 0 - I - 0x018458 06:8448: 02        .byte con_obj_id_02   ; 
 - D 0 - I - 0x018459 06:8449: 00        .byte $00   ; sprite X/Y position
 - D 0 - I - 0x01845A 06:844A: 10        .byte $10   ; sprite direction and Z-position
 - D 0 - I - 0x01845B 06:844B: 12        .byte $12, $29   ; palette
-;sprite 2
+; sprite 2
 - D 0 - I - 0x01845D 06:844D: 02        .byte con_obj_id_02   ; 
 - D 0 - I - 0x01845E 06:844E: 88        .byte $88   ; sprite X/Y position
 - D 0 - I - 0x01845F 06:844F: 30        .byte $30   ; sprite direction and Z-position
 - D 0 - I - 0x018460 06:8450: 06        .byte $06, $2A   ; palette
-;walls attributes
+; walls attributes
 - D 0 - I - 0x018462 06:8452: 50        .byte $50   ; NW wall pattern
 - D 0 - I - 0x018463 06:8453: 00        .byte $00   ; NE wall pattern
 - D 0 - I - 0x018464 06:8454: 00        .byte $00   ; NW wall graphics
 - D 0 - I - 0x018465 06:8455: 00        .byte $00   ; NE wall graphics
-;floors
+; floors
 - D 0 - I - 0x018466 06:8456: 00        .byte $00   ; secondary floor tiles
 - D 0 - I - 0x018467 06:8457: 00        .byte $00   ; primary floor tiles
-;secondary floor tiles
+; secondary floor tiles
 - D 0 - I - 0x018468 06:8458: FF        .byte $FF   ; secondary X floor tiles
 - D 0 - I - 0x018469 06:8459: FF        .byte $FF   ; 
 - D 0 - I - 0x01846A 06:845A: FF        .byte $FF   ; 
@@ -1108,65 +1108,65 @@ _off000_8443_03:
 - D 0 - I - 0x01846C 06:845C: FF        .byte $FF   ; 
 - - - - - - 0x01846D 06:845D: FF        .byte $FF   ; 
 - - - - - - 0x01846E 06:845E: FF        .byte $FF   ; 
-;room exit positions
+; room exit positions
 - D 0 - I - 0x01846F 06:845F: 07        .byte $07   ; exit(s) position(s)
-;exit 1
+; exit 1
 - D 0 - I - 0x018470 06:8460: 01        .byte $01   ; Z, X/Y position
 - D 0 - I - 0x018471 06:8461: 04        .byte $04   ; destination room ID
-;exit 2
+; exit 2
 - D 0 - I - 0x018472 06:8462: 02        .byte $02   ; Z, X/Y position
 - D 0 - I - 0x018473 06:8463: 02        .byte $02   ; destination room ID
-;exit 3
+; exit 3
 - D 0 - I - 0x018474 06:8464: 01        .byte $01   ; Z, X/Y position
 - D 0 - I - 0x018475 06:8465: 08        .byte $08   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x018476 06:8466: 0B        .byte $0B   ; how many
-;block 1
+; block 1
 - D 0 - I - 0x018477 06:8467: 00        .byte $00   ; graphics
 - D 0 - I - 0x018478 06:8468: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x018479 06:8469: 00        .byte $00   ; Z position
 - D 0 - I - 0x01847A 06:846A: 80        .byte $80   ; tile setting
-;block 2
+; block 2
 - D 0 - I - 0x01847B 06:846B: 00        .byte $00   ; graphics
 - D 0 - I - 0x01847C 06:846C: 12        .byte $12   ; X/Y position
 - D 0 - I - 0x01847D 06:846D: 00        .byte $00   ; Z position
 - D 0 - I - 0x01847E 06:846E: 80        .byte $80   ; tile setting
-;block 3
+; block 3
 - D 0 - I - 0x01847F 06:846F: 00        .byte $00   ; graphics
 - D 0 - I - 0x018480 06:8470: 13        .byte $13   ; X/Y position
 - D 0 - I - 0x018481 06:8471: 00        .byte $00   ; Z position
 - D 0 - I - 0x018482 06:8472: 80        .byte $80   ; tile setting
-;block 4
+; block 4
 - D 0 - I - 0x018483 06:8473: 00        .byte $00   ; graphics
 - D 0 - I - 0x018484 06:8474: 21        .byte $21   ; X/Y position
 - D 0 - I - 0x018485 06:8475: 00        .byte $00   ; Z position
 - D 0 - I - 0x018486 06:8476: 80        .byte $80   ; tile setting
-;block 5
+; block 5
 - D 0 - I - 0x018487 06:8477: 00        .byte $00   ; graphics
 - D 0 - I - 0x018488 06:8478: 22        .byte $22   ; X/Y position
 - D 0 - I - 0x018489 06:8479: 01        .byte $01   ; Z position
 - D 0 - I - 0x01848A 06:847A: 80        .byte $80   ; tile setting
-;block 6
+; block 6
 - D 0 - I - 0x01848B 06:847B: 00        .byte $00   ; graphics
 - D 0 - I - 0x01848C 06:847C: 22        .byte $22   ; X/Y position
 - D 0 - I - 0x01848D 06:847D: 02        .byte $02   ; Z position
 - D 0 - I - 0x01848E 06:847E: 80        .byte $80   ; tile setting
-;block 7
+; block 7
 - D 0 - I - 0x01848F 06:847F: 00        .byte $00   ; graphics
 - D 0 - I - 0x018490 06:8480: 23        .byte $23   ; X/Y position
 - D 0 - I - 0x018491 06:8481: 00        .byte $00   ; Z position
 - D 0 - I - 0x018492 06:8482: 80        .byte $80   ; tile setting
-;block 8
+; block 8
 - D 0 - I - 0x018493 06:8483: 00        .byte $00   ; graphics
 - D 0 - I - 0x018494 06:8484: 31        .byte $31   ; X/Y position
 - D 0 - I - 0x018495 06:8485: 00        .byte $00   ; Z position
 - D 0 - I - 0x018496 06:8486: 80        .byte $80   ; tile setting
-;block 9
+; block 9
 - D 0 - I - 0x018497 06:8487: 00        .byte $00   ; graphics
 - D 0 - I - 0x018498 06:8488: 32        .byte $32   ; X/Y position
 - D 0 - I - 0x018499 06:8489: 00        .byte $00   ; Z position
 - D 0 - I - 0x01849A 06:848A: 00        .byte $00   ; 
-;manual tiles
+; manual tiles
 - D 0 - I - 0x01849B 06:848B: 8D        .byte $8D   ; top row
 - D 0 - I - 0x01849C 06:848C: 8E        .byte $8E   ; 
 - D 0 - I - 0x01849D 06:848D: E1        .byte $E1   ; 
@@ -1181,12 +1181,12 @@ _off000_8443_03:
 - D 0 - I - 0x0184A4 06:8494: 8A        .byte $8A   ; 
 - D 0 - I - 0x0184A5 06:8495: 8B        .byte $8B   ; 
 - D 0 - I - 0x0184A6 06:8496: 8C        .byte $8C   ; 
-;block 10
+; block 10
 - D 0 - I - 0x0184A7 06:8497: 00        .byte $00   ; graphics
 - D 0 - I - 0x0184A8 06:8498: 33        .byte $33   ; X/Y position
 - D 0 - I - 0x0184A9 06:8499: 00        .byte $00   ; Z position
 - D 0 - I - 0x0184AA 06:849A: 00        .byte $00   ; tile setting
-;manual tiles
+; manual tiles
 - D 0 - I - 0x0184AB 06:849B: 8D        .byte $8D   ; top row
 - D 0 - I - 0x0184AC 06:849C: 8E        .byte $8E   ; 
 - D 0 - I - 0x0184AD 06:849D: A7        .byte $A7   ; 
@@ -1201,7 +1201,7 @@ _off000_8443_03:
 - D 0 - I - 0x0184B4 06:84A4: 8A        .byte $8A   ; 
 - D 0 - I - 0x0184B5 06:84A5: 8B        .byte $8B   ; 
 - D 0 - I - 0x0184B6 06:84A6: 8C        .byte $8C   ; 
-;block 11
+; block 11
 - D 0 - I - 0x0184B7 06:84A7: 08        .byte $08   ; graphics
 - D 0 - I - 0x0184B8 06:84A8: 22        .byte $22   ; X/Y position
 - D 0 - I - 0x0184B9 06:84A9: 03        .byte $03   ; Z position
@@ -1221,26 +1221,26 @@ _off000_8443_03:
 - D 0 - I - 0x0184C4 06:84B4: EC        .byte $EC   ; 
 - D 0 - I - 0x0184C5 06:84B5: ED        .byte $ED   ; 
 - D 0 - I - 0x0184C6 06:84B6: EE        .byte $EE   ; 
-;special blocks
+; special blocks
 - D 0 - I - 0x0184C7 06:84B7: 00        .byte $00   ; how many
 
 
 
 _off000_84B8_04:
-;room base attributes
+; room base attributes
 - D 0 - I - 0x0184C8 06:84B8: 28        .byte $28, $18, $38   ; room palette
 - D 0 - I - 0x0184CB 06:84BB: 18        .byte $18   ; room size
-;sprite 
+; sprite 
 - D 0 - I - 0x0184CC 06:84BC: 00        .byte $00   ; how many
-;walls attributes
+; walls attributes
 - D 0 - I - 0x0184CD 06:84BD: 40        .byte $40   ; NW wall pattern
 - D 0 - I - 0x0184CE 06:84BE: 40        .byte $40   ; NE wall pattern
 - D 0 - I - 0x0184CF 06:84BF: 00        .byte $00   ; NW wall graphics
 - D 0 - I - 0x0184D0 06:84C0: 00        .byte $00   ; NE wall graphics
-;floors
+; floors
 - D 0 - I - 0x0184D1 06:84C1: 00        .byte $00   ; secondary floor tiles
 - D 0 - I - 0x0184D2 06:84C2: 00        .byte $00   ; primary floor tiles
-;secondary floor tiles
+; secondary floor tiles
 - D 0 - I - 0x0184D3 06:84C3: FF        .byte $FF   ; secondary X floor tiles
 - D 0 - I - 0x0184D4 06:84C4: FF        .byte $FF   ; 
 - D 0 - I - 0x0184D5 06:84C5: FF        .byte $FF   ; 
@@ -1248,62 +1248,62 @@ _off000_84B8_04:
 - - - - - - 0x0184D7 06:84C7: FF        .byte $FF   ; 
 - - - - - - 0x0184D8 06:84C8: FF        .byte $FF   ; 
 - - - - - - 0x0184D9 06:84C9: FF        .byte $FF   ; 
-;room exit positions
+; room exit positions
 - D 0 - I - 0x0184DA 06:84CA: 03        .byte $03   ; exit(s) position(s)
-;exit 1
+; exit 1
 - D 0 - I - 0x0184DB 06:84CB: 00        .byte $00   ; Z, X/Y position
 - D 0 - I - 0x0184DC 06:84CC: 05        .byte $05   ; destination room ID
-;exit 2
+; exit 2
 - D 0 - I - 0x0184DD 06:84CD: 00        .byte $00   ; Z, X/Y position
 - D 0 - I - 0x0184DE 06:84CE: 03        .byte $03   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x0184DF 06:84CF: 03        .byte $03   ; how many
-;block 1
+; block 1
 - D 0 - I - 0x0184E0 06:84D0: 00        .byte $00   ; graphics
 - D 0 - I - 0x0184E1 06:84D1: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x0184E2 06:84D2: 00        .byte $00   ; Z position
 - D 0 - I - 0x0184E3 06:84D3: 80        .byte $80   ; tile setting
-;block 2
+; block 2
 - D 0 - I - 0x0184E4 06:84D4: 0C        .byte $0C   ; graphics
 - D 0 - I - 0x0184E5 06:84D5: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x0184E6 06:84D6: 01        .byte $01   ; Z position
 - D 0 - I - 0x0184E7 06:84D7: 80        .byte $80   ; tile setting
-;block 3
+; block 3
 - D 0 - I - 0x0184E8 06:84D8: 0B        .byte $0B   ; graphics
 - D 0 - I - 0x0184E9 06:84D9: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x0184EA 06:84DA: 04        .byte $04   ; Z position
 - D 0 - I - 0x0184EB 06:84DB: 80        .byte $80   ; tile setting
 
-;special blocks
+; special blocks
 - D 0 - I - 0x0184EC 06:84DC: 00        .byte $00   ; how many
 
 
 
 _off000_84DD_05:
-;room base attributes
+; room base attributes
 - D 0 - I - 0x0184ED 06:84DD: 26        .byte $26, $16, $36   ; room palette
 - D 0 - I - 0x0184F0 06:84E0: 08        .byte $08   ; room size
-;sprites
+; sprites
 - D 0 - I - 0x0184F1 06:84E1: 02        .byte $02   ; how many
-;sprite 1
+; sprite 1
 - D 0 - I - 0x0184F2 06:84E2: 39        .byte con_obj_id_39   ; 
 - D 0 - I - 0x0184F3 06:84E3: 46        .byte $46   ; sprite X/Y position
 - D 0 - I - 0x0184F4 06:84E4: 20        .byte $20   ; sprite direction and Z-position
 - D 0 - I - 0x0184F5 06:84E5: 15        .byte $15, $29   ; palette
-;sprite 2
+; sprite 2
 - D 0 - I - 0x0184F7 06:84E7: 3A        .byte con_obj_id_3A   ; 
 - D 0 - I - 0x0184F8 06:84E8: 48        .byte $48   ; sprite X/Y position
 - D 0 - I - 0x0184F9 06:84E9: 00        .byte $00   ; sprite direction and Z-position
 - D 0 - I - 0x0184FA 06:84EA: 18        .byte $18, $2B   ; palette
-;walls attributes
+; walls attributes
 - D 0 - I - 0x0184FC 06:84EC: FF        .byte $FF   ; NW wall pattern
 - D 0 - I - 0x0184FD 06:84ED: FF        .byte $FF   ; NE wall pattern
 - D 0 - I - 0x0184FE 06:84EE: 81        .byte $81   ; NW wall graphics
 - D 0 - I - 0x0184FF 06:84EF: 81        .byte $81   ; NE wall graphics
-;floors
+; floors
 - D 0 - I - 0x018500 06:84F0: 00        .byte $00   ; secondary floor tiles
 - D 0 - I - 0x018501 06:84F1: 00        .byte $00   ; primary floor tiles
-;secondary floor tiles
+; secondary floor tiles
 - D 0 - I - 0x018502 06:84F2: FF        .byte $FF   ; secondary X floor tiles
 - D 0 - I - 0x018503 06:84F3: FF        .byte $FF   ; 
 - D 0 - I - 0x018504 06:84F4: FF        .byte $FF   ; 
@@ -1311,60 +1311,60 @@ _off000_84DD_05:
 - D 0 - I - 0x018506 06:84F6: FF        .byte $FF   ; 
 - D 0 - I - 0x018507 06:84F7: FF        .byte $FF   ; 
 - D 0 - I - 0x018508 06:84F8: FF        .byte $FF   ; 
-;room exit positions
+; room exit positions
 - D 0 - I - 0x018509 06:84F9: 0E        .byte $0E   ; exit(s) position(s)
-;exit 1
+; exit 1
 - D 0 - I - 0x01850A 06:84FA: 18        .byte $18   ; Z, X/Y position
 - D 0 - I - 0x01850B 06:84FB: 04        .byte $04   ; destination room ID
-;exit 2
+; exit 2
 - D 0 - I - 0x01850C 06:84FC: 1C        .byte $1C   ; Z, X/Y position
 - D 0 - I - 0x01850D 06:84FD: 06        .byte $06   ; destination room ID
-;exit 3
+; exit 3
 - D 0 - I - 0x01850E 06:84FE: 10        .byte $10   ; Z, X/Y position
 - D 0 - I - 0x01850F 06:84FF: 01        .byte $01   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x018510 06:8500: 0D        .byte $0D   ; how many
-;block 1
+; block 1
 - D 0 - I - 0x018511 06:8501: 00        .byte $00   ; graphics
 - D 0 - I - 0x018512 06:8502: 00        .byte $00   ; X/Y position
 - D 0 - I - 0x018513 06:8503: 02        .byte $02   ; Z position
 - D 0 - I - 0x018514 06:8504: 80        .byte $80   ; tile setting
-;block 2
+; block 2
 - D 0 - I - 0x018515 06:8505: 00        .byte $00   ; graphics
 - D 0 - I - 0x018516 06:8506: 10        .byte $10   ; X/Y position
 - D 0 - I - 0x018517 06:8507: 02        .byte $02   ; Z position
 - D 0 - I - 0x018518 06:8508: 80        .byte $80   ; tile setting
-;block 3
+; block 3
 - D 0 - I - 0x018519 06:8509: 00        .byte $00   ; graphics
 - D 0 - I - 0x01851A 06:850A: 20        .byte $20   ; X/Y position
 - D 0 - I - 0x01851B 06:850B: 02        .byte $02   ; Z position
 - D 0 - I - 0x01851C 06:850C: 80        .byte $80   ; tile setting
-;block 4
+; block 4
 - D 0 - I - 0x01851D 06:850D: 00        .byte $00   ; graphics
 - D 0 - I - 0x01851E 06:850E: 11        .byte $11   ; X/Y position
 - D 0 - I - 0x01851F 06:850F: 02        .byte $02   ; Z position
 - D 0 - I - 0x018520 06:8510: 80        .byte $80   ; tile setting
-;block 5
+; block 5
 - D 0 - I - 0x018521 06:8511: 00        .byte $00   ; graphics
 - D 0 - I - 0x018522 06:8512: 21        .byte $21   ; X/Y position
 - D 0 - I - 0x018523 06:8513: 00        .byte $00   ; Z position
 - D 0 - I - 0x018524 06:8514: 80        .byte $80   ; tile setting
-;block 6
+; block 6
 - D 0 - I - 0x018525 06:8515: 00        .byte $00   ; graphics
 - D 0 - I - 0x018526 06:8516: 21        .byte $21   ; X/Y position
 - D 0 - I - 0x018527 06:8517: 01        .byte $01   ; Z position
 - D 0 - I - 0x018528 06:8518: 80        .byte $80   ; tile setting
-;block 7
+; block 7
 - D 0 - I - 0x018529 06:8519: 00        .byte $00   ; graphics
 - D 0 - I - 0x01852A 06:851A: 22        .byte $22   ; X/Y position
 - D 0 - I - 0x01852B 06:851B: 00        .byte $00   ; Z position
 - D 0 - I - 0x01852C 06:851C: 80        .byte $80   ; tile setting
-;block 8
+; block 8
 - D 0 - I - 0x01852D 06:851D: 00        .byte $00   ; graphics
 - D 0 - I - 0x01852E 06:851E: 05        .byte $05   ; X/Y position
 - D 0 - I - 0x01852F 06:851F: 02        .byte $02   ; Z position
 - D 0 - I - 0x018530 06:8520: 00        .byte $00   ; tile setting
-;manual tiles
+; manual tiles
 - D 0 - I - 0x018531 06:8521: D5        .byte $D5   ; top row
 - D 0 - I - 0x018532 06:8522: D6        .byte $D6   ; 
 - D 0 - I - 0x018533 06:8523: D7        .byte $D7   ; 
@@ -1379,12 +1379,12 @@ _off000_84DD_05:
 - D 0 - I - 0x01853A 06:852A: AE        .byte $AE   ; 
 - D 0 - I - 0x01853B 06:852B: 8B        .byte $8B   ; 
 - D 0 - I - 0x01853C 06:852C: 8C        .byte $8C   ; 
-;block 9
+; block 9
 - D 0 - I - 0x01853D 06:852D: 00        .byte $00   ; graphics
 - D 0 - I - 0x01853E 06:852E: 06        .byte $06   ; X/Y position
 - D 0 - I - 0x01853F 06:852F: 02        .byte $02   ; Z position
 - D 0 - I - 0x018540 06:8530: 00        .byte $00   ; tile setting
-;manual tiles
+; manual tiles
 - D 0 - I - 0x018541 06:8531: A5        .byte $A5   ; top row
 - D 0 - I - 0x018542 06:8532: A6        .byte $A6   ; 
 - D 0 - I - 0x018543 06:8533: D9        .byte $D9   ; 
@@ -1399,12 +1399,12 @@ _off000_84DD_05:
 - D 0 - I - 0x01854A 06:853A: AE        .byte $AE   ; 
 - D 0 - I - 0x01854B 06:853B: 8B        .byte $8B   ; 
 - D 0 - I - 0x01854C 06:853C: 8C        .byte $8C   ; 
-;block 10
+; block 10
 - D 0 - I - 0x01854D 06:853D: 00        .byte $00   ; graphics
 - D 0 - I - 0x01854E 06:853E: 15        .byte $15   ; X/Y position
 - D 0 - I - 0x01854F 06:853F: 02        .byte $02   ; Z position
 - D 0 - I - 0x018550 06:8540: 00        .byte $00   ; tile setting
-;manual tiles
+; manual tiles
 - D 0 - I - 0x018551 06:8541: DB        .byte $DB   ; top row
 - D 0 - I - 0x018552 06:8542: DC        .byte $DC   ; 
 - D 0 - I - 0x018553 06:8543: 8F        .byte $8F   ; 
@@ -1419,12 +1419,12 @@ _off000_84DD_05:
 - D 0 - I - 0x01855A 06:854A: AE        .byte $AE   ; 
 - D 0 - I - 0x01855B 06:854B: 97        .byte $97   ; 
 - D 0 - I - 0x01855C 06:854C: 98        .byte $98   ; 
-;block 11
+; block 11
 - D 0 - I - 0x01855D 06:854D: 00        .byte $00   ; graphics
 - D 0 - I - 0x01855E 06:854E: 16        .byte $16   ; X/Y position
 - D 0 - I - 0x01855F 06:854F: 00        .byte $00   ; Z position
 - D 0 - I - 0x018560 06:8550: 00        .byte $00   ; tile setting
-;manual tiles
+; manual tiles
 - D 0 - I - 0x018561 06:8551: B1        .byte $B1   ; top row
 - D 0 - I - 0x018562 06:8552: B2        .byte $B2   ; 
 - D 0 - I - 0x018563 06:8553: B3        .byte $B3   ; 
@@ -1439,12 +1439,12 @@ _off000_84DD_05:
 - D 0 - I - 0x01856A 06:855A: AE        .byte $AE   ; 
 - D 0 - I - 0x01856B 06:855B: DD        .byte $DD   ; 
 - D 0 - I - 0x01856C 06:855C: DE        .byte $DE   ; 
-;block 12
+; block 12
 - D 0 - I - 0x01856D 06:855D: 00        .byte $00   ; graphics
 - D 0 - I - 0x01856E 06:855E: 16        .byte $16   ; X/Y position
 - D 0 - I - 0x01856F 06:855F: 01        .byte $01   ; Z position
 - D 0 - I - 0x018570 06:8560: 00        .byte $00   ; tile setting
-;manual tiles
+; manual tiles
 - D 0 - I - 0x018571 06:8561: BD        .byte $BD   ; top row
 - D 0 - I - 0x018572 06:8562: BE        .byte $BE   ; 
 - D 0 - I - 0x018573 06:8563: BF        .byte $BF   ; 
@@ -1459,12 +1459,12 @@ _off000_84DD_05:
 - D 0 - I - 0x01857A 06:856A: C6        .byte $C6   ; 
 - D 0 - I - 0x01857B 06:856B: C7        .byte $C7   ; 
 - D 0 - I - 0x01857C 06:856C: C8        .byte $C8   ; 
-;block 13
+; block 13
 - D 0 - I - 0x01857D 06:856D: 00        .byte $00   ; graphics
 - D 0 - I - 0x01857E 06:856E: 26        .byte $26   ; X/Y position
 - D 0 - I - 0x01857F 06:856F: 00        .byte $00   ; Z position
 - D 0 - I - 0x018580 06:8570: 00        .byte $00   ; tile setting
-;manual tiles
+; manual tiles
 - D 0 - I - 0x018581 06:8571: B1        .byte $B1   ; top row
 - D 0 - I - 0x018582 06:8572: B2        .byte $B2   ; 
 - D 0 - I - 0x018583 06:8573: BF        .byte $BF   ; 
@@ -1480,14 +1480,14 @@ _off000_84DD_05:
 - D 0 - I - 0x01858B 06:857B: DD        .byte $DD   ; 
 - D 0 - I - 0x01858C 06:857C: DE        .byte $DE   ; 
 
-;special blocks
+; special blocks
 - D 0 - I - 0x01858D 06:857D: 02        .byte $02   ; how many
-;block 1
+; block 1
 - D 0 - I - 0x01858E 06:857E: 05        .byte $05   ; graphics
 - D 0 - I - 0x01858F 06:857F: 12        .byte $12   ; X/Y position
 - D 0 - I - 0x018590 06:8580: 02        .byte $02   ; Z position
 - D 0 - I - 0x018591 06:8581: 04        .byte $04   ; type, disapear
-;manual tiles, after touching block
+; manual tiles, after touching block
 - D 0 - I - 0x018592 06:8582: AB        .byte $AB   ; top row
 - D 0 - I - 0x018593 06:8583: AC        .byte $AC   ; 
 - D 0 - I - 0x018594 06:8584: 4E        .byte $4E   ; 
@@ -1502,7 +1502,7 @@ _off000_84DD_05:
 - D 0 - I - 0x01859B 06:858B: 6C        .byte $6C   ; 
 - D 0 - I - 0x01859C 06:858C: 69        .byte $69   ; 
 - D 0 - I - 0x01859D 06:858D: 6A        .byte $6A   ; 
-;blocks sprite priority, for AFTER tiles
+; blocks sprite priority, for AFTER tiles
 - D 0 - I - 0x01859E 06:858E: 33        .byte $33   ; top row
 - D 0 - I - 0x01859F 06:858F: 33        .byte $33   ; 
 - D 0 - I - 0x0185A0 06:8590: 00        .byte $00   ; 
@@ -1517,7 +1517,7 @@ _off000_84DD_05:
 - D 0 - I - 0x0185A7 06:8597: 00        .byte $00   ; 
 - D 0 - I - 0x0185A8 06:8598: 00        .byte $00   ; 
 - D 0 - I - 0x0185A9 06:8599: 00        .byte $00   ; 
-;manual tiles, before touching block
+; manual tiles, before touching block
 - D 0 - I - 0x0185AA 06:859A: E3        .byte $E3   ; top row
 - D 0 - I - 0x0185AB 06:859B: E4        .byte $E4   ; 
 - D 0 - I - 0x0185AC 06:859C: E5        .byte $E5   ; 
@@ -1533,12 +1533,12 @@ _off000_84DD_05:
 - D 0 - I - 0x0185B4 06:85A4: ED        .byte $ED   ; 
 - D 0 - I - 0x0185B5 06:85A5: EE        .byte $EE   ; 
 
-;block 2
+; block 2
 - D 0 - I - 0x0185B6 06:85A6: 05        .byte $05   ; graphics
 - D 0 - I - 0x0185B7 06:85A7: 14        .byte $14   ; X/Y position
 - D 0 - I - 0x0185B8 06:85A8: 02        .byte $02   ; Z position
 - D 0 - I - 0x0185B9 06:85A9: 04        .byte $04   ; type, disapear
-;manual tiles, after touching block
+; manual tiles, after touching block
 - D 0 - I - 0x0185BA 06:85AA: 50        .byte $50   ; top row
 - D 0 - I - 0x0185BB 06:85AB: 4F        .byte $4F   ; 
 - D 0 - I - 0x0185BC 06:85AC: 4E        .byte $4E   ; 
@@ -1553,7 +1553,7 @@ _off000_84DD_05:
 - D 0 - I - 0x0185C3 06:85B3: 6C        .byte $6C   ; 
 - D 0 - I - 0x0185C4 06:85B4: 85        .byte $85   ; 
 - D 0 - I - 0x0185C5 06:85B5: 86        .byte $86   ; 
-;blocks sprite priority, for AFTER tiles
+; blocks sprite priority, for AFTER tiles
 - D 0 - I - 0x0185C6 06:85B6: 00        .byte $00   ; top row
 - D 0 - I - 0x0185C7 06:85B7: 00        .byte $00   ; 
 - D 0 - I - 0x0185C8 06:85B8: 00        .byte $00   ; 
@@ -1568,7 +1568,7 @@ _off000_84DD_05:
 - D 0 - I - 0x0185CF 06:85BF: 00        .byte $00   ; 
 - D 0 - I - 0x0185D0 06:85C0: 73        .byte $73   ; 
 - D 0 - I - 0x0185D1 06:85C1: 73        .byte $73   ; 
-;manual tiles, before touching block
+; manual tiles, before touching block
 - D 0 - I - 0x0185D2 06:85C2: EF        .byte $EF   ; top row
 - D 0 - I - 0x0185D3 06:85C3: F0        .byte $F0   ; 
 - D 0 - I - 0x0185D4 06:85C4: E5        .byte $E5   ; 
@@ -1589,20 +1589,20 @@ _off000_84DD_05:
 _off000_85CE_06:
 - D 0 - I - 0x0185DE 06:85CE: 27        .byte $27, $17, $37   ; room palette
 - D 0 - I - 0x0185E1 06:85D1: 12        .byte $12   ; room size
-;sprites
+; sprites
 - D 0 - I - 0x0185E2 06:85D2: 03        .byte $03   ; how many
-;sprite 1
+; sprite 1
 - D 0 - I - 0x0185E3 06:85D3: 81        .byte con_obj_id_pickable_block_01   ; 
 - D 0 - I - 0x0185E4 06:85D4: 00        .byte $00   ; sprite X/Y position
 - D 0 - I - 0x0185E5 06:85D5: 07        .byte $07   ; sprite direction and Z-position
 - D 0 - I - 0x0185E6 06:85D6: 15        .byte $15, $25   ; palette
-;sprite 2
+; sprite 2
 - D 0 - I - 0x0185E8 06:85D8: 81        .byte con_obj_id_pickable_block_01   ; 
 - D 0 - I - 0x0185E9 06:85D9: 08        .byte $08   ; sprite X/Y position
 - D 0 - I - 0x0185EA 06:85DA: 07        .byte $07   ; sprite direction and Z-position
 - D 0 - I - 0x0185EB 06:85DB: 13        .byte $13, $23   ; palette
 - D 0 - I - 0x0185ED 06:85DD: 12        .byte con_obj_id_12   ; 
-;sprite 3
+; sprite 3
 - D 0 - I - 0x0185EE 06:85DE: 02        .byte $02   ; sprite X/Y position
 - D 0 - I - 0x0185EF 06:85DF: 00        .byte $00   ; sprite direction and Z-position
 - D 0 - I - 0x0185F0 06:85E0: 19        .byte $19, $39   ; palette
@@ -1625,7 +1625,7 @@ _off000_85CE_06:
 
 - D 0 - I - 0x0185FF 06:85EF: 0F        .byte $0F   ; exit(s) position(s)
 
-- D 0 - I - 0x018600 06:85F0: 10        .byte $10   ;Z, X/Y position
+- D 0 - I - 0x018600 06:85F0: 10        .byte $10   ; Z, X/Y position
 - D 0 - I - 0x018601 06:85F1: 1D        .byte $1D   ; destination room ID
 
 - D 0 - I - 0x018602 06:85F2: 11        .byte $11   ; Z, X/Y position
@@ -1636,49 +1636,49 @@ _off000_85CE_06:
 
 - D 0 - I - 0x018606 06:85F6: 01        .byte $01   ; Z, X/Y position
 - D 0 - I - 0x018607 06:85F7: 05        .byte $05   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x018608 06:85F8: 08        .byte $08   ; how many
-;block 1
+; block 1
 - D 0 - I - 0x018609 06:85F9: 00        .byte $00   ; graphics
 - D 0 - I - 0x01860A 06:85FA: 20        .byte $20   ; X/Y position
 - D 0 - I - 0x01860B 06:85FB: 00        .byte $00   ; Z position
 - D 0 - I - 0x01860C 06:85FC: 80        .byte $80   ; tile setting
-;block 2
+; block 2
 - D 0 - I - 0x01860D 06:85FD: 00        .byte $00   ; graphics
 - D 0 - I - 0x01860E 06:85FE: 20        .byte $20   ; X/Y position
 - D 0 - I - 0x01860F 06:85FF: 01        .byte $01   ; Z position
 - D 0 - I - 0x018610 06:8600: 80        .byte $80   ; tile setting
-;block 3
+; block 3
 - D 0 - I - 0x018611 06:8601: 00        .byte $00   ; graphics
 - D 0 - I - 0x018612 06:8602: 24        .byte $24   ; X/Y position
 - D 0 - I - 0x018613 06:8603: 00        .byte $00   ; Z position
 - D 0 - I - 0x018614 06:8604: 80        .byte $80   ; tile setting
-;block 4
+; block 4
 - D 0 - I - 0x018615 06:8605: 00        .byte $00   ; graphics
 - D 0 - I - 0x018616 06:8606: 24        .byte $24   ; X/Y position
 - D 0 - I - 0x018617 06:8607: 01        .byte $01   ; Z position
 - D 0 - I - 0x018618 06:8608: 80        .byte $80   ; tile setting
-;block 5
+; block 5
 - D 0 - I - 0x018619 06:8609: 00        .byte $00   ; graphics
 - D 0 - I - 0x01861A 06:860A: 02        .byte $02   ; X/Y position
 - D 0 - I - 0x01861B 06:860B: 00        .byte $00   ; Z position
 - D 0 - I - 0x01861C 06:860C: 80        .byte $80   ; tile setting
-;block 6
+; block 6
 - D 0 - I - 0x01861D 06:860D: 00        .byte $00   ; graphics
 - D 0 - I - 0x01861E 06:860E: 02        .byte $02   ; X/Y position
 - D 0 - I - 0x01861F 06:860F: 01        .byte $01   ; Z position
 - D 0 - I - 0x018620 06:8610: 80        .byte $80   ; tile setting
-;block 7
+; block 7
 - D 0 - I - 0x018621 06:8611: 00        .byte $00   ; graphics
 - D 0 - I - 0x018622 06:8612: 00        .byte $00   ; X/Y position
 - D 0 - I - 0x018623 06:8613: 04        .byte $04   ; Z position
 - D 0 - I - 0x018624 06:8614: 80        .byte $80   ; tile setting
-;block 8
+; block 8
 - D 0 - I - 0x018625 06:8615: 00        .byte $00   ; graphics
 - D 0 - I - 0x018626 06:8616: 04        .byte $04   ; X/Y position
 - D 0 - I - 0x018627 06:8617: 04        .byte $04   ; Z position
 - D 0 - I - 0x018628 06:8618: 80        .byte $80   ; tile setting
-;special blocks
+; special blocks
 - D 0 - I - 0x018629 06:8619: 00        .byte $00   ; how many
 
 
@@ -1686,20 +1686,20 @@ _off000_85CE_06:
 _off000_861A_07:
 - D 0 - I - 0x01862A 06:861A: 29        .byte $29, $19, $39   ; room palette
 - D 0 - I - 0x01862D 06:861D: 0E        .byte $0E   ; room size
-;sprites
+; sprites
 - D 0 - I - 0x01862E 06:861E: 03        .byte $03   ; how many
-;sprite 1
+; sprite 1
 - D 0 - I - 0x01862F 06:861F: 22        .byte con_obj_id_22   ; 
 - D 0 - I - 0x018630 06:8620: 20        .byte $20   ; sprite X/Y position
 - D 0 - I - 0x018631 06:8621: 10        .byte $10   ; sprite direction and Z-position
 - D 0 - I - 0x018632 06:8622: 11        .byte $11, $20   ; palette
-;sprite 2
+; sprite 2
 - D 0 - I - 0x018634 06:8624: 22        .byte con_obj_id_22   ; 
 - D 0 - I - 0x018635 06:8625: 22        .byte $22   ; sprite X/Y position
 - D 0 - I - 0x018636 06:8626: 10        .byte $10   ; sprite direction and Z-position
 - D 0 - I - 0x018637 06:8627: 17        .byte $17, $20   ; palette
 - D 0 - I - 0x018639 06:8629: 22        .byte con_obj_id_22   ; 
-;sprite 3
+; sprite 3
 - D 0 - I - 0x01863A 06:862A: 24        .byte $24   ; sprite X/Y position
 - D 0 - I - 0x01863B 06:862B: 10        .byte $10   ; sprite direction and Z-position
 - D 0 - I - 0x01863C 06:862C: 16        .byte $16, $20   ; palette
@@ -1727,7 +1727,7 @@ _off000_861A_07:
 
 - D 0 - I - 0x01864E 06:863E: 10        .byte $10   ; Z, X/Y position
 - D 0 - I - 0x01864F 06:863F: 06        .byte $06   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x018650 06:8640: 0C        .byte $0C   ; how many
 
 - D 0 - I - 0x018651 06:8641: 02        .byte $02   ; graphics
@@ -1857,7 +1857,7 @@ _off000_861A_07:
 - D 0 - I - 0x0186AE 06:869E: AE        .byte $AE   ; 
 - D 0 - I - 0x0186AF 06:869F: C7        .byte $C7   ; 
 - D 0 - I - 0x0186B0 06:86A0: C8        .byte $C8   ; 
-;special blocks
+; special blocks
 - D 0 - I - 0x0186B1 06:86A1: 00        .byte $00   ; how many
 
 
@@ -1865,14 +1865,14 @@ _off000_861A_07:
 _off000_86A2_08:
 - D 0 - I - 0x0186B2 06:86A2: 27        .byte $27, $17, $37   ; room palette
 - D 0 - I - 0x0186B5 06:86A5: 18        .byte $18   ; room size
-;sprites
+; sprites
 - D 0 - I - 0x0186B6 06:86A6: 02        .byte $02   ; how many
-;sprite 1
+; sprite 1
 - D 0 - I - 0x0186B7 06:86A7: 82        .byte con_obj_id_pickable_block_02   ; 
 - D 0 - I - 0x0186B8 06:86A8: 40        .byte $40   ; sprite X/Y position
 - D 0 - I - 0x0186B9 06:86A9: 06        .byte $06   ; sprite direction and Z-position
 - D 0 - I - 0x0186BA 06:86AA: 21        .byte $21, $28   ; palette
-;sprite 2
+; sprite 2
 - D 0 - I - 0x0186BC 06:86AC: 83        .byte con_obj_id_pickable_block_03   ; 
 - D 0 - I - 0x0186BD 06:86AD: 44        .byte $44   ; sprite X/Y position
 - D 0 - I - 0x0186BE 06:86AE: 06        .byte $06   ; sprite direction and Z-position
@@ -1901,9 +1901,9 @@ _off000_86A2_08:
 
 - D 0 - I - 0x0186D1 06:86C1: 00        .byte $00   ; Z, X/Y position
 - D 0 - I - 0x0186D2 06:86C2: 09        .byte $09   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x0186D3 06:86C3: 06        .byte $06   ; how many
-;block 
+; block 
 - D 0 - I - 0x0186D4 06:86C4: 00        .byte $00   ; graphics
 - D 0 - I - 0x0186D5 06:86C5: 00        .byte $00   ; X/Y position
 - D 0 - I - 0x0186D6 06:86C6: 04        .byte $04   ; Z position
@@ -1939,7 +1939,7 @@ _off000_86A2_08:
 - D 0 - I - 0x0186EA 06:86DA: 02        .byte $02   ; Z position
 - D 0 - I - 0x0186EB 06:86DB: 80        .byte $80   ; tile setting
 
-;special blocks
+; special blocks
 - D 0 - I - 0x0186EC 06:86DC: 00        .byte $00   ; how many
 
 
@@ -1975,7 +1975,7 @@ _off000_86DD_09:
 
 - D 0 - I - 0x018704 06:86F4: 08        .byte $08   ; Z, X/Y position
 - D 0 - I - 0x018705 06:86F5: 0F        .byte $0F   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x018706 06:86F6: 0D        .byte $0D   ; how many
 
 - D 0 - I - 0x018707 06:86F7: 00        .byte $00   ; graphics
@@ -2125,7 +2125,7 @@ _off000_86DD_09:
 - D 0 - I - 0x018774 06:8764: D2        .byte $D2   ; 
 - D 0 - I - 0x018775 06:8765: D3        .byte $D3   ; 
 - D 0 - I - 0x018776 06:8766: D4        .byte $D4   ; 
-;special blocks
+; special blocks
 - D 0 - I - 0x018777 06:8767: 00        .byte $00   ; how many
 
 
@@ -2168,7 +2168,7 @@ _off000_8768_0A:
 
 - D 0 - I - 0x018799 06:8789: 33        .byte $33   ; Z, X/Y position
 - D 0 - I - 0x01879A 06:878A: 16        .byte $16   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x01879B 06:878B: 0F        .byte $0F   ; how many
 
 - D 0 - I - 0x01879C 06:878C: 00        .byte $00   ; graphics
@@ -2385,8 +2385,8 @@ _off000_8768_0A:
 - D 0 - I - 0x018841 06:8831: BA        .byte $BA   ; 
 - D 0 - I - 0x018842 06:8832: BB        .byte $BB   ; 
 - D 0 - I - 0x018843 06:8833: BC        .byte $BC   ; 
-;special blocks
-- D 0 - I - 0x018844 06:8834: 01        .byte $01   ;how many
+; special blocks
+- D 0 - I - 0x018844 06:8834: 01        .byte $01   ; how many
 
 - D 0 - I - 0x018845 06:8835: 0A        .byte $0A   ; graphics
 - D 0 - I - 0x018846 06:8836: 40        .byte $40   ; X/Y position
@@ -2450,7 +2450,7 @@ _off000_8845_0B:
 
 - D 0 - I - 0x018879 06:8869: 09        .byte $09   ; Z, X/Y position
 - D 0 - I - 0x01887A 06:886A: 0A        .byte $0A   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x01887B 06:886B: 06        .byte $06   ; how many
 
 - D 0 - I - 0x01887C 06:886C: 00        .byte $00   ; graphics
@@ -2494,7 +2494,7 @@ _off000_8845_0B:
 - D 0 - I - 0x01889D 06:888D: 96        .byte $96   ; 
 - D 0 - I - 0x01889E 06:888E: 97        .byte $97   ; 
 - D 0 - I - 0x01889F 06:888F: 98        .byte $98   ; 
-;special blocks
+; special blocks
 - D 0 - I - 0x0188A0 06:8890: 06        .byte $06   ; how many
 
 - D 0 - I - 0x0188A1 06:8891: 05        .byte $05   ; graphics
@@ -2744,9 +2744,9 @@ _off000_8845_0B:
 _off000_8981_0C:
 - D 0 - I - 0x018991 06:8981: 28        .byte $28, $18, $38   ; room palette
 - D 0 - I - 0x018994 06:8984: 18        .byte $18   ; room size
-;sprites
+; sprites
 - D 0 - I - 0x018995 06:8985: 02        .byte $02   ; how many
-;hidden due to "tbl_9DD3" in bank_00 (sprites are revealed with key)
+; hidden due to "tbl_9DD3" in bank_00 (sprites are revealed with key)
 - D 0 - I - 0x018996 06:8986: 81        .byte con_obj_id_pickable_block_01   ; 
 - D 0 - I - 0x018997 06:8987: 00        .byte $00   ; sprite X/Y position
 - D 0 - I - 0x018998 06:8988: 06        .byte $06   ; sprite direction and Z-position
@@ -2781,7 +2781,7 @@ _off000_8981_0C:
 
 - D 0 - I - 0x0189B2 06:89A2: 18        .byte $18   ; Z, X/Y position
 - D 0 - I - 0x0189B3 06:89A3: 0D        .byte $0D   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x0189B4 06:89A4: 09        .byte $09   ; how many
 
 - D 0 - I - 0x0189B5 06:89A5: 00        .byte $00   ; 
@@ -2828,7 +2828,7 @@ _off000_8981_0C:
 - D 0 - I - 0x0189D6 06:89C6: 22        .byte $22   ; 
 - D 0 - I - 0x0189D7 06:89C7: 02        .byte $02   ; 
 - D 0 - I - 0x0189D8 06:89C8: 80        .byte $80   ; 
-;special blocks
+; special blocks
 - D 0 - I - 0x0189D9 06:89C9: 00        .byte $00   ; how many
 
 
@@ -2865,11 +2865,11 @@ _off000_89CA_0D:
 
 - D 0 - I - 0x0189F4 06:89E4: 00        .byte $00   ; Z, X/Y position
 - D 0 - I - 0x0189F5 06:89E5: 10        .byte $10   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x0189F6 06:89E6: 00        .byte $00   ; how many
-;special blocks
+; special blocks
 - D 0 - I - 0x0189F7 06:89E7: 03        .byte $03   ; how many
-;block 
+; block 
 - D 0 - I - 0x0189F8 06:89E8: 00        .byte $00   ; graphics
 - D 0 - I - 0x0189F9 06:89E9: 20        .byte $20   ; X/Y position
 - D 0 - I - 0x0189FA 06:89EA: 00        .byte $00   ; Z position
@@ -4334,10 +4334,10 @@ _off000_8EBA_19:
 - D 0 - I - 0x018EDF 06:8ECF: 54        .byte $54   ; NE wall pattern
 - D 0 - I - 0x018EE0 06:8ED0: 07        .byte $07   ; NW wall graphics
 - D 0 - I - 0x018EE1 06:8ED1: 07        .byte $07   ; NE wall graphics
-;floors
+; floors
 - D 0 - I - 0x018EE2 06:8ED2: 8A        .byte $8A   ; secondary floor tiles, hole
 - D 0 - I - 0x018EE3 06:8ED3: 00        .byte $00   ; primary floor tiles, basic tiles
-;secondary floor tiles
+; secondary floor tiles
 - D 0 - I - 0x018EE4 06:8ED4: 00        .byte $00   ; 1st X row
 - D 0 - I - 0x018EE5 06:8ED5: 00        .byte $00   ; 2nd X row
 - D 0 - I - 0x018EE6 06:8ED6: 00        .byte $00   ; 3rd X row
@@ -4349,7 +4349,7 @@ _off000_8EBA_19:
 
 - D 0 - I - 0x018EEB 06:8EDB: 29        .byte $29   ; exit(s) position(s)
 
-;hole
+; hole
 - D 0 - I - 0x018EEC 06:8EDC: A3        .byte $A3   ; destination room ID
 - D 0 - I - 0x018EED 06:8EDD: 00        .byte $00   ; not needed
 
@@ -4358,7 +4358,7 @@ _off000_8EBA_19:
 
 - D 0 - I - 0x018EF0 06:8EE0: 01        .byte $01   ; Z, X/Y position
 - D 0 - I - 0x018EF1 06:8EE1: 1A        .byte $1A   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x018EF2 06:8EE2: 05        .byte $05   ; how many
 
 - D 0 - I - 0x018EF3 06:8EE3: 00        .byte $00   ; graphics
@@ -4411,7 +4411,7 @@ _off000_8EBA_19:
 - D 0 - I - 0x018F1B 06:8F0B: 81        .byte $81   ; top row
 - D 0 - I - 0x018F1C 06:8F0C: 82        .byte $82   ; 
 - D 0 - I - 0x018F1D 06:8F0D: 83        .byte $83   ; 
-- D 0 - I - 0x018F1E 06:8F0E: 84        .byte $84   ;
+- D 0 - I - 0x018F1E 06:8F0E: 84        .byte $84   ; 
 
 - D 0 - I - 0x018F1F 06:8F0F: 85        .byte $85   ; middle row
 - D 0 - I - 0x018F20 06:8F10: 86        .byte $86   ; 
@@ -4442,7 +4442,7 @@ _off000_8EBA_19:
 - D 0 - I - 0x018F34 06:8F24: 8A        .byte $8A   ; 
 - D 0 - I - 0x018F35 06:8F25: 8B        .byte $8B   ; 
 - D 0 - I - 0x018F36 06:8F26: 8C        .byte $8C   ; 
-;special blocks
+; special blocks
 - D 0 - I - 0x018F37 06:8F27: 0A        .byte $0A   ; how many
 
 - D 0 - I - 0x018F38 06:8F28: 0A        .byte $0A   ; graphics
@@ -4481,13 +4481,13 @@ _off000_8EBA_19:
 - D 0 - I - 0x018F56 06:8F46: A3        .byte $A3   ; 
 - D 0 - I - 0x018F57 06:8F47: A4        .byte $A4   ; 
 
-;how clever, fake spikes! 
+; how clever, fake spikes! 
 - D 0 - I - 0x018F58 06:8F48: 0A        .byte $0A   ; graphics
 - D 0 - I - 0x018F59 06:8F49: 15        .byte $15   ; X/Y position
 - D 0 - I - 0x018F5A 06:8F4A: 00        .byte $00   ; Z position
 - D 0 - I - 0x018F5B 06:8F4B: 04        .byte $04   ; type, disapear
 
-;after
+; after
 - D 0 - I - 0x018F5C 06:8F4C: 6B        .byte $6B   ; top row
 - D 0 - I - 0x018F5D 06:8F4D: 6C        .byte $6C   ; 
 - D 0 - I - 0x018F5E 06:8F4E: 69        .byte $69   ; 
@@ -4501,7 +4501,7 @@ _off000_8EBA_19:
 - D 0 - I - 0x018F66 06:8F56: 77        .byte $77   ; 
 - D 0 - I - 0x018F67 06:8F57: 78        .byte $78   ; 
 
-;sprite priority for after tiles
+; sprite priority for after tiles
 - D 0 - I - 0x018F68 06:8F58: 00        .byte $00   ; top row
 - D 0 - I - 0x018F69 06:8F59: 00        .byte $00   ; 
 - D 0 - I - 0x018F6A 06:8F5A: 00        .byte $00   ; 
@@ -4515,7 +4515,7 @@ _off000_8EBA_19:
 - D 0 - I - 0x018F72 06:8F62: 00        .byte $00   ; 
 - D 0 - I - 0x018F73 06:8F63: 00        .byte $00   ; 
 
-;before
+; before
 - D 0 - I - 0x018F74 06:8F64: AB        .byte $AB   ; top row
 - D 0 - I - 0x018F75 06:8F65: AC        .byte $AC   ; 
 - D 0 - I - 0x018F76 06:8F66: AD        .byte $AD   ; 
@@ -4877,7 +4877,7 @@ _off000_9088_1B:
 
 - D 0 - I - 0x0190BC 06:90AC: 01        .byte $01   ; Z, X/Y position
 - D 0 - I - 0x0190BD 06:90AD: 1C        .byte $1C   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x0190BE 06:90AE: 07        .byte $07   ; how many
 
 - D 0 - I - 0x0190BF 06:90AF: 00        .byte $00   ; graphics
@@ -4899,7 +4899,7 @@ _off000_9088_1B:
 - D 0 - I - 0x0190CC 06:90BC: 02        .byte $02   ; X/Y position
 - D 0 - I - 0x0190CD 06:90BD: 01        .byte $01   ; Z position
 - D 0 - I - 0x0190CE 06:90BE: 80        .byte $80   ; tile setting
-;lol nice prank bro
+; lol nice prank bro
 - D 0 - I - 0x0190CF 06:90BF: 0A        .byte $0A   ; graphics
 - D 0 - I - 0x0190D0 06:90C0: 20        .byte $20   ; X/Y position
 - D 0 - I - 0x0190D1 06:90C1: 00        .byte $00   ; Z position
@@ -4914,7 +4914,7 @@ _off000_9088_1B:
 - D 0 - I - 0x0190D8 06:90C8: 23        .byte $23   ; X/Y position
 - D 0 - I - 0x0190D9 06:90C9: 00        .byte $00   ; Z position
 - D 0 - I - 0x0190DA 06:90CA: 80        .byte $80   ; tile setting
-;special blocks
+; special blocks
 - D 0 - I - 0x0190DB 06:90CB: 00        .byte $00   ; how many
 
 
@@ -4957,7 +4957,7 @@ _off000_90CC_1C:
 - D 0 - I - 0x0190FE 06:90EE: 09        .byte $09   ; Z, X/Y position
 - D 0 - I - 0x0190FF 06:90EF: 1B        .byte $1B   ; destination room ID
 
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x019100 06:90F0: 0F        .byte $0F   ; how many
 
 - D 0 - I - 0x019101 06:90F1: 00        .byte $00   ; graphics
@@ -5154,7 +5154,7 @@ _off000_90CC_1C:
 - D 0 - I - 0x01919A 06:918A: C6        .byte $C6   ; 
 - D 0 - I - 0x01919B 06:918B: C7        .byte $C7   ; 
 - D 0 - I - 0x01919C 06:918C: C8        .byte $C8   ; 
-;special blocks
+; special blocks
 - D 0 - I - 0x01919D 06:918D: 02        .byte $02   ; how many
 
 - D 0 - I - 0x01919E 06:918E: 04        .byte $04   ; graphics
@@ -5396,24 +5396,24 @@ _off000_91AE_1D:
 
 
 _off000_9266_1E:
-;base
+; base
 - D 0 - I - 0x019276 06:9266: 27        .byte $27, $17, $37   ; room palette
 - D 0 - I - 0x019279 06:9269: 00        .byte $00   ; room size
-;sprites
+; sprites
 - D 0 - I - 0x01927A 06:926A: 01        .byte $01   ; how many
 - D 0 - I - 0x01927B 06:926B: 08        .byte con_obj_id_08   ; 
 - D 0 - I - 0x01927C 06:926C: C0        .byte $C0   ; sprite X/Y position
 - D 0 - I - 0x01927D 06:926D: 00        .byte $00   ; sprite direction and Z-position
 - D 0 - I - 0x01927E 06:926E: 1A        .byte $1A, $2A   ; palette
-;walls
+; walls
 - D 0 - I - 0x019280 06:9270: 54        .byte $54   ; NW wall pattern
 - D 0 - I - 0x019281 06:9271: 00        .byte $00   ; NE wall pattern
 - D 0 - I - 0x019282 06:9272: 07        .byte $07   ; NW wall graphics
 - D 0 - I - 0x019283 06:9273: 07        .byte $07   ; NE wall graphics
-;floors
+; floors
 - D 0 - I - 0x019284 06:9274: 8A        .byte $8A   ; secondary floor tiles, hole
 - D 0 - I - 0x019285 06:9275: 00        .byte $00   ; primary floor tiles, basic tiles
-;secondary floor tiles
+; secondary floor tiles
 - D 0 - I - 0x019286 06:9276: 00        .byte $00   ; 1st X row
 - D 0 - I - 0x019287 06:9277: 7C        .byte $7C   ; 2nd X row
 - D 0 - I - 0x019288 06:9278: 7C        .byte $7C   ; 3rd X row
@@ -5421,68 +5421,68 @@ _off000_9266_1E:
 - D 0 - I - 0x01928A 06:927A: 7C        .byte $7C   ; 5th X row
 - D 0 - I - 0x01928B 06:927B: 7C        .byte $7C   ; 6th X row
 - D 0 - I - 0x01928C 06:927C: 00        .byte $00   ; 7th X row
-;7C = 01111100
+; 7C = 01111100
 
 - D 0 - I - 0x01928D 06:927D: 33        .byte $33   ; exit(s) position(s)
 
-;hole
+; hole
 - D 0 - I - 0x01928E 06:927E: 21        .byte $21   ; destination room ID
 - D 0 - I - 0x01928F 06:927F: 00        .byte $00   ; not needed
 
-;ceiling
+; ceiling
 - D 0 - I - 0x019290 06:9280: 1F        .byte $1F   ; destination room ID
 - D 0 - I - 0x019291 06:9281: 00        .byte $00   ; not needed
 
-;top-right
+; top-right
 - D 0 - I - 0x019292 06:9282: 10        .byte $10   ; Z, X/Y position
 - D 0 - I - 0x019293 06:9283: 1D        .byte $1D   ; destination room ID
 
-;bottom-left
+; bottom-left
 - D 0 - I - 0x019294 06:9284: 03        .byte $03   ; Z, X/Y position
 - D 0 - I - 0x019295 06:9285: 22        .byte $22   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x019296 06:9286: 08        .byte $08   ; how many
-;block 1
+; block 1
 - D 0 - I - 0x019297 06:9287: 00        .byte $00   ; graphics
 - D 0 - I - 0x019298 06:9288: 00        .byte $00   ; X/Y position
 - D 0 - I - 0x019299 06:9289: 05        .byte $05   ; Z position
 - D 0 - I - 0x01929A 06:928A: 80        .byte $80   ; tile setting
-;block 2
+; block 2
 - D 0 - I - 0x01929B 06:928B: 00        .byte $00   ; graphics
 - D 0 - I - 0x01929C 06:928C: 01        .byte $01   ; X/Y position
 - D 0 - I - 0x01929D 06:928D: 04        .byte $04   ; Z position
 - D 0 - I - 0x01929E 06:928E: 80        .byte $80   ; tile setting
-;block 3
+; block 3
 - D 0 - I - 0x01929F 06:928F: 00        .byte $00   ; graphics
 - D 0 - I - 0x0192A0 06:9290: 02        .byte $02   ; X/Y position
 - D 0 - I - 0x0192A1 06:9291: 03        .byte $03   ; Z position
 - D 0 - I - 0x0192A2 06:9292: 80        .byte $80   ; tile setting
-;block 4
+; block 4
 - D 0 - I - 0x0192A3 06:9293: 00        .byte $00   ; graphics
 - D 0 - I - 0x0192A4 06:9294: 03        .byte $03   ; X/Y position
 - D 0 - I - 0x0192A5 06:9295: 02        .byte $02   ; Z position
 - D 0 - I - 0x0192A6 06:9296: 80        .byte $80   ; tile setting
-;block 5
+; block 5
 - D 0 - I - 0x0192A7 06:9297: 00        .byte $00   ; graphics
 - D 0 - I - 0x0192A8 06:9298: 04        .byte $04   ; X/Y position
 - D 0 - I - 0x0192A9 06:9299: 01        .byte $01   ; Z position
 - D 0 - I - 0x0192AA 06:929A: 80        .byte $80   ; tile setting
-;block 6
+; block 6
 - D 0 - I - 0x0192AB 06:929B: 00        .byte $00   ; graphics
 - D 0 - I - 0x0192AC 06:929C: 05        .byte $05   ; X/Y position
 - D 0 - I - 0x0192AD 06:929D: 00        .byte $00   ; Z position
 - D 0 - I - 0x0192AE 06:929E: 80        .byte $80   ; tile setting
-;block 7
+; block 7
 - D 0 - I - 0x0192AF 06:929F: 00        .byte $00   ; graphics
 - D 0 - I - 0x0192B0 06:92A0: 56        .byte $56   ; X/Y position
 - D 0 - I - 0x0192B1 06:92A1: 00        .byte $00   ; Z position
 - D 0 - I - 0x0192B2 06:92A2: 80        .byte $80   ; tile setting
-;block 8
+; block 8
 - D 0 - I - 0x0192B3 06:92A3: 00        .byte $00   ; graphics
 - D 0 - I - 0x0192B4 06:92A4: 56        .byte $56   ; X/Y position
 - D 0 - I - 0x0192B5 06:92A5: 01        .byte $01   ; Z position
 - D 0 - I - 0x0192B6 06:92A6: 80        .byte $80   ; tile setting
-;special blocks
+; special blocks
 - D 0 - I - 0x0192B7 06:92A7: 00        .byte $00   ; how many
 
 
@@ -6613,10 +6613,10 @@ _off000_95B3_27:
 
 
 _off000_96B2_28:
-;base
+; base
 - D 0 - I - 0x0196C2 06:96B2: 28        .byte $28, $18, $38   ; room palette
 - D 0 - I - 0x0196C5 06:96B5: 00        .byte $00   ; room size
-;sprites
+; sprites
 - D 0 - I - 0x0196C6 06:96B6: 03        .byte $03   ; how many
 
 - D 0 - I - 0x0196C7 06:96B7: 08        .byte con_obj_id_08   ; 
@@ -6633,15 +6633,15 @@ _off000_96B2_28:
 - D 0 - I - 0x0196D2 06:96C2: C0        .byte $C0   ; sprite X/Y position
 - D 0 - I - 0x0196D3 06:96C3: 06        .byte $06   ; sprite direction and Z-position
 - D 0 - I - 0x0196D4 06:96C4: 11        .byte $11, $21   ; palette
-;walls
+; walls
 - D 0 - I - 0x0196D6 06:96C6: 54        .byte $54   ; NW wall pattern
 - D 0 - I - 0x0196D7 06:96C7: FF        .byte $FF   ; NE wall pattern
 - D 0 - I - 0x0196D8 06:96C8: 07        .byte $07   ; NW wall graphics
 - D 0 - I - 0x0196D9 06:96C9: 92        .byte $92   ; NE wall graphics
-;floors
+; floors
 - D 0 - I - 0x0196DA 06:96CA: 08        .byte $08   ; secondary floor tiles, small squares
 - D 0 - I - 0x0196DB 06:96CB: 81        .byte $81   ; primary floor tiles, spikes
-;secondary tiles
+; secondary tiles
 - D 0 - I - 0x0196DC 06:96CC: 00        .byte $00   ; 1st X row
 - D 0 - I - 0x0196DD 06:96CD: 00        .byte $00   ; 2nd X row
 - D 0 - I - 0x0196DE 06:96CE: 00        .byte $00   ; 3rd X row
@@ -6649,9 +6649,9 @@ _off000_96B2_28:
 - D 0 - I - 0x0196E0 06:96D0: 70        .byte $70   ; 5th X row
 - D 0 - I - 0x0196E1 06:96D1: 70        .byte $70   ; 6th X row
 - D 0 - I - 0x0196E2 06:96D2: 00        .byte $00   ; 7th X row
-;00 = 00000000 (all secondary)
-;7C = 01111100
-;70 = 01110000
+; 00 = 00000000 (all secondary)
+; 7C = 01111100
+; 70 = 01110000
 
 
 - D 0 - I - 0x0196E3 06:96D3: 06        .byte $06   ; exit(s) position(s)
@@ -6661,7 +6661,7 @@ _off000_96B2_28:
 
 - D 0 - I - 0x0196E6 06:96D6: 1A        .byte $1A   ; Z, X/Y position
 - D 0 - I - 0x0196E7 06:96D7: 29        .byte $29   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x0196E8 06:96D8: 18        .byte $18   ; how many
 
 - D 0 - I - 0x0196E9 06:96D9: 00        .byte $00   ; graphics
@@ -6688,7 +6688,7 @@ _off000_96B2_28:
 - D 0 - I - 0x0196FA 06:96EA: 92        .byte $92   ; 
 - D 0 - I - 0x0196FB 06:96EB: 93        .byte $93   ; 
 - D 0 - I - 0x0196FC 06:96EC: 94        .byte $94   ; lowest row
-;..and so on
+; ..and so on
 - D 0 - I - 0x0196FD 06:96ED: 00        .byte $00   ; 
 - D 0 - I - 0x0196FE 06:96EE: 36        .byte $36   ; 
 - D 0 - I - 0x0196FF 06:96EF: 02        .byte $02   ; 
@@ -7042,7 +7042,7 @@ _off000_96B2_28:
 - D 0 - I - 0x01985B 06:984B: A8        .byte $A8   ; 
 - D 0 - I - 0x01985C 06:984C: A9        .byte $A9   ; 
 
-;special blocks
+; special blocks
 - D 0 - I - 0x01985D 06:984D: 03        .byte $03   ; how many
 
 - D 0 - I - 0x01985E 06:984E: 0A        .byte $0A   ; graphics
@@ -7067,7 +7067,7 @@ _off000_96B2_28:
 - D 0 - I - 0x01986F 06:985F: 02        .byte $02   ; X/Y position
 - D 0 - I - 0x019870 06:9860: 04        .byte $04   ; Z position
 - D 0 - I - 0x019871 06:9861: 04        .byte $04   ; type, disapear
-;after touching
+; after touching
 - D 0 - I - 0x019872 06:9862: 48        .byte $48   ; top row
 - D 0 - I - 0x019873 06:9863: 47        .byte $47   ; 
 - D 0 - I - 0x019874 06:9864: 3A        .byte $3A   ; 
@@ -7080,7 +7080,7 @@ _off000_96B2_28:
 - D 0 - I - 0x01987B 06:986B: 4B        .byte $4B   ; 
 - D 0 - I - 0x01987C 06:986C: 3E        .byte $3E   ; 
 - D 0 - I - 0x01987D 06:986D: 66        .byte $66   ; 
-;sprite priority for after tiles
+; sprite priority for after tiles
 - D 0 - I - 0x01987E 06:986E: 00        .byte $00   ; top row
 - D 0 - I - 0x01987F 06:986F: 00        .byte $00   ; 
 - D 0 - I - 0x019880 06:9870: 00        .byte $00   ; 
@@ -7093,7 +7093,7 @@ _off000_96B2_28:
 - D 0 - I - 0x019887 06:9877: 00        .byte $00   ; 
 - D 0 - I - 0x019888 06:9878: 00        .byte $00   ; 
 - D 0 - I - 0x019889 06:9879: 00        .byte $00   ; 
-;before touch
+; before touch
 - D 0 - I - 0x01988A 06:987A: D0        .byte $D0   ; top row
 - D 0 - I - 0x01988B 06:987B: D1        .byte $D1   ; 
 - D 0 - I - 0x01988C 06:987C: D2        .byte $D2   ; 
@@ -8811,10 +8811,10 @@ _off000_9E8B_37:
 - D 0 - I - 0x019EA6 06:9E96: 00        .byte $00   ; NE wall pattern
 - D 0 - I - 0x019EA7 06:9E97: 04        .byte $04   ; NW wall graphics
 - D 0 - I - 0x019EA8 06:9E98: 04        .byte $04   ; NE wall graphics
-;floors
+; floors
 - D 0 - I - 0x019EA9 06:9E99: 8A        .byte $8A   ; secondary floor tiles, hole
 - D 0 - I - 0x019EAA 06:9E9A: 00        .byte $00   ; primary floor tiles, basic tiles
-;secondary floor tiles
+; secondary floor tiles
 - D 0 - I - 0x019EAB 06:9E9B: 00        .byte $00   ; 1st X row
 - D 0 - I - 0x019EAC 06:9E9C: 3C        .byte $3C   ; 2nd X row
 - D 0 - I - 0x019EAD 06:9E9D: 3C        .byte $3C   ; 3rd X row
@@ -8822,28 +8822,28 @@ _off000_9E8B_37:
 - D 0 - I - 0x019EAF 06:9E9F: 3C        .byte $3C   ; 5th X row
 - D 0 - I - 0x019EB0 06:9EA0: 00        .byte $00   ; 6th X row
 - D 0 - I - 0x019EB1 06:9EA1: 00        .byte $00   ; 7th X row
-;3C, hex = 00111100, binary
-;0 = primary, 1 = secondary
+; 3C, hex = 00111100, binary
+; 0 = primary, 1 = secondary
 
-;exits, 3X = hole&ceiling.
+; exits, 3X = hole&ceiling.
 - D 0 - I - 0x019EB2 06:9EA2: 33        .byte $33   ; exit(s) position(s)
 
-;hole exit
+; hole exit
 - D 0 - I - 0x019EB3 06:9EA3: 38        .byte $38   ; destination room ID
 - D 0 - I - 0x019EB4 06:9EA4: 00        .byte $00   ; not used
 
-;ceiling exit
+; ceiling exit
 - D 0 - I - 0x019EB5 06:9EA5: 39        .byte $39   ; destination room ID
 - D 0 - I - 0x019EB6 06:9EA6: 00        .byte $00   ; not used
 
-;top-right exit
+; top-right exit
 - D 0 - I - 0x019EB7 06:9EA7: 0B        .byte $0B   ; Z, X/Y position
 - D 0 - I - 0x019EB8 06:9EA8: 40        .byte $40   ; destination room ID
-;bottom-left exit
+; bottom-left exit
 - D 0 - I - 0x019EB9 06:9EA9: 14        .byte $14   ; Z, X/Y position
 - D 0 - I - 0x019EBA 06:9EAA: 35        .byte $35   ; destination room ID
 
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x019EBB 06:9EAB: 03        .byte $03   ; how many
 
 - D 0 - I - 0x019EBC 06:9EAC: 00        .byte $00   ; graphics
@@ -8860,7 +8860,7 @@ _off000_9E8B_37:
 - D 0 - I - 0x019EC5 06:9EB5: 65        .byte $65   ; X/Y position
 - D 0 - I - 0x019EC6 06:9EB6: 01        .byte $01   ; Z position
 - D 0 - I - 0x019EC7 06:9EB7: 80        .byte $80   ; tile setting
-;special blocks
+; special blocks
 - D 0 - I - 0x019EC8 06:9EB8: 00        .byte $00   ; how many
 
 
@@ -8883,7 +8883,7 @@ _off000_9EB9_38:
 - D 0 - I - 0x019ED9 06:9EC9: 04        .byte $04   ; NE wall pattern
 - D 0 - I - 0x019EDA 06:9ECA: 04        .byte $04   ; NW wall graphics
 - D 0 - I - 0x019EDB 06:9ECB: 04        .byte $04   ; NE wall graphics
-;floors
+; floors
 - D 0 - I - 0x019EDC 06:9ECC: 08        .byte $08   ; secondary floor tiles, small squares
 - D 0 - I - 0x019EDD 06:9ECD: 81        .byte $81   ; primary floor tiles, spikes
 
@@ -8894,20 +8894,20 @@ _off000_9EB9_38:
 - D 0 - I - 0x019EE2 06:9ED2: 00        .byte $00   ; 5th X row
 - - - - - - 0x019EE3 06:9ED3: 00        .byte $00   ; 6th X row
 - - - - - - 0x019EE4 06:9ED4: 00        .byte $00   ; 7th X row
-;70 = 01110000
-;see how secondary tiles are used as normal walkable tiles, unlike normally wheres they are used as spikes?
-;if you swap primariry and secondary tiles around, and change secondary tiles to match up with the original room,
-;then the spikes on lowest Y line will act like normal tiles, but shows up as spikes
-;this is either bug they didnt bother to fix or maybe its hardcoded, who knows.
+; 70 = 01110000
+; see how secondary tiles are used as normal walkable tiles, unlike normally wheres they are used as spikes?
+; if you swap primariry and secondary tiles around, and change secondary tiles to match up with the original room,
+; then the spikes on lowest Y line will act like normal tiles, but shows up as spikes
+; this is either bug they didnt bother to fix or maybe its hardcoded, who knows.
 
-;exits
+; exits
 - D 0 - I - 0x019EE5 06:9ED5: 10        .byte $10   ; exit(s) position(s)
 
 - D 0 - I - 0x019EE6 06:9ED6: 37        .byte $37   ; destination room ID
 - D 0 - I - 0x019EE7 06:9ED7: 00        .byte $00   ; not needed
-;Normal blocks
+; Normal blocks
 - D 0 - I - 0x019EE8 06:9ED8: 00        .byte $00   ; how many
-;special blocks
+; special blocks
 - D 0 - I - 0x019EE9 06:9ED9: 00        .byte $00   ; how many
 
 
@@ -9503,7 +9503,7 @@ _off000_A0F5_3E:
 - D 1 - I - 0x01A105 06:A0F5: 2A        .byte $2A, $1A, $3A   ; room palette
 - D 1 - I - 0x01A108 06:A0F8: 18        .byte $18   ; room size
 
-;same has as room 3E to make it seem like the hat falls down multiple rooms
+; same has as room 3E to make it seem like the hat falls down multiple rooms
 - D 1 - I - 0x01A109 06:A0F9: 01        .byte $01   ; how many
 - D 1 - I - 0x01A10A 06:A0FA: C2        .byte con_obj_id_hat_02   ; 
 - D 1 - I - 0x01A10B 06:A0FB: 00        .byte $00   ; sprite X/Y position
@@ -9541,7 +9541,7 @@ _off000_A111_3F:
 
 - D 1 - I - 0x01A125 06:A115: 01        .byte $01   ; how many
 
-;same has as room 3E to make it seem like the hat falls down multiple rooms
+; same has as room 3E to make it seem like the hat falls down multiple rooms
 - D 1 - I - 0x01A126 06:A116: C2        .byte con_obj_id_hat_02   ; 
 - D 1 - I - 0x01A127 06:A117: 00        .byte $00   ; sprite X/Y position
 - D 1 - I - 0x01A128 06:A118: 06        .byte $06   ; sprite direction and Z-position
@@ -10068,15 +10068,15 @@ _off000_A2E5_45:
 - D 1 - I - 0x01A2F5 06:A2E5: 2A        .byte $2A, $1A, $3A   ; room palette
 - D 1 - I - 0x01A2F8 06:A2E8: 0F        .byte $0F   ; room size
 
-;sprites
-;"tbl_9DD3" makes blasting bomb to go invisible
+; sprites
+; "tbl_9DD3" makes blasting bomb to go invisible
 - D 1 - I - 0x01A2F9 06:A2E9: 03        .byte $03   ; how many
 
 - D 1 - I - 0x01A2FA 06:A2EA: 25        .byte con_obj_id_25   ; blasting bomb
 - D 1 - I - 0x01A2FB 06:A2EB: 2A        .byte $2A   ; sprite X/Y position
 - D 1 - I - 0x01A2FC 06:A2EC: 01        .byte $01   ; sprite direction and Z-position
 - D 1 - I - 0x01A2FD 06:A2ED: 35        .byte $35, $15   ; palette
-;other two are left alone
+; other two are left alone
 - D 1 - I - 0x01A2FF 06:A2EF: 34        .byte con_obj_id_34   ; 
 - D 1 - I - 0x01A300 06:A2F0: 06        .byte $06   ; sprite X/Y position
 - D 1 - I - 0x01A301 06:A2F1: 00        .byte $00   ; sprite direction and Z-position
@@ -10103,38 +10103,38 @@ _off000_A2E5_45:
 - - - - - - 0x01A315 06:A305: FF        .byte $FF   ; 
 
 - D 1 - I - 0x01A316 06:A306: 0A        .byte $0A   ; exit(s) position(s)
-;exit 1
+; exit 1
 - D 1 - I - 0x01A317 06:A307: 00        .byte $00   ; Z, X/Y position
 - D 1 - I - 0x01A318 06:A308: 43        .byte $43   ; destination room ID
 
-;why is position byte "08"? Because when you increase this by one, the exit moves "forward" by one, and then loops back,
-;but one Z-axis higher and so on.
-;and because of "tbl_9D42", this, second exit in the room, is hidden until detonator is hit.
-;and which detonator does that is set in "tbl_9DD3".
+; why is position byte "08"? Because when you increase this by one, the exit moves "forward" by one, and then loops back,
+; but one Z-axis higher and so on.
+; and because of "tbl_9D42", this, second exit in the room, is hidden until detonator is hit.
+; and which detonator does that is set in "tbl_9DD3".
 
-;exit 2
+; exit 2
 - D 1 - I - 0x01A319 06:A309: 08        .byte $08   ; Z, X/Y position
 - D 1 - I - 0x01A31A 06:A30A: 47        .byte $47   ; destination room ID
 
-;Normal blocks
+; Normal blocks
 - D 1 - I - 0x01A31B 06:A30B: 01        .byte $01   ; how many
 
 - D 1 - I - 0x01A31C 06:A30C: 02        .byte $02   ; graphics
 - D 1 - I - 0x01A31D 06:A30D: 15        .byte $15   ; X/Y position
 - D 1 - I - 0x01A31E 06:A30E: 00        .byte $00   ; Z position
 - D 1 - I - 0x01A31F 06:A30F: 80        .byte $80   ; tile setting
-;special blocks
+; special blocks
 - D 1 - I - 0x01A320 06:A310: 00        .byte $00   ; how many
 
 
-;garbage, 222 bytes of free space!
-;kinda looks like block data, but it makes zero sense.
+; garbage, 222 bytes of free space!
+; kinda looks like block data, but it makes zero sense.
 ; bzk garbage, unused room?
 - - - - - - 0x01A321 06:A311: 01        .byte $01   ; 
 - - - - - - 0x01A322 06:A312: 03        .byte $03   ; 
 - - - - - - 0x01A323 06:A313: 16        .byte $16   ; 
 - - - - - - 0x01A324 06:A314: 03        .byte $03   ; 
-- - - - - - 0x01A325 06:A315: 80        .byte $80   ;
+- - - - - - 0x01A325 06:A315: 80        .byte $80   ; 
 - - - - - - 0x01A326 06:A316: 09        .byte $09   ; 
 - - - - - - 0x01A327 06:A317: 03        .byte $03   ; 
 - - - - - - 0x01A328 06:A318: 00        .byte $00   ; 
@@ -10353,14 +10353,14 @@ _off000_A2E5_45:
 - - - - - - 0x01A3FD 06:A3ED: 00        .byte $00   ; 
 - - - - - - 0x01A3FE 06:A3EE: 00        .byte $00   ; 
 
-;end of garbage
+; end of garbage
 
 _off000_A3EF_46:
 - D 1 - I - 0x01A3FF 06:A3EF: 29        .byte $29, $19, $39   ; room palette
 - D 1 - I - 0x01A402 06:A3F2: 18        .byte $18   ; room size
 
-;sprites
-;"tbl_9DD3:" in bank00 makes the detonators work, as in make slot1 visible and slot2 invisible when you hit the detonator
+; sprites
+; "tbl_9DD3:" in bank00 makes the detonators work, as in make slot1 visible and slot2 invisible when you hit the detonator
 - D 1 - I - 0x01A403 06:A3F3: 03        .byte $03   ; how many
 - D 1 - I - 0x01A404 06:A3F4: 2C        .byte con_obj_id_trig_det_01   ; 
 - D 1 - I - 0x01A405 06:A3F5: 04        .byte $04   ; sprite X/Y position
@@ -10371,7 +10371,7 @@ _off000_A3EF_46:
 - D 1 - I - 0x01A40A 06:A3FA: 04        .byte $04   ; sprite X/Y position
 - D 1 - I - 0x01A40B 06:A3FB: 01        .byte $01   ; sprite direction and Z-position
 - D 1 - I - 0x01A40C 06:A3FC: 2C        .byte $2C, $1C   ; palette
-;slot 3 is left alone
+; slot 3 is left alone
 - D 1 - I - 0x01A40E 06:A3FE: 08        .byte con_obj_id_08   ; 
 - D 1 - I - 0x01A40F 06:A3FF: 04        .byte $04   ; sprite X/Y position
 - D 1 - I - 0x01A410 06:A400: 00        .byte $00   ; sprite direction and Z-position
@@ -10397,7 +10397,7 @@ _off000_A3EF_46:
 - D 1 - I - 0x01A421 06:A411: 00        .byte $00   ; Z, X/Y position
 - D 1 - I - 0x01A422 06:A412: 31        .byte $31   ; destination room ID
 
-;Normal blocks
+; Normal blocks
 - D 1 - I - 0x01A423 06:A413: 05        .byte $05   ; how many
 
 - D 1 - I - 0x01A424 06:A414: 02        .byte $02   ; graphics
@@ -10424,7 +10424,7 @@ _off000_A3EF_46:
 - D 1 - I - 0x01A435 06:A425: 22        .byte $22   ; X/Y position
 - D 1 - I - 0x01A436 06:A426: 00        .byte $00   ; Z position
 - D 1 - I - 0x01A437 06:A427: 80        .byte $80   ; tile setting
-;special blocks
+; special blocks
 - D 1 - I - 0x01A438 06:A428: 00        .byte $00   ; how many
 
 
@@ -14026,14 +14026,14 @@ _off000_B067_7B:
 
 - D 1 - I - 0x01B08A 06:B07A: 00        .byte $00   ; Z, X/Y position
 - D 1 - I - 0x01B08B 06:B07B: 84        .byte $84   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 1 - I - 0x01B08C 06:B07C: 01        .byte $01   ; how many
 
 - D 1 - I - 0x01B08D 06:B07D: 0F        .byte $0F   ; graphics
 - D 1 - I - 0x01B08E 06:B07E: 00        .byte $00   ; X/Y position
 - D 1 - I - 0x01B08F 06:B07F: 05        .byte $05   ; Z position
 - D 1 - I - 0x01B090 06:B080: 80        .byte $80   ; tile setting
-;special blocks
+; special blocks
 - D 1 - I - 0x01B091 06:B081: 01        .byte $01   ; how many
 
 - D 1 - I - 0x01B092 06:B082: 10        .byte $10   ; graphics
@@ -17265,7 +17265,7 @@ _off000_BB97_AC:
 
 - D 1 - I - 0x01BBC8 06:BBB8: 28        .byte $28   ; Z, X/Y position
 - D 1 - I - 0x01BBC9 06:BBB9: B6        .byte $B6   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 1 - I - 0x01BBCA 06:BBBA: 1B        .byte $1B   ; how many.. oh my god
 
 - D 1 - I - 0x01BBCB 06:BBBB: 00        .byte $00   ; 
@@ -17676,9 +17676,9 @@ _off000_BB97_AC:
 - D 1 - I - 0x01BD60 06:BD50: D6        .byte $D6   ; 
 - D 1 - I - 0x01BD61 06:BD51: D7        .byte $D7   ; 
 - D 1 - I - 0x01BD62 06:BD52: D8        .byte $D8   ; 
-;special blocks
+; special blocks
 - D 1 - I - 0x01BD63 06:BD53: 04        .byte $04   ; how many
-;how sneaky, kaizo blocks
+; how sneaky, kaizo blocks
 - D 1 - I - 0x01BD64 06:BD54: 00        .byte $00   ; graphics
 - D 1 - I - 0x01BD65 06:BD55: 10        .byte $10   ; X/Y position
 - D 1 - I - 0x01BD66 06:BD56: 04        .byte $04   ; graphics
@@ -17719,7 +17719,7 @@ _off000_BB97_AC:
 - D 1 - I - 0x01BD85 06:BD75: 25        .byte $25   ; X/Y position
 - D 1 - I - 0x01BD86 06:BD76: 00        .byte $00   ; Z position
 - D 1 - I - 0x01BD87 06:BD77: 04        .byte $04   ; type, disapear
-;after
+; after
 - D 1 - I - 0x01BD88 06:BD78: 87        .byte $87   ; top row
 - D 1 - I - 0x01BD89 06:BD79: 88        .byte $88   ; 
 - D 1 - I - 0x01BD8A 06:BD7A: 69        .byte $69   ; 
@@ -17732,7 +17732,7 @@ _off000_BB97_AC:
 - D 1 - I - 0x01BD91 06:BD81: 8E        .byte $8E   ; 
 - D 1 - I - 0x01BD92 06:BD82: 8F        .byte $8F   ; 
 - D 1 - I - 0x01BD93 06:BD83: 90        .byte $90   ; 
-;sprite priority for after
+; sprite priority for after
 - D 1 - I - 0x01BD94 06:BD84: 71        .byte $71   ; top row
 - D 1 - I - 0x01BD95 06:BD85: 71        .byte $71   ; 
 - D 1 - I - 0x01BD96 06:BD86: 00        .byte $00   ; 
@@ -17745,11 +17745,11 @@ _off000_BB97_AC:
 - D 1 - I - 0x01BD9D 06:BD8D: A1        .byte $A1   ; 
 - D 1 - I - 0x01BD9E 06:BD8E: A1        .byte $A1   ; 
 - D 1 - I - 0x01BD9F 06:BD8F: A1        .byte $A1   ; 
-;before
+; before
 - D 1 - I - 0x01BDA0 06:BD90: 95        .byte $95   ; top row
 - D 1 - I - 0x01BDA1 06:BD91: 96        .byte $96   ; 
 - D 1 - I - 0x01BDA2 06:BD92: 99        .byte $99   ; 
-- D 1 - I - 0x01BDA3 06:BD93: 9A        .byte $9A   ;
+- D 1 - I - 0x01BDA3 06:BD93: 9A        .byte $9A   ; 
 - D 1 - I - 0x01BDA4 06:BD94: 85        .byte $85   ; middle row
 - D 1 - I - 0x01BDA5 06:BD95: 86        .byte $86   ; 
 - D 1 - I - 0x01BDA6 06:BD96: 95        .byte $95   ; 
@@ -17763,7 +17763,7 @@ _off000_BB97_AC:
 - D 1 - I - 0x01BDAD 06:BD9D: 04        .byte $04   ; X/Y position
 - D 1 - I - 0x01BDAE 06:BD9E: 02        .byte $02   ; Z position
 - D 1 - I - 0x01BDAF 06:BD9F: 04        .byte $04   ; type, disapear
-;after
+; after
 - D 1 - I - 0x01BDB0 06:BDA0: C9        .byte $C9   ; top row
 - D 1 - I - 0x01BDB1 06:BDA1: CA        .byte $CA   ; 
 - D 1 - I - 0x01BDB2 06:BDA2: 4A        .byte $4A   ; 
@@ -17776,7 +17776,7 @@ _off000_BB97_AC:
 - D 1 - I - 0x01BDB9 06:BDA9: 4F        .byte $4F   ; 
 - D 1 - I - 0x01BDBA 06:BDAA: CB        .byte $CB   ; 
 - D 1 - I - 0x01BDBB 06:BDAB: CC        .byte $CC   ; 
-;sprite priority for after
+; sprite priority for after
 - D 1 - I - 0x01BDBC 06:BDAC: 44        .byte $44   ; top row
 - D 1 - I - 0x01BDBD 06:BDAD: 44        .byte $44   ; 
 - D 1 - I - 0x01BDBE 06:BDAE: 00        .byte $00   ; 
@@ -17789,7 +17789,7 @@ _off000_BB97_AC:
 - D 1 - I - 0x01BDC5 06:BDB5: 00        .byte $00   ; 
 - D 1 - I - 0x01BDC6 06:BDB6: 62        .byte $62   ; 
 - D 1 - I - 0x01BDC7 06:BDB7: 62        .byte $62   ; 
-;before
+; before
 - D 1 - I - 0x01BDC8 06:BDB8: C3        .byte $C3   ; top row
 - D 1 - I - 0x01BDC9 06:BDB9: C4        .byte $C4   ; 
 - D 1 - I - 0x01BDCA 06:BDBA: E2        .byte $E2   ; 
@@ -18533,17 +18533,17 @@ _off000_C05C_B2:
 - - - - - - 0x01C07D 07:C06D: FF        .byte $FF   ; 
 
 - D 2 - I - 0x01C07E 07:C06E: 02        .byte $02   ; exit(s) position(s)
-;exit is revealed with key
+; exit is revealed with key
 - D 2 - I - 0x01C07F 07:C06F: 00        .byte $00   ; Z, X/Y position
 - D 2 - I - 0x01C080 07:C070: B1        .byte $B1   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 2 - I - 0x01C081 07:C071: 01        .byte $01   ; how many
 
 - D 2 - I - 0x01C082 07:C072: 0F        .byte $0F   ; graphics
 - D 2 - I - 0x01C083 07:C073: 11        .byte $11   ; X/Y position
 - D 2 - I - 0x01C084 07:C074: 05        .byte $05   ; Z position
 - D 2 - I - 0x01C085 07:C075: 80        .byte $80   ; tile setting
-;special blocks
+; special blocks
 - D 2 - I - 0x01C086 07:C076: 01        .byte $01   ; how many
 
 - D 2 - I - 0x01C087 07:C077: 10        .byte $10   ; graphics
@@ -18562,11 +18562,11 @@ _off000_C05C_B2:
 - D 2 - I - 0x01C094 07:C084: 9A        .byte $9A   ; 
 - D 2 - I - 0x01C095 07:C085: 9B        .byte $9B   ; 
 - D 2 - I - 0x01C096 07:C086: 9C        .byte $9C   ; 
-;fun fact, this room has glitchy graphics if you enter it before obtaining the key,
-;as the game dynamically sets the tiles for blocks with manually defined tiles or special blocks,
-;and since the exit arrow isn't drawn, tiles for teleporter changes, but dont match up with
-;the written down tiles as they were written. In some cases glitchy tiles can change
-;depending what room you entered into, or if you bring up the menu screen.
+; fun fact, this room has glitchy graphics if you enter it before obtaining the key,
+; as the game dynamically sets the tiles for blocks with manually defined tiles or special blocks,
+; and since the exit arrow isn't drawn, tiles for teleporter changes, but dont match up with
+; the written down tiles as they were written. In some cases glitchy tiles can change
+; depending what room you entered into, or if you bring up the menu screen.
 
 
 _off000_C087_B3:
@@ -24789,7 +24789,7 @@ _off000_D728_E0:
 - D 2 - I - 0x01D738 07:D728: 1A        .byte $1A, $0A, $2A   ; room palette
 - D 2 - I - 0x01D73B 07:D72B: 18        .byte $18   ; room size
 
-;because of "sub_9D6F", sprites are hidden until player collects 5 staff pieces
+; because of "sub_9D6F", sprites are hidden until player collects 5 staff pieces
 - D 2 - I - 0x01D73C 07:D72C: 02        .byte $02   ; how many
 - D 2 - I - 0x01D73D 07:D72D: 80        .byte con_obj_id_pickable_block_00   ; 
 - D 2 - I - 0x01D73E 07:D72E: 04        .byte $04   ; sprite X/Y position
@@ -25094,10 +25094,10 @@ _off000_D833_E3:
 - D 2 - I - 0x01D853 07:D843: 00        .byte $00   ; NE wall pattern
 - D 2 - I - 0x01D854 07:D844: 02        .byte $02   ; NW wall graphics
 - D 2 - I - 0x01D855 07:D845: 02        .byte $02   ; NE wall graphics
-;floors
+; floors
 - D 2 - I - 0x01D856 07:D846: 81        .byte $81   ; secondary floor tiles, spikes
 - D 2 - I - 0x01D857 07:D847: 06        .byte $06   ; primary floor tiles, cave
-;secondary floor tiles
+; secondary floor tiles
 - D 2 - I - 0x01D858 07:D848: 00        .byte $00   ; secondary X floor tiles
 - D 2 - I - 0x01D859 07:D849: 7C        .byte $7C   ; 
 - D 2 - I - 0x01D85A 07:D84A: 7C        .byte $7C   ; 
@@ -25342,10 +25342,10 @@ _off000_D911_E5:
 - D 2 - I - 0x01D936 07:D926: 00        .byte $00   ; NE wall pattern
 - D 2 - I - 0x01D937 07:D927: 02        .byte $02   ; NW wall graphics
 - D 2 - I - 0x01D938 07:D928: 02        .byte $02   ; NE wall graphics
-;floors
+; floors
 - D 2 - I - 0x01D939 07:D929: 8A        .byte $8A   ; secondary floor tiles, hole
 - D 2 - I - 0x01D93A 07:D92A: 06        .byte $06   ; primary floor tiles, cave 
-;secondary floor tiles
+; secondary floor tiles
 - D 2 - I - 0x01D93B 07:D92B: 04        .byte $04   ; 1 x row
 - D 2 - I - 0x01D93C 07:D92C: 44        .byte $44   ; 2 x row
 - D 2 - I - 0x01D93D 07:D92D: 04        .byte $04   ; 3 x row
@@ -25353,7 +25353,7 @@ _off000_D911_E5:
 - - - - - - 0x01D93F 07:D92F: 00        .byte $00   ; 5 x row
 - - - - - - 0x01D940 07:D930: 40        .byte $40   ; 6 x row
 - - - - - - 0x01D941 07:D931: 00        .byte $00   ; 7 x row
-;...thats sus, hidden unused stuff!
+; ...thats sus, hidden unused stuff!
 
 
 - D 2 - I - 0x01D942 07:D932: 24        .byte $24   ; exit(s) position(s)
@@ -25363,9 +25363,9 @@ _off000_D911_E5:
 
 - D 2 - I - 0x01D945 07:D935: 00        .byte $00   ; Z, X/Y position
 - D 2 - I - 0x01D946 07:D936: D2        .byte $D2   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 2 - I - 0x01D947 07:D937: 00        .byte $00   ; how many
-;special blocks
+; special blocks
 - D 2 - I - 0x01D948 07:D938: 06        .byte $06   ; how many
 
 - D 2 - I - 0x01D949 07:D939: 0A        .byte $0A   ; graphics
@@ -25965,10 +25965,10 @@ _off000_DB22_ED:
 - D 2 - I - 0x01DB47 07:DB37: 00        .byte $00   ; NE wall pattern
 - D 2 - I - 0x01DB48 07:DB38: 08        .byte $08   ; NW wall graphics
 - D 2 - I - 0x01DB49 07:DB39: 08        .byte $08   ; NE wall graphics
-;floors
+; floors
 - D 2 - I - 0x01DB4A 07:DB3A: 08        .byte $08   ; secondary floor tiles, small tiles
 - D 2 - I - 0x01DB4B 07:DB3B: 81        .byte $81   ; primary floor tiles, spikes
-;secondary floor tiles
+; secondary floor tiles
 - D 2 - I - 0x01DB4C 07:DB3C: 00        .byte $00   ; 1st X row
 - D 2 - I - 0x01DB4D 07:DB3D: 00        .byte $00   ; 2nd X row
 - D 2 - I - 0x01DB4E 07:DB3E: 00        .byte $00   ; 3rd X row
@@ -25981,7 +25981,7 @@ _off000_DB22_ED:
 
 - D 2 - I - 0x01DB54 07:DB44: 08        .byte $08   ; Z, X/Y position
 - D 2 - I - 0x01DB55 07:DB45: EC        .byte $EC   ; destination room ID
-;Normal blocks
+; Normal blocks
 - D 2 - I - 0x01DB56 07:DB46: 0D        .byte $0D   ; how many
 
 - D 2 - I - 0x01DB57 07:DB47: 00        .byte $00   ; graphics
@@ -28784,21 +28784,21 @@ _off000_E4F1_FC:
 - D 3 - I - 0x01E57E 07:E56E: 00        .byte $00   ; 
 
 
-;note, palette is overridden by "tbl_86D5:" in bank_00
+; note, palette is overridden by "tbl_86D5:" in bank_00
 tbl_0x01E57F_intro_cutscene_room_data:
 - D 3 - I - 0x01E57F 07:E56F: 0F        .byte $0F, $0F, $0F   ; room palette
 - D 3 - I - 0x01E582 07:E572: 00        .byte $00   ; room size
-;sprites
+; sprites
 - D 3 - I - 0x01E583 07:E573: 00        .byte $00   ; how many
-;walls
+; walls
 - D 3 - I - 0x01E584 07:E574: 00        .byte $00   ; NW wall pattern
 - D 3 - I - 0x01E585 07:E575: 00        .byte $00   ; NE wall pattern
 - D 3 - I - 0x01E586 07:E576: 0C        .byte $0C   ; NW wall graphics
 - D 3 - I - 0x01E587 07:E577: 0C        .byte $0C   ; NE wall graphics
-;floors
+; floors
 - D 3 - I - 0x01E588 07:E578: 03        .byte $03   ; secondary floor tiles
 - D 3 - I - 0x01E589 07:E579: 03        .byte $03   ; primary floor tiles
-;secondary floor tiles
+; secondary floor tiles
 - D 3 - I - 0x01E58A 07:E57A: FF        .byte $FF   ; secondary X floor tiles
 - D 3 - I - 0x01E58B 07:E57B: FF        .byte $FF   ; 
 - D 3 - I - 0x01E58C 07:E57C: FF        .byte $FF   ; 
@@ -28806,7 +28806,7 @@ tbl_0x01E57F_intro_cutscene_room_data:
 - D 3 - I - 0x01E58E 07:E57E: FF        .byte $FF   ; 
 - D 3 - I - 0x01E58F 07:E57F: FF        .byte $FF   ; 
 - D 3 - I - 0x01E590 07:E580: FF        .byte $FF   ; 
-;exits
+; exits
 - D 3 - I - 0x01E591 07:E581: 06        .byte $06   ; exit(s) position(s)
 
 - D 3 - I - 0x01E592 07:E582: 01        .byte $01   ; 
@@ -28814,14 +28814,14 @@ tbl_0x01E57F_intro_cutscene_room_data:
 
 - D 3 - I - 0x01E594 07:E584: 00        .byte $00   ; 
 - - - - - - 0x01E595 07:E585: FE        .byte $FE   ; 
-;Normal blocks
+; Normal blocks
 - D 3 - I - 0x01E596 07:E586: 00        .byte $00   ; how many
-;special blocks
+; special blocks
 - D 3 - I - 0x01E597 07:E587: 00        .byte $00   ; how many
 
 
-;oddly enough copy of room E2, until block data.
-;note, palette is overridden by "tbl_86D5:" in bank_00
+; oddly enough copy of room E2, until block data.
+; note, palette is overridden by "tbl_86D5:" in bank_00
 tbl_0x01E598_final_cutscene_room_data:
 - D 3 - I - 0x01E598 07:E588: 14        .byte $14, $04, $24   ; room palette
 - D 3 - I - 0x01E59B 07:E58B: 00        .byte $00   ; room size
@@ -28839,15 +28839,15 @@ tbl_0x01E598_final_cutscene_room_data:
 - D 3 - I - 0x01E5A8 07:E598: 48        .byte $48   ; sprite X/Y position
 - D 3 - I - 0x01E5A9 07:E599: 05        .byte $05   ; sprite direction and Z-position
 - D 3 - I - 0x01E5AA 07:E59A: 18        .byte $18, $28   ; palette
-;walls
+; walls
 - D 3 - I - 0x01E5AC 07:E59C: 6A        .byte $6A   ; NW wall pattern
 - D 3 - I - 0x01E5AD 07:E59D: DC        .byte $DC   ; NE wall pattern
 - D 3 - I - 0x01E5AE 07:E59E: 08        .byte $08   ; NW wall graphics
 - D 3 - I - 0x01E5AF 07:E59F: 08        .byte $08   ; NE wall graphics
-;floors
+; floors
 - D 3 - I - 0x01E5B0 07:E5A0: 04        .byte $04   ; secondary floor tiles
 - D 3 - I - 0x01E5B1 07:E5A1: 04        .byte $04   ; primary floor tiles
-;secondary floor tiles
+; secondary floor tiles
 - D 3 - I - 0x01E5B2 07:E5A2: FF        .byte $FF   ; secondary X floor tiles
 - D 3 - I - 0x01E5B3 07:E5A3: FF        .byte $FF   ; 
 - D 3 - I - 0x01E5B4 07:E5A4: FF        .byte $FF   ; 
@@ -28860,7 +28860,7 @@ tbl_0x01E598_final_cutscene_room_data:
 
 - D 3 - I - 0x01E5BA 07:E5AA: 00        .byte $00   ; Z, X/Y position
 - - - - - - 0x01E5BB 07:E5AB: FE        .byte $FE   ; destination room ID, points to itself lol
-;Normal blocks
+; Normal blocks
 - D 3 - I - 0x01E5BC 07:E5AC: 0B        .byte $0B   ; how many
 
 - D 3 - I - 0x01E5BD 07:E5AD: 02        .byte $02   ; graphics
@@ -28947,10 +28947,10 @@ tbl_0x01E598_final_cutscene_room_data:
 - D 3 - I - 0x01E5FE 07:E5EE: 8A        .byte $8A   ; 
 - D 3 - I - 0x01E5FF 07:E5EF: 8B        .byte $8B   ; 
 - D 3 - I - 0x01E600 07:E5F0: 8C        .byte $8C   ; 
-;special blocks
+; special blocks
 - D 3 - I - 0x01E601 07:E5F1: 00        .byte $00   ; how many
 
-;end of room data
+; end of room data
 
 ofs_0x01E602_1A:
 C - - - - - 0x01E602 07:E5F2: BC 50 07  LDY ram_0750_obj,X
