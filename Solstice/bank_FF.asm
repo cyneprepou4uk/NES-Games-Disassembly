@@ -10129,7 +10129,7 @@ _off000_A2E5_45:
 
 ;garbage, 222 bytes of free space!
 ;kinda looks like block data, but it makes zero sense.
-
+; bzk garbage, unused room?
 - - - - - - 0x01A321 06:A311: 01        .byte $01   ; 
 - - - - - - 0x01A322 06:A312: 03        .byte $03   ; 
 - - - - - - 0x01A323 06:A313: 16        .byte $16   ; 
