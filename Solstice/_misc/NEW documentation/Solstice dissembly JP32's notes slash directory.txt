@@ -1,0 +1,81 @@
+Solstice disassembly, JP32's notes.
+Version 1.0, 11.02.2023.
+
+This is "directory" or list of stuff Ive commented/explained in the disassembly,
+to make it more readable and easier to find some specif parts.
+
+This is still work in progress, and I don't have too much free time to really focus on it,
+so I'll probably stop after this to focus on my Solstice hack, but if you have any questions,
+feel free the PM me at romhacking.net (J^P / "profile;u=17321") or discord "JP32#4057".
+But you can always contribute yourself too ;).
+
+Progress so far:
+I've documented room data completely, although I dont have time or patience to fully comment out
+the stock room data in "bank_ff" so I settled on just commenting first dozen and then some unique
+rooms, but with my documentation and notes you should be able to decode it easily.
+
+Todo:
+These are stuff Ive investigated, made some progress but not included yet:
+-gameplay demos
+-enemy/sprite code/tables/etc
+-document unused stuff, pal/usa/jpn/"beta" differences(if anyone knows the "beta"'s origins or anything about me tell me (MD5 hash "96CE83D4D1B5993169C7999C1D2F0208").
+-double check the staff piece check code
+-and more as my notes are all over the place lol.
+
+
+---
+
+
+Bank_00.asm:
+Bunch of initialization stuff
+
+Points of interests:
+"tbl_86D5:" palettes for story(room part)
+";item stuff" - item table and code for items
+";Teleporters" - table for teleporter pairs
+";Credit checkpoints" - table for credits 
+";Keys and detonators" - table for keys and detonators
+";more detonator and key stuff" - table for more key and detonator stuff
+";Enemy stuff" - enemy table and code for enemies(WIP)
+";Animations/graphics for enemies" - self-explanatory
+";default palettes for rooms, sprites and player" - self-explanatory
+";gameplay demo" - gameplay demo stuff (WIP)
+";logo palettes" - palettes for csg presents, title screen, the end screen, etc
+";room sizes table" - table for room sizes
+"sub_9CE4" or ";6 staff pieces check" - heres the check for what room(F3), and what exit to hide until all 6 staff pieces are obained.
+"sub_9D6F" or ";5 staff pieces check" - code that checks for hidden stuff in rooms, and the 5 staff piece check in room E0
+
+
+bank_01.asm:
+Cut-scene text, palettes, Attribute Tables for portraits and title screen etc
+
+Points of interests:
+;text for intro&ending" - these are out of order
+";ending stats text" - text for ending statics & the end fancy text
+";credits text" - text for the ending credits 
+";palettes for intro cutscene portraits:" - also has title screen palette(one with shadax)
+
+bank_02.asm
+Music driver stuff, code for pause screen, % calculation, rest of text..
+
+points of interests:
+";all staff pieces are collected message" - self-explanatory
+";title screen credits" Title credits text&stuff
+";game over text" self-explanatory
+";continue screen" continue screen text
+";"big picture"" -  item pickup graphics attributes and palettes
+";big picture text" - text for the "big picture" screens
+";pause cheat" - code etc for the cheat code in the status screen
+";music driver stuff" - self-explanatory
+
+bank_ff:
+Mostly the room data
+
+";room data" - this is where all the rooms are, for in-depth explanation see the other text files.
+
+
+
+bank_val.inc:
+Global constant values
+
+Has list of sfx, music, sprites...

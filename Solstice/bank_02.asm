@@ -1319,27 +1319,33 @@ C - - - - - 0x01078F 04:877F: 85 23     STA ram_0023
 C - - - - - 0x010791 04:8781: A9 00     LDA #$00
 C - - - - - 0x010793 04:8783: 4C E4 A5  JMP loc_A5E4_write_to_ppu
 
+;all staff pieces are collected message
+
 tbl_8786:
-- D 0 - I - 0x010796 04:8786: FE        .byte $FE   ; 
+- D 0 - I - 0x010796 04:8786: FE        .byte $FE   ; next line
 - D 0 - I - 0x010797 04:8787: 08 21     .word $2108
+;The staff of DEMNOS
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x010799 04:8789: 38        .byte                                         $38, $12, $0F, $00, $1D, $1E, $0B, $10   ; 
 - D 0 - I - 0x0107A1 04:8791: 10        .byte $10, $00, $19, $10, $00, $28, $29, $31, $32, $33, $37   ; 
 
-- D 0 - I - 0x0107AC 04:879C: FE        .byte $FE   ; 
-- D 0 - I - 0x0107AD 04:879D: 49 21     .word $2149
+- D 0 - I - 0x0107AC 04:879C: FE        .byte $FE   ;  next line
+- D 0 - I - 0x0107AD 04:879D: 49 21     .word $2149	; postion
+;has been restored.
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x0107AF 04:879F: 12        .byte                                              $12, $0B, $1D, $00, $0C, $0F, $0F   ; 
 - D 0 - I - 0x0107B6 04:87A6: 18        .byte $18, $00, $1C, $0F, $1D, $1E, $19, $1C, $0F, $0E, $40   ; 
 
-- D 0 - I - 0x0107C1 04:87B1: FE        .byte $FE   ; 
-- D 0 - I - 0x0107C2 04:87B2: A8 21     .word $21A8
+- D 0 - I - 0x0107C1 04:87B1: FE        .byte $FE   ;  next line
+- D 0 - I - 0x0107C2 04:87B2: A8 21     .word $21A8	; postion
+;Now you have to
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x0107C4 04:87B4: 00        .byte                                         $00, $32, $19, $21, $00, $23, $19, $1F   ; 
 - D 0 - I - 0x0107CC 04:87BC: 00        .byte $00, $12, $0B, $20, $0F, $00, $1E, $19   ; 
 
-- D 0 - I - 0x0107D4 04:87C4: FE        .byte $FE   ; 
-- D 0 - I - 0x0107D5 04:87C5: E9 21     .word $21E9
+- D 0 - I - 0x0107D4 04:87C4: FE        .byte $FE   ;  next line
+- D 0 - I - 0x0107D5 04:87C5: E9 21     .word $21E9	; postion
+;find the princess.
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x0107D7 04:87C7: 10        .byte                                              $10, $13, $18, $0E, $00, $1E, $12   ; 
 - D 0 - I - 0x0107DE 04:87CE: 0F        .byte $0F, $00, $1A, $1C, $13, $18, $0D, $0F, $1D, $1D, $40   ; 
@@ -2101,7 +2107,7 @@ C D 1 - I - 0x01262F 04:A61F: D0 C7     BNE bra_A5E8_loop
 bra_A621_RTS:
 C D 1 - I - 0x012631 04:A621: 60        RTS
 
-
+;title screen credits
 
 ofs_0x012632_1F:
 C D 1 - I - 0x012632 04:A622: AE A7 07  LDX ram_07A7
@@ -2114,53 +2120,60 @@ C D 1 - I - 0x012641 04:A631: 20 E4 A5  JSR sub_A5E4_write_to_ppu
 C D 1 - I - 0x012644 04:A634: 60        RTS
 
 tbl_A635_lo:
-- D 1 - I - 0x012645 04:A635: 3D        .byte < _off012_A63D_00   ; 
-- D 1 - I - 0x012646 04:A636: 3D        .byte < _off012_A63D_01   ; 
-- D 1 - I - 0x012647 04:A637: E8        .byte < _off012_A6E8_02   ; 
-- D 1 - I - 0x012648 04:A638: 86        .byte < _off012_A786_03   ; 
+- D 1 - I - 0x012645 04:A635: 3D        .byte < _off012_A63D_00   ; removed page, unused
+- D 1 - I - 0x012646 04:A636: 3D        .byte < _off012_A63D_01   ; page 2
+- D 1 - I - 0x012647 04:A637: E8        .byte < _off012_A6E8_02   ; page 1
+- D 1 - I - 0x012648 04:A638: 86        .byte < _off012_A786_03   ; removed page, unused
 
 tbl_A639_hi:
-- D 1 - I - 0x012649 04:A639: A6        .byte > _off012_A63D_00   ; 
+- D 1 - I - 0x012649 04:A639: A6        .byte > _off012_A63D_00   ; see above
 - D 1 - I - 0x01264A 04:A63A: A6        .byte > _off012_A63D_01   ; 
 - D 1 - I - 0x01264B 04:A63B: A6        .byte > _off012_A6E8_02   ; 
 - D 1 - I - 0x01264C 04:A63C: A7        .byte > _off012_A786_03   ; 
 
-
+;title credits text page 2
 
 _off012_A63D_00:
+;removed page
 _off012_A63D_01:
-- D 1 - I - 0x01264D 04:A63D: FE        .byte $FE   ; 
-- D 1 - I - 0x01264E 04:A63E: C4 21     .word $21C4
+- D 1 - I - 0x01264D 04:A63D: FE        .byte $FE   ;line break
+- D 1 - I - 0x01264E 04:A63E: C4 21     .word $21C4	;position
+;Programmed by Mike Webb
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012650 04:A640: 34        .byte                     $34, $1C, $19, $11, $1C, $0B, $17, $17, $0F, $0E, $00, $0C   ; 
 - D 1 - I - 0x012658 04:A648: 0F        .byte $23, $00, $31, $13, $15, $0F, $00, $3B, $0F, $0C, $0C   ; 
 
-- D 1 - I - 0x012667 04:A657: FE        .byte $FE   ; 
-- D 1 - I - 0x012668 04:A658: 04 22     .word $2204
+- D 1 - I - 0x012667 04:A657: FE        .byte $FE   ;line break
+- D 1 - I - 0x012668 04:A658: 04 22     .word $2204	;position
+;Graphics by Mark Wilson
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01266A 04:A65A: 2B        .byte                     $2B, $1C, $0B, $1A, $12, $13, $0D, $1D, $00, $0C, $23, $00   ; 
 - D 1 - I - 0x012672 04:A662: 00        .byte $31, $0B, $1C, $15, $00, $3B, $13, $16, $1D, $19, $18   ; 
 
-- D 1 - I - 0x012681 04:A671: FE        .byte $FE   ; 
-- D 1 - I - 0x012682 04:A672: 44 22     .word $2244
+- D 1 - I - 0x012681 04:A671: FE        .byte $FE   ;line break
+- D 1 - I - 0x012682 04:A672: 44 22     .word $2244	;position
+;Music by Timothy Follin
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012684 04:A674: 31        .byte                     $31, $1F, $1D, $13, $0D, $00, $0C, $23, $00, $38, $13, $17   ; 
 - D 1 - I - 0x01268C 04:A67C: 00        .byte $19, $1E, $12, $23, $00, $2A, $19, $16, $16, $13, $18   ; 
 
-- D 1 - I - 0x01269B 04:A68B: FE        .byte $FE   ; 
-- D 1 - I - 0x01269C 04:A68C: A7 22     .word $22A7
+- D 1 - I - 0x01269B 04:A68B: FE        .byte $FE   ;line break 
+- D 1 - I - 0x01269C 04:A68C: A7 22     .word $22A7	;position
+;Game designed by
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01269E 04:A68E: 2B        .byte                                    $2B, $0B, $17, $0F, $00, $0E, $0F, $1D, $13   ; 
 - D 1 - I - 0x0126A6 04:A696: 13        .byte $11, $18, $0F, $0E, $00, $0C, $23   ; 
 
-- D 1 - I - 0x0126AE 04:A69E: FE        .byte $FE   ; 
-- D 1 - I - 0x0126AF 04:A69F: C6 22     .word $22C6
+- D 1 - I - 0x0126AE 04:A69E: FE        .byte $FE   ;line break 
+- D 1 - I - 0x0126AF 04:A69F: C6 22     .word $22C6	;position
+;M.Webb and M.Wilson
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x0126B1 04:A6A1: 31        .byte                               $31, $40, $3B, $0F, $0C, $0C, $00, $0B, $18, $0E   ; 
 - D 1 - I - 0x0126B9 04:A6A9: 18        .byte $00, $31, $40, $3B, $13, $16, $1D, $19, $18   ; 
 
-- D 1 - I - 0x0126C4 04:A6B4: FE        .byte $FE   ; 
-- D 1 - I - 0x0126C5 04:A6B5: D0 23     .word $23D0
+;Attribute Table
+- D 1 - I - 0x0126C4 04:A6B4: FE        .byte $FE   ;line break 
+- D 1 - I - 0x0126C5 04:A6B5: D0 23     .word $23D0 ;position
 - D 1 - I - 0x0126C7 04:A6B7: FD        .byte $FD   ; 
 - D 1 - I - 0x0126C8 04:A6B8: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x0126D0 04:A6C0: 55        .byte $55, $55, $55, $55, $55, $55, $55, $55   ; 
@@ -2169,41 +2182,47 @@ _off012_A63D_01:
 - D 1 - I - 0x0126E8 04:A6D8: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x0126F0 04:A6E0: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
 
-
+;title credits page 1
 
 _off012_A6E8_02:
-- D 1 - I - 0x0126F8 04:A6E8: FE        .byte $FE   ; 
-- D 1 - I - 0x0126F9 04:A6E9: C6 21     .word $21C6
+- D 1 - I - 0x0126F8 04:A6E8: FE        .byte $FE   ; next
+- D 1 - I - 0x0126F9 04:A6E9: C6 21     .word $21C6 ;position
+;CSG Imagesoft Inc.
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x0126FB 04:A6EB: 27        .byte                               $27, $37, $2B, $00, $2D, $17, $0B, $11, $0F, $1D   ; 
 - D 1 - I - 0x012703 04:A6F3: 0F        .byte $19, $10, $1E, $00, $2D, $18, $0D, $40   ; 
 
-- D 1 - I - 0x01270D 04:A6FD: FE        .byte $FE   ; 
-- D 1 - I - 0x01270E 04:A6FE: 28 22     .word $2228
+- D 1 - I - 0x01270D 04:A6FD: FE        .byte $FE   ; next
+- D 1 - I - 0x01270E 04:A6FE: 28 22     .word $2228	;pos
+;Copyright 1989
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012710 04:A700: 27        .byte                                         $27, $19, $1A, $23, $1C, $13, $11, $12   ; 
 - D 1 - I - 0x012718 04:A708: 1E        .byte $1E, $00, $02, $0A, $09, $0A   ; 
 
-- D 1 - I - 0x01271E 04:A70E: FE        .byte $FE   ; 
-- D 1 - I - 0x01271F 04:A70F: 44 22     .word $2244
+- D 1 - I - 0x01271E 04:A70E: FE        .byte $FE   ; next
+- D 1 - I - 0x01271F 04:A70F: 44 22     .word $2244	;pos
+;Software Creations Ltd.
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012721 04:A711: 37        .byte                     $37, $19, $10, $1E, $21, $0B, $1C, $0F, $00, $27, $1C, $0F   ; 
 - D 1 - I - 0x012729 04:A719: 00        .byte $0B, $1E, $13, $19, $18, $1D, $00, $30, $1E, $0E, $40   ; 
 
-- D 1 - I - 0x012738 04:A728: FE        .byte $FE   ; 
-- D 1 - I - 0x012739 04:A729: A9 22     .word $22A9
+- D 1 - I - 0x012738 04:A728: FE        .byte $FE   ; next
+- D 1 - I - 0x012739 04:A729: A9 22     .word $22A9	;pos
+;Licensed  by
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01273B 04:A72B: 30        .byte                                              $30, $13, $0D, $0F, $18, $1D, $0F   ; 
 - D 1 - I - 0x012743 04:A733: 00        .byte $0E, $00, $00, $0C, $23   ; 
 
-- D 1 - I - 0x012747 04:A737: FE        .byte $FE   ; 
-- D 1 - I - 0x012748 04:A738: C4 22     .word $22C4
+- D 1 - I - 0x012747 04:A737: FE        .byte $FE   ; next
+- D 1 - I - 0x012748 04:A738: C4 22     .word $22C4	;pos
+;Nintendo of America Inc.
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01274A 04:A73A: 32        .byte                     $32, $13, $18, $1E, $0F, $18, $0E, $19, $00, $19, $10, $00   ; 
 - D 1 - I - 0x012752 04:A742: 00        .byte $25, $17, $0F, $1C, $13, $0D, $0B, $00, $2D, $18, $0D, $40   ; 
 
-- D 1 - I - 0x012762 04:A752: FE        .byte $FE   ; 
-- D 1 - I - 0x012763 04:A753: D0 23     .word $23D0
+;Attribute Table
+- D 1 - I - 0x012762 04:A752: FE        .byte $FE   ; next
+- D 1 - I - 0x012763 04:A753: D0 23     .word $23D0	;pos
 - D 1 - I - 0x012765 04:A755: FD        .byte $FD   ; 
 - D 1 - I - 0x012766 04:A756: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x01276E 04:A75E: 55        .byte $55, $55, $55, $55, $55, $55, $55, $55   ; 
@@ -2214,7 +2233,10 @@ _off012_A6E8_02:
 
 
 
-_off012_A786_03:    ; bzk bug
+_off012_A786_03:    ; bzk bug   
+;unused, removed third page
+;becuase of this sometimes on some emulators there is 1 frame odd flash
+
 ofs_0x012796_1C:
 C D 1 - I - 0x012796 04:A786: A9 D5     LDA #< tbl_A7D5
 C D 1 - I - 0x012798 04:A788: 85 22     STA ram_0022
@@ -2247,42 +2269,47 @@ C D 1 - I - 0x0127DE 04:A7CE: AD 58 03  LDA ram_0358
 C D 1 - I - 0x0127E1 04:A7D1: 8D 07 20  STA $2007
 C D 1 - I - 0x0127E4 04:A7D4: 60        RTS
 
-
+;game over text
 
 tbl_A7D5:
-- D 1 - I - 0x0127E5 04:A7D5: FE        .byte $FE   ; 
-- D 1 - I - 0x0127E6 04:A7D6: 0A 21     .word $210A
+- D 1 - I - 0x0127E5 04:A7D5: FE        .byte $FE   ; line break
+- D 1 - I - 0x0127E6 04:A7D6: 0A 21     .word $210A	;position
+;Game over
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x0127E8 04:A7D8: 00        .byte                                                   $00, $2B, $0B, $17, $0F, $00   ; 
 - D 1 - I - 0x0127F0 04:A7E0: 0F        .byte $19, $20, $0F, $1C   ; 
 
-- D 1 - I - 0x0127F2 04:A7E2: FE        .byte $FE   ; 
-- D 1 - I - 0x0127F3 04:A7E3: 8A 21     .word $218A
+- D 1 - I - 0x0127F2 04:A7E2: FE        .byte $FE   ; line break
+- D 1 - I - 0x0127F3 04:A7E3: 8A 21     .word $218A	;position
+;You visited
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x0127F5 04:A7E5: 3D        .byte                                                   $3D, $19, $1F, $00, $20, $13   ; 
 - D 1 - I - 0x0127FD 04:A7ED: 1E        .byte $1D, $13, $1E, $0F, $0E   ; 
 
-- D 1 - I - 0x012800 04:A7F0: FE        .byte $FE   ; 
-- D 1 - I - 0x012801 04:A7F1: AA 21     .word $21AA
+- D 1 - I - 0x012800 04:A7F0: FE        .byte $FE   ; line break
+- D 1 - I - 0x012801 04:A7F1: AA 21     .word $21AA	;position
+; 000 rooms (000 is placeholder until game overwrites it with proper value)
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012803 04:A7F3: 00        .byte                                                   $00, $01, $01, $01, $00, $1C   ; 
 - D 1 - I - 0x01280B 04:A7FB: 17        .byte $19, $19, $17, $1D   ; 
 
-- D 1 - I - 0x01280D 04:A7FD: FE        .byte $FE   ; 
-- D 1 - I - 0x01280E 04:A7FE: E9 21     .word $21E9
+- D 1 - I - 0x01280D 04:A7FD: FE        .byte $FE   ; line break
+- D 1 - I - 0x01280E 04:A7FE: E9 21     .word $21E9	;position
+;You completed
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012810 04:A800: 3D        .byte                                              $3D, $19, $1F, $00, $0D, $19, $17   ; 
 - D 1 - I - 0x012818 04:A808: 16        .byte $1A, $16, $0F, $1E, $0F, $0E   ; 
 
-- D 1 - I - 0x01281D 04:A80D: FE        .byte $FE   ; 
-- D 1 - I - 0x01281E 04:A80E: 09 22     .word $2209
+- D 1 - I - 0x01281D 04:A80D: FE        .byte $FE   ; line break
+- D 1 - I - 0x01281E 04:A80E: 09 22     .word $2209	;position
+;00.00 percent (another placeholder)
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012820 04:A810: 01        .byte                                              $01, $01, $40, $01, $01, $00, $1A   ; 
 - D 1 - I - 0x012828 04:A818: 1C        .byte $0F, $1C, $0D, $0F, $18, $1E   ; 
 
-- D 1 - I - 0x01282D 04:A81D: FF        .byte $FF   ; 
+- D 1 - I - 0x01282D 04:A81D: FF        .byte $FF   ; end
 
-
+;continue screen
 
 ofs_0x01282E_1E_display_value:
 ; game over counter
@@ -2320,29 +2347,31 @@ bra_A85D_RTS:
 C D 1 - I - 0x01286D 04:A85D: 60        RTS
 
 
-
 tbl_A85E:
-- D 1 - I - 0x01286E 04:A85E: FE        .byte $FE   ; 
-- D 1 - I - 0x01286F 04:A85F: 07 21     .word $2107
+- D 1 - I - 0x01286E 04:A85E: FE        .byte $FE   ; line break
+- D 1 - I - 0x01286F 04:A85F: 07 21     .word $2107	; position
+;You have x credits	(Last letter / byte, "s" / "1D", seems to be overwritten(or not drawn?) if there is only one credit left)
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012871 04:A861: 3D        .byte                                    $3D, $19, $1F, $00, $12, $0B, $20, $0F, $00   ; 
 - D 1 - I - 0x012879 04:A869: 00        .byte $22, $00, $0D, $1C, $0F, $0E, $13, $1E, $1D   ; 
 
-- D 1 - I - 0x012883 04:A873: FE        .byte $FE   ; 
-- D 1 - I - 0x012884 04:A874: 45 21     .word $2145
+- D 1 - I - 0x012883 04:A873: FE        .byte $FE   ; line break
+- D 1 - I - 0x012884 04:A874: 45 21     .word $2145	; position
+;Press start to continue
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012886 04:A876: 34        .byte                          $34, $1C, $0F, $1D, $1D, $00, $1D, $1E, $0B, $1C, $1E   ; 
 - D 1 - I - 0x01288E 04:A87E: 0B        .byte $00, $1E, $19, $00, $0D, $19, $18, $1E, $13, $18, $1F, $0F   ; 
-   ; 
-- D 1 - I - 0x01289D 04:A88D: FE        .byte $FE   ; 
-- D 1 - I - 0x01289E 04:A88E: 8D 21     .word $218D
+
+- D 1 - I - 0x01289D 04:A88D: FE        .byte $FE   ; line break
+- D 1 - I - 0x01289E 04:A88E: 8D 21     .word $218D	; position
+;10	(placeholder until its overweitten with proper value, also seems like its two digits when theres only max 8 credits?)
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x0128A0 04:A890: 02        .byte                                                                  $02, $01   ; 
 
 - D 1 - I - 0x0128A2 04:A892: FE        .byte $FE   ; bzk useless?
-- D 1 - I - 0x0128A3 04:A893: 10 21     .word $2110
-
-- D 1 - I - 0x0128A5 04:A895: FF        .byte $FF   ; 
+- D 1 - I - 0x0128A3 04:A893: 10 21     .word $2110	; position
+;... removed text?
+- D 1 - I - 0x0128A5 04:A895: FF        .byte $FF   ; end
 
 
 
@@ -2497,8 +2526,9 @@ tbl_A90F_item_bg_data_hi:
 - D 1 - I - 0x012950 04:A940: AA        .byte > _off014_AA61_31   ; 
 - D 1 - I - 0x012951 04:A941: AA        .byte > _off014_AA61_32   ; 
 
+;"big picture" item pickup graphics attributes and palettes
 
-
+;Green potions big picture
 _off014_A942_1D:
 _off014_A942_27:
 ; attributes
@@ -2508,13 +2538,13 @@ _off014_A942_27:
 - D 1 - I - 0x012961 04:A951: AA        .byte $AA, $AA, $AA, $AA, $AA   ; 
 - D 1 - I - 0x012966 04:A956: FA        .byte $FA, $FA, $FA, $FA, $FA   ; 
 ; palette
-- D 1 - I - 0x01296B 04:A95B: 0F        .byte $0F, $06, $16, $21   ; 
-- D 1 - I - 0x01296F 04:A95F: 0F        .byte $0F, $20, $29, $21   ; 
-- D 1 - I - 0x012973 04:A963: 0F        .byte $0F, $19, $29, $21   ; 
-- D 1 - I - 0x012977 04:A967: 0F        .byte $0F, $18, $28, $38   ; 
+- D 1 - I - 0x01296B 04:A95B: 0F        .byte $0F, $06, $16, $21   ; top part
+- D 1 - I - 0x01296F 04:A95F: 0F        .byte $0F, $20, $29, $21   ; middle part
+- D 1 - I - 0x012973 04:A963: 0F        .byte $0F, $19, $29, $21   ; bottom half
+- D 1 - I - 0x012977 04:A967: 0F        .byte $0F, $18, $28, $38   ; text
 
 
-
+;yellow potion big picture
 _off014_A96B_1B:
 _off014_A96B_22:
 _off014_A96B_24:
@@ -2528,13 +2558,13 @@ _off014_A96B_2A:
 - D 1 - I - 0x01298A 04:A97A: AA        .byte $AA, $AA, $AA, $AA, $AA   ; 
 - D 1 - I - 0x01298F 04:A97F: FA        .byte $FA, $FA, $FA, $FA, $FA   ; 
 ; palette
-- D 1 - I - 0x012994 04:A984: 0F        .byte $0F, $06, $16, $21   ; 
-- D 1 - I - 0x012998 04:A988: 0F        .byte $0F, $20, $28, $21   ; 
-- D 1 - I - 0x01299C 04:A98C: 0F        .byte $0F, $18, $28, $21   ; 
-- D 1 - I - 0x0129A0 04:A990: 0F        .byte $0F, $19, $29, $39   ; 
+- D 1 - I - 0x012994 04:A984: 0F        .byte $0F, $06, $16, $21   ; top part
+- D 1 - I - 0x012998 04:A988: 0F        .byte $0F, $20, $28, $21   ; middle part
+- D 1 - I - 0x01299C 04:A98C: 0F        .byte $0F, $18, $28, $21   ; bottom half
+- D 1 - I - 0x0129A0 04:A990: 0F        .byte $0F, $19, $29, $39   ; text
 
 
-
+;purple potion big picture
 _off014_A994_20:
 _off014_A994_25:
 _off014_A994_29:
@@ -2545,13 +2575,13 @@ _off014_A994_29:
 - D 1 - I - 0x0129B3 04:A9A3: AA        .byte $AA, $AA, $AA, $AA, $AA   ; 
 - D 1 - I - 0x0129B8 04:A9A8: FA        .byte $FA, $FA, $FA, $FA, $FA   ; 
 ; palette
-- D 1 - I - 0x0129BD 04:A9AD: 0F        .byte $0F, $06, $16, $21   ; 
-- D 1 - I - 0x0129C1 04:A9B1: 0F        .byte $0F, $20, $24, $21   ; 
-- D 1 - I - 0x0129C5 04:A9B5: 0F        .byte $0F, $14, $24, $21   ; 
-- D 1 - I - 0x0129C9 04:A9B9: 0F        .byte $0F, $19, $29, $39   ; 
+- D 1 - I - 0x0129BD 04:A9AD: 0F        .byte $0F, $06, $16, $21   ; top part
+- D 1 - I - 0x0129C1 04:A9B1: 0F        .byte $0F, $20, $24, $21   ; middle part
+- D 1 - I - 0x0129C5 04:A9B5: 0F        .byte $0F, $14, $24, $21   ; bottom
+- D 1 - I - 0x0129C9 04:A9B9: 0F        .byte $0F, $19, $29, $39   ; text
 
 
-
+;blue potion big picture
 _off014_A9BD_1C:
 _off014_A9BD_1E:
 _off014_A9BD_1F:
@@ -2564,13 +2594,13 @@ _off014_A9BD_23:
 - D 1 - I - 0x0129DC 04:A9CC: AA        .byte $AA, $AA, $AA, $AA, $AA   ; 
 - D 1 - I - 0x0129E1 04:A9D1: FA        .byte $FA, $FA, $FA, $FA, $FA   ; 
 ; palette
-- D 1 - I - 0x0129E6 04:A9D6: 0F        .byte $0F, $06, $16, $21   ; 
-- D 1 - I - 0x0129EA 04:A9DA: 0F        .byte $0F, $20, $23, $21   ; 
-- D 1 - I - 0x0129EE 04:A9DE: 0F        .byte $0F, $13, $23, $21   ; 
-- D 1 - I - 0x0129F2 04:A9E2: 0F        .byte $0F, $19, $29, $39   ; 
+- D 1 - I - 0x0129E6 04:A9D6: 0F        .byte $0F, $06, $16, $21   ; top part
+- D 1 - I - 0x0129EA 04:A9DA: 0F        .byte $0F, $20, $23, $21   ; middle part
+- D 1 - I - 0x0129EE 04:A9DE: 0F        .byte $0F, $13, $23, $21   ; bottom half
+- D 1 - I - 0x0129F2 04:A9E2: 0F        .byte $0F, $19, $29, $39   ; text
 
 
-
+;key big picture
 _off014_A9E6_11:
 _off014_A9E6_12:
 _off014_A9E6_13:
@@ -2582,13 +2612,13 @@ _off014_A9E6_14:
 - D 1 - I - 0x012A05 04:A9F5: AA        .byte $AA, $AA, $AA, $AA, $AA   ; 
 - D 1 - I - 0x012A0A 04:A9FA: FA        .byte $FA, $FA, $FA, $FA, $FA   ; 
 ; palette
-- D 1 - I - 0x012A0F 04:A9FF: 0F        .byte $0F, $18, $28, $38   ; 
-- D 1 - I - 0x012A13 04:AA03: 0F        .byte $0F, $18, $28, $38   ; 
-- D 1 - I - 0x012A17 04:AA07: 0F        .byte $0F, $18, $28, $38   ; 
-- D 1 - I - 0x012A1B 04:AA0B: 0F        .byte $0F, $1C, $2C, $3C   ; 
+- D 1 - I - 0x012A0F 04:A9FF: 0F        .byte $0F, $18, $28, $38   ; top part
+- D 1 - I - 0x012A13 04:AA03: 0F        .byte $0F, $18, $28, $38   ; middle part
+- D 1 - I - 0x012A17 04:AA07: 0F        .byte $0F, $18, $28, $38   ; bottom half
+- D 1 - I - 0x012A1B 04:AA0B: 0F        .byte $0F, $1C, $2C, $3C   ; text
 
 
-
+;magic boots big picture
 _off014_AA0F_10:
 ; attributes
 - D 1 - I - 0x012A1F 04:AA0F: 00        .byte $00, $00, $00, $00, $00   ; 
@@ -2597,13 +2627,13 @@ _off014_AA0F_10:
 - D 1 - I - 0x012A2E 04:AA1E: 50        .byte $50, $50, $50, $50, $50   ; 
 - D 1 - I - 0x012A33 04:AA23: 55        .byte $55, $55, $55, $55, $55   ; 
 ; palette
-- D 1 - I - 0x012A38 04:AA28: 0F        .byte $0F, $09, $19, $29   ; 
-- D 1 - I - 0x012A3C 04:AA2C: 0F        .byte $0F, $18, $28, $38   ; 
-- D 1 - I - 0x012A40 04:AA30: 0F        .byte $0F, $06, $16, $26   ; 
-- D 1 - I - 0x012A44 04:AA34: 0F        .byte $0F, $16, $26, $36   ; 
+- D 1 - I - 0x012A38 04:AA28: 0F        .byte $0F, $09, $19, $29   ; top part
+- D 1 - I - 0x012A3C 04:AA2C: 0F        .byte $0F, $18, $28, $38   ; text
+- D 1 - I - 0x012A40 04:AA30: 0F        .byte $0F, $06, $16, $26   ; unused
+- D 1 - I - 0x012A44 04:AA34: 0F        .byte $0F, $16, $26, $36   ; unused
 
 
-
+;staff piece big picture
 _off014_AA38_15:
 _off014_AA38_16:
 _off014_AA38_17:
@@ -2617,13 +2647,13 @@ _off014_AA38_1A:
 - D 1 - I - 0x012A57 04:AA47: 50        .byte $50, $50, $50, $50, $50   ; 
 - D 1 - I - 0x012A5C 04:AA4C: 55        .byte $55, $55, $55, $55, $55   ; 
 ; palette
-- D 1 - I - 0x012A61 04:AA51: 0F        .byte $0F, $16, $00, $21   ; 
-- D 1 - I - 0x012A65 04:AA55: 0F        .byte $0F, $18, $28, $38   ; 
-- D 1 - I - 0x012A69 04:AA59: 0F        .byte $0F, $06, $16, $26   ; 
-- D 1 - I - 0x012A6D 04:AA5D: 0F        .byte $0F, $16, $26, $36   ; 
+- D 1 - I - 0x012A61 04:AA51: 0F        .byte $0F, $16, $00, $21   ; top part
+- D 1 - I - 0x012A65 04:AA55: 0F        .byte $0F, $18, $28, $38   ; text
+- D 1 - I - 0x012A69 04:AA59: 0F        .byte $0F, $06, $16, $26   ; unused?
+- D 1 - I - 0x012A6D 04:AA5D: 0F        .byte $0F, $16, $26, $36   ; unused?
 
 
-
+;hat & credit big picture
 _off014_AA61_00:
 _off014_AA61_01:
 _off014_AA61_02:
@@ -2655,10 +2685,10 @@ _off014_AA61_32:
 - D 1 - I - 0x012A80 04:AA70: 50        .byte $50, $50, $50, $50, $50   ; 
 - D 1 - I - 0x012A85 04:AA75: 55        .byte $55, $55, $55, $55, $55   ; 
 ; palette
-- D 1 - I - 0x012A8A 04:AA7A: 0F        .byte $0F, $11, $21, $31   ; 
-- D 1 - I - 0x012A8E 04:AA7E: 0F        .byte $0F, $18, $28, $38   ; 
-- D 1 - I - 0x012A92 04:AA82: 0F        .byte $0F, $06, $16, $26   ; 
-- D 1 - I - 0x012A96 04:AA86: 0F        .byte $0F, $16, $26, $36   ; 
+- D 1 - I - 0x012A8A 04:AA7A: 0F        .byte $0F, $11, $21, $31   ; top part
+- D 1 - I - 0x012A8E 04:AA7E: 0F        .byte $0F, $18, $28, $38   ; text
+- D 1 - I - 0x012A92 04:AA82: 0F        .byte $0F, $06, $16, $26   ; unused
+- D 1 - I - 0x012A96 04:AA86: 0F        .byte $0F, $16, $26, $36   ; unused
 
 
 
@@ -2770,6 +2800,7 @@ tbl_AABD_item_pickup_text_hi:
 - D 1 - I - 0x012AFE 04:AAEE: AA        .byte > _off011_AAF0_31   ; 
 - D 1 - I - 0x012AFF 04:AAEF: AA        .byte > _off011_AAF0_32   ; 
 
+;big picture text
 
 
 _off011_AAF0_2B:
@@ -2781,7 +2812,8 @@ _off011_AAF0_30:
 _off011_AAF0_31:
 _off011_AAF0_32:
 - D 1 - I - 0x012B00 04:AAF0: FE        .byte $FE   ; 
-- D 1 - I - 0x012B01 04:AAF1: CB 22     .word $22CB
+- D 1 - I - 0x012B01 04:AAF1: CB 22     .word $22CB ; position
+;"a credit"
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012B03 04:AAF3: 0B        .byte                                                        $0B, $00, $0D, $1C, $0F   ; 
 - D 1 - I - 0x012B08 04:AAF8: 0E        .byte $0E, $13, $1E   ; 
@@ -2807,7 +2839,8 @@ _off011_AAFC_0D:
 _off011_AAFC_0E:
 _off011_AAFC_0F:
 - D 1 - I - 0x012B0C 04:AAFC: FE        .byte $FE   ; 
-- D 1 - I - 0x012B0D 04:AAFD: C9 22     .word $22C9
+- D 1 - I - 0x012B0D 04:AAFD: C9 22     .word $22C9 ; position
+;"an extra life"
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012B0F 04:AAFF: 0B        .byte                                              $0B, $18, $00, $0F, $22, $1E, $1C   ; 
 - D 1 - I - 0x012B17 04:AB07: 00        .byte $0B, $00, $16, $13, $10, $0F   ; 
@@ -2818,7 +2851,8 @@ _off011_AAFC_0F:
 
 _off011_AB0D_10:
 - D 1 - I - 0x012B1D 04:AB0D: FE        .byte $FE   ; 
-- D 1 - I - 0x012B1E 04:AB0E: CA 22     .word $22CA
+- D 1 - I - 0x012B1E 04:AB0E: CA 22     .word $22CA ; position
+;"magic boots"
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012B20 04:AB10: 17        .byte                                                   $17, $0B, $11, $13, $0D, $00   ; 
 - D 1 - I - 0x012B28 04:AB18: 19        .byte $0C, $19, $19, $1E, $1D   ; 
@@ -2832,7 +2866,8 @@ _off011_AB1C_12:
 _off011_AB1C_13:
 _off011_AB1C_14:
 - D 1 - I - 0x012B2C 04:AB1C: FE        .byte $FE   ; 
-- D 1 - I - 0x012B2D 04:AB1D: CA 22     .word $22CA
+- D 1 - I - 0x012B2D 04:AB1D: CA 22     .word $22CA ; position
+;"a magic key"
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012B2F 04:AB1F: 0B        .byte                                                   $0B, $00, $17, $0B, $11, $13   ; 
 - D 1 - I - 0x012B37 04:AB27: 15        .byte $0D, $00, $15, $0F, $23   ; 
@@ -2848,7 +2883,8 @@ _off011_AB2B_18:
 _off011_AB2B_19:
 _off011_AB2B_1A:
 - D 1 - I - 0x012B3B 04:AB2B: FE        .byte $FE   ; 
-- D 1 - I - 0x012B3C 04:AB2C: C8 22     .word $22C8
+- D 1 - I - 0x012B3C 04:AB2C: C8 22     .word $22C8 ; position
+;"a piece of staff"
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012B3E 04:AB2E: 0B        .byte                                         $0B, $00, $1A, $13, $0F, $0D, $0F, $00   ; 
 - D 1 - I - 0x012B46 04:AB36: 19        .byte $19, $10, $00, $1D, $1E, $0B, $10, $10   ; 
@@ -2860,7 +2896,8 @@ _off011_AB2B_1A:
 _off011_AB3F_1D:
 _off011_AB3F_27:
 - D 1 - I - 0x012B4F 04:AB3F: FE        .byte $FE   ; 
-- D 1 - I - 0x012B50 04:AB40: C8 22     .word $22C8
+- D 1 - I - 0x012B50 04:AB40: C8 22     .word $22C8 ; position
+;"a green potion"
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012B52 04:AB42: 0B        .byte                                         $0B, $00, $11, $1C, $0F, $0F, $18, $00   ; 
 - D 1 - I - 0x012B5A 04:AB4A: 1A        .byte $1A, $19, $1E, $13, $19, $18   ; 
@@ -2876,7 +2913,8 @@ _off011_AB51_26:
 _off011_AB51_28:
 _off011_AB51_2A:
 - D 1 - I - 0x012B61 04:AB51: FE        .byte $FE   ; 
-- D 1 - I - 0x012B62 04:AB52: C8 22     .word $22C8
+- D 1 - I - 0x012B62 04:AB52: C8 22     .word $22C8 ; position
+;"a yellow potion"
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012B64 04:AB54: 0B        .byte                                         $0B, $00, $23, $0F, $16, $16, $19, $21   ; 
 - D 1 - I - 0x012B6C 04:AB5C: 00        .byte $00, $1A, $19, $1E, $13, $19, $18   ; 
@@ -2889,7 +2927,8 @@ _off011_AB64_20:
 _off011_AB64_25:
 _off011_AB64_29:
 - D 1 - I - 0x012B74 04:AB64: FE        .byte $FE   ; 
-- D 1 - I - 0x012B75 04:AB65: C8 22     .word $22C8
+- D 1 - I - 0x012B75 04:AB65: C8 22     .word $22C8 ; position
+;"a purple potion"
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012B77 04:AB67: 0B        .byte                                         $0B, $00, $1A, $1F, $1C, $1A, $16, $0F   ; 
 - D 1 - I - 0x012B7F 04:AB6F: 00        .byte $00, $1A, $19, $1E, $13, $19, $18   ; 
@@ -2904,7 +2943,8 @@ _off011_AB77_1F:
 _off011_AB77_21:
 _off011_AB77_23:
 - D 1 - I - 0x012B87 04:AB77: FE        .byte $FE   ; 
-- D 1 - I - 0x012B88 04:AB78: C9 22     .word $22C9
+- D 1 - I - 0x012B88 04:AB78: C9 22     .word $22C9 ; position
+;"a blue potion"
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012B8A 04:AB7A: 0B        .byte                                              $0B, $00, $0C, $16, $1F, $0F, $00   ; 
 - D 1 - I - 0x012B92 04:AB82: 19        .byte $1A, $19, $1E, $13, $19, $18   ; 
@@ -3509,7 +3549,7 @@ _off013_BBE4_14:
 - D 1 - I - 0x013BF5 04:BBE5: 01        .byte $01   ; rows
 - D 1 - I - 0x013BF6 04:BBE6: 70        .byte $70   ; 
 
-
+;pause cheat
 
 ofs_0x013BF7_25_enter_cheat:
 ; sectet combination during pause
@@ -3692,7 +3732,7 @@ tbl_BC3F_cheat_combination:
 - - - - - - 0x0141E0 05:C1D0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x0141F0 05:C1E0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF   ; 
 
-
+;music driver stuff
 
 sub_0x0141F6_play_music:
 C - - - - - 0x0141F6 05:C1E6: 20 12 C2  JSR sub_C212_clear_music_driver_addresses
