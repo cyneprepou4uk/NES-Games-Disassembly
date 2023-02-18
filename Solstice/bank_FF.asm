@@ -848,13 +848,13 @@ _off000_8388_00:
 ; room exit positions
 - D 0 - I - 0x0183AA 06:839A: 0D        .byte $0D   ; positions
 ; 1st exit, top-left
-- D 0 - I - 0x0183AB 06:839B: 02        .byte $02   ; Z&X/Y position
+- D 0 - I - 0x0183AB 06:839B: 02        .byte $02   ; Z & X/Y position
 - D 0 - I - 0x0183AC 06:839C: 02        .byte $02   ; destination room ID
 ; 2nd exit, top-right
-- D 0 - I - 0x0183AD 06:839D: 18        .byte $18   ; Z&X/Y position
+- D 0 - I - 0x0183AD 06:839D: 18        .byte $18   ; Z & X/Y position
 - D 0 - I - 0x0183AE 06:839E: 01        .byte $01   ; destination room ID
 ; 3rd exit, bottom-left
-- D 0 - I - 0x0183AF 06:839F: 00        .byte $00   ; Z&X/Y position
+- D 0 - I - 0x0183AF 06:839F: 00        .byte $00   ; Z & X/Y position
 - D 0 - I - 0x0183B0 06:83A0: 0C        .byte $0C   ; destination room ID
 ; normal blocks
 - D 0 - I - 0x0183B1 06:83A1: 06        .byte $06   ; how many
@@ -919,7 +919,7 @@ _off000_8388_00:
 ; room exit positions
 - - - - - - 0x0183DD 06:83CD: 04        .byte $04   ; positions
 ; 1st exit, top-right
-- - - - - - 0x0183DE 06:83CE: 18        .byte $18   ; Z&X/Y position
+- - - - - - 0x0183DE 06:83CE: 18        .byte $18   ; Z & X/Y position
 - - - - - - 0x0183DF 06:83CF: 01        .byte $01   ; Destination room ID
 ; normal blocks
 - - - - - - 0x0183E0 06:83D0: 06        .byte $06   ; how many
@@ -8825,7 +8825,7 @@ _off000_9E8B_37:
 ; 3C, hex = 00111100, binary
 ; 0 = primary, 1 = secondary
 
-; exits, 3X = hole&ceiling.
+; exits, 3X = hole & ceiling.
 - D 0 - I - 0x019EB2 06:9EA2: 33        .byte $33   ; exit(s) position(s)
 
 ; hole exit

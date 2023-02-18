@@ -89,7 +89,7 @@ con_music_story                         = $00 ; story sequence music
 con_music_gameplay                      = $01 ; gameplay music
 con_music_game_over                     = $02 ; game over screen
 con_music_continue                      = $03 ; continue screen
-con_music_04                            = $04 ; final cut-scene&credits
+con_music_04                            = $04 ; final cut-scene & credits
 con_music_logo                          = $05 ; CSG imagesoft inc presents
 con_music_06                            = $06 ; title-screen
 

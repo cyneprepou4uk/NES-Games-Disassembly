@@ -1444,7 +1444,7 @@ tbl_87BC_hi:
 - D 0 - - - 0x0087D4 02:87C4: 8A        .byte > _off002_8A37_10   ; 
 - D 0 - - - 0x0087D5 02:87C5: 8A        .byte > _off002_8A03_12   ; 
 
-; text for intro&ending
+; text for intro & ending
 
 
 ; intro, morbious
@@ -1458,7 +1458,7 @@ _off002_87C6_06:
 - D 0 - I - 0x0087F4 02:87E4: FE        .byte $FE   ; line break
 - D 0 - I - 0x0087F5 02:87E5: C0 23     .word $23C0 ; position
 - D 0 - I - 0x0087F7 02:87E7: FD        .byte $FD   ; 
-; Attribute Table for portait&text
+; Attribute Table for portait & text
 - D 0 - I - 0x0087F8 02:87E8: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $55, $05, $05, $05, $55, $05, $05   ; 
 - D 0 - I - 0x008808 02:87F8: 00        .byte $00, $55, $00, $00, $00, $55, $00, $00, $00, $55, $00, $00, $00, $55, $00, $00   ; 
 
@@ -1482,7 +1482,7 @@ _off002_8809_0E:
 - D 0 - I - 0x008847 02:8837: FE        .byte $FE   ; line break
 - D 0 - I - 0x008848 02:8838: C0 23     .word $23C0 ; position
 - D 0 - I - 0x00884A 02:883A: FD        .byte $FD   ; 
-; Attribute Table for portait&text
+; Attribute Table for portait & text
 - D 0 - I - 0x00884B 02:883B: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $55, $05, $05, $05, $55, $05, $05   ; 
 - D 0 - I - 0x00885B 02:884B: 00        .byte $00, $55, $00, $00, $00, $55, $00, $00, $00, $55, $00, $00, $00, $55, $00, $00   ; 
 
@@ -1501,7 +1501,7 @@ _off002_885C_02:
 - D 0 - I - 0x008881 02:8871: FE        .byte $FE   ; line break
 - D 0 - I - 0x008882 02:8872: C0 23     .word $23C0
 - D 0 - I - 0x008884 02:8874: FD        .byte $FD   ; 
-; Attribute Table for portait&text
+; Attribute Table for portait & text
 - D 0 - I - 0x008885 02:8875: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $55, $A5, $F5, $05, $55, $05, $05   ; 
 - D 0 - I - 0x008895 02:8885: 00        .byte $00, $55, $AA, $0F, $88, $55, $00, $00, $00, $55, $AA, $00, $88, $55, $00, $00   ; 
 
@@ -1519,7 +1519,7 @@ _off002_8896_0C:
 - D 0 - I - 0x0088B3 02:88A3: FE        .byte $FE   ; line break
 - D 0 - I - 0x0088B4 02:88A4: C0 23     .word $23C0 ; position
 - D 0 - I - 0x0088B6 02:88A6: FD        .byte $FD   ; 
-; Attribute Table for portait&text
+; Attribute Table for portait & text
 - D 0 - I - 0x0088B7 02:88A7: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $55, $A5, $05, $85, $55, $05, $05   ; 
 - D 0 - I - 0x0088C7 02:88B7: 00        .byte $00, $55, $AA, $0F, $88, $55, $00, $00, $00, $55, $AA, $00, $88, $55, $00, $00   ; 
 
@@ -1537,7 +1537,7 @@ _off002_88C8_04:
 - D 0 - I - 0x0088EE 02:88DE: FE        .byte $FE   ; line break
 - D 0 - I - 0x0088EF 02:88DF: C0 23     .word $23C0 ; position
 - D 0 - I - 0x0088F1 02:88E1: FD        .byte $FD   ; 
-; Attribute Table for portait&text
+; Attribute Table for portait & text
 - D 0 - I - 0x0088F2 02:88E2: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $55, $05, $05, $05, $55, $05, $05   ; 
 - D 0 - I - 0x008902 02:88F2: 00        .byte $00, $55, $C0, $FF, $30, $55, $00, $00, $00, $55, $00, $3F, $00, $55, $00, $00   ; 
 
@@ -1555,7 +1555,7 @@ _off002_8903_08:
 - D 0 - I - 0x00892D 02:891D: FE        .byte $FE   ; line break
 - D 0 - I - 0x00892E 02:891E: C0 23     .word $23C0 ; position
 - D 0 - I - 0x008930 02:8920: FD        .byte $FD   ; 
-; Attribute Table for portait&text
+; Attribute Table for portait & text
 - D 0 - I - 0x008931 02:8921: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $55, $05, $05, $05, $55, $05, $05   ; 
 - D 0 - I - 0x008941 02:8931: 00        .byte $00, $55, $C0, $FF, $30, $55, $00, $00, $00, $55, $00, $3F, $00, $55, $00, $00   ; 
 
@@ -1613,7 +1613,7 @@ _off002_8942_0A:
 - D 0 - I - 0x0089EE 02:89DE: FE        .byte $FE   ; line break
 - D 0 - I - 0x0089EF 02:89DF: C0 23     .word $23C0 ; position
 - D 0 - I - 0x0089F1 02:89E1: FD        .byte $FD   ; 
-; Attribute Table for portait&text
+; Attribute Table for portait & text
 - D 0 - I - 0x0089F2 02:89E2: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $55, $05, $05, $05, $55, $05, $05   ; 
 - D 0 - I - 0x008A02 02:89F2: 00        .byte $00, $55, $00, $00, $00, $55, $00, $00, $00, $55, $00, $00, $00, $55, $00, $00   ; 
 
@@ -1631,7 +1631,7 @@ _off002_8A03_12:
 - D 0 - I - 0x008A22 02:8A12: FE        .byte $FE   ; line break
 - D 0 - I - 0x008A23 02:8A13: C0 23     .word $23C0 ; position
 - D 0 - I - 0x008A25 02:8A15: FD        .byte $FD   ; 
-; Attribute Table for portait&text
+; Attribute Table for portait & text
 - D 0 - I - 0x008A26 02:8A16: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $55, $05, $05, $05, $55, $05, $05   ; 
 - D 0 - I - 0x008A36 02:8A26: 00        .byte $00, $55, $00, $00, $00, $55, $00, $00, $00, $55, $00, $00, $00, $55, $00, $00   ; 
 
@@ -1661,7 +1661,7 @@ _off002_8A37_10:
 - D 0 - I - 0x008A7D 02:8A6D: FE        .byte $FE   ; line break
 - D 0 - I - 0x008A7E 02:8A6E: C0 23     .word $23C0 ; position
 - D 0 - I - 0x008A80 02:8A70: FD        .byte $FD   ; 
-; Attribute Table for portait&text
+; Attribute Table for portait & text
 - D 0 - I - 0x008A81 02:8A71: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $55, $05, $05, $05, $55, $05, $05   ; 
 - D 0 - I - 0x008A91 02:8A81: 00        .byte $00, $55, $C0, $FF, $30, $55, $00, $00, $00, $55, $00, $3F, $00, $55, $00, $00   ; 
 
@@ -1690,36 +1690,36 @@ _off003_8AD7_06:
 _off003_8AD7_0A:
 _off003_8AD7_0E:
 _off003_8AD7_12:
-- D 0 - I - 0x008AE7 02:8AD7: 0F        .byte $0F, $17, $27, $36   ; hand&face
-- D 0 - I - 0x008AEB 02:8ADB: 0F        .byte $0F, $00, $10, $20   ; text&border
+- D 0 - I - 0x008AE7 02:8AD7: 0F        .byte $0F, $17, $27, $36   ; hand & face
+- D 0 - I - 0x008AEB 02:8ADB: 0F        .byte $0F, $00, $10, $20   ; text & border
 - D 0 - I - 0x008AEF 02:8ADF: 0F        .byte $0F, $0F, $0F, $0F   ; blank
 - D 0 - I - 0x008AF3 02:8AE3: 0F        .byte $0F, $0F, $0F, $0F   ; blank
 
 - D 0 - I - 0x008AF7 02:8AE7: 0F        .byte $0F, $15, $24, $33   ; magic smoke
-- D 0 - I - 0x008AFB 02:8AEB: 0F        .byte $0F, $16, $00, $20   ; eyes&teeth overlay
+- D 0 - I - 0x008AFB 02:8AEB: 0F        .byte $0F, $16, $00, $20   ; eyes & teeth overlay
 - D 0 - I - 0x008AFF 02:8AEF: 0F        .byte $0F, $00, $00, $20   ; teeth overlay
 - D 0 - I - 0x008B03 02:8AF3: 0F        .byte $0F, $0F, $0F, $0F   ; blank
 
 
-; Prinsess&demons, intro
+; Prinsess & demons, intro
 _off003_8AF7_02:
-- D 0 - I - 0x008B07 02:8AF7: 0F        .byte $0F, $20, $1C, $36   ; clothes&skin
-- D 0 - I - 0x008B0B 02:8AFB: 0F        .byte $0F, $00, $10, $20   ; Text&border
+- D 0 - I - 0x008B07 02:8AF7: 0F        .byte $0F, $20, $1C, $36   ; clothes & skin
+- D 0 - I - 0x008B0B 02:8AFB: 0F        .byte $0F, $00, $10, $20   ; Text & border
 - D 0 - I - 0x008B0F 02:8AFF: 0F        .byte $0F, $28, $17, $06   ; Princess hair
-- D 0 - I - 0x008B13 02:8B03: 0F        .byte $0F, $0F, $15, $36   ; skin&lips
+- D 0 - I - 0x008B13 02:8B03: 0F        .byte $0F, $0F, $15, $36   ; skin & lips
 
 - D 0 - I - 0x008B17 02:8B07: 0F        .byte $0F, $00, $20, $11   ; demons eyes overlay
-- D 0 - I - 0x008B1B 02:8B0B: 0F        .byte $0F, $20, $28, $36   ; skin&hair, demons teeth
+- D 0 - I - 0x008B1B 02:8B0B: 0F        .byte $0F, $20, $28, $36   ; skin & hair, demons teeth
 - D 0 - I - 0x008B1F 02:8B0F: 0F        .byte $0F, $17, $28, $38   ; prinsess hair
 - D 0 - I - 0x008B23 02:8B13: 0F        .byte $0F, $00, $10, $0F   ; eyes overlay
 
 
 ; princess, ending
 _off003_8B17_0C:
-- D 0 - I - 0x008B27 02:8B17: 0F        .byte $0F, $20, $1C, $36   ; clothes&skin
-- D 0 - I - 0x008B2B 02:8B1B: 0F        .byte $0F, $00, $10, $20   ; text&border
-- D 0 - I - 0x008B2F 02:8B1F: 0F        .byte $0F, $19, $2B, $36   ; breen blocks&skin
-- D 0 - I - 0x008B33 02:8B23: 0F        .byte $0F, $0F, $15, $36   ; lips&skin
+- D 0 - I - 0x008B27 02:8B17: 0F        .byte $0F, $20, $1C, $36   ; clothes & skin
+- D 0 - I - 0x008B2B 02:8B1B: 0F        .byte $0F, $00, $10, $20   ; text & border
+- D 0 - I - 0x008B2F 02:8B1F: 0F        .byte $0F, $19, $2B, $36   ; breen blocks & skin
+- D 0 - I - 0x008B33 02:8B23: 0F        .byte $0F, $0F, $15, $36   ; lips & skin
 
 - D 0 - I - 0x008B37 02:8B27: 0F        .byte $0F, $0F, $1C, $2C   ; jail bars
 - D 0 - I - 0x008B3B 02:8B2B: 0F        .byte $0F, $00, $20, $11   ; eyes overlay
@@ -1731,9 +1731,9 @@ _off003_8B17_0C:
 _off003_8B37_04:
 _off003_8B37_08:
 _off003_8B37_10:
-- D 0 - I - 0x008B47 02:8B37: 0F        .byte $0F, $21, $11, $01   ; hat&moon
-- D 0 - I - 0x008B4B 02:8B3B: 0F        .byte $0F, $00, $10, $20   ; text&border
-- D 0 - I - 0x008B4F 02:8B3F: 0F        .byte $0F, $21, $26, $01   ; face&hat
+- D 0 - I - 0x008B47 02:8B37: 0F        .byte $0F, $21, $11, $01   ; hat & moon
+- D 0 - I - 0x008B4B 02:8B3B: 0F        .byte $0F, $00, $10, $20   ; text & border
+- D 0 - I - 0x008B4F 02:8B3F: 0F        .byte $0F, $21, $26, $01   ; face & hat
 - D 0 - I - 0x008B53 02:8B43: 0F        .byte $0F, $36, $26, $16   ; beard
 
 - D 0 - I - 0x008B57 02:8B47: 0F        .byte $0F, $27, $17, $07   ; beard
@@ -1745,7 +1745,7 @@ _off003_8B37_10:
 _off003_8B57_00:
 - D 0 - I - 0x008B67 02:8B57: 0F        .byte $0F, $18, $28, $38   ; Soltice logo
 - D 0 - I - 0x008B6B 02:8B5B: 0F        .byte $0F, $02, $12, $22   ; Shadax
-- D 0 - I - 0x008B6F 02:8B5F: 0F        .byte $0F, $02, $14, $24   ; Blocks&border
+- D 0 - I - 0x008B6F 02:8B5F: 0F        .byte $0F, $02, $14, $24   ; Blocks & border
 - D 0 - I - 0x008B73 02:8B63: 0F        .byte $0F, $04, $14, $24   ; blocks
 
 - D 0 - I - 0x008B77 02:8B67: 0F        .byte $0F, $27, $00, $16   ; face and 'statche

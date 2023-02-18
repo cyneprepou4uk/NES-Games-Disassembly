@@ -1105,7 +1105,7 @@ tbl_86D0:
 - D 0 - - - 0x0006E4 00:86D4: 12        .byte $12   ; 04
 
 
-; intro&endung room palettes
+; intro & endung room palettes
 ; the actual room data is in bank_FF, but its palette is overridden with this
 tbl_86D5:
 - D 0 - I - 0x0006E5 00:86D5: 0F        .byte $0F, $19, $09, $29   ; room palette
@@ -4881,7 +4881,7 @@ C - - - - - 0x001DE2 00:9DD2: 60        RTS
 ; So how the game makes detonator to go into "used" state is by making the active one intially visible,
 ; and due to its effect it causes itself to go invisible, and because of the part 1 table it revels the exit, 
 ; and then another one is used to make the triggered detonator to visible.
-; the 5&6-staff piece-sprites/exit-appear are seperate checks.
+; the 5 & 6-staff piece-sprites/exit-appear are seperate checks.
 
 
 ; first byte, room ID
@@ -4891,10 +4891,10 @@ C - - - - - 0x001DE2 00:9DD2: 60        RTS
 ; 00 nothing, sprite is visible
 ; 01 sprite slot 1 
 ; 02 sprite slot 2
-; 03 sprite slots 2&3
+; 03 sprite slots 2 & 3
 ; 04 sprite slot 3
-; 05 sprite slots 1&3
-; 06 sprite slots 2&3
+; 05 sprite slots 1 & 3
+; 06 sprite slots 2 & 3
 ; 07 ALL sprites
 ; rest repeats same starting from 00
 ; note, these were tested on room with all three sprite slots used
@@ -4925,7 +4925,7 @@ tbl_9DD3:
 - D 0 - I - 0x001DEF 00:9DDF: 0C        .byte con_room_id + $0C   ; room ID
 - D 0 - I - 0x001DF0 00:9DE0: D1        .byte $D1   ; Sprite ID, key D1
 - D 0 - I - 0x001DF1 00:9DE1: 00        .byte $00   ; invisible
-- D 0 - I - 0x001DF2 00:9DE2: 03        .byte $03   ; sprite slots 2&3
+- D 0 - I - 0x001DF2 00:9DE2: 03        .byte $03   ; sprite slots 2 & 3
 
 ; detanator
 - D 0 - I - 0x001DF3 00:9DE3: 46        .byte con_room_id + $46   ; room ID
