@@ -932,7 +932,7 @@ C - - - - - 0x01E930 07:E920: 20 E2 E5  JSR sub_E5E2_jump_to_pointers_after_JSR
 - D 3 - I - 0x01E93D 07:E92D: 6B EA     .word ofs_001_EA6B_05
 - D 3 - I - 0x01E93F 07:E92F: 7A B0     .word ofs_001_0x01708A_06
 - D 3 - I - 0x01E941 07:E931: A1 E9     .word ofs_001_E9A1_07
-- D 3 - I - 0x01E943 07:E933: 00 86     .word ofs_001_0x014610_08
+- D 3 - I - 0x01E943 07:E933: 00 86     .word ofs_001_0x014610_08_prepare_save_menu
 - D 3 - I - 0x01E945 07:E935: 0A 91     .word ofs_001_0x01511A_09
 - D 3 - I - 0x01E947 07:E937: FC B0     .word ofs_001_0x01710C_0A
 - D 3 - I - 0x01E949 07:E939: 80 90     .word ofs_001_0x015090_0B
@@ -1286,7 +1286,7 @@ C - - - - - 0x01EB47 07:EB37: 20 E2 E5  JSR sub_E5E2_jump_to_pointers_after_JSR
 - D 3 - I - 0x01EB54 07:EB44: 1B EC     .word ofs_003_EC1B_05
 - D 3 - I - 0x01EB56 07:EB46: C0 EB     .word ofs_003_EBC0_06
 - D 3 - I - 0x01EB58 07:EB48: 62 EB     .word ofs_003_EB62_07
-- D 3 - I - 0x01EB5A 07:EB4A: 76 EB     .word ofs_003_EB76_08
+- D 3 - I - 0x01EB5A 07:EB4A: 76 EB     .word ofs_003_EB76_08_save_menu
 - D 3 - I - 0x01EB5C 07:EB4C: 1B EC     .word ofs_003_EC1B_09
 - - - - - - 0x01EB5E 07:EB4E: 1B EC     .word ofs_003_EC1B_0A
 - D 3 - I - 0x01EB60 07:EB50: 1B EC     .word ofs_003_EC1B_0B
@@ -1316,10 +1316,10 @@ C - - - - - 0x01EB85 07:EB75: 60        RTS
 
 
 
-ofs_003_EB76_08:
+ofs_003_EB76_08_save_menu:
 C - - J - - 0x01EB86 07:EB76: A9 05     LDA #con_prg_bank + $05
 C - - - - - 0x01EB88 07:EB78: 20 AC FF  JSR sub_FFAC_prg_bankswitch
-C - - - - - 0x01EB8B 07:EB7B: 4C F4 8A  JMP loc_0x014B04
+C - - - - - 0x01EB8B 07:EB7B: 4C F4 8A  JMP loc_0x014B04_save_menu_handler
 
 
 

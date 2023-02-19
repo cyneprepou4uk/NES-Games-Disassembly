@@ -10,7 +10,7 @@
 .export sub_0x0142B8
 .export sub_0x01442E
 .export sub_0x014531
-.export ofs_001_0x014610_08
+.export ofs_001_0x014610_08_prepare_save_menu
 .export ofs_001_0x01462A_0D
 .export ofs_001_0x014638_10
 .export ofs_001_0x01478B_04
@@ -19,7 +19,7 @@
 .export sub_0x014A23
 .export ofs_001_0x014A3F_11_death
 .export sub_0x014ABD
-.export loc_0x014B04
+.export loc_0x014B04_save_menu_handler
 .export loc_0x014B9B
 .export sub_0x014BB8
 .export sub_0x014BCC
@@ -257,7 +257,7 @@ C - - - - - 0x0140F0 05:80E0: D0 11     BNE bra_80F3    ; don't show save menu i
 C - - - - - 0x0140F2 05:80E2: 20 A3 EB  JSR sub_0x01EBB3
 ; A = 00
 C - - - - - 0x0140F5 05:80E5: 85 E1     STA ram_pause_script
-C - - - - - 0x0140F7 05:80E7: A9 08     LDA #con_script_08
+C - - - - - 0x0140F7 05:80E7: A9 08     LDA #con_script_save_menu
 C - - - - - 0x0140F9 05:80E9: 85 12     STA ram_script
 C - - - - - 0x0140FB 05:80EB: A9 00     LDA #$00
 C - - - - - 0x0140FD 05:80ED: 8D 19 06  STA ram_0619
@@ -1118,7 +1118,7 @@ C - - - - - 0x0145AC 05:859C: 60        RTS
 
 
 
-ofs_001_0x014610_08:
+ofs_001_0x014610_08_prepare_save_menu:
 C - - J - - 0x014610 05:8600: 20 25 E6  JSR sub_0x01E635_disable_rendering
 C - - - - - 0x014613 05:8603: A5 13     LDA ram_subscript
 C - - - - - 0x014615 05:8605: D0 0C     BNE bra_8613
@@ -2174,13 +2174,14 @@ tbl_8AF1:
 
 
 
-loc_0x014B04:
+loc_0x014B04_save_menu_handler:
 C D 0 - - - 0x014B04 05:8AF4: A5 13     LDA ram_subscript
 C - - - - - 0x014B06 05:8AF6: 0A        ASL
-C - - - - - 0x014B07 05:8AF7: B0 3C     BCS bra_8B35
+C - - - - - 0x014B07 05:8AF7: B0 3C     BCS bra_8B35_option_was_selected
+; if was not selected yet
 C - - - - - 0x014B09 05:8AF9: A5 F8     LDA ram_btn_press
 C - - - - - 0x014B0B 05:8AFB: 29 10     AND #con_btn_Start
-C - - - - - 0x014B0D 05:8AFD: D0 2B     BNE bra_8B2A
+C - - - - - 0x014B0D 05:8AFD: D0 2B     BNE bra_8B2A_select_option
 C - - - - - 0x014B0F 05:8AFF: A5 F8     LDA ram_btn_press
 C - - - - - 0x014B11 05:8B01: 29 20     AND #con_btn_Select
 C - - - - - 0x014B13 05:8B03: F0 11     BEQ bra_8B16
@@ -2203,14 +2204,14 @@ C - - - - - 0x014B31 05:8B21: A4 13     LDY ram_subscript
 C - - - - - 0x014B33 05:8B23: B9 E6 8A  LDA tbl_8AE6_spr_Y,Y
 C - - - - - 0x014B36 05:8B26: 8D 00 02  STA ram_spr_Y
 C - - - - - 0x014B39 05:8B29: 60        RTS
-bra_8B2A:
+bra_8B2A_select_option:
 C - - - - - 0x014B3A 05:8B2A: A5 13     LDA ram_subscript
 C - - - - - 0x014B3C 05:8B2C: 09 80     ORA #$80
 C - - - - - 0x014B3E 05:8B2E: 85 13     STA ram_subscript
 C - - - - - 0x014B40 05:8B30: A9 40     LDA #$40
 C - - - - - 0x014B42 05:8B32: 85 29     STA ram_timer_enemy + 1
 C - - - - - 0x014B44 05:8B34: 60        RTS
-bra_8B35:
+bra_8B35_option_was_selected:
 C - - - - - 0x014B45 05:8B35: A5 29     LDA ram_timer_enemy + 1
 C - - - - - 0x014B47 05:8B37: F0 24     BEQ bra_8B5D
 C - - - - - 0x014B49 05:8B39: A0 04     LDY #$04
@@ -2248,8 +2249,9 @@ C - - - - - 0x014B87 05:8B77: A9 FF     LDA #$FF
 C - - - - - 0x014B89 05:8B79: 8D 70 06  STA ram_item_0670
 C - - - - - 0x014B8C 05:8B7C: 20 A3 EB  JSR sub_0x01EBB3
 C - - - - - 0x014B8F 05:8B7F: C0 02     CPY #$02
-C - - - - - 0x014B91 05:8B81: D0 05     BNE bra_8B88
-C - - - - - 0x014B93 05:8B83: 88        DEY
+C - - - - - 0x014B91 05:8B81: D0 05     BNE bra_8B88    ; if CONTINUE or SAVE
+; if RETRY
+C - - - - - 0x014B93 05:8B83: 88        DEY ; 01
 C - - - - - 0x014B94 05:8B84: 84 13     STY ram_subscript
 C - - - - - 0x014B96 05:8B86: E6 11     INC ram_0011
 bra_8B88:
@@ -2596,7 +2598,7 @@ ofs_020_8D63_0C:
 C - - J - - 0x014D73 05:8D63: A5 33     LDA ram_timer_enemy + $0B
 C - - - - - 0x014D75 05:8D65: D0 18     BNE bra_8D7F_RTS
 C - - - - - 0x014D77 05:8D67: 20 A3 EB  JSR sub_0x01EBB3
-C - - - - - 0x014D7A 05:8D6A: A9 08     LDA #con_script_08
+C - - - - - 0x014D7A 05:8D6A: A9 08     LDA #con_script_save_menu
 C - - - - - 0x014D7C 05:8D6C: 85 12     STA ram_script
 C - - - - - 0x014D7E 05:8D6E: A9 40     LDA #con_sfx_2_40
 C - - - - - 0x014D80 05:8D70: 8D 02 06  STA ram_sfx_2
