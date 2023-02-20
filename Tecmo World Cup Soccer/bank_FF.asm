@@ -1,5 +1,6 @@
 .segment "BANK_FF"
 .include "bank_ram.inc"
+.include "bank_val.inc"
 .org $C000  ; for listing file
 ; 0x00C010-0x01000F
 
@@ -13,9 +14,9 @@ C D 2 - - - 0x00C013 03:C003: 4C 81 C0  JMP loc_C081
 sub_0x00C016_prepare_return_address:
 C - - - - - 0x00C016 03:C006: 4C E1 C5  JMP loc_C5E1_prepare_return_address
 
-.export sub_0x00C019
-sub_0x00C019:
-C - - - - - 0x00C019 03:C009: 4C 09 C6  JMP loc_C609
+.export sub_0x00C019_delay
+sub_0x00C019_delay:
+C - - - - - 0x00C019 03:C009: 4C 09 C6  JMP loc_C609_delay
 
 .export loc_0x00C01C
 loc_0x00C01C:
@@ -141,9 +142,9 @@ C - - - - - 0x00C088 03:C078: 4C 18 CB  JMP loc_CB18
 sub_0x00C08B:
 C - - - - - 0x00C08B 03:C07B: 4C A5 F9  JMP loc_F9A5
 
-.export sub_0x00C08E
-sub_0x00C08E:
-C - - - - - 0x00C08E 03:C07E: 4C 10 C9  JMP loc_C910
+.export sub_0x00C08E_prepare_sound
+sub_0x00C08E_prepare_sound:
+C - - - - - 0x00C08E 03:C07E: 4C 10 C9  JMP loc_C910_prepare_sound
 
 
 
@@ -400,7 +401,7 @@ sub_C258:
 C - - - - - 0x00C268 03:C258: A2 00     LDX #$00
 C - - - - - 0x00C26A 03:C25A: AD 24 00  LDA a: ram_btn_hold
 C - - - - - 0x00C26D 03:C25D: 20 68 C2  JSR sub_C268
-C - - - - - 0x00C270 03:C260: E8        INX
+C - - - - - 0x00C270 03:C260: E8        INX ; 01
 C - - - - - 0x00C271 03:C261: AD 25 00  LDA a: ram_btn_hold + 1
 C - - - - - 0x00C274 03:C264: 20 68 C2  JSR sub_C268
 C - - - - - 0x00C277 03:C267: 60        RTS
@@ -497,10 +498,10 @@ C - - - - - 0x00C30B 03:C2FB: 29 FB     AND #$FB
 C - - - - - 0x00C30D 03:C2FD: 8D A4 03  STA ram_03A4
 C - - - - - 0x00C310 03:C300: A9 00     LDA #$00
 C - - - - - 0x00C312 03:C302: 8D D2 03  STA ram_03D2
-C - - - - - 0x00C315 03:C305: A9 11     LDA #$11
-C - - - - - 0x00C317 03:C307: 20 10 C9  JSR sub_C910
+C - - - - - 0x00C315 03:C305: A9 11     LDA #con_music_logo
+C - - - - - 0x00C317 03:C307: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00C31A 03:C30A: A9 04     LDA #$04
-C - - - - - 0x00C31C 03:C30C: 20 09 C6  JSR sub_C609
+C - - - - - 0x00C31C 03:C30C: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00C31F 03:C30F: A2 05     LDX #$05
 C - - - - - 0x00C321 03:C311: A9 3C     LDA #$3C
 C - - - - - 0x00C323 03:C313: 95 01     STA ram_0001,X
@@ -511,8 +512,8 @@ C - - - - - 0x00C32B 03:C31B: A0 0B     LDY #< ofs_0x00801C
 C - - - - - 0x00C32D 03:C31D: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 bra_C320:
 C - - - - - 0x00C330 03:C320: A9 01     LDA #$01
-C - - - - - 0x00C332 03:C322: 20 09 C6  JSR sub_C609
-C - - - - - 0x00C335 03:C325: A9 10     LDA #$10
+C - - - - - 0x00C332 03:C322: 20 09 C6  JSR sub_C609_delay
+C - - - - - 0x00C335 03:C325: A9 10     LDA #con_btn_Start
 C - - - - - 0x00C337 03:C327: 2D 26 00  AND a: ram_btn_press
 C - - - - - 0x00C33A 03:C32A: D0 05     BNE bra_C331
 C - - - - - 0x00C33C 03:C32C: 2C D2 03  BIT ram_03D2
@@ -548,8 +549,8 @@ C - - - - - 0x00C376 03:C366: 8D A4 03  STA ram_03A4
 C - - - - - 0x00C379 03:C369: A9 FF     LDA #$FF
 C - - - - - 0x00C37B 03:C36B: 8D A9 03  STA ram_team_id
 loc_C36E:
-C D 2 - - - 0x00C37E 03:C36E: A9 01     LDA #$01
-C - - - - - 0x00C380 03:C370: 20 10 C9  JSR sub_C910
+C D 2 - - - 0x00C37E 03:C36E: A9 01     LDA #con_sfx_off
+C - - - - - 0x00C380 03:C370: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00C383 03:C373: AD A4 03  LDA ram_03A4
 C - - - - - 0x00C386 03:C376: 29 FB     AND #$FB
 C - - - - - 0x00C388 03:C378: 8D A4 03  STA ram_03A4
@@ -589,7 +590,7 @@ C - - - - - 0x00C3D2 03:C3C2: 20 2D 80  JSR sub_0x00403D
 C - - - - - 0x00C3D5 03:C3C5: 20 07 C5  JSR sub_C507
 bra_C3C8:
 C - - - - - 0x00C3D8 03:C3C8: A9 01     LDA #$01
-C - - - - - 0x00C3DA 03:C3CA: 20 09 C6  JSR sub_C609
+C - - - - - 0x00C3DA 03:C3CA: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00C3DD 03:C3CD: AD A4 03  LDA ram_03A4
 C - - - - - 0x00C3E0 03:C3D0: 29 01     AND #$01
 C - - - - - 0x00C3E2 03:C3D2: F0 F4     BEQ bra_C3C8
@@ -601,7 +602,7 @@ C - - - - - 0x00C3F0 03:C3E0: A9 0B     LDA #$0B
 C - - - - - 0x00C3F2 03:C3E2: 8D AD 03  STA ram_team_w_ball
 bra_C3E5:
 C - - - - - 0x00C3F5 03:C3E5: A9 01     LDA #$01
-C - - - - - 0x00C3F7 03:C3E7: 20 09 C6  JSR sub_C609
+C - - - - - 0x00C3F7 03:C3E7: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00C3FA 03:C3EA: AD A4 03  LDA ram_03A4
 C - - - - - 0x00C3FD 03:C3ED: 29 01     AND #$01
 C - - - - - 0x00C3FF 03:C3EF: F0 F4     BEQ bra_C3E5
@@ -621,7 +622,7 @@ C - - - - - 0x00C41E 03:C40E: 09 10     ORA #$10
 C - - - - - 0x00C420 03:C410: 8D A4 03  STA ram_03A4
 bra_C413:
 C - - - - - 0x00C423 03:C413: A9 01     LDA #$01
-C - - - - - 0x00C425 03:C415: 20 09 C6  JSR sub_C609
+C - - - - - 0x00C425 03:C415: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00C428 03:C418: AD A4 03  LDA ram_03A4
 C - - - - - 0x00C42B 03:C41B: 29 10     AND #$10
 C - - - - - 0x00C42D 03:C41D: D0 F4     BNE bra_C413
@@ -678,7 +679,7 @@ C - - - - - 0x00C479 03:C469: A0 14     LDY #< ofs_0x008025
 C - - - - - 0x00C47B 03:C46B: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 loc_C46E:
 C D 2 - - - 0x00C47E 03:C46E: A9 01     LDA #$01
-C - - - - - 0x00C480 03:C470: 20 09 C6  JSR sub_C609
+C - - - - - 0x00C480 03:C470: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00C483 03:C473: 4C 6E C4  JMP loc_C46E
 
 
@@ -708,12 +709,12 @@ C - - - - - 0x00C4B0 03:C4A0: 85 1A     STA ram_001A
 C - - - - - 0x00C4B2 03:C4A2: A9 00     LDA #$00
 C - - - - - 0x00C4B4 03:C4A4: 85 1D     STA ram_001D
 C - - - - - 0x00C4B6 03:C4A6: 85 1E     STA ram_001E
-C - - - - - 0x00C4B8 03:C4A8: A9 0B     LDA #$0B
-C - - - - - 0x00C4BA 03:C4AA: 20 10 C9  JSR sub_C910
+C - - - - - 0x00C4B8 03:C4A8: A9 0B     LDA #con_sfx_time_up
+C - - - - - 0x00C4BA 03:C4AA: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00C4BD 03:C4AD: A9 01     LDA #$01
 C - - - - - 0x00C4BF 03:C4AF: 20 DA F9  JSR sub_F9DA
 C - - - - - 0x00C4C2 03:C4B2: A9 A0     LDA #$A0
-C - - - - - 0x00C4C4 03:C4B4: 20 09 C6  JSR sub_C609
+C - - - - - 0x00C4C4 03:C4B4: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00C4C7 03:C4B7: 60        RTS
 
 
@@ -747,8 +748,8 @@ C - - - - - 0x00C4F9 03:C4E9: 69 18     ADC #$18
 C - - - - - 0x00C4FB 03:C4EB: 9D 6B 00  STA a: ram_006B,X
 C - - - - - 0x00C4FE 03:C4EE: CA        DEX
 C - - - - - 0x00C4FF 03:C4EF: 10 F6     BPL bra_C4E7
-C - - - - - 0x00C501 03:C4F1: A9 13     LDA #$13
-C - - - - - 0x00C503 03:C4F3: 20 10 C9  JSR sub_C910
+C - - - - - 0x00C501 03:C4F1: A9 13     LDA #con_music_half_time
+C - - - - - 0x00C503 03:C4F3: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00C506 03:C4F6: 48        PHA
 C - - - - - 0x00C507 03:C4F7: A9 04     LDA #$04
 C - - - - - 0x00C509 03:C4F9: 85 67     STA ram_0067
@@ -808,7 +809,7 @@ loc_C55B:
 C D 2 - - - 0x00C56B 03:C55B: AD A4 03  LDA ram_03A4
 C - - - - - 0x00C56E 03:C55E: 29 04     AND #$04
 C - - - - - 0x00C570 03:C560: F0 0A     BEQ bra_C56C
-C - - - - - 0x00C572 03:C562: A9 10     LDA #$10
+C - - - - - 0x00C572 03:C562: A9 10     LDA #con_btn_Start
 C - - - - - 0x00C574 03:C564: 2D 26 00  AND a: ram_btn_press
 C - - - - - 0x00C577 03:C567: F0 03     BEQ bra_C56C
 C - - - - - 0x00C579 03:C569: 20 8E C5  JSR sub_C58E
@@ -854,7 +855,7 @@ C - - - - - 0x00C5B3 03:C5A3: A5 23     LDA ram_0023
 C - - - - - 0x00C5B5 03:C5A5: 10 FC     BPL bra_C5A3
 C - - - - - 0x00C5B7 03:C5A7: 29 7F     AND #$7F
 C - - - - - 0x00C5B9 03:C5A9: 85 23     STA ram_0023
-C - - - - - 0x00C5BB 03:C5AB: A9 10     LDA #$10
+C - - - - - 0x00C5BB 03:C5AB: A9 10     LDA #con_btn_Start
 C - - - - - 0x00C5BD 03:C5AD: 2D 26 00  AND a: ram_btn_press
 C - - - - - 0x00C5C0 03:C5B0: F0 F1     BEQ bra_C5A3
 C - - - - - 0x00C5C2 03:C5B2: 60        RTS
@@ -926,8 +927,9 @@ bra_C606_RTS:
 
 
 
-loc_C609:
-sub_C609:
+loc_C609_delay:
+sub_C609_delay:
+; A = how many frames
 C D 2 - - - 0x00C619 03:C609: 85 49     STA ram_0049
 C - - - - - 0x00C61B 03:C60B: 8A        TXA
 C - - - - - 0x00C61C 03:C60C: 48        PHA
@@ -1003,6 +1005,9 @@ C - - - - - 0x00C66E 03:C65E: 4C 55 DF  JMP loc_DF55
 loc_C661:
 - - - - - - 0x00C671 03:C661: A9 FF     LDA #$FF
 - - - - - - 0x00C673 03:C663: 4C 52 C6  JMP loc_C652
+
+
+; bzk garbage
 loc_C666:
 - - - - - - 0x00C676 03:C666: A0 18     LDY #$18
 - - - - - - 0x00C678 03:C668: A9 01     LDA #$01
@@ -1059,14 +1064,14 @@ C - - - - - 0x00C6B2 03:C6A2: 18        CLC
 C - - - - - 0x00C6B3 03:C6A3: 69 01     ADC #$01
 C - - - - - 0x00C6B5 03:C6A5: 29 03     AND #$03
 C - - - - - 0x00C6B7 03:C6A7: 91 61     STA (ram_0061),Y
-C - - - - - 0x00C6B9 03:C6A9: A9 04     LDA #$04
+C - - - - - 0x00C6B9 03:C6A9: A9 04     LDA #con_anim_run_gk
 C - - - - - 0x00C6BB 03:C6AB: A4 6F     LDY ram_006F
 C - - - - - 0x00C6BD 03:C6AD: F0 06     BEQ bra_C6B5
 C - - - - - 0x00C6BF 03:C6AF: C0 0B     CPY #$0B
 C - - - - - 0x00C6C1 03:C6B1: F0 02     BEQ bra_C6B5
-C - - - - - 0x00C6C3 03:C6B3: A9 03     LDA #$03
+C - - - - - 0x00C6C3 03:C6B3: A9 03     LDA #con_anim_run_player
 bra_C6B5:
-C - - - - - 0x00C6C5 03:C6B5: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00C6C5 03:C6B5: 20 1E 80  JSR sub_0x00402E_set_animation
 bra_C6B8_RTS:
 C - - - - - 0x00C6C8 03:C6B8: 60        RTS
 
@@ -1178,7 +1183,7 @@ C - - - - - 0x00C76A 03:C75A: F0 41     BEQ bra_C79D_RTS
 C - - - - - 0x00C76C 03:C75C: 48        PHA
 bra_C75D:
 C - - - - - 0x00C76D 03:C75D: A9 01     LDA #$01
-C - - - - - 0x00C76F 03:C75F: 20 09 C6  JSR sub_C609
+C - - - - - 0x00C76F 03:C75F: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00C772 03:C762: AD 7D 03  LDA ram_037D
 C - - - - - 0x00C775 03:C765: D0 F6     BNE bra_C75D
 C - - - - - 0x00C777 03:C767: A9 01     LDA #$01
@@ -1519,8 +1524,8 @@ C - - - - - 0x00C91F 03:C90F: 60        RTS
 
 
 
-loc_C910:
-sub_C910:
+loc_C910_prepare_sound:
+sub_C910_prepare_sound:
 C D 2 - - - 0x00C920 03:C910: AC 00 07  LDY ram_0700
 C - - - - - 0x00C923 03:C913: C0 04     CPY #$04
 C - - - - - 0x00C925 03:C915: B0 06     BCS bra_C91D_RTS
@@ -2207,8 +2212,8 @@ C - - - - - 0x00CCEB 03:CCDB: A9 02     LDA #$02
 C - - - - - 0x00CCED 03:CCDD: 20 D4 CA  JSR sub_CAD4
 C - - - - - 0x00CCF0 03:CCE0: 20 18 CB  JSR sub_CB18
 - D 2 - I - 0x00CCF3 03:CCE3: 80 03     .word ram_0380
-C - - - - - 0x00CCF5 03:CCE5: A9 10     LDA #$10
-C - - - - - 0x00CCF7 03:CCE7: 20 10 C9  JSR sub_C910
+C - - - - - 0x00CCF5 03:CCE5: A9 10     LDA #con_music_field
+C - - - - - 0x00CCF7 03:CCE7: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00CCFA 03:CCEA: A9 00     LDA #$00
 C - - - - - 0x00CCFC 03:CCEC: 8D D3 03  STA ram_03D3
 C - - - - - 0x00CCFF 03:CCEF: 20 AD D5  JSR sub_D5AD
@@ -2280,7 +2285,7 @@ C - - - - - 0x00CD92 03:CD82: A9 00     LDA #$00
 C - - - - - 0x00CD94 03:CD84: 8D B8 03  STA ram_03B8
 bra_CD87:
 C - - - - - 0x00CD97 03:CD87: A9 01     LDA #$01
-C - - - - - 0x00CD99 03:CD89: 20 09 C6  JSR sub_C609
+C - - - - - 0x00CD99 03:CD89: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00CD9C 03:CD8C: 48        PHA
 C - - - - - 0x00CD9D 03:CD8D: A9 02     LDA #$02
 C - - - - - 0x00CD9F 03:CD8F: 85 67     STA ram_0067
@@ -2301,14 +2306,14 @@ C - - - - - 0x00CDBC 03:CDAC: 2C C2 03  BIT ram_03C2
 C - - - - - 0x00CDBF 03:CDAF: 30 D6     BMI bra_CD87
 C - - - - - 0x00CDC1 03:CDB1: 20 97 CF  JSR sub_CF97
 C - - - - - 0x00CDC4 03:CDB4: A9 02     LDA #$02
-C - - - - - 0x00CDC6 03:CDB6: 20 09 C6  JSR sub_C609
+C - - - - - 0x00CDC6 03:CDB6: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00CDC9 03:CDB9: AD A4 03  LDA ram_03A4
 C - - - - - 0x00CDCC 03:CDBC: 09 04     ORA #$04
 C - - - - - 0x00CDCE 03:CDBE: 8D A4 03  STA ram_03A4
 bra_CDC1:
 loc_CDC1:
 C D 2 - - - 0x00CDD1 03:CDC1: A9 01     LDA #$01
-C - - - - - 0x00CDD3 03:CDC3: 20 09 C6  JSR sub_C609
+C - - - - - 0x00CDD3 03:CDC3: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00CDD6 03:CDC6: 48        PHA
 C - - - - - 0x00CDD7 03:CDC7: A9 02     LDA #$02
 C - - - - - 0x00CDD9 03:CDC9: 85 67     STA ram_0067
@@ -2366,7 +2371,7 @@ C - - - - - 0x00CE46 03:CE36: A9 08     LDA #$08
 bra_CE38:
 C - - - - - 0x00CE48 03:CE38: 48        PHA
 C - - - - - 0x00CE49 03:CE39: A9 01     LDA #$01
-C - - - - - 0x00CE4B 03:CE3B: 20 09 C6  JSR sub_C609
+C - - - - - 0x00CE4B 03:CE3B: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00CE4E 03:CE3E: 20 96 DE  JSR sub_DE96
 C - - - - - 0x00CE51 03:CE41: 48        PHA
 C - - - - - 0x00CE52 03:CE42: A9 02     LDA #$02
@@ -2438,8 +2443,8 @@ C - - - - - 0x00CECD 03:CEBD: 09 80     ORA #$80
 C - - - - - 0x00CECF 03:CEBF: 85 28     STA ram_0028
 C - - - - - 0x00CED1 03:CEC1: 85 21     STA ram_0021
 C - - - - - 0x00CED3 03:CEC3: 8D 00 20  STA $2000
-C - - - - - 0x00CED6 03:CEC6: A9 17     LDA #$17
-C - - - - - 0x00CED8 03:CEC8: 20 10 C9  JSR sub_C910
+C - - - - - 0x00CED6 03:CEC6: A9 17     LDA #con_music_penalty
+C - - - - - 0x00CED8 03:CEC8: 20 10 C9  JSR sub_C910_prepare_sound
 loc_CECB:
 C D 2 - - - 0x00CEDB 03:CECB: A9 00     LDA #$00
 C - - - - - 0x00CEDD 03:CECD: 85 8A     STA ram_008A
@@ -2461,7 +2466,7 @@ C - - - - - 0x00CEFC 03:CEEC: 68        PLA
 C - - - - - 0x00CEFD 03:CEED: 20 27 80  JSR sub_0x008037
 bra_CEF0:
 C - - - - - 0x00CF00 03:CEF0: A9 01     LDA #$01
-C - - - - - 0x00CF02 03:CEF2: 20 09 C6  JSR sub_C609
+C - - - - - 0x00CF02 03:CEF2: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00CF05 03:CEF5: 20 96 DE  JSR sub_DE96
 C - - - - - 0x00CF08 03:CEF8: A5 8A     LDA ram_008A
 C - - - - - 0x00CF0A 03:CEFA: 29 20     AND #$20
@@ -2510,19 +2515,19 @@ C - - - - - 0x00CF52 03:CF42: 49 0B     EOR #$0B
 C - - - - - 0x00CF54 03:CF44: 8D AD 03  STA ram_team_w_ball
 C - - - - - 0x00CF57 03:CF47: 4C CB CE  JMP loc_CECB
 bra_CF4A:
-C - - - - - 0x00CF5A 03:CF4A: A9 13     LDA #$13
-C - - - - - 0x00CF5C 03:CF4C: 20 10 C9  JSR sub_C910
+C - - - - - 0x00CF5A 03:CF4A: A9 13     LDA #con_music_half_time
+C - - - - - 0x00CF5C 03:CF4C: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00CF5F 03:CF4F: A9 00     LDA #$00
 bra_CF51:
 C - - - - - 0x00CF61 03:CF51: 48        PHA
 C - - - - - 0x00CF62 03:CF52: A9 01     LDA #$01
-C - - - - - 0x00CF64 03:CF54: 20 09 C6  JSR sub_C609
+C - - - - - 0x00CF64 03:CF54: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00CF67 03:CF57: 68        PLA
 C - - - - - 0x00CF68 03:CF58: AA        TAX
-C - - - - - 0x00CF69 03:CF59: A9 D0     LDA #$D0
+C - - - - - 0x00CF69 03:CF59: A9 D0     LDA #con_btns_AB + con_btn_Start
 C - - - - - 0x00CF6B 03:CF5B: 2D 26 00  AND a: ram_btn_press
 C - - - - - 0x00CF6E 03:CF5E: D0 0B     BNE bra_CF6B
-C - - - - - 0x00CF70 03:CF60: A9 C0     LDA #$C0
+C - - - - - 0x00CF70 03:CF60: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00CF72 03:CF62: 2D 27 00  AND a: ram_btn_press + 1
 C - - - - - 0x00CF75 03:CF65: D0 04     BNE bra_CF6B
 C - - - - - 0x00CF77 03:CF67: E8        INX
@@ -2813,12 +2818,12 @@ C - - - - - 0x00D15E 03:D14E: 8D E4 03  STA ram_03E4
 C - - - - - 0x00D161 03:D151: 20 ED DC  JSR sub_DCED
 bra_D154:
 C - - - - - 0x00D164 03:D154: A9 01     LDA #$01
-C - - - - - 0x00D166 03:D156: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D166 03:D156: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D169 03:D159: 20 96 DE  JSR sub_DE96
 C - - - - - 0x00D16C 03:D15C: 2C 29 04  BIT ram_plr_w_ball
 C - - - - - 0x00D16F 03:D15F: 10 F3     BPL bra_D154
 C - - - - - 0x00D171 03:D161: A9 02     LDA #$02
-C - - - - - 0x00D173 03:D163: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D173 03:D163: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D176 03:D166: 4C D5 D4  JMP loc_D4D5
 
 
@@ -2930,7 +2935,7 @@ C - - - - - 0x00D22D 03:D21D: A9 80     LDA #$80
 C - - - - - 0x00D22F 03:D21F: 8D 2A 04  STA ram_plr_wo_ball
 bra_D222:
 C - - - - - 0x00D232 03:D222: A9 01     LDA #$01
-C - - - - - 0x00D234 03:D224: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D234 03:D224: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D237 03:D227: 48        PHA
 C - - - - - 0x00D238 03:D228: A9 02     LDA #$02
 C - - - - - 0x00D23A 03:D22A: 85 67     STA ram_0067
@@ -2951,7 +2956,7 @@ C - - - - - 0x00D257 03:D247: 20 96 DE  JSR sub_DE96
 C - - - - - 0x00D25A 03:D24A: 2C 29 04  BIT ram_plr_w_ball
 C - - - - - 0x00D25D 03:D24D: 10 D3     BPL bra_D222
 C - - - - - 0x00D25F 03:D24F: A9 02     LDA #$02
-C - - - - - 0x00D261 03:D251: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D261 03:D251: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D264 03:D254: 4C D5 D4  JMP loc_D4D5
 
 
@@ -3065,7 +3070,7 @@ C - - - - - 0x00D334 03:D324: 8D 2A 04  STA ram_plr_wo_ball
 C - - - - - 0x00D337 03:D327: 20 ED DC  JSR sub_DCED
 bra_D32A:
 C - - - - - 0x00D33A 03:D32A: A9 01     LDA #$01
-C - - - - - 0x00D33C 03:D32C: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D33C 03:D32C: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D33F 03:D32F: 48        PHA
 C - - - - - 0x00D340 03:D330: A9 02     LDA #$02
 C - - - - - 0x00D342 03:D332: 85 67     STA ram_0067
@@ -3086,7 +3091,7 @@ C - - - - - 0x00D35F 03:D34F: 20 96 DE  JSR sub_DE96
 C - - - - - 0x00D362 03:D352: 2C 29 04  BIT ram_plr_w_ball
 C - - - - - 0x00D365 03:D355: 10 D3     BPL bra_D32A
 C - - - - - 0x00D367 03:D357: A9 02     LDA #$02
-C - - - - - 0x00D369 03:D359: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D369 03:D359: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D36C 03:D35C: 4C D5 D4  JMP loc_D4D5
 
 
@@ -3135,10 +3140,10 @@ tbl_D366:
 
 
 ofs_002_D37F_03:
-C - - J - - 0x00D38F 03:D37F: A9 12     LDA #$12
-C - - - - - 0x00D391 03:D381: 20 10 C9  JSR sub_C910
-C - - - - - 0x00D394 03:D384: A9 0E     LDA #$0E
-C - - - - - 0x00D396 03:D386: 20 10 C9  JSR sub_C910
+C - - J - - 0x00D38F 03:D37F: A9 12     LDA #con_music_goal
+C - - - - - 0x00D391 03:D381: 20 10 C9  JSR sub_C910_prepare_sound
+C - - - - - 0x00D394 03:D384: A9 0E     LDA #con_sfx_fans
+C - - - - - 0x00D396 03:D386: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00D399 03:D389: A9 00     LDA #$00
 bra_D38B_loop:
 C - - - - - 0x00D39B 03:D38B: 48        PHA
@@ -3163,7 +3168,7 @@ bra_D3AE:
 C - - - - - 0x00D3BE 03:D3AE: 8E CA 03  STX ram_03CA
 loc_D3B1:
 C D 2 - - - 0x00D3C1 03:D3B1: A9 01     LDA #$01
-C - - - - - 0x00D3C3 03:D3B3: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D3C3 03:D3B3: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D3C6 03:D3B6: A2 01     LDX #$01
 C - - - - - 0x00D3C8 03:D3B8: A0 00     LDY #$00
 C - - - - - 0x00D3CA 03:D3BA: AD CA 03  LDA ram_03CA
@@ -3216,7 +3221,7 @@ C - - - - - 0x00D425 03:D415: A9 00     LDA #$00
 C - - - - - 0x00D427 03:D417: 85 19     STA ram_0019
 C - - - - - 0x00D429 03:D419: 85 1A     STA ram_001A
 C - - - - - 0x00D42B 03:D41B: A9 14     LDA #$14
-C - - - - - 0x00D42D 03:D41D: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D42D 03:D41D: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D430 03:D420: A9 02     LDA #$02
 C - - - - - 0x00D432 03:D422: 85 6B     STA ram_006B
 C - - - - - 0x00D434 03:D424: A5 28     LDA ram_0028
@@ -3239,7 +3244,7 @@ C - - - - - 0x00D453 03:D443: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D456 03:D446: 68        PLA
 C - - - - - 0x00D457 03:D447: 20 2A 80  JSR sub_0x00403A
 C - - - - - 0x00D45A 03:D44A: A9 28     LDA #$28
-C - - - - - 0x00D45C 03:D44C: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D45C 03:D44C: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D45F 03:D44F: AE CA 03  LDX ram_03CA
 C - - - - - 0x00D462 03:D452: BD A7 03  LDA ram_goals_total,X
 C - - - - - 0x00D465 03:D455: C9 63     CMP #$63
@@ -3258,7 +3263,7 @@ C - - - - - 0x00D47D 03:D46D: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D480 03:D470: 68        PLA
 C - - - - - 0x00D481 03:D471: 20 2A 80  JSR sub_0x00403A
 C - - - - - 0x00D484 03:D474: A9 6E     LDA #$6E
-C - - - - - 0x00D486 03:D476: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D486 03:D476: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D489 03:D479: 20 AF CA  JSR sub_CAAF
 C - - - - - 0x00D48C 03:D47C: A5 28     LDA ram_0028
 C - - - - - 0x00D48E 03:D47E: 09 20     ORA #$20
@@ -3337,8 +3342,8 @@ C - - - - - 0x00D509 03:D4F9: E9 0E     SBC #$0E
 C - - - - - 0x00D50B 03:D4FB: 98        TYA
 C - - - - - 0x00D50C 03:D4FC: E9 00     SBC #$00
 C - - - - - 0x00D50E 03:D4FE: B0 09     BCS bra_D509
-C - - - - - 0x00D510 03:D500: A9 0C     LDA #$0C
-C - - - - - 0x00D512 03:D502: 20 10 C9  JSR sub_C910
+C - - - - - 0x00D510 03:D500: A9 0C     LDA #con_sfx_whistle_referee
+C - - - - - 0x00D512 03:D502: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00D515 03:D505: A2 00     LDX #$00
 C - - - - - 0x00D517 03:D507: 38        SEC
 C - - - - - 0x00D518 03:D508: 60        RTS
@@ -3384,8 +3389,8 @@ C - - - - - 0x00D562 03:D552: F0 3A     BEQ bra_D58E
 C - - - - - 0x00D564 03:D554: C9 0B     CMP #$0B
 C - - - - - 0x00D566 03:D556: F0 36     BEQ bra_D58E
 bra_D558:
-C - - - - - 0x00D568 03:D558: A9 0C     LDA #$0C
-C - - - - - 0x00D56A 03:D55A: 20 10 C9  JSR sub_C910
+C - - - - - 0x00D568 03:D558: A9 0C     LDA #con_sfx_whistle_referee
+C - - - - - 0x00D56A 03:D55A: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00D56D 03:D55D: AD D3 03  LDA ram_03D3
 C - - - - - 0x00D570 03:D560: 09 10     ORA #$10
 C - - - - - 0x00D572 03:D562: 8D D3 03  STA ram_03D3
@@ -3410,8 +3415,8 @@ C - - - - - 0x00D591 03:D581: 4D 28 04  EOR ram_0428
 C - - - - - 0x00D594 03:D584: D0 01     BNE bra_D587
 C - - - - - 0x00D596 03:D586: E8        INX
 bra_D587:
-C - - - - - 0x00D597 03:D587: A9 0C     LDA #$0C
-C - - - - - 0x00D599 03:D589: 20 10 C9  JSR sub_C910
+C - - - - - 0x00D597 03:D587: A9 0C     LDA #con_sfx_whistle_referee
+C - - - - - 0x00D599 03:D589: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00D59C 03:D58C: 38        SEC
 C - - - - - 0x00D59D 03:D58D: 60        RTS
 bra_D58E:
@@ -3514,7 +3519,7 @@ off_D605:
 ofs_D605 = off_D605 - 1
 bra_D605_loop:
 C - - - - - 0x00D615 03:D605: A9 01     LDA #$01
-C - - - - - 0x00D617 03:D607: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D617 03:D607: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D61A 03:D60A: 24 8A     BIT ram_008A
 C - - - - - 0x00D61C 03:D60C: 10 F7     BPL bra_D605_loop
 C - - - - - 0x00D61E 03:D60E: A9 AB     LDA #$AB
@@ -3538,16 +3543,16 @@ C - - - - - 0x00D643 03:D633: A9 18     LDA #$18
 C - - - - - 0x00D645 03:D635: 8D 24 04  STA ram_ball_Z_lo
 bra_D638:
 C - - - - - 0x00D648 03:D638: A9 01     LDA #$01
-C - - - - - 0x00D64A 03:D63A: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D64A 03:D63A: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D64D 03:D63D: 20 B1 D6  JSR sub_D6B1
 C - - - - - 0x00D650 03:D640: 20 68 DC  JSR sub_DC68
 C - - - - - 0x00D653 03:D643: CE 24 04  DEC ram_ball_Z_lo
 C - - - - - 0x00D656 03:D646: D0 F0     BNE bra_D638
 C - - - - - 0x00D658 03:D648: A9 08     LDA #$08
-C - - - - - 0x00D65A 03:D64A: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D65A 03:D64A: 20 09 C6  JSR sub_C609_delay
 bra_D64D:
 C - - - - - 0x00D65D 03:D64D: A9 01     LDA #$01
-C - - - - - 0x00D65F 03:D64F: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D65F 03:D64F: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D662 03:D652: EE DE 03  INC ram_03DE
 C - - - - - 0x00D665 03:D655: AD DE 03  LDA ram_03DE
 C - - - - - 0x00D668 03:D658: C9 80     CMP #$80
@@ -3557,8 +3562,8 @@ C - - - - - 0x00D66F 03:D65F: F0 02     BEQ bra_D663
 C - - - - - 0x00D671 03:D661: A2 01     LDX #$01
 bra_D663:
 C - - - - - 0x00D673 03:D663: FE 8F 00  INC a: ram_goals_pk,X
-C - - - - - 0x00D676 03:D666: A9 0E     LDA #$0E
-C - - - - - 0x00D678 03:D668: 20 10 C9  JSR sub_C910
+C - - - - - 0x00D676 03:D666: A9 0E     LDA #con_sfx_fans
+C - - - - - 0x00D678 03:D668: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00D67B 03:D66B: A2 0D     LDX #$0D
 C - - - - - 0x00D67D 03:D66D: A9 78     LDA #$78
 C - - - - - 0x00D67F 03:D66F: 95 01     STA ram_0001,X
@@ -3574,15 +3579,15 @@ C - - - - - 0x00D68D 03:D67D: 4C 9F D6  JMP loc_D69F
 
 off_D680:
 ofs_D680 = off_D680 - 1
-C - - - - - 0x00D690 03:D680: A9 07     LDA #$07
-C - - - - - 0x00D692 03:D682: 20 10 C9  JSR sub_C910
+C - - - - - 0x00D690 03:D680: A9 07     LDA #con_sfx_catch
+C - - - - - 0x00D692 03:D682: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00D695 03:D685: A9 00     LDA #$00
 C - - - - - 0x00D697 03:D687: 8D DB 03  STA ram_03DB
 C - - - - - 0x00D69A 03:D68A: A9 FB     LDA #$FB
 C - - - - - 0x00D69C 03:D68C: 8D DD 03  STA ram_03DD
 bra_D68F:
 C - - - - - 0x00D69F 03:D68F: A9 01     LDA #$01
-C - - - - - 0x00D6A1 03:D691: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D6A1 03:D691: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D6A4 03:D694: 20 68 DC  JSR sub_DC68
 C - - - - - 0x00D6A7 03:D697: AD DE 03  LDA ram_03DE
 C - - - - - 0x00D6AA 03:D69A: C9 10     CMP #$10
@@ -3592,7 +3597,7 @@ loc_D69F:
 C D 2 - - - 0x00D6AF 03:D69F: 26 91     ROL ram_0091
 C - - - - - 0x00D6B1 03:D6A1: 26 92     ROL ram_0092
 C - - - - - 0x00D6B3 03:D6A3: A9 14     LDA #$14
-C - - - - - 0x00D6B5 03:D6A5: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D6B5 03:D6A5: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D6B8 03:D6A8: A5 8A     LDA ram_008A
 C - - - - - 0x00D6BA 03:D6AA: 09 20     ORA #$20
 C - - - - - 0x00D6BC 03:D6AC: 85 8A     STA ram_008A
@@ -3669,14 +3674,14 @@ ofs_D6FA = off_D6FA - 1
 C - - - - - 0x00D70A 03:D6FA: 20 F2 DD  JSR sub_DDF2
 C - - - - - 0x00D70D 03:D6FD: 20 36 DE  JSR sub_DE36
 C - - - - - 0x00D710 03:D700: A9 01     LDA #$01
-C - - - - - 0x00D712 03:D702: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D712 03:D702: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D715 03:D705: 20 5E DB  JSR sub_DB5E
 C - - - - - 0x00D718 03:D708: AD D3 03  LDA ram_03D3
 C - - - - - 0x00D71B 03:D70B: 09 80     ORA #$80
 C - - - - - 0x00D71D 03:D70D: 8D D3 03  STA ram_03D3
 bra_D710_loop:
 C - - - - - 0x00D720 03:D710: A9 01     LDA #$01
-C - - - - - 0x00D722 03:D712: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D722 03:D712: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D725 03:D715: 20 BE DB  JSR sub_DBBE
 C - - - - - 0x00D728 03:D718: 20 17 DD  JSR sub_DD17
 C - - - - - 0x00D72B 03:D71B: 20 ED DC  JSR sub_DCED
@@ -3776,7 +3781,7 @@ C - - - - - 0x00D7BD 03:D7AD: 8D D4 03  STA ram_03D4
 bra_D7B0:
 loc_D7B0:
 C D 2 - - - 0x00D7C0 03:D7B0: A9 01     LDA #$01
-C - - - - - 0x00D7C2 03:D7B2: 20 09 C6  JSR sub_C609
+C - - - - - 0x00D7C2 03:D7B2: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00D7C5 03:D7B5: 20 ED DC  JSR sub_DCED
 C - - - - - 0x00D7C8 03:D7B8: 2C D3 03  BIT ram_03D3
 C - - - - - 0x00D7CB 03:D7BB: 50 F3     BVC bra_D7B0
@@ -4064,8 +4069,8 @@ C - - - - - 0x00D98D 03:D97D: 8D E6 03  STA ram_03E6
 C - - - - - 0x00D990 03:D980: 20 DF DD  JSR sub_DDDF
 C - - - - - 0x00D993 03:D983: 20 5E DB  JSR sub_DB5E
 C - - - - - 0x00D996 03:D986: 20 5E DF  JSR sub_DF5E
-C - - - - - 0x00D999 03:D989: A9 0D     LDA #$0D
-C - - - - - 0x00D99B 03:D98B: 20 10 C9  JSR sub_C910
+C - - - - - 0x00D999 03:D989: A9 0D     LDA #con_sfx_hit_goalspot
+C - - - - - 0x00D99B 03:D98B: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00D99E 03:D98E: 60        RTS
 
 
@@ -4149,11 +4154,12 @@ C - - - - - 0x00DA04 03:D9F4: 90 1F     BCC bra_DA15_RTS
 - - - - - - 0x00DA17 03:DA07: 20 DF DD  JSR sub_DDDF
 - - - - - - 0x00DA1A 03:DA0A: 20 5E DB  JSR sub_DB5E
 - - - - - - 0x00DA1D 03:DA0D: 20 5E DF  JSR sub_DF5E
-- - - - - - 0x00DA20 03:DA10: A9 0D     LDA #$0D
-- - - - - - 0x00DA22 03:DA12: 20 10 C9  JSR sub_C910
+- - - - - - 0x00DA20 03:DA10: A9 0D     LDA #con_sfx_hit_goalspot
+- - - - - - 0x00DA22 03:DA12: 20 10 C9  JSR sub_C910_prepare_sound
 bra_DA15_RTS:
 loc_DA15_RTS:
 C - - - - - 0x00DA25 03:DA15: 60        RTS
+
 
 
 tbl_DA16:
@@ -5019,7 +5025,7 @@ C - - - - - 0x00DFDF 03:DFCF: AA        TAX
 C - - - - - 0x00DFE0 03:DFD0: BD E6 DF  LDA tbl_DFE6,X
 C - - - - - 0x00DFE3 03:DFD3: 4C DE DF  JMP loc_DFDE
 bra_DFD6:
-C - - - - - 0x00DFE6 03:DFD6: 29 0F     AND #$0F
+C - - - - - 0x00DFE6 03:DFD6: 29 0F     AND #con_btns_Dpad
 C - - - - - 0x00DFE8 03:DFD8: F0 0B     BEQ bra_DFE5_RTS
 C - - - - - 0x00DFEA 03:DFDA: AA        TAX
 C - - - - - 0x00DFEB 03:DFDB: BD 83 E0  LDA tbl_E083,X
@@ -5117,7 +5123,7 @@ C - - - - - 0x00E067 03:E057: 60        RTS
 - - - - - - 0x00E06E 03:E05E: D0 03     BNE bra_E063
 - - - - - - 0x00E070 03:E060: AD 25 00  LDA a: ram_btn_hold + 1
 bra_E063:
-- - - - - - 0x00E073 03:E063: 29 0F     AND #$0F
+- - - - - - 0x00E073 03:E063: 29 0F     AND #con_btns_Dpad
 - - - - - - 0x00E075 03:E065: F0 08     BEQ bra_E06F_RTS
 - - - - - - 0x00E077 03:E067: AA        TAX
 - - - - - - 0x00E078 03:E068: BD 83 E0  LDA tbl_E083,X
@@ -5179,7 +5185,7 @@ C - - - - - 0x00E0B3 03:E0A3: A9 00     LDA #$00
 sub_E0A5:
 C - - - - - 0x00E0B5 03:E0A5: 85 2B     STA ram_002B
 C - - - - - 0x00E0B7 03:E0A7: 8A        TXA
-C - - - - - 0x00E0B8 03:E0A8: 29 0F     AND #$0F
+C - - - - - 0x00E0B8 03:E0A8: 29 0F     AND #con_btns_Dpad
 C - - - - - 0x00E0BA 03:E0AA: D0 05     BNE bra_E0B1
 C - - - - - 0x00E0BC 03:E0AC: 20 77 C6  JSR sub_C677
 C - - - - - 0x00E0BF 03:E0AF: 18        CLC
@@ -5336,16 +5342,16 @@ C - - - - - 0x00E197 03:E187: B1 61     LDA (ram_0061),Y
 C - - - - - 0x00E199 03:E189: 09 04     ORA #$04
 C - - - - - 0x00E19B 03:E18B: 29 F7     AND #$F7
 C - - - - - 0x00E19D 03:E18D: 91 61     STA (ram_0061),Y
-C - - - - - 0x00E19F 03:E18F: A9 08     LDA #$08
-C - - - - - 0x00E1A1 03:E191: 20 10 C9  JSR sub_C910
+C - - - - - 0x00E19F 03:E18F: A9 08     LDA #con_sfx_tackle
+C - - - - - 0x00E1A1 03:E191: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00E1A4 03:E194: 20 77 C6  JSR sub_C677
-C - - - - - 0x00E1A7 03:E197: A9 08     LDA #$08
-C - - - - - 0x00E1A9 03:E199: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00E1A7 03:E197: A9 08     LDA #con_anim_08
+C - - - - - 0x00E1A9 03:E199: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00E1AC 03:E19C: A9 04     LDA #$04
 C - - - - - 0x00E1AE 03:E19E: 20 52 C6  JSR sub_C652
 C - - - - - 0x00E1B1 03:E1A1: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00E1B4 03:E1A4: A9 08     LDA #$08
-C - - - - - 0x00E1B6 03:E1A6: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00E1B4 03:E1A4: A9 08     LDA #con_anim_08
+C - - - - - 0x00E1B6 03:E1A6: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00E1B9 03:E1A9: A0 15     LDY #$15
 C - - - - - 0x00E1BB 03:E1AB: A9 02     LDA #$02
 C - - - - - 0x00E1BD 03:E1AD: 91 61     STA (ram_0061),Y
@@ -5388,8 +5394,8 @@ C - - - - - 0x00E206 03:E1F6: E9 01     SBC #$01
 C - - - - - 0x00E208 03:E1F8: 91 61     STA (ram_0061),Y
 C - - - - - 0x00E20A 03:E1FA: D0 ED     BNE bra_E1E9
 C - - - - - 0x00E20C 03:E1FC: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00E20F 03:E1FF: A9 08     LDA #$08
-C - - - - - 0x00E211 03:E201: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00E20F 03:E1FF: A9 08     LDA #con_anim_08
+C - - - - - 0x00E211 03:E201: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00E214 03:E204: A9 0A     LDA #$0A
 C - - - - - 0x00E216 03:E206: 20 52 C6  JSR sub_C652
 loc_E209:
@@ -5626,8 +5632,8 @@ C - - - - - 0x00E382 03:E372: 85 0A     STA ram_000A
 C - - - - - 0x00E384 03:E374: A5 6F     LDA ram_006F
 C - - - - - 0x00E386 03:E376: 20 B9 C6  JSR sub_C6B9
 C - - - - - 0x00E389 03:E379: 20 E1 E3  JSR sub_E3E1
-C - - - - - 0x00E38C 03:E37C: A9 05     LDA #$05
-C - - - - - 0x00E38E 03:E37E: 20 10 C9  JSR sub_C910
+C - - - - - 0x00E38C 03:E37C: A9 05     LDA #con_sfx_receive
+C - - - - - 0x00E38E 03:E37E: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00E391 03:E381: A0 00     LDY #$00
 C - - - - - 0x00E393 03:E383: B1 61     LDA (ram_0061),Y
 C - - - - - 0x00E395 03:E385: 09 04     ORA #$04
@@ -5648,8 +5654,8 @@ C - - - - - 0x00E3B3 03:E3A3: 90 22     BCC bra_E3C7
 C - - - - - 0x00E3B5 03:E3A5: 2C 23 04  BIT ram_0423
 C - - - - - 0x00E3B8 03:E3A8: 10 1D     BPL bra_E3C7
 C - - - - - 0x00E3BA 03:E3AA: 20 77 C6  JSR sub_C677
-C - - - - - 0x00E3BD 03:E3AD: A9 07     LDA #$07
-C - - - - - 0x00E3BF 03:E3AF: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00E3BD 03:E3AD: A9 07     LDA #con_anim_07
+C - - - - - 0x00E3BF 03:E3AF: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00E3C2 03:E3B2: A9 01     LDA #$01
 C - - - - - 0x00E3C4 03:E3B4: 20 9E C7  JSR sub_C79E
 bra_E3B7:
@@ -5694,10 +5700,10 @@ C - - - - - 0x00E411 03:E401: 90 0C     BCC bra_E40F_RTS
 C - - - - - 0x00E413 03:E403: B0 0B     BCS bra_E410
 bra_E405:
 C - - - - - 0x00E415 03:E405: AA        TAX
-C - - - - - 0x00E416 03:E406: 29 0F     AND #$0F
+C - - - - - 0x00E416 03:E406: 29 0F     AND #con_btns_Dpad
 C - - - - - 0x00E418 03:E408: F0 05     BEQ bra_E40F_RTS
 C - - - - - 0x00E41A 03:E40A: 8A        TXA
-C - - - - - 0x00E41B 03:E40B: 29 C0     AND #$C0
+C - - - - - 0x00E41B 03:E40B: 29 C0     AND #con_btns_AB
 C - - - - - 0x00E41D 03:E40D: D0 01     BNE bra_E410
 bra_E40F_RTS:
 C - - - - - 0x00E41F 03:E40F: 60        RTS
@@ -5861,7 +5867,7 @@ C - - - - - 0x00E4E9 03:E4D9: A9 00     LDA #$00
 C - - - - - 0x00E4EB 03:E4DB: 8D 2B 04  STA ram_plr_frame_id
 loc_E4DE:
 C D 3 - - - 0x00E4EE 03:E4DE: A9 01     LDA #$01
-C - - - - - 0x00E4F0 03:E4E0: 20 09 C6  JSR sub_C609
+C - - - - - 0x00E4F0 03:E4E0: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00E4F3 03:E4E3: AD 2B 04  LDA ram_plr_frame_id
 C - - - - - 0x00E4F6 03:E4E6: 20 E3 CB  JSR sub_CBE3
 C - - - - - 0x00E4F9 03:E4E9: 20 43 C8  JSR sub_C843
@@ -6056,7 +6062,7 @@ C - - - - - 0x00E5F0 03:E5E0: 60        RTS
 
 
 
-ofs_004_E5E1_11:    ; bzk опт
+ofs_004_E5E1_11:    ; bzk optimize
 C - - J - - 0x00E5F1 03:E5E1: 4C 7D E5  JMP loc_E57D
 
 
@@ -6087,7 +6093,7 @@ C - - - - - 0x00E613 03:E603: 60        RTS
 sub_E604:
 C - - - - - 0x00E614 03:E604: 20 13 E6  JSR sub_E613
 C - - - - - 0x00E617 03:E607: A9 01     LDA #$01
-C - - - - - 0x00E619 03:E609: 20 09 C6  JSR sub_C609
+C - - - - - 0x00E619 03:E609: 20 09 C6  JSR sub_C609_delay
 C - - - - - 0x00E61C 03:E60C: AD 2B 04  LDA ram_plr_frame_id
 C - - - - - 0x00E61F 03:E60F: 20 E3 CB  JSR sub_CBE3
 C - - - - - 0x00E622 03:E612: 60        RTS
@@ -6257,8 +6263,8 @@ C - - - - - 0x00E721 03:E711: A6 6F     LDX ram_006F
 C - - - - - 0x00E723 03:E713: F0 09     BEQ bra_E71E
 C - - - - - 0x00E725 03:E715: E0 0B     CPX #$0B
 C - - - - - 0x00E727 03:E717: F0 05     BEQ bra_E71E
-C - - - - - 0x00E729 03:E719: A9 01     LDA #$01
-C - - - - - 0x00E72B 03:E71B: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00E729 03:E719: A9 01     LDA #con_anim_01
+C - - - - - 0x00E72B 03:E71B: 20 1E 80  JSR sub_0x00402E_set_animation
 bra_E71E:
 C - - - - - 0x00E72E 03:E71E: 4C 01 E7  JMP loc_E701
 bra_E721:
@@ -6432,8 +6438,8 @@ C - - - - - 0x00E873 03:E863: 60        RTS
 bra_E864:
 C - - - - - 0x00E874 03:E864: 28        PLP
 C - - - - - 0x00E875 03:E865: 20 77 C6  JSR sub_C677
-C - - - - - 0x00E878 03:E868: A9 02     LDA #$02
-C - - - - - 0x00E87A 03:E86A: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00E878 03:E868: A9 02     LDA #con_anim_02
+C - - - - - 0x00E87A 03:E86A: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00E87D 03:E86D: 60        RTS
 
 
@@ -6534,7 +6540,7 @@ C - - - - - 0x00E93D 03:E92D: 24 86     BIT ram_0086
 C - - - - - 0x00E93F 03:E92F: 10 03     BPL bra_E934
 C - - - - - 0x00E941 03:E931: 4C 25 EA  JMP loc_EA25
 bra_E934:
-C - - - - - 0x00E944 03:E934: 29 0F     AND #$0F
+C - - - - - 0x00E944 03:E934: 29 0F     AND #con_btns_Dpad
 C - - - - - 0x00E946 03:E936: F0 11     BEQ bra_E949
 C - - - - - 0x00E948 03:E938: 20 70 E0  JSR sub_E070
 C - - - - - 0x00E94B 03:E93B: AD D3 03  LDA ram_03D3
@@ -6549,21 +6555,21 @@ C - - - - - 0x00E95E 03:E94E: 8D D3 03  STA ram_03D3
 C - - - - - 0x00E961 03:E951: A9 00     LDA #$00
 C - - - - - 0x00E963 03:E953: 20 9E C7  JSR sub_C79E
 C - - - - - 0x00E966 03:E956: 20 77 C6  JSR sub_C677
-C - - - - - 0x00E969 03:E959: A9 06     LDA #$06
-C - - - - - 0x00E96B 03:E95B: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00E969 03:E959: A9 06     LDA #con_anim_06
+C - - - - - 0x00E96B 03:E95B: 20 1E 80  JSR sub_0x00402E_set_animation
 loc_E95E:
 C D 3 - - - 0x00E96E 03:E95E: A0 13     LDY #$13
 C - - - - - 0x00E970 03:E960: B1 61     LDA (ram_0061),Y
 C - - - - - 0x00E972 03:E962: 8D E6 03  STA ram_03E6
 C - - - - - 0x00E975 03:E965: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00E978 03:E968: D0 08     BNE bra_E972
-C - - - - - 0x00E97A 03:E96A: A9 C0     LDA #$C0
+C - - - - - 0x00E97A 03:E96A: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00E97C 03:E96C: 2D 26 00  AND a: ram_btn_press
 C - - - - - 0x00E97F 03:E96F: 4C 7C E9  JMP loc_E97C
 bra_E972:
 C - - - - - 0x00E982 03:E972: 2C A4 03  BIT ram_03A4
 C - - - - - 0x00E985 03:E975: 10 9E     BPL bra_E915
-C - - - - - 0x00E987 03:E977: A9 C0     LDA #$C0
+C - - - - - 0x00E987 03:E977: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00E989 03:E979: 2D 27 00  AND a: ram_btn_press + 1
 loc_E97C:
 C D 3 - - - 0x00E98C 03:E97C: F0 97     BEQ bra_E915
@@ -6610,16 +6616,16 @@ tbl_E9BA:
 
 
 loc_E9BF:
-C D 3 - - - 0x00E9CF 03:E9BF: A9 03     LDA #$03
-C - - - - - 0x00E9D1 03:E9C1: 20 10 C9  JSR sub_C910
+C D 3 - - - 0x00E9CF 03:E9BF: A9 03     LDA #con_sfx_shot
+C - - - - - 0x00E9D1 03:E9C1: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00E9D4 03:E9C4: 20 77 C6  JSR sub_C677
-C - - - - - 0x00E9D7 03:E9C7: A9 05     LDA #$05
-C - - - - - 0x00E9D9 03:E9C9: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00E9D7 03:E9C7: A9 05     LDA #con_anim_05
+C - - - - - 0x00E9D9 03:E9C9: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00E9DC 03:E9CC: A9 02     LDA #$02
 C - - - - - 0x00E9DE 03:E9CE: 20 52 C6  JSR sub_C652
 C - - - - - 0x00E9E1 03:E9D1: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00E9E4 03:E9D4: A9 05     LDA #$05
-C - - - - - 0x00E9E6 03:E9D6: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00E9E4 03:E9D4: A9 05     LDA #con_anim_05
+C - - - - - 0x00E9E6 03:E9D6: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00E9E9 03:E9D9: A9 02     LDA #$02
 C - - - - - 0x00E9EB 03:E9DB: 20 52 C6  JSR sub_C652
 C - - - - - 0x00E9EE 03:E9DE: A0 13     LDY #$13
@@ -6641,8 +6647,8 @@ C - - - - - 0x00EA10 03:EA00: 20 5E DF  JSR sub_DF5E
 C - - - - - 0x00EA13 03:EA03: A9 01     LDA #$01
 C - - - - - 0x00EA15 03:EA05: 20 52 C6  JSR sub_C652
 C - - - - - 0x00EA18 03:EA08: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00EA1B 03:EA0B: A9 05     LDA #$05
-C - - - - - 0x00EA1D 03:EA0D: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00EA1B 03:EA0B: A9 05     LDA #con_anim_05
+C - - - - - 0x00EA1D 03:EA0D: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00EA20 03:EA10: A9 30     LDA #$30
 C - - - - - 0x00EA22 03:EA12: 20 52 C6  JSR sub_C652
 C - - - - - 0x00EA25 03:EA15: A0 00     LDY #$00
@@ -6773,8 +6779,8 @@ C - - - - - 0x00EB02 03:EAF2: 69 80     ADC #$80
 C - - - - - 0x00EB04 03:EAF4: A0 13     LDY #$13
 C - - - - - 0x00EB06 03:EAF6: 91 61     STA (ram_0061),Y
 C - - - - - 0x00EB08 03:EAF8: 20 77 C6  JSR sub_C677
-C - - - - - 0x00EB0B 03:EAFB: A9 01     LDA #$01
-C - - - - - 0x00EB0D 03:EAFD: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00EB0B 03:EAFB: A9 01     LDA #con_anim_01
+C - - - - - 0x00EB0D 03:EAFD: 20 1E 80  JSR sub_0x00402E_set_animation
 loc_EB00:
 C D 3 - - - 0x00EB10 03:EB00: 2C 29 04  BIT ram_plr_w_ball
 C - - - - - 0x00EB13 03:EB03: 30 10     BMI bra_EB15
@@ -6822,8 +6828,8 @@ loc_EB4E:
 C D 3 - - - 0x00EB5E 03:EB4E: A9 01     LDA #$01
 C - - - - - 0x00EB60 03:EB50: 20 52 C6  JSR sub_C652
 C - - - - - 0x00EB63 03:EB53: 20 77 C6  JSR sub_C677
-C - - - - - 0x00EB66 03:EB56: A9 01     LDA #$01
-C - - - - - 0x00EB68 03:EB58: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00EB66 03:EB56: A9 01     LDA #con_anim_01
+C - - - - - 0x00EB68 03:EB58: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00EB6B 03:EB5B: 4C 4E EB  JMP loc_EB4E
 bra_EB5E:
 C - - - - - 0x00EB6E 03:EB5E: A5 6F     LDA ram_006F
@@ -6858,7 +6864,7 @@ C - - - - - 0x00EBA8 03:EB98: AE AD 03  LDX ram_team_w_ball
 C - - - - - 0x00EBAB 03:EB9B: D0 03     BNE bra_EBA0
 C - - - - - 0x00EBAD 03:EB9D: AD 25 00  LDA a: ram_btn_hold + 1
 bra_EBA0:
-C - - - - - 0x00EBB0 03:EBA0: 29 0F     AND #$0F
+C - - - - - 0x00EBB0 03:EBA0: 29 0F     AND #con_btns_Dpad
 C - - - - - 0x00EBB2 03:EBA2: F0 0C     BEQ bra_EBB0
 C - - - - - 0x00EBB4 03:EBA4: 20 70 E0  JSR sub_E070
 C - - - - - 0x00EBB7 03:EBA7: 20 19 EC  JSR sub_EC19
@@ -6866,8 +6872,8 @@ C - - - - - 0x00EBBA 03:EBAA: 20 7E C6  JSR sub_C67E
 C - - - - - 0x00EBBD 03:EBAD: 4C B8 EB  JMP loc_EBB8
 bra_EBB0:
 C - - - - - 0x00EBC0 03:EBB0: 20 77 C6  JSR sub_C677
-C - - - - - 0x00EBC3 03:EBB3: A9 01     LDA #$01
-C - - - - - 0x00EBC5 03:EBB5: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00EBC3 03:EBB3: A9 01     LDA #con_anim_01
+C - - - - - 0x00EBC5 03:EBB5: 20 1E 80  JSR sub_0x00402E_set_animation
 loc_EBB8:
 C D 3 - - - 0x00EBC8 03:EBB8: A2 08     LDX #$08
 C - - - - - 0x00EBCA 03:EBBA: A9 16     LDA #$16
@@ -6905,11 +6911,11 @@ C - - - - - 0x00EC0C 03:EBFC: 4C 55 DF  JMP loc_DF55
 bra_EBFF:
 C - - - - - 0x00EC0F 03:EBFF: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00EC12 03:EC02: F0 08     BEQ bra_EC0C
-C - - - - - 0x00EC14 03:EC04: A9 80     LDA #$80
+C - - - - - 0x00EC14 03:EC04: A9 80     LDA #con_btn_A
 C - - - - - 0x00EC16 03:EC06: 2D 26 00  AND a: ram_btn_press
 C - - - - - 0x00EC19 03:EC09: 4C 11 EC  JMP loc_EC11
 bra_EC0C:
-C - - - - - 0x00EC1C 03:EC0C: A9 80     LDA #$80
+C - - - - - 0x00EC1C 03:EC0C: A9 80     LDA #con_btn_A
 C - - - - - 0x00EC1E 03:EC0E: 2D 27 00  AND a: ram_btn_press + 1
 loc_EC11:
 C D 3 - - - 0x00EC21 03:EC11: D0 03     BNE bra_EC16
@@ -7013,13 +7019,13 @@ C - - - - - 0x00ECBD 03:ECAD: 20 93 E0  JSR sub_E093
 loc_ECB0:
 C D 3 - - - 0x00ECC0 03:ECB0: 90 0B     BCC bra_ECBD
 C - - - - - 0x00ECC2 03:ECB2: 20 40 C9  JSR sub_C940
-C - - - - - 0x00ECC5 03:ECB5: A9 04     LDA #$04
-C - - - - - 0x00ECC7 03:ECB7: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00ECC5 03:ECB5: A9 04     LDA #con_anim_run_gk
+C - - - - - 0x00ECC7 03:ECB7: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00ECCA 03:ECBA: 4C C5 EC  JMP loc_ECC5
 bra_ECBD:
 C - - - - - 0x00ECCD 03:ECBD: 20 37 C9  JSR sub_C937
-C - - - - - 0x00ECD0 03:ECC0: A9 02     LDA #$02
-C - - - - - 0x00ECD2 03:ECC2: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00ECD0 03:ECC0: A9 02     LDA #con_anim_02
+C - - - - - 0x00ECD2 03:ECC2: 20 1E 80  JSR sub_0x00402E_set_animation
 loc_ECC5:
 C D 3 - - - 0x00ECD5 03:ECC5: A2 09     LDX #$09
 C - - - - - 0x00ECD7 03:ECC7: A9 16     LDA #$16
@@ -7218,8 +7224,8 @@ C - - - - - 0x00EE48 03:EE38: 8D 29 04  STA ram_plr_w_ball
 C - - - - - 0x00EE4B 03:EE3B: 20 5E DF  JSR sub_DF5E
 C - - - - - 0x00EE4E 03:EE3E: A9 80     LDA #$80
 C - - - - - 0x00EE50 03:EE40: 85 98     STA ram_0098
-C - - - - - 0x00EE52 03:EE42: A9 1C     LDA #$1C
-C - - - - - 0x00EE54 03:EE44: 20 10 C9  JSR sub_C910
+C - - - - - 0x00EE52 03:EE42: A9 1C     LDA #con_sfx_syndrom
+C - - - - - 0x00EE54 03:EE44: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00EE57 03:EE47: 4C 6F EE  JMP loc_EE6F
 bra_EE4A:
 C - - - - - 0x00EE5A 03:EE4A: AD 29 04  LDA ram_plr_w_ball
@@ -7234,8 +7240,8 @@ C - - - - - 0x00EE6C 03:EE5C: 20 2F C6  JSR sub_C62F
 bra_EE5F:
 C - - - - - 0x00EE6F 03:EE5F: A5 6F     LDA ram_006F
 C - - - - - 0x00EE71 03:EE61: 20 B9 C6  JSR sub_C6B9
-C - - - - - 0x00EE74 03:EE64: A9 07     LDA #$07
-C - - - - - 0x00EE76 03:EE66: 20 10 C9  JSR sub_C910
+C - - - - - 0x00EE74 03:EE64: A9 07     LDA #con_sfx_catch
+C - - - - - 0x00EE76 03:EE66: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00EE79 03:EE69: A9 00     LDA #$00
 C - - - - - 0x00EE7B 03:EE6B: 85 09     STA ram_0009
 C - - - - - 0x00EE7D 03:EE6D: 85 0A     STA ram_000A
@@ -7249,13 +7255,13 @@ C - - - - - 0x00EE89 03:EE79: 90 02     BCC bra_EE7D
 bra_EE7D:
 C - - - - - 0x00EE8D 03:EE7D: A0 0C     LDY #$0C
 C - - - - - 0x00EE8F 03:EE7F: 91 61     STA (ram_0061),Y
-C - - - - - 0x00EE91 03:EE81: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00EE91 03:EE81: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00EE94 03:EE84: A9 08     LDA #$08
 C - - - - - 0x00EE96 03:EE86: 20 52 C6  JSR sub_C652
 C - - - - - 0x00EE99 03:EE89: 20 6D C6  JSR sub_C66D
 C - - - - - 0x00EE9C 03:EE8C: A0 0C     LDY #$0C
 C - - - - - 0x00EE9E 03:EE8E: B1 61     LDA (ram_0061),Y
-C - - - - - 0x00EEA0 03:EE90: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00EEA0 03:EE90: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00EEA3 03:EE93: A9 14     LDA #$14
 C - - - - - 0x00EEA5 03:EE95: 20 52 C6  JSR sub_C652
 C - - - - - 0x00EEA8 03:EE98: 2C 98 00  BIT a: ram_0098
@@ -7274,8 +7280,8 @@ C - - - - - 0x00EEBA 03:EEAA: 10 35     BPL bra_EEE1
 C - - - - - 0x00EEBC 03:EEAC: AD 1E 04  LDA ram_041E
 C - - - - - 0x00EEBF 03:EEAF: C9 02     CMP #$02
 C - - - - - 0x00EEC1 03:EEB1: 90 2E     BCC bra_EEE1
-C - - - - - 0x00EEC3 03:EEB3: A9 1C     LDA #$1C
-C - - - - - 0x00EEC5 03:EEB5: 20 10 C9  JSR sub_C910
+C - - - - - 0x00EEC3 03:EEB3: A9 1C     LDA #con_sfx_syndrom
+C - - - - - 0x00EEC5 03:EEB5: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00EEC8 03:EEB8: AD 7E 03  LDA ram_random
 C - - - - - 0x00EECB 03:EEBB: C9 A0     CMP #$A0
 C - - - - - 0x00EECD 03:EEBD: 90 02     BCC bra_EEC1
@@ -7565,8 +7571,8 @@ tbl_EFE7:
 
 
 ofs_005_F016_05:
-C - - - - - 0x00F026 03:F016: A9 02     LDA #$02
-C - - - - - 0x00F028 03:F018: 20 10 C9  JSR sub_C910
+C - - - - - 0x00F026 03:F016: A9 02     LDA #con_sfx_dead
+C - - - - - 0x00F028 03:F018: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00F02B 03:F01B: A0 00     LDY #$00
 C - - - - - 0x00F02D 03:F01D: B1 61     LDA (ram_0061),Y
 C - - - - - 0x00F02F 03:F01F: 09 04     ORA #$04
@@ -7574,13 +7580,13 @@ C - - - - - 0x00F031 03:F021: 29 F7     AND #$F7
 C - - - - - 0x00F033 03:F023: 91 61     STA (ram_0061),Y
 C - - - - - 0x00F035 03:F025: 20 40 C9  JSR sub_C940
 C - - - - - 0x00F038 03:F028: 20 77 C6  JSR sub_C677
-C - - - - - 0x00F03B 03:F02B: A9 09     LDA #$09
-C - - - - - 0x00F03D 03:F02D: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F03B 03:F02B: A9 09     LDA #con_anim_dead
+C - - - - - 0x00F03D 03:F02D: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F040 03:F030: A9 40     LDA #$40
 C - - - - - 0x00F042 03:F032: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F045 03:F035: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F048 03:F038: A9 09     LDA #$09
-C - - - - - 0x00F04A 03:F03A: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F048 03:F038: A9 09     LDA #con_anim_dead
+C - - - - - 0x00F04A 03:F03A: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F04D 03:F03D: A9 0C     LDA #$0C
 C - - - - - 0x00F04F 03:F03F: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F052 03:F042: A0 00     LDY #$00
@@ -7611,13 +7617,13 @@ C - - - - - 0x00F07D 03:F06D: 29 F7     AND #$F7
 C - - - - - 0x00F07F 03:F06F: 91 61     STA (ram_0061),Y
 C - - - - - 0x00F081 03:F071: 20 40 C9  JSR sub_C940
 C - - - - - 0x00F084 03:F074: 20 77 C6  JSR sub_C677
-C - - - - - 0x00F087 03:F077: A9 0A     LDA #$0A
-C - - - - - 0x00F089 03:F079: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F087 03:F077: A9 0A     LDA #con_anim_dodge
+C - - - - - 0x00F089 03:F079: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F08C 03:F07C: A9 14     LDA #$14
 C - - - - - 0x00F08E 03:F07E: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F091 03:F081: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F094 03:F084: A9 0A     LDA #$0A
-C - - - - - 0x00F096 03:F086: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F094 03:F084: A9 0A     LDA #con_anim_dodge
+C - - - - - 0x00F096 03:F086: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F099 03:F089: A9 06     LDA #$06
 C - - - - - 0x00F09B 03:F08B: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F09E 03:F08E: A0 00     LDY #$00
@@ -7672,8 +7678,8 @@ C - - - - - 0x00F0F0 03:F0E0: 20 37 C9  JSR sub_C937
 C - - - - - 0x00F0F3 03:F0E3: 20 67 E4  JSR sub_E467
 C - - - - - 0x00F0F6 03:F0E6: 90 0B     BCC bra_F0F3
 C - - - - - 0x00F0F8 03:F0E8: 20 77 C6  JSR sub_C677
-C - - - - - 0x00F0FB 03:F0EB: A9 01     LDA #$01
-C - - - - - 0x00F0FD 03:F0ED: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F0FB 03:F0EB: A9 01     LDA #con_anim_01
+C - - - - - 0x00F0FD 03:F0ED: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F100 03:F0F0: 4C DB F0  JMP loc_F0DB
 bra_F0F3:
 C - - - - - 0x00F103 03:F0F3: 20 7E C6  JSR sub_C67E
@@ -7691,8 +7697,8 @@ C - - - - - 0x00F114 03:F104: F0 10     BEQ bra_F116
 C - - - - - 0x00F116 03:F106: A9 01     LDA #$01
 C - - - - - 0x00F118 03:F108: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F11B 03:F10B: 20 37 C9  JSR sub_C937
-C - - - - - 0x00F11E 03:F10E: A9 01     LDA #$01
-C - - - - - 0x00F120 03:F110: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F11E 03:F10E: A9 01     LDA #con_anim_01
+C - - - - - 0x00F120 03:F110: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F123 03:F113: 4C FF F0  JMP loc_F0FF
 bra_F116:
 C - - - - - 0x00F126 03:F116: A0 00     LDY #$00
@@ -7813,14 +7819,14 @@ C - - - - - 0x00F209 03:F1F9: B1 61     LDA (ram_0061),Y
 C - - - - - 0x00F20B 03:F1FB: 29 01     AND #$01
 C - - - - - 0x00F20D 03:F1FD: D0 F3     BNE bra_F1F2
 C - - - - - 0x00F20F 03:F1FF: 20 37 C9  JSR sub_C937
-C - - - - - 0x00F212 03:F202: A9 02     LDA #$02
+C - - - - - 0x00F212 03:F202: A9 02     LDA #con_anim_02
 C - - - - - 0x00F214 03:F204: A6 6F     LDX ram_006F
 C - - - - - 0x00F216 03:F206: F0 06     BEQ bra_F20E
 C - - - - - 0x00F218 03:F208: E0 0B     CPX #$0B
 C - - - - - 0x00F21A 03:F20A: F0 02     BEQ bra_F20E
-C - - - - - 0x00F21C 03:F20C: A9 01     LDA #$01
+C - - - - - 0x00F21C 03:F20C: A9 01     LDA #con_anim_01
 bra_F20E:
-C - - - - - 0x00F21E 03:F20E: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F21E 03:F20E: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F221 03:F211: 4C F2 F1  JMP loc_F1F2
 
 
@@ -7843,8 +7849,8 @@ C - - - - - 0x00F242 03:F232: 91 61     STA (ram_0061),Y
 bra_F234:
 C - - - - - 0x00F244 03:F234: A9 01     LDA #$01
 C - - - - - 0x00F246 03:F236: 20 52 C6  JSR sub_C652
-C - - - - - 0x00F249 03:F239: A9 06     LDA #$06
-C - - - - - 0x00F24B 03:F23B: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F249 03:F239: A9 06     LDA #con_anim_06
+C - - - - - 0x00F24B 03:F23B: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F24E 03:F23E: A2 00     LDX #$00
 C - - - - - 0x00F250 03:F240: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00F253 03:F243: F0 13     BEQ bra_F258
@@ -7859,12 +7865,12 @@ C - - - - - 0x00F262 03:F252: 91 61     STA (ram_0061),Y
 C - - - - - 0x00F264 03:F254: F0 09     BEQ bra_F25F
 C - - - - - 0x00F266 03:F256: D0 DC     BNE bra_F234
 bra_F258:
-C - - - - - 0x00F268 03:F258: A9 C0     LDA #$C0
+C - - - - - 0x00F268 03:F258: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00F26A 03:F25A: 3D 26 00  AND a: ram_btn_press,X
 C - - - - - 0x00F26D 03:F25D: F0 D5     BEQ bra_F234
 bra_F25F:
-C - - - - - 0x00F26F 03:F25F: A9 0C     LDA #$0C
-C - - - - - 0x00F271 03:F261: 20 10 C9  JSR sub_C910
+C - - - - - 0x00F26F 03:F25F: A9 0C     LDA #con_sfx_whistle_referee
+C - - - - - 0x00F271 03:F261: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00F274 03:F264: A0 00     LDY #$00
 C - - - - - 0x00F276 03:F266: B1 61     LDA (ram_0061),Y
 C - - - - - 0x00F278 03:F268: 29 FB     AND #$FB
@@ -7919,7 +7925,7 @@ C - - - - - 0x00F2DC 03:F2CC: 4C A4 F2  JMP loc_F2A4
 
 
 
-ofs_005_F2CF_15:    ; bzk опт
+ofs_005_F2CF_15:    ; bzk optimize
 C - - - - - 0x00F2DF 03:F2CF: 4C A8 F0  JMP loc_F0A8
 
 
@@ -7931,11 +7937,11 @@ C - - - - - 0x00F2E6 03:F2D6: 09 04     ORA #$04
 C - - - - - 0x00F2E8 03:F2D8: 29 F7     AND #$F7
 C - - - - - 0x00F2EA 03:F2DA: 91 61     STA (ram_0061),Y
 C - - - - - 0x00F2EC 03:F2DC: 20 BA DF  JSR sub_DFBA
-C - - - - - 0x00F2EF 03:F2DF: A9 03     LDA #$03
-C - - - - - 0x00F2F1 03:F2E1: 20 10 C9  JSR sub_C910
+C - - - - - 0x00F2EF 03:F2DF: A9 03     LDA #con_sfx_shot
+C - - - - - 0x00F2F1 03:F2E1: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00F2F4 03:F2E4: 20 77 C6  JSR sub_C677
-C - - - - - 0x00F2F7 03:F2E7: A9 0B     LDA #$0B
-C - - - - - 0x00F2F9 03:F2E9: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F2F7 03:F2E7: A9 0B     LDA #con_anim_shoot_normal
+C - - - - - 0x00F2F9 03:F2E9: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F2FC 03:F2EC: A9 01     LDA #$01
 C - - - - - 0x00F2FE 03:F2EE: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F301 03:F2F1: 20 28 F4  JSR sub_F428
@@ -7943,8 +7949,8 @@ C - - - - - 0x00F304 03:F2F4: A9 02     LDA #$02
 C - - - - - 0x00F306 03:F2F6: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F309 03:F2F9: 20 5E DF  JSR sub_DF5E
 C - - - - - 0x00F30C 03:F2FC: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F30F 03:F2FF: A9 0B     LDA #$0B
-C - - - - - 0x00F311 03:F301: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F30F 03:F2FF: A9 0B     LDA #con_anim_shoot_normal
+C - - - - - 0x00F311 03:F301: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F314 03:F304: A9 30     LDA #$30
 C - - - - - 0x00F316 03:F306: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F319 03:F309: A0 00     LDY #$00
@@ -7964,11 +7970,11 @@ C - - - - - 0x00F32D 03:F31D: 09 04     ORA #$04
 C - - - - - 0x00F32F 03:F31F: 29 F7     AND #$F7
 C - - - - - 0x00F331 03:F321: 91 61     STA (ram_0061),Y
 C - - - - - 0x00F333 03:F323: 20 BA DF  JSR sub_DFBA
-C - - - - - 0x00F336 03:F326: A9 03     LDA #$03
-C - - - - - 0x00F338 03:F328: 20 10 C9  JSR sub_C910
+C - - - - - 0x00F336 03:F326: A9 03     LDA #con_sfx_shot
+C - - - - - 0x00F338 03:F328: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00F33B 03:F32B: 20 77 C6  JSR sub_C677
-C - - - - - 0x00F33E 03:F32E: A9 0C     LDA #$0C
-C - - - - - 0x00F340 03:F330: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F33E 03:F32E: A9 0C     LDA #con_anim_shoot_volley
+C - - - - - 0x00F340 03:F330: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F343 03:F333: A9 01     LDA #$01
 C - - - - - 0x00F345 03:F335: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F348 03:F338: 20 28 F4  JSR sub_F428
@@ -7976,18 +7982,18 @@ C - - - - - 0x00F34B 03:F33B: A9 02     LDA #$02
 C - - - - - 0x00F34D 03:F33D: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F350 03:F340: 20 5E DF  JSR sub_DF5E
 C - - - - - 0x00F353 03:F343: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F356 03:F346: A9 0C     LDA #$0C
-C - - - - - 0x00F358 03:F348: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F356 03:F346: A9 0C     LDA #con_anim_shoot_volley
+C - - - - - 0x00F358 03:F348: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F35B 03:F34B: A9 20     LDA #$20
 C - - - - - 0x00F35D 03:F34D: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F360 03:F350: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F363 03:F353: A9 0C     LDA #$0C
-C - - - - - 0x00F365 03:F355: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F363 03:F353: A9 0C     LDA #con_anim_shoot_volley
+C - - - - - 0x00F365 03:F355: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F368 03:F358: A9 18     LDA #$18
 C - - - - - 0x00F36A 03:F35A: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F36D 03:F35D: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F370 03:F360: A9 0C     LDA #$0C
-C - - - - - 0x00F372 03:F362: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F370 03:F360: A9 0C     LDA #con_anim_shoot_volley
+C - - - - - 0x00F372 03:F362: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F375 03:F365: A9 0C     LDA #$0C
 C - - - - - 0x00F377 03:F367: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F37A 03:F36A: A0 00     LDY #$00
@@ -8000,7 +8006,7 @@ C - - - - - 0x00F387 03:F377: 4C 55 DF  JMP loc_DF55
 
 
 
-ofs_005_F37A_09:    ; bzk опт
+ofs_005_F37A_09:    ; bzk optimize
 - - - - - - 0x00F38A 03:F37A: 4C 55 DF  JMP loc_DF55
 
 
@@ -8012,8 +8018,8 @@ C - - - - - 0x00F391 03:F381: 09 04     ORA #$04
 C - - - - - 0x00F393 03:F383: 29 F7     AND #$F7
 C - - - - - 0x00F395 03:F385: 91 61     STA (ram_0061),Y
 C - - - - - 0x00F397 03:F387: 20 BA DF  JSR sub_DFBA
-C - - - - - 0x00F39A 03:F38A: A9 04     LDA #$04
-C - - - - - 0x00F39C 03:F38C: 20 10 C9  JSR sub_C910
+C - - - - - 0x00F39A 03:F38A: A9 04     LDA #con_sfx_fast_shot
+C - - - - - 0x00F39C 03:F38C: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00F39F 03:F38F: A0 13     LDY #$13
 C - - - - - 0x00F3A1 03:F391: AD E6 03  LDA ram_03E6
 C - - - - - 0x00F3A4 03:F394: 38        SEC
@@ -8027,8 +8033,8 @@ C - - - - - 0x00F3AF 03:F39F: B0 03     BCS bra_F3A4
 C - - - - - 0x00F3B1 03:F3A1: 4C D9 F3  JMP loc_F3D9
 bra_F3A4:
 C - - - - - 0x00F3B4 03:F3A4: 20 77 C6  JSR sub_C677
-C - - - - - 0x00F3B7 03:F3A7: A9 0D     LDA #$0D
-C - - - - - 0x00F3B9 03:F3A9: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F3B7 03:F3A7: A9 0D     LDA #con_anim_shoot_head
+C - - - - - 0x00F3B9 03:F3A9: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F3BC 03:F3AC: A9 01     LDA #$01
 C - - - - - 0x00F3BE 03:F3AE: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F3C1 03:F3B1: 20 28 F4  JSR sub_F428
@@ -8036,8 +8042,8 @@ C - - - - - 0x00F3C4 03:F3B4: A9 02     LDA #$02
 C - - - - - 0x00F3C6 03:F3B6: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F3C9 03:F3B9: 20 5E DF  JSR sub_DF5E
 C - - - - - 0x00F3CC 03:F3BC: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F3CF 03:F3BF: A9 0D     LDA #$0D
-C - - - - - 0x00F3D1 03:F3C1: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F3CF 03:F3BF: A9 0D     LDA #con_anim_shoot_head
+C - - - - - 0x00F3D1 03:F3C1: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F3D4 03:F3C4: A9 30     LDA #$30
 C - - - - - 0x00F3D6 03:F3C6: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F3D9 03:F3C9: A0 00     LDY #$00
@@ -8053,13 +8059,13 @@ C - - - - - 0x00F3E6 03:F3D6: 4C 55 DF  JMP loc_DF55
 loc_F3D9:
 ofs_005_F3D9_0B:
 C D 3 - - - 0x00F3E9 03:F3D9: 20 77 C6  JSR sub_C677
-C - - - - - 0x00F3EC 03:F3DC: A9 0E     LDA #$0E
-C - - - - - 0x00F3EE 03:F3DE: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F3EC 03:F3DC: A9 0E     LDA #con_anim_0E
+C - - - - - 0x00F3EE 03:F3DE: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F3F1 03:F3E1: A9 01     LDA #$01
 C - - - - - 0x00F3F3 03:F3E3: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F3F6 03:F3E6: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F3F9 03:F3E9: A9 0E     LDA #$0E
-C - - - - - 0x00F3FB 03:F3EB: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F3F9 03:F3E9: A9 0E     LDA #con_anim_0E
+C - - - - - 0x00F3FB 03:F3EB: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F3FE 03:F3EE: A9 01     LDA #$01
 C - - - - - 0x00F400 03:F3F0: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F403 03:F3F3: 20 28 F4  JSR sub_F428
@@ -8067,13 +8073,13 @@ C - - - - - 0x00F406 03:F3F6: A9 02     LDA #$02
 C - - - - - 0x00F408 03:F3F8: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F40B 03:F3FB: 20 5E DF  JSR sub_DF5E
 C - - - - - 0x00F40E 03:F3FE: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F411 03:F401: A9 0E     LDA #$0E
-C - - - - - 0x00F413 03:F403: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F411 03:F401: A9 0E     LDA #con_anim_0E
+C - - - - - 0x00F413 03:F403: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F416 03:F406: A9 20     LDA #$20
 C - - - - - 0x00F418 03:F408: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F41B 03:F40B: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F41E 03:F40E: A9 0E     LDA #$0E
-C - - - - - 0x00F420 03:F410: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F41E 03:F40E: A9 0E     LDA #con_anim_0E
+C - - - - - 0x00F420 03:F410: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F423 03:F413: A9 18     LDA #$18
 C - - - - - 0x00F425 03:F415: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F428 03:F418: A0 00     LDY #$00
@@ -8140,8 +8146,8 @@ C D 3 - - - 0x00F496 03:F486: A9 01     LDA #$01
 C - - - - - 0x00F498 03:F488: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F49B 03:F48B: A9 02     LDA #$02
 C - - - - - 0x00F49D 03:F48D: 20 9E C7  JSR sub_C79E
-C - - - - - 0x00F4A0 03:F490: A9 0F     LDA #$0F
-C - - - - - 0x00F4A2 03:F492: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F4A0 03:F490: A9 0F     LDA #con_anim_throw_in
+C - - - - - 0x00F4A2 03:F492: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F4A5 03:F495: AD 24 00  LDA a: ram_btn_hold
 C - - - - - 0x00F4A8 03:F498: AE AD 03  LDX ram_team_w_ball
 C - - - - - 0x00F4AB 03:F49B: F0 0C     BEQ bra_F4A9
@@ -8152,36 +8158,36 @@ C - - - - - 0x00F4B4 03:F4A4: AD 25 00  LDA a: ram_btn_hold + 1
 C - - - - - 0x00F4B7 03:F4A7: A2 01     LDX #$01
 bra_F4A9:
 C - - - - - 0x00F4B9 03:F4A9: 86 2B     STX ram_002B
-C - - - - - 0x00F4BB 03:F4AB: 29 0F     AND #$0F
-C - - - - - 0x00F4BD 03:F4AD: 85 2A     STA ram_002A
+C - - - - - 0x00F4BB 03:F4AB: 29 0F     AND #con_btns_Dpad
+C - - - - - 0x00F4BD 03:F4AD: 85 2A     STA ram_002A    ; copy btn_hold
 C - - - - - 0x00F4BF 03:F4AF: F0 2C     BEQ bra_F4DD
 C - - - - - 0x00F4C1 03:F4B1: A2 01     LDX #$01
 C - - - - - 0x00F4C3 03:F4B3: A0 07     LDY #$07
 C - - - - - 0x00F4C5 03:F4B5: B1 61     LDA (ram_0061),Y
 C - - - - - 0x00F4C7 03:F4B7: F0 01     BEQ bra_F4BA
-C - - - - - 0x00F4C9 03:F4B9: E8        INX
+C - - - - - 0x00F4C9 03:F4B9: E8        INX ; 02 con_btn_Left
 bra_F4BA:
 C - - - - - 0x00F4CA 03:F4BA: 8A        TXA
-C - - - - - 0x00F4CB 03:F4BB: 2D 2A 00  AND a: ram_002A
+C - - - - - 0x00F4CB 03:F4BB: 2D 2A 00  AND a: ram_002A    ; copy btn_hold
 C - - - - - 0x00F4CE 03:F4BE: D0 11     BNE bra_F4D1
-C - - - - - 0x00F4D0 03:F4C0: A5 2A     LDA ram_002A
-C - - - - - 0x00F4D2 03:F4C2: 29 0C     AND #$0C
+C - - - - - 0x00F4D0 03:F4C0: A5 2A     LDA ram_002A    ; copy btn_hold
+C - - - - - 0x00F4D2 03:F4C2: 29 0C     AND #con_btns_UD
 C - - - - - 0x00F4D4 03:F4C4: F0 17     BEQ bra_F4DD
-C - - - - - 0x00F4D6 03:F4C6: A5 2A     LDA ram_002A
-C - - - - - 0x00F4D8 03:F4C8: 29 FC     AND #$FC
-C - - - - - 0x00F4DA 03:F4CA: 85 2A     STA ram_002A
+C - - - - - 0x00F4D6 03:F4C6: A5 2A     LDA ram_002A    ; copy btn_hold
+C - - - - - 0x00F4D8 03:F4C8: 29 FC     AND #con_btns_LR ^ $FF
+C - - - - - 0x00F4DA 03:F4CA: 85 2A     STA ram_002A    ; copy btn_hold
 C - - - - - 0x00F4DC 03:F4CC: 8A        TXA
-C - - - - - 0x00F4DD 03:F4CD: 05 2A     ORA ram_002A
-C - - - - - 0x00F4DF 03:F4CF: 85 2A     STA ram_002A
+C - - - - - 0x00F4DD 03:F4CD: 05 2A     ORA ram_002A    ; copy btn_hold
+C - - - - - 0x00F4DF 03:F4CF: 85 2A     STA ram_002A    ; copy btn_hold
 bra_F4D1:
-C - - - - - 0x00F4E1 03:F4D1: A5 2A     LDA ram_002A
-C - - - - - 0x00F4E3 03:F4D3: 29 0F     AND #$0F
+C - - - - - 0x00F4E1 03:F4D1: A5 2A     LDA ram_002A    ; copy btn_hold
+C - - - - - 0x00F4E3 03:F4D3: 29 0F     AND #con_btns_Dpad
 C - - - - - 0x00F4E5 03:F4D5: AA        TAX
 C - - - - - 0x00F4E6 03:F4D6: BD 83 E0  LDA tbl_E083,X
 C - - - - - 0x00F4E9 03:F4D9: A0 13     LDY #$13
 C - - - - - 0x00F4EB 03:F4DB: 91 61     STA (ram_0061),Y
 bra_F4DD:
-C - - - - - 0x00F4ED 03:F4DD: A9 C0     LDA #$C0
+C - - - - - 0x00F4ED 03:F4DD: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00F4EF 03:F4DF: A6 2B     LDX ram_002B
 C - - - - - 0x00F4F1 03:F4E1: F0 13     BEQ bra_F4F6
 C - - - - - 0x00F4F3 03:F4E3: 2C A4 03  BIT ram_03A4
@@ -8198,12 +8204,12 @@ C - - - - - 0x00F506 03:F4F6: 3D 26 00  AND a: ram_btn_press,X
 C - - - - - 0x00F509 03:F4F9: F0 8B     BEQ bra_F486
 bra_F4FB:
 C - - - - - 0x00F50B 03:F4FB: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F50E 03:F4FE: A9 0F     LDA #$0F
-C - - - - - 0x00F510 03:F500: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F50E 03:F4FE: A9 0F     LDA #con_anim_throw_in
+C - - - - - 0x00F510 03:F500: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F513 03:F503: A9 03     LDA #$03
 C - - - - - 0x00F515 03:F505: 20 9E C7  JSR sub_C79E
-C - - - - - 0x00F518 03:F508: A9 06     LDA #$06
-C - - - - - 0x00F51A 03:F50A: 20 10 C9  JSR sub_C910
+C - - - - - 0x00F518 03:F508: A9 06     LDA #con_sfx_throw
+C - - - - - 0x00F51A 03:F50A: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00F51D 03:F50D: A9 00     LDA #$00
 C - - - - - 0x00F51F 03:F50F: 8D 1D 04  STA ram_041D
 C - - - - - 0x00F522 03:F512: A9 02     LDA #$02
@@ -8281,13 +8287,13 @@ C - - - - - 0x00F5B9 03:F5A9: F0 3D     BEQ bra_F5E8
 C - - - - - 0x00F5BB 03:F5AB: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00F5BE 03:F5AE: 20 93 E0  JSR sub_E093
 C - - - - - 0x00F5C1 03:F5B1: 90 08     BCC bra_F5BB
-C - - - - - 0x00F5C3 03:F5B3: A9 12     LDA #$12
-C - - - - - 0x00F5C5 03:F5B5: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F5C3 03:F5B3: A9 12     LDA #con_anim_12
+C - - - - - 0x00F5C5 03:F5B5: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F5C8 03:F5B8: 4C C0 F5  JMP loc_F5C0
 bra_F5BB:
 loc_F5BB:
-C D 3 - - - 0x00F5CB 03:F5BB: A9 10     LDA #$10
-C - - - - - 0x00F5CD 03:F5BD: 20 1E 80  JSR sub_0x00402E
+C D 3 - - - 0x00F5CB 03:F5BB: A9 10     LDA #con_anim_10
+C - - - - - 0x00F5CD 03:F5BD: 20 1E 80  JSR sub_0x00402E_set_animation
 loc_F5C0:
 C D 3 - - - 0x00F5D0 03:F5C0: A9 04     LDA #$04
 C - - - - - 0x00F5D2 03:F5C2: 20 9E C7  JSR sub_C79E
@@ -8305,7 +8311,7 @@ C - - - - - 0x00F5EB 03:F5DB: 91 61     STA (ram_0061),Y
 C - - - - - 0x00F5ED 03:F5DD: D0 B0     BNE bra_F58F
 C - - - - - 0x00F5EF 03:F5DF: F0 14     BEQ bra_F5F5
 bra_F5E1:
-C - - - - - 0x00F5F1 03:F5E1: A9 C0     LDA #$C0
+C - - - - - 0x00F5F1 03:F5E1: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00F5F3 03:F5E3: 3D 26 00  AND a: ram_btn_press,X
 C - - - - - 0x00F5F6 03:F5E6: F0 A7     BEQ bra_F58F
 bra_F5E8:
@@ -8322,19 +8328,19 @@ C - - - - - 0x00F60B 03:F5FB: 69 0E     ADC #$0E
 C - - - - - 0x00F60D 03:F5FD: 20 7D EA  JSR sub_EA7D
 loc_F600:
 C D 3 - - - 0x00F610 03:F600: 20 77 C6  JSR sub_C677
-C - - - - - 0x00F613 03:F603: A9 11     LDA #$11
-C - - - - - 0x00F615 03:F605: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F613 03:F603: A9 11     LDA #con_anim_11
+C - - - - - 0x00F615 03:F605: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F618 03:F608: A9 05     LDA #$05
 C - - - - - 0x00F61A 03:F60A: 20 9E C7  JSR sub_C79E
 C - - - - - 0x00F61D 03:F60D: A9 08     LDA #$08
 C - - - - - 0x00F61F 03:F60F: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F622 03:F612: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F625 03:F615: A9 11     LDA #$11
-C - - - - - 0x00F627 03:F617: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F625 03:F615: A9 11     LDA #con_anim_11
+C - - - - - 0x00F627 03:F617: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F62A 03:F61A: A9 04     LDA #$04
 C - - - - - 0x00F62C 03:F61C: 20 52 C6  JSR sub_C652
-C - - - - - 0x00F62F 03:F61F: A9 03     LDA #$03
-C - - - - - 0x00F631 03:F621: 20 10 C9  JSR sub_C910
+C - - - - - 0x00F62F 03:F61F: A9 03     LDA #con_sfx_shot
+C - - - - - 0x00F631 03:F621: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00F634 03:F624: A9 00     LDA #$00
 C - - - - - 0x00F636 03:F626: 8D 1D 04  STA ram_041D
 C - - - - - 0x00F639 03:F629: A9 02     LDA #$02
@@ -8359,13 +8365,13 @@ C - - - - - 0x00F663 03:F653: A9 02     LDA #$02
 C - - - - - 0x00F665 03:F655: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F668 03:F658: 20 5E DF  JSR sub_DF5E
 C - - - - - 0x00F66B 03:F65B: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F66E 03:F65E: A9 11     LDA #$11
-C - - - - - 0x00F670 03:F660: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F66E 03:F65E: A9 11     LDA #con_anim_11
+C - - - - - 0x00F670 03:F660: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F673 03:F663: A9 2E     LDA #$2E
 C - - - - - 0x00F675 03:F665: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F678 03:F668: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F67B 03:F66B: A9 11     LDA #$11
-C - - - - - 0x00F67D 03:F66D: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F67B 03:F66B: A9 11     LDA #con_anim_11
+C - - - - - 0x00F67D 03:F66D: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F680 03:F670: A9 10     LDA #$10
 C - - - - - 0x00F682 03:F672: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F685 03:F675: A0 00     LDY #$00
@@ -8401,8 +8407,8 @@ bra_F6AD:
 loc_F6AD:
 C D 3 - - - 0x00F6BD 03:F6AD: A9 01     LDA #$01
 C - - - - - 0x00F6BF 03:F6AF: 20 52 C6  JSR sub_C652
-C - - - - - 0x00F6C2 03:F6B2: A9 01     LDA #$01
-C - - - - - 0x00F6C4 03:F6B4: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F6C2 03:F6B2: A9 01     LDA #con_anim_01
+C - - - - - 0x00F6C4 03:F6B4: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F6C7 03:F6B7: AD 24 00  LDA a: ram_btn_hold
 C - - - - - 0x00F6CA 03:F6BA: AE AD 03  LDX ram_team_w_ball
 C - - - - - 0x00F6CD 03:F6BD: F0 0D     BEQ bra_F6CC
@@ -8414,8 +8420,8 @@ C - - - - - 0x00F6D7 03:F6C7: AD 25 00  LDA a: ram_btn_hold + 1
 C - - - - - 0x00F6DA 03:F6CA: A2 01     LDX #$01
 bra_F6CC:
 C - - - - - 0x00F6DC 03:F6CC: 86 2B     STX ram_002B
-C - - - - - 0x00F6DE 03:F6CE: 85 2A     STA ram_002A
-C - - - - - 0x00F6E0 03:F6D0: 29 0F     AND #$0F
+C - - - - - 0x00F6DE 03:F6CE: 85 2A     STA ram_002A    ; copy btn_hold
+C - - - - - 0x00F6E0 03:F6D0: 29 0F     AND #con_btns_Dpad
 C - - - - - 0x00F6E2 03:F6D2: F0 36     BEQ bra_F70A
 C - - - - - 0x00F6E4 03:F6D4: A2 01     LDX #$01
 C - - - - - 0x00F6E6 03:F6D6: AD DA 03  LDA ram_03DA
@@ -8423,26 +8429,26 @@ C - - - - - 0x00F6E9 03:F6D9: F0 01     BEQ bra_F6DC
 C - - - - - 0x00F6EB 03:F6DB: E8        INX
 bra_F6DC:
 C - - - - - 0x00F6EC 03:F6DC: 86 2C     STX ram_002C
-C - - - - - 0x00F6EE 03:F6DE: A0 04     LDY #$04
+C - - - - - 0x00F6EE 03:F6DE: A0 04     LDY #con_btn_Down
 C - - - - - 0x00F6F0 03:F6E0: AD E0 03  LDA ram_03E0
 C - - - - - 0x00F6F3 03:F6E3: C9 02     CMP #$02
 C - - - - - 0x00F6F5 03:F6E5: 90 02     BCC bra_F6E9
-C - - - - - 0x00F6F7 03:F6E7: A0 08     LDY #$08
+C - - - - - 0x00F6F7 03:F6E7: A0 08     LDY #con_btn_Up
 bra_F6E9:
 C - - - - - 0x00F6F9 03:F6E9: 98        TYA
-C - - - - - 0x00F6FA 03:F6EA: 2D 2A 00  AND a: ram_002A
+C - - - - - 0x00F6FA 03:F6EA: 2D 2A 00  AND a: ram_002A    ; copy btn_hold
 C - - - - - 0x00F6FD 03:F6ED: F0 07     BEQ bra_F6F6
 C - - - - - 0x00F6FF 03:F6EF: 05 2C     ORA ram_002C
-C - - - - - 0x00F701 03:F6F1: 85 2A     STA ram_002A
+C - - - - - 0x00F701 03:F6F1: 85 2A     STA ram_002A    ; copy btn_hold
 C - - - - - 0x00F703 03:F6F3: 4C FF F6  JMP loc_F6FF
 bra_F6F6:
 C - - - - - 0x00F706 03:F6F6: A5 2C     LDA ram_002C
-C - - - - - 0x00F708 03:F6F8: 2D 2A 00  AND a: ram_002A
+C - - - - - 0x00F708 03:F6F8: 2D 2A 00  AND a: ram_002A    ; copy btn_hold
 C - - - - - 0x00F70B 03:F6FB: F0 0D     BEQ bra_F70A
-C - - - - - 0x00F70D 03:F6FD: 85 2A     STA ram_002A
+C - - - - - 0x00F70D 03:F6FD: 85 2A     STA ram_002A    ; copy btn_hold
 loc_F6FF:
-C D 3 - - - 0x00F70F 03:F6FF: A5 2A     LDA ram_002A
-C - - - - - 0x00F711 03:F701: 29 0F     AND #$0F
+C D 3 - - - 0x00F70F 03:F6FF: A5 2A     LDA ram_002A    ; copy btn_hold
+C - - - - - 0x00F711 03:F701: 29 0F     AND #con_btns_Dpad
 C - - - - - 0x00F713 03:F703: AA        TAX
 C - - - - - 0x00F714 03:F704: BD 83 E0  LDA tbl_E083,X
 C - - - - - 0x00F717 03:F707: 20 9C F7  JSR sub_F79C
@@ -8460,18 +8466,18 @@ C - - - - - 0x00F72A 03:F71A: 91 61     STA (ram_0061),Y
 C - - - - - 0x00F72C 03:F71C: D0 8F     BNE bra_F6AD
 C - - - - - 0x00F72E 03:F71E: F0 0A     BEQ bra_F72A
 bra_F720:
-C - - - - - 0x00F730 03:F720: A9 C0     LDA #$C0
+C - - - - - 0x00F730 03:F720: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00F732 03:F722: 3D 26 00  AND a: ram_btn_press,X
 C - - - - - 0x00F735 03:F725: D0 03     BNE bra_F72A
 C - - - - - 0x00F737 03:F727: 4C AD F6  JMP loc_F6AD
 bra_F72A:
-C - - - - - 0x00F73A 03:F72A: A9 05     LDA #$05
-C - - - - - 0x00F73C 03:F72C: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F73A 03:F72A: A9 05     LDA #con_anim_05
+C - - - - - 0x00F73C 03:F72C: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F73F 03:F72F: A9 08     LDA #$08
 C - - - - - 0x00F741 03:F731: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F744 03:F734: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F747 03:F737: A9 05     LDA #$05
-C - - - - - 0x00F749 03:F739: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F747 03:F737: A9 05     LDA #con_anim_05
+C - - - - - 0x00F749 03:F739: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F74C 03:F73C: A9 04     LDA #$04
 C - - - - - 0x00F74E 03:F73E: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F751 03:F741: A9 E0     LDA #$E0
@@ -8495,14 +8501,14 @@ C - - - - - 0x00F779 03:F769: 95 02     STA ram_0002,X
 C - - - - - 0x00F77B 03:F76B: A9 D6     LDA #> ofs_D6FA
 C - - - - - 0x00F77D 03:F76D: A0 F9     LDY #< ofs_D6FA
 C - - - - - 0x00F77F 03:F76F: 20 E1 C5  JSR sub_C5E1_prepare_return_address
-C - - - - - 0x00F782 03:F772: A9 03     LDA #$03
-C - - - - - 0x00F784 03:F774: 20 10 C9  JSR sub_C910
+C - - - - - 0x00F782 03:F772: A9 03     LDA #con_sfx_shot
+C - - - - - 0x00F784 03:F774: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00F787 03:F777: A9 02     LDA #$02
 C - - - - - 0x00F789 03:F779: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F78C 03:F77C: 20 5E DF  JSR sub_DF5E
 C - - - - - 0x00F78F 03:F77F: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F792 03:F782: A9 05     LDA #$05
-C - - - - - 0x00F794 03:F784: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F792 03:F782: A9 05     LDA #con_anim_05
+C - - - - - 0x00F794 03:F784: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F797 03:F787: A9 30     LDA #$30
 C - - - - - 0x00F799 03:F789: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F79C 03:F78C: A0 00     LDY #$00
@@ -8540,8 +8546,8 @@ C - - - - - 0x00F7C8 03:F7B8: 60        RTS
 
 ofs_005_F7B9_17:
 C - - - - - 0x00F7C9 03:F7B9: 20 77 C6  JSR sub_C677
-C - - - - - 0x00F7CC 03:F7BC: A9 15     LDA #$15
-C - - - - - 0x00F7CE 03:F7BE: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F7CC 03:F7BC: A9 15     LDA #con_anim_15
+C - - - - - 0x00F7CE 03:F7BE: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F7D1 03:F7C1: AD 7E 03  LDA ram_random
 C - - - - - 0x00F7D4 03:F7C4: 29 0F     AND #$0F
 C - - - - - 0x00F7D6 03:F7C6: 18        CLC
@@ -8568,34 +8574,34 @@ C - - - - - 0x00F7FE 03:F7EE: 68        PLA
 C - - - - - 0x00F7FF 03:F7EF: 20 42 80  JSR sub_0x004052
 C - - - - - 0x00F802 03:F7F2: 4C FF F7  JMP loc_F7FF
 bra_F7F5:
-C - - - - - 0x00F805 03:F7F5: A9 C0     LDA #$C0
+C - - - - - 0x00F805 03:F7F5: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00F807 03:F7F7: 3D 26 00  AND a: ram_btn_press,X
 C - - - - - 0x00F80A 03:F7FA: F0 CF     BEQ bra_F7CB
 C - - - - - 0x00F80C 03:F7FC: BD 24 00  LDA a: ram_btn_hold,X
 loc_F7FF:
-C D 3 - - - 0x00F80F 03:F7FF: 29 03     AND #$03
+C D 3 - - - 0x00F80F 03:F7FF: 29 03     AND #con_btns_LR
 C - - - - - 0x00F811 03:F801: A0 06     LDY #$06
 C - - - - - 0x00F813 03:F803: 91 61     STA (ram_0061),Y
 C - - - - - 0x00F815 03:F805: AA        TAX
 C - - - - - 0x00F816 03:F806: BD 39 F9  LDA tbl_F939,X
 C - - - - - 0x00F819 03:F809: 85 8D     STA ram_008D
 C - - - - - 0x00F81B 03:F80B: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F81E 03:F80E: A9 15     LDA #$15
-C - - - - - 0x00F820 03:F810: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F81E 03:F80E: A9 15     LDA #con_anim_15
+C - - - - - 0x00F820 03:F810: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F823 03:F813: A9 04     LDA #$04
 C - - - - - 0x00F825 03:F815: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F828 03:F818: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F82B 03:F81B: A9 15     LDA #$15
-C - - - - - 0x00F82D 03:F81D: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F82B 03:F81B: A9 15     LDA #con_anim_15
+C - - - - - 0x00F82D 03:F81D: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F830 03:F820: A9 04     LDA #$04
 C - - - - - 0x00F832 03:F822: 20 52 C6  JSR sub_C652
 C - - - - - 0x00F835 03:F825: A9 80     LDA #$80
 C - - - - - 0x00F837 03:F827: 85 8A     STA ram_008A
-C - - - - - 0x00F839 03:F829: A9 03     LDA #$03
-C - - - - - 0x00F83B 03:F82B: 20 10 C9  JSR sub_C910
+C - - - - - 0x00F839 03:F829: A9 03     LDA #con_sfx_shot
+C - - - - - 0x00F83B 03:F82B: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00F83E 03:F82E: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F841 03:F831: A9 15     LDA #$15
-C - - - - - 0x00F843 03:F833: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F841 03:F831: A9 15     LDA #con_anim_15
+C - - - - - 0x00F843 03:F833: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F846 03:F836: A9 19     LDA #$19
 C - - - - - 0x00F848 03:F838: 20 2F C6  JSR sub_C62F
 C - - - - - 0x00F84B 03:F83B: 4C 55 DF  JMP loc_DF55
@@ -8604,8 +8610,8 @@ C - - - - - 0x00F84B 03:F83B: 4C 55 DF  JMP loc_DF55
 
 ofs_005_F83E_18:
 C - - - - - 0x00F84E 03:F83E: 20 77 C6  JSR sub_C677
-C - - - - - 0x00F851 03:F841: A9 16     LDA #$16
-C - - - - - 0x00F853 03:F843: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F851 03:F841: A9 16     LDA #con_anim_16
+C - - - - - 0x00F853 03:F843: 20 1E 80  JSR sub_0x00402E_set_animation
 bra_F846:
 loc_F846:
 C D 3 - - - 0x00F856 03:F846: A9 01     LDA #$01
@@ -8632,7 +8638,7 @@ C - - - - - 0x00F881 03:F871: 68        PLA
 C - - - - - 0x00F882 03:F872: 20 42 80  JSR sub_0x004052
 C - - - - - 0x00F885 03:F875: 4C 88 F8  JMP loc_F888
 bra_F878:
-C - - - - - 0x00F888 03:F878: A9 0B     LDA #$0B
+C - - - - - 0x00F888 03:F878: A9 0B     LDA #con_btn_Up + con_btns_LR
 C - - - - - 0x00F88A 03:F87A: 3D 26 00  AND a: ram_btn_press,X
 C - - - - - 0x00F88D 03:F87D: D0 06     BNE bra_F885
 C - - - - - 0x00F88F 03:F87F: 20 49 F9  JSR sub_F949
@@ -8640,7 +8646,7 @@ C - - - - - 0x00F892 03:F882: 4C 46 F8  JMP loc_F846
 bra_F885:
 C - - - - - 0x00F895 03:F885: BD 24 00  LDA a: ram_btn_hold,X
 loc_F888:
-C D 3 - - - 0x00F898 03:F888: 29 0B     AND #$0B
+C D 3 - - - 0x00F898 03:F888: 29 0B     AND #con_btn_Up + con_btns_LR
 C - - - - - 0x00F89A 03:F88A: AA        TAX
 C - - - - - 0x00F89B 03:F88B: BD 39 F9  LDA tbl_F939,X
 C - - - - - 0x00F89E 03:F88E: A0 13     LDY #$13
@@ -8663,8 +8669,8 @@ C - - - - - 0x00F8BB 03:F8AB: 88        DEY
 C - - - - - 0x00F8BC 03:F8AC: 8A        TXA
 C - - - - - 0x00F8BD 03:F8AD: 91 61     STA (ram_0061),Y
 C - - - - - 0x00F8BF 03:F8AF: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F8C2 03:F8B2: A9 16     LDA #$16
-C - - - - - 0x00F8C4 03:F8B4: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F8C2 03:F8B2: A9 16     LDA #con_anim_16
+C - - - - - 0x00F8C4 03:F8B4: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F8C7 03:F8B7: A9 EF     LDA #$EF
 C - - - - - 0x00F8C9 03:F8B9: 8D 5E 04  STA ram_045E
 C - - - - - 0x00F8CC 03:F8BC: A9 87     LDA #$87
@@ -8712,8 +8718,8 @@ C - - - - - 0x00F921 03:F911: A9 87     LDA #$87
 C - - - - - 0x00F923 03:F913: 91 61     STA (ram_0061),Y
 bra_F915:
 C - - - - - 0x00F925 03:F915: 20 6D C6  JSR sub_C66D
-C - - - - - 0x00F928 03:F918: A9 16     LDA #$16
-C - - - - - 0x00F92A 03:F91A: 20 1E 80  JSR sub_0x00402E
+C - - - - - 0x00F928 03:F918: A9 16     LDA #con_anim_16
+C - - - - - 0x00F92A 03:F91A: 20 1E 80  JSR sub_0x00402E_set_animation
 C - - - - - 0x00F92D 03:F91D: A9 19     LDA #$19
 C - - - - - 0x00F92F 03:F91F: 20 2F C6  JSR sub_C62F
 C - - - - - 0x00F932 03:F922: 4C 55 DF  JMP loc_DF55
@@ -8851,11 +8857,11 @@ C - - - - - 0x00F9CB 03:F9BB: A9 70     LDA #$70
 bra_F9BD:
 C - - - - - 0x00F9CD 03:F9BD: 48        PHA
 C - - - - - 0x00F9CE 03:F9BE: A9 01     LDA #$01
-C - - - - - 0x00F9D0 03:F9C0: 20 09 C6  JSR sub_C609
-C - - - - - 0x00F9D3 03:F9C3: A9 C0     LDA #$C0
+C - - - - - 0x00F9D0 03:F9C0: 20 09 C6  JSR sub_C609_delay
+C - - - - - 0x00F9D3 03:F9C3: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00F9D5 03:F9C5: 2D 26 00  AND a: ram_btn_press
 C - - - - - 0x00F9D8 03:F9C8: D0 0E     BNE bra_F9D8
-C - - - - - 0x00F9DA 03:F9CA: A9 C0     LDA #$C0
+C - - - - - 0x00F9DA 03:F9CA: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00F9DC 03:F9CC: 2D 27 00  AND a: ram_btn_press + 1
 C - - - - - 0x00F9DF 03:F9CF: D0 07     BNE bra_F9D8
 C - - - - - 0x00F9E1 03:F9D1: 68        PLA

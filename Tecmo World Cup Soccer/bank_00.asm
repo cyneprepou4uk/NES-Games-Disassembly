@@ -1,5 +1,6 @@
 .segment "BANK_00"
 .include "bank_ram.inc"
+.include "bank_val.inc"
 .org $8000  ; for listing file
 ; 0x000010-0x00400F
 
@@ -539,9 +540,9 @@ C - - - - - 0x0003E0 00:83D0: 88        DEY
 C - - - - - 0x0003E1 00:83D1: 98        TYA
 C - - - - - 0x0003E2 00:83D2: 0A        ASL
 C - - - - - 0x0003E3 00:83D3: A8        TAY
-C - - - - - 0x0003E4 00:83D4: B9 80 8F  LDA tbl_8F80,Y
+C - - - - - 0x0003E4 00:83D4: B9 80 8F  LDA tbl_8F80_music_and_sfx,Y
 C - - - - - 0x0003E7 00:83D7: 85 F0     STA ram_00F0
-C - - - - - 0x0003E9 00:83D9: B9 81 8F  LDA tbl_8F80 + 1,Y
+C - - - - - 0x0003E9 00:83D9: B9 81 8F  LDA tbl_8F80_music_and_sfx + 1,Y
 C - - - - - 0x0003EC 00:83DC: 85 F1     STA ram_00F1
 C - - - - - 0x0003EE 00:83DE: A0 00     LDY #$00
 bra_83E0_loop:
@@ -3545,35 +3546,38 @@ _off001_8F66_44:
 
 
 
-tbl_8F80:
-- D 0 - - - 0x000F90 00:8F80: B8 8F     .word _sound_8FB8_01
-- D 0 - - - 0x000F92 00:8F82: 4A AD     .word _sound_AD4A_02
-- D 0 - - - 0x000F94 00:8F84: 6D AD     .word _sound_AD6D_03
-- D 0 - - - 0x000F96 00:8F86: 7B AE     .word _sound_AE7B_04
-- D 0 - - - 0x000F98 00:8F88: 98 AD     .word _sound_AD98_05
-- D 0 - - - 0x000F9A 00:8F8A: AC AD     .word _sound_ADAC_06
-- D 0 - - - 0x000F9C 00:8F8C: DB AD     .word _sound_ADDB_07
-- D 0 - - - 0x000F9E 00:8F8E: C0 AD     .word _sound_ADC0_08
+tbl_8F80_music_and_sfx:
+- D 0 - - - 0x000F90 00:8F80: B8 8F     .word _sound_8FB8_01_off
+- D 0 - - - 0x000F92 00:8F82: 4A AD     .word _sound_AD4A_02_dead
+- D 0 - - - 0x000F94 00:8F84: 6D AD     .word _sound_AD6D_03_shot
+- D 0 - - - 0x000F96 00:8F86: 7B AE     .word _sound_AE7B_04_fast_shot
+- D 0 - - - 0x000F98 00:8F88: 98 AD     .word _sound_AD98_05_receive
+- D 0 - - - 0x000F9A 00:8F8A: AC AD     .word _sound_ADAC_06_throw
+- D 0 - - - 0x000F9C 00:8F8C: DB AD     .word _sound_ADDB_07_catch
+- D 0 - - - 0x000F9E 00:8F8E: C0 AD     .word _sound_ADC0_08_tackle
 - - - - - - 0x000FA0 00:8F90: A0 AE     .word _sound_AEA0_09
-- D 0 - - - 0x000FA2 00:8F92: CA AE     .word _sound_AECA_0A
-- D 0 - - - 0x000FA4 00:8F94: F2 AE     .word _sound_AEF2_0B
-- D 0 - - - 0x000FA6 00:8F96: 23 AF     .word _sound_AF23_0C
-- D 0 - - - 0x000FA8 00:8F98: 46 AE     .word _sound_AE46_0D
-- D 0 - - - 0x000FAA 00:8F9A: 00 AE     .word _sound_AE00_0E
-- D 0 - - - 0x000FAC 00:8F9C: 14 AD     .word _sound_AD14_0F
-- D 0 - - - 0x000FAE 00:8F9E: 13 B0     .word _sound_B013_10
-- D 0 - - - 0x000FB0 00:8FA0: 49 A8     .word _sound_A849_11
-- D 0 - - - 0x000FB2 00:8FA2: 20 A7     .word _sound_A720_12
-- D 0 - - - 0x000FB4 00:8FA4: 45 A6     .word _sound_A645_13
-- D 0 - - - 0x000FB6 00:8FA6: 43 AF     .word _sound_AF43_14
-- D 0 - - - 0x000FB8 00:8FA8: D4 98     .word _sound_98D4_15
-- D 0 - - - 0x000FBA 00:8FAA: 49 A1     .word _sound_A149_16
-- D 0 - - - 0x000FBC 00:8FAC: 7B 93     .word _sound_937B_17
-- D 0 - - - 0x000FBE 00:8FAE: 5A 93     .word _sound_935A_18
-- - - - - - 0x000FC0 00:8FB0: 4A 93     .word _sound_934A_19
-- D 0 - - - 0x000FC2 00:8FB2: F9 8F     .word _sound_8FF9_1A
-- D 0 - - - 0x000FC4 00:8FB4: 24 93     .word _sound_9324_1B
-- D 0 - - - 0x000FC6 00:8FB6: D1 8F     .word _sound_8FD1_1C
+- D 0 - - - 0x000FA2 00:8F92: CA AE     .word _sound_AECA_0A_time_low
+- D 0 - - - 0x000FA4 00:8F94: F2 AE     .word _sound_AEF2_0B_time_up
+- D 0 - - - 0x000FA6 00:8F96: 23 AF     .word _sound_AF23_0C_whistle_referee
+- D 0 - - - 0x000FA8 00:8F98: 46 AE     .word _sound_AE46_0D_hit_goalspot
+- D 0 - - - 0x000FAA 00:8F9A: 00 AE     .word _sound_AE00_0E_fans
+- D 0 - - - 0x000FAC 00:8F9C: 14 AD     .word _sound_AD14_0F_mode_select
+
+- D 0 - - - 0x000FAE 00:8F9E: 13 B0     .word _music_B013_10_field
+- D 0 - - - 0x000FB0 00:8FA0: 49 A8     .word _music_A849_11_logo
+- D 0 - - - 0x000FB2 00:8FA2: 20 A7     .word _music_A720_12_goal
+- D 0 - - - 0x000FB4 00:8FA4: 45 A6     .word _music_A645_13_half_time
+- D 0 - - - 0x000FB6 00:8FA6: 43 AF     .word _music_AF43_14_game_number
+- D 0 - - - 0x000FB8 00:8FA8: D4 98     .word _music_98D4_15_credits
+- D 0 - - - 0x000FBA 00:8FAA: 49 A1     .word _music_A149_16_team_select
+- D 0 - - - 0x000FBC 00:8FAC: 7B 93     .word _music_937B_17_penalty
+
+- D 0 - - - 0x000FBE 00:8FAE: 5A 93     .word _sound_935A_18_select
+- - - - - - 0x000FC0 00:8FB0: 4A 93     .word _sound_934A_19_whistle_fans
+- D 0 - - - 0x000FC2 00:8FB2: F9 8F     .word _sound_8FF9_1A_wrong_psw
+- D 0 - - - 0x000FC4 00:8FB4: 24 93     .word _sound_9324_1B_syndrom
+
+- D 0 - - - 0x000FC6 00:8FB6: D1 8F     .word _music_8FD1_1C_quiet
 
 
 
@@ -3583,7 +3587,7 @@ con_rts     = $EA
 
 
 
-_sound_8FB8_01:
+_sound_8FB8_01_off:
 - D 0 - I - 0x000FC8 00:8FB8: 00        .byte $00   ; 
 - D 0 - I - 0x000FC9 00:8FB9: D0 8F     .word off_channel_8FD0_00
 - D 0 - I - 0x000FCB 00:8FBB: 01        .byte $01   ; 
@@ -3615,7 +3619,7 @@ off_channel_8FD0_07:
 
 
 
-_sound_8FD1_1C:
+_music_8FD1_1C_quiet:
 - D 0 - I - 0x000FE1 00:8FD1: 00        .byte $00   ; 
 - D 0 - I - 0x000FE2 00:8FD2: D8 8F     .word off_channel_8FD8_00
 - D 0 - I - 0x000FE4 00:8FD4: 03        .byte $03   ; 
@@ -3665,7 +3669,7 @@ off_channel_8FEB_03:
 
 
 
-_sound_8FF9_1A:
+_sound_8FF9_1A_wrong_psw:
 - D 0 - I - 0x001009 00:8FF9: 04        .byte $04   ; 
 - D 0 - I - 0x00100A 00:8FFA: 06 90     .word off_channel_9006_04
 - D 0 - I - 0x00100C 00:8FFC: 05        .byte $05   ; 
@@ -4492,7 +4496,7 @@ off_E8_92E2:
 
 
 
-_sound_9324_1B:
+_sound_9324_1B_syndrom:
 - D 0 - I - 0x001334 00:9324: 01        .byte $01   ; 
 - D 0 - I - 0x001335 00:9325: 2B 93     .word off_channel_932B_01
 - D 0 - I - 0x001337 00:9327: 02        .byte $02   ; 
@@ -4540,7 +4544,7 @@ off_channel_9340_02:
 
 
 
-_sound_934A_19:
+_sound_934A_19_whistle_fans:
 - - - - - - 0x00135A 00:934A: 00        .byte $00   ; 
 - - - - - - 0x00135B 00:934B: 2A AF     .word off_channel_AF2A_00
 - - - - - - 0x00135D 00:934D: 01        .byte $01   ; 
@@ -4560,7 +4564,7 @@ off_channel_9354_03:
 
 
 
-_sound_935A_18:
+_sound_935A_18_select:
 - D 0 - I - 0x00136A 00:935A: 00        .byte $00   ; 
 - D 0 - I - 0x00136B 00:935B: 61 93     .word off_channel_9361_00
 - D 0 - I - 0x00136D 00:935D: 01        .byte $01   ; 
@@ -4603,7 +4607,7 @@ off_channel_936D_01:
 
 
 
-_sound_937B_17:
+_music_937B_17_penalty:
 - D 0 - I - 0x00138B 00:937B: 04        .byte $04   ; 
 - D 0 - I - 0x00138C 00:937C: 88 93     .word off_channel_9388_04
 - D 0 - I - 0x00138E 00:937E: 05        .byte $05   ; 
@@ -5986,7 +5990,7 @@ off_E8_9887:
 
 
 
-_sound_98D4_15:
+_music_98D4_15_credits:
 - D 0 - I - 0x0018E4 00:98D4: 04        .byte $04   ; 
 - D 0 - I - 0x0018E5 00:98D5: E1 98     .word off_channel_98E1_04
 - D 0 - I - 0x0018E7 00:98D7: 05        .byte $05   ; 
@@ -8122,7 +8126,7 @@ off_channel_9FAF_07:
 
 
 
-_sound_A149_16:
+_music_A149_16_team_select:
 - D 1 - I - 0x002159 00:A149: 04        .byte $04   ; 
 - D 1 - I - 0x00215A 00:A14A: 56 A1     .word off_channel_A156_04
 - D 1 - I - 0x00215C 00:A14C: 05        .byte $05   ; 
@@ -9391,7 +9395,7 @@ off_E8_A581:
 
 
 
-_sound_A645_13:
+_music_A645_13_half_time:
 - D 1 - I - 0x002655 00:A645: 04        .byte $04   ; 
 - D 1 - I - 0x002656 00:A646: 52 A6     .word off_channel_A652_04
 - D 1 - I - 0x002658 00:A648: 05        .byte $05   ; 
@@ -9626,7 +9630,7 @@ off_channel_A6FA_07:
 
 
 
-_sound_A720_12:
+_music_A720_12_goal:
 - D 1 - I - 0x002730 00:A720: 04        .byte $04   ; 
 - D 1 - I - 0x002731 00:A721: 2D A7     .word off_channel_A72D_04
 - D 1 - I - 0x002733 00:A723: 05        .byte $05   ; 
@@ -9939,7 +9943,7 @@ off_channel_A81A_07:
 
 
 
-_sound_A849_11:
+_music_A849_11_logo:
 - D 1 - I - 0x002859 00:A849: 04        .byte $04   ; 
 - D 1 - I - 0x00285A 00:A84A: 56 A8     .word off_channel_A856_04
 - D 1 - I - 0x00285C 00:A84C: 05        .byte $05   ; 
@@ -11182,7 +11186,7 @@ off_E8_AC50:
 
 
 
-_sound_AD14_0F:
+_sound_AD14_0F_mode_select:
 - D 1 - I - 0x002D24 00:AD14: 00        .byte $00   ; 
 - D 1 - I - 0x002D25 00:AD15: 1B AD     .word off_channel_AD1B_00
 - D 1 - I - 0x002D27 00:AD17: 01        .byte $01   ; 
@@ -11246,7 +11250,7 @@ off_channel_AD30_01:
 
 
 
-_sound_AD4A_02:
+_sound_AD4A_02_dead:
 - D 1 - I - 0x002D5A 00:AD4A: 00        .byte $00   ; 
 - D 1 - I - 0x002D5B 00:AD4B: 51 AD     .word off_channel_AD51_00
 - D 1 - I - 0x002D5D 00:AD4D: 03        .byte $03   ; 
@@ -11291,7 +11295,7 @@ off_channel_AD60_03:
 
 
 
-_sound_AD6D_03:
+_sound_AD6D_03_shot:
 - D 1 - I - 0x002D7D 00:AD6D: 00        .byte $00   ; 
 - D 1 - I - 0x002D7E 00:AD6E: 74 AD     .word off_channel_AD74_00
 - D 1 - I - 0x002D80 00:AD70: 03        .byte $03   ; 
@@ -11344,7 +11348,7 @@ off_channel_AD85_03:
 
 
 
-_sound_AD98_05:
+_sound_AD98_05_receive:
 - D 1 - I - 0x002DA8 00:AD98: 00        .byte $00   ; 
 - D 1 - I - 0x002DA9 00:AD99: 9C AD     .word off_channel_AD9C_00
 - D 1 - I - 0x002DAB 00:AD9B: FF        .byte $FF   ; 
@@ -11371,7 +11375,7 @@ off_channel_AD9C_00:
 
 
 
-_sound_ADAC_06:
+_sound_ADAC_06_throw:
 - D 1 - I - 0x002DBC 00:ADAC: 03        .byte $03   ; 
 - D 1 - I - 0x002DBD 00:ADAD: B0 AD     .word off_channel_ADB0_03
 - D 1 - I - 0x002DBF 00:ADAF: FF        .byte $FF   ; 
@@ -11398,7 +11402,7 @@ off_channel_ADB0_03:
 
 
 
-_sound_ADC0_08:
+_sound_ADC0_08_tackle:
 - D 1 - I - 0x002DD0 00:ADC0: 03        .byte $03   ; 
 - D 1 - I - 0x002DD1 00:ADC1: C4 AD     .word off_channel_ADC4_03
 - D 1 - I - 0x002DD3 00:ADC3: FF        .byte $FF   ; 
@@ -11432,7 +11436,7 @@ off_channel_ADC4_03:
 
 
 
-_sound_ADDB_07:
+_sound_ADDB_07_catch:
 - D 1 - I - 0x002DEB 00:ADDB: 00        .byte $00   ; 
 - D 1 - I - 0x002DEC 00:ADDC: E2 AD     .word off_channel_ADE2_00
 - D 1 - I - 0x002DEE 00:ADDE: 03        .byte $03   ; 
@@ -11479,7 +11483,7 @@ off_channel_ADF3_03:
 
 
 
-_sound_AE00_0E:
+_sound_AE00_0E_fans:
 - D 1 - I - 0x002E10 00:AE00: 03        .byte $03   ; 
 - D 1 - I - 0x002E11 00:AE01: 04 AE     .word off_channel_AE04_03
 - D 1 - I - 0x002E13 00:AE03: FF        .byte $FF   ; 
@@ -11557,7 +11561,7 @@ off_E8_AE04:
 
 
 
-_sound_AE46_0D:
+_sound_AE46_0D_hit_goalspot:
 - D 1 - I - 0x002E56 00:AE46: 00        .byte $00   ; 
 - D 1 - I - 0x002E57 00:AE47: 50 AE     .word off_channel_AE50_00
 - D 1 - I - 0x002E59 00:AE49: 02        .byte $02   ; 
@@ -11623,7 +11627,7 @@ off_channel_AE6D_03:
 
 
 
-_sound_AE7B_04:
+_sound_AE7B_04_fast_shot:
 - D 1 - I - 0x002E8B 00:AE7B: 00        .byte $00   ; 
 - D 1 - I - 0x002E8C 00:AE7C: 82 AE     .word off_channel_AE82_00
 - D 1 - I - 0x002E8E 00:AE7E: 03        .byte $03   ; 
@@ -11722,7 +11726,7 @@ off_channel_AEB5_01:
 
 
 
-_sound_AECA_0A:
+_sound_AECA_0A_time_low:
 - D 1 - I - 0x002EDA 00:AECA: 00        .byte $00   ; 
 - D 1 - I - 0x002EDB 00:AECB: D1 AE     .word off_channel_AED1_00
 - D 1 - I - 0x002EDD 00:AECD: 01        .byte $01   ; 
@@ -11772,7 +11776,7 @@ off_channel_AEDB_01:
 
 
 
-_sound_AEF2_0B:
+_sound_AEF2_0B_time_up:
 - D 1 - I - 0x002F02 00:AEF2: 00        .byte $00   ; 
 - D 1 - I - 0x002F03 00:AEF3: 05 AF     .word off_channel_AF05_00
 - D 1 - I - 0x002F05 00:AEF5: 01        .byte $01   ; 
@@ -11834,7 +11838,7 @@ off_channel_AF0E_01:
 
 
 
-_sound_AF23_0C:
+_sound_AF23_0C_whistle_referee:
 - D 1 - I - 0x002F33 00:AF23: 00        .byte $00   ; 
 - D 1 - I - 0x002F34 00:AF24: 2A AF     .word off_channel_AF2A_00
 - D 1 - I - 0x002F36 00:AF26: 01        .byte $01   ; 
@@ -11876,7 +11880,7 @@ off_channel_AF35_01:
 
 
 
-_sound_AF43_14:
+_music_AF43_14_game_number:
 - D 1 - I - 0x002F53 00:AF43: 04        .byte $04   ; 
 - D 1 - I - 0x002F54 00:AF44: 50 AF     .word off_channel_AF50_04
 - D 1 - I - 0x002F56 00:AF46: 05        .byte $05   ; 
@@ -12100,7 +12104,7 @@ off_channel_AFE0_07:
 
 
 
-_sound_B013_10:
+_music_B013_10_field:
 - D 1 - I - 0x003023 00:B013: 04        .byte $04   ; 
 - D 1 - I - 0x003024 00:B014: 20 B0     .word off_channel_B020_04
 - D 1 - I - 0x003026 00:B016: 05        .byte $05   ; 

@@ -1,5 +1,6 @@
 .segment "BANK_01"
 .include "bank_ram.inc"
+.include "bank_val.inc"
 .org $8000  ; for listing file
 ; 0x004010-0x00800F
 
@@ -47,9 +48,9 @@ C - - - - - 0x004028 01:8018: 4C 3C 86  JMP loc_863C
 sub_0x00402B:
 C - - - - - 0x00402B 01:801B: 4C 96 86  JMP loc_8696
 
-.export sub_0x00402E
-sub_0x00402E:
-C - - - - - 0x00402E 01:801E: 4C 8F 87  JMP loc_878F
+.export sub_0x00402E_set_animation
+sub_0x00402E_set_animation:
+C - - - - - 0x00402E 01:801E: 4C 8F 87  JMP loc_878F_set_animation
 
 .export sub_0x004031
 sub_0x004031:
@@ -181,7 +182,7 @@ C - - - - - 0x0040B2 01:80A2: 60        RTS
 
 loc_80A3:
 C D 0 - - - 0x0040B3 01:80A3: A9 01     LDA #$01
-C - - - - - 0x0040B5 01:80A5: 20 09 C0  JSR sub_0x00C019
+C - - - - - 0x0040B5 01:80A5: 20 09 C0  JSR sub_0x00C019_delay
 C - - - - - 0x0040B8 01:80A8: A9 00     LDA #$00
 C - - - - - 0x0040BA 01:80AA: 85 2C     STA ram_002C
 C - - - - - 0x0040BC 01:80AC: 38        SEC
@@ -258,7 +259,7 @@ C - - - - - 0x00413F 01:812F: 2E C6 03  ROL ram_03C6
 C - - - - - 0x004142 01:8132: 8D C5 03  STA ram_03C5
 bra_8135:
 C - - - - - 0x004145 01:8135: A9 01     LDA #$01
-C - - - - - 0x004147 01:8137: 20 09 C0  JSR sub_0x00C019
+C - - - - - 0x004147 01:8137: 20 09 C0  JSR sub_0x00C019_delay
 C - - - - - 0x00414A 01:813A: AD 7D 03  LDA ram_037D
 C - - - - - 0x00414D 01:813D: D0 F6     BNE bra_8135
 C - - - - - 0x00414F 01:813F: A9 01     LDA #$01
@@ -310,7 +311,7 @@ C - - - - - 0x0041AB 01:819B: 8D C7 03  STA ram_03C7
 bra_819E:
 loc_819E:
 C D 0 - - - 0x0041AE 01:819E: A9 01     LDA #$01
-C - - - - - 0x0041B0 01:81A0: 20 09 C0  JSR sub_0x00C019
+C - - - - - 0x0041B0 01:81A0: 20 09 C0  JSR sub_0x00C019_delay
 C - - - - - 0x0041B3 01:81A3: AD 7D 03  LDA ram_037D
 C - - - - - 0x0041B6 01:81A6: D0 F6     BNE bra_819E
 C - - - - - 0x0041B8 01:81A8: A9 01     LDA #$01
@@ -578,7 +579,7 @@ C D 0 - - - 0x004353 01:8343: 48        PHA
 C - - - - - 0x004354 01:8344: 20 78 C0  JSR sub_0x00C088
 - D 0 - I - 0x004357 01:8347: 80 03     .word ram_0380
 C - - - - - 0x004359 01:8349: A9 04     LDA #$04
-C - - - - - 0x00435B 01:834B: 20 09 C0  JSR sub_0x00C019
+C - - - - - 0x00435B 01:834B: 20 09 C0  JSR sub_0x00C019_delay
 C - - - - - 0x00435E 01:834E: 68        PLA
 C - - - - - 0x00435F 01:834F: 8D 89 03  STA ram_0389
 C - - - - - 0x004362 01:8352: 8D 8D 03  STA ram_038D
@@ -664,7 +665,7 @@ C - - - - - 0x0043CE 01:83BE: 48        PHA
 C - - - - - 0x0043CF 01:83BF: 38        SEC
 C - - - - - 0x0043D0 01:83C0: 20 D1 83  JSR sub_83D1
 C - - - - - 0x0043D3 01:83C3: A9 01     LDA #$01
-C - - - - - 0x0043D5 01:83C5: 20 09 C0  JSR sub_0x00C019
+C - - - - - 0x0043D5 01:83C5: 20 09 C0  JSR sub_0x00C019_delay
 C - - - - - 0x0043D8 01:83C8: 68        PLA
 C - - - - - 0x0043D9 01:83C9: C9 38     CMP #$38
 C - - - - - 0x0043DB 01:83CB: D0 DF     BNE bra_83AC
@@ -871,8 +872,8 @@ C - - - - - 0x0044F1 01:84E1: 4C DB 84  JMP loc_84DB
 bra_84E4:
 C - - - - - 0x0044F4 01:84E4: AA        TAX
 C - - - - - 0x0044F5 01:84E5: D0 05     BNE bra_84EC_RTS
-C - - - - - 0x0044F7 01:84E7: A9 0A     LDA #$0A
-C - - - - - 0x0044F9 01:84E9: 20 7E C0  JSR sub_0x00C08E
+C - - - - - 0x0044F7 01:84E7: A9 0A     LDA #con_sfx_time_low
+C - - - - - 0x0044F9 01:84E9: 20 7E C0  JSR sub_0x00C08E_prepare_sound
 bra_84EC_RTS:
 C - - - - - 0x0044FC 01:84EC: 60        RTS
 
@@ -1022,11 +1023,11 @@ loc_8596:
 C D 0 - - - 0x0045A6 01:8596: 2C D2 03  BIT ram_03D2
 C - - - - - 0x0045A9 01:8599: 30 08     BMI bra_85A3
 C - - - - - 0x0045AB 01:859B: A9 01     LDA #$01
-C - - - - - 0x0045AD 01:859D: 20 09 C0  JSR sub_0x00C019
+C - - - - - 0x0045AD 01:859D: 20 09 C0  JSR sub_0x00C019_delay
 C - - - - - 0x0045B0 01:85A0: 4C 96 85  JMP loc_8596
 bra_85A3:
 C - - - - - 0x0045B3 01:85A3: A9 01     LDA #$01
-C - - - - - 0x0045B5 01:85A5: 20 09 C0  JSR sub_0x00C019
+C - - - - - 0x0045B5 01:85A5: 20 09 C0  JSR sub_0x00C019_delay
 C - - - - - 0x0045B8 01:85A8: AD 7D 03  LDA ram_037D
 C - - - - - 0x0045BB 01:85AB: D0 F6     BNE bra_85A3
 C - - - - - 0x0045BD 01:85AD: A9 01     LDA #$01
@@ -1041,10 +1042,10 @@ C - - - - - 0x0045CF 01:85BF: BD 47 A4  LDA tbl_A446 + 1,X
 C - - - - - 0x0045D2 01:85C2: 85 2B     STA ram_002B
 C - - - - - 0x0045D4 01:85C4: 20 0C 86  JSR sub_860C
 C - - - - - 0x0045D7 01:85C7: A9 08     LDA #$08
-C - - - - - 0x0045D9 01:85C9: 20 09 C0  JSR sub_0x00C019
+C - - - - - 0x0045D9 01:85C9: 20 09 C0  JSR sub_0x00C019_delay
 C - - - - - 0x0045DC 01:85CC: 20 E3 85  JSR sub_85E3
 C - - - - - 0x0045DF 01:85CF: A9 01     LDA #$01
-C - - - - - 0x0045E1 01:85D1: 20 09 C0  JSR sub_0x00C019
+C - - - - - 0x0045E1 01:85D1: 20 09 C0  JSR sub_0x00C019_delay
 C - - - - - 0x0045E4 01:85D4: A9 00     LDA #$00
 C - - - - - 0x0045E6 01:85D6: CE CE 03  DEC ram_03CE
 C - - - - - 0x0045E9 01:85D9: F0 02     BEQ bra_85DD
@@ -1058,7 +1059,7 @@ C - - - - - 0x0045F0 01:85E0: 4C 96 85  JMP loc_8596
 sub_85E3:
 bra_85E3_loop:
 C - - - - - 0x0045F3 01:85E3: A9 01     LDA #$01
-C - - - - - 0x0045F5 01:85E5: 20 09 C0  JSR sub_0x00C019
+C - - - - - 0x0045F5 01:85E5: 20 09 C0  JSR sub_0x00C019_delay
 C - - - - - 0x0045F8 01:85E8: AD 7D 03  LDA ram_037D
 C - - - - - 0x0045FB 01:85EB: D0 F6     BNE bra_85E3_loop
 C - - - - - 0x0045FD 01:85ED: A9 01     LDA #$01
@@ -1299,7 +1300,7 @@ C - - - - - 0x004780 01:8770: D0 C7     BNE bra_8739
 C - - - - - 0x004782 01:8772: 60        RTS
 
 
-; bzk опт
+; bzk optimize
 loc_8773:
 C D 0 - - - 0x004783 01:8773: 68        PLA
 C - - - - - 0x004784 01:8774: 68        PLA
@@ -1332,12 +1333,12 @@ C - - - - - 0x00479E 01:878E: 60        RTS
 
 
 
-loc_878F:
+loc_878F_set_animation:
 C D 0 - - - 0x00479F 01:878F: 0A        ASL
 C - - - - - 0x0047A0 01:8790: AA        TAX
-C - - - - - 0x0047A1 01:8791: BD 66 96  LDA tbl_9666,X
+C - - - - - 0x0047A1 01:8791: BD 66 96  LDA tbl_9666_animations,X
 C - - - - - 0x0047A4 01:8794: 85 2A     STA ram_002A
-C - - - - - 0x0047A6 01:8796: BD 67 96  LDA tbl_9666 + 1,X
+C - - - - - 0x0047A6 01:8796: BD 67 96  LDA tbl_9666_animations + 1,X
 C - - - - - 0x0047A9 01:8799: 85 2B     STA ram_002B
 C - - - - - 0x0047AB 01:879B: A0 0F     LDY #$0F
 C - - - - - 0x0047AD 01:879D: B1 61     LDA (ram_0061),Y
@@ -4203,23 +4204,23 @@ tbl_9026:
 
 
 
-tbl_9666:
+tbl_9666_animations:
 - - - - - - 0x005676 01:9666: E6 96     .word _off003_96E6_00
 - D 0 - - - 0x005678 01:9668: E6 96     .word _off003_96E6_01
 - D 0 - - - 0x00567A 01:966A: EA 96     .word _off003_96EA_02
-- D 0 - - - 0x00567C 01:966C: EE 96     .word _off003_96EE_03
-- D 0 - - - 0x00567E 01:966E: FE 96     .word _off003_96FE_04
+- D 0 - - - 0x00567C 01:966C: EE 96     .word _off003_96EE_03_run_player
+- D 0 - - - 0x00567E 01:966E: FE 96     .word _off003_96FE_04_run_gk
 - D 0 - - - 0x005680 01:9670: 0E 97     .word _off003_970E_05
 - D 0 - - - 0x005682 01:9672: 1A 97     .word _off003_971A_06
 - D 0 - - - 0x005684 01:9674: 1E 97     .word _off003_971E_07
 - D 0 - - - 0x005686 01:9676: 22 97     .word _off003_9722_08
-- D 0 - - - 0x005688 01:9678: 2E 97     .word _off003_972E_09
-- D 0 - - - 0x00568A 01:967A: 36 97     .word _off003_9736_0A
-- D 0 - - - 0x00568C 01:967C: 3E 97     .word _off003_973E_0B
-- D 0 - - - 0x00568E 01:967E: 46 97     .word _off003_9746_0C
-- D 0 - - - 0x005690 01:9680: 56 97     .word _off003_9756_0D
+- D 0 - - - 0x005688 01:9678: 2E 97     .word _off003_972E_09_dead
+- D 0 - - - 0x00568A 01:967A: 36 97     .word _off003_9736_0A_dodge
+- D 0 - - - 0x00568C 01:967C: 3E 97     .word _off003_973E_0B_shoot_normal
+- D 0 - - - 0x00568E 01:967E: 46 97     .word _off003_9746_0C_shoot_volley
+- D 0 - - - 0x005690 01:9680: 56 97     .word _off003_9756_0D_shoot_head
 - D 0 - - - 0x005692 01:9682: 5E 97     .word _off003_975E_0E
-- D 0 - - - 0x005694 01:9684: 6E 97     .word _off003_976E_0F
+- D 0 - - - 0x005694 01:9684: 6E 97     .word _off003_976E_0F_throw_in
 - D 0 - - - 0x005696 01:9686: 76 97     .word _off003_9776_10
 - D 0 - - - 0x005698 01:9688: 7A 97     .word _off003_977A_11
 - D 0 - - - 0x00569A 01:968A: 8A 97     .word _off003_978A_12
@@ -4227,6 +4228,9 @@ tbl_9666:
 - - - - - - 0x00569E 01:968E: A2 97     .word _off003_97A2_14
 - D 0 - - - 0x0056A0 01:9690: AA 97     .word _off003_97AA_15
 - D 0 - - - 0x0056A2 01:9692: BA 97     .word _off003_97BA_16
+
+
+; bzk garbage
 - - - - - - 0x0056A4 01:9694: C6 97     .word _off003_97C6_17
 - - - - - - 0x0056A6 01:9696: C6 97     .word _off003_97C6_18
 - - - - - - 0x0056A8 01:9698: C6 97     .word _off003_97C6_19
@@ -4288,7 +4292,7 @@ _off003_96EA_02:
 
 
 
-_off003_96EE_03:
+_off003_96EE_03_run_player:
 - D 0 - I - 0x0056FE 01:96EE: 00        .byte $00   ; 
 - D 0 - I - 0x0056FF 01:96EF: 11        .byte $11   ; 
 - D 0 - I - 0x005700 01:96F0: 13        .byte $13   ; 
@@ -4308,7 +4312,7 @@ _off003_96EE_03:
 
 
 
-_off003_96FE_04:
+_off003_96FE_04_run_gk:
 - D 0 - I - 0x00570E 01:96FE: 00        .byte $00   ; 
 - D 0 - I - 0x00570F 01:96FF: 7B        .byte $7B   ; 
 - D 0 - I - 0x005710 01:9700: 7D        .byte $7D   ; 
@@ -4376,7 +4380,7 @@ _off003_9722_08:
 
 
 
-_off003_972E_09:
+_off003_972E_09_dead:
 - D 0 - I - 0x00573E 01:972E: 00        .byte $00   ; 
 - D 0 - I - 0x00573F 01:972F: 4A        .byte $4A   ; 
 - D 0 - I - 0x005740 01:9730: 4E        .byte $4E   ; 
@@ -4388,7 +4392,7 @@ _off003_972E_09:
 
 
 
-_off003_9736_0A:
+_off003_9736_0A_dodge:
 - D 0 - I - 0x005746 01:9736: 00        .byte $00   ; 
 - D 0 - I - 0x005747 01:9737: E1        .byte $E1   ; 
 - D 0 - I - 0x005748 01:9738: E3        .byte $E3   ; 
@@ -4400,7 +4404,7 @@ _off003_9736_0A:
 
 
 
-_off003_973E_0B:
+_off003_973E_0B_shoot_normal:
 - D 0 - I - 0x00574E 01:973E: 00        .byte $00   ; 
 - D 0 - I - 0x00574F 01:973F: 22        .byte $22   ; 
 - D 0 - I - 0x005750 01:9740: 25        .byte $25   ; 
@@ -4412,7 +4416,7 @@ _off003_973E_0B:
 
 
 
-_off003_9746_0C:
+_off003_9746_0C_shoot_volley:
 - D 0 - I - 0x005756 01:9746: 00        .byte $00   ; 
 - D 0 - I - 0x005757 01:9747: 54        .byte $54   ; 
 - D 0 - I - 0x005758 01:9748: 59        .byte $59   ; 
@@ -4432,7 +4436,7 @@ _off003_9746_0C:
 
 
 
-_off003_9756_0D:
+_off003_9756_0D_shoot_head:
 - D 0 - I - 0x005766 01:9756: 00        .byte $00   ; 
 - D 0 - I - 0x005767 01:9757: 63        .byte $63   ; 
 - D 0 - I - 0x005768 01:9758: 65        .byte $65   ; 
@@ -4464,7 +4468,7 @@ _off003_975E_0E:
 
 
 
-_off003_976E_0F:
+_off003_976E_0F_throw_in:
 - D 0 - I - 0x00577E 01:976E: 00        .byte $00   ; 
 - - - - - - 0x00577F 01:976F: 3C        .byte $3C   ; 
 - D 0 - I - 0x005780 01:9770: 3E        .byte $3E   ; 
