@@ -7673,7 +7673,7 @@ C - - - - - 0x003029 00:B019: E5 6C     SBC ram_006C
 C - - - - - 0x00302B 00:B01B: 85 83     STA ram_0083    ; screen pos lo
 C - - - - - 0x00302D 00:B01D: A5 87     LDA ram_0087    ; screen pos hi
 C - - - - - 0x00302F 00:B01F: E5 6D     SBC ram_006D
-C - - - - - 0x003031 00:B021: 85 87     STA     ; screen pos hi
+C - - - - - 0x003031 00:B021: 85 87     STA ram_0087    ; screen pos hi
 C - - - - - 0x003033 00:B023: BD E2 04  LDA ram_04E2_obj,X
 C - - - - - 0x003036 00:B026: C5 77     CMP ram_0077
 C - - - - - 0x003038 00:B028: F0 07     BEQ bra_B031
