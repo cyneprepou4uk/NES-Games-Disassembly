@@ -1569,7 +1569,7 @@ loc_88E0:
 C D 0 - - - 0x0048F0 01:88E0: 2C 2C 04  BIT ram_042C
 C - - - - - 0x0048F3 01:88E3: 70 38     BVS bra_891D
 C - - - - - 0x0048F5 01:88E5: A2 00     LDX #$00
-C - - - - - 0x0048F7 01:88E7: AD 2B 04  LDA ram_plr_frame_id
+C - - - - - 0x0048F7 01:88E7: AD 2B 04  LDA ram_plr_global_id
 C - - - - - 0x0048FA 01:88EA: C9 0B     CMP #$0B
 C - - - - - 0x0048FC 01:88EC: 90 04     BCC bra_88F2
 C - - - - - 0x0048FE 01:88EE: E9 0B     SBC #$0B
@@ -1637,7 +1637,7 @@ C - - J - - 0x004957 01:8947: A0 01     LDY #$01
 C - - - - - 0x004959 01:8949: B1 2A     LDA (ram_002A),Y
 sub_894B:
 C - - - - - 0x00495B 01:894B: 48        PHA
-C - - - - - 0x00495C 01:894C: AD 2B 04  LDA ram_plr_frame_id
+C - - - - - 0x00495C 01:894C: AD 2B 04  LDA ram_plr_global_id
 C - - - - - 0x00495F 01:894F: C9 0B     CMP #$0B
 C - - - - - 0x004961 01:8951: 90 07     BCC bra_895A
 C - - - - - 0x004963 01:8953: 68        PLA
@@ -1696,7 +1696,7 @@ C - - - - - 0x0049AE 01:899E: 90 04     BCC bra_89A4
 C - - - - - 0x0049B0 01:89A0: 49 FF     EOR #$FF
 C - - - - - 0x0049B2 01:89A2: 69 00     ADC #$00
 bra_89A4:
-C - - - - - 0x0049B4 01:89A4: AE 2B 04  LDX ram_plr_frame_id
+C - - - - - 0x0049B4 01:89A4: AE 2B 04  LDX ram_plr_global_id
 C - - - - - 0x0049B7 01:89A7: E0 0B     CPX #$0B
 C - - - - - 0x0049B9 01:89A9: 90 04     BCC bra_89AF_RTS
 C - - - - - 0x0049BB 01:89AB: 49 FF     EOR #$FF
@@ -1730,7 +1730,7 @@ C - - - - - 0x0049D8 01:89C8: E9 0A     SBC #$0A
 C - - - - - 0x0049DA 01:89CA: B0 F8     BCS bra_89C4_loop
 bra_89CC:
 C - - - - - 0x0049DC 01:89CC: 69 0A     ADC #$0A
-C - - - - - 0x0049DE 01:89CE: AE 2B 04  LDX ram_plr_frame_id
+C - - - - - 0x0049DE 01:89CE: AE 2B 04  LDX ram_plr_global_id
 C - - - - - 0x0049E1 01:89D1: E0 0B     CPX #$0B
 C - - - - - 0x0049E3 01:89D3: 90 02     BCC bra_89D7
 C - - - - - 0x0049E5 01:89D5: 69 81     ADC #$81
