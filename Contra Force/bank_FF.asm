@@ -8885,11 +8885,11 @@ C - - - - - 0x01FD69 07:FD59: D0 F2     BNE bra_FD4D_loop
 C - - - - - 0x01FD6B 07:FD5B: 20 BF FE  JSR sub_FEBF
 C - - - - - 0x01FD6E 07:FD5E: 20 81 FE  JSR sub_FE81
 C - - - - - 0x01FD71 07:FD61: 58        CLI
-loc_FD62:
+loc_FD62_loop:
 C D 3 - - - 0x01FD72 07:FD62: A5 29     LDA ram_0029
 C - - - - - 0x01FD74 07:FD64: 65 23     ADC ram_0023
 C - - - - - 0x01FD76 07:FD66: 85 29     STA ram_0029
-C - - - - - 0x01FD78 07:FD68: 4C 62 FD  JMP loc_FD62
+C - - - - - 0x01FD78 07:FD68: 4C 62 FD  JMP loc_FD62_loop
 
 
 
@@ -9132,6 +9132,7 @@ C - - - - - 0x01FF10 07:FF00: 4C E3 FE  JMP loc_FEE3_loop
 
 
 sub_FF03:
+; bzk optimize
 C - - - - - 0x01FF13 07:FF03: E6 2D     INC ram_002D
 bra_FF05_RTS:
 C D 3 - I - 0x01FF15 07:FF05: 60        RTS
