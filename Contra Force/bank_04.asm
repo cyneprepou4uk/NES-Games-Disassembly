@@ -422,7 +422,7 @@ C - - - - - 0x008170 02:8160: 60        RTS
 sub_8161:
 C - - - - - 0x008171 02:8161: 20 83 91  JSR sub_9183_0782x_AND_7F
 C - - - - - 0x008174 02:8164: A8        TAY
-C - - - - - 0x008175 02:8165: B9 C8 81  LDA tbl_81C9 - 1,Y
+C - - - - - 0x008175 02:8165: B9 C8 81  LDA tbl_81C9 - $01,Y
 C - - - - - 0x008178 02:8168: F0 28     BEQ bra_8192
 C - - - - - 0x00817A 02:816A: 30 42     BMI bra_81AE
 ; 01-7F
@@ -430,7 +430,7 @@ C - - - - - 0x00817C 02:816C: 0A        ASL
 C - - - - - 0x00817D 02:816D: A8        TAY
 C - - - - - 0x00817E 02:816E: B9 04 82  LDA tbl_8204,Y
 C - - - - - 0x008181 02:8171: 85 18     STA ram_0018
-C - - - - - 0x008183 02:8173: B9 05 82  LDA tbl_8204 + 1,Y
+C - - - - - 0x008183 02:8173: B9 05 82  LDA tbl_8204 + $01,Y
 C - - - - - 0x008186 02:8176: 85 19     STA ram_0019
 C - - - - - 0x008188 02:8178: BD 82 06  LDA ram_0682_obj,X
 C - - - - - 0x00818B 02:817B: D0 05     BNE bra_8182
@@ -440,7 +440,7 @@ bra_8182:
 C - - - - - 0x008192 02:8182: 98        TYA
 C - - - - - 0x008193 02:8183: 4A        LSR
 C - - - - - 0x008194 02:8184: A8        TAY
-C - - - - - 0x008195 02:8185: B9 51 82  LDA tbl_8252 - 1,Y
+C - - - - - 0x008195 02:8185: B9 51 82  LDA tbl_8252 - $01,Y
 C - - - - - 0x008198 02:8188: C5 36     CMP ram_prg_banks_pair
 C - - - - - 0x00819A 02:818A: F0 03     BEQ bra_818F
 C - - - - - 0x00819C 02:818C: 20 4C F3  JSR sub_0x01F35C_prg_bankswitch
@@ -651,9 +651,9 @@ C - - - - - 0x008291 02:8281: BD 82 07  LDA ram_0782_unk,X
 C - - - - - 0x008294 02:8284: F0 3F     BEQ bra_82C5_RTS
 C - - - - - 0x008296 02:8286: 0A        ASL
 C - - - - - 0x008297 02:8287: A8        TAY
-C - - - - - 0x008298 02:8288: B9 11 BC  LDA tbl_0x00BC23 - 2,Y
+C - - - - - 0x008298 02:8288: B9 11 BC  LDA tbl_0x00BC23 - $02,Y
 C - - - - - 0x00829B 02:828B: 85 00     STA ram_0000
-C - - - - - 0x00829D 02:828D: B9 12 BC  LDA tbl_0x00BC23 - 1,Y
+C - - - - - 0x00829D 02:828D: B9 12 BC  LDA tbl_0x00BC23 - $01,Y
 C - - - - - 0x0082A0 02:8290: 85 01     STA ram_0001
 sub_8292:
 loc_8292:
@@ -716,7 +716,7 @@ C - - - - - 0x0082FA 02:82EA: 0A        ASL
 C - - - - - 0x0082FB 02:82EB: A8        TAY
 C - - - - - 0x0082FC 02:82EC: B9 F9 82  LDA tbl_82F9,Y
 C - - - - - 0x0082FF 02:82EF: 85 02     STA ram_0002
-C - - - - - 0x008301 02:82F1: B9 FA 82  LDA tbl_82F9 + 1,Y
+C - - - - - 0x008301 02:82F1: B9 FA 82  LDA tbl_82F9 + $01,Y
 C - - - - - 0x008304 02:82F4: 85 03     STA ram_0003
 C - - - - - 0x008306 02:82F6: 6C 02 00  JMP (ram_0002)
 
@@ -867,10 +867,10 @@ bra_8401:
 C - - - - - 0x008411 02:8401: 20 1B 84  JSR sub_841B_000A_ASL_TAY
 C - - - - - 0x008414 02:8404: B9 20 84  LDA tbl_8420,Y
 C - - - - - 0x008417 02:8407: 9D 9C 06  STA ram_069C_obj,X
-C - - - - - 0x00841A 02:840A: B9 21 84  LDA tbl_8420 + 1,Y
+C - - - - - 0x00841A 02:840A: B9 21 84  LDA tbl_8420 + $01,Y
 C - - - - - 0x00841D 02:840D: F0 09     BEQ bra_8418
 C - - - - - 0x00841F 02:840F: 20 7D 91  JSR sub_917D_06B2x_AND_F0
-C - - - - - 0x008422 02:8412: 19 21 84  ORA tbl_8420 + 1,Y
+C - - - - - 0x008422 02:8412: 19 21 84  ORA tbl_8420 + $01,Y
 C - - - - - 0x008425 02:8415: 9D B2 06  STA ram_06B2_obj,X
 bra_8418:
 C - - - - - 0x008428 02:8418: 4C E2 83  JMP loc_83E2
@@ -939,7 +939,7 @@ ofs_017_8468_04:
 C - - J - - 0x008478 02:8468: BD 78 07  LDA ram_0778_unk,X
 C - - - - - 0x00847B 02:846B: 30 0F     BMI bra_847C
 C - - - - - 0x00847D 02:846D: 20 1B 84  JSR sub_841B_000A_ASL_TAY
-C - - - - - 0x008480 02:8470: B9 35 85  LDA tbl_8534 + 1,Y
+C - - - - - 0x008480 02:8470: B9 35 85  LDA tbl_8534 + $01,Y
 C - - - - - 0x008483 02:8473: 9D A0 07  STA ram_07A0_unk,X
 C - - - - - 0x008486 02:8476: B9 34 85  LDA tbl_8534,Y
 loc_8479:
@@ -995,7 +995,7 @@ bra_84CF:
 C - - - - - 0x0084DF 02:84CF: BD 82 07  LDA ram_0782_unk,X
 C - - - - - 0x0084E2 02:84D2: C9 3B     CMP #$3B
 C - - - - - 0x0084E4 02:84D4: D0 0F     BNE bra_84E5
-C - - - - - 0x0084E6 02:84D6: AD 8A 07  LDA ram_0782_unk + 8
+C - - - - - 0x0084E6 02:84D6: AD 8A 07  LDA ram_0782_unk + $08
 C - - - - - 0x0084E9 02:84D9: D0 05     BNE bra_84E0
 C - - - - - 0x0084EB 02:84DB: 20 BA 93  JSR sub_93BA
 C - - - - - 0x0084EE 02:84DE: 90 05     BCC bra_84E5
@@ -1074,7 +1074,7 @@ sub_853E:
 sub_0x00854E:
 C - - - - - 0x00854E 02:853E: B9 50 85  LDA tbl_8550,Y
 C - - - - - 0x008551 02:8541: 85 02     STA ram_0002
-C - - - - - 0x008553 02:8543: B9 51 85  LDA tbl_8550 + 1,Y
+C - - - - - 0x008553 02:8543: B9 51 85  LDA tbl_8550 + $01,Y
 C - - - - - 0x008556 02:8546: 85 01     STA ram_0001
 C - - - - - 0x008558 02:8548: 20 3E 94  JSR sub_943E
 loc_854B:
@@ -1122,7 +1122,7 @@ C - - - - - 0x008576 02:8566: 20 E9 95  JSR sub_95E9_06B2x_EOR_80
 C - - - - - 0x008579 02:8569: 20 1B 84  JSR sub_841B_000A_ASL_TAY
 C - - - - - 0x00857C 02:856C: B9 7A 85  LDA tbl_857A,Y
 C - - - - - 0x00857F 02:856F: F0 06     BEQ bra_8577
-C - - - - - 0x008581 02:8571: B9 7B 85  LDA tbl_857A + 1,Y
+C - - - - - 0x008581 02:8571: B9 7B 85  LDA tbl_857A + $01,Y
 C - - - - - 0x008584 02:8574: 9D 9C 06  STA ram_069C_obj,X
 bra_8577:
 C - - - - - 0x008587 02:8577: 4C E2 83  JMP loc_83E2
@@ -1151,7 +1151,7 @@ C - - - - - 0x0085A3 02:8593: 9D AA 07  STA ram_07AA_unk,X
 C - - - - - 0x0085A6 02:8596: 20 1B 84  JSR sub_841B_000A_ASL_TAY
 C - - - - - 0x0085A9 02:8599: B9 AE 85  LDA tbl_85AE,Y
 C - - - - - 0x0085AC 02:859C: 85 00     STA ram_0000
-C - - - - - 0x0085AE 02:859E: B9 AF 85  LDA tbl_85AE + 1,Y
+C - - - - - 0x0085AE 02:859E: B9 AF 85  LDA tbl_85AE + $01,Y
 C - - - - - 0x0085B1 02:85A1: 85 01     STA ram_0001
 C - - - - - 0x0085B3 02:85A3: BD BE 07  LDA ram_07BE_unk,X
 C - - - - - 0x0085B6 02:85A6: 29 7F     AND #$7F
@@ -1239,7 +1239,7 @@ C - - - - - 0x008615 02:8605: 10 07     BPL bra_860E
 - - - - - - 0x00861C 02:860C: D0 22     BNE bra_8630    ; jmp
 bra_860E:
 C - - - - - 0x00861E 02:860E: 84 0B     STY ram_000B
-C - - - - - 0x008620 02:8610: B9 A0 86  LDA tbl_869F + 1,Y
+C - - - - - 0x008620 02:8610: B9 A0 86  LDA tbl_869F + $01,Y
 C - - - - - 0x008623 02:8613: 6A        ROR
 C - - - - - 0x008624 02:8614: 6A        ROR
 C - - - - - 0x008625 02:8615: 29 30     AND #$30
@@ -1278,7 +1278,7 @@ C - - - - - 0x008668 02:8658: 1D B2 06  ORA ram_06B2_obj,X
 C - - - - - 0x00866B 02:865B: 9D B2 06  STA ram_06B2_obj,X
 bra_865E:
 loc_865E:
-C D 0 - - - 0x00866E 02:865E: B9 A0 86  LDA tbl_869F + 1,Y
+C D 0 - - - 0x00866E 02:865E: B9 A0 86  LDA tbl_869F + $01,Y
 C - - - - - 0x008671 02:8661: 09 C0     ORA #$C0
 C - - - - - 0x008673 02:8663: 85 0C     STA ram_000C
 C - - - - - 0x008675 02:8665: A9 01     LDA #$01
@@ -1371,7 +1371,7 @@ ofs_017_86E1_0A:
 C - - J - - 0x0086F1 02:86E1: 20 4C 9A  JSR sub_9A4C
 C - - - - - 0x0086F4 02:86E4: A5 0A     LDA ram_000A
 sub_0x0086F6:
-C - - - - - 0x0086F6 02:86E6: 85 7B     STA ram_chr_bank + 4
+C - - - - - 0x0086F6 02:86E6: 85 7B     STA ram_chr_bank + $04
 C - - - - - 0x0086F8 02:86E8: 38        SEC
 C - - - - - 0x0086F9 02:86E9: 60        RTS
 
@@ -1392,9 +1392,9 @@ C - - - - - 0x008705 02:86F5: 0A        ASL
 C - - - - - 0x008706 02:86F6: A8        TAY
 C - - - - - 0x008707 02:86F7: B9 0E 87  LDA tbl_870E,Y
 C - - - - - 0x00870A 02:86FA: 85 0D     STA ram_000D
-C - - - - - 0x00870C 02:86FC: B9 0F 87  LDA tbl_870E + 1,Y
+C - - - - - 0x00870C 02:86FC: B9 0F 87  LDA tbl_870E + $01,Y
 C - - - - - 0x00870F 02:86FF: 85 0E     STA ram_000E
-C - - - - - 0x008711 02:8701: B9 10 87  LDA tbl_870E + 2,Y
+C - - - - - 0x008711 02:8701: B9 10 87  LDA tbl_870E + $02,Y
 C - - - - - 0x008714 02:8704: 85 0B     STA ram_000B
 C - - - - - 0x008716 02:8706: 8A        TXA
 C - - - - - 0x008717 02:8707: A8        TAY
@@ -1490,7 +1490,7 @@ C - - - - - 0x008772 02:8762: BD A0 07  LDA ram_07A0_unk,X
 C - - - - - 0x008775 02:8765: 0A        ASL
 C - - - - - 0x008776 02:8766: 0A        ASL
 C - - - - - 0x008777 02:8767: A8        TAY
-C - - - - - 0x008778 02:8768: B9 AE 87  LDA tbl_87AD + 1,Y
+C - - - - - 0x008778 02:8768: B9 AE 87  LDA tbl_87AD + $01,Y
 C - - - - - 0x00877B 02:876B: 84 0C     STY ram_000C
 C - - - - - 0x00877D 02:876D: F0 03     BEQ bra_8772
 C - - - - - 0x00877F 02:876F: 20 10 8E  JSR sub_8E10
@@ -1498,16 +1498,16 @@ bra_8772:
 C - - - - - 0x008782 02:8772: 20 BA 93  JSR sub_93BA
 C - - - - - 0x008785 02:8775: B0 2C     BCS bra_87A3
 C - - - - - 0x008787 02:8777: A4 0C     LDY ram_000C
-C - - - - - 0x008789 02:8779: B9 AF 87  LDA tbl_87AD + 2,Y
+C - - - - - 0x008789 02:8779: B9 AF 87  LDA tbl_87AD + $02,Y
 C - - - - - 0x00878C 02:877C: 85 06     STA ram_0006
-C - - - - - 0x00878E 02:877E: B9 B0 87  LDA tbl_87AD + 3,Y
+C - - - - - 0x00878E 02:877E: B9 B0 87  LDA tbl_87AD + $03,Y
 C - - - - - 0x008791 02:8781: 85 07     STA ram_0007
 C - - - - - 0x008793 02:8783: B9 AD 87  LDA tbl_87AD,Y
 C - - - - - 0x008796 02:8786: 0A        ASL
 C - - - - - 0x008797 02:8787: A8        TAY
 C - - - - - 0x008798 02:8788: B9 A5 87  LDA tbl_87A5,Y
 C - - - - - 0x00879B 02:878B: 85 02     STA ram_0002
-C - - - - - 0x00879D 02:878D: B9 A6 87  LDA tbl_87A5 + 1,Y
+C - - - - - 0x00879D 02:878D: B9 A6 87  LDA tbl_87A5 + $01,Y
 C - - - - - 0x0087A0 02:8790: 85 03     STA ram_0003
 sub_8792:
 loc_0x0087A2:
@@ -1564,7 +1564,7 @@ C - - - - - 0x0087D8 02:87C8: A8        TAY
 C - - - - - 0x0087D9 02:87C9: 84 0C     STY ram_000C
 C - - - - - 0x0087DB 02:87CB: B9 F0 87  LDA tbl_87F0,Y
 C - - - - - 0x0087DE 02:87CE: 48        PHA
-C - - - - - 0x0087DF 02:87CF: B9 F1 87  LDA tbl_87F0 + 1,Y
+C - - - - - 0x0087DF 02:87CF: B9 F1 87  LDA tbl_87F0 + $01,Y
 C - - - - - 0x0087E2 02:87D2: A8        TAY
 C - - - - - 0x0087E3 02:87D3: 68        PLA
 C - - - - - 0x0087E4 02:87D4: 20 0D 95  JSR sub_950D
@@ -1912,7 +1912,7 @@ loc_0x0089B1:
 sub_0x0089B1:
 C D 0 - - - 0x0089B1 02:89A1: 0A        ASL
 C - - - - - 0x0089B2 02:89A2: A8        TAY
-C - - - - - 0x0089B3 02:89A3: B9 D0 89  LDA tbl_89CF + 1,Y
+C - - - - - 0x0089B3 02:89A3: B9 D0 89  LDA tbl_89CF + $01,Y
 C - - - - - 0x0089B6 02:89A6: 30 1B     BMI bra_89C3
 C - - - - - 0x0089B8 02:89A8: 0A        ASL
 C - - - - - 0x0089B9 02:89A9: 0A        ASL
@@ -2071,7 +2071,7 @@ C - - - - - 0x008ACE 02:8ABE: 29 0E     AND #$0E
 C - - - - - 0x008AD0 02:8AC0: A8        TAY
 C - - - - - 0x008AD1 02:8AC1: B9 B7 8B  LDA tbl_8BB7,Y
 C - - - - - 0x008AD4 02:8AC4: 85 13     STA ram_0013
-C - - - - - 0x008AD6 02:8AC6: B9 B8 8B  LDA tbl_8BB7 + 1,Y
+C - - - - - 0x008AD6 02:8AC6: B9 B8 8B  LDA tbl_8BB7 + $01,Y
 C - - - - - 0x008AD9 02:8AC9: 85 14     STA ram_0014
 C - - - - - 0x008ADB 02:8ACB: 60        RTS
 
@@ -2110,7 +2110,7 @@ C - - - - - 0x008B0D 02:8AFD: 0A        ASL
 C - - - - - 0x008B0E 02:8AFE: A8        TAY
 C - - - - - 0x008B0F 02:8AFF: B9 0C 8B  LDA tbl_8B0C,Y
 C - - - - - 0x008B12 02:8B02: 85 11     STA ram_0011
-C - - - - - 0x008B14 02:8B04: B9 0D 8B  LDA tbl_8B0C + 1,Y
+C - - - - - 0x008B14 02:8B04: B9 0D 8B  LDA tbl_8B0C + $01,Y
 C - - - - - 0x008B17 02:8B07: 85 12     STA ram_0012
 C - - - - - 0x008B19 02:8B09: 6C 11 00  JMP (ram_0011)
 
@@ -3611,7 +3611,7 @@ sub_0x0093F3:
 C - - - - - 0x0093F3 02:93E3: B9 82 07  LDA ram_0782_unk,Y
 C - - - - - 0x0093F6 02:93E6: 29 7F     AND #$7F
 C - - - - - 0x0093F8 02:93E8: AA        TAX
-C - - - - - 0x0093F9 02:93E9: BD EF 93  LDA tbl_93F0 - 1,X
+C - - - - - 0x0093F9 02:93E9: BD EF 93  LDA tbl_93F0 - $01,X
 C - - - - - 0x0093FC 02:93EC: 99 96 07  STA ram_0796_unk,Y
 C - - - - - 0x0093FF 02:93EF: 60        RTS
 
@@ -3709,7 +3709,7 @@ bra_9449:
 sub_9449:
 C - - - - - 0x009459 02:9449: B9 6B 94  LDA tbl_946B_score_address,Y
 C - - - - - 0x00945C 02:944C: 85 04     STA ram_0004
-C - - - - - 0x00945E 02:944E: B9 6C 94  LDA tbl_946B_score_address + 1,Y
+C - - - - - 0x00945E 02:944E: B9 6C 94  LDA tbl_946B_score_address + $01,Y
 C - - - - - 0x009461 02:9451: 85 05     STA ram_0005
 C - - - - - 0x009463 02:9453: A2 01     LDX #$01
 C - - - - - 0x009465 02:9455: A0 03     LDY #$03
@@ -3730,7 +3730,7 @@ C - - - - - 0x009478 02:9468: 4C C1 F6  JMP loc_0x01F6D1
 
 tbl_946B_score_address:
 - D 0 - - - 0x00947B 02:946B: 6E 00     .word ram_score     ; 00 p1
-- D 0 - - - 0x00947D 02:946D: 71 00     .word ram_score + 3 ; 02 p2
+- D 0 - - - 0x00947D 02:946D: 71 00     .word ram_score + $03 ; 02 p2
 
 
 
@@ -3804,7 +3804,7 @@ C - - - - - 0x0094D5 02:94C5: 84 00     STY ram_0000
 C - - - - - 0x0094D7 02:94C7: B9 82 06  LDA ram_0682_obj,Y
 C - - - - - 0x0094DA 02:94CA: 29 0F     AND #$0F
 C - - - - - 0x0094DC 02:94CC: A8        TAY
-C - - - - - 0x0094DD 02:94CD: B9 DB 94  LDA tbl_94DC - 1,Y
+C - - - - - 0x0094DD 02:94CD: B9 DB 94  LDA tbl_94DC - $01,Y
 C - - - - - 0x0094E0 02:94D0: F0 07     BEQ bra_94D9
 C - - - - - 0x0094E2 02:94D2: A6 00     LDX ram_0000
 C - - - - - 0x0094E4 02:94D4: 20 52 9A  JSR sub_9A52
@@ -4307,7 +4307,7 @@ sub_9758:
 sub_0x009768:
 C - - - - - 0x009768 02:9758: AD 82 07  LDA ram_0782_unk
 C - - - - - 0x00976B 02:975B: 18        CLC
-C - - - - - 0x00976C 02:975C: 6D 83 07  ADC ram_0782_unk + 1
+C - - - - - 0x00976C 02:975C: 6D 83 07  ADC ram_0782_unk + $01
 C - - - - - 0x00976F 02:975F: C9 5C     CMP #$5C
 bra_9761_RTS:
 C - - - - - 0x009771 02:9761: 60        RTS
@@ -4365,7 +4365,7 @@ C - - - - - 0x0097C3 02:97B3: 29 1E     AND #$1E
 C - - - - - 0x0097C5 02:97B5: A8        TAY
 C - - - - - 0x0097C6 02:97B6: B9 7A 98  LDA tbl_987A,Y
 C - - - - - 0x0097C9 02:97B9: 85 10     STA ram_0010
-C - - - - - 0x0097CB 02:97BB: B9 7B 98  LDA tbl_987A + 1,Y
+C - - - - - 0x0097CB 02:97BB: B9 7B 98  LDA tbl_987A + $01,Y
 C - - - - - 0x0097CE 02:97BE: 85 11     STA ram_0011
 C - - - - - 0x0097D0 02:97C0: BD 0A 07  LDA ram_070A_obj,X
 C - - - - - 0x0097D3 02:97C3: 0A        ASL
@@ -4847,7 +4847,7 @@ C - - - - - 0x009A91 02:9A81: 20 B1 93  JSR sub_93B1_06B2x_LSRx4_TAY
 bra_9A84:
 C - - - - - 0x009A94 02:9A84: B9 BB 9A  LDA tbl_9ABB,Y
 C - - - - - 0x009A97 02:9A87: 85 00     STA ram_0000
-C - - - - - 0x009A99 02:9A89: B9 BC 9A  LDA tbl_9ABB + 1,Y
+C - - - - - 0x009A99 02:9A89: B9 BC 9A  LDA tbl_9ABB + $01,Y
 C - - - - - 0x009A9C 02:9A8C: 85 01     STA ram_0001
 C - - - - - 0x009A9E 02:9A8E: A0 16     LDY #$16
 bra_9A90_loop:
@@ -4937,7 +4937,7 @@ C - - - - - 0x009B27 02:9B17: 0A        ASL
 C - - - - - 0x009B28 02:9B18: A8        TAY
 C - - - - - 0x009B29 02:9B19: B9 8F 9B  LDA tbl_9B8F,Y
 C - - - - - 0x009B2C 02:9B1C: 85 00     STA ram_0000
-C - - - - - 0x009B2E 02:9B1E: B9 90 9B  LDA tbl_9B8F + 1,Y
+C - - - - - 0x009B2E 02:9B1E: B9 90 9B  LDA tbl_9B8F + $01,Y
 C - - - - - 0x009B31 02:9B21: 85 01     STA ram_0001
 C - - - - - 0x009B33 02:9B23: BC 0A 07  LDY ram_070A_obj,X
 C - - - - - 0x009B36 02:9B26: 88        DEY
@@ -4949,7 +4949,7 @@ C - - - - - 0x009B3D 02:9B2D: 0A        ASL
 C - - - - - 0x009B3E 02:9B2E: A8        TAY
 C - - - - - 0x009B3F 02:9B2F: B9 F7 9C  LDA tbl_9CF7,Y
 C - - - - - 0x009B42 02:9B32: 85 02     STA ram_0002
-C - - - - - 0x009B44 02:9B34: B9 F8 9C  LDA tbl_9CF7 + 1,Y
+C - - - - - 0x009B44 02:9B34: B9 F8 9C  LDA tbl_9CF7 + $01,Y
 C - - - - - 0x009B47 02:9B37: 85 03     STA ram_0003
 C - - - - - 0x009B49 02:9B39: 86 1E     STX ram_001E
 C - - - - - 0x009B4B 02:9B3B: A6 53     LDX ram_0053
@@ -4966,7 +4966,7 @@ C - - - - - 0x009B5E 02:9B4E: 79 F5 9D  ADC tbl_9DF5,Y
 C - - - - - 0x009B61 02:9B51: 85 02     STA ram_0002
 C - - - - - 0x009B63 02:9B53: A5 03     LDA ram_0003
 C - - - - - 0x009B65 02:9B55: 18        CLC
-C - - - - - 0x009B66 02:9B56: 79 F6 9D  ADC tbl_9DF5 + 1,Y
+C - - - - - 0x009B66 02:9B56: 79 F6 9D  ADC tbl_9DF5 + $01,Y
 C - - - - - 0x009B69 02:9B59: 85 03     STA ram_0003
 bra_9B5B:
 C - - - - - 0x009B6B 02:9B5B: A6 1E     LDX ram_001E
@@ -5683,7 +5683,7 @@ C - - - - - 0x009EF3 02:9EE3: 29 02     AND #$02
 C - - - - - 0x009EF5 02:9EE5: A8        TAY
 C - - - - - 0x009EF6 02:9EE6: B9 2C 9F  LDA tbl_9F2C,Y
 C - - - - - 0x009EF9 02:9EE9: 85 00     STA ram_0000
-C - - - - - 0x009EFB 02:9EEB: B9 2D 9F  LDA tbl_9F2C + 1,Y
+C - - - - - 0x009EFB 02:9EEB: B9 2D 9F  LDA tbl_9F2C + $01,Y
 C - - - - - 0x009EFE 02:9EEE: 85 01     STA ram_0001
 C - - - - - 0x009F00 02:9EF0: 20 B1 93  JSR sub_93B1_06B2x_LSRx4_TAY
 C - - - - - 0x009F03 02:9EF3: B1 00     LDA (ram_0000),Y
@@ -5814,7 +5814,7 @@ bra_9F8C:   ; A = 00
 C - - - - - 0x009F9C 02:9F8C: A8        TAY
 C - - - - - 0x009F9D 02:9F8D: B9 C1 9F  LDA tbl_9FC1,Y
 C - - - - - 0x009FA0 02:9F90: 85 0E     STA ram_000E
-C - - - - - 0x009FA2 02:9F92: B9 C2 9F  LDA tbl_9FC1 + 1,Y
+C - - - - - 0x009FA2 02:9F92: B9 C2 9F  LDA tbl_9FC1 + $01,Y
 C - - - - - 0x009FA5 02:9F95: 85 0F     STA ram_000F
 C - - - - - 0x009FA7 02:9F97: A5 1D     LDA ram_001D
 C - - - - - 0x009FA9 02:9F99: 10 11     BPL bra_9FAC

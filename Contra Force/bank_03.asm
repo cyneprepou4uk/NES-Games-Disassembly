@@ -7938,8 +7938,8 @@ C - - - - - 0x007FE2 01:BFD2: E0 03     CPX #$03
 C - - - - - 0x007FE4 01:BFD4: D0 06     BNE bra_BFDC
 bra_BFD6:   ; A = 00
 C - - - - - 0x007FE6 01:BFD6: 95 6E     STA ram_score,X
-C - - - - - 0x007FE8 01:BFD8: 95 6F     STA ram_score + 1,X
-C - - - - - 0x007FEA 01:BFDA: 95 70     STA ram_score + 2,X
+C - - - - - 0x007FE8 01:BFD8: 95 6F     STA ram_score + $01,X
+C - - - - - 0x007FEA 01:BFDA: 95 70     STA ram_score + $02,X
 bra_BFDC:
 C - - - - - 0x007FEC 01:BFDC: E0 02     CPX #$02
 C - - - - - 0x007FEE 01:BFDE: B0 0A     BCS bra_BFEA
