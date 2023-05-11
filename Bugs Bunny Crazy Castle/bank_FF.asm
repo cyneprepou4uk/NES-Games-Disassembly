@@ -4,6 +4,8 @@
 .org $C000  ; for listing file
 ; 0x00C010-0x01000F
 
+
+
 .export sub_0x00CF17
 .export sub_0x00D7E3_draw_huge_star_screen
 .export sub_0x00DB23
@@ -101,13 +103,13 @@ C - - - - - 0x00C0A4 03:C094: 20 EA EE  JSR sub_EEEA
 C - - - - - 0x00C0A7 03:C097: AD 00 05  LDA ram_obj_state
 C - - - - - 0x00C0AA 03:C09A: 10 66     BPL bra_C102    ; if not exists     con_obj_state_exists
 C - - - - - 0x00C0AC 03:C09C: AD 00 06  LDA ram_pos_X_carrot
-C - - - - - 0x00C0AF 03:C09F: 0D 02 06  ORA ram_pos_X_carrot + 2
-C - - - - - 0x00C0B2 03:C0A2: 0D 04 06  ORA ram_pos_X_carrot + 4
-C - - - - - 0x00C0B5 03:C0A5: 0D 06 06  ORA ram_pos_X_carrot + 6
-C - - - - - 0x00C0B8 03:C0A8: 0D 08 06  ORA ram_pos_X_carrot + 8
-C - - - - - 0x00C0BB 03:C0AB: 0D 0A 06  ORA ram_pos_X_carrot + 10
-C - - - - - 0x00C0BE 03:C0AE: 0D 0C 06  ORA ram_pos_X_carrot + 12
-C - - - - - 0x00C0C1 03:C0B1: 0D 0E 06  ORA ram_pos_X_carrot + 14
+C - - - - - 0x00C0AF 03:C09F: 0D 02 06  ORA ram_pos_X_carrot + $02
+C - - - - - 0x00C0B2 03:C0A2: 0D 04 06  ORA ram_pos_X_carrot + $04
+C - - - - - 0x00C0B5 03:C0A5: 0D 06 06  ORA ram_pos_X_carrot + $06
+C - - - - - 0x00C0B8 03:C0A8: 0D 08 06  ORA ram_pos_X_carrot + $08
+C - - - - - 0x00C0BB 03:C0AB: 0D 0A 06  ORA ram_pos_X_carrot + $0A
+C - - - - - 0x00C0BE 03:C0AE: 0D 0C 06  ORA ram_pos_X_carrot + $0C
+C - - - - - 0x00C0C1 03:C0B1: 0D 0E 06  ORA ram_pos_X_carrot + $0E
 C - - - - - 0x00C0C4 03:C0B4: D0 AE     BNE bra_C064_loop
 C - - - - - 0x00C0C6 03:C0B6: A9 FF     LDA #$FF
 C - - - - - 0x00C0C8 03:C0B8: 8D 18 05  STA ram_0518
@@ -1127,11 +1129,11 @@ C - - - - - 0x00C7F0 03:C7E0: E9 02     SBC #$02
 C - - - - - 0x00C7F2 03:C7E2: 0A        ASL
 C - - - - - 0x00C7F3 03:C7E3: 0A        ASL
 C - - - - - 0x00C7F4 03:C7E4: A8        TAY
-C - - - - - 0x00C7F5 03:C7E5: B9 9B C6  LDA tbl_C69A + 1,Y
+C - - - - - 0x00C7F5 03:C7E5: B9 9B C6  LDA tbl_C69A + $01,Y
 C - - - - - 0x00C7F8 03:C7E8: 85 D9     STA ram_pal_buffer_1 + $19
-C - - - - - 0x00C7FA 03:C7EA: B9 9C C6  LDA tbl_C69A + 2,Y
+C - - - - - 0x00C7FA 03:C7EA: B9 9C C6  LDA tbl_C69A + $02,Y
 C - - - - - 0x00C7FD 03:C7ED: 85 DA     STA ram_pal_buffer_1 + $1A
-C - - - - - 0x00C7FF 03:C7EF: B9 9D C6  LDA tbl_C69A + 3,Y
+C - - - - - 0x00C7FF 03:C7EF: B9 9D C6  LDA tbl_C69A + $03,Y
 C - - - - - 0x00C802 03:C7F2: 85 DB     STA ram_pal_buffer_1 + $1B
 bra_C7F4:
 C - - - - - 0x00C804 03:C7F4: 68        PLA
@@ -2182,7 +2184,7 @@ C D 2 - - - 0x00CEEC 03:CEDC: 0A        ASL
 C - - - - - 0x00CEED 03:CEDD: A8        TAY
 C - - - - - 0x00CEEE 03:CEDE: B9 45 CF  LDA tbl_CF45,Y
 C - - - - - 0x00CEF1 03:CEE1: 85 1E     STA ram_001E
-C - - - - - 0x00CEF3 03:CEE3: B9 46 CF  LDA tbl_CF45 + 1,Y
+C - - - - - 0x00CEF3 03:CEE3: B9 46 CF  LDA tbl_CF45 + $01,Y
 C - - - - - 0x00CEF6 03:CEE6: 85 1F     STA ram_001F
 C - - - - - 0x00CEF8 03:CEE8: BD 0C 05  LDA ram_animation_id,X
 C - - - - - 0x00CEFB 03:CEEB: 0A        ASL
@@ -2940,7 +2942,7 @@ C - - - - - 0x00D345 03:D335: 0A        ASL
 C - - - - - 0x00D346 03:D336: A8        TAY
 C - - - - - 0x00D347 03:D337: B9 6F D3  LDA tbl_D36F,Y
 C - - - - - 0x00D34A 03:D33A: 85 1C     STA ram_001C
-C - - - - - 0x00D34C 03:D33C: B9 70 D3  LDA tbl_D36F + 1,Y
+C - - - - - 0x00D34C 03:D33C: B9 70 D3  LDA tbl_D36F + $01,Y
 C - - - - - 0x00D34F 03:D33F: 85 1D     STA ram_001D
 C - - - - - 0x00D351 03:D341: BD 10 05  LDA ram_0510,X
 C - - - - - 0x00D354 03:D344: 0A        ASL
@@ -3775,13 +3777,13 @@ C - - - - - 0x00D79F 03:D78F: 85 6C     STA ram_006C
 C - - - - - 0x00D7A1 03:D791: A5 1F     LDA ram_001F
 C - - - - - 0x00D7A3 03:D793: 85 6D     STA ram_006D
 C - - - - - 0x00D7A5 03:D795: AD 00 06  LDA ram_pos_X_carrot
-C - - - - - 0x00D7A8 03:D798: 0D 02 06  ORA ram_pos_X_carrot + 2
-C - - - - - 0x00D7AB 03:D79B: 0D 04 06  ORA ram_pos_X_carrot + 4
-C - - - - - 0x00D7AE 03:D79E: 0D 06 06  ORA ram_pos_X_carrot + 6
-C - - - - - 0x00D7B1 03:D7A1: 0D 08 06  ORA ram_pos_X_carrot + 8
-C - - - - - 0x00D7B4 03:D7A4: 0D 0A 06  ORA ram_pos_X_carrot + 10
-C - - - - - 0x00D7B7 03:D7A7: 0D 0C 06  ORA ram_pos_X_carrot + 12
-C - - - - - 0x00D7BA 03:D7AA: 0D 0E 06  ORA ram_pos_X_carrot + 14
+C - - - - - 0x00D7A8 03:D798: 0D 02 06  ORA ram_pos_X_carrot + $02
+C - - - - - 0x00D7AB 03:D79B: 0D 04 06  ORA ram_pos_X_carrot + $04
+C - - - - - 0x00D7AE 03:D79E: 0D 06 06  ORA ram_pos_X_carrot + $06
+C - - - - - 0x00D7B1 03:D7A1: 0D 08 06  ORA ram_pos_X_carrot + $08
+C - - - - - 0x00D7B4 03:D7A4: 0D 0A 06  ORA ram_pos_X_carrot + $0A
+C - - - - - 0x00D7B7 03:D7A7: 0D 0C 06  ORA ram_pos_X_carrot + $0C
+C - - - - - 0x00D7BA 03:D7AA: 0D 0E 06  ORA ram_pos_X_carrot + $0E
 C - - - - - 0x00D7BD 03:D7AD: D0 17     BNE bra_D7C6_not_all_carrots_taken
 C - - - - - 0x00D7BF 03:D7AF: A9 03     LDA #$03
 C - - - - - 0x00D7C1 03:D7B1: 20 20 EA  JSR sub_EA20_stage_complete
@@ -3812,54 +3814,36 @@ tbl_D7D1:   ; bzk optimize, same bytes
 
 sub_0x00D7E3_draw_huge_star_screen:
 C - - - - - 0x00D7E3 03:D7D3: 20 5F ED  JSR sub_ED5F_draw_screen_handler
-- D 2 - I - 0x00D7E6 03:D7D6: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D7EE 03:D7DE: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D7F6 03:D7E6: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D7FE 03:D7EE: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D806 03:D7F6: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00D80E 03:D7FE: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00D816 03:D806: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00D81E 03:D80E: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00D826 03:D816: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D82E 03:D81E: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1   ; 
+- D 2 - I - 0x00D7E6 03:D7D6: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
+- D 2 - I - 0x00D7F6 03:D7E6: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
+- D 2 - I - 0x00D806 03:D7F6: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
+- D 2 - I - 0x00D816 03:D806: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
+- D 2 - I - 0x00D826 03:D816: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
 - D 2 - I - 0x00D834 03:D824: FF        .byte $FF, $EA, $04   ; control bytes
-- D 2 - I - 0x00D837 03:D827: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D83F 03:D82F: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $B0, $B1   ; 
-- D 2 - I - 0x00D847 03:D837: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00D84F 03:D83F: B0        .byte $B0, $B1, $B0, $B1, $EA, $DC, $DD, $EA   ; 
-- D 2 - I - 0x00D857 03:D847: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00D85F 03:D84F: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $A0, $A1   ; 
-- D 2 - I - 0x00D867 03:D857: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D86F 03:D85F: A0        .byte $A0, $A1, $A0, $A1, $EA, $EC, $ED, $EA   ; 
-- D 2 - I - 0x00D877 03:D867: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D87F 03:D86F: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $B0, $B1   ; 
-- D 2 - I - 0x00D887 03:D877: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00D88F 03:D87F: B0        .byte $B0, $B1, $B0, $B1, $DC   ; 
+- D 2 - I - 0x00D837 03:D827: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $B0, $B1   ; 
+- D 2 - I - 0x00D847 03:D837: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $EA, $DC, $DD, $EA   ; 
+- D 2 - I - 0x00D857 03:D847: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $A0, $A1   ; 
+- D 2 - I - 0x00D867 03:D857: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $EA, $EC, $ED, $EA   ; 
+- D 2 - I - 0x00D877 03:D867: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $B0, $B1   ; 
+- D 2 - I - 0x00D887 03:D877: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $DC   ; 
 - D 2 - I - 0x00D894 03:D884: FF        .byte $FF, $FF, $02   ; control bytes
-- D 2 - I - 0x00D897 03:D887: DD        .byte $DD, $B0, $B1, $B0, $B1, $B0, $B1, $B0   ; 
-- D 2 - I - 0x00D89F 03:D88F: B1        .byte $B1, $B0, $B1, $B0, $B1, $B0, $B1, $A0   ; 
-- D 2 - I - 0x00D8A7 03:D897: A1        .byte $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0   ; 
-- D 2 - I - 0x00D8AF 03:D89F: A1        .byte $A1, $A0, $A1, $EA, $EA, $EC   ; 
+- D 2 - I - 0x00D897 03:D887: DD        .byte $DD, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $A0   ; 
+- D 2 - I - 0x00D8A7 03:D897: A1        .byte $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $EA, $EA, $EC   ; 
 - D 2 - I - 0x00D8B5 03:D8A5: FF        .byte $FF, $FF, $02   ; control bytes
-- D 2 - I - 0x00D8B8 03:D8A8: ED        .byte $ED, $EA, $EA, $A0, $A1, $A0, $A1, $A0   ; 
-- D 2 - I - 0x00D8C0 03:D8B0: A1        .byte $A1, $A0, $A1, $A0, $A1, $A0, $A1, $B0   ; 
-- D 2 - I - 0x00D8C8 03:D8B8: B1        .byte $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0   ; 
-- D 2 - I - 0x00D8D0 03:D8C0: B1        .byte $B1, $B0, $B1, $EA, $DC   ; 
+- D 2 - I - 0x00D8B8 03:D8A8: ED        .byte $ED, $EA, $EA, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $B0   ; 
+- D 2 - I - 0x00D8C8 03:D8B8: B1        .byte $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $EA, $DC   ; 
 - D 2 - I - 0x00D8D5 03:D8C5: FF        .byte $FF, $FF, $04   ; control bytes
-- D 2 - I - 0x00D8D8 03:D8C8: DD        .byte $DD, $EA, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00D8E0 03:D8D0: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $A0, $A1   ; 
+- D 2 - I - 0x00D8D8 03:D8C8: DD        .byte $DD, $EA, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $A0, $A1   ; 
 - D 2 - I - 0x00D8E8 03:D8D8: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
 - D 2 - I - 0x00D8F0 03:D8E0: FF        .byte $FF, $EA, $03   ; control bytes
 - D 2 - I - 0x00D8F3 03:D8E3: EC        .byte $EC   ; 
 - D 2 - I - 0x00D8F4 03:D8E4: FF        .byte $FF, $FF, $04   ; control bytes
 - D 2 - I - 0x00D8F7 03:D8E7: ED        .byte $ED   ; 
 - D 2 - I - 0x00D8F8 03:D8E8: FF        .byte $FF, $EA, $03   ; control bytes
-- D 2 - I - 0x00D8FB 03:D8EB: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D903 03:D8F3: A0        .byte $A0, $A1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
+- D 2 - I - 0x00D8FB 03:D8EB: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
 - D 2 - I - 0x00D90B 03:D8FB: B0        .byte $B0, $B1, $B0, $B1, $EA, $EA, $DC   ; 
 - D 2 - I - 0x00D912 03:D902: FF        .byte $FF, $FF, $06   ; control bytes
-- D 2 - I - 0x00D915 03:D905: DD        .byte $DD, $EA, $EA, $B0, $B1, $B0, $B1, $B0   ; 
-- D 2 - I - 0x00D91D 03:D90D: B1        .byte $B1, $B0, $B1, $B0, $B1   ; 
+- D 2 - I - 0x00D915 03:D905: DD        .byte $DD, $EA, $EA, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
 - D 2 - I - 0x00D922 03:D912: FF        .byte $FF, $EA, $0C   ; control bytes
 - D 2 - I - 0x00D925 03:D915: EC        .byte $EC   ; 
 - D 2 - I - 0x00D926 03:D916: FF        .byte $FF, $FF, $06   ; control bytes
@@ -3878,52 +3862,41 @@ C - - - - - 0x00D7E3 03:D7D3: 20 5F ED  JSR sub_ED5F_draw_screen_handler
 - D 2 - I - 0x00D952 03:D942: B0        .byte $B0, $B1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
 - D 2 - I - 0x00D95A 03:D94A: BE        .byte $BE, $BF   ; 
 - D 2 - I - 0x00D95C 03:D94C: FF        .byte $FF, $FF, $10   ; control bytes
-- D 2 - I - 0x00D95F 03:D94F: BA        .byte $BA, $BB, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D967 03:D957: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $EA, $EA   ; 
+- D 2 - I - 0x00D95F 03:D94F: BA        .byte $BA, $BB, $A0, $A1, $A0, $A1, $A0, $A1, $B0, $B1, $B0, $B1, $B0, $B1, $EA, $EA   ; 
 - D 2 - I - 0x00D96F 03:D95F: AD        .byte $AD, $AE   ; 
 - D 2 - I - 0x00D971 03:D961: FF        .byte $FF, $FF, $0C   ; control bytes
-- D 2 - I - 0x00D974 03:D964: AB        .byte $AB, $AC, $EA, $EA, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00D97C 03:D96C: B0        .byte $B0, $B1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
+- D 2 - I - 0x00D974 03:D964: AB        .byte $AB, $AC, $EA, $EA, $B0, $B1, $B0, $B1, $B0, $B1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
 - D 2 - I - 0x00D984 03:D974: A0        .byte $A0, $A1, $EA, $F7   ; 
 - D 2 - I - 0x00D988 03:D978: FF        .byte $FF, $FF, $0C   ; control bytes
-- D 2 - I - 0x00D98B 03:D97B: F8        .byte $F8, $EA, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D993 03:D983: A0        .byte $A0, $A1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
+- D 2 - I - 0x00D98B 03:D97B: F8        .byte $F8, $EA, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
 - D 2 - I - 0x00D99B 03:D98B: B0        .byte $B0, $B1, $EA, $EC   ; 
 - D 2 - I - 0x00D99F 03:D98F: FF        .byte $FF, $FF, $0C   ; control bytes
-- D 2 - I - 0x00D9A2 03:D992: ED        .byte $ED, $EA, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00D9AA 03:D99A: B0        .byte $B0, $B1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
+- D 2 - I - 0x00D9A2 03:D992: ED        .byte $ED, $EA, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
 - D 2 - I - 0x00D9B2 03:D9A2: EA        .byte $EA, $EA, $DC   ; 
 - D 2 - I - 0x00D9B5 03:D9A5: FF        .byte $FF, $FF, $0E   ; control bytes
-- D 2 - I - 0x00D9B8 03:D9A8: DD        .byte $DD, $EA, $EA, $A0, $A1, $A0, $A1, $A0   ; 
-- D 2 - I - 0x00D9C0 03:D9B0: A1        .byte $A1, $B0, $B1, $B0, $B1, $B0, $B1, $EA   ; 
+- D 2 - I - 0x00D9B8 03:D9A8: DD        .byte $DD, $EA, $EA, $A0, $A1, $A0, $A1, $A0, $A1, $B0, $B1, $B0, $B1, $B0, $B1, $EA   ; 
 - D 2 - I - 0x00D9C8 03:D9B8: EA        .byte $EA, $EC   ; 
 - D 2 - I - 0x00D9CA 03:D9BA: FF        .byte $FF, $FF, $0E   ; control bytes
-- D 2 - I - 0x00D9CD 03:D9BD: ED        .byte $ED, $EA, $EA, $B0, $B1, $B0, $B1, $B0   ; 
-- D 2 - I - 0x00D9D5 03:D9C5: B1        .byte $B1, $A0, $A1, $A0, $A1, $A0, $A1, $EA, $DC   ; 
+- D 2 - I - 0x00D9CD 03:D9BD: ED        .byte $ED, $EA, $EA, $B0, $B1, $B0, $B1, $B0, $B1, $A0, $A1, $A0, $A1, $A0, $A1, $EA   ; 
+- D 2 - I - 0x00D9DD 03:D9CD: DC        .byte $DC   ; 
 - D 2 - I - 0x00D9DE 03:D9CE: FF        .byte $FF, $FF, $10   ; control bytes
-- D 2 - I - 0x00D9E1 03:D9D1: DD        .byte $DD, $EA, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00D9E9 03:D9D9: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $EA, $EC   ; 
+- D 2 - I - 0x00D9E1 03:D9D1: DD        .byte $DD, $EA, $A0, $A1, $A0, $A1, $A0, $A1, $B0, $B1, $B0, $B1, $B0, $B1, $EA, $EC   ; 
 - D 2 - I - 0x00D9F1 03:D9E1: FF        .byte $FF, $FF, $10   ; control bytes
-- D 2 - I - 0x00D9F4 03:D9E4: ED        .byte $ED, $EA, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00D9FC 03:D9EC: A0        .byte $A0, $A1, $A0, $A1, $EA, $EA, $DC   ; 
+- D 2 - I - 0x00D9F4 03:D9E4: ED        .byte $ED, $EA, $B0, $B1, $B0, $B1, $B0, $B1, $A0, $A1, $A0, $A1, $EA, $EA, $DC   ; 
 - D 2 - I - 0x00DA03 03:D9F3: FF        .byte $FF, $FF, $07   ; control bytes
 - D 2 - I - 0x00DA06 03:D9F6: FB        .byte $FB, $FC, $FD, $FE   ; 
 - D 2 - I - 0x00DA0A 03:D9FA: FF        .byte $FF, $FF, $07   ; control bytes
-- D 2 - I - 0x00DA0D 03:D9FD: DD        .byte $DD, $EA, $EA, $A0, $A1, $A0, $A1, $B0   ; 
-- D 2 - I - 0x00DA15 03:DA05: B1        .byte $B1, $B0, $B1, $EA, $EA, $EC   ; 
+- D 2 - I - 0x00DA0D 03:D9FD: DD        .byte $DD, $EA, $EA, $A0, $A1, $A0, $A1, $B0, $B1, $B0, $B1, $EA, $EA, $EC   ; 
 - D 2 - I - 0x00DA1B 03:DA0B: FF        .byte $FF, $FF, $05   ; control bytes
 - D 2 - I - 0x00DA1E 03:DA0E: FB        .byte $FB, $FC   ; 
 - D 2 - I - 0x00DA20 03:DA10: FF        .byte $FF, $EA, $04   ; control bytes
 - D 2 - I - 0x00DA23 03:DA13: FD        .byte $FD, $FE   ; 
 - D 2 - I - 0x00DA25 03:DA15: FF        .byte $FF, $FF, $05   ; control bytes
-- D 2 - I - 0x00DA28 03:DA18: ED        .byte $ED, $EA, $EA, $B0, $B1, $B0, $B1, $A0   ; 
-- D 2 - I - 0x00DA30 03:DA20: A1        .byte $A1, $A0, $A1, $EA, $DC   ; 
+- D 2 - I - 0x00DA28 03:DA18: ED        .byte $ED, $EA, $EA, $B0, $B1, $B0, $B1, $A0, $A1, $A0, $A1, $EA, $DC   ; 
 - D 2 - I - 0x00DA35 03:DA25: FF        .byte $FF, $FF, $04   ; control bytes
-- D 2 - I - 0x00DA38 03:DA28: FB        .byte $FB, $FC, $EA, $EA, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00DA40 03:DA30: EA        .byte $EA, $EA, $FD, $FE   ; 
+- D 2 - I - 0x00DA38 03:DA28: FB        .byte $FB, $FC, $EA, $EA, $A0, $A1, $A0, $A1, $EA, $EA, $FD, $FE   ; 
 - D 2 - I - 0x00DA44 03:DA34: FF        .byte $FF, $FF, $04   ; control bytes
-- D 2 - I - 0x00DA47 03:DA37: DD        .byte $DD, $EA, $A0, $A1, $A0, $A1, $B0, $B1   ; 
-- D 2 - I - 0x00DA4F 03:DA3F: B0        .byte $B0, $B1, $EA, $EC   ; 
+- D 2 - I - 0x00DA47 03:DA37: DD        .byte $DD, $EA, $A0, $A1, $A0, $A1, $B0, $B1, $B0, $B1, $EA, $EC   ; 
 - D 2 - I - 0x00DA53 03:DA43: FF        .byte $FF, $FF, $02   ; control bytes
 - D 2 - I - 0x00DA56 03:DA46: FB        .byte $FB, $FC   ; 
 - D 2 - I - 0x00DA58 03:DA48: FF        .byte $FF, $EA, $04   ; control bytes
@@ -3931,38 +3904,28 @@ C - - - - - 0x00D7E3 03:D7D3: 20 5F ED  JSR sub_ED5F_draw_screen_handler
 - D 2 - I - 0x00DA5F 03:DA4F: FF        .byte $FF, $EA, $04   ; control bytes
 - D 2 - I - 0x00DA62 03:DA52: FD        .byte $FD, $FE   ; 
 - D 2 - I - 0x00DA64 03:DA54: FF        .byte $FF, $FF, $02   ; control bytes
-- D 2 - I - 0x00DA67 03:DA57: ED        .byte $ED, $EA, $B0, $B1, $B0, $B1, $A0, $A1   ; 
-- D 2 - I - 0x00DA6F 03:DA5F: EA        .byte $EA, $EA, $DC   ; 
+- D 2 - I - 0x00DA67 03:DA57: ED        .byte $ED, $EA, $B0, $B1, $B0, $B1, $A0, $A1, $EA, $EA, $DC   ; 
 - D 2 - I - 0x00DA72 03:DA62: FF        .byte $FF, $FF, $01   ; control bytes
-- D 2 - I - 0x00DA75 03:DA65: FB        .byte $FB, $FC, $EA, $EA, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00DA7D 03:DA6D: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
+- D 2 - I - 0x00DA75 03:DA65: FB        .byte $FB, $FC, $EA, $EA, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
 - D 2 - I - 0x00DA85 03:DA75: EA        .byte $EA, $EA, $FD, $FE   ; 
 - D 2 - I - 0x00DA89 03:DA79: FF        .byte $FF, $FF, $01   ; control bytes
-- D 2 - I - 0x00DA8C 03:DA7C: DD        .byte $DD, $EA, $EA, $A0, $A1, $B0, $B1, $EA   ; 
-- D 2 - I - 0x00DA94 03:DA84: EA        .byte $EA, $F9, $FC   ; 
+- D 2 - I - 0x00DA8C 03:DA7C: DD        .byte $DD, $EA, $EA, $A0, $A1, $B0, $B1, $EA, $EA, $F9, $FC   ; 
 - D 2 - I - 0x00DA97 03:DA87: FF        .byte $FF, $EA, $04   ; control bytes
-- D 2 - I - 0x00DA9A 03:DA8A: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00DAA2 03:DA92: B0        .byte $B0, $B1, $B0, $B1   ; 
+- D 2 - I - 0x00DA9A 03:DA8A: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
 - D 2 - I - 0x00DAA6 03:DA96: FF        .byte $FF, $EA, $04   ; control bytes
-- D 2 - I - 0x00DAA9 03:DA99: FD        .byte $FD, $FA, $EA, $EA, $B0, $B1, $A0, $A1   ; 
-- D 2 - I - 0x00DAB1 03:DAA1: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00DAB9 03:DAA9: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00DAC1 03:DAB1: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
-- D 2 - I - 0x00DAC9 03:DAB9: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $B0, $B1   ; 
-- D 2 - I - 0x00DAD1 03:DAC1: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00DAD9 03:DAC9: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
-- D 2 - I - 0x00DAE1 03:DAD1: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
+- D 2 - I - 0x00DAA9 03:DA99: FD        .byte $FD, $FA, $EA, $EA, $B0, $B1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
+- D 2 - I - 0x00DAB9 03:DAA9: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1, $A0, $A1   ; 
+- D 2 - I - 0x00DAC9 03:DAB9: A0        .byte $A0, $A1, $A0, $A1, $A0, $A1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
+- D 2 - I - 0x00DAD9 03:DAC9: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1, $B0, $B1   ; 
 - D 2 - I - 0x00DAE9 03:DAD9: B0        .byte $B0, $B1, $B0, $B1, $B0, $B1   ; 
 - D 2 - I - 0x00DAEF 03:DADF: FF        .byte $FF, $55, $0B   ; control bytes
 - D 2 - I - 0x00DAF2 03:DAE2: 45        .byte $45   ; 
 - D 2 - I - 0x00DAF3 03:DAE3: FF        .byte $FF, $55, $04   ; control bytes
-- D 2 - I - 0x00DAF6 03:DAE6: 45        .byte $45, $55, $11, $F4, $F7, $04, $05, $05   ; 
-- D 2 - I - 0x00DAFE 03:DAEE: 55        .byte $55, $55, $00, $F0, $30, $00   ; 
+- D 2 - I - 0x00DAF6 03:DAE6: 45        .byte $45, $55, $11, $F4, $F7, $04, $05, $05, $55, $55, $00, $F0, $30, $00   ; 
 - D 2 - I - 0x00DB04 03:DAF4: FF        .byte $FF, $55, $03   ; control bytes
 - D 2 - I - 0x00DB07 03:DAF7: 15        .byte $15, $90, $80, $20, $20, $45, $55, $55, $01   ; 
 - D 2 - I - 0x00DB10 03:DB00: FF        .byte $FF, $00, $04   ; control bytes
-- D 2 - I - 0x00DB13 03:DB03: 04        .byte $04, $55, $15, $00, $40, $54, $51, $10   ; 
-- D 2 - I - 0x00DB1B 03:DB0B: 00        .byte $00, $45   ; 
+- D 2 - I - 0x00DB13 03:DB03: 04        .byte $04, $55, $15, $00, $40, $54, $51, $10, $00, $45   ; 
 - D 2 - I - 0x00DB1D 03:DB0D: FF        .byte $FF, $05, $08   ; control bytes
 - D 2 - I - 0x00DB20 03:DB10: FF        .byte $FF, $FF, $00   ; end token
 
@@ -3978,7 +3941,7 @@ C - - - - - 0x00DB29 03:DB19: 0A        ASL
 C - - - - - 0x00DB2A 03:DB1A: AA        TAX
 C - - - - - 0x00DB2B 03:DB1B: BD 39 DB  LDA tbl_DB39_animation_spr_data,X
 C - - - - - 0x00DB2E 03:DB1E: 85 1E     STA ram_001E
-C - - - - - 0x00DB30 03:DB20: BD 3A DB  LDA tbl_DB39_animation_spr_data + 1,X
+C - - - - - 0x00DB30 03:DB20: BD 3A DB  LDA tbl_DB39_animation_spr_data + $01,X
 C - - - - - 0x00DB33 03:DB23: 85 1F     STA ram_001F
 C - - - - - 0x00DB35 03:DB25: A5 23     LDA ram_0023
 C - - - - - 0x00DB37 03:DB27: 29 80     AND #$80
@@ -6720,7 +6683,7 @@ C - - - - - 0x00ED2B 03:ED1B: 60        RTS
 
 
 ; bzk garbage
-; almost the same code as 0x00ED6F
+; almost the same code as 0x00ED70
 - - - - - - 0x00ED2C 03:ED1C: 68        PLA
 - - - - - - 0x00ED2D 03:ED1D: 85 37     STA ram_0037
 - - - - - - 0x00ED2F 03:ED1F: 68        PLA
@@ -6742,7 +6705,7 @@ C - - - - - 0x00ED2B 03:ED1B: 60        RTS
 - - - - - - 0x00ED52 03:ED42: 85 1E     STA ram_001E
 - - - - - - 0x00ED54 03:ED44: 85 1F     STA ram_001F
 - - - - - - 0x00ED56 03:ED46: 85 1C     STA ram_001C
-- - - - - - 0x00ED58 03:ED48: 20 FF ED  JSR sub_EDFF
+- - - - - - 0x00ED58 03:ED48: 20 FF ED  JSR sub_EDFF_decompress_screen_data
 - - - - - - 0x00ED5B 03:ED4B: 20 64 EE  JSR sub_EE64_enable_nmi
 - - - - - - 0x00ED5E 03:ED4E: 20 D1 F5  JSR sub_F5D1
 - - - - - - 0x00ED61 03:ED51: 20 EA EE  JSR sub_EEEA
@@ -6779,7 +6742,7 @@ C - - - - - 0x00ED92 03:ED82: 8D 06 20  STA $2006
 C - - - - - 0x00ED95 03:ED85: 85 1E     STA ram_001E
 C - - - - - 0x00ED97 03:ED87: 85 1F     STA ram_001F
 C - - - - - 0x00ED99 03:ED89: 85 1C     STA ram_001C
-C - - - - - 0x00ED9B 03:ED8B: 20 A2 ED  JSR sub_EDA2_decompressing_screen_data
+C - - - - - 0x00ED9B 03:ED8B: 20 A2 ED  JSR sub_EDA2_decompress_screen_data
 C - - - - - 0x00ED9E 03:ED8E: 20 64 EE  JSR sub_EE64_enable_nmi
 C - - - - - 0x00EDA1 03:ED91: 20 D1 F5  JSR sub_F5D1
 C - - - - - 0x00EDA4 03:ED94: 20 EA EE  JSR sub_EEEA
@@ -6793,13 +6756,13 @@ C - - - - - 0x00EDB1 03:EDA1: 60        RTS
 
 
 
-sub_EDA2_decompressing_screen_data:
+sub_EDA2_decompress_screen_data:
 ; FF FF 00 - end token
 ; FF FF xx - xx is a counter for FF tile
 ; FF ?? xx - print ?? tile xx times
 ; ??       - if bytes start from something other than FF, print those bytes (tiles) until next FF is found
 loc_EDA2_loop:
-bra_EDA2_loop:
+bra_EDC9_loop:
 C D 3 - - - 0x00EDB2 03:EDA2: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
 C - - - - - 0x00EDB5 03:EDA5: C9 FF     CMP #$FF
 C - - - - - 0x00EDB7 03:EDA7: F0 06     BEQ bra_EDAF_it_is_control_byte
@@ -6816,17 +6779,18 @@ C - - - - - 0x00EDCD 03:EDBD: 60        RTS     ; otherwise quit
 bra_EDBE_continue_reading_bytes:
 C - - - - - 0x00EDCE 03:EDBE: AA        TAX
 C - - - - - 0x00EDCF 03:EDBF: A9 FF     LDA #$FF
-C - - - - - 0x00EDD1 03:EDC1: D0 06     BNE bra_EDC9_print_tile_loop    ; jmp
+C - - - - - 0x00EDD1 03:EDC1: D0 06     BNE bra_EDC9_print_tile    ; jmp
 bra_EDC3_not_control_byte:
 C - - - - - 0x00EDD3 03:EDC3: 48        PHA
 C - - - - - 0x00EDD4 03:EDC4: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
 C - - - - - 0x00EDD7 03:EDC7: AA        TAX
 C - - - - - 0x00EDD8 03:EDC8: 68        PLA
-bra_EDC9_print_tile_loop:
+bra_EDC9_print_tile:
+bra_EDA2_loop:
 C - - - - - 0x00EDD9 03:EDC9: 20 D1 ED  JSR sub_EDD1
 C - - - - - 0x00EDDC 03:EDCC: CA        DEX
-C - - - - - 0x00EDDD 03:EDCD: D0 FA     BNE bra_EDC9_print_tile_loop
-C - - - - - 0x00EDDF 03:EDCF: F0 D1     BEQ bra_EDA2_loop   ; jmp
+C - - - - - 0x00EDDD 03:EDCD: D0 FA     BNE bra_EDA2_loop
+C - - - - - 0x00EDDF 03:EDCF: F0 D1     BEQ bra_EDC9_loop   ; jmp
 
 
 
@@ -6863,7 +6827,7 @@ C - - - - - 0x00EE0E 03:EDFE: 60        RTS
 
 
 
-sub_EDFF:
+sub_EDFF_decompress_screen_data:
 loc_EDFF_loop:
 bra_EDFF_loop:
 - - - - - - 0x00EE0F 03:EDFF: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
@@ -6876,22 +6840,24 @@ bra_EE0C:
 - - - - - - 0x00EE1F 03:EE0F: C9 FF     CMP #$FF
 - - - - - - 0x00EE21 03:EE11: D0 0D     BNE bra_EE20
 - - - - - - 0x00EE23 03:EE13: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
+; bzk optimize
 - - - - - - 0x00EE26 03:EE16: C9 00     CMP #$00
 - - - - - - 0x00EE28 03:EE18: D0 01     BNE bra_EE1B
 - - - - - - 0x00EE2A 03:EE1A: 60        RTS
 bra_EE1B:
 - - - - - - 0x00EE2B 03:EE1B: AA        TAX
 - - - - - - 0x00EE2C 03:EE1C: A9 FF     LDA #$FF
-- - - - - - 0x00EE2E 03:EE1E: D0 06     BNE bra_EE26
+- - - - - - 0x00EE2E 03:EE1E: D0 06     BNE bra_EE26    ; jmp
 bra_EE20:
 - - - - - - 0x00EE30 03:EE20: 48        PHA
 - - - - - - 0x00EE31 03:EE21: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
 - - - - - - 0x00EE34 03:EE24: AA        TAX
 - - - - - - 0x00EE35 03:EE25: 68        PLA
 bra_EE26:
+bra_EE26_loop:
 - - - - - - 0x00EE36 03:EE26: 20 2E EE  JSR sub_EE2E
 - - - - - - 0x00EE39 03:EE29: CA        DEX
-- - - - - - 0x00EE3A 03:EE2A: D0 FA     BNE bra_EE26
+- - - - - - 0x00EE3A 03:EE2A: D0 FA     BNE bra_EE26_loop
 - - - - - - 0x00EE3C 03:EE2C: F0 D1     BEQ bra_EDFF_loop   ; jmp
 
 
@@ -6961,11 +6927,11 @@ C - - - - - 0x00EE85 03:EE75: 48        PHA
 C - - - - - 0x00EE86 03:EE76: 20 9F EE  JSR sub_EE9F_read_input
 bra_EE79_loop:
 C - - - - - 0x00EE89 03:EE79: A4 F5     LDY ram_btn_press
-C - - - - - 0x00EE8B 03:EE7B: A5 F6     LDA ram_btn_press + 1
+C - - - - - 0x00EE8B 03:EE7B: A5 F6     LDA ram_btn_press + $01
 C - - - - - 0x00EE8D 03:EE7D: 48        PHA
 C - - - - - 0x00EE8E 03:EE7E: 20 9F EE  JSR sub_EE9F_read_input
 C - - - - - 0x00EE91 03:EE81: 68        PLA
-C - - - - - 0x00EE92 03:EE82: C5 F6     CMP ram_btn_press + 1
+C - - - - - 0x00EE92 03:EE82: C5 F6     CMP ram_btn_press + $01
 C - - - - - 0x00EE94 03:EE84: D0 F3     BNE bra_EE79_loop
 C - - - - - 0x00EE96 03:EE86: C4 F5     CPY ram_btn_press
 C - - - - - 0x00EE98 03:EE88: D0 EF     BNE bra_EE79_loop
@@ -7003,7 +6969,7 @@ C - - - - - 0x00EEC1 03:EEB1: 4A        LSR
 C - - - - - 0x00EEC2 03:EEB2: 26 10     ROL ram_0010
 C - - - - - 0x00EEC4 03:EEB4: AD 17 40  LDA $4017
 C - - - - - 0x00EEC7 03:EEB7: 4A        LSR
-C - - - - - 0x00EEC8 03:EEB8: 26 F6     ROL ram_btn_press + 1
+C - - - - - 0x00EEC8 03:EEB8: 26 F6     ROL ram_btn_press + $01
 C - - - - - 0x00EECA 03:EEBA: 4A        LSR
 C - - - - - 0x00EECB 03:EEBB: 26 11     ROL ram_0011
 C - - - - - 0x00EECD 03:EEBD: CA        DEX
@@ -7012,8 +6978,8 @@ C - - - - - 0x00EED0 03:EEC0: A5 10     LDA ram_0010
 C - - - - - 0x00EED2 03:EEC2: 05 F5     ORA ram_btn_press
 C - - - - - 0x00EED4 03:EEC4: 85 F5     STA ram_btn_press
 C - - - - - 0x00EED6 03:EEC6: A5 11     LDA ram_0011
-C - - - - - 0x00EED8 03:EEC8: 05 F6     ORA ram_btn_press + 1
-C - - - - - 0x00EEDA 03:EECA: 85 F6     STA ram_btn_press + 1
+C - - - - - 0x00EED8 03:EEC8: 05 F6     ORA ram_btn_press + $01
+C - - - - - 0x00EEDA 03:EECA: 85 F6     STA ram_btn_press + $01
 C - - - - - 0x00EEDC 03:EECC: 60        RTS
 
 
@@ -7528,7 +7494,7 @@ C - - - - - 0x00F1A1 03:F191: 84 0A     STY ram_000A
 C - - - - - 0x00F1A3 03:F193: A8        TAY
 C - - - - - 0x00F1A4 03:F194: B9 00 80  LDA tbl_0x008010_script_handlers,Y
 C - - - - - 0x00F1A7 03:F197: 85 10     STA ram_0010
-C - - - - - 0x00F1A9 03:F199: B9 01 80  LDA tbl_0x008010_script_handlers + 1,Y
+C - - - - - 0x00F1A9 03:F199: B9 01 80  LDA tbl_0x008010_script_handlers + $01,Y
 C - - - - - 0x00F1AC 03:F19C: 85 11     STA ram_0011
 C - - - - - 0x00F1AE 03:F19E: 20 A9 F1  JSR sub_F1A9_indirect_jump
 C - - - - - 0x00F1B1 03:F1A1: 85 0B     STA ram_000B
@@ -8904,7 +8870,7 @@ C - - - - - 0x00F967 03:F957: 9D 13 07  STA ram_0713,X
 C - - - - - 0x00F96A 03:F95A: B9 B4 FE  LDA tbl_FEB4,Y
 C - - - - - 0x00F96D 03:F95D: 1D 13 07  ORA ram_0713,X
 C - - - - - 0x00F970 03:F960: 9D 13 07  STA ram_0713,X
-C - - - - - 0x00F973 03:F963: B9 B5 FE  LDA tbl_FEB4 + 1,Y
+C - - - - - 0x00F973 03:F963: B9 B5 FE  LDA tbl_FEB4 + $01,Y
 C - - - - - 0x00F976 03:F966: 9D 12 07  STA ram_0712,X
 C - - - - - 0x00F979 03:F969: BD 09 07  LDA ram_0709,X
 C - - - - - 0x00F97C 03:F96C: 10 10     BPL bra_F97E
@@ -8988,7 +8954,7 @@ C - - - - - 0x00FA0C 03:F9FC: B9 B4 FE  LDA tbl_FEB4,Y
 C - - - - - 0x00FA0F 03:F9FF: 9D 14 07  STA ram_0714,X
 C - - - - - 0x00FA12 03:FA02: 1D 13 07  ORA ram_0713,X
 C - - - - - 0x00FA15 03:FA05: 9D 13 07  STA ram_0713,X
-C - - - - - 0x00FA18 03:FA08: B9 B5 FE  LDA tbl_FEB4 + 1,Y
+C - - - - - 0x00FA18 03:FA08: B9 B5 FE  LDA tbl_FEB4 + $01,Y
 C - - - - - 0x00FA1B 03:FA0B: 9D 12 07  STA ram_0712,X
 C - - - - - 0x00FA1E 03:FA0E: BD 15 07  LDA ram_0715,X
 C - - - - - 0x00FA21 03:FA11: C9 01     CMP #$01
@@ -9221,7 +9187,7 @@ C - - - - - 0x00FBB0 03:FBA0: 0A        ASL
 C - - - - - 0x00FBB1 03:FBA1: A8        TAY
 C - - - - - 0x00FBB2 03:FBA2: B9 8E FE  LDA tbl_FE8E,Y
 C - - - - - 0x00FBB5 03:FBA5: 9D 03 07  STA ram_0703,X
-C - - - - - 0x00FBB8 03:FBA8: B9 8F FE  LDA tbl_FE8E + 1,Y
+C - - - - - 0x00FBB8 03:FBA8: B9 8F FE  LDA tbl_FE8E + $01,Y
 C - - - - - 0x00FBBB 03:FBAB: 9D 04 07  STA ram_0704,X
 C - - - - - 0x00FBBE 03:FBAE: A4 4B     LDY ram_004B
 C - - - - - 0x00FBC0 03:FBB0: 4C 65 FB  JMP loc_FB65_read_next_byte
