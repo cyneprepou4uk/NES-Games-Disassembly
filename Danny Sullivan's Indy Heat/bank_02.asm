@@ -6,6 +6,8 @@
 
 ; !!! bzk don't move code up to 8036
 
+
+
 sub_8000_indirect_jump_0008:
 C - - - - - 0x010010 04:8000: 6C 08 00  JMP (ram_prg_bank_pointer)
 
@@ -652,7 +654,7 @@ C - - - - - 0x010338 04:8328: 0A        ASL
 C - - - - - 0x010339 04:8329: AA        TAX
 C - - - - - 0x01033A 04:832A: BD 63 83  LDA tbl_8363,X
 C - - - - - 0x01033D 04:832D: 85 11     STA ram_0011
-C - - - - - 0x01033F 04:832F: BD 64 83  LDA tbl_8363 + 1,X
+C - - - - - 0x01033F 04:832F: BD 64 83  LDA tbl_8363 + $01,X
 C - - - - - 0x010342 04:8332: 85 12     STA ram_0012
 C - - - - - 0x010344 04:8334: A0 00     LDY #$00
 bra_8336_loop:
@@ -711,7 +713,7 @@ C - - - - - 0x01038C 04:837C: 0A        ASL
 C - - - - - 0x01038D 04:837D: AA        TAX
 C - - - - - 0x01038E 04:837E: BD EA 84  LDA tbl_84EA,X
 C - - - - - 0x010391 04:8381: 85 8D     STA ram_008D
-C - - - - - 0x010393 04:8383: BD EB 84  LDA tbl_84EA + 1,X
+C - - - - - 0x010393 04:8383: BD EB 84  LDA tbl_84EA + $01,X
 C - - - - - 0x010396 04:8386: 85 8E     STA ram_008E
 C - - - - - 0x010398 04:8388: A9 00     LDA #$00
 C - - - - - 0x01039A 04:838A: 8D 4B 06  STA ram_064B
@@ -763,7 +765,7 @@ C - - - - - 0x0103E2 04:83D2: 0A        ASL
 C - - - - - 0x0103E3 04:83D3: AA        TAX
 C - - - - - 0x0103E4 04:83D4: BD 3C 84  LDA tbl_843C,X
 C - - - - - 0x0103E7 04:83D7: 85 11     STA ram_0011
-C - - - - - 0x0103E9 04:83D9: BD 3D 84  LDA tbl_843C + 1,X
+C - - - - - 0x0103E9 04:83D9: BD 3D 84  LDA tbl_843C + $01,X
 C - - - - - 0x0103EC 04:83DC: 85 12     STA ram_0012
 C - - - - - 0x0103EE 04:83DE: A0 FF     LDY #$FF
 bra_83E0:
@@ -1531,7 +1533,7 @@ C - - - - - 0x010A4A 04:8A3A: 9D 00 03  STA ram_0300,X
 C - - - - - 0x010A4D 04:8A3D: A4 4E     LDY ram_004E
 C - - - - - 0x010A4F 04:8A3F: B9 E8 8F  LDA tbl_8FE8,Y
 C - - - - - 0x010A52 04:8A42: 9D 02 03  STA ram_0302,X
-C - - - - - 0x010A55 04:8A45: B9 E9 8F  LDA tbl_8FE8 + 1,Y
+C - - - - - 0x010A55 04:8A45: B9 E9 8F  LDA tbl_8FE8 + $01,Y
 C - - - - - 0x010A58 04:8A48: 9D 03 03  STA ram_0303,X
 C - - - - - 0x010A5B 04:8A4B: A9 01     LDA #$01
 C - - - - - 0x010A5D 04:8A4D: 9D 01 03  STA ram_0301,X
@@ -1642,7 +1644,7 @@ C - - - - - 0x010B01 04:8AF1: BD 23 03  LDA ram_0323,X
 C - - - - - 0x010B04 04:8AF4: 29 F8     AND #$F8
 C - - - - - 0x010B06 04:8AF6: E0 0C     CPX #$0C
 C - - - - - 0x010B08 04:8AF8: F0 03     BEQ bra_8AFD
-C - - - - - 0x010B0A 04:8AFA: 19 34 8F  ORA tbl_8F33 + 1,Y
+C - - - - - 0x010B0A 04:8AFA: 19 34 8F  ORA tbl_8F33 + $01,Y
 bra_8AFD:
 C - - - - - 0x010B0D 04:8AFD: 9D 23 03  STA ram_0323,X
 C - - - - - 0x010B10 04:8B00: BD 10 03  LDA ram_0310,X
@@ -1838,7 +1840,7 @@ C - - - - - 0x010C80 04:8C70: 29 FE     AND #$FE
 C - - - - - 0x010C82 04:8C72: A8        TAY
 C - - - - - 0x010C83 04:8C73: B9 AD 8F  LDA tbl_8FAD,Y
 C - - - - - 0x010C86 04:8C76: 85 4C     STA ram_004C
-C - - - - - 0x010C88 04:8C78: B9 AE 8F  LDA tbl_8FAD + 1,Y
+C - - - - - 0x010C88 04:8C78: B9 AE 8F  LDA tbl_8FAD + $01,Y
 C - - - - - 0x010C8B 04:8C7B: 85 4D     STA ram_004D
 C - - - - - 0x010C8D 04:8C7D: A0 00     LDY #$00
 C - - - - - 0x010C8F 04:8C7F: 98        TYA
@@ -1941,7 +1943,7 @@ C - - - - - 0x010D3C 04:8D2C: 0A        ASL
 C - - - - - 0x010D3D 04:8D2D: AA        TAX
 C - - - - - 0x010D3E 04:8D2E: BD 3D 8D  LDA tbl_8D3D,X
 C - - - - - 0x010D41 04:8D31: 85 50     STA ram_0050
-C - - - - - 0x010D43 04:8D33: BD 3E 8D  LDA tbl_8D3D + 1,X
+C - - - - - 0x010D43 04:8D33: BD 3E 8D  LDA tbl_8D3D + $01,X
 C - - - - - 0x010D46 04:8D36: 85 51     STA ram_0051
 C - - - - - 0x010D48 04:8D38: A6 4E     LDX ram_004E
 C - - - - - 0x010D4A 04:8D3A: 6C 50 00  JMP (ram_0050)
@@ -2790,20 +2792,20 @@ C - - - - - 0x01121B 04:920B: 4C 88 93  JMP loc_9388
 bra_920E:
 ; 00-70
 C - - - - - 0x01121E 04:920E: 8D 06 20  STA $2006
-C - - - - - 0x011221 04:9211: BD 5A 94  LDA tbl_9459 + 1,X
+C - - - - - 0x011221 04:9211: BD 5A 94  LDA tbl_9459 + $01,X
 C - - - - - 0x011224 04:9214: 8D 06 20  STA $2006
-C - - - - - 0x011227 04:9217: BD 5B 94  LDA tbl_9459 + 2,X
+C - - - - - 0x011227 04:9217: BD 5B 94  LDA tbl_9459 + $02,X
 C - - - - - 0x01122A 04:921A: 85 11     STA ram_0011
 C - - - - - 0x01122C 04:921C: 18        CLC
 C - - - - - 0x01122D 04:921D: 69 08     ADC #$08
 C - - - - - 0x01122F 04:921F: 85 13     STA ram_0013
-C - - - - - 0x011231 04:9221: BD 5C 94  LDA tbl_9459 + 3,X
+C - - - - - 0x011231 04:9221: BD 5C 94  LDA tbl_9459 + $03,X
 C - - - - - 0x011234 04:9224: 85 12     STA ram_0012
 C - - - - - 0x011236 04:9226: 69 00     ADC #$00
 C - - - - - 0x011238 04:9228: 85 14     STA ram_0014
-C - - - - - 0x01123A 04:922A: BD 5D 94  LDA tbl_9459 + 4,X
+C - - - - - 0x01123A 04:922A: BD 5D 94  LDA tbl_9459 + $04,X
 C - - - - - 0x01123D 04:922D: 85 15     STA ram_0015
-C - - - - - 0x01123F 04:922F: BD 5F 94  LDA tbl_9459 + 6,X
+C - - - - - 0x01123F 04:922F: BD 5F 94  LDA tbl_9459 + $06,X
 C - - - - - 0x011242 04:9232: 05 16     ORA ram_0016
 C - - - - - 0x011244 04:9234: 85 16     STA ram_0016
 C - - - - - 0x011246 04:9236: 10 12     BPL bra_924A
@@ -2816,7 +2818,7 @@ C - - - - - 0x011253 04:9243: A2 02     LDX #$02
 C - - - - - 0x011255 04:9245: 20 0A 94  JSR sub_940A
 C - - - - - 0x011258 04:9248: A6 20     LDX ram_0020
 bra_924A:
-C - - - - - 0x01125A 04:924A: BD 5E 94  LDA tbl_9459 + 5,X
+C - - - - - 0x01125A 04:924A: BD 5E 94  LDA tbl_9459 + $05,X
 C - - - - - 0x01125D 04:924D: AA        TAX
 C - - - - - 0x01125E 04:924E: A5 15     LDA ram_0015
 C - - - - - 0x011260 04:9250: A0 00     LDY #$00
@@ -2998,19 +3000,19 @@ C - - - - - 0x01139A 04:938A: BD 19 94  LDA tbl_9419_attributes,X
 C - - - - - 0x01139D 04:938D: 9D 20 07  STA ram_ppu_buffer + $20,X
 C - - - - - 0x0113A0 04:9390: CA        DEX
 C - - - - - 0x0113A1 04:9391: 10 F7     BPL bra_938A_loop
-C - - - - - 0x0113A3 04:9393: A4 8A     LDY ram_position + 3
+C - - - - - 0x0113A3 04:9393: A4 8A     LDY ram_position + $03
 C - - - - - 0x0113A5 04:9395: A2 11     LDX #$11
 C - - - - - 0x0113A7 04:9397: 20 FA 93  JSR sub_93FA
-C - - - - - 0x0113AA 04:939A: A4 88     LDY ram_position + 1
+C - - - - - 0x0113AA 04:939A: A4 88     LDY ram_position + $01
 C - - - - - 0x0113AC 04:939C: A2 12     LDX #$12
 C - - - - - 0x0113AE 04:939E: 20 FA 93  JSR sub_93FA
 C - - - - - 0x0113B1 04:93A1: A4 87     LDY ram_position
 C - - - - - 0x0113B3 04:93A3: A2 0B     LDX #$0B
 C - - - - - 0x0113B5 04:93A5: 20 FA 93  JSR sub_93FA
-C - - - - - 0x0113B8 04:93A8: A4 89     LDY ram_position + 2
+C - - - - - 0x0113B8 04:93A8: A4 89     LDY ram_position + $02
 C - - - - - 0x0113BA 04:93AA: A2 14     LDX #$14
 C - - - - - 0x0113BC 04:93AC: 20 FA 93  JSR sub_93FA
-C - - - - - 0x0113BF 04:93AF: A4 8B     LDY ram_position + 4
+C - - - - - 0x0113BF 04:93AF: A4 8B     LDY ram_position + $04
 C - - - - - 0x0113C1 04:93B1: A2 15     LDX #$15
 C - - - - - 0x0113C3 04:93B3: 20 FA 93  JSR sub_93FA
 C - - - - - 0x0113C6 04:93B6: AD 43 07  LDA ram_ppu_buffer + $43
@@ -3536,7 +3538,7 @@ C - - - - - 0x0118B9 04:98A9: 0A        ASL
 C - - - - - 0x0118BA 04:98AA: AA        TAX
 C - - - - - 0x0118BB 04:98AB: BD 30 99  LDA tbl_9930_compressed_tiles,X
 C - - - - - 0x0118BE 04:98AE: 85 11     STA ram_0011
-C - - - - - 0x0118C0 04:98B0: BD 31 99  LDA tbl_9930_compressed_tiles + 1,X
+C - - - - - 0x0118C0 04:98B0: BD 31 99  LDA tbl_9930_compressed_tiles + $01,X
 C - - - - - 0x0118C3 04:98B3: 85 12     STA ram_0012
 loc_98B5_reading_data_loop:
 C D 0 - - - 0x0118C5 04:98B5: A0 00     LDY #$00

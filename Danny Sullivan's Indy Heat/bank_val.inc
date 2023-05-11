@@ -8,10 +8,10 @@ con_prg_bank_rts                        = $00 ;
 
 
 
-; ram_btn_hold                          = $0024
-; ram_btn_press                         = $0025
-; ram_copy_btn_hold                     = $002C
-; ram_copy_btn_press                    = $002D
+; ram_btn_hold
+; ram_btn_press
+; ram_copy_btn_hold
+; ram_copy_btn_press
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -29,7 +29,7 @@ con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn
 
 
 
-; ram_prg_bank_pointer                  = $0008
+; ram_prg_bank_pointer
 ; baankswitch, indirect jumps within banks
 ; 1st number is bank to jump to, 2nd number is index
 ; bank 01
@@ -75,7 +75,7 @@ con_bsw_03_09                           = $09 ;
 
 
 
-; ram_music_id                          = $03B0
+; ram_music_id
 con_music_00                            = $00 ; 
 con_music_01                            = $01 ; 04 = ILLINOIS
 con_music_02                            = $02 ; 07 = COLORADO

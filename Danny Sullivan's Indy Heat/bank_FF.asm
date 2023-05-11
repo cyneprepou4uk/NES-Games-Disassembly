@@ -4,9 +4,9 @@
 .org $8000  ; for listing file
 ; 0x018010-0x02000F
 
-; остановился на 0x01D246
-
 ; !!! bzk don't move code up to 8009
+
+
 
 sub_8000_indirect_jump_0008:
 C - - - - - 0x018010 06:8000: 6C 08 00  JMP (ram_prg_bank_pointer)
@@ -238,7 +238,7 @@ C - - - - - 0x018131 06:8121: 86 1F     STX ram_001F
 C - - - - - 0x018133 06:8123: BC A2 81  LDY tbl_81A2,X
 C - - - - - 0x018136 06:8126: B9 74 81  LDA tbl_8174,Y
 C - - - - - 0x018139 06:8129: 85 0D     STA ram_000D
-C - - - - - 0x01813B 06:812B: B9 75 81  LDA tbl_8174 + 1,Y
+C - - - - - 0x01813B 06:812B: B9 75 81  LDA tbl_8174 + $01,Y
 C - - - - - 0x01813E 06:812E: 85 0E     STA ram_000E
 C - - - - - 0x018140 06:8130: BD 78 81  LDA tbl_8178,X
 C - - - - - 0x018143 06:8133: 20 E5 81  JSR sub_81E5_convert_letters_to_tiles
@@ -262,7 +262,7 @@ C - - - - - 0x01815E 06:814E: B9 CC 81  LDA tbl_81CC,Y
 C - - - - - 0x018161 06:8151: A8        TAY
 C - - - - - 0x018162 06:8152: B9 74 81  LDA tbl_8174,Y
 C - - - - - 0x018165 06:8155: 85 0D     STA ram_000D
-C - - - - - 0x018167 06:8157: B9 75 81  LDA tbl_8174 + 1,Y
+C - - - - - 0x018167 06:8157: B9 75 81  LDA tbl_8174 + $01,Y
 C - - - - - 0x01816A 06:815A: 85 0E     STA ram_000E
 C - - - - - 0x01816C 06:815C: E6 16     INC ram_0016
 C - - - - - 0x01816E 06:815E: A4 21     LDY ram_0021
@@ -492,7 +492,7 @@ C - - - - - 0x01825C 06:824C: 0A        ASL
 C - - - - - 0x01825D 06:824D: AA        TAX
 C - - - - - 0x01825E 06:824E: BD 55 84  LDA tbl_8455,X
 C - - - - - 0x018261 06:8251: 85 11     STA ram_0011
-C - - - - - 0x018263 06:8253: BD 56 84  LDA tbl_8455 + 1,X
+C - - - - - 0x018263 06:8253: BD 56 84  LDA tbl_8455 + $01,X
 C - - - - - 0x018266 06:8256: 85 12     STA ram_0012
 loc_8258_reading_data_loop:
 C D 0 - - - 0x018268 06:8258: A0 00     LDY #$00
@@ -506,7 +506,7 @@ C - - - - - 0x018272 06:8262: B1 11     LDA (ram_0011),Y
 C - - - - - 0x018274 06:8264: AA        TAX
 C - - - - - 0x018275 06:8265: BD 94 82  LDA tbl_8294_decompression_routine,X
 C - - - - - 0x018278 06:8268: 85 0D     STA ram_000D
-C - - - - - 0x01827A 06:826A: BD 95 82  LDA tbl_8294_decompression_routine + 1,X
+C - - - - - 0x01827A 06:826A: BD 95 82  LDA tbl_8294_decompression_routine + $01,X
 C - - - - - 0x01827D 06:826D: 85 0E     STA ram_000E
 C - - - - - 0x01827F 06:826F: C8        INY
 C - - - - - 0x018280 06:8270: B1 11     LDA (ram_0011),Y
