@@ -4,6 +4,7 @@
 .org $C000  ; for listing file
 ; 0x000010-0x00400F
 
+
 ; bzk garbage text
 - - - - - - 0x000010 00:C000: 43        .byte "COPYRIGHT 1981 1"
 - - - - - - 0x000020 00:C010: 39        .byte "985 NAMCO LTD."      , $0D, $0A  ; end of the line symbols or something (ASCII)
@@ -83,7 +84,7 @@ C - - - - - 0x0000E9 00:C0D9: 85 5C     STA ram_005C
 C - - - - - 0x0000EB 00:C0DB: 85 4F     STA ram_scroll_pos_Y
 C - - - - - 0x0000ED 00:C0DD: 85 50     STA ram_base_nmt
 C - - - - - 0x0000EF 00:C0DF: 85 6F     STA ram_stun_timer
-C - - - - - 0x0000F1 00:C0E1: 85 70     STA ram_stun_timer + 1
+C - - - - - 0x0000F1 00:C0E1: 85 70     STA ram_stun_timer + $01
 C - - - - - 0x0000F3 00:C0E3: A5 4B     LDA ram_constr_usage_cnt
 C - - - - - 0x0000F5 00:C0E5: D0 03     BNE bra_C0EA_constructor_was_already_used
 C - - - - - 0x0000F7 00:C0E7: 20 F5 CA  JSR sub_CAF5_draw_default_base
@@ -291,7 +292,7 @@ C - - - - - 0x000281 00:C271: 85 46     STA ram_2nd_loop_flag
 bra_C273_still_1st_loop:
 C - - - - - 0x000283 00:C273: A5 51     LDA ram_lives
 C - - - - - 0x000285 00:C275: 18        CLC
-C - - - - - 0x000286 00:C276: 65 52     ADC ram_lives + 1
+C - - - - - 0x000286 00:C276: 65 52     ADC ram_lives + $01
 C - - - - - 0x000288 00:C278: F0 09     BEQ bra_C283_game_over    ; both players are dead
 C - - - - - 0x00028A 00:C27A: A5 68     LDA ram_game_over_flag
 C - - - - - 0x00028C 00:C27C: C9 80     CMP #con_not_game_over
@@ -324,9 +325,9 @@ C - - - - - 0x0002B4 00:C2A4: C9 80     CMP #con_not_game_over
 C - - - - - 0x0002B6 00:C2A6: F0 0A     BEQ bra_C2B2_RTS
 C - - - - - 0x0002B8 00:C2A8: A9 00     LDA #$00    ; blocking controls
 C - - - - - 0x0002BA 00:C2AA: 85 06     STA ram_btn_hold
-C - - - - - 0x0002BC 00:C2AC: 85 07     STA ram_btn_hold + 1
+C - - - - - 0x0002BC 00:C2AC: 85 07     STA ram_btn_hold + $01
 C - - - - - 0x0002BE 00:C2AE: 85 08     STA ram_btn_press
-C - - - - - 0x0002C0 00:C2B0: 85 09     STA ram_btn_press + 1
+C - - - - - 0x0002C0 00:C2B0: 85 09     STA ram_btn_press + $01
 bra_C2B2_RTS:
 C - - - - - 0x0002C2 00:C2B2: 60        RTS
 
@@ -340,19 +341,19 @@ C - - - - - 0x0002CA 00:C2BA: 20 FE D9  JSR sub_D9FE_prepare_memory_for_bcd
 sub_C2BD:
 C - - - - - 0x0002CD 00:C2BD: A9 00     LDA #$00
 C - - - - - 0x0002CF 00:C2BF: 8D 01 01  STA ram_tank_upgrade
-C - - - - - 0x0002D2 00:C2C2: 8D 02 01  STA ram_tank_upgrade + 1
+C - - - - - 0x0002D2 00:C2C2: 8D 02 01  STA ram_tank_upgrade + $01
 C - - - - - 0x0002D5 00:C2C5: A9 00     LDA #$00
 C - - - - - 0x0002D7 00:C2C7: 85 66     STA ram_p1_extra_life
 C - - - - - 0x0002D9 00:C2C9: 85 67     STA ram_p2_extra_life
 C - - - - - 0x0002DB 00:C2CB: 85 4C     STA ram_004C
 C - - - - - 0x0002DD 00:C2CD: A9 03     LDA #$03
 C - - - - - 0x0002DF 00:C2CF: 85 51     STA ram_lives
-C - - - - - 0x0002E1 00:C2D1: 85 52     STA ram_lives + 1
+C - - - - - 0x0002E1 00:C2D1: 85 52     STA ram_lives + $01
 C - - - - - 0x0002E3 00:C2D3: 85 6A     STA ram_enemy_spawn_pos ; bzk useless write, it won't be read and will be overwritten
 C - - - - - 0x0002E5 00:C2D5: A5 83     LDA ram_game_mode
 C - - - - - 0x0002E7 00:C2D7: D0 04     BNE bra_C2DD    ; 2p mode
 C - - - - - 0x0002E9 00:C2D9: A9 00     LDA #$00    ; 2nd player won't spawn if his lives = 00
-C - - - - - 0x0002EB 00:C2DB: 85 52     STA ram_lives + 1
+C - - - - - 0x0002EB 00:C2DB: 85 52     STA ram_lives + $01
 bra_C2DD:
 C - - - - - 0x0002ED 00:C2DD: A9 01     LDA #$01
 C - - - - - 0x0002EF 00:C2DF: 85 85     STA ram_stage
@@ -416,7 +417,7 @@ C - - - - - 0x000353 00:C343: F0 05     BEQ bra_C34A
 C - - - - - 0x000355 00:C345: A2 00     LDX #$00
 C - - - - - 0x000357 00:C347: 20 63 E3  JSR sub_E363_tank_spawn_handler
 bra_C34A:
-C - - - - - 0x00035A 00:C34A: A5 52     LDA ram_lives + 1
+C - - - - - 0x00035A 00:C34A: A5 52     LDA ram_lives + $01
 C - - - - - 0x00035C 00:C34C: F0 05     BEQ bra_C353
 C - - - - - 0x00035E 00:C34E: A2 01     LDX #$01
 C - - - - - 0x000360 00:C350: 20 63 E3  JSR sub_E363_tank_spawn_handler
@@ -430,9 +431,9 @@ C - - - - - 0x00036D 00:C35D: 85 0A     STA ram_frame_cnt_hi
 C - - - - - 0x00036F 00:C35F: 85 4B     STA ram_constr_usage_cnt
 C - - - - - 0x000371 00:C361: 85 45     STA ram_shovel_timer
 C - - - - - 0x000373 00:C363: 85 6F     STA ram_stun_timer
-C - - - - - 0x000375 00:C365: 85 70     STA ram_stun_timer + 1
+C - - - - - 0x000375 00:C365: 85 70     STA ram_stun_timer + $01
 C - - - - - 0x000377 00:C367: 85 89     STA ram_helmet_timer
-C - - - - - 0x000379 00:C369: 85 8A     STA ram_helmet_timer + 1
+C - - - - - 0x000379 00:C369: 85 8A     STA ram_helmet_timer + $01
 C - - - - - 0x00037B 00:C36B: 85 82     STA ram_enemy_timer_before_spawn
 C - - - - - 0x00037D 00:C36D: 85 86     STA ram_bonus_pos_X
 C - - - - - 0x00037F 00:C36F: 8D 00 01  STA ram_clock_timer
@@ -481,7 +482,7 @@ C - - - - - 0x0003C9 00:C3B9: A9 00     LDA #$00
 C - - - - - 0x0003CB 00:C3BB: 85 4D     STA ram_bg_palette_id
 C - - - - - 0x0003CD 00:C3BD: 20 BD C2  JSR sub_C2BD
 C - - - - - 0x0003D0 00:C3C0: A9 03     LDA #$03
-C - - - - - 0x0003D2 00:C3C2: 85 52     STA ram_lives + 1
+C - - - - - 0x0003D2 00:C3C2: 85 52     STA ram_lives + $01
 C - - - - - 0x0003D4 00:C3C4: A9 00     LDA #$00
 C - - - - - 0x0003D6 00:C3C6: 85 4F     STA ram_scroll_pos_Y
 C - - - - - 0x0003D8 00:C3C8: 85 50     STA ram_base_nmt
@@ -824,35 +825,35 @@ C - - - - - 0x000666 00:C656: 85 72     STA ram_0072
 C - - - - - 0x000668 00:C658: 20 A2 DD  JSR sub_DDA2
 C - - - - - 0x00066B 00:C65B: 4C A5 C6  JMP loc_C6A5
 bra_C65E:
-C - - - - - 0x00066E 00:C65E: B5 A2     LDA ram_tank_status + 2,X
+C - - - - - 0x00066E 00:C65E: B5 A2     LDA ram_tank_status + $02,X
 C - - - - - 0x000670 00:C660: 10 12     BPL bra_C674
 C - - - - - 0x000672 00:C662: C9 E0     CMP #$E0
 C - - - - - 0x000674 00:C664: B0 0E     BCS bra_C674
-C - - - - - 0x000676 00:C666: B5 92     LDA ram_tank_pos_X + 2,X
+C - - - - - 0x000676 00:C666: B5 92     LDA ram_tank_pos_X + $02,X
 C - - - - - 0x000678 00:C668: 85 71     STA ram_0071
-C - - - - - 0x00067A 00:C66A: B5 9A     LDA ram_tank_pos_Y + 2,X
+C - - - - - 0x00067A 00:C66A: B5 9A     LDA ram_tank_pos_Y + $02,X
 C - - - - - 0x00067C 00:C66C: 85 72     STA ram_0072
 C - - - - - 0x00067E 00:C66E: 20 A2 DD  JSR sub_DDA2
 C - - - - - 0x000681 00:C671: 4C A5 C6  JMP loc_C6A5
 bra_C674:
-C - - - - - 0x000684 00:C674: B5 A4     LDA ram_tank_status + 4,X
+C - - - - - 0x000684 00:C674: B5 A4     LDA ram_tank_status + $04,X
 C - - - - - 0x000686 00:C676: 10 12     BPL bra_C68A
 C - - - - - 0x000688 00:C678: C9 E0     CMP #$E0
 C - - - - - 0x00068A 00:C67A: B0 0E     BCS bra_C68A
-C - - - - - 0x00068C 00:C67C: B5 94     LDA ram_tank_pos_X + 4,X
+C - - - - - 0x00068C 00:C67C: B5 94     LDA ram_tank_pos_X + $04,X
 C - - - - - 0x00068E 00:C67E: 85 71     STA ram_0071
-C - - - - - 0x000690 00:C680: B5 9C     LDA ram_tank_pos_Y + 4,X
+C - - - - - 0x000690 00:C680: B5 9C     LDA ram_tank_pos_Y + $04,X
 C - - - - - 0x000692 00:C682: 85 72     STA ram_0072
 C - - - - - 0x000694 00:C684: 20 A2 DD  JSR sub_DDA2
 C - - - - - 0x000697 00:C687: 4C A5 C6  JMP loc_C6A5
 bra_C68A:
-C - - - - - 0x00069A 00:C68A: B5 A3     LDA ram_tank_status + 3,X
+C - - - - - 0x00069A 00:C68A: B5 A3     LDA ram_tank_status + $03,X
 C - - - - - 0x00069C 00:C68C: 10 12     BPL bra_C6A0
 C - - - - - 0x00069E 00:C68E: C9 E0     CMP #$E0
 C - - - - - 0x0006A0 00:C690: B0 0E     BCS bra_C6A0
-C - - - - - 0x0006A2 00:C692: B5 93     LDA ram_tank_pos_X + 3,X
+C - - - - - 0x0006A2 00:C692: B5 93     LDA ram_tank_pos_X + $03,X
 C - - - - - 0x0006A4 00:C694: 85 71     STA ram_0071
-C - - - - - 0x0006A6 00:C696: B5 9B     LDA ram_tank_pos_Y + 3,X
+C - - - - - 0x0006A6 00:C696: B5 9B     LDA ram_tank_pos_Y + $03,X
 C - - - - - 0x0006A8 00:C698: 85 72     STA ram_0072
 C - - - - - 0x0006AA 00:C69A: 20 A2 DD  JSR sub_DDA2
 C - - - - - 0x0006AD 00:C69D: 4C A5 C6  JMP loc_C6A5
@@ -969,7 +970,7 @@ C - - - - - 0x00073C 00:C72C: A5 80     LDA ram_enemies_left_cnt
 C - - - - - 0x00073E 00:C72E: F0 1F     BEQ bra_C74F_all_enemies_are_killed
 C - - - - - 0x000740 00:C730: A5 51     LDA ram_lives
 C - - - - - 0x000742 00:C732: 18        CLC
-C - - - - - 0x000743 00:C733: 65 52     ADC ram_lives + 1
+C - - - - - 0x000743 00:C733: 65 52     ADC ram_lives + $01
 C - - - - - 0x000745 00:C735: D0 1B     BNE bra_C752_someone_is_alive
 bra_C737_it_is_game_over:
 C - - - - - 0x000747 00:C737: A9 70     LDA #$70
@@ -1388,7 +1389,7 @@ C - - - - - 0x0009E4 00:C9D4: 85 0A     STA ram_frame_cnt_hi
 C - - - - - 0x0009E6 00:C9D6: 85 A8     STA ram_tank_type
 C - - - - - 0x0009E8 00:C9D8: 85 B0     STA ram_tank_wheels
 C - - - - - 0x0009EA 00:C9DA: 85 6F     STA ram_stun_timer
-C - - - - - 0x0009EC 00:C9DC: 85 70     STA ram_stun_timer + 1
+C - - - - - 0x0009EC 00:C9DC: 85 70     STA ram_stun_timer + $01
 C - - - - - 0x0009EE 00:C9DE: 85 4F     STA ram_scroll_pos_Y
 C - - - - - 0x0009F0 00:C9E0: 85 4A     STA ram_hidden_cutscene_cnt
 C - - - - - 0x0009F2 00:C9E2: A9 02     LDA #$02
@@ -1413,7 +1414,7 @@ bra_CA04_select_not_pressed:
 C - - - - - 0x000A14 00:CA04: A5 06     LDA ram_btn_hold
 C - - - - - 0x000A16 00:CA06: 29 20     AND #con_btn_Down
 C - - - - - 0x000A18 00:CA08: F0 0D     BEQ bra_CA17_button_not_pressed
-C - - - - - 0x000A1A 00:CA0A: A5 09     LDA ram_btn_press + 1
+C - - - - - 0x000A1A 00:CA0A: A5 09     LDA ram_btn_press + $01
 C - - - - - 0x000A1C 00:CA0C: 29 01     AND #con_btn_A
 C - - - - - 0x000A1E 00:CA0E: F0 07     BEQ bra_CA17_button_not_pressed
 C - - - - - 0x000A20 00:CA10: A9 10     LDA #$10
@@ -1424,7 +1425,7 @@ bra_CA17_button_not_pressed:
 C - - - - - 0x000A27 00:CA17: A5 06     LDA ram_btn_hold
 C - - - - - 0x000A29 00:CA19: 29 80     AND #con_btn_Right
 C - - - - - 0x000A2B 00:CA1B: F0 08     BEQ bra_CA25
-C - - - - - 0x000A2D 00:CA1D: A5 09     LDA ram_btn_press + 1
+C - - - - - 0x000A2D 00:CA1D: A5 09     LDA ram_btn_press + $01
 C - - - - - 0x000A2F 00:CA1F: 29 02     AND #con_btn_B
 C - - - - - 0x000A31 00:CA21: F0 02     BEQ bra_CA25
 C - - - - - 0x000A33 00:CA23: C6 4A     DEC ram_hidden_cutscene_cnt
@@ -1463,7 +1464,7 @@ C - - - - - 0x000A6A 00:CA5A: 0A        ASL
 C - - - - - 0x000A6B 00:CA5B: A8        TAY
 C - - - - - 0x000A6C 00:CA5C: B9 69 CA  LDA tbl_CA69_game_mode_handler,Y
 C - - - - - 0x000A6F 00:CA5F: 85 11     STA ram_0011
-C - - - - - 0x000A71 00:CA61: B9 6A CA  LDA tbl_CA69_game_mode_handler + 1,Y
+C - - - - - 0x000A71 00:CA61: B9 6A CA  LDA tbl_CA69_game_mode_handler + $01,Y
 C - - - - - 0x000A74 00:CA64: 85 12     STA ram_0012
 C - - - - - 0x000A76 00:CA66: 6C 11 00  JMP (ram_0011)
 
@@ -1840,19 +1841,19 @@ C - - - - - 0x000CE7 00:CCD7: A2 1E     LDX #$1E
 C - - - - - 0x000CE9 00:CCD9: 20 76 D2  JSR sub_D276
 C - - - - - 0x000CEC 00:CCDC: A5 73     LDA ram_p1_enemy_type_kill_cnt
 C - - - - - 0x000CEE 00:CCDE: 18        CLC
-C - - - - - 0x000CEF 00:CCDF: 65 74     ADC ram_p1_enemy_type_kill_cnt + 1
+C - - - - - 0x000CEF 00:CCDF: 65 74     ADC ram_p1_enemy_type_kill_cnt + $01
 C - - - - - 0x000CF1 00:CCE1: 18        CLC
-C - - - - - 0x000CF2 00:CCE2: 65 75     ADC ram_p1_enemy_type_kill_cnt + 2
+C - - - - - 0x000CF2 00:CCE2: 65 75     ADC ram_p1_enemy_type_kill_cnt + $02
 C - - - - - 0x000CF4 00:CCE4: 18        CLC
-C - - - - - 0x000CF5 00:CCE5: 65 76     ADC ram_p1_enemy_type_kill_cnt + 3
+C - - - - - 0x000CF5 00:CCE5: 65 76     ADC ram_p1_enemy_type_kill_cnt + $03
 C - - - - - 0x000CF7 00:CCE7: 85 7D     STA ram_007D
 C - - - - - 0x000CF9 00:CCE9: A5 77     LDA ram_p2_enemy_type_kill_cnt
 C - - - - - 0x000CFB 00:CCEB: 18        CLC
-C - - - - - 0x000CFC 00:CCEC: 65 78     ADC ram_p2_enemy_type_kill_cnt + 1
+C - - - - - 0x000CFC 00:CCEC: 65 78     ADC ram_p2_enemy_type_kill_cnt + $01
 C - - - - - 0x000CFE 00:CCEE: 18        CLC
-C - - - - - 0x000CFF 00:CCEF: 65 79     ADC ram_p2_enemy_type_kill_cnt + 2
+C - - - - - 0x000CFF 00:CCEF: 65 79     ADC ram_p2_enemy_type_kill_cnt + $02
 C - - - - - 0x000D01 00:CCF1: 18        CLC
-C - - - - - 0x000D02 00:CCF2: 65 7A     ADC ram_p2_enemy_type_kill_cnt + 3
+C - - - - - 0x000D02 00:CCF2: 65 7A     ADC ram_p2_enemy_type_kill_cnt + $03
 C - - - - - 0x000D04 00:CCF4: 85 7E     STA ram_007E
 C - - - - - 0x000D06 00:CCF6: A9 00     LDA #$00
 C - - - - - 0x000D08 00:CCF8: 85 5A     STA ram_obj_loop_cnt
@@ -2044,14 +2045,14 @@ C - - - - - 0x000E89 00:CE79: 20 B3 D6  JSR sub_D6B3_fill_buffer_with_tiles
 C - - - - - 0x000E8C 00:CE7C: A9 01     LDA #$01
 C - - - - - 0x000E8E 00:CE7E: 8D 1B 03  STA ram_sfx_bonus_1000
 C - - - - - 0x000E91 00:CE81: 8D 1C 03  STA ram_sfx_ind_data        ; bzk useless write, it won't be read and will be overwritten
-C - - - - - 0x000E94 00:CE84: 8D 1D 03  STA ram_sfx_ind_data + 1    ; bzk useless write, it won't be read and will be overwritten
+C - - - - - 0x000E94 00:CE84: 8D 1D 03  STA ram_sfx_ind_data + $01    ; bzk useless write, it won't be read and will be overwritten
 C - - - - - 0x000E97 00:CE87: 20 38 D1  JSR sub_D138_gain_extra_life_for_20000_pts
 C - - - - - 0x000E9A 00:CE8A: 4C E5 CE  JMP loc_CEE5
 bra_CE8D:
 C - - - - - 0x000E9D 00:CE8D: A5 7D     LDA ram_007D
 C - - - - - 0x000E9F 00:CE8F: C5 7E     CMP ram_007E
 C - - - - - 0x000EA1 00:CE91: B0 52     BCS bra_CEE5
-C - - - - - 0x000EA3 00:CE93: A5 52     LDA ram_lives + 1
+C - - - - - 0x000EA3 00:CE93: A5 52     LDA ram_lives + $01
 C - - - - - 0x000EA5 00:CE95: F0 4E     BEQ bra_CEE5
 C - - - - - 0x000EA7 00:CE97: A9 00     LDA #$00
 C - - - - - 0x000EA9 00:CE99: 20 E1 D9  JSR sub_D9E1
@@ -2084,7 +2085,7 @@ C - - - - - 0x000EE4 00:CED4: 20 B3 D6  JSR sub_D6B3_fill_buffer_with_tiles
 C - - - - - 0x000EE7 00:CED7: A9 01     LDA #$01
 C - - - - - 0x000EE9 00:CED9: 8D 1B 03  STA ram_sfx_bonus_1000
 C - - - - - 0x000EEC 00:CEDC: 8D 1C 03  STA ram_sfx_ind_data        ; bzk useless write, it won't be read and will be overwritten
-C - - - - - 0x000EEF 00:CEDF: 8D 1D 03  STA ram_sfx_ind_data + 1    ; bzk useless write, it won't be read and will be overwritten
+C - - - - - 0x000EEF 00:CEDF: 8D 1D 03  STA ram_sfx_ind_data + $01    ; bzk useless write, it won't be read and will be overwritten
 C - - - - - 0x000EF2 00:CEE2: 20 38 D1  JSR sub_D138_gain_extra_life_for_20000_pts
 bra_CEE5:
 loc_CEE5:
@@ -2383,7 +2384,7 @@ C - - - - - 0x00114A 00:D13A: C9 80     CMP #con_not_game_over
 C - - - - - 0x00114C 00:D13C: D0 2B     BNE bra_D169_RTS    ; don't give lifes if game over
 C - - - - - 0x00114E 00:D13E: A5 66     LDA ram_p1_extra_life
 C - - - - - 0x001150 00:D140: D0 0D     BNE bra_D14F    ; already gained
-C - - - - - 0x001152 00:D142: A5 17     LDA ram_p1_score + 2
+C - - - - - 0x001152 00:D142: A5 17     LDA ram_p1_score + $02
 C - - - - - 0x001154 00:D144: C9 02     CMP #$02    ; 20.000
 C - - - - - 0x001156 00:D146: 90 07     BCC bra_D14F
 C - - - - - 0x001158 00:D148: E6 51     INC ram_lives
@@ -2394,10 +2395,10 @@ C - - - - - 0x00115F 00:D14F: A5 83     LDA ram_game_mode
 C - - - - - 0x001161 00:D151: F0 16     BEQ bra_D169_RTS    ; 1p mode
 C - - - - - 0x001163 00:D153: A5 67     LDA ram_p2_extra_life
 C - - - - - 0x001165 00:D155: D0 12     BNE bra_D169_RTS    ; already gained
-C - - - - - 0x001167 00:D157: A5 1F     LDA ram_p2_score + 2
+C - - - - - 0x001167 00:D157: A5 1F     LDA ram_p2_score + $02
 C - - - - - 0x001169 00:D159: C9 02     CMP #$02    ; 20.000
 C - - - - - 0x00116B 00:D15B: 90 0C     BCC bra_D169_RTS
-C - - - - - 0x00116D 00:D15D: E6 52     INC ram_lives + 1
+C - - - - - 0x00116D 00:D15D: E6 52     INC ram_lives + $01
 C - - - - - 0x00116F 00:D15F: E6 67     INC ram_p2_extra_life
 loc_D161_play_sound:
 C D 2 - - - 0x001171 00:D161: A9 01     LDA #$01
@@ -3044,7 +3045,7 @@ C - - - - - 0x0014CF 00:D4BF: D0 0D     BNE bra_D4CE_copyrights_are_valid
 C - - - - - 0x0014D1 00:D4C1: A2 3D     LDX #< ram_hi_score
 C - - - - - 0x0014D3 00:D4C3: 20 FE D9  JSR sub_D9FE_prepare_memory_for_bcd
 C - - - - - 0x0014D6 00:D4C6: A9 02     LDA #$02    ; set default hiscore 20.000
-C - - - - - 0x0014D8 00:D4C8: 85 3F     STA ram_hi_score + 2
+C - - - - - 0x0014D8 00:D4C8: 85 3F     STA ram_hi_score + $02
 C - - - - - 0x0014DA 00:D4CA: A9 00     LDA #$00
 C - - - - - 0x0014DC 00:D4CC: 85 83     STA ram_game_mode
 bra_D4CE_copyrights_are_valid:
@@ -3760,7 +3761,7 @@ C - - - - - 0x00192D 00:D91D: D0 0A     BNE bra_D929
 C - - - - - 0x00192F 00:D91F: BD 80 01  LDA ram_ppu_buffer,X
 C - - - - - 0x001932 00:D922: C9 FF     CMP #$FF
 C - - - - - 0x001934 00:D924: D0 DF     BNE bra_D905_loop
-C - - - - - 0x001936 00:D926: BD 7F 01  LDA ram_ppu_buffer - 1,X
+C - - - - - 0x001936 00:D926: BD 7F 01  LDA ram_ppu_buffer - $01,X
 bra_D929:
 C - - - - - 0x001939 00:D929: 8D 07 20  STA $2007
 C - - - - - 0x00193C 00:D92C: 4C 17 D9  JMP loc_D917_loop
@@ -3933,14 +3934,14 @@ sub_D9FE_prepare_memory_for_bcd:
     ; 3D = 003D-0044
 C - - - - - 0x001A0E 00:D9FE: A9 00     LDA #$00
 C - - - - - 0x001A10 00:DA00: 95 00     STA ram_0000,X       ; millions
-C - - - - - 0x001A12 00:DA02: 95 01     STA ram_0000 + 1,X   ; hundreds of thousands
-C - - - - - 0x001A14 00:DA04: 95 02     STA ram_0000 + 2,X   ; tens of thousands
-C - - - - - 0x001A16 00:DA06: 95 03     STA ram_0000 + 3,X   ; thousands
-C - - - - - 0x001A18 00:DA08: 95 04     STA ram_0000 + 4,X   ; hundreds
-C - - - - - 0x001A1A 00:DA0A: 95 05     STA ram_0000 + 5,X   ; tens
-C - - - - - 0x001A1C 00:DA0C: 95 06     STA ram_0000 + 6,X   ; ones
+C - - - - - 0x001A12 00:DA02: 95 01     STA ram_0000 + $01,X   ; hundreds of thousands
+C - - - - - 0x001A14 00:DA04: 95 02     STA ram_0000 + $02,X   ; tens of thousands
+C - - - - - 0x001A16 00:DA06: 95 03     STA ram_0000 + $03,X   ; thousands
+C - - - - - 0x001A18 00:DA08: 95 04     STA ram_0000 + $04,X   ; hundreds
+C - - - - - 0x001A1A 00:DA0A: 95 05     STA ram_0000 + $05,X   ; tens
+C - - - - - 0x001A1C 00:DA0C: 95 06     STA ram_0000 + $06,X   ; ones
 C - - - - - 0x001A1E 00:DA0E: A9 FF     LDA #$FF
-C - - - - - 0x001A20 00:DA10: 95 07     STA ram_0000 + 7,X   ; end token
+C - - - - - 0x001A20 00:DA10: 95 07     STA ram_0000 + $07,X   ; end token
 C - - - - - 0x001A22 00:DA12: 60        RTS
 
 
@@ -4316,7 +4317,7 @@ C - - - - - 0x001C52 00:DC42: 29 FE     AND #$FE
 C - - - - - 0x001C54 00:DC44: A8        TAY
 C - - - - - 0x001C55 00:DC45: B9 98 E4  LDA tbl_E498_tank_status_handler,Y
 C - - - - - 0x001C58 00:DC48: 85 11     STA ram_0011
-C - - - - - 0x001C5A 00:DC4A: B9 99 E4  LDA tbl_E498_tank_status_handler + 1,Y
+C - - - - - 0x001C5A 00:DC4A: B9 99 E4  LDA tbl_E498_tank_status_handler + $01,Y
 C - - - - - 0x001C5D 00:DC4D: 85 12     STA ram_0012
 C - - - - - 0x001C5F 00:DC4F: 6C 11 00  JMP (ram_0011)
 
@@ -4523,9 +4524,9 @@ C - - - - - 0x001D96 00:DD86: 4C 9C DD  JMP loc_DD9C
 
 
 ofs_000_DD89_0C:
-C - - J - - 0x001D99 00:DD89: A5 91     LDA ram_tank_pos_X + 1
+C - - J - - 0x001D99 00:DD89: A5 91     LDA ram_tank_pos_X + $01
 C - - - - - 0x001D9B 00:DD8B: 85 71     STA ram_0071
-C - - - - - 0x001D9D 00:DD8D: A5 99     LDA ram_tank_pos_Y + 1
+C - - - - - 0x001D9D 00:DD8D: A5 99     LDA ram_tank_pos_Y + $01
 C - - - - - 0x001D9F 00:DD8F: 85 72     STA ram_0072
 C - - - - - 0x001DA1 00:DD91: 4C 9C DD  JMP loc_DD9C
 
@@ -4631,7 +4632,7 @@ C - - - - - 0x001E2A 00:DE1A: C9 80     CMP #con_not_game_over
 C - - - - - 0x001E2C 00:DE1C: D0 27     BNE bra_DE45_RTS    ; don't show message if game over
 C - - - - - 0x001E2E 00:DE1E: E0 01     CPX #$01
 C - - - - - 0x001E30 00:DE20: F0 12     BEQ bra_DE34_it_is_p2
-C - - - - - 0x001E32 00:DE22: A5 52     LDA ram_lives + 1   ; bzk optimize, no need to check lives again if we already here
+C - - - - - 0x001E32 00:DE22: A5 52     LDA ram_lives + $01   ; bzk optimize, no need to check lives again if we already here
 C - - - - - 0x001E34 00:DE24: F0 1F     BEQ bra_DE45_RTS
 C - - - - - 0x001E36 00:DE26: A9 03     LDA #$03    ; move right
 C - - - - - 0x001E38 00:DE28: 8D 07 01  STA ram_go_msg_mov_type
@@ -4711,7 +4712,7 @@ C - - - - - 0x001EA0 00:DE90: F0 09     BEQ bra_DE9B
 C - - - - - 0x001EA2 00:DE92: 8A        TXA
 C - - - - - 0x001EA3 00:DE93: 29 01     AND #$01
 C - - - - - 0x001EA5 00:DE95: F0 09     BEQ bra_DEA0
-C - - - - - 0x001EA7 00:DE97: A5 A1     LDA ram_tank_status + 1
+C - - - - - 0x001EA7 00:DE97: A5 A1     LDA ram_tank_status + $01
 C - - - - - 0x001EA9 00:DE99: F0 05     BEQ bra_DEA0
 bra_DE9B:
 C - - - - - 0x001EAB 00:DE9B: A9 C0     LDA #$C0
@@ -4747,7 +4748,7 @@ C - - - - - 0x001ECD 00:DEBD: 29 FE     AND #$FE
 C - - - - - 0x001ECF 00:DEBF: A8        TAY
 C - - - - - 0x001ED0 00:DEC0: B9 B8 E4  LDA tbl_E4B8_tank_status_handler,Y
 C - - - - - 0x001ED3 00:DEC3: 85 11     STA ram_0011
-C - - - - - 0x001ED5 00:DEC5: B9 B9 E4  LDA tbl_E4B8_tank_status_handler + 1,Y
+C - - - - - 0x001ED5 00:DEC5: B9 B9 E4  LDA tbl_E4B8_tank_status_handler + $01,Y
 C - - - - - 0x001ED8 00:DEC8: 85 12     STA ram_0012
 C - - - - - 0x001EDA 00:DECA: 6C 11 00  JMP (ram_0011)
 
@@ -5037,7 +5038,7 @@ C - - - - - 0x002051 00:E041: 29 FE     AND #$FE
 C - - - - - 0x002053 00:E043: A8        TAY
 C - - - - - 0x002054 00:E044: B9 D8 E4  LDA tbl_E4D8,Y
 C - - - - - 0x002057 00:E047: 85 11     STA ram_0011
-C - - - - - 0x002059 00:E049: B9 D9 E4  LDA tbl_E4D8 + 1,Y
+C - - - - - 0x002059 00:E049: B9 D9 E4  LDA tbl_E4D8 + $01,Y
 C - - - - - 0x00205C 00:E04C: 85 12     STA ram_0012
 C - - - - - 0x00205E 00:E04E: 6C 11 00  JMP (ram_0011)
 
@@ -5163,7 +5164,7 @@ C - - - - - 0x0020FB 00:E0EB: 29 FE     AND #$FE
 C - - - - - 0x0020FD 00:E0ED: A8        TAY
 C - - - - - 0x0020FE 00:E0EE: B9 E2 E4  LDA tbl_E4E2,Y
 C - - - - - 0x002101 00:E0F1: 85 11     STA ram_0011
-C - - - - - 0x002103 00:E0F3: B9 E3 E4  LDA tbl_E4E2 + 1,Y
+C - - - - - 0x002103 00:E0F3: B9 E3 E4  LDA tbl_E4E2 + $01,Y
 C - - - - - 0x002106 00:E0F6: 85 12     STA ram_0012
 C - - - - - 0x002108 00:E0F8: 6C 11 00  JMP (ram_0011)
 
@@ -5503,7 +5504,7 @@ C - - - - - 0x002306 00:E2F6: 0A        ASL
 C - - - - - 0x002307 00:E2F7: A8        TAY
 C - - - - - 0x002308 00:E2F8: B9 06 E3  LDA tbl_E306_explosion_handler,Y
 C - - - - - 0x00230B 00:E2FB: 85 11     STA ram_0011
-C - - - - - 0x00230D 00:E2FD: B9 07 E3  LDA tbl_E306_explosion_handler + 1,Y
+C - - - - - 0x00230D 00:E2FD: B9 07 E3  LDA tbl_E306_explosion_handler + $01,Y
 C - - - - - 0x002310 00:E300: 85 12     STA ram_0012
 C - - - - - 0x002312 00:E302: 6C 11 00  JMP (ram_0011)
 bra_E305_RTS:
@@ -5737,12 +5738,12 @@ C - - - - - 0x00244A 00:E43A: 0A        ASL
 C - - - - - 0x00244B 00:E43B: A8        TAY
 C - - - - - 0x00244C 00:E43C: B9 78 E5  LDA tbl_E578_stage_enemies_type_counter,Y
 C - - - - - 0x00244F 00:E43F: 85 8B     STA ram_enemy_type_stage_cnt
-C - - - - - 0x002451 00:E441: B9 79 E5  LDA tbl_E578_stage_enemies_type_counter + 1,Y
-C - - - - - 0x002454 00:E444: 85 8C     STA ram_enemy_type_stage_cnt + 1
-C - - - - - 0x002456 00:E446: B9 7A E5  LDA tbl_E578_stage_enemies_type_counter + 2,Y
-C - - - - - 0x002459 00:E449: 85 8D     STA ram_enemy_type_stage_cnt + 2
-C - - - - - 0x00245B 00:E44B: B9 7B E5  LDA tbl_E578_stage_enemies_type_counter + 3,Y
-C - - - - - 0x00245E 00:E44E: 85 8E     STA ram_enemy_type_stage_cnt + 3
+C - - - - - 0x002451 00:E441: B9 79 E5  LDA tbl_E578_stage_enemies_type_counter + $01,Y
+C - - - - - 0x002454 00:E444: 85 8C     STA ram_enemy_type_stage_cnt + $01
+C - - - - - 0x002456 00:E446: B9 7A E5  LDA tbl_E578_stage_enemies_type_counter + $02,Y
+C - - - - - 0x002459 00:E449: 85 8D     STA ram_enemy_type_stage_cnt + $02
+C - - - - - 0x00245B 00:E44B: B9 7B E5  LDA tbl_E578_stage_enemies_type_counter + $03,Y
+C - - - - - 0x00245E 00:E44E: 85 8E     STA ram_enemy_type_stage_cnt + $03
 C - - - - - 0x002460 00:E450: 60        RTS
 
 
@@ -6846,7 +6847,7 @@ C - - - - - 0x0029DC 00:E9CC: 0A        ASL
 C - - - - - 0x0029DD 00:E9CD: A8        TAY
 C - - - - - 0x0029DE 00:E9CE: B9 E2 E9  LDA tbl_E9E2_bonus_pickup_handler,Y
 C - - - - - 0x0029E1 00:E9D1: 85 11     STA ram_0011
-C - - - - - 0x0029E3 00:E9D3: B9 E3 E9  LDA tbl_E9E2_bonus_pickup_handler + 1,Y
+C - - - - - 0x0029E3 00:E9D3: B9 E3 E9  LDA tbl_E9E2_bonus_pickup_handler + $01,Y
 C - - - - - 0x0029E6 00:E9D6: 85 12     STA ram_0012
 C - - - - - 0x0029E8 00:E9D8: 68        PLA
 C - - - - - 0x0029E9 00:E9D9: 68        PLA
@@ -7172,7 +7173,7 @@ C - - - - - 0x002BB2 00:EBA2: 4A        LSR
 C - - - - - 0x002BB3 00:EBA3: AA        TAX
 C - - - - - 0x002BB4 00:EBA4: BD E6 EC  LDA tbl_ECE6,X
 C - - - - - 0x002BB7 00:EBA7: 85 FD     STA ram_00FD
-C - - - - - 0x002BB9 00:EBA9: BD E7 EC  LDA tbl_ECE6 + 1,X
+C - - - - - 0x002BB9 00:EBA9: BD E7 EC  LDA tbl_ECE6 + $01,X
 C - - - - - 0x002BBC 00:EBAC: 85 FE     STA ram_00FE
 C - - - - - 0x002BBE 00:EBAE: 68        PLA
 C - - - - - 0x002BBF 00:EBAF: 29 07     AND #$07
@@ -7365,7 +7366,7 @@ C - - - - - 0x002CC1 00:ECB1: 0A        ASL
 C - - - - - 0x002CC2 00:ECB2: AA        TAX
 C - - - - - 0x002CC3 00:ECB3: BD FE EC  LDA tbl_ECFE,X
 C - - - - - 0x002CC6 00:ECB6: 85 F2     STA ram_00F2
-C - - - - - 0x002CC8 00:ECB8: BD FF EC  LDA tbl_ECFE + 1,X
+C - - - - - 0x002CC8 00:ECB8: BD FF EC  LDA tbl_ECFE + $01,X
 C - - - - - 0x002CCB 00:ECBB: 85 F3     STA ram_00F3
 C - - - - - 0x002CCD 00:ECBD: 60        RTS
 
