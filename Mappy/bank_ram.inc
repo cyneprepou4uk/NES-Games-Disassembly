@@ -40,6 +40,7 @@ ram_nmi_trigger_flag            = $0020 ; 4
 ram_frame_counter               = $0021 ; 19   
 
 ram_input_AB                    = $0022 ; 2   
+
 ram_0023                        = $0023 ; 6   
 ram_0024                        = $0024 ; 6   
 ram_0025                        = $0025 ; 5   

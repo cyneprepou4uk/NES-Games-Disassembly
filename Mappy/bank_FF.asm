@@ -243,10 +243,14 @@ C - - - - - 0x000157 00:C147: 8A        TXA
 C - - - - - 0x000158 00:C148: BE 00 01  LDX ram_stack,Y
 C - - - - - 0x00015B 00:C14B: 99 00 01  STA ram_stack,Y
 C - - - - - 0x00015E 00:C14E: 9A        TXS
-ofs_C14F_00_RTS:
+ofs_000_C14F_00_RTS:
+ofs_001_C14F_00_RTS:
+ofs_002_C14F_00_RTS:
+ofs_003_C14F_00_RTS:
 ofs_000_C14F_1A_RTS:
 ofs_001_C14F_0B_RTS:
 ofs_001_C14F_0C_RTS:
+ofs_006_C14F_00_RTS:
 C - - - - - 0x00015F 00:C14F: 60        RTS
 
 
@@ -270,7 +274,7 @@ C - - - - - 0x00017C 00:C16C: E8        INX
 C - - - - - 0x00017D 00:C16D: 8D 07 20  STA $2007
 C - - - - - 0x000180 00:C170: 88        DEY
 C - - - - - 0x000181 00:C171: D0 F6     BNE bra_C169_loop
-C - - - - - 0x000183 00:C173: F0 DE     BEQ bra_C153_loop
+C - - - - - 0x000183 00:C173: F0 DE     BEQ bra_C153_loop    ; jmp
 bra_C175:
 C - - - - - 0x000185 00:C175: A2 00     LDX #$00
 loc_C177_loop:
@@ -603,7 +607,7 @@ C - - - - - 0x000363 00:C353: 6C 1C 00  JMP (ram_001C)
 
 
 tbl_C356:
-- D 2 - - - 0x000366 00:C356: 4F C1     .word ofs_C14F_00_RTS
+- D 2 - - - 0x000366 00:C356: 4F C1     .word ofs_000_C14F_00_RTS
 - D 2 - - - 0x000368 00:C358: C0 C3     .word ofs_000_C3C0_02
 - D 2 - - - 0x00036A 00:C35A: A8 C4     .word ofs_000_C4A8_04
 - D 2 - - - 0x00036C 00:C35C: B0 C4     .word ofs_000_C4B0_06
@@ -1998,11 +2002,11 @@ sub_CBB1:
 C - - - - - 0x000BC1 00:CBB1: 20 F5 CB  JSR sub_CBF5_clear_ppu_2000_27FF
 C - - - - - 0x000BC4 00:CBB4: A0 02     LDY #$02
 C - - - - - 0x000BC6 00:CBB6: 20 15 CC  JSR sub_CC15
-C - - - - - 0x000BC9 00:CBB9: A0 00     LDY #$00
+C - - - - - 0x000BC9 00:CBB9: A0 00     LDY #con_D640_00
 C - - - - - 0x000BCB 00:CBBB: 20 D9 D5  JSR sub_D5D9
-C - - - - - 0x000BCE 00:CBBE: A0 04     LDY #$04
+C - - - - - 0x000BCE 00:CBBE: A0 04     LDY #con_D640_04
 C - - - - - 0x000BD0 00:CBC0: 20 D9 D5  JSR sub_D5D9
-C - - - - - 0x000BD3 00:CBC3: A0 08     LDY #$08
+C - - - - - 0x000BD3 00:CBC3: A0 08     LDY #con_D640_08
 C - - - - - 0x000BD5 00:CBC5: 20 D9 D5  JSR sub_D5D9
 C - - - - - 0x000BD8 00:CBC8: A9 B0     LDA #$B0    ; tiles for MAPPY at the logo
 C - - - - - 0x000BDA 00:CBCA: 85 10     STA ram_0010
@@ -2336,16 +2340,16 @@ C - - - - - 0x000E46 00:CE36: 8D 18 06  STA ram_0618
 C - - - - - 0x000E49 00:CE39: 20 BB CE  JSR sub_CEBB
 C - - - - - 0x000E4C 00:CE3C: A0 04     LDY #$04
 C - - - - - 0x000E4E 00:CE3E: 20 CD CE  JSR sub_CECD
-C - - - - - 0x000E51 00:CE41: A0 0E     LDY #$0E
+C - - - - - 0x000E51 00:CE41: A0 0E     LDY #con_D640_0E
 C - - - - - 0x000E53 00:CE43: 20 D9 D5  JSR sub_D5D9
-C - - - - - 0x000E56 00:CE46: A0 12     LDY #$12
+C - - - - - 0x000E56 00:CE46: A0 12     LDY #con_D640_12
 C - - - - - 0x000E58 00:CE48: 20 D9 D5  JSR sub_D5D9
 C - - - - - 0x000E5B 00:CE4B: 20 BB CE  JSR sub_CEBB
 C - - - - - 0x000E5E 00:CE4E: A0 08     LDY #$08
 C - - - - - 0x000E60 00:CE50: 20 CD CE  JSR sub_CECD
-C - - - - - 0x000E63 00:CE53: A0 10     LDY #$10
+C - - - - - 0x000E63 00:CE53: A0 10     LDY #con_D640_10
 C - - - - - 0x000E65 00:CE55: 20 D9 D5  JSR sub_D5D9
-C - - - - - 0x000E68 00:CE58: A0 14     LDY #$14
+C - - - - - 0x000E68 00:CE58: A0 14     LDY #con_D640_14
 C - - - - - 0x000E6A 00:CE5A: 20 D9 D5  JSR sub_D5D9
 C - - - - - 0x000E6D 00:CE5D: 20 94 CE  JSR sub_CE94
 C - - - - - 0x000E70 00:CE60: A5 5A     LDA ram_005A
@@ -2363,14 +2367,14 @@ bra_CE76:
 C - - - - - 0x000E86 00:CE76: 20 94 CE  JSR sub_CE94
 C - - - - - 0x000E89 00:CE79: A0 10     LDY #$10
 C - - - - - 0x000E8B 00:CE7B: 20 CD CE  JSR sub_CECD
-C - - - - - 0x000E8E 00:CE7E: A0 0A     LDY #$0A
+C - - - - - 0x000E8E 00:CE7E: A0 0A     LDY #con_D536_0A
 C - - - - - 0x000E90 00:CE80: 20 E5 D4  JSR sub_D4E5
-C - - - - - 0x000E93 00:CE83: A0 16     LDY #$16
+C - - - - - 0x000E93 00:CE83: A0 16     LDY #con_D640_16
 C - - - - - 0x000E95 00:CE85: 20 D9 D5  JSR sub_D5D9
 C - - - - - 0x000E98 00:CE88: 20 94 CE  JSR sub_CE94
 C - - - - - 0x000E9B 00:CE8B: A9 01     LDA #$01
 C - - - - - 0x000E9D 00:CE8D: 85 43     STA ram_0043
-C - - - - - 0x000E9F 00:CE8F: A0 0C     LDY #$0C
+C - - - - - 0x000E9F 00:CE8F: A0 0C     LDY #con_D536_0C
 C - - - - - 0x000EA1 00:CE91: 4C E5 D4  JMP loc_D4E5
 
 
@@ -3564,7 +3568,8 @@ C - - - - - 0x0014D9 00:D4C9: 60        RTS
 sub_D4CA:
 loc_D4CA:
 C D 2 - - - 0x0014DA 00:D4CA: A5 42     LDA ram_demo_flag
-C - - - - - 0x0014DC 00:D4CC: F0 FB     BEQ bra_D4C9_RTS    ; it is demo now
+C - - - - - 0x0014DC 00:D4CC: F0 FB     BEQ bra_D4C9_RTS    ; if demo
+; if not demo
 C - - - - - 0x0014DE 00:D4CE: 85 43     STA ram_0043
 C - - - - - 0x0014E0 00:D4D0: 98        TYA
 C - - - - - 0x0014E1 00:D4D1: 18        CLC
@@ -3636,12 +3641,12 @@ C - - - - - 0x001545 00:D535: 60        RTS
 
 tbl_D536:
 - D 2 - - - 0x001546 00:D536: 44 D5     .word off_D544_00
-- D 2 - - - 0x001548 00:D538: 48 D5     .word off_D548_01
-- D 2 - - - 0x00154A 00:D53A: 4C D5     .word off_D54C_02
-- D 2 - - - 0x00154C 00:D53C: 50 D5     .word off_D550_03
-- D 2 - - - 0x00154E 00:D53E: 54 D5     .word off_D554_04
-- D 2 - - - 0x001550 00:D540: 58 D5     .word off_D558_05
-- D 2 - - - 0x001552 00:D542: 5C D5     .word off_D55C_06
+- D 2 - - - 0x001548 00:D538: 48 D5     .word off_D548_02
+- D 2 - - - 0x00154A 00:D53A: 4C D5     .word off_D54C_04
+- D 2 - - - 0x00154C 00:D53C: 50 D5     .word off_D550_06
+- D 2 - - - 0x00154E 00:D53E: 54 D5     .word off_D554_08
+- D 2 - - - 0x001550 00:D540: 58 D5     .word off_D558_0A
+- D 2 - - - 0x001552 00:D542: 5C D5     .word off_D55C_0C
 
 
 
@@ -3653,7 +3658,7 @@ off_D544_00:
 
 
 
-off_D548_01:
+off_D548_02:
 - D 2 - I - 0x001558 00:D548: 70        .byte $70   ; 
 - D 2 - I - 0x001559 00:D549: 60        .byte $60   ; 
 - D 2 - I - 0x00155A 00:D54A: D5        .byte $D5   ; 
@@ -3661,7 +3666,7 @@ off_D548_01:
 
 
 
-off_D54C_02:
+off_D54C_04:
 - D 2 - I - 0x00155C 00:D54C: 77        .byte $77   ; 
 - D 2 - I - 0x00155D 00:D54D: 60        .byte $60   ; 
 - D 2 - I - 0x00155E 00:D54E: D5        .byte $D5   ; 
@@ -3669,7 +3674,7 @@ off_D54C_02:
 
 
 
-off_D550_03:
+off_D550_06:
 - D 2 - I - 0x001560 00:D550: 50        .byte $50   ; 
 - D 2 - I - 0x001561 00:D551: 60        .byte $60   ; 
 - D 2 - I - 0x001562 00:D552: D5        .byte $D5   ; 
@@ -3677,7 +3682,7 @@ off_D550_03:
 
 
 
-off_D554_04:
+off_D554_08:
 - D 2 - I - 0x001564 00:D554: 57        .byte $57   ; 
 - D 2 - I - 0x001565 00:D555: 67        .byte $67   ; 
 - D 2 - I - 0x001566 00:D556: D5        .byte $D5   ; 
@@ -3685,7 +3690,7 @@ off_D554_04:
 
 
 
-off_D558_05:
+off_D558_0A:
 - D 2 - I - 0x001568 00:D558: 5F        .byte $5F   ; 
 - D 2 - I - 0x001569 00:D559: 54        .byte $54   ; 
 - D 2 - I - 0x00156A 00:D55A: 00        .byte $00   ; 
@@ -3693,7 +3698,7 @@ off_D558_05:
 
 
 
-off_D55C_06:
+off_D55C_0C:
 - D 2 - I - 0x00156C 00:D55C: 74        .byte $74   ; 
 - D 2 - I - 0x00156D 00:D55D: 5C        .byte $5C   ; 
 - D 2 - I - 0x00156E 00:D55E: 00        .byte $00   ; 
@@ -3804,11 +3809,11 @@ C - - - - - 0x0015D6 00:D5C6: A9 00     LDA #$00
 C - - - - - 0x0015D8 00:D5C8: 85 43     STA ram_0043
 C - - - - - 0x0015DA 00:D5CA: 20 94 D6  JSR sub_D694_check_max_score
 C - - - - - 0x0015DD 00:D5CD: 20 AA D6  JSR sub_D6AA
-C - - - - - 0x0015E0 00:D5D0: A0 08     LDY #$08
+C - - - - - 0x0015E0 00:D5D0: A0 08     LDY #con_D640_08
 C - - - - - 0x0015E2 00:D5D2: 4C D9 D5  JMP loc_D5D9
 bra_D5D5:
 C - - - - - 0x0015E5 00:D5D5: E6 43     INC ram_0043
-C - - - - - 0x0015E7 00:D5D7: A0 00     LDY #$00
+C - - - - - 0x0015E7 00:D5D7: A0 00     LDY #con_D640_00
 sub_D5D9:
 loc_D5D9:
 C D 2 - - - 0x0015E9 00:D5D9: B9 40 D6  LDA tbl_D640,Y
@@ -3880,17 +3885,17 @@ C - - - - - 0x00164F 00:D63F: 60        RTS
 
 tbl_D640:
 - D 2 - - - 0x001650 00:D640: 58 D6     .word _off000_D658_00
-- - - - - - 0x001652 00:D642: 5D D6     .word _off000_D65D_01
-- D 2 - - - 0x001654 00:D644: 67 D6     .word _off000_D667_02
-- - - - - - 0x001656 00:D646: 62 D6     .word _off000_D662_03
-- D 2 - - - 0x001658 00:D648: 6C D6     .word _off000_D66C_04
-- D 2 - - - 0x00165A 00:D64A: 71 D6     .word _off000_D671_05
-- D 2 - - - 0x00165C 00:D64C: 76 D6     .word _off000_D676_06
-- D 2 - - - 0x00165E 00:D64E: 7B D6     .word _off000_D67B_07
-- D 2 - - - 0x001660 00:D650: 80 D6     .word _off000_D680_08
-- D 2 - - - 0x001662 00:D652: 85 D6     .word _off000_D685_09
-- D 2 - - - 0x001664 00:D654: 8A D6     .word _off000_D68A_0A
-- D 2 - - - 0x001666 00:D656: 8F D6     .word _off000_D68F_0B
+- - - - - - 0x001652 00:D642: 5D D6     .word _off000_D65D_02
+- D 2 - - - 0x001654 00:D644: 67 D6     .word _off000_D667_04
+- - - - - - 0x001656 00:D646: 62 D6     .word _off000_D662_06
+- D 2 - - - 0x001658 00:D648: 6C D6     .word _off000_D66C_08
+- D 2 - - - 0x00165A 00:D64A: 71 D6     .word _off000_D671_0A
+- D 2 - - - 0x00165C 00:D64C: 76 D6     .word _off000_D676_0C
+- D 2 - - - 0x00165E 00:D64E: 7B D6     .word _off000_D67B_0E
+- D 2 - - - 0x001660 00:D650: 80 D6     .word _off000_D680_10
+- D 2 - - - 0x001662 00:D652: 85 D6     .word _off000_D685_12
+- D 2 - - - 0x001664 00:D654: 8A D6     .word _off000_D68A_14
+- D 2 - - - 0x001666 00:D656: 8F D6     .word _off000_D68F_16
 
 
 
@@ -3902,7 +3907,7 @@ _off000_D658_00:
 
 
 
-_off000_D65D_01:
+_off000_D65D_02:
 - - - - - - 0x00166D 00:D65D: 74 20     .word $2074
 - - - - - - 0x00166F 00:D65F: 71        .byte $71   ; 
 - - - - - - 0x001670 00:D660: 04        .byte $04   ; 
@@ -3910,7 +3915,7 @@ _off000_D65D_01:
 
 
 
-_off000_D662_03:
+_off000_D662_06:
 - - - - - - 0x001672 00:D662: 62 20     .word $2062
 - - - - - - 0x001674 00:D664: B1        .byte $B1   ; 
 - - - - - - 0x001675 00:D665: 04        .byte $04   ; 
@@ -3918,7 +3923,7 @@ _off000_D662_03:
 
 
 
-_off000_D667_02:
+_off000_D667_04:
 - D 2 - I - 0x001677 00:D667: 74 20     .word $2074
 - D 2 - I - 0x001679 00:D669: B1        .byte $B1   ; 
 - D 2 - I - 0x00167A 00:D66A: 04        .byte $04   ; 
@@ -3926,7 +3931,7 @@ _off000_D667_02:
 
 
 
-_off000_D66C_04:
+_off000_D66C_08:
 - D 2 - I - 0x00167C 00:D66C: 6B 20     .word $206B
 - D 2 - I - 0x00167E 00:D66E: 44        .byte $44   ; 
 - D 2 - I - 0x00167F 00:D66F: 04        .byte $04   ; 
@@ -3934,7 +3939,7 @@ _off000_D66C_04:
 
 
 
-_off000_D671_05:
+_off000_D671_0A:
 - D 2 - I - 0x001681 00:D671: 76 20     .word $2076
 - D 2 - I - 0x001683 00:D673: 70        .byte $70   ; 
 - D 2 - I - 0x001684 00:D674: 01        .byte $01   ; 
@@ -3942,7 +3947,7 @@ _off000_D671_05:
 
 
 
-_off000_D676_06:
+_off000_D676_0C:
 - D 2 - I - 0x001686 00:D676: 7A 20     .word $207A
 - D 2 - I - 0x001688 00:D678: 77        .byte $77   ; 
 - D 2 - I - 0x001689 00:D679: 01        .byte $01   ; 
@@ -3950,7 +3955,7 @@ _off000_D676_06:
 
 
 
-_off000_D67B_07:
+_off000_D67B_0E:
 - D 2 - I - 0x00168B 00:D67B: 90 21     .word $2190
 - D 2 - I - 0x00168D 00:D67D: 50        .byte $50   ; 
 - D 2 - I - 0x00168E 00:D67E: 01        .byte $01   ; 
@@ -3958,7 +3963,7 @@ _off000_D67B_07:
 
 
 
-_off000_D680_08:
+_off000_D680_10:
 - D 2 - I - 0x001690 00:D680: 10 22     .word $2210
 - D 2 - I - 0x001692 00:D682: 51        .byte $51   ; 
 - D 2 - I - 0x001693 00:D683: 01        .byte $01   ; 
@@ -3966,7 +3971,7 @@ _off000_D680_08:
 
 
 
-_off000_D685_09:
+_off000_D685_12:
 - D 2 - I - 0x001695 00:D685: 97 21     .word $2197
 - D 2 - I - 0x001697 00:D687: 56        .byte $56   ; 
 - D 2 - I - 0x001698 00:D688: 02        .byte $02   ; 
@@ -3974,7 +3979,7 @@ _off000_D685_09:
 
 
 
-_off000_D68A_0A:
+_off000_D68A_14:
 - D 2 - I - 0x00169A 00:D68A: 17 22     .word $2217
 - D 2 - I - 0x00169C 00:D68C: 5A        .byte $5A   ; 
 - D 2 - I - 0x00169D 00:D68D: 02        .byte $02   ; 
@@ -3982,7 +3987,7 @@ _off000_D68A_0A:
 
 
 
-_off000_D68F_0B:
+_off000_D68F_16:
 - D 2 - I - 0x00169F 00:D68F: 15 23     .word $2315
 - D 2 - I - 0x0016A1 00:D691: 5D        .byte $5D   ; 
 - D 2 - I - 0x0016A2 00:D692: 03        .byte $03   ; 
@@ -4025,7 +4030,7 @@ C - - - - - 0x0016CC 00:D6BC: E6 75     INC ram_0075
 C - - - - - 0x0016CE 00:D6BE: D0 02     BNE bra_D6C2
 - - - - - - 0x0016D0 00:D6C0: C6 75     DEC ram_0075
 bra_D6C2:
-C - - - - - 0x0016D2 00:D6C2: A0 00     LDY #$00
+C - - - - - 0x0016D2 00:D6C2: A0 00     LDY #con_D536_00
 C - - - - - 0x0016D4 00:D6C4: 20 E5 D4  JSR sub_D4E5
 C - - - - - 0x0016D7 00:D6C7: 90 04     BCC bra_D6CD
 - - - - - - 0x0016D9 00:D6C9: A5 48     LDA ram_0048
@@ -4035,19 +4040,19 @@ C - - - - - 0x0016DD 00:D6CD: A9 01     LDA #$01
 C - - - - - 0x0016DF 00:D6CF: 8D 02 06  STA ram_0602
 C - - - - - 0x0016E2 00:D6D2: 8D 03 06  STA ram_0603
 C - - - - - 0x0016E5 00:D6D5: 8D 04 06  STA ram_0604
-C - - - - - 0x0016E8 00:D6D8: A0 02     LDY #$02
+C - - - - - 0x0016E8 00:D6D8: A0 02     LDY #con_D536_02
 C - - - - - 0x0016EA 00:D6DA: 20 E5 D4  JSR sub_D4E5
 C - - - - - 0x0016ED 00:D6DD: 90 04     BCC bra_D6E3_not_overflow
 - - - - - - 0x0016EF 00:D6DF: A9 99     LDA #$99
 - - - - - - 0x0016F1 00:D6E1: 85 70     STA ram_lives_1
 bra_D6E3_not_overflow:
-C - - - - - 0x0016F3 00:D6E3: A0 0A     LDY #$0A
+C - - - - - 0x0016F3 00:D6E3: A0 0A     LDY #con_D640_0A
 C - - - - - 0x0016F5 00:D6E5: 4C D9 D5  JMP loc_D5D9
 
 
 
 sub_D6E8:
-C - - - - - 0x0016F8 00:D6E8: A0 04     LDY #$04
+C - - - - - 0x0016F8 00:D6E8: A0 04     LDY #con_D536_04
 C - - - - - 0x0016FA 00:D6EA: 20 E5 D4  JSR sub_D4E5
 C - - - - - 0x0016FD 00:D6ED: E6 7A     INC ram_current_round
 C - - - - - 0x0016FF 00:D6EF: A5 7A     LDA ram_current_round
@@ -4068,13 +4073,13 @@ C - - - - - 0x001712 00:D702: 60        RTS
 sub_D703:
 C - - - - - 0x001713 00:D703: A0 00     LDY #$00
 C - - - - - 0x001715 00:D705: 20 15 CC  JSR sub_CC15
-C - - - - - 0x001718 00:D708: A0 08     LDY #$08
+C - - - - - 0x001718 00:D708: A0 08     LDY #con_D640_08
 C - - - - - 0x00171A 00:D70A: 20 D9 D5  JSR sub_D5D9
-C - - - - - 0x00171D 00:D70D: A0 0A     LDY #$0A
+C - - - - - 0x00171D 00:D70D: A0 0A     LDY #con_D640_0A
 C - - - - - 0x00171F 00:D70F: 20 D9 D5  JSR sub_D5D9
-C - - - - - 0x001722 00:D712: A0 0C     LDY #$0C
+C - - - - - 0x001722 00:D712: A0 0C     LDY #con_D640_0C
 C - - - - - 0x001724 00:D714: 20 D9 D5  JSR sub_D5D9
-C - - - - - 0x001727 00:D717: A0 00     LDY #$00
+C - - - - - 0x001727 00:D717: A0 00     LDY #con_D640_00
 C - - - - - 0x001729 00:D719: 4C D9 D5  JMP loc_D5D9
 
 
@@ -4082,6 +4087,7 @@ C - - - - - 0x001729 00:D719: 4C D9 D5  JMP loc_D5D9
 sub_D71C:
 C - - - - - 0x00172C 00:D71C: A5 42     LDA ram_demo_flag
 C - - - - - 0x00172E 00:D71E: F0 15     BEQ bra_D735_it_is_demo
+; if not demo
 C - - - - - 0x001730 00:D720: A5 21     LDA ram_frame_counter
 C - - - - - 0x001732 00:D722: 29 0F     AND #$0F
 C - - - - - 0x001734 00:D724: D0 0E     BNE bra_D734_RTS
@@ -4632,18 +4638,21 @@ C - - - - - 0x001A2E 00:DA1E: 60        RTS
 
 
 
-bra_DA1F_it_is_a_bonus_round:
+bra_DA1F_bonus_round:
 C - - - - - 0x001A2F 00:DA1F: BD 7A E1  LDA tbl_E17A,X
 C - - - - - 0x001A32 00:DA22: 85 1C     STA ram_001C
 C - - - - - 0x001A34 00:DA24: BD 7B E1  LDA tbl_E17A + 1,X
 C - - - - - 0x001A37 00:DA27: 85 1D     STA ram_001D
 C - - - - - 0x001A39 00:DA29: 6C 1C 00  JMP (ram_001C)
+
+
+
 sub_DA2C:
 C - - - - - 0x001A3C 00:DA2C: A0 0F     LDY #$0F
 C - - - - - 0x001A3E 00:DA2E: B1 1E     LDA (ram_001E),Y
 C - - - - - 0x001A40 00:DA30: AA        TAX
 C - - - - - 0x001A41 00:DA31: A5 7C     LDA ram_bonus_round
-C - - - - - 0x001A43 00:DA33: D0 EA     BNE bra_DA1F_it_is_a_bonus_round
+C - - - - - 0x001A43 00:DA33: D0 EA     BNE bra_DA1F_bonus_round
 C - - - - - 0x001A45 00:DA35: BD 42 DA  LDA tbl_DA42,X
 C - - - - - 0x001A48 00:DA38: 85 1C     STA ram_001C
 C - - - - - 0x001A4A 00:DA3A: BD 43 DA  LDA tbl_DA42 + 1,X
@@ -4653,7 +4662,7 @@ C - - - - - 0x001A4F 00:DA3F: 6C 1C 00  JMP (ram_001C)
 
 
 tbl_DA42:
-- D 2 - - - 0x001A52 00:DA42: 4F C1     .word ofs_C14F_00_RTS
+- D 2 - - - 0x001A52 00:DA42: 4F C1     .word ofs_001_C14F_00_RTS
 - D 2 - - - 0x001A54 00:DA44: 70 DA     .word ofs_001_DA70_01
 - D 2 - - - 0x001A56 00:DA46: C7 DA     .word ofs_001_DAC7_02
 - D 2 - - - 0x001A58 00:DA48: 94 DB     .word ofs_001_DB94_03
@@ -5792,7 +5801,7 @@ C - - - - - 0x002189 00:E179: 60        RTS
 
 
 tbl_E17A:
-- D 3 - - - 0x00218A 00:E17A: 4F C1     .word ofs_C14F_00_RTS
+- D 3 - - - 0x00218A 00:E17A: 4F C1     .word ofs_002_C14F_00_RTS
 - D 3 - - - 0x00218C 00:E17C: 9D E1     .word ofs_002_E19D_01
 - D 3 - - - 0x00218E 00:E17E: 9C E1     .word ofs_002_E19C_02_RTS
 - D 3 - - - 0x002190 00:E180: 00 E2     .word ofs_002_E200_03
@@ -6695,7 +6704,7 @@ C - - - - - 0x002667 00:E657: 6C 1C 00  JMP (ram_001C)
 
 
 tbl_E65A:
-- D 3 - - - 0x00266A 00:E65A: 4F C1     .word ofs_C14F_00_RTS
+- D 3 - - - 0x00266A 00:E65A: 4F C1     .word ofs_003_C14F_00_RTS
 - D 3 - - - 0x00266C 00:E65C: 60 E6     .word ofs_003_E660_01
 - D 3 - - - 0x00266E 00:E65E: FA E6     .word ofs_003_E6FA_02
 
@@ -8649,12 +8658,12 @@ C - - - - - 0x0031C2 00:F1B2: 6C 1C 00  JMP (ram_001C)
 
 
 tbl_F1B5:
-- D 3 - - - 0x0031C5 00:F1B5: 4F C1     .word ofs_C14F_00_RTS
-- D 3 - - - 0x0031C7 00:F1B7: B9 F1     .word ofs_F1B9_01
+- D 3 - - - 0x0031C5 00:F1B5: 4F C1     .word ofs_006_C14F_00_RTS
+- D 3 - - - 0x0031C7 00:F1B7: B9 F1     .word ofs_006_F1B9_01
 
 
 
-ofs_F1B9_01:
+ofs_006_F1B9_01:
 C - - J - - 0x0031C9 00:F1B9: 20 33 F2  JSR sub_F233
 C - - - - - 0x0031CC 00:F1BC: 20 15 F2  JSR sub_F215
 C - - - - - 0x0031CF 00:F1BF: A6 1B     LDX ram_001B
@@ -8685,9 +8694,9 @@ C - - - - - 0x003203 00:F1F3: 8D 08 06  STA ram_0608
 C - - - - - 0x003206 00:F1F6: A9 00     LDA #$00
 C - - - - - 0x003208 00:F1F8: 9D 60 02  STA ram_0260,X
 C - - - - - 0x00320B 00:F1FB: C6 52     DEC ram_0052
-C - - - - - 0x00320D 00:F1FD: A0 06     LDY #$06
+C - - - - - 0x00320D 00:F1FD: A0 06     LDY #con_D536_06
 C - - - - - 0x00320F 00:F1FF: 20 E5 D4  JSR sub_D4E5
-C - - - - - 0x003212 00:F202: A0 08     LDY #$08
+C - - - - - 0x003212 00:F202: A0 08     LDY #con_D536_08
 C - - - - - 0x003214 00:F204: 20 E5 D4  JSR sub_D4E5
 C - - - - - 0x003217 00:F207: AD 77 F2  LDA tbl_F277
 C - - - - - 0x00321A 00:F20A: 85 12     STA ram_0012
