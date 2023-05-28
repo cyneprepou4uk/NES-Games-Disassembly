@@ -2518,6 +2518,7 @@ tbl_95A2:
 
 
 tbl_0x009E10_music_data:
+; ch = channel
 - D 0 - I - 0x009E10 02:9E00: B3 AE     .word _music_AEB3_01_title_screen
 - D 0 - I - 0x009E12 02:9E02: A6 A2     .word _music_A2A6_02_bricks_stage_soundtrack
 - D 0 - I - 0x009E14 02:9E04: CD A6     .word _music_A6CD_03_final_cutscene
@@ -2550,7 +2551,7 @@ _music_9E2E_05_concrete_stage_soundtrack:
 - D 0 - I - 0x009E41 02:9E31: E4 9F     .word ch_05_9FE4_01
 - D 0 - I - 0x009E43 02:9E33: 90 A1     .word ch_05_A190_02
 - D 0 - I - 0x009E45 02:9E35: 2A A2     .word ch_05_A22A_03
-- - - - - - 0x009E47 02:9E37: 00 00     .word $0000
+- - - - - - 0x009E47 02:9E37: 00 00     .word $0000    ; 04
 - D 0 - I - 0x009E49 02:9E39: 14        .byte $14   ; 
 
 
@@ -3705,7 +3706,7 @@ _music_A2A6_02_bricks_stage_soundtrack:
 - D 1 - I - 0x00A2B9 02:A2A9: 61 A4     .word ch_02_A461_01
 - D 1 - I - 0x00A2BB 02:A2AB: 12 A6     .word ch_02_A612_02
 - D 1 - I - 0x00A2BD 02:A2AD: 73 A6     .word ch_02_A673_03
-- - - - - - 0x00A2BF 02:A2AF: 00 00     .word $0000
+- - - - - - 0x00A2BF 02:A2AF: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00A2C1 02:A2B1: 15        .byte $15   ; 
 
 
@@ -4779,7 +4780,7 @@ _music_A6CD_03_final_cutscene:
 - D 1 - I - 0x00A6E0 02:A6D0: 73 A7     .word ch_03_A773_01
 - D 1 - I - 0x00A6E2 02:A6D2: 0F A8     .word ch_03_A80F_02
 - D 1 - I - 0x00A6E4 02:A6D4: C4 A8     .word ch_03_A8C4_03
-- - - - - - 0x00A6E6 02:A6D6: 00 00     .word $0000
+- - - - - - 0x00A6E6 02:A6D6: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00A6E8 02:A6D8: 14        .byte $14   ; 
 
 
@@ -5825,7 +5826,7 @@ _music_AABA_0A_pipes_stage_soundtrack:
 - D 1 - I - 0x00AACD 02:AABD: 1A AB     .word ch_0A_AB1A_01
 - D 1 - I - 0x00AACF 02:AABF: 63 AB     .word ch_0A_AB63_02
 - D 1 - I - 0x00AAD1 02:AAC1: B7 AB     .word ch_0A_ABB7_03
-- - - - - - 0x00AAD3 02:AAC3: 00 00     .word $0000
+- - - - - - 0x00AAD3 02:AAC3: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00AAD5 02:AAC5: 10        .byte $10   ; 
 
 
@@ -6154,7 +6155,7 @@ _music_ABF2_15_stage_is_complete:
 - D 1 - I - 0x00AC05 02:ABF5: 1C AC     .word ch_15_AC1C_01
 - D 1 - I - 0x00AC07 02:ABF7: 3C AC     .word ch_15_AC3C_02
 - D 1 - I - 0x00AC09 02:ABF9: 5F AC     .word ch_15_AC5F_03
-- - - - - - 0x00AC0B 02:ABFB: 00 00     .word $0000
+- - - - - - 0x00AC0B 02:ABFB: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00AC0D 02:ABFD: 19        .byte $19   ; 
 
 
@@ -6300,9 +6301,9 @@ _music_AC7B_07:
 - D 1 - I - 0x00AC8B 02:AC7B: 01        .byte $01   ; 
 - D 1 - I - 0x00AC8C 02:AC7C: 87 AC     .word ch_07_AC87_00
 - D 1 - I - 0x00AC8E 02:AC7E: D0 AC     .word ch_07_ACD0_01
-- D 1 - I - 0x00AC90 02:AC80: 00 00     .word $0000
-- D 1 - I - 0x00AC92 02:AC82: 00 00     .word $0000
-- - - - - - 0x00AC94 02:AC84: 00 00     .word $0000
+- D 1 - I - 0x00AC90 02:AC80: 00 00     .word $0000    ; 02
+- D 1 - I - 0x00AC92 02:AC82: 00 00     .word $0000    ; 03
+- - - - - - 0x00AC94 02:AC84: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00AC96 02:AC86: 20        .byte $20   ; 
 
 
@@ -6467,7 +6468,7 @@ _music_AD1B_08_pipes_stage_is_complete:
 - D 1 - I - 0x00AD2E 02:AD1E: 41 AD     .word ch_08_AD41_01
 - D 1 - I - 0x00AD30 02:AD20: 80 AD     .word ch_08_AD80_02
 - D 1 - I - 0x00AD32 02:AD22: 9A AD     .word ch_08_AD9A_03
-- - - - - - 0x00AD34 02:AD24: 00 00     .word $0000
+- - - - - - 0x00AD34 02:AD24: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00AD36 02:AD26: 10        .byte $10   ; 
 
 
@@ -6625,7 +6626,7 @@ _music_ADB4_09_menu:
 - D 1 - I - 0x00ADC7 02:ADB7: E6 AD     .word ch_09_ADE6_01
 - D 1 - I - 0x00ADC9 02:ADB9: 1E AE     .word ch_09_AE1E_02
 - D 1 - I - 0x00ADCB 02:ADBB: 44 AE     .word ch_09_AE44_03
-- - - - - - 0x00ADCD 02:ADBD: 00 00     .word $0000
+- - - - - - 0x00ADCD 02:ADBD: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00ADCF 02:ADBF: 13        .byte $13   ; 
 
 
@@ -6801,8 +6802,8 @@ _music_AE5A_16_game_over:
 - D 1 - I - 0x00AE6B 02:AE5B: 66 AE     .word ch_16_AE66_00
 - D 1 - I - 0x00AE6D 02:AE5D: 87 AE     .word ch_16_AE87_01
 - D 1 - I - 0x00AE6F 02:AE5F: AA AE     .word ch_16_AEAA_02
-- D 1 - I - 0x00AE71 02:AE61: 00 00     .word $0000
-- - - - - - 0x00AE73 02:AE63: 00 00     .word $0000
+- D 1 - I - 0x00AE71 02:AE61: 00 00     .word $0000    ; 03
+- - - - - - 0x00AE73 02:AE63: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00AE75 02:AE65: 12        .byte $12   ; 
 
 
@@ -6899,7 +6900,7 @@ _music_AEB3_01_title_screen:
 - D 1 - I - 0x00AEC6 02:AEB6: 13 AF     .word ch_01_AF13_01
 - D 1 - I - 0x00AEC8 02:AEB8: 69 AF     .word ch_01_AF69_02
 - D 1 - I - 0x00AECA 02:AEBA: B8 AF     .word ch_01_AFB8_03
-- - - - - - 0x00AECC 02:AEBC: 00 00     .word $0000
+- - - - - - 0x00AECC 02:AEBC: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00AECE 02:AEBE: 14        .byte $14   ; 
 
 
