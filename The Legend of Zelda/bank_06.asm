@@ -120,7 +120,7 @@ sub_0x01809C:
 C - - - - - 0x01809C 06:808C: A2 00     LDX #$00    ; bzk optimize, no loop here, X is not needed
 C - - - - - 0x01809E 06:808E: BD 28 80  LDA tbl_8028_bat_table_location,X
 C - - - - - 0x0180A1 06:8091: 85 00     STA ram_0000
-C - - - - - 0x0180A3 06:8093: E8        INX
+C - - - - - 0x0180A3 06:8093: E8        INX ; 01
 C - - - - - 0x0180A4 06:8094: BD 28 80  LDA tbl_8028_bat_table_location,X
 C - - - - - 0x0180A7 06:8097: 85 01     STA ram_0001
 C - - - - - 0x0180A9 06:8099: 20 C6 80  JSR sub_80C6
@@ -134,7 +134,7 @@ C - - - - - 0x0180B3 06:80A3: 60        RTS
 sub_80A4_set_copy_range_687E_6B7D:
 .scope
 tmp_copy_start = ram_687E_map_data
-tmp_copy_end   = ram_687E_map_data + $300 - 1
+tmp_copy_end   = ram_687E_map_data + $300 - $01
 C - - - - - 0x0180B4 06:80A4: A9 7E     LDA #< tmp_copy_start
 C - - - - - 0x0180B6 06:80A6: 85 02     STA ram_0002
 C - - - - - 0x0180B8 06:80A8: A9 68     LDA #> tmp_copy_start
@@ -151,7 +151,7 @@ C - - - - - 0x0180C4 06:80B4: 60        RTS
 sub_80B5_set_copy_range_6B7E_6C7D:
 .scope
 tmp_copy_start = ram_6B7E_palette_buffer
-tmp_copy_end   = ram_6B7E_palette_buffer + $100 - 1
+tmp_copy_end   = ram_6B7E_palette_buffer + $100 - $01
 C - - - - - 0x0180C5 06:80B5: A9 7E     LDA #< tmp_copy_start
 C - - - - - 0x0180C7 06:80B7: 85 02     STA ram_0002
 C - - - - - 0x0180C9 06:80B9: A9 6B     LDA #> tmp_copy_start
@@ -222,11 +222,11 @@ C - - - - - 0x018122 06:8112: F0 19     BEQ bra_812D    ; if overworld
 C - - - - - 0x018124 06:8114: AA        TAX
 C - - - - - 0x018125 06:8115: 0A        ASL
 C - - - - - 0x018126 06:8116: A8        TAY
-C - - - - - 0x018127 06:8117: B9 A2 83  LDA tbl_83A4 - 2,Y
+C - - - - - 0x018127 06:8117: B9 A2 83  LDA tbl_83A4 - $02,Y
 C - - - - - 0x01812A 06:811A: 85 00     STA ram_0000
-C - - - - - 0x01812C 06:811C: B9 A3 83  LDA tbl_83A4 - 1,Y
+C - - - - - 0x01812C 06:811C: B9 A3 83  LDA tbl_83A4 - $01,Y
 C - - - - - 0x01812F 06:811F: 85 01     STA ram_0001
-C - - - - - 0x018131 06:8121: BC B5 83  LDY tbl_83B6 - 1,X
+C - - - - - 0x018131 06:8121: BC B5 83  LDY tbl_83B6 - $01,X
 bra_8124_loop:
 C - - - - - 0x018134 06:8124: B1 00     LDA (ram_0000),Y
 C - - - - - 0x018136 06:8126: 99 A7 6B  STA ram_6BA7,Y
@@ -7175,7 +7175,7 @@ sub_0x01A090_write_buffer_to_ppu:
 C - - - - - 0x01A090 06:A080: A6 14     LDX ram_ppu_load_index
 C - - - - - 0x01A092 06:A082: BD 00 A0  LDA tbl_A000_ppu_data,X
 C - - - - - 0x01A095 06:A085: 85 00     STA ram_0000
-C - - - - - 0x01A097 06:A087: BD 01 A0  LDA tbl_A000_ppu_data + 1,X
+C - - - - - 0x01A097 06:A087: BD 01 A0  LDA tbl_A000_ppu_data + $01,X
 C - - - - - 0x01A09A 06:A08A: 85 01     STA ram_0001
 C - - - - - 0x01A09C 06:A08C: 20 F6 A0  JSR sub_A0F6_write_to_ppu
 C - - - - - 0x01A09F 06:A08F: A9 3F     LDA #$3F

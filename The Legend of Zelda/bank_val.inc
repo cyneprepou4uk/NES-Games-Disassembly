@@ -11,8 +11,8 @@ con_collision_tile                      = $00 ;
 
 
 
-; ram_btn_press                         = $00F8
-; ram_btn_hold                          = $00FA
+; ram_btn_press
+; ram_btn_hold
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -26,7 +26,7 @@ con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn
 
 
 
-; ram_state_obj                         = $00AC
+; ram_state_obj
 con_obj_state_00                        = $00 ; 
 con_obj_state_01                        = $01 ; 
 con_obj_state_02                        = $02 ; 
@@ -35,7 +35,7 @@ con_obj_state_08                        = $08 ;
 con_obj_state_10                        = $10 ; 
 con_obj_state_20                        = $20 ; 
 con_obj_state_freeze                    = $40 ; 
-con_obj_state_80                        = $80 ; if manually set, link will constantly play walning animation, also A and B will have no effect
+con_obj_state_80                        = $80 ; if manually set, link will constantly play walking animation, also A and B will have no effect
 con_obj_state_FF                        = $FF ; ???
 
 
@@ -79,8 +79,8 @@ con_drop_id_23                          = $23 ; fairy flying around
 
 
 
-; ram_script                            = $0012
-; ram_next_script                       = $005B
+; ram_script
+; ram_next_script
 ; needed comments at 0x014550   0x01459C   0x00A607
 ;                    0x0090D6   0x01F192
 ;                    0x01EB45 & 0x01E92E - rename offsets
@@ -107,7 +107,7 @@ con_script_13                           = $13 ;
 
 
 
-; ram_dir_obj                         = $0098
+; ram_dir_obj
 con_dir_00                              = $00 ; 
 con_dir_Right                           = $01 ; 
 con_dir_Left                            = $02 ; 
@@ -166,7 +166,7 @@ con_msg_25                              = $25 ; EYES OF SKULL HAS A SECRET.
 
 
 
-; ram_ppu_load_index                    = $0014
+; ram_ppu_load_index
 ; need comments at 0x01A010
 con_ppu_buf_00                          = $00 ; 
 con_ppu_buf_guide                       = $02 ; guide screen with lore and items after title screen 
@@ -235,8 +235,8 @@ con_ppu_buf_7C                          = $7C ; palette
 
 
 
-; ram_obj_id_enemy                      = $0350
-; ram_copy_obj_id                       = $035F
+; ram_obj_id_enemy
+; ram_copy_obj_id
 ; need comments at 0x01FBC4 0x01FD92
 con_obj_id_null                         = $00 ; 
 con_obj_id_01                           = $01 ; Lynel (blue)+
@@ -369,7 +369,7 @@ con_obj_id_7F                           = $7F ;
 
 
 
-; ram_music                             = $0600
+; ram_music
 con_music_00                            = $00 ; bzk seems useless
 con_music_overworld                     = $01 ; standart overworld theme
 con_music_boss_killed                   = $02 ; 
@@ -381,7 +381,7 @@ con_music_final_dungeon                 = $20 ; dungeon 9 theme
 con_music_dungeon                       = $40 ; standart dungeon theme
 con_music_title                         = $80 ; title screen
 
-; ram_sfx_1                             = $0601
+; ram_sfx_1
 con_sfx_1_01                            = $01 ; 
 con_sfx_1_02                            = $02 ; 
 con_sfx_1_door                          = $04 ; open/close door in dungeons
@@ -391,7 +391,7 @@ con_sfx_1_20                            = $20 ;
 con_sfx_1_40                            = $40 ; 
 con_sfx_1_80                            = $80 ; 
 
-; ram_sfx_2                             = $0602
+; ram_sfx_2
 con_sfx_2_00                            = $00 ; 
 con_sfx_2_cursor_select                 = $01 ; in the menu with slots or pause menu
 con_sfx_2_02                            = $02 ; 
@@ -402,7 +402,7 @@ con_sfx_2_enemy_killed                  = $20 ;
 con_sfx_2_40                            = $40 ; 
 con_sfx_2_death                         = $80 ; link is dead music
 
-; ram_sfx_3                             = $0603
+; ram_sfx_3
 con_sfx_3_00                            = $00 ; 
 con_sfx_3_sword_swing                   = $01 ; regular swing with the sword
 con_sfx_3_arrow_shoot                   = $02 ; shooting with an arrow
@@ -413,7 +413,7 @@ con_sfx_3_ocean                         = $20 ; sound of the ocean at the beach
 ; con_sfx_3_40                          = $40 ; 
 con_sfx_3_80                            = $80 ; 
 
-; ram_sfx_4                             = $0604
+; ram_sfx_4
 con_sfx_4_00                            = $00 ; 
 con_sfx_4_shield_block                  = $01 ; 
 con_sfx_4_enemy_hit                     = $02 ; link hits an enemy
@@ -426,8 +426,8 @@ con_sfx_4_80                            = $80 ;
 
 
 
-; ram_item_slot_index                   = $0656
-; ram_items                             = $0657
+; ram_item_slot_index
+; ram_items
 ; used as 0657,Y with Y checks
 ; needed comments at 0x014E2C
 con_item_sword                          = $00 ; 0657
@@ -462,18 +462,18 @@ con_item_5_rupees                       = $1C ; 0673
 con_item_boomerang                      = $1D ; 0674
 con_item_mag_boomerang                  = $1E ; 0675
 con_item_mag_shield                     = $1F ; 0676
-con_item_20                             = $20 ; 0677
-con_item_21                             = $21 ; 0678
-con_item_22                             = $22 ; 0679
-con_item_23                             = $23 ; 067A
-con_item_24                             = $24 ; 067B
+; con_item_20                           = $20 ; 0677
+; con_item_21                           = $21 ; 0678
+; con_item_22                           = $22 ; 0679
+; con_item_23                           = $23 ; 067A
+; con_item_24                           = $24 ; 067B
 con_item_max_bombs                      = $25 ; 067C
 con_item_rup_adc                        = $26 ; 067D
 con_item_rup_sbc                        = $27 ; 067E
 
 
 
-; ram_attr_enemy                          = $04C0
+; ram_attr_enemy
 con_04C0_00                             = $00 ; 
 con_04C0_01                             = $01 ; Self checks collisions and draws
 con_04C0_02                             = $02 ; 

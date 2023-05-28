@@ -250,7 +250,7 @@ ofs_016_80D4_08_inventory:
 ; triggers when inventory is loaded
 C - - J - - 0x0140E4 05:80D4: 20 A7 B6  JSR sub_B6A7
 C - - - - - 0x0140E7 05:80D7: 20 26 B7  JSR sub_B726
-C - - - - - 0x0140EA 05:80DA: A5 FB     LDA ram_btn_hold + 1
+C - - - - - 0x0140EA 05:80DA: A5 FB     LDA ram_btn_hold + $01
 C - - - - - 0x0140EC 05:80DC: 29 88     AND #con_btn_A + con_btn_Up
 C - - - - - 0x0140EE 05:80DE: C9 88     CMP #con_btn_A + con_btn_Up
 C - - - - - 0x0140F0 05:80E0: D0 11     BNE bra_80F3    ; don't show save menu if not held
@@ -1027,10 +1027,10 @@ C - - - - - 0x014530 05:8520: 60        RTS
 
 
 sub_0x014531:
-bra_8521_loop:
+bra_8521_infinite_loop:
 C - - - - - 0x014531 05:8521: AD 02 20  LDA $2002
 C - - - - - 0x014534 05:8524: 29 40     AND #$40    ; bzk optimize, BIT + BVC
-C - - - - - 0x014536 05:8526: F0 F9     BEQ bra_8521_loop
+C - - - - - 0x014536 05:8526: F0 F9     BEQ bra_8521_infinite_loop
 C - - - - - 0x014538 05:8528: AD 02 20  LDA $2002
 C - - - - - 0x01453B 05:852B: A0 03     LDY #$03
 bra_852D_garbage_loop:
@@ -1880,7 +1880,7 @@ C - - - - - 0x014965 05:8955: AD 2D 05  LDA ram_052D
 C - - - - - 0x014968 05:8958: 85 8F     STA ram_pos_Y_enemy + $0B
 C - - - - - 0x01496A 05:895A: AD 2B 05  LDA ram_052B
 loc_895D:
-C D 0 - - - 0x01496D 05:895D: 8D 5A 03  STA ram_obj_id_enemy + 10
+C D 0 - - - 0x01496D 05:895D: 8D 5A 03  STA ram_obj_id_enemy + $0A
 C - - - - - 0x014970 05:8960: 20 B7 6D  JSR sub_bat_6DB7
 C - - - - - 0x014973 05:8963: 85 B7     STA ram_state_enemy + $0B
 C - - - - - 0x014975 05:8965: 60        RTS
@@ -1964,9 +1964,9 @@ bra_89CC_loop:
 C - - - - - 0x0149DC 05:89CC: A9 1B     LDA #con_obj_id_1B
 C - - - - - 0x0149DE 05:89CE: 9D 50 03  STA ram_obj_id_enemy,X
 C - - - - - 0x0149E1 05:89D1: BD 66 89  LDA tbl_8966_pos_X,X
-C - - - - - 0x0149E4 05:89D4: 95 71     STA ram_pos_X_enemy + 1,X
+C - - - - - 0x0149E4 05:89D4: 95 71     STA ram_pos_X_enemy + $01,X
 C - - - - - 0x0149E6 05:89D6: B9 6A 89  LDA tbl_896A_pos_Y,Y
-C - - - - - 0x0149E9 05:89D9: 95 85     STA ram_pos_Y_enemy + 1,X
+C - - - - - 0x0149E9 05:89D9: 95 85     STA ram_pos_Y_enemy + $01,X
 C - - - - - 0x0149EB 05:89DB: CA        DEX
 C - - - - - 0x0149EC 05:89DC: 10 EE     BPL bra_89CC_loop
 C - - - - - 0x0149EE 05:89DE: 60        RTS
@@ -2209,10 +2209,10 @@ C - - - - - 0x014B3A 05:8B2A: A5 13     LDA ram_subscript
 C - - - - - 0x014B3C 05:8B2C: 09 80     ORA #$80
 C - - - - - 0x014B3E 05:8B2E: 85 13     STA ram_subscript
 C - - - - - 0x014B40 05:8B30: A9 40     LDA #$40
-C - - - - - 0x014B42 05:8B32: 85 29     STA ram_timer_enemy + 1
+C - - - - - 0x014B42 05:8B32: 85 29     STA ram_timer_enemy + $01
 C - - - - - 0x014B44 05:8B34: 60        RTS
 bra_8B35_option_was_selected:
-C - - - - - 0x014B45 05:8B35: A5 29     LDA ram_timer_enemy + 1
+C - - - - - 0x014B45 05:8B35: A5 29     LDA ram_timer_enemy + $01
 C - - - - - 0x014B47 05:8B37: F0 24     BEQ bra_8B5D
 C - - - - - 0x014B49 05:8B39: A0 04     LDY #$04
 bra_8B3B_loop:
@@ -2226,7 +2226,7 @@ C - - - - - 0x014B58 05:8B48: A8        TAY
 C - - - - - 0x014B59 05:8B49: B9 F1 8A  LDA tbl_8AF1,Y
 C - - - - - 0x014B5C 05:8B4C: 8D 03 03  STA ram_0303
 C - - - - - 0x014B5F 05:8B4F: A0 00     LDY #$00
-C - - - - - 0x014B61 05:8B51: A5 29     LDA ram_timer_enemy + 1
+C - - - - - 0x014B61 05:8B51: A5 29     LDA ram_timer_enemy + $01
 C - - - - - 0x014B63 05:8B53: 29 04     AND #$04
 C - - - - - 0x014B65 05:8B55: F0 02     BEQ bra_8B59
 C - - - - - 0x014B67 05:8B57: A0 55     LDY #$55
@@ -2376,10 +2376,10 @@ C - - - - - 0x014C44 05:8C34: B9 50 03  LDA ram_obj_id_enemy,Y
 C - - - - - 0x014C47 05:8C37: F0 0E     BEQ bra_8C47    ; if not exist
 C - - - - - 0x014C49 05:8C39: C9 53     CMP #$53
 C - - - - - 0x014C4B 05:8C3B: B0 0A     BCS bra_8C47
-C - - - - - 0x014C4D 05:8C3D: B9 06 04  LDA ram_0405_enemy + 1,Y
+C - - - - - 0x014C4D 05:8C3D: B9 06 04  LDA ram_0405_enemy + $01,Y
 C - - - - - 0x014C50 05:8C40: D0 05     BNE bra_8C47
 C - - - - - 0x014C52 05:8C42: A9 10     LDA #$10
-C - - - - - 0x014C54 05:8C44: 99 06 04  STA ram_0405_enemy + 1,Y
+C - - - - - 0x014C54 05:8C44: 99 06 04  STA ram_0405_enemy + $01,Y
 bra_8C47:
 C - - - - - 0x014C57 05:8C47: 88        DEY
 C - - - - - 0x014C58 05:8C48: 10 EA     BPL bra_8C34_loop
@@ -3216,7 +3216,7 @@ C - - - - - 0x01511C 05:910C: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_
 - - - - - - 0x015137 05:9127: A0 01     LDY #con_obj_id_01
 bra_9129:
 - - - - - - 0x015139 05:9129: 84 0C     STY ram_000C
-- - - - - - 0x01513B 05:912B: BC 4F 03  LDY ram_obj_id_enemy - 1,X
+- - - - - - 0x01513B 05:912B: BC 4F 03  LDY ram_obj_id_enemy - $01,X
 - - - - - - 0x01513E 05:912E: C8        INY
 - - - - - - 0x01513F 05:912F: 85 0D     STA ram_000D
 - - - - - - 0x015141 05:9131: 84 0E     STY ram_000E
@@ -5269,7 +5269,7 @@ C - - - - - 0x016762 05:A752: 4A        LSR
 C - - - - - 0x016763 05:A753: AA        TAX
 C - - - - - 0x016764 05:A754: BD 04 A7  LDA tbl_A704,X
 C - - - - - 0x016767 05:A757: 85 04     STA ram_0004
-C - - - - - 0x016769 05:A759: BD 05 A7  LDA tbl_A704 + 1,X
+C - - - - - 0x016769 05:A759: BD 05 A7  LDA tbl_A704 + $01,X
 C - - - - - 0x01676C 05:A75C: 85 05     STA ram_0005
 C - - - - - 0x01676E 05:A75E: B1 02     LDA (ram_0002),Y
 C - - - - - 0x016770 05:A760: 29 0F     AND #$0F
@@ -5388,7 +5388,7 @@ C - - - - - 0x01681A 05:A80A: A0 0A     LDY #$0A
 bra_A80C_loop:
 C - - - - - 0x01681C 05:A80C: BD 00 E4  LDA tbl_0x01E410,X
 C - - - - - 0x01681F 05:A80F: 85 00     STA ram_0000
-C - - - - - 0x016821 05:A811: BD 01 E4  LDA tbl_0x01E410 + 1,X
+C - - - - - 0x016821 05:A811: BD 01 E4  LDA tbl_0x01E410 + $01,X
 C - - - - - 0x016824 05:A814: 85 01     STA ram_0001
 C - - - - - 0x016826 05:A816: B1 00     LDA (ram_0000),Y
 C - - - - - 0x016828 05:A818: C9 B0     CMP #$B0
@@ -5408,7 +5408,7 @@ C - - - - - 0x016839 05:A829: A9 90     LDA #$90
 C - - - - - 0x01683B 05:A82B: 85 8F     STA ram_pos_Y_enemy + $0B
 loc_A82D:
 C - - - - - 0x01683D 05:A82D: A9 68     LDA #con_obj_id_68
-C - - - - - 0x01683F 05:A82F: 8D 5A 03  STA ram_obj_id_enemy + 10
+C - - - - - 0x01683F 05:A82F: 8D 5A 03  STA ram_obj_id_enemy + $0A
 C - - - - - 0x016842 05:A832: 60        RTS
 
 
@@ -5419,7 +5419,7 @@ C - - - - - 0x016845 05:A835: 8D 00 06  STA ram_music
 C - - - - - 0x016848 05:A838: A9 20     LDA #$20
 C - - - - - 0x01684A 05:A83A: 85 7C     STA ram_007C
 C - - - - - 0x01684C 05:A83C: A9 01     LDA #$01
-C - - - - - 0x01684E 05:A83E: 85 7D     STA ram_007C + 1
+C - - - - - 0x01684E 05:A83E: 85 7D     STA ram_007C + $01
 C - - - - - 0x016850 05:A840: A9 30     LDA #$30
 C - - - - - 0x016852 05:A842: 85 28     STA ram_timer_link
 C - - - - - 0x016854 05:A844: A9 24     LDA #$24
@@ -5781,7 +5781,7 @@ tbl_A9B4:
 sub_A9F4:
 C - - - - - 0x016A04 05:A9F4: AD 9C 9F  LDA tbl_9F9C
 C - - - - - 0x016A07 05:A9F7: 85 02     STA ram_0002
-C - - - - - 0x016A09 05:A9F9: AD 9D 9F  LDA tbl_9F9C + 1
+C - - - - - 0x016A09 05:A9F9: AD 9D 9F  LDA tbl_9F9C + $01
 C - - - - - 0x016A0C 05:A9FC: 85 03     STA ram_0003
 C - - - - - 0x016A0E 05:A9FE: A9 00     LDA #$00
 C - - - - - 0x016A10 05:AA00: 85 06     STA ram_0006
@@ -5819,7 +5819,7 @@ C - - - - - 0x016A46 05:AA36: 4A        LSR
 C - - - - - 0x016A47 05:AA37: AA        TAX
 C - - - - - 0x016A48 05:AA38: BD 27 68  LDA tbl_bat_6827_columns,X
 C - - - - - 0x016A4B 05:AA3B: 85 04     STA ram_0004
-C - - - - - 0x016A4D 05:AA3D: BD 28 68  LDA tbl_bat_6827_columns + 1,X
+C - - - - - 0x016A4D 05:AA3D: BD 28 68  LDA tbl_bat_6827_columns + $01,X
 C - - - - - 0x016A50 05:AA40: 85 05     STA ram_0005
 C - - - - - 0x016A52 05:AA42: B1 02     LDA (ram_0002),Y
 C - - - - - 0x016A54 05:AA44: 29 0F     AND #$0F
@@ -5981,7 +5981,7 @@ C - - - - - 0x016B3D 05:AB2D: 4C 0A AB  JMP loc_AB0A
 
 sub_AB30:
 C - - - - - 0x016B40 05:AB30: AD 9E 9F  LDA tbl_9F9E
-C - - - - - 0x016B43 05:AB33: AE 9F 9F  LDX tbl_9F9E + 1
+C - - - - - 0x016B43 05:AB33: AE 9F 9F  LDX tbl_9F9E + $01
 C - - - - - 0x016B46 05:AB36: A4 10     LDY ram_dungeon_level
 C - - - - - 0x016B48 05:AB38: F0 04     BEQ bra_AB3E    ; if overworld
 ; if dungeon
@@ -5989,7 +5989,7 @@ C - - - - - 0x016B4A 05:AB3A: A9 D4     LDA #< tbl_A3D4
 C - - - - - 0x016B4C 05:AB3C: A2 A3     LDX #> tbl_A3D4
 bra_AB3E:
 C - - - - - 0x016B4E 05:AB3E: 8D 27 68  STA ram_6827_tbl_bat_columns
-C - - - - - 0x016B51 05:AB41: 8E 28 68  STX ram_6827_tbl_bat_columns + 1
+C - - - - - 0x016B51 05:AB41: 8E 28 68  STX ram_6827_tbl_bat_columns + $01
 C - - - - - 0x016B54 05:AB44: 60        RTS
 
 
@@ -6007,7 +6007,7 @@ C - - J - - 0x016B5D 05:AB4D: A2 00     LDX #$00
 bra_AB4F:
 C - - - - - 0x016B5F 05:AB4F: BD 45 AB  LDA tbl_AB45,X
 C - - - - - 0x016B62 05:AB52: 85 02     STA ram_0002
-C - - - - - 0x016B64 05:AB54: BD 46 AB  LDA tbl_AB45 + 1,X
+C - - - - - 0x016B64 05:AB54: BD 46 AB  LDA tbl_AB45 + $01,X
 C - - - - - 0x016B67 05:AB57: 85 03     STA ram_0003
 C - - - - - 0x016B69 05:AB59: E6 13     INC ram_subscript
 C - - - - - 0x016B6B 05:AB5B: 4C 1B AA  JMP loc_AA1B
@@ -6047,7 +6047,7 @@ C - - - - - 0x016B96 05:AB86: 4A        LSR
 C - - - - - 0x016B97 05:AB87: AA        TAX
 C - - - - - 0x016B98 05:AB88: BD 00 E4  LDA tbl_0x01E410,X
 C - - - - - 0x016B9B 05:AB8B: 85 00     STA ram_0000
-C - - - - - 0x016B9D 05:AB8D: BD 01 E4  LDA tbl_0x01E410 + 1,X
+C - - - - - 0x016B9D 05:AB8D: BD 01 E4  LDA tbl_0x01E410 + $01,X
 C - - - - - 0x016BA0 05:AB90: 85 01     STA ram_0001
 C - - - - - 0x016BA2 05:AB92: 98        TYA
 C - - - - - 0x016BA3 05:AB93: 38        SEC
@@ -6092,7 +6092,7 @@ C - - - - - 0x016BDB 05:ABCB: 4A        LSR
 C - - - - - 0x016BDC 05:ABCC: AA        TAX
 C - - - - - 0x016BDD 05:ABCD: BD 00 E4  LDA tbl_0x01E410,X
 C - - - - - 0x016BE0 05:ABD0: 85 00     STA ram_0000
-C - - - - - 0x016BE2 05:ABD2: BD 01 E4  LDA tbl_0x01E410 + 1,X
+C - - - - - 0x016BE2 05:ABD2: BD 01 E4  LDA tbl_0x01E410 + $01,X
 C - - - - - 0x016BE5 05:ABD5: 85 01     STA ram_0001
 C - - - - - 0x016BE7 05:ABD7: 68        PLA
 C - - - - - 0x016BE8 05:ABD8: 48        PHA
@@ -6292,7 +6292,7 @@ C - - J - - 0x017046 05:B036: 20 C4 A8  JSR sub_A8C4
 C - - - - - 0x017049 05:B039: A0 10     LDY #$10
 C - - - - - 0x01704B 05:B03B: 84 7C     STY ram_007C
 C - - - - - 0x01704D 05:B03D: C8        INY ; 11
-C - - - - - 0x01704E 05:B03E: 84 7D     STY ram_007C + 1
+C - - - - - 0x01704E 05:B03E: 84 7D     STY ram_007C + $01
 C - - - - - 0x017050 05:B040: A9 00     LDA #$00
 C - - - - - 0x017052 05:B042: 85 17     STA ram_0017
 C - - - - - 0x017054 05:B044: A9 08     LDA #con_dir_Up
@@ -7108,8 +7108,8 @@ C - - - - - 0x0174C8 05:B4B8: F0 2C     BEQ bra_B4E6
 bra_B4BA:
 C - - - - - 0x0174CA 05:B4BA: A9 FF     LDA #$FF
 C - - - - - 0x0174CC 05:B4BC: 8D 2A 65  STA ram_652A_slot
-C - - - - - 0x0174CF 05:B4BF: 8D 2B 65  STA ram_652A_slot + 1
-C - - - - - 0x0174D2 05:B4C2: 8D 2C 65  STA ram_652A_slot + 2
+C - - - - - 0x0174CF 05:B4BF: 8D 2B 65  STA ram_652A_slot + $01
+C - - - - - 0x0174D2 05:B4C2: 8D 2C 65  STA ram_652A_slot + $02
 C - - - - - 0x0174D5 05:B4C5: A9 65     LDA #> ram_6530
 C - - - - - 0x0174D7 05:B4C7: 85 01     STA ram_0001
 C - - - - - 0x0174D9 05:B4C9: A9 30     LDA #< ram_6530
@@ -7156,8 +7156,8 @@ C - - - - - 0x017513 05:B503: A9 40     LDA #$40
 C - - - - - 0x017515 05:B505: 8D 25 05  STA ram_0525
 C - - - - - 0x017518 05:B508: 85 18     STA ram_indiv_random
 C - - - - - 0x01751A 05:B50A: A9 01     LDA #$01
-C - - - - - 0x01751C 05:B50C: 8D 36 06  STA ram_slot_active_flag + 3
-C - - - - - 0x01751F 05:B50F: 8D 37 06  STA ram_slot_active_flag + 4
+C - - - - - 0x01751C 05:B50C: 8D 36 06  STA ram_slot_active_flag + $03
+C - - - - - 0x01751F 05:B50F: 8D 37 06  STA ram_slot_active_flag + $04
 C - - - - - 0x017522 05:B512: 60        RTS
 
 
