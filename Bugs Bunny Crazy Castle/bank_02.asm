@@ -99,11 +99,11 @@ C - - - - - 0x008086 02:8076: 60        RTS
 sub_8077_lightening_kemco_logo:
 C - - - - - 0x008087 02:8077: A2 00     LDX #$00
 bra_8079_loop:
-C - - - - - 0x008089 02:8079: BD 99 80  LDA tbl_8099_logo_pal_lightening,X
+C - - - - - 0x008089 02:8079: BD 99 80  LDA tbl_8099_logo_pal_light,X
 C - - - - - 0x00808C 02:807C: 8D 01 04  STA ram_pal_buffer_2 + $01
-C - - - - - 0x00808F 02:807F: BD 9A 80  LDA tbl_8099_logo_pal_lightening + $01,X
+C - - - - - 0x00808F 02:807F: BD 9A 80  LDA tbl_8099_logo_pal_light + $01,X
 C - - - - - 0x008092 02:8082: 8D 02 04  STA ram_pal_buffer_2 + $02
-C - - - - - 0x008095 02:8085: BD 9B 80  LDA tbl_8099_logo_pal_lightening + $02,X
+C - - - - - 0x008095 02:8085: BD 9B 80  LDA tbl_8099_logo_pal_light + $02,X
 C - - - - - 0x008098 02:8088: 8D 03 04  STA ram_pal_buffer_2 + $03
 C - - - - - 0x00809B 02:808B: 20 F6 F5  JSR sub_0x00F606
 C - - - - - 0x00809E 02:808E: 20 D9 80  JSR sub_80D9_wait_6_frames_
@@ -116,7 +116,7 @@ C - - - - - 0x0080A8 02:8098: 60        RTS
 
 
 
-tbl_8099_logo_pal_lightening:
+tbl_8099_logo_pal_light:
 - D 0 - - - 0x0080A9 02:8099: 02        .byte $02, $02, $0F   ; 00
 - D 0 - - - 0x0080AC 02:809C: 12        .byte $12, $12, $01   ; 03
 - D 0 - - - 0x0080AF 02:809F: 12        .byte $12, $12, $11   ; 06
@@ -128,11 +128,11 @@ tbl_8099_logo_pal_lightening:
 sub_80A8_darkening_kemco_logo:
 C - - - - - 0x0080B8 02:80A8: A2 00     LDX #$00
 bra_80AA_loop:
-C - - - - - 0x0080BA 02:80AA: BD CA 80  LDA tbl_80CA,X
+C - - - - - 0x0080BA 02:80AA: BD CA 80  LDA tbl_80CA_logo_pal_dark,X
 C - - - - - 0x0080BD 02:80AD: 8D 01 04  STA ram_pal_buffer_2 + $01
-C - - - - - 0x0080C0 02:80B0: BD CB 80  LDA tbl_80CA + $01,X
+C - - - - - 0x0080C0 02:80B0: BD CB 80  LDA tbl_80CA_logo_pal_dark + $01,X
 C - - - - - 0x0080C3 02:80B3: 8D 02 04  STA ram_pal_buffer_2 + $02
-C - - - - - 0x0080C6 02:80B6: BD CC 80  LDA tbl_80CA + $02,X
+C - - - - - 0x0080C6 02:80B6: BD CC 80  LDA tbl_80CA_logo_pal_dark + $02,X
 C - - - - - 0x0080C9 02:80B9: 8D 03 04  STA ram_pal_buffer_2 + $03
 C - - - - - 0x0080CC 02:80BC: 20 F6 F5  JSR sub_0x00F606
 C - - - - - 0x0080CF 02:80BF: 20 D9 80  JSR sub_80D9_wait_6_frames_
@@ -145,7 +145,7 @@ C - - - - - 0x0080D9 02:80C9: 60        RTS
 
 
 
-tbl_80CA:
+tbl_80CA_logo_pal_dark:
 - D 0 - - - 0x0080DA 02:80CA: 12        .byte $12, $12, $21   ; 00
 - D 0 - - - 0x0080DD 02:80CD: 12        .byte $12, $12, $11   ; 03
 - D 0 - - - 0x0080E0 02:80D0: 02        .byte $02, $12, $01   ; 06
