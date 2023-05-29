@@ -6,19 +6,20 @@
 con_prg_bank                            = $00 ; 
 con_chr_bank                            = $00 ; 
 con_damage                              = $00 ; 
-con_debug                               = $00 ; https://tcrf.net/Double_Dragon_II:_The_Revenge_(NES)#:~:text=Prerelease%20Info-,Debug%20Features,-There%20is%20a
-
+con_E2E6                                = $00 ; for 0x01E2F6
+con_debug                               = $00 ; change bit5 and/or bit7 https://tcrf.net/Double_Dragon_II:_The_Revenge_(NES)#:~:text=Prerelease%20Info-,Debug%20Features,-There%20is%20a
+con_weapon_id                           = $12 ; weapons start from this value for ram_obj_id
 
 
 ; ram_state
-; need comments at 0x019381
+; need comments at 0x0180B4 0x00BA42 0x0080DA
 con_state_00                            = $00 ; 80 
 con_state_01                            = $01 ; 81 
 con_state_02                            = $02 ; 82 
 con_state_03                            = $03 ; 83 
 con_state_04                            = $04 ; 84 
 con_state_05                            = $05 ; 85 
-con_state_06                            = $06 ; 86 
+con_state_jump                          = $06 ; 86 
 con_state_07                            = $07 ; 87 
 con_state_08                            = $08 ; 88 
 con_state_09                            = $09 ; 89 
@@ -30,7 +31,7 @@ con_state_0E                            = $0E ; 8E
 con_state_0F                            = $0F ; 8F 
 con_state_10                            = $10 ; 90 
 con_state_11                            = $11 ; 91 
-con_state_12                            = $12 ; 92 
+con_state_land                          = $12 ; 92 landing after jump 06
 con_state_13                            = $13 ; 93 
 con_state_14                            = $14 ; 94 
 con_state_15                            = $15 ; 95 
@@ -320,3 +321,53 @@ con_003C_10                             = $10 ; invisible (shadow warrior)
 con_003C_20                             = $20 ; hand cursor (A0) / also when enemy is spawned off screen and waiting for you (A1) / also elevator (A2)
 con_003C_40                             = $40 ; 
 con_003C_80                             = $80 ; 
+
+
+
+; index for 0x01885D (ram_0424)
+con_884D_00                             = $00 ; 
+con_884D_white_hand_cursor              = $01 ; 
+con_884D_02                             = $02 ; 
+con_884D_03                             = $03 ; 
+con_884D_04                             = $04 ; 
+con_884D_05                             = $05 ; 
+con_884D_06                             = $06 ; 
+con_884D_07                             = $07 ; 
+con_884D_08                             = $08 ; 
+con_884D_09                             = $09 ; 
+con_884D_0A                             = $0A ; 
+con_884D_0B                             = $0B ; 
+con_884D_0C                             = $0C ; 
+con_884D_0D                             = $0D ; 
+con_884D_0E                             = $0E ; 
+con_884D_0F                             = $0F ; 
+con_884D_10                             = $10 ; 
+con_884D_11                             = $11 ; 
+con_884D_12                             = $12 ; 
+con_884D_13                             = $13 ; 
+con_884D_14                             = $14 ; 
+con_884D_15                             = $15 ; 
+con_884D_16                             = $16 ; 
+con_884D_17                             = $17 ; 
+con_884D_18                             = $18 ; 
+con_884D_19                             = $19 ; 
+con_884D_1A                             = $1A ; 
+con_884D_1B                             = $1B ; 
+con_884D_80                             = $80 ; 
+con_884D_81                             = $81 ; 
+
+
+
+; screens for 0x01F719
+con_F709_00                             = $00 ; 
+con_F709_01                             = $01 ; 
+con_F709_02                             = $02 ; 
+; con_F709_03                           = $03 ; unused, index not found
+con_F709_04                             = $04 ; 
+; con_F709_05                           = $05 ; unused, index not found
+; con_F709_06                           = $06 ; unused, index not found
+; con_F709_07                           = $07 ; unused, index not found
+con_F709_08                             = $08 ; 
+con_F709_09                             = $09 ; 
+con_F709_0A                             = $0A ; 
+con_F709_0B                             = $0B ; sample version
