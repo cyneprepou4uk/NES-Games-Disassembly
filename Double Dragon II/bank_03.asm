@@ -1933,7 +1933,7 @@ _off030_887F_05:
 - D 0 - I - 0x00C891 03:8881: CA 88     .word off_02_88CA_00_spr_A
 - D 0 - I - 0x00C893 03:8883: 94 88     .word off_02_8894_01_spr_T
 - D 0 - I - 0x00C895 03:8885: F5 85     .word off_02_85F5_02_spr_XY
-- D 0 - I - 0x00C897 03:8887: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C897 03:8887: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00C899 03:8889: 00 00     .word $0000 ; 00
 - - - - - - 0x00C89B 03:888B: 8C BD     .word sub_06_BD8C_01
@@ -1963,7 +1963,7 @@ _off030_889D_06:
 - D 0 - I - 0x00C8AF 03:889F: AC 88     .word off_02_88AC_00_spr_A
 - D 0 - I - 0x00C8B1 03:88A1: 41 86     .word off_02_8641_01_spr_T
 - D 0 - I - 0x00C8B3 03:88A3: 53 86     .word off_02_8653_02_spr_XY
-- D 0 - I - 0x00C8B5 03:88A5: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C8B5 03:88A5: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00C8B7 03:88A7: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00C8B9 03:88A9: 9B BD     .word sub_06_BD9B_01
@@ -1990,7 +1990,7 @@ _off030_88B5_00:
 - D 0 - I - 0x00C8C7 03:88B7: CA 88     .word off_02_88CA_00_spr_A
 - D 0 - I - 0x00C8C9 03:88B9: EB 83     .word off_02_83EB_01_spr_T
 - D 0 - I - 0x00C8CB 03:88BB: F5 83     .word off_02_83F5_02_spr_XY
-- D 0 - I - 0x00C8CD 03:88BD: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C8CD 03:88BD: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00C8CF 03:88BF: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00C8D1 03:88C1: 6B BD     .word sub_06_BD6B_01
@@ -2021,7 +2021,7 @@ _off030_88D4_01:
 - D 0 - I - 0x00C8E6 03:88D6: CA 88     .word off_02_88CA_00_spr_A
 - D 0 - I - 0x00C8E8 03:88D8: 12 84     .word off_02_8412_01_spr_T
 - D 0 - I - 0x00C8EA 03:88DA: 1C 84     .word off_02_841C_02_spr_XY
-- D 0 - I - 0x00C8EC 03:88DC: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C8EC 03:88DC: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00C8EE 03:88DE: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00C8F0 03:88E0: 7D BD     .word sub_06_BD7D_01
@@ -2040,7 +2040,7 @@ _off030_88E9_02:
 - D 0 - I - 0x00C8FF 03:88EF: 01 89     .word off_02_8901_02_spr_XY
 - D 0 - I - 0x00C901 03:88F1: 05        .byte con_sub_05   ; 
 - D 0 - I - 0x00C902 03:88F2: 35 8B     .word sub_05_8B35
-- D 0 - I - 0x00C904 03:88F4: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C904 03:88F4: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00C906 03:88F6: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00C908 03:88F8: 6B BD     .word sub_06_BD6B_01
@@ -2074,7 +2074,7 @@ _off030_890D_07:
 - D 0 - I - 0x00C91F 03:890F: CA 88     .word off_02_88CA_00_spr_A
 - D 0 - I - 0x00C921 03:8911: 12 84     .word off_02_8412_01_spr_T
 - D 0 - I - 0x00C923 03:8913: 3B 87     .word off_02_873B_02_spr_XY
-- D 0 - I - 0x00C925 03:8915: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C925 03:8915: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00C927 03:8917: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00C929 03:8919: B0 BD     .word sub_06_BDB0_01
@@ -2091,7 +2091,7 @@ _off030_8922_08:
 - D 0 - I - 0x00C934 03:8924: CA 88     .word off_02_88CA_00_spr_A
 - D 0 - I - 0x00C936 03:8926: 37 89     .word off_02_8937_01_spr_T
 - D 0 - I - 0x00C938 03:8928: 62 87     .word off_02_8762_02_spr_XY
-- D 0 - I - 0x00C93A 03:892A: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C93A 03:892A: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00C93C 03:892C: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00C93E 03:892E: 1D BE     .word sub_06_BE1D_01
@@ -2122,7 +2122,7 @@ _off030_8941_09:
 - D 0 - I - 0x00C953 03:8943: 60 89     .word off_02_8960_00_spr_A
 - D 0 - I - 0x00C955 03:8945: 56 89     .word off_02_8956_01_spr_T
 - D 0 - I - 0x00C957 03:8947: 6A 89     .word off_02_896A_02_spr_XY
-- D 0 - I - 0x00C959 03:8949: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C959 03:8949: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00C95B 03:894B: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00C95D 03:894D: B9 BD     .word sub_06_BDB9_01
@@ -2179,7 +2179,7 @@ off_02_896A_02_spr_XY:
 _off030_897E_10:
 - D 0 - I - 0x00C98E 03:897E: 05        .byte con_sub_05   ; 
 - D 0 - I - 0x00C98F 03:897F: C0 89     .word sub_05_89C0
-- D 0 - I - 0x00C991 03:8981: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C991 03:8981: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - - - - - - 0x00C993 03:8983: 00 00     .word $0000 ; 00
 - - - - - - 0x00C995 03:8985: C8 BD     .word sub_06_BDC8_01
@@ -2198,7 +2198,7 @@ _off030_897E_10:
 _off030_898F_11:
 - D 0 - I - 0x00C99F 03:898F: 05        .byte con_sub_05   ; 
 - D 0 - I - 0x00C9A0 03:8990: C0 89     .word sub_05_89C0
-- D 0 - I - 0x00C9A2 03:8992: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C9A2 03:8992: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - - - - - - 0x00C9A4 03:8994: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00C9A6 03:8996: E0 BD     .word sub_06_BDE0_01
@@ -2213,7 +2213,7 @@ _off030_898F_11:
 _off030_899F_12:
 - D 0 - I - 0x00C9AF 03:899F: 05        .byte con_sub_05   ; 
 - D 0 - I - 0x00C9B0 03:89A0: EC 89     .word sub_05_89EC
-- D 0 - I - 0x00C9B2 03:89A2: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C9B2 03:89A2: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - - - - - - 0x00C9B4 03:89A4: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00C9B6 03:89A6: F4 BD     .word sub_06_BDF4_01
@@ -2228,7 +2228,7 @@ _off030_899F_12:
 _off030_89AF_13:
 - D 0 - I - 0x00C9BF 03:89AF: 05        .byte con_sub_05   ; 
 - D 0 - I - 0x00C9C0 03:89B0: EC 89     .word sub_05_89EC
-- D 0 - I - 0x00C9C2 03:89B2: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00C9C2 03:89B2: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - - - - - - 0x00C9C4 03:89B4: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00C9C6 03:89B6: 02 BE     .word sub_06_BE02_01
@@ -2690,7 +2690,7 @@ _off030_8B4E_12:
 - - - - - - 0x00CB65 03:8B55: 84 8B     .word off_04_8B84_02_spr_A
 - D 0 - I - 0x00CB67 03:8B57: 68 8B     .word off_04_8B68_03_spr_T
 - D 0 - I - 0x00CB69 03:8B59: 8E 8B     .word off_04_8B8E_04_spr_XY
-- D 0 - I - 0x00CB6B 03:8B5B: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CB6B 03:8B5B: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CB6D 03:8B5D: D0 B5     .word sub_06_B5D0_00
 - - - - - - 0x00CB6F 03:8B5F: 00 00     .word $0000 ; 01
@@ -2774,7 +2774,7 @@ _off030_8BA2_13:
 - - - - - - 0x00CBB9 03:8BA9: D8 8B     .word off_04_8BD8_02_spr_A
 - D 0 - I - 0x00CBBB 03:8BAB: BC 8B     .word off_04_8BBC_03_spr_T
 - D 0 - I - 0x00CBBD 03:8BAD: E2 8B     .word off_04_8BE2_04_spr_XY
-- D 0 - I - 0x00CBBF 03:8BAF: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CBBF 03:8BAF: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CBC1 03:8BB1: DD B5     .word sub_06_B5DD_00
 - - - - - - 0x00CBC3 03:8BB3: 00 00     .word $0000 ; 01
@@ -2858,7 +2858,7 @@ _off030_8BF6_14:
 - - - - - - 0x00CC0D 03:8BFD: D3 8F     .word off_04_8FD3_02_spr_A
 - D 0 - I - 0x00CC0F 03:8BFF: 10 8C     .word off_04_8C10_03_spr_T
 - D 0 - I - 0x00CC11 03:8C01: 2C 8C     .word off_04_8C2C_04_spr_XY
-- D 0 - I - 0x00CC13 03:8C03: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CC13 03:8C03: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CC15 03:8C05: 41 B6     .word sub_06_B641_00
 - - - - - - 0x00CC17 03:8C07: 00 00     .word $0000 ; 01
@@ -3256,7 +3256,7 @@ _off030_8D71_02:
 - D 0 - I - 0x00CD8C 03:8D7C: A3 8D     .word off_04_8DA3_04_spr_XY
 - D 0 - I - 0x00CD8E 03:8D7E: 05        .byte con_sub_05   ; 
 - D 0 - I - 0x00CD8F 03:8D7F: 62 97     .word sub_05_9762
-- D 0 - I - 0x00CD91 03:8D81: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CD91 03:8D81: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CD93 03:8D83: 91 B5     .word sub_06_B591_00
 - D 0 - I - 0x00CD95 03:8D85: 10 B6     .word sub_06_B610_01
@@ -3319,7 +3319,7 @@ _off030_8DB1_05:
 - - - - - - 0x00CDC8 03:8DB8: DF 8D     .word off_04_8DDF_02_spr_A
 - D 0 - I - 0x00CDCA 03:8DBA: CB 8D     .word off_04_8DCB_03_spr_T
 - D 0 - I - 0x00CDCC 03:8DBC: E9 8D     .word off_04_8DE9_04_spr_XY
-- D 0 - I - 0x00CDCE 03:8DBE: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CDCE 03:8DBE: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CDD0 03:8DC0: 9F B5     .word sub_06_B59F_00
 - D 0 - I - 0x00CDD2 03:8DC2: 18 B6     .word sub_06_B618_01
@@ -3394,7 +3394,7 @@ _off030_8DFD_19:
 - - - - - - 0x00CE14 03:8E04: 38 8E     .word off_04_8E38_02_spr_A
 - D 0 - I - 0x00CE16 03:8E06: 17 8E     .word off_04_8E17_03_spr_T
 - D 0 - I - 0x00CE18 03:8E08: 43 8E     .word off_04_8E43_04_spr_XY
-- D 0 - I - 0x00CE1A 03:8E0A: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CE1A 03:8E0A: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CE1C 03:8E0C: 9F B6     .word sub_06_B69F_00
 - D 0 - I - 0x00CE1E 03:8E0E: 87 B6     .word sub_06_B687_01
@@ -3488,7 +3488,7 @@ _off030_8E59_06:
 - D 0 - I - 0x00CE70 03:8E60: D3 8F     .word off_04_8FD3_02_spr_A
 - D 0 - I - 0x00CE72 03:8E62: 73 8E     .word off_04_8E73_03_spr_T
 - D 0 - I - 0x00CE74 03:8E64: 85 8E     .word off_04_8E85_04_spr_XY
-- D 0 - I - 0x00CE76 03:8E66: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CE76 03:8E66: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CE78 03:8E68: AB B5     .word sub_06_B5AB_00
 - D 0 - I - 0x00CE7A 03:8E6A: 24 B6     .word sub_06_B624_01
@@ -3540,7 +3540,7 @@ off_04_8E85_04_spr_XY:
 
 
 _off030_8E97_23:
-- D 0 - I - 0x00CEA7 03:8E97: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CEA7 03:8E97: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CEA9 03:8E99: 31 98     .word sub_06_9831_00
 - D 0 - I - 0x00CEAB 03:8E9B: 0C 83     .word sub_06_830C_01
@@ -3624,7 +3624,7 @@ off_04_8ED3_03_spr_XY:
 _off030_8EEB_24:
 _off030_8EEB_2A:
 _off030_8EEB_2F:
-- D 0 - I - 0x00CEFB 03:8EEB: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CEFB 03:8EEB: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CEFD 03:8EED: 44 98     .word sub_06_9844_00
 - D 0 - I - 0x00CEFF 03:8EEF: 3D 83     .word sub_06_833D_01
@@ -3640,7 +3640,7 @@ _off030_8EEB_2F:
 
 _off030_8EFB_25:
 _off030_8EFB_2B:
-- D 0 - I - 0x00CF0B 03:8EFB: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CF0B 03:8EFB: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CF0D 03:8EFD: 55 98     .word sub_06_9855_00
 - D 0 - I - 0x00CF0F 03:8EFF: 5E 83     .word sub_06_835E_01
@@ -3720,7 +3720,7 @@ _off030_8F45_00:
 - D 0 - I - 0x00CF5C 03:8F4C: D3 8F     .word off_04_8FD3_02_spr_A
 - D 0 - I - 0x00CF5E 03:8F4E: 5F 8F     .word off_04_8F5F_03_spr_T
 - D 0 - I - 0x00CF60 03:8F50: 7A 8F     .word off_04_8F7A_04_spr_XY
-- D 0 - I - 0x00CF62 03:8F52: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CF62 03:8F52: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CF64 03:8F54: 20 B5     .word sub_06_B520_00
 - D 0 - I - 0x00CF66 03:8F56: 2C B5     .word sub_06_B52C_01
@@ -3795,7 +3795,7 @@ _off030_8F94_01:
 - D 0 - I - 0x00CFAB 03:8F9B: D3 8F     .word off_04_8FD3_02_spr_A
 - D 0 - I - 0x00CFAD 03:8F9D: AE 8F     .word off_04_8FAE_03_spr_T
 - D 0 - I - 0x00CFAF 03:8F9F: DE 8F     .word off_04_8FDE_04_spr_XY
-- D 0 - I - 0x00CFB1 03:8FA1: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00CFB1 03:8FA1: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00CFB3 03:8FA3: 5B B5     .word sub_06_B55B_00
 - D 0 - I - 0x00CFB5 03:8FA5: 67 B5     .word sub_06_B567_01
@@ -3893,7 +3893,7 @@ _off030_8FF4_08:
 - D 0 - I - 0x00D00B 03:8FFB: 69 96     .word off_04_9669_02_spr_A
 - D 0 - I - 0x00D00D 03:8FFD: 0E 90     .word off_04_900E_03_spr_T
 - D 0 - I - 0x00D00F 03:8FFF: 18 90     .word off_04_9018_04_spr_XY
-- D 0 - I - 0x00D011 03:9001: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D011 03:9001: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D013 03:9003: C8 B5     .word sub_06_B5C8_00
 - D 0 - I - 0x00D015 03:9005: 7F B6     .word sub_06_B67F_01
@@ -4066,7 +4066,7 @@ _off030_90A2_07:
 - D 0 - I - 0x00D0B9 03:90A9: 69 96     .word off_04_9669_02_spr_A
 - D 0 - I - 0x00D0BB 03:90AB: BC 90     .word off_04_90BC_03_spr_T
 - D 0 - I - 0x00D0BD 03:90AD: 18 90     .word off_04_9018_04_spr_XY
-- D 0 - I - 0x00D0BF 03:90AF: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D0BF 03:90AF: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D0C1 03:90B1: BC B5     .word sub_06_B5BC_00
 - D 0 - I - 0x00D0C3 03:90B3: 73 B6     .word sub_06_B673_01
@@ -4093,7 +4093,7 @@ off_04_90BC_03_spr_T:
 
 
 _off030_90C6_26:
-- D 0 - I - 0x00D0D6 03:90C6: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D0D6 03:90C6: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D0D8 03:90C8: F9 9C     .word sub_06_9CF9_00
 - D 0 - I - 0x00D0DA 03:90CA: 42 84     .word sub_06_8442_01
@@ -4167,7 +4167,7 @@ off_04_90FC_03_spr_XY:
 
 
 _off030_9110_27:
-- D 0 - I - 0x00D120 03:9110: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D120 03:9110: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D122 03:9112: 2A 9D     .word sub_06_9D2A_00
 - D 0 - I - 0x00D124 03:9114: 5F 84     .word sub_06_845F_01
@@ -4371,7 +4371,7 @@ _off030_91DB_15:
 - D 0 - I - 0x00D1F2 03:91E2: 16 92     .word off_04_9216_02_spr_A
 - D 0 - I - 0x00D1F4 03:91E4: F5 91     .word off_04_91F5_03_spr_T
 - D 0 - I - 0x00D1F6 03:91E6: 21 92     .word off_04_9221_04_spr_XY
-- D 0 - I - 0x00D1F8 03:91E8: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D1F8 03:91E8: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D1FA 03:91EA: EA B5     .word sub_06_B5EA_00
 - D 0 - I - 0x00D1FC 03:91EC: 4D B6     .word sub_06_B64D_01
@@ -4465,7 +4465,7 @@ _off030_9237_16:
 - D 0 - I - 0x00D24E 03:923E: 6F 92     .word off_04_926F_02_spr_A
 - D 0 - I - 0x00D250 03:9240: 51 92     .word off_04_9251_03_spr_T
 - D 0 - I - 0x00D252 03:9242: 79 92     .word off_04_9279_04_spr_XY
-- D 0 - I - 0x00D254 03:9244: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D254 03:9244: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D256 03:9246: F6 B5     .word sub_06_B5F6_00
 - D 0 - I - 0x00D258 03:9248: 59 B6     .word sub_06_B659_01
@@ -4652,7 +4652,7 @@ off_02_92CB_02_spr_XY:
 
 
 _off030_92E7_2D:
-- D 0 - I - 0x00D2F7 03:92E7: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D2F7 03:92E7: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D2F9 03:92E9: 44 98     .word sub_06_9844_00
 - D 0 - I - 0x00D2FB 03:92EB: 3D 83     .word sub_06_833D_01
@@ -4742,7 +4742,7 @@ off_04_9329_03_spr_XY:
 
 
 _off030_9345_2E:
-- D 0 - I - 0x00D355 03:9345: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D355 03:9345: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D357 03:9347: 55 98     .word sub_06_9855_00
 - D 0 - I - 0x00D359 03:9349: 5E 83     .word sub_06_835E_01
@@ -5246,7 +5246,7 @@ _off030_9527_18:
 - D 0 - I - 0x00D53E 03:952E: 62 95     .word off_04_9562_02_spr_A
 - D 0 - I - 0x00D540 03:9530: 41 95     .word off_04_9541_03_spr_T
 - D 0 - I - 0x00D542 03:9532: 6D 95     .word off_04_956D_04_spr_XY
-- D 0 - I - 0x00D544 03:9534: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D544 03:9534: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D546 03:9536: 93 B6     .word sub_06_B693_00
 - D 0 - I - 0x00D548 03:9538: AB B6     .word sub_06_B6AB_01
@@ -5340,7 +5340,7 @@ _off030_9583_10:
 - - - - - - 0x00D59A 03:958A: C7 95     .word off_04_95C7_02_spr_A
 - D 0 - I - 0x00D59C 03:958C: 9D 95     .word off_04_959D_03_spr_T
 - D 0 - I - 0x00D59E 03:958E: D5 95     .word off_04_95D5_04_spr_XY
-- D 0 - I - 0x00D5A0 03:9590: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D5A0 03:9590: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - - - - - - 0x00D5A2 03:9592: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00D5A4 03:9594: 33 B6     .word sub_06_B633_01
@@ -5456,7 +5456,7 @@ sub_05_95F1:
 
 
 _off030_95FF_11:
-- D 0 - I - 0x00D60F 03:95FF: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D60F 03:95FF: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D611 03:9601: 00 00     .word $0000 ; 00
 - D 0 - I - 0x00D613 03:9603: B3 BF     .word sub_06_BFB3_01
@@ -5745,7 +5745,7 @@ _off030_970C_17:
 - D 0 - I - 0x00D723 03:9713: 44 97     .word off_04_9744_02_spr_A
 - D 0 - I - 0x00D725 03:9715: 26 97     .word off_04_9726_03_spr_T
 - D 0 - I - 0x00D727 03:9717: 4E 97     .word off_04_974E_04_spr_XY
-- D 0 - I - 0x00D729 03:9719: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D729 03:9719: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D72B 03:971B: 04 B6     .word sub_06_B604_00
 - D 0 - I - 0x00D72D 03:971D: 65 B6     .word sub_06_B665_01
@@ -5940,7 +5940,7 @@ _off030_97CA_00:
 - D 0 - I - 0x00D7DC 03:97CC: A1 9A     .word off_02_9AA1_00_spr_A
 - D 0 - I - 0x00D7DE 03:97CE: EB 83     .word off_02_83EB_01_spr_T
 - D 0 - I - 0x00D7E0 03:97D0: F5 83     .word off_02_83F5_02_spr_XY
-- D 0 - I - 0x00D7E2 03:97D2: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D7E2 03:97D2: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D7E4 03:97D4: FC B7     .word sub_06_B7FC_00
 @end:
@@ -5953,7 +5953,7 @@ _off030_97D7_01:
 - D 0 - I - 0x00D7E9 03:97D9: A1 9A     .word off_02_9AA1_00_spr_A
 - D 0 - I - 0x00D7EB 03:97DB: 12 84     .word off_02_8412_01_spr_T
 - D 0 - I - 0x00D7ED 03:97DD: 1C 84     .word off_02_841C_02_spr_XY
-- D 0 - I - 0x00D7EF 03:97DF: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D7EF 03:97DF: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D7F1 03:97E1: 08 B8     .word sub_06_B808_00
 - - - - - - 0x00D7F3 03:97E3: 00 00     .word $0000 ; 01
@@ -5972,7 +5972,7 @@ _off030_97EC_02:
 - D 0 - I - 0x00D802 03:97F2: F5 83     .word off_02_83F5_02_spr_XY
 - D 0 - I - 0x00D804 03:97F4: 05        .byte con_sub_05   ; 
 - D 0 - I - 0x00D805 03:97F5: 04 98     .word sub_05_9804
-- D 0 - I - 0x00D807 03:97F7: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D807 03:97F7: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D809 03:97F9: 14 B8     .word sub_06_B814_00
 - - - - - - 0x00D80B 03:97FB: 00 00     .word $0000 ; 01
@@ -6395,7 +6395,7 @@ _off030_998F_05:
 - D 0 - I - 0x00D9A1 03:9991: AD 99     .word off_02_99AD_00_spr_A
 - D 0 - I - 0x00D9A3 03:9993: A4 99     .word off_02_99A4_01_spr_T
 - D 0 - I - 0x00D9A5 03:9995: F5 85     .word off_02_85F5_02_spr_XY
-- D 0 - I - 0x00D9A7 03:9997: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D9A7 03:9997: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D9A9 03:9999: 1C B8     .word sub_06_B81C_00
 - - - - - - 0x00D9AB 03:999B: 00 00     .word $0000 ; 01
@@ -6438,7 +6438,7 @@ _off030_99B6_25:
 - D 0 - I - 0x00D9C8 03:99B8: D7 99     .word off_02_99D7_00_spr_A
 - D 0 - I - 0x00D9CA 03:99BA: CB 99     .word off_02_99CB_01_spr_T
 - D 0 - I - 0x00D9CC 03:99BC: E3 99     .word off_02_99E3_02_spr_XY
-- D 0 - I - 0x00D9CE 03:99BE: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00D9CE 03:99BE: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00D9D0 03:99C0: BC B8     .word sub_06_B8BC_00
 - - - - - - 0x00D9D2 03:99C2: 00 00     .word $0000 ; 01
@@ -6503,7 +6503,7 @@ _off030_99FB_06:
 - D 0 - I - 0x00DA0D 03:99FD: 10 9A     .word off_02_9A10_00_spr_A
 - D 0 - I - 0x00DA0F 03:99FF: 08 9A     .word off_02_9A08_01_spr_T
 - D 0 - I - 0x00DA11 03:9A01: 53 86     .word off_02_8653_02_spr_XY
-- D 0 - I - 0x00DA13 03:9A03: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DA13 03:9A03: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DA15 03:9A05: 28 B8     .word sub_06_B828_00
 @end:
@@ -6540,7 +6540,7 @@ _off030_9A18_1A:
 - D 0 - I - 0x00DA2A 03:9A1A: 2F 9A     .word off_02_9A2F_00_spr_A
 - D 0 - I - 0x00DA2C 03:9A1C: 25 9A     .word off_02_9A25_01_spr_T
 - D 0 - I - 0x00DA2E 03:9A1E: 39 9A     .word off_02_9A39_02_spr_XY
-- D 0 - I - 0x00DA30 03:9A20: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DA30 03:9A20: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DA32 03:9A22: 78 B8     .word sub_06_B878_00
 @end:
@@ -6595,7 +6595,7 @@ _off030_9A4D_1B:
 - D 0 - I - 0x00DA5F 03:9A4F: 64 9A     .word off_02_9A64_00_spr_A
 - D 0 - I - 0x00DA61 03:9A51: 5A 9A     .word off_02_9A5A_01_spr_T
 - D 0 - I - 0x00DA63 03:9A53: 6E 9A     .word off_02_9A6E_02_spr_XY
-- D 0 - I - 0x00DA65 03:9A55: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DA65 03:9A55: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DA67 03:9A57: 84 B8     .word sub_06_B884_00
 @end:
@@ -6653,7 +6653,7 @@ _off030_9A82_1C:
 - D 0 - I - 0x00DA9A 03:9A8A: 01        .byte con_sub_01, $01, $01   ; 
 - D 0 - I - 0x00DA9D 03:9A8D: A0 9A     .word off_01_9AA0_spr_T
 - D 0 - I - 0x00DA9F 03:9A8F: C0 9A     .word off_01_9AC0_spr_XY
-- D 0 - I - 0x00DAA1 03:9A91: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DAA1 03:9A91: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DAA3 03:9A93: 90 B8     .word sub_06_B890_00
 @end:
@@ -6728,7 +6728,7 @@ _off030_9AC2_1D:
 - D 0 - I - 0x00DAD4 03:9AC4: 2F 9A     .word off_02_9A2F_00_spr_A
 - D 0 - I - 0x00DAD6 03:9AC6: CF 9A     .word off_02_9ACF_01_spr_T
 - D 0 - I - 0x00DAD8 03:9AC8: D9 9A     .word off_02_9AD9_02_spr_XY
-- D 0 - I - 0x00DADA 03:9ACA: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DADA 03:9ACA: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DADC 03:9ACC: 9C B8     .word sub_06_B89C_00
 @end:
@@ -6769,7 +6769,7 @@ _off030_9AED_1E:
 - D 0 - I - 0x00DAFF 03:9AEF: 2F 9A     .word off_02_9A2F_00_spr_A
 - D 0 - I - 0x00DB01 03:9AF1: FA 9A     .word off_02_9AFA_01_spr_T
 - D 0 - I - 0x00DB03 03:9AF3: 04 9B     .word off_02_9B04_02_spr_XY
-- D 0 - I - 0x00DB05 03:9AF5: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DB05 03:9AF5: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DB07 03:9AF7: A8 B8     .word sub_06_B8A8_00
 @end:
@@ -6810,7 +6810,7 @@ _off030_9B18_1F:
 - D 0 - I - 0x00DB2A 03:9B1A: A1 9A     .word off_02_9AA1_00_spr_A
 - D 0 - I - 0x00DB2C 03:9B1C: 25 9B     .word off_02_9B25_01_spr_T
 - D 0 - I - 0x00DB2E 03:9B1E: 2F 9B     .word off_02_9B2F_02_spr_XY
-- D 0 - I - 0x00DB30 03:9B20: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DB30 03:9B20: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DB32 03:9B22: B4 B8     .word sub_06_B8B4_00
 @end:
@@ -6987,7 +6987,7 @@ _off030_9BCD_07:
 - D 0 - I - 0x00DBDF 03:9BCF: A1 9A     .word off_02_9AA1_00_spr_A
 - D 0 - I - 0x00DBE1 03:9BD1: 31 87     .word off_02_8731_01_spr_T
 - D 0 - I - 0x00DBE3 03:9BD3: 3B 87     .word off_02_873B_02_spr_XY
-- D 0 - I - 0x00DBE5 03:9BD5: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DBE5 03:9BD5: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DBE7 03:9BD7: 34 B8     .word sub_06_B834_00
 - - - - - - 0x00DBE9 03:9BD9: 00 00     .word $0000 ; 01
@@ -7004,7 +7004,7 @@ _off030_9BE2_08:
 - D 0 - I - 0x00DBF4 03:9BE4: A1 9A     .word off_02_9AA1_00_spr_A
 - D 0 - I - 0x00DBF6 03:9BE6: 58 87     .word off_02_8758_01_spr_T
 - D 0 - I - 0x00DBF8 03:9BE8: 62 87     .word off_02_8762_02_spr_XY
-- D 0 - I - 0x00DBFA 03:9BEA: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DBFA 03:9BEA: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DBFC 03:9BEC: 40 B8     .word sub_06_B840_00
 - - - - - - 0x00DBFE 03:9BEE: 00 00     .word $0000 ; 01
@@ -7021,7 +7021,7 @@ _off030_9BF7_09:
 - D 0 - I - 0x00DC09 03:9BF9: 0E 9C     .word off_02_9C0E_00_spr_A
 - D 0 - I - 0x00DC0B 03:9BFB: 04 9C     .word off_02_9C04_01_spr_T
 - D 0 - I - 0x00DC0D 03:9BFD: 18 9C     .word off_02_9C18_02_spr_XY
-- D 0 - I - 0x00DC0F 03:9BFF: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DC0F 03:9BFF: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DC11 03:9C01: 48 B8     .word sub_06_B848_00
 @end:
@@ -7076,7 +7076,7 @@ _off030_9C2C_12:
 - D 0 - I - 0x00DC3E 03:9C2E: 4B 9C     .word off_02_9C4B_00_spr_A
 - D 0 - I - 0x00DC40 03:9C30: 41 9C     .word off_02_9C41_01_spr_T
 - D 0 - I - 0x00DC42 03:9C32: 55 9C     .word off_02_9C55_02_spr_XY
-- D 0 - I - 0x00DC44 03:9C34: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DC44 03:9C34: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DC46 03:9C36: 54 B8     .word sub_06_B854_00
 - - - - - - 0x00DC48 03:9C38: 00 00     .word $0000 ; 01
@@ -7135,7 +7135,7 @@ _off030_9C69_13:
 - D 0 - I - 0x00DC7B 03:9C6B: A1 9A     .word off_02_9AA1_00_spr_A
 - D 0 - I - 0x00DC7D 03:9C6D: 7E 9C     .word off_02_9C7E_01_spr_T
 - D 0 - I - 0x00DC7F 03:9C6F: 88 9C     .word off_02_9C88_02_spr_XY
-- D 0 - I - 0x00DC81 03:9C71: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DC81 03:9C71: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DC83 03:9C73: 61 B8     .word sub_06_B861_00
 - - - - - - 0x00DC85 03:9C75: 00 00     .word $0000 ; 01
@@ -7180,7 +7180,7 @@ _off030_9C9C_14:
 - D 0 - I - 0x00DCAE 03:9C9E: A1 9A     .word off_02_9AA1_00_spr_A
 - D 0 - I - 0x00DCB0 03:9CA0: B1 9C     .word off_02_9CB1_01_spr_T
 - D 0 - I - 0x00DCB2 03:9CA2: 2C 8C     .word off_02_8C2C_02_spr_XY
-- D 0 - I - 0x00DCB4 03:9CA4: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DCB4 03:9CA4: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DCB6 03:9CA6: 6E B8     .word sub_06_B86E_00
 - - - - - - 0x00DCB8 03:9CA8: 00 00     .word $0000 ; 01
@@ -7649,7 +7649,7 @@ _off030_9E5F_03:
 - D 0 - I - 0x00DE71 03:9E61: 7E 9E     .word off_02_9E7E_00_spr_A
 - D 0 - I - 0x00DE73 03:9E63: 6E 9E     .word off_02_9E6E_01_spr_T
 - D 0 - I - 0x00DE75 03:9E65: 8E 9E     .word off_02_9E8E_02_spr_XY
-- D 0 - I - 0x00DE77 03:9E67: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DE77 03:9E67: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DE79 03:9E69: 0D A0     .word sub_06_A00D_00
 - - - - - - 0x00DE7B 03:9E6B: 04 A0     .word sub_06_A004_01
@@ -7723,7 +7723,7 @@ _off030_9EAE_04:
 - D 0 - I - 0x00DEC0 03:9EB0: D0 9E     .word off_02_9ED0_00_spr_A
 - D 0 - I - 0x00DEC2 03:9EB2: BD 9E     .word off_02_9EBD_01_spr_T
 - D 0 - I - 0x00DEC4 03:9EB4: E3 9E     .word off_02_9EE3_02_spr_XY
-- D 0 - I - 0x00DEC6 03:9EB6: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 0 - I - 0x00DEC6 03:9EB6: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 0 - I - 0x00DEC8 03:9EB8: 7D A0     .word sub_06_A07D_00
 - - - - - - 0x00DECA 03:9EBA: 74 A0     .word sub_06_A074_01
@@ -9186,7 +9186,7 @@ off_02_A480_02_spr_XY:
 
 
 _off030_A4A4_03:
-- D 1 - I - 0x00E4B4 03:A4A4: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 1 - I - 0x00E4B4 03:A4A4: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 1 - I - 0x00E4B6 03:A4A6: 25 B2     .word sub_06_B225_00
 - - - - - - 0x00E4B8 03:A4A8: 1C B2     .word sub_06_B21C_01
@@ -9254,7 +9254,7 @@ off_02_A4CF_02_spr_XY:
 
 
 _off030_A4EB_04:
-- D 1 - I - 0x00E4FB 03:A4EB: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 1 - I - 0x00E4FB 03:A4EB: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 1 - I - 0x00E4FD 03:A4ED: 5A B2     .word sub_06_B25A_00
 - - - - - - 0x00E4FF 03:A4EF: 51 B2     .word sub_06_B251_01
@@ -16272,7 +16272,7 @@ off_01_BE34_spr_XY:
 
 
 _off030_BE3C_1A:
-- D 1 - I - 0x00FE4C 03:BE3C: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 1 - I - 0x00FE4C 03:BE3C: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - - - - - - 0x00FE4E 03:BE3E: CE 86     .word sub_06_86CE_00
 - D 1 - I - 0x00FE50 03:BE40: CE 86     .word sub_06_86CE_01
@@ -16287,7 +16287,7 @@ _off030_BE3C_1A:
 
 
 _off030_BE4C_1B:
-- D 1 - I - 0x00FE5C 03:BE4C: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 1 - I - 0x00FE5C 03:BE4C: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - - - - - - 0x00FE5E 03:BE4E: F7 86     .word sub_06_86F7_00
 - D 1 - I - 0x00FE60 03:BE50: F7 86     .word sub_06_86F7_01
@@ -16646,7 +16646,7 @@ _off030_BF67_5E:
 - - - - - - 0x00FF7C 03:BF6C: B9 95     .word off_04_95B9_01_spr_A
 - D 1 - I - 0x00FF7E 03:BF6E: 9D 95     .word off_04_959D_02_spr_T
 - D 1 - I - 0x00FF80 03:BF70: D5 95     .word off_04_95D5_03_spr_XY
-- D 1 - I - 0x00FF82 03:BF72: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 1 - I - 0x00FF82 03:BF72: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 1 - I - 0x00FF84 03:BF74: 00 00     .word $0000 ; 00
 - D 1 - I - 0x00FF86 03:BF76: 7F BF     .word sub_06_BF7F_01
@@ -16680,7 +16680,7 @@ _off030_BF8F_5F:
 - - - - - - 0x00FFA4 03:BF94: 6C 8F     .word off_04_8F6C_01_spr_A
 - D 1 - I - 0x00FFA6 03:BF96: 09 96     .word off_04_9609_02_spr_T
 - D 1 - I - 0x00FFA8 03:BF98: 2D 96     .word off_04_962D_03_spr_XY
-- D 1 - I - 0x00FFAA 03:BF9A: 06        .byte con_sub_06, @end - @start + 2   ; 
+- D 1 - I - 0x00FFAA 03:BF9A: 06        .byte con_sub_06, @end - @start + $02   ; 
 @start:
 - D 1 - I - 0x00FFAC 03:BF9C: 00 00     .word $0000 ; 00
 - D 1 - I - 0x00FFAE 03:BF9E: A7 BF     .word sub_06_BFA7_01

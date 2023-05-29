@@ -53,7 +53,7 @@
 con_00                                  = $00 ; write single tile ?? times
 con_40                                  = $40 ; write several tiles ?? times
 con_80                                  = $80 ; same as con_00, but with 16-bit counter instead of 8-bit
-                                              ; for example, 01 + 6A = 006A times, 026A = 016A times
+                                              ; for example, 01 + $06A = 006A times, 026A = 016A times
                                               ; however, only 01 is always used originally, so basically it's the same as con_00, only 1 byte longer
 con_C0                                  = $C0 ; same as con_40, but additional byte for specifying how many times to repeat bytes sequence
 
@@ -63,6 +63,7 @@ con_C0                                  = $C0 ; same as con_40, but additional b
 
 
 .segment "BANK_PPU_1"
+.org $1000 ; for listing file
 ; 0x03D010-0x03E00F
 ; CHR banks 74-77
 
@@ -129,8 +130,7 @@ _off031_0x03D010_4E:
 - D 0 - - - 0x03D045 0F:1035: 1A        .byte con_00 + $1A   ; 
 - D 0 - - - 0x03D046 0F:1036: 00        .byte $00   ; 
 
-- D 0 - - - 0x03D047 0F:1037: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03D048 0F:1038: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03D047 0F:1037: 00        .byte $00, $00   ; end token
 
 
 
@@ -395,8 +395,7 @@ _off031_0x03D049_4F:
 - D 0 - - - 0x03D1A1 0F:1191: 09        .byte con_00 + $09   ; 
 - D 0 - - - 0x03D1A2 0F:1192: 00        .byte $00   ; 
 
-- D 0 - - - 0x03D1A3 0F:1193: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03D1A4 0F:1194: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03D1A3 0F:1193: 00        .byte $00, $00   ; end token
 
 
 
@@ -687,8 +686,7 @@ _off031_0x03D1A5_41:
 - D 0 - - - 0x03D2F9 0F:12E9: 09        .byte con_00 + $09   ; 
 - D 0 - - - 0x03D2FA 0F:12EA: 00        .byte $00   ; 
 
-- D 0 - - - 0x03D2FB 0F:12EB: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03D2FC 0F:12EC: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03D2FB 0F:12EB: 00        .byte $00, $00   ; end token
 
 
 
@@ -933,8 +931,7 @@ _off031_0x03D2FD_43:
 - D 0 - - - 0x03D3FF 0F:13EF: 09        .byte con_00 + $09   ; 
 - D 0 - - - 0x03D400 0F:13F0: 00        .byte $00   ; 
 
-- D 0 - - - 0x03D401 0F:13F1: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03D402 0F:13F2: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03D401 0F:13F1: 00        .byte $00, $00   ; end token
 
 
 
@@ -1168,8 +1165,7 @@ _off031_0x03D403_35:
 - D 0 - - - 0x03D538 0F:1528: 08        .byte con_00 + $08   ; 
 - D 0 - - - 0x03D539 0F:1529: 00        .byte $00   ; 
 
-- D 0 - - - 0x03D53A 0F:152A: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03D53B 0F:152B: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03D53A 0F:152A: 00        .byte $00, $00   ; end token
 
 
 
@@ -1480,8 +1476,7 @@ _off031_0x03D53C_39:
 - D 0 - - - 0x03D65C 0F:164C: 13        .byte con_00 + $13   ; 
 - D 0 - - - 0x03D65D 0F:164D: 00        .byte $00   ; 
 
-- D 0 - - - 0x03D65E 0F:164E: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03D65F 0F:164F: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03D65E 0F:164E: 00        .byte $00, $00   ; end token
 
 
 
@@ -1669,8 +1664,7 @@ _off031_0x03D660_38:
 - D 0 - - - 0x03D73F 0F:172F: 09        .byte con_00 + $09   ; 
 - D 0 - - - 0x03D740 0F:1730: 00        .byte $00   ; 
 
-- D 0 - - - 0x03D741 0F:1731: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03D742 0F:1732: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03D741 0F:1731: 00        .byte $00, $00   ; end token
 
 
 
@@ -1933,8 +1927,7 @@ _off031_0x03D743_31:
 - D 0 - - - 0x03D8AE 0F:189E: 08        .byte con_00 + $08   ; 
 - D 0 - - - 0x03D8AF 0F:189F: 00        .byte $00   ; 
 
-- D 0 - - - 0x03D8B0 0F:18A0: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03D8B1 0F:18A1: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03D8B0 0F:18A0: 00        .byte $00, $00   ; end token
 
 
 
@@ -2008,8 +2001,7 @@ _off031_0x03D8B2_36:
 - D 0 - - - 0x03D905 0F:18F5: 23        .byte con_00 + $23   ; 
 - D 0 - - - 0x03D906 0F:18F6: 00        .byte $00   ; 
 
-- D 0 - - - 0x03D907 0F:18F7: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03D908 0F:18F8: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03D907 0F:18F7: 00        .byte $00, $00   ; end token
 
 
 ; bzk garbage, unfinished screen data
@@ -2087,8 +2079,7 @@ _off031_0x03D95A_3A:
 - D 0 - - - 0x03D97F 0F:196F: 0D        .byte con_00 + $0D   ; 
 - D 0 - - - 0x03D980 0F:1970: 00        .byte $00   ; 
 
-- D 0 - - - 0x03D981 0F:1971: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03D982 0F:1972: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03D981 0F:1971: 00        .byte $00, $00   ; end token
 
 
 
@@ -2352,8 +2343,7 @@ _off031_0x03D983_33:
 - D 0 - - - 0x03DAE0 0F:1AD0: 01        .byte con_00 + $01   ; 
 - D 0 - - - 0x03DAE1 0F:1AD1: 01        .byte $01   ; 
 
-- D 0 - - - 0x03DAE2 0F:1AD2: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03DAE3 0F:1AD3: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03DAE2 0F:1AD2: 00        .byte $00, $00   ; end token
 
 
 
@@ -2578,8 +2568,7 @@ _off031_0x03DAE4_34:
 - D 0 - - - 0x03DBE5 0F:1BD5: 10        .byte con_00 + $10   ; 
 - D 0 - - - 0x03DBE6 0F:1BD6: 00        .byte $00   ; 
 
-- D 0 - - - 0x03DBE7 0F:1BD7: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03DBE8 0F:1BD8: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03DBE7 0F:1BD7: 00        .byte $00, $00   ; end token
 
 
 
@@ -2732,8 +2721,7 @@ _off031_0x03DBE9_44:
 - D 0 - - - 0x03DC83 0F:1C73: 11        .byte con_00 + $11   ; 
 - D 0 - - - 0x03DC84 0F:1C74: 00        .byte $00   ; 
 
-- D 0 - - - 0x03DC85 0F:1C75: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03DC86 0F:1C76: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03DC85 0F:1C75: 00        .byte $00, $00   ; end token
 
 
 
@@ -2957,8 +2945,7 @@ _off031_0x03DC87_52:
 - D 0 - - - 0x03DD88 0F:1D78: 0B        .byte con_00 + $0B   ; 
 - D 0 - - - 0x03DD89 0F:1D79: 00        .byte $00   ; 
 
-- D 0 - - - 0x03DD8A 0F:1D7A: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03DD8B 0F:1D7B: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03DD8A 0F:1D7A: 00        .byte $00, $00   ; end token
 
 
 
@@ -2992,8 +2979,7 @@ _off031_0x03DD8C_53:
 - D 0 - - - 0x03DDCF 0F:1DBF: 81        .byte con_80 + $01, $40   ; 
 - D 0 - - - 0x03DDD1 0F:1DC1: 00        .byte $00   ; 
 
-- D 0 - - - 0x03DDD2 0F:1DC2: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03DDD3 0F:1DC3: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03DDD2 0F:1DC2: 00        .byte $00, $00   ; end token
 
 
 ; bzk garbage
@@ -3234,8 +3220,7 @@ _off031_0x03DD8C_53:
 - - - - - - 0x03DEE4 0F:1ED4: 0B        .byte con_00 + $0B   ; 
 - - - - - - 0x03DEE5 0F:1ED5: 00        .byte $00   ; 
 
-- - - - - - 0x03DEE6 0F:1ED6: 00        .byte $00   ; end token
-- - - - - - 0x03DEE7 0F:1ED7: 00        .byte $00   ; end token
+- - - - - - 0x03DEE6 0F:1ED6: 00        .byte $00, $00   ; end token
 
 
 ; bzk garbage, unfinished screen data
@@ -3346,6 +3331,7 @@ _off031_0x03DD8C_53:
 
 
 .segment "BANK_PPU_2"
+.org $1000 ; for listing file
 ; 0x03E010-0x03F00F
 ; CHR banks 78-7B
 
@@ -3555,8 +3541,7 @@ _off031_0x03E010_2B:
 - D 0 - - - 0x03E18C 0F:117C: 08        .byte con_00 + $08   ; 
 - D 0 - - - 0x03E18D 0F:117D: 0A        .byte $0A   ; 
 
-- D 0 - - - 0x03E18E 0F:117E: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03E18F 0F:117F: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03E18E 0F:117E: 00        .byte $00, $00   ; end token
 
 
 
@@ -3849,8 +3834,7 @@ _off031_0x03E190_42:
 - D 0 - - - 0x03E30F 0F:12FF: 09        .byte con_00 + $09   ; 
 - D 0 - - - 0x03E310 0F:1300: 00        .byte $00   ; 
 
-- D 0 - - - 0x03E311 0F:1301: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03E312 0F:1302: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03E311 0F:1301: 00        .byte $00, $00   ; end token
 
 
 
@@ -4002,8 +3986,7 @@ _off031_0x03E313_50:
 - D 0 - - - 0x03E3A9 0F:1399: 19        .byte con_00 + $19   ; 
 - D 0 - - - 0x03E3AA 0F:139A: 00        .byte $00   ; 
 
-- D 0 - - - 0x03E3AB 0F:139B: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03E3AC 0F:139C: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03E3AB 0F:139B: 00        .byte $00, $00   ; end token
 
 
 
@@ -4179,8 +4162,7 @@ _off031_0x03E3AD_51:
 - D 0 - - - 0x03E468 0F:1458: 10        .byte con_00 + $10   ; 
 - D 0 - - - 0x03E469 0F:1459: 00        .byte $00   ; 
 
-- D 0 - - - 0x03E46A 0F:145A: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03E46B 0F:145B: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03E46A 0F:145A: 00        .byte $00, $00   ; end token
 
 
 
@@ -4402,8 +4384,7 @@ _off031_0x03E46C_46:
 - - - - - - 0x03E589 0F:1579: 08        .byte con_00 + $08   ; 
 - - - - - - 0x03E58A 0F:157A: 00        .byte $00   ; 
 
-- - - - - - 0x03E58B 0F:157B: 00        .byte $00   ; end token 1
-- - - - - - 0x03E58C 0F:157C: 00        .byte $00   ; end token 2
+- - - - - - 0x03E58B 0F:157B: 00        .byte $00, $00   ; end token
 
 
 
@@ -4589,8 +4570,7 @@ _off031_0x03E58D_47:
 - D 0 - - - 0x03E666 0F:1656: 08        .byte con_00 + $08   ; 
 - D 0 - - - 0x03E667 0F:1657: 00        .byte $00   ; 
 
-- D 0 - - - 0x03E668 0F:1658: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03E669 0F:1659: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03E668 0F:1658: 00        .byte $00, $00   ; end token
 
 
 
@@ -4791,8 +4771,7 @@ _off031_0x03E66A_48:
 - - - - - - 0x03E74A 0F:173A: 08        .byte con_00 + $08   ; 
 - - - - - - 0x03E74B 0F:173B: 00        .byte $00   ; 
 
-- - - - - - 0x03E74C 0F:173C: 00        .byte $00   ; end token 1
-- - - - - - 0x03E74D 0F:173D: 00        .byte $00   ; end token 2
+- - - - - - 0x03E74C 0F:173C: 00        .byte $00, $00   ; end token
 
 
 
@@ -5059,8 +5038,7 @@ _off031_0x03E74E_40:
 - D 0 - - - 0x03E8F1 0F:18E1: 08        .byte con_00 + $08   ; 
 - D 0 - - - 0x03E8F2 0F:18E2: 0F        .byte $0F   ; 
 
-- D 0 - - - 0x03E8F3 0F:18E3: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03E8F4 0F:18E4: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03E8F3 0F:18E3: 00        .byte $00, $00   ; end token
 
 
 
@@ -5125,8 +5103,7 @@ _off031_0x03E8F5_4B:
 - D 0 - - - 0x03E936 0F:1926: 08        .byte con_00 + $08   ; 
 - D 0 - - - 0x03E937 0F:1927: 0A        .byte $0A   ; 
 
-- D 0 - - - 0x03E938 0F:1928: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03E939 0F:1929: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03E938 0F:1928: 00        .byte $00, $00   ; end token
 
 
 
@@ -5227,8 +5204,7 @@ _off031_0x03E93A_4C:
 - D 0 - - - 0x03E9B5 0F:19A5: 08        .byte con_00 + $08   ; 
 - D 0 - - - 0x03E9B6 0F:19A6: 0A        .byte $0A   ; 
 
-- D 0 - - - 0x03E9B7 0F:19A7: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03E9B8 0F:19A8: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03E9B7 0F:19A7: 00        .byte $00, $00   ; end token
 
 
 
@@ -5398,8 +5374,7 @@ _off031_0x03E9B9_4D:
 - D 0 - - - 0x03EA8C 0F:1A7C: 08        .byte con_00 + $08   ; 
 - D 0 - - - 0x03EA8D 0F:1A7D: 0A        .byte $0A   ; 
 
-- D 0 - - - 0x03EA8E 0F:1A7E: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03EA8F 0F:1A7F: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03EA8E 0F:1A7E: 00        .byte $00, $00   ; end token
 
 
 
@@ -5544,8 +5519,7 @@ _off031_0x03EA90_4A:
 - D 0 - - - 0x03EB4F 0F:1B3F: 08        .byte con_00 + $08   ; 
 - D 0 - - - 0x03EB50 0F:1B40: 0A        .byte $0A   ; 
 
-- D 0 - - - 0x03EB51 0F:1B41: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03EB52 0F:1B42: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03EB51 0F:1B41: 00        .byte $00, $00   ; end token
 
 
 
@@ -5769,8 +5743,7 @@ _off031_0x03EB53_3B:
 - D 0 - - - 0x03EC36 0F:1C26: 11        .byte con_00 + $11   ; 
 - D 0 - - - 0x03EC37 0F:1C27: 00        .byte $00   ; 
 
-- D 0 - - - 0x03EC38 0F:1C28: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03EC39 0F:1C29: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03EC38 0F:1C28: 00        .byte $00, $00   ; end token
 
 
 
@@ -6009,8 +5982,7 @@ _off031_0x03EC3A_3C:
 - D 0 - - - 0x03ED2F 0F:1D1F: 0F        .byte con_00 + $0F   ; 
 - D 0 - - - 0x03ED30 0F:1D20: 00        .byte $00   ; 
 
-- D 0 - - - 0x03ED31 0F:1D21: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03ED32 0F:1D22: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03ED31 0F:1D21: 00        .byte $00, $00   ; end token
 
 
 ; bzk garbage
@@ -6274,8 +6246,7 @@ _off031_0x03EC3A_3C:
 - - - - - - 0x03EE3C 0F:1E2C: 11        .byte con_00 + $11   ; 
 - - - - - - 0x03EE3D 0F:1E2D: 00        .byte $00   ; 
 
-- - - - - - 0x03EE3E 0F:1E2E: 00        .byte $00   ; end token 1
-- - - - - - 0x03EE3F 0F:1E2F: 00        .byte $00   ; end token 2
+- - - - - - 0x03EE3E 0F:1E2E: 00        .byte $00, $00   ; end token
 
 
 ; bzk garbage, unused screen data
@@ -6513,8 +6484,7 @@ _off031_0x03EC3A_3C:
 - - - - - - 0x03EF35 0F:1F25: 0F        .byte con_00 + $0F   ; 
 - - - - - - 0x03EF36 0F:1F26: 00        .byte $00   ; 
 
-- - - - - - 0x03EF37 0F:1F27: 00        .byte $00   ; end token 1
-- - - - - - 0x03EF38 0F:1F28: 00        .byte $00   ; end token 2
+- - - - - - 0x03EF37 0F:1F27: 00        .byte $00, $00   ; end token
 
 
 ; bzk garbage, unfinished screen data
@@ -6720,6 +6690,7 @@ _off031_0x03EC3A_3C:
 
 
 .segment "BANK_PPU_3"
+.org $1000 ; for listing file
 ; 0x03F010-0x04000F
 ; CHR banks 7C-7F
 
@@ -7044,8 +7015,7 @@ _off031_0x03F010_00:
 - D 0 - - - 0x03F17C 0F:116C: 02        .byte con_00 + $02   ; 
 - D 0 - - - 0x03F17D 0F:116D: 0A        .byte $0A   ; 
 
-- D 0 - - - 0x03F17E 0F:116E: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03F17F 0F:116F: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03F17E 0F:116E: 00        .byte $00, $00   ; end token
 
 
 
@@ -7653,8 +7623,7 @@ _off031_0x03F180_15:
 - D 0 - - - 0x03F467 0F:1457: 03        .byte con_00 + $03   ; 
 - D 0 - - - 0x03F468 0F:1458: 0A        .byte $0A   ; 
 
-- D 0 - - - 0x03F469 0F:1459: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03F46A 0F:145A: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03F469 0F:1459: 00        .byte $00, $00   ; end token
 
 
 
@@ -8355,8 +8324,7 @@ _off031_0x03F46B_24:
 - D 0 - - - 0x03F788 0F:1778: 43        .byte con_40 + $03   ; 
 - D 0 - - - 0x03F789 0F:1779: 01        .byte $01, $05, $01   ; 
 
-- D 0 - - - 0x03F78C 0F:177C: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03F78D 0F:177D: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03F78C 0F:177C: 00        .byte $00, $00   ; end token
 
 
 
@@ -8766,8 +8734,7 @@ _off031_0x03F78E_25:
 - D 0 - - - 0x03F929 0F:1919: 43        .byte con_40 + $03   ; 
 - D 0 - - - 0x03F92A 0F:191A: 01        .byte $01, $05, $01   ; 
 
-- D 0 - - - 0x03F92D 0F:191D: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03F92E 0F:191E: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03F92D 0F:191D: 00        .byte $00, $00   ; end token
 
 
 
@@ -9283,8 +9250,7 @@ _off031_0x03F92F_26:
 - D 0 - - - 0x03FC03 0F:1BF3: 03        .byte con_00 + $03   ; 
 - D 0 - - - 0x03FC04 0F:1BF4: 00        .byte $00   ; 
 
-- D 0 - - - 0x03FC05 0F:1BF5: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03FC06 0F:1BF6: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03FC05 0F:1BF5: 00        .byte $00, $00   ; end token
 
 
 
@@ -9864,8 +9830,7 @@ _off031_0x03FC07_27:
 - D 0 - - - 0x03FEC6 0F:1EB6: 43        .byte con_40 + $03   ; 
 - D 0 - - - 0x03FEC7 0F:1EB7: 01        .byte $01, $05, $01   ; 
 
-- D 0 - - - 0x03FECA 0F:1EBA: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03FECB 0F:1EBB: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03FECA 0F:1EBA: 00        .byte $00, $00   ; end token
 
 
 
@@ -10110,8 +10075,7 @@ _off031_0x03FECC_45:
 - D 0 - - - 0x03FFD3 0F:1FC3: 11        .byte con_00 + $11   ; 
 - D 0 - - - 0x03FFD4 0F:1FC4: 00        .byte $00   ; 
 
-- D 0 - - - 0x03FFD5 0F:1FC5: 00        .byte $00   ; end token 1
-- D 0 - - - 0x03FFD6 0F:1FC6: 00        .byte $00   ; end token 2
+- D 0 - - - 0x03FFD5 0F:1FC5: 00        .byte $00, $00   ; end token
 
 
 ; bzk garbage, unfinished screen data

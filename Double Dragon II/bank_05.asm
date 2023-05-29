@@ -107,7 +107,7 @@ C - - - - - 0x0140BA 05:80AA: 0A        ASL
 C - - - - - 0x0140BB 05:80AB: AA        TAX
 C - - - - - 0x0140BC 05:80AC: BD 00 8A  LDA tbl_8A00_music_data,X
 C - - - - - 0x0140BF 05:80AF: 85 00     STA ram_0000
-C - - - - - 0x0140C1 05:80B1: BD 01 8A  LDA tbl_8A00_music_data + 1,X
+C - - - - - 0x0140C1 05:80B1: BD 01 8A  LDA tbl_8A00_music_data + $01,X
 C - - - - - 0x0140C4 05:80B4: 85 01     STA ram_0001
 C - - - - - 0x0140C6 05:80B6: A0 00     LDY #$00
 C - - - - - 0x0140C8 05:80B8: B1 00     LDA (ram_0000),Y
@@ -226,15 +226,15 @@ C - - - - - 0x014189 05:8179: A9 00     LDA #$00
 C - - - - - 0x01418B 05:817B: 8D 15 40  STA $4015
 C - - - - - 0x01418E 05:817E: A2 E0     LDX #$E0
 bra_8180_loop:  ; clear 0720-07FF
-C - - - - - 0x014190 05:8180: 9D 1F 07  STA ram_0720 - 1,X
+C - - - - - 0x014190 05:8180: 9D 1F 07  STA ram_0720 - $01,X
 C - - - - - 0x014193 05:8183: CA        DEX
 C - - - - - 0x014194 05:8184: D0 FA     BNE bra_8180_loop
 C - - - - - 0x014196 05:8186: A9 8D     LDA #$8D    ; STA
 C - - - - - 0x014198 05:8188: 8D F0 07  STA ram_STA_40xx_RTS
 C - - - - - 0x01419B 05:818B: A9 40     LDA #$40    ; 40xx
-C - - - - - 0x01419D 05:818D: 8D F2 07  STA ram_STA_40xx_RTS + 2
+C - - - - - 0x01419D 05:818D: 8D F2 07  STA ram_STA_40xx_RTS + $02
 C - - - - - 0x0141A0 05:8190: A9 60     LDA #$60    ; RTS
-C - - - - - 0x0141A2 05:8192: 8D F3 07  STA ram_STA_40xx_RTS + 3
+C - - - - - 0x0141A2 05:8192: 8D F3 07  STA ram_STA_40xx_RTS + $03
 C - - - - - 0x0141A5 05:8195: 60        RTS
 
 
@@ -1325,7 +1325,7 @@ C - - - - - 0x01480D 05:87FD: A5 02     LDA ram_0002
 C - - - - - 0x01480F 05:87FF: F0 18     BEQ bra_8819
 C - - - - - 0x014811 05:8801: A5 00     LDA ram_0000
 C - - - - - 0x014813 05:8803: 38        SEC
-C - - - - - 0x014814 05:8804: F9 F9 88  SBC tbl_88F8 + 1,Y
+C - - - - - 0x014814 05:8804: F9 F9 88  SBC tbl_88F8 + $01,Y
 C - - - - - 0x014817 05:8807: 85 03     STA ram_0003
 C - - - - - 0x014819 05:8809: 20 DD 88  JSR sub_88DD
 C - - - - - 0x01481C 05:880C: A5 00     LDA ram_0000
@@ -1360,12 +1360,12 @@ C - - - - - 0x014847 05:8837: E0 04     CPX #$04
 C - - - - - 0x014849 05:8839: B0 0A     BCS bra_8845
 C - - - - - 0x01484B 05:883B: BD 34 07  LDA ram_0734,X
 C - - - - - 0x01484E 05:883E: D0 11     BNE bra_8851_RTS
-C - - - - - 0x014850 05:8840: 8C F1 07  STY ram_STA_40xx_RTS + 1
+C - - - - - 0x014850 05:8840: 8C F1 07  STY ram_STA_40xx_RTS + $01
 C - - - - - 0x014853 05:8843: F0 06     BEQ bra_884B    ; jmp
 bra_8845:
 C - - - - - 0x014855 05:8845: 98        TYA
 C - - - - - 0x014856 05:8846: 29 0F     AND #$0F
-C - - - - - 0x014858 05:8848: 8D F1 07  STA ram_STA_40xx_RTS + 1
+C - - - - - 0x014858 05:8848: 8D F1 07  STA ram_STA_40xx_RTS + $01
 bra_884B:
 C - - - - - 0x01485B 05:884B: B9 CE 07  LDA ram_07CE,Y
 C - - - - - 0x01485E 05:884E: 4C F0 07  JMP ram_STA_40xx_RTS

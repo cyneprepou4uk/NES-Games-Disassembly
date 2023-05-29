@@ -1,8 +1,12 @@
 ; keep your global constant values inside this file
 
+
+
 ; MISC разное
 con_prg_bank                            = $00 ; 
 con_chr_bank                            = $00 ; 
+con_damage                              = $00 ; 
+con_debug                               = $00 ; https://tcrf.net/Double_Dragon_II:_The_Revenge_(NES)#:~:text=Prerelease%20Info-,Debug%20Features,-There%20is%20a
 
 
 
@@ -141,32 +145,34 @@ con_state_7F                            = $7F ; FF
 
 ; ram_obj_id
 ; https://doubledragon.kontek.net/games/dd2/chardd2nes.html
-; players and enemies
-con_obj_00                              = $00 ; Billy
-con_obj_01                              = $01 ; Jimmy
-con_obj_williams                        = $02 ; punk with knives
-con_obj_roper                           = $03 ; goth with flames
-con_obj_linda                           = $04 ; girl with a club
-con_obj_05                              = $05 ; unused?
+; players, enemies and weapons
+; need comments at 0x00B4E2 0x010722
+    ; 0x00A3AA
+con_obj_billy                           = $00 ; Billy
+con_obj_jimmy                           = $01 ; Jimmy
+con_obj_williams                        = $02 ; punk with knives/batons
+con_obj_roper                           = $03 ; goth with flames/boomerangs
+con_obj_linda                           = $04 ; girl with chain whips/grenades
+; con_obj_05                            = $05 ; unused
 con_obj_bolo                            = $06 ; black skinned boss
 con_obj_burnov                          = $07 ; masked boss dissapears
 con_obj_abore                           = $08 ; yellow terminator boss
 con_obj_chin_taimei                     = $09 ; green ninja with 2 swords
-con_obj_right_arm                       = $0A ; blue dude with blaack gloves
-con_obj_0B                              = $0B ; unused?
+con_obj_right_arm                       = $0A ; blue dude with black gloves
+; con_obj_0B                            = $0B ; unused
 con_obj_doppelganger                    = $0C ; clone boss
-con_obj_0D                              = $0D ; unused?
-con_obj_0E                              = $0E ; unused?
+; con_obj_0D                            = $0D ; unused
+; con_obj_0E                            = $0E ; unused
 con_obj_ninja                           = $0F ; blue ninja with shurikens
-con_obj_10                              = $10 ; unused?
+; con_obj_10                            = $10 ; unused
 con_obj_shadow_warrior                  = $11 ; final boss (also falling flame from torch maybe?)
 ; things
-con_obj_knife                           = $12 ; knife
+con_obj_knife                           = $12 ; knife used by williams
 con_obj_13                              = $13 ; flames from tractor?
 con_obj_grenade                         = $14 ; grenade
-con_obj_chain_whip                      = $15 ; chain whip by linda
+con_obj_chain_whip                      = $15 ; chain whip used by linda
 con_obj_flame_grenades                  = $16 ; throwing fire things
-con_obj_17                              = $17 ; baton
+con_obj_baton                           = $17 ; baton used by williams
 con_obj_18                              = $18 ; falling flame from torch?
 con_obj_19                              = $19 ; shuriken/throwing knife by ninja?
 con_obj_1A                              = $1A ; hit by knife/grenade animation? throwing boomerang by roper?
@@ -303,3 +309,14 @@ con_music_ctrl_FC                       = $FC ;
 con_music_ctrl_pause                    = $FD ; 
 con_music_ctrl_FE                       = $FE ; unused?
 con_music_ctrl_resume                   = $FF ; 
+
+
+
+; for ram_003C_obj
+con_003C_00                             = $00 ; 
+con_003C_01                             = $01 ; 
+con_003C_02                             = $02 ; weapon/helicopter bullets
+con_003C_10                             = $10 ; invisible (shadow warrior)
+con_003C_20                             = $20 ; hand cursor (A0) / also when enemy is spawned off screen and waiting for you (A1) / also elevator (A2)
+con_003C_40                             = $40 ; 
+con_003C_80                             = $80 ; 
