@@ -6,7 +6,7 @@ con_chr_bank                            = $00 ;
 
 
 
-; ram_state                             = $0043
+; ram_state
 ; need comments at 0x019381
 con_state_00                            = $00 ; 80 
 con_state_01                            = $01 ; 81 
@@ -139,7 +139,7 @@ con_state_7F                            = $7F ; FF
 
 
 
-; ram_obj_id                            = $00BF
+; ram_obj_id
 ; https://doubledragon.kontek.net/games/dd2/chardd2nes.html
 ; players and enemies
 con_obj_00                              = $00 ; Billy
@@ -177,8 +177,8 @@ con_obj_1E                              = $1E ; logo animation (maybe jumping sp
 
 
 
-; ram_btn_press                         = $00E0
-; ram_btn_hold                          = $00E2
+; ram_btn_press
+; ram_btn_hold
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -194,7 +194,7 @@ con_btns_SAB                            = con_btn_Start + con_btn_A + con_btn_B 
 
 
 
-; ram_nmi_flag                          = $00EC
+; ram_nmi_flag
 con_nmi_0_irq_0                         = $00 ; NMI = 0, IRQ = 0
 con_nmi_0_irq_1                         = $40 ; NMI = 0, IRQ = 1
 con_nmi_1_irq_0                         = $80 ; NMI = 1, IRQ = 0
@@ -202,7 +202,7 @@ con_nmi_1_irq_1                         = $C0 ; NMI = 1, IRQ = 1
 
 
 
-; ram_irq_handler                       = $00F4
+; ram_irq_handler
 con_irq_default                         = $00 ; normal HUD
 con_irq_blue_heli                       = $01 ; blue helicopter, mission 2
 con_irq_green_heli                      = $02 ; green helicopter takes off, mission 2
@@ -210,7 +210,7 @@ con_irq_tractor                         = $03 ; tractor (or whatever it is), mis
 
 
 
-; ram_sound_id                          = $07FF
+; ram_sound_id
 ; need comments at 0x014A10, 0x00B0A6, 0x019260
 con_music_off                           = $00 ; disable
 con_music_menu                          = $01 ; logo and menu
