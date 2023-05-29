@@ -180,7 +180,7 @@ _off000_0x0050B0_05_00:
 
 
 
-; !!! bzk this must be located starting at specific address, whish is relative to 10A0
+; !!! bzk this must be located starting at specific address, which is relative to 10A0
 ; pointer here is at 0x000011 (11EC - 10A0 + 400 = ram_054C)
 - D 0 - - - 0x0051FC 01:11EC: 3F 00     .dbyt $3F00
 - D 0 - - - 0x0051FE 01:11EE: 14        .byte con_00 + $14   ; 
@@ -296,7 +296,7 @@ _off000_0x005214_05_01:
 
 
 
-; !!! bzk this must be located starting at specific address, whish is relative to 1204
+; !!! bzk this must be located starting at specific address, which is relative to 1204
 ; pointer here is at 0x000018 (1285 - 1204 + 400 = ram_04DF)
 - D 0 - - - 0x005295 01:1285: 21 16     .dbyt $2116
 - D 0 - - - 0x005297 01:1287: 06        .byte con_00 + $06   ; 
@@ -370,7 +370,7 @@ _off000_0x005214_05_01:
 
 
 
-; !!! bzk this must be located starting at specific address, whish is relative to 1204
+; !!! bzk this must be located starting at specific address, which is relative to 1204
 ; pointer here is at 0x000017 (12E3 - 1204 + 400 = ram_04DF)
 - D 0 - - - 0x0052F3 01:12E3: 3F 00     .dbyt $3F00
 - D 0 - - - 0x0052F5 01:12E5: 08        .byte con_00 + $08   ; 
