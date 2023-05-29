@@ -789,12 +789,12 @@ C - - - - - 0x01C2FB 07:C2EB: C9 20     CMP #$20
 C - - - - - 0x01C2FD 07:C2ED: 90 18     BCC bra_C307_RTS
 bra_C2EF:
 C - - - - - 0x01C2FF 07:C2EF: 85 1B     STA ram_001B
-C - - - - - 0x01C301 07:C2F1: 8D FF 07  STA ram_номер_звука
-C - - - - - 0x01C304 07:C2F4: AD FF BF  LDA $BFFF
+C - - - - - 0x01C301 07:C2F1: 8D FF 07  STA ram_sound_id
+C - - - - - 0x01C304 07:C2F4: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01C307 07:C2F7: 48        PHA
 C - - - - - 0x01C308 07:C2F8: A9 00     LDA #$00
 C - - - - - 0x01C30A 07:C2FA: 20 D3 EE  JSR sub_EED3_prg_bankswitch
-C - - - - - 0x01C30D 07:C2FD: AD FF 07  LDA ram_номер_звука
+C - - - - - 0x01C30D 07:C2FD: AD FF 07  LDA ram_sound_id
 C - - - - - 0x01C310 07:C300: 20 00 80  JSR sub_0x000010
 C - - - - - 0x01C313 07:C303: 68        PLA
 C - - - - - 0x01C314 07:C304: 20 D3 EE  JSR sub_EED3_prg_bankswitch
@@ -804,7 +804,7 @@ C - - - - - 0x01C317 07:C307: 60        RTS
 
 
 sub_C308:
-C - - - - - 0x01C318 07:C308: AD FF BF  LDA $BFFF
+C - - - - - 0x01C318 07:C308: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01C31B 07:C30B: 48        PHA
 C - - - - - 0x01C31C 07:C30C: A9 00     LDA #$00
 C - - - - - 0x01C31E 07:C30E: 20 D3 EE  JSR sub_EED3_prg_bankswitch
@@ -814,14 +814,17 @@ C - - - - - 0x01C324 07:C314: 4C 68 C3  JMP loc_C368
 
 
 loc_C317:
-C D 2 - - - 0x01C327 07:C317: AD FF BF  LDA $BFFF
+C D 2 - - - 0x01C327 07:C317: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01C32A 07:C31A: 48        PHA
 C - - - - - 0x01C32B 07:C31B: A9 00     LDA #$00
 C - - - - - 0x01C32D 07:C31D: 20 D3 EE  JSR sub_EED3_prg_bankswitch
 C - - - - - 0x01C330 07:C320: 20 86 AE  JSR sub_0x002E96
 C - - - - - 0x01C333 07:C323: 4C 68 C3  JMP loc_C368
+
+
+
 sub_C326:
-C - - - - - 0x01C336 07:C326: AD FF BF  LDA $BFFF
+C - - - - - 0x01C336 07:C326: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01C339 07:C329: 48        PHA
 C - - - - - 0x01C33A 07:C32A: A9 00     LDA #$00
 C - - - - - 0x01C33C 07:C32C: 20 D3 EE  JSR sub_EED3_prg_bankswitch
@@ -831,7 +834,7 @@ C - - - - - 0x01C342 07:C332: 4C 68 C3  JMP loc_C368
 
 
 loc_C335:
-C D 2 - - - 0x01C345 07:C335: AD FF BF  LDA $BFFF
+C D 2 - - - 0x01C345 07:C335: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01C348 07:C338: 48        PHA
 C - - - - - 0x01C349 07:C339: A9 00     LDA #$00
 C - - - - - 0x01C34B 07:C33B: 20 D3 EE  JSR sub_EED3_prg_bankswitch
@@ -843,7 +846,7 @@ C - - - - - 0x01C351 07:C341: 4C 68 C3  JMP loc_C368
 loc_C344:
 C D 2 - - - 0x01C354 07:C344: 0A        ASL
 C - - - - - 0x01C355 07:C345: A8        TAY
-C - - - - - 0x01C356 07:C346: AD FF BF  LDA $BFFF
+C - - - - - 0x01C356 07:C346: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01C359 07:C349: 48        PHA
 C - - - - - 0x01C35A 07:C34A: A5 F6     LDA ram_00F6
 C - - - - - 0x01C35C 07:C34C: 48        PHA
@@ -5455,7 +5458,7 @@ C - - - - - 0x01DE56 07:DE46: 60        RTS
 
 
 sub_DE47:
-C - - - - - 0x01DE57 07:DE47: AD FF BF  LDA $BFFF
+C - - - - - 0x01DE57 07:DE47: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01DE5A 07:DE4A: 48        PHA
 C - - - - - 0x01DE5B 07:DE4B: AD F3 05  LDA ram_номер_prg_банка
 C - - - - - 0x01DE5E 07:DE4E: 20 D3 EE  JSR sub_EED3_prg_bankswitch
@@ -6470,7 +6473,7 @@ off_E39B_06:
 
 
 sub_E3D9:
-C - - - - - 0x01E3E9 07:E3D9: AD FF BF  LDA $BFFF
+C - - - - - 0x01E3E9 07:E3D9: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01E3EC 07:E3DC: 48        PHA
 C - - - - - 0x01E3ED 07:E3DD: AD F3 05  LDA ram_номер_prg_банка
 C - - - - - 0x01E3F0 07:E3E0: 20 D3 EE  JSR sub_EED3_prg_bankswitch
@@ -7026,7 +7029,7 @@ tbl_E610:
 sub_E6F0:
 .export sub_0x01E700
 sub_0x01E700:
-C - - - - - 0x01E700 07:E6F0: AD FF BF  LDA $BFFF
+C - - - - - 0x01E700 07:E6F0: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01E703 07:E6F3: 48        PHA
 C - - - - - 0x01E704 07:E6F4: AD F3 05  LDA ram_номер_prg_банка
 C - - - - - 0x01E707 07:E6F7: 20 D3 EE  JSR sub_EED3_prg_bankswitch
@@ -7162,7 +7165,7 @@ C - - - - - 0x01E7E8 07:E7D8: 60        RTS
 
 
 sub_E7D9:
-C - - - - - 0x01E7E9 07:E7D9: AD FF BF  LDA $BFFF
+C - - - - - 0x01E7E9 07:E7D9: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01E7EC 07:E7DC: 48        PHA
 C - - - - - 0x01E7ED 07:E7DD: A9 01     LDA #$01
 C - - - - - 0x01E7EF 07:E7DF: 20 D3 EE  JSR sub_EED3_prg_bankswitch
@@ -7264,7 +7267,7 @@ C - - - - - 0x01E8C9 07:E8B9: 60        RTS
 
 sub_E8BA:
 ; bzk неясно из какого банка читается 800F 8010
-- - - - - - 0x01E8CA 07:E8BA: AD FF BF  LDA $BFFF
+- - - - - - 0x01E8CA 07:E8BA: AD FF BF  LDA $BFFF   ; bank id
 - - - - - - 0x01E8CD 07:E8BD: 48        PHA
 - - - - - - 0x01E8CE 07:E8BE: A5 1F     LDA ram_001F
 - - - - - - 0x01E8D0 07:E8C0: 20 D3 EE  JSR sub_EED3_prg_bankswitch
@@ -8433,11 +8436,14 @@ C - - - - - 0x01EF05 07:EEF5: 8D 01 80  STA $8001
 C - - - - - 0x01EF08 07:EEF8: 68        PLA
 C - - - - - 0x01EF09 07:EEF9: AA        TAX
 C - - - - - 0x01EF0A 07:EEFA: 68        PLA
-C - - - - - 0x01EF0B 07:EEFB: CD FF BF  CMP $BFFF
+C - - - - - 0x01EF0B 07:EEFB: CD FF BF  CMP $BFFF   ; bank id
 C - - - - - 0x01EF0E 07:EEFE: D0 02     BNE bra_EF02
 C - - - - - 0x01EF10 07:EF00: 28        PLP
 C - - - - - 0x01EF11 07:EF01: 60        RTS
-; bzk
+
+
+; bzk garbage
+; I've seen the same garbage bytes in Double Dragon II 0x01FF4A
 bra_EF02:
 - - - - - - 0x01EF12 07:EF02: EA        .byte $EA   ; 
 - - - - - - 0x01EF13 07:EF03: AE        .byte $AE   ; 
@@ -10541,7 +10547,7 @@ C - - - - - 0x01FBF2 07:FBE2: 98        TYA
 C - - - - - 0x01FBF3 07:FBE3: 48        PHA
 C - - - - - 0x01FBF4 07:FBE4: A5 4E     LDA ram_для_8000
 C - - - - - 0x01FBF6 07:FBE6: 48        PHA
-C - - - - - 0x01FBF7 07:FBE7: AD FF BF  LDA $BFFF
+C - - - - - 0x01FBF7 07:FBE7: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01FBFA 07:FBEA: 48        PHA
 C - - - - - 0x01FBFB 07:FBEB: A5 0C     LDA ram_000C
 C - - - - - 0x01FBFD 07:FBED: 48        PHA
@@ -10588,7 +10594,7 @@ C - - - - - 0x01FC50 07:FC40: 98        TYA
 C - - - - - 0x01FC51 07:FC41: 48        PHA
 C - - - - - 0x01FC52 07:FC42: A5 4E     LDA ram_для_8000
 C - - - - - 0x01FC54 07:FC44: 48        PHA
-C - - - - - 0x01FC55 07:FC45: AD FF BF  LDA $BFFF
+C - - - - - 0x01FC55 07:FC45: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01FC58 07:FC48: 48        PHA
 C - - - - - 0x01FC59 07:FC49: A5 0C     LDA ram_000C
 C - - - - - 0x01FC5B 07:FC4B: 48        PHA
@@ -10669,7 +10675,7 @@ C - - - - - 0x01FCEE 07:FCDE: 8D 00 E0  STA $E000
 C - - - - - 0x01FCF1 07:FCE1: 8D 01 E0  STA $E001
 C - - - - - 0x01FCF4 07:FCE4: A5 4E     LDA ram_для_8000
 C - - - - - 0x01FCF6 07:FCE6: 48        PHA
-C - - - - - 0x01FCF7 07:FCE7: AD FF BF  LDA $BFFF
+C - - - - - 0x01FCF7 07:FCE7: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01FCFA 07:FCEA: 48        PHA
 C - - - - - 0x01FCFB 07:FCEB: A5 0C     LDA ram_000C
 C - - - - - 0x01FCFD 07:FCED: 48        PHA
