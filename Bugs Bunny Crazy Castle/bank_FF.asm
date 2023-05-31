@@ -7010,10 +7010,13 @@ C - - - - - 0x00EEEE 03:EEDE: 60        RTS
 
 sub_EEDF:
 C - - - - - 0x00EEEF 03:EEDF: A9 08     LDA #$08
-C - - - - - 0x00EEF1 03:EEE1: D0 02     BNE bra_EEE5_infinite_loop    ; jmp
+C - - - - - 0x00EEF1 03:EEE1: D0 02     BNE bra_EEE5    ; jmp
+
+
 
 sub_EEE3:
 C - - - - - 0x00EEF3 03:EEE3: A9 FF     LDA #$FF
+bra_EEE5:
 bra_EEE5_infinite_loop:
 C - - - - - 0x00EEF5 03:EEE5: 25 18     AND ram_0018
 C - - - - - 0x00EEF7 03:EEE7: D0 FC     BNE bra_EEE5_infinite_loop
