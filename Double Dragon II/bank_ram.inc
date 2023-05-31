@@ -1,5 +1,12 @@
 ; to the right are ROM File addresses of instructios which were using these RAM addresses
-; остановился на ram_044E
+
+
+
+; indexes
+    ; 00 and 01 for 1p and 2p
+    ; 02 and 03 for enemy1 and enemy2
+    ; 04 and 05 for weapons which enemy1 and enemy2 are holding
+    ; 06 for weapon/hand cursor
 
 
 
@@ -1149,7 +1156,7 @@ ram_0316_obj                            = $0316 ; 0081DA 0081DE 008214 0082A0 00
 
 
 ; 031D-0324 (08) 
-ram_031D_obj                            = $031D ; 009E22 009E47 009E4E 00A055 01FD6B 
+ram_obj_gravity_lo                      = $031D ; 009E22 009E47 009E4E 00A055 01FD6B 
 ; ram_031E                                = $031E ; 009E22 009E47 009E4E 00A055 01FD6B 
 ; ram_031F                                = $031F ; 009E22 009E47 009E4E 00A055 01FD6B 
 ; ram_0320                                = $0320 ; 009E22 009E47 009E4E 00A055 01FD6B 
@@ -1161,7 +1168,7 @@ ram_031D_obj                            = $031D ; 009E22 009E47 009E4E 00A055 01
 
 
 ; 0325-032C (08) 
-ram_0325_obj                            = $0325 ; 008364 008391 0083DC 0087F5 008839 00886E 0088A3 0088CF 008968 0089DC 008A0D 008C70 008ECF 008EE6 0097F5 009E2C 009E51 009E57 00A087 00A092 0102EA 018274 01FD6B 
+ram_obj_gravity_hi                      = $0325 ; 008364 008391 0083DC 0087F5 008839 00886E 0088A3 0088CF 008968 0089DC 008A0D 008C70 008ECF 008EE6 0097F5 009E2C 009E51 009E57 00A087 00A092 0102EA 018274 01FD6B 
 ; ram_0326                                = $0326 ; 008364 0083DC 008839 00886E 0088A3 008968 0089DC 009E2C 009E51 009E57 00A087 00A092 0102EA 018274 01FD6B 
 ; ram_0327                                = $0327 ; 008391 0083DC 00841A 00846F 0084B7 0087F5 008839 00886E 0088CF 008935 008968 0089A2 0089DC 008C70 008E73 0091F0 009224 0097F5 0098C2 009E2C 009E51 009E57 0102EA 01FD6B 
 ; ram_0328                                = $0328 ; 008391 0083DC 00841A 00846F 0084B7 0087F5 008839 00886E 0088A3 0088CF 008935 008968 0089A2 0089DC 008C70 008E73 0091F0 009224 0097F5 009E2C 009E51 009E57 0102EA 01FD6B 
@@ -1326,13 +1333,13 @@ ram_038D                                = $038D ; 01FD6B
 
 
 
-; 
-ram_038E                                = $038E ; 012958 01295B 01296A 01FD6B 
+; ? counter
+ram_038E_counter                        = $038E ; 012958 01295B 01296A 01FD6B 
 
 
 
-; 
-ram_038F                                = $038F ; 01245C 01245F 01246B 01FD6B 
+; ? counter
+ram_038F_counter                        = $038F ; 01245C 01245F 01246B 01FD6B 
 
 
 
@@ -1452,17 +1459,17 @@ ram_03AF                                = $03AF ; 01043C 01044A 010837 010842 01
 
 
 
-; 
+; temp
 ram_03B0                                = $03B0 ; 010443 010453 01083F 01084B 01087C 010888 01FD6B 
 
 
 
-; 
+; pos_X_lo ?
 ram_03B1                                = $03B1 ; 01044D 01061D 01062D 010658 01080B 010816 010848 010853 010885 010890 0108B4 0108BF 0109A9 0109AF 01232E 01235F 0123B4 01FD6B 
 
 
 
-; 
+; pos_X_hi ?
 ram_03B2                                = $03B2 ; 010456 010624 010634 01065F 010813 010821 010828 010850 01085E 010865 01088D 01089B 0108A2 0108BC 0108CA 0108D1 0109A4 01FD6B 
 
 
@@ -1485,7 +1492,8 @@ ram_03C0                                = $03C0 ; 01FD6B
 
 
 
-; 03C1-03C7 (07) 
+; 03C1-03C7 (07)
+; for checking left/right hand punch at 0x008CC0
 ram_03C1_obj                            = $03C1 ; 0080C4 008CBD 00AE6C 00B1EA 00B33E 01FD6B 
 ; ram_03C2                                = $03C2 ; 0080C4 008CBD 00AE6C 00B1EA 00B20B 00B2DC 00B33E 01FD6B 
 ; ram_03C3                                = $03C3 ; 0080C4 008CBD 008F78 0098F6 00AE6C 00B20B 00B2DC 01FD6B 
@@ -1504,8 +1512,8 @@ ram_clear_hit_counter_timer             = $03C8 ; 00AD1C 00AD21 00AE5D 01FD6B
 
 
 
-; 03CC-03CD (02) ??? also iframes
-ram_03CC_plr                            = $03CC ; 008085 0080A1 0080B1 008A73 00ADB3 019606 01D161 01D168 01D16B 01D16E 01D182 01D189 01FD6B 
+; 03CC-03CD (02) possibly something else as well
+ram_plr_invincibility_timer             = $03CC ; 008085 0080A1 0080B1 008A73 00ADB3 019606 01D161 01D168 01D16B 01D16E 01D182 01D189 01FD6B 
 ; ram_03CD                                = $03CD ; 008085 0080A1 0080B1 008A73 00ADB3 00ADC8 019609 01D161 01D168 01D16B 01D16E 01D182 01D189 01FD6B 
 
 
@@ -1779,35 +1787,67 @@ ram_0446_obj                            = $0446 ; 00866D 008672 00905A 009365 00
 
 
 
-; 044A-044D (04) 
+; 044A-0451 (08) 
 ram_044A_obj                            = $044A ; 0083A7 008651 008675 00867A 009026 009061 009068 009343 009357 00935C 0093B7 0093D8 0093EE 0093F3 009448 00946D 009472 0094CC 0094F3 0094F8 00953D 009572 00957F 009584 0097B5 009923 009928 00A355 00A366 00A36B 00A453 018510 0185FA 018F3F 0195DA 01D1C1 01E924 01E962 01FD6B 
 ; ram_044B                                = $044B ; 00A355 00A453 018F42 0195DD 01D1C1 01E924 01E962 01FD6B 
 ; ram_044C                                = $044C ; 0083A7 0084EC 0084FD 008502 00853E 008555 008651 008675 00867A 008FB4 008FB9 009026 009061 009068 0092F7 0092FC 0095C3 0095D2 0095D7 0095FD 009602 009639 009645 00964A 009698 00969D 0096DD 00A355 00A366 00A36B 00A453 012FCF 0130FE 0132ED 013363 01369C 019317 019375 01E924 01E93B 01E962 01FD6B 
 ; ram_044D                                = $044D ; 0083A7 0084EC 0084FD 008502 00853E 008555 008651 008675 00867A 009026 009061 009068 0092F7 0092FC 00A355 00A366 00A36B 00A453 012FCF 0132ED 013363 01369C 019317 019375 01E924 01E93B 01E962 01FD6B 
+; ram_044E                                = $044E ; 008512 008FC6 009081 00930D 009A37 009BA8 009C03 009C2C 009C59 009D7E 00B175 01FD6B 
+; ram_044F                                = $044F ; 008512 008FC6 009081 00930D 009BA8 009C03 009C2C 009C59 009D7E 00B175 01FD6B 
+; ram_0450                                = $0450 ; 009081 009C03 009C2C 009C59 00B175 01FD6B 
+; ram_0451                                = $0451 ; 00B175 01FD6B 
 
 
 
 ; 
-ram_044E                                = $044E ; 008512 008FC6 009081 00930D 009A37 009BA8 009C03 009C2C 009C59 009D7E 00B175 01FD6B 
-ram_044F                                = $044F ; 008512 008FC6 009081 00930D 009BA8 009C03 009C2C 009C59 009D7E 00B175 01FD6B 
-ram_0450                                = $0450 ; 009081 009C03 009C2C 009C59 00B175 01FD6B 
-ram_0451                                = $0451 ; 00B175 01FD6B 
 ram_0452                                = $0452 ; 01223F 012248 01224D 012256 01225B 01228A 0125DE 01FD6B 
+
+
+
+; 
 ram_0453                                = $0453 ; 012260 012269 01226E 012277 01227C 01227F 01229D 0122F7 01237C 012435 01FD6B 
-ram_0454                                = $0454 ; 012F85 012FCC 012FD2 013414 01FD6B 
-ram_0455                                = $0455 ; 012F85 012FCC 012FD2 013414 01FD6B 
-ram_0456                                = $0456 ; 00852B 0085F3 008FFB 009010 009205 009BAC 009D82 012389 0123A5 01240C 01243C 012459 01260D 01264C 0126AB 0126E4 0127BE 01280C 012C64 012E46 012E88 012EFC 012F61 013061 01306E 0130DA 0130FB 013388 013408 013442 0135D8 01FD6B 
-ram_0457                                = $0457 ; 00852B 009205 009D82 01240C 01260D 01264C 0126AB 0126E4 0127BE 01280C 012C64 012E46 012E88 012EFC 012F61 013061 01306E 013388 013408 013442 0135D8 01FD6B 
-ram_0458                                = $0458 ; 0122B7 01238E 0123AB 012414 012668 012732 0127B7 012805 0128CB 0128E0 0129BB 0129DA 012AEC 012E29 01307A 013091 013190 0131C2 013381 0136B2 0136C9 01377A 0137F9 01382E 01FD6B 
-ram_0459                                = $0459 ; 0122C7 012414 012668 012732 0127B7 012805 0128CB 0128E0 0129BB 0129DA 012AEC 012E29 01307A 013091 013190 0131C2 013381 0136B2 0136C9 01377A 0137F9 01382E 01FD6B 
-ram_045A                                = $045A ; 0122BB 012394 0123B1 012419 01266F 01272B 0127D3 012823 012926 0129B4 012A63 012ABD 012B17 012D74 01308A 013189 0131CA 01337A 0136AB 0136C2 013787 013795 013825 01FD6B 
-ram_045B                                = $045B ; 0122CB 012419 01266F 01272B 0127D3 012823 012926 0129B4 012A63 012ABD 012B17 012D74 01308A 013189 0131CA 01337A 0136AB 0136C2 013787 013795 013825 01FD6B 
-ram_045C                                = $045C ; 01239A 0123B7 01241E 012642 01FD6B 
-ram_045D                                = $045D ; 01241E 012642 01FD6B 
-ram_045E                                = $045E ; 0122EB 012428 012713 0127ED 013085 0136DC 01FD6B 
-ram_045F                                = $045F ; 0122F1 012428 012713 0127ED 013085 0136DC 01FD6B 
-ram_0460                                = $0460 ; 01221E 01244F 012481 0125EE 0127A3 0127A7 0128EC 013216 013737 013740 0137D7 0137DE 013837 013855 01388B 0138A4 0138BA 01FD6B 
-ram_0461                                = $0461 ; 01221E 012481 0125EE 0127A3 0127A7 0128EC 013216 013737 013740 0137D7 0137DE 013837 013855 013884 01388B 0138A4 0138BA 01FD6B 
+
+
+
+; 0454-0457 (04)
+ram_0454_obj                            = $0454 ; 012F85 012FCC 012FD2 013414 01FD6B 
+; ram_0455                                = $0455 ; 012F85 012FCC 012FD2 013414 01FD6B 
+; ram_0456                          = $0456 ; 00852B 0085F3 008FFB 009010 009205 009BAC 009D82 012389 0123A5 01240C 01243C 012459 01260D 01264C 0126AB 0126E4 0127BE 01280C 012C64 012E46 012E88 012EFC 012F61 013061 01306E 0130DA 0130FB 013388 013408 013442 0135D8 01FD6B 
+; ram_0457                                = $0457 ; 00852B 009205 009D82 01240C 01260D 01264C 0126AB 0126E4 0127BE 01280C 012C64 012E46 012E88 012EFC 012F61 013061 01306E 013388 013408 013442 0135D8 01FD6B 
+
+
+
+; 0458-0459 (02) 
+ram_0458_enemy                          = $0458 ; 0122B7 01238E 0123AB 012414 012668 012732 0127B7 012805 0128CB 0128E0 0129BB 0129DA 012AEC 012E29 01307A 013091 013190 0131C2 013381 0136B2 0136C9 01377A 0137F9 01382E 01FD6B 
+; ram_0459                                = $0459 ; 0122C7 012414 012668 012732 0127B7 012805 0128CB 0128E0 0129BB 0129DA 012AEC 012E29 01307A 013091 013190 0131C2 013381 0136B2 0136C9 01377A 0137F9 01382E 01FD6B 
+
+
+
+; 045A-045B (02) 
+ram_045A_enemy                          = $045A ; 0122BB 012394 0123B1 012419 01266F 01272B 0127D3 012823 012926 0129B4 012A63 012ABD 012B17 012D74 01308A 013189 0131CA 01337A 0136AB 0136C2 013787 013795 013825 01FD6B 
+; ram_045B                                = $045B ; 0122CB 012419 01266F 01272B 0127D3 012823 012926 0129B4 012A63 012ABD 012B17 012D74 01308A 013189 0131CA 01337A 0136AB 0136C2 013787 013795 013825 01FD6B 
+
+
+
+; 045C-045D (02) 
+ram_045C_enemy                          = $045C ; 01239A 0123B7 01241E 012642 01FD6B 
+; ram_045D                                = $045D ; 01241E 012642 01FD6B 
+
+
+
+; 045E-045F (02) 
+ram_045E_enemy                          = $045E ; 0122EB 012428 012713 0127ED 013085 0136DC 01FD6B 
+; ram_045F                                = $045F ; 0122F1 012428 012713 0127ED 013085 0136DC 01FD6B 
+
+
+
+; 0460-0461 (02) 
+ram_0460_enemy                          = $0460 ; 01221E 01244F 012481 0125EE 0127A3 0127A7 0128EC 013216 013737 013740 0137D7 0137DE 013837 013855 01388B 0138A4 0138BA 01FD6B 
+; ram_0461                                = $0461 ; 01221E 012481 0125EE 0127A3 0127A7 0128EC 013216 013737 013740 0137D7 0137DE 013837 013855 013884 01388B 0138A4 0138BA 01FD6B 
+
+
+
+; bzk unused
 ram_0462                                = $0462 ; 01FD6B 
 ram_0463                                = $0463 ; 01FD6B 
 
@@ -1877,10 +1917,22 @@ ram_047C_obj                            = $047C ; 0131C5 013659 0136B5 0136CD 01
 
 
 
-; currently undefined (4 separate addresses)
+; 
 ram_0480                                = $0480 ; 018A2A 018A3D 018A6E 018A7E 018B76 018B93 018BB7 018BCC 019125 019134 019797 0197AB 0197BB 0197EA 01A543 01A587 01A676 01A67B 01A6A8 01A6AD 01BD13 01BD39 01BE37 01BE47 01C049 01FD6B 
+
+
+
+; 
 ram_0481                                = $0481 ; 018A2F 018A42 018A73 018B81 018B98 018BBC 01912A 019139 01979C 0197C0 01A5E5 01A668 01A66D 01A68A 01A691 01A69B 01A6A1 01A6B2 01A6B9 01A6BF 01BD16 01BD1B 01BD3C 01BD41 01BE3A 01BE3F 01BE4A 01BE4F 01C04C 01FD6B 
+
+
+
+; 
 ram_0482                                = $0482 ; 01A548 01A5F5 01A608 01A640 01A649 01A650 01A65A 01A660 01A665 01A67E 01C04F 01FD6B 
+
+
+
+; 
 ram_0483                                = $0483 ; 01A573 01A6C4 01C052 01FD6B 
 
 
@@ -1920,7 +1972,7 @@ ram_pal_spr_current                     = $0492 ; 019538 01D7B2 01E2A9 01E2BB 01
 
 
 
-; 
+; bzk unused
 ram_0493                                = $0493 ; 01FD6B 
 ram_0494                                = $0494 ; 01FD6B 
 ram_0495                                = $0495 ; 01FD6B 
@@ -1935,7 +1987,7 @@ ram_chr_spr_2                           = $0499 ; 008BC7 008C41 018DB9 019052 01
 
 
 
-; 
+; bzk unused
 ram_049A                                = $049A ; 01FD6B 
 ram_049B                                = $049B ; 01FD6B 
 
@@ -1949,7 +2001,7 @@ ram_chr_bg_4                            = $049F ; 01C0AA 01C21D 01CD96 01F6A4 01
 
 
 
-; 
+; bzk unused
 ram_04A0                                = $04A0 ; 01FD6B 
 ram_04A1                                = $04A1 ; 01FD6B 
 ram_04A2                                = $04A2 ; 01FD6B 
@@ -1958,26 +2010,62 @@ ram_04A4                                = $04A4 ; 01FD6B
 
 
 
-; 
+; ? counter
 ram_04A5_counter                        = $04A5 ; 00805E 013394 013597 013638 01375E 013860 0188AE 018C1A 018C2C 018C85 018CB3 0191CE 0191E2 0192D2 01BB86 01BBEE 01BC81 01BCFC 01BD6C 01BE2C 01EDF9 01EDFF 01F0E7 01F107 01F359 01F444 01F535 01FD6B 
 
 
 
-; bzk probably useless, a copy of 04A5
+; bzk useless, a copy of 04A5
 ram_04A6                                = $04A6 ; 01EDFC 01FD6B 
 
 
 
-
+; 
 ram_04A7                                = $04A7 ; 01D838 01E7BB 01E87C 01EA12 01EA26 01EA2C 01EA5F 01EA73 01EA79 01FD6B 
+
+
+
+; 
 ram_04A8                                = $04A8 ; 019062 019271 01DDA1 01DDBB 01FD6B 
+
+
+
+; 
 ram_04A9                                = $04A9 ; 019068 019274 01DDA7 01DDC1 01FD6B 
+
+
+
+; 
 ram_04AA                                = $04AA ; 01906E 019277 01DDC7 01DDE5 01FD6B 
+
+
+
+; 
 ram_04AB                                = $04AB ; 019074 01927A 01DDCE 01DDEB 01FD6B 
+
+
+
+; 
 ram_04AC                                = $04AC ; 01907A 01927D 01DDF5 01DE0F 01FD6B 
+
+
+
+; 
 ram_04AD                                = $04AD ; 019080 019280 01DDFB 01DE15 01FD6B 
+
+
+
+; 
 ram_04AE                                = $04AE ; 019086 019283 01DE1B 01DE37 01FD6B 
+
+
+
+; 
 ram_04AF                                = $04AF ; 01908C 019286 01DE22 01DE3D 01FD6B 
+
+
+
+; 
 ram_04B0                                = $04B0 ; 0103F5 019092 019116 01926E 01DD1B 01FD6B 
 
 
@@ -2266,141 +2354,165 @@ ram_05BA                                = $05BA ; 01FD6B
 
 ; 
 ram_05BB                                = $05BB ; 01ADDA 01C032 01C11C 01C11F 01C690 01C7D7 01C7F1 01E2F8 01F0A9 01F1BE 01F4A6 01FD6B 
+
+
+
+; 
 ram_05BC                                = $05BC ; 00A8C3 00A8FA 00A99F 00AA1E 00AAEA 00AB4C 00AC0E 00AD09 01A605 01A63D 01ADD7 01AE97 01AED0 01B188 01B1B1 01B21B 01B248 01B309 01B32D 01B4B1 01B4D7 01B598 01B5BB 01B94C 01B973 01C035 01C253 01C2AB 01C2E3 01C332 01C4DE 01C530 01C54F 01C5A2 01C5D5 01C601 01C693 01D763 01D7A5 01D7C1 01D803 01E27B 01E2A3 01E2CA 01E2F2 01E2FC 01F0AC 01F1C1 01F4A9 01FD6B 
-ram_05BD                                = $05BD ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05BE                                = $05BE ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05BF                                = $05BF ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05C0                                = $05C0 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05C1                                = $05C1 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05C2                                = $05C2 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05C3                                = $05C3 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05C4                                = $05C4 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05C5                                = $05C5 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05C6                                = $05C6 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05C7                                = $05C7 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05C8                                = $05C8 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05C9                                = $05C9 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05CA                                = $05CA ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05CB                                = $05CB ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05CC                                = $05CC ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05CD                                = $05CD ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05CE                                = $05CE ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05CF                                = $05CF ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05D0                                = $05D0 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05D1                                = $05D1 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05D2                                = $05D2 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05D3                                = $05D3 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05D4                                = $05D4 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05D5                                = $05D5 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05D6                                = $05D6 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05D7                                = $05D7 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05D8                                = $05D8 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05D9                                = $05D9 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05DA                                = $05DA ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05DB                                = $05DB ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05DC                                = $05DC ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05DD                                = $05DD ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05DE                                = $05DE ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05DF                                = $05DF ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05E0                                = $05E0 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05E1                                = $05E1 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05E2                                = $05E2 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05E3                                = $05E3 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05E4                                = $05E4 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05E5                                = $05E5 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05E6                                = $05E6 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05E7                                = $05E7 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05E8                                = $05E8 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05E9                                = $05E9 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05EA                                = $05EA ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05EB                                = $05EB ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05EC                                = $05EC ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05ED                                = $05ED ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05EE                                = $05EE ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05EF                                = $05EF ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05F0                                = $05F0 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05F1                                = $05F1 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05F2                                = $05F2 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05F3                                = $05F3 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05F4                                = $05F4 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05F5                                = $05F5 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05F6                                = $05F6 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05F7                                = $05F7 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05F8                                = $05F8 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05F9                                = $05F9 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05FA                                = $05FA ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05FB                                = $05FB ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05FC                                = $05FC ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
-ram_05FD                                = $05FD ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_05FE                                = $05FE ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_05FF                                = $05FF ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0600                                = $0600 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0601                                = $0601 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0602                                = $0602 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0603                                = $0603 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0604                                = $0604 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0605                                = $0605 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0606                                = $0606 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0607                                = $0607 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0608                                = $0608 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0609                                = $0609 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_060A                                = $060A ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_060B                                = $060B ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_060C                                = $060C ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_060D                                = $060D ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_060E                                = $060E ; 01B666 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_060F                                = $060F ; 01B666 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0610                                = $0610 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0611                                = $0611 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0612                                = $0612 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0613                                = $0613 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0614                                = $0614 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0615                                = $0615 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0616                                = $0616 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0617                                = $0617 ; 01B666 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0618                                = $0618 ; 01B666 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0619                                = $0619 ; 01B666 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_061A                                = $061A ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_061B                                = $061B ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_061C                                = $061C ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_061D                                = $061D ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_061E                                = $061E ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_061F                                = $061F ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0620                                = $0620 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0621                                = $0621 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0622                                = $0622 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0623                                = $0623 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0624                                = $0624 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0625                                = $0625 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0626                                = $0626 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0627                                = $0627 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0628                                = $0628 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0629                                = $0629 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_062A                                = $062A ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_062B                                = $062B ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_062C                                = $062C ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_062D                                = $062D ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_062E                                = $062E ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_062F                                = $062F ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0630                                = $0630 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0631                                = $0631 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0632                                = $0632 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0633                                = $0633 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0634                                = $0634 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0635                                = $0635 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0636                                = $0636 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0637                                = $0637 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0638                                = $0638 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_0639                                = $0639 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_063A                                = $063A ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_063B                                = $063B ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
-ram_063C                                = $063C ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+
+
+
+; 05BD-063C (80) background attributes
+ram_bg_attr_buffer                      = $05BD ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05BE                                = $05BE ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05BF                                = $05BF ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05C0                                = $05C0 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05C1                                = $05C1 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05C2                                = $05C2 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05C3                                = $05C3 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05C4                                = $05C4 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05C5                                = $05C5 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05C6                                = $05C6 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05C7                                = $05C7 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05C8                                = $05C8 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05C9                                = $05C9 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05CA                                = $05CA ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05CB                                = $05CB ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05CC                                = $05CC ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05CD                                = $05CD ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05CE                                = $05CE ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05CF                                = $05CF ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05D0                                = $05D0 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05D1                                = $05D1 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05D2                                = $05D2 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05D3                                = $05D3 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05D4                                = $05D4 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05D5                                = $05D5 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05D6                                = $05D6 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05D7                                = $05D7 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05D8                                = $05D8 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05D9                                = $05D9 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05DA                                = $05DA ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05DB                                = $05DB ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05DC                                = $05DC ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05DD                                = $05DD ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05DE                                = $05DE ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05DF                                = $05DF ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05E0                                = $05E0 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05E1                                = $05E1 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05E2                                = $05E2 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05E3                                = $05E3 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05E4                                = $05E4 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05E5                                = $05E5 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05E6                                = $05E6 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05E7                                = $05E7 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05E8                                = $05E8 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05E9                                = $05E9 ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05EA                                = $05EA ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05EB                                = $05EB ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05EC                                = $05EC ; 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05ED                                = $05ED ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05EE                                = $05EE ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05EF                                = $05EF ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05F0                                = $05F0 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05F1                                = $05F1 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05F2                                = $05F2 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05F3                                = $05F3 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05F4                                = $05F4 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05F5                                = $05F5 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05F6                                = $05F6 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05F7                                = $05F7 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05F8                                = $05F8 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05F9                                = $05F9 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05FA                                = $05FA ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05FB                                = $05FB ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05FC                                = $05FC ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01F497 01FD6B 
+; ram_05FD                                = $05FD ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_05FE                                = $05FE ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_05FF                                = $05FF ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0600                                = $0600 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0601                                = $0601 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0602                                = $0602 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0603                                = $0603 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0604                                = $0604 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0605                                = $0605 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0606                                = $0606 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0607                                = $0607 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0608                                = $0608 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0609                                = $0609 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_060A                                = $060A ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_060B                                = $060B ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_060C                                = $060C ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_060D                                = $060D ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_060E                                = $060E ; 01B666 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_060F                                = $060F ; 01B666 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0610                                = $0610 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0611                                = $0611 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0612                                = $0612 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0613                                = $0613 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0614                                = $0614 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0615                                = $0615 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0616                                = $0616 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0617                                = $0617 ; 01B666 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0618                                = $0618 ; 01B666 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0619                                = $0619 ; 01B666 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_061A                                = $061A ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_061B                                = $061B ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_061C                                = $061C ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_061D                                = $061D ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_061E                                = $061E ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_061F                                = $061F ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0620                                = $0620 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0621                                = $0621 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0622                                = $0622 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0623                                = $0623 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0624                                = $0624 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0625                                = $0625 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0626                                = $0626 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0627                                = $0627 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0628                                = $0628 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0629                                = $0629 ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_062A                                = $062A ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_062B                                = $062B ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_062C                                = $062C ; 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_062D                                = $062D ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_062E                                = $062E ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_062F                                = $062F ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0630                                = $0630 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0631                                = $0631 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0632                                = $0632 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0633                                = $0633 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0634                                = $0634 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0635                                = $0635 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0636                                = $0636 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0637                                = $0637 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0638                                = $0638 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_0639                                = $0639 ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_063A                                = $063A ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_063B                                = $063B ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+; ram_063C                                = $063C ; 00A840 01C38A 01C38F 01C5F1 01CF1C 01FD6B 
+
+
+
+; bzk unused
 ram_063D                                = $063D ; 01FD6B 
 ram_063E                                = $063E ; 01FD6B 
+
+
+
+; 
 ram_063F                                = $063F ; 008A8F 018D6A 018D76 018E2E 018E38 018E65 018E70 018E83 0192C7 0194B3 0194B7 019557 01CDC4 01D6E0 01D6EC 01D719 01D71E 01D748 01D74D 01D7A8 01EED6 01EEFD 01F01E 01F027 01F5CE 01F5E1 01FB76 01FB7F 01FD6B 
 ram_0640                                = $0640 ; 01CDBF 01D6F3 01D6FA 01D6FD 01D707 01D70D 01D716 01D724 01D72B 01D72E 01D738 01D73E 01D745 01D780 01D78C 01D795 01D7DE 01D7EA 01D7F3 01FD6B 
+
+
+
+; bzk unused
 ram_0641                                = $0641 ; 01FD6B 
 ram_0642                                = $0642 ; 01FD6B 
+
+
+
+
 ram_0643                                = $0643 ; 008038 008045 008054 00ACE6 00AD0C 018C63 0191B9 0191E7 01C055 01FD6B 
 ram_0644                                = $0644 ; 01B536 01B53E 01B5F0 01B5F3 01B641 01B67D 01B830 01B84E 01B925 01B928 01B944 01C03A 01CF43 01CF5C 01CF79 01CF95 01CFB1 01CFCD 01D002 01D01F 01FD6B 
 ram_0645                                = $0645 ; 01B5F0 01B5F3 01B641 01B67D 01B830 01B84E 01B925 01B928 01B944 01C03A 01CF48 01CF62 01CF7F 01CF98 01CF9C 01CFB7 01CFD0 01D008 01D025 01FD6B 
@@ -2433,24 +2545,72 @@ ram_065F                                = $065F ; 01874F 018771 018C80 018C96 01
 
 
 
-; 
+; ? counter
 ram_0660_counter                        = $0660 ; 01D049 01D04C 01FD6B 
 
 
 
 ; 
 ram_0661                                = $0661 ; 01D98F 01D9D0 01ED0B 01FD6B 
+
+
+
+; 
 ram_0662                                = $0662 ; 01D989 01D9D5 01F62D 01FD6B 
+
+
+
+; 
 ram_0663                                = $0663 ; 01D981 01D9CB 01ECFE 01F5F4 01F60F 01F625 01FD6B 
+
+
+
+
 ram_0664                                = $0664 ; 0191D5 01D9DF 01DF68 01FD6B 
+
+
+
+; 
 ram_0665                                = $0665 ; 0191BE 01D9E5 01DFAF 01FD6B 
+
+
+
+; 
 ram_0666                                = $0666 ; 0191C1 01D9EB 01DFB9 01FD6B 
+
+
+
+; 
 ram_0667                                = $0667 ; 0191D8 01D9B7 01D9E2 01FD6B 
+
+
+
+; 
 ram_0668                                = $0668 ; 0191C4 01D9BD 01D9E8 01FD6B 
+
+
+
+; 
 ram_0669                                = $0669 ; 0191C7 01D9AF 01D9EE 01FD6B 
+
+
+
+; 
 ram_066A                                = $066A ; 01ED29 01EDF1 01EDF6 01FD6B 
+
+
+
+; bzk useless, holds FF
 ram_066B                                = $066B ; 01ED32 01EE88 01FD6B 
+
+
+
+; bzk useless, holds 19
 ram_066C                                = $066C ; 01EEC5 01FD6B 
+
+
+
+; bzk unused
 ram_066D                                = $066D ; 01FD6B 
 ram_066E                                = $066E ; 01FD6B 
 ram_066F                                = $066F ; 01FD6B 
@@ -2630,213 +2790,407 @@ ram_071C                                = $071C ; 01FD6B
 ram_071D                                = $071D ; 01FD6B 
 ram_071E                                = $071E ; 01FD6B 
 ram_071F                                = $071F ; 01FD6B 
+
+
+
+; sound engine RAM
+; clear at 0x014189
+
+
+
+; 
 ram_0720                                = $0720 ; 014081 01409C 0140FE 014106 014190 01FD6B 
+
+
+
+; 
 ram_0721                                = $0721 ; 014065 01406D 014084 014097 014190 01FD6B 
-ram_0722                                = $0722 ; 0140D6 014190 0141B9 01FD6B 
-ram_0723                                = $0723 ; 0140DC 014190 0141BE 01FD6B 
+
+
+
+; ? counter
+ram_0722_counter                        = $0722 ; 0140D6 014190 0141B9 01FD6B 
+
+
+
+; a copy of ram_sound_id (for background helicopter sound?)
+ram_copy_sound_id                       = $0723 ; 0140DC 014190 0141BE 01FD6B 
+
+
+
+; 0724-0727 (04) 
 ram_0724                                = $0724 ; 0140EF 014131 014190 014571 01FD6B 
-ram_0725                                = $0725 ; 0140EF 014131 014190 014571 01FD6B 
-ram_0726                                = $0726 ; 0140EF 014131 014190 014571 01FD6B 
-ram_0727                                = $0727 ; 0140EF 014131 014190 014571 01FD6B 
+; ram_0725                                = $0725 ; 0140EF 014131 014190 014571 01FD6B 
+; ram_0726                                = $0726 ; 0140EF 014131 014190 014571 01FD6B 
+; ram_0727                                = $0727 ; 0140EF 014131 014190 014571 01FD6B 
+
+
+
+; 0728-072F (08) 
 ram_0728                                = $0728 ; 01416C 014190 014220 014225 01431C 014321 0143B9 0143BE 0143EF 0143F4 014472 014477 014515 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 0148B5 0148BA 0148D7 0148DC 01FD6B 
-ram_0729                                = $0729 ; 01416C 014190 014220 014225 01431C 014321 0143B9 0143BE 0143EF 0143F4 014472 014477 014515 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 0148B5 0148BA 0148D7 0148DC 01FD6B 
-ram_072A                                = $072A ; 01416C 014190 014220 014225 01431C 014321 0143B9 0143BE 0143EF 0143F4 014515 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 0148B5 0148BA 0148D7 0148DC 01FD6B 
-ram_072B                                = $072B ; 01416C 014190 014220 014225 01431C 014321 0143B9 0143BE 0143EF 0143F4 014515 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 01FD6B 
-ram_072C                                = $072C ; 01416C 014190 0141D4 0142AE 0142B3 0143A2 0143A7 0143B9 0143BE 0143E6 0143EB 0143EF 0143F4 014472 014477 0144AB 0144B0 014515 01456B 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 01FD6B 
-ram_072D                                = $072D ; 01416C 014190 0141D4 0142AE 0142B3 0143A2 0143A7 0143B9 0143BE 0143E6 0143EB 0143EF 0143F4 014472 014477 0144AB 0144B0 014515 01456B 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 01FD6B 
-ram_072E                                = $072E ; 01416C 014190 0141D4 0142AE 0142B3 0143E6 0143EB 0143EF 0143F4 014515 01456B 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 01FD6B 
-ram_072F                                = $072F ; 01416C 014190 0141D4 0142AE 0142B3 0143B9 0143BE 0143E6 0143EB 0143EF 0143F4 014472 014477 014515 01456B 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 01FD6B 
+; ram_0729                                = $0729 ; 01416C 014190 014220 014225 01431C 014321 0143B9 0143BE 0143EF 0143F4 014472 014477 014515 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 0148B5 0148BA 0148D7 0148DC 01FD6B 
+; ram_072A                                = $072A ; 01416C 014190 014220 014225 01431C 014321 0143B9 0143BE 0143EF 0143F4 014515 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 0148B5 0148BA 0148D7 0148DC 01FD6B 
+; ram_072B                                = $072B ; 01416C 014190 014220 014225 01431C 014321 0143B9 0143BE 0143EF 0143F4 014515 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 01FD6B 
+; ram_072C                                = $072C ; 01416C 014190 0141D4 0142AE 0142B3 0143A2 0143A7 0143B9 0143BE 0143E6 0143EB 0143EF 0143F4 014472 014477 0144AB 0144B0 014515 01456B 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 01FD6B 
+; ram_072D                                = $072D ; 01416C 014190 0141D4 0142AE 0142B3 0143A2 0143A7 0143B9 0143BE 0143E6 0143EB 0143EF 0143F4 014472 014477 0144AB 0144B0 014515 01456B 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 01FD6B 
+; ram_072E                                = $072E ; 01416C 014190 0141D4 0142AE 0142B3 0143E6 0143EB 0143EF 0143F4 014515 01456B 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 01FD6B 
+; ram_072F                                = $072F ; 01416C 014190 0141D4 0142AE 0142B3 0143B9 0143BE 0143E6 0143EB 0143EF 0143F4 014472 014477 014515 01456B 0145B6 0145C0 0145CA 0145D4 0145DE 0145E8 0145F4 01FD6B 
+
+
+
+; 0730-0737 (08) 
 ram_0730                                = $0730 ; 014171 014190 014206 01422E 014233 014255 014269 01426E 0142C2 014312 0143F8 0143FD 014402 014407 01451A 014521 014542 01457B 014580 014597 01459C 0145A2 0145A7 0145AC 0145B1 014697 0146E0 0146E5 014722 01472A 014866 01FD6B 
-ram_0731                                = $0731 ; 014171 014190 014206 01422E 014233 014255 014269 01426E 0142C2 014312 0143F8 0143FD 014402 014407 01451A 014524 014542 01457B 014580 014597 01459C 0145A2 0145A7 0145AC 0145B1 014697 0146E0 0146E5 014722 01472A 014866 01FD6B 
-ram_0732                                = $0732 ; 014171 014190 014206 01422E 014233 014255 014269 01426E 0142C2 014312 01451A 014527 014542 01457B 014580 014597 01459C 0146E0 0146E5 014722 01472A 014866 01FD6B 
-ram_0733                                = $0733 ; 014171 014190 014206 01422E 014233 014255 014269 01426E 0142C2 01451A 01452A 014542 01457B 014580 014697 0146E0 0146E5 014722 01472A 01FD6B 
-ram_0734                                = $0734 ; 014171 014190 0141CC 014255 01451A 0146E0 0146E5 014722 01472A 014775 01484B 01FD6B 
-ram_0735                                = $0735 ; 014171 014190 0141CC 014255 01451A 0146E0 0146E5 014722 01472A 014775 01484B 01FD6B 
-ram_0736                                = $0736 ; 014171 014190 0141CC 014255 01451A 0146E0 0146E5 014722 01472A 01484B 01FD6B 
-ram_0737                                = $0737 ; 014171 014190 0141CC 014255 01451A 0146E0 0146E5 014722 01472A 014775 01484B 01FD6B 
+; ram_0731                                = $0731 ; 014171 014190 014206 01422E 014233 014255 014269 01426E 0142C2 014312 0143F8 0143FD 014402 014407 01451A 014524 014542 01457B 014580 014597 01459C 0145A2 0145A7 0145AC 0145B1 014697 0146E0 0146E5 014722 01472A 014866 01FD6B 
+; ram_0732                                = $0732 ; 014171 014190 014206 01422E 014233 014255 014269 01426E 0142C2 014312 01451A 014527 014542 01457B 014580 014597 01459C 0146E0 0146E5 014722 01472A 014866 01FD6B 
+; ram_0733                                = $0733 ; 014171 014190 014206 01422E 014233 014255 014269 01426E 0142C2 01451A 01452A 014542 01457B 014580 014697 0146E0 0146E5 014722 01472A 01FD6B 
+; ram_0734                                = $0734 ; 014171 014190 0141CC 014255 01451A 0146E0 0146E5 014722 01472A 014775 01484B 01FD6B 
+; ram_0735                                = $0735 ; 014171 014190 0141CC 014255 01451A 0146E0 0146E5 014722 01472A 014775 01484B 01FD6B 
+; ram_0736                                = $0736 ; 014171 014190 0141CC 014255 01451A 0146E0 0146E5 014722 01472A 01484B 01FD6B 
+; ram_0737                                = $0737 ; 014171 014190 0141CC 014255 01451A 0146E0 0146E5 014722 01472A 014775 01484B 01FD6B 
+
+
+
+; 
 ram_0738                                = $0738 ; 0140A7 0140AD 014190 0141C9 0141E6 0141F2 01420B 014334 014458 0144A8 014566 01456E 014694 0146B7 01FD6B 
+
+
+
+; 
 ram_0739                                = $0739 ; 01410E 014190 0141F8 01440E 01FD6B 
-ram_073A                                = $073A ; 014111 014190 014411 01FD6B 
+
+
+
+; bzk useless
+ram_073A                                = $073A ; 014111 014190 014411 01FD6B
+
+
+
+ ; bzk useless
 ram_073B                                = $073B ; 01410B 014190 0141FC 0141FF 01FD6B 
+
+
+
+; 073C-0743 (08) 
 ram_073C                                = $073C ; 014151 014190 014236 01424C 01FD6B 
-ram_073D                                = $073D ; 014151 014190 014236 01424C 01FD6B 
-ram_073E                                = $073E ; 014151 014190 014236 01424C 01FD6B 
-ram_073F                                = $073F ; 014151 014190 014236 01424C 01FD6B 
-ram_0740                                = $0740 ; 014151 014190 014236 01424C 01FD6B 
-ram_0741                                = $0741 ; 014151 014190 014236 01424C 01FD6B 
-ram_0742                                = $0742 ; 014151 014190 014236 01424C 01FD6B 
-ram_0743                                = $0743 ; 014151 014190 014236 01424C 01FD6B 
+; ram_073D                                = $073D ; 014151 014190 014236 01424C 01FD6B 
+; ram_073E                                = $073E ; 014151 014190 014236 01424C 01FD6B 
+; ram_073F                                = $073F ; 014151 014190 014236 01424C 01FD6B 
+; ram_0740                                = $0740 ; 014151 014190 014236 01424C 01FD6B 
+; ram_0741                                = $0741 ; 014151 014190 014236 01424C 01FD6B 
+; ram_0742                                = $0742 ; 014151 014190 014236 01424C 01FD6B 
+; ram_0743                                = $0743 ; 014151 014190 014236 01424C 01FD6B 
+
+
+
+; 0744-074B (08) 
 ram_0744                                = $0744 ; 014157 014190 01423B 014251 01FD6B 
-ram_0745                                = $0745 ; 014157 014190 01423B 014251 01FD6B 
-ram_0746                                = $0746 ; 014157 014190 01423B 014251 01FD6B 
-ram_0747                                = $0747 ; 014157 014190 01423B 014251 01FD6B 
-ram_0748                                = $0748 ; 014157 014190 01423B 014251 01FD6B 
-ram_0749                                = $0749 ; 014157 014190 01423B 014251 01FD6B 
-ram_074A                                = $074A ; 014157 014190 01423B 014251 01FD6B 
-ram_074B                                = $074B ; 014157 014190 01423B 014251 01FD6B 
+; ram_0745                                = $0745 ; 014157 014190 01423B 014251 01FD6B 
+; ram_0746                                = $0746 ; 014157 014190 01423B 014251 01FD6B 
+; ram_0747                                = $0747 ; 014157 014190 01423B 014251 01FD6B 
+; ram_0748                                = $0748 ; 014157 014190 01423B 014251 01FD6B 
+; ram_0749                                = $0749 ; 014157 014190 01423B 014251 01FD6B 
+; ram_074A                                = $074A ; 014157 014190 01423B 014251 01FD6B 
+; ram_074B                                = $074B ; 014157 014190 01423B 014251 01FD6B 
+
+
+
+; 074C-0753 (08) 
 ram_074C                                = $074C ; 014167 014190 014228 0142D6 0143E0 01FD6B 
-ram_074D                                = $074D ; 014167 014190 014228 0142D6 0143E0 01FD6B 
-ram_074E                                = $074E ; 014167 014190 014228 0142D6 0143E0 01FD6B 
-ram_074F                                = $074F ; 014167 014190 014228 0142D6 0143E0 01FD6B 
-ram_0750                                = $0750 ; 014167 014190 014215 0142A5 01FD6B 
-ram_0751                                = $0751 ; 014167 014190 014215 0142A5 01FD6B 
-ram_0752                                = $0752 ; 014167 014190 014215 0142A5 01FD6B 
-ram_0753                                = $0753 ; 014167 014190 014215 0142A5 01FD6B 
+; ram_074D                                = $074D ; 014167 014190 014228 0142D6 0143E0 01FD6B 
+; ram_074E                                = $074E ; 014167 014190 014228 0142D6 0143E0 01FD6B 
+; ram_074F                                = $074F ; 014167 014190 014228 0142D6 0143E0 01FD6B 
+; ram_0750                                = $0750 ; 014167 014190 014215 0142A5 01FD6B 
+; ram_0751                                = $0751 ; 014167 014190 014215 0142A5 01FD6B 
+; ram_0752                                = $0752 ; 014167 014190 014215 0142A5 01FD6B 
+; ram_0753                                = $0753 ; 014167 014190 014215 0142A5 01FD6B 
+
+
+
+; 0754-075B (08) 
 ram_0754                                = $0754 ; 014190 0142BF 0147E2 0147F0 01FD6B 
-ram_0755                                = $0755 ; 014190 0142BF 0147E2 0147F0 01FD6B 
-ram_0756                                = $0756 ; 014190 0142BF 0147E2 0147F0 01FD6B 
-ram_0757                                = $0757 ; 014190 0142BF 0147BC 01FD6B 
-ram_0758                                = $0758 ; 014190 0142AB 01437F 014392 01439C 0147FD 01FD6B 
-ram_0759                                = $0759 ; 014190 0142AB 01437F 014392 01439C 0147FD 01FD6B 
-ram_075A                                = $075A ; 014190 0142AB 01437F 0147FD 01FD6B 
-ram_075B                                = $075B ; 014190 0142AB 01437F 0147A4 01FD6B 
+; ram_0755                                = $0755 ; 014190 0142BF 0147E2 0147F0 01FD6B 
+; ram_0756                                = $0756 ; 014190 0142BF 0147E2 0147F0 01FD6B 
+; ram_0757                                = $0757 ; 014190 0142BF 0147BC 01FD6B 
+; ram_0758                                = $0758 ; 014190 0142AB 01437F 014392 01439C 0147FD 01FD6B 
+; ram_0759                                = $0759 ; 014190 0142AB 01437F 014392 01439C 0147FD 01FD6B 
+; ram_075A                                = $075A ; 014190 0142AB 01437F 0147FD 01FD6B 
+; ram_075B                                = $075B ; 014190 0142AB 01437F 0147A4 01FD6B 
+
+
+
+; 075C-0763 (08) 
 ram_075C                                = $075C ; 014162 014190 0147DD 0147EB 01FD6B 
-ram_075D                                = $075D ; 014162 014190 0147DD 0147EB 01FD6B 
-ram_075E                                = $075E ; 014162 014190 0147DD 0147EB 01FD6B 
-ram_075F                                = $075F ; 014162 014190 01FD6B 
-ram_0760                                = $0760 ; 014162 014190 01438D 014397 01439F 0147F8 01FD6B 
-ram_0761                                = $0761 ; 014162 014190 01438D 014397 01439F 0147F8 01FD6B 
-ram_0762                                = $0762 ; 014162 014190 0147F8 01FD6B 
-ram_0763                                = $0763 ; 014162 014190 01FD6B 
+; ram_075D                                = $075D ; 014162 014190 0147DD 0147EB 01FD6B 
+; ram_075E                                = $075E ; 014162 014190 0147DD 0147EB 01FD6B 
+; ram_075F                                = $075F ; 014162 014190 01FD6B 
+; ram_0760                                = $0760 ; 014162 014190 01438D 014397 01439F 0147F8 01FD6B 
+; ram_0761                                = $0761 ; 014162 014190 01438D 014397 01439F 0147F8 01FD6B 
+; ram_0762                                = $0762 ; 014162 014190 0147F8 01FD6B 
+; ram_0763                                = $0763 ; 014162 014190 01FD6B 
+
+
+
+; 0764-076B (08) 
 ram_0764                                = $0764 ; 014190 0143B6 0146A2 01FD6B 
-ram_0765                                = $0765 ; 014190 0143B6 0146A2 01FD6B 
-ram_0766                                = $0766 ; 014190 0143B6 01FD6B 
-ram_0767                                = $0767 ; 014190 0143B6 0146A2 01FD6B 
-ram_0768                                = $0768 ; 014190 0143B3 0143B6 01477B 01FD6B 
-ram_0769                                = $0769 ; 014190 0143B3 0143B6 01477B 01FD6B 
-ram_076A                                = $076A ; 014190 01FD6B 
-ram_076B                                = $076B ; 014190 0143B3 0143B6 01477B 01FD6B 
+; ram_0765                                = $0765 ; 014190 0143B6 0146A2 01FD6B 
+; ram_0766                                = $0766 ; 014190 0143B6 01FD6B 
+; ram_0767                                = $0767 ; 014190 0143B6 0146A2 01FD6B 
+; ram_0768                                = $0768 ; 014190 0143B3 0143B6 01477B 01FD6B 
+; ram_0769                                = $0769 ; 014190 0143B3 0143B6 01477B 01FD6B 
+; ram_076A                                = $076A ; 014190 01FD6B 
+; ram_076B                                = $076B ; 014190 0143B3 0143B6 01477B 01FD6B 
+
+
+
+; 076C-0773 (08) 
 ram_076C                                = $076C ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
-ram_076D                                = $076D ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
-ram_076E                                = $076E ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
-ram_076F                                = $076F ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
-ram_0770                                = $0770 ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
-ram_0771                                = $0771 ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
-ram_0772                                = $0772 ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
-ram_0773                                = $0773 ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
+; ram_076D                                = $076D ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
+; ram_076E                                = $076E ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
+; ram_076F                                = $076F ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
+; ram_0770                                = $0770 ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
+; ram_0771                                = $0771 ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
+; ram_0772                                = $0772 ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
+; ram_0773                                = $0773 ; 01415C 014190 0144B5 0144BC 0144C0 01FD6B 
+
+
+
+
+; 0774-077B (08) 
 ram_0774                                = $0774 ; 01415F 014190 01FD6B 
-ram_0775                                = $0775 ; 01415F 014190 01FD6B 
-ram_0776                                = $0776 ; 01415F 014190 01FD6B 
-ram_0777                                = $0777 ; 01415F 014190 01FD6B 
-ram_0778                                = $0778 ; 01415F 014190 0144C8 0144CF 0144D3 01FD6B 
-ram_0779                                = $0779 ; 01415F 014190 0144C8 0144CF 0144D3 01FD6B 
-ram_077A                                = $077A ; 01415F 014190 01FD6B 
-ram_077B                                = $077B ; 01415F 014190 0144C8 0144CF 0144D3 01FD6B 
+; ram_0775                                = $0775 ; 01415F 014190 01FD6B 
+; ram_0776                                = $0776 ; 01415F 014190 01FD6B 
+; ram_0777                                = $0777 ; 01415F 014190 01FD6B 
+; ram_0778                                = $0778 ; 01415F 014190 0144C8 0144CF 0144D3 01FD6B 
+; ram_0779                                = $0779 ; 01415F 014190 0144C8 0144CF 0144D3 01FD6B 
+; ram_077A                                = $077A ; 01415F 014190 01FD6B 
+; ram_077B                                = $077B ; 01415F 014190 0144C8 0144CF 0144D3 01FD6B 
+
+
+
+; 077C-077F (04) 
 ram_077C                                = $077C ; 014190 0144F6 014506 01FD6B 
-ram_077D                                = $077D ; 014190 0144F6 014506 01FD6B 
-ram_077E                                = $077E ; 014190 0144F6 014506 01FD6B 
-ram_077F                                = $077F ; 014190 0144F6 014506 01FD6B 
+; ram_077D                                = $077D ; 014190 0144F6 014506 01FD6B 
+; ram_077E                                = $077E ; 014190 0144F6 014506 01FD6B 
+; ram_077F                                = $077F ; 014190 0144F6 014506 01FD6B 
+
+
+
+; bzk unused
 ram_0780                                = $0780 ; 014190 01FD6B 
 ram_0781                                = $0781 ; 014190 01FD6B 
 ram_0782                                = $0782 ; 014190 01FD6B 
 ram_0783                                = $0783 ; 014190 01FD6B 
+
+
+
+; 0784-0787 (04) 
 ram_0784                                = $0784 ; 014190 0144FB 01450B 01FD6B 
-ram_0785                                = $0785 ; 014190 0144FB 01450B 01FD6B 
-ram_0786                                = $0786 ; 014190 0144FB 01450B 01FD6B 
-ram_0787                                = $0787 ; 014190 0144FB 01450B 01FD6B 
+; ram_0785                                = $0785 ; 014190 0144FB 01450B 01FD6B 
+; ram_0786                                = $0786 ; 014190 0144FB 01450B 01FD6B 
+; ram_0787                                = $0787 ; 014190 0144FB 01450B 01FD6B 
+
+
+
+; bzk unused
 ram_0788                                = $0788 ; 014190 01FD6B 
 ram_0789                                = $0789 ; 014190 01FD6B 
 ram_078A                                = $078A ; 014190 01FD6B 
 ram_078B                                = $078B ; 014190 01FD6B 
+
+
+
+; 078C-078F (04) 
 ram_078C                                = $078C ; 014190 014261 014578 01FD6B 
-ram_078D                                = $078D ; 014190 014261 014578 01FD6B 
-ram_078E                                = $078E ; 014190 014261 014578 01FD6B 
-ram_078F                                = $078F ; 014190 014261 014578 01FD6B 
+; ram_078D                                = $078D ; 014190 014261 014578 01FD6B 
+; ram_078E                                = $078E ; 014190 014261 014578 01FD6B 
+; ram_078F                                = $078F ; 014190 014261 014578 01FD6B 
+
+
+
+; bzk unused
 ram_0790                                = $0790 ; 014190 01FD6B 
 ram_0791                                = $0791 ; 014190 01FD6B 
 ram_0792                                = $0792 ; 014190 01FD6B 
 ram_0793                                = $0793 ; 014190 01FD6B 
+
+
+
+; 0794-0797 (04) 
 ram_0794                                = $0794 ; 014190 01428C 0142D3 0143D0 0143DD 01FD6B 
-ram_0795                                = $0795 ; 014190 01428C 0142D3 0143D0 0143DD 01FD6B 
-ram_0796                                = $0796 ; 014190 01428C 0142D3 0143D0 0143DD 01FD6B 
-ram_0797                                = $0797 ; 014190 01428C 0142D3 0143D0 0143DD 01FD6B 
+; ram_0795                                = $0795 ; 014190 01428C 0142D3 0143D0 0143DD 01FD6B 
+; ram_0796                                = $0796 ; 014190 01428C 0142D3 0143D0 0143DD 01FD6B 
+; ram_0797                                = $0797 ; 014190 01428C 0142D3 0143D0 0143DD 01FD6B 
+
+
+
+; 0798-079B (04) 
 ram_0798                                = $0798 ; 014190 01429F 0142CD 01FD6B 
-ram_0799                                = $0799 ; 014190 01429F 0142CD 01FD6B 
-ram_079A                                = $079A ; 014190 01429F 0142CD 01FD6B 
-ram_079B                                = $079B ; 014190 01429F 0142CD 01FD6B 
+; ram_0799                                = $0799 ; 014190 01429F 0142CD 01FD6B 
+; ram_079A                                = $079A ; 014190 01429F 0142CD 01FD6B 
+; ram_079B                                = $079B ; 014190 01429F 0142CD 01FD6B 
+
+
+
+; 079C-079F (04) 
 ram_079C                                = $079C ; 014190 01421B 0142D0 0142FD 01FD6B 
-ram_079D                                = $079D ; 014190 01421B 0142D0 0142FD 01FD6B 
-ram_079E                                = $079E ; 014190 01421B 0142D0 0142FD 01FD6B 
-ram_079F                                = $079F ; 014190 01421B 0142D0 0142FD 01FD6B 
+; ram_079D                                = $079D ; 014190 01421B 0142D0 0142FD 01FD6B 
+; ram_079E                                = $079E ; 014190 01421B 0142D0 0142FD 01FD6B 
+; ram_079F                                = $079F ; 014190 01421B 0142D0 0142FD 01FD6B 
+
+
+
+; bzk unused
 ram_07A0                                = $07A0 ; 014190 01FD6B 
 ram_07A1                                = $07A1 ; 014190 01FD6B 
 ram_07A2                                = $07A2 ; 014190 01FD6B 
 ram_07A3                                = $07A3 ; 014190 01FD6B 
+
+
+
+; 07A4-07A7 (04) 
 ram_07A4                                = $07A4 ; 014146 014190 014291 0143CD 01FD6B 
-ram_07A5                                = $07A5 ; 014146 014190 014291 0143CD 01FD6B 
-ram_07A6                                = $07A6 ; 014146 014190 014291 0143CD 01FD6B 
-ram_07A7                                = $07A7 ; 014146 014190 014291 0143CD 01FD6B 
+; ram_07A5                                = $07A5 ; 014146 014190 014291 0143CD 01FD6B 
+; ram_07A6                                = $07A6 ; 014146 014190 014291 0143CD 01FD6B 
+; ram_07A7                                = $07A7 ; 014146 014190 014291 0143CD 01FD6B 
+
+
+
+; bzk unused
 ram_07A8                                = $07A8 ; 014190 01FD6B 
 ram_07A9                                = $07A9 ; 014190 01FD6B 
 ram_07AA                                = $07AA ; 014190 01FD6B 
 ram_07AB                                = $07AB ; 014190 01FD6B 
+
+
+
+; 07AC-07AF (04) 
 ram_07AC                                = $07AC ; 01414B 014190 0142BA 01448B 01FD6B 
-ram_07AD                                = $07AD ; 01414B 014190 0142BA 01448B 01FD6B 
-ram_07AE                                = $07AE ; 01414B 014190 0142BA 01448B 01FD6B 
-ram_07AF                                = $07AF ; 01414B 014190 0142BA 01FD6B 
+; ram_07AD                                = $07AD ; 01414B 014190 0142BA 01448B 01FD6B 
+; ram_07AE                                = $07AE ; 01414B 014190 0142BA 01448B 01FD6B 
+; ram_07AF                                = $07AF ; 01414B 014190 0142BA 01FD6B 
+
+
+
+; 07B0-07B2 (03) 
 ram_07B0                                = $07B0 ; 014190 014621 014624 014633 014638 014647 014655 01465E 014665 01466F 0146A9 01FD6B 
-ram_07B1                                = $07B1 ; 014190 014621 014624 014633 014638 014647 014655 01465E 014665 01466F 0146A9 01FD6B 
-ram_07B2                                = $07B2 ; 014190 014621 014624 014633 014638 014647 014655 01465E 014665 01466F 0146A9 01FD6B 
+; ram_07B1                                = $07B1 ; 014190 014621 014624 014633 014638 014647 014655 01465E 014665 01466F 0146A9 01FD6B 
+; ram_07B2                                = $07B2 ; 014190 014621 014624 014633 014638 014647 014655 01465E 014665 01466F 0146A9 01FD6B 
+
+
+
+; 07B3-07B5 (03) 
 ram_07B3                                = $07B3 ; 014190 01444F 014609 01FD6B 
-ram_07B4                                = $07B4 ; 014190 01444F 014609 01FD6B 
-ram_07B5                                = $07B5 ; 014190 014609 0147C4 01FD6B 
+; ram_07B4                                = $07B4 ; 014190 01444F 014609 01FD6B 
+; ram_07B5                                = $07B5 ; 014190 014609 0147C4 01FD6B 
+
+
+
+; 07B6-07B8 (03) 
 ram_07B6                                = $07B6 ; 014190 014455 01460E 01FD6B 
-ram_07B7                                = $07B7 ; 014190 014455 01460E 01FD6B 
-ram_07B8                                = $07B8 ; 014190 01460E 0147CA 01FD6B 
+; ram_07B7                                = $07B7 ; 014190 014455 01460E 01FD6B 
+; ram_07B8                                = $07B8 ; 014190 01460E 0147CA 01FD6B 
+
+
+
+; 07B9-07BB (03) 
 ram_07B9                                = $07B9 ; 014190 014602 01463F 01466A 014675 01468A 01468F 0146CF 01FD6B 
-ram_07BA                                = $07BA ; 014190 014602 01463F 01466A 014675 01468A 01468F 0146CF 01FD6B 
-ram_07BB                                = $07BB ; 014190 014602 01463F 01466A 014675 01468A 01468F 0146CF 01FD6B 
+; ram_07BA                                = $07BA ; 014190 014602 01463F 01466A 014675 01468A 01468F 0146CF 01FD6B 
+; ram_07BB                                = $07BB ; 014190 014602 01463F 01466A 014675 01468A 01468F 0146CF 01FD6B 
+
+
+
+; 07BC-07BE (03) 
 ram_07BC                                = $07BC ; 014190 014627 01467B 01FD6B 
-ram_07BD                                = $07BD ; 014190 014627 01467B 01FD6B 
-ram_07BE                                = $07BE ; 014190 014627 01467B 01FD6B 
+; ram_07BD                                = $07BD ; 014190 014627 01467B 01FD6B 
+; ram_07BE                                = $07BE ; 014190 014627 01467B 01FD6B 
+
+
+
+; 07BF-07C1 (03) 
 ram_07BF                                = $07BF ; 014190 0147D7 01487E 0148B2 0148C6 01FD6B 
-ram_07C0                                = $07C0 ; 014190 0147D7 01487E 0148B2 0148C6 01FD6B 
-ram_07C1                                = $07C1 ; 014190 0147D7 01487E 0148B2 0148C6 01FD6B 
+; ram_07C0                                = $07C0 ; 014190 0147D7 01487E 0148B2 0148C6 01FD6B 
+; ram_07C1                                = $07C1 ; 014190 0147D7 01487E 0148B2 0148C6 01FD6B 
+
+
+
+; 07C2-07C4 (03) 
 ram_07C2                                = $07C2 ; 01413C 014190 01458E 014883 014893 014896 0148A7 0148AA 0148C9 0148D1 0148D4 01FD6B 
-ram_07C3                                = $07C3 ; 01413C 014190 01458E 014883 014893 014896 0148A7 0148AA 0148C9 0148D1 0148D4 01FD6B 
-ram_07C4                                = $07C4 ; 01413C 014190 01458E 014883 014893 014896 0148A7 0148AA 0148C9 0148D1 0148D4 01FD6B 
+; ram_07C3                                = $07C3 ; 01413C 014190 01458E 014883 014893 014896 0148A7 0148AA 0148C9 0148D1 0148D4 01FD6B 
+; ram_07C4                                = $07C4 ; 01413C 014190 01458E 014883 014893 014896 0148A7 0148AA 0148C9 0148D1 0148D4 01FD6B 
+
+
+
+; 07C5-07C7 (03) 
 ram_07C5                                = $07C5 ; 014190 014588 0148BE 01FD6B 
-ram_07C6                                = $07C6 ; 014190 014588 0148BE 01FD6B 
-ram_07C7                                = $07C7 ; 014190 014588 0148BE 01FD6B 
+; ram_07C6                                = $07C6 ; 014190 014588 0148BE 01FD6B 
+; ram_07C7                                = $07C7 ; 014190 014588 0148BE 01FD6B 
+
+
+
+; 07C8-07CA (03) 
 ram_07C8                                = $07C8 ; 014190 01486D 014874 0148C1 01FD6B 
-ram_07C9                                = $07C9 ; 014190 01486D 014874 0148C1 01FD6B 
-ram_07CA                                = $07CA ; 014190 01486D 014874 0148C1 01FD6B 
+; ram_07C9                                = $07C9 ; 014190 01486D 014874 0148C1 01FD6B 
+; ram_07CA                                = $07CA ; 014190 01486D 014874 0148C1 01FD6B 
+
+
+
+; 07CB-07CD (03) 
 ram_07CB                                = $07CB ; 014141 014190 014594 014877 01488B 014899 01FD6B 
-ram_07CC                                = $07CC ; 014141 014190 014594 014877 01488B 014899 01FD6B 
-ram_07CD                                = $07CD ; 014141 014190 014594 014877 01488B 014899 01FD6B 
+; ram_07CC                                = $07CC ; 014141 014190 014594 014877 01488B 014899 01FD6B 
+; ram_07CD                                = $07CD ; 014141 014190 014594 014877 01488B 014899 01FD6B 
+
+
+
+; 8 groups of 4 addresses
+; 
 ram_07CE                                = $07CE ; 014190 01446F 01454B 0146BE 01475D 014844 01485B 01FD6B 
 ram_07CF                                = $07CF ; 014190 01446B 014552 014764 014835 014844 01485B 01FD6B 
 ram_07D0                                = $07D0 ; 014190 014559 01474C 014844 01485B 01FD6B 
 ram_07D1                                = $07D1 ; 014190 014560 014753 01483C 014844 01485B 01FD6B 
+; 
 ram_07D2                                = $07D2 ; 014190 01446F 01454B 0146BE 01475D 014844 01485B 01FD6B 
 ram_07D3                                = $07D3 ; 014190 01446B 014552 014764 014835 014844 01485B 01FD6B 
 ram_07D4                                = $07D4 ; 014190 014559 01474C 014844 01485B 01FD6B 
 ram_07D5                                = $07D5 ; 014190 014560 014753 01483C 014844 01485B 01FD6B 
+; 
 ram_07D6                                = $07D6 ; 014190 01454B 014844 01485B 01FD6B 
 ram_07D7                                = $07D7 ; 014190 014552 014835 014844 01485B 01FD6B 
 ram_07D8                                = $07D8 ; 014190 014559 01474C 014844 01485B 01FD6B 
 ram_07D9                                = $07D9 ; 014190 014560 014753 01483C 014844 01485B 01FD6B 
+; 
 ram_07DA                                = $07DA ; 014190 014430 014435 01454B 0146BE 014844 01485B 01FD6B 
 ram_07DB                                = $07DB ; 014190 014552 014844 01485B 01FD6B 
 ram_07DC                                = $07DC ; 014190 014559 01474C 014844 01485B 01FD6B 
 ram_07DD                                = $07DD ; 014190 014560 014753 014844 01485B 01FD6B 
+; 
 ram_07DE                                = $07DE ; 014190 01446F 0146FC 01475D 01478A 01478F 014793 014844 01485B 01FD6B 
 ram_07DF                                = $07DF ; 014190 01446B 0144A5 0146DA 014764 014835 014844 01485B 01FD6B 
 ram_07E0                                = $07E0 ; 014190 01474C 014844 01485B 01FD6B 
 ram_07E1                                = $07E1 ; 014190 014753 01483C 014844 01485B 01FD6B 
+; 
 ram_07E2                                = $07E2 ; 014190 01446F 0146FC 01475D 01478A 01478F 014793 014844 01485B 01FD6B 
 ram_07E3                                = $07E3 ; 014190 01446B 0144A5 0146DA 014764 014835 014844 01485B 01FD6B 
 ram_07E4                                = $07E4 ; 014190 01474C 014844 01485B 01FD6B 
 ram_07E5                                = $07E5 ; 014190 014753 01483C 014844 01485B 01FD6B 
+; 
 ram_07E6                                = $07E6 ; 014190 014844 01485B 01FD6B 
 ram_07E7                                = $07E7 ; 014190 014835 01FD6B 
 ram_07E8                                = $07E8 ; 014190 01474C 014844 01485B 01FD6B 
 ram_07E9                                = $07E9 ; 014190 014753 01483C 014844 01485B 01FD6B 
+; 
 ram_07EA                                = $07EA ; 014190 01446F 0146FC 01475D 01478A 01478F 014793 014844 01485B 01FD6B 
 ram_07EB                                = $07EB ; 014190 01446B 014764 014844 01485B 01FD6B 
 ram_07EC                                = $07EC ; 014190 01474C 014844 01485B 01FD6B 
 ram_07ED                                = $07ED ; 014190 014753 014844 01485B 01FD6B 
+
+
+
+; 
 ram_07EE                                = $07EE ; 014190 014427 0147B2 01FD6B 
+
+
+
+; 
 ram_07EF                                = $07EF ; 014190 01442D 0147B7 01FD6B 
 
 
@@ -2849,7 +3203,7 @@ ram_STA_40xx_RTS                        = $07F0 ; 014190 014198 01485E 01FD6B
 
 
 
-; 
+; bzk unused
 ram_07F4                                = $07F4 ; 014190 01FD6B 
 ram_07F5                                = $07F5 ; 014190 01FD6B 
 ram_07F6                                = $07F6 ; 014190 01FD6B 
@@ -2868,4 +3222,5 @@ ram_game_flags_2                        = $07FE ; 01403A 01403F 01405A 01405F 01
 
 
 
+; 
 ram_sound_id                            = $07FF ; 014042 0140D9 0140FB 014190 0141C1 01FC20 01FD6B 

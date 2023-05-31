@@ -498,7 +498,7 @@ C - - - - - 0x01826D 06:825D: A0 35     LDY #con_state_35
 C - - - - - 0x01826F 06:825F: BD 46 04  LDA ram_0446_obj,X
 C - - - - - 0x018272 06:8262: 30 14     BMI bra_8278
 ; check height range for performing air spin
-C - - - - - 0x018274 06:8264: BD 25 03  LDA ram_0325_obj,X
+C - - - - - 0x018274 06:8264: BD 25 03  LDA ram_obj_gravity_hi,X
 C - - - - - 0x018277 06:8267: AE 35 04  LDX ram_difficulty
 C - - - - - 0x01827A 06:826A: DD 7D 82  CMP tbl_827D,X
 C - - - - - 0x01827D 06:826D: F0 07     BEQ bra_8276
@@ -506,7 +506,7 @@ C - - - - - 0x01827F 06:826F: B0 07     BCS bra_8278
 C - - - - - 0x018281 06:8271: DD 80 82  CMP tbl_8280,X
 C - - - - - 0x018284 06:8274: 90 02     BCC bra_8278
 bra_8276:
-C - - - - - 0x018286 06:8276: A0 39     LDY #con_state_39
+C - - - - - 0x018286 06:8276: A0 39     LDY #con_state_cyclone_kick
 bra_8278:
 C - - - - - 0x018288 06:8278: A6 3B     LDX ram_003B
 C - - - - - 0x01828A 06:827A: 94 43     STY ram_state,X
@@ -538,7 +538,7 @@ C - - - - - 0x01829E 06:828E: 29 C0     AND #con_btns_AB
 C - - - - - 0x0182A0 06:8290: F0 32     BEQ bra_82C4_RTS
 C - - - - - 0x0182A2 06:8292: C9 C0     CMP #con_btns_AB
 C - - - - - 0x0182A4 06:8294: F0 17     BEQ bra_82AD
-C - - - - - 0x0182A6 06:8296: A0 3B     LDY #con_state_3B
+C - - - - - 0x0182A6 06:8296: A0 3B     LDY #con_state_uppercut_sudden
 C - - - - - 0x0182A8 06:8298: 0A        ASL
 C - - - - - 0x0182A9 06:8299: 0A        ASL
 C - - - - - 0x0182AA 06:829A: 90 10     BCC bra_82AC_RTS
@@ -561,7 +561,7 @@ C - - - - - 0x0182C5 06:82B5: AE 35 04  LDX ram_difficulty
 C - - - - - 0x0182C8 06:82B8: DD C8 82  CMP tbl_82C8,X
 C - - - - - 0x0182CB 06:82BB: 90 07     BCC bra_82C4_RTS
 C - - - - - 0x0182CD 06:82BD: A6 3B     LDX ram_003B
-C - - - - - 0x0182CF 06:82BF: A9 3A     LDA #con_state_3A
+C - - - - - 0x0182CF 06:82BF: A9 3A     LDA #con_state_high_jump_kick
 C - - - - - 0x0182D1 06:82C1: 20 CA 81  JSR sub_81CA
 bra_82C4_RTS:
 C - - - - - 0x0182D4 06:82C4: 60        RTS
@@ -866,7 +866,7 @@ C - - - - - 0x01846C 06:845C: 0A        ASL
 C - - - - - 0x01846D 06:845D: 90 20     BCC bra_847F
 ; if A was pressed
 C - - - - - 0x01846F 06:845F: 20 C6 84  JSR sub_84C6_check_for_weapon_to_pick_up
-C - - - - - 0x018472 06:8462: A0 11     LDY #con_state_11_pick_up_weapon
+C - - - - - 0x018472 06:8462: A0 11     LDY #con_state_pick_up_weapon
 C - - - - - 0x018474 06:8464: B0 49     BCS bra_84AF_write_state
 C - - - - - 0x018476 06:8466: 20 87 85  JSR sub_8587_check_for_final_kick
 C - - - - - 0x018479 06:8469: A0 31     LDY #con_state_31
@@ -882,15 +882,15 @@ C - - - - - 0x01848C 06:847C: 4C AF 84  JMP loc_84AF_write_state
 bra_847F:
 ; if B was pressed
 C - - - - - 0x01848F 06:847F: 20 C6 84  JSR sub_84C6_check_for_weapon_to_pick_up
-C - - - - - 0x018492 06:8482: A0 11     LDY #con_state_11_pick_up_weapon
+C - - - - - 0x018492 06:8482: A0 11     LDY #con_state_pick_up_weapon
 C - - - - - 0x018494 06:8484: B0 29     BCS bra_84AF_write_state
 C - - - - - 0x018496 06:8486: 20 3C 85  JSR sub_853C_check_for_uppercut
-C - - - - - 0x018499 06:8489: A0 2F     LDY #con_state_2F
+C - - - - - 0x018499 06:8489: A0 2F     LDY #con_state_uppercut_normal
 C - - - - - 0x01849B 06:848B: B0 22     BCS bra_84AF_write_state
 C - - - - - 0x01849D 06:848D: 20 64 85  JSR sub_8564_check_for_knee_kick
 C - - - - - 0x0184A0 06:8490: A0 30     LDY #con_state_30
 C - - - - - 0x0184A2 06:8492: B0 1B     BCS bra_84AF_write_state
-C - - - - - 0x0184A4 06:8494: A0 2D     LDY #con_state_2D
+C - - - - - 0x0184A4 06:8494: A0 2D     LDY #con_state_punch_normal
 C - - - - - 0x0184A6 06:8496: BD 46 04  LDA ram_0446_obj,X
 C - - - - - 0x0184A9 06:8499: 10 14     BPL bra_84AF_write_state
 C - - - - - 0x0184AB 06:849B: A0 42     LDY #con_state_42
@@ -1111,7 +1111,7 @@ C - - - - - 0x0185D5 06:85C5: B9 4A 00  LDA a: ram_004A_obj,Y
 C - - - - - 0x0185D8 06:85C8: 30 25     BMI bra_85EF    ; if con_004A_80
 C - - - - - 0x0185DA 06:85CA: B9 43 00  LDA a: ram_state,Y
 C - - - - - 0x0185DD 06:85CD: 29 7F     AND #$7F
-C - - - - - 0x0185DF 06:85CF: C9 19     CMP #con_state_19
+C - - - - - 0x0185DF 06:85CF: C9 19     CMP #con_state_lie_on_the_ground
 C - - - - - 0x0185E1 06:85D1: F0 1C     BEQ bra_85EF
 C - - - - - 0x0185E3 06:85D3: 20 0A 86  JSR sub_860A
 C - - - - - 0x0185E6 06:85D6: F0 17     BEQ bra_85EF
@@ -1236,6 +1236,7 @@ C - - - - - 0x018672 06:8662: 60        RTS
 
 
 tbl_8663:
+; see con_8648
 ; 00
 - D 0 - - - 0x018673 06:8663: 10        .byte $10   ; 
 - D 0 - - - 0x018674 06:8664: 04        .byte $04   ; 
@@ -1822,7 +1823,7 @@ C - - - - - 0x0189F8 06:89E8: 60        RTS
 ofs_010_89E9_08:
 C - - J - - 0x0189F9 06:89E9: AD FE 07  LDA ram_game_flags_2
 C - - - - - 0x0189FC 06:89EC: 29 02     AND #con_gf2_02
-C - - - - - 0x0189FE 06:89EE: D0 06     BNE bra_89F6_RTS    ; if not game over
+C - - - - - 0x0189FE 06:89EE: D0 06     BNE bra_89F6_RTS
 C - - - - - 0x018A00 06:89F0: EE 23 04  INC ram_mission_lo
 C - - - - - 0x018A03 06:89F3: 20 18 8F  JSR sub_8F18_next_script
 bra_89F6_RTS:
@@ -2386,7 +2387,7 @@ C - - - - - 0x018D8C 06:8D7C: E6 F9     INC ram_00F9
 C - - - - - 0x018D8E 06:8D7E: A2 02     LDX #$02
 C - - - - - 0x018D90 06:8D80: A9 11     LDA #con_obj_shadow_warrior
 C - - - - - 0x018D92 06:8D82: 95 BF     STA ram_obj_id,X
-C - - - - - 0x018D94 06:8D84: A9 2C     LDA #con_state_2C
+C - - - - - 0x018D94 06:8D84: A9 2C     LDA #con_state_shadow_warrior_appears
 C - - - - - 0x018D96 06:8D86: 95 43     STA ram_state,X
 C - - - - - 0x018D98 06:8D88: A9 00     LDA #$00    ; con_004A_00
 C - - - - - 0x018D9A 06:8D8A: 95 4A     STA ram_004A_obj,X
@@ -2702,7 +2703,7 @@ tbl_8F6D:
 - D 0 - - - 0x018F8D 06:8F7D: 2D 91     .word ofs_011_912D_08
 - D 0 - - - 0x018F8F 06:8F7F: 4B 91     .word ofs_011_914B_09
 - D 0 - - - 0x018F91 06:8F81: 1E 91     .word ofs_011_911E_0A
-- D 0 - - - 0x018F93 06:8F83: 68 91     .word ofs_011_9168_0B
+- D 0 - - - 0x018F93 06:8F83: 68 91     .word ofs_011_9168_0B_final_boss_defeated
 - D 0 - - - 0x018F95 06:8F85: 6F 91     .word ofs_011_916F_0C
 - D 0 - - - 0x018F97 06:8F87: 91 91     .word ofs_011_9191_0D
 - D 0 - - - 0x018F99 06:8F89: D0 91     .word ofs_011_91D0_0E
@@ -2949,7 +2950,7 @@ C - - - - - 0x019106 06:90F6: 85 78     STA ram_pos_X_lo + $01
 C - - - - - 0x019108 06:90F8: A9 00     LDA #$00
 C - - - - - 0x01910A 06:90FA: 85 63     STA ram_0063_obj
 C - - - - - 0x01910C 06:90FC: 85 64     STA ram_0063_obj + $01
-C - - - - - 0x01910E 06:90FE: A9 56     LDA #con_state_56
+C - - - - - 0x01910E 06:90FE: A9 56     LDA #con_state_using_elevator
 C - - - - - 0x019110 06:9100: 85 43     STA ram_state
 C - - - - - 0x019112 06:9102: 85 44     STA ram_state + $01
 C - - - - - 0x019114 06:9104: A9 07     LDA #$07
@@ -3017,7 +3018,7 @@ C - - - - - 0x019177 06:9167: 60        RTS
 
 
 
-ofs_011_9168_0B:
+ofs_011_9168_0B_final_boss_defeated:
 C - - J - - 0x019178 06:9168: A5 35     LDA ram_game_flags_1
 C - - - - - 0x01917A 06:916A: 09 01     ORA #con_gf1_01
 C - - - - - 0x01917C 06:916C: 85 35     STA ram_game_flags_1
@@ -3539,17 +3540,17 @@ C - - - - - 0x019496 06:9486: 60        RTS
 
 
 tbl_9487:
-- D 0 - - - 0x019497 06:9487: 80        .byte $80   ; 
-- D 0 - - - 0x019498 06:9488: C0        .byte $C0   ; 
+- D 0 - - - 0x019497 06:9487: 80        .byte $80   ; pos_X_lo
+- D 0 - - - 0x019498 06:9488: C0        .byte $C0   ; pos_Z_lo
 
-- D 0 - - - 0x019499 06:9489: 80        .byte $80   ; 
-- D 0 - - - 0x01949A 06:948A: 40        .byte $40   ; 
+- D 0 - - - 0x019499 06:9489: 80        .byte $80   ; pos_X_lo
+- D 0 - - - 0x01949A 06:948A: 40        .byte $40   ; pos_Z_lo
 
-- D 0 - - - 0x01949B 06:948B: 20        .byte $20   ; 
-- D 0 - - - 0x01949C 06:948C: 77        .byte $77   ; 
+- D 0 - - - 0x01949B 06:948B: 20        .byte $20   ; pos_X_lo
+- D 0 - - - 0x01949C 06:948C: 77        .byte $77   ; pos_Z_lo
 
-- D 0 - - - 0x01949D 06:948D: E0        .byte $E0   ; 
-- D 0 - - - 0x01949E 06:948E: 77        .byte $77   ; 
+- D 0 - - - 0x01949D 06:948D: E0        .byte $E0   ; pos_X_lo
+- D 0 - - - 0x01949E 06:948E: 77        .byte $77   ; pos_Z_lo
 
 
 
@@ -3790,8 +3791,8 @@ C - - - - - 0x0195FD 06:95ED: 8D 5F 06  STA ram_065F
 C - - - - - 0x019600 06:95F0: A9 01     LDA #con_obj_jimmy
 C - - - - - 0x019602 06:95F2: 85 C0     STA ram_obj_id + $01
 C - - - - - 0x019604 06:95F4: A9 FF     LDA #$FF
-C - - - - - 0x019606 06:95F6: 8D CC 03  STA ram_03CC_plr
-C - - - - - 0x019609 06:95F9: 8D CD 03  STA ram_03CC_plr + $01
+C - - - - - 0x019606 06:95F6: 8D CC 03  STA ram_plr_invincibility_timer
+C - - - - - 0x019609 06:95F9: 8D CD 03  STA ram_plr_invincibility_timer + $01
 C - - - - - 0x01960C 06:95FC: A9 08     LDA #con_004A_08
 C - - - - - 0x01960E 06:95FE: 85 4A     STA ram_004A_obj
 C - - - - - 0x019610 06:9600: 85 4B     STA ram_004A_obj + $01
@@ -10963,7 +10964,7 @@ C - - - - - 0x01B6CE 06:B6BE: 60        RTS
 tbl_B6BF:
 ; offset at 0x01B6FD (each 1st byte)
 ; 00 (00)
-- D 1 - - - 0x01B6CF 06:B6BF: 17 06     .word ram_0617
+- D 1 - - - 0x01B6CF 06:B6BF: 17 06     .word ram_bg_attr_buffer + $5A
 - D 1 - - - 0x01B6D1 06:B6C1: FF        .byte $FF   ; 
 - D 1 - - - 0x01B6D2 06:B6C2: F0        .byte $F0   ; 
 - D 1 - - - 0x01B6D3 06:B6C3: 00        .byte $00   ; end token
@@ -10975,46 +10976,46 @@ tbl_B6BF:
 - D 1 - - - 0x01B6D5 06:B6C5: 00        .byte $00   ; end token
 
 ; 07 (03)
-- - - - - - 0x01B6D6 06:B6C6: 24 06     .word ram_0624
+- - - - - - 0x01B6D6 06:B6C6: 24 06     .word ram_bg_attr_buffer + $67
 - - - - - - 0x01B6D8 06:B6C8: FF        .byte $FF   ; 
 - - - - - - 0x01B6D9 06:B6C9: CF        .byte $CF   ; 
 - - - - - - 0x01B6DA 06:B6CA: 00        .byte $00   ; end token
 
 ; 0C (04)
-- - - - - - 0x01B6DB 06:B6CB: 22 06     .word ram_0622
+- - - - - - 0x01B6DB 06:B6CB: 22 06     .word ram_bg_attr_buffer + $65
 - - - - - - 0x01B6DD 06:B6CD: FF        .byte $FF   ; 
 - - - - - - 0x01B6DE 06:B6CE: F3        .byte $F3   ; 
-- - - - - - 0x01B6DF 06:B6CF: 23 06     .word ram_0623
+- - - - - - 0x01B6DF 06:B6CF: 23 06     .word ram_bg_attr_buffer + $66
 - - - - - - 0x01B6E1 06:B6D1: FF        .byte $FF   ; 
 - - - - - - 0x01B6E2 06:B6D2: FC        .byte $FC   ; 
 - - - - - - 0x01B6E3 06:B6D3: 00        .byte $00   ; end token
 
 ; 15 (05)
-- D 1 - - - 0x01B6E4 06:B6D4: 19 06     .word ram_0619
+- D 1 - - - 0x01B6E4 06:B6D4: 19 06     .word ram_bg_attr_buffer + $5C
 - D 1 - - - 0x01B6E6 06:B6D6: FF        .byte $FF   ; 
 - D 1 - - - 0x01B6E7 06:B6D7: 0F        .byte $0F   ; 
 - D 1 - - - 0x01B6E8 06:B6D8: 00        .byte $00   ; end token
 
 ; 1A (06)
-- D 1 - - - 0x01B6E9 06:B6D9: 18 06     .word ram_0618
+- D 1 - - - 0x01B6E9 06:B6D9: 18 06     .word ram_bg_attr_buffer + $5B
 - D 1 - - - 0x01B6EB 06:B6DB: FF        .byte $FF   ; 
 - D 1 - - - 0x01B6EC 06:B6DC: FC        .byte $FC   ; 
 - D 1 - - - 0x01B6ED 06:B6DD: 00        .byte $00   ; end token
 
 ; 1F (07)
-- D 1 - - - 0x01B6EE 06:B6DE: 17 06     .word ram_0617
+- D 1 - - - 0x01B6EE 06:B6DE: 17 06     .word ram_bg_attr_buffer + $5A
 - D 1 - - - 0x01B6F0 06:B6E0: FF        .byte $FF   ; 
 - D 1 - - - 0x01B6F1 06:B6E1: FC        .byte $FC   ; 
 - D 1 - - - 0x01B6F2 06:B6E2: 00        .byte $00   ; end token
 
 ; 24 (08)
-- D 1 - - - 0x01B6F3 06:B6E3: 0E 06     .word ram_060E
+- D 1 - - - 0x01B6F3 06:B6E3: 0E 06     .word ram_bg_attr_buffer + $51
 - D 1 - - - 0x01B6F5 06:B6E5: FF        .byte $FF   ; 
 - D 1 - - - 0x01B6F6 06:B6E6: CF        .byte $CF   ; 
 - D 1 - - - 0x01B6F7 06:B6E7: 00        .byte $00   ; end token
 
 ; 29 (09)
-- D 1 - - - 0x01B6F8 06:B6E8: 0F 06     .word ram_060F
+- D 1 - - - 0x01B6F8 06:B6E8: 0F 06     .word ram_bg_attr_buffer + $52
 - D 1 - - - 0x01B6FA 06:B6EA: FF        .byte $FF   ; 
 - D 1 - - - 0x01B6FB 06:B6EB: F0        .byte $F0   ; 
 - D 1 - - - 0x01B6FC 06:B6EC: 00        .byte $00   ; end token
@@ -11684,15 +11685,15 @@ C - - - - - 0x01B9D7 06:B9C7: 8A        TXA
 C - - - - - 0x01B9D8 06:B9C8: 0A        ASL
 C - - - - - 0x01B9D9 06:B9C9: A8        TAY
 C - - - - - 0x01B9DA 06:B9CA: 38        SEC
-C - - - - - 0x01B9DB 06:B9CB: B9 43 BA  LDA tbl_BA43,Y
+C - - - - - 0x01B9DB 06:B9CB: B9 43 BA  LDA tbl_BA43_pos_X,Y
 C - - - - - 0x01B9DE 06:B9CE: ED D0 00  SBC a: ram_pos_X_lo_cam
-C - - - - - 0x01B9E1 06:B9D1: B9 44 BA  LDA tbl_BA43 + $01,Y
+C - - - - - 0x01B9E1 06:B9D1: B9 44 BA  LDA tbl_BA43_pos_X + $01,Y
 C - - - - - 0x01B9E4 06:B9D4: ED D1 00  SBC a: ram_pos_X_hi_cam
 C - - - - - 0x01B9E7 06:B9D7: B0 10     BCS bra_B9E9
 C - - - - - 0x01B9E9 06:B9D9: 38        SEC
-C - - - - - 0x01B9EA 06:B9DA: B9 4D BA  LDA tbl_BA4D,Y
+C - - - - - 0x01B9EA 06:B9DA: B9 4D BA  LDA tbl_BA4D_pos_X,Y
 C - - - - - 0x01B9ED 06:B9DD: ED D0 00  SBC a: ram_pos_X_lo_cam
-C - - - - - 0x01B9F0 06:B9E0: B9 4E BA  LDA tbl_BA4D + $01,Y
+C - - - - - 0x01B9F0 06:B9E0: B9 4E BA  LDA tbl_BA4D_pos_X + $01,Y
 C - - - - - 0x01B9F3 06:B9E3: ED D1 00  SBC a: ram_pos_X_hi_cam
 C - - - - - 0x01B9F6 06:B9E6: 90 01     BCC bra_B9E9
 C - - - - - 0x01B9F8 06:B9E8: 60        RTS
@@ -11771,7 +11772,7 @@ tbl_BA3E:
 
 
 
-tbl_BA43:
+tbl_BA43_pos_X:
 ; 00
 - D 1 - - - 0x01BA53 06:BA43: 50        .byte $50   ; 
 - D 1 - - - 0x01BA54 06:BA44: 01        .byte $01   ; 
@@ -11790,7 +11791,7 @@ tbl_BA43:
 
 
 
-tbl_BA4D:
+tbl_BA4D_pos_X:
 ; 00
 - D 1 - - - 0x01BA5D 06:BA4D: 40        .byte $40   ; 
 - D 1 - - - 0x01BA5E 06:BA4E: 02        .byte $02   ; 
@@ -12022,7 +12023,7 @@ C - - - - - 0x01BB90 06:BB80: D0 04     BNE bra_BB86
 - - - - - - 0x01BB95 06:BB85: C8        INY
 bra_BB86:
 C - - - - - 0x01BB96 06:BB86: B9 A4 BB  LDA tbl_BBA4,Y
-C - - - - - 0x01BB99 06:BB89: 9D 25 03  STA ram_0325_obj,X
+C - - - - - 0x01BB99 06:BB89: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x01BB9C 06:BB8C: A9 1D     LDA #con_obj_1D
 C - - - - - 0x01BB9E 06:BB8E: 95 BF     STA ram_obj_id,X
 C - - - - - 0x01BBA0 06:BB90: A9 71     LDA #con_state_71
@@ -12413,7 +12414,7 @@ C - - - - - 0x01BE06 06:BDF6: A9 00     LDA #$00
 C - - - - - 0x01BE08 06:BDF8: 8D 9F 03  STA ram_039F
 bra_BDFB:
 C - - - - - 0x01BE0B 06:BDFB: A8        TAY
-C - - - - - 0x01BE0C 06:BDFC: B9 0D BE  LDA tbl_BE0D,Y
+C - - - - - 0x01BE0C 06:BDFC: B9 0D BE  LDA tbl_BE0D_pos_X_lo,Y
 C - - - - - 0x01BE0F 06:BDFF: 95 77     STA ram_pos_X_lo,X
 C - - - - - 0x01BE11 06:BE01: 4C 92 BD  JMP loc_BD92
 bra_BE04:
@@ -12425,7 +12426,7 @@ bra_BE04:
 
 
 
-tbl_BE0D:
+tbl_BE0D_pos_X_lo:
 - D 1 - - - 0x01BE1D 06:BE0D: 68        .byte $68   ; 00
 - D 1 - - - 0x01BE1E 06:BE0E: 48        .byte $48   ; 01
 - D 1 - - - 0x01BE1F 06:BE0F: 88        .byte $88   ; 02

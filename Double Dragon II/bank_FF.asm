@@ -494,9 +494,9 @@ C - - - - - 0x01C382 07:C372: 31 08     AND (ram_0008),Y
 C - - - - - 0x01C384 07:C374: 85 0E     STA ram_000E
 C - - - - - 0x01C386 07:C376: A4 0D     LDY ram_000D
 C - - - - - 0x01C388 07:C378: A5 0C     LDA ram_000C
-C - - - - - 0x01C38A 07:C37A: 39 BD 05  AND ram_05BD,Y
+C - - - - - 0x01C38A 07:C37A: 39 BD 05  AND ram_bg_attr_buffer,Y
 C - - - - - 0x01C38D 07:C37D: 05 0E     ORA ram_000E
-C - - - - - 0x01C38F 07:C37F: 99 BD 05  STA ram_05BD,Y
+C - - - - - 0x01C38F 07:C37F: 99 BD 05  STA ram_bg_attr_buffer,Y
 C - - - - - 0x01C392 07:C382: 98        TYA
 C - - - - - 0x01C393 07:C383: 29 E0     AND #$E0
 C - - - - - 0x01C395 07:C385: CD B1 05  CMP ram_05B1
@@ -824,12 +824,12 @@ C - - - - - 0x01C5E1 07:C5D1: E8        INX
 C - - - - - 0x01C5E2 07:C5D2: A9 00     LDA #$00
 C - - - - - 0x01C5E4 07:C5D4: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x01C5E7 07:C5D7: E8        INX
-C - - - - - 0x01C5E8 07:C5D8: A9 20     LDA #$20
+C - - - - - 0x01C5E8 07:C5D8: A9 20     LDA #$20    ; counter
 C - - - - - 0x01C5EA 07:C5DA: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x01C5ED 07:C5DD: E8        INX
 C - - - - - 0x01C5EE 07:C5DE: AC B1 05  LDY ram_05B1
 bra_C5E1_loop:
-C - - - - - 0x01C5F1 07:C5E1: B9 BD 05  LDA ram_05BD,Y
+C - - - - - 0x01C5F1 07:C5E1: B9 BD 05  LDA ram_bg_attr_buffer,Y
 C - - - - - 0x01C5F4 07:C5E4: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x01C5F7 07:C5E7: E8        INX
 C - - - - - 0x01C5F8 07:C5E8: C8        INY
@@ -2595,7 +2595,7 @@ bra_CF07_2300_or_higher:
 C - - - - - 0x01CF17 07:CF07: A5 19     LDA ram_0019
 C - - - - - 0x01CF19 07:CF09: A8        TAY
 C - - - - - 0x01CF1A 07:CF0A: A5 1A     LDA ram_001A
-C - - - - - 0x01CF1C 07:CF0C: 99 BD 05  STA ram_05BD,Y
+C - - - - - 0x01CF1C 07:CF0C: 99 BD 05  STA ram_bg_attr_buffer,Y
 C - - - - - 0x01CF1F 07:CF0F: 68        PLA
 C - - - - - 0x01CF20 07:CF10: A8        TAY
 C - - - - - 0x01CF21 07:CF11: 68        PLA
@@ -2932,13 +2932,13 @@ C - - - - - 0x01D159 07:D149: 4C CF D1  JMP loc_D1CF
 bra_D14C:
 C - - - - - 0x01D15C 07:D14C: BD 32 04  LDA ram_lives,X
 C - - - - - 0x01D15F 07:D14F: F0 7E     BEQ bra_D1CF
-C - - - - - 0x01D161 07:D151: BD CC 03  LDA ram_03CC_plr,X
+C - - - - - 0x01D161 07:D151: BD CC 03  LDA ram_plr_invincibility_timer,X
 C - - - - - 0x01D164 07:D154: D0 05     BNE bra_D15B
 C - - - - - 0x01D166 07:D156: A9 00     LDA #$00
-C - - - - - 0x01D168 07:D158: 99 CC 03  STA ram_03CC_plr,Y
+C - - - - - 0x01D168 07:D158: 99 CC 03  STA ram_plr_invincibility_timer,Y
 bra_D15B:
-C - - - - - 0x01D16B 07:D15B: FE CC 03  INC ram_03CC_plr,X
-C - - - - - 0x01D16E 07:D15E: BD CC 03  LDA ram_03CC_plr,X
+C - - - - - 0x01D16B 07:D15B: FE CC 03  INC ram_plr_invincibility_timer,X
+C - - - - - 0x01D16E 07:D15E: BD CC 03  LDA ram_plr_invincibility_timer,X
 C - - - - - 0x01D171 07:D161: C9 15     CMP #$15
 C - - - - - 0x01D173 07:D163: 90 6A     BCC bra_D1CF
 C - - - - - 0x01D175 07:D165: 20 D9 D1  JSR sub_D1D9
@@ -2949,10 +2949,10 @@ C - - - - - 0x01D17C 07:D16C: 20 FF D1  JSR sub_D1FF
 C - - - - - 0x01D17F 07:D16F: 68        PLA
 C - - - - - 0x01D180 07:D170: AA        TAX
 C - - - - - 0x01D181 07:D171: A8        TAY
-C - - - - - 0x01D182 07:D172: DE CC 03  DEC ram_03CC_plr,X
+C - - - - - 0x01D182 07:D172: DE CC 03  DEC ram_plr_invincibility_timer,X
 C - - - - - 0x01D185 07:D175: A5 09     LDA ram_0009
 C - - - - - 0x01D187 07:D177: 30 56     BMI bra_D1CF
-C - - - - - 0x01D189 07:D179: FE CC 03  INC ram_03CC_plr,X
+C - - - - - 0x01D189 07:D179: FE CC 03  INC ram_plr_invincibility_timer,X
 C - - - - - 0x01D18C 07:D17C: 99 59 03  STA ram_0359_obj,Y
 C - - - - - 0x01D18F 07:D17F: A5 0A     LDA ram_000A
 C - - - - - 0x01D191 07:D181: 95 77     STA ram_pos_X_lo,X
@@ -2970,7 +2970,7 @@ C - - - - - 0x01D1A7 07:D197: A9 80     LDA #con_003C_80
 C - - - - - 0x01D1A9 07:D199: 95 3C     STA ram_003C_obj,X ; 003C 003D
 C - - - - - 0x01D1AB 07:D19B: A9 08     LDA #con_004A_08
 C - - - - - 0x01D1AD 07:D19D: 95 4A     STA ram_004A_obj,X
-C - - - - - 0x01D1AF 07:D19F: A9 25     LDA #con_state_25
+C - - - - - 0x01D1AF 07:D19F: A9 25     LDA #con_state_player_respawn
 C - - - - - 0x01D1B1 07:D1A1: 95 43     STA ram_state,X
 C - - - - - 0x01D1B3 07:D1A3: A9 7F     LDA #$7F
 C - - - - - 0x01D1B5 07:D1A5: 99 1E 04  STA ram_hp,Y
@@ -4767,7 +4767,7 @@ bra_DC76_RTS:
 - - - - - - 0x01DC86 07:DC76: 60        RTS
 
 
-; bzk garbage, somewat similar to 0x01DA03
+; bzk garbage, somewhat similar to 0x01DA03
 - - - - - - 0x01DC87 07:DC77: A2 03     LDX #$03
 bra_DC79_loop:
 - - - - - - 0x01DC89 07:DC79: BD D0 00  LDA a: ram_pos_X_lo_cam,X
@@ -7280,7 +7280,7 @@ C - - - - - 0x01ED9A 07:ED8A: 85 F1     STA ram_00F1
 C - - - - - 0x01ED9C 07:ED8C: 20 A2 E7  JSR sub_E7A2
 C - - - - - 0x01ED9F 07:ED8F: 20 E4 EE  JSR sub_EEE4_set_or_resume_pause
 C - - - - - 0x01EDA2 07:ED92: A5 35     LDA ram_game_flags_1
-C - - - - - 0x01EDA4 07:ED94: 30 40     BMI bra_EDD6    ; if con_gf1_80
+C - - - - - 0x01EDA4 07:ED94: 30 40     BMI bra_EDD6    ; if con_gf1_pause
 C - - - - - 0x01EDA6 07:ED96: A5 34     LDA ram_game_mode
 C - - - - - 0x01EDA8 07:ED98: 29 08     AND #con_gm_08
 C - - - - - 0x01EDAA 07:ED9A: D0 03     BNE bra_ED9F
@@ -7380,7 +7380,7 @@ C - - - - - 0x01EE6C 07:EE5C: A5 34     LDA ram_game_mode
 C - - - - - 0x01EE6E 07:EE5E: 29 C0     AND #con_gm_friendly_fire + con_gm_2_players
 C - - - - - 0x01EE70 07:EE60: 85 34     STA ram_game_mode
 C - - - - - 0x01EE72 07:EE62: A5 35     LDA ram_game_flags_1
-C - - - - - 0x01EE74 07:EE64: 29 80     AND #con_gf1_80
+C - - - - - 0x01EE74 07:EE64: 29 80     AND #con_gf1_pause
 C - - - - - 0x01EE76 07:EE66: 85 35     STA ram_game_flags_1
 C - - - - - 0x01EE78 07:EE68: A5 34     LDA ram_game_mode
 C - - - - - 0x01EE7A 07:EE6A: 10 05     BPL bra_EE71_single_player    ; if not con_gm_2_players
@@ -7451,7 +7451,7 @@ C - - - - - 0x01EEFD 07:EEED: AD 3F 06  LDA ram_063F
 C - - - - - 0x01EF00 07:EEF0: 10 15     BPL bra_EF07_RTS
 C - - - - - 0x01EF02 07:EEF2: A0 FF     LDY #con_music_ctrl_resume
 C - - - - - 0x01EF04 07:EEF4: A5 35     LDA ram_game_flags_1
-C - - - - - 0x01EF06 07:EEF6: 49 80     EOR #con_gf1_80
+C - - - - - 0x01EF06 07:EEF6: 49 80     EOR #con_gf1_pause
 C - - - - - 0x01EF08 07:EEF8: 85 35     STA ram_game_flags_1
 C - - - - - 0x01EF0A 07:EEFA: 10 07     BPL bra_EF03
 C - - - - - 0x01EF0C 07:EEFC: A9 FD     LDA #con_music_ctrl_pause
@@ -8379,7 +8379,7 @@ C - - - - - 0x01F490 07:F480: A2 00     LDX #$00
 C - - - - - 0x01F492 07:F482: 8E B1 05  STX ram_05B1
 C - - - - - 0x01F495 07:F485: A2 3F     LDX #$3F
 bra_F487_loop:  ; clear 05BD-05FC
-C - - - - - 0x01F497 07:F487: 9D BD 05  STA ram_05BD,X
+C - - - - - 0x01F497 07:F487: 9D BD 05  STA ram_bg_attr_buffer,X
 C - - - - - 0x01F49A 07:F48A: CA        DEX
 C - - - - - 0x01F49B 07:F48B: 10 FA     BPL bra_F487_loop
 bra_F48D_loop:
