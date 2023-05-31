@@ -76,7 +76,7 @@ C - - - - - 0x018079 06:8069: F0 15     BEQ bra_8080_RTS
 C - - - - - 0x01807B 06:806B: C9 7F     CMP #con_state_7F
 C - - - - - 0x01807D 06:806D: F0 11     BEQ bra_8080_RTS
 C - - - - - 0x01807F 06:806F: BD 4A 00  LDA a: ram_004A_obj,X
-C - - - - - 0x018082 06:8072: 30 0C     BMI bra_8080_RTS
+C - - - - - 0x018082 06:8072: 30 0C     BMI bra_8080_RTS    ; if con_004A_80
 C - - - - - 0x018084 06:8074: A0 00     LDY #con_state_00
 C - - - - - 0x018086 06:8076: BD 69 03  LDA ram_0369_obj,X
 C - - - - - 0x018089 06:8079: 10 02     BPL bra_807D
@@ -682,9 +682,9 @@ C - - - - - 0x018354 06:8344: B5 9B     LDA ram_pos_Y_hi,X
 C - - - - - 0x018356 06:8346: 75 B6     ADC ram_pos_Z_hi,X
 C - - - - - 0x018358 06:8348: 85 2A     STA ram_002A
 C - - - - - 0x01835A 06:834A: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x01835C 06:834C: 29 C0     AND #$C0
+C - - - - - 0x01835C 06:834C: 29 C0     AND #con_004A_40 + con_004A_80
 C - - - - - 0x01835E 06:834E: F0 02     BEQ bra_8352
-C - - - - - 0x018360 06:8350: D0 2D     BNE bra_837F
+C - - - - - 0x018360 06:8350: D0 2D     BNE bra_837F    ; jmp
 bra_8352:
 C - - - - - 0x018362 06:8352: A5 D2     LDA ram_00D2
 C - - - - - 0x018364 06:8354: 18        CLC
@@ -947,7 +947,7 @@ C - - - - - 0x0184F1 06:84E1: B9 BF 00  LDA a: ram_obj_id,Y
 C - - - - - 0x0184F4 06:84E4: C9 18     CMP #con_obj_18
 C - - - - - 0x0184F6 06:84E6: F0 2A     BEQ bra_8512
 C - - - - - 0x0184F8 06:84E8: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x0184FB 06:84EB: 29 20     AND #$20
+C - - - - - 0x0184FB 06:84EB: 29 20     AND #con_004A_20
 C - - - - - 0x0184FD 06:84ED: D0 23     BNE bra_8512
 C - - - - - 0x0184FF 06:84EF: A9 04     LDA #$04
 C - - - - - 0x018501 06:84F1: 20 48 86  JSR sub_8648
@@ -1106,7 +1106,7 @@ C - - - - - 0x0185CE 06:85BE: A4 19     LDY ram_0019
 C - - - - - 0x0185D0 06:85C0: 20 F9 85  JSR sub_85F9
 C - - - - - 0x0185D3 06:85C3: 90 2A     BCC bra_85EF
 C - - - - - 0x0185D5 06:85C5: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x0185D8 06:85C8: 30 25     BMI bra_85EF
+C - - - - - 0x0185D8 06:85C8: 30 25     BMI bra_85EF    ; if con_004A_80
 C - - - - - 0x0185DA 06:85CA: B9 43 00  LDA a: ram_state,Y
 C - - - - - 0x0185DD 06:85CD: 29 7F     AND #$7F
 C - - - - - 0x0185DF 06:85CF: C9 19     CMP #con_state_19
@@ -1403,7 +1403,7 @@ C - - - - - 0x01874F 06:873F: AD 5F 06  LDA ram_065F
 C - - - - - 0x018752 06:8742: F0 3D     BEQ bra_8781_RTS
 C - - - - - 0x018754 06:8744: A6 3B     LDX ram_003B
 C - - - - - 0x018756 06:8746: BD 4A 00  LDA a: ram_004A_obj,X
-C - - - - - 0x018759 06:8749: 30 36     BMI bra_8781_RTS
+C - - - - - 0x018759 06:8749: 30 36     BMI bra_8781_RTS    ; if con_004A_80
 C - - - - - 0x01875B 06:874B: BD 59 03  LDA ram_0359_obj,X
 C - - - - - 0x01875E 06:874E: C9 0A     CMP #$0A
 C - - - - - 0x018760 06:8750: F0 2F     BEQ bra_8781_RTS
@@ -1497,7 +1497,7 @@ sub_0x018835_mission_script_handler:
 C - - - - - 0x018835 06:8825: 20 E4 98  JSR sub_98E4
 C - - - - - 0x018838 06:8828: 20 D3 8E  JSR sub_8ED3
 C - - - - - 0x01883B 06:882B: A5 34     LDA ram_game_mode
-C - - - - - 0x01883D 06:882D: 29 07     AND #$07
+C - - - - - 0x01883D 06:882D: 29 07     AND #con_gm_01 + con_gm_02 + con_gm_04
 C - - - - - 0x01883F 06:882F: D0 18     BNE bra_8849
 C - - - - - 0x018841 06:8831: AD 24 04  LDA ram_0424
 C - - - - - 0x018844 06:8834: 0A        ASL
@@ -1816,7 +1816,7 @@ C - - - - - 0x0189F8 06:89E8: 60        RTS
 
 ofs_010_89E9_08:
 C - - J - - 0x0189F9 06:89E9: AD FE 07  LDA ram_game_flags_2
-C - - - - - 0x0189FC 06:89EC: 29 02     AND #$02
+C - - - - - 0x0189FC 06:89EC: 29 02     AND #con_gf2_02
 C - - - - - 0x0189FE 06:89EE: D0 06     BNE bra_89F6_RTS    ; if not game over
 C - - - - - 0x018A00 06:89F0: EE 23 04  INC ram_mission_lo
 C - - - - - 0x018A03 06:89F3: 20 18 8F  JSR sub_8F18_next_script
@@ -1827,7 +1827,7 @@ C - - - - - 0x018A06 06:89F6: 60        RTS
 
 ofs_010_89F7_09:
 C - - J - - 0x018A07 06:89F7: A5 34     LDA ram_game_mode
-C - - - - - 0x018A09 06:89F9: 29 20     AND #$20
+C - - - - - 0x018A09 06:89F9: 29 20     AND #con_gm_20
 C - - - - - 0x018A0B 06:89FB: D0 30     BNE bra_8A2D
 C - - - - - 0x018A0D 06:89FD: AD 25 04  LDA ram_0425
 C - - - - - 0x018A10 06:8A00: F0 27     BEQ bra_8A29
@@ -1845,7 +1845,7 @@ C - - - - - 0x018A2A 06:8A1A: 8D 80 04  STA ram_0480
 C - - - - - 0x018A2D 06:8A1D: A9 80     LDA #$80
 C - - - - - 0x018A2F 06:8A1F: 8D 81 04  STA ram_0481
 C - - - - - 0x018A32 06:8A22: A5 34     LDA ram_game_mode
-C - - - - - 0x018A34 06:8A24: 09 20     ORA #$20
+C - - - - - 0x018A34 06:8A24: 09 20     ORA #con_gm_20
 C - - - - - 0x018A36 06:8A26: 85 34     STA ram_game_mode
 C - - - - - 0x018A38 06:8A28: 60        RTS
 bra_8A29:
@@ -1881,7 +1881,7 @@ C - - - - - 0x018A73 06:8A63: 8D 81 04  STA ram_0481
 C - - - - - 0x018A76 06:8A66: 60        RTS
 bra_8A67:
 C - - - - - 0x018A77 06:8A67: A5 34     LDA ram_game_mode
-C - - - - - 0x018A79 06:8A69: 29 DF     AND #$DF
+C - - - - - 0x018A79 06:8A69: 29 DF     AND #con_gm_20 ^ $FF
 C - - - - - 0x018A7B 06:8A6B: 85 34     STA ram_game_mode
 bra_8A6D_RTS:
 C - - - - - 0x018A7D 06:8A6D: 60        RTS
@@ -2057,7 +2057,7 @@ C - - - - - 0x018B74 06:8B64: D0 55     BNE bra_8BBB_RTS
 C - - - - - 0x018B76 06:8B66: AD 80 04  LDA ram_0480
 C - - - - - 0x018B79 06:8B69: 30 50     BMI bra_8BBB_RTS
 C - - - - - 0x018B7B 06:8B6B: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x018B7D 06:8B6D: 29 04     AND #$04
+C - - - - - 0x018B7D 06:8B6D: 29 04     AND #con_004A_04
 C - - - - - 0x018B7F 06:8B6F: D0 1B     BNE bra_8B8C
 C - - - - - 0x018B81 06:8B71: AD 81 04  LDA ram_0481
 C - - - - - 0x018B84 06:8B74: 10 3A     BPL bra_8BB0
@@ -2073,10 +2073,10 @@ C - - - - - 0x018B98 06:8B88: 8D 81 04  STA ram_0481
 C - - - - - 0x018B9B 06:8B8B: 60        RTS
 bra_8B8C:
 C - - - - - 0x018B9C 06:8B8C: A5 4A     LDA ram_004A_obj
-C - - - - - 0x018B9E 06:8B8E: 29 FB     AND #$FB
+C - - - - - 0x018B9E 06:8B8E: 29 FB     AND #con_004A_04 ^ $FF
 C - - - - - 0x018BA0 06:8B90: 85 4A     STA ram_004A_obj
 C - - - - - 0x018BA2 06:8B92: A5 4B     LDA ram_004A_obj + $01
-C - - - - - 0x018BA4 06:8B94: 29 FB     AND #$FB
+C - - - - - 0x018BA4 06:8B94: 29 FB     AND #con_004A_04 ^ $FF
 C - - - - - 0x018BA6 06:8B96: 85 4B     STA ram_004A_obj + $01
 C - - - - - 0x018BA8 06:8B98: A9 02     LDA #$02
 C - - - - - 0x018BAA 06:8B9A: 8D 59 03  STA ram_0359_obj
@@ -2383,7 +2383,7 @@ C - - - - - 0x018D90 06:8D80: A9 11     LDA #con_obj_shadow_warrior
 C - - - - - 0x018D92 06:8D82: 95 BF     STA ram_obj_id,X
 C - - - - - 0x018D94 06:8D84: A9 2C     LDA #con_state_2C
 C - - - - - 0x018D96 06:8D86: 95 43     STA ram_state,X
-C - - - - - 0x018D98 06:8D88: A9 00     LDA #$00
+C - - - - - 0x018D98 06:8D88: A9 00     LDA #$00    ; con_004A_00
 C - - - - - 0x018D9A 06:8D8A: 95 4A     STA ram_004A_obj,X
 C - - - - - 0x018D9C 06:8D8C: 95 B6     STA ram_pos_Z_hi,X
 C - - - - - 0x018D9E 06:8D8E: 95 9B     STA ram_pos_Y_hi,X
@@ -2419,7 +2419,7 @@ bra_8DC4:
 C - - - - - 0x018DD4 06:8DC4: CE 2A 04  DEC ram_042A
 C - - - - - 0x018DD7 06:8DC7: D0 09     BNE bra_8DD2_RTS
 C - - - - - 0x018DD9 06:8DC9: A5 34     LDA ram_game_mode
-C - - - - - 0x018DDB 06:8DCB: 09 01     ORA #$01
+C - - - - - 0x018DDB 06:8DCB: 09 01     ORA #con_gm_01
 C - - - - - 0x018DDD 06:8DCD: 85 34     STA ram_game_mode
 C - - - - - 0x018DDF 06:8DCF: 20 41 F0  JSR sub_0x01F051
 bra_8DD2_RTS:
@@ -2429,8 +2429,8 @@ C - - - - - 0x018DE2 06:8DD2: 60        RTS
 
 sub_8DD3_add_2_lives:
 C - - - - - 0x018DE3 06:8DD3: A5 34     LDA ram_game_mode
-C - - - - - 0x018DE5 06:8DD5: 10 13     BPL bra_8DEA_RTS    ; if single player
-- - - - - - 0x018DE7 06:8DD7: 29 40     AND #$40
+C - - - - - 0x018DE5 06:8DD5: 10 13     BPL bra_8DEA_RTS    ; if not con_gm_80
+- - - - - - 0x018DE7 06:8DD7: 29 40     AND #con_gm_40
 - - - - - - 0x018DE9 06:8DD9: F0 0F     BEQ bra_8DEA_RTS    ; if no friendly fire
 - - - - - - 0x018DEB 06:8DDB: BD 32 04  LDA ram_lives,X
 - - - - - - 0x018DEE 06:8DDE: 18        CLC
@@ -2545,7 +2545,7 @@ C - - - - - 0x018E95 06:8E85: 60        RTS
 
 ; bzk garbage
 - - - - - - 0x018E96 06:8E86: A5 34     LDA ram_game_mode
-- - - - - - 0x018E98 06:8E88: 10 14     BPL bra_8E9E_single_player
+- - - - - - 0x018E98 06:8E88: 10 14     BPL bra_8E9E_single_player    ; if not con_gm_80
 - - - - - - 0x018E9A 06:8E8A: A5 3C     LDA ram_003C_obj
 - - - - - - 0x018E9C 06:8E8C: 05 3D     ORA ram_003C_obj + $01
 - - - - - - 0x018E9E 06:8E8E: 10 04     BPL bra_8E94    ; if not con_003C_80
@@ -2565,21 +2565,21 @@ bra_8EA7:
 - - - - - - 0x018EB7 06:8EA7: A9 00     LDA #$00
 - - - - - - 0x018EB9 06:8EA9: 8D 23 04  STA ram_mission_lo
 - - - - - - 0x018EBC 06:8EAC: A5 34     LDA ram_game_mode
-- - - - - - 0x018EBE 06:8EAE: 09 04     ORA #$04
+- - - - - - 0x018EBE 06:8EAE: 09 04     ORA #con_gm_04
 - - - - - - 0x018EC0 06:8EB0: 85 34     STA ram_game_mode
 - - - - - - 0x018EC2 06:8EB2: 60        RTS
 bra_8EB3:
 - - - - - - 0x018EC3 06:8EB3: A5 34     LDA ram_game_mode
-- - - - - - 0x018EC5 06:8EB5: 09 02     ORA #$02
+- - - - - - 0x018EC5 06:8EB5: 09 02     ORA #con_gm_02
 - - - - - - 0x018EC7 06:8EB7: 85 34     STA ram_game_mode
 - - - - - - 0x018EC9 06:8EB9: A5 35     LDA ram_game_flags_1
-- - - - - - 0x018ECB 06:8EBB: 29 BF     AND #$BF
+- - - - - - 0x018ECB 06:8EBB: 29 BF     AND #con_gf1_40 ^ $FF
 - - - - - - 0x018ECD 06:8EBD: 85 35     STA ram_game_flags_1
 - - - - - - 0x018ECF 06:8EBF: AE 22 04  LDX ram_mission_hi
 - - - - - - 0x018ED2 06:8EC2: BD 9E 95  LDA tbl_959E_checkpoint_mission,X
 - - - - - - 0x018ED5 06:8EC5: F0 06     BEQ bra_8ECD
 - - - - - - 0x018ED7 06:8EC7: A5 35     LDA ram_game_flags_1
-- - - - - - 0x018ED9 06:8EC9: 09 40     ORA #$40
+- - - - - - 0x018ED9 06:8EC9: 09 40     ORA #con_gf1_40
 - - - - - - 0x018EDB 06:8ECB: 85 35     STA ram_game_flags_1
 bra_8ECD:
 - - - - - - 0x018EDD 06:8ECD: A9 12     LDA #con_music_game_over
@@ -2591,7 +2591,7 @@ bra_8ED2_RTS:
 
 sub_8ED3:
 C - - - - - 0x018EE3 06:8ED3: A5 34     LDA ram_game_mode
-C - - - - - 0x018EE5 06:8ED5: 10 18     BPL bra_8EEF_single_player
+C - - - - - 0x018EE5 06:8ED5: 10 18     BPL bra_8EEF_single_player    ; if not con_gm_80
 C - - - - - 0x018EE7 06:8ED7: A5 3C     LDA ram_003C_obj
 C - - - - - 0x018EE9 06:8ED9: 25 3D     AND ram_003C_obj + $01
 C - - - - - 0x018EEB 06:8EDB: 30 3A     BMI bra_8F17_RTS    ; if con_003C_80
@@ -2611,16 +2611,16 @@ C - - - - - 0x018F03 06:8EF3: AD 32 04  LDA ram_lives
 C - - - - - 0x018F06 06:8EF6: D0 F3     BNE bra_8EEB
 bra_8EF8:
 C - - - - - 0x018F08 06:8EF8: A5 34     LDA ram_game_mode
-C - - - - - 0x018F0A 06:8EFA: 09 02     ORA #$02
+C - - - - - 0x018F0A 06:8EFA: 09 02     ORA #con_gm_02
 C - - - - - 0x018F0C 06:8EFC: 85 34     STA ram_game_mode
 C - - - - - 0x018F0E 06:8EFE: A5 35     LDA ram_game_flags_1
-C - - - - - 0x018F10 06:8F00: 29 BF     AND #$BF
+C - - - - - 0x018F10 06:8F00: 29 BF     AND #con_gf1_40 ^ $FF
 C - - - - - 0x018F12 06:8F02: 85 35     STA ram_game_flags_1
 C - - - - - 0x018F14 06:8F04: AE 22 04  LDX ram_mission_hi
 C - - - - - 0x018F17 06:8F07: BD 9E 95  LDA tbl_959E_checkpoint_mission,X
 C - - - - - 0x018F1A 06:8F0A: F0 06     BEQ bra_8F12
 C - - - - - 0x018F1C 06:8F0C: A5 35     LDA ram_game_flags_1
-C - - - - - 0x018F1E 06:8F0E: 09 40     ORA #$40
+C - - - - - 0x018F1E 06:8F0E: 09 40     ORA #con_gf1_40
 C - - - - - 0x018F20 06:8F10: 85 35     STA ram_game_flags_1
 bra_8F12:
 C - - - - - 0x018F22 06:8F12: A9 12     LDA #con_music_game_over
@@ -2742,7 +2742,7 @@ sub_8FCC:
 C - - - - - 0x018FDC 06:8FCC: A5 C1     LDA ram_obj_id + $02
 C - - - - - 0x018FDE 06:8FCE: C9 0C     CMP #con_obj_doppelganger
 C - - - - - 0x018FE0 06:8FD0: D0 0C     BNE bra_8FDE_RTS
-C - - - - - 0x018FE2 06:8FD2: A9 02     LDA #$02
+C - - - - - 0x018FE2 06:8FD2: A9 02     LDA #con_004A_02
 C - - - - - 0x018FE4 06:8FD4: 85 4C     STA ram_004A_obj + $02
 C - - - - - 0x018FE6 06:8FD6: 85 4D     STA ram_004A_obj + $03
 C - - - - - 0x018FE8 06:8FD8: A9 7F     LDA #$7F
@@ -2922,10 +2922,10 @@ C - - - - - 0x0190E6 06:90D6: A9 5A     LDA #con_chr_bank + $5A
 C - - - - - 0x0190E8 06:90D8: 8D 99 04  STA ram_chr_spr_2
 C - - - - - 0x0190EB 06:90DB: 20 DD FE  JSR sub_0x01FEED_write_spr_chr_banks
 C - - - - - 0x0190EE 06:90DE: A5 4A     LDA ram_004A_obj
-C - - - - - 0x0190F0 06:90E0: 09 04     ORA #$04
+C - - - - - 0x0190F0 06:90E0: 09 04     ORA #con_004A_04
 C - - - - - 0x0190F2 06:90E2: 85 4A     STA ram_004A_obj
 C - - - - - 0x0190F4 06:90E4: A5 4B     LDA ram_004A_obj + $01
-C - - - - - 0x0190F6 06:90E6: 09 04     ORA #$04
+C - - - - - 0x0190F6 06:90E6: 09 04     ORA #con_004A_04
 C - - - - - 0x0190F8 06:90E8: 85 4B     STA ram_004A_obj + $01
 C - - - - - 0x0190FA 06:90EA: A9 01     LDA #$01
 C - - - - - 0x0190FC 06:90EC: 85 80     STA ram_pos_X_hi
@@ -2997,7 +2997,7 @@ C - - - - - 0x019163 06:9153: 20 DF 8F  JSR sub_8FDF_spawn_more_enemies
 C - - - - - 0x019166 06:9156: A9 0E     LDA #$0E
 C - - - - - 0x019168 06:9158: 8D 26 04  STA ram_0426
 C - - - - - 0x01916B 06:915B: A5 34     LDA ram_game_mode
-C - - - - - 0x01916D 06:915D: 29 DF     AND #$DF
+C - - - - - 0x01916D 06:915D: 29 DF     AND #con_gm_20 ^ $FF
 C - - - - - 0x01916F 06:915F: 85 34     STA ram_game_mode
 C - - - - - 0x019171 06:9161: 20 50 94  JSR sub_9450_delete_all_objects_except_players
 C - - - - - 0x019174 06:9164: 20 DD FE  JSR sub_0x01FEED_write_spr_chr_banks
@@ -3007,7 +3007,7 @@ C - - - - - 0x019177 06:9167: 60        RTS
 
 ofs_011_9168_0B:
 C - - J - - 0x019178 06:9168: A5 35     LDA ram_game_flags_1
-C - - - - - 0x01917A 06:916A: 09 01     ORA #$01
+C - - - - - 0x01917A 06:916A: 09 01     ORA #con_gf1_01
 C - - - - - 0x01917C 06:916C: 85 35     STA ram_game_flags_1
 C - - - - - 0x01917E 06:916E: 60        RTS
 
@@ -3044,7 +3044,7 @@ ofs_011_9199_0F:
 C - - J - - 0x0191A9 06:9199: A9 00     LDA #$00
 C - - - - - 0x0191AB 06:919B: 85 F5     STA ram_00F5
 C - - - - - 0x0191AD 06:919D: A5 34     LDA ram_game_mode
-C - - - - - 0x0191AF 06:919F: 09 08     ORA #$08
+C - - - - - 0x0191AF 06:919F: 09 08     ORA #con_gm_08
 C - - - - - 0x0191B1 06:91A1: 85 34     STA ram_game_mode
 C - - - - - 0x0191B3 06:91A3: 20 BB CF  JSR sub_0x01CFCB
 C - - - - - 0x0191B6 06:91A6: 60        RTS
@@ -3125,7 +3125,7 @@ C - - - - - 0x019225 06:9215: A9 82     LDA #con_003C_80 + con_003C_02
 C - - - - - 0x019227 06:9217: 85 40     STA ram_003C_obj + $04
 C - - - - - 0x019229 06:9219: 85 41     STA ram_003C_obj + $05
 C - - - - - 0x01922B 06:921B: 85 42     STA ram_003C_obj + $06
-C - - - - - 0x01922D 06:921D: A9 00     LDA #$00
+C - - - - - 0x01922D 06:921D: A9 00     LDA #$00    ; con_004A_00
 C - - - - - 0x01922F 06:921F: 85 4E     STA ram_004A_obj + $04
 C - - - - - 0x019231 06:9221: 85 4F     STA ram_004A_obj + $05
 C - - - - - 0x019233 06:9223: 85 50     STA ram_004A_obj + $06
@@ -3192,7 +3192,7 @@ C - - - - - 0x019298 06:9288: 95 9B     STA ram_pos_Y_hi,X
 C - - - - - 0x01929A 06:928A: 95 43     STA ram_state,X
 C - - - - - 0x01929C 06:928C: A9 50     LDA #$50
 C - - - - - 0x01929E 06:928E: 95 92     STA ram_pos_Y_lo,X
-C - - - - - 0x0192A0 06:9290: A9 02     LDA #$02
+C - - - - - 0x0192A0 06:9290: A9 02     LDA #con_004A_02
 C - - - - - 0x0192A2 06:9292: 95 4A     STA ram_004A_obj,X
 C - - - - - 0x0192A4 06:9294: A9 1E     LDA #con_obj_1E
 C - - - - - 0x0192A6 06:9296: 95 BF     STA ram_obj_id,X
@@ -3242,7 +3242,7 @@ C - - - - - 0x0192DB 06:92CB: 4C 18 8F  JMP loc_8F18
 
 ofs_012_92CE_81:
 C - - J - - 0x0192DE 06:92CE: A5 34     LDA ram_game_mode
-C - - - - - 0x0192E0 06:92D0: 09 01     ORA #$01
+C - - - - - 0x0192E0 06:92D0: 09 01     ORA #con_gm_01
 C - - - - - 0x0192E2 06:92D2: 85 34     STA ram_game_mode
 C - - - - - 0x0192E4 06:92D4: 60        RTS
 
@@ -3277,7 +3277,7 @@ C - - - - - 0x019307 06:92F7: A9 81     LDA #con_003C_80 + con_003C_01
 C - - - - - 0x019309 06:92F9: 95 3E     STA ram_003C_obj + $02,X
 C - - - - - 0x01930B 06:92FB: A9 00     LDA #con_state_00
 C - - - - - 0x01930D 06:92FD: 95 45     STA ram_state + $02,X
-C - - - - - 0x01930F 06:92FF: A9 00     LDA #$00
+C - - - - - 0x01930F 06:92FF: A9 00     LDA #$00    ; con_004A_00
 C - - - - - 0x019311 06:9301: 9D 6B 03  STA ram_0369_obj + $02,X
 C - - - - - 0x019314 06:9304: 9D 66 04  STA ram_0464_obj + $02,X
 C - - - - - 0x019317 06:9307: 9D 4C 04  STA ram_044A_obj + $02,X
@@ -3323,7 +3323,7 @@ C - - - - - 0x019361 06:9351: 68        PLA
 C - - - - - 0x019362 06:9352: A8        TAY
 C - - - - - 0x019363 06:9353: A9 82     LDA #con_003C_80 + con_003C_02
 C - - - - - 0x019365 06:9355: 99 3C 00  STA a: ram_003C_obj,Y ; 0040 0041 0042
-C - - - - - 0x019368 06:9358: A9 20     LDA #$20
+C - - - - - 0x019368 06:9358: A9 20     LDA #con_004A_20
 C - - - - - 0x01936A 06:935A: 99 4A 00  STA a: ram_004A_obj,Y
 C - - - - - 0x01936D 06:935D: A9 7F     LDA #con_state_7F
 C - - - - - 0x01936F 06:935F: 99 43 00  STA a: ram_state,Y
@@ -3543,13 +3543,13 @@ tbl_9487:
 
 sub_948F:
 C - - - - - 0x01949F 06:948F: A5 34     LDA ram_game_mode
-C - - - - - 0x0194A1 06:9491: 29 10     AND #$10
+C - - - - - 0x0194A1 06:9491: 29 10     AND #con_gm_10
 C - - - - - 0x0194A3 06:9493: D0 12     BNE bra_94A7
 C - - - - - 0x0194A5 06:9495: A5 34     LDA ram_game_mode
-C - - - - - 0x0194A7 06:9497: 29 05     AND #$05
+C - - - - - 0x0194A7 06:9497: 29 05     AND #con_gm_04 + con_gm_01
 C - - - - - 0x0194A9 06:9499: F0 62     BEQ bra_94FD_RTS
 C - - - - - 0x0194AB 06:949B: A5 34     LDA ram_game_mode
-C - - - - - 0x0194AD 06:949D: 09 10     ORA #$10
+C - - - - - 0x0194AD 06:949D: 09 10     ORA #con_gm_10
 C - - - - - 0x0194AF 06:949F: 85 34     STA ram_game_mode
 C - - - - - 0x0194B1 06:94A1: A9 01     LDA #$01
 C - - - - - 0x0194B3 06:94A3: 8D 3F 06  STA ram_063F
@@ -3564,10 +3564,10 @@ C - - - - - 0x0194C0 06:94B0: A5 F1     LDA ram_00F1
 C - - - - - 0x0194C2 06:94B2: C9 03     CMP #$03
 C - - - - - 0x0194C4 06:94B4: 90 FA     BCC bra_94B0_infinite_loop
 C - - - - - 0x0194C6 06:94B6: A5 34     LDA ram_game_mode
-C - - - - - 0x0194C8 06:94B8: 29 01     AND #$01
+C - - - - - 0x0194C8 06:94B8: 29 01     AND #con_gm_01
 C - - - - - 0x0194CA 06:94BA: D0 12     BNE bra_94CE
 - - - - - - 0x0194CC 06:94BC: A5 34     LDA ram_game_mode
-- - - - - - 0x0194CE 06:94BE: 29 04     AND #$04
+- - - - - - 0x0194CE 06:94BE: 29 04     AND #con_gm_04
 - - - - - - 0x0194D0 06:94C0: F0 3B     BEQ bra_94FD_RTS
 - - - - - - 0x0194D2 06:94C2: AE 22 04  LDX ram_mission_hi
 - - - - - - 0x0194D5 06:94C5: BD 9E 95  LDA tbl_959E_checkpoint_mission,X
@@ -3584,7 +3584,7 @@ C - - - - - 0x0194E0 06:94D0: F0 15     BEQ bra_94E7    ; jmp
 - - - - - - 0x0194E8 06:94D8: D9 E4 94  CMP tbl_94E4,Y
 - - - - - - 0x0194EB 06:94DB: D0 0A     BNE bra_94E7
 - - - - - - 0x0194ED 06:94DD: A5 35     LDA ram_game_flags_1
-- - - - - - 0x0194EF 06:94DF: 09 04     ORA #$04
+- - - - - - 0x0194EF 06:94DF: 09 04     ORA #con_gf1_04
 - - - - - - 0x0194F1 06:94E1: 85 35     STA ram_game_flags_1
 - - - - - - 0x0194F3 06:94E3: 60        RTS
 
@@ -3602,13 +3602,13 @@ bra_94E7:
 C - - - - - 0x0194F7 06:94E7: EE 22 04  INC ram_mission_hi
 loc_94EA:
 C - - - - - 0x0194FA 06:94EA: A5 34     LDA ram_game_mode
-C - - - - - 0x0194FC 06:94EC: 29 EE     AND #$EE
+C - - - - - 0x0194FC 06:94EC: 29 EE     AND #(con_gm_10 + con_gm_01) ^ $FF
 C - - - - - 0x0194FE 06:94EE: 85 34     STA ram_game_mode
 C - - - - - 0x019500 06:94F0: AD 22 04  LDA ram_mission_hi
 C - - - - - 0x019503 06:94F3: C9 0F     CMP #$0F
 C - - - - - 0x019505 06:94F5: 90 07     BCC bra_94FE
 - - - - - - 0x019507 06:94F7: A5 35     LDA ram_game_flags_1
-- - - - - - 0x019509 06:94F9: 09 01     ORA #$01
+- - - - - - 0x019509 06:94F9: 09 01     ORA #con_gf1_01
 - - - - - - 0x01950B 06:94FB: 85 35     STA ram_game_flags_1
 bra_94FD_RTS:
 C - - - - - 0x01950D 06:94FD: 60        RTS
@@ -3749,7 +3749,7 @@ C - - - - - 0x0195C3 06:95B3: C8        INY
 C - - - - - 0x0195C4 06:95B4: B1 29     LDA (ram_0029),Y
 C - - - - - 0x0195C6 06:95B6: 85 2C     STA ram_002C
 C - - - - - 0x0195C8 06:95B8: A5 34     LDA ram_game_mode
-C - - - - - 0x0195CA 06:95BA: 29 F7     AND #$F7
+C - - - - - 0x0195CA 06:95BA: 29 F7     AND #con_gm_08 ^ $FF
 C - - - - - 0x0195CC 06:95BC: 85 34     STA ram_game_mode
 C - - - - - 0x0195CE 06:95BE: A9 00     LDA #$00    ; con_obj_billy    con_state_00    con_003C_80
 C - - - - - 0x0195D0 06:95C0: 85 BF     STA ram_obj_id
@@ -3776,7 +3776,7 @@ C - - - - - 0x019602 06:95F2: 85 C0     STA ram_obj_id + $01
 C - - - - - 0x019604 06:95F4: A9 FF     LDA #$FF
 C - - - - - 0x019606 06:95F6: 8D CC 03  STA ram_03CC_plr
 C - - - - - 0x019609 06:95F9: 8D CD 03  STA ram_03CC_plr + $01
-C - - - - - 0x01960C 06:95FC: A9 08     LDA #$08
+C - - - - - 0x01960C 06:95FC: A9 08     LDA #con_004A_08
 C - - - - - 0x01960E 06:95FE: 85 4A     STA ram_004A_obj
 C - - - - - 0x019610 06:9600: 85 4B     STA ram_004A_obj + $01
 C - - - - - 0x019612 06:9602: AD 32 04  LDA ram_lives
@@ -4310,7 +4310,7 @@ C - - - - - 0x019908 06:98F8: AD 22 04  LDA ram_mission_hi
 C - - - - - 0x01990B 06:98FB: C9 0E     CMP #$0E
 C - - - - - 0x01990D 06:98FD: B0 2D     BCS bra_992C_RTS
 C - - - - - 0x01990F 06:98FF: A5 34     LDA ram_game_mode
-C - - - - - 0x019911 06:9901: 09 01     ORA #$01
+C - - - - - 0x019911 06:9901: 09 01     ORA #con_gm_01
 C - - - - - 0x019913 06:9903: 85 34     STA ram_game_mode
 C - - - - - 0x019915 06:9905: 60        RTS
 bra_9906:
@@ -12236,7 +12236,7 @@ tbl_BCCE:
 
 loc_BCDA:
 C D 1 - - - 0x01BCEA 06:BCDA: AD 34 00  LDA a: ram_game_mode
-C - - - - - 0x01BCED 06:BCDD: 29 20     AND #$20
+C - - - - - 0x01BCED 06:BCDD: 29 20     AND #con_gm_20
 C - - - - - 0x01BCEF 06:BCDF: D0 E8     BNE bra_BCC9
 C - - - - - 0x01BCF1 06:BCE1: AD 24 04  LDA ram_0424
 C - - - - - 0x01BCF4 06:BCE4: C9 08     CMP #con_884D_08

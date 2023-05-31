@@ -11,6 +11,46 @@ con_debug                               = $00 ; change bit5 and/or bit7 https://
 con_weapon_id                           = $12 ; weapons start from this value for ram_obj_id
 
 
+
+; ram_game_mode
+con_gm_00                               = $00 ; 
+con_gm_01                               = $01 ; 
+con_gm_02                               = $02 ; 
+con_gm_04                               = $04 ; 
+con_gm_08                               = $08 ; 
+con_gm_10                               = $10 ; 
+con_gm_20                               = $20 ; 
+con_gm_40                               = $40 ; friendly fire if set
+con_gm_80                               = $80 ; 2 players if set
+
+
+
+; ram_game_flags_1
+con_gf1_00                               = $00 ; 
+con_gf1_01                               = $01 ; final boss is defeated if set
+con_gf1_02                               = $02 ; 
+con_gf1_04                               = $04 ; 
+; con_gf1_08                             = $08 ; 
+con_gf1_10                               = $10 ; 
+con_gf1_20                               = $20 ; 
+con_gf1_40                               = $40 ; enable continues if set
+con_gf1_80                               = $80 ; pause if set
+
+
+
+; ram_game_flags_2
+; con_gf2_00                             = $00 ; 
+; con_gf2_01                             = $01 ; 
+con_gf2_02                               = $02 ; not game over if set
+; con_gf2_04                             = $04 ; 
+; con_gf2_08                             = $08 ; 
+; con_gf2_10                             = $10 ; 
+con_gf2_20                               = $20 ; 
+con_gf2_40                               = $40 ; 
+con_gf2_80                               = $80 ; 
+
+
+
 ; ram_state
 ; need comments at 0x0180B4 0x00BA42 0x0080DA
 con_state_00                            = $00 ; 80 
@@ -317,10 +357,25 @@ con_music_ctrl_resume                   = $FF ;
 con_003C_00                             = $00 ; 
 con_003C_01                             = $01 ; 
 con_003C_02                             = $02 ; weapon/helicopter bullets
+; con_003C_04                           = $04 ; 
+; con_003C_08                           = $08 ; 
 con_003C_10                             = $10 ; invisible (shadow warrior)
 con_003C_20                             = $20 ; hand cursor (A0) / also when enemy is spawned off screen and waiting for you (A1) / also elevator (A2)
 con_003C_40                             = $40 ; 
 con_003C_80                             = $80 ; 
+
+
+
+; for ram_004A_obj
+con_004A_00                             = $00 ; 
+con_004A_01                             = $01 ; 
+con_004A_02                             = $02 ; 
+con_004A_04                             = $04 ; 
+con_004A_08                             = $08 ; 
+; con_004A_10                           = $10 ; 
+con_004A_20                             = $20 ; 
+con_004A_40                             = $40 ; 
+con_004A_80                             = $80 ; 
 
 
 

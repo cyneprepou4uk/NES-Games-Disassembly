@@ -36,7 +36,7 @@ C - - - - - 0x014037 05:8027: 48        PHA
 C - - - - - 0x014038 05:8028: 98        TYA
 C - - - - - 0x014039 05:8029: 48        PHA
 C - - - - - 0x01403A 05:802A: AD FE 07  LDA ram_game_flags_2
-C - - - - - 0x01403D 05:802D: 29 7F     AND #$7F
+C - - - - - 0x01403D 05:802D: 29 7F     AND #con_gf2_80 ^ $FF
 C - - - - - 0x01403F 05:802F: 8D FE 07  STA ram_game_flags_2
 C - - - - - 0x014042 05:8032: AE FF 07  LDX ram_sound_id
 C - - - - - 0x014045 05:8035: F0 2C     BEQ bra_8063_disable_sound_engine
@@ -56,7 +56,7 @@ C - - - - - 0x014056 05:8046: F0 02     BEQ bra_804A_FB
 - - - - - - 0x014058 05:8048: D0 19     BNE bra_8063_disable_sound_engine
 bra_804A_FB:
 C - - - - - 0x01405A 05:804A: AD FE 07  LDA ram_game_flags_2
-C - - - - - 0x01405D 05:804D: 29 DF     AND #$DF
+C - - - - - 0x01405D 05:804D: 29 DF     AND #con_gf2_20 ^ $FF
 C - - - - - 0x01405F 05:804F: 8D FE 07  STA ram_game_flags_2
 C - - - - - 0x014062 05:8052: 4C 6C 81  JMP loc_816C
 bra_8055_FC:
@@ -71,7 +71,7 @@ C - - - - - 0x014073 05:8063: 20 79 81  JSR sub_8179_clear_sound_engine
 C - - - - - 0x014076 05:8066: 4C 67 81  JMP loc_8167
 bra_8069_FD_pause_music:
 C - - - - - 0x014079 05:8069: AD FE 07  LDA ram_game_flags_2
-C - - - - - 0x01407C 05:806C: 09 40     ORA #$40
+C - - - - - 0x01407C 05:806C: 09 40     ORA #con_gf2_40
 C - - - - - 0x01407E 05:806E: 8D FE 07  STA ram_game_flags_2
 bra_8071_FE:
 C - - - - - 0x014081 05:8071: AD 20 07  LDA ram_0720
@@ -81,7 +81,7 @@ C - - - - - 0x014089 05:8079: 8D 15 40  STA $4015
 C - - - - - 0x01408C 05:807C: 4C 6C 81  JMP loc_816C
 bra_807F_FF_resume_music:
 C - - - - - 0x01408F 05:807F: AD FE 07  LDA ram_game_flags_2
-C - - - - - 0x014092 05:8082: 29 BF     AND #$BF
+C - - - - - 0x014092 05:8082: 29 BF     AND #con_gf2_40 ^ $FF
 C - - - - - 0x014094 05:8084: 8D FE 07  STA ram_game_flags_2
 C - - - - - 0x014097 05:8087: AD 21 07  LDA ram_0721
 C - - - - - 0x01409A 05:808A: F0 09     BEQ bra_8095
@@ -124,7 +124,7 @@ C - - - - - 0x0140D6 05:80C6: 8D 22 07  STA ram_0722
 C - - - - - 0x0140D9 05:80C9: AD FF 07  LDA ram_sound_id
 C - - - - - 0x0140DC 05:80CC: 8D 23 07  STA ram_0723
 C - - - - - 0x0140DF 05:80CF: AD FE 07  LDA ram_game_flags_2
-C - - - - - 0x0140E2 05:80D2: 09 20     ORA #$20
+C - - - - - 0x0140E2 05:80D2: 09 20     ORA #con_gf2_20
 C - - - - - 0x0140E4 05:80D4: 8D FE 07  STA ram_game_flags_2
 bra_80D7_loop:
 C - - - - - 0x0140E7 05:80D7: C8        INY
@@ -153,8 +153,8 @@ C - - - - - 0x01410B 05:80FB: 8D 3B 07  STA ram_073B
 C - - - - - 0x01410E 05:80FE: 8D 39 07  STA ram_0739
 C - - - - - 0x014111 05:8101: 8D 3A 07  STA ram_073A
 C - - - - - 0x014114 05:8104: AD FE 07  LDA ram_game_flags_2
-C - - - - - 0x014117 05:8107: 09 02     ORA #$02    ; clear game over flag
-C - - - - - 0x014119 05:8109: 29 BF     AND #$BF
+C - - - - - 0x014117 05:8107: 09 02     ORA #con_gf2_02
+C - - - - - 0x014119 05:8109: 29 BF     AND #con_gf2_40 ^ $FF
 C - - - - - 0x01411B 05:810B: 8D FE 07  STA ram_game_flags_2
 bra_810E:
 C - - - - - 0x01411E 05:810E: A0 01     LDY #$01
@@ -211,7 +211,7 @@ C D 0 - - - 0x014177 05:8167: A9 0F     LDA #$0F
 C - - - - - 0x014179 05:8169: 8D 15 40  STA $4015
 loc_816C:
 C D 0 - - - 0x01417C 05:816C: AD FE 07  LDA ram_game_flags_2
-C - - - - - 0x01417F 05:816F: 09 80     ORA #$80
+C - - - - - 0x01417F 05:816F: 09 80     ORA #con_gf2_80
 C - - - - - 0x014181 05:8171: 8D FE 07  STA ram_game_flags_2
 C - - - - - 0x014184 05:8174: 68        PLA
 C - - - - - 0x014185 05:8175: A8        TAY
@@ -241,12 +241,12 @@ C - - - - - 0x0141A5 05:8195: 60        RTS
 
 loc_8196_update_sound_engine:
 C D 0 - - - 0x0141A6 05:8196: 2C FE 07  BIT ram_game_flags_2
-C - - - - - 0x0141A9 05:8199: 10 69     BPL bra_8204_RTS
+C - - - - - 0x0141A9 05:8199: 10 69     BPL bra_8204_RTS    ; if not con_gf2_80
 C - - - - - 0x0141AB 05:819B: AD FE 07  LDA ram_game_flags_2
-C - - - - - 0x0141AE 05:819E: 29 20     AND #$20
+C - - - - - 0x0141AE 05:819E: 29 20     AND #con_gf2_20
 C - - - - - 0x0141B0 05:81A0: F0 15     BEQ bra_81B7
 C - - - - - 0x0141B2 05:81A2: AD FE 07  LDA ram_game_flags_2
-C - - - - - 0x0141B5 05:81A5: 29 40     AND #$40
+C - - - - - 0x0141B5 05:81A5: 29 40     AND #con_gf2_40
 C - - - - - 0x0141B7 05:81A7: D0 0E     BNE bra_81B7
 C - - - - - 0x0141B9 05:81A9: CE 22 07  DEC ram_0722
 C - - - - - 0x0141BC 05:81AC: D0 09     BNE bra_81B7
@@ -269,7 +269,7 @@ C - - - - - 0x0141DC 05:81CC: CA        DEX
 C - - - - - 0x0141DD 05:81CD: E0 03     CPX #$03
 C - - - - - 0x0141DF 05:81CF: D0 E8     BNE bra_81B9_loop
 C - - - - - 0x0141E1 05:81D1: 2C FE 07  BIT ram_game_flags_2
-C - - - - - 0x0141E4 05:81D4: 70 2E     BVS bra_8204_RTS
+C - - - - - 0x0141E4 05:81D4: 70 2E     BVS bra_8204_RTS    ; if con_gf2_40
 bra_81D6_loop:
 C - - - - - 0x0141E6 05:81D6: 8E 38 07  STX ram_0738
 C - - - - - 0x0141E9 05:81D9: 20 52 88  JSR sub_8852
@@ -753,7 +753,7 @@ ofs_017_8480_D5:
 - - - - - - 0x014490 05:8480: A9 00     LDA #$00
 - - - - - - 0x014492 05:8482: 8D 15 40  STA $4015
 - - - - - - 0x014495 05:8485: AD FE 07  LDA ram_game_flags_2
-- - - - - - 0x014498 05:8488: 09 40     ORA #$40
+- - - - - - 0x014498 05:8488: 09 40     ORA #con_gf2_40
 - - - - - - 0x01449A 05:848A: 8D FE 07  STA ram_game_flags_2
 - - - - - - 0x01449D 05:848D: 60        RTS
 
@@ -865,14 +865,14 @@ C - - - - - 0x014527 05:8517: 0D 32 07  ORA ram_0732
 C - - - - - 0x01452A 05:851A: 0D 33 07  ORA ram_0733
 C - - - - - 0x01452D 05:851D: D0 08     BNE bra_8527
 C - - - - - 0x01452F 05:851F: AD FE 07  LDA ram_game_flags_2
-C - - - - - 0x014532 05:8522: 29 FD     AND #$FD
+C - - - - - 0x014532 05:8522: 29 FD     AND #con_gf2_02 ^ $FF
 C - - - - - 0x014534 05:8524: 8D FE 07  STA ram_game_flags_2
 bra_8527:
 C - - - - - 0x014537 05:8527: 38        SEC
 C - - - - - 0x014538 05:8528: 60        RTS
 bra_8529:
 C - - - - - 0x014539 05:8529: 2C FE 07  BIT ram_game_flags_2
-C - - - - - 0x01453C 05:852C: 70 30     BVS bra_855E
+C - - - - - 0x01453C 05:852C: 70 30     BVS bra_855E    ; if con_gf2_40
 C - - - - - 0x01453E 05:852E: 8A        TXA
 C - - - - - 0x01453F 05:852F: 29 03     AND #$03
 C - - - - - 0x014541 05:8531: AA        TAX
