@@ -7,12 +7,12 @@
 
 
 .export sub_0x018030
-.export sub_0x018810
-.export sub_0x018835_mission_script_handler
+.export sub_0x018810_prepare_mission_data
+.export sub_0x018835_mission_script_handler_update
 .export tbl_0x0194F4
 .export tbl_0x01955B_mission_music
 .export tbl_0x0195AE_checkpoint_mission
-.export sub_0x01A540
+.export sub_0x01A540_draw_on_screen_during_mission
 .export sub_0x01ABC0_jumping_spikes
 .export sub_0x01ADD0
 .export sub_0x01B137
@@ -77,7 +77,7 @@ C - - - - - 0x01807B 06:806B: C9 7F     CMP #con_state_grabbed
 C - - - - - 0x01807D 06:806D: F0 11     BEQ bra_8080_RTS
 C - - - - - 0x01807F 06:806F: BD 4A 00  LDA a: ram_004A_obj,X
 C - - - - - 0x018082 06:8072: 30 0C     BMI bra_8080_RTS    ; if con_004A_80
-C - - - - - 0x018084 06:8074: A0 00     LDY #con_state_00
+C - - - - - 0x018084 06:8074: A0 00     LDY #con_state_idle
 C - - - - - 0x018086 06:8076: BD 69 03  LDA ram_0369_obj,X
 C - - - - - 0x018089 06:8079: 10 02     BPL bra_807D
 - - - - - - 0x01808B 06:807B: A0 04     LDY #con_state_ladder_climb_idle
@@ -295,7 +295,7 @@ C - - - - - 0x018185 06:8175: 60        RTS
 ofs_009_8176_01:
 C - - J - - 0x018186 06:8176: BC 2C 04  LDY ram_042C_plr_direction,X
 C - - - - - 0x018189 06:8179: D0 05     BNE bra_8180
-C - - - - - 0x01818B 06:817B: A9 00     LDA #con_state_00
+C - - - - - 0x01818B 06:817B: A9 00     LDA #con_state_idle
 C - - - - - 0x01818D 06:817D: 95 43     STA ram_state,X
 C - - - - - 0x01818F 06:817F: 60        RTS
 bra_8180:
@@ -542,7 +542,7 @@ C - - - - - 0x0182A6 06:8296: A0 3B     LDY #con_state_uppercut_sudden
 C - - - - - 0x0182A8 06:8298: 0A        ASL
 C - - - - - 0x0182A9 06:8299: 0A        ASL
 C - - - - - 0x0182AA 06:829A: 90 10     BCC bra_82AC_RTS
-C - - - - - 0x0182AC 06:829C: B5 55     LDA ram_animation_frame_counter,X
+C - - - - - 0x0182AC 06:829C: B5 55     LDA ram_animation_length,X
 C - - - - - 0x0182AE 06:829E: AE 35 04  LDX ram_difficulty
 C - - - - - 0x0182B1 06:82A1: DD C5 82  CMP tbl_82C5,X
 C - - - - - 0x0182B4 06:82A4: F0 02     BEQ bra_82A8
@@ -556,7 +556,7 @@ bra_82AD:
 C - - - - - 0x0182BD 06:82AD: B5 E2     LDA ram_btn_hold,X
 C - - - - - 0x0182BF 06:82AF: 29 03     AND #con_btn_Right + con_btn_Left
 C - - - - - 0x0182C1 06:82B1: F0 11     BEQ bra_82C4_RTS
-C - - - - - 0x0182C3 06:82B3: B5 55     LDA ram_animation_frame_counter,X
+C - - - - - 0x0182C3 06:82B3: B5 55     LDA ram_animation_length,X
 C - - - - - 0x0182C5 06:82B5: AE 35 04  LDX ram_difficulty
 C - - - - - 0x0182C8 06:82B8: DD C8 82  CMP tbl_82C8,X
 C - - - - - 0x0182CB 06:82BB: 90 07     BCC bra_82C4_RTS
@@ -708,7 +708,7 @@ bra_8374:
 C - - - - - 0x018384 06:8374: A0 34     LDY #$34
 C - - - - - 0x018386 06:8376: BD 61 03  LDA ram_0361_obj,X
 C - - - - - 0x018389 06:8379: 29 07     AND #$07
-C - - - - - 0x01838B 06:837B: C9 07     CMP #$07
+C - - - - - 0x01838B 06:837B: C9 07     CMP #con_0361_07
 C - - - - - 0x01838D 06:837D: D0 02     BNE bra_8381
 bra_837F:
 C - - - - - 0x01838F 06:837F: A0 1F     LDY #$1F
@@ -789,7 +789,7 @@ C - - - - - 0x0183F4 06:83E4: C9 1F     CMP #$1F
 C - - - - - 0x0183F6 06:83E6: F0 2F     BEQ bra_8417
 C - - - - - 0x0183F8 06:83E8: BD 61 03  LDA ram_0361_obj,X
 C - - - - - 0x0183FB 06:83EB: 29 07     AND #$07
-C - - - - - 0x0183FD 06:83ED: C9 07     CMP #$07
+C - - - - - 0x0183FD 06:83ED: C9 07     CMP #con_0361_07
 C - - - - - 0x0183FF 06:83EF: F0 26     BEQ bra_8417
 C - - - - - 0x018401 06:83F1: BD 69 03  LDA ram_0369_obj,X
 C - - - - - 0x018404 06:83F4: 10 0E     BPL bra_8404
@@ -848,7 +848,7 @@ C - - - - - 0x018450 06:8440: C9 01     CMP #$01    ; up
 C - - - - - 0x018452 06:8442: F0 08     BEQ bra_844C
 C - - - - - 0x018454 06:8444: B5 43     LDA ram_state,X
 C - - - - - 0x018456 06:8446: 29 7F     AND #$7F
-C - - - - - 0x018458 06:8448: C9 00     CMP #con_state_00
+C - - - - - 0x018458 06:8448: C9 00     CMP #con_state_idle
 C - - - - - 0x01845A 06:844A: D0 0A     BNE bra_8456
 bra_844C:
 C - - - - - 0x01845C 06:844C: A9 06     LDA #con_state_jump_up
@@ -942,7 +942,7 @@ C - - - - - 0x0184E4 06:84D4: 90 3C     BCC bra_8512
 C - - - - - 0x0184E6 06:84D6: A4 19     LDY ram_0019
 C - - - - - 0x0184E8 06:84D8: B9 43 00  LDA a: ram_state,Y
 C - - - - - 0x0184EB 06:84DB: 29 7F     AND #$7F
-C - - - - - 0x0184ED 06:84DD: C9 65     CMP #con_state_65
+C - - - - - 0x0184ED 06:84DD: C9 65     CMP #con_state_weapon_on_the_ground
 C - - - - - 0x0184EF 06:84DF: D0 31     BNE bra_8512
 C - - - - - 0x0184F1 06:84E1: B9 BF 00  LDA a: ram_obj_id,Y
 C - - - - - 0x0184F4 06:84E4: C9 18     CMP #con_obj_18
@@ -1005,11 +1005,11 @@ tbl_851C_weapons:
 - D 0 - - - 0x018543 06:8533: 04        .byte $04   ; 17 con_obj_baton
 - - - - - - 0x018544 06:8534: 00        .byte $00   ; 18 con_obj_18
 - - - - - - 0x018545 06:8535: 00        .byte $00   ; 19 con_obj_19
-- D 0 - - - 0x018546 06:8536: 05        .byte $05   ; 1A con_obj_1A
+- D 0 - - - 0x018546 06:8536: 05        .byte $05   ; 1A con_obj_boomerang
 - - - - - - 0x018547 06:8537: 00        .byte $00   ; 1B con_obj_jumping_spike
 - - - - - - 0x018548 06:8538: 00        .byte $00   ; 1C con_obj_fireball
 - - - - - - 0x018549 06:8539: 00        .byte $00   ; 1D con_obj_1D
-- - - - - - 0x01854A 06:853A: 00        .byte $00   ; 1E con_obj_1E
+- - - - - - 0x01854A 06:853A: 00        .byte $00   ; 1E con_obj_symbol_II
 
 
 ; bzk garbage
@@ -1410,7 +1410,7 @@ C - - - - - 0x018754 06:8744: A6 3B     LDX ram_003B
 C - - - - - 0x018756 06:8746: BD 4A 00  LDA a: ram_004A_obj,X
 C - - - - - 0x018759 06:8749: 30 36     BMI bra_8781_RTS    ; if con_004A_80
 C - - - - - 0x01875B 06:874B: BD 59 03  LDA ram_0359_obj,X
-C - - - - - 0x01875E 06:874E: C9 0A     CMP #$0A
+C - - - - - 0x01875E 06:874E: C9 0A     CMP #con_0359_0A
 C - - - - - 0x018760 06:8750: F0 2F     BEQ bra_8781_RTS
 C - - - - - 0x018762 06:8752: 38        SEC
 C - - - - - 0x018763 06:8753: E9 18     SBC #$18
@@ -1472,24 +1472,24 @@ tbl_8782:
 
 
 
-sub_8800:
-sub_0x018810:
-C - - - - - 0x018810 06:8800: 20 1B 88  JSR sub_881B
-C - - - - - 0x018813 06:8803: 20 5A 95  JSR sub_955A
-C - - - - - 0x018816 06:8806: 20 6F 95  JSR sub_956F
-C - - - - - 0x018819 06:8809: 20 AD 95  JSR sub_95AD
-C - - - - - 0x01881C 06:880C: A9 00     LDA #$00
+sub_8800_prepare_mission_data:
+sub_0x018810_prepare_mission_data:
+C - - - - - 0x018810 06:8800: 20 1B 88  JSR sub_881B_clear_animations
+C - - - - - 0x018813 06:8803: 20 5A 95  JSR sub_955A_prepare_mission_pointer
+C - - - - - 0x018816 06:8806: 20 6F 95  JSR sub_956F_set_default_cam_pos
+C - - - - - 0x018819 06:8809: 20 AD 95  JSR sub_95AD_set_default_plr_data
+C - - - - - 0x01881C 06:880C: A9 00     LDA #$00    ; con_0361_00
 C - - - - - 0x01881E 06:880E: 8D 23 04  STA ram_mission_lo
 C - - - - - 0x018821 06:8811: 8D 61 03  STA ram_0361_obj
 C - - - - - 0x018824 06:8814: 8D 62 03  STA ram_0361_obj + $01
-C - - - - - 0x018827 06:8817: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x018827 06:8817: 20 18 8F  JSR sub_8F18_prepare_next_script
 C - - - - - 0x01882A 06:881A: 60        RTS
 
 
 
-sub_881B:
+sub_881B_clear_animations:
 C - - - - - 0x01882B 06:881B: A2 06     LDX #$06
-C - - - - - 0x01882D 06:881D: A9 00     LDA #$00
+C - - - - - 0x01882D 06:881D: A9 00     LDA #con_anim_id + $00
 bra_881F_loop:
 C - - - - - 0x01882F 06:881F: 95 C7     STA ram_animation_id,X
 C - - - - - 0x018831 06:8821: CA        DEX
@@ -1498,18 +1498,18 @@ C - - - - - 0x018834 06:8824: 60        RTS
 
 
 
-sub_0x018835_mission_script_handler:
+sub_0x018835_mission_script_handler_update:
 C - - - - - 0x018835 06:8825: 20 E4 98  JSR sub_98E4
 C - - - - - 0x018838 06:8828: 20 D3 8E  JSR sub_8ED3
 C - - - - - 0x01883B 06:882B: A5 34     LDA ram_game_mode
 C - - - - - 0x01883D 06:882D: 29 07     AND #con_gm_01 + con_gm_02 + con_gm_04
 C - - - - - 0x01883F 06:882F: D0 18     BNE bra_8849
-C - - - - - 0x018841 06:8831: AD 24 04  LDA ram_0424
+C - - - - - 0x018841 06:8831: AD 24 04  LDA ram_mission_script
 C - - - - - 0x018844 06:8834: 0A        ASL
 C - - - - - 0x018845 06:8835: AA        TAX
-C - - - - - 0x018846 06:8836: BD 4D 88  LDA tbl_884D_mission_script_handler,X
+C - - - - - 0x018846 06:8836: BD 4D 88  LDA tbl_884D_mission_script_handler_in_process,X
 C - - - - - 0x018849 06:8839: 85 29     STA ram_0029
-C - - - - - 0x01884B 06:883B: BD 4E 88  LDA tbl_884D_mission_script_handler + $01,X
+C - - - - - 0x01884B 06:883B: BD 4E 88  LDA tbl_884D_mission_script_handler_in_process + $01,X
 C - - - - - 0x01884E 06:883E: 85 2A     STA ram_002A
 C - - - - - 0x018850 06:8840: A9 88     LDA #> ( ofs_8849 - $01 )
 C - - - - - 0x018852 06:8842: 48        PHA
@@ -1523,18 +1523,19 @@ C - - - - - 0x01885C 06:884C: 60        RTS
 
 
 
-tbl_884D_mission_script_handler:
-; see con_884D
+tbl_884D_mission_script_handler_in_process:
+; these handlers are constantly executed, waiting to be finished
+; see con_884D_script
 - D 0 - - - 0x01885D 06:884D: 85 88     .word ofs_010_8885_00
-- D 0 - - - 0x01885F 06:884F: 97 88     .word ofs_010_8897_01_white_hand_cursor
+- D 0 - - - 0x01885F 06:884F: 97 88     .word ofs_010_8897_01_hand_cursor
 - D 0 - - - 0x018861 06:8851: C9 88     .word ofs_010_88C9_02
 - D 0 - - - 0x018863 06:8853: C2 88     .word ofs_010_88C2_03
-- D 0 - - - 0x018865 06:8855: 83 96     .word ofs_010_9683_04
-- D 0 - - - 0x018867 06:8857: 56 8B     .word ofs_010_8B56_05_elevator
+- D 0 - - - 0x018865 06:8855: 83 96     .word ofs_010_9683_04_enter_door
+- D 0 - - - 0x018867 06:8857: 56 8B     .word ofs_010_8B56_05_elevator_going_down
 - D 0 - - - 0x018869 06:8859: BC 8B     .word ofs_010_8BBC_06
 - D 0 - - - 0x01886B 06:885B: F0 88     .word ofs_010_88F0_07
 - D 0 - - - 0x01886D 06:885D: E9 89     .word ofs_010_89E9_08
-- D 0 - - - 0x01886F 06:885F: F7 89     .word ofs_010_89F7_09
+- D 0 - - - 0x01886F 06:885F: F7 89     .word ofs_010_89F7_09_emeny_spawn_at_door
 - D 0 - - - 0x018871 06:8861: BC 8B     .word ofs_010_8BBC_0A
 - D 0 - - - 0x018873 06:8863: 96 88     .word ofs_010_8896_0B_RTS
 - D 0 - - - 0x018875 06:8865: C8 8B     .word ofs_010_8BC8_0C
@@ -1550,35 +1551,35 @@ tbl_884D_mission_script_handler:
 - D 0 - - - 0x018889 06:8879: C2 88     .word ofs_010_88C2_16
 - - - - - - 0x01888B 06:887B: 0F 8D     .word ofs_010_8D0F_17
 - D 0 - - - 0x01888D 06:887D: 3D 8D     .word ofs_010_8D3D_18
-- D 0 - - - 0x01888F 06:887F: FC 8D     .word ofs_010_8DFC_19
+- D 0 - - - 0x01888F 06:887F: FC 8D     .word ofs_010_8DFC_19_shadow_warrior
 - D 0 - - - 0x018891 06:8881: 60 8E     .word ofs_010_8E60_1A
 - D 0 - - - 0x018893 06:8883: C2 88     .word ofs_010_88C2_1B
 
 
 
 ofs_010_8885_00:
-C - - J - - 0x018895 06:8885: AD 25 04  LDA ram_0425
+C - - J - - 0x018895 06:8885: AD 25 04  LDA ram_enemy_spawn_counter
 C - - - - - 0x018898 06:8888: F0 09     BEQ bra_8893
-C - - - - - 0x01889A 06:888A: 20 47 8B  JSR sub_8B47
+C - - - - - 0x01889A 06:888A: 20 47 8B  JSR sub_8B47_find_empty_enemy_slot
 C - - - - - 0x01889D 06:888D: 90 03     BCC bra_8892_RTS
 C - - - - - 0x01889F 06:888F: 20 12 8B  JSR sub_8B12_create_1_enemy
 bra_8892_RTS:
 C - - - - - 0x0188A2 06:8892: 60        RTS
 bra_8893:
-C - - - - - 0x0188A3 06:8893: 20 25 8B  JSR sub_8B25
+C - - - - - 0x0188A3 06:8893: 20 25 8B  JSR sub_8B25_wait_for_all_enemies_dead
 ofs_010_8896_0B_RTS:
 C - - - - - 0x0188A6 06:8896: 60        RTS
 
 
 
-ofs_010_8897_01_white_hand_cursor:
+ofs_010_8897_01_hand_cursor:
 C - - J - - 0x0188A7 06:8897: AD 29 04  LDA ram_0429
 C - - - - - 0x0188AA 06:889A: C9 05     CMP #$05
 C - - - - - 0x0188AC 06:889C: B0 24     BCS bra_88C2
 C - - - - - 0x0188AE 06:889E: AD A5 04  LDA ram_04A5_counter
 C - - - - - 0x0188B1 06:88A1: 29 0F     AND #$0F
 C - - - - - 0x0188B3 06:88A3: D0 0D     BNE bra_88B2
-C - - - - - 0x0188B5 06:88A5: 20 5F 94  JSR sub_945F
+C - - - - - 0x0188B5 06:88A5: 20 5F 94  JSR sub_945F_display_hand_cursor
 C - - - - - 0x0188B8 06:88A8: A9 A0     LDA #con_003C_80 + con_003C_20
 C - - - - - 0x0188BA 06:88AA: 85 42     STA ram_003C_obj + $06
 C - - - - - 0x0188BC 06:88AC: A9 47     LDA #con_sfx_hand_cursor
@@ -1592,7 +1593,7 @@ C - - - - - 0x0188C8 06:88B8: 85 42     STA ram_003C_obj + $06
 C - - - - - 0x0188CA 06:88BA: EE 29 04  INC ram_0429
 C - - - - - 0x0188CD 06:88BD: 60        RTS
 bra_88BE:
-C - - - - - 0x0188CE 06:88BE: 20 5F 94  JSR sub_945F
+C - - - - - 0x0188CE 06:88BE: 20 5F 94  JSR sub_945F_display_hand_cursor
 C - - - - - 0x0188D1 06:88C1: 60        RTS
 bra_88C2:
 loc_88C2:
@@ -1603,7 +1604,7 @@ ofs_010_88C2_13:
 ofs_010_88C2_16:
 ofs_010_88C2_1B:
 C - - - - - 0x0188D2 06:88C2: EE 23 04  INC ram_mission_lo
-C - - - - - 0x0188D5 06:88C5: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x0188D5 06:88C5: 20 18 8F  JSR sub_8F18_prepare_next_script
 C - - - - - 0x0188D8 06:88C8: 60        RTS
 
 
@@ -1627,7 +1628,7 @@ C - - - - - 0x0188F3 06:88E3: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x0188F5 06:88E5: C5 D3     CMP ram_pos_Y_hi_cam
 C - - - - - 0x0188F7 06:88E7: D0 06     BNE bra_88EF_RTS
 C - - - - - 0x0188F9 06:88E9: EE 23 04  INC ram_mission_lo
-C - - - - - 0x0188FC 06:88EC: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x0188FC 06:88EC: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_88EF_RTS:
 C - - - - - 0x0188FF 06:88EF: 60        RTS
 
@@ -1677,7 +1678,7 @@ C - - - - - 0x018947 06:8937: 20 74 89  JSR sub_8974
 C - - - - - 0x01894A 06:893A: 90 06     BCC bra_8942_RTS
 bra_893C:
 C - - - - - 0x01894C 06:893C: EE 23 04  INC ram_mission_lo
-C - - - - - 0x01894F 06:893F: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x01894F 06:893F: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_8942_RTS:
 C - - - - - 0x018952 06:8942: 60        RTS
 bra_8943:
@@ -1755,10 +1756,10 @@ C - - - - - 0x01899F 06:898F: 60        RTS
 sub_8990:
 C - - - - - 0x0189A0 06:8990: CA        DEX
 C - - - - - 0x0189A1 06:8991: B5 D0     LDA ram_pos_X_lo_cam,X
-C - - - - - 0x0189A3 06:8993: D5 D4     CMP ram_00D4_unk,X
+C - - - - - 0x0189A3 06:8993: D5 D4     CMP ram_copy_cam_pos,X
 C - - - - - 0x0189A5 06:8995: D0 08     BNE bra_899F
 C - - - - - 0x0189A7 06:8997: B5 D1     LDA ram_pos_X_hi_cam,X
-C - - - - - 0x0189A9 06:8999: D5 D5     CMP ram_00D4_unk + $01,X
+C - - - - - 0x0189A9 06:8999: D5 D5     CMP ram_copy_cam_pos + $01,X
 C - - - - - 0x0189AB 06:899B: D0 02     BNE bra_899F
 C - - - - - 0x0189AD 06:899D: 18        CLC
 C - - - - - 0x0189AE 06:899E: 60        RTS
@@ -1825,19 +1826,19 @@ C - - J - - 0x0189F9 06:89E9: AD FE 07  LDA ram_game_flags_2
 C - - - - - 0x0189FC 06:89EC: 29 02     AND #con_gf2_02
 C - - - - - 0x0189FE 06:89EE: D0 06     BNE bra_89F6_RTS
 C - - - - - 0x018A00 06:89F0: EE 23 04  INC ram_mission_lo
-C - - - - - 0x018A03 06:89F3: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x018A03 06:89F3: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_89F6_RTS:
 C - - - - - 0x018A06 06:89F6: 60        RTS
 
 
 
-ofs_010_89F7_09:
+ofs_010_89F7_09_emeny_spawn_at_door:
 C - - J - - 0x018A07 06:89F7: A5 34     LDA ram_game_mode
 C - - - - - 0x018A09 06:89F9: 29 20     AND #con_gm_20
 C - - - - - 0x018A0B 06:89FB: D0 30     BNE bra_8A2D
-C - - - - - 0x018A0D 06:89FD: AD 25 04  LDA ram_0425
+C - - - - - 0x018A0D 06:89FD: AD 25 04  LDA ram_enemy_spawn_counter
 C - - - - - 0x018A10 06:8A00: F0 27     BEQ bra_8A29
-C - - - - - 0x018A12 06:8A02: 20 47 8B  JSR sub_8B47
+C - - - - - 0x018A12 06:8A02: 20 47 8B  JSR sub_8B47_find_empty_enemy_slot
 C - - - - - 0x018A15 06:8A05: 90 25     BCC bra_8A2C_RTS
 C - - - - - 0x018A17 06:8A07: 20 D5 92  JSR sub_92D5_calculate_submission_pointer
 C - - - - - 0x018A1A 06:8A0A: 20 6E 8A  JSR sub_8A6E
@@ -1855,7 +1856,7 @@ C - - - - - 0x018A34 06:8A24: 09 20     ORA #con_gm_20
 C - - - - - 0x018A36 06:8A26: 85 34     STA ram_game_mode
 C - - - - - 0x018A38 06:8A28: 60        RTS
 bra_8A29:
-C - - - - - 0x018A39 06:8A29: 20 25 8B  JSR sub_8B25
+C - - - - - 0x018A39 06:8A29: 20 25 8B  JSR sub_8B25_wait_for_all_enemies_dead
 bra_8A2C_RTS:
 C - - - - - 0x018A3C 06:8A2C: 60        RTS
 bra_8A2D:
@@ -1864,16 +1865,16 @@ C - - - - - 0x018A40 06:8A30: 30 3B     BMI bra_8A6D_RTS
 C - - - - - 0x018A42 06:8A32: AD 81 04  LDA ram_0481
 C - - - - - 0x018A45 06:8A35: 10 30     BPL bra_8A67
 C - - - - - 0x018A47 06:8A37: 20 D5 92  JSR sub_92D5_calculate_submission_pointer
-C - - - - - 0x018A4A 06:8A3A: 20 47 8B  JSR sub_8B47
+C - - - - - 0x018A4A 06:8A3A: 20 47 8B  JSR sub_8B47_find_empty_enemy_slot
 bra_8A3D_loop:
 C - - - - - 0x018A4D 06:8A3D: A0 0B     LDY #$0B
 C - - - - - 0x018A4F 06:8A3F: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x018A51 06:8A41: 95 C1     STA ram_obj_id + $02,X
 C - - - - - 0x018A53 06:8A43: AC 26 04  LDY ram_0426
 C - - - - - 0x018A56 06:8A46: 20 F7 92  JSR sub_92F7_spawn_enemies_from_mission_data
-C - - - - - 0x018A59 06:8A49: CE 25 04  DEC ram_0425
+C - - - - - 0x018A59 06:8A49: CE 25 04  DEC ram_enemy_spawn_counter
 C - - - - - 0x018A5C 06:8A4C: F0 05     BEQ bra_8A53
-C - - - - - 0x018A5E 06:8A4E: 20 47 8B  JSR sub_8B47
+C - - - - - 0x018A5E 06:8A4E: 20 47 8B  JSR sub_8B47_find_empty_enemy_slot
 C - - - - - 0x018A61 06:8A51: B0 EA     BCS bra_8A3D_loop
 bra_8A53:
 C - - - - - 0x018A63 06:8A53: A9 3E     LDA #con_sfx_door
@@ -2006,12 +2007,12 @@ C - - - - - 0x018B27 06:8B17: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x018B29 06:8B19: 95 C1     STA ram_obj_id + $02,X
 C - - - - - 0x018B2B 06:8B1B: AC 26 04  LDY ram_0426
 C - - - - - 0x018B2E 06:8B1E: 20 F7 92  JSR sub_92F7_spawn_enemies_from_mission_data
-C - - - - - 0x018B31 06:8B21: CE 25 04  DEC ram_0425
+C - - - - - 0x018B31 06:8B21: CE 25 04  DEC ram_enemy_spawn_counter
 C - - - - - 0x018B34 06:8B24: 60        RTS
 
 
 
-sub_8B25:
+sub_8B25_wait_for_all_enemies_dead:
 C - - - - - 0x018B35 06:8B25: A5 3E     LDA ram_003C_obj + $02
 C - - - - - 0x018B37 06:8B27: 30 1D     BMI bra_8B46_RTS    ; if con_003C_80
 C - - - - - 0x018B39 06:8B29: A5 3F     LDA ram_003C_obj + $03
@@ -2028,13 +2029,13 @@ C - - - - - 0x018B4D 06:8B3D: 85 42     STA ram_003C_obj + $06
 C - - - - - 0x018B4F 06:8B3F: 60        RTS
 bra_8B40:
 C - - - - - 0x018B50 06:8B40: EE 23 04  INC ram_mission_lo
-C - - - - - 0x018B53 06:8B43: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x018B53 06:8B43: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_8B46_RTS:
 C - - - - - 0x018B56 06:8B46: 60        RTS
 
 
 
-sub_8B47:
+sub_8B47_find_empty_enemy_slot:
 C - - - - - 0x018B57 06:8B47: A2 00     LDX #$00
 bra_8B49_loop:
 C - - - - - 0x018B59 06:8B49: B5 3E     LDA ram_003C_obj + $02,X
@@ -2050,9 +2051,11 @@ C - - - - - 0x018B65 06:8B55: 60        RTS
 
 
 
-ofs_010_8B56_05_elevator:
+ofs_010_8B56_05_elevator_going_down:
 C - - J - - 0x018B66 06:8B56: A2 00     LDX #$00
-C - - - - - 0x018B68 06:8B58: B5 3C     LDA ram_003C_obj,X ; bzk optimize, no need for LDA,X
+; bzk optimize, LDA instead of LDA,X
+; bzk bug?
+C - - - - - 0x018B68 06:8B58: B5 3C     LDA ram_003C_obj,X
 C - - - - - 0x018B6A 06:8B5A: 30 02     BMI bra_8B5E    ; if con_003C_80
 - - - - - - 0x018B6C 06:8B5C: A2 01     LDX #$01
 bra_8B5E:
@@ -2067,12 +2070,12 @@ C - - - - - 0x018B7D 06:8B6D: 29 04     AND #con_004A_04
 C - - - - - 0x018B7F 06:8B6F: D0 1B     BNE bra_8B8C
 C - - - - - 0x018B81 06:8B71: AD 81 04  LDA ram_0481
 C - - - - - 0x018B84 06:8B74: 10 3A     BPL bra_8BB0
-C - - - - - 0x018B86 06:8B76: A9 00     LDA #con_state_00
+C - - - - - 0x018B86 06:8B76: A9 00     LDA #con_state_idle
 C - - - - - 0x018B88 06:8B78: 85 43     STA ram_state
 C - - - - - 0x018B8A 06:8B7A: 85 44     STA ram_state + $01
 C - - - - - 0x018B8C 06:8B7C: A9 3E     LDA #con_sfx_door
 C - - - - - 0x018B8E 06:8B7E: 20 10 FC  JSR sub_0x01FC20_play_sound
-C - - - - - 0x018B91 06:8B81: A9 85     LDA #$85
+C - - - - - 0x018B91 06:8B81: A9 85     LDA #con_A6C3_draw_leave_elevator_door + $80
 C - - - - - 0x018B93 06:8B83: 8D 80 04  STA ram_0480
 C - - - - - 0x018B96 06:8B86: A9 03     LDA #$03
 C - - - - - 0x018B98 06:8B88: 8D 81 04  STA ram_0481
@@ -2084,12 +2087,12 @@ C - - - - - 0x018BA0 06:8B90: 85 4A     STA ram_004A_obj
 C - - - - - 0x018BA2 06:8B92: A5 4B     LDA ram_004A_obj + $01
 C - - - - - 0x018BA4 06:8B94: 29 FB     AND #con_004A_04 ^ $FF
 C - - - - - 0x018BA6 06:8B96: 85 4B     STA ram_004A_obj + $01
-C - - - - - 0x018BA8 06:8B98: A9 02     LDA #$02
+C - - - - - 0x018BA8 06:8B98: A9 02     LDA #con_0359_02
 C - - - - - 0x018BAA 06:8B9A: 8D 59 03  STA ram_0359_obj
 C - - - - - 0x018BAD 06:8B9D: 8D 5A 03  STA ram_0359_obj + $01
 C - - - - - 0x018BB0 06:8BA0: A9 3E     LDA #con_sfx_door
 C - - - - - 0x018BB2 06:8BA2: 20 10 FC  JSR sub_0x01FC20_play_sound
-C - - - - - 0x018BB5 06:8BA5: A9 85     LDA #$85
+C - - - - - 0x018BB5 06:8BA5: A9 85     LDA #con_A6C3_draw_leave_elevator_door + $80
 C - - - - - 0x018BB7 06:8BA7: 8D 80 04  STA ram_0480
 C - - - - - 0x018BBA 06:8BAA: A9 80     LDA #$80
 C - - - - - 0x018BBC 06:8BAC: 8D 81 04  STA ram_0481
@@ -2098,7 +2101,7 @@ bra_8BB0:
 C - - - - - 0x018BC0 06:8BB0: A9 FB     LDA #con_music_ctrl_FB
 C - - - - - 0x018BC2 06:8BB2: 20 10 FC  JSR sub_0x01FC20_play_sound
 C - - - - - 0x018BC5 06:8BB5: EE 23 04  INC ram_mission_lo
-C - - - - - 0x018BC8 06:8BB8: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x018BC8 06:8BB8: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_8BBB_RTS:
 C - - - - - 0x018BCB 06:8BBB: 60        RTS
 
@@ -2109,7 +2112,7 @@ ofs_010_8BBC_0A:
 C - - J - - 0x018BCC 06:8BBC: AD 80 04  LDA ram_0480
 C - - - - - 0x018BCF 06:8BBF: 30 06     BMI bra_8BC7_RTS
 C - - - - - 0x018BD1 06:8BC1: EE 23 04  INC ram_mission_lo
-C - - - - - 0x018BD4 06:8BC4: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x018BD4 06:8BC4: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_8BC7_RTS:
 C - - - - - 0x018BD7 06:8BC7: 60        RTS
 
@@ -2129,7 +2132,7 @@ C - - - - - 0x018BE9 06:8BD9: A5 F5     LDA ram_00F5
 C - - - - - 0x018BEB 06:8BDB: C9 FF     CMP #$FF
 C - - - - - 0x018BED 06:8BDD: D0 06     BNE bra_8BE5_RTS
 C - - - - - 0x018BEF 06:8BDF: EE 23 04  INC ram_mission_lo
-C - - - - - 0x018BF2 06:8BE2: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x018BF2 06:8BE2: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_8BE5_RTS:
 C - - - - - 0x018BF5 06:8BE5: 60        RTS
 
@@ -2152,7 +2155,7 @@ C - - - - - 0x018C0C 06:8BFC: 20 10 FC  JSR sub_0x01FC20_play_sound
 C - - - - - 0x018C0F 06:8BFF: A9 80     LDA #$80
 C - - - - - 0x018C11 06:8C01: 85 F3     STA ram_00F3
 C - - - - - 0x018C13 06:8C03: EE 23 04  INC ram_mission_lo
-C - - - - - 0x018C16 06:8C06: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x018C16 06:8C06: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_8C09_RTS:
 C - - - - - 0x018C19 06:8C09: 60        RTS
 
@@ -2187,7 +2190,7 @@ bra_8C34:
 C - - - - - 0x018C44 06:8C34: A9 FB     LDA #con_music_ctrl_FB
 C - - - - - 0x018C46 06:8C36: 20 10 FC  JSR sub_0x01FC20_play_sound
 C - - - - - 0x018C49 06:8C39: EE 23 04  INC ram_mission_lo
-C - - - - - 0x018C4C 06:8C3C: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x018C4C 06:8C3C: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_8C3F_RTS:
 C - - - - - 0x018C4F 06:8C3F: 60        RTS
 
@@ -2221,7 +2224,7 @@ bra_8C60_loop:
 C - - - - - 0x018C70 06:8C60: B5 3C     LDA ram_003C_obj,X ; 003C 003D
 C - - - - - 0x018C72 06:8C62: 10 07     BPL bra_8C6B    ; if not con_003C_80
 C - - - - - 0x018C74 06:8C64: BD 59 03  LDA ram_0359_obj,X
-C - - - - - 0x018C77 06:8C67: C9 1D     CMP #$1D
+C - - - - - 0x018C77 06:8C67: C9 1D     CMP #con_0359_1D
 C - - - - - 0x018C79 06:8C69: F0 52     BEQ bra_8CBD
 bra_8C6B:
 C - - - - - 0x018C7B 06:8C6B: E8        INX
@@ -2285,7 +2288,7 @@ C - - - - - 0x018CE7 06:8CD7: 85 40     STA ram_003C_obj + $04
 C - - - - - 0x018CE9 06:8CD9: 85 41     STA ram_003C_obj + $05
 C - - - - - 0x018CEB 06:8CDB: 85 42     STA ram_003C_obj + $06
 C - - - - - 0x018CED 06:8CDD: EE 23 04  INC ram_mission_lo
-C - - - - - 0x018CF0 06:8CE0: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x018CF0 06:8CE0: 20 18 8F  JSR sub_8F18_prepare_next_script
 C - - - - - 0x018CF3 06:8CE3: 60        RTS
 
 
@@ -2348,11 +2351,12 @@ bra_8D2C_loop:
 
 
 ofs_010_8D3D_18:
+; mission 0D only
 C - - J - - 0x018D4D 06:8D3D: A5 F9     LDA ram_00F9
 C - - - - - 0x018D4F 06:8D3F: D0 21     BNE bra_8D62
 C - - - - - 0x018D51 06:8D41: A2 01     LDX #$01
 bra_8D43_loop:
-C - - - - - 0x018D53 06:8D43: A9 08     LDA #$08
+C - - - - - 0x018D53 06:8D43: A9 08     LDA #con_9859_08
 C - - - - - 0x018D55 06:8D45: 20 59 97  JSR sub_9759
 C - - - - - 0x018D58 06:8D48: B0 04     BCS bra_8D4E
 C - - - - - 0x018D5A 06:8D4A: CA        DEX
@@ -2467,22 +2471,22 @@ C - - - - - 0x018E0B 06:8DFB: 60        RTS
 
 
 
-ofs_010_8DFC_19:
-C - - J - - 0x018E0C 06:8DFC: AD 25 04  LDA ram_0425
+ofs_010_8DFC_19_shadow_warrior:
+C - - J - - 0x018E0C 06:8DFC: AD 25 04  LDA ram_enemy_spawn_counter
 C - - - - - 0x018E0F 06:8DFF: F0 09     BEQ bra_8E0A
-- - - - - - 0x018E11 06:8E01: 20 47 8B  JSR sub_8B47
+- - - - - - 0x018E11 06:8E01: 20 47 8B  JSR sub_8B47_find_empty_enemy_slot
 - - - - - - 0x018E14 06:8E04: 90 03     BCC bra_8E09_RTS
 - - - - - - 0x018E16 06:8E06: 20 12 8B  JSR sub_8B12_create_1_enemy
 bra_8E09_RTS:
 - - - - - - 0x018E19 06:8E09: 60        RTS
 bra_8E0A:
-C - - - - - 0x018E1A 06:8E0A: 20 25 8B  JSR sub_8B25
-C - - - - - 0x018E1D 06:8E0D: 20 11 8E  JSR sub_8E11
+C - - - - - 0x018E1A 06:8E0A: 20 25 8B  JSR sub_8B25_wait_for_all_enemies_dead
+C - - - - - 0x018E1D 06:8E0D: 20 11 8E  JSR sub_8E11_change_room_when_shadow_warrior_is_half_dead
 C - - - - - 0x018E20 06:8E10: 60        RTS
 
 
 
-sub_8E11:
+sub_8E11_change_room_when_shadow_warrior_is_half_dead:
 C - - - - - 0x018E21 06:8E11: A5 F9     LDA ram_00F9
 C - - - - - 0x018E23 06:8E13: D0 0F     BNE bra_8E24
 C - - - - - 0x018E25 06:8E15: AD 20 04  LDA ram_hp + $02
@@ -2490,20 +2494,22 @@ C - - - - - 0x018E28 06:8E18: C9 7F     CMP #$7F
 C - - - - - 0x018E2A 06:8E1A: B0 07     BCS bra_8E23_RTS
 C - - - - - 0x018E2C 06:8E1C: A9 03     LDA #$03
 C - - - - - 0x018E2E 06:8E1E: 8D 3F 06  STA ram_063F
-C - - - - - 0x018E31 06:8E21: E6 F9     INC ram_00F9
+C - - - - - 0x018E31 06:8E21: E6 F9     INC ram_00F9    ; 01
 bra_8E23_RTS:
 C - - - - - 0x018E33 06:8E23: 60        RTS
 bra_8E24:
 C - - - - - 0x018E34 06:8E24: C9 01     CMP #$01
 C - - - - - 0x018E36 06:8E26: D0 08     BNE bra_8E30
+; 01
 C - - - - - 0x018E38 06:8E28: AD 3F 06  LDA ram_063F
 C - - - - - 0x018E3B 06:8E2B: 10 02     BPL bra_8E2F_RTS
-C - - - - - 0x018E3D 06:8E2D: E6 F9     INC ram_00F9
+C - - - - - 0x018E3D 06:8E2D: E6 F9     INC ram_00F9    ; 02
 bra_8E2F_RTS:
 C - - - - - 0x018E3F 06:8E2F: 60        RTS
 bra_8E30:
 C - - - - - 0x018E40 06:8E30: C9 02     CMP #$02
 C - - - - - 0x018E42 06:8E32: D0 2B     BNE bra_8E5F_RTS
+; 02
 C - - - - - 0x018E44 06:8E34: A2 02     LDX #$02
 C - - - - - 0x018E46 06:8E36: 20 EB 8D  JSR sub_8DEB
 C - - - - - 0x018E49 06:8E39: A5 D0     LDA ram_pos_X_lo_cam
@@ -2523,7 +2529,7 @@ C - - - - - 0x018E63 06:8E53: A9 02     LDA #$02
 C - - - - - 0x018E65 06:8E55: 8D 3F 06  STA ram_063F
 C - - - - - 0x018E68 06:8E58: A9 11     LDA #con_music_boss_final
 C - - - - - 0x018E6A 06:8E5A: 20 10 FC  JSR sub_0x01FC20_play_sound
-C - - - - - 0x018E6D 06:8E5D: E6 F9     INC ram_00F9
+C - - - - - 0x018E6D 06:8E5D: E6 F9     INC ram_00F9    ; 03
 bra_8E5F_RTS:
 C - - - - - 0x018E6F 06:8E5F: 60        RTS
 
@@ -2545,7 +2551,7 @@ C - - - - - 0x018E8B 06:8E7B: 8D 91 04  STA ram_pal_bg_current
 C - - - - - 0x018E8E 06:8E7E: 60        RTS
 bra_8E7F:
 C - - - - - 0x018E8F 06:8E7F: EE 23 04  INC ram_mission_lo
-C - - - - - 0x018E92 06:8E82: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x018E92 06:8E82: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_8E85_RTS:
 C - - - - - 0x018E95 06:8E85: 60        RTS
 
@@ -2639,8 +2645,8 @@ C - - - - - 0x018F27 06:8F17: 60        RTS
 
 
 
-sub_8F18_next_script:
-loc_8F18:
+sub_8F18_prepare_next_script:
+loc_8F18_prepare_next_script:
 C D 0 - - - 0x018F28 06:8F18: 20 D5 92  JSR sub_92D5_calculate_submission_pointer
 C - - - - - 0x018F2B 06:8F1B: A9 00     LDA #$00    ; con_003C_00
 C - - - - - 0x018F2D 06:8F1D: 85 3E     STA ram_003C_obj + $02
@@ -2661,7 +2667,7 @@ C - - - - - 0x018F4D 06:8F3D: 29 F7     AND #con_0036_08 ^ $FF
 C - - - - - 0x018F4F 06:8F3F: 85 37     STA ram_0036_enemy + $01
 C - - - - - 0x018F51 06:8F41: A0 00     LDY #$00
 C - - - - - 0x018F53 06:8F43: B1 2B     LDA (ram_002B),Y
-C - - - - - 0x018F55 06:8F45: 8D 24 04  STA ram_0424
+C - - - - - 0x018F55 06:8F45: 8D 24 04  STA ram_mission_script
 C - - - - - 0x018F58 06:8F48: 0A        ASL
 C - - - - - 0x018F59 06:8F49: AA        TAX
 C - - - - - 0x018F5A 06:8F4A: 90 0D     BCC bra_8F59_00_7F
@@ -2672,9 +2678,9 @@ C - - - - - 0x018F61 06:8F51: BD A6 8F  LDA tbl_8FA5 + $01,X
 C - - - - - 0x018F64 06:8F54: 85 2A     STA ram_002A
 C - - - - - 0x018F66 06:8F56: 4C 63 8F  JMP loc_8F63
 bra_8F59_00_7F:
-C - - - - - 0x018F69 06:8F59: BD 6D 8F  LDA tbl_8F6D,X
+C - - - - - 0x018F69 06:8F59: BD 6D 8F  LDA tbl_8F6D_mission_script_handler_preparations,X
 C - - - - - 0x018F6C 06:8F5C: 85 29     STA ram_0029
-C - - - - - 0x018F6E 06:8F5E: BD 6E 8F  LDA tbl_8F6D + $01,X
+C - - - - - 0x018F6E 06:8F5E: BD 6E 8F  LDA tbl_8F6D_mission_script_handler_preparations + $01,X
 C - - - - - 0x018F71 06:8F61: 85 2A     STA ram_002A
 loc_8F63:
 C D 0 - - - 0x018F73 06:8F63: A9 8F     LDA #> ( ofs_8F6C_RTS - $01 )
@@ -2690,18 +2696,19 @@ C - - - - - 0x018F7C 06:8F6C: 60        RTS
 
 
 
-tbl_8F6D:
-; see con_884D
+tbl_8F6D_mission_script_handler_preparations:
+; these handlers are executed only once
+; see con_884D_script
 - D 0 - - - 0x018F7D 06:8F6D: A9 8F     .word ofs_011_8FA9_00
-- D 0 - - - 0x018F7F 06:8F6F: 86 90     .word ofs_011_9086_01_white_hand_cursor
+- D 0 - - - 0x018F7F 06:8F6F: 86 90     .word ofs_011_9086_01_hand_cursor
 - D 0 - - - 0x018F81 06:8F71: BC 90     .word ofs_011_90BC_02_RTS
 - D 0 - - - 0x018F83 06:8F73: BD 90     .word ofs_011_90BD_03
-- D 0 - - - 0x018F85 06:8F75: C9 90     .word ofs_011_90C9_04
-- D 0 - - - 0x018F87 06:8F77: D1 90     .word ofs_011_90D1_05_elevator
+- D 0 - - - 0x018F85 06:8F75: C9 90     .word ofs_011_90C9_04_enter_door
+- D 0 - - - 0x018F87 06:8F77: D1 90     .word ofs_011_90D1_05_elevator_going_down
 - D 0 - - - 0x018F89 06:8F79: 0A 91     .word ofs_011_910A_06
 - D 0 - - - 0x018F8B 06:8F7B: BC 90     .word ofs_011_90BC_07_RTS
 - D 0 - - - 0x018F8D 06:8F7D: 2D 91     .word ofs_011_912D_08
-- D 0 - - - 0x018F8F 06:8F7F: 4B 91     .word ofs_011_914B_09
+- D 0 - - - 0x018F8F 06:8F7F: 4B 91     .word ofs_011_914B_09_emeny_spawn_at_door
 - D 0 - - - 0x018F91 06:8F81: 1E 91     .word ofs_011_911E_0A
 - D 0 - - - 0x018F93 06:8F83: 68 91     .word ofs_011_9168_0B_final_boss_defeated
 - D 0 - - - 0x018F95 06:8F85: 6F 91     .word ofs_011_916F_0C
@@ -2717,13 +2724,14 @@ tbl_8F6D:
 - D 0 - - - 0x018FA9 06:8F99: 4C 92     .word ofs_011_924C_16
 - - - - - - 0x018FAB 06:8F9B: BC 90     .word ofs_011_90BC_17_RTS
 - D 0 - - - 0x018FAD 06:8F9D: 54 92     .word ofs_011_9254_18
-- D 0 - - - 0x018FAF 06:8F9F: AE 92     .word ofs_011_92AE_19
+- D 0 - - - 0x018FAF 06:8F9F: AE 92     .word ofs_011_92AE_19_shadow_warrior
 - D 0 - - - 0x018FB1 06:8FA1: B5 92     .word ofs_011_92B5_1A
 - D 0 - - - 0x018FB3 06:8FA3: C0 92     .word ofs_011_92C0_1B
 
 
 
 tbl_8FA5:
+; see con_884D_script
 - D 0 - - - 0x018FB5 06:8FA5: C6 92     .word ofs_012_92C6_80
 - D 0 - - - 0x018FB7 06:8FA7: CE 92     .word ofs_012_92CE_81
 
@@ -2732,14 +2740,14 @@ tbl_8FA5:
 loc_8FA9:
 ofs_011_8FA9_00:
 C D 0 J - - 0x018FB9 06:8FA9: A2 00     LDX #$00
-C - - - - - 0x018FBB 06:8FAB: 20 39 90  JSR sub_9039_spawn_2_enemies
-C - - - - - 0x018FBE 06:8FAE: 20 4E 90  JSR sub_904E
+C - - - - - 0x018FBB 06:8FAB: 20 39 90  JSR sub_9039_prepare_enemy_chr_bank_and_id
+C - - - - - 0x018FBE 06:8FAE: 20 4E 90  JSR sub_904E_prepare_camera_limit
 C - - - - - 0x018FC1 06:8FB1: 20 DF 8F  JSR sub_8FDF_spawn_more_enemies
 C - - - - - 0x018FC4 06:8FB4: F0 0F     BEQ bra_8FC5
 C - - - - - 0x018FC6 06:8FB6: A0 0D     LDY #$0D
 bra_8FB8_loop:
 C - - - - - 0x018FC8 06:8FB8: 20 F7 92  JSR sub_92F7_spawn_enemies_from_mission_data
-C - - - - - 0x018FCB 06:8FBB: CE 25 04  DEC ram_0425
+C - - - - - 0x018FCB 06:8FBB: CE 25 04  DEC ram_enemy_spawn_counter
 C - - - - - 0x018FCE 06:8FBE: F0 05     BEQ bra_8FC5
 C - - - - - 0x018FD0 06:8FC0: E8        INX
 C - - - - - 0x018FD1 06:8FC1: E0 02     CPX #$02
@@ -2758,7 +2766,7 @@ C - - - - - 0x018FE0 06:8FD0: D0 0C     BNE bra_8FDE_RTS
 C - - - - - 0x018FE2 06:8FD2: A9 02     LDA #con_004A_02
 C - - - - - 0x018FE4 06:8FD4: 85 4C     STA ram_004A_obj + $02
 C - - - - - 0x018FE6 06:8FD6: 85 4D     STA ram_004A_obj + $03
-C - - - - - 0x018FE8 06:8FD8: A9 7F     LDA #$7F
+C - - - - - 0x018FE8 06:8FD8: A9 7F     LDA #con_anim_id + $7F
 C - - - - - 0x018FEA 06:8FDA: 85 C9     STA ram_animation_id + $02
 C - - - - - 0x018FEC 06:8FDC: 85 CA     STA ram_animation_id + $03
 bra_8FDE_RTS:
@@ -2789,7 +2797,7 @@ bra_9002:
 C - - - - - 0x019012 06:9002: A0 0C     LDY #$0C
 C - - - - - 0x019014 06:9004: B1 2B     LDA (ram_002B),Y
 loc_9006:
-C D 0 - - - 0x019016 06:9006: 8D 25 04  STA ram_0425
+C D 0 - - - 0x019016 06:9006: 8D 25 04  STA ram_enemy_spawn_counter
 C - - - - - 0x019019 06:9009: F0 23     BEQ bra_902E_RTS
 C - - - - - 0x01901B 06:900B: 8A        TXA
 C - - - - - 0x01901C 06:900C: 48        PHA
@@ -2803,20 +2811,20 @@ C - - - - - 0x019029 06:9019: A2 01     LDX #$01    ; 2p
 bra_901B:
 C - - - - - 0x01902B 06:901B: BD 32 04  LDA ram_lives,X
 C - - - - - 0x01902E 06:901E: D0 09     BNE bra_9029    ; if player is alive
-; if player is dead
-C - - - - - 0x019030 06:9020: AE 25 04  LDX ram_0425
-C - - - - - 0x019033 06:9023: BD 2F 90  LDA tbl_902F,X
-C - - - - - 0x019036 06:9026: 8D 25 04  STA ram_0425
+; if one of players is dead, decrease spawn counter
+C - - - - - 0x019030 06:9020: AE 25 04  LDX ram_enemy_spawn_counter
+C - - - - - 0x019033 06:9023: BD 2F 90  LDA tbl_902F_spawn_limit,X
+C - - - - - 0x019036 06:9026: 8D 25 04  STA ram_enemy_spawn_counter
 bra_9029:
 C - - - - - 0x019039 06:9029: 68        PLA
 C - - - - - 0x01903A 06:902A: AA        TAX
-C - - - - - 0x01903B 06:902B: AD 25 04  LDA ram_0425
+C - - - - - 0x01903B 06:902B: AD 25 04  LDA ram_enemy_spawn_counter
 bra_902E_RTS:
 C - - - - - 0x01903E 06:902E: 60        RTS
 
 
 
-tbl_902F:
+tbl_902F_spawn_limit:
 - - - - - - 0x01903F 06:902F: 00        .byte $00   ; 00
 - D 0 - - - 0x019040 06:9030: 01        .byte $01   ; 01
 - D 0 - - - 0x019041 06:9031: 02        .byte $02   ; 02
@@ -2830,7 +2838,8 @@ tbl_902F:
 
 
 
-sub_9039_spawn_2_enemies:
+sub_9039_prepare_enemy_chr_bank_and_id:
+; bzk optimize, LDX 00 before JSR, write here instead
 C - - - - - 0x019049 06:9039: A0 0A     LDY #$0A
 C - - - - - 0x01904B 06:903B: A9 40     LDA #con_chr_bank + $40
 C - - - - - 0x01904D 06:903D: 8D 98 04  STA ram_chr_spr_1
@@ -2844,31 +2853,31 @@ C - - - - - 0x01905D 06:904D: 60        RTS
 
 
 
-sub_904E:
+sub_904E_prepare_camera_limit:
 C - - - - - 0x01905E 06:904E: A0 01     LDY #$01
 C - - - - - 0x019060 06:9050: B1 2B     LDA (ram_002B),Y
-C - - - - - 0x019062 06:9052: 8D A8 04  STA ram_04A8
+C - - - - - 0x019062 06:9052: 8D A8 04  STA ram_min_cam_limit_X_lo
 C - - - - - 0x019065 06:9055: C8        INY ; 02
 C - - - - - 0x019066 06:9056: B1 2B     LDA (ram_002B),Y
-C - - - - - 0x019068 06:9058: 8D A9 04  STA ram_04A9
+C - - - - - 0x019068 06:9058: 8D A9 04  STA ram_min_cam_limit_X_hi
 C - - - - - 0x01906B 06:905B: C8        INY ; 03
 C - - - - - 0x01906C 06:905C: B1 2B     LDA (ram_002B),Y
-C - - - - - 0x01906E 06:905E: 8D AA 04  STA ram_04AA
+C - - - - - 0x01906E 06:905E: 8D AA 04  STA ram_max_cam_limit_X_lo
 C - - - - - 0x019071 06:9061: C8        INY ; 04
 C - - - - - 0x019072 06:9062: B1 2B     LDA (ram_002B),Y
-C - - - - - 0x019074 06:9064: 8D AB 04  STA ram_04AB
+C - - - - - 0x019074 06:9064: 8D AB 04  STA ram_max_cam_limit_X_hi
 C - - - - - 0x019077 06:9067: C8        INY ; 05
 C - - - - - 0x019078 06:9068: B1 2B     LDA (ram_002B),Y
-C - - - - - 0x01907A 06:906A: 8D AC 04  STA ram_04AC
+C - - - - - 0x01907A 06:906A: 8D AC 04  STA ram_min_cam_limit_Y_lo
 C - - - - - 0x01907D 06:906D: C8        INY ; 06
 C - - - - - 0x01907E 06:906E: B1 2B     LDA (ram_002B),Y
-C - - - - - 0x019080 06:9070: 8D AD 04  STA ram_04AD
+C - - - - - 0x019080 06:9070: 8D AD 04  STA ram_min_cam_limit_Y_hi
 C - - - - - 0x019083 06:9073: C8        INY ; 07
 C - - - - - 0x019084 06:9074: B1 2B     LDA (ram_002B),Y
-C - - - - - 0x019086 06:9076: 8D AE 04  STA ram_04AE
+C - - - - - 0x019086 06:9076: 8D AE 04  STA ram_max_cam_limit_Y_lo
 C - - - - - 0x019089 06:9079: C8        INY ; 08
 C - - - - - 0x01908A 06:907A: B1 2B     LDA (ram_002B),Y
-C - - - - - 0x01908C 06:907C: 8D AF 04  STA ram_04AF
+C - - - - - 0x01908C 06:907C: 8D AF 04  STA ram_max_cam_limit_Y_hi
 C - - - - - 0x01908F 06:907F: C8        INY ; 09
 C - - - - - 0x019090 06:9080: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019092 06:9082: 8D B0 04  STA ram_04B0
@@ -2876,7 +2885,7 @@ C - - - - - 0x019095 06:9085: 60        RTS
 
 
 
-ofs_011_9086_01_white_hand_cursor:
+ofs_011_9086_01_hand_cursor:
 C - - J - - 0x019096 06:9086: 20 50 94  JSR sub_9450_delete_all_objects_except_players
 C - - - - - 0x019099 06:9089: A9 40     LDA #con_chr_bank + $40
 C - - - - - 0x01909B 06:908B: 8D 98 04  STA ram_chr_spr_1
@@ -2884,20 +2893,20 @@ C - - - - - 0x01909E 06:908E: A9 5A     LDA #con_chr_bank + $5A
 C - - - - - 0x0190A0 06:9090: 8D 99 04  STA ram_chr_spr_2
 C - - - - - 0x0190A3 06:9093: A9 10     LDA #$10
 C - - - - - 0x0190A5 06:9095: 8D 90 04  STA ram_pal_spr_new
-C - - - - - 0x0190A8 06:9098: A9 1E     LDA #con_obj_1E
+C - - - - - 0x0190A8 06:9098: A9 1E     LDA #con_obj_symbol_II
 C - - - - - 0x0190AA 06:909A: 85 C5     STA ram_obj_id + $06
 C - - - - - 0x0190AC 06:909C: A0 0A     LDY #$0A
 C - - - - - 0x0190AE 06:909E: B1 2B     LDA (ram_002B),Y
-C - - - - - 0x0190B0 06:90A0: 8D 27 04  STA ram_0427
-C - - - - - 0x0190B3 06:90A3: 20 4E 90  JSR sub_904E
+C - - - - - 0x0190B0 06:90A0: 8D 27 04  STA ram_cursor_direction
+C - - - - - 0x0190B3 06:90A3: 20 4E 90  JSR sub_904E_prepare_camera_limit
 C - - - - - 0x0190B6 06:90A6: 20 DD FE  JSR sub_0x01FEED_write_spr_chr_banks
 C - - - - - 0x0190B9 06:90A9: A9 00     LDA #$00
 C - - - - - 0x0190BB 06:90AB: 8D 29 04  STA ram_0429
-C - - - - - 0x0190BE 06:90AE: AD 27 04  LDA ram_0427
+C - - - - - 0x0190BE 06:90AE: AD 27 04  LDA ram_cursor_direction
 C - - - - - 0x0190C1 06:90B1: 29 03     AND #$03
-C - - - - - 0x0190C3 06:90B3: C9 02     CMP #$02
+C - - - - - 0x0190C3 06:90B3: C9 02     CMP #con_anim_id + $02
 C - - - - - 0x0190C5 06:90B5: D0 02     BNE bra_90B9
-C - - - - - 0x0190C7 06:90B7: A9 83     LDA #$83
+C - - - - - 0x0190C7 06:90B7: A9 83     LDA #con_anim_id + $03 + $80
 bra_90B9:
 C - - - - - 0x0190C9 06:90B9: 85 CD     STA ram_animation_id + $06
 C - - - - - 0x0190CB 06:90BB: 60        RTS
@@ -2913,14 +2922,14 @@ C - - J - - 0x0190CC 06:90BC: 60        RTS
 
 ofs_011_90BD_03:
 C - - J - - 0x0190CD 06:90BD: A2 00     LDX #$00
-C - - - - - 0x0190CF 06:90BF: 20 39 90  JSR sub_9039_spawn_2_enemies
-C - - - - - 0x0190D2 06:90C2: 20 4E 90  JSR sub_904E
+C - - - - - 0x0190CF 06:90BF: 20 39 90  JSR sub_9039_prepare_enemy_chr_bank_and_id
+C - - - - - 0x0190D2 06:90C2: 20 4E 90  JSR sub_904E_prepare_camera_limit
 C - - - - - 0x0190D5 06:90C5: 20 DD FE  JSR sub_0x01FEED_write_spr_chr_banks
 C - - - - - 0x0190D8 06:90C8: 60        RTS
 
 
 
-ofs_011_90C9_04:
+ofs_011_90C9_04_enter_door:
 C - - J - - 0x0190D9 06:90C9: A0 01     LDY #$01
 C - - - - - 0x0190DB 06:90CB: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x0190DD 06:90CD: 8D 28 04  STA ram_0428
@@ -2928,7 +2937,7 @@ C - - - - - 0x0190E0 06:90D0: 60        RTS
 
 
 
-ofs_011_90D1_05_elevator:
+ofs_011_90D1_05_elevator_going_down:
 C - - J - - 0x0190E1 06:90D1: A9 12     LDA #$12
 C - - - - - 0x0190E3 06:90D3: 8D 90 04  STA ram_pal_spr_new
 C - - - - - 0x0190E6 06:90D6: A9 5A     LDA #con_chr_bank + $5A
@@ -2991,7 +3000,7 @@ C - - - - - 0x019143 06:9133: A5 37     LDA ram_0036_enemy + $01
 C - - - - - 0x019145 06:9135: 09 80     ORA #con_0036_80
 C - - - - - 0x019147 06:9137: 85 37     STA ram_0036_enemy + $01
 C - - - - - 0x019149 06:9139: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01914C 06:913C: C9 02     CMP #$02
+C - - - - - 0x01914C 06:913C: C9 02     CMP #con_mission_id_02
 C - - - - - 0x01914E 06:913E: D0 05     BNE bra_9145
 C - - - - - 0x019150 06:9140: A9 FB     LDA #con_music_ctrl_FB
 C - - - - - 0x019152 06:9142: 20 10 FC  JSR sub_0x01FC20_play_sound
@@ -3002,10 +3011,10 @@ C - - - - - 0x01915A 06:914A: 60        RTS
 
 
 
-ofs_011_914B_09:
+ofs_011_914B_09_emeny_spawn_at_door:
 C - - J - - 0x01915B 06:914B: A2 00     LDX #$00
-C - - - - - 0x01915D 06:914D: 20 39 90  JSR sub_9039_spawn_2_enemies
-C - - - - - 0x019160 06:9150: 20 4E 90  JSR sub_904E
+C - - - - - 0x01915D 06:914D: 20 39 90  JSR sub_9039_prepare_enemy_chr_bank_and_id
+C - - - - - 0x019160 06:9150: 20 4E 90  JSR sub_904E_prepare_camera_limit
 C - - - - - 0x019163 06:9153: 20 DF 8F  JSR sub_8FDF_spawn_more_enemies
 C - - - - - 0x019166 06:9156: A9 0E     LDA #$0E
 C - - - - - 0x019168 06:9158: 8D 26 04  STA ram_0426
@@ -3020,7 +3029,7 @@ C - - - - - 0x019177 06:9167: 60        RTS
 
 ofs_011_9168_0B_final_boss_defeated:
 C - - J - - 0x019178 06:9168: A5 35     LDA ram_game_flags_1
-C - - - - - 0x01917A 06:916A: 09 01     ORA #con_gf1_01
+C - - - - - 0x01917A 06:916A: 09 01     ORA #con_gf1_final_boss_defeated
 C - - - - - 0x01917C 06:916C: 85 35     STA ram_game_flags_1
 C - - - - - 0x01917E 06:916E: 60        RTS
 
@@ -3070,7 +3079,7 @@ C - - - - - 0x0191B9 06:91A9: 8D 43 06  STA ram_0643
 C - - - - - 0x0191BC 06:91AC: A9 00     LDA #$00
 C - - - - - 0x0191BE 06:91AE: 8D 65 06  STA ram_0665
 C - - - - - 0x0191C1 06:91B1: 8D 66 06  STA ram_0666
-C - - - - - 0x0191C4 06:91B4: 8D 68 06  STA ram_0668
+C - - - - - 0x0191C4 06:91B4: 8D 68 06  STA ram_scroll_Y_2
 C - - - - - 0x0191C7 06:91B7: 8D 69 06  STA ram_0669
 C - - - - - 0x0191CA 06:91BA: 85 F5     STA ram_00F5
 C - - - - - 0x0191CC 06:91BC: 85 F6     STA ram_00F6
@@ -3078,7 +3087,7 @@ C - - - - - 0x0191CE 06:91BE: 8D A5 04  STA ram_04A5_counter
 C - - - - - 0x0191D1 06:91C1: 85 F2     STA ram_00F2
 C - - - - - 0x0191D3 06:91C3: A9 80     LDA #$80
 C - - - - - 0x0191D5 06:91C5: 8D 64 06  STA ram_0664
-C - - - - - 0x0191D8 06:91C8: 8D 67 06  STA ram_0667
+C - - - - - 0x0191D8 06:91C8: 8D 67 06  STA ram_scroll_X_2
 C - - - - - 0x0191DB 06:91CB: A9 82     LDA #$82
 C - - - - - 0x0191DD 06:91CD: 85 F3     STA ram_00F3
 C - - - - - 0x0191DF 06:91CF: 60        RTS
@@ -3138,7 +3147,7 @@ C - - - - - 0x019225 06:9215: A9 82     LDA #con_003C_80 + con_003C_02
 C - - - - - 0x019227 06:9217: 85 40     STA ram_003C_obj + $04
 C - - - - - 0x019229 06:9219: 85 41     STA ram_003C_obj + $05
 C - - - - - 0x01922B 06:921B: 85 42     STA ram_003C_obj + $06
-C - - - - - 0x01922D 06:921D: A9 00     LDA #$00    ; con_004A_00
+C - - - - - 0x01922D 06:921D: A9 00     LDA #$00    ; con_004A_00    con_anim_id + $00
 C - - - - - 0x01922F 06:921F: 85 4E     STA ram_004A_obj + $04
 C - - - - - 0x019231 06:9221: 85 4F     STA ram_004A_obj + $05
 C - - - - - 0x019233 06:9223: 85 50     STA ram_004A_obj + $06
@@ -3179,16 +3188,16 @@ ofs_011_9254_18:
 C - - J - - 0x019264 06:9254: 20 7A 92  JSR sub_927A
 C - - - - - 0x019267 06:9257: A9 00     LDA #$00
 C - - - - - 0x019269 06:9259: 85 F9     STA ram_00F9
-C - - - - - 0x01926B 06:925B: 8D 27 04  STA ram_0427
+C - - - - - 0x01926B 06:925B: 8D 27 04  STA ram_cursor_direction
 C - - - - - 0x01926E 06:925E: 8D B0 04  STA ram_04B0
-C - - - - - 0x019271 06:9261: 8D A8 04  STA ram_04A8
-C - - - - - 0x019274 06:9264: 8D A9 04  STA ram_04A9
-C - - - - - 0x019277 06:9267: 8D AA 04  STA ram_04AA
-C - - - - - 0x01927A 06:926A: 8D AB 04  STA ram_04AB
-C - - - - - 0x01927D 06:926D: 8D AC 04  STA ram_04AC
-C - - - - - 0x019280 06:9270: 8D AD 04  STA ram_04AD
-C - - - - - 0x019283 06:9273: 8D AE 04  STA ram_04AE
-C - - - - - 0x019286 06:9276: 8D AF 04  STA ram_04AF
+C - - - - - 0x019271 06:9261: 8D A8 04  STA ram_min_cam_limit_X_lo
+C - - - - - 0x019274 06:9264: 8D A9 04  STA ram_min_cam_limit_X_hi
+C - - - - - 0x019277 06:9267: 8D AA 04  STA ram_max_cam_limit_X_lo
+C - - - - - 0x01927A 06:926A: 8D AB 04  STA ram_max_cam_limit_X_hi
+C - - - - - 0x01927D 06:926D: 8D AC 04  STA ram_min_cam_limit_Y_lo
+C - - - - - 0x019280 06:9270: 8D AD 04  STA ram_min_cam_limit_Y_hi
+C - - - - - 0x019283 06:9273: 8D AE 04  STA ram_max_cam_limit_Y_lo
+C - - - - - 0x019286 06:9276: 8D AF 04  STA ram_max_cam_limit_Y_hi
 C - - - - - 0x019289 06:9279: 60        RTS
 
 
@@ -3197,7 +3206,7 @@ sub_927A:
 C - - - - - 0x01928A 06:927A: A2 02     LDX #$02
 C - - - - - 0x01928C 06:927C: A9 B0     LDA #$B0
 C - - - - - 0x01928E 06:927E: 95 77     STA ram_pos_X_lo,X
-C - - - - - 0x019290 06:9280: A9 00     LDA #$00    ; con_state_00
+C - - - - - 0x019290 06:9280: A9 00     LDA #$00    ; con_state_idle
 C - - - - - 0x019292 06:9282: 95 80     STA ram_pos_X_hi,X
 C - - - - - 0x019294 06:9284: 95 AD     STA ram_pos_Z_lo,X
 C - - - - - 0x019296 06:9286: 95 B6     STA ram_pos_Z_hi,X
@@ -3207,9 +3216,9 @@ C - - - - - 0x01929C 06:928C: A9 50     LDA #$50
 C - - - - - 0x01929E 06:928E: 95 92     STA ram_pos_Y_lo,X
 C - - - - - 0x0192A0 06:9290: A9 02     LDA #con_004A_02
 C - - - - - 0x0192A2 06:9292: 95 4A     STA ram_004A_obj,X
-C - - - - - 0x0192A4 06:9294: A9 1E     LDA #con_obj_1E
+C - - - - - 0x0192A4 06:9294: A9 1E     LDA #con_obj_symbol_II
 C - - - - - 0x0192A6 06:9296: 95 BF     STA ram_obj_id,X
-C - - - - - 0x0192A8 06:9298: A9 09     LDA #$09
+C - - - - - 0x0192A8 06:9298: A9 09     LDA #con_anim_id + $09
 C - - - - - 0x0192AA 06:929A: 95 C7     STA ram_animation_id,X
 C - - - - - 0x0192AC 06:929C: A9 A0     LDA #con_003C_80 + con_003C_20
 C - - - - - 0x0192AE 06:929E: 95 3C     STA ram_003C_obj,X ; 003E
@@ -3222,7 +3231,7 @@ C - - - - - 0x0192BD 06:92AD: 60        RTS
 
 
 
-ofs_011_92AE_19:
+ofs_011_92AE_19_shadow_warrior:
 C - - J - - 0x0192BE 06:92AE: A9 00     LDA #$00
 C - - - - - 0x0192C0 06:92B0: 85 F9     STA ram_00F9
 C - - - - - 0x0192C2 06:92B2: 4C A9 8F  JMP loc_8FA9
@@ -3249,7 +3258,7 @@ ofs_012_92C6_80:
 C - - J - - 0x0192D6 06:92C6: 68        PLA
 C - - - - - 0x0192D7 06:92C7: 68        PLA
 C - - - - - 0x0192D8 06:92C8: EE 23 04  INC ram_mission_lo
-C - - - - - 0x0192DB 06:92CB: 4C 18 8F  JMP loc_8F18
+C - - - - - 0x0192DB 06:92CB: 4C 18 8F  JMP loc_8F18_prepare_next_script
 
 
 
@@ -3288,7 +3297,7 @@ C - - - - - 0x019306 06:92F6: 60        RTS
 sub_92F7_spawn_enemies_from_mission_data:
 C - - - - - 0x019307 06:92F7: A9 81     LDA #con_003C_80 + con_003C_01
 C - - - - - 0x019309 06:92F9: 95 3E     STA ram_003C_obj + $02,X
-C - - - - - 0x01930B 06:92FB: A9 00     LDA #con_state_00
+C - - - - - 0x01930B 06:92FB: A9 00     LDA #con_state_idle
 C - - - - - 0x01930D 06:92FD: 95 45     STA ram_state + $02,X
 C - - - - - 0x01930F 06:92FF: A9 00     LDA #$00    ; con_004A_00
 C - - - - - 0x019311 06:9301: 9D 6B 03  STA ram_0369_obj + $02,X
@@ -3304,20 +3313,21 @@ C - - - - - 0x019324 06:9314: B9 30 94  LDA tbl_9430,Y
 C - - - - - 0x019327 06:9317: 8D 90 04  STA ram_pal_spr_new
 C - - - - - 0x01932A 06:931A: 68        PLA
 C - - - - - 0x01932B 06:931B: A8        TAY
-C - - - - - 0x01932C 06:931C: A9 00     LDA #$00
-C - - - - - 0x01932E 06:931E: 9D 6C 00  STA a: ram_006C_enemy,X
+C - - - - - 0x01932C 06:931C: A9 00     LDA #con_006C_00
+C - - - - - 0x01932E 06:931E: 9D 6C 00  STA a: ram_enemy_ai_template,X
+; enemy settings
 C - - - - - 0x019331 06:9321: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019333 06:9323: 85 1A     STA ram_001A
 C - - - - - 0x019335 06:9325: C8        INY
 C - - - - - 0x019336 06:9326: 06 1A     ASL ram_001A
 C - - - - - 0x019338 06:9328: 90 41     BCC bra_936B
-; 80
+; 80 enemy weapon
 C - - - - - 0x01933A 06:932A: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x01933C 06:932C: F0 3C     BEQ bra_936A
 C - - - - - 0x01933E 06:932E: 9D 48 04  STA ram_0446_obj + $02,X
 C - - - - - 0x019341 06:9331: 98        TYA
 C - - - - - 0x019342 06:9332: 48        PHA
-C - - - - - 0x019343 06:9333: 20 00 94  JSR sub_9400_find_empty_obj_slot
+C - - - - - 0x019343 06:9333: 20 00 94  JSR sub_9400_find_empty_weapon_slot
 C - - - - - 0x019346 06:9336: B0 08     BCS bra_9340
 ; if not found
 - - - - - - 0x019348 06:9338: A9 00     LDA #$00
@@ -3351,7 +3361,7 @@ C - - - - - 0x01937A 06:936A: C8        INY
 bra_936B:
 C - - - - - 0x01937B 06:936B: 06 1A     ASL ram_001A
 C - - - - - 0x01937D 06:936D: 90 0E     BCC bra_937D
-; 40
+; 40 enemy state
 C - - - - - 0x01937F 06:936F: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019381 06:9371: 95 45     STA ram_state + $02,X
 C - - - - - 0x019383 06:9373: C9 07     CMP #con_state_fall_from_platform
@@ -3363,12 +3373,12 @@ C - - - - - 0x01938C 06:937C: C8        INY
 bra_937D:
 C - - - - - 0x01938D 06:937D: 06 1A     ASL ram_001A
 C - - - - - 0x01938F 06:937F: B0 09     BCS bra_938A
-; 00
+; 00 hp only
 C - - - - - 0x019391 06:9381: 8C 26 04  STY ram_0426
 C - - - - - 0x019394 06:9384: 20 51 FC  JSR sub_0x01FC61
 C - - - - - 0x019397 06:9387: 4C B4 93  JMP loc_93B4_set_hp_enemy
 bra_938A:
-; 20
+; 20 position and stuff
 C - - - - - 0x01939A 06:938A: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x01939C 06:938C: 9D 5B 03  STA ram_0359_obj + $02,X
 C - - - - - 0x01939F 06:938F: C8        INY
@@ -3440,7 +3450,7 @@ C - - - - - 0x01940F 06:93FF: 60        RTS
 
 
 
-sub_9400_find_empty_obj_slot:
+sub_9400_find_empty_weapon_slot:
 C - - - - - 0x019410 06:9400: A0 04     LDY #$04
 bra_9402_loop:
 C - - - - - 0x019412 06:9402: B9 3C 00  LDA a: ram_003C_obj,Y ; 0040 0041 0042
@@ -3489,11 +3499,11 @@ tbl_9430:
 - - - - - - 0x019457 06:9447: 00        .byte $00   ; 17 con_obj_baton
 - - - - - - 0x019458 06:9448: 00        .byte $00   ; 18 con_obj_18
 - - - - - - 0x019459 06:9449: 00        .byte $00   ; 19 con_obj_19
-- - - - - - 0x01945A 06:944A: 00        .byte $00   ; 1A con_obj_1A
+- - - - - - 0x01945A 06:944A: 00        .byte $00   ; 1A con_obj_boomerang
 - - - - - - 0x01945B 06:944B: 00        .byte $00   ; 1B con_obj_jumping_spike
 - - - - - - 0x01945C 06:944C: 00        .byte $00   ; 1C con_obj_fireball
 - - - - - - 0x01945D 06:944D: 00        .byte $00   ; 1D con_obj_1D
-- - - - - - 0x01945E 06:944E: 00        .byte $00   ; 1E con_obj_1E
+- - - - - - 0x01945E 06:944E: 00        .byte $00   ; 1E con_obj_symbol_II
 
 
 ; bzk garbage
@@ -3514,20 +3524,20 @@ C - - - - - 0x01946E 06:945E: 60        RTS
 
 
 
-sub_945F:
-C - - - - - 0x01946F 06:945F: AD 27 04  LDA ram_0427
+sub_945F_display_hand_cursor:
+C - - - - - 0x01946F 06:945F: AD 27 04  LDA ram_cursor_direction
 C - - - - - 0x019472 06:9462: 0A        ASL
 C - - - - - 0x019473 06:9463: A8        TAY
 C - - - - - 0x019474 06:9464: A5 D0     LDA ram_pos_X_lo_cam
 C - - - - - 0x019476 06:9466: 18        CLC
-C - - - - - 0x019477 06:9467: 79 87 94  ADC tbl_9487,Y
+C - - - - - 0x019477 06:9467: 79 87 94  ADC tbl_9487_cursor_pos,Y
 C - - - - - 0x01947A 06:946A: 85 7D     STA ram_pos_X_lo + $06
 C - - - - - 0x01947C 06:946C: A5 D1     LDA ram_pos_X_hi_cam
 C - - - - - 0x01947E 06:946E: 69 00     ADC #$00
 C - - - - - 0x019480 06:9470: 85 86     STA ram_pos_X_hi + $06
 C - - - - - 0x019482 06:9472: A5 D2     LDA ram_pos_Y_lo_cam
 C - - - - - 0x019484 06:9474: 18        CLC
-C - - - - - 0x019485 06:9475: 79 88 94  ADC tbl_9487 + $01,Y
+C - - - - - 0x019485 06:9475: 79 88 94  ADC tbl_9487_cursor_pos + $01,Y
 C - - - - - 0x019488 06:9478: 85 B3     STA ram_pos_Z_lo + $06
 C - - - - - 0x01948A 06:947A: A5 D3     LDA ram_pos_Y_hi_cam
 C - - - - - 0x01948C 06:947C: 69 00     ADC #$00
@@ -3539,16 +3549,17 @@ C - - - - - 0x019496 06:9486: 60        RTS
 
 
 
-tbl_9487:
+tbl_9487_cursor_pos:
+; 00 up
 - D 0 - - - 0x019497 06:9487: 80        .byte $80   ; pos_X_lo
 - D 0 - - - 0x019498 06:9488: C0        .byte $C0   ; pos_Z_lo
-
+; 01 down
 - D 0 - - - 0x019499 06:9489: 80        .byte $80   ; pos_X_lo
 - D 0 - - - 0x01949A 06:948A: 40        .byte $40   ; pos_Z_lo
-
+; 02 left
 - D 0 - - - 0x01949B 06:948B: 20        .byte $20   ; pos_X_lo
 - D 0 - - - 0x01949C 06:948C: 77        .byte $77   ; pos_Z_lo
-
+; 03 right
 - D 0 - - - 0x01949D 06:948D: E0        .byte $E0   ; pos_X_lo
 - D 0 - - - 0x01949E 06:948E: 77        .byte $77   ; pos_Z_lo
 
@@ -3621,7 +3632,7 @@ C - - - - - 0x019500 06:94F0: AD 22 04  LDA ram_mission_hi
 C - - - - - 0x019503 06:94F3: C9 0F     CMP #$0F
 C - - - - - 0x019505 06:94F5: 90 07     BCC bra_94FE
 - - - - - - 0x019507 06:94F7: A5 35     LDA ram_game_flags_1
-- - - - - - 0x019509 06:94F9: 09 01     ORA #con_gf1_01
+- - - - - - 0x019509 06:94F9: 09 01     ORA #con_gf1_final_boss_defeated
 - - - - - - 0x01950B 06:94FB: 85 35     STA ram_game_flags_1
 bra_94FD_RTS:
 C - - - - - 0x01950D 06:94FD: 60        RTS
@@ -3634,7 +3645,7 @@ C - - - - - 0x019517 06:9507: 20 C3 FC  JSR sub_0x01FCD3_clear_bg_and_spr_patter
 C - - - - - 0x01951A 06:950A: 20 75 D8  JSR sub_0x01D885
 C - - - - - 0x01951D 06:950D: 20 28 D8  JSR sub_0x01D838_hide_unused_sprites
 C - - - - - 0x019520 06:9510: 20 97 FA  JSR sub_0x01FAA7
-C - - - - - 0x019523 06:9513: 20 00 88  JSR sub_8800
+C - - - - - 0x019523 06:9513: 20 00 88  JSR sub_8800_prepare_mission_data
 C - - - - - 0x019526 06:9516: 20 F3 D9  JSR sub_0x01DA03
 C - - - - - 0x019529 06:9519: 20 6D D9  JSR sub_0x01D97D
 C - - - - - 0x01952C 06:951C: 20 20 C0  JSR sub_0x01C030
@@ -3677,47 +3688,47 @@ tbl_0x01955B_mission_music:
 
 
 
-sub_955A:
+sub_955A_prepare_mission_pointer:
 C - - - - - 0x01956A 06:955A: AD 22 04  LDA ram_mission_hi
 C - - - - - 0x01956D 06:955D: 0A        ASL
 C - - - - - 0x01956E 06:955E: 0A        ASL
 C - - - - - 0x01956F 06:955F: 85 29     STA ram_0029
-C - - - - - 0x019571 06:9561: A9 53     LDA #< tbl_A453
+C - - - - - 0x019571 06:9561: A9 53     LDA #< tbl_A453_positions
 C - - - - - 0x019573 06:9563: 18        CLC
 C - - - - - 0x019574 06:9564: 65 29     ADC ram_0029
 C - - - - - 0x019576 06:9566: 85 29     STA ram_0029
-C - - - - - 0x019578 06:9568: A9 A4     LDA #> tbl_A453
+C - - - - - 0x019578 06:9568: A9 A4     LDA #> tbl_A453_positions
 C - - - - - 0x01957A 06:956A: 69 00     ADC #$00
 C - - - - - 0x01957C 06:956C: 85 2A     STA ram_002A
 C - - - - - 0x01957E 06:956E: 60        RTS
 
 
 
-sub_956F:
+sub_956F_set_default_cam_pos:
 C - - - - - 0x01957F 06:956F: A0 00     LDY #$00
 C - - - - - 0x019581 06:9571: B1 29     LDA (ram_0029),Y
 C - - - - - 0x019583 06:9573: 85 2B     STA ram_002B
-C - - - - - 0x019585 06:9575: C8        INY
+C - - - - - 0x019585 06:9575: C8        INY ; 01
 C - - - - - 0x019586 06:9576: B1 29     LDA (ram_0029),Y
 C - - - - - 0x019588 06:9578: 85 2C     STA ram_002C
 C - - - - - 0x01958A 06:957A: A0 03     LDY #$03
 bra_957C_loop:
 C - - - - - 0x01958C 06:957C: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x01958E 06:957E: 99 D0 00  STA a: ram_pos_X_lo_cam,Y
-C - - - - - 0x019591 06:9581: 99 D4 00  STA a: ram_00D4_unk,Y
+C - - - - - 0x019591 06:9581: 99 D4 00  STA a: ram_copy_cam_pos,Y
 C - - - - - 0x019594 06:9584: 88        DEY
 C - - - - - 0x019595 06:9585: 10 F5     BPL bra_957C_loop
 C - - - - - 0x019597 06:9587: 60        RTS
 
 
 
-sub_9588:
+sub_9588_set_base_plr_hp:
 C - - - - - 0x019598 06:9588: A2 01     LDX #$01
 C - - - - - 0x01959A 06:958A: AC 35 04  LDY ram_difficulty
 bra_958D_loop:
 C - - - - - 0x01959D 06:958D: B5 3C     LDA ram_003C_obj,X ; 003C 003D
 C - - - - - 0x01959F 06:958F: 10 06     BPL bra_9597    ; if not con_003C_80
-C - - - - - 0x0195A1 06:9591: B9 9B 95  LDA tbl_959B,Y
+C - - - - - 0x0195A1 06:9591: B9 9B 95  LDA tbl_959B_hp,Y
 C - - - - - 0x0195A4 06:9594: 9D 1E 04  STA ram_hp,X
 bra_9597:
 C - - - - - 0x0195A7 06:9597: CA        DEX
@@ -3726,7 +3737,8 @@ C - - - - - 0x0195AA 06:959A: 60        RTS
 
 
 
-tbl_959B:
+tbl_959B_hp:
+; bzk optimize, same bytes
 - D 0 - - - 0x0195AB 06:959B: 7F        .byte $7F   ; easy
 - D 0 - - - 0x0195AC 06:959C: 7F        .byte $7F   ; norm
 - D 0 - - - 0x0195AD 06:959D: 7F        .byte $7F   ; diff
@@ -3736,25 +3748,25 @@ tbl_959B:
 tbl_959E_checkpoint_mission:
 tbl_0x0195AE_checkpoint_mission:
 ; when you die and use a continue
-- D 0 - - - 0x0195AE 06:959E: 00        .byte $00   ; 00
-- - - - - - 0x0195AF 06:959F: 01        .byte $01   ; 01
-- - - - - - 0x0195B0 06:95A0: 02        .byte $02   ; 02
-- D 0 - - - 0x0195B1 06:95A1: 03        .byte $03   ; 03
-- D 0 - - - 0x0195B2 06:95A2: 03        .byte $03   ; 04
-- D 0 - - - 0x0195B3 06:95A3: 05        .byte $05   ; 05
-- D 0 - - - 0x0195B4 06:95A4: 06        .byte $06   ; 06
-- D 0 - - - 0x0195B5 06:95A5: 07        .byte $07   ; 07
-- D 0 - - - 0x0195B6 06:95A6: 07        .byte $07   ; 08
-- D 0 - - - 0x0195B7 06:95A7: 07        .byte $07   ; 09
-- D 0 - - - 0x0195B8 06:95A8: 07        .byte $07   ; 0A
-- D 0 - - - 0x0195B9 06:95A9: 07        .byte $07   ; 0B
-- D 0 - - - 0x0195BA 06:95AA: 0C        .byte $0C   ; 0C
-- - - - - - 0x0195BB 06:95AB: 0D        .byte $0D   ; 0D
-- D 0 - - - 0x0195BC 06:95AC: 0E        .byte $0E   ; 0E
+- D 0 - - - 0x0195AE 06:959E: 00        .byte con_mission_id_00   ; 00
+- - - - - - 0x0195AF 06:959F: 01        .byte con_mission_id_01   ; 01
+- - - - - - 0x0195B0 06:95A0: 02        .byte con_mission_id_02   ; 02
+- D 0 - - - 0x0195B1 06:95A1: 03        .byte con_mission_id_03   ; 03
+- D 0 - - - 0x0195B2 06:95A2: 03        .byte con_mission_id_03   ; 04
+- D 0 - - - 0x0195B3 06:95A3: 05        .byte con_mission_id_05   ; 05
+- D 0 - - - 0x0195B4 06:95A4: 06        .byte con_mission_id_06   ; 06
+- D 0 - - - 0x0195B5 06:95A5: 07        .byte con_mission_id_07   ; 07
+- D 0 - - - 0x0195B6 06:95A6: 07        .byte con_mission_id_07   ; 08
+- D 0 - - - 0x0195B7 06:95A7: 07        .byte con_mission_id_07   ; 09
+- D 0 - - - 0x0195B8 06:95A8: 07        .byte con_mission_id_07   ; 0A
+- D 0 - - - 0x0195B9 06:95A9: 07        .byte con_mission_id_07   ; 0B
+- D 0 - - - 0x0195BA 06:95AA: 0C        .byte con_mission_id_0C   ; 0C
+- - - - - - 0x0195BB 06:95AB: 0D        .byte con_mission_id_0D   ; 0D
+- D 0 - - - 0x0195BC 06:95AC: 0E        .byte con_mission_id_0E   ; 0E
 
 
 
-sub_95AD:
+sub_95AD_set_default_plr_data:
 C - - - - - 0x0195BD 06:95AD: A0 02     LDY #$02
 C - - - - - 0x0195BF 06:95AF: B1 29     LDA (ram_0029),Y
 C - - - - - 0x0195C1 06:95B1: 85 2B     STA ram_002B
@@ -3766,9 +3778,10 @@ C - - - - - 0x0195CA 06:95BA: 29 F7     AND #con_gm_08 ^ $FF
 C - - - - - 0x0195CC 06:95BC: 85 34     STA ram_game_mode
 C - - - - - 0x0195CE 06:95BE: A9 00     LDA #$00
 ; con_obj_billy
-; con_state_00
+; con_state_idle
 ; con_003C_80
 ; con_0036_00
+; con_0359_00
 C - - - - - 0x0195D0 06:95C0: 85 BF     STA ram_obj_id
 C - - - - - 0x0195D2 06:95C2: 85 43     STA ram_state
 C - - - - - 0x0195D4 06:95C4: 85 44     STA ram_state + $01
@@ -3797,42 +3810,42 @@ C - - - - - 0x01960C 06:95FC: A9 08     LDA #con_004A_08
 C - - - - - 0x01960E 06:95FE: 85 4A     STA ram_004A_obj
 C - - - - - 0x019610 06:9600: 85 4B     STA ram_004A_obj + $01
 C - - - - - 0x019612 06:9602: AD 32 04  LDA ram_lives
-C - - - - - 0x019615 06:9605: F0 04     BEQ bra_960B
+C - - - - - 0x019615 06:9605: F0 04     BEQ bra_960B_skip_1p
 C - - - - - 0x019617 06:9607: A9 80     LDA #con_003C_80
 C - - - - - 0x019619 06:9609: 85 3C     STA ram_003C_obj
-bra_960B:
+bra_960B_skip_1p:
 C - - - - - 0x01961B 06:960B: AD 33 04  LDA ram_lives + $01
-C - - - - - 0x01961E 06:960E: F0 04     BEQ bra_9614
+C - - - - - 0x01961E 06:960E: F0 04     BEQ bra_9614_skip_2p
 ; bzk optimize, use A instead of Y
 C - - - - - 0x019620 06:9610: A0 80     LDY #con_003C_80
 C - - - - - 0x019622 06:9612: 84 3D     STY ram_003C_obj + $01
-bra_9614:
-C - - - - - 0x019624 06:9614: 20 88 95  JSR sub_9588
+bra_9614_skip_2p:
+C - - - - - 0x019624 06:9614: 20 88 95  JSR sub_9588_set_base_plr_hp
 C - - - - - 0x019627 06:9617: A0 00     LDY #$00
 C - - - - - 0x019629 06:9619: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x01962B 06:961B: 85 77     STA ram_pos_X_lo
-C - - - - - 0x01962D 06:961D: C8        INY
+C - - - - - 0x01962D 06:961D: C8        INY ; 01
 C - - - - - 0x01962E 06:961E: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019630 06:9620: 85 80     STA ram_pos_X_hi
 C - - - - - 0x019632 06:9622: 85 81     STA ram_pos_X_hi + $01
-C - - - - - 0x019634 06:9624: C8        INY
+C - - - - - 0x019634 06:9624: C8        INY ; 02
 C - - - - - 0x019635 06:9625: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019637 06:9627: 85 92     STA ram_pos_Y_lo
-C - - - - - 0x019639 06:9629: C8        INY
+C - - - - - 0x019639 06:9629: C8        INY ; 03
 C - - - - - 0x01963A 06:962A: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x01963C 06:962C: 85 AD     STA ram_pos_Z_lo
 C - - - - - 0x01963E 06:962E: 85 AE     STA ram_pos_Z_lo + $01
-C - - - - - 0x019640 06:9630: C8        INY
+C - - - - - 0x019640 06:9630: C8        INY ; 04
 C - - - - - 0x019641 06:9631: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019643 06:9633: 85 B6     STA ram_pos_Z_hi
 C - - - - - 0x019645 06:9635: 85 B7     STA ram_pos_Z_hi + $01
-C - - - - - 0x019647 06:9637: C8        INY
+C - - - - - 0x019647 06:9637: C8        INY ; 05
 C - - - - - 0x019648 06:9638: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x01964A 06:963A: 85 78     STA ram_pos_X_lo + $01
-C - - - - - 0x01964C 06:963C: C8        INY
+C - - - - - 0x01964C 06:963C: C8        INY ; 06
 C - - - - - 0x01964D 06:963D: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x01964F 06:963F: 85 93     STA ram_pos_Y_lo + $01
-C - - - - - 0x019651 06:9641: C8        INY
+C - - - - - 0x019651 06:9641: C8        INY ; 07
 C - - - - - 0x019652 06:9642: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019654 06:9644: 85 63     STA ram_0063_obj
 C - - - - - 0x019656 06:9646: 85 64     STA ram_0063_obj + $01
@@ -3850,7 +3863,9 @@ C - - - - - 0x019667 06:9657: 60        RTS
 
 sub_9658:
 C - - - - - 0x019668 06:9658: A2 00     LDX #$00
-C - - - - - 0x01966A 06:965A: B5 3C     LDA ram_003C_obj,X ; bzk optimize, no need for LDA,X
+; bzk optimize, LDA instead of LDA,X
+; bzk bug?
+C - - - - - 0x01966A 06:965A: B5 3C     LDA ram_003C_obj,X
 C - - - - - 0x01966C 06:965C: 30 02     BMI bra_9660    ; if con_003C_80
 - - - - - - 0x01966E 06:965E: A2 01     LDX #$01
 bra_9660:
@@ -3876,15 +3891,15 @@ C - - - - - 0x019692 06:9682: 60        RTS
 
 
 
-ofs_010_9683_04:
+ofs_010_9683_04_enter_door:
 C - - J - - 0x019693 06:9683: AD 28 04  LDA ram_0428
 C - - - - - 0x019696 06:9686: 0A        ASL
 C - - - - - 0x019697 06:9687: AA        TAX
-C - - - - - 0x019698 06:9688: BD 59 98  LDA tbl_9859,X
+C - - - - - 0x019698 06:9688: BD 59 98  LDA tbl_9859_door_coordinates,X
 C - - - - - 0x01969B 06:968B: 85 2B     STA ram_002B
-C - - - - - 0x01969D 06:968D: BD 5A 98  LDA tbl_9859 + $01,X
+C - - - - - 0x01969D 06:968D: BD 5A 98  LDA tbl_9859_door_coordinates + $01,X
 C - - - - - 0x0196A0 06:9690: 85 2C     STA ram_002C
-C - - - - - 0x0196A2 06:9692: 20 B6 98  JSR sub_98B6
+C - - - - - 0x0196A2 06:9692: 20 B6 98  JSR sub_98B6_check_who_is_alive
 C - - - - - 0x0196A5 06:9695: C9 02     CMP #$02
 C - - - - - 0x0196A7 06:9697: F0 2A     BEQ bra_96C3
 C - - - - - 0x0196A9 06:9699: C9 01     CMP #$01
@@ -3905,10 +3920,10 @@ C - - - - - 0x0196C1 06:96B1: B5 36     LDA ram_0036_enemy,X
 C - - - - - 0x0196C3 06:96B3: 29 FC     AND #(con_0036_01 + con_0036_02) ^ $FF
 C - - - - - 0x0196C5 06:96B5: 95 36     STA ram_0036_enemy,X
 bra_96B7:
-C - - - - - 0x0196C7 06:96B7: 20 70 97  JSR sub_9770
+C - - - - - 0x0196C7 06:96B7: 20 70 97  JSR sub_9770_open_door
 C - - - - - 0x0196CA 06:96BA: 90 06     BCC bra_96C2_RTS
 C - - - - - 0x0196CC 06:96BC: EE 23 04  INC ram_mission_lo
-C - - - - - 0x0196CF 06:96BF: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x0196CF 06:96BF: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_96C2_RTS:
 C - - - - - 0x0196D2 06:96C2: 60        RTS
 bra_96C3:
@@ -3927,7 +3942,9 @@ C - - - - - 0x0196E9 06:96D9: 05 37     ORA ram_0036_enemy + $01
 C - - - - - 0x0196EB 06:96DB: 29 08     AND #con_0036_08
 C - - - - - 0x0196ED 06:96DD: D0 15     BNE bra_96F4
 C - - - - - 0x0196EF 06:96DF: A2 00     LDX #$00
-C - - - - - 0x0196F1 06:96E1: B5 3C     LDA ram_003C_obj,X ; bzk optimize, no need for LDA,X
+; bzk optimize, LDA instead of LDA,X
+; bzk bug?
+C - - - - - 0x0196F1 06:96E1: B5 3C     LDA ram_003C_obj,X
 C - - - - - 0x0196F3 06:96E3: 10 05     BPL bra_96EA    ; if not con_003C_80
 bra_96E5_loop:
 C - - - - - 0x0196F5 06:96E5: 20 EB 97  JSR sub_97EB
@@ -3938,7 +3955,7 @@ C - - - - - 0x0196FB 06:96EB: E0 02     CPX #$02
 C - - - - - 0x0196FD 06:96ED: 90 F6     BCC bra_96E5_loop
 C - - - - - 0x0196FF 06:96EF: 60        RTS
 bra_96F0:
-- - - - - - 0x019700 06:96F0: 20 70 97  JSR sub_9770
+- - - - - - 0x019700 06:96F0: 20 70 97  JSR sub_9770_open_door
 - - - - - - 0x019703 06:96F3: 60        RTS
 bra_96F4:
 - - - - - - 0x019704 06:96F4: A2 00     LDX #$00
@@ -3985,7 +4002,7 @@ bra_9718:
 - - - - - - 0x01974C 06:973C: 60        RTS
 bra_973D:
 - - - - - - 0x01974D 06:973D: EE 23 04  INC ram_mission_lo
-- - - - - - 0x019750 06:9740: 20 18 8F  JSR sub_8F18_next_script
+- - - - - - 0x019750 06:9740: 20 18 8F  JSR sub_8F18_prepare_next_script
 bra_9743_RTS:
 - - - - - - 0x019753 06:9743: 60        RTS
 bra_9744:
@@ -4009,9 +4026,9 @@ sub_974A:
 sub_9759:
 C - - - - - 0x019769 06:9759: 0A        ASL
 C - - - - - 0x01976A 06:975A: A8        TAY
-C - - - - - 0x01976B 06:975B: B9 59 98  LDA tbl_9859,Y
+C - - - - - 0x01976B 06:975B: B9 59 98  LDA tbl_9859_door_coordinates,Y
 C - - - - - 0x01976E 06:975E: 85 2B     STA ram_002B
-C - - - - - 0x019770 06:9760: B9 5A 98  LDA tbl_9859 + $01,Y
+C - - - - - 0x019770 06:9760: B9 5A 98  LDA tbl_9859_door_coordinates + $01,Y
 C - - - - - 0x019773 06:9763: 85 2C     STA ram_002C
 C - - - - - 0x019775 06:9765: B5 3C     LDA ram_003C_obj,X ; 003C 003D
 C - - - - - 0x019777 06:9767: 10 05     BPL bra_976E    ; if not con_003C_80
@@ -4024,10 +4041,11 @@ C - - - - - 0x01977F 06:976F: 60        RTS
 
 
 
-sub_9770:
+sub_9770_open_door:
 C - - - - - 0x019780 06:9770: A0 00     LDY #$00
 C - - - - - 0x019782 06:9772: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019784 06:9774: 10 69     BPL bra_97DF
+; if 80+
 C - - - - - 0x019786 06:9776: B5 36     LDA ram_0036_enemy,X
 C - - - - - 0x019788 06:9778: 29 03     AND #con_0036_01 + con_0036_02
 C - - - - - 0x01978A 06:977A: D0 1B     BNE bra_9797
@@ -4099,7 +4117,7 @@ C - - - - - 0x0197FB 06:97EB: A0 07     LDY #$07
 C - - - - - 0x0197FD 06:97ED: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x0197FF 06:97EF: D5 AD     CMP ram_pos_Z_lo,X
 C - - - - - 0x019801 06:97F1: D0 32     BNE bra_9825
-C - - - - - 0x019803 06:97F3: C8        INY
+C - - - - - 0x019803 06:97F3: C8        INY ; 08
 C - - - - - 0x019804 06:97F4: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019806 06:97F6: D5 B6     CMP ram_pos_Z_hi,X
 C - - - - - 0x019808 06:97F8: D0 2B     BNE bra_9825
@@ -4107,24 +4125,24 @@ C - - - - - 0x01980A 06:97FA: A0 01     LDY #$01
 C - - - - - 0x01980C 06:97FC: B5 77     LDA ram_pos_X_lo,X
 C - - - - - 0x01980E 06:97FE: 38        SEC
 C - - - - - 0x01980F 06:97FF: F1 2B     SBC (ram_002B),Y
-C - - - - - 0x019811 06:9801: C8        INY
+C - - - - - 0x019811 06:9801: C8        INY ; 02
 C - - - - - 0x019812 06:9802: B5 80     LDA ram_pos_X_hi,X
 C - - - - - 0x019814 06:9804: F1 2B     SBC (ram_002B),Y
 C - - - - - 0x019816 06:9806: 90 1D     BCC bra_9825
-C - - - - - 0x019818 06:9808: C8        INY
+C - - - - - 0x019818 06:9808: C8        INY ; 03
 C - - - - - 0x019819 06:9809: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x01981B 06:980B: 38        SEC
 C - - - - - 0x01981C 06:980C: F5 77     SBC ram_pos_X_lo,X
-C - - - - - 0x01981E 06:980E: C8        INY
+C - - - - - 0x01981E 06:980E: C8        INY ; 04
 C - - - - - 0x01981F 06:980F: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019821 06:9811: F5 80     SBC ram_pos_X_hi,X
 C - - - - - 0x019823 06:9813: 90 10     BCC bra_9825
-C - - - - - 0x019825 06:9815: C8        INY
+C - - - - - 0x019825 06:9815: C8        INY ; 05
 C - - - - - 0x019826 06:9816: B5 92     LDA ram_pos_Y_lo,X
 C - - - - - 0x019828 06:9818: 38        SEC
 C - - - - - 0x019829 06:9819: F1 2B     SBC (ram_002B),Y
 C - - - - - 0x01982B 06:981B: 90 08     BCC bra_9825
-C - - - - - 0x01982D 06:981D: C8        INY
+C - - - - - 0x01982D 06:981D: C8        INY ; 06
 C - - - - - 0x01982E 06:981E: B1 2B     LDA (ram_002B),Y
 C - - - - - 0x019830 06:9820: 38        SEC
 C - - - - - 0x019831 06:9821: F5 92     SBC ram_pos_Y_lo,X
@@ -4155,6 +4173,9 @@ tbl_9845:
 - D 0 - - - 0x019855 06:9845: 08        .byte con_btn_Up   ; 00
 - - - - - - 0x019856 06:9846: 02        .byte con_btn_Left   ; 01
 - - - - - - 0x019857 06:9847: 01        .byte con_btn_Right   ; 02
+
+
+; bzk garbage
 - - - - - - 0x019858 06:9848: 00        .byte $00   ; 03
 
 
@@ -4177,7 +4198,8 @@ C - - - - - 0x019868 06:9858: 60        RTS
 
 
 
-tbl_9859:
+tbl_9859_door_coordinates:
+; see con_9859
 - D 0 - - - 0x019869 06:9859: 6B 98     .word _off022_986B_00
 - D 0 - - - 0x01986B 06:985B: 75 98     .word _off022_9875_01
 - D 0 - - - 0x01986D 06:985D: 7F 98     .word _off022_987F_02
@@ -4191,100 +4213,78 @@ tbl_9859:
 
 
 _off022_986B_00:
-- D 0 - I - 0x01987B 06:986B: 00        .byte $00   ; 
-- D 0 - I - 0x01987C 06:986C: C8        .byte $C8   ; 
-- D 0 - I - 0x01987D 06:986D: 01        .byte $01   ; 
-- D 0 - I - 0x01987E 06:986E: E8        .byte $E8   ; 
-- D 0 - I - 0x01987F 06:986F: 01        .byte $01   ; 
-- D 0 - I - 0x019880 06:9870: 50        .byte $50   ; 
-- D 0 - I - 0x019881 06:9871: 70        .byte $70   ; 
-- D 0 - I - 0x019882 06:9872: F0        .byte $F0   ; 
-- D 0 - I - 0x019883 06:9873: 01        .byte $01   ; 
+- D 0 - I - 0x01987B 06:986B: 00        .byte $00   ; check for button (up)
+- D 0 - I - 0x01987C 06:986C: C8 01     .word $01C8 ; pos_X (min)
+- D 0 - I - 0x01987E 06:986E: E8 01     .word $01E8 ; pos_X (max)
+- D 0 - I - 0x019880 06:9870: 50        .byte $50   ; pos_Y_lo (min)
+- D 0 - I - 0x019881 06:9871: 70        .byte $70   ; pos_Y_lo (max)
+- D 0 - I - 0x019882 06:9872: F0 01     .word $01F0 ; pos_Z
+; bzk garbage? con_A6C3_draw_enter_elevator_door ???
 - - - - - - 0x019884 06:9874: 04        .byte $04   ; 
 
 _off022_9875_01:
-- D 0 - I - 0x019885 06:9875: 00        .byte $00   ; 
-- D 0 - I - 0x019886 06:9876: D0        .byte $D0   ; 
-- D 0 - I - 0x019887 06:9877: 03        .byte $03   ; 
-- D 0 - I - 0x019888 06:9878: E8        .byte $E8   ; 
-- D 0 - I - 0x019889 06:9879: 03        .byte $03   ; 
-- D 0 - I - 0x01988A 06:987A: 50        .byte $50   ; 
-- D 0 - I - 0x01988B 06:987B: 60        .byte $60   ; 
-- D 0 - I - 0x01988C 06:987C: 10        .byte $10   ; 
-- D 0 - I - 0x01988D 06:987D: 00        .byte $00   ; 
+- D 0 - I - 0x019885 06:9875: 00        .byte $00   ; check for button (up)
+- D 0 - I - 0x019886 06:9876: D0 03     .word $03D0 ; pos_X (min)
+- D 0 - I - 0x019888 06:9878: E8 03     .word $03E8 ; pos_X (max)
+- D 0 - I - 0x01988A 06:987A: 50        .byte $50   ; pos_Y_lo (min)
+- D 0 - I - 0x01988B 06:987B: 60        .byte $60   ; pos_Y_lo (max)
+- D 0 - I - 0x01988C 06:987C: 10 00     .word $0010 ; pos_Z
+; bzk garbage? con_A6C3_draw_final_door_03 ???
 - - - - - - 0x01988E 06:987E: 06        .byte $06   ; 
 
 _off022_987F_02:
-- D 0 - I - 0x01988F 06:987F: C0        .byte $C0   ; 
-- D 0 - I - 0x019890 06:9880: 30        .byte $30   ; 
-- D 0 - I - 0x019891 06:9881: 00        .byte $00   ; 
-- D 0 - I - 0x019892 06:9882: 3F        .byte $3F   ; 
-- D 0 - I - 0x019893 06:9883: 00        .byte $00   ; 
-- D 0 - I - 0x019894 06:9884: 50        .byte $50   ; 
-- D 0 - I - 0x019895 06:9885: 80        .byte $80   ; 
-- D 0 - I - 0x019896 06:9886: 50        .byte $50   ; 
-- D 0 - I - 0x019897 06:9887: 00        .byte $00   ; 
-- D 0 - I - 0x019898 06:9888: 07        .byte $07   ; 
+- D 0 - I - 0x01988F 06:987F: C0        .byte $C0   ; check for button (up) + ??? (see 0x019782)
+- D 0 - I - 0x019890 06:9880: 30 00     .word $0030 ; pos_X (min)
+- D 0 - I - 0x019892 06:9882: 3F 00     .word $003F ; pos_X (max)
+- D 0 - I - 0x019894 06:9884: 50        .byte $50   ; pos_Y_lo (min)
+- D 0 - I - 0x019895 06:9885: 80        .byte $80   ; pos_Y_lo (max)
+- D 0 - I - 0x019896 06:9886: 50 00     .word $0050 ; pos_Z
+- D 0 - I - 0x019898 06:9888: 07        .byte con_A6C3_draw_final_door_04   ; 
 
 _off022_9889_03:
-- D 0 - I - 0x019899 06:9889: 00        .byte $00   ; 
-- D 0 - I - 0x01989A 06:988A: 86        .byte $86   ; 
-- D 0 - I - 0x01989B 06:988B: 00        .byte $00   ; 
-- D 0 - I - 0x01989C 06:988C: 96        .byte $96   ; 
-- D 0 - I - 0x01989D 06:988D: 00        .byte $00   ; 
-- D 0 - I - 0x01989E 06:988E: 00        .byte $00   ; 
-- D 0 - I - 0x01989F 06:988F: 10        .byte $10   ; 
-- D 0 - I - 0x0198A0 06:9890: B8        .byte $B8   ; 
-- D 0 - I - 0x0198A1 06:9891: 00        .byte $00   ; 
+- D 0 - I - 0x019899 06:9889: 00        .byte $00   ; check for button (up)
+- D 0 - I - 0x01989A 06:988A: 86 00     .word $0086 ; pos_X (min)
+- D 0 - I - 0x01989C 06:988C: 96 00     .word $0096 ; pos_X (max)
+- D 0 - I - 0x01989E 06:988E: 00        .byte $00   ; pos_Y_lo (min)
+- D 0 - I - 0x01989F 06:988F: 10        .byte $10   ; pos_Y_lo (max)
+- D 0 - I - 0x0198A0 06:9890: B8 00     .word $00B8 ; pos_Z
 
 _off022_9892_04:
-- D 0 - I - 0x0198A2 06:9892: 00        .byte $00   ; 
-- D 0 - I - 0x0198A3 06:9893: EA        .byte $EA   ; 
-- D 0 - I - 0x0198A4 06:9894: 00        .byte $00   ; 
-- D 0 - I - 0x0198A5 06:9895: FF        .byte $FF   ; 
-- D 0 - I - 0x0198A6 06:9896: 00        .byte $00   ; 
-- D 0 - I - 0x0198A7 06:9897: 00        .byte $00   ; 
-- D 0 - I - 0x0198A8 06:9898: 10        .byte $10   ; 
-- D 0 - I - 0x0198A9 06:9899: 58        .byte $58   ; 
-- D 0 - I - 0x0198AA 06:989A: 00        .byte $00   ; 
+- D 0 - I - 0x0198A2 06:9892: 00        .byte $00   ; check for button (up)
+- D 0 - I - 0x0198A3 06:9893: EA 00     .word $00EA ; pos_X (min)
+- D 0 - I - 0x0198A5 06:9895: FF 00     .word $00FF ; pos_X (max)
+- D 0 - I - 0x0198A7 06:9897: 00        .byte $00   ; pos_Y_lo (min)
+- D 0 - I - 0x0198A8 06:9898: 10        .byte $10   ; pos_Y_lo (max)
+- D 0 - I - 0x0198A9 06:9899: 58 00     .word $0058 ; pos_Z
 
 _off022_989B_05:
 _off022_989B_07:
-- D 0 - I - 0x0198AB 06:989B: 00        .byte $00   ; 
-- D 0 - I - 0x0198AC 06:989C: C8        .byte $C8   ; 
-- D 0 - I - 0x0198AD 06:989D: 00        .byte $00   ; 
-- D 0 - I - 0x0198AE 06:989E: D8        .byte $D8   ; 
-- D 0 - I - 0x0198AF 06:989F: 00        .byte $00   ; 
-- D 0 - I - 0x0198B0 06:98A0: 00        .byte $00   ; 
-- D 0 - I - 0x0198B1 06:98A1: 00        .byte $00   ; 
-- D 0 - I - 0x0198B2 06:98A2: 70        .byte $70   ; 
-- D 0 - I - 0x0198B3 06:98A3: 00        .byte $00   ; 
+- D 0 - I - 0x0198AB 06:989B: 00        .byte $00   ; check for button (up)
+- D 0 - I - 0x0198AC 06:989C: C8 00     .word $00C8 ; pos_X (min)
+- D 0 - I - 0x0198AE 06:989E: D8 00     .word $00D8 ; pos_X (max)
+- D 0 - I - 0x0198B0 06:98A0: 00        .byte $00   ; pos_Y_lo (min)
+- D 0 - I - 0x0198B1 06:98A1: 00        .byte $00   ; pos_Y_lo (max)
+- D 0 - I - 0x0198B2 06:98A2: 70 00     .word $0070 ; pos_Z
 
 _off022_98A4_06:
-- D 0 - I - 0x0198B4 06:98A4: 00        .byte $00   ; 
-- D 0 - I - 0x0198B5 06:98A5: 18        .byte $18   ; 
-- D 0 - I - 0x0198B6 06:98A6: 00        .byte $00   ; 
-- D 0 - I - 0x0198B7 06:98A7: 2A        .byte $2A   ; 
-- D 0 - I - 0x0198B8 06:98A8: 00        .byte $00   ; 
-- D 0 - I - 0x0198B9 06:98A9: 00        .byte $00   ; 
-- D 0 - I - 0x0198BA 06:98AA: 10        .byte $10   ; 
-- D 0 - I - 0x0198BB 06:98AB: B0        .byte $B0   ; 
-- D 0 - I - 0x0198BC 06:98AC: 00        .byte $00   ; 
+- D 0 - I - 0x0198B4 06:98A4: 00        .byte $00   ; check for button (up)
+- D 0 - I - 0x0198B5 06:98A5: 18 00     .word $0018 ; pos_X (min)
+- D 0 - I - 0x0198B7 06:98A7: 2A 00     .word $002A ; pos_X (max)
+- D 0 - I - 0x0198B9 06:98A9: 00        .byte $00   ; pos_Y_lo (min)
+- D 0 - I - 0x0198BA 06:98AA: 10        .byte $10   ; pos_Y_lo (max)
+- D 0 - I - 0x0198BB 06:98AB: B0 00     .word $00B0 ; pos_Z
 
 _off022_98AD_08:
-- D 0 - I - 0x0198BD 06:98AD: 03        .byte $03   ; 
-- D 0 - I - 0x0198BE 06:98AE: AC        .byte $AC   ; 
-- D 0 - I - 0x0198BF 06:98AF: 00        .byte $00   ; 
-- D 0 - I - 0x0198C0 06:98B0: B4        .byte $B4   ; 
-- D 0 - I - 0x0198C1 06:98B1: 00        .byte $00   ; 
-- D 0 - I - 0x0198C2 06:98B2: 4D        .byte $4D   ; 
-- D 0 - I - 0x0198C3 06:98B3: 53        .byte $53   ; 
-- D 0 - I - 0x0198C4 06:98B4: 00        .byte $00   ; 
-- D 0 - I - 0x0198C5 06:98B5: 00        .byte $00   ; 
+- D 0 - I - 0x0198BD 06:98AD: 03        .byte $03   ; check for button (skip check)
+- D 0 - I - 0x0198BE 06:98AE: AC 00     .word $00AC ; pos_X (min)
+- D 0 - I - 0x0198C0 06:98B0: B4 00     .word $00B4 ; pos_X (max)
+- D 0 - I - 0x0198C2 06:98B2: 4D        .byte $4D   ; pos_Y_lo (min)
+- D 0 - I - 0x0198C3 06:98B3: 53        .byte $53   ; pos_Y_lo (max)
+- D 0 - I - 0x0198C4 06:98B4: 00 00     .word $0000 ; pos_Z
 
 
 
-sub_98B6:
+sub_98B6_check_who_is_alive:
 C - - - - - 0x0198C6 06:98B6: A2 00     LDX #$00
 C - - - - - 0x0198C8 06:98B8: A5 3C     LDA ram_003C_obj
 C - - - - - 0x0198CA 06:98BA: 25 3D     AND ram_003C_obj + $01
@@ -4337,7 +4337,7 @@ bra_9906:
 C - - - - - 0x019916 06:9906: 0A        ASL
 C - - - - - 0x019917 06:9907: 90 07     BCC bra_9910
 C - - - - - 0x019919 06:9909: EE 23 04  INC ram_mission_lo
-C - - - - - 0x01991C 06:990C: 20 18 8F  JSR sub_8F18_next_script
+C - - - - - 0x01991C 06:990C: 20 18 8F  JSR sub_8F18_prepare_next_script
 C - - - - - 0x01991F 06:990F: 60        RTS
 bra_9910:
 C - - - - - 0x019920 06:9910: 0A        ASL
@@ -4386,54 +4386,54 @@ tbl_992D_mission_data:
 
 
 _off023_994B_00:
-- D 0 - I - 0x01995B 06:994B: 9F 9A     .word off_00_9A9F_00
-- D 0 - I - 0x01995D 06:994D: CC 9A     .word off_00_9ACC_01
+- D 0 - I - 0x01995B 06:994B: 9F 9A     .word off_00_9A9F_00_spawn_williams
+- D 0 - I - 0x01995D 06:994D: CC 9A     .word off_00_9ACC_01_cursor
 - D 0 - I - 0x01995F 06:994F: D7 9A     .word off_00_9AD7_02
-- D 0 - I - 0x019961 06:9951: DB 9A     .word off_00_9ADB_03
-- D 0 - I - 0x019963 06:9953: EE 9A     .word off_00_9AEE_04
+- D 0 - I - 0x019961 06:9951: DB 9A     .word off_00_9ADB_03_spawn_roper
+- D 0 - I - 0x019963 06:9953: EE 9A     .word off_00_9AEE_04_cursor
 - D 0 - I - 0x019965 06:9955: F9 9A     .word off_00_9AF9_05
-- D 0 - I - 0x019967 06:9957: FD 9A     .word off_00_9AFD_06
-- D 0 - I - 0x019969 06:9959: 2B 9B     .word off_00_9B2B_07
-- D 0 - I - 0x01996B 06:995B: 3E 9B     .word off_00_9B3E_08
+- D 0 - I - 0x019967 06:9957: FD 9A     .word off_00_9AFD_06_spawn_linda
+- D 0 - I - 0x019969 06:9959: 2B 9B     .word off_00_9B2B_07_spawn_williams
+- D 0 - I - 0x01996B 06:995B: 3E 9B     .word off_00_9B3E_08_cursor
 - D 0 - I - 0x01996D 06:995D: 49 9B     .word off_00_9B49_09
 - D 0 - I - 0x01996F 06:995F: 4D 9B     .word off_00_9B4D_0A
-- D 0 - I - 0x019971 06:9961: 51 9B     .word off_00_9B51_0B
-- D 0 - I - 0x019973 06:9963: 88 9B     .word off_00_9B88_0C
-- D 0 - I - 0x019975 06:9965: C0 9B     .word off_00_9BC0_0D
+- D 0 - I - 0x019971 06:9961: 51 9B     .word off_00_9B51_0B_spawn_linda
+- D 0 - I - 0x019973 06:9963: 88 9B     .word off_00_9B88_0C_spawn_williams
+- D 0 - I - 0x019975 06:9965: C0 9B     .word off_00_9BC0_0D_cursor
 - D 0 - I - 0x019977 06:9967: CB 9B     .word off_00_9BCB_0E
-- D 0 - I - 0x019979 06:9969: CF 9B     .word off_00_9BCF_0F
-- D 0 - I - 0x01997B 06:996B: F0 9B     .word off_00_9BF0_10
+- D 0 - I - 0x019979 06:9969: CF 9B     .word off_00_9BCF_0F_spawn_roper
+- D 0 - I - 0x01997B 06:996B: F0 9B     .word off_00_9BF0_10_spawn_williams
 - D 0 - I - 0x01997D 06:996D: FD 9B     .word off_00_9BFD_11
-- D 0 - I - 0x01997F 06:996F: 01 9C     .word off_00_9C01_12
+- D 0 - I - 0x01997F 06:996F: 01 9C     .word off_00_9C01_12_spawn_williams
 - D 0 - I - 0x019981 06:9971: 2F 9C     .word off_00_9C2F_13
 - D 0 - I - 0x019983 06:9973: 33 9C     .word off_00_9C33_14
-- D 0 - I - 0x019985 06:9975: 34 9C     .word off_00_9C34_15
+- D 0 - I - 0x019985 06:9975: 34 9C     .word off_00_9C34_15_spawn_burnov
 - D 0 - I - 0x019987 06:9977: 4B 9C     .word off_00_9C4B_16
 - D 0 - I - 0x019989 06:9979: 4C 9C     .word off_00_9C4C_17
 
 
 
 _off023_997B_01:
-- D 0 - I - 0x01998B 06:997B: 4D 9C     .word off_01_9C4D_00
-- D 0 - I - 0x01998D 06:997D: 6F 9C     .word off_01_9C6F_01
+- D 0 - I - 0x01998B 06:997B: 4D 9C     .word off_01_9C4D_00_spawn_roper
+- D 0 - I - 0x01998D 06:997D: 6F 9C     .word off_01_9C6F_01_cursor
 - D 0 - I - 0x01998F 06:997F: 7A 9C     .word off_01_9C7A_02
-- D 0 - I - 0x019991 06:9981: 7F 9C     .word off_01_9C7F_03
-- D 0 - I - 0x019993 06:9983: A0 9C     .word off_01_9CA0_04
+- D 0 - I - 0x019991 06:9981: 7F 9C     .word off_01_9C7F_03_spawn_roper
+- D 0 - I - 0x019993 06:9983: A0 9C     .word off_01_9CA0_04_cursor
 - D 0 - I - 0x019995 06:9985: AB 9C     .word off_01_9CAB_05
 - D 0 - I - 0x019997 06:9987: AF 9C     .word off_01_9CAF_06
 - D 0 - I - 0x019999 06:9989: BC 9C     .word off_01_9CBC_07
 - D 0 - I - 0x01999B 06:998B: C0 9C     .word off_01_9CC0_08
-- D 0 - I - 0x01999D 06:998D: C1 9C     .word off_01_9CC1_09
-- D 0 - I - 0x01999F 06:998F: E5 9C     .word off_01_9CE5_0A
-- D 0 - I - 0x0199A1 06:9991: 0A 9D     .word off_01_9D0A_0B
+- D 0 - I - 0x01999D 06:998D: C1 9C     .word off_01_9CC1_09_spawn_linda
+- D 0 - I - 0x01999F 06:998F: E5 9C     .word off_01_9CE5_0A_spawn_williams
+- D 0 - I - 0x0199A1 06:9991: 0A 9D     .word off_01_9D0A_0B_spawn_right_arm
 - D 0 - I - 0x0199A3 06:9993: 2D 9D     .word off_01_9D2D_0C
-- D 0 - I - 0x0199A5 06:9995: 2E 9D     .word off_01_9D2E_0D
+- D 0 - I - 0x0199A5 06:9995: 2E 9D     .word off_01_9D2E_0D_cursor
 - D 0 - I - 0x0199A7 06:9997: 39 9D     .word off_01_9D39_0E
-- D 0 - I - 0x0199A9 06:9999: 3D 9D     .word off_01_9D3D_0F
+- D 0 - I - 0x0199A9 06:9999: 3D 9D     .word off_01_9D3D_0F_spawn_roper
 - D 0 - I - 0x0199AB 06:999B: 52 9D     .word off_01_9D52_10
-- D 0 - I - 0x0199AD 06:999D: 56 9D     .word off_01_9D56_11
+- D 0 - I - 0x0199AD 06:999D: 56 9D     .word off_01_9D56_11_spawn_roper
 - D 0 - I - 0x0199AF 06:999F: 6D 9D     .word off_01_9D6D_12
-- D 0 - I - 0x0199B1 06:99A1: 6E 9D     .word off_01_9D6E_13
+- D 0 - I - 0x0199B1 06:99A1: 6E 9D     .word off_01_9D6E_13_spawn_ninja
 - D 0 - I - 0x0199B3 06:99A3: 8F 9D     .word off_01_9D8F_14
 - D 0 - I - 0x0199B5 06:99A5: 90 9D     .word off_01_9D90_15
 - D 0 - I - 0x0199B7 06:99A7: 91 9D     .word off_01_9D91_16
@@ -4445,36 +4445,36 @@ _off023_997B_01:
 _off023_99AD_02:
 - D 0 - I - 0x0199BD 06:99AD: 94 9D     .word off_02_9D94_00
 - D 0 - I - 0x0199BF 06:99AF: 95 9D     .word off_02_9D95_01
-- D 0 - I - 0x0199C1 06:99B1: 97 9D     .word off_02_9D97_02
-- D 0 - I - 0x0199C3 06:99B3: B9 9D     .word off_02_9DB9_03
+- D 0 - I - 0x0199C1 06:99B1: 97 9D     .word off_02_9D97_02_spawn_right_arm
+- D 0 - I - 0x0199C3 06:99B3: B9 9D     .word off_02_9DB9_03_spawn_williams
 - D 0 - I - 0x0199C5 06:99B5: F3 9D     .word off_02_9DF3_04
-- D 0 - I - 0x0199C7 06:99B7: F4 9D     .word off_02_9DF4_05
-- D 0 - I - 0x0199C9 06:99B9: 0C 9E     .word off_02_9E0C_06
+- D 0 - I - 0x0199C7 06:99B7: F4 9D     .word off_02_9DF4_05_spawn_bolo_1
+- D 0 - I - 0x0199C9 06:99B9: 0C 9E     .word off_02_9E0C_06_spawn_bolo_2
 - D 0 - I - 0x0199CB 06:99BB: 24 9E     .word off_02_9E24_07
 - D 0 - I - 0x0199CD 06:99BD: 25 9E     .word off_02_9E25_08
 
 
 
 _off023_99BF_03:
-- D 0 - I - 0x0199CF 06:99BF: 26 9E     .word off_03_9E26_00
-- D 0 - I - 0x0199D1 06:99C1: 3F 9E     .word off_03_9E3F_01
+- D 0 - I - 0x0199CF 06:99BF: 26 9E     .word off_03_9E26_00_spawn_roper
+- D 0 - I - 0x0199D1 06:99C1: 3F 9E     .word off_03_9E3F_01_spawn_linda
 - D 0 - I - 0x0199D3 06:99C3: 54 9E     .word off_03_9E54_02
-- D 0 - I - 0x0199D5 06:99C5: 58 9E     .word off_03_9E58_03
-- D 0 - I - 0x0199D7 06:99C7: 5A 9E     .word off_03_9E5A_04
-- D 0 - I - 0x0199D9 06:99C9: 5C 9E     .word off_03_9E5C_05
-- D 0 - I - 0x0199DB 06:99CB: 5E 9E     .word off_03_9E5E_06
-- D 0 - I - 0x0199DD 06:99CD: 5F 9E     .word off_03_9E5F_07
-- D 0 - I - 0x0199DF 06:99CF: 74 9E     .word off_03_9E74_08
+- D 0 - I - 0x0199D5 06:99C5: 58 9E     .word off_03_9E58_03_open_elevator_door
+- D 0 - I - 0x0199D7 06:99C7: 5A 9E     .word off_03_9E5A_04_enter_door
+- D 0 - I - 0x0199D9 06:99C9: 5C 9E     .word off_03_9E5C_05_close_elevator_door
+- D 0 - I - 0x0199DB 06:99CB: 5E 9E     .word off_03_9E5E_06_elevator_going_down
+- D 0 - I - 0x0199DD 06:99CD: 5F 9E     .word off_03_9E5F_07_spawn_right_arm
+- D 0 - I - 0x0199DF 06:99CF: 74 9E     .word off_03_9E74_08_spawn_abore
 - D 0 - I - 0x0199E1 06:99D1: 83 9E     .word off_03_9E83_09
-- D 0 - I - 0x0199E3 06:99D3: 84 9E     .word off_03_9E84_0A
+- D 0 - I - 0x0199E3 06:99D3: 84 9E     .word off_03_9E84_0A_cursor
 - D 0 - I - 0x0199E5 06:99D5: 8F 9E     .word off_03_9E8F_0B
 - D 0 - I - 0x0199E7 06:99D7: 94 9E     .word off_03_9E94_0C
-- D 0 - I - 0x0199E9 06:99D9: CF 9E     .word off_03_9ECF_0D
+- D 0 - I - 0x0199E9 06:99D9: CF 9E     .word off_03_9ECF_0D_spawn_williams
 - D 0 - I - 0x0199EB 06:99DB: 0B 9F     .word off_03_9F0B_0E
 - D 0 - I - 0x0199ED 06:99DD: 0B 9F     .word off_03_9F0B_0F
-- D 0 - I - 0x0199EF 06:99DF: 0C 9F     .word off_03_9F0C_10
+- D 0 - I - 0x0199EF 06:99DF: 0C 9F     .word off_03_9F0C_10_spawn_bolo
 - D 0 - I - 0x0199F1 06:99E1: 1B 9F     .word off_03_9F1B_11
-- D 0 - I - 0x0199F3 06:99E3: 1D 9F     .word off_03_9F1D_12
+- D 0 - I - 0x0199F3 06:99E3: 1D 9F     .word off_03_9F1D_12_enter_door
 - D 0 - I - 0x0199F5 06:99E5: 1F 9F     .word off_03_9F1F_13
 - D 0 - I - 0x0199F7 06:99E7: 21 9F     .word off_03_9F21_14
 
@@ -4483,7 +4483,7 @@ _off023_99BF_03:
 _off023_99E9_04:
 - D 0 - I - 0x0199F9 06:99E9: 22 9F     .word off_04_9F22_00
 - D 0 - I - 0x0199FB 06:99EB: 2F 9F     .word off_04_9F2F_01
-- D 0 - I - 0x0199FD 06:99ED: 30 9F     .word off_04_9F30_02
+- D 0 - I - 0x0199FD 06:99ED: 30 9F     .word off_04_9F30_02_enter_door
 - D 0 - I - 0x0199FF 06:99EF: 32 9F     .word off_04_9F32_03
 - D 0 - I - 0x019A01 06:99F1: 33 9F     .word off_04_9F33_04
 
@@ -4492,27 +4492,27 @@ _off023_99E9_04:
 _off023_99F3_05:
 - D 0 - I - 0x019A03 06:99F3: 34 9F     .word off_05_9F34_00
 - D 0 - I - 0x019A05 06:99F5: 4B 9F     .word off_05_9F4B_01
-- D 0 - I - 0x019A07 06:99F7: 4C 9F     .word off_05_9F4C_02
-- D 0 - I - 0x019A09 06:99F9: 57 9F     .word off_05_9F57_03
-- D 0 - I - 0x019A0B 06:99FB: 6E 9F     .word off_05_9F6E_04
+- D 0 - I - 0x019A07 06:99F7: 4C 9F     .word off_05_9F4C_02_cursor
+- D 0 - I - 0x019A09 06:99F9: 57 9F     .word off_05_9F57_03_spawn_roper
+- D 0 - I - 0x019A0B 06:99FB: 6E 9F     .word off_05_9F6E_04_cursor
 - D 0 - I - 0x019A0D 06:99FD: 79 9F     .word off_05_9F79_05
 - D 0 - I - 0x019A0F 06:99FF: 7D 9F     .word off_05_9F7D_06
-- D 0 - I - 0x019A11 06:9A01: B4 9F     .word off_05_9FB4_07
+- D 0 - I - 0x019A11 06:9A01: B4 9F     .word off_05_9FB4_07_cursor
 - D 0 - I - 0x019A13 06:9A03: BF 9F     .word off_05_9FBF_08
-- D 0 - I - 0x019A15 06:9A05: C3 9F     .word off_05_9FC3_09
-- D 0 - I - 0x019A17 06:9A07: 00 A0     .word off_05_A000_0A
+- D 0 - I - 0x019A15 06:9A05: C3 9F     .word off_05_9FC3_09_spawn_roper
+- D 0 - I - 0x019A17 06:9A07: 00 A0     .word off_05_A000_0A_cursor
 - D 0 - I - 0x019A19 06:9A09: 0B A0     .word off_05_A00B_0B
-- D 0 - I - 0x019A1B 06:9A0B: 0F A0     .word off_05_A00F_0C
-- D 0 - I - 0x019A1D 06:9A0D: 47 A0     .word off_05_A047_0D
-- D 0 - I - 0x019A1F 06:9A0F: 5F A0     .word off_05_A05F_0E
-- D 0 - I - 0x019A21 06:9A11: 77 A0     .word off_05_A077_0F
-- D 0 - I - 0x019A23 06:9A13: 82 A0     .word off_05_A082_10
+- D 0 - I - 0x019A1B 06:9A0B: 0F A0     .word off_05_A00F_0C_spawn_roper
+- D 0 - I - 0x019A1D 06:9A0D: 47 A0     .word off_05_A047_0D_spawn_bolo_1
+- D 0 - I - 0x019A1F 06:9A0F: 5F A0     .word off_05_A05F_0E_spawn_bolo_2
+- D 0 - I - 0x019A21 06:9A11: 77 A0     .word off_05_A077_0F_cursor
+- D 0 - I - 0x019A23 06:9A13: 82 A0     .word off_05_A082_10_spawn_chin_taimei
 - D 0 - I - 0x019A25 06:9A15: A3 A0     .word off_05_A0A3_11
 - D 0 - I - 0x019A27 06:9A17: A7 A0     .word off_05_A0A7_12
 - D 0 - I - 0x019A29 06:9A19: A9 A0     .word off_05_A0A9_13
-- D 0 - I - 0x019A2B 06:9A1B: AA A0     .word off_05_A0AA_14
-- D 0 - I - 0x019A2D 06:9A1D: E3 A0     .word off_05_A0E3_15
-- D 0 - I - 0x019A2F 06:9A1F: 04 A1     .word off_05_A104_16
+- D 0 - I - 0x019A2B 06:9A1B: AA A0     .word off_05_A0AA_14_spawn_roper
+- D 0 - I - 0x019A2D 06:9A1D: E3 A0     .word off_05_A0E3_15_spawn_right_arm
+- D 0 - I - 0x019A2F 06:9A1F: 04 A1     .word off_05_A104_16_spawn_abore
 - D 0 - I - 0x019A31 06:9A21: 1B A1     .word off_05_A11B_17
 - D 0 - I - 0x019A33 06:9A23: 1C A1     .word off_05_A11C_18
 
@@ -4521,11 +4521,11 @@ _off023_99F3_05:
 _off023_9A25_06:
 - D 0 - I - 0x019A35 06:9A25: 1D A1     .word off_06_A11D_00
 - D 0 - I - 0x019A37 06:9A27: 2A A1     .word off_06_A12A_01
-- D 0 - I - 0x019A39 06:9A29: 2F A1     .word off_06_A12F_02
-- D 0 - I - 0x019A3B 06:9A2B: 64 A1     .word off_06_A164_03
-- D 0 - I - 0x019A3D 06:9A2D: 99 A1     .word off_06_A199_04
+- D 0 - I - 0x019A39 06:9A29: 2F A1     .word off_06_A12F_02_spawn_right_arm
+- D 0 - I - 0x019A3B 06:9A2B: 64 A1     .word off_06_A164_03_spawn_chin_taimei
+- D 0 - I - 0x019A3D 06:9A2D: 99 A1     .word off_06_A199_04_cursor
 - D 0 - I - 0x019A3F 06:9A2F: A4 A1     .word off_06_A1A4_05
-- D 0 - I - 0x019A41 06:9A31: B1 A1     .word off_06_A1B1_06
+- D 0 - I - 0x019A41 06:9A31: B1 A1     .word off_06_A1B1_06_enter_door
 - D 0 - I - 0x019A43 06:9A33: B3 A1     .word off_06_A1B3_07
 - D 0 - I - 0x019A45 06:9A35: B4 A1     .word off_06_A1B4_08
 
@@ -4533,16 +4533,16 @@ _off023_9A25_06:
 
 _off023_9A37_07:
 - D 0 - I - 0x019A47 06:9A37: B5 A1     .word off_07_A1B5_00
-- D 0 - I - 0x019A49 06:9A39: C2 A1     .word off_07_A1C2_01
+- D 0 - I - 0x019A49 06:9A39: C2 A1     .word off_07_A1C2_01_enter_door
 - D 0 - I - 0x019A4B 06:9A3B: C4 A1     .word off_07_A1C4_02
 
 
 
 _off023_9A3D_08:
-- D 0 - I - 0x019A4D 06:9A3D: C5 A1     .word off_08_A1C5_00
-- D 0 - I - 0x019A4F 06:9A3F: DC A1     .word off_08_A1DC_01
+- D 0 - I - 0x019A4D 06:9A3D: C5 A1     .word off_08_A1C5_00_spawn_right_arm
+- D 0 - I - 0x019A4F 06:9A3F: DC A1     .word off_08_A1DC_01_spawn_burnov
 - D 0 - I - 0x019A51 06:9A41: F3 A1     .word off_08_A1F3_02
-- D 0 - I - 0x019A53 06:9A43: F5 A1     .word off_08_A1F5_03
+- D 0 - I - 0x019A53 06:9A43: F5 A1     .word off_08_A1F5_03_enter_door
 - D 0 - I - 0x019A55 06:9A45: F7 A1     .word off_08_A1F7_04
 - D 0 - I - 0x019A57 06:9A47: F9 A1     .word off_08_A1F9_05
 
@@ -4550,52 +4550,52 @@ _off023_9A3D_08:
 
 _off023_9A49_09:
 - D 0 - I - 0x019A59 06:9A49: FA A1     .word off_09_A1FA_00
-- D 0 - I - 0x019A5B 06:9A4B: 07 A2     .word off_09_A207_01
+- D 0 - I - 0x019A5B 06:9A4B: 07 A2     .word off_09_A207_01_enter_door
 - D 0 - I - 0x019A5D 06:9A4D: 09 A2     .word off_09_A209_02
 
 
 
 _off023_9A4F_0A:
-- D 0 - I - 0x019A5F 06:9A4F: 0A A2     .word off_0A_A20A_00
+- D 0 - I - 0x019A5F 06:9A4F: 0A A2     .word off_0A_A20A_00_spawn_roper
 - D 0 - I - 0x019A61 06:9A51: 4E A2     .word off_0A_A24E_01
-- D 0 - I - 0x019A63 06:9A53: 50 A2     .word off_0A_A250_02
+- D 0 - I - 0x019A63 06:9A53: 50 A2     .word off_0A_A250_02_enter_door
 - D 0 - I - 0x019A65 06:9A55: 52 A2     .word off_0A_A252_03
 
 
 
 _off023_9A57_0B:
-- D 0 - I - 0x019A67 06:9A57: 53 A2     .word off_0B_A253_00
-- D 0 - I - 0x019A69 06:9A59: 8C A2     .word off_0B_A28C_01
-- D 0 - I - 0x019A6B 06:9A5B: C4 A2     .word off_0B_A2C4_02
-- D 0 - I - 0x019A6D 06:9A5D: E5 A2     .word off_0B_A2E5_03
+- D 0 - I - 0x019A67 06:9A57: 53 A2     .word off_0B_A253_00_spawn_williams
+- D 0 - I - 0x019A69 06:9A59: 8C A2     .word off_0B_A28C_01_spawn_roper
+- D 0 - I - 0x019A6B 06:9A5B: C4 A2     .word off_0B_A2C4_02_spawn_chin_taimei
+- D 0 - I - 0x019A6D 06:9A5D: E5 A2     .word off_0B_A2E5_03_spawn_right_arm
 - D 0 - I - 0x019A6F 06:9A5F: 06 A3     .word off_0B_A306_04
-- D 0 - I - 0x019A71 06:9A61: 07 A3     .word off_0B_A307_05
+- D 0 - I - 0x019A71 06:9A61: 07 A3     .word off_0B_A307_05_spawn_abore
 - D 0 - I - 0x019A73 06:9A63: 1E A3     .word off_0B_A31E_06
 - D 0 - I - 0x019A75 06:9A65: 1F A3     .word off_0B_A31F_07
 
 
 
 _off023_9A67_0C:
-- D 0 - I - 0x019A77 06:9A67: 20 A3     .word off_0C_A320_00
+- D 0 - I - 0x019A77 06:9A67: 20 A3     .word off_0C_A320_00_spawn_chin_taimei
 - D 0 - I - 0x019A79 06:9A69: 37 A3     .word off_0C_A337_01
-- D 0 - I - 0x019A7B 06:9A6B: 38 A3     .word off_0C_A338_02
+- D 0 - I - 0x019A7B 06:9A6B: 38 A3     .word off_0C_A338_02_cursor
 - D 0 - I - 0x019A7D 06:9A6D: 43 A3     .word off_0C_A343_03
-- D 0 - I - 0x019A7F 06:9A6F: 48 A3     .word off_0C_A348_04
-- D 0 - I - 0x019A81 06:9A71: 8C A3     .word off_0C_A38C_05
+- D 0 - I - 0x019A7F 06:9A6F: 48 A3     .word off_0C_A348_04_spawn_right_arm
+- D 0 - I - 0x019A81 06:9A71: 8C A3     .word off_0C_A38C_05_cursor
 - D 0 - I - 0x019A83 06:9A73: 97 A3     .word off_0C_A397_06
 - D 0 - I - 0x019A85 06:9A75: 98 A3     .word off_0C_A398_07
 - D 0 - I - 0x019A87 06:9A77: 9C A3     .word off_0C_A39C_08
-- D 0 - I - 0x019A89 06:9A79: 9D A3     .word off_0C_A39D_09
-- D 0 - I - 0x019A8B 06:9A7B: AC A3     .word off_0C_A3AC_0A
-- D 0 - I - 0x019A8D 06:9A7D: BB A3     .word off_0C_A3BB_0B
+- D 0 - I - 0x019A89 06:9A79: 9D A3     .word off_0C_A39D_09_spawn_abore
+- D 0 - I - 0x019A8B 06:9A7B: AC A3     .word off_0C_A3AC_0A_spawn_bolo_1
+- D 0 - I - 0x019A8D 06:9A7D: BB A3     .word off_0C_A3BB_0B_spawn_bolo_2
 - D 0 - I - 0x019A8F 06:9A7F: CA A3     .word off_0C_A3CA_0C
-- D 0 - I - 0x019A91 06:9A81: CE A3     .word off_0C_A3CE_0D
+- D 0 - I - 0x019A91 06:9A81: CE A3     .word off_0C_A3CE_0D_cursor
 - D 0 - I - 0x019A93 06:9A83: D9 A3     .word off_0C_A3D9_0E
 - D 0 - I - 0x019A95 06:9A85: E6 A3     .word off_0C_A3E6_0F
-- D 0 - I - 0x019A97 06:9A87: EB A3     .word off_0C_A3EB_10
+- D 0 - I - 0x019A97 06:9A87: EB A3     .word off_0C_A3EB_10_spawn_ninja
 - D 0 - I - 0x019A99 06:9A89: 04 A4     .word off_0C_A404_11
 - D 0 - I - 0x019A9B 06:9A8B: 06 A4     .word off_0C_A406_12
-- D 0 - I - 0x019A9D 06:9A8D: 07 A4     .word off_0C_A407_13
+- D 0 - I - 0x019A9D 06:9A8D: 07 A4     .word off_0C_A407_13_spawn_doppelganger
 - D 0 - I - 0x019A9F 06:9A8F: 2A A4     .word off_0C_A42A_14
 - D 0 - I - 0x019AA1 06:9A91: 2B A4     .word off_0C_A42B_15
 
@@ -4609,218 +4609,197 @@ _off023_9A93_0D:
 
 _off023_9A97_0E:
 - D 0 - I - 0x019AA7 06:9A97: 2E A4     .word off_0E_A42E_00
-- D 0 - I - 0x019AA9 06:9A99: 3B A4     .word off_0E_A43B_01
+- D 0 - I - 0x019AA9 06:9A99: 3B A4     .word off_0E_A43B_01_spawn_shadow_warrior
 - D 0 - I - 0x019AAB 06:9A9B: 52 A4     .word off_0E_A452_02
 - - - - - - 0x019AAD 06:9A9D: 52 A4     .word off_0E_A452_03
 
 
 
-off_00_9A9F_00:
-- D 0 - I - 0x019AAF 06:9A9F: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019AB0 06:9AA0: 00        .byte $00   ; 
-- D 0 - I - 0x019AB1 06:9AA1: 00        .byte $00   ; 
-- D 0 - I - 0x019AB2 06:9AA2: 00        .byte $00   ; 
-- D 0 - I - 0x019AB3 06:9AA3: 00        .byte $00   ; 
-- D 0 - I - 0x019AB4 06:9AA4: 00        .byte $00   ; 
-- D 0 - I - 0x019AB5 06:9AA5: 00        .byte $00   ; 
-- D 0 - I - 0x019AB6 06:9AA6: 00        .byte $00   ; 
-- D 0 - I - 0x019AB7 06:9AA7: 00        .byte $00   ; 
-- D 0 - I - 0x019AB8 06:9AA8: 01        .byte $01   ; 
+off_00_9A9F_00_spawn_williams:
+- D 0 - I - 0x019AAF 06:9A9F: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019AB0 06:9AA0: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019AB2 06:9AA2: 00 00     .word $0000 ; X camera limit (max)
+- D 0 - I - 0x019AB4 06:9AA4: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019AB6 06:9AA6: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019AB8 06:9AA8: 01        .byte $01   ; 04B0 ???
+
 - D 0 - I - 0x019AB9 06:9AA9: 4E        .byte con_chr_bank + $4E   ; 
 - D 0 - I - 0x019ABA 06:9AAA: 02        .byte con_obj_williams   ; 
-- D 0 - I - 0x019ABB 06:9AAB: 04        .byte $04   ; counter
+- D 0 - I - 0x019ABB 06:9AAB: 04        .byte $04   ; enemy counter
 ; 01
-- D 0 - I - 0x019ABC 06:9AAC: E0        .byte $E0   ; 
-- D 0 - I - 0x019ABD 06:9AAD: 00        .byte $00   ; 
-- D 0 - I - 0x019ABE 06:9AAE: 00        .byte con_state_00   ; 
-- D 0 - I - 0x019ABF 06:9AAF: 00        .byte $00   ; 
-- D 0 - I - 0x019AC0 06:9AB0: F0 00     .word $00F0 ; pos_X
-- D 0 - I - 0x019AC2 06:9AB2: 70 00     .word $0070 ; pos_Y
-- D 0 - I - 0x019AC4 06:9AB4: 00 00     .word $0000 ; pos_Z
-- D 0 - I - 0x019AC6 06:9AB6: 00        .byte $00   ; 
-- D 0 - I - 0x019AC7 06:9AB7: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019ABC 06:9AAC: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019ABD 06:9AAD: 00        .byte $00   ; enemy weapon
+- D 0 - I - 0x019ABE 06:9AAE: 00        .byte con_state_idle   ; enemy state
+- D 0 - I - 0x019ABF 06:9AAF: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019AC0 06:9AB0: F0 00     .word $00F0 ; enemy pos_X
+- D 0 - I - 0x019AC2 06:9AB2: 70 00     .word $0070 ; enemy pos_Y
+- D 0 - I - 0x019AC4 06:9AB4: 00 00     .word $0000 ; enemy pos_Z
+- D 0 - I - 0x019AC6 06:9AB6: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019AC7 06:9AB7: 0B        .byte $0B   ; enemy hp
 ; 02
-- D 0 - I - 0x019AC8 06:9AB8: E0        .byte $E0   ; 
-- D 0 - I - 0x019AC9 06:9AB9: 00        .byte $00   ; 
-- D 0 - I - 0x019ACA 06:9ABA: 00        .byte con_state_00   ; 
-- D 0 - I - 0x019ACB 06:9ABB: 00        .byte $00   ; 
-- D 0 - I - 0x019ACC 06:9ABC: 10 01     .word $0110 ; pos_X
-- D 0 - I - 0x019ACE 06:9ABE: 33 00     .word $0033 ; pos_Y
-- D 0 - I - 0x019AD0 06:9AC0: 00 00     .word $0000 ; pos_Z
-- D 0 - I - 0x019AD2 06:9AC2: 00        .byte $00   ; 
-- D 0 - I - 0x019AD3 06:9AC3: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019AC8 06:9AB8: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019AC9 06:9AB9: 00        .byte $00   ; enemy weapon
+- D 0 - I - 0x019ACA 06:9ABA: 00        .byte con_state_idle   ; enemy state
+- D 0 - I - 0x019ACB 06:9ABB: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019ACC 06:9ABC: 10 01     .word $0110 ; enemy pos_X
+- D 0 - I - 0x019ACE 06:9ABE: 33 00     .word $0033 ; enemy pos_Y
+- D 0 - I - 0x019AD0 06:9AC0: 00 00     .word $0000 ; enemy pos_Z
+- D 0 - I - 0x019AD2 06:9AC2: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019AD3 06:9AC3: 0B        .byte $0B   ; enemy hp
 ; 03
-- D 0 - I - 0x019AD4 06:9AC4: C0        .byte $C0   ; 
-- D 0 - I - 0x019AD5 06:9AC5: 00        .byte $00   ; 
-- D 0 - I - 0x019AD6 06:9AC6: 00        .byte con_state_00   ; 
-- D 0 - I - 0x019AD7 06:9AC7: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019AD4 06:9AC4: C0        .byte $C0   ; enemy settings
+- D 0 - I - 0x019AD5 06:9AC5: 00        .byte $00   ; enemy weapon
+- D 0 - I - 0x019AD6 06:9AC6: 00        .byte con_state_idle   ; enemy state
+- D 0 - I - 0x019AD7 06:9AC7: 0B        .byte $0B   ; enemy hp
 ; 04
-- D 0 - I - 0x019AD8 06:9AC8: C0        .byte $C0   ; 
-- D 0 - I - 0x019AD9 06:9AC9: 00        .byte $00   ; 
-- D 0 - I - 0x019ADA 06:9ACA: 00        .byte $00   ; 
-- D 0 - I - 0x019ADB 06:9ACB: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019AD8 06:9AC8: C0        .byte $C0   ; enemy settings
+- D 0 - I - 0x019AD9 06:9AC9: 00        .byte $00   ; enemy weapon
+- D 0 - I - 0x019ADA 06:9ACA: 00        .byte con_state_idle   ; enemy state
+- D 0 - I - 0x019ADB 06:9ACB: 0B        .byte $0B   ; enemy hp
 
 
 
-off_00_9ACC_01:
-- D 0 - I - 0x019ADC 06:9ACC: 01        .byte con_884D_white_hand_cursor   ; 
-- D 0 - I - 0x019ADD 06:9ACD: 00        .byte $00   ; 
-- D 0 - I - 0x019ADE 06:9ACE: 00        .byte $00   ; 
-- D 0 - I - 0x019ADF 06:9ACF: FF        .byte $FF   ; 
-- D 0 - I - 0x019AE0 06:9AD0: 00        .byte $00   ; 
-- D 0 - I - 0x019AE1 06:9AD1: 00        .byte $00   ; 
-- D 0 - I - 0x019AE2 06:9AD2: 00        .byte $00   ; 
-- D 0 - I - 0x019AE3 06:9AD3: 00        .byte $00   ; 
-- D 0 - I - 0x019AE4 06:9AD4: 00        .byte $00   ; 
-- D 0 - I - 0x019AE5 06:9AD5: 01        .byte $01   ; 
-- D 0 - I - 0x019AE6 06:9AD6: 03        .byte con_obj_roper   ; 
+off_00_9ACC_01_cursor:
+- D 0 - I - 0x019ADC 06:9ACC: 01        .byte con_884D_script_hand_cursor   ; 
+- D 0 - I - 0x019ADD 06:9ACD: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019ADF 06:9ACF: FF 00     .word $00FF ; X camera limit (max)
+- D 0 - I - 0x019AE1 06:9AD1: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019AE3 06:9AD3: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019AE5 06:9AD5: 01        .byte $01   ; 04B0 ???
+
+- D 0 - I - 0x019AE6 06:9AD6: 03        .byte $03   ; cursor direction (right)
 
 
 
 off_00_9AD7_02:
-- D 0 - I - 0x019AE7 06:9AD7: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019AE7 06:9AD7: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019AE8 06:9AD8: 80        .byte $80   ; 
 - D 0 - I - 0x019AE9 06:9AD9: B0        .byte $B0   ; 
 - D 0 - I - 0x019AEA 06:9ADA: 00        .byte $00   ; 
 
 
 
-off_00_9ADB_03:
-- D 0 - I - 0x019AEB 06:9ADB: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019AEC 06:9ADC: 00        .byte $00   ; 
-- D 0 - I - 0x019AED 06:9ADD: 00        .byte $00   ; 
-- D 0 - I - 0x019AEE 06:9ADE: FF        .byte $FF   ; 
-- D 0 - I - 0x019AEF 06:9ADF: 00        .byte $00   ; 
-- D 0 - I - 0x019AF0 06:9AE0: 00        .byte $00   ; 
-- D 0 - I - 0x019AF1 06:9AE1: 00        .byte $00   ; 
-- D 0 - I - 0x019AF2 06:9AE2: 00        .byte $00   ; 
-- D 0 - I - 0x019AF3 06:9AE3: 00        .byte $00   ; 
-- D 0 - I - 0x019AF4 06:9AE4: 01        .byte $01   ; 
+off_00_9ADB_03_spawn_roper:
+- D 0 - I - 0x019AEB 06:9ADB: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019AEC 06:9ADC: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019AEE 06:9ADE: FF 00     .word $00FF ; X camera limit (max)
+- D 0 - I - 0x019AF0 06:9AE0: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019AF2 06:9AE2: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019AF4 06:9AE4: 01        .byte $01   ; 04B0 ???
+
 - D 0 - I - 0x019AF5 06:9AE5: 42        .byte con_chr_bank + $42   ; 
 - D 0 - I - 0x019AF6 06:9AE6: 03        .byte con_obj_roper   ; 
-- D 0 - I - 0x019AF7 06:9AE7: 03        .byte $03   ; counter
+- D 0 - I - 0x019AF7 06:9AE7: 03        .byte $03   ; enemy counter
 ; 01
-- D 0 - I - 0x019AF8 06:9AE8: 00        .byte $00   ; 
-- D 0 - I - 0x019AF9 06:9AE9: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019AF8 06:9AE8: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019AF9 06:9AE9: 0F        .byte $0F   ; enemy hp
 ; 02
-- D 0 - I - 0x019AFA 06:9AEA: 00        .byte $00   ; 
-- D 0 - I - 0x019AFB 06:9AEB: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019AFA 06:9AEA: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019AFB 06:9AEB: 0F        .byte $0F   ; enemy hp
 ; 03
-- D 0 - I - 0x019AFC 06:9AEC: 00        .byte $00   ; 
-- D 0 - I - 0x019AFD 06:9AED: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019AFC 06:9AEC: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019AFD 06:9AED: 0F        .byte $0F   ; enemy hp
 
 
 
-off_00_9AEE_04:
-- D 0 - I - 0x019AFE 06:9AEE: 01        .byte con_884D_white_hand_cursor   ; 
-- D 0 - I - 0x019AFF 06:9AEF: 00        .byte $00   ; 
-- D 0 - I - 0x019B00 06:9AF0: 00        .byte $00   ; 
-- D 0 - I - 0x019B01 06:9AF1: 00        .byte $00   ; 
-- D 0 - I - 0x019B02 06:9AF2: 02        .byte $02   ; 
-- D 0 - I - 0x019B03 06:9AF3: 00        .byte $00   ; 
-- D 0 - I - 0x019B04 06:9AF4: 00        .byte $00   ; 
-- D 0 - I - 0x019B05 06:9AF5: 00        .byte $00   ; 
-- D 0 - I - 0x019B06 06:9AF6: 00        .byte $00   ; 
-- D 0 - I - 0x019B07 06:9AF7: 01        .byte $01   ; 
-- D 0 - I - 0x019B08 06:9AF8: 03        .byte $03   ; 
+off_00_9AEE_04_cursor:
+- D 0 - I - 0x019AFE 06:9AEE: 01        .byte con_884D_script_hand_cursor   ; 
+- D 0 - I - 0x019AFF 06:9AEF: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019B01 06:9AF1: 00 02     .word $0200 ; X camera limit (max)
+- D 0 - I - 0x019B03 06:9AF3: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019B05 06:9AF5: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019B07 06:9AF7: 01        .byte $01   ; 04B0 ???
+
+- D 0 - I - 0x019B08 06:9AF8: 03        .byte $03   ; cursor direction (right)
 
 
 
 off_00_9AF9_05:
-- D 0 - I - 0x019B09 06:9AF9: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019B09 06:9AF9: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019B0A 06:9AFA: 80        .byte $80   ; 
 - D 0 - I - 0x019B0B 06:9AFB: 00        .byte $00   ; 
 - D 0 - I - 0x019B0C 06:9AFC: 02        .byte $02   ; 
 
 
 
-off_00_9AFD_06:
-- D 0 - I - 0x019B0D 06:9AFD: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019B0E 06:9AFE: 00        .byte $00   ; 
-- D 0 - I - 0x019B0F 06:9AFF: 02        .byte $02   ; 
-- D 0 - I - 0x019B10 06:9B00: FF        .byte $FF   ; 
-- D 0 - I - 0x019B11 06:9B01: 02        .byte $02   ; 
-- D 0 - I - 0x019B12 06:9B02: 00        .byte $00   ; 
-- D 0 - I - 0x019B13 06:9B03: 00        .byte $00   ; 
-- D 0 - I - 0x019B14 06:9B04: F0        .byte $F0   ; 
-- D 0 - I - 0x019B15 06:9B05: 00        .byte $00   ; 
-- D 0 - I - 0x019B16 06:9B06: 03        .byte $03   ; 
+off_00_9AFD_06_spawn_linda:
+- D 0 - I - 0x019B0D 06:9AFD: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019B0E 06:9AFE: 00 02     .word $0200 ; X camera limit (min)
+- D 0 - I - 0x019B10 06:9B00: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019B12 06:9B02: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019B14 06:9B04: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019B16 06:9B06: 03        .byte $03   ; 04B0 ???
+
 - D 0 - I - 0x019B17 06:9B07: 44        .byte con_chr_bank + $44   ; 
 - D 0 - I - 0x019B18 06:9B08: 04        .byte con_obj_linda   ; 
-- D 0 - I - 0x019B19 06:9B09: 03        .byte $03   ; counter
+- D 0 - I - 0x019B19 06:9B09: 03        .byte $03   ; enemy counter
 ; 01
-- D 0 - I - 0x019B1A 06:9B0A: 60        .byte $60   ; 
-- D 0 - I - 0x019B1B 06:9B0B: 04        .byte con_state_ladder_climb_idle   ; 
-- D 0 - I - 0x019B1C 06:9B0C: 00        .byte $00   ; 
-- D 0 - I - 0x019B1D 06:9B0D: C8 02     .word $02C8 ; pos_X
-- D 0 - I - 0x019B1F 06:9B0F: 80 00     .word $0080 ; pos_Y
-- D 0 - I - 0x019B21 06:9B11: 40 00     .word $0040 ; pos_Z
-- D 0 - I - 0x019B23 06:9B13: 00        .byte $00   ; 
-- D 0 - I - 0x019B24 06:9B14: 07        .byte $07   ; hp
+- D 0 - I - 0x019B1A 06:9B0A: 60        .byte $60   ; enemy settings
+- D 0 - I - 0x019B1B 06:9B0B: 04        .byte con_state_ladder_climb_idle   ; enemy state
+- D 0 - I - 0x019B1C 06:9B0C: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019B1D 06:9B0D: C8 02     .word $02C8 ; enemy pos_X
+- D 0 - I - 0x019B1F 06:9B0F: 80 00     .word $0080 ; enemy pos_Y
+- D 0 - I - 0x019B21 06:9B11: 40 00     .word $0040 ; enemy pos_Z
+- D 0 - I - 0x019B23 06:9B13: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019B24 06:9B14: 07        .byte $07   ; enemy hp
 ; 02
-- D 0 - I - 0x019B25 06:9B15: 60        .byte $60   ; 
-- D 0 - I - 0x019B26 06:9B16: 04        .byte con_state_ladder_climb_idle   ; 
-- D 0 - I - 0x019B27 06:9B17: 00        .byte $00   ; 
-- D 0 - I - 0x019B28 06:9B18: C8 02     .word $02C8 ; pos_X
-- D 0 - I - 0x019B2A 06:9B1A: 80 00     .word $0080 ; pos_Y
-- D 0 - I - 0x019B2C 06:9B1C: 70 00     .word $0070 ; pos_Z
-- D 0 - I - 0x019B2E 06:9B1E: 00        .byte $00   ; 
-- D 0 - I - 0x019B2F 06:9B1F: 07        .byte $07   ; hp
+- D 0 - I - 0x019B25 06:9B15: 60        .byte $60   ; enemy settings
+- D 0 - I - 0x019B26 06:9B16: 04        .byte con_state_ladder_climb_idle   ; enemy state
+- D 0 - I - 0x019B27 06:9B17: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019B28 06:9B18: C8 02     .word $02C8 ; enemy pos_X
+- D 0 - I - 0x019B2A 06:9B1A: 80 00     .word $0080 ; enemy pos_Y
+- D 0 - I - 0x019B2C 06:9B1C: 70 00     .word $0070 ; enemy pos_Z
+- D 0 - I - 0x019B2E 06:9B1E: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019B2F 06:9B1F: 07        .byte $07   ; enemy hp
 ; 03
-- D 0 - I - 0x019B30 06:9B20: 60        .byte $60   ; 
-- D 0 - I - 0x019B31 06:9B21: 04        .byte con_state_ladder_climb_idle   ; 
-- D 0 - I - 0x019B32 06:9B22: 00        .byte $00   ; 
-- D 0 - I - 0x019B33 06:9B23: C8 02     .word $02C8 ; pos_X
-- D 0 - I - 0x019B35 06:9B25: 80 00     .word $0080 ; pos_Y
-- D 0 - I - 0x019B37 06:9B27: 40 00     .word $0040 ; pos_Z
-- D 0 - I - 0x019B39 06:9B29: 00        .byte $00   ; 
-- D 0 - I - 0x019B3A 06:9B2A: 07        .byte $07   ; hp
+- D 0 - I - 0x019B30 06:9B20: 60        .byte $60   ; enemy settings
+- D 0 - I - 0x019B31 06:9B21: 04        .byte con_state_ladder_climb_idle   ; enemy state
+- D 0 - I - 0x019B32 06:9B22: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019B33 06:9B23: C8 02     .word $02C8 ; enemy pos_X
+- D 0 - I - 0x019B35 06:9B25: 80 00     .word $0080 ; enemy pos_Y
+- D 0 - I - 0x019B37 06:9B27: 40 00     .word $0040 ; enemy pos_Z
+- D 0 - I - 0x019B39 06:9B29: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019B3A 06:9B2A: 07        .byte $07   ; enemy hp
 
 
 
-off_00_9B2B_07:
-- D 0 - I - 0x019B3B 06:9B2B: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019B3C 06:9B2C: 00        .byte $00   ; 
-- D 0 - I - 0x019B3D 06:9B2D: 02        .byte $02   ; 
-- D 0 - I - 0x019B3E 06:9B2E: FF        .byte $FF   ; 
-- D 0 - I - 0x019B3F 06:9B2F: 02        .byte $02   ; 
-- D 0 - I - 0x019B40 06:9B30: 00        .byte $00   ; 
-- D 0 - I - 0x019B41 06:9B31: 00        .byte $00   ; 
-- D 0 - I - 0x019B42 06:9B32: F0        .byte $F0   ; 
-- D 0 - I - 0x019B43 06:9B33: 00        .byte $00   ; 
-- D 0 - I - 0x019B44 06:9B34: 03        .byte $03   ; 
+off_00_9B2B_07_spawn_williams:
+- D 0 - I - 0x019B3B 06:9B2B: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019B3C 06:9B2C: 00 02     .word $0200 ; X camera limit (min)
+- D 0 - I - 0x019B3E 06:9B2E: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019B40 06:9B30: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019B42 06:9B32: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019B44 06:9B34: 03        .byte $03   ; 04B0 ???
+
 - D 0 - I - 0x019B45 06:9B35: 4E        .byte con_chr_bank + $4E   ; 
 - D 0 - I - 0x019B46 06:9B36: 02        .byte con_obj_williams   ; 
-- D 0 - I - 0x019B47 06:9B37: 03        .byte $03   ; counter
+- D 0 - I - 0x019B47 06:9B37: 03        .byte $03   ; enemy counter
 ; 01
-- D 0 - I - 0x019B48 06:9B38: 00        .byte $00   ; 
-- D 0 - I - 0x019B49 06:9B39: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019B48 06:9B38: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019B49 06:9B39: 0B        .byte $0B   ; enemy hp
 ; 02
-- D 0 - I - 0x019B4A 06:9B3A: 00        .byte $00   ; 
-- D 0 - I - 0x019B4B 06:9B3B: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019B4A 06:9B3A: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019B4B 06:9B3B: 0B        .byte $0B   ; enemy hp
 ; 03
-- D 0 - I - 0x019B4C 06:9B3C: 00        .byte $00   ; 
-- D 0 - I - 0x019B4D 06:9B3D: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019B4C 06:9B3C: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019B4D 06:9B3D: 0B        .byte $0B   ; enemy hp
 
 
 
-off_00_9B3E_08:
-- D 0 - I - 0x019B4E 06:9B3E: 01        .byte con_884D_white_hand_cursor   ; 
-- D 0 - I - 0x019B4F 06:9B3F: 00        .byte $00   ; 
-- D 0 - I - 0x019B50 06:9B40: 02        .byte $02   ; 
-- D 0 - I - 0x019B51 06:9B41: FF        .byte $FF   ; 
-- D 0 - I - 0x019B52 06:9B42: 02        .byte $02   ; 
-- D 0 - I - 0x019B53 06:9B43: 00        .byte $00   ; 
-- D 0 - I - 0x019B54 06:9B44: 00        .byte $00   ; 
-- D 0 - I - 0x019B55 06:9B45: E0        .byte $E0   ; 
-- D 0 - I - 0x019B56 06:9B46: 00        .byte $00   ; 
-- D 0 - I - 0x019B57 06:9B47: 0F        .byte $0F   ; 
-- D 0 - I - 0x019B58 06:9B48: 00        .byte $00   ; 
+off_00_9B3E_08_cursor:
+- D 0 - I - 0x019B4E 06:9B3E: 01        .byte con_884D_script_hand_cursor   ; 
+- D 0 - I - 0x019B4F 06:9B3F: 00 02     .word $0200 ; X camera limit (min)
+- D 0 - I - 0x019B51 06:9B41: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019B53 06:9B43: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019B55 06:9B45: E0 00     .word $00E0 ; Y camera limit (max)
+- D 0 - I - 0x019B57 06:9B47: 0F        .byte $0F   ; 04B0 ???
+
+- D 0 - I - 0x019B58 06:9B48: 00        .byte $00   ; cursor direction (up)
 
 
 
 off_00_9B49_09:
-- D 0 - I - 0x019B59 06:9B49: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019B59 06:9B49: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019B5A 06:9B4A: 08        .byte $08   ; 
 - D 0 - I - 0x019B5B 06:9B4B: 75        .byte $75   ; 
 - D 0 - I - 0x019B5C 06:9B4C: 00        .byte $00   ; 
@@ -4828,183 +4807,172 @@ off_00_9B49_09:
 
 
 off_00_9B4D_0A:
-- D 0 - I - 0x019B5D 06:9B4D: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019B5D 06:9B4D: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019B5E 06:9B4E: 08        .byte $08   ; 
 - D 0 - I - 0x019B5F 06:9B4F: 94        .byte $94   ; 
 - D 0 - I - 0x019B60 06:9B50: 00        .byte $00   ; 
 
 
 
-off_00_9B51_0B:
-- D 0 - I - 0x019B61 06:9B51: 09        .byte con_884D_09   ; 
-- D 0 - I - 0x019B62 06:9B52: 00        .byte $00   ; 
-- D 0 - I - 0x019B63 06:9B53: 02        .byte $02   ; 
-- D 0 - I - 0x019B64 06:9B54: FF        .byte $FF   ; 
-- D 0 - I - 0x019B65 06:9B55: 02        .byte $02   ; 
-- D 0 - I - 0x019B66 06:9B56: 94        .byte $94   ; 
-- D 0 - I - 0x019B67 06:9B57: 00        .byte $00   ; 
-- D 0 - I - 0x019B68 06:9B58: E0        .byte $E0   ; 
-- D 0 - I - 0x019B69 06:9B59: 00        .byte $00   ; 
-- D 0 - I - 0x019B6A 06:9B5A: 0B        .byte $0B   ; 
+off_00_9B51_0B_spawn_linda:
+- D 0 - I - 0x019B61 06:9B51: 09        .byte con_884D_script_emeny_spawn_at_door   ; 
+- D 0 - I - 0x019B62 06:9B52: 00 02     .word $0200 ; X camera limit (min)
+- D 0 - I - 0x019B64 06:9B54: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019B66 06:9B56: 94 00     .word $0094 ; Y camera limit (min)
+- D 0 - I - 0x019B68 06:9B58: E0 00     .word $00E0 ; Y camera limit (max)
+- D 0 - I - 0x019B6A 06:9B5A: 0B        .byte $0B   ; 04B0 ???
+
 - D 0 - I - 0x019B6B 06:9B5B: 44        .byte con_chr_bank + $44   ; 
 - D 0 - I - 0x019B6C 06:9B5C: 04        .byte con_obj_linda   ; 
-- D 0 - I - 0x019B6D 06:9B5D: 04        .byte $04   ; counter
+- D 0 - I - 0x019B6D 06:9B5D: 04        .byte $04   ; enemy counter
+
+- D 0 - I - 0x019B6E 06:9B5E: 00        .byte con_A6C3_draw_door_linda   ; spawner
+
 ; 01
-- D 0 - I - 0x019B6E 06:9B5E: 00        .byte $00   ; 
-- D 0 - I - 0x019B6F 06:9B5F: A0        .byte $A0   ; 
-- D 0 - I - 0x019B70 06:9B60: 15        .byte con_obj_chain_whip   ; 
-- D 0 - I - 0x019B71 06:9B61: 01        .byte $01   ; 
-- D 0 - I - 0x019B72 06:9B62: 88 02     .word $0288 ; pos_X
-- D 0 - I - 0x019B74 06:9B64: A0 00     .word $00A0 ; pos_Y
-- D 0 - I - 0x019B76 06:9B66: A0 00     .word $00A0 ; pos_Z
-- D 0 - I - 0x019B78 06:9B68: 02        .byte $02   ; 
-- D 0 - I - 0x019B79 06:9B69: 07        .byte $07   ; hp
+- D 0 - I - 0x019B6F 06:9B5F: A0        .byte $A0   ; enemy settings
+- D 0 - I - 0x019B70 06:9B60: 15        .byte con_obj_chain_whip   ; enemy weapon
+- D 0 - I - 0x019B71 06:9B61: 01        .byte con_0359_01   ; enemy 0359 ???
+- D 0 - I - 0x019B72 06:9B62: 88 02     .word $0288 ; enemy pos_X
+- D 0 - I - 0x019B74 06:9B64: A0 00     .word $00A0 ; enemy pos_Y
+- D 0 - I - 0x019B76 06:9B66: A0 00     .word $00A0 ; enemy pos_Z
+- D 0 - I - 0x019B78 06:9B68: 02        .byte $02   ; enemy 006A ???
+- D 0 - I - 0x019B79 06:9B69: 07        .byte $07   ; enemy hp
 ; 02
-- D 0 - I - 0x019B7A 06:9B6A: 20        .byte $20   ; 
-- D 0 - I - 0x019B7B 06:9B6B: 01        .byte $01   ; 
-- D 0 - I - 0x019B7C 06:9B6C: 98 02     .word $0298 ; pos_X
-- D 0 - I - 0x019B7E 06:9B6E: A0 00     .word $00A0 ; pos_Y
-- D 0 - I - 0x019B80 06:9B70: A0 00     .word $00A0 ; pos_Z
-- D 0 - I - 0x019B82 06:9B72: 02        .byte $02   ; 
-- D 0 - I - 0x019B83 06:9B73: 07        .byte $07   ; hp
+- D 0 - I - 0x019B7A 06:9B6A: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019B7B 06:9B6B: 01        .byte con_0359_01   ; enemy 0359 ???
+- D 0 - I - 0x019B7C 06:9B6C: 98 02     .word $0298 ; enemy pos_X
+- D 0 - I - 0x019B7E 06:9B6E: A0 00     .word $00A0 ; enemy pos_Y
+- D 0 - I - 0x019B80 06:9B70: A0 00     .word $00A0 ; enemy pos_Z
+- D 0 - I - 0x019B82 06:9B72: 02        .byte $02   ; enemy 006A ???
+- D 0 - I - 0x019B83 06:9B73: 07        .byte $07   ; enemy hp
 ; 03
-- D 0 - I - 0x019B84 06:9B74: 20        .byte $20   ; 
-- D 0 - I - 0x019B85 06:9B75: 01        .byte $01   ; 
-- D 0 - I - 0x019B86 06:9B76: 98 02     .word $0298 ; pos_X
-- D 0 - I - 0x019B88 06:9B78: A0 00     .word $00A0 ; pos_Y
-- D 0 - I - 0x019B8A 06:9B7A: A0 00     .word $00A0 ; pos_Z
-- D 0 - I - 0x019B8C 06:9B7C: 02        .byte $02   ; 
-- D 0 - I - 0x019B8D 06:9B7D: 07        .byte $07   ; hp
+- D 0 - I - 0x019B84 06:9B74: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019B85 06:9B75: 01        .byte con_0359_01   ; enemy 0359 ???
+- D 0 - I - 0x019B86 06:9B76: 98 02     .word $0298 ; enemy pos_X
+- D 0 - I - 0x019B88 06:9B78: A0 00     .word $00A0 ; enemy pos_Y
+- D 0 - I - 0x019B8A 06:9B7A: A0 00     .word $00A0 ; enemy pos_Z
+- D 0 - I - 0x019B8C 06:9B7C: 02        .byte $02   ; enemy 006A ???
+- D 0 - I - 0x019B8D 06:9B7D: 07        .byte $07   ; enemy hp
 ; 04
-- - - - - - 0x019B8E 06:9B7E: 20        .byte $20   ; 
-- - - - - - 0x019B8F 06:9B7F: 01        .byte $01   ; 
-- - - - - - 0x019B90 06:9B80: 98 02     .word $0298 ; pos_X
-- - - - - - 0x019B92 06:9B82: A0 00     .word $00A0 ; pos_Y
-- - - - - - 0x019B94 06:9B84: A0 00     .word $00A0 ; pos_Z
-- - - - - - 0x019B96 06:9B86: 02        .byte $02   ; 
-- - - - - - 0x019B97 06:9B87: 07        .byte $07   ; hp
+- - - - - - 0x019B8E 06:9B7E: 20        .byte $20   ; enemy settings
+- - - - - - 0x019B8F 06:9B7F: 01        .byte con_0359_01   ; enemy 0359 ???
+- - - - - - 0x019B90 06:9B80: 98 02     .word $0298 ; enemy pos_X
+- - - - - - 0x019B92 06:9B82: A0 00     .word $00A0 ; enemy pos_Y
+- - - - - - 0x019B94 06:9B84: A0 00     .word $00A0 ; enemy pos_Z
+- - - - - - 0x019B96 06:9B86: 02        .byte $02   ; enemy 006A ???
+- - - - - - 0x019B97 06:9B87: 07        .byte $07   ; enemy hp
 
 
 
-off_00_9B88_0C:
-- D 0 - I - 0x019B98 06:9B88: 09        .byte con_884D_09   ; 
-- D 0 - I - 0x019B99 06:9B89: 00        .byte $00   ; 
-- D 0 - I - 0x019B9A 06:9B8A: 02        .byte $02   ; 
-- D 0 - I - 0x019B9B 06:9B8B: FF        .byte $FF   ; 
-- D 0 - I - 0x019B9C 06:9B8C: 02        .byte $02   ; 
-- D 0 - I - 0x019B9D 06:9B8D: 94        .byte $94   ; 
-- D 0 - I - 0x019B9E 06:9B8E: 00        .byte $00   ; 
-- D 0 - I - 0x019B9F 06:9B8F: E0        .byte $E0   ; 
-- D 0 - I - 0x019BA0 06:9B90: 00        .byte $00   ; 
-- D 0 - I - 0x019BA1 06:9B91: 0B        .byte $0B   ; 
+off_00_9B88_0C_spawn_williams:
+- D 0 - I - 0x019B98 06:9B88: 09        .byte con_884D_script_emeny_spawn_at_door   ; 
+- D 0 - I - 0x019B99 06:9B89: 00 02     .word $0200 ; X camera limit (min)
+- D 0 - I - 0x019B9B 06:9B8B: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019B9D 06:9B8D: 94 00     .word $0094 ; Y camera limit (min)
+- D 0 - I - 0x019B9F 06:9B8F: E0 00     .word $00E0 ; Y camera limit (max)
+- D 0 - I - 0x019BA1 06:9B91: 0B        .byte $0B   ; 04B0 ???
+
 - D 0 - I - 0x019BA2 06:9B92: 4E        .byte con_chr_bank + $4E   ; 
 - D 0 - I - 0x019BA3 06:9B93: 02        .byte con_obj_williams   ; 
-- D 0 - I - 0x019BA4 06:9B94: 04        .byte $04   ; counter
+- D 0 - I - 0x019BA4 06:9B94: 04        .byte $04   ; enemy counter
+
+- D 0 - I - 0x019BA5 06:9B95: 01        .byte con_A6C3_draw_door_williams   ; spawner
+
 ; 01
-- D 0 - I - 0x019BA5 06:9B95: 01        .byte $01   ; 
-- D 0 - I - 0x019BA6 06:9B96: A0        .byte $A0   ; 
-- D 0 - I - 0x019BA7 06:9B97: 12        .byte con_obj_knife   ; 
-- D 0 - I - 0x019BA8 06:9B98: 02        .byte $02   ; 
-- D 0 - I - 0x019BA9 06:9B99: 4A 03     .word $034A ; pos_X
-- D 0 - I - 0x019BAB 06:9B9B: A0 00     .word $00A0 ; pos_Y
-- D 0 - I - 0x019BAD 06:9B9D: B0 00     .word $00B0 ; pos_Z
-- D 0 - I - 0x019BAF 06:9B9F: 02        .byte $02   ; 
-- D 0 - I - 0x019BB0 06:9BA0: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019BA6 06:9B96: A0        .byte $A0   ; enemy settings
+- D 0 - I - 0x019BA7 06:9B97: 12        .byte con_obj_knife   ; enemy weapon
+- D 0 - I - 0x019BA8 06:9B98: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019BA9 06:9B99: 4A 03     .word $034A ; enemy pos_X
+- D 0 - I - 0x019BAB 06:9B9B: A0 00     .word $00A0 ; enemy pos_Y
+- D 0 - I - 0x019BAD 06:9B9D: B0 00     .word $00B0 ; enemy pos_Z
+- D 0 - I - 0x019BAF 06:9B9F: 02        .byte $02   ; enemy 006A ???
+- D 0 - I - 0x019BB0 06:9BA0: 0B        .byte $0B   ; enemy hp
 ; 02
-- D 0 - I - 0x019BB1 06:9BA1: 20        .byte $20   ; 
-- D 0 - I - 0x019BB2 06:9BA2: 02        .byte $02   ; 
-- D 0 - I - 0x019BB3 06:9BA3: 57 03     .word $0357 ; pos_X
-- D 0 - I - 0x019BB5 06:9BA5: A0 00     .word $00A0 ; pos_Y
-- D 0 - I - 0x019BB7 06:9BA7: B0 00     .word $00B0 ; pos_Z
-- D 0 - I - 0x019BB9 06:9BA9: 02        .byte $02   ; 
-- D 0 - I - 0x019BBA 06:9BAA: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019BB1 06:9BA1: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019BB2 06:9BA2: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019BB3 06:9BA3: 57 03     .word $0357 ; enemy pos_X
+- D 0 - I - 0x019BB5 06:9BA5: A0 00     .word $00A0 ; enemy pos_Y
+- D 0 - I - 0x019BB7 06:9BA7: B0 00     .word $00B0 ; enemy pos_Z
+- D 0 - I - 0x019BB9 06:9BA9: 02        .byte $02   ; enemy 006A ???
+- D 0 - I - 0x019BBA 06:9BAA: 0B        .byte $0B   ; enemy hp
 ; 03
-- D 0 - I - 0x019BBB 06:9BAB: A0        .byte $A0   ; 
-- D 0 - I - 0x019BBC 06:9BAC: 12        .byte con_obj_knife   ; 
-- D 0 - I - 0x019BBD 06:9BAD: 02        .byte $02   ; 
-- D 0 - I - 0x019BBE 06:9BAE: 50 03     .word $0350 ; pos_X
-- D 0 - I - 0x019BC0 06:9BB0: A0 00     .word $00A0 ; pos_Y
-- D 0 - I - 0x019BC2 06:9BB2: B0 00     .word $00B0 ; pos_Z
-- D 0 - I - 0x019BC4 06:9BB4: 02        .byte $02   ; 
-- D 0 - I - 0x019BC5 06:9BB5: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019BBB 06:9BAB: A0        .byte $A0   ; enemy settings
+- D 0 - I - 0x019BBC 06:9BAC: 12        .byte con_obj_knife   ; enemy weapon
+- D 0 - I - 0x019BBD 06:9BAD: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019BBE 06:9BAE: 50 03     .word $0350 ; enemy pos_X
+- D 0 - I - 0x019BC0 06:9BB0: A0 00     .word $00A0 ; enemy pos_Y
+- D 0 - I - 0x019BC2 06:9BB2: B0 00     .word $00B0 ; enemy pos_Z
+- D 0 - I - 0x019BC4 06:9BB4: 02        .byte $02   ; enemy 006A ???
+- D 0 - I - 0x019BC5 06:9BB5: 0B        .byte $0B   ; enemy hp
 ; 04
-- - - - - - 0x019BC6 06:9BB6: 20        .byte $20   ; 
-- - - - - - 0x019BC7 06:9BB7: 02        .byte $02   ; 
-- - - - - - 0x019BC8 06:9BB8: 57 03     .word $0357 ; pos_X
-- - - - - - 0x019BCA 06:9BBA: A0 00     .word $00A0 ; pos_Y
-- - - - - - 0x019BCC 06:9BBC: B0 00     .word $00B0 ; pos_Z
-- - - - - - 0x019BCE 06:9BBE: 02        .byte $02   ; 
-- - - - - - 0x019BCF 06:9BBF: 0B        .byte $0B   ; hp
+- - - - - - 0x019BC6 06:9BB6: 20        .byte $20   ; enemy settings
+- - - - - - 0x019BC7 06:9BB7: 02        .byte con_0359_02   ; enemy 0359 ???
+- - - - - - 0x019BC8 06:9BB8: 57 03     .word $0357 ; enemy pos_X
+- - - - - - 0x019BCA 06:9BBA: A0 00     .word $00A0 ; enemy pos_Y
+- - - - - - 0x019BCC 06:9BBC: B0 00     .word $00B0 ; enemy pos_Z
+- - - - - - 0x019BCE 06:9BBE: 02        .byte $02   ; enemy 006A ???
+- - - - - - 0x019BCF 06:9BBF: 0B        .byte $0B   ; enemy hp
 
 
 
-off_00_9BC0_0D:
-- D 0 - I - 0x019BD0 06:9BC0: 01        .byte con_884D_white_hand_cursor   ; 
-- D 0 - I - 0x019BD1 06:9BC1: 00        .byte $00   ; 
-- D 0 - I - 0x019BD2 06:9BC2: 02        .byte $02   ; 
-- D 0 - I - 0x019BD3 06:9BC3: FF        .byte $FF   ; 
-- D 0 - I - 0x019BD4 06:9BC4: 02        .byte $02   ; 
-- D 0 - I - 0x019BD5 06:9BC5: 94        .byte $94   ; 
-- D 0 - I - 0x019BD6 06:9BC6: 00        .byte $00   ; 
-- D 0 - I - 0x019BD7 06:9BC7: DF        .byte $DF   ; 
-- D 0 - I - 0x019BD8 06:9BC8: 01        .byte $01   ; 
-- D 0 - I - 0x019BD9 06:9BC9: 0D        .byte $0D   ; 
-- D 0 - I - 0x019BDA 06:9BCA: 00        .byte $00   ; 
+off_00_9BC0_0D_cursor:
+- D 0 - I - 0x019BD0 06:9BC0: 01        .byte con_884D_script_hand_cursor   ; 
+- D 0 - I - 0x019BD1 06:9BC1: 00 02     .word $0200 ; X camera limit (min)
+- D 0 - I - 0x019BD3 06:9BC3: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019BD5 06:9BC5: 94 00     .word $0094 ; Y camera limit (min)
+- D 0 - I - 0x019BD7 06:9BC7: DF 01     .word $01DF ; Y camera limit (max)
+- D 0 - I - 0x019BD9 06:9BC9: 0D        .byte $0D   ; 04B0 ???
+
+- D 0 - I - 0x019BDA 06:9BCA: 00        .byte $00   ; cursor direction (up)
 
 
 
 off_00_9BCB_0E:
-- D 0 - I - 0x019BDB 06:9BCB: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019BDB 06:9BCB: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019BDC 06:9BCC: 08        .byte $08   ; 
 - D 0 - I - 0x019BDD 06:9BCD: 2D        .byte $2D   ; 
 - D 0 - I - 0x019BDE 06:9BCE: 01        .byte $01   ; 
 
 
 
-off_00_9BCF_0F:
-- D 0 - I - 0x019BDF 06:9BCF: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019BE0 06:9BD0: 00        .byte $00   ; 
-- D 0 - I - 0x019BE1 06:9BD1: 02        .byte $02   ; 
-- D 0 - I - 0x019BE2 06:9BD2: FF        .byte $FF   ; 
-- D 0 - I - 0x019BE3 06:9BD3: 02        .byte $02   ; 
-- D 0 - I - 0x019BE4 06:9BD4: 2D        .byte $2D   ; 
-- D 0 - I - 0x019BE5 06:9BD5: 01        .byte $01   ; 
-- D 0 - I - 0x019BE6 06:9BD6: 68        .byte $68   ; 
-- D 0 - I - 0x019BE7 06:9BD7: 01        .byte $01   ; 
-- D 0 - I - 0x019BE8 06:9BD8: 0B        .byte $0B   ; 
+off_00_9BCF_0F_spawn_roper:
+- D 0 - I - 0x019BDF 06:9BCF: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019BE0 06:9BD0: 00 02     .word $0200 ; X camera limit (min)
+- D 0 - I - 0x019BE2 06:9BD2: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019BE4 06:9BD4: 2D 01     .word $012D ; Y camera limit (min)
+- D 0 - I - 0x019BE6 06:9BD6: 68 01     .word $0168 ; Y camera limit (max)
+- D 0 - I - 0x019BE8 06:9BD8: 0B        .byte $0B   ; 04B0 ???
+
 - D 0 - I - 0x019BE9 06:9BD9: 42        .byte con_chr_bank + $42   ; 
 - D 0 - I - 0x019BEA 06:9BDA: 03        .byte con_obj_roper   ; 
-- D 0 - I - 0x019BEB 06:9BDB: 02        .byte $02   ; counter
+- D 0 - I - 0x019BEB 06:9BDB: 02        .byte $02   ; enemy counter
 ; 01
-- D 0 - I - 0x019BEC 06:9BDC: 20        .byte $20   ; 
-- D 0 - I - 0x019BED 06:9BDD: 04        .byte $04   ; 
-- D 0 - I - 0x019BEE 06:9BDE: 90 02     .word $0290 ; pos_X
-- D 0 - I - 0x019BF0 06:9BE0: A0 00     .word $00A0 ; pos_Y
-- D 0 - I - 0x019BF2 06:9BE2: 60 01     .word $0160 ; pos_Z
-- D 0 - I - 0x019BF4 06:9BE4: 00        .byte $00   ; 
-- D 0 - I - 0x019BF5 06:9BE5: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019BEC 06:9BDC: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019BED 06:9BDD: 04        .byte con_0359_04   ; enemy 0359 ???
+- D 0 - I - 0x019BEE 06:9BDE: 90 02     .word $0290 ; enemy pos_X
+- D 0 - I - 0x019BF0 06:9BE0: A0 00     .word $00A0 ; enemy pos_Y
+- D 0 - I - 0x019BF2 06:9BE2: 60 01     .word $0160 ; enemy pos_Z
+- D 0 - I - 0x019BF4 06:9BE4: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019BF5 06:9BE5: 0F        .byte $0F   ; enemy hp
 ; 02
-- D 0 - I - 0x019BF6 06:9BE6: 20        .byte $20   ; 
-- D 0 - I - 0x019BF7 06:9BE7: 04        .byte $04   ; 
-- D 0 - I - 0x019BF8 06:9BE8: C0 02     .word $02C0 ; pos_X
-- D 0 - I - 0x019BFA 06:9BEA: A0 00     .word $00A0 ; pos_Y
-- D 0 - I - 0x019BFC 06:9BEC: 60 01     .word $0160 ; pos_Z
-- D 0 - I - 0x019BFE 06:9BEE: 00        .byte $00   ; 
-- D 0 - I - 0x019BFF 06:9BEF: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019BF6 06:9BE6: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019BF7 06:9BE7: 04        .byte con_0359_04   ; enemy 0359 ???
+- D 0 - I - 0x019BF8 06:9BE8: C0 02     .word $02C0 ; enemy pos_X
+- D 0 - I - 0x019BFA 06:9BEA: A0 00     .word $00A0 ; enemy pos_Y
+- D 0 - I - 0x019BFC 06:9BEC: 60 01     .word $0160 ; enemy pos_Z
+- D 0 - I - 0x019BFE 06:9BEE: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019BFF 06:9BEF: 0F        .byte $0F   ; enemy hp
 
 
 
-off_00_9BF0_10:
-- D 0 - I - 0x019C00 06:9BF0: 03        .byte con_884D_03   ; 
-- D 0 - I - 0x019C01 06:9BF1: 00        .byte $00   ; 
-- D 0 - I - 0x019C02 06:9BF2: 02        .byte $02   ; 
-- D 0 - I - 0x019C03 06:9BF3: FF        .byte $FF   ; 
-- D 0 - I - 0x019C04 06:9BF4: 02        .byte $02   ; 
-- D 0 - I - 0x019C05 06:9BF5: 2D        .byte $2D   ; 
-- D 0 - I - 0x019C06 06:9BF6: 01        .byte $01   ; 
-- D 0 - I - 0x019C07 06:9BF7: 90        .byte $90   ; 
-- D 0 - I - 0x019C08 06:9BF8: 01        .byte $01   ; 
-- D 0 - I - 0x019C09 06:9BF9: 0B        .byte $0B   ; 
+off_00_9BF0_10_spawn_williams:
+- D 0 - I - 0x019C00 06:9BF0: 03        .byte con_884D_script_03   ; 
+- D 0 - I - 0x019C01 06:9BF1: 00 02     .word $0200 ; X camera limit (min)
+- D 0 - I - 0x019C03 06:9BF3: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019C05 06:9BF5: 2D 01     .word $012D ; Y camera limit (min)
+- D 0 - I - 0x019C07 06:9BF7: 90 01     .word $0190 ; Y camera limit (max)
+- D 0 - I - 0x019C09 06:9BF9: 0B        .byte $0B   ; 04B0 ???
+
 - D 0 - I - 0x019C0A 06:9BFA: 4E        .byte con_chr_bank + $4E   ; 
 - D 0 - I - 0x019C0B 06:9BFB: 02        .byte con_obj_williams   ; 
 - - - - - - 0x019C0C 06:9BFC: 00        .byte $00   ; 
@@ -5012,65 +4980,62 @@ off_00_9BF0_10:
 
 
 off_00_9BFD_11:
-- D 0 - I - 0x019C0D 06:9BFD: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019C0D 06:9BFD: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019C0E 06:9BFE: 08        .byte $08   ; 
 - D 0 - I - 0x019C0F 06:9BFF: 90        .byte $90   ; 
 - D 0 - I - 0x019C10 06:9C00: 01        .byte $01   ; 
 
 
 
-off_00_9C01_12:
-- D 0 - I - 0x019C11 06:9C01: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019C12 06:9C02: 00        .byte $00   ; 
-- D 0 - I - 0x019C13 06:9C03: 02        .byte $02   ; 
-- D 0 - I - 0x019C14 06:9C04: FF        .byte $FF   ; 
-- D 0 - I - 0x019C15 06:9C05: 02        .byte $02   ; 
-- D 0 - I - 0x019C16 06:9C06: 90        .byte $90   ; 
-- D 0 - I - 0x019C17 06:9C07: 01        .byte $01   ; 
-- D 0 - I - 0x019C18 06:9C08: D0        .byte $D0   ; 
-- D 0 - I - 0x019C19 06:9C09: 02        .byte $02   ; 
-- D 0 - I - 0x019C1A 06:9C0A: 0F        .byte $0F   ; 
+off_00_9C01_12_spawn_williams:
+- D 0 - I - 0x019C11 06:9C01: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019C12 06:9C02: 00 02     .word $0200 ; X camera limit (min)
+- D 0 - I - 0x019C14 06:9C04: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019C16 06:9C06: 90 01     .word $0190 ; Y camera limit (min)
+- D 0 - I - 0x019C18 06:9C08: D0 02     .word $02D0 ; Y camera limit (max)
+- D 0 - I - 0x019C1A 06:9C0A: 0F        .byte $0F   ; 04B0 ???
+
 - D 0 - I - 0x019C1B 06:9C0B: 4E        .byte con_chr_bank + $4E   ; 
 - D 0 - I - 0x019C1C 06:9C0C: 02        .byte con_obj_williams   ; 
-- D 0 - I - 0x019C1D 06:9C0D: 06        .byte $06   ; counter
+- D 0 - I - 0x019C1D 06:9C0D: 06        .byte $06   ; enemy counter
 ; 01
-- D 0 - I - 0x019C1E 06:9C0E: A0        .byte $A0   ; 
-- D 0 - I - 0x019C1F 06:9C0F: 17        .byte con_obj_baton   ; 
-- D 0 - I - 0x019C20 06:9C10: 05        .byte $05   ; 
-- D 0 - I - 0x019C21 06:9C11: 10 03     .word $0310 ; pos_X
-- D 0 - I - 0x019C23 06:9C13: C0 00     .word $00C0 ; pos_Y
-- D 0 - I - 0x019C25 06:9C15: B0 01     .word $01B0 ; pos_Z
-- D 0 - I - 0x019C27 06:9C17: 03        .byte $03   ; 
-- D 0 - I - 0x019C28 06:9C18: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019C1E 06:9C0E: A0        .byte $A0   ; enemy settings
+- D 0 - I - 0x019C1F 06:9C0F: 17        .byte con_obj_baton   ; enemy weapon
+- D 0 - I - 0x019C20 06:9C10: 05        .byte con_0359_05   ; enemy 0359 ???
+- D 0 - I - 0x019C21 06:9C11: 10 03     .word $0310 ; enemy pos_X
+- D 0 - I - 0x019C23 06:9C13: C0 00     .word $00C0 ; enemy pos_Y
+- D 0 - I - 0x019C25 06:9C15: B0 01     .word $01B0 ; enemy pos_Z
+- D 0 - I - 0x019C27 06:9C17: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019C28 06:9C18: 0B        .byte $0B   ; enemy hp
 ; 02
-- D 0 - I - 0x019C29 06:9C19: 20        .byte $20   ; 
-- D 0 - I - 0x019C2A 06:9C1A: 05        .byte $05   ; 
-- D 0 - I - 0x019C2B 06:9C1B: 00 03     .word $0300 ; pos_X
-- D 0 - I - 0x019C2D 06:9C1D: C0 00     .word $00C0 ; pos_Y
-- D 0 - I - 0x019C2F 06:9C1F: B0 01     .word $01B0 ; pos_Z
-- D 0 - I - 0x019C31 06:9C21: 03        .byte $03   ; 
-- D 0 - I - 0x019C32 06:9C22: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019C29 06:9C19: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019C2A 06:9C1A: 05        .byte con_0359_05   ; enemy 0359 ???
+- D 0 - I - 0x019C2B 06:9C1B: 00 03     .word $0300 ; enemy pos_X
+- D 0 - I - 0x019C2D 06:9C1D: C0 00     .word $00C0 ; enemy pos_Y
+- D 0 - I - 0x019C2F 06:9C1F: B0 01     .word $01B0 ; enemy pos_Z
+- D 0 - I - 0x019C31 06:9C21: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019C32 06:9C22: 0B        .byte $0B   ; enemy hp
 ; 03
-- D 0 - I - 0x019C33 06:9C23: 80        .byte $80   ; 
-- D 0 - I - 0x019C34 06:9C24: 17        .byte con_obj_baton   ; 
-- D 0 - I - 0x019C35 06:9C25: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019C33 06:9C23: 80        .byte $80   ; enemy settings
+- D 0 - I - 0x019C34 06:9C24: 17        .byte con_obj_baton   ; enemy weapon
+- D 0 - I - 0x019C35 06:9C25: 0B        .byte $0B   ; enemy hp
 ; 04
-- D 0 - I - 0x019C36 06:9C26: 80        .byte $80   ; 
-- D 0 - I - 0x019C37 06:9C27: 17        .byte con_obj_baton   ; 
-- D 0 - I - 0x019C38 06:9C28: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019C36 06:9C26: 80        .byte $80   ; enemy settings
+- D 0 - I - 0x019C37 06:9C27: 17        .byte con_obj_baton   ; enemy weapon
+- D 0 - I - 0x019C38 06:9C28: 0B        .byte $0B   ; enemy hp
 ; 05
-- - - - - - 0x019C39 06:9C29: 80        .byte $80   ; 
-- - - - - - 0x019C3A 06:9C2A: 17        .byte con_obj_baton   ; 
-- - - - - - 0x019C3B 06:9C2B: 0B        .byte $0B   ; hp
+- - - - - - 0x019C39 06:9C29: 80        .byte $80   ; enemy settings
+- - - - - - 0x019C3A 06:9C2A: 17        .byte con_obj_baton   ; enemy weapon
+- - - - - - 0x019C3B 06:9C2B: 0B        .byte $0B   ; enemy hp
 ; 06
-- - - - - - 0x019C3C 06:9C2C: 80        .byte $80   ; 
-- - - - - - 0x019C3D 06:9C2D: 17        .byte con_obj_baton   ; 
-- - - - - - 0x019C3E 06:9C2E: 0B        .byte $0B   ; hp
+- - - - - - 0x019C3C 06:9C2C: 80        .byte $80   ; enemy settings
+- - - - - - 0x019C3D 06:9C2D: 17        .byte con_obj_baton   ; enemy weapon
+- - - - - - 0x019C3E 06:9C2E: 0B        .byte $0B   ; enemy hp
 
 
 
 off_00_9C2F_13:
-- D 0 - I - 0x019C3F 06:9C2F: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019C3F 06:9C2F: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019C40 06:9C30: 08        .byte $08   ; 
 - D 0 - I - 0x019C41 06:9C31: B0        .byte $B0   ; 
 - D 0 - I - 0x019C42 06:9C32: 01        .byte $01   ; 
@@ -5078,96 +5043,87 @@ off_00_9C2F_13:
 
 
 off_00_9C33_14:
-- D 0 - I - 0x019C43 06:9C33: 13        .byte con_884D_13   ; 
+- D 0 - I - 0x019C43 06:9C33: 13        .byte con_884D_script_13   ; 
 
 
 
-off_00_9C34_15:
-- D 0 - I - 0x019C44 06:9C34: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019C45 06:9C35: 00        .byte $00   ; 
-- D 0 - I - 0x019C46 06:9C36: 02        .byte $02   ; 
-- D 0 - I - 0x019C47 06:9C37: FF        .byte $FF   ; 
-- D 0 - I - 0x019C48 06:9C38: 02        .byte $02   ; 
-- D 0 - I - 0x019C49 06:9C39: B0        .byte $B0   ; 
-- D 0 - I - 0x019C4A 06:9C3A: 01        .byte $01   ; 
-- D 0 - I - 0x019C4B 06:9C3B: D0        .byte $D0   ; 
-- D 0 - I - 0x019C4C 06:9C3C: 02        .byte $02   ; 
-- D 0 - I - 0x019C4D 06:9C3D: 0F        .byte $0F   ; 
+off_00_9C34_15_spawn_burnov:
+- D 0 - I - 0x019C44 06:9C34: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019C45 06:9C35: 00 02     .word $0200 ; X camera limit (min)
+- D 0 - I - 0x019C47 06:9C37: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019C49 06:9C39: B0 01     .word $01B0 ; Y camera limit (min)
+- D 0 - I - 0x019C4B 06:9C3B: D0 02     .word $02D0 ; Y camera limit (max)
+- D 0 - I - 0x019C4D 06:9C3D: 0F        .byte $0F   ; 04B0 ???
+
 - D 0 - I - 0x019C4E 06:9C3E: 50        .byte con_chr_bank + $50   ; 
 - D 0 - I - 0x019C4F 06:9C3F: 07        .byte con_obj_burnov   ; 
-- D 0 - I - 0x019C50 06:9C40: 01        .byte $01   ; counter
+- D 0 - I - 0x019C50 06:9C40: 01        .byte $01   ; enemy counter
 ; 01
-- D 0 - I - 0x019C51 06:9C41: 20        .byte $20   ; 
-- D 0 - I - 0x019C52 06:9C42: 05        .byte $05   ; 
-- D 0 - I - 0x019C53 06:9C43: FE 03     .word $03FE ; pos_X
-- D 0 - I - 0x019C55 06:9C45: D0 00     .word $00D0 ; pos_Y
-- D 0 - I - 0x019C57 06:9C47: B0 01     .word $01B0 ; pos_Z
-- D 0 - I - 0x019C59 06:9C49: 03        .byte $03   ; 
-- D 0 - I - 0x019C5A 06:9C4A: 32        .byte $32   ; hp
+- D 0 - I - 0x019C51 06:9C41: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019C52 06:9C42: 05        .byte con_0359_05   ; enemy 0359 ???
+- D 0 - I - 0x019C53 06:9C43: FE 03     .word $03FE ; enemy pos_X
+- D 0 - I - 0x019C55 06:9C45: D0 00     .word $00D0 ; enemy pos_Y
+- D 0 - I - 0x019C57 06:9C47: B0 01     .word $01B0 ; enemy pos_Z
+- D 0 - I - 0x019C59 06:9C49: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019C5A 06:9C4A: 32        .byte $32   ; enemy hp
 
 
 
 off_00_9C4B_16:
-- D 0 - I - 0x019C5B 06:9C4B: 08        .byte con_884D_08   ; 
+- D 0 - I - 0x019C5B 06:9C4B: 08        .byte con_884D_script_08   ; 
 
 
 
 off_00_9C4C_17:
-- D 0 - I - 0x019C5C 06:9C4C: 81        .byte con_884D_81   ; 
+- D 0 - I - 0x019C5C 06:9C4C: 81        .byte con_884D_script_81   ; 
 
 
 
-off_01_9C4D_00:
-- D 0 - I - 0x019C5D 06:9C4D: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019C5E 06:9C4E: 00        .byte $00   ; 
-- D 0 - I - 0x019C5F 06:9C4F: 00        .byte $00   ; 
-- D 0 - I - 0x019C60 06:9C50: 3F        .byte $3F   ; 
-- D 0 - I - 0x019C61 06:9C51: 00        .byte $00   ; 
-- D 0 - I - 0x019C62 06:9C52: E0        .byte $E0   ; 
-- D 0 - I - 0x019C63 06:9C53: 00        .byte $00   ; 
-- D 0 - I - 0x019C64 06:9C54: E0        .byte $E0   ; 
-- D 0 - I - 0x019C65 06:9C55: 00        .byte $00   ; 
-- D 0 - I - 0x019C66 06:9C56: 01        .byte $01   ; 
+off_01_9C4D_00_spawn_roper:
+- D 0 - I - 0x019C5D 06:9C4D: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019C5E 06:9C4E: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019C60 06:9C50: 3F 00     .word $003F ; X camera limit (max)
+- D 0 - I - 0x019C62 06:9C52: E0 00     .word $00E0 ; Y camera limit (min)
+- D 0 - I - 0x019C64 06:9C54: E0 00     .word $00E0 ; Y camera limit (max)
+- D 0 - I - 0x019C66 06:9C56: 01        .byte $01   ; 04B0 ???
+
 - D 0 - I - 0x019C67 06:9C57: 42        .byte con_chr_bank + $42   ; 
 - D 0 - I - 0x019C68 06:9C58: 03        .byte con_obj_roper   ; 
-- D 0 - I - 0x019C69 06:9C59: 02        .byte $02   ; counter
+- D 0 - I - 0x019C69 06:9C59: 02        .byte $02   ; enemy counter
 ; 01
-- D 0 - I - 0x019C6A 06:9C5A: A0        .byte $A0   ; 
-- D 0 - I - 0x019C6B 06:9C5B: 1A        .byte con_obj_1A   ; 
-- D 0 - I - 0x019C6C 06:9C5C: 01        .byte $01   ; 
-- D 0 - I - 0x019C6D 06:9C5D: E0 00     .word $00E0 ; pos_X
-- D 0 - I - 0x019C6F 06:9C5F: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019C71 06:9C61: 30 01     .word $0130 ; pos_Z
-- D 0 - I - 0x019C73 06:9C63: 00        .byte $00   ; 
-- D 0 - I - 0x019C74 06:9C64: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019C6A 06:9C5A: A0        .byte $A0   ; enemy settings
+- D 0 - I - 0x019C6B 06:9C5B: 1A        .byte con_obj_boomerang   ; enemy weapon
+- D 0 - I - 0x019C6C 06:9C5C: 01        .byte con_0359_01   ; enemy 0359 ???
+- D 0 - I - 0x019C6D 06:9C5D: E0 00     .word $00E0 ; enemy pos_X
+- D 0 - I - 0x019C6F 06:9C5F: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019C71 06:9C61: 30 01     .word $0130 ; enemy pos_Z
+- D 0 - I - 0x019C73 06:9C63: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019C74 06:9C64: 0F        .byte $0F   ; enemy hp
 ; 02
-- D 0 - I - 0x019C75 06:9C65: 20        .byte $20   ; 
-- D 0 - I - 0x019C76 06:9C66: 01        .byte $01   ; 
-- D 0 - I - 0x019C77 06:9C67: F0 00     .word $00F0 ; pos_X
-- D 0 - I - 0x019C79 06:9C69: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019C7B 06:9C6B: 30 01     .word $0130 ; pos_Z
-- D 0 - I - 0x019C7D 06:9C6D: 00        .byte $00   ; 
-- D 0 - I - 0x019C7E 06:9C6E: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019C75 06:9C65: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019C76 06:9C66: 01        .byte con_0359_01   ; enemy 0359 ???
+- D 0 - I - 0x019C77 06:9C67: F0 00     .word $00F0 ; enemy pos_X
+- D 0 - I - 0x019C79 06:9C69: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019C7B 06:9C6B: 30 01     .word $0130 ; enemy pos_Z
+- D 0 - I - 0x019C7D 06:9C6D: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019C7E 06:9C6E: 0F        .byte $0F   ; enemy hp
 
 
 
-off_01_9C6F_01:
-- D 0 - I - 0x019C7F 06:9C6F: 01        .byte con_884D_white_hand_cursor   ; 
-- D 0 - I - 0x019C80 06:9C70: 00        .byte $00   ; 
-- D 0 - I - 0x019C81 06:9C71: 00        .byte $00   ; 
-- D 0 - I - 0x019C82 06:9C72: 3F        .byte $3F   ; 
-- D 0 - I - 0x019C83 06:9C73: 00        .byte $00   ; 
-- D 0 - I - 0x019C84 06:9C74: 00        .byte $00   ; 
-- D 0 - I - 0x019C85 06:9C75: 00        .byte $00   ; 
-- D 0 - I - 0x019C86 06:9C76: E0        .byte $E0   ; 
-- D 0 - I - 0x019C87 06:9C77: 00        .byte $00   ; 
-- D 0 - I - 0x019C88 06:9C78: 05        .byte $05   ; 
-- D 0 - I - 0x019C89 06:9C79: 01        .byte $01   ; 
+off_01_9C6F_01_cursor:
+- D 0 - I - 0x019C7F 06:9C6F: 01        .byte con_884D_script_hand_cursor   ; 
+- D 0 - I - 0x019C80 06:9C70: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019C82 06:9C72: 3F 00     .word $003F ; X camera limit (max)
+- D 0 - I - 0x019C84 06:9C74: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019C86 06:9C76: E0 00     .word $00E0 ; Y camera limit (max)
+- D 0 - I - 0x019C88 06:9C78: 05        .byte $05   ; 04B0 ???
+
+- D 0 - I - 0x019C89 06:9C79: 01        .byte $01   ; cursor direction (down)
 
 
 
 off_01_9C7A_02:
-- D 0 - I - 0x019C8A 06:9C7A: 02        .byte con_884D_02   ; 
+- D 0 - I - 0x019C8A 06:9C7A: 02        .byte con_884D_script_02   ; 
 - D 0 - I - 0x019C8B 06:9C7B: 3F        .byte $3F   ; 
 - D 0 - I - 0x019C8C 06:9C7C: 00        .byte $00   ; 
 - D 0 - I - 0x019C8D 06:9C7D: 00        .byte $00   ; 
@@ -5175,56 +5131,50 @@ off_01_9C7A_02:
 
 
 
-off_01_9C7F_03:
-- D 0 - I - 0x019C8F 06:9C7F: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019C90 06:9C80: 00        .byte $00   ; 
-- D 0 - I - 0x019C91 06:9C81: 00        .byte $00   ; 
-- D 0 - I - 0x019C92 06:9C82: FF        .byte $FF   ; 
-- D 0 - I - 0x019C93 06:9C83: 00        .byte $00   ; 
-- D 0 - I - 0x019C94 06:9C84: 00        .byte $00   ; 
-- D 0 - I - 0x019C95 06:9C85: 00        .byte $00   ; 
-- D 0 - I - 0x019C96 06:9C86: 00        .byte $00   ; 
-- D 0 - I - 0x019C97 06:9C87: 00        .byte $00   ; 
-- D 0 - I - 0x019C98 06:9C88: 05        .byte $05   ; 
+off_01_9C7F_03_spawn_roper:
+- D 0 - I - 0x019C8F 06:9C7F: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019C90 06:9C80: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019C92 06:9C82: FF 00     .word $00FF ; X camera limit (max)
+- D 0 - I - 0x019C94 06:9C84: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019C96 06:9C86: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019C98 06:9C88: 05        .byte $05   ; 04B0 ???
+
 - D 0 - I - 0x019C99 06:9C89: 42        .byte con_chr_bank + $42   ; 
 - D 0 - I - 0x019C9A 06:9C8A: 03        .byte con_obj_roper   ; 
-- D 0 - I - 0x019C9B 06:9C8B: 02        .byte $02   ; counter
+- D 0 - I - 0x019C9B 06:9C8B: 02        .byte $02   ; enemy counter
 ; 01
-- D 0 - I - 0x019C9C 06:9C8C: 20        .byte $20   ; 
-- D 0 - I - 0x019C9D 06:9C8D: 04        .byte $04   ; 
-- D 0 - I - 0x019C9E 06:9C8E: A0 01     .word $01A0 ; pos_X
-- D 0 - I - 0x019CA0 06:9C90: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019CA2 06:9C92: 50 00     .word $0050 ; pos_Z
-- D 0 - I - 0x019CA4 06:9C94: 03        .byte $03   ; 
-- D 0 - I - 0x019CA5 06:9C95: 13        .byte $13   ; hp
+- D 0 - I - 0x019C9C 06:9C8C: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019C9D 06:9C8D: 04        .byte con_0359_04   ; enemy 0359 ???
+- D 0 - I - 0x019C9E 06:9C8E: A0 01     .word $01A0 ; enemy pos_X
+- D 0 - I - 0x019CA0 06:9C90: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019CA2 06:9C92: 50 00     .word $0050 ; enemy pos_Z
+- D 0 - I - 0x019CA4 06:9C94: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019CA5 06:9C95: 13        .byte $13   ; enemy hp
 ; 02
-- D 0 - I - 0x019CA6 06:9C96: 20        .byte $20   ; 
-- D 0 - I - 0x019CA7 06:9C97: 05        .byte $05   ; 
-- D 0 - I - 0x019CA8 06:9C98: C0 01     .word $01C0 ; pos_X
-- D 0 - I - 0x019CAA 06:9C9A: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019CAC 06:9C9C: A0 00     .word $00A0 ; pos_Z
-- D 0 - I - 0x019CAE 06:9C9E: 03        .byte $03   ; 
-- D 0 - I - 0x019CAF 06:9C9F: 13        .byte $13   ; hp
+- D 0 - I - 0x019CA6 06:9C96: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019CA7 06:9C97: 05        .byte con_0359_05   ; enemy 0359 ???
+- D 0 - I - 0x019CA8 06:9C98: C0 01     .word $01C0 ; enemy pos_X
+- D 0 - I - 0x019CAA 06:9C9A: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019CAC 06:9C9C: A0 00     .word $00A0 ; enemy pos_Z
+- D 0 - I - 0x019CAE 06:9C9E: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019CAF 06:9C9F: 13        .byte $13   ; enemy hp
 
 
 
-off_01_9CA0_04:
-- D 0 - I - 0x019CB0 06:9CA0: 01        .byte con_884D_white_hand_cursor   ; 
-- D 0 - I - 0x019CB1 06:9CA1: 00        .byte $00   ; 
-- D 0 - I - 0x019CB2 06:9CA2: 00        .byte $00   ; 
-- D 0 - I - 0x019CB3 06:9CA3: FF        .byte $FF   ; 
-- D 0 - I - 0x019CB4 06:9CA4: 00        .byte $00   ; 
-- D 0 - I - 0x019CB5 06:9CA5: 00        .byte $00   ; 
-- D 0 - I - 0x019CB6 06:9CA6: 00        .byte $00   ; 
-- D 0 - I - 0x019CB7 06:9CA7: F0        .byte $F0   ; 
-- D 0 - I - 0x019CB8 06:9CA8: 00        .byte $00   ; 
-- D 0 - I - 0x019CB9 06:9CA9: 0D        .byte $0D   ; 
-- D 0 - I - 0x019CBA 06:9CAA: 00        .byte $00   ; 
+off_01_9CA0_04_cursor:
+- D 0 - I - 0x019CB0 06:9CA0: 01        .byte con_884D_script_hand_cursor   ; 
+- D 0 - I - 0x019CB1 06:9CA1: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019CB3 06:9CA3: FF 00     .word $00FF ; X camera limit (max)
+- D 0 - I - 0x019CB5 06:9CA5: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019CB7 06:9CA7: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019CB9 06:9CA9: 0D        .byte $0D   ; 04B0 ???
+
+- D 0 - I - 0x019CBA 06:9CAA: 00        .byte $00   ; cursor direction (up)
 
 
 
 off_01_9CAB_05:
-- D 0 - I - 0x019CBB 06:9CAB: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019CBB 06:9CAB: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019CBC 06:9CAC: 08        .byte $08   ; 
 - D 0 - I - 0x019CBD 06:9CAD: F0        .byte $F0   ; 
 - D 0 - I - 0x019CBE 06:9CAE: 00        .byte $00   ; 
@@ -5232,16 +5182,13 @@ off_01_9CAB_05:
 
 
 off_01_9CAF_06:
-- D 0 - I - 0x019CBF 06:9CAF: 03        .byte con_884D_03   ; 
-- D 0 - I - 0x019CC0 06:9CB0: 00        .byte $00   ; 
-- D 0 - I - 0x019CC1 06:9CB1: 00        .byte $00   ; 
-- D 0 - I - 0x019CC2 06:9CB2: FF        .byte $FF   ; 
-- D 0 - I - 0x019CC3 06:9CB3: 00        .byte $00   ; 
-- D 0 - I - 0x019CC4 06:9CB4: F0        .byte $F0   ; 
-- D 0 - I - 0x019CC5 06:9CB5: 00        .byte $00   ; 
-- D 0 - I - 0x019CC6 06:9CB6: F0        .byte $F0   ; 
-- D 0 - I - 0x019CC7 06:9CB7: 00        .byte $00   ; 
-- D 0 - I - 0x019CC8 06:9CB8: 08        .byte $08   ; 
+- D 0 - I - 0x019CBF 06:9CAF: 03        .byte con_884D_script_03   ; 
+- D 0 - I - 0x019CC0 06:9CB0: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019CC2 06:9CB2: FF 00     .word $00FF ; X camera limit (max)
+- D 0 - I - 0x019CC4 06:9CB4: F0 00     .word $00F0 ; Y camera limit (min)
+- D 0 - I - 0x019CC6 06:9CB6: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019CC8 06:9CB8: 08        .byte $08   ; 04B0 ???
+
 - D 0 - I - 0x019CC9 06:9CB9: 46        .byte con_chr_bank + $46   ; 
 - D 0 - I - 0x019CCA 06:9CBA: 06        .byte con_obj_bolo   ; 
 - - - - - - 0x019CCB 06:9CBB: 00        .byte $00   ; 
@@ -5249,7 +5196,7 @@ off_01_9CAF_06:
 
 
 off_01_9CBC_07:
-- D 0 - I - 0x019CCC 06:9CBC: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019CCC 06:9CBC: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019CCD 06:9CBD: A0        .byte $A0   ; 
 - D 0 - I - 0x019CCE 06:9CBE: FF        .byte $FF   ; 
 - D 0 - I - 0x019CCF 06:9CBF: 00        .byte $00   ; 
@@ -5257,601 +5204,561 @@ off_01_9CBC_07:
 
 
 off_01_9CC0_08:
-- D 0 - I - 0x019CD0 06:9CC0: 0C        .byte con_884D_0C   ; 
+- D 0 - I - 0x019CD0 06:9CC0: 0C        .byte con_884D_script_0C   ; 
 
 
 
-off_01_9CC1_09:
-- D 0 - I - 0x019CD1 06:9CC1: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019CD2 06:9CC2: 00        .byte $00   ; 
-- D 0 - I - 0x019CD3 06:9CC3: 00        .byte $00   ; 
-- D 0 - I - 0x019CD4 06:9CC4: FF        .byte $FF   ; 
-- D 0 - I - 0x019CD5 06:9CC5: 00        .byte $00   ; 
-- D 0 - I - 0x019CD6 06:9CC6: F0        .byte $F0   ; 
-- D 0 - I - 0x019CD7 06:9CC7: 00        .byte $00   ; 
-- D 0 - I - 0x019CD8 06:9CC8: F0        .byte $F0   ; 
-- D 0 - I - 0x019CD9 06:9CC9: 00        .byte $00   ; 
-- D 0 - I - 0x019CDA 06:9CCA: 08        .byte $08   ; 
+off_01_9CC1_09_spawn_linda:
+- D 0 - I - 0x019CD1 06:9CC1: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019CD2 06:9CC2: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019CD4 06:9CC4: FF 00     .word $00FF ; X camera limit (max)
+- D 0 - I - 0x019CD6 06:9CC6: F0 00     .word $00F0 ; Y camera limit (min)
+- D 0 - I - 0x019CD8 06:9CC8: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019CDA 06:9CCA: 08        .byte $08   ; 04B0 ???
+
 - D 0 - I - 0x019CDB 06:9CCB: 44        .byte con_chr_bank + $44   ; 
 - D 0 - I - 0x019CDC 06:9CCC: 04        .byte con_obj_linda   ; 
-- D 0 - I - 0x019CDD 06:9CCD: 02        .byte $02   ; counter
+- D 0 - I - 0x019CDD 06:9CCD: 02        .byte $02   ; enemy counter
 ; 01
-- D 0 - I - 0x019CDE 06:9CCE: E0        .byte $E0   ; 
-- D 0 - I - 0x019CDF 06:9CCF: 14        .byte con_obj_grenade   ; 
-- D 0 - I - 0x019CE0 06:9CD0: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019CE1 06:9CD1: 07        .byte $07   ; 
-- D 0 - I - 0x019CE2 06:9CD2: 78 01     .word $0178 ; pos_X
-- D 0 - I - 0x019CE4 06:9CD4: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019CE6 06:9CD6: B8 01     .word $01B8 ; pos_Z
-- D 0 - I - 0x019CE8 06:9CD8: 03        .byte $03   ; 
-- D 0 - I - 0x019CE9 06:9CD9: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019CDE 06:9CCE: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019CDF 06:9CCF: 14        .byte con_obj_grenade   ; enemy weapon
+- D 0 - I - 0x019CE0 06:9CD0: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019CE1 06:9CD1: 07        .byte con_0359_07   ; enemy 0359 ???
+- D 0 - I - 0x019CE2 06:9CD2: 78 01     .word $0178 ; enemy pos_X
+- D 0 - I - 0x019CE4 06:9CD4: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019CE6 06:9CD6: B8 01     .word $01B8 ; enemy pos_Z
+- D 0 - I - 0x019CE8 06:9CD8: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019CE9 06:9CD9: 0F        .byte $0F   ; enemy hp
 ; 02
-- D 0 - I - 0x019CEA 06:9CDA: 60        .byte $60   ; 
-- D 0 - I - 0x019CEB 06:9CDB: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019CEC 06:9CDC: 07        .byte $07   ; 
-- D 0 - I - 0x019CED 06:9CDD: 78 01     .word $0178 ; pos_X
-- D 0 - I - 0x019CEF 06:9CDF: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019CF1 06:9CE1: B8 01     .word $01B8 ; pos_Z
-- D 0 - I - 0x019CF3 06:9CE3: 03        .byte $03   ; 
-- D 0 - I - 0x019CF4 06:9CE4: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019CEA 06:9CDA: 60        .byte $60   ; enemy settings
+- D 0 - I - 0x019CEB 06:9CDB: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019CEC 06:9CDC: 07        .byte con_0359_07   ; enemy 0359 ???
+- D 0 - I - 0x019CED 06:9CDD: 78 01     .word $0178 ; enemy pos_X
+- D 0 - I - 0x019CEF 06:9CDF: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019CF1 06:9CE1: B8 01     .word $01B8 ; enemy pos_Z
+- D 0 - I - 0x019CF3 06:9CE3: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019CF4 06:9CE4: 0F        .byte $0F   ; enemy hp
 
 
 
-off_01_9CE5_0A:
-- D 0 - I - 0x019CF5 06:9CE5: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019CF6 06:9CE6: 00        .byte $00   ; 
-- D 0 - I - 0x019CF7 06:9CE7: 00        .byte $00   ; 
-- D 0 - I - 0x019CF8 06:9CE8: FF        .byte $FF   ; 
-- D 0 - I - 0x019CF9 06:9CE9: 00        .byte $00   ; 
-- D 0 - I - 0x019CFA 06:9CEA: F0        .byte $F0   ; 
-- D 0 - I - 0x019CFB 06:9CEB: 00        .byte $00   ; 
-- D 0 - I - 0x019CFC 06:9CEC: F0        .byte $F0   ; 
-- D 0 - I - 0x019CFD 06:9CED: 00        .byte $00   ; 
-- D 0 - I - 0x019CFE 06:9CEE: 08        .byte $08   ; 
+off_01_9CE5_0A_spawn_williams:
+- D 0 - I - 0x019CF5 06:9CE5: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019CF6 06:9CE6: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019CF8 06:9CE8: FF 00     .word $00FF ; X camera limit (max)
+- D 0 - I - 0x019CFA 06:9CEA: F0 00     .word $00F0 ; Y camera limit (min)
+- D 0 - I - 0x019CFC 06:9CEC: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019CFE 06:9CEE: 08        .byte $08   ; 04B0 ???
+
 - D 0 - I - 0x019CFF 06:9CEF: 4E        .byte con_chr_bank + $4E   ; 
 - D 0 - I - 0x019D00 06:9CF0: 02        .byte con_obj_williams   ; 
-- D 0 - I - 0x019D01 06:9CF1: 02        .byte $02   ; counter
+- D 0 - I - 0x019D01 06:9CF1: 02        .byte $02   ; enemy counter
 ; 01
-- D 0 - I - 0x019D02 06:9CF2: E0        .byte $E0   ; 
-- D 0 - I - 0x019D03 06:9CF3: 17        .byte con_obj_baton   ; 
-- D 0 - I - 0x019D04 06:9CF4: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019D05 06:9CF5: 07        .byte $07   ; 
-- D 0 - I - 0x019D06 06:9CF6: 78 01     .word $0178 ; pos_X
-- D 0 - I - 0x019D08 06:9CF8: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019D0A 06:9CFA: B8 01     .word $01B8 ; pos_Z
-- D 0 - I - 0x019D0C 06:9CFC: 03        .byte $03   ; 
-- D 0 - I - 0x019D0D 06:9CFD: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019D02 06:9CF2: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019D03 06:9CF3: 17        .byte con_obj_baton   ; enemy weapon
+- D 0 - I - 0x019D04 06:9CF4: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019D05 06:9CF5: 07        .byte con_0359_07   ; enemy 0359 ???
+- D 0 - I - 0x019D06 06:9CF6: 78 01     .word $0178 ; enemy pos_X
+- D 0 - I - 0x019D08 06:9CF8: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019D0A 06:9CFA: B8 01     .word $01B8 ; enemy pos_Z
+- D 0 - I - 0x019D0C 06:9CFC: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019D0D 06:9CFD: 0B        .byte $0B   ; enemy hp
 ; 02
-- D 0 - I - 0x019D0E 06:9CFE: E0        .byte $E0   ; 
-- D 0 - I - 0x019D0F 06:9CFF: 17        .byte con_obj_baton   ; 
-- D 0 - I - 0x019D10 06:9D00: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019D11 06:9D01: 07        .byte $07   ; 
-- D 0 - I - 0x019D12 06:9D02: 78 01     .word $0178 ; pos_X
-- D 0 - I - 0x019D14 06:9D04: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019D16 06:9D06: B8 01     .word $01B8 ; pos_Z
-- D 0 - I - 0x019D18 06:9D08: 03        .byte $03   ; 
-- D 0 - I - 0x019D19 06:9D09: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019D0E 06:9CFE: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019D0F 06:9CFF: 17        .byte con_obj_baton   ; enemy weapon
+- D 0 - I - 0x019D10 06:9D00: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019D11 06:9D01: 07        .byte con_0359_07   ; enemy 0359 ???
+- D 0 - I - 0x019D12 06:9D02: 78 01     .word $0178 ; enemy pos_X
+- D 0 - I - 0x019D14 06:9D04: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019D16 06:9D06: B8 01     .word $01B8 ; enemy pos_Z
+- D 0 - I - 0x019D18 06:9D08: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019D19 06:9D09: 0B        .byte $0B   ; enemy hp
 
 
 
-off_01_9D0A_0B:
-- D 0 - I - 0x019D1A 06:9D0A: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019D1B 06:9D0B: 00        .byte $00   ; 
-- D 0 - I - 0x019D1C 06:9D0C: 00        .byte $00   ; 
-- D 0 - I - 0x019D1D 06:9D0D: FF        .byte $FF   ; 
-- D 0 - I - 0x019D1E 06:9D0E: 00        .byte $00   ; 
-- D 0 - I - 0x019D1F 06:9D0F: F0        .byte $F0   ; 
-- D 0 - I - 0x019D20 06:9D10: 00        .byte $00   ; 
-- D 0 - I - 0x019D21 06:9D11: F0        .byte $F0   ; 
-- D 0 - I - 0x019D22 06:9D12: 00        .byte $00   ; 
-- D 0 - I - 0x019D23 06:9D13: 08        .byte $08   ; 
+off_01_9D0A_0B_spawn_right_arm:
+- D 0 - I - 0x019D1A 06:9D0A: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019D1B 06:9D0B: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019D1D 06:9D0D: FF 00     .word $00FF ; X camera limit (max)
+- D 0 - I - 0x019D1F 06:9D0F: F0 00     .word $00F0 ; Y camera limit (min)
+- D 0 - I - 0x019D21 06:9D11: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019D23 06:9D13: 08        .byte $08   ; 04B0 ???
+
 - D 0 - I - 0x019D24 06:9D14: 54        .byte con_chr_bank + $54   ; 
 - D 0 - I - 0x019D25 06:9D15: 0A        .byte con_obj_right_arm   ; 
-- D 0 - I - 0x019D26 06:9D16: 02        .byte $02   ; counter
+- D 0 - I - 0x019D26 06:9D16: 02        .byte $02   ; enemy counter
 ; 01
-- D 0 - I - 0x019D27 06:9D17: 60        .byte $60   ; 
-- D 0 - I - 0x019D28 06:9D18: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019D29 06:9D19: 07        .byte $07   ; 
-- D 0 - I - 0x019D2A 06:9D1A: 78 01     .word $0178 ; pos_X
-- D 0 - I - 0x019D2C 06:9D1C: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019D2E 06:9D1E: B8 01     .word $01B8 ; pos_Z
-- D 0 - I - 0x019D30 06:9D20: 03        .byte $03   ; 
-- D 0 - I - 0x019D31 06:9D21: 17        .byte $17   ; hp
+- D 0 - I - 0x019D27 06:9D17: 60        .byte $60   ; enemy settings
+- D 0 - I - 0x019D28 06:9D18: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019D29 06:9D19: 07        .byte con_0359_07   ; enemy 0359 ???
+- D 0 - I - 0x019D2A 06:9D1A: 78 01     .word $0178 ; enemy pos_X
+- D 0 - I - 0x019D2C 06:9D1C: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019D2E 06:9D1E: B8 01     .word $01B8 ; enemy pos_Z
+- D 0 - I - 0x019D30 06:9D20: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019D31 06:9D21: 17        .byte $17   ; enemy hp
 ; 02
-- D 0 - I - 0x019D32 06:9D22: 60        .byte $60   ; 
-- D 0 - I - 0x019D33 06:9D23: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019D34 06:9D24: 07        .byte $07   ; 
-- D 0 - I - 0x019D35 06:9D25: 78 01     .word $0178 ; pos_X
-- D 0 - I - 0x019D37 06:9D27: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019D39 06:9D29: B8 01     .word $01B8 ; pos_Z
-- D 0 - I - 0x019D3B 06:9D2B: 03        .byte $03   ; 
-- D 0 - I - 0x019D3C 06:9D2C: 17        .byte $17   ; hp
+- D 0 - I - 0x019D32 06:9D22: 60        .byte $60   ; enemy settings
+- D 0 - I - 0x019D33 06:9D23: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019D34 06:9D24: 07        .byte con_0359_07   ; enemy 0359 ???
+- D 0 - I - 0x019D35 06:9D25: 78 01     .word $0178 ; enemy pos_X
+- D 0 - I - 0x019D37 06:9D27: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019D39 06:9D29: B8 01     .word $01B8 ; enemy pos_Z
+- D 0 - I - 0x019D3B 06:9D2B: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019D3C 06:9D2C: 17        .byte $17   ; enemy hp
 
 
 
 off_01_9D2D_0C:
-- D 0 - I - 0x019D3D 06:9D2D: 0D        .byte con_884D_0D   ; 
+- D 0 - I - 0x019D3D 06:9D2D: 0D        .byte con_884D_script_0D   ; 
 
 
 
-off_01_9D2E_0D:
-- D 0 - I - 0x019D3E 06:9D2E: 01        .byte con_884D_white_hand_cursor   ; 
-- D 0 - I - 0x019D3F 06:9D2F: 00        .byte $00   ; 
-- D 0 - I - 0x019D40 06:9D30: 00        .byte $00   ; 
-- D 0 - I - 0x019D41 06:9D31: 00        .byte $00   ; 
-- D 0 - I - 0x019D42 06:9D32: 02        .byte $02   ; 
-- D 0 - I - 0x019D43 06:9D33: 00        .byte $00   ; 
-- D 0 - I - 0x019D44 06:9D34: 00        .byte $00   ; 
-- D 0 - I - 0x019D45 06:9D35: F0        .byte $F0   ; 
-- D 0 - I - 0x019D46 06:9D36: 00        .byte $00   ; 
-- D 0 - I - 0x019D47 06:9D37: 09        .byte $09   ; 
-- D 0 - I - 0x019D48 06:9D38: 03        .byte $03   ; 
+off_01_9D2E_0D_cursor:
+- D 0 - I - 0x019D3E 06:9D2E: 01        .byte con_884D_script_hand_cursor   ; 
+- D 0 - I - 0x019D3F 06:9D2F: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019D41 06:9D31: 00 02     .word $0200 ; X camera limit (max)
+- D 0 - I - 0x019D43 06:9D33: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019D45 06:9D35: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019D47 06:9D37: 09        .byte $09   ; 04B0 ???
+
+- D 0 - I - 0x019D48 06:9D38: 03        .byte $03   ; cursor direction (right)
 
 
 
 off_01_9D39_0E:
-- D 0 - I - 0x019D49 06:9D39: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019D49 06:9D39: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019D4A 06:9D3A: 80        .byte $80   ; 
 - D 0 - I - 0x019D4B 06:9D3B: 00        .byte $00   ; 
 - D 0 - I - 0x019D4C 06:9D3C: 02        .byte $02   ; 
 
 
 
-off_01_9D3D_0F:
-- D 0 - I - 0x019D4D 06:9D3D: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019D4E 06:9D3E: 00        .byte $00   ; 
-- D 0 - I - 0x019D4F 06:9D3F: 00        .byte $00   ; 
-- D 0 - I - 0x019D50 06:9D40: FF        .byte $FF   ; 
-- D 0 - I - 0x019D51 06:9D41: 02        .byte $02   ; 
-- D 0 - I - 0x019D52 06:9D42: 00        .byte $00   ; 
-- D 0 - I - 0x019D53 06:9D43: 00        .byte $00   ; 
-- D 0 - I - 0x019D54 06:9D44: F0        .byte $F0   ; 
-- D 0 - I - 0x019D55 06:9D45: 00        .byte $00   ; 
-- D 0 - I - 0x019D56 06:9D46: 09        .byte $09   ; 
+off_01_9D3D_0F_spawn_roper:
+- D 0 - I - 0x019D4D 06:9D3D: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019D4E 06:9D3E: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019D50 06:9D40: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019D52 06:9D42: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019D54 06:9D44: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019D56 06:9D46: 09        .byte $09   ; 04B0 ???
+
 - D 0 - I - 0x019D57 06:9D47: 42        .byte con_chr_bank + $42   ; 
 - D 0 - I - 0x019D58 06:9D48: 03        .byte con_obj_roper   ; 
-- D 0 - I - 0x019D59 06:9D49: 04        .byte $04   ; counter
+- D 0 - I - 0x019D59 06:9D49: 04        .byte $04   ; enemy counter
 ; 01
-- D 0 - I - 0x019D5A 06:9D4A: 00        .byte $00   ; 
-- D 0 - I - 0x019D5B 06:9D4B: 13        .byte $13   ; hp
+- D 0 - I - 0x019D5A 06:9D4A: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019D5B 06:9D4B: 13        .byte $13   ; enemy hp
 ; 02
-- D 0 - I - 0x019D5C 06:9D4C: 00        .byte $00   ; 
-- D 0 - I - 0x019D5D 06:9D4D: 13        .byte $13   ; hp
+- D 0 - I - 0x019D5C 06:9D4C: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019D5D 06:9D4D: 13        .byte $13   ; enemy hp
 ; 03
-- D 0 - I - 0x019D5E 06:9D4E: 00        .byte $00   ; 
-- D 0 - I - 0x019D5F 06:9D4F: 13        .byte $13   ; hp
+- D 0 - I - 0x019D5E 06:9D4E: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019D5F 06:9D4F: 13        .byte $13   ; enemy hp
 ; 04
-- - - - - - 0x019D60 06:9D50: 00        .byte $00   ; 
-- - - - - - 0x019D61 06:9D51: 13        .byte $13   ; hp
+- - - - - - 0x019D60 06:9D50: 00        .byte $00   ; enemy settings
+- - - - - - 0x019D61 06:9D51: 13        .byte $13   ; enemy hp
 
 
 
 off_01_9D52_10:
-- D 0 - I - 0x019D62 06:9D52: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019D62 06:9D52: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019D63 06:9D53: 80        .byte $80   ; 
 - D 0 - I - 0x019D64 06:9D54: 80        .byte $80   ; 
 - D 0 - I - 0x019D65 06:9D55: 02        .byte $02   ; 
 
 
 
-off_01_9D56_11:
-- D 0 - I - 0x019D66 06:9D56: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019D67 06:9D57: 00        .byte $00   ; 
-- D 0 - I - 0x019D68 06:9D58: 00        .byte $00   ; 
-- D 0 - I - 0x019D69 06:9D59: FF        .byte $FF   ; 
-- D 0 - I - 0x019D6A 06:9D5A: 02        .byte $02   ; 
-- D 0 - I - 0x019D6B 06:9D5B: 00        .byte $00   ; 
-- D 0 - I - 0x019D6C 06:9D5C: 00        .byte $00   ; 
-- D 0 - I - 0x019D6D 06:9D5D: F0        .byte $F0   ; 
-- D 0 - I - 0x019D6E 06:9D5E: 00        .byte $00   ; 
-- D 0 - I - 0x019D6F 06:9D5F: 09        .byte $09   ; 
+off_01_9D56_11_spawn_roper:
+- D 0 - I - 0x019D66 06:9D56: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019D67 06:9D57: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019D69 06:9D59: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019D6B 06:9D5B: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019D6D 06:9D5D: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019D6F 06:9D5F: 09        .byte $09   ; 04B0 ???
+
 - D 0 - I - 0x019D70 06:9D60: 42        .byte con_chr_bank + $42   ; 
 - D 0 - I - 0x019D71 06:9D61: 03        .byte con_obj_roper   ; 
-- D 0 - I - 0x019D72 06:9D62: 01        .byte $01   ; counter
+- D 0 - I - 0x019D72 06:9D62: 01        .byte $01   ; enemy counter
 ; 01
-- D 0 - I - 0x019D73 06:9D63: 20        .byte $20   ; 
-- D 0 - I - 0x019D74 06:9D64: 08        .byte $08   ; 
-- D 0 - I - 0x019D75 06:9D65: 7F 03     .word $037F ; pos_X
-- D 0 - I - 0x019D77 06:9D67: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019D79 06:9D69: 40 01     .word $0140 ; pos_Z
-- D 0 - I - 0x019D7B 06:9D6B: 00        .byte $00   ; 
-- D 0 - I - 0x019D7C 06:9D6C: 13        .byte $13   ; hp
+- D 0 - I - 0x019D73 06:9D63: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019D74 06:9D64: 08        .byte con_0359_08   ; enemy 0359 ???
+- D 0 - I - 0x019D75 06:9D65: 7F 03     .word $037F ; enemy pos_X
+- D 0 - I - 0x019D77 06:9D67: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019D79 06:9D69: 40 01     .word $0140 ; enemy pos_Z
+- D 0 - I - 0x019D7B 06:9D6B: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019D7C 06:9D6C: 13        .byte $13   ; enemy hp
 
 
 
 off_01_9D6D_12:
-- D 0 - I - 0x019D7D 06:9D6D: 13        .byte con_884D_13   ; 
+- D 0 - I - 0x019D7D 06:9D6D: 13        .byte con_884D_script_13   ; 
 
 
 
-off_01_9D6E_13:
-- D 0 - I - 0x019D7E 06:9D6E: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019D7F 06:9D6F: 00        .byte $00   ; 
-- D 0 - I - 0x019D80 06:9D70: 00        .byte $00   ; 
-- D 0 - I - 0x019D81 06:9D71: FF        .byte $FF   ; 
-- D 0 - I - 0x019D82 06:9D72: 02        .byte $02   ; 
-- D 0 - I - 0x019D83 06:9D73: 00        .byte $00   ; 
-- D 0 - I - 0x019D84 06:9D74: 00        .byte $00   ; 
-- D 0 - I - 0x019D85 06:9D75: F0        .byte $F0   ; 
-- D 0 - I - 0x019D86 06:9D76: 00        .byte $00   ; 
-- D 0 - I - 0x019D87 06:9D77: 09        .byte $09   ; 
+off_01_9D6E_13_spawn_ninja:
+- D 0 - I - 0x019D7E 06:9D6E: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019D7F 06:9D6F: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019D81 06:9D71: FF 02     .word $02FF ; X camera limit (max)
+- D 0 - I - 0x019D83 06:9D73: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019D85 06:9D75: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019D87 06:9D77: 09        .byte $09   ; 04B0 ???
+
 - D 0 - I - 0x019D88 06:9D78: 56        .byte con_chr_bank + $56   ; 
 - D 0 - I - 0x019D89 06:9D79: 0F        .byte con_obj_ninja   ; 
-- D 0 - I - 0x019D8A 06:9D7A: 02        .byte $02   ; counter
+- D 0 - I - 0x019D8A 06:9D7A: 02        .byte $02   ; enemy counter
 ; 01
-- D 0 - I - 0x019D8B 06:9D7B: 20        .byte $20   ; 
-- D 0 - I - 0x019D8C 06:9D7C: 08        .byte $08   ; 
-- D 0 - I - 0x019D8D 06:9D7D: 80 02     .word $0280 ; pos_X
-- D 0 - I - 0x019D8F 06:9D7F: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019D91 06:9D81: 40 01     .word $0140 ; pos_Z
-- D 0 - I - 0x019D93 06:9D83: 00        .byte $00   ; 
-- D 0 - I - 0x019D94 06:9D84: 1F        .byte $1F   ; hp
+- D 0 - I - 0x019D8B 06:9D7B: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019D8C 06:9D7C: 08        .byte con_0359_08   ; enemy 0359 ???
+- D 0 - I - 0x019D8D 06:9D7D: 80 02     .word $0280 ; enemy pos_X
+- D 0 - I - 0x019D8F 06:9D7F: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019D91 06:9D81: 40 01     .word $0140 ; enemy pos_Z
+- D 0 - I - 0x019D93 06:9D83: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019D94 06:9D84: 1F        .byte $1F   ; enemy hp
 ; 02
-- D 0 - I - 0x019D95 06:9D85: 20        .byte $20   ; 
-- D 0 - I - 0x019D96 06:9D86: 08        .byte $08   ; 
-- D 0 - I - 0x019D97 06:9D87: 7F 03     .word $037F ; pos_X
-- D 0 - I - 0x019D99 06:9D89: 00 00     .word $0000 ; pos_Y
-- D 0 - I - 0x019D9B 06:9D8B: 40 01     .word $0140 ; pos_Z
-- D 0 - I - 0x019D9D 06:9D8D: 00        .byte $00   ; 
-- D 0 - I - 0x019D9E 06:9D8E: 1F        .byte $1F   ; hp
+- D 0 - I - 0x019D95 06:9D85: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019D96 06:9D86: 08        .byte con_0359_08   ; enemy 0359 ???
+- D 0 - I - 0x019D97 06:9D87: 7F 03     .word $037F ; enemy pos_X
+- D 0 - I - 0x019D99 06:9D89: 00 00     .word $0000 ; enemy pos_Y
+- D 0 - I - 0x019D9B 06:9D8B: 40 01     .word $0140 ; enemy pos_Z
+- D 0 - I - 0x019D9D 06:9D8D: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019D9E 06:9D8E: 1F        .byte $1F   ; enemy hp
 
 
 
 off_01_9D8F_14:
-- D 0 - I - 0x019D9F 06:9D8F: 0F        .byte con_884D_0F   ; 
+- D 0 - I - 0x019D9F 06:9D8F: 0F        .byte con_884D_script_0F   ; 
 
 
 
 off_01_9D90_15:
-- D 0 - I - 0x019DA0 06:9D90: 12        .byte con_884D_12   ; 
+- D 0 - I - 0x019DA0 06:9D90: 12        .byte con_884D_script_12   ; 
 
 
 
 off_01_9D91_16:
-- D 0 - I - 0x019DA1 06:9D91: 0E        .byte con_884D_0E   ; 
+- D 0 - I - 0x019DA1 06:9D91: 0E        .byte con_884D_script_0E   ; 
 
 
 
 off_01_9D92_17:
-- D 0 - I - 0x019DA2 06:9D92: 08        .byte con_884D_08   ; 
+- D 0 - I - 0x019DA2 06:9D92: 08        .byte con_884D_script_08   ; 
 
 
 
 off_01_9D93_18:
-- D 0 - I - 0x019DA3 06:9D93: 81        .byte con_884D_81   ; 
+- D 0 - I - 0x019DA3 06:9D93: 81        .byte con_884D_script_81   ; 
 
 
 
 off_02_9D94_00:
-- D 0 - I - 0x019DA4 06:9D94: 1B        .byte con_884D_1B   ; 
+- D 0 - I - 0x019DA4 06:9D94: 1B        .byte con_884D_script_1B   ; 
 
 
 
 off_02_9D95_01:
-- D 0 - I - 0x019DA5 06:9D95: 16        .byte con_884D_16   ; 
+- D 0 - I - 0x019DA5 06:9D95: 16        .byte con_884D_script_16   ; 
 - D 0 - I - 0x019DA6 06:9D96: 50        .byte con_sfx_helicopter_2   ; 
 
 
 
-off_02_9D97_02:
-- D 0 - I - 0x019DA7 06:9D97: 09        .byte con_884D_09   ; 
-- D 0 - I - 0x019DA8 06:9D98: 00        .byte $00   ; 
-- D 0 - I - 0x019DA9 06:9D99: 00        .byte $00   ; 
-- D 0 - I - 0x019DAA 06:9D9A: 00        .byte $00   ; 
-- D 0 - I - 0x019DAB 06:9D9B: 00        .byte $00   ; 
-- D 0 - I - 0x019DAC 06:9D9C: 00        .byte $00   ; 
-- D 0 - I - 0x019DAD 06:9D9D: 00        .byte $00   ; 
-- D 0 - I - 0x019DAE 06:9D9E: 00        .byte $00   ; 
-- D 0 - I - 0x019DAF 06:9D9F: 00        .byte $00   ; 
-- D 0 - I - 0x019DB0 06:9DA0: 00        .byte $00   ; 
+off_02_9D97_02_spawn_right_arm:
+- D 0 - I - 0x019DA7 06:9D97: 09        .byte con_884D_script_emeny_spawn_at_door   ; 
+- D 0 - I - 0x019DA8 06:9D98: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019DAA 06:9D9A: 00 00     .word $0000 ; X camera limit (max)
+- D 0 - I - 0x019DAC 06:9D9C: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019DAE 06:9D9E: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019DB0 06:9DA0: 00        .byte $00   ; 04B0 ???
+
 - D 0 - I - 0x019DB1 06:9DA1: 54        .byte con_chr_bank + $54   ; 
 - D 0 - I - 0x019DB2 06:9DA2: 0A        .byte con_obj_right_arm   ; 
-- D 0 - I - 0x019DB3 06:9DA3: 02        .byte $02   ; counter
+- D 0 - I - 0x019DB3 06:9DA3: 02        .byte $02   ; enemy counter
+
+- D 0 - I - 0x019DB4 06:9DA4: 02        .byte con_A6C3_draw_heli_blue_door   ; spawner
+
 ; 01
-- D 0 - I - 0x019DB4 06:9DA4: 02        .byte $02   ; 
-- D 0 - I - 0x019DB5 06:9DA5: 20        .byte $20   ; 
-- D 0 - I - 0x019DB6 06:9DA6: 00        .byte $00   ; 
-- D 0 - I - 0x019DB7 06:9DA7: 33 00     .word $0033 ; pos_X
-- D 0 - I - 0x019DB9 06:9DA9: 5D 00     .word $005D ; pos_Y
-- D 0 - I - 0x019DBB 06:9DAB: 00 00     .word $0000 ; pos_Z
-- D 0 - I - 0x019DBD 06:9DAD: 02        .byte $02   ; 
-- D 0 - I - 0x019DBE 06:9DAE: 17        .byte $17   ; hp
+- D 0 - I - 0x019DB5 06:9DA5: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019DB6 06:9DA6: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019DB7 06:9DA7: 33 00     .word $0033 ; enemy pos_X
+- D 0 - I - 0x019DB9 06:9DA9: 5D 00     .word $005D ; enemy pos_Y
+- D 0 - I - 0x019DBB 06:9DAB: 00 00     .word $0000 ; enemy pos_Z
+- D 0 - I - 0x019DBD 06:9DAD: 02        .byte $02   ; enemy 006A ???
+- D 0 - I - 0x019DBE 06:9DAE: 17        .byte $17   ; enemy hp
 ; 02
-- D 0 - I - 0x019DBF 06:9DAF: 20        .byte $20   ; 
-- D 0 - I - 0x019DC0 06:9DB0: 00        .byte $00   ; 
-- D 0 - I - 0x019DC1 06:9DB1: 33 00     .word $0033 ; pos_X
-- D 0 - I - 0x019DC3 06:9DB3: 5D 00     .word $005D ; pos_Y
-- D 0 - I - 0x019DC5 06:9DB5: 00 00     .word $0000 ; pos_Z
-- D 0 - I - 0x019DC7 06:9DB7: 02        .byte $02   ; 
-- D 0 - I - 0x019DC8 06:9DB8: 17        .byte $17   ; hp
+- D 0 - I - 0x019DBF 06:9DAF: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019DC0 06:9DB0: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019DC1 06:9DB1: 33 00     .word $0033 ; enemy pos_X
+- D 0 - I - 0x019DC3 06:9DB3: 5D 00     .word $005D ; enemy pos_Y
+- D 0 - I - 0x019DC5 06:9DB5: 00 00     .word $0000 ; enemy pos_Z
+- D 0 - I - 0x019DC7 06:9DB7: 02        .byte $02   ; enemy 006A ???
+- D 0 - I - 0x019DC8 06:9DB8: 17        .byte $17   ; enemy hp
 
 
 
-off_02_9DB9_03:
-- D 0 - I - 0x019DC9 06:9DB9: 09        .byte con_884D_09   ; 
-- D 0 - I - 0x019DCA 06:9DBA: 00        .byte $00   ; 
-- D 0 - I - 0x019DCB 06:9DBB: 00        .byte $00   ; 
-- D 0 - I - 0x019DCC 06:9DBC: 00        .byte $00   ; 
-- D 0 - I - 0x019DCD 06:9DBD: 00        .byte $00   ; 
-- D 0 - I - 0x019DCE 06:9DBE: 00        .byte $00   ; 
-- D 0 - I - 0x019DCF 06:9DBF: 00        .byte $00   ; 
-- D 0 - I - 0x019DD0 06:9DC0: 00        .byte $00   ; 
-- D 0 - I - 0x019DD1 06:9DC1: 00        .byte $00   ; 
-- D 0 - I - 0x019DD2 06:9DC2: 00        .byte $00   ; 
+off_02_9DB9_03_spawn_williams:
+- D 0 - I - 0x019DC9 06:9DB9: 09        .byte con_884D_script_emeny_spawn_at_door   ; 
+- D 0 - I - 0x019DCA 06:9DBA: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019DCC 06:9DBC: 00 00     .word $0000 ; X camera limit (max)
+- D 0 - I - 0x019DCE 06:9DBE: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019DD0 06:9DC0: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019DD2 06:9DC2: 00        .byte $00   ; 04B0 ???
+
 - D 0 - I - 0x019DD3 06:9DC3: 4E        .byte con_chr_bank + $4E   ; 
 - D 0 - I - 0x019DD4 06:9DC4: 02        .byte con_obj_williams   ; 
-- D 0 - I - 0x019DD5 06:9DC5: 04        .byte $04   ; counter
+- D 0 - I - 0x019DD5 06:9DC5: 04        .byte $04   ; enemy counter
+
+- D 0 - I - 0x019DD6 06:9DC6: 02        .byte con_A6C3_draw_heli_blue_door   ; spawner
+
 ; 01
-- D 0 - I - 0x019DD6 06:9DC6: 02        .byte $02   ; 
-- D 0 - I - 0x019DD7 06:9DC7: A0        .byte $A0   ; 
-- D 0 - I - 0x019DD8 06:9DC8: 17        .byte con_obj_baton   ; 
-- D 0 - I - 0x019DD9 06:9DC9: 00        .byte $00   ; 
-- D 0 - I - 0x019DDA 06:9DCA: 33 00     .word $0033 ; pos_X
-- D 0 - I - 0x019DDC 06:9DCC: 5D 00     .word $005D ; pos_Y
-- D 0 - I - 0x019DDE 06:9DCE: 00 00     .word $0000 ; pos_Z
-- D 0 - I - 0x019DE0 06:9DD0: 02        .byte $02   ; 
-- D 0 - I - 0x019DE1 06:9DD1: 15        .byte $15   ; hp
+- D 0 - I - 0x019DD7 06:9DC7: A0        .byte $A0   ; enemy settings
+- D 0 - I - 0x019DD8 06:9DC8: 17        .byte con_obj_baton   ; enemy weapon
+- D 0 - I - 0x019DD9 06:9DC9: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019DDA 06:9DCA: 33 00     .word $0033 ; enemy pos_X
+- D 0 - I - 0x019DDC 06:9DCC: 5D 00     .word $005D ; enemy pos_Y
+- D 0 - I - 0x019DDE 06:9DCE: 00 00     .word $0000 ; enemy pos_Z
+- D 0 - I - 0x019DE0 06:9DD0: 02        .byte $02   ; enemy 006A ???
+- D 0 - I - 0x019DE1 06:9DD1: 15        .byte $15   ; enemy hp
 ; 02
-- D 0 - I - 0x019DE2 06:9DD2: A0        .byte $A0   ; 
-- D 0 - I - 0x019DE3 06:9DD3: 17        .byte con_obj_baton   ; 
-- D 0 - I - 0x019DE4 06:9DD4: 00        .byte $00   ; 
-- D 0 - I - 0x019DE5 06:9DD5: 33 00     .word $0033 ; pos_X
-- D 0 - I - 0x019DE7 06:9DD7: 5D 00     .word $005D ; pos_Y
-- D 0 - I - 0x019DE9 06:9DD9: 00 00     .word $0000 ; pos_Z
-- D 0 - I - 0x019DEB 06:9DDB: 02        .byte $02   ; 
-- D 0 - I - 0x019DEC 06:9DDC: 15        .byte $15   ; hp
+- D 0 - I - 0x019DE2 06:9DD2: A0        .byte $A0   ; enemy settings
+- D 0 - I - 0x019DE3 06:9DD3: 17        .byte con_obj_baton   ; enemy weapon
+- D 0 - I - 0x019DE4 06:9DD4: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019DE5 06:9DD5: 33 00     .word $0033 ; enemy pos_X
+- D 0 - I - 0x019DE7 06:9DD7: 5D 00     .word $005D ; enemy pos_Y
+- D 0 - I - 0x019DE9 06:9DD9: 00 00     .word $0000 ; enemy pos_Z
+- D 0 - I - 0x019DEB 06:9DDB: 02        .byte $02   ; enemy 006A ???
+- D 0 - I - 0x019DEC 06:9DDC: 15        .byte $15   ; enemy hp
 ; 03
-- D 0 - I - 0x019DED 06:9DDD: A0        .byte $A0   ; 
-- D 0 - I - 0x019DEE 06:9DDE: 17        .byte con_obj_baton   ; 
-- D 0 - I - 0x019DEF 06:9DDF: 00        .byte $00   ; 
-- D 0 - I - 0x019DF0 06:9DE0: 33 00     .word $0033 ; pos_X
-- D 0 - I - 0x019DF2 06:9DE2: 5D 00     .word $005D ; pos_Y
-- D 0 - I - 0x019DF4 06:9DE4: 00 00     .word $0000 ; pos_Z
-- D 0 - I - 0x019DF6 06:9DE6: 02        .byte $02   ; 
-- D 0 - I - 0x019DF7 06:9DE7: 15        .byte $15   ; hp
+- D 0 - I - 0x019DED 06:9DDD: A0        .byte $A0   ; enemy settings
+- D 0 - I - 0x019DEE 06:9DDE: 17        .byte con_obj_baton   ; enemy weapon
+- D 0 - I - 0x019DEF 06:9DDF: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019DF0 06:9DE0: 33 00     .word $0033 ; enemy pos_X
+- D 0 - I - 0x019DF2 06:9DE2: 5D 00     .word $005D ; enemy pos_Y
+- D 0 - I - 0x019DF4 06:9DE4: 00 00     .word $0000 ; enemy pos_Z
+- D 0 - I - 0x019DF6 06:9DE6: 02        .byte $02   ; enemy 006A ???
+- D 0 - I - 0x019DF7 06:9DE7: 15        .byte $15   ; enemy hp
 ; 04
-- - - - - - 0x019DF8 06:9DE8: A0        .byte $A0   ; 
-- - - - - - 0x019DF9 06:9DE9: 17        .byte con_obj_baton   ; 
-- - - - - - 0x019DFA 06:9DEA: 00        .byte $00   ; 
-- - - - - - 0x019DFB 06:9DEB: 33 00     .word $0033 ; pos_X
-- - - - - - 0x019DFD 06:9DED: 5D 00     .word $005D ; pos_Y
-- - - - - - 0x019DFF 06:9DEF: 00 00     .word $0000 ; pos_Z
-- - - - - - 0x019E01 06:9DF1: 02        .byte $02   ; 
-- - - - - - 0x019E02 06:9DF2: 15        .byte $15   ; hp
+- - - - - - 0x019DF8 06:9DE8: A0        .byte $A0   ; enemy settings
+- - - - - - 0x019DF9 06:9DE9: 17        .byte con_obj_baton   ; enemy weapon
+- - - - - - 0x019DFA 06:9DEA: 00        .byte con_0359_00   ; enemy 0359 ???
+- - - - - - 0x019DFB 06:9DEB: 33 00     .word $0033 ; enemy pos_X
+- - - - - - 0x019DFD 06:9DED: 5D 00     .word $005D ; enemy pos_Y
+- - - - - - 0x019DFF 06:9DEF: 00 00     .word $0000 ; enemy pos_Z
+- - - - - - 0x019E01 06:9DF1: 02        .byte $02   ; enemy 006A ???
+- - - - - - 0x019E02 06:9DF2: 15        .byte $15   ; enemy hp
 
 
 
 off_02_9DF3_04:
-- D 0 - I - 0x019E03 06:9DF3: 13        .byte con_884D_13   ; 
+- D 0 - I - 0x019E03 06:9DF3: 13        .byte con_884D_script_13   ; 
 
 
 
-off_02_9DF4_05:
-- D 0 - I - 0x019E04 06:9DF4: 09        .byte con_884D_09   ; 
-- D 0 - I - 0x019E05 06:9DF5: 00        .byte $00   ; 
-- D 0 - I - 0x019E06 06:9DF6: 00        .byte $00   ; 
-- D 0 - I - 0x019E07 06:9DF7: 00        .byte $00   ; 
-- D 0 - I - 0x019E08 06:9DF8: 00        .byte $00   ; 
-- D 0 - I - 0x019E09 06:9DF9: 00        .byte $00   ; 
-- D 0 - I - 0x019E0A 06:9DFA: 00        .byte $00   ; 
-- D 0 - I - 0x019E0B 06:9DFB: 00        .byte $00   ; 
-- D 0 - I - 0x019E0C 06:9DFC: 00        .byte $00   ; 
-- D 0 - I - 0x019E0D 06:9DFD: 00        .byte $00   ; 
+off_02_9DF4_05_spawn_bolo_1:
+- D 0 - I - 0x019E04 06:9DF4: 09        .byte con_884D_script_emeny_spawn_at_door   ; 
+- D 0 - I - 0x019E05 06:9DF5: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019E07 06:9DF7: 00 00     .word $0000 ; X camera limit (max)
+- D 0 - I - 0x019E09 06:9DF9: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019E0B 06:9DFB: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019E0D 06:9DFD: 00        .byte $00   ; 04B0 ???
+
 - D 0 - I - 0x019E0E 06:9DFE: 46        .byte con_chr_bank + $46   ; 
 - D 0 - I - 0x019E0F 06:9DFF: 06        .byte con_obj_bolo   ; 
-- D 0 - I - 0x019E10 06:9E00: 01        .byte $01   ; counter
+- D 0 - I - 0x019E10 06:9E00: 01        .byte $01   ; enemy counter
+
+- D 0 - I - 0x019E11 06:9E01: 02        .byte con_A6C3_draw_heli_blue_door   ; spawner
+
 ; 01
-- D 0 - I - 0x019E11 06:9E01: 02        .byte $02   ; 
-- D 0 - I - 0x019E12 06:9E02: 20        .byte $20   ; 
-- D 0 - I - 0x019E13 06:9E03: 00        .byte $00   ; 
-- D 0 - I - 0x019E14 06:9E04: 33 00     .word $0033 ; pos_X
-- D 0 - I - 0x019E16 06:9E06: 5D 00     .word $005D ; pos_Y
-- D 0 - I - 0x019E18 06:9E08: 00 00     .word $0000 ; pos_Z
-- D 0 - I - 0x019E1A 06:9E0A: 00        .byte $00   ; 
-- D 0 - I - 0x019E1B 06:9E0B: 27        .byte $27   ; hp
+- D 0 - I - 0x019E12 06:9E02: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019E13 06:9E03: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019E14 06:9E04: 33 00     .word $0033 ; enemy pos_X
+- D 0 - I - 0x019E16 06:9E06: 5D 00     .word $005D ; enemy pos_Y
+- D 0 - I - 0x019E18 06:9E08: 00 00     .word $0000 ; enemy pos_Z
+- D 0 - I - 0x019E1A 06:9E0A: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019E1B 06:9E0B: 27        .byte $27   ; enemy hp
 
 
 
-off_02_9E0C_06:
-- D 0 - I - 0x019E1C 06:9E0C: 09        .byte con_884D_09   ; 
-- D 0 - I - 0x019E1D 06:9E0D: 00        .byte $00   ; 
-- D 0 - I - 0x019E1E 06:9E0E: 00        .byte $00   ; 
-- D 0 - I - 0x019E1F 06:9E0F: 00        .byte $00   ; 
-- D 0 - I - 0x019E20 06:9E10: 00        .byte $00   ; 
-- D 0 - I - 0x019E21 06:9E11: 00        .byte $00   ; 
-- D 0 - I - 0x019E22 06:9E12: 00        .byte $00   ; 
-- D 0 - I - 0x019E23 06:9E13: 00        .byte $00   ; 
-- D 0 - I - 0x019E24 06:9E14: 00        .byte $00   ; 
-- D 0 - I - 0x019E25 06:9E15: 00        .byte $00   ; 
+off_02_9E0C_06_spawn_bolo_2:
+- D 0 - I - 0x019E1C 06:9E0C: 09        .byte con_884D_script_emeny_spawn_at_door   ; 
+- D 0 - I - 0x019E1D 06:9E0D: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019E1F 06:9E0F: 00 00     .word $0000 ; X camera limit (max)
+- D 0 - I - 0x019E21 06:9E11: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019E23 06:9E13: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019E25 06:9E15: 00        .byte $00   ; 04B0 ???
+
 - D 0 - I - 0x019E26 06:9E16: 46        .byte con_chr_bank + $46   ; 
 - D 0 - I - 0x019E27 06:9E17: 06        .byte con_obj_bolo   ; 
-- D 0 - I - 0x019E28 06:9E18: 01        .byte $01   ; counter
+- D 0 - I - 0x019E28 06:9E18: 01        .byte $01   ; enemy counter
+
+- D 0 - I - 0x019E29 06:9E19: 02        .byte con_A6C3_draw_heli_blue_door   ; spawner
+
 ; 01
-- D 0 - I - 0x019E29 06:9E19: 02        .byte $02   ; 
-- D 0 - I - 0x019E2A 06:9E1A: 20        .byte $20   ; 
-- D 0 - I - 0x019E2B 06:9E1B: 00        .byte $00   ; 
-- D 0 - I - 0x019E2C 06:9E1C: 33 00     .word $0033 ; pos_X
-- D 0 - I - 0x019E2E 06:9E1E: 5D 00     .word $005D ; pos_Y
-- D 0 - I - 0x019E30 06:9E20: 00 00     .word $0000 ; pos_Z
-- D 0 - I - 0x019E32 06:9E22: 00        .byte $00   ; 
-- D 0 - I - 0x019E33 06:9E23: 27        .byte $27   ; hp
+- D 0 - I - 0x019E2A 06:9E1A: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019E2B 06:9E1B: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 0 - I - 0x019E2C 06:9E1C: 33 00     .word $0033 ; enemy pos_X
+- D 0 - I - 0x019E2E 06:9E1E: 5D 00     .word $005D ; enemy pos_Y
+- D 0 - I - 0x019E30 06:9E20: 00 00     .word $0000 ; enemy pos_Z
+- D 0 - I - 0x019E32 06:9E22: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019E33 06:9E23: 27        .byte $27   ; enemy hp
 
 
 
 off_02_9E24_07:
-- D 0 - I - 0x019E34 06:9E24: 08        .byte con_884D_08   ; 
+- D 0 - I - 0x019E34 06:9E24: 08        .byte con_884D_script_08   ; 
 
 
 
 off_02_9E25_08:
-- D 0 - I - 0x019E35 06:9E25: 81        .byte con_884D_81   ; 
+- D 0 - I - 0x019E35 06:9E25: 81        .byte con_884D_script_81   ; 
 
 
 
-off_03_9E26_00:
-- D 0 - I - 0x019E36 06:9E26: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019E37 06:9E27: 00        .byte $00   ; 
-- D 0 - I - 0x019E38 06:9E28: 00        .byte $00   ; 
-- D 0 - I - 0x019E39 06:9E29: 00        .byte $00   ; 
-- D 0 - I - 0x019E3A 06:9E2A: 01        .byte $01   ; 
-- D 0 - I - 0x019E3B 06:9E2B: 00        .byte $00   ; 
-- D 0 - I - 0x019E3C 06:9E2C: 00        .byte $00   ; 
-- D 0 - I - 0x019E3D 06:9E2D: E0        .byte $E0   ; 
-- D 0 - I - 0x019E3E 06:9E2E: 01        .byte $01   ; 
-- D 0 - I - 0x019E3F 06:9E2F: 01        .byte $01   ; 
+off_03_9E26_00_spawn_roper:
+- D 0 - I - 0x019E36 06:9E26: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019E37 06:9E27: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019E39 06:9E29: 00 01     .word $0100 ; X camera limit (max)
+- D 0 - I - 0x019E3B 06:9E2B: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019E3D 06:9E2D: E0 01     .word $01E0 ; Y camera limit (max)
+- D 0 - I - 0x019E3F 06:9E2F: 01        .byte $01   ; 04B0 ???
+
 - D 0 - I - 0x019E40 06:9E30: 42        .byte con_chr_bank + $42   ; 
 - D 0 - I - 0x019E41 06:9E31: 03        .byte con_obj_roper   ; 
-- D 0 - I - 0x019E42 06:9E32: 04        .byte $04   ; counter
+- D 0 - I - 0x019E42 06:9E32: 04        .byte $04   ; enemy counter
 ; 01
-- D 0 - I - 0x019E43 06:9E33: 80        .byte $80   ; 
-- D 0 - I - 0x019E44 06:9E34: 1A        .byte con_obj_1A   ; 
-- D 0 - I - 0x019E45 06:9E35: 13        .byte $13   ; hp
+- D 0 - I - 0x019E43 06:9E33: 80        .byte $80   ; enemy settings
+- D 0 - I - 0x019E44 06:9E34: 1A        .byte con_obj_boomerang   ; enemy weapon
+- D 0 - I - 0x019E45 06:9E35: 13        .byte $13   ; enemy hp
 ; 02
-- D 0 - I - 0x019E46 06:9E36: 80        .byte $80   ; 
-- D 0 - I - 0x019E47 06:9E37: 1A        .byte con_obj_1A   ; 
-- D 0 - I - 0x019E48 06:9E38: 13        .byte $13   ; hp
+- D 0 - I - 0x019E46 06:9E36: 80        .byte $80   ; enemy settings
+- D 0 - I - 0x019E47 06:9E37: 1A        .byte con_obj_boomerang   ; enemy weapon
+- D 0 - I - 0x019E48 06:9E38: 13        .byte $13   ; enemy hp
 ; 03
-- D 0 - I - 0x019E49 06:9E39: 80        .byte $80   ; 
-- D 0 - I - 0x019E4A 06:9E3A: 1A        .byte con_obj_1A   ; 
-- D 0 - I - 0x019E4B 06:9E3B: 13        .byte $13   ; hp
+- D 0 - I - 0x019E49 06:9E39: 80        .byte $80   ; enemy settings
+- D 0 - I - 0x019E4A 06:9E3A: 1A        .byte con_obj_boomerang   ; enemy weapon
+- D 0 - I - 0x019E4B 06:9E3B: 13        .byte $13   ; enemy hp
 ; 04
-- - - - - - 0x019E4C 06:9E3C: 80        .byte $80   ; 
-- - - - - - 0x019E4D 06:9E3D: 1A        .byte con_obj_1A   ; 
-- - - - - - 0x019E4E 06:9E3E: 13        .byte $13   ; hp
+- - - - - - 0x019E4C 06:9E3C: 80        .byte $80   ; enemy settings
+- - - - - - 0x019E4D 06:9E3D: 1A        .byte con_obj_boomerang   ; enemy weapon
+- - - - - - 0x019E4E 06:9E3E: 13        .byte $13   ; enemy hp
 
 
 
-off_03_9E3F_01:
-- D 0 - I - 0x019E4F 06:9E3F: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019E50 06:9E40: 00        .byte $00   ; 
-- D 0 - I - 0x019E51 06:9E41: 00        .byte $00   ; 
-- D 0 - I - 0x019E52 06:9E42: 00        .byte $00   ; 
-- D 0 - I - 0x019E53 06:9E43: 01        .byte $01   ; 
-- D 0 - I - 0x019E54 06:9E44: 00        .byte $00   ; 
-- D 0 - I - 0x019E55 06:9E45: 00        .byte $00   ; 
-- D 0 - I - 0x019E56 06:9E46: E0        .byte $E0   ; 
-- D 0 - I - 0x019E57 06:9E47: 01        .byte $01   ; 
-- D 0 - I - 0x019E58 06:9E48: 01        .byte $01   ; 
+off_03_9E3F_01_spawn_linda:
+- D 0 - I - 0x019E4F 06:9E3F: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019E50 06:9E40: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019E52 06:9E42: 00 01     .word $0100 ; X camera limit (max)
+- D 0 - I - 0x019E54 06:9E44: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019E56 06:9E46: E0 01     .word $01E0 ; Y camera limit (max)
+- D 0 - I - 0x019E58 06:9E48: 01        .byte $01   ; 04B0 ???
+
 - D 0 - I - 0x019E59 06:9E49: 44        .byte con_chr_bank + $44   ; 
 - D 0 - I - 0x019E5A 06:9E4A: 04        .byte con_obj_linda   ; 
-- D 0 - I - 0x019E5B 06:9E4B: 04        .byte $04   ; counter
+- D 0 - I - 0x019E5B 06:9E4B: 04        .byte $04   ; enemy counter
 ; 01
-- D 0 - I - 0x019E5C 06:9E4C: 00        .byte $00   ; 
-- D 0 - I - 0x019E5D 06:9E4D: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019E5C 06:9E4C: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019E5D 06:9E4D: 0F        .byte $0F   ; enemy hp
 ; 02
-- D 0 - I - 0x019E5E 06:9E4E: 00        .byte $00   ; 
-- D 0 - I - 0x019E5F 06:9E4F: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019E5E 06:9E4E: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019E5F 06:9E4F: 0F        .byte $0F   ; enemy hp
 ; 03
-- D 0 - I - 0x019E60 06:9E50: 00        .byte $00   ; 
-- D 0 - I - 0x019E61 06:9E51: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019E60 06:9E50: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019E61 06:9E51: 0F        .byte $0F   ; enemy hp
 ; 04
-- - - - - - 0x019E62 06:9E52: 00        .byte $00   ; 
-- - - - - - 0x019E63 06:9E53: 0F        .byte $0F   ; hp
+- - - - - - 0x019E62 06:9E52: 00        .byte $00   ; enemy settings
+- - - - - - 0x019E63 06:9E53: 0F        .byte $0F   ; enemy hp
 
 
 
 off_03_9E54_02:
-- D 0 - I - 0x019E64 06:9E54: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019E64 06:9E54: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019E65 06:9E55: 80        .byte $80   ; 
 - D 0 - I - 0x019E66 06:9E56: 00        .byte $00   ; 
 - D 0 - I - 0x019E67 06:9E57: 01        .byte $01   ; 
 
 
 
-off_03_9E58_03:
-- D 0 - I - 0x019E68 06:9E58: 06        .byte con_884D_06   ; 
-- D 0 - I - 0x019E69 06:9E59: 04        .byte $04   ; 
+off_03_9E58_03_open_elevator_door:
+- D 0 - I - 0x019E68 06:9E58: 06        .byte con_884D_script_06   ; 
+- D 0 - I - 0x019E69 06:9E59: 04        .byte con_A6C3_draw_enter_elevator_door   ; 
 
 
 
-off_03_9E5A_04:
-- D 0 - I - 0x019E6A 06:9E5A: 04        .byte con_884D_04   ; 
-- D 0 - I - 0x019E6B 06:9E5B: 00        .byte $00   ; 
+off_03_9E5A_04_enter_door:
+- D 0 - I - 0x019E6A 06:9E5A: 04        .byte con_884D_script_enter_door   ; 
+- D 0 - I - 0x019E6B 06:9E5B: 00        .byte con_9859_00   ; 
 
 
 
-off_03_9E5C_05:
-- D 0 - I - 0x019E6C 06:9E5C: 0A        .byte con_884D_0A   ; 
-- D 0 - I - 0x019E6D 06:9E5D: 04        .byte $04   ; 
+off_03_9E5C_05_close_elevator_door:
+- D 0 - I - 0x019E6C 06:9E5C: 0A        .byte con_884D_script_0A   ; 
+- D 0 - I - 0x019E6D 06:9E5D: 04        .byte con_A6C3_draw_enter_elevator_door   ; 
 
 
 
-off_03_9E5E_06:
-- D 0 - I - 0x019E6E 06:9E5E: 05        .byte con_884D_05   ; 
+off_03_9E5E_06_elevator_going_down:
+- D 0 - I - 0x019E6E 06:9E5E: 05        .byte con_884D_script_elevator_going_down   ; 
 
 
 
-off_03_9E5F_07:
-- D 0 - I - 0x019E6F 06:9E5F: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019E70 06:9E60: FF        .byte $FF   ; 
-- D 0 - I - 0x019E71 06:9E61: 00        .byte $00   ; 
-- D 0 - I - 0x019E72 06:9E62: FF        .byte $FF   ; 
-- D 0 - I - 0x019E73 06:9E63: 00        .byte $00   ; 
-- D 0 - I - 0x019E74 06:9E64: 00        .byte $00   ; 
-- D 0 - I - 0x019E75 06:9E65: 00        .byte $00   ; 
-- D 0 - I - 0x019E76 06:9E66: 10        .byte $10   ; 
-- D 0 - I - 0x019E77 06:9E67: 00        .byte $00   ; 
-- D 0 - I - 0x019E78 06:9E68: 04        .byte $04   ; 
+off_03_9E5F_07_spawn_right_arm:
+- D 0 - I - 0x019E6F 06:9E5F: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019E70 06:9E60: FF 00     .word $00FF ; X camera limit (min)
+- D 0 - I - 0x019E72 06:9E62: FF 00     .word $00FF ; X camera limit (max)
+- D 0 - I - 0x019E74 06:9E64: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019E76 06:9E66: 10 00     .word $0010 ; Y camera limit (max)
+- D 0 - I - 0x019E78 06:9E68: 04        .byte $04   ; 04B0 ???
+
 - D 0 - I - 0x019E79 06:9E69: 54        .byte con_chr_bank + $54   ; 
 - D 0 - I - 0x019E7A 06:9E6A: 0A        .byte con_obj_right_arm   ; 
-- D 0 - I - 0x019E7B 06:9E6B: 04        .byte $04   ; counter
+- D 0 - I - 0x019E7B 06:9E6B: 04        .byte $04   ; enemy counter
 ; 01
-- D 0 - I - 0x019E7C 06:9E6C: 00        .byte $00   ; 
-- D 0 - I - 0x019E7D 06:9E6D: 17        .byte $17   ; hp
+- D 0 - I - 0x019E7C 06:9E6C: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019E7D 06:9E6D: 17        .byte $17   ; enemy hp
 ; 02
-- D 0 - I - 0x019E7E 06:9E6E: 00        .byte $00   ; 
-- D 0 - I - 0x019E7F 06:9E6F: 17        .byte $17   ; hp
+- D 0 - I - 0x019E7E 06:9E6E: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019E7F 06:9E6F: 17        .byte $17   ; enemy hp
 ; 03
-- D 0 - I - 0x019E80 06:9E70: 00        .byte $00   ; 
-- D 0 - I - 0x019E81 06:9E71: 17        .byte $17   ; hp
+- D 0 - I - 0x019E80 06:9E70: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019E81 06:9E71: 17        .byte $17   ; enemy hp
 ; 04
-- - - - - - 0x019E82 06:9E72: 00        .byte $00   ; 
-- - - - - - 0x019E83 06:9E73: 17        .byte $17   ; hp
+- - - - - - 0x019E82 06:9E72: 00        .byte $00   ; enemy settings
+- - - - - - 0x019E83 06:9E73: 17        .byte $17   ; enemy hp
 
 
 
-off_03_9E74_08:
-- D 0 - I - 0x019E84 06:9E74: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019E85 06:9E75: FF        .byte $FF   ; 
-- D 0 - I - 0x019E86 06:9E76: 00        .byte $00   ; 
-- D 0 - I - 0x019E87 06:9E77: FF        .byte $FF   ; 
-- D 0 - I - 0x019E88 06:9E78: 00        .byte $00   ; 
-- D 0 - I - 0x019E89 06:9E79: 00        .byte $00   ; 
-- D 0 - I - 0x019E8A 06:9E7A: 00        .byte $00   ; 
-- D 0 - I - 0x019E8B 06:9E7B: 10        .byte $10   ; 
-- D 0 - I - 0x019E8C 06:9E7C: 00        .byte $00   ; 
-- D 0 - I - 0x019E8D 06:9E7D: 04        .byte $04   ; 
+off_03_9E74_08_spawn_abore:
+- D 0 - I - 0x019E84 06:9E74: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019E85 06:9E75: FF 00     .word $00FF ; X camera limit (min)
+- D 0 - I - 0x019E87 06:9E77: FF 00     .word $00FF ; X camera limit (max)
+- D 0 - I - 0x019E89 06:9E79: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019E8B 06:9E7B: 10 00     .word $0010 ; Y camera limit (max)
+- D 0 - I - 0x019E8D 06:9E7D: 04        .byte $04   ; 04B0 ???
+
 - D 0 - I - 0x019E8E 06:9E7E: 52        .byte con_chr_bank + $52   ; 
 - D 0 - I - 0x019E8F 06:9E7F: 08        .byte con_obj_abore   ; 
-- D 0 - I - 0x019E90 06:9E80: 01        .byte $01   ; counter
+- D 0 - I - 0x019E90 06:9E80: 01        .byte $01   ; enemy counter
 ; 01
-- D 0 - I - 0x019E91 06:9E81: 00        .byte $00   ; 
-- D 0 - I - 0x019E92 06:9E82: 37        .byte $37   ; hp
+- D 0 - I - 0x019E91 06:9E81: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019E92 06:9E82: 37        .byte $37   ; enemy hp
 
 
 
 off_03_9E83_09:
-- D 0 - I - 0x019E93 06:9E83: 80        .byte con_884D_80   ; 
+- D 0 - I - 0x019E93 06:9E83: 80        .byte con_884D_script_80   ; 
 
 
 
-off_03_9E84_0A:
-- D 0 - I - 0x019E94 06:9E84: 01        .byte con_884D_white_hand_cursor   ; 
-- D 0 - I - 0x019E95 06:9E85: 00        .byte $00   ; 
-- D 0 - I - 0x019E96 06:9E86: 01        .byte $01   ; 
-- D 0 - I - 0x019E97 06:9E87: 00        .byte $00   ; 
-- D 0 - I - 0x019E98 06:9E88: 03        .byte $03   ; 
-- D 0 - I - 0x019E99 06:9E89: 00        .byte $00   ; 
-- D 0 - I - 0x019E9A 06:9E8A: 00        .byte $00   ; 
-- D 0 - I - 0x019E9B 06:9E8B: 10        .byte $10   ; 
-- D 0 - I - 0x019E9C 06:9E8C: 00        .byte $00   ; 
-- D 0 - I - 0x019E9D 06:9E8D: 05        .byte $05   ; 
-- D 0 - I - 0x019E9E 06:9E8E: 03        .byte $03   ; 
+off_03_9E84_0A_cursor:
+- D 0 - I - 0x019E94 06:9E84: 01        .byte con_884D_script_hand_cursor   ; 
+- D 0 - I - 0x019E95 06:9E85: 00 01     .word $0100 ; X camera limit (min)
+- D 0 - I - 0x019E97 06:9E87: 00 03     .word $0300 ; X camera limit (max)
+- D 0 - I - 0x019E99 06:9E89: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019E9B 06:9E8B: 10 00     .word $0010 ; Y camera limit (max)
+- D 0 - I - 0x019E9D 06:9E8D: 05        .byte $05   ; 04B0 ???
+
+- D 0 - I - 0x019E9E 06:9E8E: 03        .byte $03   ; cursor direction (right)
 
 
 
 off_03_9E8F_0B:
-- D 0 - I - 0x019E9F 06:9E8F: 02        .byte con_884D_02   ; 
+- D 0 - I - 0x019E9F 06:9E8F: 02        .byte con_884D_script_02   ; 
 - D 0 - I - 0x019EA0 06:9E90: 00        .byte $00   ; 
 - D 0 - I - 0x019EA1 06:9E91: 03        .byte $03   ; 
 - D 0 - I - 0x019EA2 06:9E92: 00        .byte $00   ; 
@@ -5860,176 +5767,164 @@ off_03_9E8F_0B:
 
 
 off_03_9E94_0C:
-- D 0 - I - 0x019EA4 06:9E94: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019EA5 06:9E95: 00        .byte $00   ; 
-- D 0 - I - 0x019EA6 06:9E96: 03        .byte $03   ; 
-- D 0 - I - 0x019EA7 06:9E97: 00        .byte $00   ; 
-- D 0 - I - 0x019EA8 06:9E98: 03        .byte $03   ; 
-- D 0 - I - 0x019EA9 06:9E99: 00        .byte $00   ; 
-- D 0 - I - 0x019EAA 06:9E9A: 00        .byte $00   ; 
-- D 0 - I - 0x019EAB 06:9E9B: 00        .byte $00   ; 
-- D 0 - I - 0x019EAC 06:9E9C: 00        .byte $00   ; 
-- D 0 - I - 0x019EAD 06:9E9D: 00        .byte $00   ; 
+- D 0 - I - 0x019EA4 06:9E94: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019EA5 06:9E95: 00 03     .word $0300 ; X camera limit (min)
+- D 0 - I - 0x019EA7 06:9E97: 00 03     .word $0300 ; X camera limit (max)
+- D 0 - I - 0x019EA9 06:9E99: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019EAB 06:9E9B: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019EAD 06:9E9D: 00        .byte $00   ; 04B0 ???
+
 - D 0 - I - 0x019EAE 06:9E9E: 44        .byte con_chr_bank + $44   ; 
 - D 0 - I - 0x019EAF 06:9E9F: 04        .byte con_obj_linda   ; 
-- D 0 - I - 0x019EB0 06:9EA0: 04        .byte $04   ; counter
+- D 0 - I - 0x019EB0 06:9EA0: 04        .byte $04   ; enemy counter
 ; 01
-- D 0 - I - 0x019EB1 06:9EA1: E0        .byte $E0   ; 
-- D 0 - I - 0x019EB2 06:9EA2: 14        .byte con_obj_grenade   ; 
-- D 0 - I - 0x019EB3 06:9EA3: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019EB4 06:9EA4: 02        .byte $02   ; 
-- D 0 - I - 0x019EB5 06:9EA5: 96 03     .word $0396 ; pos_X
-- D 0 - I - 0x019EB7 06:9EA7: 50 00     .word $0050 ; pos_Y
-- D 0 - I - 0x019EB9 06:9EA9: 80 00     .word $0080 ; pos_Z
-- D 0 - I - 0x019EBB 06:9EAB: 00        .byte $00   ; 
-- D 0 - I - 0x019EBC 06:9EAC: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019EB1 06:9EA1: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019EB2 06:9EA2: 14        .byte con_obj_grenade   ; enemy weapon
+- D 0 - I - 0x019EB3 06:9EA3: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019EB4 06:9EA4: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019EB5 06:9EA5: 96 03     .word $0396 ; enemy pos_X
+- D 0 - I - 0x019EB7 06:9EA7: 50 00     .word $0050 ; enemy pos_Y
+- D 0 - I - 0x019EB9 06:9EA9: 80 00     .word $0080 ; enemy pos_Z
+- D 0 - I - 0x019EBB 06:9EAB: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019EBC 06:9EAC: 0F        .byte $0F   ; enemy hp
 ; 02
-- D 0 - I - 0x019EBD 06:9EAD: 60        .byte $60   ; 
-- D 0 - I - 0x019EBE 06:9EAE: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019EBF 06:9EAF: 02        .byte $02   ; 
-- D 0 - I - 0x019EC0 06:9EB0: 80 03     .word $0380 ; pos_X
-- D 0 - I - 0x019EC2 06:9EB2: 50 00     .word $0050 ; pos_Y
-- D 0 - I - 0x019EC4 06:9EB4: B0 00     .word $00B0 ; pos_Z
-- D 0 - I - 0x019EC6 06:9EB6: 00        .byte $00   ; 
-- D 0 - I - 0x019EC7 06:9EB7: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019EBD 06:9EAD: 60        .byte $60   ; enemy settings
+- D 0 - I - 0x019EBE 06:9EAE: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019EBF 06:9EAF: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019EC0 06:9EB0: 80 03     .word $0380 ; enemy pos_X
+- D 0 - I - 0x019EC2 06:9EB2: 50 00     .word $0050 ; enemy pos_Y
+- D 0 - I - 0x019EC4 06:9EB4: B0 00     .word $00B0 ; enemy pos_Z
+- D 0 - I - 0x019EC6 06:9EB6: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019EC7 06:9EB7: 0F        .byte $0F   ; enemy hp
 ; 03
-- D 0 - I - 0x019EC8 06:9EB8: E0        .byte $E0   ; 
-- D 0 - I - 0x019EC9 06:9EB9: 14        .byte con_obj_grenade   ; 
-- D 0 - I - 0x019ECA 06:9EBA: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019ECB 06:9EBB: 02        .byte $02   ; 
-- D 0 - I - 0x019ECC 06:9EBC: 96 03     .word $0396 ; pos_X
-- D 0 - I - 0x019ECE 06:9EBE: 50 00     .word $0050 ; pos_Y
-- D 0 - I - 0x019ED0 06:9EC0: 80 00     .word $0080 ; pos_Z
-- D 0 - I - 0x019ED2 06:9EC2: 00        .byte $00   ; 
-- D 0 - I - 0x019ED3 06:9EC3: 0F        .byte $0F   ; hp
+- D 0 - I - 0x019EC8 06:9EB8: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019EC9 06:9EB9: 14        .byte con_obj_grenade   ; enemy weapon
+- D 0 - I - 0x019ECA 06:9EBA: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019ECB 06:9EBB: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019ECC 06:9EBC: 96 03     .word $0396 ; enemy pos_X
+- D 0 - I - 0x019ECE 06:9EBE: 50 00     .word $0050 ; enemy pos_Y
+- D 0 - I - 0x019ED0 06:9EC0: 80 00     .word $0080 ; enemy pos_Z
+- D 0 - I - 0x019ED2 06:9EC2: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019ED3 06:9EC3: 0F        .byte $0F   ; enemy hp
 ; 04
-- - - - - - 0x019ED4 06:9EC4: 60        .byte $60   ; 
-- - - - - - 0x019ED5 06:9EC5: 07        .byte $07   ; 
-- - - - - - 0x019ED6 06:9EC6: 02        .byte $02   ; 
-- - - - - - 0x019ED7 06:9EC7: 90 03     .word $0390 ; pos_X
-- - - - - - 0x019ED9 06:9EC9: 50 00     .word $0050 ; pos_Y
-- - - - - - 0x019EDB 06:9ECB: B0 00     .word $00B0 ; pos_Z
-- - - - - - 0x019EDD 06:9ECD: 00        .byte $00   ; 
-- - - - - - 0x019EDE 06:9ECE: 0F        .byte $0F   ; hp
+- - - - - - 0x019ED4 06:9EC4: 60        .byte $60   ; enemy settings
+- - - - - - 0x019ED5 06:9EC5: 07        .byte con_state_fall_from_platform   ; enemy state
+- - - - - - 0x019ED6 06:9EC6: 02        .byte con_0359_02   ; enemy 0359 ???
+- - - - - - 0x019ED7 06:9EC7: 90 03     .word $0390 ; enemy pos_X
+- - - - - - 0x019ED9 06:9EC9: 50 00     .word $0050 ; enemy pos_Y
+- - - - - - 0x019EDB 06:9ECB: B0 00     .word $00B0 ; enemy pos_Z
+- - - - - - 0x019EDD 06:9ECD: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x019EDE 06:9ECE: 0F        .byte $0F   ; enemy hp
 
 
 
-off_03_9ECF_0D:
-- D 0 - I - 0x019EDF 06:9ECF: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019EE0 06:9ED0: 00        .byte $00   ; 
-- D 0 - I - 0x019EE1 06:9ED1: 03        .byte $03   ; 
-- D 0 - I - 0x019EE2 06:9ED2: 00        .byte $00   ; 
-- D 0 - I - 0x019EE3 06:9ED3: 03        .byte $03   ; 
-- D 0 - I - 0x019EE4 06:9ED4: 00        .byte $00   ; 
-- D 0 - I - 0x019EE5 06:9ED5: 00        .byte $00   ; 
-- D 0 - I - 0x019EE6 06:9ED6: 00        .byte $00   ; 
-- D 0 - I - 0x019EE7 06:9ED7: 00        .byte $00   ; 
-- D 0 - I - 0x019EE8 06:9ED8: 00        .byte $00   ; 
+off_03_9ECF_0D_spawn_williams:
+- D 0 - I - 0x019EDF 06:9ECF: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019EE0 06:9ED0: 00 03     .word $0300 ; X camera limit (min)
+- D 0 - I - 0x019EE2 06:9ED2: 00 03     .word $0300 ; X camera limit (max)
+- D 0 - I - 0x019EE4 06:9ED4: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019EE6 06:9ED6: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019EE8 06:9ED8: 00        .byte $00   ; 04B0 ???
+
 - D 0 - I - 0x019EE9 06:9ED9: 4E        .byte con_chr_bank + $4E   ; 
 - D 0 - I - 0x019EEA 06:9EDA: 02        .byte con_obj_williams   ; 
-- D 0 - I - 0x019EEB 06:9EDB: 04        .byte $04   ; counter
+- D 0 - I - 0x019EEB 06:9EDB: 04        .byte $04   ; enemy counter
 ; 01
-- D 0 - I - 0x019EEC 06:9EDC: E0        .byte $E0   ; 
-- D 0 - I - 0x019EED 06:9EDD: 12        .byte con_obj_knife   ; 
-- D 0 - I - 0x019EEE 06:9EDE: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019EEF 06:9EDF: 02        .byte $02   ; 
-- D 0 - I - 0x019EF0 06:9EE0: 96 03     .word $0396 ; pos_X
-- D 0 - I - 0x019EF2 06:9EE2: 50 00     .word $0050 ; pos_Y
-- D 0 - I - 0x019EF4 06:9EE4: 80 00     .word $0080 ; pos_Z
-- D 0 - I - 0x019EF6 06:9EE6: 00        .byte $00   ; 
-- D 0 - I - 0x019EF7 06:9EE7: 1B        .byte $1B   ; hp
+- D 0 - I - 0x019EEC 06:9EDC: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019EED 06:9EDD: 12        .byte con_obj_knife   ; enemy weapon
+- D 0 - I - 0x019EEE 06:9EDE: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019EEF 06:9EDF: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019EF0 06:9EE0: 96 03     .word $0396 ; enemy pos_X
+- D 0 - I - 0x019EF2 06:9EE2: 50 00     .word $0050 ; enemy pos_Y
+- D 0 - I - 0x019EF4 06:9EE4: 80 00     .word $0080 ; enemy pos_Z
+- D 0 - I - 0x019EF6 06:9EE6: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019EF7 06:9EE7: 1B        .byte $1B   ; enemy hp
 ; 02
-- D 0 - I - 0x019EF8 06:9EE8: 60        .byte $60   ; 
-- D 0 - I - 0x019EF9 06:9EE9: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019EFA 06:9EEA: 02        .byte $02   ; 
-- D 0 - I - 0x019EFB 06:9EEB: 80 03     .word $0380 ; pos_X
-- D 0 - I - 0x019EFD 06:9EED: 50 00     .word $0050 ; pos_Y
-- D 0 - I - 0x019EFF 06:9EEF: B0 00     .word $00B0 ; pos_Z
-- D 0 - I - 0x019F01 06:9EF1: 00        .byte $00   ; 
-- D 0 - I - 0x019F02 06:9EF2: 1B        .byte $1B   ; hp
+- D 0 - I - 0x019EF8 06:9EE8: 60        .byte $60   ; enemy settings
+- D 0 - I - 0x019EF9 06:9EE9: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019EFA 06:9EEA: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019EFB 06:9EEB: 80 03     .word $0380 ; enemy pos_X
+- D 0 - I - 0x019EFD 06:9EED: 50 00     .word $0050 ; enemy pos_Y
+- D 0 - I - 0x019EFF 06:9EEF: B0 00     .word $00B0 ; enemy pos_Z
+- D 0 - I - 0x019F01 06:9EF1: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019F02 06:9EF2: 1B        .byte $1B   ; enemy hp
 ; 03
-- D 0 - I - 0x019F03 06:9EF3: E0        .byte $E0   ; 
-- D 0 - I - 0x019F04 06:9EF4: 12        .byte con_obj_knife   ; 
-- D 0 - I - 0x019F05 06:9EF5: 07        .byte con_state_fall_from_platform   ; 
-- D 0 - I - 0x019F06 06:9EF6: 02        .byte $02   ; 
-- D 0 - I - 0x019F07 06:9EF7: 90 03     .word $0390 ; pos_X
-- D 0 - I - 0x019F09 06:9EF9: 50 00     .word $0050 ; pos_Y
-- D 0 - I - 0x019F0B 06:9EFB: 80 00     .word $0080 ; pos_Z
-- D 0 - I - 0x019F0D 06:9EFD: 00        .byte $00   ; 
-- D 0 - I - 0x019F0E 06:9EFE: 1B        .byte $1B   ; hp
+- D 0 - I - 0x019F03 06:9EF3: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019F04 06:9EF4: 12        .byte con_obj_knife   ; enemy weapon
+- D 0 - I - 0x019F05 06:9EF5: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 0 - I - 0x019F06 06:9EF6: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019F07 06:9EF7: 90 03     .word $0390 ; enemy pos_X
+- D 0 - I - 0x019F09 06:9EF9: 50 00     .word $0050 ; enemy pos_Y
+- D 0 - I - 0x019F0B 06:9EFB: 80 00     .word $0080 ; enemy pos_Z
+- D 0 - I - 0x019F0D 06:9EFD: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019F0E 06:9EFE: 1B        .byte $1B   ; enemy hp
 ; 04
-- - - - - - 0x019F0F 06:9EFF: E0        .byte $E0   ; 
-- - - - - - 0x019F10 06:9F00: 12        .byte $12   ; 
-- - - - - - 0x019F11 06:9F01: 07        .byte $07   ; 
-- - - - - - 0x019F12 06:9F02: 02        .byte $02   ; 
-- - - - - - 0x019F13 06:9F03: 80 03     .word $0380 ; pos_X
-- - - - - - 0x019F15 06:9F05: 50 00     .word $0050 ; pos_Y
-- - - - - - 0x019F17 06:9F07: B0 00     .word $00B0 ; pos_Z
-- - - - - - 0x019F19 06:9F09: 00        .byte $00   ; 
-- - - - - - 0x019F1A 06:9F0A: 1B        .byte $1B   ; hp
+- - - - - - 0x019F0F 06:9EFF: E0        .byte $E0   ; enemy settings
+- - - - - - 0x019F10 06:9F00: 12        .byte con_obj_knife   ; enemy weapon
+- - - - - - 0x019F11 06:9F01: 07        .byte con_state_fall_from_platform   ; enemy state
+- - - - - - 0x019F12 06:9F02: 02        .byte con_0359_02   ; enemy 0359 ???
+- - - - - - 0x019F13 06:9F03: 80 03     .word $0380 ; enemy pos_X
+- - - - - - 0x019F15 06:9F05: 50 00     .word $0050 ; enemy pos_Y
+- - - - - - 0x019F17 06:9F07: B0 00     .word $00B0 ; enemy pos_Z
+- - - - - - 0x019F19 06:9F09: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x019F1A 06:9F0A: 1B        .byte $1B   ; enemy hp
 
 
 
 off_03_9F0B_0E:
 off_03_9F0B_0F:
-- D 0 - I - 0x019F1B 06:9F0B: 80        .byte con_884D_80   ; 
+- D 0 - I - 0x019F1B 06:9F0B: 80        .byte con_884D_script_80   ; 
 
 
 
-off_03_9F0C_10:
-- D 0 - I - 0x019F1C 06:9F0C: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019F1D 06:9F0D: 00        .byte $00   ; 
-- D 0 - I - 0x019F1E 06:9F0E: 03        .byte $03   ; 
-- D 0 - I - 0x019F1F 06:9F0F: 00        .byte $00   ; 
-- D 0 - I - 0x019F20 06:9F10: 03        .byte $03   ; 
-- D 0 - I - 0x019F21 06:9F11: 00        .byte $00   ; 
-- D 0 - I - 0x019F22 06:9F12: 00        .byte $00   ; 
-- D 0 - I - 0x019F23 06:9F13: 00        .byte $00   ; 
-- D 0 - I - 0x019F24 06:9F14: 00        .byte $00   ; 
-- D 0 - I - 0x019F25 06:9F15: 00        .byte $00   ; 
+off_03_9F0C_10_spawn_bolo:
+- D 0 - I - 0x019F1C 06:9F0C: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019F1D 06:9F0D: 00 03     .word $0300 ; X camera limit (min)
+- D 0 - I - 0x019F1F 06:9F0F: 00 03     .word $0300 ; X camera limit (max)
+- D 0 - I - 0x019F21 06:9F11: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019F23 06:9F13: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019F25 06:9F15: 00        .byte $00   ; 04B0 ???
+
 - D 0 - I - 0x019F26 06:9F16: 46        .byte con_chr_bank + $46   ; 
 - D 0 - I - 0x019F27 06:9F17: 06        .byte con_obj_bolo   ; 
-- D 0 - I - 0x019F28 06:9F18: 01        .byte $01   ; counter
+- D 0 - I - 0x019F28 06:9F18: 01        .byte $01   ; enemy counter
 ; 01
-- D 0 - I - 0x019F29 06:9F19: 00        .byte $00   ; 
-- D 0 - I - 0x019F2A 06:9F1A: 37        .byte $37   ; hp
+- D 0 - I - 0x019F29 06:9F19: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019F2A 06:9F1A: 37        .byte $37   ; enemy hp
 
 
 
 off_03_9F1B_11:
-- D 0 - I - 0x019F2B 06:9F1B: 06        .byte con_884D_06   ; 
-- D 0 - I - 0x019F2C 06:9F1C: 06        .byte $06   ; 
+- D 0 - I - 0x019F2B 06:9F1B: 06        .byte con_884D_script_06   ; 
+- D 0 - I - 0x019F2C 06:9F1C: 06        .byte con_A6C3_draw_final_door_03   ; 
 
 
 
-off_03_9F1D_12:
-- D 0 - I - 0x019F2D 06:9F1D: 04        .byte con_884D_04   ; 
-- D 0 - I - 0x019F2E 06:9F1E: 01        .byte $01   ; 
+off_03_9F1D_12_enter_door:
+- D 0 - I - 0x019F2D 06:9F1D: 04        .byte con_884D_script_enter_door   ; 
+- D 0 - I - 0x019F2E 06:9F1E: 01        .byte con_9859_01   ; 
 
 
 
 off_03_9F1F_13:
-- D 0 - I - 0x019F2F 06:9F1F: 0A        .byte con_884D_0A   ; 
-- D 0 - I - 0x019F30 06:9F20: 06        .byte $06   ; 
+- D 0 - I - 0x019F2F 06:9F1F: 0A        .byte con_884D_script_0A   ; 
+- D 0 - I - 0x019F30 06:9F20: 06        .byte con_A6C3_draw_final_door_03   ; 
 
 
 
 off_03_9F21_14:
-- D 0 - I - 0x019F31 06:9F21: 81        .byte con_884D_81   ; 
+- D 0 - I - 0x019F31 06:9F21: 81        .byte con_884D_script_81   ; 
 
 
 
 off_04_9F22_00:
-- D 0 - I - 0x019F32 06:9F22: 03        .byte con_884D_03   ; 
-- D 0 - I - 0x019F33 06:9F23: 00        .byte $00   ; 
-- D 0 - I - 0x019F34 06:9F24: 00        .byte $00   ; 
-- D 0 - I - 0x019F35 06:9F25: 00        .byte $00   ; 
-- D 0 - I - 0x019F36 06:9F26: 00        .byte $00   ; 
-- D 0 - I - 0x019F37 06:9F27: 00        .byte $00   ; 
-- D 0 - I - 0x019F38 06:9F28: 00        .byte $00   ; 
-- D 0 - I - 0x019F39 06:9F29: 00        .byte $00   ; 
-- D 0 - I - 0x019F3A 06:9F2A: 00        .byte $00   ; 
-- D 0 - I - 0x019F3B 06:9F2B: 00        .byte $00   ; 
+- D 0 - I - 0x019F32 06:9F22: 03        .byte con_884D_script_03   ; 
+- D 0 - I - 0x019F33 06:9F23: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019F35 06:9F25: 00 00     .word $0000 ; X camera limit (max)
+- D 0 - I - 0x019F37 06:9F27: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019F39 06:9F29: 00 00     .word $0000 ; Y camera limit (max)
+- D 0 - I - 0x019F3B 06:9F2B: 00        .byte $00   ; 04B0 ???
+
 - D 0 - I - 0x019F3C 06:9F2C: 46        .byte con_chr_bank + $46   ; 
 - D 0 - I - 0x019F3D 06:9F2D: 06        .byte con_obj_bolo   ; 
 - - - - - - 0x019F3E 06:9F2E: 00        .byte $00   ; 
@@ -6037,119 +5932,106 @@ off_04_9F22_00:
 
 
 off_04_9F2F_01:
-- D 0 - I - 0x019F3F 06:9F2F: 10        .byte con_884D_10   ; 
+- D 0 - I - 0x019F3F 06:9F2F: 10        .byte con_884D_script_10   ; 
 
 
 
-off_04_9F30_02:
-- D 0 - I - 0x019F40 06:9F30: 04        .byte con_884D_04   ; 
-- D 0 - I - 0x019F41 06:9F31: 02        .byte $02   ; 
+off_04_9F30_02_enter_door:
+- D 0 - I - 0x019F40 06:9F30: 04        .byte con_884D_script_enter_door   ; 
+- D 0 - I - 0x019F41 06:9F31: 02        .byte con_9859_02   ; 
 
 
 
 off_04_9F32_03:
-- D 0 - I - 0x019F42 06:9F32: 08        .byte con_884D_08   ; 
+- D 0 - I - 0x019F42 06:9F32: 08        .byte con_884D_script_08   ; 
 
 
 
 off_04_9F33_04:
-- D 0 - I - 0x019F43 06:9F33: 81        .byte con_884D_81   ; 
+- D 0 - I - 0x019F43 06:9F33: 81        .byte con_884D_script_81   ; 
 
 
 
 off_05_9F34_00:
-- D 0 - I - 0x019F44 06:9F34: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019F45 06:9F35: 00        .byte $00   ; 
-- D 0 - I - 0x019F46 06:9F36: 00        .byte $00   ; 
-- D 0 - I - 0x019F47 06:9F37: 00        .byte $00   ; 
-- D 0 - I - 0x019F48 06:9F38: 00        .byte $00   ; 
-- D 0 - I - 0x019F49 06:9F39: F0        .byte $F0   ; 
-- D 0 - I - 0x019F4A 06:9F3A: 00        .byte $00   ; 
-- D 0 - I - 0x019F4B 06:9F3B: F0        .byte $F0   ; 
-- D 0 - I - 0x019F4C 06:9F3C: 00        .byte $00   ; 
-- D 0 - I - 0x019F4D 06:9F3D: 00        .byte $00   ; 
+- D 0 - I - 0x019F44 06:9F34: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019F45 06:9F35: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019F47 06:9F37: 00 00     .word $0000 ; X camera limit (max)
+- D 0 - I - 0x019F49 06:9F39: F0 00     .word $00F0 ; Y camera limit (min)
+- D 0 - I - 0x019F4B 06:9F3B: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019F4D 06:9F3D: 00        .byte $00   ; 04B0 ???
+
 - D 0 - I - 0x019F4E 06:9F3E: 44        .byte con_chr_bank + $44   ; 
 - D 0 - I - 0x019F4F 06:9F3F: 04        .byte con_obj_linda   ; 
-- D 0 - I - 0x019F50 06:9F40: 04        .byte $04   ; counter
+- D 0 - I - 0x019F50 06:9F40: 04        .byte $04   ; enemy counter
 ; 01
-- D 0 - I - 0x019F51 06:9F41: 80        .byte $80   ; 
-- D 0 - I - 0x019F52 06:9F42: 15        .byte con_obj_chain_whip   ; 
-- D 0 - I - 0x019F53 06:9F43: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019F51 06:9F41: 80        .byte $80   ; enemy settings
+- D 0 - I - 0x019F52 06:9F42: 15        .byte con_obj_chain_whip   ; enemy weapon
+- D 0 - I - 0x019F53 06:9F43: 0B        .byte $0B   ; enemy hp
 ; 02
-- D 0 - I - 0x019F54 06:9F44: 00        .byte $00   ; 
-- D 0 - I - 0x019F55 06:9F45: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019F54 06:9F44: 00        .byte $00   ; enemy settings
+- D 0 - I - 0x019F55 06:9F45: 0B        .byte $0B   ; enemy hp
 ; 03
-- D 0 - I - 0x019F56 06:9F46: 80        .byte $80   ; 
-- D 0 - I - 0x019F57 06:9F47: 15        .byte con_obj_chain_whip   ; 
-- D 0 - I - 0x019F58 06:9F48: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019F56 06:9F46: 80        .byte $80   ; enemy settings
+- D 0 - I - 0x019F57 06:9F47: 15        .byte con_obj_chain_whip   ; enemy weapon
+- D 0 - I - 0x019F58 06:9F48: 0B        .byte $0B   ; enemy hp
 ; 04
-- - - - - - 0x019F59 06:9F49: 00        .byte $00   ; 
-- - - - - - 0x019F5A 06:9F4A: 0B        .byte $0B   ; hp
+- - - - - - 0x019F59 06:9F49: 00        .byte $00   ; enemy settings
+- - - - - - 0x019F5A 06:9F4A: 0B        .byte $0B   ; enemy hp
 
 
 
 off_05_9F4B_01:
-- D 0 - I - 0x019F5B 06:9F4B: 11        .byte con_884D_11   ; 
+- D 0 - I - 0x019F5B 06:9F4B: 11        .byte con_884D_script_11   ; 
 
 
 
-off_05_9F4C_02:
-- D 0 - I - 0x019F5C 06:9F4C: 01        .byte con_884D_white_hand_cursor   ; 
-- D 0 - I - 0x019F5D 06:9F4D: 00        .byte $00   ; 
-- D 0 - I - 0x019F5E 06:9F4E: 00        .byte $00   ; 
-- D 0 - I - 0x019F5F 06:9F4F: BF        .byte $BF   ; 
-- D 0 - I - 0x019F60 06:9F50: 00        .byte $00   ; 
-- D 0 - I - 0x019F61 06:9F51: 90        .byte $90   ; 
-- D 0 - I - 0x019F62 06:9F52: 00        .byte $00   ; 
-- D 0 - I - 0x019F63 06:9F53: F0        .byte $F0   ; 
-- D 0 - I - 0x019F64 06:9F54: 00        .byte $00   ; 
-- D 0 - I - 0x019F65 06:9F55: 05        .byte $05   ; 
-- D 0 - I - 0x019F66 06:9F56: 03        .byte $03   ; 
+off_05_9F4C_02_cursor:
+- D 0 - I - 0x019F5C 06:9F4C: 01        .byte con_884D_script_hand_cursor   ; 
+- D 0 - I - 0x019F5D 06:9F4D: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019F5F 06:9F4F: BF 00     .word $00BF ; X camera limit (max)
+- D 0 - I - 0x019F61 06:9F51: 90 00     .word $0090 ; Y camera limit (min)
+- D 0 - I - 0x019F63 06:9F53: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019F65 06:9F55: 05        .byte $05   ; 04B0 ???
+
+- D 0 - I - 0x019F66 06:9F56: 03        .byte $03   ; cursor direction (right)
 
 
 
-off_05_9F57_03:
-- D 0 - I - 0x019F67 06:9F57: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019F68 06:9F58: 00        .byte $00   ; 
-- D 0 - I - 0x019F69 06:9F59: 00        .byte $00   ; 
-- D 0 - I - 0x019F6A 06:9F5A: BF        .byte $BF   ; 
-- D 0 - I - 0x019F6B 06:9F5B: 00        .byte $00   ; 
-- D 0 - I - 0x019F6C 06:9F5C: 90        .byte $90   ; 
-- D 0 - I - 0x019F6D 06:9F5D: 00        .byte $00   ; 
-- D 0 - I - 0x019F6E 06:9F5E: F0        .byte $F0   ; 
-- D 0 - I - 0x019F6F 06:9F5F: 00        .byte $00   ; 
+off_05_9F57_03_spawn_roper:
+- D 0 - I - 0x019F67 06:9F57: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019F68 06:9F58: 00 00     .word $0000
+- D 0 - I - 0x019F6A 06:9F5A: BF 00     .word $00BF
+- D 0 - I - 0x019F6C 06:9F5C: 90 00     .word $0090
+- D 0 - I - 0x019F6E 06:9F5E: F0 00     .word $00F0
 - D 0 - I - 0x019F70 06:9F60: 05        .byte $05   ; 
 - D 0 - I - 0x019F71 06:9F61: 42        .byte con_chr_bank + $42   ; 
 - D 0 - I - 0x019F72 06:9F62: 03        .byte con_obj_roper   ; 
-- D 0 - I - 0x019F73 06:9F63: 01        .byte $01   ; counter
+- D 0 - I - 0x019F73 06:9F63: 01        .byte $01   ; enemy counter
 ; 01
-- D 0 - I - 0x019F74 06:9F64: 20        .byte $20   ; 
-- D 0 - I - 0x019F75 06:9F65: 01        .byte $01   ; 
-- D 0 - I - 0x019F76 06:9F66: 70 01     .word $0170 ; pos_X
-- D 0 - I - 0x019F78 06:9F68: 64 00     .word $0064 ; pos_Y
-- D 0 - I - 0x019F7A 06:9F6A: A0 00     .word $00A0 ; pos_Z
-- D 0 - I - 0x019F7C 06:9F6C: 00        .byte $00   ; 
-- D 0 - I - 0x019F7D 06:9F6D: 01        .byte $01   ; hp
+- D 0 - I - 0x019F74 06:9F64: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019F75 06:9F65: 01        .byte con_0359_01   ; enemy 0359 ???
+- D 0 - I - 0x019F76 06:9F66: 70 01     .word $0170 ; enemy pos_X
+- D 0 - I - 0x019F78 06:9F68: 64 00     .word $0064 ; enemy pos_Y
+- D 0 - I - 0x019F7A 06:9F6A: A0 00     .word $00A0 ; enemy pos_Z
+- D 0 - I - 0x019F7C 06:9F6C: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019F7D 06:9F6D: 01        .byte $01   ; enemy hp
 
 
 
-off_05_9F6E_04:
-- D 0 - I - 0x019F7E 06:9F6E: 01        .byte con_884D_white_hand_cursor   ; 
-- D 0 - I - 0x019F7F 06:9F6F: 00        .byte $00   ; 
-- D 0 - I - 0x019F80 06:9F70: 00        .byte $00   ; 
-- D 0 - I - 0x019F81 06:9F71: BF        .byte $BF   ; 
-- D 0 - I - 0x019F82 06:9F72: 00        .byte $00   ; 
-- D 0 - I - 0x019F83 06:9F73: 00        .byte $00   ; 
-- D 0 - I - 0x019F84 06:9F74: 00        .byte $00   ; 
-- D 0 - I - 0x019F85 06:9F75: F0        .byte $F0   ; 
-- D 0 - I - 0x019F86 06:9F76: 00        .byte $00   ; 
-- D 0 - I - 0x019F87 06:9F77: 05        .byte $05   ; 
-- D 0 - I - 0x019F88 06:9F78: 01        .byte $01   ; 
+off_05_9F6E_04_cursor:
+- D 0 - I - 0x019F7E 06:9F6E: 01        .byte con_884D_script_hand_cursor   ; 
+- D 0 - I - 0x019F7F 06:9F6F: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019F81 06:9F71: BF 00     .word $00BF ; X camera limit (max)
+- D 0 - I - 0x019F83 06:9F73: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019F85 06:9F75: F0 00     .word $00F0 ; Y camera limit (max)
+- D 0 - I - 0x019F87 06:9F77: 05        .byte $05   ; 04B0 ???
+
+- D 0 - I - 0x019F88 06:9F78: 01        .byte $01   ; cursor direction (down)
 
 
 
 off_05_9F79_05:
-- D 0 - I - 0x019F89 06:9F79: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019F89 06:9F79: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019F8A 06:9F7A: 04        .byte $04   ; 
 - D 0 - I - 0x019F8B 06:9F7B: 14        .byte $14   ; 
 - D 0 - I - 0x019F8C 06:9F7C: 00        .byte $00   ; 
@@ -6157,313 +6039,292 @@ off_05_9F79_05:
 
 
 off_05_9F7D_06:
-- D 0 - I - 0x019F8D 06:9F7D: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019F8E 06:9F7E: 75        .byte $75   ; 
-- D 0 - I - 0x019F8F 06:9F7F: 00        .byte $00   ; 
-- D 0 - I - 0x019F90 06:9F80: BF        .byte $BF   ; 
-- D 0 - I - 0x019F91 06:9F81: 00        .byte $00   ; 
-- D 0 - I - 0x019F92 06:9F82: 00        .byte $00   ; 
-- D 0 - I - 0x019F93 06:9F83: 00        .byte $00   ; 
-- D 0 - I - 0x019F94 06:9F84: 16        .byte $16   ; 
-- D 0 - I - 0x019F95 06:9F85: 00        .byte $00   ; 
-- D 0 - I - 0x019F96 06:9F86: 07        .byte $07   ; 
+- D 0 - I - 0x019F8D 06:9F7D: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019F8E 06:9F7E: 75 00     .word $0075 ; X camera limit (min)
+- D 0 - I - 0x019F90 06:9F80: BF 00     .word $00BF ; X camera limit (max)
+- D 0 - I - 0x019F92 06:9F82: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019F94 06:9F84: 16 00     .word $0016 ; Y camera limit (max)
+- D 0 - I - 0x019F96 06:9F86: 07        .byte $07   ; 04B0 ???
+
 - D 0 - I - 0x019F97 06:9F87: 44        .byte con_chr_bank + $44   ; 
 - D 0 - I - 0x019F98 06:9F88: 04        .byte con_obj_linda   ; 
-- D 0 - I - 0x019F99 06:9F89: 04        .byte $04   ; counter
+- D 0 - I - 0x019F99 06:9F89: 04        .byte $04   ; enemy counter
 ; 01
-- D 0 - I - 0x019F9A 06:9F8A: 20        .byte $20   ; 
-- D 0 - I - 0x019F9B 06:9F8B: 02        .byte $02   ; 
-- D 0 - I - 0x019F9C 06:9F8C: 7A 00     .word $007A ; pos_X
-- D 0 - I - 0x019F9E 06:9F8E: 20 00     .word $0020 ; pos_Y
-- D 0 - I - 0x019FA0 06:9F90: 30 00     .word $0030 ; pos_Z
-- D 0 - I - 0x019FA2 06:9F92: 00        .byte $00   ; 
-- D 0 - I - 0x019FA3 06:9F93: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019F9A 06:9F8A: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019F9B 06:9F8B: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019F9C 06:9F8C: 7A 00     .word $007A ; enemy pos_X
+- D 0 - I - 0x019F9E 06:9F8E: 20 00     .word $0020 ; enemy pos_Y
+- D 0 - I - 0x019FA0 06:9F90: 30 00     .word $0030 ; enemy pos_Z
+- D 0 - I - 0x019FA2 06:9F92: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019FA3 06:9F93: 0B        .byte $0B   ; enemy hp
 ; 02
-- D 0 - I - 0x019FA4 06:9F94: A0        .byte $A0   ; 
-- D 0 - I - 0x019FA5 06:9F95: 15        .byte con_obj_chain_whip   ; 
-- D 0 - I - 0x019FA6 06:9F96: 02        .byte $02   ; 
-- D 0 - I - 0x019FA7 06:9F97: 70 00     .word $0070 ; pos_X
-- D 0 - I - 0x019FA9 06:9F99: 20 00     .word $0020 ; pos_Y
-- D 0 - I - 0x019FAB 06:9F9B: 30 00     .word $0030 ; pos_Z
-- D 0 - I - 0x019FAD 06:9F9D: 00        .byte $00   ; 
-- D 0 - I - 0x019FAE 06:9F9E: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019FA4 06:9F94: A0        .byte $A0   ; enemy settings
+- D 0 - I - 0x019FA5 06:9F95: 15        .byte con_obj_chain_whip   ; enemy weapon
+- D 0 - I - 0x019FA6 06:9F96: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019FA7 06:9F97: 70 00     .word $0070 ; enemy pos_X
+- D 0 - I - 0x019FA9 06:9F99: 20 00     .word $0020 ; enemy pos_Y
+- D 0 - I - 0x019FAB 06:9F9B: 30 00     .word $0030 ; enemy pos_Z
+- D 0 - I - 0x019FAD 06:9F9D: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019FAE 06:9F9E: 0B        .byte $0B   ; enemy hp
 ; 03
-- D 0 - I - 0x019FAF 06:9F9F: 20        .byte $20   ; 
-- D 0 - I - 0x019FB0 06:9FA0: 02        .byte $02   ; 
-- D 0 - I - 0x019FB1 06:9FA1: 75 00     .word $0075 ; pos_X
-- D 0 - I - 0x019FB3 06:9FA3: 20 00     .word $0020 ; pos_Y
-- D 0 - I - 0x019FB5 06:9FA5: 30 00     .word $0030 ; pos_Z
-- D 0 - I - 0x019FB7 06:9FA7: 00        .byte $00   ; 
-- D 0 - I - 0x019FB8 06:9FA8: 0B        .byte $0B   ; hp
+- D 0 - I - 0x019FAF 06:9F9F: 20        .byte $20   ; enemy settings
+- D 0 - I - 0x019FB0 06:9FA0: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 0 - I - 0x019FB1 06:9FA1: 75 00     .word $0075 ; enemy pos_X
+- D 0 - I - 0x019FB3 06:9FA3: 20 00     .word $0020 ; enemy pos_Y
+- D 0 - I - 0x019FB5 06:9FA5: 30 00     .word $0030 ; enemy pos_Z
+- D 0 - I - 0x019FB7 06:9FA7: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x019FB8 06:9FA8: 0B        .byte $0B   ; enemy hp
 ; 04
-- - - - - - 0x019FB9 06:9FA9: A0        .byte $A0   ; 
-- - - - - - 0x019FBA 06:9FAA: 15        .byte $15   ; 
-- - - - - - 0x019FBB 06:9FAB: 02        .byte $02   ; 
-- - - - - - 0x019FBC 06:9FAC: 7A 00     .word $007A ; pos_X
-- - - - - - 0x019FBE 06:9FAE: 20 00     .word $0020 ; pos_Y
-- - - - - - 0x019FC0 06:9FB0: 30 00     .word $0030 ; pos_Z
-- - - - - - 0x019FC2 06:9FB2: 00        .byte $00   ; 
-- - - - - - 0x019FC3 06:9FB3: 0B        .byte $0B   ; hp
+- - - - - - 0x019FB9 06:9FA9: A0        .byte $A0   ; enemy settings
+- - - - - - 0x019FBA 06:9FAA: 15        .byte con_obj_chain_whip   ; enemy weapon
+- - - - - - 0x019FBB 06:9FAB: 02        .byte con_0359_02   ; enemy 0359 ???
+- - - - - - 0x019FBC 06:9FAC: 7A 00     .word $007A ; enemy pos_X
+- - - - - - 0x019FBE 06:9FAE: 20 00     .word $0020 ; enemy pos_Y
+- - - - - - 0x019FC0 06:9FB0: 30 00     .word $0030 ; enemy pos_Z
+- - - - - - 0x019FC2 06:9FB2: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x019FC3 06:9FB3: 0B        .byte $0B   ; enemy hp
 
 
 
-off_05_9FB4_07:
-- D 0 - I - 0x019FC4 06:9FB4: 01        .byte con_884D_white_hand_cursor   ; 
-- D 0 - I - 0x019FC5 06:9FB5: 00        .byte $00   ; 
-- D 0 - I - 0x019FC6 06:9FB6: 00        .byte $00   ; 
-- D 0 - I - 0x019FC7 06:9FB7: FF        .byte $FF   ; 
-- D 0 - I - 0x019FC8 06:9FB8: 01        .byte $01   ; 
-- D 0 - I - 0x019FC9 06:9FB9: 00        .byte $00   ; 
-- D 0 - I - 0x019FCA 06:9FBA: 00        .byte $00   ; 
-- D 0 - I - 0x019FCB 06:9FBB: 16        .byte $16   ; 
-- D 0 - I - 0x019FCC 06:9FBC: 00        .byte $00   ; 
-- D 0 - I - 0x019FCD 06:9FBD: 0D        .byte $0D   ; 
-- D 0 - I - 0x019FCE 06:9FBE: 03        .byte $03   ; 
+off_05_9FB4_07_cursor:
+- D 0 - I - 0x019FC4 06:9FB4: 01        .byte con_884D_script_hand_cursor   ; 
+- D 0 - I - 0x019FC5 06:9FB5: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019FC7 06:9FB7: FF 01     .word $01FF ; X camera limit (max)
+- D 0 - I - 0x019FC9 06:9FB9: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019FCB 06:9FBB: 16 00     .word $0016 ; Y camera limit (max)
+- D 0 - I - 0x019FCD 06:9FBD: 0D        .byte $0D   ; 04B0 ???
+
+- D 0 - I - 0x019FCE 06:9FBE: 03        .byte $03   ; cursor direction (right)
 
 
 
 off_05_9FBF_08:
-- D 0 - I - 0x019FCF 06:9FBF: 07        .byte con_884D_07   ; 
+- D 0 - I - 0x019FCF 06:9FBF: 07        .byte con_884D_script_07   ; 
 - D 0 - I - 0x019FD0 06:9FC0: 80        .byte $80   ; 
 - D 0 - I - 0x019FD1 06:9FC1: C0        .byte $C0   ; 
 - D 0 - I - 0x019FD2 06:9FC2: 01        .byte $01   ; 
 
 
 
-off_05_9FC3_09:
-- D 0 - I - 0x019FD3 06:9FC3: 00        .byte con_884D_00   ; 
-- D 0 - I - 0x019FD4 06:9FC4: 00        .byte $00   ; 
-- D 0 - I - 0x019FD5 06:9FC5: 00        .byte $00   ; 
-- D 0 - I - 0x019FD6 06:9FC6: FF        .byte $FF   ; 
-- D 0 - I - 0x019FD7 06:9FC7: 01        .byte $01   ; 
-- D 0 - I - 0x019FD8 06:9FC8: 00        .byte $00   ; 
-- D 0 - I - 0x019FD9 06:9FC9: 00        .byte $00   ; 
-- D 0 - I - 0x019FDA 06:9FCA: 30        .byte $30   ; 
-- D 0 - I - 0x019FDB 06:9FCB: 00        .byte $00   ; 
-- D 0 - I - 0x019FDC 06:9FCC: 0D        .byte $0D   ; 
+off_05_9FC3_09_spawn_roper:
+- D 0 - I - 0x019FD3 06:9FC3: 00        .byte con_884D_script_00   ; 
+- D 0 - I - 0x019FD4 06:9FC4: 00 00     .word $0000 ; X camera limit (min)
+- D 0 - I - 0x019FD6 06:9FC6: FF 01     .word $01FF ; X camera limit (max)
+- D 0 - I - 0x019FD8 06:9FC8: 00 00     .word $0000 ; Y camera limit (min)
+- D 0 - I - 0x019FDA 06:9FCA: 30 00     .word $0030 ; Y camera limit (max)
+- D 0 - I - 0x019FDC 06:9FCC: 0D        .byte $0D   ; 04B0 ???
+
 - D 0 - I - 0x019FDD 06:9FCD: 42        .byte con_chr_bank + $42   ; 
 - D 0 - I - 0x019FDE 06:9FCE: 03        .byte con_obj_roper   ; 
-- D 0 - I - 0x019FDF 06:9FCF: 04        .byte $04   ; counter
+- D 0 - I - 0x019FDF 06:9FCF: 04        .byte $04   ; enemy counter
 ; 01
-- D 0 - I - 0x019FE0 06:9FD0: E0        .byte $E0   ; 
-- D 0 - I - 0x019FE1 06:9FD1: 1A        .byte con_obj_1A   ; 
-- D 0 - I - 0x019FE2 06:9FD2: 04        .byte con_state_ladder_climb_idle   ; 
-- D 0 - I - 0x019FE3 06:9FD3: 08        .byte $08   ; 
-- D 0 - I - 0x019FE4 06:9FD4: AA 02     .word $02AA ; pos_X
-- D 0 - I - 0x019FE6 06:9FD6: 70 00     .word $0070 ; pos_Y
-- D 0 - I - 0x019FE8 06:9FD8: 90 00     .word $0090 ; pos_Z
-- D 0 - I - 0x019FEA 06:9FDA: 03        .byte $03   ; 
-- D 0 - I - 0x019FEB 06:9FDB: 17        .byte $17   ; hp
+- D 0 - I - 0x019FE0 06:9FD0: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019FE1 06:9FD1: 1A        .byte con_obj_boomerang   ; enemy weapon
+- D 0 - I - 0x019FE2 06:9FD2: 04        .byte con_state_ladder_climb_idle   ; enemy state
+- D 0 - I - 0x019FE3 06:9FD3: 08        .byte con_0359_08   ; enemy 0359 ???
+- D 0 - I - 0x019FE4 06:9FD4: AA 02     .word $02AA ; enemy pos_X
+- D 0 - I - 0x019FE6 06:9FD6: 70 00     .word $0070 ; enemy pos_Y
+- D 0 - I - 0x019FE8 06:9FD8: 90 00     .word $0090 ; enemy pos_Z
+- D 0 - I - 0x019FEA 06:9FDA: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019FEB 06:9FDB: 17        .byte $17   ; enemy hp
 ; 02
-- D 0 - I - 0x019FEC 06:9FDC: E0        .byte $E0   ; 
-- D 0 - I - 0x019FED 06:9FDD: 1A        .byte con_obj_1A   ; 
-- D 0 - I - 0x019FEE 06:9FDE: 04        .byte con_state_ladder_climb_idle   ; 
-- D 0 - I - 0x019FEF 06:9FDF: 08        .byte $08   ; 
-- D 0 - I - 0x019FF0 06:9FE0: D9 02     .word $02D9 ; pos_X
-- D 0 - I - 0x019FF2 06:9FE2: 70 00     .word $0070 ; pos_Y
-- D 0 - I - 0x019FF4 06:9FE4: 90 00     .word $0090 ; pos_Z
-- D 0 - I - 0x019FF6 06:9FE6: 03        .byte $03   ; 
-- D 0 - I - 0x019FF7 06:9FE7: 17        .byte $17   ; hp
+- D 0 - I - 0x019FEC 06:9FDC: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019FED 06:9FDD: 1A        .byte con_obj_boomerang   ; enemy weapon
+- D 0 - I - 0x019FEE 06:9FDE: 04        .byte con_state_ladder_climb_idle   ; enemy state
+- D 0 - I - 0x019FEF 06:9FDF: 08        .byte con_0359_08   ; enemy 0359 ???
+- D 0 - I - 0x019FF0 06:9FE0: D9 02     .word $02D9 ; enemy pos_X
+- D 0 - I - 0x019FF2 06:9FE2: 70 00     .word $0070 ; enemy pos_Y
+- D 0 - I - 0x019FF4 06:9FE4: 90 00     .word $0090 ; enemy pos_Z
+- D 0 - I - 0x019FF6 06:9FE6: 03        .byte $03   ; enemy 006A ???
+- D 0 - I - 0x019FF7 06:9FE7: 17        .byte $17   ; enemy hp
 ; 03
-- D 0 - I - 0x019FF8 06:9FE8: E0        .byte $E0   ; 
-- D 0 - I - 0x019FF9 06:9FE9: 1A        .byte con_obj_1A   ; 
-- D 0 - I - 0x019FFA 06:9FEA: 04        .byte con_state_ladder_climb_idle   ; 
-- D 0 - I - 0x019FFB 06:9FEB: 08        .byte $08   ; 
-- D 0 - I - 0x019FFC 06:9FEC: AA 02     .word $02AA ; pos_X
-- D 0 - I - 0x019FFE 06:9FEE: 70 00     .word $0070 ; pos_Y
-- D 0 - I - 0x01A000 06:9FF0: 90 00     .word $0090 ; pos_Z
-- D 0 - I - 0x01A002 06:9FF2: 00        .byte $00   ; 
-- D 0 - I - 0x01A003 06:9FF3: 17        .byte $17   ; hp
+- D 0 - I - 0x019FF8 06:9FE8: E0        .byte $E0   ; enemy settings
+- D 0 - I - 0x019FF9 06:9FE9: 1A        .byte con_obj_boomerang   ; enemy weapon
+- D 0 - I - 0x019FFA 06:9FEA: 04        .byte con_state_ladder_climb_idle   ; enemy state
+- D 0 - I - 0x019FFB 06:9FEB: 08        .byte con_0359_08   ; enemy 0359 ???
+- D 0 - I - 0x019FFC 06:9FEC: AA 02     .word $02AA ; enemy pos_X
+- D 0 - I - 0x019FFE 06:9FEE: 70 00     .word $0070 ; enemy pos_Y
+- D 0 - I - 0x01A000 06:9FF0: 90 00     .word $0090 ; enemy pos_Z
+- D 0 - I - 0x01A002 06:9FF2: 00        .byte $00   ; enemy 006A ???
+- D 0 - I - 0x01A003 06:9FF3: 17        .byte $17   ; enemy hp
 ; 04
-- - - - - - 0x01A004 06:9FF4: E0        .byte $E0   ; 
-- - - - - - 0x01A005 06:9FF5: 1A        .byte $1A   ; 
-- - - - - - 0x01A006 06:9FF6: 04        .byte $04   ; 
-- - - - - - 0x01A007 06:9FF7: 08        .byte $08   ; 
-- - - - - - 0x01A008 06:9FF8: D9 02     .word $02D9 ; pos_X
-- - - - - - 0x01A00A 06:9FFA: 70 00     .word $0070 ; pos_Y
-- - - - - - 0x01A00C 06:9FFC: 90 00     .word $0090 ; pos_Z
-- - - - - - 0x01A00E 06:9FFE: 00        .byte $00   ; 
-- - - - - - 0x01A00F 06:9FFF: 17        .byte $17   ; hp
+- - - - - - 0x01A004 06:9FF4: E0        .byte $E0   ; enemy settings
+- - - - - - 0x01A005 06:9FF5: 1A        .byte con_obj_boomerang   ; enemy weapon
+- - - - - - 0x01A006 06:9FF6: 04        .byte con_state_ladder_climb_idle   ; enemy state
+- - - - - - 0x01A007 06:9FF7: 08        .byte con_0359_08   ; enemy 0359 ???
+- - - - - - 0x01A008 06:9FF8: D9 02     .word $02D9 ; enemy pos_X
+- - - - - - 0x01A00A 06:9FFA: 70 00     .word $0070 ; enemy pos_Y
+- - - - - - 0x01A00C 06:9FFC: 90 00     .word $0090 ; enemy pos_Z
+- - - - - - 0x01A00E 06:9FFE: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x01A00F 06:9FFF: 17        .byte $17   ; enemy hp
 
 
 
-off_05_A000_0A:
-- D 1 - - - 0x01A010 06:A000: 01        .byte con_884D_white_hand_cursor   ; 
-- D 1 - I - 0x01A011 06:A001: 00        .byte $00   ; 
-- D 1 - I - 0x01A012 06:A002: 00        .byte $00   ; 
-- D 1 - I - 0x01A013 06:A003: FF        .byte $FF   ; 
-- D 1 - I - 0x01A014 06:A004: 01        .byte $01   ; 
-- D 1 - I - 0x01A015 06:A005: 00        .byte $00   ; 
-- D 1 - I - 0x01A016 06:A006: 00        .byte $00   ; 
-- D 1 - I - 0x01A017 06:A007: F0        .byte $F0   ; 
-- D 1 - I - 0x01A018 06:A008: 00        .byte $00   ; 
-- D 1 - I - 0x01A019 06:A009: 0D        .byte $0D   ; 
-- D 1 - I - 0x01A01A 06:A00A: 00        .byte $00   ; 
+off_05_A000_0A_cursor:
+- D 1 - - - 0x01A010 06:A000: 01        .byte con_884D_script_hand_cursor   ; 
+- D 1 - I - 0x01A011 06:A001: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A013 06:A003: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A015 06:A005: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A017 06:A007: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A019 06:A009: 0D        .byte $0D   ; 04B0 ???
+
+- D 1 - I - 0x01A01A 06:A00A: 00        .byte $00   ; cursor direction (up)
 
 
 
 off_05_A00B_0B:
-- D 1 - I - 0x01A01B 06:A00B: 07        .byte con_884D_07   ; 
+- D 1 - I - 0x01A01B 06:A00B: 07        .byte con_884D_script_07   ; 
 - D 1 - I - 0x01A01C 06:A00C: 08        .byte $08   ; 
 - D 1 - I - 0x01A01D 06:A00D: A4        .byte $A4   ; 
 - D 1 - I - 0x01A01E 06:A00E: 00        .byte $00   ; 
 
 
 
-off_05_A00F_0C:
-- D 1 - I - 0x01A01F 06:A00F: 09        .byte con_884D_09   ; 
-- D 1 - I - 0x01A020 06:A010: 00        .byte $00   ; 
-- D 1 - I - 0x01A021 06:A011: 00        .byte $00   ; 
-- D 1 - I - 0x01A022 06:A012: FF        .byte $FF   ; 
-- D 1 - I - 0x01A023 06:A013: 01        .byte $01   ; 
-- D 1 - I - 0x01A024 06:A014: 00        .byte $00   ; 
-- D 1 - I - 0x01A025 06:A015: 00        .byte $00   ; 
-- D 1 - I - 0x01A026 06:A016: F0        .byte $F0   ; 
-- D 1 - I - 0x01A027 06:A017: 00        .byte $00   ; 
-- D 1 - I - 0x01A028 06:A018: 09        .byte $09   ; 
+off_05_A00F_0C_spawn_roper:
+- D 1 - I - 0x01A01F 06:A00F: 09        .byte con_884D_script_emeny_spawn_at_door   ; 
+- D 1 - I - 0x01A020 06:A010: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A022 06:A012: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A024 06:A014: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A026 06:A016: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A028 06:A018: 09        .byte $09   ; 04B0 ???
+
 - D 1 - I - 0x01A029 06:A019: 64        .byte con_chr_bank + $64   ; 
 - D 1 - I - 0x01A02A 06:A01A: 03        .byte con_obj_roper   ; 
-- D 1 - I - 0x01A02B 06:A01B: 04        .byte $04   ; counter
+- D 1 - I - 0x01A02B 06:A01B: 04        .byte $04   ; enemy counter
+
+- D 1 - I - 0x01A02C 06:A01C: 08        .byte con_A6C3_draw_wooden_house_door   ; spawner
+
 ; 01
-- D 1 - I - 0x01A02C 06:A01C: 08        .byte $08   ; 
-- D 1 - I - 0x01A02D 06:A01D: A0        .byte $A0   ; 
-- D 1 - I - 0x01A02E 06:A01E: 16        .byte con_obj_flame_grenades   ; 
-- D 1 - I - 0x01A02F 06:A01F: 09        .byte $09   ; 
-- D 1 - I - 0x01A030 06:A020: 49 02     .word $0249 ; pos_X
-- D 1 - I - 0x01A032 06:A022: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A034 06:A024: 10 01     .word $0110 ; pos_Z
-- D 1 - I - 0x01A036 06:A026: 00        .byte $00   ; 
-- D 1 - I - 0x01A037 06:A027: 0F        .byte $0F   ; hp
+- D 1 - I - 0x01A02D 06:A01D: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A02E 06:A01E: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- D 1 - I - 0x01A02F 06:A01F: 09        .byte con_0359_09   ; enemy 0359 ???
+- D 1 - I - 0x01A030 06:A020: 49 02     .word $0249 ; enemy pos_X
+- D 1 - I - 0x01A032 06:A022: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A034 06:A024: 10 01     .word $0110 ; enemy pos_Z
+- D 1 - I - 0x01A036 06:A026: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A037 06:A027: 0F        .byte $0F   ; enemy hp
 ; 02
-- D 1 - I - 0x01A038 06:A028: 20        .byte $20   ; 
-- D 1 - I - 0x01A039 06:A029: 09        .byte $09   ; 
-- D 1 - I - 0x01A03A 06:A02A: 3C 02     .word $023C ; pos_X
-- D 1 - I - 0x01A03C 06:A02C: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A03E 06:A02E: 10 01     .word $0110 ; pos_Z
-- D 1 - I - 0x01A040 06:A030: 00        .byte $00   ; 
-- D 1 - I - 0x01A041 06:A031: 0F        .byte $0F   ; hp
+- D 1 - I - 0x01A038 06:A028: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A039 06:A029: 09        .byte con_0359_09   ; enemy 0359 ???
+- D 1 - I - 0x01A03A 06:A02A: 3C 02     .word $023C ; enemy pos_X
+- D 1 - I - 0x01A03C 06:A02C: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A03E 06:A02E: 10 01     .word $0110 ; enemy pos_Z
+- D 1 - I - 0x01A040 06:A030: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A041 06:A031: 0F        .byte $0F   ; enemy hp
 ; 03
-- D 1 - I - 0x01A042 06:A032: A0        .byte $A0   ; 
-- D 1 - I - 0x01A043 06:A033: 16        .byte con_obj_flame_grenades   ; 
-- D 1 - I - 0x01A044 06:A034: 09        .byte $09   ; 
-- D 1 - I - 0x01A045 06:A035: 49 02     .word $0249 ; pos_X
-- D 1 - I - 0x01A047 06:A037: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A049 06:A039: 10 01     .word $0110 ; pos_Z
-- D 1 - I - 0x01A04B 06:A03B: 00        .byte $00   ; 
-- D 1 - I - 0x01A04C 06:A03C: 0F        .byte $0F   ; hp
+- D 1 - I - 0x01A042 06:A032: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A043 06:A033: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- D 1 - I - 0x01A044 06:A034: 09        .byte con_0359_09   ; enemy 0359 ???
+- D 1 - I - 0x01A045 06:A035: 49 02     .word $0249 ; enemy pos_X
+- D 1 - I - 0x01A047 06:A037: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A049 06:A039: 10 01     .word $0110 ; enemy pos_Z
+- D 1 - I - 0x01A04B 06:A03B: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A04C 06:A03C: 0F        .byte $0F   ; enemy hp
 ; 04
-- - - - - - 0x01A04D 06:A03D: 20        .byte $20   ; 
-- - - - - - 0x01A04E 06:A03E: 09        .byte $09   ; 
-- - - - - - 0x01A04F 06:A03F: 3C 02     .word $023C ; pos_X
-- - - - - - 0x01A051 06:A041: 70 00     .word $0070 ; pos_Y
-- - - - - - 0x01A053 06:A043: 10 01     .word $0110 ; pos_Z
-- - - - - - 0x01A055 06:A045: 00        .byte $00   ; 
-- - - - - - 0x01A056 06:A046: 0F        .byte $0F   ; hp
+- - - - - - 0x01A04D 06:A03D: 20        .byte $20   ; enemy settings
+- - - - - - 0x01A04E 06:A03E: 09        .byte con_0359_09   ; enemy 0359 ???
+- - - - - - 0x01A04F 06:A03F: 3C 02     .word $023C ; enemy pos_X
+- - - - - - 0x01A051 06:A041: 70 00     .word $0070 ; enemy pos_Y
+- - - - - - 0x01A053 06:A043: 10 01     .word $0110 ; enemy pos_Z
+- - - - - - 0x01A055 06:A045: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x01A056 06:A046: 0F        .byte $0F   ; enemy hp
 
 
 
-off_05_A047_0D:
-- D 1 - I - 0x01A057 06:A047: 09        .byte con_884D_09   ; 
-- D 1 - I - 0x01A058 06:A048: 00        .byte $00   ; 
-- D 1 - I - 0x01A059 06:A049: 00        .byte $00   ; 
-- D 1 - I - 0x01A05A 06:A04A: FF        .byte $FF   ; 
-- D 1 - I - 0x01A05B 06:A04B: 01        .byte $01   ; 
-- D 1 - I - 0x01A05C 06:A04C: 00        .byte $00   ; 
-- D 1 - I - 0x01A05D 06:A04D: 00        .byte $00   ; 
-- D 1 - I - 0x01A05E 06:A04E: F0        .byte $F0   ; 
-- D 1 - I - 0x01A05F 06:A04F: 00        .byte $00   ; 
-- D 1 - I - 0x01A060 06:A050: 09        .byte $09   ; 
+off_05_A047_0D_spawn_bolo_1:
+- D 1 - I - 0x01A057 06:A047: 09        .byte con_884D_script_emeny_spawn_at_door   ; 
+- D 1 - I - 0x01A058 06:A048: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A05A 06:A04A: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A05C 06:A04C: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A05E 06:A04E: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A060 06:A050: 09        .byte $09   ; 04B0 ???
+
 - D 1 - I - 0x01A061 06:A051: 46        .byte con_chr_bank + $46   ; 
 - D 1 - I - 0x01A062 06:A052: 06        .byte con_obj_bolo   ; 
-- D 1 - I - 0x01A063 06:A053: 01        .byte $01   ; counter
+- D 1 - I - 0x01A063 06:A053: 01        .byte $01   ; enemy counter
+
+- D 1 - I - 0x01A064 06:A054: 08        .byte con_A6C3_draw_wooden_house_door   ; spawner
+
 ; 01
-- D 1 - I - 0x01A064 06:A054: 08        .byte $08   ; 
-- D 1 - I - 0x01A065 06:A055: 20        .byte $20   ; 
-- D 1 - I - 0x01A066 06:A056: 09        .byte $09   ; 
-- D 1 - I - 0x01A067 06:A057: 3C 02     .word $023C ; pos_X
-- D 1 - I - 0x01A069 06:A059: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A06B 06:A05B: 10 01     .word $0110 ; pos_Z
-- D 1 - I - 0x01A06D 06:A05D: 00        .byte $00   ; 
-- D 1 - I - 0x01A06E 06:A05E: 27        .byte $27   ; hp
+- D 1 - I - 0x01A065 06:A055: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A066 06:A056: 09        .byte con_0359_09   ; enemy 0359 ???
+- D 1 - I - 0x01A067 06:A057: 3C 02     .word $023C ; enemy pos_X
+- D 1 - I - 0x01A069 06:A059: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A06B 06:A05B: 10 01     .word $0110 ; enemy pos_Z
+- D 1 - I - 0x01A06D 06:A05D: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A06E 06:A05E: 27        .byte $27   ; enemy hp
 
 
 
-off_05_A05F_0E:
-- D 1 - I - 0x01A06F 06:A05F: 09        .byte con_884D_09   ; 
-- D 1 - I - 0x01A070 06:A060: 00        .byte $00   ; 
-- D 1 - I - 0x01A071 06:A061: 00        .byte $00   ; 
-- D 1 - I - 0x01A072 06:A062: FF        .byte $FF   ; 
-- D 1 - I - 0x01A073 06:A063: 01        .byte $01   ; 
-- D 1 - I - 0x01A074 06:A064: 00        .byte $00   ; 
-- D 1 - I - 0x01A075 06:A065: 00        .byte $00   ; 
-- D 1 - I - 0x01A076 06:A066: F0        .byte $F0   ; 
-- D 1 - I - 0x01A077 06:A067: 00        .byte $00   ; 
-- D 1 - I - 0x01A078 06:A068: 09        .byte $09   ; 
+off_05_A05F_0E_spawn_bolo_2:
+- D 1 - I - 0x01A06F 06:A05F: 09        .byte con_884D_script_emeny_spawn_at_door   ; 
+- D 1 - I - 0x01A070 06:A060: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A072 06:A062: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A074 06:A064: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A076 06:A066: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A078 06:A068: 09        .byte $09   ; 04B0 ???
+
 - D 1 - I - 0x01A079 06:A069: 46        .byte con_chr_bank + $46   ; 
 - D 1 - I - 0x01A07A 06:A06A: 06        .byte con_obj_bolo   ; 
-- D 1 - I - 0x01A07B 06:A06B: 01        .byte $01   ; counter
+- D 1 - I - 0x01A07B 06:A06B: 01        .byte $01   ; enemy counter
+
+- D 1 - I - 0x01A07C 06:A06C: 08        .byte con_A6C3_draw_wooden_house_door   ; spawner
+
 ; 01
-- D 1 - I - 0x01A07C 06:A06C: 08        .byte $08   ; 
-- D 1 - I - 0x01A07D 06:A06D: 20        .byte $20   ; 
-- D 1 - I - 0x01A07E 06:A06E: 09        .byte $09   ; 
-- D 1 - I - 0x01A07F 06:A06F: 3C 02     .word $023C ; pos_X
-- D 1 - I - 0x01A081 06:A071: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A083 06:A073: 10 01     .word $0110 ; pos_Z
-- D 1 - I - 0x01A085 06:A075: 00        .byte $00   ; 
-- D 1 - I - 0x01A086 06:A076: 27        .byte $27   ; hp
+- D 1 - I - 0x01A07D 06:A06D: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A07E 06:A06E: 09        .byte con_0359_09   ; enemy 0359 ???
+- D 1 - I - 0x01A07F 06:A06F: 3C 02     .word $023C ; enemy pos_X
+- D 1 - I - 0x01A081 06:A071: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A083 06:A073: 10 01     .word $0110 ; enemy pos_Z
+- D 1 - I - 0x01A085 06:A075: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A086 06:A076: 27        .byte $27   ; enemy hp
 
 
 
-off_05_A077_0F:
-- D 1 - I - 0x01A087 06:A077: 01        .byte con_884D_white_hand_cursor   ; 
-- D 1 - I - 0x01A088 06:A078: 00        .byte $00   ; 
-- D 1 - I - 0x01A089 06:A079: 01        .byte $01   ; 
-- D 1 - I - 0x01A08A 06:A07A: 00        .byte $00   ; 
-- D 1 - I - 0x01A08B 06:A07B: 03        .byte $03   ; 
-- D 1 - I - 0x01A08C 06:A07C: 00        .byte $00   ; 
-- D 1 - I - 0x01A08D 06:A07D: 00        .byte $00   ; 
-- D 1 - I - 0x01A08E 06:A07E: F0        .byte $F0   ; 
-- D 1 - I - 0x01A08F 06:A07F: 00        .byte $00   ; 
-- D 1 - I - 0x01A090 06:A080: 09        .byte $09   ; 
-- D 1 - I - 0x01A091 06:A081: 03        .byte $03   ; 
+off_05_A077_0F_cursor:
+- D 1 - I - 0x01A087 06:A077: 01        .byte con_884D_script_hand_cursor   ; 
+- D 1 - I - 0x01A088 06:A078: 00 01     .word $0100 ; X camera limit (min)
+- D 1 - I - 0x01A08A 06:A07A: 00 03     .word $0300 ; X camera limit (max)
+- D 1 - I - 0x01A08C 06:A07C: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A08E 06:A07E: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A090 06:A080: 09        .byte $09   ; 04B0 ???
+
+- D 1 - I - 0x01A091 06:A081: 03        .byte $03   ; cursor direction (right)
 
 
 
-off_05_A082_10:
-- D 1 - I - 0x01A092 06:A082: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A093 06:A083: 00        .byte $00   ; 
-- D 1 - I - 0x01A094 06:A084: 01        .byte $01   ; 
-- D 1 - I - 0x01A095 06:A085: 00        .byte $00   ; 
-- D 1 - I - 0x01A096 06:A086: 03        .byte $03   ; 
-- D 1 - I - 0x01A097 06:A087: 00        .byte $00   ; 
-- D 1 - I - 0x01A098 06:A088: 00        .byte $00   ; 
-- D 1 - I - 0x01A099 06:A089: F0        .byte $F0   ; 
-- D 1 - I - 0x01A09A 06:A08A: 00        .byte $00   ; 
-- D 1 - I - 0x01A09B 06:A08B: 01        .byte $01   ; 
+off_05_A082_10_spawn_chin_taimei:
+- D 1 - I - 0x01A092 06:A082: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A093 06:A083: 00 01     .word $0100 ; X camera limit (min)
+- D 1 - I - 0x01A095 06:A085: 00 03     .word $0300 ; X camera limit (max)
+- D 1 - I - 0x01A097 06:A087: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A099 06:A089: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A09B 06:A08B: 01        .byte $01   ; 04B0 ???
+
 - D 1 - I - 0x01A09C 06:A08C: 4C        .byte con_chr_bank + $4C   ; 
 - D 1 - I - 0x01A09D 06:A08D: 09        .byte con_obj_chin_taimei   ; 
-- D 1 - I - 0x01A09E 06:A08E: 02        .byte $02   ; counter
+- D 1 - I - 0x01A09E 06:A08E: 02        .byte $02   ; enemy counter
 ; 01
-- D 1 - I - 0x01A09F 06:A08F: 20        .byte $20   ; 
-- D 1 - I - 0x01A0A0 06:A090: 0A        .byte $0A   ; 
-- D 1 - I - 0x01A0A1 06:A091: E0 03     .word $03E0 ; pos_X
-- D 1 - I - 0x01A0A3 06:A093: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A0A5 06:A095: C0 00     .word $00C0 ; pos_Z
-- D 1 - I - 0x01A0A7 06:A097: 03        .byte $03   ; 
-- D 1 - I - 0x01A0A8 06:A098: 37        .byte $37   ; hp
+- D 1 - I - 0x01A09F 06:A08F: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A0A0 06:A090: 0A        .byte con_0359_0A   ; enemy 0359 ???
+- D 1 - I - 0x01A0A1 06:A091: E0 03     .word $03E0 ; enemy pos_X
+- D 1 - I - 0x01A0A3 06:A093: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A0A5 06:A095: C0 00     .word $00C0 ; enemy pos_Z
+- D 1 - I - 0x01A0A7 06:A097: 03        .byte $03   ; enemy 006A ???
+- D 1 - I - 0x01A0A8 06:A098: 37        .byte $37   ; enemy hp
 ; 02
-- D 1 - I - 0x01A0A9 06:A099: 20        .byte $20   ; 
-- D 1 - I - 0x01A0AA 06:A09A: 0A        .byte $0A   ; 
-- D 1 - I - 0x01A0AB 06:A09B: F0 03     .word $03F0 ; pos_X
-- D 1 - I - 0x01A0AD 06:A09D: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A0AF 06:A09F: C0 00     .word $00C0 ; pos_Z
-- D 1 - I - 0x01A0B1 06:A0A1: 03        .byte $03   ; 
-- D 1 - I - 0x01A0B2 06:A0A2: 37        .byte $37   ; hp
+- D 1 - I - 0x01A0A9 06:A099: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A0AA 06:A09A: 0A        .byte con_0359_0A   ; enemy 0359 ???
+- D 1 - I - 0x01A0AB 06:A09B: F0 03     .word $03F0 ; enemy pos_X
+- D 1 - I - 0x01A0AD 06:A09D: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A0AF 06:A09F: C0 00     .word $00C0 ; enemy pos_Z
+- D 1 - I - 0x01A0B1 06:A0A1: 03        .byte $03   ; enemy 006A ???
+- D 1 - I - 0x01A0B2 06:A0A2: 37        .byte $37   ; enemy hp
 
 
 
 off_05_A0A3_11:
-- D 1 - I - 0x01A0B3 06:A0A3: 07        .byte con_884D_07   ; 
+- D 1 - I - 0x01A0B3 06:A0A3: 07        .byte con_884D_script_07   ; 
 - D 1 - I - 0x01A0B4 06:A0A4: 80        .byte $80   ; 
 - D 1 - I - 0x01A0B5 06:A0A5: 00        .byte $00   ; 
 - D 1 - I - 0x01A0B6 06:A0A6: 03        .byte $03   ; 
@@ -6471,148 +6332,136 @@ off_05_A0A3_11:
 
 
 off_05_A0A7_12:
-- D 1 - I - 0x01A0B7 06:A0A7: 16        .byte con_884D_16   ; 
+- D 1 - I - 0x01A0B7 06:A0A7: 16        .byte con_884D_script_16   ; 
 - D 1 - I - 0x01A0B8 06:A0A8: 09        .byte con_music_boss_tractor
 
 
 
 off_05_A0A9_13:
-- D 1 - I - 0x01A0B9 06:A0A9: 14        .byte con_884D_14   ; 
+- D 1 - I - 0x01A0B9 06:A0A9: 14        .byte con_884D_script_14   ; 
 
 
 
-off_05_A0AA_14:
-- D 1 - I - 0x01A0BA 06:A0AA: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A0BB 06:A0AB: 00        .byte $00   ; 
-- D 1 - I - 0x01A0BC 06:A0AC: 01        .byte $01   ; 
-- D 1 - I - 0x01A0BD 06:A0AD: 00        .byte $00   ; 
-- D 1 - I - 0x01A0BE 06:A0AE: 03        .byte $03   ; 
-- D 1 - I - 0x01A0BF 06:A0AF: 00        .byte $00   ; 
-- D 1 - I - 0x01A0C0 06:A0B0: 00        .byte $00   ; 
-- D 1 - I - 0x01A0C1 06:A0B1: F0        .byte $F0   ; 
-- D 1 - I - 0x01A0C2 06:A0B2: 00        .byte $00   ; 
-- D 1 - I - 0x01A0C3 06:A0B3: 01        .byte $01   ; 
+off_05_A0AA_14_spawn_roper:
+- D 1 - I - 0x01A0BA 06:A0AA: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A0BB 06:A0AB: 00 01     .word $0100 ; X camera limit (min)
+- D 1 - I - 0x01A0BD 06:A0AD: 00 03     .word $0300 ; X camera limit (max)
+- D 1 - I - 0x01A0BF 06:A0AF: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A0C1 06:A0B1: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A0C3 06:A0B3: 01        .byte $01   ; 04B0 ???
+
 - D 1 - I - 0x01A0C4 06:A0B4: 64        .byte con_chr_bank + $64   ; 
 - D 1 - I - 0x01A0C5 06:A0B5: 03        .byte con_obj_roper   ; 
-- D 1 - I - 0x01A0C6 06:A0B6: 04        .byte $04   ; counter
+- D 1 - I - 0x01A0C6 06:A0B6: 04        .byte $04   ; enemy counter
 ; 01
-- D 1 - I - 0x01A0C7 06:A0B7: A0        .byte $A0   ; 
-- D 1 - I - 0x01A0C8 06:A0B8: 16        .byte con_obj_flame_grenades   ; 
-- D 1 - I - 0x01A0C9 06:A0B9: 1D        .byte $1D   ; 
-- D 1 - I - 0x01A0CA 06:A0BA: C4 03     .word $03C4 ; pos_X
-- D 1 - I - 0x01A0CC 06:A0BC: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A0CE 06:A0BE: 30 01     .word $0130 ; pos_Z
-- D 1 - I - 0x01A0D0 06:A0C0: 03        .byte $03   ; 
-- D 1 - I - 0x01A0D1 06:A0C1: 13        .byte $13   ; hp
+- D 1 - I - 0x01A0C7 06:A0B7: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A0C8 06:A0B8: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- D 1 - I - 0x01A0C9 06:A0B9: 1D        .byte con_0359_1D   ; enemy 0359 ???
+- D 1 - I - 0x01A0CA 06:A0BA: C4 03     .word $03C4 ; enemy pos_X
+- D 1 - I - 0x01A0CC 06:A0BC: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A0CE 06:A0BE: 30 01     .word $0130 ; enemy pos_Z
+- D 1 - I - 0x01A0D0 06:A0C0: 03        .byte $03   ; enemy 006A ???
+- D 1 - I - 0x01A0D1 06:A0C1: 13        .byte $13   ; enemy hp
 ; 02
-- D 1 - I - 0x01A0D2 06:A0C2: A0        .byte $A0   ; 
-- D 1 - I - 0x01A0D3 06:A0C3: 16        .byte con_obj_flame_grenades   ; 
-- D 1 - I - 0x01A0D4 06:A0C4: 1D        .byte $1D   ; 
-- D 1 - I - 0x01A0D5 06:A0C5: C0 03     .word $03C0 ; pos_X
-- D 1 - I - 0x01A0D7 06:A0C7: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A0D9 06:A0C9: 30 01     .word $0130 ; pos_Z
-- D 1 - I - 0x01A0DB 06:A0CB: 03        .byte $03   ; 
-- D 1 - I - 0x01A0DC 06:A0CC: 13        .byte $13   ; hp
+- D 1 - I - 0x01A0D2 06:A0C2: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A0D3 06:A0C3: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- D 1 - I - 0x01A0D4 06:A0C4: 1D        .byte con_0359_1D   ; enemy 0359 ???
+- D 1 - I - 0x01A0D5 06:A0C5: C0 03     .word $03C0 ; enemy pos_X
+- D 1 - I - 0x01A0D7 06:A0C7: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A0D9 06:A0C9: 30 01     .word $0130 ; enemy pos_Z
+- D 1 - I - 0x01A0DB 06:A0CB: 03        .byte $03   ; enemy 006A ???
+- D 1 - I - 0x01A0DC 06:A0CC: 13        .byte $13   ; enemy hp
 ; 03
-- D 1 - I - 0x01A0DD 06:A0CD: A0        .byte $A0   ; 
-- D 1 - I - 0x01A0DE 06:A0CE: 16        .byte con_obj_flame_grenades   ; 
-- D 1 - I - 0x01A0DF 06:A0CF: 1D        .byte $1D   ; 
-- D 1 - I - 0x01A0E0 06:A0D0: C4 03     .word $03C4 ; pos_X
-- D 1 - I - 0x01A0E2 06:A0D2: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A0E4 06:A0D4: 30 01     .word $0130 ; pos_Z
-- D 1 - I - 0x01A0E6 06:A0D6: 03        .byte $03   ; 
-- D 1 - I - 0x01A0E7 06:A0D7: 13        .byte $13   ; hp
+- D 1 - I - 0x01A0DD 06:A0CD: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A0DE 06:A0CE: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- D 1 - I - 0x01A0DF 06:A0CF: 1D        .byte con_0359_1D   ; enemy 0359 ???
+- D 1 - I - 0x01A0E0 06:A0D0: C4 03     .word $03C4 ; enemy pos_X
+- D 1 - I - 0x01A0E2 06:A0D2: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A0E4 06:A0D4: 30 01     .word $0130 ; enemy pos_Z
+- D 1 - I - 0x01A0E6 06:A0D6: 03        .byte $03   ; enemy 006A ???
+- D 1 - I - 0x01A0E7 06:A0D7: 13        .byte $13   ; enemy hp
 ; 04
-- - - - - - 0x01A0E8 06:A0D8: A0        .byte $A0   ; 
-- - - - - - 0x01A0E9 06:A0D9: 16        .byte con_obj_flame_grenades   ; 
-- - - - - - 0x01A0EA 06:A0DA: 1D C4     .word $C41D ; pos_X
-- - - - - - 0x01A0EC 06:A0DC: 03 70     .word $7003 ; pos_Y
-- - - - - - 0x01A0EE 06:A0DE: 00 30     .word $3000 ; pos_Z
-- - - - - - 0x01A0F0 06:A0E0: 01        .byte $01   ; 
-- - - - - - 0x01A0F1 06:A0E1: 03        .byte $03   ; 
-- - - - - - 0x01A0F2 06:A0E2: 13        .byte $13   ; hp
+- - - - - - 0x01A0E8 06:A0D8: A0        .byte $A0   ; enemy settings
+- - - - - - 0x01A0E9 06:A0D9: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- - - - - - 0x01A0EA 06:A0DA: 1D        .byte con_0359_1D   ; enemy 0359 ???
+- - - - - - 0x01A0EB 06:A0DB: C4 03     .word $03C4 ; enemy pos_X
+- - - - - - 0x01A0ED 06:A0DD: 70 00     .word $0070 ; enemy pos_Y
+- - - - - - 0x01A0EF 06:A0DF: 30 01     .word $0130 ; enemy pos_Z
+- - - - - - 0x01A0F1 06:A0E1: 03        .byte $03   ; enemy 006A ???
+- - - - - - 0x01A0F2 06:A0E2: 13        .byte $13   ; enemy hp
 
 
 
-off_05_A0E3_15:
-- D 1 - I - 0x01A0F3 06:A0E3: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A0F4 06:A0E4: 00        .byte $00   ; 
-- D 1 - I - 0x01A0F5 06:A0E5: 01        .byte $01   ; 
-- D 1 - I - 0x01A0F6 06:A0E6: 00        .byte $00   ; 
-- D 1 - I - 0x01A0F7 06:A0E7: 03        .byte $03   ; 
-- D 1 - I - 0x01A0F8 06:A0E8: 00        .byte $00   ; 
-- D 1 - I - 0x01A0F9 06:A0E9: 00        .byte $00   ; 
-- D 1 - I - 0x01A0FA 06:A0EA: F0        .byte $F0   ; 
-- D 1 - I - 0x01A0FB 06:A0EB: 00        .byte $00   ; 
-- D 1 - I - 0x01A0FC 06:A0EC: 01        .byte $01   ; 
+off_05_A0E3_15_spawn_right_arm:
+- D 1 - I - 0x01A0F3 06:A0E3: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A0F4 06:A0E4: 00 01     .word $0100 ; X camera limit (min)
+- D 1 - I - 0x01A0F6 06:A0E6: 00 03     .word $0300 ; X camera limit (max)
+- D 1 - I - 0x01A0F8 06:A0E8: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A0FA 06:A0EA: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A0FC 06:A0EC: 01        .byte $01   ; 04B0 ???
+
 - D 1 - I - 0x01A0FD 06:A0ED: 54        .byte con_chr_bank + $54   ; 
 - D 1 - I - 0x01A0FE 06:A0EE: 0A        .byte con_obj_right_arm   ; 
-- D 1 - I - 0x01A0FF 06:A0EF: 02        .byte $02   ; counter
+- D 1 - I - 0x01A0FF 06:A0EF: 02        .byte $02   ; enemy counter
 ; 01
-- D 1 - I - 0x01A100 06:A0F0: 20        .byte $20   ; 
-- D 1 - I - 0x01A101 06:A0F1: 1D        .byte $1D   ; 
-- D 1 - I - 0x01A102 06:A0F2: C4 03     .word $03C4 ; pos_X
-- D 1 - I - 0x01A104 06:A0F4: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A106 06:A0F6: 30 01     .word $0130 ; pos_Z
-- D 1 - I - 0x01A108 06:A0F8: 03        .byte $03   ; 
-- D 1 - I - 0x01A109 06:A0F9: 17        .byte $17   ; hp
+- D 1 - I - 0x01A100 06:A0F0: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A101 06:A0F1: 1D        .byte con_0359_1D   ; enemy 0359 ???
+- D 1 - I - 0x01A102 06:A0F2: C4 03     .word $03C4 ; enemy pos_X
+- D 1 - I - 0x01A104 06:A0F4: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A106 06:A0F6: 30 01     .word $0130 ; enemy pos_Z
+- D 1 - I - 0x01A108 06:A0F8: 03        .byte $03   ; enemy 006A ???
+- D 1 - I - 0x01A109 06:A0F9: 17        .byte $17   ; enemy hp
 ; 02
-- D 1 - I - 0x01A10A 06:A0FA: 20        .byte $20   ; 
-- D 1 - I - 0x01A10B 06:A0FB: 1D        .byte $1D   ; 
-- D 1 - I - 0x01A10C 06:A0FC: C0 03     .word $03C0 ; pos_X
-- D 1 - I - 0x01A10E 06:A0FE: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A110 06:A100: 30 01     .word $0130 ; pos_Z
-- D 1 - I - 0x01A112 06:A102: 03        .byte $03   ; 
-- D 1 - I - 0x01A113 06:A103: 17        .byte $17   ; hp
+- D 1 - I - 0x01A10A 06:A0FA: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A10B 06:A0FB: 1D        .byte con_0359_1D   ; enemy 0359 ???
+- D 1 - I - 0x01A10C 06:A0FC: C0 03     .word $03C0 ; enemy pos_X
+- D 1 - I - 0x01A10E 06:A0FE: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A110 06:A100: 30 01     .word $0130 ; enemy pos_Z
+- D 1 - I - 0x01A112 06:A102: 03        .byte $03   ; enemy 006A ???
+- D 1 - I - 0x01A113 06:A103: 17        .byte $17   ; enemy hp
 
 
 
-off_05_A104_16:
-- D 1 - I - 0x01A114 06:A104: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A115 06:A105: 00        .byte $00   ; 
-- D 1 - I - 0x01A116 06:A106: 01        .byte $01   ; 
-- D 1 - I - 0x01A117 06:A107: 00        .byte $00   ; 
-- D 1 - I - 0x01A118 06:A108: 03        .byte $03   ; 
-- D 1 - I - 0x01A119 06:A109: 00        .byte $00   ; 
-- D 1 - I - 0x01A11A 06:A10A: 00        .byte $00   ; 
-- D 1 - I - 0x01A11B 06:A10B: F0        .byte $F0   ; 
-- D 1 - I - 0x01A11C 06:A10C: 00        .byte $00   ; 
-- D 1 - I - 0x01A11D 06:A10D: 01        .byte $01   ; 
+off_05_A104_16_spawn_abore:
+- D 1 - I - 0x01A114 06:A104: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A115 06:A105: 00 01     .word $0100 ; X camera limit (min)
+- D 1 - I - 0x01A117 06:A107: 00 03     .word $0300 ; X camera limit (max)
+- D 1 - I - 0x01A119 06:A109: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A11B 06:A10B: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A11D 06:A10D: 01        .byte $01   ; 04B0 ???
+
 - D 1 - I - 0x01A11E 06:A10E: 52        .byte con_chr_bank + $52   ; 
 - D 1 - I - 0x01A11F 06:A10F: 08        .byte con_obj_abore   ; 
-- D 1 - I - 0x01A120 06:A110: 01        .byte $01   ; counter
+- D 1 - I - 0x01A120 06:A110: 01        .byte $01   ; enemy counter
 ; 01
-- D 1 - I - 0x01A121 06:A111: 20        .byte $20   ; 
-- D 1 - I - 0x01A122 06:A112: 1D        .byte $1D   ; 
-- D 1 - I - 0x01A123 06:A113: C4 03     .word $03C4 ; pos_X
-- D 1 - I - 0x01A125 06:A115: 70 00     .word $0070 ; pos_Y
-- D 1 - I - 0x01A127 06:A117: 30 01     .word $0130 ; pos_Z
-- D 1 - I - 0x01A129 06:A119: 03        .byte $03   ; 
-- D 1 - I - 0x01A12A 06:A11A: 47        .byte $47   ; hp
+- D 1 - I - 0x01A121 06:A111: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A122 06:A112: 1D        .byte con_0359_1D   ; enemy 0359 ???
+- D 1 - I - 0x01A123 06:A113: C4 03     .word $03C4 ; enemy pos_X
+- D 1 - I - 0x01A125 06:A115: 70 00     .word $0070 ; enemy pos_Y
+- D 1 - I - 0x01A127 06:A117: 30 01     .word $0130 ; enemy pos_Z
+- D 1 - I - 0x01A129 06:A119: 03        .byte $03   ; enemy 006A ???
+- D 1 - I - 0x01A12A 06:A11A: 47        .byte $47   ; enemy hp
 
 
 
 off_05_A11B_17:
-- D 1 - I - 0x01A12B 06:A11B: 08        .byte con_884D_08   ; 
+- D 1 - I - 0x01A12B 06:A11B: 08        .byte con_884D_script_08   ; 
 
 
 
 off_05_A11C_18:
-- D 1 - I - 0x01A12C 06:A11C: 81        .byte con_884D_81   ; 
+- D 1 - I - 0x01A12C 06:A11C: 81        .byte con_884D_script_81   ; 
 
 
 
 off_06_A11D_00:
-- D 1 - I - 0x01A12D 06:A11D: 03        .byte con_884D_03   ; 
-- D 1 - I - 0x01A12E 06:A11E: FF        .byte $FF   ; 
-- D 1 - I - 0x01A12F 06:A11F: 00        .byte $00   ; 
-- D 1 - I - 0x01A130 06:A120: 00        .byte $00   ; 
-- D 1 - I - 0x01A131 06:A121: 02        .byte $02   ; 
-- D 1 - I - 0x01A132 06:A122: 00        .byte $00   ; 
-- D 1 - I - 0x01A133 06:A123: 00        .byte $00   ; 
-- D 1 - I - 0x01A134 06:A124: 00        .byte $00   ; 
-- D 1 - I - 0x01A135 06:A125: 00        .byte $00   ; 
-- D 1 - I - 0x01A136 06:A126: 02        .byte $02   ; 
+- D 1 - I - 0x01A12D 06:A11D: 03        .byte con_884D_script_03   ; 
+- D 1 - I - 0x01A12E 06:A11E: FF 00     .word $00FF ; X camera limit (min)
+- D 1 - I - 0x01A130 06:A120: 00 02     .word $0200 ; X camera limit (max)
+- D 1 - I - 0x01A132 06:A122: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A134 06:A124: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A136 06:A126: 02        .byte $02   ; 04B0 ???
+
 - D 1 - I - 0x01A137 06:A127: 5A        .byte con_chr_bank + $5A   ; 
 - D 1 - I - 0x01A138 06:A128: 11        .byte con_obj_shadow_warrior   ; 
 - - - - - - 0x01A139 06:A129: 00        .byte $00   ; 
@@ -6620,7 +6469,7 @@ off_06_A11D_00:
 
 
 off_06_A12A_01:
-- D 1 - I - 0x01A13A 06:A12A: 02        .byte con_884D_02   ; 
+- D 1 - I - 0x01A13A 06:A12A: 02        .byte con_884D_script_02   ; 
 - D 1 - I - 0x01A13B 06:A12B: FF        .byte $FF   ; 
 - D 1 - I - 0x01A13C 06:A12C: 00        .byte $00   ; 
 - D 1 - I - 0x01A13D 06:A12D: 00        .byte $00   ; 
@@ -6628,623 +6477,577 @@ off_06_A12A_01:
 
 
 
-off_06_A12F_02:
-- D 1 - I - 0x01A13F 06:A12F: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A140 06:A130: FF        .byte $FF   ; 
-- D 1 - I - 0x01A141 06:A131: 00        .byte $00   ; 
-- D 1 - I - 0x01A142 06:A132: FF        .byte $FF   ; 
-- D 1 - I - 0x01A143 06:A133: 00        .byte $00   ; 
-- D 1 - I - 0x01A144 06:A134: 00        .byte $00   ; 
-- D 1 - I - 0x01A145 06:A135: 00        .byte $00   ; 
-- D 1 - I - 0x01A146 06:A136: 00        .byte $00   ; 
-- D 1 - I - 0x01A147 06:A137: 00        .byte $00   ; 
-- D 1 - I - 0x01A148 06:A138: 00        .byte $00   ; 
+off_06_A12F_02_spawn_right_arm:
+- D 1 - I - 0x01A13F 06:A12F: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A140 06:A130: FF 00     .word $00FF ; X camera limit (min)
+- D 1 - I - 0x01A142 06:A132: FF 00     .word $00FF ; X camera limit (max)
+- D 1 - I - 0x01A144 06:A134: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A146 06:A136: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A148 06:A138: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A149 06:A139: 54        .byte con_chr_bank + $54   ; 
 - D 1 - I - 0x01A14A 06:A13A: 0A        .byte con_obj_right_arm   ; 
-- D 1 - I - 0x01A14B 06:A13B: 04        .byte $04   ; counter
+- D 1 - I - 0x01A14B 06:A13B: 04        .byte $04   ; enemy counter
 ; 01
-- D 1 - I - 0x01A14C 06:A13C: 20        .byte $20   ; 
-- D 1 - I - 0x01A14D 06:A13D: 0A        .byte $0A   ; 
-- D 1 - I - 0x01A14E 06:A13E: 30 01     .word $0130 ; pos_X
-- D 1 - I - 0x01A150 06:A140: 00 00     .word $0000 ; pos_Y
-- D 1 - I - 0x01A152 06:A142: 50 00     .word $0050 ; pos_Z
-- D 1 - I - 0x01A154 06:A144: 00        .byte $00   ; 
-- D 1 - I - 0x01A155 06:A145: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A14C 06:A13C: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A14D 06:A13D: 0A        .byte con_0359_0A   ; enemy 0359 ???
+- D 1 - I - 0x01A14E 06:A13E: 30 01     .word $0130 ; enemy pos_X
+- D 1 - I - 0x01A150 06:A140: 00 00     .word $0000 ; enemy pos_Y
+- D 1 - I - 0x01A152 06:A142: 50 00     .word $0050 ; enemy pos_Z
+- D 1 - I - 0x01A154 06:A144: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A155 06:A145: 1F        .byte $1F   ; enemy hp
 ; 02
-- D 1 - I - 0x01A156 06:A146: 20        .byte $20   ; 
-- D 1 - I - 0x01A157 06:A147: 08        .byte $08   ; 
-- D 1 - I - 0x01A158 06:A148: D0 01     .word $01D0 ; pos_X
-- D 1 - I - 0x01A15A 06:A14A: 00 00     .word $0000 ; pos_Y
-- D 1 - I - 0x01A15C 06:A14C: 50 00     .word $0050 ; pos_Z
-- D 1 - I - 0x01A15E 06:A14E: 00        .byte $00   ; 
-- D 1 - I - 0x01A15F 06:A14F: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A156 06:A146: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A157 06:A147: 08        .byte con_0359_08   ; enemy 0359 ???
+- D 1 - I - 0x01A158 06:A148: D0 01     .word $01D0 ; enemy pos_X
+- D 1 - I - 0x01A15A 06:A14A: 00 00     .word $0000 ; enemy pos_Y
+- D 1 - I - 0x01A15C 06:A14C: 50 00     .word $0050 ; enemy pos_Z
+- D 1 - I - 0x01A15E 06:A14E: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A15F 06:A14F: 1F        .byte $1F   ; enemy hp
 ; 03
-- D 1 - I - 0x01A160 06:A150: 20        .byte $20   ; 
-- D 1 - I - 0x01A161 06:A151: 0A        .byte $0A   ; 
-- D 1 - I - 0x01A162 06:A152: 30 01     .word $0130 ; pos_X
-- D 1 - I - 0x01A164 06:A154: 00 00     .word $0000 ; pos_Y
-- D 1 - I - 0x01A166 06:A156: 50 00     .word $0050 ; pos_Z
-- D 1 - I - 0x01A168 06:A158: 00        .byte $00   ; 
-- D 1 - I - 0x01A169 06:A159: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A160 06:A150: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A161 06:A151: 0A        .byte con_0359_0A   ; enemy 0359 ???
+- D 1 - I - 0x01A162 06:A152: 30 01     .word $0130 ; enemy pos_X
+- D 1 - I - 0x01A164 06:A154: 00 00     .word $0000 ; enemy pos_Y
+- D 1 - I - 0x01A166 06:A156: 50 00     .word $0050 ; enemy pos_Z
+- D 1 - I - 0x01A168 06:A158: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A169 06:A159: 1F        .byte $1F   ; enemy hp
 ; 04
-- - - - - - 0x01A16A 06:A15A: 20        .byte $20   ; 
-- - - - - - 0x01A16B 06:A15B: 08        .byte $08   ; 
-- - - - - - 0x01A16C 06:A15C: D0 01     .word $01D0 ; pos_X
-- - - - - - 0x01A16E 06:A15E: 00 00     .word $0000 ; pos_Y
-- - - - - - 0x01A170 06:A160: 50 00     .word $0050 ; pos_Z
-- - - - - - 0x01A172 06:A162: 00        .byte $00   ; 
-- - - - - - 0x01A173 06:A163: 1F        .byte $1F   ; hp
+- - - - - - 0x01A16A 06:A15A: 20        .byte $20   ; enemy settings
+- - - - - - 0x01A16B 06:A15B: 08        .byte con_0359_08   ; enemy 0359 ???
+- - - - - - 0x01A16C 06:A15C: D0 01     .word $01D0 ; enemy pos_X
+- - - - - - 0x01A16E 06:A15E: 00 00     .word $0000 ; enemy pos_Y
+- - - - - - 0x01A170 06:A160: 50 00     .word $0050 ; enemy pos_Z
+- - - - - - 0x01A172 06:A162: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x01A173 06:A163: 1F        .byte $1F   ; enemy hp
 
 
 
-off_06_A164_03:
-- D 1 - I - 0x01A174 06:A164: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A175 06:A165: FF        .byte $FF   ; 
-- D 1 - I - 0x01A176 06:A166: 00        .byte $00   ; 
-- D 1 - I - 0x01A177 06:A167: FF        .byte $FF   ; 
-- D 1 - I - 0x01A178 06:A168: 00        .byte $00   ; 
-- D 1 - I - 0x01A179 06:A169: 00        .byte $00   ; 
-- D 1 - I - 0x01A17A 06:A16A: 00        .byte $00   ; 
-- D 1 - I - 0x01A17B 06:A16B: 00        .byte $00   ; 
-- D 1 - I - 0x01A17C 06:A16C: 00        .byte $00   ; 
-- D 1 - I - 0x01A17D 06:A16D: 00        .byte $00   ; 
+off_06_A164_03_spawn_chin_taimei:
+- D 1 - I - 0x01A174 06:A164: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A175 06:A165: FF 00     .word $00FF ; X camera limit (min)
+- D 1 - I - 0x01A177 06:A167: FF 00     .word $00FF ; X camera limit (max)
+- D 1 - I - 0x01A179 06:A169: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A17B 06:A16B: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A17D 06:A16D: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A17E 06:A16E: 4C        .byte con_chr_bank + $4C   ; 
 - D 1 - I - 0x01A17F 06:A16F: 09        .byte con_obj_chin_taimei   ; 
-- D 1 - I - 0x01A180 06:A170: 04        .byte $04   ; counter
+- D 1 - I - 0x01A180 06:A170: 04        .byte $04   ; enemy counter
 ; 01
-- D 1 - I - 0x01A181 06:A171: 20        .byte $20   ; 
-- D 1 - I - 0x01A182 06:A172: 0A        .byte $0A   ; 
-- D 1 - I - 0x01A183 06:A173: 30 01     .word $0130 ; pos_X
-- D 1 - I - 0x01A185 06:A175: 00 00     .word $0000 ; pos_Y
-- D 1 - I - 0x01A187 06:A177: 50 00     .word $0050 ; pos_Z
-- D 1 - I - 0x01A189 06:A179: 00        .byte $00   ; 
-- D 1 - I - 0x01A18A 06:A17A: 17        .byte $17   ; hp
+- D 1 - I - 0x01A181 06:A171: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A182 06:A172: 0A        .byte con_0359_0A   ; enemy 0359 ???
+- D 1 - I - 0x01A183 06:A173: 30 01     .word $0130 ; enemy pos_X
+- D 1 - I - 0x01A185 06:A175: 00 00     .word $0000 ; enemy pos_Y
+- D 1 - I - 0x01A187 06:A177: 50 00     .word $0050 ; enemy pos_Z
+- D 1 - I - 0x01A189 06:A179: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A18A 06:A17A: 17        .byte $17   ; enemy hp
 ; 02
-- D 1 - I - 0x01A18B 06:A17B: 20        .byte $20   ; 
-- D 1 - I - 0x01A18C 06:A17C: 08        .byte $08   ; 
-- D 1 - I - 0x01A18D 06:A17D: D0 01     .word $01D0 ; pos_X
-- D 1 - I - 0x01A18F 06:A17F: 00 00     .word $0000 ; pos_Y
-- D 1 - I - 0x01A191 06:A181: 50 00     .word $0050 ; pos_Z
-- D 1 - I - 0x01A193 06:A183: 00        .byte $00   ; 
-- D 1 - I - 0x01A194 06:A184: 17        .byte $17   ; hp
+- D 1 - I - 0x01A18B 06:A17B: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A18C 06:A17C: 08        .byte con_0359_08   ; enemy 0359 ???
+- D 1 - I - 0x01A18D 06:A17D: D0 01     .word $01D0 ; enemy pos_X
+- D 1 - I - 0x01A18F 06:A17F: 00 00     .word $0000 ; enemy pos_Y
+- D 1 - I - 0x01A191 06:A181: 50 00     .word $0050 ; enemy pos_Z
+- D 1 - I - 0x01A193 06:A183: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A194 06:A184: 17        .byte $17   ; enemy hp
 ; 03
-- D 1 - I - 0x01A195 06:A185: 20        .byte $20   ; 
-- D 1 - I - 0x01A196 06:A186: 0A        .byte $0A   ; 
-- D 1 - I - 0x01A197 06:A187: 30 01     .word $0130 ; pos_X
-- D 1 - I - 0x01A199 06:A189: 00 00     .word $0000 ; pos_Y
-- D 1 - I - 0x01A19B 06:A18B: 50 00     .word $0050 ; pos_Z
-- D 1 - I - 0x01A19D 06:A18D: 00        .byte $00   ; 
-- D 1 - I - 0x01A19E 06:A18E: 17        .byte $17   ; hp
+- D 1 - I - 0x01A195 06:A185: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A196 06:A186: 0A        .byte con_0359_0A   ; enemy 0359 ???
+- D 1 - I - 0x01A197 06:A187: 30 01     .word $0130 ; enemy pos_X
+- D 1 - I - 0x01A199 06:A189: 00 00     .word $0000 ; enemy pos_Y
+- D 1 - I - 0x01A19B 06:A18B: 50 00     .word $0050 ; enemy pos_Z
+- D 1 - I - 0x01A19D 06:A18D: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A19E 06:A18E: 17        .byte $17   ; enemy hp
 ; 04
-- - - - - - 0x01A19F 06:A18F: 20        .byte $20   ; 
-- - - - - - 0x01A1A0 06:A190: 08        .byte $08   ; 
-- - - - - - 0x01A1A1 06:A191: D0 01     .word $01D0 ; pos_X
-- - - - - - 0x01A1A3 06:A193: 00 00     .word $0000 ; pos_Y
-- - - - - - 0x01A1A5 06:A195: 50 00     .word $0050 ; pos_Z
-- - - - - - 0x01A1A7 06:A197: 00        .byte $00   ; 
-- - - - - - 0x01A1A8 06:A198: 17        .byte $17   ; hp
+- - - - - - 0x01A19F 06:A18F: 20        .byte $20   ; enemy settings
+- - - - - - 0x01A1A0 06:A190: 08        .byte con_0359_08   ; enemy 0359 ???
+- - - - - - 0x01A1A1 06:A191: D0 01     .word $01D0 ; enemy pos_X
+- - - - - - 0x01A1A3 06:A193: 00 00     .word $0000 ; enemy pos_Y
+- - - - - - 0x01A1A5 06:A195: 50 00     .word $0050 ; enemy pos_Z
+- - - - - - 0x01A1A7 06:A197: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x01A1A8 06:A198: 17        .byte $17   ; enemy hp
 
 
 
-off_06_A199_04:
-- D 1 - I - 0x01A1A9 06:A199: 01        .byte con_884D_white_hand_cursor   ; 
-- D 1 - I - 0x01A1AA 06:A19A: 00        .byte $00   ; 
-- D 1 - I - 0x01A1AB 06:A19B: 00        .byte $00   ; 
-- D 1 - I - 0x01A1AC 06:A19C: FF        .byte $FF   ; 
-- D 1 - I - 0x01A1AD 06:A19D: 00        .byte $00   ; 
-- D 1 - I - 0x01A1AE 06:A19E: 00        .byte $00   ; 
-- D 1 - I - 0x01A1AF 06:A19F: 00        .byte $00   ; 
-- D 1 - I - 0x01A1B0 06:A1A0: 00        .byte $00   ; 
-- D 1 - I - 0x01A1B1 06:A1A1: 00        .byte $00   ; 
-- D 1 - I - 0x01A1B2 06:A1A2: 02        .byte $02   ; 
-- D 1 - I - 0x01A1B3 06:A1A3: 02        .byte $02   ; 
+off_06_A199_04_cursor:
+- D 1 - I - 0x01A1A9 06:A199: 01        .byte con_884D_script_hand_cursor   ; 
+- D 1 - I - 0x01A1AA 06:A19A: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A1AC 06:A19C: FF 00     .word $00FF ; X camera limit (max)
+- D 1 - I - 0x01A1AE 06:A19E: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A1B0 06:A1A0: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A1B2 06:A1A2: 02        .byte $02   ; 04B0 ???
+
+- D 1 - I - 0x01A1B3 06:A1A3: 02        .byte $02   ; cursor direction (left)
 
 
 
 off_06_A1A4_05:
-- D 1 - I - 0x01A1B4 06:A1A4: 03        .byte con_884D_03   ; 
-- D 1 - I - 0x01A1B5 06:A1A5: 00        .byte $00   ; 
-- D 1 - I - 0x01A1B6 06:A1A6: 00        .byte $00   ; 
-- D 1 - I - 0x01A1B7 06:A1A7: FF        .byte $FF   ; 
-- D 1 - I - 0x01A1B8 06:A1A8: 00        .byte $00   ; 
-- D 1 - I - 0x01A1B9 06:A1A9: 00        .byte $00   ; 
-- D 1 - I - 0x01A1BA 06:A1AA: 00        .byte $00   ; 
-- D 1 - I - 0x01A1BB 06:A1AB: 00        .byte $00   ; 
-- D 1 - I - 0x01A1BC 06:A1AC: 00        .byte $00   ; 
-- D 1 - I - 0x01A1BD 06:A1AD: 02        .byte $02   ; 
+- D 1 - I - 0x01A1B4 06:A1A4: 03        .byte con_884D_script_03   ; 
+- D 1 - I - 0x01A1B5 06:A1A5: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A1B7 06:A1A7: FF 00     .word $00FF ; X camera limit (max)
+- D 1 - I - 0x01A1B9 06:A1A9: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A1BB 06:A1AB: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A1BD 06:A1AD: 02        .byte $02   ; 04B0 ???
+
 - D 1 - I - 0x01A1BE 06:A1AE: 44        .byte con_chr_bank + $44   ; 
 - D 1 - I - 0x01A1BF 06:A1AF: 04        .byte con_obj_linda   ; 
 - - - - - - 0x01A1C0 06:A1B0: 00        .byte $00   ; 
 
 
 
-off_06_A1B1_06:
-- D 1 - I - 0x01A1C1 06:A1B1: 04        .byte con_884D_04   ; 
-- D 1 - I - 0x01A1C2 06:A1B2: 03        .byte $03   ; 
+off_06_A1B1_06_enter_door:
+- D 1 - I - 0x01A1C1 06:A1B1: 04        .byte con_884D_script_enter_door   ; 
+- D 1 - I - 0x01A1C2 06:A1B2: 03        .byte con_9859_03   ; 
 
 
 
 off_06_A1B3_07:
-- D 1 - I - 0x01A1C3 06:A1B3: 08        .byte con_884D_08   ; 
+- D 1 - I - 0x01A1C3 06:A1B3: 08        .byte con_884D_script_08   ; 
 
 
 
 off_06_A1B4_08:
-- D 1 - I - 0x01A1C4 06:A1B4: 81        .byte con_884D_81   ; 
+- D 1 - I - 0x01A1C4 06:A1B4: 81        .byte con_884D_script_81   ; 
 
 
 
 off_07_A1B5_00:
-- D 1 - I - 0x01A1C5 06:A1B5: 03        .byte con_884D_03   ; 
-- D 1 - I - 0x01A1C6 06:A1B6: 00        .byte $00   ; 
-- D 1 - I - 0x01A1C7 06:A1B7: 00        .byte $00   ; 
-- D 1 - I - 0x01A1C8 06:A1B8: 00        .byte $00   ; 
-- D 1 - I - 0x01A1C9 06:A1B9: 00        .byte $00   ; 
-- D 1 - I - 0x01A1CA 06:A1BA: 00        .byte $00   ; 
-- D 1 - I - 0x01A1CB 06:A1BB: 00        .byte $00   ; 
-- D 1 - I - 0x01A1CC 06:A1BC: 00        .byte $00   ; 
-- D 1 - I - 0x01A1CD 06:A1BD: 00        .byte $00   ; 
-- D 1 - I - 0x01A1CE 06:A1BE: 00        .byte $00   ; 
+- D 1 - I - 0x01A1C5 06:A1B5: 03        .byte con_884D_script_03   ; 
+- D 1 - I - 0x01A1C6 06:A1B6: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A1C8 06:A1B8: 00 00     .word $0000 ; X camera limit (max)
+- D 1 - I - 0x01A1CA 06:A1BA: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A1CC 06:A1BC: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A1CE 06:A1BE: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A1CF 06:A1BF: 44        .byte con_chr_bank + $44   ; 
 - D 1 - I - 0x01A1D0 06:A1C0: 04        .byte con_obj_linda   ; 
 - - - - - - 0x01A1D1 06:A1C1: 00        .byte $00   ; 
 
 
 
-off_07_A1C2_01:
-- D 1 - I - 0x01A1D2 06:A1C2: 04        .byte con_884D_04   ; 
-- D 1 - I - 0x01A1D3 06:A1C3: 04        .byte $04   ; 
+off_07_A1C2_01_enter_door:
+- D 1 - I - 0x01A1D2 06:A1C2: 04        .byte con_884D_script_enter_door   ; 
+- D 1 - I - 0x01A1D3 06:A1C3: 04        .byte con_9859_04   ; 
 
 
 
 off_07_A1C4_02:
-- D 1 - I - 0x01A1D4 06:A1C4: 81        .byte con_884D_81   ; 
+- D 1 - I - 0x01A1D4 06:A1C4: 81        .byte con_884D_script_81   ; 
 
 
 
-off_08_A1C5_00:
-- D 1 - I - 0x01A1D5 06:A1C5: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A1D6 06:A1C6: 00        .byte $00   ; 
-- D 1 - I - 0x01A1D7 06:A1C7: 00        .byte $00   ; 
-- D 1 - I - 0x01A1D8 06:A1C8: 00        .byte $00   ; 
-- D 1 - I - 0x01A1D9 06:A1C9: 00        .byte $00   ; 
-- D 1 - I - 0x01A1DA 06:A1CA: 00        .byte $00   ; 
-- D 1 - I - 0x01A1DB 06:A1CB: 00        .byte $00   ; 
-- D 1 - I - 0x01A1DC 06:A1CC: 00        .byte $00   ; 
-- D 1 - I - 0x01A1DD 06:A1CD: 00        .byte $00   ; 
-- D 1 - I - 0x01A1DE 06:A1CE: 00        .byte $00   ; 
+off_08_A1C5_00_spawn_right_arm:
+- D 1 - I - 0x01A1D5 06:A1C5: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A1D6 06:A1C6: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A1D8 06:A1C8: 00 00     .word $0000 ; X camera limit (max)
+- D 1 - I - 0x01A1DA 06:A1CA: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A1DC 06:A1CC: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A1DE 06:A1CE: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A1DF 06:A1CF: 54        .byte con_chr_bank + $54   ; 
 - D 1 - I - 0x01A1E0 06:A1D0: 0A        .byte con_obj_right_arm   ; 
-- D 1 - I - 0x01A1E1 06:A1D1: 01        .byte $01   ; counter
+- D 1 - I - 0x01A1E1 06:A1D1: 01        .byte $01   ; enemy counter
 ; 01
-- D 1 - I - 0x01A1E2 06:A1D2: 20        .byte $20   ; 
-- D 1 - I - 0x01A1E3 06:A1D3: 00        .byte $00   ; 
-- D 1 - I - 0x01A1E4 06:A1D4: FF 00     .word $00FF ; pos_X
-- D 1 - I - 0x01A1E6 06:A1D6: 00 00     .word $0000 ; pos_Y
-- D 1 - I - 0x01A1E8 06:A1D8: 70 00     .word $0070 ; pos_Z
-- D 1 - I - 0x01A1EA 06:A1DA: 00        .byte $00   ; 
-- D 1 - I - 0x01A1EB 06:A1DB: 17        .byte $17   ; hp
+- D 1 - I - 0x01A1E2 06:A1D2: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A1E3 06:A1D3: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A1E4 06:A1D4: FF 00     .word $00FF ; enemy pos_X
+- D 1 - I - 0x01A1E6 06:A1D6: 00 00     .word $0000 ; enemy pos_Y
+- D 1 - I - 0x01A1E8 06:A1D8: 70 00     .word $0070 ; enemy pos_Z
+- D 1 - I - 0x01A1EA 06:A1DA: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A1EB 06:A1DB: 17        .byte $17   ; enemy hp
 
 
 
-off_08_A1DC_01:
-- D 1 - I - 0x01A1EC 06:A1DC: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A1ED 06:A1DD: 00        .byte $00   ; 
-- D 1 - I - 0x01A1EE 06:A1DE: 00        .byte $00   ; 
-- D 1 - I - 0x01A1EF 06:A1DF: 00        .byte $00   ; 
-- D 1 - I - 0x01A1F0 06:A1E0: 00        .byte $00   ; 
-- D 1 - I - 0x01A1F1 06:A1E1: 00        .byte $00   ; 
-- D 1 - I - 0x01A1F2 06:A1E2: 00        .byte $00   ; 
-- D 1 - I - 0x01A1F3 06:A1E3: 00        .byte $00   ; 
-- D 1 - I - 0x01A1F4 06:A1E4: 00        .byte $00   ; 
-- D 1 - I - 0x01A1F5 06:A1E5: 00        .byte $00   ; 
+off_08_A1DC_01_spawn_burnov:
+- D 1 - I - 0x01A1EC 06:A1DC: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A1ED 06:A1DD: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A1EF 06:A1DF: 00 00     .word $0000 ; X camera limit (max)
+- D 1 - I - 0x01A1F1 06:A1E1: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A1F3 06:A1E3: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A1F5 06:A1E5: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A1F6 06:A1E6: 50        .byte con_chr_bank + $50   ; 
 - D 1 - I - 0x01A1F7 06:A1E7: 07        .byte con_obj_burnov   ; 
-- D 1 - I - 0x01A1F8 06:A1E8: 01        .byte $01   ; counter
+- D 1 - I - 0x01A1F8 06:A1E8: 01        .byte $01   ; enemy counter
 ; 01
-- D 1 - I - 0x01A1F9 06:A1E9: 20        .byte $20   ; 
-- D 1 - I - 0x01A1FA 06:A1EA: 00        .byte $00   ; 
-- D 1 - I - 0x01A1FB 06:A1EB: FF 00     .word $00FF ; pos_X
-- D 1 - I - 0x01A1FD 06:A1ED: 00 00     .word $0000 ; pos_Y
-- D 1 - I - 0x01A1FF 06:A1EF: 70 00     .word $0070 ; pos_Z
-- D 1 - I - 0x01A201 06:A1F1: 00        .byte $00   ; 
-- D 1 - I - 0x01A202 06:A1F2: 32        .byte $32   ; hp
+- D 1 - I - 0x01A1F9 06:A1E9: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A1FA 06:A1EA: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A1FB 06:A1EB: FF 00     .word $00FF ; enemy pos_X
+- D 1 - I - 0x01A1FD 06:A1ED: 00 00     .word $0000 ; enemy pos_Y
+- D 1 - I - 0x01A1FF 06:A1EF: 70 00     .word $0070 ; enemy pos_Z
+- D 1 - I - 0x01A201 06:A1F1: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A202 06:A1F2: 32        .byte $32   ; enemy hp
 
 
 
 off_08_A1F3_02:
-- D 1 - I - 0x01A203 06:A1F3: 06        .byte con_884D_06   ; 
-- D 1 - I - 0x01A204 06:A1F4: 09        .byte $09   ; 
+- D 1 - I - 0x01A203 06:A1F3: 06        .byte con_884D_script_06   ; 
+- D 1 - I - 0x01A204 06:A1F4: 09        .byte con_A6C3_draw_final_door_08   ; 
 
 
 
-off_08_A1F5_03:
-- D 1 - I - 0x01A205 06:A1F5: 04        .byte con_884D_04   ; 
-- D 1 - I - 0x01A206 06:A1F6: 05        .byte $05   ; 
+off_08_A1F5_03_enter_door:
+- D 1 - I - 0x01A205 06:A1F5: 04        .byte con_884D_script_enter_door   ; 
+- D 1 - I - 0x01A206 06:A1F6: 05        .byte con_9859_05   ; 
 
 
 
 off_08_A1F7_04:
-- D 1 - I - 0x01A207 06:A1F7: 0A        .byte con_884D_0A   ; 
-- D 1 - I - 0x01A208 06:A1F8: 09        .byte $09   ; 
+- D 1 - I - 0x01A207 06:A1F7: 0A        .byte con_884D_script_0A   ; 
+- D 1 - I - 0x01A208 06:A1F8: 09        .byte con_A6C3_draw_final_door_08   ; 
 
 
 
 off_08_A1F9_05:
-- D 1 - I - 0x01A209 06:A1F9: 81        .byte con_884D_81   ; 
+- D 1 - I - 0x01A209 06:A1F9: 81        .byte con_884D_script_81   ; 
 
 
 
 off_09_A1FA_00:
-- D 1 - I - 0x01A20A 06:A1FA: 03        .byte con_884D_03   ; 
-- D 1 - I - 0x01A20B 06:A1FB: 00        .byte $00   ; 
-- D 1 - I - 0x01A20C 06:A1FC: 00        .byte $00   ; 
-- D 1 - I - 0x01A20D 06:A1FD: 00        .byte $00   ; 
-- D 1 - I - 0x01A20E 06:A1FE: 00        .byte $00   ; 
-- D 1 - I - 0x01A20F 06:A1FF: 00        .byte $00   ; 
-- D 1 - I - 0x01A210 06:A200: 00        .byte $00   ; 
-- D 1 - I - 0x01A211 06:A201: 00        .byte $00   ; 
-- D 1 - I - 0x01A212 06:A202: 00        .byte $00   ; 
-- D 1 - I - 0x01A213 06:A203: 00        .byte $00   ; 
+- D 1 - I - 0x01A20A 06:A1FA: 03        .byte con_884D_script_03   ; 
+- D 1 - I - 0x01A20B 06:A1FB: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A20D 06:A1FD: 00 00     .word $0000 ; X camera limit (max)
+- D 1 - I - 0x01A20F 06:A1FF: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A211 06:A201: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A213 06:A203: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A214 06:A204: 5A        .byte con_chr_bank + $5A   ; 
-- D 1 - I - 0x01A215 06:A205: 1E        .byte con_obj_1E   ; 
+- D 1 - I - 0x01A215 06:A205: 1E        .byte con_obj_symbol_II   ; 
 - - - - - - 0x01A216 06:A206: 00        .byte $00   ; 
 
 
 
-off_09_A207_01:
-- D 1 - I - 0x01A217 06:A207: 04        .byte con_884D_04   ; 
-- D 1 - I - 0x01A218 06:A208: 06        .byte $06   ; 
+off_09_A207_01_enter_door:
+- D 1 - I - 0x01A217 06:A207: 04        .byte con_884D_script_enter_door   ; 
+- D 1 - I - 0x01A218 06:A208: 06        .byte con_9859_06   ; 
 
 
 
 off_09_A209_02:
-- D 1 - I - 0x01A219 06:A209: 81        .byte con_884D_81   ; 
+- D 1 - I - 0x01A219 06:A209: 81        .byte con_884D_script_81   ; 
 
-off_0A_A20A_00:
-- D 1 - I - 0x01A21A 06:A20A: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A21B 06:A20B: 00        .byte $00   ; 
-- D 1 - I - 0x01A21C 06:A20C: 00        .byte $00   ; 
-- D 1 - I - 0x01A21D 06:A20D: 00        .byte $00   ; 
-- D 1 - I - 0x01A21E 06:A20E: 00        .byte $00   ; 
-- D 1 - I - 0x01A21F 06:A20F: 00        .byte $00   ; 
-- D 1 - I - 0x01A220 06:A210: 00        .byte $00   ; 
-- D 1 - I - 0x01A221 06:A211: 00        .byte $00   ; 
-- D 1 - I - 0x01A222 06:A212: 00        .byte $00   ; 
-- D 1 - I - 0x01A223 06:A213: 00        .byte $00   ; 
+
+
+off_0A_A20A_00_spawn_roper:
+- D 1 - I - 0x01A21A 06:A20A: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A21B 06:A20B: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A21D 06:A20D: 00 00     .word $0000 ; X camera limit (max)
+- D 1 - I - 0x01A21F 06:A20F: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A221 06:A211: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A223 06:A213: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A224 06:A214: 64        .byte con_chr_bank + $64   ; 
 - D 1 - I - 0x01A225 06:A215: 03        .byte con_obj_roper   ; 
-- D 1 - I - 0x01A226 06:A216: 05        .byte $05   ; counter
+- D 1 - I - 0x01A226 06:A216: 05        .byte $05   ; enemy counter
 ; 01
-- D 1 - I - 0x01A227 06:A217: A0        .byte $A0   ; 
-- D 1 - I - 0x01A228 06:A218: 16        .byte con_obj_flame_grenades   ; 
-- D 1 - I - 0x01A229 06:A219: 00        .byte $00   ; 
-- D 1 - I - 0x01A22A 06:A21A: FF 00     .word $00FF ; pos_X
-- D 1 - I - 0x01A22C 06:A21C: 00 00     .word $0000 ; pos_Y
-- D 1 - I - 0x01A22E 06:A21E: 70 00     .word $0070 ; pos_Z
-- D 1 - I - 0x01A230 06:A220: 00        .byte $00   ; 
-- D 1 - I - 0x01A231 06:A221: 38        .byte $38   ; hp
+- D 1 - I - 0x01A227 06:A217: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A228 06:A218: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- D 1 - I - 0x01A229 06:A219: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A22A 06:A21A: FF 00     .word $00FF ; enemy pos_X
+- D 1 - I - 0x01A22C 06:A21C: 00 00     .word $0000 ; enemy pos_Y
+- D 1 - I - 0x01A22E 06:A21E: 70 00     .word $0070 ; enemy pos_Z
+- D 1 - I - 0x01A230 06:A220: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A231 06:A221: 38        .byte $38   ; enemy hp
 ; 02
-- D 1 - I - 0x01A232 06:A222: A0        .byte $A0   ; 
-- D 1 - I - 0x01A233 06:A223: 16        .byte con_obj_flame_grenades   ; 
-- D 1 - I - 0x01A234 06:A224: 00        .byte $00   ; 
-- D 1 - I - 0x01A235 06:A225: 10 01     .word $0110 ; pos_X
-- D 1 - I - 0x01A237 06:A227: 00 00     .word $0000 ; pos_Y
-- D 1 - I - 0x01A239 06:A229: 70 00     .word $0070 ; pos_Z
-- D 1 - I - 0x01A23B 06:A22B: 00        .byte $00   ; 
-- D 1 - I - 0x01A23C 06:A22C: 38        .byte $38   ; hp
+- D 1 - I - 0x01A232 06:A222: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A233 06:A223: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- D 1 - I - 0x01A234 06:A224: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A235 06:A225: 10 01     .word $0110 ; enemy pos_X
+- D 1 - I - 0x01A237 06:A227: 00 00     .word $0000 ; enemy pos_Y
+- D 1 - I - 0x01A239 06:A229: 70 00     .word $0070 ; enemy pos_Z
+- D 1 - I - 0x01A23B 06:A22B: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A23C 06:A22C: 38        .byte $38   ; enemy hp
 ; 03
-- D 1 - I - 0x01A23D 06:A22D: A0        .byte $A0   ; 
-- D 1 - I - 0x01A23E 06:A22E: 16        .byte con_obj_flame_grenades   ; 
-- D 1 - I - 0x01A23F 06:A22F: 00        .byte $00   ; 
-- D 1 - I - 0x01A240 06:A230: FF 00     .word $00FF ; pos_X
-- D 1 - I - 0x01A242 06:A232: 00 00     .word $0000 ; pos_Y
-- D 1 - I - 0x01A244 06:A234: 70 00     .word $0070 ; pos_Z
-- D 1 - I - 0x01A246 06:A236: 00        .byte $00   ; 
-- D 1 - I - 0x01A247 06:A237: 38        .byte $38   ; hp
+- D 1 - I - 0x01A23D 06:A22D: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A23E 06:A22E: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- D 1 - I - 0x01A23F 06:A22F: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A240 06:A230: FF 00     .word $00FF ; enemy pos_X
+- D 1 - I - 0x01A242 06:A232: 00 00     .word $0000 ; enemy pos_Y
+- D 1 - I - 0x01A244 06:A234: 70 00     .word $0070 ; enemy pos_Z
+- D 1 - I - 0x01A246 06:A236: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A247 06:A237: 38        .byte $38   ; enemy hp
 ; 04
-- - - - - - 0x01A248 06:A238: A0        .byte $A0   ; 
-- - - - - - 0x01A249 06:A239: 16        .byte con_obj_flame_grenades   ; 
-- - - - - - 0x01A24A 06:A23A: 00        .byte $00   ; 
-- - - - - - 0x01A24B 06:A23B: 10 01     .word $0110 ; pos_X
-- - - - - - 0x01A24D 06:A23D: 00 00     .word $0000 ; pos_Y
-- - - - - - 0x01A24F 06:A23F: 70 00     .word $0070 ; pos_Z
-- - - - - - 0x01A251 06:A241: 00        .byte $00   ; 
-- - - - - - 0x01A252 06:A242: 38        .byte $38   ; hp
+- - - - - - 0x01A248 06:A238: A0        .byte $A0   ; enemy settings
+- - - - - - 0x01A249 06:A239: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- - - - - - 0x01A24A 06:A23A: 00        .byte con_0359_00   ; enemy 0359 ???
+- - - - - - 0x01A24B 06:A23B: 10 01     .word $0110 ; enemy pos_X
+- - - - - - 0x01A24D 06:A23D: 00 00     .word $0000 ; enemy pos_Y
+- - - - - - 0x01A24F 06:A23F: 70 00     .word $0070 ; enemy pos_Z
+- - - - - - 0x01A251 06:A241: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x01A252 06:A242: 38        .byte $38   ; enemy hp
 ; 05
-- - - - - - 0x01A253 06:A243: A0        .byte $A0   ; 
-- - - - - - 0x01A254 06:A244: 16        .byte con_obj_flame_grenades   ; 
-- - - - - - 0x01A255 06:A245: 00        .byte $00   ; 
-- - - - - - 0x01A256 06:A246: FF 00     .word $00FF ; pos_X
-- - - - - - 0x01A258 06:A248: 00 00     .word $0000 ; pos_Y
-- - - - - - 0x01A25A 06:A24A: 70 00     .word $0070 ; pos_Z
-- - - - - - 0x01A25C 06:A24C: 00        .byte $00   ; 
-- - - - - - 0x01A25D 06:A24D: 38        .byte $38   ; hp
+- - - - - - 0x01A253 06:A243: A0        .byte $A0   ; enemy settings
+- - - - - - 0x01A254 06:A244: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- - - - - - 0x01A255 06:A245: 00        .byte con_0359_00   ; enemy 0359 ???
+- - - - - - 0x01A256 06:A246: FF 00     .word $00FF ; enemy pos_X
+- - - - - - 0x01A258 06:A248: 00 00     .word $0000 ; enemy pos_Y
+- - - - - - 0x01A25A 06:A24A: 70 00     .word $0070 ; enemy pos_Z
+- - - - - - 0x01A25C 06:A24C: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x01A25D 06:A24D: 38        .byte $38   ; enemy hp
 
 
 
 off_0A_A24E_01:
-- D 1 - I - 0x01A25E 06:A24E: 06        .byte con_884D_06   ; 
-- D 1 - I - 0x01A25F 06:A24F: 0A        .byte $0A   ; 
+- D 1 - I - 0x01A25E 06:A24E: 06        .byte con_884D_script_06   ; 
+- D 1 - I - 0x01A25F 06:A24F: 0A        .byte con_A6C3_draw_final_door_0A   ; 
 
 
 
-off_0A_A250_02:
-- D 1 - I - 0x01A260 06:A250: 04        .byte con_884D_04   ; 
-- D 1 - I - 0x01A261 06:A251: 07        .byte $07   ; 
+off_0A_A250_02_enter_door:
+- D 1 - I - 0x01A260 06:A250: 04        .byte con_884D_script_enter_door   ; 
+- D 1 - I - 0x01A261 06:A251: 07        .byte con_9859_07   ; 
 
 
 
 off_0A_A252_03:
-- D 1 - I - 0x01A262 06:A252: 81        .byte con_884D_81   ; 
+- D 1 - I - 0x01A262 06:A252: 81        .byte con_884D_script_81   ; 
 
 
 
-off_0B_A253_00:
-- D 1 - I - 0x01A263 06:A253: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A264 06:A254: 00        .byte $00   ; 
-- D 1 - I - 0x01A265 06:A255: 00        .byte $00   ; 
-- D 1 - I - 0x01A266 06:A256: 00        .byte $00   ; 
-- D 1 - I - 0x01A267 06:A257: 00        .byte $00   ; 
-- D 1 - I - 0x01A268 06:A258: 00        .byte $00   ; 
-- D 1 - I - 0x01A269 06:A259: 00        .byte $00   ; 
-- D 1 - I - 0x01A26A 06:A25A: 00        .byte $00   ; 
-- D 1 - I - 0x01A26B 06:A25B: 00        .byte $00   ; 
-- D 1 - I - 0x01A26C 06:A25C: 00        .byte $00   ; 
+off_0B_A253_00_spawn_williams:
+- D 1 - I - 0x01A263 06:A253: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A264 06:A254: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A266 06:A256: 00 00     .word $0000 ; X camera limit (max)
+- D 1 - I - 0x01A268 06:A258: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A26A 06:A25A: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A26C 06:A25C: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A26D 06:A25D: 4E        .byte con_chr_bank + $4E   ; 
 - D 1 - I - 0x01A26E 06:A25E: 02        .byte con_obj_williams   ; 
-- D 1 - I - 0x01A26F 06:A25F: 04        .byte $04   ; counter
+- D 1 - I - 0x01A26F 06:A25F: 04        .byte $04   ; enemy counter
 ; 01
-- D 1 - I - 0x01A270 06:A260: A0        .byte $A0   ; 
-- D 1 - I - 0x01A271 06:A261: 12        .byte con_obj_knife   ; 
-- D 1 - I - 0x01A272 06:A262: 02        .byte $02   ; 
-- D 1 - I - 0x01A273 06:A263: 60 00     .word $0060 ; pos_X
-- D 1 - I - 0x01A275 06:A265: 38 00     .word $0038 ; pos_Y
-- D 1 - I - 0x01A277 06:A267: 80 00     .word $0080 ; pos_Z
-- D 1 - I - 0x01A279 06:A269: 00        .byte $00   ; 
-- D 1 - I - 0x01A27A 06:A26A: 1B        .byte $1B   ; hp
+- D 1 - I - 0x01A270 06:A260: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A271 06:A261: 12        .byte con_obj_knife   ; enemy weapon
+- D 1 - I - 0x01A272 06:A262: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 1 - I - 0x01A273 06:A263: 60 00     .word $0060 ; enemy pos_X
+- D 1 - I - 0x01A275 06:A265: 38 00     .word $0038 ; enemy pos_Y
+- D 1 - I - 0x01A277 06:A267: 80 00     .word $0080 ; enemy pos_Z
+- D 1 - I - 0x01A279 06:A269: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A27A 06:A26A: 1B        .byte $1B   ; enemy hp
 ; 02
-- D 1 - I - 0x01A27B 06:A26B: A0        .byte $A0   ; 
-- D 1 - I - 0x01A27C 06:A26C: 12        .byte con_obj_knife   ; 
-- D 1 - I - 0x01A27D 06:A26D: 00        .byte $00   ; 
-- D 1 - I - 0x01A27E 06:A26E: 77 00     .word $0077 ; pos_X
-- D 1 - I - 0x01A280 06:A270: 30 00     .word $0030 ; pos_Y
-- D 1 - I - 0x01A282 06:A272: 40 00     .word $0040 ; pos_Z
-- D 1 - I - 0x01A284 06:A274: 00        .byte $00   ; 
-- D 1 - I - 0x01A285 06:A275: 1B        .byte $1B   ; hp
+- D 1 - I - 0x01A27B 06:A26B: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A27C 06:A26C: 12        .byte con_obj_knife   ; enemy weapon
+- D 1 - I - 0x01A27D 06:A26D: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A27E 06:A26E: 77 00     .word $0077 ; enemy pos_X
+- D 1 - I - 0x01A280 06:A270: 30 00     .word $0030 ; enemy pos_Y
+- D 1 - I - 0x01A282 06:A272: 40 00     .word $0040 ; enemy pos_Z
+- D 1 - I - 0x01A284 06:A274: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A285 06:A275: 1B        .byte $1B   ; enemy hp
 ; 0
-- D 1 - I - 0x01A286 06:A276: A0        .byte $A0   ; 
-- D 1 - I - 0x01A287 06:A277: 12        .byte con_obj_knife   ; 
-- D 1 - I - 0x01A288 06:A278: 02        .byte $02   ; 
-- D 1 - I - 0x01A289 06:A279: 60 00     .word $0060 ; pos_X
-- D 1 - I - 0x01A28B 06:A27B: 38 00     .word $0038 ; pos_Y
-- D 1 - I - 0x01A28D 06:A27D: 80 00     .word $0080 ; pos_Z
-- D 1 - I - 0x01A28F 06:A27F: 00        .byte $00   ; 
-- D 1 - I - 0x01A290 06:A280: 1B        .byte $1B   ; hp
+- D 1 - I - 0x01A286 06:A276: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A287 06:A277: 12        .byte con_obj_knife   ; enemy weapon
+- D 1 - I - 0x01A288 06:A278: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 1 - I - 0x01A289 06:A279: 60 00     .word $0060 ; enemy pos_X
+- D 1 - I - 0x01A28B 06:A27B: 38 00     .word $0038 ; enemy pos_Y
+- D 1 - I - 0x01A28D 06:A27D: 80 00     .word $0080 ; enemy pos_Z
+- D 1 - I - 0x01A28F 06:A27F: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A290 06:A280: 1B        .byte $1B   ; enemy hp
 ; 04
-- - - - - - 0x01A291 06:A281: A0        .byte $A0   ; 
-- - - - - - 0x01A292 06:A282: 12        .byte con_obj_knife   ; 
-- - - - - - 0x01A293 06:A283: 00        .byte $00   ; 
-- - - - - - 0x01A294 06:A284: 77 00     .word $0077 ; pos_X
-- - - - - - 0x01A296 06:A286: 30 00     .word $0030 ; pos_Y
-- - - - - - 0x01A298 06:A288: 40 00     .word $0040 ; pos_Z
-- - - - - - 0x01A29A 06:A28A: 00        .byte $00   ; 
-- - - - - - 0x01A29B 06:A28B: 1B        .byte $1B   ; hp
+- - - - - - 0x01A291 06:A281: A0        .byte $A0   ; enemy settings
+- - - - - - 0x01A292 06:A282: 12        .byte con_obj_knife   ; enemy weapon
+- - - - - - 0x01A293 06:A283: 00        .byte con_0359_00   ; enemy 0359 ???
+- - - - - - 0x01A294 06:A284: 77 00     .word $0077 ; enemy pos_X
+- - - - - - 0x01A296 06:A286: 30 00     .word $0030 ; enemy pos_Y
+- - - - - - 0x01A298 06:A288: 40 00     .word $0040 ; enemy pos_Z
+- - - - - - 0x01A29A 06:A28A: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x01A29B 06:A28B: 1B        .byte $1B   ; enemy hp
 
 
 
-off_0B_A28C_01:
-- D 1 - I - 0x01A29C 06:A28C: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A29D 06:A28D: 00        .byte $00   ; 
-- D 1 - I - 0x01A29E 06:A28E: 00        .byte $00   ; 
-- D 1 - I - 0x01A29F 06:A28F: 00        .byte $00   ; 
-- D 1 - I - 0x01A2A0 06:A290: 00        .byte $00   ; 
-- D 1 - I - 0x01A2A1 06:A291: 00        .byte $00   ; 
-- D 1 - I - 0x01A2A2 06:A292: 00        .byte $00   ; 
-- D 1 - I - 0x01A2A3 06:A293: 00        .byte $00   ; 
-- D 1 - I - 0x01A2A4 06:A294: 00        .byte $00   ; 
-- D 1 - I - 0x01A2A5 06:A295: 00        .byte $00   ; 
+off_0B_A28C_01_spawn_roper:
+- D 1 - I - 0x01A29C 06:A28C: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A29D 06:A28D: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A29F 06:A28F: 00 00     .word $0000 ; X camera limit (max)
+- D 1 - I - 0x01A2A1 06:A291: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A2A3 06:A293: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A2A5 06:A295: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A2A6 06:A296: 64        .byte con_chr_bank + $64   ; 
 - D 1 - I - 0x01A2A7 06:A297: 03        .byte con_obj_roper   ; 
-- D 1 - I - 0x01A2A8 06:A298: 04        .byte $04   ; counter
+- D 1 - I - 0x01A2A8 06:A298: 04        .byte $04   ; enemy counter
 ; 01
-- D 1 - I - 0x01A2A9 06:A299: 20        .byte $20   ; 
-- D 1 - I - 0x01A2AA 06:A29A: 02        .byte $02   ; 
-- D 1 - I - 0x01A2AB 06:A29B: 60 00     .word $0060 ; pos_X
-- D 1 - I - 0x01A2AD 06:A29D: 38 00     .word $0038 ; pos_Y
-- D 1 - I - 0x01A2AF 06:A29F: 80 00     .word $0080 ; pos_Z
-- D 1 - I - 0x01A2B1 06:A2A1: 00        .byte $00   ; 
-- D 1 - I - 0x01A2B2 06:A2A2: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A2A9 06:A299: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A2AA 06:A29A: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 1 - I - 0x01A2AB 06:A29B: 60 00     .word $0060 ; enemy pos_X
+- D 1 - I - 0x01A2AD 06:A29D: 38 00     .word $0038 ; enemy pos_Y
+- D 1 - I - 0x01A2AF 06:A29F: 80 00     .word $0080 ; enemy pos_Z
+- D 1 - I - 0x01A2B1 06:A2A1: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A2B2 06:A2A2: 1F        .byte $1F   ; enemy hp
 ; 02
-- D 1 - I - 0x01A2B3 06:A2A3: A0        .byte $A0   ; 
-- D 1 - I - 0x01A2B4 06:A2A4: 16        .byte con_obj_flame_grenades   ; 
-- D 1 - I - 0x01A2B5 06:A2A5: 00        .byte $00   ; 
-- D 1 - I - 0x01A2B6 06:A2A6: 77 00     .word $0077 ; pos_X
-- D 1 - I - 0x01A2B8 06:A2A8: 30 00     .word $0030 ; pos_Y
-- D 1 - I - 0x01A2BA 06:A2AA: 40 00     .word $0040 ; pos_Z
-- D 1 - I - 0x01A2BC 06:A2AC: 00        .byte $00   ; 
-- D 1 - I - 0x01A2BD 06:A2AD: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A2B3 06:A2A3: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A2B4 06:A2A4: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- D 1 - I - 0x01A2B5 06:A2A5: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A2B6 06:A2A6: 77 00     .word $0077 ; enemy pos_X
+- D 1 - I - 0x01A2B8 06:A2A8: 30 00     .word $0030 ; enemy pos_Y
+- D 1 - I - 0x01A2BA 06:A2AA: 40 00     .word $0040 ; enemy pos_Z
+- D 1 - I - 0x01A2BC 06:A2AC: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A2BD 06:A2AD: 1F        .byte $1F   ; enemy hp
 ; 03
-- D 1 - I - 0x01A2BE 06:A2AE: A0        .byte $A0   ; 
-- D 1 - I - 0x01A2BF 06:A2AF: 16        .byte con_obj_flame_grenades   ; 
-- D 1 - I - 0x01A2C0 06:A2B0: 02        .byte $02   ; 
-- D 1 - I - 0x01A2C1 06:A2B1: 60 00     .word $0060 ; pos_X
-- D 1 - I - 0x01A2C3 06:A2B3: 38 00     .word $0038 ; pos_Y
-- D 1 - I - 0x01A2C5 06:A2B5: 80 00     .word $0080 ; pos_Z
-- D 1 - I - 0x01A2C7 06:A2B7: 00        .byte $00   ; 
-- D 1 - I - 0x01A2C8 06:A2B8: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A2BE 06:A2AE: A0        .byte $A0   ; enemy settings
+- D 1 - I - 0x01A2BF 06:A2AF: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- D 1 - I - 0x01A2C0 06:A2B0: 02        .byte con_0359_02   ; enemy 0359 ???
+- D 1 - I - 0x01A2C1 06:A2B1: 60 00     .word $0060 ; enemy pos_X
+- D 1 - I - 0x01A2C3 06:A2B3: 38 00     .word $0038 ; enemy pos_Y
+- D 1 - I - 0x01A2C5 06:A2B5: 80 00     .word $0080 ; enemy pos_Z
+- D 1 - I - 0x01A2C7 06:A2B7: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A2C8 06:A2B8: 1F        .byte $1F   ; enemy hp
 ; 04
-- - - - - - 0x01A2C9 06:A2B9: A0        .byte $A0   ; 
-- - - - - - 0x01A2CA 06:A2BA: 16        .byte con_obj_flame_grenades   ; 
-- - - - - - 0x01A2CB 06:A2BB: 00        .byte $00   ; 
-- - - - - - 0x01A2CC 06:A2BC: 77 00     .word $0077 ; pos_X
-- - - - - - 0x01A2CE 06:A2BE: 30 00     .word $0030 ; pos_Y
-- - - - - - 0x01A2D0 06:A2C0: 40 00     .word $0040 ; pos_Z
-- - - - - - 0x01A2D2 06:A2C2: 00        .byte $00   ; 
-- - - - - - 0x01A2D3 06:A2C3: 1F        .byte $1F   ; hp
+- - - - - - 0x01A2C9 06:A2B9: A0        .byte $A0   ; enemy settings
+- - - - - - 0x01A2CA 06:A2BA: 16        .byte con_obj_flame_grenades   ; enemy weapon
+- - - - - - 0x01A2CB 06:A2BB: 00        .byte con_0359_00   ; enemy 0359 ???
+- - - - - - 0x01A2CC 06:A2BC: 77 00     .word $0077 ; enemy pos_X
+- - - - - - 0x01A2CE 06:A2BE: 30 00     .word $0030 ; enemy pos_Y
+- - - - - - 0x01A2D0 06:A2C0: 40 00     .word $0040 ; enemy pos_Z
+- - - - - - 0x01A2D2 06:A2C2: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x01A2D3 06:A2C3: 1F        .byte $1F   ; enemy hp
 
 
 
-off_0B_A2C4_02:
-- D 1 - I - 0x01A2D4 06:A2C4: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A2D5 06:A2C5: 00        .byte $00   ; 
-- D 1 - I - 0x01A2D6 06:A2C6: 00        .byte $00   ; 
-- D 1 - I - 0x01A2D7 06:A2C7: 00        .byte $00   ; 
-- D 1 - I - 0x01A2D8 06:A2C8: 00        .byte $00   ; 
-- D 1 - I - 0x01A2D9 06:A2C9: 00        .byte $00   ; 
-- D 1 - I - 0x01A2DA 06:A2CA: 00        .byte $00   ; 
-- D 1 - I - 0x01A2DB 06:A2CB: 00        .byte $00   ; 
-- D 1 - I - 0x01A2DC 06:A2CC: 00        .byte $00   ; 
-- D 1 - I - 0x01A2DD 06:A2CD: 00        .byte $00   ; 
+off_0B_A2C4_02_spawn_chin_taimei:
+- D 1 - I - 0x01A2D4 06:A2C4: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A2D5 06:A2C5: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A2D7 06:A2C7: 00 00     .word $0000 ; X camera limit (max)
+- D 1 - I - 0x01A2D9 06:A2C9: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A2DB 06:A2CB: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A2DD 06:A2CD: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A2DE 06:A2CE: 4C        .byte con_chr_bank + $4C   ; 
 - D 1 - I - 0x01A2DF 06:A2CF: 09        .byte con_obj_chin_taimei   ; 
-- D 1 - I - 0x01A2E0 06:A2D0: 02        .byte $02   ; counter
+- D 1 - I - 0x01A2E0 06:A2D0: 02        .byte $02   ; enemy counter
 ; 01
-- D 1 - I - 0x01A2E1 06:A2D1: 20        .byte $20   ; 
-- D 1 - I - 0x01A2E2 06:A2D2: 00        .byte $00   ; 
-- D 1 - I - 0x01A2E3 06:A2D3: 77 00     .word $0077 ; pos_X
-- D 1 - I - 0x01A2E5 06:A2D5: 30 00     .word $0030 ; pos_Y
-- D 1 - I - 0x01A2E7 06:A2D7: 40 00     .word $0040 ; pos_Z
-- D 1 - I - 0x01A2E9 06:A2D9: 00        .byte $00   ; 
-- D 1 - I - 0x01A2EA 06:A2DA: 17        .byte $17   ; hp
+- D 1 - I - 0x01A2E1 06:A2D1: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A2E2 06:A2D2: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A2E3 06:A2D3: 77 00     .word $0077 ; enemy pos_X
+- D 1 - I - 0x01A2E5 06:A2D5: 30 00     .word $0030 ; enemy pos_Y
+- D 1 - I - 0x01A2E7 06:A2D7: 40 00     .word $0040 ; enemy pos_Z
+- D 1 - I - 0x01A2E9 06:A2D9: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A2EA 06:A2DA: 17        .byte $17   ; enemy hp
 ; 02
-- D 1 - I - 0x01A2EB 06:A2DB: 20        .byte $20   ; 
-- D 1 - I - 0x01A2EC 06:A2DC: 00        .byte $00   ; 
-- D 1 - I - 0x01A2ED 06:A2DD: 1B 00     .word $001B ; pos_X
-- D 1 - I - 0x01A2EF 06:A2DF: 17 00     .word $0017 ; pos_Y
-- D 1 - I - 0x01A2F1 06:A2E1: 40 00     .word $0040 ; pos_Z
-- D 1 - I - 0x01A2F3 06:A2E3: 00        .byte $00   ; 
-- D 1 - I - 0x01A2F4 06:A2E4: 17        .byte $17   ; hp
+- D 1 - I - 0x01A2EB 06:A2DB: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A2EC 06:A2DC: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A2ED 06:A2DD: 1B 00     .word $001B ; enemy pos_X
+- D 1 - I - 0x01A2EF 06:A2DF: 17 00     .word $0017 ; enemy pos_Y
+- D 1 - I - 0x01A2F1 06:A2E1: 40 00     .word $0040 ; enemy pos_Z
+- D 1 - I - 0x01A2F3 06:A2E3: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A2F4 06:A2E4: 17        .byte $17   ; enemy hp
 
 
 
-off_0B_A2E5_03:
-- D 1 - I - 0x01A2F5 06:A2E5: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A2F6 06:A2E6: 00        .byte $00   ; 
-- D 1 - I - 0x01A2F7 06:A2E7: 00        .byte $00   ; 
-- D 1 - I - 0x01A2F8 06:A2E8: 00        .byte $00   ; 
-- D 1 - I - 0x01A2F9 06:A2E9: 00        .byte $00   ; 
-- D 1 - I - 0x01A2FA 06:A2EA: 00        .byte $00   ; 
-- D 1 - I - 0x01A2FB 06:A2EB: 00        .byte $00   ; 
-- D 1 - I - 0x01A2FC 06:A2EC: 00        .byte $00   ; 
-- D 1 - I - 0x01A2FD 06:A2ED: 00        .byte $00   ; 
-- D 1 - I - 0x01A2FE 06:A2EE: 00        .byte $00   ; 
+off_0B_A2E5_03_spawn_right_arm:
+- D 1 - I - 0x01A2F5 06:A2E5: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A2F6 06:A2E6: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A2F8 06:A2E8: 00 00     .word $0000 ; X camera limit (max)
+- D 1 - I - 0x01A2FA 06:A2EA: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A2FC 06:A2EC: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A2FE 06:A2EE: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A2FF 06:A2EF: 54        .byte con_chr_bank + $54   ; 
 - D 1 - I - 0x01A300 06:A2F0: 0A        .byte con_obj_right_arm   ; 
-- D 1 - I - 0x01A301 06:A2F1: 02        .byte $02   ; counter
+- D 1 - I - 0x01A301 06:A2F1: 02        .byte $02   ; enemy counter
 ; 01
-- D 1 - I - 0x01A302 06:A2F2: 20        .byte $20   ; 
-- D 1 - I - 0x01A303 06:A2F3: 01        .byte $01   ; 
-- D 1 - I - 0x01A304 06:A2F4: F0 00     .word $00F0 ; pos_X
-- D 1 - I - 0x01A306 06:A2F6: 0F 00     .word $000F ; pos_Y
-- D 1 - I - 0x01A308 06:A2F8: 80 00     .word $0080 ; pos_Z
-- D 1 - I - 0x01A30A 06:A2FA: 00        .byte $00   ; 
-- D 1 - I - 0x01A30B 06:A2FB: 47        .byte $47   ; hp
+- D 1 - I - 0x01A302 06:A2F2: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A303 06:A2F3: 01        .byte con_0359_01   ; enemy 0359 ???
+- D 1 - I - 0x01A304 06:A2F4: F0 00     .word $00F0 ; enemy pos_X
+- D 1 - I - 0x01A306 06:A2F6: 0F 00     .word $000F ; enemy pos_Y
+- D 1 - I - 0x01A308 06:A2F8: 80 00     .word $0080 ; enemy pos_Z
+- D 1 - I - 0x01A30A 06:A2FA: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A30B 06:A2FB: 47        .byte $47   ; enemy hp
 ; 02
-- D 1 - I - 0x01A30C 06:A2FC: 20        .byte $20   ; 
-- D 1 - I - 0x01A30D 06:A2FD: 01        .byte $01   ; 
-- D 1 - I - 0x01A30E 06:A2FE: F0 00     .word $00F0 ; pos_X
-- D 1 - I - 0x01A310 06:A300: 12 00     .word $0012 ; pos_Y
-- D 1 - I - 0x01A312 06:A302: 80 00     .word $0080 ; pos_Z
-- D 1 - I - 0x01A314 06:A304: 00        .byte $00   ; 
-- D 1 - I - 0x01A315 06:A305: 47        .byte $47   ; hp
+- D 1 - I - 0x01A30C 06:A2FC: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A30D 06:A2FD: 01        .byte con_0359_01   ; enemy 0359 ???
+- D 1 - I - 0x01A30E 06:A2FE: F0 00     .word $00F0 ; enemy pos_X
+- D 1 - I - 0x01A310 06:A300: 12 00     .word $0012 ; enemy pos_Y
+- D 1 - I - 0x01A312 06:A302: 80 00     .word $0080 ; enemy pos_Z
+- D 1 - I - 0x01A314 06:A304: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A315 06:A305: 47        .byte $47   ; enemy hp
 
 
 
 off_0B_A306_04:
-- D 1 - I - 0x01A316 06:A306: 13        .byte con_884D_13   ; 
+- D 1 - I - 0x01A316 06:A306: 13        .byte con_884D_script_13   ; 
 
 
 
-off_0B_A307_05:
-- D 1 - I - 0x01A317 06:A307: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A318 06:A308: 00        .byte $00   ; 
-- D 1 - I - 0x01A319 06:A309: 00        .byte $00   ; 
-- D 1 - I - 0x01A31A 06:A30A: 00        .byte $00   ; 
-- D 1 - I - 0x01A31B 06:A30B: 00        .byte $00   ; 
-- D 1 - I - 0x01A31C 06:A30C: 00        .byte $00   ; 
-- D 1 - I - 0x01A31D 06:A30D: 00        .byte $00   ; 
-- D 1 - I - 0x01A31E 06:A30E: 00        .byte $00   ; 
-- D 1 - I - 0x01A31F 06:A30F: 00        .byte $00   ; 
-- D 1 - I - 0x01A320 06:A310: 00        .byte $00   ; 
+off_0B_A307_05_spawn_abore:
+- D 1 - I - 0x01A317 06:A307: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A318 06:A308: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A31A 06:A30A: 00 00     .word $0000 ; X camera limit (max)
+- D 1 - I - 0x01A31C 06:A30C: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A31E 06:A30E: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A320 06:A310: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A321 06:A311: 52        .byte con_chr_bank + $52   ; 
 - D 1 - I - 0x01A322 06:A312: 08        .byte con_obj_abore   ; 
-- D 1 - I - 0x01A323 06:A313: 01        .byte $01   ; counter
+- D 1 - I - 0x01A323 06:A313: 01        .byte $01   ; enemy counter
 ; 01
-- D 1 - I - 0x01A324 06:A314: 20        .byte $20   ; 
-- D 1 - I - 0x01A325 06:A315: 00        .byte $00   ; 
-- D 1 - I - 0x01A326 06:A316: 77 00     .word $0077 ; pos_X
-- D 1 - I - 0x01A328 06:A318: 30 00     .word $0030 ; pos_Y
-- D 1 - I - 0x01A32A 06:A31A: 40 00     .word $0040 ; pos_Z
-- D 1 - I - 0x01A32C 06:A31C: 00        .byte $00   ; 
-- D 1 - I - 0x01A32D 06:A31D: 5F        .byte $5F   ; hp
+- D 1 - I - 0x01A324 06:A314: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A325 06:A315: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A326 06:A316: 77 00     .word $0077 ; enemy pos_X
+- D 1 - I - 0x01A328 06:A318: 30 00     .word $0030 ; enemy pos_Y
+- D 1 - I - 0x01A32A 06:A31A: 40 00     .word $0040 ; enemy pos_Z
+- D 1 - I - 0x01A32C 06:A31C: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A32D 06:A31D: 5F        .byte $5F   ; enemy hp
 
 
 
 off_0B_A31E_06:
-- D 1 - I - 0x01A32E 06:A31E: 08        .byte con_884D_08   ; 
+- D 1 - I - 0x01A32E 06:A31E: 08        .byte con_884D_script_08   ; 
 
 
 
 off_0B_A31F_07:
-- D 1 - I - 0x01A32F 06:A31F: 81        .byte con_884D_81   ; 
+- D 1 - I - 0x01A32F 06:A31F: 81        .byte con_884D_script_81   ; 
 
 
 
-off_0C_A320_00:
-- D 1 - I - 0x01A330 06:A320: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A331 06:A321: 00        .byte $00   ; 
-- D 1 - I - 0x01A332 06:A322: 00        .byte $00   ; 
-- D 1 - I - 0x01A333 06:A323: FF        .byte $FF   ; 
-- D 1 - I - 0x01A334 06:A324: 00        .byte $00   ; 
-- D 1 - I - 0x01A335 06:A325: F0        .byte $F0   ; 
-- D 1 - I - 0x01A336 06:A326: 00        .byte $00   ; 
-- D 1 - I - 0x01A337 06:A327: F0        .byte $F0   ; 
-- D 1 - I - 0x01A338 06:A328: 00        .byte $00   ; 
-- D 1 - I - 0x01A339 06:A329: 01        .byte $01   ; 
+off_0C_A320_00_spawn_chin_taimei:
+- D 1 - I - 0x01A330 06:A320: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A331 06:A321: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A333 06:A323: FF 00     .word $00FF ; X camera limit (max)
+- D 1 - I - 0x01A335 06:A325: F0 00     .word $00F0 ; Y camera limit (min)
+- D 1 - I - 0x01A337 06:A327: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A339 06:A329: 01        .byte $01   ; 04B0 ???
+
 - D 1 - I - 0x01A33A 06:A32A: 4C        .byte con_chr_bank + $4C   ; 
 - D 1 - I - 0x01A33B 06:A32B: 09        .byte con_obj_chin_taimei   ; 
-- D 1 - I - 0x01A33C 06:A32C: 05        .byte $05   ; counter
+- D 1 - I - 0x01A33C 06:A32C: 05        .byte $05   ; enemy counter
 ; 01
-- D 1 - I - 0x01A33D 06:A32D: 00        .byte $00   ; 
-- D 1 - I - 0x01A33E 06:A32E: 17        .byte $17   ; hp
+- D 1 - I - 0x01A33D 06:A32D: 00        .byte $00   ; enemy settings
+- D 1 - I - 0x01A33E 06:A32E: 17        .byte $17   ; enemy hp
 ; 02
-- D 1 - I - 0x01A33F 06:A32F: 00        .byte $00   ; 
-- D 1 - I - 0x01A340 06:A330: 17        .byte $17   ; hp
+- D 1 - I - 0x01A33F 06:A32F: 00        .byte $00   ; enemy settings
+- D 1 - I - 0x01A340 06:A330: 17        .byte $17   ; enemy hp
 ; 03
-- D 1 - I - 0x01A341 06:A331: 00        .byte $00   ; 
-- D 1 - I - 0x01A342 06:A332: 17        .byte $17   ; hp
+- D 1 - I - 0x01A341 06:A331: 00        .byte $00   ; enemy settings
+- D 1 - I - 0x01A342 06:A332: 17        .byte $17   ; enemy hp
 ; 04
-- - - - - - 0x01A343 06:A333: 00        .byte $00   ; 
-- - - - - - 0x01A344 06:A334: 17        .byte $17   ; hp
+- - - - - - 0x01A343 06:A333: 00        .byte $00   ; enemy settings
+- - - - - - 0x01A344 06:A334: 17        .byte $17   ; enemy hp
 ; 05
-- - - - - - 0x01A345 06:A335: 00        .byte $00   ; 
-- - - - - - 0x01A346 06:A336: 17        .byte $17   ; hp
+- - - - - - 0x01A345 06:A335: 00        .byte $00   ; enemy settings
+- - - - - - 0x01A346 06:A336: 17        .byte $17   ; enemy hp
 
 
 
 off_0C_A337_01:
-- D 1 - I - 0x01A347 06:A337: 80        .byte con_884D_80   ; 
+- D 1 - I - 0x01A347 06:A337: 80        .byte con_884D_script_80   ; 
 
 
 
-off_0C_A338_02:
-- D 1 - I - 0x01A348 06:A338: 01        .byte con_884D_white_hand_cursor   ; 
-- D 1 - I - 0x01A349 06:A339: 00        .byte $00   ; 
-- D 1 - I - 0x01A34A 06:A33A: 00        .byte $00   ; 
-- D 1 - I - 0x01A34B 06:A33B: FF        .byte $FF   ; 
-- D 1 - I - 0x01A34C 06:A33C: 01        .byte $01   ; 
-- D 1 - I - 0x01A34D 06:A33D: 00        .byte $00   ; 
-- D 1 - I - 0x01A34E 06:A33E: 00        .byte $00   ; 
-- D 1 - I - 0x01A34F 06:A33F: F0        .byte $F0   ; 
-- D 1 - I - 0x01A350 06:A340: 00        .byte $00   ; 
-- D 1 - I - 0x01A351 06:A341: 01        .byte $01   ; 
-- D 1 - I - 0x01A352 06:A342: 03        .byte $03   ; 
+off_0C_A338_02_cursor:
+- D 1 - I - 0x01A348 06:A338: 01        .byte con_884D_script_hand_cursor   ; 
+- D 1 - I - 0x01A349 06:A339: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A34B 06:A33B: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A34D 06:A33D: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A34F 06:A33F: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A351 06:A341: 01        .byte $01   ; 04B0 ???
+
+- D 1 - I - 0x01A352 06:A342: 03        .byte $03   ; cursor direction (right)
 
 
 
 off_0C_A343_03:
-- D 1 - I - 0x01A353 06:A343: 02        .byte con_884D_02   ; 
+- D 1 - I - 0x01A353 06:A343: 02        .byte con_884D_script_02   ; 
 - D 1 - I - 0x01A354 06:A344: FF        .byte $FF   ; 
 - D 1 - I - 0x01A355 06:A345: 01        .byte $01   ; 
 - D 1 - I - 0x01A356 06:A346: F0        .byte $F0   ; 
@@ -7252,90 +7055,84 @@ off_0C_A343_03:
 
 
 
-off_0C_A348_04:
-- D 1 - I - 0x01A358 06:A348: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A359 06:A349: FF        .byte $FF   ; 
-- D 1 - I - 0x01A35A 06:A34A: 01        .byte $01   ; 
-- D 1 - I - 0x01A35B 06:A34B: FF        .byte $FF   ; 
-- D 1 - I - 0x01A35C 06:A34C: 01        .byte $01   ; 
-- D 1 - I - 0x01A35D 06:A34D: 00        .byte $00   ; 
-- D 1 - I - 0x01A35E 06:A34E: 00        .byte $00   ; 
-- D 1 - I - 0x01A35F 06:A34F: F0        .byte $F0   ; 
-- D 1 - I - 0x01A360 06:A350: 00        .byte $00   ; 
-- D 1 - I - 0x01A361 06:A351: 00        .byte $00   ; 
+off_0C_A348_04_spawn_right_arm:
+- D 1 - I - 0x01A358 06:A348: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A359 06:A349: FF 01     .word $01FF ; X camera limit (min)
+- D 1 - I - 0x01A35B 06:A34B: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A35D 06:A34D: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A35F 06:A34F: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A361 06:A351: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A362 06:A352: 54        .byte con_chr_bank + $54   ; 
 - D 1 - I - 0x01A363 06:A353: 0A        .byte con_obj_right_arm   ; 
-- D 1 - I - 0x01A364 06:A354: 05        .byte $05   ; counter
+- D 1 - I - 0x01A364 06:A354: 05        .byte $05   ; enemy counter
 ; 01
-- D 1 - I - 0x01A365 06:A355: 60        .byte $60   ; 
-- D 1 - I - 0x01A366 06:A356: 07        .byte con_state_fall_from_platform   ; 
-- D 1 - I - 0x01A367 06:A357: 00        .byte $00   ; 
-- D 1 - I - 0x01A368 06:A358: 27 02     .word $0227 ; pos_X
-- D 1 - I - 0x01A36A 06:A35A: 50 00     .word $0050 ; pos_Y
-- D 1 - I - 0x01A36C 06:A35C: 20 01     .word $0120 ; pos_Z
-- D 1 - I - 0x01A36E 06:A35E: 00        .byte $00   ; 
-- D 1 - I - 0x01A36F 06:A35F: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A365 06:A355: 60        .byte $60   ; enemy settings
+- D 1 - I - 0x01A366 06:A356: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 1 - I - 0x01A367 06:A357: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A368 06:A358: 27 02     .word $0227 ; enemy pos_X
+- D 1 - I - 0x01A36A 06:A35A: 50 00     .word $0050 ; enemy pos_Y
+- D 1 - I - 0x01A36C 06:A35C: 20 01     .word $0120 ; enemy pos_Z
+- D 1 - I - 0x01A36E 06:A35E: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A36F 06:A35F: 1F        .byte $1F   ; enemy hp
 ; 02
-- D 1 - I - 0x01A370 06:A360: 60        .byte $60   ; 
-- D 1 - I - 0x01A371 06:A361: 07        .byte con_state_fall_from_platform   ; 
-- D 1 - I - 0x01A372 06:A362: 00        .byte $00   ; 
-- D 1 - I - 0x01A373 06:A363: E5 02     .word $02E5 ; pos_X
-- D 1 - I - 0x01A375 06:A365: 50 00     .word $0050 ; pos_Y
-- D 1 - I - 0x01A377 06:A367: 20 01     .word $0120 ; pos_Z
-- D 1 - I - 0x01A379 06:A369: 00        .byte $00   ; 
-- D 1 - I - 0x01A37A 06:A36A: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A370 06:A360: 60        .byte $60   ; enemy settings
+- D 1 - I - 0x01A371 06:A361: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 1 - I - 0x01A372 06:A362: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A373 06:A363: E5 02     .word $02E5 ; enemy pos_X
+- D 1 - I - 0x01A375 06:A365: 50 00     .word $0050 ; enemy pos_Y
+- D 1 - I - 0x01A377 06:A367: 20 01     .word $0120 ; enemy pos_Z
+- D 1 - I - 0x01A379 06:A369: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A37A 06:A36A: 1F        .byte $1F   ; enemy hp
 ; 03
-- D 1 - I - 0x01A37B 06:A36B: 60        .byte $60   ; 
-- D 1 - I - 0x01A37C 06:A36C: 07        .byte con_state_fall_from_platform   ; 
-- D 1 - I - 0x01A37D 06:A36D: 00        .byte $00   ; 
-- D 1 - I - 0x01A37E 06:A36E: 27 02     .word $0227 ; pos_X
-- D 1 - I - 0x01A380 06:A370: 50 00     .word $0050 ; pos_Y
-- D 1 - I - 0x01A382 06:A372: 20 01     .word $0120 ; pos_Z
-- D 1 - I - 0x01A384 06:A374: 00        .byte $00   ; 
-- D 1 - I - 0x01A385 06:A375: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A37B 06:A36B: 60        .byte $60   ; enemy settings
+- D 1 - I - 0x01A37C 06:A36C: 07        .byte con_state_fall_from_platform   ; enemy state
+- D 1 - I - 0x01A37D 06:A36D: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A37E 06:A36E: 27 02     .word $0227 ; enemy pos_X
+- D 1 - I - 0x01A380 06:A370: 50 00     .word $0050 ; enemy pos_Y
+- D 1 - I - 0x01A382 06:A372: 20 01     .word $0120 ; enemy pos_Z
+- D 1 - I - 0x01A384 06:A374: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A385 06:A375: 1F        .byte $1F   ; enemy hp
 ; 04
-- - - - - - 0x01A386 06:A376: 60        .byte $60   ; 
-- - - - - - 0x01A387 06:A377: 07        .byte con_state_fall_from_platform   ; 
-- - - - - - 0x01A388 06:A378: 00        .byte $00   ; 
-- - - - - - 0x01A389 06:A379: E5 02     .word $02E5 ; pos_X
-- - - - - - 0x01A38B 06:A37B: 50 00     .word $0050 ; pos_Y
-- - - - - - 0x01A38D 06:A37D: 20 01     .word $0120 ; pos_Z
-- - - - - - 0x01A38F 06:A37F: 00        .byte $00   ; 
-- - - - - - 0x01A390 06:A380: 1F        .byte $1F   ; hp
+- - - - - - 0x01A386 06:A376: 60        .byte $60   ; enemy settings
+- - - - - - 0x01A387 06:A377: 07        .byte con_state_fall_from_platform   ; enemy state
+- - - - - - 0x01A388 06:A378: 00        .byte con_0359_00   ; enemy 0359 ???
+- - - - - - 0x01A389 06:A379: E5 02     .word $02E5 ; enemy pos_X
+- - - - - - 0x01A38B 06:A37B: 50 00     .word $0050 ; enemy pos_Y
+- - - - - - 0x01A38D 06:A37D: 20 01     .word $0120 ; enemy pos_Z
+- - - - - - 0x01A38F 06:A37F: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x01A390 06:A380: 1F        .byte $1F   ; enemy hp
 ; 05
-- - - - - - 0x01A391 06:A381: 60        .byte $60   ; 
-- - - - - - 0x01A392 06:A382: 07        .byte con_state_fall_from_platform   ; 
-- - - - - - 0x01A393 06:A383: 00        .byte $00   ; 
-- - - - - - 0x01A394 06:A384: 27 02     .word $0227 ; pos_X
-- - - - - - 0x01A396 06:A386: 50 00     .word $0050 ; pos_Y
-- - - - - - 0x01A398 06:A388: 20 01     .word $0120 ; pos_Z
-- - - - - - 0x01A39A 06:A38A: 00        .byte $00   ; 
-- - - - - - 0x01A39B 06:A38B: 1F        .byte $1F   ; hp
+- - - - - - 0x01A391 06:A381: 60        .byte $60   ; enemy settings
+- - - - - - 0x01A392 06:A382: 07        .byte con_state_fall_from_platform   ; enemy state
+- - - - - - 0x01A393 06:A383: 00        .byte con_0359_00   ; enemy 0359 ???
+- - - - - - 0x01A394 06:A384: 27 02     .word $0227 ; enemy pos_X
+- - - - - - 0x01A396 06:A386: 50 00     .word $0050 ; enemy pos_Y
+- - - - - - 0x01A398 06:A388: 20 01     .word $0120 ; enemy pos_Z
+- - - - - - 0x01A39A 06:A38A: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x01A39B 06:A38B: 1F        .byte $1F   ; enemy hp
 
 
 
-off_0C_A38C_05:
-- D 1 - I - 0x01A39C 06:A38C: 01        .byte con_884D_white_hand_cursor   ; 
-- D 1 - I - 0x01A39D 06:A38D: 00        .byte $00   ; 
-- D 1 - I - 0x01A39E 06:A38E: 00        .byte $00   ; 
-- D 1 - I - 0x01A39F 06:A38F: FF        .byte $FF   ; 
-- D 1 - I - 0x01A3A0 06:A390: 01        .byte $01   ; 
-- D 1 - I - 0x01A3A1 06:A391: 00        .byte $00   ; 
-- D 1 - I - 0x01A3A2 06:A392: 00        .byte $00   ; 
-- D 1 - I - 0x01A3A3 06:A393: F0        .byte $F0   ; 
-- D 1 - I - 0x01A3A4 06:A394: 00        .byte $00   ; 
-- D 1 - I - 0x01A3A5 06:A395: 05        .byte $05   ; 
-- D 1 - I - 0x01A3A6 06:A396: 01        .byte $01   ; 
+off_0C_A38C_05_cursor:
+- D 1 - I - 0x01A39C 06:A38C: 01        .byte con_884D_script_hand_cursor   ; 
+- D 1 - I - 0x01A39D 06:A38D: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A39F 06:A38F: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A3A1 06:A391: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A3A3 06:A393: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A3A5 06:A395: 05        .byte $05   ; 04B0 ???
+
+- D 1 - I - 0x01A3A6 06:A396: 01        .byte $01   ; cursor direction (down)
 
 
 
 off_0C_A397_06:
-- D 1 - I - 0x01A3A7 06:A397: 80        .byte con_884D_80   ; 
+- D 1 - I - 0x01A3A7 06:A397: 80        .byte con_884D_script_80   ; 
 
 
 
 off_0C_A398_07:
-- D 1 - I - 0x01A3A8 06:A398: 07        .byte con_884D_07   ; 
+- D 1 - I - 0x01A3A8 06:A398: 07        .byte con_884D_script_07   ; 
 - D 1 - I - 0x01A3A9 06:A399: 04        .byte $04   ; 
 - D 1 - I - 0x01A3AA 06:A39A: 20        .byte $20   ; 
 - D 1 - I - 0x01A3AB 06:A39B: 00        .byte $00   ; 
@@ -7343,102 +7140,89 @@ off_0C_A398_07:
 
 
 off_0C_A39C_08:
-- D 1 - I - 0x01A3AC 06:A39C: 80        .byte con_884D_80   ; 
+- D 1 - I - 0x01A3AC 06:A39C: 80        .byte con_884D_script_80   ; 
 
 
 
-off_0C_A39D_09:
-- D 1 - I - 0x01A3AD 06:A39D: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A3AE 06:A39E: FF        .byte $FF   ; 
-- D 1 - I - 0x01A3AF 06:A39F: 01        .byte $01   ; 
-- D 1 - I - 0x01A3B0 06:A3A0: FF        .byte $FF   ; 
-- D 1 - I - 0x01A3B1 06:A3A1: 01        .byte $01   ; 
-- D 1 - I - 0x01A3B2 06:A3A2: 00        .byte $00   ; 
-- D 1 - I - 0x01A3B3 06:A3A3: 00        .byte $00   ; 
-- D 1 - I - 0x01A3B4 06:A3A4: F0        .byte $F0   ; 
-- D 1 - I - 0x01A3B5 06:A3A5: 00        .byte $00   ; 
-- D 1 - I - 0x01A3B6 06:A3A6: 04        .byte $04   ; 
+off_0C_A39D_09_spawn_abore:
+- D 1 - I - 0x01A3AD 06:A39D: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A3AE 06:A39E: FF 01     .word $01FF ; X camera limit (min)
+- D 1 - I - 0x01A3B0 06:A3A0: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A3B2 06:A3A2: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A3B4 06:A3A4: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A3B6 06:A3A6: 04        .byte $04   ; 04B0 ???
+
 - D 1 - I - 0x01A3B7 06:A3A7: 52        .byte con_chr_bank + $52   ; 
 - D 1 - I - 0x01A3B8 06:A3A8: 08        .byte con_obj_abore   ; 
-- D 1 - I - 0x01A3B9 06:A3A9: 01        .byte $01   ; 
-- D 1 - I - 0x01A3BA 06:A3AA: 00        .byte $00   ; 
-- D 1 - I - 0x01A3BB 06:A3AB: 37        .byte $37   ; hp
+- D 1 - I - 0x01A3B9 06:A3A9: 01        .byte $01   ; enemy counter
+; 01
+- D 1 - I - 0x01A3BA 06:A3AA: 00        .byte $00   ; enemy settings
+- D 1 - I - 0x01A3BB 06:A3AB: 37        .byte $37   ; enemy hp
 
 
 
-off_0C_A3AC_0A:
-- D 1 - I - 0x01A3BC 06:A3AC: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A3BD 06:A3AD: FF        .byte $FF   ; 
-- D 1 - I - 0x01A3BE 06:A3AE: 01        .byte $01   ; 
-- D 1 - I - 0x01A3BF 06:A3AF: FF        .byte $FF   ; 
-- D 1 - I - 0x01A3C0 06:A3B0: 01        .byte $01   ; 
-- D 1 - I - 0x01A3C1 06:A3B1: 00        .byte $00   ; 
-- D 1 - I - 0x01A3C2 06:A3B2: 00        .byte $00   ; 
-- D 1 - I - 0x01A3C3 06:A3B3: F0        .byte $F0   ; 
-- D 1 - I - 0x01A3C4 06:A3B4: 00        .byte $00   ; 
-- D 1 - I - 0x01A3C5 06:A3B5: 04        .byte $04   ; 
+off_0C_A3AC_0A_spawn_bolo_1:
+- D 1 - I - 0x01A3BC 06:A3AC: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A3BD 06:A3AD: FF 01     .word $01FF ; X camera limit (min)
+- D 1 - I - 0x01A3BF 06:A3AF: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A3C1 06:A3B1: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A3C3 06:A3B3: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A3C5 06:A3B5: 04        .byte $04   ; 04B0 ???
+
 - D 1 - I - 0x01A3C6 06:A3B6: 46        .byte con_chr_bank + $46   ; 
 - D 1 - I - 0x01A3C7 06:A3B7: 06        .byte con_obj_bolo   ; 
-- D 1 - I - 0x01A3C8 06:A3B8: 01        .byte $01   ; 
-- D 1 - I - 0x01A3C9 06:A3B9: 00        .byte $00   ; 
-- D 1 - I - 0x01A3CA 06:A3BA: 27        .byte $27   ; hp
+- D 1 - I - 0x01A3C8 06:A3B8: 01        .byte $01   ; enemy counter
+; 01
+- D 1 - I - 0x01A3C9 06:A3B9: 00        .byte $00   ; enemy settings
+- D 1 - I - 0x01A3CA 06:A3BA: 27        .byte $27   ; enemy hp
 
 
 
-off_0C_A3BB_0B:
-- D 1 - I - 0x01A3CB 06:A3BB: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A3CC 06:A3BC: FF        .byte $FF   ; 
-- D 1 - I - 0x01A3CD 06:A3BD: 01        .byte $01   ; 
-- D 1 - I - 0x01A3CE 06:A3BE: FF        .byte $FF   ; 
-- D 1 - I - 0x01A3CF 06:A3BF: 01        .byte $01   ; 
-- D 1 - I - 0x01A3D0 06:A3C0: 00        .byte $00   ; 
-- D 1 - I - 0x01A3D1 06:A3C1: 00        .byte $00   ; 
-- D 1 - I - 0x01A3D2 06:A3C2: F0        .byte $F0   ; 
-- D 1 - I - 0x01A3D3 06:A3C3: 00        .byte $00   ; 
-- D 1 - I - 0x01A3D4 06:A3C4: 04        .byte $04   ; 
+off_0C_A3BB_0B_spawn_bolo_2:
+- D 1 - I - 0x01A3CB 06:A3BB: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A3CC 06:A3BC: FF 01     .word $01FF ; X camera limit (min)
+- D 1 - I - 0x01A3CE 06:A3BE: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A3D0 06:A3C0: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A3D2 06:A3C2: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A3D4 06:A3C4: 04        .byte $04   ; 04B0 ???
+
 - D 1 - I - 0x01A3D5 06:A3C5: 46        .byte con_chr_bank + $46   ; 
 - D 1 - I - 0x01A3D6 06:A3C6: 06        .byte con_obj_bolo   ; 
-- D 1 - I - 0x01A3D7 06:A3C7: 01        .byte $01   ; counter
+- D 1 - I - 0x01A3D7 06:A3C7: 01        .byte $01   ; enemy counter
 ; 01
-- D 1 - I - 0x01A3D8 06:A3C8: 00        .byte $00   ; 
-- D 1 - I - 0x01A3D9 06:A3C9: 27        .byte $27   ; hp
+- D 1 - I - 0x01A3D8 06:A3C8: 00        .byte $00   ; enemy settings
+- D 1 - I - 0x01A3D9 06:A3C9: 27        .byte $27   ; enemy hp
 
 
 
 off_0C_A3CA_0C:
-- D 1 - I - 0x01A3DA 06:A3CA: 07        .byte con_884D_07   ; 
+- D 1 - I - 0x01A3DA 06:A3CA: 07        .byte con_884D_script_07   ; 
 - D 1 - I - 0x01A3DB 06:A3CB: 06        .byte $06   ; 
 - D 1 - I - 0x01A3DC 06:A3CC: 00        .byte $00   ; 
 - D 1 - I - 0x01A3DD 06:A3CD: 00        .byte $00   ; 
 
 
 
-off_0C_A3CE_0D:
-- D 1 - I - 0x01A3DE 06:A3CE: 01        .byte con_884D_white_hand_cursor   ; 
-- D 1 - I - 0x01A3DF 06:A3CF: 00        .byte $00   ; 
-- D 1 - I - 0x01A3E0 06:A3D0: 00        .byte $00   ; 
-- D 1 - I - 0x01A3E1 06:A3D1: FF        .byte $FF   ; 
-- D 1 - I - 0x01A3E2 06:A3D2: 02        .byte $02   ; 
-- D 1 - I - 0x01A3E3 06:A3D3: 00        .byte $00   ; 
-- D 1 - I - 0x01A3E4 06:A3D4: 00        .byte $00   ; 
-- D 1 - I - 0x01A3E5 06:A3D5: F0        .byte $F0   ; 
-- D 1 - I - 0x01A3E6 06:A3D6: 00        .byte $00   ; 
-- D 1 - I - 0x01A3E7 06:A3D7: 05        .byte $05   ; 
-- D 1 - I - 0x01A3E8 06:A3D8: 03        .byte $03   ; 
+off_0C_A3CE_0D_cursor:
+- D 1 - I - 0x01A3DE 06:A3CE: 01        .byte con_884D_script_hand_cursor   ; 
+- D 1 - I - 0x01A3DF 06:A3CF: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A3E1 06:A3D1: FF 02     .word $02FF ; X camera limit (max)
+- D 1 - I - 0x01A3E3 06:A3D3: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A3E5 06:A3D5: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A3E7 06:A3D7: 05        .byte $05   ; 04B0 ???
+
+- D 1 - I - 0x01A3E8 06:A3D8: 03        .byte $03   ; cursor direction (right)
 
 
 
 off_0C_A3D9_0E:
-- D 1 - I - 0x01A3E9 06:A3D9: 03        .byte con_884D_03   ; 
-- D 1 - I - 0x01A3EA 06:A3DA: 00        .byte $00   ; 
-- D 1 - I - 0x01A3EB 06:A3DB: 00        .byte $00   ; 
-- D 1 - I - 0x01A3EC 06:A3DC: FF        .byte $FF   ; 
-- D 1 - I - 0x01A3ED 06:A3DD: 03        .byte $03   ; 
-- D 1 - I - 0x01A3EE 06:A3DE: 00        .byte $00   ; 
-- D 1 - I - 0x01A3EF 06:A3DF: 00        .byte $00   ; 
-- D 1 - I - 0x01A3F0 06:A3E0: F0        .byte $F0   ; 
-- D 1 - I - 0x01A3F1 06:A3E1: 00        .byte $00   ; 
-- D 1 - I - 0x01A3F2 06:A3E2: 01        .byte $01   ; 
+- D 1 - I - 0x01A3E9 06:A3D9: 03        .byte con_884D_script_03   ; 
+- D 1 - I - 0x01A3EA 06:A3DA: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A3EC 06:A3DC: FF 03     .word $03FF ; X camera limit (max)
+- D 1 - I - 0x01A3EE 06:A3DE: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A3F0 06:A3E0: F0 00     .word $00F0 ; Y camera limit (max)
+- D 1 - I - 0x01A3F2 06:A3E2: 01        .byte $01   ; 04B0 ???
+
 - D 1 - I - 0x01A3F3 06:A3E3: 44        .byte con_chr_bank + $44   ; 
 - D 1 - I - 0x01A3F4 06:A3E4: 04        .byte con_obj_linda   ; 
 - - - - - - 0x01A3F5 06:A3E5: 00        .byte $00   ; 
@@ -7446,7 +7230,7 @@ off_0C_A3D9_0E:
 
 
 off_0C_A3E6_0F:
-- D 1 - I - 0x01A3F6 06:A3E6: 02        .byte con_884D_02   ; 
+- D 1 - I - 0x01A3F6 06:A3E6: 02        .byte con_884D_script_02   ; 
 - D 1 - I - 0x01A3F7 06:A3E7: FF        .byte $FF   ; 
 - D 1 - I - 0x01A3F8 06:A3E8: 02        .byte $02   ; 
 - D 1 - I - 0x01A3F9 06:A3E9: 00        .byte $00   ; 
@@ -7454,410 +7238,365 @@ off_0C_A3E6_0F:
 
 
 
-off_0C_A3EB_10:
-- D 1 - I - 0x01A3FB 06:A3EB: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A3FC 06:A3EC: 00        .byte $00   ; 
-- D 1 - I - 0x01A3FD 06:A3ED: 00        .byte $00   ; 
-- D 1 - I - 0x01A3FE 06:A3EE: FF        .byte $FF   ; 
-- D 1 - I - 0x01A3FF 06:A3EF: 02        .byte $02   ; 
-- D 1 - I - 0x01A400 06:A3F0: 00        .byte $00   ; 
-- D 1 - I - 0x01A401 06:A3F1: 00        .byte $00   ; 
-- D 1 - I - 0x01A402 06:A3F2: 00        .byte $00   ; 
-- D 1 - I - 0x01A403 06:A3F3: 00        .byte $00   ; 
-- D 1 - I - 0x01A404 06:A3F4: 00        .byte $00   ; 
+off_0C_A3EB_10_spawn_ninja:
+- D 1 - I - 0x01A3FB 06:A3EB: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A3FC 06:A3EC: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A3FE 06:A3EE: FF 02     .word $02FF ; X camera limit (max)
+- D 1 - I - 0x01A400 06:A3F0: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A402 06:A3F2: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A404 06:A3F4: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A405 06:A3F5: 56        .byte con_chr_bank + $56   ; 
 - D 1 - I - 0x01A406 06:A3F6: 0F        .byte con_obj_ninja   ; 
-- D 1 - I - 0x01A407 06:A3F7: 06        .byte $06   ; counter
+- D 1 - I - 0x01A407 06:A3F7: 06        .byte $06   ; enemy counter
 ; 01
-- D 1 - I - 0x01A408 06:A3F8: 00        .byte $00   ; 
-- D 1 - I - 0x01A409 06:A3F9: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A408 06:A3F8: 00        .byte $00   ; enemy settings
+- D 1 - I - 0x01A409 06:A3F9: 1F        .byte $1F   ; enemy hp
 ; 02
-- D 1 - I - 0x01A40A 06:A3FA: 00        .byte $00   ; 
-- D 1 - I - 0x01A40B 06:A3FB: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A40A 06:A3FA: 00        .byte $00   ; enemy settings
+- D 1 - I - 0x01A40B 06:A3FB: 1F        .byte $1F   ; enemy hp
 ; 03
-- D 1 - I - 0x01A40C 06:A3FC: 00        .byte $00   ; 
-- D 1 - I - 0x01A40D 06:A3FD: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A40C 06:A3FC: 00        .byte $00   ; enemy settings
+- D 1 - I - 0x01A40D 06:A3FD: 1F        .byte $1F   ; enemy hp
 ; 04
-- D 1 - I - 0x01A40E 06:A3FE: 00        .byte $00   ; 
-- D 1 - I - 0x01A40F 06:A3FF: 1F        .byte $1F   ; hp
+- D 1 - I - 0x01A40E 06:A3FE: 00        .byte $00   ; enemy settings
+- D 1 - I - 0x01A40F 06:A3FF: 1F        .byte $1F   ; enemy hp
 ; 05
-- - - - - - 0x01A410 06:A400: 00        .byte $00   ; 
-- - - - - - 0x01A411 06:A401: 1F        .byte $1F   ; hp
+- - - - - - 0x01A410 06:A400: 00        .byte $00   ; enemy settings
+- - - - - - 0x01A411 06:A401: 1F        .byte $1F   ; enemy hp
 ; 06
-- - - - - - 0x01A412 06:A402: 00        .byte $00   ; 
-- - - - - - 0x01A413 06:A403: 1F        .byte $1F   ; hp
+- - - - - - 0x01A412 06:A402: 00        .byte $00   ; enemy settings
+- - - - - - 0x01A413 06:A403: 1F        .byte $1F   ; enemy hp
 
 
 
 off_0C_A404_11:
-- D 1 - I - 0x01A414 06:A404: 16        .byte con_884D_16   ; 
+- D 1 - I - 0x01A414 06:A404: 16        .byte con_884D_script_16   ; 
 - D 1 - I - 0x01A415 06:A405: 0D        .byte con_music_boss_clone   ; 
 
 
 
 off_0C_A406_12:
-- D 1 - I - 0x01A416 06:A406: 1A        .byte con_884D_1A   ; 
+- D 1 - I - 0x01A416 06:A406: 1A        .byte con_884D_script_1A   ; 
 
 
 
-off_0C_A407_13:
-- D 1 - I - 0x01A417 06:A407: 00        .byte con_884D_00   ; 
-- D 1 - I - 0x01A418 06:A408: 00        .byte $00   ; 
-- D 1 - I - 0x01A419 06:A409: 00        .byte $00   ; 
-- D 1 - I - 0x01A41A 06:A40A: FF        .byte $FF   ; 
-- D 1 - I - 0x01A41B 06:A40B: 02        .byte $02   ; 
-- D 1 - I - 0x01A41C 06:A40C: 00        .byte $00   ; 
-- D 1 - I - 0x01A41D 06:A40D: 00        .byte $00   ; 
-- D 1 - I - 0x01A41E 06:A40E: 00        .byte $00   ; 
-- D 1 - I - 0x01A41F 06:A40F: 00        .byte $00   ; 
-- D 1 - I - 0x01A420 06:A410: 00        .byte $00   ; 
+off_0C_A407_13_spawn_doppelganger:
+- D 1 - I - 0x01A417 06:A407: 00        .byte con_884D_script_00   ; 
+- D 1 - I - 0x01A418 06:A408: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A41A 06:A40A: FF 02     .word $02FF ; X camera limit (max)
+- D 1 - I - 0x01A41C 06:A40C: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A41E 06:A40E: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A420 06:A410: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A421 06:A411: 4A        .byte con_chr_bank + $4A   ; 
 - D 1 - I - 0x01A422 06:A412: 0C        .byte con_obj_doppelganger   ; 
-- - - - - - 0x01A423 06:A413: 02        .byte $02   ; counter
+- - - - - - 0x01A423 06:A413: 02        .byte $02   ; enemy counter
 ; 01
-- D 1 - I - 0x01A424 06:A414: 60        .byte $60   ; 
-- D 1 - I - 0x01A425 06:A415: 10        .byte con_state_doppelganger_spawn   ; 
-- D 1 - I - 0x01A426 06:A416: 01        .byte $01   ; 
-- D 1 - I - 0x01A427 06:A417: 70 03     .word $0370 ; pos_X
-- D 1 - I - 0x01A429 06:A419: 32 00     .word $0032 ; pos_Y
-- D 1 - I - 0x01A42B 06:A41B: 40 00     .word $0040 ; pos_Z
-- D 1 - I - 0x01A42D 06:A41D: 00        .byte $00   ; 
-- D 1 - I - 0x01A42E 06:A41E: 80        .byte $80   ; hp
+- D 1 - I - 0x01A424 06:A414: 60        .byte $60   ; enemy settings
+- D 1 - I - 0x01A425 06:A415: 10        .byte con_state_doppelganger_spawn   ; enemy state
+- D 1 - I - 0x01A426 06:A416: 01        .byte con_0359_01   ; enemy 0359 ???
+- D 1 - I - 0x01A427 06:A417: 70 03     .word $0370 ; enemy pos_X
+- D 1 - I - 0x01A429 06:A419: 32 00     .word $0032 ; enemy pos_Y
+- D 1 - I - 0x01A42B 06:A41B: 40 00     .word $0040 ; enemy pos_Z
+- D 1 - I - 0x01A42D 06:A41D: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A42E 06:A41E: 80        .byte $80   ; enemy hp
 ; 02
-- - - - - - 0x01A42F 06:A41F: 60        .byte $60   ; 
-- - - - - - 0x01A430 06:A420: 10        .byte con_state_doppelganger_spawn   ; 
-- - - - - - 0x01A431 06:A421: 01        .byte $01   ; 
-- - - - - - 0x01A432 06:A422: 89 03     .word $0389 ; pos_X
-- - - - - - 0x01A434 06:A424: 32 00     .word $0032 ; pos_Y
-- - - - - - 0x01A436 06:A426: 40 00     .word $0040 ; pos_Z
-- - - - - - 0x01A438 06:A428: 00        .byte $00   ; 
-- - - - - - 0x01A439 06:A429: 80        .byte $80   ; hp
+- - - - - - 0x01A42F 06:A41F: 60        .byte $60   ; enemy settings
+- - - - - - 0x01A430 06:A420: 10        .byte con_state_doppelganger_spawn   ; enemy state
+- - - - - - 0x01A431 06:A421: 01        .byte con_0359_01   ; enemy 0359 ???
+- - - - - - 0x01A432 06:A422: 89 03     .word $0389 ; enemy pos_X
+- - - - - - 0x01A434 06:A424: 32 00     .word $0032 ; enemy pos_Y
+- - - - - - 0x01A436 06:A426: 40 00     .word $0040 ; enemy pos_Z
+- - - - - - 0x01A438 06:A428: 00        .byte $00   ; enemy 006A ???
+- - - - - - 0x01A439 06:A429: 80        .byte $80   ; enemy hp
 
 
 
 off_0C_A42A_14:
-- D 1 - I - 0x01A43A 06:A42A: 08        .byte con_884D_08   ; 
+- D 1 - I - 0x01A43A 06:A42A: 08        .byte con_884D_script_08   ; 
 
 
 
 off_0C_A42B_15:
-- D 1 - I - 0x01A43B 06:A42B: 81        .byte con_884D_81   ; 
+- D 1 - I - 0x01A43B 06:A42B: 81        .byte con_884D_script_81   ; 
 
 
 
 off_0D_A42C_00:
-- D 1 - I - 0x01A43C 06:A42C: 18        .byte con_884D_18   ; 
+- D 1 - I - 0x01A43C 06:A42C: 18        .byte con_884D_script_18   ; 
 
 
 
 off_0D_A42D_01:
-- D 1 - I - 0x01A43D 06:A42D: 81        .byte con_884D_81   ; 
+- D 1 - I - 0x01A43D 06:A42D: 81        .byte con_884D_script_81   ; 
 
 
 
 off_0E_A42E_00:
-- D 1 - I - 0x01A43E 06:A42E: 03        .byte con_884D_03   ; 
-- D 1 - I - 0x01A43F 06:A42F: 00        .byte $00   ; 
-- D 1 - I - 0x01A440 06:A430: 00        .byte $00   ; 
-- D 1 - I - 0x01A441 06:A431: FF        .byte $FF   ; 
-- D 1 - I - 0x01A442 06:A432: 01        .byte $01   ; 
-- D 1 - I - 0x01A443 06:A433: 00        .byte $00   ; 
-- D 1 - I - 0x01A444 06:A434: 00        .byte $00   ; 
-- D 1 - I - 0x01A445 06:A435: 00        .byte $00   ; 
-- D 1 - I - 0x01A446 06:A436: 00        .byte $00   ; 
-- D 1 - I - 0x01A447 06:A437: 00        .byte $00   ; 
+- D 1 - I - 0x01A43E 06:A42E: 03        .byte con_884D_script_03   ; 
+- D 1 - I - 0x01A43F 06:A42F: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A441 06:A431: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A443 06:A433: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A445 06:A435: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A447 06:A437: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A448 06:A438: 58        .byte con_chr_bank + $58   ; 
 - D 1 - I - 0x01A449 06:A439: 11        .byte con_obj_shadow_warrior   ; 
 - - - - - - 0x01A44A 06:A43A: 00        .byte $00   ; 
 
 
 
-off_0E_A43B_01:
-- D 1 - I - 0x01A44B 06:A43B: 19        .byte con_884D_19   ; 
-- D 1 - I - 0x01A44C 06:A43C: 00        .byte $00   ; 
-- D 1 - I - 0x01A44D 06:A43D: 00        .byte $00   ; 
-- D 1 - I - 0x01A44E 06:A43E: FF        .byte $FF   ; 
-- D 1 - I - 0x01A44F 06:A43F: 01        .byte $01   ; 
-- D 1 - I - 0x01A450 06:A440: 00        .byte $00   ; 
-- D 1 - I - 0x01A451 06:A441: 00        .byte $00   ; 
-- D 1 - I - 0x01A452 06:A442: 00        .byte $00   ; 
-- D 1 - I - 0x01A453 06:A443: 00        .byte $00   ; 
-- D 1 - I - 0x01A454 06:A444: 00        .byte $00   ; 
+off_0E_A43B_01_spawn_shadow_warrior:
+- D 1 - I - 0x01A44B 06:A43B: 19        .byte con_884D_script_shadow_warrior   ; 
+- D 1 - I - 0x01A44C 06:A43C: 00 00     .word $0000 ; X camera limit (min)
+- D 1 - I - 0x01A44E 06:A43E: FF 01     .word $01FF ; X camera limit (max)
+- D 1 - I - 0x01A450 06:A440: 00 00     .word $0000 ; Y camera limit (min)
+- D 1 - I - 0x01A452 06:A442: 00 00     .word $0000 ; Y camera limit (max)
+- D 1 - I - 0x01A454 06:A444: 00        .byte $00   ; 04B0 ???
+
 - D 1 - I - 0x01A455 06:A445: 58        .byte con_chr_bank + $58   ; 
 - D 1 - I - 0x01A456 06:A446: 11        .byte con_obj_shadow_warrior   ; 
-- D 1 - I - 0x01A457 06:A447: 01        .byte $01   ; counter
+- D 1 - I - 0x01A457 06:A447: 01        .byte $01   ; enemy counter
 ; 01
-- D 1 - I - 0x01A458 06:A448: 20        .byte $20   ; 
-- D 1 - I - 0x01A459 06:A449: 00        .byte $00   ; 
-- D 1 - I - 0x01A45A 06:A44A: 80 01     .word $0180 ; pos_X
-- D 1 - I - 0x01A45C 06:A44C: 50 00     .word $0050 ; pos_Y
-- D 1 - I - 0x01A45E 06:A44E: 00 00     .word $0000 ; pos_Z
-- D 1 - I - 0x01A460 06:A450: 00        .byte $00   ; 
-- D 1 - I - 0x01A461 06:A451: FF        .byte $FF   ; hp
+- D 1 - I - 0x01A458 06:A448: 20        .byte $20   ; enemy settings
+- D 1 - I - 0x01A459 06:A449: 00        .byte con_0359_00   ; enemy 0359 ???
+- D 1 - I - 0x01A45A 06:A44A: 80 01     .word $0180 ; enemy pos_X
+- D 1 - I - 0x01A45C 06:A44C: 50 00     .word $0050 ; enemy pos_Y
+- D 1 - I - 0x01A45E 06:A44E: 00 00     .word $0000 ; enemy pos_Z
+- D 1 - I - 0x01A460 06:A450: 00        .byte $00   ; enemy 006A ???
+- D 1 - I - 0x01A461 06:A451: FF        .byte $FF   ; enemy hp
 
 
 
 off_0E_A452_02:
 off_0E_A452_03:
-- D 1 - I - 0x01A462 06:A452: 0B        .byte con_884D_0B   ; 
+- D 1 - I - 0x01A462 06:A452: 0B        .byte con_884D_script_final_boss_defeated   ; 
 
 
 
-tbl_A453:
-- D 1 - I - 0x01A463 06:A453: 8F A4     .word _off024_A48F_00
-- D 1 - I - 0x01A465 06:A455: AD A4     .word _off024_A4AD_01
-- D 1 - I - 0x01A467 06:A457: 93 A4     .word _off024_A493_02
-- D 1 - I - 0x01A469 06:A459: B5 A4     .word _off024_A4B5_03
-- D 1 - I - 0x01A46B 06:A45B: 8F A4     .word _off024_A48F_04
-- D 1 - I - 0x01A46D 06:A45D: BD A4     .word _off024_A4BD_05
-- D 1 - I - 0x01A46F 06:A45F: 97 A4     .word _off024_A497_06
-- D 1 - I - 0x01A471 06:A461: C5 A4     .word _off024_A4C5_07
-- D 1 - I - 0x01A473 06:A463: 8F A4     .word _off024_A48F_08
-- D 1 - I - 0x01A475 06:A465: CD A4     .word _off024_A4CD_09
-- D 1 - I - 0x01A477 06:A467: 9B A4     .word _off024_A49B_0A
-- D 1 - I - 0x01A479 06:A469: D5 A4     .word _off024_A4D5_0B
-- D 1 - I - 0x01A47B 06:A46B: A1 A4     .word _off024_A4A1_0C
-- D 1 - I - 0x01A47D 06:A46D: DD A4     .word _off024_A4DD_0D
-- D 1 - I - 0x01A47F 06:A46F: 8F A4     .word _off024_A48F_0E
-- D 1 - I - 0x01A481 06:A471: E5 A4     .word _off024_A4E5_0F
-- D 1 - I - 0x01A483 06:A473: 8F A4     .word _off024_A48F_10
-- D 1 - I - 0x01A485 06:A475: ED A4     .word _off024_A4ED_11
-- D 1 - I - 0x01A487 06:A477: 8F A4     .word _off024_A48F_12
-- D 1 - I - 0x01A489 06:A479: F5 A4     .word _off024_A4F5_13
-- D 1 - I - 0x01A48B 06:A47B: 8F A4     .word _off024_A48F_14
-- D 1 - I - 0x01A48D 06:A47D: FD A4     .word _off024_A4FD_15
-- D 1 - I - 0x01A48F 06:A47F: 8F A4     .word _off024_A48F_16
-- D 1 - I - 0x01A491 06:A481: 05 A5     .word _off024_A505_17
-- D 1 - I - 0x01A493 06:A483: A5 A4     .word _off024_A4A5_18
-- D 1 - I - 0x01A495 06:A485: 0D A5     .word _off024_A50D_19
-- D 1 - I - 0x01A497 06:A487: 8F A4     .word _off024_A48F_1A
-- D 1 - I - 0x01A499 06:A489: 15 A5     .word _off024_A515_1B
-- D 1 - I - 0x01A49B 06:A48B: A9 A4     .word _off024_A4A9_1C
-- D 1 - I - 0x01A49D 06:A48D: 1D A5     .word _off024_A51D_1D
+tbl_A453_positions:
+- D 1 - I - 0x01A463 06:A453: 8F A4     .word _cam_pos_A48F_00
+- D 1 - I - 0x01A465 06:A455: AD A4     .word _plr_pos_A4AD_00
+- D 1 - I - 0x01A467 06:A457: 93 A4     .word _cam_pos_A493_01
+- D 1 - I - 0x01A469 06:A459: B5 A4     .word _plr_pos_A4B5_01
+- D 1 - I - 0x01A46B 06:A45B: 8F A4     .word _cam_pos_A48F_02
+- D 1 - I - 0x01A46D 06:A45D: BD A4     .word _plr_pos_A4BD_02
+- D 1 - I - 0x01A46F 06:A45F: 97 A4     .word _cam_pos_A497_03
+- D 1 - I - 0x01A471 06:A461: C5 A4     .word _plr_pos_A4C5_03
+- D 1 - I - 0x01A473 06:A463: 8F A4     .word _cam_pos_A48F_04
+- D 1 - I - 0x01A475 06:A465: CD A4     .word _plr_pos_A4CD_04
+- D 1 - I - 0x01A477 06:A467: 9B A4     .word _cam_pos_A49B_05
+- D 1 - I - 0x01A479 06:A469: D5 A4     .word _plr_pos_A4D5_05
+- D 1 - I - 0x01A47B 06:A46B: A1 A4     .word _cam_pos_A4A1_06
+- D 1 - I - 0x01A47D 06:A46D: DD A4     .word _plr_pos_A4DD_06
+- D 1 - I - 0x01A47F 06:A46F: 8F A4     .word _cam_pos_A48F_07
+- D 1 - I - 0x01A481 06:A471: E5 A4     .word _plr_pos_A4E5_07
+- D 1 - I - 0x01A483 06:A473: 8F A4     .word _cam_pos_A48F_08
+- D 1 - I - 0x01A485 06:A475: ED A4     .word _plr_pos_A4ED_08
+- D 1 - I - 0x01A487 06:A477: 8F A4     .word _cam_pos_A48F_09
+- D 1 - I - 0x01A489 06:A479: F5 A4     .word _plr_pos_A4F5_09
+- D 1 - I - 0x01A48B 06:A47B: 8F A4     .word _cam_pos_A48F_0A
+- D 1 - I - 0x01A48D 06:A47D: FD A4     .word _plr_pos_A4FD_0A
+- D 1 - I - 0x01A48F 06:A47F: 8F A4     .word _cam_pos_A48F_0B
+- D 1 - I - 0x01A491 06:A481: 05 A5     .word _plr_pos_A505_0B
+- D 1 - I - 0x01A493 06:A483: A5 A4     .word _cam_pos_A4A5_0C
+- D 1 - I - 0x01A495 06:A485: 0D A5     .word _plr_pos_A50D_0C
+- D 1 - I - 0x01A497 06:A487: 8F A4     .word _cam_pos_A48F_0D
+- D 1 - I - 0x01A499 06:A489: 15 A5     .word _plr_pos_A515_0D
+- D 1 - I - 0x01A49B 06:A48B: A9 A4     .word _cam_pos_A4A9_0E
+- D 1 - I - 0x01A49D 06:A48D: 1D A5     .word _plr_pos_A51D_0E
 
 
 
-_off024_A48F_00:
-_off024_A48F_04:
-_off024_A48F_08:
-_off024_A48F_0E:
-_off024_A48F_10:
-_off024_A48F_12:
-_off024_A48F_14:
-_off024_A48F_16:
-_off024_A48F_1A:
-- D 1 - I - 0x01A49F 06:A48F: 00        .byte $00   ; 
-- D 1 - I - 0x01A4A0 06:A490: 00        .byte $00   ; 
-- D 1 - I - 0x01A4A1 06:A491: 00        .byte $00   ; 
-- D 1 - I - 0x01A4A2 06:A492: 00        .byte $00   ; 
+_cam_pos_A48F_00:
+_cam_pos_A48F_02:
+_cam_pos_A48F_04:
+_cam_pos_A48F_07:
+_cam_pos_A48F_08:
+_cam_pos_A48F_09:
+_cam_pos_A48F_0A:
+_cam_pos_A48F_0B:
+_cam_pos_A48F_0D:
+- D 1 - I - 0x01A49F 06:A48F: 00 00     .word $0000 ; X
+- D 1 - I - 0x01A4A1 06:A491: 00 00     .word $0000 ; Y
 
-_off024_A493_02:
-- D 1 - I - 0x01A4A3 06:A493: 00        .byte $00   ; 
-- D 1 - I - 0x01A4A4 06:A494: 00        .byte $00   ; 
-- D 1 - I - 0x01A4A5 06:A495: E0        .byte $E0   ; 
-- D 1 - I - 0x01A4A6 06:A496: 00        .byte $00   ; 
+_cam_pos_A493_01:
+- D 1 - I - 0x01A4A3 06:A493: 00 00     .word $0000 ; X
+- D 1 - I - 0x01A4A5 06:A495: E0 00     .word $00E0 ; Y
 
-_off024_A497_06:
-- D 1 - I - 0x01A4A7 06:A497: 00        .byte $00   ; 
-- D 1 - I - 0x01A4A8 06:A498: 00        .byte $00   ; 
-- D 1 - I - 0x01A4A9 06:A499: E0        .byte $E0   ; 
-- D 1 - I - 0x01A4AA 06:A49A: 01        .byte $01   ; 
+_cam_pos_A497_03:
+- D 1 - I - 0x01A4A7 06:A497: 00 00     .word $0000 ; X
+- D 1 - I - 0x01A4A9 06:A499: E0 01     .word $01E0 ; Y
 
-_off024_A49B_0A:
-- D 1 - I - 0x01A4AB 06:A49B: 00        .byte $00   ; 
-- D 1 - I - 0x01A4AC 06:A49C: 00        .byte $00   ; 
-- D 1 - I - 0x01A4AD 06:A49D: F0        .byte $F0   ; 
-- D 1 - I - 0x01A4AE 06:A49E: 00        .byte $00   ; 
-- - - - - - 0x01A4AF 06:A49F: F8        .byte $F8   ; 
-- - - - - - 0x01A4B0 06:A4A0: 00        .byte $00   ; 
-
-_off024_A4A1_0C:
-- D 1 - I - 0x01A4B1 06:A4A1: FF        .byte $FF   ; 
-- D 1 - I - 0x01A4B2 06:A4A2: 01        .byte $01   ; 
-- D 1 - I - 0x01A4B3 06:A4A3: 00        .byte $00   ; 
-- D 1 - I - 0x01A4B4 06:A4A4: 00        .byte $00   ; 
-
-_off024_A4A5_18:
-- D 1 - I - 0x01A4B5 06:A4A5: 00        .byte $00   ; 
-- D 1 - I - 0x01A4B6 06:A4A6: 00        .byte $00   ; 
-- D 1 - I - 0x01A4B7 06:A4A7: F0        .byte $F0   ; 
-- D 1 - I - 0x01A4B8 06:A4A8: 00        .byte $00   ; 
-
-_off024_A4A9_1C:
-- D 1 - I - 0x01A4B9 06:A4A9: 00        .byte $00   ; 
-- D 1 - I - 0x01A4BA 06:A4AA: 01        .byte $01   ; 
-- D 1 - I - 0x01A4BB 06:A4AB: 00        .byte $00   ; 
-- D 1 - I - 0x01A4BC 06:A4AC: 00        .byte $00   ; 
-
-_off024_A4AD_01:
-- D 1 - I - 0x01A4BD 06:A4AD: 28        .byte $28   ; 
-- D 1 - I - 0x01A4BE 06:A4AE: 00        .byte $00   ; 
-- D 1 - I - 0x01A4BF 06:A4AF: 40        .byte $40   ; 
-- D 1 - I - 0x01A4C0 06:A4B0: 00        .byte $00   ; 
-- D 1 - I - 0x01A4C1 06:A4B1: 00        .byte $00   ; 
-- D 1 - I - 0x01A4C2 06:A4B2: 38        .byte $38   ; 
-- D 1 - I - 0x01A4C3 06:A4B3: 58        .byte $58   ; 
-- D 1 - I - 0x01A4C4 06:A4B4: 00        .byte $00   ; 
-
-_off024_A4B5_03:
-- D 1 - I - 0x01A4C5 06:A4B5: 40        .byte $40   ; 
-- D 1 - I - 0x01A4C6 06:A4B6: 00        .byte $00   ; 
-- D 1 - I - 0x01A4C7 06:A4B7: 00        .byte $00   ; 
-- D 1 - I - 0x01A4C8 06:A4B8: 60        .byte $60   ; 
-- D 1 - I - 0x01A4C9 06:A4B9: 01        .byte $01   ; 
-- D 1 - I - 0x01A4CA 06:A4BA: 28        .byte $28   ; 
-- D 1 - I - 0x01A4CB 06:A4BB: 00        .byte $00   ; 
-- D 1 - I - 0x01A4CC 06:A4BC: 00        .byte $00   ; 
-
-_off024_A4BD_05:
-- D 1 - I - 0x01A4CD 06:A4BD: C8        .byte $C8   ; 
-- D 1 - I - 0x01A4CE 06:A4BE: 00        .byte $00   ; 
-- D 1 - I - 0x01A4CF 06:A4BF: 58        .byte $58   ; 
-- D 1 - I - 0x01A4D0 06:A4C0: 00        .byte $00   ; 
-- D 1 - I - 0x01A4D1 06:A4C1: 00        .byte $00   ; 
-- D 1 - I - 0x01A4D2 06:A4C2: B0        .byte $B0   ; 
-- D 1 - I - 0x01A4D3 06:A4C3: 60        .byte $60   ; 
-- D 1 - I - 0x01A4D4 06:A4C4: 80        .byte $80   ; 
-
-_off024_A4C5_07:
-- D 1 - I - 0x01A4D5 06:A4C5: 28        .byte $28   ; 
-- D 1 - I - 0x01A4D6 06:A4C6: 00        .byte $00   ; 
-- D 1 - I - 0x01A4D7 06:A4C7: 50        .byte $50   ; 
-- D 1 - I - 0x01A4D8 06:A4C8: F0        .byte $F0   ; 
-- D 1 - I - 0x01A4D9 06:A4C9: 01        .byte $01   ; 
-- D 1 - I - 0x01A4DA 06:A4CA: 38        .byte $38   ; 
-- D 1 - I - 0x01A4DB 06:A4CB: 68        .byte $68   ; 
-- D 1 - I - 0x01A4DC 06:A4CC: 00        .byte $00   ; 
-
-_off024_A4CD_09:
-- D 1 - I - 0x01A4DD 06:A4CD: C8        .byte $C8   ; 
-- D 1 - I - 0x01A4DE 06:A4CE: 00        .byte $00   ; 
-- D 1 - I - 0x01A4DF 06:A4CF: 48        .byte $48   ; 
-- D 1 - I - 0x01A4E0 06:A4D0: 50        .byte $50   ; 
-- D 1 - I - 0x01A4E1 06:A4D1: 00        .byte $00   ; 
-- D 1 - I - 0x01A4E2 06:A4D2: D8        .byte $D8   ; 
-- D 1 - I - 0x01A4E3 06:A4D3: 48        .byte $48   ; 
-- D 1 - I - 0x01A4E4 06:A4D4: 80        .byte $80   ; 
-
-_off024_A4D5_0B:
-- D 1 - I - 0x01A4E5 06:A4D5: 28        .byte $28   ; 
-- D 1 - I - 0x01A4E6 06:A4D6: 00        .byte $00   ; 
-- D 1 - I - 0x01A4E7 06:A4D7: 48        .byte $48   ; 
-- D 1 - I - 0x01A4E8 06:A4D8: E0        .byte $E0   ; 
-- D 1 - I - 0x01A4E9 06:A4D9: 00        .byte $00   ; 
-- D 1 - I - 0x01A4EA 06:A4DA: 38        .byte $38   ; 
-- D 1 - I - 0x01A4EB 06:A4DB: 60        .byte $60   ; 
-- D 1 - I - 0x01A4EC 06:A4DC: 00        .byte $00   ; 
-
-_off024_A4DD_0D:
-- D 1 - I - 0x01A4ED 06:A4DD: D8        .byte $D8   ; 
-- D 1 - I - 0x01A4EE 06:A4DE: 02        .byte $02   ; 
-- D 1 - I - 0x01A4EF 06:A4DF: 00        .byte $00   ; 
-- D 1 - I - 0x01A4F0 06:A4E0: 50        .byte $50   ; 
-- D 1 - I - 0x01A4F1 06:A4E1: 00        .byte $00   ; 
-- D 1 - I - 0x01A4F2 06:A4E2: F0        .byte $F0   ; 
-- D 1 - I - 0x01A4F3 06:A4E3: 00        .byte $00   ; 
-- D 1 - I - 0x01A4F4 06:A4E4: 80        .byte $80   ; 
-
-_off024_A4E5_0F:
-- D 1 - I - 0x01A4F5 06:A4E5: 30        .byte $30   ; 
-- D 1 - I - 0x01A4F6 06:A4E6: 00        .byte $00   ; 
-- D 1 - I - 0x01A4F7 06:A4E7: 00        .byte $00   ; 
-- D 1 - I - 0x01A4F8 06:A4E8: B0        .byte $B0   ; 
-- D 1 - I - 0x01A4F9 06:A4E9: 00        .byte $00   ; 
-- D 1 - I - 0x01A4FA 06:A4EA: 18        .byte $18   ; 
-- D 1 - I - 0x01A4FB 06:A4EB: 00        .byte $00   ; 
-- D 1 - I - 0x01A4FC 06:A4EC: 00        .byte $00   ; 
-
-_off024_A4ED_11:
-- D 1 - I - 0x01A4FD 06:A4ED: 28        .byte $28   ; 
-- D 1 - I - 0x01A4FE 06:A4EE: 00        .byte $00   ; 
-- D 1 - I - 0x01A4FF 06:A4EF: 00        .byte $00   ; 
-- D 1 - I - 0x01A500 06:A4F0: 70        .byte $70   ; 
-- D 1 - I - 0x01A501 06:A4F1: 00        .byte $00   ; 
-- D 1 - I - 0x01A502 06:A4F2: 38        .byte $38   ; 
-- D 1 - I - 0x01A503 06:A4F3: 00        .byte $00   ; 
-- D 1 - I - 0x01A504 06:A4F4: 00        .byte $00   ; 
-
-_off024_A4F5_13:
-- D 1 - I - 0x01A505 06:A4F5: 2B        .byte $2B   ; 
-- D 1 - I - 0x01A506 06:A4F6: 00        .byte $00   ; 
-- D 1 - I - 0x01A507 06:A4F7: 00        .byte $00   ; 
-- D 1 - I - 0x01A508 06:A4F8: 50        .byte $50   ; 
-- D 1 - I - 0x01A509 06:A4F9: 00        .byte $00   ; 
-- D 1 - I - 0x01A50A 06:A4FA: 18        .byte $18   ; 
-- D 1 - I - 0x01A50B 06:A4FB: 00        .byte $00   ; 
-- D 1 - I - 0x01A50C 06:A4FC: 00        .byte $00   ; 
-
-_off024_A4FD_15:
-- D 1 - I - 0x01A50D 06:A4FD: 28        .byte $28   ; 
-- D 1 - I - 0x01A50E 06:A4FE: 00        .byte $00   ; 
-- D 1 - I - 0x01A50F 06:A4FF: 00        .byte $00   ; 
-- D 1 - I - 0x01A510 06:A500: 70        .byte $70   ; 
-- D 1 - I - 0x01A511 06:A501: 00        .byte $00   ; 
-- D 1 - I - 0x01A512 06:A502: 38        .byte $38   ; 
-- D 1 - I - 0x01A513 06:A503: 00        .byte $00   ; 
-- D 1 - I - 0x01A514 06:A504: 00        .byte $00   ; 
-
-_off024_A505_17:
-- D 1 - I - 0x01A515 06:A505: 1A        .byte $1A   ; 
-- D 1 - I - 0x01A516 06:A506: 00        .byte $00   ; 
-- D 1 - I - 0x01A517 06:A507: 0E        .byte $0E   ; 
-- D 1 - I - 0x01A518 06:A508: 40        .byte $40   ; 
-- D 1 - I - 0x01A519 06:A509: 00        .byte $00   ; 
-- D 1 - I - 0x01A51A 06:A50A: 28        .byte $28   ; 
-- D 1 - I - 0x01A51B 06:A50B: 1B        .byte $1B   ; 
-- D 1 - I - 0x01A51C 06:A50C: 00        .byte $00   ; 
-
-_off024_A50D_19:
-- D 1 - I - 0x01A51D 06:A50D: 5A        .byte $5A   ; 
-- D 1 - I - 0x01A51E 06:A50E: 00        .byte $00   ; 
-- D 1 - I - 0x01A51F 06:A50F: 7E        .byte $7E   ; 
-- D 1 - I - 0x01A520 06:A510: 00        .byte $00   ; 
-- D 1 - I - 0x01A521 06:A511: 01        .byte $01   ; 
-- D 1 - I - 0x01A522 06:A512: 46        .byte $46   ; 
-- D 1 - I - 0x01A523 06:A513: 7E        .byte $7E   ; 
-- D 1 - I - 0x01A524 06:A514: 00        .byte $00   ; 
-
-_off024_A515_1B:
-- D 1 - I - 0x01A525 06:A515: 58        .byte $58   ; 
-- D 1 - I - 0x01A526 06:A516: 00        .byte $00   ; 
-- D 1 - I - 0x01A527 06:A517: 50        .byte $50   ; 
-- D 1 - I - 0x01A528 06:A518: 00        .byte $00   ; 
-- D 1 - I - 0x01A529 06:A519: 00        .byte $00   ; 
-- D 1 - I - 0x01A52A 06:A51A: 50        .byte $50   ; 
-- D 1 - I - 0x01A52B 06:A51B: 68        .byte $68   ; 
-- D 1 - I - 0x01A52C 06:A51C: 00        .byte $00   ; 
-
-_off024_A51D_1D:
-- D 1 - I - 0x01A52D 06:A51D: 58        .byte $58   ; 
-- D 1 - I - 0x01A52E 06:A51E: 01        .byte $01   ; 
-- D 1 - I - 0x01A52F 06:A51F: 50        .byte $50   ; 
-- D 1 - I - 0x01A530 06:A520: 00        .byte $00   ; 
-- D 1 - I - 0x01A531 06:A521: 00        .byte $00   ; 
-- D 1 - I - 0x01A532 06:A522: 50        .byte $50   ; 
-- D 1 - I - 0x01A533 06:A523: 68        .byte $68   ; 
-- D 1 - I - 0x01A534 06:A524: 00        .byte $00   ; 
+_cam_pos_A49B_05:
+- D 1 - I - 0x01A4AB 06:A49B: 00 00     .word $0000 ; X
+- D 1 - I - 0x01A4AD 06:A49D: F0 00     .word $00F0 ; Y
 
 
 ; bzk garbage
-- - - - - - 0x01A535 06:A525: 00        .byte $00   ; 
-- - - - - - 0x01A536 06:A526: 00        .byte $00   ; 
-- - - - - - 0x01A537 06:A527: 00        .byte $00   ; 
-- - - - - - 0x01A538 06:A528: 00        .byte $00   ; 
-- - - - - - 0x01A539 06:A529: 00        .byte $00   ; 
-- - - - - - 0x01A53A 06:A52A: 00        .byte $00   ; 
-- - - - - - 0x01A53B 06:A52B: 00        .byte $00   ; 
-- - - - - - 0x01A53C 06:A52C: 00        .byte $00   ; 
-- - - - - - 0x01A53D 06:A52D: 00        .byte $00   ; 
-- - - - - - 0x01A53E 06:A52E: 00        .byte $00   ; 
-- - - - - - 0x01A53F 06:A52F: 00        .byte $00   ; 
+- - - - - - 0x01A4AF 06:A49F: F8        .byte $F8   ; 
+- - - - - - 0x01A4B0 06:A4A0: 00        .byte $00   ; 
+
+_cam_pos_A4A1_06:
+- D 1 - I - 0x01A4B1 06:A4A1: FF 01     .word $01FF ; X
+- D 1 - I - 0x01A4B3 06:A4A3: 00 00     .word $0000 ; Y
+
+_cam_pos_A4A5_0C:
+- D 1 - I - 0x01A4B5 06:A4A5: 00 00     .word $0000 ; X
+- D 1 - I - 0x01A4B7 06:A4A7: F0 00     .word $00F0 ; Y
+
+_cam_pos_A4A9_0E:
+- D 1 - I - 0x01A4B9 06:A4A9: 00 01     .word $0100 ; X
+- D 1 - I - 0x01A4BB 06:A4AB: 00 00     .word $0000 ; Y
 
 
 
-sub_0x01A540:
-C - - - - - 0x01A540 06:A530: A9 02     LDA #$02
-loc_A532:
+_plr_pos_A4AD_00:
+- D 1 - I - 0x01A4BD 06:A4AD: 28        .byte $28   ; pos_X_lo 1p
+- D 1 - I - 0x01A4BE 06:A4AE: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A4BF 06:A4AF: 40        .byte $40   ; pos_Y_lo 1p
+- D 1 - I - 0x01A4C0 06:A4B0: 00 00     .word $0000 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A4C2 06:A4B2: 38        .byte $38   ; pos_X_lo 2p
+- D 1 - I - 0x01A4C3 06:A4B3: 58        .byte $58   ; pos_Y_lo 2p
+- D 1 - I - 0x01A4C4 06:A4B4: 00        .byte $00   ; 07 ???
+
+_plr_pos_A4B5_01:
+- D 1 - I - 0x01A4C5 06:A4B5: 40        .byte $40   ; pos_X_lo 1p
+- D 1 - I - 0x01A4C6 06:A4B6: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A4C7 06:A4B7: 00        .byte $00   ; pos_Y_lo 1p
+- D 1 - I - 0x01A4C8 06:A4B8: 60 01     .word $0160 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A4CA 06:A4BA: 28        .byte $28   ; pos_X_lo 2p
+- D 1 - I - 0x01A4CB 06:A4BB: 00        .byte $00   ; pos_Y_lo 2p
+- D 1 - I - 0x01A4CC 06:A4BC: 00        .byte $00   ; 07 ???
+
+_plr_pos_A4BD_02:
+- D 1 - I - 0x01A4CD 06:A4BD: C8        .byte $C8   ; pos_X_lo 1p
+- D 1 - I - 0x01A4CE 06:A4BE: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A4CF 06:A4BF: 58        .byte $58   ; pos_Y_lo 1p
+- D 1 - I - 0x01A4D0 06:A4C0: 00 00     .word $0000 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A4D2 06:A4C2: B0        .byte $B0   ; pos_X_lo 2p
+- D 1 - I - 0x01A4D3 06:A4C3: 60        .byte $60   ; pos_Y_lo 2p
+- D 1 - I - 0x01A4D4 06:A4C4: 80        .byte $80   ; 07 ???
+
+_plr_pos_A4C5_03:
+- D 1 - I - 0x01A4D5 06:A4C5: 28        .byte $28   ; pos_X_lo 1p
+- D 1 - I - 0x01A4D6 06:A4C6: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A4D7 06:A4C7: 50        .byte $50   ; pos_Y_lo 1p
+- D 1 - I - 0x01A4D8 06:A4C8: F0 01     .word $01F0 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A4DA 06:A4CA: 38        .byte $38   ; pos_X_lo 2p
+- D 1 - I - 0x01A4DB 06:A4CB: 68        .byte $68   ; pos_Y_lo 2p
+- D 1 - I - 0x01A4DC 06:A4CC: 00        .byte $00   ; 07 ???
+
+_plr_pos_A4CD_04:
+- D 1 - I - 0x01A4DD 06:A4CD: C8        .byte $C8   ; pos_X_lo 1p
+- D 1 - I - 0x01A4DE 06:A4CE: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A4DF 06:A4CF: 48        .byte $48   ; pos_Y_lo 1p
+- D 1 - I - 0x01A4E0 06:A4D0: 50 00     .word $0050 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A4E2 06:A4D2: D8        .byte $D8   ; pos_X_lo 2p
+- D 1 - I - 0x01A4E3 06:A4D3: 48        .byte $48   ; pos_Y_lo 2p
+- D 1 - I - 0x01A4E4 06:A4D4: 80        .byte $80   ; 07 ???
+
+_plr_pos_A4D5_05:
+- D 1 - I - 0x01A4E5 06:A4D5: 28        .byte $28   ; pos_X_lo 1p
+- D 1 - I - 0x01A4E6 06:A4D6: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A4E7 06:A4D7: 48        .byte $48   ; pos_Y_lo 1p
+- D 1 - I - 0x01A4E8 06:A4D8: E0 00     .word $00E0 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A4EA 06:A4DA: 38        .byte $38   ; pos_X_lo 2p
+- D 1 - I - 0x01A4EB 06:A4DB: 60        .byte $60   ; pos_Y_lo 2p
+- D 1 - I - 0x01A4EC 06:A4DC: 00        .byte $00   ; 07 ???
+
+_plr_pos_A4DD_06:
+- D 1 - I - 0x01A4ED 06:A4DD: D8        .byte $D8   ; pos_X_lo 1p
+- D 1 - I - 0x01A4EE 06:A4DE: 02        .byte $02   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A4EF 06:A4DF: 00        .byte $00   ; pos_Y_lo 1p
+- D 1 - I - 0x01A4F0 06:A4E0: 50 00     .word $0050 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A4F2 06:A4E2: F0        .byte $F0   ; pos_X_lo 2p
+- D 1 - I - 0x01A4F3 06:A4E3: 00        .byte $00   ; pos_Y_lo 2p
+- D 1 - I - 0x01A4F4 06:A4E4: 80        .byte $80   ; 07 ???
+
+_plr_pos_A4E5_07:
+- D 1 - I - 0x01A4F5 06:A4E5: 30        .byte $30   ; pos_X_lo 1p
+- D 1 - I - 0x01A4F6 06:A4E6: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A4F7 06:A4E7: 00        .byte $00   ; pos_Y_lo 1p
+- D 1 - I - 0x01A4F8 06:A4E8: B0 00     .word $00B0 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A4FA 06:A4EA: 18        .byte $18   ; pos_X_lo 2p
+- D 1 - I - 0x01A4FB 06:A4EB: 00        .byte $00   ; pos_Y_lo 2p
+- D 1 - I - 0x01A4FC 06:A4EC: 00        .byte $00   ; 07 ???
+
+_plr_pos_A4ED_08:
+- D 1 - I - 0x01A4FD 06:A4ED: 28        .byte $28   ; pos_X_lo 1p
+- D 1 - I - 0x01A4FE 06:A4EE: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A4FF 06:A4EF: 00        .byte $00   ; pos_Y_lo 1p
+- D 1 - I - 0x01A500 06:A4F0: 70 00     .word $0070 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A502 06:A4F2: 38        .byte $38   ; pos_X_lo 2p
+- D 1 - I - 0x01A503 06:A4F3: 00        .byte $00   ; pos_Y_lo 2p
+- D 1 - I - 0x01A504 06:A4F4: 00        .byte $00   ; 07 ???
+
+_plr_pos_A4F5_09:
+- D 1 - I - 0x01A505 06:A4F5: 2B        .byte $2B   ; pos_X_lo 1p
+- D 1 - I - 0x01A506 06:A4F6: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A507 06:A4F7: 00        .byte $00   ; pos_Y_lo 1p
+- D 1 - I - 0x01A508 06:A4F8: 50 00     .word $0050 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A50A 06:A4FA: 18        .byte $18   ; pos_X_lo 2p
+- D 1 - I - 0x01A50B 06:A4FB: 00        .byte $00   ; pos_Y_lo 2p
+- D 1 - I - 0x01A50C 06:A4FC: 00        .byte $00   ; 07 ???
+
+_plr_pos_A4FD_0A:
+- D 1 - I - 0x01A50D 06:A4FD: 28        .byte $28   ; pos_X_lo 1p
+- D 1 - I - 0x01A50E 06:A4FE: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A50F 06:A4FF: 00        .byte $00   ; pos_Y_lo 1p
+- D 1 - I - 0x01A510 06:A500: 70 00     .word $0070 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A512 06:A502: 38        .byte $38   ; pos_X_lo 2p
+- D 1 - I - 0x01A513 06:A503: 00        .byte $00   ; pos_Y_lo 2p
+- D 1 - I - 0x01A514 06:A504: 00        .byte $00   ; 07 ???
+
+_plr_pos_A505_0B:
+- D 1 - I - 0x01A515 06:A505: 1A        .byte $1A   ; pos_X_lo 1p
+- D 1 - I - 0x01A516 06:A506: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A517 06:A507: 0E        .byte $0E   ; pos_Y_lo 1p
+- D 1 - I - 0x01A518 06:A508: 40 00     .word $0040 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A51A 06:A50A: 28        .byte $28   ; pos_X_lo 2p
+- D 1 - I - 0x01A51B 06:A50B: 1B        .byte $1B   ; pos_Y_lo 2p
+- D 1 - I - 0x01A51C 06:A50C: 00        .byte $00   ; 07 ???
+
+_plr_pos_A50D_0C:
+- D 1 - I - 0x01A51D 06:A50D: 5A        .byte $5A   ; pos_X_lo 1p
+- D 1 - I - 0x01A51E 06:A50E: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A51F 06:A50F: 7E        .byte $7E   ; pos_Y_lo 1p
+- D 1 - I - 0x01A520 06:A510: 00 01     .word $0100 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A522 06:A512: 46        .byte $46   ; pos_X_lo 2p
+- D 1 - I - 0x01A523 06:A513: 7E        .byte $7E   ; pos_Y_lo 2p
+- D 1 - I - 0x01A524 06:A514: 00        .byte $00   ; 07 ???
+
+_plr_pos_A515_0D:
+- D 1 - I - 0x01A525 06:A515: 58        .byte $58   ; pos_X_lo 1p
+- D 1 - I - 0x01A526 06:A516: 00        .byte $00   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A527 06:A517: 50        .byte $50   ; pos_Y_lo 1p
+- D 1 - I - 0x01A528 06:A518: 00 00     .word $0000 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A52A 06:A51A: 50        .byte $50   ; pos_X_lo 2p
+- D 1 - I - 0x01A52B 06:A51B: 68        .byte $68   ; pos_Y_lo 2p
+- D 1 - I - 0x01A52C 06:A51C: 00        .byte $00   ; 07 ???
+
+_plr_pos_A51D_0E:
+- D 1 - I - 0x01A52D 06:A51D: 58        .byte $58   ; pos_X_lo 1p
+- D 1 - I - 0x01A52E 06:A51E: 01        .byte $01   ; pos_X_hi 1p 2p
+- D 1 - I - 0x01A52F 06:A51F: 50        .byte $50   ; pos_Y_lo 1p
+- D 1 - I - 0x01A530 06:A520: 00 00     .word $0000 ; pos_Z_lo 1p 2p
+- D 1 - I - 0x01A532 06:A522: 50        .byte $50   ; pos_X_lo 2p
+- D 1 - I - 0x01A533 06:A523: 68        .byte $68   ; pos_Y_lo 2p
+- D 1 - I - 0x01A534 06:A524: 00        .byte $00   ; 07 ???
+
+
+; bzk garbage
+- - - - - - 0x01A535 06:A525: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
+
+
+
+sub_0x01A540_draw_on_screen_during_mission:
+; see con_A6C3_draw
+C - - - - - 0x01A540 06:A530: A9 02     LDA #$02    ; loop counter
+loc_A532_loop:
 C D 1 - - - 0x01A542 06:A532: 48        PHA
 C - - - - - 0x01A543 06:A533: AD 80 04  LDA ram_0480
 C - - - - - 0x01A546 06:A536: 30 24     BMI bra_A55C
@@ -7883,7 +7622,7 @@ C - - - - - 0x01A56E 06:A55E: 20 00 C0  JSR sub_0x01C010
 C - - - - - 0x01A571 06:A561: B0 F7     BCS bra_A55A
 C - - - - - 0x01A573 06:A563: AD 83 04  LDA ram_0483
 C - - - - - 0x01A576 06:A566: C9 00     CMP #$00
-C - - - - - 0x01A578 06:A568: F0 05     BEQ bra_A56F
+C - - - - - 0x01A578 06:A568: F0 05     BEQ bra_A56F    ; bzk optimize, BEQ
 - - - - - - 0x01A57A 06:A56A: CE 83 04  DEC ram_0483
 - - - - - - 0x01A57D 06:A56D: 68        PLA
 - - - - - - 0x01A57E 06:A56E: 60        RTS
@@ -7924,22 +7663,22 @@ C - - - - - 0x01A5BF 06:A5AF: 85 1E     STA ram_001E
 C - - - - - 0x01A5C1 06:A5B1: A0 00     LDY #$00
 C - - - - - 0x01A5C3 06:A5B3: B1 1D     LDA (ram_001D),Y
 C - - - - - 0x01A5C5 06:A5B5: 85 29     STA ram_0029
-C - - - - - 0x01A5C7 06:A5B7: C8        INY
+C - - - - - 0x01A5C7 06:A5B7: C8        INY ; 01
 C - - - - - 0x01A5C8 06:A5B8: B1 1D     LDA (ram_001D),Y
 C - - - - - 0x01A5CA 06:A5BA: 85 2A     STA ram_002A
-C - - - - - 0x01A5CC 06:A5BC: C8        INY
+C - - - - - 0x01A5CC 06:A5BC: C8        INY ; 02
 C - - - - - 0x01A5CD 06:A5BD: B1 1D     LDA (ram_001D),Y
 C - - - - - 0x01A5CF 06:A5BF: 85 2B     STA ram_002B
-C - - - - - 0x01A5D1 06:A5C1: C8        INY
+C - - - - - 0x01A5D1 06:A5C1: C8        INY ; 03
 C - - - - - 0x01A5D2 06:A5C2: B1 1D     LDA (ram_001D),Y
 C - - - - - 0x01A5D4 06:A5C4: 85 2C     STA ram_002C
-C - - - - - 0x01A5D6 06:A5C6: C8        INY
+C - - - - - 0x01A5D6 06:A5C6: C8        INY ; 04
 C - - - - - 0x01A5D7 06:A5C7: B1 1D     LDA (ram_001D),Y
 C - - - - - 0x01A5D9 06:A5C9: 85 1A     STA ram_001A
-C - - - - - 0x01A5DB 06:A5CB: C8        INY
+C - - - - - 0x01A5DB 06:A5CB: C8        INY ; 05
 C - - - - - 0x01A5DC 06:A5CC: B1 1D     LDA (ram_001D),Y
 C - - - - - 0x01A5DE 06:A5CE: 85 1B     STA ram_001B
-C - - - - - 0x01A5E0 06:A5D0: C8        INY
+C - - - - - 0x01A5E0 06:A5D0: C8        INY ; 06
 C - - - - - 0x01A5E1 06:A5D1: B1 1D     LDA (ram_001D),Y
 C - - - - - 0x01A5E3 06:A5D3: 85 1C     STA ram_001C
 C - - - - - 0x01A5E5 06:A5D5: AD 81 04  LDA ram_0481
@@ -8063,7 +7802,7 @@ C D 1 - - - 0x01A6C7 06:A6B7: 68        PLA
 C - - - - - 0x01A6C8 06:A6B8: 38        SEC
 C - - - - - 0x01A6C9 06:A6B9: E9 01     SBC #$01
 C - - - - - 0x01A6CB 06:A6BB: F0 03     BEQ bra_A6C0_RTS
-C - - - - - 0x01A6CD 06:A6BD: 4C 32 A5  JMP loc_A532
+C - - - - - 0x01A6CD 06:A6BD: 4C 32 A5  JMP loc_A532_loop
 bra_A6C0_RTS:
 C - - - - - 0x01A6D0 06:A6C0: 60        RTS
 
@@ -8072,78 +7811,81 @@ C - - - - - 0x01A6D0 06:A6C0: 60        RTS
 tbl_A6C1:   ; bzk optimize
 - D 1 - - - 0x01A6D1 06:A6C1: C3 A6     .word tbl_A6C3
 
+
+
 tbl_A6C3:
-; 00
+; see con_A6C3_draw
+; 00 door with linda (mission 00)
 - D 1 - I - 0x01A6D3 06:A6C3: 17 A7     .word _off025_A717_00
-- D 1 - I - 0x01A6D5 06:A6C5: 4F A7     .word ofs_A74F_00
-- D 1 - I - 0x01A6D7 06:A6C7: 06        .byte $06   ; 
-- D 1 - I - 0x01A6D8 06:A6C8: 03        .byte $03   ; 
+- D 1 - I - 0x01A6D5 06:A6C5: 4F A7     .word off_ppu_A74F_00
+- D 1 - I - 0x01A6D7 06:A6C7: 06        .byte $06   ; tiles counter
+- D 1 - I - 0x01A6D8 06:A6C8: 03        .byte $03   ; ppu addr counter
 - D 1 - I - 0x01A6D9 06:A6C9: 03        .byte $03   ; 
-; 01
+; 01 door with williams (mission 00)
 - D 1 - I - 0x01A6DA 06:A6CA: 17 A7     .word _off025_A717_01
-- D 1 - I - 0x01A6DC 06:A6CC: 57 A7     .word ofs_A757_01
-- D 1 - I - 0x01A6DE 06:A6CE: 06        .byte $06   ; 
-- D 1 - I - 0x01A6DF 06:A6CF: 03        .byte $03   ; 
+- D 1 - I - 0x01A6DC 06:A6CC: 57 A7     .word off_ppu_A757_01
+- D 1 - I - 0x01A6DE 06:A6CE: 06        .byte $06   ; tiles counter
+- D 1 - I - 0x01A6DF 06:A6CF: 03        .byte $03   ; ppu addr counter
 - D 1 - I - 0x01A6E0 06:A6D0: 03        .byte $03   ; 
-; 02
+; 02 helicopter blue door (mission 02)
 - D 1 - I - 0x01A6E1 06:A6D1: 1F A7     .word _off025_A71F_02
-- D 1 - I - 0x01A6E3 06:A6D3: 5F A7     .word ofs_A75F_02
-- D 1 - I - 0x01A6E5 06:A6D5: 07        .byte $07   ; 
-- D 1 - I - 0x01A6E6 06:A6D6: 01        .byte $01   ; 
+- D 1 - I - 0x01A6E3 06:A6D3: 5F A7     .word off_ppu_A75F_02
+- D 1 - I - 0x01A6E5 06:A6D5: 07        .byte $07   ; tiles counter
+- D 1 - I - 0x01A6E6 06:A6D6: 01        .byte $01   ; ppu addr counter
 - D 1 - I - 0x01A6E7 06:A6D7: 03        .byte $03   ; 
-; 03
+; 03 helicopter green door (mission 02)
 - D 1 - I - 0x01A6E8 06:A6D8: 27 A7     .word _off025_A727_03
-- D 1 - I - 0x01A6EA 06:A6DA: 63 A7     .word ofs_A763_03
-- D 1 - I - 0x01A6EC 06:A6DC: 07        .byte $07   ; 
-- D 1 - I - 0x01A6ED 06:A6DD: 03        .byte $03   ; 
+- D 1 - I - 0x01A6EA 06:A6DA: 63 A7     .word off_ppu_A763_03
+- D 1 - I - 0x01A6EC 06:A6DC: 07        .byte $07   ; tiles counter
+- D 1 - I - 0x01A6ED 06:A6DD: 03        .byte $03   ; ppu addr counter
 - D 1 - I - 0x01A6EE 06:A6DE: 03        .byte $03   ; 
-; 04
+; 04 entering elevator door (mission 03)
 - D 1 - I - 0x01A6EF 06:A6DF: 2F A7     .word _off025_A72F_04
-- D 1 - I - 0x01A6F1 06:A6E1: 6B A7     .word ofs_A76B_04
-- D 1 - I - 0x01A6F3 06:A6E3: 07        .byte $07   ; 
-- D 1 - I - 0x01A6F4 06:A6E4: 03        .byte $03   ; 
+- D 1 - I - 0x01A6F1 06:A6E1: 6B A7     .word off_ppu_A76B_04
+- D 1 - I - 0x01A6F3 06:A6E3: 07        .byte $07   ; tiles counter
+- D 1 - I - 0x01A6F4 06:A6E4: 03        .byte $03   ; ppu addr counter
 - D 1 - I - 0x01A6F5 06:A6E5: 03        .byte $03   ; 
-; 05
+; 05 leaving elevator door (mission 03)
 - D 1 - I - 0x01A6F6 06:A6E6: 2F A7     .word _off025_A72F_05
-- D 1 - I - 0x01A6F8 06:A6E8: 73 A7     .word ofs_A773_05
-- D 1 - I - 0x01A6FA 06:A6EA: 07        .byte $07   ; 
-- D 1 - I - 0x01A6FB 06:A6EB: 03        .byte $03   ; 
+- D 1 - I - 0x01A6F8 06:A6E8: 73 A7     .word off_ppu_A773_05
+- D 1 - I - 0x01A6FA 06:A6EA: 07        .byte $07   ; tiles counter
+- D 1 - I - 0x01A6FB 06:A6EB: 03        .byte $03   ; ppu addr counter
 - D 1 - I - 0x01A6FC 06:A6EC: 03        .byte $03   ; 
-; 06
+; 06 final door (mission 03)
 - D 1 - I - 0x01A6FD 06:A6ED: 2F A7     .word _off025_A72F_06
-- D 1 - I - 0x01A6FF 06:A6EF: 7B A7     .word ofs_A77B_06
-- D 1 - I - 0x01A701 06:A6F1: 07        .byte $07   ; 
-- D 1 - I - 0x01A702 06:A6F2: 03        .byte $03   ; 
+- D 1 - I - 0x01A6FF 06:A6EF: 7B A7     .word off_ppu_A77B_06
+- D 1 - I - 0x01A701 06:A6F1: 07        .byte $07   ; tiles counter
+- D 1 - I - 0x01A702 06:A6F2: 03        .byte $03   ; ppu addr counter
 - D 1 - I - 0x01A703 06:A6F3: 03        .byte $03   ; 
-; 07
+; 07 final door (mission 04)
 - D 1 - I - 0x01A704 06:A6F4: 2F A7     .word _off025_A72F_07
-- D 1 - I - 0x01A706 06:A6F6: 83 A7     .word ofs_A783_07
-- D 1 - I - 0x01A708 06:A6F8: 07        .byte $07   ; 
-- D 1 - I - 0x01A709 06:A6F9: 03        .byte $03   ; 
+- D 1 - I - 0x01A706 06:A6F6: 83 A7     .word off_ppu_A783_07
+- D 1 - I - 0x01A708 06:A6F8: 07        .byte $07   ; tiles counter
+- D 1 - I - 0x01A709 06:A6F9: 03        .byte $03   ; ppu addr counter
 - D 1 - I - 0x01A70A 06:A6FA: 03        .byte $03   ; 
-; 08
+; 08 wooden house door (mission 05)
 - D 1 - I - 0x01A70B 06:A6FB: 37 A7     .word _off025_A737_08
-- D 1 - I - 0x01A70D 06:A6FD: 8B A7     .word ofs_A78B_08
-- D 1 - I - 0x01A70F 06:A6FF: 06        .byte $06   ; 
-- D 1 - I - 0x01A710 06:A700: 03        .byte $03   ; 
+- D 1 - I - 0x01A70D 06:A6FD: 8B A7     .word off_ppu_A78B_08
+- D 1 - I - 0x01A70F 06:A6FF: 06        .byte $06   ; tiles counter
+- D 1 - I - 0x01A710 06:A700: 03        .byte $03   ; ppu addr counter
 - D 1 - I - 0x01A711 06:A701: 03        .byte $03   ; 
-; 09
+; 09 final door (mission 08)
 - D 1 - I - 0x01A712 06:A702: 3F A7     .word _off025_A73F_09
-- D 1 - I - 0x01A714 06:A704: 93 A7     .word ofs_A793_09
-- D 1 - I - 0x01A716 06:A706: 07        .byte $07   ; 
-- D 1 - I - 0x01A717 06:A707: 03        .byte $03   ; 
+- D 1 - I - 0x01A714 06:A704: 93 A7     .word off_ppu_A793_09
+- D 1 - I - 0x01A716 06:A706: 07        .byte $07   ; tiles counter
+- D 1 - I - 0x01A717 06:A707: 03        .byte $03   ; ppu addr counter
 - D 1 - I - 0x01A718 06:A708: 03        .byte $03   ; 
-; 0A
+; 0A final door (mission 0A)
 - D 1 - I - 0x01A719 06:A709: 3F A7     .word _off025_A73F_0A
-- D 1 - I - 0x01A71B 06:A70B: 93 A7     .word ofs_A793_0A
-- D 1 - I - 0x01A71D 06:A70D: 07        .byte $07   ; 
-- D 1 - I - 0x01A71E 06:A70E: 03        .byte $03   ; 
+- D 1 - I - 0x01A71B 06:A70B: 93 A7     .word off_ppu_A793_0A
+- D 1 - I - 0x01A71D 06:A70D: 07        .byte $07   ; tiles counter
+- D 1 - I - 0x01A71E 06:A70E: 03        .byte $03   ; ppu addr counter
 - D 1 - I - 0x01A71F 06:A70F: 03        .byte $03   ; 
-; 0B
+; 0B big eyes (mission 06)
 - D 1 - I - 0x01A720 06:A710: 47 A7     .word _off025_A747_0B
-- D 1 - I - 0x01A722 06:A712: 9B A7     .word ofs_A79B_0B
-- D 1 - I - 0x01A724 06:A714: 02        .byte $02   ; 
-- D 1 - I - 0x01A725 06:A715: 07        .byte $07   ; 
+- D 1 - I - 0x01A722 06:A712: 9B A7     .word off_ppu_A79B_0B
+- D 1 - I - 0x01A724 06:A714: 02        .byte $02   ; tiles counter
+- D 1 - I - 0x01A725 06:A715: 07        .byte $07   ; ppu addr counter
 - D 1 - I - 0x01A726 06:A716: 03        .byte $03   ; 
 
 
@@ -8197,120 +7939,74 @@ _off025_A747_0B:
 
 
 
-ofs_A74F_00:
-- D 1 - I - 0x01A75F 06:A74F: 21        .byte $21   ; 
-- D 1 - I - 0x01A760 06:A750: D0        .byte $D0   ; 
-- D 1 - I - 0x01A761 06:A751: 21        .byte $21   ; 
-- D 1 - I - 0x01A762 06:A752: D1        .byte $D1   ; 
-- D 1 - I - 0x01A763 06:A753: 21        .byte $21   ; 
-- D 1 - I - 0x01A764 06:A754: D2        .byte $D2   ; 
-- D 1 - I - 0x01A765 06:A755: 21        .byte $21   ; 
-- D 1 - I - 0x01A766 06:A756: D3        .byte $D3   ; 
+off_ppu_A74F_00:
+- D 1 - I - 0x01A75F 06:A74F: 21 D0     .dbyt $21D0 ; 00
+- D 1 - I - 0x01A761 06:A751: 21 D1     .dbyt $21D1 ; 01
+- D 1 - I - 0x01A763 06:A753: 21 D2     .dbyt $21D2 ; 02
+- D 1 - I - 0x01A765 06:A755: 21 D3     .dbyt $21D3 ; 03
 
-ofs_A757_01:
-- D 1 - I - 0x01A767 06:A757: 21        .byte $21   ; 
-- D 1 - I - 0x01A768 06:A758: 88        .byte $88   ; 
-- D 1 - I - 0x01A769 06:A759: 21        .byte $21   ; 
-- D 1 - I - 0x01A76A 06:A75A: 89        .byte $89   ; 
-- D 1 - I - 0x01A76B 06:A75B: 21        .byte $21   ; 
-- D 1 - I - 0x01A76C 06:A75C: 8A        .byte $8A   ; 
-- D 1 - I - 0x01A76D 06:A75D: 21        .byte $21   ; 
-- D 1 - I - 0x01A76E 06:A75E: 8B        .byte $8B   ; 
+off_ppu_A757_01:
+- D 1 - I - 0x01A767 06:A757: 21 88     .dbyt $2188 ; 00
+- D 1 - I - 0x01A769 06:A759: 21 89     .dbyt $2189 ; 01
+- D 1 - I - 0x01A76B 06:A75B: 21 8A     .dbyt $218A ; 02
+- D 1 - I - 0x01A76D 06:A75D: 21 8B     .dbyt $218B ; 03
 
-ofs_A75F_02:
-- D 1 - I - 0x01A76F 06:A75F: 29        .byte $29   ; 
-- D 1 - I - 0x01A770 06:A760: 46        .byte $46   ; 
-- D 1 - I - 0x01A771 06:A761: 29        .byte $29   ; 
-- D 1 - I - 0x01A772 06:A762: 65        .byte $65   ; 
+off_ppu_A75F_02:
+- D 1 - I - 0x01A76F 06:A75F: 29 46     .dbyt $2946 ; 00
+- D 1 - I - 0x01A771 06:A761: 29 65     .dbyt $2965 ; 01
 
-ofs_A763_03:
-- D 1 - I - 0x01A773 06:A763: 29        .byte $29   ; 
-- D 1 - I - 0x01A774 06:A764: 36        .byte $36   ; 
-- D 1 - I - 0x01A775 06:A765: 29        .byte $29   ; 
-- D 1 - I - 0x01A776 06:A766: 37        .byte $37   ; 
-- D 1 - I - 0x01A777 06:A767: 29        .byte $29   ; 
-- D 1 - I - 0x01A778 06:A768: 38        .byte $38   ; 
-- D 1 - I - 0x01A779 06:A769: 29        .byte $29   ; 
-- D 1 - I - 0x01A77A 06:A76A: 39        .byte $39   ; 
+off_ppu_A763_03:
+- D 1 - I - 0x01A773 06:A763: 29 36     .dbyt $2936 ; 00
+- D 1 - I - 0x01A775 06:A765: 29 37     .dbyt $2937 ; 01
+- D 1 - I - 0x01A777 06:A767: 29 38     .dbyt $2938 ; 02
+- D 1 - I - 0x01A779 06:A769: 29 39     .dbyt $2939 ; 03
 
-ofs_A76B_04:
-- D 1 - I - 0x01A77B 06:A76B: 29        .byte $29   ; 
-- D 1 - I - 0x01A77C 06:A76C: 78        .byte $78   ; 
-- D 1 - I - 0x01A77D 06:A76D: 29        .byte $29   ; 
-- D 1 - I - 0x01A77E 06:A76E: 79        .byte $79   ; 
-- D 1 - I - 0x01A77F 06:A76F: 29        .byte $29   ; 
-- D 1 - I - 0x01A780 06:A770: 7A        .byte $7A   ; 
-- D 1 - I - 0x01A781 06:A771: 29        .byte $29   ; 
-- D 1 - I - 0x01A782 06:A772: 7B        .byte $7B   ; 
+off_ppu_A76B_04:
+- D 1 - I - 0x01A77B 06:A76B: 29 78     .dbyt $2978 ; 00
+- D 1 - I - 0x01A77D 06:A76D: 29 79     .dbyt $2979 ; 01
+- D 1 - I - 0x01A77F 06:A76F: 29 7A     .dbyt $297A ; 02
+- D 1 - I - 0x01A781 06:A771: 29 7B     .dbyt $297B ; 03
 
-ofs_A773_05:
-- D 1 - I - 0x01A783 06:A773: 29        .byte $29   ; 
-- D 1 - I - 0x01A784 06:A774: 78        .byte $78   ; 
-- D 1 - I - 0x01A785 06:A775: 29        .byte $29   ; 
-- D 1 - I - 0x01A786 06:A776: 79        .byte $79   ; 
-- D 1 - I - 0x01A787 06:A777: 29        .byte $29   ; 
-- D 1 - I - 0x01A788 06:A778: 7A        .byte $7A   ; 
-- D 1 - I - 0x01A789 06:A779: 29        .byte $29   ; 
-- D 1 - I - 0x01A78A 06:A77A: 7B        .byte $7B   ; 
+off_ppu_A773_05:
+- D 1 - I - 0x01A783 06:A773: 29 78     .dbyt $2978 ; 00
+- D 1 - I - 0x01A785 06:A775: 29 79     .dbyt $2979 ; 01
+- D 1 - I - 0x01A787 06:A777: 29 7A     .dbyt $297A ; 02
+- D 1 - I - 0x01A789 06:A779: 29 7B     .dbyt $297B ; 03
 
-ofs_A77B_06:
-- D 1 - I - 0x01A78B 06:A77B: 29        .byte $29   ; 
-- D 1 - I - 0x01A78C 06:A77C: 7A        .byte $7A   ; 
-- D 1 - I - 0x01A78D 06:A77D: 29        .byte $29   ; 
-- D 1 - I - 0x01A78E 06:A77E: 7B        .byte $7B   ; 
-- D 1 - I - 0x01A78F 06:A77F: 29        .byte $29   ; 
-- D 1 - I - 0x01A790 06:A780: 7C        .byte $7C   ; 
-- D 1 - I - 0x01A791 06:A781: 29        .byte $29   ; 
-- D 1 - I - 0x01A792 06:A782: 7D        .byte $7D   ; 
+off_ppu_A77B_06:
+- D 1 - I - 0x01A78B 06:A77B: 29 7A     .dbyt $297A ; 00
+- D 1 - I - 0x01A78D 06:A77D: 29 7B     .dbyt $297B ; 01
+- D 1 - I - 0x01A78F 06:A77F: 29 7C     .dbyt $297C ; 02
+- D 1 - I - 0x01A791 06:A781: 29 7D     .dbyt $297D ; 03
 
-ofs_A783_07:
-- D 1 - I - 0x01A793 06:A783: 28        .byte $28   ; 
-- D 1 - I - 0x01A794 06:A784: 64        .byte $64   ; 
-- D 1 - I - 0x01A795 06:A785: 28        .byte $28   ; 
-- D 1 - I - 0x01A796 06:A786: 65        .byte $65   ; 
-- D 1 - I - 0x01A797 06:A787: 28        .byte $28   ; 
-- D 1 - I - 0x01A798 06:A788: 66        .byte $66   ; 
-- D 1 - I - 0x01A799 06:A789: 28        .byte $28   ; 
-- D 1 - I - 0x01A79A 06:A78A: 67        .byte $67   ; 
+off_ppu_A783_07:
+- D 1 - I - 0x01A793 06:A783: 28 64     .dbyt $2864 ; 00
+- D 1 - I - 0x01A795 06:A785: 28 65     .dbyt $2865 ; 01
+- D 1 - I - 0x01A797 06:A787: 28 66     .dbyt $2866 ; 02
+- D 1 - I - 0x01A799 06:A789: 28 67     .dbyt $2867 ; 03
 
-ofs_A78B_08:
-- D 1 - I - 0x01A79B 06:A78B: 20        .byte $20   ; 
-- D 1 - I - 0x01A79C 06:A78C: C6        .byte $C6   ; 
-- D 1 - I - 0x01A79D 06:A78D: 20        .byte $20   ; 
-- D 1 - I - 0x01A79E 06:A78E: C7        .byte $C7   ; 
-- D 1 - I - 0x01A79F 06:A78F: 20        .byte $20   ; 
-- D 1 - I - 0x01A7A0 06:A790: C8        .byte $C8   ; 
-- D 1 - I - 0x01A7A1 06:A791: 20        .byte $20   ; 
-- D 1 - I - 0x01A7A2 06:A792: C9        .byte $C9   ; 
+off_ppu_A78B_08:
+- D 1 - I - 0x01A79B 06:A78B: 20 C6     .dbyt $20C6 ; 00
+- D 1 - I - 0x01A79D 06:A78D: 20 C7     .dbyt $20C7 ; 01
+- D 1 - I - 0x01A79F 06:A78F: 20 C8     .dbyt $20C8 ; 02
+- D 1 - I - 0x01A7A1 06:A791: 20 C9     .dbyt $20C9 ; 03
 
-ofs_A793_09:
-ofs_A793_0A:
-- D 1 - I - 0x01A7A3 06:A793: 29        .byte $29   ; 
-- D 1 - I - 0x01A7A4 06:A794: 38        .byte $38   ; 
-- D 1 - I - 0x01A7A5 06:A795: 29        .byte $29   ; 
-- D 1 - I - 0x01A7A6 06:A796: 39        .byte $39   ; 
-- D 1 - I - 0x01A7A7 06:A797: 29        .byte $29   ; 
-- D 1 - I - 0x01A7A8 06:A798: 3A        .byte $3A   ; 
-- D 1 - I - 0x01A7A9 06:A799: 29        .byte $29   ; 
-- D 1 - I - 0x01A7AA 06:A79A: 3B        .byte $3B   ; 
+off_ppu_A793_09:
+off_ppu_A793_0A:
+- D 1 - I - 0x01A7A3 06:A793: 29 38     .dbyt $2938 ; 00
+- D 1 - I - 0x01A7A5 06:A795: 29 39     .dbyt $2939 ; 01
+- D 1 - I - 0x01A7A7 06:A797: 29 3A     .dbyt $293A ; 02
+- D 1 - I - 0x01A7A9 06:A799: 29 3B     .dbyt $293B ; 03
 
-ofs_A79B_0B:
-- D 1 - I - 0x01A7AB 06:A79B: 28        .byte $28   ; 
-- D 1 - I - 0x01A7AC 06:A79C: 8A        .byte $8A   ; 
-- D 1 - I - 0x01A7AD 06:A79D: 28        .byte $28   ; 
-- D 1 - I - 0x01A7AE 06:A79E: 8B        .byte $8B   ; 
-- D 1 - I - 0x01A7AF 06:A79F: 28        .byte $28   ; 
-- D 1 - I - 0x01A7B0 06:A7A0: 8C        .byte $8C   ; 
-- D 1 - I - 0x01A7B1 06:A7A1: 28        .byte $28   ; 
-- D 1 - I - 0x01A7B2 06:A7A2: 8D        .byte $8D   ; 
-- D 1 - I - 0x01A7B3 06:A7A3: 28        .byte $28   ; 
-- D 1 - I - 0x01A7B4 06:A7A4: 92        .byte $92   ; 
-- D 1 - I - 0x01A7B5 06:A7A5: 28        .byte $28   ; 
-- D 1 - I - 0x01A7B6 06:A7A6: 93        .byte $93   ; 
-- D 1 - I - 0x01A7B7 06:A7A7: 28        .byte $28   ; 
-- D 1 - I - 0x01A7B8 06:A7A8: 94        .byte $94   ; 
-- D 1 - I - 0x01A7B9 06:A7A9: 28        .byte $28   ; 
-- D 1 - I - 0x01A7BA 06:A7AA: 95        .byte $95   ; 
+off_ppu_A79B_0B:
+- D 1 - I - 0x01A7AB 06:A79B: 28 8A     .dbyt $288A ; 00
+- D 1 - I - 0x01A7AD 06:A79D: 28 8B     .dbyt $288B ; 01
+- D 1 - I - 0x01A7AF 06:A79F: 28 8C     .dbyt $288C ; 02
+- D 1 - I - 0x01A7B1 06:A7A1: 28 8D     .dbyt $288D ; 03
+- D 1 - I - 0x01A7B3 06:A7A3: 28 92     .dbyt $2892 ; 04
+- D 1 - I - 0x01A7B5 06:A7A5: 28 93     .dbyt $2893 ; 05
+- D 1 - I - 0x01A7B7 06:A7A7: 28 94     .dbyt $2894 ; 06
+- D 1 - I - 0x01A7B9 06:A7A9: 28 95     .dbyt $2895 ; 07
 
 
 
@@ -8484,102 +8180,51 @@ ofs_A887_00:
 ofs_A887_01:
 ofs_A887_02:
 ofs_A887_03:
-- D 1 - I - 0x01A897 06:A887: 00        .byte $00   ; 
-- D 1 - I - 0x01A898 06:A888: 00        .byte $00   ; 
-- D 1 - I - 0x01A899 06:A889: 00        .byte $00   ; 
-- D 1 - I - 0x01A89A 06:A88A: 00        .byte $00   ; 
-- D 1 - I - 0x01A89B 06:A88B: 00        .byte $00   ; 
-- D 1 - I - 0x01A89C 06:A88C: 00        .byte $00   ; 
-- D 1 - I - 0x01A89D 06:A88D: 00        .byte $00   ; 
+- D 1 - I - 0x01A897 06:A887: 00        .byte $00, $00, $00, $00, $00, $00, $00   ; 
+
+
+; bzk garbage
 - - - - - - 0x01A89E 06:A88E: 00        .byte $00   ; 
+
+
 
 ofs_A88F_00:
 ofs_A88F_01:
 ofs_A88F_02:
 ofs_A88F_03:
-- D 1 - I - 0x01A89F 06:A88F: 94        .byte $94   ; 
-- D 1 - I - 0x01A8A0 06:A890: A4        .byte $A4   ; 
-- D 1 - I - 0x01A8A1 06:A891: A4        .byte $A4   ; 
-- D 1 - I - 0x01A8A2 06:A892: A4        .byte $A4   ; 
-- D 1 - I - 0x01A8A3 06:A893: A4        .byte $A4   ; 
-- D 1 - I - 0x01A8A4 06:A894: B4        .byte $B4   ; 
+- D 1 - I - 0x01A89F 06:A88F: 94        .byte $94, $A4, $A4, $A4, $A4, $B4   ; 
 
 ofs_A895_01:
 ofs_A895_02:
 ofs_A895_03:
-- D 1 - I - 0x01A8A5 06:A895: 95        .byte $95   ; 
-- D 1 - I - 0x01A8A6 06:A896: CF        .byte $CF   ; 
-- D 1 - I - 0x01A8A7 06:A897: CF        .byte $CF   ; 
-- D 1 - I - 0x01A8A8 06:A898: CF        .byte $CF   ; 
-- D 1 - I - 0x01A8A9 06:A899: CF        .byte $CF   ; 
-- D 1 - I - 0x01A8AA 06:A89A: B5        .byte $B5   ; 
+- D 1 - I - 0x01A8A5 06:A895: 95        .byte $95, $CF, $CF, $CF, $CF, $B5   ; 
 
 ofs_A89B_03:
-- D 1 - I - 0x01A8AB 06:A89B: 96        .byte $96   ; 
-- D 1 - I - 0x01A8AC 06:A89C: A6        .byte $A6   ; 
-- D 1 - I - 0x01A8AD 06:A89D: A6        .byte $A6   ; 
-- D 1 - I - 0x01A8AE 06:A89E: A6        .byte $A6   ; 
-- D 1 - I - 0x01A8AF 06:A89F: A6        .byte $A6   ; 
-- D 1 - I - 0x01A8B0 06:A8A0: B6        .byte $B6   ; 
+- D 1 - I - 0x01A8AB 06:A89B: 96        .byte $96, $A6, $A6, $A6, $A6, $B6   ; 
 
 ofs_A8A1_00:
-- D 1 - I - 0x01A8B1 06:A8A1: 0E        .byte $0E   ; 
-- D 1 - I - 0x01A8B2 06:A8A2: 1E        .byte $1E   ; 
-- D 1 - I - 0x01A8B3 06:A8A3: 1E        .byte $1E   ; 
-- D 1 - I - 0x01A8B4 06:A8A4: 1E        .byte $1E   ; 
-- D 1 - I - 0x01A8B5 06:A8A5: 1E        .byte $1E   ; 
-- D 1 - I - 0x01A8B6 06:A8A6: 1E        .byte $1E   ; 
-- D 1 - I - 0x01A8B7 06:A8A7: 2E        .byte $2E   ; 
+- D 1 - I - 0x01A8B1 06:A8A1: 0E        .byte $0E, $1E, $1E, $1E, $1E, $1E, $2E   ; 
 
 ofs_A8A8_01:
 ofs_A8A8_00:
-- D 1 - I - 0x01A8B8 06:A8A8: 3E        .byte $3E   ; 
-- D 1 - I - 0x01A8B9 06:A8A9: 08        .byte $08   ; 
-- D 1 - I - 0x01A8BA 06:A8AA: 18        .byte $18   ; 
-- D 1 - I - 0x01A8BB 06:A8AB: 38        .byte $38   ; 
-- D 1 - I - 0x01A8BC 06:A8AC: CE        .byte $CE   ; 
-- D 1 - I - 0x01A8BD 06:A8AD: CE        .byte $CE   ; 
-- D 1 - I - 0x01A8BE 06:A8AE: 3F        .byte $3F   ; 
+- D 1 - I - 0x01A8B8 06:A8A8: 3E        .byte $3E, $08, $18, $38, $CE, $CE, $3F   ; 
 
 ofs_A8AF_02:
 ofs_A8AF_01:
 ofs_A8AF_00:
-- D 1 - I - 0x01A8BF 06:A8AF: 3E        .byte $3E   ; 
-- D 1 - I - 0x01A8C0 06:A8B0: 09        .byte $09   ; 
-- D 1 - I - 0x01A8C1 06:A8B1: 19        .byte $19   ; 
-- D 1 - I - 0x01A8C2 06:A8B2: CE        .byte $CE   ; 
-- D 1 - I - 0x01A8C3 06:A8B3: CE        .byte $CE   ; 
-- D 1 - I - 0x01A8C4 06:A8B4: CE        .byte $CE   ; 
-- D 1 - I - 0x01A8C5 06:A8B5: 3F        .byte $3F   ; 
+- D 1 - I - 0x01A8BF 06:A8AF: 3E        .byte $3E, $09, $19, $CE, $CE, $CE, $3F   ; 
 
 ofs_A8B6_03:
 ofs_A8B6_02:
 ofs_A8B6_01:
 ofs_A8B6_00:
-- D 1 - I - 0x01A8C6 06:A8B6: 0F        .byte $0F   ; 
-- D 1 - I - 0x01A8C7 06:A8B7: 1F        .byte $1F   ; 
-- D 1 - I - 0x01A8C8 06:A8B8: 1F        .byte $1F   ; 
-- D 1 - I - 0x01A8C9 06:A8B9: 9F        .byte $9F   ; 
-- D 1 - I - 0x01A8CA 06:A8BA: 1F        .byte $1F   ; 
-- D 1 - I - 0x01A8CB 06:A8BB: 1F        .byte $1F   ; 
-- D 1 - I - 0x01A8CC 06:A8BC: 2F        .byte $2F   ; 
+- D 1 - I - 0x01A8C6 06:A8B6: 0F        .byte $0F, $1F, $1F, $9F, $1F, $1F, $2F   ; 
 
 ofs_A8BD_00:
-- D 1 - I - 0x01A8CD 06:A8BD: 76        .byte $76   ; 
-- D 1 - I - 0x01A8CE 06:A8BE: 86        .byte $86   ; 
-- D 1 - I - 0x01A8CF 06:A8BF: 86        .byte $86   ; 
-- D 1 - I - 0x01A8D0 06:A8C0: 86        .byte $86   ; 
-- D 1 - I - 0x01A8D1 06:A8C1: 86        .byte $86   ; 
-- D 1 - I - 0x01A8D2 06:A8C2: 86        .byte $86   ; 
-- D 1 - I - 0x01A8D3 06:A8C3: 96        .byte $96   ; 
+- D 1 - I - 0x01A8CD 06:A8BD: 76        .byte $76, $86, $86, $86, $86, $86, $96   ; 
 
 ofs_A8C4_00:
-- D 1 - I - 0x01A8D4 06:A8C4: 14        .byte $14   ; 
-- D 1 - I - 0x01A8D5 06:A8C5: 24        .byte $24   ; 
-- D 1 - I - 0x01A8D6 06:A8C6: 24        .byte $24   ; 
-- D 1 - I - 0x01A8D7 06:A8C7: 24        .byte $24   ; 
-- D 1 - I - 0x01A8D8 06:A8C8: 24        .byte $24   ; 
-- D 1 - I - 0x01A8D9 06:A8C9: 34        .byte $34   ; 
+- D 1 - I - 0x01A8D4 06:A8C4: 14        .byte $14, $24, $24, $24, $24, $34   ; 
 
 
 
@@ -8650,79 +8295,39 @@ ofs_A8C4_00:
 ofs_A906_01:
 ofs_A906_02:
 ofs_A906_00:
-- D 1 - I - 0x01A916 06:A906: 9A        .byte $9A   ; 
-- D 1 - I - 0x01A917 06:A907: AA        .byte $AA   ; 
-- D 1 - I - 0x01A918 06:A908: AA        .byte $AA   ; 
-- D 1 - I - 0x01A919 06:A909: AA        .byte $AA   ; 
-- D 1 - I - 0x01A91A 06:A90A: AA        .byte $AA   ; 
-- D 1 - I - 0x01A91B 06:A90B: AA        .byte $AA   ; 
-- D 1 - I - 0x01A91C 06:A90C: BA        .byte $BA   ; 
+- D 1 - I - 0x01A916 06:A906: 9A        .byte $9A, $AA, $AA, $AA, $AA, $AA, $BA   ; 
 
 ofs_A90D_03:
 ofs_A90D_02:
 ofs_A90D_01:
 ofs_A90D_00:
-- D 1 - I - 0x01A91D 06:A90D: 9B        .byte $9B   ; 
-- D 1 - I - 0x01A91E 06:A90E: AB        .byte $AB   ; 
-- D 1 - I - 0x01A91F 06:A90F: AB        .byte $AB   ; 
-- D 1 - I - 0x01A920 06:A910: AB        .byte $AB   ; 
-- D 1 - I - 0x01A921 06:A911: AB        .byte $AB   ; 
-- D 1 - I - 0x01A922 06:A912: AB        .byte $AB   ; 
-- D 1 - I - 0x01A923 06:A913: BB        .byte $BB   ; 
+- D 1 - I - 0x01A91D 06:A90D: 9B        .byte $9B, $AB, $AB, $AB, $AB, $AB, $BB   ; 
 
 ofs_A914_01:
 ofs_A914_02:
 ofs_A914_00:
-- D 1 - I - 0x01A924 06:A914: 15        .byte $15   ; 
-- D 1 - I - 0x01A925 06:A915: 25        .byte $25   ; 
-- D 1 - I - 0x01A926 06:A916: 25        .byte $25   ; 
-- D 1 - I - 0x01A927 06:A917: 25        .byte $25   ; 
-- D 1 - I - 0x01A928 06:A918: 25        .byte $25   ; 
-- D 1 - I - 0x01A929 06:A919: 35        .byte $35   ; 
+- D 1 - I - 0x01A924 06:A914: 15        .byte $15, $25, $25, $25, $25, $35   ; 
 
 ofs_A91A_03:
 ofs_A91A_02:
 ofs_A91A_01:
 ofs_A91A_00:
-- D 1 - I - 0x01A92A 06:A91A: 16        .byte $16   ; 
-- D 1 - I - 0x01A92B 06:A91B: 26        .byte $26   ; 
-- D 1 - I - 0x01A92C 06:A91C: 26        .byte $26   ; 
-- D 1 - I - 0x01A92D 06:A91D: 26        .byte $26   ; 
-- D 1 - I - 0x01A92E 06:A91E: 26        .byte $26   ; 
-- D 1 - I - 0x01A92F 06:A91F: 36        .byte $36   ; 
+- D 1 - I - 0x01A92A 06:A91A: 16        .byte $16, $26, $26, $26, $26, $36   ; 
 
 ofs_A920_01:
 ofs_A920_00:
-- D 1 - I - 0x01A930 06:A920: 88        .byte $88   ; 
-- D 1 - I - 0x01A931 06:A921: CE        .byte $CE   ; 
-- D 1 - I - 0x01A932 06:A922: CE        .byte $CE   ; 
-- D 1 - I - 0x01A933 06:A923: CE        .byte $CE   ; 
-- D 1 - I - 0x01A934 06:A924: CE        .byte $CE   ; 
-- D 1 - I - 0x01A935 06:A925: CE        .byte $CE   ; 
-- D 1 - I - 0x01A936 06:A926: 98        .byte $98   ; 
+- D 1 - I - 0x01A930 06:A920: 88        .byte $88, $CE, $CE, $CE, $CE, $CE, $98   ; 
 
 ofs_A927_02:
 ofs_A927_01:
 ofs_A927_00:
-- D 1 - I - 0x01A937 06:A927: 88        .byte $88   ; 
-- D 1 - I - 0x01A938 06:A928: CE        .byte $CE   ; 
-- D 1 - I - 0x01A939 06:A929: 85        .byte $85   ; 
-- D 1 - I - 0x01A93A 06:A92A: CE        .byte $CE   ; 
-- D 1 - I - 0x01A93B 06:A92B: CE        .byte $CE   ; 
-- D 1 - I - 0x01A93C 06:A92C: CE        .byte $CE   ; 
-- D 1 - I - 0x01A93D 06:A92D: 98        .byte $98   ; 
+- D 1 - I - 0x01A937 06:A927: 88        .byte $88, $CE, $85, $CE, $CE, $CE, $98   ; 
 
 ofs_A92E_03:
 ofs_A92E_02:
 ofs_A92E_01:
 ofs_A92E_00:
-- D 1 - I - 0x01A93E 06:A92E: 77        .byte $77   ; 
-- D 1 - I - 0x01A93F 06:A92F: 87        .byte $87   ; 
-- D 1 - I - 0x01A940 06:A930: 87        .byte $87   ; 
-- D 1 - I - 0x01A941 06:A931: 87        .byte $87   ; 
-- D 1 - I - 0x01A942 06:A932: 87        .byte $87   ; 
-- D 1 - I - 0x01A943 06:A933: 87        .byte $87   ; 
-- D 1 - I - 0x01A944 06:A934: 97        .byte $97   ; 
+- D 1 - I - 0x01A93E 06:A92E: 77        .byte $77, $87, $87, $87, $87, $87, $97   ; 
 
 
 ; bzk garbage
@@ -8742,116 +8347,78 @@ ofs_A92E_00:
 
 
 ofs_A941_01:
-- D 1 - I - 0x01A951 06:A941: 1A        .byte $1A   ; 
-- D 1 - I - 0x01A952 06:A942: FF        .byte $FF   ; 
-- D 1 - I - 0x01A953 06:A943: FF        .byte $FF   ; 
-- D 1 - I - 0x01A954 06:A944: FF        .byte $FF   ; 
-- D 1 - I - 0x01A955 06:A945: FF        .byte $FF   ; 
-- D 1 - I - 0x01A956 06:A946: 5A        .byte $5A   ; 
-- D 1 - I - 0x01A957 06:A947: 6A        .byte $6A   ; 
+- D 1 - I - 0x01A951 06:A941: 1A        .byte $1A, $FF, $FF, $FF, $FF, $5A, $6A   ; 
 
 ofs_A948_00:
 ofs_A948_01:
-- D 1 - I - 0x01A958 06:A948: 0B        .byte $0B   ; 
-- D 1 - I - 0x01A959 06:A949: 1B        .byte $1B   ; 
-- D 1 - I - 0x01A95A 06:A94A: 1B        .byte $1B   ; 
-- D 1 - I - 0x01A95B 06:A94B: 1B        .byte $1B   ; 
-- D 1 - I - 0x01A95C 06:A94C: 1B        .byte $1B   ; 
-- D 1 - I - 0x01A95D 06:A94D: 1B        .byte $1B   ; 
-- D 1 - I - 0x01A95E 06:A94E: 5B        .byte $5B   ; 
+- D 1 - I - 0x01A958 06:A948: 0B        .byte $0B, $1B, $1B, $1B, $1B, $1B, $5B   ; 
 
 ofs_A94F_00:
 ofs_A94F_04:
-- D 1 - I - 0x01A95F 06:A94F: 0E        .byte $0E   ; 
-- D 1 - I - 0x01A960 06:A950: 1E        .byte $1E   ; 
+- D 1 - I - 0x01A95F 06:A94F: 0E        .byte $0E, $1E   ; 
 
 ofs_A951_01:
 ofs_A951_05:
-- D 1 - I - 0x01A961 06:A951: 0F        .byte $0F   ; 
-- D 1 - I - 0x01A962 06:A952: 1F        .byte $1F   ; 
+- D 1 - I - 0x01A961 06:A951: 0F        .byte $0F, $1F   ; 
 
 ofs_A953_02:
 ofs_A953_06:
-- D 1 - I - 0x01A963 06:A953: 0C        .byte $0C   ; 
-- D 1 - I - 0x01A964 06:A954: 1C        .byte $1C   ; 
+- D 1 - I - 0x01A963 06:A953: 0C        .byte $0C, $1C   ; 
 
 ofs_A955_03:
 ofs_A955_07:
-- D 1 - I - 0x01A965 06:A955: 0D        .byte $0D   ; 
-- D 1 - I - 0x01A966 06:A956: 1D        .byte $1D   ; 
+- D 1 - I - 0x01A965 06:A955: 0D        .byte $0D, $1D   ; 
 
 ofs_A957_00:
-- D 1 - I - 0x01A967 06:A957: 99        .byte $99   ; 
-- D 1 - I - 0x01A968 06:A958: A9        .byte $A9   ; 
-- D 1 - I - 0x01A969 06:A959: A9        .byte $A9   ; 
-- D 1 - I - 0x01A96A 06:A95A: A9        .byte $A9   ; 
-- D 1 - I - 0x01A96B 06:A95B: A9        .byte $A9   ; 
-- D 1 - I - 0x01A96C 06:A95C: A9        .byte $A9   ; 
-- D 1 - I - 0x01A96D 06:A95D: B9        .byte $B9   ; 
+- D 1 - I - 0x01A967 06:A957: 99        .byte $99, $A9, $A9, $A9, $A9, $A9, $B9   ; 
 
 ofs_A95E_00:
-- D 1 - I - 0x01A96E 06:A95E: A8        .byte $A8   ; 
-- D 1 - I - 0x01A96F 06:A95F: B8        .byte $B8   ; 
+- D 1 - I - 0x01A96E 06:A95E: A8        .byte $A8, $B8   ; 
 
 ofs_A960_01:
-- D 1 - I - 0x01A970 06:A960: A9        .byte $A9   ; 
-- D 1 - I - 0x01A971 06:A961: B9        .byte $B9   ; 
+- D 1 - I - 0x01A970 06:A960: A9        .byte $A9, $B9   ; 
 
 ofs_A962_02:
-- D 1 - I - 0x01A972 06:A962: AA        .byte $AA   ; 
-- D 1 - I - 0x01A973 06:A963: BA        .byte $BA   ; 
+- D 1 - I - 0x01A972 06:A962: AA        .byte $AA, $BA   ; 
 
 ofs_A964_03:
-- D 1 - I - 0x01A974 06:A964: AB        .byte $AB   ; 
-- D 1 - I - 0x01A975 06:A965: BB        .byte $BB   ; 
+- D 1 - I - 0x01A974 06:A964: AB        .byte $AB, $BB   ; 
 
 ofs_A966_04:
-- D 1 - I - 0x01A976 06:A966: 64        .byte $64   ; 
-- D 1 - I - 0x01A977 06:A967: 74        .byte $74   ; 
+- D 1 - I - 0x01A976 06:A966: 64        .byte $64, $74   ; 
 
 ofs_A968_05:
-- D 1 - I - 0x01A978 06:A968: 65        .byte $65   ; 
-- D 1 - I - 0x01A979 06:A969: 75        .byte $75   ; 
+- D 1 - I - 0x01A978 06:A968: 65        .byte $65, $75   ; 
 
 ofs_A96A_06:
-- D 1 - I - 0x01A97A 06:A96A: 66        .byte $66   ; 
-- D 1 - I - 0x01A97B 06:A96B: 76        .byte $76   ; 
+- D 1 - I - 0x01A97A 06:A96A: 66        .byte $66, $76   ; 
 
 ofs_A96C_07:
-- D 1 - I - 0x01A97C 06:A96C: 67        .byte $67   ; 
-- D 1 - I - 0x01A97D 06:A96D: 77        .byte $77   ; 
+- D 1 - I - 0x01A97C 06:A96C: 67        .byte $67, $77   ; 
 
 ofs_A96E_00:
-- D 1 - I - 0x01A97E 06:A96E: 88        .byte $88   ; 
-- D 1 - I - 0x01A97F 06:A96F: 98        .byte $98   ; 
+- D 1 - I - 0x01A97E 06:A96E: 88        .byte $88, $98   ; 
 
 ofs_A970_01:
-- D 1 - I - 0x01A980 06:A970: 89        .byte $89   ; 
-- D 1 - I - 0x01A981 06:A971: 99        .byte $99   ; 
+- D 1 - I - 0x01A980 06:A970: 89        .byte $89, $99   ; 
 
 ofs_A972_02:
-- D 1 - I - 0x01A982 06:A972: 8A        .byte $8A   ; 
-- D 1 - I - 0x01A983 06:A973: 9A        .byte $9A   ; 
+- D 1 - I - 0x01A982 06:A972: 8A        .byte $8A, $9A   ; 
 
 ofs_A974_03:
-- D 1 - I - 0x01A984 06:A974: 8B        .byte $8B   ; 
-- D 1 - I - 0x01A985 06:A975: 9B        .byte $9B   ; 
+- D 1 - I - 0x01A984 06:A974: 8B        .byte $8B, $9B   ; 
 
 ofs_A976_04:
-- D 1 - I - 0x01A986 06:A976: 44        .byte $44   ; 
-- D 1 - I - 0x01A987 06:A977: 54        .byte $54   ; 
+- D 1 - I - 0x01A986 06:A976: 44        .byte $44, $54   ; 
 
 ofs_A978_05:
-- D 1 - I - 0x01A988 06:A978: 45        .byte $45   ; 
-- D 1 - I - 0x01A989 06:A979: 55        .byte $55   ; 
+- D 1 - I - 0x01A988 06:A978: 45        .byte $45, $55   ; 
 
 ofs_A97A_06:
-- D 1 - I - 0x01A98A 06:A97A: 46        .byte $46   ; 
-- D 1 - I - 0x01A98B 06:A97B: 56        .byte $56   ; 
+- D 1 - I - 0x01A98A 06:A97A: 46        .byte $46, $56   ; 
 
 ofs_A97C_07:
-- D 1 - I - 0x01A98C 06:A97C: 47        .byte $47   ; 
-- D 1 - I - 0x01A98D 06:A97D: 57        .byte $57   ; 
+- D 1 - I - 0x01A98C 06:A97C: 47        .byte $47, $57   ; 
 
 
 ; bzk garbage
@@ -8899,12 +8466,12 @@ C - - - - - 0x01ABC0 06:ABB0: B5 BF     LDA ram_obj_id,X
 C - - - - - 0x01ABC2 06:ABB2: C9 1B     CMP #con_obj_jumping_spike
 C - - - - - 0x01ABC4 06:ABB4: F0 6B     BEQ bra_AC21_RTS
 C - - - - - 0x01ABC6 06:ABB6: BD 61 03  LDA ram_0361_obj,X
-C - - - - - 0x01ABC9 06:ABB9: C9 04     CMP #$04
+C - - - - - 0x01ABC9 06:ABB9: C9 04     CMP #con_0361_04
 C - - - - - 0x01ABCB 06:ABBB: F0 65     BEQ bra_AC22
 C - - - - - 0x01ABCD 06:ABBD: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01ABD0 06:ABC0: C9 04     CMP #$04
+C - - - - - 0x01ABD0 06:ABC0: C9 04     CMP #con_mission_id_04
 C - - - - - 0x01ABD2 06:ABC2: F0 20     BEQ bra_ABE4
-C - - - - - 0x01ABD4 06:ABC4: C9 07     CMP #$07
+C - - - - - 0x01ABD4 06:ABC4: C9 07     CMP #con_mission_id_07
 C - - - - - 0x01ABD6 06:ABC6: F0 08     BEQ bra_ABD0
 C - - - - - 0x01ABD8 06:ABC8: AD 9C 03  LDA ram_039C
 C - - - - - 0x01ABDB 06:ABCB: F0 54     BEQ bra_AC21_RTS
@@ -8913,11 +8480,11 @@ bra_ABD0:
 C - - - - - 0x01ABE0 06:ABD0: A9 01     LDA #$01
 C - - - - - 0x01ABE2 06:ABD2: 85 19     STA ram_0019
 C - - - - - 0x01ABE4 06:ABD4: BD 59 03  LDA ram_0359_obj,X
-C - - - - - 0x01ABE7 06:ABD7: C9 01     CMP #$01
+C - - - - - 0x01ABE7 06:ABD7: C9 01     CMP #con_0359_01
 C - - - - - 0x01ABE9 06:ABD9: F0 36     BEQ bra_AC11
-C - - - - - 0x01ABEB 06:ABDB: C9 02     CMP #$02
+C - - - - - 0x01ABEB 06:ABDB: C9 02     CMP #con_0359_02
 C - - - - - 0x01ABED 06:ABDD: F0 2A     BEQ bra_AC09
-C - - - - - 0x01ABEF 06:ABDF: C9 03     CMP #$03
+C - - - - - 0x01ABEF 06:ABDF: C9 03     CMP #con_0359_03
 C - - - - - 0x01ABF1 06:ABE1: F0 2E     BEQ bra_AC11
 C - - - - - 0x01ABF3 06:ABE3: 60        RTS
 bra_ABE4:
@@ -8936,7 +8503,7 @@ C - - - - - 0x01AC08 06:ABF8: E6 19     INC ram_0019
 bra_ABFA:
 C - - - - - 0x01AC0A 06:ABFA: BD 59 03  LDA ram_0359_obj,X
 C - - - - - 0x01AC0D 06:ABFD: F0 1A     BEQ bra_AC19
-C - - - - - 0x01AC0F 06:ABFF: C9 03     CMP #$03
+C - - - - - 0x01AC0F 06:ABFF: C9 03     CMP #con_0359_03
 C - - - - - 0x01AC11 06:AC01: D0 1E     BNE bra_AC21_RTS
 C - - - - - 0x01AC13 06:AC03: B5 92     LDA ram_pos_Y_lo,X
 C - - - - - 0x01AC15 06:AC05: C9 40     CMP #$40
@@ -8966,18 +8533,18 @@ C - - - - - 0x01AC35 06:AC25: C8        INY
 C - - - - - 0x01AC36 06:AC26: 84 19     STY ram_0019
 C - - - - - 0x01AC38 06:AC28: A0 00     LDY #$00
 C - - - - - 0x01AC3A 06:AC2A: BD 59 03  LDA ram_0359_obj,X
-C - - - - - 0x01AC3D 06:AC2D: C9 0A     CMP #$0A
+C - - - - - 0x01AC3D 06:AC2D: C9 0A     CMP #con_0359_0A
 C - - - - - 0x01AC3F 06:AC2F: F0 10     BEQ bra_AC41
-C - - - - - 0x01AC41 06:AC31: C8        INY
-C - - - - - 0x01AC42 06:AC32: C9 07     CMP #$07
+C - - - - - 0x01AC41 06:AC31: C8        INY ; 01
+C - - - - - 0x01AC42 06:AC32: C9 07     CMP #con_0359_07
 C - - - - - 0x01AC44 06:AC34: F0 0B     BEQ bra_AC41
-C - - - - - 0x01AC46 06:AC36: C8        INY
-C - - - - - 0x01AC47 06:AC37: C9 03     CMP #$03
+C - - - - - 0x01AC46 06:AC36: C8        INY ; 02
+C - - - - - 0x01AC47 06:AC37: C9 03     CMP #con_0359_03
 C - - - - - 0x01AC49 06:AC39: F0 06     BEQ bra_AC41
-C - - - - - 0x01AC4B 06:AC3B: C8        INY
-C - - - - - 0x01AC4C 06:AC3C: C9 01     CMP #$01
+C - - - - - 0x01AC4B 06:AC3B: C8        INY ; 03
+C - - - - - 0x01AC4C 06:AC3C: C9 01     CMP #con_0359_01
 C - - - - - 0x01AC4E 06:AC3E: F0 01     BEQ bra_AC41
-C - - - - - 0x01AC50 06:AC40: C8        INY
+C - - - - - 0x01AC50 06:AC40: C8        INY ; 04
 bra_AC41:
 C - - - - - 0x01AC51 06:AC41: B9 53 06  LDA ram_0653,Y
 C - - - - - 0x01AC54 06:AC44: 29 7F     AND #$7F
@@ -9031,31 +8598,31 @@ C - - - - - 0x01ACA4 06:AC94: 60        RTS
 
 tbl_AC95:
 ; 00
-- D 1 - - - 0x01ACA5 06:AC95: 9F        .byte $9F   ; pos_X_lo compparsion
+- D 1 - - - 0x01ACA5 06:AC95: 9F        .byte $9F   ; pos_X_lo comparsion
 - D 1 - - - 0x01ACA6 06:AC96: 00        .byte $00   ; 
 - D 1 - - - 0x01ACA7 06:AC97: 01        .byte $01   ; pos_X_lo add
 - D 1 - - - 0x01ACA8 06:AC98: 80        .byte $80   ; 
 - D 1 - - - 0x01ACA9 06:AC99: 00        .byte $00   ; pos_Y_lo add
 ; 01
-- D 1 - - - 0x01ACAA 06:AC9A: AF        .byte $AF   ; pos_X_lo compparsion
+- D 1 - - - 0x01ACAA 06:AC9A: AF        .byte $AF   ; pos_X_lo comparsion
 - D 1 - - - 0x01ACAB 06:AC9B: 00        .byte $00   ; 
 - D 1 - - - 0x01ACAC 06:AC9C: 01        .byte $01   ; pos_X_lo add
 - D 1 - - - 0x01ACAD 06:AC9D: 00        .byte $00   ; 
 - D 1 - - - 0x01ACAE 06:AC9E: 01        .byte $01   ; pos_Y_lo add
 ; 02
-- D 1 - - - 0x01ACAF 06:AC9F: BC        .byte $BC   ; pos_X_lo compparsion
+- D 1 - - - 0x01ACAF 06:AC9F: BC        .byte $BC   ; pos_X_lo comparsion
 - D 1 - - - 0x01ACB0 06:ACA0: 00        .byte $00   ; 
 - D 1 - - - 0x01ACB1 06:ACA1: 01        .byte $01   ; pos_X_lo add
 - D 1 - - - 0x01ACB2 06:ACA2: 80        .byte $80   ; 
 - D 1 - - - 0x01ACB3 06:ACA3: 01        .byte $01   ; 
 ; 03
-- D 1 - - - 0x01ACB4 06:ACA4: C4        .byte $C4   ; pos_X_lo compparsion
+- D 1 - - - 0x01ACB4 06:ACA4: C4        .byte $C4   ; pos_X_lo comparsion
 - D 1 - - - 0x01ACB5 06:ACA5: 00        .byte $00   ; 
 - D 1 - - - 0x01ACB6 06:ACA6: 00        .byte $00   ; pos_X_lo add
 - D 1 - - - 0x01ACB7 06:ACA7: 80        .byte $80   ; 
 - D 1 - - - 0x01ACB8 06:ACA8: 01        .byte $01   ; pos_Y_lo add
 ; 04
-- D 1 - - - 0x01ACB9 06:ACA9: D0        .byte $D0   ; pos_X_lo compparsion
+- D 1 - - - 0x01ACB9 06:ACA9: D0        .byte $D0   ; pos_X_lo comparsion
 - D 1 - - - 0x01ACBA 06:ACAA: 00        .byte $00   ; 
 - D 1 - - - 0x01ACBB 06:ACAB: FF        .byte $FF   ; pos_X_lo add
 - D 1 - - - 0x01ACBC 06:ACAC: 80        .byte $80   ; 
@@ -10002,9 +9569,9 @@ tbl_B1A5:
 
 sub_0x01B1C0:
 C - - - - - 0x01B1C0 06:B1B0: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01B1C3 06:B1B3: C9 08     CMP #$08
+C - - - - - 0x01B1C3 06:B1B3: C9 08     CMP #con_mission_id_08
 C - - - - - 0x01B1C5 06:B1B5: F0 07     BEQ bra_B1BE
-C - - - - - 0x01B1C7 06:B1B7: C9 0A     CMP #$0A
+C - - - - - 0x01B1C7 06:B1B7: C9 0A     CMP #con_mission_id_0A
 C - - - - - 0x01B1C9 06:B1B9: F0 03     BEQ bra_B1BE
 C - - - - - 0x01B1CB 06:B1BB: 4C 5C B2  JMP loc_B25C
 bra_B1BE:
@@ -10114,7 +9681,7 @@ tbl_B259:
 
 loc_B25C:
 C D 1 - - - 0x01B26C 06:B25C: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01B26F 06:B25F: C9 09     CMP #$09    ; stage with spinning gears
+C - - - - - 0x01B26F 06:B25F: C9 09     CMP #con_mission_id_09    ; mission with spinning gears
 C - - - - - 0x01B271 06:B261: F0 03     BEQ bra_B266
 C - - - - - 0x01B273 06:B263: 4C 75 B3  JMP loc_B375
 bra_B266:
@@ -10352,7 +9919,7 @@ off_B365_03:
 
 loc_B375:
 C D 1 - - - 0x01B385 06:B375: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01B388 06:B378: C9 03     CMP #$03
+C - - - - - 0x01B388 06:B378: C9 03     CMP #con_mission_id_03
 C - - - - - 0x01B38A 06:B37A: F0 03     BEQ bra_B37F
 C - - - - - 0x01B38C 06:B37C: 4C AF B5  JMP loc_B5AF
 bra_B37F:
@@ -10805,7 +10372,7 @@ C - - - - - 0x01B5BE 06:B5AE: 60        RTS
 
 loc_B5AF:
 C D 1 - - - 0x01B5BF 06:B5AF: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01B5C2 06:B5B2: C9 06     CMP #$06
+C - - - - - 0x01B5C2 06:B5B2: C9 06     CMP #con_mission_id_06
 C - - - - - 0x01B5C4 06:B5B4: F0 03     BEQ bra_B5B9
 C - - - - - 0x01B5C6 06:B5B6: 4C F5 B7  JMP loc_B7F5
 bra_B5B9:
@@ -11327,7 +10894,7 @@ tbl_B7EB:
 
 loc_B7F5:
 C D 1 - - - 0x01B805 06:B7F5: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01B808 06:B7F8: C9 07     CMP #$07
+C - - - - - 0x01B808 06:B7F8: C9 07     CMP #con_mission_id_07
 C - - - - - 0x01B80A 06:B7FA: F0 03     BEQ bra_B7FF
 C - - - - - 0x01B80C 06:B7FC: 4C F3 B8  JMP loc_B8F3
 bra_B7FF:
@@ -11539,7 +11106,7 @@ tbl_B8F0:
 
 loc_B8F3:
 C D 1 - - - 0x01B903 06:B8F3: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01B906 06:B8F6: C9 0E     CMP #$0E
+C - - - - - 0x01B906 06:B8F6: C9 0E     CMP #con_mission_id_0E
 C - - - - - 0x01B908 06:B8F8: F0 03     BEQ bra_B8FD
 C - - - - - 0x01B90A 06:B8FA: 4C 14 B9  JMP loc_B914_RTS
 bra_B8FD:
@@ -11845,7 +11412,7 @@ C - - - - - 0x01BA81 06:BA71: 48        PHA
 C - - - - - 0x01BA82 06:BA72: 8A        TXA
 C - - - - - 0x01BA83 06:BA73: 48        PHA
 C - - - - - 0x01BA84 06:BA74: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01BA87 06:BA77: C9 03     CMP #$03
+C - - - - - 0x01BA87 06:BA77: C9 03     CMP #con_mission_id_03
 C - - - - - 0x01BA89 06:BA79: D0 0E     BNE bra_BA89
 C - - - - - 0x01BA8B 06:BA7B: A5 D3     LDA ram_pos_Y_hi_cam
 C - - - - - 0x01BA8D 06:BA7D: D0 0A     BNE bra_BA89
@@ -12059,7 +11626,7 @@ C - - - - - 0x01BBBD 06:BBAD: 48        PHA
 C - - - - - 0x01BBBE 06:BBAE: 8A        TXA
 C - - - - - 0x01BBBF 06:BBAF: 48        PHA
 C - - - - - 0x01BBC0 06:BBB0: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01BBC3 06:BBB3: C9 05     CMP #$05
+C - - - - - 0x01BBC3 06:BBB3: C9 05     CMP #con_mission_id_05
 C - - - - - 0x01BBC5 06:BBB5: D0 51     BNE bra_BC08
 C - - - - - 0x01BBC7 06:BBB7: A5 D1     LDA ram_pos_X_hi_cam
 C - - - - - 0x01BBC9 06:BBB9: C9 03     CMP #$03
@@ -12129,11 +11696,12 @@ C - - - - - 0x01BC25 06:BC15: 48        PHA
 C - - - - - 0x01BC26 06:BC16: 8A        TXA
 C - - - - - 0x01BC27 06:BC17: 48        PHA
 C - - - - - 0x01BC28 06:BC18: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01BC2B 06:BC1B: C9 06     CMP #$06
+C - - - - - 0x01BC2B 06:BC1B: C9 06     CMP #con_mission_id_06
 C - - - - - 0x01BC2D 06:BC1D: F0 12     BEQ bra_BC31
-C - - - - - 0x01BC2F 06:BC1F: C9 02     CMP #$02
+C - - - - - 0x01BC2F 06:BC1F: C9 02     CMP #con_mission_id_02
 C - - - - - 0x01BC31 06:BC21: D0 03     BNE bra_BC26
-C - - - - - 0x01BC33 06:BC23: 4C DA BC  JMP loc_BCDA
+; mission 02
+C - - - - - 0x01BC33 06:BC23: 4C DA BC  JMP loc_BCDA_helicopter_green_door
 bra_BC26:
 C - - - - - 0x01BC36 06:BC26: A9 00     LDA #$00
 C - - - - - 0x01BC38 06:BC28: 8D 9C 03  STA ram_039C
@@ -12239,29 +11807,29 @@ tbl_BCCE_tractor_steam_config:
 ; 01
 - D 1 - - - 0x01BCDE 06:BCCE: 48        .byte $48   ; X_lo
 - D 1 - - - 0x01BCDF 06:BCCF: D0        .byte $D0   ; Z_lo
-- D 1 - - - 0x01BCE0 06:BCD0: 04        .byte $04   ; 
-- D 1 - - - 0x01BCE1 06:BCD1: 00        .byte $00   ; 
+- D 1 - - - 0x01BCE0 06:BCD0: 04        .byte con_0359_04   ; 
+- D 1 - - - 0x01BCE1 06:BCD1: 00        .byte con_0361_00   ; 
 ; 02
 - D 1 - - - 0x01BCE2 06:BCD2: 68        .byte $68   ; X_lo
 - D 1 - - - 0x01BCE3 06:BCD3: E0        .byte $E0   ; Z_lo
-- D 1 - - - 0x01BCE4 06:BCD4: 03        .byte $03   ; 
-- D 1 - - - 0x01BCE5 06:BCD5: 00        .byte $00   ; 
+- D 1 - - - 0x01BCE4 06:BCD4: 03        .byte con_0359_03   ; 
+- D 1 - - - 0x01BCE5 06:BCD5: 00        .byte con_0361_00   ; 
 ; 03
 - D 1 - - - 0x01BCE6 06:BCD6: 88        .byte $88   ; X_lo
 - D 1 - - - 0x01BCE7 06:BCD7: E0        .byte $E0   ; Z_lo
-- D 1 - - - 0x01BCE8 06:BCD8: 02        .byte $02   ; 
-- D 1 - - - 0x01BCE9 06:BCD9: 00        .byte $00   ; 
+- D 1 - - - 0x01BCE8 06:BCD8: 02        .byte con_0359_02   ; 
+- D 1 - - - 0x01BCE9 06:BCD9: 00        .byte con_0361_00   ; 
 
 
 
-loc_BCDA:
+loc_BCDA_helicopter_green_door:
 C D 1 - - - 0x01BCEA 06:BCDA: AD 34 00  LDA a: ram_game_mode
 C - - - - - 0x01BCED 06:BCDD: 29 20     AND #con_gm_20
 C - - - - - 0x01BCEF 06:BCDF: D0 E8     BNE bra_BCC9
-C - - - - - 0x01BCF1 06:BCE1: AD 24 04  LDA ram_0424
-C - - - - - 0x01BCF4 06:BCE4: C9 08     CMP #con_884D_08
+C - - - - - 0x01BCF1 06:BCE1: AD 24 04  LDA ram_mission_script
+C - - - - - 0x01BCF4 06:BCE4: C9 08     CMP #con_884D_script_08
 C - - - - - 0x01BCF6 06:BCE6: F0 33     BEQ bra_BD1B
-C - - - - - 0x01BCF8 06:BCE8: C9 81     CMP #con_884D_81
+C - - - - - 0x01BCF8 06:BCE8: C9 81     CMP #con_884D_script_81
 C - - - - - 0x01BCFA 06:BCEA: F0 2F     BEQ bra_BD1B
 C - - - - - 0x01BCFC 06:BCEC: AD A5 04  LDA ram_04A5_counter
 C - - - - - 0x01BCFF 06:BCEF: C9 40     CMP #$40
@@ -12272,7 +11840,7 @@ C - - - - - 0x01BD08 06:BCF8: C9 81     CMP #$81
 C - - - - - 0x01BD0A 06:BCFA: F0 CD     BEQ bra_BCC9
 C - - - - - 0x01BD0C 06:BCFC: A9 81     LDA #$81
 C - - - - - 0x01BD0E 06:BCFE: 8D 9D 03  STA ram_039D
-C - - - - - 0x01BD11 06:BD01: A9 83     LDA #$83
+C - - - - - 0x01BD11 06:BD01: A9 83     LDA #con_A6C3_draw_heli_green_door + $80
 C - - - - - 0x01BD13 06:BD03: 8D 80 04  STA ram_0480
 C - - - - - 0x01BD16 06:BD06: AD 81 04  LDA ram_0481
 C - - - - - 0x01BD19 06:BD09: 09 80     ORA #$80
@@ -12288,7 +11856,7 @@ C - - - - - 0x01BD2E 06:BD1E: C9 82     CMP #$82
 C - - - - - 0x01BD30 06:BD20: F0 A7     BEQ bra_BCC9
 C - - - - - 0x01BD32 06:BD22: A9 82     LDA #$82
 C - - - - - 0x01BD34 06:BD24: 8D 9D 03  STA ram_039D
-C - - - - - 0x01BD37 06:BD27: A9 83     LDA #$83
+C - - - - - 0x01BD37 06:BD27: A9 83     LDA #con_A6C3_draw_heli_green_door + $80
 C - - - - - 0x01BD39 06:BD29: 8D 80 04  STA ram_0480
 C - - - - - 0x01BD3C 06:BD2C: AD 81 04  LDA ram_0481
 C - - - - - 0x01BD3F 06:BD2F: 29 7F     AND #$7F
@@ -12307,11 +11875,11 @@ C - - - - - 0x01BD52 06:BD42: 48        PHA
 C - - - - - 0x01BD53 06:BD43: 8A        TXA
 C - - - - - 0x01BD54 06:BD44: 48        PHA
 C - - - - - 0x01BD55 06:BD45: AD 22 04  LDA ram_mission_hi
-C - - - - - 0x01BD58 06:BD48: C9 09     CMP #$09
+C - - - - - 0x01BD58 06:BD48: C9 09     CMP #con_mission_id_09
 C - - - - - 0x01BD5A 06:BD4A: F0 4E     BEQ bra_BD9A
-C - - - - - 0x01BD5C 06:BD4C: C9 06     CMP #$06
+C - - - - - 0x01BD5C 06:BD4C: C9 06     CMP #con_mission_id_06
 C - - - - - 0x01BD5E 06:BD4E: D0 03     BNE bra_BD53
-C - - - - - 0x01BD60 06:BD50: 4C 12 BE  JMP loc_BE12
+C - - - - - 0x01BD60 06:BD50: 4C 12 BE  JMP loc_BE12_big_eyes_on_bg
 bra_BD53:
 C - - - - - 0x01BD63 06:BD53: C9 0E     CMP #$0E
 C - - - - - 0x01BD65 06:BD55: D0 36     BNE bra_BD8D
@@ -12435,7 +12003,7 @@ tbl_BE0D_pos_X_lo:
 
 
 
-loc_BE12:
+loc_BE12_big_eyes_on_bg:
 C D 1 - - - 0x01BE22 06:BE12: A5 D1     LDA ram_pos_X_hi_cam
 C - - - - - 0x01BE24 06:BE14: D0 2C     BNE bra_BE42
 C - - - - - 0x01BE26 06:BE16: A5 D0     LDA ram_pos_X_lo_cam
@@ -12445,14 +12013,14 @@ C - - - - - 0x01BE2C 06:BE1C: AD A5 04  LDA ram_04A5_counter
 C - - - - - 0x01BE2F 06:BE1F: F0 14     BEQ bra_BE35
 C - - - - - 0x01BE31 06:BE21: C9 80     CMP #$80
 C - - - - - 0x01BE33 06:BE23: D0 1D     BNE bra_BE42
-C - - - - - 0x01BE35 06:BE25: A9 8B     LDA #$8B
+C - - - - - 0x01BE35 06:BE25: A9 8B     LDA #con_A6C3_draw_big_eyes + $80
 C - - - - - 0x01BE37 06:BE27: 8D 80 04  STA ram_0480
 C - - - - - 0x01BE3A 06:BE2A: AD 81 04  LDA ram_0481
 C - - - - - 0x01BE3D 06:BE2D: 29 7F     AND #$7F
 C - - - - - 0x01BE3F 06:BE2F: 8D 81 04  STA ram_0481
 C - - - - - 0x01BE42 06:BE32: 4C 42 BE  JMP loc_BE42
 bra_BE35:
-C - - - - - 0x01BE45 06:BE35: A9 8B     LDA #$8B
+C - - - - - 0x01BE45 06:BE35: A9 8B     LDA #con_A6C3_draw_big_eyes + $80
 C - - - - - 0x01BE47 06:BE37: 8D 80 04  STA ram_0480
 C - - - - - 0x01BE4A 06:BE3A: AD 81 04  LDA ram_0481
 C - - - - - 0x01BE4D 06:BE3D: 09 80     ORA #$80

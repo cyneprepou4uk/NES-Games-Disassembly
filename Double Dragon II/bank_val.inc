@@ -5,6 +5,7 @@
 ; MISC
 con_prg_bank                            = $00 ; 
 con_chr_bank                            = $00 ; 
+con_anim_id                             = $00 ; 
 con_damage                              = $00 ; 
 con_8648                                = $00 ; for 0x018658
 con_E2E6                                = $00 ; for 0x01E2F6
@@ -13,6 +14,7 @@ con_weapon_id                           = $12 ; weapons start from this value fo
 
 
 ; CONFIG
+; max mission id 0x01990B 0x019503
 con_hair_grab_max_hit_counter           = $03 ; 
 con_debug                               = $00 ; change bit5 and/or bit7 https://tcrf.net/Double_Dragon_II:_The_Revenge_(NES)#:~:text=Prerelease%20Info-,Debug%20Features,-There%20is%20a
 
@@ -51,7 +53,7 @@ con_gm_2_players                        = $80 ; 2 players if set
 
 ; ram_game_flags_1
 con_gf1_00                              = $00 ; 
-con_gf1_01                              = $01 ; final boss is defeated if set
+con_gf1_final_boss_defeated             = $01 ; final boss is defeated if set (if set during any mission, game ends immediately)
 con_gf1_02                              = $02 ; 
 con_gf1_04                              = $04 ; 
 ; con_gf1_08                            = $08 ; 
@@ -75,9 +77,96 @@ con_gf2_80                              = $80 ;
 
 
 
+; ram_mission_hi
+con_mission_id_00                       = $00 ; 
+con_mission_id_01                       = $01 ; 
+con_mission_id_02                       = $02 ; 
+con_mission_id_03                       = $03 ; 
+con_mission_id_04                       = $04 ; 
+con_mission_id_05                       = $05 ; 
+con_mission_id_06                       = $06 ; 
+con_mission_id_07                       = $07 ; 
+con_mission_id_08                       = $08 ; 
+con_mission_id_09                       = $09 ; 
+con_mission_id_0A                       = $0A ; 
+con_mission_id_0B                       = $0B ; 
+con_mission_id_0C                       = $0C ; 
+con_mission_id_0D                       = $0D ; 
+con_mission_id_0E                       = $0E ; 
+
+
+
+; ram_enemy_ai_template
+; need comments 0x01284E 0x01298E
+con_006C_00                             = $00 ; 
+con_006C_01                             = $01 ; 
+con_006C_02                             = $02 ; 
+con_006C_03                             = $03 ; 
+con_006C_04                             = $04 ; go for a lying weapon and pick it up
+con_006C_05                             = $05 ; 
+con_006C_06                             = $06 ; 
+con_006C_07                             = $07 ; 
+con_006C_08                             = $08 ; 
+; con_006C_09                           = $09 ; unused index 0x012774
+con_006C_0A                             = $0A ; 
+
+
+
+; ram_0359_obj
+; ram_0381_obj
+; need comments 0x01D185 0x018763 0x013EFC 0x0109EE 0x010513 0x0102DE
+; 0x0102C4 0x01026B 0x0101DA 0x0101AC 0x010140
+con_0359_00                             = $00 ; 
+con_0359_01                             = $01 ; 
+con_0359_02                             = $02 ; 
+con_0359_03                             = $03 ; 
+con_0359_04                             = $04 ; 
+con_0359_05                             = $05 ; 
+con_0359_06                             = $06 ; 
+con_0359_07                             = $07 ; 
+con_0359_08                             = $08 ; 
+con_0359_09                             = $09 ; 
+con_0359_0A                             = $0A ; 
+; con_0359_0B                           = $0B ; 
+con_0359_0C                             = $0C ; 
+con_0359_0D                             = $0D ; 
+con_0359_0E                             = $0E ; 
+con_0359_0F                             = $0F ; 
+con_0359_10                             = $10 ; 
+con_0359_11                             = $11 ; 
+; con_0359_12                           = $12 ; 
+con_0359_13                             = $13 ; 
+con_0359_14                             = $14 ; 
+; con_0359_15                           = $15 ; 
+; con_0359_16                           = $16 ; 
+; con_0359_17                           = $17 ; 
+con_0359_18                             = $18 ; 
+con_0359_19                             = $19 ; 
+con_0359_1A                             = $1A ; 
+con_0359_1B                             = $1B ; 
+con_0359_1C                             = $1C ; 
+con_0359_1D                             = $1D ; 
+
+
+
+; ram_0361_obj
+; need comments 0x010AAB 0x010A35 0x0105CC
+; 0x01055B 0x0102E3 0x010270 0x0101DF 0x0101B1 0x010145
+con_0361_00                             = $00 ; 
+con_0361_01                             = $01 ; falling into water?
+con_0361_02                             = $02 ; 
+con_0361_03                             = $03 ; 
+con_0361_04                             = $04 ; 
+con_0361_05                             = $05 ; 
+con_0361_06                             = $06 ; 
+con_0361_07                             = $07 ; 
+con_0361_08                             = $08 ; 
+
+
+
 ; ram_state
 ; need comments at 0x0080DA 0x00BA42 0x0180B4
-con_state_00                            = $00 ; 80 idle while standing
+con_state_idle                          = $00 ; 80 idle while standing
 con_state_walk                          = $01 ; 81 walking in any direction
 con_state_run                           = $02 ; 82 running (williams, ninja)
 con_state_ladder_climb_up               = $03 ; 83 climbing up on ladder
@@ -178,7 +267,7 @@ con_state_5F                            = $5F ; DF failed hair grabif you can't 
 ; con_state_62                          = $62 ; E2 
 ; con_state_63                          = $63 ; E3 
 ; con_state_64                          = $64 ; E4 
-con_state_65                            = $65 ; E5 weapon is on the ground (after it was falling)
+con_state_weapon_on_the_ground          = $65 ; E5 weapon is on the ground (after it was falling)
 con_state_66                            = $66 ; E6 fire grenade explodes
 con_state_67                            = $67 ; E7 dropping fire from torch explodes
 con_state_68                            = $68 ; E8 ninja knife was thrown
@@ -240,11 +329,11 @@ con_obj_flame_grenades                  = $16 ; throwing fire things
 con_obj_baton                           = $17 ; baton used by williams
 con_obj_18                              = $18 ; falling flame from torch?
 con_obj_19                              = $19 ; shuriken/throwing knife by ninja?
-con_obj_1A                              = $1A ; hit by knife/grenade animation? throwing boomerang by roper?
+con_obj_boomerang                       = $1A ; throwing boomerang by roper
 con_obj_jumping_spike                   = $1B ; jumping spikes?
 con_obj_fireball                        = $1C ; fireball by clone
 con_obj_1D                              = $1D ; helicopter bullets?
-con_obj_1E                              = $1E ; logo animation (maybe jumping spikes also, girl statue, white cursor hand, elevator?)
+con_obj_symbol_II                       = $1E ; symbol II at logo animation
 
 
 
@@ -338,7 +427,7 @@ con_sfx_fall_in_water                   = $43 ;
 con_sfx_44                              = $44 ; 
 con_sfx_45                              = $45 ; 
 con_sfx_fall_down                       = $46 ; 
-con_sfx_hand_cursor                     = $47 ; 
+con_sfx_hand_cursor                     = $47 ; white hnd cursor
 con_sfx_48                              = $48 ; 
 con_sfx_move_cursor                     = $49 ; 
 con_sfx_dissappear                      = $4A ; 
@@ -380,7 +469,7 @@ con_003C_02                             = $02 ; weapon/helicopter bullets
 ; con_003C_04                           = $04 ; 
 ; con_003C_08                           = $08 ; 
 con_003C_invisible                      = $10 ; invisible (used for shadow warrior, but can be applied to any object)
-con_003C_20                             = $20 ; hand cursor A0/enemy is spawned off screen and waiting for you A1/elevator A2
+con_003C_20                             = $20 ; wwhite hand cursor A0/enemy is spawned off screen and waiting for you A1/elevator A2
 con_003C_40                             = $40 ; 
 con_003C_80                             = $80 ; 
 
@@ -399,119 +488,236 @@ con_004A_80                             = $80 ;
 
 
 
-; mission script
-; index for 0x01885D 0x018F7D (ram_0424)
-con_884D_00                             = $00 ; 
-con_884D_white_hand_cursor              = $01 ; 
-con_884D_02                             = $02 ; 
-con_884D_03                             = $03 ; 
-con_884D_04                             = $04 ; 
-con_884D_05                             = $05 ; 
-con_884D_06                             = $06 ; 
-con_884D_07                             = $07 ; 
-con_884D_08                             = $08 ; 
-con_884D_09                             = $09 ; 
-con_884D_0A                             = $0A ; 
-con_884D_0B                             = $0B ; final boss defeated?
-con_884D_0C                             = $0C ; 
-con_884D_0D                             = $0D ; 
-con_884D_0E                             = $0E ; 
-con_884D_0F                             = $0F ; 
-con_884D_10                             = $10 ; 
-con_884D_11                             = $11 ; 
-con_884D_12                             = $12 ; 
-con_884D_13                             = $13 ; 
-con_884D_14                             = $14 ; 
-con_884D_15                             = $15 ; 
-con_884D_16                             = $16 ; 
-con_884D_17                             = $17 ; 
-con_884D_18                             = $18 ; 
-con_884D_19                             = $19 ; 
-con_884D_1A                             = $1A ; 
-con_884D_1B                             = $1B ; 
-con_884D_80                             = $80 ; 
-con_884D_81                             = $81 ; 
+; ram_mission_script
+; handlers 0x01885D 0x018F7D 0x018FB5
+con_884D_script_00                      = $00 ; 
+con_884D_script_hand_cursor             = $01 ; white hand cursor
+con_884D_script_02                      = $02 ; 
+con_884D_script_03                      = $03 ; 
+con_884D_script_enter_door              = $04 ; 
+con_884D_script_elevator_going_down     = $05 ; mission 03 only
+con_884D_script_06                      = $06 ; 
+con_884D_script_07                      = $07 ; 
+con_884D_script_08                      = $08 ; 
+con_884D_script_emeny_spawn_at_door     = $09 ; enemies spawn through the door
+con_884D_script_0A                      = $0A ; 
+con_884D_script_final_boss_defeated     = $0B ; final boss defeated? (mission 0E only)
+con_884D_script_0C                      = $0C ; 
+con_884D_script_0D                      = $0D ; 
+con_884D_script_0E                      = $0E ; 
+con_884D_script_0F                      = $0F ; 
+con_884D_script_10                      = $10 ; 
+con_884D_script_11                      = $11 ; 
+con_884D_script_12                      = $12 ; 
+con_884D_script_13                      = $13 ; 
+con_884D_script_14                      = $14 ; 
+con_884D_script_15                      = $15 ; 
+con_884D_script_16                      = $16 ; 
+con_884D_script_17                      = $17 ; 
+con_884D_script_18                      = $18 ; 
+con_884D_script_shadow_warrior          = $19 ; mission 0E only
+con_884D_script_1A                      = $1A ; 
+con_884D_script_1B                      = $1B ; 
+con_884D_script_80                      = $80 ; 
+con_884D_script_81                      = $81 ; 
+
+
+
+; for 0x019869
+con_9859_00                             = $00 ; mission 03
+con_9859_01                             = $01 ; mission 03
+con_9859_02                             = $02 ; mission 04
+con_9859_03                             = $03 ; mission 06
+con_9859_04                             = $04 ; mission 07
+con_9859_05                             = $05 ; mission 08
+con_9859_06                             = $06 ; mission 09
+con_9859_07                             = $07 ; mission 0A
+con_9859_08                             = $08 ; mission 0D
 
 
 
 ; for 0x00A49A
-con_A48A_00                             = $00 ; 
-con_A48A_01                             = $01 ; 
-con_A48A_02                             = $02 ; 
-con_A48A_03                             = $03 ; 
-con_A48A_04                             = $04 ; 
-con_A48A_05                             = $05 ; 
-con_A48A_06                             = $06 ; 
-con_A48A_07                             = $07 ; 
-con_A48A_08                             = $08 ; 
-con_A48A_09                             = $09 ; 
-con_A48A_0A                             = $0A ; 
-con_A48A_0B                             = $0B ; 
-con_A48A_0C                             = $0C ; 
-con_A48A_0D                             = $0D ; 
-con_A48A_0E                             = $0E ; 
-; con_A48A_0F                           = $0F ; unused, index not found
-; con_A48A_10                           = $10 ; unused, index not found
-con_A48A_11                             = $11 ; 
-con_A48A_12                             = $12 ; 
-con_A48A_13                             = $13 ; 
-con_A48A_14                             = $14 ; 
-con_A48A_15                             = $15 ; 
-con_A48A_16                             = $16 ; 
-con_A48A_17                             = $17 ; 
-con_A48A_18                             = $18 ; unused 0x008E57, state 37 is unused
-con_A48A_19                             = $19 ; 
-con_A48A_1A                             = $1A ; 
-con_A48A_1B                             = $1B ; 
-con_A48A_1C                             = $1C ; 
-con_A48A_1D                             = $1D ; 
-con_A48A_1E                             = $1E ; 
-con_A48A_1F                             = $1F ; 
-con_A48A_20                             = $20 ; 
-con_A48A_21                             = $21 ; 
-con_A48A_22                             = $22 ; 
-con_A48A_23                             = $23 ; 
-con_A48A_24                             = $24 ; 
-con_A48A_25                             = $25 ; 
-con_A48A_26                             = $26 ; 
-con_A48A_27                             = $27 ; 
-con_A48A_28                             = $28 ; 
-con_A48A_29                             = $29 ; 
-con_A48A_2A                             = $2A ; 
-con_A48A_2B                             = $2B ; 
-con_A48A_2C                             = $2C ; 
-con_A48A_2D                             = $2D ; 
-con_A48A_2E                             = $2E ; 
-con_A48A_2F                             = $2F ; 
-con_A48A_30                             = $30 ; 
-con_A48A_31                             = $31 ; 
-con_A48A_32                             = $32 ; 
-con_A48A_33                             = $33 ; 
-con_A48A_34                             = $34 ; 
-con_A48A_35                             = $35 ; 
-con_A48A_36                             = $36 ; 
-con_A48A_37                             = $37 ; 
-con_A48A_38                             = $38 ; 
-con_A48A_39                             = $39 ; 
-con_A48A_3A                             = $3A ; 
-con_A48A_3B                             = $3B ; 
-con_A48A_3C                             = $3C ; 
-con_A48A_3D                             = $3D ; 
-con_A48A_3E                             = $3E ; 
-con_A48A_3F                             = $3F ; 
+con_A48A_anim_00                        = $00 ; 
+con_A48A_anim_01                        = $01 ; 
+con_A48A_anim_02                        = $02 ; 
+con_A48A_anim_03                        = $03 ; 
+con_A48A_anim_04                        = $04 ; 
+con_A48A_anim_05                        = $05 ; 
+con_A48A_anim_06                        = $06 ; 
+con_A48A_anim_07                        = $07 ; 
+con_A48A_anim_08                        = $08 ; 
+con_A48A_anim_09                        = $09 ; 
+con_A48A_anim_0A                        = $0A ; 
+con_A48A_anim_0B                        = $0B ; 
+con_A48A_anim_0C                        = $0C ; 
+con_A48A_anim_0D                        = $0D ; 
+con_A48A_anim_0E                        = $0E ; 
+; con_A48A_anim_0F                      = $0F ; unused, index not found
+; con_A48A_anim_10                      = $10 ; unused, index not found
+con_A48A_anim_11                        = $11 ; 
+con_A48A_anim_12                        = $12 ; 
+con_A48A_anim_13                        = $13 ; 
+con_A48A_anim_14                        = $14 ; 
+con_A48A_anim_15                        = $15 ; 
+con_A48A_anim_16                        = $16 ; 
+con_A48A_anim_17                        = $17 ; 
+con_A48A_anim_18                        = $18 ; unused 0x008E57, state 37 is unused
+con_A48A_anim_19                        = $19 ; 
+con_A48A_anim_1A                        = $1A ; 
+con_A48A_anim_1B                        = $1B ; 
+con_A48A_anim_1C                        = $1C ; 
+con_A48A_anim_1D                        = $1D ; 
+con_A48A_anim_1E                        = $1E ; 
+con_A48A_anim_1F                        = $1F ; 
+con_A48A_anim_20                        = $20 ; 
+con_A48A_anim_21                        = $21 ; 
+con_A48A_anim_22                        = $22 ; 
+con_A48A_anim_23                        = $23 ; 
+con_A48A_anim_24                        = $24 ; 
+con_A48A_anim_25                        = $25 ; 
+con_A48A_anim_26                        = $26 ; 
+con_A48A_anim_27                        = $27 ; 
+con_A48A_anim_28                        = $28 ; 
+con_A48A_anim_29                        = $29 ; 
+con_A48A_anim_2A                        = $2A ; 
+con_A48A_anim_2B                        = $2B ; 
+con_A48A_anim_2C                        = $2C ; 
+con_A48A_anim_2D                        = $2D ; 
+con_A48A_anim_2E                        = $2E ; 
+con_A48A_anim_2F                        = $2F ; 
+con_A48A_anim_30                        = $30 ; 
+con_A48A_anim_31                        = $31 ; 
+con_A48A_anim_32                        = $32 ; 
+con_A48A_anim_33                        = $33 ; 
+con_A48A_anim_34                        = $34 ; 
+con_A48A_anim_35                        = $35 ; 
+con_A48A_anim_36                        = $36 ; 
+con_A48A_anim_37                        = $37 ; 
+con_A48A_anim_38                        = $38 ; 
+con_A48A_anim_39                        = $39 ; 
+con_A48A_anim_3A                        = $3A ; 
+con_A48A_anim_3B                        = $3B ; 
+con_A48A_anim_3C                        = $3C ; 
+con_A48A_anim_3D                        = $3D ; 
+con_A48A_anim_3E                        = $3E ; 
+con_A48A_anim_3F                        = $3F ; 
+
+
+
+; for 0x01C9E8
+con_CD20_00                             = $00 ; helicopter room (mission 02)
+con_CD20_01                             = $01 ; 
+con_CD20_02                             = $02 ; 
+con_CD20_03                             = $03 ; 
+con_CD20_04                             = $04 ; 
+con_CD20_05                             = $05 ; 
+con_CD20_06                             = $06 ; 
+con_CD20_07                             = $07 ; 
+con_CD20_08                             = $08 ; 
+con_CD20_09                             = $09 ; 
+con_CD20_0A                             = $0A ; 
+con_CD20_0B                             = $0B ; 
+con_CD20_0C                             = $0C ; 
+con_CD20_0D                             = $0D ; 
+con_CD20_0E                             = $0E ; 
+con_CD20_0F                             = $0F ; 
+con_CD20_10                             = $10 ; 
+con_CD20_11                             = $11 ; 
+con_CD20_12                             = $12 ; 
+con_CD20_13                             = $13 ; 
+con_CD20_14                             = $14 ; 
+con_CD20_15                             = $15 ; conveyor room with 2 doors (mission 04)
+con_CD20_16                             = $16 ; 
+con_CD20_17                             = $17 ; 
+con_CD20_18                             = $18 ; 
+con_CD20_19                             = $19 ; 
+con_CD20_1A                             = $1A ; 
+con_CD20_1B                             = $1B ; 
+con_CD20_1C                             = $1C ; 
+con_CD20_1D                             = $1D ; 
+con_CD20_1E                             = $1E ; 
+con_CD20_1F                             = $1F ; 
+con_CD20_20                             = $20 ; 
+con_CD20_21                             = $21 ; 
+con_CD20_22                             = $22 ; 
+con_CD20_23                             = $23 ; 
+con_CD20_24                             = $24 ; conveyor room (mission 07)
+con_CD20_25                             = $25 ; dissapearing floor (mission 08 and 0A)
+con_CD20_26                             = $26 ; room with spikes (mission 09)
+con_CD20_27                             = $27 ; boss room (mission 0B)
+con_CD20_28                             = $28 ; 
+con_CD20_29                             = $29 ; 
+con_CD20_2A                             = $2A ; 
+con_CD20_2B                             = $2B ; title screen
+con_CD20_2C                             = $2C ; 
+con_CD20_2D                             = $2D ; 
+con_CD20_2E                             = $2E ; 
+con_CD20_2F                             = $2F ; 
+con_CD20_30                             = $30 ; 
+con_CD20_31                             = $31 ; 
+con_CD20_32                             = $32 ; 
+con_CD20_33                             = $33 ; 
+con_CD20_34                             = $34 ; 
+con_CD20_35                             = $35 ; 
+con_CD20_36                             = $36 ; 
+con_CD20_37                             = $37 ; 
+con_CD20_38                             = $38 ; 
+con_CD20_39                             = $39 ; 
+con_CD20_3A                             = $3A ; 
+con_CD20_3B                             = $3B ; 
+con_CD20_3C                             = $3C ; 
+con_CD20_3D                             = $3D ; 
+con_CD20_3E                             = $3E ; 
+con_CD20_3F                             = $3F ; 
+con_CD20_40                             = $40 ; 
+con_CD20_41                             = $41 ; 
+con_CD20_42                             = $42 ; 
+con_CD20_43                             = $43 ; 
+con_CD20_44                             = $44 ; 
+con_CD20_45                             = $45 ; 
+con_CD20_46                             = $46 ; final cutscene if both players are alive
+con_CD20_47                             = $47 ; final cutscene if 2p is dead
+con_CD20_48                             = $48 ; final cutscene if 1p is dead
+con_CD20_49                             = $49 ; 
+con_CD20_4A                             = $4A ; 
+con_CD20_4B                             = $4B ; 
+con_CD20_4C                             = $4C ; 
+con_CD20_4D                             = $4D ; 
+con_CD20_4E                             = $4E ; 
+con_CD20_4F                             = $4F ; 
+con_CD20_50                             = $50 ; 
+con_CD20_51                             = $51 ; 
+con_CD20_52                             = $52 ; 
+con_CD20_53                             = $53 ; 
+
+
+
+; draw bg objects 0x01A6D3
+con_A6C3_draw_door_linda                = $00 ; door with linda (mission 00)
+con_A6C3_draw_door_williams             = $01 ; door with williams (mission 00)
+con_A6C3_draw_heli_blue_door            = $02 ; helicopter blue door (mission 02)
+con_A6C3_draw_heli_green_door           = $03 ; helicopter green door (mission 02)
+con_A6C3_draw_enter_elevator_door       = $04 ; entering elevator door (mission 03)
+con_A6C3_draw_leave_elevator_door       = $05 ; leaving elevator door (mission 03)
+con_A6C3_draw_final_door_03             = $06 ; final door (mission 03)
+con_A6C3_draw_final_door_04             = $07 ; final door (mission 04)
+con_A6C3_draw_wooden_house_door         = $08 ; wooden house door (mission 05)
+con_A6C3_draw_final_door_08             = $09 ; final door (mission 08)
+con_A6C3_draw_final_door_0A             = $0A ; final door (mission 0A)
+con_A6C3_draw_big_eyes                  = $0B ; big eyes (mission 06)
 
 
 
 ; screens for 0x01F719
-con_F709_00                             = $00 ; 
-con_F709_01                             = $01 ; 
-con_F709_02                             = $02 ; 
-; con_F709_03                           = $03 ; unused, index not found
-con_F709_04                             = $04 ; 
-; con_F709_05                           = $05 ; unused, index not found
-; con_F709_06                           = $06 ; unused, index not found
-; con_F709_07                           = $07 ; unused, index not found
-con_F709_08                             = $08 ; 
-con_F709_09                             = $09 ; 
-con_F709_0A                             = $0A ; 
-con_F709_0B                             = $0B ; sample version
+con_F709_screen_00                      = $00 ; 
+con_F709_screen_01                      = $01 ; 
+con_F709_screen_02                      = $02 ; 
+; con_F709_screen_03                    = $03 ; unused, index not found
+con_F709_screen_04                      = $04 ; 
+; con_F709_screen_05                    = $05 ; unused, index not found
+; con_F709_screen_06                    = $06 ; unused, index not found
+; con_F709_screen_07                    = $07 ; unused, index not found
+con_F709_screen_08                      = $08 ; 
+con_F709_screen_09                      = $09 ; 
+con_F709_screen_0A                      = $0A ; 
+con_F709_screen_0B                      = $0B ; sample version
