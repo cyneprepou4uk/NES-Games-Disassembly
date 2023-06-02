@@ -5774,13 +5774,13 @@ C - - - - - 0x00247B 00:E46B: 60        RTS
 
 
 
-tbl_E46C:   ; bzk same table as 0x0013E5
+tbl_E46C:   ; bzk optimize, same table as 0x0013E5
 - D 3 - - - 0x00247C 00:E46C: 00        .byte $00   ; 00
 - D 3 - - - 0x00247D 00:E46D: FF        .byte $FF   ; 01
 - D 3 - - - 0x00247E 00:E46E: 00        .byte $00   ; 02
 - D 3 - - - 0x00247F 00:E46F: 01        .byte $01   ; 03
 
-tbl_E470:   ; bzk same table as 0x0013E9
+tbl_E470:   ; bzk optimize, same table as 0x0013E9
 - D 3 - - - 0x002480 00:E470: FF        .byte $FF   ; 00
 - D 3 - - - 0x002481 00:E471: 00        .byte $00   ; 01
 - D 3 - - - 0x002482 00:E472: 01        .byte $01   ; 02
@@ -6949,13 +6949,13 @@ C - - - - - 0x002A58 00:EA48: 60        RTS
 
 
 
-tbl_EA49:   ; bzk same table as 0x0013E5
+tbl_EA49:   ; bzk optimize, same table as 0x0013E5
 - D 3 - - - 0x002A59 00:EA49: 00        .byte $00   ; 00
 - D 3 - - - 0x002A5A 00:EA4A: FF        .byte $FF   ; 01
 - D 3 - - - 0x002A5B 00:EA4B: 00        .byte $00   ; 02
 - D 3 - - - 0x002A5C 00:EA4C: 01        .byte $01   ; 03
 
-tbl_EA4D:   ; bzk same table as 0x0013E9
+tbl_EA4D:   ; bzk optimize, same table as 0x0013E9
 - D 3 - - - 0x002A5D 00:EA4D: FF        .byte $FF   ; 00
 - D 3 - - - 0x002A5E 00:EA4E: 00        .byte $00   ; 01
 - D 3 - - - 0x002A5F 00:EA4F: 01        .byte $01   ; 02
