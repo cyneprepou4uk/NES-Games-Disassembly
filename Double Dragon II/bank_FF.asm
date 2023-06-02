@@ -19,10 +19,10 @@
 .export sub_0x01CFD4
 .export sub_0x01D150_respawn_player
 .export sub_0x01D838_hide_unused_sprites
-.export sub_0x01D885
+.export sub_0x01D885_clear_graphics
 .export sub_0x01D97D
 .export sub_0x01DA03
-.export sub_0x01E224
+.export sub_0x01E224_create_black_screen
 .export sub_0x01E257
 .export sub_0x01E2F6
 .export sub_0x01EEDA
@@ -2302,7 +2302,7 @@ sub_CD20_draw_static_screen:
 C - - - - - 0x01CD30 07:CD20: 85 19     STA ram_0019
 C - - - - - 0x01CD32 07:CD22: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01CD35 07:CD25: 48        PHA
-C - - - - - 0x01CD36 07:CD26: 20 B0 FC  JSR sub_FCB0
+C - - - - - 0x01CD36 07:CD26: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 C - - - - - 0x01CD39 07:CD29: 20 98 FE  JSR sub_FE98_nmi_off
 C - - - - - 0x01CD3C 07:CD2C: A5 E9     LDA ram_for_2000
 C - - - - - 0x01CD3E 07:CD2E: 29 FB     AND #$FB
@@ -2316,6 +2316,7 @@ C - - - - - 0x01CD4F 07:CD3F: A0 09     LDY #$09
 C - - - - - 0x01CD51 07:CD41: B1 29     LDA (ram_0029),Y
 C - - - - - 0x01CD53 07:CD43: C9 06     CMP #$06
 C - - - - - 0x01CD55 07:CD45: 90 1F     BCC bra_CD66_00_05
+; 06+
 C - - - - - 0x01CD57 07:CD47: AA        TAX
 C - - - - - 0x01CD58 07:CD48: AD 98 04  LDA ram_chr_spr_1
 C - - - - - 0x01CD5B 07:CD4B: 48        PHA
@@ -2364,14 +2365,14 @@ C - - - - - 0x01CDAC 07:CD9C: 85 2B     STA ram_002B
 C - - - - - 0x01CDAE 07:CD9E: 85 19     STA ram_0019
 C - - - - - 0x01CDB0 07:CDA0: 20 C6 CD  JSR sub_CDC6_decompress_screen_from_ppu
 C - - - - - 0x01CDB3 07:CDA3: 20 A4 FE  JSR sub_FEA4_write_bg_chr_banks
-C - - - - - 0x01CDB6 07:CDA6: 68        PLA ; BFFF
+C - - - - - 0x01CDB6 07:CDA6: 68        PLA ; bank id
 C - - - - - 0x01CDB7 07:CDA7: 20 0D FF  JSR sub_FF0D_prg_bankswitch
 C - - - - - 0x01CDBA 07:CDAA: 20 DD FE  JSR sub_FEDD_write_spr_chr_banks
 C - - - - - 0x01CDBD 07:CDAD: A9 FF     LDA #$FF
 C - - - - - 0x01CDBF 07:CDAF: 8D 40 06  STA ram_0640
 C - - - - - 0x01CDC2 07:CDB2: A9 80     LDA #$80
 C - - - - - 0x01CDC4 07:CDB4: 8D 3F 06  STA ram_063F
-C - - - - - 0x01CDC7 07:CDB7: 20 B0 FC  JSR sub_FCB0
+C - - - - - 0x01CDC7 07:CDB7: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 C - - - - - 0x01CDCA 07:CDBA: A5 E8     LDA ram_for_2001
 C - - - - - 0x01CDCC 07:CDBC: 09 18     ORA #$18
 C - - - - - 0x01CDCE 07:CDBE: 85 E8     STA ram_for_2001
@@ -3752,7 +3753,7 @@ tbl_D5CB:
 
 
 
-sub_D640:
+sub_D640_EOR_16_bit:
 - - - - - - 0x01D650 07:D640: A5 29     LDA ram_0029
 - - - - - - 0x01D652 07:D642: 49 FF     EOR #$FF
 - - - - - - 0x01D654 07:D644: 18        CLC
@@ -3767,6 +3768,7 @@ sub_D640:
 
 
 loc_D652:
+; bzk garbage
 - - - - - - 0x01D662 07:D652: A5 19     LDA ram_0019
 - - - - - - 0x01D664 07:D654: 48        PHA
 - - - - - - 0x01D665 07:D655: A5 1A     LDA ram_001A
@@ -3827,7 +3829,7 @@ C - - - - - 0x01D6B2 07:D6A2: A9 00     LDA #$00
 C - - - - - 0x01D6B4 07:D6A4: 85 2D     STA ram_002D
 C - - - - - 0x01D6B6 07:D6A6: 85 2E     STA ram_002E
 C - - - - - 0x01D6B8 07:D6A8: 85 30     STA ram_0030
-loc_D6AA:
+loc_D6AA_loop:
 C D 2 - - - 0x01D6BA 07:D6AA: A5 2F     LDA ram_002F
 C - - - - - 0x01D6BC 07:D6AC: 05 30     ORA ram_0030
 C - - - - - 0x01D6BE 07:D6AE: F0 19     BEQ bra_D6C9
@@ -3845,7 +3847,7 @@ C - - - - - 0x01D6D0 07:D6C0: 85 2E     STA ram_002E
 bra_D6C2:
 C - - - - - 0x01D6D2 07:D6C2: 06 2F     ASL ram_002F
 C - - - - - 0x01D6D4 07:D6C4: 26 30     ROL ram_0030
-C - - - - - 0x01D6D6 07:D6C6: 4C AA D6  JMP loc_D6AA
+C - - - - - 0x01D6D6 07:D6C6: 4C AA D6  JMP loc_D6AA_loop
 bra_D6C9:
 C - - - - - 0x01D6D9 07:D6C9: 68        PLA
 C - - - - - 0x01D6DA 07:D6CA: 85 30     STA ram_0030
@@ -3872,7 +3874,7 @@ bra_D6ED:
 C - - - - - 0x01D6FD 07:D6ED: AD 40 06  LDA ram_0640
 C - - - - - 0x01D700 07:D6F0: 29 0F     AND #$0F
 C - - - - - 0x01D702 07:D6F2: D0 03     BNE bra_D6F7
-C - - - - - 0x01D704 07:D6F4: 20 41 D7  JSR sub_D741
+C - - - - - 0x01D704 07:D6F4: 20 41 D7  JSR sub_D741_palette
 bra_D6F7:
 C - - - - - 0x01D707 07:D6F7: AD 40 06  LDA ram_0640
 C - - - - - 0x01D70A 07:D6FA: 18        CLC
@@ -3895,7 +3897,7 @@ bra_D71E:
 C - - - - - 0x01D72E 07:D71E: AD 40 06  LDA ram_0640
 C - - - - - 0x01D731 07:D721: 29 0F     AND #$0F
 C - - - - - 0x01D733 07:D723: D0 03     BNE bra_D728
-C - - - - - 0x01D735 07:D725: 20 41 D7  JSR sub_D741
+C - - - - - 0x01D735 07:D725: 20 41 D7  JSR sub_D741_palette
 bra_D728:
 C - - - - - 0x01D738 07:D728: AD 40 06  LDA ram_0640
 C - - - - - 0x01D73B 07:D72B: 38        SEC
@@ -3913,7 +3915,7 @@ C D 2 - - - 0x01D750 07:D740: 60        RTS
 
 
 
-sub_D741:
+sub_D741_palette:
 C - - - - - 0x01D751 07:D741: AD 8F 04  LDA ram_pal_bg_new
 C - - - - - 0x01D754 07:D744: 8D 91 04  STA ram_pal_bg_current
 C - - - - - 0x01D757 07:D747: 0A        ASL
@@ -4048,6 +4050,7 @@ bra_D817:
 
 
 tbl_D826:
+; bzk garbage
 - - - - - - 0x01D836 07:D826: 86 04     .word ram_score_player
 
 
@@ -4070,7 +4073,18 @@ C - - - - - 0x01D84D 07:D83D: 60        RTS
 
 
 
-sub_D83E_hide_sprites:
+sub_D83E_hide_all_sprites:
+; bzk optimize
+;     LDX #$00
+;     LDA #$F0
+; bra_D842_loop:
+;     STA ram_oam,X
+;     INX
+;     INX
+;     INX
+;     INX
+;     BNE bra_D842_loop
+;     RTS
 C - - - - - 0x01D84E 07:D83E: A2 FC     LDX #$FC
 C - - - - - 0x01D850 07:D840: A9 F0     LDA #$F0
 loc_D842_loop:
@@ -4087,15 +4101,15 @@ C - - - - - 0x01D860 07:D850: 60        RTS
 
 
 
-sub_D851:
+sub_D851_clear_3_nametables:
 C - - - - - 0x01D861 07:D851: A9 20     LDA #$20
 C - - - - - 0x01D863 07:D853: A0 00     LDY #$00
 C - - - - - 0x01D865 07:D855: A2 00     LDX #$00
-C - - - - - 0x01D867 07:D857: 20 00 FD  JSR sub_FD00
+C - - - - - 0x01D867 07:D857: 20 00 FD  JSR sub_FD00_clear_nametable
 C - - - - - 0x01D86A 07:D85A: A9 24     LDA #$24
-C - - - - - 0x01D86C 07:D85C: 20 00 FD  JSR sub_FD00
+C - - - - - 0x01D86C 07:D85C: 20 00 FD  JSR sub_FD00_clear_nametable
 C - - - - - 0x01D86F 07:D85F: A9 28     LDA #$28
-C - - - - - 0x01D871 07:D861: 20 00 FD  JSR sub_FD00
+C - - - - - 0x01D871 07:D861: 20 00 FD  JSR sub_FD00_clear_nametable
 C - - - - - 0x01D874 07:D864: 60        RTS
 
 
@@ -4116,11 +4130,11 @@ C - - - - - 0x01D884 07:D874: 60        RTS
 
 
 
-sub_D875:
-sub_0x01D885:
+sub_D875_clear_graphics:
+sub_0x01D885_clear_graphics:
 C - - - - - 0x01D885 07:D875: 20 C3 FC  JSR sub_FCC3_clear_bg_and_spr_pattern
-C - - - - - 0x01D888 07:D878: 20 51 D8  JSR sub_D851
-C - - - - - 0x01D88B 07:D87B: 20 3E D8  JSR sub_D83E_hide_sprites
+C - - - - - 0x01D888 07:D878: 20 51 D8  JSR sub_D851_clear_3_nametables
+C - - - - - 0x01D88B 07:D87B: 20 3E D8  JSR sub_D83E_hide_all_sprites
 C - - - - - 0x01D88E 07:D87E: 20 42 FE  JSR sub_FE42_update_oam
 C - - - - - 0x01D891 07:D881: 60        RTS
 
@@ -4150,7 +4164,7 @@ bra_D88E:
 - - - - - - 0x01D8B9 07:D8A9: F5 80     SBC ram_pos_X_hi,X
 - - - - - - 0x01D8BB 07:D8AB: 85 2A     STA ram_002A
 - - - - - - 0x01D8BD 07:D8AD: 10 03     BPL bra_D8B2
-- - - - - - 0x01D8BF 07:D8AF: 20 40 D6  JSR sub_D640
+- - - - - - 0x01D8BF 07:D8AF: 20 40 D6  JSR sub_D640_EOR_16_bit
 bra_D8B2:
 - - - - - - 0x01D8C2 07:D8B2: 46 2A     LSR ram_002A
 - - - - - - 0x01D8C4 07:D8B4: 66 29     ROR ram_0029
@@ -4582,7 +4596,7 @@ C - - - - - 0x01DB51 07:DB41: A5 80     LDA ram_pos_X_hi
 C - - - - - 0x01DB53 07:DB43: E5 81     SBC ram_pos_X_hi + $01
 C - - - - - 0x01DB55 07:DB45: 85 FD     STA ram_00FD
 C - - - - - 0x01DB57 07:DB47: 10 03     BPL bra_DB4C
-C - - - - - 0x01DB59 07:DB49: 20 A3 DB  JSR sub_DBA3
+C - - - - - 0x01DB59 07:DB49: 20 A3 DB  JSR sub_DBA3_EOR_16_bit
 bra_DB4C:
 C - - - - - 0x01DB5C 07:DB4C: A5 FD     LDA ram_00FD
 C - - - - - 0x01DB5E 07:DB4E: D0 0F     BNE bra_DB5F
@@ -4617,7 +4631,7 @@ C - - - - - 0x01DB93 07:DB83: A5 FF     LDA ram_00FF
 C - - - - - 0x01DB95 07:DB85: E5 FD     SBC ram_00FD
 C - - - - - 0x01DB97 07:DB87: 85 FD     STA ram_00FD
 C - - - - - 0x01DB99 07:DB89: 10 03     BPL bra_DB8E
-C - - - - - 0x01DB9B 07:DB8B: 20 A3 DB  JSR sub_DBA3
+C - - - - - 0x01DB9B 07:DB8B: 20 A3 DB  JSR sub_DBA3_EOR_16_bit
 bra_DB8E:
 C - - - - - 0x01DB9E 07:DB8E: A5 FD     LDA ram_00FD
 C - - - - - 0x01DBA0 07:DB90: D0 0D     BNE bra_DB9F
@@ -4633,7 +4647,7 @@ C - - - - - 0x01DBB2 07:DBA2: 60        RTS
 
 
 
-sub_DBA3:
+sub_DBA3_EOR_16_bit:
 C - - - - - 0x01DBB3 07:DBA3: A5 FC     LDA ram_00FC
 C - - - - - 0x01DBB5 07:DBA5: 49 FF     EOR #$FF
 C - - - - - 0x01DBB7 07:DBA7: 18        CLC
@@ -5682,11 +5696,12 @@ tbl_E16C:
 
 
 
-sub_E214:
-sub_0x01E224:
-C - - - - - 0x01E224 07:E214: 20 B0 FC  JSR sub_FCB0
+sub_E214_create_black_screen:
+sub_0x01E224_create_black_screen:
+; disable everything + black palette
+C - - - - - 0x01E224 07:E214: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 C - - - - - 0x01E227 07:E217: 20 98 FE  JSR sub_FE98_nmi_off
-C - - - - - 0x01E22A 07:E21A: 20 98 E7  JSR sub_E798
+C - - - - - 0x01E22A 07:E21A: 20 98 E7  JSR sub_E798_disable_rendering
 C - - - - - 0x01E22D 07:E21D: AD 02 20  LDA $2002
 C - - - - - 0x01E230 07:E220: A9 3F     LDA #> $3F00
 C - - - - - 0x01E232 07:E222: 8D 06 20  STA $2006
@@ -6292,7 +6307,8 @@ _off020_E788_13:
 
 
 
-sub_E798:
+sub_E798_disable_rendering:
+; but leaving 2006 increment config intact
 C - - - - - 0x01E7A8 07:E798: A5 E9     LDA ram_for_2000
 C - - - - - 0x01E7AA 07:E79A: 29 FB     AND #$FB
 C - - - - - 0x01E7AC 07:E79C: 8D 00 20  STA $2000
@@ -6304,7 +6320,7 @@ C - - - - - 0x01E7B1 07:E7A1: 60        RTS
 sub_E7A2:
 C - - - - - 0x01E7B2 07:E7A2: AD FF BF  LDA $BFFF   ; bank id
 C - - - - - 0x01E7B5 07:E7A5: 48        PHA
-C - - - - - 0x01E7B6 07:E7A6: 20 3E D8  JSR sub_D83E_hide_sprites
+C - - - - - 0x01E7B6 07:E7A6: 20 3E D8  JSR sub_D83E_hide_all_sprites
 C - - - - - 0x01E7B9 07:E7A9: A9 FC     LDA #$FC
 C - - - - - 0x01E7BB 07:E7AB: 8D A7 04  STA ram_04A7
 C - - - - - 0x01E7BE 07:E7AE: A9 00     LDA #$00
@@ -7232,8 +7248,8 @@ C - - - - - 0x01ED30 07:ED20: A9 FF     LDA #$FF
 C - - - - - 0x01ED32 07:ED22: 8D 6B 06  STA ram_066B
 C - - - - - 0x01ED35 07:ED25: 20 75 F6  JSR sub_F675_clear_plr_buttons
 C - - - - - 0x01ED38 07:ED28: 20 98 FE  JSR sub_FE98_nmi_off
-C - - - - - 0x01ED3B 07:ED2B: 20 B0 FC  JSR sub_FCB0
-C - - - - - 0x01ED3E 07:ED2E: 20 75 D8  JSR sub_D875
+C - - - - - 0x01ED3B 07:ED2B: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
+C - - - - - 0x01ED3E 07:ED2E: 20 75 D8  JSR sub_D875_clear_graphics
 C - - - - - 0x01ED41 07:ED31: 20 98 FE  JSR sub_FE98_nmi_off
 C - - - - - 0x01ED44 07:ED34: 20 6B D8  JSR sub_D86B
 C - - - - - 0x01ED47 07:ED37: A2 34     LDX #$34
@@ -7396,12 +7412,12 @@ C - - - - - 0x01EE8B 07:EE7B: 20 98 FE  JSR sub_FE98_nmi_off
 C - - - - - 0x01EE8E 07:EE7E: 20 00 88  JSR sub_0x018810_prepare_mission_data
 C - - - - - 0x01EE91 07:EE81: 20 6B D8  JSR sub_D86B
 C - - - - - 0x01EE94 07:EE84: 20 C3 FC  JSR sub_FCC3_clear_bg_and_spr_pattern
-C - - - - - 0x01EE97 07:EE87: 20 3E D8  JSR sub_D83E_hide_sprites
+C - - - - - 0x01EE97 07:EE87: 20 3E D8  JSR sub_D83E_hide_all_sprites
 C - - - - - 0x01EE9A 07:EE8A: 20 20 C0  JSR sub_C020
 C - - - - - 0x01EE9D 07:EE8D: AD 8F 04  LDA ram_pal_bg_new
 C - - - - - 0x01EEA0 07:EE90: 8D 91 04  STA ram_pal_bg_current
-C - - - - - 0x01EEA3 07:EE93: 20 3E D8  JSR sub_D83E_hide_sprites
-C - - - - - 0x01EEA6 07:EE96: 20 B0 FC  JSR sub_FCB0
+C - - - - - 0x01EEA3 07:EE93: 20 3E D8  JSR sub_D83E_hide_all_sprites
+C - - - - - 0x01EEA6 07:EE96: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 C - - - - - 0x01EEA9 07:EE99: 20 42 FE  JSR sub_FE42_update_oam
 C - - - - - 0x01EEAC 07:EE9C: 20 98 FE  JSR sub_FE98_nmi_off
 C - - - - - 0x01EEAF 07:EE9F: 20 F3 D9  JSR sub_D9F3
@@ -7502,9 +7518,9 @@ C - - - - - 0x01EF3C 07:EF2C: 20 DD FE  JSR sub_FEDD_write_spr_chr_banks
 C - - - - - 0x01EF3F 07:EF2F: 20 98 FE  JSR sub_FE98_nmi_off
 C - - - - - 0x01EF42 07:EF32: A9 0E     LDA #$0E
 C - - - - - 0x01EF44 07:EF34: 8D 90 04  STA ram_pal_spr_new
-C - - - - - 0x01EF47 07:EF37: 20 B0 FC  JSR sub_FCB0
-C - - - - - 0x01EF4A 07:EF3A: 20 75 D8  JSR sub_D875
-C - - - - - 0x01EF4D 07:EF3D: 20 14 E2  JSR sub_E214
+C - - - - - 0x01EF47 07:EF37: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
+C - - - - - 0x01EF4A 07:EF3A: 20 75 D8  JSR sub_D875_clear_graphics
+C - - - - - 0x01EF4D 07:EF3D: 20 14 E2  JSR sub_E214_create_black_screen
 C - - - - - 0x01EF50 07:EF40: A9 2B     LDA #con_CD20_2B
 C - - - - - 0x01EF52 07:EF42: 20 20 CD  JSR sub_CD20_draw_static_screen
 C - - - - - 0x01EF55 07:EF45: 20 A9 F5  JSR sub_F5A9
@@ -7547,7 +7563,7 @@ C - - - - - 0x01EF95 07:EF85: 84 94     STY ram_pos_Y_lo + $02
 C - - - - - 0x01EF97 07:EF87: 20 C3 FC  JSR sub_FCC3_clear_bg_and_spr_pattern
 C - - - - - 0x01EF9A 07:EF8A: 20 33 FC  JSR sub_FC33
 C - - - - - 0x01EF9D 07:EF8D: 20 A2 E7  JSR sub_E7A2
-C - - - - - 0x01EFA0 07:EF90: 20 B0 FC  JSR sub_FCB0
+C - - - - - 0x01EFA0 07:EF90: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 C - - - - - 0x01EFA3 07:EF93: 20 42 FE  JSR sub_FE42_update_oam
 C - - - - - 0x01EFA6 07:EF96: 20 DA FC  JSR sub_FCDA
 C - - - - - 0x01EFA9 07:EF99: A9 40     LDA #con_nmi_0_irq_1
@@ -7563,7 +7579,7 @@ C - - - - - 0x01EFBB 07:EFAB: F0 16     BEQ bra_EFC3    ; jmp
 
 ; bzk garbage
 - - - - - - 0x01EFBD 07:EFAD: D0 14     BNE bra_EFC3
-- - - - - - 0x01EFBF 07:EFAF: 20 14 E2  JSR sub_E214
+- - - - - - 0x01EFBF 07:EFAF: 20 14 E2  JSR sub_E214_create_black_screen
 - - - - - - 0x01EFC2 07:EFB2: 20 CD FC  JSR sub_FCCD_set_bg_and_spr_pattern
 - - - - - - 0x01EFC5 07:EFB5: 20 BC F5  JSR sub_F5BC
 - - - - - - 0x01EFC8 07:EFB8: 20 8C FE  JSR sub_FE8C_nmi_on
@@ -7691,11 +7707,11 @@ C - - - - - 0x01F060 07:F050: F0 40     BEQ bra_F092_RTS    ; jmp
 - - - - - - 0x01F073 07:F063: 8D 90 04  STA ram_pal_spr_new
 - - - - - - 0x01F076 07:F066: A9 30     LDA #$30
 - - - - - - 0x01F078 07:F068: 8D 8F 04  STA ram_pal_bg_new
-- - - - - - 0x01F07B 07:F06B: 20 75 D8  JSR sub_D875
-- - - - - - 0x01F07E 07:F06E: 20 14 E2  JSR sub_E214
+- - - - - - 0x01F07B 07:F06B: 20 75 D8  JSR sub_D875_clear_graphics
+- - - - - - 0x01F07E 07:F06E: 20 14 E2  JSR sub_E214_create_black_screen
 - - - - - - 0x01F081 07:F071: A2 2C     LDX #con_chr_bank + $2C
 - - - - - - 0x01F083 07:F073: 20 88 F6  JSR sub_F688_set_chr_banks_2C_2F
-- - - - - - 0x01F086 07:F076: 20 B0 FC  JSR sub_FCB0
+- - - - - - 0x01F086 07:F076: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 - - - - - - 0x01F089 07:F079: 20 98 FE  JSR sub_FE98_nmi_off
 - - - - - - 0x01F08C 07:F07C: A9 08     LDA #con_F709_screen_08
 - - - - - - 0x01F08E 07:F07E: 20 9B F6  JSR sub_F69B_print_text
@@ -7721,10 +7737,10 @@ C - - - - - 0x01F0B2 07:F0A2: A9 00     LDA #$00
 C - - - - - 0x01F0B4 07:F0A4: 8D 90 04  STA ram_pal_spr_new
 C - - - - - 0x01F0B7 07:F0A7: A9 30     LDA #$30
 C - - - - - 0x01F0B9 07:F0A9: 8D 8F 04  STA ram_pal_bg_new
-C - - - - - 0x01F0BC 07:F0AC: 20 75 D8  JSR sub_D875
-C - - - - - 0x01F0BF 07:F0AF: 20 14 E2  JSR sub_E214
+C - - - - - 0x01F0BC 07:F0AC: 20 75 D8  JSR sub_D875_clear_graphics
+C - - - - - 0x01F0BF 07:F0AF: 20 14 E2  JSR sub_E214_create_black_screen
 C - - - - - 0x01F0C2 07:F0B2: 20 80 F6  JSR sub_F680_set_chr_banks_24_27
-C - - - - - 0x01F0C5 07:F0B5: 20 B0 FC  JSR sub_FCB0
+C - - - - - 0x01F0C5 07:F0B5: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 C - - - - - 0x01F0C8 07:F0B8: 20 98 FE  JSR sub_FE98_nmi_off
 C - - - - - 0x01F0CB 07:F0BB: A9 02     LDA #con_F709_screen_02
 C - - - - - 0x01F0CD 07:F0BD: 20 9B F6  JSR sub_F69B_print_text
@@ -7924,8 +7940,8 @@ C - - - - - 0x01F1BC 07:F1AC: A9 00     LDA #$00    ; con_music_off
 C - - - - - 0x01F1BE 07:F1AE: 8D BB 05  STA ram_05BB
 C - - - - - 0x01F1C1 07:F1B1: 8D BC 05  STA ram_05BC
 C - - - - - 0x01F1C4 07:F1B4: 20 10 FC  JSR sub_FC10_play_sound
-C - - - - - 0x01F1C7 07:F1B7: 20 75 D8  JSR sub_D875
-C - - - - - 0x01F1CA 07:F1BA: 20 14 E2  JSR sub_E214
+C - - - - - 0x01F1C7 07:F1B7: 20 75 D8  JSR sub_D875_clear_graphics
+C - - - - - 0x01F1CA 07:F1BA: 20 14 E2  JSR sub_E214_create_black_screen
 C - - - - - 0x01F1CD 07:F1BD: A9 00     LDA #$00
 C - - - - - 0x01F1CF 07:F1BF: 85 FC     STA ram_00FC
 C - - - - - 0x01F1D1 07:F1C1: 85 FD     STA ram_00FD
@@ -8019,7 +8035,7 @@ C - - - - - 0x01F26F 07:F25F: 29 10     AND #con_btn_Start
 C - - - - - 0x01F271 07:F261: F0 FA     BEQ bra_F25D_loop
 C - - - - - 0x01F273 07:F263: A9 00     LDA #con_music_off
 C - - - - - 0x01F275 07:F265: 20 10 FC  JSR sub_FC10_play_sound
-C - - - - - 0x01F278 07:F268: 20 75 D8  JSR sub_D875
+C - - - - - 0x01F278 07:F268: 20 75 D8  JSR sub_D875_clear_graphics
 C - - - - - 0x01F27B 07:F26B: 60        RTS
 
 
@@ -8099,10 +8115,10 @@ sub_F29C:
 - - - - - - 0x01F2BD 07:F2AD: 8D 90 04  STA ram_pal_spr_new
 - - - - - - 0x01F2C0 07:F2B0: A9 30     LDA #$30
 - - - - - - 0x01F2C2 07:F2B2: 8D 8F 04  STA ram_pal_bg_new
-- - - - - - 0x01F2C5 07:F2B5: 20 75 D8  JSR sub_D875
-- - - - - - 0x01F2C8 07:F2B8: 20 14 E2  JSR sub_E214
+- - - - - - 0x01F2C5 07:F2B5: 20 75 D8  JSR sub_D875_clear_graphics
+- - - - - - 0x01F2C8 07:F2B8: 20 14 E2  JSR sub_E214_create_black_screen
 - - - - - - 0x01F2CB 07:F2BB: 20 80 F6  JSR sub_F680_set_chr_banks_24_27
-- - - - - - 0x01F2CE 07:F2BE: 20 B0 FC  JSR sub_FCB0
+- - - - - - 0x01F2CE 07:F2BE: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 - - - - - - 0x01F2D1 07:F2C1: 20 98 FE  JSR sub_FE98_nmi_off
 - - - - - - 0x01F2D4 07:F2C4: AE 35 04  LDX ram_difficulty
 - - - - - - 0x01F2D7 07:F2C7: BD E7 F2  LDA tbl_F2E7,X
@@ -8146,8 +8162,8 @@ C - - - - - 0x01F30E 07:F2FE: A9 00     LDA #con_music_off
 C - - - - - 0x01F310 07:F300: 20 10 FC  JSR sub_FC10_play_sound
 C - - - - - 0x01F313 07:F303: 20 6B FD  JSR sub_FD6B_read_joy_regs
 C - - - - - 0x01F316 07:F306: 20 98 FE  JSR sub_FE98_nmi_off
-C - - - - - 0x01F319 07:F309: 20 75 D8  JSR sub_D875
-C - - - - - 0x01F31C 07:F30C: 20 14 E2  JSR sub_E214
+C - - - - - 0x01F319 07:F309: 20 75 D8  JSR sub_D875_clear_graphics
+C - - - - - 0x01F31C 07:F30C: 20 14 E2  JSR sub_E214_create_black_screen
 C - - - - - 0x01F31F 07:F30F: 20 80 F6  JSR sub_F680_set_chr_banks_24_27
 C - - - - - 0x01F322 07:F312: A9 04     LDA #con_F709_screen_04
 C - - - - - 0x01F324 07:F314: 20 9B F6  JSR sub_F69B_print_text
@@ -8159,7 +8175,7 @@ C - - - - - 0x01F331 07:F321: A9 AA     LDA #$AA
 C - - - - - 0x01F333 07:F323: 20 80 F4  JSR sub_F480
 C - - - - - 0x01F336 07:F326: 20 38 F6  JSR sub_F638
 C - - - - - 0x01F339 07:F329: 20 9B F3  JSR sub_F39B_move_heart_cursor
-C - - - - - 0x01F33C 07:F32C: 20 B0 FC  JSR sub_FCB0
+C - - - - - 0x01F33C 07:F32C: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 C - - - - - 0x01F33F 07:F32F: 20 E7 FC  JSR sub_FCE7
 C - - - - - 0x01F342 07:F332: 20 BC F5  JSR sub_F5BC
 C - - - - - 0x01F345 07:F335: A9 01     LDA #con_music_menu
@@ -8297,8 +8313,8 @@ C - - - - - 0x01F3F5 07:F3E5: A9 00     LDA #con_music_off
 C - - - - - 0x01F3F7 07:F3E7: 20 10 FC  JSR sub_FC10_play_sound
 C - - - - - 0x01F3FA 07:F3EA: 20 6B FD  JSR sub_FD6B_read_joy_regs
 C - - - - - 0x01F3FD 07:F3ED: 20 98 FE  JSR sub_FE98_nmi_off
-C - - - - - 0x01F400 07:F3F0: 20 75 D8  JSR sub_D875
-C - - - - - 0x01F403 07:F3F3: 20 14 E2  JSR sub_E214
+C - - - - - 0x01F400 07:F3F0: 20 75 D8  JSR sub_D875_clear_graphics
+C - - - - - 0x01F403 07:F3F3: 20 14 E2  JSR sub_E214_create_black_screen
 C - - - - - 0x01F406 07:F3F6: 20 80 F6  JSR sub_F680_set_chr_banks_24_27
 C - - - - - 0x01F409 07:F3F9: A0 01     LDY #con_F709_screen_01
 C - - - - - 0x01F40B 07:F3FB: A9 00     LDA #$00
@@ -8314,7 +8330,7 @@ C - - - - - 0x01F41C 07:F40C: 8D 8F 04  STA ram_pal_bg_new
 C - - - - - 0x01F41F 07:F40F: A9 AA     LDA #$AA
 C - - - - - 0x01F421 07:F411: 20 80 F4  JSR sub_F480
 C - - - - - 0x01F424 07:F414: 20 38 F6  JSR sub_F638
-C - - - - - 0x01F427 07:F417: 20 B0 FC  JSR sub_FCB0
+C - - - - - 0x01F427 07:F417: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 C - - - - - 0x01F42A 07:F41A: 20 E7 FC  JSR sub_FCE7
 C - - - - - 0x01F42D 07:F41D: 20 BC F5  JSR sub_F5BC
 C - - - - - 0x01F430 07:F420: A9 01     LDA #con_music_menu
@@ -8384,7 +8400,7 @@ C - - - - - 0x01F497 07:F487: 9D BD 05  STA ram_bg_attr_buffer,X
 C - - - - - 0x01F49A 07:F48A: CA        DEX
 C - - - - - 0x01F49B 07:F48B: 10 FA     BPL bra_F487_loop
 bra_F48D_loop:
-C - - - - - 0x01F49D 07:F48D: 20 B0 FC  JSR sub_FCB0
+C - - - - - 0x01F49D 07:F48D: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 C - - - - - 0x01F4A0 07:F490: 20 70 C6  JSR sub_C670_write_buffer_to_ppu
 C - - - - - 0x01F4A3 07:F493: 20 96 C5  JSR sub_C596
 C - - - - - 0x01F4A6 07:F496: AD BB 05  LDA ram_05BB
@@ -8568,7 +8584,7 @@ C - - - - - 0x01F5BC 07:F5AC: A2 08     LDX #$08
 bra_F5AE_loop:
 C - - - - - 0x01F5BE 07:F5AE: 8A        TXA
 C - - - - - 0x01F5BF 07:F5AF: 48        PHA
-C - - - - - 0x01F5C0 07:F5B0: 20 B0 FC  JSR sub_FCB0
+C - - - - - 0x01F5C0 07:F5B0: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 C - - - - - 0x01F5C3 07:F5B3: 20 70 C6  JSR sub_C670_write_buffer_to_ppu
 C - - - - - 0x01F5C6 07:F5B6: 68        PLA
 C - - - - - 0x01F5C7 07:F5B7: AA        TAX
@@ -8587,7 +8603,7 @@ bra_F5C3_loop:
 C - - - - - 0x01F5D3 07:F5C3: 98        TYA
 C - - - - - 0x01F5D4 07:F5C4: 48        PHA
 bra_F5C5_loop:
-C - - - - - 0x01F5D5 07:F5C5: 20 B0 FC  JSR sub_FCB0
+C - - - - - 0x01F5D5 07:F5C5: 20 B0 FC  JSR sub_FCB0_prepare_to_disable_interrupts
 C - - - - - 0x01F5D8 07:F5C8: 20 42 FE  JSR sub_FE42_update_oam
 C - - - - - 0x01F5DB 07:F5CB: 20 70 C6  JSR sub_C670_write_buffer_to_ppu
 C - - - - - 0x01F5DE 07:F5CE: 20 D0 D6  JSR sub_D6D0
@@ -8732,7 +8748,7 @@ C - - - - - 0x01F6AD 07:F69D: BD 09 F7  LDA tbl_F709_text,X
 C - - - - - 0x01F6B0 07:F6A0: 85 29     STA ram_0029
 C - - - - - 0x01F6B2 07:F6A2: BD 0A F7  LDA tbl_F709_text + $01,X
 C - - - - - 0x01F6B5 07:F6A5: 85 2A     STA ram_002A
-C - - - - - 0x01F6B7 07:F6A7: 20 98 E7  JSR sub_E798
+C - - - - - 0x01F6B7 07:F6A7: 20 98 E7  JSR sub_E798_disable_rendering
 C - - - - - 0x01F6BA 07:F6AA: A0 00     LDY #$00
 loc_F6AC_loop:
 C D 3 - - - 0x01F6BC 07:F6AC: AD 02 20  LDA $2002
@@ -9236,7 +9252,7 @@ C D 3 - - - 0x01FB69 07:FB59: A9 00     LDA #con_music_off
 C - - - - - 0x01FB6B 07:FB5B: 20 10 FC  JSR sub_FC10_play_sound
 C - - - - - 0x01FB6E 07:FB5E: 20 98 FE  JSR sub_FE98_nmi_off
 C - - - - - 0x01FB71 07:FB61: 78        SEI
-C - - - - - 0x01FB72 07:FB62: 20 75 D8  JSR sub_D875
+C - - - - - 0x01FB72 07:FB62: 20 75 D8  JSR sub_D875_clear_graphics
 C - - - - - 0x01FB75 07:FB65: 60        RTS
 
 
@@ -9550,7 +9566,7 @@ C - - - - - 0x01FCBC 07:FCAC: 4C 1F FC  JMP loc_FC1F_restore_prg_bank
 
 
 
-sub_FCB0:
+sub_FCB0_prepare_to_disable_interrupts:
 C - - - - - 0x01FCC0 07:FCB0: 48        PHA
 C - - - - - 0x01FCC1 07:FCB1: A5 EC     LDA ram_nmi_flag
 C - - - - - 0x01FCC3 07:FCB3: 48        PHA
@@ -9618,7 +9634,7 @@ C - - - - - 0x01FCFB 07:FCEB: D0 DA     BNE bra_FCC7    ; jmp
 
 
 
-sub_FD00:
+sub_FD00_clear_nametable:
 C - - - - - 0x01FD10 07:FD00: 85 04     STA ram_0004
 C - - - - - 0x01FD12 07:FD02: 86 05     STX ram_0005
 C - - - - - 0x01FD14 07:FD04: 84 06     STY ram_0006

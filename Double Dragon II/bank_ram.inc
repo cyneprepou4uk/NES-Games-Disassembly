@@ -2321,12 +2321,12 @@ ram_ppu_buffer                          = $04B1 ; 00A95F 00A973 00A9E3 00AA86 00
 
 
 
-; 
+; something to do with ppu buffers?
 ram_05B1                                = $05B1 ; 00A85C 00A861 01B673 01C395 01C39A 01C5A6 01C5BA 01C5C5 01C5EE 01C5FE 01CDD2 01F492 01FD6B 
 
 
 
-; 
+; something opposite of ram_003A?
 ram_05B2                                = $05B2 ; 00A81B 00A820 01C12E 01FD6B 
 
 

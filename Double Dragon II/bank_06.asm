@@ -3645,7 +3645,7 @@ C - - - - - 0x019510 06:9500: 20 10 FC  JSR sub_0x01FC20_play_sound
 C - - - - - 0x019513 06:9503: 20 98 FE  JSR sub_0x01FEA8_nmi_off
 C - - - - - 0x019516 06:9506: 78        SEI
 C - - - - - 0x019517 06:9507: 20 C3 FC  JSR sub_0x01FCD3_clear_bg_and_spr_pattern
-C - - - - - 0x01951A 06:950A: 20 75 D8  JSR sub_0x01D885
+C - - - - - 0x01951A 06:950A: 20 75 D8  JSR sub_0x01D885_clear_graphics
 C - - - - - 0x01951D 06:950D: 20 28 D8  JSR sub_0x01D838_hide_unused_sprites
 C - - - - - 0x019520 06:9510: 20 97 FA  JSR sub_0x01FAA7
 C - - - - - 0x019523 06:9513: 20 00 88  JSR sub_8800_prepare_mission_data
@@ -3656,7 +3656,7 @@ C - - - - - 0x01952F 06:951F: AD 8F 04  LDA ram_pal_bg_new
 C - - - - - 0x019532 06:9522: 8D 91 04  STA ram_pal_bg_current
 C - - - - - 0x019535 06:9525: AD 90 04  LDA ram_pal_spr_new
 C - - - - - 0x019538 06:9528: 8D 92 04  STA ram_pal_spr_current
-C - - - - - 0x01953B 06:952B: 20 14 E2  JSR sub_0x01E224
+C - - - - - 0x01953B 06:952B: 20 14 E2  JSR sub_0x01E224_create_black_screen
 C - - - - - 0x01953E 06:952E: A9 00     LDA #$00
 C - - - - - 0x019540 06:9530: 8D F0 00  STA a: ram_00F0
 C - - - - - 0x019543 06:9533: 8D EA 00  STA a: ram_for_E00x     ; disable irq
