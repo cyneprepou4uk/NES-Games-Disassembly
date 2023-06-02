@@ -59,7 +59,7 @@ con_gf1_04                              = $04 ;
 ; con_gf1_08                            = $08 ; 
 con_gf1_10                              = $10 ; 
 con_gf1_20                              = $20 ; during main menu?
-con_gf1_40                              = $40 ; enable continues if set (gets set at 0x018F1E when you lose all your lives, changed at continue screen during oprion select)
+con_gf1_40                              = $40 ; enable continues if set (gets set at 0x018F1E when you lose all your lives, changed at continue screen during option select)
 con_gf1_pause                           = $80 ; pause if set
 
 

@@ -348,6 +348,7 @@ C - - - - - 0x0181C6 06:81B6: 60        RTS
 
 
 sub_81B7:
+; bzk optimize, 0x0181DA and 0x0181EF have common code
 C - - - - - 0x0181C7 06:81B7: BC 2C 04  LDY ram_042C_plr_direction,X
 C - - - - - 0x0181CA 06:81BA: B9 EC 81  LDA tbl_81EC,Y
 C - - - - - 0x0181CD 06:81BD: 9D 0F 03  STA ram_obj_direction,X
@@ -388,7 +389,7 @@ C - - - - - 0x0181FB 06:81EB: 60        RTS
 tbl_81EC:
 ;     01
 ;   08  02
-; 07      03
+; 07  00  03
 ;   06  04
 ;     05
 - D 0 - - - 0x0181FC 06:81EC: 00        .byte $00   ; 00
@@ -406,7 +407,7 @@ tbl_81EC:
 tbl_81F5:
 ;     01
 ;   08  02
-; 07      03
+; 07  00  03
 ;   06  04
 ;     05
 - D 0 - - - 0x018205 06:81F5: 00        .byte $00   ; 00
@@ -424,7 +425,7 @@ tbl_81F5:
 tbl_81FE:
 ;     01
 ;   08  02
-; 07      03
+; 07  00  03
 ;   06  04
 ;     05
 - D 0 - - - 0x01820E 06:81FE: FF        .byte $FF   ; 00
@@ -475,7 +476,7 @@ C - - - - - 0x01824C 06:823C: B5 E2     LDA ram_btn_hold,X
 C - - - - - 0x01824E 06:823E: 29 C0     AND #con_btns_AB
 C - - - - - 0x018250 06:8240: C9 C0     CMP #con_btns_AB
 C - - - - - 0x018252 06:8242: D0 0E     BNE bra_8252_RTS
-C - - - - - 0x018254 06:8244: A0 06     LDY #$06
+C - - - - - 0x018254 06:8244: A0 06     LDY #con_state_jump_up
 C - - - - - 0x018256 06:8246: B5 E2     LDA ram_btn_hold,X
 C - - - - - 0x018258 06:8248: 29 03     AND #con_btn_Right + con_btn_Left
 C - - - - - 0x01825A 06:824A: F0 02     BEQ bra_824E
@@ -514,15 +515,17 @@ bra_827C_RTS:
 C - - - - - 0x01828C 06:827C: 60        RTS
 
 
-; bzk optimize
+
 tbl_827D:
+; bzk optimizem same bytes
 - D 0 - - - 0x01828D 06:827D: 02        .byte $02   ; 00 easy
 - D 0 - - - 0x01828E 06:827E: 02        .byte $02   ; 01 normal
 - D 0 - - - 0x01828F 06:827F: 02        .byte $02   ; 02 difficult
 
 
-; bzk optimize
+
 tbl_8280:
+; bzk optimizem same bytes
 - D 0 - - - 0x018290 06:8280: 01        .byte $01   ; 00 easy
 - D 0 - - - 0x018291 06:8281: 01        .byte $01   ; 01 normal
 - D 0 - - - 0x018292 06:8282: 01        .byte $01   ; 02 difficult
@@ -542,7 +545,7 @@ C - - - - - 0x0182A6 06:8296: A0 3B     LDY #con_state_uppercut_sudden
 C - - - - - 0x0182A8 06:8298: 0A        ASL
 C - - - - - 0x0182A9 06:8299: 0A        ASL
 C - - - - - 0x0182AA 06:829A: 90 10     BCC bra_82AC_RTS
-C - - - - - 0x0182AC 06:829C: B5 55     LDA ram_animation_length,X
+C - - - - - 0x0182AC 06:829C: B5 55     LDA ram_animation_duration,X
 C - - - - - 0x0182AE 06:829E: AE 35 04  LDX ram_difficulty
 C - - - - - 0x0182B1 06:82A1: DD C5 82  CMP tbl_82C5,X
 C - - - - - 0x0182B4 06:82A4: F0 02     BEQ bra_82A8
@@ -556,7 +559,7 @@ bra_82AD:
 C - - - - - 0x0182BD 06:82AD: B5 E2     LDA ram_btn_hold,X
 C - - - - - 0x0182BF 06:82AF: 29 03     AND #con_btn_Right + con_btn_Left
 C - - - - - 0x0182C1 06:82B1: F0 11     BEQ bra_82C4_RTS
-C - - - - - 0x0182C3 06:82B3: B5 55     LDA ram_animation_length,X
+C - - - - - 0x0182C3 06:82B3: B5 55     LDA ram_animation_duration,X
 C - - - - - 0x0182C5 06:82B5: AE 35 04  LDX ram_difficulty
 C - - - - - 0x0182C8 06:82B8: DD C8 82  CMP tbl_82C8,X
 C - - - - - 0x0182CB 06:82BB: 90 07     BCC bra_82C4_RTS
