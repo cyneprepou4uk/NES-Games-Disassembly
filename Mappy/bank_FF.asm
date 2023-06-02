@@ -3651,61 +3651,55 @@ tbl_D536:
 
 
 off_D544_00:
-- D 2 - I - 0x001554 00:D544: 76        .byte $76   ; 
-- D 2 - I - 0x001555 00:D545: 49        .byte $49   ; 
-- D 2 - I - 0x001556 00:D546: 00        .byte $00   ; 
+- D 2 - I - 0x001554 00:D544: 76        .byte < ram_score_for_1up   ; 
+- D 2 - I - 0x001555 00:D545: 49 00     .word ram_0049
 - D 2 - I - 0x001557 00:D547: 00        .byte $00   ; 
 
 
 
 off_D548_02:
-- D 2 - I - 0x001558 00:D548: 70        .byte $70   ; 
-- D 2 - I - 0x001559 00:D549: 60        .byte $60   ; 
-- D 2 - I - 0x00155A 00:D54A: D5        .byte $D5   ; 
+- D 2 - I - 0x001558 00:D548: 70        .byte < ram_lives_1   ; 
+- D 2 - I - 0x001559 00:D549: 60 D5     .word off_D560
 - D 2 - I - 0x00155B 00:D54B: 00        .byte $00   ; 
 
 
 
 off_D54C_04:
-- D 2 - I - 0x00155C 00:D54C: 77        .byte $77   ; 
-- D 2 - I - 0x00155D 00:D54D: 60        .byte $60   ; 
-- D 2 - I - 0x00155E 00:D54E: D5        .byte $D5   ; 
+- D 2 - I - 0x00155C 00:D54C: 77        .byte < ram_0077   ; 
+- D 2 - I - 0x00155D 00:D54D: 60 D5     .word off_D560
 - D 2 - I - 0x00155F 00:D54F: 00        .byte $00   ; 
 
 
 
 off_D550_06:
-- D 2 - I - 0x001560 00:D550: 50        .byte $50   ; 
-- D 2 - I - 0x001561 00:D551: 60        .byte $60   ; 
-- D 2 - I - 0x001562 00:D552: D5        .byte $D5   ; 
+- D 2 - I - 0x001560 00:D550: 50        .byte < ram_0050   ; 
+- D 2 - I - 0x001561 00:D551: 60 D5     .word off_D560
 - D 2 - I - 0x001563 00:D553: 00        .byte $00   ; 
 
 
 
 off_D554_08:
-- D 2 - I - 0x001564 00:D554: 57        .byte $57   ; 
-- D 2 - I - 0x001565 00:D555: 67        .byte $67   ; 
-- D 2 - I - 0x001566 00:D556: D5        .byte $D5   ; 
+- D 2 - I - 0x001564 00:D554: 57        .byte < ram_0057   ; 
+- D 2 - I - 0x001565 00:D555: 67 D5     .word off_D567
 - D 2 - I - 0x001567 00:D557: 03        .byte $03   ; 
 
 
 
 off_D558_0A:
-- D 2 - I - 0x001568 00:D558: 5F        .byte $5F   ; 
-- D 2 - I - 0x001569 00:D559: 54        .byte $54   ; 
-- D 2 - I - 0x00156A 00:D55A: 00        .byte $00   ; 
+- D 2 - I - 0x001568 00:D558: 5F        .byte < ram_005F   ; 
+- D 2 - I - 0x001569 00:D559: 54 00     .word ram_0054
 - D 2 - I - 0x00156B 00:D55B: 03        .byte $03   ; 
 
 
 
 off_D55C_0C:
-- D 2 - I - 0x00156C 00:D55C: 74        .byte $74   ; 
-- D 2 - I - 0x00156D 00:D55D: 5C        .byte $5C   ; 
-- D 2 - I - 0x00156E 00:D55E: 00        .byte $00   ; 
+- D 2 - I - 0x00156C 00:D55C: 74        .byte < ram_score_000000xx   ; 
+- D 2 - I - 0x00156D 00:D55D: 5C 00     .word ram_005C
 - D 2 - I - 0x00156F 00:D55F: 03        .byte $03   ; 
 
 
-; bzk bug probably, byte is read via 0x001513 and 0x001519
+
+off_D560:
 - D 2 - I - 0x001570 00:D560: 01        .byte $01   ; 
 
 
@@ -3718,6 +3712,7 @@ off_D563:
 - D 2 - I - 0x001574 00:D564: 00        .byte $00   ; 
 - D 2 - I - 0x001575 00:D565: 01        .byte $01   ; 
 - D 2 - I - 0x001576 00:D566: 00        .byte $00   ; 
+off_D567:
 - D 2 - I - 0x001577 00:D567: 00        .byte $00   ; 
 - D 2 - I - 0x001578 00:D568: 00        .byte $00   ; 
 - D 2 - I - 0x001579 00:D569: 02        .byte $02   ; 
