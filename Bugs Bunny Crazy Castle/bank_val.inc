@@ -25,6 +25,18 @@ con_btns_SAB                            = con_btn_Start + con_btn_A + con_btn_B 
 
 
 
+; handlers at 0x008010
+con_script_logo_and_title               = $00 ; 
+con_script_final_cutscene               = $01 ; 
+con_script_load_stage                   = $02 ; 
+con_script_stage_complete               = $03 ; 
+con_script_messages                     = $04 ; 
+con_script_game_over                    = $05 ; 
+con_script_menu                         = $06 ; 
+con_script_generate_password            = $07 ; 
+
+
+
 ; ram_0018
 con_0018_01                             = $01 ; 
 con_0018_02                             = $02 ; 
