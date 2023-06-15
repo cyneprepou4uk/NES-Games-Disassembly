@@ -13,9 +13,9 @@ C - - - - - 0x000012 00:8002: A2 EF     LDX #$EF
 C - - - - - 0x000014 00:8004: 9A        TXS
 C - - - - - 0x000015 00:8005: A9 10     LDA #$10
 C - - - - - 0x000017 00:8007: 8D 00 20  STA $2000
-bra_800A_loop:
+bra_800A_infinite_loop:
 C - - - - - 0x00001A 00:800A: AD 02 20  LDA $2002
-C - - - - - 0x00001D 00:800D: 10 FB     BPL bra_800A_loop
+C - - - - - 0x00001D 00:800D: 10 FB     BPL bra_800A_infinite_loop
 C - - - - - 0x00001F 00:800F: A5 9A     LDA ram_reset_check
 C - - - - - 0x000021 00:8011: C9 55     CMP #$55
 C - - - - - 0x000023 00:8013: D0 06     BNE bra_801B
@@ -43,7 +43,7 @@ C - - - - - 0x000048 00:8038: 85 9D     STA ram_009D
 C - - - - - 0x00004A 00:803A: 85 B0     STA ram_00B0
 bra_803C:
 C - - - - - 0x00004C 00:803C: A9 00     LDA #$00
-C - - - - - 0x00004E 00:803E: A2 00     LDX #$00
+C - - - - - 0x00004E 00:803E: A2 00     LDX #$00    ; bzk optimize, TAX
 bra_8040_loop:
 C - - - - - 0x000050 00:8040: 95 00     STA ram_0000,X
 C - - - - - 0x000052 00:8042: E8        INX

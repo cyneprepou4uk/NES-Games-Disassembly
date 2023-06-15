@@ -5,9 +5,9 @@
 
 
 
-; ram_btn_p1                            = $004E
-; ram_btn_p2                            = $0050
-; ram_copy_btns                         = $0098
+; ram_btn_p1
+; ram_btn_p2
+; ram_copy_btns
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -39,7 +39,7 @@ con_837C_12                             = $12 ;
 
 
 
-; ram_object_id                         = $05FA
+; ram_object_id
 ; need comments at 0x004AEB 0x003C32 0x003727
 con_obj_id_00                           = $00 ; 
 con_obj_id_01                           = $01 ; 
