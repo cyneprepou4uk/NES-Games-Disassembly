@@ -321,7 +321,7 @@ tbl_C0F6_lo:
 - D 2 - - - 0x00011D 00:C10D: 35        .byte < _off_000_D435_17   ; 
 - D 2 - - - 0x00011E 00:C10E: 50        .byte < _off_000_D450_18   ; 
 - - - - - - 0x00011F 00:C10F: 31        .byte < _off_000_D631_19   ; 
-- - - - - - 0x000120 00:C110: A1        .byte < ram_00A1   ;  1A bzk is this correct?
+- - - - - - 0x000120 00:C110: A1        .byte < ram_00A1   ;  1A
 
 tbl_C111_hi:
 - D 2 - - - 0x000121 00:C111: 03        .byte > ram_0301   ;  00
@@ -350,7 +350,7 @@ tbl_C111_hi:
 - D 2 - - - 0x000138 00:C128: D4        .byte > _off_000_D435_17   ; 
 - D 2 - - - 0x000139 00:C129: D4        .byte > _off_000_D450_18   ; 
 - - - - - - 0x00013A 00:C12A: D6        .byte > _off_000_D631_19   ; 
-- - - - - - 0x00013B 00:C12B: 00        .byte > ram_00A1   ;  1A bzk is this correct?
+- - - - - - 0x00013B 00:C12B: 00        .byte > ram_00A1   ;  1A
 
 
 
@@ -649,7 +649,7 @@ C - - - - - 0x0002CA 00:C2BA: 4C 36 CB  JMP loc_CB36
 ofs_001_C2BD_00_01:
 C - - J - - 0x0002CD 00:C2BD: A9 04     LDA #$04
 C - - - - - 0x0002CF 00:C2BF: 8D F8 03  STA ram_03F8
-C - - - - - 0x0002D2 00:C2C2: 4A        LSR
+C - - - - - 0x0002D2 00:C2C2: 4A        LSR ; con_C27F_02
 C - - - - - 0x0002D3 00:C2C3: 85 45     STA ram_0045
 C - - - - - 0x0002D5 00:C2C5: A0 00     LDY #$00
 C - - - - - 0x0002D7 00:C2C7: 20 09 C4  JSR sub_C409
@@ -848,7 +848,7 @@ C - - - - - 0x000402 00:C3F2: 60        RTS
 ofs_001_C3F3_01_02:
 C - - J - - 0x000403 00:C3F3: A2 04     LDX #$04
 C - - - - - 0x000405 00:C3F5: 86 FB     STX ram_00FB
-C - - - - - 0x000407 00:C3F7: CA        DEX
+C - - - - - 0x000407 00:C3F7: CA        DEX ; con_C27F_03
 C - - - - - 0x000408 00:C3F8: 86 45     STX ram_0045
 C - - - - - 0x00040A 00:C3FA: A0 01     LDY #$01
 C - - - - - 0x00040C 00:C3FC: 20 09 C4  JSR sub_C409
@@ -914,13 +914,13 @@ C - - - - - 0x000464 00:C454: 60        RTS
 
 
 ofs_001_C455_03_03:
-C - - J - - 0x000465 00:C455: A0 08     LDY #$08
+C - - J - - 0x000465 00:C455: A0 08     LDY #con_C27F_08
 C - - - - - 0x000467 00:C457: A5 41     LDA ram_0041
 C - - - - - 0x000469 00:C459: C9 08     CMP #$08
 C - - - - - 0x00046B 00:C45B: B0 05     BCS bra_C462
 C - - - - - 0x00046D 00:C45D: A5 46     LDA ram_0046
 C - - - - - 0x00046F 00:C45F: F0 03     BEQ bra_C464_RTS
-C - - - - - 0x000471 00:C461: 88        DEY
+C - - - - - 0x000471 00:C461: 88        DEY ; con_C27F_07
 bra_C462:
 C - - - - - 0x000472 00:C462: 84 45     STY ram_0045
 bra_C464_RTS:
@@ -1045,7 +1045,7 @@ ofs_001_C514_00_02:
 ofs_001_C514_01_03:
 ofs_001_C514_04_04:
 ofs_001_C514_06_03:
-C - - J - - 0x000524 00:C514: A9 18     LDA #$18
+C - - J - - 0x000524 00:C514: A9 18     LDA #con_C27F_18
 C - - - - - 0x000526 00:C516: 85 45     STA ram_0045
 ofs_001_C518_07_03:
 ofs_001_C518_08_02:
@@ -1090,13 +1090,18 @@ C - - - - - 0x000560 00:C550: 60        RTS
 
 ofs_001_C551_02_01:
 ofs_001_C551_05_01:
-C - - J - - 0x000561 00:C551: A9 12     LDA #$12
+C - - J - - 0x000561 00:C551: A9 12     LDA #con_C27F_12
 C - - - - - 0x000563 00:C553: A6 41     LDX ram_0041
 C - - - - - 0x000565 00:C555: E0 08     CPX #$08
 C - - - - - 0x000567 00:C557: B0 15     BCS bra_C56E
+; bzk optimize, C = 0, no need for CLC
 C - - - - - 0x000569 00:C559: 18        CLC
 C - - - - - 0x00056A 00:C55A: 65 43     ADC ram_0043
-C - - - - - 0x00056C 00:C55C: D0 10     BNE bra_C56E    ; jmp?
+; con_C27F_13
+; con_C27F_14
+; con_C27F_15
+; con_C27F_16
+C - - - - - 0x00056C 00:C55C: D0 10     BNE bra_C56E    ; jmp
 
 
 
@@ -1104,25 +1109,25 @@ ofs_001_C55E_01_01:
 ofs_001_C55E_03_01:
 ofs_001_C55E_04_01:
 ofs_001_C55E_06_01:
-C - - J - - 0x00056E 00:C55E: A9 06     LDA #$06
+C - - J - - 0x00056E 00:C55E: A9 06     LDA #con_C27F_06
 C - - - - - 0x000570 00:C560: D0 0C     BNE bra_C56E    ; jmp
 
 
 
 ofs_001_C562_05_05:
-C - - J - - 0x000572 00:C562: A9 05     LDA #$05
+C - - J - - 0x000572 00:C562: A9 05     LDA #con_C27F_05
 C - - - - - 0x000574 00:C564: D0 08     BNE bra_C56E    ; jmp
 
 
 
 ofs_001_C566_02_05:
-C - - J - - 0x000576 00:C566: A9 0E     LDA #$0E
+C - - J - - 0x000576 00:C566: A9 0E     LDA #con_C27F_0E
 C - - - - - 0x000578 00:C568: D0 04     BNE bra_C56E    ; jmp
 
 
 
 ofs_001_C56A_03_02:
-C - - J - - 0x00057A 00:C56A: A9 04     LDA #$04
+C - - J - - 0x00057A 00:C56A: A9 04     LDA #con_C27F_04
 C - - - - - 0x00057C 00:C56C: 85 33     STA ram_0033
 bra_C56E:
 C - - - - - 0x00057E 00:C56E: 85 45     STA ram_0045
@@ -1131,7 +1136,7 @@ C - - - - - 0x000580 00:C570: 60        RTS
 
 
 ofs_001_C571_04_02:
-C - - J - - 0x000581 00:C571: A9 09     LDA #$09
+C - - J - - 0x000581 00:C571: A9 09     LDA #con_C27F_09
 C - - - - - 0x000583 00:C573: D0 F9     BNE bra_C56E    ; jmp
 
 
@@ -1141,13 +1146,13 @@ C - - J - - 0x000585 00:C575: A9 05     LDA #$05
 C - - - - - 0x000587 00:C577: 85 43     STA ram_0043
 C - - - - - 0x000589 00:C579: A0 02     LDY #$02
 C - - - - - 0x00058B 00:C57B: 20 09 C4  JSR sub_C409
-C - - - - - 0x00058E 00:C57E: A9 0F     LDA #$0F
+C - - - - - 0x00058E 00:C57E: A9 0F     LDA #con_C27F_0F
 C - - - - - 0x000590 00:C580: D0 EC     BNE bra_C56E    ; jmp
 
 
 
 ofs_001_C582_08_01:
-C - - J - - 0x000592 00:C582: A9 11     LDA #$11
+C - - J - - 0x000592 00:C582: A9 11     LDA #con_C27F_11
 C - - - - - 0x000594 00:C584: D0 E8     BNE bra_C56E    ; jmp
 
 
@@ -1169,14 +1174,14 @@ C - - - - - 0x0005A7 00:C597: 95 61     STA ram_0061,X
 C - - - - - 0x0005A9 00:C599: CA        DEX
 C - - - - - 0x0005AA 00:C59A: 10 EE     BPL bra_C58A_loop
 C - - - - - 0x0005AC 00:C59C: 20 21 C6  JSR sub_C621
-C - - - - - 0x0005AF 00:C59F: A9 10     LDA #$10
+C - - - - - 0x0005AF 00:C59F: A9 10     LDA #con_C27F_10
 C - - - - - 0x0005B1 00:C5A1: D0 CB     BNE bra_C56E    ; jmp
 
 
 
 ofs_001_C5A3_02_04:
 ofs_001_C5A3_05_04:
-C - - J - - 0x0005B3 00:C5A3: A9 17     LDA #$17
+C - - J - - 0x0005B3 00:C5A3: A9 17     LDA #con_C27F_17
 C - - - - - 0x0005B5 00:C5A5: D0 C7     BNE bra_C56E    ; jmp
 
 
@@ -1466,7 +1471,7 @@ C - - - - - 0x00074C 00:C73C: 20 16 C7  JSR sub_C716
 C - - - - - 0x00074F 00:C73F: 20 92 C7  JSR sub_C792
 - - - - - - 0x000752 00:C742: 90 0D     BCC bra_C751
 bra_C744_loop:
-- - - - - - 0x000754 00:C744: A9 19     LDA #$19
+- - - - - - 0x000754 00:C744: A9 19     LDA #con_C27F_19
 - - - - - - 0x000756 00:C746: 85 45     STA ram_0045
 bra_C748:
 - - - - - - 0x000758 00:C748: 20 39 C3  JSR sub_C339
@@ -1496,7 +1501,7 @@ bra_C762:
 - - - - - - 0x000781 00:C771: 85 A2     STA ram_00A2
 - - - - - - 0x000783 00:C773: A9 04     LDA #$04
 - - - - - - 0x000785 00:C775: 85 A3     STA ram_00A3
-- - - - - - 0x000787 00:C777: A9 1A     LDA #$1A
+- - - - - - 0x000787 00:C777: A9 1A     LDA #con_C27F_1A
 - - - - - - 0x000789 00:C779: 85 45     STA ram_0045
 - - - - - - 0x00078B 00:C77B: E0 00     CPX #$00
 - - - - - - 0x00078D 00:C77D: D0 C9     BNE bra_C748
@@ -1611,9 +1616,9 @@ ofs_001_C820_05_03:
 C - - J - - 0x000830 00:C820: 20 3F D1  JSR sub_D13F
 C - - - - - 0x000833 00:C823: A9 03     LDA #$03
 C - - - - - 0x000835 00:C825: 85 01     STA ram_0001
-C - - - - - 0x000837 00:C827: 4A        LSR
+C - - - - - 0x000837 00:C827: 4A        LSR ; con_C27F_01
 C - - - - - 0x000838 00:C828: 85 45     STA ram_0045
-C - - - - - 0x00083A 00:C82A: 4A        LSR
+C - - - - - 0x00083A 00:C82A: 4A        LSR ; 00
 C - - - - - 0x00083B 00:C82B: 85 00     STA ram_0000
 C - - - - - 0x00083D 00:C82D: 85 4B     STA ram_004B
 C - - - - - 0x00083F 00:C82F: A0 EF     LDY #$EF
@@ -2188,7 +2193,7 @@ C - - - - - 0x000C18 00:CC08: 85 55     STA ram_0055
 C - - - - - 0x000C1A 00:CC0A: 8D F1 03  STA ram_03F1
 C - - - - - 0x000C1D 00:CC0D: A5 00     LDA ram_0000
 C - - - - - 0x000C1F 00:CC0F: D0 59     BNE bra_CC6A_RTS
-C - - - - - 0x000C21 00:CC11: A9 0A     LDA #$0A
+C - - - - - 0x000C21 00:CC11: A9 0A     LDA #con_C27F_0A
 C - - - - - 0x000C23 00:CC13: D0 1A     BNE bra_CC2F    ; jmp
 
 
@@ -2201,12 +2206,14 @@ C - - - - - 0x000C2B 00:CC1B: C5 33     CMP ram_0033
 C - - - - - 0x000C2D 00:CC1D: D0 13     BNE bra_CC32
 C - - - - - 0x000C2F 00:CC1F: A5 20     LDA ram_0020
 C - - - - - 0x000C31 00:CC21: D0 0F     BNE bra_CC32
-C - - - - - 0x000C33 00:CC23: A9 0D     LDA #$0D
+C - - - - - 0x000C33 00:CC23: A9 0D     LDA #con_C27F_0D
 C - - - - - 0x000C35 00:CC25: A4 52     LDY ram_0052
 C - - - - - 0x000C37 00:CC27: 88        DEY
 C - - - - - 0x000C38 00:CC28: D0 05     BNE bra_CC2F
 C - - - - - 0x000C3A 00:CC2A: A5 4B     LDA ram_004B
 C - - - - - 0x000C3C 00:CC2C: 18        CLC
+; con_C27F_0B
+; con_C27F_0C
 C - - - - - 0x000C3D 00:CC2D: 69 0B     ADC #$0B
 bra_CC2F:
 C - - - - - 0x000C3F 00:CC2F: 85 45     STA ram_0045
