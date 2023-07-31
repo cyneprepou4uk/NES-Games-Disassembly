@@ -1097,6 +1097,7 @@ C - - - - - 0x000567 00:C557: B0 15     BCS bra_C56E
 ; bzk optimize, C = 0, no need for CLC
 C - - - - - 0x000569 00:C559: 18        CLC
 C - - - - - 0x00056A 00:C55A: 65 43     ADC ram_0043
+; con_C27F_12
 ; con_C27F_13
 ; con_C27F_14
 ; con_C27F_15
@@ -3448,7 +3449,7 @@ C - - - - - 0x00138A 00:D37A: 29 FF     AND #$FF
 C - - - - - 0x00138C 00:D37C: 10 08     BPL bra_D386_RTS
 C - - - - - 0x00138E 00:D37E: 24 00     BIT ram_0000
 C - - - - - 0x001390 00:D380: 10 04     BPL bra_D386_RTS
-C - - - - - 0x001392 00:D382: 29 7F     AND #$7F
+C - - - - - 0x001392 00:D382: 29 7F     AND #con_btn_A ^ $FF
 C - - - - - 0x001394 00:D384: 95 15     STA ram_btn_press,X
 bra_D386_RTS:
 C - - - - - 0x001396 00:D386: 60        RTS
