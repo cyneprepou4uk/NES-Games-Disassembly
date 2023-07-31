@@ -7521,9 +7521,9 @@ C - - - - - 0x00F1BD 03:F1AD: 6C 10 00  JMP (ram_0010)
 sub_F1B0:
 sub_0x00F1C0:
 C - - - - - 0x00F1C0 03:F1B0: 20 E5 F1  JSR sub_F1E5
-C - - - - - 0x00F1C3 03:F1B3: 20 F6 F1  JSR sub_F1F6
+C - - - - - 0x00F1C3 03:F1B3: 20 F6 F1  JSR sub_F1F6_clear_nametable_2000
 loc_F1B6:
-C - - - - - 0x00F1C6 03:F1B6: 20 FD F1  JSR sub_F1FD
+C - - - - - 0x00F1C6 03:F1B6: 20 FD F1  JSR sub_F1FD_clear_nametable
 loc_F1B9:
 C - - - - - 0x00F1C9 03:F1B9: 20 64 EE  JSR sub_EE64_enable_nmi
 C - - - - - 0x00F1CC 03:F1BC: 20 EA EE  JSR sub_EEEA
@@ -7541,7 +7541,7 @@ C - - - - - 0x00F1E5 03:F1D5: 60        RTS
 
 ; bzk garbage
 - - - - - - 0x00F1E6 03:F1D6: 20 E5 F1  JSR sub_F1E5
-- - - - - - 0x00F1E9 03:F1D9: 20 F6 F1  JSR sub_F1F6
+- - - - - - 0x00F1E9 03:F1D9: 20 F6 F1  JSR sub_F1F6_clear_nametable_2000
 - - - - - - 0x00F1EC 03:F1DC: 4C B9 F1  JMP loc_F1B9
 
 
@@ -7563,22 +7563,22 @@ C - - - - - 0x00F205 03:F1F5: 60        RTS
 
 
 
-sub_F1F6:
+sub_F1F6_clear_nametable_2000:
 C - - - - - 0x00F206 03:F1F6: AD 02 20  LDA $2002
-C - - - - - 0x00F209 03:F1F9: A9 20     LDA #$20    ; $2000
+C - - - - - 0x00F209 03:F1F9: A9 20     LDA #$20    ; 2000
 C - - - - - 0x00F20B 03:F1FB: D0 0E     BNE bra_F20B    ; jmp
 
 
 
-sub_F1FD:
+sub_F1FD_clear_nametable:
 C - - - - - 0x00F20D 03:F1FD: AD 02 20  LDA $2002
-C - - - - - 0x00F210 03:F200: A2 24     LDX #$24    ; $2400
+C - - - - - 0x00F210 03:F200: A2 24     LDX #$24    ; 2400
 C - - - - - 0x00F212 03:F202: A5 FA     LDA ram_00FA
 C - - - - - 0x00F214 03:F204: 29 08     AND #$08
 C - - - - - 0x00F216 03:F206: F0 02     BEQ bra_F20A
-- - - - - - 0x00F218 03:F208: A2 28     LDX #$28    ; $2800
+- - - - - - 0x00F218 03:F208: A2 28     LDX #$28    ; 2800
 bra_F20A:
-C - - - - - 0x00F21A 03:F20A: 8A        TXA
+C - - - - - 0x00F21A 03:F20A: 8A        TXA ; bzk optimize, STX
 bra_F20B:
 C - - - - - 0x00F21B 03:F20B: 8D 06 20  STA $2006
 C - - - - - 0x00F21E 03:F20E: A9 00     LDA #$00
@@ -7849,6 +7849,7 @@ C - - - - - 0x00F39E 03:F38E: 60        RTS
 sub_F38F:
 C - - - - - 0x00F39F 03:F38F: AD 80 03  LDA ram_ppu_buf2_cnt
 C - - - - - 0x00F3A2 03:F392: C9 32     CMP #$32
+; bzk optimize, BCC
 C - - - - - 0x00F3A4 03:F394: 30 06     BMI bra_F39C_RTS
 C - - - - - 0x00F3A6 03:F396: 20 2B F2  JSR sub_F22B
 C - - - - - 0x00F3A9 03:F399: 20 DF EE  JSR sub_EEDF
@@ -7858,8 +7859,10 @@ C - - - - - 0x00F3AC 03:F39C: 60        RTS
 
 
 sub_F39D:
+; bzk garbage
 - - - - - - 0x00F3AD 03:F39D: AD 80 03  LDA ram_ppu_buf2_cnt
 - - - - - - 0x00F3B0 03:F3A0: C9 32     CMP #$32
+; bzk optimize, BCC
 - - - - - - 0x00F3B2 03:F3A2: 30 06     BMI bra_F3AA_RTS
 - - - - - - 0x00F3B4 03:F3A4: 20 AB F3  JSR sub_F3AB
 - - - - - - 0x00F3B7 03:F3A7: 20 E3 EE  JSR sub_EEE3
@@ -7874,6 +7877,9 @@ sub_F3AB:
 - - - - - - 0x00F3C0 03:F3B0: 20 DA EE  JSR sub_EEDA
 - - - - - - 0x00F3C3 03:F3B3: 20 E3 EE  JSR sub_EEE3
 - - - - - - 0x00F3C6 03:F3B6: 60        RTS
+
+
+; bzk garbage
 - - - - - - 0x00F3C7 03:F3B7: 8A        TXA
 - - - - - - 0x00F3C8 03:F3B8: 48        PHA
 - - - - - - 0x00F3C9 03:F3B9: 98        TYA
@@ -7889,6 +7895,7 @@ sub_F3AB:
 
 
 sub_F3C6:
+; bzk garbage
 - - - - - - 0x00F3D6 03:F3C6: 20 E3 EE  JSR sub_EEE3
 - - - - - - 0x00F3D9 03:F3C9: A0 00     LDY #$00
 - - - - - - 0x00F3DB 03:F3CB: B1 1E     LDA (ram_001E),Y
@@ -7910,6 +7917,7 @@ sub_F3C6:
 
 
 sub_F3E7:
+; bzk garbage
 - - - - - - 0x00F3F7 03:F3E7: A5 10     LDA ram_0010
 - - - - - - 0x00F3F9 03:F3E9: 85 15     STA ram_0015
 - - - - - - 0x00F3FB 03:F3EB: A5 11     LDA ram_0011
@@ -7950,6 +7958,7 @@ bra_F40E:
 
 
 sub_F42A:
+; bzk garbage
 - - - - - - 0x00F43A 03:F42A: A5 1C     LDA ram_001C
 - - - - - - 0x00F43C 03:F42C: 18        CLC
 - - - - - - 0x00F43D 03:F42D: 69 20     ADC #< $0020
@@ -7962,6 +7971,7 @@ sub_F42A:
 
 
 sub_F438:
+; bzk garbage
 - - - - - - 0x00F448 03:F438: 20 20 F3  JSR sub_F320
 - - - - - - 0x00F44B 03:F43B: A5 1C     LDA ram_001C
 - - - - - - 0x00F44D 03:F43D: 29 1F     AND #$1F
