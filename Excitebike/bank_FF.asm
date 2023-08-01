@@ -1028,11 +1028,11 @@ C D 2 - - - 0x00050C 00:C4FC: C5 09     CMP ram_0009
 C - - - - - 0x00050E 00:C4FE: B0 0B     BCS bra_C50B
 C - - - - - 0x000510 00:C500: 18        CLC
 C - - - - - 0x000511 00:C501: 65 09     ADC ram_0009
-loc_C503:
+loc_C503_loop:
 C D 2 - - - 0x000513 00:C503: 46 0A     LSR ram_000A
 C - - - - - 0x000515 00:C505: F0 0B     BEQ bra_C512
 C - - - - - 0x000517 00:C507: 4A        LSR
-C - - - - - 0x000518 00:C508: 4C 03 C5  JMP loc_C503
+C - - - - - 0x000518 00:C508: 4C 03 C5  JMP loc_C503_loop
 bra_C50B:
 C - - - - - 0x00051B 00:C50B: 38        SEC
 C - - - - - 0x00051C 00:C50C: E5 09     SBC ram_0009
@@ -2140,6 +2140,7 @@ C - - - - - 0x000BB3 00:CBA3: 60        RTS
 
 ofs_CBA4_02:
 C - - J - - 0x000BB4 00:CBA4: A5 33     LDA ram_0033
+; bzk optimize, branch to 0x000BB1
 C - - - - - 0x000BB6 00:CBA6: F0 F7     BEQ bra_CB9F
 C - - - - - 0x000BB8 00:CBA8: CD AD 03  CMP ram_03AD
 C - - - - - 0x000BBB 00:CBAB: F0 1C     BEQ bra_CBC9
