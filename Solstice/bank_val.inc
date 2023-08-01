@@ -54,7 +54,7 @@ con_bsw_26                              = $26 * $03 ; 72
 
 
 
-; ram_buttons                           = $000A
+; ram_buttons
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -68,8 +68,8 @@ con_btns_SSAB                           = con_btn_Start + con_btn_Select + con_b
 
 
 
-; ram_sfx_1                             = $078E
-; ram_sfx_2                             = $078F
+; ram_sfx_1
+; ram_sfx_2
 ; sound effects, need comments at 0x015753
 con_sfx_00                              = $00 ; Enter teleporter
 con_sfx_01                              = $01 ; unused, some sort of hit/contact/tap
@@ -95,7 +95,8 @@ con_music_06                            = $06 ; title-screen
 
 
 
-; ram_obj_id                         = $073C need comments at 0x001EB3
+; ram_obj_id
+; need comments at 0x001EB3
 ; con_obj_id_00                         = $00 ; 
 con_obj_id_01                           = $01 ; Troll that changes direction clock-wise when it reaches wall
 con_obj_id_02                           = $02 ; same as above but counter-clock wise
