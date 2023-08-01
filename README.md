@@ -68,6 +68,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 
 
 ### WIP
+* Battletoads & Double Dragon - The Ultimate Team (U) [!] `53B02F3D`
 * Castlevania III - Dracula's Curse (U) [!] `7CC9C669`
 * Dr. Mario (JU) (PRG0) [!] `B1F7E3E9`
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!] `BABD39FA`
@@ -77,9 +78,12 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 
 
 ### Planning
+* Adventure Island (U) [!] `B78C09A2`
 * Balloon Fight (J) [!] `A0DABE0A`
 * Bubble Bobble (U) [!] `D3A91B41`
+* Felix the Cat (U) [!] `0639E88E`
 * Ghosts 'N Goblins (U) [!] `87ED54AA`
 * Mighty Final Fight (U) [!] `15EB0BEE`
 * River City Ransom (U) [!] `C3508F7E`
+* RoboCop 3 (U) [!] `FBBB58A6`
 * Tetris (Tengen) [!] `88F071C3`
