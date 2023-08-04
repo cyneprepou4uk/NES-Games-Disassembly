@@ -39,7 +39,7 @@ con_obj_state_80                        = $80 ; if manually set, link will const
 con_obj_state_FF                        = $FF ; ???
 
 
-; ram_drop_id                           = $00AB
+; ram_drop_id
 con_drop_id_00                          = $00 ; bomb
 con_drop_id_01                          = $01 ; wooden sword
 con_drop_id_02                          = $02 ; white sword

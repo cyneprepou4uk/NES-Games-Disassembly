@@ -5,8 +5,8 @@ con_prg_bank                            = $00 ;
 
 
 
-; ram_btn_press                         = $0014 ;
-; ram_btn_hold                          = $0016 ;
+; ram_btn_press
+; ram_btn_hold
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -23,7 +23,7 @@ con_btns_SSAB                           = con_btn_Start + con_btn_Select + con_b
 
 
 
-; ram_ariel_status                      = $0030
+; ram_ariel_status
 con_ariel_default                       = $00 ; idle/moving/holding weapon
 con_ariel_turning                       = $01 ; turning around
 con_ariel_jumping_out_of_water          = $02 ; jumping out of water
@@ -37,7 +37,7 @@ con_ariel_spawning                      = $09 ; when level starts, she drops dow
 
 
 
-; ram_obj_id                            = $0310
+; ram_obj_id
 ; need coments at 0x01D4FC 0x019A1B 0x019AAB 0x018379
 ; see screenshots inside misc folder
 con_obj_id_00                           = $00 ; 

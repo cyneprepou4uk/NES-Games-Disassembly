@@ -5,8 +5,8 @@
 
 
 
-; ram_btn_hold                          = $0014
-; ram_btn_press                         = $0015
+; ram_btn_hold
+; ram_btn_press
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 

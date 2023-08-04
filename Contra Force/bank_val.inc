@@ -10,8 +10,8 @@ con_chr_pair                            = $00 ; see pairs at 0x01F465
 
 
 
-; ram_btn_hold                          = $0016
-; ram_btn_press                         = $0018
+; ram_btn_hold
+; ram_btn_press
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 

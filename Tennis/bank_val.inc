@@ -2,8 +2,8 @@
 
 
 
-; ram_btn_hold                          = $001A
-; ram_btn_press                         = $001B
+; ram_btn_hold
+; ram_btn_press
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -15,7 +15,7 @@ con_btn_A                               = $80 ;
 
 
 
-; ram_mario_message                     = $0079
+; ram_mario_message
 con_msg_in                              = $00 ; in
 con_msg_out                             = $01 ; out
 con_msg_net                             = $02 ; net

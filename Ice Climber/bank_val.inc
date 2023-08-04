@@ -2,8 +2,8 @@
 
 
 
- ; ram_btn_hold                         = $0014
- ; ram_btn_press                        = $0015
+ ; ram_btn_hold
+ ; ram_btn_press
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -20,8 +20,8 @@ con_btns_LR                             = con_btn_Left + con_btn_Right          
 
 
 
-; ram_music_1                           = $00FB
-; ram_music_2                           = $00F3
+; ram_music_1
+; ram_music_2
 con_music_00                            = $00 ; 
 con_music_mountain_preview              = $01 ; when a bird is flying up through the whole mountain
 con_music_background                    = $02 ; background stage music
@@ -33,13 +33,13 @@ con_music_unpause                       = $40 ; unset pause
 con_music_off                           = $80 ; turn off current music
 
 
-; ram_sfx_1                             = $00FC
+; ram_sfx_1
 con_sfx_1_00                            = $00 ; 
 con_sfx_1_plr_game_over                 = $01 ; 
 con_sfx_1_block_placed_or_destroyed     = $02 ; 
 con_sfx_1_04                            = $04 ; 
 
-; ram_sfx_2                             = $00FE
+; ram_sfx_2
 con_sfx_2_00                            = $00 ; 
 con_sfx_2_kill_bird                     = $01 ; 
 con_sfx_2_02                            = $02 ; 
@@ -47,7 +47,7 @@ con_sfx_2_04                            = $04 ;
 con_sfx_2_08                            = $08 ; 
 con_sfx_2_collect_fruit                 = $10 ; 
 
-; ram_sfx_3                             = $00FF
+; ram_sfx_3
 con_sfx_3_00                            = $00 ; 
 con_sfx_3_plr_deadh                     = $01 ; 
 con_sfx_3_bear_jump                     = $02 ; 
