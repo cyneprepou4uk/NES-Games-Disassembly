@@ -62,7 +62,7 @@ bra_BF61_loop:
 
 sub_BF98_set_control_register:
 sub_inc_0x003FA8_set_control_register:
-; same code as 0x01FFA8
+; bzk optimize, same code as 0x01FFA8
 - - - - - - 0x003FA8 00:BF98: 8D 00 80  STA $8000
 - - - - - - 0x003FAB 00:BF9B: 4A        LSR
 - - - - - - 0x003FAC 00:BF9C: 8D 00 80  STA $8000
@@ -79,7 +79,7 @@ sub_inc_0x003FA8_set_control_register:
 sub_BFAC_prg_bankswitch:
 sub_inc_0x003FBC_prg_bankswitch:
 loc_inc_0x003FBC_prg_bankswitch:
-; same code as 0x01FFBC
+; bzk optimize, same code as 0x01FFBC
 - - - - - - 0x003FBC 00:BFAC: 8D 00 E0  STA $E000
 - - - - - - 0x003FBF 00:BFAF: 4A        LSR
 - - - - - - 0x003FC0 00:BFB0: 8D 00 E0  STA $E000
