@@ -123,7 +123,7 @@ C - - - - - 0x01C0AA 07:C09A: 8D 9F 04  STA ram_chr_bg_4
 C - - - - - 0x01C0AD 07:C09D: 20 A4 FE  JSR sub_FEA4_write_bg_chr_banks
 C - - - - - 0x01C0B0 07:C0A0: A0 02     LDY #$02
 C - - - - - 0x01C0B2 07:C0A2: B1 29     LDA (ram_0029),Y
-C - - - - - 0x01C0B4 07:C0A4: C8        INY
+C - - - - - 0x01C0B4 07:C0A4: C8        INY ; 03
 C - - - - - 0x01C0B5 07:C0A5: 11 29     ORA (ram_0029),Y
 C - - - - - 0x01C0B7 07:C0A7: D0 08     BNE bra_C0B1
 C - - - - - 0x01C0B9 07:C0A9: A5 13     LDA ram_0013
@@ -1074,7 +1074,7 @@ C - - - - - 0x01C7F4 07:C7E4: 4C 83 C6  JMP loc_C683_next_buffer_array
 
 
 tbl_C7E7_hi:
-- - - - - - 0x01C7F7 07:C7E7: 00        .byte $00   ; 00
+- - - - - - 0x01C7F7 07:C7E7: 00        .byte $00          ; 00
 - D 2 - - - 0x01C7F8 07:C7E8: C7        .byte > ofs_016_C7BE_01
 - D 2 - - - 0x01C7F9 07:C7E9: C7        .byte > ofs_016_C7B7_02
 - D 2 - - - 0x01C7FA 07:C7EA: C7        .byte > ofs_016_C7B0_03
@@ -1111,7 +1111,7 @@ tbl_C7E7_hi:
 
 
 tbl_C808_lo:
-- - - - - - 0x01C818 07:C808: 00        .byte $00   ; 00
+- - - - - - 0x01C818 07:C808: 00        .byte $00          ; 00
 - D 2 - - - 0x01C819 07:C809: BE        .byte < ofs_016_C7BE_01
 - D 2 - - - 0x01C81A 07:C80A: B7        .byte < ofs_016_C7B7_02
 - D 2 - - - 0x01C81B 07:C80B: B0        .byte < ofs_016_C7B0_03
