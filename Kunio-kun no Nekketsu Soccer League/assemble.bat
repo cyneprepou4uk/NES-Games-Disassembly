@@ -1,14 +1,18 @@
-:: по возможности отключить лишние уведомления в консоли
+:: in order to enable "comparsion with previous version" and "restoring backup" functions
+:: make 2 copies of <!goal3.nes> and rename them as <!goal3.old> and <!goal3.bak>
+
+:: disable unnecessary console messages if possible
 echo off
 
-:: сделать копию прошлой скомпилированной версии
+:: create a copy of previous compiled version
 if exist !goal3.old (copy !goal3.nes !goal3.old)
 
-:: запустить перевод символов и дождаться выполнения скрипта
+:: launch preparation script and wait until finished
 start /wait lua53 preparations.lua
 
-:: -U = нет необходимости писать .import L_xx_xxxx в тех банках, которые ссылаются на .export L_xx_xxxx
-:: -l = создать файл листинга для этого банка
+:: -U = no need to use .import
+:: -l = create listing file
+:: -g = create debug file
 ca65 -U -l copy_bank_00.lst -g copy_bank_00.asm
 ca65 -U -l copy_bank_01.lst -g copy_bank_01.asm
 ca65 -U -l copy_bank_02.lst -g copy_bank_02.asm
@@ -18,8 +22,8 @@ ca65 -U -l copy_bank_05.lst -g copy_bank_05.asm
 ca65 -U -l copy_bank_06.lst -g copy_bank_06.asm
 ca65 -U -l copy_bank_FF.lst -g copy_bank_FF.asm
 
-:: компиляция кода в бинарники
-ld65 -C ld65.cfg ^
+:: assemble code into binaries
+ld65 -C ld65.cfg -o PRG_ROM.bin --dbgfile _debug.txt ^
     copy_bank_00.o ^
     copy_bank_01.o ^
     copy_bank_02.o ^
@@ -29,27 +33,17 @@ ld65 -C ld65.cfg ^
     copy_bank_06.o ^
     copy_bank_FF.o
 
-:: сбор бинарников, хедера и chr в общий ром
-copy /B header.bin + ^
-    copy_bank_00.bin + ^
-    copy_bank_01.bin + ^
-    copy_bank_02.bin + ^
-    copy_bank_03.bin + ^
-    copy_bank_04.bin + ^
-    copy_bank_05.bin + ^
-    copy_bank_06.bin + ^
-    copy_bank_FF.bin + ^CHR_ROM.chr !goal3.nes
 
-:: удалить остаточный хлам и копии
-del *.o + copy_*.bin + copy_*.asm + copy_*.inc + temp_*.asm + temp_*.inc
+:: join header, prg and chr into a single ROM file
+copy /B header.bin + PRG_ROM.bin + CHR_ROM.chr !goal3.nes
 
-:: объединить файлы листинга в один файл
-copy /A copy_*.lst !debug.txt
+:: join listing files into a single file
+copy /A copy_*.lst _listing.txt
 
-:: удалить копии листинга
-del copy_*.lst
+:: delete leftover garbage and copies
+del *.o + PRG_ROM.bin + copy_*
 
-:: проверить размер файла и вывести нужное сообщение
+:: check file size and display corresponding message
 setlocal enableextensions
 FOR %%A IN ("!goal3.nes") DO set "size=%%~zA"
 if %size% EQU 262160 (
