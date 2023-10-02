@@ -4755,11 +4755,7 @@ C - - - - - 0x01FFCF 07:FFBF: 60        RTS
 
 
 ; bzk garbage
-- - - - - - 0x01FFFB 07:FFEB: 5A        .byte $5A   ; 
-- - - - - - 0x01FFFC 07:FFEC: 45        .byte $45   ; 
-- - - - - - 0x01FFFD 07:FFED: 4C        .byte $4C   ; 
-- - - - - - 0x01FFFE 07:FFEE: 44        .byte $44   ; 
-- - - - - - 0x01FFFF 07:FFEF: 41        .byte $41   ; 
+- - - - - - 0x01FFFB 07:FFEB: 5A        .byte "ZELDA"
 
 
 ; bzk garbage
