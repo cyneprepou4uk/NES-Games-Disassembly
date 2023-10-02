@@ -22,7 +22,7 @@
 
 
 ; bzk garbage
-vec_BF50_RESET:
+vec_inc_0x003F60_RESET:
 - - - - - - 0x003F60 00:BF50: 78        SEI
 - - - - - - 0x003F61 00:BF51: D8        CLD
 - - - - - - 0x003F62 00:BF52: A9 00     LDA #$00

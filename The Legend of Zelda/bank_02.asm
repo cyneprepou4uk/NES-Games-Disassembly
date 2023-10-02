@@ -5119,5 +5119,5 @@ C - - - - - 0x00AF9F 02:AF8F: 60        RTS
 
 .segment "VECTORS_02"
 - - - - - - 0x00C00A 02:BFFA: 84 E4     .word vec_0x01E494_NMI
-- - - - - - 0x00C00C 02:BFFC: 50 BF     .word vec_BF50_RESET
+- - - - - - 0x00C00C 02:BFFC: 50 BF     .word vec_inc_0x003F60_RESET
 - - - - - - 0x00C00E 02:BFFE: F0 BF     .word $BFF0 ; IRQ vector
