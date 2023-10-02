@@ -596,4 +596,11 @@ _off005_A7DB_09:
 
 
 .segment "BANK_03i"
-.include "copy_bank___BF50_BFFF.asm"
+.include "copy_bank___BF50_BFF9.asm"
+
+
+
+.segment "VECTORS_03"
+- - - - - - 0x01000A 03:BFFA: 84 E4     .word vec_0x01E494_NMI
+- - - - - - 0x01000C 03:BFFC: 50 BF     .word vec_BF50_RESET
+- - - - - - 0x01000E 03:BFFE: F0 BF     .word $BFF0 ; IRQ vector

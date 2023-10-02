@@ -4,7 +4,7 @@ local time = os.clock()       --record script execution time
 --список файлов для подготовки перед конвертацией
 --list of files which need to be prepared before compilation
 local files_list = {
-    "bank___BF50_BFFF.asm",
+    "bank___BF50_BFF9.asm",
     "bank_00.asm",
     "bank_01.asm",
     "bank_02.asm",

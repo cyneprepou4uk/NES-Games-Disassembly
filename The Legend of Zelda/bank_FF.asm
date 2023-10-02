@@ -4773,7 +4773,7 @@ vec_FFF0_IRQ:
 
 
 
-.segment "VECTORS"
+.segment "VECTORS_FF"
 - D 3 - - - 0x02000A 07:FFFA: 84 E4     .word vec_E484_NMI
 - D 3 - - - 0x02000C 07:FFFC: 50 FF     .word vec_FF50_RESET
 - - - - - - 0x02000E 07:FFFE: F0 FF     .word vec_FFF0_IRQ

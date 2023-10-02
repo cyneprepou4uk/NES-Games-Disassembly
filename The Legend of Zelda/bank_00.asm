@@ -5072,4 +5072,11 @@ tbl_9FD1:
 
 
 .segment "BANK_00i"
-.include "copy_bank___BF50_BFFF.asm"
+.include "copy_bank___BF50_BFF9.asm"
+
+
+
+.segment "VECTORS_00"
+- - - - - - 0x00400A 00:BFFA: 84 E4     .word vec_0x01E494_NMI
+- - - - - - 0x00400C 00:BFFC: 50 BF     .word vec_BF50_RESET
+- - - - - - 0x00400E 00:BFFE: F0 BF     .word $BFF0 ; IRQ vector

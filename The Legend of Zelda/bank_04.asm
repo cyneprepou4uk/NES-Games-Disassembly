@@ -9206,4 +9206,11 @@ C - - - - - 0x01347E 04:B46E: 60        RTS
 
 
 .segment "BANK_04i"
-.include "copy_bank___BF50_BFFF.asm"
+.include "copy_bank___BF50_BFF9.asm"
+
+
+
+.segment "VECTORS_04"
+- - - - - - 0x01400A 04:BFFA: 84 E4     .word vec_0x01E494_NMI
+- - - - - - 0x01400C 04:BFFC: 50 BF     .word vec_BF50_RESET
+- - - - - - 0x01400E 04:BFFE: F0 BF     .word $BFF0 ; IRQ vector
