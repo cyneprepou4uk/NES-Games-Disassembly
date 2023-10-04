@@ -75,6 +75,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 * Felix the Cat (U) [!] `0639E88E`
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!] `BABD39FA`
 * RoboCop 3 (U) [!] `FBBB58A6`
+* Super C (U) [!] `1AC846F0`
 * Super Mario Bros. (W) [!] `3337EC46`
 * Urban Champion (W) [!] `0770CDAA`
 
