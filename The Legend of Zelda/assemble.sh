@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_IGNORE_COMPILE_ASM_ARRAY=(bank_s1.asm copy_bank_s1.asm bank_s2.asm copy_bank_s2.asm bank___BF50_BFFF.asm copy_bank___BF50_BFFF.asm)
+NES_IGNORE_COMPILE_ASM_ARRAY=(bank_s1.asm copy_bank_s1.asm bank_s2.asm copy_bank_s2.asm bank___BF50_BFF9.asm copy_bank___BF50_BFF9.asm)
 NES_OUTPUT_SIMPLE_NAME=zelda
 NES_OUTPUT_FILE_SIZE=131088
 
