@@ -38,9 +38,9 @@ C - - - - - 0x000036 00:8026: 20 63 FF  JSR sub_inc_FF63
 C - - - - - 0x000039 00:8029: A9 4C     LDA #$4C    ; JMP opcode
 C - - - - - 0x00003B 00:802B: 8D FD 07  STA ram_jmp_xxxx
 C - - - - - 0x00003E 00:802E: A9 69     LDA #< vec_FE69_NMI
-C - - - - - 0x000040 00:8030: 8D FE 07  STA ram_jmp_xxxx + 1
+C - - - - - 0x000040 00:8030: 8D FE 07  STA ram_jmp_xxxx + $01
 C - - - - - 0x000043 00:8033: A9 FE     LDA #> vec_FE69_NMI
-C - - - - - 0x000045 00:8035: 8D FF 07  STA ram_jmp_xxxx + 2
+C - - - - - 0x000045 00:8035: 8D FF 07  STA ram_jmp_xxxx + $02
 C - - - - - 0x000048 00:8038: A9 C8     LDA #$C8
 C - - - - - 0x00004A 00:803A: 8D 00 20  STA $2000
 C - - - - - 0x00004D 00:803D: 85 FD     STA ram_for_2000
@@ -1323,7 +1323,7 @@ C - - - - - 0x00087A 00:886A: 8A        TXA
 C - - - - - 0x00087B 00:886B: 4A        LSR
 C - - - - - 0x00087C 00:886C: 4A        LSR
 C - - - - - 0x00087D 00:886D: AA        TAX
-C - - - - - 0x00087E 00:886E: BD D7 B2  LDA tbl_B2D8_palette - 1,X
+C - - - - - 0x00087E 00:886E: BD D7 B2  LDA tbl_B2D8_palette - $01,X
 C - - - - - 0x000881 00:8871: 8D 13 01  STA ram_buffer_palette + $13
 bra_8874_skip_palette:
 C - - - - - 0x000884 00:8874: 20 0E 98  JSR sub_980E_find_room_exits
@@ -2481,7 +2481,7 @@ C - - - - - 0x0010E6 00:90D6: BD 17 91  LDA tbl_9117,X
 C - - - - - 0x0010E9 00:90D9: 18        CLC
 C - - - - - 0x0010EA 00:90DA: 7D 05 02  ADC ram_spr_T + $04,X
 C - - - - - 0x0010ED 00:90DD: 48        PHA
-C - - - - - 0x0010EE 00:90DE: BD 18 91  LDA tbl_9117 + 1,X
+C - - - - - 0x0010EE 00:90DE: BD 18 91  LDA tbl_9117 + $01,X
 C - - - - - 0x0010F1 00:90E1: 18        CLC
 C - - - - - 0x0010F2 00:90E2: 7D 07 02  ADC ram_spr_X + $04,X
 C - - - - - 0x0010F5 00:90E5: A8        TAY
@@ -3033,110 +3033,110 @@ C - - - - - 0x0013E7 00:93D7: 60        RTS
 
 
 tbl_93D8_lo:
-- D 0 - - - 0x0013E8 00:93D8: 54        .byte < ( ofs_005_9455_hat - 1 )   ; C0
-- D 0 - - - 0x0013E9 00:93D9: 54        .byte < ( ofs_005_9455_hat - 1 )   ; C1
-- D 0 - - - 0x0013EA 00:93DA: 54        .byte < ( ofs_005_9455_hat - 1 )   ; C2
-- D 0 - - - 0x0013EB 00:93DB: 54        .byte < ( ofs_005_9455_hat - 1 )   ; C3
-- D 0 - - - 0x0013EC 00:93DC: 54        .byte < ( ofs_005_9455_hat - 1 )   ; C4
-- D 0 - - - 0x0013ED 00:93DD: 54        .byte < ( ofs_005_9455_hat - 1 )   ; C5
-- D 0 - - - 0x0013EE 00:93DE: 54        .byte < ( ofs_005_9455_hat - 1 )   ; C6
-- D 0 - - - 0x0013EF 00:93DF: 54        .byte < ( ofs_005_9455_hat - 1 )   ; C7
-- D 0 - - - 0x0013F0 00:93E0: 54        .byte < ( ofs_005_9455_hat - 1 )   ; C8
-- D 0 - - - 0x0013F1 00:93E1: 54        .byte < ( ofs_005_9455_hat - 1 )   ; C9
-- D 0 - - - 0x0013F2 00:93E2: 54        .byte < ( ofs_005_9455_hat - 1 )   ; CA
-- D 0 - - - 0x0013F3 00:93E3: 54        .byte < ( ofs_005_9455_hat - 1 )   ; CB
-- D 0 - - - 0x0013F4 00:93E4: 54        .byte < ( ofs_005_9455_hat - 1 )   ; CC
-- D 0 - - - 0x0013F5 00:93E5: 54        .byte < ( ofs_005_9455_hat - 1 )   ; CD
-- - - - - - 0x0013F6 00:93E6: 54        .byte < ( ofs_005_9455_hat - 1 )   ; CE
-- - - - - - 0x0013F7 00:93E7: 54        .byte < ( ofs_005_9455_hat - 1 )   ; CF
-- D 0 - - - 0x0013F8 00:93E8: 58        .byte < ( ofs_005_9459_D0_magic_boots - 1 )   ; D0
-- D 0 - - - 0x0013F9 00:93E9: 3D        .byte < ( ofs_005_943E_D1_key_top_left - 1 )   ; D1
-- D 0 - - - 0x0013FA 00:93EA: 40        .byte < ( ofs_005_943E_D1_key_top_right - 1 )   ; D2
-- D 0 - - - 0x0013FB 00:93EB: 43        .byte < ( ofs_005_943E_D1_key_bottom_left - 1 )   ; D3
-- D 0 - - - 0x0013FC 00:93EC: 46        .byte < ( ofs_005_943E_D1_key_bottom_right - 1 )   ; D4
-- D 0 - - - 0x0013FD 00:93ED: 4F        .byte < ( ofs_005_9450_staff_piece - 1 )   ; D5
-- D 0 - - - 0x0013FE 00:93EE: 4F        .byte < ( ofs_005_9450_staff_piece - 1 )   ; D6
-- D 0 - - - 0x0013FF 00:93EF: 4F        .byte < ( ofs_005_9450_staff_piece - 1 )   ; D7
-- D 0 - - - 0x001400 00:93F0: 4F        .byte < ( ofs_005_9450_staff_piece - 1 )   ; D8
-- D 0 - - - 0x001401 00:93F1: 4F        .byte < ( ofs_005_9450_staff_piece - 1 )   ; D9
-- D 0 - - - 0x001402 00:93F2: 4F        .byte < ( ofs_005_9450_staff_piece - 1 )   ; DA
-- D 0 - - - 0x001403 00:93F3: 61        .byte < ( ofs_005_9468_potion_yellow - 1 )   ; DB
-- D 0 - - - 0x001404 00:93F4: 67        .byte < ( ofs_005_9468_potion_blue - 1 )   ; DC
-- D 0 - - - 0x001405 00:93F5: 5E        .byte < ( ofs_005_9468_potion_green - 1 )   ; DD
-- D 0 - - - 0x001406 00:93F6: 67        .byte < ( ofs_005_9468_potion_blue - 1 )   ; DE
-- D 0 - - - 0x001407 00:93F7: 67        .byte < ( ofs_005_9468_potion_blue - 1 )   ; DF
-- D 0 - - - 0x001408 00:93F8: 64        .byte < ( ofs_005_9468_potion_purple - 1 )   ; E0
-- D 0 - - - 0x001409 00:93F9: 67        .byte < ( ofs_005_9468_potion_blue - 1 )   ; E1
-- D 0 - - - 0x00140A 00:93FA: 61        .byte < ( ofs_005_9468_potion_yellow - 1 )   ; E2
-- D 0 - - - 0x00140B 00:93FB: 67        .byte < ( ofs_005_9468_potion_blue - 1 )   ; E3
-- D 0 - - - 0x00140C 00:93FC: 61        .byte < ( ofs_005_9468_potion_yellow - 1 )   ; E4
-- D 0 - - - 0x00140D 00:93FD: 64        .byte < ( ofs_005_9468_potion_purple - 1 )   ; E5
-- D 0 - - - 0x00140E 00:93FE: 61        .byte < ( ofs_005_9468_potion_yellow - 1 )   ; E6
-- D 0 - - - 0x00140F 00:93FF: 5E        .byte < ( ofs_005_9468_potion_green - 1 )   ; E7
-- D 0 - - - 0x001410 00:9400: 61        .byte < ( ofs_005_9468_potion_yellow - 1 )   ; E8
-- D 0 - - - 0x001411 00:9401: 64        .byte < ( ofs_005_9468_potion_purple - 1 )   ; E9
-- D 0 - - - 0x001412 00:9402: 61        .byte < ( ofs_005_9468_potion_yellow - 1 )   ; EA
-- D 0 - - - 0x001413 00:9403: 6F        .byte < ( ofs_005_9470_credit - 1 )   ; EB
-- D 0 - - - 0x001414 00:9404: 6F        .byte < ( ofs_005_9470_credit - 1 )   ; EC
-- D 0 - - - 0x001415 00:9405: 6F        .byte < ( ofs_005_9470_credit - 1 )   ; ED
-- D 0 - - - 0x001416 00:9406: 6F        .byte < ( ofs_005_9470_credit - 1 )   ; EE
-- D 0 - - - 0x001417 00:9407: 6F        .byte < ( ofs_005_9470_credit - 1 )   ; EF
-- D 0 - - - 0x001418 00:9408: 6F        .byte < ( ofs_005_9470_credit - 1 )   ; F0
-- D 0 - - - 0x001419 00:9409: 6F        .byte < ( ofs_005_9470_credit - 1 )   ; F1
-- D 0 - - - 0x00141A 00:940A: 6F        .byte < ( ofs_005_9470_credit - 1 )   ; F2
+- D 0 - - - 0x0013E8 00:93D8: 54        .byte < ( ofs_005_9455_hat - $01 )   ; C0
+- D 0 - - - 0x0013E9 00:93D9: 54        .byte < ( ofs_005_9455_hat - $01 )   ; C1
+- D 0 - - - 0x0013EA 00:93DA: 54        .byte < ( ofs_005_9455_hat - $01 )   ; C2
+- D 0 - - - 0x0013EB 00:93DB: 54        .byte < ( ofs_005_9455_hat - $01 )   ; C3
+- D 0 - - - 0x0013EC 00:93DC: 54        .byte < ( ofs_005_9455_hat - $01 )   ; C4
+- D 0 - - - 0x0013ED 00:93DD: 54        .byte < ( ofs_005_9455_hat - $01 )   ; C5
+- D 0 - - - 0x0013EE 00:93DE: 54        .byte < ( ofs_005_9455_hat - $01 )   ; C6
+- D 0 - - - 0x0013EF 00:93DF: 54        .byte < ( ofs_005_9455_hat - $01 )   ; C7
+- D 0 - - - 0x0013F0 00:93E0: 54        .byte < ( ofs_005_9455_hat - $01 )   ; C8
+- D 0 - - - 0x0013F1 00:93E1: 54        .byte < ( ofs_005_9455_hat - $01 )   ; C9
+- D 0 - - - 0x0013F2 00:93E2: 54        .byte < ( ofs_005_9455_hat - $01 )   ; CA
+- D 0 - - - 0x0013F3 00:93E3: 54        .byte < ( ofs_005_9455_hat - $01 )   ; CB
+- D 0 - - - 0x0013F4 00:93E4: 54        .byte < ( ofs_005_9455_hat - $01 )   ; CC
+- D 0 - - - 0x0013F5 00:93E5: 54        .byte < ( ofs_005_9455_hat - $01 )   ; CD
+- - - - - - 0x0013F6 00:93E6: 54        .byte < ( ofs_005_9455_hat - $01 )   ; CE
+- - - - - - 0x0013F7 00:93E7: 54        .byte < ( ofs_005_9455_hat - $01 )   ; CF
+- D 0 - - - 0x0013F8 00:93E8: 58        .byte < ( ofs_005_9459_D0_magic_boots - $01 )   ; D0
+- D 0 - - - 0x0013F9 00:93E9: 3D        .byte < ( ofs_005_943E_D1_key_top_left - $01 )   ; D1
+- D 0 - - - 0x0013FA 00:93EA: 40        .byte < ( ofs_005_943E_D1_key_top_right - $01 )   ; D2
+- D 0 - - - 0x0013FB 00:93EB: 43        .byte < ( ofs_005_943E_D1_key_bottom_left - $01 )   ; D3
+- D 0 - - - 0x0013FC 00:93EC: 46        .byte < ( ofs_005_943E_D1_key_bottom_right - $01 )   ; D4
+- D 0 - - - 0x0013FD 00:93ED: 4F        .byte < ( ofs_005_9450_staff_piece - $01 )   ; D5
+- D 0 - - - 0x0013FE 00:93EE: 4F        .byte < ( ofs_005_9450_staff_piece - $01 )   ; D6
+- D 0 - - - 0x0013FF 00:93EF: 4F        .byte < ( ofs_005_9450_staff_piece - $01 )   ; D7
+- D 0 - - - 0x001400 00:93F0: 4F        .byte < ( ofs_005_9450_staff_piece - $01 )   ; D8
+- D 0 - - - 0x001401 00:93F1: 4F        .byte < ( ofs_005_9450_staff_piece - $01 )   ; D9
+- D 0 - - - 0x001402 00:93F2: 4F        .byte < ( ofs_005_9450_staff_piece - $01 )   ; DA
+- D 0 - - - 0x001403 00:93F3: 61        .byte < ( ofs_005_9468_potion_yellow - $01 )   ; DB
+- D 0 - - - 0x001404 00:93F4: 67        .byte < ( ofs_005_9468_potion_blue - $01 )   ; DC
+- D 0 - - - 0x001405 00:93F5: 5E        .byte < ( ofs_005_9468_potion_green - $01 )   ; DD
+- D 0 - - - 0x001406 00:93F6: 67        .byte < ( ofs_005_9468_potion_blue - $01 )   ; DE
+- D 0 - - - 0x001407 00:93F7: 67        .byte < ( ofs_005_9468_potion_blue - $01 )   ; DF
+- D 0 - - - 0x001408 00:93F8: 64        .byte < ( ofs_005_9468_potion_purple - $01 )   ; E0
+- D 0 - - - 0x001409 00:93F9: 67        .byte < ( ofs_005_9468_potion_blue - $01 )   ; E1
+- D 0 - - - 0x00140A 00:93FA: 61        .byte < ( ofs_005_9468_potion_yellow - $01 )   ; E2
+- D 0 - - - 0x00140B 00:93FB: 67        .byte < ( ofs_005_9468_potion_blue - $01 )   ; E3
+- D 0 - - - 0x00140C 00:93FC: 61        .byte < ( ofs_005_9468_potion_yellow - $01 )   ; E4
+- D 0 - - - 0x00140D 00:93FD: 64        .byte < ( ofs_005_9468_potion_purple - $01 )   ; E5
+- D 0 - - - 0x00140E 00:93FE: 61        .byte < ( ofs_005_9468_potion_yellow - $01 )   ; E6
+- D 0 - - - 0x00140F 00:93FF: 5E        .byte < ( ofs_005_9468_potion_green - $01 )   ; E7
+- D 0 - - - 0x001410 00:9400: 61        .byte < ( ofs_005_9468_potion_yellow - $01 )   ; E8
+- D 0 - - - 0x001411 00:9401: 64        .byte < ( ofs_005_9468_potion_purple - $01 )   ; E9
+- D 0 - - - 0x001412 00:9402: 61        .byte < ( ofs_005_9468_potion_yellow - $01 )   ; EA
+- D 0 - - - 0x001413 00:9403: 6F        .byte < ( ofs_005_9470_credit - $01 )   ; EB
+- D 0 - - - 0x001414 00:9404: 6F        .byte < ( ofs_005_9470_credit - $01 )   ; EC
+- D 0 - - - 0x001415 00:9405: 6F        .byte < ( ofs_005_9470_credit - $01 )   ; ED
+- D 0 - - - 0x001416 00:9406: 6F        .byte < ( ofs_005_9470_credit - $01 )   ; EE
+- D 0 - - - 0x001417 00:9407: 6F        .byte < ( ofs_005_9470_credit - $01 )   ; EF
+- D 0 - - - 0x001418 00:9408: 6F        .byte < ( ofs_005_9470_credit - $01 )   ; F0
+- D 0 - - - 0x001419 00:9409: 6F        .byte < ( ofs_005_9470_credit - $01 )   ; F1
+- D 0 - - - 0x00141A 00:940A: 6F        .byte < ( ofs_005_9470_credit - $01 )   ; F2
 
 tbl_940B_hi:
-- D 0 - - - 0x00141B 00:940B: 94        .byte > ( ofs_005_9455_hat - 1 )   ; C0
-- D 0 - - - 0x00141C 00:940C: 94        .byte > ( ofs_005_9455_hat - 1 )   ; C1
-- D 0 - - - 0x00141D 00:940D: 94        .byte > ( ofs_005_9455_hat - 1 )   ; C2
-- D 0 - - - 0x00141E 00:940E: 94        .byte > ( ofs_005_9455_hat - 1 )   ; C3
-- D 0 - - - 0x00141F 00:940F: 94        .byte > ( ofs_005_9455_hat - 1 )   ; C4
-- D 0 - - - 0x001420 00:9410: 94        .byte > ( ofs_005_9455_hat - 1 )   ; C5
-- D 0 - - - 0x001421 00:9411: 94        .byte > ( ofs_005_9455_hat - 1 )   ; C6
-- D 0 - - - 0x001422 00:9412: 94        .byte > ( ofs_005_9455_hat - 1 )   ; C7
-- D 0 - - - 0x001423 00:9413: 94        .byte > ( ofs_005_9455_hat - 1 )   ; C8
-- D 0 - - - 0x001424 00:9414: 94        .byte > ( ofs_005_9455_hat - 1 )   ; C9
-- D 0 - - - 0x001425 00:9415: 94        .byte > ( ofs_005_9455_hat - 1 )   ; CA
-- D 0 - - - 0x001426 00:9416: 94        .byte > ( ofs_005_9455_hat - 1 )   ; CB
-- D 0 - - - 0x001427 00:9417: 94        .byte > ( ofs_005_9455_hat - 1 )   ; CC
-- D 0 - - - 0x001428 00:9418: 94        .byte > ( ofs_005_9455_hat - 1 )   ; CD
-- - - - - - 0x001429 00:9419: 94        .byte > ( ofs_005_9455_hat - 1 )   ; CE
-- - - - - - 0x00142A 00:941A: 94        .byte > ( ofs_005_9455_hat - 1 )   ; CF
-- D 0 - - - 0x00142B 00:941B: 94        .byte > ( ofs_005_9459_D0_magic_boots - 1 )   ; D0
-- D 0 - - - 0x00142C 00:941C: 94        .byte > ( ofs_005_943E_D1_key_top_left - 1 )   ; D1
-- D 0 - - - 0x00142D 00:941D: 94        .byte > ( ofs_005_943E_D1_key_top_right - 1 )   ; D2
-- D 0 - - - 0x00142E 00:941E: 94        .byte > ( ofs_005_943E_D1_key_bottom_left - 1 )   ; D3
-- D 0 - - - 0x00142F 00:941F: 94        .byte > ( ofs_005_943E_D1_key_bottom_right - 1 )   ; D4
-- D 0 - - - 0x001430 00:9420: 94        .byte > ( ofs_005_9450_staff_piece - 1 )   ; D5
-- D 0 - - - 0x001431 00:9421: 94        .byte > ( ofs_005_9450_staff_piece - 1 )   ; D6
-- D 0 - - - 0x001432 00:9422: 94        .byte > ( ofs_005_9450_staff_piece - 1 )   ; D7
-- D 0 - - - 0x001433 00:9423: 94        .byte > ( ofs_005_9450_staff_piece - 1 )   ; D8
-- D 0 - - - 0x001434 00:9424: 94        .byte > ( ofs_005_9450_staff_piece - 1 )   ; D9
-- D 0 - - - 0x001435 00:9425: 94        .byte > ( ofs_005_9450_staff_piece - 1 )   ; DA
-- D 0 - - - 0x001436 00:9426: 94        .byte > ( ofs_005_9468_potion_yellow - 1 )   ; DB
-- D 0 - - - 0x001437 00:9427: 94        .byte > ( ofs_005_9468_potion_blue - 1 )   ; DC
-- D 0 - - - 0x001438 00:9428: 94        .byte > ( ofs_005_9468_potion_green - 1 )   ; DD
-- D 0 - - - 0x001439 00:9429: 94        .byte > ( ofs_005_9468_potion_blue - 1 )   ; DE
-- D 0 - - - 0x00143A 00:942A: 94        .byte > ( ofs_005_9468_potion_blue - 1 )   ; DF
-- D 0 - - - 0x00143B 00:942B: 94        .byte > ( ofs_005_9468_potion_purple - 1 )   ; E0
-- D 0 - - - 0x00143C 00:942C: 94        .byte > ( ofs_005_9468_potion_blue - 1 )   ; E1
-- D 0 - - - 0x00143D 00:942D: 94        .byte > ( ofs_005_9468_potion_yellow - 1 )   ; E2
-- D 0 - - - 0x00143E 00:942E: 94        .byte > ( ofs_005_9468_potion_blue - 1 )   ; E3
-- D 0 - - - 0x00143F 00:942F: 94        .byte > ( ofs_005_9468_potion_yellow - 1 )   ; E4
-- D 0 - - - 0x001440 00:9430: 94        .byte > ( ofs_005_9468_potion_purple - 1 )   ; E5
-- D 0 - - - 0x001441 00:9431: 94        .byte > ( ofs_005_9468_potion_yellow - 1 )   ; E6
-- D 0 - - - 0x001442 00:9432: 94        .byte > ( ofs_005_9468_potion_green - 1 )   ; E7
-- D 0 - - - 0x001443 00:9433: 94        .byte > ( ofs_005_9468_potion_yellow - 1 )   ; E8
-- D 0 - - - 0x001444 00:9434: 94        .byte > ( ofs_005_9468_potion_purple - 1 )   ; E9
-- D 0 - - - 0x001445 00:9435: 94        .byte > ( ofs_005_9468_potion_yellow - 1 )   ; EA
-- D 0 - - - 0x001446 00:9436: 94        .byte > ( ofs_005_9470_credit - 1 )   ; EB
-- D 0 - - - 0x001447 00:9437: 94        .byte > ( ofs_005_9470_credit - 1 )   ; EC
-- D 0 - - - 0x001448 00:9438: 94        .byte > ( ofs_005_9470_credit - 1 )   ; ED
-- D 0 - - - 0x001449 00:9439: 94        .byte > ( ofs_005_9470_credit - 1 )   ; EE
-- D 0 - - - 0x00144A 00:943A: 94        .byte > ( ofs_005_9470_credit - 1 )   ; EF
-- D 0 - - - 0x00144B 00:943B: 94        .byte > ( ofs_005_9470_credit - 1 )   ; F0
-- D 0 - - - 0x00144C 00:943C: 94        .byte > ( ofs_005_9470_credit - 1 )   ; F1
-- D 0 - - - 0x00144D 00:943D: 94        .byte > ( ofs_005_9470_credit - 1 )   ; F2
+- D 0 - - - 0x00141B 00:940B: 94        .byte > ( ofs_005_9455_hat - $01 )   ; C0
+- D 0 - - - 0x00141C 00:940C: 94        .byte > ( ofs_005_9455_hat - $01 )   ; C1
+- D 0 - - - 0x00141D 00:940D: 94        .byte > ( ofs_005_9455_hat - $01 )   ; C2
+- D 0 - - - 0x00141E 00:940E: 94        .byte > ( ofs_005_9455_hat - $01 )   ; C3
+- D 0 - - - 0x00141F 00:940F: 94        .byte > ( ofs_005_9455_hat - $01 )   ; C4
+- D 0 - - - 0x001420 00:9410: 94        .byte > ( ofs_005_9455_hat - $01 )   ; C5
+- D 0 - - - 0x001421 00:9411: 94        .byte > ( ofs_005_9455_hat - $01 )   ; C6
+- D 0 - - - 0x001422 00:9412: 94        .byte > ( ofs_005_9455_hat - $01 )   ; C7
+- D 0 - - - 0x001423 00:9413: 94        .byte > ( ofs_005_9455_hat - $01 )   ; C8
+- D 0 - - - 0x001424 00:9414: 94        .byte > ( ofs_005_9455_hat - $01 )   ; C9
+- D 0 - - - 0x001425 00:9415: 94        .byte > ( ofs_005_9455_hat - $01 )   ; CA
+- D 0 - - - 0x001426 00:9416: 94        .byte > ( ofs_005_9455_hat - $01 )   ; CB
+- D 0 - - - 0x001427 00:9417: 94        .byte > ( ofs_005_9455_hat - $01 )   ; CC
+- D 0 - - - 0x001428 00:9418: 94        .byte > ( ofs_005_9455_hat - $01 )   ; CD
+- - - - - - 0x001429 00:9419: 94        .byte > ( ofs_005_9455_hat - $01 )   ; CE
+- - - - - - 0x00142A 00:941A: 94        .byte > ( ofs_005_9455_hat - $01 )   ; CF
+- D 0 - - - 0x00142B 00:941B: 94        .byte > ( ofs_005_9459_D0_magic_boots - $01 )   ; D0
+- D 0 - - - 0x00142C 00:941C: 94        .byte > ( ofs_005_943E_D1_key_top_left - $01 )   ; D1
+- D 0 - - - 0x00142D 00:941D: 94        .byte > ( ofs_005_943E_D1_key_top_right - $01 )   ; D2
+- D 0 - - - 0x00142E 00:941E: 94        .byte > ( ofs_005_943E_D1_key_bottom_left - $01 )   ; D3
+- D 0 - - - 0x00142F 00:941F: 94        .byte > ( ofs_005_943E_D1_key_bottom_right - $01 )   ; D4
+- D 0 - - - 0x001430 00:9420: 94        .byte > ( ofs_005_9450_staff_piece - $01 )   ; D5
+- D 0 - - - 0x001431 00:9421: 94        .byte > ( ofs_005_9450_staff_piece - $01 )   ; D6
+- D 0 - - - 0x001432 00:9422: 94        .byte > ( ofs_005_9450_staff_piece - $01 )   ; D7
+- D 0 - - - 0x001433 00:9423: 94        .byte > ( ofs_005_9450_staff_piece - $01 )   ; D8
+- D 0 - - - 0x001434 00:9424: 94        .byte > ( ofs_005_9450_staff_piece - $01 )   ; D9
+- D 0 - - - 0x001435 00:9425: 94        .byte > ( ofs_005_9450_staff_piece - $01 )   ; DA
+- D 0 - - - 0x001436 00:9426: 94        .byte > ( ofs_005_9468_potion_yellow - $01 )   ; DB
+- D 0 - - - 0x001437 00:9427: 94        .byte > ( ofs_005_9468_potion_blue - $01 )   ; DC
+- D 0 - - - 0x001438 00:9428: 94        .byte > ( ofs_005_9468_potion_green - $01 )   ; DD
+- D 0 - - - 0x001439 00:9429: 94        .byte > ( ofs_005_9468_potion_blue - $01 )   ; DE
+- D 0 - - - 0x00143A 00:942A: 94        .byte > ( ofs_005_9468_potion_blue - $01 )   ; DF
+- D 0 - - - 0x00143B 00:942B: 94        .byte > ( ofs_005_9468_potion_purple - $01 )   ; E0
+- D 0 - - - 0x00143C 00:942C: 94        .byte > ( ofs_005_9468_potion_blue - $01 )   ; E1
+- D 0 - - - 0x00143D 00:942D: 94        .byte > ( ofs_005_9468_potion_yellow - $01 )   ; E2
+- D 0 - - - 0x00143E 00:942E: 94        .byte > ( ofs_005_9468_potion_blue - $01 )   ; E3
+- D 0 - - - 0x00143F 00:942F: 94        .byte > ( ofs_005_9468_potion_yellow - $01 )   ; E4
+- D 0 - - - 0x001440 00:9430: 94        .byte > ( ofs_005_9468_potion_purple - $01 )   ; E5
+- D 0 - - - 0x001441 00:9431: 94        .byte > ( ofs_005_9468_potion_yellow - $01 )   ; E6
+- D 0 - - - 0x001442 00:9432: 94        .byte > ( ofs_005_9468_potion_green - $01 )   ; E7
+- D 0 - - - 0x001443 00:9433: 94        .byte > ( ofs_005_9468_potion_yellow - $01 )   ; E8
+- D 0 - - - 0x001444 00:9434: 94        .byte > ( ofs_005_9468_potion_purple - $01 )   ; E9
+- D 0 - - - 0x001445 00:9435: 94        .byte > ( ofs_005_9468_potion_yellow - $01 )   ; EA
+- D 0 - - - 0x001446 00:9436: 94        .byte > ( ofs_005_9470_credit - $01 )   ; EB
+- D 0 - - - 0x001447 00:9437: 94        .byte > ( ofs_005_9470_credit - $01 )   ; EC
+- D 0 - - - 0x001448 00:9438: 94        .byte > ( ofs_005_9470_credit - $01 )   ; ED
+- D 0 - - - 0x001449 00:9439: 94        .byte > ( ofs_005_9470_credit - $01 )   ; EE
+- D 0 - - - 0x00144A 00:943A: 94        .byte > ( ofs_005_9470_credit - $01 )   ; EF
+- D 0 - - - 0x00144B 00:943B: 94        .byte > ( ofs_005_9470_credit - $01 )   ; F0
+- D 0 - - - 0x00144C 00:943C: 94        .byte > ( ofs_005_9470_credit - $01 )   ; F1
+- D 0 - - - 0x00144D 00:943D: 94        .byte > ( ofs_005_9470_credit - $01 )   ; F2
 
 ; keys
 ofs_005_943E_D1_key_top_left:
@@ -3307,7 +3307,7 @@ bra_9521_loop:
 C - - - - - 0x001531 00:9521: A5 15     LDA ram_current_room
 C - - - - - 0x001533 00:9523: DD 64 95  CMP tbl_9564,X
 C - - - - - 0x001536 00:9526: F0 13     BEQ bra_953B
-C - - - - - 0x001538 00:9528: DD 68 95  CMP tbl_9564 + 4,X
+C - - - - - 0x001538 00:9528: DD 68 95  CMP tbl_9564 + $04,X
 C - - - - - 0x00153B 00:952B: F0 13     BEQ bra_9540
 C - - - - - 0x00153D 00:952D: 8A        TXA
 C - - - - - 0x00153E 00:952E: 18        CLC
@@ -3325,11 +3325,11 @@ C - - - - - 0x00154C 00:953C: 18        CLC
 C - - - - - 0x00154D 00:953D: 69 04     ADC #$04
 C - - - - - 0x00154F 00:953F: AA        TAX
 bra_9540:
-C - - - - - 0x001550 00:9540: BD 65 95  LDA tbl_9564 + 1,X
+C - - - - - 0x001550 00:9540: BD 65 95  LDA tbl_9564 + $01,X
 C - - - - - 0x001553 00:9543: 8D 92 07  STA ram_0792
-C - - - - - 0x001556 00:9546: BD 66 95  LDA tbl_9564 + 2,X
+C - - - - - 0x001556 00:9546: BD 66 95  LDA tbl_9564 + $02,X
 C - - - - - 0x001559 00:9549: 8D 93 07  STA ram_0793
-C - - - - - 0x00155C 00:954C: BD 67 95  LDA tbl_9564 + 3,X
+C - - - - - 0x00155C 00:954C: BD 67 95  LDA tbl_9564 + $03,X
 C - - - - - 0x00155F 00:954F: 8D 94 07  STA ram_0794
 C - - - - - 0x001562 00:9552: A9 00     LDA #$00
 C - - - - - 0x001564 00:9554: 8D 68 07  STA ram_0768
@@ -3454,13 +3454,13 @@ C - - - - - 0x0015F0 00:95E0: 2D 9F 07  AND ram_credits
 C - - - - - 0x0015F3 00:95E3: 8D 9F 07  STA ram_credits
 C - - - - - 0x0015F6 00:95E6: BD 74 96  LDA tbl_9674,X
 C - - - - - 0x0015F9 00:95E9: 85 15     STA ram_current_room
-C - - - - - 0x0015FB 00:95EB: BD 75 96  LDA tbl_9674 + 1,X
+C - - - - - 0x0015FB 00:95EB: BD 75 96  LDA tbl_9674 + $01,X
 C - - - - - 0x0015FE 00:95EE: 8D 92 07  STA ram_0792
 C - - - - - 0x001601 00:95F1: 85 2D     STA ram_pos_X_obj
-C - - - - - 0x001603 00:95F3: BD 76 96  LDA tbl_9674 + 2,X
+C - - - - - 0x001603 00:95F3: BD 76 96  LDA tbl_9674 + $02,X
 C - - - - - 0x001606 00:95F6: 8D 93 07  STA ram_0793
 C - - - - - 0x001609 00:95F9: 85 31     STA ram_pos_Y_obj
-C - - - - - 0x00160B 00:95FB: BD 77 96  LDA tbl_9674 + 3,X
+C - - - - - 0x00160B 00:95FB: BD 77 96  LDA tbl_9674 + $03,X
 C - - - - - 0x00160E 00:95FE: 8D 94 07  STA ram_0794
 C - - - - - 0x001611 00:9601: 85 35     STA ram_pos_Z_obj
 C - - - - - 0x001613 00:9603: A9 00     LDA #$00
@@ -4007,9 +4007,9 @@ C - - - - - 0x001990 00:9980: A9 03     LDA #$03
 C - - - - - 0x001992 00:9982: 85 11     STA ram_0011
 C - - - - - 0x001994 00:9984: A9 FF     LDA #$FF
 C - - - - - 0x001996 00:9986: 8D 4C 07  STA ram_074C_obj
-C - - - - - 0x001999 00:9989: 8D 4D 07  STA ram_074C_obj + 1
-C - - - - - 0x00199C 00:998C: 8D 4E 07  STA ram_074C_obj + 2
-C - - - - - 0x00199F 00:998F: 8D 4F 07  STA ram_074C_obj + 3
+C - - - - - 0x001999 00:9989: 8D 4D 07  STA ram_074C_obj + $01
+C - - - - - 0x00199C 00:998C: 8D 4E 07  STA ram_074C_obj + $02
+C - - - - - 0x00199F 00:998F: 8D 4F 07  STA ram_074C_obj + $03
 C - - - - - 0x0019A2 00:9992: BD 44 07  LDA ram_obj_direction_2,X
 C - - - - - 0x0019A5 00:9995: 9D 4C 07  STA ram_074C_obj,X
 loc_9998_loop:
@@ -4223,7 +4223,7 @@ C - - - - - 0x001B09 00:9AF9: A9 00     LDA #$00
 C - - - - - 0x001B0B 00:9AFB: 9D 64 07  STA ram_0764_obj,X
 C - - - - - 0x001B0E 00:9AFE: A5 0D     LDA ram_000D    ; object id
 C - - - - - 0x001B10 00:9B00: 30 08     BMI bra_9B0A
-C - - - - - 0x001B12 00:9B02: B9 20 9C  LDA tbl_9C21 - 1,Y
+C - - - - - 0x001B12 00:9B02: B9 20 9C  LDA tbl_9C21 - $01,Y
 C - - - - - 0x001B15 00:9B05: 30 03     BMI bra_9B0A
 C - - - - - 0x001B17 00:9B07: 9D 50 07  STA ram_0750_obj,X
 bra_9B0A:
@@ -4293,11 +4293,11 @@ C - - - - - 0x001B7F 00:9B6F: 9D 38 07  STA ram_animation_id,X
 C - - - - - 0x001B82 00:9B72: A9 07     LDA #$07
 C - - - - - 0x001B84 00:9B74: D0 0F     BNE bra_9B85    ; jmp
 bra_9B76_enemy:
-C - - - - - 0x001B86 00:9B76: B9 61 9C  LDA tbl_9C62_animation - 1,Y
+C - - - - - 0x001B86 00:9B76: B9 61 9C  LDA tbl_9C62_animation - $01,Y
 C - - - - - 0x001B89 00:9B79: 9D 38 07  STA ram_animation_id,X
-C - - - - - 0x001B8C 00:9B7C: B9 DF 9B  LDA tbl_9BE0_flags - 1,Y
+C - - - - - 0x001B8C 00:9B7C: B9 DF 9B  LDA tbl_9BE0_flags - $01,Y
 C - - - - - 0x001B8F 00:9B7F: 9D 5C 07  STA ram_obj_flags,X
-C - - - - - 0x001B92 00:9B82: B9 A2 9C  LDA tbl_9CA3 - 1,Y
+C - - - - - 0x001B92 00:9B82: B9 A2 9C  LDA tbl_9CA3 - $01,Y
 bra_9B85:
 C - - - - - 0x001B95 00:9B85: 95 41     STA ram_0041,X
 loc_9B87:
@@ -5066,140 +5066,140 @@ C - - - - - 0x001EB2 00:9EA2: 60        RTS
 
 
 tbl_9EA3_enemy_handler_hi:
-- D 0 - - - 0x001EB3 00:9EA3: 9E        .byte > ( ofs_enemy_handler_9E40_00_RTS - 1 )   ; 
-- D 0 - - - 0x001EB4 00:9EA4: A2        .byte > ( ofs_enemy_handler_A26F_01 - 1 )   ; 
-- D 0 - - - 0x001EB5 00:9EA5: A2        .byte > ( ofs_enemy_handler_A224_02 - 1 )   ; 
-- D 0 - - - 0x001EB6 00:9EA6: A2        .byte > ( ofs_enemy_handler_A24B_03 - 1 )   ; 
-- D 0 - - - 0x001EB7 00:9EA7: A0        .byte > ( ofs_enemy_handler_A0F8_04 - 1 )   ; 
-- D 0 - - - 0x001EB8 00:9EA8: A1        .byte > ( ofs_enemy_handler_A1EF_05 - 1 )   ; 
-- D 0 - - - 0x001EB9 00:9EA9: A1        .byte > ( ofs_enemy_handler_A1CC_06 - 1 )   ; 
-- D 0 - - - 0x001EBA 00:9EAA: A0        .byte > ( ofs_enemy_handler_A072_07 - 1 )   ; 
-- D 0 - - - 0x001EBB 00:9EAB: A0        .byte > ( ofs_enemy_handler_A042_08 - 1 )   ; 
-- - - - - - 0x001EBC 00:9EAC: A0        .byte > ( ofs_enemy_handler_A080_09 - 1 )   ; 
-- D 0 - - - 0x001EBD 00:9EAD: A0        .byte > ( ofs_enemy_handler_A0FE_0A - 1 )   ; 
-- D 0 - - - 0x001EBE 00:9EAE: A1        .byte > ( ofs_enemy_handler_A104_0B - 1 )   ; 
-- D 0 - - - 0x001EBF 00:9EAF: A1        .byte > ( ofs_enemy_handler_A122_0C - 1 )   ; 
-- - - - - - 0x001EC0 00:9EB0: A1        .byte > ( ofs_enemy_handler_A128_0D - 1 )   ; 
-- D 0 - - - 0x001EC1 00:9EB1: A1        .byte > ( ofs_enemy_handler_A1C9_0E - 1 )   ; 
-- D 0 - - - 0x001EC2 00:9EB2: A1        .byte > ( ofs_enemy_handler_A146_0F - 1 )   ; 
-- D 0 - - - 0x001EC3 00:9EB3: A1        .byte > ( ofs_enemy_handler_A14C_10 - 1 )   ; 
-- D 0 - - - 0x001EC4 00:9EB4: A1        .byte > ( ofs_enemy_handler_A152_11 - 1 )   ; 
-- D 0 - - - 0x001EC5 00:9EB5: A1        .byte > ( ofs_enemy_handler_A158_12 - 1 )   ; 
-- D 0 - - - 0x001EC6 00:9EB6: A0        .byte > ( ofs_enemy_handler_A0B9_13 - 1 )   ; 
-- D 0 - - - 0x001EC7 00:9EB7: A0        .byte > ( ofs_enemy_handler_A018_14 - 1 )   ; 
-- D 0 - - - 0x001EC8 00:9EB8: A0        .byte > ( ofs_enemy_handler_A01E_15 - 1 )   ; 
-- D 0 - - - 0x001EC9 00:9EB9: A0        .byte > ( ofs_enemy_handler_A03C_16 - 1 )   ; 
-- D 0 - - - 0x001ECA 00:9EBA: A0        .byte > ( ofs_enemy_handler_A024_17 - 1 )   ; 
-- D 0 - - - 0x001ECB 00:9EBB: A0        .byte > ( ofs_enemy_handler_A02A_18 - 1 )   ; 
-- D 0 - - - 0x001ECC 00:9EBC: A0        .byte > ( ofs_enemy_handler_A030_19 - 1 )   ; 
-- D 0 - - - 0x001ECD 00:9EBD: A1        .byte > ( ofs_enemy_handler_A1BD_1A - 1 )   ; 
-- D 0 - - - 0x001ECE 00:9EBE: A0        .byte > ( ofs_enemy_handler_A0B0_1B - 1 )   ; 
-- D 0 - - - 0x001ECF 00:9EBF: 9F        .byte > ( ofs_enemy_handler_9FE0_1C - 1 )   ; 
-- D 0 - - - 0x001ED0 00:9EC0: 9F        .byte > ( ofs_enemy_handler_9FE6_1D - 1 )   ; 
-- D 0 - - - 0x001ED1 00:9EC1: 9F        .byte > ( ofs_enemy_handler_9FEC_1E - 1 )   ; 
-- D 0 - - - 0x001ED2 00:9EC2: 9F        .byte > ( ofs_enemy_handler_9FE0_1F - 1 )   ; 
-- D 0 - - - 0x001ED3 00:9EC3: 9F        .byte > ( ofs_enemy_handler_9FE6_20 - 1 )   ; 
-- D 0 - - - 0x001ED4 00:9EC4: 9F        .byte > ( ofs_enemy_handler_9FEC_21 - 1 )   ; 
-- D 0 - - - 0x001ED5 00:9EC5: 9F        .byte > ( ofs_enemy_handler_9FEC_22 - 1 )   ; 
-- D 0 - - - 0x001ED6 00:9EC6: 9F        .byte > ( ofs_enemy_handler_9FE6_23 - 1 )   ; 
-- D 0 - - - 0x001ED7 00:9EC7: A0        .byte > ( ofs_enemy_handler_A036_24 - 1 )   ; 
-- D 0 - - - 0x001ED8 00:9EC8: 9F        .byte > ( ofs_enemy_handler_9FC0_25 - 1 )   ; 
-- - - - - - 0x001ED9 00:9EC9: A0        .byte > ( ofs_enemy_handler_A0F2_26 - 1 )   ; 
-- - - - - - 0x001EDA 00:9ECA: A1        .byte > ( ofs_enemy_handler_A11C_27 - 1 )   ; 
-- D 0 - - - 0x001EDB 00:9ECB: A1        .byte > ( ofs_enemy_handler_A140_28 - 1 )   ; 
-- D 0 - - - 0x001EDC 00:9ECC: 9F        .byte > ( ofs_enemy_handler_9F27_29 - 1 )   ; 
-- D 0 - - - 0x001EDD 00:9ECD: 9F        .byte > ( ofs_enemy_handler_9F52_2A - 1 )   ; 
-- D 0 - - - 0x001EDE 00:9ECE: 9F        .byte > ( ofs_enemy_handler_9F5A_2B - 1 )   ; 
-- D 0 - - - 0x001EDF 00:9ECF: 9F        .byte > ( ofs_enemy_handler_9F85_2C - 1 )   ; 
-- D 0 - - - 0x001EE0 00:9ED0: 9F        .byte > ( ofs_enemy_handler_9F8D_2D - 1 )   ; 
-- D 0 - - - 0x001EE1 00:9ED1: 9F        .byte > ( ofs_enemy_handler_9FB8_2E - 1 )   ; 
-- D 0 - - - 0x001EE2 00:9ED2: A0        .byte > ( ofs_enemy_handler_A0EC_2F - 1 )   ; 
-- D 0 - - - 0x001EE3 00:9ED3: A1        .byte > ( ofs_enemy_handler_A116_30 - 1 )   ; 
-- D 0 - - - 0x001EE4 00:9ED4: A1        .byte > ( ofs_enemy_handler_A13A_31 - 1 )   ; 
-- - - - - - 0x001EE5 00:9ED5: A0        .byte > ( ofs_enemy_handler_A0E6_32 - 1 )   ; 
-- D 0 - - - 0x001EE6 00:9ED6: A1        .byte > ( ofs_enemy_handler_A110_33 - 1 )   ; 
-- D 0 - - - 0x001EE7 00:9ED7: A1        .byte > ( ofs_enemy_handler_A134_34 - 1 )   ; 
-- - - - - - 0x001EE8 00:9ED8: A0        .byte > ( ofs_enemy_handler_A0E0_35 - 1 )   ; 
-- - - - - - 0x001EE9 00:9ED9: A1        .byte > ( ofs_enemy_handler_A10A_36 - 1 )   ; 
-- D 0 - - - 0x001EEA 00:9EDA: A1        .byte > ( ofs_enemy_handler_A12E_37 - 1 )   ; 
-- D 0 - - - 0x001EEB 00:9EDB: 9F        .byte > ( ofs_enemy_handler_9FE0_38 - 1 )   ; 
-- D 0 - - - 0x001EEC 00:9EDC: 9F        .byte > ( ofs_enemy_handler_9FE0_39 - 1 )   ; 
-- D 0 - - - 0x001EED 00:9EDD: 9F        .byte > ( ofs_enemy_handler_9FE0_3A - 1 )   ; 
-- D 0 - - - 0x001EEE 00:9EDE: 9F        .byte > ( ofs_enemy_handler_9FE6_3B - 1 )   ; 
-- D 0 - - - 0x001EEF 00:9EDF: 9F        .byte > ( ofs_enemy_handler_9FE6_3C - 1 )   ; 
-- D 0 - - - 0x001EF0 00:9EE0: 9F        .byte > ( ofs_enemy_handler_9FE6_3D - 1 )   ; 
-- D 0 - - - 0x001EF1 00:9EE1: 9F        .byte > ( ofs_enemy_handler_9FEC_3E - 1 )   ; 
-- D 0 - - - 0x001EF2 00:9EE2: 9F        .byte > ( ofs_enemy_handler_9FEC_3F - 1 )   ; 
-- D 0 - - - 0x001EF3 00:9EE3: 9F        .byte > ( ofs_enemy_handler_9FDA_40 - 1 )   ; 
-- D 0 - - - 0x001EF4 00:9EE4: 9F        .byte > ( ofs_enemy_handler_9FE6_41 - 1 )   ; 
+- D 0 - - - 0x001EB3 00:9EA3: 9E        .byte > ( ofs_enemy_handler_9E40_00_RTS - $01 )   ; 
+- D 0 - - - 0x001EB4 00:9EA4: A2        .byte > ( ofs_enemy_handler_A26F_01 - $01 )   ; 
+- D 0 - - - 0x001EB5 00:9EA5: A2        .byte > ( ofs_enemy_handler_A224_02 - $01 )   ; 
+- D 0 - - - 0x001EB6 00:9EA6: A2        .byte > ( ofs_enemy_handler_A24B_03 - $01 )   ; 
+- D 0 - - - 0x001EB7 00:9EA7: A0        .byte > ( ofs_enemy_handler_A0F8_04 - $01 )   ; 
+- D 0 - - - 0x001EB8 00:9EA8: A1        .byte > ( ofs_enemy_handler_A1EF_05 - $01 )   ; 
+- D 0 - - - 0x001EB9 00:9EA9: A1        .byte > ( ofs_enemy_handler_A1CC_06 - $01 )   ; 
+- D 0 - - - 0x001EBA 00:9EAA: A0        .byte > ( ofs_enemy_handler_A072_07 - $01 )   ; 
+- D 0 - - - 0x001EBB 00:9EAB: A0        .byte > ( ofs_enemy_handler_A042_08 - $01 )   ; 
+- - - - - - 0x001EBC 00:9EAC: A0        .byte > ( ofs_enemy_handler_A080_09 - $01 )   ; 
+- D 0 - - - 0x001EBD 00:9EAD: A0        .byte > ( ofs_enemy_handler_A0FE_0A - $01 )   ; 
+- D 0 - - - 0x001EBE 00:9EAE: A1        .byte > ( ofs_enemy_handler_A104_0B - $01 )   ; 
+- D 0 - - - 0x001EBF 00:9EAF: A1        .byte > ( ofs_enemy_handler_A122_0C - $01 )   ; 
+- - - - - - 0x001EC0 00:9EB0: A1        .byte > ( ofs_enemy_handler_A128_0D - $01 )   ; 
+- D 0 - - - 0x001EC1 00:9EB1: A1        .byte > ( ofs_enemy_handler_A1C9_0E - $01 )   ; 
+- D 0 - - - 0x001EC2 00:9EB2: A1        .byte > ( ofs_enemy_handler_A146_0F - $01 )   ; 
+- D 0 - - - 0x001EC3 00:9EB3: A1        .byte > ( ofs_enemy_handler_A14C_10 - $01 )   ; 
+- D 0 - - - 0x001EC4 00:9EB4: A1        .byte > ( ofs_enemy_handler_A152_11 - $01 )   ; 
+- D 0 - - - 0x001EC5 00:9EB5: A1        .byte > ( ofs_enemy_handler_A158_12 - $01 )   ; 
+- D 0 - - - 0x001EC6 00:9EB6: A0        .byte > ( ofs_enemy_handler_A0B9_13 - $01 )   ; 
+- D 0 - - - 0x001EC7 00:9EB7: A0        .byte > ( ofs_enemy_handler_A018_14 - $01 )   ; 
+- D 0 - - - 0x001EC8 00:9EB8: A0        .byte > ( ofs_enemy_handler_A01E_15 - $01 )   ; 
+- D 0 - - - 0x001EC9 00:9EB9: A0        .byte > ( ofs_enemy_handler_A03C_16 - $01 )   ; 
+- D 0 - - - 0x001ECA 00:9EBA: A0        .byte > ( ofs_enemy_handler_A024_17 - $01 )   ; 
+- D 0 - - - 0x001ECB 00:9EBB: A0        .byte > ( ofs_enemy_handler_A02A_18 - $01 )   ; 
+- D 0 - - - 0x001ECC 00:9EBC: A0        .byte > ( ofs_enemy_handler_A030_19 - $01 )   ; 
+- D 0 - - - 0x001ECD 00:9EBD: A1        .byte > ( ofs_enemy_handler_A1BD_1A - $01 )   ; 
+- D 0 - - - 0x001ECE 00:9EBE: A0        .byte > ( ofs_enemy_handler_A0B0_1B - $01 )   ; 
+- D 0 - - - 0x001ECF 00:9EBF: 9F        .byte > ( ofs_enemy_handler_9FE0_1C - $01 )   ; 
+- D 0 - - - 0x001ED0 00:9EC0: 9F        .byte > ( ofs_enemy_handler_9FE6_1D - $01 )   ; 
+- D 0 - - - 0x001ED1 00:9EC1: 9F        .byte > ( ofs_enemy_handler_9FEC_1E - $01 )   ; 
+- D 0 - - - 0x001ED2 00:9EC2: 9F        .byte > ( ofs_enemy_handler_9FE0_1F - $01 )   ; 
+- D 0 - - - 0x001ED3 00:9EC3: 9F        .byte > ( ofs_enemy_handler_9FE6_20 - $01 )   ; 
+- D 0 - - - 0x001ED4 00:9EC4: 9F        .byte > ( ofs_enemy_handler_9FEC_21 - $01 )   ; 
+- D 0 - - - 0x001ED5 00:9EC5: 9F        .byte > ( ofs_enemy_handler_9FEC_22 - $01 )   ; 
+- D 0 - - - 0x001ED6 00:9EC6: 9F        .byte > ( ofs_enemy_handler_9FE6_23 - $01 )   ; 
+- D 0 - - - 0x001ED7 00:9EC7: A0        .byte > ( ofs_enemy_handler_A036_24 - $01 )   ; 
+- D 0 - - - 0x001ED8 00:9EC8: 9F        .byte > ( ofs_enemy_handler_9FC0_25 - $01 )   ; 
+- - - - - - 0x001ED9 00:9EC9: A0        .byte > ( ofs_enemy_handler_A0F2_26 - $01 )   ; 
+- - - - - - 0x001EDA 00:9ECA: A1        .byte > ( ofs_enemy_handler_A11C_27 - $01 )   ; 
+- D 0 - - - 0x001EDB 00:9ECB: A1        .byte > ( ofs_enemy_handler_A140_28 - $01 )   ; 
+- D 0 - - - 0x001EDC 00:9ECC: 9F        .byte > ( ofs_enemy_handler_9F27_29 - $01 )   ; 
+- D 0 - - - 0x001EDD 00:9ECD: 9F        .byte > ( ofs_enemy_handler_9F52_2A - $01 )   ; 
+- D 0 - - - 0x001EDE 00:9ECE: 9F        .byte > ( ofs_enemy_handler_9F5A_2B - $01 )   ; 
+- D 0 - - - 0x001EDF 00:9ECF: 9F        .byte > ( ofs_enemy_handler_9F85_2C - $01 )   ; 
+- D 0 - - - 0x001EE0 00:9ED0: 9F        .byte > ( ofs_enemy_handler_9F8D_2D - $01 )   ; 
+- D 0 - - - 0x001EE1 00:9ED1: 9F        .byte > ( ofs_enemy_handler_9FB8_2E - $01 )   ; 
+- D 0 - - - 0x001EE2 00:9ED2: A0        .byte > ( ofs_enemy_handler_A0EC_2F - $01 )   ; 
+- D 0 - - - 0x001EE3 00:9ED3: A1        .byte > ( ofs_enemy_handler_A116_30 - $01 )   ; 
+- D 0 - - - 0x001EE4 00:9ED4: A1        .byte > ( ofs_enemy_handler_A13A_31 - $01 )   ; 
+- - - - - - 0x001EE5 00:9ED5: A0        .byte > ( ofs_enemy_handler_A0E6_32 - $01 )   ; 
+- D 0 - - - 0x001EE6 00:9ED6: A1        .byte > ( ofs_enemy_handler_A110_33 - $01 )   ; 
+- D 0 - - - 0x001EE7 00:9ED7: A1        .byte > ( ofs_enemy_handler_A134_34 - $01 )   ; 
+- - - - - - 0x001EE8 00:9ED8: A0        .byte > ( ofs_enemy_handler_A0E0_35 - $01 )   ; 
+- - - - - - 0x001EE9 00:9ED9: A1        .byte > ( ofs_enemy_handler_A10A_36 - $01 )   ; 
+- D 0 - - - 0x001EEA 00:9EDA: A1        .byte > ( ofs_enemy_handler_A12E_37 - $01 )   ; 
+- D 0 - - - 0x001EEB 00:9EDB: 9F        .byte > ( ofs_enemy_handler_9FE0_38 - $01 )   ; 
+- D 0 - - - 0x001EEC 00:9EDC: 9F        .byte > ( ofs_enemy_handler_9FE0_39 - $01 )   ; 
+- D 0 - - - 0x001EED 00:9EDD: 9F        .byte > ( ofs_enemy_handler_9FE0_3A - $01 )   ; 
+- D 0 - - - 0x001EEE 00:9EDE: 9F        .byte > ( ofs_enemy_handler_9FE6_3B - $01 )   ; 
+- D 0 - - - 0x001EEF 00:9EDF: 9F        .byte > ( ofs_enemy_handler_9FE6_3C - $01 )   ; 
+- D 0 - - - 0x001EF0 00:9EE0: 9F        .byte > ( ofs_enemy_handler_9FE6_3D - $01 )   ; 
+- D 0 - - - 0x001EF1 00:9EE1: 9F        .byte > ( ofs_enemy_handler_9FEC_3E - $01 )   ; 
+- D 0 - - - 0x001EF2 00:9EE2: 9F        .byte > ( ofs_enemy_handler_9FEC_3F - $01 )   ; 
+- D 0 - - - 0x001EF3 00:9EE3: 9F        .byte > ( ofs_enemy_handler_9FDA_40 - $01 )   ; 
+- D 0 - - - 0x001EF4 00:9EE4: 9F        .byte > ( ofs_enemy_handler_9FE6_41 - $01 )   ; 
 
 tbl_9EE5_enemy_handler_lo:
-- D 0 - - - 0x001EF5 00:9EE5: 3F        .byte < ( ofs_enemy_handler_9E40_00_RTS - 1 )   ; 
-- D 0 - - - 0x001EF6 00:9EE6: 6E        .byte < ( ofs_enemy_handler_A26F_01 - 1 )   ; 
-- D 0 - - - 0x001EF7 00:9EE7: 23        .byte < ( ofs_enemy_handler_A224_02 - 1 )   ; 
-- D 0 - - - 0x001EF8 00:9EE8: 4A        .byte < ( ofs_enemy_handler_A24B_03 - 1 )   ; 
-- D 0 - - - 0x001EF9 00:9EE9: F7        .byte < ( ofs_enemy_handler_A0F8_04 - 1 )   ; 
-- D 0 - - - 0x001EFA 00:9EEA: EE        .byte < ( ofs_enemy_handler_A1EF_05 - 1 )   ; 
-- D 0 - - - 0x001EFB 00:9EEB: CB        .byte < ( ofs_enemy_handler_A1CC_06 - 1 )   ; 
-- D 0 - - - 0x001EFC 00:9EEC: 71        .byte < ( ofs_enemy_handler_A072_07 - 1 )   ; 
-- D 0 - - - 0x001EFD 00:9EED: 41        .byte < ( ofs_enemy_handler_A042_08 - 1 )   ; 
-- - - - - - 0x001EFE 00:9EEE: 7F        .byte < ( ofs_enemy_handler_A080_09 - 1 )   ; 
-- D 0 - - - 0x001EFF 00:9EEF: FD        .byte < ( ofs_enemy_handler_A0FE_0A - 1 )   ; 
-- D 0 - - - 0x001F00 00:9EF0: 03        .byte < ( ofs_enemy_handler_A104_0B - 1 )   ; 
-- D 0 - - - 0x001F01 00:9EF1: 21        .byte < ( ofs_enemy_handler_A122_0C - 1 )   ; 
-- - - - - - 0x001F02 00:9EF2: 27        .byte < ( ofs_enemy_handler_A128_0D - 1 )   ; 
-- D 0 - - - 0x001F03 00:9EF3: C8        .byte < ( ofs_enemy_handler_A1C9_0E - 1 )   ; 
-- D 0 - - - 0x001F04 00:9EF4: 45        .byte < ( ofs_enemy_handler_A146_0F - 1 )   ; 
-- D 0 - - - 0x001F05 00:9EF5: 4B        .byte < ( ofs_enemy_handler_A14C_10 - 1 )   ; 
-- D 0 - - - 0x001F06 00:9EF6: 51        .byte < ( ofs_enemy_handler_A152_11 - 1 )   ; 
-- D 0 - - - 0x001F07 00:9EF7: 57        .byte < ( ofs_enemy_handler_A158_12 - 1 )   ; 
-- D 0 - - - 0x001F08 00:9EF8: B8        .byte < ( ofs_enemy_handler_A0B9_13 - 1 )   ; 
-- D 0 - - - 0x001F09 00:9EF9: 17        .byte < ( ofs_enemy_handler_A018_14 - 1 )   ; 
-- D 0 - - - 0x001F0A 00:9EFA: 1D        .byte < ( ofs_enemy_handler_A01E_15 - 1 )   ; 
-- D 0 - - - 0x001F0B 00:9EFB: 3B        .byte < ( ofs_enemy_handler_A03C_16 - 1 )   ; 
-- D 0 - - - 0x001F0C 00:9EFC: 23        .byte < ( ofs_enemy_handler_A024_17 - 1 )   ; 
-- D 0 - - - 0x001F0D 00:9EFD: 29        .byte < ( ofs_enemy_handler_A02A_18 - 1 )   ; 
-- D 0 - - - 0x001F0E 00:9EFE: 2F        .byte < ( ofs_enemy_handler_A030_19 - 1 )   ; 
-- D 0 - - - 0x001F0F 00:9EFF: BC        .byte < ( ofs_enemy_handler_A1BD_1A - 1 )   ; 
-- D 0 - - - 0x001F10 00:9F00: AF        .byte < ( ofs_enemy_handler_A0B0_1B - 1 )   ; 
-- D 0 - - - 0x001F11 00:9F01: DF        .byte < ( ofs_enemy_handler_9FE0_1C - 1 )   ; 
-- D 0 - - - 0x001F12 00:9F02: E5        .byte < ( ofs_enemy_handler_9FE6_1D - 1 )   ; 
-- D 0 - - - 0x001F13 00:9F03: EB        .byte < ( ofs_enemy_handler_9FEC_1E - 1 )   ; 
-- D 0 - - - 0x001F14 00:9F04: DF        .byte < ( ofs_enemy_handler_9FE0_1F - 1 )   ; 
-- D 0 - - - 0x001F15 00:9F05: E5        .byte < ( ofs_enemy_handler_9FE6_20 - 1 )   ; 
-- D 0 - - - 0x001F16 00:9F06: EB        .byte < ( ofs_enemy_handler_9FEC_21 - 1 )   ; 
-- D 0 - - - 0x001F17 00:9F07: EB        .byte < ( ofs_enemy_handler_9FEC_22 - 1 )   ; 
-- D 0 - - - 0x001F18 00:9F08: E5        .byte < ( ofs_enemy_handler_9FE6_23 - 1 )   ; 
-- D 0 - - - 0x001F19 00:9F09: 35        .byte < ( ofs_enemy_handler_A036_24 - 1 )   ; 
-- D 0 - - - 0x001F1A 00:9F0A: BF        .byte < ( ofs_enemy_handler_9FC0_25 - 1 )   ; 
-- - - - - - 0x001F1B 00:9F0B: F1        .byte < ( ofs_enemy_handler_A0F2_26 - 1 )   ; 
-- - - - - - 0x001F1C 00:9F0C: 1B        .byte < ( ofs_enemy_handler_A11C_27 - 1 )   ; 
-- D 0 - - - 0x001F1D 00:9F0D: 3F        .byte < ( ofs_enemy_handler_A140_28 - 1 )   ; 
-- D 0 - - - 0x001F1E 00:9F0E: 26        .byte < ( ofs_enemy_handler_9F27_29 - 1 )   ; 
-- D 0 - - - 0x001F1F 00:9F0F: 51        .byte < ( ofs_enemy_handler_9F52_2A - 1 )   ; 
-- D 0 - - - 0x001F20 00:9F10: 59        .byte < ( ofs_enemy_handler_9F5A_2B - 1 )   ; 
-- D 0 - - - 0x001F21 00:9F11: 84        .byte < ( ofs_enemy_handler_9F85_2C - 1 )   ; 
-- D 0 - - - 0x001F22 00:9F12: 8C        .byte < ( ofs_enemy_handler_9F8D_2D - 1 )   ; 
-- D 0 - - - 0x001F23 00:9F13: B7        .byte < ( ofs_enemy_handler_9FB8_2E - 1 )   ; 
-- D 0 - - - 0x001F24 00:9F14: EB        .byte < ( ofs_enemy_handler_A0EC_2F - 1 )   ; 
-- D 0 - - - 0x001F25 00:9F15: 15        .byte < ( ofs_enemy_handler_A116_30 - 1 )   ; 
-- D 0 - - - 0x001F26 00:9F16: 39        .byte < ( ofs_enemy_handler_A13A_31 - 1 )   ; 
-- - - - - - 0x001F27 00:9F17: E5        .byte < ( ofs_enemy_handler_A0E6_32 - 1 )   ; 
-- D 0 - - - 0x001F28 00:9F18: 0F        .byte < ( ofs_enemy_handler_A110_33 - 1 )   ; 
-- D 0 - - - 0x001F29 00:9F19: 33        .byte < ( ofs_enemy_handler_A134_34 - 1 )   ; 
-- - - - - - 0x001F2A 00:9F1A: DF        .byte < ( ofs_enemy_handler_A0E0_35 - 1 )   ; 
-- - - - - - 0x001F2B 00:9F1B: 09        .byte < ( ofs_enemy_handler_A10A_36 - 1 )   ; 
-- D 0 - - - 0x001F2C 00:9F1C: 2D        .byte < ( ofs_enemy_handler_A12E_37 - 1 )   ; 
-- D 0 - - - 0x001F2D 00:9F1D: DF        .byte < ( ofs_enemy_handler_9FE0_38 - 1 )   ; 
-- D 0 - - - 0x001F2E 00:9F1E: DF        .byte < ( ofs_enemy_handler_9FE0_39 - 1 )   ; 
-- D 0 - - - 0x001F2F 00:9F1F: DF        .byte < ( ofs_enemy_handler_9FE0_3A - 1 )   ; 
-- D 0 - - - 0x001F30 00:9F20: E5        .byte < ( ofs_enemy_handler_9FE6_3B - 1 )   ; 
-- D 0 - - - 0x001F31 00:9F21: E5        .byte < ( ofs_enemy_handler_9FE6_3C - 1 )   ; 
-- D 0 - - - 0x001F32 00:9F22: E5        .byte < ( ofs_enemy_handler_9FE6_3D - 1 )   ; 
-- D 0 - - - 0x001F33 00:9F23: EB        .byte < ( ofs_enemy_handler_9FEC_3E - 1 )   ; 
-- D 0 - - - 0x001F34 00:9F24: EB        .byte < ( ofs_enemy_handler_9FEC_3F - 1 )   ; 
-- D 0 - - - 0x001F35 00:9F25: D9        .byte < ( ofs_enemy_handler_9FDA_40 - 1 )   ; 
-- D 0 - - - 0x001F36 00:9F26: E5        .byte < ( ofs_enemy_handler_9FE6_41 - 1 )   ; 
+- D 0 - - - 0x001EF5 00:9EE5: 3F        .byte < ( ofs_enemy_handler_9E40_00_RTS - $01 )   ; 
+- D 0 - - - 0x001EF6 00:9EE6: 6E        .byte < ( ofs_enemy_handler_A26F_01 - $01 )   ; 
+- D 0 - - - 0x001EF7 00:9EE7: 23        .byte < ( ofs_enemy_handler_A224_02 - $01 )   ; 
+- D 0 - - - 0x001EF8 00:9EE8: 4A        .byte < ( ofs_enemy_handler_A24B_03 - $01 )   ; 
+- D 0 - - - 0x001EF9 00:9EE9: F7        .byte < ( ofs_enemy_handler_A0F8_04 - $01 )   ; 
+- D 0 - - - 0x001EFA 00:9EEA: EE        .byte < ( ofs_enemy_handler_A1EF_05 - $01 )   ; 
+- D 0 - - - 0x001EFB 00:9EEB: CB        .byte < ( ofs_enemy_handler_A1CC_06 - $01 )   ; 
+- D 0 - - - 0x001EFC 00:9EEC: 71        .byte < ( ofs_enemy_handler_A072_07 - $01 )   ; 
+- D 0 - - - 0x001EFD 00:9EED: 41        .byte < ( ofs_enemy_handler_A042_08 - $01 )   ; 
+- - - - - - 0x001EFE 00:9EEE: 7F        .byte < ( ofs_enemy_handler_A080_09 - $01 )   ; 
+- D 0 - - - 0x001EFF 00:9EEF: FD        .byte < ( ofs_enemy_handler_A0FE_0A - $01 )   ; 
+- D 0 - - - 0x001F00 00:9EF0: 03        .byte < ( ofs_enemy_handler_A104_0B - $01 )   ; 
+- D 0 - - - 0x001F01 00:9EF1: 21        .byte < ( ofs_enemy_handler_A122_0C - $01 )   ; 
+- - - - - - 0x001F02 00:9EF2: 27        .byte < ( ofs_enemy_handler_A128_0D - $01 )   ; 
+- D 0 - - - 0x001F03 00:9EF3: C8        .byte < ( ofs_enemy_handler_A1C9_0E - $01 )   ; 
+- D 0 - - - 0x001F04 00:9EF4: 45        .byte < ( ofs_enemy_handler_A146_0F - $01 )   ; 
+- D 0 - - - 0x001F05 00:9EF5: 4B        .byte < ( ofs_enemy_handler_A14C_10 - $01 )   ; 
+- D 0 - - - 0x001F06 00:9EF6: 51        .byte < ( ofs_enemy_handler_A152_11 - $01 )   ; 
+- D 0 - - - 0x001F07 00:9EF7: 57        .byte < ( ofs_enemy_handler_A158_12 - $01 )   ; 
+- D 0 - - - 0x001F08 00:9EF8: B8        .byte < ( ofs_enemy_handler_A0B9_13 - $01 )   ; 
+- D 0 - - - 0x001F09 00:9EF9: 17        .byte < ( ofs_enemy_handler_A018_14 - $01 )   ; 
+- D 0 - - - 0x001F0A 00:9EFA: 1D        .byte < ( ofs_enemy_handler_A01E_15 - $01 )   ; 
+- D 0 - - - 0x001F0B 00:9EFB: 3B        .byte < ( ofs_enemy_handler_A03C_16 - $01 )   ; 
+- D 0 - - - 0x001F0C 00:9EFC: 23        .byte < ( ofs_enemy_handler_A024_17 - $01 )   ; 
+- D 0 - - - 0x001F0D 00:9EFD: 29        .byte < ( ofs_enemy_handler_A02A_18 - $01 )   ; 
+- D 0 - - - 0x001F0E 00:9EFE: 2F        .byte < ( ofs_enemy_handler_A030_19 - $01 )   ; 
+- D 0 - - - 0x001F0F 00:9EFF: BC        .byte < ( ofs_enemy_handler_A1BD_1A - $01 )   ; 
+- D 0 - - - 0x001F10 00:9F00: AF        .byte < ( ofs_enemy_handler_A0B0_1B - $01 )   ; 
+- D 0 - - - 0x001F11 00:9F01: DF        .byte < ( ofs_enemy_handler_9FE0_1C - $01 )   ; 
+- D 0 - - - 0x001F12 00:9F02: E5        .byte < ( ofs_enemy_handler_9FE6_1D - $01 )   ; 
+- D 0 - - - 0x001F13 00:9F03: EB        .byte < ( ofs_enemy_handler_9FEC_1E - $01 )   ; 
+- D 0 - - - 0x001F14 00:9F04: DF        .byte < ( ofs_enemy_handler_9FE0_1F - $01 )   ; 
+- D 0 - - - 0x001F15 00:9F05: E5        .byte < ( ofs_enemy_handler_9FE6_20 - $01 )   ; 
+- D 0 - - - 0x001F16 00:9F06: EB        .byte < ( ofs_enemy_handler_9FEC_21 - $01 )   ; 
+- D 0 - - - 0x001F17 00:9F07: EB        .byte < ( ofs_enemy_handler_9FEC_22 - $01 )   ; 
+- D 0 - - - 0x001F18 00:9F08: E5        .byte < ( ofs_enemy_handler_9FE6_23 - $01 )   ; 
+- D 0 - - - 0x001F19 00:9F09: 35        .byte < ( ofs_enemy_handler_A036_24 - $01 )   ; 
+- D 0 - - - 0x001F1A 00:9F0A: BF        .byte < ( ofs_enemy_handler_9FC0_25 - $01 )   ; 
+- - - - - - 0x001F1B 00:9F0B: F1        .byte < ( ofs_enemy_handler_A0F2_26 - $01 )   ; 
+- - - - - - 0x001F1C 00:9F0C: 1B        .byte < ( ofs_enemy_handler_A11C_27 - $01 )   ; 
+- D 0 - - - 0x001F1D 00:9F0D: 3F        .byte < ( ofs_enemy_handler_A140_28 - $01 )   ; 
+- D 0 - - - 0x001F1E 00:9F0E: 26        .byte < ( ofs_enemy_handler_9F27_29 - $01 )   ; 
+- D 0 - - - 0x001F1F 00:9F0F: 51        .byte < ( ofs_enemy_handler_9F52_2A - $01 )   ; 
+- D 0 - - - 0x001F20 00:9F10: 59        .byte < ( ofs_enemy_handler_9F5A_2B - $01 )   ; 
+- D 0 - - - 0x001F21 00:9F11: 84        .byte < ( ofs_enemy_handler_9F85_2C - $01 )   ; 
+- D 0 - - - 0x001F22 00:9F12: 8C        .byte < ( ofs_enemy_handler_9F8D_2D - $01 )   ; 
+- D 0 - - - 0x001F23 00:9F13: B7        .byte < ( ofs_enemy_handler_9FB8_2E - $01 )   ; 
+- D 0 - - - 0x001F24 00:9F14: EB        .byte < ( ofs_enemy_handler_A0EC_2F - $01 )   ; 
+- D 0 - - - 0x001F25 00:9F15: 15        .byte < ( ofs_enemy_handler_A116_30 - $01 )   ; 
+- D 0 - - - 0x001F26 00:9F16: 39        .byte < ( ofs_enemy_handler_A13A_31 - $01 )   ; 
+- - - - - - 0x001F27 00:9F17: E5        .byte < ( ofs_enemy_handler_A0E6_32 - $01 )   ; 
+- D 0 - - - 0x001F28 00:9F18: 0F        .byte < ( ofs_enemy_handler_A110_33 - $01 )   ; 
+- D 0 - - - 0x001F29 00:9F19: 33        .byte < ( ofs_enemy_handler_A134_34 - $01 )   ; 
+- - - - - - 0x001F2A 00:9F1A: DF        .byte < ( ofs_enemy_handler_A0E0_35 - $01 )   ; 
+- - - - - - 0x001F2B 00:9F1B: 09        .byte < ( ofs_enemy_handler_A10A_36 - $01 )   ; 
+- D 0 - - - 0x001F2C 00:9F1C: 2D        .byte < ( ofs_enemy_handler_A12E_37 - $01 )   ; 
+- D 0 - - - 0x001F2D 00:9F1D: DF        .byte < ( ofs_enemy_handler_9FE0_38 - $01 )   ; 
+- D 0 - - - 0x001F2E 00:9F1E: DF        .byte < ( ofs_enemy_handler_9FE0_39 - $01 )   ; 
+- D 0 - - - 0x001F2F 00:9F1F: DF        .byte < ( ofs_enemy_handler_9FE0_3A - $01 )   ; 
+- D 0 - - - 0x001F30 00:9F20: E5        .byte < ( ofs_enemy_handler_9FE6_3B - $01 )   ; 
+- D 0 - - - 0x001F31 00:9F21: E5        .byte < ( ofs_enemy_handler_9FE6_3C - $01 )   ; 
+- D 0 - - - 0x001F32 00:9F22: E5        .byte < ( ofs_enemy_handler_9FE6_3D - $01 )   ; 
+- D 0 - - - 0x001F33 00:9F23: EB        .byte < ( ofs_enemy_handler_9FEC_3E - $01 )   ; 
+- D 0 - - - 0x001F34 00:9F24: EB        .byte < ( ofs_enemy_handler_9FEC_3F - $01 )   ; 
+- D 0 - - - 0x001F35 00:9F25: D9        .byte < ( ofs_enemy_handler_9FDA_40 - $01 )   ; 
+- D 0 - - - 0x001F36 00:9F26: E5        .byte < ( ofs_enemy_handler_9FE6_41 - $01 )   ; 
 
 
 ; Enemy stuff
@@ -6448,7 +6448,7 @@ C - - - - - 0x002604 00:A5F4: C6 0F     DEC ram_000F
 C - - - - - 0x002606 00:A5F6: C6 0F     DEC ram_000F
 bra_A5F8:
 C - - - - - 0x002608 00:A5F8: A5 28     LDA ram_0028
-C - - - - - 0x00260A 00:A5FA: 39 FF 02  AND ram_0300 - 1,Y
+C - - - - - 0x00260A 00:A5FA: 39 FF 02  AND ram_0300 - $01,Y
 C - - - - - 0x00260D 00:A5FD: F0 04     BEQ bra_A603
 C - - - - - 0x00260F 00:A5FF: E6 0F     INC ram_000F
 C - - - - - 0x002611 00:A601: E6 0F     INC ram_000F
@@ -6478,7 +6478,7 @@ bra_A627:
 ; bzk Y can be 00+ here
 ; bzk bug probably, 0300 buffer is not enough, code reads sprite data
 C - - - - - 0x002637 00:A627: A5 28     LDA ram_0028
-C - - - - - 0x002639 00:A629: 39 FF 02  AND ram_0300 - 1,Y
+C - - - - - 0x002639 00:A629: 39 FF 02  AND ram_0300 - $01,Y
 C - - - - - 0x00263C 00:A62C: D0 F6     BNE bra_A624
 bra_A62E:
 C - - - - - 0x00263E 00:A62E: A9 00     LDA #$00
@@ -7482,7 +7482,7 @@ C - - - - - 0x002CAC 00:AC9C: C8        INY
 C - - - - - 0x002CAD 00:AC9D: D0 FA     BNE bra_AC99_loop
 C - - - - - 0x002CAF 00:AC9F: A0 54     LDY #$54
 bra_ACA1_loop:
-C - - - - - 0x002CB1 00:ACA1: 99 D3 06  STA ram_06D4 - 1,Y
+C - - - - - 0x002CB1 00:ACA1: 99 D3 06  STA ram_06D4 - $01,Y
 C - - - - - 0x002CB4 00:ACA4: 88        DEY
 C - - - - - 0x002CB5 00:ACA5: D0 FA     BNE bra_ACA1_loop
 C - - - - - 0x002CB7 00:ACA7: 60        RTS
@@ -7817,10 +7817,10 @@ C - - - - - 0x002E87 00:AE77: 4A        LSR
 C - - - - - 0x002E88 00:AE78: 4A        LSR
 C - - - - - 0x002E89 00:AE79: AA        TAX
 C - - - - - 0x002E8A 00:AE7A: BD 98 B6  LDA tbl_B698,X
-C - - - - - 0x002E8D 00:AE7D: 1D 99 B6  ORA tbl_B698 + 1,X
-C - - - - - 0x002E90 00:AE80: 1D 9A B6  ORA tbl_B698 + 2,X
-C - - - - - 0x002E93 00:AE83: 1D 9B B6  ORA tbl_B698 + 3,X
-C - - - - - 0x002E96 00:AE86: 0D 9C B6  ORA tbl_B698 + 4    ; bzk optimize, ORA #$20    bzk bug maybe, should be ,X ?
+C - - - - - 0x002E8D 00:AE7D: 1D 99 B6  ORA tbl_B698 + $01,X
+C - - - - - 0x002E90 00:AE80: 1D 9A B6  ORA tbl_B698 + $02,X
+C - - - - - 0x002E93 00:AE83: 1D 9B B6  ORA tbl_B698 + $03,X
+C - - - - - 0x002E96 00:AE86: 0D 9C B6  ORA tbl_B698 + $04    ; bzk optimize, ORA #$20    bzk bug maybe, should be ,X ?
 C - - - - - 0x002E99 00:AE89: 49 FF     EOR #$FF
 C - - - - - 0x002E9B 00:AE8B: A6 0D     LDX ram_000D
 C - - - - - 0x002E9D 00:AE8D: 60        RTS
@@ -7903,10 +7903,10 @@ C - - - - - 0x002F04 00:AEF4: 4A        LSR
 C - - - - - 0x002F05 00:AEF5: 4A        LSR
 C - - - - - 0x002F06 00:AEF6: AA        TAX
 C - - - - - 0x002F07 00:AEF7: BD 98 B6  LDA tbl_B698,X
-C - - - - - 0x002F0A 00:AEFA: 1D 99 B6  ORA tbl_B698 + 1,X
-C - - - - - 0x002F0D 00:AEFD: 1D 9A B6  ORA tbl_B698 + 2,X
-C - - - - - 0x002F10 00:AF00: 1D 9B B6  ORA tbl_B698 + 3,X
-C - - - - - 0x002F13 00:AF03: 0D 9C B6  ORA tbl_B698 + 4    ; bzk optimize, ORA #$20    bzk bug maybe, should be ,X ?
+C - - - - - 0x002F0A 00:AEFA: 1D 99 B6  ORA tbl_B698 + $01,X
+C - - - - - 0x002F0D 00:AEFD: 1D 9A B6  ORA tbl_B698 + $02,X
+C - - - - - 0x002F10 00:AF00: 1D 9B B6  ORA tbl_B698 + $03,X
+C - - - - - 0x002F13 00:AF03: 0D 9C B6  ORA tbl_B698 + $04    ; bzk optimize, ORA #$20    bzk bug maybe, should be ,X ?
 C - - - - - 0x002F16 00:AF06: 49 FF     EOR #$FF
 C - - - - - 0x002F18 00:AF08: A6 0D     LDX ram_000D
 C - - - - - 0x002F1A 00:AF0A: 2C 6A 07  BIT ram_076A
@@ -8246,7 +8246,7 @@ C - - - - - 0x003102 00:B0F2: A2 00     LDX #$00
 bra_B0F4_main_loop:
 C - - - - - 0x003104 00:B0F4: BD 68 B1  LDA tbl_B168,X
 C - - - - - 0x003107 00:B0F7: 85 26     STA ram_0026
-C - - - - - 0x003109 00:B0F9: BD 69 B1  LDA tbl_B168 + 1,X
+C - - - - - 0x003109 00:B0F9: BD 69 B1  LDA tbl_B168 + $01,X
 C - - - - - 0x00310C 00:B0FC: 85 27     STA ram_0027
 C - - - - - 0x00310E 00:B0FE: A0 00     LDY #$00
 bra_B100_loop:
@@ -8256,9 +8256,9 @@ C - - - - - 0x003114 00:B104: 91 26     STA (ram_0026),Y
 C - - - - - 0x003116 00:B106: C8        INY
 C - - - - - 0x003117 00:B107: C0 10     CPY #$10
 C - - - - - 0x003119 00:B109: D0 F5     BNE bra_B100_loop
-C - - - - - 0x00311B 00:B10B: BD 6A B1  LDA tbl_B168 + 2,X
+C - - - - - 0x00311B 00:B10B: BD 6A B1  LDA tbl_B168 + $02,X
 C - - - - - 0x00311E 00:B10E: 85 26     STA ram_0026
-C - - - - - 0x003120 00:B110: BD 6B B1  LDA tbl_B168 + 3,X
+C - - - - - 0x003120 00:B110: BD 6B B1  LDA tbl_B168 + $03,X
 C - - - - - 0x003123 00:B113: 85 27     STA ram_0027
 bra_B115_loop:
 C - - - - - 0x003125 00:B115: B1 26     LDA (ram_0026),Y
@@ -8285,7 +8285,7 @@ C - - - - - 0x00313D 00:B12D: A2 00     LDX #$00
 bra_B12F_main_loop:
 C - - - - - 0x00313F 00:B12F: BD 78 B1  LDA tbl_B178,X
 C - - - - - 0x003142 00:B132: 85 26     STA ram_0026
-C - - - - - 0x003144 00:B134: BD 79 B1  LDA tbl_B178 + 1,X
+C - - - - - 0x003144 00:B134: BD 79 B1  LDA tbl_B178 + $01,X
 C - - - - - 0x003147 00:B137: 85 27     STA ram_0027
 C - - - - - 0x003149 00:B139: A0 00     LDY #$00
 bra_B13B_loop:
@@ -8295,9 +8295,9 @@ C - - - - - 0x00314F 00:B13F: 91 26     STA (ram_0026),Y
 C - - - - - 0x003151 00:B141: C8        INY
 C - - - - - 0x003152 00:B142: C0 10     CPY #$10
 C - - - - - 0x003154 00:B144: D0 F5     BNE bra_B13B_loop
-C - - - - - 0x003156 00:B146: BD 7A B1  LDA tbl_B178 + 2,X
+C - - - - - 0x003156 00:B146: BD 7A B1  LDA tbl_B178 + $02,X
 C - - - - - 0x003159 00:B149: 85 26     STA ram_0026
-C - - - - - 0x00315B 00:B14B: BD 7B B1  LDA tbl_B178 + 3,X
+C - - - - - 0x00315B 00:B14B: BD 7B B1  LDA tbl_B178 + $03,X
 C - - - - - 0x00315E 00:B14E: 85 27     STA ram_0027
 bra_B150_loop:
 C - - - - - 0x003160 00:B150: B1 26     LDA (ram_0026),Y
@@ -8387,13 +8387,13 @@ C - - - - - 0x0031C6 00:B1B6: AA        TAX
 C - - - - - 0x0031C7 00:B1B7: BD 2C C1  LDA tbl_C12C_room_ppu_pos,X
 C - - - - - 0x0031CA 00:B1BA: 85 26     STA ram_0026
 C - - - - - 0x0031CC 00:B1BC: 85 1D     STA ram_001D
-C - - - - - 0x0031CE 00:B1BE: BD 2D C1  LDA tbl_C12C_room_ppu_pos + 1,X
+C - - - - - 0x0031CE 00:B1BE: BD 2D C1  LDA tbl_C12C_room_ppu_pos + $01,X
 C - - - - - 0x0031D1 00:B1C1: 85 27     STA ram_0027
 C - - - - - 0x0031D3 00:B1C3: 85 1E     STA ram_001E
-C - - - - - 0x0031D5 00:B1C5: BD 2E C1  LDA tbl_C12C_room_size_1 + 2,X
+C - - - - - 0x0031D5 00:B1C5: BD 2E C1  LDA tbl_C12C_room_size_1 + $02,X
 C - - - - - 0x0031D8 00:B1C8: 85 DD     STA ram_00DD
 C - - - - - 0x0031DA 00:B1CA: 85 2A     STA ram_002A
-C - - - - - 0x0031DC 00:B1CC: BD 2F C1  LDA tbl_C12C_room_size_2 + 3,X
+C - - - - - 0x0031DC 00:B1CC: BD 2F C1  LDA tbl_C12C_room_size_2 + $03,X
 C - - - - - 0x0031DF 00:B1CF: 85 DE     STA ram_00DE
 C - - - - - 0x0031E1 00:B1D1: 85 2B     STA ram_002B
 C - - - - - 0x0031E3 00:B1D3: 60        RTS
@@ -9664,35 +9664,35 @@ C - - - - - 0x003A90 00:BA80: 60        RTS
 
 
 tbl_inc_0x003A91_nmi_handler_lo:
-- D 1 - - - 0x003A91 00:BA81: B4        .byte < ( ofs_nmi_handler_B8B5_00 - 1 )   ; 
-- D 1 - - - 0x003A92 00:BA82: 48        .byte < ( ofs_nmi_handler_B949_01 - 1 )   ; 
-- D 1 - - - 0x003A93 00:BA83: BC        .byte < ( ofs_nmi_handler_B8BD_02 - 1 )   ; 
-- - - - - - 0x003A94 00:BA84: 52        .byte < ( ofs_nmi_handler_B853_03 - 1 )   ; 
-- D 1 - - - 0x003A95 00:BA85: 60        .byte < ( ofs_nmi_handler_B861_04 - 1 )   ; 
-- D 1 - - - 0x003A96 00:BA86: 6B        .byte < ( ofs_nmi_handler_B86C_05 - 1 )   ; 
-- D 1 - - - 0x003A97 00:BA87: 91        .byte < ( ofs_nmi_handler_B892_06 - 1 )   ; 
+- D 1 - - - 0x003A91 00:BA81: B4        .byte < ( ofs_nmi_handler_B8B5_00 - $01 )   ; 
+- D 1 - - - 0x003A92 00:BA82: 48        .byte < ( ofs_nmi_handler_B949_01 - $01 )   ; 
+- D 1 - - - 0x003A93 00:BA83: BC        .byte < ( ofs_nmi_handler_B8BD_02 - $01 )   ; 
+- - - - - - 0x003A94 00:BA84: 52        .byte < ( ofs_nmi_handler_B853_03 - $01 )   ; 
+- D 1 - - - 0x003A95 00:BA85: 60        .byte < ( ofs_nmi_handler_B861_04 - $01 )   ; 
+- D 1 - - - 0x003A96 00:BA86: 6B        .byte < ( ofs_nmi_handler_B86C_05 - $01 )   ; 
+- D 1 - - - 0x003A97 00:BA87: 91        .byte < ( ofs_nmi_handler_B892_06 - $01 )   ; 
 
 tbl_inc_0x003A98_nmi_handler_hi:
-- D 1 - - - 0x003A98 00:BA88: B8        .byte > ( ofs_nmi_handler_B8B5_00 - 1 )   ; 
-- D 1 - - - 0x003A99 00:BA89: B9        .byte > ( ofs_nmi_handler_B949_01 - 1 )   ; 
-- D 1 - - - 0x003A9A 00:BA8A: B8        .byte > ( ofs_nmi_handler_B8BD_02 - 1 )   ; 
-- - - - - - 0x003A9B 00:BA8B: B8        .byte > ( ofs_nmi_handler_B853_03 - 1 )   ; 
-- D 1 - - - 0x003A9C 00:BA8C: B8        .byte > ( ofs_nmi_handler_B861_04 - 1 )   ; 
-- D 1 - - - 0x003A9D 00:BA8D: B8        .byte > ( ofs_nmi_handler_B86C_05 - 1 )   ; 
-- D 1 - - - 0x003A9E 00:BA8E: B8        .byte > ( ofs_nmi_handler_B892_06 - 1 )   ; 
+- D 1 - - - 0x003A98 00:BA88: B8        .byte > ( ofs_nmi_handler_B8B5_00 - $01 )   ; 
+- D 1 - - - 0x003A99 00:BA89: B9        .byte > ( ofs_nmi_handler_B949_01 - $01 )   ; 
+- D 1 - - - 0x003A9A 00:BA8A: B8        .byte > ( ofs_nmi_handler_B8BD_02 - $01 )   ; 
+- - - - - - 0x003A9B 00:BA8B: B8        .byte > ( ofs_nmi_handler_B853_03 - $01 )   ; 
+- D 1 - - - 0x003A9C 00:BA8C: B8        .byte > ( ofs_nmi_handler_B861_04 - $01 )   ; 
+- D 1 - - - 0x003A9D 00:BA8D: B8        .byte > ( ofs_nmi_handler_B86C_05 - $01 )   ; 
+- D 1 - - - 0x003A9E 00:BA8E: B8        .byte > ( ofs_nmi_handler_B892_06 - $01 )   ; 
 
 
 
 sub_BA8F:
 C - - - - - 0x003A9F 00:BA8F: AE A2 07  LDX ram_07A2
-C - - - - - 0x003AA2 00:BA92: BD B1 BA  LDA tbl_BAB2 - 1,X
+C - - - - - 0x003AA2 00:BA92: BD B1 BA  LDA tbl_BAB2 - $01,X
 C - - - - - 0x003AA5 00:BA95: 85 15     STA ram_current_room
-C - - - - - 0x003AA7 00:BA97: BD B8 BA  LDA tbl_BAB9 - 1,X
+C - - - - - 0x003AA7 00:BA97: BD B8 BA  LDA tbl_BAB9 - $01,X
 C - - - - - 0x003AAA 00:BA9A: 8D 68 07  STA ram_0768
 C - - - - - 0x003AAD 00:BA9D: 8D 69 07  STA ram_0769
-C - - - - - 0x003AB0 00:BAA0: BD BF BA  LDA tbl_BAC0_lo - 1,X
+C - - - - - 0x003AB0 00:BAA0: BD BF BA  LDA tbl_BAC0_lo - $01,X
 C - - - - - 0x003AB3 00:BAA3: 85 4D     STA ram_004D
-C - - - - - 0x003AB5 00:BAA5: BD C6 BA  LDA tbl_BAC7_hi - 1,X
+C - - - - - 0x003AB5 00:BAA5: BD C6 BA  LDA tbl_BAC7_hi - $01,X
 C - - - - - 0x003AB8 00:BAA8: 85 4E     STA ram_004E
 C - - - - - 0x003ABA 00:BAAA: A9 00     LDA #$00
 C - - - - - 0x003ABC 00:BAAC: 8D A5 07  STA ram_07A5

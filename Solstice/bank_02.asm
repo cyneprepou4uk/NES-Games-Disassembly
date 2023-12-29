@@ -120,8 +120,8 @@ C - - - - - 0x010121 04:8111: 8D 52 02  STA ram_spr_A + $50
 C - - - - - 0x010124 04:8114: 20 29 89  JSR sub_8929
 C - - - - - 0x010127 04:8117: A2 64     LDX #$64
 bra_8119_loop:
-C - - - - - 0x010129 04:8119: BD 6C 8B  LDA tbl_8B6D - 1,X
-C - - - - - 0x01012C 04:811C: 9D 33 03  STA ram_0334 - 1,X
+C - - - - - 0x010129 04:8119: BD 6C 8B  LDA tbl_8B6D - $01,X
+C - - - - - 0x01012C 04:811C: 9D 33 03  STA ram_0334 - $01,X
 C - - - - - 0x01012F 04:811F: CA        DEX
 C - - - - - 0x010130 04:8120: D0 F7     BNE bra_8119_loop
 ; calculate visited rooms
@@ -3587,9 +3587,9 @@ C D 1 - I - 0x013C2E 04:BC1E: A9 5A     LDA #$5A    ; 90 lives
 C D 1 - I - 0x013C30 04:BC20: 8D 89 07  STA ram_lives
 C D 1 - I - 0x013C33 04:BC23: A9 04     LDA #$04    ; max amount
 C D 1 - I - 0x013C35 04:BC25: 8D 84 07  STA ram_potion_amount
-C D 1 - I - 0x013C38 04:BC28: 8D 85 07  STA ram_potion_amount + 1
-C D 1 - I - 0x013C3B 04:BC2B: 8D 86 07  STA ram_potion_amount + 2
-C D 1 - I - 0x013C3E 04:BC2E: 8D 87 07  STA ram_potion_amount + 3
+C D 1 - I - 0x013C38 04:BC28: 8D 85 07  STA ram_potion_amount + $01
+C D 1 - I - 0x013C3B 04:BC2B: 8D 86 07  STA ram_potion_amount + $02
+C D 1 - I - 0x013C3E 04:BC2E: 8D 87 07  STA ram_potion_amount + $03
 C D 1 - I - 0x013C41 04:BC31: EE 10 01  INC ram_buffer_palette + $10
 bra_BC34_combination_is_not_complete:
 C D 1 - I - 0x013C44 04:BC34: 68        PLA
@@ -3761,7 +3761,7 @@ C - - - - - 0x014222 05:C212: A9 00     LDA #$00
 C - - - - - 0x014224 05:C214: A0 4E     LDY #$4E
 bra_C216_loop:
 ; 004F-009C
-C - - - - - 0x014226 05:C216: 99 4E 00  STA ram_004F - 1,Y
+C - - - - - 0x014226 05:C216: 99 4E 00  STA ram_004F - $01,Y
 C - - - - - 0x014229 05:C219: 88        DEY
 C - - - - - 0x01422A 05:C21A: D0 FA     BNE bra_C216_loop
 C - - - - - 0x01422C 05:C21C: C8        INY ; 01
@@ -3772,7 +3772,7 @@ C - - - - - 0x014233 05:C223: 84 86     STY ram_0086
 C - - - - - 0x014235 05:C225: 84 87     STY ram_0087
 C - - - - - 0x014237 05:C227: A0 A0     LDY #$A0
 bra_C229_loop:
-C - - - - - 0x014239 05:C229: 99 1F 01  STA ram_0120 - 1,Y
+C - - - - - 0x014239 05:C229: 99 1F 01  STA ram_0120 - $01,Y
 C - - - - - 0x01423C 05:C22C: 88        DEY
 C - - - - - 0x01423D 05:C22D: D0 FA     BNE bra_C229_loop
 C - - - - - 0x01423F 05:C22F: 8C E5 07  STY ram_07E5    ; 00
@@ -5353,52 +5353,52 @@ C - - - - - 0x014E85 05:CE75: 60        RTS
 
 
 tbl_CE76_lo:
-- D 2 - - - 0x014E86 05:CE76: 9F        .byte < ( ofs_000_CEA0_80 - 1 )
-- D 2 - - - 0x014E87 05:CE77: B9        .byte < ( ofs_000_CEBA_81 - 1 )
-- D 2 - - - 0x014E88 05:CE78: C9        .byte < ( ofs_000_CECA_82 - 1 )
-- D 2 - - - 0x014E89 05:CE79: D2        .byte < ( ofs_000_CED3_83 - 1 )
-- D 2 - - - 0x014E8A 05:CE7A: D8        .byte < ( ofs_000_CED9_84_jsr - 1 )
-- D 2 - - - 0x014E8B 05:CE7B: F9        .byte < ( ofs_000_CEFA_85_rts - 1 )
-- D 2 - - - 0x014E8C 05:CE7C: 0A        .byte < ( ofs_000_CF0B_86 - 1 )
-- D 2 - - - 0x014E8D 05:CE7D: 12        .byte < ( ofs_000_CF13_87 - 1 )
-- D 2 - - - 0x014E8E 05:CE7E: EC        .byte < ( ofs_000_CEED_88_jmp - 1 )
-- D 2 - - - 0x014E8F 05:CE7F: 1B        .byte < ( ofs_000_CF1C_89 - 1 )
-- D 2 - - - 0x014E90 05:CE80: 29        .byte < ( ofs_000_CF2A_8A - 1 )
-- D 2 - - - 0x014E91 05:CE81: 54        .byte < ( ofs_000_CF55_8B - 1 )
-- D 2 - - - 0x014E92 05:CE82: 5D        .byte < ( ofs_000_CF5E_8C - 1 )
-- D 2 - - - 0x014E93 05:CE83: 72        .byte < ( ofs_000_CF73_8D - 1 )
-- D 2 - - - 0x014E94 05:CE84: 7B        .byte < ( ofs_000_CF7C_8E - 1 )
-- D 2 - - - 0x014E95 05:CE85: 84        .byte < ( ofs_000_CF85_8F - 1 )
-- - - - - - 0x014E96 05:CE86: 9F        .byte < ( ofs_000_CFA0_90 - 1 )
-- - - - - - 0x014E97 05:CE87: A7        .byte < ( ofs_000_CFA8_91 - 1 )
-- D 2 - - - 0x014E98 05:CE88: BC        .byte < ( ofs_000_CFBD_92_loop - 1 )
-- D 2 - - - 0x014E99 05:CE89: D4        .byte < ( ofs_000_CFD5_93 - 1 )
-- D 2 - - - 0x014E9A 05:CE8A: DD        .byte < ( ofs_000_CFDE_94 - 1 )
+- D 2 - - - 0x014E86 05:CE76: 9F        .byte < ( ofs_000_CEA0_80 - $01 )
+- D 2 - - - 0x014E87 05:CE77: B9        .byte < ( ofs_000_CEBA_81 - $01 )
+- D 2 - - - 0x014E88 05:CE78: C9        .byte < ( ofs_000_CECA_82 - $01 )
+- D 2 - - - 0x014E89 05:CE79: D2        .byte < ( ofs_000_CED3_83 - $01 )
+- D 2 - - - 0x014E8A 05:CE7A: D8        .byte < ( ofs_000_CED9_84_jsr - $01 )
+- D 2 - - - 0x014E8B 05:CE7B: F9        .byte < ( ofs_000_CEFA_85_rts - $01 )
+- D 2 - - - 0x014E8C 05:CE7C: 0A        .byte < ( ofs_000_CF0B_86 - $01 )
+- D 2 - - - 0x014E8D 05:CE7D: 12        .byte < ( ofs_000_CF13_87 - $01 )
+- D 2 - - - 0x014E8E 05:CE7E: EC        .byte < ( ofs_000_CEED_88_jmp - $01 )
+- D 2 - - - 0x014E8F 05:CE7F: 1B        .byte < ( ofs_000_CF1C_89 - $01 )
+- D 2 - - - 0x014E90 05:CE80: 29        .byte < ( ofs_000_CF2A_8A - $01 )
+- D 2 - - - 0x014E91 05:CE81: 54        .byte < ( ofs_000_CF55_8B - $01 )
+- D 2 - - - 0x014E92 05:CE82: 5D        .byte < ( ofs_000_CF5E_8C - $01 )
+- D 2 - - - 0x014E93 05:CE83: 72        .byte < ( ofs_000_CF73_8D - $01 )
+- D 2 - - - 0x014E94 05:CE84: 7B        .byte < ( ofs_000_CF7C_8E - $01 )
+- D 2 - - - 0x014E95 05:CE85: 84        .byte < ( ofs_000_CF85_8F - $01 )
+- - - - - - 0x014E96 05:CE86: 9F        .byte < ( ofs_000_CFA0_90 - $01 )
+- - - - - - 0x014E97 05:CE87: A7        .byte < ( ofs_000_CFA8_91 - $01 )
+- D 2 - - - 0x014E98 05:CE88: BC        .byte < ( ofs_000_CFBD_92_loop - $01 )
+- D 2 - - - 0x014E99 05:CE89: D4        .byte < ( ofs_000_CFD5_93 - $01 )
+- D 2 - - - 0x014E9A 05:CE8A: DD        .byte < ( ofs_000_CFDE_94 - $01 )
 
 
 
 tbl_CE8B_hi:
-- D 2 - - - 0x014E9B 05:CE8B: CE        .byte > ( ofs_000_CEA0_80 - 1 )
-- D 2 - - - 0x014E9C 05:CE8C: CE        .byte > ( ofs_000_CEBA_81 - 1 )
-- D 2 - - - 0x014E9D 05:CE8D: CE        .byte > ( ofs_000_CECA_82 - 1 )
-- D 2 - - - 0x014E9E 05:CE8E: CE        .byte > ( ofs_000_CED3_83 - 1 )
-- D 2 - - - 0x014E9F 05:CE8F: CE        .byte > ( ofs_000_CED9_84_jsr - 1 )
-- D 2 - - - 0x014EA0 05:CE90: CE        .byte > ( ofs_000_CEFA_85_rts - 1 )
-- D 2 - - - 0x014EA1 05:CE91: CF        .byte > ( ofs_000_CF0B_86 - 1 )
-- D 2 - - - 0x014EA2 05:CE92: CF        .byte > ( ofs_000_CF13_87 - 1 )
-- D 2 - - - 0x014EA3 05:CE93: CE        .byte > ( ofs_000_CEED_88_jmp - 1 )
-- D 2 - - - 0x014EA4 05:CE94: CF        .byte > ( ofs_000_CF1C_89 - 1 )
-- D 2 - - - 0x014EA5 05:CE95: CF        .byte > ( ofs_000_CF2A_8A - 1 )
-- D 2 - - - 0x014EA6 05:CE96: CF        .byte > ( ofs_000_CF55_8B - 1 )
-- D 2 - - - 0x014EA7 05:CE97: CF        .byte > ( ofs_000_CF5E_8C - 1 )
-- D 2 - - - 0x014EA8 05:CE98: CF        .byte > ( ofs_000_CF73_8D - 1 )
-- D 2 - - - 0x014EA9 05:CE99: CF        .byte > ( ofs_000_CF7C_8E - 1 )
-- D 2 - - - 0x014EAA 05:CE9A: CF        .byte > ( ofs_000_CF85_8F - 1 )
-- - - - - - 0x014EAB 05:CE9B: CF        .byte > ( ofs_000_CFA0_90 - 1 )
-- - - - - - 0x014EAC 05:CE9C: CF        .byte > ( ofs_000_CFA8_91 - 1 )
-- D 2 - - - 0x014EAD 05:CE9D: CF        .byte > ( ofs_000_CFBD_92_loop - 1 )
-- D 2 - - - 0x014EAE 05:CE9E: CF        .byte > ( ofs_000_CFD5_93 - 1 )
-- D 2 - - - 0x014EAF 05:CE9F: CF        .byte > ( ofs_000_CFDE_94 - 1 )
+- D 2 - - - 0x014E9B 05:CE8B: CE        .byte > ( ofs_000_CEA0_80 - $01 )
+- D 2 - - - 0x014E9C 05:CE8C: CE        .byte > ( ofs_000_CEBA_81 - $01 )
+- D 2 - - - 0x014E9D 05:CE8D: CE        .byte > ( ofs_000_CECA_82 - $01 )
+- D 2 - - - 0x014E9E 05:CE8E: CE        .byte > ( ofs_000_CED3_83 - $01 )
+- D 2 - - - 0x014E9F 05:CE8F: CE        .byte > ( ofs_000_CED9_84_jsr - $01 )
+- D 2 - - - 0x014EA0 05:CE90: CE        .byte > ( ofs_000_CEFA_85_rts - $01 )
+- D 2 - - - 0x014EA1 05:CE91: CF        .byte > ( ofs_000_CF0B_86 - $01 )
+- D 2 - - - 0x014EA2 05:CE92: CF        .byte > ( ofs_000_CF13_87 - $01 )
+- D 2 - - - 0x014EA3 05:CE93: CE        .byte > ( ofs_000_CEED_88_jmp - $01 )
+- D 2 - - - 0x014EA4 05:CE94: CF        .byte > ( ofs_000_CF1C_89 - $01 )
+- D 2 - - - 0x014EA5 05:CE95: CF        .byte > ( ofs_000_CF2A_8A - $01 )
+- D 2 - - - 0x014EA6 05:CE96: CF        .byte > ( ofs_000_CF55_8B - $01 )
+- D 2 - - - 0x014EA7 05:CE97: CF        .byte > ( ofs_000_CF5E_8C - $01 )
+- D 2 - - - 0x014EA8 05:CE98: CF        .byte > ( ofs_000_CF73_8D - $01 )
+- D 2 - - - 0x014EA9 05:CE99: CF        .byte > ( ofs_000_CF7C_8E - $01 )
+- D 2 - - - 0x014EAA 05:CE9A: CF        .byte > ( ofs_000_CF85_8F - $01 )
+- - - - - - 0x014EAB 05:CE9B: CF        .byte > ( ofs_000_CFA0_90 - $01 )
+- - - - - - 0x014EAC 05:CE9C: CF        .byte > ( ofs_000_CFA8_91 - $01 )
+- D 2 - - - 0x014EAD 05:CE9D: CF        .byte > ( ofs_000_CFBD_92_loop - $01 )
+- D 2 - - - 0x014EAE 05:CE9E: CF        .byte > ( ofs_000_CFD5_93 - $01 )
+- D 2 - - - 0x014EAF 05:CE9F: CF        .byte > ( ofs_000_CFDE_94 - $01 )
 
 
 
@@ -5645,50 +5645,50 @@ C - - - - - 0x014FF4 05:CFE4: 4C 03 C3  JMP loc_C303
 
 
 tbl_CFE7_lo:
-- D 2 - - - 0x014FF7 05:CFE7: 10        .byte < ( ofs_007_D011_80 - 1 )   ; 
-- D 2 - - - 0x014FF8 05:CFE8: 2A        .byte < ( ofs_007_D02B_81 - 1 )   ; 
-- D 2 - - - 0x014FF9 05:CFE9: 3A        .byte < ( ofs_007_D03B_82 - 1 )   ; 
-- D 2 - - - 0x014FFA 05:CFEA: 43        .byte < ( ofs_007_D044_83 - 1 )   ; 
-- D 2 - - - 0x014FFB 05:CFEB: 49        .byte < ( ofs_007_D04A_84_jsr - 1 )   ; 
-- D 2 - - - 0x014FFC 05:CFEC: 6A        .byte < ( ofs_007_D06B_85_rts - 1 )   ; 
-- D 2 - - - 0x014FFD 05:CFED: 7B        .byte < ( ofs_007_D07C_86 - 1 )   ; 
-- D 2 - - - 0x014FFE 05:CFEE: 83        .byte < ( ofs_007_D084_87 - 1 )   ; 
-- D 2 - - - 0x014FFF 05:CFEF: 5D        .byte < ( ofs_007_D05E_88_jmp - 1 )   ; 
-- - - - - - 0x015000 05:CFF0: 8C        .byte < ( ofs_007_D08D_89 - 1 )   ; 
-- D 2 - - - 0x015001 05:CFF1: 9A        .byte < ( ofs_007_D09B_8A - 1 )   ; 
-- D 2 - - - 0x015002 05:CFF2: C5        .byte < ( ofs_007_D0C6_8B - 1 )   ; 
-- D 2 - - - 0x015003 05:CFF3: CE        .byte < ( ofs_007_D0CF_8C - 1 )   ; 
-- D 2 - - - 0x015004 05:CFF4: E3        .byte < ( ofs_007_D0E4_8D - 1 )   ; 
-- D 2 - - - 0x015005 05:CFF5: EC        .byte < ( ofs_007_D0ED_8E - 1 )   ; 
-- D 2 - - - 0x015006 05:CFF6: F5        .byte < ( ofs_007_D0F6_8F - 1 )   ; 
-- - - - - - 0x015007 05:CFF7: 10        .byte < ( ofs_007_D111_90 - 1 )   ; 
-- - - - - - 0x015008 05:CFF8: 18        .byte < ( ofs_007_D119_91 - 1 )   ; 
-- D 2 - - - 0x015009 05:CFF9: 2D        .byte < ( ofs_007_D12E_92_loop - 1 )   ; 
-- D 2 - - - 0x01500A 05:CFFA: 45        .byte < ( ofs_007_D146_93 - 1 )   ; 
-- D 2 - - - 0x01500B 05:CFFB: 4E        .byte < ( ofs_007_D14F_94 - 1 )   ; 
+- D 2 - - - 0x014FF7 05:CFE7: 10        .byte < ( ofs_007_D011_80 - $01 )   ; 
+- D 2 - - - 0x014FF8 05:CFE8: 2A        .byte < ( ofs_007_D02B_81 - $01 )   ; 
+- D 2 - - - 0x014FF9 05:CFE9: 3A        .byte < ( ofs_007_D03B_82 - $01 )   ; 
+- D 2 - - - 0x014FFA 05:CFEA: 43        .byte < ( ofs_007_D044_83 - $01 )   ; 
+- D 2 - - - 0x014FFB 05:CFEB: 49        .byte < ( ofs_007_D04A_84_jsr - $01 )   ; 
+- D 2 - - - 0x014FFC 05:CFEC: 6A        .byte < ( ofs_007_D06B_85_rts - $01 )   ; 
+- D 2 - - - 0x014FFD 05:CFED: 7B        .byte < ( ofs_007_D07C_86 - $01 )   ; 
+- D 2 - - - 0x014FFE 05:CFEE: 83        .byte < ( ofs_007_D084_87 - $01 )   ; 
+- D 2 - - - 0x014FFF 05:CFEF: 5D        .byte < ( ofs_007_D05E_88_jmp - $01 )   ; 
+- - - - - - 0x015000 05:CFF0: 8C        .byte < ( ofs_007_D08D_89 - $01 )   ; 
+- D 2 - - - 0x015001 05:CFF1: 9A        .byte < ( ofs_007_D09B_8A - $01 )   ; 
+- D 2 - - - 0x015002 05:CFF2: C5        .byte < ( ofs_007_D0C6_8B - $01 )   ; 
+- D 2 - - - 0x015003 05:CFF3: CE        .byte < ( ofs_007_D0CF_8C - $01 )   ; 
+- D 2 - - - 0x015004 05:CFF4: E3        .byte < ( ofs_007_D0E4_8D - $01 )   ; 
+- D 2 - - - 0x015005 05:CFF5: EC        .byte < ( ofs_007_D0ED_8E - $01 )   ; 
+- D 2 - - - 0x015006 05:CFF6: F5        .byte < ( ofs_007_D0F6_8F - $01 )   ; 
+- - - - - - 0x015007 05:CFF7: 10        .byte < ( ofs_007_D111_90 - $01 )   ; 
+- - - - - - 0x015008 05:CFF8: 18        .byte < ( ofs_007_D119_91 - $01 )   ; 
+- D 2 - - - 0x015009 05:CFF9: 2D        .byte < ( ofs_007_D12E_92_loop - $01 )   ; 
+- D 2 - - - 0x01500A 05:CFFA: 45        .byte < ( ofs_007_D146_93 - $01 )   ; 
+- D 2 - - - 0x01500B 05:CFFB: 4E        .byte < ( ofs_007_D14F_94 - $01 )   ; 
 
 tbl_CFFC_hi:
-- D 2 - - - 0x01500C 05:CFFC: D0        .byte > ( ofs_007_D011_80 - 1 )   ; 
-- D 2 - - - 0x01500D 05:CFFD: D0        .byte > ( ofs_007_D02B_81 - 1 )   ; 
-- D 2 - - - 0x01500E 05:CFFE: D0        .byte > ( ofs_007_D03B_82 - 1 )   ; 
-- D 2 - - - 0x01500F 05:CFFF: D0        .byte > ( ofs_007_D044_83 - 1 )   ; 
-- D 2 - - - 0x015010 05:D000: D0        .byte > ( ofs_007_D04A_84_jsr - 1 )   ; 
-- D 2 - - - 0x015011 05:D001: D0        .byte > ( ofs_007_D06B_85_rts - 1 )   ; 
-- D 2 - - - 0x015012 05:D002: D0        .byte > ( ofs_007_D07C_86 - 1 )   ; 
-- D 2 - - - 0x015013 05:D003: D0        .byte > ( ofs_007_D084_87 - 1 )   ; 
-- D 2 - - - 0x015014 05:D004: D0        .byte > ( ofs_007_D05E_88_jmp - 1 )   ; 
-- - - - - - 0x015015 05:D005: D0        .byte > ( ofs_007_D08D_89 - 1 )   ; 
-- D 2 - - - 0x015016 05:D006: D0        .byte > ( ofs_007_D09B_8A - 1 )   ; 
-- D 2 - - - 0x015017 05:D007: D0        .byte > ( ofs_007_D0C6_8B - 1 )   ; 
-- D 2 - - - 0x015018 05:D008: D0        .byte > ( ofs_007_D0CF_8C - 1 )   ; 
-- D 2 - - - 0x015019 05:D009: D0        .byte > ( ofs_007_D0E4_8D - 1 )   ; 
-- D 2 - - - 0x01501A 05:D00A: D0        .byte > ( ofs_007_D0ED_8E - 1 )   ; 
-- D 2 - - - 0x01501B 05:D00B: D0        .byte > ( ofs_007_D0F6_8F - 1 )   ; 
-- - - - - - 0x01501C 05:D00C: D1        .byte > ( ofs_007_D111_90 - 1 )   ; 
-- - - - - - 0x01501D 05:D00D: D1        .byte > ( ofs_007_D119_91 - 1 )   ; 
-- D 2 - - - 0x01501E 05:D00E: D1        .byte > ( ofs_007_D12E_92_loop - 1 )   ; 
-- D 2 - - - 0x01501F 05:D00F: D1        .byte > ( ofs_007_D146_93 - 1 )   ; 
-- D 2 - - - 0x015020 05:D010: D1        .byte > ( ofs_007_D14F_94 - 1 )   ; 
+- D 2 - - - 0x01500C 05:CFFC: D0        .byte > ( ofs_007_D011_80 - $01 )   ; 
+- D 2 - - - 0x01500D 05:CFFD: D0        .byte > ( ofs_007_D02B_81 - $01 )   ; 
+- D 2 - - - 0x01500E 05:CFFE: D0        .byte > ( ofs_007_D03B_82 - $01 )   ; 
+- D 2 - - - 0x01500F 05:CFFF: D0        .byte > ( ofs_007_D044_83 - $01 )   ; 
+- D 2 - - - 0x015010 05:D000: D0        .byte > ( ofs_007_D04A_84_jsr - $01 )   ; 
+- D 2 - - - 0x015011 05:D001: D0        .byte > ( ofs_007_D06B_85_rts - $01 )   ; 
+- D 2 - - - 0x015012 05:D002: D0        .byte > ( ofs_007_D07C_86 - $01 )   ; 
+- D 2 - - - 0x015013 05:D003: D0        .byte > ( ofs_007_D084_87 - $01 )   ; 
+- D 2 - - - 0x015014 05:D004: D0        .byte > ( ofs_007_D05E_88_jmp - $01 )   ; 
+- - - - - - 0x015015 05:D005: D0        .byte > ( ofs_007_D08D_89 - $01 )   ; 
+- D 2 - - - 0x015016 05:D006: D0        .byte > ( ofs_007_D09B_8A - $01 )   ; 
+- D 2 - - - 0x015017 05:D007: D0        .byte > ( ofs_007_D0C6_8B - $01 )   ; 
+- D 2 - - - 0x015018 05:D008: D0        .byte > ( ofs_007_D0CF_8C - $01 )   ; 
+- D 2 - - - 0x015019 05:D009: D0        .byte > ( ofs_007_D0E4_8D - $01 )   ; 
+- D 2 - - - 0x01501A 05:D00A: D0        .byte > ( ofs_007_D0ED_8E - $01 )   ; 
+- D 2 - - - 0x01501B 05:D00B: D0        .byte > ( ofs_007_D0F6_8F - $01 )   ; 
+- - - - - - 0x01501C 05:D00C: D1        .byte > ( ofs_007_D111_90 - $01 )   ; 
+- - - - - - 0x01501D 05:D00D: D1        .byte > ( ofs_007_D119_91 - $01 )   ; 
+- D 2 - - - 0x01501E 05:D00E: D1        .byte > ( ofs_007_D12E_92_loop - $01 )   ; 
+- D 2 - - - 0x01501F 05:D00F: D1        .byte > ( ofs_007_D146_93 - $01 )   ; 
+- D 2 - - - 0x015020 05:D010: D1        .byte > ( ofs_007_D14F_94 - $01 )   ; 
 
 
 
@@ -5935,46 +5935,46 @@ C - - - - - 0x015165 05:D155: 4C A9 C7  JMP loc_C7A9
 
 
 tbl_D158_lo:
-- D 2 - - - 0x015168 05:D158: 7E        .byte < ( ofs_006_D17F_80 - 1 )
-- D 2 - - - 0x015169 05:D159: 98        .byte < ( ofs_006_D199_81 - 1 )
-- D 2 - - - 0x01516A 05:D15A: A8        .byte < ( ofs_006_D1A9_82 - 1 )
-- D 2 - - - 0x01516B 05:D15B: B1        .byte < ( ofs_006_D1B2_83 - 1 )
-- D 2 - - - 0x01516C 05:D15C: B7        .byte < ( ofs_006_D1B8_84_jsr - 1 )
-- D 2 - - - 0x01516D 05:D15D: D8        .byte < ( ofs_006_D1D9_85_rts - 1 )
-- D 2 - - - 0x01516E 05:D15E: E9        .byte < ( ofs_006_D1EA_86 - 1 )
-- - - - - - 0x01516F 05:D15F: F1        .byte < ( ofs_006_D1F2_87 - 1 )
-- D 2 - - - 0x015170 05:D160: CB        .byte < ( ofs_006_D1CC_88_jmp - 1 )
-- - - - - - 0x015171 05:D161: FA        .byte < ( ofs_006_D1FB_89 - 1 )
-- - - - - - 0x015172 05:D162: 7D        .byte < ( ofs_006_D17E_8A_RTS - 1 )
-- - - - - - 0x015173 05:D163: 7D        .byte < ( ofs_006_D17E_8B_RTS - 1 )
-- D 2 - - - 0x015174 05:D164: 08        .byte < ( ofs_006_D209_8C - 1 )
-- - - - - - 0x015175 05:D165: 1D        .byte < ( ofs_006_D21E_8D - 1 )
-- - - - - - 0x015176 05:D166: 7D        .byte < ( ofs_006_D17E_8E_RTS - 1 )
-- D 2 - - - 0x015177 05:D167: 26        .byte < ( ofs_006_D227_8F - 1 )
-- D 2 - - - 0x015178 05:D168: 41        .byte < ( ofs_006_D242_90 - 1 )
-- - - - - - 0x015179 05:D169: 49        .byte < ( ofs_006_D24A_91 - 1 )
-- - - - - - 0x01517A 05:D16A: 7D        .byte < ( ofs_006_D17E_92_RTS - 1 )
+- D 2 - - - 0x015168 05:D158: 7E        .byte < ( ofs_006_D17F_80 - $01 )
+- D 2 - - - 0x015169 05:D159: 98        .byte < ( ofs_006_D199_81 - $01 )
+- D 2 - - - 0x01516A 05:D15A: A8        .byte < ( ofs_006_D1A9_82 - $01 )
+- D 2 - - - 0x01516B 05:D15B: B1        .byte < ( ofs_006_D1B2_83 - $01 )
+- D 2 - - - 0x01516C 05:D15C: B7        .byte < ( ofs_006_D1B8_84_jsr - $01 )
+- D 2 - - - 0x01516D 05:D15D: D8        .byte < ( ofs_006_D1D9_85_rts - $01 )
+- D 2 - - - 0x01516E 05:D15E: E9        .byte < ( ofs_006_D1EA_86 - $01 )
+- - - - - - 0x01516F 05:D15F: F1        .byte < ( ofs_006_D1F2_87 - $01 )
+- D 2 - - - 0x015170 05:D160: CB        .byte < ( ofs_006_D1CC_88_jmp - $01 )
+- - - - - - 0x015171 05:D161: FA        .byte < ( ofs_006_D1FB_89 - $01 )
+- - - - - - 0x015172 05:D162: 7D        .byte < ( ofs_006_D17E_8A_RTS - $01 )
+- - - - - - 0x015173 05:D163: 7D        .byte < ( ofs_006_D17E_8B_RTS - $01 )
+- D 2 - - - 0x015174 05:D164: 08        .byte < ( ofs_006_D209_8C - $01 )
+- - - - - - 0x015175 05:D165: 1D        .byte < ( ofs_006_D21E_8D - $01 )
+- - - - - - 0x015176 05:D166: 7D        .byte < ( ofs_006_D17E_8E_RTS - $01 )
+- D 2 - - - 0x015177 05:D167: 26        .byte < ( ofs_006_D227_8F - $01 )
+- D 2 - - - 0x015178 05:D168: 41        .byte < ( ofs_006_D242_90 - $01 )
+- - - - - - 0x015179 05:D169: 49        .byte < ( ofs_006_D24A_91 - $01 )
+- - - - - - 0x01517A 05:D16A: 7D        .byte < ( ofs_006_D17E_92_RTS - $01 )
 
 tbl_D16B_hi:
-- D 2 - - - 0x01517B 05:D16B: D1        .byte > ( ofs_006_D17F_80 - 1 )
-- D 2 - - - 0x01517C 05:D16C: D1        .byte > ( ofs_006_D199_81 - 1 )
-- D 2 - - - 0x01517D 05:D16D: D1        .byte > ( ofs_006_D1A9_82 - 1 )
-- D 2 - - - 0x01517E 05:D16E: D1        .byte > ( ofs_006_D1B2_83 - 1 )
-- D 2 - - - 0x01517F 05:D16F: D1        .byte > ( ofs_006_D1B8_84_jsr - 1 )
-- D 2 - - - 0x015180 05:D170: D1        .byte > ( ofs_006_D1D9_85_rts - 1 )
-- D 2 - - - 0x015181 05:D171: D1        .byte > ( ofs_006_D1EA_86 - 1 )
-- - - - - - 0x015182 05:D172: D1        .byte > ( ofs_006_D1F2_87 - 1 )
-- D 2 - - - 0x015183 05:D173: D1        .byte > ( ofs_006_D1CC_88_jmp - 1 )
-- - - - - - 0x015184 05:D174: D1        .byte > ( ofs_006_D1FB_89 - 1 )
-- - - - - - 0x015185 05:D175: D1        .byte > ( ofs_006_D17E_8A_RTS - 1 )
-- - - - - - 0x015186 05:D176: D1        .byte > ( ofs_006_D17E_8B_RTS - 1 )
-- D 2 - - - 0x015187 05:D177: D2        .byte > ( ofs_006_D209_8C - 1 )
-- - - - - - 0x015188 05:D178: D2        .byte > ( ofs_006_D21E_8D - 1 )
-- - - - - - 0x015189 05:D179: D1        .byte > ( ofs_006_D17E_8E_RTS - 1 )
-- D 2 - - - 0x01518A 05:D17A: D2        .byte > ( ofs_006_D227_8F - 1 )
-- D 2 - - - 0x01518B 05:D17B: D2        .byte > ( ofs_006_D242_90 - 1 )
-- - - - - - 0x01518C 05:D17C: D2        .byte > ( ofs_006_D24A_91 - 1 )
-- - - - - - 0x01518D 05:D17D: D1        .byte > ( ofs_006_D17E_92_RTS - 1 )
+- D 2 - - - 0x01517B 05:D16B: D1        .byte > ( ofs_006_D17F_80 - $01 )
+- D 2 - - - 0x01517C 05:D16C: D1        .byte > ( ofs_006_D199_81 - $01 )
+- D 2 - - - 0x01517D 05:D16D: D1        .byte > ( ofs_006_D1A9_82 - $01 )
+- D 2 - - - 0x01517E 05:D16E: D1        .byte > ( ofs_006_D1B2_83 - $01 )
+- D 2 - - - 0x01517F 05:D16F: D1        .byte > ( ofs_006_D1B8_84_jsr - $01 )
+- D 2 - - - 0x015180 05:D170: D1        .byte > ( ofs_006_D1D9_85_rts - $01 )
+- D 2 - - - 0x015181 05:D171: D1        .byte > ( ofs_006_D1EA_86 - $01 )
+- - - - - - 0x015182 05:D172: D1        .byte > ( ofs_006_D1F2_87 - $01 )
+- D 2 - - - 0x015183 05:D173: D1        .byte > ( ofs_006_D1CC_88_jmp - $01 )
+- - - - - - 0x015184 05:D174: D1        .byte > ( ofs_006_D1FB_89 - $01 )
+- - - - - - 0x015185 05:D175: D1        .byte > ( ofs_006_D17E_8A_RTS - $01 )
+- - - - - - 0x015186 05:D176: D1        .byte > ( ofs_006_D17E_8B_RTS - $01 )
+- D 2 - - - 0x015187 05:D177: D2        .byte > ( ofs_006_D209_8C - $01 )
+- - - - - - 0x015188 05:D178: D2        .byte > ( ofs_006_D21E_8D - $01 )
+- - - - - - 0x015189 05:D179: D1        .byte > ( ofs_006_D17E_8E_RTS - $01 )
+- D 2 - - - 0x01518A 05:D17A: D2        .byte > ( ofs_006_D227_8F - $01 )
+- D 2 - - - 0x01518B 05:D17B: D2        .byte > ( ofs_006_D242_90 - $01 )
+- - - - - - 0x01518C 05:D17C: D2        .byte > ( ofs_006_D24A_91 - $01 )
+- - - - - - 0x01518D 05:D17D: D1        .byte > ( ofs_006_D17E_92_RTS - $01 )
 
 
 
@@ -6153,50 +6153,50 @@ ofs_006_D24A_91:
 
 
 tbl_D25F_lo:
-- D 2 - - - 0x01526F 05:D25F: 93        .byte < ( ofs_001_D294_80 - 1 )
-- D 2 - - - 0x015270 05:D260: AD        .byte < ( ofs_001_D2AE_81 - 1 )
-- - - - - - 0x015271 05:D261: BD        .byte < ( ofs_001_D2BE_82 - 1 )
-- D 2 - - - 0x015272 05:D262: C6        .byte < ( ofs_001_D2C7_83 - 1 )
-- D 2 - - - 0x015273 05:D263: CC        .byte < ( ofs_001_D2CD_84_jsr - 1 )
-- D 2 - - - 0x015274 05:D264: ED        .byte < ( ofs_001_D2EE_85_rts - 1 )
-- D 2 - - - 0x015275 05:D265: 89        .byte < ( ofs_001_D28A_86 - 1 )
-- D 2 - - - 0x015276 05:D266: 8C        .byte < ( ofs_001_D28D_87 - 1 )
-- D 2 - - - 0x015277 05:D267: E0        .byte < ( ofs_001_D2E1_88_jmp - 1 )
-- - - - - - 0x015278 05:D268: FE        .byte < ( ofs_001_D2FF_89 - 1 )
-- D 2 - - - 0x015279 05:D269: 0C        .byte < ( ofs_001_D30D_8A - 1 )
-- D 2 - - - 0x01527A 05:D26A: 37        .byte < ( ofs_001_D338_8B - 1 )
-- D 2 - - - 0x01527B 05:D26B: 40        .byte < ( ofs_001_D341_8C - 1 )
-- - - - - - 0x01527C 05:D26C: 88        .byte < ( ofs_001_D289_8D_RTS - 1 )
-- - - - - - 0x01527D 05:D26D: 88        .byte < ( ofs_001_D289_8E_RTS - 1 )
-- - - - - - 0x01527E 05:D26E: 88        .byte < ( ofs_001_D289_8F_RTS - 1 )
-- - - - - - 0x01527F 05:D26F: 88        .byte < ( ofs_001_D289_90_RTS - 1 )
-- - - - - - 0x015280 05:D270: 55        .byte < ( ofs_001_D356_91 - 1 )
-- D 2 - - - 0x015281 05:D271: 64        .byte < ( ofs_001_D365_92_loop - 1 )
-- D 2 - - - 0x015282 05:D272: 7C        .byte < ( ofs_001_D37D_93 - 1 )
-- D 2 - - - 0x015283 05:D273: 85        .byte < ( ofs_001_D386_94 - 1 )
+- D 2 - - - 0x01526F 05:D25F: 93        .byte < ( ofs_001_D294_80 - $01 )
+- D 2 - - - 0x015270 05:D260: AD        .byte < ( ofs_001_D2AE_81 - $01 )
+- - - - - - 0x015271 05:D261: BD        .byte < ( ofs_001_D2BE_82 - $01 )
+- D 2 - - - 0x015272 05:D262: C6        .byte < ( ofs_001_D2C7_83 - $01 )
+- D 2 - - - 0x015273 05:D263: CC        .byte < ( ofs_001_D2CD_84_jsr - $01 )
+- D 2 - - - 0x015274 05:D264: ED        .byte < ( ofs_001_D2EE_85_rts - $01 )
+- D 2 - - - 0x015275 05:D265: 89        .byte < ( ofs_001_D28A_86 - $01 )
+- D 2 - - - 0x015276 05:D266: 8C        .byte < ( ofs_001_D28D_87 - $01 )
+- D 2 - - - 0x015277 05:D267: E0        .byte < ( ofs_001_D2E1_88_jmp - $01 )
+- - - - - - 0x015278 05:D268: FE        .byte < ( ofs_001_D2FF_89 - $01 )
+- D 2 - - - 0x015279 05:D269: 0C        .byte < ( ofs_001_D30D_8A - $01 )
+- D 2 - - - 0x01527A 05:D26A: 37        .byte < ( ofs_001_D338_8B - $01 )
+- D 2 - - - 0x01527B 05:D26B: 40        .byte < ( ofs_001_D341_8C - $01 )
+- - - - - - 0x01527C 05:D26C: 88        .byte < ( ofs_001_D289_8D_RTS - $01 )
+- - - - - - 0x01527D 05:D26D: 88        .byte < ( ofs_001_D289_8E_RTS - $01 )
+- - - - - - 0x01527E 05:D26E: 88        .byte < ( ofs_001_D289_8F_RTS - $01 )
+- - - - - - 0x01527F 05:D26F: 88        .byte < ( ofs_001_D289_90_RTS - $01 )
+- - - - - - 0x015280 05:D270: 55        .byte < ( ofs_001_D356_91 - $01 )
+- D 2 - - - 0x015281 05:D271: 64        .byte < ( ofs_001_D365_92_loop - $01 )
+- D 2 - - - 0x015282 05:D272: 7C        .byte < ( ofs_001_D37D_93 - $01 )
+- D 2 - - - 0x015283 05:D273: 85        .byte < ( ofs_001_D386_94 - $01 )
 
 tbl_D274_hi:
-- D 2 - - - 0x015284 05:D274: D2        .byte > ( ofs_001_D294_80 - 1 )
-- D 2 - - - 0x015285 05:D275: D2        .byte > ( ofs_001_D2AE_81 - 1 )
-- - - - - - 0x015286 05:D276: D2        .byte > ( ofs_001_D2BE_82 - 1 )
-- D 2 - - - 0x015287 05:D277: D2        .byte > ( ofs_001_D2C7_83 - 1 )
-- D 2 - - - 0x015288 05:D278: D2        .byte > ( ofs_001_D2CD_84_jsr - 1 )
-- D 2 - - - 0x015289 05:D279: D2        .byte > ( ofs_001_D2EE_85_rts - 1 )
-- D 2 - - - 0x01528A 05:D27A: D2        .byte > ( ofs_001_D28A_86 - 1 )
-- D 2 - - - 0x01528B 05:D27B: D2        .byte > ( ofs_001_D28D_87 - 1 )
-- D 2 - - - 0x01528C 05:D27C: D2        .byte > ( ofs_001_D2E1_88_jmp - 1 )
-- - - - - - 0x01528D 05:D27D: D2        .byte > ( ofs_001_D2FF_89 - 1 )
-- D 2 - - - 0x01528E 05:D27E: D3        .byte > ( ofs_001_D30D_8A - 1 )
-- D 2 - - - 0x01528F 05:D27F: D3        .byte > ( ofs_001_D338_8B - 1 )
-- D 2 - - - 0x015290 05:D280: D3        .byte > ( ofs_001_D341_8C - 1 )
-- - - - - - 0x015291 05:D281: D2        .byte > ( ofs_001_D289_8D_RTS - 1 )
-- - - - - - 0x015292 05:D282: D2        .byte > ( ofs_001_D289_8E_RTS - 1 )
-- - - - - - 0x015293 05:D283: D2        .byte > ( ofs_001_D289_8F_RTS - 1 )
-- - - - - - 0x015294 05:D284: D2        .byte > ( ofs_001_D289_90_RTS - 1 )
-- - - - - - 0x015295 05:D285: D3        .byte > ( ofs_001_D356_91 - 1 )
-- D 2 - - - 0x015296 05:D286: D3        .byte > ( ofs_001_D365_92_loop - 1 )
-- D 2 - - - 0x015297 05:D287: D3        .byte > ( ofs_001_D37D_93 - 1 )
-- D 2 - - - 0x015298 05:D288: D3        .byte > ( ofs_001_D386_94 - 1 )
+- D 2 - - - 0x015284 05:D274: D2        .byte > ( ofs_001_D294_80 - $01 )
+- D 2 - - - 0x015285 05:D275: D2        .byte > ( ofs_001_D2AE_81 - $01 )
+- - - - - - 0x015286 05:D276: D2        .byte > ( ofs_001_D2BE_82 - $01 )
+- D 2 - - - 0x015287 05:D277: D2        .byte > ( ofs_001_D2C7_83 - $01 )
+- D 2 - - - 0x015288 05:D278: D2        .byte > ( ofs_001_D2CD_84_jsr - $01 )
+- D 2 - - - 0x015289 05:D279: D2        .byte > ( ofs_001_D2EE_85_rts - $01 )
+- D 2 - - - 0x01528A 05:D27A: D2        .byte > ( ofs_001_D28A_86 - $01 )
+- D 2 - - - 0x01528B 05:D27B: D2        .byte > ( ofs_001_D28D_87 - $01 )
+- D 2 - - - 0x01528C 05:D27C: D2        .byte > ( ofs_001_D2E1_88_jmp - $01 )
+- - - - - - 0x01528D 05:D27D: D2        .byte > ( ofs_001_D2FF_89 - $01 )
+- D 2 - - - 0x01528E 05:D27E: D3        .byte > ( ofs_001_D30D_8A - $01 )
+- D 2 - - - 0x01528F 05:D27F: D3        .byte > ( ofs_001_D338_8B - $01 )
+- D 2 - - - 0x015290 05:D280: D3        .byte > ( ofs_001_D341_8C - $01 )
+- - - - - - 0x015291 05:D281: D2        .byte > ( ofs_001_D289_8D_RTS - $01 )
+- - - - - - 0x015292 05:D282: D2        .byte > ( ofs_001_D289_8E_RTS - $01 )
+- - - - - - 0x015293 05:D283: D2        .byte > ( ofs_001_D289_8F_RTS - $01 )
+- - - - - - 0x015294 05:D284: D2        .byte > ( ofs_001_D289_90_RTS - $01 )
+- - - - - - 0x015295 05:D285: D3        .byte > ( ofs_001_D356_91 - $01 )
+- D 2 - - - 0x015296 05:D286: D3        .byte > ( ofs_001_D365_92_loop - $01 )
+- D 2 - - - 0x015297 05:D287: D3        .byte > ( ofs_001_D37D_93 - $01 )
+- D 2 - - - 0x015298 05:D288: D3        .byte > ( ofs_001_D386_94 - $01 )
 
 
 
@@ -6406,50 +6406,50 @@ C - - - - - 0x01539C 05:D38C: 4C 70 CB  JMP loc_CB70
 
 
 tbl_D38F_lo:
-- D 2 - - - 0x01539F 05:D38F: C2        .byte < ( ofs_002_D3C3_80 - 1 )
-- D 2 - - - 0x0153A0 05:D390: DC        .byte < ( ofs_002_D3DD_81 - 1 )
-- - - - - - 0x0153A1 05:D391: EC        .byte < ( ofs_002_D3ED_82 - 1 )
-- D 2 - - - 0x0153A2 05:D392: F5        .byte < ( ofs_002_D3F6_83 - 1 )
-- - - - - - 0x0153A3 05:D393: 05        .byte < ( ofs_002_D406_84_jsr - 1 )
-- - - - - - 0x0153A4 05:D394: 26        .byte < ( ofs_002_D427_85_rts - 1 )
-- - - - - - 0x0153A5 05:D395: B8        .byte < ( ofs_002_D3B9_86 - 1 )
-- D 2 - - - 0x0153A6 05:D396: BB        .byte < ( ofs_002_D3BC_87 - 1 )
-- - - - - - 0x0153A7 05:D397: 19        .byte < ( ofs_002_D41A_88_jmp - 1 )
-- - - - - - 0x0153A8 05:D398: 37        .byte < ( ofs_002_D438_89 - 1 )
-- D 2 - - - 0x0153A9 05:D399: 45        .byte < ( ofs_002_D446_8A - 1 )
-- D 2 - - - 0x0153AA 05:D39A: 70        .byte < ( ofs_002_D471_8B - 1 )
-- - - - - - 0x0153AB 05:D39B: 79        .byte < ( ofs_002_D47A_8C - 1 )
-- - - - - - 0x0153AC 05:D39C: 88        .byte < ( ofs_002_D289_8D_RTS - 1 )
-- - - - - - 0x0153AD 05:D39D: 88        .byte < ( ofs_002_D289_8E_RTS - 1 )
-- - - - - - 0x0153AE 05:D39E: 88        .byte < ( ofs_002_D289_8F_RTS - 1 )
-- - - - - - 0x0153AF 05:D39F: 88        .byte < ( ofs_002_D289_90_RTS - 1 )
-- - - - - - 0x0153B0 05:D3A0: 8E        .byte < ( ofs_002_D48F_91 - 1 )
-- - - - - - 0x0153B1 05:D3A1: 9D        .byte < ( ofs_002_D49E_92_loop - 1 )
-- - - - - - 0x0153B2 05:D3A2: B5        .byte < ( ofs_002_D4B6_93 - 1 )
-- - - - - - 0x0153B3 05:D3A3: BE        .byte < ( ofs_002_D4BF_94 - 1 )
+- D 2 - - - 0x01539F 05:D38F: C2        .byte < ( ofs_002_D3C3_80 - $01 )
+- D 2 - - - 0x0153A0 05:D390: DC        .byte < ( ofs_002_D3DD_81 - $01 )
+- - - - - - 0x0153A1 05:D391: EC        .byte < ( ofs_002_D3ED_82 - $01 )
+- D 2 - - - 0x0153A2 05:D392: F5        .byte < ( ofs_002_D3F6_83 - $01 )
+- - - - - - 0x0153A3 05:D393: 05        .byte < ( ofs_002_D406_84_jsr - $01 )
+- - - - - - 0x0153A4 05:D394: 26        .byte < ( ofs_002_D427_85_rts - $01 )
+- - - - - - 0x0153A5 05:D395: B8        .byte < ( ofs_002_D3B9_86 - $01 )
+- D 2 - - - 0x0153A6 05:D396: BB        .byte < ( ofs_002_D3BC_87 - $01 )
+- - - - - - 0x0153A7 05:D397: 19        .byte < ( ofs_002_D41A_88_jmp - $01 )
+- - - - - - 0x0153A8 05:D398: 37        .byte < ( ofs_002_D438_89 - $01 )
+- D 2 - - - 0x0153A9 05:D399: 45        .byte < ( ofs_002_D446_8A - $01 )
+- D 2 - - - 0x0153AA 05:D39A: 70        .byte < ( ofs_002_D471_8B - $01 )
+- - - - - - 0x0153AB 05:D39B: 79        .byte < ( ofs_002_D47A_8C - $01 )
+- - - - - - 0x0153AC 05:D39C: 88        .byte < ( ofs_002_D289_8D_RTS - $01 )
+- - - - - - 0x0153AD 05:D39D: 88        .byte < ( ofs_002_D289_8E_RTS - $01 )
+- - - - - - 0x0153AE 05:D39E: 88        .byte < ( ofs_002_D289_8F_RTS - $01 )
+- - - - - - 0x0153AF 05:D39F: 88        .byte < ( ofs_002_D289_90_RTS - $01 )
+- - - - - - 0x0153B0 05:D3A0: 8E        .byte < ( ofs_002_D48F_91 - $01 )
+- - - - - - 0x0153B1 05:D3A1: 9D        .byte < ( ofs_002_D49E_92_loop - $01 )
+- - - - - - 0x0153B2 05:D3A2: B5        .byte < ( ofs_002_D4B6_93 - $01 )
+- - - - - - 0x0153B3 05:D3A3: BE        .byte < ( ofs_002_D4BF_94 - $01 )
 
 tbl_D3A4_hi:
-- D 2 - - - 0x0153B4 05:D3A4: D3        .byte > ( ofs_002_D3C3_80 - 1 )
-- D 2 - - - 0x0153B5 05:D3A5: D3        .byte > ( ofs_002_D3DD_81 - 1 )
-- - - - - - 0x0153B6 05:D3A6: D3        .byte > ( ofs_002_D3ED_82 - 1 )
-- D 2 - - - 0x0153B7 05:D3A7: D3        .byte > ( ofs_002_D3F6_83 - 1 )
-- - - - - - 0x0153B8 05:D3A8: D4        .byte > ( ofs_002_D406_84_jsr - 1 )
-- - - - - - 0x0153B9 05:D3A9: D4        .byte > ( ofs_002_D427_85_rts - 1 )
-- - - - - - 0x0153BA 05:D3AA: D3        .byte > ( ofs_002_D3B9_86 - 1 )
-- D 2 - - - 0x0153BB 05:D3AB: D3        .byte > ( ofs_002_D3BC_87 - 1 )
-- - - - - - 0x0153BC 05:D3AC: D4        .byte > ( ofs_002_D41A_88_jmp - 1 )
-- - - - - - 0x0153BD 05:D3AD: D4        .byte > ( ofs_002_D438_89 - 1 )
-- D 2 - - - 0x0153BE 05:D3AE: D4        .byte > ( ofs_002_D446_8A - 1 )
-- D 2 - - - 0x0153BF 05:D3AF: D4        .byte > ( ofs_002_D471_8B - 1 )
-- - - - - - 0x0153C0 05:D3B0: D4        .byte > ( ofs_002_D47A_8C - 1 )
-- - - - - - 0x0153C1 05:D3B1: D2        .byte > ( ofs_002_D289_8D_RTS - 1 )
-- - - - - - 0x0153C2 05:D3B2: D2        .byte > ( ofs_002_D289_8E_RTS - 1 )
-- - - - - - 0x0153C3 05:D3B3: D2        .byte > ( ofs_002_D289_8F_RTS - 1 )
-- - - - - - 0x0153C4 05:D3B4: D2        .byte > ( ofs_002_D289_90_RTS - 1 )
-- - - - - - 0x0153C5 05:D3B5: D4        .byte > ( ofs_002_D48F_91 - 1 )
-- - - - - - 0x0153C6 05:D3B6: D4        .byte > ( ofs_002_D49E_92_loop - 1 )
-- - - - - - 0x0153C7 05:D3B7: D4        .byte > ( ofs_002_D4B6_93 - 1 )
-- - - - - - 0x0153C8 05:D3B8: D4        .byte > ( ofs_002_D4BF_94 - 1 )
+- D 2 - - - 0x0153B4 05:D3A4: D3        .byte > ( ofs_002_D3C3_80 - $01 )
+- D 2 - - - 0x0153B5 05:D3A5: D3        .byte > ( ofs_002_D3DD_81 - $01 )
+- - - - - - 0x0153B6 05:D3A6: D3        .byte > ( ofs_002_D3ED_82 - $01 )
+- D 2 - - - 0x0153B7 05:D3A7: D3        .byte > ( ofs_002_D3F6_83 - $01 )
+- - - - - - 0x0153B8 05:D3A8: D4        .byte > ( ofs_002_D406_84_jsr - $01 )
+- - - - - - 0x0153B9 05:D3A9: D4        .byte > ( ofs_002_D427_85_rts - $01 )
+- - - - - - 0x0153BA 05:D3AA: D3        .byte > ( ofs_002_D3B9_86 - $01 )
+- D 2 - - - 0x0153BB 05:D3AB: D3        .byte > ( ofs_002_D3BC_87 - $01 )
+- - - - - - 0x0153BC 05:D3AC: D4        .byte > ( ofs_002_D41A_88_jmp - $01 )
+- - - - - - 0x0153BD 05:D3AD: D4        .byte > ( ofs_002_D438_89 - $01 )
+- D 2 - - - 0x0153BE 05:D3AE: D4        .byte > ( ofs_002_D446_8A - $01 )
+- D 2 - - - 0x0153BF 05:D3AF: D4        .byte > ( ofs_002_D471_8B - $01 )
+- - - - - - 0x0153C0 05:D3B0: D4        .byte > ( ofs_002_D47A_8C - $01 )
+- - - - - - 0x0153C1 05:D3B1: D2        .byte > ( ofs_002_D289_8D_RTS - $01 )
+- - - - - - 0x0153C2 05:D3B2: D2        .byte > ( ofs_002_D289_8E_RTS - $01 )
+- - - - - - 0x0153C3 05:D3B3: D2        .byte > ( ofs_002_D289_8F_RTS - $01 )
+- - - - - - 0x0153C4 05:D3B4: D2        .byte > ( ofs_002_D289_90_RTS - $01 )
+- - - - - - 0x0153C5 05:D3B5: D4        .byte > ( ofs_002_D48F_91 - $01 )
+- - - - - - 0x0153C6 05:D3B6: D4        .byte > ( ofs_002_D49E_92_loop - $01 )
+- - - - - - 0x0153C7 05:D3B7: D4        .byte > ( ofs_002_D4B6_93 - $01 )
+- - - - - - 0x0153C8 05:D3B8: D4        .byte > ( ofs_002_D4BF_94 - $01 )
 
 
 
@@ -6651,50 +6651,50 @@ ofs_002_D4BF_94:
 
 
 tbl_D4C8_lo:
-- - - - - - 0x0154D8 05:D4C8: F1        .byte < ( ofs_004_D4F2_80 - 1 )
-- - - - - - 0x0154D9 05:D4C9: 0B        .byte < ( ofs_004_D50C_81 - 1 )
-- D 2 - - - 0x0154DA 05:D4CA: 1B        .byte < ( ofs_004_D51C_82 - 1 )
-- D 2 - - - 0x0154DB 05:D4CB: 24        .byte < ( ofs_004_D525_83 - 1 )
-- D 2 - - - 0x0154DC 05:D4CC: 3A        .byte < ( ofs_004_D53B_84_jsr - 1 )
-- D 2 - - - 0x0154DD 05:D4CD: 5B        .byte < ( ofs_004_D55C_85_rts - 1 )
-- D 2 - - - 0x0154DE 05:D4CE: 6C        .byte < ( ofs_004_D56D_86 - 1 )
-- - - - - - 0x0154DF 05:D4CF: 74        .byte < ( ofs_004_D575_87 - 1 )
-- - - - - - 0x0154E0 05:D4D0: 4E        .byte < ( ofs_004_D54F_88_jmp - 1 )
-- - - - - - 0x0154E1 05:D4D1: 7D        .byte < ( ofs_004_D57E_89 - 1 )
-- D 2 - - - 0x0154E2 05:D4D2: 8B        .byte < ( ofs_004_D58C_8A - 1 )
-- D 2 - - - 0x0154E3 05:D4D3: B6        .byte < ( ofs_004_D5B7_8B - 1 )
-- - - - - - 0x0154E4 05:D4D4: BF        .byte < ( ofs_004_D5C0_8C - 1 )
-- - - - - - 0x0154E5 05:D4D5: D4        .byte < ( ofs_004_D5D5_8D - 1 )
-- D 2 - - - 0x0154E6 05:D4D6: DD        .byte < ( ofs_004_D5DE_8E - 1 )
-- D 2 - - - 0x0154E7 05:D4D7: E6        .byte < ( ofs_004_D5E7_8F - 1 )
-- - - - - - 0x0154E8 05:D4D8: 01        .byte < ( ofs_004_D602_90 - 1 )
-- - - - - - 0x0154E9 05:D4D9: 09        .byte < ( ofs_004_D60A_91 - 1 )
-- D 2 - - - 0x0154EA 05:D4DA: 1E        .byte < ( ofs_004_D61F_92_loop - 1 )
-- D 2 - - - 0x0154EB 05:D4DB: 36        .byte < ( ofs_004_D637_93 - 1 )
-- D 2 - - - 0x0154EC 05:D4DC: 3F        .byte < ( ofs_004_D640_94 - 1 )
+- - - - - - 0x0154D8 05:D4C8: F1        .byte < ( ofs_004_D4F2_80 - $01 )
+- - - - - - 0x0154D9 05:D4C9: 0B        .byte < ( ofs_004_D50C_81 - $01 )
+- D 2 - - - 0x0154DA 05:D4CA: 1B        .byte < ( ofs_004_D51C_82 - $01 )
+- D 2 - - - 0x0154DB 05:D4CB: 24        .byte < ( ofs_004_D525_83 - $01 )
+- D 2 - - - 0x0154DC 05:D4CC: 3A        .byte < ( ofs_004_D53B_84_jsr - $01 )
+- D 2 - - - 0x0154DD 05:D4CD: 5B        .byte < ( ofs_004_D55C_85_rts - $01 )
+- D 2 - - - 0x0154DE 05:D4CE: 6C        .byte < ( ofs_004_D56D_86 - $01 )
+- - - - - - 0x0154DF 05:D4CF: 74        .byte < ( ofs_004_D575_87 - $01 )
+- - - - - - 0x0154E0 05:D4D0: 4E        .byte < ( ofs_004_D54F_88_jmp - $01 )
+- - - - - - 0x0154E1 05:D4D1: 7D        .byte < ( ofs_004_D57E_89 - $01 )
+- D 2 - - - 0x0154E2 05:D4D2: 8B        .byte < ( ofs_004_D58C_8A - $01 )
+- D 2 - - - 0x0154E3 05:D4D3: B6        .byte < ( ofs_004_D5B7_8B - $01 )
+- - - - - - 0x0154E4 05:D4D4: BF        .byte < ( ofs_004_D5C0_8C - $01 )
+- - - - - - 0x0154E5 05:D4D5: D4        .byte < ( ofs_004_D5D5_8D - $01 )
+- D 2 - - - 0x0154E6 05:D4D6: DD        .byte < ( ofs_004_D5DE_8E - $01 )
+- D 2 - - - 0x0154E7 05:D4D7: E6        .byte < ( ofs_004_D5E7_8F - $01 )
+- - - - - - 0x0154E8 05:D4D8: 01        .byte < ( ofs_004_D602_90 - $01 )
+- - - - - - 0x0154E9 05:D4D9: 09        .byte < ( ofs_004_D60A_91 - $01 )
+- D 2 - - - 0x0154EA 05:D4DA: 1E        .byte < ( ofs_004_D61F_92_loop - $01 )
+- D 2 - - - 0x0154EB 05:D4DB: 36        .byte < ( ofs_004_D637_93 - $01 )
+- D 2 - - - 0x0154EC 05:D4DC: 3F        .byte < ( ofs_004_D640_94 - $01 )
 
 tbl_D4DD_hi:
-- - - - - - 0x0154ED 05:D4DD: D4        .byte > ( ofs_004_D4F2_80 - 1 )
-- - - - - - 0x0154EE 05:D4DE: D5        .byte > ( ofs_004_D50C_81 - 1 )
-- D 2 - - - 0x0154EF 05:D4DF: D5        .byte > ( ofs_004_D51C_82 - 1 )
-- D 2 - - - 0x0154F0 05:D4E0: D5        .byte > ( ofs_004_D525_83 - 1 )
-- D 2 - - - 0x0154F1 05:D4E1: D5        .byte > ( ofs_004_D53B_84_jsr - 1 )
-- D 2 - - - 0x0154F2 05:D4E2: D5        .byte > ( ofs_004_D55C_85_rts - 1 )
-- D 2 - - - 0x0154F3 05:D4E3: D5        .byte > ( ofs_004_D56D_86 - 1 )
-- - - - - - 0x0154F4 05:D4E4: D5        .byte > ( ofs_004_D575_87 - 1 )
-- - - - - - 0x0154F5 05:D4E5: D5        .byte > ( ofs_004_D54F_88_jmp - 1 )
-- - - - - - 0x0154F6 05:D4E6: D5        .byte > ( ofs_004_D57E_89 - 1 )
-- D 2 - - - 0x0154F7 05:D4E7: D5        .byte > ( ofs_004_D58C_8A - 1 )
-- D 2 - - - 0x0154F8 05:D4E8: D5        .byte > ( ofs_004_D5B7_8B - 1 )
-- - - - - - 0x0154F9 05:D4E9: D5        .byte > ( ofs_004_D5C0_8C - 1 )
-- - - - - - 0x0154FA 05:D4EA: D5        .byte > ( ofs_004_D5D5_8D - 1 )
-- D 2 - - - 0x0154FB 05:D4EB: D5        .byte > ( ofs_004_D5DE_8E - 1 )
-- D 2 - - - 0x0154FC 05:D4EC: D5        .byte > ( ofs_004_D5E7_8F - 1 )
-- - - - - - 0x0154FD 05:D4ED: D6        .byte > ( ofs_004_D602_90 - 1 )
-- - - - - - 0x0154FE 05:D4EE: D6        .byte > ( ofs_004_D60A_91 - 1 )
-- D 2 - - - 0x0154FF 05:D4EF: D6        .byte > ( ofs_004_D61F_92_loop - 1 )
-- D 2 - - - 0x015500 05:D4F0: D6        .byte > ( ofs_004_D637_93 - 1 )
-- D 2 - - - 0x015501 05:D4F1: D6        .byte > ( ofs_004_D640_94 - 1 )
+- - - - - - 0x0154ED 05:D4DD: D4        .byte > ( ofs_004_D4F2_80 - $01 )
+- - - - - - 0x0154EE 05:D4DE: D5        .byte > ( ofs_004_D50C_81 - $01 )
+- D 2 - - - 0x0154EF 05:D4DF: D5        .byte > ( ofs_004_D51C_82 - $01 )
+- D 2 - - - 0x0154F0 05:D4E0: D5        .byte > ( ofs_004_D525_83 - $01 )
+- D 2 - - - 0x0154F1 05:D4E1: D5        .byte > ( ofs_004_D53B_84_jsr - $01 )
+- D 2 - - - 0x0154F2 05:D4E2: D5        .byte > ( ofs_004_D55C_85_rts - $01 )
+- D 2 - - - 0x0154F3 05:D4E3: D5        .byte > ( ofs_004_D56D_86 - $01 )
+- - - - - - 0x0154F4 05:D4E4: D5        .byte > ( ofs_004_D575_87 - $01 )
+- - - - - - 0x0154F5 05:D4E5: D5        .byte > ( ofs_004_D54F_88_jmp - $01 )
+- - - - - - 0x0154F6 05:D4E6: D5        .byte > ( ofs_004_D57E_89 - $01 )
+- D 2 - - - 0x0154F7 05:D4E7: D5        .byte > ( ofs_004_D58C_8A - $01 )
+- D 2 - - - 0x0154F8 05:D4E8: D5        .byte > ( ofs_004_D5B7_8B - $01 )
+- - - - - - 0x0154F9 05:D4E9: D5        .byte > ( ofs_004_D5C0_8C - $01 )
+- - - - - - 0x0154FA 05:D4EA: D5        .byte > ( ofs_004_D5D5_8D - $01 )
+- D 2 - - - 0x0154FB 05:D4EB: D5        .byte > ( ofs_004_D5DE_8E - $01 )
+- D 2 - - - 0x0154FC 05:D4EC: D5        .byte > ( ofs_004_D5E7_8F - $01 )
+- - - - - - 0x0154FD 05:D4ED: D6        .byte > ( ofs_004_D602_90 - $01 )
+- - - - - - 0x0154FE 05:D4EE: D6        .byte > ( ofs_004_D60A_91 - $01 )
+- D 2 - - - 0x0154FF 05:D4EF: D6        .byte > ( ofs_004_D61F_92_loop - $01 )
+- D 2 - - - 0x015500 05:D4F0: D6        .byte > ( ofs_004_D637_93 - $01 )
+- D 2 - - - 0x015501 05:D4F1: D6        .byte > ( ofs_004_D640_94 - $01 )
 
 
 
