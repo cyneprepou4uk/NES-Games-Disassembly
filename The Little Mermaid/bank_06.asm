@@ -31,9 +31,9 @@ C - - - - - 0x018029 06:8019: B9 20 85  LDA tbl_8520_lo,Y
 C - - - - - 0x01802C 06:801C: 85 00     STA ram_0000
 C - - - - - 0x01802E 06:801E: B9 80 85  LDA tbl_8580_hi,Y
 C - - - - - 0x018031 06:8021: 85 01     STA ram_0001
-C - - - - - 0x018033 06:8023: A9 80     LDA #> (ofs_802C - 1)
+C - - - - - 0x018033 06:8023: A9 80     LDA #> (ofs_802C - $01)
 C - - - - - 0x018035 06:8025: 48        PHA
-C - - - - - 0x018036 06:8026: A9 2B     LDA #< (ofs_802C - 1)
+C - - - - - 0x018036 06:8026: A9 2B     LDA #< (ofs_802C - $01)
 C - - - - - 0x018038 06:8028: 48        PHA
 C - - - - - 0x018039 06:8029: 6C 00 00  JMP (ram_0000)
 bra_802C:
@@ -1876,7 +1876,7 @@ C - - - - - 0x018C09 06:8BF9: CD 60 03  CMP ram_pos_Y_lo
 C - - - - - 0x018C0C 06:8BFC: 90 3A     BCC bra_8C38_RTS
 C - - - - - 0x018C0E 06:8BFE: FE 00 03  INC ram_obj_flags,X
 C - - - - - 0x018C11 06:8C01: A0 40     LDY #$40
-C - - - - - 0x018C13 06:8C03: A5 E7     LDA ram_random + 3
+C - - - - - 0x018C13 06:8C03: A5 E7     LDA ram_random + $03
 C - - - - - 0x018C15 06:8C05: 29 01     AND #$01
 C - - - - - 0x018C17 06:8C07: D0 02     BNE bra_8C0B
 C - - - - - 0x018C19 06:8C09: A0 20     LDY #$20
@@ -1942,7 +1942,7 @@ C - - - - - 0x018C9C 06:8C8C: 18        CLC
 C - - - - - 0x018C9D 06:8C8D: 7D 9F 8C  ADC tbl_8C9F_pos_X,X
 C - - - - - 0x018CA0 06:8C90: 99 30 03  STA ram_pos_X_lo,Y
 C - - - - - 0x018CA3 06:8C93: B9 40 03  LDA ram_pos_X_hi,Y
-C - - - - - 0x018CA6 06:8C96: 7D A0 8C  ADC tbl_8C9F_pos_X + 1,X
+C - - - - - 0x018CA6 06:8C96: 7D A0 8C  ADC tbl_8C9F_pos_X + $01,X
 C - - - - - 0x018CA9 06:8C99: 99 40 03  STA ram_pos_X_hi,Y
 C - - - - - 0x018CAC 06:8C9C: A6 0F     LDX ram_000F
 C - - - - - 0x018CAE 06:8C9E: 60        RTS
@@ -2554,7 +2554,7 @@ bra_90DA:
 C - - - - - 0x0190EA 06:90DA: BD 60 04  LDA ram_0460_obj,X
 C - - - - - 0x0190ED 06:90DD: D0 17     BNE bra_90F6
 C - - - - - 0x0190EF 06:90DF: A5 E4     LDA ram_random
-C - - - - - 0x0190F1 06:90E1: 65 E5     ADC ram_random + 1
+C - - - - - 0x0190F1 06:90E1: 65 E5     ADC ram_random + $01
 C - - - - - 0x0190F3 06:90E3: 29 01     AND #$01
 C - - - - - 0x0190F5 06:90E5: 85 00     STA ram_0000
 C - - - - - 0x0190F7 06:90E7: BD 30 04  LDA ram_0430_obj,X
@@ -2654,8 +2654,8 @@ bra_918B:
 - - - - - - 0x0191AA 06:919A: 49 40     EOR #$40
 - - - - - - 0x0191AC 06:919C: 9D 00 04  STA ram_0400_obj,X
 - - - - - - 0x0191AF 06:919F: A5 E4     LDA ram_random
-- - - - - - 0x0191B1 06:91A1: 65 E6     ADC ram_random + 2
-- - - - - - 0x0191B3 06:91A3: 85 E6     STA ram_random + 2
+- - - - - - 0x0191B1 06:91A1: 65 E6     ADC ram_random + $02
+- - - - - - 0x0191B3 06:91A3: 85 E6     STA ram_random + $02
 - - - - - - 0x0191B5 06:91A5: 29 01     AND #$01
 - - - - - - 0x0191B7 06:91A7: A8        TAY
 - - - - - - 0x0191B8 06:91A8: B9 8E 92  LDA tbl_928E,Y
@@ -2867,7 +2867,7 @@ C - - - - - 0x0192EA 06:92DA: 18        CLC
 C - - - - - 0x0192EB 06:92DB: 79 63 93  ADC tbl_9363_pos_X,Y
 C - - - - - 0x0192EE 06:92DE: 85 01     STA ram_0001
 C - - - - - 0x0192F0 06:92E0: BD 40 03  LDA ram_pos_X_hi,X
-C - - - - - 0x0192F3 06:92E3: 79 64 93  ADC tbl_9363_pos_X + 1,Y
+C - - - - - 0x0192F3 06:92E3: 79 64 93  ADC tbl_9363_pos_X + $01,Y
 C - - - - - 0x0192F6 06:92E6: 85 02     STA ram_0002
 C - - - - - 0x0192F8 06:92E8: BD 60 03  LDA ram_pos_Y_lo,X
 C - - - - - 0x0192FB 06:92EB: 38        SEC
@@ -3033,8 +3033,8 @@ C - - - - - 0x019426 06:9416: BD 18 04  LDA ram_animation_cnt,X
 C - - - - - 0x019429 06:9419: F0 23     BEQ bra_943E
 C - - - - - 0x01942B 06:941B: DE 18 04  DEC ram_animation_cnt,X
 C - - - - - 0x01942E 06:941E: A5 E4     LDA ram_random
-C - - - - - 0x019430 06:9420: 65 E5     ADC ram_random + 1
-C - - - - - 0x019432 06:9422: 85 E5     STA ram_random + 1
+C - - - - - 0x019430 06:9420: 65 E5     ADC ram_random + $01
+C - - - - - 0x019432 06:9422: 85 E5     STA ram_random + $01
 C - - - - - 0x019434 06:9424: 29 03     AND #$03
 C - - - - - 0x019436 06:9426: A8        TAY
 C - - - - - 0x019437 06:9427: B9 5C 94  LDA tbl_945C,Y
@@ -3086,9 +3086,9 @@ C - - - - - 0x019478 06:9468: A9 00     LDA #$00
 C - - - - - 0x01947A 06:946A: 85 00     STA ram_0000
 C - - - - - 0x01947C 06:946C: A0 0E     LDY #$0E
 bra_946E_loop:
-C - - - - - 0x01947E 06:946E: B9 01 03  LDA ram_obj_flags + 1,Y
+C - - - - - 0x01947E 06:946E: B9 01 03  LDA ram_obj_flags + $01,Y
 C - - - - - 0x019481 06:9471: 10 09     BPL bra_947C
-C - - - - - 0x019483 06:9473: B9 31 04  LDA ram_0430_obj + 1,Y
+C - - - - - 0x019483 06:9473: B9 31 04  LDA ram_0430_obj + $01,Y
 C - - - - - 0x019486 06:9476: C9 32     CMP #$32
 C - - - - - 0x019488 06:9478: D0 02     BNE bra_947C
 C - - - - - 0x01948A 06:947A: E6 00     INC ram_0000
@@ -3111,8 +3111,8 @@ bra_9492:
 C - - - - - 0x0194A2 06:9492: BD 60 04  LDA ram_0460_obj,X
 C - - - - - 0x0194A5 06:9495: D0 22     BNE bra_94B9
 C - - - - - 0x0194A7 06:9497: A5 E4     LDA ram_random
-C - - - - - 0x0194A9 06:9499: 65 E6     ADC ram_random + 2
-C - - - - - 0x0194AB 06:949B: 85 E5     STA ram_random + 1
+C - - - - - 0x0194A9 06:9499: 65 E6     ADC ram_random + $02
+C - - - - - 0x0194AB 06:949B: 85 E5     STA ram_random + $01
 C - - - - - 0x0194AD 06:949D: 29 07     AND #$07
 C - - - - - 0x0194AF 06:949F: 85 00     STA ram_0000
 C - - - - - 0x0194B1 06:94A1: 0A        ASL
@@ -3120,8 +3120,8 @@ C - - - - - 0x0194B2 06:94A2: 0A        ASL
 C - - - - - 0x0194B3 06:94A3: 65 00     ADC ram_0000
 C - - - - - 0x0194B5 06:94A5: 9D 80 04  STA ram_0480_obj,X
 C - - - - - 0x0194B8 06:94A8: A5 E4     LDA ram_random
-C - - - - - 0x0194BA 06:94AA: 65 E5     ADC ram_random + 1
-C - - - - - 0x0194BC 06:94AC: 85 E6     STA ram_random + 2
+C - - - - - 0x0194BA 06:94AA: 65 E5     ADC ram_random + $01
+C - - - - - 0x0194BC 06:94AC: 85 E6     STA ram_random + $02
 C - - - - - 0x0194BE 06:94AE: 29 07     AND #$07
 C - - - - - 0x0194C0 06:94B0: 85 00     STA ram_0000
 C - - - - - 0x0194C2 06:94B2: 0A        ASL
@@ -3383,8 +3383,8 @@ C - - - - - 0x019625 06:9615: 29 FB     AND #$FB
 C - - - - - 0x019627 06:9617: 9D 00 04  STA ram_0400_obj,X
 C - - - - - 0x01962A 06:961A: FE 00 03  INC ram_obj_flags,X
 C - - - - - 0x01962D 06:961D: A5 E4     LDA ram_random
-C - - - - - 0x01962F 06:961F: 65 E7     ADC ram_random + 3
-C - - - - - 0x019631 06:9621: 85 E7     STA ram_random + 3
+C - - - - - 0x01962F 06:961F: 65 E7     ADC ram_random + $03
+C - - - - - 0x019631 06:9621: 85 E7     STA ram_random + $03
 C - - - - - 0x019633 06:9623: 29 03     AND #$03
 C - - - - - 0x019635 06:9625: A8        TAY
 C - - - - - 0x019636 06:9626: B9 50 96  LDA tbl_9650,Y
@@ -4043,8 +4043,8 @@ C - - - - - 0x019AC7 06:9AB7: BD 18 04  LDA ram_animation_cnt,X
 C - - - - - 0x019ACA 06:9ABA: C9 05     CMP #$05
 C - - - - - 0x019ACC 06:9ABC: D0 4B     BNE bra_9B09_RTS
 C - - - - - 0x019ACE 06:9ABE: A5 E4     LDA ram_random
-C - - - - - 0x019AD0 06:9AC0: 65 E5     ADC ram_random + 1
-C - - - - - 0x019AD2 06:9AC2: 85 E6     STA ram_random + 2
+C - - - - - 0x019AD0 06:9AC0: 65 E5     ADC ram_random + $01
+C - - - - - 0x019AD2 06:9AC2: 85 E6     STA ram_random + $02
 C - - - - - 0x019AD4 06:9AC4: 29 01     AND #$01
 C - - - - - 0x019AD6 06:9AC6: 48        PHA
 C - - - - - 0x019AD7 06:9AC7: 18        CLC
@@ -4104,8 +4104,8 @@ C - - - - - 0x019B30 06:9B20: BD 18 04  LDA ram_animation_cnt,X
 C - - - - - 0x019B33 06:9B23: C9 05     CMP #$05
 C - - - - - 0x019B35 06:9B25: D0 4B     BNE bra_9B72_RTS
 C - - - - - 0x019B37 06:9B27: A5 E4     LDA ram_random
-C - - - - - 0x019B39 06:9B29: 65 E6     ADC ram_random + 2
-C - - - - - 0x019B3B 06:9B2B: 85 E5     STA ram_random + 1
+C - - - - - 0x019B39 06:9B29: 65 E6     ADC ram_random + $02
+C - - - - - 0x019B3B 06:9B2B: 85 E5     STA ram_random + $01
 C - - - - - 0x019B3D 06:9B2D: 29 01     AND #$01
 C - - - - - 0x019B3F 06:9B2F: 48        PHA
 C - - - - - 0x019B40 06:9B30: 18        CLC
@@ -4225,8 +4225,8 @@ C - - - - - 0x019C0E 06:9BFE: B0 1C     BCS bra_9C1C
 C - - - - - 0x019C10 06:9C00: BD 90 04  LDA ram_0490_obj,X
 C - - - - - 0x019C13 06:9C03: D0 0A     BNE bra_9C0F
 C - - - - - 0x019C15 06:9C05: A5 E4     LDA ram_random
-C - - - - - 0x019C17 06:9C07: 65 E5     ADC ram_random + 1
-C - - - - - 0x019C19 06:9C09: 85 E5     STA ram_random + 1
+C - - - - - 0x019C17 06:9C07: 65 E5     ADC ram_random + $01
+C - - - - - 0x019C19 06:9C09: 85 E5     STA ram_random + $01
 C - - - - - 0x019C1B 06:9C0B: 29 01     AND #$01
 C - - - - - 0x019C1D 06:9C0D: D0 06     BNE bra_9C15
 bra_9C0F:
@@ -4412,9 +4412,9 @@ C - - - - - 0x019D6C 06:9D5C: A8        TAY
 C - - - - - 0x019D6D 06:9D5D: B9 B1 9E  LDA tbl_9EB1,Y
 C - - - - - 0x019D70 06:9D60: 9D 70 04  STA ram_obj_timer,X
 C - - - - - 0x019D73 06:9D63: 85 00     STA ram_0000
-C - - - - - 0x019D75 06:9D65: A5 E5     LDA ram_random + 1
-C - - - - - 0x019D77 06:9D67: 65 E7     ADC ram_random + 3
-C - - - - - 0x019D79 06:9D69: 85 E7     STA ram_random + 3
+C - - - - - 0x019D75 06:9D65: A5 E5     LDA ram_random + $01
+C - - - - - 0x019D77 06:9D67: 65 E7     ADC ram_random + $03
+C - - - - - 0x019D79 06:9D69: 85 E7     STA ram_random + $03
 C - - - - - 0x019D7B 06:9D6B: 29 07     AND #$07
 C - - - - - 0x019D7D 06:9D6D: A4 00     LDY ram_0000
 C - - - - - 0x019D7F 06:9D6F: C0 06     CPY #$06
@@ -4425,7 +4425,7 @@ C - - - - - 0x019D85 06:9D75: 0A        ASL
 C - - - - - 0x019D86 06:9D76: A8        TAY
 C - - - - - 0x019D87 06:9D77: B9 B3 9E  LDA tbl_9EB3,Y
 C - - - - - 0x019D8A 06:9D7A: 9D 80 04  STA ram_0480_obj,X
-C - - - - - 0x019D8D 06:9D7D: B9 B4 9E  LDA tbl_9EB3 + 1,Y
+C - - - - - 0x019D8D 06:9D7D: B9 B4 9E  LDA tbl_9EB3 + $01,Y
 C - - - - - 0x019D90 06:9D80: 9D 90 04  STA ram_0490_obj,X
 C - - - - - 0x019D93 06:9D83: A9 70     LDA #$70
 C - - - - - 0x019D95 06:9D85: 9D 60 04  STA ram_0460_obj,X
@@ -4665,8 +4665,8 @@ C - - - - - 0x019F30 06:9F20: 9D 10 03  STA ram_obj_id,X
 C - - - - - 0x019F33 06:9F23: A9 81     LDA #$81
 C - - - - - 0x019F35 06:9F25: 9D 00 03  STA ram_obj_flags,X
 C - - - - - 0x019F38 06:9F28: A5 E4     LDA ram_random
-C - - - - - 0x019F3A 06:9F2A: 65 E7     ADC ram_random + 3
-C - - - - - 0x019F3C 06:9F2C: 85 E7     STA ram_random + 3
+C - - - - - 0x019F3A 06:9F2A: 65 E7     ADC ram_random + $03
+C - - - - - 0x019F3C 06:9F2C: 85 E7     STA ram_random + $03
 C - - - - - 0x019F3E 06:9F2E: 29 03     AND #$03
 C - - - - - 0x019F40 06:9F30: A8        TAY
 C - - - - - 0x019F41 06:9F31: B9 50 96  LDA tbl_9650,Y
@@ -4728,9 +4728,9 @@ C - - - - - 0x019FA5 06:9F95: BD 60 04  LDA ram_0460_obj,X
 C - - - - - 0x019FA8 06:9F98: F0 22     BEQ bra_9FBC
 C - - - - - 0x019FAA 06:9F9A: DE 60 04  DEC ram_0460_obj,X
 C - - - - - 0x019FAD 06:9F9D: D0 E9     BNE bra_9F88_RTS
-C - - - - - 0x019FAF 06:9F9F: A5 E5     LDA ram_random + 1
-C - - - - - 0x019FB1 06:9FA1: 65 E6     ADC ram_random + 2
-C - - - - - 0x019FB3 06:9FA3: 85 E6     STA ram_random + 2
+C - - - - - 0x019FAF 06:9F9F: A5 E5     LDA ram_random + $01
+C - - - - - 0x019FB1 06:9FA1: 65 E6     ADC ram_random + $02
+C - - - - - 0x019FB3 06:9FA3: 85 E6     STA ram_random + $02
 C - - - - - 0x019FB5 06:9FA5: 29 03     AND #$03
 C - - - - - 0x019FB7 06:9FA7: D0 67     BNE bra_A010
 C - - - - - 0x019FB9 06:9FA9: A9 5B     LDA #$5B
@@ -4763,7 +4763,7 @@ C - - - - - 0x019FF2 06:9FE2: 18        CLC
 C - - - - - 0x019FF3 06:9FE3: 79 A1 A1  ADC tbl_A1A1_pos_X,Y
 C - - - - - 0x019FF6 06:9FE6: 9D 30 03  STA ram_pos_X_lo,X
 C - - - - - 0x019FF9 06:9FE9: BD 40 03  LDA ram_pos_X_hi,X
-C - - - - - 0x019FFC 06:9FEC: 79 A2 A1  ADC tbl_A1A1_pos_X + 1,Y
+C - - - - - 0x019FFC 06:9FEC: 79 A2 A1  ADC tbl_A1A1_pos_X + $01,Y
 C - - - - - 0x019FFF 06:9FEF: 9D 40 03  STA ram_pos_X_hi,X
 C - - - - - 0x01A002 06:9FF2: 60        RTS
 bra_9FF3:
@@ -4849,8 +4849,8 @@ C - - - - - 0x01A09E 06:A08E: C0 02     CPY #$02
 C - - - - - 0x01A0A0 06:A090: D0 EF     BNE bra_A081_loop
 bra_A092:
 C - - - - - 0x01A0A2 06:A092: A5 E4     LDA ram_random
-C - - - - - 0x01A0A4 06:A094: 65 E7     ADC ram_random + 3
-C - - - - - 0x01A0A6 06:A096: 85 E7     STA ram_random + 3
+C - - - - - 0x01A0A4 06:A094: 65 E7     ADC ram_random + $03
+C - - - - - 0x01A0A6 06:A096: 85 E7     STA ram_random + $03
 C - - - - - 0x01A0A8 06:A098: 29 0F     AND #$0F
 C - - - - - 0x01A0AA 06:A09A: 9D 80 04  STA ram_0480_obj,X
 C - - - - - 0x01A0AD 06:A09D: C9 0D     CMP #$0D
@@ -4952,8 +4952,8 @@ C - - - - - 0x01A159 06:A149: 99 70 03  STA ram_pos_Y_hi,Y
 C - - - - - 0x01A15C 06:A14C: BD 40 03  LDA ram_pos_X_hi,X
 C - - - - - 0x01A15F 06:A14F: 99 40 03  STA ram_pos_X_hi,Y
 C - - - - - 0x01A162 06:A152: A5 E4     LDA ram_random
-C - - - - - 0x01A164 06:A154: 65 E5     ADC ram_random + 1
-C - - - - - 0x01A166 06:A156: 85 E5     STA ram_random + 1
+C - - - - - 0x01A164 06:A154: 65 E5     ADC ram_random + $01
+C - - - - - 0x01A166 06:A156: 85 E5     STA ram_random + $01
 C - - - - - 0x01A168 06:A158: 29 03     AND #$03
 C - - - - - 0x01A16A 06:A15A: DD 80 04  CMP ram_0480_obj,X
 C - - - - - 0x01A16D 06:A15D: D0 05     BNE bra_A164
@@ -5094,9 +5094,9 @@ C - - - - - 0x01A22A 06:A21A: 20 45 FC  JSR sub_0x01FC55
 bra_A21D:
 C - - - - - 0x01A22D 06:A21D: DE 60 04  DEC ram_0460_obj,X
 C - - - - - 0x01A230 06:A220: D0 E2     BNE bra_A204_RTS
-C - - - - - 0x01A232 06:A222: A5 E5     LDA ram_random + 1
-C - - - - - 0x01A234 06:A224: 65 E6     ADC ram_random + 2
-C - - - - - 0x01A236 06:A226: 85 E6     STA ram_random + 2
+C - - - - - 0x01A232 06:A222: A5 E5     LDA ram_random + $01
+C - - - - - 0x01A234 06:A224: 65 E6     ADC ram_random + $02
+C - - - - - 0x01A236 06:A226: 85 E6     STA ram_random + $02
 C - - - - - 0x01A238 06:A228: 29 03     AND #$03
 C - - - - - 0x01A23A 06:A22A: A8        TAY
 C - - - - - 0x01A23B 06:A22B: B9 86 A3  LDA tbl_A386,Y
@@ -5142,9 +5142,9 @@ C - - - - - 0x01A288 06:A278: BD 8C A3  LDA tbl_A38C_pos_Y_lo,X
 C - - - - - 0x01A28B 06:A27B: 99 60 03  STA ram_pos_Y_lo,Y
 C - - - - - 0x01A28E 06:A27E: BD 8A A3  LDA tbl_A38A_pos_X_lo,X
 C - - - - - 0x01A291 06:A281: 99 30 03  STA ram_pos_X_lo,Y
-C - - - - - 0x01A294 06:A284: A5 E7     LDA ram_random + 3
-C - - - - - 0x01A296 06:A286: 65 E5     ADC ram_random + 1
-C - - - - - 0x01A298 06:A288: 85 E7     STA ram_random + 3
+C - - - - - 0x01A294 06:A284: A5 E7     LDA ram_random + $03
+C - - - - - 0x01A296 06:A286: 65 E5     ADC ram_random + $01
+C - - - - - 0x01A298 06:A288: 85 E7     STA ram_random + $03
 C - - - - - 0x01A29A 06:A28A: 29 03     AND #$03
 C - - - - - 0x01A29C 06:A28C: AA        TAX
 C - - - - - 0x01A29D 06:A28D: BD 92 A3  LDA tbl_A392,X
@@ -5155,9 +5155,9 @@ C - - - - - 0x01A2A9 06:A299: A9 01     LDA #$01
 C - - - - - 0x01A2AB 06:A29B: 99 F0 03  STA ram_03F0_obj,Y
 C - - - - - 0x01A2AE 06:A29E: BD 8E A3  LDA tbl_A38E,X
 C - - - - - 0x01A2B1 06:A2A1: 20 51 FC  JSR sub_0x01FC61
-C - - - - - 0x01A2B4 06:A2A4: A5 E6     LDA ram_random + 2
-C - - - - - 0x01A2B6 06:A2A6: 65 E5     ADC ram_random + 1
-C - - - - - 0x01A2B8 06:A2A8: 85 E5     STA ram_random + 1
+C - - - - - 0x01A2B4 06:A2A4: A5 E6     LDA ram_random + $02
+C - - - - - 0x01A2B6 06:A2A6: 65 E5     ADC ram_random + $01
+C - - - - - 0x01A2B8 06:A2A8: 85 E5     STA ram_random + $01
 C - - - - - 0x01A2BA 06:A2AA: 29 07     AND #$07
 C - - - - - 0x01A2BC 06:A2AC: AA        TAX
 C - - - - - 0x01A2BD 06:A2AD: BD 9A A3  LDA tbl_A39A_index,X
@@ -5493,7 +5493,7 @@ C - - - - - 0x01A4C0 06:A4B0: A9 40     LDA #$40
 C - - - - - 0x01A4C2 06:A4B2: 99 C0 03  STA ram_03C0_obj,Y
 C - - - - - 0x01A4C5 06:A4B5: A9 01     LDA #$01
 C - - - - - 0x01A4C7 06:A4B7: 99 F0 03  STA ram_03F0_obj,Y
-C - - - - - 0x01A4CA 06:A4BA: A5 E5     LDA ram_random + 1
+C - - - - - 0x01A4CA 06:A4BA: A5 E5     LDA ram_random + $01
 C - - - - - 0x01A4CC 06:A4BC: 65 E4     ADC ram_random
 C - - - - - 0x01A4CE 06:A4BE: 85 E4     STA ram_random
 C - - - - - 0x01A4D0 06:A4C0: 29 07     AND #$07
@@ -5619,9 +5619,9 @@ C - - - - - 0x01A572 06:A562: B0 B2     BCS bra_A516_RTS
 C - - - - - 0x01A574 06:A564: A9 1E     LDA #$1E
 C - - - - - 0x01A576 06:A566: 9D 60 04  STA ram_0460_obj,X
 C - - - - - 0x01A579 06:A569: FE 00 03  INC ram_obj_flags,X
-C - - - - - 0x01A57C 06:A56C: A5 E6     LDA ram_random + 2
-C - - - - - 0x01A57E 06:A56E: 65 E7     ADC ram_random + 3
-C - - - - - 0x01A580 06:A570: 85 E7     STA ram_random + 3
+C - - - - - 0x01A57C 06:A56C: A5 E6     LDA ram_random + $02
+C - - - - - 0x01A57E 06:A56E: 65 E7     ADC ram_random + $03
+C - - - - - 0x01A580 06:A570: 85 E7     STA ram_random + $03
 C - - - - - 0x01A582 06:A572: 29 0F     AND #$0F
 C - - - - - 0x01A584 06:A574: A8        TAY
 C - - - - - 0x01A585 06:A575: 9D 70 04  STA ram_obj_timer,X
@@ -5907,16 +5907,16 @@ C - - - - - 0x01A730 06:A720: D0 F9     BNE bra_A71B_RTS
 C - - - - - 0x01A732 06:A722: A9 22     LDA #con_sfx_22
 C - - - - - 0x01A734 06:A724: 20 A0 FC  JSR sub_0x01FCB0_play_sfx
 C - - - - - 0x01A737 06:A727: A5 E4     LDA ram_random
-C - - - - - 0x01A739 06:A729: 65 E5     ADC ram_random + 1
-C - - - - - 0x01A73B 06:A72B: 85 E5     STA ram_random + 1
+C - - - - - 0x01A739 06:A729: 65 E5     ADC ram_random + $01
+C - - - - - 0x01A73B 06:A72B: 85 E5     STA ram_random + $01
 C - - - - - 0x01A73D 06:A72D: 29 03     AND #$03
 C - - - - - 0x01A73F 06:A72F: A8        TAY
 C - - - - - 0x01A740 06:A730: B9 3A A8  LDA tbl_A83A,Y
 C - - - - - 0x01A743 06:A733: 9D 90 04  STA ram_0490_obj,X
 C - - - - - 0x01A746 06:A736: 85 7E     STA ram_007E
 C - - - - - 0x01A748 06:A738: A5 E4     LDA ram_random
-C - - - - - 0x01A74A 06:A73A: 65 E6     ADC ram_random + 2
-C - - - - - 0x01A74C 06:A73C: 85 E6     STA ram_random + 2
+C - - - - - 0x01A74A 06:A73A: 65 E6     ADC ram_random + $02
+C - - - - - 0x01A74C 06:A73C: 85 E6     STA ram_random + $02
 C - - - - - 0x01A74E 06:A73E: 29 01     AND #$01
 C - - - - - 0x01A750 06:A740: A8        TAY
 C - - - - - 0x01A751 06:A741: B9 31 A8  LDA tbl_A831_direction,Y
@@ -5977,7 +5977,7 @@ bra_A7A4:
 C - - - - - 0x01A7B4 06:A7A4: A9 03     LDA #$03
 C - - - - - 0x01A7B6 06:A7A6: 9D 70 04  STA ram_obj_timer,X
 C - - - - - 0x01A7B9 06:A7A9: A0 02     LDY #$02
-C - - - - - 0x01A7BB 06:A7AB: 65 E7     ADC ram_random + 3
+C - - - - - 0x01A7BB 06:A7AB: 65 E7     ADC ram_random + $03
 C - - - - - 0x01A7BD 06:A7AD: 29 01     AND #$01
 C - - - - - 0x01A7BF 06:A7AF: D0 02     BNE bra_A7B3
 C - - - - - 0x01A7C1 06:A7B1: A0 00     LDY #$00
@@ -6019,8 +6019,8 @@ C - - - - - 0x01A807 06:A7F7: A9 00     LDA #$00
 C - - - - - 0x01A809 06:A7F9: 99 80 03  STA ram_spd_X_lo,Y
 C - - - - - 0x01A80C 06:A7FC: A9 01     LDA #$01
 C - - - - - 0x01A80E 06:A7FE: 99 90 03  STA ram_spd_X_hi,Y
-C - - - - - 0x01A811 06:A801: A5 E5     LDA ram_random + 1
-C - - - - - 0x01A813 06:A803: 65 E6     ADC ram_random + 2
+C - - - - - 0x01A811 06:A801: A5 E5     LDA ram_random + $01
+C - - - - - 0x01A813 06:A803: 65 E6     ADC ram_random + $02
 C - - - - - 0x01A815 06:A805: 29 01     AND #$01
 C - - - - - 0x01A817 06:A807: AA        TAX
 C - - - - - 0x01A818 06:A808: BD 31 A8  LDA tbl_A831_direction,X
@@ -6255,7 +6255,7 @@ C - - - - - 0x01AC44 06:AC34: 29 03     AND #con_btns_LR
 C - - - - - 0x01AC46 06:AC36: F0 0D     BEQ bra_AC45
 C - - - - - 0x01AC48 06:AC38: 48        PHA
 C - - - - - 0x01AC49 06:AC39: A8        TAY
-C - - - - - 0x01AC4A 06:AC3A: B9 64 AC  LDA tbl_AC65_cursor_pos - 1,Y
+C - - - - - 0x01AC4A 06:AC3A: B9 64 AC  LDA tbl_AC65_cursor_pos - $01,Y
 C - - - - - 0x01AC4D 06:AC3D: 8D 5B 02  STA ram_spr_X + $58
 C - - - - - 0x01AC50 06:AC40: 68        PLA
 C - - - - - 0x01AC51 06:AC41: 29 01     AND #$01

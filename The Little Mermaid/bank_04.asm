@@ -83,8 +83,8 @@ C - - - - - 0x010060 04:8050: 0A        ASL
 C - - - - - 0x010061 04:8051: 85 97     STA ram_spr_index
 C - - - - - 0x010063 04:8053: AA        TAX
 bra_8054_loop:
-C - - - - - 0x010064 04:8054: BD 6F 80  LDA tbl_8070 - 1,X
-C - - - - - 0x010067 04:8057: 9D FF 01  STA ram_oam - 1,X
+C - - - - - 0x010064 04:8054: BD 6F 80  LDA tbl_8070 - $01,X
+C - - - - - 0x010067 04:8057: 9D FF 01  STA ram_oam - $01,X
 C - - - - - 0x01006A 04:805A: CA        DEX
 C - - - - - 0x01006B 04:805B: D0 F7     BNE bra_8054_loop
 ; display full hearts
@@ -96,7 +96,7 @@ C - - - - - 0x010072 04:8062: 0A        ASL
 C - - - - - 0x010073 04:8063: AA        TAX
 bra_8064_loop:
 C - - - - - 0x010074 04:8064: A9 98     LDA #$98
-C - - - - - 0x010076 04:8066: 9D FD 01  STA ram_spr_T - 4,X
+C - - - - - 0x010076 04:8066: 9D FD 01  STA ram_spr_T - $04,X
 C - - - - - 0x010079 04:8069: CA        DEX
 C - - - - - 0x01007A 04:806A: CA        DEX
 C - - - - - 0x01007B 04:806B: CA        DEX
