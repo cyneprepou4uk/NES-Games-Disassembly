@@ -409,7 +409,7 @@ C - - - - - 0x0002EB 00:82DB: 84 F9     STY ram_00F9
 C - - - - - 0x0002ED 00:82DD: A8        TAY
 C - - - - - 0x0002EE 00:82DE: B9 47 84  LDA tbl_8447,Y
 C - - - - - 0x0002F1 00:82E1: 85 F6     STA ram_00F6
-C - - - - - 0x0002F3 00:82E3: B9 48 84  LDA tbl_8447 + 1,Y
+C - - - - - 0x0002F3 00:82E3: B9 48 84  LDA tbl_8447 + $01,Y
 C - - - - - 0x0002F6 00:82E6: 85 F7     STA ram_00F7
 C - - - - - 0x0002F8 00:82E8: A4 F9     LDY ram_00F9
 C - - - - - 0x0002FA 00:82EA: 6C F6 00  JMP (ram_00F6)
@@ -542,7 +542,7 @@ C - - - - - 0x0003E2 00:83D2: 0A        ASL
 C - - - - - 0x0003E3 00:83D3: A8        TAY
 C - - - - - 0x0003E4 00:83D4: B9 80 8F  LDA tbl_8F80_music_and_sfx,Y
 C - - - - - 0x0003E7 00:83D7: 85 F0     STA ram_00F0
-C - - - - - 0x0003E9 00:83D9: B9 81 8F  LDA tbl_8F80_music_and_sfx + 1,Y
+C - - - - - 0x0003E9 00:83D9: B9 81 8F  LDA tbl_8F80_music_and_sfx + $01,Y
 C - - - - - 0x0003EC 00:83DC: 85 F1     STA ram_00F1
 C - - - - - 0x0003EE 00:83DE: A0 00     LDY #$00
 bra_83E0_loop:
@@ -672,7 +672,7 @@ C - - - - - 0x00049F 00:848F: 0A        ASL
 C - - - - - 0x0004A0 00:8490: A8        TAY
 C - - - - - 0x0004A1 00:8491: B9 7A 87  LDA tbl_877A,Y
 C - - - - - 0x0004A4 00:8494: 9D 56 07  STA ram_0756,X
-C - - - - - 0x0004A7 00:8497: B9 7B 87  LDA tbl_877A + 1,Y
+C - - - - - 0x0004A7 00:8497: B9 7B 87  LDA tbl_877A + $01,Y
 C - - - - - 0x0004AA 00:849A: 9D 5E 07  STA ram_075E,X
 C - - - - - 0x0004AD 00:849D: A9 01     LDA #$01
 C - - - - - 0x0004AF 00:849F: 9D 4E 07  STA ram_074E,X
