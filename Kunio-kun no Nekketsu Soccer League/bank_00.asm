@@ -93,7 +93,7 @@ C - - - - - 0x00009D 00:808D: 0A        ASL
 C - - - - - 0x00009E 00:808E: AA        TAX
 C - - - - - 0x00009F 00:808F: BD FD 89  LDA tbl_89FD,X
 C - - - - - 0x0000A2 00:8092: 85 00     STA ram_0000
-C - - - - - 0x0000A4 00:8094: BD FE 89  LDA tbl_89FD + 1,X
+C - - - - - 0x0000A4 00:8094: BD FE 89  LDA tbl_89FD + $01,X
 C - - - - - 0x0000A7 00:8097: 85 01     STA ram_0001
 C - - - - - 0x0000A9 00:8099: A9 80     LDA #$80
 C - - - - - 0x0000AB 00:809B: 20 B0 80  JSR sub_80B0
@@ -11501,7 +11501,7 @@ bra_AEE3:
 - - - - - - 0x002EF7 00:AEE7: C9 07     CMP #$07
 - - - - - - 0x002EF9 00:AEE9: B0 0D     BCS bra_AEF8
 - - - - - - 0x002EFB 00:AEEB: A5 04     LDA ram_удержанные_кнопки
-- - - - - - 0x002EFD 00:AEED: 05 05     ORA ram_удержанные_кнопки + 1
+- - - - - - 0x002EFD 00:AEED: 05 05     ORA ram_удержанные_кнопки + $01
 - - - - - - 0x002EFF 00:AEEF: 29 F0     AND #$F0
 - - - - - - 0x002F01 00:AEF1: F0 05     BEQ bra_AEF8
 - - - - - - 0x002F03 00:AEF3: A9 01     LDA #$01
@@ -11565,7 +11565,7 @@ C - - - - - 0x002F79 00:AF69: F0 11     BEQ bra_AF7C
 C - - - - - 0x002F7B 00:AF6B: C9 07     CMP #$07
 C - - - - - 0x002F7D 00:AF6D: B0 0D     BCS bra_AF7C
 C - - - - - 0x002F7F 00:AF6F: A5 04     LDA ram_удержанные_кнопки
-C - - - - - 0x002F81 00:AF71: 05 05     ORA ram_удержанные_кнопки + 1
+C - - - - - 0x002F81 00:AF71: 05 05     ORA ram_удержанные_кнопки + $01
 C - - - - - 0x002F83 00:AF73: 29 F0     AND #$F0
 C - - - - - 0x002F85 00:AF75: F0 05     BEQ bra_AF7C
 C - - - - - 0x002F87 00:AF77: A9 01     LDA #$01
@@ -11576,7 +11576,7 @@ C - - - - - 0x002F8F 00:AF7F: 0A        ASL
 C - - - - - 0x002F90 00:AF80: A8        TAY
 C - - - - - 0x002F91 00:AF81: B9 1A B1  LDA tbl_B11A,Y
 C - - - - - 0x002F94 00:AF84: 85 32     STA ram_0032
-C - - - - - 0x002F96 00:AF86: B9 1B B1  LDA tbl_B11A + 1,Y
+C - - - - - 0x002F96 00:AF86: B9 1B B1  LDA tbl_B11A + $01,Y
 C - - - - - 0x002F99 00:AF89: 85 33     STA ram_0033
 C - - - - - 0x002F9B 00:AF8B: A9 00     LDA #$00
 C - - - - - 0x002F9D 00:AF8D: 85 28     STA ram_0028
@@ -11637,7 +11637,7 @@ C - - - - - 0x003001 00:AFF1: F0 11     BEQ bra_B004
 C - - - - - 0x003003 00:AFF3: C9 07     CMP #$07
 C - - - - - 0x003005 00:AFF5: B0 0D     BCS bra_B004
 C - - - - - 0x003007 00:AFF7: A5 04     LDA ram_удержанные_кнопки
-C - - - - - 0x003009 00:AFF9: 05 05     ORA ram_удержанные_кнопки + 1
+C - - - - - 0x003009 00:AFF9: 05 05     ORA ram_удержанные_кнопки + $01
 C - - - - - 0x00300B 00:AFFB: 29 F0     AND #$F0
 C - - - - - 0x00300D 00:AFFD: F0 05     BEQ bra_B004
 C - - - - - 0x00300F 00:AFFF: A9 01     LDA #$01
@@ -11650,7 +11650,7 @@ C - - - - - 0x003019 00:B009: 29 02     AND #$02
 C - - - - - 0x00301B 00:B00B: A8        TAY
 C - - - - - 0x00301C 00:B00C: B9 1F B0  LDA tbl_B01F,Y
 C - - - - - 0x00301F 00:B00F: 85 32     STA ram_0032
-C - - - - - 0x003021 00:B011: B9 20 B0  LDA tbl_B01F + 1,Y
+C - - - - - 0x003021 00:B011: B9 20 B0  LDA tbl_B01F + $01,Y
 C - - - - - 0x003024 00:B014: 85 33     STA ram_0033
 C - - - - - 0x003026 00:B016: EE 0B 06  INC ram_060B
 C - - - - - 0x003029 00:B019: AC 0B 06  LDY ram_060B
@@ -14562,9 +14562,9 @@ off_BA9C_38:
 loc_BB13:
 C D 1 - - - 0x003B23 00:BB13: A9 FF     LDA #$FF
 C - - - - - 0x003B25 00:BB15: 8D 68 05  STA ram_номер_управляемого
-C - - - - - 0x003B28 00:BB18: 8D 69 05  STA ram_номер_управляемого + 1
-C - - - - - 0x003B2B 00:BB1B: 8D 6A 05  STA ram_номер_управляемого + 2
-C - - - - - 0x003B2E 00:BB1E: 8D 6B 05  STA ram_номер_управляемого + 3
+C - - - - - 0x003B28 00:BB18: 8D 69 05  STA ram_номер_управляемого + $01
+C - - - - - 0x003B2B 00:BB1B: 8D 6A 05  STA ram_номер_управляемого + $02
+C - - - - - 0x003B2E 00:BB1E: 8D 6B 05  STA ram_номер_управляемого + $03
 C - - - - - 0x003B31 00:BB21: A2 00     LDX #$00
 C - - - - - 0x003B33 00:BB23: A0 00     LDY #$00
 C - - - - - 0x003B35 00:BB25: A5 57     LDA ram_опция_режим_сложность
@@ -14588,20 +14588,20 @@ C - - - - - 0x003B4F 00:BB3F: 90 F4     BCC bra_BB35
 C - - - - - 0x003B51 00:BB41: A0 08     LDY #$08
 C - - - - - 0x003B53 00:BB43: 8C B8 05  STY ram_банк_спрайтов
 C - - - - - 0x003B56 00:BB46: C8        INY
-C - - - - - 0x003B57 00:BB47: 8C BB 05  STY ram_банк_спрайтов + 3
-C - - - - - 0x003B5A 00:BB4A: AD 2D 05  LDA ram_номер_команды + 1
+C - - - - - 0x003B57 00:BB47: 8C BB 05  STY ram_банк_спрайтов + $03
+C - - - - - 0x003B5A 00:BB4A: AD 2D 05  LDA ram_номер_команды + $01
 C - - - - - 0x003B5D 00:BB4D: 29 0F     AND #$0F
 C - - - - - 0x003B5F 00:BB4F: A8        TAY
 C - - - - - 0x003B60 00:BB50: B9 F6 BE  LDA tbl_BEF6,Y
-C - - - - - 0x003B63 00:BB53: 0D 2D 05  ORA ram_номер_команды + 1
-C - - - - - 0x003B66 00:BB56: 8D 2D 05  STA ram_номер_команды + 1
+C - - - - - 0x003B63 00:BB53: 0D 2D 05  ORA ram_номер_команды + $01
+C - - - - - 0x003B66 00:BB56: 8D 2D 05  STA ram_номер_команды + $01
 C - - - - - 0x003B69 00:BB59: 20 F8 BF  JSR sub_BFF8
 C - - - - - 0x003B6C 00:BB5C: 20 F3 BF  JSR sub_BFF3
 C - - - - - 0x003B6F 00:BB5F: AD 2A 05  LDA ram_флаг_владения_мячом_ком
-C - - - - - 0x003B72 00:BB62: 0D 2B 05  ORA ram_флаг_владения_мячом_ком + 1
+C - - - - - 0x003B72 00:BB62: 0D 2B 05  ORA ram_флаг_владения_мячом_ком + $01
 C - - - - - 0x003B75 00:BB65: 29 01     AND #$01
 C - - - - - 0x003B77 00:BB67: D0 03     BNE bra_BB6C
-C - - - - - 0x003B79 00:BB69: EE 2B 05  INC ram_флаг_владения_мячом_ком + 1
+C - - - - - 0x003B79 00:BB69: EE 2B 05  INC ram_флаг_владения_мячом_ком + $01
 bra_BB6C:
 C - - - - - 0x003B7C 00:BB6C: AD 5B 05  LDA ram_вариант_расстановки_игроков
 C - - - - - 0x003B7F 00:BB6F: 0A        ASL
@@ -14610,16 +14610,16 @@ C - - - - - 0x003B83 00:BB73: 0A        ASL
 C - - - - - 0x003B84 00:BB74: A8        TAY
 C - - - - - 0x003B85 00:BB75: B9 E8 BD  LDA tbl_BDE8,Y
 C - - - - - 0x003B88 00:BB78: 85 2C     STA ram_002C
-C - - - - - 0x003B8A 00:BB7A: B9 E9 BD  LDA tbl_BDE8 + 1,Y
+C - - - - - 0x003B8A 00:BB7A: B9 E9 BD  LDA tbl_BDE8 + $01,Y
 C - - - - - 0x003B8D 00:BB7D: 85 2D     STA ram_002D
 C - - - - - 0x003B8F 00:BB7F: AD 5B 05  LDA ram_вариант_расстановки_игроков
 C - - - - - 0x003B92 00:BB82: 0A        ASL
-C - - - - - 0x003B93 00:BB83: 0D 2B 05  ORA ram_флаг_владения_мячом_ком + 1
+C - - - - - 0x003B93 00:BB83: 0D 2B 05  ORA ram_флаг_владения_мячом_ком + $01
 C - - - - - 0x003B96 00:BB86: 0A        ASL
 C - - - - - 0x003B97 00:BB87: A8        TAY
 C - - - - - 0x003B98 00:BB88: B9 E8 BD  LDA tbl_BDE8,Y
 C - - - - - 0x003B9B 00:BB8B: 85 2E     STA ram_002E
-C - - - - - 0x003B9D 00:BB8D: B9 E9 BD  LDA tbl_BDE8 + 1,Y
+C - - - - - 0x003B9D 00:BB8D: B9 E9 BD  LDA tbl_BDE8 + $01,Y
 C - - - - - 0x003BA0 00:BB90: 85 2F     STA ram_002F
 C - - - - - 0x003BA2 00:BB92: AD 2A 05  LDA ram_флаг_владения_мячом_ком
 C - - - - - 0x003BA5 00:BB95: 85 2B     STA ram_002B
@@ -14672,8 +14672,8 @@ C - - - - - 0x003BFE 00:BBEE: 29 01     AND #$01
 C - - - - - 0x003C00 00:BBF0: D0 3A     BNE bra_BC2C
 C - - - - - 0x003C02 00:BBF2: A0 00     LDY #$00
 C - - - - - 0x003C04 00:BBF4: 8C 2A 05  STY ram_флаг_владения_мячом_ком
-C - - - - - 0x003C07 00:BBF7: 8C 2B 05  STY ram_флаг_владения_мячом_ком + 1
-C - - - - - 0x003C0A 00:BBFA: AD 2F 05  LDA ram_счет_команды + 1
+C - - - - - 0x003C07 00:BBF7: 8C 2B 05  STY ram_флаг_владения_мячом_ком + $01
+C - - - - - 0x003C0A 00:BBFA: AD 2F 05  LDA ram_счет_команды + $01
 C - - - - - 0x003C0D 00:BBFD: CD 2E 05  CMP ram_счет_команды
 C - - - - - 0x003C10 00:BC00: 90 03     BCC bra_BC05
 C - - - - - 0x003C12 00:BC02: F0 18     BEQ bra_BC1C
@@ -14704,7 +14704,7 @@ C - - - - - 0x003C3E 00:BC2E: 10 0E     BPL bra_BC3E
 - - - - - - 0x003C40 00:BC30: AD CC 05  LDA ram_счетчик_смен
 - - - - - - 0x003C43 00:BC33: 29 01     AND #$01
 - - - - - - 0x003C45 00:BC35: F0 07     BEQ bra_BC3E
-- - - - - - 0x003C47 00:BC37: AD 69 05  LDA ram_номер_управляемого + 1
+- - - - - - 0x003C47 00:BC37: AD 69 05  LDA ram_номер_управляемого + $01
 - - - - - - 0x003C4A 00:BC3A: 10 2C     BPL bra_BC68
 - - - - - - 0x003C4C 00:BC3C: 30 1D     BMI bra_BC5B
 bra_BC3E:
@@ -14749,7 +14749,7 @@ C - - - - - 0x003C97 00:BC87: 20 05 C0  JSR sub_0x01C015
 C - - - - - 0x003C9A 00:BC8A: 8D 8F 06  STA ram_068F
 C - - - - - 0x003C9D 00:BC8D: AD F8 BD  LDA tbl_BDF8
 C - - - - - 0x003CA0 00:BC90: 85 2E     STA ram_002E
-C - - - - - 0x003CA2 00:BC92: AD F9 BD  LDA tbl_BDF8 + 1
+C - - - - - 0x003CA2 00:BC92: AD F9 BD  LDA tbl_BDF8 + $01
 C - - - - - 0x003CA5 00:BC95: 85 2F     STA ram_002F
 C - - - - - 0x003CA7 00:BC97: A9 00     LDA #$00
 C - - - - - 0x003CA9 00:BC99: 8D 59 05  STA ram_0559
@@ -15451,7 +15451,7 @@ C - - - - - 0x003FC8 00:BFB8: 30 B6     BMI bra_BF70_RTS
 
 sub_BFBA:
 C - - - - - 0x003FCA 00:BFBA: AD 2E 05  LDA ram_счет_команды
-C - - - - - 0x003FCD 00:BFBD: CD 2F 05  CMP ram_счет_команды + 1
+C - - - - - 0x003FCD 00:BFBD: CD 2F 05  CMP ram_счет_команды + $01
 C - - - - - 0x003FD0 00:BFC0: F0 AE     BEQ bra_BF70_RTS
 C - - - - - 0x003FD2 00:BFC2: 90 9F     BCC bra_BF63
 C - - - - - 0x003FD4 00:BFC4: B0 AA     BCS bra_BF70_RTS
@@ -15460,7 +15460,7 @@ C - - - - - 0x003FD4 00:BFC4: B0 AA     BCS bra_BF70_RTS
 
 sub_BFC6:
 C - - - - - 0x003FD6 00:BFC6: AD 2E 05  LDA ram_счет_команды
-C - - - - - 0x003FD9 00:BFC9: CD 2F 05  CMP ram_счет_команды + 1
+C - - - - - 0x003FD9 00:BFC9: CD 2F 05  CMP ram_счет_команды + $01
 C - - - - - 0x003FDC 00:BFCC: F0 A2     BEQ bra_BF70_RTS
 C - - - - - 0x003FDE 00:BFCE: 90 A1     BCC bra_BF71
 C - - - - - 0x003FE0 00:BFD0: B0 9E     BCS bra_BF70_RTS
@@ -15469,7 +15469,7 @@ C - - - - - 0x003FE0 00:BFD0: B0 9E     BCS bra_BF70_RTS
 
 sub_BFD2:
 C - - - - - 0x003FE2 00:BFD2: AD 2E 05  LDA ram_счет_команды
-C - - - - - 0x003FE5 00:BFD5: CD 2F 05  CMP ram_счет_команды + 1
+C - - - - - 0x003FE5 00:BFD5: CD 2F 05  CMP ram_счет_команды + $01
 C - - - - - 0x003FE8 00:BFD8: F0 96     BEQ bra_BF70_RTS
 C - - - - - 0x003FEA 00:BFDA: 90 94     BCC bra_BF70_RTS
 C - - - - - 0x003FEC 00:BFDC: B0 85     BCS bra_BF63

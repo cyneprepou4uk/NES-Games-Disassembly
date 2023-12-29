@@ -57,7 +57,7 @@ C - - - - - 0x018040 06:8030: 0A        ASL
 C - - - - - 0x018041 06:8031: A8        TAY
 C - - - - - 0x018042 06:8032: B9 3F 80  LDA tbl_803F,Y
 C - - - - - 0x018045 06:8035: 85 2C     STA ram_002C
-C - - - - - 0x018047 06:8037: B9 40 80  LDA tbl_803F + 1,Y
+C - - - - - 0x018047 06:8037: B9 40 80  LDA tbl_803F + $01,Y
 C - - - - - 0x01804A 06:803A: 85 2D     STA ram_002D
 C - - - - - 0x01804C 06:803C: 6C 2C 00  JMP (ram_002C)
 
@@ -1907,7 +1907,7 @@ C - - - - - 0x018CB0 06:8CA0: 0A        ASL
 C - - - - - 0x018CB1 06:8CA1: A8        TAY
 C - - - - - 0x018CB2 06:8CA2: B9 AF 8C  LDA tbl_8CAF,Y
 C - - - - - 0x018CB5 06:8CA5: 85 2C     STA ram_002C
-C - - - - - 0x018CB7 06:8CA7: B9 B0 8C  LDA tbl_8CAF + 1,Y
+C - - - - - 0x018CB7 06:8CA7: B9 B0 8C  LDA tbl_8CAF + $01,Y
 C - - - - - 0x018CBA 06:8CAA: 85 2D     STA ram_002D
 C - - - - - 0x018CBC 06:8CAC: 6C 2C 00  JMP (ram_002C)
 
@@ -5761,11 +5761,11 @@ tbl_A5A6:
 sub_A5A7:
 C - - - - - 0x01A5B7 06:A5A7: AD C2 A5  LDA tbl_A5C2
 C - - - - - 0x01A5BA 06:A5AA: 85 30     STA ram_0030
-C - - - - - 0x01A5BC 06:A5AC: AD C3 A5  LDA tbl_A5C2 + 1
+C - - - - - 0x01A5BC 06:A5AC: AD C3 A5  LDA tbl_A5C2 + $01
 C - - - - - 0x01A5BF 06:A5AF: 85 31     STA ram_0031
-C - - - - - 0x01A5C1 06:A5B1: AD C4 A5  LDA tbl_A5C2 + 2
+C - - - - - 0x01A5C1 06:A5B1: AD C4 A5  LDA tbl_A5C2 + $02
 C - - - - - 0x01A5C4 06:A5B4: 85 32     STA ram_0032
-C - - - - - 0x01A5C6 06:A5B6: AD C5 A5  LDA tbl_A5C2 + 3
+C - - - - - 0x01A5C6 06:A5B6: AD C5 A5  LDA tbl_A5C2 + $03
 C - - - - - 0x01A5C9 06:A5B9: 85 33     STA ram_0033
 C - - - - - 0x01A5CB 06:A5BB: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x01A5CE 06:A5BE: 20 BD CE  JSR sub_0x01CECD
@@ -6893,7 +6893,7 @@ C - - - - - 0x01AA29 06:AA19: A0 00     LDY #$00
 loc_AA1B:
 C D 1 - - - 0x01AA2B 06:AA1B: B9 65 AC  LDA tbl_AC65,Y
 C - - - - - 0x01AA2E 06:AA1E: 85 2C     STA ram_002C
-C - - - - - 0x01AA30 06:AA20: B9 66 AC  LDA tbl_AC65 + 1,Y
+C - - - - - 0x01AA30 06:AA20: B9 66 AC  LDA tbl_AC65 + $01,Y
 C - - - - - 0x01AA33 06:AA23: 85 2D     STA ram_002D
 C - - - - - 0x01AA35 06:AA25: AD 66 04  LDA ram_погода_номер_эффекта
 C - - - - - 0x01AA38 06:AA28: 29 7F     AND #$7F
@@ -7005,7 +7005,7 @@ C - - - - - 0x01AAD8 06:AAC8: A0 00     LDY #$00
 loc_AACA:
 C D 1 - - - 0x01AADA 06:AACA: B9 65 AC  LDA tbl_AC65,Y
 C - - - - - 0x01AADD 06:AACD: 85 2C     STA ram_002C
-C - - - - - 0x01AADF 06:AACF: B9 66 AC  LDA tbl_AC65 + 1,Y
+C - - - - - 0x01AADF 06:AACF: B9 66 AC  LDA tbl_AC65 + $01,Y
 C - - - - - 0x01AAE2 06:AAD2: 85 2D     STA ram_002D
 C - - - - - 0x01AAE4 06:AAD4: A9 00     LDA #$00
 C - - - - - 0x01AAE6 06:AAD6: 85 1C     STA ram_001C
@@ -8406,7 +8406,7 @@ tbl_B2F9:
 sub_B301:
 C - - - - - 0x01B311 06:B301: AD 4B B5  LDA tbl_B54B
 C - - - - - 0x01B314 06:B304: 85 2C     STA ram_002C
-C - - - - - 0x01B316 06:B306: AD 4C B5  LDA tbl_B54B + 1
+C - - - - - 0x01B316 06:B306: AD 4C B5  LDA tbl_B54B + $01
 C - - - - - 0x01B319 06:B309: 85 2D     STA ram_002D
 C - - - - - 0x01B31B 06:B30B: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x01B31E 06:B30E: 29 7F     AND #$7F
@@ -8419,7 +8419,7 @@ C - - - - - 0x01B322 06:B312: 60        RTS
 sub_B313:
 C - - - - - 0x01B323 06:B313: AD 4D B5  LDA tbl_B54D
 C - - - - - 0x01B326 06:B316: 85 2C     STA ram_002C
-C - - - - - 0x01B328 06:B318: AD 4E B5  LDA tbl_B54D + 1
+C - - - - - 0x01B328 06:B318: AD 4E B5  LDA tbl_B54D + $01
 C - - - - - 0x01B32B 06:B31B: 85 2D     STA ram_002D
 C - - - - - 0x01B32D 06:B31D: AD 65 04  LDA ram_мяч_номер_движения
 C - - - - - 0x01B330 06:B320: 29 7F     AND #$7F
@@ -8432,7 +8432,7 @@ C - - - - - 0x01B334 06:B324: 60        RTS
 sub_B325:
 C - - - - - 0x01B335 06:B325: AD 4F B5  LDA tbl_B54F
 C - - - - - 0x01B338 06:B328: 85 2C     STA ram_002C
-C - - - - - 0x01B33A 06:B32A: AD 50 B5  LDA tbl_B54F + 1
+C - - - - - 0x01B33A 06:B32A: AD 50 B5  LDA tbl_B54F + $01
 C - - - - - 0x01B33D 06:B32D: 85 2D     STA ram_002D
 C - - - - - 0x01B33F 06:B32F: AD 66 04  LDA ram_погода_номер_эффекта
 C - - - - - 0x01B342 06:B332: 29 7F     AND #$7F
@@ -8451,7 +8451,7 @@ C - - - - - 0x01B34F 06:B33F: 0A        ASL
 C - - - - - 0x01B350 06:B340: A8        TAY
 C - - - - - 0x01B351 06:B341: AD 47 B5  LDA tbl_B547
 C - - - - - 0x01B354 06:B344: 85 32     STA ram_0032
-C - - - - - 0x01B356 06:B346: AD 48 B5  LDA tbl_B547 + 1
+C - - - - - 0x01B356 06:B346: AD 48 B5  LDA tbl_B547 + $01
 C - - - - - 0x01B359 06:B349: 85 33     STA ram_0033
 C - - - - - 0x01B35B 06:B34B: B1 32     LDA (ram_0032),Y
 C - - - - - 0x01B35D 06:B34D: 85 2C     STA ram_002C
@@ -8468,7 +8468,7 @@ C - - - - - 0x01B36E 06:B35E: 29 7F     AND #$7F
 C - - - - - 0x01B370 06:B360: A8        TAY
 C - - - - - 0x01B371 06:B361: AD 49 B5  LDA tbl_B549
 C - - - - - 0x01B374 06:B364: 85 32     STA ram_0032
-C - - - - - 0x01B376 06:B366: AD 4A B5  LDA tbl_B549 + 1
+C - - - - - 0x01B376 06:B366: AD 4A B5  LDA tbl_B549 + $01
 C - - - - - 0x01B379 06:B369: 85 33     STA ram_0033
 C - - - - - 0x01B37B 06:B36B: B1 32     LDA (ram_0032),Y
 C - - - - - 0x01B37D 06:B36D: 85 2C     STA ram_002C
@@ -8486,7 +8486,7 @@ bra_B380:
 C - - - - - 0x01B390 06:B380: A8        TAY
 C - - - - - 0x01B391 06:B381: AD 45 B5  LDA tbl_B545
 C - - - - - 0x01B394 06:B384: 85 2C     STA ram_002C
-C - - - - - 0x01B396 06:B386: AD 46 B5  LDA tbl_B545 + 1
+C - - - - - 0x01B396 06:B386: AD 46 B5  LDA tbl_B545 + $01
 C - - - - - 0x01B399 06:B389: 85 2D     STA ram_002D
 bra_B38B_RTS:
 C - - - - - 0x01B39B 06:B38B: 60        RTS
@@ -9842,14 +9842,14 @@ C - - - - - 0x01BACA 06:BABA: 38        SEC
 C - - - - - 0x01BACB 06:BABB: AD 89 BB  LDA tbl_BB89
 C - - - - - 0x01BACE 06:BABE: 85 2E     STA ram_002E
 C - - - - - 0x01BAD0 06:BAC0: FD 14 03  SBC ram_игрок_X_lo,X
-C - - - - - 0x01BAD3 06:BAC3: AD 8A BB  LDA tbl_BB89 + 1
+C - - - - - 0x01BAD3 06:BAC3: AD 8A BB  LDA tbl_BB89 + $01
 C - - - - - 0x01BAD6 06:BAC6: FD 27 03  SBC ram_игрок_X_hi,X
 C - - - - - 0x01BAD9 06:BAC9: B0 14     BCS bra_BADF
 C - - - - - 0x01BADB 06:BACB: 38        SEC
 C - - - - - 0x01BADC 06:BACC: AD 8B BB  LDA tbl_BB8B
 C - - - - - 0x01BADF 06:BACF: 85 2E     STA ram_002E
 C - - - - - 0x01BAE1 06:BAD1: FD 14 03  SBC ram_игрок_X_lo,X
-C - - - - - 0x01BAE4 06:BAD4: AD 8C BB  LDA tbl_BB8B + 1
+C - - - - - 0x01BAE4 06:BAD4: AD 8C BB  LDA tbl_BB8B + $01
 C - - - - - 0x01BAE7 06:BAD7: FD 27 03  SBC ram_игрок_X_hi,X
 C - - - - - 0x01BAEA 06:BADA: 90 03     BCC bra_BADF
 C - - - - - 0x01BAEC 06:BADC: 4C E1 BA  JMP loc_BAE1
@@ -9860,7 +9860,7 @@ C D 1 - - - 0x01BAF1 06:BAE1: 38        SEC
 C - - - - - 0x01BAF2 06:BAE2: AD 8D BB  LDA tbl_BB8D
 C - - - - - 0x01BAF5 06:BAE5: 85 30     STA ram_0030
 C - - - - - 0x01BAF7 06:BAE7: FD 4D 03  SBC ram_игрок_Y_lo,X
-C - - - - - 0x01BAFA 06:BAEA: AD 8E BB  LDA tbl_BB8D + 1
+C - - - - - 0x01BAFA 06:BAEA: AD 8E BB  LDA tbl_BB8D + $01
 C - - - - - 0x01BAFD 06:BAED: 85 31     STA ram_0031
 C - - - - - 0x01BAFF 06:BAEF: FD 60 03  SBC ram_игрок_Y_hi,X
 C - - - - - 0x01BB02 06:BAF2: B0 2C     BCS bra_BB20
@@ -9868,7 +9868,7 @@ C - - - - - 0x01BB04 06:BAF4: 38        SEC
 C - - - - - 0x01BB05 06:BAF5: AD 91 BB  LDA tbl_BB91
 C - - - - - 0x01BB08 06:BAF8: 85 30     STA ram_0030
 C - - - - - 0x01BB0A 06:BAFA: FD 4D 03  SBC ram_игрок_Y_lo,X
-C - - - - - 0x01BB0D 06:BAFD: AD 92 BB  LDA tbl_BB91 + 1
+C - - - - - 0x01BB0D 06:BAFD: AD 92 BB  LDA tbl_BB91 + $01
 C - - - - - 0x01BB10 06:BB00: 85 31     STA ram_0031
 C - - - - - 0x01BB12 06:BB02: FD 60 03  SBC ram_игрок_Y_hi,X
 C - - - - - 0x01BB15 06:BB05: 90 2C     BCC bra_BB33
@@ -9880,7 +9880,7 @@ C - - - - - 0x01BB20 06:BB10: 4C 50 BB  JMP loc_BB50
 bra_BB13:
 C - - - - - 0x01BB23 06:BB13: AD 8D BB  LDA tbl_BB8D
 C - - - - - 0x01BB26 06:BB16: 85 30     STA ram_0030
-C - - - - - 0x01BB28 06:BB18: AD 8E BB  LDA tbl_BB8D + 1
+C - - - - - 0x01BB28 06:BB18: AD 8E BB  LDA tbl_BB8D + $01
 C - - - - - 0x01BB2B 06:BB1B: 85 31     STA ram_0031
 C - - - - - 0x01BB2D 06:BB1D: 4C 50 BB  JMP loc_BB50
 bra_BB20:
@@ -9888,7 +9888,7 @@ C - - - - - 0x01BB30 06:BB20: 38        SEC
 C - - - - - 0x01BB31 06:BB21: AD 8F BB  LDA tbl_BB8F
 C - - - - - 0x01BB34 06:BB24: FD 4D 03  SBC ram_игрок_Y_lo,X
 C - - - - - 0x01BB37 06:BB27: 85 20     STA ram_0020
-C - - - - - 0x01BB39 06:BB29: AD 90 BB  LDA tbl_BB8F + 1
+C - - - - - 0x01BB39 06:BB29: AD 90 BB  LDA tbl_BB8F + $01
 C - - - - - 0x01BB3C 06:BB2C: FD 60 03  SBC ram_игрок_Y_hi,X
 C - - - - - 0x01BB3F 06:BB2F: B0 19     BCS bra_BB4A
 C - - - - - 0x01BB41 06:BB31: 90 11     BCC bra_BB44
@@ -9897,7 +9897,7 @@ C - - - - - 0x01BB43 06:BB33: 38        SEC
 C - - - - - 0x01BB44 06:BB34: AD 93 BB  LDA tbl_BB93
 C - - - - - 0x01BB47 06:BB37: FD 4D 03  SBC ram_игрок_Y_lo,X
 C - - - - - 0x01BB4A 06:BB3A: 85 20     STA ram_0020
-C - - - - - 0x01BB4C 06:BB3C: AD 94 BB  LDA tbl_BB93 + 1
+C - - - - - 0x01BB4C 06:BB3C: AD 94 BB  LDA tbl_BB93 + $01
 C - - - - - 0x01BB4F 06:BB3F: FD 60 03  SBC ram_игрок_Y_hi,X
 C - - - - - 0x01BB52 06:BB42: 90 06     BCC bra_BB4A
 bra_BB44:
@@ -9913,7 +9913,7 @@ C D 1 - - - 0x01BB60 06:BB50: 38        SEC
 C - - - - - 0x01BB61 06:BB51: AD 95 BB  LDA tbl_BB95
 C - - - - - 0x01BB64 06:BB54: 85 32     STA ram_0032
 C - - - - - 0x01BB66 06:BB56: FD 86 03  SBC ram_игрок_Z_lo,X
-C - - - - - 0x01BB69 06:BB59: AD 96 BB  LDA tbl_BB95 + 1
+C - - - - - 0x01BB69 06:BB59: AD 96 BB  LDA tbl_BB95 + $01
 C - - - - - 0x01BB6C 06:BB5C: 85 33     STA ram_0033
 C - - - - - 0x01BB6E 06:BB5E: FD 99 03  SBC ram_игрок_Z_hi,X
 C - - - - - 0x01BB71 06:BB61: 30 03     BMI bra_BB66
@@ -9922,7 +9922,7 @@ bra_BB66:
 C - - - - - 0x01BB76 06:BB66: 38        SEC
 C - - - - - 0x01BB77 06:BB67: AD 97 BB  LDA tbl_BB97
 C - - - - - 0x01BB7A 06:BB6A: FD 86 03  SBC ram_игрок_Z_lo,X
-C - - - - - 0x01BB7D 06:BB6D: AD 98 BB  LDA tbl_BB97 + 1
+C - - - - - 0x01BB7D 06:BB6D: AD 98 BB  LDA tbl_BB97 + $01
 C - - - - - 0x01BB80 06:BB70: FD 99 03  SBC ram_игрок_Z_hi,X
 C - - - - - 0x01BB83 06:BB73: 30 0B     BMI bra_BB80
 C - - - - - 0x01BB85 06:BB75: A5 1C     LDA ram_001C
