@@ -224,7 +224,7 @@ C - - - - - 0x000145 00:C135: E8        INX
 bra_C136:
 C - - - - - 0x000146 00:C136: 88        DEY
 C - - - - - 0x000147 00:C137: D0 F2     BNE bra_C12B_loop
-C - - - - - 0x000149 00:C139: 86 1B     STX ram_btn_hold + 1
+C - - - - - 0x000149 00:C139: 86 1B     STX ram_btn_hold + $01
 C - - - - - 0x00014B 00:C13B: A5 CC     LDA ram_00CC
 C - - - - - 0x00014D 00:C13D: F0 3E     BEQ bra_C17D
 C - - - - - 0x00014F 00:C13F: C9 02     CMP #$02
@@ -781,14 +781,14 @@ C - - - - - 0x0004E3 00:C4D3: D0 26     BNE bra_C4FB
 C - - - - - 0x0004E5 00:C4D5: A5 E1     LDA ram_00E1
 C - - - - - 0x0004E7 00:C4D7: D0 0F     BNE bra_C4E8
 C - - - - - 0x0004E9 00:C4D9: A5 1A     LDA ram_btn_hold
-C - - - - - 0x0004EB 00:C4DB: 05 1B     ORA ram_btn_hold + 1
+C - - - - - 0x0004EB 00:C4DB: 05 1B     ORA ram_btn_hold + $01
 C - - - - - 0x0004ED 00:C4DD: 29 C0     AND #con_btns_AB
 C - - - - - 0x0004EF 00:C4DF: D0 1A     BNE bra_C4FB
 C - - - - - 0x0004F1 00:C4E1: A9 00     LDA #$00
 C - - - - - 0x0004F3 00:C4E3: 85 24     STA ram_0024
 C - - - - - 0x0004F5 00:C4E5: 4C FB C4  JMP loc_C4FB
 bra_C4E8:
-C - - - - - 0x0004F8 00:C4E8: A5 1B     LDA ram_btn_hold + 1
+C - - - - - 0x0004F8 00:C4E8: A5 1B     LDA ram_btn_hold + $01
 C - - - - - 0x0004FA 00:C4EA: 29 C0     AND #con_btns_AB
 C - - - - - 0x0004FC 00:C4EC: D0 0D     BNE bra_C4FB
 C - - - - - 0x0004FE 00:C4EE: A9 00     LDA #$00
@@ -906,7 +906,7 @@ C - - - - - 0x0005C8 00:C5B8: D0 FA     BNE bra_C5B4_infinite_loop
 C - - - - - 0x0005CA 00:C5BA: A5 1A     LDA ram_btn_hold
 C - - - - - 0x0005CC 00:C5BC: C9 E2     CMP #con_btns_AB + con_btn_Left + con_btn_Select
 C - - - - - 0x0005CE 00:C5BE: D0 06     BNE bra_C5C6
-- - - - - - 0x0005D0 00:C5C0: A5 1B     LDA ram_btn_hold + 1
+- - - - - - 0x0005D0 00:C5C0: A5 1B     LDA ram_btn_hold + $01
 - - - - - - 0x0005D2 00:C5C2: C9 41     CMP #con_btn_B + con_btn_Right
 - - - - - - 0x0005D4 00:C5C4: F0 18     BEQ bra_C5DE_hidden_text
 bra_C5C6:
@@ -976,9 +976,9 @@ C - - - - - 0x000635 00:C625: 48        PHA
 C - - - - - 0x000636 00:C626: A5 A2     LDA ram_00A2
 C - - - - - 0x000638 00:C628: D0 10     BNE bra_C63A
 C - - - - - 0x00063A 00:C62A: A4 A0     LDY ram_00A0
-C - - - - - 0x00063C 00:C62C: B9 70 C0  LDA tbl_C072_buttons - 2,Y
+C - - - - - 0x00063C 00:C62C: B9 70 C0  LDA tbl_C072_buttons - $02,Y
 C - - - - - 0x00063F 00:C62F: 85 A1     STA ram_00A1
-C - - - - - 0x000641 00:C631: B9 71 C0  LDA tbl_C072_timer - 1,Y
+C - - - - - 0x000641 00:C631: B9 71 C0  LDA tbl_C072_timer - $01,Y
 C - - - - - 0x000644 00:C634: 85 A2     STA ram_00A2
 C - - - - - 0x000646 00:C636: C8        INY
 C - - - - - 0x000647 00:C637: C8        INY
@@ -1002,7 +1002,7 @@ bra_C652:
 C - - - - - 0x000662 00:C652: A5 E1     LDA ram_00E1
 C - - - - - 0x000664 00:C654: F0 05     BEQ bra_C65B
 loc_C656:
-C D 2 - - - 0x000666 00:C656: A5 1B     LDA ram_btn_hold + 1
+C D 2 - - - 0x000666 00:C656: A5 1B     LDA ram_btn_hold + $01
 C - - - - - 0x000668 00:C658: 4C 5D C6  JMP loc_C65D
 bra_C65B:
 C - - - - - 0x00066B 00:C65B: A5 1A     LDA ram_btn_hold
@@ -1046,7 +1046,7 @@ bra_C689:
 
 sub_C68C:
 C - - - - - 0x00069C 00:C68C: A5 1A     LDA ram_btn_hold
-C - - - - - 0x00069E 00:C68E: 05 1B     ORA ram_btn_hold + 1
+C - - - - - 0x00069E 00:C68E: 05 1B     ORA ram_btn_hold + $01
 C - - - - - 0x0006A0 00:C690: F0 07     BEQ bra_C699_nothing_pressed
 C - - - - - 0x0006A2 00:C692: A5 23     LDA ram_0023
 C - - - - - 0x0006A4 00:C694: 18        CLC
@@ -1394,9 +1394,9 @@ C D 2 - - - 0x0008AB 00:C89B: A4 44     LDY ram_0044
 C - - - - - 0x0008AD 00:C89D: B9 61 C9  LDA tbl_C961,Y
 C - - - - - 0x0008B0 00:C8A0: 85 40     STA ram_0040
 C - - - - - 0x0008B2 00:C8A2: F0 6A     BEQ bra_C90E_exit_loop
-C - - - - - 0x0008B4 00:C8A4: B9 62 C9  LDA tbl_C961 + 1,Y
+C - - - - - 0x0008B4 00:C8A4: B9 62 C9  LDA tbl_C961 + $01,Y
 C - - - - - 0x0008B7 00:C8A7: 85 42     STA ram_0042
-C - - - - - 0x0008B9 00:C8A9: B9 63 C9  LDA tbl_C961 + 2,Y
+C - - - - - 0x0008B9 00:C8A9: B9 63 C9  LDA tbl_C961 + $02,Y
 C - - - - - 0x0008BC 00:C8AC: 85 46     STA ram_0046
 bra_C8AE_loop:
 C - - - - - 0x0008BE 00:C8AE: A6 40     LDX ram_0040
@@ -1642,16 +1642,16 @@ C - - - - - 0x0009EE 00:C9DE: A2 05     LDX #$05
 bra_C9E0:
 C - - - - - 0x0009F0 00:C9E0: BD B6 CA  LDA tbl_CAB6_spr_data,X
 C - - - - - 0x0009F3 00:C9E3: 85 AD     STA ram_00AD
-C - - - - - 0x0009F5 00:C9E5: BD B9 CA  LDA tbl_CAB6_spr_data + 3,X
+C - - - - - 0x0009F5 00:C9E5: BD B9 CA  LDA tbl_CAB6_spr_data + $03,X
 C - - - - - 0x0009F8 00:C9E8: 85 AE     STA ram_00AE
 C - - - - - 0x0009FA 00:C9EA: A9 01     LDA #$01
 C - - - - - 0x0009FC 00:C9EC: 85 AC     STA ram_00AC
 C - - - - - 0x0009FE 00:C9EE: A9 02     LDA #$02
 C - - - - - 0x000A00 00:C9F0: 85 AF     STA ram_00AF
 C - - - - - 0x000A02 00:C9F2: A0 00     LDY #$00
-C - - - - - 0x000A04 00:C9F4: BD B7 CA  LDA tbl_CAB6_spr_data + 1,X
+C - - - - - 0x000A04 00:C9F4: BD B7 CA  LDA tbl_CAB6_spr_data + $01,X
 C - - - - - 0x000A07 00:C9F7: 20 C4 D1  JSR sub_D1C4_set_spr_X
-C - - - - - 0x000A0A 00:C9FA: BD B8 CA  LDA tbl_CAB6_spr_data + 2,X
+C - - - - - 0x000A0A 00:C9FA: BD B8 CA  LDA tbl_CAB6_spr_data + $02,X
 C - - - - - 0x000A0D 00:C9FD: 20 A1 D1  JSR sub_D1A1_set_spr_T
 C - - - - - 0x000A10 00:CA00: AD 20 07  LDA ram_spr_Y + $20
 C - - - - - 0x000A13 00:CA03: C9 30     CMP #$30
@@ -1659,7 +1659,7 @@ C - - - - - 0x000A15 00:CA05: B0 02     BCS bra_CA09
 C - - - - - 0x000A17 00:CA07: A9 30     LDA #$30
 bra_CA09:
 C - - - - - 0x000A19 00:CA09: 20 91 D1  JSR sub_D191_set_spr_Y
-C - - - - - 0x000A1C 00:CA0C: BD BA CA  LDA tbl_CAB6_spr_data + 4,X
+C - - - - - 0x000A1C 00:CA0C: BD BA CA  LDA tbl_CAB6_spr_data + $04,X
 C - - - - - 0x000A1F 00:CA0F: 20 B7 D1  JSR sub_D1B7_set_spr_A
 bra_CA12_RTS:
 C - - - - - 0x000A22 00:CA12: 60        RTS
@@ -5342,7 +5342,7 @@ C - - - - - 0x002199 00:E189: 4C 9F E1  JMP loc_E19F    ; nothing pressed
 bra_E18C:
 C - - - - - 0x00219C 00:E18C: B9 C1 E1  LDA tbl_E1C1_level_editor_control,Y
 C - - - - - 0x00219F 00:E18F: 85 00     STA ram_0000
-C - - - - - 0x0021A1 00:E191: B9 C2 E1  LDA tbl_E1C1_level_editor_control + 1,Y
+C - - - - - 0x0021A1 00:E191: B9 C2 E1  LDA tbl_E1C1_level_editor_control + $01,Y
 C - - - - - 0x0021A4 00:E194: 85 01     STA ram_0001
 C - - - - - 0x0021A6 00:E196: 20 9C E1  JSR sub_E19C
 C - - - - - 0x0021A9 00:E199: 4C 9F E1  JMP loc_E19F
@@ -5351,17 +5351,17 @@ sub_E19C:
 C - - - - - 0x0021AC 00:E19C: 6C 00 00  JMP (ram_0000)
 
 loc_E19F:
-C D 3 - - - 0x0021AF 00:E19F: A5 1B     LDA ram_btn_hold + 1
+C D 3 - - - 0x0021AF 00:E19F: A5 1B     LDA ram_btn_hold + $01
 C - - - - - 0x0021B1 00:E1A1: 29 80     AND #con_btn_A
 C - - - - - 0x0021B3 00:E1A3: F0 09     BEQ bra_E1AE
-- - - - - - 0x0021B5 00:E1A5: A5 1B     LDA ram_btn_hold + 1
+- - - - - - 0x0021B5 00:E1A5: A5 1B     LDA ram_btn_hold + $01
 - - - - - - 0x0021B7 00:E1A7: 29 40     AND #con_btn_B
 - - - - - - 0x0021B9 00:E1A9: F0 03     BEQ bra_E1AE
 - - - - - - 0x0021BB 00:E1AB: 20 02 E2  JSR sub_E202
 bra_E1AE:
 C - - - - - 0x0021BE 00:E1AE: A5 1A     LDA ram_btn_hold
 C - - - - - 0x0021C0 00:E1B0: D0 B7     BNE bra_E169_loop
-C - - - - - 0x0021C2 00:E1B2: A5 1B     LDA ram_btn_hold + 1
+C - - - - - 0x0021C2 00:E1B2: A5 1B     LDA ram_btn_hold + $01
 C - - - - - 0x0021C4 00:E1B4: D0 B3     BNE bra_E169_loop
 C - - - - - 0x0021C6 00:E1B6: A9 00     LDA #$00
 C - - - - - 0x0021C8 00:E1B8: 85 9E     STA ram_009E
@@ -7525,9 +7525,9 @@ C - - - - - 0x003014 00:F004: A9 B9     LDA #< tbl_F5B9
 C - - - - - 0x003016 00:F006: 85 32     STA ram_0032
 C - - - - - 0x003018 00:F008: A9 F5     LDA #> tbl_F5B9
 C - - - - - 0x00301A 00:F00A: 85 33     STA ram_0033
-C - - - - - 0x00301C 00:F00C: A9 BA     LDA #< (tbl_F5B9 + 1)
+C - - - - - 0x00301C 00:F00C: A9 BA     LDA #< (tbl_F5B9 + $01)
 C - - - - - 0x00301E 00:F00E: 85 36     STA ram_0036
-C - - - - - 0x003020 00:F010: A9 F5     LDA #> (tbl_F5B9 + 1)
+C - - - - - 0x003020 00:F010: A9 F5     LDA #> (tbl_F5B9 + $01)
 C - - - - - 0x003022 00:F012: 85 37     STA ram_0037
 sub_F014:
 C - - - - - 0x003024 00:F014: A9 01     LDA #$01
@@ -7559,9 +7559,9 @@ C - - - - - 0x003048 00:F038: 60        RTS
 
 
 sub_F039:
-C - - - - - 0x003049 00:F039: A9 7B     LDA #< (tbl_F37A + 1)
+C - - - - - 0x003049 00:F039: A9 7B     LDA #< (tbl_F37A + $01)
 C - - - - - 0x00304B 00:F03B: 85 3A     STA ram_003A
-C - - - - - 0x00304D 00:F03D: A9 F3     LDA #> (tbl_F37A + 1)
+C - - - - - 0x00304D 00:F03D: A9 F3     LDA #> (tbl_F37A + $01)
 C - - - - - 0x00304F 00:F03F: 85 3B     STA ram_003B
 C - - - - - 0x003051 00:F041: A9 01     LDA #$01
 C - - - - - 0x003053 00:F043: 85 3C     STA ram_003C
@@ -7574,13 +7574,13 @@ C - - - - - 0x003056 00:F046: A9 7A     LDA #< tbl_F37A
 C - - - - - 0x003058 00:F048: 85 32     STA ram_0032
 C - - - - - 0x00305A 00:F04A: A9 F3     LDA #> tbl_F37A
 C - - - - - 0x00305C 00:F04C: 85 33     STA ram_0033
-C - - - - - 0x00305E 00:F04E: A9 7B     LDA #< (tbl_F37A + 1)
+C - - - - - 0x00305E 00:F04E: A9 7B     LDA #< (tbl_F37A + $01)
 C - - - - - 0x003060 00:F050: 85 36     STA ram_0036
-C - - - - - 0x003062 00:F052: A9 F3     LDA #> (tbl_F37A + 1)
+C - - - - - 0x003062 00:F052: A9 F3     LDA #> (tbl_F37A + $01)
 C - - - - - 0x003064 00:F054: 85 37     STA ram_0037
-C - - - - - 0x003066 00:F056: A9 7C     LDA #< (tbl_F37A + 2)
+C - - - - - 0x003066 00:F056: A9 7C     LDA #< (tbl_F37A + $02)
 C - - - - - 0x003068 00:F058: 85 3A     STA ram_003A
-C - - - - - 0x00306A 00:F05A: A9 F3     LDA #> (tbl_F37A + 2)
+C - - - - - 0x00306A 00:F05A: A9 F3     LDA #> (tbl_F37A + $02)
 C - - - - - 0x00306C 00:F05C: 85 3B     STA ram_003B
 sub_F05E:
 C - - - - - 0x00306E 00:F05E: 20 14 F0  JSR sub_F014
@@ -7594,13 +7594,13 @@ C - - - - - 0x003074 00:F064: A9 DA     LDA #< tbl_F3DA
 C - - - - - 0x003076 00:F066: 85 32     STA ram_0032
 C - - - - - 0x003078 00:F068: A9 F3     LDA #> tbl_F3DA
 C - - - - - 0x00307A 00:F06A: 85 33     STA ram_0033
-C - - - - - 0x00307C 00:F06C: A9 DB     LDA #< (tbl_F3DA + 1)
+C - - - - - 0x00307C 00:F06C: A9 DB     LDA #< (tbl_F3DA + $01)
 C - - - - - 0x00307E 00:F06E: 85 36     STA ram_0036
-C - - - - - 0x003080 00:F070: A9 F3     LDA #> (tbl_F3DA + 1)
+C - - - - - 0x003080 00:F070: A9 F3     LDA #> (tbl_F3DA + $01)
 C - - - - - 0x003082 00:F072: 85 37     STA ram_0037
-C - - - - - 0x003084 00:F074: A9 DC     LDA #< (tbl_F3DA + 2)
+C - - - - - 0x003084 00:F074: A9 DC     LDA #< (tbl_F3DA + $02)
 C - - - - - 0x003086 00:F076: 85 3A     STA ram_003A
-C - - - - - 0x003088 00:F078: A9 F3     LDA #> (tbl_F3DA + 2)
+C - - - - - 0x003088 00:F078: A9 F3     LDA #> (tbl_F3DA + $02)
 C - - - - - 0x00308A 00:F07A: 85 3B     STA ram_003B
 C - - - - - 0x00308C 00:F07C: 20 5E F0  JSR sub_F05E
 C - - - - - 0x00308F 00:F07F: 60        RTS
@@ -7757,13 +7757,13 @@ C - - - - - 0x003157 00:F147: A9 3D     LDA #< tbl_F43D
 C - - - - - 0x003159 00:F149: 85 32     STA ram_0032
 C - - - - - 0x00315B 00:F14B: A9 F4     LDA #> tbl_F43D
 C - - - - - 0x00315D 00:F14D: 85 33     STA ram_0033
-C - - - - - 0x00315F 00:F14F: A9 3E     LDA #< (tbl_F43D + 1)
+C - - - - - 0x00315F 00:F14F: A9 3E     LDA #< (tbl_F43D + $01)
 C - - - - - 0x003161 00:F151: 85 36     STA ram_0036
-C - - - - - 0x003163 00:F153: A9 F4     LDA #> (tbl_F43D + 1)
+C - - - - - 0x003163 00:F153: A9 F4     LDA #> (tbl_F43D + $01)
 C - - - - - 0x003165 00:F155: 85 37     STA ram_0037
-C - - - - - 0x003167 00:F157: A9 3F     LDA #< (tbl_F43D + 2)
+C - - - - - 0x003167 00:F157: A9 3F     LDA #< (tbl_F43D + $02)
 C - - - - - 0x003169 00:F159: 85 3A     STA ram_003A
-C - - - - - 0x00316B 00:F15B: A9 F4     LDA #> (tbl_F43D + 2)
+C - - - - - 0x00316B 00:F15B: A9 F4     LDA #> (tbl_F43D + $02)
 C - - - - - 0x00316D 00:F15D: 85 3B     STA ram_003B
 C - - - - - 0x00316F 00:F15F: 20 5E F0  JSR sub_F05E
 C - - - - - 0x003172 00:F162: 60        RTS
@@ -7776,13 +7776,13 @@ C - - - - - 0x003176 00:F166: A9 9D     LDA #< tbl_F49D
 C - - - - - 0x003178 00:F168: 85 32     STA ram_0032
 C - - - - - 0x00317A 00:F16A: A9 F4     LDA #> tbl_F49D
 C - - - - - 0x00317C 00:F16C: 85 33     STA ram_0033
-C - - - - - 0x00317E 00:F16E: A9 9E     LDA #< (tbl_F49D + 1)
+C - - - - - 0x00317E 00:F16E: A9 9E     LDA #< (tbl_F49D + $01)
 C - - - - - 0x003180 00:F170: 85 36     STA ram_0036
-C - - - - - 0x003182 00:F172: A9 F4     LDA #> (tbl_F49D + 1)
+C - - - - - 0x003182 00:F172: A9 F4     LDA #> (tbl_F49D + $01)
 C - - - - - 0x003184 00:F174: 85 37     STA ram_0037
-C - - - - - 0x003186 00:F176: A9 9F     LDA #< (tbl_F49D + 2)
+C - - - - - 0x003186 00:F176: A9 9F     LDA #< (tbl_F49D + $02)
 C - - - - - 0x003188 00:F178: 85 3A     STA ram_003A
-C - - - - - 0x00318A 00:F17A: A9 F4     LDA #> (tbl_F49D + 2)
+C - - - - - 0x00318A 00:F17A: A9 F4     LDA #> (tbl_F49D + $02)
 C - - - - - 0x00318C 00:F17C: 85 3B     STA ram_003B
 C - - - - - 0x00318E 00:F17E: 20 5E F0  JSR sub_F05E
 C - - - - - 0x003191 00:F181: 60        RTS
@@ -7798,13 +7798,13 @@ C - - - - - 0x00319A 00:F18A: A9 D0     LDA #< tbl_F4D0
 C - - - - - 0x00319C 00:F18C: 85 32     STA ram_0032
 C - - - - - 0x00319E 00:F18E: A9 F4     LDA #> tbl_F4D0
 C - - - - - 0x0031A0 00:F190: 85 33     STA ram_0033
-C - - - - - 0x0031A2 00:F192: A9 D1     LDA #< (tbl_F4D0 + 1)
+C - - - - - 0x0031A2 00:F192: A9 D1     LDA #< (tbl_F4D0 + $01)
 C - - - - - 0x0031A4 00:F194: 85 36     STA ram_0036
-C - - - - - 0x0031A6 00:F196: A9 F4     LDA #> (tbl_F4D0 + 1)
+C - - - - - 0x0031A6 00:F196: A9 F4     LDA #> (tbl_F4D0 + $01)
 C - - - - - 0x0031A8 00:F198: 85 37     STA ram_0037
-C - - - - - 0x0031AA 00:F19A: A9 D2     LDA #< (tbl_F4D0 + 2)
+C - - - - - 0x0031AA 00:F19A: A9 D2     LDA #< (tbl_F4D0 + $02)
 C - - - - - 0x0031AC 00:F19C: 85 3A     STA ram_003A
-C - - - - - 0x0031AE 00:F19E: A9 F4     LDA #> (tbl_F4D0 + 2)
+C - - - - - 0x0031AE 00:F19E: A9 F4     LDA #> (tbl_F4D0 + $02)
 C - - - - - 0x0031B0 00:F1A0: 85 3B     STA ram_003B
 C - - - - - 0x0031B2 00:F1A2: 20 5E F0  JSR sub_F05E
 bra_F1A5:
