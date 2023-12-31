@@ -11712,6 +11712,10 @@ vec_FFF0_IRQ:
 
 
 
+.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS"
 - D 3 - - - 0x00400A 00:FFFA: 76 C0     .word vec_C076_NMI
 - D 3 - - - 0x00400C 00:FFFC: 14 C0     .word vec_C014_RESET

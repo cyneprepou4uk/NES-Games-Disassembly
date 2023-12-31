@@ -8235,3 +8235,7 @@ tbl_0x012510:
 
 
 
+.out .sprintf("Free bytes in bank 09: %Xh [%d]", ($A000 - *), ($A000 - *))
+
+
+

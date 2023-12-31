@@ -11758,6 +11758,10 @@ tbl_FFE1:
 
 
 
+.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS"
 - D 3 - - - 0x00400A 00:FFFA: EF C2     .word vec_C2EF_NMI
 - D 3 - - - 0x00400C 00:FFFC: 31 C0     .word vec_C031_RESET

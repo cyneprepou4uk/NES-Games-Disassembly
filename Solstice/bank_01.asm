@@ -4168,6 +4168,10 @@ tbl_F0EB:
 
 
 
+.out .sprintf("Free bytes in bank 01: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS_01"
 - D 3 - - - 0x01000A 03:FFFA: FD 07     .word ram_jmp_xxxx
 - - - - - - 0x01000C 03:FFFC: 00 FE     .word vec_inc_FE00_RESET

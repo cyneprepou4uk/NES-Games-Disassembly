@@ -13069,6 +13069,10 @@ loc_FFF0_infinite_loop:
 
 
 
+.out .sprintf("Free bytes in bank 01: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS_01"
 - D 3 - - - 0x01000A 03:FFFA: C4 E3     .word vec_E3C4_NMI
 - - - - - - 0x01000C 03:FFFC: F0 FF     .word vec_FFF0_RESET

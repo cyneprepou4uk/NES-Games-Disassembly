@@ -10866,6 +10866,12 @@ C - - - - - 0x020004 07:FFF4: 4C 8F FD  JMP vec_FD8F_RESET
 ofs_FFF7:
 C - - - - - 0x020007 07:FFF7: 4C D9 FC  JMP vec_FCD9_IRQ
 
+
+
+.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS"
 - D 3 - - - 0x02000A 07:FFFA: F1 FF     .word ofs_FFF1
 - D 3 - - - 0x02000C 07:FFFC: F4 FF     .word ofs_FFF4

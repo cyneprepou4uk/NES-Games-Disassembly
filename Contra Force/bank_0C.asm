@@ -16066,3 +16066,7 @@ C - - - - - 0x01C005 06:BFF5: 60        RTS
 
 
 
+.out .sprintf("Free bytes in bank 0C: %Xh [%d]", ($C000 - *), ($C000 - *))
+
+
+

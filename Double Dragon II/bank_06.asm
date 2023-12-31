@@ -12065,6 +12065,10 @@ C D 1 - - - 0x01BE52 06:BE42: 4C 8D BD  JMP loc_BD8D
 
 
 
+.out .sprintf("Free bytes in bank 06: %Xh [%d]", ($BFFF - *), ($BFFF - *))
+
+
+
 .segment "BANK_06_ID"
 - D 1 - - - 0x01C00F 06:BFFF: 06        .byte con_prg_bank + $06   ; 
 

@@ -10120,6 +10120,10 @@ tbl_0x020006_debug_byte:
 
 
 
+.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS"
 - D 3 - - - 0x02000A 07:FFFA: 40 FF     .word vec_FF40_NMI
 - D 3 - - - 0x02000C 07:FFFC: 65 FF     .word vec_FF65_RESET

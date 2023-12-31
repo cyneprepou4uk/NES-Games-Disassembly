@@ -5076,6 +5076,10 @@ tbl_9FD1:
 
 
 
+.out .sprintf("Free bytes in bank 00: %Xh [%d]", ($BFFA - *), ($BFFA - *))
+
+
+
 .segment "VECTORS_00"
 - - - - - - 0x00400A 00:BFFA: 84 E4     .word vec_0x01E494_NMI
 - - - - - - 0x00400C 00:BFFC: 50 BF     .word vec_inc_0x003F60_RESET

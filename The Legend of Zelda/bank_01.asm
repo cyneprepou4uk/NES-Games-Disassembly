@@ -2486,6 +2486,10 @@ ofs_A500_bank_s2_asm_export:
 
 
 
+.out .sprintf("Free bytes in bank 01: %Xh [%d]", ($BFFA - *), ($BFFA - *))
+
+
+
 .segment "VECTORS_01"
 - - - - - - 0x00800A 01:BFFA: 84 E4     .word vec_0x01E494_NMI
 - - - - - - 0x00800C 01:BFFC: 50 BF     .word vec_inc_0x003F60_RESET

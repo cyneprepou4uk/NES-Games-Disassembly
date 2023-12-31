@@ -29256,6 +29256,10 @@ tbl_0x01F154_credit_icon:
 
 
 
+.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS_FF"
 - D 3 - - - 0x02000A 07:FFFA: FD 07     .word ram_jmp_xxxx
 - - - - - - 0x02000C 07:FFFC: 00 FE     .word vec_inc_FE00_RESET

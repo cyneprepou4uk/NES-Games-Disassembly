@@ -26735,6 +26735,10 @@ tbl_FD00_mirror:
 
 
 
+.out .sprintf("Free bytes in bank 00: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS_00"
 - D 3 - - - 0x00800A 01:FFFA: FD 07     .word ram_jmp_xxxx
 - D 3 - - - 0x00800C 01:FFFC: 00 FE     .word vec_inc_FE00_RESET

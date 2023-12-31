@@ -8197,3 +8197,7 @@ off_9EF9_59:
 
 
 
+.out .sprintf("Free bytes in bank 02: %Xh [%d]", ($A000 - *), ($A000 - *))
+
+
+

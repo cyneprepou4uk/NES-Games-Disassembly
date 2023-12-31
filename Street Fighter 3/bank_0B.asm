@@ -12647,3 +12647,7 @@ _music_B1CE_63:
 - - - - - - 0x01A00B 06:BFFB: 00        .byte $00, $00, $00, $00, $00   ; 
 
 
+.out .sprintf("Free bytes in bank 0B: %Xh [%d]", ($C000 - *), ($C000 - *))
+
+
+

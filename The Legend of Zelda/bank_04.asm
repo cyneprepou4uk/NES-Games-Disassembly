@@ -9210,6 +9210,10 @@ C - - - - - 0x01347E 04:B46E: 60        RTS
 
 
 
+.out .sprintf("Free bytes in bank 04: %Xh [%d]", ($BFFA - *), ($BFFA - *))
+
+
+
 .segment "VECTORS_04"
 - - - - - - 0x01400A 04:BFFA: 84 E4     .word vec_0x01E494_NMI
 - - - - - - 0x01400C 04:BFFC: 50 BF     .word vec_inc_0x003F60_RESET

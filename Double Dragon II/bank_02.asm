@@ -11401,6 +11401,10 @@ C - - - - - 0x00BFE2 02:BFD2: 60        RTS
 
 
 
+.out .sprintf("Free bytes in bank 02: %Xh [%d]", ($BFFF - *), ($BFFF - *))
+
+
+
 .segment "BANK_02_ID"
 - D 1 - - - 0x00C00F 02:BFFF: 02        .byte con_prg_bank + $02   ; 
 

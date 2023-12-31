@@ -7927,6 +7927,10 @@ C - - - - - 0x0178AF 05:B89F: 60        RTS
 
 
 
+.out .sprintf("Free bytes in bank 05: %Xh [%d]", ($BFFA - *), ($BFFA - *))
+
+
+
 .segment "VECTORS_05"
 - - - - - - 0x01800A 05:BFFA: 84 E4     .word vec_0x01E494_NMI
 - - - - - - 0x01800C 05:BFFC: 50 BF     .word vec_inc_0x003F60_RESET

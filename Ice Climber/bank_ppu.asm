@@ -1,5 +1,6 @@
 .include "bank_ram.inc"
 .include "bank_val.inc"
+.org $0000  ; for listing file
 
 
 
@@ -389,6 +390,10 @@ _off000_0x005214_05_01:
 ; bzk garbage, however it is currently needed as a placeholder before CHR_ROM_2
 - D 0 - - - 0x00530E 01:12FE: FF        .byte $FF   ; 
 - D 0 - - - 0x00530F 01:12FF: FF        .byte $FF   ; 
+
+
+
+.out .sprintf("Free bytes in bank ppu bg: %Xh [%d]", ($1300 - *), ($1300 - *))
 
 
 

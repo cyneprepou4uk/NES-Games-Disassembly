@@ -10524,6 +10524,10 @@ C - - - - - 0x01BEF7 06:BEE7: 60        RTS
 
 
 
+.out .sprintf("Free bytes in bank 06: %Xh [%d]", ($BFFF - *), ($BFFF - *))
+
+
+
 .segment "BANK_06_ID"
 - D 1 - - - 0x01C00F 06:BFFF: 06        .byte $06   ; 
 

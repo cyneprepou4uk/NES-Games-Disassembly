@@ -3327,6 +3327,10 @@ _off031_0x03DD8C_53:
 
 
 
+.out .sprintf("Free bytes in bank ppu 1: %Xh [%d]", ($2000 - *), ($2000 - *))
+
+
+
 
 
 
@@ -6683,6 +6687,10 @@ _off031_0x03EC3A_3C:
 
 - - - - - - 0x03F00E 0F:1FFE: 01        .byte con_00 + $01   ; 
 - - - - - - 0x03F00F 0F:1FFF: 03        .byte $03   ; 
+
+
+
+.out .sprintf("Free bytes in bank ppu 2: %Xh [%d]", ($2000 - *), ($2000 - *))
 
 
 
@@ -10113,6 +10121,10 @@ _off031_0x03FECC_45:
 
 - - - - - - 0x040007 0F:1FF7: 5A        .byte con_40 + $1A   ; 
 - - - - - - 0x040008 0F:1FF8: 61        .byte $61, $62, $63, $64, $65, $66, $67, $68   ; 
+
+
+
+.out .sprintf("Free bytes in bank ppu 3: %Xh [%d]", ($2000 - *), ($2000 - *))
 
 
 

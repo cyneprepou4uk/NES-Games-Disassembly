@@ -11422,6 +11422,10 @@ C - - - - - 0x004007 00:FFF7: 4C E0 F8  JMP loc_F8E0
 
 
 
+.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS"
 - D 3 - - - 0x00400A 00:FFFA: 7D C0     .word vec_C07D_NMI
 - D 3 - - - 0x00400C 00:FFFC: 00 C0     .word vec_C000_RESET

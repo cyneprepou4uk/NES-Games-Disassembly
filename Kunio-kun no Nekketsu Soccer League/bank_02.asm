@@ -14589,6 +14589,10 @@ off_BF90_06:
 
 
 
+.out .sprintf("Free bytes in bank 02: %Xh [%d]", ($BFFF - *), ($BFFF - *))
+
+
+
 .segment "BANK_02_ID"
 - D 1 - - - 0x00C00F 02:BFFF: 02        .byte $02   ; 
 

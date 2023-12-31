@@ -8383,6 +8383,10 @@ tbl_F07A_stage_data:
 
 
 
+.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS"
 - D 3 - - - 0x00400A 00:FFFA: 00 D4     .word vec_D400_NMI
 - D 3 - - - 0x00400C 00:FFFC: 70 C0     .word vec_C070_RESET

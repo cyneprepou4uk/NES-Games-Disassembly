@@ -10842,6 +10842,10 @@ tbl_FFDE_prg_bank:
 
 
 
+.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS"
 - D 3 - - - 0x02000A 07:FFFA: 00 C0     .word vec_C000_NMI
 - D 3 - - - 0x02000C 07:FFFC: C0 FE     .word vec_FEC0_RESET

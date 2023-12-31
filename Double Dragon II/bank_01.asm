@@ -7949,6 +7949,10 @@ _off028_0x007FCE_2A:
 
 
 
+.out .sprintf("Free bytes in bank 01: %Xh [%d]", ($BFFF - *), ($BFFF - *))
+
+
+
 .segment "BANK_01_ID"
 - D 1 - - - 0x00800F 01:BFFF: 01        .byte con_prg_bank + $01   ; 
 

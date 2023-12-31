@@ -16066,6 +16066,10 @@ off_CF_BF50:
 
 
 
+.out .sprintf("Free bytes in bank 05: %Xh [%d]", ($BFFF - *), ($BFFF - *))
+
+
+
 .segment "BANK_05_ID"
 - D 1 - - - 0x01800F 05:BFFF: 05        .byte con_prg_bank + $05   ; 
 

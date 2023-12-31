@@ -7145,3 +7145,7 @@ off_BDA1_51:
 
 
 
+.out .sprintf("Free bytes in bank 0D: %Xh [%d]", ($C000 - *), ($C000 - *))
+
+
+

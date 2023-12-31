@@ -5960,3 +5960,7 @@ tbl_BFF3:
 
 
 
+.out .sprintf("Free bytes in bank 07: %Xh [%d]", ($C000 - *), ($C000 - *))
+
+
+

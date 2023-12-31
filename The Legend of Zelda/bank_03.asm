@@ -600,6 +600,10 @@ _off005_A7DB_09:
 
 
 
+.out .sprintf("Free bytes in bank 03: %Xh [%d]", ($BFFA - *), ($BFFA - *))
+
+
+
 .segment "VECTORS_03"
 - - - - - - 0x01000A 03:BFFA: 84 E4     .word vec_0x01E494_NMI
 - - - - - - 0x01000C 03:BFFC: 50 BF     .word vec_inc_0x003F60_RESET

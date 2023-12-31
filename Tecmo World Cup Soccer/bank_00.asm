@@ -15790,3 +15790,7 @@ off_E8_BB45:
 
 
 
+.out .sprintf("Free bytes in bank 00: %Xh [%d]", ($C000 - *), ($C000 - *))
+
+
+

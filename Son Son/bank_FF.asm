@@ -23040,6 +23040,10 @@ C - - - - - 0x008004 01:FFF4: 60        RTS
 
 
 
+.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS"
 - D 3 - - - 0x00800A 01:FFFA: 8A 80     .word vec_808A_NMI
 - D 3 - - - 0x00800C 01:FFFC: 00 80     .word vec_8000_RESET

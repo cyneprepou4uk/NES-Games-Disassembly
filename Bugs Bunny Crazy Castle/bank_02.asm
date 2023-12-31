@@ -9350,3 +9350,7 @@ tbl_0x00B390_stage_objects:
 
 
 
+.out .sprintf("Free bytes in bank 02: %Xh [%d]", ($C000 - *), ($C000 - *))
+
+
+

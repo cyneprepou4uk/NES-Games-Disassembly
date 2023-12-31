@@ -17183,6 +17183,10 @@ sub_84_FDF8:
 
 
 
+.out .sprintf("Free bytes in bank 02: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS_02"
 - D 3 - - - 0x01800A 05:FFFA: FD 07     .word ram_jmp_xxxx
 - - - - - - 0x01800C 05:FFFC: 00 FE     .word vec_inc_FE00_RESET

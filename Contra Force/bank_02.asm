@@ -6483,3 +6483,7 @@ tbl_BFF6_index:
 
 
 
+.out .sprintf("Free bytes in bank 02: %Xh [%d]", ($C000 - *), ($C000 - *))
+
+
+

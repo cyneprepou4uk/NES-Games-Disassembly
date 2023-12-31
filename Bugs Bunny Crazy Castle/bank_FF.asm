@@ -10011,6 +10011,10 @@ C - - - - - 0x00FFCE 03:FFBE: 60        RTS
 
 
 
+.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+
+
+
 .segment "VECTORS"
 - D 3 - - - 0x01000A 03:FFFA: 95 EF     .word vec_EF95_NMI
 - D 3 - - - 0x01000C 03:FFFC: 00 EC     .word vec_EC00_RESET

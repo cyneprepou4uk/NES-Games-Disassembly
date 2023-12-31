@@ -110,3 +110,7 @@
 
 
 
+.out .sprintf("Free bytes in bank 00: %Xh [%d]", ($C000 - *), ($C000 - *))
+
+
+

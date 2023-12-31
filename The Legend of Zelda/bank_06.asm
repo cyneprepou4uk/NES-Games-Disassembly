@@ -8522,6 +8522,10 @@ _off000_A869_10_title_screen:
 
 
 
+.out .sprintf("Free bytes in bank 06: %Xh [%d]", ($BFFA - *), ($BFFA - *))
+
+
+
 .segment "VECTORS_06"
 - - - - - - 0x01C00A 06:BFFA: 84 E4     .word vec_0x01E494_NMI
 - - - - - - 0x01C00C 06:BFFC: 50 BF     .word vec_inc_0x003F60_RESET

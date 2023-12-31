@@ -10509,3 +10509,7 @@ _off012_0x017E33_10_credits:
 
 
 
+.out .sprintf("Free bytes in bank 0A: %Xh [%d]", ($C000 - *), ($C000 - *))
+
+
+

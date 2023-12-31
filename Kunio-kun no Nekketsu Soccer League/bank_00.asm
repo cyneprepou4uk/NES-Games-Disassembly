@@ -15521,6 +15521,10 @@ C - - - - - 0x00400A 00:BFFA: 4C 50 C0  JMP loc_0x01C060
 
 
 
+.out .sprintf("Free bytes in bank 00: %Xh [%d]", ($BFFF - *), ($BFFF - *))
+
+
+
 .segment "BANK_00_ID"
 - D 1 - - - 0x00400F 00:BFFF: 00        .byte $00   ; 
 
