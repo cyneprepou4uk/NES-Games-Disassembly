@@ -9698,10 +9698,9 @@ C - - - - - 0x003ABA 00:BAAA: A9 00     LDA #$00
 C - - - - - 0x003ABC 00:BAAC: 8D A5 07  STA ram_07A5
 C - - - - - 0x003ABF 00:BAAF: 4C E2 BB  JMP loc_BBE2
 
-; gameplay demo
+;gameplay demos
 
-; starting room ID's
-tbl_BAB2:
+tbl_BAB2:	;starting room ID's
 - D 1 - - - 0x003AC2 00:BAB2: 0A        .byte con_room_id + $0A   ; 01, 2nd
 - D 1 - - - 0x003AC3 00:BAB3: 11        .byte con_room_id + $11   ; 02, 3rd
 - D 1 - - - 0x003AC4 00:BAB4: 70        .byte con_room_id + $70   ; 03, 4th
@@ -9710,14 +9709,15 @@ tbl_BAB2:
 - D 1 - - - 0x003AC7 00:BAB7: C5        .byte con_room_id + $C5   ; 06, 1st demo
 - - - - - - 0x003AC8 00:BAB8: F7        .byte con_room_id + $F7   ; 07, unused!
 
+;which exit to appear in
 tbl_BAB9:
-- D 1 - - - 0x003AC9 00:BAB9: 08        .byte $08   ; 01
-- D 1 - - - 0x003ACA 00:BABA: 01        .byte $01   ; 02
-- D 1 - - - 0x003ACB 00:BABB: 08        .byte $08   ; 03
-- D 1 - - - 0x003ACC 00:BABC: 01        .byte $01   ; 04
-- D 1 - - - 0x003ACD 00:BABD: 08        .byte $08   ; 05
-- D 1 - - - 0x003ACE 00:BABE: 02        .byte $02   ; 06
-- - - - - - 0x003ACF 00:BABF: 01        .byte $01   ; 07
+- D 1 - - - 0x003AC9 00:BAB9: 08        .byte $08   ; 01,	top-left
+- D 1 - - - 0x003ACA 00:BABA: 01        .byte $01   ; 02,	bottom-left
+- D 1 - - - 0x003ACB 00:BABB: 08        .byte $08   ; 03,	top-left
+- D 1 - - - 0x003ACC 00:BABC: 01        .byte $01   ; 04,	bottom-left
+- D 1 - - - 0x003ACD 00:BABD: 08        .byte $08   ; 05,	top-left
+- D 1 - - - 0x003ACE 00:BABE: 02        .byte $02   ; 06,	bottom-right
+- - - - - - 0x003ACF 00:BABF: 01        .byte $01   ; 07,	bottom-left (unused!)
 
 ; pointers
 tbl_BAC0_lo:
@@ -9740,238 +9740,235 @@ tbl_BAC7_hi:
 
 
 ; input data?
-_off001_BACE_01:
-_off001_BACE_07:
-- D 1 - I - 0x003ADE 00:BACE: FE        .byte $FE   ; 
-- D 1 - I - 0x003ADF 00:BACF: 0A        .byte $0A   ; 
-- D 1 - I - 0x003AE0 00:BAD0: FE        .byte $FE   ; 
-- D 1 - I - 0x003AE1 00:BAD1: 0A        .byte $0A   ; 
-- D 1 - I - 0x003AE2 00:BAD2: 01        .byte $01   ; 
-- D 1 - I - 0x003AE3 00:BAD3: 2C        .byte $2C   ; 
-- D 1 - I - 0x003AE4 00:BAD4: 04        .byte $04   ; 
-- D 1 - I - 0x003AE5 00:BAD5: 3C        .byte $3C   ; 
-- D 1 - I - 0x003AE6 00:BAD6: 80        .byte $80   ; 
-- D 1 - I - 0x003AE7 00:BAD7: 3C        .byte $3C   ; 
-- D 1 - I - 0x003AE8 00:BAD8: 04        .byte $04   ; 
-- D 1 - I - 0x003AE9 00:BAD9: 4C        .byte $4C   ; 
-- D 1 - I - 0x003AEA 00:BADA: FE        .byte $FE   ; 
-- D 1 - I - 0x003AEB 00:BADB: 0A        .byte $0A   ; 
-- D 1 - I - 0x003AEC 00:BADC: 40        .byte $40   ; 
-- D 1 - I - 0x003AED 00:BADD: 4C        .byte $4C   ; 
-- D 1 - I - 0x003AEE 00:BADE: 08        .byte $08   ; 
-- D 1 - I - 0x003AEF 00:BADF: 3C        .byte $3C   ; 
-- D 1 - I - 0x003AF0 00:BAE0: 01        .byte $01   ; 
-- D 1 - I - 0x003AF1 00:BAE1: 4C        .byte $4C   ; 
-- D 1 - I - 0x003AF2 00:BAE2: 08        .byte $08   ; 
-- D 1 - I - 0x003AF3 00:BAE3: 24        .byte $24   ; 
-- D 1 - I - 0x003AF4 00:BAE4: 80        .byte $80   ; 
-- D 1 - I - 0x003AF5 00:BAE5: 00        .byte $00   ; 
-- D 1 - I - 0x003AF6 00:BAE6: 08        .byte $08   ; 
-- D 1 - I - 0x003AF7 00:BAE7: 1C        .byte $1C   ; 
-- D 1 - I - 0x003AF8 00:BAE8: FE        .byte $FE   ; 
-- D 1 - I - 0x003AF9 00:BAE9: 0A        .byte $0A   ; 
-- D 1 - I - 0x003AFA 00:BAEA: 40        .byte $40   ; 
-- D 1 - I - 0x003AFB 00:BAEB: 00        .byte $00   ; 
-- D 1 - I - 0x003AFC 00:BAEC: FE        .byte $FE   ; 
-- D 1 - I - 0x003AFD 00:BAED: 0A        .byte $0A   ; 
-- D 1 - I - 0x003AFE 00:BAEE: 80        .byte $80   ; 
-- D 1 - I - 0x003AFF 00:BAEF: 00        .byte $00   ; 
-- D 1 - I - 0x003B00 00:BAF0: 08        .byte $08   ; 
-- D 1 - I - 0x003B01 00:BAF1: 0C        .byte $0C   ; 
-- D 1 - I - 0x003B02 00:BAF2: FE        .byte $FE   ; 
-- D 1 - I - 0x003B03 00:BAF3: 14        .byte $14   ; 
-- D 1 - I - 0x003B04 00:BAF4: FF        .byte $FF   ; end token
+_off001_BACE_01:	;room #0A main castle early room
+_off001_BACE_07:	;unused, room #FE
+- D 1 - I - 0x003ADE 00:BACE: FE        .byte $FE   ; skip
+- D 1 - I - 0x003ADF 00:BACF: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003AE0 00:BAD0: FE        .byte $FE   ; skip
+- D 1 - I - 0x003AE1 00:BAD1: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003AE2 00:BAD2: 01        .byte $01   ; button, right, to bottom right
+- D 1 - I - 0x003AE3 00:BAD3: 2C        .byte $2C   ; how many blocks to travel
+- D 1 - I - 0x003AE4 00:BAD4: 04        .byte $04   ; button, down, to bottom left
+- D 1 - I - 0x003AE5 00:BAD5: 3C        .byte $3C   ; how many blocks to travel
+- D 1 - I - 0x003AE6 00:BAD6: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003AE7 00:BAD7: 3C        .byte $3C   ; N/A because button
+- D 1 - I - 0x003AE8 00:BAD8: 04        .byte $04   ; button, down, to bottom left
+- D 1 - I - 0x003AE9 00:BAD9: 4C        .byte $4C   ; how many blocks to travel
+- D 1 - I - 0x003AEA 00:BADA: FE        .byte $FE   ; skip
+- D 1 - I - 0x003AEB 00:BADB: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003AEC 00:BADC: 40        .byte $40   ; button, B, interact
+- D 1 - I - 0x003AED 00:BADD: 4C        .byte $4C   ; N/A because button
+- D 1 - I - 0x003AEE 00:BADE: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003AEF 00:BADF: 3C        .byte $3C   ; how many blocks to travel
+- D 1 - I - 0x003AF0 00:BAE0: 01        .byte $01   ; button, right, to bottom right
+- D 1 - I - 0x003AF1 00:BAE1: 4C        .byte $4C   ; how many blocks to travel
+- D 1 - I - 0x003AF2 00:BAE2: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003AF3 00:BAE3: 24        .byte $24   ; how many blocks to travel
+- D 1 - I - 0x003AF4 00:BAE4: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003AF5 00:BAE5: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003AF6 00:BAE6: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003AF7 00:BAE7: 1C        .byte $1C   ; how many blocks to travel
+- D 1 - I - 0x003AF8 00:BAE8: FE        .byte $FE   ; skip
+- D 1 - I - 0x003AF9 00:BAE9: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003AFA 00:BAEA: 40        .byte $40   ; button, B, interact
+- D 1 - I - 0x003AFB 00:BAEB: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003AFC 00:BAEC: FE        .byte $FE   ; skip
+- D 1 - I - 0x003AFD 00:BAED: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003AFE 00:BAEE: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003AFF 00:BAEF: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B00 00:BAF0: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003B01 00:BAF1: 0C        .byte $0C   ; how many blocks to travel
+- D 1 - I - 0x003B02 00:BAF2: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B03 00:BAF3: 14        .byte $14   ; wait
+- D 1 - I - 0x003B04 00:BAF4: FF        .byte $FF   ; end
 
 
-; input data?
-_off001_BAF5_02:
-- D 1 - I - 0x003B05 00:BAF5: FE        .byte $FE   ; 
-- D 1 - I - 0x003B06 00:BAF6: 0A        .byte $0A   ; 
-- D 1 - I - 0x003B07 00:BAF7: FE        .byte $FE   ; 
-- D 1 - I - 0x003B08 00:BAF8: 0A        .byte $0A   ; 
-- D 1 - I - 0x003B09 00:BAF9: 08        .byte $08   ; 
-- D 1 - I - 0x003B0A 00:BAFA: 5C        .byte $5C   ; 
-- D 1 - I - 0x003B0B 00:BAFB: FE        .byte $FE   ; 
-- D 1 - I - 0x003B0C 00:BAFC: 0A        .byte $0A   ; 
-- D 1 - I - 0x003B0D 00:BAFD: 80        .byte $80   ; 
-- D 1 - I - 0x003B0E 00:BAFE: 00        .byte $00   ; 
-- D 1 - I - 0x003B0F 00:BAFF: 01        .byte $01   ; 
-- D 1 - I - 0x003B10 00:BB00: 5C        .byte $5C   ; 
-- D 1 - I - 0x003B11 00:BB01: FE        .byte $FE   ; 
-- D 1 - I - 0x003B12 00:BB02: 0C        .byte $0C   ; 
-- D 1 - I - 0x003B13 00:BB03: 40        .byte $40   ; 
-- D 1 - I - 0x003B14 00:BB04: 00        .byte $00   ; 
-- D 1 - I - 0x003B15 00:BB05: 08        .byte $08   ; 
-- D 1 - I - 0x003B16 00:BB06: 3C        .byte $3C   ; 
-- D 1 - I - 0x003B17 00:BB07: 80        .byte $80   ; 
-- D 1 - I - 0x003B18 00:BB08: 00        .byte $00   ; 
-- D 1 - I - 0x003B19 00:BB09: 08        .byte $08   ; 
-- D 1 - I - 0x003B1A 00:BB0A: 1C        .byte $1C   ; 
-- D 1 - I - 0x003B1B 00:BB0B: 80        .byte $80   ; 
-- D 1 - I - 0x003B1C 00:BB0C: 00        .byte $00   ; 
-- D 1 - I - 0x003B1D 00:BB0D: 08        .byte $08   ; 
-- D 1 - I - 0x003B1E 00:BB0E: 10        .byte $10   ; 
-- D 1 - I - 0x003B1F 00:BB0F: FE        .byte $FE   ; 
-- D 1 - I - 0x003B20 00:BB10: 0A        .byte $0A   ; 
-- D 1 - I - 0x003B21 00:BB11: 80        .byte $80   ; 
-- D 1 - I - 0x003B22 00:BB12: 00        .byte $00   ; 
-- D 1 - I - 0x003B23 00:BB13: 02        .byte $02   ; 
-- D 1 - I - 0x003B24 00:BB14: 4E        .byte $4E   ; 
-- D 1 - I - 0x003B25 00:BB15: FE        .byte $FE   ; 
-- D 1 - I - 0x003B26 00:BB16: 0A        .byte $0A   ; 
-- D 1 - I - 0x003B27 00:BB17: 04        .byte $04   ; 
-- D 1 - I - 0x003B28 00:BB18: 14        .byte $14   ; 
-- D 1 - I - 0x003B29 00:BB19: 40        .byte $40   ; 
-- D 1 - I - 0x003B2A 00:BB1A: 00        .byte $00   ; 
-- D 1 - I - 0x003B2B 00:BB1B: 08        .byte $08   ; 
-- D 1 - I - 0x003B2C 00:BB1C: 0A        .byte $0A   ; 
-- D 1 - I - 0x003B2D 00:BB1D: FE        .byte $FE   ; 
-- D 1 - I - 0x003B2E 00:BB1E: 5C        .byte $5C   ; 
-- D 1 - I - 0x003B2F 00:BB1F: 04        .byte $04   ; 
-- D 1 - I - 0x003B30 00:BB20: 10        .byte $10   ; 
-- D 1 - I - 0x003B31 00:BB21: FE        .byte $FE   ; 
-- D 1 - I - 0x003B32 00:BB22: BE        .byte $BE   ; 
-- D 1 - I - 0x003B33 00:BB23: 80        .byte $80   ; 
-- D 1 - I - 0x003B34 00:BB24: 00        .byte $00   ; 
-- D 1 - I - 0x003B35 00:BB25: 04        .byte $04   ; 
-- D 1 - I - 0x003B36 00:BB26: 18        .byte $18   ; 
-- D 1 - I - 0x003B37 00:BB27: FE        .byte $FE   ; 
-- D 1 - I - 0x003B38 00:BB28: 5A        .byte $5A   ; 
-- D 1 - I - 0x003B39 00:BB29: FF        .byte $FF   ; end token
+_off001_BAF5_02:	;room #11 main castle boots room
+- D 1 - I - 0x003B05 00:BAF5: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B06 00:BAF6: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003B07 00:BAF7: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B08 00:BAF8: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003B09 00:BAF9: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003B0A 00:BAFA: 5C        .byte $5C   ; how many blocks to travel
+- D 1 - I - 0x003B0B 00:BAFB: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B0C 00:BAFC: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003B0D 00:BAFD: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B0E 00:BAFE: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B0F 00:BAFF: 01        .byte $01   ; button, right, to bottom right
+- D 1 - I - 0x003B10 00:BB00: 5C        .byte $5C   ; wait
+- D 1 - I - 0x003B11 00:BB01: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B12 00:BB02: 0C        .byte $0C   ; wait
+- D 1 - I - 0x003B13 00:BB03: 40        .byte $40   ; button, B, interact
+- D 1 - I - 0x003B14 00:BB04: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B15 00:BB05: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003B16 00:BB06: 3C        .byte $3C   ; how many blocks to travel
+- D 1 - I - 0x003B17 00:BB07: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B18 00:BB08: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B19 00:BB09: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003B1A 00:BB0A: 1C        .byte $1C   ; how many blocks to travel
+- D 1 - I - 0x003B1B 00:BB0B: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B1C 00:BB0C: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B1D 00:BB0D: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003B1E 00:BB0E: 10        .byte $10   ; how many blocks to travel
+- D 1 - I - 0x003B1F 00:BB0F: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B20 00:BB10: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003B21 00:BB11: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B22 00:BB12: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B23 00:BB13: 02        .byte $02   ; button, left, to top left
+- D 1 - I - 0x003B24 00:BB14: 4E        .byte $4E   ; how many blocks to travel
+- D 1 - I - 0x003B25 00:BB15: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B26 00:BB16: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003B27 00:BB17: 04        .byte $04   ; button, down, to bottom left
+- D 1 - I - 0x003B28 00:BB18: 14        .byte $14   ; how many blocks to travel
+- D 1 - I - 0x003B29 00:BB19: 40        .byte $40   ; button, B, interact
+- D 1 - I - 0x003B2A 00:BB1A: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B2B 00:BB1B: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003B2C 00:BB1C: 0A        .byte $0A   ; how many blocks to travel
+- D 1 - I - 0x003B2D 00:BB1D: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B2E 00:BB1E: 5C        .byte $5C   ; wait
+- D 1 - I - 0x003B2F 00:BB1F: 04        .byte $04   ; button, down, to bottom left
+- D 1 - I - 0x003B30 00:BB20: 10        .byte $10   ; how many blocks to travel
+- D 1 - I - 0x003B31 00:BB21: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B32 00:BB22: BE        .byte $BE   ; wait
+- D 1 - I - 0x003B33 00:BB23: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B34 00:BB24: 00        .byte $00   ; wait
+- D 1 - I - 0x003B35 00:BB25: 04        .byte $04   ; button, down, to bottom left
+- D 1 - I - 0x003B36 00:BB26: 18        .byte $18   ; how many blocks to travel
+- D 1 - I - 0x003B37 00:BB27: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B38 00:BB28: 5A        .byte $5A   ; wait
+- D 1 - I - 0x003B39 00:BB29: FF        .byte $FF   ; end
 
 
-; input data?
-_off001_BB2A_03:
-- D 1 - I - 0x003B3A 00:BB2A: FE        .byte $FE   ; 
-- D 1 - I - 0x003B3B 00:BB2B: 01        .byte $01   ; 
-- D 1 - I - 0x003B3C 00:BB2C: FE        .byte $FE   ; 
-- D 1 - I - 0x003B3D 00:BB2D: 0A        .byte $0A   ; 
-- D 1 - I - 0x003B3E 00:BB2E: 01        .byte $01   ; 
-- D 1 - I - 0x003B3F 00:BB2F: 5C        .byte $5C   ; 
-- D 1 - I - 0x003B40 00:BB30: 01        .byte $01   ; 
-- D 1 - I - 0x003B41 00:BB31: 5C        .byte $5C   ; 
-- D 1 - I - 0x003B42 00:BB32: 01        .byte $01   ; 
-- D 1 - I - 0x003B43 00:BB33: 1C        .byte $1C   ; 
-- D 1 - I - 0x003B44 00:BB34: 04        .byte $04   ; 
-- D 1 - I - 0x003B45 00:BB35: 5C        .byte $5C   ; 
-- D 1 - I - 0x003B46 00:BB36: 04        .byte $04   ; 
-- D 1 - I - 0x003B47 00:BB37: 1C        .byte $1C   ; 
-- D 1 - I - 0x003B48 00:BB38: 02        .byte $02   ; 
-- D 1 - I - 0x003B49 00:BB39: 00        .byte $00   ; 
-- D 1 - I - 0x003B4A 00:BB3A: 02        .byte $02   ; 
-- D 1 - I - 0x003B4B 00:BB3B: 0C        .byte $0C   ; 
-- D 1 - I - 0x003B4C 00:BB3C: 80        .byte $80   ; 
-- D 1 - I - 0x003B4D 00:BB3D: 00        .byte $00   ; 
-- D 1 - I - 0x003B4E 00:BB3E: 08        .byte $08   ; 
-- D 1 - I - 0x003B4F 00:BB3F: 0C        .byte $0C   ; 
-- D 1 - I - 0x003B50 00:BB40: FE        .byte $FE   ; 
-- D 1 - I - 0x003B51 00:BB41: 14        .byte $14   ; 
-- D 1 - I - 0x003B52 00:BB42: 40        .byte $40   ; 
-- D 1 - I - 0x003B53 00:BB43: 00        .byte $00   ; 
-- D 1 - I - 0x003B54 00:BB44: FE        .byte $FE   ; 
-- D 1 - I - 0x003B55 00:BB45: 14        .byte $14   ; 
-- D 1 - I - 0x003B56 00:BB46: FE        .byte $FE   ; 
-- D 1 - I - 0x003B57 00:BB47: 32        .byte $32   ; 
-- D 1 - I - 0x003B58 00:BB48: FF        .byte $FF   ; end token
+
+_off001_BB2A_03:	;room #70 caves of doomed souls
+- D 1 - I - 0x003B3A 00:BB2A: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B3B 00:BB2B: 01        .byte $01   ; wait
+- D 1 - I - 0x003B3C 00:BB2C: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B3D 00:BB2D: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003B3E 00:BB2E: 01        .byte $01   ; button, right, to bottom right
+- D 1 - I - 0x003B3F 00:BB2F: 5C        .byte $5C   ; how many blocks to travel
+- D 1 - I - 0x003B40 00:BB30: 01        .byte $01   ; button, right, to bottom right
+- D 1 - I - 0x003B41 00:BB31: 5C        .byte $5C   ; how many block to travel
+- D 1 - I - 0x003B42 00:BB32: 01        .byte $01   ; button, right, to bottom right
+- D 1 - I - 0x003B43 00:BB33: 1C        .byte $1C   ; how many blocks to travel
+- D 1 - I - 0x003B44 00:BB34: 04        .byte $04   ; button, down, to bottom left
+- D 1 - I - 0x003B45 00:BB35: 5C        .byte $5C   ; how many blocks to travel
+- D 1 - I - 0x003B46 00:BB36: 04        .byte $04   ; button, down, to bottom left
+- D 1 - I - 0x003B47 00:BB37: 1C        .byte $1C   ; how many blocks to travel
+- D 1 - I - 0x003B48 00:BB38: 02        .byte $02   ; button, left, to top left
+- D 1 - I - 0x003B49 00:BB39: 00        .byte $00   ; how many blocks to travel
+- D 1 - I - 0x003B4A 00:BB3A: 02        .byte $02   ; button, left, to top left
+- D 1 - I - 0x003B4B 00:BB3B: 0C        .byte $0C   ; how many blocks to travel
+- D 1 - I - 0x003B4C 00:BB3C: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B4D 00:BB3D: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B4E 00:BB3E: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003B4F 00:BB3F: 0C        .byte $0C   ; how many blocks to travel
+- D 1 - I - 0x003B50 00:BB40: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B51 00:BB41: 14        .byte $14   ; wait
+- D 1 - I - 0x003B52 00:BB42: 40        .byte $40   ; button, B, interact
+- D 1 - I - 0x003B53 00:BB43: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B54 00:BB44: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B55 00:BB45: 14        .byte $14   ; wait
+- D 1 - I - 0x003B56 00:BB46: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B57 00:BB47: 32        .byte $32   ; wait
+- D 1 - I - 0x003B58 00:BB48: FF        .byte $FF   ; end
 
 
-; input data?
-_off001_BB49_04:
-- D 1 - I - 0x003B59 00:BB49: FE        .byte $FE   ; 
-- D 1 - I - 0x003B5A 00:BB4A: 01        .byte $01   ; 
-- D 1 - I - 0x003B5B 00:BB4B: FE        .byte $FE   ; 
-- D 1 - I - 0x003B5C 00:BB4C: 5A        .byte $5A   ; 
-- D 1 - I - 0x003B5D 00:BB4D: 80        .byte $80   ; 
-- D 1 - I - 0x003B5E 00:BB4E: 00        .byte $00   ; 
-- D 1 - I - 0x003B5F 00:BB4F: 08        .byte $08   ; 
-- D 1 - I - 0x003B60 00:BB50: 0C        .byte $0C   ; 
-- D 1 - I - 0x003B61 00:BB51: FE        .byte $FE   ; 
-- D 1 - I - 0x003B62 00:BB52: 01        .byte $01   ; 
-- D 1 - I - 0x003B63 00:BB53: 80        .byte $80   ; 
-- D 1 - I - 0x003B64 00:BB54: 00        .byte $00   ; 
-- D 1 - I - 0x003B65 00:BB55: 02        .byte $02   ; 
-- D 1 - I - 0x003B66 00:BB56: 2C        .byte $2C   ; 
-- D 1 - I - 0x003B67 00:BB57: FE        .byte $FE   ; 
-- D 1 - I - 0x003B68 00:BB58: 03        .byte $03   ; 
-- D 1 - I - 0x003B69 00:BB59: 80        .byte $80   ; 
-- D 1 - I - 0x003B6A 00:BB5A: 00        .byte $00   ; 
-- D 1 - I - 0x003B6B 00:BB5B: 02        .byte $02   ; 
-- D 1 - I - 0x003B6C 00:BB5C: 1C        .byte $1C   ; 
-- D 1 - I - 0x003B6D 00:BB5D: FE        .byte $FE   ; 
-- D 1 - I - 0x003B6E 00:BB5E: 64        .byte $64   ; 
-- D 1 - I - 0x003B6F 00:BB5F: 80        .byte $80   ; 
-- D 1 - I - 0x003B70 00:BB60: 00        .byte $00   ; 
-- D 1 - I - 0x003B71 00:BB61: 02        .byte $02   ; 
-- D 1 - I - 0x003B72 00:BB62: 0C        .byte $0C   ; 
-- D 1 - I - 0x003B73 00:BB63: 04        .byte $04   ; 
-- D 1 - I - 0x003B74 00:BB64: 1C        .byte $1C   ; 
-- D 1 - I - 0x003B75 00:BB65: FE        .byte $FE   ; 
-- D 1 - I - 0x003B76 00:BB66: 32        .byte $32   ; 
-- D 1 - I - 0x003B77 00:BB67: FF        .byte $FF   ; end token
+_off001_BB49_04:	;room #b8 gardens of pain 
+- D 1 - I - 0x003B59 00:BB49: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B5A 00:BB4A: 01        .byte $01   ; wait
+- D 1 - I - 0x003B5B 00:BB4B: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B5C 00:BB4C: 5A        .byte $5A   ; wait
+- D 1 - I - 0x003B5D 00:BB4D: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B5E 00:BB4E: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B5F 00:BB4F: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003B60 00:BB50: 0C        .byte $0C   ; how many blocks to travel
+- D 1 - I - 0x003B61 00:BB51: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B62 00:BB52: 01        .byte $01   ; wait
+- D 1 - I - 0x003B63 00:BB53: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B64 00:BB54: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B65 00:BB55: 02        .byte $02   ; button, left, to top left
+- D 1 - I - 0x003B66 00:BB56: 2C        .byte $2C   ; how many blocks to travel
+- D 1 - I - 0x003B67 00:BB57: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B68 00:BB58: 03        .byte $03   ; wait
+- D 1 - I - 0x003B69 00:BB59: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B6A 00:BB5A: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B6B 00:BB5B: 02        .byte $02   ; button, left, to top left
+- D 1 - I - 0x003B6C 00:BB5C: 1C        .byte $1C   ; how many blocks to travel
+- D 1 - I - 0x003B6D 00:BB5D: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B6E 00:BB5E: 64        .byte $64   ; wait
+- D 1 - I - 0x003B6F 00:BB5F: 80        .byte $80   ; button, 
+- D 1 - I - 0x003B70 00:BB60: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B71 00:BB61: 02        .byte $02   ; button, left, to top left
+- D 1 - I - 0x003B72 00:BB62: 0C        .byte $0C   ; how many blocks to travel
+- D 1 - I - 0x003B73 00:BB63: 04        .byte $04   ; button, down, to bottom left
+- D 1 - I - 0x003B74 00:BB64: 1C        .byte $1C   ; how many blocks to travel
+- D 1 - I - 0x003B75 00:BB65: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B76 00:BB66: 32        .byte $32   ; wait
+- D 1 - I - 0x003B77 00:BB67: FF        .byte $FF   ; end
 
 
-; input data?
-_off001_BB68_05:
-- D 1 - I - 0x003B78 00:BB68: FE        .byte $FE   ; 
-- D 1 - I - 0x003B79 00:BB69: 01        .byte $01   ; 
-- D 1 - I - 0x003B7A 00:BB6A: FE        .byte $FE   ; 
-- D 1 - I - 0x003B7B 00:BB6B: 1E        .byte $1E   ; 
-- D 1 - I - 0x003B7C 00:BB6C: 80        .byte $80   ; 
-- D 1 - I - 0x003B7D 00:BB6D: 00        .byte $00   ; 
-- D 1 - I - 0x003B7E 00:BB6E: 08        .byte $08   ; 
-- D 1 - I - 0x003B7F 00:BB6F: 0C        .byte $0C   ; 
-- D 1 - I - 0x003B80 00:BB70: FE        .byte $FE   ; 
-- D 1 - I - 0x003B81 00:BB71: 0A        .byte $0A   ; 
-- D 1 - I - 0x003B82 00:BB72: 80        .byte $80   ; 
-- D 1 - I - 0x003B83 00:BB73: 00        .byte $00   ; 
-- D 1 - I - 0x003B84 00:BB74: 01        .byte $01   ; 
-- D 1 - I - 0x003B85 00:BB75: 2C        .byte $2C   ; 
-- D 1 - I - 0x003B86 00:BB76: FE        .byte $FE   ; 
-- D 1 - I - 0x003B87 00:BB77: 0A        .byte $0A   ; 
-- D 1 - I - 0x003B88 00:BB78: 80        .byte $80   ; 
-- D 1 - I - 0x003B89 00:BB79: 00        .byte $00   ; 
-- D 1 - I - 0x003B8A 00:BB7A: 01        .byte $01   ; 
-- D 1 - I - 0x003B8B 00:BB7B: 4C        .byte $4C   ; 
-- D 1 - I - 0x003B8C 00:BB7C: FE        .byte $FE   ; 
-- D 1 - I - 0x003B8D 00:BB7D: 0A        .byte $0A   ; 
-- D 1 - I - 0x003B8E 00:BB7E: 80        .byte $80   ; 
-- D 1 - I - 0x003B8F 00:BB7F: 00        .byte $00   ; 
-- D 1 - I - 0x003B90 00:BB80: 01        .byte $01   ; 
-- D 1 - I - 0x003B91 00:BB81: 5C        .byte $5C   ; 
-- D 1 - I - 0x003B92 00:BB82: 04        .byte $04   ; 
-- D 1 - I - 0x003B93 00:BB83: 1C        .byte $1C   ; 
-- D 1 - I - 0x003B94 00:BB84: FE        .byte $FE   ; 
-- D 1 - I - 0x003B95 00:BB85: 1E        .byte $1E   ; 
-- D 1 - I - 0x003B96 00:BB86: 01        .byte $01   ; 
-- D 1 - I - 0x003B97 00:BB87: 6C        .byte $6C   ; 
-- D 1 - I - 0x003B98 00:BB88: FE        .byte $FE   ; 
-- D 1 - I - 0x003B99 00:BB89: 14        .byte $14   ; 
-- D 1 - I - 0x003B9A 00:BB8A: 80        .byte $80   ; 
-- D 1 - I - 0x003B9B 00:BB8B: 00        .byte $00   ; 
-- D 1 - I - 0x003B9C 00:BB8C: 01        .byte $01   ; 
-- D 1 - I - 0x003B9D 00:BB8D: 20        .byte $20   ; 
-- D 1 - I - 0x003B9E 00:BB8E: FE        .byte $FE   ; 
-- D 1 - I - 0x003B9F 00:BB8F: 4B        .byte $4B   ; 
-- D 1 - I - 0x003BA0 00:BB90: FF        .byte $FF   ; end token
+_off001_BB68_05:	;room #2B main castle, hidden blocks room
+- D 1 - I - 0x003B78 00:BB68: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B79 00:BB69: 01        .byte $01   ; wait
+- D 1 - I - 0x003B7A 00:BB6A: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B7B 00:BB6B: 1E        .byte $1E   ; wait
+- D 1 - I - 0x003B7C 00:BB6C: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B7D 00:BB6D: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B7E 00:BB6E: 08        .byte $08   ; button, up, to top right
+- D 1 - I - 0x003B7F 00:BB6F: 0C        .byte $0C   ; how many blocks to travel
+- D 1 - I - 0x003B80 00:BB70: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B81 00:BB71: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003B82 00:BB72: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B83 00:BB73: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B84 00:BB74: 01        .byte $01   ; button, right, to bottom right
+- D 1 - I - 0x003B85 00:BB75: 2C        .byte $2C   ; how many blocks to travel
+- D 1 - I - 0x003B86 00:BB76: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B87 00:BB77: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003B88 00:BB78: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B89 00:BB79: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B8A 00:BB7A: 01        .byte $01   ; button, right, to bottom right
+- D 1 - I - 0x003B8B 00:BB7B: 4C        .byte $4C   ; how many blocks to travel
+- D 1 - I - 0x003B8C 00:BB7C: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B8D 00:BB7D: 0A        .byte $0A   ; wait
+- D 1 - I - 0x003B8E 00:BB7E: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B8F 00:BB7F: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B90 00:BB80: 01        .byte $01   ; button, right, to bottom right
+- D 1 - I - 0x003B91 00:BB81: 5C        .byte $5C   ; how many blocks to travel
+- D 1 - I - 0x003B92 00:BB82: 04        .byte $04   ; button, down, to bottom left
+- D 1 - I - 0x003B93 00:BB83: 1C        .byte $1C   ; how many blocks to travel
+- D 1 - I - 0x003B94 00:BB84: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B95 00:BB85: 1E        .byte $1E   ; N/A because button
+- D 1 - I - 0x003B96 00:BB86: 01        .byte $01   ; button, right, to bottom right
+- D 1 - I - 0x003B97 00:BB87: 6C        .byte $6C   ; how many blocks to travel
+- D 1 - I - 0x003B98 00:BB88: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B99 00:BB89: 14        .byte $14   ; wait
+- D 1 - I - 0x003B9A 00:BB8A: 80        .byte $80   ; button, A, jump
+- D 1 - I - 0x003B9B 00:BB8B: 00        .byte $00   ; N/A because button
+- D 1 - I - 0x003B9C 00:BB8C: 01        .byte $01   ; button, right, to bottom right
+- D 1 - I - 0x003B9D 00:BB8D: 20        .byte $20   ; how many blocks to travel
+- D 1 - I - 0x003B9E 00:BB8E: FE        .byte $FE   ; skip
+- D 1 - I - 0x003B9F 00:BB8F: 4B        .byte $4B   ; wait
+- D 1 - I - 0x003BA0 00:BB90: FF        .byte $FF   ; end
 
 
-; input data?
-_off001_BB91_06:
-- D 1 - I - 0x003BA1 00:BB91: FE        .byte $FE   ; 
-- D 1 - I - 0x003BA2 00:BB92: 01        .byte $01   ; 
-- D 1 - I - 0x003BA3 00:BB93: FE        .byte $FE   ; 
-- D 1 - I - 0x003BA4 00:BB94: 14        .byte $14   ; 
-- D 1 - I - 0x003BA5 00:BB95: 02        .byte $02   ; 
-- D 1 - I - 0x003BA6 00:BB96: 3C        .byte $3C   ; 
-- D 1 - I - 0x003BA7 00:BB97: 04        .byte $04   ; 
-- D 1 - I - 0x003BA8 00:BB98: 3C        .byte $3C   ; 
-- D 1 - I - 0x003BA9 00:BB99: 02        .byte $02   ; 
-- D 1 - I - 0x003BAA 00:BB9A: 00        .byte $00   ; 
-- D 1 - I - 0x003BAB 00:BB9B: FE        .byte $FE   ; 
-- D 1 - I - 0x003BAC 00:BB9C: 01        .byte $01   ; 
-- D 1 - I - 0x003BAD 00:BB9D: FE        .byte $FE   ; 
-- D 1 - I - 0x003BAE 00:BB9E: 32        .byte $32   ; 
-- D 1 - I - 0x003BAF 00:BB9F: FF        .byte $FF   ; end token
+
+_off001_BB91_06:	;room #c5 blood gardens
+- D 1 - I - 0x003BA1 00:BB91: FE        .byte $FE   ; skip
+- D 1 - I - 0x003BA2 00:BB92: 01        .byte $01   ; wait
+- D 1 - I - 0x003BA3 00:BB93: FE        .byte $FE   ; skip
+- D 1 - I - 0x003BA4 00:BB94: 14        .byte $14   ; wait
+- D 1 - I - 0x003BA5 00:BB95: 02        .byte $02   ; button, left, to top left
+- D 1 - I - 0x003BA6 00:BB96: 3C        .byte $3c   ; how many blocks to travel
+- D 1 - I - 0x003BA7 00:BB97: 04        .byte $04   ; button, down, to bottom left
+- D 1 - I - 0x003BA8 00:BB98: 3C        .byte $3c   ; how many blocks to travel
+- D 1 - I - 0x003BA9 00:BB99: 02        .byte $02   ; button, left, to top left
+- D 1 - I - 0x003BAA 00:BB9A: 00        .byte $00   ; how many blocks to travel
+- D 1 - I - 0x003BAB 00:BB9B: FE        .byte $fe   ; skip
+- D 1 - I - 0x003BAC 00:BB9C: 01        .byte $01   ; wait
+- D 1 - I - 0x003BAD 00:BB9D: FE        .byte $fe   ; skip
+- D 1 - I - 0x003BAE 00:BB9E: 32        .byte $32   ; wait
+- D 1 - I - 0x003BAF 00:BB9F: FF        .byte $FF   ; end
 
 
 
