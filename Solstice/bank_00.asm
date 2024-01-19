@@ -9952,7 +9952,7 @@ _off001_BB68_05:	;room #2B main castle, hidden blocks room
 - D 1 - I - 0x003BA0 00:BB90: FF        .byte $FF   ; end
 
 
-; input data?
+
 _off001_BB91_06:	;room #c5 blood gardens
 - D 1 - I - 0x003BA1 00:BB91: FE        .byte $FE   ; skip
 - D 1 - I - 0x003BA2 00:BB92: 01        .byte $01   ; wait
