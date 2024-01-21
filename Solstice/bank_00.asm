@@ -9959,14 +9959,14 @@ _off001_BB91_06:	;room #c5 blood gardens
 - D 1 - I - 0x003BA3 00:BB93: FE        .byte $FE   ; stop
 - D 1 - I - 0x003BA4 00:BB94: 14        .byte $14   ; for how long
 - D 1 - I - 0x003BA5 00:BB95: 02        .byte $02   ; button, left, to top left
-- D 1 - I - 0x003BA6 00:BB96: 3C        .byte $3c   ; how many blocks to travel
+- D 1 - I - 0x003BA6 00:BB96: 3C        .byte $3C   ; how many blocks to travel
 - D 1 - I - 0x003BA7 00:BB97: 04        .byte $04   ; button, down, to bottom left
-- D 1 - I - 0x003BA8 00:BB98: 3C        .byte $3c   ; how many blocks to travel
+- D 1 - I - 0x003BA8 00:BB98: 3C        .byte $3C   ; how many blocks to travel
 - D 1 - I - 0x003BA9 00:BB99: 02        .byte $02   ; button, left, to top left
 - D 1 - I - 0x003BAA 00:BB9A: 00        .byte $00   ; how many blocks to travel
-- D 1 - I - 0x003BAB 00:BB9B: FE        .byte $fe   ; stop
+- D 1 - I - 0x003BAB 00:BB9B: FE        .byte $FE   ; stop
 - D 1 - I - 0x003BAC 00:BB9C: 01        .byte $01   ; for how long
-- D 1 - I - 0x003BAD 00:BB9D: FE        .byte $fe   ; skip
+- D 1 - I - 0x003BAD 00:BB9D: FE        .byte $FE   ; skip
 - D 1 - I - 0x003BAE 00:BB9E: 32        .byte $32   ; for how long
 - D 1 - I - 0x003BAF 00:BB9F: FF        .byte $FF   ; end
 
