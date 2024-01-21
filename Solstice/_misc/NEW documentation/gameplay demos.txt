@@ -1,0 +1,46 @@
+Gameplay demos explained.
+
+
+tbl_BAB2:
+Theres the starting rooms for each one, 6 plus one unused.
+
+tbl_BAB9:
+In which exit Shadax appears at, same order as above. Uses same format as keys/detonators:
+
+01 = bottom-left
+02 = bottom-right
+04 = top-right
+08 = top-left 
+
+tbl_BAC0_lo: & tbl_BAC7_hi:
+Pointers, you dont need to touch these
+
+And below that are the input data for each demo, two bytes for each command.
+
+$FE = wait/stop, followed by how long to wait for.
+$FF = ends the sequence.
+
+Then either direction or button, using same format as "ram_buttons", followed by how long to travel into that direction before next command,
+the distance is reversed like on teleporters.
+
+Button values:
+Note, direction acts same as D-pad in-game.
+
+$01	right,	 to bottom right
+$02	left,	 to top left
+$04	down,	 to bottom left
+$08	up,	 to top right
+$10	start,	 start game
+$20	select,	 open sub menu
+$40	B, 	 interact
+$80	A, 	 jump
+
+The timing is bit annoying to deal with and explain, and if Shadax cant travel the distance, then he'll keep running into the wall/block/sprite forever.
+If Shadax dies, the room restarts(and music stops) and continues the sequence if Shadax hits the travel distance even if it goes completely wrong.
+
+If you are having hard time getting the timing right, try using $XC as base and then increase or lower the X value by one which from my testing works best,
+but its still pain in the ass to get right at first, increasing the X usually works, sometimes it takes few tires to get right, its weird at most time, 
+especially if you try to do complex inputs.
+
+A or B button commands dont need anything spefic for their second byte, the boots room is the only time the original game had anything besides $00 for them,
+but from my testing it makes no difference what you type them as, and the other ones only uses $00 past the first one.
