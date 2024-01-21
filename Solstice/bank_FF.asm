@@ -893,7 +893,7 @@ _off000_8388_00:
 
 
 ; bzk garbage, unused room
-; early version of room #00 that only has one exit to room #01
+; early version of room 00 that only has one exit to room 01
 
 ; room base attributes
 - - - - - - 0x0183CB 06:83BB: 27        .byte $27, $17, $37   ; room palette
