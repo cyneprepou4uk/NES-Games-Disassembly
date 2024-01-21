@@ -38,6 +38,9 @@ although position for those are always set to $00 in the original.
 Position is little odd, since its just one byte(vs 2 in block data),
 so it starts at lowest(00), then goes "forward" by one from its original position(01 and so on),
 then when it hits wall, it loops back to lowest, but one Z-axis higher.
+
+If you want to move exit one block higher(Z-axis), simply add 8 (hex) to the current position.
+
 Note that the game doesn't check room size, so it always assumes its
 the largest room, so exit can go out of bounds in some cases.
 
