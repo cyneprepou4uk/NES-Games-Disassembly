@@ -1450,7 +1450,7 @@ tbl_87BC_hi:
 ; intro, morbious
 _off002_87C6_06:
 - D 0 - I - 0x0087D6 02:87C6: FE        .byte $FE   ; line break 
-- D 0 - I - 0x0087D7 02:87C7: 43 22     .word $2243	; position
+- D 0 - I - 0x0087D7 02:87C7: 43 22     .word $2243    ; position
 ; “Princess Eleanor is MINE.”
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x0087D9 02:87C9: 42        .byte                $42, $34, $1C, $13, $18, $0D, $0F, $1D, $1D, $00, $29, $16, $0F   ; 

@@ -1330,21 +1330,21 @@ tbl_8786:
 - D 0 - I - 0x0107A1 04:8791: 10        .byte $10, $00, $19, $10, $00, $28, $29, $31, $32, $33, $37   ; 
 
 - D 0 - I - 0x0107AC 04:879C: FE        .byte $FE   ; next line
-- D 0 - I - 0x0107AD 04:879D: 49 21     .word $2149	; postion
+- D 0 - I - 0x0107AD 04:879D: 49 21     .word $2149    ; postion
 ; has been restored.
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x0107AF 04:879F: 12        .byte                                              $12, $0B, $1D, $00, $0C, $0F, $0F   ; 
 - D 0 - I - 0x0107B6 04:87A6: 18        .byte $18, $00, $1C, $0F, $1D, $1E, $19, $1C, $0F, $0E, $40   ; 
 
 - D 0 - I - 0x0107C1 04:87B1: FE        .byte $FE   ; next line
-- D 0 - I - 0x0107C2 04:87B2: A8 21     .word $21A8	; postion
+- D 0 - I - 0x0107C2 04:87B2: A8 21     .word $21A8    ; postion
 ; Now you have to
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x0107C4 04:87B4: 00        .byte                                         $00, $32, $19, $21, $00, $23, $19, $1F   ; 
 - D 0 - I - 0x0107CC 04:87BC: 00        .byte $00, $12, $0B, $20, $0F, $00, $1E, $19   ; 
 
 - D 0 - I - 0x0107D4 04:87C4: FE        .byte $FE   ; next line
-- D 0 - I - 0x0107D5 04:87C5: E9 21     .word $21E9	; postion
+- D 0 - I - 0x0107D5 04:87C5: E9 21     .word $21E9    ; postion
 ; find the princess.
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x0107D7 04:87C7: 10        .byte                                              $10, $13, $18, $0E, $00, $1E, $12   ; 
@@ -2137,35 +2137,35 @@ _off012_A63D_00:
 ; removed page
 _off012_A63D_01:
 - D 1 - I - 0x01264D 04:A63D: FE        .byte $FE   ; line break
-- D 1 - I - 0x01264E 04:A63E: C4 21     .word $21C4	; position
+- D 1 - I - 0x01264E 04:A63E: C4 21     .word $21C4    ; position
 ; Programmed by Mike Webb
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012650 04:A640: 34        .byte                     $34, $1C, $19, $11, $1C, $0B, $17, $17, $0F, $0E, $00, $0C   ; 
 - D 1 - I - 0x012658 04:A648: 0F        .byte $23, $00, $31, $13, $15, $0F, $00, $3B, $0F, $0C, $0C   ; 
 
 - D 1 - I - 0x012667 04:A657: FE        .byte $FE   ; line break
-- D 1 - I - 0x012668 04:A658: 04 22     .word $2204	; position
+- D 1 - I - 0x012668 04:A658: 04 22     .word $2204    ; position
 ; Graphics by Mark Wilson
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01266A 04:A65A: 2B        .byte                     $2B, $1C, $0B, $1A, $12, $13, $0D, $1D, $00, $0C, $23, $00   ; 
 - D 1 - I - 0x012672 04:A662: 00        .byte $31, $0B, $1C, $15, $00, $3B, $13, $16, $1D, $19, $18   ; 
 
 - D 1 - I - 0x012681 04:A671: FE        .byte $FE   ; line break
-- D 1 - I - 0x012682 04:A672: 44 22     .word $2244	; position
+- D 1 - I - 0x012682 04:A672: 44 22     .word $2244    ; position
 ; Music by Timothy Follin
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012684 04:A674: 31        .byte                     $31, $1F, $1D, $13, $0D, $00, $0C, $23, $00, $38, $13, $17   ; 
 - D 1 - I - 0x01268C 04:A67C: 00        .byte $19, $1E, $12, $23, $00, $2A, $19, $16, $16, $13, $18   ; 
 
 - D 1 - I - 0x01269B 04:A68B: FE        .byte $FE   ; line break 
-- D 1 - I - 0x01269C 04:A68C: A7 22     .word $22A7	; position
+- D 1 - I - 0x01269C 04:A68C: A7 22     .word $22A7    ; position
 ; Game designed by
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01269E 04:A68E: 2B        .byte                                    $2B, $0B, $17, $0F, $00, $0E, $0F, $1D, $13   ; 
 - D 1 - I - 0x0126A6 04:A696: 13        .byte $11, $18, $0F, $0E, $00, $0C, $23   ; 
 
 - D 1 - I - 0x0126AE 04:A69E: FE        .byte $FE   ; line break 
-- D 1 - I - 0x0126AF 04:A69F: C6 22     .word $22C6	; position
+- D 1 - I - 0x0126AF 04:A69F: C6 22     .word $22C6    ; position
 ; M.Webb and M.Wilson
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x0126B1 04:A6A1: 31        .byte                               $31, $40, $3B, $0F, $0C, $0C, $00, $0B, $18, $0E   ; 
@@ -2193,28 +2193,28 @@ _off012_A6E8_02:
 - D 1 - I - 0x012703 04:A6F3: 0F        .byte $19, $10, $1E, $00, $2D, $18, $0D, $40   ; 
 
 - D 1 - I - 0x01270D 04:A6FD: FE        .byte $FE   ; next
-- D 1 - I - 0x01270E 04:A6FE: 28 22     .word $2228	; pos
+- D 1 - I - 0x01270E 04:A6FE: 28 22     .word $2228    ; pos
 ; Copyright 1989
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012710 04:A700: 27        .byte                                         $27, $19, $1A, $23, $1C, $13, $11, $12   ; 
 - D 1 - I - 0x012718 04:A708: 1E        .byte $1E, $00, $02, $0A, $09, $0A   ; 
 
 - D 1 - I - 0x01271E 04:A70E: FE        .byte $FE   ; next
-- D 1 - I - 0x01271F 04:A70F: 44 22     .word $2244	; pos
+- D 1 - I - 0x01271F 04:A70F: 44 22     .word $2244    ; pos
 ; Software Creations Ltd.
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012721 04:A711: 37        .byte                     $37, $19, $10, $1E, $21, $0B, $1C, $0F, $00, $27, $1C, $0F   ; 
 - D 1 - I - 0x012729 04:A719: 00        .byte $0B, $1E, $13, $19, $18, $1D, $00, $30, $1E, $0E, $40   ; 
 
 - D 1 - I - 0x012738 04:A728: FE        .byte $FE   ; next
-- D 1 - I - 0x012739 04:A729: A9 22     .word $22A9	; pos
+- D 1 - I - 0x012739 04:A729: A9 22     .word $22A9    ; pos
 ; Licensed  by
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01273B 04:A72B: 30        .byte                                              $30, $13, $0D, $0F, $18, $1D, $0F   ; 
 - D 1 - I - 0x012743 04:A733: 00        .byte $0E, $00, $00, $0C, $23   ; 
 
 - D 1 - I - 0x012747 04:A737: FE        .byte $FE   ; next
-- D 1 - I - 0x012748 04:A738: C4 22     .word $22C4	; pos
+- D 1 - I - 0x012748 04:A738: C4 22     .word $22C4    ; pos
 ; Nintendo of America Inc.
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01274A 04:A73A: 32        .byte                     $32, $13, $18, $1E, $0F, $18, $0E, $19, $00, $19, $10, $00   ; 
@@ -2222,7 +2222,7 @@ _off012_A6E8_02:
 
 ; Attribute Table
 - D 1 - I - 0x012762 04:A752: FE        .byte $FE   ; next
-- D 1 - I - 0x012763 04:A753: D0 23     .word $23D0	; pos
+- D 1 - I - 0x012763 04:A753: D0 23     .word $23D0    ; pos
 - D 1 - I - 0x012765 04:A755: FD        .byte $FD   ; 
 - D 1 - I - 0x012766 04:A756: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - D 1 - I - 0x01276E 04:A75E: 55        .byte $55, $55, $55, $55, $55, $55, $55, $55   ; 
@@ -2273,35 +2273,35 @@ C D 1 - I - 0x0127E4 04:A7D4: 60        RTS
 
 tbl_A7D5:
 - D 1 - I - 0x0127E5 04:A7D5: FE        .byte $FE   ; line break
-- D 1 - I - 0x0127E6 04:A7D6: 0A 21     .word $210A	; position
+- D 1 - I - 0x0127E6 04:A7D6: 0A 21     .word $210A    ; position
 ; Game over
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x0127E8 04:A7D8: 00        .byte                                                   $00, $2B, $0B, $17, $0F, $00   ; 
 - D 1 - I - 0x0127F0 04:A7E0: 0F        .byte $19, $20, $0F, $1C   ; 
 
 - D 1 - I - 0x0127F2 04:A7E2: FE        .byte $FE   ; line break
-- D 1 - I - 0x0127F3 04:A7E3: 8A 21     .word $218A	; position
+- D 1 - I - 0x0127F3 04:A7E3: 8A 21     .word $218A    ; position
 ; You visited
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x0127F5 04:A7E5: 3D        .byte                                                   $3D, $19, $1F, $00, $20, $13   ; 
 - D 1 - I - 0x0127FD 04:A7ED: 1E        .byte $1D, $13, $1E, $0F, $0E   ; 
 
 - D 1 - I - 0x012800 04:A7F0: FE        .byte $FE   ; line break
-- D 1 - I - 0x012801 04:A7F1: AA 21     .word $21AA	; position
+- D 1 - I - 0x012801 04:A7F1: AA 21     .word $21AA    ; position
 ; 000 rooms (000 is placeholder until game overwrites it with proper value)
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012803 04:A7F3: 00        .byte                                                   $00, $01, $01, $01, $00, $1C   ; 
 - D 1 - I - 0x01280B 04:A7FB: 17        .byte $19, $19, $17, $1D   ; 
 
 - D 1 - I - 0x01280D 04:A7FD: FE        .byte $FE   ; line break
-- D 1 - I - 0x01280E 04:A7FE: E9 21     .word $21E9	; position
+- D 1 - I - 0x01280E 04:A7FE: E9 21     .word $21E9    ; position
 ; You completed
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012810 04:A800: 3D        .byte                                              $3D, $19, $1F, $00, $0D, $19, $17   ; 
 - D 1 - I - 0x012818 04:A808: 16        .byte $1A, $16, $0F, $1E, $0F, $0E   ; 
 
 - D 1 - I - 0x01281D 04:A80D: FE        .byte $FE   ; line break
-- D 1 - I - 0x01281E 04:A80E: 09 22     .word $2209	; position
+- D 1 - I - 0x01281E 04:A80E: 09 22     .word $2209    ; position
 ; 00.00 percent (another placeholder)
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012820 04:A810: 01        .byte                                              $01, $01, $40, $01, $01, $00, $1A   ; 
@@ -2349,27 +2349,27 @@ C D 1 - I - 0x01286D 04:A85D: 60        RTS
 
 tbl_A85E:
 - D 1 - I - 0x01286E 04:A85E: FE        .byte $FE   ; line break
-- D 1 - I - 0x01286F 04:A85F: 07 21     .word $2107	; position
-; You have x credits	(Last letter / byte, "s" / "1D", seems to be overwritten(or not drawn?) if there is only one credit left)
+- D 1 - I - 0x01286F 04:A85F: 07 21     .word $2107    ; position
+; You have x credits    (Last letter / byte, "s" / "1D", seems to be overwritten(or not drawn?) if there is only one credit left)
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012871 04:A861: 3D        .byte                                    $3D, $19, $1F, $00, $12, $0B, $20, $0F, $00   ; 
 - D 1 - I - 0x012879 04:A869: 00        .byte $22, $00, $0D, $1C, $0F, $0E, $13, $1E, $1D   ; 
 
 - D 1 - I - 0x012883 04:A873: FE        .byte $FE   ; line break
-- D 1 - I - 0x012884 04:A874: 45 21     .word $2145	; position
+- D 1 - I - 0x012884 04:A874: 45 21     .word $2145    ; position
 ; Press start to continue
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x012886 04:A876: 34        .byte                          $34, $1C, $0F, $1D, $1D, $00, $1D, $1E, $0B, $1C, $1E   ; 
 - D 1 - I - 0x01288E 04:A87E: 0B        .byte $00, $1E, $19, $00, $0D, $19, $18, $1E, $13, $18, $1F, $0F   ; 
 
 - D 1 - I - 0x01289D 04:A88D: FE        .byte $FE   ; line break
-- D 1 - I - 0x01289E 04:A88E: 8D 21     .word $218D	; position
-; 10	(placeholder until its overweitten with proper value, also seems like its two digits when theres only max 8 credits?)
+- D 1 - I - 0x01289E 04:A88E: 8D 21     .word $218D    ; position
+; 10    (placeholder until its overweitten with proper value, also seems like its two digits when theres only max 8 credits?)
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x0128A0 04:A890: 02        .byte                                                                  $02, $01   ; 
 
 - D 1 - I - 0x0128A2 04:A892: FE        .byte $FE   ; bzk useless?
-- D 1 - I - 0x0128A3 04:A893: 10 21     .word $2110	; position
+- D 1 - I - 0x0128A3 04:A893: 10 21     .word $2110    ; position
 ; ... removed text?
 - D 1 - I - 0x0128A5 04:A895: FF        .byte $FF   ; end
 
