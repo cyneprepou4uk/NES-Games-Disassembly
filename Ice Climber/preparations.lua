@@ -1,6 +1,6 @@
 -- list of files which need to be prepared before compilation.
 -- the script will create temporary copies of these
--- files (their names ill start with "copy_") and
+-- files (their names will start with "copy_") and
 -- assemble them instead of original ones.
 local files_list = {
     "bank_FF.asm",
@@ -87,7 +87,7 @@ end
 
 
 
--- store text from the file, defined here
+-- store text from the file. defined here
 -- to make it visible in ReplaceSymbols
 local text
 
@@ -96,7 +96,7 @@ local text
 local function ReplaceSymbols()
     -- if configured
     if replace_with_latin == true then
-        -- replace original (i) symbols with latin (k)
+        -- replace original (i) symbol with latin (k) symbol
         for i, k in pairs(latin_symbols) do
             text = string.gsub(text, i, k)
         end
@@ -117,17 +117,17 @@ for _, f in ipairs(files_list) do
     text = file:read("*all")
     file:close()
     
-    -- delete unnecessary text on the left
+    -- replace unnecessary text on the left with 3 spaces
     text = string.gsub(text, bzk_regex, "   ")
     
-    -- replace with latin symbols if configured
+    -- replace with latin symbols if needed
     ReplaceSymbols()
     
     -- create a copy of the file and check for errors
     local file, err = io.open("copy_"..f, "w+")
     if err ~= nil then PrintError(err) end
     
-    -- paste text and close the file
+    -- paste polished text into the copy and close the file
     io.output(file)
     io.write(text)
     io.flush(file)
@@ -174,10 +174,10 @@ while true do
     
     -- check if both positions exist.
     -- if comments not exist, then define_start is good to go
-    -- if definition not exist, then it will be nil
+    -- if definition not exist, then it will remain nil
     if comment_start ~= nil and define_start ~= nil then
         -- if comment symbol is located before definition,
-        -- then there is no actual definition on this line,
+        -- then there is no actual definition on this line.
         -- replace it with nil
         if comment_start < define_start then define_start = nil end
     end
@@ -190,12 +190,12 @@ while true do
         -- prepare position after definition symbols
         local i = define_start + 2
         
-        -- test all symbols which define address value
+        -- loop to test all symbols which define address value
         while true do
             -- read next symbol
             local b = string.sub(line, i, i)
             
-            -- quit it's not a hex symbol
+            -- quit if it's not a hex symbol
             if tonumber(b, 16) == nil then break end
             
             -- otherise combine with other symbols
@@ -217,10 +217,10 @@ while true do
     end
 end
 
--- store line for .nl file
+-- this stores line for .nl file
 local str
 
--- store definition for .nl file
+-- this stores definition for .nl file
 local val
 
 -- go through all RAM addresses
@@ -246,4 +246,5 @@ end
 io.flush(nl_file)
 io.close(nl_file)
 
+-- uncomment the following line in order to pause the console after the script is complete
 --io.read()
