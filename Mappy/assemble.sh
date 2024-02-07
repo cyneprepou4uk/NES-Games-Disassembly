@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_OUTPUT_SIMPLE_NAME=mappy
+NES_OUTPUT_SIMPLE_NAME=_mappy
 NES_OUTPUT_FILE_SIZE=24592
 
 # navigate to the directory

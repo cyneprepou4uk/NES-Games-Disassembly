@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_OUTPUT_SIMPLE_NAME=sf3
+NES_OUTPUT_SIMPLE_NAME=_street_fighter_3
 NES_OUTPUT_FILE_SIZE=655376
 
 # navigate to the directory

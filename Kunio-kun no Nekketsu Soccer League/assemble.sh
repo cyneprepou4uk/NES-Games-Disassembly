@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_OUTPUT_SIMPLE_NAME=goal3
+NES_OUTPUT_SIMPLE_NAME=_kunio_kun_no_nekketsu_soccer_league
 NES_OUTPUT_FILE_SIZE=262160
 
 # navigate to the directory

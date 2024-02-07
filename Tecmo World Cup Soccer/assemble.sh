@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_OUTPUT_SIMPLE_NAME=twcs
+NES_OUTPUT_SIMPLE_NAME=_tecmo_world_cup_soccer
 NES_OUTPUT_FILE_SIZE=131088
 
 # navigate to the directory

@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_OUTPUT_SIMPLE_NAME=bbcc
+NES_OUTPUT_SIMPLE_NAME=_bugs_bunny_crazy_castle
 NES_OUTPUT_FILE_SIZE=98320
 
 # navigate to the directory

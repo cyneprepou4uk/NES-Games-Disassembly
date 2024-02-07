@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_OUTPUT_SIMPLE_NAME=kungfu
+NES_OUTPUT_SIMPLE_NAME=_yie_ar_kung_fu
 NES_OUTPUT_FILE_SIZE=24592
 
 # navigate to the directory

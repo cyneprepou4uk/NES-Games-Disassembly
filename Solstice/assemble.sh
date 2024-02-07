@@ -10,7 +10,7 @@
 
 # return to parent-folder
 NES_IGNORE_COMPILE_ASM_ARRAY=(bank___FE00_FFF9.asm copy_bank___FE00_FFF9.asm)
-NES_OUTPUT_SIMPLE_NAME=solstice
+NES_OUTPUT_SIMPLE_NAME=_solstice
 NES_OUTPUT_FILE_SIZE=131088
 
 # navigate to the directory

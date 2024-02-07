@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_OUTPUT_SIMPLE_NAME=son
+NES_OUTPUT_SIMPLE_NAME=_son_son
 NES_OUTPUT_FILE_SIZE=40976
 
 # navigate to the directory

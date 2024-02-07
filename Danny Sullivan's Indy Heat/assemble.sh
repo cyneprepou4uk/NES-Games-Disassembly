@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_OUTPUT_SIMPLE_NAME=dsih
+NES_OUTPUT_SIMPLE_NAME=_danny_sullivans_indy_heat
 NES_OUTPUT_FILE_SIZE=131088
 
 # navigate to the directory

@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_OUTPUT_SIMPLE_NAME=mermaid
+NES_OUTPUT_SIMPLE_NAME=_the_little_mermaid
 NES_OUTPUT_FILE_SIZE=131088
 
 # navigate to the directory

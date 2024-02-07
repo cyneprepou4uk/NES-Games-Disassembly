@@ -9,7 +9,7 @@
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_OUTPUT_SIMPLE_NAME=contra
+NES_OUTPUT_SIMPLE_NAME=_contra_force
 NES_OUTPUT_FILE_SIZE=262160
 
 # navigate to the directory
