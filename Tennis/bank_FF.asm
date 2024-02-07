@@ -1,6 +1,6 @@
 .segment "BANK_FF"
-.include "bank_ram.inc"
-.include "bank_val.inc"
+.include "copy_bank_ram.inc"
+.include "copy_bank_val.inc"
 .org $C000  ; for listing file
 ; 0x000010-0x00400F
 

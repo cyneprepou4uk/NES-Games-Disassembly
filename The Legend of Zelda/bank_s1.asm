@@ -1,6 +1,6 @@
 ; .segment "BANK_06_s1"
-; .include "bank_ram.inc"
-; .include "bank_val.inc"
+; .include "copy_bank_ram.inc"
+; .include "copy_bank_val.inc"
 ; 0x019CE8-0x019D75
 
 ; SRAM_1 (from bank_06)

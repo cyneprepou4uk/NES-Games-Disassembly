@@ -1,5 +1,5 @@
-.include "bank_ram.inc"
-.include "bank_val.inc"
+.include "copy_bank_ram.inc"
+.include "copy_bank_val.inc"
 
 ; additional split.lua script handles data from this file
 
