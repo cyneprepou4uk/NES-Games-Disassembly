@@ -131,7 +131,7 @@ if %fast_assembly% equ 0 (
 )
 
 :: delete leftover garbage and copies
-del *.o + PRG_ROM.bin + copy_*
+del *.o + PRG_ROM.bin + copy_* + CHR_screens.chr
 
 :: final messages and stuff
 echo.
