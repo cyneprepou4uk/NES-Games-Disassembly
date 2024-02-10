@@ -31,9 +31,9 @@ source ../_scripts/assemble_header.sh
 
 # :: assemble code into binaries
 if [ "${NES_OUTPUT_FAST_ASSEMBLY}" -eq 1 ]; then
-	ld65 -C ld65.cfg -o PRG_ROM.bin copy_bank_*.o
+    ld65 -C ld65.cfg -o PRG_ROM.bin copy_bank_*.o
 else
-	ld65 -C ld65.cfg -o PRG_ROM.bin --dbgfile ${NES_OUTPUT_DEBUG_NAME} copy_bank_*.o
+    ld65 -C ld65.cfg -o PRG_ROM.bin --dbgfile ${NES_OUTPUT_DEBUG_NAME} copy_bank_*.o
 fi
 Return
 
