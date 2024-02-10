@@ -73,7 +73,7 @@ function check_lua_env() {
                     echoinfo "This OS is linux!"
 
                     # install dependency of <readline/readline.h>
-                    Installer readline-devel
+                    Installer libreadline-dev readline-devel
                     make linux test
                     Return
                 ;;
