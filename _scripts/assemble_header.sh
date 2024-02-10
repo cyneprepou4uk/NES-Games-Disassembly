@@ -7,8 +7,8 @@ check_cc65_env
 check_lua_env
 
 # :: create a copy of previous compiled version
-if [ -f "!${NES_OUTPUT_SIMPLE_NAME}.nes" ]; then
-    cp -f !${NES_OUTPUT_SIMPLE_NAME}.nes !${NES_OUTPUT_SIMPLE_NAME}.old
+if [ -f "${NES_OUTPUT_SIMPLE_NAME}.nes" ]; then
+    cp -f ${NES_OUTPUT_SIMPLE_NAME}.nes ${NES_OUTPUT_SIMPLE_NAME}.old
 fi
 
 # :: launch preparation script and wait until finished
@@ -36,5 +36,9 @@ for cp_bank_asm in `ls copy_bank_*.asm`; do
 	fi
 
     cp_bank_asm_without_suffix=${cp_bank_asm%.*}
-    ca65 -U -l ${cp_bank_asm_without_suffix}.lst ${cp_bank_asm_without_suffix}.asm
+    if [ "${NES_OUTPUT_FAST_ASSEMBLY}" -eq 1 ]; then
+	    ca65 -U ${cp_bank_asm_without_suffix}.asm
+	else
+		ca65 -U -l ${cp_bank_asm_without_suffix}.lst ${cp_bank_asm_without_suffix}.asm
+	fi
 done

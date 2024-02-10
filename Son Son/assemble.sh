@@ -3,14 +3,18 @@
 # date: Thu Oct  7 16:20:43 CST 2021
 # notice: Terminal only for MacOSX, Linux and MinGW
 # usage: sh assemble.sh
-# :: in order to enable "comparsion with previous version" and "restoring backup" functions
-# :: make 2 copies of <!rom_name.nes> and rename them as <!rom_name.old> and <!rom_name.bak>
 
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
 NES_OUTPUT_SIMPLE_NAME=_son_son
 NES_OUTPUT_FILE_SIZE=40976
+NES_OUTPUT_FILE_SHA1_ORIGINAL="A98ED431BB5A65DA4FA2755A089D153C7360E546"
+NES_OUTPUT_FAST_ASSEMBLY=1
+NES_OUTPUT_LISTING_NAME=z_listing.asm
+NES_OUTPUT_DEBUG_NAME=z_debug.txt
+NES_OUTPUT_FILE_BACKUP=0
+NES_OUTPUT_FILE_DIFF=0
 
 # navigate to the directory
 BASH_EXEC_DIR=$(dirname "$0")

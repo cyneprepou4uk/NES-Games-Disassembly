@@ -3,14 +3,19 @@
 # date: Thu Oct  7 16:20:43 CST 2021
 # notice: Terminal only for MacOSX, Linux and MinGW
 # usage: sh assemble.sh
-# :: in order to enable "comparsion with previous version" and "restoring backup" functions
-# :: make 2 copies of <!rom_name.nes> and rename them as <!rom_name.old> and <!rom_name.bak>
 
 # :: disable unnecessary console messages if possible
 
 # return to parent-folder
-NES_OUTPUT_SIMPLE_NAME=robocop
+NES_IGNORE_COMPILE_ASM_ARRAY=(bank___BF00_BFF9.asm copy_bank___BF00_BFF9.asm)
+NES_OUTPUT_SIMPLE_NAME=_robocop_3
 NES_OUTPUT_FILE_SIZE=262160
+NES_OUTPUT_FILE_SHA1_ORIGINAL="77BAB039B13A974A46686A7647C0AFFD00B4A9AD"
+NES_OUTPUT_FAST_ASSEMBLY=1
+NES_OUTPUT_LISTING_NAME=z_listing.asm
+NES_OUTPUT_DEBUG_NAME=z_debug.txt
+NES_OUTPUT_FILE_BACKUP=0
+NES_OUTPUT_FILE_DIFF=0
 
 # navigate to the directory
 BASH_EXEC_DIR=$(dirname "$0")
