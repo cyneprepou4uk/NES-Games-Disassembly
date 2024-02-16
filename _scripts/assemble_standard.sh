@@ -9,7 +9,7 @@ else
 fi
 Return
 
-# :: join header, prg and chr into a single ROM file
+# :: join header, PRG and CHR (if exists) into a single ROM file
 if [ -f "CHR_ROM.chr" ]; then
     cat header.bin PRG_ROM.bin CHR_ROM.chr > ${NES_OUTPUT_SIMPLE_NAME}.nes
 else

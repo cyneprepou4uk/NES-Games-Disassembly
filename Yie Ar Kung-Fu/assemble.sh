@@ -4,9 +4,6 @@
 # notice: Terminal only for MacOSX, Linux and MinGW
 # usage: sh assemble.sh
 
-# :: disable unnecessary console messages if possible
-
-# return to parent-folder
 NES_OUTPUT_SIMPLE_NAME=_yie_ar_kung_fu
 NES_OUTPUT_FILE_SIZE=24592
 NES_OUTPUT_FILE_SHA1_ORIGINAL="AFD2B46265E14AB87FBDDF054252FB2D4B5AD257"
@@ -21,12 +18,12 @@ BASH_EXEC_DIR=$(dirname "$0")
 # goto directory
 cd "${BASH_EXEC_DIR}"
 
-# common function(s)
+# common function(s) support
 source ../_scripts/os_support.sh
-# environment function(s)
+# environment function(s) support
 source ../_scripts/env.sh
 
-# assemble-header function(s)
+# assemble-header function(s) support
 source ../_scripts/assemble_header.sh
 # assemble-standard function(s) support
 source ../_scripts/assemble_standard.sh

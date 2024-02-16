@@ -6,11 +6,6 @@ check_cc65_env
 # check lua vm
 check_lua_env
 
-# :: create a copy of previous compiled version
-if [ -f "${NES_OUTPUT_SIMPLE_NAME}.nes" ]; then
-    cp -f ${NES_OUTPUT_SIMPLE_NAME}.nes ${NES_OUTPUT_SIMPLE_NAME}.old
-fi
-
 # :: launch preparation script and wait until finished
 # need to install lua-5.3.x and configuration system environment variables!
 lua preparations.lua
@@ -39,6 +34,6 @@ for cp_bank_asm in `ls copy_bank_*.asm`; do
     if [ "${NES_OUTPUT_FAST_ASSEMBLY}" -eq 1 ]; then
         ca65 -U ${cp_bank_asm_without_suffix}.asm
     else
-        ca65 -U -l ${cp_bank_asm_without_suffix}.lst ${cp_bank_asm_without_suffix}.asm
+        ca65 -U -l ${cp_bank_asm_without_suffix}.lst -g ${cp_bank_asm_without_suffix}.asm
     fi
 done

@@ -4,9 +4,6 @@
 # notice: Terminal only for MacOSX, Linux and MinGW
 # usage: sh assemble.sh
 
-# :: disable unnecessary console messages if possible
-
-# return to parent-folder
 NES_OUTPUT_SIMPLE_NAME=_double_dragon_2
 NES_OUTPUT_FILE_SIZE=262160
 NES_OUTPUT_FILE_SHA1_ORIGINAL="84E9953AEFEF23EC33766314AF01C4B3C0E84B66"
@@ -21,12 +18,12 @@ BASH_EXEC_DIR=$(dirname "$0")
 # goto directory
 cd "${BASH_EXEC_DIR}"
 
-# common function(s)
+# common function(s) support
 source ../_scripts/os_support.sh
-# environment function(s)
+# environment function(s) support
 source ../_scripts/env.sh
 
-# assemble-header function(s)
+# assemble-header function(s) support
 source ../_scripts/assemble_header.sh
 
 # :: assemble code into binaries
@@ -37,11 +34,11 @@ else
 fi
 Return
 
-# :: split PRG_ROM.bin into actual PRG_ROM.bin and CHR_screens.chr
+# :: split PRG_ROM.bin into actual PRG_ROM.bin and CHR_screens.chr (only for Double Dragon 2)
 lua split.lua
 Return
 
-# :: join header, prg and chr into a single ROM file
+# :: join header, PRG and CHR (if exists) into a single ROM file
 cat header.bin PRG_ROM.bin CHR_ROM.chr CHR_screens.chr > ${NES_OUTPUT_SIMPLE_NAME}.nes
 Return
 

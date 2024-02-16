@@ -4,9 +4,6 @@
 # notice: Terminal only for MacOSX, Linux and MinGW
 # usage: sh assemble.sh
 
-# :: disable unnecessary console messages if possible
-
-# return to parent-folder
 NES_IGNORE_COMPILE_ASM_ARRAY=(bank_s1.asm copy_bank_s1.asm bank_s2.asm copy_bank_s2.asm bank___BF50_BFF9.asm copy_bank___BF50_BFF9.asm)
 NES_OUTPUT_SIMPLE_NAME=_the_legend_of_zelda
 NES_OUTPUT_FILE_SIZE=131088
@@ -22,12 +19,12 @@ BASH_EXEC_DIR=$(dirname "$0")
 # goto directory
 cd "${BASH_EXEC_DIR}"
 
-# common function(s)
+# common function(s) support
 source ../_scripts/os_support.sh
-# environment function(s)
+# environment function(s) support
 source ../_scripts/env.sh
 
-# assemble-header function(s)
+# assemble-header function(s) support
 source ../_scripts/assemble_header.sh
 # assemble-standard function(s) support
 source ../_scripts/assemble_standard.sh
