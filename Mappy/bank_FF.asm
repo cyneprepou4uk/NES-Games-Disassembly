@@ -1285,6 +1285,9 @@ C - - - - - 0x000701 00:C6F1: 20 4D E8  JSR sub_E84D
 C - - - - - 0x000704 00:C6F4: A9 67     LDA #$67
 C - - - - - 0x000706 00:C6F6: 85 12     STA ram_0012
 C - - - - - 0x000708 00:C6F8: 4C 4D E8  JMP loc_E84D
+
+
+
 loc_C6FB:
 C D 2 - - - 0x00070B 00:C6FB: A0 00     LDY #$00
 bra_C6FD_loop:
@@ -2114,7 +2117,7 @@ off_CC4B_00:
 off_CC60_02_logo_screen:
 - D 2 - I - 0x000C70 00:CC60: 20        .byte $20   ; counter
 - D 2 - I - 0x000C71 00:CC61: 00 3F     .word $3F00 ; ppu
-- D 2 - I - 0x000C73 00:CC63: 0F        .byte $0F, $30, $16, $21   ; backround palette
+- D 2 - I - 0x000C73 00:CC63: 0F        .byte $0F, $30, $16, $21   ; background palette
 - D 2 - I - 0x000C77 00:CC67: 0F        .byte $0F, $16, $17, $13   ; 
 - D 2 - I - 0x000C7B 00:CC6B: 0F        .byte $0F, $27, $29, $13   ; 
 - D 2 - I - 0x000C7F 00:CC6F: 0F        .byte $0F, $29, $21, $13   ; 
@@ -2165,7 +2168,7 @@ off_CC60_02_logo_screen:
 off_CCEF_04:
 - D 2 - I - 0x000CFF 00:CCEF: 10        .byte $10   ; counter
 - D 2 - I - 0x000D00 00:CCF0: 00 3F     .word $3F00 ; ppu
-- D 2 - I - 0x000D02 00:CCF2: 0F        .byte $0F, $30, $16, $21   ; backround palette
+- D 2 - I - 0x000D02 00:CCF2: 0F        .byte $0F, $30, $16, $21   ; background palette
 - D 2 - I - 0x000D06 00:CCF6: 0F        .byte $0F, $16, $36, $17   ; 
 - D 2 - I - 0x000D0A 00:CCFA: 0F        .byte $0F, $19, $11, $36   ; 
 - D 2 - I - 0x000D0E 00:CCFE: 0F        .byte $0F, $29, $19, $13   ; 
@@ -2177,7 +2180,7 @@ off_CCEF_04:
 off_CD03_06:
 - D 2 - I - 0x000D13 00:CD03: 10        .byte $10   ; counter
 - D 2 - I - 0x000D14 00:CD04: 00 3F     .word $3F00 ; ppu
-- D 2 - I - 0x000D16 00:CD06: 0F        .byte $0F, $30, $16, $21   ; backround palette
+- D 2 - I - 0x000D16 00:CD06: 0F        .byte $0F, $30, $16, $21   ; background palette
 - D 2 - I - 0x000D1A 00:CD0A: 0F        .byte $0F, $11, $36, $17   ; 
 - D 2 - I - 0x000D1E 00:CD0E: 0F        .byte $0F, $19, $11, $36   ; 
 - D 2 - I - 0x000D22 00:CD12: 0F        .byte $0F, $29, $19, $13   ; 
@@ -2189,7 +2192,7 @@ off_CD03_06:
 off_CD17_08:
 - D 2 - I - 0x000D27 00:CD17: 10        .byte $10   ; counter
 - D 2 - I - 0x000D28 00:CD18: 00 3F     .word $3F00 ; ppu
-- D 2 - I - 0x000D2A 00:CD1A: 0F        .byte $0F, $30, $16, $21   ; backround palette
+- D 2 - I - 0x000D2A 00:CD1A: 0F        .byte $0F, $30, $16, $21   ; background palette
 - D 2 - I - 0x000D2E 00:CD1E: 0F        .byte $0F, $19, $36, $17   ; 
 - D 2 - I - 0x000D32 00:CD22: 0F        .byte $0F, $19, $11, $36   ; 
 - D 2 - I - 0x000D36 00:CD26: 0F        .byte $0F, $29, $19, $13   ; 
