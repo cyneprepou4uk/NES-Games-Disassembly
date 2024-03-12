@@ -2919,6 +2919,7 @@ C - - - - - 0x00D329 03:D319: B9 2A D3  LDA tbl_D32A,Y
 C - - - - - 0x00D32C 03:D31C: 85 22     STA ram_0022
 C - - - - - 0x00D32E 03:D31E: 20 32 D3  JSR sub_D332
 C - - - - - 0x00D331 03:D321: C9 FF     CMP #$FF
+; bzk optimize, BEQ to RTS at 0x00D339, delete excess RTS at 0x00D335
 C - - - - - 0x00D333 03:D323: D0 01     BNE bra_D326
 - - - - - - 0x00D335 03:D325: 60        RTS
 bra_D326:
