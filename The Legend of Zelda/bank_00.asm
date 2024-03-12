@@ -5076,7 +5076,7 @@ tbl_9FD1:
 
 
 
-.out .sprintf("Free bytes in bank 00: %Xh [%d]", ($BFFA - *), ($BFFA - *))
+.out .sprintf("Free bytes in bank 00: 0x%X [%d]", ($BFFA - *), ($BFFA - *))
 
 
 

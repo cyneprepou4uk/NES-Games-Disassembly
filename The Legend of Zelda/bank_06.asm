@@ -8522,7 +8522,7 @@ _off000_A869_10_title_screen:
 
 
 
-.out .sprintf("Free bytes in bank 06: %Xh [%d]", ($BFFA - *), ($BFFA - *))
+.out .sprintf("Free bytes in bank 06: 0x%X [%d]", ($BFFA - *), ($BFFA - *))
 
 
 

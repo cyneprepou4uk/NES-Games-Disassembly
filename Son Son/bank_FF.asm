@@ -23047,7 +23047,7 @@ C - - - - - 0x008004 01:FFF4: 60        RTS
 
 
 
-.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+.out .sprintf("Free bytes in bank FF: 0x%X [%d]", ($FFFA - *), ($FFFA - *))
 
 
 

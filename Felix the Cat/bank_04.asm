@@ -19423,7 +19423,7 @@ _off015_0x00BEA7_17:
 
 
 
-.out .sprintf("Free bytes in bank 04: %Xh [%d]", ($C000 - *), ($C000 - *))
+.out .sprintf("Free bytes in bank 04: 0x%X [%d]", ($C000 - *), ($C000 - *))
 
 
 

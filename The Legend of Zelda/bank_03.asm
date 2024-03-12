@@ -600,7 +600,7 @@ _off005_A7DB_09:
 
 
 
-.out .sprintf("Free bytes in bank 03: %Xh [%d]", ($BFFA - *), ($BFFA - *))
+.out .sprintf("Free bytes in bank 03: 0x%X [%d]", ($BFFA - *), ($BFFA - *))
 
 
 

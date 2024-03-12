@@ -9551,7 +9551,7 @@ C - - - - - 0x01FFEC 07:FFDC: 4C 10 C0  JMP loc_C010_reset
 
 
 
-.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+.out .sprintf("Free bytes in bank FF: 0x%X [%d]", ($FFFA - *), ($FFFA - *))
 
 
 

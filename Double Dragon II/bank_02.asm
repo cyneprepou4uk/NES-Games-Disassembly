@@ -11401,7 +11401,7 @@ C - - - - - 0x00BFE2 02:BFD2: 60        RTS
 
 
 
-.out .sprintf("Free bytes in bank 02: %Xh [%d]", ($BFFF - *), ($BFFF - *))
+.out .sprintf("Free bytes in bank 02: 0x%X [%d]", ($BFFF - *), ($BFFF - *))
 
 
 

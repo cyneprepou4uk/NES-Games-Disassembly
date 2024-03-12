@@ -26760,7 +26760,7 @@ tbl_FD00_mirror:
 
 
 
-.out .sprintf("Free bytes in bank 00: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+.out .sprintf("Free bytes in bank 00: 0x%X [%d]", ($FFFA - *), ($FFFA - *))
 
 
 

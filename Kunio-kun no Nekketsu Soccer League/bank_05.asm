@@ -11928,7 +11928,7 @@ tbl_BFA3:
 
 
 
-.out .sprintf("Free bytes in bank 05: %Xh [%d]", ($BFFF - *), ($BFFF - *))
+.out .sprintf("Free bytes in bank 05: 0x%X [%d]", ($BFFF - *), ($BFFF - *))
 
 
 

@@ -13258,7 +13258,7 @@ sub_DF_BF9E:
 
 
 
-.out .sprintf("Free bytes in bank 00: %Xh [%d]", ($C000 - *), ($C000 - *))
+.out .sprintf("Free bytes in bank 00: 0x%X [%d]", ($C000 - *), ($C000 - *))
 
 
 

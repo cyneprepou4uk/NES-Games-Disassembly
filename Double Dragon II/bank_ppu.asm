@@ -3327,7 +3327,7 @@ _off031_0x03DD8C_53:
 
 
 
-.out .sprintf("Free bytes in bank ppu 1: %Xh [%d]", ($2000 - *), ($2000 - *))
+.out .sprintf("Free bytes in bank ppu 1: 0x%X [%d]", ($2000 - *), ($2000 - *))
 
 
 
@@ -6690,7 +6690,7 @@ _off031_0x03EC3A_3C:
 
 
 
-.out .sprintf("Free bytes in bank ppu 2: %Xh [%d]", ($2000 - *), ($2000 - *))
+.out .sprintf("Free bytes in bank ppu 2: 0x%X [%d]", ($2000 - *), ($2000 - *))
 
 
 
@@ -10124,7 +10124,7 @@ _off031_0x03FECC_45:
 
 
 
-.out .sprintf("Free bytes in bank ppu 3: %Xh [%d]", ($2000 - *), ($2000 - *))
+.out .sprintf("Free bytes in bank ppu 3: 0x%X [%d]", ($2000 - *), ($2000 - *))
 
 
 

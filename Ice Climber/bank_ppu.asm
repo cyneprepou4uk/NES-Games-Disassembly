@@ -393,7 +393,7 @@ _off000_0x005214_05_01:
 
 
 
-.out .sprintf("Free bytes in bank ppu bg: %Xh [%d]", ($1300 - *), ($1300 - *))
+.out .sprintf("Free bytes in bank ppu bg: 0x%X [%d]", ($1300 - *), ($1300 - *))
 
 
 

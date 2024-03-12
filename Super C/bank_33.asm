@@ -5799,7 +5799,7 @@ C - - - - - 0x007D35 01:BD25: 60        RTS
 
 
 
-.out .sprintf("Free bytes in bank 33: %Xh [%d]", ($BFFF - *), ($BFFF - *))
+.out .sprintf("Free bytes in bank 33: 0x%X [%d]", ($BFFF - *), ($BFFF - *))
 
 
 

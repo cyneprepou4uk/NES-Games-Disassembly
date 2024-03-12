@@ -21925,7 +21925,7 @@ C - - - - - 0x008006 01:FFF6: 4C 03 80  JMP loc_8003_reset
 
 
 
-.out .sprintf("Free bytes in bank 00: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+.out .sprintf("Free bytes in bank 00: 0x%X [%d]", ($FFFA - *), ($FFFA - *))
 
 
 

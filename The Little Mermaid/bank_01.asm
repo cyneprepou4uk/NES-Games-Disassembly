@@ -6246,7 +6246,7 @@ off_0x007C10_chr:
 
 
 
-.out .sprintf("Free bytes in bank 01: %Xh [%d]", ($C000 - *), ($C000 - *))
+.out .sprintf("Free bytes in bank 01: 0x%X [%d]", ($C000 - *), ($C000 - *))
 
 
 

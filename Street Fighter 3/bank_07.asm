@@ -7731,7 +7731,7 @@ off_BC7B_50:
 
 
 
-.out .sprintf("Free bytes in bank 07: %Xh [%d]", ($C000 - *), ($C000 - *))
+.out .sprintf("Free bytes in bank 07: 0x%X [%d]", ($C000 - *), ($C000 - *))
 
 
 

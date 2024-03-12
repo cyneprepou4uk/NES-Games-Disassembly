@@ -8242,7 +8242,7 @@ off_9F44_13:
 
 
 
-.out .sprintf("Free bytes in bank 08: %Xh [%d]", ($A000 - *), ($A000 - *))
+.out .sprintf("Free bytes in bank 08: 0x%X [%d]", ($A000 - *), ($A000 - *))
 
 
 

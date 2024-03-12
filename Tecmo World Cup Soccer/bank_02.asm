@@ -8941,7 +8941,7 @@ tbl_B4C5_spr_data:
 
 
 
-.out .sprintf("Free bytes in bank 02: %Xh [%d]", ($C000 - *), ($C000 - *))
+.out .sprintf("Free bytes in bank 02: 0x%X [%d]", ($C000 - *), ($C000 - *))
 
 
 

@@ -9460,7 +9460,7 @@ C - - - - - 0x00FFE5 03:FFD5: 4C 03 C0  JMP loc_C003
 
 
 
-.out .sprintf("Free bytes in bank FF: %Xh [%d]", ($FFFA - *), ($FFFA - *))
+.out .sprintf("Free bytes in bank FF: 0x%X [%d]", ($FFFA - *), ($FFFA - *))
 
 
 
