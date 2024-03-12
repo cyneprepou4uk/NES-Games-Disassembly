@@ -10120,7 +10120,7 @@ tbl_0x020006_debug_byte:
 
 
 
-.out .sprintf("Free bytes in bank FF: 0x%X [%d]", ($FFFA - *), ($FFFA - *))
+.out .sprintf("Free bytes in bank FF: 0x%04X [%d]", ($FFFA - *), ($FFFA - *))
 
 
 

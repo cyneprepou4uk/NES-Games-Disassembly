@@ -13180,7 +13180,7 @@ tbl_0x01BE10:
 
 
 
-.out .sprintf("Free bytes in bank 06: 0x%X [%d]", ($BF00 - *), ($BF00 - *))
+.out .sprintf("Free bytes in bank 06: 0x%04X [%d]", ($BF00 - *), ($BF00 - *))
 
 
 

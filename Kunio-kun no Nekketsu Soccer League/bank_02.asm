@@ -14590,7 +14590,7 @@ off_BF90_06:
 
 
 
-.out .sprintf("Free bytes in bank 02: 0x%X [%d]", ($BFFF - *), ($BFFF - *))
+.out .sprintf("Free bytes in bank 02: 0x%04X [%d]", ($BFFF - *), ($BFFF - *))
 
 
 

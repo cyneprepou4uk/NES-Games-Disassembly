@@ -2486,7 +2486,7 @@ ofs_A500_bank_s2_asm_export:
 
 
 
-.out .sprintf("Free bytes in bank 01: 0x%X [%d]", ($BFFA - *), ($BFFA - *))
+.out .sprintf("Free bytes in bank 01: 0x%04X [%d]", ($BFFA - *), ($BFFA - *))
 
 
 

@@ -15414,7 +15414,7 @@ C - - - - - 0x007FCE 01:BFBE: 4C 50 C0  JMP loc_0x01C060
 
 
 
-.out .sprintf("Free bytes in bank 01: 0x%X [%d]", ($BFFF - *), ($BFFF - *))
+.out .sprintf("Free bytes in bank 01: 0x%04X [%d]", ($BFFF - *), ($BFFF - *))
 
 
 

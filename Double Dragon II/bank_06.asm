@@ -12065,7 +12065,7 @@ C D 1 - - - 0x01BE52 06:BE42: 4C 8D BD  JMP loc_BD8D
 
 
 
-.out .sprintf("Free bytes in bank 06: 0x%X [%d]", ($BFFF - *), ($BFFF - *))
+.out .sprintf("Free bytes in bank 06: 0x%04X [%d]", ($BFFF - *), ($BFFF - *))
 
 
 

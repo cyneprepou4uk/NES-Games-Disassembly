@@ -13069,7 +13069,7 @@ loc_FFF0_infinite_loop:
 
 
 
-.out .sprintf("Free bytes in bank 01: 0x%X [%d]", ($FFFA - *), ($FFFA - *))
+.out .sprintf("Free bytes in bank 01: 0x%04X [%d]", ($FFFA - *), ($FFFA - *))
 
 
 

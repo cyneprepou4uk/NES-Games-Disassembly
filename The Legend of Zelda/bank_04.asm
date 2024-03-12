@@ -9210,7 +9210,7 @@ C - - - - - 0x01347E 04:B46E: 60        RTS
 
 
 
-.out .sprintf("Free bytes in bank 04: 0x%X [%d]", ($BFFA - *), ($BFFA - *))
+.out .sprintf("Free bytes in bank 04: 0x%04X [%d]", ($BFFA - *), ($BFFA - *))
 
 
 

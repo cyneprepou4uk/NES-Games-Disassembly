@@ -5630,7 +5630,7 @@ C - - - - - 0x01FF61 07:FF51: 60        RTS
 
 
 
-.out .sprintf("Free bytes in bank 3E: 0x%X [%d]", ($FFFA - *), ($FFFA - *))
+.out .sprintf("Free bytes in bank 3E: 0x%04X [%d]", ($FFFA - *), ($FFFA - *))
 
 
 

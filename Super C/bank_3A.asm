@@ -6910,7 +6910,7 @@ _off007_0x017CB7_07_area_8:
 
 
 
-.out .sprintf("Free bytes in bank 3A: 0x%X [%d]", ($BFFF - *), ($BFFF - *))
+.out .sprintf("Free bytes in bank 3A: 0x%04X [%d]", ($BFFF - *), ($BFFF - *))
 
 
 

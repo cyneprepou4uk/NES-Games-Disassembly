@@ -4988,7 +4988,7 @@ tbl_9D42:
 
 
 
-.out .sprintf("Free bytes in bank 32: 0x%X [%d]", ($A000 - *), ($A000 - *))
+.out .sprintf("Free bytes in bank 32: 0x%04X [%d]", ($A000 - *), ($A000 - *))
 
 
 

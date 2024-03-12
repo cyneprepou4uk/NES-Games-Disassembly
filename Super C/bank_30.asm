@@ -9565,7 +9565,7 @@ _off007_0x003E9F_01_area_2:
 
 
 
-.out .sprintf("Free bytes in bank 30: 0x%X [%d]", ($BFFF - *), ($BFFF - *))
+.out .sprintf("Free bytes in bank 30: 0x%04X [%d]", ($BFFF - *), ($BFFF - *))
 
 
 

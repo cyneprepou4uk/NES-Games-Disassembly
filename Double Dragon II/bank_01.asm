@@ -7949,7 +7949,7 @@ _off028_0x007FCE_2A:
 
 
 
-.out .sprintf("Free bytes in bank 01: 0x%X [%d]", ($BFFF - *), ($BFFF - *))
+.out .sprintf("Free bytes in bank 01: 0x%04X [%d]", ($BFFF - *), ($BFFF - *))
 
 
 

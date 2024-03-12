@@ -6227,7 +6227,7 @@ _off024_BFE1_39:
 
 
 
-.out .sprintf("Free bytes in bank 05: 0x%X [%d]", ($C000 - *), ($C000 - *))
+.out .sprintf("Free bytes in bank 05: 0x%04X [%d]", ($C000 - *), ($C000 - *))
 
 
 

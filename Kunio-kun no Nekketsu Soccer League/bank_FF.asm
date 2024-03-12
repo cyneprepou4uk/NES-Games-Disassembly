@@ -10869,7 +10869,7 @@ C - - - - - 0x020007 07:FFF7: 4C D9 FC  JMP vec_FCD9_IRQ
 
 
 
-.out .sprintf("Free bytes in bank FF: 0x%X [%d]", ($FFFA - *), ($FFFA - *))
+.out .sprintf("Free bytes in bank FF: 0x%04X [%d]", ($FFFA - *), ($FFFA - *))
 
 
 
