@@ -1371,10 +1371,10 @@ C - - - - - 0x00482C 01:881C: E8        INX
 C - - - - - 0x00482D 01:881D: A5 0B     LDA ram_000B
 C - - - - - 0x00482F 01:881F: 18        CLC
 C - - - - - 0x004830 01:8820: 69 E0     ADC #< $29E0
-C - - - - - 0x004832 01:8822: 9D 01 03  STA ram_nmt_buffer + $01,X  ; ppu hi
+C - - - - - 0x004832 01:8822: 9D 01 03  STA ram_nmt_buffer + $01,X  ; ppu lo
 C - - - - - 0x004835 01:8825: A9 00     LDA #$00
 C - - - - - 0x004837 01:8827: 69 29     ADC #> $29E0
-C - - - - - 0x004839 01:8829: 9D 00 03  STA ram_nmt_buffer,X    ; ppu lo
+C - - - - - 0x004839 01:8829: 9D 00 03  STA ram_nmt_buffer,X    ; ppu hi
 C - - - - - 0x00483C 01:882C: E8        INX
 C - - - - - 0x00483D 01:882D: E8        INX
 C - - - - - 0x00483E 01:882E: A9 0B     LDA #$0B    ; counter
