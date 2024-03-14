@@ -7,8 +7,11 @@
 
 
 
-; most of this code is currently garbage and can be deleted (except jumps from SRAM, see exports)
-; bzk recommended to delete all this shit and repoint SRAM jumps to bank_FF (see duplicates below)
+; most of this code is currently garbage and can
+; be deleted (except jumps from SRAM, see exports below)
+
+; bzk recommended to delete all this shit and redirect SRAM
+; jumps to bank_FF (see duplicates at 0x003FAB and 0x003FBF)
 
 
 
@@ -99,5 +102,9 @@ loc_inc_0x003FBC_prg_bankswitch:
 - - - - - - 0x003FE8 00:BFD8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x003FF0 00:BFE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x003FF8 00:BFE8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+
+
+; bzk garbage
+vec_inc_0x004000_IRQ:
 - - - - - - 0x004000 00:BFF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x004008 00:BFF8: FF        .byte $FF, $FF   ; 

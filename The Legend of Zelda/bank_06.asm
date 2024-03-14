@@ -875,6 +875,7 @@ _off012_835A_09:
 - D 0 - I - 0x0183B3 06:83A3: FF        .byte $FF   ; 
 
 
+
 tbl_83A4:
 - D 0 - - - 0x0183B4 06:83A4: 6F 81     .word _off012_816F_01
 - D 0 - - - 0x0183B6 06:83A6: A8 81     .word _off012_81A8_02
@@ -6964,7 +6965,7 @@ _off010_9BDC_09:
 - D 0 - I - 0x019C95 06:9C85: 00        .byte $00   ; 2D
 - D 0 - I - 0x019C96 06:9C86: 00        .byte $00   ; 2E
 - D 0 - I - 0x019C97 06:9C87: 10        .byte $10   ; 2F
-- D 0 - I - 0x019C98 06:9C88: 0F        .byte $0F   ; 00
+- D 0 - I - 0x019C98 06:9C88: 0F        .byte $0F   ; 30
 - D 0 - I - 0x019C99 06:9C89: 0F        .byte $0F   ; 31
 - D 0 - I - 0x019C9A 06:9C8A: 00        .byte $00   ; 32
 - D 0 - I - 0x019C9B 06:9C8B: 00        .byte $00   ; 33
@@ -7104,6 +7105,7 @@ ofs_9CD8_bank_s1_asm_export:
 
 
 tbl_A000_ppu_data:
+; see con_ppu_buf
 - D 1 - - - 0x01A010 06:A000: 02 03     .word ram_0302  ; 00
 - D 1 - - - 0x01A012 06:A002: FE A3     .word _off000_A3FE_02_guide
 - D 1 - - - 0x01A014 06:A004: B4 A2     .word _off000_A2B4_04_continue
@@ -7117,17 +7119,17 @@ tbl_A000_ppu_data:
 - D 1 - - - 0x01A024 06:A014: 00 A1     .word _off000_A100_14
 - D 1 - - - 0x01A026 06:A016: 83 A1     .word _off000_A183_16
 - D 1 - - - 0x01A028 06:A018: 7E 6B     .word ram_6B7E_palette_buffer ; 18
-- - - - - - 0x01A02A 06:A01A: 02 03     .word ram_0302  ; 1A unused
-- - - - - - 0x01A02C 06:A01C: 02 03     .word ram_0302  ; 1C unused
+- - - - - - 0x01A02A 06:A01A: 02 03     .word ram_0302  ; 1A unused, index not found
+- - - - - - 0x01A02C 06:A01C: 02 03     .word ram_0302  ; 1C unused, index not found
 - D 1 - - - 0x01A02E 06:A01E: 1D A2     .word _off000_A21D_1E
 - D 1 - - - 0x01A030 06:A020: 45 A2     .word _off000_A245_20
 - - - - - - 0x01A032 06:A022: 4D A2     .word _off000_A24D_22
 - D 1 - - - 0x01A034 06:A024: 55 A2     .word _off000_A255_24
 - D 1 - - - 0x01A036 06:A026: 69 A2     .word _off000_A269_26
-- - - - - - 0x01A038 06:A028: 02 03     .word ram_0302  ; 28 unused
+- - - - - - 0x01A038 06:A028: 02 03     .word ram_0302  ; 28 unused, index not found
 - D 1 - - - 0x01A03A 06:A02A: 26 A2     .word _off000_A226_2A
 - D 1 - - - 0x01A03C 06:A02C: C8 A3     .word _off000_A3C8_2C
-- - - - - - 0x01A03E 06:A02E: 1C 68     .word _off000_bat_681C_2E   ; unused
+- - - - - - 0x01A03E 06:A02E: 1C 68     .word _off000_bat_681C_2E   ; unused, index not found
 - D 1 - - - 0x01A040 06:A030: 16 A3     .word _off000_A316_30
 - D 1 - - - 0x01A042 06:A032: 23 A3     .word _off000_A323_32
 - D 1 - - - 0x01A044 06:A034: 37 A3     .word _off000_A337_34
@@ -7154,20 +7156,20 @@ tbl_A000_ppu_data:
 - D 1 - - - 0x01A06E 06:A05E: E8 A3     .word _off000_A3E8_5E
 - D 1 - - - 0x01A070 06:A060: F4 A3     .word _off000_A3F4_60
 - D 1 - - - 0x01A072 06:A062: F9 A3     .word _off000_A3F9_62
-- - - - - - 0x01A074 06:A064: 02 03     .word ram_0302  ; 64 unused
-- - - - - - 0x01A076 06:A066: 02 03     .word ram_0302  ; 66 unused
-- - - - - - 0x01A078 06:A068: 02 03     .word ram_0302  ; 68 unused
+- - - - - - 0x01A074 06:A064: 02 03     .word ram_0302  ; 64 unused, index not found
+- - - - - - 0x01A076 06:A066: 02 03     .word ram_0302  ; 66 unused, index not found
+- - - - - - 0x01A078 06:A068: 02 03     .word ram_0302  ; 68 unused, index not found
 - D 1 - - - 0x01A07A 06:A06A: 0A A2     .word _off000_A20A_6A
 - D 1 - - - 0x01A07C 06:A06C: 9E A2     .word _off000_A29E_6C
-- - - - - - 0x01A07E 06:A06E: 02 03     .word ram_0302  ; 6E unused
-- - - - - - 0x01A080 06:A070: 02 03     .word ram_0302  ; 70 unused
-- - - - - - 0x01A082 06:A072: 02 03     .word ram_0302  ; 72 unused
-- - - - - - 0x01A084 06:A074: 02 03     .word ram_0302  ; 74 unused
+- - - - - - 0x01A07E 06:A06E: 02 03     .word ram_0302  ; 6E unused, index not found
+- - - - - - 0x01A080 06:A070: 02 03     .word ram_0302  ; 70 unused, index not found
+- - - - - - 0x01A082 06:A072: 02 03     .word ram_0302  ; 72 unused, index not found
+- - - - - - 0x01A084 06:A074: 02 03     .word ram_0302  ; 74 unused, index not found
 - D 1 - - - 0x01A086 06:A076: A6 A2     .word _off000_A2A6_76
 - D 1 - - - 0x01A088 06:A078: 72 A2     .word _off000_A272_78
 - D 1 - - - 0x01A08A 06:A07A: 7E A2     .word _off000_A27E_7A
 - D 1 - - - 0x01A08C 06:A07C: 86 A2     .word _off000_A286_7C
-- - - - - - 0x01A08E 06:A07E: 02 03     .word ram_0302  ; 7E unused
+- - - - - - 0x01A08E 06:A07E: 02 03     .word ram_0302  ; 7E unused, index not found
 
 
 
@@ -8529,4 +8531,4 @@ _off000_A869_10_title_screen:
 .segment "VECTORS_06"
 - - - - - - 0x01C00A 06:BFFA: 84 E4     .word vec_0x01E494_NMI
 - - - - - - 0x01C00C 06:BFFC: 50 BF     .word vec_inc_0x003F60_RESET
-- - - - - - 0x01C00E 06:BFFE: F0 BF     .word $BFF0 ; IRQ vector
+- - - - - - 0x01C00E 06:BFFE: F0 BF     .word vec_inc_0x004000_IRQ
