@@ -379,10 +379,10 @@ ram_00AA                                = $00AA ; 01246F 014EA9 01750B 01F540 01
 
 
 ; id of the dropped item, see bank_val.inc
-; !!! ram_drop_id array crosses ram_state array
-ram_drop_id                             = $00AB
+; !!! ram_drop__id array crosses ram_state array
+ram_drop__id                            = $00AB ; for common links
 ram_drop_id_room                        = $00AB ; 010D06 01750B 017864 01789B 01E703 01E71C  $733B 
-ram_drop_id_enemy                       = $00AC
+ram_drop_id_enemy                       = $00AC ; for common links
 
 
 
@@ -512,7 +512,8 @@ ram_00E2                                = $00E2 ; 00AC00 00AC10 01420D 014212 01
 
 
 
-; 00 if no transition, 01 if transition is currently happening
+; 00 = no transition
+; 01 = transition is currently happening
 ram_screen_transition_flag              = $00E3 ; 0143C4 0144E8 014CDA 01718D 01750B 01E4A7 01E4EE 01E54B 01E9B9 01EB7A 
 
 
@@ -5890,6 +5891,9 @@ ram_697E_map_data                       = $697E ; 00A415 00A465 00A7CD 014890 01
 
 
 ; 69FE-6A7D (80) 
+; .... ...x = see 0x016B7D
+                ; 0 = underground crossing room with ladders
+                ; 1 = underground room with ladders and an item (bow for example)
 ; ..xx xxxx = enemy id lo
 ; .x.. .... = ???
 ; x... .... = enemy id hi (+40 if 1)
@@ -6029,6 +6033,8 @@ ram_69FE_map_data                       = $69FE ; 00A415 00A465 00A7CD 014898 01
 
 ; 6A7E-6AFD (80) 
 ; ...x xxxx = item id
+; .xx. .... = 
+; x... .... = 
 ram_6A7E_map_data                       = $6A7E ; 004629 00A415 00A465 00A7CD 0174E1 0176A1 017859 017888 0180EB 
 ; ram_6A7F                              = $6A7F ; 004629 00A415 00A465 00A7CD 015348 0174E1 0176A1 017859 017888 0180EB 
 ; ram_6A80                              = $6A80 ; 004629 00A415 00A465 00A7CD 015348 0174E1 0176A1 017859 017888 0180EB 
@@ -6861,20 +6867,32 @@ ram_6C8F                                = $6C8F ; 00A415 00A465 00A721 00A7CD 01
 
 
 
+; 3 save slots
 ; read 0x006609
 ram_6D90                                = $6D90 ; 004D24 009F87 00A42A 00A479 00A79B 0174E1 
-ram_6D91                                = $6D91 ; 004D24 009F87 00A42A 00A479 00A6E9 00A79B 0174E1 
-ram_6D92                                = $6D92 ; 004D24 009F87 00A42A 00A479 00A6E9 00A79B 0170D2 0174E1 
+; ram_6D91                              = $6D91 ; 004D24 009F87 00A42A 00A479 00A6E9 00A79B 0174E1 
+; ram_6D92                              = $6D92 ; 004D24 009F87 00A42A 00A479 00A6E9 00A79B 0170D2 0174E1 
+
+
+
+; 3 save slots
 ram_6D93                                = $6D93 ; 004D24 00A42F 00A47B 00A79F 0174E1 
-ram_6D94                                = $6D94 ; 004D24 00A42F 00A47B 00A79F 0174E1 
-ram_6D95                                = $6D95 ; 004D24 00A42F 00A47B 00A79F 0174E1 
+; ram_6D94                              = $6D94 ; 004D24 00A42F 00A47B 00A79F 0174E1 
+; ram_6D95                              = $6D95 ; 004D24 00A42F 00A47B 00A79F 0174E1 
+
+
+
+; 3 save slots
 ram_6D96                                = $6D96 ; 004D24 00A434 00A47D 00A7A3 0174E1 
-ram_6D97                                = $6D97 ; 004D24 00A434 00A47D 00A6E5 00A7A3 0174E1 
-ram_6D98                                = $6D98 ; 004D24 00A434 00A47D 00A6E5 00A7A3 0174E1 
+; ram_6D97                              = $6D97 ; 004D24 00A434 00A47D 00A6E5 00A7A3 0174E1 
+; ram_6D98                              = $6D98 ; 004D24 00A434 00A47D 00A6E5 00A7A3 0174E1 
+
+
+
 ; quest depending on the name for 3 slots
 ram_6D99                                = $6D99 ; 004D24 00A439 00A47F 00A7A7 0174E1 
-ram_6D9A                                = $6D9A ; 004D24 00A439 00A47F 00A6F5 00A7A7 0174E1 
-ram_6D9B                                = $6D9B ; 004D24 009F7C 00A439 00A47F 00A6F5 00A7A7 0174E1 
+; ram_6D9A                              = $6D9A ; 004D24 00A439 00A47F 00A6F5 00A7A7 0174E1 
+; ram_6D9B                              = $6D9B ; 004D24 009F7C 00A439 00A47F 00A6F5 00A7A7 0174E1 
 
 
 

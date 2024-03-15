@@ -20,7 +20,7 @@
 .export ofs_bat_6D89_07
 .export sub_bat_6DB7
 .export tbl_bat_6DC3_direction
-.export sub_bat_6FD1_select_slot_addresses
+.export sub_bat_6FD1_prepare_save_slot_addresses
 .export sub_bat_6E10
 .export sub_bat_6E1D
 .export sub_bat_6E36
@@ -39,8 +39,8 @@
 .export sub_bat_6FC1
 .export sub_bat_6FE8
 .export sub_bat_7013
-.export sub_bat_701F
-.export sub_bat_7021
+.export sub_bat_701F_EOR_FF_if_negative
+.export sub_bat_7021_EOR_FF
 .export sub_bat_7027
 .export sub_bat_704A
 .export sub_bat_706F
@@ -123,7 +123,6 @@
 .export sub_bat_7DFB
 .export loc_bat_7DFB
 .export sub_bat_7E26
-
 
 
 
@@ -331,10 +330,10 @@ sub_bat_6DB7:
 
 
 tbl_bat_6DC3_direction:
-- D 1 - I - 0x006643 01:6DC3: 08        .byte con_dir_Up      ; 00
-- D 1 - I - 0x006644 01:6DC4: 04        .byte con_dir_Down    ; 01
-- D 1 - I - 0x006645 01:6DC5: 02        .byte con_dir_Left    ; 02
-- D 1 - I - 0x006646 01:6DC6: 01        .byte con_dir_Right   ; 03
+- D 1 - I - 0x006643 01:6DC3: 08        .byte con_dir_Up      ; 00 
+- D 1 - I - 0x006644 01:6DC4: 04        .byte con_dir_Down    ; 01 
+- D 1 - I - 0x006645 01:6DC5: 02        .byte con_dir_Left    ; 02 
+- D 1 - I - 0x006646 01:6DC6: 01        .byte con_dir_Right   ; 03 
 
 
 
@@ -366,7 +365,8 @@ tbl_6DC7_save_slot_addresses:
 
 
 
-sub_bat_6FD1_select_slot_addresses:
+sub_bat_6FD1_prepare_save_slot_addresses:
+; bzk optimize, move to bank 02
 - D 1 - I - 0x006671 01:6DF1: A9 FF     LDA #$FF
 - D 1 - I - 0x006673 01:6DF3: A4 16     LDY ram_current_save_slot
 bra_6DF5_loop:
@@ -566,8 +566,8 @@ loc_bat_6EE9:
 
 tbl_6EF9:
 tbl_bat_6EF9:
-- D 1 - I - 0x006779 01:6EF9: 08        .byte $08   ; 00
-- D 1 - I - 0x00677A 01:6EFA: 00        .byte $00   ; 01
+- D 1 - I - 0x006779 01:6EF9: 08        .byte $08   ; 00 
+- D 1 - I - 0x00677A 01:6EFA: 00        .byte $00   ; 01 
 
 
 
@@ -761,10 +761,10 @@ bra_7003:
 
 
 tbl_700F_direction:
-- D 1 - I - 0x00688F 01:700F: 04        .byte con_dir_Down    ; 00
-- D 1 - I - 0x006890 01:7010: 08        .byte con_dir_Up      ; 01
-- D 1 - I - 0x006891 01:7011: 01        .byte con_dir_Right   ; 02
-- D 1 - I - 0x006892 01:7012: 02        .byte con_dir_Left    ; 03
+- D 1 - I - 0x00688F 01:700F: 04        .byte con_dir_Down    ; 00 
+- D 1 - I - 0x006890 01:7010: 08        .byte con_dir_Up      ; 01 
+- D 1 - I - 0x006891 01:7011: 01        .byte con_dir_Right   ; 02 
+- D 1 - I - 0x006892 01:7012: 02        .byte con_dir_Left    ; 03 
 
 
 
@@ -782,10 +782,10 @@ bra_701B:
 
 
 
-sub_701F:
-sub_bat_701F:
+sub_701F_EOR_FF_if_negative:
+sub_bat_701F_EOR_FF_if_negative:
 - D 1 - I - 0x00689F 01:701F: 10 05     BPL bra_7026_RTS
-sub_bat_7021:
+sub_bat_7021_EOR_FF:
 - D 1 - I - 0x0068A1 01:7021: 49 FF     EOR #$FF
 - D 1 - I - 0x0068A3 01:7023: 18        CLC
 - D 1 - I - 0x0068A4 01:7024: 69 01     ADC #$01
@@ -1176,7 +1176,7 @@ bra_7250_loop:
 - D 1 - I - 0x006AD4 01:7254: 85 E8     STA ram_00E8
 - D 1 - I - 0x006AD6 01:7256: A9 05     LDA #con_prg_bank + $05
 - D 1 - I - 0x006AD8 01:7258: 20 AC BF  JSR sub_inc_0x003FBC_prg_bankswitch   ; !!! common routine in all banks
-- D 1 - I - 0x006ADB 01:725B: A9 0E     LDA #$0E
+- D 1 - I - 0x006ADB 01:725B: A9 0E     LDA #con_mirroring_V
 - D 1 - I - 0x006ADD 01:725D: 20 98 BF  JSR sub_inc_0x003FA8_set_control_register
 - D 1 - I - 0x006AE0 01:7260: 20 DE A8  JSR sub_0x0168EE_move_curtain
 - D 1 - I - 0x006AE3 01:7263: C6 0A     DEC ram_000A    ; counter
@@ -1286,8 +1286,8 @@ tbl_bat_72A4:
 
 tbl_72C8:
 tbl_bat_72C8:
-; 0000 xxxx = item counter
-; xxxx 0000 = ???
+; .... xxxx = item counter
+; xxxx .... = ???
 - D 1 - I - 0x006B48 01:72C8: 14        .byte $10 + $04   ; 00 bomb
 - D 1 - I - 0x006B49 01:72C9: 21        .byte $20 + $01   ; 01 wooden sword
 - D 1 - I - 0x006B4A 01:72CA: 22        .byte $20 + $02   ; 02 white sword
@@ -1302,7 +1302,7 @@ tbl_bat_72C8:
 - D 1 - I - 0x006B53 01:72D3: 01        .byte $00 + $01   ; 0B magical key
 - D 1 - I - 0x006B54 01:72D4: 01        .byte $00 + $01   ; 0C raft
 - D 1 - I - 0x006B55 01:72D5: 01        .byte $00 + $01   ; 0D ladder
-- D 1 - I - 0x006B56 01:72D6: 01        .byte $00 + $01   ; 0E unused? or is 0x01F86C it?
+- D 1 - I - 0x006B56 01:72D6: 01        .byte $00 + $01   ; 0E final triforce from ganon
 - D 1 - I - 0x006B57 01:72D7: 15        .byte $10 + $05   ; 0F 5 rupees
 - D 1 - I - 0x006B58 01:72D8: 01        .byte $00 + $01   ; 10 magical rod (staff)
 - D 1 - I - 0x006B59 01:72D9: 01        .byte $00 + $01   ; 11 recorder
@@ -1328,38 +1328,38 @@ tbl_bat_72C8:
 
 
 tbl_bat_72EC:
-- D 1 - I - 0x006B6C 01:72EC: FF        .byte $FF   ; 00
-- D 1 - I - 0x006B6D 01:72ED: 01        .byte $01   ; 01
-- D 1 - I - 0x006B6E 01:72EE: FF        .byte $FF   ; 02
-- D 1 - I - 0x006B6F 01:72EF: 00        .byte $00   ; 03
-- D 1 - I - 0x006B70 01:72F0: 00        .byte $00   ; 04
-- D 1 - I - 0x006B71 01:72F1: 02        .byte $02   ; 05
-- D 1 - I - 0x006B72 01:72F2: 02        .byte $02   ; 06
-- D 1 - I - 0x006B73 01:72F3: 00        .byte $00   ; 07
-- D 1 - I - 0x006B74 01:72F4: 01        .byte $01   ; 08
-- D 1 - I - 0x006B75 01:72F5: 00        .byte $00   ; 09
-- D 1 - I - 0x006B76 01:72F6: 02        .byte $02   ; 0A
-- D 1 - I - 0x006B77 01:72F7: 00        .byte $00   ; 0B
-- D 1 - I - 0x006B78 01:72F8: 00        .byte $00   ; 0C
-- D 1 - I - 0x006B79 01:72F9: 02        .byte $02   ; 0D
-- D 1 - I - 0x006B7A 01:72FA: 02        .byte $02   ; 0E
-- D 1 - I - 0x006B7B 01:72FB: 01        .byte $01   ; 0F
-- D 1 - I - 0x006B7C 01:72FC: 02        .byte $02   ; 10
-- D 1 - I - 0x006B7D 01:72FD: 02        .byte $02   ; 11
-- D 1 - I - 0x006B7E 01:72FE: 02        .byte $02   ; 12
-- D 1 - I - 0x006B7F 01:72FF: 02        .byte $02   ; 13
-- D 1 - I - 0x006B80 01:7300: 02        .byte $02   ; 14
-- D 1 - I - 0x006B81 01:7301: 02        .byte $02   ; 15
-- D 1 - I - 0x006B82 01:7302: 02        .byte $02   ; 16
-- D 1 - I - 0x006B83 01:7303: 02        .byte $02   ; 17
-- D 1 - I - 0x006B84 01:7304: 02        .byte $02   ; 18
-- D 1 - I - 0x006B85 01:7305: 02        .byte $02   ; 19
-- D 1 - I - 0x006B86 01:7306: 02        .byte $02   ; 1A
-- D 1 - I - 0x006B87 01:7307: 02        .byte $02   ; 1B
-- D 1 - I - 0x006B88 01:7308: 01        .byte $01   ; 1C
-- D 1 - I - 0x006B89 01:7309: 00        .byte $00   ; 1D
-- D 1 - I - 0x006B8A 01:730A: 01        .byte $01   ; 1E
-- D 1 - I - 0x006B8B 01:730B: 00        .byte $00   ; 1F
+- D 1 - I - 0x006B6C 01:72EC: FF        .byte $FF   ; 00 
+- D 1 - I - 0x006B6D 01:72ED: 01        .byte $01   ; 01 
+- D 1 - I - 0x006B6E 01:72EE: FF        .byte $FF   ; 02 
+- D 1 - I - 0x006B6F 01:72EF: 00        .byte $00   ; 03 
+- D 1 - I - 0x006B70 01:72F0: 00        .byte $00   ; 04 
+- D 1 - I - 0x006B71 01:72F1: 02        .byte $02   ; 05 
+- D 1 - I - 0x006B72 01:72F2: 02        .byte $02   ; 06 
+- D 1 - I - 0x006B73 01:72F3: 00        .byte $00   ; 07 
+- D 1 - I - 0x006B74 01:72F4: 01        .byte $01   ; 08 
+- D 1 - I - 0x006B75 01:72F5: 00        .byte $00   ; 09 
+- D 1 - I - 0x006B76 01:72F6: 02        .byte $02   ; 0A 
+- D 1 - I - 0x006B77 01:72F7: 00        .byte $00   ; 0B 
+- D 1 - I - 0x006B78 01:72F8: 00        .byte $00   ; 0C 
+- D 1 - I - 0x006B79 01:72F9: 02        .byte $02   ; 0D 
+- D 1 - I - 0x006B7A 01:72FA: 02        .byte $02   ; 0E 
+- D 1 - I - 0x006B7B 01:72FB: 01        .byte $01   ; 0F 
+- D 1 - I - 0x006B7C 01:72FC: 02        .byte $02   ; 10 
+- D 1 - I - 0x006B7D 01:72FD: 02        .byte $02   ; 11 
+- D 1 - I - 0x006B7E 01:72FE: 02        .byte $02   ; 12 
+- D 1 - I - 0x006B7F 01:72FF: 02        .byte $02   ; 13 
+- D 1 - I - 0x006B80 01:7300: 02        .byte $02   ; 14 
+- D 1 - I - 0x006B81 01:7301: 02        .byte $02   ; 15 
+- D 1 - I - 0x006B82 01:7302: 02        .byte $02   ; 16 
+- D 1 - I - 0x006B83 01:7303: 02        .byte $02   ; 17 
+- D 1 - I - 0x006B84 01:7304: 02        .byte $02   ; 18 
+- D 1 - I - 0x006B85 01:7305: 02        .byte $02   ; 19 
+- D 1 - I - 0x006B86 01:7306: 02        .byte $02   ; 1A 
+- D 1 - I - 0x006B87 01:7307: 02        .byte $02   ; 1B 
+- D 1 - I - 0x006B88 01:7308: 01        .byte $01   ; 1C 
+- D 1 - I - 0x006B89 01:7309: 00        .byte $00   ; 1D 
+- D 1 - I - 0x006B8A 01:730A: 01        .byte $01   ; 1E 
+- D 1 - I - 0x006B8B 01:730B: 00        .byte $00   ; 1F 
 
 
 
@@ -1414,13 +1414,13 @@ sub_bat_733F:
 - D 1 - I - 0x006BC9 01:7349: 69 03     ADC #$03
 - D 1 - I - 0x006BCB 01:734B: 38        SEC
 - D 1 - I - 0x006BCC 01:734C: F5 84     SBC ram_pos_Y_enemy,X
-- D 1 - I - 0x006BCE 01:734E: 20 1F 70  JSR sub_701F
+- D 1 - I - 0x006BCE 01:734E: 20 1F 70  JSR sub_701F_EOR_FF_if_negative
 - D 1 - I - 0x006BD1 01:7351: C9 09     CMP #$09
 - D 1 - I - 0x006BD3 01:7353: B0 63     BCS bra_73B8_RTS
 - D 1 - I - 0x006BD5 01:7355: A5 70     LDA ram_pos_X_link
 - D 1 - I - 0x006BD7 01:7357: 38        SEC
 - D 1 - I - 0x006BD8 01:7358: F5 70     SBC ram_pos_X_enemy,X
-- D 1 - I - 0x006BDA 01:735A: 20 1F 70  JSR sub_701F
+- D 1 - I - 0x006BDA 01:735A: 20 1F 70  JSR sub_701F_EOR_FF_if_negative
 - D 1 - I - 0x006BDD 01:735D: C9 09     CMP #$09
 - D 1 - I - 0x006BDF 01:735F: B0 57     BCS bra_73B8_RTS
 - D 1 - I - 0x006BE1 01:7361: A9 FF     LDA #$FF
@@ -1721,18 +1721,18 @@ bra_7516_loop:
 
 
 tbl_7527_forest_maze:
-- D 1 - I - 0x006DA7 01:7527: 08        .byte con_dir_Up     ; 00
-- D 1 - I - 0x006DA8 01:7528: 02        .byte con_dir_Left   ; 01
-- D 1 - I - 0x006DA9 01:7529: 04        .byte con_dir_Down   ; 02
-- D 1 - I - 0x006DAA 01:752A: 02        .byte con_dir_Left   ; 03
+- D 1 - I - 0x006DA7 01:7527: 08        .byte con_dir_Up     ; 00 
+- D 1 - I - 0x006DA8 01:7528: 02        .byte con_dir_Left   ; 01 
+- D 1 - I - 0x006DA9 01:7529: 04        .byte con_dir_Down   ; 02 
+- D 1 - I - 0x006DAA 01:752A: 02        .byte con_dir_Left   ; 03 
 
 
 
 tbl_752B_mountain_ladder:   ; bzk optimize, same bytes
-- D 1 - I - 0x006DAB 01:752B: 08        .byte con_dir_Up   ; 00
-- D 1 - I - 0x006DAC 01:752C: 08        .byte con_dir_Up   ; 01
-- D 1 - I - 0x006DAD 01:752D: 08        .byte con_dir_Up   ; 02
-- D 1 - I - 0x006DAE 01:752E: 08        .byte con_dir_Up   ; 03
+- D 1 - I - 0x006DAB 01:752B: 08        .byte con_dir_Up   ; 00 
+- D 1 - I - 0x006DAC 01:752C: 08        .byte con_dir_Up   ; 01 
+- D 1 - I - 0x006DAD 01:752D: 08        .byte con_dir_Up   ; 02 
+- D 1 - I - 0x006DAE 01:752E: 08        .byte con_dir_Up   ; 03 
 
 
 
@@ -2837,98 +2837,98 @@ bra_7A3C:
 
 tbl_7A4B_damage_taken:
 ; damage lo + damage hi
-- D 1 - I - 0x0072CB 01:7A4B: 02        .byte $00 + $02   ; 01
-- D 1 - I - 0x0072CC 01:7A4C: 01        .byte $00 + $01   ; 02
-- D 1 - I - 0x0072CD 01:7A4D: 80        .byte $80 + $00   ; 03
-- D 1 - I - 0x0072CE 01:7A4E: 80        .byte $80 + $00   ; 04
-- D 1 - I - 0x0072CF 01:7A4F: 01        .byte $00 + $01   ; 05
-- D 1 - I - 0x0072D0 01:7A50: 80        .byte $80 + $00   ; 06
-- D 1 - I - 0x0072D1 01:7A51: 80        .byte $80 + $00   ; 07
-- D 1 - I - 0x0072D2 01:7A52: 80        .byte $80 + $00   ; 08
-- D 1 - I - 0x0072D3 01:7A53: 80        .byte $80 + $00   ; 09
-- D 1 - I - 0x0072D4 01:7A54: 80        .byte $80 + $00   ; 0A
-- D 1 - I - 0x0072D5 01:7A55: 01        .byte $00 + $01   ; 0B
-- D 1 - I - 0x0072D6 01:7A56: 02        .byte $00 + $02   ; 0C
-- D 1 - I - 0x0072D7 01:7A57: 80        .byte $80 + $00   ; 0D
-- D 1 - I - 0x0072D8 01:7A58: 80        .byte $80 + $00   ; 0E
-- D 1 - I - 0x0072D9 01:7A59: 01        .byte $00 + $01   ; 0F
-- D 1 - I - 0x0072DA 01:7A5A: 80        .byte $80 + $00   ; 10
-- D 1 - I - 0x0072DB 01:7A5B: 80        .byte $80 + $00   ; 11
-- D 1 - I - 0x0072DC 01:7A5C: 01        .byte $00 + $01   ; 12
-- D 1 - I - 0x0072DD 01:7A5D: 01        .byte $00 + $01   ; 13
-- D 1 - I - 0x0072DE 01:7A5E: 80        .byte $80 + $00   ; 14
-- D 1 - I - 0x0072DF 01:7A5F: 80        .byte $80 + $00   ; 15
-- D 1 - I - 0x0072E0 01:7A60: 02        .byte $00 + $02   ; 16
-- D 1 - I - 0x0072E1 01:7A61: 01        .byte $00 + $01   ; 17
-- D 1 - I - 0x0072E2 01:7A62: 02        .byte $00 + $02   ; 18
-- D 1 - I - 0x0072E3 01:7A63: 00        .byte $00 + $00   ; 19
-- D 1 - I - 0x0072E4 01:7A64: 80        .byte $80 + $00   ; 1A
-- D 1 - I - 0x0072E5 01:7A65: 80        .byte $80 + $00   ; 1B
-- D 1 - I - 0x0072E6 01:7A66: 80        .byte $80 + $00   ; 1C
-- D 1 - I - 0x0072E7 01:7A67: 80        .byte $80 + $00   ; 1D
-- D 1 - I - 0x0072E8 01:7A68: 01        .byte $00 + $01   ; 1E
-- D 1 - I - 0x0072E9 01:7A69: 80        .byte $80 + $00   ; 1F
-- D 1 - I - 0x0072EA 01:7A6A: 80        .byte $80 + $00   ; 20
-- D 1 - I - 0x0072EB 01:7A6B: 01        .byte $00 + $01   ; 21
-- D 1 - I - 0x0072EC 01:7A6C: 01        .byte $00 + $01   ; 22
-- D 1 - I - 0x0072ED 01:7A6D: 02        .byte $00 + $02   ; 23
-- D 1 - I - 0x0072EE 01:7A6E: 01        .byte $00 + $01   ; 24
-- D 1 - I - 0x0072EF 01:7A6F: 02        .byte $00 + $02   ; 25
-- D 1 - I - 0x0072F0 01:7A70: 02        .byte $00 + $02   ; 26
-- D 1 - I - 0x0072F1 01:7A71: 80        .byte $80 + $00   ; 27
-- D 1 - I - 0x0072F2 01:7A72: 80        .byte $80 + $00   ; 28
-- D 1 - I - 0x0072F3 01:7A73: 80        .byte $80 + $00   ; 29
-- D 1 - I - 0x0072F4 01:7A74: 80        .byte $80 + $00   ; 2A
-- D 1 - I - 0x0072F5 01:7A75: 00        .byte $00 + $00   ; 2B
-- D 1 - I - 0x0072F6 01:7A76: 00        .byte $00 + $00   ; 2C
-- D 1 - I - 0x0072F7 01:7A77: 00        .byte $00 + $00   ; 2D
-- D 1 - I - 0x0072F8 01:7A78: 00        .byte $00 + $00   ; 2E
-- D 1 - I - 0x0072F9 01:7A79: 00        .byte $00 + $00   ; 2F
-- D 1 - I - 0x0072FA 01:7A7A: 02        .byte $00 + $02   ; 30
-- D 1 - I - 0x0072FB 01:7A7B: 01        .byte $00 + $01   ; 31
-- D 1 - I - 0x0072FC 01:7A7C: 01        .byte $00 + $01   ; 32
-- D 1 - I - 0x0072FD 01:7A7D: 02        .byte $00 + $02   ; 33
-- D 1 - I - 0x0072FE 01:7A7E: 02        .byte $00 + $02   ; 34
-- D 1 - I - 0x0072FF 01:7A7F: 00        .byte $00 + $00   ; 35
-- D 1 - I - 0x007300 01:7A80: 00        .byte $00 + $00   ; 36
-- D 1 - I - 0x007301 01:7A81: 00        .byte $00 + $00   ; 37
-- D 1 - I - 0x007302 01:7A82: 02        .byte $00 + $02   ; 38
-- D 1 - I - 0x007303 01:7A83: 02        .byte $00 + $02   ; 39
-- D 1 - I - 0x007304 01:7A84: 02        .byte $00 + $02   ; 3A
-- D 1 - I - 0x007305 01:7A85: 02        .byte $00 + $02   ; 3B
-- D 1 - I - 0x007306 01:7A86: 01        .byte $00 + $01   ; 3C
-- D 1 - I - 0x007307 01:7A87: 01        .byte $00 + $01   ; 3D
-- D 1 - I - 0x007308 01:7A88: 04        .byte $00 + $04   ; 3E
-- D 1 - I - 0x007309 01:7A89: 80        .byte $80 + $00   ; 3F
-- D 1 - I - 0x00730A 01:7A8A: 80        .byte $80 + $00   ; 40
-- D 1 - I - 0x00730B 01:7A8B: 80        .byte $80 + $00   ; 41
-- D 1 - I - 0x00730C 01:7A8C: 01        .byte $00 + $01   ; 42
-- D 1 - I - 0x00730D 01:7A8D: 01        .byte $00 + $01   ; 43
-- D 1 - I - 0x00730E 01:7A8E: 01        .byte $00 + $01   ; 44
-- D 1 - I - 0x00730F 01:7A8F: 01        .byte $00 + $01   ; 45
-- D 1 - I - 0x007310 01:7A90: 01        .byte $00 + $01   ; 46
-- D 1 - I - 0x007311 01:7A91: 02        .byte $00 + $02   ; 47
-- D 1 - I - 0x007312 01:7A92: 02        .byte $00 + $02   ; 48
-- D 1 - I - 0x007313 01:7A93: 01        .byte $00 + $01   ; 49
-- D 1 - I - 0x007314 01:7A94: 01        .byte $00 + $01   ; 4A
-- D 1 - I - 0x007315 01:7A95: 00        .byte $00 + $00   ; 4B
-- D 1 - I - 0x007316 01:7A96: 00        .byte $00 + $00   ; 4C
-- D 1 - I - 0x007317 01:7A97: 00        .byte $00 + $00   ; 4D
-- D 1 - I - 0x007318 01:7A98: 00        .byte $00 + $00   ; 4E
-- D 1 - I - 0x007319 01:7A99: 00        .byte $00 + $00   ; 4F
-- D 1 - I - 0x00731A 01:7A9A: 00        .byte $00 + $00   ; 50
-- D 1 - I - 0x00731B 01:7A9B: 00        .byte $00 + $00   ; 51
-- D 1 - I - 0x00731C 01:7A9C: 00        .byte $00 + $00   ; 52
-- D 1 - I - 0x00731D 01:7A9D: 80        .byte $80 + $00   ; 53
-- D 1 - I - 0x00731E 01:7A9E: 80        .byte $80 + $00   ; 54
-- D 1 - I - 0x00731F 01:7A9F: 80        .byte $80 + $00   ; 55
-- D 1 - I - 0x007320 01:7AA0: 01        .byte $00 + $01   ; 56
-- D 1 - I - 0x007321 01:7AA1: 02        .byte $00 + $02   ; 57
-- D 1 - I - 0x007322 01:7AA2: 02        .byte $00 + $02   ; 58
-- D 1 - I - 0x007323 01:7AA3: 04        .byte $00 + $04   ; 59
-- D 1 - I - 0x007324 01:7AA4: 04        .byte $00 + $04   ; 5A
-- D 1 - I - 0x007325 01:7AA5: 80        .byte $80 + $00   ; 5B
-- D 1 - I - 0x007326 01:7AA6: 01        .byte $00 + $01   ; 5C
+- D 1 - I - 0x0072CB 01:7A4B: 02        .byte $00 + $02   ; 01 
+- D 1 - I - 0x0072CC 01:7A4C: 01        .byte $00 + $01   ; 02 
+- D 1 - I - 0x0072CD 01:7A4D: 80        .byte $80 + $00   ; 03 
+- D 1 - I - 0x0072CE 01:7A4E: 80        .byte $80 + $00   ; 04 
+- D 1 - I - 0x0072CF 01:7A4F: 01        .byte $00 + $01   ; 05 
+- D 1 - I - 0x0072D0 01:7A50: 80        .byte $80 + $00   ; 06 
+- D 1 - I - 0x0072D1 01:7A51: 80        .byte $80 + $00   ; 07 
+- D 1 - I - 0x0072D2 01:7A52: 80        .byte $80 + $00   ; 08 
+- D 1 - I - 0x0072D3 01:7A53: 80        .byte $80 + $00   ; 09 
+- D 1 - I - 0x0072D4 01:7A54: 80        .byte $80 + $00   ; 0A 
+- D 1 - I - 0x0072D5 01:7A55: 01        .byte $00 + $01   ; 0B 
+- D 1 - I - 0x0072D6 01:7A56: 02        .byte $00 + $02   ; 0C 
+- D 1 - I - 0x0072D7 01:7A57: 80        .byte $80 + $00   ; 0D 
+- D 1 - I - 0x0072D8 01:7A58: 80        .byte $80 + $00   ; 0E 
+- D 1 - I - 0x0072D9 01:7A59: 01        .byte $00 + $01   ; 0F 
+- D 1 - I - 0x0072DA 01:7A5A: 80        .byte $80 + $00   ; 10 
+- D 1 - I - 0x0072DB 01:7A5B: 80        .byte $80 + $00   ; 11 
+- D 1 - I - 0x0072DC 01:7A5C: 01        .byte $00 + $01   ; 12 
+- D 1 - I - 0x0072DD 01:7A5D: 01        .byte $00 + $01   ; 13 
+- D 1 - I - 0x0072DE 01:7A5E: 80        .byte $80 + $00   ; 14 
+- D 1 - I - 0x0072DF 01:7A5F: 80        .byte $80 + $00   ; 15 
+- D 1 - I - 0x0072E0 01:7A60: 02        .byte $00 + $02   ; 16 
+- D 1 - I - 0x0072E1 01:7A61: 01        .byte $00 + $01   ; 17 
+- D 1 - I - 0x0072E2 01:7A62: 02        .byte $00 + $02   ; 18 
+- D 1 - I - 0x0072E3 01:7A63: 00        .byte $00 + $00   ; 19 
+- D 1 - I - 0x0072E4 01:7A64: 80        .byte $80 + $00   ; 1A 
+- D 1 - I - 0x0072E5 01:7A65: 80        .byte $80 + $00   ; 1B 
+- D 1 - I - 0x0072E6 01:7A66: 80        .byte $80 + $00   ; 1C 
+- D 1 - I - 0x0072E7 01:7A67: 80        .byte $80 + $00   ; 1D 
+- D 1 - I - 0x0072E8 01:7A68: 01        .byte $00 + $01   ; 1E 
+- D 1 - I - 0x0072E9 01:7A69: 80        .byte $80 + $00   ; 1F 
+- D 1 - I - 0x0072EA 01:7A6A: 80        .byte $80 + $00   ; 20 
+- D 1 - I - 0x0072EB 01:7A6B: 01        .byte $00 + $01   ; 21 
+- D 1 - I - 0x0072EC 01:7A6C: 01        .byte $00 + $01   ; 22 
+- D 1 - I - 0x0072ED 01:7A6D: 02        .byte $00 + $02   ; 23 
+- D 1 - I - 0x0072EE 01:7A6E: 01        .byte $00 + $01   ; 24 
+- D 1 - I - 0x0072EF 01:7A6F: 02        .byte $00 + $02   ; 25 
+- D 1 - I - 0x0072F0 01:7A70: 02        .byte $00 + $02   ; 26 
+- D 1 - I - 0x0072F1 01:7A71: 80        .byte $80 + $00   ; 27 
+- D 1 - I - 0x0072F2 01:7A72: 80        .byte $80 + $00   ; 28 
+- D 1 - I - 0x0072F3 01:7A73: 80        .byte $80 + $00   ; 29 
+- D 1 - I - 0x0072F4 01:7A74: 80        .byte $80 + $00   ; 2A 
+- D 1 - I - 0x0072F5 01:7A75: 00        .byte $00 + $00   ; 2B 
+- D 1 - I - 0x0072F6 01:7A76: 00        .byte $00 + $00   ; 2C 
+- D 1 - I - 0x0072F7 01:7A77: 00        .byte $00 + $00   ; 2D 
+- D 1 - I - 0x0072F8 01:7A78: 00        .byte $00 + $00   ; 2E 
+- D 1 - I - 0x0072F9 01:7A79: 00        .byte $00 + $00   ; 2F 
+- D 1 - I - 0x0072FA 01:7A7A: 02        .byte $00 + $02   ; 30 
+- D 1 - I - 0x0072FB 01:7A7B: 01        .byte $00 + $01   ; 31 
+- D 1 - I - 0x0072FC 01:7A7C: 01        .byte $00 + $01   ; 32 
+- D 1 - I - 0x0072FD 01:7A7D: 02        .byte $00 + $02   ; 33 
+- D 1 - I - 0x0072FE 01:7A7E: 02        .byte $00 + $02   ; 34 
+- D 1 - I - 0x0072FF 01:7A7F: 00        .byte $00 + $00   ; 35 
+- D 1 - I - 0x007300 01:7A80: 00        .byte $00 + $00   ; 36 
+- D 1 - I - 0x007301 01:7A81: 00        .byte $00 + $00   ; 37 
+- D 1 - I - 0x007302 01:7A82: 02        .byte $00 + $02   ; 38 
+- D 1 - I - 0x007303 01:7A83: 02        .byte $00 + $02   ; 39 
+- D 1 - I - 0x007304 01:7A84: 02        .byte $00 + $02   ; 3A 
+- D 1 - I - 0x007305 01:7A85: 02        .byte $00 + $02   ; 3B 
+- D 1 - I - 0x007306 01:7A86: 01        .byte $00 + $01   ; 3C 
+- D 1 - I - 0x007307 01:7A87: 01        .byte $00 + $01   ; 3D 
+- D 1 - I - 0x007308 01:7A88: 04        .byte $00 + $04   ; 3E 
+- D 1 - I - 0x007309 01:7A89: 80        .byte $80 + $00   ; 3F 
+- D 1 - I - 0x00730A 01:7A8A: 80        .byte $80 + $00   ; 40 
+- D 1 - I - 0x00730B 01:7A8B: 80        .byte $80 + $00   ; 41 
+- D 1 - I - 0x00730C 01:7A8C: 01        .byte $00 + $01   ; 42 
+- D 1 - I - 0x00730D 01:7A8D: 01        .byte $00 + $01   ; 43 
+- D 1 - I - 0x00730E 01:7A8E: 01        .byte $00 + $01   ; 44 
+- D 1 - I - 0x00730F 01:7A8F: 01        .byte $00 + $01   ; 45 
+- D 1 - I - 0x007310 01:7A90: 01        .byte $00 + $01   ; 46 
+- D 1 - I - 0x007311 01:7A91: 02        .byte $00 + $02   ; 47 
+- D 1 - I - 0x007312 01:7A92: 02        .byte $00 + $02   ; 48 
+- D 1 - I - 0x007313 01:7A93: 01        .byte $00 + $01   ; 49 
+- D 1 - I - 0x007314 01:7A94: 01        .byte $00 + $01   ; 4A 
+- D 1 - I - 0x007315 01:7A95: 00        .byte $00 + $00   ; 4B 
+- D 1 - I - 0x007316 01:7A96: 00        .byte $00 + $00   ; 4C 
+- D 1 - I - 0x007317 01:7A97: 00        .byte $00 + $00   ; 4D 
+- D 1 - I - 0x007318 01:7A98: 00        .byte $00 + $00   ; 4E 
+- D 1 - I - 0x007319 01:7A99: 00        .byte $00 + $00   ; 4F 
+- D 1 - I - 0x00731A 01:7A9A: 00        .byte $00 + $00   ; 50 
+- D 1 - I - 0x00731B 01:7A9B: 00        .byte $00 + $00   ; 51 
+- D 1 - I - 0x00731C 01:7A9C: 00        .byte $00 + $00   ; 52 
+- D 1 - I - 0x00731D 01:7A9D: 80        .byte $80 + $00   ; 53 
+- D 1 - I - 0x00731E 01:7A9E: 80        .byte $80 + $00   ; 54 
+- D 1 - I - 0x00731F 01:7A9F: 80        .byte $80 + $00   ; 55 
+- D 1 - I - 0x007320 01:7AA0: 01        .byte $00 + $01   ; 56 
+- D 1 - I - 0x007321 01:7AA1: 02        .byte $00 + $02   ; 57 
+- D 1 - I - 0x007322 01:7AA2: 02        .byte $00 + $02   ; 58 
+- D 1 - I - 0x007323 01:7AA3: 04        .byte $00 + $04   ; 59 
+- D 1 - I - 0x007324 01:7AA4: 04        .byte $00 + $04   ; 5A 
+- D 1 - I - 0x007325 01:7AA5: 80        .byte $80 + $00   ; 5B 
+- D 1 - I - 0x007326 01:7AA6: 01        .byte $00 + $01   ; 5C 
 
 
 
@@ -3440,14 +3440,14 @@ sub_7DFF:
 - D 1 - I - 0x007685 01:7E05: A5 02     LDA ram_0002
 - D 1 - I - 0x007687 01:7E07: 38        SEC
 - D 1 - I - 0x007688 01:7E08: E5 04     SBC ram_0004
-- D 1 - I - 0x00768A 01:7E0A: 20 1F 70  JSR sub_701F
+- D 1 - I - 0x00768A 01:7E0A: 20 1F 70  JSR sub_701F_EOR_FF_if_negative
 - D 1 - I - 0x00768D 01:7E0D: 85 0A     STA ram_000A
 - D 1 - I - 0x00768F 01:7E0F: C5 0D     CMP ram_000D
 - D 1 - I - 0x007691 01:7E11: B0 10     BCS bra_7E23
 - D 1 - I - 0x007693 01:7E13: A5 03     LDA ram_0003
 - D 1 - I - 0x007695 01:7E15: 38        SEC
 - D 1 - I - 0x007696 01:7E16: E5 05     SBC ram_0005
-- D 1 - I - 0x007698 01:7E18: 20 1F 70  JSR sub_701F
+- D 1 - I - 0x007698 01:7E18: 20 1F 70  JSR sub_701F_EOR_FF_if_negative
 - D 1 - I - 0x00769B 01:7E1B: 85 0B     STA ram_000B
 - D 1 - I - 0x00769D 01:7E1D: C5 0E     CMP ram_000E
 - D 1 - I - 0x00769F 01:7E1F: B0 02     BCS bra_7E23

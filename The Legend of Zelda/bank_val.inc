@@ -39,7 +39,7 @@ con_obj_state_80                        = $80 ; if manually set, link will const
 con_obj_state_FF                        = $FF ; ???
 
 
-; ram_drop_id
+; ram_drop__id
 con_drop_id_00                          = $00 ; bomb
 con_drop_id_01                          = $01 ; wooden sword
 con_drop_id_02                          = $02 ; white sword
@@ -54,7 +54,7 @@ con_drop_id_0A                          = $0A ; bow
 con_drop_id_0B                          = $0B ; magical key
 con_drop_id_0C                          = $0C ; raft
 con_drop_id_0D                          = $0D ; ladder
-con_drop_id_0E                          = $0E ; unused? or is 0x01F86C it?
+con_drop_id_0E                          = $0E ; final triforce from ganon
 con_drop_id_0F                          = $0F ; 5 rupees
 con_drop_id_10                          = $10 ; magical rod (staff)
 con_drop_id_11                          = $11 ; recorder
