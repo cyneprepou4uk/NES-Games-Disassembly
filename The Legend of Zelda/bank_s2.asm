@@ -279,6 +279,8 @@ sub_bat_6D7C_set_sfx_1:
 - D 1 - I - 0x0065FC 01:6D7C: A0 01     LDY #$01    ; ram_sfx_1
 - D 1 - I - 0x0065FE 01:6D7E: D0 02     BNE bra_6D82    ; jmp
 
+
+
 sub_6D80_set_sfx_3:
 sub_bat_6D80_set_sfx_3:
 loc_bat_6D80_set_sfx_3:

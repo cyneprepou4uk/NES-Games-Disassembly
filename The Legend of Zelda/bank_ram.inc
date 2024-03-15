@@ -175,8 +175,8 @@ ram_003D_enemy                          = $003E - $01 ; 01008B 0101C7 010829 010
 
 
 ; 
-ram_004A                                = $004A ; 01750B 01E540 01E544 01ECCC 01ECD4 
-ram_004B                                = $004B ; 01750B 01E540 01E544 01FD0F 01FD3B 
+ram_random_1                            = $004A ; 01750B 01E540 01E544 01ECCC 01ECD4 
+ram_random_2                            = $004B ; 01750B 01E540 01E544 01FD0F 01FD3B 
 
 
 

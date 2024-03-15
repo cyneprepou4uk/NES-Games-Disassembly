@@ -3215,6 +3215,9 @@ C - - - - - 0x01511C 05:910C: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_
 ; bzk garbage
 - - - - - - 0x015133 05:9123: A0 00     LDY #con_obj_id_null
 - - - - - - 0x015135 05:9125: F0 02     BEQ bra_9129    ; jmp
+
+
+; bzk garbage
 - - - - - - 0x015137 05:9127: A0 01     LDY #con_obj_id_01
 bra_9129:
 - - - - - - 0x015139 05:9129: 84 0C     STY ram_000C
@@ -6577,7 +6580,7 @@ C - - - - - 0x017180 05:B170: 4C 09 B0  JMP loc_B009
 ofs_B173_06:
 ofs_024_B173_07:
 C - - J - - 0x017183 05:B173: 20 10 B0  JSR sub_B010
-; bzk optimize
+; bzk optimize, after deleting 0x017189 this JMP will be useless
 C - - - - - 0x017186 05:B176: 4C 7B B1  JMP loc_B17B_clear_screen_transition_flag
 
 
@@ -7204,7 +7207,7 @@ ofs_000_0x017527_08:
 bra_B51C:   ; bzk
 C - - - - - 0x01752C 05:B51C: 06 00     ASL ram_0000
 C - - - - - 0x01752E 05:B51E: CA        DEX
-C - - - - - 0x01752F 05:B51F: 4C 28 B5  JMP loc_B528
+C - - - - - 0x01752F 05:B51F: 4C 28 B5  JMP loc_B528_loop
 
 
 
@@ -7218,7 +7221,7 @@ ofs_000_0x017532_07:
 C - - J - - 0x017532 05:B522: A9 01     LDA #$01
 C - - - - - 0x017534 05:B524: 85 00     STA ram_0000
 C - - - - - 0x017536 05:B526: A2 03     LDX #$03
-loc_B528:
+loc_B528_loop:
 C D 1 - - - 0x017538 05:B528: A5 E7     LDA ram_00E7
 C - - - - - 0x01753A 05:B52A: 24 00     BIT ram_0000
 C - - - - - 0x01753C 05:B52C: F0 EE     BEQ bra_B51C

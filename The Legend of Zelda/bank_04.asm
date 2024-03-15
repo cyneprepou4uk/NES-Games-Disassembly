@@ -283,6 +283,7 @@ bra_8078:
 C - - - - - 0x010088 04:8078: AD 6C 06  LDA ram_item_clock
 C - - - - - 0x01008B 04:807B: 15 3D     ORA ram_003D_enemy,X
 C - - - - - 0x01008D 04:807D: D0 24     BNE bra_80A3_RTS
+; bzk optimize, after deleting 0x010092 this JMP will be useless
 C - - - - - 0x01008F 04:807F: 4C 94 80  JMP loc_8094
 
 
@@ -610,6 +611,8 @@ loc_828A:
 sub_8293:
 - - - - - - 0x0102A3 04:8293: A0 00     LDY #$00
 - - - - - - 0x0102A5 04:8295: F0 02     BEQ bra_8299    ; jmp
+
+
 
 sub_8297:
 - - - - - - 0x0102A7 04:8297: A0 01     LDY #$01
@@ -1498,7 +1501,7 @@ C - - - - - 0x010772 04:8762: 0A        ASL
 C - - - - - 0x010773 04:8763: 0A        ASL
 C - - - - - 0x010774 04:8764: 0A        ASL
 C - - - - - 0x010775 04:8765: 95 28     STA ram_timer_enemy,X
-C - - - - - 0x010777 04:8767: 20 55 F8  JSR sub_0x01F865
+C - - - - - 0x010777 04:8767: 20 55 F8  JSR sub_0x01F865_clear_enemy_state
 C - - - - - 0x01077A 04:876A: 9D E4 03  STA ram_03E3_enemy,X
 C - - - - - 0x01077D 04:876D: A9 06     LDA #$06
 C - - - - - 0x01077F 04:876F: 9D D0 03  STA ram_03CF_enemy,X
@@ -1879,7 +1882,7 @@ C - - - - - 0x0109A8 04:8998: FD 44 04  SBC ram_0444_enemy,X
 C - - - - - 0x0109AB 04:899B: 20 1F 70  JSR sub_bat_701F
 C - - - - - 0x0109AE 04:899E: C9 03     CMP #$03
 C - - - - - 0x0109B0 04:89A0: B0 29     BCS bra_89CB
-C - - - - - 0x0109B2 04:89A2: 20 55 F8  JSR sub_0x01F865
+C - - - - - 0x0109B2 04:89A2: 20 55 F8  JSR sub_0x01F865_clear_enemy_state
 C - - - - - 0x0109B5 04:89A5: BC 4F 03  LDY ram_obj_id_enemy - $01,X
 C - - - - - 0x0109B8 04:89A8: C0 20     CPY #con_obj_id_20
 C - - - - - 0x0109BA 04:89AA: F0 1D     BEQ bra_89C9
@@ -4453,7 +4456,7 @@ C - - J - - 0x011962 04:9952: 20 A6 FE  JSR sub_0x01FEB6
 C - - - - - 0x011965 04:9955: 20 10 B0  JSR sub_B010
 bra_9958:   ; bzk fucking developers
 ofs_037_9958_04:
-C - - J - - 0x011968 04:9958: 20 55 F8  JSR sub_0x01F865
+C - - J - - 0x011968 04:9958: 20 55 F8  JSR sub_0x01F865_clear_enemy_state
 C - - - - - 0x01196B 04:995B: 9D 2C 04  STA ram_042B_enemy,X
 C - - - - - 0x01196E 04:995E: 60        RTS
 

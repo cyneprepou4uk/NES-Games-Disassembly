@@ -79,7 +79,7 @@
 .export sub_0x01F3E4
 .export sub_0x01F529
 .export loc_0x01F58B
-.export sub_0x01F865
+.export sub_0x01F865_clear_enemy_state
 .export sub_0x01FA5F
 .export sub_0x01FA82
 .export sub_0x01FA99
@@ -436,7 +436,6 @@ C - - - - - 0x01E627 07:E617: C6 01     DEC ram_0001
 C - - - - - 0x01E629 07:E619: A5 01     LDA ram_0001
 C - - - - - 0x01E62B 07:E61B: C9 03     CMP #$03
 C - - - - - 0x01E62D 07:E61D: B0 EF     BCS bra_E60E_loop
-; Y = FF
 C - - - - - 0x01E62F 07:E61F: A9 FF     LDA #$FF
 C - - - - - 0x01E631 07:E621: 8D 02 03  STA ram_0302
 C - - - - - 0x01E634 07:E624: 60        RTS
@@ -536,6 +535,8 @@ C - - - - - 0x01E6B3 07:E6A3: 20 E2 E5  JSR sub_E5E2_jump_to_pointers_after_JSR
 - - - - - - 0x01E6C2 07:E6B2: 22 B5     .word ofs_000_0x017532_06
 - D 3 - I - 0x01E6C4 07:E6B4: 22 B5     .word ofs_000_0x017532_07
 - - - - - - 0x01E6C6 07:E6B6: 17 B5     .word ofs_000_0x017527_08
+
+
 
 bra_E6B8:
 C - - - - - 0x01E6C8 07:E6B8: A4 98     LDY ram_dir_link
@@ -1528,11 +1529,11 @@ C - - - - - 0x01ECC2 07:ECB2: A2 11     LDX #$11
 C - - - - - 0x01ECC4 07:ECB4: 20 2A F9  JSR sub_F92A
 C - - - - - 0x01ECC7 07:ECB7: A2 12     LDX #$12
 C - - - - - 0x01ECC9 07:ECB9: 20 3E F7  JSR sub_F73E
-C - - - - - 0x01ECCC 07:ECBC: A5 4A     LDA ram_004A
+C - - - - - 0x01ECCC 07:ECBC: A5 4A     LDA ram_random_1
 C - - - - - 0x01ECCE 07:ECBE: D0 1E     BNE bra_ECDE
 C - - - - - 0x01ECD0 07:ECC0: A5 19     LDA ram_indiv_random + $01
 C - - - - - 0x01ECD2 07:ECC2: 29 07     AND #$07
-C - - - - - 0x01ECD4 07:ECC4: 85 4A     STA ram_004A
+C - - - - - 0x01ECD4 07:ECC4: 85 4A     STA ram_random_1
 C - - - - - 0x01ECD6 07:ECC6: A5 60     LDA ram_0060
 C - - - - - 0x01ECD8 07:ECC8: 49 01     EOR #$01
 C - - - - - 0x01ECDA 07:ECCA: 85 60     STA ram_0060
@@ -2749,7 +2750,7 @@ loc_F411:
 bra_F411:
 C D 3 - - - 0x01F421 07:F411: A2 0E     LDX #$0E
 bra_F413:
-C - - - - - 0x01F423 07:F413: 4C 55 F8  JMP loc_F855
+C - - - - - 0x01F423 07:F413: 4C 55 F8  JMP loc_F855_clear_enemy_state
 bra_F416:
 ; flying sword projectile hit the wall
 C - - - - - 0x01F426 07:F416: F6 AC     INC ram_state_enemy,X
@@ -2881,7 +2882,7 @@ C - - - - - 0x01F4EB 07:F4DB: A9 02     LDA #$02
 C - - - - - 0x01F4ED 07:F4DD: A0 06     LDY #$06
 C - - - - - 0x01F4EF 07:F4DF: 4C 0C 79  JMP loc_bat_790C
 bra_F4E2:
-- - - - - - 0x01F4F2 07:F4E2: 4C 55 F8  JMP loc_F855
+- - - - - - 0x01F4F2 07:F4E2: 4C 55 F8  JMP loc_F855_clear_enemy_state
 
 
 
@@ -3082,7 +3083,7 @@ bra_F5D2:
 C - - - - - 0x01F5E2 07:F5D2: E0 12     CPX #$12
 C - - - - - 0x01F5E4 07:F5D4: D0 0B     BNE bra_F5E1
 bra_F5D6:
-C - - - - - 0x01F5E6 07:F5D6: 20 55 F8  JSR sub_F855
+C - - - - - 0x01F5E6 07:F5D6: 20 55 F8  JSR sub_F855_clear_enemy_state
 C - - - - - 0x01F5E9 07:F5D9: E0 0D     CPX #$0D
 C - - - - - 0x01F5EB 07:F5DB: B0 03     BCS bra_F5E0_RTS
 C - - - - - 0x01F5ED 07:F5DD: 20 46 83  JSR sub_0x010356
@@ -3349,7 +3350,7 @@ C - - - - - 0x01F798 07:F788: B5 AC     LDA ram_state_enemy,X
 C - - - - - 0x01F79A 07:F78A: 29 0F     AND #$0F
 C - - - - - 0x01F79C 07:F78C: C9 06     CMP #$06
 C - - - - - 0x01F79E 07:F78E: 90 04     BCC bra_F794
-C - - - - - 0x01F7A0 07:F790: 20 55 F8  JSR sub_F855
+C - - - - - 0x01F7A0 07:F790: 20 55 F8  JSR sub_F855_clear_enemy_state
 bra_F793_RTS:
 C - - - - - 0x01F7A3 07:F793: 60        RTS
 bra_F794:
@@ -3445,9 +3446,9 @@ C - - - - - 0x01F843 07:F833: 29 03     AND #con_dir__LR
 C - - - - - 0x01F845 07:F835: F0 0A     BEQ bra_F841
 C - - - - - 0x01F847 07:F837: B5 70     LDA ram_pos_X_enemy,X
 C - - - - - 0x01F849 07:F839: C9 14     CMP #$14
-C - - - - - 0x01F84B 07:F83B: 90 18     BCC bra_F855
+C - - - - - 0x01F84B 07:F83B: 90 18     BCC bra_F855_clear_enemy_state
 C - - - - - 0x01F84D 07:F83D: C9 EC     CMP #$EC
-C - - - - - 0x01F84F 07:F83F: B0 14     BCS bra_F855
+C - - - - - 0x01F84F 07:F83F: B0 14     BCS bra_F855_clear_enemy_state
 bra_F841:
 C - - - - - 0x01F851 07:F841: A0 C0     LDY #$C0
 C - - - - - 0x01F853 07:F843: B5 AC     LDA ram_state_enemy,X
@@ -3464,10 +3465,10 @@ C - - - - - 0x01F864 07:F854: 60        RTS
 
 
 
-loc_F855:
-sub_F855:
-sub_0x01F865:
-bra_F855:
+loc_F855_clear_enemy_state:
+sub_F855_clear_enemy_state:
+sub_0x01F865_clear_enemy_state:
+bra_F855_clear_enemy_state:
 C D 3 - - - 0x01F865 07:F855: A9 00     LDA #$00
 C - - - - - 0x01F867 07:F857: 95 AC     STA ram_state_enemy,X
 C - - - - - 0x01F869 07:F859: 60        RTS
@@ -3522,7 +3523,7 @@ C - - - - - 0x01F8BD 07:F8AD: 95 28     STA ram_timer_enemy,X
 C - - - - - 0x01F8BF 07:F8AF: F6 AC     INC ram_state_enemy,X
 bra_F8B1:
 C - - - - - 0x01F8C1 07:F8B1: B5 28     LDA ram_timer_enemy,X
-C - - - - - 0x01F8C3 07:F8B3: F0 A0     BEQ bra_F855
+C - - - - - 0x01F8C3 07:F8B3: F0 A0     BEQ bra_F855_clear_enemy_state
 C - - - - - 0x01F8C5 07:F8B5: A5 10     LDA ram_dungeon_level
 C - - - - - 0x01F8C7 07:F8B7: F0 0C     BEQ bra_F8C5    ; if overworld
 ; if dungeon
@@ -3634,7 +3635,7 @@ bra_F955:
 C - - - - - 0x01F965 07:F955: 68        PLA
 C - - - - - 0x01F966 07:F956: C9 05     CMP #$05
 C - - - - - 0x01F968 07:F958: D0 06     BNE bra_F960
-C - - - - - 0x01F96A 07:F95A: 20 55 F8  JSR sub_F855
+C - - - - - 0x01F96A 07:F95A: 20 55 F8  JSR sub_F855_clear_enemy_state
 C - - - - - 0x01F96D 07:F95D: 95 28     STA ram_timer_enemy,X
 bra_F95F_RTS:
 C - - - - - 0x01F96F 07:F95F: 60        RTS
@@ -4273,7 +4274,7 @@ C - - - - - 0x01FD09 07:FCF9: F0 41     BEQ bra_FD3C
 C - - - - - 0x01FD0B 07:FCFB: C9 53     CMP #$53
 C - - - - - 0x01FD0D 07:FCFD: B0 3D     BCS bra_FD3C
 bra_FCFF_loop:
-C - - - - - 0x01FD0F 07:FCFF: A5 4B     LDA ram_004B
+C - - - - - 0x01FD0F 07:FCFF: A5 4B     LDA ram_random_2
 C - - - - - 0x01FD11 07:FD01: F0 04     BEQ bra_FD07
 C - - - - - 0x01FD13 07:FD03: 9D 92 04  STA ram_0492_enemy,X
 C - - - - - 0x01FD16 07:FD06: 60        RTS
@@ -4298,7 +4299,7 @@ C - - - - - 0x01FD34 07:FD24: B5 19     LDA ram_indiv_random + $01,X
 C - - - - - 0x01FD36 07:FD26: 29 03     AND #$03
 C - - - - - 0x01FD38 07:FD28: 18        CLC
 C - - - - - 0x01FD39 07:FD29: 69 02     ADC #$02
-C - - - - - 0x01FD3B 07:FD2B: 85 4B     STA ram_004B
+C - - - - - 0x01FD3B 07:FD2B: 85 4B     STA ram_random_2
 C - - - - - 0x01FD3D 07:FD2D: A9 05     LDA #con_prg_bank + $05
 C - - - - - 0x01FD3F 07:FD2F: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01FD42 07:FD32: 20 13 8A  JSR sub_0x014A23
