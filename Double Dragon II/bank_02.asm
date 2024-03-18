@@ -10656,16 +10656,16 @@ _off004_BC97_38:
 ; con_state_38
 - D 1 - I - 0x00BCA7 02:BC97: 11        .byte con_sub_branch, @end - @start + $02
 @start:
-- - - - - - 0x00BCA9 02:BC99: 00 00     .word $0000
-- - - - - - 0x00BCAB 02:BC9B: 00 00     .word $0000
+- - - - - - 0x00BCA9 02:BC99: 00 00     .word $0000 ; 
+- - - - - - 0x00BCAB 02:BC9B: 00 00     .word $0000 ; 
 - D 1 - I - 0x00BCAD 02:BC9D: B3 BC     .word ofs_BCB3_02
 - D 1 - I - 0x00BCAF 02:BC9F: B3 BC     .word ofs_BCB3_03
-- - - - - - 0x00BCB1 02:BCA1: 00 00     .word $0000
-- - - - - - 0x00BCB3 02:BCA3: 00 00     .word $0000
-- - - - - - 0x00BCB5 02:BCA5: 00 00     .word $0000
-- - - - - - 0x00BCB7 02:BCA7: 00 00     .word $0000
-- - - - - - 0x00BCB9 02:BCA9: 00 00     .word $0000
-- - - - - - 0x00BCBB 02:BCAB: 00 00     .word $0000
+- - - - - - 0x00BCB1 02:BCA1: 00 00     .word $0000 ; 
+- - - - - - 0x00BCB3 02:BCA3: 00 00     .word $0000 ; 
+- - - - - - 0x00BCB5 02:BCA5: 00 00     .word $0000 ; 
+- - - - - - 0x00BCB7 02:BCA7: 00 00     .word $0000 ; 
+- - - - - - 0x00BCB9 02:BCA9: 00 00     .word $0000 ; 
+- - - - - - 0x00BCBB 02:BCAB: 00 00     .word $0000 ; 
 - D 1 - I - 0x00BCBD 02:BCAD: BA BC     .word ofs_BCBA_0A
 - - - - - - 0x00BCBF 02:BCAF: BA BC     .word ofs_BCBA_0B
 @end:
@@ -10743,16 +10743,16 @@ _off004_BCE8_3D:
 ; con_state_punch_strong
 - D 1 - I - 0x00BCF8 02:BCE8: 11        .byte con_sub_branch, @end - @start + $02
 @start:
-- - - - - - 0x00BCFA 02:BCEA: 00 00     .word $0000
-- - - - - - 0x00BCFC 02:BCEC: 00 00     .word $0000
+- - - - - - 0x00BCFA 02:BCEA: 00 00     .word $0000 ; 
+- - - - - - 0x00BCFC 02:BCEC: 00 00     .word $0000 ; 
 - D 1 - I - 0x00BCFE 02:BCEE: 00 BD     .word ofs_BD00_02
-- - - - - - 0x00BD00 02:BCF0: 00 00     .word $0000
-- - - - - - 0x00BD02 02:BCF2: 00 00     .word $0000
-- - - - - - 0x00BD04 02:BCF4: 00 00     .word $0000
-- - - - - - 0x00BD06 02:BCF6: 00 00     .word $0000
-- - - - - - 0x00BD08 02:BCF8: 00 00     .word $0000
+- - - - - - 0x00BD00 02:BCF0: 00 00     .word $0000 ; 
+- - - - - - 0x00BD02 02:BCF2: 00 00     .word $0000 ; 
+- - - - - - 0x00BD04 02:BCF4: 00 00     .word $0000 ; 
+- - - - - - 0x00BD06 02:BCF6: 00 00     .word $0000 ; 
+- - - - - - 0x00BD08 02:BCF8: 00 00     .word $0000 ; 
 - D 1 - I - 0x00BD0A 02:BCFA: 0B BD     .word ofs_BD0B_08
-- - - - - - 0x00BD0C 02:BCFC: 00 00     .word $0000
+- - - - - - 0x00BD0C 02:BCFC: 00 00     .word $0000 ; 
 @end:
 - D 1 - I - 0x00BD0E 02:BCFE: 0C        .byte con_sub_0C
 - D 1 - I - 0x00BD0F 02:BCFF: 00        .byte con_sub_exit
@@ -10827,10 +10827,10 @@ _off004_BD28_45:
 @start:
 - D 1 - I - 0x00BD3A 02:BD2A: 38 BD     .word ofs_BD38_00
 - - - - - - 0x00BD3C 02:BD2C: 38 BD     .word ofs_BD38_01
-- - - - - - 0x00BD3E 02:BD2E: 00 00     .word $0000
-- - - - - - 0x00BD40 02:BD30: 00 00     .word $0000
+- - - - - - 0x00BD3E 02:BD2E: 00 00     .word $0000 ; 
+- - - - - - 0x00BD40 02:BD30: 00 00     .word $0000 ; 
 - D 1 - I - 0x00BD42 02:BD32: 3F BD     .word ofs_BD3F_04
-- - - - - - 0x00BD44 02:BD34: 00 00     .word $0000
+- - - - - - 0x00BD44 02:BD34: 00 00     .word $0000 ; 
 @end:
 - D 1 - I - 0x00BD46 02:BD36: 0C        .byte con_sub_0C
 - D 1 - I - 0x00BD47 02:BD37: 00        .byte con_sub_exit

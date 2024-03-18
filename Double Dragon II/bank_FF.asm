@@ -1540,7 +1540,7 @@ tbl_C9D8_screen_data:
 ; see con_CD20
 ; 00
 - D 2 - I - 0x01C9E8 07:C9D8: 00 10     .word _off031_0x03F010_00
-- D 2 - I - 0x01C9EA 07:C9DA: 00 00     .word $0000
+- D 2 - I - 0x01C9EA 07:C9DA: 00 00     .word $0000 ; 
 - D 2 - I - 0x01C9EC 07:C9DC: 02        .byte $02   ; bg palette
 - D 2 - I - 0x01C9ED 07:C9DD: 08        .byte $08   ; bg chr bank 1
 - D 2 - I - 0x01C9EE 07:C9DE: 09        .byte $09   ; bg chr bank 2
@@ -1729,7 +1729,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CAB9 07:CAA9: 00        .byte con_prg_bank + $00   ; 
 ; 15
 - D 2 - I - 0x01CABA 07:CAAA: 70 11     .word _off031_0x03F180_15
-- D 2 - I - 0x01CABC 07:CAAC: 00 00     .word $0000
+- D 2 - I - 0x01CABC 07:CAAC: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CABE 07:CAAE: 03        .byte $03   ; bg palette
 - D 2 - I - 0x01CABF 07:CAAF: 0C        .byte $0C   ; bg chr bank 1
 - D 2 - I - 0x01CAC0 07:CAB0: 0D        .byte $0D   ; bg chr bank 2
@@ -1864,7 +1864,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CB4F 07:CB3F: 01        .byte con_prg_bank + $01   ; 
 ; 24
 - D 2 - I - 0x01CB50 07:CB40: 5B 14     .word _off031_0x03F46B_24
-- D 2 - I - 0x01CB52 07:CB42: 00 00     .word $0000
+- D 2 - I - 0x01CB52 07:CB42: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CB54 07:CB44: 07        .byte $07   ; bg palette
 - D 2 - I - 0x01CB55 07:CB45: 18        .byte $18   ; bg chr bank 1
 - D 2 - I - 0x01CB56 07:CB46: 19        .byte $19   ; bg chr bank 2
@@ -1873,7 +1873,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CB59 07:CB49: 7C        .byte con_chr_bank + $7C   ; spite banks with compressed screen data
 ; 25
 - D 2 - I - 0x01CB5A 07:CB4A: 7E 17     .word _off031_0x03F78E_25
-- D 2 - I - 0x01CB5C 07:CB4C: 00 00     .word $0000
+- D 2 - I - 0x01CB5C 07:CB4C: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CB5E 07:CB4E: 08        .byte $08   ; bg palette
 - D 2 - I - 0x01CB5F 07:CB4F: 18        .byte $18   ; bg chr bank 1
 - D 2 - I - 0x01CB60 07:CB50: 19        .byte $19   ; bg chr bank 2
@@ -1882,7 +1882,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CB63 07:CB53: 7C        .byte con_chr_bank + $7C   ; spite banks with compressed screen data
 ; 26
 - D 2 - I - 0x01CB64 07:CB54: 1F 19     .word _off031_0x03F92F_26
-- D 2 - I - 0x01CB66 07:CB56: 00 00     .word $0000
+- D 2 - I - 0x01CB66 07:CB56: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CB68 07:CB58: 09        .byte $09   ; bg palette
 - D 2 - I - 0x01CB69 07:CB59: 18        .byte $18   ; bg chr bank 1
 - D 2 - I - 0x01CB6A 07:CB5A: 19        .byte $19   ; bg chr bank 2
@@ -1891,7 +1891,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CB6D 07:CB5D: 7C        .byte con_chr_bank + $7C   ; spite banks with compressed screen data
 ; 27
 - D 2 - I - 0x01CB6E 07:CB5E: F7 1B     .word _off031_0x03FC07_27
-- D 2 - I - 0x01CB70 07:CB60: 00 00     .word $0000
+- D 2 - I - 0x01CB70 07:CB60: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CB72 07:CB62: 0B        .byte $0B   ; bg palette
 - D 2 - I - 0x01CB73 07:CB63: 18        .byte $18   ; bg chr bank 1
 - D 2 - I - 0x01CB74 07:CB64: 19        .byte $19   ; bg chr bank 2
@@ -1927,7 +1927,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CB95 07:CB85: 01        .byte con_prg_bank + $01   ; 
 ; 2B title screen
 - D 2 - I - 0x01CB96 07:CB86: 00 10     .word _off031_0x03E010_2B
-- - - - - - 0x01CB98 07:CB88: 00 00     .word $0000
+- - - - - - 0x01CB98 07:CB88: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CB9A 07:CB8A: 11        .byte $11   ; bg palette
 - D 2 - I - 0x01CB9B 07:CB8B: 24        .byte $24   ; bg chr bank 1
 - D 2 - I - 0x01CB9C 07:CB8C: 25        .byte $25   ; bg chr bank 2
@@ -1981,7 +1981,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CBD1 07:CBC1: 00        .byte con_prg_bank + $00   ; 
 ; 31
 - D 2 - I - 0x01CBD2 07:CBC2: 33 17     .word _off031_0x03D743_31
-- - - - - - 0x01CBD4 07:CBC4: 00 00     .word $0000
+- - - - - - 0x01CBD4 07:CBC4: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CBD6 07:CBC6: 1C        .byte $1C   ; bg palette
 - D 2 - I - 0x01CBD7 07:CBC7: 66        .byte $66   ; bg chr bank 1
 - D 2 - I - 0x01CBD8 07:CBC8: 67        .byte $67   ; bg chr bank 2
@@ -1990,7 +1990,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CBDB 07:CBCB: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 32
 - - - - - - 0x01CBDC 07:CBCC: 73 19     .word _off031_0x03D983_32
-- - - - - - 0x01CBDE 07:CBCE: 00 00     .word $0000
+- - - - - - 0x01CBDE 07:CBCE: 00 00     .word $0000 ; 
 - - - - - - 0x01CBE0 07:CBD0: 1B        .byte $1B   ; bg palette
 - - - - - - 0x01CBE1 07:CBD1: 6A        .byte $6A   ; bg chr bank 1
 - - - - - - 0x01CBE2 07:CBD2: 6B        .byte $6B   ; bg chr bank 2
@@ -1999,7 +1999,7 @@ tbl_C9D8_screen_data:
 - - - - - - 0x01CBE5 07:CBD5: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 33
 - D 2 - I - 0x01CBE6 07:CBD6: 73 19     .word _off031_0x03D983_33
-- - - - - - 0x01CBE8 07:CBD8: 00 00     .word $0000
+- - - - - - 0x01CBE8 07:CBD8: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CBEA 07:CBDA: 1B        .byte $1B   ; bg palette
 - D 2 - I - 0x01CBEB 07:CBDB: 6A        .byte $6A   ; bg chr bank 1
 - D 2 - I - 0x01CBEC 07:CBDC: 6B        .byte $6B   ; bg chr bank 2
@@ -2008,7 +2008,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CBEF 07:CBDF: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 34
 - D 2 - I - 0x01CBF0 07:CBE0: D4 1A     .word _off031_0x03DAE4_34
-- - - - - - 0x01CBF2 07:CBE2: 00 00     .word $0000
+- - - - - - 0x01CBF2 07:CBE2: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CBF4 07:CBE4: 1B        .byte $1B   ; bg palette
 - D 2 - I - 0x01CBF5 07:CBE5: 6A        .byte $6A   ; bg chr bank 1
 - D 2 - I - 0x01CBF6 07:CBE6: 6B        .byte $6B   ; bg chr bank 2
@@ -2017,7 +2017,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CBF9 07:CBE9: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 35
 - D 2 - I - 0x01CBFA 07:CBEA: F3 13     .word _off031_0x03D403_35
-- - - - - - 0x01CBFC 07:CBEC: 00 00     .word $0000
+- - - - - - 0x01CBFC 07:CBEC: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CBFE 07:CBEE: 1A        .byte $1A   ; bg palette
 - D 2 - I - 0x01CBFF 07:CBEF: 6E        .byte $6E   ; bg chr bank 1
 - D 2 - I - 0x01CC00 07:CBF0: 6F        .byte $6F   ; bg chr bank 2
@@ -2026,7 +2026,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC03 07:CBF3: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 36
 - D 2 - I - 0x01CC04 07:CBF4: A2 18     .word _off031_0x03D8B2_36
-- - - - - - 0x01CC06 07:CBF6: 00 00     .word $0000
+- - - - - - 0x01CC06 07:CBF6: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC08 07:CBF8: 1B        .byte $1B   ; bg palette
 - D 2 - I - 0x01CC09 07:CBF9: 34        .byte $34   ; bg chr bank 1
 - D 2 - I - 0x01CC0A 07:CBFA: 35        .byte $35   ; bg chr bank 2
@@ -2035,7 +2035,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC0D 07:CBFD: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 37
 - - - - - - 0x01CC0E 07:CBFE: F9 18     .word _off031_0x03D909_37
-- - - - - - 0x01CC10 07:CC00: 00 00     .word $0000
+- - - - - - 0x01CC10 07:CC00: 00 00     .word $0000 ; 
 - - - - - - 0x01CC12 07:CC02: 1B        .byte $1B   ; bg palette
 - - - - - - 0x01CC13 07:CC03: 34        .byte $34   ; bg chr bank 1
 - - - - - - 0x01CC14 07:CC04: 35        .byte $35   ; bg chr bank 2
@@ -2044,7 +2044,7 @@ tbl_C9D8_screen_data:
 - - - - - - 0x01CC17 07:CC07: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 38
 - D 2 - I - 0x01CC18 07:CC08: 50 16     .word _off031_0x03D660_38
-- - - - - - 0x01CC1A 07:CC0A: 00 00     .word $0000
+- - - - - - 0x01CC1A 07:CC0A: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC1C 07:CC0C: 19        .byte $19   ; bg palette
 - D 2 - I - 0x01CC1D 07:CC0D: 70        .byte $70   ; bg chr bank 1
 - D 2 - I - 0x01CC1E 07:CC0E: 71        .byte $71   ; bg chr bank 2
@@ -2053,7 +2053,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC21 07:CC11: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 39
 - D 2 - I - 0x01CC22 07:CC12: 2C 15     .word _off031_0x03D53C_39
-- - - - - - 0x01CC24 07:CC14: 00 00     .word $0000
+- - - - - - 0x01CC24 07:CC14: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC26 07:CC16: 18        .byte $18   ; bg palette
 - D 2 - I - 0x01CC27 07:CC17: 70        .byte $70   ; bg chr bank 1
 - D 2 - I - 0x01CC28 07:CC18: 71        .byte $71   ; bg chr bank 2
@@ -2062,7 +2062,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC2B 07:CC1B: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 3A
 - D 2 - I - 0x01CC2C 07:CC1C: 4A 19     .word _off031_0x03D95A_3A
-- - - - - - 0x01CC2E 07:CC1E: 00 00     .word $0000
+- - - - - - 0x01CC2E 07:CC1E: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC30 07:CC20: 18        .byte $18   ; bg palette
 - D 2 - I - 0x01CC31 07:CC21: 70        .byte $70   ; bg chr bank 1
 - D 2 - I - 0x01CC32 07:CC22: 71        .byte $71   ; bg chr bank 2
@@ -2071,7 +2071,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC35 07:CC25: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 3B
 - D 2 - I - 0x01CC36 07:CC26: 43 1B     .word _off031_0x03EB53_3B
-- - - - - - 0x01CC38 07:CC28: 00 00     .word $0000
+- - - - - - 0x01CC38 07:CC28: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC3A 07:CC2A: 27        .byte $27   ; bg palette
 - D 2 - I - 0x01CC3B 07:CC2B: 2C        .byte $2C   ; bg chr bank 1
 - D 2 - I - 0x01CC3C 07:CC2C: 2D        .byte $2D   ; bg chr bank 2
@@ -2080,7 +2080,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC3F 07:CC2F: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 3C
 - D 2 - I - 0x01CC40 07:CC30: 2A 1C     .word _off031_0x03EC3A_3C
-- - - - - - 0x01CC42 07:CC32: 00 00     .word $0000
+- - - - - - 0x01CC42 07:CC32: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC44 07:CC34: 24        .byte $24   ; bg palette
 - D 2 - I - 0x01CC45 07:CC35: 2C        .byte $2C   ; bg chr bank 1
 - D 2 - I - 0x01CC46 07:CC36: 2D        .byte $2D   ; bg chr bank 2
@@ -2089,7 +2089,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC49 07:CC39: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 3D
 - D 2 - I - 0x01CC4A 07:CC3A: 3E 17     .word _off031_0x03E74E_3D
-- - - - - - 0x01CC4C 07:CC3C: 00 00     .word $0000
+- - - - - - 0x01CC4C 07:CC3C: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC4E 07:CC3E: 29        .byte $29   ; bg palette
 - D 2 - I - 0x01CC4F 07:CC3F: 2C        .byte $2C   ; bg chr bank 1
 - D 2 - I - 0x01CC50 07:CC40: 2D        .byte $2D   ; bg chr bank 2
@@ -2098,7 +2098,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC53 07:CC43: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 3E
 - - - - - - 0x01CC54 07:CC44: 3E 17     .word _off031_0x03E74E_3E
-- - - - - - 0x01CC56 07:CC46: 00 00     .word $0000
+- - - - - - 0x01CC56 07:CC46: 00 00     .word $0000 ; 
 - - - - - - 0x01CC58 07:CC48: 29        .byte $29   ; bg palette
 - - - - - - 0x01CC59 07:CC49: 2C        .byte $2C   ; bg chr bank 1
 - - - - - - 0x01CC5A 07:CC4A: 2D        .byte $2D   ; bg chr bank 2
@@ -2107,7 +2107,7 @@ tbl_C9D8_screen_data:
 - - - - - - 0x01CC5D 07:CC4D: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 3F
 - - - - - - 0x01CC5E 07:CC4E: 3E 17     .word _off031_0x03E74E_3F
-- - - - - - 0x01CC60 07:CC50: 00 00     .word $0000
+- - - - - - 0x01CC60 07:CC50: 00 00     .word $0000 ; 
 - - - - - - 0x01CC62 07:CC52: 29        .byte $29   ; bg palette
 - - - - - - 0x01CC63 07:CC53: 2C        .byte $2C   ; bg chr bank 1
 - - - - - - 0x01CC64 07:CC54: 2D        .byte $2D   ; bg chr bank 2
@@ -2116,7 +2116,7 @@ tbl_C9D8_screen_data:
 - - - - - - 0x01CC67 07:CC57: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 40
 - - - - - - 0x01CC68 07:CC58: 3E 17     .word _off031_0x03E74E_40
-- - - - - - 0x01CC6A 07:CC5A: 00 00     .word $0000
+- - - - - - 0x01CC6A 07:CC5A: 00 00     .word $0000 ; 
 - - - - - - 0x01CC6C 07:CC5C: 29        .byte $29   ; bg palette
 - - - - - - 0x01CC6D 07:CC5D: 2C        .byte $2C   ; bg chr bank 1
 - - - - - - 0x01CC6E 07:CC5E: 2D        .byte $2D   ; bg chr bank 2
@@ -2125,7 +2125,7 @@ tbl_C9D8_screen_data:
 - - - - - - 0x01CC71 07:CC61: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 41
 - D 2 - I - 0x01CC72 07:CC62: 95 11     .word _off031_0x03D1A5_41
-- - - - - - 0x01CC74 07:CC64: 00 00     .word $0000
+- - - - - - 0x01CC74 07:CC64: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC76 07:CC66: 20        .byte $20   ; bg palette
 - D 2 - I - 0x01CC77 07:CC67: 34        .byte $34   ; bg chr bank 1
 - D 2 - I - 0x01CC78 07:CC68: 35        .byte $35   ; bg chr bank 2
@@ -2134,7 +2134,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC7B 07:CC6B: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 42
 - D 2 - I - 0x01CC7C 07:CC6C: 80 11     .word _off031_0x03E190_42
-- - - - - - 0x01CC7E 07:CC6E: 00 00     .word $0000
+- - - - - - 0x01CC7E 07:CC6E: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC80 07:CC70: 1F        .byte $1F   ; bg palette
 - D 2 - I - 0x01CC81 07:CC71: 36        .byte $36   ; bg chr bank 1
 - D 2 - I - 0x01CC82 07:CC72: 37        .byte $37   ; bg chr bank 2
@@ -2143,7 +2143,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC85 07:CC75: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 43
 - D 2 - I - 0x01CC86 07:CC76: ED 12     .word _off031_0x03D2FD_43
-- - - - - - 0x01CC88 07:CC78: 00 00     .word $0000
+- - - - - - 0x01CC88 07:CC78: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC8A 07:CC7A: 23        .byte $23   ; bg palette
 - D 2 - I - 0x01CC8B 07:CC7B: 30        .byte $30   ; bg chr bank 1
 - D 2 - I - 0x01CC8C 07:CC7C: 31        .byte $31   ; bg chr bank 2
@@ -2152,7 +2152,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC8F 07:CC7F: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 44
 - D 2 - I - 0x01CC90 07:CC80: D9 1B     .word _off031_0x03DBE9_44
-- - - - - - 0x01CC92 07:CC82: 00 00     .word $0000
+- - - - - - 0x01CC92 07:CC82: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC94 07:CC84: 26        .byte $26   ; bg palette
 - D 2 - I - 0x01CC95 07:CC85: 2C        .byte $2C   ; bg chr bank 1
 - D 2 - I - 0x01CC96 07:CC86: 2D        .byte $2D   ; bg chr bank 2
@@ -2161,7 +2161,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CC99 07:CC89: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 45
 - D 2 - I - 0x01CC9A 07:CC8A: BC 1E     .word _off031_0x03FECC_45
-- - - - - - 0x01CC9C 07:CC8C: 00 00     .word $0000
+- - - - - - 0x01CC9C 07:CC8C: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CC9E 07:CC8E: 22        .byte $22   ; bg palette
 - D 2 - I - 0x01CC9F 07:CC8F: 30        .byte $30   ; bg chr bank 1
 - D 2 - I - 0x01CCA0 07:CC90: 31        .byte $31   ; bg chr bank 2
@@ -2170,7 +2170,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CCA3 07:CC93: 7C        .byte con_chr_bank + $7C   ; spite banks with compressed screen data
 ; 46
 - - - - - - 0x01CCA4 07:CC94: 5C 14     .word _off031_0x03E46C_46
-- - - - - - 0x01CCA6 07:CC96: 00 00     .word $0000
+- - - - - - 0x01CCA6 07:CC96: 00 00     .word $0000 ; 
 - - - - - - 0x01CCA8 07:CC98: 1D        .byte $1D   ; bg palette
 - - - - - - 0x01CCA9 07:CC99: 38        .byte $38   ; bg chr bank 1
 - - - - - - 0x01CCAA 07:CC9A: 39        .byte $39   ; bg chr bank 2
@@ -2179,7 +2179,7 @@ tbl_C9D8_screen_data:
 - - - - - - 0x01CCAD 07:CC9D: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 47
 - D 2 - I - 0x01CCAE 07:CC9E: 7D 15     .word _off031_0x03E58D_47
-- - - - - - 0x01CCB0 07:CCA0: 00 00     .word $0000
+- - - - - - 0x01CCB0 07:CCA0: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CCB2 07:CCA2: 1D        .byte $1D   ; bg palette
 - D 2 - I - 0x01CCB3 07:CCA3: 38        .byte $38   ; bg chr bank 1
 - D 2 - I - 0x01CCB4 07:CCA4: 39        .byte $39   ; bg chr bank 2
@@ -2188,7 +2188,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CCB7 07:CCA7: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 48
 - - - - - - 0x01CCB8 07:CCA8: 5A 16     .word _off031_0x03E66A_48
-- - - - - - 0x01CCBA 07:CCAA: 00 00     .word $0000
+- - - - - - 0x01CCBA 07:CCAA: 00 00     .word $0000 ; 
 - - - - - - 0x01CCBC 07:CCAC: 1D        .byte $1D   ; bg palette
 - - - - - - 0x01CCBD 07:CCAD: 38        .byte $38   ; bg chr bank 1
 - - - - - - 0x01CCBE 07:CCAE: 39        .byte $39   ; bg chr bank 2
@@ -2197,7 +2197,7 @@ tbl_C9D8_screen_data:
 - - - - - - 0x01CCC1 07:CCB1: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 49
 - D 2 - I - 0x01CCC2 07:CCB2: 80 1A     .word _off031_0x03EA90_49
-- - - - - - 0x01CCC4 07:CCB4: 00 00     .word $0000
+- - - - - - 0x01CCC4 07:CCB4: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CCC6 07:CCB6: 27        .byte $27   ; bg palette
 - D 2 - I - 0x01CCC7 07:CCB7: 2C        .byte $2C   ; bg chr bank 1
 - D 2 - I - 0x01CCC8 07:CCB8: 2D        .byte $2D   ; bg chr bank 2
@@ -2206,7 +2206,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CCCB 07:CCBB: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 4A
 - - - - - - 0x01CCCC 07:CCBC: 80 1A     .word _off031_0x03EA90_4A
-- - - - - - 0x01CCCE 07:CCBE: 00 00     .word $0000
+- - - - - - 0x01CCCE 07:CCBE: 00 00     .word $0000 ; 
 - - - - - - 0x01CCD0 07:CCC0: 25        .byte $25   ; bg palette
 - - - - - - 0x01CCD1 07:CCC1: 2C        .byte $2C   ; bg chr bank 1
 - - - - - - 0x01CCD2 07:CCC2: 2D        .byte $2D   ; bg chr bank 2
@@ -2215,7 +2215,7 @@ tbl_C9D8_screen_data:
 - - - - - - 0x01CCD5 07:CCC5: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 4B
 - D 2 - I - 0x01CCD6 07:CCC6: E5 18     .word _off031_0x03E8F5_4B
-- - - - - - 0x01CCD8 07:CCC8: 00 00     .word $0000
+- - - - - - 0x01CCD8 07:CCC8: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CCDA 07:CCCA: 2B        .byte $2B   ; bg palette
 - D 2 - I - 0x01CCDB 07:CCCB: 3C        .byte $3C   ; bg chr bank 1
 - D 2 - I - 0x01CCDC 07:CCCC: 3D        .byte $3D   ; bg chr bank 2
@@ -2224,7 +2224,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CCDF 07:CCCF: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 4C
 - D 2 - I - 0x01CCE0 07:CCD0: 2A 19     .word _off031_0x03E93A_4C
-- - - - - - 0x01CCE2 07:CCD2: 00 00     .word $0000
+- - - - - - 0x01CCE2 07:CCD2: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CCE4 07:CCD4: 2B        .byte $2B   ; bg palette
 - D 2 - I - 0x01CCE5 07:CCD5: 3C        .byte $3C   ; bg chr bank 1
 - D 2 - I - 0x01CCE6 07:CCD6: 3D        .byte $3D   ; bg chr bank 2
@@ -2233,7 +2233,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CCE9 07:CCD9: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 4D
 - D 2 - I - 0x01CCEA 07:CCDA: A9 19     .word _off031_0x03E9B9_4D
-- - - - - - 0x01CCEC 07:CCDC: 00 00     .word $0000
+- - - - - - 0x01CCEC 07:CCDC: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CCEE 07:CCDE: 2A        .byte $2A   ; bg palette
 - D 2 - I - 0x01CCEF 07:CCDF: 3C        .byte $3C   ; bg chr bank 1
 - D 2 - I - 0x01CCF0 07:CCE0: 3D        .byte $3D   ; bg chr bank 2
@@ -2242,7 +2242,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CCF3 07:CCE3: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 4E
 - D 2 - I - 0x01CCF4 07:CCE4: 00 10     .word _off031_0x03D010_4E
-- - - - - - 0x01CCF6 07:CCE6: 00 00     .word $0000
+- - - - - - 0x01CCF6 07:CCE6: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CCF8 07:CCE8: 23        .byte $23   ; bg palette
 - D 2 - I - 0x01CCF9 07:CCE9: 2C        .byte $2C   ; bg chr bank 1
 - D 2 - I - 0x01CCFA 07:CCEA: 2D        .byte $2D   ; bg chr bank 2
@@ -2251,7 +2251,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CCFD 07:CCED: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 4F
 - D 2 - I - 0x01CCFE 07:CCEE: 39 10     .word _off031_0x03D049_4F
-- - - - - - 0x01CD00 07:CCF0: 00 00     .word $0000
+- - - - - - 0x01CD00 07:CCF0: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CD02 07:CCF2: 21        .byte $21   ; bg palette
 - D 2 - I - 0x01CD03 07:CCF3: 32        .byte $32   ; bg chr bank 1
 - D 2 - I - 0x01CD04 07:CCF4: 33        .byte $33   ; bg chr bank 2
@@ -2260,7 +2260,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CD07 07:CCF7: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 50
 - D 2 - I - 0x01CD08 07:CCF8: 03 13     .word _off031_0x03E313_50
-- - - - - - 0x01CD0A 07:CCFA: 00 00     .word $0000
+- - - - - - 0x01CD0A 07:CCFA: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CD0C 07:CCFC: 1D        .byte $1D   ; bg palette
 - D 2 - I - 0x01CD0D 07:CCFD: 3A        .byte $3A   ; bg chr bank 1
 - D 2 - I - 0x01CD0E 07:CCFE: 3B        .byte $3B   ; bg chr bank 2
@@ -2269,7 +2269,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CD11 07:CD01: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 51
 - D 2 - I - 0x01CD12 07:CD02: 9D 13     .word _off031_0x03E3AD_51
-- - - - - - 0x01CD14 07:CD04: 00 00     .word $0000
+- - - - - - 0x01CD14 07:CD04: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CD16 07:CD06: 1D        .byte $1D   ; bg palette
 - D 2 - I - 0x01CD17 07:CD07: 3A        .byte $3A   ; bg chr bank 1
 - D 2 - I - 0x01CD18 07:CD08: 3B        .byte $3B   ; bg chr bank 2
@@ -2278,7 +2278,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CD1B 07:CD0B: 78        .byte con_chr_bank + $78   ; spite banks with compressed screen data
 ; 52
 - D 2 - I - 0x01CD1C 07:CD0C: 77 1C     .word _off031_0x03DC87_52
-- - - - - - 0x01CD1E 07:CD0E: 00 00     .word $0000
+- - - - - - 0x01CD1E 07:CD0E: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CD20 07:CD10: 2C        .byte $2C   ; bg palette
 - D 2 - I - 0x01CD21 07:CD11: 68        .byte $68   ; bg chr bank 1
 - D 2 - I - 0x01CD22 07:CD12: 69        .byte $69   ; bg chr bank 2
@@ -2287,7 +2287,7 @@ tbl_C9D8_screen_data:
 - D 2 - I - 0x01CD25 07:CD15: 74        .byte con_chr_bank + $74   ; spite banks with compressed screen data
 ; 53
 - D 2 - I - 0x01CD26 07:CD16: 7C 1D     .word _off031_0x03DD8C_53
-- - - - - - 0x01CD28 07:CD18: 00 00     .word $0000
+- - - - - - 0x01CD28 07:CD18: 00 00     .word $0000 ; 
 - D 2 - I - 0x01CD2A 07:CD1A: 31        .byte $31   ; bg palette
 - D 2 - I - 0x01CD2B 07:CD1B: 5C        .byte $5C   ; bg chr bank 1
 - D 2 - I - 0x01CD2C 07:CD1C: 5D        .byte $5D   ; bg chr bank 2
@@ -8846,26 +8846,26 @@ tbl_F709_text:
 
 
 _off020_F721_00:
-- D 3 - I - 0x01F731 07:F721: 88 20     .word $2088
+- D 3 - I - 0x01F731 07:F721: 88 20     .word $2088 ; 
 - D 3 - I - 0x01F733 07:F723: 44        .byte $44, $4F, $55, $42, $4C, $45, $20, $20   ; 
 - D 3 - I - 0x01F73B 07:F72B: 44        .byte $44, $52, $41, $47, $4F, $4E   ; 
 - D 3 - I - 0x01F741 07:F731: 01        .byte $01   ; 
 
-- D 3 - I - 0x01F742 07:F732: 0A 21     .word $210A
+- D 3 - I - 0x01F742 07:F732: 0A 21     .word $210A ; 
 - D 3 - I - 0x01F744 07:F734: 31        .byte $31, $50, $20, $50, $4C, $41, $59   ; 
 - D 3 - I - 0x01F74B 07:F73B: 01        .byte $01   ; 
 
-- D 3 - I - 0x01F74C 07:F73C: 4A 21     .word $214A
+- D 3 - I - 0x01F74C 07:F73C: 4A 21     .word $214A ; 
 - D 3 - I - 0x01F74E 07:F73E: 32        .byte $32, $50, $20, $50, $4C, $41, $59, $20   ; 
 - D 3 - I - 0x01F756 07:F746: 41        .byte $41   ; 
 - D 3 - I - 0x01F757 07:F747: 01        .byte $01   ; 
 
-- D 3 - I - 0x01F758 07:F748: 8A 21     .word $218A
+- D 3 - I - 0x01F758 07:F748: 8A 21     .word $218A ; 
 - D 3 - I - 0x01F75A 07:F74A: 32        .byte $32, $50, $20, $50, $4C, $41, $59, $20   ; 
 - D 3 - I - 0x01F762 07:F752: 42        .byte $42   ; 
 - D 3 - I - 0x01F763 07:F753: 01        .byte $01   ; 
 
-- D 3 - I - 0x01F764 07:F754: 05 23     .word $2305
+- D 3 - I - 0x01F764 07:F754: 05 23     .word $2305 ; 
 - D 3 - I - 0x01F766 07:F756: 45        .byte $45, $41, $53, $59, $20, $20, $20, $4E   ; 
 - D 3 - I - 0x01F76E 07:F75E: 4F        .byte $4F, $52, $4D, $41, $4C, $20, $20, $20   ; 
 - D 3 - I - 0x01F776 07:F766: 44        .byte $44, $49, $46, $46, $49, $43, $55, $4C   ; 
@@ -8875,35 +8875,35 @@ _off020_F721_00:
 
 
 _off020_F770_01:
-- - - - - - 0x01F780 07:F770: 85 20     .word $2085
+- - - - - - 0x01F780 07:F770: 85 20     .word $2085 ; 
 - - - - - - 0x01F782 07:F772: 52        .byte $52, $45, $56, $45, $4E, $47, $45, $20   ; 
 - - - - - - 0x01F78A 07:F77A: 4F        .byte $4F, $46, $20, $54, $48, $45, $20, $44   ; 
 - - - - - - 0x01F792 07:F782: 52        .byte $52, $41, $47, $4F, $4E, $53, $2E   ; 
 - - - - - - 0x01F799 07:F789: 01        .byte $01   ; 
 
-- - - - - - 0x01F79A 07:F78A: 0A 21     .word $210A
+- - - - - - 0x01F79A 07:F78A: 0A 21     .word $210A ; 
 - - - - - - 0x01F79C 07:F78C: 31        .byte $31, $50, $20, $50, $4C, $41, $59   ; 
 - - - - - - 0x01F7A3 07:F793: 01        .byte $01   ; 
 
-- - - - - - 0x01F7A4 07:F794: 4A 21     .word $214A
+- - - - - - 0x01F7A4 07:F794: 4A 21     .word $214A ; 
 - - - - - - 0x01F7A6 07:F796: 32        .byte $32, $50, $20, $50, $4C, $41, $59, $20   ; 
 - - - - - - 0x01F7AE 07:F79E: 41        .byte $41   ; 
 - - - - - - 0x01F7AF 07:F79F: 01        .byte $01   ; 
 
-- - - - - - 0x01F7B0 07:F7A0: 8A 21     .word $218A
+- - - - - - 0x01F7B0 07:F7A0: 8A 21     .word $218A ; 
 - - - - - - 0x01F7B2 07:F7A2: 32        .byte $32, $50, $20, $50, $4C, $41, $59, $20   ; 
 - - - - - - 0x01F7BA 07:F7AA: 42        .byte $42   ; 
 - - - - - - 0x01F7BB 07:F7AB: 01        .byte $01   ; 
 
-- - - - - - 0x01F7BC 07:F7AC: 4A 22     .word $224A
+- - - - - - 0x01F7BC 07:F7AC: 4A 22     .word $224A ; 
 - - - - - - 0x01F7BE 07:F7AE: 50        .byte $50, $52, $41, $43, $54, $49, $43, $45   ; 
 - - - - - - 0x01F7C6 07:F7B6: 01        .byte $01   ; 
 
-- - - - - - 0x01F7C7 07:F7B7: 8A 22     .word $228A
+- - - - - - 0x01F7C7 07:F7B7: 8A 22     .word $228A ; 
 - - - - - - 0x01F7C9 07:F7B9: 57        .byte $57, $41, $52, $52, $49, $4F, $52   ; 
 - - - - - - 0x01F7D0 07:F7C0: 01        .byte $01   ; 
 
-- - - - - - 0x01F7D1 07:F7C1: CA 22     .word $22CA
+- - - - - - 0x01F7D1 07:F7C1: CA 22     .word $22CA ; 
 - - - - - - 0x01F7D3 07:F7C3: 53        .byte $53, $55, $50, $52, $45, $4D, $45, $20   ; 
 - - - - - - 0x01F7DB 07:F7CB: 4D        .byte $4D, $41, $53, $54, $45, $52   ; 
 - - - - - - 0x01F7E1 07:F7D1: 00        .byte $00   ; end token
@@ -8911,7 +8911,7 @@ _off020_F770_01:
 
 
 _off020_F7D2_02:
-- D 3 - I - 0x01F7E2 07:F7D2: CB 21     .word $21CB
+- D 3 - I - 0x01F7E2 07:F7D2: CB 21     .word $21CB ; 
 - D 3 - I - 0x01F7E4 07:F7D4: 47        .byte $47, $41, $4D, $45, $20, $4F, $56, $45   ; 
 - D 3 - I - 0x01F7EC 07:F7DC: 52        .byte $52   ; 
 - D 3 - I - 0x01F7ED 07:F7DD: 00        .byte $00   ; end token
@@ -8920,22 +8920,22 @@ _off020_F7D2_02:
 
 _off020_F7DE_03:
 ; bzk garbage
-- - - - - - 0x01F7EE 07:F7DE: 05 21     .word $2105
+- - - - - - 0x01F7EE 07:F7DE: 05 21     .word $2105 ; 
 - - - - - - 0x01F7F0 07:F7E0: 59        .byte $59, $4F, $55, $20, $48, $41, $56, $45   ; 
 - - - - - - 0x01F7F8 07:F7E8: 20        .byte $20, $43, $4F, $4D, $50, $4C, $45, $54   ; 
 - - - - - - 0x01F800 07:F7F0: 45        .byte $45, $44   ; 
 - - - - - - 0x01F802 07:F7F2: 01        .byte $01   ; 
 
-- - - - - - 0x01F803 07:F7F3: 50 21     .word $2150
+- - - - - - 0x01F803 07:F7F3: 50 21     .word $2150 ; 
 - - - - - - 0x01F805 07:F7F5: 4C        .byte $4C, $45, $56, $45, $4C, $2E   ; 
 - - - - - - 0x01F80B 07:F7FB: 01        .byte $01   ; 
 
-- - - - - - 0x01F80C 07:F7FC: 05 22     .word $2205
+- - - - - - 0x01F80C 07:F7FC: 05 22     .word $2205 ; 
 - - - - - - 0x01F80E 07:F7FE: 54        .byte $54, $4F, $20, $43, $4F, $4E, $54, $49   ; 
 - - - - - - 0x01F816 07:F806: 4E        .byte $4E, $55, $45   ; 
 - - - - - - 0x01F819 07:F809: 01        .byte $01   ; 
 
-- - - - - - 0x01F81A 07:F80A: 45 22     .word $2245
+- - - - - - 0x01F81A 07:F80A: 45 22     .word $2245 ; 
 - - - - - - 0x01F81C 07:F80C: 20        .byte $20, $53, $45, $4C, $45, $43, $54, $20   ; 
 - - - - - - 0x01F824 07:F814: 47        .byte $47, $41, $4D, $45, $20, $4C, $45, $56   ; 
 - - - - - - 0x01F82C 07:F81C: 45        .byte $45, $4C, $2E   ; 
@@ -8944,11 +8944,11 @@ _off020_F7DE_03:
 
 
 _off020_F820_04:
-- D 3 - I - 0x01F830 07:F820: 0B 21     .word $210B
+- D 3 - I - 0x01F830 07:F820: 0B 21     .word $210B ; 
 - D 3 - I - 0x01F832 07:F822: 43        .byte $43, $4F, $4E, $54, $49, $4E, $55, $45   ; 
 - D 3 - I - 0x01F83A 07:F82A: 01        .byte $01   ; 
 
-- D 3 - I - 0x01F83B 07:F82B: 8B 21     .word $218B
+- D 3 - I - 0x01F83B 07:F82B: 8B 21     .word $218B ; 
 - D 3 - I - 0x01F83D 07:F82D: 53        .byte $53, $54, $41, $52, $54   ; 
 - D 3 - I - 0x01F842 07:F832: 00        .byte $00   ; end token
 
@@ -8956,7 +8956,7 @@ _off020_F820_04:
 
 _off020_F833_05:
 ; bzk garbage
-- - - - - - 0x01F843 07:F833: 47 21     .word $2147
+- - - - - - 0x01F843 07:F833: 47 21     .word $2147 ; 
 - - - - - - 0x01F845 07:F835: 50        .byte $50, $52, $41, $43, $54, $49, $43, $45   ; 
 - - - - - - 0x01F84D 07:F83D: 00        .byte $00   ; end token
 
@@ -8964,7 +8964,7 @@ _off020_F833_05:
 
 _off020_F83E_06:
 ; bzk garbage
-- - - - - - 0x01F84E 07:F83E: 49 21     .word $2149
+- - - - - - 0x01F84E 07:F83E: 49 21     .word $2149 ; 
 - - - - - - 0x01F850 07:F840: 4E        .byte $4E, $4F, $56, $49, $43, $45   ; 
 - - - - - - 0x01F856 07:F846: 00        .byte $00   ; end token
 
@@ -8972,55 +8972,55 @@ _off020_F83E_06:
 
 _off020_F847_07:
 ; bzk garbage
-- - - - - - 0x01F857 07:F847: 46 21     .word $2146
+- - - - - - 0x01F857 07:F847: 46 21     .word $2146 ; 
 - - - - - - 0x01F859 07:F849: 20        .byte $20, $4D, $41, $53, $54, $45, $52, $20   ; 
 - - - - - - 0x01F861 07:F851: 00        .byte $00   ; end token
 
 
 
 _off020_F852_08:
-- - - - - - 0x01F862 07:F852: A5 20     .word $20A5
+- - - - - - 0x01F862 07:F852: A5 20     .word $20A5 ; 
 - - - - - - 0x01F864 07:F854: 20        .byte $20, $20, $20, $20, $20, $4C, $49, $43   ; 
 - - - - - - 0x01F86C 07:F85C: 45        .byte $45, $4E, $53, $45, $44, $20, $54, $4F   ; 
 - - - - - - 0x01F874 07:F864: 01        .byte $01   ; 
 
-- - - - - - 0x01F875 07:F865: E4 20     .word $20E4
+- - - - - - 0x01F875 07:F865: E4 20     .word $20E4 ; 
 - - - - - - 0x01F877 07:F867: 41        .byte $41, $43, $43, $4C, $41, $49, $4D, $20   ; 
 - - - - - - 0x01F87F 07:F86F: 45        .byte $45, $4E, $54, $45, $52, $54, $41, $49   ; 
 - - - - - - 0x01F887 07:F877: 4E        .byte $4E, $4D, $45, $4E, $54, $20, $49, $4E   ; 
 - - - - - - 0x01F88F 07:F87F: 43        .byte $43, $2E   ; 
 - - - - - - 0x01F891 07:F881: 01        .byte $01   ; 
 
-- - - - - - 0x01F892 07:F882: 25 21     .word $2125
+- - - - - - 0x01F892 07:F882: 25 21     .word $2125 ; 
 - - - - - - 0x01F894 07:F884: 46        .byte $46, $4F, $52, $20, $54, $48, $45, $20   ; 
 - - - - - - 0x01F89C 07:F88C: 55        .byte $55, $53, $41, $20, $41, $4E, $44, $20   ; 
 - - - - - - 0x01F8A4 07:F894: 43        .byte $43, $41, $4E, $41, $44, $41   ; 
 - - - - - - 0x01F8AA 07:F89A: 01        .byte $01   ; 
 
-- - - - - - 0x01F8AB 07:F89B: 66 21     .word $2166
+- - - - - - 0x01F8AB 07:F89B: 66 21     .word $2166 ; 
 - - - - - - 0x01F8AD 07:F89D: 42        .byte $42, $59, $20, $54, $45, $43, $48, $4E   ; 
 - - - - - - 0x01F8B5 07:F8A5: 4F        .byte $4F, $53, $20, $4A, $41, $50, $41, $4E   ; 
 - - - - - - 0x01F8BD 07:F8AD: 20        .byte $20, $43, $4F, $52, $50, $2E   ; 
 - - - - - - 0x01F8C3 07:F8B3: 01        .byte $01   ; 
 
-- - - - - - 0x01F8C4 07:F8B4: 05 22     .word $2205
+- - - - - - 0x01F8C4 07:F8B4: 05 22     .word $2205 ; 
 - - - - - - 0x01F8C6 07:F8B6: 20        .byte $20, $20, $20, $20, $54, $4D, $20, $41   ; 
 - - - - - - 0x01F8CE 07:F8BE: 4E        .byte $4E, $44, $20, $FF, $20, $31, $39, $38   ; 
 - - - - - - 0x01F8D6 07:F8C6: 39        .byte $39   ; 
 - - - - - - 0x01F8D7 07:F8C7: 01        .byte $01   ; 
 
-- - - - - - 0x01F8D8 07:F8C8: 47 22     .word $2247
+- - - - - - 0x01F8D8 07:F8C8: 47 22     .word $2247 ; 
 - - - - - - 0x01F8DA 07:F8CA: 54        .byte $54, $45, $43, $48, $4E, $4F, $53, $20   ; 
 - - - - - - 0x01F8E2 07:F8D2: 4A        .byte $4A, $41, $50, $41, $4E, $20, $43, $4F   ; 
 - - - - - - 0x01F8EA 07:F8DA: 52        .byte $52, $50, $2E   ; 
 - - - - - - 0x01F8ED 07:F8DD: 01        .byte $01   ; 
 
-- - - - - - 0x01F8EE 07:F8DE: A5 22     .word $22A5
+- - - - - - 0x01F8EE 07:F8DE: A5 22     .word $22A5 ; 
 - - - - - - 0x01F8F0 07:F8E0: 20        .byte $20, $20, $20, $20, $20, $4C, $49, $43   ; 
 - - - - - - 0x01F8F8 07:F8E8: 45        .byte $45, $4E, $53, $45, $44, $20, $42, $59   ; 
 - - - - - - 0x01F900 07:F8F0: 01        .byte $01   ; 
 
-- - - - - - 0x01F901 07:F8F1: E5 22     .word $22E5
+- - - - - - 0x01F901 07:F8F1: E5 22     .word $22E5 ; 
 - - - - - - 0x01F903 07:F8F3: 4E        .byte $4E, $49, $4E, $54, $45, $4E, $44, $4F   ; 
 - - - - - - 0x01F90B 07:F8FB: 20        .byte $20, $4F, $46, $20, $41, $4D, $45, $52   ; 
 - - - - - - 0x01F913 07:F903: 49        .byte $49, $43, $41, $20, $49, $4E, $43, $2E   ; 
@@ -9029,36 +9029,36 @@ _off020_F852_08:
 
 
 _off020_F90C_09:
-- - - - - - 0x01F91C 07:F90C: 05 21     .word $2105
+- - - - - - 0x01F91C 07:F90C: 05 21     .word $2105 ; 
 - - - - - - 0x01F91E 07:F90E: 59        .byte $59, $4F, $55, $20, $48, $41, $56, $45   ; 
 - - - - - - 0x01F926 07:F916: 20        .byte $20, $43, $4F, $4D, $50, $4C, $45, $54   ; 
 - - - - - - 0x01F92E 07:F91E: 45        .byte $45, $44, $20, $54, $48, $45   ; 
 - - - - - - 0x01F934 07:F924: 01        .byte $01   ; 
 
-- - - - - - 0x01F935 07:F925: 45 21     .word $2145
+- - - - - - 0x01F935 07:F925: 45 21     .word $2145 ; 
 - - - - - - 0x01F937 07:F927: 50        .byte $50, $52, $41, $43, $54, $49, $43, $45   ; 
 - - - - - - 0x01F93F 07:F92F: 20        .byte $20, $4C, $45, $56, $45, $4C, $2E   ; 
 - - - - - - 0x01F946 07:F936: 01        .byte $01   ; 
 
-- - - - - - 0x01F947 07:F937: 85 21     .word $2185
+- - - - - - 0x01F947 07:F937: 85 21     .word $2185 ; 
 - - - - - - 0x01F949 07:F939: 4D        .byte $4D, $41, $4E, $59, $20, $4D, $4F, $52   ; 
 - - - - - - 0x01F951 07:F941: 45        .byte $45, $20, $45, $4E, $45, $4D, $49, $45   ; 
 - - - - - - 0x01F959 07:F949: 53        .byte $53, $20, $41, $4E, $44   ; 
 - - - - - - 0x01F95E 07:F94E: 01        .byte $01   ; 
 
-- - - - - - 0x01F95F 07:F94F: C5 21     .word $21C5
+- - - - - - 0x01F95F 07:F94F: C5 21     .word $21C5 ; 
 - - - - - - 0x01F961 07:F951: 43        .byte $43, $48, $41, $4C, $4C, $45, $4E, $47   ; 
 - - - - - - 0x01F969 07:F959: 45        .byte $45, $53, $20, $41, $57, $41, $49, $54   ; 
 - - - - - - 0x01F971 07:F961: 20        .byte $20, $59, $4F, $55, $2E   ; 
 - - - - - - 0x01F976 07:F966: 01        .byte $01   ; 
 
-- - - - - - 0x01F977 07:F967: 24 22     .word $2224
+- - - - - - 0x01F977 07:F967: 24 22     .word $2224 ; 
 - - - - - - 0x01F979 07:F969: 20        .byte $20, $43, $48, $41, $52, $47, $45, $20   ; 
 - - - - - - 0x01F981 07:F971: 4F        .byte $4F, $4E, $2C, $44, $52, $41, $47, $4F   ; 
 - - - - - - 0x01F989 07:F979: 4E        .byte $4E, $53, $2C   ; 
 - - - - - - 0x01F98C 07:F97C: 01        .byte $01   ; 
 
-- - - - - - 0x01F98D 07:F97D: 62 22     .word $2262
+- - - - - - 0x01F98D 07:F97D: 62 22     .word $2262 ; 
 - - - - - - 0x01F98F 07:F97F: 54        .byte $54, $48, $45, $20, $57, $41, $52, $52   ; 
 - - - - - - 0x01F997 07:F987: 49        .byte $49, $4F, $52, $20, $4C, $45, $56, $45   ; 
 - - - - - - 0x01F99F 07:F98F: 4C        .byte $4C, $20, $41, $57, $41, $49, $54, $53   ; 
@@ -9068,59 +9068,59 @@ _off020_F90C_09:
 
 
 _off020_F99D_0A:
-- - - - - - 0x01F9AD 07:F99D: C3 20     .word $20C3
+- - - - - - 0x01F9AD 07:F99D: C3 20     .word $20C3 ; 
 - - - - - - 0x01F9AF 07:F99F: 57        .byte $57, $45, $4C, $4C, $20, $44, $4F, $4E   ; 
 - - - - - - 0x01F9B7 07:F9A7: 45        .byte $45, $2C, $44, $52, $41, $47, $4F, $4E   ; 
 - - - - - - 0x01F9BF 07:F9AF: 53        .byte $53, $2C   ; 
 - - - - - - 0x01F9C1 07:F9B1: 01        .byte $01   ; 
 
-- - - - - - 0x01F9C2 07:F9B2: 03 21     .word $2103
+- - - - - - 0x01F9C2 07:F9B2: 03 21     .word $2103 ; 
 - - - - - - 0x01F9C4 07:F9B4: 56        .byte $56, $45, $52, $59, $20, $46, $45, $57   ; 
 - - - - - - 0x01F9CC 07:F9BC: 20        .byte $20, $48, $41, $56, $45, $20, $45, $56   ; 
 - - - - - - 0x01F9D4 07:F9C4: 45        .byte $45, $52, $20, $4D, $41, $44, $45, $20   ; 
 - - - - - - 0x01F9DC 07:F9CC: 49        .byte $49, $54   ; 
 - - - - - - 0x01F9DE 07:F9CE: 01        .byte $01   ; 
 
-- - - - - - 0x01F9DF 07:F9CF: 43 21     .word $2143
+- - - - - - 0x01F9DF 07:F9CF: 43 21     .word $2143 ; 
 - - - - - - 0x01F9E1 07:F9D1: 54        .byte $54, $4F, $20, $54, $48, $45, $20, $45   ; 
 - - - - - - 0x01F9E9 07:F9D9: 4E        .byte $4E, $44, $20, $4F, $46, $20, $54, $48   ; 
 - - - - - - 0x01F9F1 07:F9E1: 45        .byte $45, $20, $57, $41, $52, $52, $49, $4F   ; 
 - - - - - - 0x01F9F9 07:F9E9: 52        .byte $52   ; 
 - - - - - - 0x01F9FA 07:F9EA: 01        .byte $01   ; 
 
-- - - - - - 0x01F9FB 07:F9EB: 83 21     .word $2183
+- - - - - - 0x01F9FB 07:F9EB: 83 21     .word $2183 ; 
 - - - - - - 0x01F9FD 07:F9ED: 4C        .byte $4C, $45, $56, $45, $4C, $2E, $42, $55   ; 
 - - - - - - 0x01FA05 07:F9F5: 54        .byte $54, $20, $4E, $4F, $57, $20, $59, $4F   ; 
 - - - - - - 0x01FA0D 07:F9FD: 55        .byte $55, $52, $20, $47, $52, $45, $41, $54   ; 
 - - - - - - 0x01FA15 07:FA05: 45        .byte $45, $53, $54   ; 
 - - - - - - 0x01FA18 07:FA08: 01        .byte $01   ; 
 
-- - - - - - 0x01FA19 07:FA09: C3 21     .word $21C3
+- - - - - - 0x01FA19 07:FA09: C3 21     .word $21C3 ; 
 - - - - - - 0x01FA1B 07:FA0B: 43        .byte $43, $48, $41, $4C, $4C, $45, $4E, $47   ; 
 - - - - - - 0x01FA23 07:FA13: 45        .byte $45, $20, $49, $53, $20, $41, $48, $45   ; 
 - - - - - - 0x01FA2B 07:FA1B: 41        .byte $41, $44, $2E   ; 
 - - - - - - 0x01FA2E 07:FA1E: 01        .byte $01   ; 
 
-- - - - - - 0x01FA2F 07:FA1F: 23 22     .word $2223
+- - - - - - 0x01FA2F 07:FA1F: 23 22     .word $2223 ; 
 - - - - - - 0x01FA31 07:FA21: 54        .byte $54, $48, $45, $20, $4D, $41, $53, $54   ; 
 - - - - - - 0x01FA39 07:FA29: 45        .byte $45, $52, $20, $4C, $45, $56, $45, $4C   ; 
 - - - - - - 0x01FA41 07:FA31: 20        .byte $20, $48, $41, $53, $20, $41, $4E   ; 
 - - - - - - 0x01FA48 07:FA38: 01        .byte $01   ; 
 
-- - - - - - 0x01FA49 07:FA39: 63 22     .word $2263
+- - - - - - 0x01FA49 07:FA39: 63 22     .word $2263 ; 
 - - - - - - 0x01FA4B 07:FA3B: 45        .byte $45, $4E, $45, $4D, $59, $20, $53, $4F   ; 
 - - - - - - 0x01FA53 07:FA43: 20        .byte $20, $45, $56, $49, $4C, $2C, $4E, $4F   ; 
 - - - - - - 0x01FA5B 07:FA4B: 20        .byte $20, $4F, $4E, $45, $20, $48, $41, $53   ; 
 - - - - - - 0x01FA63 07:FA53: 01        .byte $01   ; 
 
-- - - - - - 0x01FA64 07:FA54: A3 22     .word $22A3
+- - - - - - 0x01FA64 07:FA54: A3 22     .word $22A3 ; 
 - - - - - - 0x01FA66 07:FA56: 45        .byte $45, $56, $45, $52, $20, $53, $45, $45   ; 
 - - - - - - 0x01FA6E 07:FA5E: 4E        .byte $4E, $20, $48, $49, $4D, $20, $41, $4E   ; 
 - - - - - - 0x01FA76 07:FA66: 44        .byte $44, $20, $53, $55, $52, $56, $49, $56   ; 
 - - - - - - 0x01FA7E 07:FA6E: 45        .byte $45, $44, $2E   ; 
 - - - - - - 0x01FA81 07:FA71: 01        .byte $01   ; 
 
-- - - - - - 0x01FA82 07:FA72: EA 22     .word $22EA
+- - - - - - 0x01FA82 07:FA72: EA 22     .word $22EA ; 
 - - - - - - 0x01FA84 07:FA74: 47        .byte $47, $4F, $4F, $44, $20, $4C, $55, $43   ; 
 - - - - - - 0x01FA8C 07:FA7C: 4B        .byte $4B, $21   ; 
 - - - - - - 0x01FA8E 07:FA7E: 00        .byte $00   ; end token
@@ -9128,7 +9128,7 @@ _off020_F99D_0A:
 
 
 _off020_FA7F_0B_sample_version:
-- D 3 - I - 0x01FA8F 07:FA7F: EA 22     .word $22EA
+- D 3 - I - 0x01FA8F 07:FA7F: EA 22     .word $22EA ; 
 - D 3 - I - 0x01FA91 07:FA81: 53        .byte $53, $41, $4D, $50, $4C, $45, $20, $56   ; 
 - D 3 - I - 0x01FA99 07:FA89: 45        .byte $45, $52, $53, $49, $4F, $4E, $20   ; 
 - D 3 - I - 0x01FAA0 07:FA90: 00        .byte $00   ; end token

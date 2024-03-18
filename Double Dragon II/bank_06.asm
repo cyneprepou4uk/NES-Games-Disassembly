@@ -6002,10 +6002,10 @@ off_05_9F4C_02_cursor:
 
 off_05_9F57_03_spawn_roper:
 - D 0 - I - 0x019F67 06:9F57: 00        .byte con_884D_script_00   ; 
-- D 0 - I - 0x019F68 06:9F58: 00 00     .word $0000
-- D 0 - I - 0x019F6A 06:9F5A: BF 00     .word $00BF
-- D 0 - I - 0x019F6C 06:9F5C: 90 00     .word $0090
-- D 0 - I - 0x019F6E 06:9F5E: F0 00     .word $00F0
+- D 0 - I - 0x019F68 06:9F58: 00 00     .word $0000 ; 
+- D 0 - I - 0x019F6A 06:9F5A: BF 00     .word $00BF ; 
+- D 0 - I - 0x019F6C 06:9F5C: 90 00     .word $0090 ; 
+- D 0 - I - 0x019F6E 06:9F5E: F0 00     .word $00F0 ; 
 - D 0 - I - 0x019F70 06:9F60: 05        .byte $05   ; 
 - D 0 - I - 0x019F71 06:9F61: 42        .byte con_chr_bank + $42   ; 
 - D 0 - I - 0x019F72 06:9F62: 03        .byte con_obj_roper   ; 
@@ -8831,22 +8831,22 @@ tbl_AEC7:
 
 
 _off025_AECA_00:
-- D 1 - I - 0x01AEDA 06:AECA: 2D 21     .word $212D
+- D 1 - I - 0x01AEDA 06:AECA: 2D 21     .word $212D ; 
 - D 1 - I - 0x01AEDC 06:AECC: 8E AF     .word off_00_AF8E_00
 
-- D 1 - I - 0x01AEDE 06:AECE: 22 22     .word $2222
+- D 1 - I - 0x01AEDE 06:AECE: 22 22     .word $2222 ; 
 - D 1 - I - 0x01AEE0 06:AED0: 9B AF     .word off_00_AF9B_01
 
-- D 1 - I - 0x01AEE2 06:AED2: 62 22     .word $2262
+- D 1 - I - 0x01AEE2 06:AED2: 62 22     .word $2262 ; 
 - D 1 - I - 0x01AEE4 06:AED4: AB AF     .word off_00_AFAB_02
 
-- D 1 - I - 0x01AEE6 06:AED6: A2 22     .word $22A2
+- D 1 - I - 0x01AEE6 06:AED6: A2 22     .word $22A2 ; 
 - D 1 - I - 0x01AEE8 06:AED8: B9 AF     .word off_00_AFB9_03
 
-- D 1 - I - 0x01AEEA 06:AEDA: E2 22     .word $22E2
+- D 1 - I - 0x01AEEA 06:AEDA: E2 22     .word $22E2 ; 
 - D 1 - I - 0x01AEEC 06:AEDC: C6 AF     .word off_00_AFC6_04
 
-- D 1 - I - 0x01AEEE 06:AEDE: 22 23     .word $2322
+- D 1 - I - 0x01AEEE 06:AEDE: 22 23     .word $2322 ; 
 - D 1 - I - 0x01AEF0 06:AEE0: D5 AF     .word off_00_AFD5_05
 
 - D 1 - I - 0x01AEF2 06:AEE2: 00 00     .word $0000     ; end token
@@ -8854,43 +8854,43 @@ _off025_AECA_00:
 
 
 _off025_AEE4_01:
-- D 1 - I - 0x01AEF4 06:AEE4: AD 20     .word $20AD
+- D 1 - I - 0x01AEF4 06:AEE4: AD 20     .word $20AD ; 
 - D 1 - I - 0x01AEF6 06:AEE6: E3 AF     .word off_01_AFE3_00
 
-- D 1 - I - 0x01AEF8 06:AEE8: CD 20     .word $20CD
+- D 1 - I - 0x01AEF8 06:AEE8: CD 20     .word $20CD ; 
 - D 1 - I - 0x01AEFA 06:AEEA: EE AF     .word off_01_AFEE_01
 
-- D 1 - I - 0x01AEFC 06:AEEC: 0D 21     .word $210D
+- D 1 - I - 0x01AEFC 06:AEEC: 0D 21     .word $210D ; 
 - D 1 - I - 0x01AEFE 06:AEEE: FF AF     .word off_01_AFFF_02
 
-- D 1 - I - 0x01AF00 06:AEF0: 4D 21     .word $214D
+- D 1 - I - 0x01AF00 06:AEF0: 4D 21     .word $214D ; 
 - D 1 - I - 0x01AF02 06:AEF2: 0B B0     .word off_01_B00B_03
 
-- D 1 - I - 0x01AF04 06:AEF4: 2D 21     .word $212D
+- D 1 - I - 0x01AF04 06:AEF4: 2D 21     .word $212D ; 
 - D 1 - I - 0x01AF06 06:AEF6: 1E B1     .word off_01_B11E_04
 
-- D 1 - I - 0x01AF08 06:AEF8: 22 22     .word $2222
+- D 1 - I - 0x01AF08 06:AEF8: 22 22     .word $2222 ; 
 - D 1 - I - 0x01AF0A 06:AEFA: 18 B0     .word off_01_B018_05
 
-- D 1 - I - 0x01AF0C 06:AEFC: 42 22     .word $2242
+- D 1 - I - 0x01AF0C 06:AEFC: 42 22     .word $2242 ; 
 - D 1 - I - 0x01AF0E 06:AEFE: EE AF     .word off_01_AFEE_06
 
-- D 1 - I - 0x01AF10 06:AF00: 82 22     .word $2282
+- D 1 - I - 0x01AF10 06:AF00: 82 22     .word $2282 ; 
 - D 1 - I - 0x01AF12 06:AF02: 1E B0     .word off_01_B01E_07
 
-- D 1 - I - 0x01AF14 06:AF04: C2 22     .word $22C2
+- D 1 - I - 0x01AF14 06:AF04: C2 22     .word $22C2 ; 
 - D 1 - I - 0x01AF16 06:AF06: 28 B0     .word off_01_B028_08
 
-- D 1 - I - 0x01AF18 06:AF08: 62 22     .word $2262
+- D 1 - I - 0x01AF18 06:AF08: 62 22     .word $2262 ; 
 - D 1 - I - 0x01AF1A 06:AF0A: 1E B1     .word off_01_B11E_09
 
-- D 1 - I - 0x01AF1C 06:AF0C: A2 22     .word $22A2
+- D 1 - I - 0x01AF1C 06:AF0C: A2 22     .word $22A2 ; 
 - D 1 - I - 0x01AF1E 06:AF0E: 1E B1     .word off_01_B11E_0A
 
-- D 1 - I - 0x01AF20 06:AF10: E2 22     .word $22E2
+- D 1 - I - 0x01AF20 06:AF10: E2 22     .word $22E2 ; 
 - D 1 - I - 0x01AF22 06:AF12: 1E B1     .word off_01_B11E_0B
 
-- D 1 - I - 0x01AF24 06:AF14: 22 23     .word $2322
+- D 1 - I - 0x01AF24 06:AF14: 22 23     .word $2322 ; 
 - D 1 - I - 0x01AF26 06:AF16: 1E B1     .word off_01_B11E_0C
 
 - D 1 - I - 0x01AF28 06:AF18: 00 00     .word $0000     ; end token
@@ -8898,37 +8898,37 @@ _off025_AEE4_01:
 
 
 _off025_AF1A_02:
-- D 1 - I - 0x01AF2A 06:AF1A: AD 20     .word $20AD
+- D 1 - I - 0x01AF2A 06:AF1A: AD 20     .word $20AD ; 
 - D 1 - I - 0x01AF2C 06:AF1C: 37 B0     .word off_02_B037_00
 
-- D 1 - I - 0x01AF2E 06:AF1E: CD 20     .word $20CD
+- D 1 - I - 0x01AF2E 06:AF1E: CD 20     .word $20CD ; 
 - D 1 - I - 0x01AF30 06:AF20: EE AF     .word off_02_AFEE_01
 
-- D 1 - I - 0x01AF32 06:AF22: 0D 21     .word $210D
+- D 1 - I - 0x01AF32 06:AF22: 0D 21     .word $210D ; 
 - D 1 - I - 0x01AF34 06:AF24: 40 B0     .word off_02_B040_02
 
-- D 1 - I - 0x01AF36 06:AF26: 4D 21     .word $214D
+- D 1 - I - 0x01AF36 06:AF26: 4D 21     .word $214D ; 
 - D 1 - I - 0x01AF38 06:AF28: 4D B0     .word off_02_B04D_03
 
-- D 1 - I - 0x01AF3A 06:AF2A: 6D 21     .word $216D
+- D 1 - I - 0x01AF3A 06:AF2A: 6D 21     .word $216D ; 
 - D 1 - I - 0x01AF3C 06:AF2C: 54 B0     .word off_02_B054_04
 
-- D 1 - I - 0x01AF3E 06:AF2E: AD 21     .word $21AD
+- D 1 - I - 0x01AF3E 06:AF2E: AD 21     .word $21AD ; 
 - D 1 - I - 0x01AF40 06:AF30: 64 B0     .word off_02_B064_05
 
-- D 1 - I - 0x01AF42 06:AF32: 22 22     .word $2222
+- D 1 - I - 0x01AF42 06:AF32: 22 22     .word $2222 ; 
 - D 1 - I - 0x01AF44 06:AF34: 4D B0     .word off_02_B04D_06
 
-- D 1 - I - 0x01AF46 06:AF36: 42 22     .word $2242
+- D 1 - I - 0x01AF46 06:AF36: 42 22     .word $2242 ; 
 - D 1 - I - 0x01AF48 06:AF38: 71 B0     .word off_02_B071_07
 
-- D 1 - I - 0x01AF4A 06:AF3A: 82 22     .word $2282
+- D 1 - I - 0x01AF4A 06:AF3A: 82 22     .word $2282 ; 
 - D 1 - I - 0x01AF4C 06:AF3C: 81 B0     .word off_02_B081_08
 
-- D 1 - I - 0x01AF4E 06:AF3E: C2 22     .word $22C2
+- D 1 - I - 0x01AF4E 06:AF3E: C2 22     .word $22C2 ; 
 - D 1 - I - 0x01AF50 06:AF40: 90 B0     .word off_02_B090_09
 
-- D 1 - I - 0x01AF52 06:AF42: 02 23     .word $2302
+- D 1 - I - 0x01AF52 06:AF42: 02 23     .word $2302 ; 
 - D 1 - I - 0x01AF54 06:AF44: 9E B0     .word off_02_B09E_0A
 
 - D 1 - I - 0x01AF56 06:AF46: 00 00     .word $0000     ; end token
@@ -8936,55 +8936,55 @@ _off025_AF1A_02:
 
 
 _off025_AF48_03:
-- D 1 - I - 0x01AF58 06:AF48: AD 20     .word $20AD
+- D 1 - I - 0x01AF58 06:AF48: AD 20     .word $20AD ; 
 - D 1 - I - 0x01AF5A 06:AF4A: AD B0     .word off_03_B0AD_00
 
-- D 1 - I - 0x01AF5C 06:AF4C: ED 20     .word $20ED
+- D 1 - I - 0x01AF5C 06:AF4C: ED 20     .word $20ED ; 
 - D 1 - I - 0x01AF5E 06:AF4E: BE B0     .word off_03_B0BE_01
 
-- D 1 - I - 0x01AF60 06:AF50: 2D 21     .word $212D
+- D 1 - I - 0x01AF60 06:AF50: 2D 21     .word $212D ; 
 - D 1 - I - 0x01AF62 06:AF52: C8 B0     .word off_03_B0C8_02
 
-- D 1 - I - 0x01AF64 06:AF54: 6D 21     .word $216D
+- D 1 - I - 0x01AF64 06:AF54: 6D 21     .word $216D ; 
 - D 1 - I - 0x01AF66 06:AF56: D4 B0     .word off_03_B0D4_03
 
-- D 1 - I - 0x01AF68 06:AF58: AD 21     .word $21AD
+- D 1 - I - 0x01AF68 06:AF58: AD 21     .word $21AD ; 
 - D 1 - I - 0x01AF6A 06:AF5A: DE B0     .word off_03_B0DE_04
 
-- D 1 - I - 0x01AF6C 06:AF5C: CD 20     .word $20CD
+- D 1 - I - 0x01AF6C 06:AF5C: CD 20     .word $20CD ; 
 - D 1 - I - 0x01AF6E 06:AF5E: 1E B1     .word off_03_B11E_05
 
-- D 1 - I - 0x01AF70 06:AF60: 0D 21     .word $210D
+- D 1 - I - 0x01AF70 06:AF60: 0D 21     .word $210D ; 
 - D 1 - I - 0x01AF72 06:AF62: 1E B1     .word off_03_B11E_06
 
-- D 1 - I - 0x01AF74 06:AF64: 4D 21     .word $214D
+- D 1 - I - 0x01AF74 06:AF64: 4D 21     .word $214D ; 
 - D 1 - I - 0x01AF76 06:AF66: 1E B1     .word off_03_B11E_07
 
-- D 1 - I - 0x01AF78 06:AF68: 22 22     .word $2222
+- D 1 - I - 0x01AF78 06:AF68: 22 22     .word $2222 ; 
 - D 1 - I - 0x01AF7A 06:AF6A: AD B0     .word off_03_B0AD_08
 
-- D 1 - I - 0x01AF7C 06:AF6C: 62 22     .word $2262
+- D 1 - I - 0x01AF7C 06:AF6C: 62 22     .word $2262 ; 
 - D 1 - I - 0x01AF7E 06:AF6E: ED B0     .word off_03_B0ED_09
 
-- D 1 - I - 0x01AF80 06:AF70: A2 22     .word $22A2
+- D 1 - I - 0x01AF80 06:AF70: A2 22     .word $22A2 ; 
 - D 1 - I - 0x01AF82 06:AF72: FA B0     .word off_03_B0FA_0A
 
-- D 1 - I - 0x01AF84 06:AF74: E2 22     .word $22E2
+- D 1 - I - 0x01AF84 06:AF74: E2 22     .word $22E2 ; 
 - D 1 - I - 0x01AF86 06:AF76: 06 B1     .word off_03_B106_0B
 
-- D 1 - I - 0x01AF88 06:AF78: 22 23     .word $2322
+- D 1 - I - 0x01AF88 06:AF78: 22 23     .word $2322 ; 
 - D 1 - I - 0x01AF8A 06:AF7A: 13 B1     .word off_03_B113_0C
 
-- D 1 - I - 0x01AF8C 06:AF7C: 42 22     .word $2242
+- D 1 - I - 0x01AF8C 06:AF7C: 42 22     .word $2242 ; 
 - D 1 - I - 0x01AF8E 06:AF7E: 1E B1     .word off_03_B11E_0D
 
-- D 1 - I - 0x01AF90 06:AF80: 82 22     .word $2282
+- D 1 - I - 0x01AF90 06:AF80: 82 22     .word $2282 ; 
 - D 1 - I - 0x01AF92 06:AF82: 1E B1     .word off_03_B11E_0E
 
-- D 1 - I - 0x01AF94 06:AF84: C2 22     .word $22C2
+- D 1 - I - 0x01AF94 06:AF84: C2 22     .word $22C2 ; 
 - D 1 - I - 0x01AF96 06:AF86: 1E B1     .word off_03_B11E_0F
 
-- D 1 - I - 0x01AF98 06:AF88: 02 23     .word $2302
+- D 1 - I - 0x01AF98 06:AF88: 02 23     .word $2302 ; 
 - D 1 - I - 0x01AF9A 06:AF8A: 1E B1     .word off_03_B11E_10
 
 - D 1 - I - 0x01AF9C 06:AF8C: 00 00     .word $0000     ; end token
@@ -10596,7 +10596,7 @@ tbl_B6ED:
 ; offset at 0x01B7FB
 ; 00 (00)
 - D 1 - - - 0x01B6FD 06:B6ED: 00        .byte $00   ; 
-- D 1 - - - 0x01B6FE 06:B6EE: 88 29     .word $2988
+- D 1 - - - 0x01B6FE 06:B6EE: 88 29     .word $2988 ; 
 - D 1 - - - 0x01B700 06:B6F0: 04        .byte $04   ; 
 - D 1 - - - 0x01B701 06:B6F1: 81 B7     .word off_00_B781_00
 - D 1 - - - 0x01B703 06:B6F3: 79 B7     .word off_00_B779_01
@@ -10605,7 +10605,7 @@ tbl_B6ED:
 - D 1 - - - 0x01B709 06:B6F9: D1 B7     .word off_00_B7D1_04
 ; 0E (01)
 - D 1 - - - 0x01B70B 06:B6FB: 05        .byte $05   ; 
-- D 1 - - - 0x01B70C 06:B6FC: 24 29     .word $2924
+- D 1 - - - 0x01B70C 06:B6FC: 24 29     .word $2924 ; 
 - D 1 - - - 0x01B70E 06:B6FE: 04        .byte $04   ; 
 - D 1 - - - 0x01B70F 06:B6FF: 99 B7     .word off_01_B799_00
 - D 1 - - - 0x01B711 06:B701: 79 B7     .word off_01_B779_01
@@ -10614,7 +10614,7 @@ tbl_B6ED:
 - D 1 - - - 0x01B717 06:B707: D1 B7     .word off_01_B7D1_04
 ; 1C (02)
 - D 1 - - - 0x01B719 06:B709: 06        .byte $06   ; 
-- D 1 - - - 0x01B71A 06:B70A: E4 29     .word $29E4
+- D 1 - - - 0x01B71A 06:B70A: E4 29     .word $29E4 ; 
 - D 1 - - - 0x01B71C 06:B70C: 04        .byte $04   ; 
 - D 1 - - - 0x01B71D 06:B70D: 99 B7     .word off_02_B799_00
 - D 1 - - - 0x01B71F 06:B70F: 79 B7     .word off_02_B779_01
@@ -10623,7 +10623,7 @@ tbl_B6ED:
 - D 1 - - - 0x01B725 06:B715: D1 B7     .word off_02_B7D1_04
 ; 2A (03)
 - - - - - - 0x01B727 06:B717: 07        .byte $07   ; 
-- - - - - - 0x01B728 06:B718: 5C 2A     .word $2A5C
+- - - - - - 0x01B728 06:B718: 5C 2A     .word $2A5C ; 
 - - - - - - 0x01B72A 06:B71A: 02        .byte $02   ; 
 - - - - - - 0x01B72B 06:B71B: A1 B7     .word off_03_B7A1_00
 - - - - - - 0x01B72D 06:B71D: 79 B7     .word off_03_B779_01
@@ -10632,7 +10632,7 @@ tbl_B6ED:
 - - - - - - 0x01B733 06:B723: C9 B7     .word off_03_B7C9_04
 ; 38 (04)
 - - - - - - 0x01B735 06:B725: 0C        .byte $0C   ; 
-- - - - - - 0x01B736 06:B726: 16 2A     .word $2A16
+- - - - - - 0x01B736 06:B726: 16 2A     .word $2A16 ; 
 - - - - - - 0x01B738 06:B728: 04        .byte $04   ; 
 - - - - - - 0x01B739 06:B729: 91 B7     .word off_04_B791_00
 - - - - - - 0x01B73B 06:B72B: 79 B7     .word off_04_B779_01
@@ -10641,7 +10641,7 @@ tbl_B6ED:
 - - - - - - 0x01B741 06:B731: D1 B7     .word off_04_B7D1_04
 ; 46 (05)
 - D 1 - - - 0x01B743 06:B733: 15        .byte $15   ; 
-- D 1 - - - 0x01B744 06:B734: D0 29     .word $29D0
+- D 1 - - - 0x01B744 06:B734: D0 29     .word $29D0 ; 
 - D 1 - - - 0x01B746 06:B736: 04        .byte $04   ; 
 - D 1 - - - 0x01B747 06:B737: 89 B7     .word off_05_B789_00
 - D 1 - - - 0x01B749 06:B739: 79 B7     .word off_05_B779_01
@@ -10650,7 +10650,7 @@ tbl_B6ED:
 - D 1 - - - 0x01B74F 06:B73F: D1 B7     .word off_05_B7D1_04
 ; 54 (06)
 - D 1 - - - 0x01B751 06:B741: 1A        .byte $1A   ; 
-- D 1 - - - 0x01B752 06:B742: 8C 29     .word $298C
+- D 1 - - - 0x01B752 06:B742: 8C 29     .word $298C ; 
 - D 1 - - - 0x01B754 06:B744: 02        .byte $02   ; 
 - D 1 - - - 0x01B755 06:B745: 91 B7     .word off_06_B791_00
 - D 1 - - - 0x01B757 06:B747: 79 B7     .word off_06_B779_01
@@ -10659,7 +10659,7 @@ tbl_B6ED:
 - D 1 - - - 0x01B75D 06:B74D: C9 B7     .word off_06_B7C9_04
 ; 62 (07)
 - D 1 - - - 0x01B75F 06:B74F: 1F        .byte $1F   ; 
-- D 1 - - - 0x01B760 06:B750: 88 29     .word $2988
+- D 1 - - - 0x01B760 06:B750: 88 29     .word $2988 ; 
 - D 1 - - - 0x01B762 06:B752: 02        .byte $02   ; 
 - D 1 - - - 0x01B763 06:B753: 91 B7     .word off_07_B791_00
 - D 1 - - - 0x01B765 06:B755: 79 B7     .word off_07_B779_01
@@ -10668,7 +10668,7 @@ tbl_B6ED:
 - D 1 - - - 0x01B76B 06:B75B: C9 B7     .word off_07_B7C9_04
 ; 70 (08)
 - D 1 - - - 0x01B76D 06:B75D: 24        .byte $24   ; 
-- D 1 - - - 0x01B76E 06:B75E: 42 29     .word $2942
+- D 1 - - - 0x01B76E 06:B75E: 42 29     .word $2942 ; 
 - D 1 - - - 0x01B770 06:B760: 04        .byte $04   ; 
 - D 1 - - - 0x01B771 06:B761: A1 B7     .word off_08_B7A1_00
 - D 1 - - - 0x01B773 06:B763: 79 B7     .word off_08_B779_01
@@ -10677,7 +10677,7 @@ tbl_B6ED:
 - D 1 - - - 0x01B779 06:B769: D1 B7     .word off_08_B7D1_04
 ; 7E (09)
 - D 1 - - - 0x01B77B 06:B76B: 29        .byte $29   ; 
-- D 1 - - - 0x01B77C 06:B76C: 08 29     .word $2908
+- D 1 - - - 0x01B77C 06:B76C: 08 29     .word $2908 ; 
 - D 1 - - - 0x01B77E 06:B76E: 04        .byte $04   ; 
 - D 1 - - - 0x01B77F 06:B76F: 81 B7     .word off_09_B781_00
 - D 1 - - - 0x01B781 06:B771: 79 B7     .word off_09_B779_01
