@@ -125,6 +125,7 @@ con_dir__RUD                            = $0D ; con_dir_Right + con_dir_Up + con
 
 
 
+; ram_message
 con_msg_00                              = $00 ; IT'S DANGEROUS TO GO ALONE! TAKE THIS.
 con_msg_01                              = $01 ; MASTER USING IT AND YOU CAN HAVE THIS.
 con_msg_02                              = $02 ; TAKE ANY ONE YOU WANT.

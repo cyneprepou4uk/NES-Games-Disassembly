@@ -8204,22 +8204,22 @@ C - - - - - 0x012F85 04:AF75: A0 08     LDY #$08
 bra_AF77:
 C - - - - - 0x012F87 04:AF77: 98        TYA
 C - - - - - 0x012F88 04:AF78: 48        PHA
-C - - - - - 0x012F89 04:AF79: AE 01 03  LDX ram_0301
+C - - - - - 0x012F89 04:AF79: AE 01 03  LDX ram_0301_buffer_index
 C - - - - - 0x012F8C 04:AF7C: A0 00     LDY #$00
 bra_AF7E_loop:
 C - - - - - 0x012F8E 04:AF7E: B9 5C AF  LDA tbl_AF5C,Y
-C - - - - - 0x012F91 04:AF81: 9D 02 03  STA ram_0302,X
+C - - - - - 0x012F91 04:AF81: 9D 02 03  STA ram_0302_ppu_buffer,X
 C - - - - - 0x012F94 04:AF84: E8        INX
 C - - - - - 0x012F95 04:AF85: C8        INY
 C - - - - - 0x012F96 04:AF86: C0 08     CPY #$08
 C - - - - - 0x012F98 04:AF88: D0 F4     BNE bra_AF7E_loop
-C - - - - - 0x012F9A 04:AF8A: 8E 01 03  STX ram_0301
+C - - - - - 0x012F9A 04:AF8A: 8E 01 03  STX ram_0301_buffer_index
 C - - - - - 0x012F9D 04:AF8D: 68        PLA
 C - - - - - 0x012F9E 04:AF8E: A8        TAY
 C - - - - - 0x012F9F 04:AF8F: A2 02     LDX #$02
 bra_AF91_loop:
 C - - - - - 0x012FA1 04:AF91: B9 64 AF  LDA tbl_AF64,Y
-C - - - - - 0x012FA4 04:AF94: 9D 06 03  STA ram_0306,X
+C - - - - - 0x012FA4 04:AF94: 9D 06 03  STA ram_0302_ppu_buffer + $04,X
 C - - - - - 0x012FA7 04:AF97: 88        DEY
 C - - - - - 0x012FA8 04:AF98: CA        DEX
 C - - - - - 0x012FA9 04:AF99: 10 F6     BPL bra_AF91_loop
@@ -8568,7 +8568,7 @@ C - - - - - 0x013188 04:B178: 60        RTS
 
 sub_B179:
 ; X = 01+
-C - - - - - 0x013189 04:B179: 85 00     STA ram_0000    ; object id
+C - - - - - 0x013189 04:B179: 85 00     STA ram_0000    ; obj id
 C - - - - - 0x01318B 04:B17B: BD 12 04  LDA ram_0412,X
 C - - - - - 0x01318E 04:B17E: F0 3C     BEQ bra_B1BC
 sub_B180:
@@ -8577,7 +8577,7 @@ loc_B180:
 ; X = 01+
 C D 1 - - - 0x013190 04:B180: 20 BB FE  JSR sub_0x01FECB_search_for_free_object
 C - - - - - 0x013193 04:B183: F0 37     BEQ bra_B1BC    ; if no free objects
-C - - - - - 0x013195 04:B185: A5 00     LDA ram_0000    ; object id
+C - - - - - 0x013195 04:B185: A5 00     LDA ram_0000    ; obj id
 C - - - - - 0x013197 04:B187: C9 53     CMP #$53
 C - - - - - 0x013199 04:B189: 90 0A     BCC bra_B195
 C - - - - - 0x01319B 04:B18B: AD 4C 03  LDA ram_enemy_proj_cnt
@@ -8587,7 +8587,7 @@ C - - - - - 0x0131A2 04:B192: EE 4C 03  INC ram_enemy_proj_cnt
 bra_B195:
 sub_B195:
 C - - - - - 0x0131A5 04:B195: A6 59     LDX ram_free_obj_index
-C - - - - - 0x0131A7 04:B197: A5 00     LDA ram_0000    ; object id
+C - - - - - 0x0131A7 04:B197: A5 00     LDA ram_0000    ; obj id
 C - - - - - 0x0131A9 04:B199: 20 B3 FE  JSR sub_0x01FEC3_create_object
 C - - - - - 0x0131AC 04:B19C: A4 59     LDY ram_free_obj_index
 C - - - - - 0x0131AE 04:B19E: AE 40 03  LDX ram_obj_index

@@ -439,7 +439,7 @@ C - - - - - 0x01E629 07:E619: A5 01     LDA ram_0001
 C - - - - - 0x01E62B 07:E61B: C9 03     CMP #$03
 C - - - - - 0x01E62D 07:E61D: B0 EF     BCS bra_E60E_loop
 C - - - - - 0x01E62F 07:E61F: A9 FF     LDA #$FF
-C - - - - - 0x01E631 07:E621: 8D 02 03  STA ram_0302
+C - - - - - 0x01E631 07:E621: 8D 02 03  STA ram_0302_ppu_buffer
 C - - - - - 0x01E634 07:E624: 60        RTS
 
 
@@ -839,39 +839,39 @@ C - - - - - 0x01E878 07:E868: 85 03     STA ram_0003
 C - - - - - 0x01E87A 07:E86A: B5 84     LDA ram_pos_Y_enemy,X
 C - - - - - 0x01E87C 07:E86C: 85 02     STA ram_0002
 C - - - - - 0x01E87E 07:E86E: 20 70 75  JSR sub_bat_7570
-C - - - - - 0x01E881 07:E871: AE 01 03  LDX ram_0301
+C - - - - - 0x01E881 07:E871: AE 01 03  LDX ram_0301_buffer_index
 C - - - - - 0x01E884 07:E874: A5 00     LDA ram_0000
-C - - - - - 0x01E886 07:E876: 9D 02 03  STA ram_0302,X
-C - - - - - 0x01E889 07:E879: 9D 07 03  STA ram_0307,X
+C - - - - - 0x01E886 07:E876: 9D 02 03  STA ram_0302_ppu_buffer,X
+C - - - - - 0x01E889 07:E879: 9D 07 03  STA ram_0302_ppu_buffer + $05,X
 C - - - - - 0x01E88C 07:E87C: A5 01     LDA ram_0001
-C - - - - - 0x01E88E 07:E87E: 9D 03 03  STA ram_0303,X
-C - - - - - 0x01E891 07:E881: 9D 08 03  STA ram_0308,X
-C - - - - - 0x01E894 07:E884: FE 08 03  INC ram_0308,X
+C - - - - - 0x01E88E 07:E87E: 9D 03 03  STA ram_0302_ppu_buffer + $01,X
+C - - - - - 0x01E891 07:E881: 9D 08 03  STA ram_0302_ppu_buffer + $06,X
+C - - - - - 0x01E894 07:E884: FE 08 03  INC ram_0302_ppu_buffer + $06,X
 C - - - - - 0x01E897 07:E887: A5 05     LDA ram_0005
-C - - - - - 0x01E899 07:E889: 9D 05 03  STA ram_0305,X
-C - - - - - 0x01E89C 07:E88C: 9D 06 03  STA ram_0306,X
-C - - - - - 0x01E89F 07:E88F: 9D 0A 03  STA ram_030A,X
-C - - - - - 0x01E8A2 07:E892: 9D 0B 03  STA ram_030B,X
+C - - - - - 0x01E899 07:E889: 9D 05 03  STA ram_0302_ppu_buffer + $03,X
+C - - - - - 0x01E89C 07:E88C: 9D 06 03  STA ram_0302_ppu_buffer + $04,X
+C - - - - - 0x01E89F 07:E88F: 9D 0A 03  STA ram_0302_ppu_buffer + $08,X
+C - - - - - 0x01E8A2 07:E892: 9D 0B 03  STA ram_0302_ppu_buffer + $09,X
 C - - - - - 0x01E8A5 07:E895: C9 46     CMP #$46
 C - - - - - 0x01E8A7 07:E897: 90 13     BCC bra_E8AC
 C - - - - - 0x01E8A9 07:E899: C9 F3     CMP #$F3
 C - - - - - 0x01E8AB 07:E89B: B0 0F     BCS bra_E8AC
 C - - - - - 0x01E8AD 07:E89D: 18        CLC
 C - - - - - 0x01E8AE 07:E89E: 69 02     ADC #$02
-C - - - - - 0x01E8B0 07:E8A0: 9D 0A 03  STA ram_030A,X
-C - - - - - 0x01E8B3 07:E8A3: 9D 0B 03  STA ram_030B,X
-C - - - - - 0x01E8B6 07:E8A6: FE 06 03  INC ram_0306,X
-C - - - - - 0x01E8B9 07:E8A9: FE 0B 03  INC ram_030B,X
+C - - - - - 0x01E8B0 07:E8A0: 9D 0A 03  STA ram_0302_ppu_buffer + $08,X
+C - - - - - 0x01E8B3 07:E8A3: 9D 0B 03  STA ram_0302_ppu_buffer + $09,X
+C - - - - - 0x01E8B6 07:E8A6: FE 06 03  INC ram_0302_ppu_buffer + $04,X
+C - - - - - 0x01E8B9 07:E8A9: FE 0B 03  INC ram_0302_ppu_buffer + $09,X
 bra_E8AC:
 C - - - - - 0x01E8BC 07:E8AC: A9 82     LDA #$82
-C - - - - - 0x01E8BE 07:E8AE: 9D 04 03  STA ram_0304,X
-C - - - - - 0x01E8C1 07:E8B1: 9D 09 03  STA ram_0309,X
+C - - - - - 0x01E8BE 07:E8AE: 9D 04 03  STA ram_0302_ppu_buffer + $02,X
+C - - - - - 0x01E8C1 07:E8B1: 9D 09 03  STA ram_0302_ppu_buffer + $07,X
 C - - - - - 0x01E8C4 07:E8B4: A9 FF     LDA #$FF
-C - - - - - 0x01E8C6 07:E8B6: 9D 0C 03  STA ram_030C,X
+C - - - - - 0x01E8C6 07:E8B6: 9D 0C 03  STA ram_0302_ppu_buffer + $0A,X
 C - - - - - 0x01E8C9 07:E8B9: 8A        TXA
 C - - - - - 0x01E8CA 07:E8BA: 18        CLC
 C - - - - - 0x01E8CB 07:E8BB: 69 0A     ADC #$0A
-C - - - - - 0x01E8CD 07:E8BD: 8D 01 03  STA ram_0301
+C - - - - - 0x01E8CD 07:E8BD: 8D 01 03  STA ram_0301_buffer_index
 C - - - - - 0x01E8D0 07:E8C0: 68        PLA
 C - - - - - 0x01E8D1 07:E8C1: AA        TAX
 C - - - - - 0x01E8D2 07:E8C2: A9 05     LDA #con_prg_bank + $05
@@ -1621,7 +1621,7 @@ C - - - - - 0x01ED72 07:ED62: A9 04     LDA #con_prg_bank + $04
 C - - - - - 0x01ED74 07:ED64: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01ED77 07:ED67: 20 E0 86  JSR sub_0x0106F0_try_spawning_zora_in_water
 loc_ED6A:
-C D 3 - - - 0x01ED7A 07:ED6A: AD 01 03  LDA ram_0301
+C D 3 - - - 0x01ED7A 07:ED6A: AD 01 03  LDA ram_0301_buffer_index
 C - - - - - 0x01ED7D 07:ED6D: D0 0E     BNE bra_ED7D
 C - - - - - 0x01ED7F 07:ED6F: AD E5 04  LDA ram_04E5
 C - - - - - 0x01ED82 07:ED72: F0 09     BEQ bra_ED7D
@@ -2486,7 +2486,7 @@ bra_F23C:
 sub_F23C:
 sub_0x01F24C:
 loc_0x01F24C:
-C D 3 - - - 0x01F24C 07:F23C: AD 22 05  LDA ram_0522
+C D 3 - - - 0x01F24C 07:F23C: AD 22 05  LDA ram_0522_flag
 C - - - - - 0x01F24F 07:F23F: D0 BB     BNE bra_F1FC_RTS
 C - - - - - 0x01F251 07:F241: AA        TAX
 C - - - - - 0x01F252 07:F242: A5 12     LDA ram_script
@@ -4631,19 +4631,16 @@ C - - - - - 0x01FEEF 07:FEDF: 60        RTS
 
 
 
-tbl_FEE0:
-- D 3 - - - 0x01FEF0 07:FEE0: 3F        .byte $3F   ; 00 
-- D 3 - - - 0x01FEF1 07:FEE1: 0C        .byte $0C   ; 01 
-- D 3 - - - 0x01FEF2 07:FEE2: 04        .byte $04   ; 02 
-- D 3 - - - 0x01FEF3 07:FEE3: 0F        .byte $0F   ; 03 
-- D 3 - - - 0x01FEF4 07:FEE4: 17        .byte $17   ; 04 
-- D 3 - - - 0x01FEF5 07:FEE5: 37        .byte $37   ; 05 
-- D 3 - - - 0x01FEF6 07:FEE6: 12        .byte $12   ; 06 
-- D 3 - - - 0x01FEF7 07:FEE7: FF        .byte $FF   ; 07 
+tbl_FEE0_bg_palette:
+; 4th color will be overwritten with a color from 0x01FEF8
+- D 3 - - - 0x01FEF0 07:FEE0: 3F 0C     .dbyt $3F0C ; ppu address
+- D 3 - - - 0x01FEF2 07:FEE2: 04        .byte $04   ; counter
+- D 3 - - - 0x01FEF3 07:FEE3: 0F        .byte $0F, $17, $37, $12   ; colors
+- D 3 - - - 0x01FEF7 07:FEE7: FF        .byte $FF   ; close buffer
 
 
 
-tbl_FEE8:
+tbl_FEE8_bg_color:
 - - - - - - 0x01FEF8 07:FEE8: 12        .byte $12   ; 00 
 - D 3 - - - 0x01FEF9 07:FEE9: 11        .byte $11   ; 01 
 - D 3 - - - 0x01FEFA 07:FEEA: 22        .byte $22   ; 02 
@@ -4676,14 +4673,14 @@ C - - - - - 0x01FF1A 07:FF0A: 98        TYA
 C - - - - - 0x01FF1B 07:FF0B: 48        PHA
 C - - - - - 0x01FF1C 07:FF0C: A0 07     LDY #$07
 bra_FF0E_loop:
-C - - - - - 0x01FF1E 07:FF0E: B9 E0 FE  LDA tbl_FEE0,Y
-C - - - - - 0x01FF21 07:FF11: 99 02 03  STA ram_0302,Y
+C - - - - - 0x01FF1E 07:FF0E: B9 E0 FE  LDA tbl_FEE0_bg_palette,Y
+C - - - - - 0x01FF21 07:FF11: 99 02 03  STA ram_0302_ppu_buffer,Y
 C - - - - - 0x01FF24 07:FF14: 88        DEY
 C - - - - - 0x01FF25 07:FF15: 10 F7     BPL bra_FF0E_loop
 C - - - - - 0x01FF27 07:FF17: 68        PLA
 C - - - - - 0x01FF28 07:FF18: A8        TAY
-C - - - - - 0x01FF29 07:FF19: B9 E8 FE  LDA tbl_FEE8,Y
-C - - - - - 0x01FF2C 07:FF1C: 8D 08 03  STA ram_0308
+C - - - - - 0x01FF29 07:FF19: B9 E8 FE  LDA tbl_FEE8_bg_color,Y
+C - - - - - 0x01FF2C 07:FF1C: 8D 08 03  STA ram_0302_ppu_buffer + $06
 C - - - - - 0x01FF2F 07:FF1F: C0 0A     CPY #$0A
 C - - - - - 0x01FF31 07:FF21: D0 05     BNE bra_FF28_RTS
 C - - - - - 0x01FF33 07:FF23: A9 99     LDA #$99

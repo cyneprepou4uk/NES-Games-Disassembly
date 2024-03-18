@@ -7106,7 +7106,7 @@ ofs_9CD8_bank_s1_asm_export:
 
 tbl_A000_ppu_data:
 ; see con_ppu_buf
-- D 1 - - - 0x01A010 06:A000: 02 03     .word ram_0302  ; 00
+- D 1 - - - 0x01A010 06:A000: 02 03     .word ram_0302_ppu_buffer  ; 00
 - D 1 - - - 0x01A012 06:A002: FE A3     .word _off000_A3FE_02_guide
 - D 1 - - - 0x01A014 06:A004: B4 A2     .word _off000_A2B4_04_continue
 - D 1 - - - 0x01A016 06:A006: 14 68     .word _off000_bat_6814_06
@@ -7119,14 +7119,14 @@ tbl_A000_ppu_data:
 - D 1 - - - 0x01A024 06:A014: 00 A1     .word _off000_A100_14
 - D 1 - - - 0x01A026 06:A016: 83 A1     .word _off000_A183_16
 - D 1 - - - 0x01A028 06:A018: 7E 6B     .word ram_6B7E_palette_buffer ; 18
-- - - - - - 0x01A02A 06:A01A: 02 03     .word ram_0302  ; 1A unused, index not found
-- - - - - - 0x01A02C 06:A01C: 02 03     .word ram_0302  ; 1C unused, index not found
+- - - - - - 0x01A02A 06:A01A: 02 03     .word ram_0302_ppu_buffer  ; 1A unused, index not found
+- - - - - - 0x01A02C 06:A01C: 02 03     .word ram_0302_ppu_buffer  ; 1C unused, index not found
 - D 1 - - - 0x01A02E 06:A01E: 1D A2     .word _off000_A21D_1E
 - D 1 - - - 0x01A030 06:A020: 45 A2     .word _off000_A245_20
 - - - - - - 0x01A032 06:A022: 4D A2     .word _off000_A24D_22
 - D 1 - - - 0x01A034 06:A024: 55 A2     .word _off000_A255_24
 - D 1 - - - 0x01A036 06:A026: 69 A2     .word _off000_A269_26
-- - - - - - 0x01A038 06:A028: 02 03     .word ram_0302  ; 28 unused, index not found
+- - - - - - 0x01A038 06:A028: 02 03     .word ram_0302_ppu_buffer  ; 28 unused, index not found
 - D 1 - - - 0x01A03A 06:A02A: 26 A2     .word _off000_A226_2A
 - D 1 - - - 0x01A03C 06:A02C: C8 A3     .word _off000_A3C8_2C
 - - - - - - 0x01A03E 06:A02E: 1C 68     .word _off000_bat_681C_2E   ; unused, index not found
@@ -7156,20 +7156,20 @@ tbl_A000_ppu_data:
 - D 1 - - - 0x01A06E 06:A05E: E8 A3     .word _off000_A3E8_5E
 - D 1 - - - 0x01A070 06:A060: F4 A3     .word _off000_A3F4_60
 - D 1 - - - 0x01A072 06:A062: F9 A3     .word _off000_A3F9_62
-- - - - - - 0x01A074 06:A064: 02 03     .word ram_0302  ; 64 unused, index not found
-- - - - - - 0x01A076 06:A066: 02 03     .word ram_0302  ; 66 unused, index not found
-- - - - - - 0x01A078 06:A068: 02 03     .word ram_0302  ; 68 unused, index not found
+- - - - - - 0x01A074 06:A064: 02 03     .word ram_0302_ppu_buffer  ; 64 unused, index not found
+- - - - - - 0x01A076 06:A066: 02 03     .word ram_0302_ppu_buffer  ; 66 unused, index not found
+- - - - - - 0x01A078 06:A068: 02 03     .word ram_0302_ppu_buffer  ; 68 unused, index not found
 - D 1 - - - 0x01A07A 06:A06A: 0A A2     .word _off000_A20A_6A
 - D 1 - - - 0x01A07C 06:A06C: 9E A2     .word _off000_A29E_6C
-- - - - - - 0x01A07E 06:A06E: 02 03     .word ram_0302  ; 6E unused, index not found
-- - - - - - 0x01A080 06:A070: 02 03     .word ram_0302  ; 70 unused, index not found
-- - - - - - 0x01A082 06:A072: 02 03     .word ram_0302  ; 72 unused, index not found
-- - - - - - 0x01A084 06:A074: 02 03     .word ram_0302  ; 74 unused, index not found
+- - - - - - 0x01A07E 06:A06E: 02 03     .word ram_0302_ppu_buffer  ; 6E unused, index not found
+- - - - - - 0x01A080 06:A070: 02 03     .word ram_0302_ppu_buffer  ; 70 unused, index not found
+- - - - - - 0x01A082 06:A072: 02 03     .word ram_0302_ppu_buffer  ; 72 unused, index not found
+- - - - - - 0x01A084 06:A074: 02 03     .word ram_0302_ppu_buffer  ; 74 unused, index not found
 - D 1 - - - 0x01A086 06:A076: A6 A2     .word _off000_A2A6_76
 - D 1 - - - 0x01A088 06:A078: 72 A2     .word _off000_A272_78
 - D 1 - - - 0x01A08A 06:A07A: 7E A2     .word _off000_A27E_7A
 - D 1 - - - 0x01A08C 06:A07C: 86 A2     .word _off000_A286_7C
-- - - - - - 0x01A08E 06:A07E: 02 03     .word ram_0302  ; 7E unused, index not found
+- - - - - - 0x01A08E 06:A07E: 02 03     .word ram_0302_ppu_buffer  ; 7E unused, index not found
 
 
 
@@ -7185,9 +7185,9 @@ C - - - - - 0x01A0A1 06:A091: 8D 00 03  STA ram_0300
 C - - - - - 0x01A0A4 06:A094: A2 00     LDX #$00    ; con_ppu_buf_00
 C - - - - - 0x01A0A6 06:A096: 86 14     STX ram_ppu_load_index
 C - - - - - 0x01A0A8 06:A098: 86 5C     STX ram_005C
-C - - - - - 0x01A0AA 06:A09A: 8E 01 03  STX ram_0301
+C - - - - - 0x01A0AA 06:A09A: 8E 01 03  STX ram_0301_buffer_index
 C - - - - - 0x01A0AD 06:A09D: CA        DEX ; FF
-C - - - - - 0x01A0AE 06:A09E: 8E 02 03  STX ram_0302
+C - - - - - 0x01A0AE 06:A09E: 8E 02 03  STX ram_0302_ppu_buffer
 C - - - - - 0x01A0B1 06:A0A1: 60        RTS
 
 

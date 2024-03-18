@@ -17,7 +17,8 @@
 .export sub_bat_6D7C_set_sfx_1
 .export sub_bat_6D80_set_sfx_3
 .export loc_bat_6D80_set_sfx_3
-.export ofs_bat_6D89_07
+.export ofs_038_bat_6D89_07
+.export ofs_039_bat_6D89_07
 .export sub_bat_6DB7
 .export tbl_bat_6DC3_direction
 .export sub_bat_6FD1_prepare_save_slot_addresses
@@ -140,35 +141,35 @@ bra_6C96_RTS:
 
 
 
-tbl_6C97_ppu_buffer_data:   ; 28h bytes
-- D 1 - I - 0x006517 01:6C97: 20 B6     .dbyt $20B6
-- D 1 - I - 0x006519 01:6C99: 08        .byte $08   ; 
+tbl_6C97_ppu_buffer_data_for_hud:   ; 28h bytes
+- D 1 - I - 0x006517 01:6C97: 20 B6     .dbyt $20B6 ; ppu address
+- D 1 - I - 0x006519 01:6C99: 08        .byte $08   ; counter
 - D 1 - I - 0x00651A 01:6C9A: 24        .byte $24, $24, $24, $24, $24, $24, $24, $24   ; hearts
 
-- D 1 - I - 0x006522 01:6CA2: 20 D6     .dbyt $20D6
-- D 1 - I - 0x006524 01:6CA4: 08        .byte $08   ; 
+- D 1 - I - 0x006522 01:6CA2: 20 D6     .dbyt $20D6 ; ppu address
+- D 1 - I - 0x006524 01:6CA4: 08        .byte $08   ; counter
 - D 1 - I - 0x006525 01:6CA5: 24        .byte $24, $24, $24, $24, $24, $24, $24, $24   ; hearts
 
-- D 1 - I - 0x00652D 01:6CAD: 20 6C     .dbyt $206C
-- D 1 - I - 0x00652F 01:6CAF: 03        .byte $03   ; 
+- D 1 - I - 0x00652D 01:6CAD: 20 6C     .dbyt $206C ; ppu address
+- D 1 - I - 0x00652F 01:6CAF: 03        .byte $03   ; counter
 - D 1 - I - 0x006530 01:6CB0: 21        .byte $21, $00, $24   ; rupees
 
-- D 1 - I - 0x006533 01:6CB3: 20 AC     .dbyt $20AC
-- D 1 - I - 0x006535 01:6CB5: 03        .byte $03   ; 
+- D 1 - I - 0x006533 01:6CB3: 20 AC     .dbyt $20AC ; ppu address
+- D 1 - I - 0x006535 01:6CB5: 03        .byte $03   ; counter
 - D 1 - I - 0x006536 01:6CB6: 21        .byte $21, $00, $24   ; keys
 
-- D 1 - I - 0x006539 01:6CB9: 20 CC     .dbyt $20CC
-- D 1 - I - 0x00653B 01:6CBB: 03        .byte $03   ; 
+- D 1 - I - 0x006539 01:6CB9: 20 CC     .dbyt $20CC ; ppu address
+- D 1 - I - 0x00653B 01:6CBB: 03        .byte $03   ; counter
 - D 1 - I - 0x00653C 01:6CBC: 21        .byte $21, $00, $24   ; bombs
 
-- D 1 - I - 0x00653F 01:6CBF: FF        .byte $FF   ; 
+- D 1 - I - 0x00653F 01:6CBF: FF        .byte $FF   ; close buffer
 
 
 
 loc_bat_6CC0_count_rupees_and_update_hud_info:
 - D 1 - I - 0x006540 01:6CC0: A5 14     LDA ram_ppu_load_index
 - D 1 - I - 0x006542 01:6CC2: D0 D2     BNE bra_6C96_RTS
-- D 1 - I - 0x006544 01:6CC4: AD 02 03  LDA ram_0302
+- D 1 - I - 0x006544 01:6CC4: AD 02 03  LDA ram_0302_ppu_buffer
 - D 1 - I - 0x006547 01:6CC7: 10 CD     BPL bra_6C96_RTS
 - D 1 - I - 0x006549 01:6CC9: A0 27     LDY #con_item_rup_sbc
 - D 1 - I - 0x00654B 01:6CCB: AD 6D 06  LDA ram_item_rupees
@@ -200,8 +201,8 @@ bra_6D00_nothing_to_substract:
 sub_bat_6D00_update_hud_info:   ; when link is dead
 - D 1 - I - 0x006580 01:6D00: A0 28     LDY #$28
 bra_6D02_loop:
-- D 1 - I - 0x006582 01:6D02: B9 97 6C  LDA tbl_6C97_ppu_buffer_data,Y
-- D 1 - I - 0x006585 01:6D05: 99 02 03  STA ram_0302,Y
+- D 1 - I - 0x006582 01:6D02: B9 97 6C  LDA tbl_6C97_ppu_buffer_data_for_hud,Y
+- D 1 - I - 0x006585 01:6D05: 99 02 03  STA ram_0302_ppu_buffer,Y
 - D 1 - I - 0x006588 01:6D08: 88        DEY
 - D 1 - I - 0x006589 01:6D09: 10 F7     BPL bra_6D02_loop
 - D 1 - I - 0x00658B 01:6D0B: A0 03     LDY #$03
@@ -246,7 +247,7 @@ sub_6D55:
 - D 1 - I - 0x0065D7 01:6D57: A6 00     LDX ram_0000
 bra_6D59_loop:
 - D 1 - I - 0x0065D9 01:6D59: B9 01 00  LDA ram_0001,Y
-- D 1 - I - 0x0065DC 01:6D5C: 9D 02 03  STA ram_0302,X
+- D 1 - I - 0x0065DC 01:6D5C: 9D 02 03  STA ram_0302_ppu_buffer,X
 - D 1 - I - 0x0065DF 01:6D5F: CA        DEX
 - D 1 - I - 0x0065E0 01:6D60: 88        DEY
 - D 1 - I - 0x0065E1 01:6D61: 10 F6     BPL bra_6D59_loop
@@ -291,7 +292,9 @@ bra_6D82:
 
 
 
-ofs_bat_6D89_07:    ; bzk optimize, move to bank_05
+ofs_038_bat_6D89_07:
+ofs_039_bat_6D89_07:
+; bzk optimize, move to bank_05
 ; !!! ram 6D90-6D9B has some weird SRAM checks when going into save elimination mode
 ; see 0x00A479 and 0x00A42A, address is specified via 0x009D10
 ; also see 6D9C-6D9D
@@ -541,7 +544,7 @@ bra_6ED5:
 bra_6ED7:
 - D 1 - I - 0x006757 01:6ED7: 84 0C     STY ram_000C
 - D 1 - I - 0x006759 01:6ED9: A4 0B     LDY ram_000B
-- D 1 - I - 0x00675B 01:6EDB: 99 02 03  STA ram_0302,Y
+- D 1 - I - 0x00675B 01:6EDB: 99 02 03  STA ram_0302_ppu_buffer,Y
 - D 1 - I - 0x00675E 01:6EDE: C6 0B     DEC ram_000B
 - D 1 - I - 0x006760 01:6EE0: A4 0C     LDY ram_000C
 - D 1 - I - 0x006762 01:6EE2: 88        DEY
@@ -1098,7 +1101,7 @@ sub_bat_71DE_draw_dot_on_minimap:
 - D 1 - I - 0x006A5E 01:71DE: A5 12     LDA ram_script
 - D 1 - I - 0x006A60 01:71E0: C9 09     CMP #con_script_09
 - D 1 - I - 0x006A62 01:71E2: F0 5B     BEQ bra_723F_RTS
-- D 1 - I - 0x006A64 01:71E4: AE 22 05  LDX ram_0522
+- D 1 - I - 0x006A64 01:71E4: AE 22 05  LDX ram_0522_flag
 - D 1 - I - 0x006A67 01:71E7: D0 56     BNE bra_723F_RTS
 - D 1 - I - 0x006A69 01:71E9: A5 EB     LDA ram_map_location
 - D 1 - I - 0x006A6B 01:71EB: A2 00     LDX #$00
@@ -1654,6 +1657,7 @@ sub_bat_74B7:
 - D 1 - I - 0x006D40 01:74C0: 49 83     EOR #$83
 bra_74C2:
 - D 1 - I - 0x006D42 01:74C2: 85 00     STA ram_0000
+; * 09
 - D 1 - I - 0x006D44 01:74C4: 0A        ASL
 - D 1 - I - 0x006D45 01:74C5: 0A        ASL
 - D 1 - I - 0x006D46 01:74C6: 0A        ASL
@@ -1661,26 +1665,28 @@ bra_74C2:
 - D 1 - I - 0x006D48 01:74C8: 65 00     ADC ram_0000
 - D 1 - I - 0x006D4A 01:74CA: 29 FC     AND #$FC
 - D 1 - I - 0x006D4C 01:74CC: A8        TAY
-- D 1 - I - 0x006D4D 01:74CD: AE 01 03  LDX ram_0301
-- D 1 - I - 0x006D50 01:74D0: A9 3F     LDA #$3F
-- D 1 - I - 0x006D52 01:74D2: 9D 02 03  STA ram_0302,X
+- D 1 - I - 0x006D4D 01:74CD: AE 01 03  LDX ram_0301_buffer_index
+; last 8 background colors
+- D 1 - I - 0x006D50 01:74D0: A9 3F     LDA #> $3F08
+- D 1 - I - 0x006D52 01:74D2: 9D 02 03  STA ram_0302_ppu_buffer,X
 - D 1 - I - 0x006D55 01:74D5: E8        INX
-- D 1 - I - 0x006D56 01:74D6: A9 08     LDA #$08
-- D 1 - I - 0x006D58 01:74D8: 9D 02 03  STA ram_0302,X
+- D 1 - I - 0x006D56 01:74D6: A9 08     LDA #< $3F08
+- D 1 - I - 0x006D58 01:74D8: 9D 02 03  STA ram_0302_ppu_buffer,X
 - D 1 - I - 0x006D5B 01:74DB: E8        INX
-- D 1 - I - 0x006D5C 01:74DC: 9D 02 03  STA ram_0302,X
+; A = 08 (counter)
+- D 1 - I - 0x006D5C 01:74DC: 9D 02 03  STA ram_0302_ppu_buffer,X
 - D 1 - I - 0x006D5F 01:74DF: 85 00     STA ram_0000
 - D 1 - I - 0x006D61 01:74E1: E8        INX
 bra_74E2_loop:
 - D 1 - I - 0x006D62 01:74E2: B9 FA 6B  LDA ram_6BFA,Y
-- D 1 - I - 0x006D65 01:74E5: 9D 02 03  STA ram_0302,X
+- D 1 - I - 0x006D65 01:74E5: 9D 02 03  STA ram_0302_ppu_buffer,X
 - D 1 - I - 0x006D68 01:74E8: C8        INY
 - D 1 - I - 0x006D69 01:74E9: E8        INX
 - D 1 - I - 0x006D6A 01:74EA: C6 00     DEC ram_0000
 - D 1 - I - 0x006D6C 01:74EC: D0 F4     BNE bra_74E2_loop
 - D 1 - I - 0x006D6E 01:74EE: A9 FF     LDA #$FF
-- D 1 - I - 0x006D70 01:74F0: 9D 02 03  STA ram_0302,X
-- D 1 - I - 0x006D73 01:74F3: 8E 01 03  STX ram_0301
+- D 1 - I - 0x006D70 01:74F0: 9D 02 03  STA ram_0302_ppu_buffer,X
+- D 1 - I - 0x006D73 01:74F3: 8E 01 03  STX ram_0301_buffer_index
 - D 1 - I - 0x006D76 01:74F6: EE 1C 05  INC ram_051C
 - D 1 - I - 0x006D79 01:74F9: AD 1C 05  LDA ram_051C
 - D 1 - I - 0x006D7C 01:74FC: 29 0F     AND #$0F
