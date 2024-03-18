@@ -7853,300 +7853,252 @@ tbl_A446:
 
 
 _off004_A46A_00:
-- D 1 - I - 0x00647A 01:A46A: 01        .byte $01   ; 
-- D 1 - I - 0x00647B 01:A46B: 59        .byte $59   ; 
-- D 1 - I - 0x00647C 01:A46C: 22        .byte $22   ; 
+- D 1 - I - 0x00647A 01:A46A: 01        .byte $01   ; counter
+- D 1 - I - 0x00647B 01:A46B: 59 22     .word $2259 ; ppu address
 - D 1 - I - 0x00647D 01:A46D: 40        .byte $40   ; 
-- D 1 - I - 0x00647E 01:A46E: 01        .byte $01   ; 
-- D 1 - I - 0x00647F 01:A46F: 79        .byte $79   ; 
-- D 1 - I - 0x006480 01:A470: 22        .byte $22   ; 
+
+- D 1 - I - 0x00647E 01:A46E: 01        .byte $01   ; counter
+- D 1 - I - 0x00647F 01:A46F: 79 22     .word $2279 ; ppu address
 - D 1 - I - 0x006481 01:A471: 42        .byte $42   ; 
-- D 1 - I - 0x006482 01:A472: 00        .byte $00   ; 
+
+- D 1 - I - 0x006482 01:A472: 00        .byte $00   ; end token
 
 
 
 _off004_A473_01:
-- D 1 - I - 0x006483 01:A473: 01        .byte $01   ; 
-- D 1 - I - 0x006484 01:A474: 3A        .byte $3A   ; 
-- D 1 - I - 0x006485 01:A475: 22        .byte $22   ; 
+- D 1 - I - 0x006483 01:A473: 01        .byte $01   ; counter
+- D 1 - I - 0x006484 01:A474: 3A 22     .word $223A ; ppu address
 - D 1 - I - 0x006486 01:A476: 43        .byte $43   ; 
-- D 1 - I - 0x006487 01:A477: 04        .byte $04   ; 
-- D 1 - I - 0x006488 01:A478: 59        .byte $59   ; 
-- D 1 - I - 0x006489 01:A479: 22        .byte $22   ; 
-- D 1 - I - 0x00648A 01:A47A: 41        .byte $41   ; 
-- D 1 - I - 0x00648B 01:A47B: 44        .byte $44   ; 
-- D 1 - I - 0x00648C 01:A47C: 45        .byte $45   ; 
-- D 1 - I - 0x00648D 01:A47D: 4F        .byte $4F   ; 
-- D 1 - I - 0x00648E 01:A47E: 00        .byte $00   ; 
+
+- D 1 - I - 0x006487 01:A477: 04        .byte $04   ; counter
+- D 1 - I - 0x006488 01:A478: 59 22     .word $2259 ; ppu address
+- D 1 - I - 0x00648A 01:A47A: 41        .byte $41, $44, $45, $4F   ; 
+
+- D 1 - I - 0x00648E 01:A47E: 00        .byte $00   ; end token
 
 
 
 _off004_A47F_02:
-- D 1 - I - 0x00648F 01:A47F: 02        .byte $02   ; 
-- D 1 - I - 0x006490 01:A480: 3B        .byte $3B   ; 
-- D 1 - I - 0x006491 01:A481: 22        .byte $22   ; 
-- D 1 - I - 0x006492 01:A482: 48        .byte $48   ; 
-- D 1 - I - 0x006493 01:A483: 49        .byte $49   ; 
-- D 1 - I - 0x006494 01:A484: 04        .byte $04   ; 
-- D 1 - I - 0x006495 01:A485: 5A        .byte $5A   ; 
-- D 1 - I - 0x006496 01:A486: 22        .byte $22   ; 
-- D 1 - I - 0x006497 01:A487: 4A        .byte $4A   ; 
-- D 1 - I - 0x006498 01:A488: 4B        .byte $4B   ; 
-- D 1 - I - 0x006499 01:A489: 4E        .byte $4E   ; 
-- D 1 - I - 0x00649A 01:A48A: 4F        .byte $4F   ; 
-- D 1 - I - 0x00649B 01:A48B: 00        .byte $00   ; 
+- D 1 - I - 0x00648F 01:A47F: 02        .byte $02   ; counter
+- D 1 - I - 0x006490 01:A480: 3B 22     .word $223B ; ppu address
+- D 1 - I - 0x006492 01:A482: 48        .byte $48, $49   ; 
+
+- D 1 - I - 0x006494 01:A484: 04        .byte $04   ; counter
+- D 1 - I - 0x006495 01:A485: 5A 22     .word $225A ; ppu address
+- D 1 - I - 0x006497 01:A487: 4A        .byte $4A, $4B, $4E, $4F   ; 
+
+- D 1 - I - 0x00649B 01:A48B: 00        .byte $00   ; end token
 
 
 
 _off004_A48C_03:
-- - - - - - 0x00649C 01:A48C: 02        .byte $02   ; 
-- - - - - - 0x00649D 01:A48D: 3D        .byte $3D   ; 
-- - - - - - 0x00649E 01:A48E: 22        .byte $22   ; 
-- - - - - - 0x00649F 01:A48F: 48        .byte $48   ; 
-- - - - - - 0x0064A0 01:A490: 49        .byte $49   ; 
-- - - - - - 0x0064A1 01:A491: 04        .byte $04   ; 
-- - - - - - 0x0064A2 01:A492: 5C        .byte $5C   ; 
-- - - - - - 0x0064A3 01:A493: 22        .byte $22   ; 
-- - - - - - 0x0064A4 01:A494: 4A        .byte $4A   ; 
-- - - - - - 0x0064A5 01:A495: 4B        .byte $4B   ; 
-- - - - - - 0x0064A6 01:A496: 4E        .byte $4E   ; 
-- - - - - - 0x0064A7 01:A497: 4F        .byte $4F   ; 
-- - - - - - 0x0064A8 01:A498: 00        .byte $00   ; 
+- - - - - - 0x00649C 01:A48C: 02        .byte $02   ; counter
+- - - - - - 0x00649D 01:A48D: 3D 22     .word $223D ; ppu address
+- - - - - - 0x00649F 01:A48F: 48        .byte $48, $49   ; 
+
+- - - - - - 0x0064A1 01:A491: 04        .byte $04   ; counter
+- - - - - - 0x0064A2 01:A492: 5C 22     .word $225C ; ppu address
+- - - - - - 0x0064A4 01:A494: 4A        .byte $4A, $4B, $4E, $4F   ; 
+
+- - - - - - 0x0064A8 01:A498: 00        .byte $00   ; end token
 
 
 
 _off004_A499_04:
-- D 1 - I - 0x0064A9 01:A499: 01        .byte $01   ; 
-- D 1 - I - 0x0064AA 01:A49A: 3F        .byte $3F   ; 
-- D 1 - I - 0x0064AB 01:A49B: 22        .byte $22   ; 
+- D 1 - I - 0x0064A9 01:A499: 01        .byte $01   ; counter
+- D 1 - I - 0x0064AA 01:A49A: 3F 22     .word $223F ; ppu address
 - D 1 - I - 0x0064AC 01:A49C: 48        .byte $48   ; 
-- D 1 - I - 0x0064AD 01:A49D: 01        .byte $01   ; 
-- D 1 - I - 0x0064AE 01:A49E: 20        .byte $20   ; 
-- D 1 - I - 0x0064AF 01:A49F: 26        .byte $26   ; 
+
+- D 1 - I - 0x0064AD 01:A49D: 01        .byte $01   ; counter
+- D 1 - I - 0x0064AE 01:A49E: 20 26     .word $2620 ; ppu address
 - D 1 - I - 0x0064B0 01:A4A0: 49        .byte $49   ; 
-- D 1 - I - 0x0064B1 01:A4A1: 02        .byte $02   ; 
-- D 1 - I - 0x0064B2 01:A4A2: 5E        .byte $5E   ; 
-- D 1 - I - 0x0064B3 01:A4A3: 22        .byte $22   ; 
-- D 1 - I - 0x0064B4 01:A4A4: 4F        .byte $4F   ; 
-- D 1 - I - 0x0064B5 01:A4A5: 4B        .byte $4B   ; 
-- D 1 - I - 0x0064B6 01:A4A6: 02        .byte $02   ; 
-- D 1 - I - 0x0064B7 01:A4A7: 40        .byte $40   ; 
-- D 1 - I - 0x0064B8 01:A4A8: 26        .byte $26   ; 
-- D 1 - I - 0x0064B9 01:A4A9: 4E        .byte $4E   ; 
-- D 1 - I - 0x0064BA 01:A4AA: 4F        .byte $4F   ; 
-- D 1 - I - 0x0064BB 01:A4AB: 00        .byte $00   ; 
+
+- D 1 - I - 0x0064B1 01:A4A1: 02        .byte $02   ; counter
+- D 1 - I - 0x0064B2 01:A4A2: 5E 22     .word $225E ; ppu address
+- D 1 - I - 0x0064B4 01:A4A4: 4F        .byte $4F, $4B   ; 
+
+- D 1 - I - 0x0064B6 01:A4A6: 02        .byte $02   ; counter
+- D 1 - I - 0x0064B7 01:A4A7: 40 26     .word $2640 ; ppu address
+- D 1 - I - 0x0064B9 01:A4A9: 4E        .byte $4E, $4F   ; 
+
+- D 1 - I - 0x0064BB 01:A4AB: 00        .byte $00   ; end token
 
 
 
 _off004_A4AC_05:
-- - - - - - 0x0064BC 01:A4AC: 02        .byte $02   ; 
-- - - - - - 0x0064BD 01:A4AD: 21        .byte $21   ; 
-- - - - - - 0x0064BE 01:A4AE: 26        .byte $26   ; 
-- - - - - - 0x0064BF 01:A4AF: 48        .byte $48   ; 
-- - - - - - 0x0064C0 01:A4B0: 49        .byte $49   ; 
-- - - - - - 0x0064C1 01:A4B1: 04        .byte $04   ; 
-- - - - - - 0x0064C2 01:A4B2: 40        .byte $40   ; 
-- - - - - - 0x0064C3 01:A4B3: 26        .byte $26   ; 
-- - - - - - 0x0064C4 01:A4B4: 4F        .byte $4F   ; 
-- - - - - - 0x0064C5 01:A4B5: 4B        .byte $4B   ; 
-- - - - - - 0x0064C6 01:A4B6: 4E        .byte $4E   ; 
-- - - - - - 0x0064C7 01:A4B7: 4F        .byte $4F   ; 
-- - - - - - 0x0064C8 01:A4B8: 00        .byte $00   ; 
+- - - - - - 0x0064BC 01:A4AC: 02        .byte $02   ; counter
+- - - - - - 0x0064BD 01:A4AD: 21 26     .word $2621 ; ppu address
+- - - - - - 0x0064BF 01:A4AF: 48        .byte $48, $49   ; 
+
+- - - - - - 0x0064C1 01:A4B1: 04        .byte $04   ; counter
+- - - - - - 0x0064C2 01:A4B2: 40 26     .word $2640 ; ppu address
+- - - - - - 0x0064C4 01:A4B4: 4F        .byte $4F, $4B, $4E, $4F   ; 
+
+- - - - - - 0x0064C8 01:A4B8: 00        .byte $00   ; end token
 
 
 
 _off004_A4B9_06:
-- D 1 - I - 0x0064C9 01:A4B9: 02        .byte $02   ; 
-- D 1 - I - 0x0064CA 01:A4BA: 23        .byte $23   ; 
-- D 1 - I - 0x0064CB 01:A4BB: 26        .byte $26   ; 
-- D 1 - I - 0x0064CC 01:A4BC: 48        .byte $48   ; 
-- D 1 - I - 0x0064CD 01:A4BD: 49        .byte $49   ; 
-- D 1 - I - 0x0064CE 01:A4BE: 04        .byte $04   ; 
-- D 1 - I - 0x0064CF 01:A4BF: 42        .byte $42   ; 
-- D 1 - I - 0x0064D0 01:A4C0: 26        .byte $26   ; 
-- D 1 - I - 0x0064D1 01:A4C1: 4F        .byte $4F   ; 
-- D 1 - I - 0x0064D2 01:A4C2: 4B        .byte $4B   ; 
-- D 1 - I - 0x0064D3 01:A4C3: 4E        .byte $4E   ; 
-- D 1 - I - 0x0064D4 01:A4C4: 4F        .byte $4F   ; 
-- D 1 - I - 0x0064D5 01:A4C5: 00        .byte $00   ; 
+- D 1 - I - 0x0064C9 01:A4B9: 02        .byte $02   ; counter
+- D 1 - I - 0x0064CA 01:A4BA: 23 26     .word $2623 ; ppu address
+- D 1 - I - 0x0064CC 01:A4BC: 48        .byte $48, $49   ; 
+
+- D 1 - I - 0x0064CE 01:A4BE: 04        .byte $04   ; counter
+- D 1 - I - 0x0064CF 01:A4BF: 42 26     .word $2642 ; ppu address
+- D 1 - I - 0x0064D1 01:A4C1: 4F        .byte $4F, $4B, $4E, $4F   ; 
+
+- D 1 - I - 0x0064D5 01:A4C5: 00        .byte $00   ; end token
 
 
 
 _off004_A4C6_07:
-- D 1 - I - 0x0064D6 01:A4C6: 01        .byte $01   ; 
-- D 1 - I - 0x0064D7 01:A4C7: 25        .byte $25   ; 
-- D 1 - I - 0x0064D8 01:A4C8: 26        .byte $26   ; 
+- D 1 - I - 0x0064D6 01:A4C6: 01        .byte $01   ; counter
+- D 1 - I - 0x0064D7 01:A4C7: 25 26     .word $2625 ; ppu address
 - D 1 - I - 0x0064D9 01:A4C9: 43        .byte $43   ; 
-- D 1 - I - 0x0064DA 01:A4CA: 04        .byte $04   ; 
-- D 1 - I - 0x0064DB 01:A4CB: 43        .byte $43   ; 
-- D 1 - I - 0x0064DC 01:A4CC: 26        .byte $26   ; 
-- D 1 - I - 0x0064DD 01:A4CD: 4F        .byte $4F   ; 
-- D 1 - I - 0x0064DE 01:A4CE: 51        .byte $51   ; 
-- D 1 - I - 0x0064DF 01:A4CF: 54        .byte $54   ; 
-- D 1 - I - 0x0064E0 01:A4D0: 55        .byte $55   ; 
-- D 1 - I - 0x0064E1 01:A4D1: 00        .byte $00   ; 
+
+- D 1 - I - 0x0064DA 01:A4CA: 04        .byte $04   ; counter
+- D 1 - I - 0x0064DB 01:A4CB: 43 26     .word $2643 ; ppu address
+- D 1 - I - 0x0064DD 01:A4CD: 4F        .byte $4F, $51, $54, $55   ; 
+
+- D 1 - I - 0x0064E1 01:A4D1: 00        .byte $00   ; end token
 
 
 
 _off004_A4D2_08:
-- - - - - - 0x0064E2 01:A4D2: 01        .byte $01   ; 
-- - - - - - 0x0064E3 01:A4D3: 46        .byte $46   ; 
-- - - - - - 0x0064E4 01:A4D4: 26        .byte $26   ; 
+- - - - - - 0x0064E2 01:A4D2: 01        .byte $01   ; counter
+- - - - - - 0x0064E3 01:A4D3: 46 26     .word $2646 ; ppu address
 - - - - - - 0x0064E5 01:A4D5: 56        .byte $56   ; 
-- - - - - - 0x0064E6 01:A4D6: 01        .byte $01   ; 
-- - - - - - 0x0064E7 01:A4D7: 66        .byte $66   ; 
-- - - - - - 0x0064E8 01:A4D8: 26        .byte $26   ; 
+
+- - - - - - 0x0064E6 01:A4D6: 01        .byte $01   ; counter
+- - - - - - 0x0064E7 01:A4D7: 66 26     .word $2666 ; ppu address
 - - - - - - 0x0064E9 01:A4D9: 57        .byte $57   ; 
-- - - - - - 0x0064EA 01:A4DA: 00        .byte $00   ; 
+
+- - - - - - 0x0064EA 01:A4DA: 00        .byte $00   ; end token
 
 
 
 _off004_A4DB_09:
-- D 1 - I - 0x0064EB 01:A4DB: 01        .byte $01   ; 
-- D 1 - I - 0x0064EC 01:A4DC: 59        .byte $59   ; 
-- D 1 - I - 0x0064ED 01:A4DD: 22        .byte $22   ; 
+- D 1 - I - 0x0064EB 01:A4DB: 01        .byte $01   ; counter
+- D 1 - I - 0x0064EC 01:A4DC: 59 22     .word $2259 ; ppu address
 - D 1 - I - 0x0064EE 01:A4DE: 42        .byte $42   ; 
-- D 1 - I - 0x0064EF 01:A4DF: 01        .byte $01   ; 
-- D 1 - I - 0x0064F0 01:A4E0: 79        .byte $79   ; 
-- D 1 - I - 0x0064F1 01:A4E1: 22        .byte $22   ; 
+
+- D 1 - I - 0x0064EF 01:A4DF: 01        .byte $01   ; counter
+- D 1 - I - 0x0064F0 01:A4E0: 79 22     .word $2279 ; ppu address
 - D 1 - I - 0x0064F2 01:A4E2: 40        .byte $40   ; 
-- D 1 - I - 0x0064F3 01:A4E3: 00        .byte $00   ; 
+
+- D 1 - I - 0x0064F3 01:A4E3: 00        .byte $00   ; end token
 
 
 
 _off004_A4E4_0A:
-- D 1 - I - 0x0064F4 01:A4E4: 04        .byte $04   ; 
-- D 1 - I - 0x0064F5 01:A4E5: 79        .byte $79   ; 
-- D 1 - I - 0x0064F6 01:A4E6: 22        .byte $22   ; 
-- D 1 - I - 0x0064F7 01:A4E7: 41        .byte $41   ; 
-- D 1 - I - 0x0064F8 01:A4E8: 44        .byte $44   ; 
-- D 1 - I - 0x0064F9 01:A4E9: 45        .byte $45   ; 
-- D 1 - I - 0x0064FA 01:A4EA: 4F        .byte $4F   ; 
-- D 1 - I - 0x0064FB 01:A4EB: 01        .byte $01   ; 
-- D 1 - I - 0x0064FC 01:A4EC: 9A        .byte $9A   ; 
-- D 1 - I - 0x0064FD 01:A4ED: 22        .byte $22   ; 
+- D 1 - I - 0x0064F4 01:A4E4: 04        .byte $04   ; counter
+- D 1 - I - 0x0064F5 01:A4E5: 79 22     .word $2279 ; ppu address
+- D 1 - I - 0x0064F7 01:A4E7: 41        .byte $41, $44, $45, $4F   ; 
+
+- D 1 - I - 0x0064FB 01:A4EB: 01        .byte $01   ; counter
+- D 1 - I - 0x0064FC 01:A4EC: 9A 22     .word $229A ; ppu address
 - D 1 - I - 0x0064FE 01:A4EE: 43        .byte $43   ; 
-- D 1 - I - 0x0064FF 01:A4EF: 00        .byte $00   ; 
+
+- D 1 - I - 0x0064FF 01:A4EF: 00        .byte $00   ; end token
 
 
 
 _off004_A4F0_0B:
-- D 1 - I - 0x006500 01:A4F0: 04        .byte $04   ; 
-- D 1 - I - 0x006501 01:A4F1: 7A        .byte $7A   ; 
-- D 1 - I - 0x006502 01:A4F2: 22        .byte $22   ; 
-- D 1 - I - 0x006503 01:A4F3: 4A        .byte $4A   ; 
-- D 1 - I - 0x006504 01:A4F4: 4B        .byte $4B   ; 
-- D 1 - I - 0x006505 01:A4F5: 4E        .byte $4E   ; 
-- D 1 - I - 0x006506 01:A4F6: 4F        .byte $4F   ; 
-- D 1 - I - 0x006507 01:A4F7: 02        .byte $02   ; 
-- D 1 - I - 0x006508 01:A4F8: 9B        .byte $9B   ; 
-- D 1 - I - 0x006509 01:A4F9: 22        .byte $22   ; 
-- D 1 - I - 0x00650A 01:A4FA: 48        .byte $48   ; 
-- D 1 - I - 0x00650B 01:A4FB: 49        .byte $49   ; 
-- D 1 - I - 0x00650C 01:A4FC: 00        .byte $00   ; 
+- D 1 - I - 0x006500 01:A4F0: 04        .byte $04   ; counter
+- D 1 - I - 0x006501 01:A4F1: 7A 22     .word $227A ; ppu address
+- D 1 - I - 0x006503 01:A4F3: 4A        .byte $4A, $4B, $4E, $4F   ; 
+
+- D 1 - I - 0x006507 01:A4F7: 02        .byte $02   ; counter
+- D 1 - I - 0x006508 01:A4F8: 9B 22     .word $229B ; ppu address
+- D 1 - I - 0x00650A 01:A4FA: 48        .byte $48, $49   ; 
+
+- D 1 - I - 0x00650C 01:A4FC: 00        .byte $00   ; end token
 
 
 
 _off004_A4FD_0C:
-- D 1 - I - 0x00650D 01:A4FD: 04        .byte $04   ; 
-- D 1 - I - 0x00650E 01:A4FE: 7C        .byte $7C   ; 
-- D 1 - I - 0x00650F 01:A4FF: 22        .byte $22   ; 
-- D 1 - I - 0x006510 01:A500: 4F        .byte $4F   ; 
-- D 1 - I - 0x006511 01:A501: 4B        .byte $4B   ; 
-- D 1 - I - 0x006512 01:A502: 4E        .byte $4E   ; 
-- D 1 - I - 0x006513 01:A503: 4F        .byte $4F   ; 
-- D 1 - I - 0x006514 01:A504: 02        .byte $02   ; 
-- D 1 - I - 0x006515 01:A505: 9D        .byte $9D   ; 
-- D 1 - I - 0x006516 01:A506: 22        .byte $22   ; 
-- D 1 - I - 0x006517 01:A507: 48        .byte $48   ; 
-- D 1 - I - 0x006518 01:A508: 49        .byte $49   ; 
-- D 1 - I - 0x006519 01:A509: 00        .byte $00   ; 
+- D 1 - I - 0x00650D 01:A4FD: 04        .byte $04   ; counter
+- D 1 - I - 0x00650E 01:A4FE: 7C 22     .word $227C ; ppu address
+- D 1 - I - 0x006510 01:A500: 4F        .byte $4F, $4B, $4E, $4F   ; 
+
+- D 1 - I - 0x006514 01:A504: 02        .byte $02   ; counter
+- D 1 - I - 0x006515 01:A505: 9D 22     .word $229D ; ppu address
+- D 1 - I - 0x006517 01:A507: 48        .byte $48, $49   ; 
+
+- D 1 - I - 0x006519 01:A509: 00        .byte $00   ; end token
 
 
 
 _off004_A50A_0D:
-- - - - - - 0x00651A 01:A50A: 02        .byte $02   ; 
-- - - - - - 0x00651B 01:A50B: 7E        .byte $7E   ; 
-- - - - - - 0x00651C 01:A50C: 22        .byte $22   ; 
-- - - - - - 0x00651D 01:A50D: 4F        .byte $4F   ; 
-- - - - - - 0x00651E 01:A50E: 4B        .byte $4B   ; 
-- - - - - - 0x00651F 01:A50F: 02        .byte $02   ; 
-- - - - - - 0x006520 01:A510: 60        .byte $60   ; 
-- - - - - - 0x006521 01:A511: 26        .byte $26   ; 
-- - - - - - 0x006522 01:A512: 4E        .byte $4E   ; 
-- - - - - - 0x006523 01:A513: 4F        .byte $4F   ; 
-- - - - - - 0x006524 01:A514: 01        .byte $01   ; 
-- - - - - - 0x006525 01:A515: 9F        .byte $9F   ; 
-- - - - - - 0x006526 01:A516: 22        .byte $22   ; 
+- - - - - - 0x00651A 01:A50A: 02        .byte $02   ; counter
+- - - - - - 0x00651B 01:A50B: 7E 22     .word $227E ; ppu address
+- - - - - - 0x00651D 01:A50D: 4F        .byte $4F, $4B   ; 
+
+- - - - - - 0x00651F 01:A50F: 02        .byte $02   ; counter
+- - - - - - 0x006520 01:A510: 60 26     .word $2660 ; ppu address
+- - - - - - 0x006522 01:A512: 4E        .byte $4E, $4F   ; 
+
+- - - - - - 0x006524 01:A514: 01        .byte $01   ; counter
+- - - - - - 0x006525 01:A515: 9F 22     .word $229F ; ppu address
 - - - - - - 0x006527 01:A517: 48        .byte $48   ; 
-- - - - - - 0x006528 01:A518: 01        .byte $01   ; 
-- - - - - - 0x006529 01:A519: 80        .byte $80   ; 
-- - - - - - 0x00652A 01:A51A: 26        .byte $26   ; 
+
+- - - - - - 0x006528 01:A518: 01        .byte $01   ; counter
+- - - - - - 0x006529 01:A519: 80 26     .word $2680 ; ppu address
 - - - - - - 0x00652B 01:A51B: 49        .byte $49   ; 
-- - - - - - 0x00652C 01:A51C: 00        .byte $00   ; 
+
+- - - - - - 0x00652C 01:A51C: 00        .byte $00   ; end token
 
 
 
 _off004_A51D_0E:
-- D 1 - I - 0x00652D 01:A51D: 04        .byte $04   ; 
-- D 1 - I - 0x00652E 01:A51E: 60        .byte $60   ; 
-- D 1 - I - 0x00652F 01:A51F: 26        .byte $26   ; 
-- D 1 - I - 0x006530 01:A520: 4F        .byte $4F   ; 
-- D 1 - I - 0x006531 01:A521: 4B        .byte $4B   ; 
-- D 1 - I - 0x006532 01:A522: 4E        .byte $4E   ; 
-- D 1 - I - 0x006533 01:A523: 4F        .byte $4F   ; 
-- D 1 - I - 0x006534 01:A524: 02        .byte $02   ; 
-- D 1 - I - 0x006535 01:A525: 81        .byte $81   ; 
-- D 1 - I - 0x006536 01:A526: 26        .byte $26   ; 
-- D 1 - I - 0x006537 01:A527: 48        .byte $48   ; 
-- D 1 - I - 0x006538 01:A528: 49        .byte $49   ; 
-- D 1 - I - 0x006539 01:A529: 00        .byte $00   ; 
+- D 1 - I - 0x00652D 01:A51D: 04        .byte $04   ; counter
+- D 1 - I - 0x00652E 01:A51E: 60 26     .word $2660 ; ppu address
+- D 1 - I - 0x006530 01:A520: 4F        .byte $4F, $4B, $4E, $4F   ; 
+
+- D 1 - I - 0x006534 01:A524: 02        .byte $02   ; counter
+- D 1 - I - 0x006535 01:A525: 81 26     .word $2681 ; ppu address
+- D 1 - I - 0x006537 01:A527: 48        .byte $48, $49   ; 
+
+- D 1 - I - 0x006539 01:A529: 00        .byte $00   ; end token
 
 
 
 _off004_A52A_0F:
-- D 1 - I - 0x00653A 01:A52A: 04        .byte $04   ; 
-- D 1 - I - 0x00653B 01:A52B: 62        .byte $62   ; 
-- D 1 - I - 0x00653C 01:A52C: 26        .byte $26   ; 
-- D 1 - I - 0x00653D 01:A52D: 4F        .byte $4F   ; 
-- D 1 - I - 0x00653E 01:A52E: 4B        .byte $4B   ; 
-- D 1 - I - 0x00653F 01:A52F: 4E        .byte $4E   ; 
-- D 1 - I - 0x006540 01:A530: 50        .byte $50   ; 
-- D 1 - I - 0x006541 01:A531: 02        .byte $02   ; 
-- D 1 - I - 0x006542 01:A532: 83        .byte $83   ; 
-- D 1 - I - 0x006543 01:A533: 26        .byte $26   ; 
-- D 1 - I - 0x006544 01:A534: 48        .byte $48   ; 
-- D 1 - I - 0x006545 01:A535: 49        .byte $49   ; 
-- D 1 - I - 0x006546 01:A536: 00        .byte $00   ; 
+- D 1 - I - 0x00653A 01:A52A: 04        .byte $04   ; counter
+- D 1 - I - 0x00653B 01:A52B: 62 26     .word $2662 ; ppu address
+- D 1 - I - 0x00653D 01:A52D: 4F        .byte $4F, $4B, $4E, $50   ; 
+
+- D 1 - I - 0x006541 01:A531: 02        .byte $02   ; counter
+- D 1 - I - 0x006542 01:A532: 83 26     .word $2683 ; ppu address
+- D 1 - I - 0x006544 01:A534: 48        .byte $48, $49   ; 
+
+- D 1 - I - 0x006546 01:A536: 00        .byte $00   ; end token
 
 
 
 _off004_A537_10:
-- D 1 - I - 0x006547 01:A537: 04        .byte $04   ; 
-- D 1 - I - 0x006548 01:A538: 63        .byte $63   ; 
-- D 1 - I - 0x006549 01:A539: 26        .byte $26   ; 
-- D 1 - I - 0x00654A 01:A53A: 4F        .byte $4F   ; 
-- D 1 - I - 0x00654B 01:A53B: 51        .byte $51   ; 
-- D 1 - I - 0x00654C 01:A53C: 54        .byte $54   ; 
-- D 1 - I - 0x00654D 01:A53D: 55        .byte $55   ; 
-- D 1 - I - 0x00654E 01:A53E: 01        .byte $01   ; 
-- D 1 - I - 0x00654F 01:A53F: 85        .byte $85   ; 
-- D 1 - I - 0x006550 01:A540: 26        .byte $26   ; 
+- D 1 - I - 0x006547 01:A537: 04        .byte $04   ; counter
+- D 1 - I - 0x006548 01:A538: 63 26     .word $2663 ; ppu address
+- D 1 - I - 0x00654A 01:A53A: 4F        .byte $4F, $51, $54, $55   ; 
+
+- D 1 - I - 0x00654E 01:A53E: 01        .byte $01   ; counter
+- D 1 - I - 0x00654F 01:A53F: 85 26     .word $2685 ; ppu address
 - D 1 - I - 0x006551 01:A541: 43        .byte $43   ; 
-- D 1 - I - 0x006552 01:A542: 00        .byte $00   ; 
+
+- D 1 - I - 0x006552 01:A542: 00        .byte $00   ; end token
 
 
 
 _off004_A543_11:
-- D 1 - I - 0x006553 01:A543: 01        .byte $01   ; 
-- D 1 - I - 0x006554 01:A544: 46        .byte $46   ; 
-- D 1 - I - 0x006555 01:A545: 26        .byte $26   ; 
+- D 1 - I - 0x006553 01:A543: 01        .byte $01   ; counter
+- D 1 - I - 0x006554 01:A544: 46 26     .word $2646 ; ppu address
 - D 1 - I - 0x006556 01:A546: 57        .byte $57   ; 
-- D 1 - I - 0x006557 01:A547: 01        .byte $01   ; 
-- D 1 - I - 0x006558 01:A548: 66        .byte $66   ; 
-- D 1 - I - 0x006559 01:A549: 26        .byte $26   ; 
+
+- D 1 - I - 0x006557 01:A547: 01        .byte $01   ; counter
+- D 1 - I - 0x006558 01:A548: 66 26     .word $2666 ; ppu address
 - D 1 - I - 0x00655A 01:A54A: 56        .byte $56   ; 
-- D 1 - I - 0x00655B 01:A54B: 00        .byte $00   ; 
+
+- D 1 - I - 0x00655B 01:A54B: 00        .byte $00   ; end token
 
 
 
