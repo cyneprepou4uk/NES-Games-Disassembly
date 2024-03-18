@@ -623,7 +623,7 @@ C - - - - - 0x00040D 00:C3FD: 4C C4 C4  JMP loc_C4C4
 
 
 tbl_C400_txt___round_error:
-- - - - - - 0x000410 00:C400: AA 21     .word $21AA
+- - - - - - 0x000410 00:C400: AA 21     .word $21AA ; 
 - - - - - - 0x000412 00:C402: 52        .byte "ROUND ERROR"
 - - - - - - 0x00041D 00:C40D: 00        .byte $00   ; 
 
@@ -676,7 +676,7 @@ C - - - - - 0x000470 00:C460: 60        RTS
 
 
 tbl_C461_txt___player_I:
-- D 2 - I - 0x000471 00:C461: AC 21     .word $21AC
+- D 2 - I - 0x000471 00:C461: AC 21     .word $21AC ; 
 - D 2 - I - 0x000473 00:C463: 50        .byte "PLAYER "
 - D 2 - I - 0x00047A 00:C46A: 3A        .byte $3A   ; I
 - D 2 - I - 0x00047B 00:C46B: 00        .byte $00   ; 
@@ -686,7 +686,7 @@ tbl_C461_txt___player_I:
 
 
 tbl_C46E_txt___player_II:
-- D 2 - I - 0x00047E 00:C46E: AC 21     .word $21AC
+- D 2 - I - 0x00047E 00:C46E: AC 21     .word $21AC ; 
 - D 2 - I - 0x000480 00:C470: 50        .byte "PLAYER "
 - D 2 - I - 0x000487 00:C477: 3B        .byte $3B   ; II
 - D 2 - I - 0x000488 00:C478: 00        .byte $00   ; 
@@ -696,7 +696,7 @@ tbl_C46E_txt___player_II:
 
 
 tbl_C47B_txt___bonus_round:
-- D 2 - I - 0x00048B 00:C47B: AA 21     .word $21AA
+- D 2 - I - 0x00048B 00:C47B: AA 21     .word $21AA ; 
 - D 2 - I - 0x00048D 00:C47D: 42        .byte "BONUS ROUND!"
 - D 2 - I - 0x000499 00:C489: 00        .byte $00   ; 
 
@@ -1328,11 +1328,11 @@ C - - - - - 0x000832 00:C822: 60        RTS
 
 
 tbl_C823_txt___perfect_congratulations:
-- D 2 - I - 0x000833 00:C823: 8C 21     .word $218C
+- D 2 - I - 0x000833 00:C823: 8C 21     .word $218C ; 
 - D 2 - I - 0x000835 00:C825: 50        .byte "PERFECT!"
 - D 2 - I - 0x00083D 00:C82D: 00        .byte $00   ; 
 
-- D 2 - I - 0x00083E 00:C82E: 28 22     .word $2228
+- D 2 - I - 0x00083E 00:C82E: 28 22     .word $2228 ; 
 - D 2 - I - 0x000840 00:C830: 43        .byte "CONGRATULATIONS!"
 - D 2 - I - 0x000850 00:C840: 00        .byte $00   ; 
 
@@ -5824,20 +5824,20 @@ C - - - - - 0x002493 00:E483: 4C 76 EF  JMP loc_EF76
 
 
 tbl_E486_txt___hud_info:
-- D 3 - I - 0x002496 00:E486: 63 20     .word $2063
+- D 3 - I - 0x002496 00:E486: 63 20     .word $2063 ; 
 - D 3 - I - 0x002498 00:E488: 3D        .byte $3D   ; I-
 - D 3 - I - 0x002499 00:E489: 30        .byte "000000 "
 - D 3 - I - 0x0024A0 00:E490: 2C        .byte $2C, $2D, $2E   ; TOP
 - D 3 - I - 0x0024A3 00:E493: 30        .byte "000000         "
 - D 3 - I - 0x0024B2 00:E4A2: 00        .byte $00   ; 
 
-- D 3 - I - 0x0024B3 00:E4A3: 8C 20     .word $208C
+- D 3 - I - 0x0024B3 00:E4A3: 8C 20     .word $208C ; 
 - D 3 - I - 0x0024B5 00:E4A5: 22        .byte $22, $2F, $3E, $3F, $2A        ; MILK
 - D 3 - I - 0x0024BA 00:E4AA: 22        .byte $22, $23, $24, $25, $26, $2A   ; BONUS
 - D 3 - I - 0x0024C0 00:E4B0: 22        .byte $22, $5B, $5C, $5D, $5E, $2A   ; ROUND
 - D 3 - I - 0x0024C6 00:E4B6: 00        .byte $00   ; 
 
-- D 3 - I - 0x0024C7 00:E4B7: AC 20     .word $20AC
+- D 3 - I - 0x0024C7 00:E4B7: AC 20     .word $20AC ; 
 - D 3 - I - 0x0024C9 00:E4B9: 29        .byte $29, $20, $30, $20, $2B        ; MILK
 - D 3 - I - 0x0024CE 00:E4BE: 29        .byte $29, $30, $30, $30, $30, $2B   ; BONUS
 - D 3 - I - 0x0024D4 00:E4C4: 29        .byte $29, $20, $30, $30, $20, $2B   ; ROUND
@@ -5848,7 +5848,7 @@ tbl_E486_txt___hud_info:
 
 
 tbl_E4CD_txt___hud_info_p2:
-- D 3 - I - 0x0024DD 00:E4CD: 75 20     .word $2075
+- D 3 - I - 0x0024DD 00:E4CD: 75 20     .word $2075 ; 
 - D 3 - I - 0x0024DF 00:E4CF: 3C        .byte $3C, $3D   ; II-
 - D 3 - I - 0x0024E1 00:E4D1: 30        .byte "000000"
 - D 3 - I - 0x0024E7 00:E4D7: 00        .byte $00   ; 
@@ -5857,27 +5857,27 @@ tbl_E4CD_txt___hud_info_p2:
 
 
 tbl_E4DA_tiles___big_bonus_box:
-- D 3 - I - 0x0024EA 00:E4DA: 8C 21     .word $218C
+- D 3 - I - 0x0024EA 00:E4DA: 8C 21     .word $218C ; 
 - D 3 - I - 0x0024EC 00:E4DC: 86        .byte $86, $87, $87, $87, $87, $87, $87, $88   ; 
 - D 3 - I - 0x0024F4 00:E4E4: 00        .byte $00   ; 
 
-- D 3 - I - 0x0024F5 00:E4E5: AC 21     .word $21AC
+- D 3 - I - 0x0024F5 00:E4E5: AC 21     .word $21AC ; 
 - D 3 - I - 0x0024F7 00:E4E7: 89        .byte $89, $8A, $8B, $8B, $8B, $8B, $8C, $99   ; 
 - D 3 - I - 0x0024FF 00:E4EF: 00        .byte $00   ; 
 
-- D 3 - I - 0x002500 00:E4F0: CC 21     .word $21CC
+- D 3 - I - 0x002500 00:E4F0: CC 21     .word $21CC ; 
 - D 3 - I - 0x002502 00:E4F2: 89        .byte $89, $8D, $23, $24, $25, $26, $9D, $99   ; BONUS
 - D 3 - I - 0x00250A 00:E4FA: 00        .byte $00   ; 
 
-- D 3 - I - 0x00250B 00:E4FB: EC 21     .word $21EC
+- D 3 - I - 0x00250B 00:E4FB: EC 21     .word $21EC ; 
 - D 3 - I - 0x00250D 00:E4FD: 89        .byte $89, $8D, $30, $30, $30, $30, $9D, $99   ; 0000
 - D 3 - I - 0x002515 00:E505: 00        .byte $00   ; 
 
-- D 3 - I - 0x002516 00:E506: 0C 22     .word $220C
+- D 3 - I - 0x002516 00:E506: 0C 22     .word $220C ; 
 - D 3 - I - 0x002518 00:E508: 89        .byte $89, $9A, $9B, $9B, $9B, $9B, $9C, $99   ; 
 - D 3 - I - 0x002520 00:E510: 00        .byte $00   ; 
 
-- D 3 - I - 0x002521 00:E511: 2C 22     .word $222C
+- D 3 - I - 0x002521 00:E511: 2C 22     .word $222C ; 
 - D 3 - I - 0x002523 00:E513: 96        .byte $96, $97, $97, $97, $97, $97, $97, $98   ; 
 - D 3 - I - 0x00252B 00:E51B: 00        .byte $00   ; 
 
@@ -5886,19 +5886,19 @@ tbl_E4DA_tiles___big_bonus_box:
 
 
 tbl_E51E_tiles___house:
-- D 3 - I - 0x00252E 00:E51E: 84 20     .word $2084
+- D 3 - I - 0x00252E 00:E51E: 84 20     .word $2084 ; 
 - D 3 - I - 0x002530 00:E520: BA        .byte $BA, $BB, $BC, $BD, $BE, $BF   ; 
 - D 3 - I - 0x002536 00:E526: 00        .byte $00   ; 
 
-- D 3 - I - 0x002537 00:E527: A4 20     .word $20A4
+- D 3 - I - 0x002537 00:E527: A4 20     .word $20A4 ; 
 - D 3 - I - 0x002539 00:E529: CA        .byte $CA, $CB, $CC, $CD, $CE, $CF   ; 
 - D 3 - I - 0x00253F 00:E52F: 00        .byte $00   ; 
 
-- D 3 - I - 0x002540 00:E530: C4 20     .word $20C4
+- D 3 - I - 0x002540 00:E530: C4 20     .word $20C4 ; 
 - D 3 - I - 0x002542 00:E532: DA        .byte $DA, $DB, $DC, $DD, $DE, $DF   ; 
 - D 3 - I - 0x002548 00:E538: 00        .byte $00   ; 
 
-- D 3 - I - 0x002549 00:E539: E4 20     .word $20E4
+- D 3 - I - 0x002549 00:E539: E4 20     .word $20E4 ; 
 - D 3 - I - 0x00254B 00:E53B: EA        .byte $EA, $EB, $EC, $ED, $EE, $EF   ; 
 - D 3 - I - 0x002551 00:E541: 00        .byte $00   ; 
 
@@ -7300,75 +7300,75 @@ C - - - - - 0x002DEB 00:EDDB: 60        RTS
 
 
 tbl_EDDC_tiles___title_screen:
-- D 3 - I - 0x002DEC 00:EDDC: 65 20     .word $2065
+- D 3 - I - 0x002DEC 00:EDDC: 65 20     .word $2065 ; 
 - D 3 - I - 0x002DEE 00:EDDE: 64        .byte $64, $65, $20, $64, $65, $20, $64, $65, $20, $64, $65, $20, $64, $66, $66, $65, $20, $64, $66, $66, $66, $65   ; NUTS (1)
 - D 3 - I - 0x002E04 00:EDF4: 00        .byte $00   ; 
 
-- D 3 - I - 0x002E05 00:EDF5: 85 20     .word $2085
+- D 3 - I - 0x002E05 00:EDF5: 85 20     .word $2085 ; 
 - D 3 - I - 0x002E07 00:EDF7: 66        .byte $66, $66, $67, $66, $66, $20, $66, $66, $20, $66, $66, $20, $74, $66, $66, $75, $20, $A0, $66, $66, $A3, $A4   ; NUTS (2)
 - D 3 - I - 0x002E1D 00:EE0D: 00        .byte $00   ; 
 
-- D 3 - I - 0x002E1E 00:EE0E: A5 20     .word $20A5
+- D 3 - I - 0x002E1E 00:EE0E: A5 20     .word $20A5 ; 
 - D 3 - I - 0x002E20 00:EE10: 66        .byte $66, $66, $77, $66, $66, $20, $66, $66, $20, $66, $66, $20, $20, $66, $66, $20, $20, $B0, $B1, $B2, $B3, $B4   ; NUTS (3)
 - D 3 - I - 0x002E36 00:EE26: 00        .byte $00   ; 
 
-- D 3 - I - 0x002E37 00:EE27: C5 20     .word $20C5
+- D 3 - I - 0x002E37 00:EE27: C5 20     .word $20C5 ; 
 - D 3 - I - 0x002E39 00:EE29: 66        .byte $66, $66, $76, $66, $66, $20, $66, $66, $20, $66, $66, $20, $20, $66, $66, $20, $20, $C0, $C1, $66, $66, $C4   ; NUTS (4)
 - D 3 - I - 0x002E4F 00:EE3F: 00        .byte $00   ; 
 
-- D 3 - I - 0x002E50 00:EE40: E5 20     .word $20E5
+- D 3 - I - 0x002E50 00:EE40: E5 20     .word $20E5 ; 
 - D 3 - I - 0x002E52 00:EE42: 74        .byte $74, $75, $20, $74, $75, $20, $74, $66, $6A, $66, $75, $20, $20, $74, $75, $20, $20, $74, $66, $66, $66, $75   ; NUTS (5)
 - D 3 - I - 0x002E68 00:EE58: 00        .byte $00   ; 
 
-- D 3 - I - 0x002E69 00:EE59: 0F 21     .word $210F
+- D 3 - I - 0x002E69 00:EE59: 0F 21     .word $210F ; 
 - D 3 - I - 0x002E6B 00:EE5B: 06        .byte $06, $07   ; & (1)
 - D 3 - I - 0x002E6D 00:EE5D: 00        .byte $00   ; 
 
-- D 3 - I - 0x002E6E 00:EE5E: 2F 21     .word $212F
+- D 3 - I - 0x002E6E 00:EE5E: 2F 21     .word $212F ; 
 - D 3 - I - 0x002E70 00:EE60: 16        .byte $16, $17   ; & (2)
 - D 3 - I - 0x002E72 00:EE62: 00        .byte $00   ; 
 
-- D 3 - I - 0x002E73 00:EE63: 45 21     .word $2145
+- D 3 - I - 0x002E73 00:EE63: 45 21     .word $2145 ; 
 - D 3 - I - 0x002E75 00:EE65: 64        .byte $64, $65, $20, $64, $65, $20, $64, $66, $66, $65, $20, $64, $65, $20, $20, $20, $20, $64, $65, $20, $64, $65   ; MILK (1)
 - D 3 - I - 0x002E8B 00:EE7B: 00        .byte $00   ; 
 
-- D 3 - I - 0x002E8C 00:EE7C: 65 21     .word $2165
+- D 3 - I - 0x002E8C 00:EE7C: 65 21     .word $2165 ; 
 - D 3 - I - 0x002E8E 00:EE7E: 66        .byte $66, $66, $79, $66, $66, $20, $74, $66, $66, $75, $20, $66, $66, $20, $20, $20, $20, $66, $66, $6B, $66, $6D   ; MILK (2)
 - D 3 - I - 0x002EA4 00:EE94: 00        .byte $00   ; 
 
-- D 3 - I - 0x002EA5 00:EE95: 85 21     .word $2185
+- D 3 - I - 0x002EA5 00:EE95: 85 21     .word $2185 ; 
 - D 3 - I - 0x002EA7 00:EE97: 66        .byte $66, $66, $69, $66, $66, $20, $20, $66, $66, $20, $20, $66, $66, $20, $20, $20, $20, $66, $66, $66, $66, $6E   ; MILK (3)
 - D 3 - I - 0x002EBD 00:EEAD: 00        .byte $00   ; 
 
-- D 3 - I - 0x002EBE 00:EEAE: A5 21     .word $21A5
+- D 3 - I - 0x002EBE 00:EEAE: A5 21     .word $21A5 ; 
 - D 3 - I - 0x002EC0 00:EEB0: 66        .byte $66, $66, $20, $66, $66, $20, $64, $66, $66, $65, $20, $66, $66, $66, $66, $65, $20, $66, $66, $6C, $66, $5F   ; MILK (4)
 - D 3 - I - 0x002ED6 00:EEC6: 00        .byte $00   ; 
 
-- D 3 - I - 0x002ED7 00:EEC7: C5 21     .word $21C5
+- D 3 - I - 0x002ED7 00:EEC7: C5 21     .word $21C5 ; 
 - D 3 - I - 0x002ED9 00:EEC9: 74        .byte $74, $75, $20, $74, $75, $20, $74, $66, $66, $75, $20, $74, $66, $66, $66, $75, $20, $74, $75, $20, $74, $75   ; MILK (5)
 - D 3 - I - 0x002EEF 00:EEDF: 00        .byte $00   ; 
 
-- D 3 - I - 0x002EF0 00:EEE0: 09 22     .word $2209
+- D 3 - I - 0x002EF0 00:EEE0: 09 22     .word $2209 ; 
 - D 3 - I - 0x002EF2 00:EEE2: 31        .byte "1 PLAYER GAME A"
 - D 3 - I - 0x002F01 00:EEF1: 00        .byte $00   ; 
 
-- D 3 - I - 0x002F02 00:EEF2: 49 22     .word $2249
+- D 3 - I - 0x002F02 00:EEF2: 49 22     .word $2249 ; 
 - D 3 - I - 0x002F04 00:EEF4: 31        .byte "1 PLAYER GAME B"
 - D 3 - I - 0x002F13 00:EF03: 00        .byte $00   ; 
 
-- D 3 - I - 0x002F14 00:EF04: 89 22     .word $2289
+- D 3 - I - 0x002F14 00:EF04: 89 22     .word $2289 ; 
 - D 3 - I - 0x002F16 00:EF06: 32        .byte "2 PLAYER GAME A"
 - D 3 - I - 0x002F25 00:EF15: 00        .byte $00   ; 
 
-- D 3 - I - 0x002F26 00:EF16: C9 22     .word $22C9
+- D 3 - I - 0x002F26 00:EF16: C9 22     .word $22C9 ; 
 - D 3 - I - 0x002F28 00:EF18: 32        .byte "2 PLAYER GAME B"
 - D 3 - I - 0x002F37 00:EF27: 00        .byte $00   ; 
 
-- D 3 - I - 0x002F38 00:EF28: 0B 23     .word $230B
+- D 3 - I - 0x002F38 00:EF28: 0B 23     .word $230B ; 
 - D 3 - I - 0x002F3A 00:EF2A: 47        .byte "GAME EDITOR"
 - D 3 - I - 0x002F45 00:EF35: 00        .byte $00   ; 
 
-- D 3 - I - 0x002F46 00:EF36: 48 23     .word $2348
+- D 3 - I - 0x002F46 00:EF36: 48 23     .word $2348 ; 
 - D 3 - I - 0x002F48 00:EF38: 40        .byte "@ 1984 HUDSON SOFT"
 - D 3 - I - 0x002F5A 00:EF4A: 00        .byte $00   ; 
 
