@@ -1048,23 +1048,23 @@ C - - - - - 0x00068F 00:C67F: 60        RTS
 
 tbl_C680:
 ; 00
-- D 2 - - - 0x000690 00:C680: 22 CD     .dbyt $22CD
+- D 2 - - - 0x000690 00:C680: 22 CD     .dbyt $22CD ; 
 - D 2 - - - 0x000692 00:C682: 05        .byte $05   ; 
 - - - - - - 0x000693 00:C683: 00        .byte $00   ; placeholder
 ; 01
-- D 2 - - - 0x000694 00:C684: 23 06     .dbyt $2306
+- D 2 - - - 0x000694 00:C684: 23 06     .dbyt $2306 ; 
 - D 2 - - - 0x000696 00:C686: 05        .byte $05   ; 
 - - - - - - 0x000697 00:C687: 00        .byte $00   ; placeholder
 ; 02
-- D 2 - - - 0x000698 00:C688: 23 14     .dbyt $2314
+- D 2 - - - 0x000698 00:C688: 23 14     .dbyt $2314 ; 
 - D 2 - - - 0x00069A 00:C68A: 05        .byte $05   ; 
 - - - - - - 0x00069B 00:C68B: 00        .byte $00   ; placeholder
 ; 03
-- D 2 - - - 0x00069C 00:C68C: 28 C3     .dbyt $28C3
+- D 2 - - - 0x00069C 00:C68C: 28 C3     .dbyt $28C3 ; 
 - D 2 - - - 0x00069E 00:C68E: 04        .byte $04   ; 
 - - - - - - 0x00069F 00:C68F: 00        .byte $00   ; placeholder
 ; 04
-- D 2 - - - 0x0006A0 00:C690: 20 C3     .dbyt $20C3
+- D 2 - - - 0x0006A0 00:C690: 20 C3     .dbyt $20C3 ; 
 - D 2 - - - 0x0006A2 00:C692: 04        .byte $04   ; 
 - - - - - - 0x0006A3 00:C693: 00        .byte $00   ; placeholder
 
@@ -1079,7 +1079,7 @@ con_C0                                  = $C0 ; vertically write a tile ?? times
 
 
 _off000_C694_04:
-- D 2 - I - 0x0006A4 00:C694: 3F 00     .dbyt $3F00
+- D 2 - I - 0x0006A4 00:C694: 3F 00     .dbyt $3F00 ; 
 - D 2 - I - 0x0006A6 00:C696: 20        .byte con_00 + $20   ; 
 - D 2 - I - 0x0006A7 00:C697: 0F        .byte $0F, $30, $21, $01   ; 
 - D 2 - I - 0x0006AB 00:C69B: 0F        .byte $0F, $26, $2A, $30   ; 
@@ -1096,43 +1096,43 @@ _off000_C694_04:
 
 
 _off000_C6B8_02:
-- D 2 - I - 0x0006C8 00:C6B8: 23 E8     .dbyt $23E8
+- D 2 - I - 0x0006C8 00:C6B8: 23 E8     .dbyt $23E8 ; 
 - D 2 - I - 0x0006CA 00:C6BA: 58        .byte con_40 + $18   ; 
 - D 2 - I - 0x0006CB 00:C6BB: FF        .byte $FF   ; 
 
-- D 2 - I - 0x0006CC 00:C6BC: 23 E0     .dbyt $23E0
+- D 2 - I - 0x0006CC 00:C6BC: 23 E0     .dbyt $23E0 ; 
 - D 2 - I - 0x0006CE 00:C6BE: 02        .byte con_00 + $02   ; 
 - D 2 - I - 0x0006CF 00:C6BF: F0        .byte $F0, $30   ; 
 
-- D 2 - I - 0x0006D1 00:C6C1: 23 E6     .dbyt $23E6
+- D 2 - I - 0x0006D1 00:C6C1: 23 E6     .dbyt $23E6 ; 
 - D 2 - I - 0x0006D3 00:C6C3: 02        .byte con_00 + $02   ; 
 - D 2 - I - 0x0006D4 00:C6C4: C0        .byte $C0, $F0   ; 
 
-- D 2 - I - 0x0006D6 00:C6C6: 2B C0     .dbyt $2BC0
+- D 2 - I - 0x0006D6 00:C6C6: 2B C0     .dbyt $2BC0 ; 
 - D 2 - I - 0x0006D8 00:C6C8: 48        .byte con_40 + $08   ; 
 - D 2 - I - 0x0006D9 00:C6C9: FF        .byte $FF   ; 
 
-- D 2 - I - 0x0006DA 00:C6CA: 2B C8     .dbyt $2BC8
+- D 2 - I - 0x0006DA 00:C6CA: 2B C8     .dbyt $2BC8 ; 
 - D 2 - I - 0x0006DC 00:C6CC: 48        .byte con_40 + $08   ; 
 - D 2 - I - 0x0006DD 00:C6CD: AF        .byte $AF   ; 
 
-- D 2 - I - 0x0006DE 00:C6CE: 2B D0     .dbyt $2BD0
+- D 2 - I - 0x0006DE 00:C6CE: 2B D0     .dbyt $2BD0 ; 
 - D 2 - I - 0x0006E0 00:C6D0: 50        .byte con_40 + $10   ; 
 - D 2 - I - 0x0006E1 00:C6D1: AA        .byte $AA   ; 
 
-- D 2 - I - 0x0006E2 00:C6D2: 2B E0     .dbyt $2BE0
+- D 2 - I - 0x0006E2 00:C6D2: 2B E0     .dbyt $2BE0 ; 
 - D 2 - I - 0x0006E4 00:C6D4: 48        .byte con_40 + $08   ; 
 - D 2 - I - 0x0006E5 00:C6D5: 0A        .byte $0A   ; 
 
-- D 2 - I - 0x0006E6 00:C6D6: 2B C9     .dbyt $2BC9
+- D 2 - I - 0x0006E6 00:C6D6: 2B C9     .dbyt $2BC9 ; 
 - D 2 - I - 0x0006E8 00:C6D8: 46        .byte con_40 + $06   ; 
 - D 2 - I - 0x0006E9 00:C6D9: FF        .byte $FF   ; 
 
-- D 2 - I - 0x0006EA 00:C6DA: 2A 40     .dbyt $2A40
+- D 2 - I - 0x0006EA 00:C6DA: 2A 40     .dbyt $2A40 ; 
 - D 2 - I - 0x0006EC 00:C6DC: 60        .byte con_40 + $20   ; 
 - D 2 - I - 0x0006ED 00:C6DD: 31        .byte $31   ; 
 
-- D 2 - I - 0x0006EE 00:C6DE: 2A 60     .dbyt $2A60
+- D 2 - I - 0x0006EE 00:C6DE: 2A 60     .dbyt $2A60 ; 
 - D 2 - I - 0x0006F0 00:C6E0: 7F        .byte con_40 + $3F   ; 
 - D 2 - I - 0x0006F1 00:C6E1: 32        .byte $32   ; 
 
@@ -1141,11 +1141,11 @@ _off000_C6B8_02:
 
 
 _off000_C6E3_03:
-- D 2 - I - 0x0006F3 00:C6E3: 23 E0     .dbyt $23E0
+- D 2 - I - 0x0006F3 00:C6E3: 23 E0     .dbyt $23E0 ; 
 - D 2 - I - 0x0006F5 00:C6E5: 60        .byte con_40 + $20   ; 
 - D 2 - I - 0x0006F6 00:C6E6: 00        .byte $00   ; 
 
-- D 2 - I - 0x0006F7 00:C6E7: 23 C8     .dbyt $23C8
+- D 2 - I - 0x0006F7 00:C6E7: 23 C8     .dbyt $23C8 ; 
 - D 2 - I - 0x0006F9 00:C6E9: 02        .byte con_00 + $02   ; 
 - D 2 - I - 0x0006FA 00:C6EA: 44        .byte $44, $55   ; 
 
@@ -1154,11 +1154,11 @@ _off000_C6E3_03:
 
 
 _off000_C6ED_06:
-- D 2 - I - 0x0006FD 00:C6ED: 2B C0     .dbyt $2BC0
+- D 2 - I - 0x0006FD 00:C6ED: 2B C0     .dbyt $2BC0 ; 
 - D 2 - I - 0x0006FF 00:C6EF: 71        .byte con_40 + $31   ; 
 - D 2 - I - 0x000700 00:C6F0: 00        .byte $00   ; 
 
-- D 2 - I - 0x000701 00:C6F1: 2B C8     .dbyt $2BC8
+- D 2 - I - 0x000701 00:C6F1: 2B C8     .dbyt $2BC8 ; 
 - D 2 - I - 0x000703 00:C6F3: 02        .byte con_00 + $02   ; 
 - D 2 - I - 0x000704 00:C6F4: 44        .byte $44, $55   ; 
 
