@@ -7288,35 +7288,35 @@ tbl_EA0C:
 - D 3 - - - 0x01EA1C 07:EA0C: 01 90     .dbyt $0190 ; pos_X
 - D 3 - - - 0x01EA1E 07:EA0E: 00 50     .dbyt $0050 ; pos_Y
 ; 01
-- D 3 - - - 0x01EA20 07:EA10: 03 A0     .dbyt $03A0
-- D 3 - - - 0x01EA22 07:EA12: 00 B0     .dbyt $00B0
+- D 3 - - - 0x01EA20 07:EA10: 03 A0     .dbyt $03A0 ; 
+- D 3 - - - 0x01EA22 07:EA12: 00 B0     .dbyt $00B0 ; 
 ; 02
-- D 3 - - - 0x01EA24 07:EA14: 05 20     .dbyt $0520
-- D 3 - - - 0x01EA26 07:EA16: 00 B0     .dbyt $00B0
+- D 3 - - - 0x01EA24 07:EA14: 05 20     .dbyt $0520 ; 
+- D 3 - - - 0x01EA26 07:EA16: 00 B0     .dbyt $00B0 ; 
 ; 03
-- D 3 - - - 0x01EA28 07:EA18: 05 C0     .dbyt $05C0
-- D 3 - - - 0x01EA2A 07:EA1A: 00 B0     .dbyt $00B0
+- D 3 - - - 0x01EA28 07:EA18: 05 C0     .dbyt $05C0 ; 
+- D 3 - - - 0x01EA2A 07:EA1A: 00 B0     .dbyt $00B0 ; 
 ; 04
-- D 3 - - - 0x01EA2C 07:EA1C: 07 20     .dbyt $0720
-- D 3 - - - 0x01EA2E 07:EA1E: 00 90     .dbyt $0090
+- D 3 - - - 0x01EA2C 07:EA1C: 07 20     .dbyt $0720 ; 
+- D 3 - - - 0x01EA2E 07:EA1E: 00 90     .dbyt $0090 ; 
 ; 05
-- D 3 - - - 0x01EA30 07:EA20: 08 E0     .dbyt $08E0
-- D 3 - - - 0x01EA32 07:EA22: 00 90     .dbyt $0090
+- D 3 - - - 0x01EA30 07:EA20: 08 E0     .dbyt $08E0 ; 
+- D 3 - - - 0x01EA32 07:EA22: 00 90     .dbyt $0090 ; 
 ; 06
-- D 3 - - - 0x01EA34 07:EA24: 09 20     .dbyt $0920
-- D 3 - - - 0x01EA36 07:EA26: 00 90     .dbyt $0090
+- D 3 - - - 0x01EA34 07:EA24: 09 20     .dbyt $0920 ; 
+- D 3 - - - 0x01EA36 07:EA26: 00 90     .dbyt $0090 ; 
 ; 07
-- D 3 - - - 0x01EA38 07:EA28: 0E C0     .dbyt $0EC0
-- D 3 - - - 0x01EA3A 07:EA2A: 03 50     .dbyt $0350
+- D 3 - - - 0x01EA38 07:EA28: 0E C0     .dbyt $0EC0 ; 
+- D 3 - - - 0x01EA3A 07:EA2A: 03 50     .dbyt $0350 ; 
 ; 08
-- D 3 - - - 0x01EA3C 07:EA2C: 0F 40     .dbyt $0F40
-- D 3 - - - 0x01EA3E 07:EA2E: 03 B0     .dbyt $03B0
+- D 3 - - - 0x01EA3C 07:EA2C: 0F 40     .dbyt $0F40 ; 
+- D 3 - - - 0x01EA3E 07:EA2E: 03 B0     .dbyt $03B0 ; 
 ; 09
-- D 3 - - - 0x01EA40 07:EA30: 0F C0     .dbyt $0FC0
-- D 3 - - - 0x01EA42 07:EA32: 04 50     .dbyt $0450
+- D 3 - - - 0x01EA40 07:EA30: 0F C0     .dbyt $0FC0 ; 
+- D 3 - - - 0x01EA42 07:EA32: 04 50     .dbyt $0450 ; 
 ; 0A
-- D 3 - - - 0x01EA44 07:EA34: 10 30     .dbyt $1030
-- D 3 - - - 0x01EA46 07:EA36: 04 90     .dbyt $0490
+- D 3 - - - 0x01EA44 07:EA34: 10 30     .dbyt $1030 ; 
+- D 3 - - - 0x01EA46 07:EA36: 04 90     .dbyt $0490 ; 
 
 
 
@@ -7699,7 +7699,7 @@ C - - - - - 0x01EC74 07:EC64: 60        RTS
 
 
 tbl_EC65_ppu_data:
-- D 3 - - - 0x01EC75 07:EC65: 20 AB     .dbyt $20AB
+- D 3 - - - 0x01EC75 07:EC65: 20 AB     .dbyt $20AB ; 
 - D 3 - - - 0x01EC77 07:EC67: 0E        .byte $0E   ; 
 - D 3 - - - 0x01EC78 07:EC68: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $3F, $00   ; 
 
@@ -8180,27 +8180,27 @@ C - - - - - 0x01EF7A 07:EF6A: 60        RTS
 
 tbl_EF6B:
 ; counter is higher than string of bytes by 01
-- D 3 - - - 0x01EF7B 07:EF6B: 20 AB     .dbyt $20AB
+- D 3 - - - 0x01EF7B 07:EF6B: 20 AB     .dbyt $20AB ; 
 - D 3 - - - 0x01EF7D 07:EF6D: 0E        .byte $0E   ; counter
 - D 3 - - - 0x01EF7E 07:EF6E: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $3F, $00   ; 
 
-- D 3 - - - 0x01EF8D 07:EF7D: 21 8E     .dbyt $218E
+- D 3 - - - 0x01EF8D 07:EF7D: 21 8E     .dbyt $218E ; 
 - D 3 - - - 0x01EF8F 07:EF7F: 04        .byte $04   ; 
 - D 3 - - - 0x01EF90 07:EF80: 00        .byte $00, $00, $22, $22, $22   ; 
 
-- D 3 - - - 0x01EF95 07:EF85: 22 0E     .dbyt $220E
+- D 3 - - - 0x01EF95 07:EF85: 22 0E     .dbyt $220E ; 
 - D 3 - - - 0x01EF97 07:EF87: 06        .byte $06   ; 
 - D 3 - - - 0x01EF98 07:EF88: 48        .byte $48, $00, $3F, $00, $00, $00, $00   ; 
 
-- D 3 - - - 0x01EF9F 07:EF8F: 22 6E     .dbyt $226E
+- D 3 - - - 0x01EF9F 07:EF8F: 22 6E     .dbyt $226E ; 
 - D 3 - - - 0x01EFA1 07:EF91: 06        .byte $06   ; 
 - D 3 - - - 0x01EFA2 07:EF92: 48        .byte $48, $00, $3F, $00, $00, $00, $00   ; 
 
-- D 3 - - - 0x01EFA9 07:EF99: 22 CE     .dbyt $22CE
+- D 3 - - - 0x01EFA9 07:EF99: 22 CE     .dbyt $22CE ; 
 - D 3 - - - 0x01EFAB 07:EF9B: 06        .byte $06   ; 
 - D 3 - - - 0x01EFAC 07:EF9C: 48        .byte $48, $00, $3F, $00, $00, $00, $00   ; 
 
-- D 3 - - - 0x01EFB3 07:EFA3: 23 2E     .dbyt $232E
+- D 3 - - - 0x01EFB3 07:EFA3: 23 2E     .dbyt $232E ; 
 - D 3 - - - 0x01EFB5 07:EFA5: 06        .byte $06   ; 
 - D 3 - - - 0x01EFB6 07:EFA6: 48        .byte $48, $00, $3F, $00, $00, $00, $00   ; 
 

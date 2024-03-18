@@ -1825,7 +1825,7 @@ tbl_8A43_music_pointers:
 - D 0 - - - 0x014A8D 05:8A7D: A7 BB     .dbyt _sfx_A7BB_1D_get_hit
 - D 0 - - - 0x014A8F 05:8A7F: A7 D3     .dbyt _sfx_A7D3_1E_option_select
 - D 0 - - - 0x014A91 05:8A81: A7 DE     .dbyt _sfx_A7DE_1F
-- - - - - - 0x014A93 05:8A83: 00 00     .dbyt $0000
+- - - - - - 0x014A93 05:8A83: 00 00     .dbyt $0000 ; 
 - D 0 - - - 0x014A95 05:8A85: A8 A4     .dbyt _sfx_A8A4_21_sand
 - D 0 - - - 0x014A97 05:8A87: A8 AF     .dbyt _sfx_A8AF_22
 - D 0 - - - 0x014A99 05:8A89: A8 C0     .dbyt _sfx_A8C0_23
