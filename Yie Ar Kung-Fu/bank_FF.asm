@@ -1655,13 +1655,13 @@ C - - - - - 0x000978 00:C968: 60        RTS
 
 
 _off003_C969_2F:
-- D 2 - I - 0x000979 00:C969: 44 23     .word $2344
+- D 2 - I - 0x000979 00:C969: 44 23     .word $2344 ; 
 - D 2 - I - 0x00097B 00:C96B: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $F0, $00, $00, $F0, $00, $00   ; 
 - D 2 - I - 0x00098B 00:C97B: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
 
 - D 2 - I - 0x000993 00:C983: FE        .byte $FE   ; set new ppu address
 
-- D 2 - I - 0x000994 00:C984: 64 23     .word $2364
+- D 2 - I - 0x000994 00:C984: 64 23     .word $2364 ; 
 - D 2 - I - 0x000996 00:C986: 00        .byte $00, $00, $00, $00, $00   ; 
 
 - D 2 - I - 0x00099B 00:C98B: FF        .byte $FF   ; end token
@@ -1669,7 +1669,7 @@ _off003_C969_2F:
 
 
 _off003_C98C_08:
-- D 2 - I - 0x00099C 00:C98C: 8E 21     .word $218E
+- D 2 - I - 0x00099C 00:C98C: 8E 21     .word $218E ; 
 - D 2 - I - 0x00099E 00:C98E: F0        .byte $F0, $00, $00, $F0   ; 
 
 - D 2 - I - 0x0009A2 00:C992: FF        .byte $FF   ; end token
@@ -1677,7 +1677,7 @@ _off003_C98C_08:
 
 
 _off003_C993_00:
-- - - - - - 0x0009A3 00:C993: 50 20     .word $2050
+- - - - - - 0x0009A3 00:C993: 50 20     .word $2050 ; 
 - - - - - - 0x0009A5 00:C995: B3        .byte $B3, $00, $58, $01, $98   ; 
 
 - - - - - - 0x0009AA 00:C99A: FF        .byte $FF   ; end token
@@ -1685,7 +1685,7 @@ _off003_C993_00:
 
 
 _off003_C99B_01:
-- - - - - - 0x0009AB 00:C99B: A2 20     .word $20A2
+- - - - - - 0x0009AB 00:C99B: A2 20     .word $20A2 ; 
 - - - - - - 0x0009AD 00:C99D: 66        .byte $66, $DE, $6F   ; 
 
 - - - - - - 0x0009B0 00:C9A0: FF        .byte $FF   ; end token
@@ -1693,7 +1693,7 @@ _off003_C99B_01:
 
 
 _off003_C9A1_02:
-- - - - - - 0x0009B1 00:C9A1: C2 20     .word $20C2
+- - - - - - 0x0009B1 00:C9A1: C2 20     .word $20C2 ; 
 - - - - - - 0x0009B3 00:C9A3: 67        .byte $67, $DE, $6F   ; 
 
 - - - - - - 0x0009B6 00:C9A6: FF        .byte $FF   ; end token
@@ -1702,39 +1702,39 @@ _off003_C9A1_02:
 
 _off003_C9A7_03:
 _off003_C9A7_07:
-- D 2 - I - 0x0009B7 00:C9A7: 8B 22     .word $228B
+- D 2 - I - 0x0009B7 00:C9A7: 8B 22     .word $228B ; 
 - D 2 - I - 0x0009B9 00:C9A9: DE        .byte $DE, $DF, $E0, $E1   ; 
 
 - D 2 - I - 0x0009BD 00:C9AD: FE        .byte $FE   ; set new ppu address
 
-- D 2 - I - 0x0009BE 00:C9AE: CA 21     .word $21CA
+- D 2 - I - 0x0009BE 00:C9AE: CA 21     .word $21CA ; 
 - D 2 - I - 0x0009C0 00:C9B0: 5F        .byte $5F, $00, $66, $6E, $6D, $6A   ; 
 
 - D 2 - I - 0x0009C6 00:C9B6: FE        .byte $FE   ; set new ppu address
 
-- D 2 - I - 0x0009C7 00:C9B7: 8C 20     .word $208C
+- D 2 - I - 0x0009C7 00:C9B7: 8C 20     .word $208C ; 
 - D 2 - I - 0x0009C9 00:C9B9: 4A        .byte $4A, $4B   ; 
 
 - D 2 - I - 0x0009CB 00:C9BB: FE        .byte $FE   ; set new ppu address
 
-- D 2 - I - 0x0009CC 00:C9BC: 92 20     .word $2092
+- D 2 - I - 0x0009CC 00:C9BC: 92 20     .word $2092 ; 
 - D 2 - I - 0x0009CE 00:C9BE: 4C        .byte $4C   ; 
 
 - D 2 - I - 0x0009CF 00:C9BF: FE        .byte $FE   ; set new ppu address
 
-- D 2 - I - 0x0009D0 00:C9C0: AC 20     .word $20AC
+- D 2 - I - 0x0009D0 00:C9C0: AC 20     .word $20AC ; 
 - D 2 - I - 0x0009D2 00:C9C2: 4D        .byte $4D, $4E, $4F, $50, $51, $52, $53, $54   ; 
 
 - D 2 - I - 0x0009DA 00:C9CA: FE        .byte $FE   ; set new ppu address
 ; common data
 _off003_C9CB_23:
-- D 2 - I - 0x0009DB 00:C9CB: 47 21     .word $2147
+- D 2 - I - 0x0009DB 00:C9CB: 47 21     .word $2147 ; 
 - D 2 - I - 0x0009DD 00:C9CD: 55        .byte $55, $56, $57, $58, $59, $5A, $5B, $5C, $5D, $5E, $E4, $60, $61, $62, $E2, $64   ; 
 - D 2 - I - 0x0009ED 00:C9DD: CA        .byte $CA, $CB   ; 
 
 - D 2 - I - 0x0009EF 00:C9DF: FE        .byte $FE   ; set new ppu address
 
-- D 2 - I - 0x0009F0 00:C9E0: 67 21     .word $2167
+- D 2 - I - 0x0009F0 00:C9E0: 67 21     .word $2167 ; 
 - D 2 - I - 0x0009F2 00:C9E2: CC        .byte $CC, $CD, $CE, $CF, $D0, $D1, $D2, $D3, $D4, $D5, $D6, $D7, $D8, $D9, $DA, $DB   ; 
 - D 2 - I - 0x000A02 00:C9F2: DC        .byte $DC, $DD   ; 
 
@@ -1764,7 +1764,7 @@ _off003_C9FE_22:
 
 
 _off003_CA06_05:
-- - - - - - 0x000A16 00:CA06: EB 21     .word $21EB
+- - - - - - 0x000A16 00:CA06: EB 21     .word $21EB ; 
 - - - - - - 0x000A18 00:CA08: 50        .byte $50, $4C, $41, $59, $45, $52, $00, $31   ; 
 
 - - - - - - 0x000A20 00:CA10: FF        .byte $FF   ; end token
@@ -1772,7 +1772,7 @@ _off003_CA06_05:
 
 
 _off003_CA11_09:
-- - - - - - 0x000A21 00:CA11: 26 22     .word $2226
+- - - - - - 0x000A21 00:CA11: 26 22     .word $2226 ; 
 - - - - - - 0x000A23 00:CA13: B8        .byte $B8, $BF, $B7, $AD, $80, $80, $80, $80, $B1, $80, $B3, $B4, $BE   ; 
 
 - - - - - - 0x000A30 00:CA20: FF        .byte $FF   ; end token
@@ -1943,7 +1943,7 @@ _off003_CA93_1B:
 
 
 _off003_CAA2_29:
-- D 2 - I - 0x000AB2 00:CAA2: 4B 23     .word $234B
+- D 2 - I - 0x000AB2 00:CAA2: 4B 23     .word $234B ; 
 - D 2 - I - 0x000AB4 00:CAA4: E3        .byte $E3, $63, $00, $00, $00, $00, $00, $F7, $00, $F0, $00   ; 
 
 - D 2 - I - 0x000ABF 00:CAAF: FF        .byte $FF   ; end token
@@ -2122,7 +2122,7 @@ _off003_CB18_27:
 
 
 _off003_CB21_28:
-- D 2 - I - 0x000B31 00:CB21: 52 22     .word $2252
+- D 2 - I - 0x000B31 00:CB21: 52 22     .word $2252 ; 
 - D 2 - I - 0x000B33 00:CB23: 6A        .byte $6A, $65, $65, $65   ; 
 
 - D 2 - I - 0x000B37 00:CB27: FF        .byte $FF   ; end token
