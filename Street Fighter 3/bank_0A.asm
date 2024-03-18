@@ -5,7 +5,7 @@
 ; 0x014010-0x01600F
 
 ; reading from 0x01C746
-- D 0 - I - 0x014010 05:8000: 04 80     .word $8004
+- D 0 - I - 0x014010 05:8000: 04 80     .word $8004 ; 
 ; reading from 0x01EA3E and 0x01EA6D
 - D 0 - - - 0x014012 05:8002: 63 8A     .word tbl_8A63
 

@@ -5,7 +5,7 @@
 ; 0x000010-0x00200F
 
 ; reading from 0x01C746
-- D 0 - - - 0x000010 00:8000: 04 80     .word $8004
+- D 0 - - - 0x000010 00:8000: 04 80     .word $8004 ; 
 ; reading from 0x01EA3E and 0x01EA6D
 - D 0 - - - 0x000012 00:8002: CC 80     .word tbl_80CC
 
