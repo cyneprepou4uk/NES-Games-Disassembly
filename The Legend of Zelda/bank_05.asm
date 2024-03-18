@@ -5617,9 +5617,9 @@ C - - - - - 0x01693E 05:A92E: 85 00     STA ram_0000
 C - - - - - 0x016940 05:A930: 90 02     BCC bra_A934_not_overflow
 - - - - - - 0x016942 05:A932: E6 01     INC ram_0001
 bra_A934_not_overflow:
-C - - - - - 0x016944 05:A934: A9 20     LDA #$20
+C - - - - - 0x016944 05:A934: A9 20     LDA #> $20E0
 C - - - - - 0x016946 05:A936: 8D 02 03  STA ram_0302_ppu_buffer
-C - - - - - 0x016949 05:A939: A9 E0     LDA #$E0
+C - - - - - 0x016949 05:A939: A9 E0     LDA #< $20E0
 C - - - - - 0x01694B 05:A93B: 8D 03 03  STA ram_0302_ppu_buffer + $01
 bra_A93E_loop:
 C - - - - - 0x01694E 05:A93E: AD 03 03  LDA ram_0302_ppu_buffer + $01
@@ -5627,7 +5627,7 @@ C - - - - - 0x016951 05:A941: 18        CLC
 C - - - - - 0x016952 05:A942: 69 20     ADC #$20
 C - - - - - 0x016954 05:A944: 8D 03 03  STA ram_0302_ppu_buffer + $01
 C - - - - - 0x016957 05:A947: 90 03     BCC bra_A94C_not_overflow
-C - - - - - 0x016959 05:A949: EE 02 03  INC ram_0302_ppu_buffer
+C - - - - - 0x016959 05:A949: EE 02 03  INC ram_0302_ppu_buffer ; ppu hi
 bra_A94C_not_overflow:
 C - - - - - 0x01695C 05:A94C: CA        DEX
 C - - - - - 0x01695D 05:A94D: 10 EF     BPL bra_A93E_loop
@@ -6426,7 +6426,7 @@ C - - - - - 0x0170F0 05:B0E0: 60        RTS
 sub_B0E1:
 C - - - - - 0x0170F1 05:B0E1: 8E 02 03  STX ram_0302_ppu_buffer
 C - - - - - 0x0170F4 05:B0E4: 8D 03 03  STA ram_0302_ppu_buffer + $01
-C - - - - - 0x0170F7 05:B0E7: A2 18     LDX #$18
+C - - - - - 0x0170F7 05:B0E7: A2 18     LDX #$18    ; counter
 C - - - - - 0x0170F9 05:B0E9: 8E 04 03  STX ram_0302_ppu_buffer + $02
 C - - - - - 0x0170FC 05:B0EC: A9 FF     LDA #$FF
 C - - - - - 0x0170FE 05:B0EE: 9D 05 03  STA ram_0302_ppu_buffer + $03,X
@@ -6748,14 +6748,14 @@ C D 1 - - - 0x017268 05:B258: C6 5E     DEC ram_005E
 bra_B25A_RTS:
 C - - - - - 0x01726A 05:B25A: 60        RTS
 bra_B25B:
-C - - - - - 0x01726B 05:B25B: A9 28     LDA #$28
+C - - - - - 0x01726B 05:B25B: A9 28     LDA #$28    ; ppu hi
 C - - - - - 0x01726D 05:B25D: 8D 02 03  STA ram_0302_ppu_buffer
 C - - - - - 0x017270 05:B260: A9 C0     LDA #$C0
 bra_B262_loop:
 C - - - - - 0x017272 05:B262: 18        CLC
 C - - - - - 0x017273 05:B263: 69 20     ADC #$20
 C - - - - - 0x017275 05:B265: 90 03     BCC bra_B26A_not_overflow
-C - - - - - 0x017277 05:B267: EE 02 03  INC ram_0302_ppu_buffer
+C - - - - - 0x017277 05:B267: EE 02 03  INC ram_0302_ppu_buffer ; ppu hi
 bra_B26A_not_overflow:
 C - - - - - 0x01727A 05:B26A: 88        DEY
 C - - - - - 0x01727B 05:B26B: 10 F5     BPL bra_B262_loop
@@ -7299,15 +7299,15 @@ C - - - - - 0x017595 05:B585: A9 FF     LDA #$FF
 C - - - - - 0x017597 05:B587: 99 05 03  STA ram_0302_ppu_buffer + $03,Y
 C - - - - - 0x01759A 05:B58A: A9 10     LDA #$10
 C - - - - - 0x01759C 05:B58C: 8D 04 03  STA ram_0302_ppu_buffer + $02
-C - - - - - 0x01759F 05:B58F: A9 28     LDA #$28
+C - - - - - 0x01759F 05:B58F: A9 28     LDA #$28    ; ppu hi
 C - - - - - 0x0175A1 05:B591: 8D 02 03  STA ram_0302_ppu_buffer
 C - - - - - 0x0175A4 05:B594: A9 EC     LDA #$EC
 bra_B596_loop:
 C - - - - - 0x0175A6 05:B596: 18        CLC
 C - - - - - 0x0175A7 05:B597: 69 20     ADC #$20
-C - - - - - 0x0175A9 05:B599: 90 03     BCC bra_B59E
-C - - - - - 0x0175AB 05:B59B: EE 02 03  INC ram_0302_ppu_buffer
-bra_B59E:
+C - - - - - 0x0175A9 05:B599: 90 03     BCC bra_B59E_not_overflow
+C - - - - - 0x0175AB 05:B59B: EE 02 03  INC ram_0302_ppu_buffer ; ppu hi
+bra_B59E_not_overflow:
 C - - - - - 0x0175AE 05:B59E: CA        DEX
 C - - - - - 0x0175AF 05:B59F: 10 F5     BPL bra_B596_loop
 C - - - - - 0x0175B1 05:B5A1: 8D 03 03  STA ram_0302_ppu_buffer + $01

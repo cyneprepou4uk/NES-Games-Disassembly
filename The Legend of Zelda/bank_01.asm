@@ -690,12 +690,11 @@ C - - - - - 0x00481C 01:880C: 60        RTS
 
 
 
-tbl_880D:
-- D 0 - - - 0x00481D 01:880D: 21        .byte $21   ; 00 
-- D 0 - - - 0x00481E 01:880E: A4        .byte $A4   ; 01 
-- D 0 - - - 0x00481F 01:880F: 01        .byte $01   ; 02 
-- D 0 - - - 0x004820 01:8810: 24        .byte $24   ; 03 
-- D 0 - - - 0x004821 01:8811: FF        .byte $FF   ; 04 
+tbl_880D_ppu_data:
+- D 0 - - - 0x00481D 01:880D: 21 A4     .dbyt $21A4 ; ppu address
+- D 0 - - - 0x00481F 01:880F: 01        .byte $01   ; counter
+- D 0 - - - 0x004820 01:8810: 24        .byte $24   ; 
+- D 0 - - - 0x004821 01:8811: FF        .byte $FF   ; close buffer
 
 
 
@@ -717,7 +716,7 @@ C - - - - - 0x00482C 01:881C: A9 06     LDA #$06
 C - - - - - 0x00482E 01:881E: 85 29     STA ram_timer_enemy + $01
 C - - - - - 0x004830 01:8820: A0 04     LDY #$04
 bra_8822_loop:
-C - - - - - 0x004832 01:8822: B9 0D 88  LDA tbl_880D,Y
+C - - - - - 0x004832 01:8822: B9 0D 88  LDA tbl_880D_ppu_data,Y
 C - - - - - 0x004835 01:8825: 99 02 03  STA ram_0302_ppu_buffer,Y
 C - - - - - 0x004838 01:8828: 88        DEY
 C - - - - - 0x004839 01:8829: 10 F7     BPL bra_8822_loop
@@ -1494,10 +1493,11 @@ C - - - - - 0x004D38 01:8D28: 85 02     STA ram_0002
 C - - - - - 0x004D3A 01:8D2A: A5 03     LDA ram_0003
 C - - - - - 0x004D3C 01:8D2C: 69 00     ADC #> $0001
 C - - - - - 0x004D3E 01:8D2E: 85 03     STA ram_0003
-C - - - - - 0x004D40 01:8D30: C9 7F     CMP #$7F
+C - - - - - 0x004D40 01:8D30: C9 7F     CMP #> $7F00
 C - - - - - 0x004D42 01:8D32: D0 DE     BNE bra_8D12_loop
 C - - - - - 0x004D44 01:8D34: A5 02     LDA ram_0002
-C - - - - - 0x004D46 01:8D36: C9 00     CMP #$00
+; bzk optimize, delete CMP 00
+C - - - - - 0x004D46 01:8D36: C9 00     CMP #< $7F00
 C - - - - - 0x004D48 01:8D38: D0 D8     BNE bra_8D12_loop
 C - - - - - 0x004D4A 01:8D3A: 60        RTS
 

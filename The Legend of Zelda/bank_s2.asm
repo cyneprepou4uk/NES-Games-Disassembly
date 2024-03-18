@@ -222,7 +222,7 @@ bra_6D02_loop:
 - D 1 - I - 0x0065AD 01:6D2D: A9 21     LDA #$21
 - D 1 - I - 0x0065AF 01:6D2F: 85 01     STA ram_0001
 - D 1 - I - 0x0065B1 01:6D31: A9 0A     LDA #$0A
-- D 1 - I - 0x0065B3 01:6D33: 20 75 6D  JSR sub_6D75
+- D 1 - I - 0x0065B3 01:6D33: 20 75 6D  JSR sub_6D75_set_ppu_lo_and_counter
 - D 1 - I - 0x0065B6 01:6D36: A2 08     LDX #$08
 - D 1 - I - 0x0065B8 01:6D38: 20 55 6D  JSR sub_6D55
 - D 1 - I - 0x0065BB 01:6D3B: 4C 46 6D  JMP loc_6D46
@@ -265,7 +265,7 @@ bra_6D6D:
 - D 1 - I - 0x0065EF 01:6D6F: C9 24     CMP #$24
 - D 1 - I - 0x0065F1 01:6D71: D0 08     BNE bra_6D7B_RTS
 - D 1 - I - 0x0065F3 01:6D73: A5 03     LDA ram_0003
-sub_6D75:
+sub_6D75_set_ppu_lo_and_counter:
 - D 1 - I - 0x0065F5 01:6D75: 85 02     STA ram_0002
 - D 1 - I - 0x0065F7 01:6D77: A9 24     LDA #$24
 - D 1 - I - 0x0065F9 01:6D79: 85 03     STA ram_0003
@@ -465,8 +465,8 @@ sub_bat_6E55:
 - D 1 - I - 0x0066E6 01:6E66: D0 01     BNE bra_6E69
 - D 1 - I - 0x0066E8 01:6E68: 98        TYA
 bra_6E69:
-- D 1 - I - 0x0066E9 01:6E69: 85 02     STA ram_0002
-- D 1 - I - 0x0066EB 01:6E6B: 84 01     STY ram_0001
+- D 1 - I - 0x0066E9 01:6E69: 85 02     STA ram_0002    ; ppu lo
+- D 1 - I - 0x0066EB 01:6E6B: 84 01     STY ram_0001    ; ppu hi
 bra_6E6D_RTS:
 - D 1 - I - 0x0066ED 01:6E6D: 60        RTS
 
@@ -1654,6 +1654,10 @@ sub_bat_74B7:
 - D 1 - I - 0x006D39 01:74B9: D0 4B     BNE bra_7506_RTS
 - D 1 - I - 0x006D3B 01:74BB: AD 1C 05  LDA ram_051C
 - D 1 - I - 0x006D3E 01:74BE: 10 02     BPL bra_74C2
+; after EOR
+; 80/81/82/83 = 03/02/01/00
+; A0/A1/A2/A3 = 23/22/21/20
+; C0/C1/C2/C3 = 83/82/81/80
 - D 1 - I - 0x006D40 01:74C0: 49 83     EOR #$83
 bra_74C2:
 - D 1 - I - 0x006D42 01:74C2: 85 00     STA ram_0000
@@ -1664,6 +1668,14 @@ bra_74C2:
 - D 1 - I - 0x006D47 01:74C7: 18        CLC
 - D 1 - I - 0x006D48 01:74C8: 65 00     ADC ram_0000
 - D 1 - I - 0x006D4A 01:74CA: 29 FC     AND #$FC
+; considering ram_051C, Y will be
+; 00/01/02/03 = 00/08/10/18
+; 20/21/22/23 = 20/28/30/38
+; 40/41/42/43 = 40/48/50/58
+; 60/61/62/63 = 60/68/70/78
+; 80/81/82/83 = 18/10/08/00
+; A0/A1/A2/A3 = 38/30/28/20
+; C0/C1/C2/C3 = 58/50/48/40
 - D 1 - I - 0x006D4C 01:74CC: A8        TAY
 - D 1 - I - 0x006D4D 01:74CD: AE 01 03  LDX ram_0301_buffer_index
 ; last 8 background colors
