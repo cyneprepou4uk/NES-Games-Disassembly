@@ -1122,7 +1122,8 @@ bra_71FF:
 - D 1 - I - 0x006A81 01:7201: 68        PLA
 - D 1 - I - 0x006A82 01:7202: 29 0F     AND #$0F
 - D 1 - I - 0x006A84 01:7204: C0 00     CPY #$00
-- D 1 - I - 0x006A86 01:7206: F0 01     BEQ bra_7209
+- D 1 - I - 0x006A86 01:7206: F0 01     BEQ bra_7209    ; if overworld
+; if dungeon
 - D 1 - I - 0x006A88 01:7208: 0A        ASL
 bra_7209:
 - D 1 - I - 0x006A89 01:7209: 0A        ASL

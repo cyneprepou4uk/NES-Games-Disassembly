@@ -273,6 +273,8 @@ C - - - - - 0x0090E7 02:90D7: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_
 - D 0 - I - 0x0090EA 02:90DA: AC 95     .word ofs_007_95AC_00
 - D 0 - I - 0x0090EC 02:90DC: 79 9B     .word ofs_007_9B79_01   ; logo blackout
 
+
+
 bra_90DE_demo_manual:
 C - - - - - 0x0090EE 02:90DE: AD 2D 04  LDA ram_042B_enemy + $01
 C - - - - - 0x0090F1 02:90E1: 20 E2 E5  JSR sub_0x01E5F2_jump_to_pointers_after_JSR
@@ -2972,9 +2974,9 @@ C - - - - - 0x00A329 02:A319: B1 00     LDA (ram_0000),Y
 C - - - - - 0x00A32B 02:A31B: 20 51 A3  JSR sub_A351
 C - - - - - 0x00A32E 02:A31E: 88        DEY
 C - - - - - 0x00A32F 02:A31F: 10 F8     BPL bra_A319_loop
-C - - - - - 0x00A331 02:A321: A9 80     LDA #$80
+C - - - - - 0x00A331 02:A321: A9 80     LDA #< $0180
 C - - - - - 0x00A333 02:A323: 85 01     STA ram_0001
-C - - - - - 0x00A335 02:A325: A9 01     LDA #$01
+C - - - - - 0x00A335 02:A325: A9 01     LDA #> $0180
 C - - - - - 0x00A337 02:A327: 85 00     STA ram_0000
 C - - - - - 0x00A339 02:A329: A0 00     LDY #$00
 bra_A32B_loop:

@@ -226,7 +226,7 @@ C - - - - - 0x018127 06:8117: B9 A2 83  LDA tbl_83A4 - $02,Y
 C - - - - - 0x01812A 06:811A: 85 00     STA ram_0000
 C - - - - - 0x01812C 06:811C: B9 A3 83  LDA tbl_83A4 - $01,Y
 C - - - - - 0x01812F 06:811F: 85 01     STA ram_0001
-C - - - - - 0x018131 06:8121: BC B5 83  LDY tbl_83B6 - $01,X
+C - - - - - 0x018131 06:8121: BC B5 83  LDY tbl_83B6_data_size - $01,X
 bra_8124_loop:
 C - - - - - 0x018134 06:8124: B1 00     LDA (ram_0000),Y
 C - - - - - 0x018136 06:8126: 99 A7 6B  STA ram_6BA7,Y
@@ -273,26 +273,26 @@ tbl_815F:
 
 
 tbl_8167:
-- D 0 - - - 0x018177 06:8167: 7B        .byte $7B   ; 
-- D 0 - - - 0x018178 06:8168: 83        .byte $83   ; 
-- D 0 - - - 0x018179 06:8169: 84        .byte $84   ; 
-- D 0 - - - 0x01817A 06:816A: 0F        .byte $0F   ; 
-- D 0 - - - 0x01817B 06:816B: 0B        .byte $0B   ; 
-- D 0 - - - 0x01817C 06:816C: 12        .byte $12   ; 
-- D 0 - - - 0x01817D 06:816D: 7A        .byte $7A   ; 
-- D 0 - - - 0x01817E 06:816E: 2F        .byte $2F   ; 
+- D 0 - - - 0x018177 06:8167: 7B        .byte $7B   ; 00 
+- D 0 - - - 0x018178 06:8168: 83        .byte $83   ; 01 
+- D 0 - - - 0x018179 06:8169: 84        .byte $84   ; 02 
+- D 0 - - - 0x01817A 06:816A: 0F        .byte $0F   ; 03 
+- D 0 - - - 0x01817B 06:816B: 0B        .byte $0B   ; 04 
+- D 0 - - - 0x01817C 06:816C: 12        .byte $12   ; 05 
+- D 0 - - - 0x01817D 06:816D: 7A        .byte $7A   ; 06 
+- D 0 - - - 0x01817E 06:816E: 2F        .byte $2F   ; 07 
 
 
 
 _off012_816F_01:
-- D 0 - I - 0x01817F 06:816F: C9        .byte $C9   ; 
-- D 0 - I - 0x018180 06:8170: AC        .byte $AC   ; 
-- D 0 - I - 0x018181 06:8171: 89        .byte $89   ; 
-- D 0 - I - 0x018182 06:8172: B7        .byte $B7   ; 
-- D 0 - I - 0x018183 06:8173: 00        .byte $00   ; 
-- D 0 - I - 0x018184 06:8174: E0        .byte $E0   ; 
-- D 0 - I - 0x018185 06:8175: 77        .byte $77   ; 
-- D 0 - I - 0x018186 06:8176: 08        .byte $08   ; 
+- D 0 - I - 0x01817F 06:816F: C9        .byte $C9   ; ram_6BA7
+- D 0 - I - 0x018180 06:8170: AC        .byte $AC   ; ram_6BA8
+- D 0 - I - 0x018181 06:8171: 89        .byte $89   ; ram_6BA9
+- D 0 - I - 0x018182 06:8172: B7        .byte $B7   ; ram_6BAA
+- D 0 - I - 0x018183 06:8173: 00        .byte $00   ; ram_6BAB
+- D 0 - I - 0x018184 06:8174: E0        .byte $E0   ; ram_6BAC
+- D 0 - I - 0x018185 06:8175: 77        .byte $77   ; ram_6BAD
+- D 0 - I - 0x018186 06:8176: 08        .byte $00 + $08   ; ram_6BAE
 - D 0 - I - 0x018187 06:8177: FF 06     .word ram_06FF
 - D 0 - I - 0x018189 06:8179: 01        .byte $01   ; 
 - D 0 - I - 0x01818A 06:817A: 28        .byte $28   ; 
@@ -345,14 +345,14 @@ _off012_816F_01:
 
 
 _off012_81A8_02:
-- D 0 - I - 0x0181B8 06:81A8: C9        .byte $C9   ; 
-- D 0 - I - 0x0181B9 06:81A9: AC        .byte $AC   ; 
-- D 0 - I - 0x0181BA 06:81AA: 89        .byte $89   ; 
-- D 0 - I - 0x0181BB 06:81AB: 87        .byte $87   ; 
-- D 0 - I - 0x0181BC 06:81AC: 05        .byte $05   ; 
-- D 0 - I - 0x0181BD 06:81AD: 00        .byte $00   ; 
-- D 0 - I - 0x0181BE 06:81AE: 75        .byte $75   ; 
-- D 0 - I - 0x0181BF 06:81AF: 20        .byte $20   ; 
+- D 0 - I - 0x0181B8 06:81A8: C9        .byte $C9   ; ram_6BA7
+- D 0 - I - 0x0181B9 06:81A9: AC        .byte $AC   ; ram_6BA8
+- D 0 - I - 0x0181BA 06:81AA: 89        .byte $89   ; ram_6BA9
+- D 0 - I - 0x0181BB 06:81AB: 87        .byte $87   ; ram_6BAA
+- D 0 - I - 0x0181BC 06:81AC: 05        .byte $05   ; ram_6BAB
+- D 0 - I - 0x0181BD 06:81AD: 00        .byte $00   ; ram_6BAC
+- D 0 - I - 0x0181BE 06:81AE: 75        .byte $75   ; ram_6BAD
+- D 0 - I - 0x0181BF 06:81AF: 20        .byte $20 + $00   ; ram_6BAE
 - D 0 - I - 0x0181C0 06:81B0: FF 06     .word ram_06FF
 - D 0 - I - 0x0181C2 06:81B2: 03        .byte $03   ; 
 - D 0 - I - 0x0181C3 06:81B3: 56        .byte $56   ; 
@@ -403,14 +403,14 @@ _off012_81A8_02:
 
 
 _off012_81DF_03:
-- D 0 - I - 0x0181EF 06:81DF: C9        .byte $C9   ; 
-- D 0 - I - 0x0181F0 06:81E0: AC        .byte $AC   ; 
-- D 0 - I - 0x0181F1 06:81E1: 89        .byte $89   ; 
-- D 0 - I - 0x0181F2 06:81E2: 37        .byte $37   ; 
-- D 0 - I - 0x0181F3 06:81E3: 0D        .byte $0D   ; 
-- D 0 - I - 0x0181F4 06:81E4: C8        .byte $C8   ; 
-- D 0 - I - 0x0181F5 06:81E5: 79        .byte $79   ; 
-- D 0 - I - 0x0181F6 06:81E6: 1B        .byte $1B   ; 
+- D 0 - I - 0x0181EF 06:81DF: C9        .byte $C9   ; ram_6BA7
+- D 0 - I - 0x0181F0 06:81E0: AC        .byte $AC   ; ram_6BA8
+- D 0 - I - 0x0181F1 06:81E1: 89        .byte $89   ; ram_6BA9
+- D 0 - I - 0x0181F2 06:81E2: 37        .byte $37   ; ram_6BAA
+- D 0 - I - 0x0181F3 06:81E3: 0D        .byte $0D   ; ram_6BAB
+- D 0 - I - 0x0181F4 06:81E4: C8        .byte $C8   ; ram_6BAC
+- D 0 - I - 0x0181F5 06:81E5: 79        .byte $79   ; ram_6BAD
+- D 0 - I - 0x0181F6 06:81E6: 1B        .byte $10 + $0B   ; ram_6BAE
 - D 0 - I - 0x0181F7 06:81E7: FF 06     .word ram_06FF
 - D 0 - I - 0x0181F9 06:81E9: 02        .byte $02   ; 
 - D 0 - I - 0x0181FA 06:81EA: 09        .byte $09   ; 
@@ -467,14 +467,14 @@ _off012_81DF_03:
 
 
 _off012_821C_04:
-- D 0 - I - 0x01822C 06:821C: C9        .byte $C9   ; 
-- D 0 - I - 0x01822D 06:821D: AC        .byte $AC   ; 
-- D 0 - I - 0x01822E 06:821E: 89        .byte $89   ; 
-- D 0 - I - 0x01822F 06:821F: 86        .byte $86   ; 
-- D 0 - I - 0x018230 06:8220: 06        .byte $06   ; 
-- D 0 - I - 0x018231 06:8221: 10        .byte $10   ; 
-- D 0 - I - 0x018232 06:8222: 72        .byte $72   ; 
-- D 0 - I - 0x018233 06:8223: 00        .byte $00   ; 
+- D 0 - I - 0x01822C 06:821C: C9        .byte $C9   ; ram_6BA7
+- D 0 - I - 0x01822D 06:821D: AC        .byte $AC   ; ram_6BA8
+- D 0 - I - 0x01822E 06:821E: 89        .byte $89   ; ram_6BA9
+- D 0 - I - 0x01822F 06:821F: 86        .byte $86   ; ram_6BAA
+- D 0 - I - 0x018230 06:8220: 06        .byte $06   ; ram_6BAB
+- D 0 - I - 0x018231 06:8221: 10        .byte $10   ; ram_6BAC
+- D 0 - I - 0x018232 06:8222: 72        .byte $72   ; ram_6BAD
+- D 0 - I - 0x018233 06:8223: 00        .byte $00 + $00   ; ram_6BAE
 - D 0 - I - 0x018234 06:8224: FF 06     .word ram_06FF
 - D 0 - I - 0x018236 06:8226: 05        .byte $05   ; 
 - D 0 - I - 0x018237 06:8227: 21        .byte $21   ; 
@@ -527,14 +527,14 @@ _off012_821C_04:
 
 
 _off012_8255_05:
-- D 0 - I - 0x018265 06:8255: C9        .byte $C9   ; 
-- D 0 - I - 0x018266 06:8256: AC        .byte $AC   ; 
-- D 0 - I - 0x018267 06:8257: 89        .byte $89   ; 
-- D 0 - I - 0x018268 06:8258: 87        .byte $87   ; 
-- D 0 - I - 0x018269 06:8259: 0A        .byte $0A   ; 
-- D 0 - I - 0x01826A 06:825A: B0        .byte $B0   ; 
-- D 0 - I - 0x01826B 06:825B: 7D        .byte $7D   ; 
-- D 0 - I - 0x01826C 06:825C: 4F        .byte $4F   ; 
+- D 0 - I - 0x018265 06:8255: C9        .byte $C9   ; ram_6BA7
+- D 0 - I - 0x018266 06:8256: AC        .byte $AC   ; ram_6BA8
+- D 0 - I - 0x018267 06:8257: 89        .byte $89   ; ram_6BA9
+- D 0 - I - 0x018268 06:8258: 87        .byte $87   ; ram_6BAA
+- D 0 - I - 0x018269 06:8259: 0A        .byte $0A   ; ram_6BAB
+- D 0 - I - 0x01826A 06:825A: B0        .byte $B0   ; ram_6BAC
+- D 0 - I - 0x01826B 06:825B: 7D        .byte $7D   ; ram_6BAD
+- D 0 - I - 0x01826C 06:825C: 4F        .byte $40 + $0F   ; ram_6BAE
 - D 0 - I - 0x01826D 06:825D: FF 06     .word ram_06FF
 - D 0 - I - 0x01826F 06:825F: 04        .byte $04   ; 
 - D 0 - I - 0x018270 06:8260: 0F        .byte $0F   ; 
@@ -597,14 +597,14 @@ _off012_8255_05:
 
 
 _off012_8298_06:
-- D 0 - I - 0x0182A8 06:8298: 49        .byte $49   ; 
-- D 0 - I - 0x0182A9 06:8299: 79        .byte $79   ; 
-- D 0 - I - 0x0182AA 06:829A: 89        .byte $89   ; 
-- D 0 - I - 0x0182AB 06:829B: 56        .byte $56   ; 
-- D 0 - I - 0x0182AC 06:829C: 04        .byte $04   ; 
-- D 0 - I - 0x0182AD 06:829D: 00        .byte $00   ; 
-- D 0 - I - 0x0182AE 06:829E: 74        .byte $74   ; 
-- D 0 - I - 0x0182AF 06:829F: 16        .byte $16   ; 
+- D 0 - I - 0x0182A8 06:8298: 49        .byte $49   ; ram_6BA7
+- D 0 - I - 0x0182A9 06:8299: 79        .byte $79   ; ram_6BA8
+- D 0 - I - 0x0182AA 06:829A: 89        .byte $89   ; ram_6BA9
+- D 0 - I - 0x0182AB 06:829B: 56        .byte $56   ; ram_6BAA
+- D 0 - I - 0x0182AC 06:829C: 04        .byte $04   ; ram_6BAB
+- D 0 - I - 0x0182AD 06:829D: 00        .byte $00   ; ram_6BAC
+- D 0 - I - 0x0182AE 06:829E: 74        .byte $74   ; ram_6BAD
+- D 0 - I - 0x0182AF 06:829F: 16        .byte $10 + $06   ; ram_6BAE
 - D 0 - I - 0x0182B0 06:82A0: FF 06     .word ram_06FF
 - D 0 - I - 0x0182B2 06:82A2: 06        .byte $06   ; 
 - D 0 - I - 0x0182B3 06:82A3: 03        .byte $03   ; 
@@ -664,14 +664,14 @@ _off012_8298_06:
 
 
 _off012_82D8_07:
-- D 0 - I - 0x0182E8 06:82D8: C9        .byte $C9   ; 
-- D 0 - I - 0x0182E9 06:82D9: AC        .byte $AC   ; 
-- D 0 - I - 0x0182EA 06:82DA: 89        .byte $89   ; 
-- D 0 - I - 0x0182EB 06:82DB: 79        .byte $79   ; 
-- D 0 - I - 0x0182EC 06:82DC: 0C        .byte $0C   ; 
-- D 0 - I - 0x0182ED 06:82DD: C0        .byte $C0   ; 
-- D 0 - I - 0x0182EE 06:82DE: 7F        .byte $7F   ; 
-- D 0 - I - 0x0182EF 06:82DF: 2D        .byte $2D   ; 
+- D 0 - I - 0x0182E8 06:82D8: C9        .byte $C9   ; ram_6BA7
+- D 0 - I - 0x0182E9 06:82D9: AC        .byte $AC   ; ram_6BA8
+- D 0 - I - 0x0182EA 06:82DA: 89        .byte $89   ; ram_6BA9
+- D 0 - I - 0x0182EB 06:82DB: 79        .byte $79   ; ram_6BAA
+- D 0 - I - 0x0182EC 06:82DC: 0C        .byte $0C   ; ram_6BAB
+- D 0 - I - 0x0182ED 06:82DD: C0        .byte $C0   ; ram_6BAC
+- D 0 - I - 0x0182EE 06:82DE: 7F        .byte $7F   ; ram_6BAD
+- D 0 - I - 0x0182EF 06:82DF: 2D        .byte $20 + $0D   ; ram_6BAE
 - D 0 - I - 0x0182F0 06:82E0: 7F 07     .word ram_077F
 - D 0 - I - 0x0182F2 06:82E2: 08        .byte $08   ; 
 - D 0 - I - 0x0182F3 06:82E3: 02        .byte $02   ; 
@@ -730,14 +730,14 @@ _off012_82D8_07:
 
 
 _off012_8317_08:
-- D 0 - I - 0x018327 06:8317: C9        .byte $C9   ; 
-- D 0 - I - 0x018328 06:8318: AC        .byte $AC   ; 
-- D 0 - I - 0x018329 06:8319: 89        .byte $89   ; 
-- D 0 - I - 0x01832A 06:831A: 57        .byte $57   ; 
-- D 0 - I - 0x01832B 06:831B: 0C        .byte $0C   ; 
-- D 0 - I - 0x01832C 06:831C: C0        .byte $C0   ; 
-- D 0 - I - 0x01832D 06:831D: 79        .byte $79   ; 
-- D 0 - I - 0x01832E 06:831E: 1B        .byte $1B   ; 
+- D 0 - I - 0x018327 06:8317: C9        .byte $C9   ; ram_6BA7
+- D 0 - I - 0x018328 06:8318: AC        .byte $AC   ; ram_6BA8
+- D 0 - I - 0x018329 06:8319: 89        .byte $89   ; ram_6BA9
+- D 0 - I - 0x01832A 06:831A: 57        .byte $57   ; ram_6BAA
+- D 0 - I - 0x01832B 06:831B: 0C        .byte $0C   ; ram_6BAB
+- D 0 - I - 0x01832C 06:831C: C0        .byte $C0   ; ram_6BAC
+- D 0 - I - 0x01832D 06:831D: 79        .byte $79   ; ram_6BAD
+- D 0 - I - 0x01832E 06:831E: 1B        .byte $10 + $0B   ; ram_6BAE
 - D 0 - I - 0x01832F 06:831F: 7F 07     .word ram_077F
 - D 0 - I - 0x018331 06:8321: 07        .byte $07   ; 
 - D 0 - I - 0x018332 06:8322: 27        .byte $27   ; 
@@ -800,14 +800,14 @@ _off012_8317_08:
 
 
 _off012_835A_09:
-- D 0 - I - 0x01836A 06:835A: C9        .byte $C9   ; 
-- D 0 - I - 0x01836B 06:835B: AC        .byte $AC   ; 
-- D 0 - I - 0x01836C 06:835C: 89        .byte $89   ; 
-- D 0 - I - 0x01836D 06:835D: B6        .byte $B6   ; 
-- D 0 - I - 0x01836E 06:835E: 04        .byte $04   ; 
-- D 0 - I - 0x01836F 06:835F: 00        .byte $00   ; 
-- D 0 - I - 0x018370 06:8360: 74        .byte $74   ; 
-- D 0 - I - 0x018371 06:8361: 07        .byte $07   ; 
+- D 0 - I - 0x01836A 06:835A: C9        .byte $C9   ; ram_6BA7
+- D 0 - I - 0x01836B 06:835B: AC        .byte $AC   ; ram_6BA8
+- D 0 - I - 0x01836C 06:835C: 89        .byte $89   ; ram_6BA9
+- D 0 - I - 0x01836D 06:835D: B6        .byte $B6   ; ram_6BAA
+- D 0 - I - 0x01836E 06:835E: 04        .byte $04   ; ram_6BAB
+- D 0 - I - 0x01836F 06:835F: 00        .byte $00   ; ram_6BAC
+- D 0 - I - 0x018370 06:8360: 74        .byte $74   ; ram_6BAD
+- D 0 - I - 0x018371 06:8361: 07        .byte $00 + $07   ; ram_6BAE
 - D 0 - I - 0x018372 06:8362: 7F 07     .word ram_077F
 - D 0 - I - 0x018374 06:8364: 09        .byte $09   ; 
 - D 0 - I - 0x018375 06:8365: 71        .byte $71   ; 
@@ -889,7 +889,7 @@ tbl_83A4:
 
 
 
-tbl_83B6:
+tbl_83B6_data_size:
 - D 0 - - - 0x0183C6 06:83B6: 39        .byte $39   ; 01 
 - D 0 - - - 0x0183C7 06:83B7: 37        .byte $37   ; 02 
 - D 0 - - - 0x0183C8 06:83B8: 3D        .byte $3D   ; 03 
@@ -4840,14 +4840,14 @@ _off010_9300_00:
 
 
 
-- D 0 - I - 0x019339 06:9329: 57        .byte $57   ; 
-- D 0 - I - 0x01933A 06:932A: 49        .byte $49   ; 
-- D 0 - I - 0x01933B 06:932B: 99        .byte $99   ; 
-- D 0 - I - 0x01933C 06:932C: 69        .byte $69   ; 
-- D 0 - I - 0x01933D 06:932D: 00        .byte $00   ; 
-- D 0 - I - 0x01933E 06:932E: 00        .byte $00   ; 
-- D 0 - I - 0x01933F 06:932F: 77        .byte $77   ; 
-- D 0 - I - 0x019340 06:9330: 2A        .byte $2A   ; 
+- D 0 - I - 0x019339 06:9329: 57        .byte $57   ; ram_6BA7
+- D 0 - I - 0x01933A 06:932A: 49        .byte $49   ; ram_6BA8
+- D 0 - I - 0x01933B 06:932B: 99        .byte $99   ; ram_6BA9
+- D 0 - I - 0x01933C 06:932C: 69        .byte $69   ; ram_6BAA
+- D 0 - I - 0x01933D 06:932D: 00        .byte $00   ; ram_6BAB
+- D 0 - I - 0x01933E 06:932E: 00        .byte $00   ; ram_6BAC
+- D 0 - I - 0x01933F 06:932F: 77        .byte $77   ; ram_6BAD
+- D 0 - I - 0x019340 06:9330: 2A        .byte $20 + $0A   ; ram_6BAE
 - D 0 - I - 0x019341 06:9331: 7F 06     .word ram_067F
 - D 0 - I - 0x019343 06:9333: 00        .byte $00   ; 
 - D 0 - I - 0x019344 06:9334: 1D        .byte $1D   ; 
@@ -4986,14 +4986,14 @@ _off010_93FC_01:
 
 
 
-- D 0 - I - 0x019435 06:9425: C9        .byte $C9   ; 
-- D 0 - I - 0x019436 06:9426: AC        .byte $AC   ; 
-- D 0 - I - 0x019437 06:9427: 89        .byte $89   ; 
-- D 0 - I - 0x019438 06:9428: 87        .byte $87   ; 
-- D 0 - I - 0x019439 06:9429: 04        .byte $04   ; 
-- D 0 - I - 0x01943A 06:942A: 00        .byte $00   ; 
-- D 0 - I - 0x01943B 06:942B: 73        .byte $73   ; 
-- D 0 - I - 0x01943C 06:942C: 36        .byte $36   ; 
+- D 0 - I - 0x019435 06:9425: C9        .byte $C9   ; ram_6BA7
+- D 0 - I - 0x019436 06:9426: AC        .byte $AC   ; ram_6BA8
+- D 0 - I - 0x019437 06:9427: 89        .byte $89   ; ram_6BA9
+- D 0 - I - 0x019438 06:9428: 87        .byte $87   ; ram_6BAA
+- D 0 - I - 0x019439 06:9429: 04        .byte $04   ; ram_6BAB
+- D 0 - I - 0x01943A 06:942A: 00        .byte $00   ; ram_6BAC
+- D 0 - I - 0x01943B 06:942B: 73        .byte $73   ; ram_6BAD
+- D 0 - I - 0x01943C 06:942C: 36        .byte $30 + $06   ; ram_6BAE
 - D 0 - I - 0x01943D 06:942D: FF 06     .word ram_06FF
 - D 0 - I - 0x01943F 06:942F: 01        .byte $01   ; 
 - D 0 - I - 0x019440 06:9430: 7F        .byte $7F   ; 
@@ -5128,14 +5128,14 @@ _off010_94F8_02:
 
 
 
-- D 0 - I - 0x019531 06:9521: 89        .byte $89   ; 
-- D 0 - I - 0x019532 06:9522: D6        .byte $D6   ; 
-- D 0 - I - 0x019533 06:9523: 26        .byte $26   ; 
-- D 0 - I - 0x019534 06:9524: 2C        .byte $2C   ; 
-- D 0 - I - 0x019535 06:9525: 0A        .byte $0A   ; 
-- D 0 - I - 0x019536 06:9526: B0        .byte $B0   ; 
-- D 0 - I - 0x019537 06:9527: 7D        .byte $7D   ; 
-- D 0 - I - 0x019538 06:9528: 0D        .byte $0D   ; 
+- D 0 - I - 0x019531 06:9521: 89        .byte $89   ; ram_6BA7
+- D 0 - I - 0x019532 06:9522: D6        .byte $D6   ; ram_6BA8
+- D 0 - I - 0x019533 06:9523: 26        .byte $26   ; ram_6BA9
+- D 0 - I - 0x019534 06:9524: 2C        .byte $2C   ; ram_6BAA
+- D 0 - I - 0x019535 06:9525: 0A        .byte $0A   ; ram_6BAB
+- D 0 - I - 0x019536 06:9526: B0        .byte $B0   ; ram_6BAC
+- D 0 - I - 0x019537 06:9527: 7D        .byte $7D   ; ram_6BAD
+- D 0 - I - 0x019538 06:9528: 0D        .byte $00 + $0D   ; ram_6BAE
 - D 0 - I - 0x019539 06:9529: FF 06     .word ram_06FF
 - D 0 - I - 0x01953B 06:952B: 02        .byte $02   ; 
 - D 0 - I - 0x01953C 06:952C: FF        .byte $FF   ; 
@@ -5274,14 +5274,14 @@ _off010_95F4_03:
 
 
 
-- D 0 - I - 0x01962D 06:961D: 89        .byte $89   ; 
-- D 0 - I - 0x01962E 06:961E: D6        .byte $D6   ; 
-- D 0 - I - 0x01962F 06:961F: 26        .byte $26   ; 
-- D 0 - I - 0x019630 06:9620: 2C        .byte $2C   ; 
-- D 0 - I - 0x019631 06:9621: 0C        .byte $0C   ; 
-- D 0 - I - 0x019632 06:9622: C0        .byte $C0   ; 
-- D 0 - I - 0x019633 06:9623: 7C        .byte $7C   ; 
-- D 0 - I - 0x019634 06:9624: 3D        .byte $3D   ; 
+- D 0 - I - 0x01962D 06:961D: 89        .byte $89   ; ram_6BA7
+- D 0 - I - 0x01962E 06:961E: D6        .byte $D6   ; ram_6BA8
+- D 0 - I - 0x01962F 06:961F: 26        .byte $26   ; ram_6BA9
+- D 0 - I - 0x019630 06:9620: 2C        .byte $2C   ; ram_6BAA
+- D 0 - I - 0x019631 06:9621: 0C        .byte $0C   ; ram_6BAB
+- D 0 - I - 0x019632 06:9622: C0        .byte $C0   ; ram_6BAC
+- D 0 - I - 0x019633 06:9623: 7C        .byte $7C   ; ram_6BAD
+- D 0 - I - 0x019634 06:9624: 3D        .byte $30 + $0D   ; ram_6BAE
 - D 0 - I - 0x019635 06:9625: FF 06     .word ram_06FF
 - D 0 - I - 0x019637 06:9627: 03        .byte $03   ; 
 - D 0 - I - 0x019638 06:9628: FF        .byte $FF   ; 
@@ -5416,14 +5416,14 @@ _off010_96F0_04:
 
 
 
-- D 0 - I - 0x019729 06:9719: DC        .byte $DC   ; 
-- D 0 - I - 0x01972A 06:971A: 99        .byte $99   ; 
-- D 0 - I - 0x01972B 06:971B: 88        .byte $88   ; 
-- D 0 - I - 0x01972C 06:971C: 89        .byte $89   ; 
-- D 0 - I - 0x01972D 06:971D: 06        .byte $06   ; 
-- D 0 - I - 0x01972E 06:971E: 10        .byte $10   ; 
-- D 0 - I - 0x01972F 06:971F: 71        .byte $71   ; 
-- D 0 - I - 0x019730 06:9720: 03        .byte $03   ; 
+- D 0 - I - 0x019729 06:9719: DC        .byte $DC   ; ram_6BA7
+- D 0 - I - 0x01972A 06:971A: 99        .byte $99   ; ram_6BA8
+- D 0 - I - 0x01972B 06:971B: 88        .byte $88   ; ram_6BA9
+- D 0 - I - 0x01972C 06:971C: 89        .byte $89   ; ram_6BAA
+- D 0 - I - 0x01972D 06:971D: 06        .byte $06   ; ram_6BAB
+- D 0 - I - 0x01972E 06:971E: 10        .byte $10   ; ram_6BAC
+- D 0 - I - 0x01972F 06:971F: 71        .byte $71   ; ram_6BAD
+- D 0 - I - 0x019730 06:9720: 03        .byte $00 + $03   ; ram_6BAE
 - D 0 - I - 0x019731 06:9721: FF 06     .word ram_06FF
 - D 0 - I - 0x019733 06:9723: 04        .byte $04   ; 
 - D 0 - I - 0x019734 06:9724: 60        .byte $60   ; 
@@ -5562,14 +5562,14 @@ _off010_97EC_05:
 
 
 
-- D 0 - I - 0x019825 06:9815: 87        .byte $87   ; 
-- D 0 - I - 0x019826 06:9816: C8        .byte $C8   ; 
-- D 0 - I - 0x019827 06:9817: 8A        .byte $8A   ; 
-- D 0 - I - 0x019828 06:9818: 89        .byte $89   ; 
-- D 0 - I - 0x019829 06:9819: 02        .byte $02   ; 
-- D 0 - I - 0x01982A 06:981A: F0        .byte $F0   ; 
-- D 0 - I - 0x01982B 06:981B: 76        .byte $76   ; 
-- D 0 - I - 0x01982C 06:981C: 14        .byte $14   ; 
+- D 0 - I - 0x019825 06:9815: 87        .byte $87   ; ram_6BA7
+- D 0 - I - 0x019826 06:9816: C8        .byte $C8   ; ram_6BA8
+- D 0 - I - 0x019827 06:9817: 8A        .byte $8A   ; ram_6BA9
+- D 0 - I - 0x019828 06:9818: 89        .byte $89   ; ram_6BAA
+- D 0 - I - 0x019829 06:9819: 02        .byte $02   ; ram_6BAB
+- D 0 - I - 0x01982A 06:981A: F0        .byte $F0   ; ram_6BAC
+- D 0 - I - 0x01982B 06:981B: 76        .byte $76   ; ram_6BAD
+- D 0 - I - 0x01982C 06:981C: 14        .byte $10 + $04   ; ram_6BAE
 - D 0 - I - 0x01982D 06:981D: FF 06     .word ram_06FF
 - D 0 - I - 0x01982F 06:981F: 05        .byte $05   ; 
 - D 0 - I - 0x019830 06:9820: 07        .byte $07   ; 
@@ -5708,14 +5708,14 @@ _off010_98E8_06:
 
 
 
-- D 0 - I - 0x019921 06:9911: 89        .byte $89   ; 
-- D 0 - I - 0x019922 06:9912: D6        .byte $D6   ; 
-- D 0 - I - 0x019923 06:9913: 26        .byte $26   ; 
-- D 0 - I - 0x019924 06:9914: 2C        .byte $2C   ; 
-- D 0 - I - 0x019925 06:9915: 0D        .byte $0D   ; 
-- D 0 - I - 0x019926 06:9916: C8        .byte $C8   ; 
-- D 0 - I - 0x019927 06:9917: 79        .byte $79   ; 
-- D 0 - I - 0x019928 06:9918: 0C        .byte $0C   ; 
+- D 0 - I - 0x019921 06:9911: 89        .byte $89   ; ram_6BA7
+- D 0 - I - 0x019922 06:9912: D6        .byte $D6   ; ram_6BA8
+- D 0 - I - 0x019923 06:9913: 26        .byte $26   ; ram_6BA9
+- D 0 - I - 0x019924 06:9914: 2C        .byte $2C   ; ram_6BAA
+- D 0 - I - 0x019925 06:9915: 0D        .byte $0D   ; ram_6BAB
+- D 0 - I - 0x019926 06:9916: C8        .byte $C8   ; ram_6BAC
+- D 0 - I - 0x019927 06:9917: 79        .byte $79   ; ram_6BAD
+- D 0 - I - 0x019928 06:9918: 0C        .byte $00 + $0C   ; ram_6BAE
 - D 0 - I - 0x019929 06:9919: FF 06     .word ram_06FF
 - D 0 - I - 0x01992B 06:991B: 06        .byte $06   ; 
 - D 0 - I - 0x01992C 06:991C: 08        .byte $08   ; 
@@ -5853,14 +5853,14 @@ _off010_99E4_07:
 
 
 
-- D 0 - I - 0x019A1D 06:9A0D: 89        .byte $89   ; 
-- D 0 - I - 0x019A1E 06:9A0E: D6        .byte $D6   ; 
-- D 0 - I - 0x019A1F 06:9A0F: 26        .byte $26   ; 
-- D 0 - I - 0x019A20 06:9A10: 2C        .byte $2C   ; 
-- D 0 - I - 0x019A21 06:9A11: 0D        .byte $0D   ; 
-- D 0 - I - 0x019A22 06:9A12: C8        .byte $C8   ; 
-- D 0 - I - 0x019A23 06:9A13: 79        .byte $79   ; 
-- D 0 - I - 0x019A24 06:9A14: 2B        .byte $2B   ; 
+- D 0 - I - 0x019A1D 06:9A0D: 89        .byte $89   ; ram_6BA7
+- D 0 - I - 0x019A1E 06:9A0E: D6        .byte $D6   ; ram_6BA8
+- D 0 - I - 0x019A1F 06:9A0F: 26        .byte $26   ; ram_6BA9
+- D 0 - I - 0x019A20 06:9A10: 2C        .byte $2C   ; ram_6BAA
+- D 0 - I - 0x019A21 06:9A11: 0D        .byte $0D   ; ram_6BAB
+- D 0 - I - 0x019A22 06:9A12: C8        .byte $C8   ; ram_6BAC
+- D 0 - I - 0x019A23 06:9A13: 79        .byte $79   ; ram_6BAD
+- D 0 - I - 0x019A24 06:9A14: 2B        .byte $20 + $0B   ; ram_6BAE
 - D 0 - I - 0x019A25 06:9A15: 7F 07     .word ram_077F
 - D 0 - I - 0x019A27 06:9A17: 07        .byte $07   ; 
 - D 0 - I - 0x019A28 06:9A18: 7B        .byte $7B   ; 
@@ -5998,14 +5998,14 @@ _off010_9AE0_08:
 
 
 
-- D 0 - I - 0x019B19 06:9B09: 89        .byte $89   ; 
-- D 0 - I - 0x019B1A 06:9B0A: D6        .byte $D6   ; 
-- D 0 - I - 0x019B1B 06:9B0B: 26        .byte $26   ; 
-- D 0 - I - 0x019B1C 06:9B0C: 2C        .byte $2C   ; 
-- D 0 - I - 0x019B1D 06:9B0D: 0A        .byte $0A   ; 
-- D 0 - I - 0x019B1E 06:9B0E: B0        .byte $B0   ; 
-- D 0 - I - 0x019B1F 06:9B0F: 7E        .byte $7E   ; 
-- D 0 - I - 0x019B20 06:9B10: 2C        .byte $2C   ; 
+- D 0 - I - 0x019B19 06:9B09: 89        .byte $89   ; ram_6BA7
+- D 0 - I - 0x019B1A 06:9B0A: D6        .byte $D6   ; ram_6BA8
+- D 0 - I - 0x019B1B 06:9B0B: 26        .byte $26   ; ram_6BA9
+- D 0 - I - 0x019B1C 06:9B0C: 2C        .byte $2C   ; ram_6BAA
+- D 0 - I - 0x019B1D 06:9B0D: 0A        .byte $0A   ; ram_6BAB
+- D 0 - I - 0x019B1E 06:9B0E: B0        .byte $B0   ; ram_6BAC
+- D 0 - I - 0x019B1F 06:9B0F: 7E        .byte $7E   ; ram_6BAD
+- D 0 - I - 0x019B20 06:9B10: 2C        .byte $20 + $0C   ; ram_6BAE
 - D 0 - I - 0x019B21 06:9B11: 7F 07     .word ram_077F
 - D 0 - I - 0x019B23 06:9B13: 08        .byte $08   ; 
 - D 0 - I - 0x019B24 06:9B14: 2F        .byte $2F   ; 
@@ -6143,14 +6143,14 @@ _off010_9BDC_09:
 
 
 
-- D 0 - I - 0x019C15 06:9C05: 89        .byte $89   ; 
-- D 0 - I - 0x019C16 06:9C06: D6        .byte $D6   ; 
-- D 0 - I - 0x019C17 06:9C07: 26        .byte $26   ; 
-- D 0 - I - 0x019C18 06:9C08: 2C        .byte $2C   ; 
-- D 0 - I - 0x019C19 06:9C09: 04        .byte $04   ; 
-- D 0 - I - 0x019C1A 06:9C0A: 00        .byte $00   ; 
-- D 0 - I - 0x019C1B 06:9C0B: 76        .byte $76   ; 
-- D 0 - I - 0x019C1C 06:9C0C: 32        .byte $32   ; 
+- D 0 - I - 0x019C15 06:9C05: 89        .byte $89   ; ram_6BA7
+- D 0 - I - 0x019C16 06:9C06: D6        .byte $D6   ; ram_6BA8
+- D 0 - I - 0x019C17 06:9C07: 26        .byte $26   ; ram_6BA9
+- D 0 - I - 0x019C18 06:9C08: 2C        .byte $2C   ; ram_6BAA
+- D 0 - I - 0x019C19 06:9C09: 04        .byte $04   ; ram_6BAB
+- D 0 - I - 0x019C1A 06:9C0A: 00        .byte $00   ; ram_6BAC
+- D 0 - I - 0x019C1B 06:9C0B: 76        .byte $76   ; ram_6BAD
+- D 0 - I - 0x019C1C 06:9C0C: 32        .byte $30 + $02   ; ram_6BAE
 - D 0 - I - 0x019C1D 06:9C0D: 7F 07     .word ram_077F
 - D 0 - I - 0x019C1F 06:9C0F: 09        .byte $09   ; 
 - D 0 - I - 0x019C20 06:9C10: 60        .byte $60   ; 

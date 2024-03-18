@@ -654,6 +654,8 @@ C - - - - - 0x014325 05:8315: 85 EB     STA ram_map_location
 bra_8317:
 C - - - - - 0x014327 05:8317: AD 1A 05  LDA ram_051A
 C - - - - - 0x01432A 05:831A: F0 1E     BEQ bra_833A
+; if you exit location while lake is changing/already changed colors,
+; smoothly change colors back and only then resume exiting
 - - - - - - 0x01432C 05:831C: 4C 34 FF  JMP loc_0x01FF44
 
 
@@ -7189,11 +7191,11 @@ C - - - - - 0x017522 05:B512: 60        RTS
 
 
 
-tbl_B513:
-- D 1 - - - 0x017523 05:B513: F0        .byte $F0   ; 00 
-- D 1 - - - 0x017524 05:B514: 10        .byte $10   ; 01 
-- D 1 - - - 0x017525 05:B515: FF        .byte $FF   ; 02 
-- D 1 - - - 0x017526 05:B516: 01        .byte $01   ; 03 
+tbl_B513_next_map_location_offset:
+- D 1 - - - 0x017523 05:B513: F0        .byte $F0   ; 00 up
+- D 1 - - - 0x017524 05:B514: 10        .byte $10   ; 01 down
+- D 1 - - - 0x017525 05:B515: FF        .byte $FF   ; 02 left
+- D 1 - - - 0x017526 05:B516: 01        .byte $01   ; 03 right
 
 
 
@@ -7229,7 +7231,7 @@ C - - - - - 0x01753C 05:B52C: F0 EE     BEQ bra_B51C
 ; bzk optimize, game never uses ram_04E4 later
 C - - - - - 0x01753E 05:B52E: 20 5A E8  JSR sub_0x01E86A_get_enemy_id_from_current_map_location
 C - - - - - 0x017541 05:B531: 8D E4 04  STA ram_04E4    ; enemy id
-C - - - - - 0x017544 05:B534: BD 13 B5  LDA tbl_B513,X
+C - - - - - 0x017544 05:B534: BD 13 B5  LDA tbl_B513_next_map_location_offset,X
 C - - - - - 0x017547 05:B537: 18        CLC
 C - - - - - 0x017548 05:B538: 65 EB     ADC ram_map_location
 C - - - - - 0x01754A 05:B53A: 85 EC     STA ram_next_map_location
@@ -7264,14 +7266,14 @@ sub_B560:
 C - - - - - 0x017570 05:B560: A2 01     LDX #$01
 C - - - - - 0x017572 05:B562: 86 00     STX ram_0000
 C - - - - - 0x017574 05:B564: A2 03     LDX #$03
-loc_B566:
+loc_B566_loop:
 C D 1 - - - 0x017576 05:B566: 24 00     BIT ram_0000
 C - - - - - 0x017578 05:B568: D0 06     BNE bra_B570
 C - - - - - 0x01757A 05:B56A: 06 00     ASL ram_0000
 C - - - - - 0x01757C 05:B56C: CA        DEX
-C - - - - - 0x01757D 05:B56D: 4C 66 B5  JMP loc_B566
+C - - - - - 0x01757D 05:B56D: 4C 66 B5  JMP loc_B566_loop
 bra_B570:
-C - - - - - 0x017580 05:B570: BD 13 B5  LDA tbl_B513,X
+C - - - - - 0x017580 05:B570: BD 13 B5  LDA tbl_B513_next_map_location_offset,X
 C - - - - - 0x017583 05:B573: 18        CLC
 C - - - - - 0x017584 05:B574: 65 EB     ADC ram_map_location
 C - - - - - 0x017586 05:B576: 60        RTS

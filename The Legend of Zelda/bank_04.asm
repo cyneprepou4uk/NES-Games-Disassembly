@@ -1406,6 +1406,7 @@ C - - - - - 0x0106FC 04:86EC: D0 44     BNE bra_8732_RTS
 ; if wasn't spawned yet
 C - - - - - 0x0106FE 04:86EE: 20 BB FE  JSR sub_0x01FECB_search_for_free_object
 C - - - - - 0x010701 04:86F1: F0 3F     BEQ bra_8732_RTS    ; if no free objects
+; bzk bug? loop for 0019-0025, but 0x01E552 works with 0018-0024
 C - - - - - 0x010703 04:86F3: A9 0D     LDA #$0D
 C - - - - - 0x010705 04:86F5: 85 0D     STA ram_000D
 C - - - - - 0x010707 04:86F7: A6 59     LDX ram_free_obj_index
@@ -2212,7 +2213,7 @@ C - - - - - 0x010B9A 04:8B8A: B0 C1     BCS bra_8B4D_RTS
 C - - - - - 0x010B9C 04:8B8C: EE 10 05  INC ram_0510
 C - - - - - 0x010B9F 04:8B8F: A9 01     LDA #$01
 C - - - - - 0x010BA1 04:8B91: 9D D0 03  STA ram_03CF_enemy,X
-C - - - - - 0x010BA4 04:8B94: 0A        ASL
+C - - - - - 0x010BA4 04:8B94: 0A        ASL ; 02
 C - - - - - 0x010BA5 04:8B95: 85 4D     STA ram_004D
 C - - - - - 0x010BA7 04:8B97: 20 DA 8B  JSR sub_8BDA
 C - - - - - 0x010BAA 04:8B9A: 20 D0 F1  JSR sub_0x01F1E0
@@ -2776,7 +2777,7 @@ C - - - - - 0x010F23 04:8F13: A0 10     LDY #$10
 C - - - - - 0x010F25 04:8F15: B9 AC 00  LDA ram_state_enemy,Y
 C - - - - - 0x010F28 04:8F18: C9 22     CMP #$22
 C - - - - - 0x010F2A 04:8F1A: F0 08     BEQ bra_8F24
-C - - - - - 0x010F2C 04:8F1C: C8        INY
+C - - - - - 0x010F2C 04:8F1C: C8        INY ; 11
 C - - - - - 0x010F2D 04:8F1D: B9 AC 00  LDA ram_state_enemy,Y
 C - - - - - 0x010F30 04:8F20: C9 22     CMP #$22
 C - - - - - 0x010F32 04:8F22: D0 1A     BNE bra_8F3E_RTS
@@ -8865,7 +8866,7 @@ C - - - - - 0x013328 04:B318: 95 28     STA ram_timer_enemy,X
 sub_B31A:
 C - - - - - 0x01332A 04:B31A: A0 00     LDY #$00
 C - - - - - 0x01332C 04:B31C: 84 00     STY ram_0000
-C - - - - - 0x01332E 04:B31E: C8        INY
+C - - - - - 0x01332E 04:B31E: C8        INY ; 01
 C - - - - - 0x01332F 04:B31F: A5 61     LDA ram_0061
 C - - - - - 0x013331 04:B321: D5 70     CMP ram_pos_X_enemy,X
 C - - - - - 0x013333 04:B323: F0 05     BEQ bra_B32A

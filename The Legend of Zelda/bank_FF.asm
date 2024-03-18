@@ -261,6 +261,8 @@ bra_E518:
 C - - - - - 0x01E528 07:E518: A5 E1     LDA ram_pause_script
 C - - - - - 0x01E52A 07:E51A: 05 E0     ORA ram_pause_flag
 C - - - - - 0x01E52C 07:E51C: D0 1D     BNE bra_E53B
+; counters 0027-003C change each frame
+; counters 003D-004E change each 10 frames
 C - - - - - 0x01E52E 07:E51E: A2 26     LDX #$26    ; < ram_0026
 C - - - - - 0x01E530 07:E520: A9 3C     LDA #$3C    ; < ram_003C
 C - - - - - 0x01E532 07:E522: A0 4E     LDY #$4E    ; < ram_004E
@@ -286,6 +288,7 @@ C - - - - - 0x01E54D 07:E53D: D0 03     BNE bra_E542
 ; if no transition
 C - - - - - 0x01E54F 07:E53F: 20 2D E6  JSR sub_E62D_read_joysticks
 bra_E542:
+; bzk bug? loop for 0018-0024, but 0x010703 works with 0019-0025
 C - - - - - 0x01E552 07:E542: A2 18     LDX #$18    ; < ram_indiv_random
 C - - - - - 0x01E554 07:E544: A0 0D     LDY #$0D    ; 0018-0024
 C - - - - - 0x01E556 07:E546: B5 00     LDA ram_indiv_random - $18,X    ; bzk optimize, no need for LDA,X -> LDA ram_0018
@@ -308,11 +311,11 @@ C - - - - - 0x01E56E 07:E55E: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01E571 07:E561: 20 25 98  JSR sub_0x001835_update_sound_driver
 C - - - - - 0x01E574 07:E564: E6 15     INC ram_frm_cnt
 C - - - - - 0x01E576 07:E566: A5 11     LDA ram_0011
-C - - - - - 0x01E578 07:E568: D0 06     BNE bra_E570
-C - - - - - 0x01E57A 07:E56A: 20 F8 E8  JSR sub_E8F8
+C - - - - - 0x01E578 07:E568: D0 06     BNE bra_E570_skip_handler
+C - - - - - 0x01E57A 07:E56A: 20 F8 E8  JSR sub_E8F8_main_script_handler_1
 C - - - - - 0x01E57D 07:E56D: 4C 73 E5  JMP loc_E573
-bra_E570:
-C - - - - - 0x01E580 07:E570: 20 30 EB  JSR sub_EB30_game_mode_routines
+bra_E570_skip_handler:
+C - - - - - 0x01E580 07:E570: 20 30 EB  JSR sub_EB30_main_script_handler_2
 loc_E573:
 C D 3 - - - 0x01E583 07:E573: AD 02 20  LDA $2002
 C - - - - - 0x01E586 07:E576: A5 FF     LDA ram_for_2000
@@ -888,8 +891,8 @@ C - - - - - 0x01E8E7 07:E8D7: 60        RTS
 
 
 
-sub_0x01E8E8:
-loc_0x01E8E8:
+sub_0x01E8E8:   ; ram_000A = 24 F6
+loc_0x01E8E8:   ; ram_000A = 24
 C D 3 - - - 0x01E8E8 07:E8D8: A9 05     LDA #con_prg_bank + $05
 C - - - - - 0x01E8EA 07:E8DA: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01E8ED 07:E8DD: 20 07 AC  JSR sub_0x016C17
@@ -899,10 +902,10 @@ C - - - - - 0x01E8F2 07:E8E2: A5 0A     LDA ram_000A
 C - - - - - 0x01E8F4 07:E8E4: 91 00     STA (ram_0000),Y
 C - - - - - 0x01E8F6 07:E8E6: 20 74 72  JSR sub_bat_7274_inc_0000_pointer_by_01
 C - - - - - 0x01E8F9 07:E8E9: A5 00     LDA ram_0000
-C - - - - - 0x01E8FB 07:E8EB: C9 F0     CMP #$F0
+C - - - - - 0x01E8FB 07:E8EB: C9 F0     CMP #< $67F0
 C - - - - - 0x01E8FD 07:E8ED: D0 F3     BNE bra_E8E2_loop
 C - - - - - 0x01E8FF 07:E8EF: A5 01     LDA ram_0001
-C - - - - - 0x01E901 07:E8F1: C9 67     CMP #$67
+C - - - - - 0x01E901 07:E8F1: C9 67     CMP #> $67F0
 C - - - - - 0x01E903 07:E8F3: D0 ED     BNE bra_E8E2_loop
 C - - - - - 0x01E905 07:E8F5: 60        RTS
 
@@ -912,7 +915,7 @@ C - - - - - 0x01E905 07:E8F5: 60        RTS
 
 
 
-sub_E8F8:
+sub_E8F8_main_script_handler_1:
 C - - - - - 0x01E908 07:E8F8: A5 F4     LDA ram_00F4
 C - - - - - 0x01E90A 07:E8FA: D0 1D     BNE bra_E919
 C - - - - - 0x01E90C 07:E8FC: A9 01     LDA #con_prg_bank + $01
@@ -1283,7 +1286,7 @@ C - - - - - 0x01EB37 07:EB27: 4C 21 A1  JMP loc_0x006131
 
 
 
-sub_EB30_game_mode_routines:
+sub_EB30_main_script_handler_2:
 C - - - - - 0x01EB40 07:EB30: A9 02     LDA #con_prg_bank + $02
 C - - - - - 0x01EB42 07:EB32: 20 AC FF  JSR sub_FFAC_prg_bankswitch
 C - - - - - 0x01EB45 07:EB35: A5 12     LDA ram_script
