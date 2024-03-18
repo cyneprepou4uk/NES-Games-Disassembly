@@ -5964,52 +5964,52 @@ tbl_BCF1:
 tbl_BCF3:
 ; 00
 - D 1 - - - 0x005D03 01:BCF3: CC A9     .word _off031_0x016CF2_00
-- D 1 - - - 0x005D05 01:BCF5: D0 20     .word $20D0
+- D 1 - - - 0x005D05 01:BCF5: D0 20     .word $20D0 ; 
 ; 01
 - D 1 - - - 0x005D07 01:BCF7: DE A9     .word _off031_0x0169EE_01
-- D 1 - - - 0x005D09 01:BCF9: D0 20     .word $20D0
+- D 1 - - - 0x005D09 01:BCF9: D0 20     .word $20D0 ; 
 ; 02
 - D 1 - - - 0x005D0B 01:BCFB: F4 A9     .word _off031_0x016A04_02
-- D 1 - - - 0x005D0D 01:BCFD: F0 20     .word $20F0
+- D 1 - - - 0x005D0D 01:BCFD: F0 20     .word $20F0 ; 
 ; 03
 - D 1 - - - 0x005D0F 01:BCFF: F4 A9     .word _off031_0x016A04_03
-- D 1 - - - 0x005D11 01:BD01: 10 21     .word $2110
+- D 1 - - - 0x005D11 01:BD01: 10 21     .word $2110 ; 
 ; 04
 - D 1 - - - 0x005D13 01:BD03: F4 A9     .word _off031_0x016A04_04
-- D 1 - - - 0x005D15 01:BD05: 30 21     .word $2130
+- D 1 - - - 0x005D15 01:BD05: 30 21     .word $2130 ; 
 ; 05
 - D 1 - - - 0x005D17 01:BD07: F4 A9     .word _off031_0x016A04_05
-- D 1 - - - 0x005D19 01:BD09: 50 21     .word $2150
+- D 1 - - - 0x005D19 01:BD09: 50 21     .word $2150 ; 
 ; 06
 - D 1 - - - 0x005D1B 01:BD0B: F4 A9     .word _off031_0x016A04_06
-- D 1 - - - 0x005D1D 01:BD0D: 70 21     .word $2170
+- D 1 - - - 0x005D1D 01:BD0D: 70 21     .word $2170 ; 
 ; 07
 - D 1 - - - 0x005D1F 01:BD0F: 0A AA     .word _off031_0x016A1A_07
-- D 1 - - - 0x005D21 01:BD11: 90 21     .word $2190
+- D 1 - - - 0x005D21 01:BD11: 90 21     .word $2190 ; 
 ; 08
 - D 1 - - - 0x005D23 01:BD13: 20 AA     .word _off031_0x016A30_08
-- D 1 - - - 0x005D25 01:BD15: B0 21     .word $21B0
+- D 1 - - - 0x005D25 01:BD15: B0 21     .word $21B0 ; 
 ; 09
 - D 1 - - - 0x005D27 01:BD17: 32 AA     .word _off031_0x016A42_09
-- D 1 - - - 0x005D29 01:BD19: D0 21     .word $21D0
+- D 1 - - - 0x005D29 01:BD19: D0 21     .word $21D0 ; 
 ; 0A
 - D 1 - - - 0x005D2B 01:BD1B: 40 AA     .word _off031_0x016A50_0A
-- D 1 - - - 0x005D2D 01:BD1D: D0 20     .word $20D0
+- D 1 - - - 0x005D2D 01:BD1D: D0 20     .word $20D0 ; 
 ; 0B
 - - - - - - 0x005D2F 01:BD1F: 56 AA     .word _off031_0x016A66_0B
-- - - - - - 0x005D31 01:BD21: 70 21     .word $2170
+- - - - - - 0x005D31 01:BD21: 70 21     .word $2170 ; 
 ; 0C
 - - - - - - 0x005D33 01:BD23: 70 AA     .word _off031_0x016A80_0C
-- - - - - - 0x005D35 01:BD25: D0 20     .word $20D0
+- - - - - - 0x005D35 01:BD25: D0 20     .word $20D0 ; 
 ; 0D
 - D 1 - - - 0x005D37 01:BD27: 86 AA     .word _off031_0x016A96_0D
-- D 1 - - - 0x005D39 01:BD29: 90 21     .word $2190
+- D 1 - - - 0x005D39 01:BD29: 90 21     .word $2190 ; 
 ; 0E
 - D 1 - - - 0x005D3B 01:BD2B: 9C AA     .word _off031_0x016AAC_0E
-- D 1 - - - 0x005D3D 01:BD2D: B0 21     .word $21B0
+- D 1 - - - 0x005D3D 01:BD2D: B0 21     .word $21B0 ; 
 ; 0F
 - D 1 - - - 0x005D3F 01:BD2F: AE AA     .word _off031_0x016ABE_0F
-- D 1 - - - 0x005D41 01:BD31: 70 21     .word $2170
+- D 1 - - - 0x005D41 01:BD31: 70 21     .word $2170 ; 
 
 
 

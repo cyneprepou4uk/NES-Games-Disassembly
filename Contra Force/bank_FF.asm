@@ -883,30 +883,30 @@ C - - - - - 0x01D28F 07:D27F: 60        RTS
 
 tbl_D280_menu_text:
 ; 00
-- D 2 - - - 0x01D290 07:D280: 88 22     .word $2288
+- D 2 - - - 0x01D290 07:D280: 88 22     .word $2288 ; 
 - D 2 - - - 0x01D292 07:D282: 50        .byte $50, $55, $53, $48, $30   ; PUSH
 - D 2 - - - 0x01D297 07:D287: 53        .byte $53, $54, $41, $52, $54, $30   ; START
 - D 2 - - - 0x01D29D 07:D28D: 42        .byte $42, $55, $54, $54, $4F, $4E   ; BUTTON
 - D 2 - - - 0x01D2A3 07:D293: 7F        .byte $7F   ; end token
 ; 14
-- D 2 - - - 0x01D2A4 07:D294: CB 21     .word $21CB
+- D 2 - - - 0x01D2A4 07:D294: CB 21     .word $21CB ; 
 - D 2 - - - 0x01D2A6 07:D296: 47        .byte $47, $41, $4D, $45, $30, $30   ; GAME
 - D 2 - - - 0x01D2AC 07:D29C: 4F        .byte $4F, $56, $45, $52   ; OVER
 - D 2 - - - 0x01D2B0 07:D2A0: 7F        .byte $7F   ; end token
 ; 21
-- D 2 - - - 0x01D2B1 07:D2A1: 0C 22     .word $220C
+- D 2 - - - 0x01D2B1 07:D2A1: 0C 22     .word $220C ; 
 - D 2 - - - 0x01D2B3 07:D2A3: 43        .byte $43, $4F, $4E, $54, $49, $4E, $55, $45   ; CONTINUE
 - D 2 - - - 0x01D2BB 07:D2AB: 7F        .byte $7F   ; end token
 ; 2C
-- D 2 - - - 0x01D2BC 07:D2AC: 4C 22     .word $224C
+- D 2 - - - 0x01D2BC 07:D2AC: 4C 22     .word $224C ; 
 - D 2 - - - 0x01D2BE 07:D2AE: 45        .byte $45, $4E, $44   ; END
 - D 2 - - - 0x01D2C1 07:D2B1: 7F        .byte $7F   ; end token
 ; 32 KONAMI (upper half)
-- D 2 - - - 0x01D2C2 07:D2B2: EA 21     .word $21EA
+- D 2 - - - 0x01D2C2 07:D2B2: EA 21     .word $21EA ; 
 - D 2 - - - 0x01D2C4 07:D2B4: 00        .byte $00, $F0, $02, $1C, $1D, $1E, $1F, $09, $FC, $FD, $FE, $FF   ; 
 - D 2 - - - 0x01D2D0 07:D2C0: 7F        .byte $7F   ; end token
 ; 41 KONAMI (lower half)
-- D 2 - - - 0x01D2D1 07:D2C1: 0A 22     .word $220A
+- D 2 - - - 0x01D2D1 07:D2C1: 0A 22     .word $220A ; 
 - D 2 - - - 0x01D2D3 07:D2C3: 2B        .byte $2B, $DB, $01, $2C, $2D, $2E, $0A, $0B, $0C, $0D, $0E, $0F, $EF   ; 
 - D 2 - - - 0x01D2E0 07:D2D0: 7F        .byte $7F   ; end token
 

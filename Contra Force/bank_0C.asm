@@ -15690,7 +15690,7 @@ _off012_0x01BD19_0C_pause:
 ; 80-FE = print a list of bytes xx times
 ; 7F = change ppu address
 ; FF = end token
-- D 1 - I - 0x01BD19 06:BD09: 00 20     .word $2000
+- D 1 - I - 0x01BD19 06:BD09: 00 20     .word $2000 ; 
 
 - D 1 - I - 0x01BD1B 06:BD0B: FE        .byte $80 + $7E   ; 
 - D 1 - I - 0x01BD1C 06:BD0C: 80        .byte $80, $81, $82, $83, $80, $81, $82, $83, $80, $81, $82, $83, $80, $81, $80, $81   ; 

@@ -7769,7 +7769,7 @@ _off012_0x007EDC_08_cutscene_phone:
 ; 80-FE = print a list of bytes xx times
 ; 7F = change ppu address
 ; FF = end token
-- D 1 - I - 0x007EDC 01:BECC: 00 20     .word $2000
+- D 1 - I - 0x007EDC 01:BECC: 00 20     .word $2000 ; 
 
 - D 1 - I - 0x007EDE 01:BECE: 7E        .byte $7E   ; 
 - D 1 - I - 0x007EDF 01:BECF: 00        .byte $00   ; 
