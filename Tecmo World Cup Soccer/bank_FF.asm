@@ -2128,70 +2128,70 @@ C - - - - - 0x00CC53 03:CC43: 60        RTS
 
 ; предположительно угол удара или сторона движения ботов
 tbl_CC44:
-- D 2 - - - 0x00CC54 03:CC44: 00 00     .word $0000
-- D 2 - - - 0x00CC56 03:CC46: 00 00     .word $0000
-- D 2 - - - 0x00CC58 03:CC48: 06 00     .word $0006
-- D 2 - - - 0x00CC5A 03:CC4A: 0C 00     .word $000C
-- D 2 - - - 0x00CC5C 03:CC4C: 12 00     .word $0012
-- D 2 - - - 0x00CC5E 03:CC4E: 19 00     .word $0019
-- D 2 - - - 0x00CC60 03:CC50: 1F 00     .word $001F
-- D 2 - - - 0x00CC62 03:CC52: 25 00     .word $0025
-- D 2 - - - 0x00CC64 03:CC54: 2B 00     .word $002B
-- D 2 - - - 0x00CC66 03:CC56: 31 00     .word $0031
-- D 2 - - - 0x00CC68 03:CC58: 38 00     .word $0038
-- D 2 - - - 0x00CC6A 03:CC5A: 3E 00     .word $003E
-- D 2 - - - 0x00CC6C 03:CC5C: 44 00     .word $0044
-- D 2 - - - 0x00CC6E 03:CC5E: 4A 00     .word $004A
-- D 2 - - - 0x00CC70 03:CC60: 50 00     .word $0050
-- D 2 - - - 0x00CC72 03:CC62: 56 00     .word $0056
-- D 2 - - - 0x00CC74 03:CC64: 5C 00     .word $005C
-- D 2 - - - 0x00CC76 03:CC66: 61 00     .word $0061
-- D 2 - - - 0x00CC78 03:CC68: 67 00     .word $0067
-- D 2 - - - 0x00CC7A 03:CC6A: 6D 00     .word $006D
-- D 2 - - - 0x00CC7C 03:CC6C: 73 00     .word $0073
-- D 2 - - - 0x00CC7E 03:CC6E: 78 00     .word $0078
-- D 2 - - - 0x00CC80 03:CC70: 7E 00     .word $007E
-- D 2 - - - 0x00CC82 03:CC72: 83 00     .word $0083
-- D 2 - - - 0x00CC84 03:CC74: 88 00     .word $0088
-- D 2 - - - 0x00CC86 03:CC76: 8E 00     .word $008E
-- D 2 - - - 0x00CC88 03:CC78: 93 00     .word $0093
-- D 2 - - - 0x00CC8A 03:CC7A: 98 00     .word $0098
-- D 2 - - - 0x00CC8C 03:CC7C: 9D 00     .word $009D
-- D 2 - - - 0x00CC8E 03:CC7E: A2 00     .word $00A2
-- D 2 - - - 0x00CC90 03:CC80: A7 00     .word $00A7
-- D 2 - - - 0x00CC92 03:CC82: AB 00     .word $00AB
-- D 2 - - - 0x00CC94 03:CC84: B0 00     .word $00B0
-- D 2 - - - 0x00CC96 03:CC86: B5 00     .word $00B5
-- D 2 - - - 0x00CC98 03:CC88: B9 00     .word $00B9
-- D 2 - - - 0x00CC9A 03:CC8A: BD 00     .word $00BD
-- D 2 - - - 0x00CC9C 03:CC8C: C1 00     .word $00C1
-- D 2 - - - 0x00CC9E 03:CC8E: C5 00     .word $00C5
-- D 2 - - - 0x00CCA0 03:CC90: C9 00     .word $00C9
-- D 2 - - - 0x00CCA2 03:CC92: CD 00     .word $00CD
-- D 2 - - - 0x00CCA4 03:CC94: D1 00     .word $00D1
-- D 2 - - - 0x00CCA6 03:CC96: D4 00     .word $00D4
-- D 2 - - - 0x00CCA8 03:CC98: D8 00     .word $00D8
-- D 2 - - - 0x00CCAA 03:CC9A: DB 00     .word $00DB
-- D 2 - - - 0x00CCAC 03:CC9C: DE 00     .word $00DE
-- D 2 - - - 0x00CCAE 03:CC9E: E1 00     .word $00E1
-- D 2 - - - 0x00CCB0 03:CCA0: E4 00     .word $00E4
-- D 2 - - - 0x00CCB2 03:CCA2: E7 00     .word $00E7
-- D 2 - - - 0x00CCB4 03:CCA4: EA 00     .word $00EA
-- D 2 - - - 0x00CCB6 03:CCA6: EC 00     .word $00EC
-- D 2 - - - 0x00CCB8 03:CCA8: EE 00     .word $00EE
-- D 2 - - - 0x00CCBA 03:CCAA: F1 00     .word $00F1
-- D 2 - - - 0x00CCBC 03:CCAC: F3 00     .word $00F3
-- D 2 - - - 0x00CCBE 03:CCAE: F4 00     .word $00F4
-- D 2 - - - 0x00CCC0 03:CCB0: F6 00     .word $00F6
-- D 2 - - - 0x00CCC2 03:CCB2: F8 00     .word $00F8
-- D 2 - - - 0x00CCC4 03:CCB4: F9 00     .word $00F9
-- D 2 - - - 0x00CCC6 03:CCB6: FB 00     .word $00FB
-- D 2 - - - 0x00CCC8 03:CCB8: FC 00     .word $00FC
-- D 2 - - - 0x00CCCA 03:CCBA: FD 00     .word $00FD
-- D 2 - - - 0x00CCCC 03:CCBC: FE 00     .word $00FE
-- D 2 - - - 0x00CCCE 03:CCBE: FE 00     .word $00FE
-- D 2 - - - 0x00CCD0 03:CCC0: FF 00     .word $00FF
-- D 2 - - - 0x00CCD2 03:CCC2: 00 01     .word $0100
+- D 2 - - - 0x00CC54 03:CC44: 00 00     .word $0000 ; 
+- D 2 - - - 0x00CC56 03:CC46: 00 00     .word $0000 ; 
+- D 2 - - - 0x00CC58 03:CC48: 06 00     .word $0006 ; 
+- D 2 - - - 0x00CC5A 03:CC4A: 0C 00     .word $000C ; 
+- D 2 - - - 0x00CC5C 03:CC4C: 12 00     .word $0012 ; 
+- D 2 - - - 0x00CC5E 03:CC4E: 19 00     .word $0019 ; 
+- D 2 - - - 0x00CC60 03:CC50: 1F 00     .word $001F ; 
+- D 2 - - - 0x00CC62 03:CC52: 25 00     .word $0025 ; 
+- D 2 - - - 0x00CC64 03:CC54: 2B 00     .word $002B ; 
+- D 2 - - - 0x00CC66 03:CC56: 31 00     .word $0031 ; 
+- D 2 - - - 0x00CC68 03:CC58: 38 00     .word $0038 ; 
+- D 2 - - - 0x00CC6A 03:CC5A: 3E 00     .word $003E ; 
+- D 2 - - - 0x00CC6C 03:CC5C: 44 00     .word $0044 ; 
+- D 2 - - - 0x00CC6E 03:CC5E: 4A 00     .word $004A ; 
+- D 2 - - - 0x00CC70 03:CC60: 50 00     .word $0050 ; 
+- D 2 - - - 0x00CC72 03:CC62: 56 00     .word $0056 ; 
+- D 2 - - - 0x00CC74 03:CC64: 5C 00     .word $005C ; 
+- D 2 - - - 0x00CC76 03:CC66: 61 00     .word $0061 ; 
+- D 2 - - - 0x00CC78 03:CC68: 67 00     .word $0067 ; 
+- D 2 - - - 0x00CC7A 03:CC6A: 6D 00     .word $006D ; 
+- D 2 - - - 0x00CC7C 03:CC6C: 73 00     .word $0073 ; 
+- D 2 - - - 0x00CC7E 03:CC6E: 78 00     .word $0078 ; 
+- D 2 - - - 0x00CC80 03:CC70: 7E 00     .word $007E ; 
+- D 2 - - - 0x00CC82 03:CC72: 83 00     .word $0083 ; 
+- D 2 - - - 0x00CC84 03:CC74: 88 00     .word $0088 ; 
+- D 2 - - - 0x00CC86 03:CC76: 8E 00     .word $008E ; 
+- D 2 - - - 0x00CC88 03:CC78: 93 00     .word $0093 ; 
+- D 2 - - - 0x00CC8A 03:CC7A: 98 00     .word $0098 ; 
+- D 2 - - - 0x00CC8C 03:CC7C: 9D 00     .word $009D ; 
+- D 2 - - - 0x00CC8E 03:CC7E: A2 00     .word $00A2 ; 
+- D 2 - - - 0x00CC90 03:CC80: A7 00     .word $00A7 ; 
+- D 2 - - - 0x00CC92 03:CC82: AB 00     .word $00AB ; 
+- D 2 - - - 0x00CC94 03:CC84: B0 00     .word $00B0 ; 
+- D 2 - - - 0x00CC96 03:CC86: B5 00     .word $00B5 ; 
+- D 2 - - - 0x00CC98 03:CC88: B9 00     .word $00B9 ; 
+- D 2 - - - 0x00CC9A 03:CC8A: BD 00     .word $00BD ; 
+- D 2 - - - 0x00CC9C 03:CC8C: C1 00     .word $00C1 ; 
+- D 2 - - - 0x00CC9E 03:CC8E: C5 00     .word $00C5 ; 
+- D 2 - - - 0x00CCA0 03:CC90: C9 00     .word $00C9 ; 
+- D 2 - - - 0x00CCA2 03:CC92: CD 00     .word $00CD ; 
+- D 2 - - - 0x00CCA4 03:CC94: D1 00     .word $00D1 ; 
+- D 2 - - - 0x00CCA6 03:CC96: D4 00     .word $00D4 ; 
+- D 2 - - - 0x00CCA8 03:CC98: D8 00     .word $00D8 ; 
+- D 2 - - - 0x00CCAA 03:CC9A: DB 00     .word $00DB ; 
+- D 2 - - - 0x00CCAC 03:CC9C: DE 00     .word $00DE ; 
+- D 2 - - - 0x00CCAE 03:CC9E: E1 00     .word $00E1 ; 
+- D 2 - - - 0x00CCB0 03:CCA0: E4 00     .word $00E4 ; 
+- D 2 - - - 0x00CCB2 03:CCA2: E7 00     .word $00E7 ; 
+- D 2 - - - 0x00CCB4 03:CCA4: EA 00     .word $00EA ; 
+- D 2 - - - 0x00CCB6 03:CCA6: EC 00     .word $00EC ; 
+- D 2 - - - 0x00CCB8 03:CCA8: EE 00     .word $00EE ; 
+- D 2 - - - 0x00CCBA 03:CCAA: F1 00     .word $00F1 ; 
+- D 2 - - - 0x00CCBC 03:CCAC: F3 00     .word $00F3 ; 
+- D 2 - - - 0x00CCBE 03:CCAE: F4 00     .word $00F4 ; 
+- D 2 - - - 0x00CCC0 03:CCB0: F6 00     .word $00F6 ; 
+- D 2 - - - 0x00CCC2 03:CCB2: F8 00     .word $00F8 ; 
+- D 2 - - - 0x00CCC4 03:CCB4: F9 00     .word $00F9 ; 
+- D 2 - - - 0x00CCC6 03:CCB6: FB 00     .word $00FB ; 
+- D 2 - - - 0x00CCC8 03:CCB8: FC 00     .word $00FC ; 
+- D 2 - - - 0x00CCCA 03:CCBA: FD 00     .word $00FD ; 
+- D 2 - - - 0x00CCCC 03:CCBC: FE 00     .word $00FE ; 
+- D 2 - - - 0x00CCCE 03:CCBE: FE 00     .word $00FE ; 
+- D 2 - - - 0x00CCD0 03:CCC0: FF 00     .word $00FF ; 
+- D 2 - - - 0x00CCD2 03:CCC2: 00 01     .word $0100 ; 
 
 
 
@@ -4355,19 +4355,19 @@ tbl_DB3B:
 
 
 tbl_DB54:
-- D 2 - - - 0x00DB64 03:DB54: A4 00     .word $00A4
+- D 2 - - - 0x00DB64 03:DB54: A4 00     .word $00A4 ; 
 
 tbl_DB56:
-- D 2 - - - 0x00DB66 03:DB56: D0 00     .word $00D0
+- D 2 - - - 0x00DB66 03:DB56: D0 00     .word $00D0 ; 
 
 tbl_DB58:
-- D 2 - - - 0x00DB68 03:DB58: 9A 00     .word $009A
+- D 2 - - - 0x00DB68 03:DB58: 9A 00     .word $009A ; 
 
 tbl_DB5A:
-- D 2 - - - 0x00DB6A 03:DB5A: D4 00     .word $00D4
+- D 2 - - - 0x00DB6A 03:DB5A: D4 00     .word $00D4 ; 
 
 tbl_DB5C:
-- D 2 - - - 0x00DB6C 03:DB5C: 92 00     .word $0092
+- D 2 - - - 0x00DB6C 03:DB5C: 92 00     .word $0092 ; 
 
 
 
@@ -9467,7 +9467,7 @@ C - - - - - 0x00FFE5 03:FFD5: 4C 03 C0  JMP loc_C003
 .segment "VECTORS"
 - D 3 - - - 0x01000A 03:FFFA: 00 C0     .word vec_C000_NMI
 - D 3 - - - 0x01000C 03:FFFC: D0 FF     .word vec_FFD0_RESET
-- - - - - - 0x01000E 03:FFFE: D0 FF     .word $FFD0
+- - - - - - 0x01000E 03:FFFE: D0 FF     .word $FFD0 ; 
 
 
 
