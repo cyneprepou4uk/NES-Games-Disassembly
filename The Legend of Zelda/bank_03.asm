@@ -208,19 +208,19 @@ C - - - - - 0x00C12A 03:811A: 60        RTS
 
 tbl_811B___1700_1F1F:
 ; 0x00C12B
-    .incbin "tiles/03___811B_893A.chr"
+    .incbin "incbin/tiles/03___811B_893A.chr"
 
 
 
 tbl_893B___1700_1F1F:
 ; 0x00C94B
-    .incbin "tiles/03___893B_915A.chr"
+    .incbin "incbin/tiles/03___893B_915A.chr"
 
 
 
 tbl_915B___08E0_0FFF:
 ; 0x00D16B
-    .incbin "tiles/03___915B_987A.chr"
+    .incbin "incbin/tiles/03___915B_987A.chr"
 
 
 
@@ -228,7 +228,7 @@ _off004_987B_03:
 _off004_987B_05:
 _off004_987B_08:
 ; 0x00D88B
-    .incbin "tiles/03___987B_9A9A.chr"
+    .incbin "incbin/tiles/03___987B_9A9A.chr"
 
 
 
@@ -236,13 +236,13 @@ _off004_9A9B_04:
 _off004_9A9B_06:
 _off004_9A9B_09:
 ; 0x00DAAB
-    .incbin "tiles/03___9A9B_9CBA.chr"
+    .incbin "incbin/tiles/03___9A9B_9CBA.chr"
 
 
 
 tbl_9CBB___08E0_09DF:
 ; 0x00DCCB
-    .incbin "tiles/03___9CBB_9DBA.chr"
+    .incbin "incbin/tiles/03___9CBB_9DBA.chr"
 
 
 
@@ -251,7 +251,7 @@ _off004_9DBB_01:
 _off004_9DBB_02:
 _off004_9DBB_07:
 ; 0x00DDCB
-    .incbin "tiles/03___9DBB_9FDA.chr"
+    .incbin "incbin/tiles/03___9DBB_9FDA.chr"
 
 
 
@@ -261,7 +261,7 @@ _off005_9FDB_02:
 _off005_9FDB_05:
 _off005_9FDB_07:
 ; 0x00DFEB
-    .incbin "tiles/03___9FDB_A3DA.chr"
+    .incbin "incbin/tiles/03___9FDB_A3DA.chr"
 
 
 
@@ -270,13 +270,13 @@ _off005_A3DB_04:
 _off005_A3DB_06:
 _off005_A3DB_08:
 ; 0x00E3EB
-    .incbin "tiles/03___A3DB_A7DA.chr"
+    .incbin "incbin/tiles/03___A3DB_A7DA.chr"
 
 
 
 _off005_A7DB_09:
 ; 0x00E7EB
-    .incbin "tiles/03___A7DB_ABDA.chr"
+    .incbin "incbin/tiles/03___A7DB_ABDA.chr"
 
 
 ; bzk garbage
