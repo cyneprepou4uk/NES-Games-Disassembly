@@ -138,7 +138,7 @@ C - - - - - 0x0000CF 00:C0BF: 20 C9 C7  JSR sub_C7C9
 C - - - - - 0x0000D2 00:C0C2: A0 00     LDY #$00
 C - - - - - 0x0000D4 00:C0C4: 20 46 C1  JSR sub_C146
 bra_C0C7:
-C - - - - - 0x0000D7 00:C0C7: E6 21     INC ram_frame_counter
+C - - - - - 0x0000D7 00:C0C7: E6 21     INC ram_frm_cnt
 C - - - - - 0x0000D9 00:C0C9: A9 00     LDA #$00
 C D 2 - - - 0x0000DB 00:C0CB: 85 20     STA ram_nmi_trigger_flag
 C D 2 - - - 0x0000DD 00:C0CD: 4C 6D C0  JMP loc_C06D_main_game_script_loop
@@ -157,7 +157,7 @@ C D 2 - - - 0x0000ED 00:C0DD: EA        NOP
 C D 2 - - - 0x0000EE 00:C0DE: A9 68     LDA #$68
 C - - - - - 0x0000F0 00:C0E0: 85 10     STA ram_0010
 C - - - - - 0x0000F2 00:C0E2: A0 67     LDY #$67
-C - - - - - 0x0000F4 00:C0E4: A5 21     LDA ram_frame_counter
+C - - - - - 0x0000F4 00:C0E4: A5 21     LDA ram_frm_cnt
 C - - - - - 0x0000F6 00:C0E6: 29 10     AND #$10
 C - - - - - 0x0000F8 00:C0E8: D0 02     BNE bra_C0EC    ; each 16th frame
 C - - - - - 0x0000FA 00:C0EA: A0 F7     LDY #$F7
@@ -752,7 +752,7 @@ C - - - - - 0x00042D 00:C41D: B0 35     BCS bra_C454_RTS
 C - - - - - 0x00042F 00:C41F: A6 2C     LDX ram_index_oam
 C - - - - - 0x000431 00:C421: E0 34     CPX #$34
 C - - - - - 0x000433 00:C423: 90 0E     BCC bra_C433
-C - - - - - 0x000435 00:C425: A5 21     LDA ram_frame_counter
+C - - - - - 0x000435 00:C425: A5 21     LDA ram_frm_cnt
 C - - - - - 0x000437 00:C427: 29 0F     AND #$0F
 C - - - - - 0x000439 00:C429: A8        TAY
 C - - - - - 0x00043A 00:C42A: 8A        TXA
@@ -896,7 +896,7 @@ C - - - - - 0x0004D3 00:C4C3: 4C D1 C3  JMP loc_C3D1
 
 
 ofs_000_C4C6_08:
-C - - J - - 0x0004D6 00:C4C6: A5 21     LDA ram_frame_counter
+C - - J - - 0x0004D6 00:C4C6: A5 21     LDA ram_frm_cnt
 C - - - - - 0x0004D8 00:C4C8: 4A        LSR
 C - - - - - 0x0004D9 00:C4C9: 29 03     AND #$03
 C - - - - - 0x0004DB 00:C4CB: 85 13     STA ram_0013
@@ -933,7 +933,7 @@ C - - - - - 0x00050B 00:C4FB: B1 1E     LDA (ram_001E),Y
 C - - - - - 0x00050D 00:C4FD: C9 01     CMP #$01
 C - - - - - 0x00050F 00:C4FF: D0 08     BNE bra_C509
 C - - - - - 0x000511 00:C501: A0 41     LDY #$41
-C - - - - - 0x000513 00:C503: A5 21     LDA ram_frame_counter
+C - - - - - 0x000513 00:C503: A5 21     LDA ram_frm_cnt
 C - - - - - 0x000515 00:C505: 29 10     AND #$10
 C - - - - - 0x000517 00:C507: D0 02     BNE bra_C50B    ; each 16th frame
 bra_C509:
@@ -959,7 +959,7 @@ C - - - - - 0x000530 00:C520: 60        RTS
 
 
 ofs_000_C521_10:
-C - - J - - 0x000531 00:C521: A5 21     LDA ram_frame_counter
+C - - J - - 0x000531 00:C521: A5 21     LDA ram_frm_cnt
 C - - - - - 0x000533 00:C523: 4A        LSR
 C - - - - - 0x000534 00:C524: 29 03     AND #$03
 C - - - - - 0x000536 00:C526: 85 13     STA ram_0013
@@ -1150,7 +1150,7 @@ C - - J - - 0x00062E 00:C61E: A9 02     LDA #$02
 C - - - - - 0x000630 00:C620: 85 13     STA ram_0013
 C - - - - - 0x000632 00:C622: A9 00     LDA #$00
 C - - - - - 0x000634 00:C624: 85 14     STA ram_0014
-C - - - - - 0x000636 00:C626: A5 21     LDA ram_frame_counter
+C - - - - - 0x000636 00:C626: A5 21     LDA ram_frm_cnt
 C - - - - - 0x000638 00:C628: 29 20     AND #$20
 C - - - - - 0x00063A 00:C62A: F0 11     BEQ bra_C63D    ; each 32th frame
 C - - - - - 0x00063C 00:C62C: A9 E8     LDA #$E8
@@ -4096,11 +4096,11 @@ sub_D71C:
 C - - - - - 0x00172C 00:D71C: A5 42     LDA ram_demo_flag
 C - - - - - 0x00172E 00:D71E: F0 15     BEQ bra_D735_demo
 ; if not demo
-C - - - - - 0x001730 00:D720: A5 21     LDA ram_frame_counter
+C - - - - - 0x001730 00:D720: A5 21     LDA ram_frm_cnt
 C - - - - - 0x001732 00:D722: 29 0F     AND #$0F
 C - - - - - 0x001734 00:D724: D0 0E     BNE bra_D734_RTS
 ; each 16th frame
-C - - - - - 0x001736 00:D726: A5 21     LDA ram_frame_counter
+C - - - - - 0x001736 00:D726: A5 21     LDA ram_frm_cnt
 C - - - - - 0x001738 00:D728: 4A        LSR
 C - - - - - 0x001739 00:D729: 4A        LSR
 C - - - - - 0x00173A 00:D72A: 4A        LSR
@@ -5370,7 +5370,7 @@ C - - - - - 0x001ED8 00:DEC8: A0 0A     LDY #$0A
 C - - - - - 0x001EDA 00:DECA: 91 1E     STA (ram_001E),Y
 C - - - - - 0x001EDC 00:DECC: C5 10     CMP ram_0010
 C - - - - - 0x001EDE 00:DECE: D0 11     BNE bra_DEE1_RTS
-C - - - - - 0x001EE0 00:DED0: A6 21     LDX ram_frame_counter
+C - - - - - 0x001EE0 00:DED0: A6 21     LDX ram_frm_cnt
 C - - - - - 0x001EE2 00:DED2: BD 00 C0  LDA tbl_C000,X
 C - - - - - 0x001EE5 00:DED5: 4A        LSR
 C - - - - - 0x001EE6 00:DED6: A9 04     LDA #$04
@@ -6827,11 +6827,11 @@ C - - - - - 0x00272D 00:E71D: 60        RTS
 
 
 sub_E71E:
-C - - - - - 0x00272E 00:E71E: A5 21     LDA ram_frame_counter
+C - - - - - 0x00272E 00:E71E: A5 21     LDA ram_frm_cnt
 C - - - - - 0x002730 00:E720: 29 03     AND #$03
 C - - - - - 0x002732 00:E722: 49 01     EOR #$01
 C - - - - - 0x002734 00:E724: D0 F7     BNE bra_E71D_RTS    ; each even frame
-C - - - - - 0x002736 00:E726: A5 21     LDA ram_frame_counter
+C - - - - - 0x002736 00:E726: A5 21     LDA ram_frm_cnt
 C - - - - - 0x002738 00:E728: 29 04     AND #$04
 C - - - - - 0x00273A 00:E72A: F0 DE     BEQ bra_E70A    ; each 4th frame
 sub_E72C:
@@ -7148,7 +7148,7 @@ C - - - - - 0x0028EA 00:E8DA: 69 08     ADC #$08
 C - - - - - 0x0028EC 00:E8DC: AA        TAX
 C - - - - - 0x0028ED 00:E8DD: E4 83     CPX ram_0083
 C - - - - - 0x0028EF 00:E8DF: D0 F1     BNE bra_E8D2
-C - - - - - 0x0028F1 00:E8E1: A5 21     LDA ram_frame_counter
+C - - - - - 0x0028F1 00:E8E1: A5 21     LDA ram_frm_cnt
 C - - - - - 0x0028F3 00:E8E3: 29 03     AND #$03
 C - - - - - 0x0028F5 00:E8E5: 0A        ASL
 C - - - - - 0x0028F6 00:E8E6: 0A        ASL
@@ -7161,7 +7161,7 @@ C - - - - - 0x002901 00:E8F1: 29 0A     AND #$0A
 C - - - - - 0x002903 00:E8F3: 49 08     EOR #$08
 C - - - - - 0x002905 00:E8F5: D0 D4     BNE bra_E8CB_RTS
 C - - - - - 0x002907 00:E8F7: A0 10     LDY #$10
-C - - - - - 0x002909 00:E8F9: A5 21     LDA ram_frame_counter
+C - - - - - 0x002909 00:E8F9: A5 21     LDA ram_frm_cnt
 C - - - - - 0x00290B 00:E8FB: 29 04     AND #$04
 C - - - - - 0x00290D 00:E8FD: F0 03     BEQ bra_E902    ; each 4th frames
 bra_E8FF:
@@ -8441,12 +8441,12 @@ C - - - - - 0x003067 00:F057: F0 E7     BEQ bra_F040_RTS
 C - - - - - 0x003069 00:F059: C9 02     CMP #$02
 C - - - - - 0x00306B 00:F05B: 90 3F     BCC bra_F09C
 C - - - - - 0x00306D 00:F05D: D0 29     BNE bra_F088
-C - - - - - 0x00306F 00:F05F: A5 21     LDA ram_frame_counter
+C - - - - - 0x00306F 00:F05F: A5 21     LDA ram_frm_cnt
 C - - - - - 0x003071 00:F061: 29 03     AND #$03
 C - - - - - 0x003073 00:F063: C9 02     CMP #$02
 C - - - - - 0x003075 00:F065: D0 D9     BNE bra_F040_RTS
 ; each 3rd of 4 frames
-C - - - - - 0x003077 00:F067: A5 21     LDA ram_frame_counter
+C - - - - - 0x003077 00:F067: A5 21     LDA ram_frm_cnt
 C - - - - - 0x003079 00:F069: 29 04     AND #$04
 C - - - - - 0x00307B 00:F06B: 4A        LSR
 C - - - - - 0x00307C 00:F06C: AA        TAX
@@ -8739,11 +8739,11 @@ C - - - - - 0x003243 00:F233: A5 1B     LDA ram_001B
 C - - - - - 0x003245 00:F235: 4A        LSR
 C - - - - - 0x003246 00:F236: 4A        LSR
 C - - - - - 0x003247 00:F237: 4A        LSR
-C - - - - - 0x003248 00:F238: 45 21     EOR ram_frame_counter
+C - - - - - 0x003248 00:F238: 45 21     EOR ram_frm_cnt
 C - - - - - 0x00324A 00:F23A: 29 0F     AND #$0F
 C - - - - - 0x00324C 00:F23C: D0 D6     BNE bra_F214_RTS
 ; each 16th frame
-C - - - - - 0x00324E 00:F23E: A5 21     LDA ram_frame_counter
+C - - - - - 0x00324E 00:F23E: A5 21     LDA ram_frm_cnt
 C - - - - - 0x003250 00:F240: 29 10     AND #$10
 C - - - - - 0x003252 00:F242: 4A        LSR
 C - - - - - 0x003253 00:F243: 4A        LSR
@@ -9011,7 +9011,7 @@ C - - - - - 0x003398 00:F388: 95 10     STA ram_0010,X
 C - - - - - 0x00339A 00:F38A: E8        INX
 C - - - - - 0x00339B 00:F38B: E0 08     CPX #$08
 C - - - - - 0x00339D 00:F38D: D0 F6     BNE bra_F385_loop
-C - - - - - 0x00339F 00:F38F: A5 21     LDA ram_frame_counter
+C - - - - - 0x00339F 00:F38F: A5 21     LDA ram_frm_cnt
 C - - - - - 0x0033A1 00:F391: 29 03     AND #$03
 C - - - - - 0x0033A3 00:F393: 85 13     STA ram_0013
 bra_F395_loop:
