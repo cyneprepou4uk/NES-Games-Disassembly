@@ -778,7 +778,10 @@ C - - - - - 0x00E416 03:A406: 9D AA 07  STA ram_07AA_unk,X
 C - - - - - 0x00E419 03:A409: B9 17 A4  LDA tbl_A417,Y
 C - - - - - 0x00E41C 03:A40C: 18        CLC
 C - - - - - 0x00E41D 03:A40D: 69 3F     ADC #$3F
-; con_A36F_3F   con_A36F_40   con_A36F_41   con_A36F_42
+; con_A36F_3F
+; con_A36F_40
+; con_A36F_41
+; con_A36F_42
 C - - - - - 0x00E41F 03:A40F: 4C 61 A3  JMP loc_A361
 bra_A412:
 C - - - - - 0x00E422 03:A412: A9 3C     LDA #con_A36F_3C
@@ -984,7 +987,7 @@ C - - - - - 0x00E510 03:A500: D0 03     BNE bra_A505
 C - - - - - 0x00E512 03:A502: 20 13 A9  JSR sub_A913
 bra_A505:
 C - - - - - 0x00E515 03:A505: A9 04     LDA #$04
-C - - - - - 0x00E517 03:A507: 85 20     STA ram_0020
+C - - - - - 0x00E517 03:A507: 85 20     STA ram_script_hi
 C - - - - - 0x00E519 03:A509: A9 00     LDA #$00
 C - - - - - 0x00E51B 03:A50B: 85 22     STA ram_0022
 C - - - - - 0x00E51D 03:A50D: 8D 6E 03  STA ram_036E
@@ -2003,6 +2006,8 @@ tbl_AAAB:
 - D 1 - - - 0x00EABF 03:AAAF: 3C        .byte $3C   ; 07
 - D 1 - - - 0x00EAC0 03:AAB0: AC        .byte $AC   ; 08
 - D 1 - - - 0x00EAC1 03:AAB1: 5C        .byte $5C   ; 09
+
+
 
 tbl_AAB2:
 - D 1 - - - 0x00EAC2 03:AAB2: 30        .byte $30   ; 03
@@ -3862,6 +3867,8 @@ tbl_B38F:
 - D 1 - - - 0x00F3A3 03:B393: 0E        .byte $0E, $02   ; 04
 - D 1 - - - 0x00F3A5 03:B395: 9D        .byte $9D, $02   ; 06
 
+
+
 tbl_B397:
 - D 1 - - - 0x00F3A7 03:B397: 5C        .byte $5C, $04   ; 00
 - D 1 - - - 0x00F3A9 03:B399: 45        .byte $45, $04   ; 02
@@ -3918,7 +3925,7 @@ tbl_B3E5:
 
 bra_B3E7:
 C - - - - - 0x00F3F7 03:B3E7: A4 94     LDY ram_0094
-C - - - - - 0x00F3F9 03:B3E9: B9 F0 03  LDA ram_03F0,Y
+C - - - - - 0x00F3F9 03:B3E9: B9 F0 03  LDA ram_0400 - $10,Y
 C - - - - - 0x00F3FC 03:B3EC: 9D 8C 07  STA ram_078C_unk,X
 C - - - - - 0x00F3FF 03:B3EF: A5 9F     LDA ram_009F
 C - - - - - 0x00F401 03:B3F1: D0 03     BNE bra_B3F6
@@ -5670,6 +5677,9 @@ C - - - - - 0x00FE0D 03:BDFD: A5 01     LDA ram_0001
 C - - - - - 0x00FE0F 03:BDFF: C9 04     CMP #$04
 C - - - - - 0x00FE11 03:BE01: 90 08     BCC bra_BE0B
 C - - - - - 0x00FE13 03:BE03: D0 17     BNE bra_BE1C
+; bzk optimize, useless check because A is certanly >= 00
+; replace BNE at 0x00FE13 with BCS (it will be the same as JMP)
+; and delete 3 following instructions
 C - - - - - 0x00FE15 03:BE05: A5 00     LDA ram_0000
 C - - - - - 0x00FE17 03:BE07: C9 00     CMP #$00
 C - - - - - 0x00FE19 03:BE09: B0 11     BCS bra_BE1C
@@ -5800,7 +5810,7 @@ C D 1 - - - 0x00FEFF 03:BEEF: 60        RTS
 
 loc_BEF0:
 C D 1 - - - 0x00FF00 03:BEF0: 20 C8 F8  JSR sub_0x01F8D8
-C - - - - - 0x00FF03 03:BEF3: A5 FD     LDA ram_00FD
+C - - - - - 0x00FF03 03:BEF3: A5 FD     LDA ram_scroll_X
 C - - - - - 0x00FF05 03:BEF5: 85 50     STA ram_0050
 C - - - - - 0x00FF07 03:BEF7: A5 FF     LDA ram_for_2000
 C - - - - - 0x00FF09 03:BEF9: 85 52     STA ram_0052
@@ -5820,6 +5830,8 @@ C - - - - - 0x00FF22 03:BF12: 60        RTS
 tbl_BF13:
 - D 1 - - - 0x00FF23 03:BF13: B1 22     .word $22B1 ; 00
 - D 1 - - - 0x00FF25 03:BF15: B9 22     .word $22B9 ; 02
+
+
 
 tbl_BF17:
 - D 1 - - - 0x00FF27 03:BF17: 30 A9     .word off_0x016940_00

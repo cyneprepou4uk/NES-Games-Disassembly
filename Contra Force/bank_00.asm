@@ -38,6 +38,7 @@ tbl_0x000011_spr_data:
 - - - - - - 0x00002D 00:801D: 71 B2     .word _off032_B271_0E
 
 
+
 _off032_801F_07:
 - - - - - - 0x00002F 00:801F: 53 81     .word off_07_8153_00
 - D 0 - I - 0x000031 00:8021: 53 81     .word off_07_8153_01
@@ -11013,7 +11014,10 @@ C - - - - - 0x003471 00:B461: A9 82     LDA #$82
 C - - - - - 0x003473 00:B463: 9D 9C 06  STA ram_069C_obj,X
 bra_B466:
 C - - - - - 0x003476 00:B466: 20 90 91  JSR sub_0x0091A0_0095_set_bit7
-C - - - - - 0x003479 00:B469: D0 0A     BNE bra_B475
+C - - - - - 0x003479 00:B469: D0 0A     BNE bra_B475    ; jmp
+
+
+
 loc_B46B:
 C D 1 - - - 0x00347B 00:B46B: BD 9C 06  LDA ram_069C_obj,X
 C - - - - - 0x00347E 00:B46E: 10 05     BPL bra_B475
@@ -11107,7 +11111,7 @@ ofs_019_B4F7_03:
 C D 1 - - - 0x003507 00:B4F7: 20 0A 96  JSR sub_0x00961A
 C - - - - - 0x00350A 00:B4FA: F0 2A     BEQ bra_B526
 loc_B4FC:
-C D 1 - - - 0x00350C 00:B4FC: A5 20     LDA ram_0020
+C D 1 - - - 0x00350C 00:B4FC: A5 20     LDA ram_script_hi
 C - - - - - 0x00350E 00:B4FE: C9 04     CMP #$04
 C - - - - - 0x003510 00:B500: F0 1D     BEQ bra_B51F
 C - - - - - 0x003512 00:B502: A5 9F     LDA ram_009F
@@ -11246,7 +11250,7 @@ C - - - - - 0x003600 00:B5F0: C9 69     CMP #$69
 C - - - - - 0x003602 00:B5F2: F0 56     BEQ bra_B64A_RTS
 sub_B5F4:
 C - - - - - 0x003604 00:B5F4: A4 94     LDY ram_0094
-C - - - - - 0x003606 00:B5F6: B9 FF 03  LDA ram_03FF,Y
+C - - - - - 0x003606 00:B5F6: B9 FF 03  LDA ram_0400 - $01,Y
 C - - - - - 0x003609 00:B5F9: C9 69     CMP #$69
 C - - - - - 0x00360B 00:B5FB: F0 4D     BEQ bra_B64A_RTS
 C - - - - - 0x00360D 00:B5FD: C9 77     CMP #$77
@@ -11290,17 +11294,18 @@ C - - - - - 0x00365A 00:B64A: 60        RTS
 
 
 sub_B64B:
+; bzk doesn't look like a color buffer usage
 C - - - - - 0x00365B 00:B64B: A9 E0     LDA #$E0
 bra_B64D:
 C - - - - - 0x00365D 00:B64D: 18        CLC
 C - - - - - 0x00365E 00:B64E: 65 94     ADC ram_0094
 C - - - - - 0x003660 00:B650: A8        TAY
-C - - - - - 0x003661 00:B651: B9 D0 03  LDA ram_03D0,Y
+C - - - - - 0x003661 00:B651: B9 D0 03  LDA ram_brightnes_buffer,Y ; $03D5 $03DA $03DB $03E5 $03EA $03EB $03F5 $03FA $03FB $0409 $040A $040B $040C $040D $040E $0419 $041A $041B $041C $041D $041E $0429 $042A $042C $042D $042E $0439 $043A $043D $048A $048B $049A $049B $04AA $04ABC - - - - - 0x003664 00:B654: F0 03     BEQ bra_B659
 C - - - - - 0x003664 00:B654: F0 03     BEQ bra_B659
 C - - - - - 0x003666 00:B656: C9 68     CMP #$68
 C - - - - - 0x003668 00:B658: 60        RTS
 bra_B659:
-C - - - - - 0x003669 00:B659: B9 E0 03  LDA ram_03E0,Y
+C - - - - - 0x003669 00:B659: B9 E0 03  LDA ram_brightnes_buffer + $10,Y ; $0405 $040A $040B $0419 $041A $041B $041C $041D $041E $0429 $042A $042B $042C $042D $042E $0439 $043A $043C $043D $043E $0449 $044A $044D $049A $049B $04AA $04AB $04BA $04BB
 C - - - - - 0x00366C 00:B65C: C9 69     CMP #$69
 C - - - - - 0x00366E 00:B65E: 60        RTS
 
@@ -11361,21 +11366,21 @@ C - - - - - 0x0036AD 00:B69D: 60        RTS
 
 ; bzk garbage
 - - - - - - 0x0036AE 00:B69E: A4 94     LDY ram_0094
-- - - - - - 0x0036B0 00:B6A0: B9 F0 03  LDA ram_03F0,Y
+- - - - - - 0x0036B0 00:B6A0: B9 F0 03  LDA ram_0400 - $10,Y
 - - - - - - 0x0036B3 00:B6A3: 60        RTS
 
 
 
 sub_B6A4:
 C - - - - - 0x0036B4 00:B6A4: A4 94     LDY ram_0094
-C - - - - - 0x0036B6 00:B6A6: B9 E0 03  LDA ram_03E0,Y
+C - - - - - 0x0036B6 00:B6A6: B9 E0 03  LDA ram_0400 - $20,Y
 C - - - - - 0x0036B9 00:B6A9: 60        RTS
 
 
 
 sub_B6AA:
 C - - - - - 0x0036BA 00:B6AA: A4 94     LDY ram_0094
-C - - - - - 0x0036BC 00:B6AC: B9 D0 03  LDA ram_03D0,Y
+C - - - - - 0x0036BC 00:B6AC: B9 D0 03  LDA ram_0400 - $30,Y
 C - - - - - 0x0036BF 00:B6AF: 60        RTS
 
 
@@ -11706,6 +11711,8 @@ tbl_B866:
 - D 1 - - - 0x003883 00:B873: 04        .byte $04   ; 0E
 - D 1 - - - 0x003884 00:B874: 18        .byte $18   ; 0F
 
+
+
 tbl_B875:
 - D 1 - - - 0x003885 00:B875: 14        .byte $14   ; 01
 - D 1 - - - 0x003886 00:B876: 40        .byte $40   ; 02
@@ -11722,6 +11729,8 @@ tbl_B875:
 - - - - - - 0x003891 00:B881: 80        .byte $80   ; 0D
 - D 1 - - - 0x003892 00:B882: 04        .byte $04   ; 0E
 - D 1 - - - 0x003893 00:B883: 38        .byte $38   ; 0F
+
+
 
 tbl_B884:
 - D 1 - - - 0x003894 00:B884: 8B        .byte $8B   ; 01
@@ -11858,12 +11867,16 @@ tbl_B925:
 - D 1 - - - 0x003939 00:B929: 38        .byte $38   ; 04
 - D 1 - - - 0x00393A 00:B92A: 00        .byte $00   ; 05 end token
 
+
+
 tbl_B92B:
 - D 1 - - - 0x00393B 00:B92B: 19        .byte $19   ; 00
 - D 1 - - - 0x00393C 00:B92C: 1A        .byte $1A   ; 01
 - D 1 - - - 0x00393D 00:B92D: 1B        .byte $1B   ; 02
 - D 1 - - - 0x00393E 00:B92E: 1A        .byte $1A   ; 03
 - D 1 - - - 0x00393F 00:B92F: 19        .byte $19   ; 04
+
+
 
 tbl_B930:
 - D 1 - - - 0x003940 00:B930: 06        .byte $06   ; 00
@@ -12164,7 +12177,7 @@ C - - - - - 0x003ABD 00:BAAD: 85 18     STA ram_0018
 C - - - - - 0x003ABF 00:BAAF: A5 D2     LDA ram_00D2
 C - - - - - 0x003AC1 00:BAB1: 85 1A     STA ram_001A
 C - - - - - 0x003AC3 00:BAB3: A2 00     LDX #$00
-loc_BAB5:
+loc_BAB5_loop:
 C D 1 - - - 0x003AC5 00:BAB5: BD 82 07  LDA ram_0782_unk,X
 C - - - - - 0x003AC8 00:BAB8: D0 03     BNE bra_BABD
 C - - - - - 0x003ACA 00:BABA: 4C 91 BB  JMP loc_BB91
@@ -12290,7 +12303,7 @@ loc_BB91:
 C D 1 - - - 0x003BA1 00:BB91: E8        INX
 C - - - - - 0x003BA2 00:BB92: E0 02     CPX #$02
 C - - - - - 0x003BA4 00:BB94: F0 17     BEQ bra_BBAD
-C - - - - - 0x003BA6 00:BB96: 4C B5 BA  JMP loc_BAB5
+C - - - - - 0x003BA6 00:BB96: 4C B5 BA  JMP loc_BAB5_loop
 
 
 

@@ -1338,11 +1338,15 @@ tbl_A82C:
 - D 1 - - - 0x00A83E 02:A82E: 45        .byte $45   ; 02
 - D 1 - - - 0x00A83F 02:A82F: 62        .byte $62   ; 03
 
+
+
 tbl_A830:
 - - - - - - 0x00A840 02:A830: 1B        .byte $1B   ; 00
 - D 1 - - - 0x00A841 02:A831: 38        .byte $38   ; 01
 - - - - - - 0x00A842 02:A832: 1D        .byte $1D   ; 02
 - D 1 - - - 0x00A843 02:A833: 39        .byte $39   ; 03
+
+
 
 tbl_A834:
 - - - - - - 0x00A844 02:A834: 1A        .byte $1A   ; 00
@@ -1350,11 +1354,15 @@ tbl_A834:
 - - - - - - 0x00A846 02:A836: 4A        .byte $4A   ; 02
 - - - - - - 0x00A847 02:A837: 67        .byte $67   ; 03
 
+
+
 tbl_A838:
 - - - - - - 0x00A848 02:A838: 19        .byte $19   ; 00
 - D 1 - - - 0x00A849 02:A839: 36        .byte $36   ; 01
 - - - - - - 0x00A84A 02:A83A: 1B        .byte $1B   ; 02
 - - - - - - 0x00A84B 02:A83B: 37        .byte $37   ; 03
+
+
 
 tbl_A83C:
 - D 1 - - - 0x00A84C 02:A83C: 18        .byte $18   ; 00
@@ -1988,6 +1996,8 @@ tbl_AB15:
 - D 1 - - - 0x00AB2B 02:AB1B: 00        .byte $00   ; 06
 - - - - - - 0x00AB2C 02:AB1C: 44        .byte $44   ; 07
 
+
+
 tbl_AB1D:
 - D 1 - - - 0x00AB2D 02:AB1D: 11        .byte $11   ; 00
 - D 1 - - - 0x00AB2E 02:AB1E: 11        .byte $11   ; 01
@@ -2242,7 +2252,7 @@ C - - - - - 0x00ACD1 02:ACC1: 60        RTS
 bra_ACC2:
 C - - - - - 0x00ACD2 02:ACC2: 20 62 D0  JSR sub_0x01D072
 C - - - - - 0x00ACD5 02:ACC5: A9 05     LDA #$05
-C - - - - - 0x00ACD7 02:ACC7: 85 20     STA ram_0020
+C - - - - - 0x00ACD7 02:ACC7: 85 20     STA ram_script_hi
 C - - - - - 0x00ACD9 02:ACC9: A9 30     LDA #$30
 C - - - - - 0x00ACDB 02:ACCB: 85 4A     STA ram_004A
 C - - - - - 0x00ACDD 02:ACCD: 60        RTS
@@ -2707,6 +2717,9 @@ C - - - - - 0x00AFC1 02:AFB1: 29 7F     AND #$7F
 C - - - - - 0x00AFC3 02:AFB3: 9D 34 06  STA ram_obj_animation_hi,X
 bra_AFB6_RTS:
 C - - - - - 0x00AFC6 02:AFB6: 60        RTS
+
+
+
 sub_AFB7:
 C - - - - - 0x00AFC7 02:AFB7: A4 05     LDY ram_0005
 C - - - - - 0x00AFC9 02:AFB9: B9 CA AF  LDA tbl_AFCA,Y
@@ -2716,6 +2729,9 @@ C - - - - - 0x00AFD0 02:AFC0: 85 00     STA ram_0000
 C - - - - - 0x00AFD2 02:AFC2: B9 23 B0  LDA tbl_B022 + $01,Y
 C - - - - - 0x00AFD5 02:AFC5: 85 01     STA ram_0001
 C - - - - - 0x00AFD7 02:AFC7: 6C 00 00  JMP (ram_0000)
+
+
+
 tbl_AFCA:
 - D 1 - - - 0x00AFDA 02:AFCA: 00        .byte $00   ; 
 - D 1 - - - 0x00AFDB 02:AFCB: 02        .byte $02   ; 
@@ -2756,6 +2772,9 @@ tbl_AFCA:
 - D 1 - - - 0x00AFFE 02:AFEE: 0A        .byte $0A   ; 
 - D 1 - - - 0x00AFFF 02:AFEF: 04        .byte $04   ; 
 - - - - - - 0x00B000 02:AFF0: 02        .byte $02   ; 
+
+
+
 tbl_AFF1:
 - - - - - - 0x00B001 02:AFF1: 02        .byte $02   ; 
 - D 1 - - - 0x00B002 02:AFF2: 00        .byte $00   ; 
@@ -2781,6 +2800,9 @@ tbl_AFF1:
 - D 1 - - - 0x00B016 02:B006: 24        .byte $24   ; 
 - D 1 - - - 0x00B017 02:B007: 25        .byte $25   ; 
 - D 1 - - - 0x00B018 02:B008: 26        .byte $26   ; 
+
+
+
 tbl_B009:
 - D 1 - - - 0x00B019 02:B009: 27        .byte $27   ; 
 - D 1 - - - 0x00B01A 02:B00A: 01        .byte $01   ; 
@@ -4481,6 +4503,8 @@ tbl_B834:
 - D 1 - - - 0x00B847 02:B837: 00        .byte $00   ; 05
 - D 1 - - - 0x00B848 02:B838: 00        .byte $00   ; 06
 - D 1 - - - 0x00B849 02:B839: 0A        .byte $0A   ; 07
+
+
 
 tbl_B83A:
 - D 1 - - - 0x00B84A 02:B83A: 00        .byte $00   ; 02

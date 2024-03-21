@@ -6257,6 +6257,8 @@ tbl_BECD:
 - - - - - - 0x005EE5 01:BED5: C0        .byte $C0   ; EC
 - - - - - - 0x005EE6 01:BED6: BF        .byte $BF   ; ED
 
+
+
 tbl_BED7:
 - D 1 - - - 0x005EE7 01:BED7: 00        .byte $00   ; E4
 - - - - - - 0x005EE8 01:BED8: E0        .byte $E0   ; E5
@@ -6268,6 +6270,8 @@ tbl_BED7:
 - D 1 - - - 0x005EEE 01:BEDE: E0        .byte $E0   ; EB
 - - - - - - 0x005EEF 01:BEDF: 00        .byte $00   ; EC
 - - - - - - 0x005EF0 01:BEE0: E0        .byte $E0   ; ED
+
+
 
 tbl_BEE1:
 - - - - - - 0x005EF1 01:BEE1: 00        .byte $00   ; E4
@@ -6308,6 +6312,8 @@ tbl_BEF5:
 - D 1 - - - 0x005F0D 01:BEFD: FD        .byte $FD   ; 08
 - D 1 - - - 0x005F0E 01:BEFE: F7        .byte $F7   ; 09
 
+
+
 tbl_BEFF:
 - D 1 - - - 0x005F0F 01:BEFF: 21        .byte $21   ; 00
 - D 1 - - - 0x005F10 01:BF00: 30        .byte $30   ; 01
@@ -6319,6 +6325,8 @@ tbl_BEFF:
 - D 1 - - - 0x005F16 01:BF06: 11        .byte $11   ; 07
 - D 1 - - - 0x005F17 01:BF07: 40        .byte $40   ; 08
 - D 1 - - - 0x005F18 01:BF08: 00        .byte $00   ; 09
+
+
 
 tbl_BF09:
 - D 1 - - - 0x005F19 01:BF09: 20        .byte $20   ; 00
@@ -6466,10 +6474,14 @@ tbl_BFF0:
 - - - - - - 0x006001 01:BFF1: ED        .byte $ED   ; 01
 - - - - - - 0x006002 01:BFF2: 0D        .byte $0D   ; 02
 
+
+
 tbl_BFF3:
 - - - - - - 0x006003 01:BFF3: FB        .byte $FB   ; 00
 - - - - - - 0x006004 01:BFF4: 1A        .byte $1A   ; 01
 - - - - - - 0x006005 01:BFF5: 1A        .byte $1A   ; 02
+
+
 
 tbl_BFF6_index:
 - - - - - - 0x006006 01:BFF6: 00        .byte $00   ; 00
