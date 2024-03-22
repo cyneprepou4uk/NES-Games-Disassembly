@@ -1,7 +1,7 @@
 ; keep your global constant values inside this file
 
 ; MISC
-; con_something                         = $00 ; 
+con_obj_limit                           = $22 ; object indexes are 00-21 including 00-01 for players
 
 
 
@@ -25,7 +25,8 @@ con_btns_LR                             = con_btn_Left + con_btn_Right          
 
 
 
-; 0x00038C (need comments)
+; ram_function_id
+; need comments 0x00038C 0x000378
 ; con_837C_00                           = $00 ; 
 con_837C_title_screen                   = $02 ; 
 con_837C_cutscene                       = $04 ; after title screen
@@ -74,3 +75,17 @@ con_obj_id_1D                           = $1D ;
 con_obj_id_1E                           = $1E ; 
 con_obj_id_1F                           = $1F ; 
 con_obj_id_20                           = $20 ; 
+
+
+
+; ram_obj_flags
+; need comments 0x0032E9 0x0032D6 0x000EA6 0x000E93
+con_obj_flag_00                         = $00 ; 
+con_obj_flag_death                      = $01 ; death animation
+con_obj_flag_facing_left                = $02 ; if not set, object is facing right
+con_obj_flag_04                         = $04 ; 
+con_obj_flag_08                         = $08 ; 
+con_obj_flag_10                         = $10 ; 
+con_obj_flag_20                         = $20 ; 
+con_obj_flag_40                         = $40 ; unused? 0x0031F3 0x003235
+con_obj_flag_exists                     = $80 ; 
