@@ -56,3 +56,14 @@ con_sfx_3_kill_seal_or_ice              = $08 ; hit seal or ice piece with hamme
 
 
 
+; todo
+; ram_plr_handler
+; con_plr_sub_01                          = $01  ; 
+; con_plr_sub_02                          = $02  ; 
+; con_plr_sub_03                          = $03  ; 
+; con_plr_sub_04                          = $04  ; 
+; con_plr_sub_05                          = $05  ; 
+; con_plr_sub_06                          = $06  ; 
+; con_plr_sub_07                          = $07  ; 
+; con_plr_sub_08                          = $08  ; 
+; con_plr_sub_09                          = $09  ; 
