@@ -12,7 +12,12 @@ local time = os.clock()       --record script execution time
 --вспомогательная подпрограмма для вывода возможных ошибок при работе с файлами
 --potential file error subroutine like "can't access file" or something
 local function PrintError(err)
-    print("\n"..err.."\nPress Enter to exit")
+    print()
+    print(err)
+    print()
+    print("Check main console for errors")
+    print()
+    print("Press Enter to exit")
     io.read()
 end
 
