@@ -164,6 +164,41 @@ con_0361_08                             = $08 ;
 
 
 
+; ram_063F_flags
+con_063F_00                             = $00 ; 
+con_063F_01                             = $01 ; 
+con_063F_02                             = $02 ; 
+con_063F_80                             = $80 ; 
+
+
+
+; ram_0728_se_flags
+con_0728_00                             = $00 ;
+; con_0728_01                           = $01 ; unused
+; con_0728_02                           = $02 ; unused
+con_0728_04                             = $04 ; 
+con_0728_08                             = $08 ; 
+con_0728_10                             = $10 ; 
+con_0728_20                             = $20 ; 
+con_0728_40                             = $40 ; 
+con_0728_80                             = $80 ; 
+
+
+
+; ram_0730_se_flags
+con_0730_00                             = $00 ;
+con_0730_01                             = $01 ; 
+con_0730_02                             = $02 ; 
+con_0730_04                             = $04 ; 
+con_0730_08                             = $08 ; 
+con_0730_10                             = $10 ; 
+; con_0730_20                           = $20 ; unused
+; con_0730_40                           = $40 ; unused
+con_0730_80                             = $80 ; 
+
+
+
+
 ; ram_state
 ; need comments at 0x0080DA 0x00BA42 0x0180B4
 con_state_idle                          = $00 ; 80 idle while standing
@@ -176,7 +211,7 @@ con_state_jump_up                       = $06 ; 86 jump up
 con_state_fall_from_platform            = $07 ; 87 player/enemy drops down from a platform ald lands on his legs
 con_state_jump_foward_player            = $08 ; 88 jumping foward (player)/jumping up (enemy)
 con_state_jump_foward_enemy             = $09 ; 89 jumping foward (enemy)
-; con_state_0A                          = $0A ; 8A 
+; con_state_0A                          = $0A ; 8A unused
 con_state_ninja_jump_low                = $0B ; 8B ninja jump low
 con_state_ninja_jump_high               = $0C ; 8C ninja high jump high + throw star
 con_state_somersault_run                = $0D ; 8D somersault running (williams)
@@ -221,7 +256,7 @@ con_state_33                            = $33 ; B3 player/enemy kick
 con_state_34                            = $34 ; B4 chin taimei undercut
 con_state_35                            = $35 ; B5 jump kick (player normal kick in midair)
 con_state_36                            = $36 ; B6 shadow warrior spin punch on the ground
-; con_state_37                          = $37 ; B7 
+; con_state_37                          = $37 ; B7 unused
 con_state_38                            = $38 ; B8 enemy jump + kick
 con_state_cyclone_kick                  = $39 ; B9 cyclone kick (in midair)
 con_state_high_jump_kick                = $3A ; BA high jump kick (player knee)
@@ -262,11 +297,11 @@ con_state_5C                            = $5C ; DC throw baton
 con_state_5D                            = $5D ; DD shadow warrior spin punch + jump
 con_state_5E                            = $5E ; DE shadow warrior several punches in a row
 con_state_5F                            = $5F ; DF failed hair grabif you can't grab enemy because he has a lot of hp
-; con_state_60                          = $60 ; E0 
-; con_state_61                          = $61 ; E1 
-; con_state_62                          = $62 ; E2 
-; con_state_63                          = $63 ; E3 
-; con_state_64                          = $64 ; E4 
+; con_state_60                          = $60 ; E0 unused
+; con_state_61                          = $61 ; E1 unused
+; con_state_62                          = $62 ; E2 unused
+; con_state_63                          = $63 ; E3 unused
+; con_state_64                          = $64 ; E4 unused
 con_state_weapon_on_the_ground          = $65 ; E5 weapon is on the ground (after it was falling)
 con_state_66                            = $66 ; E6 fire grenade explodes
 con_state_67                            = $67 ; E7 dropping fire from torch explodes
@@ -287,13 +322,13 @@ con_state_75                            = $75 ; F5 thrown boomerang explodes
 con_state_76                            = $76 ; F6 esplosion of ninja thrown knife/ninja star/throwing knife/flying spike
 con_state_77                            = $77 ; F7 baton was thrown (projectile)
 con_state_78                            = $78 ; F8 ninja star was thrown (projectile)
-; con_state_79                          = $79 ; F9 
-; con_state_7A                          = $7A ; FA 
-; con_state_7B                          = $7B ; FB 
-; con_state_7C                          = $7C ; FC 
-; con_state_7D                          = $7D ; FD 
+; con_state_79                          = $79 ; F9 unused
+; con_state_7A                          = $7A ; FA unused
+; con_state_7B                          = $7B ; FB unused
+; con_state_7C                          = $7C ; FC unused
+; con_state_7D                          = $7D ; FD unused
 con_state_7E                            = $7E ; FE something to do with weapon explosion
-con_state_grabbed                       = $7F ; FF enemy is hair grabbed/player is grabbed by bolo or burnov/weapon is picked upenemy was grabbed by hair/weapon was picked up by player or enemy
+con_state_hair_grabbed                  = $7F ; FF enemy is hair grabbed/player is grabbed by bolo or burnov/weapon is picked upenemy was grabbed by hair/weapon was picked up by player or enemy
 
 
 
@@ -462,29 +497,29 @@ con_0036_80                             = $80 ;
 
 
 
-; ram_003C_obj
-con_003C_00                             = $00 ; 
-con_003C_01                             = $01 ; 
-con_003C_02                             = $02 ; weapon/helicopter bullets
-; con_003C_04                           = $04 ; 
-; con_003C_08                           = $08 ; 
-con_003C_invisible                      = $10 ; invisible (used for shadow warrior, but can be applied to any object)
-con_003C_20                             = $20 ; wwhite hand cursor A0/enemy is spawned off screen and waiting for you A1/elevator A2
-con_003C_40                             = $40 ; 
-con_003C_80                             = $80 ; 
+; ram_003C_obj_flags
+con_003C_flag_00                        = $00 ; 
+con_003C_flag_01                        = $01 ; enemy flag?
+con_003C_flag_02                        = $02 ; weapon/helicopter bullets
+; con_003C_flag_04                      = $04 ; 
+; con_003C_flag_08                      = $08 ; 
+con_003C_flag_invisible                 = $10 ; invisible (used for shadow warrior, but can be applied to any object)
+con_003C_flag_20                        = $20 ; white hand cursor A0/enemy is spawned off screen and waiting for you A1/elevator A2
+con_003C_flag_40                        = $40 ; 
+con_003C_flag_exist                     = $80 ; object exists
 
 
 
-; for ram_004A_obj
-con_004A_00                             = $00 ; 
-con_004A_01                             = $01 ; 
-con_004A_02                             = $02 ; 
-con_004A_04                             = $04 ; 
-con_004A_08                             = $08 ; 
-; con_004A_10                           = $10 ; 
-con_004A_20                             = $20 ; 
-con_004A_40                             = $40 ; 
-con_004A_80                             = $80 ; 
+; for ram_004A_obj_flags
+con_004A_flag_00                        = $00 ; 
+con_004A_flag_01                        = $01 ; 
+con_004A_flag_hair_grabbed              = $02 ; enemy is hair grabbed
+con_004A_flag_04                        = $04 ; 
+con_004A_flag_not_alive                 = $08 ; ? if 2nd player can't be spawned because 1p option was selected
+; con_004A_flag_10                      = $10 ; 
+con_004A_flag_20                        = $20 ; 
+con_004A_flag_stunned                   = $40 ; player/enemy is stunned after hit
+con_004A_flag_knocked_down              = $80 ; player/enemy is knocked down after hit
 
 
 

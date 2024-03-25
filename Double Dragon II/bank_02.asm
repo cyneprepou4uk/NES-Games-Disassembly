@@ -14,15 +14,25 @@
 
 
 sub_0x008010:
+; bzk optimize
 C D 0 - - - 0x008010 02:8000: 4C 0E 80  JMP loc_800E
 
+
+
 sub_0x008013:
+; bzk optimize
 C - - - - - 0x008013 02:8003: 4C 00 AD  JMP loc_AD00
 
+
+
 sub_0x008016:
+; bzk optimize
 C - - - - - 0x008016 02:8006: 4C 00 A8  JMP loc_A800
 
+
+
 sub_0x008019:
+; bzk optimize
 C - - - - - 0x008019 02:8009: 4C CF AC  JMP loc_ACCF
 
 
@@ -36,11 +46,11 @@ C D 0 - - - 0x00801E 02:800E: 20 86 A0  JSR sub_A086
 C - - - - - 0x008021 02:8011: A5 C1     LDA ram_obj_id + $02
 C - - - - - 0x008023 02:8013: C9 11     CMP #con_obj_shadow_warrior
 C - - - - - 0x008025 02:8015: D0 41     BNE bra_8058
-C - - - - - 0x008027 02:8017: A5 3E     LDA ram_003C_obj + $02
-C - - - - - 0x008029 02:8019: 10 3D     BPL bra_8058    ; if not con_003C_80
-C - - - - - 0x00802B 02:801B: A5 4C     LDA ram_004A_obj + $02
-C - - - - - 0x00802D 02:801D: 29 C0     AND #con_004A_40 + con_004A_80
-C - - - - - 0x00802F 02:801F: C9 C0     CMP #con_004A_40 + con_004A_80
+C - - - - - 0x008027 02:8017: A5 3E     LDA ram_003C_obj_flags + $02
+C - - - - - 0x008029 02:8019: 10 3D     BPL bra_8058    ; if not con_003C_flag_exist
+C - - - - - 0x00802B 02:801B: A5 4C     LDA ram_004A_obj_flags + $02
+C - - - - - 0x00802D 02:801D: 29 C0     AND #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x00802F 02:801F: C9 C0     CMP #con_004A_flag_stunned + con_004A_flag_knocked_down
 C - - - - - 0x008031 02:8021: D0 35     BNE bra_8058
 C - - - - - 0x008033 02:8023: AD 20 04  LDA ram_hp + $02
 C - - - - - 0x008036 02:8026: D0 30     BNE bra_8058    ; if still alive
@@ -72,9 +82,9 @@ C - - - - - 0x008067 02:8057: 60        RTS
 bra_8058:
 C - - - - - 0x008068 02:8058: A0 00     LDY #$00
 bra_805A_loop:
-C - - - - - 0x00806A 02:805A: B9 3C 00  LDA a: ram_003C_obj,Y ; 003C 003D 003E 003F 0040 0041 0042
-C - - - - - 0x00806D 02:805D: 10 0B     BPL bra_806A    ; if not con_003C_80
-C - - - - - 0x00806F 02:805F: 29 20     AND #con_003C_20
+C - - - - - 0x00806A 02:805A: B9 3C 00  LDA a: ram_003C_obj_flags,Y ; 003C 003D 003E 003F 0040 0041 0042
+C - - - - - 0x00806D 02:805D: 10 0B     BPL bra_806A    ; if not con_003C_flag_exist
+C - - - - - 0x00806F 02:805F: 29 20     AND #con_003C_flag_20
 C - - - - - 0x008071 02:8061: D0 07     BNE bra_806A
 C - - - - - 0x008073 02:8063: 98        TYA
 C - - - - - 0x008074 02:8064: 48        PHA
@@ -87,8 +97,8 @@ C - - - - - 0x00807B 02:806B: C0 07     CPY #$07
 C - - - - - 0x00807D 02:806D: 90 EB     BCC bra_805A_loop
 C - - - - - 0x00807F 02:806F: A2 00     LDX #$00
 bra_8071_loop:
-C - - - - - 0x008081 02:8071: B5 3C     LDA ram_003C_obj,X ; 003C 003D
-C - - - - - 0x008083 02:8073: 10 2F     BPL bra_80A4    ; if not con_003C_80
+C - - - - - 0x008081 02:8071: B5 3C     LDA ram_003C_obj_flags,X ; 003C 003D
+C - - - - - 0x008083 02:8073: 10 2F     BPL bra_80A4    ; if not con_003C_flag_exist
 C - - - - - 0x008085 02:8075: BD CC 03  LDA ram_plr_invincibility_timer,X
 C - - - - - 0x008088 02:8078: C9 FF     CMP #$FF
 C - - - - - 0x00808A 02:807A: F0 28     BEQ bra_80A4
@@ -98,7 +108,7 @@ C - - - - - 0x008090 02:8080: C9 7F     CMP #con_anim_id + $7F
 C - - - - - 0x008092 02:8082: D0 0D     BNE bra_8091
 C - - - - - 0x008094 02:8084: B5 43     LDA ram_state,X
 C - - - - - 0x008096 02:8086: 29 7F     AND #$7F
-C - - - - - 0x008098 02:8088: C9 7F     CMP #con_state_grabbed
+C - - - - - 0x008098 02:8088: C9 7F     CMP #con_state_hair_grabbed
 C - - - - - 0x00809A 02:808A: F0 15     BEQ bra_80A1
 C - - - - - 0x00809C 02:808C: BD CE 03  LDA ram_copy_animation_id,X
 C - - - - - 0x00809F 02:808F: 95 C7     STA ram_animation_id,X
@@ -284,9 +294,9 @@ C - - - - - 0x0081E1 02:81D1: B5 43     LDA ram_state,X
 C - - - - - 0x0081E3 02:81D3: 30 16     BMI bra_81EB
 C - - - - - 0x0081E5 02:81D5: 09 80     ORA #$80
 C - - - - - 0x0081E7 02:81D7: 95 43     STA ram_state,X
-C - - - - - 0x0081E9 02:81D9: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x0081EB 02:81DB: 29 3C     AND #(con_004A_40 + con_004A_80 + con_004A_01 + con_004A_02) ^ $FF
-C - - - - - 0x0081ED 02:81DD: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0081E9 02:81D9: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x0081EB 02:81DB: 29 3C     AND #(con_004A_flag_stunned + con_004A_flag_knocked_down + con_004A_flag_01 + con_004A_flag_hair_grabbed) ^ $FF
+C - - - - - 0x0081ED 02:81DD: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0081EF 02:81DF: B5 C7     LDA ram_animation_id,X
 C - - - - - 0x0081F1 02:81E1: 29 7F     AND #$7F
 C - - - - - 0x0081F3 02:81E3: C9 03     CMP #$03
@@ -304,9 +314,9 @@ ofs_000_81F2_01_walking:
 C - - J - - 0x008202 02:81F2: B5 43     LDA ram_state,X
 C - - - - - 0x008204 02:81F4: 30 23     BMI bra_8219
 C - - - - - 0x008206 02:81F6: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
-C - - - - - 0x008209 02:81F9: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00820B 02:81FB: 29 3E     AND #(con_004A_40 + con_004A_80 + con_004A_01) ^ $FF
-C - - - - - 0x00820D 02:81FD: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008209 02:81F9: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00820B 02:81FB: 29 3E     AND #(con_004A_flag_stunned + con_004A_flag_knocked_down + con_004A_flag_01) ^ $FF
+C - - - - - 0x00820D 02:81FD: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x00820F 02:81FF: B4 BF     LDY ram_obj_id,X
 C - - - - - 0x008211 02:8201: B9 40 82  LDA tbl_8240,Y
 C - - - - - 0x008214 02:8204: 9D 16 03  STA ram_0316_obj,X
@@ -368,18 +378,18 @@ tbl_8240:
 
 
 tbl_8254_animation_counter:
-- D 0 - - - 0x008264 02:8254: 01        .byte $01   ; 00
-- D 0 - - - 0x008265 02:8255: 02        .byte $02   ; 01
-- D 0 - - - 0x008266 02:8256: 01        .byte $01   ; 02
-- - - - - - 0x008267 02:8257: 00        .byte $00   ; 03
+- D 0 - - - 0x008264 02:8254: 01        .byte $01   ; 00 
+- D 0 - - - 0x008265 02:8255: 02        .byte $02   ; 01 
+- D 0 - - - 0x008266 02:8256: 01        .byte $01   ; 02 
+- - - - - - 0x008267 02:8257: 00        .byte $00   ; 03 
 
 
 
 tbl_8258_animation_id:
-- D 0 - - - 0x008268 02:8258: 00        .byte con_anim_id + $00   ; 00
-- D 0 - - - 0x008269 02:8259: 01        .byte con_anim_id + $01   ; 01
-- D 0 - - - 0x00826A 02:825A: 02        .byte con_anim_id + $02   ; 02
-- D 0 - - - 0x00826B 02:825B: 01        .byte con_anim_id + $01   ; 03
+- D 0 - - - 0x008268 02:8258: 00        .byte con_anim_id + $00   ; 00 
+- D 0 - - - 0x008269 02:8259: 01        .byte con_anim_id + $01   ; 01 
+- D 0 - - - 0x00826A 02:825A: 02        .byte con_anim_id + $02   ; 02 
+- D 0 - - - 0x00826B 02:825B: 01        .byte con_anim_id + $01   ; 03 
 
 
 
@@ -552,9 +562,9 @@ C - - - - - 0x008362 02:8352: A9 09     LDA #$09
 C - - - - - 0x008364 02:8354: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x008367 02:8357: A9 05     LDA #con_anim_id + $05
 C - - - - - 0x008369 02:8359: 95 C7     STA ram_animation_id,X
-C - - - - - 0x00836B 02:835B: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00836D 02:835D: 09 80     ORA #con_004A_80
-C - - - - - 0x00836F 02:835F: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x00836B 02:835B: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00836D 02:835D: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x00836F 02:835F: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x008371 02:8361: A9 1D     LDA #con_sfx_jump
 C - - - - - 0x008373 02:8363: 20 06 C0  JSR sub_0x01C016_play_sound
 bra_8366:
@@ -576,9 +586,9 @@ C - - - - - 0x00838F 02:837F: A9 03     LDA #$03
 C - - - - - 0x008391 02:8381: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x008394 02:8384: A9 05     LDA #con_anim_id + $05
 C - - - - - 0x008396 02:8386: 95 C7     STA ram_animation_id,X
-C - - - - - 0x008398 02:8388: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00839A 02:838A: 09 80     ORA #con_004A_80
-C - - - - - 0x00839C 02:838C: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008398 02:8388: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00839A 02:838A: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x00839C 02:838C: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x00839E 02:838E: A9 1D     LDA #con_sfx_jump
 C - - - - - 0x0083A0 02:8390: 20 06 C0  JSR sub_0x01C016_play_sound
 C - - - - - 0x0083A3 02:8393: A9 0A     LDA #$0A
@@ -615,9 +625,9 @@ C - - - - - 0x0083DA 02:83CA: A9 09     LDA #$09
 C - - - - - 0x0083DC 02:83CC: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x0083DF 02:83CF: A9 05     LDA #con_anim_id + $05
 C - - - - - 0x0083E1 02:83D1: 95 C7     STA ram_animation_id,X
-C - - - - - 0x0083E3 02:83D3: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x0083E5 02:83D5: 09 80     ORA #con_004A_80
-C - - - - - 0x0083E7 02:83D7: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0083E3 02:83D3: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x0083E5 02:83D5: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x0083E7 02:83D7: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0083E9 02:83D9: A9 1D     LDA #con_sfx_jump
 C - - - - - 0x0083EB 02:83DB: 20 06 C0  JSR sub_0x01C016_play_sound
 C - - - - - 0x0083EE 02:83DE: E0 02     CPX #$02
@@ -647,9 +657,9 @@ C - - - - - 0x008418 02:8408: A9 08     LDA #$08
 C - - - - - 0x00841A 02:840A: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x00841D 02:840D: A9 05     LDA #con_anim_id + $05
 C - - - - - 0x00841F 02:840F: 95 C7     STA ram_animation_id,X
-C - - - - - 0x008421 02:8411: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x008423 02:8413: 09 80     ORA #con_004A_80
-C - - - - - 0x008425 02:8415: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008421 02:8411: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x008423 02:8413: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x008425 02:8415: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x008427 02:8417: A9 1D     LDA #con_sfx_jump
 C - - - - - 0x008429 02:8419: 20 06 C0  JSR sub_0x01C016_play_sound
 bra_841C:
@@ -671,9 +681,9 @@ ofs_000_8426_0A:
 - - - - - - 0x008447 02:8437: 9D 25 03  STA ram_obj_gravity_hi,X
 - - - - - - 0x00844A 02:843A: A9 05     LDA #con_anim_id + $05
 - - - - - - 0x00844C 02:843C: 95 C7     STA ram_animation_id,X
-- - - - - - 0x00844E 02:843E: B5 4A     LDA ram_004A_obj,X
-- - - - - - 0x008450 02:8440: 09 80     ORA #con_004A_80
-- - - - - - 0x008452 02:8442: 95 4A     STA ram_004A_obj,X
+- - - - - - 0x00844E 02:843E: B5 4A     LDA ram_004A_obj_flags,X
+- - - - - - 0x008450 02:8440: 09 80     ORA #con_004A_flag_knocked_down
+- - - - - - 0x008452 02:8442: 95 4A     STA ram_004A_obj_flags,X
 - - - - - - 0x008454 02:8444: A9 1D     LDA #con_sfx_jump
 - - - - - - 0x008456 02:8446: 20 06 C0  JSR sub_0x01C016_play_sound
 bra_8449:
@@ -691,9 +701,9 @@ C - - - - - 0x008467 02:8457: 20 39 A0  JSR sub_A039_acknowledge_current_state_a
 C - - - - - 0x00846A 02:845A: 20 69 A0  JSR sub_A069
 C - - - - - 0x00846D 02:845D: A9 08     LDA #$08
 C - - - - - 0x00846F 02:845F: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x008472 02:8462: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x008474 02:8464: 09 80     ORA #con_004A_80
-C - - - - - 0x008476 02:8466: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008472 02:8462: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x008474 02:8464: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x008476 02:8466: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x008478 02:8468: A9 03     LDA #$03
 C - - - - - 0x00847A 02:846A: 9D 16 03  STA ram_0316_obj,X
 C - - - - - 0x00847D 02:846D: A0 80     LDY #$80
@@ -703,7 +713,7 @@ C - - - - - 0x008484 02:8474: 90 02     BCC bra_8478
 C - - - - - 0x008486 02:8476: A0 00     LDY #$00
 bra_8478:
 C - - - - - 0x008488 02:8478: 98        TYA
-C - - - - - 0x008489 02:8479: 95 63     STA ram_0063_obj,X
+C - - - - - 0x008489 02:8479: 95 63     STA ram_0063_obj_facing,X
 C - - - - - 0x00848B 02:847B: B5 AD     LDA ram_pos_Z_lo,X
 C - - - - - 0x00848D 02:847D: 18        CLC
 C - - - - - 0x00848E 02:847E: 69 0C     ADC #< $000C
@@ -744,9 +754,9 @@ C - - - - - 0x0084AF 02:849F: 20 39 A0  JSR sub_A039_acknowledge_current_state_a
 C - - - - - 0x0084B2 02:84A2: 20 69 A0  JSR sub_A069
 C - - - - - 0x0084B5 02:84A5: A9 0D     LDA #$0D
 C - - - - - 0x0084B7 02:84A7: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x0084BA 02:84AA: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x0084BC 02:84AC: 09 80     ORA #con_004A_80
-C - - - - - 0x0084BE 02:84AE: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0084BA 02:84AA: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x0084BC 02:84AC: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x0084BE 02:84AE: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0084C0 02:84B0: A9 0A     LDA #$0A
 C - - - - - 0x0084C2 02:84B2: 9D 16 03  STA ram_0316_obj,X
 C - - - - - 0x0084C5 02:84B5: A0 80     LDY #$80
@@ -756,7 +766,7 @@ C - - - - - 0x0084CC 02:84BC: 90 02     BCC bra_84C0
 C - - - - - 0x0084CE 02:84BE: A0 00     LDY #$00
 bra_84C0:
 C - - - - - 0x0084D0 02:84C0: 98        TYA
-C - - - - - 0x0084D1 02:84C1: 95 63     STA ram_0063_obj,X
+C - - - - - 0x0084D1 02:84C1: 95 63     STA ram_0063_obj_facing,X
 C - - - - - 0x0084D3 02:84C3: B5 AD     LDA ram_pos_Z_lo,X
 C - - - - - 0x0084D5 02:84C5: 18        CLC
 C - - - - - 0x0084D6 02:84C6: 69 0C     ADC #< $000C
@@ -783,9 +793,9 @@ C - - - - - 0x008500 02:84F0: 29 7F     AND #$7F
 C - - - - - 0x008502 02:84F2: 9D 4A 04  STA ram_044A_obj,X
 C - - - - - 0x008505 02:84F5: A8        TAY
 C - - - - - 0x008506 02:84F6: 20 66 A4  JSR sub_A466_copy_data_between_two_objects
-C - - - - - 0x008509 02:84F9: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x00850C 02:84FC: 29 DF     AND #con_004A_20 ^ $FF
-C - - - - - 0x00850E 02:84FE: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x008509 02:84F9: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x00850C 02:84FC: 29 DF     AND #con_004A_flag_20 ^ $FF
+C - - - - - 0x00850E 02:84FE: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x008511 02:8501: 8A        TXA
 C - - - - - 0x008512 02:8502: 99 4A 04  STA ram_044A_obj,Y
 C - - - - - 0x008515 02:8505: A9 00     LDA #$00
@@ -850,7 +860,7 @@ C - - - - - 0x008574 02:8564: B5 5C     LDA ram_animation_counter,X
 C - - - - - 0x008576 02:8566: A8        TAY
 C - - - - - 0x008577 02:8567: B9 A7 85  LDA tbl_85A7,Y
 C - - - - - 0x00857A 02:856A: 85 29     STA ram_0029
-C - - - - - 0x00857C 02:856C: B5 63     LDA ram_0063_obj,X
+C - - - - - 0x00857C 02:856C: B5 63     LDA ram_0063_obj_facing,X
 C - - - - - 0x00857E 02:856E: 10 09     BPL bra_8579
 C - - - - - 0x008580 02:8570: A5 29     LDA ram_0029
 C - - - - - 0x008582 02:8572: 49 FF     EOR #$FF
@@ -864,15 +874,15 @@ C - - - - - 0x00858B 02:857B: 20 EC 9F  JSR sub_9FEC
 bra_857E:
 C - - - - - 0x00858E 02:857E: A9 03     LDA #con_A48A_anim_03
 C - - - - - 0x008590 02:8580: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
-C - - - - - 0x008593 02:8583: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x008595 02:8585: 29 01     AND #con_004A_01
+C - - - - - 0x008593 02:8583: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x008595 02:8585: 29 01     AND #con_004A_flag_01
 C - - - - - 0x008597 02:8587: F0 10     BEQ bra_8599_RTS
 C - - - - - 0x008599 02:8589: B5 5C     LDA ram_animation_counter,X
 C - - - - - 0x00859B 02:858B: C9 04     CMP #$04
 C - - - - - 0x00859D 02:858D: 90 0A     BCC bra_8599_RTS
-C - - - - - 0x00859F 02:858F: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x0085A1 02:8591: 29 FE     AND #con_004A_01 ^ $FF
-C - - - - - 0x0085A3 02:8593: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x00859F 02:858F: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x0085A1 02:8591: 29 FE     AND #con_004A_flag_01 ^ $FF
+C - - - - - 0x0085A3 02:8593: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0085A5 02:8595: A9 00     LDA #con_state_idle
 C - - - - - 0x0085A7 02:8597: 95 43     STA ram_state,X
 bra_8599_RTS:
@@ -916,9 +926,9 @@ ofs_000_85AE_0E_doppelganger_despawn:
 C - - J - - 0x0085BE 02:85AE: B5 43     LDA ram_state,X
 C - - - - - 0x0085C0 02:85B0: 30 0E     BMI bra_85C0
 C - - - - - 0x0085C2 02:85B2: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
-C - - - - - 0x0085C5 02:85B5: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x0085C7 02:85B7: 09 02     ORA #con_004A_02
-C - - - - - 0x0085C9 02:85B9: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0085C5 02:85B5: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x0085C7 02:85B7: 09 02     ORA #con_004A_flag_hair_grabbed
+C - - - - - 0x0085C9 02:85B9: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0085CB 02:85BB: A9 03     LDA #$03
 C - - - - - 0x0085CD 02:85BD: 9D 16 03  STA ram_0316_obj,X
 bra_85C0:
@@ -959,12 +969,12 @@ C - - - - - 0x0085F3 02:85E3: BD 54 04  LDA ram_0454_obj_aim,X
 C - - - - - 0x0085F6 02:85E6: A8        TAY
 C - - - - - 0x0085F7 02:85E7: B9 43 00  LDA a: ram_state,Y
 C - - - - - 0x0085FA 02:85EA: 10 16     BPL bra_8602
-C - - - - - 0x0085FC 02:85EC: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x0085FF 02:85EF: 29 C0     AND #con_004A_40 + con_004A_80
+C - - - - - 0x0085FC 02:85EC: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x0085FF 02:85EF: 29 C0     AND #con_004A_flag_stunned + con_004A_flag_knocked_down
 C - - - - - 0x008601 02:85F1: D0 0F     BNE bra_8602
-C - - - - - 0x008603 02:85F3: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x008606 02:85F6: 09 02     ORA #con_004A_02
-C - - - - - 0x008608 02:85F8: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x008603 02:85F3: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x008606 02:85F6: 09 02     ORA #con_004A_flag_hair_grabbed
+C - - - - - 0x008608 02:85F8: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x00860B 02:85FB: A9 40     LDA #con_state_40
 C - - - - - 0x00860D 02:85FD: 95 43     STA ram_state,X
 C - - - - - 0x00860F 02:85FF: 4C 06 86  JMP loc_8606_RTS
@@ -972,7 +982,7 @@ bra_8602:
 C - - - - - 0x008612 02:8602: A9 10     LDA #con_state_doppelganger_spawn
 C - - - - - 0x008614 02:8604: 95 43     STA ram_state,X
 bra_8606_RTS:
-loc_8606_RTS:
+loc_8606_RTS:   ; bzk optimize
 C D 0 - - - 0x008616 02:8606: 60        RTS
 
 
@@ -988,9 +998,9 @@ C - - - - - 0x008623 02:8613: A9 05     LDA #con_A48A_anim_05
 C - - - - - 0x008625 02:8615: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
 C - - - - - 0x008628 02:8618: B5 43     LDA ram_state,X
 C - - - - - 0x00862A 02:861A: D0 06     BNE bra_8622
-C - - - - - 0x00862C 02:861C: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00862E 02:861E: 29 FD     AND #con_004A_02 ^ $FF
-C - - - - - 0x008630 02:8620: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x00862C 02:861C: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00862E 02:861E: 29 FD     AND #con_004A_flag_hair_grabbed ^ $FF
+C - - - - - 0x008630 02:8620: 95 4A     STA ram_004A_obj_flags,X
 bra_8622:
 C - - - - - 0x008632 02:8622: 20 4B 9E  JSR sub_9E4B_move_object
 C - - - - - 0x008635 02:8625: 60        RTS
@@ -1024,15 +1034,15 @@ C - - - - - 0x00864D 02:863D: A9 06     LDA #con_anim_id + $06
 C - - - - - 0x00864F 02:863F: 95 C7     STA ram_animation_id,X
 C - - - - - 0x008651 02:8641: BD 4A 04  LDA ram_044A_obj,X
 C - - - - - 0x008654 02:8644: A8        TAY
-C - - - - - 0x008655 02:8645: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x008658 02:8648: 29 A0     AND #con_004A_80 + con_004A_20
+C - - - - - 0x008655 02:8645: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x008658 02:8648: 29 A0     AND #con_004A_flag_knocked_down + con_004A_flag_20
 C - - - - - 0x00865A 02:864A: D0 21     BNE bra_866D
 C - - - - - 0x00865C 02:864C: C0 04     CPY #$04
 C - - - - - 0x00865E 02:864E: 90 1D     BCC bra_866D
-C - - - - - 0x008660 02:8650: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x008663 02:8653: 09 20     ORA #con_004A_20
-C - - - - - 0x008665 02:8655: 99 4A 00  STA a: ram_004A_obj,Y
-C - - - - - 0x008668 02:8658: A9 7F     LDA #con_state_grabbed
+C - - - - - 0x008660 02:8650: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x008663 02:8653: 09 20     ORA #con_004A_flag_20
+C - - - - - 0x008665 02:8655: 99 4A 00  STA a: ram_004A_obj_flags,Y
+C - - - - - 0x008668 02:8658: A9 7F     LDA #con_state_hair_grabbed
 C - - - - - 0x00866A 02:865A: 99 43 00  STA a: ram_state,Y
 C - - - - - 0x00866D 02:865D: BD 46 04  LDA ram_0446_obj,X
 C - - - - - 0x008670 02:8660: 09 80     ORA #$80
@@ -1060,9 +1070,9 @@ C - - - - - 0x008692 02:8682: 9D 16 03  STA ram_0316_obj,X
 C - - - - - 0x008695 02:8685: 95 55     STA ram_animation_duration,X
 C - - - - - 0x008697 02:8687: A9 06     LDA #con_anim_id + $06
 C - - - - - 0x008699 02:8689: 95 C7     STA ram_animation_id,X
-C - - - - - 0x00869B 02:868B: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00869D 02:868D: 29 3F     AND #(con_004A_40 + con_004A_80) ^ $FF
-C - - - - - 0x00869F 02:868F: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x00869B 02:868B: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00869D 02:868D: 29 3F     AND #(con_004A_flag_stunned + con_004A_flag_knocked_down) ^ $FF
+C - - - - - 0x00869F 02:868F: 95 4A     STA ram_004A_obj_flags,X
 bra_8691:
 C - - - - - 0x0086A1 02:8691: F6 55     INC ram_animation_duration,X
 C - - - - - 0x0086A3 02:8693: B5 55     LDA ram_animation_duration,X
@@ -1083,9 +1093,9 @@ C - - - - - 0x0086B5 02:86A5: 09 80     ORA #$80
 C - - - - - 0x0086B7 02:86A7: 95 43     STA ram_state,X
 C - - - - - 0x0086B9 02:86A9: A9 05     LDA #con_anim_id + $05
 C - - - - - 0x0086BB 02:86AB: 95 C7     STA ram_animation_id,X
-C - - - - - 0x0086BD 02:86AD: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x0086BF 02:86AF: 09 80     ORA #con_004A_80
-C - - - - - 0x0086C1 02:86B1: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0086BD 02:86AD: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x0086BF 02:86AF: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x0086C1 02:86B1: 95 4A     STA ram_004A_obj_flags,X
 bra_86B3:
 C - - - - - 0x0086C3 02:86B3: 20 F8 9D  JSR sub_9DF8_set_mirrored_amination
 C - - - - - 0x0086C6 02:86B6: 20 73 A0  JSR sub_A073_check_for_max_gravity
@@ -1220,9 +1230,9 @@ C - - - - - 0x008792 02:8782: 9D 16 03  STA ram_0316_obj,X
 C - - - - - 0x008795 02:8785: 9D E7 03  STA ram_hit_counter,X
 C - - - - - 0x008798 02:8788: A9 0A     LDA #con_anim_id + $0A
 C - - - - - 0x00879A 02:878A: 95 C7     STA ram_animation_id,X
-C - - - - - 0x00879C 02:878C: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00879E 02:878E: 29 7F     AND #con_004A_80 ^ $FF
-C - - - - - 0x0087A0 02:8790: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x00879C 02:878C: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00879E 02:878E: 29 7F     AND #con_004A_flag_knocked_down ^ $FF
+C - - - - - 0x0087A0 02:8790: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0087A2 02:8792: A9 46     LDA #con_sfx_fall_down
 C - - - - - 0x0087A4 02:8794: 20 06 C0  JSR sub_0x01C016_play_sound
 C - - - - - 0x0087A7 02:8797: A9 20     LDA #$20
@@ -1252,9 +1262,9 @@ C - - - - - 0x0087CB 02:87BB: D6 55     DEC ram_animation_duration,X
 C - - - - - 0x0087CD 02:87BD: D0 0A     BNE bra_87C9_still_lying_down
 C - - - - - 0x0087CF 02:87BF: A9 12     LDA #con_state_land_after_jump
 C - - - - - 0x0087D1 02:87C1: 95 43     STA ram_state,X
-C - - - - - 0x0087D3 02:87C3: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x0087D5 02:87C5: 29 3F     AND #(con_004A_40 + con_004A_80) ^ $FF
-C - - - - - 0x0087D7 02:87C7: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0087D3 02:87C3: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x0087D5 02:87C5: 29 3F     AND #(con_004A_flag_stunned + con_004A_flag_knocked_down) ^ $FF
+C - - - - - 0x0087D7 02:87C7: 95 4A     STA ram_004A_obj_flags,X
 bra_87C9_still_lying_down:
 C - - - - - 0x0087D9 02:87C9: 20 F8 9D  JSR sub_9DF8_set_mirrored_amination
 C - - - - - 0x0087DC 02:87CC: 60        RTS
@@ -1273,9 +1283,9 @@ C - - - - - 0x0087EF 02:87DF: A9 07     LDA #con_anim_id + $07
 C - - - - - 0x0087F1 02:87E1: 95 C7     STA ram_animation_id,X
 C - - - - - 0x0087F3 02:87E3: A9 03     LDA #$03
 C - - - - - 0x0087F5 02:87E5: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x0087F8 02:87E8: A9 C0     LDA #con_004A_40 + con_004A_80
-C - - - - - 0x0087FA 02:87EA: 15 4A     ORA ram_004A_obj,X
-C - - - - - 0x0087FC 02:87EC: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0087F8 02:87E8: A9 C0     LDA #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x0087FA 02:87EA: 15 4A     ORA ram_004A_obj_flags,X
+C - - - - - 0x0087FC 02:87EC: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0087FE 02:87EE: A9 04     LDA #$04
 C - - - - - 0x008800 02:87F0: 20 D9 9D  JSR sub_9DD9_increase_Z_pos
 C - - - - - 0x008803 02:87F3: A9 04     LDA #$04
@@ -1310,9 +1320,9 @@ C - - - - - 0x008833 02:8823: A9 07     LDA #con_anim_id + $07
 C - - - - - 0x008835 02:8825: 95 C7     STA ram_animation_id,X
 C - - - - - 0x008837 02:8827: A9 05     LDA #$05
 C - - - - - 0x008839 02:8829: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x00883C 02:882C: A9 C0     LDA #con_004A_40 + con_004A_80
-C - - - - - 0x00883E 02:882E: 15 4A     ORA ram_004A_obj,X
-C - - - - - 0x008840 02:8830: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x00883C 02:882C: A9 C0     LDA #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x00883E 02:882E: 15 4A     ORA ram_004A_obj_flags,X
+C - - - - - 0x008840 02:8830: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x008842 02:8832: A9 06     LDA #$06
 C - - - - - 0x008844 02:8834: 20 D9 9D  JSR sub_9DD9_increase_Z_pos
 C - - - - - 0x008847 02:8837: A9 C0     LDA #$C0
@@ -1337,9 +1347,9 @@ C - - - - - 0x008868 02:8858: A9 07     LDA #con_anim_id + $07
 C - - - - - 0x00886A 02:885A: 95 C7     STA ram_animation_id,X
 C - - - - - 0x00886C 02:885C: A9 06     LDA #$06
 C - - - - - 0x00886E 02:885E: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x008871 02:8861: A9 C0     LDA #con_004A_40 + con_004A_80
-C - - - - - 0x008873 02:8863: 15 4A     ORA ram_004A_obj,X
-C - - - - - 0x008875 02:8865: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008871 02:8861: A9 C0     LDA #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x008873 02:8863: 15 4A     ORA ram_004A_obj_flags,X
+C - - - - - 0x008875 02:8865: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x008877 02:8867: A9 08     LDA #$08
 C - - - - - 0x008879 02:8869: 20 D9 9D  JSR sub_9DD9_increase_Z_pos
 C - - - - - 0x00887C 02:886C: A9 C0     LDA #$C0
@@ -1364,9 +1374,9 @@ C - - - - - 0x00889D 02:888D: A9 07     LDA #con_anim_id + $07
 C - - - - - 0x00889F 02:888F: 95 C7     STA ram_animation_id,X
 C - - - - - 0x0088A1 02:8891: A9 08     LDA #$08
 C - - - - - 0x0088A3 02:8893: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x0088A6 02:8896: A9 C0     LDA #con_004A_40 + con_004A_80
-C - - - - - 0x0088A8 02:8898: 15 4A     ORA ram_004A_obj,X
-C - - - - - 0x0088AA 02:889A: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0088A6 02:8896: A9 C0     LDA #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x0088A8 02:8898: 15 4A     ORA ram_004A_obj_flags,X
+C - - - - - 0x0088AA 02:889A: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0088AC 02:889C: A9 0C     LDA #$0C
 C - - - - - 0x0088AE 02:889E: 20 D9 9D  JSR sub_9DD9_increase_Z_pos
 C - - - - - 0x0088B1 02:88A1: 20 51 A0  JSR sub_A051
@@ -1387,10 +1397,10 @@ C - - - - - 0x0088C8 02:88B8: A9 07     LDA #$07
 C - - - - - 0x0088CA 02:88BA: 9D 16 03  STA ram_0316_obj,X
 C - - - - - 0x0088CD 02:88BD: A9 03     LDA #$03
 C - - - - - 0x0088CF 02:88BF: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x0088D2 02:88C2: A9 C0     LDA #$C0    ; con_004A_40 + con_004A_80
+C - - - - - 0x0088D2 02:88C2: A9 C0     LDA #$C0    ; con_004A_flag_stunned + con_004A_flag_knocked_down
 C - - - - - 0x0088D4 02:88C4: 9D 2D 03  STA ram_032D_obj,X
-C - - - - - 0x0088D7 02:88C7: 15 4A     ORA ram_004A_obj,X
-C - - - - - 0x0088D9 02:88C9: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0088D7 02:88C7: 15 4A     ORA ram_004A_obj_flags,X
+C - - - - - 0x0088D9 02:88C9: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0088DB 02:88CB: A9 0C     LDA #$0C
 C - - - - - 0x0088DD 02:88CD: 20 D9 9D  JSR sub_9DD9_increase_Z_pos
 C - - - - - 0x0088E0 02:88D0: 20 51 A0  JSR sub_A051
@@ -1456,9 +1466,9 @@ C - - - - - 0x00892F 02:891F: A9 07     LDA #con_anim_id + $07
 C - - - - - 0x008931 02:8921: 95 C7     STA ram_animation_id,X
 C - - - - - 0x008933 02:8923: A9 09     LDA #$09
 C - - - - - 0x008935 02:8925: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x008938 02:8928: A9 C0     LDA #con_004A_40 + con_004A_80
-C - - - - - 0x00893A 02:892A: 15 4A     ORA ram_004A_obj,X
-C - - - - - 0x00893C 02:892C: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008938 02:8928: A9 C0     LDA #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x00893A 02:892A: 15 4A     ORA ram_004A_obj_flags,X
+C - - - - - 0x00893C 02:892C: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x00893E 02:892E: 20 F8 9D  JSR sub_9DF8_set_mirrored_amination
 C - - - - - 0x008941 02:8931: A9 04     LDA #$04
 C - - - - - 0x008943 02:8933: 95 55     STA ram_animation_duration,X
@@ -1482,9 +1492,9 @@ C - - - - - 0x008962 02:8952: A9 07     LDA #con_anim_id + $07
 C - - - - - 0x008964 02:8954: 95 C7     STA ram_animation_id,X
 C - - - - - 0x008966 02:8956: A9 06     LDA #$06
 C - - - - - 0x008968 02:8958: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x00896B 02:895B: A9 C0     LDA #con_004A_40 + con_004A_80
-C - - - - - 0x00896D 02:895D: 15 4A     ORA ram_004A_obj,X
-C - - - - - 0x00896F 02:895F: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x00896B 02:895B: A9 C0     LDA #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x00896D 02:895D: 15 4A     ORA ram_004A_obj_flags,X
+C - - - - - 0x00896F 02:895F: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x008971 02:8961: 20 51 A0  JSR sub_A051
 C - - - - - 0x008974 02:8964: A9 04     LDA #$04
 C - - - - - 0x008976 02:8966: 95 55     STA ram_animation_duration,X
@@ -1513,9 +1523,9 @@ C - - - - - 0x00899C 02:898C: A9 07     LDA #con_anim_id + $07
 C - - - - - 0x00899E 02:898E: 95 C7     STA ram_animation_id,X
 C - - - - - 0x0089A0 02:8990: A9 0B     LDA #$0B
 C - - - - - 0x0089A2 02:8992: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x0089A5 02:8995: A9 C0     LDA #con_004A_40 + con_004A_80
-C - - - - - 0x0089A7 02:8997: 15 4A     ORA ram_004A_obj,X
-C - - - - - 0x0089A9 02:8999: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0089A5 02:8995: A9 C0     LDA #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x0089A7 02:8997: 15 4A     ORA ram_004A_obj_flags,X
+C - - - - - 0x0089A9 02:8999: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0089AB 02:899B: 20 51 A0  JSR sub_A051
 C - - - - - 0x0089AE 02:899E: A9 08     LDA #$08
 C - - - - - 0x0089B0 02:89A0: 95 55     STA ram_animation_duration,X
@@ -1544,9 +1554,9 @@ C - - - - - 0x0089D6 02:89C6: A9 07     LDA #con_anim_id + $07
 C - - - - - 0x0089D8 02:89C8: 95 C7     STA ram_animation_id,X
 C - - - - - 0x0089DA 02:89CA: A9 0A     LDA #$0A
 C - - - - - 0x0089DC 02:89CC: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x0089DF 02:89CF: A9 C0     LDA #con_004A_40 + con_004A_80
-C - - - - - 0x0089E1 02:89D1: 15 4A     ORA ram_004A_obj,X
-C - - - - - 0x0089E3 02:89D3: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0089DF 02:89CF: A9 C0     LDA #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x0089E1 02:89D1: 15 4A     ORA ram_004A_obj_flags,X
+C - - - - - 0x0089E3 02:89D3: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0089E5 02:89D5: A9 04     LDA #$04
 C - - - - - 0x0089E7 02:89D7: 95 55     STA ram_animation_duration,X
 C - - - - - 0x0089E9 02:89D9: 20 51 A0  JSR sub_A051
@@ -1573,9 +1583,9 @@ C - - - - - 0x008A0B 02:89FB: A9 00     LDA #$00
 C - - - - - 0x008A0D 02:89FD: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x008A10 02:8A00: A9 07     LDA #con_anim_id + $07
 C - - - - - 0x008A12 02:8A02: 95 C7     STA ram_animation_id,X
-C - - - - - 0x008A14 02:8A04: A9 C0     LDA #con_004A_40 + con_004A_80
-C - - - - - 0x008A16 02:8A06: 15 4A     ORA ram_004A_obj,X
-C - - - - - 0x008A18 02:8A08: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008A14 02:8A04: A9 C0     LDA #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x008A16 02:8A06: 15 4A     ORA ram_004A_obj_flags,X
+C - - - - - 0x008A18 02:8A08: 95 4A     STA ram_004A_obj_flags,X
 bra_8A0A:
 C - - - - - 0x008A1A 02:8A0A: 20 F8 9D  JSR sub_9DF8_set_mirrored_amination
 C - - - - - 0x008A1D 02:8A0D: 20 4B 9E  JSR sub_9E4B_move_object
@@ -1588,9 +1598,9 @@ ofs_000_8A14_24:
 C - - J - - 0x008A24 02:8A14: B5 43     LDA ram_state,X
 C - - - - - 0x008A26 02:8A16: 30 09     BMI bra_8A21
 C - - - - - 0x008A28 02:8A18: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
-C - - - - - 0x008A2B 02:8A1B: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x008A2D 02:8A1D: 09 40     ORA #con_004A_40
-C - - - - - 0x008A2F 02:8A1F: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008A2B 02:8A1B: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x008A2D 02:8A1D: 09 40     ORA #con_004A_flag_stunned
+C - - - - - 0x008A2F 02:8A1F: 95 4A     STA ram_004A_obj_flags,X
 bra_8A21:
 C - - - - - 0x008A31 02:8A21: A9 08     LDA #con_A48A_anim_08
 C - - - - - 0x008A33 02:8A23: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
@@ -1672,8 +1682,8 @@ C - - - - - 0x008A84 02:8A74: 9D E7 03  STA ram_hit_counter,X
 C - - - - - 0x008A87 02:8A77: B5 BF     LDA ram_obj_id,X
 C - - - - - 0x008A89 02:8A79: C9 11     CMP #con_obj_shadow_warrior
 C - - - - - 0x008A8B 02:8A7B: D0 05     BNE bra_8A82
-C - - - - - 0x008A8D 02:8A7D: A9 03     LDA #$03
-C - - - - - 0x008A8F 02:8A7F: 8D 3F 06  STA ram_063F
+C - - - - - 0x008A8D 02:8A7D: A9 03     LDA #con_063F_01 + con_063F_02
+C - - - - - 0x008A8F 02:8A7F: 8D 3F 06  STA ram_063F_flags
 bra_8A82:
 C - - - - - 0x008A92 02:8A82: E0 02     CPX #$02
 C - - - - - 0x008A94 02:8A84: B0 29     BCS bra_8AAF    ; if enemy
@@ -1716,9 +1726,9 @@ C - - - - - 0x008AD3 02:8AC3: F6 55     INC ram_animation_duration,X
 C - - - - - 0x008AD5 02:8AC5: B5 5C     LDA ram_animation_counter,X
 C - - - - - 0x008AD7 02:8AC7: C9 0A     CMP #$0A
 C - - - - - 0x008AD9 02:8AC9: 90 0B     BCC bra_8AD6
-C - - - - - 0x008ADB 02:8ACB: A9 7F     LDA #con_003C_80 ^ $FF
-C - - - - - 0x008ADD 02:8ACD: 35 3C     AND ram_003C_obj,X ; 003C 003D 003E 003F 0040
-C - - - - - 0x008ADF 02:8ACF: 95 3C     STA ram_003C_obj,X ; 003C 003D 003E 003F 0040
+C - - - - - 0x008ADB 02:8ACB: A9 7F     LDA #con_003C_flag_exist ^ $FF
+C - - - - - 0x008ADD 02:8ACD: 35 3C     AND ram_003C_obj_flags,X ; 003C 003D 003E 003F 0040
+C - - - - - 0x008ADF 02:8ACF: 95 3C     STA ram_003C_obj_flags,X ; 003C 003D 003E 003F 0040
 C - - - - - 0x008AE1 02:8AD1: E0 02     CPX #$02
 C - - - - - 0x008AE3 02:8AD3: 90 29     BCC bra_8AFE
 ; if enemy
@@ -1754,11 +1764,11 @@ C - - - - - 0x008B14 02:8B04: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animatio
 loc_8B07:
 C D 0 - - - 0x008B17 02:8B07: B5 43     LDA ram_state,X
 C - - - - - 0x008B19 02:8B09: 29 7F     AND #$7F
-C - - - - - 0x008B1B 02:8B0B: C9 7F     CMP #con_state_grabbed
+C - - - - - 0x008B1B 02:8B0B: C9 7F     CMP #con_state_hair_grabbed
 C - - - - - 0x008B1D 02:8B0D: D0 0A     BNE bra_8B19_RTS
-C - - - - - 0x008B1F 02:8B0F: B5 3C     LDA ram_003C_obj,X ; 003E
-C - - - - - 0x008B21 02:8B11: 29 7F     AND #con_003C_80 ^ $FF
-C - - - - - 0x008B23 02:8B13: 95 3C     STA ram_003C_obj,X ; 003E
+C - - - - - 0x008B1F 02:8B0F: B5 3C     LDA ram_003C_obj_flags,X ; 003E
+C - - - - - 0x008B21 02:8B11: 29 7F     AND #con_003C_flag_exist ^ $FF
+C - - - - - 0x008B23 02:8B13: 95 3C     STA ram_003C_obj_flags,X ; 003E
 C - - - - - 0x008B25 02:8B15: A9 7F     LDA #con_anim_id + $7F
 C - - - - - 0x008B27 02:8B17: 95 C7     STA ram_animation_id,X
 bra_8B19_RTS:
@@ -1768,7 +1778,7 @@ C - - - - - 0x008B29 02:8B19: 60        RTS
 
 _off000_8B1A_09:
 - D 0 - I - 0x008B2A 02:8B1A: 19        .byte $19   ; 
-- D 0 - I - 0x008B2B 02:8B1B: FF        .byte con_state_grabbed + $80   ; 
+- D 0 - I - 0x008B2B 02:8B1B: FF        .byte con_state_hair_grabbed + $80   ; 
 
 
 
@@ -1792,7 +1802,7 @@ _off000_8B25_0A:
 - D 0 - I - 0x008B39 02:8B29: 54        .byte $54   ; 
 - D 0 - I - 0x008B3A 02:8B2A: 55        .byte $55   ; 
 - D 0 - I - 0x008B3B 02:8B2B: 56        .byte $56   ; 
-- D 0 - I - 0x008B3C 02:8B2C: FF        .byte con_state_grabbed + $80   ; 
+- D 0 - I - 0x008B3C 02:8B2C: FF        .byte con_state_hair_grabbed + $80   ; 
 
 
 
@@ -1816,7 +1826,7 @@ C - - - - - 0x008B49 02:8B39: 4C 07 8B  JMP loc_8B07
 
 _off000_8B3C_3E:
 - D 0 - I - 0x008B4C 02:8B3C: 0A        .byte $0A   ; 
-- D 0 - I - 0x008B4D 02:8B3D: FF        .byte con_state_grabbed + $80   ; 
+- D 0 - I - 0x008B4D 02:8B3D: FF        .byte con_state_hair_grabbed + $80   ; 
 
 
 
@@ -1837,22 +1847,22 @@ C - - - - - 0x008B5C 02:8B4C: 95 BF     STA ram_obj_id,X
 bra_8B4E:
 C - - - - - 0x008B5E 02:8B4E: A9 30     LDA #con_anim_id + $30
 C - - - - - 0x008B60 02:8B50: 95 C7     STA ram_animation_id,X
-C - - - - - 0x008B62 02:8B52: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x008B64 02:8B54: 29 7F     AND #con_004A_80 ^ $FF
-C - - - - - 0x008B66 02:8B56: 09 40     ORA #con_004A_40
-C - - - - - 0x008B68 02:8B58: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008B62 02:8B52: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x008B64 02:8B54: 29 7F     AND #con_004A_flag_knocked_down ^ $FF
+C - - - - - 0x008B66 02:8B56: 09 40     ORA #con_004A_flag_stunned
+C - - - - - 0x008B68 02:8B58: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x008B6A 02:8B5A: A9 43     LDA #con_sfx_fall_in_water
 C - - - - - 0x008B6C 02:8B5C: 20 06 C0  JSR sub_0x01C016_play_sound
 bra_8B5F:
 C - - - - - 0x008B6F 02:8B5F: A9 0B     LDA #con_A48A_anim_0B
 C - - - - - 0x008B71 02:8B61: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
 C - - - - - 0x008B74 02:8B64: B5 43     LDA ram_state,X
-C - - - - - 0x008B76 02:8B66: C9 7F     CMP #con_state_grabbed
+C - - - - - 0x008B76 02:8B66: C9 7F     CMP #con_state_hair_grabbed
 C - - - - - 0x008B78 02:8B68: D0 1B     BNE bra_8B85_RTS
 C - - - - - 0x008B7A 02:8B6A: A9 7F     LDA #con_anim_id + $7F
 C - - - - - 0x008B7C 02:8B6C: 95 C7     STA ram_animation_id,X
-C - - - - - 0x008B7E 02:8B6E: A9 00     LDA #$00    ; con_003C_00
-C - - - - - 0x008B80 02:8B70: 95 3C     STA ram_003C_obj,X ; 003C 003E 003F
+C - - - - - 0x008B7E 02:8B6E: A9 00     LDA #$00    ; con_003C_flag_00
+C - - - - - 0x008B80 02:8B70: 95 3C     STA ram_003C_obj_flags,X ; 003C 003E 003F
 C - - - - - 0x008B82 02:8B72: 9D 1E 04  STA ram_hp,X
 C - - - - - 0x008B85 02:8B75: B5 BF     LDA ram_obj_id,X
 C - - - - - 0x008B87 02:8B77: E0 02     CPX #$02
@@ -1877,7 +1887,7 @@ _off000_8B86_0B:
 - D 0 - I - 0x008B9B 02:8B8B: 36        .byte $36   ; 
 - D 0 - I - 0x008B9C 02:8B8C: 37        .byte $37   ; 
 - D 0 - I - 0x008B9D 02:8B8D: 37        .byte $37   ; 
-- D 0 - I - 0x008B9E 02:8B8E: FF        .byte con_state_grabbed + $80   ; 
+- D 0 - I - 0x008B9E 02:8B8E: FF        .byte con_state_hair_grabbed + $80   ; 
 
 
 
@@ -1897,9 +1907,9 @@ ofs_000_8B97_28_death_burnov:
 C - - J - - 0x008BA7 02:8B97: B5 43     LDA ram_state,X
 C - - - - - 0x008BA9 02:8B99: 30 09     BMI bra_8BA4
 C - - - - - 0x008BAB 02:8B9B: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
-C - - - - - 0x008BAE 02:8B9E: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x008BB0 02:8BA0: 09 02     ORA #con_004A_02
-C - - - - - 0x008BB2 02:8BA2: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008BAE 02:8B9E: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x008BB0 02:8BA0: 09 02     ORA #con_004A_flag_hair_grabbed
+C - - - - - 0x008BB2 02:8BA2: 95 4A     STA ram_004A_obj_flags,X
 bra_8BA4:
 C - - - - - 0x008BB4 02:8BA4: B5 C7     LDA ram_animation_id,X
 C - - - - - 0x008BB6 02:8BA6: 29 7F     AND #$7F
@@ -1968,18 +1978,18 @@ C - - J - - 0x008BFD 02:8BED: B5 43     LDA ram_state,X
 C - - - - - 0x008BFF 02:8BEF: 30 10     BMI bra_8C01
 C - - - - - 0x008C01 02:8BF1: 09 80     ORA #$80
 C - - - - - 0x008C03 02:8BF3: 95 43     STA ram_state,X
-C - - - - - 0x008C05 02:8BF5: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x008C07 02:8BF7: B5 4A     LDA ram_004A_obj,X  ; bzk optimize, the same LDA
-C - - - - - 0x008C09 02:8BF9: 29 FD     AND #con_004A_02 ^ $FF
-C - - - - - 0x008C0B 02:8BFB: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008C05 02:8BF5: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x008C07 02:8BF7: B5 4A     LDA ram_004A_obj_flags,X  ; bzk optimize, the same LDA
+C - - - - - 0x008C09 02:8BF9: 29 FD     AND #con_004A_flag_hair_grabbed ^ $FF
+C - - - - - 0x008C0B 02:8BFB: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x008C0D 02:8BFD: A9 20     LDA #$20
 C - - - - - 0x008C0F 02:8BFF: 95 55     STA ram_animation_duration,X
 bra_8C01:
 C - - - - - 0x008C11 02:8C01: D6 55     DEC ram_animation_duration,X
 C - - - - - 0x008C13 02:8C03: D0 06     BNE bra_8C0B_RTS
-C - - - - - 0x008C15 02:8C05: B5 3C     LDA ram_003C_obj,X ; 003E
-C - - - - - 0x008C17 02:8C07: 09 40     ORA #con_003C_40
-C - - - - - 0x008C19 02:8C09: 95 3C     STA ram_003C_obj,X ; 003E
+C - - - - - 0x008C15 02:8C05: B5 3C     LDA ram_003C_obj_flags,X ; 003E
+C - - - - - 0x008C17 02:8C07: 09 40     ORA #con_003C_flag_40
+C - - - - - 0x008C19 02:8C09: 95 3C     STA ram_003C_obj_flags,X ; 003E
 bra_8C0B_RTS:
 C - - - - - 0x008C1B 02:8C0B: 60        RTS
 
@@ -1989,9 +1999,9 @@ ofs_000_8C0C_2A_burnov_revives:
 C - - J - - 0x008C1C 02:8C0C: B5 43     LDA ram_state,X
 C - - - - - 0x008C1E 02:8C0E: 30 0E     BMI bra_8C1E
 C - - - - - 0x008C20 02:8C10: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
-C - - - - - 0x008C23 02:8C13: B5 3C     LDA ram_003C_obj,X ; 003E
-C - - - - - 0x008C25 02:8C15: 29 BF     AND #con_003C_40 ^ $FF
-C - - - - - 0x008C27 02:8C17: 95 3C     STA ram_003C_obj,X ; 003E
+C - - - - - 0x008C23 02:8C13: B5 3C     LDA ram_003C_obj_flags,X ; 003E
+C - - - - - 0x008C25 02:8C15: 29 BF     AND #con_003C_flag_40 ^ $FF
+C - - - - - 0x008C27 02:8C17: 95 3C     STA ram_003C_obj_flags,X ; 003E
 C - - - - - 0x008C29 02:8C19: A9 4B     LDA #con_sfx_reappear
 C - - - - - 0x008C2B 02:8C1B: 20 06 C0  JSR sub_0x01C016_play_sound
 bra_8C1E:
@@ -2011,8 +2021,8 @@ C - - - - - 0x008C47 02:8C37: B5 43     LDA ram_state,X
 C - - - - - 0x008C49 02:8C39: 29 7F     AND #$7F
 C - - - - - 0x008C4B 02:8C3B: C9 00     CMP #con_state_idle
 C - - - - - 0x008C4D 02:8C3D: D0 04     BNE bra_8C43_RTS
-C - - - - - 0x008C4F 02:8C3F: A9 00     LDA #con_004A_00
-C - - - - - 0x008C51 02:8C41: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008C4F 02:8C3F: A9 00     LDA #con_004A_flag_00
+C - - - - - 0x008C51 02:8C41: 95 4A     STA ram_004A_obj_flags,X
 bra_8C43_RTS:
 C - - - - - 0x008C53 02:8C43: 60        RTS
 
@@ -2051,9 +2061,9 @@ C - - - - - 0x008C69 02:8C59: 30 12     BMI bra_8C6D
 C - - - - - 0x008C6B 02:8C5B: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
 C - - - - - 0x008C6E 02:8C5E: A9 FE     LDA #$FE
 C - - - - - 0x008C70 02:8C60: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x008C73 02:8C63: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x008C75 02:8C65: 09 C0     ORA #con_004A_40 + con_004A_80
-C - - - - - 0x008C77 02:8C67: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008C73 02:8C63: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x008C75 02:8C65: 09 C0     ORA #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x008C77 02:8C67: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x008C79 02:8C69: A9 0B     LDA #con_anim_id + $0B
 C - - - - - 0x008C7B 02:8C6B: 95 C7     STA ram_animation_id,X
 bra_8C6D:
@@ -2084,7 +2094,7 @@ _off000_8C83_0E:
 - D 0 - I - 0x008C98 02:8C88: 18        .byte $18   ; 
 - D 0 - I - 0x008C99 02:8C89: 19        .byte $19   ; 
 - D 0 - I - 0x008C9A 02:8C8A: 1A        .byte $1A   ; 
-- D 0 - I - 0x008C9B 02:8C8B: FF        .byte con_state_grabbed + $80   ; 
+- D 0 - I - 0x008C9B 02:8C8B: FF        .byte con_state_hair_grabbed + $80   ; 
 
 
 
@@ -2188,21 +2198,21 @@ tbl_8CF5:
 
 
 tbl_8CF9:
-- D 0 - - - 0x008D09 02:8CF9: 09        .byte $09   ; 00
-- D 0 - - - 0x008D0A 02:8CFA: 09        .byte $09   ; 01
-- D 0 - - - 0x008D0B 02:8CFB: 09        .byte $09   ; 02
-- D 0 - - - 0x008D0C 02:8CFC: 09        .byte $09   ; 03
-- - - - - - 0x008D0D 02:8CFD: 06        .byte $06   ; 04
-- D 0 - - - 0x008D0E 02:8CFE: 06        .byte $06   ; 05
-- D 0 - - - 0x008D0F 02:8CFF: 06        .byte $06   ; 06
-- - - - - - 0x008D10 02:8D00: 06        .byte $06   ; 07
-- D 0 - - - 0x008D11 02:8D01: 03        .byte $03   ; 08
-- - - - - - 0x008D12 02:8D02: 03        .byte $03   ; 09
-- D 0 - - - 0x008D13 02:8D03: 03        .byte $03   ; 0A
-- D 0 - - - 0x008D14 02:8D04: 03        .byte $03   ; 0B
-- D 0 - - - 0x008D15 02:8D05: 00        .byte $00   ; 0C
-- - - - - - 0x008D16 02:8D06: 00        .byte $00   ; 0D
-- D 0 - - - 0x008D17 02:8D07: 00        .byte $00   ; 0E
+- D 0 - - - 0x008D09 02:8CF9: 09        .byte $09   ; 00 
+- D 0 - - - 0x008D0A 02:8CFA: 09        .byte $09   ; 01 
+- D 0 - - - 0x008D0B 02:8CFB: 09        .byte $09   ; 02 
+- D 0 - - - 0x008D0C 02:8CFC: 09        .byte $09   ; 03 
+- - - - - - 0x008D0D 02:8CFD: 06        .byte $06   ; 04 
+- D 0 - - - 0x008D0E 02:8CFE: 06        .byte $06   ; 05 
+- D 0 - - - 0x008D0F 02:8CFF: 06        .byte $06   ; 06 
+- - - - - - 0x008D10 02:8D00: 06        .byte $06   ; 07 
+- D 0 - - - 0x008D11 02:8D01: 03        .byte $03   ; 08 
+- - - - - - 0x008D12 02:8D02: 03        .byte $03   ; 09 
+- D 0 - - - 0x008D13 02:8D03: 03        .byte $03   ; 0A 
+- D 0 - - - 0x008D14 02:8D04: 03        .byte $03   ; 0B 
+- D 0 - - - 0x008D15 02:8D05: 00        .byte $00   ; 0C 
+- - - - - - 0x008D16 02:8D06: 00        .byte $00   ; 0D 
+- D 0 - - - 0x008D17 02:8D07: 00        .byte $00   ; 0E 
 
 
 
@@ -2293,9 +2303,9 @@ C - - - - - 0x008D70 02:8D60: 9D 16 03  STA ram_0316_obj,X
 C - - - - - 0x008D73 02:8D63: B5 BF     LDA ram_obj_id,X
 C - - - - - 0x008D75 02:8D65: C9 0C     CMP #con_obj_doppelganger
 C - - - - - 0x008D77 02:8D67: D0 06     BNE bra_8D6F
-C - - - - - 0x008D79 02:8D69: B5 63     LDA ram_0063_obj,X
+C - - - - - 0x008D79 02:8D69: B5 63     LDA ram_0063_obj_facing,X
 C - - - - - 0x008D7B 02:8D6B: 49 80     EOR #$80
-C - - - - - 0x008D7D 02:8D6D: 95 63     STA ram_0063_obj,X
+C - - - - - 0x008D7D 02:8D6D: 95 63     STA ram_0063_obj_facing,X
 bra_8D6F:
 C - - - - - 0x008D7F 02:8D6F: A9 13     LDA #con_A48A_anim_13
 C - - - - - 0x008D81 02:8D71: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
@@ -2304,9 +2314,9 @@ C - - - - - 0x008D86 02:8D76: C9 04     CMP #$04
 C - - - - - 0x008D88 02:8D78: D0 0A     BNE bra_8D84_RTS
 C - - - - - 0x008D8A 02:8D7A: B5 55     LDA ram_animation_duration,X
 C - - - - - 0x008D8C 02:8D7C: D0 06     BNE bra_8D84_RTS
-C - - - - - 0x008D8E 02:8D7E: B5 63     LDA ram_0063_obj,X
+C - - - - - 0x008D8E 02:8D7E: B5 63     LDA ram_0063_obj_facing,X
 C - - - - - 0x008D90 02:8D80: 49 80     EOR #$80
-C - - - - - 0x008D92 02:8D82: 95 63     STA ram_0063_obj,X
+C - - - - - 0x008D92 02:8D82: 95 63     STA ram_0063_obj_facing,X
 bra_8D84_RTS:
 C - - - - - 0x008D94 02:8D84: 60        RTS
 
@@ -2364,9 +2374,9 @@ C - - - - - 0x008DC4 02:8DB4: 20 06 C0  JSR sub_0x01C016_play_sound
 C - - - - - 0x008DC7 02:8DB7: B5 BF     LDA ram_obj_id,X
 C - - - - - 0x008DC9 02:8DB9: C9 0C     CMP #con_obj_doppelganger
 C - - - - - 0x008DCB 02:8DBB: D0 06     BNE bra_8DC3
-C - - - - - 0x008DCD 02:8DBD: B5 63     LDA ram_0063_obj,X
+C - - - - - 0x008DCD 02:8DBD: B5 63     LDA ram_0063_obj_facing,X
 C - - - - - 0x008DCF 02:8DBF: 49 80     EOR #$80
-C - - - - - 0x008DD1 02:8DC1: 95 63     STA ram_0063_obj,X
+C - - - - - 0x008DD1 02:8DC1: 95 63     STA ram_0063_obj_facing,X
 bra_8DC3:
 C - - - - - 0x008DD3 02:8DC3: A9 15     LDA #con_A48A_anim_15
 C - - - - - 0x008DD5 02:8DC5: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
@@ -2402,9 +2412,9 @@ C - - - - - 0x008DF0 02:8DE0: C9 04     CMP #con_anim_id + $04
 C - - - - - 0x008DF2 02:8DE2: D0 0C     BNE bra_8DF0_RTS
 C - - - - - 0x008DF4 02:8DE4: B5 55     LDA ram_animation_duration,X
 C - - - - - 0x008DF6 02:8DE6: D0 08     BNE bra_8DF0_RTS
-C - - - - - 0x008DF8 02:8DE8: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x008DF8 02:8DE8: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x008DFB 02:8DEB: 49 80     EOR #$80
-C - - - - - 0x008DFD 02:8DED: 9D 63 00  STA a: ram_0063_obj,X
+C - - - - - 0x008DFD 02:8DED: 9D 63 00  STA a: ram_0063_obj_facing,X
 bra_8DF0_RTS:
 C - - - - - 0x008E00 02:8DF0: 60        RTS
 
@@ -2524,9 +2534,9 @@ C - - - - - 0x008E71 02:8E61: A9 07     LDA #$07
 C - - - - - 0x008E73 02:8E63: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x008E76 02:8E66: A9 03     LDA #$03
 C - - - - - 0x008E78 02:8E68: 9D 16 03  STA ram_0316_obj,X
-C - - - - - 0x008E7B 02:8E6B: A9 80     LDA #con_004A_80
-C - - - - - 0x008E7D 02:8E6D: 15 4A     ORA ram_004A_obj,X
-C - - - - - 0x008E7F 02:8E6F: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008E7B 02:8E6B: A9 80     LDA #con_004A_flag_knocked_down
+C - - - - - 0x008E7D 02:8E6D: 15 4A     ORA ram_004A_obj_flags,X
+C - - - - - 0x008E7F 02:8E6F: 95 4A     STA ram_004A_obj_flags,X
 bra_8E71:
 C - - - - - 0x008E81 02:8E71: A9 19     LDA #con_A48A_anim_19
 C - - - - - 0x008E83 02:8E73: 4C D2 9F  JMP loc_9FD2
@@ -2594,9 +2604,9 @@ C - - - - - 0x008EB9 02:8EA9: A9 08     LDA #$08
 C - - - - - 0x008EBB 02:8EAB: 95 55     STA ram_animation_duration,X
 C - - - - - 0x008EBD 02:8EAD: A9 04     LDA #$04
 C - - - - - 0x008EBF 02:8EAF: 9D 16 03  STA ram_0316_obj,X
-C - - - - - 0x008EC2 02:8EB2: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x008EC4 02:8EB4: 09 80     ORA #con_004A_80
-C - - - - - 0x008EC6 02:8EB6: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x008EC2 02:8EB2: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x008EC4 02:8EB4: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x008EC6 02:8EB6: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x008EC8 02:8EB8: A9 00     LDA #$00
 C - - - - - 0x008ECA 02:8EBA: 9D 2D 03  STA ram_032D_obj,X
 C - - - - - 0x008ECD 02:8EBD: A9 05     LDA #$05
@@ -2639,9 +2649,9 @@ C - - - - - 0x008F08 02:8EF8: D0 0E     BNE bra_8F08
 C - - - - - 0x008F0A 02:8EFA: B5 55     LDA ram_animation_duration,X
 C - - - - - 0x008F0C 02:8EFC: C9 02     CMP #$02
 C - - - - - 0x008F0E 02:8EFE: D0 08     BNE bra_8F08
-C - - - - - 0x008F10 02:8F00: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x008F10 02:8F00: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x008F13 02:8F03: 49 80     EOR #$80
-C - - - - - 0x008F15 02:8F05: 9D 63 00  STA a: ram_0063_obj,X
+C - - - - - 0x008F15 02:8F05: 9D 63 00  STA a: ram_0063_obj_facing,X
 bra_8F08:
 C - - - - - 0x008F18 02:8F08: 20 F8 9D  JSR sub_9DF8_set_mirrored_amination
 C - - - - - 0x008F1B 02:8F0B: 60        RTS
@@ -2802,7 +2812,7 @@ C - - - - - 0x008FC9 02:8FB9: A9 20     LDA #$20
 C - - - - - 0x008FCB 02:8FBB: 85 29     STA ram_0029
 C - - - - - 0x008FCD 02:8FBD: A9 18     LDA #$18
 C - - - - - 0x008FCF 02:8FBF: 85 2A     STA ram_002A
-C - - - - - 0x008FD1 02:8FC1: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x008FD1 02:8FC1: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x008FD4 02:8FC4: 10 04     BPL bra_8FCA
 C - - - - - 0x008FD6 02:8FC6: A9 E0     LDA #$E0
 C - - - - - 0x008FD8 02:8FC8: 85 29     STA ram_0029
@@ -2922,12 +2932,12 @@ C - - - - - 0x00907B 02:906B: A5 1A     LDA ram_001A
 C - - - - - 0x00907D 02:906D: 99 43 00  STA a: ram_state,Y
 C - - - - - 0x009080 02:9070: 8A        TXA
 C - - - - - 0x009081 02:9071: 99 4A 04  STA ram_044A_obj,Y
-C - - - - - 0x009084 02:9074: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x009087 02:9077: 29 DF     AND #con_004A_20 ^ $FF
-C - - - - - 0x009089 02:9079: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x009084 02:9074: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x009087 02:9077: 29 DF     AND #con_004A_flag_20 ^ $FF
+C - - - - - 0x009089 02:9079: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x00908C 02:907C: A9 10     LDA #$10
 C - - - - - 0x00908E 02:907E: 85 29     STA ram_0029
-C - - - - - 0x009090 02:9080: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x009090 02:9080: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x009093 02:9083: 10 04     BPL bra_9089
 C - - - - - 0x009095 02:9085: A9 F0     LDA #$F0
 C - - - - - 0x009097 02:9087: 85 29     STA ram_0029
@@ -3007,9 +3017,9 @@ ofs_000_90CF_44:
 C - - J - - 0x0090DF 02:90CF: B5 43     LDA ram_state,X
 C - - - - - 0x0090E1 02:90D1: 30 09     BMI bra_90DC
 C - - - - - 0x0090E3 02:90D3: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
-C - - - - - 0x0090E6 02:90D6: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x0090E8 02:90D8: 09 02     ORA #con_004A_02
-C - - - - - 0x0090EA 02:90DA: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0090E6 02:90D6: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x0090E8 02:90D8: 09 02     ORA #con_004A_flag_hair_grabbed
+C - - - - - 0x0090EA 02:90DA: 95 4A     STA ram_004A_obj_flags,X
 bra_90DC:
 C - - - - - 0x0090EC 02:90DC: B5 55     LDA ram_animation_duration,X
 C - - - - - 0x0090EE 02:90DE: D0 2E     BNE bra_910E
@@ -3018,7 +3028,7 @@ C - - - - - 0x0090F2 02:90E2: B9 30 91  LDA tbl_9130_pos_X_lo,Y
 C - - - - - 0x0090F5 02:90E5: 85 29     STA ram_0029
 C - - - - - 0x0090F7 02:90E7: A9 00     LDA #$00
 C - - - - - 0x0090F9 02:90E9: 85 2A     STA ram_002A
-C - - - - - 0x0090FB 02:90EB: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x0090FB 02:90EB: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x0090FE 02:90EE: 30 11     BMI bra_9101
 C - - - - - 0x009100 02:90F0: 18        CLC
 C - - - - - 0x009101 02:90F1: A5 29     LDA ram_0029
@@ -3044,9 +3054,9 @@ C - - - - - 0x009123 02:9113: 20 4B 9E  JSR sub_9E4B_move_object
 C - - - - - 0x009126 02:9116: B5 43     LDA ram_state,X
 C - - - - - 0x009128 02:9118: C9 00     CMP #con_state_idle
 C - - - - - 0x00912A 02:911A: D0 06     BNE bra_9122_RTS    ; bzk optimize, BEQ
-C - - - - - 0x00912C 02:911C: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00912E 02:911E: 29 FD     AND #con_004A_02 ^ $FF
-C - - - - - 0x009130 02:9120: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x00912C 02:911C: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00912E 02:911E: 29 FD     AND #con_004A_flag_hair_grabbed ^ $FF
+C - - - - - 0x009130 02:9120: 95 4A     STA ram_004A_obj_flags,X
 bra_9122_RTS:
 C - - - - - 0x009132 02:9122: 60        RTS
 
@@ -3074,13 +3084,13 @@ _off001_912A_20:
 
 
 tbl_9130_pos_X_lo:
-- D 0 - - - 0x009140 02:9130: 00        .byte $00   ; 00
-- D 0 - - - 0x009141 02:9131: 1C        .byte $1C   ; 01
-- D 0 - - - 0x009142 02:9132: 03        .byte $03   ; 02
-- D 0 - - - 0x009143 02:9133: 10        .byte $10   ; 03
-- D 0 - - - 0x009144 02:9134: 24        .byte $24   ; 04
-- D 0 - - - 0x009145 02:9135: 04        .byte $04   ; 05
-- D 0 - - - 0x009146 02:9136: 00        .byte $00   ; 06
+- D 0 - - - 0x009140 02:9130: 00        .byte $00   ; 00 
+- D 0 - - - 0x009141 02:9131: 1C        .byte $1C   ; 01 
+- D 0 - - - 0x009142 02:9132: 03        .byte $03   ; 02 
+- D 0 - - - 0x009143 02:9133: 10        .byte $10   ; 03 
+- D 0 - - - 0x009144 02:9134: 24        .byte $24   ; 04 
+- D 0 - - - 0x009145 02:9135: 04        .byte $04   ; 05 
+- D 0 - - - 0x009146 02:9136: 00        .byte $00   ; 06 
 
 
 
@@ -3194,7 +3204,7 @@ C - - - - - 0x0091B2 02:91A2: D0 28     BNE bra_91CC_RTS
 C - - - - - 0x0091B4 02:91A4: B5 55     LDA ram_animation_duration,X
 C - - - - - 0x0091B6 02:91A6: C9 08     CMP #$08
 C - - - - - 0x0091B8 02:91A8: D0 22     BNE bra_91CC_RTS
-C - - - - - 0x0091BA 02:91AA: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x0091BA 02:91AA: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x0091BD 02:91AD: 10 10     BPL bra_91BF
 C - - - - - 0x0091BF 02:91AF: B5 77     LDA ram_pos_X_lo,X
 C - - - - - 0x0091C1 02:91B1: 38        SEC
@@ -3213,7 +3223,7 @@ C - - - - - 0x0091D6 02:91C6: B5 80     LDA ram_pos_X_hi,X
 C - - - - - 0x0091D8 02:91C8: 69 00     ADC #> $0014
 C - - - - - 0x0091DA 02:91CA: 95 80     STA ram_pos_X_hi,X
 bra_91CC_RTS:
-loc_91CC_RTS:
+loc_91CC_RTS:   ; bzk optimize
 C D 0 - - - 0x0091DC 02:91CC: 60        RTS
 
 
@@ -3239,9 +3249,9 @@ C - - - - - 0x0091E9 02:91D9: A9 05     LDA #$05
 C - - - - - 0x0091EB 02:91DB: 9D 16 03  STA ram_0316_obj,X
 C - - - - - 0x0091EE 02:91DE: A9 09     LDA #$09
 C - - - - - 0x0091F0 02:91E0: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x0091F3 02:91E3: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x0091F5 02:91E5: 09 80     ORA #con_004A_80
-C - - - - - 0x0091F7 02:91E7: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0091F3 02:91E3: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x0091F5 02:91E5: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x0091F7 02:91E7: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0091F9 02:91E9: A9 37     LDA #con_sfx_somersault
 C - - - - - 0x0091FB 02:91EB: 20 06 C0  JSR sub_0x01C016_play_sound
 bra_91EE:
@@ -3281,9 +3291,9 @@ C - - - - - 0x00921C 02:920C: 20 39 A0  JSR sub_A039_acknowledge_current_state_a
 C - - - - - 0x00921F 02:920F: A9 05     LDA #$05
 C - - - - - 0x009221 02:9211: 9D 16 03  STA ram_0316_obj,X
 C - - - - - 0x009224 02:9214: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x009227 02:9217: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x009229 02:9219: 09 80     ORA #con_004A_80
-C - - - - - 0x00922B 02:921B: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009227 02:9217: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x009229 02:9219: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x00922B 02:921B: 95 4A     STA ram_004A_obj_flags,X
 bra_921D:
 C - - - - - 0x00922D 02:921D: A9 24     LDA #con_A48A_anim_24
 C - - - - - 0x00922F 02:921F: 4C D2 9F  JMP loc_9FD2
@@ -3373,7 +3383,7 @@ C - - - - - 0x009288 02:9278: B9 BE 92  LDA tbl_92BE_pos_X,Y
 C - - - - - 0x00928B 02:927B: 85 29     STA ram_0029
 C - - - - - 0x00928D 02:927D: B9 BF 92  LDA tbl_92BE_pos_X + $01,Y
 C - - - - - 0x009290 02:9280: 85 2A     STA ram_002A
-C - - - - - 0x009292 02:9282: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x009292 02:9282: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x009295 02:9285: 30 11     BMI bra_9298
 C - - - - - 0x009297 02:9287: 18        CLC
 C - - - - - 0x009298 02:9288: A5 29     LDA ram_0029
@@ -3427,16 +3437,16 @@ _off001_92B5_26:
 
 
 tbl_92BE_pos_X:
-- D 0 - - - 0x0092CE 02:92BE: E8 FF     .word $FFE8 ; 00
-- D 0 - - - 0x0092D0 02:92C0: 08 00     .word $0008 ; 01
-- D 0 - - - 0x0092D2 02:92C2: 00 00     .word $0000 ; 02
-- D 0 - - - 0x0092D4 02:92C4: 00 00     .word $0000 ; 03
-- D 0 - - - 0x0092D6 02:92C6: 00 00     .word $0000 ; 04
-- D 0 - - - 0x0092D8 02:92C8: 00 00     .word $0000 ; 05
-- D 0 - - - 0x0092DA 02:92CA: 1A 00     .word $001A ; 06
-- D 0 - - - 0x0092DC 02:92CC: 20 00     .word $0020 ; 07
-- D 0 - - - 0x0092DE 02:92CE: 00 00     .word $0000 ; 08
-- D 0 - - - 0x0092E0 02:92D0: 00 00     .word $0000 ; 09
+- D 0 - - - 0x0092CE 02:92BE: E8 FF     .word $FFE8 ; 00 
+- D 0 - - - 0x0092D0 02:92C0: 08 00     .word $0008 ; 01 
+- D 0 - - - 0x0092D2 02:92C2: 00 00     .word $0000 ; 02 
+- D 0 - - - 0x0092D4 02:92C4: 00 00     .word $0000 ; 03 
+- D 0 - - - 0x0092D6 02:92C6: 00 00     .word $0000 ; 04 
+- D 0 - - - 0x0092D8 02:92C8: 00 00     .word $0000 ; 05 
+- D 0 - - - 0x0092DA 02:92CA: 1A 00     .word $001A ; 06 
+- D 0 - - - 0x0092DC 02:92CC: 20 00     .word $0020 ; 07 
+- D 0 - - - 0x0092DE 02:92CE: 00 00     .word $0000 ; 08 
+- D 0 - - - 0x0092E0 02:92D0: 00 00     .word $0000 ; 09 
 
 
 
@@ -3457,9 +3467,9 @@ C - - - - - 0x0092FA 02:92EA: 29 7F     AND #$7F
 C - - - - - 0x0092FC 02:92EC: 9D 4A 04  STA ram_044A_obj,X
 C - - - - - 0x0092FF 02:92EF: A8        TAY
 C - - - - - 0x009300 02:92F0: 20 66 A4  JSR sub_A466_copy_data_between_two_objects
-C - - - - - 0x009303 02:92F3: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x009306 02:92F6: 29 DF     AND #con_004A_20 ^ $FF
-C - - - - - 0x009308 02:92F8: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x009303 02:92F3: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x009306 02:92F6: 29 DF     AND #con_004A_flag_20 ^ $FF
+C - - - - - 0x009308 02:92F8: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x00930B 02:92FB: A9 02     LDA #$02
 C - - - - - 0x00930D 02:92FD: 99 4A 04  STA ram_044A_obj,Y
 C - - - - - 0x009310 02:9300: A9 68     LDA #con_state_68
@@ -3467,7 +3477,7 @@ C - - - - - 0x009312 02:9302: 99 43 00  STA a: ram_state,Y
 C - - - - - 0x009315 02:9305: A9 10     LDA #$10
 C - - - - - 0x009317 02:9307: 85 29     STA ram_0029
 C - - - - - 0x009319 02:9309: 85 2A     STA ram_002A
-C - - - - - 0x00931B 02:930B: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x00931B 02:930B: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x00931E 02:930E: 10 04     BPL bra_9314
 C - - - - - 0x009320 02:9310: A9 F0     LDA #$F0
 C - - - - - 0x009322 02:9312: 85 29     STA ram_0029
@@ -3521,12 +3531,12 @@ C - - - - - 0x00935F 02:934F: 29 7F     AND #$7F
 C - - - - - 0x009361 02:9351: A8        TAY
 C - - - - - 0x009362 02:9352: B9 BF 00  LDA a: ram_obj_id,Y
 C - - - - - 0x009365 02:9355: 9D 46 04  STA ram_0446_obj,X
-C - - - - - 0x009368 02:9358: A9 7F     LDA #$7F    ; con_state_grabbed    con_anim_id + $7F
+C - - - - - 0x009368 02:9358: A9 7F     LDA #$7F    ; con_state_hair_grabbed    con_anim_id + $7F
 C - - - - - 0x00936A 02:935A: 99 43 00  STA a: ram_state,Y
 C - - - - - 0x00936D 02:935D: 99 C7 00  STA a: ram_animation_id,Y
-C - - - - - 0x009370 02:9360: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x009373 02:9363: 09 02     ORA #con_004A_02
-C - - - - - 0x009375 02:9365: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x009370 02:9360: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x009373 02:9363: 09 02     ORA #con_004A_flag_hair_grabbed
+C - - - - - 0x009375 02:9365: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x009378 02:9368: A9 23     LDA #con_anim_id + $23
 C - - - - - 0x00937A 02:936A: 95 C7     STA ram_animation_id,X
 C - - - - - 0x00937C 02:936C: A9 04     LDA #$04
@@ -3552,8 +3562,8 @@ C - - - - - 0x0093A0 02:9390: 60        RTS
 
 
 tbl_9391:
-- D 0 - - - 0x0093A1 02:9391: 00        .byte $00   ; 00
-- - - - - - 0x0093A2 02:9392: 06        .byte $06   ; 01
+- D 0 - - - 0x0093A1 02:9391: 00        .byte $00   ; 00 
+- - - - - - 0x0093A2 02:9392: 06        .byte $06   ; 01 
 
 
 
@@ -3597,13 +3607,13 @@ C - - - - - 0x0093EE 02:93DE: BD 4A 04  LDA ram_044A_obj,X
 C - - - - - 0x0093F1 02:93E1: 29 7F     AND #$7F
 C - - - - - 0x0093F3 02:93E3: 9D 4A 04  STA ram_044A_obj,X
 C - - - - - 0x0093F6 02:93E6: 20 66 A4  JSR sub_A466_copy_data_between_two_objects
-C - - - - - 0x0093F9 02:93E9: A9 40     LDA #con_004A_40
-C - - - - - 0x0093FB 02:93EB: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x0093F9 02:93E9: A9 40     LDA #con_004A_flag_stunned
+C - - - - - 0x0093FB 02:93EB: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x0093FE 02:93EE: A9 10     LDA #$10
 C - - - - - 0x009400 02:93F0: 85 1B     STA ram_001B
 C - - - - - 0x009402 02:93F2: A9 00     LDA #$00
 C - - - - - 0x009404 02:93F4: 85 1C     STA ram_001C
-C - - - - - 0x009406 02:93F6: B5 63     LDA ram_0063_obj,X
+C - - - - - 0x009406 02:93F6: B5 63     LDA ram_0063_obj_facing,X
 C - - - - - 0x009408 02:93F8: 10 08     BPL bra_9402
 C - - - - - 0x00940A 02:93FA: A9 F0     LDA #$F0
 C - - - - - 0x00940C 02:93FC: 85 1B     STA ram_001B
@@ -3681,10 +3691,10 @@ C - - - - - 0x009497 02:9487: 69 00     ADC #> $0028
 C - - - - - 0x009499 02:9489: 99 B6 00  STA a: ram_pos_Z_hi,Y
 C - - - - - 0x00949C 02:948C: A9 1E     LDA #con_state_thrown_by_hair_throw
 C - - - - - 0x00949E 02:948E: 99 43 00  STA a: ram_state,Y
-C - - - - - 0x0094A1 02:9491: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x0094A4 02:9494: 29 DD     AND #(con_004A_20 + con_004A_02) ^ $FF
-C - - - - - 0x0094A6 02:9496: 99 4A 00  STA a: ram_004A_obj,Y
-C - - - - - 0x0094A9 02:9499: B5 63     LDA ram_0063_obj,X
+C - - - - - 0x0094A1 02:9491: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x0094A4 02:9494: 29 DD     AND #(con_004A_flag_20 + con_004A_flag_hair_grabbed) ^ $FF
+C - - - - - 0x0094A6 02:9496: 99 4A 00  STA a: ram_004A_obj_flags,Y
+C - - - - - 0x0094A9 02:9499: B5 63     LDA ram_0063_obj_facing,X
 C - - - - - 0x0094AB 02:949B: 10 08     BPL bra_94A5
 C - - - - - 0x0094AD 02:949D: A9 40     LDA #$40
 C - - - - - 0x0094AF 02:949F: 99 0F 03  STA ram_obj_direction,Y
@@ -3744,16 +3754,16 @@ C - - - - - 0x0094FB 02:94EB: A8        TAY
 C - - - - - 0x0094FC 02:94EC: 20 66 A4  JSR sub_A466_copy_data_between_two_objects
 C - - - - - 0x0094FF 02:94EF: A9 1F     LDA #con_state_1F
 C - - - - - 0x009501 02:94F1: 99 43 00  STA a: ram_state,Y
-C - - - - - 0x009504 02:94F4: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x009507 02:94F7: 29 FD     AND #con_004A_02 ^ $FF
-C - - - - - 0x009509 02:94F9: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x009504 02:94F4: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x009507 02:94F7: 29 FD     AND #con_004A_flag_hair_grabbed ^ $FF
+C - - - - - 0x009509 02:94F9: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x00950C 02:94FC: A9 1A     LDA #con_sfx_1A
 C - - - - - 0x00950E 02:94FE: 20 06 C0  JSR sub_0x01C016_play_sound
 C - - - - - 0x009511 02:9501: A9 20     LDA #$20
 C - - - - - 0x009513 02:9503: 85 29     STA ram_0029
 C - - - - - 0x009515 02:9505: A9 10     LDA #$10
 C - - - - - 0x009517 02:9507: 85 2A     STA ram_002A
-C - - - - - 0x009519 02:9509: B5 63     LDA ram_0063_obj,X
+C - - - - - 0x009519 02:9509: B5 63     LDA ram_0063_obj_facing,X
 C - - - - - 0x00951B 02:950B: 10 04     BPL bra_9511
 C - - - - - 0x00951D 02:950D: A9 E0     LDA #$E0
 C - - - - - 0x00951F 02:950F: 85 29     STA ram_0029
@@ -3822,16 +3832,16 @@ C - - - - - 0x009582 02:9572: 29 7F     AND #$7F
 C - - - - - 0x009584 02:9574: 9D 4A 04  STA ram_044A_obj,X
 C - - - - - 0x009587 02:9577: A8        TAY
 C - - - - - 0x009588 02:9578: 20 66 A4  JSR sub_A466_copy_data_between_two_objects
-C - - - - - 0x00958B 02:957B: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x00958E 02:957E: 29 DF     AND #con_004A_20 ^ $FF
-C - - - - - 0x009590 02:9580: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x00958B 02:957B: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x00958E 02:957E: 29 DF     AND #con_004A_flag_20 ^ $FF
+C - - - - - 0x009590 02:9580: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x009593 02:9583: A9 1B     LDA #con_state_1B
 C - - - - - 0x009595 02:9585: 99 43 00  STA a: ram_state,Y
 C - - - - - 0x009598 02:9588: A9 20     LDA #$20
 C - - - - - 0x00959A 02:958A: 85 29     STA ram_0029
 C - - - - - 0x00959C 02:958C: A9 00     LDA #$00
 C - - - - - 0x00959E 02:958E: 85 2A     STA ram_002A
-C - - - - - 0x0095A0 02:9590: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x0095A0 02:9590: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x0095A3 02:9593: 10 04     BPL bra_9599
 C - - - - - 0x0095A5 02:9595: A9 E0     LDA #$E0
 C - - - - - 0x0095A7 02:9597: 85 29     STA ram_0029
@@ -3875,10 +3885,10 @@ C - - - - - 0x0095CF 02:95BF: 20 39 A0  JSR sub_A039_acknowledge_current_state_a
 C - - - - - 0x0095D2 02:95C2: BD 4A 04  LDA ram_044A_obj,X
 C - - - - - 0x0095D5 02:95C5: 09 80     ORA #$80
 C - - - - - 0x0095D7 02:95C7: 9D 4A 04  STA ram_044A_obj,X
-C - - - - - 0x0095DA 02:95CA: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x0095DD 02:95CD: 09 02     ORA #con_004A_02
-C - - - - - 0x0095DF 02:95CF: 99 4A 00  STA a: ram_004A_obj,Y
-C - - - - - 0x0095E2 02:95D2: A9 7F     LDA #con_state_grabbed
+C - - - - - 0x0095DA 02:95CA: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x0095DD 02:95CD: 09 02     ORA #con_004A_flag_hair_grabbed
+C - - - - - 0x0095DF 02:95CF: 99 4A 00  STA a: ram_004A_obj_flags,Y
+C - - - - - 0x0095E2 02:95D2: A9 7F     LDA #con_state_hair_grabbed
 C - - - - - 0x0095E4 02:95D4: 99 43 00  STA a: ram_state,Y
 C - - - - - 0x0095E7 02:95D7: A9 08     LDA #con_damage + $08
 C - - - - - 0x0095E9 02:95D9: 20 DC 9F  JSR sub_9FDC_damage_to_player
@@ -3898,14 +3908,14 @@ C - - - - - 0x009605 02:95F5: A8        TAY
 C - - - - - 0x009606 02:95F6: 20 66 A4  JSR sub_A466_copy_data_between_two_objects
 C - - - - - 0x009609 02:95F9: A9 1E     LDA #con_state_thrown_by_hair_throw
 C - - - - - 0x00960B 02:95FB: 99 43 00  STA a: ram_state,Y
-C - - - - - 0x00960E 02:95FE: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x009611 02:9601: 29 FD     AND #con_004A_02 ^ $FF
-C - - - - - 0x009613 02:9603: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x00960E 02:95FE: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x009611 02:9601: 29 FD     AND #con_004A_flag_hair_grabbed ^ $FF
+C - - - - - 0x009613 02:9603: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x009616 02:9606: A9 28     LDA #$28
 C - - - - - 0x009618 02:9608: 85 29     STA ram_0029
 C - - - - - 0x00961A 02:960A: A9 20     LDA #$20
 C - - - - - 0x00961C 02:960C: 85 2A     STA ram_002A
-C - - - - - 0x00961E 02:960E: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x00961E 02:960E: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x009621 02:9611: 30 04     BMI bra_9617
 C - - - - - 0x009623 02:9613: A9 D8     LDA #$D8
 C - - - - - 0x009625 02:9615: 85 29     STA ram_0029
@@ -3950,12 +3960,12 @@ C - - - - - 0x009650 02:9640: A9 00     LDA #$00
 C - - - - - 0x009652 02:9642: 99 E7 03  STA ram_hit_counter,Y
 C - - - - - 0x009655 02:9645: A9 10     LDA #$10
 C - - - - - 0x009657 02:9647: 95 55     STA ram_animation_duration,X
-C - - - - - 0x009659 02:9649: A9 7F     LDA #con_state_grabbed
+C - - - - - 0x009659 02:9649: A9 7F     LDA #con_state_hair_grabbed
 C - - - - - 0x00965B 02:964B: 99 43 00  STA a: ram_state,Y
-C - - - - - 0x00965E 02:964E: A9 62     LDA #con_004A_02 + con_004A_20 + con_004A_40
-C - - - - - 0x009660 02:9650: 99 4A 00  STA a: ram_004A_obj,Y
-C - - - - - 0x009663 02:9653: A9 02     LDA #con_004A_02
-C - - - - - 0x009665 02:9655: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x00965E 02:964E: A9 62     LDA #con_004A_flag_hair_grabbed + con_004A_flag_20 + con_004A_flag_stunned
+C - - - - - 0x009660 02:9650: 99 4A 00  STA a: ram_004A_obj_flags,Y
+C - - - - - 0x009663 02:9653: A9 02     LDA #con_004A_flag_hair_grabbed
+C - - - - - 0x009665 02:9655: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x009667 02:9657: A9 03     LDA #con_anim_id + $03
 C - - - - - 0x009669 02:9659: 95 C7     STA ram_animation_id,X
 bra_965B:
@@ -3991,8 +4001,8 @@ C - - - - - 0x00969B 02:968B: 29 7F     AND #$7F
 C - - - - - 0x00969D 02:968D: 9D 4A 04  STA ram_044A_obj,X
 C - - - - - 0x0096A0 02:9690: A8        TAY
 C - - - - - 0x0096A1 02:9691: 20 66 A4  JSR sub_A466_copy_data_between_two_objects
-C - - - - - 0x0096A4 02:9694: A9 40     LDA #con_004A_40
-C - - - - - 0x0096A6 02:9696: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x0096A4 02:9694: A9 40     LDA #con_004A_flag_stunned
+C - - - - - 0x0096A6 02:9696: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x0096A9 02:9699: A9 07     LDA #con_anim_id + $07
 C - - - - - 0x0096AB 02:969B: 99 C7 00  STA a: ram_animation_id,Y
 C - - - - - 0x0096AE 02:969E: A9 1C     LDA #con_state_1C
@@ -4003,7 +4013,7 @@ C - - - - - 0x0096B8 02:96A8: A9 20     LDA #$20
 C - - - - - 0x0096BA 02:96AA: 85 29     STA ram_0029
 C - - - - - 0x0096BC 02:96AC: A9 10     LDA #$10
 C - - - - - 0x0096BE 02:96AE: 85 2A     STA ram_002A
-C - - - - - 0x0096C0 02:96B0: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x0096C0 02:96B0: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x0096C3 02:96B3: 10 04     BPL bra_96B9
 C - - - - - 0x0096C5 02:96B5: A9 E0     LDA #$E0
 C - - - - - 0x0096C7 02:96B7: 85 29     STA ram_0029
@@ -4049,12 +4059,12 @@ _off001_96E2_2C:
 
 
 tbl_96E7:
-- - - - - - 0x0096F7 02:96E7: 00        .byte $00   ; 00
-- D 0 - - - 0x0096F8 02:96E8: 01        .byte $01   ; 01
-- D 0 - - - 0x0096F9 02:96E9: 00        .byte $00   ; 02
-- D 0 - - - 0x0096FA 02:96EA: 01        .byte $01   ; 03
-- D 0 - - - 0x0096FB 02:96EB: 00        .byte $00   ; 04
-- D 0 - - - 0x0096FC 02:96EC: 02        .byte $02   ; 05
+- - - - - - 0x0096F7 02:96E7: 00        .byte $00   ; 00 
+- D 0 - - - 0x0096F8 02:96E8: 01        .byte $01   ; 01 
+- D 0 - - - 0x0096F9 02:96E9: 00        .byte $00   ; 02 
+- D 0 - - - 0x0096FA 02:96EA: 01        .byte $01   ; 03 
+- D 0 - - - 0x0096FB 02:96EB: 00        .byte $00   ; 04 
+- D 0 - - - 0x0096FC 02:96EC: 02        .byte $02   ; 05 
 
 
 
@@ -4067,8 +4077,8 @@ C - - - - - 0x009707 02:96F7: A9 3F     LDA #con_sfx_elevator
 C - - - - - 0x009709 02:96F9: 20 06 C0  JSR sub_0x01C016_play_sound
 C - - - - - 0x00970C 02:96FC: A9 1E     LDA #con_obj_symbol_II
 C - - - - - 0x00970E 02:96FE: 85 C3     STA ram_obj_id + $04
-C - - - - - 0x009710 02:9700: A9 A2     LDA #con_003C_80 + con_003C_20 + con_003C_02
-C - - - - - 0x009712 02:9702: 85 40     STA ram_003C_obj + $04
+C - - - - - 0x009710 02:9700: A9 A2     LDA #con_003C_flag_exist + con_003C_flag_20 + con_003C_flag_02
+C - - - - - 0x009712 02:9702: 85 40     STA ram_003C_obj_flags + $04
 C - - - - - 0x009714 02:9704: A9 D5     LDA #< $01D5
 C - - - - - 0x009716 02:9706: 85 7B     STA ram_pos_X_lo + $04
 C - - - - - 0x009718 02:9708: A9 01     LDA #> $01D5
@@ -4077,15 +4087,15 @@ C - - - - - 0x00971C 02:970C: B5 92     LDA ram_pos_Y_lo,X
 C - - - - - 0x00971E 02:970E: 85 96     STA ram_pos_Y_lo + $04
 C - - - - - 0x009720 02:9710: B5 9B     LDA ram_pos_Y_hi,X
 C - - - - - 0x009722 02:9712: 85 9F     STA ram_pos_Y_hi + $04
-C - - - - - 0x009724 02:9714: A9 20     LDA #con_004A_20
-C - - - - - 0x009726 02:9716: 85 4E     STA ram_004A_obj + $04
+C - - - - - 0x009724 02:9714: A9 20     LDA #con_004A_flag_20
+C - - - - - 0x009726 02:9716: 85 4E     STA ram_004A_obj_flags + $04
 C - - - - - 0x009728 02:9718: A9 01     LDA #$01
 C - - - - - 0x00972A 02:971A: 95 B6     STA ram_pos_Z_hi,X
 C - - - - - 0x00972C 02:971C: A9 F0     LDA #$F0
 C - - - - - 0x00972E 02:971E: 95 AD     STA ram_pos_Z_lo,X
-C - - - - - 0x009730 02:9720: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x009732 02:9722: 29 3F     AND #(con_004A_40 + con_004A_80) ^ $FF
-C - - - - - 0x009734 02:9724: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009730 02:9720: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x009732 02:9722: 29 3F     AND #(con_004A_flag_stunned + con_004A_flag_knocked_down) ^ $FF
+C - - - - - 0x009734 02:9724: 95 4A     STA ram_004A_obj_flags,X
 bra_9726:
 C - - - - - 0x009736 02:9726: A6 19     LDX ram_0019
 C - - - - - 0x009738 02:9728: B5 B6     LDA ram_pos_Z_hi,X
@@ -4120,7 +4130,7 @@ C - - - - - 0x00976C 02:975C: E9 10     SBC #< $0010
 C - - - - - 0x00976E 02:975E: B5 B6     LDA ram_pos_Z_hi,X
 C - - - - - 0x009770 02:9760: E9 00     SBC #> $0010
 C - - - - - 0x009772 02:9762: B0 04     BCS bra_9768
-- - - - - - 0x009774 02:9764: A9 7F     LDA #con_state_grabbed
+- - - - - - 0x009774 02:9764: A9 7F     LDA #con_state_hair_grabbed
 - - - - - - 0x009776 02:9766: 95 43     STA ram_state,X
 bra_9768:
 loc_9768:
@@ -4211,9 +4221,9 @@ C - - - - - 0x0097F3 02:97E3: A9 00     LDA #$00
 C - - - - - 0x0097F5 02:97E5: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x0097F8 02:97E8: A9 60     LDA #$60
 C - - - - - 0x0097FA 02:97EA: 9D 2D 03  STA ram_032D_obj,X
-C - - - - - 0x0097FD 02:97ED: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x0097FF 02:97EF: 09 C0     ORA #con_004A_40 + con_004A_80
-C - - - - - 0x009801 02:97F1: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0097FD 02:97ED: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x0097FF 02:97EF: 09 C0     ORA #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x009801 02:97F1: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x009803 02:97F3: A9 07     LDA #con_anim_id + $07
 C - - - - - 0x009805 02:97F5: 95 C7     STA ram_animation_id,X
 C - - - - - 0x009807 02:97F7: A9 05     LDA #$05
@@ -4255,7 +4265,7 @@ _off000_981A_2D:
 - D 0 - I - 0x009832 02:9822: 05        .byte $05   ; 
 - D 0 - I - 0x009833 02:9823: 06        .byte $06   ; 
 - D 0 - I - 0x009834 02:9824: 07        .byte $07   ; 
-- D 0 - I - 0x009835 02:9825: FF        .byte con_state_grabbed + $80   ; 
+- D 0 - I - 0x009835 02:9825: FF        .byte con_state_hair_grabbed + $80   ; 
 
 
 
@@ -4278,9 +4288,9 @@ ofs_000_9831_5A:
 C - - J - - 0x009841 02:9831: B5 43     LDA ram_state,X
 C - - - - - 0x009843 02:9833: 30 09     BMI bra_983E
 C - - - - - 0x009845 02:9835: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
-C - - - - - 0x009848 02:9838: B5 3C     LDA ram_003C_obj,X ; 003E
-C - - - - - 0x00984A 02:983A: 09 01     ORA #con_003C_01
-C - - - - - 0x00984C 02:983C: 95 3C     STA ram_003C_obj,X ; 003E
+C - - - - - 0x009848 02:9838: B5 3C     LDA ram_003C_obj_flags,X ; 003E
+C - - - - - 0x00984A 02:983A: 09 01     ORA #con_003C_flag_01
+C - - - - - 0x00984C 02:983C: 95 3C     STA ram_003C_obj_flags,X ; 003E
 bra_983E:
 C - - - - - 0x00984E 02:983E: A9 2E     LDA #con_A48A_anim_2E
 C - - - - - 0x009850 02:9840: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
@@ -4289,10 +4299,10 @@ C - - - - - 0x009855 02:9845: B5 43     LDA ram_state,X
 C - - - - - 0x009857 02:9847: 29 7F     AND #$7F
 C - - - - - 0x009859 02:9849: C9 00     CMP #con_state_idle
 C - - - - - 0x00985B 02:984B: D0 08     BNE bra_9855_RTS
-C - - - - - 0x00985D 02:984D: A9 10     LDA #con_003C_invisible
-C - - - - - 0x00985F 02:984F: 15 3C     ORA ram_003C_obj,X ; 003E
-C - - - - - 0x009861 02:9851: 29 FE     AND #con_003C_01 ^ $FF
-C - - - - - 0x009863 02:9853: 95 3C     STA ram_003C_obj,X ; 003E
+C - - - - - 0x00985D 02:984D: A9 10     LDA #con_003C_flag_invisible
+C - - - - - 0x00985F 02:984F: 15 3C     ORA ram_003C_obj_flags,X ; 003E
+C - - - - - 0x009861 02:9851: 29 FE     AND #con_003C_flag_01 ^ $FF
+C - - - - - 0x009863 02:9853: 95 3C     STA ram_003C_obj_flags,X ; 003E
 bra_9855_RTS:
 C - - - - - 0x009865 02:9855: 60        RTS
 
@@ -4374,9 +4384,9 @@ C - - - - - 0x0098BB 02:98AB: A9 80     LDA #$80
 C - - - - - 0x0098BD 02:98AD: 9D 2D 03  STA ram_032D_obj,X
 C - - - - - 0x0098C0 02:98B0: A9 05     LDA #$05
 C - - - - - 0x0098C2 02:98B2: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x0098C5 02:98B5: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x0098C7 02:98B7: 09 80     ORA #con_004A_80
-C - - - - - 0x0098C9 02:98B9: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0098C5 02:98B5: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x0098C7 02:98B7: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x0098C9 02:98B9: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x0098CB 02:98BB: A9 07     LDA #$07
 C - - - - - 0x0098CD 02:98BD: 9D 16 03  STA ram_0316_obj,X
 bra_98C0:
@@ -4467,14 +4477,14 @@ C - - - - - 0x009926 02:9916: 29 7F     AND #$7F
 C - - - - - 0x009928 02:9918: 9D 4A 04  STA ram_044A_obj,X
 C - - - - - 0x00992B 02:991B: A8        TAY
 C - - - - - 0x00992C 02:991C: 20 66 A4  JSR sub_A466_copy_data_between_two_objects
-C - - - - - 0x00992F 02:991F: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x009932 02:9922: 29 DF     AND #con_004A_20 ^ $FF
-C - - - - - 0x009934 02:9924: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x00992F 02:991F: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x009932 02:9922: 29 DF     AND #con_004A_flag_20 ^ $FF
+C - - - - - 0x009934 02:9924: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x009937 02:9927: A9 00     LDA #con_state_idle
 C - - - - - 0x009939 02:9929: 99 43 00  STA a: ram_state,Y
 C - - - - - 0x00993C 02:992C: A9 40     LDA #$40
 C - - - - - 0x00993E 02:992E: 9D 0F 03  STA ram_obj_direction,X
-C - - - - - 0x009941 02:9931: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x009941 02:9931: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x009944 02:9934: 30 05     BMI bra_993B_RTS
 C - - - - - 0x009946 02:9936: A9 C0     LDA #$C0
 C - - - - - 0x009948 02:9938: 9D 0F 03  STA ram_obj_direction,X
@@ -4505,9 +4515,9 @@ ofs_000_9941_65_weapon_on_the_ground:
 C - - J - - 0x009951 02:9941: B5 43     LDA ram_state,X
 C - - - - - 0x009953 02:9943: 30 11     BMI bra_9956
 C - - - - - 0x009955 02:9945: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
-C - - - - - 0x009958 02:9948: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00995A 02:994A: 29 3F     AND #(con_004A_40 + con_004A_80) ^ $FF
-C - - - - - 0x00995C 02:994C: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009958 02:9948: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00995A 02:994A: 29 3F     AND #(con_004A_flag_stunned + con_004A_flag_knocked_down) ^ $FF
+C - - - - - 0x00995C 02:994C: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x00995E 02:994E: A9 20     LDA #$20
 C - - - - - 0x009960 02:9950: 95 55     STA ram_animation_duration,X
 C - - - - - 0x009962 02:9952: A9 00     LDA #con_anim_id + $00
@@ -4556,10 +4566,10 @@ C - - - - - 0x009995 02:9985: A9 30     LDA #con_A48A_anim_30
 C - - - - - 0x009997 02:9987: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
 C - - - - - 0x00999A 02:998A: B5 43     LDA ram_state,X
 C - - - - - 0x00999C 02:998C: 29 7F     AND #$7F
-C - - - - - 0x00999E 02:998E: C9 7F     CMP #con_state_grabbed
+C - - - - - 0x00999E 02:998E: C9 7F     CMP #con_state_hair_grabbed
 C - - - - - 0x0099A0 02:9990: D0 04     BNE bra_9996
-C - - - - - 0x0099A2 02:9992: A9 00     LDA #con_003C_00
-C - - - - - 0x0099A4 02:9994: 95 3C     STA ram_003C_obj,X ; 0040 0041 0042
+C - - - - - 0x0099A2 02:9992: A9 00     LDA #con_003C_flag_00
+C - - - - - 0x0099A4 02:9994: 95 3C     STA ram_003C_obj_flags,X ; 0040 0041 0042
 bra_9996:
 C - - - - - 0x0099A6 02:9996: B5 C7     LDA ram_animation_id,X
 C - - - - - 0x0099A8 02:9998: 29 7F     AND #$7F
@@ -4595,7 +4605,7 @@ _off000_99A4_30:
 - D 0 - I - 0x0099C7 02:99B7: 0F        .byte $0F   ; 
 - D 0 - I - 0x0099C8 02:99B8: 10        .byte $10   ; 
 - D 0 - I - 0x0099C9 02:99B9: 11        .byte $11   ; 
-- D 0 - I - 0x0099CA 02:99BA: FF        .byte con_state_grabbed + $80   ; 
+- D 0 - I - 0x0099CA 02:99BA: FF        .byte con_state_hair_grabbed + $80   ; 
 
 
 
@@ -4629,8 +4639,8 @@ ofs_000_99D1_67:
 C - - J - - 0x0099E1 02:99D1: B5 43     LDA ram_state,X
 C - - - - - 0x0099E3 02:99D3: 30 07     BMI bra_99DC
 C - - - - - 0x0099E5 02:99D5: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
-C - - - - - 0x0099E8 02:99D8: A9 00     LDA #con_004A_00
-C - - - - - 0x0099EA 02:99DA: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x0099E8 02:99D8: A9 00     LDA #con_004A_flag_00
+C - - - - - 0x0099EA 02:99DA: 95 4A     STA ram_004A_obj_flags,X
 bra_99DC:
 C - - - - - 0x0099EC 02:99DC: A9 31     LDA #con_A48A_anim_31
 C - - - - - 0x0099EE 02:99DE: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
@@ -4686,8 +4696,8 @@ C - - - - - 0x009A27 02:9A17: A9 0C     LDA #$0C
 C - - - - - 0x009A29 02:9A19: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x009A2C 02:9A1C: A9 80     LDA #$80
 C - - - - - 0x009A2E 02:9A1E: 9D 2D 03  STA ram_032D_obj,X
-C - - - - - 0x009A31 02:9A21: A9 00     LDA #con_004A_00
-C - - - - - 0x009A33 02:9A23: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009A31 02:9A21: A9 00     LDA #con_004A_flag_00
+C - - - - - 0x009A33 02:9A23: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x009A35 02:9A25: A9 02     LDA #$02
 C - - - - - 0x009A37 02:9A27: 9D 4A 04  STA ram_044A_obj,X
 bra_9A2A:
@@ -4735,9 +4745,9 @@ bra_9A57:
 C - - - - - 0x009A67 02:9A57: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
 C - - - - - 0x009A6A 02:9A5A: A9 03     LDA #$03
 C - - - - - 0x009A6C 02:9A5C: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x009A6F 02:9A5F: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x009A71 02:9A61: 09 80     ORA #con_004A_80
-C - - - - - 0x009A73 02:9A63: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009A6F 02:9A5F: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x009A71 02:9A61: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x009A73 02:9A63: 95 4A     STA ram_004A_obj_flags,X
 bra_9A65:
 loc_9A65:
 C D 0 - - - 0x009A75 02:9A65: A9 33     LDA #con_A48A_anim_33
@@ -4800,9 +4810,9 @@ C - - - - - 0x009A9D 02:9A8D: 30 D6     BMI bra_9A65
 C - - - - - 0x009A9F 02:9A8F: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
 C - - - - - 0x009AA2 02:9A92: A9 03     LDA #$03
 C - - - - - 0x009AA4 02:9A94: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x009AA7 02:9A97: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x009AA9 02:9A99: 09 80     ORA #con_004A_80
-C - - - - - 0x009AAB 02:9A9B: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009AA7 02:9A97: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x009AA9 02:9A99: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x009AAB 02:9A9B: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x009AAD 02:9A9D: B5 BF     LDA ram_obj_id,X
 C - - - - - 0x009AAF 02:9A9F: 38        SEC
 C - - - - - 0x009AB0 02:9AA0: E9 12     SBC #con_weapon_id
@@ -4839,8 +4849,8 @@ C - - - - - 0x009AE2 02:9AD2: A9 01     LDA #$01
 C - - - - - 0x009AE4 02:9AD4: 9D 16 03  STA ram_0316_obj,X
 C - - - - - 0x009AE7 02:9AD7: A9 01     LDA #$01
 C - - - - - 0x009AE9 02:9AD9: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x009AEC 02:9ADC: A9 80     LDA #con_004A_80
-C - - - - - 0x009AEE 02:9ADE: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009AEC 02:9ADC: A9 80     LDA #con_004A_flag_knocked_down
+C - - - - - 0x009AEE 02:9ADE: 95 4A     STA ram_004A_obj_flags,X
 bra_9AE0:
 C - - - - - 0x009AF0 02:9AE0: 4C 65 9A  JMP loc_9A65
 
@@ -4887,9 +4897,9 @@ C - - - - - 0x009B14 02:9B04: 9D 2D 03  STA ram_032D_obj,X
 C - - - - - 0x009B17 02:9B07: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x009B1A 02:9B0A: A9 0A     LDA #$0A
 C - - - - - 0x009B1C 02:9B0C: 9D 16 03  STA ram_0316_obj,X
-C - - - - - 0x009B1F 02:9B0F: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x009B21 02:9B11: 09 80     ORA #con_004A_80
-C - - - - - 0x009B23 02:9B13: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009B1F 02:9B0F: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x009B21 02:9B11: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x009B23 02:9B13: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x009B25 02:9B15: A9 20     LDA #con_sfx_knife_fall
 C - - - - - 0x009B27 02:9B17: 20 06 C0  JSR sub_0x01C016_play_sound
 C - - - - - 0x009B2A 02:9B1A: 20 5F A0  JSR sub_A05F
@@ -4906,9 +4916,9 @@ C - - - - - 0x009B37 02:9B27: A9 05     LDA #$05
 C - - - - - 0x009B39 02:9B29: 9D 16 03  STA ram_0316_obj,X
 C - - - - - 0x009B3C 02:9B2C: A9 07     LDA #$07
 C - - - - - 0x009B3E 02:9B2E: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x009B41 02:9B31: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x009B43 02:9B33: 09 80     ORA #con_004A_80
-C - - - - - 0x009B45 02:9B35: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009B41 02:9B31: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x009B43 02:9B33: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x009B45 02:9B35: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x009B47 02:9B37: 20 5F A0  JSR sub_A05F
 bra_9B3A:
 C - - - - - 0x009B4A 02:9B3A: 4C 65 9A  JMP loc_9A65
@@ -4933,10 +4943,10 @@ C - - - - - 0x009B64 02:9B54: A9 34     LDA #con_A48A_anim_34
 C - - - - - 0x009B66 02:9B56: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
 C - - - - - 0x009B69 02:9B59: B5 43     LDA ram_state,X
 C - - - - - 0x009B6B 02:9B5B: 29 7F     AND #$7F
-C - - - - - 0x009B6D 02:9B5D: C9 7F     CMP #con_state_grabbed
+C - - - - - 0x009B6D 02:9B5D: C9 7F     CMP #con_state_hair_grabbed
 C - - - - - 0x009B6F 02:9B5F: D0 04     BNE bra_9B65_RTS
-C - - - - - 0x009B71 02:9B61: A9 00     LDA #con_003C_00
-C - - - - - 0x009B73 02:9B63: 95 3C     STA ram_003C_obj,X ; 0040 0041
+C - - - - - 0x009B71 02:9B61: A9 00     LDA #con_003C_flag_00
+C - - - - - 0x009B73 02:9B63: 95 3C     STA ram_003C_obj_flags,X ; 0040 0041
 bra_9B65_RTS:
 C - - - - - 0x009B75 02:9B65: 60        RTS
 
@@ -4952,7 +4962,7 @@ _off000_9B66_34:
 - D 0 - I - 0x009B7C 02:9B6C: 18        .byte $18   ; 
 - D 0 - I - 0x009B7D 02:9B6D: 19        .byte $19   ; 
 - D 0 - I - 0x009B7E 02:9B6E: 1A        .byte $1A   ; 
-- D 0 - I - 0x009B7F 02:9B6F: FF        .byte con_state_grabbed + $80   ; 
+- D 0 - I - 0x009B7F 02:9B6F: FF        .byte con_state_hair_grabbed + $80   ; 
 
 
 
@@ -4975,9 +4985,9 @@ C - - - - - 0x009B8B 02:9B7B: 30 11     BMI bra_9B8E
 C - - - - - 0x009B8D 02:9B7D: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
 C - - - - - 0x009B90 02:9B80: A9 0C     LDA #$0C
 C - - - - - 0x009B92 02:9B82: 9D 16 03  STA ram_0316_obj,X
-C - - - - - 0x009B95 02:9B85: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x009B97 02:9B87: 09 80     ORA #con_004A_80
-C - - - - - 0x009B99 02:9B89: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009B95 02:9B85: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x009B97 02:9B87: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x009B99 02:9B89: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x009B9B 02:9B8B: 20 5F A0  JSR sub_A05F
 bra_9B8E:
 C - - - - - 0x009B9E 02:9B8E: A9 35     LDA #con_A48A_anim_35
@@ -5036,13 +5046,13 @@ C - - - - - 0x009BF1 02:9BE1: 95 AD     STA ram_pos_Z_lo,X
 C - - - - - 0x009BF3 02:9BE3: A9 01     LDA #> $01A8
 C - - - - - 0x009BF5 02:9BE5: 95 B6     STA ram_pos_Z_hi,X
 C - - - - - 0x009BF7 02:9BE7: A9 80     LDA #$80
-C - - - - - 0x009BF9 02:9BE9: 9D 63 00  STA a: ram_0063_obj,X
+C - - - - - 0x009BF9 02:9BE9: 9D 63 00  STA a: ram_0063_obj_facing,X
 C - - - - - 0x009BFC 02:9BEC: A9 3C     LDA #con_sfx_3C
 C - - - - - 0x009BFE 02:9BEE: 20 06 C0  JSR sub_0x01C016_play_sound
 C - - - - - 0x009C01 02:9BF1: A9 02     LDA #$02
 C - - - - - 0x009C03 02:9BF3: 9D 4A 04  STA ram_044A_obj,X
-C - - - - - 0x009C06 02:9BF6: A9 00     LDA #con_004A_00
-C - - - - - 0x009C08 02:9BF8: 9D 4A 00  STA a: ram_004A_obj,X
+C - - - - - 0x009C06 02:9BF6: A9 00     LDA #con_004A_flag_00
+C - - - - - 0x009C08 02:9BF8: 9D 4A 00  STA a: ram_004A_obj_flags,X
 bra_9BFB:
 C - - - - - 0x009C0B 02:9BFB: A9 36     LDA #con_A48A_anim_36
 C - - - - - 0x009C0D 02:9BFD: 4C D2 9F  JMP loc_9FD2
@@ -5067,17 +5077,17 @@ C - - J - - 0x009C15 02:9C05: B5 43     LDA ram_state,X
 C - - - - - 0x009C17 02:9C07: 30 1C     BMI bra_9C25
 C - - - - - 0x009C19 02:9C09: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
 ; bzk optimize, LDA 80, delete ORA at 0x009C31
-C - - - - - 0x009C1C 02:9C0C: A9 00     LDA #con_004A_00
-C - - - - - 0x009C1E 02:9C0E: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009C1C 02:9C0C: A9 00     LDA #con_004A_flag_00
+C - - - - - 0x009C1E 02:9C0E: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x009C20 02:9C10: A9 A0     LDA #$A0
 C - - - - - 0x009C22 02:9C12: 9D 2D 03  STA ram_032D_obj,X
 C - - - - - 0x009C25 02:9C15: A9 00     LDA #$00
 C - - - - - 0x009C27 02:9C17: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x009C2A 02:9C1A: A9 02     LDA #$02
 C - - - - - 0x009C2C 02:9C1C: 9D 4A 04  STA ram_044A_obj,X
-C - - - - - 0x009C2F 02:9C1F: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x009C31 02:9C21: 09 80     ORA #con_004A_80
-C - - - - - 0x009C33 02:9C23: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009C2F 02:9C1F: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x009C31 02:9C21: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x009C33 02:9C23: 95 4A     STA ram_004A_obj_flags,X
 bra_9C25:
 C - - - - - 0x009C35 02:9C25: A9 37     LDA #con_A48A_anim_37
 C - - - - - 0x009C37 02:9C27: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
@@ -5161,7 +5171,7 @@ _off000_9C7D_38:
 - D 0 - I - 0x009C94 02:9C84: 07        .byte $07   ; 
 - D 0 - I - 0x009C95 02:9C85: 08        .byte $08   ; 
 - D 0 - I - 0x009C96 02:9C86: 09        .byte $09   ; 
-- D 0 - I - 0x009C97 02:9C87: FF        .byte con_state_grabbed + $80   ; 
+- D 0 - I - 0x009C97 02:9C87: FF        .byte con_state_hair_grabbed + $80   ; 
 
 
 
@@ -5188,17 +5198,17 @@ C - - - - - 0x009CAB 02:9C9B: 9D 25 03  STA ram_obj_gravity_hi,X
 C - - - - - 0x009CAE 02:9C9E: A9 80     LDA #$80
 C - - - - - 0x009CB0 02:9CA0: 9D 2D 03  STA ram_032D_obj,X
 C - - - - - 0x009CB3 02:9CA3: A9 00     LDA #$00
-C - - - - - 0x009CB5 02:9CA5: 9D 63 00  STA a: ram_0063_obj,X
+C - - - - - 0x009CB5 02:9CA5: 9D 63 00  STA a: ram_0063_obj_facing,X
 C - - - - - 0x009CB8 02:9CA8: BD 0F 03  LDA ram_obj_direction,X
 C - - - - - 0x009CBB 02:9CAB: C9 80     CMP #$80
 C - - - - - 0x009CBD 02:9CAD: 90 10     BCC bra_9CBF
 C - - - - - 0x009CBF 02:9CAF: A9 80     LDA #$80
-C - - - - - 0x009CC1 02:9CB1: 9D 63 00  STA a: ram_0063_obj,X
+C - - - - - 0x009CC1 02:9CB1: 9D 63 00  STA a: ram_0063_obj_facing,X
 C - - - - - 0x009CC4 02:9CB4: A9 2E     LDA #con_sfx_2E
 C - - - - - 0x009CC6 02:9CB6: 20 06 C0  JSR sub_0x01C016_play_sound
-C - - - - - 0x009CC9 02:9CB9: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x009CCB 02:9CBB: 09 80     ORA #con_004A_80
-C - - - - - 0x009CCD 02:9CBD: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009CC9 02:9CB9: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x009CCB 02:9CBB: 09 80     ORA #con_004A_flag_knocked_down
+C - - - - - 0x009CCD 02:9CBD: 95 4A     STA ram_004A_obj_flags,X
 bra_9CBF:
 C - - - - - 0x009CCF 02:9CBF: A9 39     LDA #con_A48A_anim_39
 C - - - - - 0x009CD1 02:9CC1: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animation_tables
@@ -5213,7 +5223,7 @@ C - - - - - 0x009CE7 02:9CD7: 10 16     BPL bra_9CEF
 C - - - - - 0x009CE9 02:9CD9: 48        PHA
 C - - - - - 0x009CEA 02:9CDA: A9 40     LDA #$40
 C - - - - - 0x009CEC 02:9CDC: 9D 0F 03  STA ram_obj_direction,X
-C - - - - - 0x009CEF 02:9CDF: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x009CEF 02:9CDF: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x009CF2 02:9CE2: 30 05     BMI bra_9CE9
 C - - - - - 0x009CF4 02:9CE4: A9 C0     LDA #$C0
 C - - - - - 0x009CF6 02:9CE6: 9D 0F 03  STA ram_obj_direction,X
@@ -5258,8 +5268,8 @@ C - - - - - 0x009D1D 02:9D0D: 20 8A A4  JSR sub_A48A_set_pointers_for_2_animatio
 C - - - - - 0x009D20 02:9D10: B5 43     LDA ram_state,X
 C - - - - - 0x009D22 02:9D12: 29 7F     AND #$7F
 C - - - - - 0x009D24 02:9D14: D0 04     BNE bra_9D1A_RTS    ; if not con_state_idle
-- - - - - - 0x009D26 02:9D16: A9 00     LDA #con_004A_00
-- - - - - - 0x009D28 02:9D18: 95 4A     STA ram_004A_obj,X
+- - - - - - 0x009D26 02:9D16: A9 00     LDA #con_004A_flag_00
+- - - - - - 0x009D28 02:9D18: 95 4A     STA ram_004A_obj_flags,X
 bra_9D1A_RTS:
 C - - - - - 0x009D2A 02:9D1A: 60        RTS
 
@@ -5268,7 +5278,7 @@ C - - - - - 0x009D2A 02:9D1A: 60        RTS
 _off000_9D1B_3A:
 - D 0 - I - 0x009D2B 02:9D1B: 04        .byte $04   ; 
 - D 0 - I - 0x009D2C 02:9D1C: 05        .byte $05   ; 
-- D 0 - I - 0x009D2D 02:9D1D: FF        .byte con_state_grabbed + $80   ; 
+- D 0 - I - 0x009D2D 02:9D1D: FF        .byte con_state_hair_grabbed + $80   ; 
 
 
 
@@ -5286,9 +5296,9 @@ C - - - - - 0x009D37 02:9D27: A9 08     LDA #con_anim_id + $08
 C - - - - - 0x009D39 02:9D29: 95 C7     STA ram_animation_id,X
 C - - - - - 0x009D3B 02:9D2B: A9 04     LDA #$04
 C - - - - - 0x009D3D 02:9D2D: 95 55     STA ram_animation_duration,X
-C - - - - - 0x009D3F 02:9D2F: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x009D41 02:9D31: 29 7F     AND #con_004A_80 ^ $FF
-C - - - - - 0x009D43 02:9D33: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009D3F 02:9D2F: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x009D41 02:9D31: 29 7F     AND #con_004A_flag_knocked_down ^ $FF
+C - - - - - 0x009D43 02:9D33: 95 4A     STA ram_004A_obj_flags,X
 bra_9D35:
 C - - - - - 0x009D45 02:9D35: D6 55     DEC ram_animation_duration,X
 C - - - - - 0x009D47 02:9D37: D0 04     BNE bra_9D3D_RTS
@@ -5307,8 +5317,8 @@ C - - - - - 0x009D55 02:9D45: A9 10     LDA #$10
 C - - - - - 0x009D57 02:9D47: 9D 16 03  STA ram_0316_obj,X
 C - - - - - 0x009D5A 02:9D4A: A9 04     LDA #con_anim_id + $04
 C - - - - - 0x009D5C 02:9D4C: 95 C7     STA ram_animation_id,X
-C - - - - - 0x009D5E 02:9D4E: A9 80     LDA #con_004A_80
-C - - - - - 0x009D60 02:9D50: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009D5E 02:9D4E: A9 80     LDA #con_004A_flag_knocked_down
+C - - - - - 0x009D60 02:9D50: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x009D62 02:9D52: 20 5F A0  JSR sub_A05F
 bra_9D55:
 C - - - - - 0x009D65 02:9D55: 20 4B 9E  JSR sub_9E4B_move_object
@@ -5324,8 +5334,8 @@ C - - - - - 0x009D70 02:9D60: A9 00     LDA #$00
 C - - - - - 0x009D72 02:9D62: 9D 2D 03  STA ram_032D_obj,X
 C - - - - - 0x009D75 02:9D65: A9 FA     LDA #$FA
 C - - - - - 0x009D77 02:9D67: 9D 25 03  STA ram_obj_gravity_hi,X
-C - - - - - 0x009D7A 02:9D6A: A9 80     LDA #con_004A_80
-C - - - - - 0x009D7C 02:9D6C: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x009D7A 02:9D6A: A9 80     LDA #con_004A_flag_knocked_down
+C - - - - - 0x009D7C 02:9D6C: 95 4A     STA ram_004A_obj_flags,X
 bra_9D6E:
 C - - - - - 0x009D7E 02:9D6E: BD 4A 04  LDA ram_044A_obj,X
 C - - - - - 0x009D81 02:9D71: A8        TAY
@@ -5388,9 +5398,9 @@ ofs_000_9DAF_7D:
 - - - - - - 0x009DC3 02:9DB3: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
 - - - - - - 0x009DC6 02:9DB6: A9 09     LDA #$09
 - - - - - - 0x009DC8 02:9DB8: 9D 16 03  STA ram_0316_obj,X
-- - - - - - 0x009DCB 02:9DBB: B5 4A     LDA ram_004A_obj,X
-- - - - - - 0x009DCD 02:9DBD: 09 80     ORA #con_004A_80
-- - - - - - 0x009DCF 02:9DBF: 95 4A     STA ram_004A_obj,X
+- - - - - - 0x009DCB 02:9DBB: B5 4A     LDA ram_004A_obj_flags,X
+- - - - - - 0x009DCD 02:9DBD: 09 80     ORA #con_004A_flag_knocked_down
+- - - - - - 0x009DCF 02:9DBF: 95 4A     STA ram_004A_obj_flags,X
 bra_9DC1:
 - - - - - - 0x009DD1 02:9DC1: 20 4B 9E  JSR sub_9E4B_move_object
 - - - - - - 0x009DD4 02:9DC4: 20 10 9E  JSR sub_9E10
@@ -5399,13 +5409,13 @@ bra_9DC1:
 
 
 ofs_000_9DC8_7E:
-C - - J - - 0x009DD8 02:9DC8: A9 00     LDA #$00    ; con_003C_00    con_004A_00
-C - - - - - 0x009DDA 02:9DCA: 95 3C     STA ram_003C_obj,X ; 0040 0041 0042
-C - - - - - 0x009DDC 02:9DCC: 95 4A     STA ram_004A_obj,X
+C - - J - - 0x009DD8 02:9DC8: A9 00     LDA #$00    ; con_003C_flag_00    con_004A_flag_00
+C - - - - - 0x009DDA 02:9DCA: 95 3C     STA ram_003C_obj_flags,X ; 0040 0041 0042
+C - - - - - 0x009DDC 02:9DCC: 95 4A     STA ram_004A_obj_flags,X
 ofs_000_9DCE_7F:
-C - - J - - 0x009DDE 02:9DCE: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x009DE0 02:9DD0: 29 7F     AND #con_004A_80 ^ $FF
-C - - - - - 0x009DE2 02:9DD2: 95 4A     STA ram_004A_obj,X
+C - - J - - 0x009DDE 02:9DCE: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x009DE0 02:9DD0: 29 7F     AND #con_004A_flag_knocked_down ^ $FF
+C - - - - - 0x009DE2 02:9DD2: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x009DE4 02:9DD4: A9 7F     LDA #$7F
 C - - - - - 0x009DE6 02:9DD6: 95 C7     STA ram_animation_id,X
 C - - - - - 0x009DE8 02:9DD8: 60        RTS
@@ -5427,19 +5437,19 @@ C - - - - - 0x009DF4 02:9DE4: 60        RTS
 sub_9DE5:
 C - - - - - 0x009DF5 02:9DE5: A4 19     LDY ram_0019
 C - - - - - 0x009DF7 02:9DE7: A9 00     LDA #$00
-C - - - - - 0x009DF9 02:9DE9: 99 63 00  STA a: ram_0063_obj,Y
+C - - - - - 0x009DF9 02:9DE9: 99 63 00  STA a: ram_0063_obj_facing,Y
 C - - - - - 0x009DFC 02:9DEC: B9 0F 03  LDA ram_obj_direction,Y
 C - - - - - 0x009DFF 02:9DEF: C9 80     CMP #$80
 C - - - - - 0x009E01 02:9DF1: 90 05     BCC bra_9DF8
 C - - - - - 0x009E03 02:9DF3: A9 80     LDA #$80
-C - - - - - 0x009E05 02:9DF5: 99 63 00  STA a: ram_0063_obj,Y
+C - - - - - 0x009E05 02:9DF5: 99 63 00  STA a: ram_0063_obj_facing,Y
 bra_9DF8:
 sub_9DF8_set_mirrored_amination:
 C - - - - - 0x009E08 02:9DF8: A4 19     LDY ram_0019
 C - - - - - 0x009E0A 02:9DFA: B9 C7 00  LDA a: ram_animation_id,Y
 C - - - - - 0x009E0D 02:9DFD: 29 7F     AND #$7F
 C - - - - - 0x009E0F 02:9DFF: 99 C7 00  STA a: ram_animation_id,Y
-C - - - - - 0x009E12 02:9E02: B9 63 00  LDA a: ram_0063_obj,Y
+C - - - - - 0x009E12 02:9E02: B9 63 00  LDA a: ram_0063_obj_facing,Y
 C - - - - - 0x009E15 02:9E05: 29 80     AND #$80
 C - - - - - 0x009E17 02:9E07: 49 80     EOR #$80
 C - - - - - 0x009E19 02:9E09: 19 C7 00  ORA a: ram_animation_id,Y
@@ -5599,71 +5609,71 @@ tbl_9EFA:
 
 
 tbl_9F02:
-- D 0 - - - 0x009F12 02:9F02: 00        .byte $00   ; 00
-- - - - - - 0x009F13 02:9F03: 07        .byte $07   ; 01
-- - - - - - 0x009F14 02:9F04: 0D        .byte $0D   ; 02
-- - - - - - 0x009F15 02:9F05: 13        .byte $13   ; 03
-- - - - - - 0x009F16 02:9F06: 19        .byte $19   ; 04
-- - - - - - 0x009F17 02:9F07: 20        .byte $20   ; 05
-- - - - - - 0x009F18 02:9F08: 25        .byte $25   ; 06
-- - - - - - 0x009F19 02:9F09: 2B        .byte $2B   ; 07
-- - - - - - 0x009F1A 02:9F0A: 32        .byte $32   ; 08
-- - - - - - 0x009F1B 02:9F0B: 38        .byte $38   ; 09
-- - - - - - 0x009F1C 02:9F0C: 3E        .byte $3E   ; 0A
-- - - - - - 0x009F1D 02:9F0D: 44        .byte $44   ; 0B
-- - - - - - 0x009F1E 02:9F0E: 4A        .byte $4A   ; 0C
-- - - - - - 0x009F1F 02:9F0F: 50        .byte $50   ; 0D
-- - - - - - 0x009F20 02:9F10: 56        .byte $56   ; 0E
-- - - - - - 0x009F21 02:9F11: 5C        .byte $5C   ; 0F
-- D 0 - - - 0x009F22 02:9F12: 62        .byte $62   ; 10
-- - - - - - 0x009F23 02:9F13: 67        .byte $67   ; 11
-- - - - - - 0x009F24 02:9F14: 6D        .byte $6D   ; 12
-- - - - - - 0x009F25 02:9F15: 73        .byte $73   ; 13
-- - - - - - 0x009F26 02:9F16: 79        .byte $79   ; 14
-- - - - - - 0x009F27 02:9F17: 7E        .byte $7E   ; 15
-- - - - - - 0x009F28 02:9F18: 83        .byte $83   ; 16
-- - - - - - 0x009F29 02:9F19: 89        .byte $89   ; 17
-- - - - - - 0x009F2A 02:9F1A: 8E        .byte $8E   ; 18
-- - - - - - 0x009F2B 02:9F1B: 93        .byte $93   ; 19
-- - - - - - 0x009F2C 02:9F1C: 98        .byte $98   ; 1A
-- - - - - - 0x009F2D 02:9F1D: 9D        .byte $9D   ; 1B
-- - - - - - 0x009F2E 02:9F1E: A1        .byte $A1   ; 1C
-- - - - - - 0x009F2F 02:9F1F: A6        .byte $A6   ; 1D
-- - - - - - 0x009F30 02:9F20: AB        .byte $AB   ; 1E
-- - - - - - 0x009F31 02:9F21: B0        .byte $B0   ; 1F
-- D 0 - - - 0x009F32 02:9F22: B5        .byte $B5   ; 20
-- - - - - - 0x009F33 02:9F23: B9        .byte $B9   ; 21
-- - - - - - 0x009F34 02:9F24: BD        .byte $BD   ; 22
-- - - - - - 0x009F35 02:9F25: C1        .byte $C1   ; 23
-- - - - - - 0x009F36 02:9F26: C6        .byte $C6   ; 24
-- - - - - - 0x009F37 02:9F27: C9        .byte $C9   ; 25
-- - - - - - 0x009F38 02:9F28: CD        .byte $CD   ; 26
-- - - - - - 0x009F39 02:9F29: D1        .byte $D1   ; 27
-- - - - - - 0x009F3A 02:9F2A: D4        .byte $D4   ; 28
-- - - - - - 0x009F3B 02:9F2B: D8        .byte $D8   ; 29
-- - - - - - 0x009F3C 02:9F2C: DB        .byte $DB   ; 2A
-- - - - - - 0x009F3D 02:9F2D: DE        .byte $DE   ; 2B
-- - - - - - 0x009F3E 02:9F2E: E1        .byte $E1   ; 2C
-- - - - - - 0x009F3F 02:9F2F: E4        .byte $E4   ; 2D
-- - - - - - 0x009F40 02:9F30: E7        .byte $E7   ; 2E
-- - - - - - 0x009F41 02:9F31: EA        .byte $EA   ; 2F
-- D 0 - - - 0x009F42 02:9F32: EC        .byte $EC   ; 30
-- - - - - - 0x009F43 02:9F33: EE        .byte $EE   ; 31
-- - - - - - 0x009F44 02:9F34: F0        .byte $F0   ; 32
-- - - - - - 0x009F45 02:9F35: F3        .byte $F3   ; 33
-- - - - - - 0x009F46 02:9F36: F4        .byte $F4   ; 34
-- - - - - - 0x009F47 02:9F37: F6        .byte $F6   ; 35
-- - - - - - 0x009F48 02:9F38: F8        .byte $F8   ; 36
-- - - - - - 0x009F49 02:9F39: F9        .byte $F9   ; 37
-- - - - - - 0x009F4A 02:9F3A: FC        .byte $FC   ; 38
-- - - - - - 0x009F4B 02:9F3B: FC        .byte $FC   ; 39
-- - - - - - 0x009F4C 02:9F3C: FD        .byte $FD   ; 3A
-- - - - - - 0x009F4D 02:9F3D: FD        .byte $FD   ; 3B
-- - - - - - 0x009F4E 02:9F3E: FE        .byte $FE   ; 3C
-- - - - - - 0x009F4F 02:9F3F: FE        .byte $FE   ; 3D
-- - - - - - 0x009F50 02:9F40: FE        .byte $FE   ; 3E
-- - - - - - 0x009F51 02:9F41: FE        .byte $FE   ; 3F
-- D 0 - - - 0x009F52 02:9F42: FF        .byte $FF   ; 40
+- D 0 - - - 0x009F12 02:9F02: 00        .byte $00   ; 00 
+- - - - - - 0x009F13 02:9F03: 07        .byte $07   ; 01 
+- - - - - - 0x009F14 02:9F04: 0D        .byte $0D   ; 02 
+- - - - - - 0x009F15 02:9F05: 13        .byte $13   ; 03 
+- - - - - - 0x009F16 02:9F06: 19        .byte $19   ; 04 
+- - - - - - 0x009F17 02:9F07: 20        .byte $20   ; 05 
+- - - - - - 0x009F18 02:9F08: 25        .byte $25   ; 06 
+- - - - - - 0x009F19 02:9F09: 2B        .byte $2B   ; 07 
+- - - - - - 0x009F1A 02:9F0A: 32        .byte $32   ; 08 
+- - - - - - 0x009F1B 02:9F0B: 38        .byte $38   ; 09 
+- - - - - - 0x009F1C 02:9F0C: 3E        .byte $3E   ; 0A 
+- - - - - - 0x009F1D 02:9F0D: 44        .byte $44   ; 0B 
+- - - - - - 0x009F1E 02:9F0E: 4A        .byte $4A   ; 0C 
+- - - - - - 0x009F1F 02:9F0F: 50        .byte $50   ; 0D 
+- - - - - - 0x009F20 02:9F10: 56        .byte $56   ; 0E 
+- - - - - - 0x009F21 02:9F11: 5C        .byte $5C   ; 0F 
+- D 0 - - - 0x009F22 02:9F12: 62        .byte $62   ; 10 
+- - - - - - 0x009F23 02:9F13: 67        .byte $67   ; 11 
+- - - - - - 0x009F24 02:9F14: 6D        .byte $6D   ; 12 
+- - - - - - 0x009F25 02:9F15: 73        .byte $73   ; 13 
+- - - - - - 0x009F26 02:9F16: 79        .byte $79   ; 14 
+- - - - - - 0x009F27 02:9F17: 7E        .byte $7E   ; 15 
+- - - - - - 0x009F28 02:9F18: 83        .byte $83   ; 16 
+- - - - - - 0x009F29 02:9F19: 89        .byte $89   ; 17 
+- - - - - - 0x009F2A 02:9F1A: 8E        .byte $8E   ; 18 
+- - - - - - 0x009F2B 02:9F1B: 93        .byte $93   ; 19 
+- - - - - - 0x009F2C 02:9F1C: 98        .byte $98   ; 1A 
+- - - - - - 0x009F2D 02:9F1D: 9D        .byte $9D   ; 1B 
+- - - - - - 0x009F2E 02:9F1E: A1        .byte $A1   ; 1C 
+- - - - - - 0x009F2F 02:9F1F: A6        .byte $A6   ; 1D 
+- - - - - - 0x009F30 02:9F20: AB        .byte $AB   ; 1E 
+- - - - - - 0x009F31 02:9F21: B0        .byte $B0   ; 1F 
+- D 0 - - - 0x009F32 02:9F22: B5        .byte $B5   ; 20 
+- - - - - - 0x009F33 02:9F23: B9        .byte $B9   ; 21 
+- - - - - - 0x009F34 02:9F24: BD        .byte $BD   ; 22 
+- - - - - - 0x009F35 02:9F25: C1        .byte $C1   ; 23 
+- - - - - - 0x009F36 02:9F26: C6        .byte $C6   ; 24 
+- - - - - - 0x009F37 02:9F27: C9        .byte $C9   ; 25 
+- - - - - - 0x009F38 02:9F28: CD        .byte $CD   ; 26 
+- - - - - - 0x009F39 02:9F29: D1        .byte $D1   ; 27 
+- - - - - - 0x009F3A 02:9F2A: D4        .byte $D4   ; 28 
+- - - - - - 0x009F3B 02:9F2B: D8        .byte $D8   ; 29 
+- - - - - - 0x009F3C 02:9F2C: DB        .byte $DB   ; 2A 
+- - - - - - 0x009F3D 02:9F2D: DE        .byte $DE   ; 2B 
+- - - - - - 0x009F3E 02:9F2E: E1        .byte $E1   ; 2C 
+- - - - - - 0x009F3F 02:9F2F: E4        .byte $E4   ; 2D 
+- - - - - - 0x009F40 02:9F30: E7        .byte $E7   ; 2E 
+- - - - - - 0x009F41 02:9F31: EA        .byte $EA   ; 2F 
+- D 0 - - - 0x009F42 02:9F32: EC        .byte $EC   ; 30 
+- - - - - - 0x009F43 02:9F33: EE        .byte $EE   ; 31 
+- - - - - - 0x009F44 02:9F34: F0        .byte $F0   ; 32 
+- - - - - - 0x009F45 02:9F35: F3        .byte $F3   ; 33 
+- - - - - - 0x009F46 02:9F36: F4        .byte $F4   ; 34 
+- - - - - - 0x009F47 02:9F37: F6        .byte $F6   ; 35 
+- - - - - - 0x009F48 02:9F38: F8        .byte $F8   ; 36 
+- - - - - - 0x009F49 02:9F39: F9        .byte $F9   ; 37 
+- - - - - - 0x009F4A 02:9F3A: FC        .byte $FC   ; 38 
+- - - - - - 0x009F4B 02:9F3B: FC        .byte $FC   ; 39 
+- - - - - - 0x009F4C 02:9F3C: FD        .byte $FD   ; 3A 
+- - - - - - 0x009F4D 02:9F3D: FD        .byte $FD   ; 3B 
+- - - - - - 0x009F4E 02:9F3E: FE        .byte $FE   ; 3C 
+- - - - - - 0x009F4F 02:9F3F: FE        .byte $FE   ; 3D 
+- - - - - - 0x009F50 02:9F40: FE        .byte $FE   ; 3E 
+- - - - - - 0x009F51 02:9F41: FE        .byte $FE   ; 3F 
+- D 0 - - - 0x009F52 02:9F42: FF        .byte $FF   ; 40 
 
 
 
@@ -5810,7 +5820,7 @@ C - - - - - 0x00A02C 02:A01C: 69 00     ADC #$00
 C - - - - - 0x00A02E 02:A01E: 99 B6 00  STA a: ram_pos_Z_hi,Y
 C - - - - - 0x00A031 02:A021: A9 C0     LDA #$C0
 C - - - - - 0x00A033 02:A023: 85 29     STA ram_0029
-C - - - - - 0x00A035 02:A025: B5 63     LDA ram_0063_obj,X
+C - - - - - 0x00A035 02:A025: B5 63     LDA ram_0063_obj_facing,X
 C - - - - - 0x00A037 02:A027: 10 04     BPL bra_A02D
 C - - - - - 0x00A039 02:A029: A9 40     LDA #$40
 C - - - - - 0x00A03B 02:A02B: 85 29     STA ram_0029
@@ -5846,16 +5856,16 @@ C - - - - - 0x00A066 02:A056: C9 80     CMP #$80
 C - - - - - 0x00A068 02:A058: B0 02     BCS bra_A05C
 C - - - - - 0x00A06A 02:A05A: A0 80     LDY #$80
 bra_A05C:
-C - - - - - 0x00A06C 02:A05C: 94 63     STY ram_0063_obj,X
+C - - - - - 0x00A06C 02:A05C: 94 63     STY ram_0063_obj_facing,X
 C - - - - - 0x00A06E 02:A05E: 60        RTS
 
 
 
 sub_A05F:
 C - - - - - 0x00A06F 02:A05F: 20 51 A0  JSR sub_A051
-C - - - - - 0x00A072 02:A062: B5 63     LDA ram_0063_obj,X
+C - - - - - 0x00A072 02:A062: B5 63     LDA ram_0063_obj_facing,X
 C - - - - - 0x00A074 02:A064: 49 80     EOR #$80
-C - - - - - 0x00A076 02:A066: 95 63     STA ram_0063_obj,X
+C - - - - - 0x00A076 02:A066: 95 63     STA ram_0063_obj_facing,X
 C - - - - - 0x00A078 02:A068: 60        RTS
 
 
@@ -5932,61 +5942,64 @@ C - - - - - 0x00A0DF 02:A0CF: 29 0F     AND #$0F
 C - - - - - 0x00A0E1 02:A0D1: 99 53 06  STA ram_0653,Y
 C - - - - - 0x00A0E4 02:A0D4: EE 5D 06  INC ram_065D
 bra_A0D7_RTS:
-loc_A0D7_RTS:
+loc_A0D7_RTS:   ; bzk optimize
 C D 1 - - - 0x00A0E7 02:A0D7: 60        RTS
 
 
 
 tbl_A0D8:
-- D 1 - - - 0x00A0E8 02:A0D8: 01        .byte $01   ; 00
-- D 1 - - - 0x00A0E9 02:A0D9: 12        .byte $12   ; 01
-- D 1 - - - 0x00A0EA 02:A0DA: 41        .byte $41   ; 02
-- D 1 - - - 0x00A0EB 02:A0DB: 81        .byte $81   ; 03
-- D 1 - - - 0x00A0EC 02:A0DC: 00        .byte $00   ; 04
-- D 1 - - - 0x00A0ED 02:A0DD: 11        .byte $11   ; 05
-- D 1 - - - 0x00A0EE 02:A0DE: 31        .byte $31   ; 06
-- D 1 - - - 0x00A0EF 02:A0DF: 10        .byte $10   ; 07
-- D 1 - - - 0x00A0F0 02:A0E0: 21        .byte $21   ; 08
-- D 1 - - - 0x00A0F1 02:A0E1: 32        .byte $32   ; 09
-- D 1 - - - 0x00A0F2 02:A0E2: 90        .byte $90   ; 0A
-- D 1 - - - 0x00A0F3 02:A0E3: 02        .byte $02   ; 0B
-- D 1 - - - 0x00A0F4 02:A0E4: 11        .byte $11   ; 0C
-- D 1 - - - 0x00A0F5 02:A0E5: 20        .byte $20   ; 0D
-- D 1 - - - 0x00A0F6 02:A0E6: 30        .byte $30   ; 0E
-- D 1 - - - 0x00A0F7 02:A0E7: 40        .byte $40   ; 0F
-- D 1 - - - 0x00A0F8 02:A0E8: A0        .byte $A0   ; 10
-- D 1 - - - 0x00A0F9 02:A0E9: 40        .byte $40   ; 11
-- D 1 - - - 0x00A0FA 02:A0EA: 90        .byte $90   ; 12
-- D 1 - - - 0x00A0FB 02:A0EB: 7F        .byte $7F   ; 13
+- D 1 - - - 0x00A0E8 02:A0D8: 01        .byte $01   ; 00 
+- D 1 - - - 0x00A0E9 02:A0D9: 12        .byte $12   ; 01 
+- D 1 - - - 0x00A0EA 02:A0DA: 41        .byte $41   ; 02 
+- D 1 - - - 0x00A0EB 02:A0DB: 81        .byte $81   ; 03 
+- D 1 - - - 0x00A0EC 02:A0DC: 00        .byte $00   ; 04 
+- D 1 - - - 0x00A0ED 02:A0DD: 11        .byte $11   ; 05 
+- D 1 - - - 0x00A0EE 02:A0DE: 31        .byte $31   ; 06 
+- D 1 - - - 0x00A0EF 02:A0DF: 10        .byte $10   ; 07 
+- D 1 - - - 0x00A0F0 02:A0E0: 21        .byte $21   ; 08 
+- D 1 - - - 0x00A0F1 02:A0E1: 32        .byte $32   ; 09 
+- D 1 - - - 0x00A0F2 02:A0E2: 90        .byte $90   ; 0A 
+- D 1 - - - 0x00A0F3 02:A0E3: 02        .byte $02   ; 0B 
+- D 1 - - - 0x00A0F4 02:A0E4: 11        .byte $11   ; 0C 
+- D 1 - - - 0x00A0F5 02:A0E5: 20        .byte $20   ; 0D 
+- D 1 - - - 0x00A0F6 02:A0E6: 30        .byte $30   ; 0E 
+- D 1 - - - 0x00A0F7 02:A0E7: 40        .byte $40   ; 0F 
+- D 1 - - - 0x00A0F8 02:A0E8: A0        .byte $A0   ; 10 
+- D 1 - - - 0x00A0F9 02:A0E9: 40        .byte $40   ; 11 
+- D 1 - - - 0x00A0FA 02:A0EA: 90        .byte $90   ; 12 
+- D 1 - - - 0x00A0FB 02:A0EB: 7F        .byte $7F   ; 13 
 
 
 
 tbl_A0EC:
-- D 1 - - - 0x00A0FC 02:A0EC: 01        .byte $01   ; 00
-- D 1 - - - 0x00A0FD 02:A0ED: 12        .byte $12   ; 01
-- D 1 - - - 0x00A0FE 02:A0EE: 41        .byte $41   ; 02
-- D 1 - - - 0x00A0FF 02:A0EF: F1        .byte $F1   ; 03
-- D 1 - - - 0x00A100 02:A0F0: 00        .byte $00   ; 04
-- D 1 - - - 0x00A101 02:A0F1: 11        .byte $11   ; 05
-- D 1 - - - 0x00A102 02:A0F2: 31        .byte $31   ; 06
-- D 1 - - - 0x00A103 02:A0F3: 10        .byte $10   ; 07
-- D 1 - - - 0x00A104 02:A0F4: 21        .byte $21   ; 08
-- D 1 - - - 0x00A105 02:A0F5: 32        .byte $32   ; 09
-- D 1 - - - 0x00A106 02:A0F6: F0        .byte $F0   ; 0A
-- D 1 - - - 0x00A107 02:A0F7: 02        .byte $02   ; 0B
-- D 1 - - - 0x00A108 02:A0F8: 11        .byte $11   ; 0C
-- D 1 - - - 0x00A109 02:A0F9: 20        .byte $20   ; 0D
-- D 1 - - - 0x00A10A 02:A0FA: 30        .byte $30   ; 0E
-- D 1 - - - 0x00A10B 02:A0FB: 40        .byte $40   ; 0F
-- D 1 - - - 0x00A10C 02:A0FC: F0        .byte $F0   ; 10
-- D 1 - - - 0x00A10D 02:A0FD: 40        .byte $40   ; 11
-- D 1 - - - 0x00A10E 02:A0FE: F0        .byte $F0   ; 12
-- D 1 - - - 0x00A10F 02:A0FF: 7F        .byte $7F   ; 13
+- D 1 - - - 0x00A0FC 02:A0EC: 01        .byte $01   ; 00 
+- D 1 - - - 0x00A0FD 02:A0ED: 12        .byte $12   ; 01 
+- D 1 - - - 0x00A0FE 02:A0EE: 41        .byte $41   ; 02 
+- D 1 - - - 0x00A0FF 02:A0EF: F1        .byte $F1   ; 03 
+- D 1 - - - 0x00A100 02:A0F0: 00        .byte $00   ; 04 
+- D 1 - - - 0x00A101 02:A0F1: 11        .byte $11   ; 05 
+- D 1 - - - 0x00A102 02:A0F2: 31        .byte $31   ; 06 
+- D 1 - - - 0x00A103 02:A0F3: 10        .byte $10   ; 07 
+- D 1 - - - 0x00A104 02:A0F4: 21        .byte $21   ; 08 
+- D 1 - - - 0x00A105 02:A0F5: 32        .byte $32   ; 09 
+- D 1 - - - 0x00A106 02:A0F6: F0        .byte $F0   ; 0A 
+- D 1 - - - 0x00A107 02:A0F7: 02        .byte $02   ; 0B 
+- D 1 - - - 0x00A108 02:A0F8: 11        .byte $11   ; 0C 
+- D 1 - - - 0x00A109 02:A0F9: 20        .byte $20   ; 0D 
+- D 1 - - - 0x00A10A 02:A0FA: 30        .byte $30   ; 0E 
+- D 1 - - - 0x00A10B 02:A0FB: 40        .byte $40   ; 0F 
+- D 1 - - - 0x00A10C 02:A0FC: F0        .byte $F0   ; 10 
+- D 1 - - - 0x00A10D 02:A0FD: 40        .byte $40   ; 11 
+- D 1 - - - 0x00A10E 02:A0FE: F0        .byte $F0   ; 12 
+- D 1 - - - 0x00A10F 02:A0FF: 7F        .byte $7F   ; 13 
 
 
 
 bra_A100:
 C - - - - - 0x00A110 02:A100: 4C 0C A1  JMP loc_A10C
+
+
+
 bra_A103_RTS:
 C - - - - - 0x00A113 02:A103: 60        RTS
 
@@ -6076,7 +6089,7 @@ C - - - - - 0x00A1A0 02:A190: 8D 79 03  STA ram_0379
 bra_A193:
 C - - - - - 0x00A1A3 02:A193: EE 5D 06  INC ram_065D
 bra_A196_RTS:
-loc_A196_RTS:
+loc_A196_RTS:   ; bzk optimize
 C D 1 - - - 0x00A1A6 02:A196: 60        RTS
 bra_A197:
 C - - - - - 0x00A1A7 02:A197: EE 5D 06  INC ram_065D
@@ -6217,16 +6230,16 @@ tbl_A208_pos_X:
 
 
 tbl_A230:
-- D 1 - - - 0x00A240 02:A230: 04        .byte $04   ; 00
-- D 1 - - - 0x00A241 02:A231: 05        .byte $05   ; 01
-- D 1 - - - 0x00A242 02:A232: 06        .byte $06   ; 02
-- - - - - - 0x00A243 02:A233: 10        .byte $10   ; 03
-- - - - - - 0x00A244 02:A234: 11        .byte $11   ; 04
-- D 1 - - - 0x00A245 02:A235: 12        .byte $12   ; 05
-- D 1 - - - 0x00A246 02:A236: 13        .byte $13   ; 06
-- D 1 - - - 0x00A247 02:A237: 14        .byte $14   ; 07
-- D 1 - - - 0x00A248 02:A238: 15        .byte $15   ; 08
-- D 1 - - - 0x00A249 02:A239: 16        .byte $16   ; 09
+- D 1 - - - 0x00A240 02:A230: 04        .byte $04   ; 00 
+- D 1 - - - 0x00A241 02:A231: 05        .byte $05   ; 01 
+- D 1 - - - 0x00A242 02:A232: 06        .byte $06   ; 02 
+- - - - - - 0x00A243 02:A233: 10        .byte $10   ; 03 
+- - - - - - 0x00A244 02:A234: 11        .byte $11   ; 04 
+- D 1 - - - 0x00A245 02:A235: 12        .byte $12   ; 05 
+- D 1 - - - 0x00A246 02:A236: 13        .byte $13   ; 06 
+- D 1 - - - 0x00A247 02:A237: 14        .byte $14   ; 07 
+- D 1 - - - 0x00A248 02:A238: 15        .byte $15   ; 08 
+- D 1 - - - 0x00A249 02:A239: 16        .byte $16   ; 09 
 
 
 
@@ -6296,7 +6309,7 @@ C - - - - - 0x00A2C6 02:A2B6: 8D 79 03  STA ram_0379
 loc_A2B9:
 C D 1 - - - 0x00A2C9 02:A2B9: EE 5D 06  INC ram_065D
 bra_A2BC_RTS:
-loc_A2BC_RTS:
+loc_A2BC_RTS:   ; bzk optimize
 C D 1 - - - 0x00A2CC 02:A2BC: 60        RTS
 bra_A2BD:
 C - - - - - 0x00A2CD 02:A2BD: EE 5D 06  INC ram_065D
@@ -6425,13 +6438,13 @@ C - - - - - 0x00A377 02:A367: 20 66 A4  JSR sub_A466_copy_data_between_two_objec
 bra_A36A:
 C - - - - - 0x00A37A 02:A36A: A9 00     LDA #$00
 C - - - - - 0x00A37C 02:A36C: 9D 46 04  STA ram_0446_obj,X
-C - - - - - 0x00A37F 02:A36F: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x00A382 02:A372: 29 DF     AND #con_004A_20 ^ $FF
-C - - - - - 0x00A384 02:A374: 99 4A 00  STA a: ram_004A_obj,Y
+C - - - - - 0x00A37F 02:A36F: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x00A382 02:A372: 29 DF     AND #con_004A_flag_20 ^ $FF
+C - - - - - 0x00A384 02:A374: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x00A387 02:A377: A9 10     LDA #$10
 C - - - - - 0x00A389 02:A379: 85 29     STA ram_0029
 C - - - - - 0x00A38B 02:A37B: 85 2A     STA ram_002A
-C - - - - - 0x00A38D 02:A37D: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x00A38D 02:A37D: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x00A390 02:A380: 10 04     BPL bra_A386
 C - - - - - 0x00A392 02:A382: A9 F0     LDA #$F0
 C - - - - - 0x00A394 02:A384: 85 29     STA ram_0029
@@ -6492,10 +6505,10 @@ tbl_A3A4:
 sub_A3C3:
 C - - - - - 0x00A3D3 02:A3C3: A2 04     LDX #$04
 loc_A3C5_loop:
-C D 1 - - - 0x00A3D5 02:A3C5: B5 3C     LDA ram_003C_obj,X ; 0040 0041 0042
-C - - - - - 0x00A3D7 02:A3C7: 10 61     BPL bra_A42A    ; if not con_003C_80
-C - - - - - 0x00A3D9 02:A3C9: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00A3DB 02:A3CB: 29 20     AND #con_004A_20
+C D 1 - - - 0x00A3D5 02:A3C5: B5 3C     LDA ram_003C_obj_flags,X ; 0040 0041 0042
+C - - - - - 0x00A3D7 02:A3C7: 10 61     BPL bra_A42A    ; if not con_003C_flag_exist
+C - - - - - 0x00A3D9 02:A3C9: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00A3DB 02:A3CB: 29 20     AND #con_004A_flag_20
 C - - - - - 0x00A3DD 02:A3CD: D0 5B     BNE bra_A42A
 C - - - - - 0x00A3DF 02:A3CF: B5 92     LDA ram_pos_Y_lo,X
 C - - - - - 0x00A3E1 02:A3D1: 18        CLC
@@ -6563,8 +6576,8 @@ C - - - - - 0x00A446 02:A436: E9 60     SBC #< $0060
 C - - - - - 0x00A448 02:A438: A5 2A     LDA ram_002A
 C - - - - - 0x00A44A 02:A43A: E9 00     SBC #> $0060
 C - - - - - 0x00A44C 02:A43C: 90 04     BCC bra_A442_RTS
-C - - - - - 0x00A44E 02:A43E: A9 00     LDA #con_003C_00
-C - - - - - 0x00A450 02:A440: 95 3C     STA ram_003C_obj,X ; 0040 0041 0042
+C - - - - - 0x00A44E 02:A43E: A9 00     LDA #con_003C_flag_00
+C - - - - - 0x00A450 02:A440: 95 3C     STA ram_003C_obj_flags,X ; 0040 0041 0042
 bra_A442_RTS:
 C - - - - - 0x00A452 02:A442: 60        RTS
 
@@ -6821,7 +6834,7 @@ loc_A800:
 C D 1 - - - 0x00A810 02:A800: 20 5E A8  JSR sub_A85E
 C - - - - - 0x00A813 02:A803: 20 5E A8  JSR sub_A85E
 C - - - - - 0x00A816 02:A806: 20 5E A8  JSR sub_A85E
-C - - - - - 0x00A819 02:A809: A5 3A     LDA ram_003A
+C - - - - - 0x00A819 02:A809: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00A81B 02:A80B: CD B2 05  CMP ram_05B2
 C - - - - - 0x00A81E 02:A80E: F0 4D     BEQ bra_A85D_RTS
 C - - - - - 0x00A820 02:A810: 8D B2 05  STA ram_05B2
@@ -6833,7 +6846,7 @@ C - - - - - 0x00A82B 02:A81B: 85 29     STA ram_0029
 C - - - - - 0x00A82D 02:A81D: B9 92 AC  LDA tbl_AC91_bg_attributes + $01,Y
 C - - - - - 0x00A830 02:A820: 85 2A     STA ram_002A
 C - - - - - 0x00A832 02:A822: A2 30     LDX #$30
-C - - - - - 0x00A834 02:A824: A5 3A     LDA ram_003A
+C - - - - - 0x00A834 02:A824: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00A836 02:A826: 29 02     AND #$02
 C - - - - - 0x00A838 02:A828: D0 02     BNE bra_A82C
 C - - - - - 0x00A83A 02:A82A: A2 70     LDX #$70
@@ -6847,14 +6860,14 @@ C - - - - - 0x00A844 02:A834: C8        INY
 C - - - - - 0x00A845 02:A835: C0 10     CPY #$10
 C - - - - - 0x00A847 02:A837: 90 F5     BCC bra_A82E_loop
 C - - - - - 0x00A849 02:A839: A9 02     LDA #$02
-C - - - - - 0x00A84B 02:A83B: 8D 85 04  STA ram_0485
+C - - - - - 0x00A84B 02:A83B: 8D 85 04  STA ram_0485_hud_draw_script
 C - - - - - 0x00A84E 02:A83E: 8A        TXA
 C - - - - - 0x00A84F 02:A83F: A2 20     LDX #$20
 C - - - - - 0x00A851 02:A841: C9 50     CMP #$50
 C - - - - - 0x00A853 02:A843: 90 07     BCC bra_A84C
 C - - - - - 0x00A855 02:A845: A2 60     LDX #$60
 C - - - - - 0x00A857 02:A847: A9 08     LDA #$08
-C - - - - - 0x00A859 02:A849: 8D 85 04  STA ram_0485
+C - - - - - 0x00A859 02:A849: 8D 85 04  STA ram_0485_hud_draw_script
 bra_A84C:
 C - - - - - 0x00A85C 02:A84C: EC B1 05  CPX ram_05B1
 C - - - - - 0x00A85F 02:A84F: B0 03     BCS bra_A854
@@ -6872,17 +6885,17 @@ sub_A85E:
 C - - - - - 0x00A86E 02:A85E: A9 60     LDA #con_E2E6 + $60
 C - - - - - 0x00A870 02:A860: 20 00 C0  JSR sub_0x01C010
 C - - - - - 0x00A873 02:A863: B0 1B     BCS bra_A880_RTS
-C - - - - - 0x00A875 02:A865: AD 85 04  LDA ram_0485
+C - - - - - 0x00A875 02:A865: AD 85 04  LDA ram_0485_hud_draw_script
 C - - - - - 0x00A878 02:A868: C9 0C     CMP #$0C
 C - - - - - 0x00A87A 02:A86A: 90 05     BCC bra_A871_not_overflow
 C - - - - - 0x00A87C 02:A86C: A9 00     LDA #$00
-C - - - - - 0x00A87E 02:A86E: 8D 85 04  STA ram_0485
+C - - - - - 0x00A87E 02:A86E: 8D 85 04  STA ram_0485_hud_draw_script
 bra_A871_not_overflow:
 C - - - - - 0x00A881 02:A871: 0A        ASL
 C - - - - - 0x00A882 02:A872: A8        TAY
-C - - - - - 0x00A883 02:A873: B9 81 A8  LDA tbl_A881,Y
+C - - - - - 0x00A883 02:A873: B9 81 A8  LDA tbl_A881_draw_hud_handlers,Y
 C - - - - - 0x00A886 02:A876: 85 29     STA ram_0029
-C - - - - - 0x00A888 02:A878: B9 82 A8  LDA tbl_A881 + $01,Y
+C - - - - - 0x00A888 02:A878: B9 82 A8  LDA tbl_A881_draw_hud_handlers + $01,Y
 C - - - - - 0x00A88B 02:A87B: 85 2A     STA ram_002A
 C - - - - - 0x00A88D 02:A87D: 6C 29 00  JMP (ram_0029)
 bra_A880_RTS:
@@ -6890,152 +6903,95 @@ C - - - - - 0x00A890 02:A880: 60        RTS
 
 
 
-tbl_A881:
-- D 1 - - - 0x00A891 02:A881: 99 A8     .word ofs_002_A899_00
-- D 1 - - - 0x00A893 02:A883: BA A8     .word ofs_002_A8BA_01
-- D 1 - - - 0x00A895 02:A885: 31 A9     .word ofs_002_A931_02
-- D 1 - - - 0x00A897 02:A887: DF A9     .word ofs_002_A9DF_03
-- D 1 - - - 0x00A899 02:A889: 55 AA     .word ofs_002_AA55_04
-- D 1 - - - 0x00A89B 02:A88B: 1E AB     .word ofs_002_AB1E_05
-- D 1 - - - 0x00A89D 02:A88D: 63 AB     .word ofs_002_AB63_06
-- D 1 - - - 0x00A89F 02:A88F: 7A AB     .word ofs_002_AB7A_07
-- D 1 - - - 0x00A8A1 02:A891: 95 AB     .word ofs_002_AB95_08
-- D 1 - - - 0x00A8A3 02:A893: B0 AB     .word ofs_002_ABB0_09
-- D 1 - - - 0x00A8A5 02:A895: CB AB     .word ofs_002_ABCB_0A
-- D 1 - - - 0x00A8A7 02:A897: E6 AB     .word ofs_002_ABE6_0B
+tbl_A881_draw_hud_handlers:
+; 2300-23BF
+- D 1 - - - 0x00A891 02:A881: 99 A8     .word ofs_002_A899_00_empty_line
+- D 1 - - - 0x00A893 02:A883: BA A8     .word ofs_002_A8BA_01_above_hp_line
+- D 1 - - - 0x00A895 02:A885: 31 A9     .word ofs_002_A931_02_hp_line
+- D 1 - - - 0x00A897 02:A887: DF A9     .word ofs_002_A9DF_03_below_hp_line
+- D 1 - - - 0x00A899 02:A889: 55 AA     .word ofs_002_AA55_04_lives_and_score_line
+- D 1 - - - 0x00A89B 02:A88B: 1E AB     .word ofs_002_AB1E_05_below_score_line
+; 2B00-2BBF
+- D 1 - - - 0x00A89D 02:A88D: 63 AB     .word ofs_002_AB63_06_empty_line
+- D 1 - - - 0x00A89F 02:A88F: 7A AB     .word ofs_002_AB7A_07_above_hp_line
+- D 1 - - - 0x00A8A1 02:A891: 95 AB     .word ofs_002_AB95_08_hp_line
+- D 1 - - - 0x00A8A3 02:A893: B0 AB     .word ofs_002_ABB0_09_below_hp_line
+- D 1 - - - 0x00A8A5 02:A895: CB AB     .word ofs_002_ABCB_0A_lives_and_score_line
+- D 1 - - - 0x00A8A7 02:A897: E6 AB     .word ofs_002_ABE6_0B_below_score_line
 
 
 
-ofs_002_A899_00:
-C - - J - - 0x00A8A9 02:A899: A5 3A     LDA ram_003A
+ofs_002_A899_00_empty_line:
+C - - J - - 0x00A8A9 02:A899: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00A8AB 02:A89B: 29 02     AND #$02
 C - - - - - 0x00A8AD 02:A89D: D0 06     BNE bra_A8A5
 C - - - - - 0x00A8AF 02:A89F: A5 E6     LDA ram_00E6
 C - - - - - 0x00A8B1 02:A8A1: C9 C8     CMP #$C8
-C - - - - - 0x00A8B3 02:A8A3: 90 11     BCC bra_A8B6
+C - - - - - 0x00A8B3 02:A8A3: 90 11     BCC bra_A8B6_exit
 bra_A8A5:
-C - - - - - 0x00A8B5 02:A8A5: A9 23     LDA #$23
-C - - - - - 0x00A8B7 02:A8A7: A0 00     LDY #$00
+C - - - - - 0x00A8B5 02:A8A5: A9 23     LDA #> $2300
+C - - - - - 0x00A8B7 02:A8A7: A0 00     LDY #< $2300
 loc_A8A9:
-C D 1 - - - 0x00A8B9 02:A8A9: 20 FE AB  JSR sub_ABFE
+C D 1 - - - 0x00A8B9 02:A8A9: 20 FE AB  JSR sub_ABFE_allocate_20h_memory_in_ppu_buffer
 C - - - - - 0x00A8BC 02:A8AC: A9 00     LDA #$00    ; tile
 C - - - - - 0x00A8BE 02:A8AE: A0 20     LDY #$20    ; counter
-C - - - - - 0x00A8C0 02:A8B0: 20 7B AC  JSR sub_AC7B_write_tile_Y_times
-C - - - - - 0x00A8C3 02:A8B3: 8E BC 05  STX ram_05BC
-bra_A8B6:
-C - - - - - 0x00A8C6 02:A8B6: EE 85 04  INC ram_0485
+C - - - - - 0x00A8C0 02:A8B0: 20 7B AC  JSR sub_AC7B_write_A_to_buffer_Y_times
+C - - - - - 0x00A8C3 02:A8B3: 8E BC 05  STX ram_buffer_index_2
+bra_A8B6_exit:
+C - - - - - 0x00A8C6 02:A8B6: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00A8C9 02:A8B9: 60        RTS
 
 
 
-ofs_002_A8BA_01:
-C - - J - - 0x00A8CA 02:A8BA: AD 3A 00  LDA a: ram_003A
+ofs_002_A8BA_01_above_hp_line:
+C - - J - - 0x00A8CA 02:A8BA: AD 3A 00  LDA a: ram_copy_base_nmt
 C - - - - - 0x00A8CD 02:A8BD: 29 02     AND #$02
 C - - - - - 0x00A8CF 02:A8BF: D0 0A     BNE bra_A8CB
 C - - - - - 0x00A8D1 02:A8C1: A5 E6     LDA ram_00E6
 C - - - - - 0x00A8D3 02:A8C3: C9 08     CMP #$08
 C - - - - - 0x00A8D5 02:A8C5: 90 04     BCC bra_A8CB
 C - - - - - 0x00A8D7 02:A8C7: C9 D0     CMP #$D0
-C - - - - - 0x00A8D9 02:A8C9: 90 22     BCC bra_A8ED
+C - - - - - 0x00A8D9 02:A8C9: 90 22     BCC bra_A8ED_exit
 bra_A8CB:
-C - - - - - 0x00A8DB 02:A8CB: A9 23     LDA #$23
-C - - - - - 0x00A8DD 02:A8CD: A0 20     LDY #$20
+C - - - - - 0x00A8DB 02:A8CB: A9 23     LDA #> $2320
+C - - - - - 0x00A8DD 02:A8CD: A0 20     LDY #< $2320
 loc_A8CF:
-C D 1 - - - 0x00A8DF 02:A8CF: 20 FE AB  JSR sub_ABFE
-C - - - - - 0x00A8E2 02:A8D2: A9 F1     LDA #< tbl_A8F1
+C D 1 - - - 0x00A8DF 02:A8CF: 20 FE AB  JSR sub_ABFE_allocate_20h_memory_in_ppu_buffer
+C - - - - - 0x00A8E2 02:A8D2: A9 F1     LDA #< tbl_A8F1_top_hud_line_tiles
 C - - - - - 0x00A8E4 02:A8D4: 85 29     STA ram_0029
-C - - - - - 0x00A8E6 02:A8D6: A9 A8     LDA #> tbl_A8F1
+C - - - - - 0x00A8E6 02:A8D6: A9 A8     LDA #> tbl_A8F1_top_hud_line_tiles
 C - - - - - 0x00A8E8 02:A8D8: 85 2A     STA ram_002A
 C - - - - - 0x00A8EA 02:A8DA: AD 34 00  LDA a: ram_game_mode
 C - - - - - 0x00A8ED 02:A8DD: 10 08     BPL bra_A8E7
 ; if con_gm_2_players
-C - - - - - 0x00A8EF 02:A8DF: A9 11     LDA #< tbl_A911
+C - - - - - 0x00A8EF 02:A8DF: A9 11     LDA #< tbl_A911_top_hud_line_tiles
 C - - - - - 0x00A8F1 02:A8E1: 85 29     STA ram_0029
-C - - - - - 0x00A8F3 02:A8E3: A9 A9     LDA #> tbl_A911
+C - - - - - 0x00A8F3 02:A8E3: A9 A9     LDA #> tbl_A911_top_hud_line_tiles
 C - - - - - 0x00A8F5 02:A8E5: 85 2A     STA ram_002A
 bra_A8E7:
-C - - - - - 0x00A8F7 02:A8E7: 20 83 AC  JSR sub_AC83
-C - - - - - 0x00A8FA 02:A8EA: 8E BC 05  STX ram_05BC
-bra_A8ED:
-C - - - - - 0x00A8FD 02:A8ED: EE 85 04  INC ram_0485
+C - - - - - 0x00A8F7 02:A8E7: 20 83 AC  JSR sub_AC83_write_20h_bytes_from_table_to_buffer
+C - - - - - 0x00A8FA 02:A8EA: 8E BC 05  STX ram_buffer_index_2
+bra_A8ED_exit:
+C - - - - - 0x00A8FD 02:A8ED: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00A900 02:A8F0: 60        RTS
 
 
 
-tbl_A8F1:
-- D 1 - I - 0x00A901 02:A8F1: 00        .byte $00   ; 
-- D 1 - I - 0x00A902 02:A8F2: 00        .byte $00   ; 
-- D 1 - I - 0x00A903 02:A8F3: D2        .byte $D2   ; 
-- D 1 - I - 0x00A904 02:A8F4: D0        .byte $D0   ; 
-- D 1 - I - 0x00A905 02:A8F5: 00        .byte $00   ; 
-- D 1 - I - 0x00A906 02:A8F6: 00        .byte $00   ; 
-- D 1 - I - 0x00A907 02:A8F7: 00        .byte $00   ; 
-- D 1 - I - 0x00A908 02:A8F8: 00        .byte $00   ; 
-- D 1 - I - 0x00A909 02:A8F9: 00        .byte $00   ; 
-- D 1 - I - 0x00A90A 02:A8FA: 00        .byte $00   ; 
-- D 1 - I - 0x00A90B 02:A8FB: 00        .byte $00   ; 
-- D 1 - I - 0x00A90C 02:A8FC: 00        .byte $00   ; 
-- D 1 - I - 0x00A90D 02:A8FD: D8        .byte $D8   ; 
-- D 1 - I - 0x00A90E 02:A8FE: D9        .byte $D9   ; 
-- D 1 - I - 0x00A90F 02:A8FF: D9        .byte $D9   ; 
-- D 1 - I - 0x00A910 02:A900: D9        .byte $D9   ; 
-- D 1 - I - 0x00A911 02:A901: D9        .byte $D9   ; 
-- D 1 - I - 0x00A912 02:A902: D9        .byte $D9   ; 
-- D 1 - I - 0x00A913 02:A903: D9        .byte $D9   ; 
-- D 1 - I - 0x00A914 02:A904: DA        .byte $DA   ; 
-- D 1 - I - 0x00A915 02:A905: D2        .byte $D2   ; 
-- D 1 - I - 0x00A916 02:A906: D1        .byte $D1   ; 
-- D 1 - I - 0x00A917 02:A907: 00        .byte $00   ; 
-- D 1 - I - 0x00A918 02:A908: 00        .byte $00   ; 
-- D 1 - I - 0x00A919 02:A909: 00        .byte $00   ; 
-- D 1 - I - 0x00A91A 02:A90A: 00        .byte $00   ; 
-- D 1 - I - 0x00A91B 02:A90B: 00        .byte $00   ; 
-- D 1 - I - 0x00A91C 02:A90C: 00        .byte $00   ; 
-- D 1 - I - 0x00A91D 02:A90D: 00        .byte $00   ; 
-- D 1 - I - 0x00A91E 02:A90E: 00        .byte $00   ; 
-- D 1 - I - 0x00A91F 02:A90F: 00        .byte $00   ; 
-- D 1 - I - 0x00A920 02:A910: 00        .byte $00   ; 
+tbl_A8F1_top_hud_line_tiles:
+- D 1 - I - 0x00A901 02:A8F1: 00        .byte $00, $00, $D2, $D0, $00, $00, $00, $00, $00, $00, $00, $00, $D8, $D9, $D9, $D9   ; 
+- D 1 - I - 0x00A911 02:A901: D9        .byte $D9, $D9, $D9, $DA, $D2, $D1, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 
 
 
-tbl_A911:
-- D 1 - I - 0x00A921 02:A911: 00        .byte $00   ; 
-- D 1 - I - 0x00A922 02:A912: 00        .byte $00   ; 
-- D 1 - I - 0x00A923 02:A913: D2        .byte $D2   ; 
-- D 1 - I - 0x00A924 02:A914: D0        .byte $D0   ; 
-- D 1 - I - 0x00A925 02:A915: 00        .byte $00   ; 
-- D 1 - I - 0x00A926 02:A916: 00        .byte $00   ; 
-- D 1 - I - 0x00A927 02:A917: 00        .byte $00   ; 
-- D 1 - I - 0x00A928 02:A918: 00        .byte $00   ; 
-- D 1 - I - 0x00A929 02:A919: 00        .byte $00   ; 
-- D 1 - I - 0x00A92A 02:A91A: 00        .byte $00   ; 
-- D 1 - I - 0x00A92B 02:A91B: 00        .byte $00   ; 
-- D 1 - I - 0x00A92C 02:A91C: 00        .byte $00   ; 
-- D 1 - I - 0x00A92D 02:A91D: D8        .byte $D8   ; 
-- D 1 - I - 0x00A92E 02:A91E: D9        .byte $D9   ; 
-- D 1 - I - 0x00A92F 02:A91F: D9        .byte $D9   ; 
-- D 1 - I - 0x00A930 02:A920: D9        .byte $D9   ; 
-- D 1 - I - 0x00A931 02:A921: D9        .byte $D9   ; 
-- D 1 - I - 0x00A932 02:A922: D9        .byte $D9   ; 
-- D 1 - I - 0x00A933 02:A923: D9        .byte $D9   ; 
-- D 1 - I - 0x00A934 02:A924: DA        .byte $DA   ; 
-- D 1 - I - 0x00A935 02:A925: D2        .byte $D2   ; 
-- D 1 - I - 0x00A936 02:A926: D1        .byte $D1   ; 
-- D 1 - I - 0x00A937 02:A927: 00        .byte $00   ; 
-- D 1 - I - 0x00A938 02:A928: 00        .byte $00   ; 
-- D 1 - I - 0x00A939 02:A929: 00        .byte $00   ; 
-- D 1 - I - 0x00A93A 02:A92A: 00        .byte $00   ; 
-- D 1 - I - 0x00A93B 02:A92B: 00        .byte $00   ; 
-- D 1 - I - 0x00A93C 02:A92C: 00        .byte $00   ; 
-- D 1 - I - 0x00A93D 02:A92D: 00        .byte $00   ; 
-- D 1 - I - 0x00A93E 02:A92E: 00        .byte $00   ; 
-- D 1 - I - 0x00A93F 02:A92F: 00        .byte $00   ; 
-- D 1 - I - 0x00A940 02:A930: 00        .byte $00   ; 
+tbl_A911_top_hud_line_tiles:
+; bzk optimize, same bytes as 0x00A901
+- D 1 - I - 0x00A921 02:A911: 00        .byte $00, $00, $D2, $D0, $00, $00, $00, $00, $00, $00, $00, $00, $D8, $D9, $D9, $D9   ; 
+- D 1 - I - 0x00A931 02:A921: D9        .byte $D9, $D9, $D9, $DA, $D2, $D1, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 
 
 
-ofs_002_A931_02:
-C - - J - - 0x00A941 02:A931: A5 3A     LDA ram_003A
+ofs_002_A931_02_hp_line:
+C - - J - - 0x00A941 02:A931: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00A943 02:A933: 29 02     AND #$02
 C - - - - - 0x00A945 02:A935: D0 0C     BNE bra_A943
 C - - - - - 0x00A947 02:A937: A5 E6     LDA ram_00E6
@@ -7043,25 +6999,25 @@ C - - - - - 0x00A949 02:A939: C9 10     CMP #$10
 C - - - - - 0x00A94B 02:A93B: 90 06     BCC bra_A943
 C - - - - - 0x00A94D 02:A93D: A5 E6     LDA ram_00E6
 C - - - - - 0x00A94F 02:A93F: C9 D8     CMP #$D8
-C - - - - - 0x00A951 02:A941: 90 4F     BCC bra_A992
+C - - - - - 0x00A951 02:A941: 90 4F     BCC bra_A992_exit
 bra_A943:
-C - - - - - 0x00A953 02:A943: A9 23     LDA #$23
-C - - - - - 0x00A955 02:A945: A0 40     LDY #$40
+C - - - - - 0x00A953 02:A943: A9 23     LDA #> $2340
+C - - - - - 0x00A955 02:A945: A0 40     LDY #< $2340
 loc_A947:
-C D 1 - - - 0x00A957 02:A947: 20 FE AB  JSR sub_ABFE
+C D 1 - - - 0x00A957 02:A947: 20 FE AB  JSR sub_ABFE_allocate_20h_memory_in_ppu_buffer
 C - - - - - 0x00A95A 02:A94A: A0 00     LDY #$00
 bra_A94C_loop:
-C - - - - - 0x00A95C 02:A94C: B9 96 A9  LDA tbl_A996,Y
+C - - - - - 0x00A95C 02:A94C: B9 96 A9  LDA tbl_A996_lower_tiles_for_P1,Y
 C - - - - - 0x00A95F 02:A94F: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00A962 02:A952: E8        INX
 C - - - - - 0x00A963 02:A953: C8        INY
 C - - - - - 0x00A964 02:A954: C0 04     CPY #$04
 C - - - - - 0x00A966 02:A956: 90 F4     BCC bra_A94C_loop
 C - - - - - 0x00A968 02:A958: AD 1E 04  LDA ram_hp
-C - - - - - 0x00A96B 02:A95B: 20 A4 A9  JSR sub_A9A4
+C - - - - - 0x00A96B 02:A95B: 20 A4 A9  JSR sub_A9A4_write_hp_to_buffer
 C - - - - - 0x00A96E 02:A95E: A0 00     LDY #$00
 bra_A960_loop:
-C - - - - - 0x00A970 02:A960: B9 9A A9  LDA tbl_A99A,Y
+C - - - - - 0x00A970 02:A960: B9 9A A9  LDA tbl_A99A_tiles_hi_score,Y
 C - - - - - 0x00A973 02:A963: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00A976 02:A966: E8        INX
 C - - - - - 0x00A977 02:A967: C8        INY
@@ -7072,50 +7028,38 @@ C - - - - - 0x00A97F 02:A96F: 30 11     BMI bra_A982
 ; if not con_gm_2_players
 C - - - - - 0x00A981 02:A971: A9 FE     LDA #$FE    ; tile
 C - - - - - 0x00A983 02:A973: A0 08     LDY #$08    ; counter
-C - - - - - 0x00A985 02:A975: 20 7B AC  JSR sub_AC7B_write_tile_Y_times
+C - - - - - 0x00A985 02:A975: 20 7B AC  JSR sub_AC7B_write_A_to_buffer_Y_times
 C - - - - - 0x00A988 02:A978: A9 00     LDA #$00    ; tile
 C - - - - - 0x00A98A 02:A97A: A0 02     LDY #$02    ; counter
-C - - - - - 0x00A98C 02:A97C: 20 7B AC  JSR sub_AC7B_write_tile_Y_times
+C - - - - - 0x00A98C 02:A97C: 20 7B AC  JSR sub_AC7B_write_A_to_buffer_Y_times
 C - - - - - 0x00A98F 02:A97F: 4C 8F A9  JMP loc_A98F
 bra_A982:
 C - - - - - 0x00A992 02:A982: AD 1F 04  LDA ram_hp + $01
-C - - - - - 0x00A995 02:A985: 20 A4 A9  JSR sub_A9A4
+C - - - - - 0x00A995 02:A985: 20 A4 A9  JSR sub_A9A4_write_hp_to_buffer
 C - - - - - 0x00A998 02:A988: A9 00     LDA #$00    ; tile
 C - - - - - 0x00A99A 02:A98A: A0 02     LDY #$02    ; counter
-C - - - - - 0x00A99C 02:A98C: 20 7B AC  JSR sub_AC7B_write_tile_Y_times
+C - - - - - 0x00A99C 02:A98C: 20 7B AC  JSR sub_AC7B_write_A_to_buffer_Y_times
 loc_A98F:
-C D 1 - - - 0x00A99F 02:A98F: 8E BC 05  STX ram_05BC
-bra_A992:
-C - - - - - 0x00A9A2 02:A992: EE 85 04  INC ram_0485
+C D 1 - - - 0x00A99F 02:A98F: 8E BC 05  STX ram_buffer_index_2
+bra_A992_exit:
+C - - - - - 0x00A9A2 02:A992: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00A9A5 02:A995: 60        RTS
 
 
 
-tbl_A996:
-- D 1 - - - 0x00A9A6 02:A996: 00        .byte $00   ; 00
-- D 1 - - - 0x00A9A7 02:A997: 00        .byte $00   ; 01
-- D 1 - - - 0x00A9A8 02:A998: E2        .byte $E2   ; 02
-- D 1 - - - 0x00A9A9 02:A999: E0        .byte $E0   ; 03
+tbl_A996_lower_tiles_for_P1:
+- D 1 - - - 0x00A9A6 02:A996: 00        .byte $00, $00, $E2, $E0   ; 
 
 
 
-tbl_A99A:
-- D 1 - - - 0x00A9AA 02:A99A: F5        .byte $F5   ; 00
-- D 1 - - - 0x00A9AB 02:A99B: F6        .byte $F6   ; 01
-- D 1 - - - 0x00A9AC 02:A99C: F7        .byte $F7   ; 02
-- D 1 - - - 0x00A9AD 02:A99D: F8        .byte $F8   ; 03
-- D 1 - - - 0x00A9AE 02:A99E: F9        .byte $F9   ; 04
-- D 1 - - - 0x00A9AF 02:A99F: FA        .byte $FA   ; 05
-- D 1 - - - 0x00A9B0 02:A9A0: FB        .byte $FB   ; 06
-- D 1 - - - 0x00A9B1 02:A9A1: FC        .byte $FC   ; 07
-- D 1 - - - 0x00A9B2 02:A9A2: E2        .byte $E2   ; 08
-- D 1 - - - 0x00A9B3 02:A9A3: E1        .byte $E1   ; 09
+tbl_A99A_tiles_hi_score:
+- D 1 - - - 0x00A9AA 02:A99A: F5        .byte $F5, $F6, $F7, $F8, $F9, $FA, $FB, $FC, $E2, $E1   ; 
 
 
 
-sub_A9A4:
+sub_A9A4_write_hp_to_buffer:
 C - - - - - 0x00A9B4 02:A9A4: 85 19     STA ram_0019
-C - - - - - 0x00A9B6 02:A9A6: A9 08     LDA #$08
+C - - - - - 0x00A9B6 02:A9A6: A9 08     LDA #$08    ; loop counter
 C - - - - - 0x00A9B8 02:A9A8: 85 1A     STA ram_001A
 C - - - - - 0x00A9BA 02:A9AA: AD 35 04  LDA ram_difficulty
 C - - - - - 0x00A9BD 02:A9AD: 29 03     AND #$03
@@ -7127,18 +7071,18 @@ C - - - - - 0x00A9C6 02:A9B6: 38        SEC
 C - - - - - 0x00A9C7 02:A9B7: E9 01     SBC #$01
 C - - - - - 0x00A9C9 02:A9B9: 85 19     STA ram_0019
 bra_A9BB_loop:
-C - - - - - 0x00A9CB 02:A9BB: A9 FD     LDA #$FD
+C - - - - - 0x00A9CB 02:A9BB: A9 FD     LDA #$FD    ; tile for full hp
 C - - - - - 0x00A9CD 02:A9BD: 85 1B     STA ram_001B
 C - - - - - 0x00A9CF 02:A9BF: A5 19     LDA ram_0019
 C - - - - - 0x00A9D1 02:A9C1: 38        SEC
 C - - - - - 0x00A9D2 02:A9C2: F9 DC A9  SBC tbl_A9DC,Y
 C - - - - - 0x00A9D5 02:A9C5: 85 19     STA ram_0019
-C - - - - - 0x00A9D7 02:A9C7: B0 08     BCS bra_A9D1
+C - - - - - 0x00A9D7 02:A9C7: B0 08     BCS bra_A9D1_not_underflow
 C - - - - - 0x00A9D9 02:A9C9: A9 00     LDA #$00
 C - - - - - 0x00A9DB 02:A9CB: 85 19     STA ram_0019
-C - - - - - 0x00A9DD 02:A9CD: A9 FE     LDA #$FE
+C - - - - - 0x00A9DD 02:A9CD: A9 FE     LDA #$FE    ; tile for empty hp
 C - - - - - 0x00A9DF 02:A9CF: 85 1B     STA ram_001B
-bra_A9D1:
+bra_A9D1_not_underflow:
 C - - - - - 0x00A9E1 02:A9D1: A5 1B     LDA ram_001B
 C - - - - - 0x00A9E3 02:A9D3: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00A9E6 02:A9D6: E8        INX
@@ -7147,158 +7091,99 @@ C - - - - - 0x00A9E9 02:A9D9: D0 E0     BNE bra_A9BB_loop
 C - - - - - 0x00A9EB 02:A9DB: 60        RTS
 
 
-; bzk optimize
+
 tbl_A9DC:
+; bzk optimize, same bytes
 - D 1 - - - 0x00A9EC 02:A9DC: 10        .byte $10   ; 00 easy
 - D 1 - - - 0x00A9ED 02:A9DD: 10        .byte $10   ; 01 normal
 - D 1 - - - 0x00A9EE 02:A9DE: 10        .byte $10   ; 02 difficult
 
 
 
-ofs_002_A9DF_03:
-C - - J - - 0x00A9EF 02:A9DF: A5 3A     LDA ram_003A
+ofs_002_A9DF_03_below_hp_line:
+C - - J - - 0x00A9EF 02:A9DF: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00A9F1 02:A9E1: 29 02     AND #$02
 C - - - - - 0x00A9F3 02:A9E3: D0 0A     BNE bra_A9EF
 C - - - - - 0x00A9F5 02:A9E5: A5 E6     LDA ram_00E6
 C - - - - - 0x00A9F7 02:A9E7: C9 18     CMP #$18
 C - - - - - 0x00A9F9 02:A9E9: 90 04     BCC bra_A9EF
 C - - - - - 0x00A9FB 02:A9EB: C9 E0     CMP #$E0
-C - - - - - 0x00A9FD 02:A9ED: 90 22     BCC bra_AA11
+C - - - - - 0x00A9FD 02:A9ED: 90 22     BCC bra_AA11_exit
 bra_A9EF:
-C - - - - - 0x00A9FF 02:A9EF: A9 23     LDA #$23
-C - - - - - 0x00AA01 02:A9F1: A0 60     LDY #$60
+C - - - - - 0x00A9FF 02:A9EF: A9 23     LDA #> $2360
+C - - - - - 0x00AA01 02:A9F1: A0 60     LDY #< $2360
 loc_A9F3:
-C D 1 - - - 0x00AA03 02:A9F3: 20 FE AB  JSR sub_ABFE
-C - - - - - 0x00AA06 02:A9F6: A9 15     LDA #< tbl_AA15
+C D 1 - - - 0x00AA03 02:A9F3: 20 FE AB  JSR sub_ABFE_allocate_20h_memory_in_ppu_buffer
+C - - - - - 0x00AA06 02:A9F6: A9 15     LDA #< tbl_AA15_tiles_1_player
 C - - - - - 0x00AA08 02:A9F8: 85 29     STA ram_0029
-C - - - - - 0x00AA0A 02:A9FA: A9 AA     LDA #> tbl_AA15
+C - - - - - 0x00AA0A 02:A9FA: A9 AA     LDA #> tbl_AA15_tiles_1_player
 C - - - - - 0x00AA0C 02:A9FC: 85 2A     STA ram_002A
 C - - - - - 0x00AA0E 02:A9FE: AD 34 00  LDA a: ram_game_mode
 C - - - - - 0x00AA11 02:AA01: 10 08     BPL bra_AA0B
 ; if con_gm_2_players
-C - - - - - 0x00AA13 02:AA03: A9 35     LDA #< tbl_AA35
+C - - - - - 0x00AA13 02:AA03: A9 35     LDA #< tbl_AA35_tiles_2_players
 C - - - - - 0x00AA15 02:AA05: 85 29     STA ram_0029
-C - - - - - 0x00AA17 02:AA07: A9 AA     LDA #> tbl_AA35
+C - - - - - 0x00AA17 02:AA07: A9 AA     LDA #> tbl_AA35_tiles_2_players
 C - - - - - 0x00AA19 02:AA09: 85 2A     STA ram_002A
 bra_AA0B:
-C - - - - - 0x00AA1B 02:AA0B: 20 83 AC  JSR sub_AC83
-C - - - - - 0x00AA1E 02:AA0E: 8E BC 05  STX ram_05BC
-bra_AA11:
-C - - - - - 0x00AA21 02:AA11: EE 85 04  INC ram_0485
+C - - - - - 0x00AA1B 02:AA0B: 20 83 AC  JSR sub_AC83_write_20h_bytes_from_table_to_buffer
+C - - - - - 0x00AA1E 02:AA0E: 8E BC 05  STX ram_buffer_index_2
+bra_AA11_exit:
+C - - - - - 0x00AA21 02:AA11: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00AA24 02:AA14: 60        RTS
 
 
 
-tbl_AA15:
-- D 1 - I - 0x00AA25 02:AA15: 00        .byte $00   ; 
-- D 1 - I - 0x00AA26 02:AA16: 00        .byte $00   ; 
-- D 1 - I - 0x00AA27 02:AA17: 00        .byte $00   ; 
-- D 1 - I - 0x00AA28 02:AA18: 00        .byte $00   ; 
-- D 1 - I - 0x00AA29 02:AA19: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA2A 02:AA1A: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA2B 02:AA1B: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA2C 02:AA1C: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA2D 02:AA1D: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA2E 02:AA1E: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA2F 02:AA1F: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA30 02:AA20: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA31 02:AA21: D8        .byte $D8   ; 
-- D 1 - I - 0x00AA32 02:AA22: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA33 02:AA23: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA34 02:AA24: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA35 02:AA25: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA36 02:AA26: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA37 02:AA27: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA38 02:AA28: DA        .byte $DA   ; 
-- D 1 - I - 0x00AA39 02:AA29: 00        .byte $00   ; 
-- D 1 - I - 0x00AA3A 02:AA2A: 00        .byte $00   ; 
-- D 1 - I - 0x00AA3B 02:AA2B: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA3C 02:AA2C: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA3D 02:AA2D: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA3E 02:AA2E: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA3F 02:AA2F: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA40 02:AA30: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA41 02:AA31: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA42 02:AA32: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA43 02:AA33: 00        .byte $00   ; 
-- D 1 - I - 0x00AA44 02:AA34: 00        .byte $00   ; 
+tbl_AA15_tiles_1_player:
+- D 1 - I - 0x00AA25 02:AA15: 00        .byte $00, $00, $00, $00, $E9, $E9, $E9, $E9, $E9, $E9, $E9, $E9, $D8, $D9, $D9, $D9   ; 
+- D 1 - I - 0x00AA35 02:AA25: D9        .byte $D9, $D9, $D9, $DA, $00, $00, $E9, $E9, $E9, $E9, $E9, $E9, $E9, $E9, $00, $00   ; 
 
 
 
-tbl_AA35:
-- D 1 - I - 0x00AA45 02:AA35: 00        .byte $00   ; 
-- D 1 - I - 0x00AA46 02:AA36: 00        .byte $00   ; 
-- D 1 - I - 0x00AA47 02:AA37: 00        .byte $00   ; 
-- D 1 - I - 0x00AA48 02:AA38: 00        .byte $00   ; 
-- D 1 - I - 0x00AA49 02:AA39: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA4A 02:AA3A: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA4B 02:AA3B: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA4C 02:AA3C: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA4D 02:AA3D: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA4E 02:AA3E: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA4F 02:AA3F: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA50 02:AA40: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA51 02:AA41: D8        .byte $D8   ; 
-- D 1 - I - 0x00AA52 02:AA42: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA53 02:AA43: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA54 02:AA44: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA55 02:AA45: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA56 02:AA46: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA57 02:AA47: D9        .byte $D9   ; 
-- D 1 - I - 0x00AA58 02:AA48: DA        .byte $DA   ; 
-- D 1 - I - 0x00AA59 02:AA49: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA5A 02:AA4A: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA5B 02:AA4B: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA5C 02:AA4C: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA5D 02:AA4D: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA5E 02:AA4E: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA5F 02:AA4F: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA60 02:AA50: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA61 02:AA51: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA62 02:AA52: E9        .byte $E9   ; 
-- D 1 - I - 0x00AA63 02:AA53: 00        .byte $00   ; 
-- D 1 - I - 0x00AA64 02:AA54: 00        .byte $00   ; 
+tbl_AA35_tiles_2_players:
+- D 1 - I - 0x00AA45 02:AA35: 00        .byte $00, $00, $00, $00, $E9, $E9, $E9, $E9, $E9, $E9, $E9, $E9, $D8, $D9, $D9, $D9   ; 
+- D 1 - I - 0x00AA55 02:AA45: D9        .byte $D9, $D9, $D9, $DA, $E9, $E9, $E9, $E9, $E9, $E9, $E9, $E9, $E9, $E9, $00, $00   ; 
 
 
 
-ofs_002_AA55_04:
-C - - J - - 0x00AA65 02:AA55: A5 3A     LDA ram_003A
+ofs_002_AA55_04_lives_and_score_line:
+C - - J - - 0x00AA65 02:AA55: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00AA67 02:AA57: 29 02     AND #$02
 C - - - - - 0x00AA69 02:AA59: D0 0B     BNE bra_AA66
 C - - - - - 0x00AA6B 02:AA5B: AD E6 00  LDA a: ram_00E6
 C - - - - - 0x00AA6E 02:AA5E: C9 20     CMP #$20
 C - - - - - 0x00AA70 02:AA60: 90 04     BCC bra_AA66
 C - - - - - 0x00AA72 02:AA62: C9 E8     CMP #$E8
-C - - - - - 0x00AA74 02:AA64: 90 77     BCC bra_AADD
+C - - - - - 0x00AA74 02:AA64: 90 77     BCC bra_AADD_exit
 bra_AA66:
-C - - - - - 0x00AA76 02:AA66: A9 23     LDA #$23
-C - - - - - 0x00AA78 02:AA68: A0 80     LDY #$80
+C - - - - - 0x00AA76 02:AA66: A9 23     LDA #> $2380
+C - - - - - 0x00AA78 02:AA68: A0 80     LDY #< $2380
 loc_AA6A:
-C D 1 - - - 0x00AA7A 02:AA6A: 20 FE AB  JSR sub_ABFE
+C D 1 - - - 0x00AA7A 02:AA6A: 20 FE AB  JSR sub_ABFE_allocate_20h_memory_in_ppu_buffer
 C - - - - - 0x00AA7D 02:AA6D: A9 00     LDA #$00    ; tile
 C - - - - - 0x00AA7F 02:AA6F: A0 02     LDY #$02    ; counter
-C - - - - - 0x00AA81 02:AA71: 20 7B AC  JSR sub_AC7B_write_tile_Y_times
-C - - - - - 0x00AA84 02:AA74: A9 F2     LDA #$F2
+C - - - - - 0x00AA81 02:AA71: 20 7B AC  JSR sub_AC7B_write_A_to_buffer_Y_times
+C - - - - - 0x00AA84 02:AA74: A9 F2     LDA #$F2    ; tile for X symbol
 C - - - - - 0x00AA86 02:AA76: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00AA89 02:AA79: E8        INX
 C - - - - - 0x00AA8A 02:AA7A: AC 32 04  LDY ram_lives
-C - - - - - 0x00AA8D 02:AA7D: B9 70 AC  LDA tbl_AC70,Y
+C - - - - - 0x00AA8D 02:AA7D: B9 70 AC  LDA tbl_AC70_tiles_for_lives,Y
 C - - - - - 0x00AA90 02:AA80: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00AA93 02:AA83: E8        INX
 C - - - - - 0x00AA94 02:AA84: A9 00     LDA #$00    ; tile
 C - - - - - 0x00AA96 02:AA86: A0 02     LDY #$02    ; counter
-C - - - - - 0x00AA98 02:AA88: 20 7B AC  JSR sub_AC7B_write_tile_Y_times
-C - - - - - 0x00AA9B 02:AA8B: A0 00     LDY #$00
-C - - - - - 0x00AA9D 02:AA8D: 20 EC AA  JSR sub_AAEC
+C - - - - - 0x00AA98 02:AA88: 20 7B AC  JSR sub_AC7B_write_A_to_buffer_Y_times
+C - - - - - 0x00AA9B 02:AA8B: A0 00     LDY #$00    ; score 1p
+C - - - - - 0x00AA9D 02:AA8D: 20 EC AA  JSR sub_AAEC_write_score_to_buffer
 C - - - - - 0x00AAA0 02:AA90: A9 00     LDA #$00
 C - - - - - 0x00AAA2 02:AA92: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00AAA5 02:AA95: E8        INX
-C - - - - - 0x00AAA6 02:AA96: A0 06     LDY #$06
-C - - - - - 0x00AAA8 02:AA98: 20 EC AA  JSR sub_AAEC
+C - - - - - 0x00AAA6 02:AA96: A0 06     LDY #$06    ; score 2p
+C - - - - - 0x00AAA8 02:AA98: 20 EC AA  JSR sub_AAEC_write_score_to_buffer
 C - - - - - 0x00AAAB 02:AA9B: A9 00     LDA #$00
 C - - - - - 0x00AAAD 02:AA9D: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00AAB0 02:AAA0: E8        INX
-C - - - - - 0x00AAB1 02:AAA1: A9 F2     LDA #$F2
+C - - - - - 0x00AAB1 02:AAA1: A9 F2     LDA #$F2    ; tile for X symbol
 C - - - - - 0x00AAB3 02:AAA3: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00AAB6 02:AAA6: E8        INX
 C - - - - - 0x00AAB7 02:AAA7: AD 34 00  LDA a: ram_game_mode
@@ -7315,50 +7200,50 @@ C - - - - - 0x00AAC8 02:AAB8: 90 F4     BCC bra_AAAE_loop
 C - - - - - 0x00AACA 02:AABA: 4C DA AA  JMP loc_AADA
 bra_AABD:
 C - - - - - 0x00AACD 02:AABD: AC 33 04  LDY ram_lives + $01
-C - - - - - 0x00AAD0 02:AAC0: B9 70 AC  LDA tbl_AC70,Y
+C - - - - - 0x00AAD0 02:AAC0: B9 70 AC  LDA tbl_AC70_tiles_for_lives,Y
 C - - - - - 0x00AAD3 02:AAC3: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00AAD6 02:AAC6: E8        INX
 C - - - - - 0x00AAD7 02:AAC7: A9 00     LDA #$00    ; tile
 C - - - - - 0x00AAD9 02:AAC9: A0 02     LDY #$02    ; counter
-C - - - - - 0x00AADB 02:AACB: 20 7B AC  JSR sub_AC7B_write_tile_Y_times
-C - - - - - 0x00AADE 02:AACE: A0 03     LDY #$03
-C - - - - - 0x00AAE0 02:AAD0: 20 EC AA  JSR sub_AAEC
+C - - - - - 0x00AADB 02:AACB: 20 7B AC  JSR sub_AC7B_write_A_to_buffer_Y_times
+C - - - - - 0x00AADE 02:AACE: A0 03     LDY #$03    ; hi-score
+C - - - - - 0x00AAE0 02:AAD0: 20 EC AA  JSR sub_AAEC_write_score_to_buffer
 C - - - - - 0x00AAE3 02:AAD3: A9 00     LDA #$00    ; tile
 C - - - - - 0x00AAE5 02:AAD5: A0 02     LDY #$02    ; counter
-C - - - - - 0x00AAE7 02:AAD7: 20 7B AC  JSR sub_AC7B_write_tile_Y_times
+C - - - - - 0x00AAE7 02:AAD7: 20 7B AC  JSR sub_AC7B_write_A_to_buffer_Y_times
 loc_AADA:
-C D 1 - - - 0x00AAEA 02:AADA: 8E BC 05  STX ram_05BC
-bra_AADD:
-C - - - - - 0x00AAED 02:AADD: EE 85 04  INC ram_0485
+C D 1 - - - 0x00AAEA 02:AADA: 8E BC 05  STX ram_buffer_index_2
+bra_AADD_exit:
+C - - - - - 0x00AAED 02:AADD: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00AAF0 02:AAE0: 60        RTS
 
 
 
 tbl_AAE1:
-- D 1 - - - 0x00AAF1 02:AAE1: DB        .byte $DB   ; 00
-- D 1 - - - 0x00AAF2 02:AAE2: 00        .byte $00   ; 01
-- D 1 - - - 0x00AAF3 02:AAE3: 00        .byte $00   ; 02
-- D 1 - - - 0x00AAF4 02:AAE4: DB        .byte $DB   ; 03
-- D 1 - - - 0x00AAF5 02:AAE5: DB        .byte $DB   ; 04
-- D 1 - - - 0x00AAF6 02:AAE6: DB        .byte $DB   ; 05
-- D 1 - - - 0x00AAF7 02:AAE7: DB        .byte $DB   ; 06
-- D 1 - - - 0x00AAF8 02:AAE8: DB        .byte $DB   ; 07
-- D 1 - - - 0x00AAF9 02:AAE9: DB        .byte $DB   ; 08
-- D 1 - - - 0x00AAFA 02:AAEA: 00        .byte $00   ; 09
-- D 1 - - - 0x00AAFB 02:AAEB: 00        .byte $00   ; 0A
+- D 1 - - - 0x00AAF1 02:AAE1: DB        .byte $DB   ; 00 
+- D 1 - - - 0x00AAF2 02:AAE2: 00        .byte $00   ; 01 
+- D 1 - - - 0x00AAF3 02:AAE3: 00        .byte $00   ; 02 
+- D 1 - - - 0x00AAF4 02:AAE4: DB        .byte $DB   ; 03 
+- D 1 - - - 0x00AAF5 02:AAE5: DB        .byte $DB   ; 04 
+- D 1 - - - 0x00AAF6 02:AAE6: DB        .byte $DB   ; 05 
+- D 1 - - - 0x00AAF7 02:AAE7: DB        .byte $DB   ; 06 
+- D 1 - - - 0x00AAF8 02:AAE8: DB        .byte $DB   ; 07 
+- D 1 - - - 0x00AAF9 02:AAE9: DB        .byte $DB   ; 08 
+- D 1 - - - 0x00AAFA 02:AAEA: 00        .byte $00   ; 09 
+- D 1 - - - 0x00AAFB 02:AAEB: 00        .byte $00   ; 0A 
 
 
 
-sub_AAEC:
+sub_AAEC_write_score_to_buffer:
 C - - - - - 0x00AAFC 02:AAEC: B9 86 04  LDA ram_score_player,Y
 C - - - - - 0x00AAFF 02:AAEF: 85 19     STA ram_0019
 C - - - - - 0x00AB01 02:AAF1: B9 87 04  LDA ram_score_player + $01,Y
 C - - - - - 0x00AB04 02:AAF4: 85 1A     STA ram_001A
 C - - - - - 0x00AB06 02:AAF6: B9 88 04  LDA ram_score_player + $02,Y
 C - - - - - 0x00AB09 02:AAF9: 85 1B     STA ram_001B
-C - - - - - 0x00AB0B 02:AAFB: A9 07     LDA #$07
+C - - - - - 0x00AB0B 02:AAFB: A9 07     LDA #$07    ; loop counter
 C - - - - - 0x00AB0D 02:AAFD: 85 1C     STA ram_001C
-loc_AAFF:
+loc_AAFF_loop:
 C D 1 - - - 0x00AB0F 02:AAFF: C6 1C     DEC ram_001C
 C - - - - - 0x00AB11 02:AB01: D0 01     BNE bra_AB04
 C - - - - - 0x00AB13 02:AB03: 60        RTS
@@ -7366,7 +7251,7 @@ bra_AB04:
 C - - - - - 0x00AB14 02:AB04: A5 1B     LDA ram_001B
 C - - - - - 0x00AB16 02:AB06: 29 0F     AND #$0F
 C - - - - - 0x00AB18 02:AB08: A8        TAY
-C - - - - - 0x00AB19 02:AB09: B9 71 AC  LDA tbl_AC71,Y
+C - - - - - 0x00AB19 02:AB09: B9 71 AC  LDA tbl_AC70_tiles_for_score + $01,Y
 C - - - - - 0x00AB1C 02:AB0C: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00AB1F 02:AB0F: E8        INX
 C - - - - - 0x00AB20 02:AB10: A0 04     LDY #$04
@@ -7376,108 +7261,78 @@ C - - - - - 0x00AB24 02:AB14: 26 1A     ROL ram_001A
 C - - - - - 0x00AB26 02:AB16: 26 1B     ROL ram_001B
 C - - - - - 0x00AB28 02:AB18: 88        DEY
 C - - - - - 0x00AB29 02:AB19: D0 F7     BNE bra_AB12_loop
-C - - - - - 0x00AB2B 02:AB1B: 4C FF AA  JMP loc_AAFF
+C - - - - - 0x00AB2B 02:AB1B: 4C FF AA  JMP loc_AAFF_loop
 
 
 
-ofs_002_AB1E_05:
-C - - J - - 0x00AB2E 02:AB1E: A5 3A     LDA ram_003A
+ofs_002_AB1E_05_below_score_line:
+C - - J - - 0x00AB2E 02:AB1E: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00AB30 02:AB20: 29 02     AND #$02
 C - - - - - 0x00AB32 02:AB22: D0 06     BNE bra_AB2A
 C - - - - - 0x00AB34 02:AB24: A5 E6     LDA ram_00E6
 C - - - - - 0x00AB36 02:AB26: C9 28     CMP #$28
-C - - - - - 0x00AB38 02:AB28: B0 15     BCS bra_AB3F
+C - - - - - 0x00AB38 02:AB28: B0 15     BCS bra_AB3F_exit
 bra_AB2A:
-C - - - - - 0x00AB3A 02:AB2A: A9 23     LDA #$23
-C - - - - - 0x00AB3C 02:AB2C: A0 A0     LDY #$A0
+C - - - - - 0x00AB3A 02:AB2A: A9 23     LDA #> $23A0
+C - - - - - 0x00AB3C 02:AB2C: A0 A0     LDY #< $23A0
 loc_AB2E:
-C D 1 - - - 0x00AB3E 02:AB2E: 20 FE AB  JSR sub_ABFE
-C - - - - - 0x00AB41 02:AB31: A9 43     LDA #< tbl_AB43
+C D 1 - - - 0x00AB3E 02:AB2E: 20 FE AB  JSR sub_ABFE_allocate_20h_memory_in_ppu_buffer
+C - - - - - 0x00AB41 02:AB31: A9 43     LDA #< tbl_AB43_tiles
 C - - - - - 0x00AB43 02:AB33: 85 29     STA ram_0029
-C - - - - - 0x00AB45 02:AB35: A9 AB     LDA #> tbl_AB43
+C - - - - - 0x00AB45 02:AB35: A9 AB     LDA #> tbl_AB43_tiles
 C - - - - - 0x00AB47 02:AB37: 85 2A     STA ram_002A
-C - - - - - 0x00AB49 02:AB39: 20 83 AC  JSR sub_AC83
-C - - - - - 0x00AB4C 02:AB3C: 8E BC 05  STX ram_05BC
-bra_AB3F:
-C - - - - - 0x00AB4F 02:AB3F: EE 85 04  INC ram_0485
+C - - - - - 0x00AB49 02:AB39: 20 83 AC  JSR sub_AC83_write_20h_bytes_from_table_to_buffer
+C - - - - - 0x00AB4C 02:AB3C: 8E BC 05  STX ram_buffer_index_2
+bra_AB3F_exit:
+C - - - - - 0x00AB4F 02:AB3F: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00AB52 02:AB42: 60        RTS
 
 
 
-tbl_AB43:
-- D 1 - I - 0x00AB53 02:AB43: 00        .byte $00   ; 
-- D 1 - I - 0x00AB54 02:AB44: 00        .byte $00   ; 
-- D 1 - I - 0x00AB55 02:AB45: 00        .byte $00   ; 
-- D 1 - I - 0x00AB56 02:AB46: 00        .byte $00   ; 
-- D 1 - I - 0x00AB57 02:AB47: 00        .byte $00   ; 
-- D 1 - I - 0x00AB58 02:AB48: 00        .byte $00   ; 
-- D 1 - I - 0x00AB59 02:AB49: 00        .byte $00   ; 
-- D 1 - I - 0x00AB5A 02:AB4A: 00        .byte $00   ; 
-- D 1 - I - 0x00AB5B 02:AB4B: 00        .byte $00   ; 
-- D 1 - I - 0x00AB5C 02:AB4C: 00        .byte $00   ; 
-- D 1 - I - 0x00AB5D 02:AB4D: 00        .byte $00   ; 
-- D 1 - I - 0x00AB5E 02:AB4E: 00        .byte $00   ; 
-- D 1 - I - 0x00AB5F 02:AB4F: 00        .byte $00   ; 
-- D 1 - I - 0x00AB60 02:AB50: E9        .byte $E9   ; 
-- D 1 - I - 0x00AB61 02:AB51: E9        .byte $E9   ; 
-- D 1 - I - 0x00AB62 02:AB52: E9        .byte $E9   ; 
-- D 1 - I - 0x00AB63 02:AB53: E9        .byte $E9   ; 
-- D 1 - I - 0x00AB64 02:AB54: E9        .byte $E9   ; 
-- D 1 - I - 0x00AB65 02:AB55: E9        .byte $E9   ; 
-- D 1 - I - 0x00AB66 02:AB56: 00        .byte $00   ; 
-- D 1 - I - 0x00AB67 02:AB57: 00        .byte $00   ; 
-- D 1 - I - 0x00AB68 02:AB58: 00        .byte $00   ; 
-- D 1 - I - 0x00AB69 02:AB59: 00        .byte $00   ; 
-- D 1 - I - 0x00AB6A 02:AB5A: 00        .byte $00   ; 
-- D 1 - I - 0x00AB6B 02:AB5B: 00        .byte $00   ; 
-- D 1 - I - 0x00AB6C 02:AB5C: 00        .byte $00   ; 
-- D 1 - I - 0x00AB6D 02:AB5D: 00        .byte $00   ; 
-- D 1 - I - 0x00AB6E 02:AB5E: 00        .byte $00   ; 
-- D 1 - I - 0x00AB6F 02:AB5F: 00        .byte $00   ; 
-- D 1 - I - 0x00AB70 02:AB60: 00        .byte $00   ; 
-- D 1 - I - 0x00AB71 02:AB61: 00        .byte $00   ; 
-- D 1 - I - 0x00AB72 02:AB62: 00        .byte $00   ; 
+tbl_AB43_tiles:
+- D 1 - I - 0x00AB53 02:AB43: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $E9, $E9, $E9   ; 
+- D 1 - I - 0x00AB63 02:AB53: E9        .byte $E9, $E9, $E9, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 
 
 
-ofs_002_AB63_06:
-C - - J - - 0x00AB73 02:AB63: A5 3A     LDA ram_003A
+ofs_002_AB63_06_empty_line:
+C - - J - - 0x00AB73 02:AB63: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00AB75 02:AB65: 29 02     AND #$02
 C - - - - - 0x00AB77 02:AB67: F0 06     BEQ bra_AB6F
 C - - - - - 0x00AB79 02:AB69: A5 E6     LDA ram_00E6
 C - - - - - 0x00AB7B 02:AB6B: C9 C8     CMP #$C8
-C - - - - - 0x00AB7D 02:AB6D: 90 07     BCC bra_AB76
+C - - - - - 0x00AB7D 02:AB6D: 90 07     BCC bra_AB76_tiles
 bra_AB6F:
-C - - - - - 0x00AB7F 02:AB6F: A9 2B     LDA #$2B
-C - - - - - 0x00AB81 02:AB71: A0 00     LDY #$00
+C - - - - - 0x00AB7F 02:AB6F: A9 2B     LDA #> $2B00
+C - - - - - 0x00AB81 02:AB71: A0 00     LDY #< $2B00
 C - - - - - 0x00AB83 02:AB73: 4C A9 A8  JMP loc_A8A9
-bra_AB76:
-C - - - - - 0x00AB86 02:AB76: EE 85 04  INC ram_0485
+bra_AB76_tiles:
+C - - - - - 0x00AB86 02:AB76: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00AB89 02:AB79: 60        RTS
 
 
 
-ofs_002_AB7A_07:
-C - - J - - 0x00AB8A 02:AB7A: A5 3A     LDA ram_003A
+ofs_002_AB7A_07_above_hp_line:
+C - - J - - 0x00AB8A 02:AB7A: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00AB8C 02:AB7C: 29 02     AND #$02
 C - - - - - 0x00AB8E 02:AB7E: F0 0A     BEQ bra_AB8A
 C - - - - - 0x00AB90 02:AB80: A5 E6     LDA ram_00E6
 C - - - - - 0x00AB92 02:AB82: C9 08     CMP #$08
 C - - - - - 0x00AB94 02:AB84: 90 04     BCC bra_AB8A
 C - - - - - 0x00AB96 02:AB86: C9 D0     CMP #$D0
-C - - - - - 0x00AB98 02:AB88: 90 07     BCC bra_AB91
+C - - - - - 0x00AB98 02:AB88: 90 07     BCC bra_AB91_exit
 bra_AB8A:
-C - - - - - 0x00AB9A 02:AB8A: A9 2B     LDA #$2B
-C - - - - - 0x00AB9C 02:AB8C: A0 20     LDY #$20
+C - - - - - 0x00AB9A 02:AB8A: A9 2B     LDA #> $2B20
+C - - - - - 0x00AB9C 02:AB8C: A0 20     LDY #< $2B20
 C - - - - - 0x00AB9E 02:AB8E: 4C CF A8  JMP loc_A8CF
-bra_AB91:
-C - - - - - 0x00ABA1 02:AB91: EE 85 04  INC ram_0485
+bra_AB91_exit:
+C - - - - - 0x00ABA1 02:AB91: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00ABA4 02:AB94: 60        RTS
 
 
 
-ofs_002_AB95_08:
-C - - J - - 0x00ABA5 02:AB95: A5 3A     LDA ram_003A
+ofs_002_AB95_08_hp_line:
+C - - J - - 0x00ABA5 02:AB95: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00ABA7 02:AB97: 29 02     AND #$02
 C - - - - - 0x00ABA9 02:AB99: F0 0A     BEQ bra_ABA5
 C - - - - - 0x00ABAB 02:AB9B: A5 E6     LDA ram_00E6
@@ -7486,66 +7341,66 @@ C - - - - - 0x00ABAF 02:AB9F: 90 04     BCC bra_ABA5
 C - - - - - 0x00ABB1 02:ABA1: C9 D8     CMP #$D8
 C - - - - - 0x00ABB3 02:ABA3: 90 07     BCC bra_ABAC
 bra_ABA5:
-C - - - - - 0x00ABB5 02:ABA5: A9 2B     LDA #$2B
-C - - - - - 0x00ABB7 02:ABA7: A0 40     LDY #$40
+C - - - - - 0x00ABB5 02:ABA5: A9 2B     LDA #> $2B40
+C - - - - - 0x00ABB7 02:ABA7: A0 40     LDY #< $2B40
 C - - - - - 0x00ABB9 02:ABA9: 4C 47 A9  JMP loc_A947
 bra_ABAC:
-C - - - - - 0x00ABBC 02:ABAC: EE 85 04  INC ram_0485
+C - - - - - 0x00ABBC 02:ABAC: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00ABBF 02:ABAF: 60        RTS
 
 
 
-ofs_002_ABB0_09:
-C - - J - - 0x00ABC0 02:ABB0: A5 3A     LDA ram_003A
+ofs_002_ABB0_09_below_hp_line:
+C - - J - - 0x00ABC0 02:ABB0: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00ABC2 02:ABB2: 29 02     AND #$02
 C - - - - - 0x00ABC4 02:ABB4: F0 0A     BEQ bra_ABC0
 C - - - - - 0x00ABC6 02:ABB6: A5 E6     LDA ram_00E6
 C - - - - - 0x00ABC8 02:ABB8: C9 18     CMP #$18
 C - - - - - 0x00ABCA 02:ABBA: 90 04     BCC bra_ABC0
 C - - - - - 0x00ABCC 02:ABBC: C9 E0     CMP #$E0
-C - - - - - 0x00ABCE 02:ABBE: 90 07     BCC bra_ABC7
+C - - - - - 0x00ABCE 02:ABBE: 90 07     BCC bra_ABC7_exit
 bra_ABC0:
-C - - - - - 0x00ABD0 02:ABC0: A9 2B     LDA #$2B
-C - - - - - 0x00ABD2 02:ABC2: A0 60     LDY #$60
+C - - - - - 0x00ABD0 02:ABC0: A9 2B     LDA #> $2B60
+C - - - - - 0x00ABD2 02:ABC2: A0 60     LDY #< $2B60
 C - - - - - 0x00ABD4 02:ABC4: 4C F3 A9  JMP loc_A9F3
-bra_ABC7:
-C - - - - - 0x00ABD7 02:ABC7: EE 85 04  INC ram_0485
+bra_ABC7_exit:
+C - - - - - 0x00ABD7 02:ABC7: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00ABDA 02:ABCA: 60        RTS
 
 
 
-ofs_002_ABCB_0A:
-C - - J - - 0x00ABDB 02:ABCB: A5 3A     LDA ram_003A
+ofs_002_ABCB_0A_lives_and_score_line:
+C - - J - - 0x00ABDB 02:ABCB: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00ABDD 02:ABCD: 29 02     AND #$02
 C - - - - - 0x00ABDF 02:ABCF: F0 0A     BEQ bra_ABDB
 C - - - - - 0x00ABE1 02:ABD1: A5 E6     LDA ram_00E6
 C - - - - - 0x00ABE3 02:ABD3: C9 20     CMP #$20
 C - - - - - 0x00ABE5 02:ABD5: 90 04     BCC bra_ABDB
 C - - - - - 0x00ABE7 02:ABD7: C9 E8     CMP #$E8
-C - - - - - 0x00ABE9 02:ABD9: 90 07     BCC bra_ABE2
+C - - - - - 0x00ABE9 02:ABD9: 90 07     BCC bra_ABE2_exit
 bra_ABDB:
-C - - - - - 0x00ABEB 02:ABDB: A9 2B     LDA #$2B
-C - - - - - 0x00ABED 02:ABDD: A0 80     LDY #$80
+C - - - - - 0x00ABEB 02:ABDB: A9 2B     LDA #> $2B80
+C - - - - - 0x00ABED 02:ABDD: A0 80     LDY #< $2B80
 C - - - - - 0x00ABEF 02:ABDF: 4C 6A AA  JMP loc_AA6A
-bra_ABE2:
-C - - - - - 0x00ABF2 02:ABE2: EE 85 04  INC ram_0485
+bra_ABE2_exit:
+C - - - - - 0x00ABF2 02:ABE2: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00ABF5 02:ABE5: 60        RTS
 
 
 
-ofs_002_ABE6_0B:
-C - - J - - 0x00ABF6 02:ABE6: A5 3A     LDA ram_003A
+ofs_002_ABE6_0B_below_score_line:
+C - - J - - 0x00ABF6 02:ABE6: A5 3A     LDA ram_copy_base_nmt
 C - - - - - 0x00ABF8 02:ABE8: 29 02     AND #$02
 C - - - - - 0x00ABFA 02:ABEA: F0 06     BEQ bra_ABF2
 C - - - - - 0x00ABFC 02:ABEC: A5 E6     LDA ram_00E6
 C - - - - - 0x00ABFE 02:ABEE: C9 28     CMP #$28
-C - - - - - 0x00AC00 02:ABF0: B0 07     BCS bra_ABF9
+C - - - - - 0x00AC00 02:ABF0: B0 07     BCS bra_ABF9_exit
 bra_ABF2:
-C - - - - - 0x00AC02 02:ABF2: A9 2B     LDA #$2B
-C - - - - - 0x00AC04 02:ABF4: A0 A0     LDY #$A0
+C - - - - - 0x00AC02 02:ABF2: A9 2B     LDA #> $2BA0
+C - - - - - 0x00AC04 02:ABF4: A0 A0     LDY #< $2BA0
 C - - - - - 0x00AC06 02:ABF6: 4C 2E AB  JMP loc_AB2E
-bra_ABF9:
-C - - - - - 0x00AC09 02:ABF9: EE 85 04  INC ram_0485
+bra_ABF9_exit:
+C - - - - - 0x00AC09 02:ABF9: EE 85 04  INC ram_0485_hud_draw_script
 C - - - - - 0x00AC0C 02:ABFC: 60        RTS
 
 
@@ -7554,17 +7409,17 @@ C - - - - - 0x00AC0C 02:ABFC: 60        RTS
 
 
 
-sub_ABFE:
-C - - - - - 0x00AC0E 02:ABFE: AE BC 05  LDX ram_05BC
+sub_ABFE_allocate_20h_memory_in_ppu_buffer:
+C - - - - - 0x00AC0E 02:ABFE: AE BC 05  LDX ram_buffer_index_2
 C - - - - - 0x00AC11 02:AC01: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00AC14 02:AC04: E8        INX
 C - - - - - 0x00AC15 02:AC05: 98        TYA
 C - - - - - 0x00AC16 02:AC06: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00AC19 02:AC09: E8        INX
-C - - - - - 0x00AC1A 02:AC0A: A9 00     LDA #$00
+C - - - - - 0x00AC1A 02:AC0A: A9 00     LDA #$00    ; 2007 +1
 C - - - - - 0x00AC1C 02:AC0C: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00AC1F 02:AC0F: E8        INX
-C - - - - - 0x00AC20 02:AC10: A9 20     LDA #$20
+C - - - - - 0x00AC20 02:AC10: A9 20     LDA #$20    ; counter
 C - - - - - 0x00AC22 02:AC12: 9D B1 04  STA ram_ppu_buffer,X
 C - - - - - 0x00AC25 02:AC15: E8        INX
 C - - - - - 0x00AC26 02:AC16: 60        RTS
@@ -7575,7 +7430,7 @@ C - - - - - 0x00AC26 02:AC16: 60        RTS
 - - - - - - 0x00AC29 02:AC19: B9 88 04  LDA ram_score_player + $02,Y
 - - - - - - 0x00AC2C 02:AC1C: 29 0F     AND #$0F
 - - - - - - 0x00AC2E 02:AC1E: A8        TAY
-- - - - - - 0x00AC2F 02:AC1F: B9 71 AC  LDA tbl_AC71,Y
+- - - - - - 0x00AC2F 02:AC1F: B9 71 AC  LDA tbl_AC70_tiles_for_score + $01,Y
 - - - - - - 0x00AC32 02:AC22: 9D B1 04  STA ram_ppu_buffer,X
 - - - - - - 0x00AC35 02:AC25: E8        INX
 - - - - - - 0x00AC36 02:AC26: A4 19     LDY ram_0019
@@ -7586,14 +7441,14 @@ C - - - - - 0x00AC26 02:AC16: 60        RTS
 - - - - - - 0x00AC3F 02:AC2F: 0A        ASL
 - - - - - - 0x00AC40 02:AC30: 0A        ASL
 - - - - - - 0x00AC41 02:AC31: A8        TAY
-- - - - - - 0x00AC42 02:AC32: B9 71 AC  LDA tbl_AC71,Y
+- - - - - - 0x00AC42 02:AC32: B9 71 AC  LDA tbl_AC70_tiles_for_score + $01,Y
 - - - - - - 0x00AC45 02:AC35: 9D B1 04  STA ram_ppu_buffer,X
 - - - - - - 0x00AC48 02:AC38: E8        INX
 - - - - - - 0x00AC49 02:AC39: A4 19     LDY ram_0019
 - - - - - - 0x00AC4B 02:AC3B: B9 87 04  LDA ram_score_player + $01,Y
 - - - - - - 0x00AC4E 02:AC3E: 29 0F     AND #$0F
 - - - - - - 0x00AC50 02:AC40: A8        TAY
-- - - - - - 0x00AC51 02:AC41: B9 71 AC  LDA tbl_AC71,Y
+- - - - - - 0x00AC51 02:AC41: B9 71 AC  LDA tbl_AC70_tiles_for_score + $01,Y
 - - - - - - 0x00AC54 02:AC44: 9D B1 04  STA ram_ppu_buffer,X
 - - - - - - 0x00AC57 02:AC47: E8        INX
 - - - - - - 0x00AC58 02:AC48: A4 19     LDY ram_0019
@@ -7603,40 +7458,40 @@ C - - - - - 0x00AC26 02:AC16: 60        RTS
 - - - - - - 0x00AC5F 02:AC4F: 0A        ASL
 - - - - - - 0x00AC60 02:AC50: 0A        ASL
 - - - - - - 0x00AC61 02:AC51: A8        TAY
-- - - - - - 0x00AC62 02:AC52: B9 71 AC  LDA tbl_AC71,Y
+- - - - - - 0x00AC62 02:AC52: B9 71 AC  LDA tbl_AC70_tiles_for_score + $01,Y
 - - - - - - 0x00AC65 02:AC55: 9D B1 04  STA ram_ppu_buffer,X
 - - - - - - 0x00AC68 02:AC58: E8        INX
 - - - - - - 0x00AC69 02:AC59: A4 19     LDY ram_0019
 - - - - - - 0x00AC6B 02:AC5B: B9 86 04  LDA ram_score_player,Y
 - - - - - - 0x00AC6E 02:AC5E: 29 0F     AND #$0F
 - - - - - - 0x00AC70 02:AC60: A8        TAY
-- - - - - - 0x00AC71 02:AC61: B9 71 AC  LDA tbl_AC71,Y
+- - - - - - 0x00AC71 02:AC61: B9 71 AC  LDA tbl_AC70_tiles_for_score + $01,Y
 - - - - - - 0x00AC74 02:AC64: 9D B1 04  STA ram_ppu_buffer,X
 - - - - - - 0x00AC77 02:AC67: E8        INX
-- - - - - - 0x00AC78 02:AC68: AD 71 AC  LDA tbl_AC71
+- - - - - - 0x00AC78 02:AC68: AD 71 AC  LDA tbl_AC70_tiles_for_score + $01
 - - - - - - 0x00AC7B 02:AC6B: 9D B1 04  STA ram_ppu_buffer,X
 - - - - - - 0x00AC7E 02:AC6E: E8        INX
 - - - - - - 0x00AC7F 02:AC6F: 60        RTS
 
 
 
-tbl_AC70:
-- D 1 - - - 0x00AC80 02:AC70: DB        .byte $DB   ; 
-tbl_AC71:
-- D 1 - - - 0x00AC81 02:AC71: DB        .byte $DB   ; 
-- D 1 - - - 0x00AC82 02:AC72: DC        .byte $DC   ; 
-- D 1 - - - 0x00AC83 02:AC73: DD        .byte $DD   ; 
-- D 1 - - - 0x00AC84 02:AC74: DE        .byte $DE   ; 
-- D 1 - - - 0x00AC85 02:AC75: DF        .byte $DF   ; 
-- D 1 - - - 0x00AC86 02:AC76: EB        .byte $EB   ; 
-- D 1 - - - 0x00AC87 02:AC77: EC        .byte $EC   ; 
-- D 1 - - - 0x00AC88 02:AC78: ED        .byte $ED   ; 
-- D 1 - - - 0x00AC89 02:AC79: EE        .byte $EE   ; 
-- D 1 - - - 0x00AC8A 02:AC7A: EF        .byte $EF   ; 
+tbl_AC70_tiles_for_lives:
+tbl_AC70_tiles_for_score:
+- D 1 - - - 0x00AC80 02:AC70: DB        .byte $DB   ; 00 0
+- D 1 - - - 0x00AC81 02:AC71: DB        .byte $DB   ; 01 0 
+- D 1 - - - 0x00AC82 02:AC72: DC        .byte $DC   ; 02 1 
+- D 1 - - - 0x00AC83 02:AC73: DD        .byte $DD   ; 03 2 
+- D 1 - - - 0x00AC84 02:AC74: DE        .byte $DE   ; 04 3 
+- D 1 - - - 0x00AC85 02:AC75: DF        .byte $DF   ; 05 4 
+- D 1 - - - 0x00AC86 02:AC76: EB        .byte $EB   ; 06 5 
+- D 1 - - - 0x00AC87 02:AC77: EC        .byte $EC   ; 07 6 
+- D 1 - - - 0x00AC88 02:AC78: ED        .byte $ED   ; 08 7 
+- D 1 - - - 0x00AC89 02:AC79: EE        .byte $EE   ; 09 8 
+- D 1 - - - 0x00AC8A 02:AC7A: EF        .byte $EF   ; 0A 9 
 
 
 
-sub_AC7B_write_tile_Y_times:
+sub_AC7B_write_A_to_buffer_Y_times:
 ; A = tile
 ; Y = counter
 bra_AC7B_loop:
@@ -7648,7 +7503,7 @@ C - - - - - 0x00AC92 02:AC82: 60        RTS
 
 
 
-sub_AC83:
+sub_AC83_write_20h_bytes_from_table_to_buffer:
 C - - - - - 0x00AC93 02:AC83: A0 00     LDY #$00
 bra_AC85_loop:
 C - - - - - 0x00AC95 02:AC85: B1 29     LDA (ram_0029),Y
@@ -7719,11 +7574,11 @@ C - - - - - 0x00ACF8 02:ACE8: A5 2A     LDA ram_002A
 C - - - - - 0x00ACFA 02:ACEA: 18        CLC
 C - - - - - 0x00ACFB 02:ACEB: 69 20     ADC #$20
 C - - - - - 0x00ACFD 02:ACED: A4 29     LDY ram_0029
-C - - - - - 0x00ACFF 02:ACEF: 20 FE AB  JSR sub_ABFE
+C - - - - - 0x00ACFF 02:ACEF: 20 FE AB  JSR sub_ABFE_allocate_20h_memory_in_ppu_buffer
 C - - - - - 0x00AD02 02:ACF2: A9 00     LDA #$00    ; tile
 C - - - - - 0x00AD04 02:ACF4: A0 20     LDY #$20    ; counter
-C - - - - - 0x00AD06 02:ACF6: 20 7B AC  JSR sub_AC7B_write_tile_Y_times
-C - - - - - 0x00AD09 02:ACF9: 8E BC 05  STX ram_05BC
+C - - - - - 0x00AD06 02:ACF6: 20 7B AC  JSR sub_AC7B_write_A_to_buffer_Y_times
+C - - - - - 0x00AD09 02:ACF9: 8E BC 05  STX ram_buffer_index_2
 C - - - - - 0x00AD0C 02:ACFC: CE 43 06  DEC ram_0643
 bra_ACFF_RTS:
 C - - - - - 0x00AD0F 02:ACFF: 60        RTS
@@ -7810,14 +7665,14 @@ C - - - - - 0x00ADA2 02:AD92: 60        RTS
 
 
 tbl_AD93:
-- D 1 - - - 0x00ADA3 02:AD93: 00        .byte $00   ; 00
-- D 1 - - - 0x00ADA4 02:AD94: 01        .byte $01   ; 01
-- D 1 - - - 0x00ADA5 02:AD95: 02        .byte $02   ; 02
-- D 1 - - - 0x00ADA6 02:AD96: 02        .byte $02   ; 03
-- D 1 - - - 0x00ADA7 02:AD97: 03        .byte $03   ; 04
-- D 1 - - - 0x00ADA8 02:AD98: 03        .byte $03   ; 05
-- D 1 - - - 0x00ADA9 02:AD99: 03        .byte $03   ; 06
-- D 1 - - - 0x00ADAA 02:AD9A: 03        .byte $03   ; 07
+- D 1 - - - 0x00ADA3 02:AD93: 00        .byte $00   ; 00 
+- D 1 - - - 0x00ADA4 02:AD94: 01        .byte $01   ; 01 
+- D 1 - - - 0x00ADA5 02:AD95: 02        .byte $02   ; 02 
+- D 1 - - - 0x00ADA6 02:AD96: 02        .byte $02   ; 03 
+- D 1 - - - 0x00ADA7 02:AD97: 03        .byte $03   ; 04 
+- D 1 - - - 0x00ADA8 02:AD98: 03        .byte $03   ; 05 
+- D 1 - - - 0x00ADA9 02:AD99: 03        .byte $03   ; 06 
+- D 1 - - - 0x00ADAA 02:AD9A: 03        .byte $03   ; 07 
 
 
 
@@ -7852,14 +7707,14 @@ sub_ADC6:
 C - - - - - 0x00ADD6 02:ADC6: A6 19     LDX ram_0019
 C - - - - - 0x00ADD8 02:ADC8: B5 43     LDA ram_state,X
 C - - - - - 0x00ADDA 02:ADCA: 85 23     STA ram_0023
-C - - - - - 0x00ADDC 02:ADCC: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x00ADDC 02:ADCC: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x00ADDF 02:ADCF: 85 24     STA ram_0024
 C - - - - - 0x00ADE1 02:ADD1: BD 0F 03  LDA ram_obj_direction,X
 C - - - - - 0x00ADE4 02:ADD4: 85 25     STA ram_0025
 C - - - - - 0x00ADE6 02:ADD6: A6 1A     LDX ram_001A
 C - - - - - 0x00ADE8 02:ADD8: B5 43     LDA ram_state,X
 C - - - - - 0x00ADEA 02:ADDA: 85 26     STA ram_0026
-C - - - - - 0x00ADEC 02:ADDC: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x00ADEC 02:ADDC: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x00ADEF 02:ADDF: 85 27     STA ram_0027
 C - - - - - 0x00ADF1 02:ADE1: BD 0F 03  LDA ram_obj_direction,X
 C - - - - - 0x00ADF4 02:ADE4: 85 28     STA ram_0028
@@ -7914,10 +7769,10 @@ C - - - - - 0x00AE4A 02:AE3A: B5 43     LDA ram_state,X
 C - - - - - 0x00AE4C 02:AE3C: 30 27     BMI bra_AE65_RTS
 C - - - - - 0x00AE4E 02:AE3E: A6 11     LDX ram_0011
 C - - - - - 0x00AE50 02:AE40: FE E7 03  INC ram_hit_counter,X
-C - - - - - 0x00AE53 02:AE43: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00AE55 02:AE45: 29 FE     AND #con_004A_01 ^ $FF
-C - - - - - 0x00AE57 02:AE47: 09 40     ORA #con_004A_40
-C - - - - - 0x00AE59 02:AE49: 95 4A     STA ram_004A_obj,X
+C - - - - - 0x00AE53 02:AE43: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00AE55 02:AE45: 29 FE     AND #con_004A_flag_01 ^ $FF
+C - - - - - 0x00AE57 02:AE47: 09 40     ORA #con_004A_flag_stunned
+C - - - - - 0x00AE59 02:AE49: 95 4A     STA ram_004A_obj_flags,X
 C - - - - - 0x00AE5B 02:AE4B: A9 60     LDA #$60
 C - - - - - 0x00AE5D 02:AE4D: 9D C8 03  STA ram_clear_hit_counter_timer,X
 C - - - - - 0x00AE60 02:AE50: B5 43     LDA ram_state,X
@@ -8020,8 +7875,8 @@ C - - - - - 0x00AEE7 02:AED7: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 ofs_003_AEDA_03_set_state_1:
 C - - J - - 0x00AEEA 02:AEDA: A6 11     LDX ram_0011
-C - - - - - 0x00AEEC 02:AEDC: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00AEEE 02:AEDE: 10 0B     BPL bra_AEEB    ; if not con_004A_80
+C - - - - - 0x00AEEC 02:AEDC: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00AEEE 02:AEDE: 10 0B     BPL bra_AEEB    ; if not con_004A_flag_knocked_down
 C - - - - - 0x00AEF0 02:AEE0: A0 05     LDY #$05
 C - - - - - 0x00AEF2 02:AEE2: B1 29     LDA (ram_0029),Y
 C - - - - - 0x00AEF4 02:AEE4: 95 43     STA ram_state,X
@@ -8067,8 +7922,8 @@ C - - - - - 0x00AF38 02:AF28: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 ofs_003_AF2B_04_set_state_2:
 C - - J - - 0x00AF3B 02:AF2B: A6 11     LDX ram_0011
-C - - - - - 0x00AF3D 02:AF2D: B5 4A     LDA ram_004A_obj,X
-C - - - - - 0x00AF3F 02:AF2F: 10 0B     BPL bra_AF3C    ; if not con_004A_80
+C - - - - - 0x00AF3D 02:AF2D: B5 4A     LDA ram_004A_obj_flags,X
+C - - - - - 0x00AF3F 02:AF2F: 10 0B     BPL bra_AF3C    ; if not con_004A_flag_knocked_down
 C - - - - - 0x00AF41 02:AF31: A0 07     LDY #$07
 C - - - - - 0x00AF43 02:AF33: B1 29     LDA (ram_0029),Y
 C - - - - - 0x00AF45 02:AF35: 95 43     STA ram_state,X
@@ -8109,9 +7964,9 @@ C - - - - - 0x00AF84 02:AF74: 84 2B     STY ram_002B
 C - - - - - 0x00AF86 02:AF76: A0 00     LDY #$00
 C - - - - - 0x00AF88 02:AF78: B1 29     LDA (ram_0029),Y
 C - - - - - 0x00AF8A 02:AF7A: 85 2C     STA ram_002C
-C - - - - - 0x00AF8C 02:AF7C: BD 63 00  LDA a: ram_0063_obj,X
+C - - - - - 0x00AF8C 02:AF7C: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x00AF8F 02:AF7F: A6 12     LDX ram_0012
-C - - - - - 0x00AF91 02:AF81: 5D 63 00  EOR a: ram_0063_obj,X
+C - - - - - 0x00AF91 02:AF81: 5D 63 00  EOR a: ram_0063_obj_facing,X
 C - - - - - 0x00AF94 02:AF84: 45 2C     EOR ram_002C
 C - - - - - 0x00AF96 02:AF86: 30 02     BMI bra_AF8A
 C - - - - - 0x00AF98 02:AF88: E6 2B     INC ram_002B
@@ -8130,9 +7985,9 @@ C - - J - - 0x00AFA7 02:AF97: A0 00     LDY #$00
 C - - - - - 0x00AFA9 02:AF99: B1 29     LDA (ram_0029),Y
 C - - - - - 0x00AFAB 02:AF9B: A0 01     LDY #$01
 C - - - - - 0x00AFAD 02:AF9D: A6 11     LDX ram_0011
-C - - - - - 0x00AFAF 02:AF9F: 5D 63 00  EOR a: ram_0063_obj,X
+C - - - - - 0x00AFAF 02:AF9F: 5D 63 00  EOR a: ram_0063_obj_facing,X
 C - - - - - 0x00AFB2 02:AFA2: A6 12     LDX ram_0012
-C - - - - - 0x00AFB4 02:AFA4: 5D 63 00  EOR a: ram_0063_obj,X
+C - - - - - 0x00AFB4 02:AFA4: 5D 63 00  EOR a: ram_0063_obj_facing,X
 C - - - - - 0x00AFB7 02:AFA7: 30 01     BMI bra_AFAA
 C - - - - - 0x00AFB9 02:AFA9: C8        INY
 bra_AFAA:
@@ -8188,44 +8043,47 @@ C - - - - - 0x00B002 02:AFF2: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 tbl_AFF5:
-- D 1 - - - 0x00B005 02:AFF5: 01        .byte $01   ; 00
-- D 1 - - - 0x00B006 02:AFF6: 01        .byte $01   ; 01
-- D 1 - - - 0x00B007 02:AFF7: 01        .byte $01   ; 02
-- D 1 - - - 0x00B008 02:AFF8: 01        .byte $01   ; 03
-- D 1 - - - 0x00B009 02:AFF9: 01        .byte $01   ; 04
-- - - - - - 0x00B00A 02:AFFA: 01        .byte $01   ; 05
-- D 1 - - - 0x00B00B 02:AFFB: 03        .byte $03   ; 06
-- D 1 - - - 0x00B00C 02:AFFC: 03        .byte $03   ; 07
-- D 1 - - - 0x00B00D 02:AFFD: 03        .byte $03   ; 08
-- D 1 - - - 0x00B00E 02:AFFE: 03        .byte $03   ; 09
-- D 1 - - - 0x00B00F 02:AFFF: 03        .byte $03   ; 0A
-- - - - - - 0x00B010 02:B000: 03        .byte $03   ; 0B
-- D 1 - - - 0x00B011 02:B001: 03        .byte $03   ; 0C
-- - - - - - 0x00B012 02:B002: 01        .byte $01   ; 0D
-- - - - - - 0x00B013 02:B003: 01        .byte $01   ; 0E
-- D 1 - - - 0x00B014 02:B004: 01        .byte $01   ; 0F
-- - - - - - 0x00B015 02:B005: 01        .byte $01   ; 10
-- D 1 - - - 0x00B016 02:B006: 03        .byte $03   ; 11
+- D 1 - - - 0x00B005 02:AFF5: 01        .byte $01   ; 00 
+- D 1 - - - 0x00B006 02:AFF6: 01        .byte $01   ; 01 
+- D 1 - - - 0x00B007 02:AFF7: 01        .byte $01   ; 02 
+- D 1 - - - 0x00B008 02:AFF8: 01        .byte $01   ; 03 
+- D 1 - - - 0x00B009 02:AFF9: 01        .byte $01   ; 04 
+- - - - - - 0x00B00A 02:AFFA: 01        .byte $01   ; 05 
+- D 1 - - - 0x00B00B 02:AFFB: 03        .byte $03   ; 06 
+- D 1 - - - 0x00B00C 02:AFFC: 03        .byte $03   ; 07 
+- D 1 - - - 0x00B00D 02:AFFD: 03        .byte $03   ; 08 
+- D 1 - - - 0x00B00E 02:AFFE: 03        .byte $03   ; 09 
+- D 1 - - - 0x00B00F 02:AFFF: 03        .byte $03   ; 0A 
+- - - - - - 0x00B010 02:B000: 03        .byte $03   ; 0B 
+- D 1 - - - 0x00B011 02:B001: 03        .byte $03   ; 0C 
+- - - - - - 0x00B012 02:B002: 01        .byte $01   ; 0D 
+- - - - - - 0x00B013 02:B003: 01        .byte $01   ; 0E 
+- D 1 - - - 0x00B014 02:B004: 01        .byte $01   ; 0F 
+- - - - - - 0x00B015 02:B005: 01        .byte $01   ; 10 
+- D 1 - - - 0x00B016 02:B006: 03        .byte $03   ; 11 
+
+
+
 
 tbl_B007:
-- D 1 - - - 0x00B017 02:B007: 05        .byte $05   ; 00
-- - - - - - 0x00B018 02:B008: 05        .byte $05   ; 01
-- - - - - - 0x00B019 02:B009: 05        .byte $05   ; 02
-- - - - - - 0x00B01A 02:B00A: 05        .byte $05   ; 03
-- - - - - - 0x00B01B 02:B00B: 05        .byte $05   ; 04
-- - - - - - 0x00B01C 02:B00C: 05        .byte $05   ; 05
-- - - - - - 0x00B01D 02:B00D: 07        .byte $07   ; 06
-- - - - - - 0x00B01E 02:B00E: 07        .byte $07   ; 07
-- - - - - - 0x00B01F 02:B00F: 07        .byte $07   ; 08
-- - - - - - 0x00B020 02:B010: 07        .byte $07   ; 09
-- - - - - - 0x00B021 02:B011: 07        .byte $07   ; 0A
-- - - - - - 0x00B022 02:B012: 07        .byte $07   ; 0B
-- - - - - - 0x00B023 02:B013: 07        .byte $07   ; 0C
-- - - - - - 0x00B024 02:B014: 05        .byte $05   ; 0D
-- - - - - - 0x00B025 02:B015: 05        .byte $05   ; 0E
-- - - - - - 0x00B026 02:B016: 05        .byte $05   ; 0F
-- - - - - - 0x00B027 02:B017: 05        .byte $05   ; 10
-- - - - - - 0x00B028 02:B018: 07        .byte $07   ; 11
+- D 1 - - - 0x00B017 02:B007: 05        .byte $05   ; 00 
+- - - - - - 0x00B018 02:B008: 05        .byte $05   ; 01 
+- - - - - - 0x00B019 02:B009: 05        .byte $05   ; 02 
+- - - - - - 0x00B01A 02:B00A: 05        .byte $05   ; 03 
+- - - - - - 0x00B01B 02:B00B: 05        .byte $05   ; 04 
+- - - - - - 0x00B01C 02:B00C: 05        .byte $05   ; 05 
+- - - - - - 0x00B01D 02:B00D: 07        .byte $07   ; 06 
+- - - - - - 0x00B01E 02:B00E: 07        .byte $07   ; 07 
+- - - - - - 0x00B01F 02:B00F: 07        .byte $07   ; 08 
+- - - - - - 0x00B020 02:B010: 07        .byte $07   ; 09 
+- - - - - - 0x00B021 02:B011: 07        .byte $07   ; 0A 
+- - - - - - 0x00B022 02:B012: 07        .byte $07   ; 0B 
+- - - - - - 0x00B023 02:B013: 07        .byte $07   ; 0C 
+- - - - - - 0x00B024 02:B014: 05        .byte $05   ; 0D 
+- - - - - - 0x00B025 02:B015: 05        .byte $05   ; 0E 
+- - - - - - 0x00B026 02:B016: 05        .byte $05   ; 0F 
+- - - - - - 0x00B027 02:B017: 05        .byte $05   ; 10 
+- - - - - - 0x00B028 02:B018: 07        .byte $07   ; 11 
 
 
 
@@ -8263,46 +8121,46 @@ loc_B02C:
 
 
 tbl_B04E:
-- - - - - - 0x00B05E 02:B04E: 01        .byte $01   ; 00
-- - - - - - 0x00B05F 02:B04F: 01        .byte $01   ; 01
-- - - - - - 0x00B060 02:B050: 01        .byte $01   ; 02
-- - - - - - 0x00B061 02:B051: 01        .byte $01   ; 03
-- - - - - - 0x00B062 02:B052: 01        .byte $01   ; 04
-- - - - - - 0x00B063 02:B053: 01        .byte $01   ; 05
-- - - - - - 0x00B064 02:B054: 01        .byte $01   ; 06
-- - - - - - 0x00B065 02:B055: 01        .byte $01   ; 07
-- - - - - - 0x00B066 02:B056: 01        .byte $01   ; 08
-- - - - - - 0x00B067 02:B057: 01        .byte $01   ; 09
-- - - - - - 0x00B068 02:B058: 01        .byte $01   ; 0A
-- - - - - - 0x00B069 02:B059: 01        .byte $01   ; 0B
-- - - - - - 0x00B06A 02:B05A: 01        .byte $01   ; 0C
-- - - - - - 0x00B06B 02:B05B: 01        .byte $01   ; 0D
-- - - - - - 0x00B06C 02:B05C: 01        .byte $01   ; 0E
-- - - - - - 0x00B06D 02:B05D: 01        .byte $01   ; 0F
-- - - - - - 0x00B06E 02:B05E: 01        .byte $01   ; 10
-- - - - - - 0x00B06F 02:B05F: 01        .byte $01   ; 11
+- - - - - - 0x00B05E 02:B04E: 01        .byte $01   ; 00 
+- - - - - - 0x00B05F 02:B04F: 01        .byte $01   ; 01 
+- - - - - - 0x00B060 02:B050: 01        .byte $01   ; 02 
+- - - - - - 0x00B061 02:B051: 01        .byte $01   ; 03 
+- - - - - - 0x00B062 02:B052: 01        .byte $01   ; 04 
+- - - - - - 0x00B063 02:B053: 01        .byte $01   ; 05 
+- - - - - - 0x00B064 02:B054: 01        .byte $01   ; 06 
+- - - - - - 0x00B065 02:B055: 01        .byte $01   ; 07 
+- - - - - - 0x00B066 02:B056: 01        .byte $01   ; 08 
+- - - - - - 0x00B067 02:B057: 01        .byte $01   ; 09 
+- - - - - - 0x00B068 02:B058: 01        .byte $01   ; 0A 
+- - - - - - 0x00B069 02:B059: 01        .byte $01   ; 0B 
+- - - - - - 0x00B06A 02:B05A: 01        .byte $01   ; 0C 
+- - - - - - 0x00B06B 02:B05B: 01        .byte $01   ; 0D 
+- - - - - - 0x00B06C 02:B05C: 01        .byte $01   ; 0E 
+- - - - - - 0x00B06D 02:B05D: 01        .byte $01   ; 0F 
+- - - - - - 0x00B06E 02:B05E: 01        .byte $01   ; 10 
+- - - - - - 0x00B06F 02:B05F: 01        .byte $01   ; 11 
 
 
 
 tbl_B060:
-- - - - - - 0x00B070 02:B060: 03        .byte $03   ; 00
-- - - - - - 0x00B071 02:B061: 03        .byte $03   ; 01
-- - - - - - 0x00B072 02:B062: 03        .byte $03   ; 02
-- - - - - - 0x00B073 02:B063: 03        .byte $03   ; 03
-- - - - - - 0x00B074 02:B064: 03        .byte $03   ; 04
-- - - - - - 0x00B075 02:B065: 03        .byte $03   ; 05
-- - - - - - 0x00B076 02:B066: 03        .byte $03   ; 06
-- - - - - - 0x00B077 02:B067: 03        .byte $03   ; 07
-- - - - - - 0x00B078 02:B068: 03        .byte $03   ; 08
-- - - - - - 0x00B079 02:B069: 03        .byte $03   ; 09
-- - - - - - 0x00B07A 02:B06A: 03        .byte $03   ; 0A
-- - - - - - 0x00B07B 02:B06B: 03        .byte $03   ; 0B
-- - - - - - 0x00B07C 02:B06C: 03        .byte $03   ; 0C
-- - - - - - 0x00B07D 02:B06D: 03        .byte $03   ; 0D
-- - - - - - 0x00B07E 02:B06E: 03        .byte $03   ; 0E
-- - - - - - 0x00B07F 02:B06F: 03        .byte $03   ; 0F
-- - - - - - 0x00B080 02:B070: 03        .byte $03   ; 10
-- - - - - - 0x00B081 02:B071: 03        .byte $03   ; 11
+- - - - - - 0x00B070 02:B060: 03        .byte $03   ; 00 
+- - - - - - 0x00B071 02:B061: 03        .byte $03   ; 01 
+- - - - - - 0x00B072 02:B062: 03        .byte $03   ; 02 
+- - - - - - 0x00B073 02:B063: 03        .byte $03   ; 03 
+- - - - - - 0x00B074 02:B064: 03        .byte $03   ; 04 
+- - - - - - 0x00B075 02:B065: 03        .byte $03   ; 05 
+- - - - - - 0x00B076 02:B066: 03        .byte $03   ; 06 
+- - - - - - 0x00B077 02:B067: 03        .byte $03   ; 07 
+- - - - - - 0x00B078 02:B068: 03        .byte $03   ; 08 
+- - - - - - 0x00B079 02:B069: 03        .byte $03   ; 09 
+- - - - - - 0x00B07A 02:B06A: 03        .byte $03   ; 0A 
+- - - - - - 0x00B07B 02:B06B: 03        .byte $03   ; 0B 
+- - - - - - 0x00B07C 02:B06C: 03        .byte $03   ; 0C 
+- - - - - - 0x00B07D 02:B06D: 03        .byte $03   ; 0D 
+- - - - - - 0x00B07E 02:B06E: 03        .byte $03   ; 0E 
+- - - - - - 0x00B07F 02:B06F: 03        .byte $03   ; 0F 
+- - - - - - 0x00B080 02:B070: 03        .byte $03   ; 10 
+- - - - - - 0x00B081 02:B071: 03        .byte $03   ; 11 
 
 
 
@@ -8801,8 +8659,8 @@ C - - - - - 0x00B3A3 02:B393: 60        RTS
 sub_B394:
 C - - - - - 0x00B3A4 02:B394: A4 1B     LDY ram_001B
 ; bzk bug? it should not be referring to 0043 (ram_state)
-C - - - - - 0x00B3A6 02:B396: B9 3C 00  LDA a: ram_003C_obj,Y ; 003C 003D 003E 003F 0040 0041 0042 0043
-C - - - - - 0x00B3A9 02:B399: 10 3B     BPL bra_B3D6    ; if not con_003C_80
+C - - - - - 0x00B3A6 02:B396: B9 3C 00  LDA a: ram_003C_obj_flags,Y ; 003C 003D 003E 003F 0040 0041 0042 0043
+C - - - - - 0x00B3A9 02:B399: 10 3B     BPL bra_B3D6    ; if not con_003C_flag_exist
 C - - - - - 0x00B3AB 02:B39B: B9 F5 03  LDA ram_03F5_obj,Y
 C - - - - - 0x00B3AE 02:B39E: 30 36     BMI bra_B3D6
 C - - - - - 0x00B3B0 02:B3A0: B9 43 00  LDA a: ram_state,Y
@@ -8819,9 +8677,9 @@ C - - - - - 0x00B3C5 02:B3B5: 90 04     BCC bra_B3BB
 C - - - - - 0x00B3C7 02:B3B7: C9 6D     CMP #$6D
 C - - - - - 0x00B3C9 02:B3B9: 90 1B     BCC bra_B3D6
 bra_B3BB:
-C - - - - - 0x00B3CB 02:B3BB: B9 4A 00  LDA a: ram_004A_obj,Y
-C - - - - - 0x00B3CE 02:B3BE: 29 C0     AND #con_004A_40 + con_004A_80
-C - - - - - 0x00B3D0 02:B3C0: C9 C0     CMP #con_004A_40 + con_004A_80
+C - - - - - 0x00B3CB 02:B3BB: B9 4A 00  LDA a: ram_004A_obj_flags,Y
+C - - - - - 0x00B3CE 02:B3BE: 29 C0     AND #con_004A_flag_stunned + con_004A_flag_knocked_down
+C - - - - - 0x00B3D0 02:B3C0: C9 C0     CMP #con_004A_flag_stunned + con_004A_flag_knocked_down
 C - - - - - 0x00B3D2 02:B3C2: F0 12     BEQ bra_B3D6
 C - - - - - 0x00B3D4 02:B3C4: B9 C7 00  LDA a: ram_animation_id,Y
 C - - - - - 0x00B3D7 02:B3C7: 29 7F     AND #$7F
@@ -9037,117 +8895,117 @@ tbl_B4D2_hurtboxes:
 
 
 _off003_B50E_02_williams:
-- D 1 - I - 0x00B51E 02:B50E: DA B8     .word off_B8DA  ; 00
-- D 1 - I - 0x00B520 02:B510: DA B8     .word off_B8DA  ; 01
-- D 1 - I - 0x00B522 02:B512: DA B8     .word off_B8DA  ; 02
-- D 1 - I - 0x00B524 02:B514: DA B8     .word off_B8DA  ; 03
-- D 1 - I - 0x00B526 02:B516: DA B8     .word off_B8DA  ; 04
-- D 1 - I - 0x00B528 02:B518: DA B8     .word off_B8DA  ; 05
-- D 1 - I - 0x00B52A 02:B51A: 00 00     .word $0000     ; 06
-- D 1 - I - 0x00B52C 02:B51C: 00 00     .word $0000     ; 07
-- D 1 - I - 0x00B52E 02:B51E: 00 00     .word $0000     ; 08
-- D 1 - I - 0x00B530 02:B520: DA B8     .word off_B8DA  ; 09
-- D 1 - I - 0x00B532 02:B522: 00 00     .word $0000     ; 0A
-- - - - - - 0x00B534 02:B524: 00 00     .word $0000     ; 0B
-- D 1 - I - 0x00B536 02:B526: DA B8     .word off_B8DA  ; 0C
-- D 1 - I - 0x00B538 02:B528: E4 B8     .word off_B8E4  ; 0D
-- D 1 - I - 0x00B53A 02:B52A: DA B8     .word off_B8DA  ; 0E
-- D 1 - I - 0x00B53C 02:B52C: E4 B8     .word off_B8E4  ; 0F
-- D 1 - I - 0x00B53E 02:B52E: DA B8     .word off_B8DA  ; 10
-- D 1 - I - 0x00B540 02:B530: DA B8     .word off_B8DA  ; 11
-- D 1 - I - 0x00B542 02:B532: DA B8     .word off_B8DA  ; 12
-- D 1 - I - 0x00B544 02:B534: 1D BA     .word off_BA1D  ; 13
-- D 1 - I - 0x00B546 02:B536: DA B8     .word off_B8DA  ; 14
-- D 1 - I - 0x00B548 02:B538: DA B8     .word off_B8DA  ; 15
-- D 1 - I - 0x00B54A 02:B53A: 38 B9     .word off_B938  ; 16
-- - - - - - 0x00B54C 02:B53C: 00 00     .word $0000     ; 17
-- - - - - - 0x00B54E 02:B53E: 00 00     .word $0000     ; 18
-- - - - - - 0x00B550 02:B540: 00 00     .word $0000     ; 19
-- D 1 - I - 0x00B552 02:B542: DA B8     .word off_B8DA  ; 1A
-- D 1 - I - 0x00B554 02:B544: DA B8     .word off_B8DA  ; 1B
-- D 1 - I - 0x00B556 02:B546: DA B8     .word off_B8DA  ; 1C
-- D 1 - I - 0x00B558 02:B548: DA B8     .word off_B8DA  ; 1D
-- D 1 - I - 0x00B55A 02:B54A: DA B8     .word off_B8DA  ; 1E
-- D 1 - I - 0x00B55C 02:B54C: DA B8     .word off_B8DA  ; 1F
-- D 1 - I - 0x00B55E 02:B54E: DA B8     .word off_B8DA  ; 20
-- D 1 - I - 0x00B560 02:B550: DA B8     .word off_B8DA  ; 21
-- D 1 - I - 0x00B562 02:B552: DA B8     .word off_B8DA  ; 22
-- D 1 - I - 0x00B564 02:B554: DA B8     .word off_B8DA  ; 23
-- D 1 - I - 0x00B566 02:B556: DA B8     .word off_B8DA  ; 24
-- D 1 - I - 0x00B568 02:B558: FE B8     .word off_B8FE  ; 25
+- D 1 - I - 0x00B51E 02:B50E: DA B8     .word off_B8DA  ; 00 
+- D 1 - I - 0x00B520 02:B510: DA B8     .word off_B8DA  ; 01 
+- D 1 - I - 0x00B522 02:B512: DA B8     .word off_B8DA  ; 02 
+- D 1 - I - 0x00B524 02:B514: DA B8     .word off_B8DA  ; 03 
+- D 1 - I - 0x00B526 02:B516: DA B8     .word off_B8DA  ; 04 
+- D 1 - I - 0x00B528 02:B518: DA B8     .word off_B8DA  ; 05 
+- D 1 - I - 0x00B52A 02:B51A: 00 00     .word $0000     ; 06 
+- D 1 - I - 0x00B52C 02:B51C: 00 00     .word $0000     ; 07 
+- D 1 - I - 0x00B52E 02:B51E: 00 00     .word $0000     ; 08 
+- D 1 - I - 0x00B530 02:B520: DA B8     .word off_B8DA  ; 09 
+- D 1 - I - 0x00B532 02:B522: 00 00     .word $0000     ; 0A 
+- - - - - - 0x00B534 02:B524: 00 00     .word $0000     ; 0B 
+- D 1 - I - 0x00B536 02:B526: DA B8     .word off_B8DA  ; 0C 
+- D 1 - I - 0x00B538 02:B528: E4 B8     .word off_B8E4  ; 0D 
+- D 1 - I - 0x00B53A 02:B52A: DA B8     .word off_B8DA  ; 0E 
+- D 1 - I - 0x00B53C 02:B52C: E4 B8     .word off_B8E4  ; 0F 
+- D 1 - I - 0x00B53E 02:B52E: DA B8     .word off_B8DA  ; 10 
+- D 1 - I - 0x00B540 02:B530: DA B8     .word off_B8DA  ; 11 
+- D 1 - I - 0x00B542 02:B532: DA B8     .word off_B8DA  ; 12 
+- D 1 - I - 0x00B544 02:B534: 1D BA     .word off_BA1D  ; 13 
+- D 1 - I - 0x00B546 02:B536: DA B8     .word off_B8DA  ; 14 
+- D 1 - I - 0x00B548 02:B538: DA B8     .word off_B8DA  ; 15 
+- D 1 - I - 0x00B54A 02:B53A: 38 B9     .word off_B938  ; 16 
+- - - - - - 0x00B54C 02:B53C: 00 00     .word $0000     ; 17 
+- - - - - - 0x00B54E 02:B53E: 00 00     .word $0000     ; 18 
+- - - - - - 0x00B550 02:B540: 00 00     .word $0000     ; 19 
+- D 1 - I - 0x00B552 02:B542: DA B8     .word off_B8DA  ; 1A 
+- D 1 - I - 0x00B554 02:B544: DA B8     .word off_B8DA  ; 1B 
+- D 1 - I - 0x00B556 02:B546: DA B8     .word off_B8DA  ; 1C 
+- D 1 - I - 0x00B558 02:B548: DA B8     .word off_B8DA  ; 1D 
+- D 1 - I - 0x00B55A 02:B54A: DA B8     .word off_B8DA  ; 1E 
+- D 1 - I - 0x00B55C 02:B54C: DA B8     .word off_B8DA  ; 1F 
+- D 1 - I - 0x00B55E 02:B54E: DA B8     .word off_B8DA  ; 20 
+- D 1 - I - 0x00B560 02:B550: DA B8     .word off_B8DA  ; 21 
+- D 1 - I - 0x00B562 02:B552: DA B8     .word off_B8DA  ; 22 
+- D 1 - I - 0x00B564 02:B554: DA B8     .word off_B8DA  ; 23 
+- D 1 - I - 0x00B566 02:B556: DA B8     .word off_B8DA  ; 24 
+- D 1 - I - 0x00B568 02:B558: FE B8     .word off_B8FE  ; 25 
 
 
 
 _off003_B55A_03_roper:
-- D 1 - I - 0x00B56A 02:B55A: DA B8     .word off_B8DA  ; 00
-- D 1 - I - 0x00B56C 02:B55C: DA B8     .word off_B8DA  ; 01
-- D 1 - I - 0x00B56E 02:B55E: DA B8     .word off_B8DA  ; 02
-- D 1 - I - 0x00B570 02:B560: DA B8     .word off_B8DA  ; 03
-- D 1 - I - 0x00B572 02:B562: DA B8     .word off_B8DA  ; 04
-- D 1 - I - 0x00B574 02:B564: DA B8     .word off_B8DA  ; 05
-- D 1 - I - 0x00B576 02:B566: 00 00     .word $0000     ; 06
-- D 1 - I - 0x00B578 02:B568: 00 00     .word $0000     ; 07
-- D 1 - I - 0x00B57A 02:B56A: 00 00     .word $0000     ; 08
-- D 1 - I - 0x00B57C 02:B56C: DA B8     .word off_B8DA  ; 09
-- D 1 - I - 0x00B57E 02:B56E: 00 00     .word $0000     ; 0A
-- - - - - - 0x00B580 02:B570: 00 00     .word $0000     ; 0B
-- D 1 - I - 0x00B582 02:B572: DA B8     .word off_B8DA  ; 0C
-- D 1 - I - 0x00B584 02:B574: E4 B8     .word off_B8E4  ; 0D
-- D 1 - I - 0x00B586 02:B576: DA B8     .word off_B8DA  ; 0E
-- D 1 - I - 0x00B588 02:B578: E4 B8     .word off_B8E4  ; 0F
-- D 1 - I - 0x00B58A 02:B57A: DA B8     .word off_B8DA  ; 10
-- D 1 - I - 0x00B58C 02:B57C: DA B8     .word off_B8DA  ; 11
-- - - - - - 0x00B58E 02:B57E: DA B8     .word off_B8DA  ; 12
-- - - - - - 0x00B590 02:B580: DA B8     .word off_B8DA  ; 13
-- - - - - - 0x00B592 02:B582: DA B8     .word off_B8DA  ; 14
-- - - - - - 0x00B594 02:B584: DA B8     .word off_B8DA  ; 15
-- - - - - - 0x00B596 02:B586: 26 B9     .word off_B926  ; 16
-- - - - - - 0x00B598 02:B588: 00 00     .word $0000     ; 17
-- - - - - - 0x00B59A 02:B58A: 00 00     .word $0000     ; 18
-- - - - - - 0x00B59C 02:B58C: 00 00     .word $0000     ; 19
-- - - - - - 0x00B59E 02:B58E: DA B8     .word off_B8DA  ; 1A
-- - - - - - 0x00B5A0 02:B590: DA B8     .word off_B8DA  ; 1B
-- - - - - - 0x00B5A2 02:B592: DA B8     .word off_B8DA  ; 1C
-- - - - - - 0x00B5A4 02:B594: DA B8     .word off_B8DA  ; 1D
-- - - - - - 0x00B5A6 02:B596: DA B8     .word off_B8DA  ; 1E
-- - - - - - 0x00B5A8 02:B598: DA B8     .word off_B8DA  ; 1F
-- - - - - - 0x00B5AA 02:B59A: 00 00     .word $0000     ; 20
-- - - - - - 0x00B5AC 02:B59C: 00 00     .word $0000     ; 21
-- - - - - - 0x00B5AE 02:B59E: 00 00     .word $0000     ; 22
-- - - - - - 0x00B5B0 02:B5A0: 00 00     .word $0000     ; 23
-- - - - - - 0x00B5B2 02:B5A2: 00 00     .word $0000     ; 24
-- D 1 - I - 0x00B5B4 02:B5A4: FE B8     .word off_B8FE  ; 25
+- D 1 - I - 0x00B56A 02:B55A: DA B8     .word off_B8DA  ; 00 
+- D 1 - I - 0x00B56C 02:B55C: DA B8     .word off_B8DA  ; 01 
+- D 1 - I - 0x00B56E 02:B55E: DA B8     .word off_B8DA  ; 02 
+- D 1 - I - 0x00B570 02:B560: DA B8     .word off_B8DA  ; 03 
+- D 1 - I - 0x00B572 02:B562: DA B8     .word off_B8DA  ; 04 
+- D 1 - I - 0x00B574 02:B564: DA B8     .word off_B8DA  ; 05 
+- D 1 - I - 0x00B576 02:B566: 00 00     .word $0000     ; 06 
+- D 1 - I - 0x00B578 02:B568: 00 00     .word $0000     ; 07 
+- D 1 - I - 0x00B57A 02:B56A: 00 00     .word $0000     ; 08 
+- D 1 - I - 0x00B57C 02:B56C: DA B8     .word off_B8DA  ; 09 
+- D 1 - I - 0x00B57E 02:B56E: 00 00     .word $0000     ; 0A 
+- - - - - - 0x00B580 02:B570: 00 00     .word $0000     ; 0B 
+- D 1 - I - 0x00B582 02:B572: DA B8     .word off_B8DA  ; 0C 
+- D 1 - I - 0x00B584 02:B574: E4 B8     .word off_B8E4  ; 0D 
+- D 1 - I - 0x00B586 02:B576: DA B8     .word off_B8DA  ; 0E 
+- D 1 - I - 0x00B588 02:B578: E4 B8     .word off_B8E4  ; 0F 
+- D 1 - I - 0x00B58A 02:B57A: DA B8     .word off_B8DA  ; 10 
+- D 1 - I - 0x00B58C 02:B57C: DA B8     .word off_B8DA  ; 11 
+- - - - - - 0x00B58E 02:B57E: DA B8     .word off_B8DA  ; 12 
+- - - - - - 0x00B590 02:B580: DA B8     .word off_B8DA  ; 13 
+- - - - - - 0x00B592 02:B582: DA B8     .word off_B8DA  ; 14 
+- - - - - - 0x00B594 02:B584: DA B8     .word off_B8DA  ; 15 
+- - - - - - 0x00B596 02:B586: 26 B9     .word off_B926  ; 16 
+- - - - - - 0x00B598 02:B588: 00 00     .word $0000     ; 17 
+- - - - - - 0x00B59A 02:B58A: 00 00     .word $0000     ; 18 
+- - - - - - 0x00B59C 02:B58C: 00 00     .word $0000     ; 19 
+- - - - - - 0x00B59E 02:B58E: DA B8     .word off_B8DA  ; 1A 
+- - - - - - 0x00B5A0 02:B590: DA B8     .word off_B8DA  ; 1B 
+- - - - - - 0x00B5A2 02:B592: DA B8     .word off_B8DA  ; 1C 
+- - - - - - 0x00B5A4 02:B594: DA B8     .word off_B8DA  ; 1D 
+- - - - - - 0x00B5A6 02:B596: DA B8     .word off_B8DA  ; 1E 
+- - - - - - 0x00B5A8 02:B598: DA B8     .word off_B8DA  ; 1F 
+- - - - - - 0x00B5AA 02:B59A: 00 00     .word $0000     ; 20 
+- - - - - - 0x00B5AC 02:B59C: 00 00     .word $0000     ; 21 
+- - - - - - 0x00B5AE 02:B59E: 00 00     .word $0000     ; 22 
+- - - - - - 0x00B5B0 02:B5A0: 00 00     .word $0000     ; 23 
+- - - - - - 0x00B5B2 02:B5A2: 00 00     .word $0000     ; 24 
+- D 1 - I - 0x00B5B4 02:B5A4: FE B8     .word off_B8FE  ; 25 
 
 
 
 _off003_B5A6_04_linda:
-- D 1 - I - 0x00B5B6 02:B5A6: DA B8     .word off_B8DA  ; 00
-- D 1 - I - 0x00B5B8 02:B5A8: DA B8     .word off_B8DA  ; 01
-- D 1 - I - 0x00B5BA 02:B5AA: DA B8     .word off_B8DA  ; 02
-- D 1 - I - 0x00B5BC 02:B5AC: DA B8     .word off_B8DA  ; 03
-- D 1 - I - 0x00B5BE 02:B5AE: DA B8     .word off_B8DA  ; 04
-- D 1 - I - 0x00B5C0 02:B5B0: DA B8     .word off_B8DA  ; 05
-- D 1 - I - 0x00B5C2 02:B5B2: 00 00     .word $0000     ; 06
-- D 1 - I - 0x00B5C4 02:B5B4: 00 00     .word $0000     ; 07
-- D 1 - I - 0x00B5C6 02:B5B6: 00 00     .word $0000     ; 08
-- D 1 - I - 0x00B5C8 02:B5B8: DA B8     .word off_B8DA  ; 09
-- D 1 - I - 0x00B5CA 02:B5BA: 00 00     .word $0000     ; 0A
-- - - - - - 0x00B5CC 02:B5BC: 00 00     .word $0000     ; 0B
-- D 1 - I - 0x00B5CE 02:B5BE: DA B8     .word off_B8DA  ; 0C
-- D 1 - I - 0x00B5D0 02:B5C0: E4 B8     .word off_B8E4  ; 0D
-- D 1 - I - 0x00B5D2 02:B5C2: DA B8     .word off_B8DA  ; 0E
-- D 1 - I - 0x00B5D4 02:B5C4: E4 B8     .word off_B8E4  ; 0F
-- D 1 - I - 0x00B5D6 02:B5C6: DA B8     .word off_B8DA  ; 10
-- D 1 - I - 0x00B5D8 02:B5C8: DA B8     .word off_B8DA  ; 11
-- D 1 - I - 0x00B5DA 02:B5CA: DA B8     .word off_B8DA  ; 12
-- D 1 - I - 0x00B5DC 02:B5CC: 15 BA     .word off_BA15  ; 13
-- - - - - - 0x00B5DE 02:B5CE: DA B8     .word off_B8DA  ; 14
-- D 1 - I - 0x00B5E0 02:B5D0: DA B8     .word off_B8DA  ; 15
-- D 1 - I - 0x00B5E2 02:B5D2: 26 B9     .word off_B926  ; 16
-- D 1 - I - 0x00B5E4 02:B5D4: DA B8     .word off_B8DA  ; 17
-- - - - - - 0x00B5E6 02:B5D6: 00 00     .word $0000     ; 18
-- - - - - - 0x00B5E8 02:B5D8: 00 00     .word $0000     ; 19
-- D 1 - I - 0x00B5EA 02:B5DA: 40 B9     .word off_B940  ; 1A
+- D 1 - I - 0x00B5B6 02:B5A6: DA B8     .word off_B8DA  ; 00 
+- D 1 - I - 0x00B5B8 02:B5A8: DA B8     .word off_B8DA  ; 01 
+- D 1 - I - 0x00B5BA 02:B5AA: DA B8     .word off_B8DA  ; 02 
+- D 1 - I - 0x00B5BC 02:B5AC: DA B8     .word off_B8DA  ; 03 
+- D 1 - I - 0x00B5BE 02:B5AE: DA B8     .word off_B8DA  ; 04 
+- D 1 - I - 0x00B5C0 02:B5B0: DA B8     .word off_B8DA  ; 05 
+- D 1 - I - 0x00B5C2 02:B5B2: 00 00     .word $0000     ; 06 
+- D 1 - I - 0x00B5C4 02:B5B4: 00 00     .word $0000     ; 07 
+- D 1 - I - 0x00B5C6 02:B5B6: 00 00     .word $0000     ; 08 
+- D 1 - I - 0x00B5C8 02:B5B8: DA B8     .word off_B8DA  ; 09 
+- D 1 - I - 0x00B5CA 02:B5BA: 00 00     .word $0000     ; 0A 
+- - - - - - 0x00B5CC 02:B5BC: 00 00     .word $0000     ; 0B 
+- D 1 - I - 0x00B5CE 02:B5BE: DA B8     .word off_B8DA  ; 0C 
+- D 1 - I - 0x00B5D0 02:B5C0: E4 B8     .word off_B8E4  ; 0D 
+- D 1 - I - 0x00B5D2 02:B5C2: DA B8     .word off_B8DA  ; 0E 
+- D 1 - I - 0x00B5D4 02:B5C4: E4 B8     .word off_B8E4  ; 0F 
+- D 1 - I - 0x00B5D6 02:B5C6: DA B8     .word off_B8DA  ; 10 
+- D 1 - I - 0x00B5D8 02:B5C8: DA B8     .word off_B8DA  ; 11 
+- D 1 - I - 0x00B5DA 02:B5CA: DA B8     .word off_B8DA  ; 12 
+- D 1 - I - 0x00B5DC 02:B5CC: 15 BA     .word off_BA15  ; 13 
+- - - - - - 0x00B5DE 02:B5CE: DA B8     .word off_B8DA  ; 14 
+- D 1 - I - 0x00B5E0 02:B5D0: DA B8     .word off_B8DA  ; 15 
+- D 1 - I - 0x00B5E2 02:B5D2: 26 B9     .word off_B926  ; 16 
+- D 1 - I - 0x00B5E4 02:B5D4: DA B8     .word off_B8DA  ; 17 
+- - - - - - 0x00B5E6 02:B5D6: 00 00     .word $0000     ; 18 
+- - - - - - 0x00B5E8 02:B5D8: 00 00     .word $0000     ; 19 
+- D 1 - I - 0x00B5EA 02:B5DA: 40 B9     .word off_B940  ; 1A 
 
 
 
@@ -9160,458 +9018,458 @@ _off003_B5DC_0D: ; con_obj_0D
 _off003_B5DC_0E: ; con_obj_0E
 _off003_B5DC_10: ; con_obj_10
 _off003_B5DC_15_chain_wip: ; con_obj_chain_whip
-- D 1 - I - 0x00B5EC 02:B5DC: DA B8     .word off_B8DA  ; 00
-- D 1 - I - 0x00B5EE 02:B5DE: DA B8     .word off_B8DA  ; 01
-- D 1 - I - 0x00B5F0 02:B5E0: DA B8     .word off_B8DA  ; 02
-- D 1 - I - 0x00B5F2 02:B5E2: DA B8     .word off_B8DA  ; 03
-- D 1 - I - 0x00B5F4 02:B5E4: DA B8     .word off_B8DA  ; 04
-- D 1 - I - 0x00B5F6 02:B5E6: DA B8     .word off_B8DA  ; 05
-- D 1 - I - 0x00B5F8 02:B5E8: 00 00     .word $0000     ; 06
-- D 1 - I - 0x00B5FA 02:B5EA: 00 00     .word $0000     ; 07
-- D 1 - I - 0x00B5FC 02:B5EC: 00 00     .word $0000     ; 08
-- D 1 - I - 0x00B5FE 02:B5EE: DA B8     .word off_B8DA  ; 09
-- D 1 - I - 0x00B600 02:B5F0: 00 00     .word $0000     ; 0A
-- - - - - - 0x00B602 02:B5F2: 00 00     .word $0000     ; 0B
-- D 1 - I - 0x00B604 02:B5F4: DA B8     .word off_B8DA  ; 0C
-- D 1 - I - 0x00B606 02:B5F6: E4 B8     .word off_B8E4  ; 0D
-- D 1 - I - 0x00B608 02:B5F8: DA B8     .word off_B8DA  ; 0E
-- D 1 - I - 0x00B60A 02:B5FA: E4 B8     .word off_B8E4  ; 0F
-- D 1 - I - 0x00B60C 02:B5FC: DA B8     .word off_B8DA  ; 10
-- D 1 - I - 0x00B60E 02:B5FE: DA B8     .word off_B8DA  ; 11
-- D 1 - I - 0x00B610 02:B600: DA B8     .word off_B8DA  ; 12
-- D 1 - I - 0x00B612 02:B602: 1D BA     .word off_BA1D  ; 13
-- D 1 - I - 0x00B614 02:B604: DA B8     .word off_B8DA  ; 14
-- D 1 - I - 0x00B616 02:B606: EC B8     .word off_B8EC  ; 15
-- D 1 - I - 0x00B618 02:B608: F1 B8     .word off_B8F1  ; 16
-- D 1 - I - 0x00B61A 02:B60A: F9 B8     .word off_B8F9  ; 17
-- D 1 - I - 0x00B61C 02:B60C: 26 B9     .word off_B926  ; 18
-- D 1 - I - 0x00B61E 02:B60E: FE B8     .word off_B8FE  ; 19
-- D 1 - I - 0x00B620 02:B610: DA B8     .word off_B8DA  ; 1A
-- D 1 - I - 0x00B622 02:B612: 06 B9     .word off_B906  ; 1B
-- D 1 - I - 0x00B624 02:B614: DA B8     .word off_B8DA  ; 1C
-- D 1 - I - 0x00B626 02:B616: 0E B9     .word off_B90E  ; 1D
-- D 1 - I - 0x00B628 02:B618: DA B8     .word off_B8DA  ; 1E
-- D 1 - I - 0x00B62A 02:B61A: 16 B9     .word off_B916  ; 1F
-- D 1 - I - 0x00B62C 02:B61C: 16 B9     .word off_B916  ; 20
-- D 1 - I - 0x00B62E 02:B61E: 1E B9     .word off_B91E  ; 21
-- D 1 - I - 0x00B630 02:B620: 1E B9     .word off_B91E  ; 22
-- D 1 - I - 0x00B632 02:B622: DA B8     .word off_B8DA  ; 23
-- D 1 - I - 0x00B634 02:B624: DA B8     .word off_B8DA  ; 24
-- D 1 - I - 0x00B636 02:B626: 2E B9     .word off_B92E  ; 25
-- D 1 - I - 0x00B638 02:B628: DA B8     .word off_B8DA  ; 26
-- D 1 - I - 0x00B63A 02:B62A: DA B8     .word off_B8DA  ; 27
-- D 1 - I - 0x00B63C 02:B62C: 33 B9     .word off_B933  ; 28
-- - - - - - 0x00B63E 02:B62E: 00 00     .word $0000     ; 29
-- - - - - - 0x00B640 02:B630: 00 00     .word $0000     ; 2A
-- D 1 - I - 0x00B642 02:B632: 2E B9     .word off_B92E  ; 2B
-- D 1 - I - 0x00B644 02:B634: 2E B9     .word off_B92E  ; 2C
-- D 1 - I - 0x00B646 02:B636: DA B8     .word off_B8DA  ; 2D
-- D 1 - I - 0x00B648 02:B638: DA B8     .word off_B8DA  ; 2E
-- - - - - - 0x00B64A 02:B63A: DA B8     .word off_B8DA  ; 2F
-- D 1 - I - 0x00B64C 02:B63C: DA B8     .word off_B8DA  ; 30
-- - - - - - 0x00B64E 02:B63E: 00 00     .word $0000     ; 31
-- - - - - - 0x00B650 02:B640: 00 00     .word $0000     ; 32
-- - - - - - 0x00B652 02:B642: 00 00     .word $0000     ; 33
-- - - - - - 0x00B654 02:B644: 00 00     .word $0000     ; 34
-- - - - - - 0x00B656 02:B646: 00 00     .word $0000     ; 35
-- - - - - - 0x00B658 02:B648: 00 00     .word $0000     ; 36
-- - - - - - 0x00B65A 02:B64A: 00 00     .word $0000     ; 37
-- - - - - - 0x00B65C 02:B64C: 00 00     .word $0000     ; 38
-- D 1 - I - 0x00B65E 02:B64E: 00 00     .word $0000     ; 39
-- D 1 - I - 0x00B660 02:B650: DA B8     .word off_B8DA  ; 3A
-- D 1 - I - 0x00B662 02:B652: 2D BA     .word off_BA2D  ; 3B
-- D 1 - I - 0x00B664 02:B654: 2D BA     .word off_BA2D  ; 3C
-- D 1 - I - 0x00B666 02:B656: 2D BA     .word off_BA2D  ; 3D
-- D 1 - I - 0x00B668 02:B658: DA B8     .word off_B8DA  ; 3E
-- D 1 - I - 0x00B66A 02:B65A: DA B8     .word off_B8DA  ; 3F
-- D 1 - I - 0x00B66C 02:B65C: 00 00     .word $0000     ; 40
-- D 1 - I - 0x00B66E 02:B65E: 00 00     .word $0000     ; 41
-- D 1 - I - 0x00B670 02:B660: 00 00     .word $0000     ; 42
-- D 1 - I - 0x00B672 02:B662: 00 00     .word $0000     ; 43
-- D 1 - I - 0x00B674 02:B664: 00 00     .word $0000     ; 44
-- D 1 - I - 0x00B676 02:B666: 00 00     .word $0000     ; 45
-- D 1 - I - 0x00B678 02:B668: 00 00     .word $0000     ; 46
-- D 1 - I - 0x00B67A 02:B66A: 00 00     .word $0000     ; 47
-- D 1 - I - 0x00B67C 02:B66C: 00 00     .word $0000     ; 48
-- D 1 - I - 0x00B67E 02:B66E: 00 00     .word $0000     ; 49
-- D 1 - I - 0x00B680 02:B670: 00 00     .word $0000     ; 4A
-- D 1 - I - 0x00B682 02:B672: 00 00     .word $0000     ; 4B
-- D 1 - I - 0x00B684 02:B674: 00 00     .word $0000     ; 4C
-- - - - - - 0x00B686 02:B676: 00 00     .word $0000     ; 4D
-- - - - - - 0x00B688 02:B678: 00 00     .word $0000     ; 4E
-- - - - - - 0x00B68A 02:B67A: 00 00     .word $0000     ; 4F
-- D 1 - I - 0x00B68C 02:B67C: 00 00     .word $0000     ; 50
-- D 1 - I - 0x00B68E 02:B67E: 00 00     .word $0000     ; 51
-- D 1 - I - 0x00B690 02:B680: 00 00     .word $0000     ; 52
-- D 1 - I - 0x00B692 02:B682: 00 00     .word $0000     ; 53
-- D 1 - I - 0x00B694 02:B684: 00 00     .word $0000     ; 54
-- D 1 - I - 0x00B696 02:B686: 00 00     .word $0000     ; 55
-- D 1 - I - 0x00B698 02:B688: 00 00     .word $0000     ; 56
-- - - - - - 0x00B69A 02:B68A: 00 00     .word $0000     ; 57
-- - - - - - 0x00B69C 02:B68C: 00 00     .word $0000     ; 58
-- - - - - - 0x00B69E 02:B68E: 00 00     .word $0000     ; 59
-- - - - - - 0x00B6A0 02:B690: 00 00     .word $0000     ; 5A
-- - - - - - 0x00B6A2 02:B692: 00 00     .word $0000     ; 5B
-- - - - - - 0x00B6A4 02:B694: 00 00     .word $0000     ; 5C
-- - - - - - 0x00B6A6 02:B696: 00 00     .word $0000     ; 5D
-- D 1 - I - 0x00B6A8 02:B698: DA B8     .word off_B8DA  ; 5E
-- D 1 - I - 0x00B6AA 02:B69A: 15 BA     .word off_BA15  ; 5F
+- D 1 - I - 0x00B5EC 02:B5DC: DA B8     .word off_B8DA  ; 00 
+- D 1 - I - 0x00B5EE 02:B5DE: DA B8     .word off_B8DA  ; 01 
+- D 1 - I - 0x00B5F0 02:B5E0: DA B8     .word off_B8DA  ; 02 
+- D 1 - I - 0x00B5F2 02:B5E2: DA B8     .word off_B8DA  ; 03 
+- D 1 - I - 0x00B5F4 02:B5E4: DA B8     .word off_B8DA  ; 04 
+- D 1 - I - 0x00B5F6 02:B5E6: DA B8     .word off_B8DA  ; 05 
+- D 1 - I - 0x00B5F8 02:B5E8: 00 00     .word $0000     ; 06 
+- D 1 - I - 0x00B5FA 02:B5EA: 00 00     .word $0000     ; 07 
+- D 1 - I - 0x00B5FC 02:B5EC: 00 00     .word $0000     ; 08 
+- D 1 - I - 0x00B5FE 02:B5EE: DA B8     .word off_B8DA  ; 09 
+- D 1 - I - 0x00B600 02:B5F0: 00 00     .word $0000     ; 0A 
+- - - - - - 0x00B602 02:B5F2: 00 00     .word $0000     ; 0B 
+- D 1 - I - 0x00B604 02:B5F4: DA B8     .word off_B8DA  ; 0C 
+- D 1 - I - 0x00B606 02:B5F6: E4 B8     .word off_B8E4  ; 0D 
+- D 1 - I - 0x00B608 02:B5F8: DA B8     .word off_B8DA  ; 0E 
+- D 1 - I - 0x00B60A 02:B5FA: E4 B8     .word off_B8E4  ; 0F 
+- D 1 - I - 0x00B60C 02:B5FC: DA B8     .word off_B8DA  ; 10 
+- D 1 - I - 0x00B60E 02:B5FE: DA B8     .word off_B8DA  ; 11 
+- D 1 - I - 0x00B610 02:B600: DA B8     .word off_B8DA  ; 12 
+- D 1 - I - 0x00B612 02:B602: 1D BA     .word off_BA1D  ; 13 
+- D 1 - I - 0x00B614 02:B604: DA B8     .word off_B8DA  ; 14 
+- D 1 - I - 0x00B616 02:B606: EC B8     .word off_B8EC  ; 15 
+- D 1 - I - 0x00B618 02:B608: F1 B8     .word off_B8F1  ; 16 
+- D 1 - I - 0x00B61A 02:B60A: F9 B8     .word off_B8F9  ; 17 
+- D 1 - I - 0x00B61C 02:B60C: 26 B9     .word off_B926  ; 18 
+- D 1 - I - 0x00B61E 02:B60E: FE B8     .word off_B8FE  ; 19 
+- D 1 - I - 0x00B620 02:B610: DA B8     .word off_B8DA  ; 1A 
+- D 1 - I - 0x00B622 02:B612: 06 B9     .word off_B906  ; 1B 
+- D 1 - I - 0x00B624 02:B614: DA B8     .word off_B8DA  ; 1C 
+- D 1 - I - 0x00B626 02:B616: 0E B9     .word off_B90E  ; 1D 
+- D 1 - I - 0x00B628 02:B618: DA B8     .word off_B8DA  ; 1E 
+- D 1 - I - 0x00B62A 02:B61A: 16 B9     .word off_B916  ; 1F 
+- D 1 - I - 0x00B62C 02:B61C: 16 B9     .word off_B916  ; 20 
+- D 1 - I - 0x00B62E 02:B61E: 1E B9     .word off_B91E  ; 21 
+- D 1 - I - 0x00B630 02:B620: 1E B9     .word off_B91E  ; 22 
+- D 1 - I - 0x00B632 02:B622: DA B8     .word off_B8DA  ; 23 
+- D 1 - I - 0x00B634 02:B624: DA B8     .word off_B8DA  ; 24 
+- D 1 - I - 0x00B636 02:B626: 2E B9     .word off_B92E  ; 25 
+- D 1 - I - 0x00B638 02:B628: DA B8     .word off_B8DA  ; 26 
+- D 1 - I - 0x00B63A 02:B62A: DA B8     .word off_B8DA  ; 27 
+- D 1 - I - 0x00B63C 02:B62C: 33 B9     .word off_B933  ; 28 
+- - - - - - 0x00B63E 02:B62E: 00 00     .word $0000     ; 29 
+- - - - - - 0x00B640 02:B630: 00 00     .word $0000     ; 2A 
+- D 1 - I - 0x00B642 02:B632: 2E B9     .word off_B92E  ; 2B 
+- D 1 - I - 0x00B644 02:B634: 2E B9     .word off_B92E  ; 2C 
+- D 1 - I - 0x00B646 02:B636: DA B8     .word off_B8DA  ; 2D 
+- D 1 - I - 0x00B648 02:B638: DA B8     .word off_B8DA  ; 2E 
+- - - - - - 0x00B64A 02:B63A: DA B8     .word off_B8DA  ; 2F 
+- D 1 - I - 0x00B64C 02:B63C: DA B8     .word off_B8DA  ; 30 
+- - - - - - 0x00B64E 02:B63E: 00 00     .word $0000     ; 31 
+- - - - - - 0x00B650 02:B640: 00 00     .word $0000     ; 32 
+- - - - - - 0x00B652 02:B642: 00 00     .word $0000     ; 33 
+- - - - - - 0x00B654 02:B644: 00 00     .word $0000     ; 34 
+- - - - - - 0x00B656 02:B646: 00 00     .word $0000     ; 35 
+- - - - - - 0x00B658 02:B648: 00 00     .word $0000     ; 36 
+- - - - - - 0x00B65A 02:B64A: 00 00     .word $0000     ; 37 
+- - - - - - 0x00B65C 02:B64C: 00 00     .word $0000     ; 38 
+- D 1 - I - 0x00B65E 02:B64E: 00 00     .word $0000     ; 39 
+- D 1 - I - 0x00B660 02:B650: DA B8     .word off_B8DA  ; 3A 
+- D 1 - I - 0x00B662 02:B652: 2D BA     .word off_BA2D  ; 3B 
+- D 1 - I - 0x00B664 02:B654: 2D BA     .word off_BA2D  ; 3C 
+- D 1 - I - 0x00B666 02:B656: 2D BA     .word off_BA2D  ; 3D 
+- D 1 - I - 0x00B668 02:B658: DA B8     .word off_B8DA  ; 3E 
+- D 1 - I - 0x00B66A 02:B65A: DA B8     .word off_B8DA  ; 3F 
+- D 1 - I - 0x00B66C 02:B65C: 00 00     .word $0000     ; 40 
+- D 1 - I - 0x00B66E 02:B65E: 00 00     .word $0000     ; 41 
+- D 1 - I - 0x00B670 02:B660: 00 00     .word $0000     ; 42 
+- D 1 - I - 0x00B672 02:B662: 00 00     .word $0000     ; 43 
+- D 1 - I - 0x00B674 02:B664: 00 00     .word $0000     ; 44 
+- D 1 - I - 0x00B676 02:B666: 00 00     .word $0000     ; 45 
+- D 1 - I - 0x00B678 02:B668: 00 00     .word $0000     ; 46 
+- D 1 - I - 0x00B67A 02:B66A: 00 00     .word $0000     ; 47 
+- D 1 - I - 0x00B67C 02:B66C: 00 00     .word $0000     ; 48 
+- D 1 - I - 0x00B67E 02:B66E: 00 00     .word $0000     ; 49 
+- D 1 - I - 0x00B680 02:B670: 00 00     .word $0000     ; 4A 
+- D 1 - I - 0x00B682 02:B672: 00 00     .word $0000     ; 4B 
+- D 1 - I - 0x00B684 02:B674: 00 00     .word $0000     ; 4C 
+- - - - - - 0x00B686 02:B676: 00 00     .word $0000     ; 4D 
+- - - - - - 0x00B688 02:B678: 00 00     .word $0000     ; 4E 
+- - - - - - 0x00B68A 02:B67A: 00 00     .word $0000     ; 4F 
+- D 1 - I - 0x00B68C 02:B67C: 00 00     .word $0000     ; 50 
+- D 1 - I - 0x00B68E 02:B67E: 00 00     .word $0000     ; 51 
+- D 1 - I - 0x00B690 02:B680: 00 00     .word $0000     ; 52 
+- D 1 - I - 0x00B692 02:B682: 00 00     .word $0000     ; 53 
+- D 1 - I - 0x00B694 02:B684: 00 00     .word $0000     ; 54 
+- D 1 - I - 0x00B696 02:B686: 00 00     .word $0000     ; 55 
+- D 1 - I - 0x00B698 02:B688: 00 00     .word $0000     ; 56 
+- - - - - - 0x00B69A 02:B68A: 00 00     .word $0000     ; 57 
+- - - - - - 0x00B69C 02:B68C: 00 00     .word $0000     ; 58 
+- - - - - - 0x00B69E 02:B68E: 00 00     .word $0000     ; 59 
+- - - - - - 0x00B6A0 02:B690: 00 00     .word $0000     ; 5A 
+- - - - - - 0x00B6A2 02:B692: 00 00     .word $0000     ; 5B 
+- - - - - - 0x00B6A4 02:B694: 00 00     .word $0000     ; 5C 
+- - - - - - 0x00B6A6 02:B696: 00 00     .word $0000     ; 5D 
+- D 1 - I - 0x00B6A8 02:B698: DA B8     .word off_B8DA  ; 5E 
+- D 1 - I - 0x00B6AA 02:B69A: 15 BA     .word off_BA15  ; 5F 
 
 
 
 _off003_B69C_09_chin_taimei: ; con_obj_chin_taimei
-- D 1 - I - 0x00B6AC 02:B69C: DA B8     .word off_B8DA  ; 00
-- D 1 - I - 0x00B6AE 02:B69E: DA B8     .word off_B8DA  ; 01
-- D 1 - I - 0x00B6B0 02:B6A0: DA B8     .word off_B8DA  ; 02
-- D 1 - I - 0x00B6B2 02:B6A2: DA B8     .word off_B8DA  ; 03
-- D 1 - I - 0x00B6B4 02:B6A4: 48 B9     .word off_B948  ; 04
-- D 1 - I - 0x00B6B6 02:B6A6: DA B8     .word off_B8DA  ; 05
-- D 1 - I - 0x00B6B8 02:B6A8: 00 00     .word $0000     ; 06
-- D 1 - I - 0x00B6BA 02:B6AA: 00 00     .word $0000     ; 07
-- D 1 - I - 0x00B6BC 02:B6AC: 00 00     .word $0000     ; 08
-- D 1 - I - 0x00B6BE 02:B6AE: DA B8     .word off_B8DA  ; 09
-- D 1 - I - 0x00B6C0 02:B6B0: 00 00     .word $0000     ; 0A
-- - - - - - 0x00B6C2 02:B6B2: 00 00     .word $0000     ; 0B
-- - - - - - 0x00B6C4 02:B6B4: DA B8     .word off_B8DA  ; 0C
-- D 1 - I - 0x00B6C6 02:B6B6: 50 B9     .word off_B950  ; 0D
-- D 1 - I - 0x00B6C8 02:B6B8: 50 B9     .word off_B950  ; 0E
-- D 1 - I - 0x00B6CA 02:B6BA: DA B8     .word off_B8DA  ; 0F
-- D 1 - I - 0x00B6CC 02:B6BC: 58 B9     .word off_B958  ; 10
-- D 1 - I - 0x00B6CE 02:B6BE: 58 B9     .word off_B958  ; 11
-- D 1 - I - 0x00B6D0 02:B6C0: 58 B9     .word off_B958  ; 12
-- D 1 - I - 0x00B6D2 02:B6C2: 5D B9     .word off_B95D  ; 13
+- D 1 - I - 0x00B6AC 02:B69C: DA B8     .word off_B8DA  ; 00 
+- D 1 - I - 0x00B6AE 02:B69E: DA B8     .word off_B8DA  ; 01 
+- D 1 - I - 0x00B6B0 02:B6A0: DA B8     .word off_B8DA  ; 02 
+- D 1 - I - 0x00B6B2 02:B6A2: DA B8     .word off_B8DA  ; 03 
+- D 1 - I - 0x00B6B4 02:B6A4: 48 B9     .word off_B948  ; 04 
+- D 1 - I - 0x00B6B6 02:B6A6: DA B8     .word off_B8DA  ; 05 
+- D 1 - I - 0x00B6B8 02:B6A8: 00 00     .word $0000     ; 06 
+- D 1 - I - 0x00B6BA 02:B6AA: 00 00     .word $0000     ; 07 
+- D 1 - I - 0x00B6BC 02:B6AC: 00 00     .word $0000     ; 08 
+- D 1 - I - 0x00B6BE 02:B6AE: DA B8     .word off_B8DA  ; 09 
+- D 1 - I - 0x00B6C0 02:B6B0: 00 00     .word $0000     ; 0A 
+- - - - - - 0x00B6C2 02:B6B2: 00 00     .word $0000     ; 0B 
+- - - - - - 0x00B6C4 02:B6B4: DA B8     .word off_B8DA  ; 0C 
+- D 1 - I - 0x00B6C6 02:B6B6: 50 B9     .word off_B950  ; 0D 
+- D 1 - I - 0x00B6C8 02:B6B8: 50 B9     .word off_B950  ; 0E 
+- D 1 - I - 0x00B6CA 02:B6BA: DA B8     .word off_B8DA  ; 0F 
+- D 1 - I - 0x00B6CC 02:B6BC: 58 B9     .word off_B958  ; 10 
+- D 1 - I - 0x00B6CE 02:B6BE: 58 B9     .word off_B958  ; 11 
+- D 1 - I - 0x00B6D0 02:B6C0: 58 B9     .word off_B958  ; 12 
+- D 1 - I - 0x00B6D2 02:B6C2: 5D B9     .word off_B95D  ; 13 
 
 
 
 _off003_B6C4_08_abore: ; con_obj_abore
-- D 1 - I - 0x00B6D4 02:B6C4: 65 B9     .word off_B965  ; 00
-- D 1 - I - 0x00B6D6 02:B6C6: 65 B9     .word off_B965  ; 01
-- D 1 - I - 0x00B6D8 02:B6C8: 65 B9     .word off_B965  ; 02
-- - - - - - 0x00B6DA 02:B6CA: 00 00     .word $0000     ; 03
-- - - - - - 0x00B6DC 02:B6CC: 00 00     .word $0000     ; 04
-- D 1 - I - 0x00B6DE 02:B6CE: 65 B9     .word off_B965  ; 05
-- D 1 - I - 0x00B6E0 02:B6D0: 00 00     .word $0000     ; 06
-- D 1 - I - 0x00B6E2 02:B6D2: 00 00     .word $0000     ; 07
-- D 1 - I - 0x00B6E4 02:B6D4: 00 00     .word $0000     ; 08
-- D 1 - I - 0x00B6E6 02:B6D6: 65 B9     .word off_B965  ; 09
-- D 1 - I - 0x00B6E8 02:B6D8: 00 00     .word $0000     ; 0A
-- - - - - - 0x00B6EA 02:B6DA: 00 00     .word $0000     ; 0B
-- D 1 - I - 0x00B6EC 02:B6DC: 65 B9     .word off_B965  ; 0C
-- D 1 - I - 0x00B6EE 02:B6DE: 6A B9     .word off_B96A  ; 0D
-- D 1 - I - 0x00B6F0 02:B6E0: 65 B9     .word off_B965  ; 0E
-- D 1 - I - 0x00B6F2 02:B6E2: 6A B9     .word off_B96A  ; 0F
-- D 1 - I - 0x00B6F4 02:B6E4: 72 B9     .word off_B972  ; 10
+- D 1 - I - 0x00B6D4 02:B6C4: 65 B9     .word off_B965  ; 00 
+- D 1 - I - 0x00B6D6 02:B6C6: 65 B9     .word off_B965  ; 01 
+- D 1 - I - 0x00B6D8 02:B6C8: 65 B9     .word off_B965  ; 02 
+- - - - - - 0x00B6DA 02:B6CA: 00 00     .word $0000     ; 03 
+- - - - - - 0x00B6DC 02:B6CC: 00 00     .word $0000     ; 04 
+- D 1 - I - 0x00B6DE 02:B6CE: 65 B9     .word off_B965  ; 05 
+- D 1 - I - 0x00B6E0 02:B6D0: 00 00     .word $0000     ; 06 
+- D 1 - I - 0x00B6E2 02:B6D2: 00 00     .word $0000     ; 07 
+- D 1 - I - 0x00B6E4 02:B6D4: 00 00     .word $0000     ; 08 
+- D 1 - I - 0x00B6E6 02:B6D6: 65 B9     .word off_B965  ; 09 
+- D 1 - I - 0x00B6E8 02:B6D8: 00 00     .word $0000     ; 0A 
+- - - - - - 0x00B6EA 02:B6DA: 00 00     .word $0000     ; 0B 
+- D 1 - I - 0x00B6EC 02:B6DC: 65 B9     .word off_B965  ; 0C 
+- D 1 - I - 0x00B6EE 02:B6DE: 6A B9     .word off_B96A  ; 0D 
+- D 1 - I - 0x00B6F0 02:B6E0: 65 B9     .word off_B965  ; 0E 
+- D 1 - I - 0x00B6F2 02:B6E2: 6A B9     .word off_B96A  ; 0F 
+- D 1 - I - 0x00B6F4 02:B6E4: 72 B9     .word off_B972  ; 10 
 
 
 
 _off003_B6E6_07_burnov: ; con_obj_burnov
-- D 1 - I - 0x00B6F6 02:B6E6: 65 B9     .word off_B965  ; 00
-- D 1 - I - 0x00B6F8 02:B6E8: 65 B9     .word off_B965  ; 01
-- D 1 - I - 0x00B6FA 02:B6EA: 65 B9     .word off_B965  ; 02
-- D 1 - I - 0x00B6FC 02:B6EC: 65 B9     .word off_B965  ; 03
-- D 1 - I - 0x00B6FE 02:B6EE: 65 B9     .word off_B965  ; 04
-- - - - - - 0x00B700 02:B6F0: 65 B9     .word off_B965  ; 05
-- D 1 - I - 0x00B702 02:B6F2: 00 00     .word $0000     ; 06
-- D 1 - I - 0x00B704 02:B6F4: 00 00     .word $0000     ; 07
-- D 1 - I - 0x00B706 02:B6F6: 00 00     .word $0000     ; 08
-- D 1 - I - 0x00B708 02:B6F8: 65 B9     .word off_B965  ; 09
-- D 1 - I - 0x00B70A 02:B6FA: 00 00     .word $0000     ; 0A
-- - - - - - 0x00B70C 02:B6FC: 00 00     .word $0000     ; 0B
-- D 1 - I - 0x00B70E 02:B6FE: 65 B9     .word off_B965  ; 0C
-- D 1 - I - 0x00B710 02:B700: 7A B9     .word off_B97A  ; 0D
-- D 1 - I - 0x00B712 02:B702: 65 B9     .word off_B965  ; 0E
-- D 1 - I - 0x00B714 02:B704: 7A B9     .word off_B97A  ; 0F
-- D 1 - I - 0x00B716 02:B706: 65 B9     .word off_B965  ; 10
-- - - - - - 0x00B718 02:B708: 00 00     .word $0000     ; 11
-- - - - - - 0x00B71A 02:B70A: 00 00     .word $0000     ; 12
-- - - - - - 0x00B71C 02:B70C: 00 00     .word $0000     ; 13
-- - - - - - 0x00B71E 02:B70E: 00 00     .word $0000     ; 14
-- - - - - - 0x00B720 02:B710: 00 00     .word $0000     ; 15
-- - - - - - 0x00B722 02:B712: 00 00     .word $0000     ; 16
-- - - - - - 0x00B724 02:B714: 00 00     .word $0000     ; 17
-- D 1 - I - 0x00B726 02:B716: 00 00     .word $0000     ; 18
-- D 1 - I - 0x00B728 02:B718: 00 00     .word $0000     ; 19
-- - - - - - 0x00B72A 02:B71A: 00 00     .word $0000     ; 1A
-- - - - - - 0x00B72C 02:B71C: 00 00     .word $0000     ; 1B
+- D 1 - I - 0x00B6F6 02:B6E6: 65 B9     .word off_B965  ; 00 
+- D 1 - I - 0x00B6F8 02:B6E8: 65 B9     .word off_B965  ; 01 
+- D 1 - I - 0x00B6FA 02:B6EA: 65 B9     .word off_B965  ; 02 
+- D 1 - I - 0x00B6FC 02:B6EC: 65 B9     .word off_B965  ; 03 
+- D 1 - I - 0x00B6FE 02:B6EE: 65 B9     .word off_B965  ; 04 
+- - - - - - 0x00B700 02:B6F0: 65 B9     .word off_B965  ; 05 
+- D 1 - I - 0x00B702 02:B6F2: 00 00     .word $0000     ; 06 
+- D 1 - I - 0x00B704 02:B6F4: 00 00     .word $0000     ; 07 
+- D 1 - I - 0x00B706 02:B6F6: 00 00     .word $0000     ; 08 
+- D 1 - I - 0x00B708 02:B6F8: 65 B9     .word off_B965  ; 09 
+- D 1 - I - 0x00B70A 02:B6FA: 00 00     .word $0000     ; 0A 
+- - - - - - 0x00B70C 02:B6FC: 00 00     .word $0000     ; 0B 
+- D 1 - I - 0x00B70E 02:B6FE: 65 B9     .word off_B965  ; 0C 
+- D 1 - I - 0x00B710 02:B700: 7A B9     .word off_B97A  ; 0D 
+- D 1 - I - 0x00B712 02:B702: 65 B9     .word off_B965  ; 0E 
+- D 1 - I - 0x00B714 02:B704: 7A B9     .word off_B97A  ; 0F 
+- D 1 - I - 0x00B716 02:B706: 65 B9     .word off_B965  ; 10 
+- - - - - - 0x00B718 02:B708: 00 00     .word $0000     ; 11 
+- - - - - - 0x00B71A 02:B70A: 00 00     .word $0000     ; 12 
+- - - - - - 0x00B71C 02:B70C: 00 00     .word $0000     ; 13 
+- - - - - - 0x00B71E 02:B70E: 00 00     .word $0000     ; 14 
+- - - - - - 0x00B720 02:B710: 00 00     .word $0000     ; 15 
+- - - - - - 0x00B722 02:B712: 00 00     .word $0000     ; 16 
+- - - - - - 0x00B724 02:B714: 00 00     .word $0000     ; 17 
+- D 1 - I - 0x00B726 02:B716: 00 00     .word $0000     ; 18 
+- D 1 - I - 0x00B728 02:B718: 00 00     .word $0000     ; 19 
+- - - - - - 0x00B72A 02:B71A: 00 00     .word $0000     ; 1A 
+- - - - - - 0x00B72C 02:B71C: 00 00     .word $0000     ; 1B 
 
 
 
 _off003_B71E_06_bolo: ; con_obj_bolo
-- D 1 - I - 0x00B72E 02:B71E: 65 B9     .word off_B965  ; 00
-- D 1 - I - 0x00B730 02:B720: 65 B9     .word off_B965  ; 01
-- D 1 - I - 0x00B732 02:B722: 65 B9     .word off_B965  ; 02
-- D 1 - I - 0x00B734 02:B724: 65 B9     .word off_B965  ; 03
-- D 1 - I - 0x00B736 02:B726: 65 B9     .word off_B965  ; 04
-- D 1 - I - 0x00B738 02:B728: 65 B9     .word off_B965  ; 05
-- D 1 - I - 0x00B73A 02:B72A: 00 00     .word $0000     ; 06
-- D 1 - I - 0x00B73C 02:B72C: 00 00     .word $0000     ; 07
-- D 1 - I - 0x00B73E 02:B72E: 00 00     .word $0000     ; 08
-- D 1 - I - 0x00B740 02:B730: 65 B9     .word off_B965  ; 09
-- D 1 - I - 0x00B742 02:B732: 00 00     .word $0000     ; 0A
-- - - - - - 0x00B744 02:B734: 00 00     .word $0000     ; 0B
-- D 1 - I - 0x00B746 02:B736: 65 B9     .word off_B965  ; 0C
-- D 1 - I - 0x00B748 02:B738: 82 B9     .word off_B982  ; 0D
-- D 1 - I - 0x00B74A 02:B73A: 65 B9     .word off_B965  ; 0E
-- D 1 - I - 0x00B74C 02:B73C: 82 B9     .word off_B982  ; 0F
-- - - - - - 0x00B74E 02:B73E: 00 00     .word $0000     ; 10
-- - - - - - 0x00B750 02:B740: 00 00     .word $0000     ; 11
-- - - - - - 0x00B752 02:B742: 00 00     .word $0000     ; 12
-- - - - - - 0x00B754 02:B744: 00 00     .word $0000     ; 13
-- - - - - - 0x00B756 02:B746: 00 00     .word $0000     ; 14
-- - - - - - 0x00B758 02:B748: 8A B9     .word off_B98A  ; 15
-- - - - - - 0x00B75A 02:B74A: 8A B9     .word off_B98A  ; 16
-- - - - - - 0x00B75C 02:B74C: 8A B9     .word off_B98A  ; 17
-- D 1 - I - 0x00B75E 02:B74E: 8A B9     .word off_B98A  ; 18
+- D 1 - I - 0x00B72E 02:B71E: 65 B9     .word off_B965  ; 00 
+- D 1 - I - 0x00B730 02:B720: 65 B9     .word off_B965  ; 01 
+- D 1 - I - 0x00B732 02:B722: 65 B9     .word off_B965  ; 02 
+- D 1 - I - 0x00B734 02:B724: 65 B9     .word off_B965  ; 03 
+- D 1 - I - 0x00B736 02:B726: 65 B9     .word off_B965  ; 04 
+- D 1 - I - 0x00B738 02:B728: 65 B9     .word off_B965  ; 05 
+- D 1 - I - 0x00B73A 02:B72A: 00 00     .word $0000     ; 06 
+- D 1 - I - 0x00B73C 02:B72C: 00 00     .word $0000     ; 07 
+- D 1 - I - 0x00B73E 02:B72E: 00 00     .word $0000     ; 08 
+- D 1 - I - 0x00B740 02:B730: 65 B9     .word off_B965  ; 09 
+- D 1 - I - 0x00B742 02:B732: 00 00     .word $0000     ; 0A 
+- - - - - - 0x00B744 02:B734: 00 00     .word $0000     ; 0B 
+- D 1 - I - 0x00B746 02:B736: 65 B9     .word off_B965  ; 0C 
+- D 1 - I - 0x00B748 02:B738: 82 B9     .word off_B982  ; 0D 
+- D 1 - I - 0x00B74A 02:B73A: 65 B9     .word off_B965  ; 0E 
+- D 1 - I - 0x00B74C 02:B73C: 82 B9     .word off_B982  ; 0F 
+- - - - - - 0x00B74E 02:B73E: 00 00     .word $0000     ; 10 
+- - - - - - 0x00B750 02:B740: 00 00     .word $0000     ; 11 
+- - - - - - 0x00B752 02:B742: 00 00     .word $0000     ; 12 
+- - - - - - 0x00B754 02:B744: 00 00     .word $0000     ; 13 
+- - - - - - 0x00B756 02:B746: 00 00     .word $0000     ; 14 
+- - - - - - 0x00B758 02:B748: 8A B9     .word off_B98A  ; 15 
+- - - - - - 0x00B75A 02:B74A: 8A B9     .word off_B98A  ; 16 
+- - - - - - 0x00B75C 02:B74C: 8A B9     .word off_B98A  ; 17 
+- D 1 - I - 0x00B75E 02:B74E: 8A B9     .word off_B98A  ; 18 
 
 
 
 _off003_B750_0F_nina: ; con_obj_ninja
-- - - - - - 0x00B760 02:B750: 92 B9     .word off_B992  ; 00
-- - - - - - 0x00B762 02:B752: 92 B9     .word off_B992  ; 01
-- D 1 - I - 0x00B764 02:B754: DA B8     .word off_B8DA  ; 02
-- - - - - - 0x00B766 02:B756: 00 00     .word $0000     ; 03
-- D 1 - I - 0x00B768 02:B758: 92 B9     .word off_B992  ; 04
-- D 1 - I - 0x00B76A 02:B75A: 92 B9     .word off_B992  ; 05
-- D 1 - I - 0x00B76C 02:B75C: 00 00     .word $0000     ; 06
-- D 1 - I - 0x00B76E 02:B75E: 00 00     .word $0000     ; 07
-- D 1 - I - 0x00B770 02:B760: 00 00     .word $0000     ; 08
-- D 1 - I - 0x00B772 02:B762: DA B8     .word off_B8DA  ; 09
-- D 1 - I - 0x00B774 02:B764: 00 00     .word $0000     ; 0A
-- - - - - - 0x00B776 02:B766: 00 00     .word $0000     ; 0B
-- D 1 - I - 0x00B778 02:B768: DA B8     .word off_B8DA  ; 0C
-- D 1 - I - 0x00B77A 02:B76A: E4 B8     .word off_B8E4  ; 0D
-- D 1 - I - 0x00B77C 02:B76C: DA B8     .word off_B8DA  ; 0E
-- D 1 - I - 0x00B77E 02:B76E: E4 B8     .word off_B8E4  ; 0F
-- - - - - - 0x00B780 02:B770: 92 B9     .word off_B992  ; 10
-- D 1 - I - 0x00B782 02:B772: 92 B9     .word off_B992  ; 11
-- - - - - - 0x00B784 02:B774: 92 B9     .word off_B992  ; 12
-- - - - - - 0x00B786 02:B776: 92 B9     .word off_B992  ; 13
-- D 1 - I - 0x00B788 02:B778: 97 B9     .word off_B997  ; 14
-- - - - - - 0x00B78A 02:B77A: 92 B9     .word off_B992  ; 15
-- D 1 - I - 0x00B78C 02:B77C: DA B8     .word off_B8DA  ; 16
-- D 1 - I - 0x00B78E 02:B77E: 9F B9     .word off_B99F  ; 17
-- D 1 - I - 0x00B790 02:B780: DA B8     .word off_B8DA  ; 18
-- - - - - - 0x00B792 02:B782: 00 00     .word $0000     ; 19
-- D 1 - I - 0x00B794 02:B784: 92 B9     .word off_B992  ; 1A
-- D 1 - I - 0x00B796 02:B786: 92 B9     .word off_B992  ; 1B
-- D 1 - I - 0x00B798 02:B788: 92 B9     .word off_B992  ; 1C
-- D 1 - I - 0x00B79A 02:B78A: 92 B9     .word off_B992  ; 1D
-- D 1 - I - 0x00B79C 02:B78C: 92 B9     .word off_B992  ; 1E
-- D 1 - I - 0x00B79E 02:B78E: 92 B9     .word off_B992  ; 1F
-- D 1 - I - 0x00B7A0 02:B790: A7 B9     .word off_B9A7  ; 20
-- D 1 - I - 0x00B7A2 02:B792: AC B9     .word off_B9AC  ; 21
-- D 1 - I - 0x00B7A4 02:B794: B1 B9     .word off_B9B1  ; 22
+- - - - - - 0x00B760 02:B750: 92 B9     .word off_B992  ; 00 
+- - - - - - 0x00B762 02:B752: 92 B9     .word off_B992  ; 01 
+- D 1 - I - 0x00B764 02:B754: DA B8     .word off_B8DA  ; 02 
+- - - - - - 0x00B766 02:B756: 00 00     .word $0000     ; 03 
+- D 1 - I - 0x00B768 02:B758: 92 B9     .word off_B992  ; 04 
+- D 1 - I - 0x00B76A 02:B75A: 92 B9     .word off_B992  ; 05 
+- D 1 - I - 0x00B76C 02:B75C: 00 00     .word $0000     ; 06 
+- D 1 - I - 0x00B76E 02:B75E: 00 00     .word $0000     ; 07 
+- D 1 - I - 0x00B770 02:B760: 00 00     .word $0000     ; 08 
+- D 1 - I - 0x00B772 02:B762: DA B8     .word off_B8DA  ; 09 
+- D 1 - I - 0x00B774 02:B764: 00 00     .word $0000     ; 0A 
+- - - - - - 0x00B776 02:B766: 00 00     .word $0000     ; 0B 
+- D 1 - I - 0x00B778 02:B768: DA B8     .word off_B8DA  ; 0C 
+- D 1 - I - 0x00B77A 02:B76A: E4 B8     .word off_B8E4  ; 0D 
+- D 1 - I - 0x00B77C 02:B76C: DA B8     .word off_B8DA  ; 0E 
+- D 1 - I - 0x00B77E 02:B76E: E4 B8     .word off_B8E4  ; 0F 
+- - - - - - 0x00B780 02:B770: 92 B9     .word off_B992  ; 10 
+- D 1 - I - 0x00B782 02:B772: 92 B9     .word off_B992  ; 11 
+- - - - - - 0x00B784 02:B774: 92 B9     .word off_B992  ; 12 
+- - - - - - 0x00B786 02:B776: 92 B9     .word off_B992  ; 13 
+- D 1 - I - 0x00B788 02:B778: 97 B9     .word off_B997  ; 14 
+- - - - - - 0x00B78A 02:B77A: 92 B9     .word off_B992  ; 15 
+- D 1 - I - 0x00B78C 02:B77C: DA B8     .word off_B8DA  ; 16 
+- D 1 - I - 0x00B78E 02:B77E: 9F B9     .word off_B99F  ; 17 
+- D 1 - I - 0x00B790 02:B780: DA B8     .word off_B8DA  ; 18 
+- - - - - - 0x00B792 02:B782: 00 00     .word $0000     ; 19 
+- D 1 - I - 0x00B794 02:B784: 92 B9     .word off_B992  ; 1A 
+- D 1 - I - 0x00B796 02:B786: 92 B9     .word off_B992  ; 1B 
+- D 1 - I - 0x00B798 02:B788: 92 B9     .word off_B992  ; 1C 
+- D 1 - I - 0x00B79A 02:B78A: 92 B9     .word off_B992  ; 1D 
+- D 1 - I - 0x00B79C 02:B78C: 92 B9     .word off_B992  ; 1E 
+- D 1 - I - 0x00B79E 02:B78E: 92 B9     .word off_B992  ; 1F 
+- D 1 - I - 0x00B7A0 02:B790: A7 B9     .word off_B9A7  ; 20 
+- D 1 - I - 0x00B7A2 02:B792: AC B9     .word off_B9AC  ; 21 
+- D 1 - I - 0x00B7A4 02:B794: B1 B9     .word off_B9B1  ; 22 
 
 
 
 _off003_B796_11_shadow_warrior: ; con_obj_shadow_warrior
-- D 1 - I - 0x00B7A6 02:B796: DA B8     .word off_B8DA  ; 00
-- D 1 - I - 0x00B7A8 02:B798: DA B8     .word off_B8DA  ; 01
-- D 1 - I - 0x00B7AA 02:B79A: DA B8     .word off_B8DA  ; 02
-- - - - - - 0x00B7AC 02:B79C: 00 00     .word $0000     ; 03
-- - - - - - 0x00B7AE 02:B79E: 00 00     .word $0000     ; 04
-- - - - - - 0x00B7B0 02:B7A0: DA B8     .word off_B8DA  ; 05
-- D 1 - I - 0x00B7B2 02:B7A2: 00 00     .word $0000     ; 06
-- D 1 - I - 0x00B7B4 02:B7A4: 00 00     .word $0000     ; 07
-- D 1 - I - 0x00B7B6 02:B7A6: 00 00     .word $0000     ; 08
-- D 1 - I - 0x00B7B8 02:B7A8: DA B8     .word off_B8DA  ; 09
-- D 1 - I - 0x00B7BA 02:B7AA: 00 00     .word $0000     ; 0A
-- - - - - - 0x00B7BC 02:B7AC: 00 00     .word $0000     ; 0B
-- D 1 - I - 0x00B7BE 02:B7AE: DA B8     .word off_B8DA  ; 0C
-- D 1 - I - 0x00B7C0 02:B7B0: BE B9     .word off_B9BE  ; 0D
-- D 1 - I - 0x00B7C2 02:B7B2: DA B8     .word off_B8DA  ; 0E
-- D 1 - I - 0x00B7C4 02:B7B4: BE B9     .word off_B9BE  ; 0F
-- D 1 - I - 0x00B7C6 02:B7B6: 00 00     .word $0000     ; 10
-- - - - - - 0x00B7C8 02:B7B8: 00 00     .word $0000     ; 11
-- D 1 - I - 0x00B7CA 02:B7BA: 00 00     .word $0000     ; 12
-- D 1 - I - 0x00B7CC 02:B7BC: 00 00     .word $0000     ; 13
-- D 1 - I - 0x00B7CE 02:B7BE: 00 00     .word $0000     ; 14
-- D 1 - I - 0x00B7D0 02:B7C0: DA B8     .word off_B8DA  ; 15
-- D 1 - I - 0x00B7D2 02:B7C2: C6 B9     .word off_B9C6  ; 16
-- D 1 - I - 0x00B7D4 02:B7C4: 00 00     .word $0000     ; 17
-- D 1 - I - 0x00B7D6 02:B7C6: 00 00     .word $0000     ; 18
-- D 1 - I - 0x00B7D8 02:B7C8: 00 00     .word $0000     ; 19
-- D 1 - I - 0x00B7DA 02:B7CA: 00 00     .word $0000     ; 1A
-- D 1 - I - 0x00B7DC 02:B7CC: CE B9     .word off_B9CE  ; 1B
-- D 1 - I - 0x00B7DE 02:B7CE: DA B8     .word off_B8DA  ; 1C
-- D 1 - I - 0x00B7E0 02:B7D0: D3 B9     .word off_B9D3  ; 1D
-- D 1 - I - 0x00B7E2 02:B7D2: D8 B9     .word off_B9D8  ; 1E
-- D 1 - I - 0x00B7E4 02:B7D4: DA B8     .word off_B8DA  ; 1F
-- D 1 - I - 0x00B7E6 02:B7D6: DD B9     .word off_B9DD  ; 20
-- D 1 - I - 0x00B7E8 02:B7D8: E2 B9     .word off_B9E2  ; 21
-- D 1 - I - 0x00B7EA 02:B7DA: EA B9     .word off_B9EA  ; 22
-- - - - - - 0x00B7EC 02:B7DC: 00 00     .word $0000     ; 23
-- D 1 - I - 0x00B7EE 02:B7DE: DA B8     .word off_B8DA  ; 24
-- D 1 - I - 0x00B7F0 02:B7E0: B6 B9     .word off_B9B6  ; 25
-- D 1 - I - 0x00B7F2 02:B7E2: DA B8     .word off_B8DA  ; 26
-- D 1 - I - 0x00B7F4 02:B7E4: B6 B9     .word off_B9B6  ; 27
+- D 1 - I - 0x00B7A6 02:B796: DA B8     .word off_B8DA  ; 00 
+- D 1 - I - 0x00B7A8 02:B798: DA B8     .word off_B8DA  ; 01 
+- D 1 - I - 0x00B7AA 02:B79A: DA B8     .word off_B8DA  ; 02 
+- - - - - - 0x00B7AC 02:B79C: 00 00     .word $0000     ; 03 
+- - - - - - 0x00B7AE 02:B79E: 00 00     .word $0000     ; 04 
+- - - - - - 0x00B7B0 02:B7A0: DA B8     .word off_B8DA  ; 05 
+- D 1 - I - 0x00B7B2 02:B7A2: 00 00     .word $0000     ; 06 
+- D 1 - I - 0x00B7B4 02:B7A4: 00 00     .word $0000     ; 07 
+- D 1 - I - 0x00B7B6 02:B7A6: 00 00     .word $0000     ; 08 
+- D 1 - I - 0x00B7B8 02:B7A8: DA B8     .word off_B8DA  ; 09 
+- D 1 - I - 0x00B7BA 02:B7AA: 00 00     .word $0000     ; 0A 
+- - - - - - 0x00B7BC 02:B7AC: 00 00     .word $0000     ; 0B 
+- D 1 - I - 0x00B7BE 02:B7AE: DA B8     .word off_B8DA  ; 0C 
+- D 1 - I - 0x00B7C0 02:B7B0: BE B9     .word off_B9BE  ; 0D 
+- D 1 - I - 0x00B7C2 02:B7B2: DA B8     .word off_B8DA  ; 0E 
+- D 1 - I - 0x00B7C4 02:B7B4: BE B9     .word off_B9BE  ; 0F 
+- D 1 - I - 0x00B7C6 02:B7B6: 00 00     .word $0000     ; 10 
+- - - - - - 0x00B7C8 02:B7B8: 00 00     .word $0000     ; 11 
+- D 1 - I - 0x00B7CA 02:B7BA: 00 00     .word $0000     ; 12 
+- D 1 - I - 0x00B7CC 02:B7BC: 00 00     .word $0000     ; 13 
+- D 1 - I - 0x00B7CE 02:B7BE: 00 00     .word $0000     ; 14 
+- D 1 - I - 0x00B7D0 02:B7C0: DA B8     .word off_B8DA  ; 15 
+- D 1 - I - 0x00B7D2 02:B7C2: C6 B9     .word off_B9C6  ; 16 
+- D 1 - I - 0x00B7D4 02:B7C4: 00 00     .word $0000     ; 17 
+- D 1 - I - 0x00B7D6 02:B7C6: 00 00     .word $0000     ; 18 
+- D 1 - I - 0x00B7D8 02:B7C8: 00 00     .word $0000     ; 19 
+- D 1 - I - 0x00B7DA 02:B7CA: 00 00     .word $0000     ; 1A 
+- D 1 - I - 0x00B7DC 02:B7CC: CE B9     .word off_B9CE  ; 1B 
+- D 1 - I - 0x00B7DE 02:B7CE: DA B8     .word off_B8DA  ; 1C 
+- D 1 - I - 0x00B7E0 02:B7D0: D3 B9     .word off_B9D3  ; 1D 
+- D 1 - I - 0x00B7E2 02:B7D2: D8 B9     .word off_B9D8  ; 1E 
+- D 1 - I - 0x00B7E4 02:B7D4: DA B8     .word off_B8DA  ; 1F 
+- D 1 - I - 0x00B7E6 02:B7D6: DD B9     .word off_B9DD  ; 20 
+- D 1 - I - 0x00B7E8 02:B7D8: E2 B9     .word off_B9E2  ; 21 
+- D 1 - I - 0x00B7EA 02:B7DA: EA B9     .word off_B9EA  ; 22 
+- - - - - - 0x00B7EC 02:B7DC: 00 00     .word $0000     ; 23 
+- D 1 - I - 0x00B7EE 02:B7DE: DA B8     .word off_B8DA  ; 24 
+- D 1 - I - 0x00B7F0 02:B7E0: B6 B9     .word off_B9B6  ; 25 
+- D 1 - I - 0x00B7F2 02:B7E2: DA B8     .word off_B8DA  ; 26 
+- D 1 - I - 0x00B7F4 02:B7E4: B6 B9     .word off_B9B6  ; 27 
 
 
 
 _off003_B7E6_1C_fireball: ; con_obj_fireball
-- D 1 - I - 0x00B7F6 02:B7E6: EF B9     .word off_B9EF  ; 00
-- D 1 - I - 0x00B7F8 02:B7E8: EF B9     .word off_B9EF  ; 01
-- - - - - - 0x00B7FA 02:B7EA: F4 B9     .word off_B9F4  ; 02
-- - - - - - 0x00B7FC 02:B7EC: F4 B9     .word off_B9F4  ; 03
+- D 1 - I - 0x00B7F6 02:B7E6: EF B9     .word off_B9EF  ; 00 
+- D 1 - I - 0x00B7F8 02:B7E8: EF B9     .word off_B9EF  ; 01 
+- - - - - - 0x00B7FA 02:B7EA: F4 B9     .word off_B9F4  ; 02 
+- - - - - - 0x00B7FC 02:B7EC: F4 B9     .word off_B9F4  ; 03 
 
 
 
 _off003_B7EE_19: ; con_obj_19
-- - - - - - 0x00B7FE 02:B7EE: F7 B9     .word off_B9F7  ; 00
-- D 1 - I - 0x00B800 02:B7F0: F7 B9     .word off_B9F7  ; 01
-- - - - - - 0x00B802 02:B7F2: F7 B9     .word off_B9F7  ; 02
-- D 1 - I - 0x00B804 02:B7F4: F7 B9     .word off_B9F7  ; 03
-- D 1 - I - 0x00B806 02:B7F6: F7 B9     .word off_B9F7  ; 04
-- - - - - - 0x00B808 02:B7F8: F7 B9     .word off_B9F7  ; 05
-- - - - - - 0x00B80A 02:B7FA: F7 B9     .word off_B9F7  ; 06
-- - - - - - 0x00B80C 02:B7FC: F7 B9     .word off_B9F7  ; 07
-- D 1 - I - 0x00B80E 02:B7FE: 00 00     .word $0000     ; 08
+- - - - - - 0x00B7FE 02:B7EE: F7 B9     .word off_B9F7  ; 00 
+- D 1 - I - 0x00B800 02:B7F0: F7 B9     .word off_B9F7  ; 01 
+- - - - - - 0x00B802 02:B7F2: F7 B9     .word off_B9F7  ; 02 
+- D 1 - I - 0x00B804 02:B7F4: F7 B9     .word off_B9F7  ; 03 
+- D 1 - I - 0x00B806 02:B7F6: F7 B9     .word off_B9F7  ; 04 
+- - - - - - 0x00B808 02:B7F8: F7 B9     .word off_B9F7  ; 05 
+- - - - - - 0x00B80A 02:B7FA: F7 B9     .word off_B9F7  ; 06 
+- - - - - - 0x00B80C 02:B7FC: F7 B9     .word off_B9F7  ; 07 
+- D 1 - I - 0x00B80E 02:B7FE: 00 00     .word $0000     ; 08 
 
 
 
 _off003_B800_1D: ; con_obj_1D
-- D 1 - I - 0x00B810 02:B800: F7 B9     .word off_B9F7  ; 00
-- D 1 - I - 0x00B812 02:B802: F7 B9     .word off_B9F7  ; 01
+- D 1 - I - 0x00B810 02:B800: F7 B9     .word off_B9F7  ; 00 
+- D 1 - I - 0x00B812 02:B802: F7 B9     .word off_B9F7  ; 01 
 
 
 
 _off003_B804_13: ; con_obj_13
-- D 1 - I - 0x00B814 02:B804: F4 B9     .word off_B9F4  ; 00
-- D 1 - I - 0x00B816 02:B806: F4 B9     .word off_B9F4  ; 01
-- D 1 - I - 0x00B818 02:B808: F4 B9     .word off_B9F4  ; 02
-- D 1 - I - 0x00B81A 02:B80A: FC B9     .word off_B9FC  ; 03
-- D 1 - I - 0x00B81C 02:B80C: FC B9     .word off_B9FC  ; 04
-- D 1 - I - 0x00B81E 02:B80E: FC B9     .word off_B9FC  ; 05
-- D 1 - I - 0x00B820 02:B810: FC B9     .word off_B9FC  ; 06
-- D 1 - I - 0x00B822 02:B812: F4 B9     .word off_B9F4  ; 07
-- D 1 - I - 0x00B824 02:B814: F4 B9     .word off_B9F4  ; 08
-- D 1 - I - 0x00B826 02:B816: F4 B9     .word off_B9F4  ; 09
+- D 1 - I - 0x00B814 02:B804: F4 B9     .word off_B9F4  ; 00 
+- D 1 - I - 0x00B816 02:B806: F4 B9     .word off_B9F4  ; 01 
+- D 1 - I - 0x00B818 02:B808: F4 B9     .word off_B9F4  ; 02 
+- D 1 - I - 0x00B81A 02:B80A: FC B9     .word off_B9FC  ; 03 
+- D 1 - I - 0x00B81C 02:B80C: FC B9     .word off_B9FC  ; 04 
+- D 1 - I - 0x00B81E 02:B80E: FC B9     .word off_B9FC  ; 05 
+- D 1 - I - 0x00B820 02:B810: FC B9     .word off_B9FC  ; 06 
+- D 1 - I - 0x00B822 02:B812: F4 B9     .word off_B9F4  ; 07 
+- D 1 - I - 0x00B824 02:B814: F4 B9     .word off_B9F4  ; 08 
+- D 1 - I - 0x00B826 02:B816: F4 B9     .word off_B9F4  ; 09 
 
 
 
 _off003_B818_12_knife: ; con_obj_knife
-- D 1 - I - 0x00B828 02:B818: F4 B9     .word off_B9F4  ; 00
-- D 1 - I - 0x00B82A 02:B81A: F7 B9     .word off_B9F7  ; 01
-- D 1 - I - 0x00B82C 02:B81C: F7 B9     .word off_B9F7  ; 02
-- D 1 - I - 0x00B82E 02:B81E: F7 B9     .word off_B9F7  ; 03
-- - - - - - 0x00B830 02:B820: F7 B9     .word off_B9F7  ; 04
-- - - - - - 0x00B832 02:B822: F4 B9     .word off_B9F4  ; 05
-- - - - - - 0x00B834 02:B824: F4 B9     .word off_B9F4  ; 06
-- - - - - - 0x00B836 02:B826: F4 B9     .word off_B9F4  ; 07
-- D 1 - I - 0x00B838 02:B828: 00 00     .word $0000     ; 08
+- D 1 - I - 0x00B828 02:B818: F4 B9     .word off_B9F4  ; 00 
+- D 1 - I - 0x00B82A 02:B81A: F7 B9     .word off_B9F7  ; 01 
+- D 1 - I - 0x00B82C 02:B81C: F7 B9     .word off_B9F7  ; 02 
+- D 1 - I - 0x00B82E 02:B81E: F7 B9     .word off_B9F7  ; 03 
+- - - - - - 0x00B830 02:B820: F7 B9     .word off_B9F7  ; 04 
+- - - - - - 0x00B832 02:B822: F4 B9     .word off_B9F4  ; 05 
+- - - - - - 0x00B834 02:B824: F4 B9     .word off_B9F4  ; 06 
+- - - - - - 0x00B836 02:B826: F4 B9     .word off_B9F4  ; 07 
+- D 1 - I - 0x00B838 02:B828: 00 00     .word $0000     ; 08 
 
 
 
 _off003_B82A_18: ; con_obj_18
-- D 1 - I - 0x00B83A 02:B82A: 01 BA     .word off_BA01  ; 00
-- D 1 - I - 0x00B83C 02:B82C: 01 BA     .word off_BA01  ; 01
-- D 1 - I - 0x00B83E 02:B82E: 01 BA     .word off_BA01  ; 02
-- D 1 - I - 0x00B840 02:B830: 01 BA     .word off_BA01  ; 03
-- D 1 - I - 0x00B842 02:B832: F4 B9     .word off_B9F4  ; 04
-- D 1 - I - 0x00B844 02:B834: F4 B9     .word off_B9F4  ; 05
+- D 1 - I - 0x00B83A 02:B82A: 01 BA     .word off_BA01  ; 00 
+- D 1 - I - 0x00B83C 02:B82C: 01 BA     .word off_BA01  ; 01 
+- D 1 - I - 0x00B83E 02:B82E: 01 BA     .word off_BA01  ; 02 
+- D 1 - I - 0x00B840 02:B830: 01 BA     .word off_BA01  ; 03 
+- D 1 - I - 0x00B842 02:B832: F4 B9     .word off_B9F4  ; 04 
+- D 1 - I - 0x00B844 02:B834: F4 B9     .word off_B9F4  ; 05 
 
 
 
 _off003_B836_1A: ; con_obj_boomerang
-- D 1 - I - 0x00B846 02:B836: 06 BA     .word off_BA06  ; 00
-- D 1 - I - 0x00B848 02:B838: 06 BA     .word off_BA06  ; 01
-- D 1 - I - 0x00B84A 02:B83A: 06 BA     .word off_BA06  ; 02
-- D 1 - I - 0x00B84C 02:B83C: 06 BA     .word off_BA06  ; 03
-- D 1 - I - 0x00B84E 02:B83E: F4 B9     .word off_B9F4  ; 04
-- D 1 - I - 0x00B850 02:B840: F4 B9     .word off_B9F4  ; 05
+- D 1 - I - 0x00B846 02:B836: 06 BA     .word off_BA06  ; 00 
+- D 1 - I - 0x00B848 02:B838: 06 BA     .word off_BA06  ; 01 
+- D 1 - I - 0x00B84A 02:B83A: 06 BA     .word off_BA06  ; 02 
+- D 1 - I - 0x00B84C 02:B83C: 06 BA     .word off_BA06  ; 03 
+- D 1 - I - 0x00B84E 02:B83E: F4 B9     .word off_B9F4  ; 04 
+- D 1 - I - 0x00B850 02:B840: F4 B9     .word off_B9F4  ; 05 
 
 
 
 _off003_B842_14_grenade: ; con_obj_grenade
 _off003_B842_16_flame_grenades: ; con_obj_flame_grenades
-- D 1 - I - 0x00B852 02:B842: F4 B9     .word off_B9F4  ; 00
-- D 1 - I - 0x00B854 02:B844: F7 B9     .word off_B9F7  ; 01
-- D 1 - I - 0x00B856 02:B846: F7 B9     .word off_B9F7  ; 02
-- D 1 - I - 0x00B858 02:B848: F7 B9     .word off_B9F7  ; 03
-- D 1 - I - 0x00B85A 02:B84A: F4 B9     .word off_B9F4  ; 04
-- D 1 - I - 0x00B85C 02:B84C: F4 B9     .word off_B9F4  ; 05
-- D 1 - I - 0x00B85E 02:B84E: F4 B9     .word off_B9F4  ; 06
-- D 1 - I - 0x00B860 02:B850: 0B BA     .word off_BA0B  ; 07
-- D 1 - I - 0x00B862 02:B852: 0B BA     .word off_BA0B  ; 08
-- D 1 - I - 0x00B864 02:B854: 0B BA     .word off_BA0B  ; 09
-- D 1 - I - 0x00B866 02:B856: 0B BA     .word off_BA0B  ; 0A
-- D 1 - I - 0x00B868 02:B858: 0B BA     .word off_BA0B  ; 0B
-- D 1 - I - 0x00B86A 02:B85A: 0B BA     .word off_BA0B  ; 0C
-- D 1 - I - 0x00B86C 02:B85C: 0B BA     .word off_BA0B  ; 0D
-- D 1 - I - 0x00B86E 02:B85E: 0B BA     .word off_BA0B  ; 0E
-- D 1 - I - 0x00B870 02:B860: F4 B9     .word off_B9F4  ; 0F
-- D 1 - I - 0x00B872 02:B862: F4 B9     .word off_B9F4  ; 10
-- D 1 - I - 0x00B874 02:B864: F4 B9     .word off_B9F4  ; 11
-- D 1 - I - 0x00B876 02:B866: F4 B9     .word off_B9F4  ; 12
-- D 1 - I - 0x00B878 02:B868: F4 B9     .word off_B9F4  ; 13
-- D 1 - I - 0x00B87A 02:B86A: 10 BA     .word off_BA10  ; 14
-- D 1 - I - 0x00B87C 02:B86C: 10 BA     .word off_BA10  ; 15
-- D 1 - I - 0x00B87E 02:B86E: 10 BA     .word off_BA10  ; 16
-- D 1 - I - 0x00B880 02:B870: 10 BA     .word off_BA10  ; 17
-- D 1 - I - 0x00B882 02:B872: 10 BA     .word off_BA10  ; 18
-- D 1 - I - 0x00B884 02:B874: 10 BA     .word off_BA10  ; 19
-- D 1 - I - 0x00B886 02:B876: F4 B9     .word off_B9F4  ; 1A
+- D 1 - I - 0x00B852 02:B842: F4 B9     .word off_B9F4  ; 00 
+- D 1 - I - 0x00B854 02:B844: F7 B9     .word off_B9F7  ; 01 
+- D 1 - I - 0x00B856 02:B846: F7 B9     .word off_B9F7  ; 02 
+- D 1 - I - 0x00B858 02:B848: F7 B9     .word off_B9F7  ; 03 
+- D 1 - I - 0x00B85A 02:B84A: F4 B9     .word off_B9F4  ; 04 
+- D 1 - I - 0x00B85C 02:B84C: F4 B9     .word off_B9F4  ; 05 
+- D 1 - I - 0x00B85E 02:B84E: F4 B9     .word off_B9F4  ; 06 
+- D 1 - I - 0x00B860 02:B850: 0B BA     .word off_BA0B  ; 07 
+- D 1 - I - 0x00B862 02:B852: 0B BA     .word off_BA0B  ; 08 
+- D 1 - I - 0x00B864 02:B854: 0B BA     .word off_BA0B  ; 09 
+- D 1 - I - 0x00B866 02:B856: 0B BA     .word off_BA0B  ; 0A 
+- D 1 - I - 0x00B868 02:B858: 0B BA     .word off_BA0B  ; 0B 
+- D 1 - I - 0x00B86A 02:B85A: 0B BA     .word off_BA0B  ; 0C 
+- D 1 - I - 0x00B86C 02:B85C: 0B BA     .word off_BA0B  ; 0D 
+- D 1 - I - 0x00B86E 02:B85E: 0B BA     .word off_BA0B  ; 0E 
+- D 1 - I - 0x00B870 02:B860: F4 B9     .word off_B9F4  ; 0F 
+- D 1 - I - 0x00B872 02:B862: F4 B9     .word off_B9F4  ; 10 
+- D 1 - I - 0x00B874 02:B864: F4 B9     .word off_B9F4  ; 11 
+- D 1 - I - 0x00B876 02:B866: F4 B9     .word off_B9F4  ; 12 
+- D 1 - I - 0x00B878 02:B868: F4 B9     .word off_B9F4  ; 13 
+- D 1 - I - 0x00B87A 02:B86A: 10 BA     .word off_BA10  ; 14 
+- D 1 - I - 0x00B87C 02:B86C: 10 BA     .word off_BA10  ; 15 
+- D 1 - I - 0x00B87E 02:B86E: 10 BA     .word off_BA10  ; 16 
+- D 1 - I - 0x00B880 02:B870: 10 BA     .word off_BA10  ; 17 
+- D 1 - I - 0x00B882 02:B872: 10 BA     .word off_BA10  ; 18 
+- D 1 - I - 0x00B884 02:B874: 10 BA     .word off_BA10  ; 19 
+- D 1 - I - 0x00B886 02:B876: F4 B9     .word off_B9F4  ; 1A 
 
 
 
 _off003_B878_1B_jumping_spike: ; con_obj_jumping_spike
-- D 1 - I - 0x00B888 02:B878: F7 B9     .word off_B9F7  ; 00
-- D 1 - I - 0x00B88A 02:B87A: F7 B9     .word off_B9F7  ; 01
-- D 1 - I - 0x00B88C 02:B87C: F7 B9     .word off_B9F7  ; 02
-- D 1 - I - 0x00B88E 02:B87E: F7 B9     .word off_B9F7  ; 03
-- D 1 - I - 0x00B890 02:B880: F7 B9     .word off_B9F7  ; 04
-- - - - - - 0x00B892 02:B882: F7 B9     .word off_B9F7  ; 05
+- D 1 - I - 0x00B888 02:B878: F7 B9     .word off_B9F7  ; 00 
+- D 1 - I - 0x00B88A 02:B87A: F7 B9     .word off_B9F7  ; 01 
+- D 1 - I - 0x00B88C 02:B87C: F7 B9     .word off_B9F7  ; 02 
+- D 1 - I - 0x00B88E 02:B87E: F7 B9     .word off_B9F7  ; 03 
+- D 1 - I - 0x00B890 02:B880: F7 B9     .word off_B9F7  ; 04 
+- - - - - - 0x00B892 02:B882: F7 B9     .word off_B9F7  ; 05 
 
 
 
 _off003_B884_0A_right_arm: ; con_obj_right_arm
-- D 1 - I - 0x00B894 02:B884: DA B8     .word off_B8DA  ; 00
-- D 1 - I - 0x00B896 02:B886: DA B8     .word off_B8DA  ; 01
-- D 1 - I - 0x00B898 02:B888: DA B8     .word off_B8DA  ; 02
-- D 1 - I - 0x00B89A 02:B88A: DA B8     .word off_B8DA  ; 03
-- D 1 - I - 0x00B89C 02:B88C: DA B8     .word off_B8DA  ; 04
-- D 1 - I - 0x00B89E 02:B88E: DA B8     .word off_B8DA  ; 05
-- D 1 - I - 0x00B8A0 02:B890: 00 00     .word $0000     ; 06
-- D 1 - I - 0x00B8A2 02:B892: 00 00     .word $0000     ; 07
-- D 1 - I - 0x00B8A4 02:B894: 00 00     .word $0000     ; 08
-- D 1 - I - 0x00B8A6 02:B896: DA B8     .word off_B8DA  ; 09
-- D 1 - I - 0x00B8A8 02:B898: 00 00     .word $0000     ; 0A
-- - - - - - 0x00B8AA 02:B89A: 00 00     .word $0000     ; 0B
-- D 1 - I - 0x00B8AC 02:B89C: DA B8     .word off_B8DA  ; 0C
-- D 1 - I - 0x00B8AE 02:B89E: E4 B8     .word off_B8E4  ; 0D
-- D 1 - I - 0x00B8B0 02:B8A0: DA B8     .word off_B8DA  ; 0E
-- D 1 - I - 0x00B8B2 02:B8A2: E4 B8     .word off_B8E4  ; 0F
-- D 1 - I - 0x00B8B4 02:B8A4: DA B8     .word off_B8DA  ; 10
-- D 1 - I - 0x00B8B6 02:B8A6: 25 BA     .word off_BA25  ; 11
-- - - - - - 0x00B8B8 02:B8A8: 00 00     .word $0000     ; 12
-- - - - - - 0x00B8BA 02:B8AA: 00 00     .word $0000     ; 13
-- - - - - - 0x00B8BC 02:B8AC: 00 00     .word $0000     ; 14
-- D 1 - I - 0x00B8BE 02:B8AE: DA B8     .word off_B8DA  ; 15
-- D 1 - I - 0x00B8C0 02:B8B0: 25 BA     .word off_BA25  ; 16
-- - - - - - 0x00B8C2 02:B8B2: 00 00     .word $0000     ; 17
-- - - - - - 0x00B8C4 02:B8B4: 00 00     .word $0000     ; 18
-- - - - - - 0x00B8C6 02:B8B6: 00 00     .word $0000     ; 19
-- D 1 - I - 0x00B8C8 02:B8B8: E4 B8     .word off_B8E4  ; 1A
-- - - - - - 0x00B8CA 02:B8BA: 00 00     .word $0000     ; 1B
-- - - - - - 0x00B8CC 02:B8BC: 00 00     .word $0000     ; 1C
-- - - - - - 0x00B8CE 02:B8BE: 00 00     .word $0000     ; 1D
-- - - - - - 0x00B8D0 02:B8C0: 00 00     .word $0000     ; 1E
-- - - - - - 0x00B8D2 02:B8C2: 00 00     .word $0000     ; 1F
-- - - - - - 0x00B8D4 02:B8C4: 00 00     .word $0000     ; 20
-- - - - - - 0x00B8D6 02:B8C6: 00 00     .word $0000     ; 21
-- - - - - - 0x00B8D8 02:B8C8: 00 00     .word $0000     ; 22
-- - - - - - 0x00B8DA 02:B8CA: 00 00     .word $0000     ; 23
-- - - - - - 0x00B8DC 02:B8CC: 00 00     .word $0000     ; 24
-- D 1 - I - 0x00B8DE 02:B8CE: FE B8     .word off_B8FE  ; 25
+- D 1 - I - 0x00B894 02:B884: DA B8     .word off_B8DA  ; 00 
+- D 1 - I - 0x00B896 02:B886: DA B8     .word off_B8DA  ; 01 
+- D 1 - I - 0x00B898 02:B888: DA B8     .word off_B8DA  ; 02 
+- D 1 - I - 0x00B89A 02:B88A: DA B8     .word off_B8DA  ; 03 
+- D 1 - I - 0x00B89C 02:B88C: DA B8     .word off_B8DA  ; 04 
+- D 1 - I - 0x00B89E 02:B88E: DA B8     .word off_B8DA  ; 05 
+- D 1 - I - 0x00B8A0 02:B890: 00 00     .word $0000     ; 06 
+- D 1 - I - 0x00B8A2 02:B892: 00 00     .word $0000     ; 07 
+- D 1 - I - 0x00B8A4 02:B894: 00 00     .word $0000     ; 08 
+- D 1 - I - 0x00B8A6 02:B896: DA B8     .word off_B8DA  ; 09 
+- D 1 - I - 0x00B8A8 02:B898: 00 00     .word $0000     ; 0A 
+- - - - - - 0x00B8AA 02:B89A: 00 00     .word $0000     ; 0B 
+- D 1 - I - 0x00B8AC 02:B89C: DA B8     .word off_B8DA  ; 0C 
+- D 1 - I - 0x00B8AE 02:B89E: E4 B8     .word off_B8E4  ; 0D 
+- D 1 - I - 0x00B8B0 02:B8A0: DA B8     .word off_B8DA  ; 0E 
+- D 1 - I - 0x00B8B2 02:B8A2: E4 B8     .word off_B8E4  ; 0F 
+- D 1 - I - 0x00B8B4 02:B8A4: DA B8     .word off_B8DA  ; 10 
+- D 1 - I - 0x00B8B6 02:B8A6: 25 BA     .word off_BA25  ; 11 
+- - - - - - 0x00B8B8 02:B8A8: 00 00     .word $0000     ; 12 
+- - - - - - 0x00B8BA 02:B8AA: 00 00     .word $0000     ; 13 
+- - - - - - 0x00B8BC 02:B8AC: 00 00     .word $0000     ; 14 
+- D 1 - I - 0x00B8BE 02:B8AE: DA B8     .word off_B8DA  ; 15 
+- D 1 - I - 0x00B8C0 02:B8B0: 25 BA     .word off_BA25  ; 16 
+- - - - - - 0x00B8C2 02:B8B2: 00 00     .word $0000     ; 17 
+- - - - - - 0x00B8C4 02:B8B4: 00 00     .word $0000     ; 18 
+- - - - - - 0x00B8C6 02:B8B6: 00 00     .word $0000     ; 19 
+- D 1 - I - 0x00B8C8 02:B8B8: E4 B8     .word off_B8E4  ; 1A 
+- - - - - - 0x00B8CA 02:B8BA: 00 00     .word $0000     ; 1B 
+- - - - - - 0x00B8CC 02:B8BC: 00 00     .word $0000     ; 1C 
+- - - - - - 0x00B8CE 02:B8BE: 00 00     .word $0000     ; 1D 
+- - - - - - 0x00B8D0 02:B8C0: 00 00     .word $0000     ; 1E 
+- - - - - - 0x00B8D2 02:B8C2: 00 00     .word $0000     ; 1F 
+- - - - - - 0x00B8D4 02:B8C4: 00 00     .word $0000     ; 20 
+- - - - - - 0x00B8D6 02:B8C6: 00 00     .word $0000     ; 21 
+- - - - - - 0x00B8D8 02:B8C8: 00 00     .word $0000     ; 22 
+- - - - - - 0x00B8DA 02:B8CA: 00 00     .word $0000     ; 23 
+- - - - - - 0x00B8DC 02:B8CC: 00 00     .word $0000     ; 24 
+- D 1 - I - 0x00B8DE 02:B8CE: FE B8     .word off_B8FE  ; 25 
 
 
 
 _off003_B8D0_17_baton: ; con_obj_baton
-- D 1 - I - 0x00B8E0 02:B8D0: 00 00     .word $0000     ; 00
-- - - - - - 0x00B8E2 02:B8D2: 00 00     .word $0000     ; 01
-- - - - - - 0x00B8E4 02:B8D4: 00 00     .word $0000     ; 02
-- - - - - - 0x00B8E6 02:B8D6: 00 00     .word $0000     ; 03
-- D 1 - I - 0x00B8E8 02:B8D8: EF B9     .word off_B9EF  ; 04
+- D 1 - I - 0x00B8E0 02:B8D0: 00 00     .word $0000     ; 00 
+- - - - - - 0x00B8E2 02:B8D2: 00 00     .word $0000     ; 01 
+- - - - - - 0x00B8E4 02:B8D4: 00 00     .word $0000     ; 02 
+- - - - - - 0x00B8E6 02:B8D6: 00 00     .word $0000     ; 03 
+- D 1 - I - 0x00B8E8 02:B8D8: EF B9     .word off_B9EF  ; 04 
 
 
 
@@ -11319,10 +11177,10 @@ C - - - - - 0x00BF66 02:BF56: 60        RTS
 
 
 tbl_BF57:
-- D 1 - - - 0x00BF67 02:BF57: 24        .byte $24   ; 00
-- D 1 - - - 0x00BF68 02:BF58: 44        .byte $44   ; 01
-- D 1 - - - 0x00BF69 02:BF59: 94        .byte $94   ; 02
-- D 1 - - - 0x00BF6A 02:BF5A: F4        .byte $F4   ; 03
+- D 1 - - - 0x00BF67 02:BF57: 24        .byte $24   ; 00 
+- D 1 - - - 0x00BF68 02:BF58: 44        .byte $44   ; 01 
+- D 1 - - - 0x00BF69 02:BF59: 94        .byte $94   ; 02 
+- D 1 - - - 0x00BF6A 02:BF5A: F4        .byte $F4   ; 03 
 
 
 
