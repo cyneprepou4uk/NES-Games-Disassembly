@@ -32,7 +32,7 @@ Go to Language -> User Defined Language -> Define your language -> Import.
 
 ## How to edit a disassembly
 
-My personal comments are marked with `bzk` text. Start with deleting garbage to free up some space.
+Important comments are marked with `bzk` text. Start with deleting garbage to free up some space.
 
 And don't worry about stuff like `C - - - - - 0x00009C 00:C08C: A9 00     LDA #$00`.
 
