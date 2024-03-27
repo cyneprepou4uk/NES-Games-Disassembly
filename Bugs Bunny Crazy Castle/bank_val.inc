@@ -7,7 +7,7 @@ con_prg_bank                            = $00 ;
 
 ; ram_btn_hold
 ; ram_btn_press
-; ram_obj_input
+; ram_obj_btn
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -37,7 +37,7 @@ con_script_generate_password            = $07 ;
 
 
 
-; ram_0018
+; ram_0018_flag
 con_0018_01                             = $01 ; 
 con_0018_02                             = $02 ; 
 con_0018_04                             = $04 ; 
@@ -46,6 +46,19 @@ con_0018_10                             = $10 ;
 con_0018_20                             = $20 ; 
 con_0018_40                             = $40 ; 
 ; con_0018_80                           = $80 ; unused
+
+
+
+; ram_00F0_flag
+con_00F0_00                             = $00 ; 
+; con_00F0_01                           = $01 ; 
+con_00F0_02                             = $02 ; 
+con_00F0_04                             = $04 ; 
+con_00F0_08                             = $08 ; prg bankswitch in progress if set
+; con_00F0_10                           = $10 ; 
+; con_00F0_20                           = $20 ; 
+con_00F0_40                             = $40 ; useless flag, never set
+con_00F0_80                             = $80 ; 
 
 
 
