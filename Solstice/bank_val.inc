@@ -56,6 +56,7 @@ con_bsw_26                              = $26 * $03 ; 72
 
 
 ; ram_buttons
+; ram_copy_buttons
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -65,6 +66,9 @@ con_btn_Select                          = $20 ;
 con_btn_B                               = $40 ; 
 con_btn_A                               = $80 ; 
 
+con_btns_UD                             = con_btn_Up + con_btn_Down                                 ; 0C
+con_btns_LR                             = con_btn_Left + con_btn_Right                              ; 03
+con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn_Down + con_btn_Up  ; 0F
 con_btns_SSAB                           = con_btn_Start + con_btn_Select + con_btn_A + con_btn_B    ; F0
 
 
@@ -73,12 +77,12 @@ con_btns_SSAB                           = con_btn_Start + con_btn_Select + con_b
 ; ram_sfx_2
 ; sound effects, need comments at 0x015753
 con_sfx_00                              = $00 ; Enter teleporter
-con_sfx_01                              = $01 ; unused, some sort of hit/contact/tap
+; con_sfx_01                            = $01 ; unused, some sort of hit/contact/tap
 con_sfx_drink_potion                    = $02 ; Potion use
 con_sfx_pickup_item                     = $03 ; pick up block
 con_sfx_drop_item                       = $04 ; drop block
 con_sfx_death                           = $05 ; death
-con_sfx_06                              = $06 ; unused, some sort of click
+; con_sfx_06                            = $06 ; unused, some sort of click
 con_sfx_paper                           = $07 ; scrolling paper during pause menu
 con_sfx_pickup_bonus_item               = $08 ; boots, keys, Credits
 con_sfx_09                              = $09 ; activate Detonator
@@ -107,11 +111,11 @@ con_obj_id_05                           = $05 ; Slime Ball that moves around ran
 con_obj_id_06                           = $06 ; Moving thin platform 
 con_obj_id_07                           = $07 ; Floating block with Z-gravity
 con_obj_id_08                           = $08 ; Block that moves to celling and then to floor
-con_obj_id_09                           = $09 ; X/Y moving thing platform with Z-gravity (unused)
+; con_obj_id_09                         = $09 ; (unused) X/Y moving thing platform with Z-gravity
 con_obj_id_0A                           = $0A ; Ghost that moves randomly
 con_obj_id_0B                           = $0B ; Skeleton that moves randomly
 con_obj_id_0C                           = $0C ; Ghost that moves back and forth 
-; con_obj_id_0D                         = $0D ; Skeleton that moves back and forth (unused)
+; con_obj_id_0D                         = $0D ; (unused) Skeleton that moves back and forth
 con_obj_id_0E                           = $0E ; Troll that moves back and forth 
 con_obj_id_0F                           = $0F ; Ghost that chases player
 con_obj_id_10                           = $10 ; Skeleton that chases player
@@ -136,8 +140,8 @@ con_obj_id_22                           = $22 ; same as 1E
 con_obj_id_23                           = $23 ; Same as 1D
 con_obj_id_24                           = $24 ; same as 08 but doesnt go all the way to the celling (2 blocks less)
 con_obj_id_25                           = $25 ; Blasting bomb (two red balls that spin in-place)
-; con_obj_id_26                         = $26 ; Lanky three legged spider, moves randomly (unused)
-; con_obj_id_27                         = $27 ; Lanky three legged spider thtat moves back and forth(unused)
+; con_obj_id_26                         = $26 ; (unused) Lanky three legged spider, moves randomly
+; con_obj_id_27                         = $27 ; (unused) Lanky three legged spider thtat moves back and forth
 con_obj_id_28                           = $28 ; Lanky three legged spider that chases player
 con_obj_id_detonator_00                 = $29 ; Detonator #1            (Room E4)
 con_obj_id_trig_det_00                  = $2A ; Triggered detonator #1  (Room E4)
@@ -148,11 +152,11 @@ con_obj_id_trig_det_02                  = $2E ; Triggered detonator #3  (Room FA
 con_obj_id_2F                           = $2F ; Worm, moves randomly
 con_obj_id_30                           = $30 ; Worm, moves back and forth 
 con_obj_id_31                           = $31 ; Worm, chases player
-; con_obj_id_32                         = $32 ; Tusk Demon, moves radomly(unused)
+; con_obj_id_32                         = $32 ; (unused) Tusk Demon, moves radomly
 con_obj_id_33                           = $33 ; Tusk Demon, moves back and forth  
 con_obj_id_34                           = $34 ; Tusk Demon, chases player
-; con_obj_id_35                         = $35 ; Leg monster, moves randomly(unused)
-; con_obj_id_36                         = $36 ; Leg monster, moves back and forth(unused)
+; con_obj_id_35                         = $35 ; (unused) Leg monster, moves randomly
+; con_obj_id_36                         = $36 ; (unused) Leg monster, moves back and forth
 con_obj_id_37                           = $37 ; Leg monster, chases player (only used in room 56)
 con_obj_id_38                           = $38 ; same as 1C
 con_obj_id_39                           = $39 ; same as 1C

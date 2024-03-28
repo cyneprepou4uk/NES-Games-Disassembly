@@ -55,7 +55,7 @@ C - - - - - 0x007E56 01:FE46: 19 7B FF  ORA tbl_FF7B_prg_bank,Y
 C - - - - - 0x007E59 01:FE49: 85 FF     STA ram_prg_bank
 C - - - - - 0x007E5B 01:FE4B: 8D F8 FF  STA $FFF8
 - - - - - - 0x007E5E 01:FE4E: 20 5C FE  JSR sub_FE5C
-; bzk optimize, loading same A from 004A
+; bzk optimize, loading same A from 004A, see 0x007E74
 - - - - - - 0x007E61 01:FE51: 85 4A     STA ram_004A
 - - - - - - 0x007E63 01:FE53: 68        PLA
 - - - - - - 0x007E64 01:FE54: 85 FF     STA ram_prg_bank
@@ -78,8 +78,8 @@ sub_FE5C:
 
 vec_FE69_NMI:
 C D 3 - - - 0x007E79 01:FE69: 48        PHA
-C - - - - - 0x007E7A 01:FE6A: 8E B0 07  STX ram_save_X
-C - - - - - 0x007E7D 01:FE6D: 8C B1 07  STY ram_save_Y
+C - - - - - 0x007E7A 01:FE6A: 8E B0 07  STX ram_save_X_2
+C - - - - - 0x007E7D 01:FE6D: 8C B1 07  STY ram_save_Y_2
 C - - - - - 0x007E80 01:FE70: A5 FF     LDA ram_prg_bank
 C - - - - - 0x007E82 01:FE72: 48        PHA
 C - - - - - 0x007E83 01:FE73: 29 10     AND #$10
@@ -114,12 +114,13 @@ bra_FEA3:
 - - - - - - 0x007EB8 01:FEA8: 8E 8F 07  STX ram_sfx_2
 bra_FEAB:
 - - - - - - 0x007EBB 01:FEAB: 20 F4 C2  JSR sub_0x014304_update_music_driver
-- - - - - - 0x007EBE 01:FEAE: 8D 90 07  STA ram_0790
+; A from 0x014E85
+- - - - - - 0x007EBE 01:FEAE: 8D 90 07  STA ram_0790_flag
 - - - - - - 0x007EC1 01:FEB1: 68        PLA
 - - - - - - 0x007EC2 01:FEB2: 85 FF     STA ram_prg_bank
 - - - - - - 0x007EC4 01:FEB4: 8D F8 FF  STA $FFF8
-C - - - - - 0x007EC7 01:FEB7: AE B0 07  LDX ram_save_X
-C - - - - - 0x007ECA 01:FEBA: AC B1 07  LDY ram_save_Y
+C - - - - - 0x007EC7 01:FEB7: AE B0 07  LDX ram_save_X_2
+C - - - - - 0x007ECA 01:FEBA: AC B1 07  LDY ram_save_Y_2
 C - - - - - 0x007ECD 01:FEBD: 68        PLA
 C - - - - - 0x007ECE 01:FEBE: 40        RTI
 
@@ -245,7 +246,7 @@ C - - - - - 0x007F72 01:FF62: 60        RTS
 
 
 sub_inc_FF63:
-C - - - - - 0x007F73 01:FF63: AD 90 07  LDA ram_0790
+C - - - - - 0x007F73 01:FF63: AD 90 07  LDA ram_0790_flag
 C - - - - - 0x007F76 01:FF66: F0 FA     BEQ bra_FF62_RTS
 C - - - - - 0x007F78 01:FF68: A5 FF     LDA ram_prg_bank
 C - - - - - 0x007F7A 01:FF6A: 48        PHA
