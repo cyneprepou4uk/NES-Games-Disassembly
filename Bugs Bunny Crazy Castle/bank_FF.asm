@@ -582,9 +582,9 @@ C - - - - - 0x00C44B 03:C43B: C8        INY
 C - - - - - 0x00C44C 03:C43C: C0 04     CPY #$04
 C - - - - - 0x00C44E 03:C43E: D0 F6     BNE bra_C436_loop
 C - - - - - 0x00C450 03:C440: 20 A2 C4  JSR sub_C4A2
-C - - - - - 0x00C453 03:C443: A9 62     LDA #$62
+C - - - - - 0x00C453 03:C443: A9 62     LDA #< ram_0062
 C - - - - - 0x00C455 03:C445: 85 1E     STA ram_001E
-C - - - - - 0x00C457 03:C447: A9 00     LDA #$00
+C - - - - - 0x00C457 03:C447: A9 00     LDA #> ram_0062
 C - - - - - 0x00C459 03:C449: 85 1F     STA ram_001F
 C - - - - - 0x00C45B 03:C44B: 20 30 F2  JSR sub_F230_replace_tiles_with_new
 C - - - - - 0x00C45E 03:C44E: 20 A2 C4  JSR sub_C4A2
@@ -651,7 +651,7 @@ C - - - - - 0x00C4B6 03:C4A6: 10 17     BPL bra_C4BF
 C - - - - - 0x00C4B8 03:C4A8: A5 21     LDA ram_0021
 C - - - - - 0x00C4BA 03:C4AA: C9 0F     CMP #$0F
 C - - - - - 0x00C4BC 03:C4AC: 10 28     BPL bra_C4D6
-C - - - - - 0x00C4BE 03:C4AE: 20 EB C4  JSR sub_C4EB
+C - - - - - 0x00C4BE 03:C4AE: 20 EB C4  JSR sub_C4EB_divide_by_04
 C - - - - - 0x00C4C1 03:C4B1: A5 20     LDA ram_0020
 C - - - - - 0x00C4C3 03:C4B3: 0A        ASL
 C - - - - - 0x00C4C4 03:C4B4: 65 1C     ADC ram_001C
@@ -662,7 +662,7 @@ C - - - - - 0x00C4CC 03:C4BC: 85 1D     STA ram_001D
 C - - - - - 0x00C4CE 03:C4BE: 60        RTS
 bra_C4BF:
 C - - - - - 0x00C4CF 03:C4BF: A5 21     LDA ram_0021
-C - - - - - 0x00C4D1 03:C4C1: 20 EB C4  JSR sub_C4EB
+C - - - - - 0x00C4D1 03:C4C1: 20 EB C4  JSR sub_C4EB_divide_by_04
 C - - - - - 0x00C4D4 03:C4C4: A5 20     LDA ram_0020
 C - - - - - 0x00C4D6 03:C4C6: 38        SEC
 C - - - - - 0x00C4D7 03:C4C7: E9 10     SBC #$10
@@ -677,7 +677,7 @@ C - - - - - 0x00C4E5 03:C4D5: 60        RTS
 bra_C4D6:
 C - - - - - 0x00C4E6 03:C4D6: 38        SEC
 C - - - - - 0x00C4E7 03:C4D7: E9 0F     SBC #$0F
-C - - - - - 0x00C4E9 03:C4D9: 20 EB C4  JSR sub_C4EB
+C - - - - - 0x00C4E9 03:C4D9: 20 EB C4  JSR sub_C4EB_divide_by_04
 C - - - - - 0x00C4EC 03:C4DC: A5 20     LDA ram_0020
 C - - - - - 0x00C4EE 03:C4DE: 0A        ASL
 C - - - - - 0x00C4EF 03:C4DF: 18        CLC
@@ -690,10 +690,11 @@ C - - - - - 0x00C4FA 03:C4EA: 60        RTS
 
 
 
-sub_C4EB:
+sub_C4EB_divide_by_04:
 C - - - - - 0x00C4FB 03:C4EB: 85 1D     STA ram_001D
 C - - - - - 0x00C4FD 03:C4ED: A9 00     LDA #$00
 C - - - - - 0x00C4FF 03:C4EF: 85 1C     STA ram_001C
+; / 04
 C - - - - - 0x00C501 03:C4F1: 46 1D     LSR ram_001D
 C - - - - - 0x00C503 03:C4F3: 66 1C     ROR ram_001C
 C - - - - - 0x00C505 03:C4F5: 46 1D     LSR ram_001D
@@ -886,9 +887,9 @@ C - - - - - 0x00C636 03:C626: 0A        ASL
 C - - - - - 0x00C637 03:C627: 0A        ASL
 C - - - - - 0x00C638 03:C628: 0A        ASL
 C - - - - - 0x00C639 03:C629: 18        CLC
-C - - - - - 0x00C63A 03:C62A: 69 5A     ADC #< tbl_C65A_palette_bg
+C - - - - - 0x00C63A 03:C62A: 69 5A     ADC #< tbl_C65A_background_palette
 C - - - - - 0x00C63C 03:C62C: 85 1E     STA ram_001E
-C - - - - - 0x00C63E 03:C62E: A9 C6     LDA #> tbl_C65A_palette_bg
+C - - - - - 0x00C63E 03:C62E: A9 C6     LDA #> tbl_C65A_background_palette
 C - - - - - 0x00C640 03:C630: 69 00     ADC #$00
 C - - - - - 0x00C642 03:C632: 85 1F     STA ram_001F
 C - - - - - 0x00C644 03:C634: A0 00     LDY #$00
@@ -900,7 +901,7 @@ C - - - - - 0x00C64C 03:C63C: C0 10     CPY #$10
 C - - - - - 0x00C64E 03:C63E: D0 F6     BNE bra_C636_loop
 C - - - - - 0x00C650 03:C640: A0 00     LDY #$00
 bra_C642_loop:
-C - - - - - 0x00C652 03:C642: B9 8A C6  LDA tbl_C68A_palette_spr,Y
+C - - - - - 0x00C652 03:C642: B9 8A C6  LDA tbl_C68A_sprite_palette,Y
 C - - - - - 0x00C655 03:C645: 99 D0 00  STA ram_pal_buffer_1 + $10,Y
 C - - - - - 0x00C658 03:C648: C8        INY
 C - - - - - 0x00C659 03:C649: C0 10     CPY #$10
@@ -916,7 +917,7 @@ C - - - - - 0x00C669 03:C659: 60        RTS
 
 
 
-tbl_C65A_palette_bg:
+tbl_C65A_background_palette:
 - D 2 - I - 0x00C66A 03:C65A: 0F        .byte $0F, $06, $17, $27   ; 
 - D 2 - I - 0x00C66E 03:C65E: 0F        .byte $0F, $0F, $0C, $21   ; 
 - D 2 - I - 0x00C672 03:C662: 0F        .byte $0F, $0C, $17, $27   ; 
@@ -934,7 +935,7 @@ tbl_C65A_palette_bg:
 
 
 
-tbl_C68A_palette_spr:
+tbl_C68A_sprite_palette:
 - D 2 - - - 0x00C69A 03:C68A: 0F        .byte $0F, $17, $10, $30   ; 
 - D 2 - - - 0x00C69E 03:C68E: 0F        .byte $0F, $1A, $29, $30   ; 
 - D 2 - - - 0x00C6A2 03:C692: 0F        .byte $0F, $00, $16, $30   ; 
@@ -6680,7 +6681,7 @@ C - - - - - 0x00ED1D 03:ED0D: 60        RTS
 
 
 
-sub_ED0E_increase_indirect_0037:
+sub_ED0E_increase_indirect_0037_by_01:
 C - - - - - 0x00ED1E 03:ED0E: A5 37     LDA ram_0037
 C - - - - - 0x00ED20 03:ED10: 18        CLC
 C - - - - - 0x00ED21 03:ED11: 69 01     ADC #< $0001
@@ -6705,7 +6706,7 @@ C - - - - - 0x00ED2B 03:ED1B: 60        RTS
 - - - - - - 0x00ED39 03:ED29: 20 E3 EE  JSR sub_EEE3
 - - - - - - 0x00ED3C 03:ED2C: 20 DF F5  JSR sub_F5DF
 - - - - - - 0x00ED3F 03:ED2F: 20 5A EE  JSR sub_EE5A_disable_nmi
-- - - - - - 0x00ED42 03:ED32: 20 0E ED  JSR sub_ED0E_increase_indirect_0037
+- - - - - - 0x00ED42 03:ED32: 20 0E ED  JSR sub_ED0E_increase_indirect_0037_by_01
 - - - - - - 0x00ED45 03:ED35: AD 02 20  LDA $2002
 - - - - - - 0x00ED48 03:ED38: A9 24     LDA #> $2400
 - - - - - - 0x00ED4A 03:ED3A: 8D 06 20  STA $2006
@@ -6742,7 +6743,7 @@ C - - - - - 0x00ED79 03:ED69: 20 C6 F5  JSR sub_F5C6
 C - - - - - 0x00ED7C 03:ED6C: 20 E3 EE  JSR sub_EEE3
 C - - - - - 0x00ED7F 03:ED6F: 20 DF F5  JSR sub_F5DF
 C - - - - - 0x00ED82 03:ED72: 20 5A EE  JSR sub_EE5A_disable_nmi
-C - - - - - 0x00ED85 03:ED75: 20 0E ED  JSR sub_ED0E_increase_indirect_0037
+C - - - - - 0x00ED85 03:ED75: 20 0E ED  JSR sub_ED0E_increase_indirect_0037_by_01
 C - - - - - 0x00ED88 03:ED78: AD 02 20  LDA $2002
 C - - - - - 0x00ED8B 03:ED7B: A9 20     LDA #> $2000
 C - - - - - 0x00ED8D 03:ED7D: 8D 06 20  STA $2006
@@ -6766,32 +6767,37 @@ C - - - - - 0x00EDB1 03:EDA1: 60        RTS
 
 
 sub_EDA2_decompress_screen_data:
-; FF FF 00 - end token
-; FF FF xx - xx is a counter for FF tile
-; FF ?? xx - print ?? tile xx times
-; ??       - if bytes start from something other than FF, print those bytes (tiles) until next FF is found
+; 00-FE = print tile normally
+; FF xx yy = pring xx tile yy times
+; FF FF 00 = end token
 loc_EDA2_loop:
 bra_EDC9_loop:
-C D 3 - - - 0x00EDB2 03:EDA2: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
+C D 3 - - - 0x00EDB2 03:EDA2: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_indirect_0037_by_01
 C - - - - - 0x00EDB5 03:EDA5: C9 FF     CMP #$FF
 C - - - - - 0x00EDB7 03:EDA7: F0 06     BEQ bra_EDAF_it_is_control_byte
+; if not FF
 C - - - - - 0x00EDB9 03:EDA9: 20 D1 ED  JSR sub_EDD1
 C - - - - - 0x00EDBC 03:EDAC: 4C A2 ED  JMP loc_EDA2_loop
 bra_EDAF_it_is_control_byte:
-C - - - - - 0x00EDBF 03:EDAF: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
+C - - - - - 0x00EDBF 03:EDAF: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_indirect_0037_by_01
 C - - - - - 0x00EDC2 03:EDB2: C9 FF     CMP #$FF
 C - - - - - 0x00EDC4 03:EDB4: D0 0D     BNE bra_EDC3_not_control_byte
-C - - - - - 0x00EDC6 03:EDB6: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
+; if 2nd byte is also FF
+C - - - - - 0x00EDC6 03:EDB6: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_indirect_0037_by_01
+; bzk optimize, no need for CMP 00, BNE is enough
 C - - - - - 0x00EDC9 03:EDB9: C9 00     CMP #$00
 C - - - - - 0x00EDCB 03:EDBB: D0 01     BNE bra_EDBE_continue_reading_bytes
-C - - - - - 0x00EDCD 03:EDBD: 60        RTS     ; otherwise quit
+; if FF FF 00 combination
+C - - - - - 0x00EDCD 03:EDBD: 60        RTS
 bra_EDBE_continue_reading_bytes:
+; if FF FF ?? combination, then ?? is a counter
 C - - - - - 0x00EDCE 03:EDBE: AA        TAX
 C - - - - - 0x00EDCF 03:EDBF: A9 FF     LDA #$FF
 C - - - - - 0x00EDD1 03:EDC1: D0 06     BNE bra_EDC9_print_tile    ; jmp
 bra_EDC3_not_control_byte:
+; if FF xx yy combination, then xx is a tile and yy is a counter
 C - - - - - 0x00EDD3 03:EDC3: 48        PHA
-C - - - - - 0x00EDD4 03:EDC4: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
+C - - - - - 0x00EDD4 03:EDC4: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_indirect_0037_by_01
 C - - - - - 0x00EDD7 03:EDC7: AA        TAX
 C - - - - - 0x00EDD8 03:EDC8: 68        PLA
 bra_EDC9_print_tile:
@@ -6804,7 +6810,8 @@ C - - - - - 0x00EDDF 03:EDCF: F0 D1     BEQ bra_EDC9_loop   ; jmp
 
 
 sub_EDD1:
-; bzk optimize, PHA is useless, delete PLA at the end, and also delete PHA at 0x00EE3E
+; bzk optimize, this PHA is useless, delete it
+; you also need delete PLA at 0x00EE0D
 C - - - - - 0x00EDE1 03:EDD1: 48        PHA
 C - - - - - 0x00EDE2 03:EDD2: 8D 07 20  STA $2007
 C - - - - - 0x00EDE5 03:EDD5: 85 1D     STA ram_001D
@@ -6823,7 +6830,7 @@ C - - - - - 0x00EDFC 03:EDEC: E6 1C     INC ram_001C
 C - - - - - 0x00EDFE 03:EDEE: 68        PLA
 C - - - - - 0x00EDFF 03:EDEF: AA        TAX
 bra_EDF0:
-loc_EDF0_increase_indirect_001E:
+loc_EDF0_increase_indirect_001E_by_01:
 C - - - - - 0x00EE00 03:EDF0: A5 1E     LDA ram_001E
 C - - - - - 0x00EE02 03:EDF2: 18        CLC
 C - - - - - 0x00EE03 03:EDF3: 69 01     ADC #< $0001
@@ -6837,18 +6844,19 @@ C - - - - - 0x00EE0E 03:EDFE: 60        RTS
 
 
 sub_EDFF_decompress_screen_data:
+; bzk garbage
 loc_EDFF_loop:
 bra_EDFF_loop:
-- - - - - - 0x00EE0F 03:EDFF: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
+- - - - - - 0x00EE0F 03:EDFF: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_indirect_0037_by_01
 - - - - - - 0x00EE12 03:EE02: C9 FF     CMP #$FF
 - - - - - - 0x00EE14 03:EE04: F0 06     BEQ bra_EE0C
 - - - - - - 0x00EE16 03:EE06: 20 2E EE  JSR sub_EE2E
 - - - - - - 0x00EE19 03:EE09: 4C FF ED  JMP loc_EDFF_loop
 bra_EE0C:
-- - - - - - 0x00EE1C 03:EE0C: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
+- - - - - - 0x00EE1C 03:EE0C: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_indirect_0037_by_01
 - - - - - - 0x00EE1F 03:EE0F: C9 FF     CMP #$FF
 - - - - - - 0x00EE21 03:EE11: D0 0D     BNE bra_EE20
-- - - - - - 0x00EE23 03:EE13: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
+- - - - - - 0x00EE23 03:EE13: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_indirect_0037_by_01
 ; bzk optimize
 - - - - - - 0x00EE26 03:EE16: C9 00     CMP #$00
 - - - - - - 0x00EE28 03:EE18: D0 01     BNE bra_EE1B
@@ -6859,7 +6867,7 @@ bra_EE1B:
 - - - - - - 0x00EE2E 03:EE1E: D0 06     BNE bra_EE26    ; jmp
 bra_EE20:
 - - - - - - 0x00EE30 03:EE20: 48        PHA
-- - - - - - 0x00EE31 03:EE21: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_pointer
+- - - - - - 0x00EE31 03:EE21: 20 50 EE  JSR sub_EE50_read_screen_byte_and_increase_indirect_0037_by_01
 - - - - - - 0x00EE34 03:EE24: AA        TAX
 - - - - - - 0x00EE35 03:EE25: 68        PLA
 bra_EE26:
@@ -6872,6 +6880,7 @@ bra_EE26_loop:
 
 
 sub_EE2E:
+; bzk garbage, same code as 0x00EDE1
 - - - - - - 0x00EE3E 03:EE2E: 48        PHA
 - - - - - - 0x00EE3F 03:EE2F: 8D 07 20  STA $2007
 - - - - - - 0x00EE42 03:EE32: 85 1D     STA ram_001D
@@ -6889,15 +6898,15 @@ sub_EE2E:
 - - - - - - 0x00EE59 03:EE49: E6 1C     INC ram_001C
 - - - - - - 0x00EE5B 03:EE4B: 68        PLA
 - - - - - - 0x00EE5C 03:EE4C: AA        TAX
-- - - - - - 0x00EE5D 03:EE4D: 4C F0 ED  JMP loc_EDF0_increase_indirect_001E
+- - - - - - 0x00EE5D 03:EE4D: 4C F0 ED  JMP loc_EDF0_increase_indirect_001E_by_01
 
 
 
-sub_EE50_read_screen_byte_and_increase_pointer:
+sub_EE50_read_screen_byte_and_increase_indirect_0037_by_01:
 C - - - - - 0x00EE60 03:EE50: A0 00     LDY #$00
 C - - - - - 0x00EE62 03:EE52: B1 37     LDA (ram_0037),Y
 C - - - - - 0x00EE64 03:EE54: 48        PHA
-C - - - - - 0x00EE65 03:EE55: 20 0E ED  JSR sub_ED0E_increase_indirect_0037
+C - - - - - 0x00EE65 03:EE55: 20 0E ED  JSR sub_ED0E_increase_indirect_0037_by_01
 C - - - - - 0x00EE68 03:EE58: 68        PLA
 C - - - - - 0x00EE69 03:EE59: 60        RTS
 
@@ -7670,7 +7679,7 @@ C - - - - - 0x00F27B 03:F26B: 85 12     STA ram_0012
 C - - - - - 0x00F27D 03:F26D: C8        INY
 C - - - - - 0x00F27E 03:F26E: B1 1E     LDA (ram_001E),Y
 C - - - - - 0x00F280 03:F270: 85 13     STA ram_0013
-C - - - - - 0x00F282 03:F272: 20 81 F3  JSR sub_F381
+C - - - - - 0x00F282 03:F272: 20 81 F3  JSR sub_F381_increase_indiirect_001E_by_02
 C - - - - - 0x00F285 03:F275: A5 1C     LDA ram_001C
 C - - - - - 0x00F287 03:F277: 85 10     STA ram_0010
 C - - - - - 0x00F289 03:F279: A5 1D     LDA ram_001D
@@ -7843,7 +7852,7 @@ C - - - - - 0x00F390 03:F380: 60        RTS
 
 
 
-sub_F381:
+sub_F381_increase_indiirect_001E_by_02:
 C - - - - - 0x00F391 03:F381: A5 1E     LDA ram_001E
 C - - - - - 0x00F393 03:F383: 18        CLC
 C - - - - - 0x00F394 03:F384: 69 02     ADC #< $0002
@@ -8288,6 +8297,7 @@ C - - - - - 0x00F5DB 03:F5CB: 20 DA EE  JSR sub_EEDA
 C - - - - - 0x00F5DE 03:F5CE: 20 E3 EE  JSR sub_EEE3
 sub_F5D1:
 C - - - - - 0x00F5E1 03:F5D1: A9 18     LDA #$18
+; bzk optimize, after you deleted garbage below, this branch will become useless
 C - - - - - 0x00F5E3 03:F5D3: D0 06     BNE bra_F5DB    ; jmp
 
 
@@ -8309,6 +8319,7 @@ C - - - - - 0x00F5ED 03:F5DD: D0 0C     BNE bra_F5EB    ; jmp
 
 sub_F5DF:
 C - - - - - 0x00F5EF 03:F5DF: A9 E7     LDA #$E7
+; bzk optimize, after you deleted garbage below, this branch will become useless
 C - - - - - 0x00F5F1 03:F5E1: D0 06     BNE bra_F5E9    ; jmp
 
 

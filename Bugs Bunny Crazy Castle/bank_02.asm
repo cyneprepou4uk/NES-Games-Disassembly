@@ -581,92 +581,92 @@ tbl_8333:
 
 
 _off000_8351_00:
-- D 0 - I - 0x008361 02:8351: 04        .byte $04   ; 
-- D 0 - I - 0x008362 02:8352: 02        .byte $02   ; 
+- D 0 - I - 0x008361 02:8351: 04        .byte $04   ; columns
+- D 0 - I - 0x008362 02:8352: 02        .byte $02   ; rows
 - D 0 - I - 0x008363 02:8353: FF        .byte $FF, $FF, $FF, $80   ; 
 - D 0 - I - 0x008367 02:8357: FF        .byte $FF, $FF, $FF, $90   ; 
 
 _off000_835B_01:
-- D 0 - I - 0x00836B 02:835B: 04        .byte $04   ; 
-- D 0 - I - 0x00836C 02:835C: 02        .byte $02   ; 
+- D 0 - I - 0x00836B 02:835B: 04        .byte $04   ; columns
+- D 0 - I - 0x00836C 02:835C: 02        .byte $02   ; rows
 - D 0 - I - 0x00836D 02:835D: 81        .byte $81, $82, $83, $83   ; 
 - D 0 - I - 0x008371 02:8361: 91        .byte $91, $92, $D6, $D6   ; 
 
 _off000_8365_02:
-- D 0 - I - 0x008375 02:8365: 04        .byte $04   ; 
-- D 0 - I - 0x008376 02:8366: 02        .byte $02   ; 
+- D 0 - I - 0x008375 02:8365: 04        .byte $04   ; columns
+- D 0 - I - 0x008376 02:8366: 02        .byte $02   ; rows
 - D 0 - I - 0x008377 02:8367: BE        .byte $BE, $A0, $A1, $A2   ; 
 - D 0 - I - 0x00837B 02:836B: CE        .byte $CE, $B0, $B1, $B2   ; 
 
 _off000_836F_03:
-- D 0 - I - 0x00837F 02:836F: 04        .byte $04   ; 
-- D 0 - I - 0x008380 02:8370: 02        .byte $02   ; 
+- D 0 - I - 0x00837F 02:836F: 04        .byte $04   ; columns
+- D 0 - I - 0x008380 02:8370: 02        .byte $02   ; rows
 - D 0 - I - 0x008381 02:8371: D6        .byte $D6, $D6, $FF, $FF   ; 
 - D 0 - I - 0x008385 02:8375: B3        .byte $B3, $D6, $FF, $FF   ; 
 
 _off000_8379_04:
-- D 0 - I - 0x008389 02:8379: 04        .byte $04   ; 
-- D 0 - I - 0x00838A 02:837A: 02        .byte $02   ; 
+- D 0 - I - 0x008389 02:8379: 04        .byte $04   ; columns
+- D 0 - I - 0x00838A 02:837A: 02        .byte $02   ; rows
 - D 0 - I - 0x00838B 02:837B: FF        .byte $FF, $83, $84, $C0   ; 
 - D 0 - I - 0x00838F 02:837F: FF        .byte $FF, $93, $94, $D0   ; 
 
 _off000_8383_05:
-- D 0 - I - 0x008393 02:8383: 04        .byte $04   ; 
-- D 0 - I - 0x008394 02:8384: 02        .byte $02   ; 
+- D 0 - I - 0x008393 02:8383: 04        .byte $04   ; columns
+- D 0 - I - 0x008394 02:8384: 02        .byte $02   ; rows
 - D 0 - I - 0x008395 02:8385: C1        .byte $C1, $C2, $C3, $D6   ; 
 - D 0 - I - 0x008399 02:8389: D1        .byte $D1, $D2, $D3, $D6   ; 
 
 _off000_838D_06:
-- D 0 - I - 0x00839D 02:838D: 04        .byte $04   ; 
-- D 0 - I - 0x00839E 02:838E: 02        .byte $02   ; 
+- D 0 - I - 0x00839D 02:838D: 04        .byte $04   ; columns
+- D 0 - I - 0x00839E 02:838E: 02        .byte $02   ; rows
 - D 0 - I - 0x00839F 02:838F: FF        .byte $FF, $FF, $FF, $A3   ; 
 - D 0 - I - 0x0083A3 02:8393: FF        .byte $FF, $FF, $FF, $FF   ; 
 
 _off000_8397_07:
-- D 0 - I - 0x0083A7 02:8397: 04        .byte $04   ; 
-- D 0 - I - 0x0083A8 02:8398: 02        .byte $02   ; 
+- D 0 - I - 0x0083A7 02:8397: 04        .byte $04   ; columns
+- D 0 - I - 0x0083A8 02:8398: 02        .byte $02   ; rows
 - D 0 - I - 0x0083A9 02:8399: A4        .byte $A4, $E0, $E1, $E2   ; 
 - D 0 - I - 0x0083AD 02:839D: FF        .byte $FF, $F0, $F1, $F2   ; 
 
 _off000_83A1_08:
-- D 0 - I - 0x0083B1 02:83A1: 04        .byte $04   ; 
-- D 0 - I - 0x0083B2 02:83A2: 02        .byte $02   ; 
+- D 0 - I - 0x0083B1 02:83A1: 04        .byte $04   ; columns
+- D 0 - I - 0x0083B2 02:83A2: 02        .byte $02   ; rows
 - D 0 - I - 0x0083B3 02:83A3: E3        .byte $E3, $FF, $FF, $FF   ; 
 - D 0 - I - 0x0083B7 02:83A7: F3        .byte $F3, $FF, $FF, $FF   ; 
 
 _off000_83AB_09:
-- D 0 - I - 0x0083BB 02:83AB: 04        .byte $04   ; 
-- D 0 - I - 0x0083BC 02:83AC: 02        .byte $02   ; 
+- D 0 - I - 0x0083BB 02:83AB: 04        .byte $04   ; columns
+- D 0 - I - 0x0083BC 02:83AC: 02        .byte $02   ; rows
 - D 0 - I - 0x0083BD 02:83AD: FF        .byte $FF, $FF, $D6, $D6   ; 
 - D 0 - I - 0x0083C1 02:83B1: D6        .byte $D6, $D6, $D6, $D6   ; 
 
 _off000_83B5_0A:
-- D 0 - I - 0x0083C5 02:83B5: 04        .byte $04   ; 
-- D 0 - I - 0x0083C6 02:83B6: 02        .byte $02   ; 
+- D 0 - I - 0x0083C5 02:83B5: 04        .byte $04   ; columns
+- D 0 - I - 0x0083C6 02:83B6: 02        .byte $02   ; rows
 - D 0 - I - 0x0083C7 02:83B7: 85        .byte $85, $86, $D5, $D6   ; 
 - D 0 - I - 0x0083CB 02:83BB: 95        .byte $95, $96, $E5, $E6   ; 
 
 _off000_83BF_0B:
-- D 0 - I - 0x0083CF 02:83BF: 04        .byte $04   ; 
-- D 0 - I - 0x0083D0 02:83C0: 02        .byte $02   ; 
+- D 0 - I - 0x0083CF 02:83BF: 04        .byte $04   ; columns
+- D 0 - I - 0x0083D0 02:83C0: 02        .byte $02   ; rows
 - D 0 - I - 0x0083D1 02:83C1: FF        .byte $FF, $FF, $A5, $A6   ; 
 - D 0 - I - 0x0083D5 02:83C5: FF        .byte $FF, $FF, $B5, $B6   ; 
 
 _off000_83C9_0C:
-- D 0 - I - 0x0083D9 02:83C9: 04        .byte $04   ; 
-- D 0 - I - 0x0083DA 02:83CA: 02        .byte $02   ; 
+- D 0 - I - 0x0083D9 02:83C9: 04        .byte $04   ; columns
+- D 0 - I - 0x0083DA 02:83CA: 02        .byte $02   ; rows
 - D 0 - I - 0x0083DB 02:83CB: FF        .byte $FF, $FF, $FF, $FF   ; 
 - D 0 - I - 0x0083DF 02:83CF: FF        .byte $FF, $FF, $FF, $FF   ; 
 
 _off000_83D3_0D:
-- D 0 - I - 0x0083E3 02:83D3: 04        .byte $04   ; 
-- D 0 - I - 0x0083E4 02:83D4: 02        .byte $02   ; 
+- D 0 - I - 0x0083E3 02:83D3: 04        .byte $04   ; columns
+- D 0 - I - 0x0083E4 02:83D4: 02        .byte $02   ; rows
 - D 0 - I - 0x0083E5 02:83D5: FF        .byte $FF, $FF, $FF, $FF   ; 
 - D 0 - I - 0x0083E9 02:83D9: FF        .byte $FF, $FF, $87, $88   ; 
 
 _off000_83DD_0E:
-- D 0 - I - 0x0083ED 02:83DD: 04        .byte $04   ; 
-- D 0 - I - 0x0083EE 02:83DE: 02        .byte $02   ; 
+- D 0 - I - 0x0083ED 02:83DD: 04        .byte $04   ; columns
+- D 0 - I - 0x0083EE 02:83DE: 02        .byte $02   ; rows
 - D 0 - I - 0x0083EF 02:83DF: C5        .byte $C5, $C6, $FF, $FF   ; 
 - D 0 - I - 0x0083F3 02:83E3: 89        .byte $89, $8A, $8B, $8C   ; 
 
@@ -1438,15 +1438,15 @@ C - - - - - 0x008F64 02:8F54: 60        RTS
 
 
 tbl_8F55:
-- D 0 - I - 0x008F65 02:8F55: 0A        .byte $0A   ; 
-- D 0 - I - 0x008F66 02:8F56: 01        .byte $01   ; 
+- D 0 - I - 0x008F65 02:8F55: 0A        .byte $0A   ; columns
+- D 0 - I - 0x008F66 02:8F56: 01        .byte $01   ; rows
 - D 0 - I - 0x008F67 02:8F57: FF        .byte $FF, $FF, $DB, $DB, $DB, $DB, $FF, $FF, $FF, $FF   ; 
 
 
 
 tbl_8F61:
-- D 0 - I - 0x008F71 02:8F61: 0A        .byte $0A   ; 
-- D 0 - I - 0x008F72 02:8F62: 06        .byte $06   ; 
+- D 0 - I - 0x008F71 02:8F61: 0A        .byte $0A   ; columns
+- D 0 - I - 0x008F72 02:8F62: 06        .byte $06   ; rows
 - D 0 - I - 0x008F73 02:8F63: C6        .byte $C6, $C0, $CC, $C4, $FF, $D2, $D3, $C0, $D1, $D3   ; 
 - D 0 - I - 0x008F7D 02:8F6D: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - D 0 - I - 0x008F87 02:8F77: CF        .byte $CF, $C0, $D2, $D2, $D6, $CE, $D1, $C3, $FF, $FF   ; 
@@ -1544,8 +1544,8 @@ C - - - - - 0x009061 02:9051: 60        RTS
 
 
 tbl_9052:
-- D 0 - I - 0x009062 02:9052: 0B        .byte $0B   ; 
-- D 0 - I - 0x009063 02:9053: 01        .byte $01   ; 
+- D 0 - I - 0x009062 02:9052: 0B        .byte $0B   ; columns
+- D 0 - I - 0x009063 02:9053: 01        .byte $01   ; rows
 - D 0 - I - 0x009064 02:9054: CF        .byte $CF, $D4, $D2, $C7, $FF, $FF, $D2, $D3, $C0, $D1, $D3   ; 
 
 
@@ -1726,22 +1726,22 @@ tbl_918D:
 
 
 tbl_9190:
-- D 0 - I - 0x0091A0 02:9190: 11        .byte $11   ; 
-- D 0 - I - 0x0091A1 02:9191: 01        .byte $01   ; 
+- D 0 - I - 0x0091A0 02:9190: 11        .byte $11   ; columns
+- D 0 - I - 0x0091A1 02:9191: 01        .byte $01   ; rows
 - D 0 - I - 0x0091A2 02:9192: D3        .byte $D3, $C7, $C0, $D3, $9E, $D2, $FF, $C0, $CB, $CB, $FF, $C5, $CE, $CB, $CA, $D2, $9F   ; 
 
 
 
 tbl_91A3:
-- D 0 - I - 0x0091B3 02:91A3: 08        .byte $08   ; 
-- D 0 - I - 0x0091B4 02:91A4: 01        .byte $01   ; 
+- D 0 - I - 0x0091B3 02:91A3: 08        .byte $08   ; columns
+- D 0 - I - 0x0091B4 02:91A4: 01        .byte $01   ; rows
 - D 0 - I - 0x0091B5 02:91A5: CF        .byte $CF, $C0, $D2, $D2, $D6, $CE, $D1, $C3   ; 
 
 
 
 tbl_91AD:
-- D 0 - I - 0x0091BD 02:91AD: 0A        .byte $0A   ; 
-- D 0 - I - 0x0091BE 02:91AE: 03        .byte $03   ; 
+- D 0 - I - 0x0091BD 02:91AD: 0A        .byte $0A   ; columns
+- D 0 - I - 0x0091BE 02:91AE: 03        .byte $03   ; rows
 - D 0 - I - 0x0091BF 02:91AF: FF        .byte $FF, $C2, $CE, $CD, $D3, $C8, $CD, $D4, $C4, $FF   ; 
 - D 0 - I - 0x0091C9 02:91B9: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - D 0 - I - 0x0091D3 02:91C3: FF        .byte $FF, $FF, $D8, $C4, $D2, $FF, $FF, $CD, $CE, $FF   ; 
@@ -1892,8 +1892,8 @@ tbl_929C_palette:
 
 
 tbl_92BC:
-- D 0 - I - 0x0092CC 02:92BC: 0B        .byte $0B   ; 
-- D 0 - I - 0x0092CD 02:92BD: 03        .byte $03   ; 
+- D 0 - I - 0x0092CC 02:92BC: 0B        .byte $0B   ; columns
+- D 0 - I - 0x0092CD 02:92BD: 03        .byte $03   ; rows
 - D 0 - I - 0x0092CE 02:92BE: C6        .byte $C6, $C0, $CC, $C4, $FF, $FF, $CE, $D5, $C4, $D1, $FF   ; 
 - D 0 - I - 0x0092D9 02:92C9: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - D 0 - I - 0x0092E4 02:92D4: CF        .byte $CF, $D4, $D2, $C7, $FF, $FF, $D2, $D3, $C0, $D1, $D3   ; 
@@ -1997,8 +1997,8 @@ tbl_937F:
 
 
 tbl_9384:
-- D 0 - I - 0x009394 02:9384: 05        .byte $05   ; 
-- D 0 - I - 0x009395 02:9385: 01        .byte $01   ; 
+- D 0 - I - 0x009394 02:9384: 05        .byte $05   ; columns
+- D 0 - I - 0x009395 02:9385: 01        .byte $01   ; rows
 - D 0 - I - 0x009396 02:9386: D2        .byte $D2, $D3, $C0, $C6, $C4   ; 
 
 
@@ -2038,8 +2038,8 @@ C - - - - - 0x0093DB 02:93CB: 60        RTS
 
 
 tbl_93CC:
-- D 0 - I - 0x0093DC 02:93CC: 01        .byte $01   ; 
-- D 0 - I - 0x0093DD 02:93CD: 01        .byte $01   ; 
+- D 0 - I - 0x0093DC 02:93CC: 01        .byte $01   ; columns
+- D 0 - I - 0x0093DD 02:93CD: 01        .byte $01   ; rows
 - D 0 - I - 0x0093DE 02:93CE: DA        .byte $DA   ; 
 
 
@@ -2124,18 +2124,18 @@ C - - - - - 0x00946C 02:945C: 99 A2 00  STA ram_00A2,Y
 C - - - - - 0x00946F 02:945F: C8        INY
 C - - - - - 0x009470 02:9460: C0 08     CPY #$08
 C - - - - - 0x009472 02:9462: D0 E7     BNE bra_944B_loop
-C - - - - - 0x009474 02:9464: A9 A0     LDA #$A0
+C - - - - - 0x009474 02:9464: A9 A0     LDA #< ram_00A0
 C - - - - - 0x009476 02:9466: 85 1E     STA ram_001E
-C - - - - - 0x009478 02:9468: A9 00     LDA #$00
+C - - - - - 0x009478 02:9468: A9 00     LDA #> ram_00A0
 C - - - - - 0x00947A 02:946A: 85 1F     STA ram_001F
 C - - - - - 0x00947C 02:946C: A9 CC     LDA #< $21CC
 C - - - - - 0x00947E 02:946E: 85 1C     STA ram_001C
 C - - - - - 0x009480 02:9470: A9 21     LDA #> $21CC
 C - - - - - 0x009482 02:9472: 85 1D     STA ram_001D
 C - - - - - 0x009484 02:9474: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
-C - - - - - 0x009487 02:9477: A9 B0     LDA #$B0
+C - - - - - 0x009487 02:9477: A9 B0     LDA #< ram_00B0
 C - - - - - 0x009489 02:9479: 85 1E     STA ram_001E
-C - - - - - 0x00948B 02:947B: A9 00     LDA #$00
+C - - - - - 0x00948B 02:947B: A9 00     LDA #> ram_00B0
 C - - - - - 0x00948D 02:947D: 85 1F     STA ram_001F
 C - - - - - 0x00948F 02:947F: A9 2C     LDA #< $222C
 C - - - - - 0x009491 02:9481: 85 1C     STA ram_001C
@@ -2308,15 +2308,15 @@ tbl_9594:
 
 
 tbl_9598:
-- D 0 - I - 0x0095A8 02:9598: 08        .byte $08   ; 
-- D 0 - I - 0x0095A9 02:9599: 01        .byte $01   ; 
+- D 0 - I - 0x0095A8 02:9598: 08        .byte $08   ; columns
+- D 0 - I - 0x0095A9 02:9599: 01        .byte $01   ; rows
 - D 0 - I - 0x0095AA 02:959A: C7        .byte $C7, $C8, $DB, $D2, $C2, $CE, $D1, $C4   ; 
 
 
 
 tbl_95A2:
-- D 0 - I - 0x0095B2 02:95A2: 08        .byte $08   ; 
-- D 0 - I - 0x0095B3 02:95A3: 01        .byte $01   ; 
+- D 0 - I - 0x0095B2 02:95A2: 08        .byte $08   ; columns
+- D 0 - I - 0x0095B3 02:95A3: 01        .byte $01   ; rows
 - D 0 - I - 0x0095B4 02:95A4: D2        .byte $D2, $C2, $CE, $D1, $C4, $FF, $FF, $FF   ; 
 
 
@@ -7191,9 +7191,9 @@ C - - - - - 0x00B01B 02:B00B: 85 64     STA ram_0064
 C - - - - - 0x00B01D 02:B00D: A9 01     LDA #$01
 C - - - - - 0x00B01F 02:B00F: 85 62     STA ram_0062
 C - - - - - 0x00B021 02:B011: 85 63     STA ram_0063
-C - - - - - 0x00B023 02:B013: A9 62     LDA #$62
+C - - - - - 0x00B023 02:B013: A9 62     LDA #< ram_0062
 C - - - - - 0x00B025 02:B015: 85 1E     STA ram_001E
-C - - - - - 0x00B027 02:B017: A9 00     LDA #$00
+C - - - - - 0x00B027 02:B017: A9 00     LDA #> ram_0062
 C - - - - - 0x00B029 02:B019: 85 1F     STA ram_001F
 C - - - - - 0x00B02B 02:B01B: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x00B02E 02:B01E: 20 2B F2  JSR sub_0x00F23B
@@ -7301,9 +7301,9 @@ C - - - - - 0x00B0D4 02:B0C4: A5 67     LDA ram_0067
 C - - - - - 0x00B0D6 02:B0C6: A8        TAY
 C - - - - - 0x00B0D7 02:B0C7: B9 D8 B0  LDA tbl_B0D8,Y
 C - - - - - 0x00B0DA 02:B0CA: 85 67     STA ram_0067
-C - - - - - 0x00B0DC 02:B0CC: A9 62     LDA #$62
+C - - - - - 0x00B0DC 02:B0CC: A9 62     LDA #< ram_0062
 C - - - - - 0x00B0DE 02:B0CE: 85 1E     STA ram_001E
-C - - - - - 0x00B0E0 02:B0D0: A9 00     LDA #$00
+C - - - - - 0x00B0E0 02:B0D0: A9 00     LDA #> ram_0062
 C - - - - - 0x00B0E2 02:B0D2: 85 1F     STA ram_001F
 C - - - - - 0x00B0E4 02:B0D4: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x00B0E7 02:B0D7: 60        RTS

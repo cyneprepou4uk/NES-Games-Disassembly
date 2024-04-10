@@ -317,7 +317,11 @@ ram_0067                                = $0067 ; 00817B 008181 0081AA 0081AC 00
 
 ; your current stage, including bonus stages
 ram_stage_id_1                          = $0068 ; 00817F 008198 0081B9 0081F2 008202 008213 008229 008E72 0091FC 009200 009240 009250 009363 00B084 00B08B 00C0E5 00C0E7 00C0FA 00C126 00C146 00C18F 00C6BA 00C6C4 00C6CB 00EC37 00FFB7 
-; not sure why game needs that, saving stage id before going to bonus stage
+
+
+
+; saving stage id before going to bonus stage
+; bzk not sure why game needs this address
 ram_stage_id_2                          = $0069 ; 008281 008299 0082AF 008E74 0091FA 009206 009252 00B086 00B08D 00B0A0 00B0AD 00B0B4 00EC37 00FFA5 00FFAA 00FFB3 
 
 
