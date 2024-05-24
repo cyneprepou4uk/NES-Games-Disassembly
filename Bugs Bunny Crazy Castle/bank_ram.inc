@@ -1,4 +1,4 @@
-; to the right are ROM File addresses of instructios which were using these RAM addresses
+; to the right are ROM File addresses of instructions which were using these RAM addresses
 
 
 

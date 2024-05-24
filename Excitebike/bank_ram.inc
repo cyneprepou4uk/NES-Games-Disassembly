@@ -1,4 +1,4 @@
-; to the right are ROM File addresses of instructios which were using these RAM addresses
+; to the right are ROM File addresses of instructions which were using these RAM addresses
 
 
 
@@ -1493,7 +1493,7 @@ ram_0398_obj                            = $0398 ; 0001C5 000841 001980 0019BE 00
 
 
 ; bzk warning, see 0x001B52
-; bzk bug? array starts with 039B or 039C?
+; bzk instructions? array starts with 039B or 039C?
 ram_039C_obj                            = $039C ; 0001C5 000841 001B52 
 ; ram_039D                              = $039D ; 0001C5 000841 001B52 001BC9 
 ; ram_039E                              = $039E ; 0001C5 000841 001B52 001BC9 

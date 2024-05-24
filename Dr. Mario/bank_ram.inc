@@ -1,6 +1,6 @@
 ; https://datacrystal.romhacking.net/wiki/Dr._Mario:RAM_map
 
-; to the right are ROM File addresses of instructios which were using these RAM addresses
+; to the right are ROM File addresses of instructions which were using these RAM addresses
 
 
 
@@ -2854,12 +2854,12 @@ ram_0722                                = $0722 ; 0000D9
 
 
 ; 
-ram_debug_1                             = $0723 ; 0000B7 000F31 
+ram_deinstructions_1                             = $0723 ; 0000B7 000F31 
 
 
 
 ; vitamin halves won't fall if non-zero
-ram_debug_2                             = $0724 ; 0000BA 000CC8 
+ram_deinstructions_2                             = $0724 ; 0000BA 000CC8 
 
 
 
