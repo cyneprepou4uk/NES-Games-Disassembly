@@ -670,7 +670,7 @@ ram_go_msg_mov_type                     = $0107 ; 000753 0009A4 001E38 001E4A 00
 ram_go_msg_timer                        = $0108 ; 00023F 00034E 000758 000982 000993 00099D 001E58 002429 
 
 ; index for 0000+
-ram_deinstructions_address_index                 = $0109 ; 000765 00077E 00079F 0007A8 0007B1 0007B7 002429 
+ram_debug_address_index                 = $0109 ; 000765 00077E 00079F 0007A8 0007B1 0007B7 002429 
 
 ; ??? unused, but cleared at 0x002423 because get's in a middle by clearing together with other addresses
 ram_010A                                = $010A ; 002429 
