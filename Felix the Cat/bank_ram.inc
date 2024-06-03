@@ -296,7 +296,7 @@ ram_0046_pal_buffer                     = $0046 ; 010356 0103C1 0103C9 01C07F
 
 
 ; lo 2006 address for background attributes
-; bzk instructions? see ram_0046_pal_buffer
+; bzk bug? see ram_0046_pal_buffer
 ram_0066                                = $0066 ; 01040E 010420 01C07F 01C81A 01C829 01C834 01C841 01EEC2 
 
 
