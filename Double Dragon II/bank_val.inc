@@ -9,7 +9,7 @@ con_anim_id                             = $00 ;
 con_damage                              = $00 ; 
 con_8648                                = $00 ; for 0x018658
 con_E2E6                                = $00 ; for 0x01E2F6
-con_weapon_id                           = $12 ; weapons start from this value for ram_obj_id
+con_weapon_id                           = $12 ; weapons start from this index for ram_obj_id
 
 
 
