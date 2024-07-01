@@ -75,7 +75,10 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 ### WIP
 * Battletoads & Double Dragon - The Ultimate Team (U) [!] `53B02F3D`
 * Castlevania III - Dracula's Curse (U) [!] `7CC9C669`
+* Galaga - Demons of Death (U) [!] `E36D5991`
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!] `BABD39FA`
+* R.C. Pro-Am II (U) [!] `03DB5562`
+* River City Ransom (U) [!] `C3508F7E`
 * Super Mario Bros. (W) [!] `3337EC46`
 * Urban Champion (W) [!] `0770CDAA`
 
@@ -89,5 +92,4 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 * Mighty Final Fight (U) [!] `15EB0BEE`
 * Mitsume ga Tooru (J) [!] `E27EC1EC`
 * Popeye (JU) (PRG0) [!] `DE1D762F`
-* River City Ransom (U) [!] `C3508F7E`
 * Tetris (Tengen) [!] `88F071C3`
