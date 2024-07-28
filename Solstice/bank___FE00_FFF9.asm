@@ -406,7 +406,7 @@ tbl_FF7B_hi:
 ; FFF9 (each bank originally has a different byte here)
 ; bzk garbage, basically useless stuff
 ; it's here in order to assemble into original ROM
-; con_include_bank variable is locaded at the beginning of each bank
+; con_include_bank variable is locaded near the end of each bank
 ; you can delete this shit
 .if     con_include_bank = $00
     .byte $00
