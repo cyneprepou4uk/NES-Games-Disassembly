@@ -6,23 +6,19 @@
 
 
 
-con_include_bank = $03
-
-
-
-.export tbl_0x018010_room_data_lo
-.export tbl_0x01810D_room_data_hi
-.export ofs_0x01820A_15
-.export ofs_0x018289_1D
+.export tbl_out_0x018010_room_data_lo
+.export tbl_out_0x01810D_room_data_hi
+.export ofs_out_0x01820A_15
+.export ofs_out_0x018289_1D
 .export tbl_0x01E57F_intro_cutscene_room_data
 .export tbl_0x01E598_final_cutscene_room_data
-.export ofs_0x01E602_1A
+.export ofs_out_0x01E602_1A
 .export tbl_0x01E6F4_key_icon
 .export tbl_0x01F154_credit_icon
 
 
 
-tbl_0x018010_room_data_lo:
+tbl_out_0x018010_room_data_lo:
 - D 0 - - - 0x018010 06:8000: 88        .byte < _off000_8388_00   ; 
 - D 0 - - - 0x018011 06:8001: EA        .byte < _off000_83EA_01   ; 
 - D 0 - - - 0x018012 06:8002: 03        .byte < _off000_8403_02   ; 
@@ -279,7 +275,7 @@ tbl_0x018010_room_data_lo:
 
 
 
-tbl_0x01810D_room_data_hi:
+tbl_out_0x01810D_room_data_hi:
 - D 0 - - - 0x01810D 06:80FD: 83        .byte > _off000_8388_00   ; 
 - D 0 - - - 0x01810E 06:80FE: 83        .byte > _off000_83EA_01   ; 
 - D 0 - - - 0x01810F 06:80FF: 84        .byte > _off000_8403_02   ; 
@@ -536,7 +532,7 @@ tbl_0x01810D_room_data_hi:
 
 
 
-ofs_0x01820A_15:
+ofs_out_0x01820A_15:
 C - - - - - 0x01820A 06:81FA: A0 00     LDY #$00
 C - - - - - 0x01820C 06:81FC: B1 1A     LDA (ram_001A),Y
 C - - - - - 0x01820E 06:81FE: F0 75     BEQ bra_8275
@@ -623,7 +619,7 @@ C - - - - - 0x018288 06:8278: 60        RTS
 
 
 
-ofs_0x018289_1D:
+ofs_out_0x018289_1D:
 C - - - - - 0x018289 06:8279: AC 72 07  LDY ram_0772
 C - - - - - 0x01828C 06:827C: C8        INY
 C - - - - - 0x01828D 06:827D: B1 1A     LDA (ram_001A),Y
@@ -660,7 +656,7 @@ C - - - - - 0x0182BE 06:82AE: B1 22     LDA (ram_0022),Y
 C - - - - - 0x0182C0 06:82B0: 84 08     STY ram_0008
 C - - - - - 0x0182C2 06:82B2: A6 13     LDX ram_0013
 C - - - - - 0x0182C4 06:82B4: A4 14     LDY ram_0014
-C - - - - - 0x0182C6 06:82B6: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x0182C6 06:82B6: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x0182C9 06:82B9: 09        .byte con_bsw_03
 C - - - - - 0x0182CA 06:82BA: A4 08     LDY ram_0008
 C - - - - - 0x0182CC 06:82BC: E6 13     INC ram_0013
@@ -717,7 +713,7 @@ C - - - - - 0x01831C 06:830C: 85 0E     STA ram_000E
 bra_830E:
 C - - - - - 0x01831E 06:830E: B1 22     LDA (ram_0022),Y
 C - - - - - 0x018320 06:8310: 84 08     STY ram_0008
-C - - - - - 0x018322 06:8312: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x018322 06:8312: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x018325 06:8315: 0F        .byte con_bsw_05
 C - - - - - 0x018326 06:8316: A4 08     LDY ram_0008
 C - - - - - 0x018328 06:8318: E6 13     INC ram_0013
@@ -28955,7 +28951,7 @@ tbl_0x01E598_final_cutscene_room_data:
 
 ; end of room data
 
-ofs_0x01E602_1A:
+ofs_out_0x01E602_1A:
 C - - - - - 0x01E602 07:E5F2: BC 50 07  LDY ram_0750_obj,X
 C - - - - - 0x01E605 07:E5F5: B9 48 E6  LDA tbl_E648_lo,Y
 C - - - - - 0x01E608 07:E5F8: 85 26     STA ram_0026
@@ -29257,6 +29253,7 @@ tbl_0x01F154_credit_icon:
 
 
 .segment "BANK_FF_i"
+con_include_bank = $03
 .include "copy_bank___FE00_FFF9.asm"
 
 
@@ -29267,8 +29264,8 @@ tbl_0x01F154_credit_icon:
 
 .segment "VECTORS_FF"
 - D 3 - - - 0x02000A 07:FFFA: FD 07     .word ram_jmp_xxxx
-- - - - - - 0x02000C 07:FFFC: 00 FE     .word vec_inc_FE00_RESET
-- - - - - - 0x02000E 07:FFFE: 26 FE     .word vec_inc_FE26_IRQ
+- - - - - - 0x02000C 07:FFFC: 00 FE     .word vec_inc_0x007E10_RESET
+- - - - - - 0x02000E 07:FFFE: 26 FE     .word $FE26 ; this game doesn't use IRQ
 
 
 

@@ -6,17 +6,13 @@
 
 
 
-con_include_bank = $00
+.export loc_out_0x000010_RESET
+.export tbl_out_0x003A91_nmi_handler_lo
+.export tbl_out_0x003A98_nmi_handler_hi
 
 
 
-.export loc_inc_0x000010_RESET
-.export tbl_inc_0x003A91_nmi_handler_lo
-.export tbl_inc_0x003A98_nmi_handler_hi
-
-
-
-loc_inc_0x000010_RESET:
+loc_out_0x000010_RESET:
 ; X = 00
 C D 0 - - - 0x000010 00:8000: 8A        TXA
 bra_8001_loop:
@@ -34,12 +30,12 @@ C - - - - - 0x00002B 00:801B: A2 FF     LDX #$FF
 C - - - - - 0x00002D 00:801D: 8E 8E 07  STX ram_sfx_1
 C - - - - - 0x000030 00:8020: 8E 8F 07  STX ram_sfx_2
 C - - - - - 0x000033 00:8023: 8D B2 07  STA ram_nmi_handler
-C - - - - - 0x000036 00:8026: 20 63 FF  JSR sub_inc_FF63
+C - - - - - 0x000036 00:8026: 20 63 FF  JSR sub_inc_0x007F73
 C - - - - - 0x000039 00:8029: A9 4C     LDA #$4C    ; JMP opcode
 C - - - - - 0x00003B 00:802B: 8D FD 07  STA ram_jmp_xxxx
-C - - - - - 0x00003E 00:802E: A9 69     LDA #< vec_FE69_NMI
+C - - - - - 0x00003E 00:802E: A9 69     LDA #< ofs_inc_0x007E79_NMI
 C - - - - - 0x000040 00:8030: 8D FE 07  STA ram_jmp_xxxx + $01
-C - - - - - 0x000043 00:8033: A9 FE     LDA #> vec_FE69_NMI
+C - - - - - 0x000043 00:8033: A9 FE     LDA #> ofs_inc_0x007E79_NMI
 C - - - - - 0x000045 00:8035: 8D FF 07  STA ram_jmp_xxxx + $02
 C - - - - - 0x000048 00:8038: A9 C8     LDA #$C8
 C - - - - - 0x00004A 00:803A: 8D 00 20  STA $2000
@@ -50,7 +46,7 @@ C - - - - - 0x000054 00:8044: 20 5E BA  JSR sub_BA5E
 C - - - - - 0x000057 00:8047: A9 06     LDA #$06
 C - - - - - 0x000059 00:8049: 8D A9 07  STA ram_07A9
 C - - - - - 0x00005C 00:804C: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
-C - - - - - 0x00005F 00:804F: AD 7A FF  LDA tbl_inc_FF7A
+C - - - - - 0x00005F 00:804F: AD 7A FF  LDA tbl_inc_0x007F8A
 C - - - - - 0x000062 00:8052: D0 03     BNE bra_8057_skip   ; jmp
 
 
@@ -66,9 +62,9 @@ C - - - - - 0x000062 00:8052: D0 03     BNE bra_8057_skip   ; jmp
 
 bra_8057_skip:
 C - - - - - 0x000067 00:8057: 20 15 BE  JSR sub_BE15_wait_1_frme
-C - - - - - 0x00006A 00:805A: 20 63 FF  JSR sub_inc_FF63
+C - - - - - 0x00006A 00:805A: 20 63 FF  JSR sub_inc_0x007F73
 C - - - - - 0x00006D 00:805D: A2 05     LDX #con_music_logo
-C - - - - - 0x00006F 00:805F: 20 4D FF  JSR sub_inc_FF4D_play_music
+C - - - - - 0x00006F 00:805F: 20 4D FF  JSR sub_inc_0x007F5D_play_music
 C - - - - - 0x000072 00:8062: 20 B0 BC  JSR sub_BCB0
 C - - - - - 0x000075 00:8065: A9 05     LDA #$05
 C - - - - - 0x000077 00:8067: 8D A2 07  STA ram_07A2
@@ -91,7 +87,7 @@ bra_808C:
 C - - - - - 0x00009C 00:808C: AD 90 07  LDA ram_0790_flag
 C - - - - - 0x00009F 00:808F: D0 05     BNE bra_8096
 C - - - - - 0x0000A1 00:8091: A2 06     LDX #con_music_06
-C - - - - - 0x0000A3 00:8093: 20 4D FF  JSR sub_inc_FF4D_play_music
+C - - - - - 0x0000A3 00:8093: 20 4D FF  JSR sub_inc_0x007F5D_play_music
 bra_8096:
 C - - - - - 0x0000A6 00:8096: 20 0E BD  JSR sub_BD0E
 C - - - - - 0x0000A9 00:8099: AA        TAX
@@ -114,9 +110,9 @@ C - - - - - 0x0000C9 00:80B9: A9 00     LDA #$00
 C - - - - - 0x0000CB 00:80BB: 8D A6 07  STA ram_07A6
 C - - - - - 0x0000CE 00:80BE: 8D 95 07  STA ram_staff_pieces
 C - - - - - 0x0000D1 00:80C1: 20 15 BE  JSR sub_BE15_wait_1_frme
-C - - - - - 0x0000D4 00:80C4: 20 63 FF  JSR sub_inc_FF63
+C - - - - - 0x0000D4 00:80C4: 20 63 FF  JSR sub_inc_0x007F73
 C - - - - - 0x0000D7 00:80C7: A2 00     LDX #con_music_story
-C - - - - - 0x0000D9 00:80C9: 20 4D FF  JSR sub_inc_FF4D_play_music
+C - - - - - 0x0000D9 00:80C9: 20 4D FF  JSR sub_inc_0x007F5D_play_music
 C - - - - - 0x0000DC 00:80CC: A9 03     LDA #$03
 C - - - - - 0x0000DE 00:80CE: 8D A9 07  STA ram_07A9
 C - - - - - 0x0000E1 00:80D1: 20 00 85  JSR sub_8500
@@ -130,7 +126,7 @@ bra_80E3_loop:
 C - - - - - 0x0000F3 00:80E3: 20 15 BE  JSR sub_BE15_wait_1_frme
 C - - - - - 0x0000F6 00:80E6: CA        DEX
 C - - - - - 0x0000F7 00:80E7: D0 FA     BNE bra_80E3_loop
-C - - - - - 0x0000F9 00:80E9: 20 63 FF  JSR sub_inc_FF63
+C - - - - - 0x0000F9 00:80E9: 20 63 FF  JSR sub_inc_0x007F73
 C - - - - - 0x0000FC 00:80EC: 20 17 8D  JSR sub_8D17_set_default_player_stats
 loc_80EF_loop:
 C D 0 - - - 0x0000FF 00:80EF: 20 E9 87  JSR sub_87E9
@@ -139,12 +135,12 @@ C - - - - - 0x000104 00:80F4: F0 64     BEQ bra_815A_FE
 C - - - - - 0x000106 00:80F6: A9 00     LDA #$00
 C - - - - - 0x000108 00:80F8: 8D 95 07  STA ram_staff_pieces
 C - - - - - 0x00010B 00:80FB: 20 15 BE  JSR sub_BE15_wait_1_frme
-C - - - - - 0x00010E 00:80FE: 20 63 FF  JSR sub_inc_FF63
+C - - - - - 0x00010E 00:80FE: 20 63 FF  JSR sub_inc_0x007F73
 C - - - - - 0x000111 00:8101: A2 02     LDX #con_music_game_over
-C - - - - - 0x000113 00:8103: 20 4D FF  JSR sub_inc_FF4D_play_music
+C - - - - - 0x000113 00:8103: 20 4D FF  JSR sub_inc_0x007F5D_play_music
 C - - - - - 0x000116 00:8106: 20 12 BF  JSR sub_BF12_game_over_screen
 C - - - - - 0x000119 00:8109: 20 15 BE  JSR sub_BE15_wait_1_frme
-C - - - - - 0x00011C 00:810C: 20 63 FF  JSR sub_inc_FF63
+C - - - - - 0x00011C 00:810C: 20 63 FF  JSR sub_inc_0x007F73
 C - - - - - 0x00011F 00:810F: A9 01     LDA #$01
 C - - - - - 0x000121 00:8111: 8D A7 07  STA ram_07A7
 C - - - - - 0x000124 00:8114: AD 9F 07  LDA ram_credits
@@ -153,7 +149,7 @@ C - - - - - 0x000127 00:8117: F0 29     BEQ bra_8142
 C - - - - - 0x000129 00:8119: 20 5E BF  JSR sub_BF5E_continue_screen
 C - - - - - 0x00012C 00:811C: 48        PHA
 C - - - - - 0x00012D 00:811D: 20 15 BE  JSR sub_BE15_wait_1_frme
-C - - - - - 0x000130 00:8120: 20 63 FF  JSR sub_inc_FF63
+C - - - - - 0x000130 00:8120: 20 63 FF  JSR sub_inc_0x007F73
 C - - - - - 0x000133 00:8123: 68        PLA
 C - - - - - 0x000134 00:8124: AA        TAX
 C - - - - - 0x000135 00:8125: F0 1B     BEQ bra_8142
@@ -191,9 +187,9 @@ C - - - - - 0x000169 00:8159: 60        RTS
 
 bra_815A_FE:
 C - - - - - 0x00016A 00:815A: 20 15 BE  JSR sub_BE15_wait_1_frme
-C - - - - - 0x00016D 00:815D: 20 63 FF  JSR sub_inc_FF63
+C - - - - - 0x00016D 00:815D: 20 63 FF  JSR sub_inc_0x007F73
 C - - - - - 0x000170 00:8160: A2 04     LDX #con_music_04
-C - - - - - 0x000172 00:8162: 20 4D FF  JSR sub_inc_FF4D_play_music
+C - - - - - 0x000172 00:8162: 20 4D FF  JSR sub_inc_0x007F5D_play_music
 C - - - - - 0x000175 00:8165: A0 04     LDY #$04
 C - - - - - 0x000177 00:8167: 20 3D 84  JSR sub_843D
 C - - - - - 0x00017A 00:816A: A9 0D     LDA #$0D
@@ -436,7 +432,7 @@ C - - - - - 0x000347 00:8337: CA        DEX
 C - - - - - 0x000348 00:8338: D0 FA     BNE bra_8334_loop
 C - - - - - 0x00034A 00:833A: 20 F5 BF  JSR sub_BFF5
 C - - - - - 0x00034D 00:833D: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
-C - - - - - 0x000350 00:8340: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000350 00:8340: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000353 00:8343: 21        .byte con_bsw_prepare_static_screen
 C - - - - - 0x000354 00:8344: A9 00     LDA #con_prg_bank + $00
 C - - - - - 0x000356 00:8346: 85 FF     STA ram_prg_bank
@@ -446,7 +442,7 @@ C - - - - - 0x00035E 00:834E: A9 10     LDA #con_prg_bank + $10
 C - - - - - 0x000360 00:8350: 85 FF     STA ram_prg_bank
 C - - - - - 0x000362 00:8352: 8D F8 FF  STA $FFF8
 C - - - - - 0x000365 00:8355: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
-C - - - - - 0x000368 00:8358: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000368 00:8358: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x00036B 00:835B: 69        .byte con_bsw_23
 C - - - - - 0x00036C 00:835C: A9 A4     LDA #< $23A4
 C - - - - - 0x00036E 00:835E: 85 26     STA ram_0026
@@ -503,7 +499,7 @@ bra_83C0:
 C - - - - - 0x0003D0 00:83C0: 8D BB 07  STA ram_pos_Y_scroll
 C - - - - - 0x0003D3 00:83C3: 29 07     AND #$07
 C - - - - - 0x0003D5 00:83C5: D0 08     BNE bra_83CF
-C - - - - - 0x0003D7 00:83C7: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x0003D7 00:83C7: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x0003DA 00:83CA: 72        .byte con_bsw_26
 C - - - - - 0x0003DB 00:83CB: C9 FF     CMP #$FF
 C - - - - - 0x0003DD 00:83CD: F0 1A     BEQ bra_83E9
@@ -602,7 +598,7 @@ C - - - - - 0x000452 00:8442: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_a
 C - - - - - 0x000455 00:8445: 20 49 A7  JSR sub_A749
 C - - - - - 0x000458 00:8448: 20 F6 B6  JSR sub_B6F6_hide_all_sprites   ; bzk optimize, sprites are probably hidden already
 C - - - - - 0x00045B 00:844B: 20 19 BC  JSR sub_BC19_write_black_palette_to_buffer
-C - - - - - 0x00045E 00:844E: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00045E 00:844E: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000461 00:8451: 63        .byte con_bsw_21
 C - - - - - 0x000462 00:8452: A9 00     LDA #$00
 C - - - - - 0x000464 00:8454: 85 00     STA ram_0000
@@ -646,7 +642,7 @@ bra_849B_loop:
 C - - - - - 0x0004AB 00:849B: A6 10     LDX ram_0010
 C - - - - - 0x0004AD 00:849D: BD 05 03  LDA ram_0305,X
 C - - - - - 0x0004B0 00:84A0: F0 04     BEQ bra_84A6
-C - - - - - 0x0004B2 00:84A2: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x0004B2 00:84A2: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x0004B5 00:84A5: 66        .byte con_bsw_22
 bra_84A6:
 C - - - - - 0x0004B6 00:84A6: C6 10     DEC ram_0010
@@ -816,7 +812,7 @@ C - - - - - 0x000552 00:8542: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
 C - - - - - 0x000555 00:8545: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
 C - - - - - 0x000558 00:8548: 20 3E A7  JSR sub_A73E
 C - - - - - 0x00055B 00:854B: 20 F6 B6  JSR sub_B6F6_hide_all_sprites   ; bzk optimize, sprites are probably hidden already
-C - - - - - 0x00055E 00:854E: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00055E 00:854E: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000561 00:8551: 63        .byte con_bsw_21
 C - - - - - 0x000562 00:8552: A9 00     LDA #$00
 C - - - - - 0x000564 00:8554: 85 00     STA ram_0000
@@ -835,7 +831,7 @@ C - - - - - 0x000582 00:8572: BD BC 86  LDA tbl_86BC,X
 C - - - - - 0x000585 00:8575: 9D 14 03  STA ram_0314,X
 C - - - - - 0x000588 00:8578: BD D0 86  LDA tbl_86D0,X
 C - - - - - 0x00058B 00:857B: 9D 1E 03  STA ram_031E,X
-C - - - - - 0x00058E 00:857E: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00058E 00:857E: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000591 00:8581: 66        .byte con_bsw_22
 C - - - - - 0x000592 00:8582: A6 10     LDX ram_0010
 C - - - - - 0x000594 00:8584: CA        DEX
@@ -850,7 +846,7 @@ C - - - - - 0x00059C 00:858C: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
 C - - - - - 0x00059F 00:858F: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
 C - - - - - 0x0005A2 00:8592: 20 3E A7  JSR sub_A73E
 C - - - - - 0x0005A5 00:8595: 20 F6 B6  JSR sub_B6F6_hide_all_sprites   ; bzk optimize, sprites are probably hidden already
-C - - - - - 0x0005A8 00:8598: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x0005A8 00:8598: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x0005AB 00:859B: 63        .byte con_bsw_21
 C - - - - - 0x0005AC 00:859C: A9 00     LDA #$00
 C - - - - - 0x0005AE 00:859E: 85 00     STA ram_0000
@@ -869,7 +865,7 @@ C - - - - - 0x0005CC 00:85BC: BD BC 86  LDA tbl_86BC,X
 C - - - - - 0x0005CF 00:85BF: 9D 14 03  STA ram_0314,X
 C - - - - - 0x0005D2 00:85C2: BD C1 86  LDA tbl_86C1,X
 C - - - - - 0x0005D5 00:85C5: 9D 1E 03  STA ram_031E,X
-C - - - - - 0x0005D8 00:85C8: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x0005D8 00:85C8: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x0005DB 00:85CB: 66        .byte con_bsw_22
 C - - - - - 0x0005DC 00:85CC: A6 10     LDX ram_0010
 C - - - - - 0x0005DE 00:85CE: CA        DEX
@@ -902,7 +898,7 @@ C - - - - - 0x00060D 00:85FD: CA        DEX
 C - - - - - 0x00060E 00:85FE: 10 FA     BPL bra_85FA_loop
 C - - - - - 0x000610 00:8600: A2 00     LDX #$00
 C - - - - - 0x000612 00:8602: 86 00     STX ram_0000
-C - - - - - 0x000614 00:8604: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000614 00:8604: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000617 00:8607: 66        .byte con_bsw_22
 C - - - - - 0x000618 00:8608: A2 03     LDX #$03
 C - - - - - 0x00061A 00:860A: AD 9D 07  LDA ram_079D
@@ -911,7 +907,7 @@ C - - - - - 0x00061F 00:860F: E8        INX
 bra_8610:
 bra_8610_loop:
 C - - - - - 0x000620 00:8610: 86 10     STX ram_0010
-C - - - - - 0x000622 00:8612: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000622 00:8612: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000625 00:8615: 66        .byte con_bsw_22
 C - - - - - 0x000626 00:8616: A6 10     LDX ram_0010
 C - - - - - 0x000628 00:8618: CA        DEX
@@ -1146,7 +1142,7 @@ C - - - - - 0x000712 00:8702: A9 04     LDA #$04
 C - - - - - 0x000714 00:8704: 85 00     STA ram_0000
 C - - - - - 0x000716 00:8706: A9 C0     LDA #$C0
 C - - - - - 0x000718 00:8708: 8D 00 20  STA $2000
-C - - - - - 0x00071B 00:870B: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00071B 00:870B: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x00071E 00:870E: 60        .byte con_bsw_draw_static_screen
 C - - - - - 0x00071F 00:870F: A9 C0     LDA #$C0
 C - - - - - 0x000721 00:8711: 8D A8 07  STA ram_07A8
@@ -1161,7 +1157,7 @@ bra_8724_loop:
 C - - - - - 0x000734 00:8724: 8D 07 20  STA $2007
 C - - - - - 0x000737 00:8727: 88        DEY
 C - - - - - 0x000738 00:8728: 10 FA     BPL bra_8724_loop
-C - - - - - 0x00073A 00:872A: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00073A 00:872A: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x00073D 00:872D: 48        .byte con_bsw_18
 C - - - - - 0x00073E 00:872E: A2 87     LDX #$87
 C - - - - - 0x000740 00:8730: 8E 00 02  STX ram_spr_Y
@@ -1314,7 +1310,7 @@ C - - - - - 0x00084D 00:883D: AD 90 07  LDA ram_0790_flag
 C - - - - - 0x000850 00:8840: 0D A2 07  ORA ram_07A2
 C - - - - - 0x000853 00:8843: D0 05     BNE bra_884A
 C - - - - - 0x000855 00:8845: A2 01     LDX #con_music_gameplay
-C - - - - - 0x000857 00:8847: 20 4D FF  JSR sub_inc_FF4D_play_music
+C - - - - - 0x000857 00:8847: 20 4D FF  JSR sub_inc_0x007F5D_play_music
 bra_884A:
 loc_884A:
 C D 0 - - - 0x00085A 00:884A: A9 00     LDA #$00
@@ -1413,11 +1409,11 @@ C - - - - - 0x000910 00:8900: 20 16 99  JSR sub_9916
 C - - - - - 0x000913 00:8903: A9 08     LDA #$08
 C - - - - - 0x000915 00:8905: 85 00     STA ram_0000
 C - - - - - 0x000917 00:8907: A6 39     LDX ram_0039
-C - - - - - 0x000919 00:8909: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000919 00:8909: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x00091C 00:890C: 00        .byte con_bsw_00
 C - - - - - 0x00091D 00:890D: 20 AB 98  JSR sub_98AB_copy_009D_00FC_to_sprites
 C - - - - - 0x000920 00:8910: A6 3A     LDX ram_003A
-C - - - - - 0x000922 00:8912: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000922 00:8912: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000925 00:8915: 00        .byte con_bsw_00
 bra_8916_loop:
 C - - - - - 0x000926 00:8916: 2C 02 20  BIT $2002
@@ -1449,7 +1445,7 @@ C - - - - - 0x00095B 00:894B: F0 0C     BEQ bra_8959
 ; bzk optimize, prepare proper bytes for ram_079C beforehand instead of SBC
 C - - - - - 0x00095D 00:894D: 38        SEC
 C - - - - - 0x00095E 00:894E: E9 C0     SBC #$C0
-C - - - - - 0x000960 00:8950: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000960 00:8950: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000963 00:8953: 36        .byte con_bsw_set_bonus_picked_flag
 C - - - - - 0x000964 00:8954: A9 00     LDA #$00
 C - - - - - 0x000966 00:8956: 8D 9C 07  STA ram_079C
@@ -1469,11 +1465,11 @@ C - - - - - 0x000980 00:8970: A9 20     LDA #$20
 C - - - - - 0x000982 00:8972: 85 46     STA ram_0046
 C - - - - - 0x000984 00:8974: E6 47     INC ram_0047
 C - - - - - 0x000986 00:8976: A6 3B     LDX ram_003B
-C - - - - - 0x000988 00:8978: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000988 00:8978: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x00098B 00:897B: 00        .byte con_bsw_00
 C - - - - - 0x00098C 00:897C: 20 AB 98  JSR sub_98AB_copy_009D_00FC_to_sprites
 C - - - - - 0x00098F 00:897F: A6 3C     LDX ram_003C
-C - - - - - 0x000991 00:8981: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000991 00:8981: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000994 00:8984: 00        .byte con_bsw_00
 C - - - - - 0x000995 00:8985: 20 56 97  JSR sub_9756
 bra_8988_loop:
@@ -1553,7 +1549,7 @@ bra_8A25:
 C - - - - - 0x000A35 00:8A25: AD 38 07  LDA ram_obj_anim_id
 C - - - - - 0x000A38 00:8A28: C9 47     CMP #$47
 C - - - - - 0x000A3A 00:8A2A: B0 12     BCS bra_8A3E
-C - - - - - 0x000A3C 00:8A2C: 20 63 FF  JSR sub_inc_FF63
+C - - - - - 0x000A3C 00:8A2C: 20 63 FF  JSR sub_inc_0x007F73
 C - - - - - 0x000A3F 00:8A2F: A9 00     LDA #$00
 C - - - - - 0x000A41 00:8A31: 8D 98 07  STA ram_0798_counter
 C - - - - - 0x000A44 00:8A34: A9 05     LDA #con_sfx_death
@@ -1603,7 +1599,7 @@ C - - - - - 0x000AA0 00:8A90: AD 8A 07  LDA ram_078A
 C - - - - - 0x000AA3 00:8A93: 38        SEC
 C - - - - - 0x000AA4 00:8A94: E9 C0     SBC #$C0
 C - - - - - 0x000AA6 00:8A96: 48        PHA
-C - - - - - 0x000AA7 00:8A97: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000AA7 00:8A97: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000AAA 00:8A9A: 36        .byte con_bsw_set_bonus_picked_flag
 C - - - - - 0x000AAB 00:8A9B: 68        PLA
 C - - - - - 0x000AAC 00:8A9C: C9 15     CMP #$15
@@ -1621,7 +1617,7 @@ bra_8AAF:
 C - - - - - 0x000ABF 00:8AAF: 8A        TXA
 bra_8AB0:
 C - - - - - 0x000AC0 00:8AB0: 48        PHA
-C - - - - - 0x000AC1 00:8AB1: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000AC1 00:8AB1: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000AC4 00:8AB4: 4B        .byte con_bsw_19
 C - - - - - 0x000AC5 00:8AB5: AD 8A 07  LDA ram_078A
 C - - - - - 0x000AC8 00:8AB8: 38        SEC
@@ -1673,7 +1669,7 @@ C - - - - - 0x000B1D 00:8B0D: 8D 6A 07  STA ram_076A_flag
 C - - - - - 0x000B20 00:8B10: 4C 0A 88  JMP loc_880A
 bra_8B13:
 C - - - - - 0x000B23 00:8B13: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
-C - - - - - 0x000B26 00:8B16: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000B26 00:8B16: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000B29 00:8B19: 6C        .byte con_bsw_24
 C - - - - - 0x000B2A 00:8B1A: 20 C2 8C  JSR sub_8CC2_write_palette_to_buffer_2
 C - - - - - 0x000B2D 00:8B1D: A9 10     LDA #$10
@@ -1825,7 +1821,7 @@ C - - - - - 0x000C2E 00:8C1E: 8D 01 02  STA ram_spr_T
 C - - - - - 0x000C31 00:8C21: A9 00     LDA #$00
 C - - - - - 0x000C33 00:8C23: 8D 02 02  STA ram_spr_A
 C - - - - - 0x000C36 00:8C26: 20 15 BE  JSR sub_BE15_wait_1_frme
-C - - - - - 0x000C39 00:8C29: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000C39 00:8C29: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000C3C 00:8C2C: 21        .byte con_bsw_prepare_static_screen
 C - - - - - 0x000C3D 00:8C2D: A2 07     LDX #con_sfx_paper
 C - - - - - 0x000C3F 00:8C2F: 8E 8F 07  STX ram_sfx_2
@@ -1835,13 +1831,13 @@ C - - - - - 0x000C47 00:8C37: A2 02     LDX #$02
 C - - - - - 0x000C49 00:8C39: 20 BF B6  JSR sub_B6BF_wait_for_nmi
 C - - - - - 0x000C4C 00:8C3C: A2 00     LDX #$00    ; draw minimap by default
 C - - - - - 0x000C4E 00:8C3E: 8E BA 07  STX ram_07BA
-C - - - - - 0x000C51 00:8C41: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000C51 00:8C41: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000C54 00:8C44: 2D        .byte con_bsw_draw_scroll_content_1
 loc_8C45_loop:
 bra_8C45_loop:
 C D 0 - - - 0x000C55 00:8C45: 8A        TXA
 C - - - - - 0x000C56 00:8C46: 48        PHA
-C - - - - - 0x000C57 00:8C47: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000C57 00:8C47: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000C5A 00:8C4A: 33        .byte con_bsw_11
 C - - - - - 0x000C5B 00:8C4B: 68        PLA
 C - - - - - 0x000C5C 00:8C4C: AA        TAX
@@ -1872,7 +1868,7 @@ bra_8C7B:
 C - - - - - 0x000C8B 00:8C7B: A9 20     LDA #con_btn_Select
 C - - - - - 0x000C8D 00:8C7D: 25 0A     AND ram_buttons
 C - - - - - 0x000C8F 00:8C7F: D0 39     BNE bra_8CBA_select_was_pressed
-C - - - - - 0x000C91 00:8C81: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000C91 00:8C81: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000C94 00:8C84: 6F        .byte con_bsw_enter_cheat
 C - - - - - 0x000C95 00:8C85: 24 0A     BIT ram_buttons
 C - - - - - 0x000C97 00:8C87: 10 BC     BPL bra_8C45_loop   ; if A was not pressed
@@ -1888,7 +1884,7 @@ C - - - - - 0x000CA5 00:8C95: A2 07     LDX #con_sfx_paper
 C - - - - - 0x000CA7 00:8C97: 8E 8F 07  STX ram_sfx_2
 C - - - - - 0x000CAA 00:8C9A: 68        PLA
 C - - - - - 0x000CAB 00:8C9B: AA        TAX
-C - - - - - 0x000CAC 00:8C9C: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000CAC 00:8C9C: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000CAF 00:8C9F: 30        .byte con_bsw_draw_scroll_content_2
 ; bzk optimize
 ; LDA #sound + STA $sfx
@@ -1902,7 +1898,7 @@ C - - - - - 0x000CB8 00:8CA8: AA        TAX
 C - - - - - 0x000CB9 00:8CA9: 8A        TXA
 C - - - - - 0x000CBA 00:8CAA: 49 01     EOR #$01    ; swap minimap/stats
 C - - - - - 0x000CBC 00:8CAC: AA        TAX
-C - - - - - 0x000CBD 00:8CAD: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000CBD 00:8CAD: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000CC0 00:8CB0: 2D        .byte con_bsw_draw_scroll_content_1
 C - - - - - 0x000CC1 00:8CB1: BD CE 8C  LDA tbl_8CCE,X
 C - - - - - 0x000CC4 00:8CB4: 8D 00 02  STA ram_spr_Y
@@ -1991,14 +1987,14 @@ C - - - - - 0x000D36 00:8D26: 8E 54 07  STX ram_gravity_hi
 C - - - - - 0x000D39 00:8D29: E8        INX
 bra_8D2A_loop:
 C - - - - - 0x000D3A 00:8D2A: 8A        TXA
-C - - - - - 0x000D3B 00:8D2B: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000D3B 00:8D2B: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000D3E 00:8D2E: 27        .byte con_bsw_clear_room_visited_flag
 C - - - - - 0x000D3F 00:8D2F: CA        DEX
 C - - - - - 0x000D40 00:8D30: D0 F8     BNE bra_8D2A_loop
 C - - - - - 0x000D42 00:8D32: A2 3F     LDX #$3F
 bra_8D34_loop:
 C - - - - - 0x000D44 00:8D34: 8A        TXA
-C - - - - - 0x000D45 00:8D35: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000D45 00:8D35: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000D48 00:8D38: 39        .byte con_bsw_clear_bonus_picked_flag
 C - - - - - 0x000D49 00:8D39: CA        DEX
 C - - - - - 0x000D4A 00:8D3A: 10 F8     BPL bra_8D34_loop
@@ -2134,7 +2130,7 @@ bra_8E3A:
 C - - - - - 0x000E4A 00:8E3A: A5 15     LDA ram_current_room
 C - - - - - 0x000E4C 00:8E3C: 20 54 A7  JSR sub_A754
 C - - - - - 0x000E4F 00:8E3F: A5 15     LDA ram_current_room
-C - - - - - 0x000E51 00:8E41: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000E51 00:8E41: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000E54 00:8E44: 24        .byte con_bsw_set_room_visited_flag
 C - - - - - 0x000E55 00:8E45: A9 01     LDA #$01
 C - - - - - 0x000E57 00:8E47: 8D 3C 07  STA ram_obj_id
@@ -2142,7 +2138,7 @@ C - - - - - 0x000E5A 00:8E4A: A9 17     LDA #$17
 C - - - - - 0x000E5C 00:8E4C: 85 41     STA ram_0041
 C - - - - - 0x000E5E 00:8E4E: A9 80     LDA #$80
 C - - - - - 0x000E60 00:8E50: 8D 40 07  STA ram_obj_direction_1
-C - - - - - 0x000E63 00:8E53: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000E63 00:8E53: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000E66 00:8E56: 03        .byte con_bsw_01
 C - - - - - 0x000E67 00:8E57: AD 6A 07  LDA ram_076A_flag
 C - - - - - 0x000E6A 00:8E5A: 10 34     BPL bra_8E90
@@ -2168,7 +2164,7 @@ C - - - - - 0x000E93 00:8E83: 10 F7     BPL bra_8E7C_loop
 C - - - - - 0x000E95 00:8E85: A9 00     LDA #con_prg_bank + $00
 C - - - - - 0x000E97 00:8E87: 85 FF     STA ram_prg_bank
 C - - - - - 0x000E99 00:8E89: 8D F8 FF  STA $FFF8
-C - - - - - 0x000E9C 00:8E8C: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x000E9C 00:8E8C: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x000E9F 00:8E8F: 03        .byte con_bsw_01
 bra_8E90:
 C - - - - - 0x000EA0 00:8E90: A9 00     LDA #$00
@@ -2230,12 +2226,12 @@ C - - - - - 0x000EF8 00:8EE8: A9 FF     LDA #$FF
 C - - - - - 0x000EFA 00:8EEA: 99 00 03  STA ram_0300,Y
 C - - - - - 0x000EFD 00:8EED: AD 01 02  LDA ram_spr_T
 C - - - - - 0x000F00 00:8EF0: A0 00     LDY #$00
-C - - - - - 0x000F02 00:8EF2: 20 BF FE  JSR sub_inc_FEBF_prepare_room_data_pointers
+C - - - - - 0x000F02 00:8EF2: 20 BF FE  JSR sub_inc_0x007ECF_prepare_room_data_pointers
 C - - - - - 0x000F05 00:8EF5: A0 03     LDY #$03    ; skip room palette
-C - - - - - 0x000F07 00:8EF7: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x000F07 00:8EF7: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x000F0A 00:8EFA: 85 29     STA ram_0029
 C - - - - - 0x000F0C 00:8EFC: C8        INY
-C - - - - - 0x000F0D 00:8EFD: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x000F0D 00:8EFD: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x000F10 00:8F00: 85 0D     STA ram_000D
 C - - - - - 0x000F12 00:8F02: 0A        ASL
 C - - - - - 0x000F13 00:8F03: 0A        ASL
@@ -2249,7 +2245,7 @@ C - - - - - 0x000F1B 00:8F0B: 98        TYA
 C - - - - - 0x000F1C 00:8F0C: 18        CLC
 C - - - - - 0x000F1D 00:8F0D: 69 0D     ADC #$0D
 C - - - - - 0x000F1F 00:8F0F: A8        TAY
-C - - - - - 0x000F20 00:8F10: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x000F20 00:8F10: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x000F23 00:8F13: 48        PHA
 C - - - - - 0x000F24 00:8F14: 0A        ASL
 C - - - - - 0x000F25 00:8F15: 0A        ASL
@@ -2271,14 +2267,14 @@ bra_8F28_loop:
 C - - - - - 0x000F38 00:8F28: 06 1F     ASL ram_001F
 C - - - - - 0x000F3A 00:8F2A: 90 2D     BCC bra_8F59
 C - - - - - 0x000F3C 00:8F2C: C8        INY
-C - - - - - 0x000F3D 00:8F2D: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x000F3D 00:8F2D: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x000F40 00:8F30: 29 07     AND #$07
 C - - - - - 0x000F42 00:8F32: 18        CLC
 C - - - - - 0x000F43 00:8F33: 69 02     ADC #$02
 C - - - - - 0x000F45 00:8F35: 0A        ASL
 C - - - - - 0x000F46 00:8F36: 9D 05 02  STA ram_spr_T + $04,X
 C - - - - - 0x000F49 00:8F39: C8        INY
-C - - - - - 0x000F4A 00:8F3A: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x000F4A 00:8F3A: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x000F4D 00:8F3D: 9D 06 02  STA ram_spr_A + $04,X
 C - - - - - 0x000F50 00:8F40: 4C 64 8F  JMP loc_8F64
 
@@ -2492,7 +2488,7 @@ C - - - - - 0x0010D2 00:90C2: C9 FD     CMP #$FD
 C - - - - - 0x0010D4 00:90C4: B0 29     BCS bra_90EF
 C - - - - - 0x0010D6 00:90C6: 85 0D     STA ram_000D
 C - - - - - 0x0010D8 00:90C8: A8        TAY
-C - - - - - 0x0010D9 00:90C9: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x0010D9 00:90C9: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x0010DC 00:90CC: 2A        .byte con_bsw_check_if_room_was_visited
 C - - - - - 0x0010DD 00:90CD: F0 20     BEQ bra_90EF
 C - - - - - 0x0010DF 00:90CF: B9 00 03  LDA ram_0300,Y
@@ -3245,13 +3241,13 @@ C - - - - - 0x00149A 00:948A: F0 02     BEQ bra_948E
 C - - - - - 0x00149C 00:948C: A9 FF     LDA #$FF
 bra_948E:
 C - - - - - 0x00149E 00:948E: 85 10     STA ram_0010
-C - - - - - 0x0014A0 00:9490: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x0014A0 00:9490: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x0014A3 00:9493: 3F        .byte con_bsw_15
 C - - - - - 0x0014A4 00:9494: B0 01     BCS bra_9497
 C - - - - - 0x0014A6 00:9496: 60        RTS
 bra_9497:
 C - - - - - 0x0014A7 00:9497: C8        INY
-C - - - - - 0x0014A8 00:9498: 20 10 FF  JSR sub_inc_FF10
+C - - - - - 0x0014A8 00:9498: 20 10 FF  JSR sub_inc_0x007F20
 C - - - - - 0x0014AB 00:949B: 29 1F     AND #$1F
 C - - - - - 0x0014AD 00:949D: 88        DEY
 C - - - - - 0x0014AE 00:949E: 88        DEY
@@ -3520,7 +3516,7 @@ C - - - - - 0x00164E 00:963E: 86 0F     STX ram_000F
 C - - - - - 0x001650 00:9640: 8A        TXA
 C - - - - - 0x001651 00:9641: 38        SEC
 C - - - - - 0x001652 00:9642: E9 C0     SBC #$C0
-C - - - - - 0x001654 00:9644: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x001654 00:9644: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x001657 00:9647: 3C        .byte con_bsw_check_if_bonus_was_picked
 C - - - - - 0x001658 00:9648: AA        TAX
 C - - - - - 0x001659 00:9649: F0 05     BEQ bra_9650
@@ -3541,7 +3537,7 @@ C - - - - - 0x001672 00:9662: 90 08     BCC bra_966C
 C - - - - - 0x001674 00:9664: 8A        TXA
 C - - - - - 0x001675 00:9665: 38        SEC
 C - - - - - 0x001676 00:9666: E9 C0     SBC #$C0
-C - - - - - 0x001678 00:9668: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x001678 00:9668: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x00167B 00:966B: 36        .byte con_bsw_set_bonus_picked_flag
 bra_966C:
 C - - - - - 0x00167C 00:966C: A6 10     LDX ram_0010
@@ -3709,7 +3705,7 @@ C - - - - - 0x001778 00:9768: F0 01     BEQ bra_976B
 bra_976A_RTS:
 C - - - - - 0x00177A 00:976A: 60        RTS
 bra_976B:
-C - - - - - 0x00177B 00:976B: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00177B 00:976B: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x00177E 00:976E: 57        .byte con_bsw_1D
 C - - - - - 0x00177F 00:976F: A5 0F     LDA ram_000F
 C - - - - - 0x001781 00:9771: C9 05     CMP #$05
@@ -3792,7 +3788,7 @@ C - - - - - 0x00181D 00:980D: 60        RTS
 
 sub_980E_find_room_exits:
 C - - - - - 0x00181E 00:980E: A0 00     LDY #$00
-C - - - - - 0x001820 00:9810: 20 34 FF  JSR sub_inc_FF34_read_byte_from_room_data_2
+C - - - - - 0x001820 00:9810: 20 34 FF  JSR sub_inc_0x007F44_read_byte_from_room_data_2
 C - - - - - 0x001823 00:9813: 0A        ASL
 C - - - - - 0x001824 00:9814: 0A        ASL
 C - - - - - 0x001825 00:9815: 85 0D     STA ram_000D
@@ -3808,10 +3804,10 @@ C - - - - - 0x001835 00:9825: A9 45     LDA #$45
 bra_9827:
 C - - - - - 0x001837 00:9827: 85 35     STA ram_pos_Z_obj
 C - - - - - 0x001839 00:9829: 88        DEY
-C - - - - - 0x00183A 00:982A: 20 34 FF  JSR sub_inc_FF34_read_byte_from_room_data_2
+C - - - - - 0x00183A 00:982A: 20 34 FF  JSR sub_inc_0x007F44_read_byte_from_room_data_2
 C - - - - - 0x00183D 00:982D: 48        PHA
 C - - - - - 0x00183E 00:982E: C8        INY
-C - - - - - 0x00183F 00:982F: 20 34 FF  JSR sub_inc_FF34_read_byte_from_room_data_2
+C - - - - - 0x00183F 00:982F: 20 34 FF  JSR sub_inc_0x007F44_read_byte_from_room_data_2
 C - - - - - 0x001842 00:9832: A8        TAY
 C - - - - - 0x001843 00:9833: 68        PLA
 C - - - - - 0x001844 00:9834: 8E 68 07  STX ram_0768
@@ -3880,10 +3876,10 @@ bra_9892:
 C - - - - - 0x0018A2 00:9892: 18        CLC
 C - - - - - 0x0018A3 00:9893: 60        RTS
 bra_9894:
-C - - - - - 0x0018A4 00:9894: 20 34 FF  JSR sub_inc_FF34_read_byte_from_room_data_2
+C - - - - - 0x0018A4 00:9894: 20 34 FF  JSR sub_inc_0x007F44_read_byte_from_room_data_2
 C - - - - - 0x0018A7 00:9897: 48        PHA
 C - - - - - 0x0018A8 00:9898: 88        DEY
-C - - - - - 0x0018A9 00:9899: 20 34 FF  JSR sub_inc_FF34_read_byte_from_room_data_2
+C - - - - - 0x0018A9 00:9899: 20 34 FF  JSR sub_inc_0x007F44_read_byte_from_room_data_2
 C - - - - - 0x0018AC 00:989C: 2A        ROL
 C - - - - - 0x0018AD 00:989D: 2A        ROL
 C - - - - - 0x0018AE 00:989E: 2A        ROL
@@ -4211,19 +4207,19 @@ C - - - - - 0x001AC3 00:9AB3: 60        RTS
 
 
 sub_9AB4_prepare_room_object:
-C - - - - - 0x001AC4 00:9AB4: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x001AC4 00:9AB4: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x001AC7 00:9AB7: 85 0D     STA ram_000D    ; object id
 C - - - - - 0x001AC9 00:9AB9: C8        INY
-C - - - - - 0x001ACA 00:9ABA: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x001ACA 00:9ABA: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x001ACD 00:9ABD: 85 0E     STA ram_000E    ; object pos XY
 C - - - - - 0x001ACF 00:9ABF: C8        INY
-C - - - - - 0x001AD0 00:9AC0: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x001AD0 00:9AC0: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x001AD3 00:9AC3: 85 0F     STA ram_000F    ; object pos Z and direction
 C - - - - - 0x001AD5 00:9AC5: C8        INY
-C - - - - - 0x001AD6 00:9AC6: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x001AD6 00:9AC6: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x001AD9 00:9AC9: 8D 9D 07  STA ram_079D    ; object color 1
 C - - - - - 0x001ADC 00:9ACC: C8        INY
-C - - - - - 0x001ADD 00:9ACD: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x001ADD 00:9ACD: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x001AE0 00:9AD0: 8D 9E 07  STA ram_079E_object_color_2    ; object color 2
 C - - - - - 0x001AE3 00:9AD3: 84 08     STY ram_0008
 C - - - - - 0x001AE5 00:9AD5: AE 6A 07  LDX ram_076A_flag
@@ -4255,7 +4251,7 @@ C - - - - - 0x001B1E 00:9B0E: 90 1D     BCC bra_9B2D    ; if not a bonus item
 ; if a bonus item
 C - - - - - 0x001B20 00:9B10: 38        SEC
 C - - - - - 0x001B21 00:9B11: E9 C0     SBC #$C0
-C - - - - - 0x001B23 00:9B13: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x001B23 00:9B13: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x001B26 00:9B16: 3C        .byte con_bsw_check_if_bonus_was_picked
 C - - - - - 0x001B27 00:9B17: F0 14     BEQ bra_9B2D
 C - - - - - 0x001B29 00:9B19: 8A        TXA
@@ -4724,7 +4720,7 @@ C - - - - - 0x001D22 00:9D12: C8        INY
 C - - - - - 0x001D23 00:9D13: B1 22     LDA (ram_0022),Y
 C - - - - - 0x001D25 00:9D15: 38        SEC
 C - - - - - 0x001D26 00:9D16: E9 C0     SBC #$C0
-C - - - - - 0x001D28 00:9D18: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x001D28 00:9D18: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x001D2B 00:9D1B: 3C        .byte con_bsw_check_if_bonus_was_picked
 C - - - - - 0x001D2C 00:9D1C: 48        PHA
 C - - - - - 0x001D2D 00:9D1D: 68        PLA
@@ -4862,7 +4858,7 @@ C - - - - - 0x001DAD 00:9D9D: C8        INY
 C - - - - - 0x001DAE 00:9D9E: B1 22     LDA (ram_0022),Y
 C - - - - - 0x001DB0 00:9DA0: 38        SEC
 C - - - - - 0x001DB1 00:9DA1: E9 C0     SBC #$C0
-C - - - - - 0x001DB3 00:9DA3: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x001DB3 00:9DA3: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x001DB6 00:9DA6: 3C        .byte con_bsw_check_if_bonus_was_picked
 C - - - - - 0x001DB7 00:9DA7: AA        TAX
 C - - - - - 0x001DB8 00:9DA8: F0 02     BEQ bra_9DAC
@@ -5377,7 +5373,7 @@ loc_9FEF:    ; jump to this AI
 ; AI for enemy that has gravity and moves in circles,
 ; and changes direction when it hits wall or block
 ; or climbs it, its odd
-C D 0 - - - 0x001FFF 00:9FEF: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C D 0 - - - 0x001FFF 00:9FEF: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x002002 00:9FF2: 4E        .byte con_bsw_1A
 C - - - - - 0x002003 00:9FF3: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x002006 00:9FF6: 20 7C A3  JSR sub_A37C
@@ -6740,20 +6736,20 @@ C - - - - - 0x002766 00:A756: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
 C - - - - - 0x002769 00:A759: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
 C - - - - - 0x00276C 00:A75C: 20 0D BC  JSR sub_BC0D_write_palette_to_buffer_1
 C - - - - - 0x00276F 00:A75F: A5 15     LDA ram_current_room
-C - - - - - 0x002771 00:A761: 20 BF FE  JSR sub_inc_FEBF_prepare_room_data_pointers
+C - - - - - 0x002771 00:A761: 20 BF FE  JSR sub_inc_0x007ECF_prepare_room_data_pointers
 loc_A764_analyze_room_data:
 C D 1 - - - 0x002774 00:A764: A0 00     LDY #$00
 bra_A766_write_room_palette_loop:
-C - - - - - 0x002776 00:A766: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x002776 00:A766: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x002779 00:A769: 99 01 01  STA ram_buffer_palette + $01,Y
 C - - - - - 0x00277C 00:A76C: C8        INY
 C - - - - - 0x00277D 00:A76D: C0 03     CPY #$03
 C - - - - - 0x00277F 00:A76F: D0 F5     BNE bra_A766_write_room_palette_loop
-C - - - - - 0x002781 00:A771: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x002781 00:A771: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x002784 00:A774: C8        INY
 C - - - - - 0x002785 00:A775: 85 29     STA ram_0029
 C - - - - - 0x002787 00:A777: 20 B2 B1  JSR sub_B1B2_select_room_ppu_pos_and_size
-C - - - - - 0x00278A 00:A77A: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x00278A 00:A77A: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x00278D 00:A77D: AA        TAX
 C - - - - - 0x00278E 00:A77E: F0 13     BEQ bra_A793_skip_objects
 C - - - - - 0x002790 00:A780: 85 11     STA ram_0011
@@ -6768,16 +6764,16 @@ C - - - - - 0x00279E 00:A78E: 20 6F 9D  JSR sub_9D6F
 C - - - - - 0x0027A1 00:A791: A4 08     LDY ram_0008
 bra_A793_skip_objects:
 C - - - - - 0x0027A3 00:A793: C8        INY
-C - - - - - 0x0027A4 00:A794: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x0027A4 00:A794: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x0027A7 00:A797: 85 DF     STA ram_00DF
 C - - - - - 0x0027A9 00:A799: C8        INY
-C - - - - - 0x0027AA 00:A79A: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x0027AA 00:A79A: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x0027AD 00:A79D: 85 E0     STA ram_00E0
 C - - - - - 0x0027AF 00:A79F: C8        INY
-C - - - - - 0x0027B0 00:A7A0: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x0027B0 00:A7A0: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x0027B3 00:A7A3: 85 E7     STA ram_00E7
 C - - - - - 0x0027B5 00:A7A5: C8        INY
-C - - - - - 0x0027B6 00:A7A6: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x0027B6 00:A7A6: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x0027B9 00:A7A9: 85 E8     STA ram_00E8
 C - - - - - 0x0027BB 00:A7AB: C8        INY
 C - - - - - 0x0027BC 00:A7AC: 98        TYA
@@ -6790,10 +6786,10 @@ C - - - - - 0x0027C4 00:A7B4: 85 18     STA ram_0018
 C - - - - - 0x0027C6 00:A7B6: A5 17     LDA ram_0017
 C - - - - - 0x0027C8 00:A7B8: 69 00     ADC #> $0009
 C - - - - - 0x0027CA 00:A7BA: 85 19     STA ram_0019
-C - - - - - 0x0027CC 00:A7BC: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x0027CC 00:A7BC: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x0027CF 00:A7BF: 85 EA     STA ram_00EA
 C - - - - - 0x0027D1 00:A7C1: C8        INY
-C - - - - - 0x0027D2 00:A7C2: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x0027D2 00:A7C2: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x0027D5 00:A7C5: 85 E9     STA ram_00E9
 C - - - - - 0x0027D7 00:A7C7: 20 88 B1  JSR sub_B188
 C - - - - - 0x0027DA 00:A7CA: 20 77 B0  JSR sub_B077
@@ -6820,7 +6816,7 @@ C - - - - - 0x002803 00:A7F3: 69 00     ADC #$00
 C - - - - - 0x002805 00:A7F5: 85 1B     STA ram_001B
 C - - - - - 0x002807 00:A7F7: A9 C8     LDA #$C8
 C - - - - - 0x002809 00:A7F9: 8D 00 20  STA $2000
-C - - - - - 0x00280C 00:A7FC: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00280C 00:A7FC: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x00280F 00:A7FF: 03        .byte con_bsw_01
 C - - - - - 0x002810 00:A800: 20 8D AC  JSR sub_AC8D
 C - - - - - 0x002813 00:A803: A9 81     LDA #$81
@@ -6834,7 +6830,7 @@ C - - - - - 0x002824 00:A814: 48        PHA
 C - - - - - 0x002825 00:A815: A5 1B     LDA ram_001B
 C - - - - - 0x002827 00:A817: 48        PHA
 C - - - - - 0x002828 00:A818: 20 26 A8  JSR sub_A826
-C - - - - - 0x00282B 00:A81B: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00282B 00:A81B: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x00282E 00:A81E: 03        .byte con_bsw_01
 C - - - - - 0x00282F 00:A81F: 68        PLA
 C - - - - - 0x002830 00:A820: 85 1B     STA ram_001B
@@ -6846,7 +6842,7 @@ C - - - - - 0x002835 00:A825: 60        RTS
 
 sub_A826:
 C - - - - - 0x002836 00:A826: A0 00     LDY #$00
-C - - - - - 0x002838 00:A828: 20 EA FE  JSR sub_inc_FEEA
+C - - - - - 0x002838 00:A828: 20 EA FE  JSR sub_inc_0x007EFA
 C - - - - - 0x00283B 00:A82B: 85 EF     STA ram_00EF
 C - - - - - 0x00283D 00:A82D: D0 03     BNE bra_A832
 C - - - - - 0x00283F 00:A82F: 4C E5 A8  JMP loc_A8E5_RTS
@@ -6869,7 +6865,7 @@ C - - - - - 0x002859 00:A849: 20 14 AC  JSR sub_AC14
 C - - - - - 0x00285C 00:A84C: AD 07 20  LDA $2007   ; dummy read
 C - - - - - 0x00285F 00:A84F: AD 07 20  LDA $2007   ; actual read
 C - - - - - 0x002862 00:A852: A4 08     LDY ram_0008
-C - - - - - 0x002864 00:A854: 20 FB FE  JSR sub_inc_FEFB
+C - - - - - 0x002864 00:A854: 20 FB FE  JSR sub_inc_0x007F0B
 C - - - - - 0x002867 00:A857: C8        INY
 C - - - - - 0x002868 00:A858: E6 13     INC ram_0013
 C - - - - - 0x00286A 00:A85A: C6 ED     DEC ram_00ED
@@ -6892,10 +6888,10 @@ C - - - - - 0x002886 00:A876: A9 04     LDA #$04
 C - - - - - 0x002888 00:A878: 85 ED     STA ram_00ED
 bra_A87A_loop:
 C - - - - - 0x00288A 00:A87A: 84 08     STY ram_0008
-C - - - - - 0x00288C 00:A87C: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00288C 00:A87C: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x00288F 00:A87F: 12        .byte con_bsw_06
 C - - - - - 0x002890 00:A880: A4 08     LDY ram_0008
-C - - - - - 0x002892 00:A882: 20 FB FE  JSR sub_inc_FEFB
+C - - - - - 0x002892 00:A882: 20 FB FE  JSR sub_inc_0x007F0B
 C - - - - - 0x002895 00:A885: C8        INY
 C - - - - - 0x002896 00:A886: E6 13     INC ram_0013
 C - - - - - 0x002898 00:A888: C6 ED     DEC ram_00ED
@@ -6920,7 +6916,7 @@ C - - - - - 0x0028B6 00:A8A6: 85 ED     STA ram_00ED
 bra_A8A8_loop:
 C - - - - - 0x0028B8 00:A8A8: 84 08     STY ram_0008
 C - - - - - 0x0028BA 00:A8AA: 20 E6 A8  JSR sub_A8E6
-C - - - - - 0x0028BD 00:A8AD: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x0028BD 00:A8AD: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x0028C0 00:A8B0: 1B        .byte con_bsw_09
 C - - - - - 0x0028C1 00:A8B1: 8A        TXA
 C - - - - - 0x0028C2 00:A8B2: 85 09     STA ram_0009
@@ -6968,7 +6964,7 @@ C - - - - - 0x002907 00:A8F7: BD 80 03  LDA ram_0380,X
 C - - - - - 0x00290A 00:A8FA: 2C        .byte $2C   ; BIT opcode
 bra_A8FB:
 C - - - - - 0x00290B 00:A8FB: A9 00     LDA #$00
-C - - - - - 0x00290D 00:A8FD: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00290D 00:A8FD: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002910 00:A900: 1E        .byte con_bsw_0A
 C - - - - - 0x002911 00:A901: A2 07     LDX #$07
 bra_A903_loop:
@@ -6979,9 +6975,9 @@ C - - - - - 0x002918 00:A908: 10 F9     BPL bra_A903_loop
 C - - - - - 0x00291A 00:A90A: A0 00     LDY #$00
 C - - - - - 0x00291C 00:A90C: B1 EB     LDA (ram_00EB),Y
 C - - - - - 0x00291E 00:A90E: 8D 9D 07  STA ram_079D
-C - - - - - 0x002921 00:A911: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x002921 00:A911: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002924 00:A914: 1E        .byte con_bsw_0A
-C - - - - - 0x002925 00:A915: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x002925 00:A915: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002928 00:A918: 12        .byte con_bsw_06
 C - - - - - 0x002929 00:A919: 85 28     STA ram_0028
 C - - - - - 0x00292B 00:A91B: A0 10     LDY #$10
@@ -7032,7 +7028,7 @@ C - - - - - 0x002979 00:A969: CA        DEX
 C - - - - - 0x00297A 00:A96A: 10 C9     BPL bra_A935_loop
 C - - - - - 0x00297C 00:A96C: 4C 88 A9  JMP loc_A988
 bra_A96F:
-C - - - - - 0x00297F 00:A96F: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00297F 00:A96F: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002982 00:A972: 0F        .byte con_bsw_05
 C - - - - - 0x002983 00:A973: A2 07     LDX #$07
 bra_A975_loop:
@@ -7073,7 +7069,7 @@ sub_A9A2:
 C - - - - - 0x0029B2 00:A9A2: 20 CB AB  JSR sub_ABCB
 C - - - - - 0x0029B5 00:A9A5: F0 21     BEQ bra_A9C8
 C - - - - - 0x0029B7 00:A9A7: A4 08     LDY ram_0008
-C - - - - - 0x0029B9 00:A9A9: 20 FB FE  JSR sub_inc_FEFB
+C - - - - - 0x0029B9 00:A9A9: 20 FB FE  JSR sub_inc_0x007F0B
 C - - - - - 0x0029BC 00:A9AC: 4C B9 A9  JMP loc_A9B9
 - - - - - - 0x0029BF 00:A9AF: C5 00     CMP ram_0000
 - - - - - - 0x0029C1 00:A9B1: 90 15     BCC bra_A9C8
@@ -7081,7 +7077,7 @@ C - - - - - 0x0029BC 00:A9AC: 4C B9 A9  JMP loc_A9B9
 - - - - - - 0x0029C6 00:A9B6: 20 01 AC  JSR sub_AC01
 loc_A9B9:
 C D 1 - - - 0x0029C9 00:A9B9: A4 08     LDY ram_0008
-C - - - - - 0x0029CB 00:A9BB: 20 EA FE  JSR sub_inc_FEEA
+C - - - - - 0x0029CB 00:A9BB: 20 EA FE  JSR sub_inc_0x007EFA
 C - - - - - 0x0029CE 00:A9BE: A8        TAY
 C - - - - - 0x0029CF 00:A9BF: 24 1C     BIT ram_001C
 C - - - - - 0x0029D1 00:A9C1: 70 05     BVS bra_A9C8
@@ -7092,11 +7088,11 @@ C - - - - - 0x0029D8 00:A9C8: A4 08     LDY ram_0008
 C - - - - - 0x0029DA 00:A9CA: A5 07     LDA ram_0007
 C - - - - - 0x0029DC 00:A9CC: C9 05     CMP #$05
 C - - - - - 0x0029DE 00:A9CE: F0 0E     BEQ bra_A9DE
-C - - - - - 0x0029E0 00:A9D0: 20 EA FE  JSR sub_inc_FEEA
+C - - - - - 0x0029E0 00:A9D0: 20 EA FE  JSR sub_inc_0x007EFA
 C - - - - - 0x0029E3 00:A9D3: 20 0B AC  JSR sub_AC0B
 C - - - - - 0x0029E6 00:A9D6: A6 13     LDX ram_0013
 C - - - - - 0x0029E8 00:A9D8: A4 14     LDY ram_0014
-C - - - - - 0x0029EA 00:A9DA: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x0029EA 00:A9DA: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x0029ED 00:A9DD: 09        .byte con_bsw_03
 bra_A9DE:
 C - - - - - 0x0029EE 00:A9DE: 4C A0 AB  JMP loc_ABA0
@@ -7105,7 +7101,7 @@ C - - - - - 0x0029EE 00:A9DE: 4C A0 AB  JMP loc_ABA0
 
 sub_A9E1:
 C - - - - - 0x0029F1 00:A9E1: A0 00     LDY #$00
-C - - - - - 0x0029F3 00:A9E3: 20 EA FE  JSR sub_inc_FEEA
+C - - - - - 0x0029F3 00:A9E3: 20 EA FE  JSR sub_inc_0x007EFA
 C - - - - - 0x0029F6 00:A9E6: 85 EF     STA ram_00EF
 C - - - - - 0x0029F8 00:A9E8: F0 37     BEQ bra_AA21
 bra_A9EA_loop:
@@ -7152,14 +7148,14 @@ C - - - - - 0x002A3C 00:AA2C: 60        RTS
 
 
 sub_AA2D:
-C - - - - - 0x002A3D 00:AA2D: 20 EA FE  JSR sub_inc_FEEA
+C - - - - - 0x002A3D 00:AA2D: 20 EA FE  JSR sub_inc_0x007EFA
 C - - - - - 0x002A40 00:AA30: AA        TAX
 C - - - - - 0x002A41 00:AA31: BD D8 C0  LDA tbl_C0D8_lo,X
 C - - - - - 0x002A44 00:AA34: 85 EB     STA ram_00EB
 C - - - - - 0x002A46 00:AA36: BD E9 C0  LDA tbl_C0E9_hi,X
 C - - - - - 0x002A49 00:AA39: 85 EC     STA ram_00EC
 C - - - - - 0x002A4B 00:AA3B: C8        INY
-C - - - - - 0x002A4C 00:AA3C: 20 EA FE  JSR sub_inc_FEEA
+C - - - - - 0x002A4C 00:AA3C: 20 EA FE  JSR sub_inc_0x007EFA
 C - - - - - 0x002A4F 00:AA3F: 85 0D     STA ram_000D
 C - - - - - 0x002A51 00:AA41: 29 0F     AND #$0F
 C - - - - - 0x002A53 00:AA43: 8D B4 07  STA ram_07B4
@@ -7170,10 +7166,10 @@ C - - - - - 0x002A5A 00:AA4A: 4A        LSR
 C - - - - - 0x002A5B 00:AA4B: 4A        LSR
 C - - - - - 0x002A5C 00:AA4C: 8D B3 07  STA ram_07B3
 C - - - - - 0x002A5F 00:AA4F: C8        INY
-C - - - - - 0x002A60 00:AA50: 20 EA FE  JSR sub_inc_FEEA
+C - - - - - 0x002A60 00:AA50: 20 EA FE  JSR sub_inc_0x007EFA
 C - - - - - 0x002A63 00:AA53: 8D B5 07  STA ram_07B5
 C - - - - - 0x002A66 00:AA56: C8        INY
-C - - - - - 0x002A67 00:AA57: 20 EA FE  JSR sub_inc_FEEA
+C - - - - - 0x002A67 00:AA57: 20 EA FE  JSR sub_inc_0x007EFA
 C - - - - - 0x002A6A 00:AA5A: 85 1C     STA ram_001C
 C - - - - - 0x002A6C 00:AA5C: 29 BF     AND #$BF
 C - - - - - 0x002A6E 00:AA5E: 85 07     STA ram_0007
@@ -7246,7 +7242,7 @@ C - - - - - 0x002AE2 00:AAD2: 48        PHA
 C - - - - - 0x002AE3 00:AAD3: 20 0B AC  JSR sub_AC0B
 C - - - - - 0x002AE6 00:AAD6: A6 13     LDX ram_0013
 C - - - - - 0x002AE8 00:AAD8: A4 14     LDY ram_0014
-C - - - - - 0x002AEA 00:AADA: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x002AEA 00:AADA: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002AED 00:AADD: 09        .byte con_bsw_03
 C - - - - - 0x002AEE 00:AADE: 68        PLA
 C - - - - - 0x002AEF 00:AADF: A8        TAY
@@ -7263,7 +7259,7 @@ C - - - - - 0x002B00 00:AAF0: 18        CLC
 C - - - - - 0x002B01 00:AAF1: 6D B5 07  ADC ram_07B5
 C - - - - - 0x002B04 00:AAF4: 18        CLC
 C - - - - - 0x002B05 00:AAF5: 69 11     ADC #$11
-C - - - - - 0x002B07 00:AAF7: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x002B07 00:AAF7: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002B0A 00:AAFA: 0F        .byte con_bsw_05
 C - - - - - 0x002B0B 00:AAFB: AD 9D 07  LDA ram_079D
 C - - - - - 0x002B0E 00:AAFE: F0 02     BEQ bra_AB02
@@ -7295,7 +7291,7 @@ bra_AB22:
 C - - - - - 0x002B32 00:AB22: 20 35 AC  JSR sub_AC35
 C - - - - - 0x002B35 00:AB25: 20 01 AC  JSR sub_AC01
 C - - - - - 0x002B38 00:AB28: 20 B8 AB  JSR sub_ABB8
-C - - - - - 0x002B3B 00:AB2B: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x002B3B 00:AB2B: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002B3E 00:AB2E: 0F        .byte con_bsw_05
 C - - - - - 0x002B3F 00:AB2F: A4 08     LDY ram_0008
 C - - - - - 0x002B41 00:AB31: A5 00     LDA ram_0000
@@ -7311,7 +7307,7 @@ C - - - - - 0x002B50 00:AB40: 98        TYA
 C - - - - - 0x002B51 00:AB41: 20 0B AC  JSR sub_AC0B
 C - - - - - 0x002B54 00:AB44: A6 13     LDX ram_0013
 C - - - - - 0x002B56 00:AB46: A4 14     LDY ram_0014
-C - - - - - 0x002B58 00:AB48: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x002B58 00:AB48: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002B5B 00:AB4B: 09        .byte con_bsw_03
 C - - - - - 0x002B5C 00:AB4C: 4C A0 AB  JMP loc_ABA0
 
@@ -7321,13 +7317,13 @@ sub_AB4F:
 C - - - - - 0x002B5F 00:AB4F: 84 08     STY ram_0008
 C - - - - - 0x002B61 00:AB51: 24 07     BIT ram_0007
 C - - - - - 0x002B63 00:AB53: 30 CD     BMI bra_AB22
-C - - - - - 0x002B65 00:AB55: 20 EA FE  JSR sub_inc_FEEA
+C - - - - - 0x002B65 00:AB55: 20 EA FE  JSR sub_inc_0x007EFA
 C - - - - - 0x002B68 00:AB58: D0 10     BNE bra_AB6A
 - - - - - - 0x002B6A 00:AB5A: 20 35 AC  JSR sub_AC35
 - - - - - - 0x002B6D 00:AB5D: 20 CB AB  JSR sub_ABCB
 - - - - - - 0x002B70 00:AB60: F0 21     BEQ bra_AB83
 - - - - - - 0x002B72 00:AB62: A4 08     LDY ram_0008
-- - - - - - 0x002B74 00:AB64: 20 FB FE  JSR sub_inc_FEFB
+- - - - - - 0x002B74 00:AB64: 20 FB FE  JSR sub_inc_0x007F0B
 - - - - - - 0x002B77 00:AB67: 4C 74 AB  JMP loc_AB74
 bra_AB6A:
 C - - - - - 0x002B7A 00:AB6A: C5 00     CMP ram_0000
@@ -7336,7 +7332,7 @@ C - - - - - 0x002B7E 00:AB6E: 20 35 AC  JSR sub_AC35
 C - - - - - 0x002B81 00:AB71: 20 01 AC  JSR sub_AC01
 loc_AB74:
 C - - - - - 0x002B84 00:AB74: A4 08     LDY ram_0008
-C - - - - - 0x002B86 00:AB76: 20 EA FE  JSR sub_inc_FEEA
+C - - - - - 0x002B86 00:AB76: 20 EA FE  JSR sub_inc_0x007EFA
 C - - - - - 0x002B89 00:AB79: A8        TAY
 C - - - - - 0x002B8A 00:AB7A: 24 1C     BIT ram_001C
 C - - - - - 0x002B8C 00:AB7C: 70 05     BVS bra_AB83
@@ -7344,17 +7340,17 @@ C - - - - - 0x002B8E 00:AB7E: A5 09     LDA ram_0009
 C - - - - - 0x002B90 00:AB80: 99 80 03  STA ram_0380,Y
 bra_AB83:
 C - - - - - 0x002B93 00:AB83: 20 B8 AB  JSR sub_ABB8
-C - - - - - 0x002B96 00:AB86: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x002B96 00:AB86: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002B99 00:AB89: 0F        .byte con_bsw_05
 C - - - - - 0x002B9A 00:AB8A: A4 08     LDY ram_0008
 C - - - - - 0x002B9C 00:AB8C: A5 07     LDA ram_0007
 C - - - - - 0x002B9E 00:AB8E: C9 05     CMP #$05
 C - - - - - 0x002BA0 00:AB90: F0 0E     BEQ bra_ABA0
-C - - - - - 0x002BA2 00:AB92: 20 EA FE  JSR sub_inc_FEEA
+C - - - - - 0x002BA2 00:AB92: 20 EA FE  JSR sub_inc_0x007EFA
 C - - - - - 0x002BA5 00:AB95: 20 0B AC  JSR sub_AC0B
 C - - - - - 0x002BA8 00:AB98: A6 13     LDX ram_0013
 C - - - - - 0x002BAA 00:AB9A: A4 14     LDY ram_0014
-C - - - - - 0x002BAC 00:AB9C: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x002BAC 00:AB9C: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002BAF 00:AB9F: 09        .byte con_bsw_03
 bra_ABA0:
 loc_ABA0:
@@ -7413,7 +7409,7 @@ C - - - - - 0x002BF7 00:ABE7: D0 F4     BNE bra_ABDD_loop
 C - - - - - 0x002BF9 00:ABE9: A6 2C     LDX ram_002C
 C - - - - - 0x002BFB 00:ABEB: 10 09     BPL bra_ABF6
 C - - - - - 0x002BFD 00:ABED: BD 80 03  LDA ram_0380,X
-C - - - - - 0x002C00 00:ABF0: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x002C00 00:ABF0: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002C03 00:ABF3: 15        .byte con_bsw_07
 C - - - - - 0x002C04 00:ABF4: B0 03     BCS bra_ABF9
 bra_ABF6:
@@ -7475,9 +7471,9 @@ C - - - - - 0x002C4E 00:AC3E: 20 58 B5  JSR sub_B558
 C - - - - - 0x002C51 00:AC41: A0 00     LDY #$00
 C - - - - - 0x002C53 00:AC43: B1 EB     LDA (ram_00EB),Y
 C - - - - - 0x002C55 00:AC45: 8D 9D 07  STA ram_079D
-C - - - - - 0x002C58 00:AC48: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x002C58 00:AC48: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002C5B 00:AC4B: 1E        .byte con_bsw_0A
-C - - - - - 0x002C5C 00:AC4C: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x002C5C 00:AC4C: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x002C5F 00:AC4F: 18        .byte con_bsw_08
 C - - - - - 0x002C60 00:AC50: 85 09     STA ram_0009
 C - - - - - 0x002C62 00:AC52: A0 07     LDY #$07
@@ -7558,7 +7554,7 @@ C - - - - - 0x002CDA 00:ACCA: A0 FF     LDY #$FF
 C - - - - - 0x002CDC 00:ACCC: 8C 74 07  STY ram_0774
 C - - - - - 0x002CDF 00:ACCF: 8C 72 07  STY ram_0772
 C - - - - - 0x002CE2 00:ACD2: C8        INY
-C - - - - - 0x002CE3 00:ACD3: 20 34 FF  JSR sub_inc_FF34_read_byte_from_room_data_2
+C - - - - - 0x002CE3 00:ACD3: 20 34 FF  JSR sub_inc_0x007F44_read_byte_from_room_data_2
 C - - - - - 0x002CE6 00:ACD6: C8        INY
 C - - - - - 0x002CE7 00:ACD7: 0A        ASL
 C - - - - - 0x002CE8 00:ACD8: 0A        ASL
@@ -7600,7 +7596,7 @@ bra_AD02:
 
 
 sub_AD04:
-C - - - - - 0x002D14 00:AD04: 20 34 FF  JSR sub_inc_FF34_read_byte_from_room_data_2
+C - - - - - 0x002D14 00:AD04: 20 34 FF  JSR sub_inc_0x007F44_read_byte_from_room_data_2
 C - - - - - 0x002D17 00:AD07: C8        INY
 C - - - - - 0x002D18 00:AD08: C8        INY
 C - - - - - 0x002D19 00:AD09: 48        PHA
@@ -7684,7 +7680,7 @@ bra_AD7A:
 
 
 sub_AD7C:
-C - - - - - 0x002D8C 00:AD7C: 20 34 FF  JSR sub_inc_FF34_read_byte_from_room_data_2
+C - - - - - 0x002D8C 00:AD7C: 20 34 FF  JSR sub_inc_0x007F44_read_byte_from_room_data_2
 C - - - - - 0x002D8F 00:AD7F: C8        INY
 C - - - - - 0x002D90 00:AD80: C8        INY
 C - - - - - 0x002D91 00:AD81: 48        PHA
@@ -7759,7 +7755,7 @@ C - - - - - 0x002DF3 00:ADE3: 60        RTS
 
 
 sub_ADE4:
-C - - - - - 0x002DF4 00:ADE4: 20 34 FF  JSR sub_inc_FF34_read_byte_from_room_data_2
+C - - - - - 0x002DF4 00:ADE4: 20 34 FF  JSR sub_inc_0x007F44_read_byte_from_room_data_2
 C - - - - - 0x002DF7 00:ADE7: C8        INY
 C - - - - - 0x002DF8 00:ADE8: C8        INY
 C - - - - - 0x002DF9 00:ADE9: 48        PHA
@@ -7877,7 +7873,7 @@ C - - - - - 0x002E9F 00:AE8F: 60        RTS
 
 
 sub_AE90:
-C - - - - - 0x002EA0 00:AE90: 20 34 FF  JSR sub_inc_FF34_read_byte_from_room_data_2
+C - - - - - 0x002EA0 00:AE90: 20 34 FF  JSR sub_inc_0x007F44_read_byte_from_room_data_2
 C - - - - - 0x002EA3 00:AE93: C8        INY
 C - - - - - 0x002EA4 00:AE94: C8        INY
 C - - - - - 0x002EA5 00:AE95: 48        PHA
@@ -8781,7 +8777,7 @@ C - - - - - 0x003457 00:B447: A2 10     LDX #$10
 bra_B449_loop:
 C - - - - - 0x003459 00:B449: A5 2A     LDA ram_002A
 C - - - - - 0x00345B 00:B44B: 85 DD     STA ram_00DD
-C - - - - - 0x00345D 00:B44D: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x00345D 00:B44D: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x003460 00:B450: C8        INY
 C - - - - - 0x003461 00:B451: 45 0E     EOR ram_000E
 C - - - - - 0x003463 00:B453: 85 2C     STA ram_002C
@@ -8830,7 +8826,7 @@ C - - - - - 0x0034AD 00:B49D: 60        RTS
 
 
 sub_B49E:
-C - - - - - 0x0034AE 00:B49E: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x0034AE 00:B49E: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x0034B1 00:B4A1: C9 FF     CMP #$FF
 C - - - - - 0x0034B3 00:B4A3: F0 F8     BEQ bra_B49D_RTS
 C - - - - - 0x0034B5 00:B4A5: 25 E6     AND ram_00E6
@@ -8838,7 +8834,7 @@ C - - - - - 0x0034B7 00:B4A7: F0 20     BEQ bra_B4C9
 C - - - - - 0x0034B9 00:B4A9: A2 71     LDX #con_tile_id + $71
 C - - - - - 0x0034BB 00:B4AB: 88        DEY
 C - - - - - 0x0034BC 00:B4AC: 85 12     STA ram_0012
-C - - - - - 0x0034BE 00:B4AE: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x0034BE 00:B4AE: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x0034C1 00:B4B1: 25 12     AND ram_0012
 C - - - - - 0x0034C3 00:B4B3: F0 02     BEQ bra_B4B7
 C - - - - - 0x0034C5 00:B4B5: A2 79     LDX #con_tile_id + $79
@@ -8852,13 +8848,13 @@ C - - - - - 0x0034D2 00:B4C2: 8E 07 20  STX $2007
 C - - - - - 0x0034D5 00:B4C5: E8        INX
 C - - - - - 0x0034D6 00:B4C6: 8E 07 20  STX $2007
 bra_B4C9:
-C - - - - - 0x0034D9 00:B4C9: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x0034D9 00:B4C9: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x0034DC 00:B4CC: 25 E6     AND ram_00E6
 C - - - - - 0x0034DE 00:B4CE: F0 22     BEQ bra_B4F2
 C - - - - - 0x0034E0 00:B4D0: A2 73     LDX #con_tile_id + $73
 C - - - - - 0x0034E2 00:B4D2: 4A        LSR
 C - - - - - 0x0034E3 00:B4D3: 85 12     STA ram_0012
-C - - - - - 0x0034E5 00:B4D5: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x0034E5 00:B4D5: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x0034E8 00:B4D8: 25 12     AND ram_0012
 C - - - - - 0x0034EA 00:B4DA: F0 02     BEQ bra_B4DE
 C - - - - - 0x0034EC 00:B4DC: A2 7B     LDX #con_tile_id + $7B
@@ -8882,12 +8878,12 @@ C - - - - - 0x00350A 00:B4FA: 69 00     ADC #> $0020
 C - - - - - 0x00350C 00:B4FC: 8D 06 20  STA $2006
 C - - - - - 0x00350F 00:B4FF: 68        PLA
 C - - - - - 0x003510 00:B500: 8D 06 20  STA $2006
-C - - - - - 0x003513 00:B503: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x003513 00:B503: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x003516 00:B506: 25 E6     AND ram_00E6
 C - - - - - 0x003518 00:B508: F0 13     BEQ bra_B51D
 C - - - - - 0x00351A 00:B50A: 0A        ASL
 C - - - - - 0x00351B 00:B50B: 85 12     STA ram_0012
-C - - - - - 0x00351D 00:B50D: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x00351D 00:B50D: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x003520 00:B510: 25 12     AND ram_0012
 C - - - - - 0x003522 00:B512: D0 09     BNE bra_B51D
 C - - - - - 0x003524 00:B514: A2 75     LDX #con_tile_id + $75
@@ -8904,11 +8900,11 @@ C - - - - - 0x003535 00:B525: 69 00     ADC #> $0022
 C - - - - - 0x003537 00:B527: 8D 06 20  STA $2006
 C - - - - - 0x00353A 00:B52A: 68        PLA
 C - - - - - 0x00353B 00:B52B: 8D 06 20  STA $2006
-C - - - - - 0x00353E 00:B52E: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x00353E 00:B52E: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x003541 00:B531: 25 E6     AND ram_00E6
 C - - - - - 0x003543 00:B533: F0 12     BEQ bra_B547_RTS
 C - - - - - 0x003545 00:B535: C8        INY
-C - - - - - 0x003546 00:B536: 20 D9 FE  JSR sub_inc_FED9_read_byte_from_room_data_1
+C - - - - - 0x003546 00:B536: 20 D9 FE  JSR sub_inc_0x007EE9_read_byte_from_room_data_1
 C - - - - - 0x003549 00:B539: 88        DEY
 C - - - - - 0x00354A 00:B53A: 25 E6     AND ram_00E6
 C - - - - - 0x00354C 00:B53C: D0 09     BNE bra_B547_RTS
@@ -9708,7 +9704,7 @@ C - - - - - 0x003A90 00:BA80: 60        RTS
 
 
 
-tbl_inc_0x003A91_nmi_handler_lo:
+tbl_out_0x003A91_nmi_handler_lo:
 - D 1 - - - 0x003A91 00:BA81: B4        .byte < ( ofs_nmi_handler_B8B5_00 - $01 )   ; 
 - D 1 - - - 0x003A92 00:BA82: 48        .byte < ( ofs_nmi_handler_B949_01 - $01 )   ; 
 - D 1 - - - 0x003A93 00:BA83: BC        .byte < ( ofs_nmi_handler_B8BD_02 - $01 )   ; 
@@ -9719,7 +9715,7 @@ tbl_inc_0x003A91_nmi_handler_lo:
 
 
 
-tbl_inc_0x003A98_nmi_handler_hi:
+tbl_out_0x003A98_nmi_handler_hi:
 - D 1 - - - 0x003A98 00:BA88: B8        .byte > ( ofs_nmi_handler_B8B5_00 - $01 )   ; 
 - D 1 - - - 0x003A99 00:BA89: B9        .byte > ( ofs_nmi_handler_B949_01 - $01 )   ; 
 - D 1 - - - 0x003A9A 00:BA8A: B8        .byte > ( ofs_nmi_handler_B8BD_02 - $01 )   ; 
@@ -10194,7 +10190,7 @@ C - - - - - 0x003CC3 00:BCB3: A9 00     LDA #$00    ; con_tile_id + $00
 C - - - - - 0x003CC5 00:BCB5: 85 9E     STA ram_009E
 C - - - - - 0x003CC7 00:BCB7: 20 CF B6  JSR sub_B6CF_fill_nametables_and_hide_all_sprites
 C - - - - - 0x003CCA 00:BCBA: 20 19 BC  JSR sub_BC19_write_black_palette_to_buffer
-C - - - - - 0x003CCD 00:BCBD: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x003CCD 00:BCBD: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x003CD0 00:BCC0: 51        .byte con_bsw_1B
 C - - - - - 0x003CD1 00:BCC1: A2 04     LDX #$04
 C - - - - - 0x003CD3 00:BCC3: 20 BF B6  JSR sub_B6BF_wait_for_nmi
@@ -10252,17 +10248,17 @@ C - - - - - 0x003D29 00:BD19: 8D 00 20  STA $2000
 C - - - - - 0x003D2C 00:BD1C: A9 00     LDA #$00
 C - - - - - 0x003D2E 00:BD1E: 8D 06 20  STA $2006
 C - - - - - 0x003D31 00:BD21: 8D 06 20  STA $2006
-C - - - - - 0x003D34 00:BD24: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x003D34 00:BD24: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x003D37 00:BD27: 42        .byte con_bsw_16
-C - - - - - 0x003D38 00:BD28: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x003D38 00:BD28: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x003D3B 00:BD2B: 48        .byte con_bsw_18
-C - - - - - 0x003D3C 00:BD2C: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x003D3C 00:BD2C: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x003D3F 00:BD2F: 45        .byte con_bsw_17
 C - - - - - 0x003D40 00:BD30: 20 CD B6  JSR sub_B6CD_clear_nametables_and_hide_all_sprites
 C - - - - - 0x003D43 00:BD33: 20 19 BC  JSR sub_BC19_write_black_palette_to_buffer
 C - - - - - 0x003D46 00:BD36: AD A7 07  LDA ram_07A7
 C - - - - - 0x003D49 00:BD39: F0 18     BEQ bra_BD53
-C - - - - - 0x003D4B 00:BD3B: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x003D4B 00:BD3B: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x003D4E 00:BD3E: 5D        .byte con_bsw_1F
 C - - - - - 0x003D4F 00:BD3F: A0 1F     LDY #$1F
 bra_BD41_loop:
@@ -10289,7 +10285,7 @@ C - - - - - 0x003D75 00:BD65: 85 00     STA ram_0000
 C - - - - - 0x003D77 00:BD67: AD A7 07  LDA ram_07A7
 C - - - - - 0x003D7A 00:BD6A: D0 0F     BNE bra_BD7B
 C - - - - - 0x003D7C 00:BD6C: A2 00     LDX #$00
-C - - - - - 0x003D7E 00:BD6E: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x003D7E 00:BD6E: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x003D81 00:BD71: 60        .byte con_bsw_draw_static_screen
 C - - - - - 0x003D82 00:BD72: A9 D8     LDA #$D8
 C - - - - - 0x003D84 00:BD74: 85 FD     STA ram_for_2000
@@ -10638,16 +10634,16 @@ tbl_BEFD:
 
 sub_BF12_game_over_screen:
 C - - - - - 0x003F22 00:BF12: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
-C - - - - - 0x003F25 00:BF15: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x003F25 00:BF15: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x003F28 00:BF18: 21        .byte con_bsw_prepare_static_screen
 C - - - - - 0x003F29 00:BF19: A0 00     LDY #$00
 C - - - - - 0x003F2B 00:BF1B: 8C 06 20  STY $2006
 C - - - - - 0x003F2E 00:BF1E: 8C 06 20  STY $2006
-C - - - - - 0x003F31 00:BF21: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x003F31 00:BF21: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x003F34 00:BF24: 48        .byte con_bsw_18
 C - - - - - 0x003F35 00:BF25: A9 46     LDA #con_tile_id + $46
 C - - - - - 0x003F37 00:BF27: 20 CF B6  JSR sub_B6CF_fill_nametables_and_hide_all_sprites
-C - - - - - 0x003F3A 00:BF2A: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x003F3A 00:BF2A: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x003F3D 00:BF2D: 54        .byte con_bsw_1C
 C - - - - - 0x003F3E 00:BF2E: A2 04     LDX #$04
 C - - - - - 0x003F40 00:BF30: 20 BF B6  JSR sub_B6BF_wait_for_nmi
@@ -10673,7 +10669,7 @@ C - - - - - 0x003F63 00:BF53: A9 00     LDA #$00
 bra_BF55_something_was_pressed:
 C - - - - - 0x003F65 00:BF55: 48        PHA
 C - - - - - 0x003F66 00:BF56: 20 F5 BF  JSR sub_BFF5
-C - - - - - 0x003F69 00:BF59: 20 63 FF  JSR sub_inc_FF63
+C - - - - - 0x003F69 00:BF59: 20 63 FF  JSR sub_inc_0x007F73
 C - - - - - 0x003F6C 00:BF5C: 68        PLA
 C - - - - - 0x003F6D 00:BF5D: 60        RTS
 
@@ -10683,7 +10679,7 @@ sub_BF5E_continue_screen:
 C - - - - - 0x003F6E 00:BF5E: 20 A7 B6  JSR sub_B6A7_set_black_palette_and_wait
 C - - - - - 0x003F71 00:BF61: A9 46     LDA #con_tile_id + $46
 C - - - - - 0x003F73 00:BF63: 20 CF B6  JSR sub_B6CF_fill_nametables_and_hide_all_sprites
-C - - - - - 0x003F76 00:BF66: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x003F76 00:BF66: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x003F79 00:BF69: 5A        .byte con_bsw_display_value
 C - - - - - 0x003F7A 00:BF6A: A9 02     LDA #$02
 C - - - - - 0x003F7C 00:BF6C: 8D A0 07  STA ram_07A0_nmi_tile_1
@@ -10691,9 +10687,9 @@ C - - - - - 0x003F7F 00:BF6F: A9 01     LDA #$01
 C - - - - - 0x003F81 00:BF71: 8D A1 07  STA ram_07A1_nmi_tile_2
 C - - - - - 0x003F84 00:BF74: A2 05     LDX #$05
 C - - - - - 0x003F86 00:BF76: 20 BF B6  JSR sub_B6BF_wait_for_nmi
-C - - - - - 0x003F89 00:BF79: 20 63 FF  JSR sub_inc_FF63
+C - - - - - 0x003F89 00:BF79: 20 63 FF  JSR sub_inc_0x007F73
 C - - - - - 0x003F8C 00:BF7C: A2 03     LDX #con_music_continue
-C - - - - - 0x003F8E 00:BF7E: 20 4D FF  JSR sub_inc_FF4D_play_music
+C - - - - - 0x003F8E 00:BF7E: 20 4D FF  JSR sub_inc_0x007F5D_play_music
 C - - - - - 0x003F91 00:BF81: A2 30     LDX #< tbl_BC30
 C - - - - - 0x003F93 00:BF83: A0 BC     LDY #> tbl_BC30
 C - - - - - 0x003F95 00:BF85: 20 B9 BF  JSR sub_BFB9_write_palette_to_buffer_from_table
@@ -26582,6 +26578,7 @@ tbl_FD00_mirror:
 
 
 .segment "BANK_00_i"
+con_include_bank = $00
 .include "copy_bank___FE00_FFF9.asm"
 
 
@@ -26592,8 +26589,8 @@ tbl_FD00_mirror:
 
 .segment "VECTORS_00"
 - D 3 - - - 0x00800A 01:FFFA: FD 07     .word ram_jmp_xxxx
-- D 3 - - - 0x00800C 01:FFFC: 00 FE     .word vec_inc_FE00_RESET
-- - - - - - 0x00800E 01:FFFE: 26 FE     .word vec_inc_FE26_IRQ
+- D 3 - - - 0x00800C 01:FFFC: 00 FE     .word vec_inc_0x007E10_RESET
+- - - - - - 0x00800E 01:FFFE: 26 FE     .word $FE26 ; this game doesn't use IRQ
 
 
 

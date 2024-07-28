@@ -6,36 +6,32 @@
 
 
 
-con_include_bank = $01
-
-
-
-.export ofs_0x008010_0E_check_if_room_was_visited
-.export ofs_0x00801A_0C_set_room_visited_flag
-.export ofs_0x00802A_0D_clear_room_visited_flag
-.export ofs_0x00806B_14_check_if_bonus_was_picked
-.export ofs_0x008075_12_set_bonus_picked_flag
-.export ofs_0x008085_13_clear_bonus_picked_flag
-.export ofs_0x008140_08
-.export ofs_0x00817A_07
-.export ofs_0x0081A2_09
-.export ofs_0x0081E0_0A
-.export ofs_0x008203_01
-.export ofs_0x00822D_02
-.export ofs_0x00825C_03
-.export ofs_0x008266_04
-.export ofs_0x00828B_05
-.export ofs_0x008299_06
-.export ofs_0x0082C3_00
-.export ofs_0x008531_20_draw_static_screen
-.export ofs_0x00BCD4_23
-.export ofs_0x00BE26_26
+.export ofs_out_0x008010_0E_check_if_room_was_visited
+.export ofs_out_0x00801A_0C_set_room_visited_flag
+.export ofs_out_0x00802A_0D_clear_room_visited_flag
+.export ofs_out_0x00806B_14_check_if_bonus_was_picked
+.export ofs_out_0x008075_12_set_bonus_picked_flag
+.export ofs_out_0x008085_13_clear_bonus_picked_flag
+.export ofs_out_0x008140_08
+.export ofs_out_0x00817A_07
+.export ofs_out_0x0081A2_09
+.export ofs_out_0x0081E0_0A
+.export ofs_out_0x008203_01
+.export ofs_out_0x00822D_02
+.export ofs_out_0x00825C_03
+.export ofs_out_0x008266_04
+.export ofs_out_0x00828B_05
+.export ofs_out_0x008299_06
+.export ofs_out_0x0082C3_00
+.export ofs_out_0x008531_20_draw_static_screen
+.export ofs_out_0x00BCD4_23
+.export ofs_out_0x00BE26_26
 .export tbl_0x00BE86_ending_credits
 .export tbl_0x00C4BA
 
 
 
-ofs_0x008010_0E_check_if_room_was_visited:
+ofs_out_0x008010_0E_check_if_room_was_visited:
 C - - - - - 0x008010 02:8000: 20 2A 80  JSR sub_802A_calculate_room_ppu_addr
 C - - - - - 0x008013 02:8003: CD 07 20  CMP $2007   ; dummy read
 C - - - - - 0x008016 02:8006: 2D 07 20  AND $2007   ; actual read
@@ -43,7 +39,7 @@ C - - - - - 0x008019 02:8009: 60        RTS
 
 
 
-ofs_0x00801A_0C_set_room_visited_flag:
+ofs_out_0x00801A_0C_set_room_visited_flag:
 C - - - - - 0x00801A 02:800A: 20 2A 80  JSR sub_802A_calculate_room_ppu_addr
 C - - - - - 0x00801D 02:800D: CD 07 20  CMP $2007   ; dummy read
 C - - - - - 0x008020 02:8010: 0D 07 20  ORA $2007   ; actual read
@@ -53,7 +49,7 @@ C - - - - - 0x008029 02:8019: 60        RTS
 
 
 
-ofs_0x00802A_0D_clear_room_visited_flag:
+ofs_out_0x00802A_0D_clear_room_visited_flag:
 C - - - - - 0x00802A 02:801A: 20 2A 80  JSR sub_802A_calculate_room_ppu_addr
 C - - - - - 0x00802D 02:801D: CD 07 20  CMP $2007   ; dummy read
 C - - - - - 0x008030 02:8020: 2D 07 20  AND $2007   ; actual read
@@ -108,7 +104,7 @@ tbl_8053_bits:
 
 
 
-ofs_0x00806B_14_check_if_bonus_was_picked:
+ofs_out_0x00806B_14_check_if_bonus_was_picked:
 C - - - - - 0x00806B 02:805B: 20 85 80  JSR sub_8085_calculate_bonus_ppu_addr
 C - - - - - 0x00806E 02:805E: CD 07 20  CMP $2007   ; dummy read
 C - - - - - 0x008071 02:8061: 2D 07 20  AND $2007   ; actual read
@@ -116,7 +112,7 @@ C - - - - - 0x008074 02:8064: 60        RTS
 
 
 
-ofs_0x008075_12_set_bonus_picked_flag:
+ofs_out_0x008075_12_set_bonus_picked_flag:
 ; in
     ; A from ram_079C, see 0x00095B
 C - - - - - 0x008075 02:8065: 20 85 80  JSR sub_8085_calculate_bonus_ppu_addr
@@ -128,7 +124,7 @@ C - - - - - 0x008084 02:8074: 60        RTS
 
 
 
-ofs_0x008085_13_clear_bonus_picked_flag:
+ofs_out_0x008085_13_clear_bonus_picked_flag:
 C - - - - - 0x008085 02:8075: 20 85 80  JSR sub_8085_calculate_bonus_ppu_addr
 C - - - - - 0x008088 02:8078: CD 07 20  CMP $2007   ; dummy read
 C - - - - - 0x00808B 02:807B: 2D 07 20  AND $2007   ; actual read
@@ -324,7 +320,7 @@ tbl_8117:
 
 
 
-ofs_0x008140_08:
+ofs_out_0x008140_08:
 C - - - - - 0x008140 02:8130: A6 13     LDX ram_0013
 C - - - - - 0x008142 02:8132: A4 14     LDY ram_0014
 C - - - - - 0x008144 02:8134: 20 56 82  JSR sub_8256
@@ -361,7 +357,7 @@ C - - - - - 0x008179 02:8169: 60        RTS
 
 
 
-ofs_0x00817A_07:
+ofs_out_0x00817A_07:
 C - - - - - 0x00817A 02:816A: A0 00     LDY #$00
 C - - - - - 0x00817C 02:816C: 84 04     STY ram_0004
 C - - - - - 0x00817E 02:816E: 0A        ASL
@@ -392,7 +388,7 @@ C - - - - - 0x0081A1 02:8191: 60        RTS
 
 
 sub_8192:
-ofs_0x0081A2_09:
+ofs_out_0x0081A2_09:
 ; code tries to find a 8 bytes match and returns index
 C - - - - - 0x0081A2 02:8192: A2 00     LDX #$00
 C - - - - - 0x0081A4 02:8194: A9 EB     LDA #< tbl_F0EB
@@ -443,7 +439,7 @@ bra_81CD:
 
 
 
-ofs_0x0081E0_0A:
+ofs_out_0x0081E0_0A:
 C - - - - - 0x0081E0 02:81D0: A0 00     LDY #$00
 C - - - - - 0x0081E2 02:81D2: 84 04     STY ram_0004
 C - - - - - 0x0081E4 02:81D4: 0A        ASL
@@ -468,7 +464,7 @@ C - - - - - 0x008202 02:81F2: 60        RTS
 
 
 
-ofs_0x008203_01:
+ofs_out_0x008203_01:
 C - - - - - 0x008203 02:81F3: A9 20     LDA #> $2080
 C - - - - - 0x008205 02:81F5: 8D 06 20  STA $2006
 C - - - - - 0x008208 02:81F8: A9 80     LDA #< $2080
@@ -494,7 +490,7 @@ C - - - - - 0x00822C 02:821C: 60        RTS
 
 
 
-ofs_0x00822D_02:
+ofs_out_0x00822D_02:
 - - - - - - 0x00822D 02:821D: A9 20     LDA #> $2080
 - - - - - - 0x00822F 02:821F: 8D 06 20  STA $2006
 - - - - - - 0x008232 02:8222: A9 80     LDA #< $2080
@@ -525,7 +521,7 @@ loc_823D:
 
 
 sub_824C:
-ofs_0x00825C_03:
+ofs_out_0x00825C_03:
 C - - - - - 0x00825C 02:824C: 48        PHA
 C - - - - - 0x00825D 02:824D: 20 56 82  JSR sub_8256
 C - - - - - 0x008260 02:8250: 68        PLA
@@ -537,7 +533,7 @@ C - - - - - 0x008265 02:8255: 60        RTS
 
 
 sub_8256:
-ofs_0x008266_04:
+ofs_out_0x008266_04:
 C - - - - - 0x008266 02:8256: C0 14     CPY #$14
 C - - - - - 0x008268 02:8258: B0 1D     BCS bra_8277
 ; 00-13
@@ -564,7 +560,7 @@ C - - - - - 0x00828A 02:827A: 60        RTS
 
 
 
-ofs_0x00828B_05:
+ofs_out_0x00828B_05:
 C - - - - - 0x00828B 02:827B: A6 13     LDX ram_0013
 C - - - - - 0x00828D 02:827D: A4 14     LDY ram_0014
 C - - - - - 0x00828F 02:827F: 48        PHA
@@ -578,7 +574,7 @@ C - - - - - 0x008298 02:8288: 60        RTS
 
 
 sub_8289:
-ofs_0x008299_06:
+ofs_out_0x008299_06:
 C - - - - - 0x008299 02:8289: A6 13     LDX ram_0013
 C - - - - - 0x00829B 02:828B: A4 14     LDY ram_0014
 sub_828D:
@@ -608,7 +604,7 @@ C - - - - - 0x0082C2 02:82B2: 60        RTS
 
 
 
-ofs_0x0082C3_00:
+ofs_out_0x0082C3_00:
 C - - - - - 0x0082C3 02:82B3: A5 00     LDA ram_0000
 C - - - - - 0x0082C5 02:82B5: 9D 34 07  STA ram_spr_index,X
 C - - - - - 0x0082C8 02:82B8: 18        CLC
@@ -968,7 +964,7 @@ C - - - - - 0x008530 02:8520: 60        RTS
 
 
 
-ofs_0x008531_20_draw_static_screen:
+ofs_out_0x008531_20_draw_static_screen:
 ; logo and cutscenes
 C - - - - - 0x008531 02:8521: BD 76 87  LDA tbl_8776_chr_lo,X
 C - - - - - 0x008534 02:8524: 85 22     STA ram_0022
@@ -2837,12 +2833,12 @@ tbl_BB54:
 
 
 
-ofs_0x00BCD4_23:
+ofs_out_0x00BCD4_23:
 C - - - - - 0x00BCD4 02:BCC4: A2 00     LDX #> $0010
 C - - - - - 0x00BCD6 02:BCC6: 8E 06 20  STX $2006
 C - - - - - 0x00BCD9 02:BCC9: A2 10     LDX #< $0010
 C - - - - - 0x00BCDB 02:BCCB: 8E 06 20  STX $2006
-C - - - - - 0x00BCDE 02:BCCE: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x00BCDE 02:BCCE: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 1 - I - 0x00BCE1 02:BCD1: 48        .byte con_bsw_18
 bra_BCD2_loop:  ; X = 00
 C - - - - - 0x00BCE2 02:BCD2: BD 54 BB  LDA tbl_BB54,X
@@ -3004,7 +3000,7 @@ tbl_BDBF:
 
 
 
-ofs_0x00BE26_26:
+ofs_out_0x00BE26_26:
 C - - - - - 0x00BE26 02:BE16: A5 27     LDA ram_0027
 C - - - - - 0x00BE28 02:BE18: 8D 06 20  STA $2006
 C - - - - - 0x00BE2B 02:BE1B: A5 26     LDA ram_0026
@@ -4184,6 +4180,7 @@ tbl_F0EB:
 
 
 .segment "BANK_01_i"
+con_include_bank = $01
 .include "copy_bank___FE00_FFF9.asm"
 
 
@@ -4194,8 +4191,8 @@ tbl_F0EB:
 
 .segment "VECTORS_01"
 - D 3 - - - 0x01000A 03:FFFA: FD 07     .word ram_jmp_xxxx
-- - - - - - 0x01000C 03:FFFC: 00 FE     .word vec_inc_FE00_RESET
-- - - - - - 0x01000E 03:FFFE: 26 FE     .word vec_inc_FE26_IRQ
+- - - - - - 0x01000C 03:FFFC: 00 FE     .word vec_inc_0x007E10_RESET
+- - - - - - 0x01000E 03:FFFE: 26 FE     .word $FE26 ; this game doesn't use IRQ
 
 
 

@@ -6,30 +6,26 @@
 
 
 
-con_include_bank = $02
-
-
-
-.export ofs_0x010080_0B_prepare_static_screen
-.export ofs_0x01035B_0F_draw_scroll_content_1
-.export ofs_0x0103BF_10_draw_scroll_content_2
-.export ofs_0x0106F4_24
-.export ofs_0x010939_11
-.export ofs_0x0119D3_18
-.export ofs_0x0119E0_16
-.export ofs_0x0119ED_17
-.export ofs_0x01258C_19
-.export ofs_0x012632_1F
-.export ofs_0x012796_1C
-.export ofs_0x01282E_1E_display_value
-.export ofs_0x013018_1B
-.export ofs_0x01332F_21
-.export ofs_0x013374_22
-.export ofs_0x013BF7_25_enter_cheat
-.export sub_0x0141F6_play_music
-.export sub_0x014256_disable_music_driver
-.export sub_0x014299_play_sfx
-.export sub_0x014304_update_music_driver
+.export ofs_out_0x010080_0B_prepare_static_screen
+.export ofs_out_0x01035B_0F_draw_scroll_content_1
+.export ofs_out_0x0103BF_10_draw_scroll_content_2
+.export ofs_out_0x0106F4_24
+.export ofs_out_0x010939_11
+.export ofs_out_0x0119D3_18
+.export ofs_out_0x0119E0_16
+.export ofs_out_0x0119ED_17
+.export ofs_out_0x01258C_19
+.export ofs_out_0x012632_1F
+.export ofs_out_0x012796_1C
+.export ofs_out_0x01282E_1E_display_value
+.export ofs_out_0x013018_1B
+.export ofs_out_0x01332F_21
+.export ofs_out_0x013374_22
+.export ofs_out_0x013BF7_25_enter_cheat
+.export sub_out_0x0141F6_play_music
+.export sub_out_0x014256_disable_music_driver
+.export sub_out_0x014299_play_sfx
+.export sub_out_0x014304_update_music_driver
 
 
 
@@ -44,7 +40,7 @@ con_include_bank = $02
 
 
 
-ofs_0x010080_0B_prepare_static_screen:
+ofs_out_0x010080_0B_prepare_static_screen:
 ; pause, game over
 C - - - - - 0x010080 04:8070: 20 7C 81  JSR sub_817C
 C - - - - - 0x010083 04:8073: A2 00     LDX #$00
@@ -133,7 +129,7 @@ C - - - - - 0x01013A 04:812A: 85 12     STA ram_0012    ; walkthrough counter hi
 C - - - - - 0x01013C 04:812C: A2 00     LDX #$00
 bra_812E_loop:
 C - - - - - 0x01013E 04:812E: 8A        TXA
-C - - - - - 0x01013F 04:812F: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x01013F 04:812F: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x010142 04:8132: 2A        .byte con_bsw_check_if_room_was_visited
 C - - - - - 0x010143 04:8133: A8        TAY
 C - - - - - 0x010144 04:8134: F0 07     BEQ bra_813D_next   ; if was not visited
@@ -164,7 +160,7 @@ C - - - - - 0x01016D 04:815D: 8D 58 03  STA ram_0358
 C - - - - - 0x010170 04:8160: A2 3F     LDX #$3F
 bra_8162_loop:
 C - - - - - 0x010172 04:8162: 8A        TXA
-C - - - - - 0x010173 04:8163: 20 26 FE  JSR sub_inc_FE26_prg_bankswitch
+C - - - - - 0x010173 04:8163: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x010176 04:8166: 3C        .byte con_bsw_check_if_bonus_was_picked
 C - - - - - 0x010177 04:8167: A8        TAY
 C - - - - - 0x010178 04:8168: F0 0B     BEQ bra_8175_next    ; if was not picked
@@ -432,7 +428,7 @@ C - - - - - 0x01035A 04:834A: 60        RTS
 
 
 
-ofs_0x01035B_0F_draw_scroll_content_1:
+ofs_out_0x01035B_0F_draw_scroll_content_1:
 ; X = 00 (minimap) or 01 (progress stats)
 C - - - - - 0x01035B 04:834B: A0 27     LDY #$27
 bra_834D_loop:
@@ -491,7 +487,7 @@ C - - - - - 0x0103BE 04:83AE: 60        RTS
 
 
 
-ofs_0x0103BF_10_draw_scroll_content_2:
+ofs_out_0x0103BF_10_draw_scroll_content_2:
 ; X = 00 (minimap) or 01 (progress stats)
 C - - - - - 0x0103BF 04:83AF: A0 31     LDY #$31
 bra_83B1_loop:
@@ -1254,7 +1250,7 @@ C - - - - - 0x0106F3 04:86E3: 60        RTS
 
 
 
-ofs_0x0106F4_24:
+ofs_out_0x0106F4_24:
 C - - - - - 0x0106F4 04:86E4: 20 7C 81  JSR sub_817C
 C - - - - - 0x0106F7 04:86E7: 20 DA 87  JSR sub_87DA
 C - - - - - 0x0106FA 04:86EA: A9 00     LDA #$00
@@ -1559,7 +1555,7 @@ C - - - - - 0x010938 04:8928: 60        RTS
 
 
 sub_8929:
-ofs_0x010939_11:
+ofs_out_0x010939_11:
 C - - - - - 0x010939 04:8929: AE 88 07  LDX ram_potion_id
 C - - - - - 0x01093C 04:892C: BD 57 89  LDA tbl_8957_spr_X,X
 C - - - - - 0x01093F 04:892F: 38        SEC
@@ -1922,7 +1918,7 @@ tbl_8DC3:
 
 
 sub_99C3:
-ofs_0x0119D3_18:
+ofs_out_0x0119D3_18:
 ; tiles for numbers and alphabet
 C - - - - - 0x0119D3 04:99C3: A9 0C     LDA #< tbl_9A0C
 C - - - - - 0x0119D5 04:99C5: 85 22     STA ram_0022
@@ -1933,7 +1929,7 @@ C - - - - - 0x0119DD 04:99CD: 4C F1 99  JMP loc_99F1_write_chr_to_ppu
 
 
 
-ofs_0x0119E0_16:
+ofs_out_0x0119E0_16:
 ; tiles for SOLSTICE logo
 C - - - - - 0x0119E0 04:99D0: A9 7C     LDA #< tbl_9E7C
 C - - - - - 0x0119E2 04:99D2: 85 22     STA ram_0022
@@ -1944,7 +1940,7 @@ C - - - - - 0x0119EA 04:99DA: 4C F1 99  JMP loc_99F1_write_chr_to_ppu
 
 
 
-ofs_0x0119ED_17:
+ofs_out_0x0119ED_17:
 ; bzk bug, this routine probably should not even exist, or it needs to be corrected
 ; currently it reads tiles up to B58C because of X = 00,
 ; and also there aren't any tiles at A57C
@@ -1991,7 +1987,7 @@ tbl_9E7C:
 
 
 tbl_A57C:
-ofs_0x01258C_19:
+ofs_out_0x01258C_19:
 C D 1 - I - 0x01258C 04:A57C: 48        PHA
 C D 1 - I - 0x01258D 04:A57D: A0 00     LDY #$00
 C D 1 - I - 0x01258F 04:A57F: 8C 06 20  STY $2006
@@ -2019,7 +2015,7 @@ bra_A5AA_loop:
 C D 1 - I - 0x0125BA 04:A5AA: A0 00     LDY #$00
 bra_A5AC_loop:
 C D 1 - I - 0x0125BC 04:A5AC: A9 03     LDA #con_prg_bank + $03
-C D 1 - I - 0x0125BE 04:A5AE: 20 21 FF  JSR sub_inc_FF21
+C D 1 - I - 0x0125BE 04:A5AE: 20 21 FF  JSR sub_inc_0x007F31
 C D 1 - I - 0x0125C1 04:A5B1: 8D 07 20  STA $2007
 C D 1 - I - 0x0125C4 04:A5B4: C8        INY
 C D 1 - I - 0x0125C5 04:A5B5: C0 10     CPY #$10
@@ -2096,7 +2092,7 @@ C D 1 - I - 0x012631 04:A621: 60        RTS
 
 ; title screen credits
 
-ofs_0x012632_1F:
+ofs_out_0x012632_1F:
 C D 1 - I - 0x012632 04:A622: AE A7 07  LDX ram_07A7
 C D 1 - I - 0x012635 04:A625: BD 39 A6  LDA tbl_A639_hi,X
 C D 1 - I - 0x012638 04:A628: 85 23     STA ram_0023
@@ -2228,7 +2224,7 @@ _off012_A6E8_02:
 _off012_A786_03:    ; bzk bug   
 ; unused, removed third page
 ; becuase of this sometimes on some emulators there is 1 frame odd flash
-ofs_0x012796_1C:
+ofs_out_0x012796_1C:
 C D 1 - I - 0x012796 04:A786: A9 D5     LDA #< tbl_A7D5_game_over_text
 C D 1 - I - 0x012798 04:A788: 85 22     STA ram_0022
 C D 1 - I - 0x01279A 04:A78A: A9 A7     LDA #> tbl_A7D5_game_over_text
@@ -2302,7 +2298,7 @@ tbl_A7D5_game_over_text:
 
 ; continue screen
 
-ofs_0x01282E_1E_display_value:
+ofs_out_0x01282E_1E_display_value:
 ; game over counter
 C D 1 - I - 0x01282E 04:A81E: A9 5E     LDA #< tbl_A85E
 C D 1 - I - 0x012830 04:A820: 85 22     STA ram_0022
@@ -3150,7 +3146,7 @@ _off010_AF78_48:
 
 
 
-ofs_0x013018_1B:
+ofs_out_0x013018_1B:
 ; tiles for CSG IMAGESOFT INC PRESENTS
 C D 1 - I - 0x013018 04:B008: A9 58     LDA #< tbl_B058
 C D 1 - I - 0x01301A 04:B00A: 85 22     STA ram_0022
@@ -3218,7 +3214,7 @@ _off010_B318_4A:
 
 
 
-ofs_0x01332F_21:
+ofs_out_0x01332F_21:
 C D 1 - I - 0x01332F 04:B31F: A9 EC     LDA #< tbl_B3EC
 C D 1 - I - 0x013331 04:B321: 85 22     STA ram_0022
 C D 1 - I - 0x013333 04:B323: A9 B3     LDA #> tbl_B3EC
@@ -3243,7 +3239,7 @@ bra_B346_loop:
 C D 1 - I - 0x013356 04:B346: A0 00     LDY #$00
 bra_B348_loop:
 C D 1 - I - 0x013358 04:B348: A5 0D     LDA ram_000D
-C D 1 - I - 0x01335A 04:B34A: 20 21 FF  JSR sub_inc_FF21
+C D 1 - I - 0x01335A 04:B34A: 20 21 FF  JSR sub_inc_0x007F31
 C D 1 - I - 0x01335D 04:B34D: 8D 07 20  STA $2007
 C D 1 - I - 0x013360 04:B350: C8        INY
 C D 1 - I - 0x013361 04:B351: C0 10     CPY #$10
@@ -3261,7 +3257,7 @@ C D 1 - I - 0x013373 04:B363: 60        RTS
 
 
 
-ofs_0x013374_22:
+ofs_out_0x013374_22:
 C D 1 - I - 0x013374 04:B364: BD 00 03  LDA ram_0300,X
 C D 1 - I - 0x013377 04:B367: 85 13     STA ram_0013
 C D 1 - I - 0x013379 04:B369: BD 05 03  LDA ram_0305,X
@@ -3548,7 +3544,7 @@ _off013_BBE4_14:
 
 
 
-ofs_0x013BF7_25_enter_cheat:
+ofs_out_0x013BF7_25_enter_cheat:
 ; sectet combination during pause
 ; bzk optimize, this code is executed many times per frame
 C D 1 - I - 0x013BF7 04:BBE7: 8A        TXA
@@ -3731,7 +3727,7 @@ tbl_BC3F_cheat_combination:
 
 ; music driver stuff
 
-sub_0x0141F6_play_music:
+sub_out_0x0141F6_play_music:
 C - - - - - 0x0141F6 05:C1E6: 20 12 C2  JSR sub_C212_clear_music_driver_addresses
 C - - - - - 0x0141F9 05:C1E9: BD 0B D7  LDA tbl_D70B_lo,X
 C - - - - - 0x0141FC 05:C1EC: 85 4F     STA ram_004F
@@ -3786,7 +3782,7 @@ C - - - - - 0x014255 05:C245: 60        RTS
 
 
 
-sub_0x014256_disable_music_driver:
+sub_out_0x014256_disable_music_driver:
 C - - - - - 0x014256 05:C246: 20 12 C2  JSR sub_C212_clear_music_driver_addresses
 C - - - - - 0x014259 05:C249: A9 30     LDA #$30
 C - - - - - 0x01425B 05:C24B: 8D 00 40  STA $4000
@@ -3814,7 +3810,7 @@ C - - - - - 0x014298 05:C288: 60        RTS
 
 
 
-sub_0x014299_play_sfx:
+sub_out_0x014299_play_sfx:
 C - - - - - 0x014299 05:C289: BD 43 D7  LDA tbl_D743_lo,X
 C - - - - - 0x01429C 05:C28C: 85 9B     STA ram_009B
 C - - - - - 0x01429E 05:C28E: BD 4D D7  LDA tbl_D74D_hi,X
@@ -3872,7 +3868,7 @@ C - - - - - 0x014303 05:C2F3: 60        RTS
 
 
 
-sub_0x014304_update_music_driver:
+sub_out_0x014304_update_music_driver:
 ; out
     ; A for ram_0790_flag (0x014E85)
         ; 00 = 
@@ -17207,6 +17203,7 @@ sub_84_FDF8:
 
 
 .segment "BANK_02_i"
+con_include_bank = $02
 .include "copy_bank___FE00_FFF9.asm"
 
 
@@ -17217,8 +17214,8 @@ sub_84_FDF8:
 
 .segment "VECTORS_02"
 - D 3 - - - 0x01800A 05:FFFA: FD 07     .word ram_jmp_xxxx
-- - - - - - 0x01800C 05:FFFC: 00 FE     .word vec_inc_FE00_RESET
-- - - - - - 0x01800E 05:FFFE: 26 FE     .word vec_inc_FE26_IRQ
+- - - - - - 0x01800C 05:FFFC: 00 FE     .word vec_inc_0x007E10_RESET
+- - - - - - 0x01800E 05:FFFE: 26 FE     .word $FE26 ; this game doesn't use IRQ
 
 
 

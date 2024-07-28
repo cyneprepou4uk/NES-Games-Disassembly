@@ -2,7 +2,7 @@
 
 
 
-vec_inc_FE00_RESET:
+vec_inc_0x007E10_RESET:
 C - - - - - 0x007E10 01:FE00: 78        SEI
 C - - - - - 0x007E11 01:FE01: A9 00     LDA #$00
 C - - - - - 0x007E13 01:FE03: A2 05     LDX #$05
@@ -22,12 +22,11 @@ C - - - - - 0x007E29 01:FE19: E8        INX ; X = 00    con_prg_bank + $00
 C - - - - - 0x007E2A 01:FE1A: 8E 10 40  STX $4010
 C - - - - - 0x007E2D 01:FE1D: 8E 03 20  STX $2003
 C - - - - - 0x007E30 01:FE20: 8E F8 FF  STX $FFF8
-C - - - - - 0x007E33 01:FE23: 4C 00 80  JMP loc_inc_0x000010_RESET
+C - - - - - 0x007E33 01:FE23: 4C 00 80  JMP loc_out_0x000010_RESET
 
 
 
-vec_inc_FE26_IRQ:
-sub_inc_FE26_prg_bankswitch:
+sub_inc_0x007E36_prg_bankswitch:
 C - - - - - 0x007E36 01:FE26: 85 4A     STA ram_004A
 C - - - - - 0x007E38 01:FE28: 84 4B     STY ram_004B
 ; calculate bankswitch index by reading a byte after JSR
@@ -76,7 +75,7 @@ sub_FE5C:
 
 
 
-vec_FE69_NMI:
+ofs_inc_0x007E79_NMI:
 C D 3 - - - 0x007E79 01:FE69: 48        PHA
 C - - - - - 0x007E7A 01:FE6A: 8E B0 07  STX ram_save_X_2
 C - - - - - 0x007E7D 01:FE6D: 8C B1 07  STY ram_save_Y_2
@@ -86,9 +85,9 @@ C - - - - - 0x007E83 01:FE73: 29 10     AND #$10
 C - - - - - 0x007E85 01:FE75: 85 FF     STA ram_prg_bank
 C - - - - - 0x007E87 01:FE77: 8D F8 FF  STA $FFF8
 C - - - - - 0x007E8A 01:FE7A: AE B2 07  LDX ram_nmi_handler
-C - - - - - 0x007E8D 01:FE7D: BD 88 BA  LDA tbl_inc_0x003A98_nmi_handler_hi,X
+C - - - - - 0x007E8D 01:FE7D: BD 88 BA  LDA tbl_out_0x003A98_nmi_handler_hi,X
 C - - - - - 0x007E90 01:FE80: 48        PHA
-C - - - - - 0x007E91 01:FE81: BD 81 BA  LDA tbl_inc_0x003A91_nmi_handler_lo,X
+C - - - - - 0x007E91 01:FE81: BD 81 BA  LDA tbl_out_0x003A91_nmi_handler_lo,X
 C - - - - - 0x007E94 01:FE84: 48        PHA
 C - - - - - 0x007E95 01:FE85: 60        RTS
 
@@ -107,13 +106,13 @@ C - - - - - 0x007E9E 01:FE8E: 8D F8 FF  STA $FFF8
 - - - - - - 0x007EAB 01:FE9B: AE 8E 07  LDX ram_sfx_1
 - - - - - - 0x007EAE 01:FE9E: 30 0B     BMI bra_FEAB
 bra_FEA0:
-- - - - - - 0x007EB0 01:FEA0: 20 89 C2  JSR sub_0x014299_play_sfx
+- - - - - - 0x007EB0 01:FEA0: 20 89 C2  JSR sub_out_0x014299_play_sfx
 bra_FEA3:
 - - - - - - 0x007EB3 01:FEA3: A2 FF     LDX #$FF
 - - - - - - 0x007EB5 01:FEA5: 8E 8E 07  STX ram_sfx_1
 - - - - - - 0x007EB8 01:FEA8: 8E 8F 07  STX ram_sfx_2
 bra_FEAB:
-- - - - - - 0x007EBB 01:FEAB: 20 F4 C2  JSR sub_0x014304_update_music_driver
+- - - - - - 0x007EBB 01:FEAB: 20 F4 C2  JSR sub_out_0x014304_update_music_driver
 ; A from 0x014E85
 - - - - - - 0x007EBE 01:FEAE: 8D 90 07  STA ram_0790_flag
 - - - - - - 0x007EC1 01:FEB1: 68        PLA
@@ -126,7 +125,7 @@ C - - - - - 0x007ECE 01:FEBE: 40        RTI
 
 
 
-sub_inc_FEBF_prepare_room_data_pointers:
+sub_inc_0x007ECF_prepare_room_data_pointers:
 ; A = room index
 C - - - - - 0x007ECF 01:FEBF: AA        TAX
 C - - - - - 0x007ED0 01:FEC0: A5 FF     LDA ram_prg_bank
@@ -135,15 +134,15 @@ C - - - - - 0x007ED3 01:FEC3: 29 10     AND #$10
 C - - - - - 0x007ED5 01:FEC5: 09 03     ORA #con_prg_bank + $03
 C - - - - - 0x007ED7 01:FEC7: 85 FF     STA ram_prg_bank
 C - - - - - 0x007ED9 01:FEC9: 8D F8 FF  STA $FFF8
-- - - - - - 0x007EDC 01:FECC: BD 00 80  LDA tbl_0x018010_room_data_lo,X
+- - - - - - 0x007EDC 01:FECC: BD 00 80  LDA tbl_out_0x018010_room_data_lo,X
 - - - - - - 0x007EDF 01:FECF: 85 16     STA ram_0016
-- - - - - - 0x007EE1 01:FED1: BD FD 80  LDA tbl_0x01810D_room_data_hi,X
+- - - - - - 0x007EE1 01:FED1: BD FD 80  LDA tbl_out_0x01810D_room_data_hi,X
 - - - - - - 0x007EE4 01:FED4: 85 17     STA ram_0017
 - - - - - - 0x007EE6 01:FED6: 4C 5C FF  JMP loc_FF5C_restore_prg_bank
 
 
 
-sub_inc_FED9_read_byte_from_room_data_1:
+sub_inc_0x007EE9_read_byte_from_room_data_1:
 ; bzk optimize, same code as 0x007EE9
 C - - - - - 0x007EE9 01:FED9: A5 FF     LDA ram_prg_bank
 C - - - - - 0x007EEB 01:FEDB: 48        PHA
@@ -156,7 +155,7 @@ C - - - - - 0x007EF2 01:FEE2: 8D F8 FF  STA $FFF8
 
 
 
-sub_inc_FEEA:
+sub_inc_0x007EFA:
 C - - - - - 0x007EFA 01:FEEA: A5 FF     LDA ram_prg_bank
 C - - - - - 0x007EFC 01:FEEC: 48        PHA
 C - - - - - 0x007EFD 01:FEED: 29 10     AND #$10
@@ -168,7 +167,7 @@ C - - - - - 0x007F03 01:FEF3: 8D F8 FF  STA $FFF8
 
 
 
-sub_inc_FEFB:
+sub_inc_0x007F0B:
 C - - - - - 0x007F0B 01:FEFB: 85 4C     STA ram_save_A
 C - - - - - 0x007F0D 01:FEFD: A5 FF     LDA ram_prg_bank
 C - - - - - 0x007F0F 01:FEFF: 48        PHA
@@ -184,7 +183,7 @@ C - - - - - 0x007F16 01:FF06: 8D F8 FF  STA $FFF8
 
 
 
-sub_inc_FF10:
+sub_inc_0x007F20:
 C - - - - - 0x007F20 01:FF10: A5 FF     LDA ram_prg_bank
 C - - - - - 0x007F22 01:FF12: 48        PHA
 C - - - - - 0x007F23 01:FF13: 29 10     AND #$10
@@ -195,7 +194,7 @@ C - - - - - 0x007F29 01:FF19: 8D F8 FF  STA $FFF8
 - - - - - - 0x007F2E 01:FF1E: 4C 42 FF  JMP loc_FF42_restore_prg_bank
 
 
-sub_inc_FF21:
+sub_inc_0x007F31:
 ; only used in bank 02
 - - - - - - 0x007F31 01:FF21: 85 4C     STA ram_save_A
 - - - - - - 0x007F33 01:FF23: A5 FF     LDA ram_prg_bank
@@ -209,7 +208,7 @@ sub_inc_FF21:
 
 
 
-sub_inc_FF34_read_byte_from_room_data_2:
+sub_inc_0x007F44_read_byte_from_room_data_2:
 C - - - - - 0x007F44 01:FF34: A5 FF     LDA ram_prg_bank
 C - - - - - 0x007F46 01:FF36: 48        PHA
 C - - - - - 0x007F47 01:FF37: 29 10     AND #$10
@@ -228,14 +227,14 @@ C - - - - - 0x007F5C 01:FF4C: 60        RTS
 
 
 
-sub_inc_FF4D_play_music:
+sub_inc_0x007F5D_play_music:
 C - - - - - 0x007F5D 01:FF4D: A5 FF     LDA ram_prg_bank
 C - - - - - 0x007F5F 01:FF4F: 48        PHA
 C - - - - - 0x007F60 01:FF50: 29 10     AND #$10
 C - - - - - 0x007F62 01:FF52: 09 02     ORA #con_prg_bank + $02
 C - - - - - 0x007F64 01:FF54: 85 FF     STA ram_prg_bank
 C - - - - - 0x007F66 01:FF56: 8D F8 FF  STA $FFF8
-- - - - - - 0x007F69 01:FF59: 20 E6 C1  JSR sub_0x0141F6_play_music
+- - - - - - 0x007F69 01:FF59: 20 E6 C1  JSR sub_out_0x0141F6_play_music
 loc_FF5C_restore_prg_bank:
 - - - - - - 0x007F6C 01:FF5C: 68        PLA
 - - - - - - 0x007F6D 01:FF5D: 85 FF     STA ram_prg_bank
@@ -245,7 +244,7 @@ C - - - - - 0x007F72 01:FF62: 60        RTS
 
 
 
-sub_inc_FF63:
+sub_inc_0x007F73:
 C - - - - - 0x007F73 01:FF63: AD 90 07  LDA ram_0790_flag
 C - - - - - 0x007F76 01:FF66: F0 FA     BEQ bra_FF62_RTS
 C - - - - - 0x007F78 01:FF68: A5 FF     LDA ram_prg_bank
@@ -254,12 +253,12 @@ C - - - - - 0x007F7B 01:FF6B: 29 10     AND #$10
 C - - - - - 0x007F7D 01:FF6D: 09 02     ORA #con_prg_bank + $02
 C - - - - - 0x007F7F 01:FF6F: 85 FF     STA ram_prg_bank
 C - - - - - 0x007F81 01:FF71: 8D F8 FF  STA $FFF8
-- - - - - - 0x007F84 01:FF74: 20 46 C2  JSR sub_0x014256_disable_music_driver
+- - - - - - 0x007F84 01:FF74: 20 46 C2  JSR sub_out_0x014256_disable_music_driver
 - - - - - - 0x007F87 01:FF77: 4C 5C FF  JMP loc_FF5C_restore_prg_bank
 
 
 
-tbl_inc_FF7A:   ; link from bank 00 only
+tbl_inc_0x007F8A:   ; link from bank 00 only
 ; FF7A (each bank originally has a different byte here)
 ; bzk garbage, basically useless stuff
 ; it's here in order to assemble into original ROM
@@ -281,121 +280,121 @@ tbl_FF7B_prg_bank:
 tbl_FF7B_lo:
 tbl_FF7B_hi:
 - D 3 - - - 0x007F8B 01:FF7B: 01        .byte con_prg_bank + $01   ; 00 (00)
-- - - - - - 0x007F8C 01:FF7C: B3 82     .word ofs_0x0082C3_00 - $01
+- - - - - - 0x007F8C 01:FF7C: B3 82     .word ofs_out_0x0082C3_00 - $01
 
 - D 3 - - - 0x007F8E 01:FF7E: 01        .byte con_prg_bank + $01   ; 01 (03)
-- - - - - - 0x007F8F 01:FF7F: F3 81     .word ofs_0x008203_01 - $01
+- - - - - - 0x007F8F 01:FF7F: F3 81     .word ofs_out_0x008203_01 - $01
 
 - - - - - - 0x007F91 01:FF81: 01        .byte con_prg_bank + $01   ; 02 (06)
-- - - - - - 0x007F92 01:FF82: 1D 82     .word ofs_0x00822D_02 - $01
+- - - - - - 0x007F92 01:FF82: 1D 82     .word ofs_out_0x00822D_02 - $01
 
 - D 3 - - - 0x007F94 01:FF84: 01        .byte con_prg_bank + $01   ; 03 (09)
-- - - - - - 0x007F95 01:FF85: 4C 82     .word ofs_0x00825C_03 - $01
+- - - - - - 0x007F95 01:FF85: 4C 82     .word ofs_out_0x00825C_03 - $01
 
 - - - - - - 0x007F97 01:FF87: 01        .byte con_prg_bank + $01   ; 04 (0C)
-- - - - - - 0x007F98 01:FF88: 56 82     .word ofs_0x008266_04 - $01
+- - - - - - 0x007F98 01:FF88: 56 82     .word ofs_out_0x008266_04 - $01
 
 - D 3 - - - 0x007F9A 01:FF8A: 01        .byte con_prg_bank + $01   ; 05 (0F)
-- - - - - - 0x007F9B 01:FF8B: 7B 82     .word ofs_0x00828B_05 - $01
+- - - - - - 0x007F9B 01:FF8B: 7B 82     .word ofs_out_0x00828B_05 - $01
 
 - D 3 - - - 0x007F9D 01:FF8D: 01        .byte con_prg_bank + $01   ; 06 (12)
-- - - - - - 0x007F9E 01:FF8E: 89 82     .word ofs_0x008299_06 - $01
+- - - - - - 0x007F9E 01:FF8E: 89 82     .word ofs_out_0x008299_06 - $01
 
 - D 3 - - - 0x007FA0 01:FF90: 01        .byte con_prg_bank + $01   ; 07 (15)
-- - - - - - 0x007FA1 01:FF91: 6A 81     .word ofs_0x00817A_07 - $01
+- - - - - - 0x007FA1 01:FF91: 6A 81     .word ofs_out_0x00817A_07 - $01
 
 - D 3 - - - 0x007FA3 01:FF93: 01        .byte con_prg_bank + $01   ; 08 (18)
-- - - - - - 0x007FA4 01:FF94: 30 81     .word ofs_0x008140_08 - $01
+- - - - - - 0x007FA4 01:FF94: 30 81     .word ofs_out_0x008140_08 - $01
 
 - D 3 - - - 0x007FA6 01:FF96: 01        .byte con_prg_bank + $01   ; 09 (1B)
-- - - - - - 0x007FA7 01:FF97: 92 81     .word ofs_0x0081A2_09 - $01
+- - - - - - 0x007FA7 01:FF97: 92 81     .word ofs_out_0x0081A2_09 - $01
 
 - D 3 - - - 0x007FA9 01:FF99: 01        .byte con_prg_bank + $01   ; 0A (1E)
-- - - - - - 0x007FAA 01:FF9A: D0 81     .word ofs_0x0081E0_0A - $01
+- - - - - - 0x007FAA 01:FF9A: D0 81     .word ofs_out_0x0081E0_0A - $01
 
 - D 3 - - - 0x007FAC 01:FF9C: 02        .byte con_prg_bank + $02   ; 0B (21)
-- - - - - - 0x007FAD 01:FF9D: 70 80     .word ofs_0x010080_0B_prepare_static_screen - $01
+- - - - - - 0x007FAD 01:FF9D: 70 80     .word ofs_out_0x010080_0B_prepare_static_screen - $01
 
 - D 3 - - - 0x007FAF 01:FF9F: 01        .byte con_prg_bank + $01   ; 0C (24)
-- - - - - - 0x007FB0 01:FFA0: 0A 80     .word ofs_0x00801A_0C_set_room_visited_flag - $01
+- - - - - - 0x007FB0 01:FFA0: 0A 80     .word ofs_out_0x00801A_0C_set_room_visited_flag - $01
 
 - D 3 - - - 0x007FB2 01:FFA2: 01        .byte con_prg_bank + $01   ; 0D (27)
-- - - - - - 0x007FB3 01:FFA3: 1A 80     .word ofs_0x00802A_0D_clear_room_visited_flag - $01
+- - - - - - 0x007FB3 01:FFA3: 1A 80     .word ofs_out_0x00802A_0D_clear_room_visited_flag - $01
 
 - D 3 - - - 0x007FB5 01:FFA5: 01        .byte con_prg_bank + $01   ; 0E (2A)
-- - - - - - 0x007FB6 01:FFA6: 00 80     .word ofs_0x008010_0E_check_if_room_was_visited - $01
+- - - - - - 0x007FB6 01:FFA6: 00 80     .word ofs_out_0x008010_0E_check_if_room_was_visited - $01
 
 - D 3 - - - 0x007FB8 01:FFA8: 02        .byte con_prg_bank + $02   ; 0F (2D)
-- - - - - - 0x007FB9 01:FFA9: 4B 83     .word ofs_0x01035B_0F_draw_scroll_content_1 - $01
+- - - - - - 0x007FB9 01:FFA9: 4B 83     .word ofs_out_0x01035B_0F_draw_scroll_content_1 - $01
 
 - D 3 - - - 0x007FBB 01:FFAB: 02        .byte con_prg_bank + $02   ; 10 (30)
-- - - - - - 0x007FBC 01:FFAC: AF 83     .word ofs_0x0103BF_10_draw_scroll_content_2 - $01
+- - - - - - 0x007FBC 01:FFAC: AF 83     .word ofs_out_0x0103BF_10_draw_scroll_content_2 - $01
 
 - D 3 - - - 0x007FBE 01:FFAE: 02        .byte con_prg_bank + $02   ; 11 (33)
-- - - - - - 0x007FBF 01:FFAF: 29 89     .word ofs_0x010939_11 - $01
+- - - - - - 0x007FBF 01:FFAF: 29 89     .word ofs_out_0x010939_11 - $01
 
 - D 3 - - - 0x007FC1 01:FFB1: 01        .byte con_prg_bank + $01   ; 12 (36)
-- - - - - - 0x007FC2 01:FFB2: 65 80     .word ofs_0x008075_12_set_bonus_picked_flag - $01
+- - - - - - 0x007FC2 01:FFB2: 65 80     .word ofs_out_0x008075_12_set_bonus_picked_flag - $01
 
 - D 3 - - - 0x007FC4 01:FFB4: 01        .byte con_prg_bank + $01   ; 13 (39)
-- - - - - - 0x007FC5 01:FFB5: 75 80     .word ofs_0x008085_13_clear_bonus_picked_flag - $01
+- - - - - - 0x007FC5 01:FFB5: 75 80     .word ofs_out_0x008085_13_clear_bonus_picked_flag - $01
 
 - D 3 - - - 0x007FC7 01:FFB7: 01        .byte con_prg_bank + $01   ; 14 (3C)
-- - - - - - 0x007FC8 01:FFB8: 5B 80     .word ofs_0x00806B_14_check_if_bonus_was_picked - $01
+- - - - - - 0x007FC8 01:FFB8: 5B 80     .word ofs_out_0x00806B_14_check_if_bonus_was_picked - $01
 
 - D 3 - - - 0x007FCA 01:FFBA: 03        .byte con_prg_bank + $03   ; 15 (3F)
-- - - - - - 0x007FCB 01:FFBB: FA 81     .word ofs_0x01820A_15 - $01
+- - - - - - 0x007FCB 01:FFBB: FA 81     .word ofs_out_0x01820A_15 - $01
 
 - D 3 - - - 0x007FCD 01:FFBD: 02        .byte con_prg_bank + $02   ; 16 (42)
-- - - - - - 0x007FCE 01:FFBE: D0 99     .word ofs_0x0119E0_16 - $01
+- - - - - - 0x007FCE 01:FFBE: D0 99     .word ofs_out_0x0119E0_16 - $01
 
 - D 3 - - - 0x007FD0 01:FFC0: 02        .byte con_prg_bank + $02   ; 17 (45)
-- - - - - - 0x007FD1 01:FFC1: DD 99     .word ofs_0x0119ED_17 - $01
+- - - - - - 0x007FD1 01:FFC1: DD 99     .word ofs_out_0x0119ED_17 - $01
 
 - D 3 - - - 0x007FD3 01:FFC3: 02        .byte con_prg_bank + $02   ; 18 (48)
-- - - - - - 0x007FD4 01:FFC4: C3 99     .word ofs_0x0119D3_18 - $01
+- - - - - - 0x007FD4 01:FFC4: C3 99     .word ofs_out_0x0119D3_18 - $01
 
 - D 3 - - - 0x007FD6 01:FFC6: 02        .byte con_prg_bank + $02   ; 19 (4B)
-- - - - - - 0x007FD7 01:FFC7: 7C A5     .word ofs_0x01258C_19 - $01
+- - - - - - 0x007FD7 01:FFC7: 7C A5     .word ofs_out_0x01258C_19 - $01
 
 - D 3 - - - 0x007FD9 01:FFC9: 03        .byte con_prg_bank + $03   ; 1A (4E)
-- - - - - - 0x007FDA 01:FFCA: F2 E5     .word ofs_0x01E602_1A - $01
+- - - - - - 0x007FDA 01:FFCA: F2 E5     .word ofs_out_0x01E602_1A - $01
 
 - D 3 - - - 0x007FDC 01:FFCC: 02        .byte con_prg_bank + $02   ; 1B (51)
-- - - - - - 0x007FDD 01:FFCD: 08 B0     .word ofs_0x013018_1B - $01
+- - - - - - 0x007FDD 01:FFCD: 08 B0     .word ofs_out_0x013018_1B - $01
 
 - D 3 - - - 0x007FDF 01:FFCF: 02        .byte con_prg_bank + $02   ; 1C (54)
-- - - - - - 0x007FE0 01:FFD0: 86 A7     .word ofs_0x012796_1C - $01
+- - - - - - 0x007FE0 01:FFD0: 86 A7     .word ofs_out_0x012796_1C - $01
 
 - D 3 - - - 0x007FE2 01:FFD2: 03        .byte con_prg_bank + $03   ; 1D (57)
-- - - - - - 0x007FE3 01:FFD3: 79 82     .word ofs_0x018289_1D - $01
+- - - - - - 0x007FE3 01:FFD3: 79 82     .word ofs_out_0x018289_1D - $01
 
 - D 3 - - - 0x007FE5 01:FFD5: 02        .byte con_prg_bank + $02   ; 1E (5A)
-- - - - - - 0x007FE6 01:FFD6: 1E A8     .word ofs_0x01282E_1E_display_value - $01
+- - - - - - 0x007FE6 01:FFD6: 1E A8     .word ofs_out_0x01282E_1E_display_value - $01
 
 - D 3 - - - 0x007FE8 01:FFD8: 02        .byte con_prg_bank + $02   ; 1F (5D)
-- - - - - - 0x007FE9 01:FFD9: 22 A6     .word ofs_0x012632_1F - $01
+- - - - - - 0x007FE9 01:FFD9: 22 A6     .word ofs_out_0x012632_1F - $01
 
 - D 3 - - - 0x007FEB 01:FFDB: 01        .byte con_prg_bank + $01   ; 20 (60)
-- - - - - - 0x007FEC 01:FFDC: 21 85     .word ofs_0x008531_20_draw_static_screen - $01
+- - - - - - 0x007FEC 01:FFDC: 21 85     .word ofs_out_0x008531_20_draw_static_screen - $01
 
 - D 3 - - - 0x007FEE 01:FFDE: 02        .byte con_prg_bank + $02   ; 21 (63)
-- - - - - - 0x007FEF 01:FFDF: 1F B3     .word ofs_0x01332F_21 - $01
+- - - - - - 0x007FEF 01:FFDF: 1F B3     .word ofs_out_0x01332F_21 - $01
 
 - D 3 - - - 0x007FF1 01:FFE1: 02        .byte con_prg_bank + $02   ; 22 (66)
-- - - - - - 0x007FF2 01:FFE2: 64 B3     .word ofs_0x013374_22 - $01
+- - - - - - 0x007FF2 01:FFE2: 64 B3     .word ofs_out_0x013374_22 - $01
 
 - D 3 - - - 0x007FF4 01:FFE4: 01        .byte con_prg_bank + $01   ; 23 (69)
-- - - - - - 0x007FF5 01:FFE5: C4 BC     .word ofs_0x00BCD4_23 - $01
+- - - - - - 0x007FF5 01:FFE5: C4 BC     .word ofs_out_0x00BCD4_23 - $01
 
 - D 3 - - - 0x007FF7 01:FFE7: 02        .byte con_prg_bank + $02   ; 24 (6C)
-- - - - - - 0x007FF8 01:FFE8: E4 86     .word ofs_0x0106F4_24 - $01
+- - - - - - 0x007FF8 01:FFE8: E4 86     .word ofs_out_0x0106F4_24 - $01
 
 - D 3 - - - 0x007FFA 01:FFEA: 02        .byte con_prg_bank + $02   ; 25 (6F)
-- - - - - - 0x007FFB 01:FFEB: E7 BB     .word ofs_0x013BF7_25_enter_cheat - $01
+- - - - - - 0x007FFB 01:FFEB: E7 BB     .word ofs_out_0x013BF7_25_enter_cheat - $01
 
 - D 3 - - - 0x007FFD 01:FFED: 01        .byte con_prg_bank + $01   ; 26 (72)
-- - - - - - 0x007FFE 01:FFEE: 16 BE     .word ofs_0x00BE26_26 - $01
+- - - - - - 0x007FFE 01:FFEE: 16 BE     .word ofs_out_0x00BE26_26 - $01
 
 
 ; bzk garbage
