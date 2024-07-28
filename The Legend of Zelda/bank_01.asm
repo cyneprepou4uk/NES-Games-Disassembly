@@ -2506,4 +2506,4 @@ ofs_A500_bank_s2_asm_export:
 .segment "VECTORS_01"
 - - - - - - 0x00800A 01:BFFA: 84 E4     .word vec_0x01E494_NMI
 - - - - - - 0x00800C 01:BFFC: 50 BF     .word vec_inc_0x003F60_RESET
-- - - - - - 0x00800E 01:BFFE: F0 BF     .word vec_inc_0x004000_IRQ
+- - - - - - 0x00800E 01:BFFE: F0 BF     .word $BFF0 ; this game doesn't use IRQ

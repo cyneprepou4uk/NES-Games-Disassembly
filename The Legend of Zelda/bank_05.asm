@@ -7969,4 +7969,4 @@ C - - - - - 0x0178AF 05:B89F: 60        RTS
 .segment "VECTORS_05"
 - - - - - - 0x01800A 05:BFFA: 84 E4     .word vec_0x01E494_NMI
 - - - - - - 0x01800C 05:BFFC: 50 BF     .word vec_inc_0x003F60_RESET
-- - - - - - 0x01800E 05:BFFE: F0 BF     .word vec_inc_0x004000_IRQ
+- - - - - - 0x01800E 05:BFFE: F0 BF     .word $BFF0 ; this game doesn't use IRQ

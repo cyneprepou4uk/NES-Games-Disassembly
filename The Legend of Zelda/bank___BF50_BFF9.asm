@@ -59,7 +59,7 @@ bra_BF61_loop:
 - - - - - - 0x003F9D 00:BF8D: 8D 00 A0  STA $A000
 - - - - - - 0x003FA0 00:BF90: A9 07     LDA #con_prg_bank + $07
 - - - - - - 0x003FA2 00:BF92: 20 AC BF  JSR sub_BFAC_prg_bankswitch
-- - - - - - 0x003FA5 00:BF95: 4C 40 E4  JMP loc_0x01E450
+- - - - - - 0x003FA5 00:BF95: 4C 40 E4  JMP loc_out_0x01E450
 
 
 
@@ -102,9 +102,5 @@ loc_inc_0x003FBC_prg_bankswitch:
 - - - - - - 0x003FE8 00:BFD8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x003FF0 00:BFE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x003FF8 00:BFE8: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
-
-
-; bzk garbage
-vec_inc_0x004000_IRQ:
 - - - - - - 0x004000 00:BFF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x004008 00:BFF8: FF        .byte $FF, $FF   ; 

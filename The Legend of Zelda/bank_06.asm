@@ -7741,4 +7741,4 @@ _off000_A869_10_title_screen:
 .segment "VECTORS_06"
 - - - - - - 0x01C00A 06:BFFA: 84 E4     .word vec_0x01E494_NMI
 - - - - - - 0x01C00C 06:BFFC: 50 BF     .word vec_inc_0x003F60_RESET
-- - - - - - 0x01C00E 06:BFFE: F0 BF     .word vec_inc_0x004000_IRQ
+- - - - - - 0x01C00E 06:BFFE: F0 BF     .word $BFF0 ; this game doesn't use IRQ

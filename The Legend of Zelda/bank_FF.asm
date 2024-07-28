@@ -7,7 +7,7 @@
 
 
 .export tbl_0x01E410
-.export loc_0x01E450
+.export loc_out_0x01E450
 .export sub_0x01E47D_clear_screen
 .export vec_0x01E494_NMI
 .export sub_0x01E5F2_jump_to_pointers_after_JSR
@@ -143,7 +143,7 @@ tbl_0x01E410:
 
 
 loc_E440:
-loc_0x01E450:
+loc_out_0x01E450:
 C D 3 - - - 0x01E450 07:E440: A9 00     LDA #$00
 C - - - - - 0x01E452 07:E442: 85 F4     STA ram_00F4
 C - - - - - 0x01E454 07:E444: A9 05     LDA #con_prg_bank + $05
