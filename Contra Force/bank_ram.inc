@@ -421,7 +421,7 @@ ram_current_player                      = $00B1 ; 003F93 007FF6 007FF8 00A053 00
 
 
 ; lives for 4 players
-; bzk bug, in my childhood I remember a instructions where I got infinite lives
+; bzk bug, in my childhood I remember a bug where I got infinite lives
 ; at stage 5, probably when I falled into a pit at the sewers and then
 ; going into pause menu. if I recall correcly, it showed 16 lives,
 ; but in fact there were much more. I still wonder what was causing it
