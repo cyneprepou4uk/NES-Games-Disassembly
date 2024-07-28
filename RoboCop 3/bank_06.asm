@@ -13192,7 +13192,7 @@ tbl_0x01BE10:
 .segment "VECTORS_06"
 - - - - - - 0x01C00A 06:BFFA: AA BF     .word vec_inc_0x003FBA_NMI
 - - - - - - 0x01C00C 06:BFFC: 00 BF     .word vec_inc_0x003F10_RESET
-- - - - - - 0x01C00E 06:BFFE: AF BF     .word vec_inc_0x003FBF_IRQ
+- - - - - - 0x01C00E 06:BFFE: AF BF     .word $BFAF ; this game doesn't use IRQ
 
 
 

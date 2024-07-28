@@ -7,8 +7,8 @@
 
 
 loc_C000:
-.export loc_0x01C010
-loc_0x01C010:
+.export loc_out_0x01C010
+loc_out_0x01C010:
 ; bzk optimize
 C D 2 - - - 0x01C010 07:C000: 4C 0C C0  JMP loc_C00C
 

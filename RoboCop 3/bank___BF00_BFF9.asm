@@ -90,7 +90,7 @@ bra_BF2F_infinite_loop:
 - - - - - - 0x003FB0 00:BFA0: 8D 00 E0  STA $E000
 - - - - - - 0x003FB3 00:BFA3: 4A        LSR
 - - - - - - 0x003FB4 00:BFA4: 8D 00 E0  STA $E000
-- - - - - - 0x003FB7 00:BFA7: 4C 00 C0  JMP loc_0x01C010
+- - - - - - 0x003FB7 00:BFA7: 4C 00 C0  JMP loc_out_0x01C010
 
 
 
@@ -98,7 +98,6 @@ vec_inc_0x003FBA_NMI:
 - - - - - - 0x003FBA 00:BFAA: 48        PHA
 - - - - - - 0x003FBB 00:BFAB: AD 02 20  LDA $2002
 - - - - - - 0x003FBE 00:BFAE: 68        PLA
-vec_inc_0x003FBF_IRQ:
 - - - - - - 0x003FBF 00:BFAF: 40        RTI
 
 

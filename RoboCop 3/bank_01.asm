@@ -3555,7 +3555,7 @@ _off015_01_8CD0_00:
 .segment "VECTORS_01"
 - - - - - - 0x00800A 01:BFFA: AA BF     .word vec_inc_0x003FBA_NMI
 - - - - - - 0x00800C 01:BFFC: 00 FF     .word vec_0x01FF10_RESET
-- - - - - - 0x00800E 01:BFFE: AF BF     .word vec_inc_0x003FBF_IRQ
+- - - - - - 0x00800E 01:BFFE: AF BF     .word $BFAF ; this game doesn't use IRQ
 
 
 

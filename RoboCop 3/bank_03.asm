@@ -4175,7 +4175,7 @@ _off015_03_AE60_00:
 .segment "VECTORS_03"
 - - - - - - 0x01000A 03:BFFA: AA BF     .word vec_inc_0x003FBA_NMI
 - - - - - - 0x01000C 03:BFFC: 00 FF     .word vec_0x01FF10_RESET
-- - - - - - 0x01000E 03:BFFE: AF BF     .word vec_inc_0x003FBF_IRQ
+- - - - - - 0x01000E 03:BFFE: AF BF     .word $BFAF ; this game doesn't use IRQ
 
 
 
