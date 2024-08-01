@@ -5378,10 +5378,10 @@ C - - - - - 0x001D4C 00:DD3C: A9 0F     LDA #$0F
 C - - - - - 0x001D4E 00:DD3E: 9D 80 03  STA ram_0380_obj,X
 C - - - - - 0x001D51 00:DD41: B5 90     LDA ram_0090_obj,X
 C - - - - - 0x001D53 00:DD43: 18        CLC
-C - - - - - 0x001D54 00:DD44: 69 AF     ADC #$AF
+C - - - - - 0x001D54 00:DD44: 69 AF     ADC #< $00AF
 C - - - - - 0x001D56 00:DD46: 9D 78 03  STA ram_0378_obj,X
 C - - - - - 0x001D59 00:DD49: B5 94     LDA ram_0094_obj,X
-C - - - - - 0x001D5B 00:DD4B: 69 00     ADC #$00
+C - - - - - 0x001D5B 00:DD4B: 69 00     ADC #> $00AF
 C - - - - - 0x001D5D 00:DD4D: 9D 7C 03  STA ram_037C_obj,X
 C - - - - - 0x001D60 00:DD50: BD 88 03  LDA ram_0388_obj,X
 C - - - - - 0x001D63 00:DD53: C9 02     CMP #$02
