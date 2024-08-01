@@ -365,10 +365,10 @@ C - - - - - 0x01823D 06:822D: 9D F2 06  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x018240 06:8230: BD DC 06  LDA ram_obj_spd_Y_fr,X
 C - - - - - 0x018243 06:8233: 49 FF     EOR #$FF
 C - - - - - 0x018245 06:8235: 18        CLC
-C - - - - - 0x018246 06:8236: 69 01     ADC #$01
+C - - - - - 0x018246 06:8236: 69 01     ADC #< $0001
 C - - - - - 0x018248 06:8238: 9D DC 06  STA ram_obj_spd_Y_fr,X
 C - - - - - 0x01824B 06:823B: BD F2 06  LDA ram_obj_spd_Y_lo,X
-C - - - - - 0x01824E 06:823E: 69 00     ADC #$00
+C - - - - - 0x01824E 06:823E: 69 00     ADC #> $0001
 C - - - - - 0x018250 06:8240: 9D F2 06  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x018253 06:8243: F0 18     BEQ bra_825D_RTS
 C - - - - - 0x018255 06:8245: E0 02     CPX #$02
@@ -425,10 +425,10 @@ C - - - - - 0x0182B5 06:82A5: 9D F2 06  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x0182B8 06:82A8: BD DC 06  LDA ram_obj_spd_Y_fr,X
 C - - - - - 0x0182BB 06:82AB: 49 FF     EOR #$FF
 C - - - - - 0x0182BD 06:82AD: 18        CLC
-C - - - - - 0x0182BE 06:82AE: 69 01     ADC #$01
+C - - - - - 0x0182BE 06:82AE: 69 01     ADC #< $0001
 C - - - - - 0x0182C0 06:82B0: 9D DC 06  STA ram_obj_spd_Y_fr,X
 C - - - - - 0x0182C3 06:82B3: BD F2 06  LDA ram_obj_spd_Y_lo,X
-C - - - - - 0x0182C6 06:82B6: 69 00     ADC #$00
+C - - - - - 0x0182C6 06:82B6: 69 00     ADC #> $0001
 C - - - - - 0x0182C8 06:82B8: 9D F2 06  STA ram_obj_spd_Y_lo,X
 bra_82BB_RTS:
 C - - - - - 0x0182CB 06:82BB: 60        RTS
@@ -846,10 +846,10 @@ C - - - - - 0x018595 06:8585: 9D F2 06  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x018598 06:8588: BD DC 06  LDA ram_obj_spd_Y_fr,X
 C - - - - - 0x01859B 06:858B: 49 FF     EOR #$FF
 C - - - - - 0x01859D 06:858D: 18        CLC
-C - - - - - 0x01859E 06:858E: 69 01     ADC #$01
+C - - - - - 0x01859E 06:858E: 69 01     ADC #< $0001
 C - - - - - 0x0185A0 06:8590: 9D DC 06  STA ram_obj_spd_Y_fr,X
 C - - - - - 0x0185A3 06:8593: BD F2 06  LDA ram_obj_spd_Y_lo,X
-C - - - - - 0x0185A6 06:8596: 69 00     ADC #$00
+C - - - - - 0x0185A6 06:8596: 69 00     ADC #> $0001
 C - - - - - 0x0185A8 06:8598: C9 80     CMP #$80
 C - - - - - 0x0185AA 06:859A: 6A        ROR
 C - - - - - 0x0185AB 06:859B: 9D F2 06  STA ram_obj_spd_Y_lo,X
@@ -1057,10 +1057,10 @@ C - - - - - 0x018724 06:8714: 9D C6 06  STA ram_obj_spd_X_lo,X
 C - - - - - 0x018727 06:8717: BD B0 06  LDA ram_obj_spd_X_fr,X
 C - - - - - 0x01872A 06:871A: 49 FF     EOR #$FF
 C - - - - - 0x01872C 06:871C: 18        CLC
-C - - - - - 0x01872D 06:871D: 69 01     ADC #$01
+C - - - - - 0x01872D 06:871D: 69 01     ADC #< $0001
 C - - - - - 0x01872F 06:871F: 9D B0 06  STA ram_obj_spd_X_fr,X
 C - - - - - 0x018732 06:8722: BD C6 06  LDA ram_obj_spd_X_lo,X
-C - - - - - 0x018735 06:8725: 69 00     ADC #$00
+C - - - - - 0x018735 06:8725: 69 00     ADC #> $0001
 C - - - - - 0x018737 06:8727: C9 80     CMP #$80
 C - - - - - 0x018739 06:8729: 6A        ROR
 C - - - - - 0x01873A 06:872A: 9D C6 06  STA ram_obj_spd_X_lo,X
@@ -2139,10 +2139,10 @@ C - - - - - 0x018E4D 06:8E3D: 9D F2 06  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x018E50 06:8E40: BD DC 06  LDA ram_obj_spd_Y_fr,X
 C - - - - - 0x018E53 06:8E43: 49 FF     EOR #$FF
 C - - - - - 0x018E55 06:8E45: 18        CLC
-C - - - - - 0x018E56 06:8E46: 69 01     ADC #$01
+C - - - - - 0x018E56 06:8E46: 69 01     ADC #< $0001
 C - - - - - 0x018E58 06:8E48: 9D DC 06  STA ram_obj_spd_Y_fr,X
 C - - - - - 0x018E5B 06:8E4B: BD F2 06  LDA ram_obj_spd_Y_lo,X
-C - - - - - 0x018E5E 06:8E4E: 69 00     ADC #$00
+C - - - - - 0x018E5E 06:8E4E: 69 00     ADC #> $0001
 C - - - - - 0x018E60 06:8E50: C9 80     CMP #$80
 C - - - - - 0x018E62 06:8E52: 6A        ROR
 C - - - - - 0x018E63 06:8E53: 9D F2 06  STA ram_obj_spd_Y_lo,X
