@@ -428,9 +428,9 @@ C - - - - - 0x00033C 00:832C: D0 13     BNE bra_8341
 C - - - - - 0x00033E 00:832E: A5 80     LDA ram_row
 C - - - - - 0x000340 00:8330: 0A        ASL
 C - - - - - 0x000341 00:8331: A8        TAY
-C - - - - - 0x000342 00:8332: B9 17 A7  LDA tbl_A717_ppu,Y
+C - - - - - 0x000342 00:8332: B9 17 A7  LDA tbl_A717_ppu_addr,Y
 C - - - - - 0x000345 00:8335: 8D 06 20  STA $2006
-C - - - - - 0x000348 00:8338: B9 18 A7  LDA tbl_A717_ppu + $01,Y
+C - - - - - 0x000348 00:8338: B9 18 A7  LDA tbl_A717_ppu_addr + $01,Y
 C - - - - - 0x00034B 00:833B: 8D 06 20  STA $2006
 C - - - - - 0x00034E 00:833E: 4C 6A 83  JMP loc_836A
 bra_8341:
@@ -440,18 +440,18 @@ C - - - - - 0x000355 00:8345: D0 13     BNE bra_835A
 C - - - - - 0x000357 00:8347: A5 80     LDA ram_row
 C - - - - - 0x000359 00:8349: 0A        ASL
 C - - - - - 0x00035A 00:834A: A8        TAY
-C - - - - - 0x00035B 00:834B: B9 37 A7  LDA tbl_A737_ppu,Y
+C - - - - - 0x00035B 00:834B: B9 37 A7  LDA tbl_A737_ppu_addr,Y
 C - - - - - 0x00035E 00:834E: 8D 06 20  STA $2006
-C - - - - - 0x000361 00:8351: B9 38 A7  LDA tbl_A737_ppu + $01,Y
+C - - - - - 0x000361 00:8351: B9 38 A7  LDA tbl_A737_ppu_addr + $01,Y
 C - - - - - 0x000364 00:8354: 8D 06 20  STA $2006
 C - - - - - 0x000367 00:8357: 4C 6A 83  JMP loc_836A
 bra_835A:
 C - - - - - 0x00036A 00:835A: A5 80     LDA ram_row
 C - - - - - 0x00036C 00:835C: 0A        ASL
 C - - - - - 0x00036D 00:835D: A8        TAY
-C - - - - - 0x00036E 00:835E: B9 57 A7  LDA tbl_A757_ppu,Y
+C - - - - - 0x00036E 00:835E: B9 57 A7  LDA tbl_A757_ppu_addr,Y
 C - - - - - 0x000371 00:8361: 8D 06 20  STA $2006
-C - - - - - 0x000374 00:8364: B9 58 A7  LDA tbl_A757_ppu + $01,Y
+C - - - - - 0x000374 00:8364: B9 58 A7  LDA tbl_A757_ppu_addr + $01,Y
 C - - - - - 0x000377 00:8367: 8D 06 20  STA $2006
 loc_836A:
 C D 0 - - - 0x00037A 00:836A: A9 00     LDA #$00
@@ -603,10 +603,10 @@ C - - - - - 0x000496 00:8486: 0A        ASL
 C - - - - - 0x000497 00:8487: AA        TAX
 C - - - - - 0x000498 00:8488: CA        DEX
 C - - - - - 0x000499 00:8489: CA        DEX
-C - - - - - 0x00049A 00:848A: BD 96 A3  LDA tbl_A396,X
+C - - - - - 0x00049A 00:848A: BD 96 A3  LDA tbl_A396_ppu_addr,X
 C - - - - - 0x00049D 00:848D: 8D 06 20  STA $2006
 C - - - - - 0x0004A0 00:8490: 85 48     STA ram_0048
-C - - - - - 0x0004A2 00:8492: BD 97 A3  LDA tbl_A396 + $01,X
+C - - - - - 0x0004A2 00:8492: BD 97 A3  LDA tbl_A396_ppu_addr + $01,X
 C - - - - - 0x0004A5 00:8495: 8D 06 20  STA $2006
 C - - - - - 0x0004A8 00:8498: 85 47     STA ram_0047
 C - - - - - 0x0004AA 00:849A: A9 5C     LDA #con_tile + $5C
@@ -5584,7 +5584,7 @@ tbl_A393:
 
 
 
-tbl_A396:
+tbl_A396_ppu_addr:
 - D 1 - - - 0x0023A6 00:A396: 22 0E     .dbyt $220E ; 00 
 - D 1 - - - 0x0023A8 00:A398: 21 CE     .dbyt $21CE ; 01 
 - D 1 - - - 0x0023AA 00:A39A: 21 8E     .dbyt $218E ; 02 
@@ -6256,7 +6256,7 @@ tbl_A6FB:
 
 
 
-tbl_A717_ppu:
+tbl_A717_ppu_addr:
 - D 1 - - - 0x002727 00:A717: 21 4C     .dbyt $214C ; 00 
 - D 1 - - - 0x002729 00:A719: 21 6C     .dbyt $216C ; 01 
 - D 1 - - - 0x00272B 00:A71B: 21 8C     .dbyt $218C ; 02 
@@ -6276,7 +6276,7 @@ tbl_A717_ppu:
 
 
 
-tbl_A737_ppu:
+tbl_A737_ppu_addr:
 - D 1 - - - 0x002747 00:A737: 21 44     .dbyt $2144 ; 00 
 - D 1 - - - 0x002749 00:A739: 21 64     .dbyt $2164 ; 01 
 - D 1 - - - 0x00274B 00:A73B: 21 84     .dbyt $2184 ; 02 
@@ -6296,7 +6296,7 @@ tbl_A737_ppu:
 
 
 
-tbl_A757_ppu:
+tbl_A757_ppu_addr:
 - D 1 - - - 0x002767 00:A757: 21 54     .dbyt $2154 ; 00 
 - D 1 - - - 0x002769 00:A759: 21 74     .dbyt $2174 ; 01 
 - D 1 - - - 0x00276B 00:A75B: 21 94     .dbyt $2194 ; 02 
@@ -8757,12 +8757,12 @@ C - - - - - 0x00370C 00:B6FC: CA        DEX
 C - - - - - 0x00370D 00:B6FD: D0 F5     BNE bra_B6F4_loop
 C - - - - - 0x00370F 00:B6FF: 68        PLA
 C - - - - - 0x003710 00:B700: C9 3F     CMP #$3F
-C - - - - - 0x003712 00:B702: D0 0C     BNE bra_B710_loop_not_palette
+C - - - - - 0x003712 00:B702: D0 0C     BNE bra_B710_not_palette
 C - - - - - 0x003714 00:B704: 8D 06 20  STA $2006
 C - - - - - 0x003717 00:B707: 8E 06 20  STX $2006
 C - - - - - 0x00371A 00:B70A: 8E 06 20  STX $2006
 C - - - - - 0x00371D 00:B70D: 8E 06 20  STX $2006
-bra_B710_loop_not_palette:
+bra_B710_not_palette:
 bra_B710_loop:
 C - - - - - 0x003720 00:B710: 38        SEC
 C - - - - - 0x003721 00:B711: 98        TYA
