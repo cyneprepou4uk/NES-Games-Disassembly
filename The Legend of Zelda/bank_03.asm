@@ -50,7 +50,7 @@ tbl_802C_tiles_overworld:
 
 
 
-tbl_8030_ppu:   ; common
+tbl_8030_ppu_addr:   ; common
 - D 0 - - - 0x00C040 03:8030: 17 00     .dbyt $1700     ; 1700-1F1F
 - D 0 - - - 0x00C042 03:8032: 08 E0     .dbyt $08E0     ; 08E0-09DF/0FFF
 - D 0 - - - 0x00C044 03:8034: 09 E0     .dbyt $09E0     ; 09E0-0BFF
@@ -174,10 +174,10 @@ sub_80DC_write_to_ppu:
 C - - - - - 0x00C0EC 03:80DC: AD 1D 05  LDA ram_051D
 C - - - - - 0x00C0EF 03:80DF: 0A        ASL
 C - - - - - 0x00C0F0 03:80E0: AA        TAX
-C - - - - - 0x00C0F1 03:80E1: BD 30 80  LDA tbl_8030_ppu,X
+C - - - - - 0x00C0F1 03:80E1: BD 30 80  LDA tbl_8030_ppu_addr,X
 C - - - - - 0x00C0F4 03:80E4: 8D 06 20  STA $2006
 C - - - - - 0x00C0F7 03:80E7: E8        INX
-C - - - - - 0x00C0F8 03:80E8: BD 30 80  LDA tbl_8030_ppu,X
+C - - - - - 0x00C0F8 03:80E8: BD 30 80  LDA tbl_8030_ppu_addr,X
 C - - - - - 0x00C0FB 03:80EB: 8D 06 20  STA $2006
 C - - - - - 0x00C0FE 03:80EE: A0 00     LDY #$00
 bra_80F0_loop:

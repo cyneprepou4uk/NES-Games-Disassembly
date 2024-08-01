@@ -34,7 +34,7 @@ tbl_8006_counter:
 
 
 
-tbl_800C_ppu:
+tbl_800C_ppu_ppu_addr:
 - D 0 - - - 0x00801C 02:800C: 00 00     .dbyt $0000     ; 0000-06FF
 - D 0 - - - 0x00801E 02:800E: 10 00     .dbyt $1000     ; 1000-16FF
 - D 0 - - - 0x008020 02:8010: 1F 20     .dbyt $1F20     ; 1F20-1FFF
@@ -52,14 +52,14 @@ C - - - - - 0x00802D 02:801D: BD 00 80  LDA tbl_8000_tiles,X
 C - - - - - 0x008030 02:8020: 85 00     STA ram_0000
 C - - - - - 0x008032 02:8022: BD 06 80  LDA tbl_8006_counter,X
 C - - - - - 0x008035 02:8025: 85 02     STA ram_0002
-C - - - - - 0x008037 02:8027: BD 0C 80  LDA tbl_800C_ppu,X
+C - - - - - 0x008037 02:8027: BD 0C 80  LDA tbl_800C_ppu_ppu_addr,X
 C - - - - - 0x00803A 02:802A: 8D 06 20  STA $2006
 C - - - - - 0x00803D 02:802D: E8        INX
 C - - - - - 0x00803E 02:802E: BD 00 80  LDA tbl_8000_tiles,X
 C - - - - - 0x008041 02:8031: 85 01     STA ram_0001
 C - - - - - 0x008043 02:8033: BD 06 80  LDA tbl_8006_counter,X
 C - - - - - 0x008046 02:8036: 85 03     STA ram_0003
-C - - - - - 0x008048 02:8038: BD 0C 80  LDA tbl_800C_ppu,X
+C - - - - - 0x008048 02:8038: BD 0C 80  LDA tbl_800C_ppu_ppu_addr,X
 C - - - - - 0x00804B 02:803B: 20 4F 80  JSR sub_804F_write_to_ppu
 C - - - - - 0x00804E 02:803E: AD 1D 05  LDA ram_051D
 C - - - - - 0x008051 02:8041: C9 03     CMP #$03
@@ -3252,10 +3252,10 @@ C - - - - - 0x00A4E5 02:A4D5: 69 60     ADC #$60
 C - - - - - 0x00A4E7 02:A4D7: 8D 03 03  STA ram_0302_ppu_buffer + $01
 C - - - - - 0x00A4EA 02:A4DA: AD 17 03  LDA ram_0302_ppu_buffer + $15
 C - - - - - 0x00A4ED 02:A4DD: 18        CLC
-C - - - - - 0x00A4EE 02:A4DE: 69 60     ADC #$60
+C - - - - - 0x00A4EE 02:A4DE: 69 60     ADC #< $0060
 C - - - - - 0x00A4F0 02:A4E0: 8D 17 03  STA ram_0302_ppu_buffer + $15
 C - - - - - 0x00A4F3 02:A4E3: AD 02 03  LDA ram_0302_ppu_buffer
-C - - - - - 0x00A4F6 02:A4E6: 69 00     ADC #$00
+C - - - - - 0x00A4F6 02:A4E6: 69 00     ADC #> $0060
 C - - - - - 0x00A4F8 02:A4E8: 8D 02 03  STA ram_0302_ppu_buffer
 C - - - - - 0x00A4FB 02:A4EB: 8D 16 03  STA ram_0302_ppu_buffer + $14
 C - - - - - 0x00A4FE 02:A4EE: 88        DEY

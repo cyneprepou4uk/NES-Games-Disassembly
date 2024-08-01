@@ -220,6 +220,7 @@ C - - - - - 0x01E4D4 07:E4C4: A9 3F     LDA #> $3F00
 C - - - - - 0x01E4D6 07:E4C6: 8D 06 20  STA $2006
 C - - - - - 0x01E4D9 07:E4C9: A9 00     LDA #< $3F00
 C - - - - - 0x01E4DB 07:E4CB: 8D 06 20  STA $2006
+; A = 00
 C - - - - - 0x01E4DE 07:E4CE: 8D 06 20  STA $2006
 C - - - - - 0x01E4E1 07:E4D1: 8D 06 20  STA $2006
 ; wait for sprite 0 hit
