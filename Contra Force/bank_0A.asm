@@ -9295,10 +9295,10 @@ C - - - - - 0x0178A5 05:B895: 4A        LSR
 ; bzk optimize, what's the point of these CLC + ADC 00?
 ; bzk bug?
 C - - - - - 0x0178A6 05:B896: 18        CLC
-C - - - - - 0x0178A7 05:B897: 69 00     ADC #$00
+C - - - - - 0x0178A7 05:B897: 69 00     ADC #< $0000
 C - - - - - 0x0178A9 05:B899: 85 00     STA ram_0000
 C - - - - - 0x0178AB 05:B89B: A9 04     LDA #$04
-C - - - - - 0x0178AD 05:B89D: 69 00     ADC #$00
+C - - - - - 0x0178AD 05:B89D: 69 00     ADC #> $0000
 C - - - - - 0x0178AF 05:B89F: 85 01     STA ram_0001
 C - - - - - 0x0178B1 05:B8A1: A5 02     LDA ram_0002
 C - - - - - 0x0178B3 05:B8A3: 4A        LSR

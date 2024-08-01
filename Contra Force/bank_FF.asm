@@ -728,7 +728,7 @@ C D 2 - - - 0x01D1BE 07:D1AE: AD 02 20  LDA $2002
 C - - - - - 0x01D1C1 07:D1B1: A0 01     LDY #$01
 C - - - - - 0x01D1C3 07:D1B3: B1 00     LDA (ram_0000),Y
 C - - - - - 0x01D1C5 07:D1B5: 8D 06 20  STA $2006
-C - - - - - 0x01D1C8 07:D1B8: 88        DEY
+C - - - - - 0x01D1C8 07:D1B8: 88        DEY ; 00
 C - - - - - 0x01D1C9 07:D1B9: B1 00     LDA (ram_0000),Y
 C - - - - - 0x01D1CB 07:D1BB: 8D 06 20  STA $2006
 loc_0x01D1CE:
@@ -1624,6 +1624,7 @@ C - - - - - 0x01D678 07:D668: A9 3F     LDA #> $3F00
 C - - - - - 0x01D67A 07:D66A: 8D 06 20  STA $2006
 C - - - - - 0x01D67D 07:D66D: A9 00     LDA #< $3F00
 C - - - - - 0x01D67F 07:D66F: 8D 06 20  STA $2006
+; A = 00
 C - - - - - 0x01D682 07:D672: 8D 06 20  STA $2006
 C - - - - - 0x01D685 07:D675: 8D 06 20  STA $2006
 C - - - - - 0x01D688 07:D678: 60        RTS
@@ -2888,11 +2889,11 @@ C - - - - - 0x01DD8E 07:DD7E: 10 13     BPL bra_DD93
 C - - - - - 0x01DD90 07:DD80: A5 0A     LDA ram_000A
 C - - - - - 0x01DD92 07:DD82: 49 FF     EOR #$FF
 C - - - - - 0x01DD94 07:DD84: 18        CLC
-C - - - - - 0x01DD95 07:DD85: 69 01     ADC #$01
+C - - - - - 0x01DD95 07:DD85: 69 01     ADC #< $0001
 C - - - - - 0x01DD97 07:DD87: 85 0A     STA ram_000A
 C - - - - - 0x01DD99 07:DD89: A5 0B     LDA ram_000B
 C - - - - - 0x01DD9B 07:DD8B: 49 FF     EOR #$FF
-C - - - - - 0x01DD9D 07:DD8D: 69 00     ADC #$00
+C - - - - - 0x01DD9D 07:DD8D: 69 00     ADC #> $0001
 C - - - - - 0x01DD9F 07:DD8F: 85 0B     STA ram_000B
 C - - - - - 0x01DDA1 07:DD91: A0 18     LDY #$18
 bra_DD93:

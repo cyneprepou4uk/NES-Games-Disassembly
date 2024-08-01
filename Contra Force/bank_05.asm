@@ -2150,11 +2150,11 @@ bra_ABFA:
 C - - - - - 0x00AC0A 02:ABFA: A5 1A     LDA ram_001A
 C - - - - - 0x00AC0C 02:ABFC: 49 FF     EOR #$FF
 C - - - - - 0x00AC0E 02:ABFE: 18        CLC
-C - - - - - 0x00AC0F 02:ABFF: 69 01     ADC #$01
+C - - - - - 0x00AC0F 02:ABFF: 69 01     ADC #< $0001
 C - - - - - 0x00AC11 02:AC01: 85 1A     STA ram_001A
 C - - - - - 0x00AC13 02:AC03: A5 1B     LDA ram_001B
 C - - - - - 0x00AC15 02:AC05: 49 FF     EOR #$FF
-C - - - - - 0x00AC17 02:AC07: 69 00     ADC #$00
+C - - - - - 0x00AC17 02:AC07: 69 00     ADC #> $0001
 C - - - - - 0x00AC19 02:AC09: 85 1B     STA ram_001B
 bra_AC0B:
 C - - - - - 0x00AC1B 02:AC0B: A6 1F     LDX ram_001F
@@ -2439,11 +2439,11 @@ C - - - - - 0x00ADF6 02:ADE6: A8        TAY
 C - - - - - 0x00ADF7 02:ADE7: B9 7B F6  LDA tbl_0x01F68B,Y
 C - - - - - 0x00ADFA 02:ADEA: 49 FF     EOR #$FF
 C - - - - - 0x00ADFC 02:ADEC: 18        CLC
-C - - - - - 0x00ADFD 02:ADED: 69 01     ADC #$01
+C - - - - - 0x00ADFD 02:ADED: 69 01     ADC #< $0001
 C - - - - - 0x00ADFF 02:ADEF: 85 18     STA ram_0018
 C - - - - - 0x00AE01 02:ADF1: B9 7C F6  LDA tbl_0x01F68B + $01,Y
 C - - - - - 0x00AE04 02:ADF4: 49 FF     EOR #$FF
-C - - - - - 0x00AE06 02:ADF6: 69 00     ADC #$00
+C - - - - - 0x00AE06 02:ADF6: 69 00     ADC #> $0001
 C - - - - - 0x00AE08 02:ADF8: 85 19     STA ram_0019
 C - - - - - 0x00AE0A 02:ADFA: 60        RTS
 bra_ADFB:
