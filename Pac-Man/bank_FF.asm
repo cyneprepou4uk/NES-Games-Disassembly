@@ -3751,11 +3751,11 @@ C - - - - - 0x00182F 00:D81F: 95 B9     STA ram_00B9,X
 C - - - - - 0x001831 00:D821: A0 03     LDY #$03
 C - - - - - 0x001833 00:D823: B1 02     LDA (ram_0002),Y    ; 0021 0025 0029 002D
 C - - - - - 0x001835 00:D825: 38        SEC
-C - - - - - 0x001836 00:D826: E9 80     SBC #$80
+C - - - - - 0x001836 00:D826: E9 80     SBC #< $0080
 C - - - - - 0x001838 00:D828: 91 02     STA (ram_0002),Y    ; 0021 0025 0029 002D
 C - - - - - 0x00183A 00:D82A: A0 02     LDY #$02
 C - - - - - 0x00183C 00:D82C: B1 02     LDA (ram_0002),Y    ; 0020 0024 0028 002C
-C - - - - - 0x00183E 00:D82E: E9 00     SBC #$00
+C - - - - - 0x00183E 00:D82E: E9 00     SBC #> $0080
 C - - - - - 0x001840 00:D830: 91 02     STA (ram_0002),Y    ; 0020 0024 0028 002C
 C - - - - - 0x001842 00:D832: C9 58     CMP #$58
 C - - - - - 0x001844 00:D834: F0 01     BEQ bra_D837
@@ -4617,9 +4617,9 @@ C - - - - - 0x001E98 00:DE88: A0 08     LDY #$08
 bra_DE8A:
 bra_DE8A_loop:
 C - - - - - 0x001E9A 00:DE8A: AD 02 20  LDA $2002
-C - - - - - 0x001E9D 00:DE8D: B9 CF DE  LDA tbl_DECF,Y
+C - - - - - 0x001E9D 00:DE8D: B9 CF DE  LDA tbl_DECF_ppu_addr,Y
 C - - - - - 0x001EA0 00:DE90: 8D 06 20  STA $2006
-C - - - - - 0x001EA3 00:DE93: B9 D0 DE  LDA tbl_DECF + $01,Y
+C - - - - - 0x001EA3 00:DE93: B9 D0 DE  LDA tbl_DECF_ppu_addr + $01,Y
 C - - - - - 0x001EA6 00:DE96: 8D 06 20  STA $2006
 C - - - - - 0x001EA9 00:DE99: B5 6C     LDA ram_power_pellet_tile_p1,X
 C - - - - - 0x001EAB 00:DE9B: 8D 07 20  STA $2007
@@ -4653,7 +4653,7 @@ C - - - - - 0x001EDE 00:DECE: 60        RTS
 
 
 
-tbl_DECF:
+tbl_DECF_ppu_addr:
 - D 2 - - - 0x001EDF 00:DECF: 20 B4     .dbyt $20B4 ; 00 
 - D 2 - - - 0x001EE1 00:DED1: 20 A2     .dbyt $20A2 ; 02 
 - D 2 - - - 0x001EE3 00:DED3: 22 D4     .dbyt $22D4 ; 04 
