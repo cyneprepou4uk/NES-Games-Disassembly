@@ -2082,11 +2082,11 @@ C - - - - - 0x008D8A 02:8D7A: A8        TAY
 C - - - - - 0x008D8B 02:8D7B: B9 B9 8F  LDA tbl_8FB9_speedo_lo_tiles,Y
 C - - - - - 0x008D8E 02:8D7E: 85 0D     STA ram_000D
 C - - - - - 0x008D90 02:8D80: 38        SEC
-C - - - - - 0x008D91 02:8D81: E9 08     SBC #$08
+C - - - - - 0x008D91 02:8D81: E9 08     SBC #< $0008
 C - - - - - 0x008D93 02:8D83: 85 0F     STA ram_000F
 C - - - - - 0x008D95 02:8D85: B9 BA 8F  LDA tbl_8FB9_speedo_lo_tiles + $01,Y
 C - - - - - 0x008D98 02:8D88: 85 0E     STA ram_000E
-C - - - - - 0x008D9A 02:8D8A: E9 00     SBC #$00
+C - - - - - 0x008D9A 02:8D8A: E9 00     SBC #> $0008
 C - - - - - 0x008D9C 02:8D8C: 85 10     STA ram_0010
 C - - - - - 0x008D9E 02:8D8E: A0 00     LDY #$00
 loc_8D90:
