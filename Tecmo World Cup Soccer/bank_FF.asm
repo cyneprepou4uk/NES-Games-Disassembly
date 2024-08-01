@@ -187,12 +187,12 @@ C - - - - - 0x00C0D0 03:C0C0: 8D 17 40  STA $4017
 C - - - - - 0x00C0D3 03:C0C3: AD 02 20  LDA $2002
 C - - - - - 0x00C0D6 03:C0C6: A9 10     LDA #$10
 C - - - - - 0x00C0D8 03:C0C8: AA        TAX
-bra_C0C9:
+bra_C0C9_loop:
 C - - - - - 0x00C0D9 03:C0C9: 8D 06 20  STA $2006
 C - - - - - 0x00C0DC 03:C0CC: 8D 06 20  STA $2006
 C - - - - - 0x00C0DF 03:C0CF: 49 00     EOR #$00
 C - - - - - 0x00C0E1 03:C0D1: CA        DEX
-C - - - - - 0x00C0E2 03:C0D2: D0 F5     BNE bra_C0C9
+C - - - - - 0x00C0E2 03:C0D2: D0 F5     BNE bra_C0C9_loop
 C - - - - - 0x00C0E4 03:C0D4: 20 59 CA  JSR sub_CA59
 C - - - - - 0x00C0E7 03:C0D7: 20 AF CA  JSR sub_CAAF
 C - - - - - 0x00C0EA 03:C0DA: A2 E0     LDX #$E0
@@ -271,10 +271,11 @@ C - - - - - 0x00C173 03:C163: A9 02     LDA #> ram_oam
 C - - - - - 0x00C175 03:C165: 8D 14 40  STA $4014
 C - - - - - 0x00C178 03:C168: 20 EB C1  JSR sub_C1EB
 C - - - - - 0x00C17B 03:C16B: 2C 02 20  BIT $2002
-C - - - - - 0x00C17E 03:C16E: A9 3F     LDA #$3F
+C - - - - - 0x00C17E 03:C16E: A9 3F     LDA #> $3F00
 C - - - - - 0x00C180 03:C170: 8D 06 20  STA $2006
-C - - - - - 0x00C183 03:C173: A9 00     LDA #$00
+C - - - - - 0x00C183 03:C173: A9 00     LDA #< $3F00
 C - - - - - 0x00C185 03:C175: 8D 06 20  STA $2006
+; A = 00
 C - - - - - 0x00C188 03:C178: 8D 06 20  STA $2006
 C - - - - - 0x00C18B 03:C17B: 8D 06 20  STA $2006
 C - - - - - 0x00C18E 03:C17E: A5 28     LDA ram_0028
@@ -1153,9 +1154,9 @@ C - - - - - 0x00C747 03:C737: 4C 4E C7  JMP loc_C74E
 bra_C73A:
 C - - - - - 0x00C74A 03:C73A: 38        SEC
 C - - - - - 0x00C74B 03:C73B: 8A        TXA
-C - - - - - 0x00C74C 03:C73C: E9 B0     SBC #$B0
+C - - - - - 0x00C74C 03:C73C: E9 B0     SBC #< $00B0
 C - - - - - 0x00C74E 03:C73E: 98        TYA
-C - - - - - 0x00C74F 03:C73F: E9 00     SBC #$00
+C - - - - - 0x00C74F 03:C73F: E9 00     SBC #> $00B0
 C - - - - - 0x00C751 03:C741: B0 0B     BCS bra_C74E
 C - - - - - 0x00C753 03:C743: A9 0B     LDA #$0B
 C - - - - - 0x00C755 03:C745: AE 29 04  LDX ram_plr_w_ball
@@ -1368,12 +1369,12 @@ loc_C843:
 C - - - - - 0x00C853 03:C843: 38        SEC
 C - - - - - 0x00C854 03:C844: A0 05     LDY #$05
 C - - - - - 0x00C856 03:C846: B1 61     LDA (ram_0061),Y
-C - - - - - 0x00C858 03:C848: E9 10     SBC #$10
+C - - - - - 0x00C858 03:C848: E9 10     SBC #< $0010
 C - - - - - 0x00C85A 03:C84A: AA        TAX
-C - - - - - 0x00C85B 03:C84B: C8        INY
-C - - - - - 0x00C85C 03:C84C: C8        INY
+C - - - - - 0x00C85B 03:C84B: C8        INY ; 06
+C - - - - - 0x00C85C 03:C84C: C8        INY ; 07
 C - - - - - 0x00C85D 03:C84D: B1 61     LDA (ram_0061),Y
-C - - - - - 0x00C85F 03:C84F: E9 00     SBC #$00
+C - - - - - 0x00C85F 03:C84F: E9 00     SBC #> $0010
 C - - - - - 0x00C861 03:C851: B0 03     BCS bra_C856
 C - - - - - 0x00C863 03:C853: A9 00     LDA #$00
 C - - - - - 0x00C865 03:C855: AA        TAX
@@ -1384,10 +1385,10 @@ loc_C859:
 C D 2 - - - 0x00C869 03:C859: 48        PHA
 C - - - - - 0x00C86A 03:C85A: 38        SEC
 C - - - - - 0x00C86B 03:C85B: 8A        TXA
-C - - - - - 0x00C86C 03:C85C: E9 30     SBC #$30
+C - - - - - 0x00C86C 03:C85C: E9 30     SBC #< $0030
 C - - - - - 0x00C86E 03:C85E: AA        TAX
 C - - - - - 0x00C86F 03:C85F: 98        TYA
-C - - - - - 0x00C870 03:C860: E9 00     SBC #$00
+C - - - - - 0x00C870 03:C860: E9 00     SBC #> $0030
 C - - - - - 0x00C872 03:C862: A8        TAY
 C - - - - - 0x00C873 03:C863: 68        PLA
 C - - - - - 0x00C874 03:C864: 90 05     BCC bra_C86B
@@ -1402,12 +1403,12 @@ C - - - - - 0x00C881 03:C871: 48        PHA
 C - - - - - 0x00C882 03:C872: 38        SEC
 C - - - - - 0x00C883 03:C873: A0 0B     LDY #$0B
 C - - - - - 0x00C885 03:C875: B1 61     LDA (ram_0061),Y
-C - - - - - 0x00C887 03:C877: E9 98     SBC #$98
+C - - - - - 0x00C887 03:C877: E9 98     SBC #< $0098
 C - - - - - 0x00C889 03:C879: AA        TAX
-C - - - - - 0x00C88A 03:C87A: C8        INY
-C - - - - - 0x00C88B 03:C87B: C8        INY
+C - - - - - 0x00C88A 03:C87A: C8        INY ; 0C
+C - - - - - 0x00C88B 03:C87B: C8        INY ; 0D
 C - - - - - 0x00C88C 03:C87C: B1 61     LDA (ram_0061),Y
-C - - - - - 0x00C88E 03:C87E: E9 00     SBC #$00
+C - - - - - 0x00C88E 03:C87E: E9 00     SBC #> $0098
 C - - - - - 0x00C890 03:C880: B0 03     BCS bra_C885
 C - - - - - 0x00C892 03:C882: A9 00     LDA #$00
 C - - - - - 0x00C894 03:C884: AA        TAX
@@ -1418,10 +1419,10 @@ bra_C887:
 C - - - - - 0x00C897 03:C887: 48        PHA
 C - - - - - 0x00C898 03:C888: 38        SEC
 C - - - - - 0x00C899 03:C889: 8A        TXA
-C - - - - - 0x00C89A 03:C88A: E9 30     SBC #$30
+C - - - - - 0x00C89A 03:C88A: E9 30     SBC #< $0030
 C - - - - - 0x00C89C 03:C88C: AA        TAX
 C - - - - - 0x00C89D 03:C88D: 98        TYA
-C - - - - - 0x00C89E 03:C88E: E9 00     SBC #$00
+C - - - - - 0x00C89E 03:C88E: E9 00     SBC #> $0030
 C - - - - - 0x00C8A0 03:C890: A8        TAY
 C - - - - - 0x00C8A1 03:C891: 68        PLA
 C - - - - - 0x00C8A2 03:C892: 90 08     BCC bra_C89C_RTS
@@ -1447,10 +1448,10 @@ C - - - - - 0x00C8B8 03:C8A8: 86 37     STX ram_0037
 C - - - - - 0x00C8BA 03:C8AA: 20 D3 C8  JSR sub_C8D3
 C - - - - - 0x00C8BD 03:C8AD: 8A        TXA
 C - - - - - 0x00C8BE 03:C8AE: 18        CLC
-C - - - - - 0x00C8BF 03:C8AF: 69 28     ADC #$28
+C - - - - - 0x00C8BF 03:C8AF: 69 28     ADC #< $0028
 C - - - - - 0x00C8C1 03:C8B1: AA        TAX
 C - - - - - 0x00C8C2 03:C8B2: 98        TYA
-C - - - - - 0x00C8C3 03:C8B3: 69 00     ADC #$00
+C - - - - - 0x00C8C3 03:C8B3: 69 00     ADC #> $0028
 C - - - - - 0x00C8C5 03:C8B5: A0 1B     LDY #$1B
 C - - - - - 0x00C8C7 03:C8B7: 91 61     STA (ram_0061),Y
 C - - - - - 0x00C8C9 03:C8B9: 88        DEY
@@ -1460,10 +1461,10 @@ C - - - - - 0x00C8CD 03:C8BD: A5 37     LDA ram_0037
 C - - - - - 0x00C8CF 03:C8BF: 20 D3 C8  JSR sub_C8D3
 C - - - - - 0x00C8D2 03:C8C2: 8A        TXA
 C - - - - - 0x00C8D3 03:C8C3: 18        CLC
-C - - - - - 0x00C8D4 03:C8C4: 69 B0     ADC #$B0
+C - - - - - 0x00C8D4 03:C8C4: 69 B0     ADC #< $00B0
 C - - - - - 0x00C8D6 03:C8C6: AA        TAX
 C - - - - - 0x00C8D7 03:C8C7: 98        TYA
-C - - - - - 0x00C8D8 03:C8C8: 69 00     ADC #$00
+C - - - - - 0x00C8D8 03:C8C8: 69 00     ADC #> $00B0
 C - - - - - 0x00C8DA 03:C8CA: A0 1D     LDY #$1D
 C - - - - - 0x00C8DC 03:C8CC: 91 61     STA (ram_0061),Y
 C - - - - - 0x00C8DE 03:C8CE: 88        DEY
@@ -3335,9 +3336,9 @@ C - - - - - 0x00D503 03:D4F3: 86 2A     STX ram_002A
 C - - - - - 0x00D505 03:D4F5: 84 2B     STY ram_002B
 C - - - - - 0x00D507 03:D4F7: 38        SEC
 C - - - - - 0x00D508 03:D4F8: 8A        TXA
-C - - - - - 0x00D509 03:D4F9: E9 0E     SBC #$0E
+C - - - - - 0x00D509 03:D4F9: E9 0E     SBC #< $000E
 C - - - - - 0x00D50B 03:D4FB: 98        TYA
-C - - - - - 0x00D50C 03:D4FC: E9 00     SBC #$00
+C - - - - - 0x00D50C 03:D4FC: E9 00     SBC #> $000E
 C - - - - - 0x00D50E 03:D4FE: B0 09     BCS bra_D509
 C - - - - - 0x00D510 03:D500: A9 0C     LDA #con_sfx_whistle_referee
 C - - - - - 0x00D512 03:D502: 20 10 C9  JSR sub_C910_prepare_sound
@@ -3397,9 +3398,9 @@ C - - - - - 0x00D578 03:D568: 60        RTS
 bra_D569:
 C - - - - - 0x00D579 03:D569: 38        SEC
 C - - - - - 0x00D57A 03:D56A: A5 2C     LDA ram_002C
-C - - - - - 0x00D57C 03:D56C: E9 A2     SBC #$A2
+C - - - - - 0x00D57C 03:D56C: E9 A2     SBC #< $00A2
 C - - - - - 0x00D57E 03:D56E: A5 2D     LDA ram_002D
-C - - - - - 0x00D580 03:D570: E9 00     SBC #$00
+C - - - - - 0x00D580 03:D570: E9 00     SBC #> $00A2
 C - - - - - 0x00D582 03:D572: B0 1A     BCS bra_D58E
 C - - - - - 0x00D584 03:D574: A2 01     LDX #$01
 C - - - - - 0x00D586 03:D576: A9 00     LDA #$00
@@ -3691,10 +3692,10 @@ C - - - - - 0x00D73C 03:D72C: 4C F1 C5  JMP loc_C5F1
 sub_D72F:
 C - - - - - 0x00D73F 03:D72F: 38        SEC
 C - - - - - 0x00D740 03:D730: AD D8 03  LDA ram_03D8
-C - - - - - 0x00D743 03:D733: E9 10     SBC #$10
+C - - - - - 0x00D743 03:D733: E9 10     SBC #< $0010
 C - - - - - 0x00D745 03:D735: AA        TAX
 C - - - - - 0x00D746 03:D736: AD DA 03  LDA ram_03DA
-C - - - - - 0x00D749 03:D739: E9 00     SBC #$00
+C - - - - - 0x00D749 03:D739: E9 00     SBC #> $0010
 C - - - - - 0x00D74B 03:D73B: B0 03     BCS bra_D740
 C - - - - - 0x00D74D 03:D73D: A2 00     LDX #$00
 C - - - - - 0x00D74F 03:D73F: 8A        TXA
@@ -3705,10 +3706,10 @@ loc_D743:
 C D 2 - - - 0x00D753 03:D743: 48        PHA
 C - - - - - 0x00D754 03:D744: 38        SEC
 C - - - - - 0x00D755 03:D745: 8A        TXA
-C - - - - - 0x00D756 03:D746: E9 60     SBC #$60
+C - - - - - 0x00D756 03:D746: E9 60     SBC #< $0060
 C - - - - - 0x00D758 03:D748: AA        TAX
 C - - - - - 0x00D759 03:D749: 98        TYA
-C - - - - - 0x00D75A 03:D74A: E9 00     SBC #$00
+C - - - - - 0x00D75A 03:D74A: E9 00     SBC #> $0060
 C - - - - - 0x00D75C 03:D74C: A8        TAY
 C - - - - - 0x00D75D 03:D74D: 68        PLA
 C - - - - - 0x00D75E 03:D74E: 90 05     BCC bra_D755
@@ -3722,10 +3723,10 @@ bra_D75B:
 C - - - - - 0x00D76B 03:D75B: 85 2A     STA ram_002A
 C - - - - - 0x00D76D 03:D75D: 38        SEC
 C - - - - - 0x00D76E 03:D75E: AD DE 03  LDA ram_03DE
-C - - - - - 0x00D771 03:D761: E9 A0     SBC #$A0
+C - - - - - 0x00D771 03:D761: E9 A0     SBC #< $00A0
 C - - - - - 0x00D773 03:D763: AA        TAX
 C - - - - - 0x00D774 03:D764: AD E0 03  LDA ram_03E0
-C - - - - - 0x00D777 03:D767: E9 00     SBC #$00
+C - - - - - 0x00D777 03:D767: E9 00     SBC #> $00A0
 C - - - - - 0x00D779 03:D769: B0 03     BCS bra_D76E
 C - - - - - 0x00D77B 03:D76B: A2 00     LDX #$00
 C - - - - - 0x00D77D 03:D76D: 8A        TXA
@@ -3736,10 +3737,10 @@ loc_D771:
 C D 2 - - - 0x00D781 03:D771: 48        PHA
 C - - - - - 0x00D782 03:D772: 38        SEC
 C - - - - - 0x00D783 03:D773: 8A        TXA
-C - - - - - 0x00D784 03:D774: E9 58     SBC #$58
+C - - - - - 0x00D784 03:D774: E9 58     SBC #< $0058
 C - - - - - 0x00D786 03:D776: AA        TAX
 C - - - - - 0x00D787 03:D777: 98        TYA
-C - - - - - 0x00D788 03:D778: E9 00     SBC #$00
+C - - - - - 0x00D788 03:D778: E9 00     SBC #> $0058
 C - - - - - 0x00D78A 03:D77A: A8        TAY
 C - - - - - 0x00D78B 03:D77B: 68        PLA
 C - - - - - 0x00D78C 03:D77C: 90 05     BCC bra_D783
@@ -4590,10 +4591,10 @@ C - - - - - 0x00DD0A 03:DCFA: 6D DA 03  ADC ram_03DA
 C - - - - - 0x00DD0D 03:DCFD: 8D FA 03  STA ram_03FA
 C - - - - - 0x00DD10 03:DD00: 18        CLC
 C - - - - - 0x00DD11 03:DD01: AD DE 03  LDA ram_03DE
-C - - - - - 0x00DD14 03:DD04: 69 02     ADC #$02
+C - - - - - 0x00DD14 03:DD04: 69 02     ADC #< $0002
 C - - - - - 0x00DD16 03:DD06: 8D FE 03  STA ram_03FE
 C - - - - - 0x00DD19 03:DD09: AD E0 03  LDA ram_03E0
-C - - - - - 0x00DD1C 03:DD0C: 69 00     ADC #$00
+C - - - - - 0x00DD1C 03:DD0C: 69 00     ADC #> $0002
 C - - - - - 0x00DD1E 03:DD0E: 8D 00 04  STA ram_0400
 C - - - - - 0x00DD21 03:DD11: A9 E0     LDA #$E0
 C - - - - - 0x00DD23 03:DD13: 8D 04 04  STA ram_0404
@@ -5640,9 +5641,9 @@ C - - - - - 0x00E3A4 03:E394: A0 13     LDY #$13
 C - - - - - 0x00E3A6 03:E396: 91 61     STA (ram_0061),Y
 C - - - - - 0x00E3A8 03:E398: 38        SEC
 C - - - - - 0x00E3A9 03:E399: AD 24 04  LDA ram_ball_Z_lo
-C - - - - - 0x00E3AC 03:E39C: E9 0C     SBC #$0C
+C - - - - - 0x00E3AC 03:E39C: E9 0C     SBC #< $000C
 C - - - - - 0x00E3AE 03:E39E: AD 26 04  LDA ram_0426
-C - - - - - 0x00E3B1 03:E3A1: E9 00     SBC #$00
+C - - - - - 0x00E3B1 03:E3A1: E9 00     SBC #> $000C
 C - - - - - 0x00E3B3 03:E3A3: 90 22     BCC bra_E3C7
 C - - - - - 0x00E3B5 03:E3A5: 2C 23 04  BIT ram_0423
 C - - - - - 0x00E3B8 03:E3A8: 10 1D     BPL bra_E3C7
@@ -6932,9 +6933,9 @@ C - - - - - 0x00EC38 03:EC28: 20 50 CB  JSR sub_CB50
 bra_EC2B:
 C - - - - - 0x00EC3B 03:EC2B: 38        SEC
 C - - - - - 0x00EC3C 03:EC2C: 8A        TXA
-C - - - - - 0x00EC3D 03:EC2D: E9 88     SBC #$88
+C - - - - - 0x00EC3D 03:EC2D: E9 88     SBC #< $0088
 C - - - - - 0x00EC3F 03:EC2F: 98        TYA
-C - - - - - 0x00EC40 03:EC30: E9 00     SBC #$00
+C - - - - - 0x00EC40 03:EC30: E9 00     SBC #> $0088
 C - - - - - 0x00EC42 03:EC32: B0 15     BCS bra_EC49
 - - - - - - 0x00EC44 03:EC34: A2 88     LDX #$88
 - - - - - - 0x00EC46 03:EC36: A0 00     LDY #$00
