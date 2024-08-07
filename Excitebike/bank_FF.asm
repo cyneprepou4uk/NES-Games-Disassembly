@@ -8280,7 +8280,7 @@ C - - - - - 0x002D0F 00:ECFF: A5 03     LDA ram_0003
 C - - - - - 0x002D11 00:ED01: 9D 03 04  STA ram_0403,X
 C - - - - - 0x002D14 00:ED04: CA        DEX
 C - - - - - 0x002D15 00:ED05: A5 04     LDA ram_0004
-; bzk bug? this reffers to 0502 if X = FF
+; bzk bug? this refers to 0502 if X = FF
 C - - - - - 0x002D17 00:ED07: 9D 03 04  STA ram_0403,X
 C - - - - - 0x002D1A 00:ED0A: CA        DEX
 C - - - - - 0x002D1B 00:ED0B: 10 F2     BPL bra_ECFF_loop
@@ -8296,7 +8296,7 @@ C - - - - - 0x002D2E 00:ED1E: A5 03     LDA ram_0003
 C - - - - - 0x002D30 00:ED20: 9D 26 04  STA ram_0426,X
 C - - - - - 0x002D33 00:ED23: CA        DEX
 C - - - - - 0x002D34 00:ED24: A5 04     LDA ram_0004
-; bzk bug? this reffers to 0525 if X = FF
+; bzk bug? this refers to 0525 if X = FF
 C - - - - - 0x002D36 00:ED26: 9D 26 04  STA ram_0426,X
 C - - - - - 0x002D39 00:ED29: CA        DEX
 C - - - - - 0x002D3A 00:ED2A: 10 F2     BPL bra_ED1E_loop
