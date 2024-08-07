@@ -2868,7 +2868,7 @@ C - - - - - 0x014EFC 05:8EEC: A5 EB     LDA ram_map_location
 C - - - - - 0x014EFE 05:8EEE: 48        PHA
 bra_8EEF_loop:
 ; bzk bug, loop doesn't quit after checking Y 00-06,
-; which results in Y underflow after DEY and reffer
+; which results in Y underflow after DEY and refer
 ; to unrelated addresses via CMP.
 ; example at 1st quest demo, 73500+ frame
 ; it's also possible that this loop will result
