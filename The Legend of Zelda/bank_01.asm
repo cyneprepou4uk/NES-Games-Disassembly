@@ -1583,13 +1583,13 @@ C - - - - - 0x004DC3 01:8DB3: 60        RTS
 
 tbl_8DB4___0700_0FFF:
 ; 0x004DC4
-    .incbin "incbin/tiles/01___8DB4_96B3.chr"
+    .incbin "incbin/chr/01___8DB4_96B3.chr"
 
 
 
 tbl_96B4___1700_1F1F:
 ; 0x0056C4
-    .incbin "incbin/tiles/01___96B4_9ED3.chr"
+    .incbin "incbin/chr/01___96B4_9ED3.chr"
 
 
 ; bzk garbage

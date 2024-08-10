@@ -103,19 +103,19 @@ C - - - - - 0x00808E 02:807E: 60        RTS
 
 tbl_807F___0000_06FF:
 ; 0x00808F
-    .incbin "incbin/tiles/02___807F_877E.chr"
+    .incbin "incbin/chr/02___807F_877E.chr"
 
 
 
 tbl_877F___1000_16FF:
 ; 0x00878F
-    .incbin "incbin/tiles/02___877F_8E7E.chr"
+    .incbin "incbin/chr/02___877F_8E7E.chr"
 
 
 
 tbl_8E7F___1F20_1FFF:
 ; 0x008E8F
-    .incbin "incbin/tiles/02___8E7F_8F5E.chr"
+    .incbin "incbin/chr/02___8E7F_8F5E.chr"
 
 
 ; bzk garbage
