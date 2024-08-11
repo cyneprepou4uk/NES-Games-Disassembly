@@ -1,5 +1,7 @@
 ; keep your global constant values inside this file
 
+
+
 ; MISC
 con_obj_limit                           = $22 ; object indexes are 00-21 including 00-01 for players
 
@@ -27,12 +29,12 @@ con_btns_LR                             = con_btn_Left + con_btn_Right          
 
 ; ram_function_id
 ; need comments 0x00038C 0x000378
-; con_837C_00                           = $00 ; 
+; con_837C_00                           = $00 ; unused
 con_837C_title_screen                   = $02 ; 
 con_837C_cutscene                       = $04 ; after title screen
 con_837C_06                             = $06 ; 
-con_837C_08                             = $08 ; 
-con_837C_0A                             = $0A ; 
+con_837C_player_1                       = $08 ; player handler
+con_837C_player_2                       = $0A ; player handler
 con_837C_objects_handler                = $0C ; 
 con_837C_0E                             = $0E ; 
 con_837C_10                             = $10 ; 
@@ -40,7 +42,20 @@ con_837C_12                             = $12 ;
 
 
 
-; ram_object_id
+; ram_function_flags
+con_func_flag_off                       = $00 ; completely disabled
+con_func_flag_temp_disable              = $01 ; temporary disable if set
+; con_func_flag_02                      = $02 ; unused
+; con_func_flag_04                      = $04 ; unused
+; con_func_flag_08                      = $08 ; unused
+; con_func_flag_10                      = $10 ; unused
+; con_func_flag_20                      = $20 ; unused
+con_func_flag_pause                     = $40 ; paused with a timer if set
+con_func_flag_exist                     = $80 ; exists if set
+
+
+
+; ram_obj_id
 ; need comments at 0x004AEB 0x003C32 0x003727
 con_obj_id_00                           = $00 ; 
 con_obj_id_01                           = $01 ; 
@@ -89,3 +104,23 @@ con_obj_flag_10                         = $10 ;
 con_obj_flag_20                         = $20 ; 
 con_obj_flag_40                         = $40 ; unused? 0x0031F3 0x003235
 con_obj_flag_exists                     = $80 ; 
+
+
+
+; sound engine control bytes 0x005863
+con_se_cb_F0                            = $F0 ; 
+; con_se_cb_F1                          = $F1 ; unused
+con_se_cb_jmp                           = $F2 ; 
+; con_se_cb_F3                          = $F3 ; unused
+; con_se_cb_F4                          = $F4 ; unused
+; con_se_cb_F5                          = $F5 ; unused
+con_se_cb_F6                            = $F6 ; 
+; con_se_cb_F7                          = $F7 ; unused
+; con_se_cb_F8                          = $F8 ; unused
+; con_se_cb_F9                          = $F9 ; unused
+; con_se_cb_FA                          = $FA ; unused
+; con_se_cb_FB                          = $FB ; unused
+; con_se_cb_FC                          = $FC ; unused
+; con_se_cb_FD                          = $FD ; unused
+; con_se_cb_FE                          = $FE ; unused
+con_se_cb_stop                          = $FF ; 
