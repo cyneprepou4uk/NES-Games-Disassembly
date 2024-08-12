@@ -29,16 +29,16 @@ con_btns_LR                             = con_btn_Left + con_btn_Right          
 
 ; ram_function_id
 ; need comments 0x00038C 0x000378
-; con_837C_00                           = $00 ; unused
-con_837C_title_screen                   = $02 ; 
-con_837C_cutscene                       = $04 ; after title screen
-con_837C_06                             = $06 ; 
-con_837C_player_1                       = $08 ; player handler
-con_837C_player_2                       = $0A ; player handler
-con_837C_objects_handler                = $0C ; 
-con_837C_0E                             = $0E ; 
-con_837C_10                             = $10 ; 
-con_837C_12                             = $12 ; 
+; con_function_00                       = $00 ; unused
+con_function_title_screen               = $02 ; 
+con_function_cutscene                   = $04 ; after title screen
+con_function_06                         = $06 ; 
+con_function_player_1                   = $08 ; player handler
+con_function_player_2                   = $0A ; player handler
+con_function_objects_handler            = $0C ; 
+con_function_0E                         = $0E ; 
+con_function_10                         = $10 ; 
+con_function_12                         = $12 ; 
 
 
 
@@ -56,48 +56,48 @@ con_func_flag_exist                     = $80 ; exists if set
 
 
 ; ram_obj_id
-; need comments at 0x004AEB 0x003C32 0x003727
-con_obj_id_00                           = $00 ; 
-con_obj_id_01                           = $01 ; 
-con_obj_id_02                           = $02 ; 
-con_obj_id_03                           = $03 ; 
-con_obj_id_04                           = $04 ; 
-con_obj_id_05                           = $05 ; 
-con_obj_id_06                           = $06 ; 
-con_obj_id_07                           = $07 ; 
-con_obj_id_08                           = $08 ; 
-con_obj_id_09                           = $09 ; 
-con_obj_id_0A                           = $0A ; 
-con_obj_id_0B                           = $0B ; 
-con_obj_id_0C                           = $0C ; 
-con_obj_id_0D                           = $0D ; 
-con_obj_id_0E                           = $0E ; 
-con_obj_id_0F                           = $0F ; 
-con_obj_id_10                           = $10 ; 
-con_obj_id_11                           = $11 ; 
-con_obj_id_12                           = $12 ; 
-con_obj_id_13                           = $13 ; 
-con_obj_id_14                           = $14 ; 
-con_obj_id_15                           = $15 ; 
-con_obj_id_16                           = $16 ; 
-con_obj_id_17                           = $17 ; 
-con_obj_id_18                           = $18 ; 
-con_obj_id_19                           = $19 ; 
-con_obj_id_1A                           = $1A ; 
-con_obj_id_1B                           = $1B ; 
-con_obj_id_1C                           = $1C ; 
-con_obj_id_1D                           = $1D ; 
-con_obj_id_1E                           = $1E ; 
-con_obj_id_1F                           = $1F ; 
-con_obj_id_20                           = $20 ; 
+; need comments at 0x004AEB 0x003C32 0x003727 0x003B55
+con_obj_id_projectile_bullet            = $00 ; projectile of player
+con_obj_id_01                           = $01 ; ??? something to do with bullets
+con_obj_id_projectile_spere             = $02 ; projectile of 05 object
+con_obj_id_projectile_bomb              = $03 ; projectile of 0E object
+con_obj_id_enemy_golem                  = $04 ; gray dude, first enemy
+con_obj_id_enemy_duck                   = $05 ; duck shooting spears 02
+con_obj_id_enemy_bat                    = $06 ; violet flying bat
+con_obj_id_enemy_fish                   = $07 ; jumping green fish
+con_obj_id_enemy_red_dragonfly          = $08 ; red dragonfly, flies foward, then pauses, then flies towards player
+con_obj_id_enemy_violet_dragonfly       = $09 ; violet dragonfly, flies in circles
+con_obj_id_enemy_fly                    = $0A ; violet fly, flies and pauses
+con_obj_id_enemy_skull_coin             = $0B ; gray coin with skull face
+con_obj_id_item_small                   = $0C ; small bonuses lying everywhere (fruits, flowers, etc, also yellow cactus growing from the ground)
+con_obj_id_item_big                     = $0D ; bonus near blue tablet (cattot, french fries, lemon, POW), also enemies turning into 0D after picking up POW
+con_obj_id_enemy_bomber                 = $0E ; green dude with red mustache, shooting bombs 03
+con_obj_id_enemy_skull_block            = $0F ; gray block with skull face
+con_obj_id_candy                        = $10 ; red rectangular thing in buddha's hand
+con_obj_id_enemy_boss                   = $11 ; bearded big dude flying on a clowd with a skull shield, shooting axes 12
+con_obj_id_projectile_axe               = $12 ; projectile of 11 object
+con_obj_id_cutscene_player_1            = $13 ; during cutscene, player 1
+con_obj_id_cutscene_player_2            = $14 ; during cutscene, player 2
+con_obj_id_cutscene_friend_1            = $15 ; during cutscene, one of three kidnapped characters
+con_obj_id_cutscene_friend_2            = $16 ; during cutscene, one of three kidnapped characters
+con_obj_id_cutscene_friend_3            = $17 ; during cutscene, one of three kidnapped characters
+con_obj_id_cutscene_enemy               = $18 ; during cutscene, bearded big dude flying on a clowd with a skull shield, kidnaps characters
+con_obj_id_item_red_ball                = $19 ; red big ball with a shuriken inside it
+con_obj_id_area_number_icon             = $1A ; white bubble on the highest platform displaying numbers
+con_obj_id_invincibility_cloud          = $1B ; invincibility cloud under player when he respawns
+con_obj_id_final_cutscene_friend_1      = $1C ; during congratulation screen, one of three rescued characters
+con_obj_id_final_cutscene_friend_2      = $1D ; during congratulation screen, one of three rescued characters
+con_obj_id_final_cutscene_friend_3      = $1E ; during congratulation screen, one of three rescued characters
+con_obj_id_final_cutscene_candy         = $1F ; collcted candy 10
+con_obj_id_game_over_blinking_text      = $20 ; game over text in the middle of the screen during demo
 
 
 
 ; ram_obj_flags
 ; need comments 0x0032E9 0x0032D6 0x000EA6 0x000E93
 con_obj_flag_00                         = $00 ; 
-con_obj_flag_death                      = $01 ; death animation
-con_obj_flag_facing_left                = $02 ; if not set, object is facing right
+con_obj_flag_dying                      = $01 ; death animation
+con_obj_flag_02                         = $02 ; ??? (player is facing left if set)
 con_obj_flag_04                         = $04 ; 
 con_obj_flag_08                         = $08 ; 
 con_obj_flag_10                         = $10 ; 

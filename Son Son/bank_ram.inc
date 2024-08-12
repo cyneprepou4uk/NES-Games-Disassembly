@@ -13,18 +13,9 @@ ram_current_function                    = $0000 ; 000035 000050 000273 000290 00
 
 
 ; paired addresses for functions
-; see con_837C
+; see con_function
 ; see con_func_flag
 ; handler at 0x00038C
-; flags
-; .... ...x (+80) = function exists if set
-; .... ..x. (+40) = 
-; .... .x.. (+20) = unused?
-; .... x... (+10) = unused?
-; ...x .... (+08) = unused?
-; ..x. .... (+04) = unused?
-; .x.. .... (+02) = 
-; x... .... (+01) = 
 ram_function_flags                      = $0002 ; 000035 000050 
 ram_function_stack_pointer              = $0003 ; 000035 000050 
 ; ram_0004                              = $0004 ; 000035 000050 0001AB 00023B 000241 000245 000277 000322 
@@ -50,7 +41,7 @@ ram_function_stack_pointer              = $0003 ; 000035 000050
 
 
 
-; paired addresses for functions, see con_837C
+; paired addresses for functions, see con_function
 ; handler at 0x00038C
 ram_function_pause_timer_lo             = $0018 ; 000035 000050 
 ram_function_pause_timer_hi             = $0019 ; 000035 000050 
@@ -100,7 +91,7 @@ ram_0033                                = $0033 ; 00002D 000035 00003A 000050 00
 
 
 
-; see con_837C
+; see con_function
 ram_function_id                         = $0034 ; 000035 000050 000233 000239 00027E 000284 0002DB 0002E1 0002F7 0002FD 
 
 
@@ -526,10 +517,8 @@ ram_reset_check                         = $009A ; 00001F 000035 000040
 
 
 
-; 009C-00A1 (06) 
-; some kind of ppu buffer?
-; bzk optimize, usage of 009D at 0x000048 could be useless
-ram_009C_buffer                         = $009C ; 000035 0011C7 0011E3 002C8E 
+; 
+ram_hi_score                            = $009C ; 000035 0011C7 0011E3 002C8E 
 ; ram_009D                              = $009D ; 000035 000048 0011C7 0011E3 002C8E 
 ; ram_009E                              = $009E ; 000035 0011C7 0011E3 002C8E 
 ; ram_009F                              = $009F ; 000035 0011C7 0011E3 002C8E 
@@ -638,8 +627,9 @@ ram_00BC_useless                        = $00BC ; 000035 0003BB 0004AB 0004F5
 
 
 
-; 
-ram_00BD                                = $00BD ; 000035 000CA5 000D8F 000DBC 000DE3 00334A 00337F 0033C2 0033FC 003666 00369B 003751 003DBD 003DD4 004B4F 004BA4 
+; 00 = 
+; FF = 
+ram_00BD_flag                           = $00BD ; 000035 000CA5 000D8F 000DBC 000DE3 00334A 00337F 0033C2 0033FC 003666 00369B 003751 003DBD 003DD4 004B4F 004BA4 
 
 
 
@@ -671,8 +661,8 @@ ram_spawn_cnt_small_bonus               = $00C3 ; 000035 000CA5 00167D 001682 00
 
 
 
-; index for palette?
-ram_00C4                                = $00C4 ; 000035 000CA5 0010C5 0010CF 0010D1 
+; background palette index
+ram_00C4_bg_pal_index                   = $00C4 ; 000035 000CA5 0010C5 0010CF 0010D1 
 
 
 
@@ -1672,7 +1662,7 @@ ram_obj_data                            = $0380 ; 000035 002288 0022C6 002367
 
 
 
-; paired addresses for functions, see con_837C
+; paired addresses for functions, see con_function
 ; backups X and Y register values
 ; handler at 0x00038C
 ram_function_save_X                     = $0400 ; 000035 
@@ -1712,7 +1702,8 @@ ram_total_score                         = $0416 ; 000035 00098E 0012AB 0012B7 00
 
 
 ; 041D-0428
-ram_players_score                       = $041D ; for common links
+; score for either player 1 or player 2
+ram_player_score                        = $041D ; for common links
 
 
 
@@ -1742,20 +1733,22 @@ ram_0429_plr                            = $0429 ; 000035 00098E 0011F0 0011FE
 
 
 
-; ??? for both players
-ram_042B_plr                            = $042B ; 000035 00098E 000BDE 001207 00124B 
+; hundreds of thousands points needed for the next extra life
+ram_extra_life_pts_hi                   = $042B ; 000035 00098E 000BDE 001207 00124B 
 ; ram_042C                              = $042C ; 000035 00098E 000BE1 001207 
 
 
 
-; ??? for both players
-ram_042D_plr                            = $042D ; 000035 00098E 000BEC 00120F 00122E 001239 00123F 001248 
+; tens of thousands points needed for the next extra life
+ram_extra_life_pts_lo                   = $042D ; 000035 00098E 000BEC 00120F 00122E 001239 00123F 001248 
 ; ram_042E                              = $042E ; 000035 00098E 000BEF 00120F 
 
 
 
-; ??? for both players
-ram_042F_plr                            = $042F ; 000035 00098E 000BE4 001227 001233 
+; 00 = extra life for 20,000 points was not given yet
+; 01 = extra life for 20,000 points was already given, next is 80,000 points, after that +100,000 each time
+    ; 180,000, 280,000, 380,000, and so on
+ram_first_extra_life_flag               = $042F ; 000035 00098E 000BE4 001227 001233 
 ; ram_0430                              = $0430 ; 000035 00098E 000BE7 
 
 
@@ -1853,8 +1846,8 @@ ram_obj_spr_Y                           = $0456 ; 000035 00053C 00098E 000A40 00
 
 
 
-; 
-ram_animation                           = $0479 ; 000035 00098E 000A4A 0022CA 0037BE 003998 0039A1 0039A4 003A5F 003A66 003A69 003A73 003A76 007F3D 
+; animation index
+ram_obj_anim_id                         = $0479 ; 000035 00098E 000A4A 0022CA 0037BE 003998 0039A1 0039A4 003A5F 003A66 003A69 003A73 003A76 007F3D 
 ; ram_047A                              = $047A ; 000035 00098E 0022CA 0037BE 003998 0039A1 0039A4 003A5F 003A66 003A69 003A73 003A76 007FAD 
 ; ram_047B                              = $047B ; 000035 00098E 0022CA 004E6B 0050FC 005120 005128 005345 005395 007F00 007FC7 007FCD 
 ; ram_047C                              = $047C ; 000035 00098E 0022CA 0037CF 003BE1 003C11 003CFD 003D0E 003D18 003D28 003D72 003D7E 003D88 003D8B 003DA6 003DB2 004A36 005147 00515C 005183 00518B 00532E 0053A7 006358 006368 00641C 007F70 007FC7 007FCD 
@@ -2283,8 +2276,8 @@ ram_05B4_obj                            = $05B4 ; 000035 00098E 002DC2 0032FE 00
 
 
 
-; 
-ram_05D7_obj_timer                      = $05D7 ; 000035 00098E 00334E 003356 003377 003400 003405 00356B 00366A 00374B 003762 003851 003867 00386A 003879 00398D 003990 003A6C 003AFA 003B01 007FBE 
+; animation timer
+ram_obj_anim_timer                      = $05D7 ; 000035 00098E 00334E 003356 003377 003400 003405 00356B 00366A 00374B 003762 003851 003867 00386A 003879 00398D 003990 003A6C 003AFA 003B01 007FBE 
 ; ram_05D8                              = $05D8 ; 000035 00098E 00334E 003377 00366A 00374B 003762 003851 003867 00386A 003879 00398D 003990 003A6C 007FBE 
 ; ram_05D9                              = $05D9 ; 000035 00098E 000ED4 005116 005119 0053C6 0053CE 
 ; ram_05DA                              = $05DA ; 000035 00098E 000EDE 003703 003BEE 003BF1 003C40 003C43 003C4F 003D00 003D03 003D13 003D1B 003D47 003D4D 003D81 004145 004C1B 004F8F 005176 005179 0053C6 0053CE 
@@ -2326,8 +2319,10 @@ ram_05D7_obj_timer                      = $05D7 ; 000035 00098E 00334E 003356 00
 
 
 
-; 
+; object index
 ; handler at 0x003B39
+; see con_obj_id
+; see screenshots
 ram_obj_id                              = $05FA ; 000035 00098E 00330E 0036A7 003727 003C2F 003C35 
 ; ram_05FB                              = $05FB ; 000035 00098E 00330E 0036A7 003727 003C2F 003C35 
 ; ram_05FC                              = $05FC ; 000035 00098E 000B50 000D03 000EB2 003B27 003B34 003C64 003C99 003CD7 004AD8 004AE8 004CD8 0052B0 00536A 
