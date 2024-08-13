@@ -27,31 +27,31 @@ con_btns_LR                             = con_btn_Left + con_btn_Right          
 
 
 
-; ram_function_id
+; ram_script_id
 ; need comments 0x00038C 0x000378
-; con_function_00                       = $00 ; unused
-con_function_title_screen               = $02 ; 
-con_function_cutscene                   = $04 ; after title screen
-con_function_06                         = $06 ; 
-con_function_player_1                   = $08 ; player handler
-con_function_player_2                   = $0A ; player handler
-con_function_objects_handler            = $0C ; 
-con_function_0E                         = $0E ; 
-con_function_10                         = $10 ; 
-con_function_12                         = $12 ; 
+; con_script_00                         = $00 ; unused
+con_script_title_screen                 = $02 ; 
+con_script_cutscene                     = $04 ; after title screen
+con_script_draw_and_scroll_level        = $06 ; 
+con_script_player_1                     = $08 ; player handler
+con_script_player_2                     = $0A ; player handler
+con_script_objects_handler              = $0C ; 
+con_script_0E                           = $0E ; 
+con_script_10                           = $10 ; 
+con_script_12                           = $12 ; 
 
 
 
-; ram_function_flags
-con_func_flag_off                       = $00 ; completely disabled
-con_func_flag_temp_disable              = $01 ; temporary disable if set
-; con_func_flag_02                      = $02 ; unused
-; con_func_flag_04                      = $04 ; unused
-; con_func_flag_08                      = $08 ; unused
-; con_func_flag_10                      = $10 ; unused
-; con_func_flag_20                      = $20 ; unused
-con_func_flag_pause                     = $40 ; paused with a timer if set
-con_func_flag_exist                     = $80 ; exists if set
+; ram_script_flags
+con_scr_flag_off                        = $00 ; completely disabled
+con_scr_flag_temp_disable               = $01 ; temporary disabled if set
+; con_scr_flag_02                       = $02 ; unused
+; con_scr_flag_04                       = $04 ; unused
+; con_scr_flag_08                       = $08 ; unused
+; con_scr_flag_10                       = $10 ; unused
+; con_scr_flag_20                       = $20 ; unused
+con_scr_flag_pause                      = $40 ; paused with a timer if set
+con_scr_flag_exist                      = $80 ; exists if set
 
 
 
@@ -96,14 +96,14 @@ con_obj_id_game_over_blinking_text      = $20 ; game over text in the middle of 
 ; ram_obj_flags
 ; need comments 0x0032E9 0x0032D6 0x000EA6 0x000E93
 con_obj_flag_00                         = $00 ; 
-con_obj_flag_dying                      = $01 ; death animation
-con_obj_flag_02                         = $02 ; ??? (player is facing left if set)
-con_obj_flag_04                         = $04 ; 
-con_obj_flag_08                         = $08 ; 
-con_obj_flag_10                         = $10 ; 
-con_obj_flag_20                         = $20 ; 
-con_obj_flag_40                         = $40 ; unused? 0x0031F3 0x003235
-con_obj_flag_exists                     = $80 ; 
+con_obj_flag_dying                      = $01 ; bit0 death animation
+con_obj_flag_02                         = $02 ; bit1 ??? (player is facing left if set)
+con_obj_flag_jumping                    = $04 ; bit2 object is jumping off/on platform, or falling into a hole
+con_obj_flag_08                         = $08 ; bit3 
+con_obj_flag_added_points               = $10 ; bit4 if set, then points for killing were already added?
+con_obj_flag_20                         = $20 ; bit5 turn enemy into points when killing the whole pack?
+con_obj_flag_40                         = $40 ; bit6 unused? 0x0031F3 0x003235
+con_obj_flag_exists                     = $80 ; bit7 
 
 
 
