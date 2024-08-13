@@ -121,3 +121,25 @@ con_D640_16                             = $16 ;
 
 
 
+; sound engine control bytes 0x0036BC
+con_se_cb_E8                            = $E8 ; 
+con_se_cb_E9                            = $E9 ; 
+con_se_cb_EA                            = $EA ; 
+; con_se_cb_EB                          = $EB ; unused
+; con_se_cb_EC                          = $EC ; unused
+; con_se_cb_ED                          = $ED ; unused
+con_se_cb_EE                            = $EE ; 
+con_se_cb_EF                            = $EF ; 
+con_se_cb_F0                            = $F0 ; 
+con_se_cb_F1                            = $F1 ; 
+con_se_cb_F2                            = $F2 ; 
+con_se_cb_F3                            = $F3 ; 
+con_se_cb_F4                            = $F4 ; 
+con_se_cb_F5                            = $F5 ; 
+con_se_cb_F6                            = $F6 ; 
+con_se_cb_F7                            = $F7 ; 
+con_se_cb_F8                            = $F8 ; 
+con_se_cb_F9                            = $F9 ; 
+
+
+
