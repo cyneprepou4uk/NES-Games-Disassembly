@@ -76,7 +76,7 @@ con_btns_SSAB                           = con_btn_Start + con_btn_Select + con_b
 ; ram_sfx_1
 ; ram_sfx_2
 ; sound effects, need comments at 0x015753
-con_sfx_00                              = $00 ; Enter teleporter
+con_sfx_teleport                        = $00 ; Enter teleporter
 ; con_sfx_01                            = $01 ; unused, some sort of hit/contact/tap
 con_sfx_drink_potion                    = $02 ; Potion use
 con_sfx_pickup_item                     = $03 ; pick up block
@@ -85,7 +85,7 @@ con_sfx_death                           = $05 ; death
 ; con_sfx_06                            = $06 ; unused, some sort of click
 con_sfx_paper                           = $07 ; scrolling paper during pause menu
 con_sfx_pickup_bonus_item               = $08 ; boots, keys, Credits
-con_sfx_09                              = $09 ; activate Detonator
+con_sfx_detonate                        = $09 ; activate Detonator
 
 
 
@@ -94,9 +94,9 @@ con_music_story                         = $00 ; story sequence music
 con_music_gameplay                      = $01 ; gameplay music
 con_music_game_over                     = $02 ; game over screen
 con_music_continue                      = $03 ; continue screen
-con_music_04                            = $04 ; final cut-scene & credits
+con_music_final                         = $04 ; final cut-scene & credits
 con_music_logo                          = $05 ; CSG imagesoft inc presents
-con_music_06                            = $06 ; title-screen
+con_music_title                         = $06 ; title screen
 
 
 
@@ -358,4 +358,30 @@ con_obj_id_credit_07                    = $F2 ; Credit (takes you to room F0)
 ; con_obj_id_FD                         = $FD ; 
 ; con_obj_id_FE                         = $FE ; 
 ; con_obj_id_FF                         = $FF ; 
+
+
+
+; sound engine control bytes
+; 0x014323 0x014585 0x0147C9 0x014A0D 0x014B90 0x014D1A
+con_se_cb_80                            = $80 ; 
+con_se_cb_81                            = $81 ; 
+con_se_cb_82                            = $82 ; 
+con_se_cb_stop                          = $83 ; 
+con_se_cb_jsr                           = $84 ; 
+con_se_cb_rts                           = $85 ; 
+con_se_cb_86                            = $86 ; 
+con_se_cb_87                            = $87 ; 
+con_se_cb_jmp                           = $88 ; 
+con_se_cb_89                            = $89 ; 
+con_se_cb_8A                            = $8A ; 
+con_se_cb_8B                            = $8B ; 
+con_se_cb_8C                            = $8C ; 
+con_se_cb_8D                            = $8D ; 
+con_se_cb_8E                            = $8E ; 
+con_se_cb_8F                            = $8F ; 
+con_se_cb_90                            = $90 ; 
+; con_se_cb_91                          = $91 ; 
+con_se_cb_loop                          = $92 ; 
+con_se_cb_93                            = $93 ; 
+con_se_cb_94                            = $94 ; 
 

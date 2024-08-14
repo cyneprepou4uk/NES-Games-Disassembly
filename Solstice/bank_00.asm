@@ -86,7 +86,7 @@ C - - - - - 0x000099 00:8089: 8D A7 07  STA ram_07A7
 bra_808C:
 C - - - - - 0x00009C 00:808C: AD 90 07  LDA ram_0790_flag
 C - - - - - 0x00009F 00:808F: D0 05     BNE bra_8096
-C - - - - - 0x0000A1 00:8091: A2 06     LDX #con_music_06
+C - - - - - 0x0000A1 00:8091: A2 06     LDX #con_music_title
 C - - - - - 0x0000A3 00:8093: 20 4D FF  JSR sub_inc_0x007F5D_play_music
 bra_8096:
 C - - - - - 0x0000A6 00:8096: 20 0E BD  JSR sub_BD0E
@@ -188,7 +188,7 @@ C - - - - - 0x000169 00:8159: 60        RTS
 bra_815A_FE:
 C - - - - - 0x00016A 00:815A: 20 15 BE  JSR sub_BE15_wait_1_frme
 C - - - - - 0x00016D 00:815D: 20 63 FF  JSR sub_inc_0x007F73
-C - - - - - 0x000170 00:8160: A2 04     LDX #con_music_04
+C - - - - - 0x000170 00:8160: A2 04     LDX #con_music_final
 C - - - - - 0x000172 00:8162: 20 4D FF  JSR sub_inc_0x007F5D_play_music
 C - - - - - 0x000175 00:8165: A0 04     LDY #$04
 C - - - - - 0x000177 00:8167: 20 3D 84  JSR sub_843D
@@ -3322,7 +3322,7 @@ C - - - - - 0x001521 00:9511: 10 26     BPL bra_9539
 C - - - - - 0x001523 00:9513: 70 24     BVS bra_9539
 C - - - - - 0x001525 00:9515: AD 99 07  LDA ram_0799_flag
 C - - - - - 0x001528 00:9518: D0 1F     BNE bra_9539
-C - - - - - 0x00152A 00:951A: A9 00     LDA #con_sfx_00
+C - - - - - 0x00152A 00:951A: A9 00     LDA #con_sfx_teleport
 C - - - - - 0x00152C 00:951C: 8D 8E 07  STA ram_sfx_1
 C - - - - - 0x00152F 00:951F: A2 00     LDX #$00
 bra_9521_loop:
@@ -5243,7 +5243,7 @@ C - - - - - 0x001F54 00:9F44: A9 07     LDA #$07
 C - - - - - 0x001F56 00:9F46: 95 41     STA ram_0041,X
 C - - - - - 0x001F58 00:9F48: A9 FE     LDA #$FE
 C - - - - - 0x001F5A 00:9F4A: 8D 9C 07  STA ram_079C
-C - - - - - 0x001F5D 00:9F4D: A9 09     LDA #con_sfx_09
+C - - - - - 0x001F5D 00:9F4D: A9 09     LDA #con_sfx_detonate
 C - - - - - 0x001F5F 00:9F4F: 8D 8E 07  STA ram_sfx_1
 bra_9F52:
 ; Triggered detonator #1/room E4
@@ -5272,7 +5272,7 @@ C - - - - - 0x001F87 00:9F77: A9 07     LDA #$07
 C - - - - - 0x001F89 00:9F79: 95 41     STA ram_0041,X
 C - - - - - 0x001F8B 00:9F7B: A9 FF     LDA #$FF
 C - - - - - 0x001F8D 00:9F7D: 8D 9C 07  STA ram_079C
-C - - - - - 0x001F90 00:9F80: A9 09     LDA #con_sfx_09
+C - - - - - 0x001F90 00:9F80: A9 09     LDA #con_sfx_detonate
 C - - - - - 0x001F92 00:9F82: 8D 8E 07  STA ram_sfx_1
 bra_9F85:
 ; triggered detonator #2/room 46
@@ -5302,7 +5302,7 @@ C - - - - - 0x001FBA 00:9FAA: A9 07     LDA #$07
 C - - - - - 0x001FBC 00:9FAC: 95 41     STA ram_0041,X
 C - - - - - 0x001FBE 00:9FAE: A9 FD     LDA #$FD
 C - - - - - 0x001FC0 00:9FB0: 8D 9C 07  STA ram_079C
-C - - - - - 0x001FC3 00:9FB3: A9 09     LDA #con_sfx_09
+C - - - - - 0x001FC3 00:9FB3: A9 09     LDA #con_sfx_detonate
 C - - - - - 0x001FC5 00:9FB5: 8D 8E 07  STA ram_sfx_1
 bra_9FB8:
 ; Triggered detonator #3/room FA
