@@ -227,3 +227,32 @@ con_C2C4_1C                             = $1C ;
 con_C2C4_1D                             = $1D ; 
 ; con_C2C4_1E                           = $1E ; unused?
 ; con_C2C4_1F                           = $1F ; unused
+
+
+
+; sound engine control bytes 0x0144B7
+con_se_cb_00                            = $00 ; 
+con_se_cb_01                            = $01 ; 
+con_se_cb_02                            = $02 ; 
+con_se_cb_03                            = $03 ; 
+con_se_cb_04                            = $04 ; 
+con_se_cb_05                            = $05 ; 
+con_se_cb_06                            = $06 ; 
+con_se_cb_07                            = $07 ; 
+con_se_cb_08                            = $08 ; 
+con_se_cb_09                            = $09 ; 
+con_se_cb_0A                            = $0A ; 
+; con_se_cb_0B                          = $0B ; unused
+con_se_cb_0C                            = $0C ; 
+; con_se_cb_0D                          = $0D ; unused
+con_se_cb_0E                            = $0E ; loop?
+con_se_cb_0F                            = $0F ; loop?
+con_se_cb_10                            = $10 ; loop?
+; con_se_cb_11                          = $11 ; unused
+con_se_cb_12                            = $12 ; jmp/jsr? in pair with 0E?
+con_se_cb_13                            = $13 ; jmp/jsr? in pair with 0F?
+; con_se_cb_14                          = $14 ; unused
+; con_se_cb_15                          = $15 ; unused
+con_se_cb_jmp                           = $16 ; 
+con_se_cb_stop                          = $17 ; 
+con_se_cb_18                            = $18 ; 

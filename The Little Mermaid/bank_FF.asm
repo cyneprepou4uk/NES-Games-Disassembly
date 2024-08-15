@@ -151,7 +151,7 @@ C - - - - - 0x01C0C5 07:C0B5: 68        PLA
 C - - - - - 0x01C0C6 07:C0B6: 20 03 80  JSR sub_0x014013_prepare_new_sfx
 C - - - - - 0x01C0C9 07:C0B9: 4C A2 C0  JMP loc_C0A2_loop
 bra_C0BC:
-C - - - - - 0x01C0CC 07:C0BC: 20 00 80  JSR sub_0x014010_update_music_engine
+C - - - - - 0x01C0CC 07:C0BC: 20 00 80  JSR sub_0x014010_update_sound_engine
 C - - - - - 0x01C0CF 07:C0BF: A5 BF     LDA ram_00BF
 C - - - - - 0x01C0D1 07:C0C1: 20 C8 FF  JSR sub_FFC8
 C - - - - - 0x01C0D4 07:C0C4: 68        PLA
