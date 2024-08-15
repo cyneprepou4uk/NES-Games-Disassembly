@@ -280,9 +280,45 @@ con_music_84                            = $84 ; stage 4 soundtrack
 con_music_88                            = $88 ; stage 5 soundtrack
 con_music_8C                            = $8C ; 
 con_music_90                            = $90 ; 
-con_music_94                            = $94 ; 
+; con_music_94                          = $94 ; unused?
 con_music_98                            = $98 ; 
 con_music_9C                            = $9C ; stage clear
 con_music_A0                            = $A0 ; dialog after stages
 con_music_A4                            = $A4 ; game over
 con_music_A8                            = $A8 ; 
+
+
+
+; sound engine control bytes (for sfx 0x010076 and music 0x010028)
+con_se_cb_E0                            = $E0 ; 
+con_se_cb_E1                            = $E1 ; 
+con_se_cb_E2                            = $E2 ; 
+con_se_cb_E3                            = $E3 ; 
+con_se_cb_E4                            = $E4 ; 
+con_se_cb_E5                            = $E5 ; 
+con_se_cb_E6                            = $E6 ; 
+con_se_cb_E7                            = $E7 ; 
+con_se_cb_E8                            = $E8 ; 
+con_se_cb_E9                            = $E9 ; 
+con_se_cb_EA                            = $EA ; 
+con_se_cb_EB                            = $EB ; 
+con_se_cb_EC                            = $EC ; 
+con_se_cb_ED                            = $ED ; 
+; con_se_cb_EE                          = $EE ; 
+; con_se_cb_EF                          = $EF ; 
+con_se_cb_F0                            = $F0 ; 
+con_se_cb_F1                            = $F1 ; 
+con_se_cb_F2                            = $F2 ; 
+con_se_cb_F3                            = $F3 ; 
+con_se_cb_F4                            = $F4 ; 
+; con_se_cb_F5                          = $F5 ; 
+; con_se_cb_F6                          = $F6 ; 
+; con_se_cb_F7                          = $F7 ; 
+; con_se_cb_F8                          = $F8 ; 
+; con_se_cb_F9                          = $F9 ; 
+; con_se_cb_FA                          = $FA ; 
+con_se_cb_FB                            = $FB ; 
+con_se_cb_FC                            = $FC ; 
+con_se_cb_FD                            = $FD ; 
+con_se_cb_FE                            = $FE ; 
+con_se_cb_FF                            = $FF ; 0x012AA1

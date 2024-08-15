@@ -157,94 +157,76 @@ tbl_0x01C011_for_4010_4013:
 
 ; bzk warning, CF00 byte is a part of DPCM, but not included in binary
 _off000_0x01CF10_A4_00:
-- D 2 - - A 0x01CF10 07:CF00: E0        .byte $E0   ; 
+- D 2 - - A 0x01CF10 07:CF00: E0        .byte con_se_cb_E0   ; 
 - D 2 - I - 0x01CF11 07:CF01: 02        .byte $02   ; 
 - D 2 - I - 0x01CF12 07:CF02: 35        .byte $35   ; 
 - D 2 - I - 0x01CF13 07:CF03: 80        .byte $80   ; 
 - D 2 - I - 0x01CF14 07:CF04: 00        .byte $00   ; 
-- D 2 - I - 0x01CF15 07:CF05: E2        .byte $E2   ; 
-- D 2 - I - 0x01CF16 07:CF06: 3B        .byte $3B   ; 
-- D 2 - I - 0x01CF17 07:CF07: F1        .byte $F1   ; 
+- D 2 - I - 0x01CF15 07:CF05: E2        .byte con_se_cb_E2, $3B   ; 
+- D 2 - I - 0x01CF17 07:CF07: F1        .byte con_se_cb_F1   ; 
 - D 2 - I - 0x01CF18 07:CF08: 81        .byte $81   ; 
 - D 2 - I - 0x01CF19 07:CF09: 91        .byte $91   ; 
 - D 2 - I - 0x01CF1A 07:CF0A: A1        .byte $A1   ; 
 - D 2 - I - 0x01CF1B 07:CF0B: B1        .byte $B1   ; 
 - D 2 - I - 0x01CF1C 07:CF0C: C1        .byte $C1   ; 
-- D 2 - I - 0x01CF1D 07:CF0D: F2        .byte $F2   ; 
+- D 2 - I - 0x01CF1D 07:CF0D: F2        .byte con_se_cb_F2   ; 
 - D 2 - I - 0x01CF1E 07:CF0E: 11        .byte $11   ; 
 - D 2 - I - 0x01CF1F 07:CF0F: 21        .byte $21   ; 
 - D 2 - I - 0x01CF20 07:CF10: 31        .byte $31   ; 
 - D 2 - I - 0x01CF21 07:CF11: 41        .byte $41   ; 
 - D 2 - I - 0x01CF22 07:CF12: 51        .byte $51   ; 
-- D 2 - I - 0x01CF23 07:CF13: E0        .byte $E0   ; 
+- D 2 - I - 0x01CF23 07:CF13: E0        .byte con_se_cb_E0   ; 
 - D 2 - I - 0x01CF24 07:CF14: 07        .byte $07   ; 
 - D 2 - I - 0x01CF25 07:CF15: 77        .byte $77   ; 
 - D 2 - I - 0x01CF26 07:CF16: 83        .byte $83   ; 
 - D 2 - I - 0x01CF27 07:CF17: C6        .byte $C6   ; 
 - D 2 - I - 0x01CF28 07:CF18: 31        .byte $31   ; 
-- D 2 - I - 0x01CF29 07:CF19: EA        .byte $EA   ; 
-- D 2 - I - 0x01CF2A 07:CF1A: 03        .byte $03   ; 
-- D 2 - I - 0x01CF2B 07:CF1B: E8        .byte $E8   ; 
-- D 2 - I - 0x01CF2C 07:CF1C: 8C        .byte $8C   ; 
-- D 2 - I - 0x01CF2D 07:CF1D: F3        .byte $F3   ; 
+- D 2 - I - 0x01CF29 07:CF19: EA        .byte con_se_cb_EA, $03   ; 
+- D 2 - I - 0x01CF2B 07:CF1B: E8        .byte con_se_cb_E8, $8C   ; 
+- D 2 - I - 0x01CF2D 07:CF1D: F3        .byte con_se_cb_F3   ; 
 - D 2 - I - 0x01CF2E 07:CF1E: 31        .byte $31   ; 
 - D 2 - I - 0x01CF2F 07:CF1F: 21        .byte $21   ; 
-- D 2 - I - 0x01CF30 07:CF20: F2        .byte $F2   ; 
+- D 2 - I - 0x01CF30 07:CF20: F2        .byte con_se_cb_F2   ; 
 - D 2 - I - 0x01CF31 07:CF21: A1        .byte $A1   ; 
-- D 2 - I - 0x01CF32 07:CF22: F3        .byte $F3   ; 
+- D 2 - I - 0x01CF32 07:CF22: F3        .byte con_se_cb_F3   ; 
 - D 2 - I - 0x01CF33 07:CF23: 11        .byte $11   ; 
-- D 2 - I - 0x01CF34 07:CF24: F2        .byte $F2   ; 
+- D 2 - I - 0x01CF34 07:CF24: F2        .byte con_se_cb_F2   ; 
 - D 2 - I - 0x01CF35 07:CF25: C1        .byte $C1   ; 
 - D 2 - I - 0x01CF36 07:CF26: 81        .byte $81   ; 
 - D 2 - I - 0x01CF37 07:CF27: 31        .byte $31   ; 
 - D 2 - I - 0x01CF38 07:CF28: 91        .byte $91   ; 
 - D 2 - I - 0x01CF39 07:CF29: 81        .byte $81   ; 
 - D 2 - I - 0x01CF3A 07:CF2A: 31        .byte $31   ; 
-- D 2 - I - 0x01CF3B 07:CF2B: E7        .byte $E7   ; 
-- D 2 - I - 0x01CF3C 07:CF2C: 50        .byte $50   ; 
-- D 2 - I - 0x01CF3D 07:CF2D: 27        .byte $27   ; 
-- D 2 - I - 0x01CF3E 07:CF2E: EA        .byte $EA   ; 
-- D 2 - I - 0x01CF3F 07:CF2F: 00        .byte $00   ; 
-- D 2 - I - 0x01CF40 07:CF30: E2        .byte $E2   ; 
-- D 2 - I - 0x01CF41 07:CF31: 31        .byte $31   ; 
-- D 2 - I - 0x01CF42 07:CF32: E1        .byte $E1   ; 
-- D 2 - I - 0x01CF43 07:CF33: 0E        .byte $0E   ; 
+- D 2 - I - 0x01CF3B 07:CF2B: E7        .byte con_se_cb_E7, $50, $27   ; 
+- D 2 - I - 0x01CF3E 07:CF2E: EA        .byte con_se_cb_EA, $00   ; 
+- D 2 - I - 0x01CF40 07:CF30: E2        .byte con_se_cb_E2, $31   ; 
+- D 2 - I - 0x01CF42 07:CF32: E1        .byte con_se_cb_E1, $0E   ; 
 - D 2 - I - 0x01CF44 07:CF34: 29        .byte $29   ; 
-- D 2 - I - 0x01CF45 07:CF35: E1        .byte $E1   ; 
-- D 2 - I - 0x01CF46 07:CF36: 07        .byte $07   ; 
+- D 2 - I - 0x01CF45 07:CF35: E1        .byte con_se_cb_E1, $07   ; 
 - D 2 - I - 0x01CF47 07:CF37: 01        .byte $01   ; 
-- D 2 - I - 0x01CF48 07:CF38: EA        .byte $EA   ; 
-- D 2 - I - 0x01CF49 07:CF39: 03        .byte $03   ; 
-- D 2 - I - 0x01CF4A 07:CF3A: E2        .byte $E2   ; 
-- D 2 - I - 0x01CF4B 07:CF3B: 3B        .byte $3B   ; 
-- D 2 - I - 0x01CF4C 07:CF3C: F2        .byte $F2   ; 
+- D 2 - I - 0x01CF48 07:CF38: EA        .byte con_se_cb_EA, $03   ; 
+- D 2 - I - 0x01CF4A 07:CF3A: E2        .byte con_se_cb_E2, $3B   ; 
+- D 2 - I - 0x01CF4C 07:CF3C: F2        .byte con_se_cb_F2   ; 
 - D 2 - I - 0x01CF4D 07:CF3D: A1        .byte $A1   ; 
-- D 2 - I - 0x01CF4E 07:CF3E: F3        .byte $F3   ; 
+- D 2 - I - 0x01CF4E 07:CF3E: F3        .byte con_se_cb_F3   ; 
 - D 2 - I - 0x01CF4F 07:CF3F: 11        .byte $11   ; 
-- D 2 - I - 0x01CF50 07:CF40: E2        .byte $E2   ; 
-- D 2 - I - 0x01CF51 07:CF41: 31        .byte $31   ; 
-- D 2 - I - 0x01CF52 07:CF42: E5        .byte $E5   ; 
-- D 2 - I - 0x01CF53 07:CF43: 18        .byte $18   ; 
-- D 2 - I - 0x01CF54 07:CF44: EA        .byte $EA   ; 
-- D 2 - I - 0x01CF55 07:CF45: 00        .byte $00   ; 
-- D 2 - I - 0x01CF56 07:CF46: EC        .byte $EC   ; 
-- D 2 - I - 0x01CF57 07:CF47: 2F        .byte $2F   ; 
-- D 2 - I - 0x01CF58 07:CF48: 11        .byte $11   ; 
-- D 2 - I - 0x01CF59 07:CF49: 0A        .byte $0A   ; 
+- D 2 - I - 0x01CF50 07:CF40: E2        .byte con_se_cb_E2, $31   ; 
+- D 2 - I - 0x01CF52 07:CF42: E5        .byte con_se_cb_E5, $18   ; 
+- D 2 - I - 0x01CF54 07:CF44: EA        .byte con_se_cb_EA, $00   ; 
+- D 2 - I - 0x01CF56 07:CF46: EC        .byte con_se_cb_EC, $2F, $11, $0A   ; 
 - D 2 - I - 0x01CF5A 07:CF4A: 33        .byte $33   ; 
-- D 2 - I - 0x01CF5B 07:CF4B: FF        .byte $FF   ; 
+- D 2 - I - 0x01CF5B 07:CF4B: FF        .byte con_se_cb_FF   ; 
 
 
 
 _off000_0x01CF5C_A4_01:
-- D 2 - I - 0x01CF5C 07:CF4C: E9        .byte $E9   ; 
-- D 2 - I - 0x01CF5D 07:CF4D: 03        .byte $03   ; 
-- D 2 - I - 0x01CF5E 07:CF4E: E0        .byte $E0   ; 
+- D 2 - I - 0x01CF5C 07:CF4C: E9        .byte con_se_cb_E9, $03   ; 
+- D 2 - I - 0x01CF5E 07:CF4E: E0        .byte con_se_cb_E0   ; 
 - D 2 - I - 0x01CF5F 07:CF4F: 02        .byte $02   ; 
 - D 2 - I - 0x01CF60 07:CF50: 74        .byte $74   ; 
 - D 2 - I - 0x01CF61 07:CF51: 80        .byte $80   ; 
 - D 2 - I - 0x01CF62 07:CF52: 00        .byte $00   ; 
-- D 2 - I - 0x01CF63 07:CF53: F0        .byte $F0   ; 
+- D 2 - I - 0x01CF63 07:CF53: F0        .byte con_se_cb_F0   ; 
 - D 2 - I - 0x01CF64 07:CF54: 51        .byte $51   ; 
 - D 2 - I - 0x01CF65 07:CF55: 61        .byte $61   ; 
 - D 2 - I - 0x01CF66 07:CF56: 71        .byte $71   ; 
@@ -253,79 +235,63 @@ _off000_0x01CF5C_A4_01:
 - D 2 - I - 0x01CF69 07:CF59: A1        .byte $A1   ; 
 - D 2 - I - 0x01CF6A 07:CF5A: B1        .byte $B1   ; 
 - D 2 - I - 0x01CF6B 07:CF5B: C1        .byte $C1   ; 
-- D 2 - I - 0x01CF6C 07:CF5C: F1        .byte $F1   ; 
+- D 2 - I - 0x01CF6C 07:CF5C: F1        .byte con_se_cb_F1   ; 
 - D 2 - I - 0x01CF6D 07:CF5D: 11        .byte $11   ; 
 - D 2 - I - 0x01CF6E 07:CF5E: 21        .byte $21   ; 
-- D 2 - I - 0x01CF6F 07:CF5F: E0        .byte $E0   ; 
+- D 2 - I - 0x01CF6F 07:CF5F: E0        .byte con_se_cb_E0   ; 
 - D 2 - I - 0x01CF70 07:CF60: 07        .byte $07   ; 
 - D 2 - I - 0x01CF71 07:CF61: 79        .byte $79   ; 
 - D 2 - I - 0x01CF72 07:CF62: 83        .byte $83   ; 
 - D 2 - I - 0x01CF73 07:CF63: C6        .byte $C6   ; 
-- D 2 - I - 0x01CF74 07:CF64: E2        .byte $E2   ; 
-- D 2 - I - 0x01CF75 07:CF65: 3B        .byte $3B   ; 
-- D 2 - I - 0x01CF76 07:CF66: EA        .byte $EA   ; 
-- D 2 - I - 0x01CF77 07:CF67: 03        .byte $03   ; 
-- D 2 - I - 0x01CF78 07:CF68: F0        .byte $F0   ; 
+- D 2 - I - 0x01CF74 07:CF64: E2        .byte con_se_cb_E2, $3B   ; 
+- D 2 - I - 0x01CF76 07:CF66: EA        .byte con_se_cb_EA, $03   ; 
+- D 2 - I - 0x01CF78 07:CF68: F0        .byte con_se_cb_F0   ; 
 - D 2 - I - 0x01CF79 07:CF69: 31        .byte $31   ; 
-- D 2 - I - 0x01CF7A 07:CF6A: E9        .byte $E9   ; 
-- D 2 - I - 0x01CF7B 07:CF6B: 00        .byte $00   ; 
-- D 2 - I - 0x01CF7C 07:CF6C: E8        .byte $E8   ; 
-- D 2 - I - 0x01CF7D 07:CF6D: 83        .byte $83   ; 
-- D 2 - I - 0x01CF7E 07:CF6E: F3        .byte $F3   ; 
+- D 2 - I - 0x01CF7A 07:CF6A: E9        .byte con_se_cb_E9, $00   ; 
+- D 2 - I - 0x01CF7C 07:CF6C: E8        .byte con_se_cb_E8, $83   ; 
+- D 2 - I - 0x01CF7E 07:CF6E: F3        .byte con_se_cb_F3   ; 
 - D 2 - I - 0x01CF7F 07:CF6F: 31        .byte $31   ; 
 - D 2 - I - 0x01CF80 07:CF70: 21        .byte $21   ; 
-- D 2 - I - 0x01CF81 07:CF71: F2        .byte $F2   ; 
+- D 2 - I - 0x01CF81 07:CF71: F2        .byte con_se_cb_F2   ; 
 - D 2 - I - 0x01CF82 07:CF72: A1        .byte $A1   ; 
-- D 2 - I - 0x01CF83 07:CF73: F3        .byte $F3   ; 
+- D 2 - I - 0x01CF83 07:CF73: F3        .byte con_se_cb_F3   ; 
 - D 2 - I - 0x01CF84 07:CF74: 11        .byte $11   ; 
-- D 2 - I - 0x01CF85 07:CF75: F2        .byte $F2   ; 
+- D 2 - I - 0x01CF85 07:CF75: F2        .byte con_se_cb_F2   ; 
 - D 2 - I - 0x01CF86 07:CF76: C1        .byte $C1   ; 
 - D 2 - I - 0x01CF87 07:CF77: 81        .byte $81   ; 
 - D 2 - I - 0x01CF88 07:CF78: 31        .byte $31   ; 
 - D 2 - I - 0x01CF89 07:CF79: 91        .byte $91   ; 
 - D 2 - I - 0x01CF8A 07:CF7A: 81        .byte $81   ; 
 - D 2 - I - 0x01CF8B 07:CF7B: 31        .byte $31   ; 
-- D 2 - I - 0x01CF8C 07:CF7C: EA        .byte $EA   ; 
-- D 2 - I - 0x01CF8D 07:CF7D: 00        .byte $00   ; 
-- D 2 - I - 0x01CF8E 07:CF7E: E7        .byte $E7   ; 
-- D 2 - I - 0x01CF8F 07:CF7F: 50        .byte $50   ; 
-- D 2 - I - 0x01CF90 07:CF80: 26        .byte $26   ; 
-- D 2 - I - 0x01CF91 07:CF81: E2        .byte $E2   ; 
-- D 2 - I - 0x01CF92 07:CF82: 31        .byte $31   ; 
-- D 2 - I - 0x01CF93 07:CF83: E1        .byte $E1   ; 
-- D 2 - I - 0x01CF94 07:CF84: 0E        .byte $0E   ; 
+- D 2 - I - 0x01CF8C 07:CF7C: EA        .byte con_se_cb_EA, $00   ; 
+- D 2 - I - 0x01CF8E 07:CF7E: E7        .byte con_se_cb_E7, $50, $26   ; 
+- D 2 - I - 0x01CF91 07:CF81: E2        .byte con_se_cb_E2, $31   ; 
+- D 2 - I - 0x01CF93 07:CF83: E1        .byte con_se_cb_E1, $0E   ; 
 - D 2 - I - 0x01CF95 07:CF85: 2A        .byte $2A   ; 
-- D 2 - I - 0x01CF96 07:CF86: E1        .byte $E1   ; 
-- D 2 - I - 0x01CF97 07:CF87: 07        .byte $07   ; 
-- D 2 - I - 0x01CF98 07:CF88: E8        .byte $E8   ; 
-- D 2 - I - 0x01CF99 07:CF89: 00        .byte $00   ; 
-- D 2 - I - 0x01CF9A 07:CF8A: E9        .byte $E9   ; 
-- D 2 - I - 0x01CF9B 07:CF8B: 01        .byte $01   ; 
-- D 2 - I - 0x01CF9C 07:CF8C: E2        .byte $E2   ; 
-- D 2 - I - 0x01CF9D 07:CF8D: 00        .byte $00   ; 
-- D 2 - I - 0x01CF9E 07:CF8E: E0        .byte $E0   ; 
+- D 2 - I - 0x01CF96 07:CF86: E1        .byte con_se_cb_E1, $07   ; 
+- D 2 - I - 0x01CF98 07:CF88: E8        .byte con_se_cb_E8, $00   ; 
+- D 2 - I - 0x01CF9A 07:CF8A: E9        .byte con_se_cb_E9, $01   ; 
+- D 2 - I - 0x01CF9C 07:CF8C: E2        .byte con_se_cb_E2, $00   ; 
+- D 2 - I - 0x01CF9E 07:CF8E: E0        .byte con_se_cb_E0   ; 
 - D 2 - I - 0x01CF9F 07:CF8F: 07        .byte $07   ; 
 - D 2 - I - 0x01CFA0 07:CF90: 71        .byte $71   ; 
 - D 2 - I - 0x01CFA1 07:CF91: 80        .byte $80   ; 
 - D 2 - I - 0x01CFA2 07:CF92: 00        .byte $00   ; 
-- D 2 - I - 0x01CFA3 07:CF93: F1        .byte $F1   ; 
+- D 2 - I - 0x01CFA3 07:CF93: F1        .byte con_se_cb_F1   ; 
 - D 2 - I - 0x01CFA4 07:CF94: A1        .byte $A1   ; 
-- D 2 - I - 0x01CFA5 07:CF95: F2        .byte $F2   ; 
+- D 2 - I - 0x01CFA5 07:CF95: F2        .byte con_se_cb_F2   ; 
 - D 2 - I - 0x01CFA6 07:CF96: 11        .byte $11   ; 
-- D 2 - I - 0x01CFA7 07:CF97: EC        .byte $EC   ; 
-- D 2 - I - 0x01CFA8 07:CF98: 2F        .byte $2F   ; 
-- D 2 - I - 0x01CFA9 07:CF99: 11        .byte $11   ; 
-- D 2 - I - 0x01CFAA 07:CF9A: 0A        .byte $0A   ; 
+- D 2 - I - 0x01CFA7 07:CF97: EC        .byte con_se_cb_EC, $2F, $11, $0A   ; 
 - D 2 - I - 0x01CFAB 07:CF9B: 33        .byte $33   ; 
-- D 2 - I - 0x01CFAC 07:CF9C: FF        .byte $FF   ; 
+- D 2 - I - 0x01CFAC 07:CF9C: FF        .byte con_se_cb_FF   ; 
 
 
 
 _off000_0x01CFAD_A4_02:
-- D 2 - I - 0x01CFAD 07:CF9D: E0        .byte $E0   ; 
+- D 2 - I - 0x01CFAD 07:CF9D: E0        .byte con_se_cb_E0   ; 
 - D 2 - I - 0x01CFAE 07:CF9E: 02        .byte $02   ; 
 - D 2 - I - 0x01CFAF 07:CF9F: 00        .byte $00   ; 
-- D 2 - I - 0x01CFB0 07:CFA0: F0        .byte $F0   ; 
+- D 2 - I - 0x01CFB0 07:CFA0: F0        .byte con_se_cb_F0   ; 
 - D 2 - I - 0x01CFB1 07:CFA1: 51        .byte $51   ; 
 - D 2 - I - 0x01CFB2 07:CFA2: 61        .byte $61   ; 
 - D 2 - I - 0x01CFB3 07:CFA3: 71        .byte $71   ; 
@@ -334,17 +300,17 @@ _off000_0x01CFAD_A4_02:
 - D 2 - I - 0x01CFB6 07:CFA6: A1        .byte $A1   ; 
 - D 2 - I - 0x01CFB7 07:CFA7: B1        .byte $B1   ; 
 - D 2 - I - 0x01CFB8 07:CFA8: C1        .byte $C1   ; 
-- D 2 - I - 0x01CFB9 07:CFA9: F1        .byte $F1   ; 
+- D 2 - I - 0x01CFB9 07:CFA9: F1        .byte con_se_cb_F1   ; 
 - D 2 - I - 0x01CFBA 07:CFAA: 11        .byte $11   ; 
 - D 2 - I - 0x01CFBB 07:CFAB: 21        .byte $21   ; 
-- D 2 - I - 0x01CFBC 07:CFAC: E0        .byte $E0   ; 
+- D 2 - I - 0x01CFBC 07:CFAC: E0        .byte con_se_cb_E0   ; 
 - D 2 - I - 0x01CFBD 07:CFAD: 07        .byte $07   ; 
 - D 2 - I - 0x01CFBE 07:CFAE: 05        .byte $05   ; 
-- D 2 - I - 0x01CFBF 07:CFAF: F2        .byte $F2   ; 
+- D 2 - I - 0x01CFBF 07:CFAF: F2        .byte con_se_cb_F2   ; 
 - D 2 - I - 0x01CFC0 07:CFB0: 31        .byte $31   ; 
-- D 2 - I - 0x01CFC1 07:CFB1: F3        .byte $F3   ; 
+- D 2 - I - 0x01CFC1 07:CFB1: F3        .byte con_se_cb_F3   ; 
 - D 2 - I - 0x01CFC2 07:CFB2: 31        .byte $31   ; 
-- D 2 - I - 0x01CFC3 07:CFB3: F2        .byte $F2   ; 
+- D 2 - I - 0x01CFC3 07:CFB3: F2        .byte con_se_cb_F2   ; 
 - D 2 - I - 0x01CFC4 07:CFB4: A1        .byte $A1   ; 
 - D 2 - I - 0x01CFC5 07:CFB5: 61        .byte $61   ; 
 - D 2 - I - 0x01CFC6 07:CFB6: 11        .byte $11   ; 
@@ -354,33 +320,30 @@ _off000_0x01CFAD_A4_02:
 - D 2 - I - 0x01CFCA 07:CFBA: 91        .byte $91   ; 
 - D 2 - I - 0x01CFCB 07:CFBB: B1        .byte $B1   ; 
 - D 2 - I - 0x01CFCC 07:CFBC: C1        .byte $C1   ; 
-- D 2 - I - 0x01CFCD 07:CFBD: E0        .byte $E0   ; 
+- D 2 - I - 0x01CFCD 07:CFBD: E0        .byte con_se_cb_E0   ; 
 - D 2 - I - 0x01CFCE 07:CFBE: 07        .byte $07   ; 
 - D 2 - I - 0x01CFCF 07:CFBF: 00        .byte $00   ; 
-- D 2 - I - 0x01CFD0 07:CFC0: E7        .byte $E7   ; 
-- D 2 - I - 0x01CFD1 07:CFC1: 55        .byte $55   ; 
-- D 2 - I - 0x01CFD2 07:CFC2: 32        .byte $32   ; 
-- D 2 - I - 0x01CFD3 07:CFC3: F3        .byte $F3   ; 
+- D 2 - I - 0x01CFD0 07:CFC0: E7        .byte con_se_cb_E7, $55, $32   ; 
+- D 2 - I - 0x01CFD3 07:CFC3: F3        .byte con_se_cb_F3   ; 
 - D 2 - I - 0x01CFD4 07:CFC4: 20        .byte $20   ; 
 - D 2 - I - 0x01CFD5 07:CFC5: 23        .byte $23   ; 
-- D 2 - I - 0x01CFD6 07:CFC6: E0        .byte $E0   ; 
+- D 2 - I - 0x01CFD6 07:CFC6: E0        .byte con_se_cb_E0   ; 
 - D 2 - I - 0x01CFD7 07:CFC7: 07        .byte $07   ; 
 - D 2 - I - 0x01CFD8 07:CFC8: 05        .byte $05   ; 
-- D 2 - I - 0x01CFD9 07:CFC9: F1        .byte $F1   ; 
+- D 2 - I - 0x01CFD9 07:CFC9: F1        .byte con_se_cb_F1   ; 
 - D 2 - I - 0x01CFDA 07:CFCA: A1        .byte $A1   ; 
-- D 2 - I - 0x01CFDB 07:CFCB: F2        .byte $F2   ; 
+- D 2 - I - 0x01CFDB 07:CFCB: F2        .byte con_se_cb_F2   ; 
 - D 2 - I - 0x01CFDC 07:CFCC: 11        .byte $11   ; 
 - D 2 - I - 0x01CFDD 07:CFCD: 32        .byte $32   ; 
-- D 2 - I - 0x01CFDE 07:CFCE: FF        .byte $FF   ; 
+- D 2 - I - 0x01CFDE 07:CFCE: FF        .byte con_se_cb_FF   ; 
 
 
 
 _off000_0x01CFDF_A4_03:
-- D 2 - I - 0x01CFDF 07:CFCF: E0        .byte $E0   ; 
+- D 2 - I - 0x01CFDF 07:CFCF: E0        .byte con_se_cb_E0   ; 
 - D 2 - I - 0x01CFE0 07:CFD0: 02        .byte $02   ; 
 - D 2 - I - 0x01CFE1 07:CFD1: 0A        .byte $0A   ; 
-- D 2 - I - 0x01CFE2 07:CFD2: E1        .byte $E1   ; 
-- D 2 - I - 0x01CFE3 07:CFD3: 07        .byte $07   ; 
+- D 2 - I - 0x01CFE2 07:CFD2: E1        .byte con_se_cb_E1, $07   ; 
 - D 2 - I - 0x01CFE4 07:CFD4: 51        .byte $51   ; 
 - D 2 - I - 0x01CFE5 07:CFD5: 91        .byte $91   ; 
 - D 2 - I - 0x01CFE6 07:CFD6: 81        .byte $81   ; 
@@ -393,8 +356,7 @@ _off000_0x01CFDF_A4_03:
 - D 2 - I - 0x01CFED 07:CFDD: C1        .byte $C1   ; 
 - D 2 - I - 0x01CFEE 07:CFDE: C1        .byte $C1   ; 
 - D 2 - I - 0x01CFEF 07:CFDF: 36        .byte $36   ; 
-- D 2 - I - 0x01CFF0 07:CFE0: E1        .byte $E1   ; 
-- D 2 - I - 0x01CFF1 07:CFE1: 01        .byte $01   ; 
+- D 2 - I - 0x01CFF0 07:CFE0: E1        .byte con_se_cb_E1, $01   ; 
 - D 2 - I - 0x01CFF2 07:CFE2: 94        .byte $94   ; 
 - D 2 - I - 0x01CFF3 07:CFE3: 95        .byte $95   ; 
 - D 2 - I - 0x01CFF4 07:CFE4: 75        .byte $75   ; 
@@ -417,7 +379,7 @@ _off000_0x01CFDF_A4_03:
 - D 2 - I - 0x01D005 07:CFF5: C7        .byte $C7   ; 
 - D 2 - I - 0x01D006 07:CFF6: C7        .byte $C7   ; 
 - D 2 - I - 0x01D007 07:CFF7: 51        .byte $51   ; 
-- D 2 - I - 0x01D008 07:CFF8: FF        .byte $FF   ; 
+- D 2 - I - 0x01D008 07:CFF8: FF        .byte con_se_cb_FF   ; 
 
 
 
@@ -8915,7 +8877,7 @@ C - - - - - 0x01FD84 07:FD74: 20 48 FE  JSR sub_FE48
 C - - - - - 0x01FD87 07:FD77: 20 D7 FD  JSR sub_FDD7
 C - - - - - 0x01FD8A 07:FD7A: 20 11 FF  JSR sub_FF11
 C - - - - - 0x01FD8D 07:FD7D: 20 56 FE  JSR sub_FE56
-C - - - - - 0x01FD90 07:FD80: 20 AA FE  JSR sub_FEAA
+C - - - - - 0x01FD90 07:FD80: 20 AA FE  JSR sub_FEAA_update_sound_engine
 C - - - - - 0x01FD93 07:FD83: A9 01     LDA #$01
 C - - - - - 0x01FD95 07:FD85: 85 C4     STA ram_nmi_flag_2
 C - - - - - 0x01FD97 07:FD87: 4C D1 FD  JMP loc_FDD1_exit_interrupt
@@ -8934,7 +8896,7 @@ C - - - - - 0x01FDB1 07:FDA1: 20 48 FE  JSR sub_FE48
 C - - - - - 0x01FDB4 07:FDA4: 20 D7 FD  JSR sub_FDD7
 C - - - - - 0x01FDB7 07:FDA7: 20 22 FF  JSR sub_FF22
 C - - - - - 0x01FDBA 07:FDAA: 20 56 FE  JSR sub_FE56
-C - - - - - 0x01FDBD 07:FDAD: 20 AA FE  JSR sub_FEAA
+C - - - - - 0x01FDBD 07:FDAD: 20 AA FE  JSR sub_FEAA_update_sound_engine
 C - - - - - 0x01FDC0 07:FDB0: 20 97 FF  JSR sub_FF97
 C - - - - - 0x01FDC3 07:FDB3: A9 01     LDA #$01    ; con_prg_pair + $01
 C - - - - - 0x01FDC5 07:FDB5: 8D 5C 03  STA ram_035C
@@ -9081,14 +9043,14 @@ C - - - - - 0x01FEB9 07:FEA9: 60        RTS
 
 
 
-sub_FEAA:
+sub_FEAA_update_sound_engine:
 C - - - - - 0x01FEBA 07:FEAA: A5 2D     LDA ram_nmi_flag_1
 C - - - - - 0x01FEBC 07:FEAC: D0 2F     BNE bra_FEDD_RTS
 C - - - - - 0x01FEBE 07:FEAE: A5 36     LDA ram_prg_banks_pair
 C - - - - - 0x01FEC0 07:FEB0: 48        PHA
 C - - - - - 0x01FEC1 07:FEB1: A9 04     LDA #con_prg_pair + $04
 C - - - - - 0x01FEC3 07:FEB3: 20 BA FE  JSR sub_FEBA
-C - - - - - 0x01FEC6 07:FEB6: 20 0F AA  JSR sub_0x012A1F
+C - - - - - 0x01FEC6 07:FEB6: 20 0F AA  JSR sub_0x012A1F_update_sound_engine
 C - - - - - 0x01FEC9 07:FEB9: 68        PLA
 sub_FEBA:
 C - - - - - 0x01FECA 07:FEBA: 85 36     STA ram_prg_banks_pair
