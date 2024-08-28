@@ -6,7 +6,7 @@
 
 
 
-; ! bzk these pointers must start from the same address in banks 01 and 03
+; !! bzk these pointers must start from the same address in banks 01 and 03
 ; reading pointers via 0x01E83A, bank selected via 0x01EB33
 - D 0 - - - 0x00C010 03:8000: 4C 82     .word _off029_824C_00
 - D 0 - - - 0x00C012 03:8002: 4C 82     .word _off029_824C_01

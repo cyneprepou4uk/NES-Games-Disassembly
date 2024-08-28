@@ -43,7 +43,7 @@
 
 
 
-; ! bzk these pointers must start from the same address in banks 01 and 03
+; !! bzk these pointers must start from the same address in banks 01 and 03
 ; reading pointers via 0x01E83A, bank selected via 0x01EB33
 - D 0 - - - 0x004010 01:8000: 00 00     .word $0000 ;      00
 - - - - - - 0x004012 01:8002: 00 00     .word $0000 ;      01
