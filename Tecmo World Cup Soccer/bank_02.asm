@@ -4,23 +4,47 @@
 .org $8000  ; for listing file
 ; 0x008010-0x00C00F
 
+
+
 .export sub_0x008010
+.export sub_0x008013
+.export ofs_0x00801C
+.export sub_0x008022
+.export ofs_0x008025
+.export sub_0x008028
+.export sub_0x00802E
+.export sub_0x008031
+.export sub_0x008034
+.export sub_0x008037
+.export sub_0x00803A
+.export ofs_0x00803D
+.export sub_0x008040
+.export sub_0x00B010
+
+
+
 sub_0x008010:
+; bzk optimize
 C D 0 - - - 0x008010 02:8000: 4C F1 84  JMP loc_84F1
 
-.export sub_0x008013
+
+
 sub_0x008013:
+; bzk optimize
 C - - - - - 0x008013 02:8003: 4C C9 83  JMP loc_83C9
 
 
 ; bzk garbage
 - - - - - - 0x008016 02:8006: 4C 78 84  JMP loc_8478
+
+
+; bzk garbage
 - - - - - - 0x008019 02:8009: 4C B9 88  JMP loc_88B9
 
 
 
-.export ofs_0x00801C
 ofs_0x00801C:
+; bzk optimize
 C - - - - - 0x00801C 02:800C: 4C 1A 8A  JMP loc_8A1A
 
 
@@ -29,16 +53,20 @@ C - - - - - 0x00801C 02:800C: 4C 1A 8A  JMP loc_8A1A
 
 
 
-.export sub_0x008022
 sub_0x008022:
+; bzk optimize
 C - - - - - 0x008022 02:8012: 4C C9 8A  JMP loc_8AC9
 
-.export ofs_0x008025
+
+
 ofs_0x008025:
+; bzk optimize
 C - - - - - 0x008025 02:8015: 4C D1 80  JMP loc_80D1
 
-.export sub_0x008028
+
+
 sub_0x008028:
+; bzk optimize
 C - - - - - 0x008028 02:8018: 4C 20 8B  JMP loc_8B20
 
 
@@ -47,32 +75,44 @@ C - - - - - 0x008028 02:8018: 4C 20 8B  JMP loc_8B20
 
 
 
-.export sub_0x00802E
 sub_0x00802E:
+; bzk optimize
 C - - - - - 0x00802E 02:801E: 4C 42 98  JMP loc_9842
 
-.export sub_0x008031
+
+
 sub_0x008031:
+; bzk optimize
 C - - - - - 0x008031 02:8021: 4C 4F 97  JMP loc_974F
 
-.export sub_0x008034
+
+
 sub_0x008034:
+; bzk optimize
 C - - - - - 0x008034 02:8024: 4C 2A A0  JMP loc_A02A
 
-.export sub_0x008037
+
+
 sub_0x008037:
+; bzk optimize
 C - - - - - 0x008037 02:8027: 4C F0 A0  JMP loc_A0F0
 
-.export sub_0x00803A
+
+
 sub_0x00803A:
+; bzk optimize
 C - - - - - 0x00803A 02:802A: 4C ED A1  JMP loc_A1ED
 
-.export ofs_0x00803D
+
+
 ofs_0x00803D:
+; bzk optimize
 C - - - - - 0x00803D 02:802D: 4C 30 A3  JMP loc_A330
 
-.export sub_0x008040
+
+
 sub_0x008040:
+; bzk optimize
 C - - - - - 0x008040 02:8030: 4C 33 80  JMP loc_8033
 
 
@@ -7913,7 +7953,6 @@ tbl_A9AC:
 
 
 loc_B000:
-.export sub_0x00B010
 sub_0x00B010:
 C - - - - - 0x00B010 02:B000: 20 07 B0  JSR sub_B007
 C - - - - - 0x00B013 02:B003: 20 F1 B3  JSR sub_B3F1

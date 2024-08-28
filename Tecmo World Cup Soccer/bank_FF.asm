@@ -4,33 +4,70 @@
 .org $C000  ; for listing file
 ; 0x00C010-0x01000F
 
-vec_C000_NMI:
-C - - - - - 0x00C010 03:C000: 4C 4A C1  JMP loc_C14A
 
-loc_C003:
-C D 2 - - - 0x00C013 03:C003: 4C 81 C0  JMP loc_C081
 
 .export sub_0x00C016_prepare_return_address
+.export sub_0x00C019_delay
+.export loc_0x00C01C
+.export sub_0x00C028
+.export sub_0x00C03A_bytes_after_JSR
+.export sub_0x00C043
+.export sub_0x00C046
+.export sub_0x00C049
+.export sub_0x00C052
+.export sub_0x00C058
+.export sub_0x00C061
+.export sub_0x00C067
+.export sub_0x00C06A
+.export sub_0x00C085
+.export sub_0x00C088
+.export sub_0x00C08B
+.export sub_0x00C08E_prepare_sound
+
+
+
+vec_C000_NMI:
+; bzk optimize
+C - - - - - 0x00C010 03:C000: 4C 4A C1  JMP loc_C14A_NMI
+
+
+
+loc_C003:
+; bzk optimize
+C D 2 - - - 0x00C013 03:C003: 4C 81 C0  JMP loc_C081
+
+
+
 sub_0x00C016_prepare_return_address:
+; bzk optimize
 C - - - - - 0x00C016 03:C006: 4C E1 C5  JMP loc_C5E1_prepare_return_address
 
-.export sub_0x00C019_delay
+
+
 sub_0x00C019_delay:
+; bzk optimize
 C - - - - - 0x00C019 03:C009: 4C 09 C6  JMP loc_C609_delay
 
-.export loc_0x00C01C
+
+
 loc_0x00C01C:
+; bzk optimize
 C D 2 - - - 0x00C01C 03:C00C: 4C F1 C5  JMP loc_C5F1
 
 
 ; bzk garbage
 - - - - - - 0x00C01F 03:C00F: 4C FC C5  JMP loc_C5FC
+
+
+; bzk garbage
 - - - - - - 0x00C022 03:C012: 4C 9E C7  JMP loc_C79E
+
+
+; bzk garbage
 - - - - - - 0x00C025 03:C015: 4C B9 C6  JMP loc_C6B9
 
 
 
-.export sub_0x00C028
 sub_0x00C028:
 C - - - - - 0x00C028 03:C018: 4C D4 CA  JMP loc_CAD4
 
@@ -40,45 +77,63 @@ C - - - - - 0x00C028 03:C018: 4C D4 CA  JMP loc_CAD4
 
 
 ; bzk garbage
-loc_C01E:
-- - - - - - 0x00C02E 03:C01E: 4C 1E C0  JMP loc_C01E
+loc_C01E_infinite_loop:
+- - - - - - 0x00C02E 03:C01E: 4C 1E C0  JMP loc_C01E_infinite_loop
+
+
+; bzk garbage
 - - - - - - 0x00C031 03:C021: 4C A4 CB  JMP loc_CBA4
+
+
+; bzk garbage
 - - - - - - 0x00C034 03:C024: 4C F6 C6  JMP loc_C6F6
+
+
+; bzk garbage
 - - - - - - 0x00C037 03:C027: 4C 1D C7  JMP loc_C71D
 
 
 
-.export sub_0x00C03A_bytes_after_JSR
 sub_0x00C03A_bytes_after_JSR:
+; bzk optimize
 C - - - - - 0x00C03A 03:C02A: 4C BD CA  JMP loc_CABD_bytes_after_JSR
 
 
 ; bzk garbage
 - - - - - - 0x00C03D 03:C02D: 4C 2B C9  JMP loc_C92B
+
+
+; bzk garbage
 - - - - - - 0x00C040 03:C030: 4C 75 CB  JMP loc_CB75
 
 
 
-.export sub_0x00C043
 sub_0x00C043:
+; bzk optimize
 C - - - - - 0x00C043 03:C033: 4C 52 C7  JMP loc_C752
 
-.export sub_0x00C046
+
+
 sub_0x00C046:
+; bzk optimize
 C - - - - - 0x00C046 03:C036: 4C 4A CB  JMP loc_CB4A
 
-.export sub_0x00C049
+
+
 sub_0x00C049:
+; bzk optimize
 C - - - - - 0x00C049 03:C039: 4C 50 CB  JMP loc_CB50
 
 
 ; bzk garbage
 - - - - - - 0x00C04C 03:C03C: 4C 5B C9  JMP loc_C95B
+
+
+; bzk garbage
 - - - - - - 0x00C04F 03:C03F: 4C DA C9  JMP loc_C9DA
 
 
 
-.export sub_0x00C052
 sub_0x00C052:
 C - - - - - 0x00C052 03:C042: 4C 1E C9  JMP loc_C91E
 
@@ -88,18 +143,19 @@ C - - - - - 0x00C052 03:C042: 4C 1E C9  JMP loc_C91E
 
 
 
-.export sub_0x00C058
 sub_0x00C058:
 C - - - - - 0x00C058 03:C048: 4C 9D C8  JMP loc_C89D
 
 
 ; bzk garbage
 - - - - - - 0x00C05B 03:C04B: 4C 43 C8  JMP loc_C843
+
+
+; bzk garbage
 - - - - - - 0x00C05E 03:C04E: 4C 7E C6  JMP loc_C67E
 
 
 
-.export sub_0x00C061
 sub_0x00C061:
 C - - - - - 0x00C061 03:C051: 4C AF CA  JMP loc_CAAF
 
@@ -109,40 +165,68 @@ C - - - - - 0x00C061 03:C051: 4C AF CA  JMP loc_CAAF
 
 
 
-.export sub_0x00C067
 sub_0x00C067:
+; bzk optimize
 C - - - - - 0x00C067 03:C057: 4C E3 CB  JMP loc_CBE3
 
-.export sub_0x00C06A
+
+
 sub_0x00C06A:
+; bzk optimize
 C - - - - - 0x00C06A 03:C05A: 4C 2F C6  JMP loc_C62F
 
 
 ; bzk garbage
 - - - - - - 0x00C06D 03:C05D: 4C 52 C6  JMP loc_C652
+
+
+; bzk garbage
 - - - - - - 0x00C070 03:C060: 4C 61 C6  JMP loc_C661
+
+
+; bzk garbage
 - - - - - - 0x00C073 03:C063: 4C 66 C6  JMP loc_C666
+
+
+; bzk garbage
 - - - - - - 0x00C076 03:C066: 4C 37 C9  JMP loc_C937
+
+
+; bzk garbage
 - - - - - - 0x00C079 03:C069: 4C 6D C6  JMP loc_C66D
+
+
+; bzk garbage
 - - - - - - 0x00C07C 03:C06C: 4C 77 C6  JMP loc_C677
+
+
+; bzk garbage
 - - - - - - 0x00C07F 03:C06F: 4C 40 C9  JMP loc_C940
+
+
+; bzk garbage
 - - - - - - 0x00C082 03:C072: 4C E1 C6  JMP loc_C6E1
 
 
 
-.export sub_0x00C085
 sub_0x00C085:
+; bzk optimize
 C - - - - - 0x00C085 03:C075: 4C 59 CA  JMP loc_CA59
 
-.export sub_0x00C088
+
+
 sub_0x00C088:
+; bzk optimize
 C - - - - - 0x00C088 03:C078: 4C 18 CB  JMP loc_CB18
 
-.export sub_0x00C08B
+
+
 sub_0x00C08B:
+; bzk optimize
 C - - - - - 0x00C08B 03:C07B: 4C A5 F9  JMP loc_F9A5
 
-.export sub_0x00C08E_prepare_sound
+
+
 sub_0x00C08E_prepare_sound:
 C - - - - - 0x00C08E 03:C07E: 4C 10 C9  JMP loc_C910_prepare_sound
 
@@ -250,7 +334,7 @@ C - - - - - 0x00C157 03:C147: 4C 5B C5  JMP loc_C55B
 
 
 
-loc_C14A:
+loc_C14A_NMI:
 C D 2 - - - 0x00C15A 03:C14A: 48        PHA
 C - - - - - 0x00C15B 03:C14B: 8A        TXA
 C - - - - - 0x00C15C 03:C14C: 48        PHA
@@ -295,7 +379,7 @@ C - - - - - 0x00C1AE 03:C19E: 09 07     ORA #$07
 C - - - - - 0x00C1B0 03:C1A0: 8D 00 80  STA $8000
 C - - - - - 0x00C1B3 03:C1A3: A9 01     LDA #$01
 C - - - - - 0x00C1B5 03:C1A5: 8D 01 80  STA $8001
-C - - - - - 0x00C1B8 03:C1A8: 20 00 80  JSR sub_0x000010
+C - - - - - 0x00C1B8 03:C1A8: 20 00 80  JSR sub_0x000010_update_sound_engine
 C - - - - - 0x00C1BB 03:C1AB: 20 58 C2  JSR sub_C258
 C - - - - - 0x00C1BE 03:C1AE: 20 A2 C2  JSR sub_C2A2
 C - - - - - 0x00C1C1 03:C1B1: A5 23     LDA ram_0023
@@ -914,8 +998,9 @@ C - - - - - 0x00C607 03:C5F7: 95 01     STA ram_0001,X
 C - - - - - 0x00C609 03:C5F9: 4C 7A C5  JMP loc_C57A
 
 
-; bzk garbage
+
 loc_C5FC:
+; bzk garbage
 - - - - - - 0x00C60C 03:C5FC: B5 01     LDA ram_0001,X
 - - - - - - 0x00C60E 03:C5FE: F0 06     BEQ bra_C606_RTS
 - - - - - - 0x00C610 03:C600: B5 00     LDA ram_0000,X

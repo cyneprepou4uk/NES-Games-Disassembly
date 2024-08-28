@@ -4,8 +4,38 @@
 .org $8000  ; for listing file
 ; 0x004010-0x00800F
 
+
+
 .export sub_0x004010
+.export ofs_0x004016
+.export sub_0x004019
+.export sub_0x00401C
+.export sub_0x00401F
+.export sub_0x004022
+.export ofs_0x004025
+.export sub_0x004028
+.export sub_0x00402B
+.export sub_0x00402E_set_animation
+.export sub_0x004031
+.export sub_0x004034
+.export sub_0x004037
+.export sub_0x00403A
+.export sub_0x00403D
+.export sub_0x004040
+.export ofs_0x004043
+.export sub_0x004046
+.export sub_0x004049
+.export sub_0x00404C
+.export sub_0x00404F
+.export sub_0x004052
+.export sub_0x004055
+.export sub_0x004058
+.export sub_0x00405B
+
+
+
 sub_0x004010:
+; bzk optimize
 C D 0 - - - 0x004010 01:8000: 4C 4E 80  JMP loc_804E
 
 
@@ -14,100 +44,146 @@ C D 0 - - - 0x004010 01:8000: 4C 4E 80  JMP loc_804E
 
 
 
-.export ofs_0x004016
 ofs_0x004016:
+; bzk optimize
 C - - - - - 0x004016 01:8006: 4C A3 80  JMP loc_80A3
 
-.export sub_0x004019
+
+
 sub_0x004019:
+; bzk optimize
 C - - - - - 0x004019 01:8009: 4C D9 81  JMP loc_81D9
 
-.export sub_0x00401C
+
+
 sub_0x00401C:
+; bzk optimize
 C - - - - - 0x00401C 01:800C: 4C 7E 82  JMP loc_827E
 
-.export sub_0x00401F
+
+
 sub_0x00401F:
+; bzk optimize
 C - - - - - 0x00401F 01:800F: 4C ED 87  JMP loc_87ED
 
-.export sub_0x004022
+
+
 sub_0x004022:
+; bzk optimize
 C - - - - - 0x004022 01:8012: 4C E0 88  JMP loc_88E0
 
-.export ofs_0x004025
+
+
 ofs_0x004025:
+; bzk optimize
 C - - - - - 0x004025 01:8015: 4C 96 85  JMP loc_8596
 
-.export sub_0x004028
+
+
 sub_0x004028:
+; bzk optimize
 C - - - - - 0x004028 01:8018: 4C 3C 86  JMP loc_863C
 
-.export sub_0x00402B
+
+
 sub_0x00402B:
+; bzk optimize
 C - - - - - 0x00402B 01:801B: 4C 96 86  JMP loc_8696
 
-.export sub_0x00402E_set_animation
+
+
 sub_0x00402E_set_animation:
+; bzk optimize
 C - - - - - 0x00402E 01:801E: 4C 8F 87  JMP loc_878F_set_animation
 
-.export sub_0x004031
+
+
 sub_0x004031:
+; bzk optimize
 C - - - - - 0x004031 01:8021: 4C 21 85  JMP loc_8521
 
-.export sub_0x004034
+
+
 sub_0x004034:
+; bzk optimize
 C - - - - - 0x004034 01:8024: 4C 7D 84  JMP loc_847D
 
-.export sub_0x004037
+
+
 sub_0x004037:
+; bzk optimize
 C - - - - - 0x004037 01:8027: 4C AA 83  JMP loc_83AA
 
-.export sub_0x00403A
+
+
 sub_0x00403A:
+; bzk optimize
 C - - - - - 0x00403A 01:802A: 4C 61 83  JMP loc_8361
 
-.export sub_0x00403D
+
+
 sub_0x00403D:
+; bzk optimize
 C - - - - - 0x00403D 01:802D: 4C 71 8A  JMP loc_8A71
 
-.export sub_0x004040
+
+
 sub_0x004040:
+; bzk optimize
 C - - - - - 0x004040 01:8030: 4C F3 89  JMP loc_89F3
 
-.export ofs_0x004043
+
+
 ofs_0x004043:
+; bzk optimize
 C - - - - - 0x004043 01:8033: 4C 41 83  JMP loc_8341
 
-.export sub_0x004046
+
+
 sub_0x004046:
+; bzk optimize
 C - - - - - 0x004046 01:8036: 4C E8 8B  JMP loc_8BE8
 
-.export sub_0x004049
+
+
 sub_0x004049:
+; bzk optimize
 C - - - - - 0x004049 01:8039: 4C 1A 8D  JMP loc_8D1A
 
-.export sub_0x00404C
+
+
 sub_0x00404C:
+; bzk optimize
 C - - - - - 0x00404C 01:803C: 4C DC 8B  JMP loc_8BDC
 
-.export sub_0x00404F
+
+
 sub_0x00404F:
+; bzk optimize
 C - - - - - 0x00404F 01:803F: 4C 6B 8B  JMP loc_8B6B
 
-.export sub_0x004052
+
+
 sub_0x004052:
+; bzk optimize
 C - - - - - 0x004052 01:8042: 4C 24 8B  JMP loc_8B24
 
-.export sub_0x004055
+
+
 sub_0x004055:
+; bzk optimize
 C - - - - - 0x004055 01:8045: 4C 6C 88  JMP loc_886C
 
-.export sub_0x004058
+
+
 sub_0x004058:
+; bzk optimize
 C - - - - - 0x004058 01:8048: 4C B2 88  JMP loc_88B2
 
-.export sub_0x00405B
+
+
 sub_0x00405B:
+; bzk optimize
 C - - - - - 0x00405B 01:804B: 4C 3F 8B  JMP loc_8B3F
 
 
