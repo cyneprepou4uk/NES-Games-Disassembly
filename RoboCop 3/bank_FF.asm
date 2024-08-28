@@ -6,22 +6,26 @@
 
 
 
-loc_C000:
 .export loc_out_0x01C010
+.export sub_0x01C013_prepare_sound
+.export sub_0x01C016
+.export vec_0x01FF10_RESET
+
+
+
+loc_C000:
 loc_out_0x01C010:
 ; bzk optimize
 C D 2 - - - 0x01C010 07:C000: 4C 0C C0  JMP loc_C00C
 
 
 
-.export sub_0x01C013_prepare_sound
 sub_0x01C013_prepare_sound:
 ; bzk optimize
 C - - - - - 0x01C013 07:C003: 4C 17 C4  JMP loc_C417_prepare_sound
 
 
 
-.export sub_0x01C016
 sub_0x01C016:
 ; bzk optimize
 C - - - - - 0x01C016 07:C006: 4C 22 C4  JMP loc_C422
@@ -8847,7 +8851,6 @@ tbl_FC83:
 
 
 vec_FF00_RESET:
-.export vec_0x01FF10_RESET
 vec_0x01FF10_RESET:
 C - - - - - 0x01FF10 07:FF00: 78        SEI
 C - - - - - 0x01FF11 07:FF01: D8        CLD

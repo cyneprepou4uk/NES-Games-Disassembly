@@ -4,16 +4,25 @@
 .org $8000 ; for listing file
 ; 0x018010-0x01C00F
 
-; !!! наверняка будут поинтеры в данных музыки. в остальном кода почти нету, тут данные музыки
+
 
 .export sub_0x018010
+.export sub_0x018013
+.export tbl_0x01A010_spr_data_lo
+.export tbl_0x01A110_spr_data_hi
+.export tbl_0x01BB10
+.export tbl_0x01BC10
+.export tbl_0x01BD10
+.export tbl_0x01BE10
+
+
+
 sub_0x018010:
 ; bzk optimize
 C - - - - - 0x018010 06:8000: 4C 06 80  JMP loc_8006
 
 
 
-.export sub_0x018013
 sub_0x018013:
 ; bzk optimize
 C - - - - - 0x018013 06:8003: 4C 50 80  JMP loc_8050
@@ -861,8 +870,8 @@ tbl_8508:
 
 
 tbl_8580:
-;                                              ----------- 
-;                                              |    ------ 
+;                                              +---------- 
+;                                              |    +----- 
 ;                                              |    |
 - D 0 - - - 0x018590 06:8580: 00        .byte $00, $00   ; 00 
 - D 0 - - - 0x018592 06:8582: 02        .byte $02, $02   ; 02 
@@ -6455,7 +6464,6 @@ _off003_9780_00:
 
 
 
-.export tbl_0x01A010_spr_data_lo
 tbl_0x01A010_spr_data_lo:
 - D 1 - - - 0x01A010 06:A000: BD        .byte < _off013_A1BD_00
 - D 1 - - - 0x01A011 06:A001: C1        .byte < _off013_A1C1_01
@@ -6657,7 +6665,6 @@ tbl_0x01A010_spr_data_lo:
 
 
 
-.export tbl_0x01A110_spr_data_hi
 tbl_0x01A110_spr_data_hi:
 - D 1 - - - 0x01A110 06:A100: A1        .byte > _off013_A1BD_00
 - D 1 - - - 0x01A111 06:A101: A1        .byte > _off013_A1C1_01
@@ -13074,7 +13081,6 @@ _off013_B322_BC:
 
 
 
-.export tbl_0x01BB10
 tbl_0x01BB10:
 ; bzk garbage? last 2-3 bytes probably unused
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -13101,7 +13107,6 @@ tbl_0x01BB10:
 
 
 
-.export tbl_0x01BC10
 tbl_0x01BC10:
 ; bzk garbage? last 2-3 bytes probably unused
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -13127,7 +13132,6 @@ tbl_0x01BC10:
 
 
 
-.export tbl_0x01BD10
 tbl_0x01BD10:
 ; bzk garbage? last 2-3 bytes probably unused
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -13154,7 +13158,6 @@ tbl_0x01BD10:
 
 
 
-.export tbl_0x01BE10
 tbl_0x01BE10:
 ; bzk garbage? last 2-3 bytes probably unused
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
