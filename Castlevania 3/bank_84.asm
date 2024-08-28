@@ -9848,21 +9848,46 @@ tbl_B528_offset:
 
 
 tbl_B540:
-;                                              +------------------------------ pos_X_hi
-;                                              |    +------------------------- pos_Y_hi
-;                                              |    |    +-------------------- spd_X_hi
-;                                              |    |    |    +--------------- spd_X_lo
-;                                              |    |    |    |    +---------- spd_Y_hi
-;                                              |    |    |    |    |    +----- spd_Y_lo
-;                                              |    |    |    |    |    |
-- D 1 - - - 0x00B550 02:B540: 03        .byte $03, $FC, $00, $80, $FE, $00   ; 00 
-- D 1 - - - 0x00B556 02:B546: FE        .byte $FE, $04, $FE, $80, $FE, $80   ; 01 
-- D 1 - - - 0x00B55C 02:B54C: 00        .byte $00, $F6, $01, $20, $FF, $00   ; 02 
-- D 1 - - - 0x00B562 02:B552: FC        .byte $FC, $08, $FF, $80, $FD, $C0   ; 03 
-- D 1 - - - 0x00B568 02:B558: 06        .byte $06, $FA, $01, $80, $FE, $80   ; 04 
-- D 1 - - - 0x00B56E 02:B55E: F8        .byte $F8, $02, $FE, $C0, $FE, $40   ; 05 
-- D 1 - - - 0x00B574 02:B564: 08        .byte $08, $F8, $02, $00, $FD, $00   ; 06 
-- D 1 - - - 0x00B57A 02:B56A: F6        .byte $F6, $0C, $FF, $40, $FE, $40   ; 07 
+; 00 
+- D 1 - - - 0x00B550 02:B540: 03        .byte $03   ; pos_X_hi
+- D 1 - - - 0x00B551 02:B541: FC        .byte $FC   ; pos_Y_hi
+- D 1 - - - 0x00B552 02:B542: 00 80     .dbyt $0080 ; spd_X
+- D 1 - - - 0x00B554 02:B544: FE 00     .dbyt $FE00 ; spd_Y
+; 01 
+- D 1 - - - 0x00B556 02:B546: FE        .byte $FE   ; pos_X_hi
+- D 1 - - - 0x00B557 02:B547: 04        .byte $04   ; pos_Y_hi
+- D 1 - - - 0x00B558 02:B548: FE 80     .dbyt $FE80 ; spd_X
+- D 1 - - - 0x00B55A 02:B54A: FE 80     .dbyt $FE80 ; spd_Y
+; 02 
+- D 1 - - - 0x00B55C 02:B54C: 00        .byte $00   ; pos_X_hi
+- D 1 - - - 0x00B55D 02:B54D: F6        .byte $F6   ; pos_Y_hi
+- D 1 - - - 0x00B55E 02:B54E: 01 20     .dbyt $0120 ; spd_X
+- D 1 - - - 0x00B560 02:B550: FF 00     .dbyt $FF00 ; spd_Y
+; 03 
+- D 1 - - - 0x00B562 02:B552: FC        .byte $FC   ; pos_X_hi
+- D 1 - - - 0x00B563 02:B553: 08        .byte $08   ; pos_Y_hi
+- D 1 - - - 0x00B564 02:B554: FF 80     .dbyt $FF80 ; spd_X
+- D 1 - - - 0x00B566 02:B556: FD C0     .dbyt $FDC0 ; spd_Y
+; 04 
+- D 1 - - - 0x00B568 02:B558: 06        .byte $06   ; pos_X_hi
+- D 1 - - - 0x00B569 02:B559: FA        .byte $FA   ; pos_Y_hi
+- D 1 - - - 0x00B56A 02:B55A: 01 80     .dbyt $0180 ; spd_X
+- D 1 - - - 0x00B56C 02:B55C: FE 80     .dbyt $FE80 ; spd_Y
+; 05 
+- D 1 - - - 0x00B56E 02:B55E: F8        .byte $F8   ; pos_X_hi
+- D 1 - - - 0x00B56F 02:B55F: 02        .byte $02   ; pos_Y_hi
+- D 1 - - - 0x00B570 02:B560: FE C0     .dbyt $FEC0 ; spd_X
+- D 1 - - - 0x00B572 02:B562: FE 40     .dbyt $FE40 ; spd_Y
+; 06 
+- D 1 - - - 0x00B574 02:B564: 08        .byte $08   ; pos_X_hi
+- D 1 - - - 0x00B575 02:B565: F8        .byte $F8   ; pos_Y_hi
+- D 1 - - - 0x00B576 02:B566: 02 00     .dbyt $0200 ; spd_X
+- D 1 - - - 0x00B578 02:B568: FD 00     .dbyt $FD00 ; spd_Y
+; 07 
+- D 1 - - - 0x00B57A 02:B56A: F6        .byte $F6   ; pos_X_hi
+- D 1 - - - 0x00B57B 02:B56B: 0C        .byte $0C   ; pos_Y_hi
+- D 1 - - - 0x00B57C 02:B56C: FF 40     .dbyt $FF40 ; spd_X
+- D 1 - - - 0x00B57E 02:B56E: FE 40     .dbyt $FE40 ; spd_Y
 
 
 

@@ -1044,8 +1044,8 @@ con_se_cb_1_F0                          = $F0 ; F0-F7 0x0105C4
 ; 0x0103E4
 con_se_cb_1_E6                          = $E6 ; 
 con_se_cb_1_E7                          = $E7 ; 
-con_se_cb_1_E8                          = $E8 ; доделать nybbles
-con_se_cb_1_E9                          = $E9 ; доделать nybbles
+con_se_cb_1_E8                          = $E8 ; todo доделать биты
+con_se_cb_1_E9                          = $E9 ; todo доделать биты
 con_se_cb_1_EA                          = $EA ; 
 con_se_cb_1_EB                          = $EB ; 
 con_se_cb_1_EC                          = $EC ; 
