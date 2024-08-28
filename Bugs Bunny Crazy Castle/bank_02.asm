@@ -2463,22 +2463,22 @@ tbl_0x009E10_music_data:
 - D 0 - I - 0x009E10 02:9E00: B3 AE     .word _music_AEB3_01_title_screen
 - D 0 - I - 0x009E12 02:9E02: A6 A2     .word _music_A2A6_02_bricks_stage_soundtrack
 - D 0 - I - 0x009E14 02:9E04: CD A6     .word _music_A6CD_03_final_cutscene
-- - - - - - 0x009E16 02:9E06: F2 AB     .word _music_ABF2_04
+- - - - - - 0x009E16 02:9E06: F2 AB     .word _music_ABF2_04    ; unused, index doesn't exist
 - D 0 - I - 0x009E18 02:9E08: 2E 9E     .word _music_9E2E_05_concrete_stage_soundtrack
-- - - - - - 0x009E1A 02:9E0A: F2 AB     .word _music_ABF2_06
+- - - - - - 0x009E1A 02:9E0A: F2 AB     .word _music_ABF2_06    ; unused, index doesn't exist
 - D 0 - I - 0x009E1C 02:9E0C: 7B AC     .word _music_AC7B_07
 - D 0 - I - 0x009E1E 02:9E0E: 1B AD     .word _music_AD1B_08_pipes_stage_is_complete
 - D 0 - I - 0x009E20 02:9E10: B4 AD     .word _music_ADB4_09_menu
 - D 0 - I - 0x009E22 02:9E12: BA AA     .word _music_AABA_0A_pipes_stage_soundtrack
-- - - - - - 0x009E24 02:9E14: F2 AB     .word _music_ABF2_0B
-- - - - - - 0x009E26 02:9E16: F2 AB     .word _music_ABF2_0C
-- - - - - - 0x009E28 02:9E18: F2 AB     .word _music_ABF2_0D
-- - - - - - 0x009E2A 02:9E1A: F2 AB     .word _music_ABF2_0E
+- - - - - - 0x009E24 02:9E14: F2 AB     .word _music_ABF2_0B    ; unused, index doesn't exist
+- - - - - - 0x009E26 02:9E16: F2 AB     .word _music_ABF2_0C    ; unused, index doesn't exist
+- - - - - - 0x009E28 02:9E18: F2 AB     .word _music_ABF2_0D    ; unused, index doesn't exist
+- - - - - - 0x009E2A 02:9E1A: F2 AB     .word _music_ABF2_0E    ; unused, index doesn't exist
 - D 0 - I - 0x009E2C 02:9E1C: 34 EA     .word _sound_0x00EA44_0F_player_death
 - D 0 - I - 0x009E2E 02:9E1E: 97 EA     .word _sound_0x00EAA7_10_pick_up_item
 - D 0 - I - 0x009E30 02:9E20: B0 EA     .word _sound_0x00EAC0_11_push_item
 - D 0 - I - 0x009E32 02:9E22: C4 EA     .word _sound_0x00EAD4_12_enemy_death
-- - - - - - 0x009E34 02:9E24: F5 EA     .word _sound_0x00EB05_13
+- - - - - - 0x009E34 02:9E24: F5 EA     .word _sound_0x00EB05_13    ; unused, index doesn't exist
 - D 0 - I - 0x009E36 02:9E26: 07 EB     .word _sound_0x00EB17_14
 - D 0 - I - 0x009E38 02:9E28: F2 AB     .word _music_ABF2_15_stage_is_complete
 - D 0 - I - 0x009E3A 02:9E2A: 5A AE     .word _music_AE5A_16_game_over
@@ -2488,16 +2488,16 @@ tbl_0x009E10_music_data:
 
 _music_9E2E_05_concrete_stage_soundtrack:
 - D 0 - I - 0x009E3E 02:9E2E: 01        .byte $01   ; 
-- D 0 - I - 0x009E3F 02:9E2F: 3A 9E     .word ch_05_9E3A_00
-- D 0 - I - 0x009E41 02:9E31: E4 9F     .word ch_05_9FE4_01
-- D 0 - I - 0x009E43 02:9E33: 90 A1     .word ch_05_A190_02
-- D 0 - I - 0x009E45 02:9E35: 2A A2     .word ch_05_A22A_03
+- D 0 - I - 0x009E3F 02:9E2F: 3A 9E     .word off_ch_05_9E3A_00
+- D 0 - I - 0x009E41 02:9E31: E4 9F     .word off_ch_05_9FE4_01
+- D 0 - I - 0x009E43 02:9E33: 90 A1     .word off_ch_05_A190_02
+- D 0 - I - 0x009E45 02:9E35: 2A A2     .word off_ch_05_A22A_03
 - - - - - - 0x009E47 02:9E37: 00 00     .word $0000    ; 04
 - D 0 - I - 0x009E49 02:9E39: 14        .byte $14   ; 
 
 
 
-ch_05_9E3A_00:
+off_ch_05_9E3A_00:
 - D 0 - I - 0x009E4A 02:9E3A: E0        .byte $E0   ; 
 - D 0 - I - 0x009E4B 02:9E3B: 3E A9     .word off_E0_A93E
 - D 0 - I - 0x009E4D 02:9E3D: 8F        .byte $8F   ; 
@@ -2926,7 +2926,7 @@ ch_05_9E3A_00:
 
 
 
-ch_05_9FE4_01:
+off_ch_05_9FE4_01:
 - D 0 - I - 0x009FF4 02:9FE4: E1        .byte $E1   ; 
 - D 0 - I - 0x009FF5 02:9FE5: 82 A9     .word off_E1_A982
 - D 0 - I - 0x009FF7 02:9FE7: 83        .byte $83   ; 
@@ -3357,7 +3357,7 @@ ch_05_9FE4_01:
 
 
 
-ch_05_A190_02:
+off_ch_05_A190_02:
 - D 1 - I - 0x00A1A0 02:A190: E2        .byte $E2   ; 
 - D 1 - I - 0x00A1A1 02:A191: 92 AA     .word off_E2_AA92
 - D 1 - I - 0x00A1A3 02:A193: 82        .byte $82   ; 
@@ -3514,7 +3514,7 @@ ch_05_A190_02:
 
 
 
-ch_05_A22A_03:
+off_ch_05_A22A_03:
 - D 1 - I - 0x00A23A 02:A22A: E3        .byte $E3   ; 
 - D 1 - I - 0x00A23B 02:A22B: 96 AA     .word off_E3_AA96
 - D 1 - I - 0x00A23D 02:A22D: 82        .byte $82   ; 
@@ -3643,16 +3643,16 @@ ch_05_A22A_03:
 
 _music_A2A6_02_bricks_stage_soundtrack:
 - D 1 - I - 0x00A2B6 02:A2A6: 01        .byte $01   ; 
-- D 1 - I - 0x00A2B7 02:A2A7: B2 A2     .word ch_02_A2B2_00
-- D 1 - I - 0x00A2B9 02:A2A9: 61 A4     .word ch_02_A461_01
-- D 1 - I - 0x00A2BB 02:A2AB: 12 A6     .word ch_02_A612_02
-- D 1 - I - 0x00A2BD 02:A2AD: 73 A6     .word ch_02_A673_03
+- D 1 - I - 0x00A2B7 02:A2A7: B2 A2     .word off_ch_02_A2B2_00
+- D 1 - I - 0x00A2B9 02:A2A9: 61 A4     .word off_ch_02_A461_01
+- D 1 - I - 0x00A2BB 02:A2AB: 12 A6     .word off_ch_02_A612_02
+- D 1 - I - 0x00A2BD 02:A2AD: 73 A6     .word off_ch_02_A673_03
 - - - - - - 0x00A2BF 02:A2AF: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00A2C1 02:A2B1: 15        .byte $15   ; 
 
 
 
-ch_02_A2B2_00:
+off_ch_02_A2B2_00:
 - D 1 - I - 0x00A2C2 02:A2B2: E0        .byte $E0   ; 
 - D 1 - I - 0x00A2C3 02:A2B3: 3E A9     .word off_E0_A93E
 - D 1 - I - 0x00A2C5 02:A2B5: CA        .byte $CA   ; 
@@ -4086,7 +4086,7 @@ ch_02_A2B2_00:
 
 
 
-ch_02_A461_01:
+off_ch_02_A461_01:
 - D 1 - I - 0x00A471 02:A461: E1        .byte $E1   ; 
 - D 1 - I - 0x00A472 02:A462: 82 A9     .word off_E1_A982
 - D 1 - I - 0x00A474 02:A464: 8A        .byte $8A   ; 
@@ -4522,7 +4522,7 @@ ch_02_A461_01:
 
 
 
-ch_02_A612_02:
+off_ch_02_A612_02:
 - D 1 - I - 0x00A622 02:A612: E2        .byte $E2   ; 
 - D 1 - I - 0x00A623 02:A613: 92 AA     .word off_E2_AA92
 - D 1 - I - 0x00A625 02:A615: CA        .byte $CA   ; 
@@ -4622,7 +4622,7 @@ ch_02_A612_02:
 
 
 
-ch_02_A673_03:
+off_ch_02_A673_03:
 - D 1 - I - 0x00A683 02:A673: E3        .byte $E3   ; 
 - D 1 - I - 0x00A684 02:A674: 96 AA     .word off_E3_AA96
 - D 1 - I - 0x00A686 02:A676: CA        .byte $CA   ; 
@@ -4717,16 +4717,16 @@ ch_02_A673_03:
 
 _music_A6CD_03_final_cutscene:
 - D 1 - I - 0x00A6DD 02:A6CD: 01        .byte $01   ; 
-- D 1 - I - 0x00A6DE 02:A6CE: D9 A6     .word ch_03_A6D9_00
-- D 1 - I - 0x00A6E0 02:A6D0: 73 A7     .word ch_03_A773_01
-- D 1 - I - 0x00A6E2 02:A6D2: 0F A8     .word ch_03_A80F_02
-- D 1 - I - 0x00A6E4 02:A6D4: C4 A8     .word ch_03_A8C4_03
+- D 1 - I - 0x00A6DE 02:A6CE: D9 A6     .word off_ch_03_A6D9_00
+- D 1 - I - 0x00A6E0 02:A6D0: 73 A7     .word off_ch_03_A773_01
+- D 1 - I - 0x00A6E2 02:A6D2: 0F A8     .word off_ch_03_A80F_02
+- D 1 - I - 0x00A6E4 02:A6D4: C4 A8     .word off_ch_03_A8C4_03
 - - - - - - 0x00A6E6 02:A6D6: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00A6E8 02:A6D8: 14        .byte $14   ; 
 
 
 
-ch_03_A6D9_00:
+off_ch_03_A6D9_00:
 - D 1 - I - 0x00A6E9 02:A6D9: E0        .byte $E0   ; 
 - D 1 - I - 0x00A6EA 02:A6DA: 3E A9     .word off_E0_A93E
 - D 1 - I - 0x00A6EC 02:A6DC: CA        .byte $CA   ; 
@@ -4883,7 +4883,7 @@ ch_03_A6D9_00:
 
 
 
-ch_03_A773_01:
+off_ch_03_A773_01:
 - D 1 - I - 0x00A783 02:A773: E1        .byte $E1   ; 
 - D 1 - I - 0x00A784 02:A774: 82 A9     .word off_E1_A982
 - D 1 - I - 0x00A786 02:A776: 8A        .byte $8A   ; 
@@ -5042,7 +5042,7 @@ ch_03_A773_01:
 
 
 
-ch_03_A80F_02:
+off_ch_03_A80F_02:
 - D 1 - I - 0x00A81F 02:A80F: E2        .byte $E2   ; 
 - D 1 - I - 0x00A820 02:A810: 92 AA     .word off_E2_AA92
 - D 1 - I - 0x00A822 02:A812: CA        .byte $CA   ; 
@@ -5226,7 +5226,7 @@ ch_03_A80F_02:
 
 
 
-ch_03_A8C4_03:
+off_ch_03_A8C4_03:
 - D 1 - I - 0x00A8D4 02:A8C4: E3        .byte $E3   ; 
 - D 1 - I - 0x00A8D5 02:A8C5: 96 AA     .word off_E3_AA96
 - D 1 - I - 0x00A8D7 02:A8C7: CA        .byte $CA   ; 
@@ -5763,16 +5763,16 @@ off_E3_AA96:
 
 _music_AABA_0A_pipes_stage_soundtrack:
 - D 1 - I - 0x00AACA 02:AABA: 01        .byte $01   ; 
-- D 1 - I - 0x00AACB 02:AABB: C6 AA     .word ch_0A_AAC6_00
-- D 1 - I - 0x00AACD 02:AABD: 1A AB     .word ch_0A_AB1A_01
-- D 1 - I - 0x00AACF 02:AABF: 63 AB     .word ch_0A_AB63_02
-- D 1 - I - 0x00AAD1 02:AAC1: B7 AB     .word ch_0A_ABB7_03
+- D 1 - I - 0x00AACB 02:AABB: C6 AA     .word off_ch_0A_AAC6_00
+- D 1 - I - 0x00AACD 02:AABD: 1A AB     .word off_ch_0A_AB1A_01
+- D 1 - I - 0x00AACF 02:AABF: 63 AB     .word off_ch_0A_AB63_02
+- D 1 - I - 0x00AAD1 02:AAC1: B7 AB     .word off_ch_0A_ABB7_03
 - - - - - - 0x00AAD3 02:AAC3: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00AAD5 02:AAC5: 10        .byte $10   ; 
 
 
 
-ch_0A_AAC6_00:
+off_ch_0A_AAC6_00:
 - D 1 - I - 0x00AAD6 02:AAC6: E0        .byte $E0   ; 
 - D 1 - I - 0x00AAD7 02:AAC7: 0A AA     .word off_E0_AA0A
 - D 1 - I - 0x00AAD9 02:AAC9: 80        .byte $80   ; 
@@ -5859,7 +5859,7 @@ ch_0A_AAC6_00:
 
 
 
-ch_0A_AB1A_01:
+off_ch_0A_AB1A_01:
 - D 1 - I - 0x00AB2A 02:AB1A: E1        .byte $E1   ; 
 - D 1 - I - 0x00AB2B 02:AB1B: 4E AA     .word off_E1_AA4E
 - D 1 - I - 0x00AB2D 02:AB1D: 84        .byte $84   ; 
@@ -5935,7 +5935,7 @@ ch_0A_AB1A_01:
 
 
 
-ch_0A_AB63_02:
+off_ch_0A_AB63_02:
 - D 1 - I - 0x00AB73 02:AB63: E2        .byte $E2   ; 
 - D 1 - I - 0x00AB74 02:AB64: 92 AA     .word off_E2_AA92
 - D 1 - I - 0x00AB76 02:AB66: 80        .byte $80   ; 
@@ -6022,7 +6022,7 @@ ch_0A_AB63_02:
 
 
 
-ch_0A_ABB7_03:
+off_ch_0A_ABB7_03:
 - D 1 - I - 0x00ABC7 02:ABB7: E3        .byte $E3   ; 
 - D 1 - I - 0x00ABC8 02:ABB8: 96 AA     .word off_E3_AA96
 - D 1 - I - 0x00ABCA 02:ABBA: 84        .byte $84   ; 
@@ -6092,16 +6092,16 @@ _music_ABF2_0D:
 _music_ABF2_0E:
 _music_ABF2_15_stage_is_complete:
 - D 1 - I - 0x00AC02 02:ABF2: 00        .byte $00   ; 
-- D 1 - I - 0x00AC03 02:ABF3: FE AB     .word ch_15_ABFE_00
-- D 1 - I - 0x00AC05 02:ABF5: 1C AC     .word ch_15_AC1C_01
-- D 1 - I - 0x00AC07 02:ABF7: 3C AC     .word ch_15_AC3C_02
-- D 1 - I - 0x00AC09 02:ABF9: 5F AC     .word ch_15_AC5F_03
+- D 1 - I - 0x00AC03 02:ABF3: FE AB     .word off_ch_15_ABFE_00
+- D 1 - I - 0x00AC05 02:ABF5: 1C AC     .word off_ch_15_AC1C_01
+- D 1 - I - 0x00AC07 02:ABF7: 3C AC     .word off_ch_15_AC3C_02
+- D 1 - I - 0x00AC09 02:ABF9: 5F AC     .word off_ch_15_AC5F_03
 - - - - - - 0x00AC0B 02:ABFB: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00AC0D 02:ABFD: 19        .byte $19   ; 
 
 
 
-ch_15_ABFE_00:
+off_ch_15_ABFE_00:
 - D 1 - I - 0x00AC0E 02:ABFE: E0        .byte $E0   ; 
 - D 1 - I - 0x00AC0F 02:ABFF: 3E A9     .word off_E0_A93E
 - D 1 - I - 0x00AC11 02:AC01: 83        .byte $83   ; 
@@ -6134,7 +6134,7 @@ ch_15_ABFE_00:
 
 
 
-ch_15_AC1C_01:
+off_ch_15_AC1C_01:
 - D 1 - I - 0x00AC2C 02:AC1C: E1        .byte $E1   ; 
 - D 1 - I - 0x00AC2D 02:AC1D: 82 A9     .word off_E1_A982
 - D 1 - I - 0x00AC2F 02:AC1F: 8A        .byte $8A   ; 
@@ -6169,7 +6169,7 @@ ch_15_AC1C_01:
 
 
 
-ch_15_AC3C_02:
+off_ch_15_AC3C_02:
 - D 1 - I - 0x00AC4C 02:AC3C: E2        .byte $E2   ; 
 - D 1 - I - 0x00AC4D 02:AC3D: 92 AA     .word off_E2_AA92
 - D 1 - I - 0x00AC4F 02:AC3F: 82        .byte $82   ; 
@@ -6207,7 +6207,7 @@ ch_15_AC3C_02:
 
 
 
-ch_15_AC5F_03:
+off_ch_15_AC5F_03:
 - D 1 - I - 0x00AC6F 02:AC5F: E3        .byte $E3   ; 
 - D 1 - I - 0x00AC70 02:AC60: 96 AA     .word off_E3_AA96
 - D 1 - I - 0x00AC72 02:AC62: 82        .byte $82   ; 
@@ -6240,8 +6240,8 @@ ch_15_AC5F_03:
 
 _music_AC7B_07:
 - D 1 - I - 0x00AC8B 02:AC7B: 01        .byte $01   ; 
-- D 1 - I - 0x00AC8C 02:AC7C: 87 AC     .word ch_07_AC87_00
-- D 1 - I - 0x00AC8E 02:AC7E: D0 AC     .word ch_07_ACD0_01
+- D 1 - I - 0x00AC8C 02:AC7C: 87 AC     .word off_ch_07_AC87_00
+- D 1 - I - 0x00AC8E 02:AC7E: D0 AC     .word off_ch_07_ACD0_01
 - D 1 - I - 0x00AC90 02:AC80: 00 00     .word $0000    ; 02
 - D 1 - I - 0x00AC92 02:AC82: 00 00     .word $0000    ; 03
 - - - - - - 0x00AC94 02:AC84: 00 00     .word $0000    ; 04
@@ -6249,7 +6249,7 @@ _music_AC7B_07:
 
 
 
-ch_07_AC87_00:
+off_ch_07_AC87_00:
 - D 1 - I - 0x00AC97 02:AC87: E0        .byte $E0   ; 
 - D 1 - I - 0x00AC98 02:AC88: 3E A9     .word off_E0_A93E
 - D 1 - I - 0x00AC9A 02:AC8A: CA        .byte $CA   ; 
@@ -6325,7 +6325,7 @@ ch_07_AC87_00:
 
 
 
-ch_07_ACD0_01:
+off_ch_07_ACD0_01:
 - D 1 - I - 0x00ACE0 02:ACD0: E1        .byte $E1   ; 
 - D 1 - I - 0x00ACE1 02:ACD1: 82 A9     .word off_E1_A982
 - D 1 - I - 0x00ACE3 02:ACD3: 8A        .byte $8A   ; 
@@ -6405,16 +6405,16 @@ ch_07_ACD0_01:
 
 _music_AD1B_08_pipes_stage_is_complete:
 - D 1 - I - 0x00AD2B 02:AD1B: 00        .byte $00   ; 
-- D 1 - I - 0x00AD2C 02:AD1C: 27 AD     .word ch_08_AD27_00
-- D 1 - I - 0x00AD2E 02:AD1E: 41 AD     .word ch_08_AD41_01
-- D 1 - I - 0x00AD30 02:AD20: 80 AD     .word ch_08_AD80_02
-- D 1 - I - 0x00AD32 02:AD22: 9A AD     .word ch_08_AD9A_03
+- D 1 - I - 0x00AD2C 02:AD1C: 27 AD     .word off_ch_08_AD27_00
+- D 1 - I - 0x00AD2E 02:AD1E: 41 AD     .word off_ch_08_AD41_01
+- D 1 - I - 0x00AD30 02:AD20: 80 AD     .word off_ch_08_AD80_02
+- D 1 - I - 0x00AD32 02:AD22: 9A AD     .word off_ch_08_AD9A_03
 - - - - - - 0x00AD34 02:AD24: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00AD36 02:AD26: 10        .byte $10   ; 
 
 
 
-ch_08_AD27_00:
+off_ch_08_AD27_00:
 - D 1 - I - 0x00AD37 02:AD27: E0        .byte $E0   ; 
 - D 1 - I - 0x00AD38 02:AD28: 0A AA     .word off_E0_AA0A
 - D 1 - I - 0x00AD3A 02:AD2A: 81        .byte $81   ; 
@@ -6443,7 +6443,7 @@ ch_08_AD27_00:
 
 
 
-ch_08_AD41_01:
+off_ch_08_AD41_01:
 - D 1 - I - 0x00AD51 02:AD41: E1        .byte $E1   ; 
 - D 1 - I - 0x00AD52 02:AD42: 4E AA     .word off_E1_AA4E
 - D 1 - I - 0x00AD54 02:AD44: E1        .byte $E1   ; 
@@ -6503,7 +6503,7 @@ ch_08_AD41_01:
 
 
 
-ch_08_AD80_02:
+off_ch_08_AD80_02:
 - D 1 - I - 0x00AD90 02:AD80: E2        .byte $E2   ; 
 - D 1 - I - 0x00AD91 02:AD81: 92 AA     .word off_E2_AA92
 - D 1 - I - 0x00AD93 02:AD83: 81        .byte $81   ; 
@@ -6532,7 +6532,7 @@ ch_08_AD80_02:
 
 
 
-ch_08_AD9A_03:
+off_ch_08_AD9A_03:
 - D 1 - I - 0x00ADAA 02:AD9A: E3        .byte $E3   ; 
 - D 1 - I - 0x00ADAB 02:AD9B: 96 AA     .word off_E3_AA96
 - D 1 - I - 0x00ADAD 02:AD9D: 81        .byte $81   ; 
@@ -6563,16 +6563,16 @@ ch_08_AD9A_03:
 
 _music_ADB4_09_menu:
 - D 1 - I - 0x00ADC4 02:ADB4: 01        .byte $01   ; 
-- D 1 - I - 0x00ADC5 02:ADB5: C0 AD     .word ch_09_ADC0_00
-- D 1 - I - 0x00ADC7 02:ADB7: E6 AD     .word ch_09_ADE6_01
-- D 1 - I - 0x00ADC9 02:ADB9: 1E AE     .word ch_09_AE1E_02
-- D 1 - I - 0x00ADCB 02:ADBB: 44 AE     .word ch_09_AE44_03
+- D 1 - I - 0x00ADC5 02:ADB5: C0 AD     .word off_ch_09_ADC0_00
+- D 1 - I - 0x00ADC7 02:ADB7: E6 AD     .word off_ch_09_ADE6_01
+- D 1 - I - 0x00ADC9 02:ADB9: 1E AE     .word off_ch_09_AE1E_02
+- D 1 - I - 0x00ADCB 02:ADBB: 44 AE     .word off_ch_09_AE44_03
 - - - - - - 0x00ADCD 02:ADBD: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00ADCF 02:ADBF: 13        .byte $13   ; 
 
 
 
-ch_09_ADC0_00:
+off_ch_09_ADC0_00:
 - D 1 - I - 0x00ADD0 02:ADC0: E0        .byte $E0   ; 
 - D 1 - I - 0x00ADD1 02:ADC1: 3E A9     .word off_E0_A93E
 - D 1 - I - 0x00ADD3 02:ADC3: CA        .byte $CA   ; 
@@ -6613,7 +6613,7 @@ ch_09_ADC0_00:
 
 
 
-ch_09_ADE6_01:
+off_ch_09_ADE6_01:
 - D 1 - I - 0x00ADF6 02:ADE6: E1        .byte $E1   ; 
 - D 1 - I - 0x00ADF7 02:ADE7: 4E AA     .word off_E1_AA4E
 - D 1 - I - 0x00ADF9 02:ADE9: CA        .byte $CA   ; 
@@ -6672,7 +6672,7 @@ ch_09_ADE6_01:
 
 
 
-ch_09_AE1E_02:
+off_ch_09_AE1E_02:
 - D 1 - I - 0x00AE2E 02:AE1E: E2        .byte $E2   ; 
 - D 1 - I - 0x00AE2F 02:AE1F: 92 AA     .word off_E2_AA92
 - D 1 - I - 0x00AE31 02:AE21: CA        .byte $CA   ; 
@@ -6713,7 +6713,7 @@ ch_09_AE1E_02:
 
 
 
-ch_09_AE44_03:
+off_ch_09_AE44_03:
 - D 1 - I - 0x00AE54 02:AE44: E3        .byte $E3   ; 
 - D 1 - I - 0x00AE55 02:AE45: 96 AA     .word off_E3_AA96
 - D 1 - I - 0x00AE57 02:AE47: CA        .byte $CA   ; 
@@ -6740,16 +6740,16 @@ ch_09_AE44_03:
 
 _music_AE5A_16_game_over:
 - D 1 - I - 0x00AE6A 02:AE5A: 00        .byte $00   ; 
-- D 1 - I - 0x00AE6B 02:AE5B: 66 AE     .word ch_16_AE66_00
-- D 1 - I - 0x00AE6D 02:AE5D: 87 AE     .word ch_16_AE87_01
-- D 1 - I - 0x00AE6F 02:AE5F: AA AE     .word ch_16_AEAA_02
+- D 1 - I - 0x00AE6B 02:AE5B: 66 AE     .word off_ch_16_AE66_00
+- D 1 - I - 0x00AE6D 02:AE5D: 87 AE     .word off_ch_16_AE87_01
+- D 1 - I - 0x00AE6F 02:AE5F: AA AE     .word off_ch_16_AEAA_02
 - D 1 - I - 0x00AE71 02:AE61: 00 00     .word $0000    ; 03
 - - - - - - 0x00AE73 02:AE63: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00AE75 02:AE65: 12        .byte $12   ; 
 
 
 
-ch_16_AE66_00:
+off_ch_16_AE66_00:
 - D 1 - I - 0x00AE76 02:AE66: E0        .byte $E0   ; 
 - D 1 - I - 0x00AE77 02:AE67: 3E A9     .word off_E0_A93E
 - D 1 - I - 0x00AE79 02:AE69: 83        .byte $83   ; 
@@ -6785,7 +6785,7 @@ ch_16_AE66_00:
 
 
 
-ch_16_AE87_01:
+off_ch_16_AE87_01:
 - D 1 - I - 0x00AE97 02:AE87: E1        .byte $E1   ; 
 - D 1 - I - 0x00AE98 02:AE88: 82 A9     .word off_E1_A982
 - D 1 - I - 0x00AE9A 02:AE8A: 8A        .byte $8A   ; 
@@ -6823,7 +6823,7 @@ ch_16_AE87_01:
 
 
 
-ch_16_AEAA_02:
+off_ch_16_AEAA_02:
 - D 1 - I - 0x00AEBA 02:AEAA: E2        .byte $E2   ; 
 - D 1 - I - 0x00AEBB 02:AEAB: 92 AA     .word off_E2_AA92
 - D 1 - I - 0x00AEBD 02:AEAD: 80        .byte $80   ; 
@@ -6837,16 +6837,16 @@ ch_16_AEAA_02:
 
 _music_AEB3_01_title_screen:
 - D 1 - I - 0x00AEC3 02:AEB3: 01        .byte $01   ; 
-- D 1 - I - 0x00AEC4 02:AEB4: BF AE     .word ch_01_AEBF_00
-- D 1 - I - 0x00AEC6 02:AEB6: 13 AF     .word ch_01_AF13_01
-- D 1 - I - 0x00AEC8 02:AEB8: 69 AF     .word ch_01_AF69_02
-- D 1 - I - 0x00AECA 02:AEBA: B8 AF     .word ch_01_AFB8_03
+- D 1 - I - 0x00AEC4 02:AEB4: BF AE     .word off_ch_01_AEBF_00
+- D 1 - I - 0x00AEC6 02:AEB6: 13 AF     .word off_ch_01_AF13_01
+- D 1 - I - 0x00AEC8 02:AEB8: 69 AF     .word off_ch_01_AF69_02
+- D 1 - I - 0x00AECA 02:AEBA: B8 AF     .word off_ch_01_AFB8_03
 - - - - - - 0x00AECC 02:AEBC: 00 00     .word $0000    ; 04
 - D 1 - I - 0x00AECE 02:AEBE: 14        .byte $14   ; 
 
 
 
-ch_01_AEBF_00:
+off_ch_01_AEBF_00:
 - D 1 - I - 0x00AECF 02:AEBF: E0        .byte $E0   ; 
 - D 1 - I - 0x00AED0 02:AEC0: 3E A9     .word off_E0_A93E
 - D 1 - I - 0x00AED2 02:AEC2: 83        .byte $83   ; 
@@ -6933,7 +6933,7 @@ ch_01_AEBF_00:
 
 
 
-ch_01_AF13_01:
+off_ch_01_AF13_01:
 - D 1 - I - 0x00AF23 02:AF13: E1        .byte $E1   ; 
 - D 1 - I - 0x00AF24 02:AF14: 82 A9     .word off_E1_A982
 - D 1 - I - 0x00AF26 02:AF16: 8A        .byte $8A   ; 
@@ -7022,7 +7022,7 @@ ch_01_AF13_01:
 
 
 
-ch_01_AF69_02:
+off_ch_01_AF69_02:
 - D 1 - I - 0x00AF79 02:AF69: E2        .byte $E2   ; 
 - D 1 - I - 0x00AF7A 02:AF6A: 92 AA     .word off_E2_AA92
 - D 1 - I - 0x00AF7C 02:AF6C: 82        .byte $82   ; 
@@ -7104,7 +7104,7 @@ ch_01_AF69_02:
 
 
 
-ch_01_AFB8_03:
+off_ch_01_AFB8_03:
 - D 1 - I - 0x00AFC8 02:AFB8: E3        .byte $E3   ; 
 - D 1 - I - 0x00AFC9 02:AFB9: 96 AA     .word off_E3_AA96
 - D 1 - I - 0x00AFCB 02:AFBB: 82        .byte $82   ; 
