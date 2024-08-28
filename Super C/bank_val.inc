@@ -96,11 +96,11 @@ con_plr_status_arrived                  = $08 ; arrived into the passage to the 
 con_buf_mode_00                         = $00 ; buffer is closed and can't be read further
 con_buf_mode_01                         = $01 ; write bytes until FF is found (in reality only used to change 2006 address)
 ; con_buf_mode_02                       = $02 ; unused
-con_buf_mode_03                         = $03 ; 1st byte = counter, 2nd byte = fill byte (increase 2006 by 01)
+con_buf_mode_03                         = $03 ; 1st byte = counter, 2nd byte = fill tile (increase 2006 by 01)
 ; con_buf_mode_04                       = $04 ; unused
 ; con_buf_mode_05                       = $05 ; unused
-con_buf_mode_06                         = $06 ; 1st byte = counter, then list of bytes (increase 2006 by 01)
-con_buf_mode_07                         = $07 ; 1st byte = counter, then list of bytes (increase 2006 by 20)
+con_buf_mode_06                         = $06 ; 1st byte = counter, then a list of bytes (increase 2006 by 01)
+con_buf_mode_07                         = $07 ; 1st byte = counter, then a list of bytes (increase 2006 by 20)
 
 
 
