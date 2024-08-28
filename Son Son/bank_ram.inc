@@ -318,7 +318,7 @@ ram_006B_useless_00                     = $006B ; 000035 000050 000C82 000E42 00
 
 
 ; 00/01/08
-ram_006C                                = $006C ; 000035 000050 000C95 000E46 003029 0060FB 006132 
+ram_screen_spd_X_lo                     = $006C ; 000035 000050 000C95 000E46 003029 0060FB 006132 
 
 
 
@@ -327,8 +327,8 @@ ram_006D_useless_00                     = $006D ; 000035 000050 000C91 00302F 00
 
 
 
-; bzk optimize, useless address
-ram_006E_useless                        = $006E ; 000035 000050 000C7C 006136 
+; bzk optimize, useless address, holds 00
+ram_006E_useless_00                     = $006E ; 000035 000050 000C7C 006136 
 
 
 
@@ -358,13 +358,13 @@ ram_screen_pos_X_hi                     = $0074 ; 000035 000050 0003D5 000C6C 00
 
 
 
-; bzk optimize, useless address
-ram_0075_useless                        = $0075 ; 000035 000050 000C74 
+; bzk optimize, useless address, holds 00
+ram_0075_useless_00                     = $0075 ; 000035 000050 000C74 
 
 
 
-; bzk optimize, useless address
-ram_0076_useless                        = $0076 ; 000035 000050 0003CF 000C78 
+; bzk optimize, useless address, holds 00
+ram_0076_useless_00                     = $0076 ; 000035 000050 0003CF 000C78 
 
 
 
@@ -2659,7 +2659,6 @@ ram_ppu_buffer_2                        = $06DB ; 000035 0000C9 000109 002C90 00
 
 
 ; for sound engine
-; bzk optimize, 0705 seems useless
 ram_0701_se                             = $0701 ; 000035 0055E6 005615 005617 005674 
 ; ram_0702                              = $0702 ; 000035 0055E6 005615 005617 005679 
 ; ram_0703                              = $0703 ; 000035 0055E6 005615 005617 00567E 
