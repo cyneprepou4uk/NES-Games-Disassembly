@@ -2,8 +2,6 @@
 ; чит для яркости AOUGSOEN
 
 ; todo
-    ; найти конты
-    ; найти апгрейды
     ; найти очки и очки за победу над боссом
     ; найти индексы объектов (молоко, сердце, 1 up)
     ; con для 0x010304 (а может и нет)
@@ -55,14 +53,11 @@
 
 
 
-; enable ability to make changes in sertain banks without consequences
-con_bzk_hack                            = $00 ; for bzk_warning_001, see 0x01032C
-
-
-
 ; MISC
+con_bzk_hack                            = $00 ; set to 01 before hacking
 con_prg_bank                            = $00 ; 
 con_chr_bank                            = $00 ; todo
+
 
 
 ; ram_002D_btn
@@ -165,8 +160,8 @@ con_0708_80                             = $80 ;
 con_0776_spr_A                          = $00 ; .... ..xx
 con_0776_04                             = $04 ; 1 check found 0x00407F
 con_0776_08                             = $08 ; several checks found
-; con_0776_10                           = $10 ; 
-; con_0776_20                           = $20 ; 0x0040A9 0x0040DA (supposed to be sprite priority over background?)
+; con_0776_10                           = $10 ; unused
+; con_0776_20                           = $20 ; unused, 0x0040A9 0x0040DA (was supposed to be sprite priority over background?)
 con_0776_flip_H                         = $40 ; flip horisontally if set
 con_0776_flip_V                         = $80 ; flip vertically if set
 

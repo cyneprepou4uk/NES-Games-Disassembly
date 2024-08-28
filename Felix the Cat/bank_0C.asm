@@ -6,6 +6,40 @@
 
 
 
+.export sub_0x018927_add_spd_Y
+.export sub_0x018947_move_obj_Y_axis
+.export loc_0x018947_move_obj_Y_axis
+.export sub_0x018ACB_object_handler
+.export ofs_005_2C_0x0194FE_03
+.export ofs_005_2C_0x019992_02
+.export ofs_005_2C_0x019992_04
+.export ofs_005_2C_0x019A73_01
+.export ofs_005_24_0x019E2E_01
+.export ofs_005_24_0x019E38_02
+.export ofs_005_24_0x019E38_03
+.export ofs_005_25_0x019E7D_01
+.export tbl_0x01A0F4_pos_X_lo
+.export tbl_0x01A0FD_pos_Y_lo
+.export tbl_0x01A107_score
+.export tbl_0x01A83C_object_handler
+.export _off011_0x01B8E4_00
+.export _off011_0x01B8E4_01
+.export _off011_0x01B8E4_02
+.export _off013_0x01B83D_00
+.export _off013_0x01B83D_01
+.export _off013_0x01B83D_02
+.export _off014_0x01B8E4_00
+.export _off014_0x01B8E4_01
+.export _off014_0x01B8E4_02
+.export _off010_0x01B93F_00
+.export _off010_0x01B93F_01
+.export _off010_0x01B93F_02
+.export _off015_0x01BD2A_00
+.export _off015_0x01BD2A_01
+.export _off015_0x01BD2A_02
+
+
+
 _off009_8000_01_various_objects:
 _off009_8000_04_continue_screen_bag:
 - D 0 - - - 0x018010 06:8000: 4D 80     .word ofs_005_01_804D_01_ringing_phone
@@ -565,7 +599,7 @@ C - - - - - 0x0183AD 06:839D: D0 1C     BNE bra_83BB
 C - - - - - 0x0183AF 06:839F: A0 00     LDY #$00
 bra_83A1_loop:
 C - - - - - 0x0183B1 06:83A1: B9 B7 84  LDA tbl_84B7_congratulations,Y
-C - - - - - 0x0183B4 06:83A4: 99 00 6F  STA ram_6F00,Y
+C - - - - - 0x0183B4 06:83A4: 99 00 6F  STA ram_data_6F00,Y
 C - - - - - 0x0183B7 06:83A7: C8        INY
 C - - - - - 0x0183B8 06:83A8: C0 0C     CPY #$0C
 C - - - - - 0x0183BA 06:83AA: 90 F5     BCC bra_83A1_loop
@@ -653,9 +687,9 @@ C - - - - - 0x01845D 06:844D: F0 56     BEQ bra_84A5_FF
 C - - - - - 0x01845F 06:844F: 18        CLC
 C - - - - - 0x018460 06:8450: 69 80     ADC #$80
 C - - - - - 0x018462 06:8452: 8D 10 6F  STA ram_6F10
-C - - - - - 0x018465 06:8455: A9 00     LDA #< ram_6F00
+C - - - - - 0x018465 06:8455: A9 00     LDA #< ram_data_6F00
 C - - - - - 0x018467 06:8457: 85 00     STA ram_0000
-C - - - - - 0x018469 06:8459: A9 6F     LDA #> ram_6F00
+C - - - - - 0x018469 06:8459: A9 6F     LDA #> ram_data_6F00
 C - - - - - 0x01846B 06:845B: 85 01     STA ram_0001
 C - - - - - 0x01846D 06:845D: 8A        TXA
 C - - - - - 0x01846E 06:845E: 48        PHA
@@ -1345,7 +1379,6 @@ C - - - - - 0x018926 06:8916: 60        RTS
 
 sub_8917_add_spd_Y:
 loc_8917_add_spd_Y:
-.export sub_0x018927_add_spd_Y
 sub_0x018927_add_spd_Y:
 ; in
     ; A = 
@@ -1370,9 +1403,7 @@ C - - - - - 0x018946 06:8936: 60        RTS
 
 sub_8937_move_obj_Y_axis:
 loc_8937_move_obj_Y_axis:
-.export sub_0x018947_move_obj_Y_axis
 sub_0x018947_move_obj_Y_axis:
-.export loc_0x018947_move_obj_Y_axis
 loc_0x018947_move_obj_Y_axis:
 C D 0 - - - 0x018947 06:8937: BD F2 06  LDA ram_obj_spd_Y_lo,X
 C - - - - - 0x01894A 06:893A: 30 1C     BMI bra_8958
@@ -1617,7 +1648,6 @@ C - - - - - 0x018ACA 06:8ABA: 60        RTS
 
 
 
-.export sub_0x018ACB_object_handler
 sub_0x018ACB_object_handler:
 C - - - - - 0x018ACB 06:8ABB: B9 16 06  LDA ram_0616_obj,Y
 C - - - - - 0x018ACE 06:8ABE: F0 FA     BEQ bra_8ABA_RTS
@@ -3123,7 +3153,6 @@ C D 0 - - - 0x0194FD 06:94ED: 60        RTS
 
 loc_94EE:
 sub_94EE:
-.export ofs_005_2C_0x0194FE_03
 ofs_005_2C_0x0194FE_03:
 ofs_005_11_94EE_01:
 ofs_005_12_94EE_01:
@@ -3714,9 +3743,7 @@ C - - - - - 0x019991 06:9981: 60        RTS
 
 
 
-.export ofs_005_2C_0x019992_02
 ofs_005_2C_0x019992_02:
-.export ofs_005_2C_0x019992_04
 ofs_005_2C_0x019992_04:
 ofs_005_14_9982_02:
 ofs_005_15_9982_02:
@@ -3849,7 +3876,6 @@ C - - - - - 0x019A72 06:9A62: 60        RTS
 
 
 
-.export ofs_005_2C_0x019A73_01
 ofs_005_2C_0x019A73_01:
 C - - J - - 0x019A73 06:9A63: A9 79     LDA #$79
 C - - - - - 0x019A75 06:9A65: 48        PHA
@@ -4349,15 +4375,12 @@ C - - - - - 0x019E2D 06:9E1D: 60        RTS
 
 
 
-.export ofs_005_24_0x019E2E_01
 ofs_005_24_0x019E2E_01:
 C - - J - - 0x019E2E 06:9E1E: A9 03     LDA #$03
 C - - - - - 0x019E30 06:9E20: 9D 16 06  STA ram_0616_obj,X
 C - - - - - 0x019E33 06:9E23: A9 20     LDA #$20    ; hp for professor's face
 C - - - - - 0x019E35 06:9E25: 9D CE 07  STA ram_07CE_obj_hp,X
-.export ofs_005_24_0x019E38_02
 ofs_005_24_0x019E38_02:
-.export ofs_005_24_0x019E38_03
 ofs_005_24_0x019E38_03:
 C - - - - - 0x019E38 06:9E28: BD A2 07  LDA ram_07A2_obj,X
 C - - - - - 0x019E3B 06:9E2B: 1D 8C 07  ORA ram_078C_obj,X
@@ -4392,7 +4415,6 @@ C - - - - - 0x019E7C 06:9E6C: 60        RTS
 
 
 
-.export ofs_005_25_0x019E7D_01
 ofs_005_25_0x019E7D_01:
 C - - J - - 0x019E7D 06:9E6D: A9 02     LDA #con_0776_spr_A + $02
 C - - - - - 0x019E7F 06:9E6F: 9D 76 07  STA ram_0776_obj_flags,X
@@ -4736,7 +4758,6 @@ C - - - - - 0x01A0F3 06:A0E3: 60        RTS
 
 
 
-.export tbl_0x01A0F4_pos_X_lo
 tbl_0x01A0F4_pos_X_lo:
 ; bzk optimize, move to bank FF
 - D 1 - - - 0x01A0F4 06:A0E4: 0C        .byte $0C   ; 00 
@@ -4751,7 +4772,6 @@ tbl_0x01A0F4_pos_X_lo:
 
 
 
-.export tbl_0x01A0FD_pos_Y_lo
 tbl_0x01A0FD_pos_Y_lo:
 ; bzk bug? the 1st byte is 09 index for 0x01A0F4 table
 - D 1 - - - 0x01A0FD 06:A0ED: 14        .byte $14   ; 00 09 
@@ -4767,7 +4787,6 @@ tbl_0x01A0FD_pos_Y_lo:
 
 
 
-.export tbl_0x01A107_score
 tbl_0x01A107_score:
 - D 1 - - - 0x01A107 06:A0F7: 04        .byte con_add_score_100p   ; 0A 
 - D 1 - - - 0x01A108 06:A0F8: 05        .byte con_add_score_150p   ; 0B 
@@ -5831,7 +5850,6 @@ tbl_A808:
 
 
 tbl_A82C_object_handler:
-.export tbl_0x01A83C_object_handler
 tbl_0x01A83C_object_handler:
 ; 00 
 - - - - - - 0x01A83C 06:A82C: 08        .byte $08   ; 
@@ -12175,11 +12193,8 @@ _off016_round_1_3_B783_1F6:
 
 
 
-.export _off011_0x01B8E4_00
 _off011_0x01B8E4_00:
-.export _off011_0x01B8E4_01
 _off011_0x01B8E4_01:
-.export _off011_0x01B8E4_02
 _off011_0x01B8E4_02:
 - - - - - - 0x01B799 06:B789: 18        .byte $18   ; 
 - - - - - - 0x01B79A 06:B78A: 00        .byte $00   ; 
@@ -12348,11 +12363,8 @@ _off011_0x01B8E4_02:
 
 
 
-.export _off013_0x01B83D_00
 _off013_0x01B83D_00:
-.export _off013_0x01B83D_01
 _off013_0x01B83D_01:
-.export _off013_0x01B83D_02
 _off013_0x01B83D_02:
 - D 1 - I - 0x01B83D 06:B82D: AD        .byte $AD   ; 
 - D 1 - I - 0x01B83E 06:B82E: AF        .byte $AF   ; 
@@ -12524,11 +12536,8 @@ _off013_0x01B83D_02:
 
 
 
-.export _off014_0x01B8E4_00
 _off014_0x01B8E4_00:
-.export _off014_0x01B8E4_01
 _off014_0x01B8E4_01:
-.export _off014_0x01B8E4_02
 _off014_0x01B8E4_02:
 - D 1 - I - 0x01B8E4 06:B8D4: 76        .byte $76   ; !!! первые 8 байтов отдельные?
 - D 1 - I - 0x01B8E5 06:B8D5: 7A        .byte $7A   ; 
@@ -12624,11 +12633,8 @@ _off014_0x01B8E4_02:
 
 
 
-.export _off010_0x01B93F_00
 _off010_0x01B93F_00:
-.export _off010_0x01B93F_01
 _off010_0x01B93F_01:
-.export _off010_0x01B93F_02
 _off010_0x01B93F_02:
 - D 1 - I - 0x01B93F 06:B92F: ED A8     .word _off016_round_1_1_A8ED_000
 - D 1 - I - 0x01B941 06:B931: F3 A8     .word _off016_round_1_1_A8F3_002
@@ -13405,11 +13411,8 @@ _off010_0x01B93F_02:
 
 
 
-.export _off015_0x01BD2A_00
 _off015_0x01BD2A_00:
-.export _off015_0x01BD2A_01
 _off015_0x01BD2A_01:
-.export _off015_0x01BD2A_02
 _off015_0x01BD2A_02:
 ; objects
 - D 1 - I - 0x01BF41 06:BF31: 11        .byte con_obj_id_11   ; 00 

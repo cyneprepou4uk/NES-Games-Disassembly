@@ -6,6 +6,13 @@
 
 
 
+.export sub_0x0000AF_prepare_config_for_area
+.export sub_0x000581_turn_off_music_and_sfx
+.export sub_0x0005EE_play_sound
+.export sub_0x000628_update_sound_engine
+
+
+
 loc_8000:
 C D 0 - - - 0x000010 00:8000: A9 00     LDA #$00
 C - - - - - 0x000012 00:8002: 8D 0C 04  STA ram_040C
@@ -113,7 +120,6 @@ C - - - - - 0x0000AE 00:809E: 60        RTS
 
 
 
-.export sub_0x0000AF_prepare_config_for_area
 sub_0x0000AF_prepare_config_for_area:
 C - - - - - 0x0000AF 00:809F: AD 0C 04  LDA ram_040C
 C - - - - - 0x0000B2 00:80A2: C9 03     CMP #$03
@@ -1125,7 +1131,6 @@ tbl_8268_round_data:
 
 
 loc_8571_turn_off_music_and_sfx:
-.export sub_0x000581_turn_off_music_and_sfx
 sub_0x000581_turn_off_music_and_sfx:
 C - - - - - 0x000581 00:8571: A9 0F     LDA #$0F
 C - - - - - 0x000583 00:8573: 8D 15 40  STA $4015
@@ -1176,7 +1181,6 @@ C - - - - - 0x0005EB 00:85DB: 4C A5 92  JMP loc_92A5
 
 
 loc_85DE_play_sound:
-.export sub_0x0005EE_play_sound
 sub_0x0005EE_play_sound:
 C - - - - - 0x0005EE 00:85DE: C9 80     CMP #$80
 C - - - - - 0x0005F0 00:85E0: B0 30     BCS bra_8612_80_FF
@@ -1216,8 +1220,7 @@ C - - - - - 0x000625 00:8615: 4C 78 8C  JMP loc_8C78_music_config
 
 
 loc_8618:
-.export sub_0x000628
-sub_0x000628:
+sub_0x000628_update_sound_engine:
 C - - - - - 0x000628 00:8618: AD 8D 05  LDA ram_058D
 C - - - - - 0x00062B 00:861B: D0 15     BNE bra_8632_RTS
 C - - - - - 0x00062D 00:861D: EE 8D 05  INC ram_058D

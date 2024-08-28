@@ -5,6 +5,34 @@
 ; 0x00C010-0x01000F
 
 
+
+.export _off011_0x00D46C_0C
+.export _off011_0x00D46C_0D
+.export _off011_0x00D46C_0E
+.export _off013_0x00D54C_0C
+.export _off013_0x00D54C_0D
+.export _off013_0x00D54C_0E
+.export _off010_0x00D5D0_0C
+.export _off010_0x00D5D0_0D
+.export _off010_0x00D5D0_0E
+.export _off014_0x00D5D0_0C
+.export _off014_0x00D5D0_0D
+.export _off014_0x00D5D0_0E
+.export _off015_0x00DDD2_0C
+.export _off015_0x00DDD2_0D
+.export _off015_0x00DDD2_0E
+.export _off011_0x00F846_11
+.export _off011_0x00F846_12
+.export _off013_0x00F8B8_11
+.export _off013_0x00F8B8_12
+.export _off010_0x00F916_11
+.export _off010_0x00F916_12
+.export _off014_0x00F916_11
+.export _off014_0x00F916_12
+.export _off015_0x00FF18_11
+.export _off015_0x00FF18_12
+
+
 ; bzk garbage
 - D 0 - - - 0x00C010 03:8000: 80        .byte $80   ; 
 
@@ -8288,11 +8316,8 @@ _off016_round_5_3_9457_1FE:
 
 
 
-.export _off011_0x00D46C_0C
 _off011_0x00D46C_0C:
-.export _off011_0x00D46C_0D
 _off011_0x00D46C_0D:
-.export _off011_0x00D46C_0E
 _off011_0x00D46C_0E:
 - - - - - - 0x00D46C 03:945C: 18        .byte $18   ; 
 - - - - - - 0x00D46D 03:945D: 00        .byte $00   ; 
@@ -8521,11 +8546,8 @@ _off011_0x00D46C_0E:
 
 
 
-.export _off013_0x00D54C_0C
 _off013_0x00D54C_0C:
-.export _off013_0x00D54C_0D
 _off013_0x00D54C_0D:
-.export _off013_0x00D54C_0E
 _off013_0x00D54C_0E:
 - D 0 - I - 0x00D54C 03:953C: AD        .byte $AD   ; 
 - D 0 - I - 0x00D54D 03:953D: AF        .byte $AF   ; 
@@ -8662,17 +8684,11 @@ _off013_0x00D54C_0E:
 
 
 
-.export _off010_0x00D5D0_0C
 _off010_0x00D5D0_0C:
-.export _off010_0x00D5D0_0D
 _off010_0x00D5D0_0D:
-.export _off010_0x00D5D0_0E
 _off010_0x00D5D0_0E:
-.export _off014_0x00D5D0_0C
 _off014_0x00D5D0_0C:
-.export _off014_0x00D5D0_0D
 _off014_0x00D5D0_0D:
-.export _off014_0x00D5D0_0E
 _off014_0x00D5D0_0E:
 - D 0 - I - 0x00D5D0 03:95C0: 01 80     .word _off016_round_5_1_8001_000
 - D 0 - I - 0x00D5D2 03:95C2: 08 80     .word _off016_round_5_1_8008_002
@@ -9705,11 +9721,8 @@ _off014_0x00D5D0_0E:
 
 
 
-.export _off015_0x00DDD2_0C
 _off015_0x00DDD2_0C:
-.export _off015_0x00DDD2_0D
 _off015_0x00DDD2_0D:
-.export _off015_0x00DDD2_0E
 _off015_0x00DDD2_0E:
 ; objects
 - D 0 - I - 0x00DDD2 03:9DC2: 13        .byte con_obj_id_13   ; 00 
@@ -18515,9 +18528,7 @@ _off016_round_7_2_B82F_1FE:
 
 
 
-.export _off011_0x00F846_11
 _off011_0x00F846_11:
-.export _off011_0x00F846_12
 _off011_0x00F846_12:
 - - - - - - 0x00F846 03:B836: 18        .byte $18   ; 
 - - - - - - 0x00F847 03:B837: 00        .byte $00   ; 
@@ -18636,9 +18647,7 @@ _off011_0x00F846_12:
 
 
 
-.export _off013_0x00F8B8_11
 _off013_0x00F8B8_11:
-.export _off013_0x00F8B8_12
 _off013_0x00F8B8_12:
 - D 1 - I - 0x00F8B8 03:B8A8: AF        .byte $AF   ; 
 - D 1 - I - 0x00F8B9 03:B8A9: CA        .byte $CA   ; 
@@ -18737,13 +18746,9 @@ _off013_0x00F8B8_12:
 
 
 
-.export _off010_0x00F916_11
 _off010_0x00F916_11:
-.export _off010_0x00F916_12
 _off010_0x00F916_12:
-.export _off014_0x00F916_11
 _off014_0x00F916_11:
-.export _off014_0x00F916_12
 _off014_0x00F916_12:
 - D 1 - I - 0x00F916 03:B906: F8 9E     .word _off016_round_7_1_9EF8_000
 - D 1 - I - 0x00F918 03:B908: 03 9F     .word _off016_round_7_1_9F03_002
@@ -19519,9 +19524,7 @@ _off014_0x00F916_12:
 
 
 
-.export _off015_0x00FF18_11
 _off015_0x00FF18_11:
-.export _off015_0x00FF18_12
 _off015_0x00FF18_12:
 ; objects
 - D 1 - I - 0x00FF18 03:BF08: 11        .byte con_obj_id_11   ; 00 

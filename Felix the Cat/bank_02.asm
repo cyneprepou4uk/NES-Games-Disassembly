@@ -7,6 +7,28 @@
 
 
 .export sub_0x004010_initialize_animation
+.export loc_0x004027_update_animation_for_all_objects
+.export loc_0x004072
+.export loc_0x00415E_hide_unused_sprites
+.export tbl_0x007207_index
+.export tbl_0x007227_colors
+.export tbl_0x00722C_colors
+.export tbl_0x007231_colors
+.export off_0x007236_phone_call_screen
+.export off_0x0073D1_felix_world_screen
+.export tbl_0x007578_felix_world_image_tiles
+.export tbl_0x007778
+.export off_0x007790_game_over_screen
+.export off_0x007A6F_felix_laughing_screen
+.export off_0x007AEA_the_end_screen
+.export tbl_0x007E32_professor_text_english
+.export tbl_0x007F56_professor_text_japanese
+.export tbl_0x007F62
+.export tbl_0x007F6E
+.export tbl_0x007F7A
+
+
+
 sub_0x004010_initialize_animation:
 ; in
     ; X = object index
@@ -24,7 +46,6 @@ C - - - - - 0x004026 01:8016: 60        RTS
 
 
 
-.export loc_0x004027_update_animation_for_all_objects
 loc_0x004027_update_animation_for_all_objects:
 C D 0 - - - 0x004027 01:8017: A2 00     LDX #$00
 bra_8019_loop:
@@ -80,7 +101,6 @@ C - - - - - 0x004071 01:8061: 60        RTS
 
 
 
-.export loc_0x004072
 loc_0x004072:
 ; in
     ; X = object index
@@ -257,7 +277,6 @@ C - - - - - 0x00415D 01:814D: 60        RTS
 
 
 
-.export loc_0x00415E_hide_unused_sprites
 loc_0x00415E_hide_unused_sprites:
 C D 0 - - - 0x00415E 01:814E: A5 B5     LDA ram_full_oam_flag
 C - - - - - 0x004160 01:8150: D0 0D     BNE bra_815F_RTS
@@ -9047,7 +9066,6 @@ _off007_27_B1E5_02:
 
 
 
-.export tbl_0x007207_index
 tbl_0x007207_index:
 - D 1 - - - 0x007207 01:B1F7: 00        .byte $00   ; 78
 - D 1 - - - 0x007208 01:B1F8: 00        .byte $00   ; 79
@@ -9084,7 +9102,6 @@ tbl_0x007207_index:
 
 
 
-.export tbl_0x007227_colors
 tbl_0x007227_colors:
 - D 1 - - - 0x007227 01:B217: 0F        .byte $0F   ; 00
 - D 1 - - - 0x007228 01:B218: 03        .byte $03   ; 01
@@ -9094,7 +9111,6 @@ tbl_0x007227_colors:
 
 
 
-.export tbl_0x00722C_colors
 tbl_0x00722C_colors:
 - D 1 - - - 0x00722C 01:B21C: 03        .byte $03   ; 00
 - D 1 - - - 0x00722D 01:B21D: 07        .byte $07   ; 01
@@ -9104,7 +9120,6 @@ tbl_0x00722C_colors:
 
 
 
-.export tbl_0x007231_colors
 tbl_0x007231_colors:
 - D 1 - - - 0x007231 01:B221: 00        .byte $00   ; 00
 - D 1 - - - 0x007232 01:B222: 20        .byte $20   ; 01
@@ -9114,7 +9129,6 @@ tbl_0x007231_colors:
 
 
 
-.export off_0x007236_phone_call_screen
 off_0x007236_phone_call_screen:
 ; professor is talking to felix by the phone
 - D 1 - I - 0x007236 01:B226: 03        .byte $03, $00   ; counter and fill tile
@@ -9376,7 +9390,6 @@ off_0x007236_phone_call_screen:
 
 
 
-.export off_0x0073D1_felix_world_screen
 off_0x0073D1_felix_world_screen:
 ; screen between rounds
 - D 1 - I - 0x0073D1 01:B3C1: 42        .byte $42, $70   ; counter and fill tile
@@ -9593,7 +9606,6 @@ off_0x0073D1_felix_world_screen:
 
 
 
-.export tbl_0x007578_felix_world_image_tiles
 tbl_0x007578_felix_world_image_tiles:
 ; image between rounds (00 is default and is not here)
 ; 01 
@@ -9639,7 +9651,6 @@ tbl_0x007578_felix_world_image_tiles:
 
 
 
-.export tbl_0x007778
 tbl_0x007778:
 ; 00 
 - D 1 - I - 0x007778 01:B768: 5C        .byte $5C   ; 
@@ -9670,7 +9681,6 @@ tbl_0x007778:
 
 
 
-.export off_0x007790_game_over_screen
 off_0x007790_game_over_screen:
 - D 1 - I - 0x007790 01:B780: 82        .byte $82   ; counter and list of bytes
 - D 1 - I - 0x007791 01:B781: 6D        .byte $6D, $6D   ; 
@@ -9897,7 +9907,6 @@ off_0x007790_game_over_screen:
 
 
 
-.export off_0x007A6F_felix_laughing_screen
 off_0x007A6F_felix_laughing_screen:
 - D 1 - I - 0x007A6F 01:BA5F: 7F        .byte $7F, $00   ; counter and fill tile
 - D 1 - I - 0x007A71 01:BA61: 7F        .byte $7F, $00   ; counter and fill tile
@@ -9996,7 +10005,6 @@ off_0x007A6F_felix_laughing_screen:
 
 
 
-.export off_0x007AEA_the_end_screen
 off_0x007AEA_the_end_screen:
 ; final screen in the game
 - D 1 - I - 0x007AEA 01:BADA: 47        .byte $47, $00   ; counter and fill tile
@@ -10433,7 +10441,6 @@ off_BDCE_04:
 
 
 
-.export tbl_0x007E32_professor_text_english
 tbl_0x007E32_professor_text_english:
 - D 1 - - - 0x007E32 01:BE22: AB BC     .word off_BCAB_00
 - D 1 - - - 0x007E34 01:BE24: 00 BD     .word off_BD00_01
@@ -10748,7 +10755,6 @@ off_BF14_04:
 
 
 
-.export tbl_0x007F56_professor_text_japanese
 tbl_0x007F56_professor_text_japanese:
 - - - - - - 0x007F56 01:BF46: 3D BE     .word off_BE3D_00
 - - - - - - 0x007F58 01:BF48: 75 BE     .word off_BE75_01
@@ -10759,7 +10765,6 @@ tbl_0x007F56_professor_text_japanese:
 
 
 
-.export tbl_0x007F62
 tbl_0x007F62:
 - D 1 - I - 0x007F62 01:BF52: 01        .byte $01   ; ??? 001
 - D 1 - I - 0x007F63 01:BF53: 02        .byte con_prg_bank + $02   ; 
@@ -10774,7 +10779,6 @@ tbl_0x007F62:
 
 
 
-.export tbl_0x007F6E
 tbl_0x007F6E:
 - D 1 - I - 0x007F6E 01:BF5E: 01        .byte $01   ; ??? 001
 - D 1 - I - 0x007F6F 01:BF5F: 02        .byte con_prg_bank + $02   ; 
@@ -10789,7 +10793,6 @@ tbl_0x007F6E:
 
 
 
-.export tbl_0x007F7A
 tbl_0x007F7A:
 - D 1 - I - 0x007F7A 01:BF6A: 01        .byte $01   ; ??? 001
 - D 1 - I - 0x007F7B 01:BF6B: 02        .byte con_prg_bank + $02   ; 

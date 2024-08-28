@@ -4,9 +4,46 @@
 .org $8000 ; for listing file
 ; 0x010010-0x01400F
 
-; ! don't move any code up to 0x0100F1 until you deal with bzk_warning_001
+; !! bzk before shifting code/data, open bank_val.inc and set con_bzk_hack variable to 01
 
 .export tbl_0x010010_title_screen_objects
+.export tbl_0x010020
+.export tbl_0x01002C
+.export loc_0x010302_background_stuff_for_title_screen
+.export loc_0x01033F
+.export loc_0x010371_prepare_palette
+.export loc_0x010426_prepare_screen_brightening
+.export loc_0x010433_prepare_screen_darkening
+.export off_0x01063A_status_bar
+.export tbl_0x0106C0_boss_score_spr_data
+.export _off011_0x011F4B_06
+.export _off011_0x011F4B_07
+.export _off011_0x011F4B_08
+.export _off013_0x011FA5_06
+.export _off013_0x011FA5_07
+.export _off013_0x011FA5_08
+.export _off010_0x01201F_06
+.export _off010_0x01201F_07
+.export _off010_0x01201F_08
+.export _off014_0x01201F_06
+.export _off014_0x01201F_07
+.export _off014_0x01201F_08
+.export _off015_0x012721_06
+.export _off015_0x012721_07
+.export _off015_0x012721_08
+.export _off011_0x013814_0F
+.export _off011_0x013814_10
+.export _off013_0x01389E_0F
+.export _off013_0x01389E_10
+.export _off010_0x01390A_0F
+.export _off010_0x01390A_10
+.export _off014_0x01390A_0F
+.export _off014_0x01390A_10
+.export _off015_0x013F0C_0F
+.export _off015_0x013F0C_10
+
+
+
 tbl_0x010010_title_screen_objects:
 ; 01 
 - D 0 - - - 0x010010 04:8000: 02        .byte con_obj_id_02   ; 
@@ -31,7 +68,6 @@ tbl_0x010010_title_screen_objects:
 
 
 
-.export tbl_0x010020
 tbl_0x010020:
 - D 0 - I - 0x010020 04:8010: 03        .byte $03   ; ??? 001
 - D 0 - I - 0x010021 04:8011: 08        .byte con_prg_bank + $08   ; 
@@ -46,7 +82,6 @@ tbl_0x010020:
 
 
 
-.export tbl_0x01002C
 tbl_0x01002C:
 - D 0 - I - 0x01002C 04:801C: 01        .byte $01   ; ??? 001
 - D 0 - I - 0x01002D 04:801D: 08        .byte con_prg_bank + $08   ; 
@@ -693,7 +728,6 @@ off_8199_title_screen:
 
 
 
-.export loc_0x010302_background_stuff_for_title_screen
 loc_0x010302_background_stuff_for_title_screen:
 C D 0 - - - 0x010302 04:82F2: 85 00     STA ram_0000
                                     .if con_bzk_hack = $00
@@ -725,12 +759,6 @@ C - - - - - 0x010322 04:8312: 8D 05 6F  STA ram_6F05
 C - - - - - 0x010325 04:8315: E8        INX
 C - - - - - 0x010326 04:8316: BD E5 80  LDA tbl_80E5_background_stuff_for_title_screen,X
 C - - - - - 0x010329 04:8319: 8D 0A 6F  STA ram_6F0A    ; lo
-; bzk_warning_001
-; 80 is a high byte for pointers from 0x0100F5.
-; you need to specify high byte for each pointer instead.
-; open bank_val.inc and set con_bzk_hack to 01, this will fix it.
-; of course if you want to save some space,
-; keep data at 8000-80FF with a fixed 80 high byte
                                     .if con_bzk_hack = $00
 C - - - - - 0x01032C 04:831C: A9 80     LDA #$80    ; common high byte
 C - - - - - 0x01032E 04:831E: 8D 0B 6F  STA ram_6F0B    ; hi
@@ -740,16 +768,15 @@ C - - - - - 0x01032E 04:831E: 8D 0B 6F  STA ram_6F0B    ; hi
                                         LDA tbl_80E5_background_stuff_for_title_screen,X
                                         STA ram_6F0B    ; hi
                                     .endif
-C - - - - - 0x010331 04:8321: A9 00     LDA #< ram_6F00
+C - - - - - 0x010331 04:8321: A9 00     LDA #< ram_data_6F00
 C - - - - - 0x010333 04:8323: 85 00     STA ram_0000
-C - - - - - 0x010335 04:8325: A9 6F     LDA #> ram_6F00
+C - - - - - 0x010335 04:8325: A9 6F     LDA #> ram_data_6F00
 C - - - - - 0x010337 04:8327: 85 01     STA ram_0001
 C - - - - - 0x010339 04:8329: 20 C2 C7  JSR sub_0x01C7D2_prepare_screen_data
 C - - - - - 0x01033C 04:832C: 4C EB C9  JMP loc_0x01C9FB_prg_bankswitch_0C
 
 
 
-.export loc_0x01033F
 loc_0x01033F:
 C D 0 - - - 0x01033F 04:832F: AD 02 20  LDA $2002
 C - - - - - 0x010342 04:8332: A5 10     LDA ram_for_2000
@@ -778,7 +805,6 @@ C - - - - - 0x010370 04:8360: 60        RTS
 
 
 
-.export loc_0x010371_prepare_palette
 loc_0x010371_prepare_palette:
 C D 0 - - - 0x010371 04:8361: A5 40     LDA ram_0040_palette
 C - - - - - 0x010373 04:8363: 0A        ASL
@@ -902,7 +928,6 @@ C - - - - - 0x010425 04:8415: 60        RTS
 
 
 
-.export loc_0x010426_prepare_screen_brightening
 loc_0x010426_prepare_screen_brightening:
 ; bzk optimize, move to bank FF
 C D 0 - - - 0x010426 04:8416: A9 00     LDA #$00
@@ -915,7 +940,6 @@ C - - - - - 0x010432 04:8422: 60        RTS
 
 
 
-.export loc_0x010433_prepare_screen_darkening
 loc_0x010433_prepare_screen_darkening:
 ; bzk optimize, move to bank FF
 C D 0 - - - 0x010433 04:8423: A9 03     LDA #$03
@@ -1223,7 +1247,6 @@ off_861A_01_palette:
 
 
 
-.export off_0x01063A_status_bar
 off_0x01063A_status_bar:
 ; hud at the bottom during gameplay
 - D 0 - I - 0x01063A 04:862A: 82        .byte $82   ; counter and list of bytes
@@ -1290,43 +1313,26 @@ off_0x01063A_status_bar:
 
 
 
-.export tbl_0x0106C0
-tbl_0x0106C0:
-- D 0 - - - 0x0106C0 04:86B0: 07        .byte $07   ; 
-- D 0 - - - 0x0106C1 04:86B1: 0A        .byte $0A   ; 
-- D 0 - - - 0x0106C2 04:86B2: 00        .byte $00   ; 
-- D 0 - - - 0x0106C3 04:86B3: D7        .byte $D7   ; 
-- D 0 - - - 0x0106C4 04:86B4: 00        .byte $00   ; 
-- D 0 - - - 0x0106C5 04:86B5: 02        .byte $02   ; 
-- D 0 - - - 0x0106C6 04:86B6: 00        .byte $00   ; 
-- D 0 - - - 0x0106C7 04:86B7: D5        .byte $D5   ; 
-- D 0 - - - 0x0106C8 04:86B8: 00        .byte $00   ; 
-- D 0 - - - 0x0106C9 04:86B9: F8        .byte $F8   ; 
-- D 0 - - - 0x0106CA 04:86BA: 00        .byte $00   ; 
-- D 0 - - - 0x0106CB 04:86BB: C1        .byte $C1   ; 
-- D 0 - - - 0x0106CC 04:86BC: 00        .byte $00   ; 
-- D 0 - - - 0x0106CD 04:86BD: F0        .byte $F0   ; 
-- D 0 - - - 0x0106CE 04:86BE: 00        .byte $00   ; 
-- D 0 - - - 0x0106CF 04:86BF: C1        .byte $C1   ; 
-- D 0 - - - 0x0106D0 04:86C0: 00        .byte $00   ; 
-- D 0 - - - 0x0106D1 04:86C1: E8        .byte $E8   ; 
-- D 0 - - - 0x0106D2 04:86C2: 00        .byte $00   ; 
-- D 0 - - - 0x0106D3 04:86C3: C1        .byte $C1   ; 
-- D 0 - - - 0x0106D4 04:86C4: 00        .byte $00   ; 
-- D 0 - - - 0x0106D5 04:86C5: E0        .byte $E0   ; 
-- D 0 - - - 0x0106D6 04:86C6: 00        .byte $00   ; 
-- D 0 - - - 0x0106D7 04:86C7: C1        .byte $C1   ; 
-- D 0 - - - 0x0106D8 04:86C8: 00        .byte $00   ; 
-- D 0 - - - 0x0106D9 04:86C9: D8        .byte $D8   ; 
-- D 0 - - - 0x0106DA 04:86CA: 00        .byte $00   ; 
-- D 0 - - - 0x0106DB 04:86CB: C1        .byte $C1   ; 
-- D 0 - - - 0x0106DC 04:86CC: 00        .byte $00   ; 
-- D 0 - - - 0x0106DD 04:86CD: 00        .byte $00   ; 
-- D 0 - - - 0x0106DE 04:86CE: E3        .byte $E3   ; 
-- D 0 - - - 0x0106DF 04:86CF: 80        .byte $80   ; 
+tbl_0x0106C0_boss_score_spr_data:
+- D 0 - - - 0x0106C0 04:86B0: 07        .byte $07   ; ?
+;                                              +-------------------- spr_X
+;                                              |    +--------------- spr_Y
+;                                              |    |    +---------- spr_T
+;                                              |    |    |    +----- spr_A
+;                                              |    |    |    |
+- D 0 - - - 0x0106C1 04:86B1: 0A        .byte $0A, $00, $D7, $00   ; Pts (right half)
+- D 0 - - - 0x0106C5 04:86B5: 02        .byte $02, $00, $D5, $00   ; Pts (left half)
+- D 0 - - - 0x0106C9 04:86B9: F8        .byte $F8, $00, $C1, $00   ; score (ones)
+- D 0 - - - 0x0106CD 04:86BD: F0        .byte $F0, $00, $C1, $00   ; score (tens)
+- D 0 - - - 0x0106D1 04:86C1: E8        .byte $E8, $00, $C1, $00   ; score (hundreds)
+- D 0 - - - 0x0106D5 04:86C5: E0        .byte $E0, $00, $C1, $00   ; score (thousands)
+- D 0 - - - 0x0106D9 04:86C9: D8        .byte $D8, $00, $C1, $00   ; score (tens of thousands)
+- D 0 - - - 0x0106DD 04:86CD: 00        .byte $00   ; animation timer?
+- D 0 - - - 0x0106DE 04:86CE: E3        .byte $E3   ; animation?
+- D 0 - - - 0x0106DF 04:86CF: 80        .byte $80   ; ? probably unused
 
 
-; !!!
+
 _off016_round_3_1_86D0_000:
 - D 0 - I - 0x0106E0 04:86D0: 81        .byte $81   ; 
 - D 0 - I - 0x0106E1 04:86D1: 07        .byte $07   ; 
@@ -10223,11 +10229,8 @@ _off016_round_3_3_9F26_2FE:
 
 
 
-.export _off011_0x011F4B_06
 _off011_0x011F4B_06:
-.export _off011_0x011F4B_07
 _off011_0x011F4B_07:
-.export _off011_0x011F4B_08
 _off011_0x011F4B_08:
 - - - - - - 0x011F4B 04:9F3B: 18        .byte $18   ; 
 - - - - - - 0x011F4C 04:9F3C: 00        .byte $00   ; 
@@ -10322,11 +10325,8 @@ _off011_0x011F4B_08:
 
 
 
-.export _off013_0x011FA5_06
 _off013_0x011FA5_06:
-.export _off013_0x011FA5_07
 _off013_0x011FA5_07:
-.export _off013_0x011FA5_08
 _off013_0x011FA5_08:
 - D 0 - I - 0x011FA5 04:9F95: A3        .byte $A3   ; 
 - D 0 - I - 0x011FA6 04:9F96: AB        .byte $AB   ; 
@@ -10453,17 +10453,11 @@ _off013_0x011FA5_08:
 
 
 
-.export _off010_0x01201F_06
 _off010_0x01201F_06:
-.export _off010_0x01201F_07
 _off010_0x01201F_07:
-.export _off010_0x01201F_08
 _off010_0x01201F_08:
-.export _off014_0x01201F_06
 _off014_0x01201F_06:
-.export _off014_0x01201F_07
 _off014_0x01201F_07:
-.export _off014_0x01201F_08
 _off014_0x01201F_08:
 - D 1 - I - 0x01201F 04:A00F: D0 86     .word _off016_round_3_1_86D0_000
 - D 1 - I - 0x012021 04:A011: D8 86     .word _off016_round_3_1_86D8_002
@@ -11367,11 +11361,8 @@ _off014_0x01201F_08:
 
 
 
-.export _off015_0x012721_06
 _off015_0x012721_06:
-.export _off015_0x012721_07
 _off015_0x012721_07:
-.export _off015_0x012721_08
 _off015_0x012721_08:
 ; objects
 - D 1 - I - 0x012721 04:A711: 11        .byte con_obj_id_11   ; 00 
@@ -17888,9 +17879,7 @@ _off016_round_6_2_B800_1FE:
 
 
 
-.export _off011_0x013814_0F
 _off011_0x013814_0F:
-.export _off011_0x013814_10
 _off011_0x013814_10:
 - - - - - - 0x013814 04:B804: 18        .byte $18   ; 
 - - - - - - 0x013815 04:B805: 00        .byte $00   ; 
@@ -18033,9 +18022,7 @@ _off011_0x013814_10:
 
 
 
-.export _off013_0x01389E_0F
 _off013_0x01389E_0F:
-.export _off013_0x01389E_10
 _off013_0x01389E_10:
 - D 1 - I - 0x01389E 04:B88E: B1        .byte $B1   ; 
 - D 1 - I - 0x01389F 04:B88F: B1        .byte $B1   ; 
@@ -18148,13 +18135,9 @@ _off013_0x01389E_10:
 
 
 
-.export _off010_0x01390A_0F
 _off010_0x01390A_0F:
-.export _off010_0x01390A_10
 _off010_0x01390A_10:
-.export _off014_0x01390A_0F
 _off014_0x01390A_0F:
-.export _off014_0x01390A_10
 _off014_0x01390A_10:
 - D 1 - I - 0x01390A 04:B8FA: 2D A8     .word _off016_round_6_1_A82D_000
 - D 1 - I - 0x01390C 04:B8FC: 2D A8     .word _off016_round_6_1_A82D_002
@@ -18930,9 +18913,7 @@ _off014_0x01390A_10:
 
 
 
-.export _off015_0x013F0C_0F
 _off015_0x013F0C_0F:
-.export _off015_0x013F0C_10
 _off015_0x013F0C_10:
 ; objects
 - D 1 - I - 0x013F0C 04:BEFC: 10        .byte con_obj_id_10   ; 00 

@@ -4,9 +4,50 @@
 .org $8000 ; for listing file
 ; 0x008010-0x00C00F
 
-; банк еще не разобран
+
 
 .export off_0x008010_demo_buttons_00
+.export off_0x0080A2_demo_buttons_01
+.export off_0x008142_demo_buttons_01
+.export sub_0x008212_demo_buttons_handler
+.export _off011_0x0094C2_09
+.export _off011_0x0094C2_0A
+.export _off011_0x0094C2_0B
+.export _off013_0x009558_09
+.export _off013_0x009558_0A
+.export _off013_0x009558_0B
+.export _off010_0x0095DD_09
+.export _off010_0x0095DD_0A
+.export _off010_0x0095DD_0B
+.export _off014_0x0095DD_09
+.export _off014_0x0095DD_0A
+.export _off014_0x0095DD_0B
+.export _off015_0x009DDF_09
+.export _off015_0x009DDF_0A
+.export _off015_0x009DDF_0B
+.export _off011_0x00B50B_14
+.export _off011_0x00B50B_15
+.export _off011_0x00B50B_16
+.export _off013_0x00B5B1_14
+.export _off013_0x00B5B1_15
+.export _off013_0x00B5B1_16
+.export _off010_0x00B5F9_14
+.export _off010_0x00B5F9_15
+.export _off010_0x00B5F9_16
+.export _off014_0x00B5F9_14
+.export _off014_0x00B5F9_15
+.export _off014_0x00B5F9_16
+.export _off015_0x00BBFB_14
+.export _off015_0x00BBFB_15
+.export _off015_0x00BBFB_16
+.export _off011_0x00BD8D_17
+.export _off010_0x00BDA5_17
+.export _off013_0x00BDA5_17
+.export _off014_0x00BDA5_17
+.export _off015_0x00BEA7_17
+
+
+
 off_0x008010_demo_buttons_00:
 - D 0 - - - 0x008010 02:8000: 19        .byte $19   ; 
 - D 0 - - - 0x008011 02:8001: 00        .byte $00   ; 
@@ -157,7 +198,6 @@ off_0x008010_demo_buttons_00:
 
 
 
-.export off_0x0080A2_demo_buttons_01
 off_0x0080A2_demo_buttons_01:
 - D 0 - I - 0x0080A2 02:8092: 10        .byte $10   ; 
 - D 0 - I - 0x0080A3 02:8093: 00        .byte $00   ; 
@@ -322,7 +362,6 @@ off_0x0080A2_demo_buttons_01:
 
 
 
-.export off_0x008142_demo_buttons_01
 off_0x008142_demo_buttons_01:
 - D 0 - I - 0x008142 02:8132: 13        .byte $13   ; 
 - D 0 - I - 0x008143 02:8133: 00        .byte $00   ; 
@@ -535,7 +574,6 @@ off_0x008142_demo_buttons_01:
 
 
 
-.export sub_0x008212_demo_buttons_handler
 sub_0x008212_demo_buttons_handler:
 ; Y = 00
 C - - - - - 0x008212 02:8202: C6 E8     DEC ram_timer_demo_btn
@@ -7910,11 +7948,8 @@ _off016_round_4_3_94AD_1FE:
 
 
 
-.export _off011_0x0094C2_09
 _off011_0x0094C2_09:
-.export _off011_0x0094C2_0A
 _off011_0x0094C2_0A:
-.export _off011_0x0094C2_0B
 _off011_0x0094C2_0B:
 - - - - - - 0x0094C2 02:94B2: 18        .byte $18   ; 
 - - - - - - 0x0094C3 02:94B3: 00        .byte $00   ; 
@@ -8069,11 +8104,8 @@ _off011_0x0094C2_0B:
 
 
 
-.export _off013_0x009558_09
 _off013_0x009558_09:
-.export _off013_0x009558_0A
 _off013_0x009558_0A:
-.export _off013_0x009558_0B
 _off013_0x009558_0B:
 - D 0 - I - 0x009558 02:9548: B0        .byte $B0   ; 
 - D 0 - I - 0x009559 02:9549: B0        .byte $B0   ; 
@@ -8211,17 +8243,11 @@ _off013_0x009558_0B:
 
 
 
-.export _off010_0x0095DD_09
 _off010_0x0095DD_09:
-.export _off010_0x0095DD_0A
 _off010_0x0095DD_0A:
-.export _off010_0x0095DD_0B
 _off010_0x0095DD_0B:
-.export _off014_0x0095DD_09
 _off014_0x0095DD_09:
-.export _off014_0x0095DD_0A
 _off014_0x0095DD_0A:
-.export _off014_0x0095DD_0B
 _off014_0x0095DD_0B:
 - D 0 - I - 0x0095DD 02:95CD: 32 82     .word _off016_round_4_1_8232_000
 - D 0 - I - 0x0095DF 02:95CF: 3B 82     .word _off016_round_4_1_823B_002
@@ -9254,11 +9280,8 @@ _off014_0x0095DD_0B:
 
 
 
-.export _off015_0x009DDF_09
 _off015_0x009DDF_09:
-.export _off015_0x009DDF_0A
 _off015_0x009DDF_0A:
-.export _off015_0x009DDF_0B
 _off015_0x009DDF_0B:
 ; objects
 - D 0 - I - 0x009DDF 02:9DCF: 25        .byte con_obj_id_25   ; 00 
@@ -17542,11 +17565,8 @@ _off016_round_9_3_B4F5_1FE:
 
 
 
-.export _off011_0x00B50B_14
 _off011_0x00B50B_14:
-.export _off011_0x00B50B_15
 _off011_0x00B50B_15:
-.export _off011_0x00B50B_16
 _off011_0x00B50B_16:
 - - - - - - 0x00B50B 02:B4FB: 18        .byte $18   ; 
 - - - - - - 0x00B50C 02:B4FC: 00        .byte $00   ; 
@@ -17717,11 +17737,8 @@ _off011_0x00B50B_16:
 
 
 
-.export _off013_0x00B5B1_14
 _off013_0x00B5B1_14:
-.export _off013_0x00B5B1_15
 _off013_0x00B5B1_15:
-.export _off013_0x00B5B1_16
 _off013_0x00B5B1_16:
 - D 1 - I - 0x00B5B1 02:B5A1: B0        .byte $B0   ; 
 - D 1 - I - 0x00B5B2 02:B5A2: AD        .byte $AD   ; 
@@ -17798,17 +17815,11 @@ _off013_0x00B5B1_16:
 
 
 
-.export _off010_0x00B5F9_14
 _off010_0x00B5F9_14:
-.export _off010_0x00B5F9_15
 _off010_0x00B5F9_15:
-.export _off010_0x00B5F9_16
 _off010_0x00B5F9_16:
-.export _off014_0x00B5F9_14
 _off014_0x00B5F9_14:
-.export _off014_0x00B5F9_15
 _off014_0x00B5F9_15:
-.export _off014_0x00B5F9_16
 _off014_0x00B5F9_16:
 - D 1 - I - 0x00B5F9 02:B5E9: DB 9E     .word _off016_round_9_1_9EDB_000
 - D 1 - I - 0x00B5FB 02:B5EB: E4 9E     .word _off016_round_9_1_9EE4_002
@@ -18585,11 +18596,8 @@ _off014_0x00B5F9_16:
 
 
 
-.export _off015_0x00BBFB_14
 _off015_0x00BBFB_14:
-.export _off015_0x00BBFB_15
 _off015_0x00BBFB_15:
-.export _off015_0x00BBFB_16
 _off015_0x00BBFB_16:
 ; objects
 - D 1 - I - 0x00BBFB 02:BBEB: 28        .byte con_obj_id_28   ; 00 
@@ -19211,7 +19219,6 @@ _off016_the_end_BD73_0F6:
 
 
 
-.export _off011_0x00BD8D_17
 _off011_0x00BD8D_17:
 - D 1 - I - 0x00BD8D 02:BD7D: 18        .byte $18   ; 
 - D 1 - I - 0x00BD8E 02:BD7E: 00        .byte $00   ; 
@@ -19240,11 +19247,8 @@ _off011_0x00BD8D_17:
 
 
 
-.export _off010_0x00BDA5_17
 _off010_0x00BDA5_17:
-.export _off013_0x00BDA5_17
 _off013_0x00BDA5_17:
-.export _off014_0x00BDA5_17
 _off014_0x00BDA5_17:
 - D 1 - I - 0x00BDA5 02:BD95: AB BC     .word _off016_the_end_BCAB_000
 - D 1 - I - 0x00BDA7 02:BD97: AD BC     .word _off016_the_end_BCAD_002
@@ -19379,7 +19383,6 @@ _off014_0x00BDA5_17:
 
 
 
-.export _off015_0x00BEA7_17
 _off015_0x00BEA7_17:
 ; objects
 - D 1 - I - 0x00BEA7 02:BE97: 10        .byte con_obj_id_10   ; 00 
