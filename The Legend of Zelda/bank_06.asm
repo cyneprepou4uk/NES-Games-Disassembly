@@ -4,7 +4,7 @@
 .org $8000  ; for listing file
 ; 0x018010-0x019CE7
 
-; !!! bzk .org control commands here
+; !! bzk .org control commands here
 ; take them into account when making
 ; changes inside this file
 

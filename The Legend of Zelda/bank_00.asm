@@ -9,7 +9,6 @@
 .export sub_0x001835_update_sound_driver
 
 
-
 ; bzk garbage
 - D 0 - - - 0x000010 00:8000: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x000020 00:8010: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
