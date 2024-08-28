@@ -33,6 +33,7 @@ ram_0008                                = $0008 ; 01DFA7 01DFE7 01E8FF 01F0B7 01
 ram_0009                                = $0009 ; 01DF1C 01DF31 01DF99 01DFE1 01E904 01F0BC 01F0FB 01F12B 01FEF7 
 
 
+
 ; 
 ram_000A                                = $000A ; 01E8FA 01E910 01E922 01E951 01E975 01E97E 01E98B 01E99D 01E9AE 01E9B9 01E9C9 01FEF7 
 
@@ -302,21 +303,29 @@ ram_003F_timer_00_60                    = $003F ; 010199 01805B 01C9E3 01C9E7 01
 
 ; 
 ram_0040                                = $0040 ; 01E292 01E3B5 01E3B7 01E3F2 01E4F0 01E4F2 01FEF7 
+
+
+
+; 
 ram_0041                                = $0041 ; 01CEBD 01CF9E 01D0B8 01D188 01E3A3 01E3A7 01E4DE 01E4E2 01E5B8 01E5D1 01FEF7 
 ram_0042                                = $0042 ; 018FA6 0190C9 01E316 01E3A0 01E4DB 01F661 01F6D7 01F789 01F790 01F80B 01FEF7 
 ram_0043                                = $0043 ; 018FAC 01CC33 01CE39 01CF04 01D20D 01E316 01E3A0 01E4DB 01F66B 01F6E1 01F789 01F804 01FEF7 
 ram_0044                                = $0044 ; 01E316 01E3A0 01E4DB 01F789 01F804 01FEF7 
 ram_0045                                = $0045 ; 01E316 01FEF7 
-ram_0046                                = $0046 ; 01FEF7 
-ram_0047                                = $0047 ; 01FEF7 
-ram_0048                                = $0048 ; 01FEF7 
-ram_0049                                = $0049 ; 01FEF7 
-ram_004A                                = $004A ; 01FEF7 
-ram_004B                                = $004B ; 01FEF7 
-ram_004C                                = $004C ; 01FEF7 
-ram_004D                                = $004D ; 01FEF7 
-ram_004E                                = $004E ; 01FEF7 
-ram_004F                                = $004F ; 01FEF7 
+
+
+
+; free addresses
+; ram_0046                              = $0046 ; 01FEF7 
+; ram_0047                              = $0047 ; 01FEF7 
+; ram_0048                              = $0048 ; 01FEF7 
+; ram_0049                              = $0049 ; 01FEF7 
+; ram_004A                              = $004A ; 01FEF7 
+; ram_004B                              = $004B ; 01FEF7 
+; ram_004C                              = $004C ; 01FEF7 
+; ram_004D                              = $004D ; 01FEF7 
+; ram_004E                              = $004E ; 01FEF7 
+; ram_004F                              = $004F ; 01FEF7 
 
 
 
@@ -326,7 +335,7 @@ ram_004F                                = $004F ; 01FEF7
     ; 00 = horisontal area, move right to progress
     ; 40 = vertical area, move down to progress
     ; 80 = vertical area, move up to progress
-ram_substage                            = $0050 ; 013617 01365D 01366E 013698 0136E7 0136F5 01371A 01379E 0189BE 01C9AA 01D8B7 01D8CD 01DC11 01DDDC 01DDE4 01DE22 01DE30 01DE47 01DE75 01DE7D 01DEC8 01DEDB 01DEE8 01DF02 01DF14 01DF3E 01DFEF 01DFF1 01DFF5 01E002 01E004 01E028 01E0D1 01E11A 01E17E 01E197 01E19B 01E20D 01E2BB 01E2D5 01E2EE 01E300 01E46D 01E473 01E52C 01E555 01E98D 01E9CE 01EAD8 01EBA4 01F850 01F8EF 01F915 01F94E 01F974 01FEF7 
+ram_stage_config                        = $0050 ; 013617 01365D 01366E 013698 0136E7 0136F5 01371A 01379E 0189BE 01C9AA 01D8B7 01D8CD 01DC11 01DDDC 01DDE4 01DE22 01DE30 01DE47 01DE75 01DE7D 01DEC8 01DEDB 01DEE8 01DF02 01DF14 01DF3E 01DFEF 01DFF1 01DFF5 01E002 01E004 01E028 01E0D1 01E11A 01E17E 01E197 01E19B 01E20D 01E2BB 01E2D5 01E2EE 01E300 01E46D 01E473 01E52C 01E555 01E98D 01E9CE 01EAD8 01EBA4 01F850 01F8EF 01F915 01F94E 01F974 01FEF7 
 
 
 
@@ -357,59 +366,82 @@ ram_005F                                = $005F ; 01A637 01A63C 01A640 01FEF7
 ram_0060                                = $0060 ; 01D984 01D9C4 01FEF7 
 ram_0061                                = $0061 ; 01D98A 01D9C9 01FEF7 
 
+
+
 ; stage data
 ram_0062                                = $0062 ; 01D95A 01D9BA 01FEF7 
 ram_0063                                = $0063 ; 01D960 01D9BF 01FEF7 
+
+
 
 ; ($indirect),Y
 ; 0064-0065 (02) 
 ram_stage_data_1                        = $0064 ; 01D99C 01FEF7 
 ; ram_0065                              = $0065 ; 01D9A9 01FEF7 
 
+
+
 ; ($indirect),Y
-; 0066-0067 (02) 
 ram_stage_data_2                        = $0066 ; 01D99E 01FEF7 
 ; ram_0067                              = $0067 ; 01D9AC 01FEF7 
 
+
+
 ; ($indirect),Y
-; 0068-0069 (02) 
 ram_stage_data_3                        = $0068 ; 01D9A0 01FEF7 
 ; ram_0069                              = $0069 ; 01D9AF 01FEF7 
 
+
+
 ; ($indirect),Y
-; 006A-006B (02) 
 ram_stage_data_4                        = $006A ; 01D9A2 01FEF7 
 ; ram_006B                              = $006B ; 01D9B2 01FEF7 
 
+
+
 ; ($indirect),Y
-; 006C-006D (02) 
 ram_stage_data_5                        = $006C ; 01D9A4 01FEF7 
 ; ram_006D                              = $006D ; 01D9B5 01FEF7 
+
+
 
 ; ($indirect),Y
 ram_006E                                = $006E ; 01D9CE 01FEF7 
 ram_006F                                = $006F ; 01D9D3 01FEF7 
 
+
+
 ; ($indirect),Y
 ram_0070                                = $0070 ; 01D9D8 01FEF7 
 ram_0071                                = $0071 ; 01D9DD 01FEF7 
+
+
 
 ; ($indirect),Y
 ram_0072                                = $0072 ; 01DA08 01FEF7 
 ram_0073                                = $0073 ; 01DA0D 01FEF7 
 
+
+
 ; ($indirect),Y
 ram_0074                                = $0074 ; 01DA12 01FEF7 
 ram_0075                                = $0075 ; 01DA17 01FEF7 
+
+
 
 ; ($indirect),Y
 ram_0076                                = $0076 ; 01DA1C 01FEF7 
 ram_0077                                = $0077 ; 01DA21 01FEF7 
 
+
+
 ; ($indirect),Y
 ram_0078                                = $0078 ; 01DA26 01FEF7 
 ram_0079                                = $0079 ; 01DA2B 01FEF7 
 
+
+
+; 
 ram_007A                                = $007A ; 01A754 01A783 01A858 01D5C2 01D5F8 01D5FF 01D611 01D628 01D6A6 01FEF7 
 ram_007B                                = $007B ; 01A72C 01A75A 01A865 01A879 01D5D1 01D5DC 01D5EB 01D5F4 01D603 01D61B 01D645 01FEF7 
 ram_007C                                = $007C ; 01A72E 01A75C 01FEF7 
@@ -448,11 +480,19 @@ ram_0094                                = $0094 ; 01FEF7 01FF37 01FF79 01FF95
 ; frame counter
 ram_frm_cnt_2                           = $0095 ; 010016 010018 01FEF7 
 
+
+
+; 
 ram_0096                                = $0096 ; 01001F 010035 010037 010040 010056 010058 01EC52 01EC6C 01EC6E 01EF5D 01EF72 01EF74 01F0F9 01F110 01F129 01F12D 01F409 01F40B 01F420 01F422 01FEF7 
 
-; index for oam
-ram_spr_index                           = $0097 ; 010061 010222 01025E 01C1CC 01C6EA 01C833 01DF25 01DFB2 01E1DC 01E24A 01E8ED 01EABB 01EB99 01EC48 01ECB5 01EF53 01EFE6 01F063 01F0F2 01F2F1 01F388 01F3FD 01F432 01F4D6 01FEF7 
 
+
+; index for ram_oam
+ram_oam_index                           = $0097 ; 010061 010222 01025E 01C1CC 01C6EA 01C833 01DF25 01DFB2 01E1DC 01E24A 01E8ED 01EABB 01EB99 01EC48 01ECB5 01EF53 01EFE6 01F063 01F0F2 01F2F1 01F388 01F3FD 01F432 01F4D6 01FEF7 
+
+
+
+; 
 ram_0098                                = $0098 ; 01FEF7 
 ram_0099                                = $0099 ; 01801A 01878F 019888 019899 019938 01C9D7 01F984 01FEF7 
 ram_009A                                = $009A ; 01C018 01FEF7 
@@ -464,71 +504,132 @@ ram_009F                                = $009F ; 013661 013685 0136B2 0136CA 01
 ram_00A0                                = $00A0 ; 01C53A 01FEF7 
 ram_00A1                                = $00A1 ; 01C548 01C551 01C56F 01FEF7 
 
+
+
 ; ($indirect),Y
 ram_00A2                                = $00A2 ; 01C53F 01FEF7 
 ram_00A3                                = $00A3 ; 01C544 01FEF7 
 
-ram_00A4                                = $00A4 ; 01C557 01C57B 01FEF7 
+
+
+; 
+ram_00A4_prg_bank                       = $00A4 ; 01C557 01C57B 01FEF7 
+
+
+
+; 
 ram_00A5                                = $00A5 ; 01C54A 01C54D 01C55C 01C58D 01FEF7 
+
+
 
 ; ($indirect),Y
 ram_00A6                                = $00A6 ; 01C561 01C59C 01C59E 01FEF7 
 ram_00A7                                = $00A7 ; 01C567 01C5A0 01C5A4 01FEF7 
 
-ram_00A8                                = $00A8 ; 01C563 01C576 01C5A8 01C5AA 01FEF7 
-ram_00A9                                = $00A9 ; 01C56C 01C571 01C5AC 01C5B0 01FEF7 
-ram_00AA                                = $00AA ; 01FEF7 
-ram_00AB                                = $00AB ; 01FEF7 
-ram_00AC                                = $00AC ; 01FEF7 
-ram_00AD                                = $00AD ; 01FEF7 
-ram_00AE                                = $00AE ; 01FEF7 
-ram_00AF                                = $00AF ; 01FEF7 
 
+
+; 
+ram_00A8                                = $00A8 ; 01C563 01C576 01C5A8 01C5AA 01FEF7 
+
+
+
+; 
+ram_00A9                                = $00A9 ; 01C56C 01C571 01C5AC 01C5B0 01FEF7 
+
+
+
+; free addresses
+; ram_00AA                              = $00AA ; 01FEF7 
+; ram_00AB                              = $00AB ; 01FEF7 
+; ram_00AC                              = $00AC ; 01FEF7 
+; ram_00AD                              = $00AD ; 01FEF7 
+; ram_00AE                              = $00AE ; 01FEF7 
+; ram_00AF                              = $00AF ; 01FEF7 
+
+
+
+; 
 ram_lives                               = $00B0 ; 019A3D 019A43 01C661 01D369 01EB0F 01ECEA 01EEDD 01EEE3 01EEE5 01F578 01FEF7 
+
+
 
 ; hp, health
 ram_hearts                              = $00B1 ; 01006D 01015E 018010 01806B 019A57 019A5D 019A65 01C665 01C731 01C9DF 01D2B5 01E727 01FEF7 
 
+
+
+; 
 ram_items                               = $00B2 ; for common links (fork, pipe, pearls)
 
-; 00B2-00B5 (04) 
+
+
+; 
 ram_item_fork                           = $00B2 ; 019A99 019AA0 019AA6 01C739 01ED31 01EDB5 01FEF7 
 ram_item_pipe                           = $00B3 ; 019A99 019AA0 019AA6 01C73B 01ED31 01EDB7 01FEF7 
 ram_item_pearl_purple                   = $00B4 ; 019A09 019A10 019A16 01C73D 01ED31 01EDB9 01FEF7 
 ram_item_pearl_green                    = $00B5 ; 019A09 019A10 019A16 01C73F 01ED31 01EDBB 01FEF7 
 
-ram_00B6                                = $00B6 ; 01FEF7 
-ram_00B7                                = $00B7 ; 01FEF7 
+
+
+; free addresses
+; ram_00B6                              = $00B6 ; 01FEF7 
+; ram_00B7                              = $00B7 ; 01FEF7 
+
+
+
+; 
 ram_00B8                                = $00B8 ; 01C844 01C997 01FEF7 
-ram_00B9                                = $00B9 ; 01FEF7 
+
+
+
+; free address
+; ram_00B9                              = $00B9 ; 01FEF7 
+
+
 
 ; bzk useless address, always 5 hearts
 ram_total_hearts                        = $00BA ; 01005D 01C669 01FEF7 
 
-; 00 = off, 01 = on
+
+
+; 00 = off
+; 01 = on
 ram_no_damage_cheat                     = $00BB ; 018061 01844C 01AC3A 01AC53 01FEF7 
 
+
+
+; 
 ram_00BC                                = $00BC ; 019D51 019DB4 019DC1 019E13 019F20 01FEF7 
 ram_00BD                                = $00BD ; 01FEF7 
 ram_00BE                                = $00BE ; 018639 0197B5 0197CD 019867 0198CF 0198E6 01E392 01E4CD 01E5BA 01FEF7 
 ram_00BF                                = $00BF ; 01C0CF 01FEF7 01FFDF 
 ram_00C0                                = $00C0 ; 01407C 0140A9 0140BC 0140BE 01410E 014113 01422E 014232 014236 01423A 0142DB 0142F6 01FEF7 
 
+
+
 ; ($indirect)   ($indirect),Y
-; 00C1-00C2 (02) 
 ram_music_data                          = $00C1 ; 01401E 014029 01402D 014037 014045 01404A 01415F 014161 014199 01419F 0141A9 0141AF 0142CD 0142D6 01442F 014434 0145D4 0145DE 014794 014799 0147DF 0147E4 014815 014817 014855 014862 014866 01486E 014877 014890 014892 01489F 01FEF7 
 ; ram_00C2                              = $00C2 ; 014018 01401C 014023 014027 01403A 014042 014052 014169 0141A1 0141B1 014539 01453D 0147E7 0147EA 0147ED 0147F0 0147F3 0147FD 014802 01480E 014810 01481F 014851 014879 01488B 01488D 014896 01FEF7 
+
+
 
 ; mostly a copy of the following byte after music data control byte
 ram_00C3                                = $00C3 ; 0141BE 014328 014387 014406 014410 014414 014457 014462 014469 014476 014482 0144B0 014508 01450F 01451A 014520 01454E 014568 014570 01458A 0145F4 0145F6 014601 014635 01463A 01463C 014641 014649 01466E 014677 01467F 014681 014697 01469B 01469E 0146A1 0146A9 0146B1 0146B7 0146C2 014779 0147A1 0147A5 0147AF 01FEF7 
 
+
+
 ; mostly a copy of music data control byte
 ram_00C4                                = $00C4 ; 014025 014104 014106 01413F 014157 01426E 014283 0142B6 0142BF 0142D1 01431C 01432A 014332 01442A 014495 01449A 0144AB 0144B2 014540 0145D9 0146CD 0146E6 0146FD 014720 014783 0147A9 0147B1 0147CE 01FEF7 
+
+
 
 ; ($indirect),Y
 ram_00C5                                = $00C5 ; 0146A7 01FEF7 
 ram_00C6                                = $00C6 ; 0146AE 01FEF7 
 
+
+
+; 
 ram_00C7                                = $00C7 ; 014095 0143C3 0143D3 01FEF7 
 ram_00C8                                = $00C8 ; 01408D 01408F 014187 014503 01FEF7 
 ram_00C9                                = $00C9 ; 014091 014181 01450C 01FEF7 
@@ -548,12 +649,20 @@ ram_00D6                                = $00D6 ; 01414B 014155 014159 01428D 01
 ram_00D7                                = $00D7 ; 0141E0 014275 01FEF7 
 ram_00D8                                = $00D8 ; 0141E2 01FEF7 
 
+
+
+; 
 ram_music_id                            = $00D9 ; 01A619 01FCAE 01FEF7 
 
+
+
+; 
 ram_queue_index_1                       = $00DA ; 01FCB2 01FCC4 01FEF7 
 ram_queue_index_2                       = $00DB ; 01C0B2 01C0C3 01FEF7 
 
-; 00DC-00E3 (08) a list of sfx
+
+
+; a list of sfx
 ram_sfx_queue                           = $00DC ; 01C0B4 01C0BD 01FCB6 01FCBE 01FEF7 01FF16 
 ; ram_00DD                              = $00DD ; 01C0B4 01C0BD 01FCB6 01FCBE 01FEF7 01FF16 
 ; ram_00DE                              = $00DE ; 01C0B4 01C0BD 01FCB6 01FCBE 01FEF7 01FF16 
@@ -563,13 +672,20 @@ ram_sfx_queue                           = $00DC ; 01C0B4 01C0BD 01FCB6 01FCBE 01
 ; ram_00E2                              = $00E2 ; 01C0B4 01C0BD 01FCB6 01FCBE 01FEF7 01FF16 
 ; ram_00E3                              = $00E3 ; 01C0B4 01C0BD 01FCB6 01FCBE 01FEF7 01FF16 
 
-; 00E4-00E7 (04) RNG
+
+
+; RNG
 ram_random                              = $00E4 ; 0190EF 01942E 0194A7 0194B8 01962D 019ACE 019B37 019C15 019D68 019F38 01A0A2 01A162 01A4CC 01A4CE 01A737 01A748 01C264 01C274 01C656 01FEF7 
 ; ram_00E5                              = $00E5 ; 0190F1 019430 019432 0194AB 0194BA 019AD0 019B3B 019C17 019C19 019D75 019FAF 01A164 01A166 01A232 01A296 01A2B6 01A2B8 01A4CA 01A739 01A73B 01A811 01C26A 01C274 01FEF7 
 ; ram_00E6                              = $00E6 ; 0194A9 0194BC 019AD2 019B39 019FB1 019FB3 01A234 01A236 01A2B4 01A57C 01A74A 01A74C 01A813 01C274 01FEF7 
 ; ram_00E7                              = $00E7 ; 018C13 01962F 019631 019D77 019D79 019F3A 019F3C 01A0A4 01A0A6 01A294 01A298 01A57E 01A580 01A7BB 01C274 01FEF7 
 
-ram_00E8                                = $00E8 ; 01FEF7 
+
+
+; free address
+; ram_00E8                              = $00E8 ; 01FEF7 
+
+
 
 ; 00 = stage 1 - sea of coral
 ; 01 = stage 2 - sunken ship
@@ -577,8 +693,11 @@ ram_00E8                                = $00E8 ; 01FEF7
 ; 03 = stage 4 - undersea volcano
 ; 04 = stage 5 - ursula's castle
 ; 05 = final battle
-ram_stage                               = $00E9 ; 0187B4 01C65D 01C69E 01C6B8 01C709 01C71C 01C71E 01C726 01C8D2 01C916 01D387 01D394 01D5B9 01D98F 01D9DF 01D9E6 01DA03 01DC0B 01DEFC 01DF3C 01E022 01E048 01E07D 01E0FD 01E15E 01E5E4 01E602 01E88E 01EBE4 01ED1D 01EDC7 01F458 01F57E 01FEF7 
+ram_stage_id                            = $00E9 ; 0187B4 01C65D 01C69E 01C6B8 01C709 01C71C 01C71E 01C726 01C8D2 01C916 01D387 01D394 01D5B9 01D98F 01D9DF 01D9E6 01DA03 01DC0B 01DEFC 01DF3C 01E022 01E048 01E07D 01E0FD 01E15E 01E5E4 01E602 01E88E 01EBE4 01ED1D 01EDC7 01F458 01F57E 01FEF7 
 
+
+
+; 
 ram_00EA                                = $00EA ; 01D946 01D9E4 01E35F 01E373 01E49A 01E4AE 01FEF7 
 ram_00EB                                = $00EB ; 01FEF7 
 ram_00EC                                = $00EC ; 01FEF7 
@@ -869,9 +988,8 @@ ram_01FF                                = $01FF ; 01FEFA
 
 
 
-; 0200-02FF (OAM) 
+; 0200-02FF (100) OAM sprites
 ram_oam                                 = $0200 ; for common links
-
 ram_spr_Y                               = $0200 ; 010067 01C1D4 01C1D9 01F049 01F2F8 01F369 01F510 01F563 01FEFD 
 ram_spr_T                               = $0201 ; 010067 010076 01F04F 01F36F 01F515 01FEFD 
 ram_spr_A                               = $0202 ; 010067 01F055 01F375 01F51A 01FEFD 

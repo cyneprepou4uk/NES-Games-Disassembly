@@ -6,7 +6,7 @@
 
 
 
-; !!! bzk low byte of all chr pointers must be 00
+; !! bzk low byte of all chr pointers must be 00
 ; if you want to read a custom low byte, deal with 0x01C2AC
 
 

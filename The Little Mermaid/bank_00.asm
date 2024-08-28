@@ -11600,7 +11600,7 @@ _off015_0x002910_04:
 
 .segment "CHR_00"
 .org $AD00
-; !!! bzk low byte of all chr pointers must be 00
+; !! bzk low byte of all chr pointers must be 00
 ; if you want to read a custom low byte, deal with 0x01C2AC
 
 
@@ -11625,6 +11625,8 @@ tbl_0x003510_cutscene_text_lo:
 - D 1 - - - 0x00351B 00:B50B: F2        .byte < _off000_BAF2_0B   ; 
 - D 1 - - - 0x00351C 00:B50C: 9A        .byte < _off000_BB9A_0C   ; 
 - - - - - - 0x00351D 00:B50D: DE        .byte < _off000_BBDE_0D   ; 
+
+
 
 tbl_0x00351E_cutscene_text_hi:
 - D 1 - - - 0x00351E 00:B50E: B5        .byte > _off000_B51C_00   ; 

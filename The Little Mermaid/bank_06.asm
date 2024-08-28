@@ -1264,7 +1264,7 @@ C - - - - - 0x0187B1 06:87A1: B0 01     BCS bra_87A4
 bra_87A3_RTS:
 C - - - - - 0x0187B3 06:87A3: 60        RTS
 bra_87A4:
-C - - - - - 0x0187B4 06:87A4: A5 E9     LDA ram_stage
+C - - - - - 0x0187B4 06:87A4: A5 E9     LDA ram_stage_id
 C - - - - - 0x0187B6 06:87A6: C9 01     CMP #$01
 C - - - - - 0x0187B8 06:87A8: D0 17     BNE bra_87C1
 ; if stage 2
@@ -1539,7 +1539,7 @@ C - - - - - 0x0189A0 06:8990: 90 29     BCC bra_89BB
 - - - - - - 0x0189A2 06:8992: BD 60 03  LDA ram_pos_Y_lo,X
 - - - - - - 0x0189A5 06:8995: 69 0F     ADC #$0F
 - - - - - - 0x0189A7 06:8997: 9D 60 03  STA ram_pos_Y_lo,X
-- - - - - - 0x0189AA 06:899A: A5 50     LDA ram_substage
+- - - - - - 0x0189AA 06:899A: A5 50     LDA ram_stage_config
 - - - - - - 0x0189AC 06:899C: 30 1A     BMI bra_89B8    ; if vertical up
 - - - - - - 0x0189AE 06:899E: FE 70 03  INC ram_pos_Y_hi,X
 - - - - - - 0x0189B1 06:89A1: 4C BB 89  JMP loc_89BB
@@ -1548,7 +1548,7 @@ C - - - - - 0x0189B4 06:89A4: B0 15     BCS bra_89BB
 C - - - - - 0x0189B6 06:89A6: BD 60 03  LDA ram_pos_Y_lo,X
 C - - - - - 0x0189B9 06:89A9: E9 0F     SBC #$0F
 C - - - - - 0x0189BB 06:89AB: 9D 60 03  STA ram_pos_Y_lo,X
-C - - - - - 0x0189BE 06:89AE: A5 50     LDA ram_substage
+C - - - - - 0x0189BE 06:89AE: A5 50     LDA ram_stage_config
 C - - - - - 0x0189C0 06:89B0: 10 06     BPL bra_89B8
 ; if vertical up
 C - - - - - 0x0189C2 06:89B2: FE 70 03  INC ram_pos_Y_hi,X

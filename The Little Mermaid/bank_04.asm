@@ -80,7 +80,7 @@ sub_804D_display_hearts_with_spr:
 C - - - - - 0x01005D 04:804D: A5 BA     LDA ram_total_hearts
 C - - - - - 0x01005F 04:804F: 0A        ASL
 C - - - - - 0x010060 04:8050: 0A        ASL
-C - - - - - 0x010061 04:8051: 85 97     STA ram_spr_index
+C - - - - - 0x010061 04:8051: 85 97     STA ram_oam_index
 C - - - - - 0x010063 04:8053: AA        TAX
 bra_8054_loop:
 C - - - - - 0x010064 04:8054: BD 6F 80  LDA tbl_8070 - $01,X
@@ -330,7 +330,7 @@ C - - - - - 0x010219 04:8209: 85 05     STA ram_0005
 C - - - - - 0x01021B 04:820B: BD D5 A3  LDA tbl_A3D5_hi,X
 C - - - - - 0x01021E 04:820E: E9 00     SBC #> $0002
 C - - - - - 0x010220 04:8210: 85 06     STA ram_0006
-C - - - - - 0x010222 04:8212: A6 97     LDX ram_spr_index
+C - - - - - 0x010222 04:8212: A6 97     LDX ram_oam_index
 C - - - - - 0x010224 04:8214: F0 40     BEQ bra_8256_RTS
 bra_8216_loop:
 C - - - - - 0x010226 04:8216: C8        INY
@@ -367,7 +367,7 @@ C - - - - - 0x01025A 04:824A: E8        INX
 C - - - - - 0x01025B 04:824B: E8        INX
 C - - - - - 0x01025C 04:824C: E8        INX
 C - - - - - 0x01025D 04:824D: E8        INX
-C - - - - - 0x01025E 04:824E: 86 97     STX ram_spr_index
+C - - - - - 0x01025E 04:824E: 86 97     STX ram_oam_index
 C - - - - - 0x010260 04:8250: F0 04     BEQ bra_8256_RTS
 bra_8252:
 C - - - - - 0x010262 04:8252: C6 04     DEC ram_0004
@@ -9922,7 +9922,7 @@ C - - - - - 0x013610 04:B600: A5 FD     LDA ram_scroll_X_hi
 C - - - - - 0x013612 04:B602: 18        CLC
 C - - - - - 0x013613 04:B603: 65 FB     ADC ram_scroll_Y_hi
 C - - - - - 0x013615 04:B605: 85 01     STA ram_0001    ; X_hi + Y_hi
-C - - - - - 0x013617 04:B607: A5 50     LDA ram_substage
+C - - - - - 0x013617 04:B607: A5 50     LDA ram_stage_config
 C - - - - - 0x013619 04:B609: 29 C0     AND #$C0
 C - - - - - 0x01361B 04:B60B: F0 28     BEQ bra_B635_horisontal
 C - - - - - 0x01361D 04:B60D: 30 12     BMI bra_B621_vertical_up
@@ -9963,7 +9963,7 @@ C - - - - - 0x013656 04:B646: 29 01     AND #$01
 C - - - - - 0x013658 04:B648: F0 03     BEQ bra_B64D_moving_left_or_down
 C - - - - - 0x01365A 04:B64A: 4C D7 B6  JMP loc_B6D7_moving_right_or_up
 bra_B64D_moving_left_or_down:
-C - - - - - 0x01365D 04:B64D: A5 50     LDA ram_substage
+C - - - - - 0x01365D 04:B64D: A5 50     LDA ram_stage_config
 C - - - - - 0x01365F 04:B64F: 30 51     BMI bra_B6A2_vertical_up
 ; if horisontal or vertical down
 bra_B651_loop:
@@ -9974,7 +9974,7 @@ C - - - - - 0x013666 04:B656: B1 72     LDA (ram_0072),Y
 C - - - - - 0x013668 04:B658: C5 01     CMP ram_0001
 C - - - - - 0x01366A 04:B65A: 90 1D     BCC bra_B679
 C - - - - - 0x01366C 04:B65C: D0 14     BNE bra_B672
-C - - - - - 0x01366E 04:B65E: A5 50     LDA ram_substage
+C - - - - - 0x01366E 04:B65E: A5 50     LDA ram_stage_config
 C - - - - - 0x013670 04:B660: 29 40     AND #$40
 C - - - - - 0x013672 04:B662: F0 08     BEQ bra_B66C_horisontal
 ; if vertical down
@@ -10000,7 +10000,7 @@ C - - - - - 0x013690 04:B680: B1 72     LDA (ram_0072),Y
 C - - - - - 0x013692 04:B682: C5 03     CMP ram_0003
 C - - - - - 0x013694 04:B684: 90 16     BCC bra_B69C
 C - - - - - 0x013696 04:B686: D0 F5     BNE bra_B67D_loop
-C - - - - - 0x013698 04:B688: A5 50     LDA ram_substage
+C - - - - - 0x013698 04:B688: A5 50     LDA ram_stage_config
 C - - - - - 0x01369A 04:B68A: 29 40     AND #$40
 C - - - - - 0x01369C 04:B68C: F0 08     BEQ bra_B696
 ; if vertical down
@@ -10057,7 +10057,7 @@ C - - - - - 0x0136E6 04:B6D6: 60        RTS
 
 loc_B6D7_moving_right_or_up:
 bra_B6D7_loop:
-C D 1 - - - 0x0136E7 04:B6D7: A5 50     LDA ram_substage
+C D 1 - - - 0x0136E7 04:B6D7: A5 50     LDA ram_stage_config
 C - - - - - 0x0136E9 04:B6D9: 30 49     BMI bra_B724_vertical_up
 ; if horisontal or vertical down
 C - - - - - 0x0136EB 04:B6DB: A4 9E     LDY ram_009E
@@ -10065,7 +10065,7 @@ C - - - - - 0x0136ED 04:B6DD: A5 03     LDA ram_0003
 C - - - - - 0x0136EF 04:B6DF: D1 72     CMP (ram_0072),Y
 C - - - - - 0x0136F1 04:B6E1: 90 1D     BCC bra_B700
 C - - - - - 0x0136F3 04:B6E3: D0 14     BNE bra_B6F9
-C - - - - - 0x0136F5 04:B6E5: A5 50     LDA ram_substage
+C - - - - - 0x0136F5 04:B6E5: A5 50     LDA ram_stage_config
 C - - - - - 0x0136F7 04:B6E7: 29 40     AND #$40
 C - - - - - 0x0136F9 04:B6E9: F0 08     BEQ bra_B6F3_horisontal
 ; if vertical down
@@ -10088,7 +10088,7 @@ C - - - - - 0x013712 04:B702: A5 01     LDA ram_0001
 C - - - - - 0x013714 04:B704: D1 72     CMP (ram_0072),Y
 C - - - - - 0x013716 04:B706: 90 19     BCC bra_B721
 C - - - - - 0x013718 04:B708: D0 14     BNE bra_B71E
-C - - - - - 0x01371A 04:B70A: A5 50     LDA ram_substage
+C - - - - - 0x01371A 04:B70A: A5 50     LDA ram_stage_config
 C - - - - - 0x01371C 04:B70C: 29 40     AND #$40
 C - - - - - 0x01371E 04:B70E: F0 08     BEQ bra_B718
 ; if vertical down
@@ -10174,7 +10174,7 @@ C - - - - - 0x013794 04:B784: B1 74     LDA (ram_0074),Y
 C - - - - - 0x013796 04:B786: 9D 30 03  STA ram_pos_X_lo,X
 C - - - - - 0x013799 04:B789: B1 76     LDA (ram_0076),Y
 C - - - - - 0x01379B 04:B78B: 9D 60 03  STA ram_pos_Y_lo,X
-C - - - - - 0x01379E 04:B78E: A5 50     LDA ram_substage
+C - - - - - 0x01379E 04:B78E: A5 50     LDA ram_stage_config
 C - - - - - 0x0137A0 04:B790: 29 C0     AND #$C0
 C - - - - - 0x0137A2 04:B792: D0 10     BNE bra_B7A4_vertical
 ; if horisontal
