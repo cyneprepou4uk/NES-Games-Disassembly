@@ -4,6 +4,61 @@
 .org $8000  ; for listing file
 ; 0x00C010-0x00E00F
 
+
+
+.export off_0x00CFF6_05
+.export off_0x00D060_06
+.export off_0x00D0C4_07
+.export off_0x00D122_08
+.export off_0x00D189_09
+.export off_0x00D1DE_0A
+.export off_0x00D23F_0B
+.export off_0x00D29A_0C
+.export off_0x00D2E9_0D
+.export off_0x00D33B_0E
+.export off_0x00D38D_0F
+.export off_0x00D3E5_10
+.export off_0x00D443_11
+.export off_0x00D4A4_12
+.export off_0x00D4F6_13
+.export off_0x00D557_14
+.export off_0x00D5BE_15
+.export off_0x00D613_16
+.export off_0x00D671_17
+.export off_0x00D6C9_18
+.export off_0x00D72A_19
+.export off_0x00D773_1A
+.export off_0x00D7D1_1B
+.export off_0x00D82F_1C
+.export off_0x00D893_1D
+.export off_0x00D8F4_1E
+.export off_0x00D958_1F
+.export off_0x00D9BC_20
+.export off_0x00DA1D_21
+.export off_0x00DA24_22
+.export off_0x00DA2B_23
+.export off_0x00DA32_24
+.export off_0x00DA81_25
+.export off_0x00DAE5_26
+.export off_0x00DB49_27
+.export off_0x00DBA4_28
+.export off_0x00DBF6_29
+.export off_0x00DC2D_2A
+.export off_0x00DC85_2B
+.export off_0x00DCC8_2C
+.export off_0x00DD11_2D
+.export off_0x00DD5A_2E
+.export off_0x00DDA3_2F
+.export off_0x00DDF2_30
+.export off_0x00DE3E_31
+.export off_0x00DE8D_32
+.export off_0x00DE94_33
+.export off_0x00DEA4_34
+.export off_0x00DF02_35
+.export off_0x00DF54_36
+
+
+
 ; reading from 0x01C746
 - D 0 - I - 0x00C010 03:8000: 04 80     .word $8004 ; 
 ; reading from 0x01EA3E and 0x01EA6D
@@ -4084,7 +4139,6 @@ off_8F82_33:
 
 
 
-.export off_0x00CFF6_05
 off_0x00CFF6_05:
 - D 0 - I - 0x00CFF6 03:8FE6: 2B        .byte $2B   ; 
 - D 0 - I - 0x00CFF7 03:8FE7: 44        .byte $44   ; 
@@ -4195,7 +4249,6 @@ off_0x00CFF6_05:
 
 
 
-.export off_0x00D060_06
 off_0x00D060_06:
 - D 0 - I - 0x00D060 03:9050: 20        .byte $20   ; 
 - D 0 - I - 0x00D061 03:9051: 44        .byte $44   ; 
@@ -4300,7 +4353,6 @@ off_0x00D060_06:
 
 
 
-.export off_0x00D0C4_07
 off_0x00D0C4_07:
 - D 0 - I - 0x00D0C4 03:90B4: 1F        .byte $1F   ; 
 - D 0 - I - 0x00D0C5 03:90B5: 43        .byte $43   ; 
@@ -4399,7 +4451,6 @@ off_0x00D0C4_07:
 
 
 
-.export off_0x00D122_08
 off_0x00D122_08:
 - D 0 - I - 0x00D122 03:9112: 26        .byte $26   ; 
 - D 0 - I - 0x00D123 03:9113: 3C        .byte $3C   ; 
@@ -4507,7 +4558,6 @@ off_0x00D122_08:
 
 
 
-.export off_0x00D189_09
 off_0x00D189_09:
 - D 0 - I - 0x00D189 03:9179: 32        .byte $32   ; 
 - D 0 - I - 0x00D18A 03:917A: 2E        .byte $2E   ; 
@@ -4597,7 +4647,6 @@ off_0x00D189_09:
 
 
 
-.export off_0x00D1DE_0A
 off_0x00D1DE_0A:
 - D 0 - I - 0x00D1DE 03:91CE: 2B        .byte $2B   ; 
 - D 0 - I - 0x00D1DF 03:91CF: 3A        .byte $3A   ; 
@@ -4699,7 +4748,6 @@ off_0x00D1DE_0A:
 
 
 
-.export off_0x00D23F_0B
 off_0x00D23F_0B:
 - D 0 - I - 0x00D23F 03:922F: 27        .byte $27   ; 
 - D 0 - I - 0x00D240 03:9230: 2F        .byte $2F   ; 
@@ -4795,7 +4843,6 @@ off_0x00D23F_0B:
 
 
 
-.export off_0x00D29A_0C
 off_0x00D29A_0C:
 - D 0 - I - 0x00D29A 03:928A: 27        .byte $27   ; 
 - D 0 - I - 0x00D29B 03:928B: 3F        .byte $3F   ; 
@@ -4879,7 +4926,6 @@ off_0x00D29A_0C:
 
 
 
-.export off_0x00D2E9_0D
 off_0x00D2E9_0D:
 - D 0 - I - 0x00D2E9 03:92D9: 37        .byte $37   ; 
 - D 0 - I - 0x00D2EA 03:92DA: 3F        .byte $3F   ; 
@@ -4966,7 +5012,6 @@ off_0x00D2E9_0D:
 
 
 
-.export off_0x00D33B_0E
 off_0x00D33B_0E:
 - D 0 - I - 0x00D33B 03:932B: 2A        .byte $2A   ; 
 - D 0 - I - 0x00D33C 03:932C: 2F        .byte $2F   ; 
@@ -5053,7 +5098,6 @@ off_0x00D33B_0E:
 
 
 
-.export off_0x00D38D_0F
 off_0x00D38D_0F:
 - D 0 - I - 0x00D38D 03:937D: 3B        .byte $3B   ; 
 - D 0 - I - 0x00D38E 03:937E: 2F        .byte $2F   ; 
@@ -5146,7 +5190,6 @@ off_0x00D38D_0F:
 
 
 
-.export off_0x00D3E5_10
 off_0x00D3E5_10:
 - D 0 - I - 0x00D3E5 03:93D5: 25        .byte $25   ; 
 - D 0 - I - 0x00D3E6 03:93D6: 3F        .byte $3F   ; 
@@ -5245,7 +5288,6 @@ off_0x00D3E5_10:
 
 
 
-.export off_0x00D443_11
 off_0x00D443_11:
 - D 0 - I - 0x00D443 03:9433: 37        .byte $37   ; 
 - D 0 - I - 0x00D444 03:9434: 37        .byte $37   ; 
@@ -5347,7 +5389,6 @@ off_0x00D443_11:
 
 
 
-.export off_0x00D4A4_12
 off_0x00D4A4_12:
 - D 0 - I - 0x00D4A4 03:9494: 27        .byte $27   ; 
 - D 0 - I - 0x00D4A5 03:9495: 3F        .byte $3F   ; 
@@ -5434,7 +5475,6 @@ off_0x00D4A4_12:
 
 
 
-.export off_0x00D4F6_13
 off_0x00D4F6_13:
 - D 0 - I - 0x00D4F6 03:94E6: 2A        .byte $2A   ; 
 - D 0 - I - 0x00D4F7 03:94E7: 3F        .byte $3F   ; 
@@ -5536,7 +5576,6 @@ off_0x00D4F6_13:
 
 
 
-.export off_0x00D557_14
 off_0x00D557_14:
 - D 0 - I - 0x00D557 03:9547: 37        .byte $37   ; 
 - D 0 - I - 0x00D558 03:9548: 3F        .byte $3F   ; 
@@ -5644,7 +5683,6 @@ off_0x00D557_14:
 
 
 
-.export off_0x00D5BE_15
 off_0x00D5BE_15:
 - D 0 - I - 0x00D5BE 03:95AE: 22        .byte $22   ; 
 - D 0 - I - 0x00D5BF 03:95AF: 38        .byte $38   ; 
@@ -5734,7 +5772,6 @@ off_0x00D5BE_15:
 
 
 
-.export off_0x00D613_16
 off_0x00D613_16:
 - D 0 - I - 0x00D613 03:9603: 2D        .byte $2D   ; 
 - D 0 - I - 0x00D614 03:9604: 37        .byte $37   ; 
@@ -5833,7 +5870,6 @@ off_0x00D613_16:
 
 
 
-.export off_0x00D671_17
 off_0x00D671_17:
 - D 0 - I - 0x00D671 03:9661: 2A        .byte $2A   ; 
 - D 0 - I - 0x00D672 03:9662: 2F        .byte $2F   ; 
@@ -5926,7 +5962,6 @@ off_0x00D671_17:
 
 
 
-.export off_0x00D6C9_18
 off_0x00D6C9_18:
 - D 0 - I - 0x00D6C9 03:96B9: 3A        .byte $3A   ; 
 - D 0 - I - 0x00D6CA 03:96BA: 2F        .byte $2F   ; 
@@ -6028,7 +6063,6 @@ off_0x00D6C9_18:
 
 
 
-.export off_0x00D72A_19
 off_0x00D72A_19:
 - D 0 - I - 0x00D72A 03:971A: 2F        .byte $2F   ; 
 - D 0 - I - 0x00D72B 03:971B: 27        .byte $27   ; 
@@ -6106,7 +6140,6 @@ off_0x00D72A_19:
 
 
 
-.export off_0x00D773_1A
 off_0x00D773_1A:
 - D 0 - I - 0x00D773 03:9763: 41        .byte $41   ; 
 - D 0 - I - 0x00D774 03:9764: 2F        .byte $2F   ; 
@@ -6205,7 +6238,6 @@ off_0x00D773_1A:
 
 
 
-.export off_0x00D7D1_1B
 off_0x00D7D1_1B:
 - D 0 - I - 0x00D7D1 03:97C1: 2D        .byte $2D   ; 
 - D 0 - I - 0x00D7D2 03:97C2: 3F        .byte $3F   ; 
@@ -6304,7 +6336,6 @@ off_0x00D7D1_1B:
 
 
 
-.export off_0x00D82F_1C
 off_0x00D82F_1C:
 - D 0 - I - 0x00D82F 03:981F: 2B        .byte $2B   ; 
 - D 0 - I - 0x00D830 03:9820: 3F        .byte $3F   ; 
@@ -6409,7 +6440,6 @@ off_0x00D82F_1C:
 
 
 
-.export off_0x00D893_1D
 off_0x00D893_1D:
 - D 0 - I - 0x00D893 03:9883: 24        .byte $24   ; 
 - D 0 - I - 0x00D894 03:9884: 3E        .byte $3E   ; 
@@ -6511,7 +6541,6 @@ off_0x00D893_1D:
 
 
 
-.export off_0x00D8F4_1E
 off_0x00D8F4_1E:
 - D 0 - I - 0x00D8F4 03:98E4: 2B        .byte $2B   ; 
 - D 0 - I - 0x00D8F5 03:98E5: 3F        .byte $3F   ; 
@@ -6616,7 +6645,6 @@ off_0x00D8F4_1E:
 
 
 
-.export off_0x00D958_1F
 off_0x00D958_1F:
 - D 0 - I - 0x00D958 03:9948: 2E        .byte $2E   ; 
 - D 0 - I - 0x00D959 03:9949: 3F        .byte $3F   ; 
@@ -6721,7 +6749,6 @@ off_0x00D958_1F:
 
 
 
-.export off_0x00D9BC_20
 off_0x00D9BC_20:
 - D 0 - I - 0x00D9BC 03:99AC: 30        .byte $30   ; 
 - D 0 - I - 0x00D9BD 03:99AD: 37        .byte $37   ; 
@@ -6823,7 +6850,6 @@ off_0x00D9BC_20:
 
 
 
-.export off_0x00DA1D_21
 off_0x00DA1D_21:
 - D 0 - I - 0x00DA1D 03:9A0D: 06        .byte $06   ; 
 - D 0 - I - 0x00DA1E 03:9A0E: 06        .byte $06   ; 
@@ -6835,7 +6861,6 @@ off_0x00DA1D_21:
 
 
 
-.export off_0x00DA24_22
 off_0x00DA24_22:
 - D 0 - I - 0x00DA24 03:9A14: 06        .byte $06   ; 
 - D 0 - I - 0x00DA25 03:9A15: 07        .byte $07   ; 
@@ -6847,7 +6872,6 @@ off_0x00DA24_22:
 
 
 
-.export off_0x00DA2B_23
 off_0x00DA2B_23:
 - D 0 - I - 0x00DA2B 03:9A1B: 07        .byte $07   ; 
 - D 0 - I - 0x00DA2C 03:9A1C: 07        .byte $07   ; 
@@ -6859,7 +6883,6 @@ off_0x00DA2B_23:
 
 
 
-.export off_0x00DA32_24
 off_0x00DA32_24:
 - D 0 - I - 0x00DA32 03:9A22: 27        .byte $27   ; 
 - D 0 - I - 0x00DA33 03:9A23: 2F        .byte $2F   ; 
@@ -6943,7 +6966,6 @@ off_0x00DA32_24:
 
 
 
-.export off_0x00DA81_25
 off_0x00DA81_25:
 - D 0 - I - 0x00DA81 03:9A71: 2C        .byte $2C   ; 
 - D 0 - I - 0x00DA82 03:9A72: 32        .byte $32   ; 
@@ -7048,7 +7070,6 @@ off_0x00DA81_25:
 
 
 
-.export off_0x00DAE5_26
 off_0x00DAE5_26:
 - D 0 - I - 0x00DAE5 03:9AD5: 2B        .byte $2B   ; 
 - D 0 - I - 0x00DAE6 03:9AD6: 39        .byte $39   ; 
@@ -7153,7 +7174,6 @@ off_0x00DAE5_26:
 
 
 
-.export off_0x00DB49_27
 off_0x00DB49_27:
 - D 0 - I - 0x00DB49 03:9B39: 37        .byte $37   ; 
 - D 0 - I - 0x00DB4A 03:9B3A: 27        .byte $27   ; 
@@ -7249,7 +7269,6 @@ off_0x00DB49_27:
 
 
 
-.export off_0x00DBA4_28
 off_0x00DBA4_28:
 - D 0 - I - 0x00DBA4 03:9B94: 34        .byte $34   ; 
 - D 0 - I - 0x00DBA5 03:9B95: 1F        .byte $1F   ; 
@@ -7336,7 +7355,6 @@ off_0x00DBA4_28:
 
 
 
-.export off_0x00DBF6_29
 off_0x00DBF6_29:
 - D 0 - I - 0x00DBF6 03:9BE6: 32        .byte $32   ; 
 - D 0 - I - 0x00DBF7 03:9BE7: 17        .byte $17   ; 
@@ -7396,7 +7414,6 @@ off_0x00DBF6_29:
 
 
 
-.export off_0x00DC2D_2A
 off_0x00DC2D_2A:
 - D 0 - I - 0x00DC2D 03:9C1D: 1C        .byte $1C   ; 
 - D 0 - I - 0x00DC2E 03:9C1E: 47        .byte $47   ; 
@@ -7489,7 +7506,6 @@ off_0x00DC2D_2A:
 
 
 
-.export off_0x00DC85_2B
 off_0x00DC85_2B:
 - D 0 - I - 0x00DC85 03:9C75: 3F        .byte $3F   ; 
 - D 0 - I - 0x00DC86 03:9C76: 1A        .byte $1A   ; 
@@ -7561,7 +7577,6 @@ off_0x00DC85_2B:
 
 
 
-.export off_0x00DCC8_2C
 off_0x00DCC8_2C:
 - D 0 - I - 0x00DCC8 03:9CB8: 3F        .byte $3F   ; 
 - D 0 - I - 0x00DCC9 03:9CB9: 17        .byte $17   ; 
@@ -7639,7 +7654,6 @@ off_0x00DCC8_2C:
 
 
 
-.export off_0x00DD11_2D
 off_0x00DD11_2D:
 - D 0 - I - 0x00DD11 03:9D01: 3F        .byte $3F   ; 
 - D 0 - I - 0x00DD12 03:9D02: 1F        .byte $1F   ; 
@@ -7717,7 +7731,6 @@ off_0x00DD11_2D:
 
 
 
-.export off_0x00DD5A_2E
 off_0x00DD5A_2E:
 - D 0 - I - 0x00DD5A 03:9D4A: 3F        .byte $3F   ; 
 - D 0 - I - 0x00DD5B 03:9D4B: 17        .byte $17   ; 
@@ -7795,7 +7808,6 @@ off_0x00DD5A_2E:
 
 
 
-.export off_0x00DDA3_2F
 off_0x00DDA3_2F:
 - D 0 - I - 0x00DDA3 03:9D93: 2F        .byte $2F   ; 
 - D 0 - I - 0x00DDA4 03:9D94: 2A        .byte $2A   ; 
@@ -7879,7 +7891,6 @@ off_0x00DDA3_2F:
 
 
 
-.export off_0x00DDF2_30
 off_0x00DDF2_30:
 - D 0 - I - 0x00DDF2 03:9DE2: 27        .byte $27   ; 
 - D 0 - I - 0x00DDF3 03:9DE3: 36        .byte $36   ; 
@@ -7960,7 +7971,6 @@ off_0x00DDF2_30:
 
 
 
-.export off_0x00DE3E_31
 off_0x00DE3E_31:
 - D 0 - I - 0x00DE3E 03:9E2E: 3F        .byte $3F   ; 
 - D 0 - I - 0x00DE3F 03:9E2F: 2C        .byte $2C   ; 
@@ -8044,7 +8054,6 @@ off_0x00DE3E_31:
 
 
 
-.export off_0x00DE8D_32
 off_0x00DE8D_32:
 - D 0 - I - 0x00DE8D 03:9E7D: 07        .byte $07   ; 
 - D 0 - I - 0x00DE8E 03:9E7E: 07        .byte $07   ; 
@@ -8056,7 +8065,6 @@ off_0x00DE8D_32:
 
 
 
-.export off_0x00DE94_33
 off_0x00DE94_33:
 - D 0 - I - 0x00DE94 03:9E84: 0F        .byte $0F   ; 
 - D 0 - I - 0x00DE95 03:9E85: 0F        .byte $0F   ; 
@@ -8077,7 +8085,6 @@ off_0x00DE94_33:
 
 
 
-.export off_0x00DEA4_34
 off_0x00DEA4_34:
 - D 0 - I - 0x00DEA4 03:9E94: 27        .byte $27   ; 
 - D 0 - I - 0x00DEA5 03:9E95: 3F        .byte $3F   ; 
@@ -8176,7 +8183,6 @@ off_0x00DEA4_34:
 
 
 
-.export off_0x00DF02_35
 off_0x00DF02_35:
 - D 0 - I - 0x00DF02 03:9EF2: 1D        .byte $1D   ; 
 - D 0 - I - 0x00DF03 03:9EF3: 3F        .byte $3F   ; 
@@ -8263,7 +8269,6 @@ off_0x00DF02_35:
 
 
 
-.export off_0x00DF54_36
 off_0x00DF54_36:
 - D 0 - I - 0x00DF54 03:9F44: 2F        .byte $2F   ; 
 - D 0 - I - 0x00DF55 03:9F45: 3F        .byte $3F   ; 

@@ -4,6 +4,20 @@
 .org $8000  ; for listing file
 ; 0x002010-0x00400F
 
+
+
+.export off_0x003D09_5B
+.export off_0x003D5E_5C
+.export off_0x003DB0_5D
+.export off_0x003DFF_5E
+.export off_0x003E06_5F
+.export off_0x003E0D_60
+.export off_0x003E14_61
+.export off_0x003E66_62
+.export off_0x003EC1_63
+
+
+
 ; reading from 0x01C746
 - D 0 - I - 0x002010 00:8000: 04 A0     .word $8004 + $2000
 ; reading from 0x01EA3E and 0x01EA6D
@@ -7431,7 +7445,6 @@ off_9CA1_5C:
 
 
 
-.export off_0x003D09_5B
 off_0x003D09_5B:
 - D 0 - I - 0x003D09 00:9CF9: 1E        .byte $1E   ; 
 - D 0 - I - 0x003D0A 00:9CFA: 32        .byte $32   ; 
@@ -7521,7 +7534,6 @@ off_0x003D09_5B:
 
 
 
-.export off_0x003D5E_5C
 off_0x003D5E_5C:
 - D 0 - I - 0x003D5E 00:9D4E: 1B        .byte $1B   ; 
 - D 0 - I - 0x003D5F 00:9D4F: 32        .byte $32   ; 
@@ -7608,7 +7620,6 @@ off_0x003D5E_5C:
 
 
 
-.export off_0x003DB0_5D
 off_0x003DB0_5D:
 - D 0 - I - 0x003DB0 00:9DA0: 1E        .byte $1E   ; 
 - D 0 - I - 0x003DB1 00:9DA1: 32        .byte $32   ; 
@@ -7692,7 +7703,6 @@ off_0x003DB0_5D:
 
 
 
-.export off_0x003DFF_5E
 off_0x003DFF_5E:
 - D 0 - I - 0x003DFF 00:9DEF: 06        .byte $06   ; 
 - D 0 - I - 0x003E00 00:9DF0: 06        .byte $06   ; 
@@ -7704,7 +7714,6 @@ off_0x003DFF_5E:
 
 
 
-.export off_0x003E06_5F
 off_0x003E06_5F:
 - D 0 - I - 0x003E06 00:9DF6: 06        .byte $06   ; 
 - D 0 - I - 0x003E07 00:9DF7: 07        .byte $07   ; 
@@ -7716,7 +7725,6 @@ off_0x003E06_5F:
 
 
 
-.export off_0x003E0D_60
 off_0x003E0D_60:
 - D 0 - I - 0x003E0D 00:9DFD: 07        .byte $07   ; 
 - D 0 - I - 0x003E0E 00:9DFE: 07        .byte $07   ; 
@@ -7728,7 +7736,6 @@ off_0x003E0D_60:
 
 
 
-.export off_0x003E14_61
 off_0x003E14_61:
 - D 0 - I - 0x003E14 00:9E04: 1E        .byte $1E   ; 
 - D 0 - I - 0x003E15 00:9E05: 37        .byte $37   ; 
@@ -7815,7 +7822,6 @@ off_0x003E14_61:
 
 
 
-.export off_0x003E66_62
 off_0x003E66_62:
 - D 0 - I - 0x003E66 00:9E56: 27        .byte $27   ; 
 - D 0 - I - 0x003E67 00:9E57: 2F        .byte $2F   ; 
@@ -7911,7 +7917,6 @@ off_0x003E66_62:
 
 
 
-.export off_0x003EC1_63
 off_0x003EC1_63:
 - D 0 - I - 0x003EC1 00:9EB1: 2F        .byte $2F   ; 
 - D 0 - I - 0x003EC2 00:9EB2: 27        .byte $27   ; 

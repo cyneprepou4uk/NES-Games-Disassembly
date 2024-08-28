@@ -4,6 +4,17 @@
 .org $8000  ; for listing file
 ; 0x014010-0x01600F
 
+
+
+.export tbl_0x014B10_09
+.export tbl_0x014C3A_0A
+.export tbl_0x015110
+.export tbl_0x015130
+.export tbl_0x015150
+.export tbl_0x015170
+
+
+
 ; reading from 0x01C746
 - D 0 - I - 0x014010 05:8000: 04 80     .word $8004 ; 
 ; reading from 0x01EA3E and 0x01EA6D
@@ -2878,7 +2889,6 @@ tbl_8A63:
 
 
 
-.export tbl_0x014B10_09
 tbl_0x014B10_09:
 - D 0 - I - 0x014B10 05:8B00: 28 8B     .word off_8B28_00
 - D 0 - I - 0x014B12 05:8B02: 2C 8B     .word off_8B2C_01
@@ -3201,7 +3211,6 @@ off_8C25_13:
 
 
 
-.export tbl_0x014C3A_0A
 tbl_0x014C3A_0A:
 - D 0 - I - 0x014C3A 05:8C2A: E4 8C     .word off_8CE4_00
 - D 0 - I - 0x014C3C 05:8C2C: E8 8C     .word off_8CE8_01
@@ -4303,7 +4312,6 @@ off_8FEB_5C:
 
 
 
-.export tbl_0x015110
 tbl_0x015110:
 - D 0 - - - 0x015110 05:9100: 72 91     .word _cpu_9172_00
 - D 0 - - - 0x015112 05:9102: 3B 94     .word _cpu_943B_01
@@ -4322,7 +4330,6 @@ tbl_0x015110:
 
 
 
-.export tbl_0x015130
 tbl_0x015130:
 - D 0 - - - 0x015130 05:9120: 46 92     .word _cpu_9246_00
 - D 0 - - - 0x015132 05:9122: 25 95     .word _cpu_9525_01
@@ -4341,7 +4348,6 @@ tbl_0x015130:
 
 
 
-.export tbl_0x015150
 tbl_0x015150:
 - D 0 - - - 0x015150 05:9140: B0 92     .word _cpu_92B0_00
 - D 0 - - - 0x015152 05:9142: A6 95     .word _cpu_95A6_01
@@ -4360,7 +4366,6 @@ tbl_0x015150:
 
 
 
-.export tbl_0x015170
 tbl_0x015170:
 - D 0 - - - 0x015170 05:9160: 92 92     .word _cpu_9292_00
 - D 0 - - - 0x015172 05:9162: 82 95     .word _cpu_9582_01

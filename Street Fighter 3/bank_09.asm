@@ -4,7 +4,19 @@
 .org $8000  ; for listing file
 ; 0x012010-0x01400F
 
+
+
 .export off_0x012010_0A
+.export off_0x01204F_0B
+.export off_0x01215B_14
+.export off_0x0121BC_15
+.export off_0x012242_16
+.export off_0x0122D7_0C
+.export off_0x0123E6_0D
+.export tbl_0x012510
+
+
+
 off_0x012010_0A:
 - D 0 - I - 0x012010 04:8000: BC        .byte $BC   ; 
 - D 0 - I - 0x012011 04:8001: 0F        .byte $0F   ; 
@@ -72,7 +84,6 @@ off_0x012010_0A:
 
 
 
-.export off_0x01204F_0B
 off_0x01204F_0B:
 - D 0 - I - 0x01204F 04:803F: A2        .byte $A2   ; 
 - D 0 - I - 0x012050 04:8040: 0F        .byte $0F   ; 
@@ -345,7 +356,6 @@ off_0x01204F_0B:
 
 
 
-.export off_0x01215B_14
 off_0x01215B_14:
 - D 0 - I - 0x01215B 04:814B: 90        .byte $90   ; 
 - D 0 - I - 0x01215C 04:814C: 0F        .byte $0F   ; 
@@ -447,7 +457,6 @@ off_0x01215B_14:
 
 
 
-.export off_0x0121BC_15
 off_0x0121BC_15:
 - D 0 - I - 0x0121BC 04:81AC: 90        .byte $90   ; 
 - D 0 - I - 0x0121BD 04:81AD: 0F        .byte $0F   ; 
@@ -586,7 +595,6 @@ off_0x0121BC_15:
 
 
 
-.export off_0x012242_16
 off_0x012242_16:
 - D 0 - I - 0x012242 04:8232: 8E        .byte $8E   ; 
 - D 0 - I - 0x012243 04:8233: 0F        .byte $0F   ; 
@@ -740,7 +748,6 @@ off_0x012242_16:
 
 
 
-.export off_0x0122D7_0C
 off_0x0122D7_0C:
 - D 0 - I - 0x0122D7 04:82C7: D4        .byte $D4   ; 
 - D 0 - I - 0x0122D8 04:82C8: 0E        .byte $0E   ; 
@@ -1016,7 +1023,6 @@ off_0x0122D7_0C:
 
 
 
-.export off_0x0123E6_0D
 off_0x0123E6_0D:
 - D 0 - I - 0x0123E6 04:83D6: BD        .byte $BD   ; 
 - D 0 - I - 0x0123E7 04:83D7: 0F        .byte $0F   ; 
@@ -1319,7 +1325,6 @@ off_0x0123E6_0D:
 
 
 
-.export tbl_0x012510
 tbl_0x012510:
 - D 0 - - - 0x012510 04:8500: 12        .byte $12   ; 
 - D 0 - - - 0x012511 04:8501: 85        .byte $85   ; 

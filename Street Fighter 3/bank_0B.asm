@@ -4,7 +4,17 @@
 .org $8000  ; for listing file
 ; 0x016010-0x01800F
 
+
+
 .export sub_0x016010
+.export sub_0x016060
+.export sub_0x0160C2
+.export sub_0x016131
+.export sub_0x016185
+.export sub_0x01619D
+
+
+
 sub_0x016010:
 C D 0 - I - 0x016010 05:8000: 8A        TXA
 C D 0 - I - 0x016011 05:8001: 48        PHA
@@ -50,7 +60,6 @@ C D 0 - I - 0x01605F 05:804F: 60        RTS
 
 
 
-.export sub_0x016060
 sub_0x016060:
 C D 0 - I - 0x016060 05:8050: A9 01     LDA #$01
 C D 0 - I - 0x016062 05:8052: 85 9C     STA ram_009C
@@ -112,7 +121,6 @@ C D 0 - I - 0x0160C1 05:80B1: 60        RTS
 
 
 
-.export sub_0x0160C2
 sub_0x0160C2:
 C D 0 - I - 0x0160C2 05:80B2: A5 9E     LDA ram_009E
 C D 0 - I - 0x0160C4 05:80B4: 29 0F     AND #$0F
@@ -181,7 +189,6 @@ C - - - - - 0x016130 05:8120: 60        RTS
 
 
 
-.export sub_0x016131
 sub_0x016131:
 C - - - - - 0x016131 05:8121: A5 9E     LDA ram_009E
 C - - - - - 0x016133 05:8123: 29 F0     AND #$F0
@@ -223,7 +230,6 @@ C - - - - - 0x016184 05:8174: 60        RTS
 
 
 
-.export sub_0x016185
 sub_0x016185:
 C - - - - - 0x016185 05:8175: A9 00     LDA #$00
 C - - - - - 0x016187 05:8177: 8D 00 40  STA $4000
@@ -238,7 +244,6 @@ C - - - - - 0x01619C 05:818C: 60        RTS
 
 
 
-.export sub_0x01619D
 sub_0x01619D:
 C - - - - - 0x01619D 05:818D: A5 9C     LDA ram_009C
 C - - - - - 0x01619F 05:818F: F0 01     BEQ bra_8192

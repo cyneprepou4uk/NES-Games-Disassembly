@@ -4,6 +4,19 @@
 .org $8000  ; for listing file
 ; 0x006010-0x00800F
 
+
+
+.export off_0x007010_5A
+.export off_0x007017_5B
+.export off_0x007027_5C
+.export off_0x007037_5D
+.export off_0x007047_5E
+.export off_0x0070A5_5F
+.export off_0x007103_60
+.export off_0x007161_61
+
+
+
 ; reading from 0x01C746
 - D 0 - I - 0x006010 01:8000: 04 A0     .word $8004 + $2000
 ; reading from 0x01EA3E and 0x01EA6D
@@ -4110,7 +4123,6 @@ off_8F9F_35:
 
 
 
-.export off_0x007010_5A
 off_0x007010_5A:
 - D 0 - I - 0x007010 01:9000: 07        .byte $07   ; 
 - D 0 - I - 0x007011 01:9001: 07        .byte $07   ; 
@@ -4122,7 +4134,6 @@ off_0x007010_5A:
 
 
 
-.export off_0x007017_5B
 off_0x007017_5B:
 - D 0 - I - 0x007017 01:9007: 0F        .byte $0F   ; 
 - D 0 - I - 0x007018 01:9008: 0F        .byte $0F   ; 
@@ -4143,7 +4154,6 @@ off_0x007017_5B:
 
 
 
-.export off_0x007027_5C
 off_0x007027_5C:
 - D 0 - I - 0x007027 01:9017: 0E        .byte $0E   ; 
 - D 0 - I - 0x007028 01:9018: 0F        .byte $0F   ; 
@@ -4164,7 +4174,6 @@ off_0x007027_5C:
 
 
 
-.export off_0x007037_5D
 off_0x007037_5D:
 - D 0 - I - 0x007037 01:9027: 0F        .byte $0F   ; 
 - D 0 - I - 0x007038 01:9028: 0F        .byte $0F   ; 
@@ -4185,7 +4194,6 @@ off_0x007037_5D:
 
 
 
-.export off_0x007047_5E
 off_0x007047_5E:
 - D 0 - I - 0x007047 01:9037: 25        .byte $25   ; 
 - D 0 - I - 0x007048 01:9038: 35        .byte $35   ; 
@@ -4284,7 +4292,6 @@ off_0x007047_5E:
 
 
 
-.export off_0x0070A5_5F
 off_0x0070A5_5F:
 - D 0 - I - 0x0070A5 01:9095: 1B        .byte $1B   ; 
 - D 0 - I - 0x0070A6 01:9096: 3A        .byte $3A   ; 
@@ -4383,7 +4390,6 @@ off_0x0070A5_5F:
 
 
 
-.export off_0x007103_60
 off_0x007103_60:
 - D 0 - I - 0x007103 01:90F3: 1F        .byte $1F   ; 
 - D 0 - I - 0x007104 01:90F4: 34        .byte $34   ; 
@@ -4482,7 +4488,6 @@ off_0x007103_60:
 
 
 
-.export off_0x007161_61
 off_0x007161_61:
 - D 0 - I - 0x007161 01:9151: 1F        .byte $1F   ; 
 - D 0 - I - 0x007162 01:9152: 24        .byte $24   ; 
