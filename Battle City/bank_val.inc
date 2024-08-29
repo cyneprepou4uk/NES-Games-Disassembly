@@ -24,6 +24,7 @@ con_btns_SS                             = con_btn_Start + con_btn_Select        
 
 
 ; ram_bg_palette_id
+; index for 0x001575
 con_004D_00                             = $00 ; 
 con_004D_01                             = $01 ; 
 con_004D_02                             = $02 ; 
@@ -34,3 +35,17 @@ con_004D_06                             = $06 ;
 con_004D_07                             = $07 ; 
 con_004D_08                             = $08 ; 
 con_004D_FF                             = $FF ; skip palette
+
+
+
+; ram_tank_flags
+; need comments 0x0024A8 0x0024C8
+con_tank_flag_explosion                 = $70 ; 
+con_tank_flag_80                        = $80 ; 
+con_tank_flag_90                        = $90 ; 
+con_tank_flag_A0                        = $A0 ; 
+con_tank_flag_follow_HQ                 = $B0 ; 
+con_tank_flag_follow_p2                 = $C0 ; 
+con_tank_flag_follow_p1                 = $D0 ; 
+con_tank_flag_E0                        = $E0 ; 
+con_tank_flag_respawn                   = $F0 ; 
