@@ -2066,6 +2066,7 @@ C - - - - - 0x000E33 00:8E23: A9 1C     LDA #$03 * $08 + $04
 C - - - - - 0x000E35 00:8E25: 20 ED D5  JSR sub_D5ED_sound_engine_set_bit
 C - - - - - 0x000E38 00:8E28: A9 1D     LDA #$03 * $08 + $05
 C - - - - - 0x000E3A 00:8E2A: 20 ED D5  JSR sub_D5ED_sound_engine_set_bit
+; bzk optimize, useless JMP
 C - - - - - 0x000E3D 00:8E2D: 4C 30 8E  JMP loc_8E30
 bra_8E30:
 loc_8E30:
@@ -12828,7 +12829,7 @@ bra_D3FB:
 
 
 sub_D403_check_collision_with_player___14:
-; bzj optimize, single JSR to here
+; bzk optimize, single JSR to here
 C - - - - - 0x005413 01:D403: A9 21     LDA #con_obj_flag_dying + con_obj_flag_20
 C - - - - - 0x005415 01:D405: A0 14     LDY #$14    ; hitbox size 20
 ; bzk optimize, BNE
