@@ -1458,6 +1458,7 @@ C - - - - - 0x009860 02:9850: 8D 2D 04  STA ram_042B_enemy + $01
 C - - - - - 0x009863 02:9853: 60        RTS
 bra_9854:
 C - - - - - 0x009864 02:9854: 20 F7 E5  JSR sub_0x01E607_hide_all_sprites
+; bzk optimize, JMP
 C - - - - - 0x009867 02:9857: 20 9D 97  JSR sub_979D
 C - - - - - 0x00986A 02:985A: 60        RTS
 

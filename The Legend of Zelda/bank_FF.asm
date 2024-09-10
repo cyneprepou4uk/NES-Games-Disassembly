@@ -4028,49 +4028,48 @@ tbl_FAF0:
 
 
 tbl_FB4E:
-- D 3 - - - 0x01FB5E 07:FB4E: 06        .byte $06   ; 
-- D 3 - - - 0x01FB5F 07:FB4F: 43        .byte $43   ; 
-- D 3 - - - 0x01FB60 07:FB50: 25        .byte $25   ; 
-- D 3 - - - 0x01FB61 07:FB51: 31        .byte $31   ; 
-- D 3 - - - 0x01FB62 07:FB52: 12        .byte $12   ; 
-- D 3 - - - 0x01FB63 07:FB53: 24        .byte $24   ; 
-- D 3 - - - 0x01FB64 07:FB54: 81        .byte $81   ; 
-- D 3 - - - 0x01FB65 07:FB55: 14        .byte $14   ; 
-- D 3 - - - 0x01FB66 07:FB56: 22        .byte $22   ; 
-- D 3 - - - 0x01FB67 07:FB57: 42        .byte $42   ; 
-- D 3 - - - 0x01FB68 07:FB58: 00        .byte $00   ; 
-- D 3 - - - 0x01FB69 07:FB59: A9        .byte $A9   ; 
-- D 3 - - - 0x01FB6A 07:FB5A: 8F        .byte $8F   ; 
-- D 3 - - - 0x01FB6B 07:FB5B: 20        .byte $20   ; 
-- D 3 - - - 0x01FB6C 07:FB5C: 00        .byte $00   ; 
-- D 3 - - - 0x01FB6D 07:FB5D: 3F        .byte $3F   ; 
-- D 3 - - - 0x01FB6E 07:FB5E: F9        .byte $F9   ; 
-- D 3 - - - 0x01FB6F 07:FB5F: FA        .byte $FA   ; 
-- D 3 - - - 0x01FB70 07:FB60: 46        .byte $46   ; 
-- D 3 - - - 0x01FB71 07:FB61: 62        .byte $62   ; 
-- D 3 - - - 0x01FB72 07:FB62: 11        .byte $11   ; 
-- D 3 - - - 0x01FB73 07:FB63: 2F        .byte $2F   ; 
-- D 3 - - - 0x01FB74 07:FB64: FF        .byte $FF   ; 
-- D 3 - - - 0x01FB75 07:FB65: FF        .byte $FF   ; 
-- D 3 - - - 0x01FB76 07:FB66: 7F        .byte $7F   ; 
-- D 3 - - - 0x01FB77 07:FB67: F6        .byte $F6   ; 
-- D 3 - - - 0x01FB78 07:FB68: 2F        .byte $2F   ; 
-- D 3 - - - 0x01FB79 07:FB69: FF        .byte $FF   ; 
-- D 3 - - - 0x01FB7A 07:FB6A: FF        .byte $FF   ; 
-- D 3 - - - 0x01FB7B 07:FB6B: 22        .byte $22   ; 
-- D 3 - - - 0x01FB7C 07:FB6C: 46        .byte $46   ; 
-- D 3 - - - 0x01FB7D 07:FB6D: F1        .byte $F1   ; 
-- D 3 - - - 0x01FB7E 07:FB6E: F2        .byte $F2   ; 
-- D 3 - - - 0x01FB7F 07:FB6F: AA        .byte $AA   ; 
-- D 3 - - - 0x01FB80 07:FB70: AA        .byte $AA   ; 
-- D 3 - - - 0x01FB81 07:FB71: FB        .byte $FB   ; 
-- D 3 - - - 0x01FB82 07:FB72: BF        .byte $BF   ; 
-- D 3 - - - 0x01FB83 07:FB73: F0        .byte $F0   ; 
-
+- D 3 - - - 0x01FB5E 07:FB4E: 06        .byte $06   ; 00 
+- D 3 - - - 0x01FB5F 07:FB4F: 43        .byte $43   ; 02 
+- D 3 - - - 0x01FB60 07:FB50: 25        .byte $25   ; 04 
+- D 3 - - - 0x01FB61 07:FB51: 31        .byte $31   ; 06 
+- D 3 - - - 0x01FB62 07:FB52: 12        .byte $12   ; 08 
+- D 3 - - - 0x01FB63 07:FB53: 24        .byte $24   ; 0A 
+- D 3 - - - 0x01FB64 07:FB54: 81        .byte $81   ; 0C 
+- D 3 - - - 0x01FB65 07:FB55: 14        .byte $14   ; 0E 
+- D 3 - - - 0x01FB66 07:FB56: 22        .byte $22   ; 10 
+- D 3 - - - 0x01FB67 07:FB57: 42        .byte $42   ; 12 
+- D 3 - - - 0x01FB68 07:FB58: 00        .byte $00   ; 14 
+- D 3 - - - 0x01FB69 07:FB59: A9        .byte $A9   ; 16 
+- D 3 - - - 0x01FB6A 07:FB5A: 8F        .byte $8F   ; 18 
+- D 3 - - - 0x01FB6B 07:FB5B: 20        .byte $20   ; 1A 
+- D 3 - - - 0x01FB6C 07:FB5C: 00        .byte $00   ; 1C 
+- D 3 - - - 0x01FB6D 07:FB5D: 3F        .byte $3F   ; 1E 
+- D 3 - - - 0x01FB6E 07:FB5E: F9        .byte $F9   ; 20 
+- D 3 - - - 0x01FB6F 07:FB5F: FA        .byte $FA   ; 22 
+- D 3 - - - 0x01FB70 07:FB60: 46        .byte $46   ; 24 
+- D 3 - - - 0x01FB71 07:FB61: 62        .byte $62   ; 26 
+- D 3 - - - 0x01FB72 07:FB62: 11        .byte $11   ; 28 
+- D 3 - - - 0x01FB73 07:FB63: 2F        .byte $2F   ; 2A 
+- D 3 - - - 0x01FB74 07:FB64: FF        .byte $FF   ; 2C 
+- D 3 - - - 0x01FB75 07:FB65: FF        .byte $FF   ; 2E 
+- D 3 - - - 0x01FB76 07:FB66: 7F        .byte $7F   ; 30 
+- D 3 - - - 0x01FB77 07:FB67: F6        .byte $F6   ; 32 
+- D 3 - - - 0x01FB78 07:FB68: 2F        .byte $2F   ; 34 
+- D 3 - - - 0x01FB79 07:FB69: FF        .byte $FF   ; 36 
+- D 3 - - - 0x01FB7A 07:FB6A: FF        .byte $FF   ; 38 
+- D 3 - - - 0x01FB7B 07:FB6B: 22        .byte $22   ; 3A 
+- D 3 - - - 0x01FB7C 07:FB6C: 46        .byte $46   ; 3C 
+- D 3 - - - 0x01FB7D 07:FB6D: F1        .byte $F1   ; 3E 
+- D 3 - - - 0x01FB7E 07:FB6E: F2        .byte $F2   ; 40 
+- D 3 - - - 0x01FB7F 07:FB6F: AA        .byte $AA   ; 42 
+- D 3 - - - 0x01FB80 07:FB70: AA        .byte $AA   ; 44 
+- D 3 - - - 0x01FB81 07:FB71: FB        .byte $FB   ; 46 
+- D 3 - - - 0x01FB82 07:FB72: BF        .byte $BF   ; 48 
+- D 3 - - - 0x01FB83 07:FB73: F0        .byte $F0   ; 4A 
+; bzk bug, table keeps reading bytes below
 
 
 sub_FB74:
-; bzk bug, code keeps reading tbl_FB4E here if Y >= 26
 C D 3 - - - 0x01FB84 07:FB74: 48        PHA
 C D 3 - - - 0x01FB85 07:FB75: A9 04     LDA #con_prg_bank + $04
 C D 3 - - - 0x01FB87 07:FB77: 20 AC FF  JSR sub_FFAC_prg_bankswitch

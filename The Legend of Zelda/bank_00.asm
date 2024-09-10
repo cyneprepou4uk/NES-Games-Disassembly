@@ -3891,9 +3891,9 @@ C - - - - - 0x001BD9 00:9BC9: 4A        LSR
 C - - - - - 0x001BDA 00:9BCA: 90 FC     BCC bra_9BC8_loop
 C - - - - - 0x001BDC 00:9BCC: B9 FB 9B  LDA tbl_9BFC - $01,Y
 C - - - - - 0x001BDF 00:9BCF: 8D 10 40  STA $4010
-C - - - - - 0x001BE2 00:9BD2: B9 ED 9B  LDA tbl_9BEE - $01,Y
+C - - - - - 0x001BE2 00:9BD2: B9 ED 9B  LDA tbl_9BEE_dpcm_start_address - $01,Y
 C - - - - - 0x001BE5 00:9BD5: 8D 12 40  STA $4012
-C - - - - - 0x001BE8 00:9BD8: B9 F4 9B  LDA tbl_9BF5 - $01,Y
+C - - - - - 0x001BE8 00:9BD8: B9 F4 9B  LDA tbl_9BF5_dpcm_size - $01,Y
 C - - - - - 0x001BEB 00:9BDB: 8D 13 40  STA $4013
 C - - - - - 0x001BEE 00:9BDE: A9 A0     LDA #$A0
 C - - - - - 0x001BF0 00:9BE0: 8D F2 05  STA ram_05F2
@@ -3905,25 +3905,26 @@ C - - - - - 0x001BFD 00:9BED: 60        RTS
 
 
 
-tbl_9BEE:
-- D 0 - - - 0x001BFE 00:9BEE: 00        .byte $00   ; 00 
-- D 0 - - - 0x001BFF 00:9BEF: 4C        .byte $4C   ; 01 
-- D 0 - - - 0x001C00 00:9BF0: 80        .byte $80   ; 02 
-- D 0 - - - 0x001C01 00:9BF1: 1D        .byte $1D   ; 03 
-- D 0 - - - 0x001C02 00:9BF2: 20        .byte $20   ; 04 
-- D 0 - - - 0x001C03 00:9BF3: 28        .byte $28   ; 05 
-- D 0 - - - 0x001C04 00:9BF4: 4C        .byte $4C   ; 06 
+tbl_9BEE_dpcm_start_address:
+; C7E0-C7FF is unused
+- D 0 - - - 0x001BFE 00:9BEE: 00        .byte $00   ; 00 C000-C74F
+- D 0 - - - 0x001BFF 00:9BEF: 4C        .byte $4C   ; 01 D300-DEFF
+- D 0 - - - 0x001C00 00:9BF0: 80        .byte $80   ; 02 E000-E3FF
+- D 0 - - - 0x001C01 00:9BF1: 1D        .byte $1D   ; 03 C740-C7DF
+- D 0 - - - 0x001C02 00:9BF2: 20        .byte $20   ; 04 C800-D2FF
+- D 0 - - - 0x001C03 00:9BF3: 28        .byte $28   ; 05 CA00-D2FF
+- D 0 - - - 0x001C04 00:9BF4: 4C        .byte $4C   ; 06 D300-DFFF
 
 
 
-tbl_9BF5:
-- D 0 - - - 0x001C05 00:9BF5: 75        .byte $75   ; 00 
-- D 0 - - - 0x001C06 00:9BF6: C0        .byte $C0   ; 01 
-- D 0 - - - 0x001C07 00:9BF7: 40        .byte $40   ; 02 
-- D 0 - - - 0x001C08 00:9BF8: 0A        .byte $0A   ; 03 
-- D 0 - - - 0x001C09 00:9BF9: B0        .byte $B0   ; 04 
-- D 0 - - - 0x001C0A 00:9BFA: 90        .byte $90   ; 05 
-- D 0 - - - 0x001C0B 00:9BFB: D0        .byte $D0   ; 06 
+tbl_9BF5_dpcm_size:
+- D 0 - - - 0x001C05 00:9BF5: 75        .byte $75   ; 00 750
+- D 0 - - - 0x001C06 00:9BF6: C0        .byte $C0   ; 01 C00
+- D 0 - - - 0x001C07 00:9BF7: 40        .byte $40   ; 02 400
+- D 0 - - - 0x001C08 00:9BF8: 0A        .byte $0A   ; 03  A0
+- D 0 - - - 0x001C09 00:9BF9: B0        .byte $B0   ; 04 B00
+- D 0 - - - 0x001C0A 00:9BFA: 90        .byte $90   ; 05 900
+- D 0 - - - 0x001C0B 00:9BFB: D0        .byte $D0   ; 06 D00
 
 
 
