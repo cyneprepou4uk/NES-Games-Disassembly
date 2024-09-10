@@ -557,14 +557,14 @@ C - - - - - 0x00C2DD 03:C2CD: 60        RTS
 
 sub_C2CE_roll_rng:
 C - - - - - 0x00C2DE 03:C2CE: AE 93 00  LDX a: ram_frame_counter
-C - - - - - 0x00C2E1 03:C2D1: BD 00 03  LDA ram_0300,X
-C - - - - - 0x00C2E4 03:C2D4: 7D 00 07  ADC ram_0700,X
+C - - - - - 0x00C2E1 03:C2D1: BD 00 03  LDA $0300,X
+C - - - - - 0x00C2E4 03:C2D4: 7D 00 07  ADC $0700,X
 C - - - - - 0x00C2E7 03:C2D7: 2E 7E 03  ROL ram_random
 C - - - - - 0x00C2EA 03:C2DA: 49 FF     EOR #$FF
 C - - - - - 0x00C2EC 03:C2DC: 2E 7E 03  ROL ram_random
 C - - - - - 0x00C2EF 03:C2DF: 6D 7E 03  ADC ram_random
 C - - - - - 0x00C2F2 03:C2E2: 8D 7E 03  STA ram_random
-C - - - - - 0x00C2F5 03:C2E5: FD 80 07  SBC ram_0780,X
+C - - - - - 0x00C2F5 03:C2E5: FD 80 07  SBC $0780,X
 C - - - - - 0x00C2F8 03:C2E8: 6D 93 00  ADC a: ram_frame_counter
 C - - - - - 0x00C2FB 03:C2EB: 8D 7F 03  STA ram_random + $01
 C - - - - - 0x00C2FE 03:C2EE: EE 93 00  INC a: ram_frame_counter
@@ -1611,11 +1611,11 @@ C - - - - - 0x00C91F 03:C90F: 60        RTS
 
 loc_C910_prepare_sound:
 sub_C910_prepare_sound:
-C D 2 - - - 0x00C920 03:C910: AC 00 07  LDY ram_0700
+C D 2 - - - 0x00C920 03:C910: AC 00 07  LDY ram_sound_cnt
 C - - - - - 0x00C923 03:C913: C0 04     CPY #$04
 C - - - - - 0x00C925 03:C915: B0 06     BCS bra_C91D_RTS
-C - - - - - 0x00C927 03:C917: 99 01 07  STA ram_0701,Y
-C - - - - - 0x00C92A 03:C91A: EE 00 07  INC ram_0700
+C - - - - - 0x00C927 03:C917: 99 01 07  STA ram_sound_queue,Y
+C - - - - - 0x00C92A 03:C91A: EE 00 07  INC ram_sound_cnt
 bra_C91D_RTS:
 C - - - - - 0x00C92D 03:C91D: 60        RTS
 
