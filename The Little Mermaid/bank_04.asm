@@ -9882,6 +9882,9 @@ _off006_B371_08:
 - - - - - - 0x0133E0 04:B3D0: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - - - - - - 0x0133F0 04:B3E0: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - - - - - - 0x013400 04:B3F0: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
+
+
+; bzk garbage
 - - - - - - 0x013410 04:B400: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x013420 04:B410: FF        .byte $FF, $FF, $FB, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x013430 04:B420: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
@@ -9898,6 +9901,9 @@ _off006_B371_08:
 - - - - - - 0x0134E0 04:B4D0: BF        .byte $BF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x0134F0 04:B4E0: FF        .byte $FF, $BF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x013500 04:B4F0: 7F        .byte $7F, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $EF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+
+
+; bzk garbage
 - - - - - - 0x013510 04:B500: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - - - - - - 0x013520 04:B510: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - - - - - - 0x013530 04:B520: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
@@ -10080,7 +10086,7 @@ C - - - - - 0x013707 04:B6F7: 90 07     BCC bra_B700
 bra_B6F9:
 C - - - - - 0x013709 04:B6F9: 20 55 B7  JSR sub_B755_spawn_object
 C - - - - - 0x01370C 04:B6FC: E6 9E     INC ram_009E
-C - - - - - 0x01370E 04:B6FE: D0 D7     BNE bra_B6D7_loop   ; jmp always?
+C - - - - - 0x01370E 04:B6FE: D0 D7     BNE bra_B6D7_loop   ; jmp?
 bra_B700:
 C - - - - - 0x013710 04:B700: A4 9F     LDY ram_009F
 bra_B702_loop:
@@ -10120,7 +10126,7 @@ C - - - - - 0x013744 04:B734: B0 07     BCS bra_B73D
 bra_B736:
 C - - - - - 0x013746 04:B736: 20 55 B7  JSR sub_B755_spawn_object
 C - - - - - 0x013749 04:B739: E6 9E     INC ram_009E
-C - - - - - 0x01374B 04:B73B: D0 E7     BNE bra_B724_loop   ; jmp always?
+C - - - - - 0x01374B 04:B73B: D0 E7     BNE bra_B724_loop   ; jmp?
 bra_B73D:
 C - - - - - 0x01374D 04:B73D: A4 9F     LDY ram_009F
 bra_B73F_loop:
@@ -10160,6 +10166,7 @@ C - - - - - 0x01377B 04:B76B: A8        TAY
 C - - - - - 0x01377C 04:B76C: B9 85 FE  LDA tbl_0x01FE95_bits,Y
 C - - - - - 0x01377F 04:B76F: 85 05     STA ram_0005
 C - - - - - 0x013781 04:B771: A5 04     LDA ram_0004
+; / 08
 C - - - - - 0x013783 04:B773: 4A        LSR
 C - - - - - 0x013784 04:B774: 4A        LSR
 C - - - - - 0x013785 04:B775: 4A        LSR
@@ -10209,9 +10216,9 @@ C - - - - - 0x0137E1 04:B7D1: B9 84 BC  LDA tbl_BC84,Y
 C - - - - - 0x0137E4 04:B7D4: 20 45 FC  JSR sub_0x01FC55
 C - - - - - 0x0137E7 04:B7D7: B9 04 BD  LDA tbl_BD04_index,Y
 C - - - - - 0x0137EA 04:B7DA: A8        TAY
-C - - - - - 0x0137EB 04:B7DB: B9 44 BD  LDA tbl_BD44,Y
+C - - - - - 0x0137EB 04:B7DB: B9 44 BD  LDA tbl_BD44_spd_X_lo,Y
 C - - - - - 0x0137EE 04:B7DE: 9D 80 03  STA ram_spd_X_lo,X
-C - - - - - 0x0137F1 04:B7E1: B9 4B BD  LDA tbl_BD4B,Y
+C - - - - - 0x0137F1 04:B7E1: B9 4B BD  LDA tbl_BD4B_spd_X_hi,Y
 C - - - - - 0x0137F4 04:B7E4: 9D 90 03  STA ram_spd_X_hi,X
 C - - - - - 0x0137F7 04:B7E7: A9 00     LDA #$00
 C - - - - - 0x0137F9 04:B7E9: 9D 20 03  STA ram_pos_X_fr,X
@@ -11690,25 +11697,25 @@ tbl_BD04_index:
 
 
 
-tbl_BD44:
-- D 1 - - - 0x013D54 04:BD44: 00        .byte $00   ; 00 
-- D 1 - - - 0x013D55 04:BD45: 80        .byte $80   ; 01 
-- D 1 - - - 0x013D56 04:BD46: 00        .byte $00   ; 02 
-- D 1 - - - 0x013D57 04:BD47: 80        .byte $80   ; 03 
-- D 1 - - - 0x013D58 04:BD48: 40        .byte $40   ; 04 
-- - - - - - 0x013D59 04:BD49: 00        .byte $00   ; 05 unused, no such index
-- D 1 - - - 0x013D5A 04:BD4A: 00        .byte $00   ; 06 
+tbl_BD44_spd_X_lo:
+- D 1 - - - 0x013D54 04:BD44: 00        .byte < $0000   ; 00 
+- D 1 - - - 0x013D55 04:BD45: 80        .byte < $0080   ; 01 
+- D 1 - - - 0x013D56 04:BD46: 00        .byte < $0100   ; 02 
+- D 1 - - - 0x013D57 04:BD47: 80        .byte < $0180   ; 03 
+- D 1 - - - 0x013D58 04:BD48: 40        .byte < $0040   ; 04 
+- - - - - - 0x013D59 04:BD49: 00        .byte < $0400   ; 05 unused, index doesn't exist
+- D 1 - - - 0x013D5A 04:BD4A: 00        .byte < $0200   ; 06 
 
 
 
-tbl_BD4B:
-- D 1 - - - 0x013D5B 04:BD4B: 00        .byte $00   ; 00 
-- D 1 - - - 0x013D5C 04:BD4C: 00        .byte $00   ; 01 
-- D 1 - - - 0x013D5D 04:BD4D: 01        .byte $01   ; 02 
-- D 1 - - - 0x013D5E 04:BD4E: 01        .byte $01   ; 03 
-- D 1 - - - 0x013D5F 04:BD4F: 00        .byte $00   ; 04 
-- - - - - - 0x013D60 04:BD50: 04        .byte $04   ; 05 unused, no such index
-- D 1 - - - 0x013D61 04:BD51: 02        .byte $02   ; 06 
+tbl_BD4B_spd_X_hi:
+- D 1 - - - 0x013D5B 04:BD4B: 00        .byte > $0000   ; 00 
+- D 1 - - - 0x013D5C 04:BD4C: 00        .byte > $0080   ; 01 
+- D 1 - - - 0x013D5D 04:BD4D: 01        .byte > $0100   ; 02 
+- D 1 - - - 0x013D5E 04:BD4E: 01        .byte > $0180   ; 03 
+- D 1 - - - 0x013D5F 04:BD4F: 00        .byte > $0040   ; 04 
+- - - - - - 0x013D60 04:BD50: 04        .byte > $0400   ; 05 unused, index doesn't exist
+- D 1 - - - 0x013D61 04:BD51: 02        .byte > $0200   ; 06 
 
 
 ; bzk garbage
@@ -11723,6 +11730,9 @@ tbl_BD4B:
 - - - - - - 0x013DE0 04:BDD0: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - - - - - - 0x013DF0 04:BDE0: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - - - - - - 0x013E00 04:BDF0: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
+
+
+; bzk garbage
 - - - - - - 0x013E10 04:BE00: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x013E20 04:BE10: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $DF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x013E30 04:BE20: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
@@ -11739,6 +11749,9 @@ tbl_BD4B:
 - - - - - - 0x013EE0 04:BED0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x013EF0 04:BEE0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
 - - - - - - 0x013F00 04:BEF0: FF        .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF   ; 
+
+
+; bzk garbage
 - - - - - - 0x013F10 04:BF00: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - - - - - - 0x013F20 04:BF10: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - - - - - - 0x013F30 04:BF20: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00   ; 

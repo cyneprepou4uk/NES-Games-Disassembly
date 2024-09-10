@@ -123,7 +123,7 @@ off_0x00A310_chr:
     .incbin "incbin/chr/02___A300_A3FF.chr"
 
 
-; bzk garbage, unused tiles, safe to delete
+; bzk garbage, unused tiles, it's safe to delete
     .incbin "incbin/chr/02___A400_A4FF.chr"
 
 

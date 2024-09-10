@@ -524,7 +524,7 @@ tbl_C2C4_chr_lo:
 - D 2 - - - 0x01C2D7 07:C2C7: 53        .byte < _off011_C353_03   ; 
 - D 2 - - - 0x01C2D8 07:C2C8: 68        .byte < _off011_C368_04   ; 
 - D 2 - - - 0x01C2D9 07:C2C9: 81        .byte < _off011_C381_05   ; 
-- - - - - - 0x01C2DA 07:C2CA: A2        .byte < _off011_C3A2_06   ; unused, no such index
+- - - - - - 0x01C2DA 07:C2CA: A2        .byte < _off011_C3A2_06   ; unused, index doesn't exist
 - D 2 - - - 0x01C2DB 07:C2CB: AF        .byte < _off011_C3AF_07   ; 
 - D 2 - - - 0x01C2DC 07:C2CC: B8        .byte < _off011_C3B8_08   ; 
 - D 2 - - - 0x01C2DD 07:C2CD: D5        .byte < _off011_C3D5_09   ; 
@@ -549,7 +549,7 @@ tbl_C2C4_chr_lo:
 - D 2 - - - 0x01C2F0 07:C2E0: E7        .byte < _off011_C4E7_1C   ; 
 - D 2 - - - 0x01C2F1 07:C2E1: 00        .byte < _off011_C500_1D   ; 
 - - - - - - 0x01C2F2 07:C2E2: 81        .byte < _off011_C381_1E   ; unused?
-- - - - - - 0x01C2F3 07:C2E3: 29        .byte < _off011_C529_1F   ; unused, no such index
+- - - - - - 0x01C2F3 07:C2E3: 29        .byte < _off011_C529_1F   ; unused, index doesn't exist
 
 tbl_C2E4_chr_hi:
 - D 2 - - - 0x01C2F4 07:C2E4: C3        .byte > _off011_C304_00   ; 
@@ -558,7 +558,7 @@ tbl_C2E4_chr_hi:
 - D 2 - - - 0x01C2F7 07:C2E7: C3        .byte > _off011_C353_03   ; 
 - D 2 - - - 0x01C2F8 07:C2E8: C3        .byte > _off011_C368_04   ; 
 - D 2 - - - 0x01C2F9 07:C2E9: C3        .byte > _off011_C381_05   ; 
-- - - - - - 0x01C2FA 07:C2EA: C3        .byte > _off011_C3A2_06   ; unused, no such index
+- - - - - - 0x01C2FA 07:C2EA: C3        .byte > _off011_C3A2_06   ; unused, index doesn't exist
 - D 2 - - - 0x01C2FB 07:C2EB: C3        .byte > _off011_C3AF_07   ; 
 - D 2 - - - 0x01C2FC 07:C2EC: C3        .byte > _off011_C3B8_08   ; 
 - D 2 - - - 0x01C2FD 07:C2ED: C3        .byte > _off011_C3D5_09   ; 
@@ -583,7 +583,7 @@ tbl_C2E4_chr_hi:
 - D 2 - - - 0x01C310 07:C300: C4        .byte > _off011_C4E7_1C   ; 
 - D 2 - - - 0x01C311 07:C301: C5        .byte > _off011_C500_1D   ; 
 - - - - - - 0x01C312 07:C302: C3        .byte > _off011_C381_1E   ; unused?
-- - - - - - 0x01C313 07:C303: C5        .byte > _off011_C529_1F   ; unused, no such index
+- - - - - - 0x01C313 07:C303: C5        .byte > _off011_C529_1F   ; unused, index doesn't exist
 
 
 
@@ -1667,11 +1667,11 @@ tbl_C619_lo:
 - D 2 - - - 0x01C630 07:C620: E4        .byte < _off012_C5E4_07   ; 
 - D 2 - - - 0x01C631 07:C621: F5        .byte < _off012_C5F5_08   ; 
 - D 2 - - - 0x01C632 07:C622: 06        .byte < _off012_C606_09   ; 
-- - - - - - 0x01C633 07:C623: 13        .byte < _off012_C613_0A   ; unused, no such index 0x01DB15
-- - - - - - 0x01C634 07:C624: 13        .byte < _off012_C613_0B   ; unused, no such index 0x01DB15
-- - - - - - 0x01C635 07:C625: 13        .byte < _off012_C613_0C   ; unused, no such index 0x01DB15
+- - - - - - 0x01C633 07:C623: 13        .byte < _off012_C613_0A   ; unused, index doesn't exist 0x01DB15
+- - - - - - 0x01C634 07:C624: 13        .byte < _off012_C613_0B   ; unused, index doesn't exist 0x01DB15
+- - - - - - 0x01C635 07:C625: 13        .byte < _off012_C613_0C   ; unused, index doesn't exist 0x01DB15
 - D 2 - - - 0x01C636 07:C626: 13        .byte < _off012_C613_0D   ; index from 0x01E057
-- - - - - - 0x01C637 07:C627: 18        .byte < _off012_C618_0E   ; unused, no such index 0x01DB15
+- - - - - - 0x01C637 07:C627: 18        .byte < _off012_C618_0E   ; unused, index doesn't exist 0x01DB15
 - D 2 - - - 0x01C638 07:C628: 18        .byte < _off012_C618_0F   ; 
 
 
@@ -1687,11 +1687,11 @@ tbl_C629_hi:
 - D 2 - - - 0x01C640 07:C630: C5        .byte > _off012_C5E4_07   ; 
 - D 2 - - - 0x01C641 07:C631: C5        .byte > _off012_C5F5_08   ; 
 - D 2 - - - 0x01C642 07:C632: C6        .byte > _off012_C606_09   ; 
-- - - - - - 0x01C643 07:C633: C6        .byte > _off012_C613_0A   ; unused, no such index 0x01DB15
-- - - - - - 0x01C644 07:C634: C6        .byte > _off012_C613_0B   ; unused, no such index 0x01DB15
-- - - - - - 0x01C645 07:C635: C6        .byte > _off012_C613_0C   ; unused, no such index 0x01DB15
+- - - - - - 0x01C643 07:C633: C6        .byte > _off012_C613_0A   ; unused, index doesn't exist 0x01DB15
+- - - - - - 0x01C644 07:C634: C6        .byte > _off012_C613_0B   ; unused, index doesn't exist 0x01DB15
+- - - - - - 0x01C645 07:C635: C6        .byte > _off012_C613_0C   ; unused, index doesn't exist 0x01DB15
 - D 2 - - - 0x01C646 07:C636: C6        .byte > _off012_C613_0D   ; index from 0x01E057
-- - - - - - 0x01C647 07:C637: C6        .byte > _off012_C618_0E   ; unused, no such index 0x01DB15
+- - - - - - 0x01C647 07:C637: C6        .byte > _off012_C618_0E   ; unused, index doesn't exist 0x01DB15
 - D 2 - - - 0x01C648 07:C638: C6        .byte > _off012_C618_0F   ; 
 
 
@@ -1916,7 +1916,12 @@ tbl_C7A8:
 
 
 tbl_C7C0_moon_spr_data:
-- D 2 - - - 0x01C7D0 07:C7C0: 6F        .byte $6F, $CA, $02, $68   ; spr_Y, spr_T, spr_A, spr_X
+;                                              +-------------------- spr_Y
+;                                              |    +--------------- spr_T
+;                                              |    |    +---------- spr_A
+;                                              |    |    |    +----- spr_X
+;                                              |    |    |    |
+- D 2 - - - 0x01C7D0 07:C7C0: 6F        .byte $6F, $CA, $02, $68   ; 
 - D 2 - - - 0x01C7D4 07:C7C4: 6F        .byte $6F, $C9, $02, $70   ; 
 - D 2 - - - 0x01C7D8 07:C7C8: 6F        .byte $6F, $C8, $02, $78   ; 
 - D 2 - - - 0x01C7DC 07:C7CC: 6F        .byte $6F, $C8, $42, $80   ; 
@@ -2831,9 +2836,9 @@ C - - - - - 0x01CE09 07:CDF9: 68        PLA
 C - - - - - 0x01CE0A 07:CDFA: 8D 00 04  STA ram_0400_obj
 bra_CDFD:
 loc_CDFD:
-C D 2 - - - 0x01CE0D 07:CDFD: A9 00     LDA #$00
+C D 2 - - - 0x01CE0D 07:CDFD: A9 00     LDA #< $0100
 C - - - - - 0x01CE0F 07:CDFF: 8D A0 03  STA ram_spd_Y_lo
-C - - - - - 0x01CE12 07:CE02: A9 01     LDA #$01
+C - - - - - 0x01CE12 07:CE02: A9 01     LDA #> $0100
 C - - - - - 0x01CE14 07:CE04: 8D B0 03  STA ram_spd_Y_hi
 C - - - - - 0x01CE17 07:CE07: A5 16     LDA ram_btn_hold
 C - - - - - 0x01CE19 07:CE09: 29 0C     AND #con_btns_UD
@@ -3524,9 +3529,9 @@ C - - - - - 0x01D2D0 07:D2C0: 20 7F E2  JSR sub_E27F
 C - - - - - 0x01D2D3 07:D2C3: A5 42     LDA ram_0042
 C - - - - - 0x01D2D5 07:D2C5: C9 40     CMP #$40
 C - - - - - 0x01D2D7 07:D2C7: D0 3B     BNE bra_D304_RTS
-C - - - - - 0x01D2D9 07:D2C9: A9 00     LDA #$00
+C - - - - - 0x01D2D9 07:D2C9: A9 00     LDA #< $FE00
 C - - - - - 0x01D2DB 07:D2CB: 8D A0 03  STA ram_spd_Y_lo
-C - - - - - 0x01D2DE 07:D2CE: A9 FE     LDA #$FE
+C - - - - - 0x01D2DE 07:D2CE: A9 FE     LDA #> $FE00
 C - - - - - 0x01D2E0 07:D2D0: 8D B0 03  STA ram_spd_Y_hi
 C - - - - - 0x01D2E3 07:D2D3: 4C 03 D2  JMP loc_D203
 bra_D2D6:
