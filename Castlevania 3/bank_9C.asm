@@ -230,7 +230,7 @@ C - - - - - 0x038155 0E:8145: AD 65 05  LDA ram_plr_state
 C - - - - - 0x038158 0E:8148: 09 80     ORA #$80
 C - - - - - 0x03815A 0E:814A: 8D 65 05  STA ram_plr_state
 C - - - - - 0x03815D 0E:814D: A9 2C     LDA #$2C
-C - - - - - 0x03815F 0E:814F: 85 30     STA ram_0030
+C - - - - - 0x03815F 0E:814F: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x038161 0E:8151: 68        PLA
 C - - - - - 0x038162 0E:8152: 68        PLA
 bra_8153_RTS:

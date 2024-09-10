@@ -3613,9 +3613,9 @@ _off006_0x03DBCC_02:
 .export loc_0x03E36D
 .export sub_0x03E37D
 .export loc_0x03E584_prepare_script
-.export sub_0x03E589
-.export sub_0x03E59E
-.export loc_0x03E59E
+.export sub_0x03E589_decrease_screen_timer
+.export sub_0x03E59E_set_screen_timer
+.export loc_0x03E59E_set_screen_timer
 .export sub_0x03E5A3_check_for_special_name
 .export loc_0x03E5B0_bg_and_spr_palette
 .export sub_0x03E5BF
@@ -4486,7 +4486,7 @@ C - - - - - 0x03E3F7 0F:E3E7: CA        DEX
 C - - - - - 0x03E3F8 0F:E3E8: D0 12     BNE bra_E3FC
 ; 03
 C - - - - - 0x03E3FA 0F:E3EA: 20 B9 EB  JSR sub_EBB9
-C - - - - - 0x03E3FD 0F:E3ED: 20 8A E5  JSR sub_E58A
+C - - - - - 0x03E3FD 0F:E3ED: 20 8A E5  JSR sub_E58A_set_screen_timer_100
 C - - - - - 0x03E400 0F:E3F0: E6 19     INC ram_0019_subscript
 C - - - - - 0x03E402 0F:E3F2: 60        RTS
 bra_E3F3:
@@ -4500,11 +4500,11 @@ bra_E3FC:
 C - - - - - 0x03E40C 0F:E3FC: CA        DEX
 C - - - - - 0x03E40D 0F:E3FD: D0 23     BNE bra_E422
 ; 04
-C - - - - - 0x03E40F 0F:E3FF: 20 79 E5  JSR sub_E579
+C - - - - - 0x03E40F 0F:E3FF: 20 79 E5  JSR sub_E579_decrease_screen_timer
 C - - - - - 0x03E412 0F:E402: F0 EF     BEQ bra_E3F3
 C - - - - - 0x03E414 0F:E404: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03E416 0F:E406: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
-C - - - - - 0x03E419 0F:E409: 20 55 8B  JSR sub_0x000B65
+C - - - - - 0x03E419 0F:E409: 20 55 8B  JSR sub_0x000B65_set_title_screen_cursor_position
 C - - - - - 0x03E41C 0F:E40C: 20 5B E5  JSR sub_E55B_swap_option_via_Select
 C - - - - - 0x03E41F 0F:E40F: A5 F8     LDA ram_copy_btn_press
 C - - - - - 0x03E421 0F:E411: 29 10     AND #con_btn_Start
@@ -4514,7 +4514,7 @@ C - - - - - 0x03E427 0F:E417: 29 C0     AND #con_btns_AB
 C - - - - - 0x03E429 0F:E419: D0 DC     BNE bra_E3F7
 ; set timer before going to enetering name screen
 C - - - - - 0x03E42B 0F:E41B: A9 80     LDA #$80
-C - - - - - 0x03E42D 0F:E41D: 85 30     STA ram_0030
+C - - - - - 0x03E42D 0F:E41D: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x03E42F 0F:E41F: E6 19     INC ram_0019_subscript
 bra_E421_RTS:
 ofs_000_E421_01_RTS:    ; bzk unused labe;
@@ -4522,7 +4522,7 @@ C - - - - - 0x03E431 0F:E421: 60        RTS
 bra_E422:
 ; 05
 C - - - - - 0x03E432 0F:E422: A4 6B     LDY ram_006B_subscript
-C - - - - - 0x03E434 0F:E424: A5 30     LDA ram_0030
+C - - - - - 0x03E434 0F:E424: A5 30     LDA ram_screen_timer_lo
 C - - - - - 0x03E436 0F:E426: 29 08     AND #$08
 C - - - - - 0x03E438 0F:E428: F0 07     BEQ bra_E431_show_text
 ; hide text
@@ -4534,7 +4534,7 @@ bra_E431_show_text:
 C - - - - - 0x03E441 0F:E431: B9 40 E4  LDA tbl_E440_word,Y
 bra_E434:
 C - - - - - 0x03E444 0F:E434: 20 E9 EC  JSR sub_ECE9_write_data_to_ppu_buffer
-C - - - - - 0x03E447 0F:E437: C6 30     DEC ram_0030
+C - - - - - 0x03E447 0F:E437: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x03E449 0F:E439: D0 E6     BNE bra_E421_RTS
 C - - - - - 0x03E44B 0F:E43B: A9 02     LDA #con_0018_enter_your_name
 C - - - - - 0x03E44D 0F:E43D: 4C 74 E5  JMP loc_E574_prepare_script
@@ -4606,13 +4606,13 @@ C - - - - - 0x03E4AA 0F:E49A: 88        DEY
 C - - - - - 0x03E4AB 0F:E49B: D0 07     BNE bra_E4A4
 ; 02
 C - - - - - 0x03E4AD 0F:E49D: A9 01     LDA #$01
-C - - - - - 0x03E4AF 0F:E49F: 85 30     STA ram_0030
+C - - - - - 0x03E4AF 0F:E49F: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x03E4B1 0F:E4A1: E6 19     INC ram_0019_subscript
 bra_E4A3_RTS:
 C - - - - - 0x03E4B3 0F:E4A3: 60        RTS
 bra_E4A4:
 ; 03
-C - - - - - 0x03E4B4 0F:E4A4: C6 30     DEC ram_0030
+C - - - - - 0x03E4B4 0F:E4A4: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x03E4B6 0F:E4A6: D0 FB     BNE bra_E4A3_RTS
 loc_E4A8:
 C D 3 - - - 0x03E4B8 0F:E4A8: A9 00     LDA #con_002A_00
@@ -4660,7 +4660,7 @@ bra_E4F0:
 ; 01
 C - - - - - 0x03E500 0F:E4F0: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03E502 0F:E4F2: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
-C - - - - - 0x03E505 0F:E4F5: 20 29 8B  JSR sub_0x000B39
+C - - - - - 0x03E505 0F:E4F5: 20 29 8B  JSR sub_0x000B39_set_game_over_cursor_position
 C - - - - - 0x03E508 0F:E4F8: 20 5B E5  JSR sub_E55B_swap_option_via_Select
 C - - - - - 0x03E50B 0F:E4FB: A5 F8     LDA ram_copy_btn_press
 C - - - - - 0x03E50D 0F:E4FD: 29 10     AND #con_btn_Start
@@ -4768,29 +4768,33 @@ C - - - - - 0x03E586 0F:E576: 4C 6F E5  JMP loc_E56F
 
 
 
-sub_E579:
-sub_0x03E589:
-C - - - - - 0x03E589 0F:E579: A5 30     LDA ram_0030
-C - - - - - 0x03E58B 0F:E57B: 05 31     ORA ram_0031
+sub_E579_decrease_screen_timer:
+sub_0x03E589_decrease_screen_timer:
+; out
+    ; Z
+        ; 0 = 
+        ; 1 = 
+C - - - - - 0x03E589 0F:E579: A5 30     LDA ram_screen_timer_lo
+C - - - - - 0x03E58B 0F:E57B: 05 31     ORA ram_screen_timer_hi
 C - - - - - 0x03E58D 0F:E57D: F0 0A     BEQ bra_E589_RTS
-C - - - - - 0x03E58F 0F:E57F: A5 30     LDA ram_0030
+C - - - - - 0x03E58F 0F:E57F: A5 30     LDA ram_screen_timer_lo
 C - - - - - 0x03E591 0F:E581: D0 02     BNE bra_E585
-C - - - - - 0x03E593 0F:E583: C6 31     DEC ram_0031
+C - - - - - 0x03E593 0F:E583: C6 31     DEC ram_screen_timer_hi
 bra_E585:
-C - - - - - 0x03E595 0F:E585: C6 30     DEC ram_0030
+C - - - - - 0x03E595 0F:E585: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x03E597 0F:E587: A9 01     LDA #$01
-bra_E589_RTS:
+bra_E589_RTS:   ; A = 00
 C - - - - - 0x03E599 0F:E589: 60        RTS
 
 
 
-sub_E58A:
-C - - - - - 0x03E59A 0F:E58A: A9 00     LDA #$00
-C - - - - - 0x03E59C 0F:E58C: A0 01     LDY #$01
-sub_0x03E59E:
-loc_0x03E59E:
-C D 3 - - - 0x03E59E 0F:E58E: 85 30     STA ram_0030
-C - - - - - 0x03E5A0 0F:E590: 84 31     STY ram_0031
+sub_E58A_set_screen_timer_100:
+C - - - - - 0x03E59A 0F:E58A: A9 00     LDA #< $0100
+C - - - - - 0x03E59C 0F:E58C: A0 01     LDY #> $0100
+sub_0x03E59E_set_screen_timer:
+loc_0x03E59E_set_screen_timer:
+C D 3 - - - 0x03E59E 0F:E58E: 85 30     STA ram_screen_timer_lo
+C - - - - - 0x03E5A0 0F:E590: 84 31     STY ram_screen_timer_hi
 C - - - - - 0x03E5A2 0F:E592: 60        RTS
 
 
@@ -8167,7 +8171,7 @@ C - - - - - 0x03FA08 0F:F9F8: 20 EE 83  JSR sub_0x0003FE
 C - - - - - 0x03FA0B 0F:F9FB: A9 0C     LDA #con_sound_door
 C - - - - - 0x03FA0D 0F:F9FD: 20 5F E2  JSR sub_E25F_play_sound
 C - - - - - 0x03FA10 0F:FA00: A9 3C     LDA #$3C
-C - - - - - 0x03FA12 0F:FA02: 85 30     STA ram_0030
+C - - - - - 0x03FA12 0F:FA02: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x03FA14 0F:FA04: A9 0C     LDA #con_obj_type_0C
 C - - - - - 0x03FA16 0F:FA06: A0 00     LDY #$00
 C - - - - - 0x03FA18 0F:FA08: A2 13     LDX #$13
@@ -8265,12 +8269,12 @@ tbl_FA95:
 
 
 ofs_003_FA99_04:
-C - - J - - 0x03FAA9 0F:FA99: C6 30     DEC ram_0030
+C - - J - - 0x03FAA9 0F:FA99: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x03FAAB 0F:FA9B: D0 0C     BNE bra_FAA9
 C - - - - - 0x03FAAD 0F:FA9D: A9 00     LDA #$00
 C - - - - - 0x03FAAF 0F:FA9F: 20 57 EF  JSR sub_EF57
 C - - - - - 0x03FAB2 0F:FAA2: A9 30     LDA #$30
-C - - - - - 0x03FAB4 0F:FAA4: 85 30     STA ram_0030
+C - - - - - 0x03FAB4 0F:FAA4: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x03FAB6 0F:FAA6: E6 6B     INC ram_006B_subscript
 bra_FAA8_RTS:
 C - - - - - 0x03FAB8 0F:FAA8: 60        RTS
@@ -8286,7 +8290,7 @@ C - - - - - 0x03FAC8 0F:FAB8: 60        RTS
 
 
 ofs_003_FAB9_05:
-C - - J - - 0x03FAC9 0F:FAB9: C6 30     DEC ram_0030
+C - - J - - 0x03FAC9 0F:FAB9: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x03FACB 0F:FABB: D0 0C     BNE bra_FAC9
 C - - - - - 0x03FACD 0F:FABD: A9 0C     LDA #con_obj_type_0C
 C - - - - - 0x03FACF 0F:FABF: A0 01     LDY #$01

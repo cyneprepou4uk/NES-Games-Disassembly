@@ -15035,15 +15035,15 @@ C - - - - - 0x02B1EF 0A:B1DF: 85 25     STA ram_for_5105
 C - - - - - 0x02B1F1 0A:B1E1: A9 23     LDA #con_irq_23
 C - - - - - 0x02B1F3 0A:B1E3: A2 70     LDX #$70
 C - - - - - 0x02B1F5 0A:B1E5: 20 C1 E5  JSR sub_0x03E5D1
-C - - - - - 0x02B1F8 0A:B1E8: A0 00     LDY #$00
-C - - - - - 0x02B1FA 0A:B1EA: A9 80     LDA #$80
-C - - - - - 0x02B1FC 0A:B1EC: 4C 8E E5  JMP loc_0x03E59E
+C - - - - - 0x02B1F8 0A:B1E8: A0 00     LDY #> $0080
+C - - - - - 0x02B1FA 0A:B1EA: A9 80     LDA #< $0080
+C - - - - - 0x02B1FC 0A:B1EC: 4C 8E E5  JMP loc_0x03E59E_set_screen_timer
 
 
 
 ofs_016_B1EF_05:
 C - - J - - 0x02B1FF 0A:B1EF: 20 F3 B5  JSR sub_B5F3
-C - - - - - 0x02B202 0A:B1F2: 20 79 E5  JSR sub_0x03E589
+C - - - - - 0x02B202 0A:B1F2: 20 79 E5  JSR sub_0x03E589_decrease_screen_timer
 C - - - - - 0x02B205 0A:B1F5: D0 25     BNE bra_B21C_RTS
 C - - - - - 0x02B207 0A:B1F7: A9 F0     LDA #$F0
 C - - - - - 0x02B209 0A:B1F9: 8D 8A 07  STA ram_078A
@@ -15147,7 +15147,7 @@ C - - - - - 0x02B2B5 0A:B2A5: A9 80     LDA #$80
 loc_B2A7:
 C D 1 - - - 0x02B2B7 0A:B2A7: EE 83 07  INC ram_0783
 C - - - - - 0x02B2BA 0A:B2AA: A0 00     LDY #$00
-C - - - - - 0x02B2BC 0A:B2AC: 4C 8E E5  JMP loc_0x03E59E
+C - - - - - 0x02B2BC 0A:B2AC: 4C 8E E5  JMP loc_0x03E59E_set_screen_timer
 
 
 
@@ -15168,7 +15168,7 @@ ofs_015_B2B8_06:
 ofs_015_B2B8_0A:
 ofs_015_B2B8_0C:
 ofs_015_B2B8_0E:
-C - - - - - 0x02B2C8 0A:B2B8: 20 79 E5  JSR sub_0x03E589
+C - - - - - 0x02B2C8 0A:B2B8: 20 79 E5  JSR sub_0x03E589_decrease_screen_timer
 C - - - - - 0x02B2CB 0A:B2BB: D0 03     BNE bra_B2C0_RTS
 C - - - - - 0x02B2CD 0A:B2BD: EE 83 07  INC ram_0783
 bra_B2C0_RTS:
@@ -15180,13 +15180,13 @@ ofs_015_B2C1_03:
 C - - J - - 0x02B2D1 0A:B2C1: A2 01     LDX #$01
 C - - - - - 0x02B2D3 0A:B2C3: A0 03     LDY #$03
 C - - - - - 0x02B2D5 0A:B2C5: 20 21 B5  JSR sub_B521
-C - - - - - 0x02B2D8 0A:B2C8: A9 18     LDA #$18
+C - - - - - 0x02B2D8 0A:B2C8: A9 18     LDA #$18    ; screen timer lo
 C - - - - - 0x02B2DA 0A:B2CA: 4C A7 B2  JMP loc_B2A7
 
 
 
 ofs_015_B2CD_05:
-C - - J - - 0x02B2DD 0A:B2CD: A9 40     LDA #$40
+C - - J - - 0x02B2DD 0A:B2CD: A9 40     LDA #$40    ; screen timer lo
 C - - - - - 0x02B2DF 0A:B2CF: 4C A7 B2  JMP loc_B2A7
 
 
@@ -15195,13 +15195,13 @@ ofs_015_B2D2_07:
 C - - J - - 0x02B2E2 0A:B2D2: A2 01     LDX #$01
 C - - - - - 0x02B2E4 0A:B2D4: A0 04     LDY #$04
 C - - - - - 0x02B2E6 0A:B2D6: 20 21 B5  JSR sub_B521
-C - - - - - 0x02B2E9 0A:B2D9: A9 30     LDA #$30
+C - - - - - 0x02B2E9 0A:B2D9: A9 30     LDA #$30    ; screen timer lo
 C - - - - - 0x02B2EB 0A:B2DB: 4C A7 B2  JMP loc_B2A7
 
 
 
 ofs_015_B2DE_09:
-C - - J - - 0x02B2EE 0A:B2DE: A9 40     LDA #$40
+C - - J - - 0x02B2EE 0A:B2DE: A9 40     LDA #$40    ; screen timer lo
 C - - - - - 0x02B2F0 0A:B2E0: 4C A7 B2  JMP loc_B2A7
 
 
@@ -15212,7 +15212,7 @@ C - - - - - 0x02B2F5 0A:B2E5: 8D 00 04  STA ram_plr_anim_id
 C - - - - - 0x02B2F8 0A:B2E8: A2 01     LDX #$01
 C - - - - - 0x02B2FA 0A:B2EA: A9 3E     LDA #$3E
 C - - - - - 0x02B2FC 0A:B2EC: 20 18 B5  JSR sub_B518
-C - - - - - 0x02B2FF 0A:B2EF: A9 20     LDA #$20
+C - - - - - 0x02B2FF 0A:B2EF: A9 20     LDA #$20    ; screen timer lo
 C - - - - - 0x02B301 0A:B2F1: 4C A7 B2  JMP loc_B2A7
 
 
@@ -15221,7 +15221,7 @@ ofs_015_B2F4_0D:
 C - - J - - 0x02B304 0A:B2F4: A2 01     LDX #$01
 C - - - - - 0x02B306 0A:B2F6: A9 40     LDA #$40
 C - - - - - 0x02B308 0A:B2F8: 20 18 B5  JSR sub_B518
-C - - - - - 0x02B30B 0A:B2FB: A9 80     LDA #$80
+C - - - - - 0x02B30B 0A:B2FB: A9 80     LDA #$80    ; screen timer lo
 C - - - - - 0x02B30D 0A:B2FD: 4C A7 B2  JMP loc_B2A7
 
 
@@ -15230,7 +15230,7 @@ ofs_015_B300_10:
 C - - J - - 0x02B310 0A:B300: A2 01     LDX #$01
 C - - - - - 0x02B312 0A:B302: A0 01     LDY #$01
 C - - - - - 0x02B314 0A:B304: 20 21 B5  JSR sub_B521
-C - - - - - 0x02B317 0A:B307: A9 20     LDA #$20
+C - - - - - 0x02B317 0A:B307: A9 20     LDA #$20    ; screen timer lo
 C - - - - - 0x02B319 0A:B309: 4C A7 B2  JMP loc_B2A7
 
 
@@ -15239,7 +15239,7 @@ ofs_015_B30C_13:
 C - - J - - 0x02B31C 0A:B30C: A2 01     LDX #$01
 C - - - - - 0x02B31E 0A:B30E: A0 02     LDY #$02
 C - - - - - 0x02B320 0A:B310: 20 21 B5  JSR sub_B521
-C - - - - - 0x02B323 0A:B313: A9 80     LDA #$80
+C - - - - - 0x02B323 0A:B313: A9 80     LDA #$80    ; screen timer lo
 C - - - - - 0x02B325 0A:B315: 4C A7 B2  JMP loc_B2A7
 
 
@@ -15341,28 +15341,28 @@ bra_B3B5_RTS:
 C - - - - - 0x02B3C5 0A:B3B5: 60        RTS
 bra_B3B6_FF:
 C - - - - - 0x02B3C6 0A:B3B6: AC 82 07  LDY ram_copy_partner_0782
-C - - - - - 0x02B3C9 0A:B3B9: B9 C9 B3  LDA tbl_B3C9,Y
+C - - - - - 0x02B3C9 0A:B3B9: B9 C9 B3  LDA tbl_B3C9_screen_timer_hi,Y
 C - - - - - 0x02B3CC 0A:B3BC: 85 00     STA ram_0000
-C - - - - - 0x02B3CE 0A:B3BE: B9 CD B3  LDA tbl_B3CD,Y
+C - - - - - 0x02B3CE 0A:B3BE: B9 CD B3  LDA tbl_B3CD_screen_timer_lo,Y
 C - - - - - 0x02B3D1 0A:B3C1: A4 00     LDY ram_0000
-C - - - - - 0x02B3D3 0A:B3C3: 20 8E E5  JSR sub_0x03E59E
+C - - - - - 0x02B3D3 0A:B3C3: 20 8E E5  JSR sub_0x03E59E_set_screen_timer
 C - - - - - 0x02B3D6 0A:B3C6: 4C 1A B2  JMP loc_B21A_next_subscript
 
 
 
-tbl_B3C9:
-- D 1 - - - 0x02B3D9 0A:B3C9: 01        .byte $01   ; 00 con_player_Trevor
-- D 1 - - - 0x02B3DA 0A:B3CA: 02        .byte $02   ; 01 con_player_Sypha
-- D 1 - - - 0x02B3DB 0A:B3CB: 02        .byte $02   ; 02 con_player_Grant
-- D 1 - - - 0x02B3DC 0A:B3CC: 01        .byte $01   ; 03 con_player_Alucard
+tbl_B3C9_screen_timer_hi:
+- D 1 - - - 0x02B3D9 0A:B3C9: 01        .byte > $0160   ; 00 con_player_Trevor
+- D 1 - - - 0x02B3DA 0A:B3CA: 02        .byte > $0200   ; 01 con_player_Sypha
+- D 1 - - - 0x02B3DB 0A:B3CB: 02        .byte > $0240   ; 02 con_player_Grant
+- D 1 - - - 0x02B3DC 0A:B3CC: 01        .byte > $0190   ; 03 con_player_Alucard
 
 
 
-tbl_B3CD:
-- D 1 - - - 0x02B3DD 0A:B3CD: 60        .byte $60   ; 00 con_player_Trevor
-- D 1 - - - 0x02B3DE 0A:B3CE: 00        .byte $00   ; 01 con_player_Sypha
-- D 1 - - - 0x02B3DF 0A:B3CF: 40        .byte $40   ; 02 con_player_Grant
-- D 1 - - - 0x02B3E0 0A:B3D0: 90        .byte $90   ; 03 con_player_Alucard
+tbl_B3CD_screen_timer_lo:
+- D 1 - - - 0x02B3DD 0A:B3CD: 60        .byte < $0160   ; 00 con_player_Trevor
+- D 1 - - - 0x02B3DE 0A:B3CE: 00        .byte < $0200   ; 01 con_player_Sypha
+- D 1 - - - 0x02B3DF 0A:B3CF: 40        .byte < $0240   ; 02 con_player_Grant
+- D 1 - - - 0x02B3E0 0A:B3D0: 90        .byte < $0190   ; 03 con_player_Alucard
 
 
 
@@ -15376,7 +15376,7 @@ tbl_B3D1:
 
 ofs_016_B3D5_0C:
 C - - J - - 0x02B3E5 0A:B3D5: 20 90 B3  JSR sub_B390
-C - - - - - 0x02B3E8 0A:B3D8: 20 79 E5  JSR sub_0x03E589
+C - - - - - 0x02B3E8 0A:B3D8: 20 79 E5  JSR sub_0x03E589_decrease_screen_timer
 C - - - - - 0x02B3EB 0A:B3DB: D0 0B     BNE bra_B3E8_RTS
 C - - - - - 0x02B3ED 0A:B3DD: E6 19     INC ram_0019_subscript
 C - - - - - 0x02B3EF 0A:B3DF: AC 82 07  LDY ram_copy_partner_0782
@@ -15430,15 +15430,15 @@ C - - - - - 0x02B42B 0A:B41B: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x02B42E 0A:B41E: E8        INX
 C - - - - - 0x02B42F 0A:B41F: E0 04     CPX #$04
 C - - - - - 0x02B431 0A:B421: 90 F6     BCC bra_B419_loop
-C - - - - - 0x02B433 0A:B423: A0 00     LDY #$00
-C - - - - - 0x02B435 0A:B425: A9 40     LDA #$40
-C - - - - - 0x02B437 0A:B427: 20 8E E5  JSR sub_0x03E59E
+C - - - - - 0x02B433 0A:B423: A0 00     LDY #> $0040
+C - - - - - 0x02B435 0A:B425: A9 40     LDA #< $0040
+C - - - - - 0x02B437 0A:B427: 20 8E E5  JSR sub_0x03E59E_set_screen_timer
 C - - - - - 0x02B43A 0A:B42A: 4C 1A B2  JMP loc_B21A_next_subscript
 
 
 
 ofs_016_B42D_0F:
-C - - J - - 0x02B43D 0A:B42D: 20 79 E5  JSR sub_0x03E589
+C - - J - - 0x02B43D 0A:B42D: 20 79 E5  JSR sub_0x03E589_decrease_screen_timer
 C - - - - - 0x02B440 0A:B430: F0 01     BEQ bra_B433
 C - - - - - 0x02B442 0A:B432: 60        RTS
 bra_B433:
@@ -15470,19 +15470,19 @@ C - - - - - 0x02B466 0A:B456: 60        RTS
 ofs_016_B457_10:
 C - - J - - 0x02B467 0A:B457: A2 24     LDX #con_EC77_24
 C - - - - - 0x02B469 0A:B459: 20 04 EC  JSR sub_0x03EC14_draw_screen
-C - - - - - 0x02B46C 0A:B45C: A0 00     LDY #$00
-C - - - - - 0x02B46E 0A:B45E: A9 78     LDA #$78
-C - - - - - 0x02B470 0A:B460: 20 8E E5  JSR sub_0x03E59E
+C - - - - - 0x02B46C 0A:B45C: A0 00     LDY #> $0078
+C - - - - - 0x02B46E 0A:B45E: A9 78     LDA #< $0078
+C - - - - - 0x02B470 0A:B460: 20 8E E5  JSR sub_0x03E59E_set_screen_timer
 C - - - - - 0x02B473 0A:B463: 4C D9 B4  JMP loc_B4D9
 
 
 
 ofs_016_B466_11:
-C - - J - - 0x02B476 0A:B466: 20 79 E5  JSR sub_0x03E589
+C - - J - - 0x02B476 0A:B466: 20 79 E5  JSR sub_0x03E589_decrease_screen_timer
 C - - - - - 0x02B479 0A:B469: D0 0A     BNE bra_B475
-C - - - - - 0x02B47B 0A:B46B: A0 01     LDY #$01
-C - - - - - 0x02B47D 0A:B46D: A9 00     LDA #$00
-C - - - - - 0x02B47F 0A:B46F: 20 8E E5  JSR sub_0x03E59E
+C - - - - - 0x02B47B 0A:B46B: A0 01     LDY #> $0100
+C - - - - - 0x02B47D 0A:B46D: A9 00     LDA #< $0100
+C - - - - - 0x02B47F 0A:B46F: 20 8E E5  JSR sub_0x03E59E_set_screen_timer
 bra_B472_FF:
 C - - - - - 0x02B482 0A:B472: E6 19     INC ram_0019_subscript
 bra_B474_RTS:
@@ -15518,7 +15518,7 @@ C - - - - - 0x02B4B1 0A:B4A1: 4C E9 EC  JMP loc_0x03ECF9_write_data_to_ppu_buffe
 
 
 ofs_016_B4A4_12:
-C - - J - - 0x02B4B4 0A:B4A4: 20 79 E5  JSR sub_0x03E589
+C - - J - - 0x02B4B4 0A:B4A4: 20 79 E5  JSR sub_0x03E589_decrease_screen_timer
 C - - - - - 0x02B4B7 0A:B4A7: D0 2F     BNE bra_B4D8_RTS
 C - - - - - 0x02B4B9 0A:B4A9: 4C D9 B4  JMP loc_B4D9
 
@@ -16053,7 +16053,7 @@ C - - - - - 0x02B722 0A:B712: 20 F7 E7  JSR sub_0x03E807_clear_all_objects_data
 C - - - - - 0x02B725 0A:B715: A9 6E     LDA #con__chr_bank + $6E
 C - - - - - 0x02B727 0A:B717: 85 4C     STA ram_chr_bank_5126_512A
 C - - - - - 0x02B729 0A:B719: A9 30     LDA #$30
-C - - - - - 0x02B72B 0A:B71B: 85 30     STA ram_0030
+C - - - - - 0x02B72B 0A:B71B: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x02B72D 0A:B71D: A9 00     LDA #$00
 C - - - - - 0x02B72F 0A:B71F: 85 FC     STA ram_scroll_Y
 C - - - - - 0x02B731 0A:B721: 85 FD     STA ram_scroll_X
@@ -16070,11 +16070,11 @@ C - - - - - 0x02B740 0A:B730: 60        RTS
 
 ofs_014_B731_04:
 ofs_014_B731_09:
-C - - J - - 0x02B741 0A:B731: C6 30     DEC ram_0030
+C - - J - - 0x02B741 0A:B731: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x02B743 0A:B733: D0 FB     BNE bra_B730_RTS
 C - - - - - 0x02B745 0A:B735: 20 5F B6  JSR sub_B65F
 C - - - - - 0x02B748 0A:B738: A9 78     LDA #$78
-C - - - - - 0x02B74A 0A:B73A: 85 30     STA ram_0030
+C - - - - - 0x02B74A 0A:B73A: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x02B74C 0A:B73C: E6 19     INC ram_0019_subscript
 C - - - - - 0x02B74E 0A:B73E: 60        RTS
 
@@ -16082,10 +16082,10 @@ C - - - - - 0x02B74E 0A:B73E: 60        RTS
 
 ofs_014_B73F_05:
 ofs_014_B73F_0A:
-C - - J - - 0x02B74F 0A:B73F: C6 30     DEC ram_0030
+C - - J - - 0x02B74F 0A:B73F: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x02B751 0A:B741: D0 07     BNE bra_B74A
 C - - - - - 0x02B753 0A:B743: A9 78     LDA #$78
-C - - - - - 0x02B755 0A:B745: 85 30     STA ram_0030
+C - - - - - 0x02B755 0A:B745: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x02B757 0A:B747: E6 19     INC ram_0019_subscript
 bra_B749_RTS:
 C - - - - - 0x02B759 0A:B749: 60        RTS
@@ -16116,11 +16116,11 @@ C - - - - - 0x02B786 0A:B776: 4C E9 EC  JMP loc_0x03ECF9_write_data_to_ppu_buffe
 
 
 ofs_014_B779_06:
-C - - J - - 0x02B789 0A:B779: C6 30     DEC ram_0030
+C - - J - - 0x02B789 0A:B779: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x02B78B 0A:B77B: D0 09     BNE bra_B786_RTS
 C - - - - - 0x02B78D 0A:B77D: 20 5F B6  JSR sub_B65F
 C - - - - - 0x02B790 0A:B780: A9 78     LDA #$78
-C - - - - - 0x02B792 0A:B782: 85 30     STA ram_0030
+C - - - - - 0x02B792 0A:B782: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x02B794 0A:B784: E6 19     INC ram_0019_subscript
 bra_B786_RTS:
 C - - - - - 0x02B796 0A:B786: 60        RTS
@@ -16128,7 +16128,7 @@ C - - - - - 0x02B796 0A:B786: 60        RTS
 
 
 ofs_014_B787_07:
-C - - J - - 0x02B797 0A:B787: C6 30     DEC ram_0030
+C - - J - - 0x02B797 0A:B787: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x02B799 0A:B789: D0 08     BNE bra_B793
 C - - - - - 0x02B79B 0A:B78B: A9 00     LDA #$00
 C - - - - - 0x02B79D 0A:B78D: 8D A6 07  STA ram_07A6
@@ -16160,7 +16160,7 @@ C - - - - - 0x02B7C6 0A:B7B6: B0 01     BCS bra_B7B9
 C - - - - - 0x02B7C8 0A:B7B8: 60        RTS
 bra_B7B9:
 C - - - - - 0x02B7C9 0A:B7B9: A9 08     LDA #$08
-C - - - - - 0x02B7CB 0A:B7BB: 85 30     STA ram_0030
+C - - - - - 0x02B7CB 0A:B7BB: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x02B7CD 0A:B7BD: A2 90     LDX #con_prg_bank + $90
 C - - - - - 0x02B7CF 0A:B7BF: A9 5C     LDA #con_98E4_5C_credits
 C - - - - - 0x02B7D1 0A:B7C1: 20 DC EC  JSR sub_0x03ECEC_write_data_to_ppu_buffer
@@ -16258,17 +16258,17 @@ C - - - - - 0x02B868 0A:B858: 60        RTS
 bra_B859:
 C - - - - - 0x02B869 0A:B859: 20 5F B6  JSR sub_B65F
 C - - - - - 0x02B86C 0A:B85C: A9 78     LDA #$78
-C - - - - - 0x02B86E 0A:B85E: 85 30     STA ram_0030
+C - - - - - 0x02B86E 0A:B85E: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x02B870 0A:B860: E6 6B     INC ram_006B_subscript
 C - - - - - 0x02B872 0A:B862: 60        RTS
 
 
 
 ofs_013_B863_02:
-C - - J - - 0x02B873 0A:B863: C6 30     DEC ram_0030
+C - - J - - 0x02B873 0A:B863: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x02B875 0A:B865: D0 07     BNE bra_B86E
 C - - - - - 0x02B877 0A:B867: A9 78     LDA #$78
-C - - - - - 0x02B879 0A:B869: 85 30     STA ram_0030
+C - - - - - 0x02B879 0A:B869: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x02B87B 0A:B86B: E6 6B     INC ram_006B_subscript
 bra_B86D_RTS:
 C - - - - - 0x02B87D 0A:B86D: 60        RTS
@@ -16295,7 +16295,7 @@ C - - - - - 0x02B8A0 0A:B890: 4C FF B5  JMP loc_B5FF
 
 
 ofs_013_B893_03:
-C - - J - - 0x02B8A3 0A:B893: C6 30     DEC ram_0030
+C - - J - - 0x02B8A3 0A:B893: C6 30     DEC ram_screen_timer_lo
 ; bzk optimize, delete following RTS, BNE to RTS at 0x02B8AF
 C - - - - - 0x02B8A5 0A:B895: F0 01     BEQ bra_B898
 C - - - - - 0x02B8A7 0A:B897: 60        RTS
@@ -16323,7 +16323,7 @@ C - - - - - 0x02B8C2 0A:B8B2: 8D A2 07  STA ram_07A2
 C - - - - - 0x02B8C5 0A:B8B5: 8D A3 07  STA ram_07A3
 C - - - - - 0x02B8C8 0A:B8B8: 8D A4 07  STA ram_07A4
 C - - - - - 0x02B8CB 0A:B8BB: A9 80     LDA #$80
-C - - - - - 0x02B8CD 0A:B8BD: 85 30     STA ram_0030
+C - - - - - 0x02B8CD 0A:B8BD: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x02B8CF 0A:B8BF: E6 6B     INC ram_006B_subscript
 C - - - - - 0x02B8D1 0A:B8C1: 60        RTS
 
@@ -16357,7 +16357,7 @@ bra_B8E7:
 
 
 ofs_013_B8EB_05:
-C - - J - - 0x02B8FB 0A:B8EB: C6 30     DEC ram_0030
+C - - J - - 0x02B8FB 0A:B8EB: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x02B8FD 0A:B8ED: D0 03     BNE bra_B8F2
 C - - - - - 0x02B8FF 0A:B8EF: E6 6B     INC ram_006B_subscript
 C - - - - - 0x02B901 0A:B8F1: 60        RTS
@@ -16380,28 +16380,28 @@ C - - - - - 0x02B91F 0A:B90F: 60        RTS
 
 ofs_013_B910_06:
 C - - J - - 0x02B920 0A:B910: A9 E0     LDA #$E0
-C - - - - - 0x02B922 0A:B912: 85 30     STA ram_0030
+C - - - - - 0x02B922 0A:B912: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x02B924 0A:B914: E6 6B     INC ram_006B_subscript
 C - - - - - 0x02B926 0A:B916: 60        RTS
 
 
 
 ofs_013_B917_07:
-C - - J - - 0x02B927 0A:B917: C6 30     DEC ram_0030
+C - - J - - 0x02B927 0A:B917: C6 30     DEC ram_screen_timer_lo
 ; bzk optimize, delete following RTS, BNE to RTS at 0x02B935
 C - - - - - 0x02B929 0A:B919: F0 01     BEQ bra_B91C
 C - - - - - 0x02B92B 0A:B91B: 60        RTS
 bra_B91C:
 C - - - - - 0x02B92C 0A:B91C: 20 5F B6  JSR sub_B65F
 C - - - - - 0x02B92F 0A:B91F: A9 78     LDA #$78
-C - - - - - 0x02B931 0A:B921: 85 30     STA ram_0030
+C - - - - - 0x02B931 0A:B921: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x02B933 0A:B923: E6 6B     INC ram_006B_subscript
 C - - - - - 0x02B935 0A:B925: 60        RTS
 
 
 
 ofs_013_B926_08:
-C - - J - - 0x02B936 0A:B926: C6 30     DEC ram_0030
+C - - J - - 0x02B936 0A:B926: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x02B938 0A:B928: D0 03     BNE bra_B92D
 C - - - - - 0x02B93A 0A:B92A: E6 6B     INC ram_006B_subscript
 bra_B92C_RTS:
