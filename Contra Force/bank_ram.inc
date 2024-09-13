@@ -218,7 +218,11 @@ ram_script_lo                           = $0044 ; 01436C 014393 01D171 01D6F0 01
 
 ; 
 ram_0045                                = $0045 ; 015DD1 016631 017D0C 01D2ED 01D700 01DA34 01DA41 01E1B6 01E9A3 01F311 01FD5D 
-ram_0046                                = $0046 ; 01DA2A 01F311 01FD5D 
+
+
+
+; bzk optimize, useless address, holds 00
+ram_0046_useless_00                     = $0046 ; 01DA2A 01F311 01FD5D 
 
 
 
@@ -254,7 +258,16 @@ ram_0056                                = $0056 ; 01D6AB 01D6B1 01F311 01FD5D
 ram_0057                                = $0057 ; 01F311 01FD5D 
 ram_0058                                = $0058 ; 0141ED 014C7A 014C81 014C86 014C90 014CC2 01F311 01FD5D 
 ram_0059                                = $0059 ; 01785C 017863 017ABE 017B72 01F311 01FD5D 01FE02 
-ram_005A                                = $005A ; 007FB6 014265 0146EC 015722 015792 0159DE 015AA6 0163A6 01D0AC 01F311 01F8EC 01FD5D 01FDF0 
+
+
+
+; 00 = 
+; 01 = 
+ram_005A_flag                           = $005A ; 007FB6 014265 0146EC 015722 015792 0159DE 015AA6 0163A6 01D0AC 01F311 01F8EC 01FD5D 01FDF0 
+
+
+
+; 
 ram_005B                                = $005B ; 016303 0163A8 016406 01646E 0164EE 0165FF 01662A 016633 01BFFE 01D2F1 01F311 01FD5D 
 ram_005C                                = $005C ; 0141EF 014C6A 014C83 014CC0 01F311 01FD5D 
 ram_005D                                = $005D ; 017869 017871 01787A 01787E 01F311 01FD5D 01FE06 
@@ -301,8 +314,8 @@ ram_stage                               = $0075 ; 0033DE 003B39 003BFD 003EF0 00
 
 
 
-; 
-ram_0076                                = $0076 ; 007FB4 01437E 0146E0 015A4F 015AAA 015AD6 015B46 0177FE 017802 017875 017AD9 017B44 01EE86 01F311 01F8E7 01FD5D 01FDF4 
+; see con_irq
+ram_irq_handler                         = $0076 ; 007FB4 01437E 0146E0 015A4F 015AAA 015AD6 015B46 0177FE 017802 017875 017AD9 017B44 01EE86 01F311 01F8E7 01FD5D 01FDF4 
 
 
 
@@ -458,7 +471,16 @@ ram_nmi_flag_2                          = $00C4 ; 01F311 01F36D 01F3A0 01FD5D 01
 ram_00C5                                = $00C5 ; 003B61 007FC5 0157B1 015934 01597A 015A4D 01EE03 01EE68 01EEC5 01F311 01FD5D 
 ram_00C6                                = $00C6 ; 007FBA 015A55 015AA4 015AC3 015B99 015D3F 01F311 01FD5D 
 ram_00C7                                = $00C7 ; 0159D7 015AFB 015B7A 015BB6 015BC1 015BD5 01F311 01FD5D 
-ram_00C8                                = $00C8 ; 01F311 01F8AE 01FD5D 01FDF8 
+
+
+
+; a copy of ram_irq_handler
+; bzk optimize, seems useless, you can use ram_irq_handler directly
+ram_copy_irq_handler                    = $00C8 ; 01F311 01F8AE 01FD5D 01FDF8 
+
+
+
+; 
 ram_00C9                                = $00C9 ; 01F311 01FD5D 01FDFC 01FE48 
 ram_00CA                                = $00CA ; 01F311 01F7F8 01F821 01F838 01FD5D 01FE00 
 ram_00CB                                = $00CB ; 01F311 01F864 01FD5D 01FE0C 

@@ -7910,8 +7910,8 @@ C - - - - - 0x007FAB 01:BF9B: 85 D0     STA ram_00D0
 C - - - - - 0x007FAD 01:BF9D: 85 BD     STA ram_00BD
 C - - - - - 0x007FAF 01:BF9F: 8D 59 03  STA ram_0359
 C - - - - - 0x007FB2 01:BFA2: 85 C1     STA ram_00C1
-C - - - - - 0x007FB4 01:BFA4: 85 76     STA ram_0076
-C - - - - - 0x007FB6 01:BFA6: 85 5A     STA ram_005A
+C - - - - - 0x007FB4 01:BFA4: 85 76     STA ram_irq_handler ; con_irq_00
+C - - - - - 0x007FB6 01:BFA6: 85 5A     STA ram_005A_flag
 C - - - - - 0x007FB8 01:BFA8: 85 BC     STA ram_00BC
 C - - - - - 0x007FBA 01:BFAA: 85 C6     STA ram_00C6
 C - - - - - 0x007FBC 01:BFAC: 85 A6     STA ram_00A6

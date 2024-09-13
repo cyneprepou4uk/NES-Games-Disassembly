@@ -28,6 +28,21 @@ con_btns_ABSS                           = con_btn_A + con_btn_B + con_btn_Start 
 
 
 
+; ram_irq_handler
+; for 0x01F78B
+; need comments 0x0177FC
+con_irq_00                              = $00 ; 
+con_irq_01                              = $01 ; 
+con_irq_02                              = $02 ; 
+con_irq_03                              = $03 ; 
+con_irq_04                              = $04 ; 
+con_irq_05                              = $05 ; 
+con_irq_06                              = $06 ; 
+con_irq_07                              = $07 ; 
+con_irq_08                              = $08 ; 
+
+
+
 ; 0x008F67 ppu data
 con_8F57_00                             = $00 ; 
 con_8F57_04                             = $04 ; 
