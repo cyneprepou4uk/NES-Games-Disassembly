@@ -82,7 +82,7 @@ loc_C01E_infinite_loop:
 
 
 ; bzk garbage
-- - - - - - 0x00C031 03:C021: 4C A4 CB  JMP loc_CBA4
+- - - - - - 0x00C031 03:C021: 4C A4 CB  JMP loc_CBA4_divide_24bit_by_16bit
 
 
 ; bzk garbage
@@ -1318,6 +1318,7 @@ C - - - - - 0x00C7B8 03:C7A8: B1 61     LDA (ram_0061),Y
 C - - - - - 0x00C7BA 03:C7AA: 18        CLC
 C - - - - - 0x00C7BB 03:C7AB: 69 10     ADC #$10
 C - - - - - 0x00C7BD 03:C7AD: 29 E0     AND #$E0
+; / 20
 C - - - - - 0x00C7BF 03:C7AF: 4A        LSR
 C - - - - - 0x00C7C0 03:C7B0: 4A        LSR
 C - - - - - 0x00C7C1 03:C7B1: 4A        LSR
@@ -1359,7 +1360,7 @@ C - - - - - 0x00C7F7 03:C7E7: A0 01     LDY #$01
 C - - - - - 0x00C7F9 03:C7E9: B1 61     LDA (ram_0061),Y
 C - - - - - 0x00C7FB 03:C7EB: 08        PHP
 C - - - - - 0x00C7FC 03:C7EC: A6 2A     LDX ram_002A
-C - - - - - 0x00C7FE 03:C7EE: BD 1A C8  LDA tbl_C81A,X
+C - - - - - 0x00C7FE 03:C7EE: BD 1A C8  LDA tbl_C819 + $01,X
 C - - - - - 0x00C801 03:C7F1: 28        PLP
 C - - - - - 0x00C802 03:C7F2: 10 05     BPL bra_C7F9
 C - - - - - 0x00C804 03:C7F4: 49 FF     EOR #$FF
@@ -1403,49 +1404,37 @@ tbl_C811:
 ; 21 позиций мяча относительно игрока (X и Y)
 ; с учетом стороны поворота игрока и его действия
 tbl_C819:
-- D 2 - - - 0x00C829 03:C819: 01        .byte $01   ; 
-tbl_C81A:
-- D 2 - - - 0x00C82A 03:C81A: F7        .byte $F7   ; 
-- D 2 - - - 0x00C82B 03:C81B: FB        .byte $FB   ; 
-- D 2 - - - 0x00C82C 03:C81C: F9        .byte $F9   ; 
-- D 2 - - - 0x00C82D 03:C81D: F7        .byte $F7   ; 
-- D 2 - - - 0x00C82E 03:C81E: 02        .byte $02   ; 
-- D 2 - - - 0x00C82F 03:C81F: 00        .byte $00   ; 
-- D 2 - - - 0x00C830 03:C820: FA        .byte $FA   ; 
-- D 2 - - - 0x00C831 03:C821: F6        .byte $F6   ; 
-- D 2 - - - 0x00C832 03:C822: FB        .byte $FB   ; 
-- D 2 - - - 0x00C833 03:C823: FA        .byte $FA   ; 
-- D 2 - - - 0x00C834 03:C824: 00        .byte $00   ; 
-- - - - - - 0x00C835 03:C825: 00        .byte $00   ; 
-- - - - - - 0x00C836 03:C826: 04        .byte $04   ; 
-- D 2 - - - 0x00C837 03:C827: 06        .byte $06   ; 
-- D 2 - - - 0x00C838 03:C828: 06        .byte $06   ; 
-- D 2 - - - 0x00C839 03:C829: 07        .byte $07   ; 
-- D 2 - - - 0x00C83A 03:C82A: 01        .byte $01   ; 
-- - - - - - 0x00C83B 03:C82B: 00        .byte $00   ; 
-- - - - - - 0x00C83C 03:C82C: 04        .byte $04   ; 
-- D 2 - - - 0x00C83D 03:C82D: FD        .byte $FD   ; 
-- D 2 - - - 0x00C83E 03:C82E: FD        .byte $FD   ; 
-- D 2 - - - 0x00C83F 03:C82F: FC        .byte $FC   ; 
-- D 2 - - - 0x00C840 03:C830: 00        .byte $00   ; 
-- D 2 - - - 0x00C841 03:C831: 01        .byte $01   ; 
-- D 2 - - - 0x00C842 03:C832: FD        .byte $FD   ; 
-- D 2 - - - 0x00C843 03:C833: FF        .byte $FF   ; 
-- D 2 - - - 0x00C844 03:C834: FF        .byte $FF   ; 
-- D 2 - - - 0x00C845 03:C835: FD        .byte $FD   ; 
-- D 2 - - - 0x00C846 03:C836: 01        .byte $01   ; 
-- D 2 - - - 0x00C847 03:C837: 02        .byte $02   ; 
-- D 2 - - - 0x00C848 03:C838: 00        .byte $00   ; 
-- D 2 - - - 0x00C849 03:C839: 04        .byte $04   ; 
-- D 2 - - - 0x00C84A 03:C83A: 00        .byte $00   ; 
-- D 2 - - - 0x00C84B 03:C83B: 00        .byte $00   ; 
-- D 2 - - - 0x00C84C 03:C83C: 02        .byte $02   ; 
-- D 2 - - - 0x00C84D 03:C83D: 00        .byte $00   ; 
-- D 2 - - - 0x00C84E 03:C83E: FD        .byte $FD   ; 
-- D 2 - - - 0x00C84F 03:C83F: FD        .byte $FD   ; 
-- D 2 - - - 0x00C850 03:C840: FD        .byte $FD   ; 
-- D 2 - - - 0x00C851 03:C841: 00        .byte $00   ; 
-- D 2 - - - 0x00C852 03:C842: FD        .byte $FD   ; 
+;                                              +---------- X
+;                                              |    +----- Y
+;                                              |    |
+; 00 
+- D 2 - - - 0x00C829 03:C819: 01        .byte $01, $F7   ; 00 
+- D 2 - - - 0x00C82B 03:C81B: FB        .byte $FB, $F9   ; 02 
+- D 2 - - - 0x00C82D 03:C81D: F7        .byte $F7, $02   ; 04 
+; 01 
+- D 2 - - - 0x00C82F 03:C81F: 00        .byte $00, $FA   ; 00 
+- D 2 - - - 0x00C831 03:C821: F6        .byte $F6, $FB   ; 02 
+- D 2 - - - 0x00C833 03:C823: FA        .byte $FA, $00   ; 04 
+; 02 
+- - - - - - 0x00C835 03:C825: 00        .byte $00, $04   ; 00 
+- D 2 - - - 0x00C837 03:C827: 06        .byte $06, $06   ; 02 
+- D 2 - - - 0x00C839 03:C829: 07        .byte $07, $01   ; 04 
+; 03 
+- - - - - - 0x00C83B 03:C82B: 00        .byte $00, $04   ; 00 
+- D 2 - - - 0x00C83D 03:C82D: FD        .byte $FD, $FD   ; 02 
+- D 2 - - - 0x00C83F 03:C82F: FC        .byte $FC, $00   ; 04 
+; 04 
+- D 2 - - - 0x00C841 03:C831: 01        .byte $01, $FD   ; 00 
+- D 2 - - - 0x00C843 03:C833: FF        .byte $FF, $FF   ; 02 
+- D 2 - - - 0x00C845 03:C835: FD        .byte $FD, $01   ; 04 
+; 05 
+- D 2 - - - 0x00C847 03:C837: 02        .byte $02, $00   ; 00 
+- D 2 - - - 0x00C849 03:C839: 04        .byte $04, $00   ; 02 
+- D 2 - - - 0x00C84B 03:C83B: 00        .byte $00, $02   ; 04 
+; 06 
+- D 2 - - - 0x00C84D 03:C83D: 00        .byte $00, $FD   ; 00 
+- D 2 - - - 0x00C84F 03:C83F: FD        .byte $FD, $FD   ; 02 
+- D 2 - - - 0x00C851 03:C841: 00        .byte $00, $FD   ; 04 
 
 
 
@@ -2092,42 +2081,54 @@ C - - - - - 0x00CBB3 03:CBA3: 60        RTS
 
 
 
-sub_CBA4:
-loc_CBA4:
+sub_CBA4_divide_24bit_by_16bit:
+loc_CBA4_divide_24bit_by_16bit:
+; in
+    ; 0052 = dividend sub
+    ; 0053 = dividend lo
+    ; 0058 = dividend hi
+    ; 0054 = divisor lo
+    ; 0057 = divisor hi
+; out
+    ; 0052 = quotient sub
+    ; 0053 = quotient lo
+    ; 0058 = quotient hi
+    ; 0055 = reminder lo
+    ; 0056 = reminder hi
 C - - - - - 0x00CBB4 03:CBA4: 8A        TXA
 C - - - - - 0x00CBB5 03:CBA5: 48        PHA
 C - - - - - 0x00CBB6 03:CBA6: A9 00     LDA #$00
-C - - - - - 0x00CBB8 03:CBA8: 85 55     STA ram_0055
-C - - - - - 0x00CBBA 03:CBAA: 85 56     STA ram_0056
+C - - - - - 0x00CBB8 03:CBA8: 85 55     STA ram_reminder_lo
+C - - - - - 0x00CBBA 03:CBAA: 85 56     STA ram_reminder_hi
 C - - - - - 0x00CBBC 03:CBAC: A2 18     LDX #$18
-C - - - - - 0x00CBBE 03:CBAE: 26 52     ROL ram_0052
-C - - - - - 0x00CBC0 03:CBB0: 26 53     ROL ram_0053
-C - - - - - 0x00CBC2 03:CBB2: 26 58     ROL ram_0058
+C - - - - - 0x00CBBE 03:CBAE: 26 52     ROL ram_divident_sub
+C - - - - - 0x00CBC0 03:CBB0: 26 53     ROL ram_divident_lo
+C - - - - - 0x00CBC2 03:CBB2: 26 58     ROL ram_divident_hi
 bra_CBB4_loop:
-C - - - - - 0x00CBC4 03:CBB4: 26 55     ROL ram_0055
-C - - - - - 0x00CBC6 03:CBB6: 26 56     ROL ram_0056
+C - - - - - 0x00CBC4 03:CBB4: 26 55     ROL ram_reminder_lo
+C - - - - - 0x00CBC6 03:CBB6: 26 56     ROL ram_reminder_hi
 C - - - - - 0x00CBC8 03:CBB8: B0 10     BCS bra_CBCA
-C - - - - - 0x00CBCA 03:CBBA: A5 56     LDA ram_0056
-C - - - - - 0x00CBCC 03:CBBC: C5 57     CMP ram_0057
+C - - - - - 0x00CBCA 03:CBBA: A5 56     LDA ram_reminder_hi
+C - - - - - 0x00CBCC 03:CBBC: C5 57     CMP ram_divisor_hi
 C - - - - - 0x00CBCE 03:CBBE: F0 04     BEQ bra_CBC4
 C - - - - - 0x00CBD0 03:CBC0: 90 15     BCC bra_CBD7
 C - - - - - 0x00CBD2 03:CBC2: B0 06     BCS bra_CBCA
 bra_CBC4:
-C - - - - - 0x00CBD4 03:CBC4: A5 55     LDA ram_0055
-C - - - - - 0x00CBD6 03:CBC6: C5 54     CMP ram_0054
+C - - - - - 0x00CBD4 03:CBC4: A5 55     LDA ram_reminder_lo
+C - - - - - 0x00CBD6 03:CBC6: C5 54     CMP ram_divisor_lo
 C - - - - - 0x00CBD8 03:CBC8: 90 0D     BCC bra_CBD7
 bra_CBCA:
-C - - - - - 0x00CBDA 03:CBCA: A5 55     LDA ram_0055
-C - - - - - 0x00CBDC 03:CBCC: E5 54     SBC ram_0054
-C - - - - - 0x00CBDE 03:CBCE: 85 55     STA ram_0055
-C - - - - - 0x00CBE0 03:CBD0: A5 56     LDA ram_0056
-C - - - - - 0x00CBE2 03:CBD2: E5 57     SBC ram_0057
-C - - - - - 0x00CBE4 03:CBD4: 85 56     STA ram_0056
+C - - - - - 0x00CBDA 03:CBCA: A5 55     LDA ram_reminder_lo
+C - - - - - 0x00CBDC 03:CBCC: E5 54     SBC ram_divisor_lo
+C - - - - - 0x00CBDE 03:CBCE: 85 55     STA ram_reminder_lo
+C - - - - - 0x00CBE0 03:CBD0: A5 56     LDA ram_reminder_hi
+C - - - - - 0x00CBE2 03:CBD2: E5 57     SBC ram_divisor_hi
+C - - - - - 0x00CBE4 03:CBD4: 85 56     STA ram_reminder_hi
 C - - - - - 0x00CBE6 03:CBD6: 38        SEC
 bra_CBD7:
-C - - - - - 0x00CBE7 03:CBD7: 26 52     ROL ram_0052
-C - - - - - 0x00CBE9 03:CBD9: 26 53     ROL ram_0053
-C - - - - - 0x00CBEB 03:CBDB: 26 58     ROL ram_0058
+C - - - - - 0x00CBE7 03:CBD7: 26 52     ROL ram_divident_sub
+C - - - - - 0x00CBE9 03:CBD9: 26 53     ROL ram_divident_lo
+C - - - - - 0x00CBEB 03:CBDB: 26 58     ROL ram_divident_hi
 C - - - - - 0x00CBED 03:CBDD: CA        DEX
 C - - - - - 0x00CBEE 03:CBDE: D0 D4     BNE bra_CBB4_loop
 C - - - - - 0x00CBF0 03:CBE0: 68        PLA
@@ -3876,6 +3877,7 @@ bra_D7D1:
 C - - - - - 0x00D7E1 03:D7D1: AD 29 04  LDA ram_plr_w_ball
 C - - - - - 0x00D7E4 03:D7D4: 20 E3 CB  JSR sub_CBE3
 C - - - - - 0x00D7E7 03:D7D7: AE E2 03  LDX ram_03E2
+; bzk optimize, prepare proper bytes in the table beforehand, instead of EOR
 C - - - - - 0x00D7EA 03:D7DA: BD 42 D8  LDA tbl_D842,X
 C - - - - - 0x00D7ED 03:D7DD: 49 FF     EOR #$FF
 C - - - - - 0x00D7EF 03:D7DF: 18        CLC
@@ -4016,7 +4018,7 @@ C - - - - - 0x00D8B4 03:D8A4: 68        PLA
 C - - - - - 0x00D8B5 03:D8A5: 71 61     ADC (ram_0061),Y
 C - - - - - 0x00D8B7 03:D8A7: 10 03     BPL bra_D8AC
 - - - - - - 0x00D8B9 03:D8A9: A2 00     LDX #$00
-- - - - - - 0x00D8BB 03:D8AB: 8A        TXA
+- - - - - - 0x00D8BB 03:D8AB: 8A        TXA ; 00
 bra_D8AC:
 C - - - - - 0x00D8BC 03:D8AC: 8E D8 03  STX ram_03D8
 C - - - - - 0x00D8BF 03:D8AF: 8D DA 03  STA ram_03DA
@@ -4035,11 +4037,11 @@ C - - - - - 0x00D8D0 03:D8C0: 90 03     BCC bra_D8C5
 C - - - - - 0x00D8D2 03:D8C2: 4C 38 D9  JMP loc_D938_RTS
 bra_D8C5:
 C - - - - - 0x00D8D5 03:D8C5: A0 00     LDY #$00
-bra_D8C7:
+bra_D8C7_loop:
 C - - - - - 0x00D8D7 03:D8C7: D9 39 D9  CMP tbl_D939,Y
 C - - - - - 0x00D8DA 03:D8CA: 90 03     BCC bra_D8CF
 C - - - - - 0x00D8DC 03:D8CC: C8        INY
-C - - - - - 0x00D8DD 03:D8CD: D0 F8     BNE bra_D8C7
+C - - - - - 0x00D8DD 03:D8CD: D0 F8     BNE bra_D8C7_loop    ; jmp
 bra_D8CF:
 C - - - - - 0x00D8DF 03:D8CF: 98        TYA
 C - - - - - 0x00D8E0 03:D8D0: 0A        ASL
@@ -4760,10 +4762,10 @@ C - - - - - 0x00DD8E 03:DD7E: B0 03     BCS bra_DD83
 C - - - - - 0x00DD90 03:DD80: 20 1E C9  JSR sub_C91E
 bra_DD83:
 C - - - - - 0x00DD93 03:DD83: 26 2A     ROL ram_002A
-C - - - - - 0x00DD95 03:DD85: 86 53     STX ram_0053
-C - - - - - 0x00DD97 03:DD87: 84 58     STY ram_0058
+C - - - - - 0x00DD95 03:DD85: 86 53     STX ram_divident_lo
+C - - - - - 0x00DD97 03:DD87: 84 58     STY ram_divident_hi
 C - - - - - 0x00DD99 03:DD89: A9 00     LDA #$00
-C - - - - - 0x00DD9B 03:DD8B: 85 52     STA ram_0052
+C - - - - - 0x00DD9B 03:DD8B: 85 52     STA ram_divident_sub
 C - - - - - 0x00DD9D 03:DD8D: AD 17 04  LDA ram_ball_pass_pos_Y_lo
 C - - - - - 0x00DDA0 03:DD90: 38        SEC
 C - - - - - 0x00DDA1 03:DD91: ED DE 03  SBC ram_03DE
@@ -4775,31 +4777,31 @@ C - - - - - 0x00DDAC 03:DD9C: B0 03     BCS bra_DDA1
 C - - - - - 0x00DDAE 03:DD9E: 20 1E C9  JSR sub_C91E
 bra_DDA1:
 C - - - - - 0x00DDB1 03:DDA1: 26 2A     ROL ram_002A
-C - - - - - 0x00DDB3 03:DDA3: 86 54     STX ram_0054
-C - - - - - 0x00DDB5 03:DDA5: 84 57     STY ram_0057
+C - - - - - 0x00DDB3 03:DDA3: 86 54     STX ram_divisor_lo
+C - - - - - 0x00DDB5 03:DDA5: 84 57     STY ram_divisor_hi
 C - - - - - 0x00DDB7 03:DDA7: 38        SEC
 C - - - - - 0x00DDB8 03:DDA8: 8A        TXA
-C - - - - - 0x00DDB9 03:DDA9: E5 53     SBC ram_0053
+C - - - - - 0x00DDB9 03:DDA9: E5 53     SBC ram_divident_lo
 C - - - - - 0x00DDBB 03:DDAB: 98        TYA
-C - - - - - 0x00DDBC 03:DDAC: E5 58     SBC ram_0058
+C - - - - - 0x00DDBC 03:DDAC: E5 58     SBC ram_divident_hi
 C - - - - - 0x00DDBE 03:DDAE: B0 04     BCS bra_DDB4
-C - - - - - 0x00DDC0 03:DDB0: A6 53     LDX ram_0053
-C - - - - - 0x00DDC2 03:DDB2: A4 58     LDY ram_0058
+C - - - - - 0x00DDC0 03:DDB0: A6 53     LDX ram_divident_lo
+C - - - - - 0x00DDC2 03:DDB2: A4 58     LDY ram_divident_hi
 bra_DDB4:
 C - - - - - 0x00DDC4 03:DDB4: 8E 1B 04  STX ram_041B
 C - - - - - 0x00DDC7 03:DDB7: 8C 1C 04  STY ram_041C
-C - - - - - 0x00DDCA 03:DDBA: 20 A4 CB  JSR sub_CBA4
+C - - - - - 0x00DDCA 03:DDBA: 20 A4 CB  JSR sub_CBA4_divide_24bit_by_16bit
 C - - - - - 0x00DDCD 03:DDBD: A2 00     LDX #$00
-bra_DDBF:
+bra_DDBF_loop:
 C - - - - - 0x00DDCF 03:DDBF: BD FA FB  LDA tbl_FBFA,X
 C - - - - - 0x00DDD2 03:DDC2: 38        SEC
-C - - - - - 0x00DDD3 03:DDC3: E5 52     SBC ram_0052
+C - - - - - 0x00DDD3 03:DDC3: E5 52     SBC ram_quotient_sub
 C - - - - - 0x00DDD5 03:DDC5: BD FB FB  LDA tbl_FBFB,X
-C - - - - - 0x00DDD8 03:DDC8: E5 53     SBC ram_0053
+C - - - - - 0x00DDD8 03:DDC8: E5 53     SBC ram_quotient_lo
 C - - - - - 0x00DDDA 03:DDCA: B0 04     BCS bra_DDD0
 C - - - - - 0x00DDDC 03:DDCC: E8        INX
 C - - - - - 0x00DDDD 03:DDCD: E8        INX
-C - - - - - 0x00DDDE 03:DDCE: D0 EF     BNE bra_DDBF
+C - - - - - 0x00DDDE 03:DDCE: D0 EF     BNE bra_DDBF_loop    ; jmp
 bra_DDD0:
 C - - - - - 0x00DDE0 03:DDD0: 8A        TXA
 C - - - - - 0x00DDE1 03:DDD1: 4A        LSR
@@ -4829,11 +4831,11 @@ C - - - - - 0x00DE01 03:DDF1: 60        RTS
 sub_DDF2:
 C - - - - - 0x00DE02 03:DDF2: 20 DF DD  JSR sub_DDDF
 C - - - - - 0x00DE05 03:DDF5: A9 00     LDA #$00
-C - - - - - 0x00DE07 03:DDF7: 85 52     STA ram_0052
+C - - - - - 0x00DE07 03:DDF7: 85 52     STA ram_divident_sub
 C - - - - - 0x00DE09 03:DDF9: AD 1B 04  LDA ram_041B
-C - - - - - 0x00DE0C 03:DDFC: 85 53     STA ram_0053
+C - - - - - 0x00DE0C 03:DDFC: 85 53     STA ram_divident_lo
 C - - - - - 0x00DE0E 03:DDFE: AD 1C 04  LDA ram_041C
-C - - - - - 0x00DE11 03:DE01: 85 58     STA ram_0058
+C - - - - - 0x00DE11 03:DE01: 85 58     STA ram_divident_hi
 C - - - - - 0x00DE13 03:DE03: AD E6 03  LDA ram_03E6
 C - - - - - 0x00DE16 03:DE06: 10 04     BPL bra_DE0C
 C - - - - - 0x00DE18 03:DE08: 49 FF     EOR #$FF
@@ -4853,12 +4855,12 @@ C - - - - - 0x00DE2E 03:DE1E: 98        TYA
 C - - - - - 0x00DE2F 03:DE1F: 10 03     BPL bra_DE24
 C - - - - - 0x00DE31 03:DE21: 20 1E C9  JSR sub_C91E
 bra_DE24:
-C - - - - - 0x00DE34 03:DE24: 86 54     STX ram_0054
-C - - - - - 0x00DE36 03:DE26: 84 57     STY ram_0057
-C - - - - - 0x00DE38 03:DE28: 20 A4 CB  JSR sub_CBA4
-C - - - - - 0x00DE3B 03:DE2B: A5 52     LDA ram_0052
+C - - - - - 0x00DE34 03:DE24: 86 54     STX ram_divisor_lo
+C - - - - - 0x00DE36 03:DE26: 84 57     STY ram_divisor_hi
+C - - - - - 0x00DE38 03:DE28: 20 A4 CB  JSR sub_CBA4_divide_24bit_by_16bit
+C - - - - - 0x00DE3B 03:DE2B: A5 52     LDA ram_quotient_sub
 C - - - - - 0x00DE3D 03:DE2D: 8D 1F 04  STA ram_041F
-C - - - - - 0x00DE40 03:DE30: A5 53     LDA ram_0053
+C - - - - - 0x00DE40 03:DE30: A5 53     LDA ram_quotient_lo
 C - - - - - 0x00DE42 03:DE32: 8D 20 04  STA ram_0420
 C - - - - - 0x00DE45 03:DE35: 60        RTS
 
@@ -5331,6 +5333,7 @@ C - - - - - 0x00E121 03:E111: 68        PLA
 C - - - - - 0x00E122 03:E112: B0 0A     BCS bra_E11E
 C - - - - - 0x00E124 03:E114: BD 5D E1  LDA tbl_E15D,X
 C - - - - - 0x00E127 03:E117: BC 5E E1  LDY tbl_E15E,X
+; bzk optimize, delete TAX, JMP to 0x00E13D
 C - - - - - 0x00E12A 03:E11A: AA        TAX
 C - - - - - 0x00E12B 03:E11B: 4C 2E E1  JMP loc_E12E
 bra_E11E:
@@ -6196,10 +6199,10 @@ C - - - - - 0x00E63A 03:E62A: B0 03     BCS bra_E62F
 C - - - - - 0x00E63C 03:E62C: 20 1E C9  JSR sub_C91E
 bra_E62F:
 C - - - - - 0x00E63F 03:E62F: 26 2A     ROL ram_002A
-C - - - - - 0x00E641 03:E631: 86 53     STX ram_0053
-C - - - - - 0x00E643 03:E633: 84 58     STY ram_0058
+C - - - - - 0x00E641 03:E631: 86 53     STX ram_divident_lo
+C - - - - - 0x00E643 03:E633: 84 58     STY ram_divident_hi
 C - - - - - 0x00E645 03:E635: A9 00     LDA #$00
-C - - - - - 0x00E647 03:E637: 85 52     STA ram_0052
+C - - - - - 0x00E647 03:E637: 85 52     STA ram_divident_sub
 C - - - - - 0x00E649 03:E639: A0 1C     LDY #$1C
 C - - - - - 0x00E64B 03:E63B: B1 61     LDA (ram_0061),Y
 C - - - - - 0x00E64D 03:E63D: A0 0B     LDY #$0B
@@ -6215,29 +6218,30 @@ C - - - - - 0x00E65C 03:E64C: B0 03     BCS bra_E651
 C - - - - - 0x00E65E 03:E64E: 20 1E C9  JSR sub_C91E
 bra_E651:
 C - - - - - 0x00E661 03:E651: 26 2A     ROL ram_002A
-C - - - - - 0x00E663 03:E653: 86 54     STX ram_0054
-C - - - - - 0x00E665 03:E655: 84 57     STY ram_0057
+C - - - - - 0x00E663 03:E653: 86 54     STX ram_divisor_lo
+C - - - - - 0x00E665 03:E655: 84 57     STY ram_divisor_hi
+; bzk optimize, useless code up to 0x00E672
 C - - - - - 0x00E667 03:E657: 38        SEC
 C - - - - - 0x00E668 03:E658: 8A        TXA
-C - - - - - 0x00E669 03:E659: E5 53     SBC ram_0053
+C - - - - - 0x00E669 03:E659: E5 53     SBC ram_divident_lo
 C - - - - - 0x00E66B 03:E65B: 98        TYA
-C - - - - - 0x00E66C 03:E65C: E5 58     SBC ram_0058
+C - - - - - 0x00E66C 03:E65C: E5 58     SBC ram_divident_hi
 C - - - - - 0x00E66E 03:E65E: B0 04     BCS bra_E664
-C - - - - - 0x00E670 03:E660: A6 53     LDX ram_0053
-C - - - - - 0x00E672 03:E662: A4 58     LDY ram_0058
+C - - - - - 0x00E670 03:E660: A6 53     LDX ram_divident_lo
+C - - - - - 0x00E672 03:E662: A4 58     LDY ram_divident_hi
 bra_E664:
-C - - - - - 0x00E674 03:E664: 20 A4 CB  JSR sub_CBA4
+C - - - - - 0x00E674 03:E664: 20 A4 CB  JSR sub_CBA4_divide_24bit_by_16bit
 C - - - - - 0x00E677 03:E667: A2 00     LDX #$00
-bra_E669:
+bra_E669_loop:
 C - - - - - 0x00E679 03:E669: BD FA FB  LDA tbl_FBFA,X
 C - - - - - 0x00E67C 03:E66C: 38        SEC
-C - - - - - 0x00E67D 03:E66D: E5 52     SBC ram_0052
+C - - - - - 0x00E67D 03:E66D: E5 52     SBC ram_quotient_sub
 C - - - - - 0x00E67F 03:E66F: BD FB FB  LDA tbl_FBFB,X
-C - - - - - 0x00E682 03:E672: E5 53     SBC ram_0053
+C - - - - - 0x00E682 03:E672: E5 53     SBC ram_quotient_lo
 C - - - - - 0x00E684 03:E674: B0 04     BCS bra_E67A
 C - - - - - 0x00E686 03:E676: E8        INX
 C - - - - - 0x00E687 03:E677: E8        INX
-C - - - - - 0x00E688 03:E678: D0 EF     BNE bra_E669
+C - - - - - 0x00E688 03:E678: D0 EF     BNE bra_E669_loop    ; jmp
 bra_E67A:
 C - - - - - 0x00E68A 03:E67A: 8A        TXA
 C - - - - - 0x00E68B 03:E67B: 4A        LSR

@@ -473,10 +473,10 @@ C - - - - - 0x0082D7 02:82C7: A9 10     LDA #$10
 C - - - - - 0x0082D9 02:82C9: 20 18 C0  JSR sub_0x00C028
 C - - - - - 0x0082DC 02:82CC: 20 78 C0  JSR sub_0x00C088
 - D 0 - I - 0x0082DF 02:82CF: 80 03     .word ram_0380
-loc_82D1:
+loc_82D1_infinite_loop:
 C D 0 - - - 0x0082E1 02:82D1: A9 01     LDA #$01
 C - - - - - 0x0082E3 02:82D3: 20 09 C0  JSR sub_0x00C019_delay
-C - - - - - 0x0082E6 02:82D6: 4C D1 82  JMP loc_82D1
+C - - - - - 0x0082E6 02:82D6: 4C D1 82  JMP loc_82D1_infinite_loop
 
 
 

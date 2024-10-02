@@ -106,13 +106,22 @@ ram_004E                                = $004E ; 00C0AE 00CB89 00CBAC 00DE5E
 ram_004F                                = $004F ; 00C0AE 00CB8B 00CBAA 00DBC3 00DE63 00DE9B 00E6C7 
 ram_0050                                = $0050 ; 00C0AE 00CB8D 00CB9A 00CB9E 00CBA8 00DBC5 00DE9D 00E6C9 
 ram_0051                                = $0051 ; 00C0AE 00CB8F 00CBA0 00CBA4 00CBA6 
-ram_0052                                = $0052 ; 00C0AE 00CBBE 00CBE7 00DD9B 00DDD3 00DE07 00DE3B 00E647 00E67D 
-ram_0053                                = $0053 ; 00C0AE 00CBC0 00CBE9 00DD95 00DDB9 00DDC0 00DDD8 00DE0C 00DE40 00E641 00E669 00E670 00E682 
-ram_0054                                = $0054 ; 00C0AE 00CBD6 00CBDC 00DDB3 00DE34 00E663 
-ram_0055                                = $0055 ; 00C0AE 00CBB8 00CBC4 00CBD4 00CBDA 00CBDE 
-ram_0056                                = $0056 ; 00C0AE 00CBBA 00CBC6 00CBCA 00CBE0 00CBE4 
-ram_0057                                = $0057 ; 00C0AE 00CBCC 00CBE2 00DDB5 00DE36 00E665 
-ram_0058                                = $0058 ; 00C0AE 00CBC2 00CBEB 00DD97 00DDBC 00DDC2 00DE11 00E643 00E66C 00E672 
+
+
+
+; division 0x00CBB4
+ram_divident_sub                        = $0052 ; 00C0AE 00CBBE 00CBE7 00DD9B 00DDD3 00DE07 00DE3B 00E647 00E67D 
+ram_divident_lo                         = $0053 ; 00C0AE 00CBC0 00CBE9 00DD95 00DDB9 00DDC0 00DDD8 00DE0C 00DE40 00E641 00E669 00E670 00E682 
+ram_divisor_lo                          = $0054 ; 00C0AE 00CBD6 00CBDC 00DDB3 00DE34 00E663 
+ram_reminder_lo                         = $0055 ; 00C0AE 00CBB8 00CBC4 00CBD4 00CBDA 00CBDE 
+ram_reminder_hi                         = $0056 ; 00C0AE 00CBBA 00CBC6 00CBCA 00CBE0 00CBE4 
+ram_divisor_hi                          = $0057 ; 00C0AE 00CBCC 00CBE2 00DDB5 00DE36 00E665 
+ram_divident_hi                         = $0058 ; 00C0AE 00CBC2 00CBEB 00DD97 00DDBC 00DDC2 00DE11 00E643 00E66C 00E672 
+    ram_quotient_sub                        = ram_divident_sub ; 
+    ram_quotient_lo                         = ram_divident_lo ; 
+    ram_quotient_hi                         = ram_divident_hi ; 
+
+
 
 ; ($indirect),Y
 ram_0059                                = $0059 ; 00412A 00C0AE 
