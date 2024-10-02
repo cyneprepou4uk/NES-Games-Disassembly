@@ -255,235 +255,75 @@
 
 
 
-; ??? хз как оформить таблицу, тут читаются соседние данные, а не стабильно кусками по 4
-tbl_A000:
-- D 1 - - - 0x006010 01:A000: EA        .byte $EA   ; 
-tbl_A001:
-- D 1 - - - 0x006011 01:A001: F4        .byte $F4   ; 
-tbl_A002:
-- D 1 - - - 0x006012 01:A002: 2A        .byte $2A   ; 
-tbl_A003:
-- D 1 - - - 0x006013 01:A003: 16        .byte $16   ; 
-- D 1 - - - 0x006014 01:A004: F0        .byte $F0   ; 
-- D 1 - - - 0x006015 01:A005: FA        .byte $FA   ; 
-- D 1 - - - 0x006016 01:A006: 1E        .byte $1E   ; 
-- D 1 - - - 0x006017 01:A007: 0A        .byte $0A   ; 
-- D 1 - - - 0x006018 01:A008: E5        .byte $E5   ; 
-- D 1 - - - 0x006019 01:A009: F7        .byte $F7   ; 
-- D 1 - - - 0x00601A 01:A00A: 34        .byte $34   ; 
-- D 1 - - - 0x00601B 01:A00B: 10        .byte $10   ; 
-- D 1 - - - 0x00601C 01:A00C: E1        .byte $E1   ; 
-- D 1 - - - 0x00601D 01:A00D: EB        .byte $EB   ; 
-- D 1 - - - 0x00601E 01:A00E: 3C        .byte $3C   ; 
-- D 1 - - - 0x00601F 01:A00F: 28        .byte $28   ; 
-- D 1 - - - 0x006020 01:A010: F1        .byte $F1   ; 
-- D 1 - - - 0x006021 01:A011: EF        .byte $EF   ; 
-- D 1 - - - 0x006022 01:A012: 28        .byte $28   ; 
-- D 1 - - - 0x006023 01:A013: 20        .byte $20   ; 
-- D 1 - - - 0x006024 01:A014: E1        .byte $E1   ; 
-- D 1 - - - 0x006025 01:A015: D3        .byte $D3   ; 
-- D 1 - - - 0x006026 01:A016: 3C        .byte $3C   ; 
-- D 1 - - - 0x006027 01:A017: 58        .byte $58   ; 
-- D 1 - - - 0x006028 01:A018: D1        .byte $D1   ; 
-- D 1 - - - 0x006029 01:A019: DB        .byte $DB   ; 
-- D 1 - - - 0x00602A 01:A01A: 6C        .byte $6C   ; 
-- D 1 - - - 0x00602B 01:A01B: 48        .byte $48   ; 
-- D 1 - - - 0x00602C 01:A01C: D1        .byte $D1   ; 
-- D 1 - - - 0x00602D 01:A01D: EB        .byte $EB   ; 
-- D 1 - - - 0x00602E 01:A01E: 5C        .byte $5C   ; 
-- D 1 - - - 0x00602F 01:A01F: 28        .byte $28   ; 
-- D 1 - - - 0x006030 01:A020: F2        .byte $F2   ; 
-- D 1 - - - 0x006031 01:A021: F2        .byte $F2   ; 
-- D 1 - - - 0x006032 01:A022: 1A        .byte $1A   ; 
-- D 1 - - - 0x006033 01:A023: 1A        .byte $1A   ; 
-- D 1 - - - 0x006034 01:A024: F8        .byte $F8   ; 
-- D 1 - - - 0x006035 01:A025: F8        .byte $F8   ; 
-- D 1 - - - 0x006036 01:A026: 0E        .byte $0E   ; 
-- D 1 - - - 0x006037 01:A027: 0E        .byte $0E   ; 
-- D 1 - - - 0x006038 01:A028: ED        .byte $ED   ; 
-- D 1 - - - 0x006039 01:A029: F5        .byte $F5   ; 
-- D 1 - - - 0x00603A 01:A02A: 24        .byte $24   ; 
-- D 1 - - - 0x00603B 01:A02B: 14        .byte $14   ; 
-- D 1 - - - 0x00603C 01:A02C: E9        .byte $E9   ; 
-- D 1 - - - 0x00603D 01:A02D: E9        .byte $E9   ; 
-- D 1 - - - 0x00603E 01:A02E: 2C        .byte $2C   ; 
-- D 1 - - - 0x00603F 01:A02F: 2C        .byte $2C   ; 
-- D 1 - - - 0x006040 01:A030: F9        .byte $F9   ; 
-- D 1 - - - 0x006041 01:A031: ED        .byte $ED   ; 
-- D 1 - - - 0x006042 01:A032: 18        .byte $18   ; 
-- D 1 - - - 0x006043 01:A033: 24        .byte $24   ; 
-- - - - - - 0x006044 01:A034: E9        .byte $E9   ; 
-- - - - - - 0x006045 01:A035: D1        .byte $D1   ; 
-- - - - - - 0x006046 01:A036: 2C        .byte $2C   ; 
-- - - - - - 0x006047 01:A037: 5C        .byte $5C   ; 
-- - - - - - 0x006048 01:A038: D9        .byte $D9   ; 
-- - - - - - 0x006049 01:A039: D9        .byte $D9   ; 
-- - - - - - 0x00604A 01:A03A: 5C        .byte $5C   ; 
-- - - - - - 0x00604B 01:A03B: 4C        .byte $4C   ; 
-- D 1 - - - 0x00604C 01:A03C: D9        .byte $D9   ; 
-- D 1 - - - 0x00604D 01:A03D: E9        .byte $E9   ; 
-- D 1 - - - 0x00604E 01:A03E: 4C        .byte $4C   ; 
-- D 1 - - - 0x00604F 01:A03F: 2C        .byte $2C   ; 
-- D 1 - - - 0x006050 01:A040: EA        .byte $EA   ; 
-- D 1 - - - 0x006051 01:A041: EA        .byte $EA   ; 
-- D 1 - - - 0x006052 01:A042: 16        .byte $16   ; 
-- D 1 - - - 0x006053 01:A043: 2A        .byte $2A   ; 
-- D 1 - - - 0x006054 01:A044: F0        .byte $F0   ; 
-- D 1 - - - 0x006055 01:A045: F0        .byte $F0   ; 
-- D 1 - - - 0x006056 01:A046: 0A        .byte $0A   ; 
-- D 1 - - - 0x006057 01:A047: 1E        .byte $1E   ; 
-- D 1 - - - 0x006058 01:A048: E5        .byte $E5   ; 
-- D 1 - - - 0x006059 01:A049: ED        .byte $ED   ; 
-- D 1 - - - 0x00605A 01:A04A: 20        .byte $20   ; 
-- D 1 - - - 0x00605B 01:A04B: 24        .byte $24   ; 
-- D 1 - - - 0x00605C 01:A04C: E1        .byte $E1   ; 
-- D 1 - - - 0x00605D 01:A04D: E1        .byte $E1   ; 
-- D 1 - - - 0x00605E 01:A04E: 28        .byte $28   ; 
-- D 1 - - - 0x00605F 01:A04F: 3C        .byte $3C   ; 
-- - - - - - 0x006060 01:A050: F1        .byte $F1   ; 
-- D 1 - - - 0x006061 01:A051: E5        .byte $E5   ; 
-- - - - - - 0x006062 01:A052: 14        .byte $14   ; 
-- D 1 - - - 0x006063 01:A053: 34        .byte $34   ; 
-- - - - - - 0x006064 01:A054: E1        .byte $E1   ; 
-- - - - - - 0x006065 01:A055: C9        .byte $C9   ; 
-- - - - - - 0x006066 01:A056: 28        .byte $28   ; 
-- - - - - - 0x006067 01:A057: 6C        .byte $6C   ; 
-- - - - - - 0x006068 01:A058: D1        .byte $D1   ; 
-- - - - - - 0x006069 01:A059: D1        .byte $D1   ; 
-- - - - - - 0x00606A 01:A05A: 58        .byte $58   ; 
-- - - - - - 0x00606B 01:A05B: 5C        .byte $5C   ; 
-- - - - - - 0x00606C 01:A05C: D1        .byte $D1   ; 
-- - - - - - 0x00606D 01:A05D: E1        .byte $E1   ; 
-- - - - - - 0x00606E 01:A05E: 48        .byte $48   ; 
-- - - - - - 0x00606F 01:A05F: 3C        .byte $3C   ; 
-- D 1 - - - 0x006070 01:A060: EA        .byte $EA   ; 
-- D 1 - - - 0x006071 01:A061: F4        .byte $F4   ; 
-- D 1 - - - 0x006072 01:A062: 22        .byte $22   ; 
-- D 1 - - - 0x006073 01:A063: 16        .byte $16   ; 
-- D 1 - - - 0x006074 01:A064: F0        .byte $F0   ; 
-- D 1 - - - 0x006075 01:A065: FA        .byte $FA   ; 
-- D 1 - - - 0x006076 01:A066: 16        .byte $16   ; 
-- D 1 - - - 0x006077 01:A067: 0A        .byte $0A   ; 
-- - - - - - 0x006078 01:A068: E5        .byte $E5   ; 
-- D 1 - - - 0x006079 01:A069: F7        .byte $F7   ; 
-- - - - - - 0x00607A 01:A06A: 2C        .byte $2C   ; 
-- D 1 - - - 0x00607B 01:A06B: 10        .byte $10   ; 
-- D 1 - - - 0x00607C 01:A06C: E1        .byte $E1   ; 
-- D 1 - - - 0x00607D 01:A06D: EB        .byte $EB   ; 
-- D 1 - - - 0x00607E 01:A06E: 34        .byte $34   ; 
-- D 1 - - - 0x00607F 01:A06F: 28        .byte $28   ; 
-- - - - - - 0x006080 01:A070: F1        .byte $F1   ; 
-- D 1 - - - 0x006081 01:A071: EF        .byte $EF   ; 
-- - - - - - 0x006082 01:A072: 20        .byte $20   ; 
-- D 1 - - - 0x006083 01:A073: 20        .byte $20   ; 
-- - - - - - 0x006084 01:A074: E1        .byte $E1   ; 
-- - - - - - 0x006085 01:A075: D3        .byte $D3   ; 
-- - - - - - 0x006086 01:A076: 34        .byte $34   ; 
-- - - - - - 0x006087 01:A077: 58        .byte $58   ; 
-- - - - - - 0x006088 01:A078: D1        .byte $D1   ; 
-- - - - - - 0x006089 01:A079: DB        .byte $DB   ; 
-- - - - - - 0x00608A 01:A07A: 64        .byte $64   ; 
-- - - - - - 0x00608B 01:A07B: 48        .byte $48   ; 
-- - - - - - 0x00608C 01:A07C: D1        .byte $D1   ; 
-- D 1 - - - 0x00608D 01:A07D: EB        .byte $EB   ; 
-- - - - - - 0x00608E 01:A07E: 54        .byte $54   ; 
-- D 1 - - - 0x00608F 01:A07F: 28        .byte $28   ; 
-- D 1 - - - 0x006090 01:A080: F8        .byte $F8   ; 
-- D 1 - - - 0x006091 01:A081: F4        .byte $F4   ; 
-- D 1 - - - 0x006092 01:A082: 1A        .byte $1A   ; 
-- D 1 - - - 0x006093 01:A083: 16        .byte $16   ; 
-- D 1 - - - 0x006094 01:A084: FE        .byte $FE   ; 
-- D 1 - - - 0x006095 01:A085: FA        .byte $FA   ; 
-- D 1 - - - 0x006096 01:A086: 0E        .byte $0E   ; 
-- D 1 - - - 0x006097 01:A087: 0A        .byte $0A   ; 
-- D 1 - - - 0x006098 01:A088: F3        .byte $F3   ; 
-- D 1 - - - 0x006099 01:A089: F7        .byte $F7   ; 
-- D 1 - - - 0x00609A 01:A08A: 24        .byte $24   ; 
-- D 1 - - - 0x00609B 01:A08B: 10        .byte $10   ; 
-- - - - - - 0x00609C 01:A08C: EF        .byte $EF   ; 
-- - - - - - 0x00609D 01:A08D: EB        .byte $EB   ; 
-- - - - - - 0x00609E 01:A08E: 2C        .byte $2C   ; 
-- - - - - - 0x00609F 01:A08F: 28        .byte $28   ; 
-- - - - - - 0x0060A0 01:A090: FF        .byte $FF   ; 
-- D 1 - - - 0x0060A1 01:A091: EF        .byte $EF   ; 
-- - - - - - 0x0060A2 01:A092: 18        .byte $18   ; 
-- D 1 - - - 0x0060A3 01:A093: 20        .byte $20   ; 
-- - - - - - 0x0060A4 01:A094: EF        .byte $EF   ; 
-- - - - - - 0x0060A5 01:A095: D3        .byte $D3   ; 
-- - - - - - 0x0060A6 01:A096: 2C        .byte $2C   ; 
-- - - - - - 0x0060A7 01:A097: 58        .byte $58   ; 
-- - - - - - 0x0060A8 01:A098: DF        .byte $DF   ; 
-- - - - - - 0x0060A9 01:A099: DB        .byte $DB   ; 
-- - - - - - 0x0060AA 01:A09A: 5C        .byte $5C   ; 
-- - - - - - 0x0060AB 01:A09B: 48        .byte $48   ; 
-- - - - - - 0x0060AC 01:A09C: DF        .byte $DF   ; 
-- - - - - - 0x0060AD 01:A09D: EB        .byte $EB   ; 
-- - - - - - 0x0060AE 01:A09E: 4C        .byte $4C   ; 
-- - - - - - 0x0060AF 01:A09F: 28        .byte $28   ; 
-- D 1 - - - 0x0060B0 01:A0A0: F3        .byte $F3   ; 
-- D 1 - - - 0x0060B1 01:A0A1: F3        .byte $F3   ; 
-- D 1 - - - 0x0060B2 01:A0A2: 18        .byte $18   ; 
-- D 1 - - - 0x0060B3 01:A0A3: 18        .byte $18   ; 
-- D 1 - - - 0x0060B4 01:A0A4: F7        .byte $F7   ; 
-- D 1 - - - 0x0060B5 01:A0A5: F7        .byte $F7   ; 
-- D 1 - - - 0x0060B6 01:A0A6: 10        .byte $10   ; 
-- D 1 - - - 0x0060B7 01:A0A7: 10        .byte $10   ; 
-- D 1 - - - 0x0060B8 01:A0A8: EC        .byte $EC   ; 
-- D 1 - - - 0x0060B9 01:A0A9: F3        .byte $F3   ; 
-- D 1 - - - 0x0060BA 01:A0AA: 26        .byte $26   ; 
-- D 1 - - - 0x0060BB 01:A0AB: 18        .byte $18   ; 
-- D 1 - - - 0x0060BC 01:A0AC: EB        .byte $EB   ; 
-- D 1 - - - 0x0060BD 01:A0AD: EB        .byte $EB   ; 
-- D 1 - - - 0x0060BE 01:A0AE: 28        .byte $28   ; 
-- D 1 - - - 0x0060BF 01:A0AF: 28        .byte $28   ; 
-- D 1 - - - 0x0060C0 01:A0B0: FB        .byte $FB   ; 
-- D 1 - - - 0x0060C1 01:A0B1: EF        .byte $EF   ; 
-- D 1 - - - 0x0060C2 01:A0B2: 14        .byte $14   ; 
-- D 1 - - - 0x0060C3 01:A0B3: 20        .byte $20   ; 
-- D 1 - - - 0x0060C4 01:A0B4: EB        .byte $EB   ; 
-- D 1 - - - 0x0060C5 01:A0B5: D3        .byte $D3   ; 
-- D 1 - - - 0x0060C6 01:A0B6: 28        .byte $28   ; 
-- D 1 - - - 0x0060C7 01:A0B7: 58        .byte $58   ; 
-- D 1 - - - 0x0060C8 01:A0B8: D3        .byte $D3   ; 
-- D 1 - - - 0x0060C9 01:A0B9: EB        .byte $EB   ; 
-- D 1 - - - 0x0060CA 01:A0BA: 28        .byte $28   ; 
-- D 1 - - - 0x0060CB 01:A0BB: 28        .byte $28   ; 
-- D 1 - - - 0x0060CC 01:A0BC: DB        .byte $DB   ; 
-- D 1 - - - 0x0060CD 01:A0BD: EB        .byte $EB   ; 
-- D 1 - - - 0x0060CE 01:A0BE: 48        .byte $48   ; 
-- D 1 - - - 0x0060CF 01:A0BF: 28        .byte $28   ; 
-- D 1 - - - 0x0060D0 01:A0C0: F0        .byte $F0   ; 
-- D 1 - - - 0x0060D1 01:A0C1: F4        .byte $F4   ; 
-- D 1 - - - 0x0060D2 01:A0C2: 1E        .byte $1E   ; 
-- D 1 - - - 0x0060D3 01:A0C3: 16        .byte $16   ; 
-- D 1 - - - 0x0060D4 01:A0C4: F6        .byte $F6   ; 
-- D 1 - - - 0x0060D5 01:A0C5: FA        .byte $FA   ; 
-- D 1 - - - 0x0060D6 01:A0C6: 12        .byte $12   ; 
-- D 1 - - - 0x0060D7 01:A0C7: 0A        .byte $0A   ; 
-- D 1 - - - 0x0060D8 01:A0C8: EB        .byte $EB   ; 
-- D 1 - - - 0x0060D9 01:A0C9: F7        .byte $F7   ; 
-- D 1 - - - 0x0060DA 01:A0CA: 28        .byte $28   ; 
-- D 1 - - - 0x0060DB 01:A0CB: 10        .byte $10   ; 
-- D 1 - - - 0x0060DC 01:A0CC: E7        .byte $E7   ; 
-- D 1 - - - 0x0060DD 01:A0CD: EB        .byte $EB   ; 
-- D 1 - - - 0x0060DE 01:A0CE: 30        .byte $30   ; 
-- D 1 - - - 0x0060DF 01:A0CF: 28        .byte $28   ; 
-- - - - - - 0x0060E0 01:A0D0: F7        .byte $F7   ; 
-- - - - - - 0x0060E1 01:A0D1: EF        .byte $EF   ; 
-- - - - - - 0x0060E2 01:A0D2: 1C        .byte $1C   ; 
-- - - - - - 0x0060E3 01:A0D3: 20        .byte $20   ; 
-- D 1 - - - 0x0060E4 01:A0D4: E7        .byte $E7   ; 
-- D 1 - - - 0x0060E5 01:A0D5: D3        .byte $D3   ; 
-- D 1 - - - 0x0060E6 01:A0D6: 30        .byte $30   ; 
-- D 1 - - - 0x0060E7 01:A0D7: 58        .byte $58   ; 
-- D 1 - - - 0x0060E8 01:A0D8: D7        .byte $D7   ; 
-- D 1 - - - 0x0060E9 01:A0D9: DB        .byte $DB   ; 
-- D 1 - - - 0x0060EA 01:A0DA: 60        .byte $60   ; 
-- D 1 - - - 0x0060EB 01:A0DB: 48        .byte $48   ; 
-- - - - - - 0x0060EC 01:A0DC: D7        .byte $D7   ; 
-- - - - - - 0x0060ED 01:A0DD: EB        .byte $EB   ; 
-- - - - - - 0x0060EE 01:A0DE: 50        .byte $50   ; 
-- - - - - - 0x0060EF 01:A0DF: 28        .byte $28   ; 
+tbl_A000_hitbox:
+;                                              +-------------------- pos_Y
+;                                              |    +--------------- pos_X
+;                                              |    |    +---------- hitbox size Y
+;                                              |    |    |    +----- hitbox size X
+;                                              |    |    |    |
+; FF 
+- D 1 - - - 0x006010 01:A000: EA        .byte $EA, $F4, $2A, $16   ; 00 
+- D 1 - - - 0x006014 01:A004: F0        .byte $F0, $FA, $1E, $0A   ; 04 
+- D 1 - - - 0x006018 01:A008: E5        .byte $E5, $F7, $34, $10   ; 08 
+- D 1 - - - 0x00601C 01:A00C: E1        .byte $E1, $EB, $3C, $28   ; 0C 
+- D 1 - - - 0x006020 01:A010: F1        .byte $F1, $EF, $28, $20   ; 10 
+- D 1 - - - 0x006024 01:A014: E1        .byte $E1, $D3, $3C, $58   ; 14 
+- D 1 - - - 0x006028 01:A018: D1        .byte $D1, $DB, $6C, $48   ; 18 
+- D 1 - - - 0x00602C 01:A01C: D1        .byte $D1, $EB, $5C, $28   ; 1C 
+; 1F 
+- D 1 - - - 0x006030 01:A020: F2        .byte $F2, $F2, $1A, $1A   ; 00 
+- D 1 - - - 0x006034 01:A024: F8        .byte $F8, $F8, $0E, $0E   ; 04 
+- D 1 - - - 0x006038 01:A028: ED        .byte $ED, $F5, $24, $14   ; 08 
+- D 1 - - - 0x00603C 01:A02C: E9        .byte $E9, $E9, $2C, $2C   ; 0C 
+- D 1 - - - 0x006040 01:A030: F9        .byte $F9, $ED, $18, $24   ; 10 
+- - - - - - 0x006044 01:A034: E9        .byte $E9, $D1, $2C, $5C   ; 14 
+- - - - - - 0x006048 01:A038: D9        .byte $D9, $D9, $5C, $4C   ; 18 
+- D 1 - - - 0x00604C 01:A03C: D9        .byte $D9, $E9, $4C, $2C   ; 1C 
+; 3F 
+- D 1 - - - 0x006050 01:A040: EA        .byte $EA, $EA, $16, $2A   ; 00 
+- D 1 - - - 0x006054 01:A044: F0        .byte $F0, $F0, $0A, $1E   ; 04 
+- D 1 - - - 0x006058 01:A048: E5        .byte $E5, $ED, $20, $24   ; 08 
+- D 1 - - - 0x00605C 01:A04C: E1        .byte $E1, $E1, $28, $3C   ; 0C 
+- - - - - - 0x006060 01:A050: F1        .byte $F1, $E5, $14, $34   ; 10 
+- - - - - - 0x006064 01:A054: E1        .byte $E1, $C9, $28, $6C   ; 14 
+- - - - - - 0x006068 01:A058: D1        .byte $D1, $D1, $58, $5C   ; 18 
+- - - - - - 0x00606C 01:A05C: D1        .byte $D1, $E1, $48, $3C   ; 1C 
+; 5F 
+- D 1 - - - 0x006070 01:A060: EA        .byte $EA, $F4, $22, $16   ; 00 
+- D 1 - - - 0x006074 01:A064: F0        .byte $F0, $FA, $16, $0A   ; 04 
+- - - - - - 0x006078 01:A068: E5        .byte $E5, $F7, $2C, $10   ; 08 
+- D 1 - - - 0x00607C 01:A06C: E1        .byte $E1, $EB, $34, $28   ; 0C 
+- - - - - - 0x006080 01:A070: F1        .byte $F1, $EF, $20, $20   ; 10 
+- - - - - - 0x006084 01:A074: E1        .byte $E1, $D3, $34, $58   ; 14 
+- - - - - - 0x006088 01:A078: D1        .byte $D1, $DB, $64, $48   ; 18 
+- - - - - - 0x00608C 01:A07C: D1        .byte $D1, $EB, $54, $28   ; 1C 
+; 7F 
+- D 1 - - - 0x006090 01:A080: F8        .byte $F8, $F4, $1A, $16   ; 00 
+- D 1 - - - 0x006094 01:A084: FE        .byte $FE, $FA, $0E, $0A   ; 04 
+- D 1 - - - 0x006098 01:A088: F3        .byte $F3, $F7, $24, $10   ; 08 
+- - - - - - 0x00609C 01:A08C: EF        .byte $EF, $EB, $2C, $28   ; 0C 
+- - - - - - 0x0060A0 01:A090: FF        .byte $FF, $EF, $18, $20   ; 10 
+- - - - - - 0x0060A4 01:A094: EF        .byte $EF, $D3, $2C, $58   ; 14 
+- - - - - - 0x0060A8 01:A098: DF        .byte $DF, $DB, $5C, $48   ; 18 
+- - - - - - 0x0060AC 01:A09C: DF        .byte $DF, $EB, $4C, $28   ; 1C 
+; 9F 
+- D 1 - - - 0x0060B0 01:A0A0: F3        .byte $F3, $F3, $18, $18   ; 00 
+- D 1 - - - 0x0060B4 01:A0A4: F7        .byte $F7, $F7, $10, $10   ; 04 
+- D 1 - - - 0x0060B8 01:A0A8: EC        .byte $EC, $F3, $26, $18   ; 08 
+- D 1 - - - 0x0060BC 01:A0AC: EB        .byte $EB, $EB, $28, $28   ; 0C 
+- D 1 - - - 0x0060C0 01:A0B0: FB        .byte $FB, $EF, $14, $20   ; 10 
+- D 1 - - - 0x0060C4 01:A0B4: EB        .byte $EB, $D3, $28, $58   ; 14 
+- D 1 - - - 0x0060C8 01:A0B8: D3        .byte $D3, $EB, $28, $28   ; 18 
+- D 1 - - - 0x0060CC 01:A0BC: DB        .byte $DB, $EB, $48, $28   ; 1C 
+; BF 
+- D 1 - - - 0x0060D0 01:A0C0: F0        .byte $F0, $F4, $1E, $16   ; 00 
+- D 1 - - - 0x0060D4 01:A0C4: F6        .byte $F6, $FA, $12, $0A   ; 04 
+- D 1 - - - 0x0060D8 01:A0C8: EB        .byte $EB, $F7, $28, $10   ; 08 
+- D 1 - - - 0x0060DC 01:A0CC: E7        .byte $E7, $EB, $30, $28   ; 0C 
+- - - - - - 0x0060E0 01:A0D0: F7        .byte $F7, $EF, $1C, $20   ; 10 
+- D 1 - - - 0x0060E4 01:A0D4: E7        .byte $E7, $D3, $30, $58   ; 14 
+- D 1 - - - 0x0060E8 01:A0D8: D7        .byte $D7, $DB, $60, $48   ; 18 
+- - - - - - 0x0060EC 01:A0DC: D7        .byte $D7, $EB, $50, $28   ; 1C 
 
 
 
@@ -493,17 +333,17 @@ C - - - - - 0x0060F2 01:A0E2: 29 01     AND #$01
 C - - - - - 0x0060F4 01:A0E4: AA        TAX
 C - - - - - 0x0060F5 01:A0E5: B5 C6     LDA ram_00C6_plr_hitbox,X
 C - - - - - 0x0060F7 01:A0E7: 38        SEC
-C - - - - - 0x0060F8 01:A0E8: 65 07     ADC ram_0007
+C - - - - - 0x0060F8 01:A0E8: 65 07     ADC ram_0007    ; obj hitbox index
 C - - - - - 0x0060FA 01:A0EA: A8        TAY
 C - - - - - 0x0060FB 01:A0EB: BD 4C 05  LDA ram_pos_X_hi_plr,X
-C - - - - - 0x0060FE 01:A0EE: F9 01 A0  SBC tbl_A001,Y
-C - - - - - 0x006101 01:A0F1: E5 05     SBC ram_0005
-C - - - - - 0x006103 01:A0F3: D9 03 A0  CMP tbl_A003,Y
+C - - - - - 0x0060FE 01:A0EE: F9 01 A0  SBC tbl_A000_hitbox + $01,Y
+C - - - - - 0x006101 01:A0F1: E5 05     SBC ram_0005    ; obj pos X
+C - - - - - 0x006103 01:A0F3: D9 03 A0  CMP tbl_A000_hitbox + $03,Y
 C - - - - - 0x006106 01:A0F6: B0 0D     BCS bra_A105_RTS
 C - - - - - 0x006108 01:A0F8: BD 32 05  LDA ram_pos_Y_hi_plr,X
-C - - - - - 0x00610B 01:A0FB: F9 00 A0  SBC tbl_A000,Y
-C - - - - - 0x00610E 01:A0FE: E5 06     SBC ram_0006
-C - - - - - 0x006110 01:A100: D9 02 A0  CMP tbl_A002,Y
+C - - - - - 0x00610B 01:A0FB: F9 00 A0  SBC tbl_A000_hitbox,Y
+C - - - - - 0x00610E 01:A0FE: E5 06     SBC ram_0006    ; obj pos Y
+C - - - - - 0x006110 01:A100: D9 02 A0  CMP tbl_A000_hitbox + $02,Y
 C - - - - - 0x006113 01:A103: 90 01     BCC bra_A106_hit_detected
 bra_A105_RTS:
 C - - - - - 0x006115 01:A105: 60        RTS
@@ -609,31 +449,31 @@ C - - - - - 0x0061A8 01:A198: 38        SEC
 bra_A199_loop:
 C - - - - - 0x0061A9 01:A199: BD 38 06  LDA ram_0638_plr_bullet_hitbox_index,X
 ; all bullets have 00 or 9F value
-C - - - - - 0x0061AC 01:A19C: F0 1D     BEQ bra_A1BB    ; if not active
-C - - - - - 0x0061AE 01:A19E: 65 07     ADC ram_0007    ; value from ram_073A_obj_hitbox_index
+C - - - - - 0x0061AC 01:A19C: F0 1D     BEQ bra_A1BB_skip    ; if not active
+C - - - - - 0x0061AE 01:A19E: 65 07     ADC ram_0007    ; obj hitbox index
 C - - - - - 0x0061B0 01:A1A0: A8        TAY
 C - - - - - 0x0061B1 01:A1A1: BD 88 05  LDA ram_plr_bullet_pos_X_hi,X
-C - - - - - 0x0061B4 01:A1A4: F9 01 A0  SBC tbl_A001,Y
-C - - - - - 0x0061B7 01:A1A7: E5 05     SBC ram_0005
-C - - - - - 0x0061B9 01:A1A9: D9 03 A0  CMP tbl_A003,Y
-C - - - - - 0x0061BC 01:A1AC: B0 0D     BCS bra_A1BB
+C - - - - - 0x0061B4 01:A1A4: F9 01 A0  SBC tbl_A000_hitbox + $01,Y
+C - - - - - 0x0061B7 01:A1A7: E5 05     SBC ram_0005    ; obj pos X
+C - - - - - 0x0061B9 01:A1A9: D9 03 A0  CMP tbl_A000_hitbox + $03,Y
+C - - - - - 0x0061BC 01:A1AC: B0 0D     BCS bra_A1BB_skip
 C - - - - - 0x0061BE 01:A1AE: BD 78 05  LDA ram_plr_bullet_pos_Y_hi,X
-C - - - - - 0x0061C1 01:A1B1: F9 00 A0  SBC tbl_A000,Y
-C - - - - - 0x0061C4 01:A1B4: E5 06     SBC ram_0006
-C - - - - - 0x0061C6 01:A1B6: D9 02 A0  CMP tbl_A002,Y
-C - - - - - 0x0061C9 01:A1B9: 90 04     BCC bra_A1BF
-bra_A1BB:
+C - - - - - 0x0061C1 01:A1B1: F9 00 A0  SBC tbl_A000_hitbox,Y
+C - - - - - 0x0061C4 01:A1B4: E5 06     SBC ram_0006    ; obj pos Y
+C - - - - - 0x0061C6 01:A1B6: D9 02 A0  CMP tbl_A000_hitbox + $02,Y
+C - - - - - 0x0061C9 01:A1B9: 90 04     BCC bra_A1BF_hit_detected
+bra_A1BB_skip:
 C - - - - - 0x0061CB 01:A1BB: CA        DEX
 C - - - - - 0x0061CC 01:A1BC: 10 DB     BPL bra_A199_loop
 bra_A1BE_RTS:
 C - - - - - 0x0061CE 01:A1BE: 60        RTS
-bra_A1BF:
+bra_A1BF_hit_detected:
 C - - - - - 0x0061CF 01:A1BF: A4 10     LDY ram_0010
 C - - - - - 0x0061D1 01:A1C1: B9 2C 07  LDA ram_072C_obj,Y
 C - - - - - 0x0061D4 01:A1C4: 30 F8     BMI bra_A1BE_RTS
 C - - - - - 0x0061D6 01:A1C6: BD 88 05  LDA ram_plr_bullet_pos_X_hi,X
 C - - - - - 0x0061D9 01:A1C9: 38        SEC
-C - - - - - 0x0061DA 01:A1CA: E5 05     SBC ram_0005
+C - - - - - 0x0061DA 01:A1CA: E5 05     SBC ram_0005    ; obj pos X
 C - - - - - 0x0061DC 01:A1CC: B0 04     BCS bra_A1D2
 C - - - - - 0x0061DE 01:A1CE: 49 FF     EOR #$FF
 C - - - - - 0x0061E0 01:A1D0: 69 01     ADC #$01
@@ -647,7 +487,7 @@ C - - - - - 0x0061EA 01:A1DA: 29 01     AND #$01
 C - - - - - 0x0061EC 01:A1DC: 85 21     STA ram_0021
 C - - - - - 0x0061EE 01:A1DE: BD F8 05  LDA ram_plr_bullet_damage,X
 C - - - - - 0x0061F1 01:A1E1: BC 88 05  LDY ram_plr_bullet_pos_X_hi,X
-C - - - - - 0x0061F4 01:A1E4: 20 F1 A1  JSR sub_A1F1
+C - - - - - 0x0061F4 01:A1E4: 20 F1 A1  JSR sub_A1F1_inflict_damage
 C - - - - - 0x0061F7 01:A1E7: D0 D5     BNE bra_A1BE_RTS
 C - - - - - 0x0061F9 01:A1E9: A9 00     LDA #$00
 C - - - - - 0x0061FB 01:A1EB: 9D 38 06  STA ram_0638_plr_bullet_hitbox_index,X
@@ -655,7 +495,11 @@ C - - - - - 0x0061FE 01:A1EE: 4C 5D FE  JMP loc_0x01FE6D
 
 
 
-sub_A1F1:
+sub_A1F1_inflict_damage:
+; out
+    ; Z
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x006201 01:A1F1: 85 08     STA ram_0008
 C - - - - - 0x006203 01:A1F3: 86 11     STX ram_0011
 C - - - - - 0x006205 01:A1F5: A4 10     LDY ram_0010
@@ -700,7 +544,7 @@ C - - - - - 0x00623C 01:A22C: A2 0D     LDX #con_max_index_enemies
 bra_A22E_loop:
 C - - - - - 0x00623E 01:A22E: 86 10     STX ram_0010
 C - - - - - 0x006240 01:A230: BD 08 05  LDA ram_anim_id_enemy,X
-C - - - - - 0x006243 01:A233: F0 19     BEQ bra_A24E_00
+C - - - - - 0x006243 01:A233: F0 19     BEQ bra_A24E_skip
 C - - - - - 0x006245 01:A235: BD 22 05  LDA ram_pos_Y_hi_enemy,X
 C - - - - - 0x006248 01:A238: 85 06     STA ram_0006
 C - - - - - 0x00624A 01:A23A: BD 3C 05  LDA ram_pos_X_hi_enemy,X
@@ -708,10 +552,11 @@ C - - - - - 0x00624D 01:A23D: 85 05     STA ram_0005
 C - - - - - 0x00624F 01:A23F: BD 3A 07  LDA ram_073A_obj_hitbox_index,X
 C - - - - - 0x006252 01:A242: 85 07     STA ram_0007
 C - - - - - 0x006254 01:A244: 20 E0 A0  JSR sub_A0E0_check_objects_collision_with_players
+; bzk optimize, useless LDX
 C - - - - - 0x006257 01:A247: A6 10     LDX ram_0010
 C - - - - - 0x006259 01:A249: 20 96 A1  JSR sub_A196_check_player_bullets_collision_with_objects
 C - - - - - 0x00625C 01:A24C: A6 10     LDX ram_0010
-bra_A24E_00:
+bra_A24E_skip:
 C - - - - - 0x00625E 01:A24E: 20 55 A2  JSR sub_A255_object_handler
 C - - - - - 0x006261 01:A251: CA        DEX
 C - - - - - 0x006262 01:A252: 10 DA     BPL bra_A22E_loop
@@ -1358,139 +1203,139 @@ C - - - - - 0x0064CD 01:A4BD: 4C 3C E6  JMP loc_0x01E64C_add_points_to_score
 
 
 tbl_A4C0_index:
-- - - - - - 0x0064D0 01:A4C0: 00        .byte off_A540_00_____0 - tbl_A540   ; 00 
-- D 1 - - - 0x0064D1 01:A4C1: 0C        .byte off_A54C_0C___500 - tbl_A540   ; 01 
-- - - - - - 0x0064D2 01:A4C2: 00        .byte off_A540_00_____0 - tbl_A540   ; 02 
-- D 1 - - - 0x0064D3 01:A4C3: 04        .byte off_A544_04____60 - tbl_A540   ; 03 
-- D 1 - - - 0x0064D4 01:A4C4: 08        .byte off_A548_08___200 - tbl_A540   ; 04 
-- D 1 - - - 0x0064D5 01:A4C5: 0A        .byte off_A54A_0A___300 - tbl_A540   ; 05 
-- - - - - - 0x0064D6 01:A4C6: 00        .byte off_A540_00_____0 - tbl_A540   ; 06 
-- D 1 - - - 0x0064D7 01:A4C7: 0A        .byte off_A54A_0A___300 - tbl_A540   ; 07 
-- - - - - - 0x0064D8 01:A4C8: 00        .byte off_A540_00_____0 - tbl_A540   ; 08 
-- D 1 - - - 0x0064D9 01:A4C9: 08        .byte off_A548_08___200 - tbl_A540   ; 09 
-- D 1 - - - 0x0064DA 01:A4CA: 08        .byte off_A548_08___200 - tbl_A540   ; 0A 
-- D 1 - - - 0x0064DB 01:A4CB: 0C        .byte off_A54C_0C___500 - tbl_A540   ; 0B 
-- - - - - - 0x0064DC 01:A4CC: 00        .byte off_A540_00_____0 - tbl_A540   ; 0C 
-- D 1 - - - 0x0064DD 01:A4CD: 00        .byte off_A540_00_____0 - tbl_A540   ; 0D 
-- - - - - - 0x0064DE 01:A4CE: 00        .byte off_A540_00_____0 - tbl_A540   ; 0E 
-- - - - - - 0x0064DF 01:A4CF: 00        .byte off_A540_00_____0 - tbl_A540   ; 0F 
-- - - - - - 0x0064E0 01:A4D0: 00        .byte off_A540_00_____0 - tbl_A540   ; 10 
-- - - - - - 0x0064E1 01:A4D1: 00        .byte off_A540_00_____0 - tbl_A540   ; 11 
-- - - - - - 0x0064E2 01:A4D2: 00        .byte off_A540_00_____0 - tbl_A540   ; 12 
-- - - - - - 0x0064E3 01:A4D3: 00        .byte off_A540_00_____0 - tbl_A540   ; 13 
-- - - - - - 0x0064E4 01:A4D4: 00        .byte off_A540_00_____0 - tbl_A540   ; 14 
-- - - - - - 0x0064E5 01:A4D5: 00        .byte off_A540_00_____0 - tbl_A540   ; 15 
-- - - - - - 0x0064E6 01:A4D6: 00        .byte off_A540_00_____0 - tbl_A540   ; 16 
-- - - - - - 0x0064E7 01:A4D7: 00        .byte off_A540_00_____0 - tbl_A540   ; 17 
-- - - - - - 0x0064E8 01:A4D8: 00        .byte off_A540_00_____0 - tbl_A540   ; 18 
-- - - - - - 0x0064E9 01:A4D9: 00        .byte off_A540_00_____0 - tbl_A540   ; 19 
-- - - - - - 0x0064EA 01:A4DA: 00        .byte off_A540_00_____0 - tbl_A540   ; 1A 
-- - - - - - 0x0064EB 01:A4DB: 00        .byte off_A540_00_____0 - tbl_A540   ; 1B 
-- - - - - - 0x0064EC 01:A4DC: 00        .byte off_A540_00_____0 - tbl_A540   ; 1C 
-- - - - - - 0x0064ED 01:A4DD: 00        .byte off_A540_00_____0 - tbl_A540   ; 1D 
-- - - - - - 0x0064EE 01:A4DE: 00        .byte off_A540_00_____0 - tbl_A540   ; 1E 
-- - - - - - 0x0064EF 01:A4DF: 00        .byte off_A540_00_____0 - tbl_A540   ; 1F 
-- D 1 - - - 0x0064F0 01:A4E0: 0C        .byte off_A54C_0C___500 - tbl_A540   ; 20 
-- D 1 - - - 0x0064F1 01:A4E1: 14        .byte off_A554_14_15000 - tbl_A540   ; 21 
-- D 1 - - - 0x0064F2 01:A4E2: 06        .byte off_A546_06___100 - tbl_A540   ; 22 
-- - - - - - 0x0064F3 01:A4E3: 00        .byte off_A540_00_____0 - tbl_A540   ; 23 
-- D 1 - - - 0x0064F4 01:A4E4: 04        .byte off_A544_04____60 - tbl_A540   ; 24 
-- D 1 - - - 0x0064F5 01:A4E5: 08        .byte off_A548_08___200 - tbl_A540   ; 25 
-- D 1 - - - 0x0064F6 01:A4E6: 06        .byte off_A546_06___100 - tbl_A540   ; 26 
-- D 1 - - - 0x0064F7 01:A4E7: 08        .byte off_A548_08___200 - tbl_A540   ; 27 
-- D 1 - - - 0x0064F8 01:A4E8: 0E        .byte off_A54E_0E__1000 - tbl_A540   ; 28 
-- D 1 - - - 0x0064F9 01:A4E9: 00        .byte off_A540_00_____0 - tbl_A540   ; 29 
-- D 1 - - - 0x0064FA 01:A4EA: 06        .byte off_A546_06___100 - tbl_A540   ; 2A 
-- - - - - - 0x0064FB 01:A4EB: 00        .byte off_A540_00_____0 - tbl_A540   ; 2B 
-- D 1 - - - 0x0064FC 01:A4EC: 00        .byte off_A540_00_____0 - tbl_A540   ; 2C 
-- D 1 - - - 0x0064FD 01:A4ED: 00        .byte off_A540_00_____0 - tbl_A540   ; 2D 
-- D 1 - - - 0x0064FE 01:A4EE: 0E        .byte off_A54E_0E__1000 - tbl_A540   ; 2E 
-- D 1 - - - 0x0064FF 01:A4EF: 0A        .byte off_A54A_0A___300 - tbl_A540   ; 2F 
-- - - - - - 0x006500 01:A4F0: 00        .byte off_A540_00_____0 - tbl_A540   ; 30 
-- D 1 - - - 0x006501 01:A4F1: 06        .byte off_A546_06___100 - tbl_A540   ; 31 
-- D 1 - - - 0x006502 01:A4F2: 0A        .byte off_A54A_0A___300 - tbl_A540   ; 32 
-- - - - - - 0x006503 01:A4F3: 00        .byte off_A540_00_____0 - tbl_A540   ; 33 
-- D 1 - - - 0x006504 01:A4F4: 08        .byte off_A548_08___200 - tbl_A540   ; 34 
-- D 1 - - - 0x006505 01:A4F5: 04        .byte off_A544_04____60 - tbl_A540   ; 35 
-- - - - - - 0x006506 01:A4F6: 00        .byte off_A540_00_____0 - tbl_A540   ; 36 
-- D 1 - - - 0x006507 01:A4F7: 02        .byte off_A542_02____30 - tbl_A540   ; 37 
-- - - - - - 0x006508 01:A4F8: 00        .byte off_A540_00_____0 - tbl_A540   ; 38 
-- - - - - - 0x006509 01:A4F9: 00        .byte off_A540_00_____0 - tbl_A540   ; 39 
-- - - - - - 0x00650A 01:A4FA: 00        .byte off_A540_00_____0 - tbl_A540   ; 3A 
-- D 1 - - - 0x00650B 01:A4FB: 0C        .byte off_A54C_0C___500 - tbl_A540   ; 3B 
-- - - - - - 0x00650C 01:A4FC: 00        .byte off_A540_00_____0 - tbl_A540   ; 3C 
-- D 1 - - - 0x00650D 01:A4FD: 06        .byte off_A546_06___100 - tbl_A540   ; 3D 
-- D 1 - - - 0x00650E 01:A4FE: 06        .byte off_A546_06___100 - tbl_A540   ; 3E 
-- - - - - - 0x00650F 01:A4FF: 00        .byte off_A540_00_____0 - tbl_A540   ; 3F 
-- D 1 - - - 0x006510 01:A500: 04        .byte off_A544_04____60 - tbl_A540   ; 40 
-- - - - - - 0x006511 01:A501: 00        .byte off_A540_00_____0 - tbl_A540   ; 41 
-- - - - - - 0x006512 01:A502: 14        .byte off_A554_14_15000 - tbl_A540   ; 42 
-- D 1 - - - 0x006513 01:A503: 06        .byte off_A546_06___100 - tbl_A540   ; 43 
-- - - - - - 0x006514 01:A504: 00        .byte off_A540_00_____0 - tbl_A540   ; 44 
-- D 1 - - - 0x006515 01:A505: 0A        .byte off_A54A_0A___300 - tbl_A540   ; 45 
-- D 1 - - - 0x006516 01:A506: 04        .byte off_A544_04____60 - tbl_A540   ; 46 
-- D 1 - - - 0x006517 01:A507: 08        .byte off_A548_08___200 - tbl_A540   ; 47 
-- - - - - - 0x006518 01:A508: 00        .byte off_A540_00_____0 - tbl_A540   ; 48 
-- - - - - - 0x006519 01:A509: 00        .byte off_A540_00_____0 - tbl_A540   ; 49 
-- - - - - - 0x00651A 01:A50A: 00        .byte off_A540_00_____0 - tbl_A540   ; 4A 
-- D 1 - - - 0x00651B 01:A50B: 14        .byte off_A554_14_15000 - tbl_A540   ; 4B 
-- - - - - - 0x00651C 01:A50C: 00        .byte off_A540_00_____0 - tbl_A540   ; 4C 
-- - - - - - 0x00651D 01:A50D: 00        .byte off_A540_00_____0 - tbl_A540   ; 4D 
-- D 1 - - - 0x00651E 01:A50E: 10        .byte off_A550_10__5000 - tbl_A540   ; 4E 
-- - - - - - 0x00651F 01:A50F: 00        .byte off_A540_00_____0 - tbl_A540   ; 4F 
-- D 1 - - - 0x006520 01:A510: 06        .byte off_A546_06___100 - tbl_A540   ; 50 
-- D 1 - - - 0x006521 01:A511: 14        .byte off_A554_14_15000 - tbl_A540   ; 51 
-- D 1 - - - 0x006522 01:A512: 08        .byte off_A548_08___200 - tbl_A540   ; 52 
-- - - - - - 0x006523 01:A513: 06        .byte off_A546_06___100 - tbl_A540   ; 53 
-- D 1 - - - 0x006524 01:A514: 04        .byte off_A544_04____60 - tbl_A540   ; 54 
-- D 1 - - - 0x006525 01:A515: 04        .byte off_A544_04____60 - tbl_A540   ; 55 
-- D 1 - - - 0x006526 01:A516: 04        .byte off_A544_04____60 - tbl_A540   ; 56 
-- - - - - - 0x006527 01:A517: 00        .byte off_A540_00_____0 - tbl_A540   ; 57 
-- - - - - - 0x006528 01:A518: 00        .byte off_A540_00_____0 - tbl_A540   ; 58 
-- D 1 - - - 0x006529 01:A519: 14        .byte off_A554_14_15000 - tbl_A540   ; 59 
-- D 1 - - - 0x00652A 01:A51A: 06        .byte off_A546_06___100 - tbl_A540   ; 5A 
-- D 1 - - - 0x00652B 01:A51B: 0C        .byte off_A54C_0C___500 - tbl_A540   ; 5B 
-- D 1 - - - 0x00652C 01:A51C: 06        .byte off_A546_06___100 - tbl_A540   ; 5C 
-- D 1 - - - 0x00652D 01:A51D: 0C        .byte off_A54C_0C___500 - tbl_A540   ; 5D 
-- - - - - - 0x00652E 01:A51E: 00        .byte off_A540_00_____0 - tbl_A540   ; 5E 
-- D 1 - - - 0x00652F 01:A51F: 0A        .byte off_A54A_0A___300 - tbl_A540   ; 5F 
-- D 1 - - - 0x006530 01:A520: 04        .byte off_A544_04____60 - tbl_A540   ; 60 
-- D 1 - - - 0x006531 01:A521: 04        .byte off_A544_04____60 - tbl_A540   ; 61 
-- - - - - - 0x006532 01:A522: 00        .byte off_A540_00_____0 - tbl_A540   ; 62 
-- D 1 - - - 0x006533 01:A523: 04        .byte off_A544_04____60 - tbl_A540   ; 63 
-- D 1 - - - 0x006534 01:A524: 10        .byte off_A550_10__5000 - tbl_A540   ; 64 
-- D 1 - - - 0x006535 01:A525: 12        .byte off_A552_12_10000 - tbl_A540   ; 65 
-- D 1 - - - 0x006536 01:A526: 0E        .byte off_A54E_0E__1000 - tbl_A540   ; 66 
-- - - - - - 0x006537 01:A527: 00        .byte off_A540_00_____0 - tbl_A540   ; 67 
-- D 1 - - - 0x006538 01:A528: 04        .byte off_A544_04____60 - tbl_A540   ; 68 
-- D 1 - - - 0x006539 01:A529: 14        .byte off_A554_14_15000 - tbl_A540   ; 69 
-- D 1 - - - 0x00653A 01:A52A: 0C        .byte off_A54C_0C___500 - tbl_A540   ; 6A 
-- D 1 - - - 0x00653B 01:A52B: 02        .byte off_A542_02____30 - tbl_A540   ; 6B 
-- - - - - - 0x00653C 01:A52C: 00        .byte off_A540_00_____0 - tbl_A540   ; 6C 
-- D 1 - - - 0x00653D 01:A52D: 14        .byte off_A554_14_15000 - tbl_A540   ; 6D 
-- - - - - - 0x00653E 01:A52E: 00        .byte off_A540_00_____0 - tbl_A540   ; 6E 
-- - - - - - 0x00653F 01:A52F: 00        .byte off_A540_00_____0 - tbl_A540   ; 6F 
-- - - - - - 0x006540 01:A530: 00        .byte off_A540_00_____0 - tbl_A540   ; 70 
-- - - - - - 0x006541 01:A531: 00        .byte off_A540_00_____0 - tbl_A540   ; 71 
-- - - - - - 0x006542 01:A532: 00        .byte off_A540_00_____0 - tbl_A540   ; 72 
-- - - - - - 0x006543 01:A533: 00        .byte off_A540_00_____0 - tbl_A540   ; 73 
-- - - - - - 0x006544 01:A534: 00        .byte off_A540_00_____0 - tbl_A540   ; 74 
-- - - - - - 0x006545 01:A535: 00        .byte off_A540_00_____0 - tbl_A540   ; 75 
-- - - - - - 0x006546 01:A536: 00        .byte off_A540_00_____0 - tbl_A540   ; 76 
-- - - - - - 0x006547 01:A537: 00        .byte off_A540_00_____0 - tbl_A540   ; 77 
-- - - - - - 0x006548 01:A538: 00        .byte off_A540_00_____0 - tbl_A540   ; 78 
-- - - - - - 0x006549 01:A539: 00        .byte off_A540_00_____0 - tbl_A540   ; 79 
-- - - - - - 0x00654A 01:A53A: 00        .byte off_A540_00_____0 - tbl_A540   ; 7A 
-- - - - - - 0x00654B 01:A53B: 00        .byte off_A540_00_____0 - tbl_A540   ; 7B 
-- - - - - - 0x00654C 01:A53C: 00        .byte off_A540_00_____0 - tbl_A540   ; 7C 
-- - - - - - 0x00654D 01:A53D: 00        .byte off_A540_00_____0 - tbl_A540   ; 7D 
-- - - - - - 0x00654E 01:A53E: 00        .byte off_A540_00_____0 - tbl_A540   ; 7E 
-- - - - - - 0x00654F 01:A53F: 00        .byte off_A540_00_____0 - tbl_A540   ; 7F 
+- - - - - - 0x0064D0 01:A4C0: 00        .byte off_A540_00_____0 - tbl__A540   ; 00 
+- D 1 - - - 0x0064D1 01:A4C1: 0C        .byte off_A54C_0C___500 - tbl__A540   ; 01 
+- - - - - - 0x0064D2 01:A4C2: 00        .byte off_A540_00_____0 - tbl__A540   ; 02 
+- D 1 - - - 0x0064D3 01:A4C3: 04        .byte off_A544_04____60 - tbl__A540   ; 03 
+- D 1 - - - 0x0064D4 01:A4C4: 08        .byte off_A548_08___200 - tbl__A540   ; 04 
+- D 1 - - - 0x0064D5 01:A4C5: 0A        .byte off_A54A_0A___300 - tbl__A540   ; 05 
+- - - - - - 0x0064D6 01:A4C6: 00        .byte off_A540_00_____0 - tbl__A540   ; 06 
+- D 1 - - - 0x0064D7 01:A4C7: 0A        .byte off_A54A_0A___300 - tbl__A540   ; 07 
+- - - - - - 0x0064D8 01:A4C8: 00        .byte off_A540_00_____0 - tbl__A540   ; 08 
+- D 1 - - - 0x0064D9 01:A4C9: 08        .byte off_A548_08___200 - tbl__A540   ; 09 
+- D 1 - - - 0x0064DA 01:A4CA: 08        .byte off_A548_08___200 - tbl__A540   ; 0A 
+- D 1 - - - 0x0064DB 01:A4CB: 0C        .byte off_A54C_0C___500 - tbl__A540   ; 0B 
+- - - - - - 0x0064DC 01:A4CC: 00        .byte off_A540_00_____0 - tbl__A540   ; 0C 
+- D 1 - - - 0x0064DD 01:A4CD: 00        .byte off_A540_00_____0 - tbl__A540   ; 0D 
+- - - - - - 0x0064DE 01:A4CE: 00        .byte off_A540_00_____0 - tbl__A540   ; 0E 
+- - - - - - 0x0064DF 01:A4CF: 00        .byte off_A540_00_____0 - tbl__A540   ; 0F 
+- - - - - - 0x0064E0 01:A4D0: 00        .byte off_A540_00_____0 - tbl__A540   ; 10 
+- - - - - - 0x0064E1 01:A4D1: 00        .byte off_A540_00_____0 - tbl__A540   ; 11 
+- - - - - - 0x0064E2 01:A4D2: 00        .byte off_A540_00_____0 - tbl__A540   ; 12 
+- - - - - - 0x0064E3 01:A4D3: 00        .byte off_A540_00_____0 - tbl__A540   ; 13 
+- - - - - - 0x0064E4 01:A4D4: 00        .byte off_A540_00_____0 - tbl__A540   ; 14 
+- - - - - - 0x0064E5 01:A4D5: 00        .byte off_A540_00_____0 - tbl__A540   ; 15 
+- - - - - - 0x0064E6 01:A4D6: 00        .byte off_A540_00_____0 - tbl__A540   ; 16 
+- - - - - - 0x0064E7 01:A4D7: 00        .byte off_A540_00_____0 - tbl__A540   ; 17 
+- - - - - - 0x0064E8 01:A4D8: 00        .byte off_A540_00_____0 - tbl__A540   ; 18 
+- - - - - - 0x0064E9 01:A4D9: 00        .byte off_A540_00_____0 - tbl__A540   ; 19 
+- - - - - - 0x0064EA 01:A4DA: 00        .byte off_A540_00_____0 - tbl__A540   ; 1A 
+- - - - - - 0x0064EB 01:A4DB: 00        .byte off_A540_00_____0 - tbl__A540   ; 1B 
+- - - - - - 0x0064EC 01:A4DC: 00        .byte off_A540_00_____0 - tbl__A540   ; 1C 
+- - - - - - 0x0064ED 01:A4DD: 00        .byte off_A540_00_____0 - tbl__A540   ; 1D 
+- - - - - - 0x0064EE 01:A4DE: 00        .byte off_A540_00_____0 - tbl__A540   ; 1E 
+- - - - - - 0x0064EF 01:A4DF: 00        .byte off_A540_00_____0 - tbl__A540   ; 1F 
+- D 1 - - - 0x0064F0 01:A4E0: 0C        .byte off_A54C_0C___500 - tbl__A540   ; 20 
+- D 1 - - - 0x0064F1 01:A4E1: 14        .byte off_A554_14_15000 - tbl__A540   ; 21 
+- D 1 - - - 0x0064F2 01:A4E2: 06        .byte off_A546_06___100 - tbl__A540   ; 22 
+- - - - - - 0x0064F3 01:A4E3: 00        .byte off_A540_00_____0 - tbl__A540   ; 23 
+- D 1 - - - 0x0064F4 01:A4E4: 04        .byte off_A544_04____60 - tbl__A540   ; 24 
+- D 1 - - - 0x0064F5 01:A4E5: 08        .byte off_A548_08___200 - tbl__A540   ; 25 
+- D 1 - - - 0x0064F6 01:A4E6: 06        .byte off_A546_06___100 - tbl__A540   ; 26 
+- D 1 - - - 0x0064F7 01:A4E7: 08        .byte off_A548_08___200 - tbl__A540   ; 27 
+- D 1 - - - 0x0064F8 01:A4E8: 0E        .byte off_A54E_0E__1000 - tbl__A540   ; 28 
+- D 1 - - - 0x0064F9 01:A4E9: 00        .byte off_A540_00_____0 - tbl__A540   ; 29 
+- D 1 - - - 0x0064FA 01:A4EA: 06        .byte off_A546_06___100 - tbl__A540   ; 2A 
+- - - - - - 0x0064FB 01:A4EB: 00        .byte off_A540_00_____0 - tbl__A540   ; 2B 
+- D 1 - - - 0x0064FC 01:A4EC: 00        .byte off_A540_00_____0 - tbl__A540   ; 2C 
+- D 1 - - - 0x0064FD 01:A4ED: 00        .byte off_A540_00_____0 - tbl__A540   ; 2D 
+- D 1 - - - 0x0064FE 01:A4EE: 0E        .byte off_A54E_0E__1000 - tbl__A540   ; 2E 
+- D 1 - - - 0x0064FF 01:A4EF: 0A        .byte off_A54A_0A___300 - tbl__A540   ; 2F 
+- - - - - - 0x006500 01:A4F0: 00        .byte off_A540_00_____0 - tbl__A540   ; 30 
+- D 1 - - - 0x006501 01:A4F1: 06        .byte off_A546_06___100 - tbl__A540   ; 31 
+- D 1 - - - 0x006502 01:A4F2: 0A        .byte off_A54A_0A___300 - tbl__A540   ; 32 
+- - - - - - 0x006503 01:A4F3: 00        .byte off_A540_00_____0 - tbl__A540   ; 33 
+- D 1 - - - 0x006504 01:A4F4: 08        .byte off_A548_08___200 - tbl__A540   ; 34 
+- D 1 - - - 0x006505 01:A4F5: 04        .byte off_A544_04____60 - tbl__A540   ; 35 
+- - - - - - 0x006506 01:A4F6: 00        .byte off_A540_00_____0 - tbl__A540   ; 36 
+- D 1 - - - 0x006507 01:A4F7: 02        .byte off_A542_02____30 - tbl__A540   ; 37 
+- - - - - - 0x006508 01:A4F8: 00        .byte off_A540_00_____0 - tbl__A540   ; 38 
+- - - - - - 0x006509 01:A4F9: 00        .byte off_A540_00_____0 - tbl__A540   ; 39 
+- - - - - - 0x00650A 01:A4FA: 00        .byte off_A540_00_____0 - tbl__A540   ; 3A 
+- D 1 - - - 0x00650B 01:A4FB: 0C        .byte off_A54C_0C___500 - tbl__A540   ; 3B 
+- - - - - - 0x00650C 01:A4FC: 00        .byte off_A540_00_____0 - tbl__A540   ; 3C 
+- D 1 - - - 0x00650D 01:A4FD: 06        .byte off_A546_06___100 - tbl__A540   ; 3D 
+- D 1 - - - 0x00650E 01:A4FE: 06        .byte off_A546_06___100 - tbl__A540   ; 3E 
+- - - - - - 0x00650F 01:A4FF: 00        .byte off_A540_00_____0 - tbl__A540   ; 3F 
+- D 1 - - - 0x006510 01:A500: 04        .byte off_A544_04____60 - tbl__A540   ; 40 
+- - - - - - 0x006511 01:A501: 00        .byte off_A540_00_____0 - tbl__A540   ; 41 
+- - - - - - 0x006512 01:A502: 14        .byte off_A554_14_15000 - tbl__A540   ; 42 
+- D 1 - - - 0x006513 01:A503: 06        .byte off_A546_06___100 - tbl__A540   ; 43 
+- - - - - - 0x006514 01:A504: 00        .byte off_A540_00_____0 - tbl__A540   ; 44 
+- D 1 - - - 0x006515 01:A505: 0A        .byte off_A54A_0A___300 - tbl__A540   ; 45 
+- D 1 - - - 0x006516 01:A506: 04        .byte off_A544_04____60 - tbl__A540   ; 46 
+- D 1 - - - 0x006517 01:A507: 08        .byte off_A548_08___200 - tbl__A540   ; 47 
+- - - - - - 0x006518 01:A508: 00        .byte off_A540_00_____0 - tbl__A540   ; 48 
+- - - - - - 0x006519 01:A509: 00        .byte off_A540_00_____0 - tbl__A540   ; 49 
+- - - - - - 0x00651A 01:A50A: 00        .byte off_A540_00_____0 - tbl__A540   ; 4A 
+- D 1 - - - 0x00651B 01:A50B: 14        .byte off_A554_14_15000 - tbl__A540   ; 4B 
+- - - - - - 0x00651C 01:A50C: 00        .byte off_A540_00_____0 - tbl__A540   ; 4C 
+- - - - - - 0x00651D 01:A50D: 00        .byte off_A540_00_____0 - tbl__A540   ; 4D 
+- D 1 - - - 0x00651E 01:A50E: 10        .byte off_A550_10__5000 - tbl__A540   ; 4E 
+- - - - - - 0x00651F 01:A50F: 00        .byte off_A540_00_____0 - tbl__A540   ; 4F 
+- D 1 - - - 0x006520 01:A510: 06        .byte off_A546_06___100 - tbl__A540   ; 50 
+- D 1 - - - 0x006521 01:A511: 14        .byte off_A554_14_15000 - tbl__A540   ; 51 
+- D 1 - - - 0x006522 01:A512: 08        .byte off_A548_08___200 - tbl__A540   ; 52 
+- - - - - - 0x006523 01:A513: 06        .byte off_A546_06___100 - tbl__A540   ; 53 
+- D 1 - - - 0x006524 01:A514: 04        .byte off_A544_04____60 - tbl__A540   ; 54 
+- D 1 - - - 0x006525 01:A515: 04        .byte off_A544_04____60 - tbl__A540   ; 55 
+- D 1 - - - 0x006526 01:A516: 04        .byte off_A544_04____60 - tbl__A540   ; 56 
+- - - - - - 0x006527 01:A517: 00        .byte off_A540_00_____0 - tbl__A540   ; 57 
+- - - - - - 0x006528 01:A518: 00        .byte off_A540_00_____0 - tbl__A540   ; 58 
+- D 1 - - - 0x006529 01:A519: 14        .byte off_A554_14_15000 - tbl__A540   ; 59 
+- D 1 - - - 0x00652A 01:A51A: 06        .byte off_A546_06___100 - tbl__A540   ; 5A 
+- D 1 - - - 0x00652B 01:A51B: 0C        .byte off_A54C_0C___500 - tbl__A540   ; 5B 
+- D 1 - - - 0x00652C 01:A51C: 06        .byte off_A546_06___100 - tbl__A540   ; 5C 
+- D 1 - - - 0x00652D 01:A51D: 0C        .byte off_A54C_0C___500 - tbl__A540   ; 5D 
+- - - - - - 0x00652E 01:A51E: 00        .byte off_A540_00_____0 - tbl__A540   ; 5E 
+- D 1 - - - 0x00652F 01:A51F: 0A        .byte off_A54A_0A___300 - tbl__A540   ; 5F 
+- D 1 - - - 0x006530 01:A520: 04        .byte off_A544_04____60 - tbl__A540   ; 60 
+- D 1 - - - 0x006531 01:A521: 04        .byte off_A544_04____60 - tbl__A540   ; 61 
+- - - - - - 0x006532 01:A522: 00        .byte off_A540_00_____0 - tbl__A540   ; 62 
+- D 1 - - - 0x006533 01:A523: 04        .byte off_A544_04____60 - tbl__A540   ; 63 
+- D 1 - - - 0x006534 01:A524: 10        .byte off_A550_10__5000 - tbl__A540   ; 64 
+- D 1 - - - 0x006535 01:A525: 12        .byte off_A552_12_10000 - tbl__A540   ; 65 
+- D 1 - - - 0x006536 01:A526: 0E        .byte off_A54E_0E__1000 - tbl__A540   ; 66 
+- - - - - - 0x006537 01:A527: 00        .byte off_A540_00_____0 - tbl__A540   ; 67 
+- D 1 - - - 0x006538 01:A528: 04        .byte off_A544_04____60 - tbl__A540   ; 68 
+- D 1 - - - 0x006539 01:A529: 14        .byte off_A554_14_15000 - tbl__A540   ; 69 
+- D 1 - - - 0x00653A 01:A52A: 0C        .byte off_A54C_0C___500 - tbl__A540   ; 6A 
+- D 1 - - - 0x00653B 01:A52B: 02        .byte off_A542_02____30 - tbl__A540   ; 6B 
+- - - - - - 0x00653C 01:A52C: 00        .byte off_A540_00_____0 - tbl__A540   ; 6C 
+- D 1 - - - 0x00653D 01:A52D: 14        .byte off_A554_14_15000 - tbl__A540   ; 6D 
+- - - - - - 0x00653E 01:A52E: 00        .byte off_A540_00_____0 - tbl__A540   ; 6E 
+- - - - - - 0x00653F 01:A52F: 00        .byte off_A540_00_____0 - tbl__A540   ; 6F 
+- - - - - - 0x006540 01:A530: 00        .byte off_A540_00_____0 - tbl__A540   ; 70 
+- - - - - - 0x006541 01:A531: 00        .byte off_A540_00_____0 - tbl__A540   ; 71 
+- - - - - - 0x006542 01:A532: 00        .byte off_A540_00_____0 - tbl__A540   ; 72 
+- - - - - - 0x006543 01:A533: 00        .byte off_A540_00_____0 - tbl__A540   ; 73 
+- - - - - - 0x006544 01:A534: 00        .byte off_A540_00_____0 - tbl__A540   ; 74 
+- - - - - - 0x006545 01:A535: 00        .byte off_A540_00_____0 - tbl__A540   ; 75 
+- - - - - - 0x006546 01:A536: 00        .byte off_A540_00_____0 - tbl__A540   ; 76 
+- - - - - - 0x006547 01:A537: 00        .byte off_A540_00_____0 - tbl__A540   ; 77 
+- - - - - - 0x006548 01:A538: 00        .byte off_A540_00_____0 - tbl__A540   ; 78 
+- - - - - - 0x006549 01:A539: 00        .byte off_A540_00_____0 - tbl__A540   ; 79 
+- - - - - - 0x00654A 01:A53A: 00        .byte off_A540_00_____0 - tbl__A540   ; 7A 
+- - - - - - 0x00654B 01:A53B: 00        .byte off_A540_00_____0 - tbl__A540   ; 7B 
+- - - - - - 0x00654C 01:A53C: 00        .byte off_A540_00_____0 - tbl__A540   ; 7C 
+- - - - - - 0x00654D 01:A53D: 00        .byte off_A540_00_____0 - tbl__A540   ; 7D 
+- - - - - - 0x00654E 01:A53E: 00        .byte off_A540_00_____0 - tbl__A540   ; 7E 
+- - - - - - 0x00654F 01:A53F: 00        .byte off_A540_00_____0 - tbl__A540   ; 7F 
 
 
 
-tbl_A540:
 tbl_A540_points:
+tbl__A540:
 off_A540_00_____0:
 - D 1 - - - 0x006550 01:A540: 00 00     .word $0000 ; 
 
@@ -1672,7 +1517,7 @@ tbl_A5B4:
 - D 1 - - - 0x0065CE 01:A5BE: 12 B3     .word _off001_B312_05_grenadier - $02
 - D 1 - - - 0x0065D0 01:A5C0: A8 B3     .word _off001_B3A8_06_grenade - $02
 - D 1 - - - 0x0065D2 01:A5C2: 3C B4     .word _off001_B43C_07_rifleman_trench - $02
-- - - - - - 0x0065D4 01:A5C4: AF A5     .word _off001_A5AF_08 - $02
+- - - - - - 0x0065D4 01:A5C4: AF A5     .word _off001_A5AF_08 - $02 ; unused, index doesn't exist
 - D 1 - - - 0x0065D6 01:A5C6: BE B4     .word _off001_B4BE_09_rifleman_standing_1 - $02
 - D 1 - - - 0x0065D8 01:A5C8: 86 B5     .word _off001_B586_0A_cannon_rotating - $02
 - D 1 - - - 0x0065DA 01:A5CA: E1 B6     .word _off001_B6E1_0B_cannon_hidden_5_1 - $02
@@ -1681,21 +1526,21 @@ tbl_A5B4:
 - D 1 - - - 0x0065E0 01:A5D0: 42 AE     .word _off001_AE42_0E_bullet_enemy_short_range - $02
 - D 1 - - - 0x0065E2 01:A5D2: 65 B9     .word _off001_B965_0F_spawner_grenades - $02
 - D 1 - - - 0x0065E4 01:A5D4: D4 B9     .word _off001_B9D4_10_spawner_normal_mobs - $02
-- - - - - - 0x0065E6 01:A5D6: AF A5     .word _off001_A5AF_11 - $02
-- - - - - - 0x0065E8 01:A5D8: AF A5     .word _off001_A5AF_12 - $02
-- - - - - - 0x0065EA 01:A5DA: AF A5     .word _off001_A5AF_13 - $02
-- - - - - - 0x0065EC 01:A5DC: AF A5     .word _off001_A5AF_14 - $02
-- - - - - - 0x0065EE 01:A5DE: AF A5     .word _off001_A5AF_15 - $02
-- - - - - - 0x0065F0 01:A5E0: AF A5     .word _off001_A5AF_16 - $02
-- - - - - - 0x0065F2 01:A5E2: AF A5     .word _off001_A5AF_17 - $02
-- - - - - - 0x0065F4 01:A5E4: AF A5     .word _off001_A5AF_18 - $02
-- - - - - - 0x0065F6 01:A5E6: AF A5     .word _off001_A5AF_19 - $02
-- - - - - - 0x0065F8 01:A5E8: AF A5     .word _off001_A5AF_1A - $02
-- - - - - - 0x0065FA 01:A5EA: AF A5     .word _off001_A5AF_1B - $02
-- - - - - - 0x0065FC 01:A5EC: AF A5     .word _off001_A5AF_1C - $02
-- - - - - - 0x0065FE 01:A5EE: AF A5     .word _off001_A5AF_1D - $02
-- - - - - - 0x006600 01:A5F0: AF A5     .word _off001_A5AF_1E - $02
-- - - - - - 0x006602 01:A5F2: AF A5     .word _off001_A5AF_1F - $02
+- - - - - - 0x0065E6 01:A5D6: AF A5     .word _off001_A5AF_11 - $02 ; unused, index doesn't exist
+- - - - - - 0x0065E8 01:A5D8: AF A5     .word _off001_A5AF_12 - $02 ; unused, index doesn't exist
+- - - - - - 0x0065EA 01:A5DA: AF A5     .word _off001_A5AF_13 - $02 ; unused, index doesn't exist
+- - - - - - 0x0065EC 01:A5DC: AF A5     .word _off001_A5AF_14 - $02 ; unused, index doesn't exist
+- - - - - - 0x0065EE 01:A5DE: AF A5     .word _off001_A5AF_15 - $02 ; unused, index doesn't exist
+- - - - - - 0x0065F0 01:A5E0: AF A5     .word _off001_A5AF_16 - $02 ; unused, index doesn't exist
+- - - - - - 0x0065F2 01:A5E2: AF A5     .word _off001_A5AF_17 - $02 ; unused, index doesn't exist
+- - - - - - 0x0065F4 01:A5E4: AF A5     .word _off001_A5AF_18 - $02 ; unused, index doesn't exist
+- - - - - - 0x0065F6 01:A5E6: AF A5     .word _off001_A5AF_19 - $02 ; unused, index doesn't exist
+- - - - - - 0x0065F8 01:A5E8: AF A5     .word _off001_A5AF_1A - $02 ; unused, index doesn't exist
+- - - - - - 0x0065FA 01:A5EA: AF A5     .word _off001_A5AF_1B - $02 ; unused, index doesn't exist
+- - - - - - 0x0065FC 01:A5EC: AF A5     .word _off001_A5AF_1C - $02 ; unused, index doesn't exist
+- - - - - - 0x0065FE 01:A5EE: AF A5     .word _off001_A5AF_1D - $02 ; unused, index doesn't exist
+- - - - - - 0x006600 01:A5F0: AF A5     .word _off001_A5AF_1E - $02 ; unused, index doesn't exist
+- - - - - - 0x006602 01:A5F2: AF A5     .word _off001_A5AF_1F - $02 ; unused, index doesn't exist
 - D 1 - - - 0x006604 01:A5F4: 01 80     .word _off001_0x004011_20_cannon_hidden_1 - $02
 - D 1 - - - 0x006606 01:A5F6: F6 84     .word _off001_0x004506_21_boss_area_1_helicopter - $02
 - D 1 - - - 0x006608 01:A5F8: D9 80     .word _off001_0x0040E9_22_boss_area_1_gun - $02
@@ -1720,7 +1565,7 @@ tbl_A5B4:
 - D 1 - - - 0x00662E 01:A61E: A9 83     .word _off001_0x0103B9_35_boss_5_red_spiked_ball - $02
 - D 1 - - - 0x006630 01:A620: 3D 8B     .word _off001_0x014B4D_36_tank_electricity - $02
 - D 1 - - - 0x006632 01:A622: A9 84     .word _off001_0x0084B9_37_boss_8_blue_spiked_ball - $02
-- - - - - - 0x006634 01:A624: 33 85     .word _off001_0x008543_38 - $02
+- - - - - - 0x006634 01:A624: 33 85     .word _off001_0x008543_38 - $02 ; unused, index doesn't exist
 - D 1 - - - 0x006636 01:A626: 3B 8E     .word _off001_0x014E4B_39_elevator - $02
 - D 1 - - - 0x006638 01:A628: C0 91     .word _off001_0x0051D0_3A_bullet_robospider - $02
 - D 1 - - - 0x00663A 01:A62A: 49 89     .word _off001_0x008959_3B_purple_mutant - $02
@@ -1738,12 +1583,12 @@ tbl_A5B4:
 - D 1 - - - 0x006652 01:A642: 06 82     .word _off001_0x008216_47_cannon_skul - $02
 - D 1 - - - 0x006654 01:A644: 89 82     .word _off001_0x008299_48_bullet_cannon_skul - $02
 - D 1 - - - 0x006656 01:A646: B5 82     .word _off001_0x0082C5_49_ceiling - $02
-- - - - - - 0x006658 01:A648: AF A5     .word _off001_A5AF_4A - $02
+- - - - - - 0x006658 01:A648: AF A5     .word _off001_A5AF_4A - $02 ; unused, index doesn't exist
 - D 1 - - - 0x00665A 01:A64A: C2 99     .word _off001_0x0059D2_4B_boss_3_ball_center - $02
-- - - - - - 0x00665C 01:A64C: AF A5     .word _off001_A5AF_4C - $02
-- - - - - - 0x00665E 01:A64E: AF A5     .word _off001_A5AF_4D - $02
+- - - - - - 0x00665C 01:A64C: AF A5     .word _off001_A5AF_4C - $02 ; unused, index doesn't exist
+- - - - - - 0x00665E 01:A64E: AF A5     .word _off001_A5AF_4D - $02 ; unused, index doesn't exist
 - D 1 - - - 0x006660 01:A650: 06 92     .word _off001_0x005216_4E_robospider - $02
-- - - - - - 0x006662 01:A652: AF A5     .word _off001_A5AF_4F - $02
+- - - - - - 0x006662 01:A652: AF A5     .word _off001_A5AF_4F - $02 ; unused, index doesn't exist
 - D 1 - - - 0x006664 01:A654: DE 9B     .word _off001_0x005BEE_50_boss_3_ball_violet - $02
 - D 1 - - - 0x006666 01:A656: F2 8F     .word _off001_0x009002_51_boss_7_mouth - $02
 - D 1 - - - 0x006668 01:A658: 8D 8C     .word _off001_0x008C9D_52_boss_7_chest - $02
@@ -1751,7 +1596,7 @@ tbl_A5B4:
 - D 1 - - - 0x00666C 01:A65C: 08 8E     .word _off001_0x008E18_54_boss_7_fireball - $02
 - D 1 - - - 0x00666E 01:A65E: 41 8E     .word _off001_0x008E51_55_boss_7_red_spikeball - $02
 - D 1 - - - 0x006670 01:A660: A4 8E     .word _off001_0x008EB4_56_boss_7_slime - $02
-- - - - - - 0x006672 01:A662: AF A5     .word _off001_A5AF_57 - $02
+- - - - - - 0x006672 01:A662: AF A5     .word _off001_A5AF_57 - $02 ; unused, index doesn't exist
 - D 1 - - - 0x006674 01:A664: 66 82     .word _off001_0x010276_58_spawner_container_normal_mobs - $02
 - D 1 - - - 0x006676 01:A666: 2B 84     .word _off001_0x01043B_59_boss_5_body - $02
 - D 1 - - - 0x006678 01:A668: FC 82     .word _off001_0x01030C_5A_boss_5_skull - $02
@@ -1767,7 +1612,7 @@ tbl_A5B4:
 - D 1 - - - 0x00668C 01:A67C: 28 98     .word _off001_0x011838_64_boss_6_phase_1 - $02
 - D 1 - - - 0x00668E 01:A67E: 14 94     .word _off001_0x011424_65_boss_6_phase_2 - $02
 - D 1 - - - 0x006690 01:A680: 32 9B     .word _off001_0x011B42_66_boss_6_snake - $02
-- - - - - - 0x006692 01:A682: AF A5     .word _off001_A5AF_67 - $02
+- - - - - - 0x006692 01:A682: AF A5     .word _off001_A5AF_67 - $02 ; unused, index doesn't exist
 - D 1 - - - 0x006694 01:A684: F2 97     .word _off001_0x011802_68_boss_6_big_bullet - $02
 - D 1 - - - 0x006696 01:A686: 27 87     .word _off001_0x014737_69_boss_2_green_tankman - $02
 - D 1 - - - 0x006698 01:A688: F9 89     .word _off001_0x014A09_6A_boss_2_red_tankman - $02
@@ -1778,19 +1623,19 @@ tbl_A5B4:
 - D 1 - - - 0x0066A2 01:A692: 7A 84     .word _off001_0x00448A_6F_thunder - $02
 - D 1 - - - 0x0066A4 01:A694: A2 93     .word _off001_0x0113B2_70_boss_6_hole - $02
 - D 1 - - - 0x0066A6 01:A696: CA 93     .word _off001_0x0113DA_71_chr_banks_changer - $02
-- - - - - - 0x0066A8 01:A698: AF A5     .word _off001_A5AF_72 - $02
-- - - - - - 0x0066AA 01:A69A: AF A5     .word _off001_A5AF_73 - $02
-- - - - - - 0x0066AC 01:A69C: AF A5     .word _off001_A5AF_74 - $02
-- - - - - - 0x0066AE 01:A69E: AF A5     .word _off001_A5AF_75 - $02
-- - - - - - 0x0066B0 01:A6A0: AF A5     .word _off001_A5AF_76 - $02
-- - - - - - 0x0066B2 01:A6A2: AF A5     .word _off001_A5AF_77 - $02
-- - - - - - 0x0066B4 01:A6A4: AF A5     .word _off001_A5AF_78 - $02
-- - - - - - 0x0066B6 01:A6A6: AF A5     .word _off001_A5AF_79 - $02
-- - - - - - 0x0066B8 01:A6A8: AF A5     .word _off001_A5AF_7A - $02
-- - - - - - 0x0066BA 01:A6AA: AF A5     .word _off001_A5AF_7B - $02
-- - - - - - 0x0066BC 01:A6AC: AF A5     .word _off001_A5AF_7C - $02
-- - - - - - 0x0066BE 01:A6AE: AF A5     .word _off001_A5AF_7D - $02
-- - - - - - 0x0066C0 01:A6B0: AF A5     .word _off001_A5AF_7E - $02
+- - - - - - 0x0066A8 01:A698: AF A5     .word _off001_A5AF_72 - $02 ; unused, index doesn't exist
+- - - - - - 0x0066AA 01:A69A: AF A5     .word _off001_A5AF_73 - $02 ; unused, index doesn't exist
+- - - - - - 0x0066AC 01:A69C: AF A5     .word _off001_A5AF_74 - $02 ; unused, index doesn't exist
+- - - - - - 0x0066AE 01:A69E: AF A5     .word _off001_A5AF_75 - $02 ; unused, index doesn't exist
+- - - - - - 0x0066B0 01:A6A0: AF A5     .word _off001_A5AF_76 - $02 ; unused, index doesn't exist
+- - - - - - 0x0066B2 01:A6A2: AF A5     .word _off001_A5AF_77 - $02 ; unused, index doesn't exist
+- - - - - - 0x0066B4 01:A6A4: AF A5     .word _off001_A5AF_78 - $02 ; unused, index doesn't exist
+- - - - - - 0x0066B6 01:A6A6: AF A5     .word _off001_A5AF_79 - $02 ; unused, index doesn't exist
+- - - - - - 0x0066B8 01:A6A8: AF A5     .word _off001_A5AF_7A - $02 ; unused, index doesn't exist
+- - - - - - 0x0066BA 01:A6AA: AF A5     .word _off001_A5AF_7B - $02 ; unused, index doesn't exist
+- - - - - - 0x0066BC 01:A6AC: AF A5     .word _off001_A5AF_7C - $02 ; unused, index doesn't exist
+- - - - - - 0x0066BE 01:A6AE: AF A5     .word _off001_A5AF_7D - $02 ; unused, index doesn't exist
+- - - - - - 0x0066C0 01:A6B0: AF A5     .word _off001_A5AF_7E - $02 ; unused, index doesn't exist
 - D 1 - - - 0x0066C2 01:A6B2: B1 A5     .word _off001_A5AF_7F_null ; the only one which has index 00, others start with 01
 
 

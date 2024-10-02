@@ -1482,7 +1482,7 @@ C - - - - - 0x000868 00:8858: B0 07     BCS bra_8861    ; if was 00
 C - - - - - 0x00086A 00:885A: A4 09     LDY ram_0009
 C - - - - - 0x00086C 00:885C: 4A        LSR
 C - - - - - 0x00086D 00:885D: B0 02     BCS bra_8861    ; if was 00
-C - - - - - 0x00086F 00:885F: A0 00     LDY # off_886C_00 - tbl_886C    ; default
+C - - - - - 0x00086F 00:885F: A0 00     LDY # off_886C_00 - tbl__886C    ; default
 bra_8861:
 C - - - - - 0x000871 00:8861: B9 6C 88  LDA tbl_886C_speed,Y
 C - - - - - 0x000874 00:8864: 95 AA     STA ram_spd_X_lo_plr,X
@@ -1491,8 +1491,8 @@ C - - - - - 0x000879 00:8869: 95 AC     STA ram_spd_X_hi_plr,X
 C - - - - - 0x00087B 00:886B: 60        RTS
 
 
-tbl_886C:
 tbl_886C_speed:
+tbl__886C:
 ; on different surfaces
 off_886C_00:
 - D 0 - - - 0x00087C 00:886C: 00 00     .word $0000 ; X
@@ -1529,9 +1529,9 @@ C - - - - - 0x000898 00:8888: B4 B2     LDY ram_plr_surface,X
 C - - - - - 0x00089A 00:888A: C0 06     CPY #$06
 C - - - - - 0x00089C 00:888C: B0 09     BCS bra_8897_diagonal
 ; if not on diagonal
-C - - - - - 0x00089E 00:888E: A9 04     LDA # off_8870_04 - tbl_886C
+C - - - - - 0x00089E 00:888E: A9 04     LDA # off_8870_04 - tbl__886C
 C - - - - - 0x0008A0 00:8890: 85 08     STA ram_0008
-C - - - - - 0x0008A2 00:8892: A9 08     LDA # off_8874_08 - tbl_886C
+C - - - - - 0x0008A2 00:8892: A9 08     LDA # off_8874_08 - tbl__886C
 C - - - - - 0x0008A4 00:8894: 85 09     STA ram_0009
 C - - - - - 0x0008A6 00:8896: 60        RTS
 bra_8897_diagonal:
@@ -1544,22 +1544,22 @@ C - - - - - 0x0008B1 00:88A1: 60        RTS
 
 
 tbl_88A2_index_1:
-- D 0 - - - 0x0008B2 00:88A2: 14        .byte off_8880_14 - tbl_886C   ; 06 
-- D 0 - - - 0x0008B3 00:88A3: 14        .byte off_8880_14 - tbl_886C   ; 07 
-- D 0 - - - 0x0008B4 00:88A4: 14        .byte off_8880_14 - tbl_886C   ; 08 
-- D 0 - - - 0x0008B5 00:88A5: 0C        .byte off_8878_0C - tbl_886C   ; 09 
-- D 0 - - - 0x0008B6 00:88A6: 0C        .byte off_8878_0C - tbl_886C   ; 0A 
-- D 0 - - - 0x0008B7 00:88A7: 0C        .byte off_8878_0C - tbl_886C   ; 0B 
+- D 0 - - - 0x0008B2 00:88A2: 14        .byte off_8880_14 - tbl__886C   ; 06 
+- D 0 - - - 0x0008B3 00:88A3: 14        .byte off_8880_14 - tbl__886C   ; 07 
+- D 0 - - - 0x0008B4 00:88A4: 14        .byte off_8880_14 - tbl__886C   ; 08 
+- D 0 - - - 0x0008B5 00:88A5: 0C        .byte off_8878_0C - tbl__886C   ; 09 
+- D 0 - - - 0x0008B6 00:88A6: 0C        .byte off_8878_0C - tbl__886C   ; 0A 
+- D 0 - - - 0x0008B7 00:88A7: 0C        .byte off_8878_0C - tbl__886C   ; 0B 
 
 
 
 tbl_88A8_index_2:
-- D 0 - - - 0x0008B8 00:88A8: 10        .byte off_887C_10 - tbl_886C   ; 06 
-- D 0 - - - 0x0008B9 00:88A9: 10        .byte off_887C_10 - tbl_886C   ; 07 
-- D 0 - - - 0x0008BA 00:88AA: 10        .byte off_887C_10 - tbl_886C   ; 08 
-- D 0 - - - 0x0008BB 00:88AB: 18        .byte off_8884_18 - tbl_886C   ; 09 
-- D 0 - - - 0x0008BC 00:88AC: 18        .byte off_8884_18 - tbl_886C   ; 0A 
-- D 0 - - - 0x0008BD 00:88AD: 18        .byte off_8884_18 - tbl_886C   ; 0B 
+- D 0 - - - 0x0008B8 00:88A8: 10        .byte off_887C_10 - tbl__886C   ; 06 
+- D 0 - - - 0x0008B9 00:88A9: 10        .byte off_887C_10 - tbl__886C   ; 07 
+- D 0 - - - 0x0008BA 00:88AA: 10        .byte off_887C_10 - tbl__886C   ; 08 
+- D 0 - - - 0x0008BB 00:88AB: 18        .byte off_8884_18 - tbl__886C   ; 09 
+- D 0 - - - 0x0008BC 00:88AC: 18        .byte off_8884_18 - tbl__886C   ; 0A 
+- D 0 - - - 0x0008BD 00:88AD: 18        .byte off_8884_18 - tbl__886C   ; 0B 
 
 
 
@@ -2158,18 +2158,19 @@ tbl_8BFA_spr_attr:
 
 
 tbl_8BFC_index:
-- D 0 - - - 0x000C0C 00:8BFC: 10        .byte off_8C14_10 - tbl_8C04   ; 00 
-- D 0 - - - 0x000C0D 00:8BFD: 08        .byte off_8C0C_08 - tbl_8C04   ; 01 
-- D 0 - - - 0x000C0E 00:8BFE: 0C        .byte off_8C10_0C - tbl_8C04   ; 02 
-- D 0 - - - 0x000C0F 00:8BFF: 04        .byte off_8C08_04 - tbl_8C04   ; 03 
-- D 0 - - - 0x000C10 00:8C00: 00        .byte off_8C04_00 - tbl_8C04   ; 04 
-- D 0 - - - 0x000C11 00:8C01: 04        .byte off_8C08_04 - tbl_8C04   ; 05 
-- D 0 - - - 0x000C12 00:8C02: 0C        .byte off_8C10_0C - tbl_8C04   ; 06 
-- D 0 - - - 0x000C13 00:8C03: 08        .byte off_8C0C_08 - tbl_8C04   ; 07 
+- D 0 - - - 0x000C0C 00:8BFC: 10        .byte off_8C14_10 - tbl__8C04   ; 00 
+- D 0 - - - 0x000C0D 00:8BFD: 08        .byte off_8C0C_08 - tbl__8C04   ; 01 
+- D 0 - - - 0x000C0E 00:8BFE: 0C        .byte off_8C10_0C - tbl__8C04   ; 02 
+- D 0 - - - 0x000C0F 00:8BFF: 04        .byte off_8C08_04 - tbl__8C04   ; 03 
+- D 0 - - - 0x000C10 00:8C00: 00        .byte off_8C04_00 - tbl__8C04   ; 04 
+- D 0 - - - 0x000C11 00:8C01: 04        .byte off_8C08_04 - tbl__8C04   ; 05 
+- D 0 - - - 0x000C12 00:8C02: 0C        .byte off_8C10_0C - tbl__8C04   ; 06 
+- D 0 - - - 0x000C13 00:8C03: 08        .byte off_8C0C_08 - tbl__8C04   ; 07 
 
 
 
 tbl_8C04:
+tbl__8C04:
 off_8C04_00:
 - D 0 - - - 0x000C14 00:8C04: 2C        .byte $2C   ; 00 
 - D 0 - - - 0x000C15 00:8C05: 2D        .byte $2D   ; 01 
@@ -2696,18 +2697,19 @@ tbl_8ED6_offset:
 ; 04      00
 ;   03  01
 ;     02
-- D 0 - - - 0x000EE6 00:8ED6: 00        .byte off_8EDE_00 - tbl_8EDE   ; 00 
-- D 0 - - - 0x000EE7 00:8ED7: 05        .byte off_8EE3_05 - tbl_8EDE   ; 01 
-- D 0 - - - 0x000EE8 00:8ED8: 00        .byte off_8EDE_00 - tbl_8EDE   ; 02 
-- D 0 - - - 0x000EE9 00:8ED9: 05        .byte off_8EE3_05 - tbl_8EDE   ; 03 
-- D 0 - - - 0x000EEA 00:8EDA: 00        .byte off_8EDE_00 - tbl_8EDE   ; 04 
-- D 0 - - - 0x000EEB 00:8EDB: 05        .byte off_8EE3_05 - tbl_8EDE   ; 05 
-- D 0 - - - 0x000EEC 00:8EDC: 00        .byte off_8EDE_00 - tbl_8EDE   ; 06 
-- D 0 - - - 0x000EED 00:8EDD: 05        .byte off_8EE3_05 - tbl_8EDE   ; 07 
+- D 0 - - - 0x000EE6 00:8ED6: 00        .byte off_8EDE_00 - tbl__8EDE   ; 00 
+- D 0 - - - 0x000EE7 00:8ED7: 05        .byte off_8EE3_05 - tbl__8EDE   ; 01 
+- D 0 - - - 0x000EE8 00:8ED8: 00        .byte off_8EDE_00 - tbl__8EDE   ; 02 
+- D 0 - - - 0x000EE9 00:8ED9: 05        .byte off_8EE3_05 - tbl__8EDE   ; 03 
+- D 0 - - - 0x000EEA 00:8EDA: 00        .byte off_8EDE_00 - tbl__8EDE   ; 04 
+- D 0 - - - 0x000EEB 00:8EDB: 05        .byte off_8EE3_05 - tbl__8EDE   ; 05 
+- D 0 - - - 0x000EEC 00:8EDC: 00        .byte off_8EDE_00 - tbl__8EDE   ; 06 
+- D 0 - - - 0x000EED 00:8EDD: 05        .byte off_8EE3_05 - tbl__8EDE   ; 07 
 
 
 
 tbl_8EDE:
+tbl__8EDE:
 ; bzk optimize, same bytes
 off_8EDE_00:
 - D 0 - - - 0x000EEE 00:8EDE: 01        .byte $01   ; 00 
