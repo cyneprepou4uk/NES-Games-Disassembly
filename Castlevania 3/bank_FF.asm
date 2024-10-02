@@ -7815,7 +7815,7 @@ C - - - - - 0x03F7B6 0F:F7A6: 85 28     STA ram_btn_hold
 C - - - - - 0x03F7B8 0F:F7A8: 85 26     STA ram_btn_press
 C - - - - - 0x03F7BA 0F:F7AA: 20 C5 E6  JSR sub_E6C5
 C - - - - - 0x03F7BD 0F:F7AD: AD 65 05  LDA ram_plr_state
-C - - - - - 0x03F7C0 0F:F7B0: C9 02     CMP #$02
+C - - - - - 0x03F7C0 0F:F7B0: C9 02     CMP #con_plr_state_idle_on_ground
 C - - - - - 0x03F7C2 0F:F7B2: D0 30     BNE bra_F7E4
 C - - - - - 0x03F7C4 0F:F7B4: 20 CA E5  JSR sub_E5CA
 C - - - - - 0x03F7C7 0F:F7B7: A9 16     LDA #con_002A_16
@@ -8045,7 +8045,7 @@ C - - - - - 0x03F939 0F:F929: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F93C 0F:F92C: 20 AA 9F  JSR sub_0x009FBA
 C - - - - - 0x03F93F 0F:F92F: 20 0C 80  JSR sub_0x00801C
 C - - - - - 0x03F942 0F:F932: AD 65 05  LDA ram_plr_state
-C - - - - - 0x03F945 0F:F935: C9 02     CMP #$02
+C - - - - - 0x03F945 0F:F935: C9 02     CMP #con_plr_state_idle_on_ground
 C - - - - - 0x03F947 0F:F937: D0 06     BNE bra_F93F_RTS
 C - - - - - 0x03F949 0F:F939: A9 12     LDA #con_irq_12
 C - - - - - 0x03F94B 0F:F93B: 85 3F     STA ram_003F_copy_irq_handler

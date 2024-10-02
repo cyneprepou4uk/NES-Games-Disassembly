@@ -12213,7 +12213,7 @@ sub_B809:
         ; 1 = 
 C - - - - - 0x02F819 0B:B809: A0 00     LDY #$00
 bra_B80B_loop:
-C - - - - - 0x02F81B 0B:B80B: B9 1C B8  LDA tbl_B81C,Y
+C - - - - - 0x02F81B 0B:B80B: B9 1C B8  LDA tbl_B81C_plr_state,Y
 C - - - - - 0x02F81E 0B:B80E: 30 08     BMI bra_B818
 C - - - - - 0x02F820 0B:B810: CD 65 05  CMP ram_plr_state
 C - - - - - 0x02F823 0B:B813: F0 05     BEQ bra_B81A
@@ -12228,14 +12228,14 @@ C - - - - - 0x02F82B 0B:B81B: 60        RTS
 
 
 
-tbl_B81C:
-- D 1 - - - 0x02F82C 0B:B81C: 0E        .byte $0E   ; 00 
-- D 1 - - - 0x02F82D 0B:B81D: 10        .byte $10   ; 01 
-- D 1 - - - 0x02F82E 0B:B81E: 12        .byte $12   ; 02 
-- D 1 - - - 0x02F82F 0B:B81F: 14        .byte $14   ; 03 
-- D 1 - - - 0x02F830 0B:B820: 1E        .byte $1E   ; 04 
-- D 1 - - - 0x02F831 0B:B821: 24        .byte $24   ; 05 
-- D 1 - - - 0x02F832 0B:B822: FF        .byte $FF   ; 06 
+tbl_B81C_plr_state:
+- D 1 - - - 0x02F82C 0B:B81C: 0E        .byte con_plr_state_move_towards_stairs   ; 00 
+- D 1 - - - 0x02F82D 0B:B81D: 10        .byte con_plr_state_attach_to_stairs   ; 01 
+- D 1 - - - 0x02F82E 0B:B81E: 12        .byte con_plr_state_idle_on_stairs   ; 02 
+- D 1 - - - 0x02F82F 0B:B81F: 14        .byte con_plr_state_move_on_stairs   ; 03 
+- D 1 - - - 0x02F830 0B:B820: 1E        .byte con_plr_state_normal_atk_on_stairs   ; 04 
+- D 1 - - - 0x02F831 0B:B821: 24        .byte con_plr_state_subw_atk_on_stairs   ; 05 
+- D 1 - - - 0x02F832 0B:B822: FF        .byte $FF   ; 06 end token
 
 
 

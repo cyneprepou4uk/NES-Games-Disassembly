@@ -4,7 +4,6 @@
 
 ; todo
     ; найти buffer mode 0x03ED2D
-    ; найти все ram_plr_state
     ; переименовать музыку и звуки
     ; разобраться какой адрес для схр банков за что отвечает, и переименовать JSR на запись
     ; найти индексы объектов, в частности 0x013A4E 0x013A56
@@ -87,6 +86,63 @@ con_buf_mode_07                         = $07 ; 32 tiles, then ppu address, then
 ; con_buf_mode_08                       = $08 ; unused
 ; con_buf_mode_09                       = $09 ; unused
 con_buf_mode_0A                         = $0A ; 1st byte = counter, 2nd byte = fill tile (2006 +1)
+
+
+
+; ram_plr_state
+; handlers at 0x03A5BE 0x03938B 0x039C0C 0x039C4B
+con_plr_state_00                        = $00 ; 
+con_plr_state_idle_on_ground            = $02 ; idle while standing on the ground
+con_plr_state_move_on_ground            = $04 ; moving on the ground
+con_plr_state_06                        = $06 ; 
+con_plr_state_jump                      = $08 ; jumping
+con_plr_state_duck                      = $0A ; ducking
+con_plr_state_fall                      = $0C ; falling
+con_plr_state_move_towards_stairs       = $0E ; moving towards the stairs (aiming to the stairs)
+con_plr_state_attach_to_stairs          = $10 ; attaching player to the stairs
+con_plr_state_idle_on_stairs            = $12 ; idle while standing on the stairs
+con_plr_state_move_on_stairs            = $14 ; moving up/down while standing on the stairs
+con_plr_state_16                        = $16 ; 
+con_plr_state_normal_atk_on_ground      = $18 ; normal attack whine standing on the ground
+con_plr_state_normal_atk_jump           = $1A ; normal attack while jumping
+con_plr_state_normal_atk_duck           = $1C ; normal attack while ducking
+con_plr_state_normal_atk_on_stairs      = $1E ; normal attack on the stairs
+con_plr_state_subw_atk_on_ground        = $20 ; subweapon attack on the ground
+con_plr_state_subw_atk_jump             = $22 ; subweapon attack while jumping
+con_plr_state_subw_atk_on_stairs        = $24 ; subweapon attack on the stairs
+con_plr_state_knockback                 = $26 ; knockback after getting hit
+con_plr_state_28                        = $28 ; 
+con_plr_state_2A                        = $2A ; 
+con_plr_state_2C                        = $2C ; 
+con_plr_state_death                     = $2E ; death
+con_plr_state_30                        = $30 ; Grant/Alucard only
+con_plr_state_32                        = $32 ; Grant/Alucard only
+con_plr_state_34                        = $34 ; Grant/Alucard only
+con_plr_state_36                        = $36 ; Grant/Alucard only
+con_plr_state_38                        = $38 ; Grant/Alucard only
+con_plr_state_3A                        = $3A ; Grant/Alucard only
+con_plr_state_3C                        = $3C ; Grant/Alucard only
+con_plr_state_3E                        = $3E ; Grant/Alucard only
+con_plr_state_40                        = $40 ; Grant/Alucard only
+con_plr_state_42                        = $42 ; Grant/Alucard only
+con_plr_state_44                        = $44 ; Grant only
+con_plr_state_46                        = $46 ; Grant only
+con_plr_state_48                        = $48 ; Grant only
+
+con_plr_state_80                        = $80 ; some kind of flag?
+
+; player state during path selection screen
+; handler at 0x002A5C
+con_path_sel_00                         = $00 ; 
+con_path_sel_auto_walk_out_of_screen    = $02 ; auto walking out of the screen (when first appearing)
+con_path_sel_idle_on_ground             = $04 ; idle while standing on the ground
+con_path_sel_move_on_ground             = $06 ; moving while standing on the ground
+con_path_sel_move_towards_stairs        = $08 ; moving towards the stairs (aiming to the stairs)
+con_path_sel_attach_to_stairs           = $0A ; attaching player to the stairs
+con_path_sel_idle_on_stairs             = $0C ; idle while standing on the stairs
+con_path_sel_move_on_stairs             = $0E ; moving up/down while standing on the stairs
+con_path_sel_auto_walk_to_exit          = $10 ; auto walking to the exit (when close to the exit)
+con_path_sel_off_screen                 = $12 ; final state when player is off screen (after 10)
 
 
 

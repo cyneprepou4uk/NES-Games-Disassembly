@@ -9804,9 +9804,9 @@ C - - - - - 0x0131CE 04:B1BE: A8        TAY
 C - - - - - 0x0131CF 04:B1BF: B9 39 00  LDA ram_0039,Y
 C - - - - - 0x0131D2 04:B1C2: 30 20     BMI bra_B1E4
 C - - - - - 0x0131D4 04:B1C4: AD 65 05  LDA ram_plr_state
-C - - - - - 0x0131D7 04:B1C7: C9 2C     CMP #$2C
+C - - - - - 0x0131D7 04:B1C7: C9 2C     CMP #con_plr_state_2C
 C - - - - - 0x0131D9 04:B1C9: F0 19     BEQ bra_B1E4
-C - - - - - 0x0131DB 04:B1CB: C9 2E     CMP #$2E
+C - - - - - 0x0131DB 04:B1CB: C9 2E     CMP #con_plr_state_death
 C - - - - - 0x0131DD 04:B1CD: F0 15     BEQ bra_B1E4
 C - - - - - 0x0131DF 04:B1CF: A5 68     LDA ram_0068
 C - - - - - 0x0131E1 04:B1D1: 30 0D     BMI bra_B1E0
@@ -9885,8 +9885,8 @@ C - - - - - 0x01323F 04:B22F: 4A        LSR
 C - - - - - 0x013240 04:B230: A8        TAY
 C - - - - - 0x013241 04:B231: B1 08     LDA (ram_0008),Y
 C - - - - - 0x013243 04:B233: 8D 65 05  STA ram_plr_state
-C - - - - - 0x013246 04:B236: F0 2B     BEQ bra_B263
-C - - - - - 0x013248 04:B238: C9 12     CMP #$12
+C - - - - - 0x013246 04:B236: F0 2B     BEQ bra_B263    ; if con_plr_state_00
+C - - - - - 0x013248 04:B238: C9 12     CMP #con_plr_state_idle_on_stairs
 C - - - - - 0x01324A 04:B23A: D0 2C     BNE bra_B268_RTS
 C - - - - - 0x01324C 04:B23C: A9 00     LDA #$00
 C - - - - - 0x01324E 04:B23E: 8D 13 04  STA ram_obj_anim_id + $13
@@ -9927,202 +9927,202 @@ tbl_B269_state_converter:
 
 
 off_B275_02_from_Trevor_to_Grant:
-- - - - - - 0x013285 04:B275: 00        .byte $00   ; 00 
-- D 1 - I - 0x013286 04:B276: 02        .byte $02   ; 02 
-- D 1 - I - 0x013287 04:B277: 04        .byte $04   ; 04 
-- - - - - - 0x013288 04:B278: 00        .byte $00   ; 06 
-- - - - - - 0x013289 04:B279: 00        .byte $00   ; 08 
-- - - - - - 0x01328A 04:B27A: 0A        .byte $0A   ; 0A 
-- D 1 - I - 0x01328B 04:B27B: 00        .byte $00   ; 0C 
-- - - - - - 0x01328C 04:B27C: 0E        .byte $0E   ; 0E 
-- - - - - - 0x01328D 04:B27D: 10        .byte $10   ; 10 
-- - - - - - 0x01328E 04:B27E: 12        .byte $12   ; 12 
-- - - - - - 0x01328F 04:B27F: 14        .byte $14   ; 14 
-- - - - - - 0x013290 04:B280: 16        .byte $16   ; 16 
-- - - - - - 0x013291 04:B281: 00        .byte $00   ; 18 
-- D 1 - I - 0x013292 04:B282: 00        .byte $00   ; 1A 
-- - - - - - 0x013293 04:B283: 00        .byte $00   ; 1C 
-- - - - - - 0x013294 04:B284: 12        .byte $12   ; 1E 
-- - - - - - 0x013295 04:B285: 00        .byte $00   ; 20 
-- - - - - - 0x013296 04:B286: 00        .byte $00   ; 22 
-- - - - - - 0x013297 04:B287: 12        .byte $12   ; 24 
-- D 1 - I - 0x013298 04:B288: 26        .byte $26   ; 26 
-- - - - - - 0x013299 04:B289: 28        .byte $28   ; 28 
-- - - - - - 0x01329A 04:B28A: 2A        .byte $2A   ; 2A 
-- - - - - - 0x01329B 04:B28B: 2C        .byte $2C   ; 2C 
-- - - - - - 0x01329C 04:B28C: 2E        .byte $2E   ; 2E 
-- - - - - - 0x01329D 04:B28D: 00        .byte $00   ; 30 
-- - - - - - 0x01329E 04:B28E: 00        .byte $00   ; 32 
+- - - - - - 0x013285 04:B275: 00        .byte con_plr_state_00   ; 00 
+- D 1 - I - 0x013286 04:B276: 02        .byte con_plr_state_idle_on_ground   ; 02 
+- D 1 - I - 0x013287 04:B277: 04        .byte con_plr_state_move_on_ground   ; 04 
+- - - - - - 0x013288 04:B278: 00        .byte con_plr_state_00   ; 06 
+- - - - - - 0x013289 04:B279: 00        .byte con_plr_state_00   ; 08 
+- - - - - - 0x01328A 04:B27A: 0A        .byte con_plr_state_duck   ; 0A 
+- D 1 - I - 0x01328B 04:B27B: 00        .byte con_plr_state_00   ; 0C 
+- - - - - - 0x01328C 04:B27C: 0E        .byte con_plr_state_move_towards_stairs   ; 0E 
+- - - - - - 0x01328D 04:B27D: 10        .byte con_plr_state_attach_to_stairs   ; 10 
+- - - - - - 0x01328E 04:B27E: 12        .byte con_plr_state_idle_on_stairs   ; 12 
+- - - - - - 0x01328F 04:B27F: 14        .byte con_plr_state_move_on_stairs   ; 14 
+- - - - - - 0x013290 04:B280: 16        .byte con_plr_state_16   ; 16 
+- - - - - - 0x013291 04:B281: 00        .byte con_plr_state_00   ; 18 
+- D 1 - I - 0x013292 04:B282: 00        .byte con_plr_state_00   ; 1A 
+- - - - - - 0x013293 04:B283: 00        .byte con_plr_state_00   ; 1C 
+- - - - - - 0x013294 04:B284: 12        .byte con_plr_state_idle_on_stairs   ; 1E 
+- - - - - - 0x013295 04:B285: 00        .byte con_plr_state_00   ; 20 
+- - - - - - 0x013296 04:B286: 00        .byte con_plr_state_00   ; 22 
+- - - - - - 0x013297 04:B287: 12        .byte con_plr_state_idle_on_stairs   ; 24 
+- D 1 - I - 0x013298 04:B288: 26        .byte con_plr_state_knockback   ; 26 
+- - - - - - 0x013299 04:B289: 28        .byte con_plr_state_28   ; 28 
+- - - - - - 0x01329A 04:B28A: 2A        .byte con_plr_state_2A   ; 2A 
+- - - - - - 0x01329B 04:B28B: 2C        .byte con_plr_state_2C   ; 2C 
+- - - - - - 0x01329C 04:B28C: 2E        .byte con_plr_state_death   ; 2E 
+- - - - - - 0x01329D 04:B28D: 00        .byte con_plr_state_00   ; 30 
+- - - - - - 0x01329E 04:B28E: 00        .byte con_plr_state_00   ; 32 
 
 
 
 off_B28F_03_from_Grant_to_Trevor:
-- - - - - - 0x01329F 04:B28F: 00        .byte $00   ; 00 
-- D 1 - I - 0x0132A0 04:B290: 02        .byte $02   ; 02 
-- D 1 - I - 0x0132A1 04:B291: 04        .byte $04   ; 04 
-- - - - - - 0x0132A2 04:B292: 00        .byte $00   ; 06 
-- D 1 - I - 0x0132A3 04:B293: 00        .byte $00   ; 08 
-- - - - - - 0x0132A4 04:B294: 0A        .byte $0A   ; 0A 
-- - - - - - 0x0132A5 04:B295: 00        .byte $00   ; 0C 
-- - - - - - 0x0132A6 04:B296: 0E        .byte $0E   ; 0E 
-- - - - - - 0x0132A7 04:B297: 10        .byte $10   ; 10 
-- D 1 - I - 0x0132A8 04:B298: 12        .byte $12   ; 12 
-- - - - - - 0x0132A9 04:B299: 14        .byte $14   ; 14 
-- - - - - - 0x0132AA 04:B29A: 16        .byte $16   ; 16 
-- - - - - - 0x0132AB 04:B29B: 00        .byte $00   ; 18 
-- - - - - - 0x0132AC 04:B29C: 00        .byte $00   ; 1A 
-- - - - - - 0x0132AD 04:B29D: 00        .byte $00   ; 1C 
-- - - - - - 0x0132AE 04:B29E: 12        .byte $12   ; 1E 
-- - - - - - 0x0132AF 04:B29F: 00        .byte $00   ; 20 
-- - - - - - 0x0132B0 04:B2A0: 00        .byte $00   ; 22 
-- - - - - - 0x0132B1 04:B2A1: 12        .byte $12   ; 24 
-- D 1 - I - 0x0132B2 04:B2A2: 26        .byte $26   ; 26 
-- - - - - - 0x0132B3 04:B2A3: 28        .byte $28   ; 28 
-- - - - - - 0x0132B4 04:B2A4: 2A        .byte $2A   ; 2A 
-- - - - - - 0x0132B5 04:B2A5: 2C        .byte $2C   ; 2C 
-- - - - - - 0x0132B6 04:B2A6: 2E        .byte $2E   ; 2E 
-- D 1 - I - 0x0132B7 04:B2A7: 00        .byte $00   ; 30 
-- - - - - - 0x0132B8 04:B2A8: 00        .byte $00   ; 32 
-- - - - - - 0x0132B9 04:B2A9: 00        .byte $00   ; 34 
-- - - - - - 0x0132BA 04:B2AA: 00        .byte $00   ; 36 
-- - - - - - 0x0132BB 04:B2AB: 00        .byte $00   ; 38 
-- - - - - - 0x0132BC 04:B2AC: 00        .byte $00   ; 3A 
-- - - - - - 0x0132BD 04:B2AD: 00        .byte $00   ; 3C 
-- - - - - - 0x0132BE 04:B2AE: 00        .byte $00   ; 3E 
-- - - - - - 0x0132BF 04:B2AF: 00        .byte $00   ; 40 
-- - - - - - 0x0132C0 04:B2B0: 00        .byte $00   ; 42 
-- - - - - - 0x0132C1 04:B2B1: 00        .byte $00   ; 44 
-- D 1 - I - 0x0132C2 04:B2B2: 00        .byte $00   ; 46 
-- - - - - - 0x0132C3 04:B2B3: 00        .byte $00   ; 48 
-- - - - - - 0x0132C4 04:B2B4: 00        .byte $00   ; 4A 
+- - - - - - 0x01329F 04:B28F: 00        .byte con_plr_state_00   ; 00 
+- D 1 - I - 0x0132A0 04:B290: 02        .byte con_plr_state_idle_on_ground   ; 02 
+- D 1 - I - 0x0132A1 04:B291: 04        .byte con_plr_state_move_on_ground   ; 04 
+- - - - - - 0x0132A2 04:B292: 00        .byte con_plr_state_00   ; 06 
+- D 1 - I - 0x0132A3 04:B293: 00        .byte con_plr_state_00   ; 08 
+- - - - - - 0x0132A4 04:B294: 0A        .byte con_plr_state_duck   ; 0A 
+- - - - - - 0x0132A5 04:B295: 00        .byte con_plr_state_00   ; 0C 
+- - - - - - 0x0132A6 04:B296: 0E        .byte con_plr_state_move_towards_stairs   ; 0E 
+- - - - - - 0x0132A7 04:B297: 10        .byte con_plr_state_attach_to_stairs   ; 10 
+- D 1 - I - 0x0132A8 04:B298: 12        .byte con_plr_state_idle_on_stairs   ; 12 
+- - - - - - 0x0132A9 04:B299: 14        .byte con_plr_state_move_on_stairs   ; 14 
+- - - - - - 0x0132AA 04:B29A: 16        .byte con_plr_state_16   ; 16 
+- - - - - - 0x0132AB 04:B29B: 00        .byte con_plr_state_00   ; 18 
+- - - - - - 0x0132AC 04:B29C: 00        .byte con_plr_state_00   ; 1A 
+- - - - - - 0x0132AD 04:B29D: 00        .byte con_plr_state_00   ; 1C 
+- - - - - - 0x0132AE 04:B29E: 12        .byte con_plr_state_idle_on_stairs   ; 1E 
+- - - - - - 0x0132AF 04:B29F: 00        .byte con_plr_state_00   ; 20 
+- - - - - - 0x0132B0 04:B2A0: 00        .byte con_plr_state_00   ; 22 
+- - - - - - 0x0132B1 04:B2A1: 12        .byte con_plr_state_idle_on_stairs   ; 24 
+- D 1 - I - 0x0132B2 04:B2A2: 26        .byte con_plr_state_knockback   ; 26 
+- - - - - - 0x0132B3 04:B2A3: 28        .byte con_plr_state_28   ; 28 
+- - - - - - 0x0132B4 04:B2A4: 2A        .byte con_plr_state_2A   ; 2A 
+- - - - - - 0x0132B5 04:B2A5: 2C        .byte con_plr_state_2C   ; 2C 
+- - - - - - 0x0132B6 04:B2A6: 2E        .byte con_plr_state_death   ; 2E 
+- D 1 - I - 0x0132B7 04:B2A7: 00        .byte con_plr_state_00   ; 30 
+- - - - - - 0x0132B8 04:B2A8: 00        .byte con_plr_state_00   ; 32 
+- - - - - - 0x0132B9 04:B2A9: 00        .byte con_plr_state_00   ; 34 
+- - - - - - 0x0132BA 04:B2AA: 00        .byte con_plr_state_00   ; 36 
+- - - - - - 0x0132BB 04:B2AB: 00        .byte con_plr_state_00   ; 38 
+- - - - - - 0x0132BC 04:B2AC: 00        .byte con_plr_state_00   ; 3A 
+- - - - - - 0x0132BD 04:B2AD: 00        .byte con_plr_state_00   ; 3C 
+- - - - - - 0x0132BE 04:B2AE: 00        .byte con_plr_state_00   ; 3E 
+- - - - - - 0x0132BF 04:B2AF: 00        .byte con_plr_state_00   ; 40 
+- - - - - - 0x0132C0 04:B2B0: 00        .byte con_plr_state_00   ; 42 
+- - - - - - 0x0132C1 04:B2B1: 00        .byte con_plr_state_00   ; 44 
+- D 1 - I - 0x0132C2 04:B2B2: 00        .byte con_plr_state_00   ; 46 
+- - - - - - 0x0132C3 04:B2B3: 00        .byte con_plr_state_00   ; 48 
+- - - - - - 0x0132C4 04:B2B4: 00        .byte con_plr_state_00   ; 4A 
 
 
 
 off_B2B5_00_from_Trevor_to_Sypha:
-- - - - - - 0x0132C5 04:B2B5: 00        .byte $00   ; 00 
-- D 1 - I - 0x0132C6 04:B2B6: 02        .byte $02   ; 02 
-- D 1 - I - 0x0132C7 04:B2B7: 04        .byte $04   ; 04 
-- - - - - - 0x0132C8 04:B2B8: 06        .byte $06   ; 06 
-- D 1 - I - 0x0132C9 04:B2B9: 08        .byte $08   ; 08 
-- D 1 - I - 0x0132CA 04:B2BA: 0A        .byte $0A   ; 0A 
-- - - - - - 0x0132CB 04:B2BB: 0C        .byte $0C   ; 0C 
-- - - - - - 0x0132CC 04:B2BC: 0E        .byte $0E   ; 0E 
-- - - - - - 0x0132CD 04:B2BD: 10        .byte $10   ; 10 
-- D 1 - I - 0x0132CE 04:B2BE: 12        .byte $12   ; 12 
-- - - - - - 0x0132CF 04:B2BF: 14        .byte $14   ; 14 
-- - - - - - 0x0132D0 04:B2C0: 16        .byte $16   ; 16 
-- D 1 - I - 0x0132D1 04:B2C1: 00        .byte $00   ; 18 
-- - - - - - 0x0132D2 04:B2C2: 00        .byte $00   ; 1A 
-- - - - - - 0x0132D3 04:B2C3: 00        .byte $00   ; 1C 
-- - - - - - 0x0132D4 04:B2C4: 12        .byte $12   ; 1E 
-- D 1 - I - 0x0132D5 04:B2C5: 00        .byte $00   ; 20 
-- - - - - - 0x0132D6 04:B2C6: 00        .byte $00   ; 22 
-- - - - - - 0x0132D7 04:B2C7: 12        .byte $12   ; 24 
-- D 1 - I - 0x0132D8 04:B2C8: 26        .byte $26   ; 26 
-- - - - - - 0x0132D9 04:B2C9: 28        .byte $28   ; 28 
-- - - - - - 0x0132DA 04:B2CA: 2A        .byte $2A   ; 2A 
-- - - - - - 0x0132DB 04:B2CB: 2C        .byte $2C   ; 2C 
-- - - - - - 0x0132DC 04:B2CC: 2E        .byte $2E   ; 2E 
-- - - - - - 0x0132DD 04:B2CD: 00        .byte $00   ; 30 
-- - - - - - 0x0132DE 04:B2CE: 00        .byte $00   ; 32 
+- - - - - - 0x0132C5 04:B2B5: 00        .byte con_plr_state_00   ; 00 
+- D 1 - I - 0x0132C6 04:B2B6: 02        .byte con_plr_state_idle_on_ground   ; 02 
+- D 1 - I - 0x0132C7 04:B2B7: 04        .byte con_plr_state_move_on_ground   ; 04 
+- - - - - - 0x0132C8 04:B2B8: 06        .byte con_plr_state_06   ; 06 
+- D 1 - I - 0x0132C9 04:B2B9: 08        .byte con_plr_state_jump   ; 08 
+- D 1 - I - 0x0132CA 04:B2BA: 0A        .byte con_plr_state_duck   ; 0A 
+- - - - - - 0x0132CB 04:B2BB: 0C        .byte con_plr_state_fall   ; 0C 
+- - - - - - 0x0132CC 04:B2BC: 0E        .byte con_plr_state_move_towards_stairs   ; 0E 
+- - - - - - 0x0132CD 04:B2BD: 10        .byte con_plr_state_attach_to_stairs   ; 10 
+- D 1 - I - 0x0132CE 04:B2BE: 12        .byte con_plr_state_idle_on_stairs   ; 12 
+- - - - - - 0x0132CF 04:B2BF: 14        .byte con_plr_state_move_on_stairs   ; 14 
+- - - - - - 0x0132D0 04:B2C0: 16        .byte con_plr_state_16   ; 16 
+- D 1 - I - 0x0132D1 04:B2C1: 00        .byte con_plr_state_00   ; 18 
+- - - - - - 0x0132D2 04:B2C2: 00        .byte con_plr_state_00   ; 1A 
+- - - - - - 0x0132D3 04:B2C3: 00        .byte con_plr_state_00   ; 1C 
+- - - - - - 0x0132D4 04:B2C4: 12        .byte con_plr_state_idle_on_stairs   ; 1E 
+- D 1 - I - 0x0132D5 04:B2C5: 00        .byte con_plr_state_00   ; 20 
+- - - - - - 0x0132D6 04:B2C6: 00        .byte con_plr_state_00   ; 22 
+- - - - - - 0x0132D7 04:B2C7: 12        .byte con_plr_state_idle_on_stairs   ; 24 
+- D 1 - I - 0x0132D8 04:B2C8: 26        .byte con_plr_state_knockback   ; 26 
+- - - - - - 0x0132D9 04:B2C9: 28        .byte con_plr_state_28   ; 28 
+- - - - - - 0x0132DA 04:B2CA: 2A        .byte con_plr_state_2A   ; 2A 
+- - - - - - 0x0132DB 04:B2CB: 2C        .byte con_plr_state_2C   ; 2C 
+- - - - - - 0x0132DC 04:B2CC: 2E        .byte con_plr_state_death   ; 2E 
+- - - - - - 0x0132DD 04:B2CD: 00        .byte con_plr_state_00   ; 30 
+- - - - - - 0x0132DE 04:B2CE: 00        .byte con_plr_state_00   ; 32 
 
 
 
 off_B2CF_01_from_Sypha_to_Trevor:
-- - - - - - 0x0132DF 04:B2CF: 00        .byte $00   ; 00 
-- D 1 - I - 0x0132E0 04:B2D0: 02        .byte $02   ; 02 
-- D 1 - I - 0x0132E1 04:B2D1: 04        .byte $04   ; 04 
-- - - - - - 0x0132E2 04:B2D2: 06        .byte $06   ; 06 
-- D 1 - I - 0x0132E3 04:B2D3: 08        .byte $08   ; 08 
-- D 1 - I - 0x0132E4 04:B2D4: 0A        .byte $0A   ; 0A 
-- D 1 - I - 0x0132E5 04:B2D5: 0C        .byte $0C   ; 0C 
-- - - - - - 0x0132E6 04:B2D6: 0E        .byte $0E   ; 0E 
-- - - - - - 0x0132E7 04:B2D7: 10        .byte $10   ; 10 
-- D 1 - I - 0x0132E8 04:B2D8: 12        .byte $12   ; 12 
-- - - - - - 0x0132E9 04:B2D9: 14        .byte $14   ; 14 
-- - - - - - 0x0132EA 04:B2DA: 16        .byte $16   ; 16 
-- D 1 - I - 0x0132EB 04:B2DB: 00        .byte $00   ; 18 
-- - - - - - 0x0132EC 04:B2DC: 00        .byte $00   ; 1A 
-- - - - - - 0x0132ED 04:B2DD: 00        .byte $00   ; 1C 
-- - - - - - 0x0132EE 04:B2DE: 12        .byte $12   ; 1E 
-- D 1 - I - 0x0132EF 04:B2DF: 00        .byte $00   ; 20 
-- - - - - - 0x0132F0 04:B2E0: 00        .byte $00   ; 22 
-- - - - - - 0x0132F1 04:B2E1: 12        .byte $12   ; 24 
-- D 1 - I - 0x0132F2 04:B2E2: 26        .byte $26   ; 26 
-- - - - - - 0x0132F3 04:B2E3: 28        .byte $28   ; 28 
-- - - - - - 0x0132F4 04:B2E4: 2A        .byte $2A   ; 2A 
-- - - - - - 0x0132F5 04:B2E5: 2C        .byte $2C   ; 2C 
-- - - - - - 0x0132F6 04:B2E6: 2E        .byte $2E   ; 2E 
-- - - - - - 0x0132F7 04:B2E7: 00        .byte $00   ; 30 
-- - - - - - 0x0132F8 04:B2E8: 00        .byte $00   ; 32 
+- - - - - - 0x0132DF 04:B2CF: 00        .byte con_plr_state_00   ; 00 
+- D 1 - I - 0x0132E0 04:B2D0: 02        .byte con_plr_state_idle_on_ground   ; 02 
+- D 1 - I - 0x0132E1 04:B2D1: 04        .byte con_plr_state_move_on_ground   ; 04 
+- - - - - - 0x0132E2 04:B2D2: 06        .byte con_plr_state_06   ; 06 
+- D 1 - I - 0x0132E3 04:B2D3: 08        .byte con_plr_state_jump   ; 08 
+- D 1 - I - 0x0132E4 04:B2D4: 0A        .byte con_plr_state_duck   ; 0A 
+- D 1 - I - 0x0132E5 04:B2D5: 0C        .byte con_plr_state_fall   ; 0C 
+- - - - - - 0x0132E6 04:B2D6: 0E        .byte con_plr_state_move_towards_stairs   ; 0E 
+- - - - - - 0x0132E7 04:B2D7: 10        .byte con_plr_state_attach_to_stairs   ; 10 
+- D 1 - I - 0x0132E8 04:B2D8: 12        .byte con_plr_state_idle_on_stairs   ; 12 
+- - - - - - 0x0132E9 04:B2D9: 14        .byte con_plr_state_move_on_stairs   ; 14 
+- - - - - - 0x0132EA 04:B2DA: 16        .byte con_plr_state_16   ; 16 
+- D 1 - I - 0x0132EB 04:B2DB: 00        .byte con_plr_state_00   ; 18 
+- - - - - - 0x0132EC 04:B2DC: 00        .byte con_plr_state_00   ; 1A 
+- - - - - - 0x0132ED 04:B2DD: 00        .byte con_plr_state_00   ; 1C 
+- - - - - - 0x0132EE 04:B2DE: 12        .byte con_plr_state_idle_on_stairs   ; 1E 
+- D 1 - I - 0x0132EF 04:B2DF: 00        .byte con_plr_state_00   ; 20 
+- - - - - - 0x0132F0 04:B2E0: 00        .byte con_plr_state_00   ; 22 
+- - - - - - 0x0132F1 04:B2E1: 12        .byte con_plr_state_idle_on_stairs   ; 24 
+- D 1 - I - 0x0132F2 04:B2E2: 26        .byte con_plr_state_knockback   ; 26 
+- - - - - - 0x0132F3 04:B2E3: 28        .byte con_plr_state_28   ; 28 
+- - - - - - 0x0132F4 04:B2E4: 2A        .byte con_plr_state_2A   ; 2A 
+- - - - - - 0x0132F5 04:B2E5: 2C        .byte con_plr_state_2C   ; 2C 
+- - - - - - 0x0132F6 04:B2E6: 2E        .byte con_plr_state_death   ; 2E 
+- - - - - - 0x0132F7 04:B2E7: 00        .byte con_plr_state_00   ; 30 
+- - - - - - 0x0132F8 04:B2E8: 00        .byte con_plr_state_00   ; 32 
 
 
 
 off_B2E9_04_from_Trevor_to_Alucard:
-- - - - - - 0x0132F9 04:B2E9: 00        .byte $00   ; 00 
-- D 1 - I - 0x0132FA 04:B2EA: 02        .byte $02   ; 02 
-- D 1 - I - 0x0132FB 04:B2EB: 04        .byte $04   ; 04 
-- - - - - - 0x0132FC 04:B2EC: 06        .byte $06   ; 06 
-- - - - - - 0x0132FD 04:B2ED: 08        .byte $08   ; 08 
-- D 1 - I - 0x0132FE 04:B2EE: 0A        .byte $0A   ; 0A 
-- - - - - - 0x0132FF 04:B2EF: 0C        .byte $0C   ; 0C 
-- - - - - - 0x013300 04:B2F0: 0E        .byte $0E   ; 0E 
-- - - - - - 0x013301 04:B2F1: 10        .byte $10   ; 10 
-- D 1 - I - 0x013302 04:B2F2: 12        .byte $12   ; 12 
-- - - - - - 0x013303 04:B2F3: 14        .byte $14   ; 14 
-- - - - - - 0x013304 04:B2F4: 16        .byte $16   ; 16 
-- - - - - - 0x013305 04:B2F5: 00        .byte $00   ; 18 
-- D 1 - I - 0x013306 04:B2F6: 00        .byte $00   ; 1A 
-- - - - - - 0x013307 04:B2F7: 00        .byte $00   ; 1C 
-- - - - - - 0x013308 04:B2F8: 12        .byte $12   ; 1E 
-- - - - - - 0x013309 04:B2F9: 00        .byte $00   ; 20 
-- - - - - - 0x01330A 04:B2FA: 00        .byte $00   ; 22 
-- - - - - - 0x01330B 04:B2FB: 12        .byte $12   ; 24 
-- - - - - - 0x01330C 04:B2FC: 26        .byte $26   ; 26 
-- - - - - - 0x01330D 04:B2FD: 28        .byte $28   ; 28 
-- - - - - - 0x01330E 04:B2FE: 2A        .byte $2A   ; 2A 
-- - - - - - 0x01330F 04:B2FF: 2C        .byte $2C   ; 2C 
-- - - - - - 0x013310 04:B300: 2E        .byte $2E   ; 2E 
-- - - - - - 0x013311 04:B301: 00        .byte $00   ; 30 
-- - - - - - 0x013312 04:B302: 00        .byte $00   ; 32 
+- - - - - - 0x0132F9 04:B2E9: 00        .byte con_plr_state_00   ; 00 
+- D 1 - I - 0x0132FA 04:B2EA: 02        .byte con_plr_state_idle_on_ground   ; 02 
+- D 1 - I - 0x0132FB 04:B2EB: 04        .byte con_plr_state_move_on_ground   ; 04 
+- - - - - - 0x0132FC 04:B2EC: 06        .byte con_plr_state_06   ; 06 
+- - - - - - 0x0132FD 04:B2ED: 08        .byte con_plr_state_jump   ; 08 
+- D 1 - I - 0x0132FE 04:B2EE: 0A        .byte con_plr_state_duck   ; 0A 
+- - - - - - 0x0132FF 04:B2EF: 0C        .byte con_plr_state_fall   ; 0C 
+- - - - - - 0x013300 04:B2F0: 0E        .byte con_plr_state_move_towards_stairs   ; 0E 
+- - - - - - 0x013301 04:B2F1: 10        .byte con_plr_state_attach_to_stairs   ; 10 
+- D 1 - I - 0x013302 04:B2F2: 12        .byte con_plr_state_idle_on_stairs   ; 12 
+- - - - - - 0x013303 04:B2F3: 14        .byte con_plr_state_move_on_stairs   ; 14 
+- - - - - - 0x013304 04:B2F4: 16        .byte con_plr_state_16   ; 16 
+- - - - - - 0x013305 04:B2F5: 00        .byte con_plr_state_00   ; 18 
+- D 1 - I - 0x013306 04:B2F6: 00        .byte con_plr_state_00   ; 1A 
+- - - - - - 0x013307 04:B2F7: 00        .byte con_plr_state_00   ; 1C 
+- - - - - - 0x013308 04:B2F8: 12        .byte con_plr_state_idle_on_stairs   ; 1E 
+- - - - - - 0x013309 04:B2F9: 00        .byte con_plr_state_00   ; 20 
+- - - - - - 0x01330A 04:B2FA: 00        .byte con_plr_state_00   ; 22 
+- - - - - - 0x01330B 04:B2FB: 12        .byte con_plr_state_idle_on_stairs   ; 24 
+- - - - - - 0x01330C 04:B2FC: 26        .byte con_plr_state_knockback   ; 26 
+- - - - - - 0x01330D 04:B2FD: 28        .byte con_plr_state_28   ; 28 
+- - - - - - 0x01330E 04:B2FE: 2A        .byte con_plr_state_2A   ; 2A 
+- - - - - - 0x01330F 04:B2FF: 2C        .byte con_plr_state_2C   ; 2C 
+- - - - - - 0x013310 04:B300: 2E        .byte con_plr_state_death   ; 2E 
+- - - - - - 0x013311 04:B301: 00        .byte con_plr_state_00   ; 30 
+- - - - - - 0x013312 04:B302: 00        .byte con_plr_state_00   ; 32 
 
 
 
 off_B303_05_from_Alucard_to_Trevor:
-- - - - - - 0x013313 04:B303: 00        .byte $00   ; 00 
-- D 1 - I - 0x013314 04:B304: 02        .byte $02   ; 02 
-- D 1 - I - 0x013315 04:B305: 04        .byte $04   ; 04 
-- - - - - - 0x013316 04:B306: 06        .byte $06   ; 06 
-- D 1 - I - 0x013317 04:B307: 08        .byte $08   ; 08 
-- D 1 - I - 0x013318 04:B308: 0A        .byte $0A   ; 0A 
-- D 1 - I - 0x013319 04:B309: 0C        .byte $0C   ; 0C 
-- - - - - - 0x01331A 04:B30A: 0E        .byte $0E   ; 0E 
-- - - - - - 0x01331B 04:B30B: 10        .byte $10   ; 10 
-- D 1 - I - 0x01331C 04:B30C: 12        .byte $12   ; 12 
-- D 1 - I - 0x01331D 04:B30D: 14        .byte $14   ; 14 
-- - - - - - 0x01331E 04:B30E: 16        .byte $16   ; 16 
-- - - - - - 0x01331F 04:B30F: 00        .byte $00   ; 18 
-- - - - - - 0x013320 04:B310: 00        .byte $00   ; 1A 
-- - - - - - 0x013321 04:B311: 00        .byte $00   ; 1C 
-- - - - - - 0x013322 04:B312: 12        .byte $12   ; 1E 
-- - - - - - 0x013323 04:B313: 00        .byte $00   ; 20 
-- - - - - - 0x013324 04:B314: 00        .byte $00   ; 22 
-- - - - - - 0x013325 04:B315: 12        .byte $12   ; 24 
-- D 1 - I - 0x013326 04:B316: 26        .byte $26   ; 26 
-- - - - - - 0x013327 04:B317: 28        .byte $28   ; 28 
-- - - - - - 0x013328 04:B318: 2A        .byte $2A   ; 2A 
-- - - - - - 0x013329 04:B319: 2C        .byte $2C   ; 2C 
-- - - - - - 0x01332A 04:B31A: 2E        .byte $2E   ; 2E 
-- - - - - - 0x01332B 04:B31B: 00        .byte $00   ; 30 
-- - - - - - 0x01332C 04:B31C: 00        .byte $00   ; 32 
-- D 1 - I - 0x01332D 04:B31D: 00        .byte $00   ; 34 
-- - - - - - 0x01332E 04:B31E: 00        .byte $00   ; 36 
-- - - - - - 0x01332F 04:B31F: 00        .byte $00   ; 38 
-- - - - - - 0x013330 04:B320: 00        .byte $00   ; 3A 
-- - - - - - 0x013331 04:B321: 00        .byte $00   ; 3C 
-- - - - - - 0x013332 04:B322: 00        .byte $00   ; 3E 
-- - - - - - 0x013333 04:B323: 00        .byte $00   ; 40 
-- - - - - - 0x013334 04:B324: 00        .byte $00   ; 42 
+- - - - - - 0x013313 04:B303: 00        .byte con_plr_state_00   ; 00 
+- D 1 - I - 0x013314 04:B304: 02        .byte con_plr_state_idle_on_ground   ; 02 
+- D 1 - I - 0x013315 04:B305: 04        .byte con_plr_state_move_on_ground   ; 04 
+- - - - - - 0x013316 04:B306: 06        .byte con_plr_state_06   ; 06 
+- D 1 - I - 0x013317 04:B307: 08        .byte con_plr_state_jump   ; 08 
+- D 1 - I - 0x013318 04:B308: 0A        .byte con_plr_state_duck   ; 0A 
+- D 1 - I - 0x013319 04:B309: 0C        .byte con_plr_state_fall   ; 0C 
+- - - - - - 0x01331A 04:B30A: 0E        .byte con_plr_state_move_towards_stairs   ; 0E 
+- - - - - - 0x01331B 04:B30B: 10        .byte con_plr_state_attach_to_stairs   ; 10 
+- D 1 - I - 0x01331C 04:B30C: 12        .byte con_plr_state_idle_on_stairs   ; 12 
+- D 1 - I - 0x01331D 04:B30D: 14        .byte con_plr_state_move_on_stairs   ; 14 
+- - - - - - 0x01331E 04:B30E: 16        .byte con_plr_state_16   ; 16 
+- - - - - - 0x01331F 04:B30F: 00        .byte con_plr_state_00   ; 18 
+- - - - - - 0x013320 04:B310: 00        .byte con_plr_state_00   ; 1A 
+- - - - - - 0x013321 04:B311: 00        .byte con_plr_state_00   ; 1C 
+- - - - - - 0x013322 04:B312: 12        .byte con_plr_state_idle_on_stairs   ; 1E 
+- - - - - - 0x013323 04:B313: 00        .byte con_plr_state_00   ; 20 
+- - - - - - 0x013324 04:B314: 00        .byte con_plr_state_00   ; 22 
+- - - - - - 0x013325 04:B315: 12        .byte con_plr_state_idle_on_stairs   ; 24 
+- D 1 - I - 0x013326 04:B316: 26        .byte con_plr_state_knockback   ; 26 
+- - - - - - 0x013327 04:B317: 28        .byte con_plr_state_28   ; 28 
+- - - - - - 0x013328 04:B318: 2A        .byte con_plr_state_2A   ; 2A 
+- - - - - - 0x013329 04:B319: 2C        .byte con_plr_state_2C   ; 2C 
+- - - - - - 0x01332A 04:B31A: 2E        .byte con_plr_state_death   ; 2E 
+- - - - - - 0x01332B 04:B31B: 00        .byte con_plr_state_00   ; 30 
+- - - - - - 0x01332C 04:B31C: 00        .byte con_plr_state_00   ; 32 
+- D 1 - I - 0x01332D 04:B31D: 00        .byte con_plr_state_00   ; 34 
+- - - - - - 0x01332E 04:B31E: 00        .byte con_plr_state_00   ; 36 
+- - - - - - 0x01332F 04:B31F: 00        .byte con_plr_state_00   ; 38 
+- - - - - - 0x013330 04:B320: 00        .byte con_plr_state_00   ; 3A 
+- - - - - - 0x013331 04:B321: 00        .byte con_plr_state_00   ; 3C 
+- - - - - - 0x013332 04:B322: 00        .byte con_plr_state_00   ; 3E 
+- - - - - - 0x013333 04:B323: 00        .byte con_plr_state_00   ; 40 
+- - - - - - 0x013334 04:B324: 00        .byte con_plr_state_00   ; 42 
 
 
 

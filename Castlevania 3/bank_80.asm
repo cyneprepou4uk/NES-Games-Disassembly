@@ -4775,7 +4775,7 @@ C - - - - - 0x001101 00:90F1: 8D 18 04  STA ram_obj_anim_id + $18
 C - - - - - 0x001104 00:90F4: 8D 19 04  STA ram_obj_anim_id + $19
 C - - - - - 0x001107 00:90F7: 85 74     STA ram_0074_flag
 C - - - - - 0x001109 00:90F9: 85 75     STA ram_0075
-C - - - - - 0x00110B 00:90FB: 8D 65 05  STA ram_plr_state
+C - - - - - 0x00110B 00:90FB: 8D 65 05  STA ram_plr_state   ; con_plr_state_00
 C - - - - - 0x00110E 00:90FE: 20 D6 90  JSR sub_90D6
 C - - - - - 0x001111 00:9101: 20 62 E8  JSR sub_0x03E872_clear_00F0_00F7
 C - - - - - 0x001114 00:9104: 4C 30 91  JMP loc_9130
@@ -4812,7 +4812,7 @@ C D 0 - - - 0x001140 00:9130: 20 CD 90  JSR sub_90CD_set_chr_banks
 C - - - - - 0x001143 00:9133: A9 B0     LDA #$B0
 C - - - - - 0x001145 00:9135: 85 FF     STA ram_for_2000
 C - - - - - 0x001147 00:9137: AD 65 05  LDA ram_plr_state
-C - - - - - 0x00114A 00:913A: 29 7F     AND #$7F
+C - - - - - 0x00114A 00:913A: 29 7F     AND #con_plr_state_80 ^ $FF
 C - - - - - 0x00114C 00:913C: 8D 65 05  STA ram_plr_state
 C - - - - - 0x00114F 00:913F: A9 00     LDA #$00
 C - - - - - 0x001151 00:9141: 85 78     STA ram_0078_flag
@@ -4893,7 +4893,7 @@ C - - - - - 0x0011CB 00:91BB: D0 10     BNE bra_91CD
 C - - - - - 0x0011CD 00:91BD: A5 9F     LDA ram_009F
 C - - - - - 0x0011CF 00:91BF: 85 2A     STA ram_002A_script
 C - - - - - 0x0011D1 00:91C1: AD 65 05  LDA ram_plr_state
-C - - - - - 0x0011D4 00:91C4: 29 7F     AND #$7F
+C - - - - - 0x0011D4 00:91C4: 29 7F     AND #con_plr_state_80 ^ $FF
 C - - - - - 0x0011D6 00:91C6: 8D 65 05  STA ram_plr_state
 C - - - - - 0x0011D9 00:91C9: A9 00     LDA #$00
 C - - - - - 0x0011DB 00:91CB: F0 04     BEQ bra_91D1    ; jmp
@@ -4927,7 +4927,7 @@ bra_91EE_refill:
 C - - - - - 0x0011FE 00:91EE: 20 C0 90  JSR sub_90C0_set_default_hp_and_hearts
 loc_91F1:
 C D 0 - - - 0x001201 00:91F1: A9 00     LDA #$00
-C - - - - - 0x001203 00:91F3: 8D 65 05  STA ram_plr_state
+C - - - - - 0x001203 00:91F3: 8D 65 05  STA ram_plr_state   ; con_plr_state_00
 C - - - - - 0x001206 00:91F6: 85 75     STA ram_0075
 C - - - - - 0x001208 00:91F8: 85 74     STA ram_0074_flag
 C - - - - - 0x00120A 00:91FA: 60        RTS
@@ -5742,11 +5742,20 @@ loc_0x0016DF_RTS:
 
 
 sub_0x0016E0:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x0016E0 00:96D0: AD 65 05  LDA ram_plr_state
 C - - - - - 0x0016E3 00:96D3: C9 0E     CMP #$0E
 C - - - - - 0x0016E5 00:96D5: 90 21     BCC bra_96F8
 C - - - - - 0x0016E7 00:96D7: C9 16     CMP #$16
 C - - - - - 0x0016E9 00:96D9: B0 1D     BCS bra_96F8
+; if following states
+; con_plr_state_move_towards_stairs
+; con_plr_state_attach_to_stairs
+; con_plr_state_idle_on_stairs
+; con_plr_state_move_on_stairs
 C - - - - - 0x0016EB 00:96DB: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x0016EE 00:96DE: C9 70     CMP #$70
 C - - - - - 0x0016F0 00:96E0: B0 16     BCS bra_96F8
@@ -8854,7 +8863,7 @@ C - - - - - 0x002949 00:A939: 05 00     ORA ram_0000
 C - - - - - 0x00294B 00:A93B: 8D 8B 07  STA ram_078B
 C - - - - - 0x00294E 00:A93E: AD 8A 07  LDA ram_078A
 C - - - - - 0x002951 00:A941: D0 07     BNE bra_A94A_RTS
-C - - - - - 0x002953 00:A943: A9 00     LDA #$00
+C - - - - - 0x002953 00:A943: A9 00     LDA #con_path_sel_00
 C - - - - - 0x002955 00:A945: 8D 65 05  STA ram_plr_state
 C - - - - - 0x002958 00:A948: E6 19     INC ram_0019_subscript
 bra_A94A_RTS:
@@ -8865,9 +8874,9 @@ C - - - - - 0x00295A 00:A94A: 60        RTS
 ofs_029_A94B_08:
 C - - J - - 0x00295B 00:A94B: 20 D5 A7  JSR sub_A7D5
 C - - - - - 0x00295E 00:A94E: AD 65 05  LDA ram_plr_state
-C - - - - - 0x002961 00:A951: C9 10     CMP #$10
+C - - - - - 0x002961 00:A951: C9 10     CMP #con_path_sel_auto_walk_to_exit
 C - - - - - 0x002963 00:A953: F0 0A     BEQ bra_A95F
-C - - - - - 0x002965 00:A955: C9 12     CMP #$12
+C - - - - - 0x002965 00:A955: C9 12     CMP #con_path_sel_off_screen
 C - - - - - 0x002967 00:A957: F0 06     BEQ bra_A95F
 C - - - - - 0x002969 00:A959: 20 B3 A7  JSR sub_A7B3
 C - - - - - 0x00296C 00:A95C: 4C 62 A9  JMP loc_A962
@@ -8876,7 +8885,7 @@ C - - - - - 0x00296F 00:A95F: 20 B9 A7  JSR sub_A7B9
 loc_A962:
 C D 1 - - - 0x002972 00:A962: 20 05 AA  JSR sub_AA05
 C - - - - - 0x002975 00:A965: AD 65 05  LDA ram_plr_state
-C - - - - - 0x002978 00:A968: C9 12     CMP #$12
+C - - - - - 0x002978 00:A968: C9 12     CMP #con_path_sel_off_screen
 C - - - - - 0x00297A 00:A96A: D0 38     BNE bra_A9A4_RTS
 C - - - - - 0x00297C 00:A96C: AD 80 07  LDA ram_0780
 C - - - - - 0x00297F 00:A96F: 0A        ASL
@@ -9007,11 +9016,12 @@ ofs_029_AA04_0C_RTS:
 
 sub_AA05:
 C - - - - - 0x002A15 00:AA05: AD 65 05  LDA ram_plr_state
-C - - - - - 0x002A18 00:AA08: C9 00     CMP #$00
+; bzk optimize, BEQ without CMP 00
+C - - - - - 0x002A18 00:AA08: C9 00     CMP #con_path_sel_00
 C - - - - - 0x002A1A 00:AA0A: F0 3A     BEQ bra_AA46
-C - - - - - 0x002A1C 00:AA0C: C9 02     CMP #$02
+C - - - - - 0x002A1C 00:AA0C: C9 02     CMP #con_path_sel_auto_walk_out_of_screen
 C - - - - - 0x002A1E 00:AA0E: F0 36     BEQ bra_AA46
-C - - - - - 0x002A20 00:AA10: C9 10     CMP #$10
+C - - - - - 0x002A20 00:AA10: C9 10     CMP #con_path_sel_auto_walk_to_exit
 C - - - - - 0x002A22 00:AA12: F0 32     BEQ bra_AA46
 C - - - - - 0x002A24 00:AA14: AD 80 07  LDA ram_0780
 C - - - - - 0x002A27 00:AA17: 0A        ASL
@@ -9029,29 +9039,35 @@ C - - - - - 0x002A3B 00:AA2B: B9 67 AA  LDA tbl_AA67,Y
 C - - - - - 0x002A3E 00:AA2E: 8D F2 04  STA ram_plr_spd_X_hi
 C - - - - - 0x002A41 00:AA31: B9 68 AA  LDA tbl_AA67 + $01,Y
 C - - - - - 0x002A44 00:AA34: 8D 09 05  STA ram_plr_spd_X_lo
-C - - - - - 0x002A47 00:AA37: A9 10     LDA #$10
+C - - - - - 0x002A47 00:AA37: A9 10     LDA #con_path_sel_auto_walk_to_exit
 C - - - - - 0x002A49 00:AA39: 8D 65 05  STA ram_plr_state
 C - - - - - 0x002A4C 00:AA3C: A9 58     LDA #$58
 C - - - - - 0x002A4E 00:AA3E: 8D 87 07  STA ram_0787
 C - - - - - 0x002A51 00:AA41: A9 00     LDA #$00
 C - - - - - 0x002A53 00:AA43: 20 57 EF  JSR sub_0x03EF67
 bra_AA46:
+; triggers when player is walking at the path selecting screen
+; see con_path_sel
 C - - - - - 0x002A56 00:AA46: AC 65 05  LDY ram_plr_state
 C - - - - - 0x002A59 00:AA49: 20 86 E8  JSR sub_0x03E896_jump_to_pointers_after_JSR_Y
 - D 1 - I - 0x002A5C 00:AA4C: 6B AA     .word ofs_034_AA6B_00
-- D 1 - I - 0x002A5E 00:AA4E: F0 AA     .word ofs_034_AAF0_01
-- D 1 - I - 0x002A60 00:AA50: 2A AB     .word ofs_034_AB2A_02
-- D 1 - I - 0x002A62 00:AA52: BB AB     .word ofs_034_ABBB_03
-- D 1 - I - 0x002A64 00:AA54: 89 AC     .word ofs_034_AC89_04
-- D 1 - I - 0x002A66 00:AA56: 9D AC     .word ofs_034_AC9D_05
-- D 1 - I - 0x002A68 00:AA58: A8 AC     .word ofs_034_ACA8_06
-- D 1 - I - 0x002A6A 00:AA5A: EA AC     .word ofs_034_ACEA_07
-- D 1 - I - 0x002A6C 00:AA5C: F0 AA     .word ofs_034_AAF0_08
-- - - - - - 0x002A6E 00:AA5E: 60 AA     .word ofs_034_AA60_09_RTS
+- D 1 - I - 0x002A5E 00:AA4E: F0 AA     .word ofs_034_AAF0_02_auto_walking_out_of_screen
+- D 1 - I - 0x002A60 00:AA50: 2A AB     .word ofs_034_AB2A_04_idle_on_ground
+- D 1 - I - 0x002A62 00:AA52: BB AB     .word ofs_034_ABBB_06_move_on_ground
+- D 1 - I - 0x002A64 00:AA54: 89 AC     .word ofs_034_AC89_08_move_towards_stairs
+- D 1 - I - 0x002A66 00:AA56: 9D AC     .word ofs_034_AC9D_0A_climb_on_stairs
+- D 1 - I - 0x002A68 00:AA58: A8 AC     .word ofs_034_ACA8_0C_idle_on_stairs
+- D 1 - I - 0x002A6A 00:AA5A: EA AC     .word ofs_034_ACEA_0E_move_on_stairs
+- D 1 - I - 0x002A6C 00:AA5C: F0 AA     .word ofs_034_AAF0_10_auto_walking_to_exit
+
+
+; bzk garbage
+- - - - - - 0x002A6E 00:AA5E: 60 AA     .word ofs_034_AA60_12_RTS
 
 
 
-ofs_034_AA60_09_RTS:
+ofs_034_AA60_12_RTS:
+; bzk garbage
 - - - - - - 0x002A70 00:AA60: 60        RTS
 
 
@@ -9126,7 +9142,7 @@ C - - - - - 0x002ADC 00:AACC: 85 6A     STA ram_006A
 C - - - - - 0x002ADE 00:AACE: A9 00     LDA #$00
 C - - - - - 0x002AE0 00:AAD0: 20 57 EF  JSR sub_0x03EF67
 C - - - - - 0x002AE3 00:AAD3: EE 65 05  INC ram_plr_state
-C - - - - - 0x002AE6 00:AAD6: EE 65 05  INC ram_plr_state
+C - - - - - 0x002AE6 00:AAD6: EE 65 05  INC ram_plr_state   ; -> con_path_sel_auto_walk_out_of_screen
 C - - - - - 0x002AE9 00:AAD9: 60        RTS
 
 
@@ -9153,8 +9169,8 @@ tbl_AADE:
 
 
 
-ofs_034_AAF0_01:
-ofs_034_AAF0_08:
+ofs_034_AAF0_02_auto_walking_out_of_screen:
+ofs_034_AAF0_10_auto_walking_to_exit:
 C - - J - - 0x002B00 00:AAF0: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x002B02 00:AAF2: 29 0F     AND #$0F
 C - - - - - 0x002B04 00:AAF4: D0 05     BNE bra_AAFB
@@ -9179,13 +9195,13 @@ bra_AB1E:
 C - - - - - 0x002B2E 00:AB1E: A9 00     LDA #$00
 C - - - - - 0x002B30 00:AB20: 8D 00 04  STA ram_plr_anim_id
 C - - - - - 0x002B33 00:AB23: EE 65 05  INC ram_plr_state
-C - - - - - 0x002B36 00:AB26: EE 65 05  INC ram_plr_state
+C - - - - - 0x002B36 00:AB26: EE 65 05  INC ram_plr_state   ; -> con_path_sel_idle_on_ground / con_path_sel_off_screen
 bra_AB29_RTS:
 C - - - - - 0x002B39 00:AB29: 60        RTS
 
 
 
-ofs_034_AB2A_02:
+ofs_034_AB2A_04_idle_on_ground:
 C - - J - - 0x002B3A 00:AB2A: A5 28     LDA ram_btn_hold
 C - - - - - 0x002B3C 00:AB2C: 4A        LSR
 C - - - - - 0x002B3D 00:AB2D: B0 71     BCS bra_ABA0_pressed_Right
@@ -9243,7 +9259,7 @@ C - - - - - 0x002B94 00:AB84: A0 00     LDY #$00
 bra_AB86:
 C - - - - - 0x002B96 00:AB86: 8C 09 05  STY ram_plr_spd_X_lo
 C - - - - - 0x002B99 00:AB89: 8D F2 04  STA ram_plr_spd_X_hi
-C - - - - - 0x002B9C 00:AB8C: A9 08     LDA #$08
+C - - - - - 0x002B9C 00:AB8C: A9 08     LDA #con_path_sel_move_towards_stairs
 C - - - - - 0x002B9E 00:AB8E: 8D 65 05  STA ram_plr_state
 C - - - - - 0x002BA1 00:AB91: A9 00     LDA #$00
 loc_AB93:
@@ -9263,20 +9279,20 @@ C - - - - - 0x002BB6 00:ABA6: 8D A8 04  STA ram_plr_facing
 C - - - - - 0x002BB9 00:ABA9: A9 00     LDA #$00
 C - - - - - 0x002BBB 00:ABAB: 8D F2 04  STA ram_plr_spd_X_hi
 C - - - - - 0x002BBE 00:ABAE: 8D 09 05  STA ram_plr_spd_X_lo
-C - - - - - 0x002BC1 00:ABB1: A9 06     LDA #$06
+C - - - - - 0x002BC1 00:ABB1: A9 06     LDA #con_path_sel_move_on_ground
 C - - - - - 0x002BC3 00:ABB3: 8D 65 05  STA ram_plr_state
 C - - - - - 0x002BC6 00:ABB6: A9 00     LDA #$00
 C - - - - - 0x002BC8 00:ABB8: 4C 93 AB  JMP loc_AB93
 
 
 
-ofs_034_ABBB_03:
+ofs_034_ABBB_06_move_on_ground:
 C - - J - - 0x002BCB 00:ABBB: A5 28     LDA ram_btn_hold
 C - - - - - 0x002BCD 00:ABBD: 4A        LSR
 C - - - - - 0x002BCE 00:ABBE: B0 1F     BCS bra_ABDF_pressed_Right
 C - - - - - 0x002BD0 00:ABC0: 4A        LSR
 C - - - - - 0x002BD1 00:ABC1: B0 39     BCS bra_ABFC_pressed_Left
-C - - - - - 0x002BD3 00:ABC3: A9 04     LDA #$04
+C - - - - - 0x002BD3 00:ABC3: A9 04     LDA #con_path_sel_idle_on_ground
 C - - - - - 0x002BD5 00:ABC5: 8D 65 05  STA ram_plr_state
 loc_ABC8:
 C D 1 - - - 0x002BD8 00:ABC8: 20 73 EF  JSR sub_0x03EF83
@@ -9398,20 +9414,20 @@ C - - - - - 0x002C98 00:AC88: 60        RTS
 
 
 
-ofs_034_AC89_04:
+ofs_034_AC89_08_move_towards_stairs:
 C - - J - - 0x002C99 00:AC89: AD 1D 06  LDA ram_061D_plr
 C - - - - - 0x002C9C 00:AC8C: F0 09     BEQ bra_AC97
 C - - - - - 0x002C9E 00:AC8E: CE 1D 06  DEC ram_061D_plr
 C - - - - - 0x002CA1 00:AC91: 20 73 EF  JSR sub_0x03EF83
 C - - - - - 0x002CA4 00:AC94: 4C CB AB  JMP loc_ABCB
 bra_AC97:
-C - - - - - 0x002CA7 00:AC97: A9 0A     LDA #$0A
+C - - - - - 0x002CA7 00:AC97: A9 0A     LDA #con_path_sel_attach_to_stairs
 C - - - - - 0x002CA9 00:AC99: 8D 65 05  STA ram_plr_state
 C - - - - - 0x002CAC 00:AC9C: 60        RTS
 
 
 
-ofs_034_AC9D_05:
+ofs_034_AC9D_0A_climb_on_stairs:
 C - - J - - 0x002CAD 00:AC9D: AD C1 05  LDA ram_05C1_plr
 C - - - - - 0x002CB0 00:ACA0: D0 03     BNE bra_ACA5
 C - - - - - 0x002CB2 00:ACA2: 4C 3C AD  JMP loc_AD3C
@@ -9420,7 +9436,7 @@ C - - - - - 0x002CB5 00:ACA5: 4C 33 AD  JMP loc_AD33
 
 
 
-ofs_034_ACA8_06:
+ofs_034_ACA8_0C_idle_on_stairs:
 C - - J - - 0x002CB8 00:ACA8: A5 28     LDA ram_btn_hold
 C - - - - - 0x002CBA 00:ACAA: 4A        LSR
 C - - - - - 0x002CBB 00:ACAB: B0 0D     BCS bra_ACBA_pressed_Right    ; if not con_btn_Right
@@ -9461,7 +9477,7 @@ C - - - - - 0x002CF7 00:ACE7: 4C 42 AD  JMP loc_AD42
 
 
 
-ofs_034_ACEA_07:
+ofs_034_ACEA_0E_move_on_stairs:
 C - - J - - 0x002CFA 00:ACEA: 20 CB AB  JSR sub_ABCB
 C - - - - - 0x002CFD 00:ACED: AD DB 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x002D00 00:ACF0: 18        CLC
@@ -9487,11 +9503,11 @@ C - - - - - 0x002D2C 00:AD1C: 20 46 AC  JSR sub_AC46
 C - - - - - 0x002D2F 00:AD1F: 90 0C     BCC bra_AD2D
 C - - - - - 0x002D31 00:AD21: 8D 90 07  STA ram_0790
 C - - - - - 0x002D34 00:AD24: 8E 1C 04  STX ram_plr_pos_Y_hi
-C - - - - - 0x002D37 00:AD27: A9 04     LDA #$04
+C - - - - - 0x002D37 00:AD27: A9 04     LDA #con_path_sel_idle_on_ground
 C - - - - - 0x002D39 00:AD29: 8D 65 05  STA ram_plr_state
 C - - - - - 0x002D3C 00:AD2C: 60        RTS
 bra_AD2D:
-C - - - - - 0x002D3D 00:AD2D: A9 0C     LDA #$0C
+C - - - - - 0x002D3D 00:AD2D: A9 0C     LDA #con_path_sel_idle_on_stairs
 C - - - - - 0x002D3F 00:AD2F: 8D 65 05  STA ram_plr_state
 C - - - - - 0x002D42 00:AD32: 60        RTS
 
@@ -9501,7 +9517,7 @@ bra_AD33_pressed_up:
 loc_AD33:
 C D 1 - - - 0x002D43 00:AD33: 20 F5 E6  JSR sub_0x03E705
 loc_AD36:
-C D 1 - - - 0x002D46 00:AD36: A9 0E     LDA #$0E
+C D 1 - - - 0x002D46 00:AD36: A9 0E     LDA #con_path_sel_move_on_stairs
 C - - - - - 0x002D48 00:AD38: 8D 65 05  STA ram_plr_state
 C - - - - - 0x002D4B 00:AD3B: 60        RTS
 
@@ -10523,7 +10539,7 @@ C - - - - - 0x003449 00:B439: 20 2D B4  JSR sub_B42D
 C - - - - - 0x00344C 00:B43C: 20 07 B4  JSR sub_B407
 C - - - - - 0x00344F 00:B43F: 20 3A B8  JSR sub_B83A
 C - - - - - 0x003452 00:B442: AD 65 05  LDA ram_plr_state
-C - - - - - 0x003455 00:B445: C9 02     CMP #$02
+C - - - - - 0x003455 00:B445: C9 02     CMP #con_plr_state_idle_on_ground
 C - - - - - 0x003457 00:B447: F0 01     BEQ bra_B44A
 bra_B449_RTS:
 C - - - - - 0x003459 00:B449: 60        RTS
@@ -10723,25 +10739,25 @@ C - - - - - 0x0035A5 00:B595: C5 CA     CMP ram_00CA
 C - - - - - 0x0035A7 00:B597: 90 34     BCC bra_B5CD
 bra_B599:
 C - - - - - 0x0035A9 00:B599: AD 65 05  LDA ram_plr_state
-C - - - - - 0x0035AC 00:B59C: C9 08     CMP #$08
+C - - - - - 0x0035AC 00:B59C: C9 08     CMP #con_plr_state_jump
 C - - - - - 0x0035AE 00:B59E: F0 27     BEQ bra_B5C7
-C - - - - - 0x0035B0 00:B5A0: C9 0C     CMP #$0C
+C - - - - - 0x0035B0 00:B5A0: C9 0C     CMP #con_plr_state_fall
 C - - - - - 0x0035B2 00:B5A2: F0 23     BEQ bra_B5C7
-- - - - - - 0x0035B4 00:B5A4: C9 1A     CMP #$1A
+- - - - - - 0x0035B4 00:B5A4: C9 1A     CMP #con_plr_state_normal_atk_jump
 - - - - - - 0x0035B6 00:B5A6: F0 1F     BEQ bra_B5C7
-- - - - - - 0x0035B8 00:B5A8: C9 22     CMP #$22
+- - - - - - 0x0035B8 00:B5A8: C9 22     CMP #con_plr_state_subw_atk_jump
 - - - - - - 0x0035BA 00:B5AA: F0 1B     BEQ bra_B5C7
-- - - - - - 0x0035BC 00:B5AC: C9 0C     CMP #$0C
+- - - - - - 0x0035BC 00:B5AC: C9 0C     CMP #con_plr_state_fall
 - - - - - - 0x0035BE 00:B5AE: F0 17     BEQ bra_B5C7
-- - - - - - 0x0035C0 00:B5B0: C9 2C     CMP #$2C
+- - - - - - 0x0035C0 00:B5B0: C9 2C     CMP #con_plr_state_2C
 - - - - - - 0x0035C2 00:B5B2: F0 13     BEQ bra_B5C7
-- - - - - - 0x0035C4 00:B5B4: C9 26     CMP #$26
+- - - - - - 0x0035C4 00:B5B4: C9 26     CMP #con_plr_state_knockback
 - - - - - - 0x0035C6 00:B5B6: D0 05     BNE bra_B5BD
 - - - - - - 0x0035C8 00:B5B8: AD 02 06  LDA ram_05EF_obj + $13
 - - - - - - 0x0035CB 00:B5BB: F0 0A     BEQ bra_B5C7
 loc_B5BD:
 bra_B5BD:
-C D 1 - - - 0x0035CD 00:B5BD: A9 2E     LDA #$2E
+C D 1 - - - 0x0035CD 00:B5BD: A9 2E     LDA #con_plr_state_death
 C - - - - - 0x0035CF 00:B5BF: 8D 65 05  STA ram_plr_state
 C - - - - - 0x0035D2 00:B5C2: A9 80     LDA #$80
 C - - - - - 0x0035D4 00:B5C4: 85 BF     STA ram_00BF
@@ -11145,9 +11161,9 @@ C - - - - - 0x0037FD 00:B7ED: 60        RTS
 
 sub_B7EE:
 C - - - - - 0x0037FE 00:B7EE: AD 65 05  LDA ram_plr_state
-C - - - - - 0x003801 00:B7F1: C9 02     CMP #$02
+C - - - - - 0x003801 00:B7F1: C9 02     CMP #con_plr_state_idle_on_ground
 C - - - - - 0x003803 00:B7F3: F0 05     BEQ bra_B7FA
-C - - - - - 0x003805 00:B7F5: C9 04     CMP #$04
+C - - - - - 0x003805 00:B7F5: C9 04     CMP #con_plr_state_move_on_ground
 C - - - - - 0x003807 00:B7F7: F0 01     BEQ bra_B7FA
 C - - - - - 0x003809 00:B7F9: 60        RTS
 bra_B7FA:
@@ -12048,7 +12064,7 @@ C - - - - - 0x003D5C 00:BD4C: 85 05     STA ram_0005
 C - - - - - 0x003D5E 00:BD4E: A0 01     LDY #$01
 C - - - - - 0x003D60 00:BD50: B1 08     LDA (ram_0008),Y
 C - - - - - 0x003D62 00:BD52: 85 0A     STA ram_000A
-C - - - - - 0x003D64 00:BD54: C8        INY
+C - - - - - 0x003D64 00:BD54: C8        INY ; 02
 C - - - - - 0x003D65 00:BD55: B1 08     LDA (ram_0008),Y
 C - - - - - 0x003D67 00:BD57: 85 0B     STA ram_000B
 C - - - - - 0x003D69 00:BD59: 20 86 BD  JSR sub_BD86
@@ -12061,12 +12077,12 @@ C - - - - - 0x003D75 00:BD65: 85 61     STA ram_ppu_lo
 C - - - - - 0x003D77 00:BD67: A0 03     LDY #$03
 C - - - - - 0x003D79 00:BD69: B1 08     LDA (ram_0008),Y
 C - - - - - 0x003D7B 00:BD6B: 85 0A     STA ram_000A
-C - - - - - 0x003D7D 00:BD6D: C8        INY
+C - - - - - 0x003D7D 00:BD6D: C8        INY ; 04
 C - - - - - 0x003D7E 00:BD6E: B1 08     LDA (ram_0008),Y
 C - - - - - 0x003D80 00:BD70: 85 0B     STA ram_000B
 C - - - - - 0x003D82 00:BD72: 20 86 BD  JSR sub_BD86
 C - - - - - 0x003D85 00:BD75: AD 65 05  LDA ram_plr_state
-C - - - - - 0x003D88 00:BD78: 29 7F     AND #$7F
+C - - - - - 0x003D88 00:BD78: 29 7F     AND #con_plr_state_80 ^ $FF
 C - - - - - 0x003D8A 00:BD7A: 8D 65 05  STA ram_plr_state
 C - - - - - 0x003D8D 00:BD7D: A9 68     LDA #$68
 C - - - - - 0x003D8F 00:BD7F: 85 C7     STA ram_00C7

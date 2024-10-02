@@ -8635,9 +8635,9 @@ C - - - - - 0x01F509 07:B4F9: C9 08     CMP #$08
 C - - - - - 0x01F50B 07:B4FB: B0 2D     BCS bra_B52A
 bra_B4FD:
 C - - - - - 0x01F50D 07:B4FD: AD 65 05  LDA ram_plr_state
-C - - - - - 0x01F510 07:B500: C9 34     CMP #$34
+C - - - - - 0x01F510 07:B500: C9 34     CMP #con_plr_state_34
 C - - - - - 0x01F512 07:B502: F0 2A     BEQ bra_B52E
-C - - - - - 0x01F514 07:B504: C9 04     CMP #$04
+C - - - - - 0x01F514 07:B504: C9 04     CMP #con_plr_state_move_on_ground
 C - - - - - 0x01F516 07:B506: D0 22     BNE bra_B52A
 C - - - - - 0x01F518 07:B508: C8        INY
 C - - - - - 0x01F519 07:B509: B1 08     LDA (ram_0008),Y
@@ -8647,7 +8647,7 @@ C - - - - - 0x01F51F 07:B50F: 8A        TXA
 C - - - - - 0x01F520 07:B510: 49 01     EOR #$01
 C - - - - - 0x01F522 07:B512: 8D A8 04  STA ram_plr_facing
 C - - - - - 0x01F525 07:B515: AD 65 05  LDA ram_plr_state
-C - - - - - 0x01F528 07:B518: 09 80     ORA #$80
+C - - - - - 0x01F528 07:B518: 09 80     ORA #con_plr_state_80
 C - - - - - 0x01F52A 07:B51A: 8D 65 05  STA ram_plr_state
 C - - - - - 0x01F52D 07:B51D: A9 02     LDA #$02
 C - - - - - 0x01F52F 07:B51F: 8D 00 04  STA ram_plr_anim_id
@@ -8665,7 +8665,7 @@ bra_B52E:
 - - - - - - 0x01F53E 07:B52E: AD 4E 05  LDA ram_plr_id
 - - - - - - 0x01F541 07:B531: C9 03     CMP #$03
 - - - - - - 0x01F543 07:B533: D0 F5     BNE bra_B52A
-- - - - - - 0x01F545 07:B535: A9 36     LDA #$36
+- - - - - - 0x01F545 07:B535: A9 36     LDA #con_plr_state_36
 - - - - - - 0x01F547 07:B537: 8D 65 05  STA ram_plr_state
 - - - - - - 0x01F54A 07:B53A: 8E D8 05  STX ram_05D8_plr
 - - - - - - 0x01F54D 07:B53D: 38        SEC

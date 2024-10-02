@@ -1733,31 +1733,31 @@ C - - - - - 0x008943 02:8933: 90 03     BCC bra_8938
 C - - - - - 0x008945 02:8935: 4C C3 89  JMP loc_89C3
 bra_8938:
 C - - - - - 0x008948 02:8938: A5 00     LDA ram_0000
-C - - - - - 0x00894A 02:893A: C9 26     CMP #$26
+C - - - - - 0x00894A 02:893A: C9 26     CMP #$26    ; con_plr_state_knockback ?
 C - - - - - 0x00894C 02:893C: D0 09     BNE bra_8947
 C - - - - - 0x00894E 02:893E: AD 65 05  LDA ram_plr_state
-C - - - - - 0x008951 02:8941: C9 26     CMP #$26
+C - - - - - 0x008951 02:8941: C9 26     CMP #con_plr_state_knockback
 C - - - - - 0x008953 02:8943: F0 7E     BEQ bra_89C3
 C - - - - - 0x008955 02:8945: D0 25     BNE bra_896C    ; jmp
 bra_8947:
-C - - - - - 0x008957 02:8947: C9 08     CMP #$08
+C - - - - - 0x008957 02:8947: C9 08     CMP #$08    ; con_plr_state_jump ?
 C - - - - - 0x008959 02:8949: D0 09     BNE bra_8954
 C - - - - - 0x00895B 02:894B: AD 65 05  LDA ram_plr_state
-C - - - - - 0x00895E 02:894E: C9 08     CMP #$08
+C - - - - - 0x00895E 02:894E: C9 08     CMP #con_plr_state_jump
 C - - - - - 0x008960 02:8950: F0 71     BEQ bra_89C3
 C - - - - - 0x008962 02:8952: D0 18     BNE bra_896C    ; jmp
 bra_8954:
-C - - - - - 0x008964 02:8954: C9 1A     CMP #$1A
+C - - - - - 0x008964 02:8954: C9 1A     CMP #$1A    ; con_plr_state_normal_atk_jump ?
 C - - - - - 0x008966 02:8956: D0 09     BNE bra_8961
 C - - - - - 0x008968 02:8958: AD 65 05  LDA ram_plr_state
-C - - - - - 0x00896B 02:895B: C9 1A     CMP #$1A
+C - - - - - 0x00896B 02:895B: C9 1A     CMP #con_plr_state_normal_atk_jump
 C - - - - - 0x00896D 02:895D: F0 64     BEQ bra_89C3
 C - - - - - 0x00896F 02:895F: D0 0B     BNE bra_896C    ; jmp
 bra_8961:
-C - - - - - 0x008971 02:8961: C9 22     CMP #$22
+C - - - - - 0x008971 02:8961: C9 22     CMP #$22    ; con_plr_state_subw_atk_jump ?
 C - - - - - 0x008973 02:8963: D0 5E     BNE bra_89C3
 C - - - - - 0x008975 02:8965: AD 65 05  LDA ram_plr_state
-C - - - - - 0x008978 02:8968: C9 22     CMP #$22
+C - - - - - 0x008978 02:8968: C9 22     CMP #con_plr_state_subw_atk_jump
 C - - - - - 0x00897A 02:896A: F0 57     BEQ bra_89C3
 bra_896C:
 C - - - - - 0x00897C 02:896C: 20 4F 94  JSR sub_944F
