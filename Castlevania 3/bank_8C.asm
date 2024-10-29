@@ -8421,7 +8421,7 @@ C - - - - - 0x01BE4B 06:BE3B: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x01BE4E 06:BE3E: A4 9E     LDY ram_009E
 C - - - - - 0x01BE50 06:BE40: B9 06 06  LDA ram_obj_config,Y
 C - - - - - 0x01BE53 06:BE43: 29 F0     AND #$F0
-C - - - - - 0x01BE55 06:BE45: 85 00     STA ram_0000
+C - - - - - 0x01BE55 06:BE45: 85 00     STA ram_0000_temp
 C - - - - - 0x01BE57 06:BE47: B9 06 06  LDA ram_obj_config,Y
 C - - - - - 0x01BE5A 06:BE4A: 29 0F     AND #$0F
 C - - - - - 0x01BE5C 06:BE4C: 18        CLC
@@ -8430,7 +8430,7 @@ C - - - - - 0x01BE5F 06:BE4F: C9 04     CMP #$04
 C - - - - - 0x01BE61 06:BE51: 90 02     BCC bra_BE55_not_overflow
 C - - - - - 0x01BE63 06:BE53: A9 04     LDA #$04
 bra_BE55_not_overflow:
-C - - - - - 0x01BE65 06:BE55: 05 00     ORA ram_0000
+C - - - - - 0x01BE65 06:BE55: 05 00     ORA ram_0000_temp
 C - - - - - 0x01BE67 06:BE57: 99 06 06  STA ram_obj_config,Y
 C - - - - - 0x01BE6A 06:BE5A: 29 0F     AND #$0F
 C - - - - - 0x01BE6C 06:BE5C: C9 01     CMP #$01
@@ -8486,15 +8486,15 @@ tbl_BE82:
 
 sub_0x01BE9E:
 C - - - - - 0x01BE9E 06:BE8E: A9 00     LDA #$00
-C - - - - - 0x01BEA0 06:BE90: 85 00     STA ram_0000
-C - - - - - 0x01BEA2 06:BE92: A5 04     LDA ram_0004
+C - - - - - 0x01BEA0 06:BE90: 85 00     STA ram_0000_temp
+C - - - - - 0x01BEA2 06:BE92: A5 04     LDA ram_0004_temp
 C - - - - - 0x01BEA4 06:BE94: 38        SEC
 C - - - - - 0x01BEA5 06:BE95: FD 38 04  SBC ram_obj_pos_X_hi,X
 C - - - - - 0x01BEA8 06:BE98: B0 0D     BCS bra_BEA7
-C - - - - - 0x01BEAA 06:BE9A: 85 01     STA ram_0001
+C - - - - - 0x01BEAA 06:BE9A: 85 01     STA ram_0001_temp
 C - - - - - 0x01BEAC 06:BE9C: A9 01     LDA #$01
-C - - - - - 0x01BEAE 06:BE9E: 85 00     STA ram_0000
-C - - - - - 0x01BEB0 06:BEA0: A5 01     LDA ram_0001
+C - - - - - 0x01BEAE 06:BE9E: 85 00     STA ram_0000_temp
+C - - - - - 0x01BEB0 06:BEA0: A5 01     LDA ram_0001_temp
 C - - - - - 0x01BEB2 06:BEA2: 49 FF     EOR #$FF
 C - - - - - 0x01BEB4 06:BEA4: 18        CLC
 C - - - - - 0x01BEB5 06:BEA5: 69 01     ADC #$01
@@ -8504,40 +8504,40 @@ C - - - - - 0x01BEB7 06:BEA7: 4A        LSR
 C - - - - - 0x01BEB8 06:BEA8: 4A        LSR
 C - - - - - 0x01BEB9 06:BEA9: 4A        LSR
 C - - - - - 0x01BEBA 06:BEAA: 4A        LSR
-C - - - - - 0x01BEBB 06:BEAB: 85 01     STA ram_0001
-C - - - - - 0x01BEBD 06:BEAD: A5 05     LDA ram_0005
+C - - - - - 0x01BEBB 06:BEAB: 85 01     STA ram_0001_temp
+C - - - - - 0x01BEBD 06:BEAD: A5 05     LDA ram_0005_temp
 C - - - - - 0x01BEBF 06:BEAF: 38        SEC
 C - - - - - 0x01BEC0 06:BEB0: FD 1C 04  SBC ram_obj_pos_Y_hi,X
 C - - - - - 0x01BEC3 06:BEB3: B0 0F     BCS bra_BEC4
-C - - - - - 0x01BEC5 06:BEB5: 85 0A     STA ram_000A
-C - - - - - 0x01BEC7 06:BEB7: A5 00     LDA ram_0000
+C - - - - - 0x01BEC5 06:BEB5: 85 0A     STA ram_000A_temp
+C - - - - - 0x01BEC7 06:BEB7: A5 00     LDA ram_0000_temp
 C - - - - - 0x01BEC9 06:BEB9: 09 02     ORA #$02
-C - - - - - 0x01BECB 06:BEBB: 85 00     STA ram_0000
-C - - - - - 0x01BECD 06:BEBD: A5 0A     LDA ram_000A
+C - - - - - 0x01BECB 06:BEBB: 85 00     STA ram_0000_temp
+C - - - - - 0x01BECD 06:BEBD: A5 0A     LDA ram_000A_temp
 C - - - - - 0x01BECF 06:BEBF: 49 FF     EOR #$FF
 C - - - - - 0x01BED1 06:BEC1: 18        CLC
 C - - - - - 0x01BED2 06:BEC2: 69 01     ADC #$01
 bra_BEC4:
 C - - - - - 0x01BED4 06:BEC4: 29 F0     AND #$F0
 C - - - - - 0x01BED6 06:BEC6: 18        CLC
-C - - - - - 0x01BED7 06:BEC7: 65 01     ADC ram_0001
+C - - - - - 0x01BED7 06:BEC7: 65 01     ADC ram_0001_temp
 C - - - - - 0x01BED9 06:BEC9: A8        TAY
 C - - - - - 0x01BEDA 06:BECA: B9 EA BE  LDA tbl_BEEA,Y
-C - - - - - 0x01BEDD 06:BECD: 85 01     STA ram_0001
-C - - - - - 0x01BEDF 06:BECF: A4 00     LDY ram_0000
+C - - - - - 0x01BEDD 06:BECD: 85 01     STA ram_0001_temp
+C - - - - - 0x01BEDF 06:BECF: A4 00     LDY ram_0000_temp
 C - - - - - 0x01BEE1 06:BED1: B9 EA BF  LDA tbl_BFEA,Y
-C - - - - - 0x01BEE4 06:BED4: 85 00     STA ram_0000
+C - - - - - 0x01BEE4 06:BED4: 85 00     STA ram_0000_temp
 C - - - - - 0x01BEE6 06:BED6: B9 EE BF  LDA tbl_BFEE,Y
 C - - - - - 0x01BEE9 06:BED9: F0 07     BEQ bra_BEE2
 C - - - - - 0x01BEEB 06:BEDB: A9 08     LDA #$08
 C - - - - - 0x01BEED 06:BEDD: 38        SEC
-C - - - - - 0x01BEEE 06:BEDE: E5 01     SBC ram_0001
-C - - - - - 0x01BEF0 06:BEE0: 85 01     STA ram_0001
+C - - - - - 0x01BEEE 06:BEDE: E5 01     SBC ram_0001_temp
+C - - - - - 0x01BEF0 06:BEE0: 85 01     STA ram_0001_temp
 bra_BEE2:
-C - - - - - 0x01BEF2 06:BEE2: A5 00     LDA ram_0000
+C - - - - - 0x01BEF2 06:BEE2: A5 00     LDA ram_0000_temp
 C - - - - - 0x01BEF4 06:BEE4: 18        CLC
-C - - - - - 0x01BEF5 06:BEE5: 65 01     ADC ram_0001
-C - - - - - 0x01BEF7 06:BEE7: 85 00     STA ram_0000
+C - - - - - 0x01BEF5 06:BEE5: 65 01     ADC ram_0001_temp
+C - - - - - 0x01BEF7 06:BEE7: 85 00     STA ram_0000_temp
 C - - - - - 0x01BEF9 06:BEE9: 60        RTS
 
 
