@@ -94,8 +94,8 @@ C - - - - - 0x00C041 03:8031: AD F1 07  LDA ram_07F1
 C - - - - - 0x00C044 03:8034: 29 0C     AND #$0C
 C - - - - - 0x00C046 03:8036: C9 0C     CMP #$0C
 C - - - - - 0x00C048 03:8038: D0 12     BNE bra_804C
-C - - - - - 0x00C04A 03:803A: A9 50     LDA #$50
-C - - - - - 0x00C04C 03:803C: 20 78 99  JSR sub_9978
+C - - - - - 0x00C04A 03:803A: A9 50     LDA #$50    ; 5000
+C - - - - - 0x00C04C 03:803C: 20 78 99  JSR sub_9978_add_points_to_score
 C - - - - - 0x00C04F 03:803F: A9 02     LDA #$02
 C - - - - - 0x00C051 03:8041: 8D F3 07  STA ram_07F3
 C - - - - - 0x00C054 03:8044: A9 00     LDA #$00
@@ -1642,8 +1642,8 @@ C - - - - - 0x00CA94 03:8A84: A5 3D     LDA ram_hp_boss
 C - - - - - 0x00CA96 03:8A86: D0 35     BNE bra_8ABD
 C - - - - - 0x00CA98 03:8A88: AD F1 07  LDA ram_07F1
 C - - - - - 0x00CA9B 03:8A8B: F0 30     BEQ bra_8ABD
-C - - - - - 0x00CA9D 03:8A8D: A9 30     LDA #$30
-C - - - - - 0x00CA9F 03:8A8F: 20 78 99  JSR sub_9978
+C - - - - - 0x00CA9D 03:8A8D: A9 30     LDA #$30    ; 3000
+C - - - - - 0x00CA9F 03:8A8F: 20 78 99  JSR sub_9978_add_points_to_score
 C - - - - - 0x00CAA2 03:8A92: A9 10     LDA #con_obj_type_10
 C - - - - - 0x00CAA4 03:8A94: A0 39     LDY #$39
 C - - - - - 0x00CAA6 03:8A96: 20 5C EF  JSR sub_0x03EF6C_prepare_animation
@@ -1917,8 +1917,8 @@ C - - - - - 0x00CC6B 03:8C5B: 85 3F     STA ram_003F_copy_irq_handler
 C - - - - - 0x00CC6D 03:8C5D: 20 09 95  JSR sub_9509
 C - - - - - 0x00CC70 03:8C60: C9 5B     CMP #$5B
 C - - - - - 0x00CC72 03:8C62: F0 14     BEQ bra_8C78
-C - - - - - 0x00CC74 03:8C64: A9 50     LDA #$50
-C - - - - - 0x00CC76 03:8C66: 20 78 99  JSR sub_9978
+C - - - - - 0x00CC74 03:8C64: A9 50     LDA #$50    ; 5000
+C - - - - - 0x00CC76 03:8C66: 20 78 99  JSR sub_9978_add_points_to_score
 C - - - - - 0x00CC79 03:8C69: 20 C8 FE  JSR sub_0x03FED8_clear_speed
 C - - - - - 0x00CC7C 03:8C6C: A9 10     LDA #con_obj_type_10
 C - - - - - 0x00CC7E 03:8C6E: A0 45     LDY #$45
@@ -2750,8 +2750,8 @@ C - - - - - 0x00D253 03:9243: C9 22     CMP #$22
 C - - - - - 0x00D255 03:9245: F0 15     BEQ bra_925C
 C - - - - - 0x00D257 03:9247: C9 21     CMP #$21
 C - - - - - 0x00D259 03:9249: F0 18     BEQ bra_9263
-C - - - - - 0x00D25B 03:924B: A9 20     LDA #$20
-C - - - - - 0x00D25D 03:924D: 20 78 99  JSR sub_9978
+C - - - - - 0x00D25B 03:924B: A9 20     LDA #$20    ; 2000
+C - - - - - 0x00D25D 03:924D: 20 78 99  JSR sub_9978_add_points_to_score
 C - - - - - 0x00D260 03:9250: A9 0A     LDA #con_obj_type_0A
 C - - - - - 0x00D262 03:9252: A0 18     LDY #$18
 C - - - - - 0x00D264 03:9254: 20 6E EF  JSR sub_0x03EF7E
@@ -2938,8 +2938,8 @@ C - - - - - 0x00D39A 03:938A: 9D 69 06  STA ram_obj_066A,X
 C - - - - - 0x00D39D 03:938D: 20 09 95  JSR sub_9509
 C - - - - - 0x00D3A0 03:9390: C9 2F     CMP #$2F
 C - - - - - 0x00D3A2 03:9392: F0 1D     BEQ bra_93B1_RTS
-C - - - - - 0x00D3A4 03:9394: A9 30     LDA #$30
-C - - - - - 0x00D3A6 03:9396: 20 78 99  JSR sub_9978
+C - - - - - 0x00D3A4 03:9394: A9 30     LDA #$30    ; 3000
+C - - - - - 0x00D3A6 03:9396: 20 78 99  JSR sub_9978_add_points_to_score
 C - - - - - 0x00D3A9 03:9399: 20 C8 FE  JSR sub_0x03FED8_clear_speed
 C - - - - - 0x00D3AC 03:939C: A9 0A     LDA #con_obj_type_0A
 C - - - - - 0x00D3AE 03:939E: A0 52     LDY #$52
@@ -3347,8 +3347,8 @@ C - - - - - 0x00D678 03:9668: 9D 57 06  STA ram_obj_0658,X
 C - - - - - 0x00D67B 03:966B: 20 09 95  JSR sub_9509
 C - - - - - 0x00D67E 03:966E: C9 2F     CMP #$2F
 C - - - - - 0x00D680 03:9670: F0 43     BEQ bra_96B5_RTS
-C - - - - - 0x00D682 03:9672: A9 50     LDA #$50
-C - - - - - 0x00D684 03:9674: 20 78 99  JSR sub_9978
+C - - - - - 0x00D682 03:9672: A9 50     LDA #$50    ; 5000
+C - - - - - 0x00D684 03:9674: 20 78 99  JSR sub_9978_add_points_to_score
 C - - - - - 0x00D687 03:9677: 20 C8 FE  JSR sub_0x03FED8_clear_speed
 C - - - - - 0x00D68A 03:967A: A9 10     LDA #con_obj_type_10
 C - - - - - 0x00D68C 03:967C: A0 1B     LDY #$1B
@@ -3382,7 +3382,7 @@ C - - - - - 0x00D6C3 03:96B3: D0 01     BNE bra_96B6
 bra_96B5_RTS:
 C - - - - - 0x00D6C5 03:96B5: 60        RTS
 bra_96B6:
-C - - - - - 0x00D6C6 03:96B6: A5 A3     LDA ram_00A3
+C - - - - - 0x00D6C6 03:96B6: A5 A3     LDA ram_00A3_frm_cnt
 C - - - - - 0x00D6C8 03:96B8: 29 7F     AND #$7F
 C - - - - - 0x00D6CA 03:96BA: D0 4C     BNE bra_9708
 C - - - - - 0x00D6CC 03:96BC: BD 1D 06  LDA ram_061D_obj,X
@@ -3874,7 +3874,9 @@ C - - - - - 0x00D986 03:9976: D0 0A     BNE bra_9982_jump_1    ; jmp
 
 
 
-sub_9978:
+sub_9978_add_points_to_score:
+; in
+    ; A = 00xx00 points (hundreds and thousands)
 C - - - - - 0x00D988 03:9978: 85 0E     STA ram_000E_t005_subroutine_argument_A
 C - - - - - 0x00D98A 03:997A: A0 12     LDY #$12
 C - - - - - 0x00D98C 03:997C: D0 11     BNE bra_998F_jump_2    ; jmp
@@ -3927,7 +3929,7 @@ tbl_99A4:
 - D 0 - - - 0x00D9C0 03:99B0: 66 87     .word ofs_044_0x024776_0C
 - D 0 - - - 0x00D9C2 03:99B2: C5 87     .word ofs_044_0x0247D5_0E
 - D 0 - - - 0x00D9C4 03:99B4: 00 A5     .word ofs_044_0x026510_10
-- D 0 - - - 0x00D9C6 03:99B6: 61 86     .word ofs_044_0x024671_12
+- D 0 - - - 0x00D9C6 03:99B6: 61 86     .word ofs_044_0x024671_12_add_points_to_score
 - D 0 - - - 0x00D9C8 03:99B8: 31 82     .word ofs_044_0x024241_14
 - D 0 - - - 0x00D9CA 03:99BA: 08 86     .word ofs_044_0x024618_16
 - D 0 - - - 0x00D9CC 03:99BC: 62 B5     .word ofs_044_0x027572_18
@@ -4743,8 +4745,8 @@ C - - - - - 0x00DF1F 03:9F0F: A5 B4     LDA ram_00B4
 C - - - - - 0x00DF21 03:9F11: 10 44     BPL bra_9F57_RTS
 C - - - - - 0x00DF23 03:9F13: A9 02     LDA #$02
 C - - - - - 0x00DF25 03:9F15: 8D F3 07  STA ram_07F3
-C - - - - - 0x00DF28 03:9F18: A9 80     LDA #$80
-C - - - - - 0x00DF2A 03:9F1A: 20 78 99  JSR sub_9978
+C - - - - - 0x00DF28 03:9F18: A9 80     LDA #$80    ; 8000
+C - - - - - 0x00DF2A 03:9F1A: 20 78 99  JSR sub_9978_add_points_to_score
 C - - - - - 0x00DF2D 03:9F1D: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x00DF2F 03:9F1F: 4C 56 99  JMP loc_9956
 

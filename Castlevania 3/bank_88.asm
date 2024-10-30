@@ -11584,11 +11584,11 @@ C - - - - - 0x013728 04:B718: 38        SEC
 C - - - - - 0x013729 04:B719: E9 48     SBC #$48
 C - - - - - 0x01372B 04:B71B: A8        TAY
 C - - - - - 0x01372C 04:B71C: B9 D1 B6  LDA tbl_B6D1,Y
-C - - - - - 0x01372F 04:B71F: 85 02     STA ram_0002_temp
+C - - - - - 0x01372F 04:B71F: 85 02     STA ram_0000_t046_add_score + $02
 C - - - - - 0x013731 04:B721: B9 F1 B6  LDA tbl_B6F1,Y
-C - - - - - 0x013734 04:B724: 85 01     STA ram_0001_temp
+C - - - - - 0x013734 04:B724: 85 01     STA ram_0000_t046_add_score + $01
 C - - - - - 0x013736 04:B726: A9 00     LDA #$00
-C - - - - - 0x013738 04:B728: 85 03     STA ram_0003_temp
+C - - - - - 0x013738 04:B728: 85 03     STA ram_0000_t046_add_score + $03
 C - - - - - 0x01373A 04:B72A: 20 77 E7  JSR sub_0x03E787_add_points
 C - - - - - 0x01373D 04:B72D: A6 6C     LDX ram_006C_object_index
 bra_B72F_RTS:

@@ -7443,7 +7443,7 @@ C - - - - - 0x0325BB 0C:A5AB: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x0325BE 0C:A5AE: A9 00     LDA #$00
 C - - - - - 0x0325C0 0C:A5B0: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x0325C3 0C:A5B3: A9 01     LDA #$01
-C - - - - - 0x0325C5 0C:A5B5: 85 B0     STA ram_00B0
+C - - - - - 0x0325C5 0C:A5B5: 85 B0     STA ram_00B0_flag
 C - - - - - 0x0325C7 0C:A5B7: A5 78     LDA ram_0078_flag
 C - - - - - 0x0325C9 0C:A5B9: F0 05     BEQ bra_A5C0_RTS
 C - - - - - 0x0325CB 0C:A5BB: A0 00     LDY #$00
@@ -7637,10 +7637,10 @@ C - - J - - 0x0326F7 0C:A6E7: A9 7B     LDA #con_dmc_boss_death
 C - - - - - 0x0326F9 0C:A6E9: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x0326FC 0C:A6EC: 20 CE E5  JSR sub_0x03E5DE
 C - - - - - 0x0326FF 0C:A6EF: A9 00     LDA #$00
-C - - - - - 0x032701 0C:A6F1: 85 03     STA ram_0003_temp
-C - - - - - 0x032703 0C:A6F3: 85 01     STA ram_0001_temp
+C - - - - - 0x032701 0C:A6F1: 85 03     STA ram_0000_t046_add_score + $03
+C - - - - - 0x032703 0C:A6F3: 85 01     STA ram_0000_t046_add_score + $01
 C - - - - - 0x032705 0C:A6F5: A9 50     LDA #$50
-C - - - - - 0x032707 0C:A6F7: 85 02     STA ram_0002_temp
+C - - - - - 0x032707 0C:A6F7: 85 02     STA ram_0000_t046_add_score + $02
 C - - - - - 0x032709 0C:A6F9: 20 77 E7  JSR sub_0x03E787_add_points
 C - - - - - 0x03270C 0C:A6FC: 20 87 A6  JSR sub_A687_clear_objects_data
 C - - - - - 0x03270F 0C:A6FF: 20 A2 A6  JSR sub_A6A2

@@ -10,7 +10,7 @@
 .export ofs_044_0x024241_14
 .export ofs_044_0x024618_16
 .export ofs_044_0x02465F_02
-.export ofs_044_0x024671_12
+.export ofs_044_0x024671_12_add_points_to_score
 .export ofs_0x02474A_clear_object_data
 .export ofs_044_0x02474A_04_clear_object_data
 .export ofs_044_0x024776_0C
@@ -1191,7 +1191,7 @@ loc_864F:
 sub_864F:
 ofs_044_0x02465F_02:
 ; in
-    ; A = 
+    ; A = ram_000E_t005_subroutine_argument_A
 C D 0 - - - 0x02465F 09:864F: 85 00     STA ram_0000_temp
 C - - - - - 0x024661 09:8651: BD EF 05  LDA ram_05EF_obj,X
 C - - - - - 0x024664 09:8654: 29 80     AND #$80
@@ -1203,15 +1203,18 @@ C - - - - - 0x024670 09:8660: 60        RTS
 
 
 
-sub_8661:
-loc_8661:
-ofs_044_0x024671_12:
-C D 0 - - - 0x024671 09:8661: 85 02     STA ram_0002_temp
+sub_8661_add_points_to_score:
+loc_8661_add_points_to_score:
+ofs_044_0x024671_12_add_points_to_score:
+; in
+    ; A = 00xx00 points (hundreds and thousands
+        ; for ofs_044 case it's ram_000E_t005_subroutine_argument_A
+C D 0 - - - 0x024671 09:8661: 85 02     STA ram_0000_t046_add_score + $02
 C - - - - - 0x024673 09:8663: 8A        TXA
 C - - - - - 0x024674 09:8664: 48        PHA
 C - - - - - 0x024675 09:8665: A9 00     LDA #$00
-C - - - - - 0x024677 09:8667: 85 01     STA ram_0001_temp
-C - - - - - 0x024679 09:8669: 85 03     STA ram_0003_temp
+C - - - - - 0x024677 09:8667: 85 01     STA ram_0000_t046_add_score + $01
+C - - - - - 0x024679 09:8669: 85 03     STA ram_0000_t046_add_score + $03
 C - - - - - 0x02467B 09:866B: 20 77 E7  JSR sub_0x03E787_add_points
 C - - - - - 0x02467E 09:866E: 68        PLA
 C - - - - - 0x02467F 09:866F: AA        TAX
@@ -1368,18 +1371,19 @@ sub_8766:
 ofs_044_0x024776_0C:
 ; in
     ; A = 
+        ; for ofs_044 case it's ram_000E_t005_subroutine_argument_A
 ; out
     ; C
         ; 0 = 
         ; 1 = 
 C - - - - - 0x024776 09:8766: 85 11     STA ram_0011_temp
-C - - - - - 0x024778 09:8768: 86 10     STX ram_0010_t008_obj_index
+C - - - - - 0x024778 09:8768: 86 10     STX ram_0010_t008_object_index
 C - - - - - 0x02477A 09:876A: 20 B9 FE  JSR sub_0x03FEC9
 C - - - - - 0x02477D 09:876D: D0 06     BNE bra_8775
 C - - - - - 0x02477F 09:876F: 20 79 87  JSR sub_8779
 C - - - - - 0x024782 09:8772: 4C D1 87  JMP loc_87D1
 bra_8775:
-C - - - - - 0x024785 09:8775: A6 10     LDX ram_0010_t008_obj_index
+C - - - - - 0x024785 09:8775: A6 10     LDX ram_0010_t008_object_index
 C - - - - - 0x024787 09:8777: 18        CLC
 C - - - - - 0x024788 09:8778: 60        RTS
 
@@ -1387,7 +1391,7 @@ C - - - - - 0x024788 09:8778: 60        RTS
 
 sub_8779:
 C - - - - - 0x024789 09:8779: 20 45 87  JSR sub_8745_clear_object_data
-C - - - - - 0x02478C 09:877C: A4 10     LDY ram_0010_t008_obj_index
+C - - - - - 0x02478C 09:877C: A4 10     LDY ram_0010_t008_object_index
 C - - - - - 0x02478E 09:877E: B9 38 04  LDA ram_obj_pos_X_hi,Y
 C - - - - - 0x024791 09:8781: 9D 38 04  STA ram_obj_pos_X_hi,X
 C - - - - - 0x024794 09:8784: A5 11     LDA ram_0011_temp
@@ -1432,12 +1436,15 @@ C - - - - - 0x0247D3 09:87C3: D0 D1     BNE bra_8796    ; jmp
 
 sub_87C5:
 ofs_044_0x0247D5_0E:
+; in
+    ; A = 
+        ; for ofs_044 case it's ram_000E_t005_subroutine_argument_A
 ; out
     ; C
         ; 0 = 
         ; 1 = 
 C - - J - - 0x0247D5 09:87C5: 85 11     STA ram_0011_temp
-C - - - - - 0x0247D7 09:87C7: 86 10     STX ram_0010_t008_obj_index
+C - - - - - 0x0247D7 09:87C7: 86 10     STX ram_0010_t008_object_index
 C - - - - - 0x0247D9 09:87C9: 20 E5 87  JSR sub_87E5
 C - - - - - 0x0247DC 09:87CC: D0 13     BNE bra_87E1
 C - - - - - 0x0247DE 09:87CE: 20 79 87  JSR sub_8779
@@ -1448,11 +1455,11 @@ C - - - - - 0x0247E6 09:87D6: 8A        TXA
 C - - - - - 0x0247E7 09:87D7: A8        TAY
 C - - - - - 0x0247E8 09:87D8: A5 11     LDA ram_0011_temp
 C - - - - - 0x0247EA 09:87DA: 9D 4E 05  STA ram_obj_id,X
-C - - - - - 0x0247ED 09:87DD: A6 10     LDX ram_0010_t008_obj_index
+C - - - - - 0x0247ED 09:87DD: A6 10     LDX ram_0010_t008_object_index
 C - - - - - 0x0247EF 09:87DF: 38        SEC
 C - - - - - 0x0247F0 09:87E0: 60        RTS
 bra_87E1:
-- - - - - - 0x0247F1 09:87E1: A6 10     LDX ram_0010_t008_obj_index
+- - - - - - 0x0247F1 09:87E1: A6 10     LDX ram_0010_t008_object_index
 - - - - - - 0x0247F3 09:87E3: 18        CLC
 - - - - - - 0x0247F4 09:87E4: 60        RTS
 
@@ -1480,6 +1487,9 @@ loc_87F4:
 sub_87F4:
 ofs_0x024804:
 ofs_044_0x024804_06:
+; in
+    ; A = 
+        ; for ofs_044 case it's ram_000E_t005_subroutine_argument_A 
 ; out
     ; C
         ; 0 = 
@@ -1609,6 +1619,9 @@ ofs_036_0x0248EF_08:
 C - - J - - 0x0248EF 09:88DF: 98        TYA
 sub_88E0:
 ofs_044_0x0248F0_08:
+; in
+    ; A = 
+        ; for ofs_044 case it's ram_000E_t005_subroutine_argument_A
 C - - - - - 0x0248F0 09:88E0: 85 00     STA ram_0000_temp
 C - - - - - 0x0248F2 09:88E2: BD 69 06  LDA ram_obj_066A,X
 C - - - - - 0x0248F5 09:88E5: 29 F0     AND #$F0
@@ -1634,6 +1647,9 @@ C - - - - - 0x024914 09:8904: 60        RTS
 
 sub_8905:
 ofs_044_0x024915_0A:
+; in
+    ; A = 
+        ; for ofs_044 case it's ram_000E_t005_subroutine_argument_A
 C - - J - - 0x024915 09:8905: 85 00     STA ram_0000_temp
 C - - - - - 0x024917 09:8907: BD 69 06  LDA ram_obj_066A,X
 C - - - - - 0x02491A 09:890A: 29 F0     AND #$F0
@@ -7824,8 +7840,8 @@ C - - - - - 0x02620C 09:A1FC: D0 21     BNE bra_A21F
 C - - - - - 0x02620E 09:A1FE: 20 C3 A4  JSR sub_A4C3
 C - - - - - 0x026211 09:A201: C9 31     CMP #$31
 C - - - - - 0x026213 09:A203: F0 14     BEQ bra_A219
-C - - - - - 0x026215 09:A205: A9 10     LDA #$10
-C - - - - - 0x026217 09:A207: 20 61 86  JSR sub_8661
+C - - - - - 0x026215 09:A205: A9 10     LDA #$10    ; 1000
+C - - - - - 0x026217 09:A207: 20 61 86  JSR sub_8661_add_points_to_score
 C - - - - - 0x02621A 09:A20A: 20 C8 FE  JSR sub_0x03FED8_clear_speed
 C - - - - - 0x02621D 09:A20D: A9 10     LDA #con_obj_type_10
 C - - - - - 0x02621F 09:A20F: A0 03     LDY #$03
@@ -8481,8 +8497,8 @@ C - - - - - 0x0266BC 09:A6AC: 20 04 9D  JSR sub_9D04
 C - - - - - 0x0266BF 09:A6AF: 68        PLA
 C - - - - - 0x0266C0 09:A6B0: AA        TAX
 bra_A6B1:
-C - - - - - 0x0266C1 09:A6B1: A9 30     LDA #$30
-C - - - - - 0x0266C3 09:A6B3: 20 61 86  JSR sub_8661
+C - - - - - 0x0266C1 09:A6B1: A9 30     LDA #$30    ; 3000
+C - - - - - 0x0266C3 09:A6B3: 20 61 86  JSR sub_8661_add_points_to_score
 C - - - - - 0x0266C6 09:A6B6: 20 C8 FE  JSR sub_0x03FED8_clear_speed
 C - - - - - 0x0266C9 09:A6B9: A9 10     LDA #con_obj_type_10
 C - - - - - 0x0266CB 09:A6BB: A0 06     LDY #$06
@@ -9194,8 +9210,8 @@ tbl_AB86_position_hi:
 
 sub_AB98:
 sub_0x026BA8:
-C - - - - - 0x026BA8 09:AB98: A9 50     LDA #$50
-C - - - - - 0x026BAA 09:AB9A: 20 61 86  JSR sub_8661
+C - - - - - 0x026BA8 09:AB98: A9 50     LDA #$50    ; 5000
+C - - - - - 0x026BAA 09:AB9A: 20 61 86  JSR sub_8661_add_points_to_score
 C - - - - - 0x026BAD 09:AB9D: A9 02     LDA #$02
 C - - - - - 0x026BAF 09:AB9F: 8D F3 07  STA ram_07F3
 C - - - - - 0x026BB2 09:ABA2: 20 CE E5  JSR sub_0x03E5DE
@@ -9574,8 +9590,8 @@ C - - - - - 0x026E77 09:AE67: C9 22     CMP #$22
 C - - - - - 0x026E79 09:AE69: F0 15     BEQ bra_AE80
 C - - - - - 0x026E7B 09:AE6B: C9 23     CMP #$23
 C - - - - - 0x026E7D 09:AE6D: F0 F4     BEQ bra_AE63_RTS
-C - - - - - 0x026E7F 09:AE6F: A9 50     LDA #$50
-C - - - - - 0x026E81 09:AE71: 20 61 86  JSR sub_8661
+C - - - - - 0x026E7F 09:AE6F: A9 50     LDA #$50    ; 5000
+C - - - - - 0x026E81 09:AE71: 20 61 86  JSR sub_8661_add_points_to_score
 C - - - - - 0x026E84 09:AE74: A9 0A     LDA #con_obj_type_0A
 C - - - - - 0x026E86 09:AE76: A0 30     LDY #$30
 C - - - - - 0x026E88 09:AE78: 20 5C EF  JSR sub_0x03EF6C_prepare_animation
@@ -9764,8 +9780,8 @@ C - - - - - 0x026FC9 09:AFB9: C9 FF     CMP #$FF
 C - - - - - 0x026FCB 09:AFBB: D0 1A     BNE bra_AFD7
 C - - - - - 0x026FCD 09:AFBD: 20 7D B0  JSR sub_B07D
 C - - - - - 0x026FD0 09:AFC0: 90 14     BCC bra_AFD6_RTS
-C - - - - - 0x026FD2 09:AFC2: A9 30     LDA #$30
-C - - - - - 0x026FD4 09:AFC4: 20 61 86  JSR sub_8661
+C - - - - - 0x026FD2 09:AFC2: A9 30     LDA #$30    ; 3000
+C - - - - - 0x026FD4 09:AFC4: 20 61 86  JSR sub_8661_add_points_to_score
 C - - - - - 0x026FD7 09:AFC7: A9 06     LDA #$06
 C - - - - - 0x026FD9 09:AFC9: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x026FDC 09:AFCC: A9 02     LDA #$02
@@ -10599,6 +10615,9 @@ C - - - - - 0x027571 09:B561: 60        RTS
 
 sub_B562:
 ofs_044_0x027572_18:
+; bzk optimize, so much trouble to go to here via ofs_044 case,
+; just to execute a couple of instructions.
+; copy this code to bank 86, or move it to bank FF
 C - - J - - 0x027572 09:B562: A9 00     LDA #$00
 C - - - - - 0x027574 09:B564: 9D 06 06  STA ram_obj_config,X
 C - - - - - 0x027577 09:B567: 9D 1D 06  STA ram_061D_obj,X
@@ -10737,8 +10756,8 @@ C - - - - - 0x027684 09:B674: 9D 7B 06  STA ram_obj_hp,X
 C - - - - - 0x027687 09:B677: A9 00     LDA #$00
 C - - - - - 0x027689 09:B679: 9D 45 06  STA ram_obj_0646,X
 C - - - - - 0x02768C 09:B67C: 20 62 B5  JSR sub_B562
-C - - - - - 0x02768F 09:B67F: A9 30     LDA #$30
-C - - - - - 0x027691 09:B681: 4C 61 86  JMP loc_8661
+C - - - - - 0x02768F 09:B67F: A9 30     LDA #$30    ; 3000
+C - - - - - 0x027691 09:B681: 4C 61 86  JMP loc_8661_add_points_to_score
 bra_B684:
 C - - - - - 0x027694 09:B684: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x027697 09:B687: 29 F8     AND #$F8
@@ -11249,8 +11268,8 @@ C - - - - - 0x027A30 09:BA20: BD EF 05  LDA ram_05EF_obj,X
 C - - - - - 0x027A33 09:BA23: 29 7F     AND #$7F
 C - - - - - 0x027A35 09:BA25: C9 5D     CMP #$5D
 C - - - - - 0x027A37 09:BA27: F0 0D     BEQ bra_BA36
-C - - - - - 0x027A39 09:BA29: A9 40     LDA #$40
-C - - - - - 0x027A3B 09:BA2B: 20 61 86  JSR sub_8661
+C - - - - - 0x027A39 09:BA29: A9 40     LDA #$40    ; 4000
+C - - - - - 0x027A3B 09:BA2B: 20 61 86  JSR sub_8661_add_points_to_score
 C - - - - - 0x027A3E 09:BA2E: A9 7B     LDA #con_dmc_boss_death
 C - - - - - 0x027A40 09:BA30: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x027A43 09:BA33: 4C 04 BC  JMP loc_BC04
@@ -11973,8 +11992,8 @@ bra_BEF7:
 C - - - - - 0x027F07 09:BEF7: AD F0 07  LDA ram_07F0
 C - - - - - 0x027F0A 09:BEFA: C9 02     CMP #$02
 C - - - - - 0x027F0C 09:BEFC: D0 56     BNE bra_BF54_RTS
-C - - - - - 0x027F0E 09:BEFE: A9 80     LDA #$80
-C - - - - - 0x027F10 09:BF00: 20 61 86  JSR sub_8661
+C - - - - - 0x027F0E 09:BEFE: A9 80     LDA #$80    ; 8000
+C - - - - - 0x027F10 09:BF00: 20 61 86  JSR sub_8661_add_points_to_score
 C - - - - - 0x027F13 09:BF03: A9 02     LDA #$02
 C - - - - - 0x027F15 09:BF05: 8D F3 07  STA ram_07F3
 C - - - - - 0x027F18 09:BF08: A9 00     LDA #$00

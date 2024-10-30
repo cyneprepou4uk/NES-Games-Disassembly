@@ -8404,7 +8404,7 @@ sub_0x01BE31:
         ; 0 = 
         ; 1 = 
 C - - - - - 0x01BE31 06:BE21: 20 C8 FE  JSR sub_0x03FED8_clear_speed
-C - - - - - 0x01BE34 06:BE24: A4 9E     LDY ram_009E
+C - - - - - 0x01BE34 06:BE24: A4 9E     LDY ram_009E_object_index
 C - - - - - 0x01BE36 06:BE26: B9 4E 05  LDA ram_obj_id,Y
 C - - - - - 0x01BE39 06:BE29: A8        TAY
 C - - - - - 0x01BE3A 06:BE2A: B9 82 BE  LDA tbl_BE82,Y
@@ -8418,7 +8418,7 @@ C - - - - - 0x01BE43 06:BE33: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x01BE46 06:BE36: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x01BE49 06:BE39: 09 20     ORA #con_obj_flag_20
 C - - - - - 0x01BE4B 06:BE3B: 9D 70 04  STA ram_obj_flags,X
-C - - - - - 0x01BE4E 06:BE3E: A4 9E     LDY ram_009E
+C - - - - - 0x01BE4E 06:BE3E: A4 9E     LDY ram_009E_object_index
 C - - - - - 0x01BE50 06:BE40: B9 06 06  LDA ram_obj_config,Y
 C - - - - - 0x01BE53 06:BE43: 29 F0     AND #$F0
 C - - - - - 0x01BE55 06:BE45: 85 00     STA ram_0000_temp

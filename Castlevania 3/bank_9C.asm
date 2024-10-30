@@ -223,7 +223,7 @@ bra_8139:
 C - - - - - 0x038149 0E:8139: A9 00     LDA #$00
 C - - - - - 0x03814B 0E:813B: 85 B7     STA ram_00B7
 C - - - - - 0x03814D 0E:813D: A5 2A     LDA ram_002A_script
-C - - - - - 0x03814F 0E:813F: 85 9F     STA ram_009F
+C - - - - - 0x03814F 0E:813F: 85 9F     STA ram_009F_copy_002A_script
 C - - - - - 0x038151 0E:8141: A9 19     LDA #con_002A_19
 C - - - - - 0x038153 0E:8143: 85 2A     STA ram_002A_script
 C - - - - - 0x038155 0E:8145: AD 65 05  LDA ram_plr_state
@@ -806,6 +806,9 @@ C - - - - - 0x03841A 0E:840A: 60        RTS
 
 
 sub_840B:
+; in
+    ; A = 
+    ; X = 
 ; out
     ; Z
         ; 0 = 
@@ -5400,7 +5403,7 @@ C - - - - - 0x039EB7 0E:9EA7: 8D EF 05  STA ram_05EF_plr
 C - - - - - 0x039EBA 0E:9EAA: 8D 06 06  STA ram_plr_config
 C - - - - - 0x039EBD 0E:9EAD: 8D 09 05  STA ram_plr_spd_X_lo
 C - - - - - 0x039EC0 0E:9EB0: 8D F2 04  STA ram_plr_spd_X_hi
-C - - - - - 0x039EC3 0E:9EB3: 85 9D     STA ram_009D
+C - - - - - 0x039EC3 0E:9EB3: 85 9D     STA ram_009D_flag
 C - - - - - 0x039EC5 0E:9EB5: A9 01     LDA #$01
 C - - - - - 0x039EC7 0E:9EB7: 8D 1D 06  STA ram_061D_plr
 C - - - - - 0x039ECA 0E:9EBA: A9 08     LDA #con_plr_state_jump
@@ -5699,7 +5702,7 @@ C - - - - - 0x03A0B7 0E:A0A7: 8D D8 05  STA ram_05D8_plr
 C - - - - - 0x03A0BA 0E:A0AA: A9 00     LDA #$00
 C - - - - - 0x03A0BC 0E:A0AC: 8D EF 05  STA ram_05EF_plr
 C - - - - - 0x03A0BF 0E:A0AF: 8D 06 06  STA ram_plr_config
-C - - - - - 0x03A0C2 0E:A0B2: 85 9D     STA ram_009D
+C - - - - - 0x03A0C2 0E:A0B2: 85 9D     STA ram_009D_flag
 C - - - - - 0x03A0C4 0E:A0B4: 85 B9     STA ram_00B9
 C - - - - - 0x03A0C6 0E:A0B6: A9 01     LDA #$01
 C - - - - - 0x03A0C8 0E:A0B8: 8D 1D 06  STA ram_061D_plr
@@ -5732,12 +5735,12 @@ C - - - - - 0x03A0F2 0E:A0E2: 8D 00 04  STA ram_plr_anim_id
 bra_A0E5:
 C - - - - - 0x03A0F5 0E:A0E5: AD C1 05  LDA ram_05C1_plr
 C - - - - - 0x03A0F8 0E:A0E8: D0 0C     BNE bra_A0F6
-C - - - - - 0x03A0FA 0E:A0EA: A5 9D     LDA ram_009D
+C - - - - - 0x03A0FA 0E:A0EA: A5 9D     LDA ram_009D_flag
 C - - - - - 0x03A0FC 0E:A0EC: D0 12     BNE bra_A100
 C - - - - - 0x03A0FE 0E:A0EE: A5 28     LDA ram_btn_hold
 C - - - - - 0x03A100 0E:A0F0: 29 80     AND #con_btn_A
 C - - - - - 0x03A102 0E:A0F2: D0 0C     BNE bra_A100
-C - - - - - 0x03A104 0E:A0F4: E6 9D     INC ram_009D
+C - - - - - 0x03A104 0E:A0F4: E6 9D     INC ram_009D_flag
 bra_A0F6:
 C - - - - - 0x03A106 0E:A0F6: A9 02     LDA #$02
 C - - - - - 0x03A108 0E:A0F8: 8D 1D 06  STA ram_061D_plr
@@ -6699,7 +6702,7 @@ C - - - - - 0x03A6D0 0E:A6C0: A9 05     LDA #$05
 C - - - - - 0x03A6D2 0E:A6C2: 20 57 EF  JSR sub_0x03EF67_prepare_player_animation
 C - - - - - 0x03A6D5 0E:A6C5: A9 01     LDA #$01
 C - - - - - 0x03A6D7 0E:A6C7: 8D C1 05  STA ram_05C1_plr
-C - - - - - 0x03A6DA 0E:A6CA: 85 AE     STA ram_00AE
+C - - - - - 0x03A6DA 0E:A6CA: 85 AE     STA ram_00AE_Alucard_bat_timer
 C - - - - - 0x03A6DC 0E:A6CC: EE 65 05  INC ram_plr_state
 C - - - - - 0x03A6DF 0E:A6CF: EE 65 05  INC ram_plr_state   ; -> con_plr_state_32
 C - - - - - 0x03A6E2 0E:A6D2: 60        RTS
@@ -6911,17 +6914,17 @@ bra_A830:
 
 
 
-sub_A836:
+sub_A836_decrease_hearts_while_in_bat_form:
 ; out
     ; C
         ; 0 = 
         ; 1 = 
 C - - - - - 0x03A846 0E:A836: A5 84     LDA ram_hearts
 C - - - - - 0x03A848 0E:A838: F0 0F     BEQ bra_A849
-C - - - - - 0x03A84A 0E:A83A: C6 AE     DEC ram_00AE
+C - - - - - 0x03A84A 0E:A83A: C6 AE     DEC ram_00AE_Alucard_bat_timer
 C - - - - - 0x03A84C 0E:A83C: D0 09     BNE bra_A847
 C - - - - - 0x03A84E 0E:A83E: A9 3C     LDA #$3C
-C - - - - - 0x03A850 0E:A840: 85 AE     STA ram_00AE
+C - - - - - 0x03A850 0E:A840: 85 AE     STA ram_00AE_Alucard_bat_timer
 C - - - - - 0x03A852 0E:A842: A9 01     LDA #$01
 C - - - - - 0x03A854 0E:A844: 20 53 E7  JSR sub_0x03E763_decrease_hearts
 bra_A847:
@@ -6944,7 +6947,7 @@ C - - - - - 0x03A865 0E:A855: 60        RTS
 
 
 ofs_Alucard_state_A856_34:
-C - - J - - 0x03A866 0E:A856: 20 36 A8  JSR sub_A836
+C - - J - - 0x03A866 0E:A856: 20 36 A8  JSR sub_A836_decrease_hearts_while_in_bat_form
 C - - - - - 0x03A869 0E:A859: B0 F5     BCS bra_A850
 C - - - - - 0x03A86B 0E:A85B: A2 10     LDX #$10
 C - - - - - 0x03A86D 0E:A85D: A9 00     LDA #$00
@@ -7635,7 +7638,7 @@ tbl_ACBF_speed:
 
 
 ofs_Alucard_state_ACC7_38:
-C - - J - - 0x03ACD7 0E:ACC7: 20 36 A8  JSR sub_A836
+C - - J - - 0x03ACD7 0E:ACC7: 20 36 A8  JSR sub_A836_decrease_hearts_while_in_bat_form
 C - - - - - 0x03ACDA 0E:ACCA: 90 03     BCC bra_ACCF
 - - - - - - 0x03ACDC 0E:ACCC: 4C 50 A8  JMP loc_A850_set_state_3C
 bra_ACCF:
@@ -7668,7 +7671,7 @@ C - - - - - 0x03AD16 0E:AD06: 60        RTS
 
 
 ofs_Alucard_state_AD07_3A:
-C - - J - - 0x03AD17 0E:AD07: 20 36 A8  JSR sub_A836
+C - - J - - 0x03AD17 0E:AD07: 20 36 A8  JSR sub_A836_decrease_hearts_while_in_bat_form
 C - - - - - 0x03AD1A 0E:AD0A: 90 03     BCC bra_AD0F
 - - - - - - 0x03AD1C 0E:AD0C: 4C 50 A8  JMP loc_A850_set_state_3C
 bra_AD0F:
@@ -10336,16 +10339,19 @@ tbl_BC45_music:
 
 
 sub_BC55:
-C - - - - - 0x03BC65 0E:BC55: 86 B1     STX ram_00B1
+C - - - - - 0x03BC65 0E:BC55: 86 B1     STX ram_00B1_t000_save_X
 C - - - - - 0x03BC67 0E:BC57: 8A        TXA
 C - - - - - 0x03BC68 0E:BC58: 38        SEC
 C - - - - - 0x03BC69 0E:BC59: E9 13     SBC #$13
 C - - - - - 0x03BC6B 0E:BC5B: C9 04     CMP #$04
 C - - - - - 0x03BC6D 0E:BC5D: B0 1B     BCS bra_BC7A
 C - - - - - 0x03BC6F 0E:BC5F: A8        TAY
-C - - - - - 0x03BC70 0E:BC60: D0 08     BNE bra_BC6A
+C - - - - - 0x03BC70 0E:BC60: D0 08     BNE bra_BC6A    ; jmp
+
+
+
 sub_BC62:
-C - - - - - 0x03BC72 0E:BC62: 86 B1     STX ram_00B1
+C - - - - - 0x03BC72 0E:BC62: 86 B1     STX ram_00B1_t000_save_X
 C - - - - - 0x03BC74 0E:BC64: E0 13     CPX #$13
 C - - - - - 0x03BC76 0E:BC66: D0 12     BNE bra_BC7A
 C - - - - - 0x03BC78 0E:BC68: A0 00     LDY #$00
@@ -10359,7 +10365,7 @@ C - - - - - 0x03BC85 0E:BC75: E8        INX
 C - - - - - 0x03BC86 0E:BC76: E0 13     CPX #$13
 C - - - - - 0x03BC88 0E:BC78: 90 F2     BCC bra_BC6C_loop
 bra_BC7A:
-C - - - - - 0x03BC8A 0E:BC7A: A6 B1     LDX ram_00B1
+C - - - - - 0x03BC8A 0E:BC7A: A6 B1     LDX ram_00B1_t000_save_X
 C - - - - - 0x03BC8C 0E:BC7C: 60        RTS
 
 

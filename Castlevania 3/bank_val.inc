@@ -9,6 +9,7 @@
     ; найти индексы объектов, в частности 0x013A4E 0x013A56
         ; видимо индекс не отвечает за поведение, а в основном за графику
         ; возможно есть другой адрес
+    ; пометить все X для 0x03E8AA
 
 
 
@@ -35,6 +36,8 @@ con_btn_B                               = $40 ;
 con_btn_A                               = $80 ; 
 
 con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn_Down + con_btn_Up  ; 0F
+con_btns_LR                             = con_btn_Left + con_btn_Right                              ; 03
+con_btns_UP                             = con_btn_Up + con_btn_Down                                 ; 0C
 con_btns_SS                             = con_btn_Start + con_btn_Select                            ; 30
 con_btns_AB                             = con_btn_A + con_btn_B                                     ; C0
 con_btns_UD                             = con_btn_Up + con_btn_Down                                 ; 0C
@@ -115,13 +118,13 @@ con_plr_state_28                        = $28 ;
 con_plr_state_2A                        = $2A ; 
 con_plr_state_2C                        = $2C ; 
 con_plr_state_death                     = $2E ; death
-con_plr_state_30                        = $30 ; Grant/Alucard only
+con_plr_state_30                        = $30 ; Grant/Alucard only (Alucard = bat form?)
 con_plr_state_32                        = $32 ; Grant/Alucard only
-con_plr_state_34                        = $34 ; Grant/Alucard only
+con_plr_state_34                        = $34 ; Grant/Alucard only (Alucard = bat form?)
 con_plr_state_36                        = $36 ; Grant/Alucard only
-con_plr_state_38                        = $38 ; Grant/Alucard only
-con_plr_state_3A                        = $3A ; Grant/Alucard only
-con_plr_state_3C                        = $3C ; Grant/Alucard only
+con_plr_state_38                        = $38 ; Grant/Alucard only (Alucard = bat form?)
+con_plr_state_3A                        = $3A ; Grant/Alucard only (Alucard = bat form?)
+con_plr_state_3C                        = $3C ; Grant/Alucard only (Alucard = transform from bat to human?)
 con_plr_state_3E                        = $3E ; Grant/Alucard only
 con_plr_state_40                        = $40 ; Grant/Alucard only
 con_plr_state_42                        = $42 ; Grant/Alucard only
@@ -810,7 +813,7 @@ con_BD4F_08                             = $08 ;
 con_BD4F_09                             = $09 ; 
 ; con_BD4F_0A                           = $0A ; unused
 con_BD4F_0B                             = $0B ; 
-con_BD4F_0C                             = $0C ; 
+con_BD4F_compare_X_distance             = $0C ; 
 con_BD4F_0D                             = $0D ; 
 con_BD4F_0E                             = $0E ; 
 con_BD4F_0F                             = $0F ; 
@@ -875,7 +878,7 @@ con_BD4F_49                             = $49 ;
 ; con_BD4F_4A                           = $4A ; unused
 ; con_BD4F_4B                           = $4B ; unused
 ; con_BD4F_4C                           = $4C ; unused
-con_BD4F_4D                             = $4D ; 
+con_BD4F_compare_XY_distance            = $4D ; 
 con_BD4F_4E                             = $4E ; 
 con_BD4F_4F                             = $4F ; 
 con_BD4F_50                             = $50 ; 

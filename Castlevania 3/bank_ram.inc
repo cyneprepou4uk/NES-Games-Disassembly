@@ -105,6 +105,22 @@ ram_0000_temp                           = $0000 ; 000554(W)  00055A(R)  000BB4(W
     ram_0000_t05C_obj_id                    = ram_0000_temp ; 
     ram_0000_t05D                           = ram_0000_temp ; 
     ram_0000_t05E                           = ram_0000_temp ; 
+    ram_0000_t05F                           = ram_0000_temp ; 
+    ram_0000_t060                           = ram_0000_temp ; 
+    ram_0000_t061                           = ram_0000_temp ; 
+    ram_0000_t062                           = ram_0000_temp ; 
+    ram_0000_t063                           = ram_0000_temp ; 
+    ram_0000_t064                           = ram_0000_temp ; 
+    ram_0000_t065                           = ram_0000_temp ; 
+    ram_0000_t066                           = ram_0000_temp ; 
+    ram_0000_t067                           = ram_0000_temp ; 
+    ram_0000_t068                           = ram_0000_temp ; 
+    ram_0000_t069                           = ram_0000_temp ; 
+    ram_0000_t06A                           = ram_0000_temp ; 
+    ram_0000_t06B                           = ram_0000_temp ; 
+    ram_0000_t06C                           = ram_0000_temp ; 
+    ram_0000_t06D                           = ram_0000_temp ; 
+    ram_0000_t06E_buttons                   = ram_0000_temp ; 
 
 
 
@@ -128,11 +144,15 @@ ram_0001_temp                           = $0001 ; 000C45(W)  000C4D(R)  000C57(W
     ram_0001_t00F                           = ram_0001_temp ; 
     ram_0001_t010                           = ram_0001_temp ; 
     ram_0001_t011                           = ram_0001_temp ; 
-    ram_0001_t012_pos_Y_hi                  = ram_0001_temp ; 
+    ram_0001_t012                           = ram_0001_temp ; 
     ram_0001_t013_pos_Y_hi                  = ram_0001_temp ; 
     ram_0001_t014_copy_obj_pos_X_hi         = ram_0001_temp ; 
     ram_0001_t015_copy_obj_pos_Y_hi         = ram_0001_temp ; 
     ram_0001_t016_pos_X_hi                  = ram_0001_temp ; 
+    ram_0001_t017_pos_Y_hi                  = ram_0001_temp ; 
+    ram_0001_t018                           = ram_0001_temp ; 
+    ram_0001_t019                           = ram_0001_temp ; 
+    ram_0001_t01A                           = ram_0001_temp ; 
 
 
 
@@ -177,6 +197,15 @@ ram_0002_temp                           = $0002 ; 000C4B(W)  000C59(R)  000C5E(W
     ram_0002_t025_pos_Y_hi                  = ram_0002_temp ; 
     ram_0002_t026_ppu_address               = ram_0002_temp ; 2 addresses 0002-0003
     ram_0002_t027_ppu_addr_hi               = ram_0002_temp ; in pair with ram_0009_t006_ppu_addr_lo
+    ram_0002_t028                           = ram_0002_temp ; 
+    ram_0002_t029_mask                      = ram_0002_temp ; 00 or FF
+    ram_0002_t02A_objects_counter           = ram_0002_temp ; 
+    ram_0002_t02B_compare_distance_X        = ram_0002_temp ; 
+    ram_0002_t02C_compare_distance_X        = ram_0002_temp ; 
+    ram_0002_t02D                           = ram_0002_temp ; 
+    ram_0002_t02E_compare_distance_X        = ram_0002_temp ; 
+    ram_0002_t02F                           = ram_0002_temp ; 
+    ram_0002_t030                           = ram_0002_temp ; 
 
 
 
@@ -193,6 +222,10 @@ ram_0003_temp                           = $0003 ; 000C87(Rx) 000C97(Rx) 00365B(W
     ram_0003_t008_objects_counter           = ram_0003_temp ; 
     ram_0003_t009_spd_X_hi                  = ram_0003_temp ; in pair with ram_0004_t00A_spd_X_lo
     ram_0003_t00A_ppu_addr_offset_hi        = ram_0003_temp ; 20 or 28
+    ram_0003_t00B                           = ram_0003_temp ; 
+    ram_0003_t00C_compare_distance_Y        = ram_0003_temp ; 
+    ram_0003_t00D                           = ram_0003_temp ; 
+    ram_0003_t00E_compare_distance_Y        = ram_0003_temp ; 
 
 
 
@@ -210,6 +243,11 @@ ram_0004_temp                           = $0004 ; 003D53(W)  003D6C(R)  004989(W
     ram_0004_t009_some_obj_flags            = ram_0004_temp ; 
     ram_0004_t00A_spd_X_lo                  = ram_0004_temp ; in pair with ram_0003_t009_spd_X_hi
     ram_0004_t00B_match_test_array          = ram_0004_temp ; 4 addresses 0004-0007
+    ram_0004_t00C_copy_ppu_addr_hi          = ram_0004_temp ; 
+    ram_0004_t00D                           = ram_0004_temp ; 2 addresses 0004-0005
+    ram_0004_t00E_ppu_addr                  = ram_0004_temp ; 2 addresses 0004-0005
+    ram_0004_t00F                           = ram_0004_temp ; bzk optimize
+    ram_0004_t010                           = ram_0004_temp ; 
 
 
 
@@ -223,6 +261,7 @@ ram_0005_temp                           = $0005 ; 003D5C(W)  003D70(R)  004DDD(W
     ram_0005_t005_copy_obj_pos_Y_hi         = ram_0005_temp ; 
     ram_0005_t006_copy_obj_pos_Y_hi         = ram_0005_temp ; 
     ram_0005_t007_spd_Y_hi                  = ram_0005_temp ; in pair with ram_0006_t00C_spd_Y_lo
+    ram_0005_t008                           = ram_0005_temp ; 
 
 
 
@@ -273,6 +312,7 @@ ram_0007_temp                           = $0007 ; 000546(W)  000552(W)  000567(R
     ram_0007_t00B                           = ram_0007_temp ; 
     ram_0007_t00C_ppu_addr_hi               = ram_0007_temp ; in pair with ram_0006_t004_ppu_addr_lo
     ram_0007_t00D_objects_counter           = ram_0007_temp ; 
+    ram_0007_t00E                           = ram_0007_temp ; 
 
 
 
@@ -345,6 +385,7 @@ ram_0008_temp                           = $0008 ; 00002A(W)  000423(W)  000445(W
     ram_0008_t040                           = ram_0008_temp ; 
     ram_0008_t041                           = ram_0008_temp ; 
     ram_0008_t042_ppu_addr_offset_lo        = ram_0008_temp ; 
+    ram_0008_t043_compare_distance_Y        = ram_0008_temp ; 
 
 
 
@@ -357,6 +398,7 @@ ram_0009_temp                           = $0009 ; 00002F(W)  000428(W)  000528(W
     ram_0009_t004_some_obj_flags            = ram_0009_temp ; 
     ram_0009_t005_some_obj_flags            = ram_0009_temp ; 
     ram_0009_t006_ppu_addr_lo               = ram_0009_temp ; in pair with ram_0002_t027_ppu_addr_hi
+    ram_0009_t007_compare_distance_X        = ram_0009_temp ; 
 
 
 
@@ -434,7 +476,7 @@ ram_000E_temp                           = $000E ; 000539(W)  000587(R)  0035F0(W
     ram_000E_t002_ppu_address               = ram_000E_temp ; 2 addresses 000E-000F
     ram_000E_t003_pressed_Up_or_Down        = ram_000E_temp ; 00 = Up, 01 = Down
     ram_000E_t004                           = ram_000E_temp ; 
-    ram_000E_t005_subroutine_argument_A     = ram_000E_temp ; !!! предположительно не все нашел, например где 0x00D98E?
+    ram_000E_t005_subroutine_argument_A     = ram_000E_temp ; not all subroutines use this variable
     ram_000E_t006_save_Y                    = ram_000E_temp ; 
     ram_000E_t007_colors_counter            = ram_000E_temp ; 
     ram_000E_t008_prg_bank_id               = ram_000E_temp ; 
@@ -469,9 +511,9 @@ ram_0010_temp                           = $0010 ; 000B9D(W)  00218B(W)  002195(R
     ram_0010_t003_data                      = ram_0010_temp ; 2 addresses 0010-0011
     ram_0010_t004                           = ram_0010_temp ; 
     ram_0010_t005_obj_id                    = ram_0010_temp ; 
-   ;ram_0010_t006                           = ram_0010_temp ; 
+    ram_0010_t006_flag                      = ram_0010_temp ; 00 = ???, 01 = ???
     ram_0010_t007                           = ram_0010_temp ; 
-    ram_0010_t008_obj_index                 = ram_0010_temp ; 
+    ram_0010_t008_object_index              = ram_0010_temp ; 
     ram_0010_t009_ppu_addr_hi               = ram_0010_temp ; 
     ram_0010_t00A                           = ram_0010_temp ; 
     ram_0010_t00B                           = ram_0010_temp ; 
@@ -479,7 +521,12 @@ ram_0010_temp                           = $0010 ; 000B9D(W)  00218B(W)  002195(R
     ram_0010_t00D                           = ram_0010_temp ; 
     ram_0010_t00E_buttons                   = ram_0010_temp ; 
     ram_0010_t00F_object_index              = ram_0010_temp ; 
-    ram_0010_t010                           = ram_0010_temp ; 
+    ram_0010_t010_data_pointer              = ram_0010_temp ; 2 addresses 0010-0011
+    ram_0010_t011_data_pointer              = ram_0010_temp ; 2 addresses 0010-0011
+    ram_0010_t012_useless                   = ram_0010_temp ; bzk optimize, useless
+    ram_0010_t013_distance_X                = ram_0010_temp ; 
+    ram_0010_t014                           = ram_0010_temp ; 
+    ram_0010_t015_buttons                   = ram_0010_temp ; 
 
 
 
@@ -496,7 +543,7 @@ ram_0011_temp                           = $0011 ; 000BA2(W)  002320(W)  00233C(R
     ram_0011_t008_nametable_attribute       = ram_0011_temp ; 
     ram_0011_t009                           = ram_0011_temp ; 
     ram_0011_t00A_pointer_lo                = ram_0011_temp ; in pair with ram_0010_t00C_pointer_hi
-    ram_0011_t00B                           = ram_0011_temp ; 
+    ram_0011_t00B_distance_Y                = ram_0011_temp ; 
 
 
 
@@ -504,12 +551,17 @@ ram_0011_temp                           = $0011 ; 000BA2(W)  002320(W)  00233C(R
 ram_0012_temp                           = $0012 ; 000BAC(W)  000BC8(R)  00534E(W)  00536D(R)  0053A1(W)  0053B8(R)  006D9E(W)  006DA8(R)  006DCB(W)  006DD2(R)  008A73(W)  008AB7(W)  008ACE(R)  008B17(R)  008B5E(R)  008B6E(R)  008DC1(W)  008DD5(R)  009160(W)  00924C(R)  0098C2(Ry) 009932(R)  009991(R)  0099A2(W)  00A8D9(W)  00A910(R)  00C26D(W)  00C272(W)  00C2C5(R)  00C2D2(W)  00C2D4(R)  02410D(W)  024137(R)  025681(Ri) 026512(W)  02651F(R)  026534(W)  026538(R)  02B67E(W)  02B68B(W)  02B6AA(R)  02B6D0(R)  02B6D6(R)  03324D(W)  03325D(W)  033273(W)  03327B(R)  03779D(W)  0377C8(R)  0377CC(W)  037876(R)  0378F2(R)  037962(R)  037964(W)  0379A9(R)  0379B9(R)  0379BB(W)  0379C6(W)  0379DC(W)  0379DF(W)  0379E2(W)  0379EB(R)  0379ED(W)  037A04(R)  03AE56(W)  03AE6A(W)  03AFE6(R)  03BCA9(W)  03BD2F(R)  03BD46(R)  03BDE0(R)  03CB52(W)  03CBAF(R)  03CBB7(R)  03CBBF(R)  03CBC7(R)  03CBCF(R)  03CBD7(R)  03CBDF(R)  03CBE7(R)  03CCAC(W)  03CCFD(R)  03CD08(R)  03CD0D(W)  03CE73(W)  03CE7B(R)  03CE80(W)  03CECB(R)  03CED0(W)  03E03F(Wi) 03EB24(Wx) 03FCB7(W)  03FCE2(R)  
     ram_0012_t000_config                    = ram_0012_temp ; 4 addresses 0012-0015
     ram_0012_t001_brightness_change         = ram_0012_temp ; 
+    ram_0012_t002                           = ram_0012_temp ; 
+    ram_0012_t003                           = ram_0012_temp ; 
+    ram_0012_t004                           = ram_0012_temp ; 
 
 
 
 ; todo
 ram_0013_temp                           = $0013 ; 000BBE(W)  000BD7(W)  008ACA(W)  008B5C(W)  008B9A(R)  008BB8(R)  009167(W)  009255(R)  0098C2(Ry) 009936(R)  009994(R)  00999F(W)  024123(W)  0252E2(Ri) 02536E(Ri) 0253D2(Ri) 025435(Ri) 02545E(Ri) 025536(Ri) 02556A(Ri) 0255A1(Ri) 02561A(Ri) 02564F(Ri) 0256B7(Ri) 025794(Ri) 025849(Ri) 025973(Ri) 025BC5(Ri) 025C16(Ri) 025C4C(Ri) 025CB2(Ri) 025CD8(Ri) 025D3E(Ri) 025D48(Ri) 025D57(Ri) 025D66(Ri) 025DCB(Ri) 025DE9(Ri) 025E70(Ri) 025F99(Ri) 02600C(Ri) 026039(Ri) 026094(Ri) 0260FD(Ri) 026516(W)  026518(R)  026532(W)  02F2E0(W)  02F2E7(R)  0377C6(W)  03780B(R)  0379AE(R)  0379C2(R)  0379D3(W)  0379E4(R)  0379E6(W)  0379F1(W)  0379F4(R)  0379FC(R)  03BCAE(W)  03BD52(R)  03BD99(R)  03CCF0(W)  03CCF9(R)  03CCFB(W)  03CD03(R)  03CEC0(W)  03CEC9(R)  03E03F(Wi) 03EB24(Wx) 03FC1F(W)  03FC83(W)  03FC95(W)  03FCAD(W)  03FCB9(R)  03FD17(W)  03FD20(R)  03FD3B(R)  
     ram_0013_t000_palette_counter           = ram_0013_temp ; 
+    ram_0013_t001                           = ram_0013_temp ; 
+    ram_0013_t002                           = ram_0013_temp ; 
 
 
 
@@ -1185,16 +1237,53 @@ ram_009A_temp                           = $009A ; 009EDB(W)  03E03F(Wi) 03E83C(W
 
 
 
-; todo
+; something for Alucard?
 ram_009C                                = $009C ; 00B32B(W)  02E18D(W)  02E3CD(R)  02E3D9(W)  02F770(W)  03E03F(Wi) 03E83C(Wx) 
-ram_009D                                = $009D ; 039EC3(W)  03A0C2(W)  03A0FA(R)  03A104(W)  03E03F(Wi) 03E83C(Wx) 
-ram_009E                                = $009E ; 01BE34(R)  01BE4E(R)  02E3C9(R)  02F2A8(W)  02F2B2(W)  02F2B4(R)  02F2D4(R)  02F305(W)  02F307(R)  02F312(R)  02F495(R)  02F4A9(R)  02F582(R)  02F5F6(R)  03E03F(Wi) 03E83C(Wx) 
-ram_009F                                = $009F ; 0011CD(R)  03814F(W)  03E03F(Wi) 03E83C(Wx) 
+
+
+
+; 00 = 
+; 01 = 
+ram_009D_flag                           = $009D ; 039EC3(W)  03A0C2(W)  03A0FA(R)  03A104(W)  03E03F(Wi) 03E83C(Wx) 
+
+
+
+; 
+ram_009E_object_index                   = $009E ; 01BE34(R)  01BE4E(R)  02E3C9(R)  02F2A8(W)  02F2B2(W)  02F2B4(R)  02F2D4(R)  02F305(W)  02F307(R)  02F312(R)  02F495(R)  02F4A9(R)  02F582(R)  02F5F6(R)  03E03F(Wi) 03E83C(Wx) 
+
+
+
+; a copy of ram_002A_script
+ram_009F_copy_002A_script               = $009F ; 0011CD(R)  03814F(W)  03E03F(Wi) 03E83C(Wx) 
+
+
+
+; something to do with drawing?
 ram_00A0                                = $00A0 ; 03D18D(W)  03D196(R)  03D1AD(R)  03D1DA(R)  03D1EF(R)  03D229(R)  03D2C4(R)  03D306(R)  03D315(R)  03E03F(Wi) 03E83C(Wx) 
+
+
+
+; 
 ram_00A1                                = $00A1 ; 03CF51(R)  03D01C(W)  03D18B(R)  03D191(W)  03E03F(Wi) 03E83C(Wx) 
-ram_00A2                                = $00A2 ; 03E03F(Wi) 03E83C(Wx) 
-ram_00A3                                = $00A3 ; 008A5B(R)  008C3B(R)  00D6C6(R)  03E03F(Wi) 03E83C(Wx) 03FDF3(W)  
-ram_00A4                                = $00A4 ; 001243(W)  001E36(R)  002116(R)  00211A(R)  03E03F(Wi) 03E83C(Wx) 
+
+
+
+; free address
+; ram_00A2                              = $00A2 ; 03E03F(Wi) 03E83C(Wx) 
+
+
+
+; frame counter during gameplay?
+ram_00A3_frm_cnt                        = $00A3 ; 008A5B(R)  008C3B(R)  00D6C6(R)  03E03F(Wi) 03E83C(Wx) 03FDF3(W)  
+
+
+
+; 
+ram_00A4_data_index                     = $00A4 ; 001243(W)  001E36(R)  002116(R)  00211A(R)  03E03F(Wi) 03E83C(Wx) 
+
+
+
+; 00/01
 ram_00A5                                = $00A5 ; 03785B(R)  03787D(R)  037906(R)  037A15(R)  03E03F(Wi) 03E83C(Wx) 03FD43(W)  03FD51(W)  
 
 
@@ -1240,11 +1329,30 @@ ram_00AD_timer                          = $00AD ; 000F45(R)  000F4F(W)  000F53(R
 
 
 
-; todo
-ram_00AE                                = $00AE ; 03A6DA(W)  03A84A(W)  03A850(W)  03E03F(Wi) 03E83C(Wx) 
+; timer before hears decrease while Alucard is flying in bat form
+ram_00AE_Alucard_bat_timer              = $00AE ; 03A6DA(W)  03A84A(W)  03A850(W)  03E03F(Wi) 03E83C(Wx) 
+
+
+
+; 
 ram_00AF                                = $00AF ; 02F1AF(R)  02F8FE(R)  02F9B9(W)  038116(R)  03811A(W)  039756(W)  03A0AE(W)  03E03F(Wi) 03E83C(Wx) 
-ram_00B0                                = $00B0 ; 001155(W)  0060DD(R)  0325C5(W)  034074(R)  0340C0(R)  03411A(R)  034176(R)  03E03F(Wi) 03E83C(Wx) 
-ram_00B1                                = $00B1 ; 001830(W)  001838(W)  001883(W)  03BC65(W)  03BC72(W)  03BC8A(R)  03E03F(Wi) 03E83C(Wx) 03ED13(R)  
+
+
+
+; 00 = 
+; 01 = 
+ram_00B0_flag                           = $00B0 ; 001155(W)  0060DD(R)  0325C5(W)  034074(R)  0340C0(R)  03411A(R)  034176(R)  03E03F(Wi) 03E83C(Wx) 
+
+
+
+; 
+ram_00B1_temp                           = $00B1 ; 001830(W)  001838(W)  001883(W)  03BC65(W)  03BC72(W)  03BC8A(R)  03E03F(Wi) 03E83C(Wx) 03ED13(R)  
+    ram_00B1_t000_save_X                    = ram_00B1_temp ; 
+    ram_00B1_t001_prg_bank                  = ram_00B1_temp ; 
+
+
+
+; todo
 ram_00B2                                = $00B2 ; 000F1B(R)  000F1F(W)  000F23(R)  001157(W)  028503(R)  02E1FA(W)  03E03F(Wi) 03E83C(Wx) 
 ram_00B3                                = $00B3 ; 0010EF(W)  008372(W)  00A6FA(R)  03CF41(R)  03E03F(Wi) 03E83C(Wx) 
 ram_00B4                                = $00B4 ; 000B8E(W)  000B94(W)  000BA4(R)  002057(W)  002074(R)  0029AD(W)  0029DF(R)  0042D9(W)  0042DC(R)  00430F(R)  004317(W)  006FDB(R)  007031(R)  007047(R)  00705A(R)  007078(W)  0072E8(R)  0072F8(R)  007378(R)  00739B(R)  0073B0(R)  0075F4(R)  007604(R)  007620(R)  00DDC9(W)  00DDD9(R)  00DE1F(W)  00DE48(R)  00DF0C(W)  00DF1F(R)  00DFB9(R)  00DFC4(W)  00DFDD(W)  02B148(R)  02B405(R)  02B485(R)  02B497(R)  02B4BC(R)  02B4EB(W)  02B4F3(R)  02B671(W)  02B75A(R)  02B77A(R)  02B7A3(R)  02B87E(R)  02B894(R)  02B93D(R)  03E03F(Wi) 03E83C(Wx) 

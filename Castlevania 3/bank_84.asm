@@ -1901,7 +1901,7 @@ C - - - - - 0x008A52 02:8A42: A5 01     LDA ram_0001_temp
 C - - - - - 0x008A54 02:8A44: F0 30     BEQ bra_8A76
 C - - - - - 0x008A56 02:8A46: BD 33 06  LDA ram_obj_0634,X
 C - - - - - 0x008A59 02:8A49: D0 2A     BNE bra_8A75_RTS
-C - - - - - 0x008A5B 02:8A4B: A5 A3     LDA ram_00A3
+C - - - - - 0x008A5B 02:8A4B: A5 A3     LDA ram_00A3_frm_cnt
 C - - - - - 0x008A5D 02:8A4D: 29 01     AND #$01
 C - - - - - 0x008A5F 02:8A4F: D0 24     BNE bra_8A75_RTS
 C - - - - - 0x008A61 02:8A51: A9 01     LDA #$01
@@ -2200,7 +2200,7 @@ tbl_8C1F:
 
 
 sub_8C2B:
-C - - - - - 0x008C3B 02:8C2B: A5 A3     LDA ram_00A3
+C - - - - - 0x008C3B 02:8C2B: A5 A3     LDA ram_00A3_frm_cnt
 C - - - - - 0x008C3D 02:8C2D: 29 03     AND #$03
 C - - - - - 0x008C3F 02:8C2F: BC 06 06  LDY ram_obj_config,X
 C - - - - - 0x008C42 02:8C32: D9 1F 8C  CMP tbl_8C1F,Y

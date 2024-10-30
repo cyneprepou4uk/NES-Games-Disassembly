@@ -88,7 +88,7 @@ C - - - - - 0x03406D 0D:805D: 18        CLC
 C - - - - - 0x03406E 0D:805E: 65 01     ADC ram_0001_t007_copy_obj_pos_Y_hi
 C - - - - - 0x034070 0D:8060: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x034073 0D:8063: C8        INY
-C - - - - - 0x034074 0D:8064: A5 B0     LDA ram_00B0
+C - - - - - 0x034074 0D:8064: A5 B0     LDA ram_00B0_flag
 C - - - - - 0x034076 0D:8066: D0 EB     BNE bra_8053
 bra_8068:
 C - - - - - 0x034078 0D:8068: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_T
@@ -137,7 +137,7 @@ C - - - - - 0x0340B8 0D:80A8: B0 B3     BCS bra_805D
 C - - - - - 0x0340BA 0D:80AA: 65 01     ADC ram_0001_t007_copy_obj_pos_Y_hi
 C - - - - - 0x0340BC 0D:80AC: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x0340BF 0D:80AF: C8        INY
-C - - - - - 0x0340C0 0D:80B0: A5 B0     LDA ram_00B0
+C - - - - - 0x0340C0 0D:80B0: A5 B0     LDA ram_00B0_flag
 C - - - - - 0x0340C2 0D:80B2: D0 BE     BNE bra_8072
 bra_80B4:
 C - - - - - 0x0340C4 0D:80B4: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_T
@@ -201,7 +201,7 @@ C - - - - - 0x034112 0D:8102: B0 5B     BCS bra_815F
 C - - - - - 0x034114 0D:8104: 65 01     ADC ram_0001_t007_copy_obj_pos_Y_hi
 C - - - - - 0x034116 0D:8106: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x034119 0D:8109: C8        INY
-C - - - - - 0x03411A 0D:810A: A5 B0     LDA ram_00B0
+C - - - - - 0x03411A 0D:810A: A5 B0     LDA ram_00B0_flag
 C - - - - - 0x03411C 0D:810C: D0 47     BNE bra_8155
 bra_810E:
 C - - - - - 0x03411E 0D:810E: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_T
@@ -271,7 +271,7 @@ C - - - - - 0x03416F 0D:815F: 18        CLC
 C - - - - - 0x034170 0D:8160: 65 01     ADC ram_0001_t007_copy_obj_pos_Y_hi
 C - - - - - 0x034172 0D:8162: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x034175 0D:8165: C8        INY
-C - - - - - 0x034176 0D:8166: A5 B0     LDA ram_00B0
+C - - - - - 0x034176 0D:8166: A5 B0     LDA ram_00B0_flag
 C - - - - - 0x034178 0D:8168: D0 0A     BNE bra_8174
 bra_816A:
 C - - - - - 0x03417A 0D:816A: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_T
@@ -13254,14 +13254,14 @@ C - - - - - 0x037B91 0D:BB81: C8        INY
 C - - - - - 0x037B92 0D:BB82: E8        INX
 C - - - - - 0x037B93 0D:BB83: E0 04     CPX #$04
 C - - - - - 0x037B95 0D:BB85: D0 F3     BNE bra_BB7A_array_check_loop
-; perfect match
+; if perfect match
 C - - - - - 0x037B97 0D:BB87: 18        CLC
 C - - - - - 0x037B98 0D:BB88: 60        RTS
 bra_BB89_check_failed:
 C - - - - - 0x037B99 0D:BB89: E6 03     INC ram_0003_t006_last_match_index
 C - - - - - 0x037B9B 0D:BB8B: C6 02     DEC ram_0002_t018_attempts_counter
 C - - - - - 0x037B9D 0D:BB8D: D0 E4     BNE bra_BB73_loop
-; no matches
+; if no matches
 C - - - - - 0x037B9F 0D:BB8F: 38        SEC
 C - - - - - 0x037BA0 0D:BB90: 60        RTS
 
