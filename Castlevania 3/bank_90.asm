@@ -10217,7 +10217,7 @@ C - - - - - 0x023E43 08:BE33: B9 4A BE  LDA tbl_BE49 + $01,Y
 C - - - - - 0x023E46 08:BE36: 85 01     STA ram_0001_temp
 C - - - - - 0x023E48 08:BE38: B9 4B BE  LDA tbl_BE49 + $02,Y
 C - - - - - 0x023E4B 08:BE3B: A4 01     LDY ram_0001_temp
-C - - - - - 0x023E4D 08:BE3D: 20 5C EF  JSR sub_0x03EF6C
+C - - - - - 0x023E4D 08:BE3D: 20 5C EF  JSR sub_0x03EF6C_prepare_animation
 C - - - - - 0x023E50 08:BE40: A9 80     LDA #$80
 C - - - - - 0x023E52 08:BE42: 1D EF 05  ORA ram_05EF_obj,X
 C - - - - - 0x023E55 08:BE45: 9D EF 05  STA ram_05EF_obj,X

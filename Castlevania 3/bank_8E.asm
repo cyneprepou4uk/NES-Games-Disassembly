@@ -8693,10 +8693,10 @@ C - - - - - 0x01F56A 07:B55A: A5 34     LDA ram_blk_fr
 C - - - - - 0x01F56C 07:B55C: 0A        ASL
 C - - - - - 0x01F56D 07:B55D: A8        TAY
 C - - - - - 0x01F56E 07:B55E: B1 0A     LDA (ram_000A_t00B_data),Y
-C - - - - - 0x01F570 07:B560: 85 69     STA ram_0069
+C - - - - - 0x01F570 07:B560: 85 69     STA ram_0069_t000_data
 C - - - - - 0x01F572 07:B562: C8        INY
 C - - - - - 0x01F573 07:B563: B1 0A     LDA (ram_000A_t00B_data),Y
-C - - - - - 0x01F575 07:B565: 85 6A     STA ram_006A
+C - - - - - 0x01F575 07:B565: 85 6A     STA ram_0069_t000_data + $01
 C - - - - - 0x01F577 07:B567: 60        RTS
 
 
@@ -8727,7 +8727,7 @@ C - - - - - 0x01F594 07:B584: E6 08     INC ram_0008_temp
 bra_B586:
 C - - - - - 0x01F596 07:B586: A0 00     LDY #$00
 bra_B588_loop:
-C - - - - - 0x01F598 07:B588: B1 69     LDA (ram_0069),Y
+C - - - - - 0x01F598 07:B588: B1 69     LDA (ram_0069_t000_data),Y
 C - - - - - 0x01F59A 07:B58A: C8        INY
 C - - - - - 0x01F59B 07:B58B: C9 FF     CMP #$FF
 C - - - - - 0x01F59D 07:B58D: F0 61     BEQ bra_B5F0
@@ -8744,7 +8744,7 @@ C - - - - - 0x01F5AB 07:B59B: 85 0A     STA ram_000A_temp
 C - - - - - 0x01F5AD 07:B59D: 4A        LSR
 C - - - - - 0x01F5AE 07:B59E: 29 0F     AND #$0F
 C - - - - - 0x01F5B0 07:B5A0: 85 09     STA ram_0009_temp
-C - - - - - 0x01F5B2 07:B5A2: B1 69     LDA (ram_0069),Y
+C - - - - - 0x01F5B2 07:B5A2: B1 69     LDA (ram_0069_t000_data),Y
 C - - - - - 0x01F5B4 07:B5A4: C8        INY
 C - - - - - 0x01F5B5 07:B5A5: E5 0C     SBC ram_000C_t005
 C - - - - - 0x01F5B7 07:B5A7: 85 0D     STA ram_000D_t004
@@ -8773,7 +8773,7 @@ C - - - - - 0x01F5DE 07:B5CE: C9 07     CMP #$07
 C - - - - - 0x01F5E0 07:B5D0: B0 1B     BCS bra_B5ED
 C - - - - - 0x01F5E2 07:B5D2: A2 00     LDX #$00    ; to the right
 C - - - - - 0x01F5E4 07:B5D4: 38        SEC
-C - - - - - 0x01F5E5 07:B5D5: B1 69     LDA (ram_0069),Y
+C - - - - - 0x01F5E5 07:B5D5: B1 69     LDA (ram_0069_t000_data),Y
 C - - - - - 0x01F5E7 07:B5D7: ED 38 04  SBC ram_plr_pos_X_hi
 C - - - - - 0x01F5EA 07:B5DA: B0 06     BCS bra_B5E2
 C - - - - - 0x01F5EC 07:B5DC: E8        INX ; 01    ; to the left
@@ -8827,7 +8827,7 @@ C - - - - - 0x01F61B 07:B60B: 69 00     ADC #$00
 C - - - - - 0x01F61D 07:B60D: 85 08     STA ram_0008_temp
 C - - - - - 0x01F61F 07:B60F: A0 00     LDY #$00
 bra_B611_loop:
-C - - - - - 0x01F621 07:B611: B1 69     LDA (ram_0069),Y
+C - - - - - 0x01F621 07:B611: B1 69     LDA (ram_0069_t000_data),Y
 C - - - - - 0x01F623 07:B613: C8        INY
 C - - - - - 0x01F624 07:B614: C9 FF     CMP #$FF
 C - - - - - 0x01F626 07:B616: F0 53     BEQ bra_B66B_FF
@@ -8854,11 +8854,11 @@ C - - - - - 0x01F640 07:B630: C9 06     CMP #$06
 C - - - - - 0x01F642 07:B632: B0 33     BCS bra_B667
 C - - - - - 0x01F644 07:B634: A5 0C     LDA ram_000C_t006
 C - - - - - 0x01F646 07:B636: 38        SEC
-C - - - - - 0x01F647 07:B637: F1 69     SBC (ram_0069),Y
+C - - - - - 0x01F647 07:B637: F1 69     SBC (ram_0069_t000_data),Y
 C - - - - - 0x01F649 07:B639: C8        INY
 C - - - - - 0x01F64A 07:B63A: 85 0B     STA ram_000B_temp
 C - - - - - 0x01F64C 07:B63C: A5 08     LDA ram_0008_temp
-C - - - - - 0x01F64E 07:B63E: F1 69     SBC (ram_0069),Y
+C - - - - - 0x01F64E 07:B63E: F1 69     SBC (ram_0069_t000_data),Y
 C - - - - - 0x01F650 07:B640: 85 09     STA ram_0009_temp
 C - - - - - 0x01F652 07:B642: B0 15     BCS bra_B659
 C - - - - - 0x01F654 07:B644: C9 FF     CMP #$FF
