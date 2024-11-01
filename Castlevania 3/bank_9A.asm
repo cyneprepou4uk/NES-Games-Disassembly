@@ -7,9 +7,9 @@
 
 
 .export sub_0x034011_sprite_engine
-.export ofs_0x037792_00
+.export ofs_062_0x037792_00
 .export sub_0x0377CF
-.export ofs_0x0379F4_01
+.export ofs_062_0x0379F4_01
 .export sub_0x037DCC
 .export sub_0x037DFF
 
@@ -12540,7 +12540,7 @@ C - - - - - 0x03778F 0D:B77F: 4C 88 B7  JMP loc_B788
 
 
 
-ofs_0x037792_00:
+ofs_062_0x037792_00:
 C - - J - - 0x037792 0D:B782: BD 38 04  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x037795 0D:B785: BC 1C 04  LDY ram_obj_pos_Y_hi,X
 loc_B788:
@@ -12962,7 +12962,7 @@ C - - - - - 0x0379F3 0D:B9E3: 60        RTS
 
 
 sub_B9E4:
-ofs_0x0379F4_01:
+ofs_062_0x0379F4_01:
 C - - - - - 0x0379F4 0D:B9E4: A5 13     LDA ram_0013_temp
 C - - - - - 0x0379F6 0D:B9E6: 29 FC     AND #$FC
 C - - - - - 0x0379F8 0D:B9E8: 09 03     ORA #$03
@@ -13836,32 +13836,32 @@ C - - - - - 0x037E0E 0D:BDFE: AD F0 07  LDA ram_07F0
 C - - - - - 0x037E11 0D:BE01: 0A        ASL
 C - - - - - 0x037E12 0D:BE02: A8        TAY
 C - - - - - 0x037E13 0D:BE03: A9 00     LDA #$00
-C - - - - - 0x037E15 0D:BE05: 85 01     STA ram_0000_t050_ppu_address + $01
+C - - - - - 0x037E15 0D:BE05: 85 01     STA ram_0001_t02F_ppu_addr_hi
 C - - - - - 0x037E17 0D:BE07: AD F1 07  LDA ram_07F1
 ; * 20
 C - - - - - 0x037E1A 0D:BE0A: 0A        ASL
-C - - - - - 0x037E1B 0D:BE0B: 26 01     ROL ram_0000_t050_ppu_address + $01
+C - - - - - 0x037E1B 0D:BE0B: 26 01     ROL ram_0001_t02F_ppu_addr_hi
 C - - - - - 0x037E1D 0D:BE0D: 0A        ASL
-C - - - - - 0x037E1E 0D:BE0E: 26 01     ROL ram_0000_t050_ppu_address + $01
+C - - - - - 0x037E1E 0D:BE0E: 26 01     ROL ram_0001_t02F_ppu_addr_hi
 C - - - - - 0x037E20 0D:BE10: 0A        ASL
-C - - - - - 0x037E21 0D:BE11: 26 01     ROL ram_0000_t050_ppu_address + $01
+C - - - - - 0x037E21 0D:BE11: 26 01     ROL ram_0001_t02F_ppu_addr_hi
 C - - - - - 0x037E23 0D:BE13: 0A        ASL
-C - - - - - 0x037E24 0D:BE14: 26 01     ROL ram_0000_t050_ppu_address + $01
+C - - - - - 0x037E24 0D:BE14: 26 01     ROL ram_0001_t02F_ppu_addr_hi
 C - - - - - 0x037E26 0D:BE16: 0A        ASL
-C - - - - - 0x037E27 0D:BE17: 26 01     ROL ram_0000_t050_ppu_address + $01
-C - - - - - 0x037E29 0D:BE19: 85 00     STA ram_0000_t050_ppu_address
+C - - - - - 0x037E27 0D:BE17: 26 01     ROL ram_0001_t02F_ppu_addr_hi
+C - - - - - 0x037E29 0D:BE19: 85 00     STA ram_0000_t050_ppu_addr_lo
 C - - - - - 0x037E2B 0D:BE1B: 18        CLC
 C - - - - - 0x037E2C 0D:BE1C: B9 5D BE  LDA tbl_BE5D_ppu_address,Y
-C - - - - - 0x037E2F 0D:BE1F: 65 00     ADC ram_0000_t050_ppu_address
-C - - - - - 0x037E31 0D:BE21: 85 00     STA ram_0000_t050_ppu_address
+C - - - - - 0x037E2F 0D:BE1F: 65 00     ADC ram_0000_t050_ppu_addr_lo
+C - - - - - 0x037E31 0D:BE21: 85 00     STA ram_0000_t050_ppu_addr_lo
 C - - - - - 0x037E33 0D:BE23: B9 5E BE  LDA tbl_BE5D_ppu_address + $01,Y
-C - - - - - 0x037E36 0D:BE26: 65 01     ADC ram_0000_t050_ppu_address + $01
-C - - - - - 0x037E38 0D:BE28: 85 01     STA ram_0000_t050_ppu_address + $01
+C - - - - - 0x037E36 0D:BE26: 65 01     ADC ram_0001_t02F_ppu_addr_hi
+C - - - - - 0x037E38 0D:BE28: 85 01     STA ram_0001_t02F_ppu_addr_hi
 C - - - - - 0x037E3A 0D:BE2A: A9 01     LDA #$01
 C - - - - - 0x037E3C 0D:BE2C: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x037E3F 0D:BE2F: A5 00     LDA ram_0000_t050_ppu_address    ; ppu lo
+C - - - - - 0x037E3F 0D:BE2F: A5 00     LDA ram_0000_t050_ppu_addr_lo
 C - - - - - 0x037E41 0D:BE31: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x037E44 0D:BE34: A5 01     LDA ram_0000_t050_ppu_address + $01    ; ppu hi
+C - - - - - 0x037E44 0D:BE34: A5 01     LDA ram_0001_t02F_ppu_addr_hi
 C - - - - - 0x037E46 0D:BE36: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
 C - - - - - 0x037E49 0D:BE39: A0 20     LDY #$20
 C - - - - - 0x037E4B 0D:BE3B: A9 00     LDA #$00
