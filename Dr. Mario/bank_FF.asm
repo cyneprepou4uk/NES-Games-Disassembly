@@ -60,16 +60,16 @@ C - - - - - 0x000055 00:8045: 8D 34 07  STA ram_copy_1_data + $02
 C - - - - - 0x000058 00:8048: AD 8B 03  LDA ram_p2_speed
 C - - - - - 0x00005B 00:804B: 8D 35 07  STA ram_copy_1_data + $03
 ; clear 0000-06FF
-C - - - - - 0x00005E 00:804E: A0 06     LDY #$06
-C - - - - - 0x000060 00:8050: 84 01     STY ram_0001
-C - - - - - 0x000062 00:8052: A0 00     LDY #$00
-C - - - - - 0x000064 00:8054: 84 00     STY ram_0000
+C - - - - - 0x00005E 00:804E: A0 06     LDY #> $0600
+C - - - - - 0x000060 00:8050: 84 01     STY ram_0000_t02_data + $01
+C - - - - - 0x000062 00:8052: A0 00     LDY #< $0600
+C - - - - - 0x000064 00:8054: 84 00     STY ram_0000_t02_data
 C - - - - - 0x000066 00:8056: A9 00     LDA #$00
 bra_8058_loop:
-C - - - - - 0x000068 00:8058: 91 00     STA (ram_0000),Y    ; 0000-06FF
+C - - - - - 0x000068 00:8058: 91 00     STA (ram_0000_t02_data),Y    ; 0000-06FF
 C - - - - - 0x00006A 00:805A: 88        DEY
 C - - - - - 0x00006B 00:805B: D0 FB     BNE bra_8058_loop
-C - - - - - 0x00006D 00:805D: C6 01     DEC ram_0001
+C - - - - - 0x00006D 00:805D: C6 01     DEC ram_0000_t02_data + $01
 C - - - - - 0x00006F 00:805F: 10 F7     BPL bra_8058_loop
 C - - - - - 0x000071 00:8061: AD 32 07  LDA ram_copy_1_data
 C - - - - - 0x000074 00:8064: 8D 16 03  STA ram_p1_virus_level
@@ -82,9 +82,9 @@ C - - - - - 0x000086 00:8076: 8D 8B 03  STA ram_p2_speed
 C - - - - - 0x000089 00:8079: A2 0A     LDX #$0A
 bra_807B_loop:
 C - - - - - 0x00008B 00:807B: BD 0F 07  LDA ram_reset_check - $01,X
-C - - - - - 0x00008E 00:807E: 85 47     STA ram_0047
+C - - - - - 0x00008E 00:807E: 85 47     STA ram_0047_t15_reset_check_byte
 C - - - - - 0x000090 00:8080: BD ED 9F  LDA tbl_9FEE_reset_check - $01,X
-C - - - - - 0x000093 00:8083: C5 47     CMP ram_0047
+C - - - - - 0x000093 00:8083: C5 47     CMP ram_0047_t15_reset_check_byte
 C - - - - - 0x000095 00:8085: D0 06     BNE bra_808D_check_failed
 C - - - - - 0x000097 00:8087: CA        DEX
 C - - - - - 0x000098 00:8088: D0 F1     BNE bra_807B_loop
@@ -92,6 +92,7 @@ C - - - - - 0x00009A 00:808A: 4C DC 80  JMP loc_80DC_skip
 bra_808D_check_failed:
 ; it means this is the first time the game was launched
 C - - - - - 0x00009D 00:808D: A2 00     LDX #$00
+; set top score 10.000 (0010000)
 C - - - - - 0x00009F 00:808F: A9 00     LDA #$00
 C - - - - - 0x0000A1 00:8091: 8D 00 07  STA ram_score_00000x0_hi
 C - - - - - 0x0000A4 00:8094: 8D 01 07  STA ram_score_0000x00_hi
@@ -100,6 +101,7 @@ C - - - - - 0x0000AA 00:809A: 8D 04 07  STA ram_score_0x00000_hi
 C - - - - - 0x0000AD 00:809D: 8D 05 07  STA ram_score_x000000_hi
 C - - - - - 0x0000B0 00:80A0: A9 01     LDA #$01
 C - - - - - 0x0000B2 00:80A2: 8D 03 07  STA ram_score_00x0000_hi
+; 
 C - - - - - 0x0000B5 00:80A5: A9 00     LDA #$00
 C - - - - - 0x0000B7 00:80A7: 8D 23 07  STA ram_debug_1
 C - - - - - 0x0000BA 00:80AA: 8D 24 07  STA ram_debug_2
@@ -123,15 +125,18 @@ C - - - - - 0x0000E6 00:80D6: 9D 0F 07  STA ram_reset_check - $01,X
 C - - - - - 0x0000E9 00:80D9: CA        DEX
 C - - - - - 0x0000EA 00:80DA: D0 F7     BNE bra_80D3_loop
 loc_80DC_skip:
+; prepare somewhat random numbers for later
 C D 0 - - - 0x0000EC 00:80DC: A2 89     LDX #$89
-C - - - - - 0x0000EE 00:80DE: 86 17     STX ram_0017
+C - - - - - 0x0000EE 00:80DE: 86 17     STX ram_0017_t01
 C - - - - - 0x0000F0 00:80E0: CA        DEX ; 88
-C - - - - - 0x0000F1 00:80E1: 86 18     STX ram_0018
+C - - - - - 0x0000F1 00:80E1: 86 18     STX ram_0017_t01 + $01
 C - - - - - 0x0000F3 00:80E3: A0 00     LDY #$00
-C - - - - - 0x0000F5 00:80E5: 84 FD     STY ram_00FD_for_2005
+; bzk optimize, useless STY
+C - - - - - 0x0000F5 00:80E5: 84 FD     STY ram_00FD_useless
 C - - - - - 0x0000F7 00:80E7: 8C 05 20  STY $2005
 C - - - - - 0x0000FA 00:80EA: A0 00     LDY #$00
-C - - - - - 0x0000FC 00:80EC: 84 FC     STY ram_00FC_for_2005
+; bzk optimize, useless STY
+C - - - - - 0x0000FC 00:80EC: 84 FC     STY ram_00FC_useless
 C - - - - - 0x0000FE 00:80EE: 8C 05 20  STY $2005
 C - - - - - 0x000101 00:80F1: A9 90     LDA #$90
 C - - - - - 0x000103 00:80F3: 85 FF     STA ram_for_2000
@@ -152,13 +157,13 @@ C - - - - - 0x000124 00:8114: 8D 04 01  STA ram_stack + $04
 C - - - - - 0x000127 00:8117: 20 7C B6  JSR sub_B67C
 C - - - - - 0x00012A 00:811A: 20 A2 B6  JSR sub_B6A2
 C - - - - - 0x00012D 00:811D: A9 20     LDA #$20
-C - - - - - 0x00012F 00:811F: 20 AC B6  JSR sub_B6AC_clear_nmt
+C - - - - - 0x00012F 00:811F: 20 AC B6  JSR sub_B6AC_clear_nametable
 C - - - - - 0x000132 00:8122: A9 24     LDA #$24
-C - - - - - 0x000134 00:8124: 20 AC B6  JSR sub_B6AC_clear_nmt
+C - - - - - 0x000134 00:8124: 20 AC B6  JSR sub_B6AC_clear_nametable
 C - - - - - 0x000137 00:8127: A9 28     LDA #$28
-C - - - - - 0x000139 00:8129: 20 AC B6  JSR sub_B6AC_clear_nmt
+C - - - - - 0x000139 00:8129: 20 AC B6  JSR sub_B6AC_clear_nametable
 C - - - - - 0x00013C 00:812C: A9 2C     LDA #$2C
-C - - - - - 0x00013E 00:812E: 20 AC B6  JSR sub_B6AC_clear_nmt
+C - - - - - 0x00013E 00:812E: 20 AC B6  JSR sub_B6AC_clear_nametable
 C - - - - - 0x000141 00:8131: A9 00     LDA #$00
 C - - - - - 0x000143 00:8133: 85 5D     STA ram_005D
 C - - - - - 0x000145 00:8135: 20 C9 90  JSR sub_90C9_fill_0400_05FF_with_FF
@@ -166,8 +171,9 @@ C - - - - - 0x000148 00:8138: 20 95 B6  JSR sub_B695
 C - - - - - 0x00014B 00:813B: 20 54 B6  JSR sub_B654
 C - - - - - 0x00014E 00:813E: 20 89 B6  JSR sub_B689
 C - - - - - 0x000151 00:8141: 20 54 B6  JSR sub_B654
+; bzk optimize, useless LDA + STA
 C - - - - - 0x000154 00:8144: A9 0E     LDA #$0E
-C - - - - - 0x000156 00:8146: 85 34     STA ram_0034
+C - - - - - 0x000156 00:8146: 85 34     STA ram_0034_useless
 loc_8148_infinite_loop:
 C D 0 - - - 0x000158 00:8148: 20 57 81  JSR sub_8157_game_script_handler
 C - - - - - 0x00015B 00:814B: 20 8E 97  JSR sub_978E
@@ -213,6 +219,7 @@ C - - - - - 0x0001A2 00:8192: 8D 06 20  STA $2006
 C - - - - - 0x0001A5 00:8195: A9 EC     LDA #< $20EC
 C - - - - - 0x0001A7 00:8197: 8D 06 20  STA $2006
 C - - - - - 0x0001AA 00:819A: AD 0B 03  LDA ram_p1_speed
+; * 04
 C - - - - - 0x0001AD 00:819D: 0A        ASL
 C - - - - - 0x0001AE 00:819E: 0A        ASL
 C - - - - - 0x0001AF 00:819F: AA        TAX
@@ -227,6 +234,7 @@ C - - - - - 0x0001C4 00:81B4: 8D 06 20  STA $2006
 C - - - - - 0x0001C7 00:81B7: A9 F1     LDA #< $20F1
 C - - - - - 0x0001C9 00:81B9: 8D 06 20  STA $2006
 C - - - - - 0x0001CC 00:81BC: AD 8B 03  LDA ram_p2_speed
+; * 04
 C - - - - - 0x0001CF 00:81BF: 0A        ASL
 C - - - - - 0x0001D0 00:81C0: 0A        ASL
 C - - - - - 0x0001D1 00:81C1: AA        TAX
@@ -263,39 +271,39 @@ C - - - - - 0x000215 00:8205: 60        RTS
 ofs_000_8206_03_prepare_new_game_addresses:
 C - - J - - 0x000216 00:8206: A9 00     LDA #$00
 C - - - - - 0x000218 00:8208: 85 92     STA ram_drop_timer
-C - - - - - 0x00021A 00:820A: 85 57     STA ram_0057
+C - - - - - 0x00021A 00:820A: 85 57     STA ram_0057_temp
 C - - - - - 0x00021C 00:820C: 85 8F     STA ram_combo_counter_1
 C - - - - - 0x00021E 00:820E: 85 A1     STA ram_00A1
 C - - - - - 0x000220 00:8210: 85 98     STA ram_opponent_blocks
 C - - - - - 0x000222 00:8212: 85 97     STA ram_0097_script
-C - - - - - 0x000224 00:8214: 85 87     STA ram_0087
+C - - - - - 0x000224 00:8214: 85 87     STA ram_0087_script
 C - - - - - 0x000226 00:8216: 85 88     STA ram_0088    ; bzk optimize, unused address
 C - - - - - 0x000228 00:8218: 85 89     STA ram_loses
 C - - - - - 0x00022A 00:821A: 85 80     STA ram_row
 C - - - - - 0x00022C 00:821C: 85 90     STA ram_bcd_pill_counter_00xx
 C - - - - - 0x00022E 00:821E: 85 91     STA ram_bcd_pill_counter_xx00
-C - - - - - 0x000230 00:8220: 85 7D     STA ram_007D
+C - - - - - 0x000230 00:8220: 85 7D     STA ram_007D_table_index
 C - - - - - 0x000232 00:8222: 85 A7     STA ram_pill_counter
 C - - - - - 0x000234 00:8224: 8D 28 07  STA ram_0728
 C - - - - - 0x000237 00:8227: 85 75     STA ram_0075
 C - - - - - 0x000239 00:8229: 85 76     STA ram_0075 + $01
 C - - - - - 0x00023B 00:822B: 85 77     STA ram_0075 + $02
 C - - - - - 0x00023D 00:822D: 85 78     STA ram_0078
-C - - - - - 0x00023F 00:822F: 85 79     STA ram_0079
-C - - - - - 0x000241 00:8231: 85 7A     STA ram_007A
+C - - - - - 0x00023F 00:822F: 85 79     STA ram_0078 + $01
+C - - - - - 0x000241 00:8231: 85 7A     STA ram_0078 + $02
 C - - - - - 0x000243 00:8233: 85 72     STA ram_0072_virus_counter
 C - - - - - 0x000245 00:8235: 85 73     STA ram_0072_virus_counter + $01
 C - - - - - 0x000247 00:8237: 85 74     STA ram_0072_virus_counter + $02
 C - - - - - 0x000249 00:8239: 85 7E     STA ram_007E
 C - - - - - 0x00024B 00:823B: 85 61     STA ram_0061
-C - - - - - 0x00024D 00:823D: 85 55     STA ram_0055
+C - - - - - 0x00024D 00:823D: 85 55     STA ram_0055_flag
 C - - - - - 0x00024F 00:823F: 85 3E     STA ram_003E
 C - - - - - 0x000251 00:8241: A9 06     LDA #$06
 C - - - - - 0x000253 00:8243: 85 97     STA ram_0097_script
 C - - - - - 0x000255 00:8245: A9 04     LDA #> ram_playfield_p1
-C - - - - - 0x000257 00:8247: 85 58     STA ram_0058
+C - - - - - 0x000257 00:8247: 85 58     STA ram_0058_temp
 C - - - - - 0x000259 00:8249: A9 FF     LDA #$FF
-C - - - - - 0x00025B 00:824B: 85 54     STA ram_0054
+C - - - - - 0x00025B 00:824B: 85 54     STA ram_0054_flag
 C - - - - - 0x00025D 00:824D: AD 28 07  LDA ram_0728
 C - - - - - 0x000260 00:8250: 85 8A     STA ram_increase_speed
 C - - - - - 0x000262 00:8252: 85 A0     STA ram_copy_increase_speed
@@ -318,20 +326,23 @@ C - - - - - 0x00028A 00:827A: A9 14     LDA #$14
 bra_827C_not_overflow:
 C - - - - - 0x00028C 00:827C: 18        CLC
 C - - - - - 0x00028D 00:827D: 69 01     ADC #$01
+; * 04
 C - - - - - 0x00028F 00:827F: 0A        ASL
 C - - - - - 0x000290 00:8280: 0A        ASL
 C - - - - - 0x000291 00:8281: 8D 28 03  STA ram_0328
 C - - - - - 0x000294 00:8284: AD 96 03  LDA ram_p2_virus_level
 C - - - - - 0x000297 00:8287: 18        CLC
 C - - - - - 0x000298 00:8288: 69 01     ADC #$01
+; * 04
 C - - - - - 0x00029A 00:828A: 0A        ASL
 C - - - - - 0x00029B 00:828B: 0A        ASL
 C - - - - - 0x00029C 00:828C: 8D A8 03  STA ram_03A8
 C - - - - - 0x00029F 00:828F: A9 9F     LDA #$9F
-C - - - - - 0x0002A1 00:8291: 85 52     STA ram_0052
+C - - - - - 0x0002A1 00:8291: 85 52     STA ram_0052_flags
 C - - - - - 0x0002A3 00:8293: AE 31 07  LDX ram_0731_music_index
 C - - - - - 0x0002A6 00:8296: BD 64 A2  LDA tbl_A264_music,X
 C - - - - - 0x0002A9 00:8299: 8D F5 06  STA ram_06F5_music
+; bzk optimize, JMP
 C - - - - - 0x0002AC 00:829C: 20 54 B6  JSR sub_B654
 C - - - - - 0x0002AF 00:829F: 60        RTS
 
@@ -339,21 +350,21 @@ C - - - - - 0x0002AF 00:829F: 60        RTS
 
 sub_82A0_preset_pills_randomizer:
 C - - - - - 0x0002B0 00:82A0: A9 80     LDA #$80
-C - - - - - 0x0002B2 00:82A2: 85 47     STA ram_0047    ; loop counter
+C - - - - - 0x0002B2 00:82A2: 85 47     STA ram_0047_t16_loop_counter
 C - - - - - 0x0002B4 00:82A4: A9 00     LDA #$00
-C - - - - - 0x0002B6 00:82A6: 85 48     STA ram_0048
+C - - - - - 0x0002B6 00:82A6: 85 48     STA ram_0048_t07
 bra_82A8_loop:
 C - - - - - 0x0002B8 00:82A8: A2 17     LDX #$17
 C - - - - - 0x0002BA 00:82AA: A0 02     LDY #$02
 C - - - - - 0x0002BC 00:82AC: 20 71 B7  JSR sub_B771
-C - - - - - 0x0002BF 00:82AF: A6 47     LDX ram_0047    ; loop counter
+C - - - - - 0x0002BF 00:82AF: A6 47     LDX ram_0047_t16_loop_counter
 C - - - - - 0x0002C1 00:82B1: CA        DEX
-C - - - - - 0x0002C2 00:82B2: A5 17     LDA ram_0017
+C - - - - - 0x0002C2 00:82B2: A5 17     LDA ram_0017_t01
 C - - - - - 0x0002C4 00:82B4: 29 0F     AND #$0F
 C - - - - - 0x0002C6 00:82B6: 18        CLC
-C - - - - - 0x0002C7 00:82B7: 65 48     ADC ram_0048
+C - - - - - 0x0002C7 00:82B7: 65 48     ADC ram_0048_t07
 loc_82B9_loop:
-C D 0 - - - 0x0002C9 00:82B9: 85 48     STA ram_0048
+C D 0 - - - 0x0002C9 00:82B9: 85 48     STA ram_0048_t07
 C - - - - - 0x0002CB 00:82BB: C9 09     CMP #$09
 C - - - - - 0x0002CD 00:82BD: 90 06     BCC bra_82C5_not_overflow
 C - - - - - 0x0002CF 00:82BF: 38        SEC
@@ -361,7 +372,7 @@ C - - - - - 0x0002D0 00:82C0: E9 09     SBC #$09
 C - - - - - 0x0002D2 00:82C2: 4C B9 82  JMP loc_82B9_loop
 bra_82C5_not_overflow:
 C - - - - - 0x0002D5 00:82C5: 9D 80 07  STA ram_preset_pills,X
-C - - - - - 0x0002D8 00:82C8: C6 47     DEC ram_0047    ; loop counter
+C - - - - - 0x0002D8 00:82C8: C6 47     DEC ram_0047_t16_loop_counter
 C - - - - - 0x0002DA 00:82CA: D0 DC     BNE bra_82A8_loop
 C - - - - - 0x0002DC 00:82CC: A9 08     LDA #$08
 C - - - - - 0x0002DE 00:82CE: 85 46     STA ram_game_script
@@ -375,6 +386,7 @@ C - - - - - 0x0002E1 00:82D1: 20 C2 B6  JSR sub_B6C2_decompress_data_and_write_t
 C - - - - - 0x0002E6 00:82D6: A9 80     LDA #con_palette + $80
 C - - - - - 0x0002E8 00:82D8: 85 66     STA ram_palette
 C - - - - - 0x0002EA 00:82DA: AD 0B 03  LDA ram_p1_speed
+; * 04
 C - - - - - 0x0002ED 00:82DD: 0A        ASL
 C - - - - - 0x0002EE 00:82DE: 0A        ASL
 C - - - - - 0x0002EF 00:82DF: AA        TAX
@@ -395,7 +407,7 @@ C - - - - - 0x000306 00:82F6: 60        RTS
 
 sub_82F7:
 C - - - - - 0x000307 00:82F7: A9 04     LDA #> ram_playfield_p1
-C - - - - - 0x000309 00:82F9: 85 58     STA ram_0058
+C - - - - - 0x000309 00:82F9: 85 58     STA ram_0058_temp
 C - - - - - 0x00030B 00:82FB: AD 00 03  LDA ram_p1_row
 C - - - - - 0x00030E 00:82FE: 85 80     STA ram_row
 C - - - - - 0x000310 00:8300: 20 21 83  JSR sub_8321
@@ -406,7 +418,7 @@ C - - - - - 0x00031B 00:830B: C9 02     CMP #$02
 C - - - - - 0x00031D 00:830D: D0 11     BNE bra_8320_RTS
 ; if 2 players mode
 C - - - - - 0x00031F 00:830F: A9 05     LDA #> ram_playfield_p2
-C - - - - - 0x000321 00:8311: 85 58     STA ram_0058
+C - - - - - 0x000321 00:8311: 85 58     STA ram_0058_temp
 C - - - - - 0x000323 00:8313: AD 80 03  LDA ram_p2_row
 C - - - - - 0x000326 00:8316: 85 80     STA ram_row
 C - - - - - 0x000328 00:8318: 20 21 83  JSR sub_8321
@@ -434,7 +446,7 @@ C - - - - - 0x000348 00:8338: B9 18 A7  LDA tbl_A717_ppu_addr + $01,Y
 C - - - - - 0x00034B 00:833B: 8D 06 20  STA $2006
 C - - - - - 0x00034E 00:833E: 4C 6A 83  JMP loc_836A
 bra_8341:
-C - - - - - 0x000351 00:8341: A5 58     LDA ram_0058
+C - - - - - 0x000351 00:8341: A5 58     LDA ram_0058_temp
 C - - - - - 0x000353 00:8343: C9 04     CMP #$04
 C - - - - - 0x000355 00:8345: D0 13     BNE bra_835A
 C - - - - - 0x000357 00:8347: A5 80     LDA ram_row
@@ -455,25 +467,26 @@ C - - - - - 0x000374 00:8364: B9 58 A7  LDA tbl_A757_ppu_addr + $01,Y
 C - - - - - 0x000377 00:8367: 8D 06 20  STA $2006
 loc_836A:
 C D 0 - - - 0x00037A 00:836A: A9 00     LDA #$00
-C - - - - - 0x00037C 00:836C: 85 57     STA ram_0057
+C - - - - - 0x00037C 00:836C: 85 57     STA ram_0057_temp
 C - - - - - 0x00037E 00:836E: A5 80     LDA ram_row
+; * 08
 C - - - - - 0x000380 00:8370: 0A        ASL
 C - - - - - 0x000381 00:8371: 0A        ASL
 C - - - - - 0x000382 00:8372: 0A        ASL
 C - - - - - 0x000383 00:8373: A8        TAY
 C - - - - - 0x000384 00:8374: A2 08     LDX #$08
 bra_8376_loop:
-C - - - - - 0x000386 00:8376: B1 57     LDA (ram_0057),Y    ; 0400-047F, 0500-057F
+C - - - - - 0x000386 00:8376: B1 57     LDA (ram_0057_temp),Y    ; 0400-047F, 0500-057F
 C - - - - - 0x000388 00:8378: 29 F0     AND #$F0
 C - - - - - 0x00038A 00:837A: C9 B0     CMP #$B0
 C - - - - - 0x00038C 00:837C: D0 09     BNE bra_8387
-C - - - - - 0x00038E 00:837E: B1 57     LDA (ram_0057),Y    ; 0438-047F, 0563 0564 0570 0571 0572 0573
+C - - - - - 0x00038E 00:837E: B1 57     LDA (ram_0057_temp),Y    ; 0438-047F, 0563 0564 0570 0571 0572 0573
 C - - - - - 0x000390 00:8380: 29 0F     AND #$0F
 C - - - - - 0x000392 00:8382: 09 F0     ORA #$F0
 ; bzk optimize, BNE
 C - - - - - 0x000394 00:8384: 4C 89 83  JMP loc_8389
 bra_8387:
-C - - - - - 0x000397 00:8387: B1 57     LDA (ram_0057),Y    ; 0400-047F, 0500-057F
+C - - - - - 0x000397 00:8387: B1 57     LDA (ram_0057_temp),Y    ; 0400-047F, 0500-057F
 loc_8389:
 C D 0 - - - 0x000399 00:8389: 8D 07 20  STA $2007
 C - - - - - 0x00039C 00:838C: C8        INY
@@ -494,8 +507,9 @@ C - - - - - 0x0003AA 00:839A: A5 68     LDA ram_0068
 C - - - - - 0x0003AC 00:839C: F0 03     BEQ bra_83A1
 C - - - - - 0x0003AE 00:839E: 4C 08 85  JMP loc_8508_set_attributes
 bra_83A1:
-C - - - - - 0x0003B1 00:83A1: A5 52     LDA ram_0052
+C - - - - - 0x0003B1 00:83A1: A5 52     LDA ram_0052_flags
 C - - - - - 0x0003B3 00:83A3: D0 03     BNE bra_83A8
+; if con_0052_00
 C - - - - - 0x0003B5 00:83A5: 4C 07 85  JMP loc_8507_RTS
 bra_83A8:
 C - - - - - 0x0003B8 00:83A8: AD 27 07  LDA ram_plr_counter
@@ -504,8 +518,8 @@ C - - - - - 0x0003BD 00:83AD: F0 03     BEQ bra_83B2
 ; if 2 players mode
 C - - - - - 0x0003BF 00:83AF: 4C 6E 84  JMP loc_846E
 bra_83B2:
-C - - - - - 0x0003C2 00:83B2: A5 52     LDA ram_0052
-C - - - - - 0x0003C4 00:83B4: 29 04     AND #$04
+C - - - - - 0x0003C2 00:83B2: A5 52     LDA ram_0052_flags
+C - - - - - 0x0003C4 00:83B4: 29 04     AND #con_0052_04
 C - - - - - 0x0003C6 00:83B6: F0 34     BEQ bra_83EC
 C - - - - - 0x0003C8 00:83B8: A9 21     LDA #> $2162
 C - - - - - 0x0003CA 00:83BA: 8D 06 20  STA $2006
@@ -523,12 +537,12 @@ C - - - - - 0x0003EA 00:83DA: AD 2A 07  LDA ram_score_0000x00_plr
 C - - - - - 0x0003ED 00:83DD: 8D 07 20  STA $2007
 C - - - - - 0x0003F0 00:83E0: AD 29 07  LDA ram_score_00000x0_plr
 C - - - - - 0x0003F3 00:83E3: 8D 07 20  STA $2007
-C - - - - - 0x0003F6 00:83E6: A5 52     LDA ram_0052
-C - - - - - 0x0003F8 00:83E8: 29 FB     AND #$FB
-C - - - - - 0x0003FA 00:83EA: 85 52     STA ram_0052
+C - - - - - 0x0003F6 00:83E6: A5 52     LDA ram_0052_flags
+C - - - - - 0x0003F8 00:83E8: 29 FB     AND #con_0052_04 ^ $FF
+C - - - - - 0x0003FA 00:83EA: 85 52     STA ram_0052_flags
 bra_83EC:
-C - - - - - 0x0003FC 00:83EC: A5 52     LDA ram_0052
-C - - - - - 0x0003FE 00:83EE: 29 08     AND #$08
+C - - - - - 0x0003FC 00:83EC: A5 52     LDA ram_0052_flags
+C - - - - - 0x0003FE 00:83EE: 29 08     AND #con_0052_08
 C - - - - - 0x000400 00:83F0: F0 34     BEQ bra_8426
 C - - - - - 0x000402 00:83F2: A9 21     LDA #> $2102
 C - - - - - 0x000404 00:83F4: 8D 06 20  STA $2006
@@ -546,12 +560,12 @@ C - - - - - 0x000424 00:8414: AD 01 07  LDA ram_score_0000x00_hi
 C - - - - - 0x000427 00:8417: 8D 07 20  STA $2007
 C - - - - - 0x00042A 00:841A: AD 00 07  LDA ram_score_00000x0_hi
 C - - - - - 0x00042D 00:841D: 8D 07 20  STA $2007
-C - - - - - 0x000430 00:8420: A5 52     LDA ram_0052
-C - - - - - 0x000432 00:8422: 29 F7     AND #$F7
-C - - - - - 0x000434 00:8424: 85 52     STA ram_0052
+C - - - - - 0x000430 00:8420: A5 52     LDA ram_0052_flags
+C - - - - - 0x000432 00:8422: 29 F7     AND #con_0052_08 ^ $FF
+C - - - - - 0x000434 00:8424: 85 52     STA ram_0052_flags
 bra_8426:
-C - - - - - 0x000436 00:8426: A5 52     LDA ram_0052
-C - - - - - 0x000438 00:8428: 29 10     AND #$10
+C - - - - - 0x000436 00:8426: A5 52     LDA ram_0052_flags
+C - - - - - 0x000438 00:8428: 29 10     AND #con_0052_10
 C - - - - - 0x00043A 00:842A: F0 23     BEQ bra_844F
 C - - - - - 0x00043C 00:842C: A9 23     LDA #> $233B
 C - - - - - 0x00043E 00:842E: 8D 06 20  STA $2006
@@ -559,6 +573,7 @@ C - - - - - 0x000441 00:8431: A9 3B     LDA #< $233B
 C - - - - - 0x000443 00:8433: 8D 06 20  STA $2006
 C - - - - - 0x000446 00:8436: AD 24 03  LDA ram_p1_virus_counter
 C - - - - - 0x000449 00:8439: 29 F0     AND #$F0
+; / 10
 C - - - - - 0x00044B 00:843B: 4A        LSR
 C - - - - - 0x00044C 00:843C: 4A        LSR
 C - - - - - 0x00044D 00:843D: 4A        LSR
@@ -567,12 +582,12 @@ C - - - - - 0x00044F 00:843F: 8D 07 20  STA $2007
 C - - - - - 0x000452 00:8442: A5 A4     LDA ram_virus_counter
 C - - - - - 0x000454 00:8444: 29 0F     AND #$0F
 C - - - - - 0x000456 00:8446: 8D 07 20  STA $2007
-C - - - - - 0x000459 00:8449: A5 52     LDA ram_0052
-C - - - - - 0x00045B 00:844B: 29 EF     AND #$EF
-C - - - - - 0x00045D 00:844D: 85 52     STA ram_0052
+C - - - - - 0x000459 00:8449: A5 52     LDA ram_0052_flags
+C - - - - - 0x00045B 00:844B: 29 EF     AND #con_0052_10 ^ $FF
+C - - - - - 0x00045D 00:844D: 85 52     STA ram_0052_flags
 bra_844F:
-C - - - - - 0x00045F 00:844F: A5 52     LDA ram_0052
-C - - - - - 0x000461 00:8451: 29 02     AND #$02
+C - - - - - 0x00045F 00:844F: A5 52     LDA ram_0052_flags
+C - - - - - 0x000461 00:8451: 29 02     AND #con_0052_02
 C - - - - - 0x000463 00:8453: F0 19     BEQ bra_846E
 C - - - - - 0x000465 00:8455: A9 22     LDA #> $227B
 C - - - - - 0x000467 00:8457: 8D 06 20  STA $2006
@@ -581,9 +596,9 @@ C - - - - - 0x00046C 00:845C: 8D 06 20  STA $2006
 C - - - - - 0x00046F 00:845F: AE 16 03  LDX ram_p1_virus_level
 C - - - - - 0x000472 00:8462: BD 77 A7  LDA tbl_A777,X
 C - - - - - 0x000475 00:8465: 20 4E 86  JSR sub_864E_write_number_to_ppu
-C - - - - - 0x000478 00:8468: A5 52     LDA ram_0052
-C - - - - - 0x00047A 00:846A: 29 FD     AND #$FD
-C - - - - - 0x00047C 00:846C: 85 52     STA ram_0052
+C - - - - - 0x000478 00:8468: A5 52     LDA ram_0052_flags
+C - - - - - 0x00047A 00:846A: 29 FD     AND #con_0052_02 ^ $FF
+C - - - - - 0x00047C 00:846C: 85 52     STA ram_0052_flags
 bra_846E:
 loc_846E:
 C D 0 - - - 0x00047E 00:846E: AD 27 07  LDA ram_plr_counter
@@ -592,8 +607,8 @@ C - - - - - 0x000483 00:8473: F0 03     BEQ bra_8478
 ; if 1 player mode
 C - - - - - 0x000485 00:8475: 4C 07 85  JMP loc_8507_RTS
 bra_8478:
-C - - - - - 0x000488 00:8478: A5 52     LDA ram_0052
-C - - - - - 0x00048A 00:847A: 29 80     AND #$80
+C - - - - - 0x000488 00:8478: A5 52     LDA ram_0052_flags
+C - - - - - 0x00048A 00:847A: 29 80     AND #con_0052_80
 C - - - - - 0x00048C 00:847C: D0 03     BNE bra_8481
 C - - - - - 0x00048E 00:847E: 4C 07 85  JMP loc_8507_RTS
 bra_8481:
@@ -603,24 +618,24 @@ C - - - - - 0x000496 00:8486: 0A        ASL
 C - - - - - 0x000497 00:8487: AA        TAX
 C - - - - - 0x000498 00:8488: CA        DEX
 C - - - - - 0x000499 00:8489: CA        DEX
-C - - - - - 0x00049A 00:848A: BD 96 A3  LDA tbl_A396_ppu_addr,X
+C - - - - - 0x00049A 00:848A: BD 96 A3  LDA tbl_A396_ppu_addr_p1_wins,X
 C - - - - - 0x00049D 00:848D: 8D 06 20  STA $2006
-C - - - - - 0x0004A0 00:8490: 85 48     STA ram_0048
-C - - - - - 0x0004A2 00:8492: BD 97 A3  LDA tbl_A396_ppu_addr + $01,X
+C - - - - - 0x0004A0 00:8490: 85 48     STA ram_0048_t02_ppu_addr_hi
+C - - - - - 0x0004A2 00:8492: BD 97 A3  LDA tbl_A396_ppu_addr_p1_wins + $01,X
 C - - - - - 0x0004A5 00:8495: 8D 06 20  STA $2006
-C - - - - - 0x0004A8 00:8498: 85 47     STA ram_0047
+C - - - - - 0x0004A8 00:8498: 85 47     STA ram_0047_t06_ppu_addr_lo
 C - - - - - 0x0004AA 00:849A: A9 5C     LDA #con_tile + $5C
 C - - - - - 0x0004AC 00:849C: 8D 07 20  STA $2007
 C - - - - - 0x0004AF 00:849F: A9 5D     LDA #con_tile + $5D
 C - - - - - 0x0004B1 00:84A1: 8D 07 20  STA $2007
-C - - - - - 0x0004B4 00:84A4: A5 47     LDA ram_0047
+C - - - - - 0x0004B4 00:84A4: A5 47     LDA ram_0047_t06_ppu_addr_lo
 C - - - - - 0x0004B6 00:84A6: 18        CLC
 C - - - - - 0x0004B7 00:84A7: 69 20     ADC #< $0020
-C - - - - - 0x0004B9 00:84A9: 85 47     STA ram_0047
+C - - - - - 0x0004B9 00:84A9: 85 47     STA ram_0047_t06_ppu_addr_lo
 C - - - - - 0x0004BB 00:84AB: A9 00     LDA #> $0020
-C - - - - - 0x0004BD 00:84AD: 65 48     ADC ram_0048
+C - - - - - 0x0004BD 00:84AD: 65 48     ADC ram_0048_t02_ppu_addr_hi
 C - - - - - 0x0004BF 00:84AF: 8D 06 20  STA $2006
-C - - - - - 0x0004C2 00:84B2: A5 47     LDA ram_0047
+C - - - - - 0x0004C2 00:84B2: A5 47     LDA ram_0047_t06_ppu_addr_lo
 C - - - - - 0x0004C4 00:84B4: 8D 06 20  STA $2006
 C - - - - - 0x0004C7 00:84B7: A9 6C     LDA #con_tile + $6C
 C - - - - - 0x0004C9 00:84B9: 8D 07 20  STA $2007
@@ -633,33 +648,33 @@ C - - - - - 0x0004D6 00:84C6: 0A        ASL
 C - - - - - 0x0004D7 00:84C7: AA        TAX
 C - - - - - 0x0004D8 00:84C8: CA        DEX
 C - - - - - 0x0004D9 00:84C9: CA        DEX
-C - - - - - 0x0004DA 00:84CA: BD 9C A3  LDA tbl_A39C,X
+C - - - - - 0x0004DA 00:84CA: BD 9C A3  LDA tbl_A39C_ppu_addr_p2_wins,X
 C - - - - - 0x0004DD 00:84CD: 8D 06 20  STA $2006
-C - - - - - 0x0004E0 00:84D0: 85 48     STA ram_0048
-C - - - - - 0x0004E2 00:84D2: BD 9D A3  LDA tbl_A39C + $01,X
+C - - - - - 0x0004E0 00:84D0: 85 48     STA ram_0048_t03_ppu_addr_hi
+C - - - - - 0x0004E2 00:84D2: BD 9D A3  LDA tbl_A39C_ppu_addr_p2_wins + $01,X
 C - - - - - 0x0004E5 00:84D5: 8D 06 20  STA $2006
-C - - - - - 0x0004E8 00:84D8: 85 47     STA ram_0047
+C - - - - - 0x0004E8 00:84D8: 85 47     STA ram_0047_t07_ppu_addr_lo
 C - - - - - 0x0004EA 00:84DA: A9 5C     LDA #con_tile + $5C
 C - - - - - 0x0004EC 00:84DC: 8D 07 20  STA $2007
 C - - - - - 0x0004EF 00:84DF: A9 5D     LDA #con_tile + $5D
 C - - - - - 0x0004F1 00:84E1: 8D 07 20  STA $2007
-C - - - - - 0x0004F4 00:84E4: A5 47     LDA ram_0047
+C - - - - - 0x0004F4 00:84E4: A5 47     LDA ram_0047_t07_ppu_addr_lo
 C - - - - - 0x0004F6 00:84E6: 18        CLC
 C - - - - - 0x0004F7 00:84E7: 69 20     ADC #< $0020
-C - - - - - 0x0004F9 00:84E9: 85 47     STA ram_0047
+C - - - - - 0x0004F9 00:84E9: 85 47     STA ram_0047_t07_ppu_addr_lo
 C - - - - - 0x0004FB 00:84EB: A9 00     LDA #> $0020
-C - - - - - 0x0004FD 00:84ED: 65 48     ADC ram_0048
+C - - - - - 0x0004FD 00:84ED: 65 48     ADC ram_0048_t03_ppu_addr_hi
 C - - - - - 0x0004FF 00:84EF: 8D 06 20  STA $2006
-C - - - - - 0x000502 00:84F2: A5 47     LDA ram_0047
+C - - - - - 0x000502 00:84F2: A5 47     LDA ram_0047_t07_ppu_addr_lo
 C - - - - - 0x000504 00:84F4: 8D 06 20  STA $2006
 C - - - - - 0x000507 00:84F7: A9 6C     LDA #con_tile + $6C
 C - - - - - 0x000509 00:84F9: 8D 07 20  STA $2007
 C - - - - - 0x00050C 00:84FC: A9 6D     LDA #con_tile + $6D
 C - - - - - 0x00050E 00:84FE: 8D 07 20  STA $2007
 bra_8501:
-C - - - - - 0x000511 00:8501: A5 52     LDA ram_0052
+C - - - - - 0x000511 00:8501: A5 52     LDA ram_0052_flags
 C - - - - - 0x000513 00:8503: 25 7F     AND ram_007F
-C - - - - - 0x000515 00:8505: 85 52     STA ram_0052
+C - - - - - 0x000515 00:8505: 85 52     STA ram_0052_flags
 loc_8507_RTS:   ; bzk optimize
 C D 0 - - - 0x000517 00:8507: 60        RTS
 
@@ -847,14 +862,19 @@ C - - - - - 0x00065D 00:864D: 60        RTS
 
 
 sub_864E_write_number_to_ppu:
-C - - - - - 0x00065E 00:864E: 85 47     STA ram_0047
+; in
+    ; A
+        ; .... xxxx = 
+        ; xxxx .... = 
+C - - - - - 0x00065E 00:864E: 85 47     STA ram_0047_t05
 C - - - - - 0x000660 00:8650: 29 F0     AND #$F0
+; / 10
 C - - - - - 0x000662 00:8652: 4A        LSR
 C - - - - - 0x000663 00:8653: 4A        LSR
 C - - - - - 0x000664 00:8654: 4A        LSR
 C - - - - - 0x000665 00:8655: 4A        LSR
 C - - - - - 0x000666 00:8656: 8D 07 20  STA $2007
-C - - - - - 0x000669 00:8659: A5 47     LDA ram_0047
+C - - - - - 0x000669 00:8659: A5 47     LDA ram_0047_t05
 C - - - - - 0x00066B 00:865B: 29 0F     AND #$0F
 C - - - - - 0x00066D 00:865D: 8D 07 20  STA $2007
 C - - - - - 0x000670 00:8660: 60        RTS
@@ -869,7 +889,8 @@ C - - - - - 0x000677 00:8667: B0 64     BCS bra_86CD
 C - - - - - 0x000679 00:8669: A5 43     LDA ram_frm_cnt
 C - - - - - 0x00067B 00:866B: 29 07     AND #$07
 C - - - - - 0x00067D 00:866D: D0 23     BNE bra_8692_RTS
-C - - - - - 0x00067F 00:866F: A5 7F     LDA ram_007F    ; bzk optimize, LDX
+; bzk optimize, LDX
+C - - - - - 0x00067F 00:866F: A5 7F     LDA ram_007F
 C - - - - - 0x000681 00:8671: AA        TAX
 C - - - - - 0x000682 00:8672: A9 01     LDA #con_sfx_1_01
 C - - - - - 0x000684 00:8674: 8D F1 06  STA ram_sfx_1
@@ -892,6 +913,7 @@ C - - - - - 0x0006A2 00:8692: 60        RTS
 sub_8693_print_text:
 C - - - - - 0x0006A3 00:8693: D0 18     BNE bra_86AD_not_speed_print
 C - - - - - 0x0006A5 00:8695: A5 8B     LDA ram_speed
+; * 04
 C - - - - - 0x0006A7 00:8697: 0A        ASL
 C - - - - - 0x0006A8 00:8698: 0A        ASL
 C - - - - - 0x0006A9 00:8699: AA        TAX
@@ -909,6 +931,7 @@ C - - - - - 0x0006C1 00:86B1: A6 96     LDX ram_virus_level
 C - - - - - 0x0006C3 00:86B3: CA        DEX
 C - - - - - 0x0006C4 00:86B4: BD 77 A7  LDA tbl_A777,X
 C - - - - - 0x0006C7 00:86B7: 29 F0     AND #$F0
+; / 10
 C - - - - - 0x0006C9 00:86B9: 4A        LSR
 C - - - - - 0x0006CA 00:86BA: 4A        LSR
 C - - - - - 0x0006CB 00:86BB: 4A        LSR
@@ -986,27 +1009,29 @@ C - - - - - 0x00072F 00:871F: AD 27 07  LDA ram_plr_counter
 C - - - - - 0x000732 00:8722: 38        SEC
 C - - - - - 0x000733 00:8723: E9 01     SBC #$01
 C - - - - - 0x000735 00:8725: 0A        ASL
-C - - - - - 0x000736 00:8726: 85 47     STA ram_0047
-C - - - - - 0x000738 00:8728: A5 58     LDA ram_0058
+C - - - - - 0x000736 00:8726: 85 47     STA ram_0047_t08
+C - - - - - 0x000738 00:8728: A5 58     LDA ram_0058_temp
 C - - - - - 0x00073A 00:872A: 38        SEC
 C - - - - - 0x00073B 00:872B: E9 04     SBC #$04
 C - - - - - 0x00073D 00:872D: 18        CLC
-C - - - - - 0x00073E 00:872E: 65 47     ADC ram_0047
+C - - - - - 0x00073E 00:872E: 65 47     ADC ram_0047_t08
 C - - - - - 0x000740 00:8730: A8        TAY
 C - - - - - 0x000741 00:8731: B9 FB A6  LDA tbl_A6FB,Y
-C - - - - - 0x000744 00:8734: 85 47     STA ram_0047
+C - - - - - 0x000744 00:8734: 85 47     STA ram_0047_t09
 C - - - - - 0x000746 00:8736: A5 85     LDA ram_pill_pos_X
+; * 08
 C - - - - - 0x000748 00:8738: 0A        ASL
 C - - - - - 0x000749 00:8739: 0A        ASL
 C - - - - - 0x00074A 00:873A: 0A        ASL
 C - - - - - 0x00074B 00:873B: 18        CLC
-C - - - - - 0x00074C 00:873C: 65 47     ADC ram_0047
+C - - - - - 0x00074C 00:873C: 65 47     ADC ram_0047_t09
 C - - - - - 0x00074E 00:873E: 85 44     STA ram_spr_pos_X
 C - - - - - 0x000750 00:8740: A6 86     LDX ram_pill_pos_Y
 C - - - - - 0x000752 00:8742: BD 84 A4  LDA tbl_A484,X
 C - - - - - 0x000755 00:8745: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x000757 00:8747: A4 42     LDY ram_oam_index
 C - - - - - 0x000759 00:8749: A5 A6     LDA ram_00A6
+; * 04
 C - - - - - 0x00075B 00:874B: 0A        ASL
 C - - - - - 0x00075C 00:874C: 0A        ASL
 C - - - - - 0x00075D 00:874D: 18        CLC
@@ -1016,19 +1041,20 @@ C - - - - - 0x000761 00:8751: BD 94 A4  LDA tbl_A494_index,X
 C - - - - - 0x000764 00:8754: AA        TAX
 ; 00
 C - - - - - 0x000765 00:8755: A5 81     LDA ram_pill_color
-C - - - - - 0x000767 00:8757: 85 47     STA ram_0047
+C - - - - - 0x000767 00:8757: 85 47     STA ram_0047_t10_spr_T
 C - - - - - 0x000769 00:8759: 20 72 87  JSR sub_8772
 ; 01
 C - - - - - 0x00076C 00:875C: A5 82     LDA ram_pill_color + $01
-C - - - - - 0x00076E 00:875E: 85 47     STA ram_0047
+C - - - - - 0x00076E 00:875E: 85 47     STA ram_0047_t10_spr_T
 C - - - - - 0x000770 00:8760: 20 72 87  JSR sub_8772
 ; 02 bzk optimize, no sprite data for it
 C - - - - - 0x000773 00:8763: A5 83     LDA ram_pill_color + $02
-C - - - - - 0x000775 00:8765: 85 47     STA ram_0047
+C - - - - - 0x000775 00:8765: 85 47     STA ram_0047_t10_spr_T
 C - - - - - 0x000777 00:8767: 20 72 87  JSR sub_8772
 ; 03 bzk optimize, no sprite data for it
 C - - - - - 0x00077A 00:876A: A5 84     LDA ram_pill_color + $03
-C - - - - - 0x00077C 00:876C: 85 47     STA ram_0047
+C - - - - - 0x00077C 00:876C: 85 47     STA ram_0047_t10_spr_T
+; bzk optimize, JMP
 C - - - - - 0x00077E 00:876E: 20 72 87  JSR sub_8772
 C - - - - - 0x000781 00:8771: 60        RTS
 
@@ -1045,7 +1071,7 @@ C - - - - - 0x00078F 00:877F: E8        INX
 C - - - - - 0x000790 00:8780: C8        INY
 C - - - - - 0x000791 00:8781: BD A0 A4  LDA tbl_A4A0_pill_spr_data,X
 C - - - - - 0x000794 00:8784: 18        CLC
-C - - - - - 0x000795 00:8785: 65 47     ADC ram_0047
+C - - - - - 0x000795 00:8785: 65 47     ADC ram_0047_t10_spr_T
 C - - - - - 0x000797 00:8787: 99 00 02  STA ram_spr_T - $01,Y
 C - - - - - 0x00079A 00:878A: E8        INX
 C - - - - - 0x00079B 00:878B: C8        INY
@@ -1066,7 +1092,7 @@ C - - - - - 0x0007B1 00:87A1: 60        RTS
 
 
 sub_87A2:
-C - - - - - 0x0007B2 00:87A2: 20 C9 89  JSR sub_89C9
+C - - - - - 0x0007B2 00:87A2: 20 C9 89  JSR sub_89C9_change_chr_bank_1
 C - - - - - 0x0007B5 00:87A5: AD 27 07  LDA ram_plr_counter
 C - - - - - 0x0007B8 00:87A8: C9 01     CMP #$01
 C - - - - - 0x0007BA 00:87AA: D0 26     BNE bra_87D2
@@ -1090,7 +1116,7 @@ C - - - - - 0x0007DF 00:87CF: 4C 6B 88  JMP loc_886B_RTS
 bra_87D2:
 C - - - - - 0x0007E2 00:87D2: A5 61     LDA ram_0061
 C - - - - - 0x0007E4 00:87D4: D0 4C     BNE bra_8822
-C - - - - - 0x0007E6 00:87D6: A5 55     LDA ram_0055
+C - - - - - 0x0007E6 00:87D6: A5 55     LDA ram_0055_flag
 C - - - - - 0x0007E8 00:87D8: D0 48     BNE bra_8822
 C - - - - - 0x0007EA 00:87DA: AD 1A 03  LDA ram_p1_next_pill_color
 C - - - - - 0x0007ED 00:87DD: 85 9A     STA ram_next_pill_color
@@ -1160,7 +1186,7 @@ C D 0 - - - 0x00087B 00:886B: 60        RTS
 
 
 sub_886C:
-C - - - - - 0x00087C 00:886C: A5 55     LDA ram_0055
+C - - - - - 0x00087C 00:886C: A5 55     LDA ram_0055_flag
 C - - - - - 0x00087E 00:886E: F0 1C     BEQ bra_888C
 C - - - - - 0x000880 00:8870: AA        TAX
 C - - - - - 0x000881 00:8871: BD 0B A1  LDA tbl_A10B,X
@@ -1169,6 +1195,7 @@ C - - - - - 0x000886 00:8876: A9 A7     LDA #$A7
 C - - - - - 0x000888 00:8878: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x00088A 00:887A: A5 43     LDA ram_frm_cnt
 C - - - - - 0x00088C 00:887C: 29 08     AND #$08
+; / 08
 C - - - - - 0x00088E 00:887E: 4A        LSR
 C - - - - - 0x00088F 00:887F: 4A        LSR
 C - - - - - 0x000890 00:8880: 4A        LSR
@@ -1190,6 +1217,7 @@ C - - - - - 0x0008AC 00:889C: 85 53     STA ram_spr_animation_id
 C - - - - - 0x0008AE 00:889E: 20 F6 88  JSR sub_88F6_display_sprite_animtion
 C - - - - - 0x0008B1 00:88A1: A5 43     LDA ram_frm_cnt
 C - - - - - 0x0008B3 00:88A3: 29 04     AND #$04
+; / 04
 C - - - - - 0x0008B5 00:88A5: 4A        LSR
 C - - - - - 0x0008B6 00:88A6: 4A        LSR
 C - - - - - 0x0008B7 00:88A7: AA        TAX
@@ -1205,21 +1233,23 @@ C D 0 - - - 0x0008C0 00:88B0: 60        RTS
 sub_88B1:
 C - - - - - 0x0008C1 00:88B1: A5 A2     LDA ram_00A2
 C - - - - - 0x0008C3 00:88B3: 29 01     AND #$01
+; * 0
 C - - - - - 0x0008C5 00:88B5: 0A        ASL
 C - - - - - 0x0008C6 00:88B6: 0A        ASL
-C - - - - - 0x0008C7 00:88B7: 85 47     STA ram_0047
-C - - - - - 0x0008C9 00:88B9: A6 7D     LDX ram_007D
+C - - - - - 0x0008C7 00:88B7: 85 47     STA ram_0047_t17
+C - - - - - 0x0008C9 00:88B9: A6 7D     LDX ram_007D_table_index
 C - - - - - 0x0008CB 00:88BB: BD 01 A4  LDA tbl_A401,X
 C - - - - - 0x0008CE 00:88BE: 18        CLC
-C - - - - - 0x0008CF 00:88BF: 65 47     ADC ram_0047
+C - - - - - 0x0008CF 00:88BF: 65 47     ADC ram_0047_t17
 C - - - - - 0x0008D1 00:88C1: 85 44     STA ram_spr_pos_X
 C - - - - - 0x0008D3 00:88C3: BD 1B A4  LDA tbl_A41B,X
 C - - - - - 0x0008D6 00:88C6: 18        CLC
-C - - - - - 0x0008D7 00:88C7: 65 47     ADC ram_0047
+C - - - - - 0x0008D7 00:88C7: 65 47     ADC ram_0047_t17
 C - - - - - 0x0008D9 00:88C9: 85 45     STA ram_spr_pos_Y
 sub_88CB:
 C - - - - - 0x0008DB 00:88CB: A4 42     LDY ram_oam_index
 C - - - - - 0x0008DD 00:88CD: A5 A3     LDA ram_00A3
+; * 04
 C - - - - - 0x0008DF 00:88CF: 0A        ASL
 C - - - - - 0x0008E0 00:88D0: 0A        ASL
 C - - - - - 0x0008E1 00:88D1: 18        CLC
@@ -1229,19 +1259,19 @@ C - - - - - 0x0008E5 00:88D5: BD 94 A4  LDA tbl_A494_index,X
 C - - - - - 0x0008E8 00:88D8: AA        TAX
 ; 00
 C - - - - - 0x0008E9 00:88D9: A5 9A     LDA ram_next_pill_color
-C - - - - - 0x0008EB 00:88DB: 85 47     STA ram_0047
+C - - - - - 0x0008EB 00:88DB: 85 47     STA ram_0047_t10_spr_T
 C - - - - - 0x0008ED 00:88DD: 20 72 87  JSR sub_8772
 ; 01
 C - - - - - 0x0008F0 00:88E0: A5 9B     LDA ram_next_pill_color + $01
-C - - - - - 0x0008F2 00:88E2: 85 47     STA ram_0047
+C - - - - - 0x0008F2 00:88E2: 85 47     STA ram_0047_t10_spr_T
 C - - - - - 0x0008F4 00:88E4: 20 72 87  JSR sub_8772
 ; 02 bzk optimize, no sprite data for it
 C - - - - - 0x0008F7 00:88E7: A5 9C     LDA ram_next_pill_color + $02
-C - - - - - 0x0008F9 00:88E9: 85 47     STA ram_0047
+C - - - - - 0x0008F9 00:88E9: 85 47     STA ram_0047_t10_spr_T
 C - - - - - 0x0008FB 00:88EB: 20 72 87  JSR sub_8772
 ; 03 bzk optimize, no sprite data for it
 C - - - - - 0x0008FE 00:88EE: A5 9D     LDA ram_next_pill_color + $03
-C - - - - - 0x000900 00:88F0: 85 47     STA ram_0047
+C - - - - - 0x000900 00:88F0: 85 47     STA ram_0047_t10_spr_T
 C - - - - - 0x000902 00:88F2: 20 72 87  JSR sub_8772
 C - - - - - 0x000905 00:88F5: 60        RTS
 
@@ -1249,20 +1279,20 @@ C - - - - - 0x000905 00:88F5: 60        RTS
 
 sub_88F6_display_sprite_animtion:
 ; bzk optimize, delete CLC and use ASL instead of ROL
-; bzk bug, if nmi happens during this code, it messes up ram_0048 because of 0x0037DF
+; bzk bug, if nmi happens during this code, it messes up ram_0047_t18_sprite_data + $01 (0048) because of 0x0037DF
 C - - - - - 0x000906 00:88F6: 18        CLC
 C - - - - - 0x000907 00:88F7: A5 53     LDA ram_spr_animation_id
 C - - - - - 0x000909 00:88F9: 2A        ROL
 C - - - - - 0x00090A 00:88FA: AA        TAX
-C - - - - - 0x00090B 00:88FB: BD C2 A8  LDA tbl_A8C2_spr_data,X
-C - - - - - 0x00090E 00:88FE: 85 47     STA ram_0047
+C - - - - - 0x00090B 00:88FB: BD C2 A8  LDA tbl_A8C2_sprite_data,X
+C - - - - - 0x00090E 00:88FE: 85 47     STA ram_0047_t18_sprite_data
 C - - - - - 0x000910 00:8900: E8        INX
-C - - - - - 0x000911 00:8901: BD C2 A8  LDA tbl_A8C2_spr_data,X
-C - - - - - 0x000914 00:8904: 85 48     STA ram_0048
+C - - - - - 0x000911 00:8901: BD C2 A8  LDA tbl_A8C2_sprite_data,X
+C - - - - - 0x000914 00:8904: 85 48     STA ram_0047_t18_sprite_data + $01
 C - - - - - 0x000916 00:8906: A6 42     LDX ram_oam_index
 C - - - - - 0x000918 00:8908: A0 00     LDY #$00
 loc_890A_loop:
-C D 0 - - - 0x00091A 00:890A: B1 47     LDA (ram_0047),Y
+C D 0 - - - 0x00091A 00:890A: B1 47     LDA (ram_0047_t18_sprite_data),Y
 C - - - - - 0x00091C 00:890C: C9 80     CMP #$80
 C - - - - - 0x00091E 00:890E: F0 2A     BEQ bra_893A_RTS
 C - - - - - 0x000920 00:8910: 18        CLC
@@ -1270,15 +1300,15 @@ C - - - - - 0x000921 00:8911: 65 45     ADC ram_spr_pos_Y
 C - - - - - 0x000923 00:8913: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x000926 00:8916: E8        INX
 C - - - - - 0x000927 00:8917: C8        INY
-C - - - - - 0x000928 00:8918: B1 47     LDA (ram_0047),Y
+C - - - - - 0x000928 00:8918: B1 47     LDA (ram_0047_t18_sprite_data),Y
 C - - - - - 0x00092A 00:891A: 9D 00 02  STA ram_spr_T - $01,X
 C - - - - - 0x00092D 00:891D: E8        INX
 C - - - - - 0x00092E 00:891E: C8        INY
-C - - - - - 0x00092F 00:891F: B1 47     LDA (ram_0047),Y
+C - - - - - 0x00092F 00:891F: B1 47     LDA (ram_0047_t18_sprite_data),Y
 C - - - - - 0x000931 00:8921: 9D 00 02  STA ram_spr_A - $02,X
 C - - - - - 0x000934 00:8924: E8        INX
 C - - - - - 0x000935 00:8925: C8        INY
-C - - - - - 0x000936 00:8926: B1 47     LDA (ram_0047),Y
+C - - - - - 0x000936 00:8926: B1 47     LDA (ram_0047_t18_sprite_data),Y
 C - - - - - 0x000938 00:8928: 18        CLC
 C - - - - - 0x000939 00:8929: 65 44     ADC ram_spr_pos_X
 C - - - - - 0x00093B 00:892B: 9D 00 02  STA ram_spr_X - $03,X
@@ -1299,6 +1329,7 @@ C - - - - - 0x00094B 00:893B: A6 42     LDX ram_oam_index
 C - - - - - 0x00094D 00:893D: A5 45     LDA ram_spr_pos_Y
 C - - - - - 0x00094F 00:893F: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x000952 00:8942: A5 53     LDA ram_spr_animation_id
+; / 10
 C - - - - - 0x000954 00:8944: 4A        LSR
 C - - - - - 0x000955 00:8945: 4A        LSR
 C - - - - - 0x000956 00:8946: 4A        LSR
@@ -1370,17 +1401,20 @@ C - - - - - 0x0009CE 00:89BE: A5 7E     LDA ram_007E
 C - - - - - 0x0009D0 00:89C0: 18        CLC
 C - - - - - 0x0009D1 00:89C1: 69 0A     ADC #$0A
 C - - - - - 0x0009D3 00:89C3: 85 53     STA ram_spr_animation_id
+; bzk optimize, JMP
 C - - - - - 0x0009D5 00:89C5: 20 F6 88  JSR sub_88F6_display_sprite_animtion
 C - - - - - 0x0009D8 00:89C8: 60        RTS
 
 
 
-sub_89C9:
+sub_89C9_change_chr_bank_1:
 C - - - - - 0x0009D9 00:89C9: A5 43     LDA ram_frm_cnt
 C - - - - - 0x0009DB 00:89CB: 29 08     AND #$08
+; / 08
 C - - - - - 0x0009DD 00:89CD: 4A        LSR
 C - - - - - 0x0009DE 00:89CE: 4A        LSR
 C - - - - - 0x0009DF 00:89CF: 4A        LSR
+; bzk optimize, JmP
 C - - - - - 0x0009E0 00:89D0: 20 F4 B8  JSR sub_B8F4_set_chr_bank_1
 C - - - - - 0x0009E3 00:89D3: 60        RTS
 
@@ -1420,22 +1454,22 @@ C - - - - - 0x000A23 00:8A13: A9 00     LDA #$00
 C - - - - - 0x000A25 00:8A15: 85 3E     STA ram_003E
 bra_8A17:
 C - - - - - 0x000A27 00:8A17: A6 3E     LDX ram_003E
-C - - - - - 0x000A29 00:8A19: BD 1F A1  LDA tbl_A11F,X
-C - - - - - 0x000A2C 00:8A1C: 85 38     STA ram_0038
-C - - - - - 0x000A2E 00:8A1E: BD 9F A1  LDA tbl_A19F,X
-C - - - - - 0x000A31 00:8A21: 85 39     STA ram_0039
-C - - - - - 0x000A33 00:8A23: BD 34 A1  LDA tbl_A134,X
-C - - - - - 0x000A36 00:8A26: 85 3A     STA ram_003A
-C - - - - - 0x000A38 00:8A28: BD B4 A1  LDA tbl_A1B4,X
-C - - - - - 0x000A3B 00:8A2B: 85 3B     STA ram_003B
-C - - - - - 0x000A3D 00:8A2D: BD 49 A1  LDA tbl_A149,X
-C - - - - - 0x000A40 00:8A30: 85 3C     STA ram_003C
-C - - - - - 0x000A42 00:8A32: BD C9 A1  LDA tbl_A1C9,X
-C - - - - - 0x000A45 00:8A35: 85 3D     STA ram_003D
+C - - - - - 0x000A29 00:8A19: BD 1F A1  LDA tbl_A11F_spr_pos_X,X
+C - - - - - 0x000A2C 00:8A1C: 85 38     STA ram_0038_spr_pos_X
+C - - - - - 0x000A2E 00:8A1E: BD 9F A1  LDA tbl_A19F_spr_pos_Y,X
+C - - - - - 0x000A31 00:8A21: 85 39     STA ram_0039_spr_pos_Y
+C - - - - - 0x000A33 00:8A23: BD 34 A1  LDA tbl_A134_spr_pos_X,X
+C - - - - - 0x000A36 00:8A26: 85 3A     STA ram_003A_spr_pos_X
+C - - - - - 0x000A38 00:8A28: BD B4 A1  LDA tbl_A1B4_spr_pos_Y,X
+C - - - - - 0x000A3B 00:8A2B: 85 3B     STA ram_003B_spr_pos_Y
+C - - - - - 0x000A3D 00:8A2D: BD 49 A1  LDA tbl_A149_spr_pos_Y,X
+C - - - - - 0x000A40 00:8A30: 85 3C     STA ram_003C_spr_pos_Y
+C - - - - - 0x000A42 00:8A32: BD C9 A1  LDA tbl_A1C9_spr_pos_Y,X
+C - - - - - 0x000A45 00:8A35: 85 3D     STA ram_003D_spr_pos_Y
 bra_8A37:
-C - - - - - 0x000A47 00:8A37: A5 38     LDA ram_0038
+C - - - - - 0x000A47 00:8A37: A5 38     LDA ram_0038_spr_pos_X
 C - - - - - 0x000A49 00:8A39: 85 44     STA ram_spr_pos_X
-C - - - - - 0x000A4B 00:8A3B: A5 39     LDA ram_0039
+C - - - - - 0x000A4B 00:8A3B: A5 39     LDA ram_0039_spr_pos_Y
 C - - - - - 0x000A4D 00:8A3D: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x000A4F 00:8A3F: A5 75     LDA ram_0075
 C - - - - - 0x000A51 00:8A41: D0 11     BNE bra_8A54
@@ -1453,13 +1487,13 @@ C - - - - - 0x000A68 00:8A58: E6 78     INC ram_0078
 C - - - - - 0x000A6A 00:8A5A: A9 30     LDA #$30
 C - - - - - 0x000A6C 00:8A5C: 85 53     STA ram_spr_animation_id
 C - - - - - 0x000A6E 00:8A5E: A6 78     LDX ram_0078
-C - - - - - 0x000A70 00:8A60: BD 31 A2  LDA tbl_A231,X
+C - - - - - 0x000A70 00:8A60: BD 31 A2  LDA tbl_A231_spr_pos_Y,X
 C - - - - - 0x000A73 00:8A63: 18        CLC
-C - - - - - 0x000A74 00:8A64: 65 39     ADC ram_0039
+C - - - - - 0x000A74 00:8A64: 65 39     ADC ram_0039_spr_pos_Y
 C - - - - - 0x000A76 00:8A66: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x000A78 00:8A68: 20 F6 88  JSR sub_88F6_display_sprite_animtion
 C - - - - - 0x000A7B 00:8A6B: A5 45     LDA ram_spr_pos_Y
-C - - - - - 0x000A7D 00:8A6D: C5 39     CMP ram_0039
+C - - - - - 0x000A7D 00:8A6D: C5 39     CMP ram_0039_spr_pos_Y
 C - - - - - 0x000A7F 00:8A6F: D0 55     BNE bra_8AC6
 C - - - - - 0x000A81 00:8A71: E6 75     INC ram_0075
 C - - - - - 0x000A83 00:8A73: A9 00     LDA #$00
@@ -1487,6 +1521,7 @@ C - - - - - 0x000AAB 00:8A9B: A9 03     LDA #con_sfx_0_03
 C - - - - - 0x000AAD 00:8A9D: 8D F0 06  STA ram_sfx_0
 C - - - - - 0x000AB0 00:8AA0: A5 43     LDA ram_frm_cnt
 C - - - - - 0x000AB2 00:8AA2: 29 04     AND #$04
+; / 04
 C - - - - - 0x000AB4 00:8AA4: 4A        LSR
 C - - - - - 0x000AB5 00:8AA5: 4A        LSR
 C - - - - - 0x000AB6 00:8AA6: 18        CLC
@@ -1507,9 +1542,9 @@ C - - - - - 0x000AD2 00:8AC2: 90 02     BCC bra_8AC6
 C - - - - - 0x000AD4 00:8AC4: E6 75     INC ram_0075
 bra_8AC6:
 loc_8AC6:
-C D 0 - - - 0x000AD6 00:8AC6: A5 3A     LDA ram_003A
+C D 0 - - - 0x000AD6 00:8AC6: A5 3A     LDA ram_003A_spr_pos_X
 C - - - - - 0x000AD8 00:8AC8: 85 44     STA ram_spr_pos_X
-C - - - - - 0x000ADA 00:8ACA: A5 3B     LDA ram_003B
+C - - - - - 0x000ADA 00:8ACA: A5 3B     LDA ram_003B_spr_pos_Y
 C - - - - - 0x000ADC 00:8ACC: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x000ADE 00:8ACE: A5 76     LDA ram_0075 + $01
 C - - - - - 0x000AE0 00:8AD0: D0 11     BNE bra_8AE3
@@ -1518,32 +1553,32 @@ C - - - - - 0x000AE4 00:8AD4: BD 55 A2  LDA tbl_A255,X
 C - - - - - 0x000AE7 00:8AD7: 85 53     STA ram_spr_animation_id
 C - - - - - 0x000AE9 00:8AD9: 20 F6 88  JSR sub_88F6_display_sprite_animtion
 C - - - - - 0x000AEC 00:8ADC: A9 00     LDA #$00
-C - - - - - 0x000AEE 00:8ADE: 85 79     STA ram_0079
+C - - - - - 0x000AEE 00:8ADE: 85 79     STA ram_0078 + $01
 C - - - - - 0x000AF0 00:8AE0: 4C 55 8B  JMP loc_8B55
 bra_8AE3:
 C - - - - - 0x000AF3 00:8AE3: C9 01     CMP #$01
 C - - - - - 0x000AF5 00:8AE5: D0 22     BNE bra_8B09
-C - - - - - 0x000AF7 00:8AE7: E6 79     INC ram_0079
+C - - - - - 0x000AF7 00:8AE7: E6 79     INC ram_0078 + $01
 C - - - - - 0x000AF9 00:8AE9: A9 2C     LDA #$2C
 C - - - - - 0x000AFB 00:8AEB: 85 53     STA ram_spr_animation_id
-C - - - - - 0x000AFD 00:8AED: A6 79     LDX ram_0079
-C - - - - - 0x000AFF 00:8AEF: BD 31 A2  LDA tbl_A231,X
+C - - - - - 0x000AFD 00:8AED: A6 79     LDX ram_0078 + $01
+C - - - - - 0x000AFF 00:8AEF: BD 31 A2  LDA tbl_A231_spr_pos_Y,X
 C - - - - - 0x000B02 00:8AF2: 18        CLC
-C - - - - - 0x000B03 00:8AF3: 65 3B     ADC ram_003B
+C - - - - - 0x000B03 00:8AF3: 65 3B     ADC ram_003B_spr_pos_Y
 C - - - - - 0x000B05 00:8AF5: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x000B07 00:8AF7: 20 F6 88  JSR sub_88F6_display_sprite_animtion
 C - - - - - 0x000B0A 00:8AFA: A5 45     LDA ram_spr_pos_Y
-C - - - - - 0x000B0C 00:8AFC: C5 3B     CMP ram_003B
+C - - - - - 0x000B0C 00:8AFC: C5 3B     CMP ram_003B_spr_pos_Y
 C - - - - - 0x000B0E 00:8AFE: D0 55     BNE bra_8B55
 C - - - - - 0x000B10 00:8B00: E6 76     INC ram_0075 + $01
 C - - - - - 0x000B12 00:8B02: A9 00     LDA #$00
-C - - - - - 0x000B14 00:8B04: 85 79     STA ram_0079
+C - - - - - 0x000B14 00:8B04: 85 79     STA ram_0078 + $01
 C - - - - - 0x000B16 00:8B06: 4C 55 8B  JMP loc_8B55
 bra_8B09:
 C - - - - - 0x000B19 00:8B09: C9 02     CMP #$02
 C - - - - - 0x000B1B 00:8B0B: D0 33     BNE bra_8B40
-C - - - - - 0x000B1D 00:8B0D: E6 79     INC ram_0079
-C - - - - - 0x000B1F 00:8B0F: A5 79     LDA ram_0079
+C - - - - - 0x000B1D 00:8B0D: E6 79     INC ram_0078 + $01
+C - - - - - 0x000B1F 00:8B0F: A5 79     LDA ram_0078 + $01
 C - - - - - 0x000B21 00:8B11: C9 A0     CMP #$A0
 C - - - - - 0x000B23 00:8B13: D0 15     BNE bra_8B2A
 C - - - - - 0x000B25 00:8B15: A9 00     LDA #$00
@@ -1555,12 +1590,13 @@ C - - - - - 0x000B2F 00:8B1F: 8D F1 06  STA ram_sfx_1
 C - - - - - 0x000B32 00:8B22: A9 03     LDA #$03
 C - - - - - 0x000B34 00:8B24: 85 76     STA ram_0075 + $01
 C - - - - - 0x000B36 00:8B26: A9 00     LDA #$00
-C - - - - - 0x000B38 00:8B28: 85 79     STA ram_0079
+C - - - - - 0x000B38 00:8B28: 85 79     STA ram_0078 + $01
 bra_8B2A:
 C - - - - - 0x000B3A 00:8B2A: A9 03     LDA #con_sfx_0_03
 C - - - - - 0x000B3C 00:8B2C: 8D F0 06  STA ram_sfx_0
 C - - - - - 0x000B3F 00:8B2F: A5 43     LDA ram_frm_cnt
 C - - - - - 0x000B41 00:8B31: 29 04     AND #$04
+; / 04
 C - - - - - 0x000B43 00:8B33: 4A        LSR
 C - - - - - 0x000B44 00:8B34: 4A        LSR
 C - - - - - 0x000B45 00:8B35: 18        CLC
@@ -1574,16 +1610,16 @@ C - - - - - 0x000B52 00:8B42: D0 11     BNE bra_8B55
 C - - - - - 0x000B54 00:8B44: A9 33     LDA #$33
 C - - - - - 0x000B56 00:8B46: 85 53     STA ram_spr_animation_id
 C - - - - - 0x000B58 00:8B48: 20 F6 88  JSR sub_88F6_display_sprite_animtion
-C - - - - - 0x000B5B 00:8B4B: E6 79     INC ram_0079
-C - - - - - 0x000B5D 00:8B4D: A5 79     LDA ram_0079
+C - - - - - 0x000B5B 00:8B4B: E6 79     INC ram_0078 + $01
+C - - - - - 0x000B5D 00:8B4D: A5 79     LDA ram_0078 + $01
 C - - - - - 0x000B5F 00:8B4F: C9 05     CMP #$05
 C - - - - - 0x000B61 00:8B51: 90 02     BCC bra_8B55
 C - - - - - 0x000B63 00:8B53: E6 76     INC ram_0075 + $01
 bra_8B55:
 loc_8B55:
-C D 0 - - - 0x000B65 00:8B55: A5 3C     LDA ram_003C
+C D 0 - - - 0x000B65 00:8B55: A5 3C     LDA ram_003C_spr_pos_Y
 C - - - - - 0x000B67 00:8B57: 85 44     STA ram_spr_pos_X
-C - - - - - 0x000B69 00:8B59: A5 3D     LDA ram_003D
+C - - - - - 0x000B69 00:8B59: A5 3D     LDA ram_003D_spr_pos_Y
 C - - - - - 0x000B6B 00:8B5B: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x000B6D 00:8B5D: A5 77     LDA ram_0075 + $02
 C - - - - - 0x000B6F 00:8B5F: D0 11     BNE bra_8B72
@@ -1592,32 +1628,32 @@ C - - - - - 0x000B73 00:8B63: BD 59 A2  LDA tbl_A259,X
 C - - - - - 0x000B76 00:8B66: 85 53     STA ram_spr_animation_id
 C - - - - - 0x000B78 00:8B68: 20 F6 88  JSR sub_88F6_display_sprite_animtion
 C - - - - - 0x000B7B 00:8B6B: A9 00     LDA #$00
-C - - - - - 0x000B7D 00:8B6D: 85 7A     STA ram_007A
+C - - - - - 0x000B7D 00:8B6D: 85 7A     STA ram_0078 + $02
 C - - - - - 0x000B7F 00:8B6F: 4C E4 8B  JMP loc_8BE4_RTS
 bra_8B72:
 C - - - - - 0x000B82 00:8B72: C9 01     CMP #$01
 C - - - - - 0x000B84 00:8B74: D0 22     BNE bra_8B98
-C - - - - - 0x000B86 00:8B76: E6 7A     INC ram_007A
+C - - - - - 0x000B86 00:8B76: E6 7A     INC ram_0078 + $02
 C - - - - - 0x000B88 00:8B78: A9 2E     LDA #$2E
 C - - - - - 0x000B8A 00:8B7A: 85 53     STA ram_spr_animation_id
-C - - - - - 0x000B8C 00:8B7C: A6 7A     LDX ram_007A
-C - - - - - 0x000B8E 00:8B7E: BD 31 A2  LDA tbl_A231,X
+C - - - - - 0x000B8C 00:8B7C: A6 7A     LDX ram_0078 + $02
+C - - - - - 0x000B8E 00:8B7E: BD 31 A2  LDA tbl_A231_spr_pos_Y,X
 C - - - - - 0x000B91 00:8B81: 18        CLC
-C - - - - - 0x000B92 00:8B82: 65 3D     ADC ram_003D
+C - - - - - 0x000B92 00:8B82: 65 3D     ADC ram_003D_spr_pos_Y
 C - - - - - 0x000B94 00:8B84: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x000B96 00:8B86: 20 F6 88  JSR sub_88F6_display_sprite_animtion
 C - - - - - 0x000B99 00:8B89: A5 45     LDA ram_spr_pos_Y
-C - - - - - 0x000B9B 00:8B8B: C5 3D     CMP ram_003D
+C - - - - - 0x000B9B 00:8B8B: C5 3D     CMP ram_003D_spr_pos_Y
 C - - - - - 0x000B9D 00:8B8D: D0 55     BNE bra_8BE4_RTS
 C - - - - - 0x000B9F 00:8B8F: E6 77     INC ram_0075 + $02
 C - - - - - 0x000BA1 00:8B91: A9 00     LDA #$00
-C - - - - - 0x000BA3 00:8B93: 85 7A     STA ram_007A
+C - - - - - 0x000BA3 00:8B93: 85 7A     STA ram_0078 + $02
 C - - - - - 0x000BA5 00:8B95: 4C E4 8B  JMP loc_8BE4_RTS
 bra_8B98:
 C - - - - - 0x000BA8 00:8B98: C9 02     CMP #$02
 C - - - - - 0x000BAA 00:8B9A: D0 33     BNE bra_8BCF
-C - - - - - 0x000BAC 00:8B9C: E6 7A     INC ram_007A
-C - - - - - 0x000BAE 00:8B9E: A5 7A     LDA ram_007A
+C - - - - - 0x000BAC 00:8B9C: E6 7A     INC ram_0078 + $02
+C - - - - - 0x000BAE 00:8B9E: A5 7A     LDA ram_0078 + $02
 C - - - - - 0x000BB0 00:8BA0: C9 A0     CMP #$A0
 C - - - - - 0x000BB2 00:8BA2: D0 15     BNE bra_8BB9
 C - - - - - 0x000BB4 00:8BA4: A9 00     LDA #$00
@@ -1629,12 +1665,13 @@ C - - - - - 0x000BBE 00:8BAE: 8D F1 06  STA ram_sfx_1
 C - - - - - 0x000BC1 00:8BB1: A9 03     LDA #$03
 C - - - - - 0x000BC3 00:8BB3: 85 77     STA ram_0075 + $02
 C - - - - - 0x000BC5 00:8BB5: A9 00     LDA #$00
-C - - - - - 0x000BC7 00:8BB7: 85 7A     STA ram_007A
+C - - - - - 0x000BC7 00:8BB7: 85 7A     STA ram_0078 + $02
 bra_8BB9:
 C - - - - - 0x000BC9 00:8BB9: A9 03     LDA #con_sfx_0_03
 C - - - - - 0x000BCB 00:8BBB: 8D F0 06  STA ram_sfx_0
 C - - - - - 0x000BCE 00:8BBE: A5 43     LDA ram_frm_cnt
 C - - - - - 0x000BD0 00:8BC0: 29 04     AND #$04
+; / 04
 C - - - - - 0x000BD2 00:8BC2: 4A        LSR
 C - - - - - 0x000BD3 00:8BC3: 4A        LSR
 C - - - - - 0x000BD4 00:8BC4: 18        CLC
@@ -1648,8 +1685,8 @@ C - - - - - 0x000BE1 00:8BD1: D0 11     BNE bra_8BE4_RTS
 C - - - - - 0x000BE3 00:8BD3: A9 33     LDA #$33
 C - - - - - 0x000BE5 00:8BD5: 85 53     STA ram_spr_animation_id
 C - - - - - 0x000BE7 00:8BD7: 20 F6 88  JSR sub_88F6_display_sprite_animtion
-C - - - - - 0x000BEA 00:8BDA: E6 7A     INC ram_007A
-C - - - - - 0x000BEC 00:8BDC: A5 7A     LDA ram_007A
+C - - - - - 0x000BEA 00:8BDA: E6 7A     INC ram_0078 + $02
+C - - - - - 0x000BEC 00:8BDC: A5 7A     LDA ram_0078 + $02
 C - - - - - 0x000BEE 00:8BDE: C9 05     CMP #$05
 C - - - - - 0x000BF0 00:8BE0: 90 02     BCC bra_8BE4_RTS
 C - - - - - 0x000BF2 00:8BE2: E6 77     INC ram_0075 + $02
@@ -1690,30 +1727,33 @@ C - - - - - 0x000C2D 00:8C1D: 29 01     AND #$01
 C - - - - - 0x000C2F 00:8C1F: 18        CLC
 C - - - - - 0x000C30 00:8C20: 69 49     ADC #$49
 C - - - - - 0x000C32 00:8C22: 85 53     STA ram_spr_animation_id
+; bzk optimize, JMP
 C - - - - - 0x000C34 00:8C24: 20 F6 88  JSR sub_88F6_display_sprite_animtion
 C - - - - - 0x000C37 00:8C27: 60        RTS
 
 
 
 loc_8C28:
-C D 0 - - - 0x000C38 00:8C28: A5 38     LDA ram_0038
+C D 0 - - - 0x000C38 00:8C28: A5 38     LDA ram_0038_spr_pos_X
 C - - - - - 0x000C3A 00:8C2A: 85 44     STA ram_spr_pos_X
-C - - - - - 0x000C3C 00:8C2C: A5 39     LDA ram_0039
+C - - - - - 0x000C3C 00:8C2C: A5 39     LDA ram_0039_spr_pos_Y
 C - - - - - 0x000C3E 00:8C2E: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x000C40 00:8C30: A5 43     LDA ram_frm_cnt
 C - - - - - 0x000C42 00:8C32: 29 04     AND #$04
+; / 04
 C - - - - - 0x000C44 00:8C34: 4A        LSR
 C - - - - - 0x000C45 00:8C35: 4A        LSR
 C - - - - - 0x000C46 00:8C36: AA        TAX
 C - - - - - 0x000C47 00:8C37: BD FF A0  LDA tbl_A0FF,X
 C - - - - - 0x000C4A 00:8C3A: 85 53     STA ram_spr_animation_id
 C - - - - - 0x000C4C 00:8C3C: 20 F6 88  JSR sub_88F6_display_sprite_animtion
-C - - - - - 0x000C4F 00:8C3F: A5 3A     LDA ram_003A
+C - - - - - 0x000C4F 00:8C3F: A5 3A     LDA ram_003A_spr_pos_X
 C - - - - - 0x000C51 00:8C41: 85 44     STA ram_spr_pos_X
-C - - - - - 0x000C53 00:8C43: A5 3B     LDA ram_003B
+C - - - - - 0x000C53 00:8C43: A5 3B     LDA ram_003B_spr_pos_Y
 C - - - - - 0x000C55 00:8C45: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x000C57 00:8C47: A5 43     LDA ram_frm_cnt
 C - - - - - 0x000C59 00:8C49: 29 08     AND #$08
+; / 08
 C - - - - - 0x000C5B 00:8C4B: 4A        LSR
 C - - - - - 0x000C5C 00:8C4C: 4A        LSR
 C - - - - - 0x000C5D 00:8C4D: 4A        LSR
@@ -1721,12 +1761,13 @@ C - - - - - 0x000C5E 00:8C4E: AA        TAX
 C - - - - - 0x000C5F 00:8C4F: BD 01 A1  LDA tbl_A101,X
 C - - - - - 0x000C62 00:8C52: 85 53     STA ram_spr_animation_id
 C - - - - - 0x000C64 00:8C54: 20 F6 88  JSR sub_88F6_display_sprite_animtion
-C - - - - - 0x000C67 00:8C57: A5 3C     LDA ram_003C
+C - - - - - 0x000C67 00:8C57: A5 3C     LDA ram_003C_spr_pos_Y
 C - - - - - 0x000C69 00:8C59: 85 44     STA ram_spr_pos_X
-C - - - - - 0x000C6B 00:8C5B: A5 3D     LDA ram_003D
+C - - - - - 0x000C6B 00:8C5B: A5 3D     LDA ram_003D_spr_pos_Y
 C - - - - - 0x000C6D 00:8C5D: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x000C6F 00:8C5F: A5 43     LDA ram_frm_cnt
 C - - - - - 0x000C71 00:8C61: 29 04     AND #$04
+; / 04
 C - - - - - 0x000C73 00:8C63: 4A        LSR
 C - - - - - 0x000C74 00:8C64: 4A        LSR
 C - - - - - 0x000C75 00:8C65: AA        TAX
@@ -1744,15 +1785,15 @@ C - - - - - 0x000C82 00:8C72: 60        RTS
 
 
 sub_8C73:
-C - - - - - 0x000C83 00:8C73: A5 87     LDA ram_0087
+C - - - - - 0x000C83 00:8C73: A5 87     LDA ram_0087_script
 C - - - - - 0x000C85 00:8C75: 20 AC B8  JSR sub_B8AC_jump_to_pointers_after_jsr
 - D 0 - I - 0x000C88 00:8C78: 8A 8C     .word ofs_001_8C8A_00_reset_combo_count
 - D 0 - I - 0x000C8A 00:8C7A: 91 8C     .word ofs_001_8C91_01
 - D 0 - I - 0x000C8C 00:8C7C: 91 8C     .word ofs_001_8C91_02
 - D 0 - I - 0x000C8E 00:8C7E: 94 8C     .word ofs_001_8C94_03_tiles_fall
 - D 0 - I - 0x000C90 00:8C80: 13 94     .word ofs_001_9413_04
-- D 0 - I - 0x000C92 00:8C82: FB 91     .word ofs_001_91FB_05_check_H_clear
-- D 0 - I - 0x000C94 00:8C84: 69 94     .word ofs_001_9469_06_check_V_clear
+- D 0 - I - 0x000C92 00:8C82: FB 91     .word ofs_001_91FB_05_check_horizontal_clear
+- D 0 - I - 0x000C94 00:8C84: 69 94     .word ofs_001_9469_06_check_vertical_clear
 - D 0 - I - 0x000C96 00:8C86: DB 92     .word ofs_001_92DB_07_fix_split_pills
 - D 0 - I - 0x000C98 00:8C88: 4F 8D     .word ofs_001_8D4F_08
 
@@ -1761,14 +1802,14 @@ C - - - - - 0x000C85 00:8C75: 20 AC B8  JSR sub_B8AC_jump_to_pointers_after_jsr
 ofs_001_8C8A_00_reset_combo_count:
 C - - J - - 0x000C9A 00:8C8A: A9 00     LDA #$00
 C - - - - - 0x000C9C 00:8C8C: 85 AD     STA ram_00AD
-C - - - - - 0x000C9E 00:8C8E: E6 87     INC ram_0087
+C - - - - - 0x000C9E 00:8C8E: E6 87     INC ram_0087_script
 C - - - - - 0x000CA0 00:8C90: 60        RTS
 
 
 
 ofs_001_8C91_01:
 ofs_001_8C91_02:
-C - - J - - 0x000CA1 00:8C91: E6 87     INC ram_0087
+C - - J - - 0x000CA1 00:8C91: E6 87     INC ram_0087_script
 C - - - - - 0x000CA3 00:8C93: 60        RTS
 
 
@@ -1780,28 +1821,30 @@ C - - - - - 0x000CA8 00:8C98: F0 03     BEQ bra_8C9D
 C - - - - - 0x000CAA 00:8C9A: 4C 4E 8D  JMP loc_8D4E_RTS
 bra_8C9D:
 C - - - - - 0x000CAD 00:8C9D: A9 00     LDA #$00
-C - - - - - 0x000CAF 00:8C9F: 85 47     STA ram_0047
-C - - - - - 0x000CB1 00:8CA1: 85 57     STA ram_0057
+C - - - - - 0x000CAF 00:8C9F: 85 47     STA ram_0047_t01_counter
+C - - - - - 0x000CB1 00:8CA1: 85 57     STA ram_0057_temp
 C - - - - - 0x000CB3 00:8CA3: A0 7F     LDY #$7F
-C - - - - - 0x000CB5 00:8CA5: 84 49     STY ram_0049
-loc_8CA7:
-C D 0 - - - 0x000CB7 00:8CA7: A4 49     LDY ram_0049
-C - - - - - 0x000CB9 00:8CA9: B1 57     LDA (ram_0057),Y    ; 0400-047F, 0500-057F
+C - - - - - 0x000CB5 00:8CA5: 84 49     STY ram_0049_t03
+loc_8CA7_loop:
+C D 0 - - - 0x000CB7 00:8CA7: A4 49     LDY ram_0049_t03
+C - - - - - 0x000CB9 00:8CA9: B1 57     LDA (ram_0057_temp),Y    ; 0400-047F, 0500-057F
 C - - - - - 0x000CBB 00:8CAB: C9 F0     CMP #$F0
 C - - - - - 0x000CBD 00:8CAD: B0 03     BCS bra_8CB2
 C - - - - - 0x000CBF 00:8CAF: 4C 34 8D  JMP loc_8D34
 bra_8CB2:
 C - - - - - 0x000CC2 00:8CB2: A9 FF     LDA #$FF
-C - - - - - 0x000CC4 00:8CB4: 91 57     STA (ram_0057),Y    ; 0400-047F, 0500-057F
-C - - - - - 0x000CC6 00:8CB6: 85 48     STA ram_0048
+C - - - - - 0x000CC4 00:8CB4: 91 57     STA (ram_0057_temp),Y    ; 0400-047F, 0500-057F
+; bzk optimize, useless STA
+C - - - - - 0x000CC6 00:8CB6: 85 48     STA ram_0048_t10_useless
 C - - - - - 0x000CC8 00:8CB8: AD 24 07  LDA ram_debug_2
 C - - - - - 0x000CCB 00:8CBB: D0 77     BNE bra_8D34
-C - - - - - 0x000CCD 00:8CBD: 84 49     STY ram_0049
+; bzk optimize, useless STY
+C - - - - - 0x000CCD 00:8CBD: 84 49     STY ram_0049_t03
 C - - - - - 0x000CCF 00:8CBF: 98        TYA
 C - - - - - 0x000CD0 00:8CC0: 38        SEC
 C - - - - - 0x000CD1 00:8CC1: E9 08     SBC #$08
 C - - - - - 0x000CD3 00:8CC3: A8        TAY
-C - - - - - 0x000CD4 00:8CC4: B1 57     LDA (ram_0057),Y    ; 0400-0477, 04F8-04FF, 0500-0577, 05F8-05FF 
+C - - - - - 0x000CD4 00:8CC4: B1 57     LDA (ram_0057_temp),Y    ; 0400-0477, 04F8-04FF, 0500-0577, 05F8-05FF 
 C - - - - - 0x000CD6 00:8CC6: C9 A0     CMP #$A0
 C - - - - - 0x000CD8 00:8CC8: B0 6A     BCS bra_8D34
 C - - - - - 0x000CDA 00:8CCA: 29 F0     AND #$F0
@@ -1811,71 +1854,71 @@ C - - - - - 0x000CE0 00:8CD0: C9 A0     CMP #$A0
 C - - - - - 0x000CE2 00:8CD2: F0 60     BEQ bra_8D34
 C - - - - - 0x000CE4 00:8CD4: C9 70     CMP #$70
 C - - - - - 0x000CE6 00:8CD6: D0 40     BNE bra_8D18
-C - - - - - 0x000CE8 00:8CD8: 84 4A     STY ram_004A
-C - - - - - 0x000CEA 00:8CDA: 84 4C     STY ram_004C
-C - - - - - 0x000CEC 00:8CDC: A5 49     LDA ram_0049
-C - - - - - 0x000CEE 00:8CDE: 85 4B     STA ram_004B
+C - - - - - 0x000CE8 00:8CD8: 84 4A     STY ram_004A_t01
+C - - - - - 0x000CEA 00:8CDA: 84 4C     STY ram_004C_t01
+C - - - - - 0x000CEC 00:8CDC: A5 49     LDA ram_0049_t03
+C - - - - - 0x000CEE 00:8CDE: 85 4B     STA ram_004B_t02
 bra_8CE0_loop:
-C - - - - - 0x000CF0 00:8CE0: C6 4A     DEC ram_004A
-C - - - - - 0x000CF2 00:8CE2: C6 4B     DEC ram_004B
-C - - - - - 0x000CF4 00:8CE4: A4 4B     LDY ram_004B
-C - - - - - 0x000CF6 00:8CE6: B1 57     LDA (ram_0057),Y    ; 040C 0414 0415 0416 0419 041B 041C 041D 041E 0421 0424 0425 0426 0429 042B 042C 042D 042E 0430 0431 0435 0436 0439 043B 043D 043E 0442 0443 0446 044B 044E 0451 0453 0455 0456 045A 045B 045E 0463 0473 051B 053A 053B 0551 0553 056A 0573
+C - - - - - 0x000CF0 00:8CE0: C6 4A     DEC ram_004A_t01
+C - - - - - 0x000CF2 00:8CE2: C6 4B     DEC ram_004B_t02
+C - - - - - 0x000CF4 00:8CE4: A4 4B     LDY ram_004B_t02
+C - - - - - 0x000CF6 00:8CE6: B1 57     LDA (ram_0057_temp),Y    ; 040C 0414 0415 0416 0419 041B 041C 041D 041E 0421 0424 0425 0426 0429 042B 042C 042D 042E 0430 0431 0435 0436 0439 043B 043D 043E 0442 0443 0446 044B 044E 0451 0453 0455 0456 045A 045B 045E 0463 0473 051B 053A 053B 0551 0553 056A 0573
 C - - - - - 0x000CF8 00:8CE8: C9 F0     CMP #$F0
 C - - - - - 0x000CFA 00:8CEA: 90 48     BCC bra_8D34
-C - - - - - 0x000CFC 00:8CEC: A4 4A     LDY ram_004A
-C - - - - - 0x000CFE 00:8CEE: B1 57     LDA (ram_0057),Y    ; 040C 040D 040E 0411 0415 0416 0419 041D 041E 0421 0425 0426 0429 042D 042E 0431 0435 0436 043E 0446 044B
+C - - - - - 0x000CFC 00:8CEC: A4 4A     LDY ram_004A_t01
+C - - - - - 0x000CFE 00:8CEE: B1 57     LDA (ram_0057_temp),Y    ; 040C 040D 040E 0411 0415 0416 0419 041D 041E 0421 0425 0426 0429 042D 042E 0431 0435 0436 043E 0446 044B
 C - - - - - 0x000D00 00:8CF0: 29 F0     AND #$F0
 C - - - - - 0x000D02 00:8CF2: C9 60     CMP #$60
 C - - - - - 0x000D04 00:8CF4: D0 EA     BNE bra_8CE0_loop
 loc_8CF6_loop:
-C D 0 - - - 0x000D06 00:8CF6: A4 4C     LDY ram_004C
-C - - - - - 0x000D08 00:8CF8: B1 57     LDA (ram_0057),Y    ; 040C 040D 040E 040F 0411 0412 0415 0416 0417 0419 041A 041D 041E 041F 0421 0422 0425 0426 0427 0429 042A 042D 042E 042F 0431 0432 0435 0436 0437 043E 043F 0446 0447 044B 044C
-C - - - - - 0x000D0A 00:8CFA: A4 49     LDY ram_0049
-C - - - - - 0x000D0C 00:8CFC: 91 57     STA (ram_0057),Y    ; 0414 0415 0416 0417 0419 041A 041D 041E 041F 0421 0422 0425 0426 0427 0429 042A 042D 042E 042F 0431 0432 0435 0436 0437 0439 043A 043D 043E 043F 0446 0447 044E 044F 0453 0454
+C D 0 - - - 0x000D06 00:8CF6: A4 4C     LDY ram_004C_t01
+C - - - - - 0x000D08 00:8CF8: B1 57     LDA (ram_0057_temp),Y    ; 040C 040D 040E 040F 0411 0412 0415 0416 0417 0419 041A 041D 041E 041F 0421 0422 0425 0426 0427 0429 042A 042D 042E 042F 0431 0432 0435 0436 0437 043E 043F 0446 0447 044B 044C
+C - - - - - 0x000D0A 00:8CFA: A4 49     LDY ram_0049_t03
+C - - - - - 0x000D0C 00:8CFC: 91 57     STA (ram_0057_temp),Y    ; 0414 0415 0416 0417 0419 041A 041D 041E 041F 0421 0422 0425 0426 0427 0429 042A 042D 042E 042F 0431 0432 0435 0436 0437 0439 043A 043D 043E 043F 0446 0447 044E 044F 0453 0454
 C - - - - - 0x000D0E 00:8CFE: A9 FF     LDA #$FF
-C - - - - - 0x000D10 00:8D00: A4 4C     LDY ram_004C
-C - - - - - 0x000D12 00:8D02: 91 57     STA (ram_0057),Y    ; 040C 040D 040E 040F 0411 0412 0415 0416 0417 0419 041A 041D 041E 041F 0421 0422 0425 0426 0427 0429 042A 042D 042E 042F 0431 0432 0435 0436 0437 043E 043F 0446 0447 044B 044C
-C - - - - - 0x000D14 00:8D04: A5 49     LDA ram_0049
-C - - - - - 0x000D16 00:8D06: C5 4B     CMP ram_004B
+C - - - - - 0x000D10 00:8D00: A4 4C     LDY ram_004C_t01
+C - - - - - 0x000D12 00:8D02: 91 57     STA (ram_0057_temp),Y    ; 040C 040D 040E 040F 0411 0412 0415 0416 0417 0419 041A 041D 041E 041F 0421 0422 0425 0426 0427 0429 042A 042D 042E 042F 0431 0432 0435 0436 0437 043E 043F 0446 0447 044B 044C
+C - - - - - 0x000D14 00:8D04: A5 49     LDA ram_0049_t03
+C - - - - - 0x000D16 00:8D06: C5 4B     CMP ram_004B_t02
 C - - - - - 0x000D18 00:8D08: F0 2A     BEQ bra_8D34
-C - - - - - 0x000D1A 00:8D0A: C6 49     DEC ram_0049
-C - - - - - 0x000D1C 00:8D0C: C6 4C     DEC ram_004C
-C - - - - - 0x000D1E 00:8D0E: E6 47     INC ram_0047
+C - - - - - 0x000D1A 00:8D0A: C6 49     DEC ram_0049_t03
+C - - - - - 0x000D1C 00:8D0C: C6 4C     DEC ram_004C_t01
+C - - - - - 0x000D1E 00:8D0E: E6 47     INC ram_0047_t01_counter
 C - - - - - 0x000D20 00:8D10: A9 07     LDA #con_sfx_1_07
 C - - - - - 0x000D22 00:8D12: 8D F1 06  STA ram_sfx_1
 C - - - - - 0x000D25 00:8D15: 4C F6 8C  JMP loc_8CF6_loop
 bra_8D18:
-C - - - - - 0x000D28 00:8D18: A4 49     LDY ram_0049
+C - - - - - 0x000D28 00:8D18: A4 49     LDY ram_0049_t03
 C - - - - - 0x000D2A 00:8D1A: 98        TYA
 C - - - - - 0x000D2B 00:8D1B: 38        SEC
 C - - - - - 0x000D2C 00:8D1C: E9 08     SBC #$08
 C - - - - - 0x000D2E 00:8D1E: A8        TAY
-C - - - - - 0x000D2F 00:8D1F: B1 57     LDA (ram_0057),Y    ; 0400 0401 0402 0403 0404 0405 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042F 0430 0431 0432 0433 0434 0435 0437 0438 043A 043B 043C 043D 043F 0440 0442 0443 0444 0445 0447 0448 044A 044B 044C 044D 044F 0450 0452 0453 0454 0455 0457 0458 045A 045B 045C 045D 045F 0460 0462 0463 0464 0465 0467 0468 046A 046B 046C 046D 046F 0470 0472 0473 0474 0475 0476 0477 052B 052C 0533 0534 0539 053A 053B 053C 0541 0542 0543 0544 0549 054A 054B 054C 0551 0553 0554 0559 055A 055B 055C 0561 0562 0563 0564 0569 056A 056B 056C 0571 0572 0573
-C - - - - - 0x000D31 00:8D21: 85 48     STA ram_0048
+C - - - - - 0x000D2F 00:8D1F: B1 57     LDA (ram_0057_temp),Y    ; 0400 0401 0402 0403 0404 0405 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042F 0430 0431 0432 0433 0434 0435 0437 0438 043A 043B 043C 043D 043F 0440 0442 0443 0444 0445 0447 0448 044A 044B 044C 044D 044F 0450 0452 0453 0454 0455 0457 0458 045A 045B 045C 045D 045F 0460 0462 0463 0464 0465 0467 0468 046A 046B 046C 046D 046F 0470 0472 0473 0474 0475 0476 0477 052B 052C 0533 0534 0539 053A 053B 053C 0541 0542 0543 0544 0549 054A 054B 054C 0551 0553 0554 0559 055A 055B 055C 0561 0562 0563 0564 0569 056A 056B 056C 0571 0572 0573
+C - - - - - 0x000D31 00:8D21: 85 48     STA ram_0048_t08
 C - - - - - 0x000D33 00:8D23: A9 FF     LDA #$FF
-C - - - - - 0x000D35 00:8D25: 91 57     STA (ram_0057),Y    ; 0400 0401 0402 0403 0404 0405 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042F 0430 0431 0432 0433 0434 0435 0437 0438 043A 043B 043C 043D 043F 0440 0442 0443 0444 0445 0447 0448 044A 044B 044C 044D 044F 0450 0452 0453 0454 0455 0457 0458 045A 045B 045C 045D 045F 0460 0462 0463 0464 0465 0467 0468 046A 046B 046C 046D 046F 0470 0472 0473 0474 0475 0476 0477 052B 052C 0533 0534 0539 053A 053B 053C 0541 0542 0543 0544 0549 054A 054B 054C 0551 0553 0554 0559 055A 055B 055C 0561 0562 0563 0564 0569 056A 056B 056C 0571 0572 0573
-C - - - - - 0x000D37 00:8D27: A4 49     LDY ram_0049
-C - - - - - 0x000D39 00:8D29: A5 48     LDA ram_0048
-C - - - - - 0x000D3B 00:8D2B: 91 57     STA (ram_0057),Y    ; 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0437 0438 0439 043A 043B 043C 043D 043F 0440 0442 0443 0444 0445 0447 0448 044A 044B 044C 044D 044F 0450 0452 0453 0454 0455 0457 0458 045A 045B 045C 045D 045F 0460 0462 0463 0464 0465 0467 0468 046A 046B 046C 046D 046F 0470 0472 0473 0474 0475 0477 0478 047A 047B 047C 047D 047E 047F 0533 0534 053B 053C 0541 0542 0543 0544 0549 054A 054B 054C 0551 0552 0553 0554 0559 055B 055C 0561 0562 0563 0564 0569 056A 056B 056C 0571 0572 0573 0574 0579 057A 057B
-C - - - - - 0x000D3D 00:8D2D: E6 47     INC ram_0047
+C - - - - - 0x000D35 00:8D25: 91 57     STA (ram_0057_temp),Y    ; 0400 0401 0402 0403 0404 0405 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042F 0430 0431 0432 0433 0434 0435 0437 0438 043A 043B 043C 043D 043F 0440 0442 0443 0444 0445 0447 0448 044A 044B 044C 044D 044F 0450 0452 0453 0454 0455 0457 0458 045A 045B 045C 045D 045F 0460 0462 0463 0464 0465 0467 0468 046A 046B 046C 046D 046F 0470 0472 0473 0474 0475 0476 0477 052B 052C 0533 0534 0539 053A 053B 053C 0541 0542 0543 0544 0549 054A 054B 054C 0551 0553 0554 0559 055A 055B 055C 0561 0562 0563 0564 0569 056A 056B 056C 0571 0572 0573
+C - - - - - 0x000D37 00:8D27: A4 49     LDY ram_0049_t03
+C - - - - - 0x000D39 00:8D29: A5 48     LDA ram_0048_t08
+C - - - - - 0x000D3B 00:8D2B: 91 57     STA (ram_0057_temp),Y    ; 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0437 0438 0439 043A 043B 043C 043D 043F 0440 0442 0443 0444 0445 0447 0448 044A 044B 044C 044D 044F 0450 0452 0453 0454 0455 0457 0458 045A 045B 045C 045D 045F 0460 0462 0463 0464 0465 0467 0468 046A 046B 046C 046D 046F 0470 0472 0473 0474 0475 0477 0478 047A 047B 047C 047D 047E 047F 0533 0534 053B 053C 0541 0542 0543 0544 0549 054A 054B 054C 0551 0552 0553 0554 0559 055B 055C 0561 0562 0563 0564 0569 056A 056B 056C 0571 0572 0573 0574 0579 057A 057B
+C - - - - - 0x000D3D 00:8D2D: E6 47     INC ram_0047_t01_counter
 C - - - - - 0x000D3F 00:8D2F: A9 07     LDA #con_sfx_1_07
 C - - - - - 0x000D41 00:8D31: 8D F1 06  STA ram_sfx_1
 bra_8D34:
 loc_8D34:
-C D 0 - - - 0x000D44 00:8D34: C6 49     DEC ram_0049
-C - - - - - 0x000D46 00:8D36: A4 49     LDY ram_0049
+C D 0 - - - 0x000D44 00:8D34: C6 49     DEC ram_0049_t03
+C - - - - - 0x000D46 00:8D36: A4 49     LDY ram_0049_t03
 C - - - - - 0x000D48 00:8D38: C0 FF     CPY #$FF
 C - - - - - 0x000D4A 00:8D3A: F0 03     BEQ bra_8D3F
-C - - - - - 0x000D4C 00:8D3C: 4C A7 8C  JMP loc_8CA7
+C - - - - - 0x000D4C 00:8D3C: 4C A7 8C  JMP loc_8CA7_loop
 bra_8D3F:
 C - - - - - 0x000D4F 00:8D3F: A9 0F     LDA #$0F
 C - - - - - 0x000D51 00:8D41: 85 80     STA ram_row
-C - - - - - 0x000D53 00:8D43: A5 47     LDA ram_0047
+C - - - - - 0x000D53 00:8D43: A5 47     LDA ram_0047_t01_counter
 C - - - - - 0x000D55 00:8D45: F0 05     BEQ bra_8D4C
-C - - - - - 0x000D57 00:8D47: C6 87     DEC ram_0087
+C - - - - - 0x000D57 00:8D47: C6 87     DEC ram_0087_script
 C - - - - - 0x000D59 00:8D49: 4C 4E 8D  JMP loc_8D4E_RTS
 bra_8D4C:
-C - - - - - 0x000D5C 00:8D4C: E6 87     INC ram_0087
+C - - - - - 0x000D5C 00:8D4C: E6 87     INC ram_0087_script
 loc_8D4E_RTS:   ; bzk optimize
 C D 0 - - - 0x000D5E 00:8D4E: 60        RTS
 
@@ -1883,7 +1926,7 @@ C D 0 - - - 0x000D5E 00:8D4E: 60        RTS
 
 ofs_001_8D4F_08:
 C - - J - - 0x000D5F 00:8D4F: A9 00     LDA #$00
-C - - - - - 0x000D61 00:8D51: 85 87     STA ram_0087
+C - - - - - 0x000D61 00:8D51: 85 87     STA ram_0087_script
 ; bzk optimize, is it necessary?
 C - - - - - 0x000D63 00:8D53: E6 97     INC ram_0097_script    ; 01 -> 02
 C - - - - - 0x000D65 00:8D55: 60        RTS
@@ -2025,9 +2068,9 @@ C D 0 - - - 0x000E3A 00:8E2A: 60        RTS
 
 sub_8E2B:
 C - - - - - 0x000E3B 00:8E2B: A5 A5     LDA ram_pill_rotate
-C - - - - - 0x000E3D 00:8E2D: 85 4A     STA ram_004A
+C - - - - - 0x000E3D 00:8E2D: 85 4A     STA ram_004A_t02_copy_pill_rotate
 C - - - - - 0x000E3F 00:8E2F: A5 85     LDA ram_pill_pos_X
-C - - - - - 0x000E41 00:8E31: 85 4B     STA ram_004B
+C - - - - - 0x000E41 00:8E31: 85 4B     STA ram_004B_t04_copy_pill_pos_X
 C - - - - - 0x000E43 00:8E33: A5 5B     LDA ram_plr_btn_press
 C - - - - - 0x000E45 00:8E35: 29 80     AND #con_btn_A
 C - - - - - 0x000E47 00:8E37: F0 10     BEQ bra_8E49
@@ -2076,9 +2119,9 @@ C - - - - - 0x000E8D 00:8E7D: C6 85     DEC ram_pill_pos_X
 bra_8E7F_vertically:
 C - - - - - 0x000E8F 00:8E7F: 20 D3 90  JSR sub_90D3
 C - - - - - 0x000E92 00:8E82: F0 08     BEQ bra_8E8C_RTS
-C - - - - - 0x000E94 00:8E84: A5 4A     LDA ram_004A
+C - - - - - 0x000E94 00:8E84: A5 4A     LDA ram_004A_t02_copy_pill_rotate
 C - - - - - 0x000E96 00:8E86: 85 A5     STA ram_pill_rotate
-C - - - - - 0x000E98 00:8E88: A5 4B     LDA ram_004B
+C - - - - - 0x000E98 00:8E88: A5 4B     LDA ram_004B_t04_copy_pill_pos_X
 C - - - - - 0x000E9A 00:8E8A: 85 85     STA ram_pill_pos_X
 bra_8E8C_RTS:
 loc_8E8C_RTS:   ; bzk optimize
@@ -2120,7 +2163,7 @@ C - - - - - 0x000ED5 00:8EC5: A5 A7     LDA ram_pill_counter
 C - - - - - 0x000ED7 00:8EC7: 29 7F     AND #$7F
 C - - - - - 0x000ED9 00:8EC9: 85 A7     STA ram_pill_counter
 C - - - - - 0x000EDB 00:8ECB: A9 00     LDA #$00
-C - - - - - 0x000EDD 00:8ECD: 85 7D     STA ram_007D
+C - - - - - 0x000EDD 00:8ECD: 85 7D     STA ram_007D_table_index
 C - - - - - 0x000EDF 00:8ECF: 85 A2     STA ram_00A2
 C - - - - - 0x000EE1 00:8ED1: A9 02     LDA #$02
 C - - - - - 0x000EE3 00:8ED3: 85 A3     STA ram_00A3
@@ -2193,17 +2236,17 @@ C - - - - - 0x000F46 00:8F36: F0 0F     BEQ bra_8F47    ; if overflow
 C - - - - - 0x000F48 00:8F38: E6 8A     INC ram_increase_speed
 C - - - - - 0x000F4A 00:8F3A: A9 06     LDA #con_sfx_1_increase_speed
 C - - - - - 0x000F4C 00:8F3C: 8D F1 06  STA ram_sfx_1
-C - - - - - 0x000F4F 00:8F3F: A5 52     LDA ram_0052
-C - - - - - 0x000F51 00:8F41: 09 12     ORA #$12
+C - - - - - 0x000F4F 00:8F3F: A5 52     LDA ram_0052_flags
+C - - - - - 0x000F51 00:8F41: 09 12     ORA #con_0052_02 + con_0052_10
 ; bzk optimize, ORA 02 does nothing after ORA 12
-C - - - - - 0x000F53 00:8F43: 09 02     ORA #$02
-C - - - - - 0x000F55 00:8F45: 85 52     STA ram_0052
+C - - - - - 0x000F53 00:8F43: 09 02     ORA #con_0052_02
+C - - - - - 0x000F55 00:8F45: 85 52     STA ram_0052_flags
 bra_8F47:
 C - - - - - 0x000F57 00:8F47: A9 00     LDA #$00
 C - - - - - 0x000F59 00:8F49: 85 8F     STA ram_combo_counter_1
-C - - - - - 0x000F5B 00:8F4B: A5 52     LDA ram_0052
-C - - - - - 0x000F5D 00:8F4D: 09 01     ORA #$01
-C - - - - - 0x000F5F 00:8F4F: 85 52     STA ram_0052
+C - - - - - 0x000F5B 00:8F4B: A5 52     LDA ram_0052_flags
+C - - - - - 0x000F5D 00:8F4D: 09 01     ORA #con_0052_01
+C - - - - - 0x000F5F 00:8F4F: 85 52     STA ram_0052_flags
 C - - - - - 0x000F61 00:8F51: 60        RTS
 
 
@@ -2213,45 +2256,47 @@ C - - - - - 0x000F62 00:8F52: A6 86     LDX ram_pill_pos_Y
 C - - - - - 0x000F64 00:8F54: BD 74 A4  LDA tbl_A474,X
 C - - - - - 0x000F67 00:8F57: 18        CLC
 C - - - - - 0x000F68 00:8F58: 65 85     ADC ram_pill_pos_X
-C - - - - - 0x000F6A 00:8F5A: 85 47     STA ram_0047
+C - - - - - 0x000F6A 00:8F5A: 85 47     STA ram_0047_t19
 C - - - - - 0x000F6C 00:8F5C: A5 A6     LDA ram_00A6
 C - - - - - 0x000F6E 00:8F5E: 38        SEC
 C - - - - - 0x000F6F 00:8F5F: E9 02     SBC #$02
+; * 10
 C - - - - - 0x000F71 00:8F61: 0A        ASL
 C - - - - - 0x000F72 00:8F62: 0A        ASL
 C - - - - - 0x000F73 00:8F63: 0A        ASL
 C - - - - - 0x000F74 00:8F64: 0A        ASL
-C - - - - - 0x000F75 00:8F65: 85 48     STA ram_0048
+C - - - - - 0x000F75 00:8F65: 85 48     STA ram_0048_t05
 C - - - - - 0x000F77 00:8F67: A5 A5     LDA ram_pill_rotate
+; * 04
 C - - - - - 0x000F79 00:8F69: 0A        ASL
 C - - - - - 0x000F7A 00:8F6A: 0A        ASL
 C - - - - - 0x000F7B 00:8F6B: 18        CLC
-C - - - - - 0x000F7C 00:8F6C: 65 48     ADC ram_0048
+C - - - - - 0x000F7C 00:8F6C: 65 48     ADC ram_0048_t05
 C - - - - - 0x000F7E 00:8F6E: AA        TAX
 C - - - - - 0x000F7F 00:8F6F: A9 00     LDA #$00
-C - - - - - 0x000F81 00:8F71: 85 49     STA ram_0049
+C - - - - - 0x000F81 00:8F71: 85 49     STA ram_0049_t05
 bra_8F73_loop:
 C - - - - - 0x000F83 00:8F73: BD DC A4  LDA tbl_A4DC,X
 C - - - - - 0x000F86 00:8F76: C9 63     CMP #$63
 C - - - - - 0x000F88 00:8F78: F0 24     BEQ bra_8F9E
 C - - - - - 0x000F8A 00:8F7A: 18        CLC
-C - - - - - 0x000F8B 00:8F7B: 65 47     ADC ram_0047
-C - - - - - 0x000F8D 00:8F7D: 85 57     STA ram_0057
+C - - - - - 0x000F8B 00:8F7B: 65 47     ADC ram_0047_t19
+C - - - - - 0x000F8D 00:8F7D: 85 57     STA ram_0057_temp
 C - - - - - 0x000F8F 00:8F7F: C9 80     CMP #$80
 C - - - - - 0x000F91 00:8F81: B0 12     BCS bra_8F95
 C - - - - - 0x000F93 00:8F83: BD 0C A5  LDA tbl_A50C,X
 C - - - - - 0x000F96 00:8F86: 18        CLC
-C - - - - - 0x000F97 00:8F87: 85 4A     STA ram_004A
-C - - - - - 0x000F99 00:8F89: A4 49     LDY ram_0049
+C - - - - - 0x000F97 00:8F87: 85 4A     STA ram_004A_t03
+C - - - - - 0x000F99 00:8F89: A4 49     LDY ram_0049_t05
 C - - - - - 0x000F9B 00:8F8B: B9 81 00  LDA ram_pill_color,Y
 C - - - - - 0x000F9E 00:8F8E: 18        CLC
-C - - - - - 0x000F9F 00:8F8F: 65 4A     ADC ram_004A
+C - - - - - 0x000F9F 00:8F8F: 65 4A     ADC ram_004A_t03
 C - - - - - 0x000FA1 00:8F91: A0 00     LDY #$00
-C - - - - - 0x000FA3 00:8F93: 91 57     STA (ram_0057),Y    ; 0400 0401 0402 0403 0404 0405 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 0463 0464 046B 046C 0470 0471 0473 0474 0476 0478 0479 047B 047C 047D 047E 0503 0504 050B 050C 0513 0514 051B 051C 0523 0524 0525 052A 052B 052C 052D 0532 0533 0534 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0552 0553 0554 0559 055A 055B 055C 0561 0562 0563 0564 0569 056A 056B 056C 0571 0572
+C - - - - - 0x000FA3 00:8F93: 91 57     STA (ram_0057_temp),Y    ; 0400 0401 0402 0403 0404 0405 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 0463 0464 046B 046C 0470 0471 0473 0474 0476 0478 0479 047B 047C 047D 047E 0503 0504 050B 050C 0513 0514 051B 051C 0523 0524 0525 052A 052B 052C 052D 0532 0533 0534 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0552 0553 0554 0559 055A 055B 055C 0561 0562 0563 0564 0569 056A 056B 056C 0571 0572
 bra_8F95:
 C - - - - - 0x000FA5 00:8F95: E8        INX
-C - - - - - 0x000FA6 00:8F96: E6 49     INC ram_0049
-C - - - - - 0x000FA8 00:8F98: A5 49     LDA ram_0049
+C - - - - - 0x000FA6 00:8F96: E6 49     INC ram_0049_t05
+C - - - - - 0x000FA8 00:8F98: A5 49     LDA ram_0049_t05
 C - - - - - 0x000FAA 00:8F9A: C9 04     CMP #$04
 C - - - - - 0x000FAC 00:8F9C: D0 D5     BNE bra_8F73_loop
 bra_8F9E:
@@ -2320,9 +2365,9 @@ C - - - - - 0x00101A 00:900A: EE 2A 07  INC ram_score_0000x00_plr
 C - - - - - 0x00101D 00:900D: 20 1C 90  JSR sub_901C
 C - - - - - 0x001020 00:9010: CA        DEX
 C - - - - - 0x001021 00:9011: D0 EE     BNE bra_9001_loop
-C - - - - - 0x001023 00:9013: A5 52     LDA ram_0052
-C - - - - - 0x001025 00:9015: 09 04     ORA #$04
-C - - - - - 0x001027 00:9017: 85 52     STA ram_0052
+C - - - - - 0x001023 00:9013: A5 52     LDA ram_0052_flags
+C - - - - - 0x001025 00:9015: 09 04     ORA #con_0052_04
+C - - - - - 0x001027 00:9017: 85 52     STA ram_0052_flags
 C - - - - - 0x001029 00:9019: E6 AD     INC ram_00AD
 bra_901B_RTS:
 C - - - - - 0x00102B 00:901B: 60        RTS
@@ -2390,9 +2435,9 @@ C - - - - - 0x001093 00:9083: 85 5B     STA ram_plr_btn_press
 C - - - - - 0x001095 00:9085: A5 F7     LDA ram_btn_hold
 C - - - - - 0x001097 00:9087: 85 5C     STA ram_plr_btn_hold
 C - - - - - 0x001099 00:9089: A9 00     LDA #< ram_playfield_p1
-C - - - - - 0x00109B 00:908B: 85 57     STA ram_0057
+C - - - - - 0x00109B 00:908B: 85 57     STA ram_0057_temp
 C - - - - - 0x00109D 00:908D: A9 04     LDA #> ram_playfield_p1
-C - - - - - 0x00109F 00:908F: 85 58     STA ram_0058
+C - - - - - 0x00109F 00:908F: 85 58     STA ram_0058_temp
 C - - - - - 0x0010A1 00:9091: 60        RTS
 
 
@@ -2410,9 +2455,9 @@ C - - - - - 0x0010B0 00:90A0: 85 5B     STA ram_plr_btn_press
 C - - - - - 0x0010B2 00:90A2: A5 F8     LDA ram_btn_hold + $01
 C - - - - - 0x0010B4 00:90A4: 85 5C     STA ram_plr_btn_hold
 C - - - - - 0x0010B6 00:90A6: A9 00     LDA #< ram_playfield_p2
-C - - - - - 0x0010B8 00:90A8: 85 57     STA ram_0057
+C - - - - - 0x0010B8 00:90A8: 85 57     STA ram_0057_temp
 C - - - - - 0x0010BA 00:90AA: A9 05     LDA #> ram_playfield_p2
-C - - - - - 0x0010BC 00:90AC: 85 58     STA ram_0058
+C - - - - - 0x0010BC 00:90AC: 85 58     STA ram_0058_temp
 C - - - - - 0x0010BE 00:90AE: 60        RTS
 
 
@@ -2445,6 +2490,7 @@ sub_90C9_fill_0400_05FF_with_FF:
 C - - - - - 0x0010D9 00:90C9: A9 FF     LDA #$FF
 C - - - - - 0x0010DB 00:90CB: A2 04     LDX #$04
 C - - - - - 0x0010DD 00:90CD: A0 05     LDY #$05
+; bzk optimize, JMP
 C - - - - - 0x0010DF 00:90CF: 20 94 B8  JSR sub_B894_fill_memory_pages
 C - - - - - 0x0010E2 00:90D2: 60        RTS
 
@@ -2474,36 +2520,37 @@ C - - - - - 0x001104 00:90F4: 65 86     ADC ram_pill_pos_Y
 C - - - - - 0x001106 00:90F6: 30 39     BMI bra_9131
 loc_90F8:
 C D 0 - - - 0x001108 00:90F8: A9 00     LDA #$00
-C - - - - - 0x00110A 00:90FA: 85 57     STA ram_0057
+C - - - - - 0x00110A 00:90FA: 85 57     STA ram_0057_temp
 C - - - - - 0x00110C 00:90FC: A6 86     LDX ram_pill_pos_Y
 C - - - - - 0x00110E 00:90FE: BD 74 A4  LDA tbl_A474,X
 C - - - - - 0x001111 00:9101: 18        CLC
 C - - - - - 0x001112 00:9102: 65 85     ADC ram_pill_pos_X
-C - - - - - 0x001114 00:9104: 85 47     STA ram_0047
+C - - - - - 0x001114 00:9104: 85 47     STA ram_0047_t02
 C - - - - - 0x001116 00:9106: A5 A6     LDA ram_00A6
 C - - - - - 0x001118 00:9108: 38        SEC
 C - - - - - 0x001119 00:9109: E9 02     SBC #$02
 C - - - - - 0x00111B 00:910B: 0A        ASL
-C - - - - - 0x00111C 00:910C: 85 49     STA ram_0049
+C - - - - - 0x00111C 00:910C: 85 49     STA ram_0049_t09
 C - - - - - 0x00111E 00:910E: A5 A5     LDA ram_pill_rotate
 C - - - - - 0x001120 00:9110: 29 01     AND #$01
 C - - - - - 0x001122 00:9112: 18        CLC
-C - - - - - 0x001123 00:9113: 65 49     ADC ram_0049
+C - - - - - 0x001123 00:9113: 65 49     ADC ram_0049_t09
+; * 04
 C - - - - - 0x001125 00:9115: 0A        ASL
 C - - - - - 0x001126 00:9116: 0A        ASL
 C - - - - - 0x001127 00:9117: AA        TAX
 C - - - - - 0x001128 00:9118: A9 04     LDA #$04
-C - - - - - 0x00112A 00:911A: 85 48     STA ram_0048
+C - - - - - 0x00112A 00:911A: 85 48     STA ram_0048_t06_loop_counter
 bra_911C_loop:
 C - - - - - 0x00112C 00:911C: BD C4 A4  LDA tbl_A4C4,X
 C - - - - - 0x00112F 00:911F: 18        CLC
-C - - - - - 0x001130 00:9120: 65 47     ADC ram_0047
+C - - - - - 0x001130 00:9120: 65 47     ADC ram_0047_t02
 C - - - - - 0x001132 00:9122: A8        TAY
-C - - - - - 0x001133 00:9123: B1 57     LDA (ram_0057),Y    ; 0400 0401 0402 0403 0404 0405 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0463 0464 0465 0466 0467 0468 0469 046B 046C 046D 046E 046F 0470 0471 0473 0474 0475 0476 0478 0479 047B 047C 047D 047E 04F8 04F9 04FA 04FB 04FC 04FD 04FE 04FF 0501 0502 0503 0504 0505 0508 0509 050A 050B 050C 050D 0510 0511 0512 0513 0514 0515 0516 0518 0519 051A 051B 051C 051D 051E 0521 0522 0523 0524 0525 0526 0529 052A 052B 052C 052D 052E 0531 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 0559 055A 055B 055C 0561 0562 0563 0564 0569 056A 056B 056C 0571 0572 0573 0579 05FA 05FB
+C - - - - - 0x001133 00:9123: B1 57     LDA (ram_0057_temp),Y    ; 0400 0401 0402 0403 0404 0405 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0463 0464 0465 0466 0467 0468 0469 046B 046C 046D 046E 046F 0470 0471 0473 0474 0475 0476 0478 0479 047B 047C 047D 047E 04F8 04F9 04FA 04FB 04FC 04FD 04FE 04FF 0501 0502 0503 0504 0505 0508 0509 050A 050B 050C 050D 0510 0511 0512 0513 0514 0515 0516 0518 0519 051A 051B 051C 051D 051E 0521 0522 0523 0524 0525 0526 0529 052A 052B 052C 052D 052E 0531 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 0559 055A 055B 055C 0561 0562 0563 0564 0569 056A 056B 056C 0571 0572 0573 0579 05FA 05FB
 C - - - - - 0x001135 00:9125: C9 FF     CMP #$FF
 C - - - - - 0x001137 00:9127: D0 08     BNE bra_9131
 C - - - - - 0x001139 00:9129: E8        INX
-C - - - - - 0x00113A 00:912A: C6 48     DEC ram_0048
+C - - - - - 0x00113A 00:912A: C6 48     DEC ram_0048_t06_loop_counter
 C - - - - - 0x00113C 00:912C: D0 EE     BNE bra_911C_loop
 C - - - - - 0x00113E 00:912E: A9 00     LDA #$00
 C - - - - - 0x001140 00:9130: 60        RTS
@@ -2534,28 +2581,28 @@ C - - - - - 0x001161 00:9151: C6 69     DEC ram_0069_demo_btn_timer
 C - - - - - 0x001163 00:9153: 4C 7D 91  JMP loc_917D
 bra_9156:
 C - - - - - 0x001166 00:9156: A2 00     LDX #$00
-C - - - - - 0x001168 00:9158: A1 36     LDA (ram_0036,X)    ; reading from 0x005010 (1st byte)
-C - - - - - 0x00116A 00:915A: 85 47     STA ram_0047
-C - - - - - 0x00116C 00:915C: 20 C2 91  JSR sub_91C2_increase_0036_pointer
+C - - - - - 0x001168 00:9158: A1 36     LDA (ram_0036_t01_demo_buttons_data,X)    ; reading from 0x005010 (1st byte)
+C - - - - - 0x00116A 00:915A: 85 47     STA ram_0047_t21_demo_btn
+C - - - - - 0x00116C 00:915C: 20 C2 91  JSR sub_91C2_increase_demo_buttons_data_pointer
 C - - - - - 0x00116F 00:915F: A5 70     LDA ram_0070_demo_btn_press
-C - - - - - 0x001171 00:9161: 45 47     EOR ram_0047
-C - - - - - 0x001173 00:9163: 25 47     AND ram_0047
+C - - - - - 0x001171 00:9161: 45 47     EOR ram_0047_t21_demo_btn
+C - - - - - 0x001173 00:9163: 25 47     AND ram_0047_t21_demo_btn
 C - - - - - 0x001175 00:9165: 85 F5     STA ram_btn_press
-C - - - - - 0x001177 00:9167: A5 47     LDA ram_0047
+C - - - - - 0x001177 00:9167: A5 47     LDA ram_0047_t21_demo_btn
 C - - - - - 0x001179 00:9169: 85 70     STA ram_0070_demo_btn_press
 C - - - - - 0x00117B 00:916B: A2 00     LDX #$00
-C - - - - - 0x00117D 00:916D: A1 36     LDA (ram_0036,X)    ; reading from 0x005010 (2nd byte)
+C - - - - - 0x00117D 00:916D: A1 36     LDA (ram_0036_t01_demo_buttons_data,X)    ; reading from 0x005010 (2nd byte)
 C - - - - - 0x00117F 00:916F: 85 69     STA ram_0069_demo_btn_timer
-C - - - - - 0x001181 00:9171: 20 C2 91  JSR sub_91C2_increase_0036_pointer
+C - - - - - 0x001181 00:9171: 20 C2 91  JSR sub_91C2_increase_demo_buttons_data_pointer
                                     .if con_bzk_hack = $00
-C - - - - - 0x001184 00:9174: A5 37     LDA ram_0037
+C - - - - - 0x001184 00:9174: A5 37     LDA ram_0036_t01_demo_buttons_data + $01
 C - - - - - 0x001186 00:9176: C9 D2     CMP #> ( tbl_D000_demo_input + $200 )
 C - - - - - 0x001188 00:9178: F0 0C     BEQ bra_9186
                                     .else
-                                        LDA ram_0036
+                                        LDA ram_0036_t01_demo_buttons_data
                                         CMP #< ( tbl_D000_demo_input + $200 )
                                         BNE bra_917A
-                                        LDA ram_0037
+                                        LDA ram_0036_t01_demo_buttons_data + $01
                                         CMP #> ( tbl_D000_demo_input + $200 )
                                         BEQ bra_9186
 bra_917A:
@@ -2575,10 +2622,10 @@ C - - - - - 0x00119A 00:918A: 60        RTS
 bra_918B_prepare_pointers:
                                     .if con_bzk_hack <> $00
                                         LDA #< tbl_D000_demo_input
-                                        STA ram_0036
+                                        STA ram_0036_t01_demo_buttons_data
                                     .endif
 C - - - - - 0x00119B 00:918B: A9 D0     LDA #> tbl_D000_demo_input
-C - - - - - 0x00119D 00:918D: 85 37     STA ram_0037
+C - - - - - 0x00119D 00:918D: 85 37     STA ram_0036_t01_demo_buttons_data + $01
 C - - - - - 0x00119F 00:918F: 60        RTS
 bra_9190_FF:
 ; bzk garbage obviously, you can't write to PRG (see 0x0011AD and 0x0011B4)
@@ -2588,20 +2635,20 @@ bra_9190_FF:
 - - - - - - 0x0011A7 00:9197: F0 1F     BEQ bra_91B8
 - - - - - - 0x0011A9 00:9199: A2 00     LDX #$00
 - - - - - - 0x0011AB 00:919B: A5 70     LDA ram_0070_demo_btn_press
-- - - - - - 0x0011AD 00:919D: 81 36     STA (ram_0036,X)
-- - - - - - 0x0011AF 00:919F: 20 C2 91  JSR sub_91C2_increase_0036_pointer
+- - - - - - 0x0011AD 00:919D: 81 36     STA (ram_0036_t01_demo_buttons_data,X)
+- - - - - - 0x0011AF 00:919F: 20 C2 91  JSR sub_91C2_increase_demo_buttons_data_pointer
 - - - - - - 0x0011B2 00:91A2: A5 69     LDA ram_0069_demo_btn_timer
-- - - - - - 0x0011B4 00:91A4: 81 36     STA (ram_0036,X)
-- - - - - - 0x0011B6 00:91A6: 20 C2 91  JSR sub_91C2_increase_0036_pointer
+- - - - - - 0x0011B4 00:91A4: 81 36     STA (ram_0036_t01_demo_buttons_data,X)
+- - - - - - 0x0011B6 00:91A6: 20 C2 91  JSR sub_91C2_increase_demo_buttons_data_pointer
                                     .if con_bzk_hack = $00
-- - - - - - 0x0011B9 00:91A9: A5 37     LDA ram_0037
+- - - - - - 0x0011B9 00:91A9: A5 37     LDA ram_0036_t01_demo_buttons_data + $01
 - - - - - - 0x0011BB 00:91AB: C9 D2     CMP #> ( tbl_D000_demo_input + $200 )
 - - - - - - 0x0011BD 00:91AD: F0 0C     BEQ bra_91BB
                                     .else
-                                        LDA ram_0036
+                                        LDA ram_0036_t01_demo_buttons_data
                                         CMP #< ( tbl_D000_demo_input + $200 )
                                         BNE bra_91AF
-                                        LDA ram_0037
+                                        LDA ram_0036_t01_demo_buttons_data + $01
                                         CMP #> ( tbl_D000_demo_input + $200 )
                                         BEQ bra_91BB
 bra_91AF:
@@ -2616,20 +2663,20 @@ bra_91B8:
 - - - - - - 0x0011CA 00:91BA: 60        RTS
 bra_91BB:
 - - - - - - 0x0011CB 00:91BB: A9 00     LDA #$00
-- - - - - - 0x0011CD 00:91BD: 85 36     STA ram_0036
+- - - - - - 0x0011CD 00:91BD: 85 36     STA ram_0036_t01_demo_buttons_data
 - - - - - - 0x0011CF 00:91BF: 85 46     STA ram_game_script
 - - - - - - 0x0011D1 00:91C1: 60        RTS
 
 
 
-sub_91C2_increase_0036_pointer:
-C - - - - - 0x0011D2 00:91C2: A5 36     LDA ram_0036
+sub_91C2_increase_demo_buttons_data_pointer:
+C - - - - - 0x0011D2 00:91C2: A5 36     LDA ram_0036_t01_demo_buttons_data
 C - - - - - 0x0011D4 00:91C4: 18        CLC
 C - - - - - 0x0011D5 00:91C5: 69 01     ADC #< $0001
-C - - - - - 0x0011D7 00:91C7: 85 36     STA ram_0036
+C - - - - - 0x0011D7 00:91C7: 85 36     STA ram_0036_t01_demo_buttons_data
 C - - - - - 0x0011D9 00:91C9: A9 00     LDA #> $0001
-C - - - - - 0x0011DB 00:91CB: 65 37     ADC ram_0037
-C - - - - - 0x0011DD 00:91CD: 85 37     STA ram_0037
+C - - - - - 0x0011DB 00:91CB: 65 37     ADC ram_0036_t01_demo_buttons_data + $01
+C - - - - - 0x0011DD 00:91CD: 85 37     STA ram_0036_t01_demo_buttons_data + $01
 C - - - - - 0x0011DF 00:91CF: 60        RTS
 
 
@@ -2646,24 +2693,24 @@ sub_91D0_check_hacking_protection:
                                         RTS
                                     .endif
 C - - - - - 0x0011E0 00:91D0: A9 B9     LDA #> tbl_B900_hacking_protection
-C - - - - - 0x0011E2 00:91D2: 85 48     STA ram_0048
+C - - - - - 0x0011E2 00:91D2: 85 48     STA ram_0047_t20_hacking_protection_data + $01
 C - - - - - 0x0011E4 00:91D4: A0 00     LDY #< tbl_B900_hacking_protection
 ; Y = 00
-C - - - - - 0x0011E6 00:91D6: 84 47     STY ram_0047
-C - - - - - 0x0011E8 00:91D8: 84 49     STY ram_0049
+C - - - - - 0x0011E6 00:91D6: 84 47     STY ram_0047_t20_hacking_protection_data
+C - - - - - 0x0011E8 00:91D8: 84 49     STY ram_0049_t06_hack_protect_data_index
 C - - - - - 0x0011EA 00:91DA: 8C 40 07  STY ram_hacking_protection
 bra_91DD_loop:
-C - - - - - 0x0011ED 00:91DD: B1 47     LDA (ram_0047),Y
+C - - - - - 0x0011ED 00:91DD: B1 47     LDA (ram_0047_t20_hacking_protection_data),Y
 C - - - - - 0x0011EF 00:91DF: 18        CLC
-C - - - - - 0x0011F0 00:91E0: 65 49     ADC ram_0049
-C - - - - - 0x0011F2 00:91E2: 85 49     STA ram_0049
+C - - - - - 0x0011F0 00:91E0: 65 49     ADC ram_0049_t06_hack_protect_data_index
+C - - - - - 0x0011F2 00:91E2: 85 49     STA ram_0049_t06_hack_protect_data_index
 C - - - - - 0x0011F4 00:91E4: C8        INY
 C - - - - - 0x0011F5 00:91E5: D0 F6     BNE bra_91DD_loop
-C - - - - - 0x0011F7 00:91E7: E6 48     INC ram_0048
-C - - - - - 0x0011F9 00:91E9: A5 48     LDA ram_0048
+C - - - - - 0x0011F7 00:91E7: E6 48     INC ram_0047_t20_hacking_protection_data + $01
+C - - - - - 0x0011F9 00:91E9: A5 48     LDA ram_0047_t20_hacking_protection_data + $01
 C - - - - - 0x0011FB 00:91EB: C9 BE     CMP #> ( tbl_B900_hacking_protection + $500 )
 C - - - - - 0x0011FD 00:91ED: D0 EE     BNE bra_91DD_loop
-C - - - - - 0x0011FF 00:91EF: A5 49     LDA ram_0049
+C - - - - - 0x0011FF 00:91EF: A5 49     LDA ram_0049_t06_hack_protect_data_index
 C - - - - - 0x001201 00:91F1: C9 C1     CMP #$C1
 C - - - - - 0x001203 00:91F3: F0 05     BEQ bra_91FA_RTS
 ; if check failed
@@ -2674,7 +2721,7 @@ C - - - - - 0x00120A 00:91FA: 60        RTS
 
 
 
-ofs_001_91FB_05_check_H_clear:
+ofs_001_91FB_05_check_horizontal_clear:
 C - - J - - 0x00120B 00:91FB: A5 94     LDA ram_0094
 C - - - - - 0x00120D 00:91FD: F0 09     BEQ bra_9208
 - - - - - - 0x00120F 00:91FF: A5 80     LDA ram_row
@@ -2688,31 +2735,31 @@ loc_920C:
 C D 0 - - - 0x00121C 00:920C: A5 59     LDA ram_0059
 C - - - - - 0x00121E 00:920E: 85 5A     STA ram_005A
 C - - - - - 0x001220 00:9210: A9 00     LDA #$00
-C - - - - - 0x001222 00:9212: 85 47     STA ram_0047
+C - - - - - 0x001222 00:9212: 85 47     STA ram_0047_t24
 C - - - - - 0x001224 00:9214: A4 59     LDY ram_0059
-C - - - - - 0x001226 00:9216: B1 57     LDA (ram_0057),Y    ; 0400 0401 0402 0403 0404 0408 0409 040A 040B 040C 0410 0411 0412 0413 0414 0418 0419 041A 041B 041C 0420 0421 0422 0423 0424 0428 0429 042A 042B 042C 0430 0431 0432 0433 0434 0438 0439 043A 043B 043C 0440 0441 0442 0443 0444 0448 0449 044A 044B 044C 0450 0451 0452 0453 0454 0458 0459 045A 045B 045C 0460 0461 0462 0463 0464 0468 0469 046A 046B 046C 0470 0471 0472 0473 0474 0478 0479 047A 047B 047C 0500 0501 0502 0503 0504 0508 0509 050A 050B 050C 0510 0511 0512 0513 0514 0518 0519 051A 051B 051C 0520 0521 0522 0523 0524 0528 0529 052A 052B 052C 0530 0531 0532 0533 0534 0538 0539 053A 053B 053C 0540 0541 0542 0543 0544 0548 0549 054A 054B 054C 0550 0551 0552 0553 0554 0558 0559 055A 055B 055C 0560 0561 0562 0563 0564 0568 0569 056A 056B 056C 0570 0571 0572 0573 0574 0578 0579 057A 057B 057C
-C - - - - - 0x001228 00:9218: 85 48     STA ram_0048
+C - - - - - 0x001226 00:9216: B1 57     LDA (ram_0057_temp),Y    ; 0400 0401 0402 0403 0404 0408 0409 040A 040B 040C 0410 0411 0412 0413 0414 0418 0419 041A 041B 041C 0420 0421 0422 0423 0424 0428 0429 042A 042B 042C 0430 0431 0432 0433 0434 0438 0439 043A 043B 043C 0440 0441 0442 0443 0444 0448 0449 044A 044B 044C 0450 0451 0452 0453 0454 0458 0459 045A 045B 045C 0460 0461 0462 0463 0464 0468 0469 046A 046B 046C 0470 0471 0472 0473 0474 0478 0479 047A 047B 047C 0500 0501 0502 0503 0504 0508 0509 050A 050B 050C 0510 0511 0512 0513 0514 0518 0519 051A 051B 051C 0520 0521 0522 0523 0524 0528 0529 052A 052B 052C 0530 0531 0532 0533 0534 0538 0539 053A 053B 053C 0540 0541 0542 0543 0544 0548 0549 054A 054B 054C 0550 0551 0552 0553 0554 0558 0559 055A 055B 055C 0560 0561 0562 0563 0564 0568 0569 056A 056B 056C 0570 0571 0572 0573 0574 0578 0579 057A 057B 057C
+C - - - - - 0x001228 00:9218: 85 48     STA ram_0048_t04
 C - - - - - 0x00122A 00:921A: C9 F0     CMP #$F0
 C - - - - - 0x00122C 00:921C: 90 03     BCC bra_9221
 C - - - - - 0x00122E 00:921E: 4C AD 92  JMP loc_92AD
 bra_9221:
-C - - - - - 0x001231 00:9221: A5 48     LDA ram_0048
+C - - - - - 0x001231 00:9221: A5 48     LDA ram_0048_t04
 C - - - - - 0x001233 00:9223: 29 0F     AND #$0F
-C - - - - - 0x001235 00:9225: 85 48     STA ram_0048
+C - - - - - 0x001235 00:9225: 85 48     STA ram_0048_t04
 loc_9227_loop:
 C D 0 - - - 0x001237 00:9227: E6 5A     INC ram_005A
 C - - - - - 0x001239 00:9229: A5 5A     LDA ram_005A
 C - - - - - 0x00123B 00:922B: 29 07     AND #$07
 C - - - - - 0x00123D 00:922D: F0 0F     BEQ bra_923E
 C - - - - - 0x00123F 00:922F: A4 5A     LDY ram_005A
-C - - - - - 0x001241 00:9231: B1 57     LDA (ram_0057),Y    ; 0401 0402 0403 0404 0405 0406 0409 040A 040B 040C 040D 0411 0412 0413 0414 0415 0416 0417 0419 041A 041B 041C 041D 041E 0421 0422 0423 0424 0425 0426 0429 042A 042B 042C 042D 042E 0431 0432 0433 0434 0435 0436 0437 0439 043A 043B 043C 043D 043E 043F 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 0451 0452 0453 0454 0455 0456 0459 045A 045B 045C 045D 045E 0461 0462 0463 0464 0465 0466 0469 046A 046B 046C 046D 046E 046F 0471 0472 0473 0474 0475 0476 0479 047A 047B 047C 047D 047E 047F 0504 0505 050C 050D 0514 0515 0519 051A 051B 051C 051D 051E 0521 0522 0523 0524 0525 0529 052A 052B 052C 052D 052E 0531 0532 0533 0534 0535 0536 0539 053A 053B 053C 053D 053E 0541 0542 0543 0544 0545 0546 0549 054A 054B 054C 054D 054E 0551 0552 0553 0554 0555 0556 0559 055A 055B 055C 055D 055E 0561 0562 0563 0564 0565 0566 0569 056A 056B 056C 056D 0571 0572 0573 0574 0575 0576 0579 057A 057B 057C 057D 057E
+C - - - - - 0x001241 00:9231: B1 57     LDA (ram_0057_temp),Y    ; 0401 0402 0403 0404 0405 0406 0409 040A 040B 040C 040D 0411 0412 0413 0414 0415 0416 0417 0419 041A 041B 041C 041D 041E 0421 0422 0423 0424 0425 0426 0429 042A 042B 042C 042D 042E 0431 0432 0433 0434 0435 0436 0437 0439 043A 043B 043C 043D 043E 043F 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 0451 0452 0453 0454 0455 0456 0459 045A 045B 045C 045D 045E 0461 0462 0463 0464 0465 0466 0469 046A 046B 046C 046D 046E 046F 0471 0472 0473 0474 0475 0476 0479 047A 047B 047C 047D 047E 047F 0504 0505 050C 050D 0514 0515 0519 051A 051B 051C 051D 051E 0521 0522 0523 0524 0525 0529 052A 052B 052C 052D 052E 0531 0532 0533 0534 0535 0536 0539 053A 053B 053C 053D 053E 0541 0542 0543 0544 0545 0546 0549 054A 054B 054C 054D 054E 0551 0552 0553 0554 0555 0556 0559 055A 055B 055C 055D 055E 0561 0562 0563 0564 0565 0566 0569 056A 056B 056C 056D 0571 0572 0573 0574 0575 0576 0579 057A 057B 057C 057D 057E
 C - - - - - 0x001243 00:9233: 29 0F     AND #$0F
-C - - - - - 0x001245 00:9235: C5 48     CMP ram_0048
+C - - - - - 0x001245 00:9235: C5 48     CMP ram_0048_t04
 C - - - - - 0x001247 00:9237: D0 05     BNE bra_923E
-C - - - - - 0x001249 00:9239: E6 47     INC ram_0047
+C - - - - - 0x001249 00:9239: E6 47     INC ram_0047_t24
 C - - - - - 0x00124B 00:923B: 4C 27 92  JMP loc_9227_loop
 bra_923E:
-C - - - - - 0x00124E 00:923E: A5 47     LDA ram_0047
+C - - - - - 0x00124E 00:923E: A5 47     LDA ram_0047_t24
 C - - - - - 0x001250 00:9240: C9 03     CMP #$03
 C - - - - - 0x001252 00:9242: 30 62     BMI bra_92A6
 C - - - - - 0x001254 00:9244: E6 8F     INC ram_combo_counter_1
@@ -2720,52 +2767,53 @@ C - - - - - 0x001256 00:9246: 85 8E     STA ram_008E
 C - - - - - 0x001258 00:9248: 20 4B 94  JSR sub_944B
 C - - - - - 0x00125B 00:924B: A5 A1     LDA ram_00A1
 C - - - - - 0x00125D 00:924D: 18        CLC
-C - - - - - 0x00125E 00:924E: 65 47     ADC ram_0047
+C - - - - - 0x00125E 00:924E: 65 47     ADC ram_0047_t24
 C - - - - - 0x001260 00:9250: 85 A1     STA ram_00A1
 C - - - - - 0x001262 00:9252: E6 A1     INC ram_00A1
 C - - - - - 0x001264 00:9254: A5 59     LDA ram_0059
 C - - - - - 0x001266 00:9256: 29 78     AND #$78
+; / 08
 C - - - - - 0x001268 00:9258: 4A        LSR
 C - - - - - 0x001269 00:9259: 4A        LSR
 C - - - - - 0x00126A 00:925A: 4A        LSR
 C - - - - - 0x00126B 00:925B: 85 95     STA ram_0095
 C - - - - - 0x00126D 00:925D: A5 5A     LDA ram_005A
-C - - - - - 0x00126F 00:925F: 85 49     STA ram_0049
+C - - - - - 0x00126F 00:925F: 85 49     STA ram_0049_t07
 C - - - - - 0x001271 00:9261: A5 59     LDA ram_0059
 C - - - - - 0x001273 00:9263: 85 5A     STA ram_005A
 bra_9265_loop:
 C - - - - - 0x001275 00:9265: A4 5A     LDY ram_005A
-C - - - - - 0x001277 00:9267: B1 57     LDA (ram_0057),Y    ; 0410 0411 0412 0413 0414 0415 0416 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0480 0481 0482 0483 0484 0485 0486 0487 0488 0489 048A 048B 048C 048D 048E 048F 0490 0491 0492 0493 0494 0495 0496 0497 0498 0499 049A 049B 049C 049D 049E 049F 04A0 04A1 04A2 04A3 04A4 04A5 04A6 04A7 04A8 04A9 04AA 04AB 04AC 04AD 04AE 04AF 04B0 04B1 04B2 04B3 04B4 04B5 04B6 04B7 04B8 04B9 04BA 04BB 04BC 04BD 04BE 04BF 04C0 04C1 04C2 04C3 04C4 04C5 04C6 04C7 04C8 04C9 04CA 04CB 04CC 04CD 04CE 04CF 04D0 04D1 04D2 04D3 04D4 04D5 04D6 04D7 04D8 04D9 04DA 04DB 04DC 04DD 04DE 04DF 04E0 04E1 04E2 04E3 04E4 04E5 04E6 04E7 04E8 04E9 04EA 04EB 04EC 04ED 04EE 04EF 04F0 04F1 04F2 04F3 04F4 04F5 04F6 04F7 04F8 04F9 04FA 04FB 04FC 04FD 04FE 04FF 0570 0571 0572 0573
+C - - - - - 0x001277 00:9267: B1 57     LDA (ram_0057_temp),Y    ; 0410 0411 0412 0413 0414 0415 0416 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0480 0481 0482 0483 0484 0485 0486 0487 0488 0489 048A 048B 048C 048D 048E 048F 0490 0491 0492 0493 0494 0495 0496 0497 0498 0499 049A 049B 049C 049D 049E 049F 04A0 04A1 04A2 04A3 04A4 04A5 04A6 04A7 04A8 04A9 04AA 04AB 04AC 04AD 04AE 04AF 04B0 04B1 04B2 04B3 04B4 04B5 04B6 04B7 04B8 04B9 04BA 04BB 04BC 04BD 04BE 04BF 04C0 04C1 04C2 04C3 04C4 04C5 04C6 04C7 04C8 04C9 04CA 04CB 04CC 04CD 04CE 04CF 04D0 04D1 04D2 04D3 04D4 04D5 04D6 04D7 04D8 04D9 04DA 04DB 04DC 04DD 04DE 04DF 04E0 04E1 04E2 04E3 04E4 04E5 04E6 04E7 04E8 04E9 04EA 04EB 04EC 04ED 04EE 04EF 04F0 04F1 04F2 04F3 04F4 04F5 04F6 04F7 04F8 04F9 04FA 04FB 04FC 04FD 04FE 04FF 0570 0571 0572 0573
 C - - - - - 0x001279 00:9269: 29 F0     AND #$F0
 C - - - - - 0x00127B 00:926B: C9 80     CMP #$80
 C - - - - - 0x00127D 00:926D: D0 00     BNE bra_926F
 bra_926F:
 C - - - - - 0x00127F 00:926F: A9 02     LDA #con_sfx_1_02
 C - - - - - 0x001281 00:9271: 8D F1 06  STA ram_sfx_1
-C - - - - - 0x001284 00:9274: B1 57     LDA (ram_0057),Y    ; 0410 0411 0412 0413 0414 0415 0416 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0480 0481 0482 0483 0484 0485 0486 0487 0488 0489 048A 048B 048C 048D 048E 048F 0490 0491 0492 0493 0494 0495 0496 0497 0498 0499 049A 049B 049C 049D 049E 049F 04A0 04A1 04A2 04A3 04A4 04A5 04A6 04A7 04A8 04A9 04AA 04AB 04AC 04AD 04AE 04AF 04B0 04B1 04B2 04B3 04B4 04B5 04B6 04B7 04B8 04B9 04BA 04BB 04BC 04BD 04BE 04BF 04C0 04C1 04C2 04C3 04C4 04C5 04C6 04C7 04C8 04C9 04CA 04CB 04CC 04CD 04CE 04CF 04D0 04D1 04D2 04D3 04D4 04D5 04D6 04D7 04D8 04D9 04DA 04DB 04DC 04DD 04DE 04DF 04E0 04E1 04E2 04E3 04E4 04E5 04E6 04E7 04E8 04E9 04EA 04EB 04EC 04ED 04EE 04EF 04F0 04F1 04F2 04F3 04F4 04F5 04F6 04F7 04F8 04F9 04FA 04FB 04FC 04FD 04FE 04FF 0570 0571 0572 0573
+C - - - - - 0x001284 00:9274: B1 57     LDA (ram_0057_temp),Y    ; 0410 0411 0412 0413 0414 0415 0416 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0480 0481 0482 0483 0484 0485 0486 0487 0488 0489 048A 048B 048C 048D 048E 048F 0490 0491 0492 0493 0494 0495 0496 0497 0498 0499 049A 049B 049C 049D 049E 049F 04A0 04A1 04A2 04A3 04A4 04A5 04A6 04A7 04A8 04A9 04AA 04AB 04AC 04AD 04AE 04AF 04B0 04B1 04B2 04B3 04B4 04B5 04B6 04B7 04B8 04B9 04BA 04BB 04BC 04BD 04BE 04BF 04C0 04C1 04C2 04C3 04C4 04C5 04C6 04C7 04C8 04C9 04CA 04CB 04CC 04CD 04CE 04CF 04D0 04D1 04D2 04D3 04D4 04D5 04D6 04D7 04D8 04D9 04DA 04DB 04DC 04DD 04DE 04DF 04E0 04E1 04E2 04E3 04E4 04E5 04E6 04E7 04E8 04E9 04EA 04EB 04EC 04ED 04EE 04EF 04F0 04F1 04F2 04F3 04F4 04F5 04F6 04F7 04F8 04F9 04FA 04FB 04FC 04FD 04FE 04FF 0570 0571 0572 0573
 C - - - - - 0x001286 00:9276: 29 F0     AND #$F0
 C - - - - - 0x001288 00:9278: C9 D0     CMP #$D0
 C - - - - - 0x00128A 00:927A: D0 14     BNE bra_9290
 C - - - - - 0x00128C 00:927C: A9 04     LDA #con_sfx_1_04
 C - - - - - 0x00128E 00:927E: 8D F1 06  STA ram_sfx_1
 C - - - - - 0x001291 00:9281: 20 1A 94  JSR sub_941A
-C - - - - - 0x001294 00:9284: A9 10     LDA #$10
-C - - - - - 0x001296 00:9286: 05 52     ORA ram_0052
-C - - - - - 0x001298 00:9288: 85 52     STA ram_0052
+C - - - - - 0x001294 00:9284: A9 10     LDA #con_0052_10
+C - - - - - 0x001296 00:9286: 05 52     ORA ram_0052_flags
+C - - - - - 0x001298 00:9288: 85 52     STA ram_0052_flags
 C - - - - - 0x00129A 00:928A: A5 A4     LDA ram_virus_counter
 C - - - - - 0x00129C 00:928C: D0 02     BNE bra_9290
 - - - - - - 0x00129E 00:928E: E6 9E     INC ram_wins
 bra_9290:
-C - - - - - 0x0012A0 00:9290: B1 57     LDA (ram_0057),Y    ; 0410 0411 0412 0413 0414 0415 0416 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0480 0481 0482 0483 0484 0485 0486 0487 0488 0489 048A 048B 048C 048D 048E 048F 0490 0491 0492 0493 0494 0495 0496 0497 0498 0499 049A 049B 049C 049D 049E 049F 04A0 04A1 04A2 04A3 04A4 04A5 04A6 04A7 04A8 04A9 04AA 04AB 04AC 04AD 04AE 04AF 04B0 04B1 04B2 04B3 04B4 04B5 04B6 04B7 04B8 04B9 04BA 04BB 04BC 04BD 04BE 04BF 04C0 04C1 04C2 04C3 04C4 04C5 04C6 04C7 04C8 04C9 04CA 04CB 04CC 04CD 04CE 04CF 04D0 04D1 04D2 04D3 04D4 04D5 04D6 04D7 04D8 04D9 04DA 04DB 04DC 04DD 04DE 04DF 04E0 04E1 04E2 04E3 04E4 04E5 04E6 04E7 04E8 04E9 04EA 04EB 04EC 04ED 04EE 04EF 04F0 04F1 04F2 04F3 04F4 04F5 04F6 04F7 04F8 04F9 04FA 04FB 04FC 04FD 04FE 04FF 0570 0571 0572 0573
+C - - - - - 0x0012A0 00:9290: B1 57     LDA (ram_0057_temp),Y    ; 0410 0411 0412 0413 0414 0415 0416 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0480 0481 0482 0483 0484 0485 0486 0487 0488 0489 048A 048B 048C 048D 048E 048F 0490 0491 0492 0493 0494 0495 0496 0497 0498 0499 049A 049B 049C 049D 049E 049F 04A0 04A1 04A2 04A3 04A4 04A5 04A6 04A7 04A8 04A9 04AA 04AB 04AC 04AD 04AE 04AF 04B0 04B1 04B2 04B3 04B4 04B5 04B6 04B7 04B8 04B9 04BA 04BB 04BC 04BD 04BE 04BF 04C0 04C1 04C2 04C3 04C4 04C5 04C6 04C7 04C8 04C9 04CA 04CB 04CC 04CD 04CE 04CF 04D0 04D1 04D2 04D3 04D4 04D5 04D6 04D7 04D8 04D9 04DA 04DB 04DC 04DD 04DE 04DF 04E0 04E1 04E2 04E3 04E4 04E5 04E6 04E7 04E8 04E9 04EA 04EB 04EC 04ED 04EE 04EF 04F0 04F1 04F2 04F3 04F4 04F5 04F6 04F7 04F8 04F9 04FA 04FB 04FC 04FD 04FE 04FF 0570 0571 0572 0573
 C - - - - - 0x0012A2 00:9292: 29 0F     AND #$0F
 C - - - - - 0x0012A4 00:9294: 09 B0     ORA #$B0
-C - - - - - 0x0012A6 00:9296: 91 57     STA (ram_0057),Y    ; 0410 0411 0412 0413 0414 0415 0416 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0480 0481 0482 0483 0484 0485 0486 0487 0488 0489 048A 048B 048C 048D 048E 048F 0490 0491 0492 0493 0494 0495 0496 0497 0498 0499 049A 049B 049C 049D 049E 049F 04A0 04A1 04A2 04A3 04A4 04A5 04A6 04A7 04A8 04A9 04AA 04AB 04AC 04AD 04AE 04AF 04B0 04B1 04B2 04B3 04B4 04B5 04B6 04B7 04B8 04B9 04BA 04BB 04BC 04BD 04BE 04BF 04C0 04C1 04C2 04C3 04C4 04C5 04C6 04C7 04C8 04C9 04CA 04CB 04CC 04CD 04CE 04CF 04D0 04D1 04D2 04D3 04D4 04D5 04D6 04D7 04D8 04D9 04DA 04DB 04DC 04DD 04DE 04DF 04E0 04E1 04E2 04E3 04E4 04E5 04E6 04E7 04E8 04E9 04EA 04EB 04EC 04ED 04EE 04EF 04F0 04F1 04F2 04F3 04F4 04F5 04F6 04F7 04F8 04F9 04FA 04FB 04FC 04FD 04FE 04FF 0570 0571 0572 0573
+C - - - - - 0x0012A6 00:9296: 91 57     STA (ram_0057_temp),Y    ; 0410 0411 0412 0413 0414 0415 0416 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0480 0481 0482 0483 0484 0485 0486 0487 0488 0489 048A 048B 048C 048D 048E 048F 0490 0491 0492 0493 0494 0495 0496 0497 0498 0499 049A 049B 049C 049D 049E 049F 04A0 04A1 04A2 04A3 04A4 04A5 04A6 04A7 04A8 04A9 04AA 04AB 04AC 04AD 04AE 04AF 04B0 04B1 04B2 04B3 04B4 04B5 04B6 04B7 04B8 04B9 04BA 04BB 04BC 04BD 04BE 04BF 04C0 04C1 04C2 04C3 04C4 04C5 04C6 04C7 04C8 04C9 04CA 04CB 04CC 04CD 04CE 04CF 04D0 04D1 04D2 04D3 04D4 04D5 04D6 04D7 04D8 04D9 04DA 04DB 04DC 04DD 04DE 04DF 04E0 04E1 04E2 04E3 04E4 04E5 04E6 04E7 04E8 04E9 04EA 04EB 04EC 04ED 04EE 04EF 04F0 04F1 04F2 04F3 04F4 04F5 04F6 04F7 04F8 04F9 04FA 04FB 04FC 04FD 04FE 04FF 0570 0571 0572 0573
 C - - - - - 0x0012A8 00:9298: E6 5A     INC ram_005A
 C - - - - - 0x0012AA 00:929A: A4 5A     LDY ram_005A
-C - - - - - 0x0012AC 00:929C: C4 49     CPY ram_0049
+C - - - - - 0x0012AC 00:929C: C4 49     CPY ram_0049_t07
 C - - - - - 0x0012AE 00:929E: D0 C5     BNE bra_9265_loop
 C - - - - - 0x0012B0 00:92A0: E6 94     INC ram_0094
-C - - - - - 0x0012B2 00:92A2: A5 49     LDA ram_0049
+C - - - - - 0x0012B2 00:92A2: A5 49     LDA ram_0049_t07
 C - - - - - 0x0012B4 00:92A4: 85 5A     STA ram_005A
 bra_92A6:
 C - - - - - 0x0012B6 00:92A6: A5 5A     LDA ram_005A
@@ -2797,7 +2845,7 @@ C - - - - - 0x0012E1 00:92D1: C9 80     CMP #$80
 C - - - - - 0x0012E3 00:92D3: F0 03     BEQ bra_92D8
 C - - - - - 0x0012E5 00:92D5: 4C 0C 92  JMP loc_920C
 bra_92D8:
-C - - - - - 0x0012E8 00:92D8: E6 87     INC ram_0087
+C - - - - - 0x0012E8 00:92D8: E6 87     INC ram_0087_script
 loc_92DA_RTS:   ; bzk optimize
 C - - - - - 0x0012EA 00:92DA: 60        RTS
 
@@ -2805,182 +2853,182 @@ C - - - - - 0x0012EA 00:92DA: 60        RTS
 
 ofs_001_92DB_07_fix_split_pills:
 C - - J - - 0x0012EB 00:92DB: A0 7F     LDY #$7F
-C - - - - - 0x0012ED 00:92DD: 84 47     STY ram_0047
+C - - - - - 0x0012ED 00:92DD: 84 47     STY ram_0047_t22
 loc_92DF_loop:
-C D 0 - - - 0x0012EF 00:92DF: A4 47     LDY ram_0047
-C - - - - - 0x0012F1 00:92E1: B1 57     LDA (ram_0057),Y    ; 0400-047F, 0500-057F
+C D 0 - - - 0x0012EF 00:92DF: A4 47     LDY ram_0047_t22
+C - - - - - 0x0012F1 00:92E1: B1 57     LDA (ram_0057_temp),Y    ; 0400-047F, 0500-057F
 C - - - - - 0x0012F3 00:92E3: 29 F0     AND #$F0
 C - - - - - 0x0012F5 00:92E5: C9 B0     CMP #$B0
 C - - - - - 0x0012F7 00:92E7: D0 09     BNE bra_92F2
-C - - - - - 0x0012F9 00:92E9: B1 57     LDA (ram_0057),Y    ; 0404 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0451 0452 0453 0454 0455 0456 0457 0459 045A 045B 045C 045F 0462 0463 0464 0467 046B 046C 046F 0473 0474 0477 047B 047C 047D 047E 047F 0525 052A 052B 052D 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 055A 055B 055C 0562 0563 0564 056A 056B 056C 0570 0571 0572 0573 0574
+C - - - - - 0x0012F9 00:92E9: B1 57     LDA (ram_0057_temp),Y    ; 0404 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0451 0452 0453 0454 0455 0456 0457 0459 045A 045B 045C 045F 0462 0463 0464 0467 046B 046C 046F 0473 0474 0477 047B 047C 047D 047E 047F 0525 052A 052B 052D 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 055A 055B 055C 0562 0563 0564 056A 056B 056C 0570 0571 0572 0573 0574
 C - - - - - 0x0012FB 00:92EB: 09 F0     ORA #$F0
-C - - - - - 0x0012FD 00:92ED: 91 57     STA (ram_0057),Y    ; 0404 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0451 0452 0453 0454 0455 0456 0457 0459 045A 045B 045C 045F 0462 0463 0464 0467 046B 046C 046F 0473 0474 0477 047B 047C 047D 047E 047F 0525 052A 052B 052D 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 055A 055B 055C 0562 0563 0564 056A 056B 056C 0570 0571 0572 0573 0574
+C - - - - - 0x0012FD 00:92ED: 91 57     STA (ram_0057_temp),Y    ; 0404 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0451 0452 0453 0454 0455 0456 0457 0459 045A 045B 045C 045F 0462 0463 0464 0467 046B 046C 046F 0473 0474 0477 047B 047C 047D 047E 047F 0525 052A 052B 052D 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 055A 055B 055C 0562 0563 0564 056A 056B 056C 0570 0571 0572 0573 0574
 C - - - - - 0x0012FF 00:92EF: 4C F9 93  JMP loc_93F9
 bra_92F2:
 C - - - - - 0x001302 00:92F2: C9 40     CMP #$40
 C - - - - - 0x001304 00:92F4: D0 1F     BNE bra_9315
-C - - - - - 0x001306 00:92F6: A5 47     LDA ram_0047
+C - - - - - 0x001306 00:92F6: A5 47     LDA ram_0047_t22
 C - - - - - 0x001308 00:92F8: 18        CLC
 C - - - - - 0x001309 00:92F9: 69 08     ADC #$08
 C - - - - - 0x00130B 00:92FB: A8        TAY
-C - - - - - 0x00130C 00:92FC: B1 57     LDA (ram_0057),Y    ; 0409 040B 040D 040E 0410 0411 0412 0413 0414 041D 0420 0423 042A 042C 042D 042F 0430 0431 0438 043A 043C 043D 043F 044C 044D 044F 0474 047B 047E 0534 055C
+C - - - - - 0x00130C 00:92FC: B1 57     LDA (ram_0057_temp),Y    ; 0409 040B 040D 040E 0410 0411 0412 0413 0414 041D 0420 0423 042A 042C 042D 042F 0430 0431 0438 043A 043C 043D 043F 044C 044D 044F 0474 047B 047E 0534 055C
 C - - - - - 0x00130E 00:92FE: 29 F0     AND #$F0
 C - - - - - 0x001310 00:9300: C9 90     CMP #$90
 C - - - - - 0x001312 00:9302: F0 0E     BEQ bra_9312
 C - - - - - 0x001314 00:9304: C9 50     CMP #$50
 C - - - - - 0x001316 00:9306: F0 0A     BEQ bra_9312
-C - - - - - 0x001318 00:9308: A4 47     LDY ram_0047
-C - - - - - 0x00131A 00:930A: B1 57     LDA (ram_0057),Y    ; 0403 0408 0409 040A 040B 0418 0422 0424 0429 0434 0444 0473 0476 052C
+C - - - - - 0x001318 00:9308: A4 47     LDY ram_0047_t22
+C - - - - - 0x00131A 00:930A: B1 57     LDA (ram_0057_temp),Y    ; 0403 0408 0409 040A 040B 0418 0422 0424 0429 0434 0444 0473 0476 052C
 C - - - - - 0x00131C 00:930C: 29 0F     AND #$0F
 C - - - - - 0x00131E 00:930E: 09 80     ORA #$80
-C - - - - - 0x001320 00:9310: 91 57     STA (ram_0057),Y    ; 0403 0408 0409 040A 040B 0418 0422 0424 0429 0434 0444 0473 0476 052C
+C - - - - - 0x001320 00:9310: 91 57     STA (ram_0057_temp),Y    ; 0403 0408 0409 040A 040B 0418 0422 0424 0429 0434 0444 0473 0476 052C
 bra_9312:
 C - - - - - 0x001322 00:9312: 4C F9 93  JMP loc_93F9
 bra_9315:
 C - - - - - 0x001325 00:9315: C9 50     CMP #$50
 C - - - - - 0x001327 00:9317: D0 1F     BNE bra_9338
-C - - - - - 0x001329 00:9319: A5 47     LDA ram_0047
+C - - - - - 0x001329 00:9319: A5 47     LDA ram_0047_t22
 C - - - - - 0x00132B 00:931B: 38        SEC
 C - - - - - 0x00132C 00:931C: E9 08     SBC #$08
 C - - - - - 0x00132E 00:931E: A8        TAY
-C - - - - - 0x00132F 00:931F: B1 57     LDA (ram_0057),Y    ; 0401 0405 0406 0408 0409 040A 040C 0415 0418 041B 0425 0427 0428 0429 0430 0432 0434 0435 0437 0445 0447 046C 0473 04F8 04F9 04FA 04FD 04FF 0554
+C - - - - - 0x00132F 00:931F: B1 57     LDA (ram_0057_temp),Y    ; 0401 0405 0406 0408 0409 040A 040C 0415 0418 041B 0425 0427 0428 0429 0430 0432 0434 0435 0437 0445 0447 046C 0473 04F8 04F9 04FA 04FD 04FF 0554
 C - - - - - 0x001331 00:9321: 29 F0     AND #$F0
 C - - - - - 0x001333 00:9323: C9 90     CMP #$90
 C - - - - - 0x001335 00:9325: F0 0E     BEQ bra_9335
 C - - - - - 0x001337 00:9327: C9 40     CMP #$40
 C - - - - - 0x001339 00:9329: F0 0A     BEQ bra_9335
-C - - - - - 0x00133B 00:932B: A4 47     LDY ram_0047
-C - - - - - 0x00133D 00:932D: B1 57     LDA (ram_0057),Y    ; 0400 0401 0402 0405 0407
+C - - - - - 0x00133B 00:932B: A4 47     LDY ram_0047_t22
+C - - - - - 0x00133D 00:932D: B1 57     LDA (ram_0057_temp),Y    ; 0400 0401 0402 0405 0407
 C - - - - - 0x00133F 00:932F: 29 0F     AND #$0F
 C - - - - - 0x001341 00:9331: 09 80     ORA #$80
-C - - - - - 0x001343 00:9333: 91 57     STA (ram_0057),Y    ; 0400 0401 0402 0405 0407
+C - - - - - 0x001343 00:9333: 91 57     STA (ram_0057_temp),Y    ; 0400 0401 0402 0405 0407
 bra_9335:
 C - - - - - 0x001345 00:9335: 4C F9 93  JMP loc_93F9
 bra_9338:
 C - - - - - 0x001348 00:9338: C9 60     CMP #$60
 C - - - - - 0x00134A 00:933A: D0 1F     BNE bra_935B
-C - - - - - 0x00134C 00:933C: A5 47     LDA ram_0047
+C - - - - - 0x00134C 00:933C: A5 47     LDA ram_0047_t22
 C - - - - - 0x00134E 00:933E: 18        CLC
 C - - - - - 0x00134F 00:933F: 69 01     ADC #$01
 C - - - - - 0x001351 00:9341: A8        TAY
-C - - - - - 0x001352 00:9342: B1 57     LDA (ram_0057),Y    ; 0404 040B 040C 040D 040E 040F 0412 0413 0414 0415 0416 0417 0419 041A 041B 041C 041D 041E 041F 0421 0422 0423 0424 0425 0426 0427 0429 042A 042C 042D 042E 042F 0433 0434 0437 043B 043C 043E 043F 0442 0444 0447 044A 044C 044E 044F 0453 0454 0455 0457 0459 045C 0464 046C 0471 0474 0479 047C 047D 0504 050C 0514 051C 0524 052C 0533 0534 053A 053C 053D 0542 0544 0545 054A 054C 054D 0554 055A 055B 055C 0562 0563 0564 056A 056C 0572
+C - - - - - 0x001352 00:9342: B1 57     LDA (ram_0057_temp),Y    ; 0404 040B 040C 040D 040E 040F 0412 0413 0414 0415 0416 0417 0419 041A 041B 041C 041D 041E 041F 0421 0422 0423 0424 0425 0426 0427 0429 042A 042C 042D 042E 042F 0433 0434 0437 043B 043C 043E 043F 0442 0444 0447 044A 044C 044E 044F 0453 0454 0455 0457 0459 045C 0464 046C 0471 0474 0479 047C 047D 0504 050C 0514 051C 0524 052C 0533 0534 053A 053C 053D 0542 0544 0545 054A 054C 054D 0554 055A 055B 055C 0562 0563 0564 056A 056C 0572
 C - - - - - 0x001354 00:9344: 29 F0     AND #$F0
 C - - - - - 0x001356 00:9346: C9 A0     CMP #$A0
 C - - - - - 0x001358 00:9348: F0 0E     BEQ bra_9358
 C - - - - - 0x00135A 00:934A: C9 70     CMP #$70
 C - - - - - 0x00135C 00:934C: F0 0A     BEQ bra_9358
-C - - - - - 0x00135E 00:934E: A4 47     LDY ram_0047
-C - - - - - 0x001360 00:9350: B1 57     LDA (ram_0057),Y    ; 040A 0412 041A 041B 041D 041E 0421 0422 0423 0425 042C 042D 0432 0433 043D 0446 044E 0456 0463 046B 0473 047B 0539 053C 0544 054B 054C 055A 0562
+C - - - - - 0x00135E 00:934E: A4 47     LDY ram_0047_t22
+C - - - - - 0x001360 00:9350: B1 57     LDA (ram_0057_temp),Y    ; 040A 0412 041A 041B 041D 041E 0421 0422 0423 0425 042C 042D 0432 0433 043D 0446 044E 0456 0463 046B 0473 047B 0539 053C 0544 054B 054C 055A 0562
 C - - - - - 0x001362 00:9352: 29 0F     AND #$0F
 C - - - - - 0x001364 00:9354: 09 80     ORA #$80
-C - - - - - 0x001366 00:9356: 91 57     STA (ram_0057),Y    ; 040A 0412 041A 041B 041D 041E 0421 0422 0423 0425 042C 042D 0432 0433 043D 0446 044E 0456 0463 046B 0473 047B 0539 053C 0544 054B 054C 055A 0562
+C - - - - - 0x001366 00:9356: 91 57     STA (ram_0057_temp),Y    ; 040A 0412 041A 041B 041D 041E 0421 0422 0423 0425 042C 042D 0432 0433 043D 0446 044E 0456 0463 046B 0473 047B 0539 053C 0544 054B 054C 055A 0562
 bra_9358:
 C - - - - - 0x001368 00:9358: 4C F9 93  JMP loc_93F9
 bra_935B:
 C - - - - - 0x00136B 00:935B: C9 70     CMP #$70
 C - - - - - 0x00136D 00:935D: D0 1F     BNE bra_937E
-C - - - - - 0x00136F 00:935F: A5 47     LDA ram_0047
+C - - - - - 0x00136F 00:935F: A5 47     LDA ram_0047_t22
 C - - - - - 0x001371 00:9361: 38        SEC
 C - - - - - 0x001372 00:9362: E9 01     SBC #$01
 C - - - - - 0x001374 00:9364: A8        TAY
-C - - - - - 0x001375 00:9365: B1 57     LDA (ram_0057),Y    ; 0403 0404 040B 040C 040D 040E 0411 0413 0414 0415 0416 0418 0419 041A 041B 041C 041D 041E 0420 0421 0422 0423 0424 0426 0428 0429 042B 042C 042D 042E 0432 0433 0436 0439 043A 043B 043E 0441 0443 0446 0449 044B 044D 044E 0452 0453 0454 0456 0458 0459 045B 0463 046B 0470 0473 0478 047B 047C 0503 050B 0513 051B 0523 052A 052B 0532 0533 0539 053B 0541 0543 0544 0549 054B 054C 0553 0559 055A 055B 0561 0562 0563 0569 056B 0571
+C - - - - - 0x001375 00:9365: B1 57     LDA (ram_0057_temp),Y    ; 0403 0404 040B 040C 040D 040E 0411 0413 0414 0415 0416 0418 0419 041A 041B 041C 041D 041E 0420 0421 0422 0423 0424 0426 0428 0429 042B 042C 042D 042E 0432 0433 0436 0439 043A 043B 043E 0441 0443 0446 0449 044B 044D 044E 0452 0453 0454 0456 0458 0459 045B 0463 046B 0470 0473 0478 047B 047C 0503 050B 0513 051B 0523 052A 052B 0532 0533 0539 053B 0541 0543 0544 0549 054B 054C 0553 0559 055A 055B 0561 0562 0563 0569 056B 0571
 C - - - - - 0x001377 00:9367: 29 F0     AND #$F0
 C - - - - - 0x001379 00:9369: C9 A0     CMP #$A0
 C - - - - - 0x00137B 00:936B: F0 0E     BEQ bra_937B
 C - - - - - 0x00137D 00:936D: C9 60     CMP #$60
 C - - - - - 0x00137F 00:936F: F0 0A     BEQ bra_937B
-C - - - - - 0x001381 00:9371: A4 47     LDY ram_0047
-C - - - - - 0x001383 00:9373: B1 57     LDA (ram_0057),Y    ; 0405 040D 040E 0414 0415 041C 041D 0424 0425 0429 042C 042D 042F 0433 0434 0437 043A 043B 043C 043F 0442 0444 0447 044A 044F 0453 0454 045A 0464 046C 052B 052C 0533 0534 053A 053C 0542 0544 054A 054C 055B 0563
+C - - - - - 0x001381 00:9371: A4 47     LDY ram_0047_t22
+C - - - - - 0x001383 00:9373: B1 57     LDA (ram_0057_temp),Y    ; 0405 040D 040E 0414 0415 041C 041D 0424 0425 0429 042C 042D 042F 0433 0434 0437 043A 043B 043C 043F 0442 0444 0447 044A 044F 0453 0454 045A 0464 046C 052B 052C 0533 0534 053A 053C 0542 0544 054A 054C 055B 0563
 C - - - - - 0x001385 00:9375: 29 0F     AND #$0F
 C - - - - - 0x001387 00:9377: 09 80     ORA #$80
-C - - - - - 0x001389 00:9379: 91 57     STA (ram_0057),Y    ; 0405 040D 040E 0414 0415 041C 041D 0424 0425 0429 042C 042D 042F 0433 0434 0437 043A 043B 043C 043F 0442 0444 0447 044A 044F 0453 0454 045A 0464 046C 052B 052C 0533 0534 053A 053C 0542 0544 054A 054C 055B 0563
+C - - - - - 0x001389 00:9379: 91 57     STA (ram_0057_temp),Y    ; 0405 040D 040E 0414 0415 041C 041D 0424 0425 0429 042C 042D 042F 0433 0434 0437 043A 043B 043C 043F 0442 0444 0447 044A 044F 0453 0454 045A 0464 046C 052B 052C 0533 0534 053A 053C 0542 0544 054A 054C 055B 0563
 bra_937B:
 C - - - - - 0x00138B 00:937B: 4C F9 93  JMP loc_93F9
 bra_937E:
 C - - - - - 0x00138E 00:937E: C9 90     CMP #$90
 C - - - - - 0x001390 00:9380: D0 3B     BNE bra_93BD
-- - - - - - 0x001392 00:9382: A5 47     LDA ram_0047
+- - - - - - 0x001392 00:9382: A5 47     LDA ram_0047_t22
 - - - - - - 0x001394 00:9384: 38        SEC
 - - - - - - 0x001395 00:9385: E9 08     SBC #$08
 - - - - - - 0x001397 00:9387: A8        TAY
-- - - - - - 0x001398 00:9388: B1 57     LDA (ram_0057),Y
+- - - - - - 0x001398 00:9388: B1 57     LDA (ram_0057_temp),Y
 - - - - - - 0x00139A 00:938A: 29 F0     AND #$F0
 - - - - - - 0x00139C 00:938C: C9 90     CMP #$90
 - - - - - - 0x00139E 00:938E: F0 0E     BEQ bra_939E
 - - - - - - 0x0013A0 00:9390: C9 40     CMP #$40
 - - - - - - 0x0013A2 00:9392: F0 0A     BEQ bra_939E
-- - - - - - 0x0013A4 00:9394: A4 47     LDY ram_0047
-- - - - - - 0x0013A6 00:9396: B1 57     LDA (ram_0057),Y
+- - - - - - 0x0013A4 00:9394: A4 47     LDY ram_0047_t22
+- - - - - - 0x0013A6 00:9396: B1 57     LDA (ram_0057_temp),Y
 - - - - - - 0x0013A8 00:9398: 29 0F     AND #$0F
 - - - - - - 0x0013AA 00:939A: 09 40     ORA #$40
-- - - - - - 0x0013AC 00:939C: 91 57     STA (ram_0057),Y
+- - - - - - 0x0013AC 00:939C: 91 57     STA (ram_0057_temp),Y
 bra_939E:
-- - - - - - 0x0013AE 00:939E: A5 47     LDA ram_0047
+- - - - - - 0x0013AE 00:939E: A5 47     LDA ram_0047_t22
 - - - - - - 0x0013B0 00:93A0: 18        CLC
 - - - - - - 0x0013B1 00:93A1: 69 08     ADC #$08
 - - - - - - 0x0013B3 00:93A3: A8        TAY
-- - - - - - 0x0013B4 00:93A4: B1 57     LDA (ram_0057),Y
+- - - - - - 0x0013B4 00:93A4: B1 57     LDA (ram_0057_temp),Y
 - - - - - - 0x0013B6 00:93A6: 29 F0     AND #$F0
 - - - - - - 0x0013B8 00:93A8: C9 90     CMP #$90
 - - - - - - 0x0013BA 00:93AA: F0 0E     BEQ bra_93BA
 - - - - - - 0x0013BC 00:93AC: C9 50     CMP #$50
 - - - - - - 0x0013BE 00:93AE: F0 0A     BEQ bra_93BA
-- - - - - - 0x0013C0 00:93B0: A4 47     LDY ram_0047
-- - - - - - 0x0013C2 00:93B2: B1 57     LDA (ram_0057),Y
+- - - - - - 0x0013C0 00:93B0: A4 47     LDY ram_0047_t22
+- - - - - - 0x0013C2 00:93B2: B1 57     LDA (ram_0057_temp),Y
 - - - - - - 0x0013C4 00:93B4: 29 0F     AND #$0F
 - - - - - - 0x0013C6 00:93B6: 09 50     ORA #$50
-- - - - - - 0x0013C8 00:93B8: 91 57     STA (ram_0057),Y
+- - - - - - 0x0013C8 00:93B8: 91 57     STA (ram_0057_temp),Y
 bra_93BA:
 - - - - - - 0x0013CA 00:93BA: 4C F9 93  JMP loc_93F9
 bra_93BD:
 C - - - - - 0x0013CD 00:93BD: C9 A0     CMP #$A0
 C - - - - - 0x0013CF 00:93BF: D0 38     BNE bra_93F9
-- - - - - - 0x0013D1 00:93C1: A5 47     LDA ram_0047
+- - - - - - 0x0013D1 00:93C1: A5 47     LDA ram_0047_t22
 - - - - - - 0x0013D3 00:93C3: 38        SEC
 - - - - - - 0x0013D4 00:93C4: E9 01     SBC #$01
 - - - - - - 0x0013D6 00:93C6: A8        TAY
-- - - - - - 0x0013D7 00:93C7: B1 57     LDA (ram_0057),Y
+- - - - - - 0x0013D7 00:93C7: B1 57     LDA (ram_0057_temp),Y
 - - - - - - 0x0013D9 00:93C9: 29 F0     AND #$F0
 - - - - - - 0x0013DB 00:93CB: C9 A0     CMP #$A0
 - - - - - - 0x0013DD 00:93CD: F0 0E     BEQ bra_93DD
 - - - - - - 0x0013DF 00:93CF: C9 60     CMP #$60
 - - - - - - 0x0013E1 00:93D1: F0 0A     BEQ bra_93DD
-- - - - - - 0x0013E3 00:93D3: A4 47     LDY ram_0047
-- - - - - - 0x0013E5 00:93D5: B1 57     LDA (ram_0057),Y
+- - - - - - 0x0013E3 00:93D3: A4 47     LDY ram_0047_t22
+- - - - - - 0x0013E5 00:93D5: B1 57     LDA (ram_0057_temp),Y
 - - - - - - 0x0013E7 00:93D7: 29 0F     AND #$0F
 - - - - - - 0x0013E9 00:93D9: 09 60     ORA #$60
-- - - - - - 0x0013EB 00:93DB: 91 57     STA (ram_0057),Y
+- - - - - - 0x0013EB 00:93DB: 91 57     STA (ram_0057_temp),Y
 bra_93DD:
-- - - - - - 0x0013ED 00:93DD: A5 47     LDA ram_0047
+- - - - - - 0x0013ED 00:93DD: A5 47     LDA ram_0047_t22
 - - - - - - 0x0013EF 00:93DF: 18        CLC
 - - - - - - 0x0013F0 00:93E0: 69 01     ADC #$01
 - - - - - - 0x0013F2 00:93E2: A8        TAY
-- - - - - - 0x0013F3 00:93E3: B1 57     LDA (ram_0057),Y
+- - - - - - 0x0013F3 00:93E3: B1 57     LDA (ram_0057_temp),Y
 - - - - - - 0x0013F5 00:93E5: 29 F0     AND #$F0
 - - - - - - 0x0013F7 00:93E7: C9 A0     CMP #$A0
 - - - - - - 0x0013F9 00:93E9: F0 0E     BEQ bra_93F9
 - - - - - - 0x0013FB 00:93EB: C9 70     CMP #$70
 - - - - - - 0x0013FD 00:93ED: F0 0A     BEQ bra_93F9
-- - - - - - 0x0013FF 00:93EF: A4 47     LDY ram_0047
-- - - - - - 0x001401 00:93F1: B1 57     LDA (ram_0057),Y
+- - - - - - 0x0013FF 00:93EF: A4 47     LDY ram_0047_t22
+- - - - - - 0x001401 00:93F1: B1 57     LDA (ram_0057_temp),Y
 - - - - - - 0x001403 00:93F3: 29 0F     AND #$0F
 - - - - - - 0x001405 00:93F5: 09 70     ORA #$70
-- - - - - - 0x001407 00:93F7: 91 57     STA (ram_0057),Y
+- - - - - - 0x001407 00:93F7: 91 57     STA (ram_0057_temp),Y
 bra_93F9:
 loc_93F9:
-C D 0 - - - 0x001409 00:93F9: C6 47     DEC ram_0047
-C - - - - - 0x00140B 00:93FB: A5 47     LDA ram_0047
+C D 0 - - - 0x001409 00:93F9: C6 47     DEC ram_0047_t22
+C - - - - - 0x00140B 00:93FB: A5 47     LDA ram_0047_t22
 C - - - - - 0x00140D 00:93FD: C9 FF     CMP #$FF
 C - - - - - 0x00140F 00:93FF: F0 03     BEQ bra_9404
 C - - - - - 0x001411 00:9401: 4C DF 92  JMP loc_92DF_loop
 bra_9404:
-C - - - - - 0x001414 00:9404: E6 87     INC ram_0087
+C - - - - - 0x001414 00:9404: E6 87     INC ram_0087_script
 C - - - - - 0x001416 00:9406: A9 0F     LDA #$0F
 C - - - - - 0x001418 00:9408: 85 80     STA ram_row
 C - - - - - 0x00141A 00:940A: A5 94     LDA ram_0094
 C - - - - - 0x00141C 00:940C: F0 04     BEQ bra_9412_RTS
 C - - - - - 0x00141E 00:940E: A9 01     LDA #$01
-C - - - - - 0x001420 00:9410: 85 87     STA ram_0087
+C - - - - - 0x001420 00:9410: 85 87     STA ram_0087_script
 bra_9412_RTS:
 C - - - - - 0x001422 00:9412: 60        RTS
 
@@ -2989,13 +3037,13 @@ C - - - - - 0x001422 00:9412: 60        RTS
 ofs_001_9413_04:
 C - - J - - 0x001423 00:9413: A9 00     LDA #$00
 C - - - - - 0x001425 00:9415: 85 94     STA ram_0094
-C - - - - - 0x001427 00:9417: E6 87     INC ram_0087
+C - - - - - 0x001427 00:9417: E6 87     INC ram_0087_script
 C - - - - - 0x001429 00:9419: 60        RTS
 
 
 
 sub_941A:
-C - - - - - 0x00142A 00:941A: B1 57     LDA (ram_0057),Y    ; 041A 041B 041C 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0434 0435 0436 0437 0438 0439 043D 043E 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046F 0472 0473 0474 0475 0477 0478 047B 047D 047E 047F 0535 053B 053D 0542 0543 054C 0551 0553 0555 055A 0564 056A 056C 0570 0571
+C - - - - - 0x00142A 00:941A: B1 57     LDA (ram_0057_temp),Y    ; 041A 041B 041C 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0434 0435 0436 0437 0438 0439 043D 043E 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046F 0472 0473 0474 0475 0477 0478 047B 047D 047E 047F 0535 053B 053D 0542 0543 054C 0551 0553 0555 055A 0564 056A 056C 0570 0571
 C - - - - - 0x00142C 00:941C: 29 0F     AND #$0F
 C - - - - - 0x00142E 00:941E: AA        TAX
 C - - - - - 0x00142F 00:941F: A9 01     LDA #$01
@@ -3032,7 +3080,7 @@ C - - - - - 0x00145F 00:944F: C9 05     CMP #$05
 C - - - - - 0x001461 00:9451: B0 06     BCS bra_9459_RTS
 C - - - - - 0x001463 00:9453: AA        TAX
 C - - - - - 0x001464 00:9454: CA        DEX
-C - - - - - 0x001465 00:9455: A5 48     LDA ram_0048
+C - - - - - 0x001465 00:9455: A5 48     LDA ram_0048_t04
 C - - - - - 0x001467 00:9457: 95 A9     STA ram_00A9,X
 bra_9459_RTS:
 C - - - - - 0x001469 00:9459: 60        RTS
@@ -3042,7 +3090,7 @@ C - - - - - 0x001469 00:9459: 60        RTS
 - - - - - - 0x00146A 00:945A: A5 8F     LDA ram_combo_counter_1
 - - - - - - 0x00146C 00:945C: C9 02     CMP #$02
 - - - - - - 0x00146E 00:945E: D0 08     BNE bra_9468_RTS
-- - - - - - 0x001470 00:9460: A5 58     LDA ram_0058
+- - - - - - 0x001470 00:9460: A5 58     LDA ram_0058_temp
 - - - - - - 0x001472 00:9462: 38        SEC
 - - - - - - 0x001473 00:9463: E9 03     SBC #$03
 - - - - - - 0x001475 00:9465: 8D F4 06  STA ram_sfx_4
@@ -3051,25 +3099,25 @@ bra_9468_RTS:
 
 
 
-ofs_001_9469_06_check_V_clear:
+ofs_001_9469_06_check_vertical_clear:
 C - - J - - 0x001479 00:9469: A9 00     LDA #$00
 C - - - - - 0x00147B 00:946B: 85 59     STA ram_0059
 loc_946D:
 C D 0 - - - 0x00147D 00:946D: A5 59     LDA ram_0059
 C - - - - - 0x00147F 00:946F: 85 5A     STA ram_005A
 C - - - - - 0x001481 00:9471: A9 00     LDA #$00
-C - - - - - 0x001483 00:9473: 85 47     STA ram_0047
+C - - - - - 0x001483 00:9473: 85 47     STA ram_0047_t23
 C - - - - - 0x001485 00:9475: A4 59     LDY ram_0059
-C - - - - - 0x001487 00:9477: B1 57     LDA (ram_0057),Y    ; 0400-0467, 0500-0567
-C - - - - - 0x001489 00:9479: 85 48     STA ram_0048
+C - - - - - 0x001487 00:9477: B1 57     LDA (ram_0057_temp),Y    ; 0400-0467, 0500-0567
+C - - - - - 0x001489 00:9479: 85 48     STA ram_0048_t04
 C - - - - - 0x00148B 00:947B: C9 F0     CMP #$F0
 C - - - - - 0x00148D 00:947D: 90 03     BCC bra_9482
 C - - - - - 0x00148F 00:947F: 4C 10 95  JMP loc_9510
 bra_9482:
-C - - - - - 0x001492 00:9482: A5 48     LDA ram_0048
+C - - - - - 0x001492 00:9482: A5 48     LDA ram_0048_t04
 C - - - - - 0x001494 00:9484: 29 0F     AND #$0F
-C - - - - - 0x001496 00:9486: 85 48     STA ram_0048
-loc_9488:
+C - - - - - 0x001496 00:9486: 85 48     STA ram_0048_t04
+loc_9488_loop:
 C D 0 - - - 0x001498 00:9488: A5 5A     LDA ram_005A
 C - - - - - 0x00149A 00:948A: 18        CLC
 C - - - - - 0x00149B 00:948B: 69 08     ADC #$08
@@ -3078,14 +3126,14 @@ C - - - - - 0x00149F 00:948F: A5 5A     LDA ram_005A
 C - - - - - 0x0014A1 00:9491: 29 F8     AND #$F8
 C - - - - - 0x0014A3 00:9493: F0 0F     BEQ bra_94A4
 C - - - - - 0x0014A5 00:9495: A4 5A     LDY ram_005A
-C - - - - - 0x0014A7 00:9497: B1 57     LDA (ram_0057),Y    ; 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0476 0477 047B 047C 0483 0484 050B 050C 0513 0514 051B 051C 0520 0521 0522 0523 0524 0525 0526 0527 0528 0529 052A 052B 052C 052D 052E 052F 0530 0531 0532 0533 0534 0535 0536 0537 0538 0539 053A 053B 053C 053D 053E 053F 0540 0541 0542 0543 0544 0545 0546 0547 0548 0549 054A 054B 054C 054D 054E 054F 0550 0551 0552 0553 0554 0555 0556 0557 0558 0559 055A 055B 055C 055D 055E 055F 0560 0561 0562 0563 0564 0565 0566 0567 0568 0569 056A 056B 056C 056D 056E 056F 0570 0572 0573 0574 0575 0576 0577 057B 057C
+C - - - - - 0x0014A7 00:9497: B1 57     LDA (ram_0057_temp),Y    ; 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0476 0477 047B 047C 0483 0484 050B 050C 0513 0514 051B 051C 0520 0521 0522 0523 0524 0525 0526 0527 0528 0529 052A 052B 052C 052D 052E 052F 0530 0531 0532 0533 0534 0535 0536 0537 0538 0539 053A 053B 053C 053D 053E 053F 0540 0541 0542 0543 0544 0545 0546 0547 0548 0549 054A 054B 054C 054D 054E 054F 0550 0551 0552 0553 0554 0555 0556 0557 0558 0559 055A 055B 055C 055D 055E 055F 0560 0561 0562 0563 0564 0565 0566 0567 0568 0569 056A 056B 056C 056D 056E 056F 0570 0572 0573 0574 0575 0576 0577 057B 057C
 C - - - - - 0x0014A9 00:9499: 29 0F     AND #$0F
-C - - - - - 0x0014AB 00:949B: C5 48     CMP ram_0048
+C - - - - - 0x0014AB 00:949B: C5 48     CMP ram_0048_t04
 C - - - - - 0x0014AD 00:949D: D0 05     BNE bra_94A4
-C - - - - - 0x0014AF 00:949F: E6 47     INC ram_0047
-C - - - - - 0x0014B1 00:94A1: 4C 88 94  JMP loc_9488
+C - - - - - 0x0014AF 00:949F: E6 47     INC ram_0047_t23
+C - - - - - 0x0014B1 00:94A1: 4C 88 94  JMP loc_9488_loop
 bra_94A4:
-C - - - - - 0x0014B4 00:94A4: A5 47     LDA ram_0047
+C - - - - - 0x0014B4 00:94A4: A5 47     LDA ram_0047_t23
 C - - - - - 0x0014B6 00:94A6: C9 03     CMP #$03
 C - - - - - 0x0014B8 00:94A8: 30 5F     BMI bra_9509
 C - - - - - 0x0014BA 00:94AA: E6 8F     INC ram_combo_counter_1
@@ -3093,17 +3141,18 @@ C - - - - - 0x0014BC 00:94AC: 85 8E     STA ram_008E
 C - - - - - 0x0014BE 00:94AE: 20 4B 94  JSR sub_944B
 C - - - - - 0x0014C1 00:94B1: A5 A1     LDA ram_00A1
 C - - - - - 0x0014C3 00:94B3: 18        CLC
-C - - - - - 0x0014C4 00:94B4: 65 47     ADC ram_0047
+C - - - - - 0x0014C4 00:94B4: 65 47     ADC ram_0047_t23
 C - - - - - 0x0014C6 00:94B6: 85 A1     STA ram_00A1
 C - - - - - 0x0014C8 00:94B8: E6 A1     INC ram_00A1
 C - - - - - 0x0014CA 00:94BA: A5 59     LDA ram_0059
 C - - - - - 0x0014CC 00:94BC: 29 78     AND #$78
+; / 08
 C - - - - - 0x0014CE 00:94BE: 4A        LSR
 C - - - - - 0x0014CF 00:94BF: 4A        LSR
 C - - - - - 0x0014D0 00:94C0: 4A        LSR
 C - - - - - 0x0014D1 00:94C1: 85 95     STA ram_0095
 C - - - - - 0x0014D3 00:94C3: A5 5A     LDA ram_005A
-C - - - - - 0x0014D5 00:94C5: 85 49     STA ram_0049
+C - - - - - 0x0014D5 00:94C5: 85 49     STA ram_0049_t08
 C - - - - - 0x0014D7 00:94C7: A5 59     LDA ram_0059
 C - - - - - 0x0014D9 00:94C9: 85 5A     STA ram_005A
 bra_94CB_loop:
@@ -3111,33 +3160,33 @@ C - - - - - 0x0014DB 00:94CB: A9 02     LDA #con_sfx_1_02
 C - - - - - 0x0014DD 00:94CD: 8D F1 06  STA ram_sfx_1
 C - - - - - 0x0014E0 00:94D0: A4 5A     LDY ram_005A
 ; bzk optimize, same code as 0x001284
-C - - - - - 0x0014E2 00:94D2: B1 57     LDA (ram_0057),Y    ; 0404 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0451 0452 0453 0454 0455 0456 0457 0459 045A 045B 045C 045F 0462 0463 0464 0467 046B 046C 046F 0473 0474 0477 047B 047C 047F 0487 048F 0497 049F 04A7 04AF 04B7 04BF 04C7 04CF 04D7 04DF 04E7 04EF 04F7 04FF 0525 052A 052B 052D 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 055A 055B 055C 0562 0563 0564 056A 056B 056C 0573 0574
+C - - - - - 0x0014E2 00:94D2: B1 57     LDA (ram_0057_temp),Y    ; 0404 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0451 0452 0453 0454 0455 0456 0457 0459 045A 045B 045C 045F 0462 0463 0464 0467 046B 046C 046F 0473 0474 0477 047B 047C 047F 0487 048F 0497 049F 04A7 04AF 04B7 04BF 04C7 04CF 04D7 04DF 04E7 04EF 04F7 04FF 0525 052A 052B 052D 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 055A 055B 055C 0562 0563 0564 056A 056B 056C 0573 0574
 C - - - - - 0x0014E4 00:94D4: 29 F0     AND #$F0
 C - - - - - 0x0014E6 00:94D6: C9 D0     CMP #$D0
 C - - - - - 0x0014E8 00:94D8: D0 14     BNE bra_94EE
 C - - - - - 0x0014EA 00:94DA: A9 04     LDA #con_sfx_1_04
 C - - - - - 0x0014EC 00:94DC: 8D F1 06  STA ram_sfx_1
 C - - - - - 0x0014EF 00:94DF: 20 1A 94  JSR sub_941A
-C - - - - - 0x0014F2 00:94E2: A9 10     LDA #$10
-C - - - - - 0x0014F4 00:94E4: 05 52     ORA ram_0052
-C - - - - - 0x0014F6 00:94E6: 85 52     STA ram_0052
+C - - - - - 0x0014F2 00:94E2: A9 10     LDA #con_0052_10
+C - - - - - 0x0014F4 00:94E4: 05 52     ORA ram_0052_flags
+C - - - - - 0x0014F6 00:94E6: 85 52     STA ram_0052_flags
 C - - - - - 0x0014F8 00:94E8: A5 A4     LDA ram_virus_counter
 C - - - - - 0x0014FA 00:94EA: D0 02     BNE bra_94EE
 C - - - - - 0x0014FC 00:94EC: E6 9E     INC ram_wins
 bra_94EE:
-C - - - - - 0x0014FE 00:94EE: B1 57     LDA (ram_0057),Y    ; 0404 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0451 0452 0453 0454 0455 0456 0457 0459 045A 045B 045C 045F 0462 0463 0464 0467 046B 046C 046F 0473 0474 0477 047B 047C 047F 0487 048F 0497 049F 04A7 04AF 04B7 04BF 04C7 04CF 04D7 04DF 04E7 04EF 04F7 04FF 0525 052A 052B 052D 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 055A 055B 055C 0562 0563 0564 056A 056B 056C 0573 0574
+C - - - - - 0x0014FE 00:94EE: B1 57     LDA (ram_0057_temp),Y    ; 0404 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0451 0452 0453 0454 0455 0456 0457 0459 045A 045B 045C 045F 0462 0463 0464 0467 046B 046C 046F 0473 0474 0477 047B 047C 047F 0487 048F 0497 049F 04A7 04AF 04B7 04BF 04C7 04CF 04D7 04DF 04E7 04EF 04F7 04FF 0525 052A 052B 052D 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 055A 055B 055C 0562 0563 0564 056A 056B 056C 0573 0574
 C - - - - - 0x001500 00:94F0: 29 0F     AND #$0F
 C - - - - - 0x001502 00:94F2: 09 B0     ORA #$B0
-C - - - - - 0x001504 00:94F4: 91 57     STA (ram_0057),Y    ; 0404 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0451 0452 0453 0454 0455 0456 0457 0459 045A 045B 045C 045F 0462 0463 0464 0467 046B 046C 046F 0473 0474 0477 047B 047C 047F 0487 048F 0497 049F 04A7 04AF 04B7 04BF 04C7 04CF 04D7 04DF 04E7 04EF 04F7 04FF 0525 052A 052B 052D 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 055A 055B 055C 0562 0563 0564 056A 056B 056C 0573 0574
+C - - - - - 0x001504 00:94F4: 91 57     STA (ram_0057_temp),Y    ; 0404 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0449 044A 044B 044C 044D 044E 044F 0451 0452 0453 0454 0455 0456 0457 0459 045A 045B 045C 045F 0462 0463 0464 0467 046B 046C 046F 0473 0474 0477 047B 047C 047F 0487 048F 0497 049F 04A7 04AF 04B7 04BF 04C7 04CF 04D7 04DF 04E7 04EF 04F7 04FF 0525 052A 052B 052D 0532 0533 0534 0535 0539 053A 053B 053C 053D 0541 0542 0543 0544 0545 0549 054A 054B 054C 054D 0551 0552 0553 0554 0555 055A 055B 055C 0562 0563 0564 056A 056B 056C 0573 0574
 C - - - - - 0x001506 00:94F6: A5 5A     LDA ram_005A
 C - - - - - 0x001508 00:94F8: 18        CLC
 C - - - - - 0x001509 00:94F9: 69 08     ADC #$08
 C - - - - - 0x00150B 00:94FB: 85 5A     STA ram_005A
 C - - - - - 0x00150D 00:94FD: A4 5A     LDY ram_005A
-C - - - - - 0x00150F 00:94FF: C4 49     CPY ram_0049
+C - - - - - 0x00150F 00:94FF: C4 49     CPY ram_0049_t08
 C - - - - - 0x001511 00:9501: D0 C8     BNE bra_94CB_loop
 C - - - - - 0x001513 00:9503: E6 94     INC ram_0094
-C - - - - - 0x001515 00:9505: A5 49     LDA ram_0049
+C - - - - - 0x001515 00:9505: A5 49     LDA ram_0049_t08
 C - - - - - 0x001517 00:9507: 85 5A     STA ram_005A
 bra_9509:
 C - - - - - 0x001519 00:9509: A5 5A     LDA ram_005A
@@ -3162,17 +3211,17 @@ C - - - - - 0x001538 00:9528: A5 59     LDA ram_0059
 C - - - - - 0x00153A 00:952A: F0 03     BEQ bra_952F
 C - - - - - 0x00153C 00:952C: 4C 6D 94  JMP loc_946D
 bra_952F:
-C - - - - - 0x00153F 00:952F: E6 87     INC ram_0087
+C - - - - - 0x00153F 00:952F: E6 87     INC ram_0087_script
 C - - - - - 0x001541 00:9531: 60        RTS
 
 
 
 ofs_000_9532_05_prepare_game_over:
 C - - J - - 0x001542 00:9532: A9 00     LDA #$00
-C - - - - - 0x001544 00:9534: 85 54     STA ram_0054
+C - - - - - 0x001544 00:9534: 85 54     STA ram_0054_flag
 C - - - - - 0x001546 00:9536: 8D 32 07  STA ram_copy_1_data    ; bzk optimize, it it necessary?
 C - - - - - 0x001549 00:9539: A9 04     LDA #> ram_playfield_p1
-C - - - - - 0x00154B 00:953B: 85 58     STA ram_0058
+C - - - - - 0x00154B 00:953B: 85 58     STA ram_0058_temp
 C - - - - - 0x00154D 00:953D: AD 09 03  LDA ram_p1_loses
 C - - - - - 0x001550 00:9540: D0 06     BNE bra_9548
 C - - - - - 0x001552 00:9542: EE 1E 03  INC ram_p1_wins
@@ -3189,7 +3238,7 @@ loc_9556:
 C D 0 - - - 0x001566 00:9556: A5 80     LDA ram_row
 C - - - - - 0x001568 00:9558: 8D 00 03  STA ram_p1_row
 C - - - - - 0x00156B 00:955B: A9 05     LDA #> ram_playfield_p2
-C - - - - - 0x00156D 00:955D: 85 58     STA ram_0058
+C - - - - - 0x00156D 00:955D: 85 58     STA ram_0058_temp
 C - - - - - 0x00156F 00:955F: AD 89 03  LDA ram_p2_loses
 C - - - - - 0x001572 00:9562: D0 06     BNE bra_956A
 C - - - - - 0x001574 00:9564: EE 9E 03  INC ram_p2_wins
@@ -3218,9 +3267,9 @@ C - - - - - 0x001599 00:9589: 60        RTS
 ofs_000_958A_07_game_over:
 C - - J - - 0x00159A 00:958A: A9 40     LDA #$40
 C - - - - - 0x00159C 00:958C: 20 01 97  JSR sub_9701
-C - - - - - 0x00159F 00:958F: A9 80     LDA #$80
-C - - - - - 0x0015A1 00:9591: 05 52     ORA ram_0052
-C - - - - - 0x0015A3 00:9593: 85 52     STA ram_0052
+C - - - - - 0x00159F 00:958F: A9 80     LDA #con_0052_80
+C - - - - - 0x0015A1 00:9591: 05 52     ORA ram_0052_flags
+C - - - - - 0x0015A3 00:9593: 85 52     STA ram_0052_flags
 C - - - - - 0x0015A5 00:9595: AD 27 07  LDA ram_plr_counter
 C - - - - - 0x0015A8 00:9598: C9 02     CMP #$02
 C - - - - - 0x0015AA 00:959A: D0 2D     BNE bra_95C9
@@ -3253,12 +3302,12 @@ C - - - - - 0x0015E0 00:95D0: A2 04     LDX #$04
 C - - - - - 0x0015E2 00:95D2: A0 05     LDY #$05
 C - - - - - 0x0015E4 00:95D4: 20 94 B8  JSR sub_B894_fill_memory_pages
 C - - - - - 0x0015E7 00:95D7: A9 04     LDA #> ram_playfield_p1
-C - - - - - 0x0015E9 00:95D9: 85 58     STA ram_0058
+C - - - - - 0x0015E9 00:95D9: 85 58     STA ram_0058_temp
 C - - - - - 0x0015EB 00:95DB: 20 D4 96  JSR sub_96D4
 C - - - - - 0x0015EE 00:95DE: A9 0F     LDA #$0F
 C - - - - - 0x0015F0 00:95E0: 8D 00 03  STA ram_p1_row
 C - - - - - 0x0015F3 00:95E3: A9 05     LDA #> ram_playfield_p2
-C - - - - - 0x0015F5 00:95E5: 85 58     STA ram_0058
+C - - - - - 0x0015F5 00:95E5: 85 58     STA ram_0058_temp
 C - - - - - 0x0015F7 00:95E7: 20 D4 96  JSR sub_96D4
 C - - - - - 0x0015FA 00:95EA: A9 0F     LDA #$0F
 C - - - - - 0x0015FC 00:95EC: 8D 80 03  STA ram_p2_row
@@ -3267,12 +3316,12 @@ C - - - - - 0x001601 00:95F1: 85 80     STA ram_row
 C - - - - - 0x001603 00:95F3: A9 00     LDA #$00
 C - - - - - 0x001605 00:95F5: 85 61     STA ram_0061
 C - - - - - 0x001607 00:95F7: A9 01     LDA #$01
-C - - - - - 0x001609 00:95F9: 85 55     STA ram_0055
+C - - - - - 0x001609 00:95F9: 85 55     STA ram_0055_flag
 C - - - - - 0x00160B 00:95FB: AD 1E 03  LDA ram_p1_wins
 C - - - - - 0x00160E 00:95FE: CD 25 07  CMP ram_max_wins
 C - - - - - 0x001611 00:9601: F0 04     BEQ bra_9607
 C - - - - - 0x001613 00:9603: A9 02     LDA #$02
-C - - - - - 0x001615 00:9605: 85 55     STA ram_0055
+C - - - - - 0x001615 00:9605: 85 55     STA ram_0055_flag
 bra_9607:
 bra_9607_loop:
 C - - - - - 0x001617 00:9607: A5 43     LDA ram_frm_cnt
@@ -3303,7 +3352,7 @@ C - - - - - 0x00164A 00:963A: 20 21 97  JSR sub_9721
 C - - - - - 0x00164D 00:963D: A9 00     LDA #$00
 C - - - - - 0x00164F 00:963F: 85 F5     STA ram_btn_press
 C - - - - - 0x001651 00:9641: A9 FF     LDA #$FF
-C - - - - - 0x001653 00:9643: 85 54     STA ram_0054
+C - - - - - 0x001653 00:9643: 85 54     STA ram_0054_flag
 C - - - - - 0x001655 00:9645: 60        RTS
 
 
@@ -3336,17 +3385,17 @@ C - - - - - 0x001687 00:9677: 85 89     STA ram_loses
 C - - - - - 0x001689 00:9679: A9 00     LDA #$00
 C - - - - - 0x00168B 00:967B: 85 F5     STA ram_btn_press
 C - - - - - 0x00168D 00:967D: A9 FF     LDA #$FF
-C - - - - - 0x00168F 00:967F: 85 54     STA ram_0054
+C - - - - - 0x00168F 00:967F: 85 54     STA ram_0054_flag
 C - - - - - 0x001691 00:9681: 60        RTS
 
 
 
 sub_9682:
 C - - - - - 0x001692 00:9682: A9 04     LDA #> ram_playfield_p1
-C - - - - - 0x001694 00:9684: 85 58     STA ram_0058
+C - - - - - 0x001694 00:9684: 85 58     STA ram_0058_temp
 C - - - - - 0x001696 00:9686: 20 91 96  JSR sub_9691
 C - - - - - 0x001699 00:9689: A9 05     LDA #> ram_playfield_p2
-C - - - - - 0x00169B 00:968B: 85 58     STA ram_0058
+C - - - - - 0x00169B 00:968B: 85 58     STA ram_0058_temp
 C - - - - - 0x00169D 00:968D: 20 91 96  JSR sub_9691
 C - - - - - 0x0016A0 00:9690: 60        RTS
 
@@ -3354,7 +3403,7 @@ C - - - - - 0x0016A0 00:9690: 60        RTS
 
 sub_9691:
 C - - - - - 0x0016A1 00:9691: A9 00     LDA #$00    ; < ram_playfield_p1 or < ram_playfield_p2
-C - - - - - 0x0016A3 00:9693: 85 57     STA ram_0057
+C - - - - - 0x0016A3 00:9693: 85 57     STA ram_0057_temp
 C - - - - - 0x0016A5 00:9695: A0 28     LDY #$28
 loc_9697_loop:
 C D 0 - - - 0x0016A7 00:9697: 98        TYA
@@ -3363,7 +3412,7 @@ C - - - - - 0x0016A9 00:9699: E9 28     SBC #$28
 C - - - - - 0x0016AB 00:969B: AA        TAX
 C - - - - - 0x0016AC 00:969C: BD 0F A8  LDA tbl_A80F,X
 C - - - - - 0x0016AF 00:969F: F0 06     BEQ bra_96A7
-C - - - - - 0x0016B1 00:96A1: 91 57     STA (ram_0057),Y    ; 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0528 0529 052A 052B 052C 052D 052E 052F 0530 0531 0532 0533 0534 0535 0536 0537 0538 0539 053A 053B 053C 053D 053E 053F 0540 0541 0542 0543 0544 0545 0546 0547 0548 0549 054A 054B 054C 054D 054E 054F
+C - - - - - 0x0016B1 00:96A1: 91 57     STA (ram_0057_temp),Y    ; 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0528 0529 052A 052B 052C 052D 052E 052F 0530 0531 0532 0533 0534 0535 0536 0537 0538 0539 053A 053B 053C 053D 053E 053F 0540 0541 0542 0543 0544 0545 0546 0547 0548 0549 054A 054B 054C 054D 054E 054F
 C - - - - - 0x0016B3 00:96A3: C8        INY
 C - - - - - 0x0016B4 00:96A4: 4C 97 96  JMP loc_9697_loop
 bra_96A7:
@@ -3374,11 +3423,11 @@ C - - - - - 0x0016BB 00:96AB: 60        RTS
 
 ; bzk garbage
 - - - - - - 0x0016BC 00:96AC: A9 00     LDA #$00
-- - - - - - 0x0016BE 00:96AE: 85 57     STA ram_0057
+- - - - - - 0x0016BE 00:96AE: 85 57     STA ram_0057_temp
 - - - - - - 0x0016C0 00:96B0: A0 7F     LDY #$7F
 bra_96B2_loop:
 - - - - - - 0x0016C2 00:96B2: A9 FF     LDA #$FF
-- - - - - - 0x0016C4 00:96B4: 91 57     STA (ram_0057),Y
+- - - - - - 0x0016C4 00:96B4: 91 57     STA (ram_0057_temp),Y
 - - - - - - 0x0016C6 00:96B6: 88        DEY
 - - - - - - 0x0016C7 00:96B7: C0 FF     CPY #$FF    ; bzk optimize, BPL
 - - - - - - 0x0016C9 00:96B9: D0 F7     BNE bra_96B2_loop
@@ -3390,11 +3439,11 @@ bra_96B2_loop:
 
 sub_96C0:
 C - - - - - 0x0016D0 00:96C0: A9 00     LDA #$00
-C - - - - - 0x0016D2 00:96C2: 85 57     STA ram_0057
+C - - - - - 0x0016D2 00:96C2: 85 57     STA ram_0057_temp
 C - - - - - 0x0016D4 00:96C4: A0 40     LDY #$40
 bra_96C6_loop:
 C - - - - - 0x0016D6 00:96C6: A9 FF     LDA #$FF
-C - - - - - 0x0016D8 00:96C8: 91 57     STA (ram_0057),Y    ; 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0540 0541 0542 0543 0544 0545 0546 0547 0548 0549 054A 054B 054C 054D 054E 054F 0550 0551 0552 0553 0554 0555 0556 0557 0558 0559 055A 055B 055C 055D 055E 055F 0560 0561 0562 0563 0564 0565 0566 0567 0568 0569 056A 056B 056C 056D 056E 056F 0570 0571 0572 0573 0574 0575 0576 0577 0578 0579 057A 057B 057C 057D 057E 057F
+C - - - - - 0x0016D8 00:96C8: 91 57     STA (ram_0057_temp),Y    ; 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0540 0541 0542 0543 0544 0545 0546 0547 0548 0549 054A 054B 054C 054D 054E 054F 0550 0551 0552 0553 0554 0555 0556 0557 0558 0559 055A 055B 055C 055D 055E 055F 0560 0561 0562 0563 0564 0565 0566 0567 0568 0569 056A 056B 056C 056D 056E 056F 0570 0571 0572 0573 0574 0575 0576 0577 0578 0579 057A 057B 057C 057D 057E 057F
 C - - - - - 0x0016DA 00:96CA: C8        INY
 C - - - - - 0x0016DB 00:96CB: C0 80     CPY #$80
 C - - - - - 0x0016DD 00:96CD: D0 F7     BNE bra_96C6_loop
@@ -3406,13 +3455,13 @@ C - - - - - 0x0016E3 00:96D3: 60        RTS
 
 sub_96D4:
 C - - - - - 0x0016E4 00:96D4: A9 00     LDA #$00
-C - - - - - 0x0016E6 00:96D6: 85 57     STA ram_0057
+C - - - - - 0x0016E6 00:96D6: 85 57     STA ram_0057_temp
 C - - - - - 0x0016E8 00:96D8: A2 00     LDX #$00
 C - - - - - 0x0016EA 00:96DA: A0 10     LDY #$10
 loc_96DC_loop:
 C D 0 - - - 0x0016EC 00:96DC: BD 38 A8  LDA tbl_A838,X
 C - - - - - 0x0016EF 00:96DF: F0 07     BEQ bra_96E8
-C - - - - - 0x0016F1 00:96E1: 91 57     STA (ram_0057),Y    ; 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0510 0511 0512 0513 0514 0515 0516 0517 0518 0519 051A 051B 051C 051D 051E 051F 0520 0521 0522 0523 0524 0525 0526 0527 0528 0529 052A 052B 052C 052D 052E 052F 0530 0531 0532 0533 0534 0535 0536 0537 0538 0539 053A 053B 053C 053D 053E 053F 0540 0541 0542 0543 0544 0545 0546 0547 
+C - - - - - 0x0016F1 00:96E1: 91 57     STA (ram_0057_temp),Y    ; 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0510 0511 0512 0513 0514 0515 0516 0517 0518 0519 051A 051B 051C 051D 051E 051F 0520 0521 0522 0523 0524 0525 0526 0527 0528 0529 052A 052B 052C 052D 052E 052F 0530 0531 0532 0533 0534 0535 0536 0537 0538 0539 053A 053B 053C 053D 053E 053F 0540 0541 0542 0543 0544 0545 0546 0547 
 C - - - - - 0x0016F3 00:96E3: E8        INX
 C - - - - - 0x0016F4 00:96E4: C8        INY
 C - - - - - 0x0016F5 00:96E5: 4C DC 96  JMP loc_96DC_loop
@@ -3535,7 +3584,7 @@ bra_9799_reset_the_game:
 - - - - - - 0x0017AD 00:979D: 8D 8D 06  STA ram_068D
 - - - - - - 0x0017B0 00:97A0: 4C F6 97  JMP loc_97F6_RTS
 bra_97A3_skip_reset:
-C - - - - - 0x0017B3 00:97A3: A5 54     LDA ram_0054
+C - - - - - 0x0017B3 00:97A3: A5 54     LDA ram_0054_flag
 C - - - - - 0x0017B5 00:97A5: F0 4F     BEQ bra_97F6_RTS
 C - - - - - 0x0017B7 00:97A7: A5 F5     LDA ram_btn_press
 C - - - - - 0x0017B9 00:97A9: 29 10     AND #con_btn_Start
@@ -3582,7 +3631,7 @@ C - - - - - 0x001807 00:97F7: A5 F5     LDA ram_btn_press
 C - - - - - 0x001809 00:97F9: C9 10     CMP #con_btn_Start
 C - - - - - 0x00180B 00:97FB: D0 1E     BNE bra_981B_RTS
 C - - - - - 0x00180D 00:97FD: A9 00     LDA #$00
-C - - - - - 0x00180F 00:97FF: 85 36     STA ram_0036
+C - - - - - 0x00180F 00:97FF: 85 36     STA ram_0036_t01_demo_buttons_data
 C - - - - - 0x001811 00:9801: 85 46     STA ram_game_script
 ; restore data
 C - - - - - 0x001813 00:9803: AD 3C 07  LDA ram_copy_2_data
@@ -3605,7 +3654,7 @@ C - - - - - 0x00182F 00:981F: C9 FE     CMP #$FE
 C - - - - - 0x001831 00:9821: D0 1E     BNE bra_9841_not_demo
 ; if demo
 C - - - - - 0x001833 00:9823: A9 00     LDA #$00
-C - - - - - 0x001835 00:9825: 85 36     STA ram_0036
+C - - - - - 0x001835 00:9825: 85 36     STA ram_0036_t01_demo_buttons_data
 C - - - - - 0x001837 00:9827: 85 46     STA ram_game_script
 ; restore data
 C - - - - - 0x001839 00:9829: AD 3C 07  LDA ram_copy_2_data
@@ -3623,7 +3672,7 @@ C - - - - - 0x001856 00:9846: A9 02     LDA #$02
 C - - - - - 0x001858 00:9848: 20 E0 B8  JSR sub_B8E0_set_chr_bank_0
 C - - - - - 0x00185B 00:984B: A9 00     LDA #$00
 C - - - - - 0x00185D 00:984D: 85 5D     STA ram_005D
-C - - - - - 0x00185F 00:984F: 85 52     STA ram_0052
+C - - - - - 0x00185F 00:984F: 85 52     STA ram_0052_flags    ; con_0052_00
 C - - - - - 0x001861 00:9851: 8D 41 07  STA ram_demo_flag   ; set "not demo" flag
 C - - - - - 0x001864 00:9854: 85 51     STA ram_0051
 C - - - - - 0x001866 00:9856: A9 FF     LDA #$FF
@@ -3631,9 +3680,9 @@ C - - - - - 0x001868 00:9858: 85 80     STA ram_row
 C - - - - - 0x00186A 00:985A: 8D 00 03  STA ram_p1_row
 C - - - - - 0x00186D 00:985D: 8D 80 03  STA ram_p2_row
 C - - - - - 0x001870 00:9860: A9 00     LDA #< tbl_D000_demo_input
-C - - - - - 0x001872 00:9862: 85 36     STA ram_0036
+C - - - - - 0x001872 00:9862: 85 36     STA ram_0036_t01_demo_buttons_data
 C - - - - - 0x001874 00:9864: A9 D0     LDA #> tbl_D000_demo_input
-C - - - - - 0x001876 00:9866: 85 37     STA ram_0037
+C - - - - - 0x001876 00:9866: 85 37     STA ram_0036_t01_demo_buttons_data + $01
 C - - - - - 0x001878 00:9868: 20 7C B6  JSR sub_B67C
 C - - - - - 0x00187B 00:986B: 20 A2 B6  JSR sub_B6A2
 C - - - - - 0x00187E 00:986E: 20 C2 B6  JSR sub_B6C2_decompress_data_and_write_to_ppu
@@ -3644,12 +3693,13 @@ C - - - - - 0x001887 00:9877: 20 D0 91  JSR sub_91D0_check_hacking_protection
 C - - - - - 0x00188A 00:987A: 20 95 B6  JSR sub_B695
 C - - - - - 0x00188D 00:987D: 20 89 B6  JSR sub_B689
 C - - - - - 0x001890 00:9880: A9 00     LDA #$00
-C - - - - - 0x001892 00:9882: 85 54     STA ram_0054
+C - - - - - 0x001892 00:9882: 85 54     STA ram_0054_flag
 C - - - - - 0x001894 00:9884: A9 FF     LDA #$FF
 C - - - - - 0x001896 00:9886: 85 80     STA ram_row
 loc_9888:
 C D 0 - - - 0x001898 00:9888: A5 43     LDA ram_frm_cnt
 C - - - - - 0x00189A 00:988A: 29 10     AND #$10
+; / 10
 C - - - - - 0x00189C 00:988C: 4A        LSR
 C - - - - - 0x00189D 00:988D: 4A        LSR
 C - - - - - 0x00189E 00:988E: 4A        LSR
@@ -3764,7 +3814,7 @@ C - - - - - 0x001973 00:9963: A9 05     LDA #$05
 C - - - - - 0x001975 00:9965: 20 F4 B8  JSR sub_B8F4_set_chr_bank_1
 C - - - - - 0x001978 00:9968: A9 00     LDA #$00
 C - - - - - 0x00197A 00:996A: 85 5D     STA ram_005D
-C - - - - - 0x00197C 00:996C: 85 52     STA ram_0052
+C - - - - - 0x00197C 00:996C: 85 52     STA ram_0052_flags    ; con_0052_00
 C - - - - - 0x00197E 00:996E: 85 65     STA ram_0065
 C - - - - - 0x001980 00:9970: 8D 28 07  STA ram_0728
 C - - - - - 0x001983 00:9973: A9 03     LDA #$03
@@ -3806,7 +3856,7 @@ C - - - - - 0x0019D2 00:99C2: 85 68     STA ram_0068
 C - - - - - 0x0019D4 00:99C4: 20 95 B6  JSR sub_B695
 C - - - - - 0x0019D7 00:99C7: 20 89 B6  JSR sub_B689
 C - - - - - 0x0019DA 00:99CA: A9 00     LDA #$00
-C - - - - - 0x0019DC 00:99CC: 85 54     STA ram_0054
+C - - - - - 0x0019DC 00:99CC: 85 54     STA ram_0054_flag
 C - - - - - 0x0019DE 00:99CE: A9 FF     LDA #$FF
 C - - - - - 0x0019E0 00:99D0: 8D 00 03  STA ram_p1_row
 C - - - - - 0x0019E3 00:99D3: A9 07     LDA #con_music_07
@@ -4013,10 +4063,10 @@ sub_9B42:
 C - - - - - 0x001B52 00:9B42: A6 96     LDX ram_virus_level
 C - - - - - 0x001B54 00:9B44: BD 94 A2  LDA tbl_A294,X
 C - - - - - 0x001B57 00:9B47: 85 44     STA ram_spr_pos_X
-C - - - - - 0x001B59 00:9B49: A6 58     LDX ram_0058
+C - - - - - 0x001B59 00:9B49: A6 58     LDX ram_0058_temp
 C - - - - - 0x001B5B 00:9B4B: BD A9 A2  LDA tbl_A2A9,X
 C - - - - - 0x001B5E 00:9B4E: 85 45     STA ram_spr_pos_Y
-C - - - - - 0x001B60 00:9B50: A5 58     LDA ram_0058
+C - - - - - 0x001B60 00:9B50: A5 58     LDA ram_0058_temp
 C - - - - - 0x001B62 00:9B52: 18        CLC
 C - - - - - 0x001B63 00:9B53: 69 19     ADC #$19
 C - - - - - 0x001B65 00:9B55: 85 53     STA ram_spr_animation_id
@@ -4024,10 +4074,10 @@ C - - - - - 0x001B67 00:9B57: 20 F6 88  JSR sub_88F6_display_sprite_animtion
 C - - - - - 0x001B6A 00:9B5A: A6 8B     LDX ram_speed
 C - - - - - 0x001B6C 00:9B5C: BD AF A2  LDA tbl_A2AF,X
 C - - - - - 0x001B6F 00:9B5F: 85 44     STA ram_spr_pos_X
-C - - - - - 0x001B71 00:9B61: A6 58     LDX ram_0058
+C - - - - - 0x001B71 00:9B61: A6 58     LDX ram_0058_temp
 C - - - - - 0x001B73 00:9B63: BD B2 A2  LDA tbl_A2B2,X
 C - - - - - 0x001B76 00:9B66: 85 45     STA ram_spr_pos_Y
-C - - - - - 0x001B78 00:9B68: A5 58     LDA ram_0058
+C - - - - - 0x001B78 00:9B68: A5 58     LDA ram_0058_temp
 C - - - - - 0x001B7A 00:9B6A: 18        CLC
 C - - - - - 0x001B7B 00:9B6B: 69 FE     ADC #$FE
 C - - - - - 0x001B7D 00:9B6D: 85 53     STA ram_spr_animation_id
@@ -4123,8 +4173,8 @@ C - - - - - 0x001BFD 00:9BED: 90 0D     BCC bra_9BFC
 C - - - - - 0x001BFF 00:9BEF: 18        CLC
 C - - - - - 0x001C00 00:9BF0: 65 98     ADC ram_opponent_blocks
 C - - - - - 0x001C02 00:9BF2: 85 98     STA ram_opponent_blocks
-; ram_0058 is from 0x00109F and 0x0010BA
-C - - - - - 0x001C04 00:9BF4: A5 58     LDA ram_0058
+; ram_0058_temp is from 0x00109F and 0x0010BA
+C - - - - - 0x001C04 00:9BF4: A5 58     LDA ram_0058_temp
 C - - - - - 0x001C06 00:9BF6: 38        SEC
 C - - - - - 0x001C07 00:9BF7: E9 03     SBC #$03
 ; con_sfx_4_02
@@ -4139,8 +4189,8 @@ C - - - - - 0x001C10 00:9C00: 60        RTS
 
 sub_9C01:
 C - - - - - 0x001C11 00:9C01: A9 00     LDA #$00
-C - - - - - 0x001C13 00:9C03: 85 57     STA ram_0057
-C - - - - - 0x001C15 00:9C05: A6 58     LDX ram_0058
+C - - - - - 0x001C13 00:9C03: 85 57     STA ram_0057_temp
+C - - - - - 0x001C15 00:9C05: A6 58     LDX ram_0058_temp
 C - - - - - 0x001C17 00:9C07: BD 45 A5  LDA tbl_A545,X
 C - - - - - 0x001C1A 00:9C0A: AA        TAX
 C - - - - - 0x001C1B 00:9C0B: BD 18 03  LDA ram_p1_opponent_blocks,X
@@ -4152,14 +4202,14 @@ C - - - - - 0x001C26 00:9C16: 29 03     AND #$03
 C - - - - - 0x001C28 00:9C18: A8        TAY
 C - - - - - 0x001C29 00:9C19: BD 29 03  LDA ram_0329,X
 C - - - - - 0x001C2C 00:9C1C: 09 80     ORA #$80
-C - - - - - 0x001C2E 00:9C1E: 91 57     STA (ram_0057),Y    ; 0400 0402 0403
+C - - - - - 0x001C2E 00:9C1E: 91 57     STA (ram_0057_temp),Y    ; 0400 0402 0403
 C - - - - - 0x001C30 00:9C20: C8        INY
 C - - - - - 0x001C31 00:9C21: C8        INY
 C - - - - - 0x001C32 00:9C22: C8        INY
 C - - - - - 0x001C33 00:9C23: C8        INY
 C - - - - - 0x001C34 00:9C24: BD 2A 03  LDA ram_032A,X
 C - - - - - 0x001C37 00:9C27: 09 80     ORA #$80
-C - - - - - 0x001C39 00:9C29: 91 57     STA (ram_0057),Y    ; 0404 0406 0407
+C - - - - - 0x001C39 00:9C29: 91 57     STA (ram_0057_temp),Y    ; 0404 0406 0407
 C - - - - - 0x001C3B 00:9C2B: 4C 7A 9C  JMP loc_9C7A
 bra_9C2E:
 - - - - - - 0x001C3E 00:9C2E: C9 03     CMP #$03
@@ -4169,17 +4219,17 @@ bra_9C2E:
 - - - - - - 0x001C46 00:9C36: A8        TAY
 - - - - - - 0x001C47 00:9C37: BD 29 03  LDA ram_0329,X
 - - - - - - 0x001C4A 00:9C3A: 09 80     ORA #$80
-- - - - - - 0x001C4C 00:9C3C: 91 57     STA (ram_0057),Y
+- - - - - - 0x001C4C 00:9C3C: 91 57     STA (ram_0057_temp),Y
 - - - - - - 0x001C4E 00:9C3E: C8        INY
 - - - - - - 0x001C4F 00:9C3F: C8        INY
 - - - - - - 0x001C50 00:9C40: BD 2A 03  LDA ram_032A,X
 - - - - - - 0x001C53 00:9C43: 09 80     ORA #$80
-- - - - - - 0x001C55 00:9C45: 91 57     STA (ram_0057),Y
+- - - - - - 0x001C55 00:9C45: 91 57     STA (ram_0057_temp),Y
 - - - - - - 0x001C57 00:9C47: C8        INY
 - - - - - - 0x001C58 00:9C48: C8        INY
 - - - - - - 0x001C59 00:9C49: BD 2B 03  LDA ram_032B,X
 - - - - - - 0x001C5C 00:9C4C: 09 80     ORA #$80
-- - - - - - 0x001C5E 00:9C4E: 91 57     STA (ram_0057),Y
+- - - - - - 0x001C5E 00:9C4E: 91 57     STA (ram_0057_temp),Y
 - - - - - - 0x001C60 00:9C50: 4C 7A 9C  JMP loc_9C7A
 bra_9C53:
 - - - - - - 0x001C63 00:9C53: A5 43     LDA ram_frm_cnt
@@ -4187,24 +4237,24 @@ bra_9C53:
 - - - - - - 0x001C67 00:9C57: A8        TAY
 - - - - - - 0x001C68 00:9C58: BD 29 03  LDA ram_0329,X
 - - - - - - 0x001C6B 00:9C5B: 09 80     ORA #$80
-- - - - - - 0x001C6D 00:9C5D: 91 57     STA (ram_0057),Y
+- - - - - - 0x001C6D 00:9C5D: 91 57     STA (ram_0057_temp),Y
 - - - - - - 0x001C6F 00:9C5F: C8        INY
 - - - - - - 0x001C70 00:9C60: C8        INY
 - - - - - - 0x001C71 00:9C61: BD 2A 03  LDA ram_032A,X
 - - - - - - 0x001C74 00:9C64: 09 80     ORA #$80
-- - - - - - 0x001C76 00:9C66: 91 57     STA (ram_0057),Y
+- - - - - - 0x001C76 00:9C66: 91 57     STA (ram_0057_temp),Y
 - - - - - - 0x001C78 00:9C68: C8        INY
 - - - - - - 0x001C79 00:9C69: C8        INY
 - - - - - - 0x001C7A 00:9C6A: BD 2B 03  LDA ram_032B,X
 - - - - - - 0x001C7D 00:9C6D: 09 80     ORA #$80
-- - - - - - 0x001C7F 00:9C6F: 91 57     STA (ram_0057),Y
+- - - - - - 0x001C7F 00:9C6F: 91 57     STA (ram_0057_temp),Y
 - - - - - - 0x001C81 00:9C71: C8        INY
 - - - - - - 0x001C82 00:9C72: C8        INY
 - - - - - - 0x001C83 00:9C73: BD 2C 03  LDA ram_032C,X
 - - - - - - 0x001C86 00:9C76: 09 80     ORA #$80
-- - - - - - 0x001C88 00:9C78: 91 57     STA (ram_0057),Y
+- - - - - - 0x001C88 00:9C78: 91 57     STA (ram_0057_temp),Y
 loc_9C7A:
-C D 0 - - - 0x001C8A 00:9C7A: A6 58     LDX ram_0058
+C D 0 - - - 0x001C8A 00:9C7A: A6 58     LDX ram_0058_temp
 C - - - - - 0x001C8C 00:9C7C: BD 45 A5  LDA tbl_A545,X
 C - - - - - 0x001C8F 00:9C7F: AA        TAX
 C - - - - - 0x001C90 00:9C80: A9 00     LDA #$00
@@ -4251,7 +4301,7 @@ C - - - - - 0x001CDD 00:9CCD: AD A8 03  LDA ram_03A8
 C - - - - - 0x001CE0 00:9CD0: D0 CC     BNE bra_9C9E_loop
 loc_9CD2:
 C D 0 - - - 0x001CE2 00:9CD2: A9 04     LDA #> ram_playfield_p1
-C - - - - - 0x001CE4 00:9CD4: 85 58     STA ram_0058
+C - - - - - 0x001CE4 00:9CD4: 85 58     STA ram_0058_temp
 C - - - - - 0x001CE6 00:9CD6: A9 0F     LDA #$0F
 C - - - - - 0x001CE8 00:9CD8: 85 80     STA ram_row
 C - - - - - 0x001CEA 00:9CDA: 8D 00 03  STA ram_p1_row
@@ -4284,146 +4334,148 @@ bra_9D06_loop:
 C - - - - - 0x001D16 00:9D06: A2 17     LDX #$17
 C - - - - - 0x001D18 00:9D08: A0 02     LDY #$02
 C - - - - - 0x001D1A 00:9D0A: 20 71 B7  JSR sub_B771
-C - - - - - 0x001D1D 00:9D0D: A5 17     LDA ram_0017
+C - - - - - 0x001D1D 00:9D0D: A5 17     LDA ram_0017_t01
 C - - - - - 0x001D1F 00:9D0F: 29 0F     AND #$0F
-C - - - - - 0x001D21 00:9D11: 85 47     STA ram_0047
+C - - - - - 0x001D21 00:9D11: 85 47     STA ram_0047_t03
 C - - - - - 0x001D23 00:9D13: A6 96     LDX ram_virus_level
 C - - - - - 0x001D25 00:9D15: BD DE A3  LDA tbl_A3DE,X
-C - - - - - 0x001D28 00:9D18: C5 47     CMP ram_0047
+C - - - - - 0x001D28 00:9D18: C5 47     CMP ram_0047_t03
 C - - - - - 0x001D2A 00:9D1A: 90 EA     BCC bra_9D06_loop
-C - - - - - 0x001D2C 00:9D1C: A5 47     LDA ram_0047    ; bzk optimize, LDX
+; bzk optimize, LDX
+C - - - - - 0x001D2C 00:9D1C: A5 47     LDA ram_0047_t03
 C - - - - - 0x001D2E 00:9D1E: AA        TAX
 C - - - - - 0x001D2F 00:9D1F: BD 74 A4  LDA tbl_A474,X
-C - - - - - 0x001D32 00:9D22: 85 47     STA ram_0047
-C - - - - - 0x001D34 00:9D24: A5 18     LDA ram_0018
+C - - - - - 0x001D32 00:9D22: 85 47     STA ram_0047_t04
+C - - - - - 0x001D34 00:9D24: A5 18     LDA ram_0017_t01 + $01
 C - - - - - 0x001D36 00:9D26: 29 07     AND #$07
 C - - - - - 0x001D38 00:9D28: 18        CLC
-C - - - - - 0x001D39 00:9D29: 65 47     ADC ram_0047
-C - - - - - 0x001D3B 00:9D2B: 85 57     STA ram_0057
-C - - - - - 0x001D3D 00:9D2D: 85 49     STA ram_0049
+C - - - - - 0x001D39 00:9D29: 65 47     ADC ram_0047_t04
+C - - - - - 0x001D3B 00:9D2B: 85 57     STA ram_0057_temp
+C - - - - - 0x001D3D 00:9D2D: 85 49     STA ram_0049_t04
 C - - - - - 0x001D3F 00:9D2F: A5 A8     LDA ram_00A8
 C - - - - - 0x001D41 00:9D31: 29 03     AND #$03
-C - - - - - 0x001D43 00:9D33: 85 48     STA ram_0048
+C - - - - - 0x001D43 00:9D33: 85 48     STA ram_0048_t09
 C - - - - - 0x001D45 00:9D35: C9 03     CMP #$03
 C - - - - - 0x001D47 00:9D37: D0 13     BNE bra_9D4C
 C - - - - - 0x001D49 00:9D39: A2 17     LDX #$17
 C - - - - - 0x001D4B 00:9D3B: A0 02     LDY #$02
 C - - - - - 0x001D4D 00:9D3D: 20 71 B7  JSR sub_B771
-C - - - - - 0x001D50 00:9D40: A5 18     LDA ram_0018
+C - - - - - 0x001D50 00:9D40: A5 18     LDA ram_0017_t01 + $01
 C - - - - - 0x001D52 00:9D42: 29 0F     AND #$0F
 C - - - - - 0x001D54 00:9D44: AA        TAX
 C - - - - - 0x001D55 00:9D45: BD ED A7  LDA tbl_A7ED,X
 C - - - - - 0x001D58 00:9D48: 29 03     AND #$03
-C - - - - - 0x001D5A 00:9D4A: 85 48     STA ram_0048
+C - - - - - 0x001D5A 00:9D4A: 85 48     STA ram_0048_t09
 bra_9D4C:
 bra_9D4C_loop:
 C - - - - - 0x001D5C 00:9D4C: A0 00     LDY #$00
-C - - - - - 0x001D5E 00:9D4E: B1 57     LDA (ram_0057),Y    ; 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0535 0537 053B 053D 053E 053F 0540 0542 0543 0545 0546 0547 0548 0549 054B 054C 054D 0551 0553 0554 0555 0556 055A 055F 0564 0565 0566 0567 0568 056A 056C 056F 0570 0571 0573 0577 057C 057D 057E 057F
+C - - - - - 0x001D5E 00:9D4E: B1 57     LDA (ram_0057_temp),Y    ; 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0535 0537 053B 053D 053E 053F 0540 0542 0543 0545 0546 0547 0548 0549 054B 054C 054D 0551 0553 0554 0555 0556 055A 055F 0564 0565 0566 0567 0568 056A 056C 056F 0570 0571 0573 0577 057C 057D 057E 057F
 C - - - - - 0x001D60 00:9D50: C9 FF     CMP #$FF
 C - - - - - 0x001D62 00:9D52: F0 0D     BEQ bra_9D61
 loc_9D54_loop:
-C D 0 - - - 0x001D64 00:9D54: E6 49     INC ram_0049
-C - - - - - 0x001D66 00:9D56: A5 49     LDA ram_0049
-C - - - - - 0x001D68 00:9D58: 85 57     STA ram_0057
+C D 0 - - - 0x001D64 00:9D54: E6 49     INC ram_0049_t04
+C - - - - - 0x001D66 00:9D56: A5 49     LDA ram_0049_t04
+C - - - - - 0x001D68 00:9D58: 85 57     STA ram_0057_temp
 C - - - - - 0x001D6A 00:9D5A: C9 80     CMP #$80
 C - - - - - 0x001D6C 00:9D5C: 90 EE     BCC bra_9D4C_loop
 C - - - - - 0x001D6E 00:9D5E: 4C 4B 9E  JMP loc_9E4B_RTS
 bra_9D61:
-C - - - - - 0x001D71 00:9D61: A5 48     LDA ram_0048
-C - - - - - 0x001D73 00:9D63: 85 47     STA ram_0047
+; bzk optimize, useless LDA + STA
+C - - - - - 0x001D71 00:9D61: A5 48     LDA ram_0048_t09
+C - - - - - 0x001D73 00:9D63: 85 47     STA ram_0047_t25_useless
 C - - - - - 0x001D75 00:9D65: A6 8B     LDX ram_speed
 C - - - - - 0x001D77 00:9D67: BD 90 A3  LDA tbl_A390,X
-C - - - - - 0x001D7A 00:9D6A: 85 4A     STA ram_004A
+C - - - - - 0x001D7A 00:9D6A: 85 4A     STA ram_004A_t04
 ; bzk optimize, loading the same X
 C - - - - - 0x001D7C 00:9D6C: A6 8B     LDX ram_speed
 C - - - - - 0x001D7E 00:9D6E: BD 93 A3  LDA tbl_A393,X
-C - - - - - 0x001D81 00:9D71: 85 4B     STA ram_004B
+C - - - - - 0x001D81 00:9D71: 85 4B     STA ram_004B_t03
 C - - - - - 0x001D83 00:9D73: A9 00     LDA #$00
-C - - - - - 0x001D85 00:9D75: 85 4C     STA ram_004C
+C - - - - - 0x001D85 00:9D75: 85 4C     STA ram_004C_t02
 C - - - - - 0x001D87 00:9D77: A9 00     LDA #$00
-C - - - - - 0x001D89 00:9D79: 85 57     STA ram_0057
-C - - - - - 0x001D8B 00:9D7B: A5 49     LDA ram_0049
+C - - - - - 0x001D89 00:9D79: 85 57     STA ram_0057_temp
+C - - - - - 0x001D8B 00:9D7B: A5 49     LDA ram_0049_t04
 C - - - - - 0x001D8D 00:9D7D: 38        SEC
-C - - - - - 0x001D8E 00:9D7E: E5 4A     SBC ram_004A
+C - - - - - 0x001D8E 00:9D7E: E5 4A     SBC ram_004A_t04
 C - - - - - 0x001D90 00:9D80: A8        TAY
-C - - - - - 0x001D91 00:9D81: B1 57     LDA (ram_0057),Y    ; 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0525 0527 052B 052D 052E 052F 0530 0532 0533 0535 0536 0537 0538 0539 053B 053C 053D 0541 0543 0544 0545 0546 054A 054F 0554 0555 0556 0557 0558 055A 055C 055F 0560 0561 0563 0567 056C 056D 056E 056F
+C - - - - - 0x001D91 00:9D81: B1 57     LDA (ram_0057_temp),Y    ; 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0525 0527 052B 052D 052E 052F 0530 0532 0533 0535 0536 0537 0538 0539 053B 053C 053D 0541 0543 0544 0545 0546 054A 054F 0554 0555 0556 0557 0558 055A 055C 055F 0560 0561 0563 0567 056C 056D 056E 056F
 C - - - - - 0x001D93 00:9D83: 29 03     AND #$03
 C - - - - - 0x001D95 00:9D85: AA        TAX
 C - - - - - 0x001D96 00:9D86: BD 2D A2  LDA tbl_A22D,X
-C - - - - - 0x001D99 00:9D89: 05 4C     ORA ram_004C
-C - - - - - 0x001D9B 00:9D8B: 85 4C     STA ram_004C
+C - - - - - 0x001D99 00:9D89: 05 4C     ORA ram_004C_t02
+C - - - - - 0x001D9B 00:9D8B: 85 4C     STA ram_004C_t02
 C - - - - - 0x001D9D 00:9D8D: A9 00     LDA #$00
-C - - - - - 0x001D9F 00:9D8F: 85 57     STA ram_0057
-C - - - - - 0x001DA1 00:9D91: A5 49     LDA ram_0049
+C - - - - - 0x001D9F 00:9D8F: 85 57     STA ram_0057_temp
+C - - - - - 0x001DA1 00:9D91: A5 49     LDA ram_0049_t04
 C - - - - - 0x001DA3 00:9D93: 18        CLC
-C - - - - - 0x001DA4 00:9D94: 65 4A     ADC ram_004A
+C - - - - - 0x001DA4 00:9D94: 65 4A     ADC ram_004A_t04
 C - - - - - 0x001DA6 00:9D96: A8        TAY
-C - - - - - 0x001DA7 00:9D97: B1 57     LDA (ram_0057),Y    ; 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0480 0481 0482 0483 0484 0485 0486 0487 0488 0489 048A 048B 048C 048D 048E 048F 0545 0547 054B 054D 054E 054F 0550 0552 0553 0555 0556 0557 0558 0559 055B 055C 055D 0561 0563 0564 0565 0566 056A 056F 0574 0575 0576 0577 0578 057A 057C 057F 0580 0581 0583 0587 058C 058D 058E 058F
+C - - - - - 0x001DA7 00:9D97: B1 57     LDA (ram_0057_temp),Y    ; 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0480 0481 0482 0483 0484 0485 0486 0487 0488 0489 048A 048B 048C 048D 048E 048F 0545 0547 054B 054D 054E 054F 0550 0552 0553 0555 0556 0557 0558 0559 055B 055C 055D 0561 0563 0564 0565 0566 056A 056F 0574 0575 0576 0577 0578 057A 057C 057F 0580 0581 0583 0587 058C 058D 058E 058F
 C - - - - - 0x001DA9 00:9D99: 29 03     AND #$03
 C - - - - - 0x001DAB 00:9D9B: AA        TAX
 C - - - - - 0x001DAC 00:9D9C: BD 2D A2  LDA tbl_A22D,X
-C - - - - - 0x001DAF 00:9D9F: 05 4C     ORA ram_004C
-C - - - - - 0x001DB1 00:9DA1: 85 4C     STA ram_004C
+C - - - - - 0x001DAF 00:9D9F: 05 4C     ORA ram_004C_t02
+C - - - - - 0x001DB1 00:9DA1: 85 4C     STA ram_004C_t02
 C - - - - - 0x001DB3 00:9DA3: A9 00     LDA #$00
-C - - - - - 0x001DB5 00:9DA5: 85 57     STA ram_0057
-C - - - - - 0x001DB7 00:9DA7: A5 49     LDA ram_0049
+C - - - - - 0x001DB5 00:9DA5: 85 57     STA ram_0057_temp
+C - - - - - 0x001DB7 00:9DA7: A5 49     LDA ram_0049_t04
 C - - - - - 0x001DB9 00:9DA9: 29 07     AND #$07
 C - - - - - 0x001DBB 00:9DAB: C9 02     CMP #$02
 C - - - - - 0x001DBD 00:9DAD: 90 12     BCC bra_9DC1
-C - - - - - 0x001DBF 00:9DAF: A5 49     LDA ram_0049
+C - - - - - 0x001DBF 00:9DAF: A5 49     LDA ram_0049_t04
 C - - - - - 0x001DC1 00:9DB1: 38        SEC
-C - - - - - 0x001DC2 00:9DB2: E5 4B     SBC ram_004B
+C - - - - - 0x001DC2 00:9DB2: E5 4B     SBC ram_004B_t03
 C - - - - - 0x001DC4 00:9DB4: A8        TAY
-C - - - - - 0x001DC5 00:9DB5: B1 57     LDA (ram_0057),Y    ; 0418 0419 041A 041B 041C 041D 0420 0421 0422 0423 0424 0425 0428 0429 042A 042B 042C 042D 0430 0431 0432 0433 0434 0435 0438 0439 043A 043B 043C 043D 0440 0441 0442 0443 0444 0445 0448 0449 044A 044B 044C 044D 0450 0451 0452 0453 0454 0455 0458 0459 045A 045B 045C 045D 0460 0461 0462 0463 0464 0465 0468 0469 046A 046B 046C 046D 0470 0471 0472 0473 0474 0475 0478 0479 047A 047B 047C 047D 0533 0535 0539 053B 053C 053D 0540 0541 0543 0544 0545 0549 054A 054B 0551 0552 0553 0554 0558 055D 0562 0563 0564 0565 0568 056A 056D 0571 0575 057A 057B 057C 057D
+C - - - - - 0x001DC5 00:9DB5: B1 57     LDA (ram_0057_temp),Y    ; 0418 0419 041A 041B 041C 041D 0420 0421 0422 0423 0424 0425 0428 0429 042A 042B 042C 042D 0430 0431 0432 0433 0434 0435 0438 0439 043A 043B 043C 043D 0440 0441 0442 0443 0444 0445 0448 0449 044A 044B 044C 044D 0450 0451 0452 0453 0454 0455 0458 0459 045A 045B 045C 045D 0460 0461 0462 0463 0464 0465 0468 0469 046A 046B 046C 046D 0470 0471 0472 0473 0474 0475 0478 0479 047A 047B 047C 047D 0533 0535 0539 053B 053C 053D 0540 0541 0543 0544 0545 0549 054A 054B 0551 0552 0553 0554 0558 055D 0562 0563 0564 0565 0568 056A 056D 0571 0575 057A 057B 057C 057D
 C - - - - - 0x001DC7 00:9DB7: 29 03     AND #$03
 C - - - - - 0x001DC9 00:9DB9: AA        TAX
 C - - - - - 0x001DCA 00:9DBA: BD 2D A2  LDA tbl_A22D,X
-C - - - - - 0x001DCD 00:9DBD: 05 4C     ORA ram_004C
-C - - - - - 0x001DCF 00:9DBF: 85 4C     STA ram_004C
+C - - - - - 0x001DCD 00:9DBD: 05 4C     ORA ram_004C_t02
+C - - - - - 0x001DCF 00:9DBF: 85 4C     STA ram_004C_t02
 bra_9DC1:
 C - - - - - 0x001DD1 00:9DC1: A9 00     LDA #$00
-C - - - - - 0x001DD3 00:9DC3: 85 57     STA ram_0057
-C - - - - - 0x001DD5 00:9DC5: A5 49     LDA ram_0049
+C - - - - - 0x001DD3 00:9DC3: 85 57     STA ram_0057_temp
+C - - - - - 0x001DD5 00:9DC5: A5 49     LDA ram_0049_t04
 C - - - - - 0x001DD7 00:9DC7: 29 07     AND #$07
 C - - - - - 0x001DD9 00:9DC9: C9 06     CMP #$06
 C - - - - - 0x001DDB 00:9DCB: B0 12     BCS bra_9DDF
-C - - - - - 0x001DDD 00:9DCD: A5 49     LDA ram_0049
+C - - - - - 0x001DDD 00:9DCD: A5 49     LDA ram_0049_t04
 C - - - - - 0x001DDF 00:9DCF: 18        CLC
-C - - - - - 0x001DE0 00:9DD0: 65 4B     ADC ram_004B
+C - - - - - 0x001DE0 00:9DD0: 65 4B     ADC ram_004B_t03
 C - - - - - 0x001DE2 00:9DD2: A8        TAY
-C - - - - - 0x001DE3 00:9DD3: B1 57     LDA (ram_0057),Y    ; 041A 041B 041C 041D 041E 041F 0422 0423 0424 0425 0426 0427 042A 042B 042C 042D 042E 042F 0432 0433 0434 0435 0436 0437 043A 043B 043C 043D 043E 043F 0442 0443 0444 0445 0446 0447 044A 044B 044C 044D 044E 044F 0452 0453 0454 0455 0456 0457 045A 045B 045C 045D 045E 045F 0462 0463 0464 0465 0466 0467 046A 046B 046C 046D 046E 046F 0472 0473 0474 0475 0476 0477 047A 047B 047C 047D 047E 047F 0537 053D 053F 0542 0544 0545 0547 054A 054B 054D 054E 054F 0553 0555 0556 0557 055C 0566 0567 056A 056C 056E 0572 0573 0575 057E 057F
+C - - - - - 0x001DE3 00:9DD3: B1 57     LDA (ram_0057_temp),Y    ; 041A 041B 041C 041D 041E 041F 0422 0423 0424 0425 0426 0427 042A 042B 042C 042D 042E 042F 0432 0433 0434 0435 0436 0437 043A 043B 043C 043D 043E 043F 0442 0443 0444 0445 0446 0447 044A 044B 044C 044D 044E 044F 0452 0453 0454 0455 0456 0457 045A 045B 045C 045D 045E 045F 0462 0463 0464 0465 0466 0467 046A 046B 046C 046D 046E 046F 0472 0473 0474 0475 0476 0477 047A 047B 047C 047D 047E 047F 0537 053D 053F 0542 0544 0545 0547 054A 054B 054D 054E 054F 0553 0555 0556 0557 055C 0566 0567 056A 056C 056E 0572 0573 0575 057E 057F
 C - - - - - 0x001DE5 00:9DD5: 29 03     AND #$03
 C - - - - - 0x001DE7 00:9DD7: AA        TAX
 C - - - - - 0x001DE8 00:9DD8: BD 2D A2  LDA tbl_A22D,X
-C - - - - - 0x001DEB 00:9DDB: 05 4C     ORA ram_004C
-C - - - - - 0x001DED 00:9DDD: 85 4C     STA ram_004C
+C - - - - - 0x001DEB 00:9DDB: 05 4C     ORA ram_004C_t02
+C - - - - - 0x001DED 00:9DDD: 85 4C     STA ram_004C_t02
 bra_9DDF:
-bra_9DDF_loop:
 loc_9DDF_loop:
-C D 0 - - - 0x001DEF 00:9DDF: A5 4C     LDA ram_004C
+bra_9DDF_loop:
+C D 0 - - - 0x001DEF 00:9DDF: A5 4C     LDA ram_004C_t02
 C - - - - - 0x001DF1 00:9DE1: C9 07     CMP #$07
 C - - - - - 0x001DF3 00:9DE3: D0 03     BNE bra_9DE8
 C - - - - - 0x001DF5 00:9DE5: 4C 54 9D  JMP loc_9D54_loop
 bra_9DE8:
 C - - - - - 0x001DF8 00:9DE8: A9 00     LDA #$00
 C - - - - - 0x001DFA 00:9DEA: 85 51     STA ram_0051
-C - - - - - 0x001DFC 00:9DEC: A6 48     LDX ram_0048
+C - - - - - 0x001DFC 00:9DEC: A6 48     LDX ram_0048_t09
 C - - - - - 0x001DFE 00:9DEE: BD 2D A2  LDA tbl_A22D,X
-C - - - - - 0x001E01 00:9DF1: 25 4C     AND ram_004C
+C - - - - - 0x001E01 00:9DF1: 25 4C     AND ram_004C_t02
 C - - - - - 0x001E03 00:9DF3: F0 0D     BEQ bra_9E02
-C - - - - - 0x001E05 00:9DF5: C6 48     DEC ram_0048
-C - - - - - 0x001E07 00:9DF7: A5 48     LDA ram_0048
+C - - - - - 0x001E05 00:9DF5: C6 48     DEC ram_0048_t09
+C - - - - - 0x001E07 00:9DF7: A5 48     LDA ram_0048_t09
 C - - - - - 0x001E09 00:9DF9: 10 E4     BPL bra_9DDF_loop
 C - - - - - 0x001E0B 00:9DFB: A9 02     LDA #$02
-C - - - - - 0x001E0D 00:9DFD: 85 48     STA ram_0048
+C - - - - - 0x001E0D 00:9DFD: 85 48     STA ram_0048_t09
 C - - - - - 0x001E0F 00:9DFF: 4C DF 9D  JMP loc_9DDF_loop
 bra_9E02:
-C - - - - - 0x001E12 00:9E02: A5 49     LDA ram_0049
-C - - - - - 0x001E14 00:9E04: 85 57     STA ram_0057
+C - - - - - 0x001E12 00:9E02: A5 49     LDA ram_0049_t04
+C - - - - - 0x001E14 00:9E04: 85 57     STA ram_0057_temp
 C - - - - - 0x001E16 00:9E06: A0 00     LDY #$00
-C - - - - - 0x001E18 00:9E08: A5 48     LDA ram_0048
+C - - - - - 0x001E18 00:9E08: A5 48     LDA ram_0048_t09
 C - - - - - 0x001E1A 00:9E0A: 09 D0     ORA #$D0
-C - - - - - 0x001E1C 00:9E0C: 91 57     STA (ram_0057),Y    ; 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0535 0537 053B 053D 053E 053F 0540 0542 0543 0545 0546 0547 0548 0549 054B 054C 054D 0551 0553 0554 0555 0556 055A 055F 0564 0565 0566 0567 0568 056A 056C 056F 0570 0571 0573 0577 057C 057D 057E 057F
+C - - - - - 0x001E1C 00:9E0C: 91 57     STA (ram_0057_temp),Y    ; 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F 0450 0451 0452 0453 0454 0455 0456 0457 0458 0459 045A 045B 045C 045D 045E 045F 0460 0461 0462 0463 0464 0465 0466 0467 0468 0469 046A 046B 046C 046D 046E 046F 0470 0471 0472 0473 0474 0475 0476 0477 0478 0479 047A 047B 047C 047D 047E 047F 0535 0537 053B 053D 053E 053F 0540 0542 0543 0545 0546 0547 0548 0549 054B 054C 054D 0551 0553 0554 0555 0556 055A 055F 0564 0565 0566 0567 0568 056A 056C 056F 0570 0571 0573 0577 057C 057D 057E 057F
 C - - - - - 0x001E1E 00:9E0E: 29 07     AND #$07
 C - - - - - 0x001E20 00:9E10: AA        TAX
 C - - - - - 0x001E21 00:9E11: B5 72     LDA ram_0072_virus_counter,X
@@ -4433,9 +4485,9 @@ C - - - - - 0x001E26 00:9E16: 95 72     STA ram_0072_virus_counter,X
 C - - - - - 0x001E28 00:9E18: AD 16 03  LDA ram_p1_virus_level
 C - - - - - 0x001E2B 00:9E1B: CD 96 03  CMP ram_p2_virus_level
 C - - - - - 0x001E2E 00:9E1E: D0 09     BNE bra_9E29
-C - - - - - 0x001E30 00:9E20: A5 48     LDA ram_0048
+C - - - - - 0x001E30 00:9E20: A5 48     LDA ram_0048_t09
 C - - - - - 0x001E32 00:9E22: 09 D0     ORA #$D0
-C - - - - - 0x001E34 00:9E24: A4 49     LDY ram_0049
+C - - - - - 0x001E34 00:9E24: A4 49     LDY ram_0049_t04
 C - - - - - 0x001E36 00:9E26: 99 00 05  STA ram_playfield_p2,Y
 bra_9E29:
 C - - - - - 0x001E39 00:9E29: E6 A4     INC ram_virus_counter
@@ -4448,15 +4500,16 @@ C - - - - - 0x001E45 00:9E35: 18        CLC
 C - - - - - 0x001E46 00:9E36: 69 06     ADC #$06
 C - - - - - 0x001E48 00:9E38: 85 A4     STA ram_virus_counter
 bra_9E3A:
-C - - - - - 0x001E4A 00:9E3A: A5 57     LDA ram_0057
+C - - - - - 0x001E4A 00:9E3A: A5 57     LDA ram_0057_temp
+; / 08
 C - - - - - 0x001E4C 00:9E3C: 4A        LSR
 C - - - - - 0x001E4D 00:9E3D: 4A        LSR
 C - - - - - 0x001E4E 00:9E3E: 4A        LSR
 C - - - - - 0x001E4F 00:9E3F: 85 80     STA ram_row
 C - - - - - 0x001E51 00:9E41: A5 A4     LDA ram_virus_counter
-C - - - - - 0x001E53 00:9E43: A9 10     LDA #$10
-C - - - - - 0x001E55 00:9E45: 05 52     ORA ram_0052
-C - - - - - 0x001E57 00:9E47: 85 52     STA ram_0052
+C - - - - - 0x001E53 00:9E43: A9 10     LDA #con_0052_10
+C - - - - - 0x001E55 00:9E45: 05 52     ORA ram_0052_flags
+C - - - - - 0x001E57 00:9E47: 85 52     STA ram_0052_flags
 C - - - - - 0x001E59 00:9E49: C6 A8     DEC ram_00A8
 loc_9E4B_RTS:   ; bzk optimize
 C D 0 - - - 0x001E5B 00:9E4B: 60        RTS
@@ -4471,6 +4524,7 @@ C - - - - - 0x001E62 00:9E52: 90 03     BCC bra_9E57
 - - - - - - 0x001E64 00:9E54: 4C DA 9E  JMP loc_9EDA
 bra_9E57:
 C - - - - - 0x001E67 00:9E57: A5 8B     LDA ram_speed
+; * 20
 C - - - - - 0x001E69 00:9E59: 0A        ASL
 C - - - - - 0x001E6A 00:9E5A: 0A        ASL
 C - - - - - 0x001E6B 00:9E5B: 0A        ASL
@@ -4511,16 +4565,16 @@ C - - - - - 0x001EB5 00:9EA5: 85 51     STA ram_0051
 C - - - - - 0x001EB7 00:9EA7: 20 09 9F  JSR sub_9F09
 C - - - - - 0x001EBA 00:9EAA: 20 52 B3  JSR sub_B352
 C - - - - - 0x001EBD 00:9EAD: A9 70     LDA #$70
-C - - - - - 0x001EBF 00:9EAF: 85 38     STA ram_0038
+C - - - - - 0x001EBF 00:9EAF: 85 38     STA ram_0038_spr_pos_X
 C - - - - - 0x001EC1 00:9EB1: A9 82     LDA #$82
-C - - - - - 0x001EC3 00:9EB3: 85 39     STA ram_0039
+C - - - - - 0x001EC3 00:9EB3: 85 39     STA ram_0039_spr_pos_Y
 C - - - - - 0x001EC5 00:9EB5: A9 5E     LDA #$5E
 C - - - - - 0x001EC7 00:9EB7: 85 4F     STA ram_ufo_pos_X
 C - - - - - 0x001EC9 00:9EB9: A9 F8     LDA #$F8
 C - - - - - 0x001ECB 00:9EBB: 85 50     STA ram_ufo_pos_Y
 C - - - - - 0x001ECD 00:9EBD: A9 00     LDA #$00
-C - - - - - 0x001ECF 00:9EBF: 85 3A     STA ram_003A
-C - - - - - 0x001ED1 00:9EC1: 85 3D     STA ram_003D
+C - - - - - 0x001ECF 00:9EBF: 85 3A     STA ram_003A_table_index
+C - - - - - 0x001ED1 00:9EC1: 85 3D     STA ram_003D_counter
 bra_9EC3_loop:
 C - - - - - 0x001ED3 00:9EC3: 20 18 9F  JSR sub_9F18
 C - - - - - 0x001ED6 00:9EC6: 20 2F B4  JSR sub_B42F
@@ -4549,7 +4603,7 @@ C - - - - - 0x001F05 00:9EF5: 20 7C B6  JSR sub_B67C
 C - - - - - 0x001F08 00:9EF8: 20 A2 B6  JSR sub_B6A2
 C - - - - - 0x001F0B 00:9EFB: 20 D1 82  JSR sub_82D1
 C - - - - - 0x001F0E 00:9EFE: A9 9E     LDA #$9E
-C - - - - - 0x001F10 00:9F00: 85 52     STA ram_0052
+C - - - - - 0x001F10 00:9F00: 85 52     STA ram_0052_flags
 C - - - - - 0x001F12 00:9F02: 20 95 B6  JSR sub_B695
 C - - - - - 0x001F15 00:9F05: 20 89 B6  JSR sub_B689
 C - - - - - 0x001F18 00:9F08: 60        RTS
@@ -4571,6 +4625,7 @@ C - - - - - 0x001F27 00:9F17: 60        RTS
 
 sub_9F18:
 C - - - - - 0x001F28 00:9F18: A5 8B     LDA ram_speed
+; * 20
 C - - - - - 0x001F2A 00:9F1A: 0A        ASL
 C - - - - - 0x001F2B 00:9F1B: 0A        ASL
 C - - - - - 0x001F2C 00:9F1C: 0A        ASL
@@ -4583,40 +4638,44 @@ C - - - - - 0x001F33 00:9F23: BD F8 9F  LDA tbl_9FF8,X
 C - - - - - 0x001F36 00:9F26: F0 47     BEQ bra_9F6F_RTS
 sub_9F28:
 C - - - - - 0x001F38 00:9F28: A9 00     LDA #$00
-C - - - - - 0x001F3A 00:9F2A: 85 49     STA ram_0049
+C - - - - - 0x001F3A 00:9F2A: 85 49     STA ram_0049_t02
 loc_9F2C_loop:
-C D 0 - - - 0x001F3C 00:9F2C: A5 49     LDA ram_0049    ; bzk optimize, LDX
+; bzk optimize, LDX
+C D 0 - - - 0x001F3C 00:9F2C: A5 49     LDA ram_0049_t02
 C - - - - - 0x001F3E 00:9F2E: AA        TAX
 C - - - - - 0x001F3F 00:9F2F: BD 60 07  LDA ram_0760,X
 C - - - - - 0x001F42 00:9F32: F0 3B     BEQ bra_9F6F_RTS
-C - - - - - 0x001F44 00:9F34: 85 4A     STA ram_004A
+C - - - - - 0x001F44 00:9F34: 85 4A     STA ram_004A_t05
 C - - - - - 0x001F46 00:9F36: AA        TAX
 C - - - - - 0x001F47 00:9F37: BD EF A0  LDA tbl_A0EF,X
-C - - - - - 0x001F4A 00:9F3A: 85 4B     STA ram_004B
+C - - - - - 0x001F4A 00:9F3A: 85 4B     STA ram_004B_t01
 C - - - - - 0x001F4C 00:9F3C: A5 43     LDA ram_frm_cnt
-C - - - - - 0x001F4E 00:9F3E: 25 4B     AND ram_004B
+C - - - - - 0x001F4E 00:9F3E: 25 4B     AND ram_004B_t01
 C - - - - - 0x001F50 00:9F40: D0 0C     BNE bra_9F4E
-C - - - - - 0x001F52 00:9F42: A5 49     LDA ram_0049    ; bzk optimize, LDX
+; bzk optimize, LDX
+C - - - - - 0x001F52 00:9F42: A5 49     LDA ram_0049_t02
 C - - - - - 0x001F54 00:9F44: AA        TAX
 C - - - - - 0x001F55 00:9F45: BD 61 07  LDA ram_0760 + $01,X
 C - - - - - 0x001F58 00:9F48: 38        SEC
 C - - - - - 0x001F59 00:9F49: E9 01     SBC #$01
 C - - - - - 0x001F5B 00:9F4B: 9D 61 07  STA ram_0760 + $01,X
 bra_9F4E:
-C - - - - - 0x001F5E 00:9F4E: A5 4A     LDA ram_004A    ; bzk optimize, LDX
+; bzk optimize, LDX
+C - - - - - 0x001F5E 00:9F4E: A5 4A     LDA ram_004A_t05
 C - - - - - 0x001F60 00:9F50: AA        TAX
 C - - - - - 0x001F61 00:9F51: BD E1 A0  LDA tbl_A0E1,X
 C - - - - - 0x001F64 00:9F54: 85 53     STA ram_spr_animation_id
-C - - - - - 0x001F66 00:9F56: A5 49     LDA ram_0049
+; bzk optimize, LDX
+C - - - - - 0x001F66 00:9F56: A5 49     LDA ram_0049_t02
 C - - - - - 0x001F68 00:9F58: AA        TAX
 C - - - - - 0x001F69 00:9F59: BD 61 07  LDA ram_0760 + $01,X
 C - - - - - 0x001F6C 00:9F5C: 85 44     STA ram_spr_pos_X
 C - - - - - 0x001F6E 00:9F5E: BD 62 07  LDA ram_0760 + $02,X
 C - - - - - 0x001F71 00:9F61: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x001F73 00:9F63: 20 F6 88  JSR sub_88F6_display_sprite_animtion
-C - - - - - 0x001F76 00:9F66: E6 49     INC ram_0049
-C - - - - - 0x001F78 00:9F68: E6 49     INC ram_0049
-C - - - - - 0x001F7A 00:9F6A: E6 49     INC ram_0049
+C - - - - - 0x001F76 00:9F66: E6 49     INC ram_0049_t02
+C - - - - - 0x001F78 00:9F68: E6 49     INC ram_0049_t02
+C - - - - - 0x001F7A 00:9F6A: E6 49     INC ram_0049_t02
 C - - - - - 0x001F7C 00:9F6C: 4C 2C 9F  JMP loc_9F2C_loop
 bra_9F6F_RTS:
 C - - - - - 0x001F7F 00:9F6F: 60        RTS
@@ -4624,12 +4683,13 @@ C - - - - - 0x001F7F 00:9F6F: 60        RTS
 
 
 sub_9F70:
-C - - - - - 0x001F80 00:9F70: A5 38     LDA ram_0038
+C - - - - - 0x001F80 00:9F70: A5 38     LDA ram_0038_spr_pos_X
 C - - - - - 0x001F82 00:9F72: 85 44     STA ram_spr_pos_X
-C - - - - - 0x001F84 00:9F74: A5 39     LDA ram_0039
+C - - - - - 0x001F84 00:9F74: A5 39     LDA ram_0039_spr_pos_Y
 C - - - - - 0x001F86 00:9F76: 85 45     STA ram_spr_pos_Y
 C - - - - - 0x001F88 00:9F78: A5 43     LDA ram_frm_cnt
 C - - - - - 0x001F8A 00:9F7A: 29 08     AND #$08
+; / 04
 C - - - - - 0x001F8C 00:9F7C: 4A        LSR
 C - - - - - 0x001F8D 00:9F7D: 4A        LSR
 C - - - - - 0x001F8E 00:9F7E: 18        CLC
@@ -4657,11 +4717,11 @@ C - - - - - 0x001FAD 00:9F9D: 29 01     AND #$01
 C - - - - - 0x001FAF 00:9F9F: F0 4C     BEQ bra_9FED_RTS
 bra_9FA1:
 loc_9FA1:
-C D 0 - - - 0x001FB1 00:9FA1: E6 7D     INC ram_007D
-C - - - - - 0x001FB3 00:9FA3: A6 7D     LDX ram_007D
+C D 0 - - - 0x001FB1 00:9FA1: E6 7D     INC ram_007D_table_index
+C - - - - - 0x001FB3 00:9FA3: A6 7D     LDX ram_007D_table_index
 C - - - - - 0x001FB5 00:9FA5: BD 01 A4  LDA tbl_A401,X
 C - - - - - 0x001FB8 00:9FA8: C9 FF     CMP #$FF
-C - - - - - 0x001FBA 00:9FAA: F0 21     BEQ bra_9FCD
+C - - - - - 0x001FBA 00:9FAA: F0 21     BEQ bra_9FCD_FF
 C - - - - - 0x001FBC 00:9FAC: 29 F0     AND #$F0
 C - - - - - 0x001FBE 00:9FAE: C9 F0     CMP #$F0
 C - - - - - 0x001FC0 00:9FB0: D0 0A     BNE bra_9FBC
@@ -4670,7 +4730,7 @@ C - - - - - 0x001FC5 00:9FB5: 29 03     AND #$03
 C - - - - - 0x001FC7 00:9FB7: 85 7E     STA ram_007E
 C - - - - - 0x001FC9 00:9FB9: 4C A1 9F  JMP loc_9FA1
 bra_9FBC:
-C - - - - - 0x001FCC 00:9FBC: A5 7D     LDA ram_007D
+C - - - - - 0x001FCC 00:9FBC: A5 7D     LDA ram_007D_table_index
 C - - - - - 0x001FCE 00:9FBE: 29 01     AND #$01
 C - - - - - 0x001FD0 00:9FC0: D0 2B     BNE bra_9FED_RTS
 C - - - - - 0x001FD2 00:9FC2: C6 A2     DEC ram_00A2
@@ -4678,13 +4738,13 @@ C - - - - - 0x001FD4 00:9FC4: A5 A2     LDA ram_00A2
 C - - - - - 0x001FD6 00:9FC6: 29 03     AND #$03
 C - - - - - 0x001FD8 00:9FC8: 85 A2     STA ram_00A2
 C - - - - - 0x001FDA 00:9FCA: 4C ED 9F  JMP loc_9FED_RTS
-bra_9FCD:
+bra_9FCD_FF:
 loc_9FCD:
 C D 0 - - - 0x001FDD 00:9FCD: 20 8D 8E  JSR sub_8E8D
 C - - - - - 0x001FE0 00:9FD0: A9 00     LDA #$00
 C - - - - - 0x001FE2 00:9FD2: 85 A2     STA ram_00A2
 C - - - - - 0x001FE4 00:9FD4: A9 00     LDA #$00
-C - - - - - 0x001FE6 00:9FD6: 85 7D     STA ram_007D
+C - - - - - 0x001FE6 00:9FD6: 85 7D     STA ram_007D_table_index
 C - - - - - 0x001FE8 00:9FD8: A9 03     LDA #$03
 C - - - - - 0x001FEA 00:9FDA: 85 97     STA ram_0097_script
 C - - - - - 0x001FEC 00:9FDC: 20 D3 90  JSR sub_90D3
@@ -4834,7 +4894,7 @@ tbl_A061:
 
 
 
-tbl_A06A:
+tbl_A06A_spr_pos_Y:
 - - - - - - 0x00207A 00:A06A: 00        .byte $00   ; 00 
 - - - - - - 0x00207B 00:A06B: F0        .byte $F0   ; 01 
 - - - - - - 0x00207C 00:A06C: 00        .byte $00   ; 02 
@@ -4860,7 +4920,7 @@ tbl_A073:
 
 
 
-tbl_A07C:
+tbl_A07C_spr_pos_Y:
 - - - - - - 0x00208C 00:A07C: 00        .byte $00   ; 00 
 - - - - - - 0x00208D 00:A07D: FF        .byte $FF   ; 01 
 - - - - - - 0x00208E 00:A07E: 01        .byte $01   ; 02 
@@ -5049,7 +5109,7 @@ tbl_A11A:
 
 
 
-tbl_A11F:
+tbl_A11F_spr_pos_X:
 - D 1 - - - 0x00212F 00:A11F: 20        .byte $20   ; 00 
 - D 1 - - - 0x002130 00:A120: 22        .byte $22   ; 01 
 - D 1 - - - 0x002131 00:A121: 24        .byte $24   ; 02 
@@ -5074,7 +5134,7 @@ tbl_A11F:
 
 
 
-tbl_A134:
+tbl_A134_spr_pos_X:
 - D 1 - - - 0x002144 00:A134: 2F        .byte $2F   ; 00 
 - D 1 - - - 0x002145 00:A135: 2E        .byte $2E   ; 01 
 - D 1 - - - 0x002146 00:A136: 2D        .byte $2D   ; 02 
@@ -5096,7 +5156,7 @@ tbl_A134:
 - D 1 - - - 0x002156 00:A146: 15        .byte $15   ; 12 
 - D 1 - - - 0x002157 00:A147: 14        .byte $14   ; 13 
 - D 1 - - - 0x002158 00:A148: 13        .byte $13   ; 14 
-tbl_A149:
+tbl_A149_spr_pos_Y:
 - D 1 - - - 0x002159 00:A149: 12        .byte $12   ; 00 (15) 
 - D 1 - - - 0x00215A 00:A14A: 11        .byte $11   ; 01 (16) 
 - D 1 - - - 0x00215B 00:A14B: 11        .byte $11   ; 02 (17) 
@@ -5189,7 +5249,7 @@ tbl_A149:
 
 
 
-tbl_A19F:
+tbl_A19F_spr_pos_Y:
 - D 1 - - - 0x0021AF 00:A19F: AF        .byte $AF   ; 00 
 - D 1 - - - 0x0021B0 00:A1A0: AF        .byte $AF   ; 01 
 - D 1 - - - 0x0021B1 00:A1A1: AE        .byte $AE   ; 02 
@@ -5211,7 +5271,7 @@ tbl_A19F:
 - D 1 - - - 0x0021C1 00:A1B1: 98        .byte $98   ; 12 
 - D 1 - - - 0x0021C2 00:A1B2: 96        .byte $96   ; 13 
 - D 1 - - - 0x0021C3 00:A1B3: 94        .byte $94   ; 14 
-tbl_A1B4:
+tbl_A1B4_spr_pos_Y:
 - D 1 - - - 0x0021C4 00:A1B4: 93        .byte $93   ; 00 (15) 
 - D 1 - - - 0x0021C5 00:A1B5: 91        .byte $91   ; 01 (16) 
 - D 1 - - - 0x0021C6 00:A1B6: 8F        .byte $8F   ; 02 (17) 
@@ -5233,7 +5293,7 @@ tbl_A1B4:
 - D 1 - - - 0x0021D6 00:A1C6: 8C        .byte $8C   ; 12 (27) 
 - D 1 - - - 0x0021D7 00:A1C7: 8E        .byte $8E   ; 13 (28) 
 - D 1 - - - 0x0021D8 00:A1C8: 8F        .byte $8F   ; 14 (29) 
-tbl_A1C9:
+tbl_A1C9_spr_pos_Y:
 - D 1 - - - 0x0021D9 00:A1C9: 91        .byte $91   ; 00 (2A) (15) 
 - D 1 - - - 0x0021DA 00:A1CA: 93        .byte $93   ; 01 (2B) (16) 
 - D 1 - - - 0x0021DB 00:A1CB: 94        .byte $94   ; 02 (2C) (17) 
@@ -5356,7 +5416,7 @@ tbl_A22D:
 
 
 
-tbl_A231:
+tbl_A231_spr_pos_Y:
 - - - - - - 0x002241 00:A231: FC        .byte $FC   ; 00 
 - D 1 - - - 0x002242 00:A232: F8        .byte $F8   ; 01 
 - D 1 - - - 0x002243 00:A233: F4        .byte $F4   ; 02 
@@ -5374,9 +5434,9 @@ tbl_A231:
 
 tbl_A23D_tiles:
 ; 4th byte is a placeholder
-- D 1 - - - 0x00224D 00:A23D: 15        .byte $15, $18, $20, $00   ; 00 
-- D 1 - - - 0x002251 00:A241: 16        .byte $16, $0E, $0D, $00   ; 01 
-- D 1 - - - 0x002255 00:A245: FE        .byte $FE, $11, $12, $00   ; 02 
+- D 1 - - - 0x00224D 00:A23D: 15        .byte $15, $18, $20, $00   ; 00 low
+- D 1 - - - 0x002251 00:A241: 16        .byte $16, $0E, $0D, $00   ; 01 med
+- D 1 - - - 0x002255 00:A245: FE        .byte $FE, $11, $12, $00   ; 02 hi
 
 
 
@@ -5584,17 +5644,17 @@ tbl_A393:
 
 
 
-tbl_A396_ppu_addr:
-- D 1 - - - 0x0023A6 00:A396: 22 0E     .dbyt $220E ; 00 
-- D 1 - - - 0x0023A8 00:A398: 21 CE     .dbyt $21CE ; 01 
-- D 1 - - - 0x0023AA 00:A39A: 21 8E     .dbyt $218E ; 02 
+tbl_A396_ppu_addr_p1_wins:
+- D 1 - - - 0x0023A6 00:A396: 22 0E     .dbyt $220E ; 00 1 win
+- D 1 - - - 0x0023A8 00:A398: 21 CE     .dbyt $21CE ; 01 2 wins
+- D 1 - - - 0x0023AA 00:A39A: 21 8E     .dbyt $218E ; 02 3 wins
 
 
 
-tbl_A39C:
-- D 1 - - - 0x0023AC 00:A39C: 22 10     .dbyt $2210 ; 00 
-- D 1 - - - 0x0023AE 00:A39E: 21 D0     .dbyt $21D0 ; 01 
-- D 1 - - - 0x0023B0 00:A3A0: 21 90     .dbyt $2190 ; 02 
+tbl_A39C_ppu_addr_p2_wins:
+- D 1 - - - 0x0023AC 00:A39C: 22 10     .dbyt $2210 ; 00 1 win
+- D 1 - - - 0x0023AE 00:A39E: 21 D0     .dbyt $21D0 ; 01 2 wins
+- D 1 - - - 0x0023B0 00:A3A0: 21 90     .dbyt $2190 ; 02 3 wins
 
 
 ; bzk garbage
@@ -6572,7 +6632,7 @@ tbl_A871:
 
 
 
-tbl_A8C2_spr_data:
+tbl_A8C2_sprite_data:
 - D 1 - - - 0x0028D2 00:A8C2: 58 A9     .word _off000_A958_00
 - - - - - - 0x0028D4 00:A8C4: 6D A9     .word _off000_A96D_01
 - D 1 - - - 0x0028D6 00:A8C6: 6D A9     .word _off000_A96D_02
@@ -7913,7 +7973,7 @@ C - - - - - 0x003290 00:B280: 20 75 90  JSR sub_9075_copy_p1_data_to_common
 C - - - - - 0x003293 00:B283: 20 37 B3  JSR sub_B337
 C - - - - - 0x003296 00:B286: 20 AF 90  JSR sub_90AF_copy_common_data_to_p1
 C - - - - - 0x003299 00:B289: A9 01     LDA #$01
-C - - - - - 0x00329B 00:B28B: 85 55     STA ram_0055
+C - - - - - 0x00329B 00:B28B: 85 55     STA ram_0055_flag
 C - - - - - 0x00329D 00:B28D: 4C A2 B2  JMP loc_B2A2
 bra_B290:
 - - - - - - 0x0032A0 00:B290: AD A4 03  LDA ram_p2_virus_counter
@@ -7922,7 +7982,7 @@ bra_B290:
 - - - - - - 0x0032A8 00:B298: 20 37 B3  JSR sub_B337
 - - - - - - 0x0032AB 00:B29B: 20 BC 90  JSR sub_90AF_copy_common_data_to_p2
 - - - - - - 0x0032AE 00:B29E: A9 02     LDA #$02
-- - - - - - 0x0032B0 00:B2A0: 85 55     STA ram_0055
+- - - - - - 0x0032B0 00:B2A0: 85 55     STA ram_0055_flag
 loc_B2A2:
 bra_B2A2:
 C D 1 - - - 0x0032B2 00:B2A2: A9 0F     LDA #$0F
@@ -7942,9 +8002,9 @@ C - - - - - 0x0032D2 00:B2C2: C9 18     CMP #$18
 C - - - - - 0x0032D4 00:B2C4: F0 03     BEQ bra_B2C9
 C - - - - - 0x0032D6 00:B2C6: EE 16 03  INC ram_p1_virus_level
 bra_B2C9:
-C - - - - - 0x0032D9 00:B2C9: A9 80     LDA #$80
-C - - - - - 0x0032DB 00:B2CB: 05 52     ORA ram_0052
-C - - - - - 0x0032DD 00:B2CD: 85 52     STA ram_0052
+C - - - - - 0x0032D9 00:B2C9: A9 80     LDA #con_0052_80
+C - - - - - 0x0032DB 00:B2CB: 05 52     ORA ram_0052_flags
+C - - - - - 0x0032DD 00:B2CD: 85 52     STA ram_0052_flags
 C - - - - - 0x0032DF 00:B2CF: A9 0F     LDA #$0F
 C - - - - - 0x0032E1 00:B2D1: 8D 00 03  STA ram_p1_row
 C - - - - - 0x0032E4 00:B2D4: 8D 80 03  STA ram_p2_row
@@ -7998,18 +8058,18 @@ C D 1 - - - 0x003346 00:B336: 60        RTS
 
 
 sub_B337:
-C - - - - - 0x003347 00:B337: A5 58     LDA ram_0058
+C - - - - - 0x003347 00:B337: A5 58     LDA ram_0058_temp
 C - - - - - 0x003349 00:B339: AA        TAX
 C - - - - - 0x00334A 00:B33A: A8        TAY
 C - - - - - 0x00334B 00:B33B: A9 FF     LDA #$FF
 C - - - - - 0x00334D 00:B33D: 20 94 B8  JSR sub_B894_fill_memory_pages
 C - - - - - 0x003350 00:B340: A9 00     LDA #$00
-C - - - - - 0x003352 00:B342: 85 57     STA ram_0057
+C - - - - - 0x003352 00:B342: 85 57     STA ram_0057_temp
 C - - - - - 0x003354 00:B344: A0 00     LDY #$00
 loc_B346_loop:
 C D 1 - - - 0x003356 00:B346: B9 71 A8  LDA tbl_A871,Y
 C - - - - - 0x003359 00:B349: F0 06     BEQ bra_B351_RTS
-C - - - - - 0x00335B 00:B34B: 91 57     STA (ram_0057),Y    ; 0400 0401 0402 0403 0404 0405 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F
+C - - - - - 0x00335B 00:B34B: 91 57     STA (ram_0057_temp),Y    ; 0400 0401 0402 0403 0404 0405 0406 0407 0408 0409 040A 040B 040C 040D 040E 040F 0410 0411 0412 0413 0414 0415 0416 0417 0418 0419 041A 041B 041C 041D 041E 041F 0420 0421 0422 0423 0424 0425 0426 0427 0428 0429 042A 042B 042C 042D 042E 042F 0430 0431 0432 0433 0434 0435 0436 0437 0438 0439 043A 043B 043C 043D 043E 043F 0440 0441 0442 0443 0444 0445 0446 0447 0448 0449 044A 044B 044C 044D 044E 044F
 C - - - - - 0x00335D 00:B34D: C8        INY
 C - - - - - 0x00335E 00:B34E: 4C 46 B3  JMP loc_B346_loop
 bra_B351_RTS:
@@ -8045,23 +8105,25 @@ C - - - - - 0x003387 00:B377: A2 00     LDX #$00
 C - - - - - 0x003389 00:B379: A4 42     LDY ram_oam_index
 bra_B37B_loop:
 C - - - - - 0x00338B 00:B37B: BD 80 05  LDA ram_0580,X
-C - - - - - 0x00338E 00:B37E: 85 47     STA ram_0047
+; bzk optimize, INC 0580,X directly if needed, without 0047.
+; then at 0x00339A write LDA 0580,X, without LDA 0047
+C - - - - - 0x00338E 00:B37E: 85 47     STA ram_0047_t11
 C - - - - - 0x003390 00:B380: A5 43     LDA ram_frm_cnt
 C - - - - - 0x003392 00:B382: 29 03     AND #$03
 C - - - - - 0x003394 00:B384: D0 02     BNE bra_B388
-C - - - - - 0x003396 00:B386: E6 47     INC ram_0047
+C - - - - - 0x003396 00:B386: E6 47     INC ram_0047_t11
 bra_B388:
-C - - - - - 0x003398 00:B388: A5 47     LDA ram_0047
+C - - - - - 0x003398 00:B388: A5 47     LDA ram_0047_t11
 C - - - - - 0x00339A 00:B38A: 9D 80 05  STA ram_0580,X
 C - - - - - 0x00339D 00:B38D: 99 00 02  STA ram_spr_Y,Y
 C - - - - - 0x0033A0 00:B390: E8        INX
 C - - - - - 0x0033A1 00:B391: C8        INY
 C - - - - - 0x0033A2 00:B392: BD 80 05  LDA ram_0580,X
-C - - - - - 0x0033A5 00:B395: 85 47     STA ram_0047
+C - - - - - 0x0033A5 00:B395: 85 47     STA ram_0047_t12
 C - - - - - 0x0033A7 00:B397: A5 43     LDA ram_frm_cnt
 C - - - - - 0x0033A9 00:B399: 29 01     AND #$01
 C - - - - - 0x0033AB 00:B39B: 18        CLC
-C - - - - - 0x0033AC 00:B39C: 65 47     ADC ram_0047
+C - - - - - 0x0033AC 00:B39C: 65 47     ADC ram_0047_t12
 C - - - - - 0x0033AE 00:B39E: 29 03     AND #$03
 C - - - - - 0x0033B0 00:B3A0: 09 40     ORA #$40
 C - - - - - 0x0033B2 00:B3A2: 9D 80 05  STA ram_0580,X
@@ -8480,6 +8542,7 @@ C - - - - - 0x003585 00:B575: 85 53     STA ram_spr_animation_id
 C - - - - - 0x003587 00:B577: 20 F6 88  JSR sub_88F6_display_sprite_animtion
 C - - - - - 0x00358A 00:B57A: A5 43     LDA ram_frm_cnt
 C - - - - - 0x00358C 00:B57C: 29 04     AND #$04
+; / 04
 C - - - - - 0x00358E 00:B57E: 4A        LSR
 C - - - - - 0x00358F 00:B57F: 4A        LSR
 C - - - - - 0x003590 00:B580: 18        CLC
@@ -8493,20 +8556,20 @@ C - - - - - 0x003598 00:B588: 60        RTS
 
 ofs_003_B589_13:
 C - - J - - 0x003599 00:B589: 20 A7 B5  JSR sub_B5A7
-C - - - - - 0x00359C 00:B58C: A5 39     LDA ram_0039
+C - - - - - 0x00359C 00:B58C: A5 39     LDA ram_0039_spr_pos_Y
 C - - - - - 0x00359E 00:B58E: 38        SEC
 C - - - - - 0x00359F 00:B58F: E9 24     SBC #$24
 C - - - - - 0x0035A1 00:B591: C5 50     CMP ram_ufo_pos_Y
 C - - - - - 0x0035A3 00:B593: B0 09     BCS bra_B59E
 C - - - - - 0x0035A5 00:B595: A9 F8     LDA #$F8
-C - - - - - 0x0035A7 00:B597: 85 39     STA ram_0039
+C - - - - - 0x0035A7 00:B597: 85 39     STA ram_0039_spr_pos_Y
 C - - - - - 0x0035A9 00:B599: E6 5E     INC ram_cutscene_handler
 C - - - - - 0x0035AB 00:B59B: 4C A6 B5  JMP loc_B5A6_RTS
 bra_B59E:
 C - - - - - 0x0035AE 00:B59E: A5 43     LDA ram_frm_cnt
 C - - - - - 0x0035B0 00:B5A0: 29 03     AND #$03
 C - - - - - 0x0035B2 00:B5A2: D0 02     BNE bra_B5A6_RTS
-C - - - - - 0x0035B4 00:B5A4: C6 39     DEC ram_0039
+C - - - - - 0x0035B4 00:B5A4: C6 39     DEC ram_0039_spr_pos_Y
 bra_B5A6_RTS:
 loc_B5A6_RTS:   ; bzk optimize
 C D 1 - - - 0x0035B6 00:B5A6: 60        RTS
@@ -8528,6 +8591,7 @@ C - - - - - 0x0035C7 00:B5B7: 60        RTS
 
 sub_B5B8:
 C - - - - - 0x0035C8 00:B5B8: A5 8B     LDA ram_speed
+; * 20
 C - - - - - 0x0035CA 00:B5BA: 0A        ASL
 C - - - - - 0x0035CB 00:B5BB: 0A        ASL
 C - - - - - 0x0035CC 00:B5BC: 0A        ASL
@@ -8540,27 +8604,28 @@ C - - - - - 0x0035D3 00:B5C3: BD F8 9F  LDA tbl_9FF8,X
 C - - - - - 0x0035D6 00:B5C6: D0 03     BNE bra_B5CB
 C - - - - - 0x0035D8 00:B5C8: 4C 53 B6  JMP loc_B653_RTS
 bra_B5CB:
-C - - - - - 0x0035DB 00:B5CB: A5 3D     LDA ram_003D
+C - - - - - 0x0035DB 00:B5CB: A5 3D     LDA ram_003D_counter
 C - - - - - 0x0035DD 00:B5CD: C9 04     CMP #$04
 C - - - - - 0x0035DF 00:B5CF: D0 06     BNE bra_B5D7
 C - - - - - 0x0035E1 00:B5D1: A9 81     LDA #$81
 C - - - - - 0x0035E3 00:B5D3: 85 7F     STA ram_007F
-C - - - - - 0x0035E5 00:B5D5: E6 3D     INC ram_003D
+C - - - - - 0x0035E5 00:B5D5: E6 3D     INC ram_003D_counter
 bra_B5D7:
-C - - - - - 0x0035E7 00:B5D7: A5 3D     LDA ram_003D
+C - - - - - 0x0035E7 00:B5D7: A5 3D     LDA ram_003D_counter
 C - - - - - 0x0035E9 00:B5D9: C9 06     CMP #$06
 C - - - - - 0x0035EB 00:B5DB: F0 2E     BEQ bra_B60B
 C - - - - - 0x0035ED 00:B5DD: A5 43     LDA ram_frm_cnt
 C - - - - - 0x0035EF 00:B5DF: F0 03     BEQ bra_B5E4
 C - - - - - 0x0035F1 00:B5E1: 4C 53 B6  JMP loc_B653_RTS
 bra_B5E4:
-C - - - - - 0x0035F4 00:B5E4: E6 3D     INC ram_003D
-C - - - - - 0x0035F6 00:B5E6: A5 3D     LDA ram_003D
+C - - - - - 0x0035F4 00:B5E4: E6 3D     INC ram_003D_counter
+C - - - - - 0x0035F6 00:B5E6: A5 3D     LDA ram_003D_counter
 C - - - - - 0x0035F8 00:B5E8: C9 02     CMP #$02
 C - - - - - 0x0035FA 00:B5EA: F0 03     BEQ bra_B5EF
 C - - - - - 0x0035FC 00:B5EC: 4C 53 B6  JMP loc_B653_RTS
 bra_B5EF:
 C - - - - - 0x0035FF 00:B5EF: A5 8B     LDA ram_speed
+; * 20
 C - - - - - 0x003601 00:B5F1: 0A        ASL
 C - - - - - 0x003602 00:B5F2: 0A        ASL
 C - - - - - 0x003603 00:B5F3: 0A        ASL
@@ -8570,45 +8635,46 @@ C - - - - - 0x003606 00:B5F6: 18        CLC
 C - - - - - 0x003607 00:B5F7: 65 96     ADC ram_virus_level
 C - - - - - 0x003609 00:B5F9: AA        TAX
 C - - - - - 0x00360A 00:B5FA: BD F8 9F  LDA tbl_9FF8,X
-C - - - - - 0x00360D 00:B5FD: 85 3A     STA ram_003A
-C - - - - - 0x00360F 00:B5FF: A5 3A     LDA ram_003A    ; bzk optimize, loading the same value
+C - - - - - 0x00360D 00:B5FD: 85 3A     STA ram_003A_table_index
+; bzk optimize, loading the same value
+C - - - - - 0x00360F 00:B5FF: A5 3A     LDA ram_003A_table_index
 C - - - - - 0x003611 00:B601: AA        TAX
-C - - - - - 0x003612 00:B602: BD 6A A0  LDA tbl_A06A,X
-C - - - - - 0x003615 00:B605: 85 3B     STA ram_003B
+C - - - - - 0x003612 00:B602: BD 6A A0  LDA tbl_A06A_spr_pos_Y,X
+C - - - - - 0x003615 00:B605: 85 3B     STA ram_003B_spr_pos_Y
 C - - - - - 0x003617 00:B607: A9 50     LDA #$50
-C - - - - - 0x003619 00:B609: 85 3C     STA ram_003C
+C - - - - - 0x003619 00:B609: 85 3C     STA ram_003C_spr_pos_Y
 bra_B60B:
-C - - - - - 0x00361B 00:B60B: A6 3A     LDX ram_003A
+C - - - - - 0x00361B 00:B60B: A6 3A     LDX ram_003A_table_index
 C - - - - - 0x00361D 00:B60D: BD 73 A0  LDA tbl_A073,X
-C - - - - - 0x003620 00:B610: 85 47     STA ram_0047
+C - - - - - 0x003620 00:B610: 85 47     STA ram_0047_t13
 C - - - - - 0x003622 00:B612: A5 43     LDA ram_frm_cnt
-C - - - - - 0x003624 00:B614: 25 47     AND ram_0047
+C - - - - - 0x003624 00:B614: 25 47     AND ram_0047_t13
 C - - - - - 0x003626 00:B616: D0 13     BNE bra_B62B
-C - - - - - 0x003628 00:B618: BD 7C A0  LDA tbl_A07C,X
+C - - - - - 0x003628 00:B618: BD 7C A0  LDA tbl_A07C_spr_pos_Y,X
 C - - - - - 0x00362B 00:B61B: 18        CLC
-C - - - - - 0x00362C 00:B61C: 65 3B     ADC ram_003B
-C - - - - - 0x00362E 00:B61E: 85 3B     STA ram_003B
+C - - - - - 0x00362C 00:B61C: 65 3B     ADC ram_003B_spr_pos_Y
+C - - - - - 0x00362E 00:B61E: 85 3B     STA ram_003B_spr_pos_Y
 C - - - - - 0x003630 00:B620: C9 F1     CMP #$F1
 C - - - - - 0x003632 00:B622: 90 07     BCC bra_B62B
 C - - - - - 0x003634 00:B624: A9 F8     LDA #$F8
-C - - - - - 0x003636 00:B626: 85 3B     STA ram_003B
+C - - - - - 0x003636 00:B626: 85 3B     STA ram_003B_spr_pos_Y
 C - - - - - 0x003638 00:B628: 4C 53 B6  JMP loc_B653_RTS
 bra_B62B:
 C - - - - - 0x00363B 00:B62B: BD 58 A0  LDA tbl_A058,X
-C - - - - - 0x00363E 00:B62E: 85 47     STA ram_0047
+C - - - - - 0x00363E 00:B62E: 85 47     STA ram_0047_t14
 C - - - - - 0x003640 00:B630: A5 43     LDA ram_frm_cnt
-C - - - - - 0x003642 00:B632: 25 47     AND ram_0047
+C - - - - - 0x003642 00:B632: 25 47     AND ram_0047_t14
 C - - - - - 0x003644 00:B634: D0 08     BNE bra_B63E
 C - - - - - 0x003646 00:B636: A5 3E     LDA ram_003E
 C - - - - - 0x003648 00:B638: 49 01     EOR #$01
 C - - - - - 0x00364A 00:B63A: 29 01     AND #$01
 C - - - - - 0x00364C 00:B63C: 85 3E     STA ram_003E
 bra_B63E:
-C - - - - - 0x00364E 00:B63E: A5 3B     LDA ram_003B
+C - - - - - 0x00364E 00:B63E: A5 3B     LDA ram_003B_spr_pos_Y
 C - - - - - 0x003650 00:B640: 85 44     STA ram_spr_pos_X
-C - - - - - 0x003652 00:B642: A5 3C     LDA ram_003C
+C - - - - - 0x003652 00:B642: A5 3C     LDA ram_003C_spr_pos_Y
 C - - - - - 0x003654 00:B644: 85 45     STA ram_spr_pos_Y
-C - - - - - 0x003656 00:B646: A6 3A     LDX ram_003A
+C - - - - - 0x003656 00:B646: A6 3A     LDX ram_003A_table_index
 C - - - - - 0x003658 00:B648: BD 61 A0  LDA tbl_A061,X
 C - - - - - 0x00365B 00:B64B: 18        CLC
 C - - - - - 0x00365C 00:B64C: 65 3E     ADC ram_003E
@@ -8662,7 +8728,7 @@ C - - - - - 0x003698 00:B688: 60        RTS
 
 sub_B689:
 C - - - - - 0x003699 00:B689: 20 70 B6  JSR sub_B670
-C - - - - - 0x00369C 00:B68C: 20 B4 B6  JSR sub_B6B4
+C - - - - - 0x00369C 00:B68C: 20 B4 B6  JSR sub_B6B4_set_00_scroll_and_write_to_2000
 C - - - - - 0x00369F 00:B68F: A5 FE     LDA ram_for_2001
 C - - - - - 0x0036A1 00:B691: 09 1E     ORA #$1E
 C - - - - - 0x0036A3 00:B693: D0 EE     BNE bra_B683    ; jmp
@@ -8690,16 +8756,18 @@ C - - - - - 0x0036BB 00:B6AB: 60        RTS
 
 
 
-sub_B6AC_clear_nmt:
-; bzk optimize, write LDX and LDY at 0x003856 and jump directly there
-C - - - - - 0x0036BC 00:B6AC: A2 FF     LDX #$FF
-C - - - - - 0x0036BE 00:B6AE: A0 00     LDY #$00
-C - - - - - 0x0036C0 00:B6B0: 20 46 B8  JSR sub_B846_clear_nmt
+sub_B6AC_clear_nametable:
+; in
+    ; A = ppu address hi
+C - - - - - 0x0036BC 00:B6AC: A2 FF     LDX #$FF    ; tile
+C - - - - - 0x0036BE 00:B6AE: A0 00     LDY #$00    ; attribute
+; bzk optimize, JMP
+C - - - - - 0x0036C0 00:B6B0: 20 46 B8  JSR sub_B846_clear_nametable
 C - - - - - 0x0036C3 00:B6B3: 60        RTS
 
 
 
-sub_B6B4:
+sub_B6B4_set_00_scroll_and_write_to_2000:
 C - - - - - 0x0036C4 00:B6B4: A9 00     LDA #$00
 C - - - - - 0x0036C6 00:B6B6: 8D 05 20  STA $2005
 C - - - - - 0x0036C9 00:B6B9: 8D 05 20  STA $2005
@@ -8719,10 +8787,10 @@ bra_B6C8_loop:
 C - - - - - 0x0036D8 00:B6C8: 48        PHA
 C - - - - - 0x0036D9 00:B6C9: 8D 06 20  STA $2006
 C - - - - - 0x0036DC 00:B6CC: C8        INY
-C - - - - - 0x0036DD 00:B6CD: B1 00     LDA (ram_0000),Y
+C - - - - - 0x0036DD 00:B6CD: B1 00     LDA (ram_0000_t01_ppu_data),Y
 C - - - - - 0x0036DF 00:B6CF: 8D 06 20  STA $2006
 C - - - - - 0x0036E2 00:B6D2: C8        INY
-C - - - - - 0x0036E3 00:B6D3: B1 00     LDA (ram_0000),Y
+C - - - - - 0x0036E3 00:B6D3: B1 00     LDA (ram_0000_t01_ppu_data),Y
 C - - - - - 0x0036E5 00:B6D5: 0A        ASL
 C - - - - - 0x0036E6 00:B6D6: 48        PHA
 C - - - - - 0x0036E7 00:B6D7: A5 FF     LDA ram_for_2000
@@ -8751,13 +8819,14 @@ bra_B6F4_loop:
 C - - - - - 0x003704 00:B6F4: B0 01     BCS bra_B6F7
 C - - - - - 0x003706 00:B6F6: C8        INY
 bra_B6F7:
-C - - - - - 0x003707 00:B6F7: B1 00     LDA (ram_0000),Y
+C - - - - - 0x003707 00:B6F7: B1 00     LDA (ram_0000_t01_ppu_data),Y
 C - - - - - 0x003709 00:B6F9: 8D 07 20  STA $2007
 C - - - - - 0x00370C 00:B6FC: CA        DEX
 C - - - - - 0x00370D 00:B6FD: D0 F5     BNE bra_B6F4_loop
 C - - - - - 0x00370F 00:B6FF: 68        PLA
 C - - - - - 0x003710 00:B700: C9 3F     CMP #$3F
 C - - - - - 0x003712 00:B702: D0 0C     BNE bra_B710_not_palette
+; if palette
 C - - - - - 0x003714 00:B704: 8D 06 20  STA $2006
 C - - - - - 0x003717 00:B707: 8E 06 20  STX $2006
 C - - - - - 0x00371A 00:B70A: 8E 06 20  STX $2006
@@ -8766,81 +8835,87 @@ bra_B710_not_palette:
 bra_B710_loop:
 C - - - - - 0x003720 00:B710: 38        SEC
 C - - - - - 0x003721 00:B711: 98        TYA
-C - - - - - 0x003722 00:B712: 65 00     ADC ram_0000
-C - - - - - 0x003724 00:B714: 85 00     STA ram_0000
+C - - - - - 0x003722 00:B712: 65 00     ADC ram_0000_t01_ppu_data
+C - - - - - 0x003724 00:B714: 85 00     STA ram_0000_t01_ppu_data
 C - - - - - 0x003726 00:B716: A9 00     LDA #$00
-C - - - - - 0x003728 00:B718: 65 01     ADC ram_0001
-C - - - - - 0x00372A 00:B71A: 85 01     STA ram_0001
+C - - - - - 0x003728 00:B718: 65 01     ADC ram_0000_t01_ppu_data + $01
+C - - - - - 0x00372A 00:B71A: 85 01     STA ram_0000_t01_ppu_data + $01
 loc_B71C_write_to_ppu:
 bra_B71C_loop:
 C D 1 - - - 0x00372C 00:B71C: AE 02 20  LDX $2002
 C - - - - - 0x00372F 00:B71F: A0 00     LDY #$00
-C - - - - - 0x003731 00:B721: B1 00     LDA (ram_0000),Y
+C - - - - - 0x003731 00:B721: B1 00     LDA (ram_0000_t01_ppu_data),Y
 C - - - - - 0x003733 00:B723: 10 01     BPL bra_B726
 C - - - - - 0x003735 00:B725: 60        RTS
 bra_B726:
 C - - - - - 0x003736 00:B726: C9 60     CMP #$60
 C - - - - - 0x003738 00:B728: D0 0A     BNE bra_B734
 - - - - - - 0x00373A 00:B72A: 68        PLA
-- - - - - - 0x00373B 00:B72B: 85 01     STA ram_0001
+- - - - - - 0x00373B 00:B72B: 85 01     STA ram_0000_t01_ppu_data + $01
 - - - - - - 0x00373D 00:B72D: 68        PLA
-- - - - - - 0x00373E 00:B72E: 85 00     STA ram_0000
+- - - - - - 0x00373E 00:B72E: 85 00     STA ram_0000_t01_ppu_data
 - - - - - - 0x003740 00:B730: A0 02     LDY #$02
 - - - - - - 0x003742 00:B732: D0 DC     BNE bra_B710_loop    ; jmp
 bra_B734:
 C - - - - - 0x003744 00:B734: C9 4C     CMP #$4C
 C - - - - - 0x003746 00:B736: D0 90     BNE bra_B6C8_loop
-- - - - - - 0x003748 00:B738: A5 00     LDA ram_0000
+; C = 0?
+- - - - - - 0x003748 00:B738: A5 00     LDA ram_0000_t01_ppu_data
 - - - - - - 0x00374A 00:B73A: 48        PHA
-- - - - - - 0x00374B 00:B73B: A5 01     LDA ram_0001
+- - - - - - 0x00374B 00:B73B: A5 01     LDA ram_0000_t01_ppu_data + $01
 - - - - - - 0x00374D 00:B73D: 48        PHA
 - - - - - - 0x00374E 00:B73E: C8        INY
-- - - - - - 0x00374F 00:B73F: B1 00     LDA (ram_0000),Y
+- - - - - - 0x00374F 00:B73F: B1 00     LDA (ram_0000_t01_ppu_data),Y
 - - - - - - 0x003751 00:B741: AA        TAX
 - - - - - - 0x003752 00:B742: C8        INY
-- - - - - - 0x003753 00:B743: B1 00     LDA (ram_0000),Y
-- - - - - - 0x003755 00:B745: 85 01     STA ram_0001
-- - - - - - 0x003757 00:B747: 86 00     STX ram_0000
-- - - - - - 0x003759 00:B749: B0 D1     BCS bra_B71C_loop
+- - - - - - 0x003753 00:B743: B1 00     LDA (ram_0000_t01_ppu_data),Y
+- - - - - - 0x003755 00:B745: 85 01     STA ram_0000_t01_ppu_data + $01
+- - - - - - 0x003757 00:B747: 86 00     STX ram_0000_t01_ppu_data
+- - - - - - 0x003759 00:B749: B0 D1     BCS bra_B71C_loop   ; jmp?
 
 
 
 sub_B74B_set_table_pointer:
 C - - - - - 0x00375B 00:B74B: BA        TSX
 C - - - - - 0x00375C 00:B74C: BD 03 01  LDA ram_stack + $03,X
-C - - - - - 0x00375F 00:B74F: 85 05     STA ram_0005
+C - - - - - 0x00375F 00:B74F: 85 05     STA ram_0005_t01_data
 C - - - - - 0x003761 00:B751: BD 04 01  LDA ram_stack + $04,X
-C - - - - - 0x003764 00:B754: 85 06     STA ram_0006
+C - - - - - 0x003764 00:B754: 85 06     STA ram_0005_t01_data + $01
 C - - - - - 0x003766 00:B756: A0 01     LDY #$01
-C - - - - - 0x003768 00:B758: B1 05     LDA (ram_0005),Y
-C - - - - - 0x00376A 00:B75A: 85 00     STA ram_0000
+C - - - - - 0x003768 00:B758: B1 05     LDA (ram_0005_t01_data),Y
+C - - - - - 0x00376A 00:B75A: 85 00     STA ram_0000_t01_ppu_data
 C - - - - - 0x00376C 00:B75C: C8        INY
-C - - - - - 0x00376D 00:B75D: B1 05     LDA (ram_0005),Y
-C - - - - - 0x00376F 00:B75F: 85 01     STA ram_0001
+C - - - - - 0x00376D 00:B75D: B1 05     LDA (ram_0005_t01_data),Y
+C - - - - - 0x00376F 00:B75F: 85 01     STA ram_0000_t01_ppu_data + $01
 C - - - - - 0x003771 00:B761: 18        CLC
-C - - - - - 0x003772 00:B762: A9 02     LDA #$02
-C - - - - - 0x003774 00:B764: 65 05     ADC ram_0005
+C - - - - - 0x003772 00:B762: A9 02     LDA #< $0002
+C - - - - - 0x003774 00:B764: 65 05     ADC ram_0005_t01_data
 C - - - - - 0x003776 00:B766: 9D 03 01  STA ram_stack + $03,X
-C - - - - - 0x003779 00:B769: A9 00     LDA #$00
-C - - - - - 0x00377B 00:B76B: 65 06     ADC ram_0006
+C - - - - - 0x003779 00:B769: A9 00     LDA #> $0002
+C - - - - - 0x00377B 00:B76B: 65 06     ADC ram_0005_t01_data + $01
 C - - - - - 0x00377D 00:B76D: 9D 04 01  STA ram_stack + $04,X
 C - - - - - 0x003780 00:B770: 60        RTS
 
 
 
 sub_B771:
-C - - - - - 0x003781 00:B771: B5 00     LDA ram_0000,X
+; in
+    ; X = 17
+    ; Y = 02
+; bzk optimize, same X and Y before JSRs to here.
+; write LDY here, and use proper addresses instead of address,X
+C - - - - - 0x003781 00:B771: B5 00     LDA ram_0017_t01 - $17,X
 C - - - - - 0x003783 00:B773: 29 02     AND #$02
-C - - - - - 0x003785 00:B775: 85 00     STA ram_0000
-C - - - - - 0x003787 00:B777: B5 01     LDA ram_0001,X
+C - - - - - 0x003785 00:B775: 85 00     STA ram_0000_t06
+C - - - - - 0x003787 00:B777: B5 01     LDA ram_0017_t01 - $17 + $01,X
 C - - - - - 0x003789 00:B779: 29 02     AND #$02
-C - - - - - 0x00378B 00:B77B: 45 00     EOR ram_0000
+C - - - - - 0x00378B 00:B77B: 45 00     EOR ram_0000_t06
 C - - - - - 0x00378D 00:B77D: 18        CLC
 C - - - - - 0x00378E 00:B77E: F0 01     BEQ bra_B781
 C - - - - - 0x003790 00:B780: 38        SEC
 bra_B781:
 bra_B781_loop:
-C - - - - - 0x003791 00:B781: 76 00     ROR ram_0000,X
+C - - - - - 0x003791 00:B781: 76 00     ROR ram_0017_t01 - $17,X
 C - - - - - 0x003793 00:B783: E8        INX
 C - - - - - 0x003794 00:B784: 88        DEY
 C - - - - - 0x003795 00:B785: D0 FA     BNE bra_B781_loop
@@ -8858,7 +8933,8 @@ C - - - - - 0x0037A2 00:B792: 60        RTS
 
 
 sub_B793_read_joy_regs:
-C - - - - - 0x0037A3 00:B793: A6 FB     LDX ram_00FB_for_4016    ; 00
+; bzk optimize, replace with LDX 01, delete INX
+C - - - - - 0x0037A3 00:B793: A6 FB     LDX ram_00FB_useless_00
 C - - - - - 0x0037A5 00:B795: E8        INX ; 01
 C - - - - - 0x0037A6 00:B796: 8E 16 40  STX $4016
 C - - - - - 0x0037A9 00:B799: CA        DEX ; 00
@@ -8868,13 +8944,17 @@ bra_B79F_loop:
 C - - - - - 0x0037AF 00:B79F: AD 16 40  LDA $4016
 C - - - - - 0x0037B2 00:B7A2: 4A        LSR
 C - - - - - 0x0037B3 00:B7A3: 26 F5     ROL ram_btn_press
+; bzk optimize, delete LSR + ROL, and
+; also need to delete JSR to 0x0037C5
 C - - - - - 0x0037B5 00:B7A5: 4A        LSR
-C - - - - - 0x0037B6 00:B7A6: 26 00     ROL ram_0000
+C - - - - - 0x0037B6 00:B7A6: 26 00     ROL ram_0000_t08_useless_00_p1
 C - - - - - 0x0037B8 00:B7A8: AD 17 40  LDA $4017
 C - - - - - 0x0037BB 00:B7AB: 4A        LSR
 C - - - - - 0x0037BC 00:B7AC: 26 F6     ROL ram_btn_press + $01
+; bzk optimize, delete LSR + ROL, and
+; also need to delete JSR to 0x0037C5
 C - - - - - 0x0037BE 00:B7AE: 4A        LSR
-C - - - - - 0x0037BF 00:B7AF: 26 01     ROL ram_0001
+C - - - - - 0x0037BF 00:B7AF: 26 01     ROL ram_0001_t02_useless_00_p2
 C - - - - - 0x0037C1 00:B7B1: CA        DEX
 C - - - - - 0x0037C2 00:B7B2: D0 EB     BNE bra_B79F_loop
 C - - - - - 0x0037C4 00:B7B4: 60        RTS
@@ -8882,10 +8962,12 @@ C - - - - - 0x0037C4 00:B7B4: 60        RTS
 
 
 sub_B7B5:
-C - - - - - 0x0037C5 00:B7B5: A5 00     LDA ram_0000
+; bzk optimize, 0000 is always 00
+C - - - - - 0x0037C5 00:B7B5: A5 00     LDA ram_0000_t08_useless_00_p1
 C - - - - - 0x0037C7 00:B7B7: 05 F5     ORA ram_btn_press
 C - - - - - 0x0037C9 00:B7B9: 85 F5     STA ram_btn_press
-C - - - - - 0x0037CB 00:B7BB: A5 01     LDA ram_0001
+; bzk optimize, 0001 is always 00
+C - - - - - 0x0037CB 00:B7BB: A5 01     LDA ram_0001_t02_useless_00_p2
 C - - - - - 0x0037CD 00:B7BD: 05 F6     ORA ram_btn_press + $01
 C - - - - - 0x0037CF 00:B7BF: 85 F6     STA ram_btn_press + $01
 C - - - - - 0x0037D1 00:B7C1: 60        RTS
@@ -8901,16 +8983,16 @@ sub_B7C7_read_input:
 C - - - - - 0x0037D7 00:B7C7: 20 93 B7  JSR sub_B793_read_joy_regs
 C - - - - - 0x0037DA 00:B7CA: 20 B5 B7  JSR sub_B7B5
 C - - - - - 0x0037DD 00:B7CD: A5 F5     LDA ram_btn_press
-C - - - - - 0x0037DF 00:B7CF: 85 48     STA ram_0048
+C - - - - - 0x0037DF 00:B7CF: 85 48     STA ram_0048_t01_copy_btn_press_p1
 C - - - - - 0x0037E1 00:B7D1: A5 F6     LDA ram_btn_press + $01
-C - - - - - 0x0037E3 00:B7D3: 85 49     STA ram_0049
+C - - - - - 0x0037E3 00:B7D3: 85 49     STA ram_0049_t01_copy_btn_press_p2
 C - - - - - 0x0037E5 00:B7D5: 20 93 B7  JSR sub_B793_read_joy_regs
 C - - - - - 0x0037E8 00:B7D8: 20 B5 B7  JSR sub_B7B5
 C - - - - - 0x0037EB 00:B7DB: A5 F5     LDA ram_btn_press
-C - - - - - 0x0037ED 00:B7DD: 25 48     AND ram_0048
+C - - - - - 0x0037ED 00:B7DD: 25 48     AND ram_0048_t01_copy_btn_press_p1
 C - - - - - 0x0037EF 00:B7DF: 85 F5     STA ram_btn_press
 C - - - - - 0x0037F1 00:B7E1: A5 F6     LDA ram_btn_press + $01
-C - - - - - 0x0037F3 00:B7E3: 25 49     AND ram_0049
+C - - - - - 0x0037F3 00:B7E3: 25 49     AND ram_0049_t01_copy_btn_press_p2
 C - - - - - 0x0037F5 00:B7E5: 85 F6     STA ram_btn_press + $01
 bra_B7E7:
 C - - - - - 0x0037F7 00:B7E7: A2 01     LDX #$01
@@ -8954,9 +9036,9 @@ bra_B814_loop:
 - - - - - - 0x003836 00:B826: D0 EC     BNE bra_B814_loop
 - - - - - - 0x003838 00:B828: F0 BD     BEQ bra_B7E7    ; jmp
 - - - - - - 0x00383A 00:B82A: 20 93 B7  JSR sub_B793_read_joy_regs
-- - - - - - 0x00383D 00:B82D: A5 00     LDA ram_0000
+- - - - - - 0x00383D 00:B82D: A5 00     LDA ram_0000_t08_useless_00_p1
 - - - - - - 0x00383F 00:B82F: 85 F7     STA ram_btn_hold
-- - - - - - 0x003841 00:B831: A5 01     LDA ram_0001
+- - - - - - 0x003841 00:B831: A5 01     LDA ram_0001_t02_useless_00_p2
 - - - - - - 0x003843 00:B833: 85 F8     STA ram_btn_hold + $01
 - - - - - - 0x003845 00:B835: A2 03     LDX #$03
 bra_B837_loop:
@@ -8972,34 +9054,39 @@ bra_B837_loop:
 
 
 
-sub_B846_clear_nmt:
-C - - - - - 0x003856 00:B846: 85 00     STA ram_0000
-C - - - - - 0x003858 00:B848: 86 01     STX ram_0001
-C - - - - - 0x00385A 00:B84A: 84 02     STY ram_0002
+sub_B846_clear_nametable:
+; in
+    ; A = ppu address hi
+    ; X = tile
+    ; Y = attribute
+; bzk optimize, single JSR to here
+C - - - - - 0x003856 00:B846: 85 00     STA ram_0000_t07_ppu_addr_hi
+C - - - - - 0x003858 00:B848: 86 01     STX ram_0001_t01_tile
+C - - - - - 0x00385A 00:B84A: 84 02     STY ram_0002_t01_attribute
 C - - - - - 0x00385C 00:B84C: AD 02 20  LDA $2002
 C - - - - - 0x00385F 00:B84F: A5 FF     LDA ram_for_2000
 C - - - - - 0x003861 00:B851: 29 FB     AND #$FB
 C - - - - - 0x003863 00:B853: 8D 00 20  STA $2000
 C - - - - - 0x003866 00:B856: 85 FF     STA ram_for_2000
-C - - - - - 0x003868 00:B858: A5 00     LDA ram_0000
+C - - - - - 0x003868 00:B858: A5 00     LDA ram_0000_t07_ppu_addr_hi
 C - - - - - 0x00386A 00:B85A: 8D 06 20  STA $2006
 C - - - - - 0x00386D 00:B85D: A0 00     LDY #$00
 C - - - - - 0x00386F 00:B85F: 8C 06 20  STY $2006
 C - - - - - 0x003872 00:B862: A2 04     LDX #$04
 C - - - - - 0x003874 00:B864: C9 20     CMP #$20
 C - - - - - 0x003876 00:B866: B0 02     BCS bra_B86A
-- - - - - - 0x003878 00:B868: A6 02     LDX ram_0002
+- - - - - - 0x003878 00:B868: A6 02     LDX ram_0002_t01_attribute
 bra_B86A:
 C - - - - - 0x00387A 00:B86A: A0 00     LDY #$00
-C - - - - - 0x00387C 00:B86C: A5 01     LDA ram_0001
+C - - - - - 0x00387C 00:B86C: A5 01     LDA ram_0001_t01_tile
 bra_B86E_loop:
 C - - - - - 0x00387E 00:B86E: 8D 07 20  STA $2007
 C - - - - - 0x003881 00:B871: 88        DEY
 C - - - - - 0x003882 00:B872: D0 FA     BNE bra_B86E_loop
 C - - - - - 0x003884 00:B874: CA        DEX
 C - - - - - 0x003885 00:B875: D0 F7     BNE bra_B86E_loop
-C - - - - - 0x003887 00:B877: A4 02     LDY ram_0002
-C - - - - - 0x003889 00:B879: A5 00     LDA ram_0000
+C - - - - - 0x003887 00:B877: A4 02     LDY ram_0002_t01_attribute
+C - - - - - 0x003889 00:B879: A5 00     LDA ram_0000_t07_ppu_addr_hi
 C - - - - - 0x00388B 00:B87B: C9 20     CMP #$20
 C - - - - - 0x00388D 00:B87D: 90 12     BCC bra_B891
 C - - - - - 0x00388F 00:B87F: 69 02     ADC #$02
@@ -9012,7 +9099,8 @@ C - - - - - 0x00389B 00:B88B: 8C 07 20  STY $2007
 C - - - - - 0x00389E 00:B88E: CA        DEX
 C - - - - - 0x00389F 00:B88F: D0 FA     BNE bra_B88B_loop
 bra_B891:
-C - - - - - 0x0038A1 00:B891: A6 01     LDX ram_0001
+; bzk optimize, useless LDX
+C - - - - - 0x0038A1 00:B891: A6 01     LDX ram_0001_t01_tile
 C - - - - - 0x0038A3 00:B893: 60        RTS
 
 
@@ -9026,18 +9114,18 @@ sub_B894_fill_memory_pages:
 ; means fill 0200-05FF (pages 02-05) with 00
 C - - - - - 0x0038A4 00:B894: 48        PHA
 C - - - - - 0x0038A5 00:B895: 8A        TXA
-C - - - - - 0x0038A6 00:B896: 84 01     STY ram_0001
+C - - - - - 0x0038A6 00:B896: 84 01     STY ram_0000_t03_data + $01
 C - - - - - 0x0038A8 00:B898: 18        CLC
-C - - - - - 0x0038A9 00:B899: E5 01     SBC ram_0001
+C - - - - - 0x0038A9 00:B899: E5 01     SBC ram_0000_t03_data + $01
 C - - - - - 0x0038AB 00:B89B: AA        TAX
 C - - - - - 0x0038AC 00:B89C: 68        PLA
 C - - - - - 0x0038AD 00:B89D: A0 00     LDY #$00
-C - - - - - 0x0038AF 00:B89F: 84 00     STY ram_0000
+C - - - - - 0x0038AF 00:B89F: 84 00     STY ram_0000_t03_data
 bra_B8A1_loop:
-C - - - - - 0x0038B1 00:B8A1: 91 00     STA (ram_0000),Y
+C - - - - - 0x0038B1 00:B8A1: 91 00     STA (ram_0000_t03_data),Y
 C - - - - - 0x0038B3 00:B8A3: 88        DEY
 C - - - - - 0x0038B4 00:B8A4: D0 FB     BNE bra_B8A1_loop
-C - - - - - 0x0038B6 00:B8A6: C6 01     DEC ram_0001
+C - - - - - 0x0038B6 00:B8A6: C6 01     DEC ram_0000_t03_data + $01
 C - - - - - 0x0038B8 00:B8A8: E8        INX
 C - - - - - 0x0038B9 00:B8A9: D0 F6     BNE bra_B8A1_loop
 C - - - - - 0x0038BB 00:B8AB: 60        RTS
@@ -9049,16 +9137,16 @@ C - - - - - 0x0038BC 00:B8AC: 0A        ASL
 C - - - - - 0x0038BD 00:B8AD: A8        TAY
 C - - - - - 0x0038BE 00:B8AE: C8        INY
 C - - - - - 0x0038BF 00:B8AF: 68        PLA
-C - - - - - 0x0038C0 00:B8B0: 85 00     STA ram_0000
+C - - - - - 0x0038C0 00:B8B0: 85 00     STA ram_0000_t15_code_pointer
 C - - - - - 0x0038C2 00:B8B2: 68        PLA
-C - - - - - 0x0038C3 00:B8B3: 85 01     STA ram_0001
-C - - - - - 0x0038C5 00:B8B5: B1 00     LDA (ram_0000),Y
+C - - - - - 0x0038C3 00:B8B3: 85 01     STA ram_0000_t15_code_pointer + $01
+C - - - - - 0x0038C5 00:B8B5: B1 00     LDA (ram_0000_t15_code_pointer),Y
 C - - - - - 0x0038C7 00:B8B7: AA        TAX
 C - - - - - 0x0038C8 00:B8B8: C8        INY
-C - - - - - 0x0038C9 00:B8B9: B1 00     LDA (ram_0000),Y
-C - - - - - 0x0038CB 00:B8BB: 85 01     STA ram_0001
-C - - - - - 0x0038CD 00:B8BD: 86 00     STX ram_0000
-C - - - - - 0x0038CF 00:B8BF: 6C 00 00  JMP (ram_0000)
+C - - - - - 0x0038C9 00:B8B9: B1 00     LDA (ram_0000_t15_code_pointer),Y
+C - - - - - 0x0038CB 00:B8BB: 85 01     STA ram_0000_t04_jmp + $01
+C - - - - - 0x0038CD 00:B8BD: 86 00     STX ram_0000_t04_jmp
+C - - - - - 0x0038CF 00:B8BF: 6C 00 00  JMP (ram_0000_t04_jmp)
 
 
 ; bzk garbage
@@ -10872,26 +10960,26 @@ C - - - - - 0x005288 01:D278: D0 02     BNE bra_D27C    ; jmp
 sub_D27A:
 C - - - - - 0x00528A 01:D27A: A9 04     LDA #$04    ; 4004-4007
 bra_D27C:
-C - - - - - 0x00528C 01:D27C: 85 E0     STA ram_00E0
+C - - - - - 0x00528C 01:D27C: 85 E0     STA ram_00E0_t03_sound_register_pointer
 C - - - - - 0x00528E 01:D27E: A9 40     LDA #$40    ; 40xx
-C - - - - - 0x005290 01:D280: 85 E1     STA ram_00E1
+C - - - - - 0x005290 01:D280: 85 E1     STA ram_00E0_t03_sound_register_pointer + $01
                                     .if con_bzk_hack = $00
-C - - - - - 0x005292 01:D282: 84 E2     STY ram_00E2
+C - - - - - 0x005292 01:D282: 84 E2     STY ram_00E2_t01_data
 C - - - - - 0x005294 01:D284: A9 D3     LDA #> tbl_D300
-C - - - - - 0x005296 01:D286: 85 E3     STA ram_00E3
+C - - - - - 0x005296 01:D286: 85 E3     STA ram_00E2_t01_data + $01
                                     .else
                                         TYA
                                         CLC
                                         ADC #< tbl_D300
-                                        STA ram_00E2
+                                        STA ram_00E2_t01_data
                                         LDA #$00
                                         ADC #> tbl_D300
-                                        STA ram_00E3
+                                        STA ram_00E2_t01_data + $01
                                     .endif
 C - - - - - 0x005298 01:D288: A0 00     LDY #$00
 bra_D28A_loop:
-C - - - - - 0x00529A 01:D28A: B1 E2     LDA (ram_00E2),Y
-C - - - - - 0x00529C 01:D28C: 91 E0     STA (ram_00E0),Y    ; 4000-400F
+C - - - - - 0x00529A 01:D28A: B1 E2     LDA (ram_00E2_t01_data),Y
+C - - - - - 0x00529C 01:D28C: 91 E0     STA (ram_00E0_t03_sound_register_pointer),Y    ; 4000-400F
 C - - - - - 0x00529E 01:D28E: C8        INY
 C - - - - - 0x00529F 01:D28F: 98        TYA
 C - - - - - 0x0052A0 01:D290: C9 04     CMP #$04
@@ -10903,19 +10991,19 @@ C - - - - - 0x0052A4 01:D294: 60        RTS
 
 
 
-sub_D295:
-C - - - - - 0x0052A5 01:D295: A5 EB     LDA ram_00EB
+sub_D295_random_generator:
+C - - - - - 0x0052A5 01:D295: A5 EB     LDA ram_random
 C - - - - - 0x0052A7 01:D297: 29 02     AND #$02
-C - - - - - 0x0052A9 01:D299: 8D FF 06  STA ram_06FF
-C - - - - - 0x0052AC 01:D29C: A5 EC     LDA ram_00EC
+C - - - - - 0x0052A9 01:D299: 8D FF 06  STA ram_06FF_t01_random
+C - - - - - 0x0052AC 01:D29C: A5 EC     LDA ram_random + $01
 C - - - - - 0x0052AE 01:D29E: 29 02     AND #$02
-C - - - - - 0x0052B0 01:D2A0: 4D FF 06  EOR ram_06FF
+C - - - - - 0x0052B0 01:D2A0: 4D FF 06  EOR ram_06FF_t01_random
 C - - - - - 0x0052B3 01:D2A3: 18        CLC
 C - - - - - 0x0052B4 01:D2A4: F0 01     BEQ bra_D2A7
 C - - - - - 0x0052B6 01:D2A6: 38        SEC
 bra_D2A7:
-C - - - - - 0x0052B7 01:D2A7: 66 EB     ROR ram_00EB
-C - - - - - 0x0052B9 01:D2A9: 66 EC     ROR ram_00EC
+C - - - - - 0x0052B7 01:D2A7: 66 EB     ROR ram_random
+C - - - - - 0x0052B9 01:D2A9: 66 EC     ROR ram_random + $01
 C - - - - - 0x0052BB 01:D2AB: 60        RTS
 
 
@@ -10937,7 +11025,7 @@ loc_D2BF:
 C D 2 - - - 0x0052CF 01:D2BF: A9 0F     LDA #$0F
 C - - - - - 0x0052D1 01:D2C1: 8D 15 40  STA $4015
 C - - - - - 0x0052D4 01:D2C4: A9 55     LDA #$55
-C - - - - - 0x0052D6 01:D2C6: 85 EB     STA ram_00EB
+C - - - - - 0x0052D6 01:D2C6: 85 EB     STA ram_random
 C - - - - - 0x0052D8 01:D2C8: 20 E5 D4  JSR sub_D4E5
 C - - - - - 0x0052DB 01:D2CB: 60        RTS
 
@@ -11083,14 +11171,14 @@ C - - - - - 0x0053E6 01:D3D6: D0 23     BNE bra_D3FB    ; jmp
                                     .else
 ; 1st pointer is written by default
                                         LDA #< off_D268_sfx_2_00
-                                        STA ram_00E0    ; lo
+                                        STA ram_00E0_t02_music_data    ; lo
                                         LDA #> off_D268_sfx_2_00
-                                        STA ram_00E1    ; hi
+                                        STA ram_00E0_t02_music_data + $01    ; hi
 ; 2nd pointer is reserved
                                         LDA #< off_D268_sfx_2_01
-                                        STA ram_0019    ; backup lo
+                                        STA ram_0019_t01_bzk_music_data    ; backup lo
                                         LDA #> off_D268_sfx_2_01
-                                        STA ram_001A    ; backup hi
+                                        STA ram_0019_t01_bzk_music_data + $01    ; backup hi
                                         JMP loc_D3FD
                                     .endif
 
@@ -11105,14 +11193,14 @@ C - - - - - 0x0053EE 01:D3DE: D0 1B     BNE bra_D3FB    ; jmp
                                     .else
 ; 1st pointer is written by default
                                         LDA #< off_D24C_sfx_3_00
-                                        STA ram_00E0    ; lo
+                                        STA ram_00E0_t02_music_data    ; lo
                                         LDA #> off_D24C_sfx_3_00
-                                        STA ram_00E1    ; hi
+                                        STA ram_00E0_t02_music_data + $01    ; hi
 ; 2nd pointer is reserved
                                         LDA #< off_D254_sfx_3_01
-                                        STA ram_0019    ; backup lo
+                                        STA ram_0019_t01_bzk_music_data    ; backup lo
                                         LDA #> off_D254_sfx_3_01
-                                        STA ram_001A    ; backup hi
+                                        STA ram_0019_t01_bzk_music_data + $01    ; backup hi
                                         JMP loc_D3FD
                                     .endif
 
@@ -11127,14 +11215,14 @@ C - - - - - 0x0053F6 01:D3E6: D0 13     BNE bra_D3FB    ; jmp
                                     .else
 ; 1st pointer is written by default
                                         LDA #< off_D25C_sfx_4_00
-                                        STA ram_00E0    ; lo
+                                        STA ram_00E0_t02_music_data    ; lo
                                         LDA #> off_D25C_sfx_4_00
-                                        STA ram_00E1    ; hi
+                                        STA ram_00E0_t02_music_data + $01    ; hi
 ; 2nd pointer is reserved
                                         LDA #< off_D262_sfx_4_01
-                                        STA ram_0019    ; backup lo
+                                        STA ram_0019_t01_bzk_music_data    ; backup lo
                                         LDA #> off_D262_sfx_4_01
-                                        STA ram_001A    ; backup hi
+                                        STA ram_0019_t01_bzk_music_data + $01    ; backup hi
                                         JMP loc_D3FD
                                     .endif
 
@@ -11151,14 +11239,14 @@ C - - - - - 0x005403 01:D3F3: D0 06     BNE bra_D3FB    ; jmp
                                     .else
 ; 1st pointer is written by default
                                         LDA #< off_D220_sfx_1_00
-                                        STA ram_00E0    ; lo
+                                        STA ram_00E0_t02_music_data    ; lo
                                         LDA #> off_D220_sfx_1_00
-                                        STA ram_00E1    ; hi
+                                        STA ram_00E0_t02_music_data + $01    ; hi
 ; 2nd pointer is reserved
                                         LDA #< off_D236_sfx_1_01
-                                        STA ram_0019    ; backup lo
+                                        STA ram_0019_t01_bzk_music_data    ; backup lo
                                         LDA #> off_D236_sfx_1_01
-                                        STA ram_001A    ; backup hi
+                                        STA ram_0019_t01_bzk_music_data + $01    ; backup hi
                                         JMP loc_D3FD
                                     .endif
 
@@ -11172,18 +11260,18 @@ C - - - - - 0x005409 01:D3F9: A0 10     LDY #< off_D210_sfx_0_01
                                     .else
 ; 1st pointer is written by default
                                         LDA #< off_D200_sfx_0_00
-                                        STA ram_00E0    ; lo
+                                        STA ram_00E0_t02_music_data    ; lo
                                         LDA #> off_D200_sfx_0_00
-                                        STA ram_00E1    ; hi
+                                        STA ram_00E0_t02_music_data + $01    ; hi
 ; 2nd pointer is reserved
                                         LDA #< off_D210_sfx_0_01
-                                        STA ram_0019    ; backup lo
+                                        STA ram_0019_t01_bzk_music_data    ; backup lo
                                         LDA #> off_D210_sfx_0_01
-                                        STA ram_001A    ; backup hi
+                                        STA ram_0019_t01_bzk_music_data + $01    ; backup hi
                                         JMP loc_D3FD
                                     .endif
 bra_D3FB:
-C - - - - - 0x00540B 01:D3FB: 85 E0     STA ram_00E0    ; original lo
+C - - - - - 0x00540B 01:D3FB: 85 E0     STA ram_00E0_t02_music_data    ; original lo
 loc_D3FD:
 C - - - - - 0x00540D 01:D3FD: 86 ED     STX ram_sfx_index
 C - - - - - 0x00540F 01:D3FF: BD F0 06  LDA ram_sounds,X
@@ -11196,37 +11284,37 @@ bra_D404:
                                     .if con_bzk_hack <> $00
 ; use 2nd pointer instead
                                         PHA
-                                        LDA ram_0019    ; backup lo
-                                        STA ram_00E0    ; lo
-                                        LDA ram_001A    ; backup hi
-                                        STA ram_00E1    ; hi
+                                        LDA ram_0019_t01_bzk_music_data    ; backup lo
+                                        STA ram_00E0_t02_music_data    ; lo
+                                        LDA ram_0019_t01_bzk_music_data + $01    ; backup hi
+                                        STA ram_00E0_t02_music_data + $01    ; hi
                                         PLA
                                     .endif
 bra_D405:
 C - - - - - 0x005414 01:D404: 85 EF     STA ram_00EF_music
-C - - - - - 0x005416 01:D406: 85 E2     STA ram_00E2
+C - - - - - 0x005416 01:D406: 85 E2     STA ram_00E2_t05
                                     .if con_bzk_hack = $00
 C - - - - - 0x005418 01:D408: A0 D2     LDY #> tbl_D200
-C - - - - - 0x00541A 01:D40A: 84 E1     STY ram_00E1    ; original hi
+C - - - - - 0x00541A 01:D40A: 84 E1     STY ram_00E0_t02_music_data + $01    ; original hi
                                     .endif
 C - - - - - 0x00541C 01:D40C: 29 07     AND #$07
 C - - - - - 0x00541E 01:D40E: A8        TAY
 C - - - - - 0x00541F 01:D40F: B9 2D D4  LDA tbl_D42D,Y
 C - - - - - 0x005422 01:D412: A8        TAY
-C - - - - - 0x005423 01:D413: C6 E2     DEC ram_00E2
-C - - - - - 0x005425 01:D415: A5 E2     LDA ram_00E2
+C - - - - - 0x005423 01:D413: C6 E2     DEC ram_00E2_t05
+C - - - - - 0x005425 01:D415: A5 E2     LDA ram_00E2_t05
 C - - - - - 0x005427 01:D417: 29 F8     AND #$F8
-C - - - - - 0x005429 01:D419: 85 E2     STA ram_00E2
-C - - - - - 0x00542B 01:D41B: 06 E2     ASL ram_00E2
+C - - - - - 0x005429 01:D419: 85 E2     STA ram_00E2_t05
+C - - - - - 0x00542B 01:D41B: 06 E2     ASL ram_00E2_t05
 C - - - - - 0x00542D 01:D41D: 98        TYA
-C - - - - - 0x00542E 01:D41E: 05 E2     ORA ram_00E2
+C - - - - - 0x00542E 01:D41E: 05 E2     ORA ram_00E2_t05
 C - - - - - 0x005430 01:D420: A8        TAY
-C - - - - - 0x005431 01:D421: B1 E0     LDA (ram_00E0),Y
-C - - - - - 0x005433 01:D423: 85 E2     STA ram_00E2
+C - - - - - 0x005431 01:D421: B1 E0     LDA (ram_00E0_t02_music_data),Y
+C - - - - - 0x005433 01:D423: 85 E2     STA ram_00E2_t03_jmp
 C - - - - - 0x005435 01:D425: C8        INY
-C - - - - - 0x005436 01:D426: B1 E0     LDA (ram_00E0),Y
-C - - - - - 0x005438 01:D428: 85 E3     STA ram_00E3
-C - - - - - 0x00543A 01:D42A: 6C E2 00  JMP (ram_00E2)
+C - - - - - 0x005436 01:D426: B1 E0     LDA (ram_00E0_t02_music_data),Y
+C - - - - - 0x005438 01:D428: 85 E3     STA ram_00E2_t03_jmp + $01
+C - - - - - 0x00543A 01:D42A: 6C E2 00  JMP (ram_00E2_t03_jmp)
 
 
 
@@ -11246,7 +11334,7 @@ bra_D435_00:
 C - - - - - 0x005445 01:D435: BD F8 06  LDA ram_06F8_sounds,X
 C - - - - - 0x005448 01:D438: F0 04     BEQ bra_D43E_RTS
                                     .if con_bzk_hack = $00
-C - - - - - 0x00544A 01:D43A: 84 E0     STY ram_00E0
+C - - - - - 0x00544A 01:D43A: 84 E0     STY ram_00E0_t02_music_data
                                     .endif
 ; Z = 0
 C - - - - - 0x00544C 01:D43C: D0 C6     BNE bra_D404    ; jmp
@@ -11290,7 +11378,7 @@ C - - - - - 0x00547F 01:D46F: 60        RTS
 loc_D470:
 C D 2 - - - 0x005480 01:D470: A9 C0     LDA #$C0
 C - - - - - 0x005482 01:D472: 8D 17 40  STA $4017
-C - - - - - 0x005485 01:D475: 20 95 D2  JSR sub_D295
+C - - - - - 0x005485 01:D475: 20 95 D2  JSR sub_D295_random_generator
 C - - - - - 0x005488 01:D478: AD 8D 06  LDA ram_068D
 C - - - - - 0x00548B 01:D47B: C9 05     CMP #$05
 C - - - - - 0x00548D 01:D47D: F0 CA     BEQ bra_D449
@@ -11563,7 +11651,7 @@ ofs_004_D619_03:
 C - - J - - 0x005629 01:D619: A9 04     LDA #$04
 C - - - - - 0x00562B 01:D61B: A0 1C     LDY #$1C
 C - - - - - 0x00562D 01:D61D: 20 2B D5  JSR sub_D52B
-C - - - - - 0x005630 01:D620: A5 EB     LDA ram_00EB
+C - - - - - 0x005630 01:D620: A5 EB     LDA ram_random
 C - - - - - 0x005632 01:D622: 29 07     AND #$07
 C - - - - - 0x005634 01:D624: 8D 0E 40  STA $400E
 C - - - - - 0x005637 01:D627: 60        RTS
@@ -11593,7 +11681,7 @@ C - - - - - 0x00563F 01:D62F: 4C 28 D6  JMP loc_D628
 - - - - - - 0x005656 01:D646: F0 27     BEQ bra_D66F
 bra_D648:
 - - - - - - 0x005658 01:D648: EE DF 06  INC ram_06DF
-- - - - - - 0x00565B 01:D64B: A5 EB     LDA ram_00EB
+- - - - - - 0x00565B 01:D64B: A5 EB     LDA ram_random
 - - - - - - 0x00565D 01:D64D: 29 07     AND #$07
 - - - - - - 0x00565F 01:D64F: 09 80     ORA #$80
 - - - - - - 0x005661 01:D651: 8D 0E 40  STA $400E
@@ -11680,25 +11768,30 @@ C - - - - - 0x0056C9 01:D6B9: 60        RTS
 
 
 sub_D6BA:
-C - - - - - 0x0056CA 01:D6BA: 86 E0     STX ram_00E0
+; in
+    ; X = pointer hi
+; out
+    ; A = 
+C - - - - - 0x0056CA 01:D6BA: 86 E0     STX ram_00E0_t01_data
                                     .if con_bzk_hack = $00
 C - - - - - 0x0056CC 01:D6BC: A0 D3     LDY #$D3    ; > tbl_D390 or > tbl_D3B0
                                     .endif
-C - - - - - 0x0056CE 01:D6BE: 84 E1     STY ram_00E1
+C - - - - - 0x0056CE 01:D6BE: 84 E1     STY ram_00E0_t01_data + $01
 C - - - - - 0x0056D0 01:D6C0: AE DF 06  LDX ram_06DF
 C - - - - - 0x0056D3 01:D6C3: 8A        TXA
 C - - - - - 0x0056D4 01:D6C4: 4A        LSR
 C - - - - - 0x0056D5 01:D6C5: A8        TAY
-C - - - - - 0x0056D6 01:D6C6: B1 E0     LDA (ram_00E0),Y
-C - - - - - 0x0056D8 01:D6C8: 85 E4     STA ram_00E4
+C - - - - - 0x0056D6 01:D6C6: B1 E0     LDA (ram_00E0_t01_data),Y
+C - - - - - 0x0056D8 01:D6C8: 85 E4     STA ram_00E4_t01
 C - - - - - 0x0056DA 01:D6CA: 8A        TXA
 C - - - - - 0x0056DB 01:D6CB: 29 01     AND #$01
 C - - - - - 0x0056DD 01:D6CD: F0 05     BEQ bra_D6D4
-C - - - - - 0x0056DF 01:D6CF: A5 E4     LDA ram_00E4
+C - - - - - 0x0056DF 01:D6CF: A5 E4     LDA ram_00E4_t01
 C - - - - - 0x0056E1 01:D6D1: 29 0F     AND #$0F
 C - - - - - 0x0056E3 01:D6D3: 60        RTS
 bra_D6D4:
-C - - - - - 0x0056E4 01:D6D4: A5 E4     LDA ram_00E4
+C - - - - - 0x0056E4 01:D6D4: A5 E4     LDA ram_00E4_t01
+; / 10
 C - - - - - 0x0056E6 01:D6D6: 4A        LSR
 C - - - - - 0x0056E7 01:D6D7: 4A        LSR
 C - - - - - 0x0056E8 01:D6D8: 4A        LSR
@@ -12586,20 +12679,24 @@ C - - - - - 0x005B72 01:DB62: F0 1D     BEQ bra_DB81_RTS
 C - - - - - 0x005B74 01:DB64: BD 9A 06  LDA ram_069A,X
 C - - - - - 0x005B77 01:DB67: 29 E0     AND #$E0
 C - - - - - 0x005B79 01:DB69: F0 16     BEQ bra_DB81_RTS
-C - - - - - 0x005B7B 01:DB6B: 85 E0     STA ram_00E0
+C - - - - - 0x005B7B 01:DB6B: 85 E0     STA ram_00E0_t06
 C - - - - - 0x005B7D 01:DB6D: BD C3 06  LDA ram_06C3,X
 C - - - - - 0x005B80 01:DB70: C9 02     CMP #$02
 C - - - - - 0x005B82 01:DB72: F0 0A     BEQ bra_DB7E
 C - - - - - 0x005B84 01:DB74: A4 EE     LDY ram_00EE_channel_index
 C - - - - - 0x005B86 01:DB76: B9 80 06  LDA ram_0680,Y
-C - - - - - 0x005B89 01:DB79: 85 E1     STA ram_00E1
+C - - - - - 0x005B89 01:DB79: 85 E1     STA ram_00E1_t02
 C - - - - - 0x005B8B 01:DB7B: 20 BF DB  JSR sub_DBBF
 bra_DB7E:
 C - - - - - 0x005B8E 01:DB7E: FE D1 06  INC ram_06D1,X
 bra_DB81_RTS:
 C - - - - - 0x005B91 01:DB81: 60        RTS
-bra_DB82:
-C - - - - - 0x005B92 01:DB82: A5 E2     LDA ram_00E2
+
+
+
+bra_DB82_80:
+bra_DB82_C0:
+C - - - - - 0x005B92 01:DB82: A5 E2     LDA ram_00E2_t04
 C - - - - - 0x005B94 01:DB84: C9 31     CMP #$31
 C - - - - - 0x005B96 01:DB86: D0 02     BNE bra_DB8A
 C - - - - - 0x005B98 01:DB88: A9 27     LDA #$27
@@ -12616,8 +12713,11 @@ C - - - - - 0x005BA4 01:DB94: D0 05     BNE bra_DB9B
 bra_DB9B:
 C - - - - - 0x005BAB 01:DB9B: 68        PLA
 C - - - - - 0x005BAC 01:DB9C: 4C F9 DB  JMP loc_DBF9
-bra_DB9F:
-- - - - - - 0x005BAF 01:DB9F: A5 E2     LDA ram_00E2
+
+
+
+bra_DB9F_40:
+- - - - - - 0x005BAF 01:DB9F: A5 E2     LDA ram_00E2_t04
 - - - - - - 0x005BB1 01:DBA1: A8        TAY
 - - - - - - 0x005BB2 01:DBA2: C9 10     CMP #$10
 - - - - - - 0x005BB4 01:DBA4: B0 06     BCS bra_DBAC
@@ -12626,7 +12726,10 @@ bra_DB9F:
 bra_DBAC:
 - - - - - - 0x005BBC 01:DBAC: A9 F6     LDA #$F6
 - - - - - - 0x005BBE 01:DBAE: D0 4F     BNE bra_DBFF    ; jmp
-bra_DBB0:
+
+
+
+bra_DBB0_60:
 C - - - - - 0x005BC0 01:DBB0: BD C3 06  LDA ram_06C3,X
 C - - - - - 0x005BC3 01:DBB3: C9 4C     CMP #$4C
 C - - - - - 0x005BC5 01:DBB5: 90 04     BCC bra_DBBB
@@ -12640,22 +12743,23 @@ C - - - - - 0x005BCD 01:DBBD: D0 40     BNE bra_DBFF    ; jmp
 
 sub_DBBF:
 C - - - - - 0x005BCF 01:DBBF: BD D1 06  LDA ram_06D1,X
-C - - - - - 0x005BD2 01:DBC2: 85 E2     STA ram_00E2
-C - - - - - 0x005BD4 01:DBC4: A5 E0     LDA ram_00E0
+C - - - - - 0x005BD2 01:DBC2: 85 E2     STA ram_00E2_t04
+C - - - - - 0x005BD4 01:DBC4: A5 E0     LDA ram_00E0_t06
 C - - - - - 0x005BD6 01:DBC6: C9 20     CMP #$20
-C - - - - - 0x005BD8 01:DBC8: F0 14     BEQ bra_DBDE
+C - - - - - 0x005BD8 01:DBC8: F0 14     BEQ bra_DBDE_20
 C - - - - - 0x005BDA 01:DBCA: C9 A0     CMP #$A0
-C - - - - - 0x005BDC 01:DBCC: F0 1F     BEQ bra_DBED
+C - - - - - 0x005BDC 01:DBCC: F0 1F     BEQ bra_DBED_A0
 C - - - - - 0x005BDE 01:DBCE: C9 60     CMP #$60
-C - - - - - 0x005BE0 01:DBD0: F0 DE     BEQ bra_DBB0
+C - - - - - 0x005BE0 01:DBD0: F0 DE     BEQ bra_DBB0_60
 C - - - - - 0x005BE2 01:DBD2: C9 40     CMP #$40
-C - - - - - 0x005BE4 01:DBD4: F0 C9     BEQ bra_DB9F
+C - - - - - 0x005BE4 01:DBD4: F0 C9     BEQ bra_DB9F_40
 C - - - - - 0x005BE6 01:DBD6: C9 80     CMP #$80
-C - - - - - 0x005BE8 01:DBD8: F0 A8     BEQ bra_DB82
+C - - - - - 0x005BE8 01:DBD8: F0 A8     BEQ bra_DB82_80
 - - - - - - 0x005BEA 01:DBDA: C9 C0     CMP #$C0
-- - - - - - 0x005BEC 01:DBDC: F0 A4     BEQ bra_DB82
-bra_DBDE:
-C - - - - - 0x005BEE 01:DBDE: A5 E2     LDA ram_00E2
+- - - - - - 0x005BEC 01:DBDC: F0 A4     BEQ bra_DB82_C0
+; if 00/E0?
+bra_DBDE_20:
+C - - - - - 0x005BEE 01:DBDE: A5 E2     LDA ram_00E2_t04
 C - - - - - 0x005BF0 01:DBE0: C9 0A     CMP #$0A
 C - - - - - 0x005BF2 01:DBE2: D0 02     BNE bra_DBE6
 C - - - - - 0x005BF4 01:DBE4: A9 00     LDA #$00
@@ -12663,8 +12767,11 @@ bra_DBE6:
 C - - - - - 0x005BF6 01:DBE6: A8        TAY
 C - - - - - 0x005BF7 01:DBE7: B9 62 DC  LDA tbl_DC62,Y
 C - - - - - 0x005BFA 01:DBEA: 4C F9 DB  JMP loc_DBF9
-bra_DBED:
-C - - - - - 0x005BFD 01:DBED: A5 E2     LDA ram_00E2
+
+
+
+bra_DBED_A0:
+C - - - - - 0x005BFD 01:DBED: A5 E2     LDA ram_00E2_t04
 C - - - - - 0x005BFF 01:DBEF: C9 2B     CMP #$2B
 C - - - - - 0x005C01 01:DBF1: D0 02     BNE bra_DBF5
 C - - - - - 0x005C03 01:DBF3: A9 21     LDA #$21
@@ -12684,7 +12791,7 @@ C - - - - - 0x005C10 01:DC00: BD C8 06  LDA ram_06C8,X
 C - - - - - 0x005C13 01:DC03: D0 0A     BNE bra_DC0F
 C - - - - - 0x005C15 01:DC05: 68        PLA
 C - - - - - 0x005C16 01:DC06: 18        CLC
-C - - - - - 0x005C17 01:DC07: 65 E1     ADC ram_00E1
+C - - - - - 0x005C17 01:DC07: 65 E1     ADC ram_00E1_t02
 C - - - - - 0x005C19 01:DC09: A4 EE     LDY ram_00EE_channel_index
 C - - - - - 0x005C1B 01:DC0B: 99 02 40  STA $4002,Y     ; 4002 4006 400A
 C - - - - - 0x005C1E 01:DC0E: 60        RTS
@@ -12849,7 +12956,7 @@ C - - - - - 0x005CBA 01:DCAA: 8D B6 06  STA ram_06B6
 C - - - - - 0x005CBD 01:DCAD: 8D B7 06  STA ram_06B7
 C - - - - - 0x005CC0 01:DCB0: A9 00     LDA #$00
 C - - - - - 0x005CC2 01:DCB2: 8D 7F 06  STA ram_067F
-C - - - - - 0x005CC5 01:DCB5: 85 EA     STA ram_00EA
+C - - - - - 0x005CC5 01:DCB5: 85 EA     STA ram_00EA_useless
 C - - - - - 0x005CC7 01:DCB7: A0 08     LDY #$08
 bra_DCB9_loop:
 C - - - - - 0x005CC9 01:DCB9: 99 A7 06  STA ram_06A7,Y
@@ -12858,16 +12965,16 @@ C - - - - - 0x005CCD 01:DCBD: D0 FA     BNE bra_DCB9_loop
 C - - - - - 0x005CCF 01:DCBF: AA        TAX ; 00
 bra_DCC0_loop:
 C - - - - - 0x005CD0 01:DCC0: BD 92 06  LDA ram_0692,X
-C - - - - - 0x005CD3 01:DCC3: 85 E6     STA ram_00E6
+C - - - - - 0x005CD3 01:DCC3: 85 E6     STA ram_00E6_t02_data
 C - - - - - 0x005CD5 01:DCC5: BD 93 06  LDA ram_0693,X
 C - - - - - 0x005CD8 01:DCC8: C9 FF     CMP #$FF
 C - - - - - 0x005CDA 01:DCCA: F0 B0     BEQ bra_DC7C_FF
-C - - - - - 0x005CDC 01:DCCC: 85 E7     STA ram_00E7
+C - - - - - 0x005CDC 01:DCCC: 85 E7     STA ram_00E6_t02_data + $01
 C - - - - - 0x005CDE 01:DCCE: AC A8 06  LDY ram_06A8
-C - - - - - 0x005CE1 01:DCD1: B1 E6     LDA (ram_00E6),Y    ; 006300 00631A 006330 006342 006908 00691C 006930 006944 006DAE 006DBC 006DC8 006DD2 006FF6 007002 00700E 00701A 00717C 007184 007194 00719C 00748B 00749B 0074A9 0074B3 0075FB 007601 007605 007609 007678 007684 007694 0076A2 0076AE 007892 0078AA 0078B2 0078CA 0078D2 0078EA 0078F2 00790A 007A5F 007A69 007A71
+C - - - - - 0x005CE1 01:DCD1: B1 E6     LDA (ram_00E6_t02_data),Y    ; 006300 00631A 006330 006342 006908 00691C 006930 006944 006DAE 006DBC 006DC8 006DD2 006FF6 007002 00700E 00701A 00717C 007184 007194 00719C 00748B 00749B 0074A9 0074B3 0075FB 007601 007605 007609 007678 007684 007694 0076A2 0076AE 007892 0078AA 0078B2 0078CA 0078D2 0078EA 0078F2 00790A 007A5F 007A69 007A71
 C - - - - - 0x005CE3 01:DCD3: 9D A0 06  STA ram_06A0,X
 C - - - - - 0x005CE6 01:DCD6: C8        INY
-C - - - - - 0x005CE7 01:DCD7: B1 E6     LDA (ram_00E6),Y    ; 006301 00631B 006331 006343 006909 00691D 006931 006945 006DAF 006DBD 006DC9 006DD3 006FF7 007003 00700F 00701B 00717D 007185 007195 00719D 00748C 00749C 0074AA 0074B4 0075FC 007602 007606 00760A 007679 007685 007695 0076A3 0076AF 007893 0078AB 0078B3 0078CB 0078D3 0078EB 0078F3 00790B 007A60 007A6A 007A72
+C - - - - - 0x005CE7 01:DCD7: B1 E6     LDA (ram_00E6_t02_data),Y    ; 006301 00631B 006331 006343 006909 00691D 006931 006945 006DAF 006DBD 006DC9 006DD3 006FF7 007003 00700F 00701B 00717D 007185 007195 00719D 00748C 00749C 0074AA 0074B4 0075FC 007602 007606 00760A 007679 007685 007695 0076A3 0076AF 007893 0078AB 0078B3 0078CB 0078D3 0078EB 0078F3 00790B 007A60 007A6A 007A72
 bra_DCD9:
 C - - - - - 0x005CE9 01:DCD9: 9D A1 06  STA ram_06A1,X
 C - - - - - 0x005CEC 01:DCDC: E8        INX
@@ -12911,45 +13018,46 @@ C - - - - - 0x005D28 01:DD18: B0 FA     BCS bra_DD14_RTS
 C - - - - - 0x005D2A 01:DD1A: BD 9A 06  LDA ram_069A,X
 C - - - - - 0x005D2D 01:DD1D: 29 1F     AND #$1F
 C - - - - - 0x005D2F 01:DD1F: F0 59     BEQ bra_DD7A_RTS
-C - - - - - 0x005D31 01:DD21: 85 E1     STA ram_00E1
+C - - - - - 0x005D31 01:DD21: 85 E1     STA ram_00E1_t03
 C - - - - - 0x005D33 01:DD23: BD C3 06  LDA ram_06C3,X
 C - - - - - 0x005D36 01:DD26: C9 02     CMP #$02
 C - - - - - 0x005D38 01:DD28: F0 5A     BEQ bra_DD84
 C - - - - - 0x005D3A 01:DD2A: A0 00     LDY #$00
 bra_DD2C_loop:
-C - - - - - 0x005D3C 01:DD2C: C6 E1     DEC ram_00E1
+C - - - - - 0x005D3C 01:DD2C: C6 E1     DEC ram_00E1_t03
 C - - - - - 0x005D3E 01:DD2E: F0 04     BEQ bra_DD34
 C - - - - - 0x005D40 01:DD30: C8        INY
 C - - - - - 0x005D41 01:DD31: C8        INY
-C - - - - - 0x005D42 01:DD32: D0 F8     BNE bra_DD2C_loop
+C - - - - - 0x005D42 01:DD32: D0 F8     BNE bra_DD2C_loop   ; jmp
 bra_DD34:
 C - - - - - 0x005D44 01:DD34: B9 18 E0  LDA tbl_E018,Y
-C - - - - - 0x005D47 01:DD37: 85 E2     STA ram_00E2
+C - - - - - 0x005D47 01:DD37: 85 E2     STA ram_00E2_t02_data
 C - - - - - 0x005D49 01:DD39: B9 19 E0  LDA tbl_E018 + $01,Y
-C - - - - - 0x005D4C 01:DD3C: 85 E3     STA ram_00E3
+C - - - - - 0x005D4C 01:DD3C: 85 E3     STA ram_00E2_t02_data + $01
 C - - - - - 0x005D4E 01:DD3E: BD CD 06  LDA ram_06CD,X
 C - - - - - 0x005D51 01:DD41: 4A        LSR
 C - - - - - 0x005D52 01:DD42: A8        TAY
-C - - - - - 0x005D53 01:DD43: B1 E2     LDA (ram_00E2),Y    ; 006066 006067 006068 006069 00606A 00606B 00606C 00606D 00606E 00606F 006070 006071 006072 006073 006074 006075 006076 006077 006078 006079 00607A 00607B 00607C 00607D 00607E 00607F 006080 006081 006082 006083 006084 006085 006086 006087 00608A 00608B 00608C 00608D 00608E 00608F 006090 006091 006092 006093 006094 006095 006096 006097 006098 006099 00609A 00609B 00609C 00609D 00609E 00609F 0060A0 0060A1 0060A2 0060A3 0060A4 0060A5 0060A6 0060A7 0060A8 0060A9 0060AA 0060AB 0060AC 0060AD 0060AE 0060AF 0060B0 0060B1 0060B2 0060B3 0060B4 0060B5 0060B6 0060B7 0060B8 0060B9 0060BA 0060BB 0060BC 0060BD 0060BE 0060BF 0060C0 0060C1 0060C2 0060C3 0060C4 0060C5 0060C6 0060C7 0060C8 0060C9 0060CA 0060CB 0060CC 0060CD 0060CE 0060CF 0060D0 0060D1 0060D2 0060D3 0060D4 0060D5 0060D6 0060D7 0060D8 0060D9 0060DA 0060DB 0060DC 0060DD 0060DE 0060DF 0060E0 0060E1 0060E2 0060E3 0060E4 0060E5 0060E6 0060E7 0060E8 0060E9 0060EA 0060EB 0060EC 0060ED 0060EE 0060EF 0060F0 0060F1 0060F2 0060F3 0060F4 0060F5 0060F6 0060F7 0060F8 0060F9 0060FA 0060FB 0060FC 0060FD 0060FE 0060FF 006100 006101 006102 006103 006104 006105 00610A 00610B 00610C 00610D 00610E 00610F 006110 006111 006112 006113 006114 006115 006116 006117 006118 006119 00611A 00611B 00611C 00611D 00611E 00611F 006120 006121 006128 006129 00612A 00612B 00612C 00612D 00612E 00612F 006130 006131 006132 006133 006134 006135 006136 006137 006138 006139 00613A 00613B 006143 006144 006145 006146 006147 006148 006149 00614A 00614B 00614C 00614D 00614E 00615F 006160 006161 006162 006163 006164 006165 006166 006167 006168 006169 00616A 00616B 00616C 00616D 00616E 00616F 006170 006171 006172 006173 006174 006175 006176 006177 006178 006179
-C - - - - - 0x005D55 01:DD45: 85 E4     STA ram_00E4
+C - - - - - 0x005D53 01:DD43: B1 E2     LDA (ram_00E2_t02_data),Y
+C - - - - - 0x005D55 01:DD45: 85 E4     STA ram_00E4_t02
 C - - - - - 0x005D57 01:DD47: C9 FF     CMP #$FF
-C - - - - - 0x005D59 01:DD49: F0 30     BEQ bra_DD7B
+C - - - - - 0x005D59 01:DD49: F0 30     BEQ bra_DD7B_FF
 C - - - - - 0x005D5B 01:DD4B: C9 F0     CMP #$F0
 C - - - - - 0x005D5D 01:DD4D: F0 31     BEQ bra_DD80
 C - - - - - 0x005D5F 01:DD4F: BD CD 06  LDA ram_06CD,X
 C - - - - - 0x005D62 01:DD52: 29 01     AND #$01
 C - - - - - 0x005D64 01:DD54: D0 08     BNE bra_DD5E
-C - - - - - 0x005D66 01:DD56: 46 E4     LSR ram_00E4
-C - - - - - 0x005D68 01:DD58: 46 E4     LSR ram_00E4
-C - - - - - 0x005D6A 01:DD5A: 46 E4     LSR ram_00E4
-C - - - - - 0x005D6C 01:DD5C: 46 E4     LSR ram_00E4
+; / 10
+C - - - - - 0x005D66 01:DD56: 46 E4     LSR ram_00E4_t02
+C - - - - - 0x005D68 01:DD58: 46 E4     LSR ram_00E4_t02
+C - - - - - 0x005D6A 01:DD5A: 46 E4     LSR ram_00E4_t02
+C - - - - - 0x005D6C 01:DD5C: 46 E4     LSR ram_00E4_t02
 bra_DD5E:
-C - - - - - 0x005D6E 01:DD5E: A5 E4     LDA ram_00E4
+C - - - - - 0x005D6E 01:DD5E: A5 E4     LDA ram_00E4_t02
 C - - - - - 0x005D70 01:DD60: 29 0F     AND #$0F
-C - - - - - 0x005D72 01:DD62: 85 E0     STA ram_00E0
+C - - - - - 0x005D72 01:DD62: 85 E0     STA ram_00E0_t05
 C - - - - - 0x005D74 01:DD64: BD 9D 06  LDA ram_069D,X
 C - - - - - 0x005D77 01:DD67: 29 F0     AND #$F0
-C - - - - - 0x005D79 01:DD69: 05 E0     ORA ram_00E0
+C - - - - - 0x005D79 01:DD69: 05 E0     ORA ram_00E0_t05
 C - - - - - 0x005D7B 01:DD6B: A8        TAY
 bra_DD6C:
 C - - - - - 0x005D7C 01:DD6C: FE CD 06  INC ram_06CD,X
@@ -12961,7 +13069,7 @@ C - - - - - 0x005D85 01:DD75: A4 EE     LDY ram_00EE_channel_index
 C - - - - - 0x005D87 01:DD77: 99 00 40  STA $4000,Y     ; 4000 4004
 bra_DD7A_RTS:
 C - - - - - 0x005D8A 01:DD7A: 60        RTS
-bra_DD7B:
+bra_DD7B_FF:
 C - - - - - 0x005D8B 01:DD7B: BC 9D 06  LDY ram_069D,X
 C - - - - - 0x005D8E 01:DD7E: D0 EF     BNE bra_DD6F
 bra_DD80:
@@ -12975,15 +13083,15 @@ C - - - - - 0x005D96 01:DD86: D0 E4     BNE bra_DD6C    ; jmp
 
 bra_DD88_FF:
 C - - - - - 0x005D98 01:DD88: C8        INY
-C - - - - - 0x005D99 01:DD89: B1 E6     LDA (ram_00E6),Y    ; 00691A 00692E 006942 006956 006DBA 006DC6 006DD0 006DDA 007000 00700C 007018 007024 007182 007192 00719A 0071A2 0076AC 0076B8 0078B0 0078D0 0078F0 007910 007A67 007A6F 007A77
+C - - - - - 0x005D99 01:DD89: B1 E6     LDA (ram_00E6_t01_data),Y    ; 00691A 00692E 006942 006956 006DBA 006DC6 006DD0 006DDA 007000 00700C 007018 007024 007182 007192 00719A 0071A2 0076AC 0076B8 0078B0 0078D0 0078F0 007910 007A67 007A6F 007A77
 C - - - - - 0x005D9B 01:DD8B: 9D 92 06  STA ram_0692,X
 C - - - - - 0x005D9E 01:DD8E: C8        INY
-C - - - - - 0x005D9F 01:DD8F: B1 E6     LDA (ram_00E6),Y    ; 00691B 00692F 006943 006957 006DBB 006DC7 006DD1 006DDB 007001 00700D 007019 007025 007183 007193 00719B 0071A3 0076AD 0076B9 0078B1 0078D1 0078F1 007911 007A68 007A70 007A78
+C - - - - - 0x005D9F 01:DD8F: B1 E6     LDA (ram_00E6_t01_data),Y    ; 00691B 00692F 006943 006957 006DBB 006DC7 006DD1 006DDB 007001 00700D 007019 007025 007183 007193 00719B 0071A3 0076AD 0076B9 0078B1 0078D1 0078F1 007911 007A68 007A70 007A78
 C - - - - - 0x005DA1 01:DD91: 9D 93 06  STA ram_0693,X
 C - - - - - 0x005DA4 01:DD94: BD 92 06  LDA ram_0692,X
-C - - - - - 0x005DA7 01:DD97: 85 E6     STA ram_00E6
+C - - - - - 0x005DA7 01:DD97: 85 E6     STA ram_00E6_t01_data
 C - - - - - 0x005DA9 01:DD99: BD 93 06  LDA ram_0693,X
-C - - - - - 0x005DAC 01:DD9C: 85 E7     STA ram_00E7
+C - - - - - 0x005DAC 01:DD9C: 85 E7     STA ram_00E6_t01_data + $01
 C - - - - - 0x005DAE 01:DD9E: 8A        TXA
 C - - - - - 0x005DAF 01:DD9F: 4A        LSR
 C - - - - - 0x005DB0 01:DDA0: AA        TAX
@@ -13006,9 +13114,9 @@ C D 2 - - - 0x005DBE 01:DDAE: 8A        TXA
 C - - - - - 0x005DBF 01:DDAF: 0A        ASL
 C - - - - - 0x005DC0 01:DDB0: AA        TAX
 C - - - - - 0x005DC1 01:DDB1: BD 92 06  LDA ram_0692,X
-C - - - - - 0x005DC4 01:DDB4: 85 E6     STA ram_00E6
+C - - - - - 0x005DC4 01:DDB4: 85 E6     STA ram_00E6_t01_data
 C - - - - - 0x005DC6 01:DDB6: BD 93 06  LDA ram_0693,X
-C - - - - - 0x005DC9 01:DDB9: 85 E7     STA ram_00E7
+C - - - - - 0x005DC9 01:DDB9: 85 E7     STA ram_00E6_t01_data + $01
 C - - - - - 0x005DCB 01:DDBB: 8A        TXA
 C - - - - - 0x005DCC 01:DDBC: 4A        LSR
 C - - - - - 0x005DCD 01:DDBD: AA        TAX
@@ -13019,10 +13127,10 @@ loc_DDC7:
 C D 2 - - - 0x005DD7 01:DDC7: 8A        TXA
 C - - - - - 0x005DD8 01:DDC8: 0A        ASL
 C - - - - - 0x005DD9 01:DDC9: AA        TAX
-C - - - - - 0x005DDA 01:DDCA: B1 E6     LDA (ram_00E6),Y    ; 006302 006304 006306 006308 00630A 00631C 00631E 006320 006322 006324 006332 006334 006336 006338 006344 006346 006348 00634A 00634C 00690A 00690C 00690E 006910 006912 006914 006916 006918 00691E 006920 006922 006924 006926 006928 00692A 00692C 006932 006934 006936 006938 00693A 00693C 00693E 006940 006946 006948 00694A 00694C 00694E 006950 006952 006954 006DB0 006DB2 006DB4 006DB6 006DB8 006DBE 006DC0 006DC2 006DC4 006DCA 006DCC 006DCE 006DD4 006DD6 006DD8 006FF8 006FFA 006FFC 006FFE 007004 007006 007008 00700A 007010 007012 007014 007016 00701C 00701E 007020 007022 00717E 007180 007186 007188 00718A 00718C 00718E 007190 007196 007198 00719E 0071A0 00748D 00749D 0074AB 0074B5 0075FD 0075FF 007603 007605 007607 007609 00760B 007686 007688 00768A 00768C 00768E 007690 007692 007696 007698 00769A 00769C 00769E 0076A0 0076A2 0076A4 0076A6 0076A8 0076AA 0076B0 0076B2 0076B4 0076B6 007894 007896 007898 00789A 00789C 00789E 0078A0 0078A2 0078A4 0078A6 0078A8 0078AA 0078AC 0078AE 0078B4 0078B6 0078B8 0078BA 0078BC 0078BE 0078C0 0078C2 0078C4 0078C6 0078C8 0078CA 0078CC 0078CE 0078D4 0078D6 0078D8 0078DA 0078DC 0078DE 0078E0 0078E2 0078E4 0078E6 0078E8 0078EA 0078EC 0078EE 0078F4 0078F6 0078F8 0078FA 0078FC 0078FE 007900 007902 007904 007906 007908 00790A 00790C 00790E 007A61 007A63 007A65 007A6B 007A6D 007A73 007A75
+C - - - - - 0x005DDA 01:DDCA: B1 E6     LDA (ram_00E6_t01_data),Y    ; 006302 006304 006306 006308 00630A 00631C 00631E 006320 006322 006324 006332 006334 006336 006338 006344 006346 006348 00634A 00634C 00690A 00690C 00690E 006910 006912 006914 006916 006918 00691E 006920 006922 006924 006926 006928 00692A 00692C 006932 006934 006936 006938 00693A 00693C 00693E 006940 006946 006948 00694A 00694C 00694E 006950 006952 006954 006DB0 006DB2 006DB4 006DB6 006DB8 006DBE 006DC0 006DC2 006DC4 006DCA 006DCC 006DCE 006DD4 006DD6 006DD8 006FF8 006FFA 006FFC 006FFE 007004 007006 007008 00700A 007010 007012 007014 007016 00701C 00701E 007020 007022 00717E 007180 007186 007188 00718A 00718C 00718E 007190 007196 007198 00719E 0071A0 00748D 00749D 0074AB 0074B5 0075FD 0075FF 007603 007605 007607 007609 00760B 007686 007688 00768A 00768C 00768E 007690 007692 007696 007698 00769A 00769C 00769E 0076A0 0076A2 0076A4 0076A6 0076A8 0076AA 0076B0 0076B2 0076B4 0076B6 007894 007896 007898 00789A 00789C 00789E 0078A0 0078A2 0078A4 0078A6 0078A8 0078AA 0078AC 0078AE 0078B4 0078B6 0078B8 0078BA 0078BC 0078BE 0078C0 0078C2 0078C4 0078C6 0078C8 0078CA 0078CC 0078CE 0078D4 0078D6 0078D8 0078DA 0078DC 0078DE 0078E0 0078E2 0078E4 0078E6 0078E8 0078EA 0078EC 0078EE 0078F4 0078F6 0078F8 0078FA 0078FC 0078FE 007900 007902 007904 007906 007908 00790A 00790C 00790E 007A61 007A63 007A65 007A6B 007A6D 007A73 007A75
 C - - - - - 0x005DDC 01:DDCC: 9D A0 06  STA ram_06A0,X
 C - - - - - 0x005DDF 01:DDCF: C8        INY
-C - - - - - 0x005DE0 01:DDD0: B1 E6     LDA (ram_00E6),Y    ; 006303 006305 006307 006309 00630B 00631D 00631F 006321 006323 006325 006333 006335 006337 006339 006345 006347 006349 00634B 00634D 00690B 00690D 00690F 006911 006913 006915 006917 006919 00691F 006921 006923 006925 006927 006929 00692B 00692D 006933 006935 006937 006939 00693B 00693D 00693F 006941 006947 006949 00694B 00694D 00694F 006951 006953 006955 006DB1 006DB3 006DB5 006DB7 006DB9 006DBF 006DC1 006DC3 006DC5 006DCB 006DCD 006DCF 006DD5 006DD7 006DD9 006FF9 006FFB 006FFD 006FFF 007005 007007 007009 00700B 007011 007013 007015 007017 00701D 00701F 007021 007023 00717F 007181 007187 007189 00718B 00718D 00718F 007191 007197 007199 00719F 0071A1 00748E 00749E 0074AC 0074B6 0075FE 007600 007604 007606 007608 00760A 00760C 007687 007689 00768B 00768D 00768F 007691 007693 007697 007699 00769B 00769D 00769F 0076A1 0076A3 0076A5 0076A7 0076A9 0076AB 0076B1 0076B3 0076B5 0076B7 007895 007897 007899 00789B 00789D 00789F 0078A1 0078A3 0078A5 0078A7 0078A9 0078AB 0078AD 0078AF 0078B5 0078B7 0078B9 0078BB 0078BD 0078BF 0078C1 0078C3 0078C5 0078C7 0078C9 0078CB 0078CD 0078CF 0078D5 0078D7 0078D9 0078DB 0078DD 0078DF 0078E1 0078E3 0078E5 0078E7 0078E9 0078EB 0078ED 0078EF 0078F5 0078F7 0078F9 0078FB 0078FD 0078FF 007901 007903 007905 007907 007909 00790B 00790D 00790F 007A62 007A64 007A66 007A6C 007A6E 007A74 007A76
+C - - - - - 0x005DE0 01:DDD0: B1 E6     LDA (ram_00E6_t01_data),Y    ; 006303 006305 006307 006309 00630B 00631D 00631F 006321 006323 006325 006333 006335 006337 006339 006345 006347 006349 00634B 00634D 00690B 00690D 00690F 006911 006913 006915 006917 006919 00691F 006921 006923 006925 006927 006929 00692B 00692D 006933 006935 006937 006939 00693B 00693D 00693F 006941 006947 006949 00694B 00694D 00694F 006951 006953 006955 006DB1 006DB3 006DB5 006DB7 006DB9 006DBF 006DC1 006DC3 006DC5 006DCB 006DCD 006DCF 006DD5 006DD7 006DD9 006FF9 006FFB 006FFD 006FFF 007005 007007 007009 00700B 007011 007013 007015 007017 00701D 00701F 007021 007023 00717F 007181 007187 007189 00718B 00718D 00718F 007191 007197 007199 00719F 0071A1 00748E 00749E 0074AC 0074B6 0075FE 007600 007604 007606 007608 00760A 00760C 007687 007689 00768B 00768D 00768F 007691 007693 007697 007699 00769B 00769D 00769F 0076A1 0076A3 0076A5 0076A7 0076A9 0076AB 0076B1 0076B3 0076B5 0076B7 007895 007897 007899 00789B 00789D 00789F 0078A1 0078A3 0078A5 0078A7 0078A9 0078AB 0078AD 0078AF 0078B5 0078B7 0078B9 0078BB 0078BD 0078BF 0078C1 0078C3 0078C5 0078C7 0078C9 0078CB 0078CD 0078CF 0078D5 0078D7 0078D9 0078DB 0078DD 0078DF 0078E1 0078E3 0078E5 0078E7 0078E9 0078EB 0078ED 0078EF 0078F5 0078F7 0078F9 0078FB 0078FD 0078FF 007901 007903 007905 007907 007909 00790B 00790D 00790F 007A62 007A64 007A66 007A6C 007A6E 007A74 007A76
 C - - - - - 0x005DE2 01:DDD2: 9D A1 06  STA ram_06A1,X
 ; bzk optimize, BEQ without CMP 00
 C - - - - - 0x005DE5 01:DDD5: C9 00     CMP #$00
@@ -13060,7 +13168,7 @@ bra_DDFC_loop:
 C - - - - - 0x005E0C 01:DDFC: 8A        TXA
 C - - - - - 0x005E0D 01:DDFD: 4A        LSR
 C - - - - - 0x005E0E 01:DDFE: AA        TAX
-loc_DDFF:
+loc_DDFF_loop:
 C D 2 - - - 0x005E0F 01:DDFF: E8        INX
 C - - - - - 0x005E10 01:DE00: 8A        TXA
 C - - - - - 0x005E11 01:DE01: C9 04     CMP #$04
@@ -13074,9 +13182,9 @@ C - - - - - 0x005E1C 01:DE0C: 8A        TXA
 C - - - - - 0x005E1D 01:DE0D: 0A        ASL
 C - - - - - 0x005E1E 01:DE0E: AA        TAX
 C - - - - - 0x005E1F 01:DE0F: BD A0 06  LDA ram_06A0,X
-C - - - - - 0x005E22 01:DE12: 85 E6     STA ram_00E6
+C - - - - - 0x005E22 01:DE12: 85 E6     STA ram_00E6_t03_data
 C - - - - - 0x005E24 01:DE14: BD A1 06  LDA ram_06A1,X
-C - - - - - 0x005E27 01:DE17: 85 E7     STA ram_00E7
+C - - - - - 0x005E27 01:DE17: 85 E7     STA ram_00E6_t03_data + $01
 C - - - - - 0x005E29 01:DE19: BD A1 06  LDA ram_06A1,X
 C - - - - - 0x005E2C 01:DE1C: C9 FF     CMP #$FF
 C - - - - - 0x005E2E 01:DE1E: F0 DC     BEQ bra_DDFC_loop
@@ -13124,7 +13232,7 @@ C - - - - - 0x005E7E 01:DE6E: 4C 30 DE  JMP loc_DE30_continue
 bra_DE71:
 C - - - - - 0x005E81 01:DE71: 20 15 DD  JSR sub_DD15
 C - - - - - 0x005E84 01:DE74: 20 5F DB  JSR sub_DB5F
-C - - - - - 0x005E87 01:DE77: 4C FF DD  JMP loc_DDFF
+C - - - - - 0x005E87 01:DE77: 4C FF DD  JMP loc_DDFF_loop
 
 
 
@@ -13200,10 +13308,10 @@ C - - - - - 0x005EE8 01:DED8: F0 24     BEQ bra_DEFE
 C - - - - - 0x005EEA 01:DEDA: AD 90 06  LDA ram_0690
 C - - - - - 0x005EED 01:DEDD: 10 0B     BPL bra_DEEA
 C - - - - - 0x005EEF 01:DEDF: 29 7F     AND #$7F
-C - - - - - 0x005EF1 01:DEE1: 85 E3     STA ram_00E3
+C - - - - - 0x005EF1 01:DEE1: 85 E3     STA ram_00E3_t01
 C - - - - - 0x005EF3 01:DEE3: 98        TYA
 C - - - - - 0x005EF4 01:DEE4: 18        CLC
-C - - - - - 0x005EF5 01:DEE5: E5 E3     SBC ram_00E3
+C - - - - - 0x005EF5 01:DEE5: E5 E3     SBC ram_00E3_t01
 C - - - - - 0x005EF7 01:DEE7: 4C EF DE  JMP loc_DEEF
 bra_DEEA:
 C - - - - - 0x005EFA 01:DEEA: 98        TYA
@@ -13223,16 +13331,16 @@ C - - - - - 0x005F10 01:DF00: AA        TAX
 C - - - - - 0x005F11 01:DF01: 98        TYA
 C - - - - - 0x005F12 01:DF02: D0 0F     BNE bra_DF13
 C - - - - - 0x005F14 01:DF04: A9 00     LDA #$00
-C - - - - - 0x005F16 01:DF06: 85 E0     STA ram_00E0
+C - - - - - 0x005F16 01:DF06: 85 E0     STA ram_00E0_t04
 C - - - - - 0x005F18 01:DF08: 8A        TXA
 C - - - - - 0x005F19 01:DF09: C9 02     CMP #$02
 C - - - - - 0x005F1B 01:DF0B: F0 0B     BEQ bra_DF18
 C - - - - - 0x005F1D 01:DF0D: A9 10     LDA #$10
-C - - - - - 0x005F1F 01:DF0F: 85 E0     STA ram_00E0
+C - - - - - 0x005F1F 01:DF0F: 85 E0     STA ram_00E0_t04
 C - - - - - 0x005F21 01:DF11: D0 05     BNE bra_DF18    ; jmp
 bra_DF13:
 C - - - - - 0x005F23 01:DF13: BD 9D 06  LDA ram_069D,X
-C - - - - - 0x005F26 01:DF16: 85 E0     STA ram_00E0
+C - - - - - 0x005F26 01:DF16: 85 E0     STA ram_00E0_t04
 bra_DF18:
 C - - - - - 0x005F28 01:DF18: 8A        TXA
 C - - - - - 0x005F29 01:DF19: DE C8 06  DEC ram_06C8,X
@@ -13246,14 +13354,14 @@ C - - - - - 0x005F39 01:DF29: F0 13     BEQ bra_DF3E
 C - - - - - 0x005F3B 01:DF2B: BD 9A 06  LDA ram_069A,X
 C - - - - - 0x005F3E 01:DF2E: 29 1F     AND #$1F
 C - - - - - 0x005F40 01:DF30: F0 0C     BEQ bra_DF3E
-C - - - - - 0x005F42 01:DF32: A5 E0     LDA ram_00E0
+C - - - - - 0x005F42 01:DF32: A5 E0     LDA ram_00E0_t04
 C - - - - - 0x005F44 01:DF34: C9 10     CMP #$10
 C - - - - - 0x005F46 01:DF36: F0 08     BEQ bra_DF40
 C - - - - - 0x005F48 01:DF38: 29 F0     AND #$F0
 C - - - - - 0x005F4A 01:DF3A: 09 00     ORA #$00
 C - - - - - 0x005F4C 01:DF3C: D0 02     BNE bra_DF40
 bra_DF3E:
-C - - - - - 0x005F4E 01:DF3E: A5 E0     LDA ram_00E0
+C - - - - - 0x005F4E 01:DF3E: A5 E0     LDA ram_00E0_t04
 bra_DF40:
 C - - - - - 0x005F50 01:DF40: 99 00 40  STA $4000,Y     ; 4000 4004 4008
 C - - - - - 0x005F53 01:DF43: BD C0 06  LDA ram_06C0,X
@@ -13265,7 +13373,7 @@ C - - - - - 0x005F62 01:DF52: 99 03 40  STA $4003,Y     ; 4003 4007 400B
 loc_DF55:
 C D 2 - - - 0x005F65 01:DF55: BD B8 06  LDA ram_06B8,X
 C - - - - - 0x005F68 01:DF58: 9D B4 06  STA ram_06B4,X
-C - - - - - 0x005F6B 01:DF5B: 4C FF DD  JMP loc_DDFF
+C - - - - - 0x005F6B 01:DF5B: 4C FF DD  JMP loc_DDFF_loop
 bra_DF5E:
 C - - - - - 0x005F6E 01:DF5E: FE C8 06  INC ram_06C8,X
 C - - - - - 0x005F71 01:DF61: 4C 55 DF  JMP loc_DF55
@@ -13290,6 +13398,7 @@ C - - - - - 0x005F8B 01:DF7B: D0 0B     BNE bra_DF88    ; jmp
 bra_DF7D:
 C - - - - - 0x005F8D 01:DF7D: 18        CLC
 C - - - - - 0x005F8E 01:DF7E: 69 FF     ADC #$FF
+; * 04
 C - - - - - 0x005F90 01:DF80: 0A        ASL
 C - - - - - 0x005F91 01:DF81: 0A        ASL
 C - - - - - 0x005F92 01:DF82: C9 3C     CMP #$3C
@@ -13341,25 +13450,25 @@ C - - - - - 0x005FD6 01:DFC6: F0 0B     BEQ bra_DFD3
 C - - - - - 0x005FD8 01:DFC8: 60        RTS
 bra_DFC9:
 C - - - - - 0x005FD9 01:DFC9: A9 0E     LDA #$0E
-C - - - - - 0x005FDB 01:DFCB: 85 E1     STA ram_00E1
+C - - - - - 0x005FDB 01:DFCB: 85 E1     STA ram_00E1_t01
 C - - - - - 0x005FDD 01:DFCD: A9 07     LDA #$07
 C - - - - - 0x005FDF 01:DFCF: A0 F4     LDY #$F4
 C - - - - - 0x005FE1 01:DFD1: D0 1C     BNE bra_DFEF    ; jmp
 bra_DFD3:
 C - - - - - 0x005FE3 01:DFD3: A9 0F     LDA #$0F
-C - - - - - 0x005FE5 01:DFD5: 85 E1     STA ram_00E1
+C - - - - - 0x005FE5 01:DFD5: 85 E1     STA ram_00E1_t01
 C - - - - - 0x005FE7 01:DFD7: A9 0F     LDA #$0F
 C - - - - - 0x005FE9 01:DFD9: A0 F6     LDY #$F6
 C - - - - - 0x005FEB 01:DFDB: D0 12     BNE bra_DFEF    ; jmp
 bra_DFDD:
 C - - - - - 0x005FED 01:DFDD: A9 07     LDA #$07
-C - - - - - 0x005FEF 01:DFDF: 85 E1     STA ram_00E1
+C - - - - - 0x005FEF 01:DFDF: 85 E1     STA ram_00E1_t01
 C - - - - - 0x005FF1 01:DFE1: A9 07     LDA #$07
 C - - - - - 0x005FF3 01:DFE3: A0 F4     LDY #$F4
 C - - - - - 0x005FF5 01:DFE5: D0 08     BNE bra_DFEF    ; jmp
 bra_DFE7:
 C - - - - - 0x005FF7 01:DFE7: A9 0E     LDA #$0E
-C - - - - - 0x005FF9 01:DFE9: 85 E1     STA ram_00E1
+C - - - - - 0x005FF9 01:DFE9: 85 E1     STA ram_00E1_t01
 C - - - - - 0x005FFB 01:DFEB: A9 0F     LDA #$0F
 C - - - - - 0x005FFD 01:DFED: A0 F6     LDY #$F6
 bra_DFEF:
@@ -13367,7 +13476,7 @@ C - - - - - 0x005FFF 01:DFEF: 8D 13 40  STA $4013
 C - - - - - 0x006002 01:DFF2: 8C 12 40  STY $4012
 C - - - - - 0x006005 01:DFF5: AD F7 06  LDA ram_06F7
 C - - - - - 0x006008 01:DFF8: D0 14     BNE bra_E00E_RTS
-C - - - - - 0x00600A 01:DFFA: A5 E1     LDA ram_00E1
+C - - - - - 0x00600A 01:DFFA: A5 E1     LDA ram_00E1_t01
 C - - - - - 0x00600C 01:DFFC: 8D 10 40  STA $4010
 C D 2 - - - 0x00600F 01:DFFF: A9 0F     LDA #$0F
 C - - - - - 0x006011 01:E001: 8D 15 40  STA $4015
@@ -13383,7 +13492,7 @@ C - - - - - 0x00601E 01:E00E: 60        RTS
 sub_E00F_read_next_byte:
 C - - - - - 0x00601F 01:E00F: BC AC 06  LDY ram_06AC,X
 C - - - - - 0x006022 01:E012: FE AC 06  INC ram_06AC,X
-C - - - - - 0x006025 01:E015: B1 E6     LDA (ram_00E6),Y    ; 006356 006357 006358 006359 00635A 00635B 00635C 00635D 00635E 00635F 006360 006361 006362 006363 006364 006365 006366 006367 006368 006369 00636A 00636B 00636C 00636D 00636E 00636F 006370 006371 006372 006373 006374 006375 006376 006377 006378 006379 00637A 00637B 00637C 00637D 00637E 00637F 006380 006381 006382 006383 006384 006385 006386 006387 006388 006389 00638A 00638B 00638C 00638D 00638E 00638F 006390 006391 006392 006393 006394 006395 006396 006397 006398 006399 00639A 00639B 00639C 00639D 00639E 00639F 0063A0 0063A1 0063A2 0063A3 0063A4 0063A5 0063A6 0063A7 0063A8 0063A9 0063AA 0063AB 0063AC 0063AD 0063AE 0063AF 0063B0 0063B1 0063B2 0063B3 0063B4 0063B5 0063B6 0063B7 0063B8 0063B9 0063BA 0063BB 0063BC 0063BD 0063BE 0063BF 0063C0 0063C1 0063C2 0063C3 0063C4 0063C5 0063C6 0063C7 0063C8 0063C9 0063CA 0063CB 0063CC 0063CD 0063CE 0063CF 0063D0 0063D1 0063D2 0063D3 0063D4 0063D5 0063D6 0063D7 0063D8 0063D9 0063DA 0063DB 0063DC 0063DD 0063DE 0063DF 0063E0 0063E1 0063E2 0063E3 0063E4 0063E5 0063E6 0063E7 0063E8 0063E9 0063EA 0063EB 0063EC 0063ED 0063EE 0063EF 0063F0 0063F1 0063F2 0063F3 0063F4 0063F5 0063F6 0063F7 0063F8 0063F9 0063FA 0063FB 0063FC 0063FD 0063FE 0063FF 006400 006401 006402 006403 006404 006405 006406 006407 006408 006409 00640A 00640B 00640C 00640D 00640E 00640F 006410 006411 006412 006413 006414 006415 006416 006417 006418 006419 00641A 00641B 00641C 00641D 00641E 00641F 006420 006421 006422 006423 006424 006425 006426 006427 006428 006429 00642A 00642B 00642C 00642D 00642E 00642F 006430 006431 006432 006433 006434 006435 006436 006437 006438 006439 00643A 00643B 00643C 00643D 00643E 00643F 006440 006441 006442 006443 006444 006445 006446 006447 006448 006449 00644A 00644B 00644C 00644D 00644E 00644F 006450 006451 006452 006453 006454 006455 006456 006457 006458 006459 00645A 00645B 00645C 00645D 00645E 00645F 006460 006461 006462 006463 006464 006465 006466 006467 006468 006469 00646A 00646B 00646C 00646D 00646E 00646F 006470 006471 006472 006473 006474 006475 006476 006477 006478 006479 00647A 00647B 00647C 00647D 00647E 00647F 006480 006481 006482 006483 006484 006485 006486 006487 006488 006489 00648A 00648B 00648C 00648D 00648E 00648F 006490 006491 006492 006493 006494 006495 006496 006497 006498 006499 00649A 00649B 00649C 00649D 00649E 00649F 0064A0 0064A1 0064A2 0064A3 0064A4 0064A5 0064A6 0064A7 0064A8 0064A9 0064AA 0064AB 0064AC 0064AD 0064AE 0064AF 0064B0 0064B1 0064B2 0064B3 0064B4 0064B5 0064B6 0064B7 0064B8 0064B9 0064BA 0064BB 0064BC 0064BD 0064BE 0064BF 0064C0 0064C1 0064C2 0064C3 0064C4 0064C5 0064C6 0064C7 0064C8 0064C9 0064CA 0064CB 0064CC 0064CD 0064CE 0064CF 0064D0 0064D1 0064D2 0064D3 0064D4 0064D5 0064D6 0064D7 0064D8 0064D9 0064DA 0064DB 0064DC 0064DD 0064DE 0064DF 0064E0 0064E1 0064E2 0064E3 0064E4 0064E5 0064E6 0064E7 0064E8 0064E9 0064EA 0064EB 0064EC 0064ED 0064EE 0064EF 0064F0 0064F1 0064F2 0064F3 0064F4 0064F5 0064F6 0064F7 0064F8 0064F9 0064FA 0064FB 0064FC 0064FD 0064FE 0064FF 006500 006501 006502 006503 006504 006505 006506 006507 006508 006509 00650A 00650B 00650C 00650D 00650E 00650F 006510 006511 006512 006513 006514 006515 006516 006517 006518 006519 00651A 00651B 00651C 00651D 00651E 00651F 006520 006521 006522 006523 006524 006525 006526 006527 006528 006529 00652A 00652B 00652C 00652D 00652E 00652F 006530 006531 006532 006533 006534 006535 006536 006537 006538 006539 00653A 00653B 00653C 00653D 00653E 00653F 006540 006541 006542 006543 006544 006545 006546 006547 006548 006549 00654A 00654B 00654C 00654D 00654E 00654F 006550 006551 006552 006553 006554 006555 006556 006557 006558 006559 00655A 00655B 00655C 00655D 00655E 00655F 006560 006561 006562 006563 006564 006565 006566 006567 006568 006569 00656A 00656B 00656C 00656D 00656E 00656F 006570 006571 006572 006573 006574 006575 006576 006577 006578 006579 00657A 00657B 00657C 00657D 00657E 00657F 006580 006581 006582 006583 006584 006585 006586 006587 006588 006589 00658A 00658B 00658C 00658D 006646 006647 006648 006649 00664A 00664B 00664C 00664D 00664E 00664F 006650 006651 006652 006653 006654 006655 006656 006657 006658 006659 00665A 00665B 00665C 00665D 00665E 00665F 006660 006661 006662 006663 006664 006665 006666 006667 006668 006669 00666A 00666B 00666C 00666D 00666E 00666F 006670 006671 006672 006673 006674 006675 006676 006677 006678 006679 00667A 00667B 00667C 00667D 00667E 00667F 006680 006681 006682 006683 006684 006685 006686 006687 006688 006689 00668A 00668B 00668C 00668D 00668E 00668F 006690 006691 006692 006693 006694 006695 006696 006697 006698 006699 00669A 00669B 00669C 00669D 00669E 00669F 0066A0 0066A1 0066A2 0066A3 0066A4 0066A5 0066A6 0066A7 0066A8 0066A9 0066AA 0066AB 0066AC 0066AD 0066AE 0066AF 0066B0 0066B1 0066B2 0066B3 0066B4 0066B5 0066B6 0066B7 0066B8 0066B9 0066BA 0066BB 0066BC 0066BD 0066BE 0066BF 0066C0 0066C1 0066C2 0066C3 0066C4 0066C5 0066C6 0066C7 0066C8 0066C9 0066CA 0066CB 0066CC 0066CD 0066CE 0066CF 0066D0 0066D1 0066D2 0066D3 0066D4 0066D5 0066D6 0066D7 0066D8 0066D9 0066DA 0066DB 0066DC 0066DD 0066DE 0066DF 0066E0 0066E1 0066E2 0066E3 0066E4 0066E5 0066E6 0066E7 0066E8 0066E9 0066EA 0066EB 0066EC 0066ED 0066EE 0066EF 0066F0 0066F1 0066F2 0066F3 0066F4 0066F5 0066F6 0066F7 0066F8 0066F9 0066FA 0066FB 0066FC 0066FD 0066FE 0066FF 006700 006701 006702 006703 006704 006705 006706 006707 006708 006709 00670A 00670B 00672B 00672C 00672D 00672E 00672F 006730 006731 006732 006733 006753 006754 006755 006798 006799 00679A 00679B 00679C 006958 006959 00695A 00695B 00695C 00695D 00695E 00695F 006960 006961 006962 006963 006964 006965 006966 006967 006968 006969 00696A 00696B 00696C 00696D 00696E 00696F 006970 006971 006972 006973 006974 006975 006976 006977 006978 006979 00697A 00697B 00697C 00697D 00697E 00697F 006980 006981 006982 006983 006984 006985 006986 006987 006988 006989 00698A 00698B 00698C 00698D 00698E 00698F 006990 006991 006992 006993 006994 006995 006996 006997 006998 006999 00699A 00699B 00699C 00699D 00699E 00699F 0069A0 0069A1 0069A2 0069A3 0069A4 0069A5 0069A6 0069A7 0069A8 0069A9 0069AA 0069AB 0069AC 0069AD 0069AE 0069AF 0069B0 0069B1 0069B2 0069B3 0069B4 0069B5 0069B6 0069B7 0069B8 0069B9 0069BA 0069BB 0069BC 0069BD 0069BE 0069BF 0069C0 0069C1 0069C2 0069C3 0069C4 0069C5 0069C6 0069C7 0069C8 0069C9 0069CA 0069CB 0069CC 0069CD 0069CE 0069CF 0069D0 0069D1 0069D2 0069D3 0069D4 0069D5 0069D6 0069D7 0069D8 0069D9 0069DA 0069DB 0069DC 0069DD 0069DE 0069DF 0069E0 0069E1 0069E2 0069E3 0069E4 0069E5 0069E6 0069E7 0069E8 0069E9 0069EA 0069EB 0069EC 0069ED 0069EE 0069EF 0069F0 0069F1 0069F2 0069F3 0069F4 0069F5 0069F6 0069F7 0069F8 0069F9 0069FA 0069FB 0069FC 0069FD 0069FE 0069FF 006A00 006A01 006A02 006A03 006A04 006A05 006A06 006A07 006A08 006A09 006A0A 006A0B 006A0C 006A0D 006A0E 006A0F 006A10 006A11 006A12 006A13 006A14 006A15 006A16 006A17 006A18 006A19 006A1A 006A1B 006A1C 006A1D 006A1E 006A1F 006A20 006A21 006A22 006A23 006A24 006A25 006A26 006A27 006A28 006A29 006A2A 006A2B 006A2C 006A2D 006A2E 006A2F 006A30 006A31 006A32 006A33 006A34 006A35 006A36 006A37 006A38 006A39 006A3A 006A3B 006A3C 006A3D 006A3E 006A3F 006A40 006A41 006A42 006A43 006A44 006A45 006A46 006A47 006A48 006A49 006A4A 006A4B 006A4C 006A4D 006A4E 006A4F 006A50 006A51 006A52 006A53 006A54 006A55 006A56 006A57 006A58 006A59 006A5A 006A5B 006A5C 006A5D 006A5E 006A5F 006A60 006A61 006A62 006A63 006A64 006A65 006A66 006A67 006A68 006A69 006A6A 006A6B 006A6C 006A6D 006A6E 006A6F 006A70 006A71 006A72 006A73 006A74 006A75 006A76 006A77 006A78 006A79 006A7A 006A7B 006A7C 006A7D 006A7E 006A7F 006A80 006A81 006A82 006A83 006A84 006A85 006A86 006A87 006A88 006A89 006A8A 006A8B 006A8C 006A8D 006A8E 006A8F 006A90 006A91 006A92 006A93 006A94 006A95 006A96 006A97 006A98 006A99 006A9A 006A9B 006A9C 006A9D 006A9E 006A9F 006AA0 006AA1 006AA2 006AA3 006AA4 006AA5 006AA6 006AA7 006AA8 006AA9 006AAA 006AAB 006AAC 006AAD 006AAE 006AAF 006AB0 006AB1 006AB2 006AB3 006AB4 006AB5 006AB6 006AB7 006AB8 006AB9 006ABA 006ABB 006ABC 006ABD 006ABE 006ABF 006AC0 006AC1 006AC2 006AC3 006AC4 006AC5 006AC6 006AC7 006AC8 006AC9 006ACA 006ACB 006ACC 006ACD 006ACE 006ACF 006AD0 006AD1 006AD2 006AD3 006AD4 006AD5 006AD6 006AD7 006AD8 006AD9 006ADA 006ADB 006ADC 006ADD 006ADE 006ADF 006AE0 006AE1 006AE2 006AE3 006AE4 006AE5 006AE6 006AE7 006AE8 006AE9 006AEA 006AEB 006AEC 006AED 006AEE 006AEF 006AF0 006AF1 006AF2 006AF3 006AF4 006AF5 006AF6 006AF7 006AF8 006AF9 006AFA 006AFB 006AFC 006AFD 006AFE 006AFF 006B00 006B01 006B02 006B03 006B04 006B05 006B06 006B07 006B08 006B09 006B0A 006B0B 006B0C 006B0D 006B0E 006B0F 006B10 006B11 006B12 006B13 006B14 006B15 006B16 006B17 006B18 006B19 006B1A 006B1B 006B1C 006B1D 006B1E 006B1F 006B20 006B21 006B22 006B23 006B24 006B25 006B26 006B27 006B28 006B29 006B2A 006B2B 006B2C 006B2D 006B2E 006B2F 006B30 006B31 006B32 006B33 006B34 006B35 006B36 006B37 006B38 006B39 006B3A 006B3B 006B3C 006B3D 006B3E 006B3F 006B40 006B41 006B42 006B43 006B44 006B45 006B46 006B47 006B48 006B49 006B4A 006B4B 006B4C 006B4D 006B4E 006B4F 006B50 006B51 006B52 006B53 006B54 006B55 006B56 006B57 006B58 006B59 006B5A 006B5B 006B5C 006B5D 006B5E 006B5F 006B60 006B61 006B62 006B63 006B64 006B65 006B66 006B67 006B68 006B69 006B6A 006B6B 006B6C 006B6D 006B6E 006B6F 006B70 006B71 006B72 006B73 006B74 006B75 006B76 006B77 006B78 006B79 006B7A 006B7B 006B7C 006B7D 006B7E 006B7F 006B80 006B81 006B82 006B83 006B84 006B85 006B86 006B87 006B88 006B89 006B8A 006B8B 006B8C 006B8D 006B8E 006B8F 006B90 006B91 006B92 006B93 006B94 006B95 006B96 006B97 006B98 006B99 006B9A 006B9B 006B9C 006B9D 006B9E 006B9F 006BA0 006BA1 006BA2 006BA3 006BA4 006BA5 006BA6 006BA7 006BA8 006BA9 006BAA 006BAB 006BAC 006BAD 006BAE 006BAF 006BB0 006BB1 006BB2 006BB3 006BB4 006BB5 006BB6 006BB7 006BB8 006BB9 006BBA 006BBB 006BBC 006BBD 006BBE 006BBF 006BC0 006BC1 006BC2 006BC3 006BC4 006BC5 006BC6 006BC7 006BC8 006BC9 006BCA 006BCB 006BCC 006BCD 006BCE 006BCF 006BD0 006BD1 006BD2 006BD3 006BD4 006BD5 006BD6 006BD7 006BD8 006BD9 006BDA 006BDB 006BDC 006BDD 006BDE 006BDF 006BE0 006BE1 006BE2 006BE3 006BE4 006BE5 006BE6 006BE7 006BE8 006BE9 006BEA 006BEB 006BEC 006BED 006BEE 006BEF 006BF0 006BF1 006BF2 006BF3 006BF4 006BF5 006BF6 006BF7 006BF8 006BF9 006BFA 006BFB 006BFC 006BFD 006BFE 006BFF 006C00 006C01 006C02 006C03 006C04 006C05 006C06 006C07 006C08 006C09 006C0A 006C0B 006C0C 006C0D 006C0E 006C0F 006C10 006C11 006C12 006C13 006C14 006C15 006C16 006C17 006C18 006C19 006C1A 006C1B 006C1C 006C1D 006C1E 006C1F 006C20 006C21 006C22 006C23 006C24 006C25 006C26 006C27 006C28 006C29 006C2A 006C2B 006C2C 006C2D 006C2E 006C2F 006C30 006C31 006C32 006C33 006C34 006C35 006C36 006C37 006C38 006C39 006C3A 006C3B 006C3C 006C3D 006C3E 006C3F 006C40 006C41 006C42 006C43 006C44 006C45 006C46 006C47 006C48 006C49 006C4A 006C4B 006C4C 006C4D 006C4E 006C4F 006C50 006C51 006C52 006C53 006C54 006C55 006C56 006C57 006C58 006C59 006C5A 006C5B 006C5C 006C5D 006C5E 006C5F 006C60 006C61 006C62 006C63 006C64 006C65 006C66 006C67 006C68 006C69 006C6A 006C6B 006C6C 006C6D 006C6E 006C6F 006C70 006C71 006C72 006C73 006C74 006C75 006C76 006C77 006C78 006C79 006C7A 006C7B 006C7C 006C7D 006C7E 006C7F 006C80 006C81 006C82 006C83 006C84 006C85 006C86 006C87 006C88 006C89 006C8A 006C8B 006C8C 006C8D 006C8E 006C8F 006C90 006C91 006C92 006C93 006C94 006C95 006C96 006C97 006C98 006C99 006C9A 006C9B 006C9C 006C9D 006C9E 006C9F 006CA0 006CA1 006CA2 006CA3 006CA4 006CA5 006CA6 006CA7 006CA8 006CA9 006CAA 006CAB 006CAC 006CAD 006CAE 006CAF 006CB0 006CB1 006CB2 006CB3 006CB4 006CB5 006CB6 006CB7 006CB8 006CB9 006CBA 006CBB 006CBC 006CBD 006CBE 006CBF 006CC0 006CC1 006CC2 006CC3 006CC4 006CC5 006CC6 006CC7 006CC8 006CC9 006CCA 006CCB 006CCC 006CCD 006CCE 006CCF 006CD0 006CD1 006CD2 006CD3 006CD4 006CD5 006CD6 006CD7 006CD8 006CD9 006CDA 006CDB 006CDC 006CDD 006CDE 006CDF 006CE0 006CE1 006CE2 006CE3 006CE4 006CE5 006CE6 006CE7 006CE8 006CE9 006CEA 006CEB 006CEC 006CED 006CEE 006CEF 006CF0 006CF1 006CF2 006CF3 006CF4 006CF5 006CF6 006CF7 006CF8 006CF9 006CFA 006CFB 006CFC 006CFD 006CFE 006CFF 006D00 006D01 006D02 006D03 006D04 006D05 006D06 006D07 006D08 006D09 006D0A 006D0B 006D0C 006D0D 006D0E 006D0F 006D10 006D11 006D12 006D13 006D14 006D15 006D16 006D17 006D18 006D19 006D1A 006D1B 006D1C 006D1D 006D1E 006D1F 006D20 006D21 006D22 006D23 006D24 006D25 006D26 006D27 006D28 006D29 006D2A 006D2B 006D2C 006D2D 006D2E 006D2F 006D30 006D31 006D32 006D33 006D34 006D35 006D36 006D37 006D38 006D39 006D3A 006D3B 006D3C 006D3D 006D3E 006D3F 006D40 006D41 006D42 006D43 006D44 006D45 006D46 006D47 006D48 006D49 006D4A 006D4B 006D4C 006D4D 006D4E 006D4F 006D50 006D51 006D52 006D53 006D54 006D55 006D56 006D57 006D58 006D59 006D5A 006D5B 006D5C 006D5D 006D5E 006D5F 006D60 006D61 006D62 006D63 006D64 006D65 006D66 006D67 006D68 006D69 006D6A 006D6B 006D6C 006D6D 006D6E 006D6F 006D70 006D71 006D72 006D73 006D74 006D75 006D76 006D77 006D78 006D79 006D7A 006D7B 006D7C 006D7D 006D7E 006D7F 006D80 006D81 006D82 006D83 006D84 006D85 006D86 006D87 006D88 006D89 006D8A 006D8B 006D8C 006D8D 006D8E 006D8F 006D90 006D91 006D92 006D93 006D94 006D95 006D96 006D97 006D98 006D99 006D9A 006D9B 006D9C 006D9D 006D9E 006D9F 006DA0 006DA1 006DA2 006DA3 006DA4 006DA5 006DA6 006DA7 006DA8 006DA9 006DAA 006DAB 006DAC 006DAD 006DDC 006DDD 006DDE 006DDF 006DE0 006DE1 006DE2 006DE3 006DE4 006DE5 006DE6 006DE7 006DE8 006DE9 006DEA 006DEB 006DEC 006DED 006DEE 006DEF 006DF0 006DF1 006DF2 006DF3 006DF4 006DF5 006DF6 006DF7 006DF8 006DF9 006DFA 006DFB 006DFC 006DFD 006DFE 006DFF 006E00 006E01 006E02 006E03 006E04 006E05 006E06 006E07 006E08 006E09 006E0A 006E0B 006E0C 006E0D 006E0E 006E0F 006E10 006E11 006E12 006E13 006E14 006E15 006E16 006E17 006E18 006E19 006E1A 006E1B 006E1C 006E1D 006E1E 006E1F 006E20 006E21 006E22 006E23 006E24 006E25 006E26 006E27 006E28 006E29 006E2A 006E2B 006E2C 006E2D 006E2E 006E2F 006E30 006E31 006E32 006E33 006E34 006E35 006E36 006E37 006E38 006E39 006E3A 006E3B 006E3C 006E3D 006E3E 006E3F 006E40 006E41 006E42 006E43 006E44 006E45 006E46 006E47 006E48 006E49 006E4A 006E4B 006E4C 006E4D 006E4E 006E4F 006E50 006E51 006E52 006E53 006E54 006E55 006E56 006E57 006E58 006E59 006E5A 006E5B 006E5C 006E5D 006E5E 006E5F 006E60 006E61 006E62 006E63 006E64 006E65 006E66 006E67 006E68 006E69 006E6A 006E6B 006E6C 006E6D 006E6E 006E6F 006E70 006E71 006E72 006E73 006E74 006E75 006E76 006E77 006E78 006E79 006E7A 006E7B 006E7C 006E7D 006E7E 006E7F 006E80 006E81 006E82 006E83 006E84 006E85 006E86 006E87 006E88 006E89 006E8A 006E8B 006E8C 006E8D 006E8E 006E8F 006E90 006E91 006E92 006E93 006E94 006E95 006E96 006E97 006E98 006E99 006E9A 006E9B 006E9C 006E9D 006E9E 006E9F 006EA0 006EA1 006EA2 006EA3 006EA4 006EA5 006EA6 006EA7 006EA8 006EA9 006EAA 006EAB 006EAC 006EAD 006EAE 006EAF 006EB0 006EB1 006EB2 006EB3 006EB4 006EB5 006EB6 006EB7 006EB8 006EB9 006EBA 006EBB 006EBC 006EBD 006EBE 006EBF 006EC0 006EC1 006EC2 006EC3 006EC4 006EC5 006EC6 006EC7 006EC8 006EC9 006ECA 006ECB 006ECC 006ECD 006ECE 006ECF 006ED0 006ED1 006ED2 006ED3 006ED4 006ED5 006ED6 006ED7 006ED8 006ED9 006EDA 006EDB 006EDC 006EDD 006EDE 006EDF 006EE0 006EE1 006EE2 006EE3 006EE4 006EE5 006EE6 006EE7 006EE8 006EE9 006EEA 006EEB 006EEC 006EED 006EEE 006EEF 006EF0 006EF1 006EF2 006EF3 006EF4 006EF5 006EF6 006EF7 006EF8 006EF9 006EFA 006EFB 006EFC 006EFD 006EFE 006EFF 006F00 006F01 006F02 006F03 006F04 006F05 006F06 006F07 006F08 006F09 006F0A 006F0B 006F0C 006F0D 006F0E 006F0F 006F10 006F11 006F12 006F13 006F14 006F15 006F16 006F17 006F18 006F19 006F1A 006F1B 006F1C 006F1D 006F1E 006F1F 006F20 006F21 006F22 006F23 006F24 006F25 006F26 006F27 006F28 006F29 006F2A 006F2B 006F2C 006F2D 006F2E 006F2F 006F30 006F31 006F32 006F33 006F34 006F35 006F36 006F37 006F38 006F39 006F3A 006F3B 006F3C 006F3D 006F3E 006F3F 006F40 006F41 006F42 006F43 006F44 006F45 006F46 006F47 006F48 006F49 006F4A 006F4B 006F4C 006F4D 006F4E 006F4F 006F50 006F51 006F52 006F53 006F54 006F55 006F56 006F57 006F58 006F59 006F5A 006F5B 006F5C 006F5D 006F5E 006F5F 006F60 006F61 006F62 006F63 006F64 006F65 006F66 006F67 006F68 006F69 006F6A 006F6B 006F6C 006F6D 006F6E 006F6F 006F70 006F71 006F72 006F73 006F74 006F75 006F76 006F77 006F78 006F79 006F7A 006F7B 006F7C 006F7D 006F7E 006F7F 006F80 006F81 006F82 006F83 006F84 006F85 006F86 006F87 006F88 006F89 006F8A 006F8B 006F8C 006F8D 006F8E 006F8F 006F90 006F91 006F92 006F93 006F94 006F95 006F96 006F97 006F98 006F99 006F9A 006F9B 006F9C 006F9D 006F9E 006F9F 006FA0 006FA1 006FA2 006FA3 006FA4 006FA5 006FA6 006FA7 006FA8 006FA9 006FAA 006FAB 006FAC 006FAD 006FAE 006FAF 006FB0 006FB1 006FB2 006FB3 006FB4 006FB5 006FB6 006FB7 006FB8 006FB9 006FBA 006FBB 006FBC 006FBD 006FBE 006FBF 006FC0 006FC1 006FC2 006FC3 006FC4 006FC5 006FC6 006FC7 006FC8 006FC9 006FCA 006FCB 006FCC 006FCD 006FCE 006FCF 006FD0 006FD1 006FD2 006FD3 006FD4 006FD5 006FD6 006FD7 006FD8 006FD9 006FDA 006FDB 006FDC 006FDD 006FDE 006FDF 006FE0 006FE1 006FE2 006FE3 006FE4 006FE5 006FE6 006FE7 006FE8 006FE9 006FEA 006FEB 006FEC 006FED 006FEE 006FEF 006FF0 006FF1 006FF2 006FF3 006FF4 006FF5 007026 007027 007028 007029 00702A 00702B 00702C 00702D 00702E 00702F 007030 007031 007032 007033 007034 007035 007036 007037 007038 007039 00703A 00703B 00703C 00703D 00703E 00703F 007040 007041 007042 007043 007044 007045 007046 007047 007048 007049 00704A 00704B 00704C 00704D 00704E 00704F 007050 007051 007052 007053 007054 007055 007056 007057 007058 007059 00705A 00705B 00705C 00705D 00705E 00705F 007060 007061 007062 007063 007064 007065 007066 007067 007068 007069 00706A 00706B 00706C 00706D 00706E 00706F 007070 007071 007072 007073 007074 007075 007076 007077 007078 007079 00707A 00707B 00707C 00707D 00707E 00707F 007080 007081 007082 007083 007084 007085 007086 007087 007088 007089 00708A 00708B 00708C 00708D 00708E 00708F 007090 007091 007092 007093 007094 007095 007096 007097 007098 007099 00709A 00709B 00709C 00709D 00709E 00709F 0070A0 0070A1 0070A2 0070A3 0070A4 0070A5 0070A6 0070A7 0070A8 0070A9 0070AA 0070AB 0070AC 0070AD 0070AE 0070AF 0070B0 0070B1 0070B2 0070B3 0070B4 0070B5 0070B6 0070B7 0070B8 0070B9 0070BA 0070BB 0070BC 0070BD 0070BE 0070BF 0070C0 0070C1 0070C2 0070C3 0070C4 0070C5 0070C6 0070C7 0070C8 0070C9 0070CA 0070CB 0070CC 0070CD 0070CE 0070CF 0070D0 0070D1 0070D2 0070D3 0070D4 0070D5 0070D6 0070D7 0070D8 0070D9 0070DA 0070DB 0070DC 0070DD 0070DE 0070DF 0070E0 0070E1 0070E2 0070E3 0070E4 0070E5 0070E6 0070E7 0070E8 0070E9 0070EA 0070EB 0070EC 0070ED 0070EE 0070EF 0070F0 0070F1 0070F2 0070F3 0070F4 0070F5 0070F6 0070F7 0070F8 0070F9 0070FA 0070FB 0070FC 0070FD 0070FE 0070FF 007100 007101 007102 007103 007104 007105 007106 007107 007108 007109 00710A 00710B 00710C 00710D 00710E 00710F 007110 007111 007112 007113 007114 007115 007116 007117 007118 007119 00711A 00711B 00711C 00711D 00711E 00711F 007120 007121 007122 007123 007124 007125 007126 007127 007128 007129 00712A 00712B 00712C 00712D 00712E 00712F 007130 007131 007132 007133 007134 007135 007136 007137 007138 007139 00713A 00713B 00713C 00713D 00713E 00713F 007140 007141 007142 007143 007144 007145 007146 007147 007148 007149 00714A 00714B 00714C 00714D 00714E 00714F 007150 007151 007152 007153 007154 007155 007156 007157 007158 007159 00715A 00715B 00715C 00715D 00715E 00715F 007160 007161 007162 007163 007164 007165 007166 007167 007168 007169 00716A 00716B 00716C 00716D 00716E 00716F 007170 007171 007172 007173 007174 007175 007176 007177 007178 007179 00717A 00717B 0071A4 0071A5 0071A6 0071A7 0071A8 0071A9 0071AA 0071AB 0071AC 0071AD 0071AE 0071AF 0071B0 0071B1 0071B2 0071B3 0071B4 0071B5 0071B6 0071B7 0071B8 0071B9 0071BA 0071BB 0071BC 0071BD 0071BE 0071BF 0071C0 0071C1 0071C2 0071C3 0071C4 0071C5 0071C6 0071C7 0071C8 0071C9 0071CA 0071CB 0071CC 0071CD 0071CE 0071CF 0071D0 0071D1 0071D2 0071D3 0071D4 0071D5 0071D6 0071D7 0071D8 0071D9 0071DA 0071DB 0071DC 0071DD 0071DE 0071DF 0071E0 0071E1 0071E2 0071E3 0071E4 0071E5 0071E6 0071E7 0071E8 0071E9 0071EA 0071EB 0071EC 0071ED 0071EE 0071EF 0071F0 0071F1 0071F2 0071F3 0071F4 0071F5 0071F6 0071F7 0071F8 0071F9 0071FA 0071FB 0071FC 0071FD 0071FE 0071FF 007200 007201 007202 007203 007204 007205 007206 007207 007208 007209 00720A 00720B 00720C 00720D 00720E 00720F 007210 007211 007212 007213 007214 007215 007216 007217 007218 007219 00721A 00721B 00721C 00721D 00721E 00721F 007220 007221 007222 007223 007224 007225 007226 007227 007228 007229 00722A 00722B 00722C 00722D 00722E 00722F 007230 007231 007232 007233 007234 007235 007236 007237 007238 007239 00723A 00723B 00723C 00723D 00723E 00723F 007240 007241 007242 007243 007244 007245 007246 007247 007248 007249 00724A 00724B 00724C 00724D 00724E 00724F 007250 007251 007252 007253 007254 007255 007256 007257 007258 007259 00725A 00725B 00725C 00725D 00725E 00725F 007260 007261 007262 007263 007264 007265 007266 007267 007268 007269 00726A 00726B 00726C 00726D 00726E 00726F 007270 007271 007272 007273 007274 007275 007276 007277 007278 007279 00727A 00727B 00727C 00727D 00727E 00727F 007280 007281 007282 007283 007284 007285 007286 007287 007288 007289 00728A 00728B 00728C 00728D 00728E 00728F 007290 007291 007292 007293 007294 007295 007296 007297 007298 007299 00729A 00729B 00729C 00729D 00729E 00729F 0072A0 0072A1 0072A2 0072A3 0072A4 0072A5 0072A6 0072A7 0072A8 0072A9 0072AA 0072AB 0072AC 0072AD 0072AE 0072AF 0072B0 0072B1 0072B2 0072B3 0072B4 0072B5 0072B6 0072B7 0072B8 0072B9 0072BA 0072BB 0072BC 0072BD 0072BE 0072BF 0072C0 0072C1 0072C2 0072C3 0072C4 0072C5 0072C6 0072C7 0072C8 0072C9 0072CA 0072CB 0072CC 0072CD 0072CE 0072CF 0072D0 0072D1 0072D2 0072D3 0072D4 0072D5 0072D6 0072D7 0072D8 0072D9 0072DA 0072DB 0072DC 0072DD 0072DE 0072DF 0072E0 0072E1 0072E2 0072E3 0072E4 0072E5 0072E6 0072E7 0072E8 0072E9 0072EA 0072EB 0072EC 0072ED 0072EE 0072EF 0072F0 0072F1 0072F2 0072F3 0072F4 0072F5 0072F6 0072F7 0072F8 0072F9 0072FA 0072FB 0072FC 0072FD 0072FE 0072FF 007300 007301 007302 007303 007304 007305 007306 007307 007308 007309 00730A 00730B 00730C 00730D 00730E 00730F 007310 007311 007312 007313 007314 007315 007316 007317 007318 007319 00731A 00731B 00731C 00731D 00731E 00731F 007320 007321 007322 007323 007324 007325 007326 007327 007328 007329 00732A 00732B 00732C 00732D 00732E 00732F 007330 007331 007332 007333 007334 007335 007336 007337 007338 007339 00733A 00733B 00733C 00733D 00733E 00733F 007340 007341 007342 007343 007344 007345 007346 007347 007348 007349 00734A 00734B 00734C 00734D 00734E 00734F 007350 007351 007352 007353 007354 007355 007356 007357 007358 007359 00735A 00735B 00735C 00735D 00735E 00735F 007360 007361 007362 007363 007364 007365 007366 007367 007368 007369 00736A 00736B 00736C 00736D 00736E 00736F 007370 007371 007372 007373 007374 007375 007376 007377 007378 007379 00737A 00737B 00737C 00737D 00737E 00737F 007380 007381 007382 007383 007384 007385 007386 007387 007388 007389 00738A 00738B 00738C 00738D 00738E 00738F 007390 007391 007392 007393 007394 007395 007396 007397 007398 007399 00739A 00739B 00739C 00739D 00739E 00739F 0073A0 0073A1 0073A2 0073A3 0073A4 0073A5 0073A6 0073A7 0073A8 0073A9 0073AA 0073AB 0073AC 0073AD 0073AE 0073AF 0073B0 0073B1 0073B2 0073B3 0073B4 0073B5 0073B6 0073B7 0073B8 0073B9 0073BA 0073BB 0073BC 0073BD 0073BE 0073BF 0073C0 0073C1 0073C2 0073C3 0073C4 0073C5 0073C6 0073C7 0073C8 0073C9 0073CA 0073CB 0073CC 0073CD 0073CE 0073CF 0073D0 0073D1 0073D2 0073D3 0073D4 0073D5 0073D6 0073D7 0073D8 0073D9 0073DA 0073DB 0073DC 0073DD 0073DE 0073DF 0073E0 0073E1 0073E2 0073E3 0073E4 0073E5 0073E6 0073E7 0073E8 0073E9 0073EA 0073EB 0073EC 0073ED 0073EE 0073EF 0073F0 0073F1 0073F2 0073F3 0073F4 0073F5 0073F6 0073F7 0073F8 0073F9 0073FA 0073FB 0073FC 0073FD 0073FE 0073FF 007400 007401 007402 007403 007404 007405 007406 007407 007408 007409 00740A 00740B 00740C 00740D 00740E 00740F 007410 007411 007412 007413 007414 007415 007416 007417 007418 007419 00741A 00741B 00741C 00741D 00741E 00741F 007420 007421 007422 007423 007424 007425 007426 007427 007428 007429 00742A 00742B 00742C 00742D 00742E 00742F 007430 007431 007432 007433 007434 007435 007436 007437 007438 007439 00743A 00743B 00743C 00743D 00743E 00743F 007440 007441 007442 007443 007444 007445 007446 007447 007448 007449 00744A 00744B 00744C 00744D 00744E 00744F 007450 007451 007452 007453 007454 007455 007456 007457 007458 007459 00745A 00745B 00745C 00745D 00745E 00745F 007460 007461 007462 007463 007464 007465 007466 007467 007468 007469 00746A 00746B 00746C 00746D 00746E 00746F 007470 007471 007472 007473 007474 007475 007476 007477 007478 007479 00747A 00747B 00747C 00747D 00747E 00747F 007480 007481 007482 007483 007484 007485 007486 007487 007488 007489 00748A 0074BD 0074BE 0074BF 0074C0 0074C1 0074C2 0074C3 0074C4 0074C5 0074C6 0074C7 0074C8 0074C9 0074CA 0074CB 0074CC 0074CD 0074CE 0074CF 0074D0 0074D1 0074D2 0074D3 0074D4 0074D5 0074D6 0074D7 0074D8 0074D9 0074DA 0074DB 0074DC 0074DD 0074DE 0074DF 0074E0 0074E1 0074E2 0074E3 0074E4 0074E5 0074E6 0074E7 0074E8 0074E9 0074EA 0074EB 0074EC 0074ED 0074EE 0074EF 0074F0 0074F1 0074F2 0074F3 0074F4 0074F5 0074F6 0074F7 0074F8 0074F9 0074FA 0074FB 0074FC 0074FD 0074FE 0074FF 007500 007501 007502 007503 007504 007505 007506 007507 007508 007509 00750A 00750B 00750C 00750D 00750E 00750F 007510 007511 007512 007513 007514 007515 007516 007517 007518 007519 00751A 00751B 00751C 00751D 00751E 00751F 007520 007521 007522 007523 007524 007525 007526 007527 007528 007529 00752A 00752B 00752C 00752D 007534 007535 007536 007537 00753A 00753B 00753C 00753D 00753E 00753F 007540 007541 007542 007543 007544 007545 007546 007547 00754A 00754B 00754C 00754D 00754E 00754F 007550 007551 007552 007553 00755C 00755D 00755E 007560 007561 007562 007563 007564 007565 007566 007567 007568 007569 00756A 00756B 00756C 00756D 00756E 00756F 007570 007571 00759D 00759E 00759F 0075A0 0075A1 0075A2 0075A3 0075A4 0075A5 0075A7 0075A8 0075A9 0075AA 0075AB 0075AC 0075AD 0075AE 0075AF 0075B0 00760D 00760E 00760F 007610 007611 007612 007613 007614 007615 007616 007617 007618 007619 00761A 00761B 00761C 00761D 00761E 00761F 007620 007621 007622 007623 007624 007625 007626 007627 007628 007629 00762A 00762B 00762C 00762D 00762E 00762F 007630 007631 007632 007633 007634 007635 007636 007637 007638 007639 00763A 00763B 00763C 00763D 00763E 00763F 007640 007641 007642 007643 007644 007645 007646 007647 007648 007649 00764A 00764B 00764C 00764D 00764E 00764F 007650 007651 007652 007653 007654 007655 007656 007657 007658 007659 00765A 00765B 00765C 00765D 00765E 00765F 007660 007661 007662 007663 007664 007665 007666 007667 007668 007669 00766A 00766B 00766C 00766D 00766E 00766F 007670 007671 007672 007673 007674 007675 007676 00767E 00767F 0076BA 0076BB 0076BC 0076BD 0076BE 0076BF 0076C0 0076C1 0076C2 0076C3 0076C4 0076C5 0076C6 0076C7 0076C8 0076C9 0076CA 0076CB 0076CC 0076CD 0076CE 0076CF 0076D0 0076D1 0076D2 0076D3 0076D4 0076D5 0076D6 0076D7 0076D8 0076D9 0076DA 0076DB 0076DC 0076DD 0076DE 0076DF 0076E0 0076E1 0076E2 0076E3 0076E4 0076E5 0076E6 0076E7 0076E8 0076E9 0076EA 0076EB 0076EC 0076ED 0076EE 0076EF 0076F0 0076F1 0076F2 0076F3 0076F4 0076F5 0076F6 0076F7 0076F8 0076F9 0076FA 0076FB 0076FC 0076FD 0076FE 0076FF 007700 007701 007702 007703 007704 007705 007706 007707 007708 007709 00770A 00770B 00770C 00770D 00770E 00770F 007710 007711 007712 007713 007714 007715 007716 007717 007718 007719 00771A 00771B 00771C 00771D 00771E 00771F 007720 007721 007722 007723 007724 007725 007726 007727 007728 007729 00772A 00772B 00772C 00772D 00772E 00772F 007730 007731 007732 007733 007734 007735 007736 007737 007738 007739 00773A 00773B 00773C 00773D 00773E 00773F 007740 007741 007742 007743 007744 007745 007746 007747 007748 007749 00774A 00774B 00774C 00774D 00774E 00774F 007750 007751 007752 007753 007754 007755 007756 007757 007758 007759 00775A 00775B 00775C 00775D 00775E 00775F 007760 007761 007762 007763 007764 007765 007766 007767 007768 007769 00776A 00776B 00776C 00776D 00776E 00776F 007770 007771 007772 007773 007774 007775 007776 007777 007778 007779 00777A 00777B 00777C 00777D 00777E 00777F 007780 007781 007782 007783 007784 007785 007786 007787 007788 007789 00778A 00778B 00778C 00778D 00778E 00778F 007790 007791 007792 007793 007794 007795 007796 007797 007798 007799 00779A 00779B 00779C 00779D 00779E 00779F 0077A0 0077A1 0077A2 0077A3 0077A4 0077A5 0077A6 0077A7 0077A8 0077A9 0077AA 0077AB 0077AC 0077AD 0077AE 0077AF 0077B0 0077B1 0077B2 0077B3 0077B4 0077B5 0077B6 0077B7 0077B8 0077B9 0077BA 0077BB 0077BC 0077BD 0077BE 0077BF 0077C0 0077C1 0077C2 0077C3 0077C4 0077C5 0077C6 0077C7 0077C8 0077C9 0077CA 0077CB 0077CC 0077CD 0077CE 0077CF 0077D0 0077D1 0077D2 0077D3 0077D4 0077D5 0077D6 0077D7 0077D8 0077D9 0077DA 0077DB 0077DC 0077DD 0077DE 0077DF 0077E0 0077E1 0077E2 0077E3 0077E4 0077E5 0077E6 0077E7 0077E8 0077E9 0077EA 0077EB 0077EC 0077ED 0077EE 0077EF 0077F0 0077F1 0077F2 0077F3 0077F4 0077F5 0077F6 0077F7 0077F8 0077F9 0077FA 0077FB 0077FC 0077FD 0077FE 0077FF 007800 007801 007802 007803 007804 007805 007806 007807 007808 007809 00780A 00780B 00780C 00780D 00780E 00780F 007810 007811 007812 007813 007814 007815 007816 007817 007818 007819 00781A 00781B 00781C 00781D 00781E 00781F 007820 007821 007822 007823 007824 007825 007826 007827 007828 007829 00782A 00782B 00782C 00782D 00782E 00782F 007830 007831 007832 007833 007834 007835 007836 007837 007838 007839 00783A 00783B 00783C 00783D 00783E 00783F 007840 007841 007842 007843 007844 007845 007846 007847 007848 007849 00784A 00784B 00784C 00784D 00784E 00784F 007850 007851 007852 007853 007854 007855 007856 007857 007858 007859 00785A 00785B 00785C 00785D 00785E 00785F 007860 007861 007862 007863 007864 007865 007866 007867 007868 007869 00786A 00786B 00786C 00786D 00786E 00786F 007870 007871 007872 007873 007874 007875 007876 007877 007878 007879 00787A 00787B 00787C 00787D 00787E 00787F 007880 007881 007882 007883 007884 007885 007886 007887 007888 007889 00788A 00788B 00788C 00788D 00788E 00788F 007890 007891 007912 007913 007914 007915 007916 007917 007918 007919 00791A 00791B 00791C 00791D 00791E 00791F 007920 007921 007922 007923 007924 007925 007926 007927 007928 007929 00792A 00792B 00792C 00792D 00792E 00792F 007930 007931 007932 007933 007934 007935 007936 007937 007938 007939 00793A 00793B 00793C 00793D 00793E 00793F 007940 007941 007942 007943 007944 007945 007946 007947 007948 007949 00794A 00794B 00794C 00794D 00794E 00794F 007950 007951 007952 007953 007954 007955 007956 007957 007958 007959 00795A 00795B 00795C 00795D 00795E 00795F 007960 007961 007962 007963 007964 007965 007966 007967 007968 007969 00796A 00796B 00796C 00796D 00796E 00796F 007970 007971 007972 007973 007974 007975 007976 007977 007978 007979 00797A 00797B 00797C 00797D 00797E 00797F 007980 007981 007982 007983 007984 007985 007986 007987 007988 007989 00798A 00798B 00798C 00798D 00798E 00798F 007990 007991 007992 007993 007994 007995 007996 007997 007998 007999 00799A 00799B 00799C 00799D 00799E 00799F 0079A0 0079A1 0079A2 0079A3 0079A4 0079A5 0079A6 0079A7 0079A8 0079A9 0079AA 0079AB 0079AC 0079AD 0079AE 0079AF 0079B0 0079B1 0079B2 0079B3 0079B4 0079B5 0079B6 0079B7 0079B8 0079B9 0079BA 0079BB 0079BC 0079BD 0079BE 0079BF 0079C0 0079C1 0079C2 0079C3 0079C4 0079C5 0079C6 0079C7 0079C8 0079C9 0079CA 0079CB 0079CC 0079CD 0079CE 0079CF 0079D0 0079D1 0079D2 0079D3 0079D4 0079D5 0079D6 0079D7 0079D8 0079D9 0079DA 0079DB 0079DC 0079DD 0079DE 0079DF 0079E0 0079E1 0079E2 0079E3 0079E4 0079E5 0079E6 0079E7 0079E8 0079E9 0079EA 0079EB 0079EC 0079ED 0079EE 0079EF 0079F0 0079F1 0079F2 0079F3 0079F4 0079F5 0079F6 0079F7 0079F8 0079F9 0079FA 0079FB 0079FC 0079FD 0079FE 0079FF 007A00 007A01 007A02 007A03 007A04 007A05 007A06 007A07 007A08 007A09 007A0A 007A0B 007A0C 007A0D 007A0E 007A0F 007A10 007A11 007A12 007A13 007A14 007A15 007A16 007A17 007A18 007A19 007A1A 007A1B 007A1C 007A1D 007A1E 007A1F 007A20 007A21 007A22 007A23 007A24 007A25 007A26 007A27 007A28 007A29 007A2A 007A2B 007A2C 007A2D 007A2E 007A2F 007A30 007A31 007A32 007A33 007A34 007A35 007A36 007A37 007A38 007A39 007A3A 007A3B 007A3C 007A3D 007A3E 007A3F 007A40 007A41 007A42 007A43 007A44 007A45 007A46 007A47 007A48 007A49 007A4A 007A4B 007A4C 007A4D 007A4E 007A4F 007A50 007A51 007A52 007A53 007A54 007A55 007A56 007A57 007A58 007A59 007A5A 007A5B 007A5C 007A5D 007A5E 007A79 007A7A 007A7B 007A7C 007A7D 007A7E 007A7F 007A80 007A81 007A82 007A83 007A84 007A85 007A86 007A87 007A88 007A89 007A8A 007A8B 007A8C 007A8D 007A8E 007A8F 007A90 007A91 007A92 007A93 007A94 007A95 007A96 007A97 007A98 007A99 007A9A 007A9B 007A9C 007A9D 007A9E 007A9F 007AA0 007AA9 007AAA 007AAB 007AAC 007AAD 007AAE 007AAF 007AB0 007AB1 007AB2 007AB3 007AB4 007AB5 007AB6 007AB7 007AB8 007AB9 007ABA 007ABB 007ABC 007ABD 007ABE 007ABF 007AC0 007AC1 007AC2 007AC3 007AC4 007AC5 007AC6 007AC7 007AC8 007AC9 007ACA 007ACB 007ACC 007ACD 007ACE 007ACF 007AD0 007AD1 007AD2 007AD3 007AD4 007AD5 007AD6 007AD7 007AD8 007AD9 007ADA 007ADB 007ADC 007ADD 007ADE 007ADF 007AE0 007AE1 007AE2 007AE3 007AE4 007AE5 007AE6 007AE7 007AE8 007AE9 007AEA 007AEB 007AEC 007AED 007AEE 007AEF 007AF0 007AF1 007AF2 007AF3 007AF4 007AF5 007AF6 007AF7 007AF8 007AF9 007AFA 007AFB 007AFC 007AFD 007AFE 007AFF 007B00 007B01 007B02 007B03 007B04 007B05 007B06 007B07 007B08 007B09 007B0A 007B0B 007B0C
+C - - - - - 0x006025 01:E015: B1 E6     LDA (ram_00E6_t03_data),Y    ; 006356 006357 006358 006359 00635A 00635B 00635C 00635D 00635E 00635F 006360 006361 006362 006363 006364 006365 006366 006367 006368 006369 00636A 00636B 00636C 00636D 00636E 00636F 006370 006371 006372 006373 006374 006375 006376 006377 006378 006379 00637A 00637B 00637C 00637D 00637E 00637F 006380 006381 006382 006383 006384 006385 006386 006387 006388 006389 00638A 00638B 00638C 00638D 00638E 00638F 006390 006391 006392 006393 006394 006395 006396 006397 006398 006399 00639A 00639B 00639C 00639D 00639E 00639F 0063A0 0063A1 0063A2 0063A3 0063A4 0063A5 0063A6 0063A7 0063A8 0063A9 0063AA 0063AB 0063AC 0063AD 0063AE 0063AF 0063B0 0063B1 0063B2 0063B3 0063B4 0063B5 0063B6 0063B7 0063B8 0063B9 0063BA 0063BB 0063BC 0063BD 0063BE 0063BF 0063C0 0063C1 0063C2 0063C3 0063C4 0063C5 0063C6 0063C7 0063C8 0063C9 0063CA 0063CB 0063CC 0063CD 0063CE 0063CF 0063D0 0063D1 0063D2 0063D3 0063D4 0063D5 0063D6 0063D7 0063D8 0063D9 0063DA 0063DB 0063DC 0063DD 0063DE 0063DF 0063E0 0063E1 0063E2 0063E3 0063E4 0063E5 0063E6 0063E7 0063E8 0063E9 0063EA 0063EB 0063EC 0063ED 0063EE 0063EF 0063F0 0063F1 0063F2 0063F3 0063F4 0063F5 0063F6 0063F7 0063F8 0063F9 0063FA 0063FB 0063FC 0063FD 0063FE 0063FF 006400 006401 006402 006403 006404 006405 006406 006407 006408 006409 00640A 00640B 00640C 00640D 00640E 00640F 006410 006411 006412 006413 006414 006415 006416 006417 006418 006419 00641A 00641B 00641C 00641D 00641E 00641F 006420 006421 006422 006423 006424 006425 006426 006427 006428 006429 00642A 00642B 00642C 00642D 00642E 00642F 006430 006431 006432 006433 006434 006435 006436 006437 006438 006439 00643A 00643B 00643C 00643D 00643E 00643F 006440 006441 006442 006443 006444 006445 006446 006447 006448 006449 00644A 00644B 00644C 00644D 00644E 00644F 006450 006451 006452 006453 006454 006455 006456 006457 006458 006459 00645A 00645B 00645C 00645D 00645E 00645F 006460 006461 006462 006463 006464 006465 006466 006467 006468 006469 00646A 00646B 00646C 00646D 00646E 00646F 006470 006471 006472 006473 006474 006475 006476 006477 006478 006479 00647A 00647B 00647C 00647D 00647E 00647F 006480 006481 006482 006483 006484 006485 006486 006487 006488 006489 00648A 00648B 00648C 00648D 00648E 00648F 006490 006491 006492 006493 006494 006495 006496 006497 006498 006499 00649A 00649B 00649C 00649D 00649E 00649F 0064A0 0064A1 0064A2 0064A3 0064A4 0064A5 0064A6 0064A7 0064A8 0064A9 0064AA 0064AB 0064AC 0064AD 0064AE 0064AF 0064B0 0064B1 0064B2 0064B3 0064B4 0064B5 0064B6 0064B7 0064B8 0064B9 0064BA 0064BB 0064BC 0064BD 0064BE 0064BF 0064C0 0064C1 0064C2 0064C3 0064C4 0064C5 0064C6 0064C7 0064C8 0064C9 0064CA 0064CB 0064CC 0064CD 0064CE 0064CF 0064D0 0064D1 0064D2 0064D3 0064D4 0064D5 0064D6 0064D7 0064D8 0064D9 0064DA 0064DB 0064DC 0064DD 0064DE 0064DF 0064E0 0064E1 0064E2 0064E3 0064E4 0064E5 0064E6 0064E7 0064E8 0064E9 0064EA 0064EB 0064EC 0064ED 0064EE 0064EF 0064F0 0064F1 0064F2 0064F3 0064F4 0064F5 0064F6 0064F7 0064F8 0064F9 0064FA 0064FB 0064FC 0064FD 0064FE 0064FF 006500 006501 006502 006503 006504 006505 006506 006507 006508 006509 00650A 00650B 00650C 00650D 00650E 00650F 006510 006511 006512 006513 006514 006515 006516 006517 006518 006519 00651A 00651B 00651C 00651D 00651E 00651F 006520 006521 006522 006523 006524 006525 006526 006527 006528 006529 00652A 00652B 00652C 00652D 00652E 00652F 006530 006531 006532 006533 006534 006535 006536 006537 006538 006539 00653A 00653B 00653C 00653D 00653E 00653F 006540 006541 006542 006543 006544 006545 006546 006547 006548 006549 00654A 00654B 00654C 00654D 00654E 00654F 006550 006551 006552 006553 006554 006555 006556 006557 006558 006559 00655A 00655B 00655C 00655D 00655E 00655F 006560 006561 006562 006563 006564 006565 006566 006567 006568 006569 00656A 00656B 00656C 00656D 00656E 00656F 006570 006571 006572 006573 006574 006575 006576 006577 006578 006579 00657A 00657B 00657C 00657D 00657E 00657F 006580 006581 006582 006583 006584 006585 006586 006587 006588 006589 00658A 00658B 00658C 00658D 006646 006647 006648 006649 00664A 00664B 00664C 00664D 00664E 00664F 006650 006651 006652 006653 006654 006655 006656 006657 006658 006659 00665A 00665B 00665C 00665D 00665E 00665F 006660 006661 006662 006663 006664 006665 006666 006667 006668 006669 00666A 00666B 00666C 00666D 00666E 00666F 006670 006671 006672 006673 006674 006675 006676 006677 006678 006679 00667A 00667B 00667C 00667D 00667E 00667F 006680 006681 006682 006683 006684 006685 006686 006687 006688 006689 00668A 00668B 00668C 00668D 00668E 00668F 006690 006691 006692 006693 006694 006695 006696 006697 006698 006699 00669A 00669B 00669C 00669D 00669E 00669F 0066A0 0066A1 0066A2 0066A3 0066A4 0066A5 0066A6 0066A7 0066A8 0066A9 0066AA 0066AB 0066AC 0066AD 0066AE 0066AF 0066B0 0066B1 0066B2 0066B3 0066B4 0066B5 0066B6 0066B7 0066B8 0066B9 0066BA 0066BB 0066BC 0066BD 0066BE 0066BF 0066C0 0066C1 0066C2 0066C3 0066C4 0066C5 0066C6 0066C7 0066C8 0066C9 0066CA 0066CB 0066CC 0066CD 0066CE 0066CF 0066D0 0066D1 0066D2 0066D3 0066D4 0066D5 0066D6 0066D7 0066D8 0066D9 0066DA 0066DB 0066DC 0066DD 0066DE 0066DF 0066E0 0066E1 0066E2 0066E3 0066E4 0066E5 0066E6 0066E7 0066E8 0066E9 0066EA 0066EB 0066EC 0066ED 0066EE 0066EF 0066F0 0066F1 0066F2 0066F3 0066F4 0066F5 0066F6 0066F7 0066F8 0066F9 0066FA 0066FB 0066FC 0066FD 0066FE 0066FF 006700 006701 006702 006703 006704 006705 006706 006707 006708 006709 00670A 00670B 00672B 00672C 00672D 00672E 00672F 006730 006731 006732 006733 006753 006754 006755 006798 006799 00679A 00679B 00679C 006958 006959 00695A 00695B 00695C 00695D 00695E 00695F 006960 006961 006962 006963 006964 006965 006966 006967 006968 006969 00696A 00696B 00696C 00696D 00696E 00696F 006970 006971 006972 006973 006974 006975 006976 006977 006978 006979 00697A 00697B 00697C 00697D 00697E 00697F 006980 006981 006982 006983 006984 006985 006986 006987 006988 006989 00698A 00698B 00698C 00698D 00698E 00698F 006990 006991 006992 006993 006994 006995 006996 006997 006998 006999 00699A 00699B 00699C 00699D 00699E 00699F 0069A0 0069A1 0069A2 0069A3 0069A4 0069A5 0069A6 0069A7 0069A8 0069A9 0069AA 0069AB 0069AC 0069AD 0069AE 0069AF 0069B0 0069B1 0069B2 0069B3 0069B4 0069B5 0069B6 0069B7 0069B8 0069B9 0069BA 0069BB 0069BC 0069BD 0069BE 0069BF 0069C0 0069C1 0069C2 0069C3 0069C4 0069C5 0069C6 0069C7 0069C8 0069C9 0069CA 0069CB 0069CC 0069CD 0069CE 0069CF 0069D0 0069D1 0069D2 0069D3 0069D4 0069D5 0069D6 0069D7 0069D8 0069D9 0069DA 0069DB 0069DC 0069DD 0069DE 0069DF 0069E0 0069E1 0069E2 0069E3 0069E4 0069E5 0069E6 0069E7 0069E8 0069E9 0069EA 0069EB 0069EC 0069ED 0069EE 0069EF 0069F0 0069F1 0069F2 0069F3 0069F4 0069F5 0069F6 0069F7 0069F8 0069F9 0069FA 0069FB 0069FC 0069FD 0069FE 0069FF 006A00 006A01 006A02 006A03 006A04 006A05 006A06 006A07 006A08 006A09 006A0A 006A0B 006A0C 006A0D 006A0E 006A0F 006A10 006A11 006A12 006A13 006A14 006A15 006A16 006A17 006A18 006A19 006A1A 006A1B 006A1C 006A1D 006A1E 006A1F 006A20 006A21 006A22 006A23 006A24 006A25 006A26 006A27 006A28 006A29 006A2A 006A2B 006A2C 006A2D 006A2E 006A2F 006A30 006A31 006A32 006A33 006A34 006A35 006A36 006A37 006A38 006A39 006A3A 006A3B 006A3C 006A3D 006A3E 006A3F 006A40 006A41 006A42 006A43 006A44 006A45 006A46 006A47 006A48 006A49 006A4A 006A4B 006A4C 006A4D 006A4E 006A4F 006A50 006A51 006A52 006A53 006A54 006A55 006A56 006A57 006A58 006A59 006A5A 006A5B 006A5C 006A5D 006A5E 006A5F 006A60 006A61 006A62 006A63 006A64 006A65 006A66 006A67 006A68 006A69 006A6A 006A6B 006A6C 006A6D 006A6E 006A6F 006A70 006A71 006A72 006A73 006A74 006A75 006A76 006A77 006A78 006A79 006A7A 006A7B 006A7C 006A7D 006A7E 006A7F 006A80 006A81 006A82 006A83 006A84 006A85 006A86 006A87 006A88 006A89 006A8A 006A8B 006A8C 006A8D 006A8E 006A8F 006A90 006A91 006A92 006A93 006A94 006A95 006A96 006A97 006A98 006A99 006A9A 006A9B 006A9C 006A9D 006A9E 006A9F 006AA0 006AA1 006AA2 006AA3 006AA4 006AA5 006AA6 006AA7 006AA8 006AA9 006AAA 006AAB 006AAC 006AAD 006AAE 006AAF 006AB0 006AB1 006AB2 006AB3 006AB4 006AB5 006AB6 006AB7 006AB8 006AB9 006ABA 006ABB 006ABC 006ABD 006ABE 006ABF 006AC0 006AC1 006AC2 006AC3 006AC4 006AC5 006AC6 006AC7 006AC8 006AC9 006ACA 006ACB 006ACC 006ACD 006ACE 006ACF 006AD0 006AD1 006AD2 006AD3 006AD4 006AD5 006AD6 006AD7 006AD8 006AD9 006ADA 006ADB 006ADC 006ADD 006ADE 006ADF 006AE0 006AE1 006AE2 006AE3 006AE4 006AE5 006AE6 006AE7 006AE8 006AE9 006AEA 006AEB 006AEC 006AED 006AEE 006AEF 006AF0 006AF1 006AF2 006AF3 006AF4 006AF5 006AF6 006AF7 006AF8 006AF9 006AFA 006AFB 006AFC 006AFD 006AFE 006AFF 006B00 006B01 006B02 006B03 006B04 006B05 006B06 006B07 006B08 006B09 006B0A 006B0B 006B0C 006B0D 006B0E 006B0F 006B10 006B11 006B12 006B13 006B14 006B15 006B16 006B17 006B18 006B19 006B1A 006B1B 006B1C 006B1D 006B1E 006B1F 006B20 006B21 006B22 006B23 006B24 006B25 006B26 006B27 006B28 006B29 006B2A 006B2B 006B2C 006B2D 006B2E 006B2F 006B30 006B31 006B32 006B33 006B34 006B35 006B36 006B37 006B38 006B39 006B3A 006B3B 006B3C 006B3D 006B3E 006B3F 006B40 006B41 006B42 006B43 006B44 006B45 006B46 006B47 006B48 006B49 006B4A 006B4B 006B4C 006B4D 006B4E 006B4F 006B50 006B51 006B52 006B53 006B54 006B55 006B56 006B57 006B58 006B59 006B5A 006B5B 006B5C 006B5D 006B5E 006B5F 006B60 006B61 006B62 006B63 006B64 006B65 006B66 006B67 006B68 006B69 006B6A 006B6B 006B6C 006B6D 006B6E 006B6F 006B70 006B71 006B72 006B73 006B74 006B75 006B76 006B77 006B78 006B79 006B7A 006B7B 006B7C 006B7D 006B7E 006B7F 006B80 006B81 006B82 006B83 006B84 006B85 006B86 006B87 006B88 006B89 006B8A 006B8B 006B8C 006B8D 006B8E 006B8F 006B90 006B91 006B92 006B93 006B94 006B95 006B96 006B97 006B98 006B99 006B9A 006B9B 006B9C 006B9D 006B9E 006B9F 006BA0 006BA1 006BA2 006BA3 006BA4 006BA5 006BA6 006BA7 006BA8 006BA9 006BAA 006BAB 006BAC 006BAD 006BAE 006BAF 006BB0 006BB1 006BB2 006BB3 006BB4 006BB5 006BB6 006BB7 006BB8 006BB9 006BBA 006BBB 006BBC 006BBD 006BBE 006BBF 006BC0 006BC1 006BC2 006BC3 006BC4 006BC5 006BC6 006BC7 006BC8 006BC9 006BCA 006BCB 006BCC 006BCD 006BCE 006BCF 006BD0 006BD1 006BD2 006BD3 006BD4 006BD5 006BD6 006BD7 006BD8 006BD9 006BDA 006BDB 006BDC 006BDD 006BDE 006BDF 006BE0 006BE1 006BE2 006BE3 006BE4 006BE5 006BE6 006BE7 006BE8 006BE9 006BEA 006BEB 006BEC 006BED 006BEE 006BEF 006BF0 006BF1 006BF2 006BF3 006BF4 006BF5 006BF6 006BF7 006BF8 006BF9 006BFA 006BFB 006BFC 006BFD 006BFE 006BFF 006C00 006C01 006C02 006C03 006C04 006C05 006C06 006C07 006C08 006C09 006C0A 006C0B 006C0C 006C0D 006C0E 006C0F 006C10 006C11 006C12 006C13 006C14 006C15 006C16 006C17 006C18 006C19 006C1A 006C1B 006C1C 006C1D 006C1E 006C1F 006C20 006C21 006C22 006C23 006C24 006C25 006C26 006C27 006C28 006C29 006C2A 006C2B 006C2C 006C2D 006C2E 006C2F 006C30 006C31 006C32 006C33 006C34 006C35 006C36 006C37 006C38 006C39 006C3A 006C3B 006C3C 006C3D 006C3E 006C3F 006C40 006C41 006C42 006C43 006C44 006C45 006C46 006C47 006C48 006C49 006C4A 006C4B 006C4C 006C4D 006C4E 006C4F 006C50 006C51 006C52 006C53 006C54 006C55 006C56 006C57 006C58 006C59 006C5A 006C5B 006C5C 006C5D 006C5E 006C5F 006C60 006C61 006C62 006C63 006C64 006C65 006C66 006C67 006C68 006C69 006C6A 006C6B 006C6C 006C6D 006C6E 006C6F 006C70 006C71 006C72 006C73 006C74 006C75 006C76 006C77 006C78 006C79 006C7A 006C7B 006C7C 006C7D 006C7E 006C7F 006C80 006C81 006C82 006C83 006C84 006C85 006C86 006C87 006C88 006C89 006C8A 006C8B 006C8C 006C8D 006C8E 006C8F 006C90 006C91 006C92 006C93 006C94 006C95 006C96 006C97 006C98 006C99 006C9A 006C9B 006C9C 006C9D 006C9E 006C9F 006CA0 006CA1 006CA2 006CA3 006CA4 006CA5 006CA6 006CA7 006CA8 006CA9 006CAA 006CAB 006CAC 006CAD 006CAE 006CAF 006CB0 006CB1 006CB2 006CB3 006CB4 006CB5 006CB6 006CB7 006CB8 006CB9 006CBA 006CBB 006CBC 006CBD 006CBE 006CBF 006CC0 006CC1 006CC2 006CC3 006CC4 006CC5 006CC6 006CC7 006CC8 006CC9 006CCA 006CCB 006CCC 006CCD 006CCE 006CCF 006CD0 006CD1 006CD2 006CD3 006CD4 006CD5 006CD6 006CD7 006CD8 006CD9 006CDA 006CDB 006CDC 006CDD 006CDE 006CDF 006CE0 006CE1 006CE2 006CE3 006CE4 006CE5 006CE6 006CE7 006CE8 006CE9 006CEA 006CEB 006CEC 006CED 006CEE 006CEF 006CF0 006CF1 006CF2 006CF3 006CF4 006CF5 006CF6 006CF7 006CF8 006CF9 006CFA 006CFB 006CFC 006CFD 006CFE 006CFF 006D00 006D01 006D02 006D03 006D04 006D05 006D06 006D07 006D08 006D09 006D0A 006D0B 006D0C 006D0D 006D0E 006D0F 006D10 006D11 006D12 006D13 006D14 006D15 006D16 006D17 006D18 006D19 006D1A 006D1B 006D1C 006D1D 006D1E 006D1F 006D20 006D21 006D22 006D23 006D24 006D25 006D26 006D27 006D28 006D29 006D2A 006D2B 006D2C 006D2D 006D2E 006D2F 006D30 006D31 006D32 006D33 006D34 006D35 006D36 006D37 006D38 006D39 006D3A 006D3B 006D3C 006D3D 006D3E 006D3F 006D40 006D41 006D42 006D43 006D44 006D45 006D46 006D47 006D48 006D49 006D4A 006D4B 006D4C 006D4D 006D4E 006D4F 006D50 006D51 006D52 006D53 006D54 006D55 006D56 006D57 006D58 006D59 006D5A 006D5B 006D5C 006D5D 006D5E 006D5F 006D60 006D61 006D62 006D63 006D64 006D65 006D66 006D67 006D68 006D69 006D6A 006D6B 006D6C 006D6D 006D6E 006D6F 006D70 006D71 006D72 006D73 006D74 006D75 006D76 006D77 006D78 006D79 006D7A 006D7B 006D7C 006D7D 006D7E 006D7F 006D80 006D81 006D82 006D83 006D84 006D85 006D86 006D87 006D88 006D89 006D8A 006D8B 006D8C 006D8D 006D8E 006D8F 006D90 006D91 006D92 006D93 006D94 006D95 006D96 006D97 006D98 006D99 006D9A 006D9B 006D9C 006D9D 006D9E 006D9F 006DA0 006DA1 006DA2 006DA3 006DA4 006DA5 006DA6 006DA7 006DA8 006DA9 006DAA 006DAB 006DAC 006DAD 006DDC 006DDD 006DDE 006DDF 006DE0 006DE1 006DE2 006DE3 006DE4 006DE5 006DE6 006DE7 006DE8 006DE9 006DEA 006DEB 006DEC 006DED 006DEE 006DEF 006DF0 006DF1 006DF2 006DF3 006DF4 006DF5 006DF6 006DF7 006DF8 006DF9 006DFA 006DFB 006DFC 006DFD 006DFE 006DFF 006E00 006E01 006E02 006E03 006E04 006E05 006E06 006E07 006E08 006E09 006E0A 006E0B 006E0C 006E0D 006E0E 006E0F 006E10 006E11 006E12 006E13 006E14 006E15 006E16 006E17 006E18 006E19 006E1A 006E1B 006E1C 006E1D 006E1E 006E1F 006E20 006E21 006E22 006E23 006E24 006E25 006E26 006E27 006E28 006E29 006E2A 006E2B 006E2C 006E2D 006E2E 006E2F 006E30 006E31 006E32 006E33 006E34 006E35 006E36 006E37 006E38 006E39 006E3A 006E3B 006E3C 006E3D 006E3E 006E3F 006E40 006E41 006E42 006E43 006E44 006E45 006E46 006E47 006E48 006E49 006E4A 006E4B 006E4C 006E4D 006E4E 006E4F 006E50 006E51 006E52 006E53 006E54 006E55 006E56 006E57 006E58 006E59 006E5A 006E5B 006E5C 006E5D 006E5E 006E5F 006E60 006E61 006E62 006E63 006E64 006E65 006E66 006E67 006E68 006E69 006E6A 006E6B 006E6C 006E6D 006E6E 006E6F 006E70 006E71 006E72 006E73 006E74 006E75 006E76 006E77 006E78 006E79 006E7A 006E7B 006E7C 006E7D 006E7E 006E7F 006E80 006E81 006E82 006E83 006E84 006E85 006E86 006E87 006E88 006E89 006E8A 006E8B 006E8C 006E8D 006E8E 006E8F 006E90 006E91 006E92 006E93 006E94 006E95 006E96 006E97 006E98 006E99 006E9A 006E9B 006E9C 006E9D 006E9E 006E9F 006EA0 006EA1 006EA2 006EA3 006EA4 006EA5 006EA6 006EA7 006EA8 006EA9 006EAA 006EAB 006EAC 006EAD 006EAE 006EAF 006EB0 006EB1 006EB2 006EB3 006EB4 006EB5 006EB6 006EB7 006EB8 006EB9 006EBA 006EBB 006EBC 006EBD 006EBE 006EBF 006EC0 006EC1 006EC2 006EC3 006EC4 006EC5 006EC6 006EC7 006EC8 006EC9 006ECA 006ECB 006ECC 006ECD 006ECE 006ECF 006ED0 006ED1 006ED2 006ED3 006ED4 006ED5 006ED6 006ED7 006ED8 006ED9 006EDA 006EDB 006EDC 006EDD 006EDE 006EDF 006EE0 006EE1 006EE2 006EE3 006EE4 006EE5 006EE6 006EE7 006EE8 006EE9 006EEA 006EEB 006EEC 006EED 006EEE 006EEF 006EF0 006EF1 006EF2 006EF3 006EF4 006EF5 006EF6 006EF7 006EF8 006EF9 006EFA 006EFB 006EFC 006EFD 006EFE 006EFF 006F00 006F01 006F02 006F03 006F04 006F05 006F06 006F07 006F08 006F09 006F0A 006F0B 006F0C 006F0D 006F0E 006F0F 006F10 006F11 006F12 006F13 006F14 006F15 006F16 006F17 006F18 006F19 006F1A 006F1B 006F1C 006F1D 006F1E 006F1F 006F20 006F21 006F22 006F23 006F24 006F25 006F26 006F27 006F28 006F29 006F2A 006F2B 006F2C 006F2D 006F2E 006F2F 006F30 006F31 006F32 006F33 006F34 006F35 006F36 006F37 006F38 006F39 006F3A 006F3B 006F3C 006F3D 006F3E 006F3F 006F40 006F41 006F42 006F43 006F44 006F45 006F46 006F47 006F48 006F49 006F4A 006F4B 006F4C 006F4D 006F4E 006F4F 006F50 006F51 006F52 006F53 006F54 006F55 006F56 006F57 006F58 006F59 006F5A 006F5B 006F5C 006F5D 006F5E 006F5F 006F60 006F61 006F62 006F63 006F64 006F65 006F66 006F67 006F68 006F69 006F6A 006F6B 006F6C 006F6D 006F6E 006F6F 006F70 006F71 006F72 006F73 006F74 006F75 006F76 006F77 006F78 006F79 006F7A 006F7B 006F7C 006F7D 006F7E 006F7F 006F80 006F81 006F82 006F83 006F84 006F85 006F86 006F87 006F88 006F89 006F8A 006F8B 006F8C 006F8D 006F8E 006F8F 006F90 006F91 006F92 006F93 006F94 006F95 006F96 006F97 006F98 006F99 006F9A 006F9B 006F9C 006F9D 006F9E 006F9F 006FA0 006FA1 006FA2 006FA3 006FA4 006FA5 006FA6 006FA7 006FA8 006FA9 006FAA 006FAB 006FAC 006FAD 006FAE 006FAF 006FB0 006FB1 006FB2 006FB3 006FB4 006FB5 006FB6 006FB7 006FB8 006FB9 006FBA 006FBB 006FBC 006FBD 006FBE 006FBF 006FC0 006FC1 006FC2 006FC3 006FC4 006FC5 006FC6 006FC7 006FC8 006FC9 006FCA 006FCB 006FCC 006FCD 006FCE 006FCF 006FD0 006FD1 006FD2 006FD3 006FD4 006FD5 006FD6 006FD7 006FD8 006FD9 006FDA 006FDB 006FDC 006FDD 006FDE 006FDF 006FE0 006FE1 006FE2 006FE3 006FE4 006FE5 006FE6 006FE7 006FE8 006FE9 006FEA 006FEB 006FEC 006FED 006FEE 006FEF 006FF0 006FF1 006FF2 006FF3 006FF4 006FF5 007026 007027 007028 007029 00702A 00702B 00702C 00702D 00702E 00702F 007030 007031 007032 007033 007034 007035 007036 007037 007038 007039 00703A 00703B 00703C 00703D 00703E 00703F 007040 007041 007042 007043 007044 007045 007046 007047 007048 007049 00704A 00704B 00704C 00704D 00704E 00704F 007050 007051 007052 007053 007054 007055 007056 007057 007058 007059 00705A 00705B 00705C 00705D 00705E 00705F 007060 007061 007062 007063 007064 007065 007066 007067 007068 007069 00706A 00706B 00706C 00706D 00706E 00706F 007070 007071 007072 007073 007074 007075 007076 007077 007078 007079 00707A 00707B 00707C 00707D 00707E 00707F 007080 007081 007082 007083 007084 007085 007086 007087 007088 007089 00708A 00708B 00708C 00708D 00708E 00708F 007090 007091 007092 007093 007094 007095 007096 007097 007098 007099 00709A 00709B 00709C 00709D 00709E 00709F 0070A0 0070A1 0070A2 0070A3 0070A4 0070A5 0070A6 0070A7 0070A8 0070A9 0070AA 0070AB 0070AC 0070AD 0070AE 0070AF 0070B0 0070B1 0070B2 0070B3 0070B4 0070B5 0070B6 0070B7 0070B8 0070B9 0070BA 0070BB 0070BC 0070BD 0070BE 0070BF 0070C0 0070C1 0070C2 0070C3 0070C4 0070C5 0070C6 0070C7 0070C8 0070C9 0070CA 0070CB 0070CC 0070CD 0070CE 0070CF 0070D0 0070D1 0070D2 0070D3 0070D4 0070D5 0070D6 0070D7 0070D8 0070D9 0070DA 0070DB 0070DC 0070DD 0070DE 0070DF 0070E0 0070E1 0070E2 0070E3 0070E4 0070E5 0070E6 0070E7 0070E8 0070E9 0070EA 0070EB 0070EC 0070ED 0070EE 0070EF 0070F0 0070F1 0070F2 0070F3 0070F4 0070F5 0070F6 0070F7 0070F8 0070F9 0070FA 0070FB 0070FC 0070FD 0070FE 0070FF 007100 007101 007102 007103 007104 007105 007106 007107 007108 007109 00710A 00710B 00710C 00710D 00710E 00710F 007110 007111 007112 007113 007114 007115 007116 007117 007118 007119 00711A 00711B 00711C 00711D 00711E 00711F 007120 007121 007122 007123 007124 007125 007126 007127 007128 007129 00712A 00712B 00712C 00712D 00712E 00712F 007130 007131 007132 007133 007134 007135 007136 007137 007138 007139 00713A 00713B 00713C 00713D 00713E 00713F 007140 007141 007142 007143 007144 007145 007146 007147 007148 007149 00714A 00714B 00714C 00714D 00714E 00714F 007150 007151 007152 007153 007154 007155 007156 007157 007158 007159 00715A 00715B 00715C 00715D 00715E 00715F 007160 007161 007162 007163 007164 007165 007166 007167 007168 007169 00716A 00716B 00716C 00716D 00716E 00716F 007170 007171 007172 007173 007174 007175 007176 007177 007178 007179 00717A 00717B 0071A4 0071A5 0071A6 0071A7 0071A8 0071A9 0071AA 0071AB 0071AC 0071AD 0071AE 0071AF 0071B0 0071B1 0071B2 0071B3 0071B4 0071B5 0071B6 0071B7 0071B8 0071B9 0071BA 0071BB 0071BC 0071BD 0071BE 0071BF 0071C0 0071C1 0071C2 0071C3 0071C4 0071C5 0071C6 0071C7 0071C8 0071C9 0071CA 0071CB 0071CC 0071CD 0071CE 0071CF 0071D0 0071D1 0071D2 0071D3 0071D4 0071D5 0071D6 0071D7 0071D8 0071D9 0071DA 0071DB 0071DC 0071DD 0071DE 0071DF 0071E0 0071E1 0071E2 0071E3 0071E4 0071E5 0071E6 0071E7 0071E8 0071E9 0071EA 0071EB 0071EC 0071ED 0071EE 0071EF 0071F0 0071F1 0071F2 0071F3 0071F4 0071F5 0071F6 0071F7 0071F8 0071F9 0071FA 0071FB 0071FC 0071FD 0071FE 0071FF 007200 007201 007202 007203 007204 007205 007206 007207 007208 007209 00720A 00720B 00720C 00720D 00720E 00720F 007210 007211 007212 007213 007214 007215 007216 007217 007218 007219 00721A 00721B 00721C 00721D 00721E 00721F 007220 007221 007222 007223 007224 007225 007226 007227 007228 007229 00722A 00722B 00722C 00722D 00722E 00722F 007230 007231 007232 007233 007234 007235 007236 007237 007238 007239 00723A 00723B 00723C 00723D 00723E 00723F 007240 007241 007242 007243 007244 007245 007246 007247 007248 007249 00724A 00724B 00724C 00724D 00724E 00724F 007250 007251 007252 007253 007254 007255 007256 007257 007258 007259 00725A 00725B 00725C 00725D 00725E 00725F 007260 007261 007262 007263 007264 007265 007266 007267 007268 007269 00726A 00726B 00726C 00726D 00726E 00726F 007270 007271 007272 007273 007274 007275 007276 007277 007278 007279 00727A 00727B 00727C 00727D 00727E 00727F 007280 007281 007282 007283 007284 007285 007286 007287 007288 007289 00728A 00728B 00728C 00728D 00728E 00728F 007290 007291 007292 007293 007294 007295 007296 007297 007298 007299 00729A 00729B 00729C 00729D 00729E 00729F 0072A0 0072A1 0072A2 0072A3 0072A4 0072A5 0072A6 0072A7 0072A8 0072A9 0072AA 0072AB 0072AC 0072AD 0072AE 0072AF 0072B0 0072B1 0072B2 0072B3 0072B4 0072B5 0072B6 0072B7 0072B8 0072B9 0072BA 0072BB 0072BC 0072BD 0072BE 0072BF 0072C0 0072C1 0072C2 0072C3 0072C4 0072C5 0072C6 0072C7 0072C8 0072C9 0072CA 0072CB 0072CC 0072CD 0072CE 0072CF 0072D0 0072D1 0072D2 0072D3 0072D4 0072D5 0072D6 0072D7 0072D8 0072D9 0072DA 0072DB 0072DC 0072DD 0072DE 0072DF 0072E0 0072E1 0072E2 0072E3 0072E4 0072E5 0072E6 0072E7 0072E8 0072E9 0072EA 0072EB 0072EC 0072ED 0072EE 0072EF 0072F0 0072F1 0072F2 0072F3 0072F4 0072F5 0072F6 0072F7 0072F8 0072F9 0072FA 0072FB 0072FC 0072FD 0072FE 0072FF 007300 007301 007302 007303 007304 007305 007306 007307 007308 007309 00730A 00730B 00730C 00730D 00730E 00730F 007310 007311 007312 007313 007314 007315 007316 007317 007318 007319 00731A 00731B 00731C 00731D 00731E 00731F 007320 007321 007322 007323 007324 007325 007326 007327 007328 007329 00732A 00732B 00732C 00732D 00732E 00732F 007330 007331 007332 007333 007334 007335 007336 007337 007338 007339 00733A 00733B 00733C 00733D 00733E 00733F 007340 007341 007342 007343 007344 007345 007346 007347 007348 007349 00734A 00734B 00734C 00734D 00734E 00734F 007350 007351 007352 007353 007354 007355 007356 007357 007358 007359 00735A 00735B 00735C 00735D 00735E 00735F 007360 007361 007362 007363 007364 007365 007366 007367 007368 007369 00736A 00736B 00736C 00736D 00736E 00736F 007370 007371 007372 007373 007374 007375 007376 007377 007378 007379 00737A 00737B 00737C 00737D 00737E 00737F 007380 007381 007382 007383 007384 007385 007386 007387 007388 007389 00738A 00738B 00738C 00738D 00738E 00738F 007390 007391 007392 007393 007394 007395 007396 007397 007398 007399 00739A 00739B 00739C 00739D 00739E 00739F 0073A0 0073A1 0073A2 0073A3 0073A4 0073A5 0073A6 0073A7 0073A8 0073A9 0073AA 0073AB 0073AC 0073AD 0073AE 0073AF 0073B0 0073B1 0073B2 0073B3 0073B4 0073B5 0073B6 0073B7 0073B8 0073B9 0073BA 0073BB 0073BC 0073BD 0073BE 0073BF 0073C0 0073C1 0073C2 0073C3 0073C4 0073C5 0073C6 0073C7 0073C8 0073C9 0073CA 0073CB 0073CC 0073CD 0073CE 0073CF 0073D0 0073D1 0073D2 0073D3 0073D4 0073D5 0073D6 0073D7 0073D8 0073D9 0073DA 0073DB 0073DC 0073DD 0073DE 0073DF 0073E0 0073E1 0073E2 0073E3 0073E4 0073E5 0073E6 0073E7 0073E8 0073E9 0073EA 0073EB 0073EC 0073ED 0073EE 0073EF 0073F0 0073F1 0073F2 0073F3 0073F4 0073F5 0073F6 0073F7 0073F8 0073F9 0073FA 0073FB 0073FC 0073FD 0073FE 0073FF 007400 007401 007402 007403 007404 007405 007406 007407 007408 007409 00740A 00740B 00740C 00740D 00740E 00740F 007410 007411 007412 007413 007414 007415 007416 007417 007418 007419 00741A 00741B 00741C 00741D 00741E 00741F 007420 007421 007422 007423 007424 007425 007426 007427 007428 007429 00742A 00742B 00742C 00742D 00742E 00742F 007430 007431 007432 007433 007434 007435 007436 007437 007438 007439 00743A 00743B 00743C 00743D 00743E 00743F 007440 007441 007442 007443 007444 007445 007446 007447 007448 007449 00744A 00744B 00744C 00744D 00744E 00744F 007450 007451 007452 007453 007454 007455 007456 007457 007458 007459 00745A 00745B 00745C 00745D 00745E 00745F 007460 007461 007462 007463 007464 007465 007466 007467 007468 007469 00746A 00746B 00746C 00746D 00746E 00746F 007470 007471 007472 007473 007474 007475 007476 007477 007478 007479 00747A 00747B 00747C 00747D 00747E 00747F 007480 007481 007482 007483 007484 007485 007486 007487 007488 007489 00748A 0074BD 0074BE 0074BF 0074C0 0074C1 0074C2 0074C3 0074C4 0074C5 0074C6 0074C7 0074C8 0074C9 0074CA 0074CB 0074CC 0074CD 0074CE 0074CF 0074D0 0074D1 0074D2 0074D3 0074D4 0074D5 0074D6 0074D7 0074D8 0074D9 0074DA 0074DB 0074DC 0074DD 0074DE 0074DF 0074E0 0074E1 0074E2 0074E3 0074E4 0074E5 0074E6 0074E7 0074E8 0074E9 0074EA 0074EB 0074EC 0074ED 0074EE 0074EF 0074F0 0074F1 0074F2 0074F3 0074F4 0074F5 0074F6 0074F7 0074F8 0074F9 0074FA 0074FB 0074FC 0074FD 0074FE 0074FF 007500 007501 007502 007503 007504 007505 007506 007507 007508 007509 00750A 00750B 00750C 00750D 00750E 00750F 007510 007511 007512 007513 007514 007515 007516 007517 007518 007519 00751A 00751B 00751C 00751D 00751E 00751F 007520 007521 007522 007523 007524 007525 007526 007527 007528 007529 00752A 00752B 00752C 00752D 007534 007535 007536 007537 00753A 00753B 00753C 00753D 00753E 00753F 007540 007541 007542 007543 007544 007545 007546 007547 00754A 00754B 00754C 00754D 00754E 00754F 007550 007551 007552 007553 00755C 00755D 00755E 007560 007561 007562 007563 007564 007565 007566 007567 007568 007569 00756A 00756B 00756C 00756D 00756E 00756F 007570 007571 00759D 00759E 00759F 0075A0 0075A1 0075A2 0075A3 0075A4 0075A5 0075A7 0075A8 0075A9 0075AA 0075AB 0075AC 0075AD 0075AE 0075AF 0075B0 00760D 00760E 00760F 007610 007611 007612 007613 007614 007615 007616 007617 007618 007619 00761A 00761B 00761C 00761D 00761E 00761F 007620 007621 007622 007623 007624 007625 007626 007627 007628 007629 00762A 00762B 00762C 00762D 00762E 00762F 007630 007631 007632 007633 007634 007635 007636 007637 007638 007639 00763A 00763B 00763C 00763D 00763E 00763F 007640 007641 007642 007643 007644 007645 007646 007647 007648 007649 00764A 00764B 00764C 00764D 00764E 00764F 007650 007651 007652 007653 007654 007655 007656 007657 007658 007659 00765A 00765B 00765C 00765D 00765E 00765F 007660 007661 007662 007663 007664 007665 007666 007667 007668 007669 00766A 00766B 00766C 00766D 00766E 00766F 007670 007671 007672 007673 007674 007675 007676 00767E 00767F 0076BA 0076BB 0076BC 0076BD 0076BE 0076BF 0076C0 0076C1 0076C2 0076C3 0076C4 0076C5 0076C6 0076C7 0076C8 0076C9 0076CA 0076CB 0076CC 0076CD 0076CE 0076CF 0076D0 0076D1 0076D2 0076D3 0076D4 0076D5 0076D6 0076D7 0076D8 0076D9 0076DA 0076DB 0076DC 0076DD 0076DE 0076DF 0076E0 0076E1 0076E2 0076E3 0076E4 0076E5 0076E6 0076E7 0076E8 0076E9 0076EA 0076EB 0076EC 0076ED 0076EE 0076EF 0076F0 0076F1 0076F2 0076F3 0076F4 0076F5 0076F6 0076F7 0076F8 0076F9 0076FA 0076FB 0076FC 0076FD 0076FE 0076FF 007700 007701 007702 007703 007704 007705 007706 007707 007708 007709 00770A 00770B 00770C 00770D 00770E 00770F 007710 007711 007712 007713 007714 007715 007716 007717 007718 007719 00771A 00771B 00771C 00771D 00771E 00771F 007720 007721 007722 007723 007724 007725 007726 007727 007728 007729 00772A 00772B 00772C 00772D 00772E 00772F 007730 007731 007732 007733 007734 007735 007736 007737 007738 007739 00773A 00773B 00773C 00773D 00773E 00773F 007740 007741 007742 007743 007744 007745 007746 007747 007748 007749 00774A 00774B 00774C 00774D 00774E 00774F 007750 007751 007752 007753 007754 007755 007756 007757 007758 007759 00775A 00775B 00775C 00775D 00775E 00775F 007760 007761 007762 007763 007764 007765 007766 007767 007768 007769 00776A 00776B 00776C 00776D 00776E 00776F 007770 007771 007772 007773 007774 007775 007776 007777 007778 007779 00777A 00777B 00777C 00777D 00777E 00777F 007780 007781 007782 007783 007784 007785 007786 007787 007788 007789 00778A 00778B 00778C 00778D 00778E 00778F 007790 007791 007792 007793 007794 007795 007796 007797 007798 007799 00779A 00779B 00779C 00779D 00779E 00779F 0077A0 0077A1 0077A2 0077A3 0077A4 0077A5 0077A6 0077A7 0077A8 0077A9 0077AA 0077AB 0077AC 0077AD 0077AE 0077AF 0077B0 0077B1 0077B2 0077B3 0077B4 0077B5 0077B6 0077B7 0077B8 0077B9 0077BA 0077BB 0077BC 0077BD 0077BE 0077BF 0077C0 0077C1 0077C2 0077C3 0077C4 0077C5 0077C6 0077C7 0077C8 0077C9 0077CA 0077CB 0077CC 0077CD 0077CE 0077CF 0077D0 0077D1 0077D2 0077D3 0077D4 0077D5 0077D6 0077D7 0077D8 0077D9 0077DA 0077DB 0077DC 0077DD 0077DE 0077DF 0077E0 0077E1 0077E2 0077E3 0077E4 0077E5 0077E6 0077E7 0077E8 0077E9 0077EA 0077EB 0077EC 0077ED 0077EE 0077EF 0077F0 0077F1 0077F2 0077F3 0077F4 0077F5 0077F6 0077F7 0077F8 0077F9 0077FA 0077FB 0077FC 0077FD 0077FE 0077FF 007800 007801 007802 007803 007804 007805 007806 007807 007808 007809 00780A 00780B 00780C 00780D 00780E 00780F 007810 007811 007812 007813 007814 007815 007816 007817 007818 007819 00781A 00781B 00781C 00781D 00781E 00781F 007820 007821 007822 007823 007824 007825 007826 007827 007828 007829 00782A 00782B 00782C 00782D 00782E 00782F 007830 007831 007832 007833 007834 007835 007836 007837 007838 007839 00783A 00783B 00783C 00783D 00783E 00783F 007840 007841 007842 007843 007844 007845 007846 007847 007848 007849 00784A 00784B 00784C 00784D 00784E 00784F 007850 007851 007852 007853 007854 007855 007856 007857 007858 007859 00785A 00785B 00785C 00785D 00785E 00785F 007860 007861 007862 007863 007864 007865 007866 007867 007868 007869 00786A 00786B 00786C 00786D 00786E 00786F 007870 007871 007872 007873 007874 007875 007876 007877 007878 007879 00787A 00787B 00787C 00787D 00787E 00787F 007880 007881 007882 007883 007884 007885 007886 007887 007888 007889 00788A 00788B 00788C 00788D 00788E 00788F 007890 007891 007912 007913 007914 007915 007916 007917 007918 007919 00791A 00791B 00791C 00791D 00791E 00791F 007920 007921 007922 007923 007924 007925 007926 007927 007928 007929 00792A 00792B 00792C 00792D 00792E 00792F 007930 007931 007932 007933 007934 007935 007936 007937 007938 007939 00793A 00793B 00793C 00793D 00793E 00793F 007940 007941 007942 007943 007944 007945 007946 007947 007948 007949 00794A 00794B 00794C 00794D 00794E 00794F 007950 007951 007952 007953 007954 007955 007956 007957 007958 007959 00795A 00795B 00795C 00795D 00795E 00795F 007960 007961 007962 007963 007964 007965 007966 007967 007968 007969 00796A 00796B 00796C 00796D 00796E 00796F 007970 007971 007972 007973 007974 007975 007976 007977 007978 007979 00797A 00797B 00797C 00797D 00797E 00797F 007980 007981 007982 007983 007984 007985 007986 007987 007988 007989 00798A 00798B 00798C 00798D 00798E 00798F 007990 007991 007992 007993 007994 007995 007996 007997 007998 007999 00799A 00799B 00799C 00799D 00799E 00799F 0079A0 0079A1 0079A2 0079A3 0079A4 0079A5 0079A6 0079A7 0079A8 0079A9 0079AA 0079AB 0079AC 0079AD 0079AE 0079AF 0079B0 0079B1 0079B2 0079B3 0079B4 0079B5 0079B6 0079B7 0079B8 0079B9 0079BA 0079BB 0079BC 0079BD 0079BE 0079BF 0079C0 0079C1 0079C2 0079C3 0079C4 0079C5 0079C6 0079C7 0079C8 0079C9 0079CA 0079CB 0079CC 0079CD 0079CE 0079CF 0079D0 0079D1 0079D2 0079D3 0079D4 0079D5 0079D6 0079D7 0079D8 0079D9 0079DA 0079DB 0079DC 0079DD 0079DE 0079DF 0079E0 0079E1 0079E2 0079E3 0079E4 0079E5 0079E6 0079E7 0079E8 0079E9 0079EA 0079EB 0079EC 0079ED 0079EE 0079EF 0079F0 0079F1 0079F2 0079F3 0079F4 0079F5 0079F6 0079F7 0079F8 0079F9 0079FA 0079FB 0079FC 0079FD 0079FE 0079FF 007A00 007A01 007A02 007A03 007A04 007A05 007A06 007A07 007A08 007A09 007A0A 007A0B 007A0C 007A0D 007A0E 007A0F 007A10 007A11 007A12 007A13 007A14 007A15 007A16 007A17 007A18 007A19 007A1A 007A1B 007A1C 007A1D 007A1E 007A1F 007A20 007A21 007A22 007A23 007A24 007A25 007A26 007A27 007A28 007A29 007A2A 007A2B 007A2C 007A2D 007A2E 007A2F 007A30 007A31 007A32 007A33 007A34 007A35 007A36 007A37 007A38 007A39 007A3A 007A3B 007A3C 007A3D 007A3E 007A3F 007A40 007A41 007A42 007A43 007A44 007A45 007A46 007A47 007A48 007A49 007A4A 007A4B 007A4C 007A4D 007A4E 007A4F 007A50 007A51 007A52 007A53 007A54 007A55 007A56 007A57 007A58 007A59 007A5A 007A5B 007A5C 007A5D 007A5E 007A79 007A7A 007A7B 007A7C 007A7D 007A7E 007A7F 007A80 007A81 007A82 007A83 007A84 007A85 007A86 007A87 007A88 007A89 007A8A 007A8B 007A8C 007A8D 007A8E 007A8F 007A90 007A91 007A92 007A93 007A94 007A95 007A96 007A97 007A98 007A99 007A9A 007A9B 007A9C 007A9D 007A9E 007A9F 007AA0 007AA9 007AAA 007AAB 007AAC 007AAD 007AAE 007AAF 007AB0 007AB1 007AB2 007AB3 007AB4 007AB5 007AB6 007AB7 007AB8 007AB9 007ABA 007ABB 007ABC 007ABD 007ABE 007ABF 007AC0 007AC1 007AC2 007AC3 007AC4 007AC5 007AC6 007AC7 007AC8 007AC9 007ACA 007ACB 007ACC 007ACD 007ACE 007ACF 007AD0 007AD1 007AD2 007AD3 007AD4 007AD5 007AD6 007AD7 007AD8 007AD9 007ADA 007ADB 007ADC 007ADD 007ADE 007ADF 007AE0 007AE1 007AE2 007AE3 007AE4 007AE5 007AE6 007AE7 007AE8 007AE9 007AEA 007AEB 007AEC 007AED 007AEE 007AEF 007AF0 007AF1 007AF2 007AF3 007AF4 007AF5 007AF6 007AF7 007AF8 007AF9 007AFA 007AFB 007AFC 007AFD 007AFE 007AFF 007B00 007B01 007B02 007B03 007B04 007B05 007B06 007B07 007B08 007B09 007B0A 007B0B 007B0C
 C - - - - - 0x006027 01:E017: 60        RTS
 
 

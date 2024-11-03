@@ -8,7 +8,7 @@ con_bzk_hack                            = $00 ; set to 01
 
 
 ; MISC
-con_tile                                = $00 ; 
+con_tile                                = $00 ; for buffers/2007 register
 con_palette                             = $00 ; for ram_palette
 
 
@@ -29,6 +29,20 @@ con_btn_A                               = $80 ;
 con_btns_LR                             = con_btn_Left + con_btn_Right                              ; 03
 con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn_Down + con_btn_Up  ; 0F
 con_btns_SSAB                           = con_btn_Select + con_btn_Start + con_btn_A + con_btn_B    ; F0
+
+
+
+; ram_0052_flags
+; need comments 0x001F0E 0x000513 0x00029F
+con_0052_00                             = $00 ; 
+con_0052_01                             = $01 ; 
+con_0052_02                             = $02 ; 
+con_0052_04                             = $04 ; 
+con_0052_08                             = $08 ; 
+con_0052_10                             = $10 ; 
+; con_0052_20                           = $20 ; unused
+; con_0052_40                           = $40 ; unused
+con_0052_80                             = $80 ; 
 
 
 
