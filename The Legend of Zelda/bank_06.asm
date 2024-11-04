@@ -81,17 +81,17 @@ C - - - - - 0x01805D 06:804D: B9 2D 06  LDA ram_current_quest,Y
 C - - - - - 0x018060 06:8050: D0 0C     BNE bra_805E_2nd_quest
 ; if 1st quest
 C - - - - - 0x018062 06:8052: BD 00 80  LDA tbl_8000_1st_quest,X
-C - - - - - 0x018065 06:8055: 85 00     STA ram_0000
+C - - - - - 0x018065 06:8055: 85 00     STA ram_0000_temp
 C - - - - - 0x018067 06:8057: E8        INX
 C - - - - - 0x018068 06:8058: BD 00 80  LDA tbl_8000_1st_quest,X
 C - - - - - 0x01806B 06:805B: 4C 67 80  JMP loc_8067
 bra_805E_2nd_quest:
 C - - - - - 0x01806E 06:805E: BD 2A 80  LDA tbl_802A_2nd_quest,X
-C - - - - - 0x018071 06:8061: 85 00     STA ram_0000
+C - - - - - 0x018071 06:8061: 85 00     STA ram_0000_temp
 C - - - - - 0x018073 06:8063: E8        INX
 C - - - - - 0x018074 06:8064: BD 2A 80  LDA tbl_802A_2nd_quest,X
 loc_8067:
-C D 0 - - - 0x018077 06:8067: 85 01     STA ram_0001
+C D 0 - - - 0x018077 06:8067: 85 01     STA ram_0001_temp
 C - - - - - 0x018079 06:8069: 20 A4 80  JSR sub_80A4_set_copy_range_687E_6B7D
 C - - - - - 0x01807C 06:806C: 20 D7 80  JSR sub_80D7_copy_bat_table_to_bat
 C - - - - - 0x01807F 06:806F: 60        RTS
@@ -103,10 +103,10 @@ C - - J - - 0x018080 06:8070: A5 10     LDA ram_dungeon_level
 C - - - - - 0x018082 06:8072: 0A        ASL
 C - - - - - 0x018083 06:8073: AA        TAX
 C - - - - - 0x018084 06:8074: BD 14 80  LDA tbl_8014,X
-C - - - - - 0x018087 06:8077: 85 00     STA ram_0000
+C - - - - - 0x018087 06:8077: 85 00     STA ram_0000_temp
 C - - - - - 0x018089 06:8079: E8        INX
 C - - - - - 0x01808A 06:807A: BD 14 80  LDA tbl_8014,X
-C - - - - - 0x01808D 06:807D: 85 01     STA ram_0001
+C - - - - - 0x01808D 06:807D: 85 01     STA ram_0001_temp
 C - - - - - 0x01808F 06:807F: 20 B5 80  JSR sub_80B5_set_copy_range_6B7E_6C7D
 C - - - - - 0x018092 06:8082: 20 D7 80  JSR sub_80D7_copy_bat_table_to_bat
 C - - - - - 0x018095 06:8085: A9 00     LDA #$00
@@ -119,10 +119,10 @@ C - - - - - 0x01809B 06:808B: 60        RTS
 sub_0x01809C:
 C - - - - - 0x01809C 06:808C: A2 00     LDX #$00    ; bzk optimize, no loop here, X is not needed
 C - - - - - 0x01809E 06:808E: BD 28 80  LDA tbl_8028_bat_table_location,X
-C - - - - - 0x0180A1 06:8091: 85 00     STA ram_0000
+C - - - - - 0x0180A1 06:8091: 85 00     STA ram_0000_temp
 C - - - - - 0x0180A3 06:8093: E8        INX ; 01
 C - - - - - 0x0180A4 06:8094: BD 28 80  LDA tbl_8028_bat_table_location,X
-C - - - - - 0x0180A7 06:8097: 85 01     STA ram_0001
+C - - - - - 0x0180A7 06:8097: 85 01     STA ram_0001_temp
 C - - - - - 0x0180A9 06:8099: 20 C6 80  JSR sub_80C6
 C - - - - - 0x0180AC 06:809C: 20 D7 80  JSR sub_80D7_copy_bat_table_to_bat
 C - - - - - 0x0180AF 06:809F: A9 00     LDA #$00
@@ -136,13 +136,13 @@ sub_80A4_set_copy_range_687E_6B7D:
 tmp_copy_start = ram_687E_map_data
 tmp_copy_end   = ram_687E_map_data + $300 - $01
 C - - - - - 0x0180B4 06:80A4: A9 7E     LDA #< tmp_copy_start
-C - - - - - 0x0180B6 06:80A6: 85 02     STA ram_0002
+C - - - - - 0x0180B6 06:80A6: 85 02     STA ram_0002_temp
 C - - - - - 0x0180B8 06:80A8: A9 68     LDA #> tmp_copy_start
-C - - - - - 0x0180BA 06:80AA: 85 03     STA ram_0003
+C - - - - - 0x0180BA 06:80AA: 85 03     STA ram_0003_temp
 C - - - - - 0x0180BC 06:80AC: A9 7D     LDA #< tmp_copy_end
-C - - - - - 0x0180BE 06:80AE: 85 04     STA ram_0004
+C - - - - - 0x0180BE 06:80AE: 85 04     STA ram_0004_temp
 C - - - - - 0x0180C0 06:80B0: A9 6B     LDA #> tmp_copy_end
-C - - - - - 0x0180C2 06:80B2: 85 05     STA ram_0005
+C - - - - - 0x0180C2 06:80B2: 85 05     STA ram_0005_temp
 C - - - - - 0x0180C4 06:80B4: 60        RTS
 .endscope
 
@@ -153,13 +153,13 @@ sub_80B5_set_copy_range_6B7E_6C7D:
 tmp_copy_start = ram_6B7E_palette_buffer
 tmp_copy_end   = ram_6B7E_palette_buffer + $100 - $01
 C - - - - - 0x0180C5 06:80B5: A9 7E     LDA #< tmp_copy_start
-C - - - - - 0x0180C7 06:80B7: 85 02     STA ram_0002
+C - - - - - 0x0180C7 06:80B7: 85 02     STA ram_0002_temp
 C - - - - - 0x0180C9 06:80B9: A9 6B     LDA #> tmp_copy_start
-C - - - - - 0x0180CB 06:80BB: 85 03     STA ram_0003
+C - - - - - 0x0180CB 06:80BB: 85 03     STA ram_0003_temp
 C - - - - - 0x0180CD 06:80BD: A9 7D     LDA #< tmp_copy_end
-C - - - - - 0x0180CF 06:80BF: 85 04     STA ram_0004
+C - - - - - 0x0180CF 06:80BF: 85 04     STA ram_0004_temp
 C - - - - - 0x0180D1 06:80C1: A9 6C     LDA #> tmp_copy_end
-C - - - - - 0x0180D3 06:80C3: 85 05     STA ram_0005
+C - - - - - 0x0180D3 06:80C3: 85 05     STA ram_0005_temp
 C - - - - - 0x0180D5 06:80C5: 60        RTS
 .endscope
 
@@ -167,13 +167,13 @@ C - - - - - 0x0180D5 06:80C5: 60        RTS
 
 sub_80C6:
 C - - - - - 0x0180D6 06:80C6: A9 F0     LDA #< ofs_bat_67F0_bank_s1_asm_import
-C - - - - - 0x0180D8 06:80C8: 85 02     STA ram_0002
+C - - - - - 0x0180D8 06:80C8: 85 02     STA ram_0002_temp
 C - - - - - 0x0180DA 06:80CA: A9 67     LDA #> ofs_bat_67F0_bank_s1_asm_import
-C - - - - - 0x0180DC 06:80CC: 85 03     STA ram_0003
+C - - - - - 0x0180DC 06:80CC: 85 03     STA ram_0003_temp
 C - - - - - 0x0180DE 06:80CE: A9 7D     LDA #< ram_687D
-C - - - - - 0x0180E0 06:80D0: 85 04     STA ram_0004
+C - - - - - 0x0180E0 06:80D0: 85 04     STA ram_0004_temp
 C - - - - - 0x0180E2 06:80D2: A9 68     LDA #> ram_687D
-C - - - - - 0x0180E4 06:80D4: 85 05     STA ram_0005
+C - - - - - 0x0180E4 06:80D4: 85 05     STA ram_0005_temp
 C - - - - - 0x0180E6 06:80D6: 60        RTS
 
 
@@ -181,32 +181,32 @@ C - - - - - 0x0180E6 06:80D6: 60        RTS
 sub_80D7_copy_bat_table_to_bat:
 C - - - - - 0x0180E7 06:80D7: A0 00     LDY #$00
 loc_80D9_loop:
-C D 0 - - - 0x0180E9 06:80D9: B1 00     LDA (ram_0000),Y
-C - - - - - 0x0180EB 06:80DB: 91 02     STA (ram_0002),Y
-C - - - - - 0x0180ED 06:80DD: A5 02     LDA ram_0002
-C - - - - - 0x0180EF 06:80DF: C5 04     CMP ram_0004    ; max addr lo
+C D 0 - - - 0x0180E9 06:80D9: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0180EB 06:80DB: 91 02     STA (ram_0002_temp),Y
+C - - - - - 0x0180ED 06:80DD: A5 02     LDA ram_0002_temp
+C - - - - - 0x0180EF 06:80DF: C5 04     CMP ram_0004_temp    ; max addr lo
 C - - - - - 0x0180F1 06:80E1: D0 09     BNE bra_80EC_not_finished
-C - - - - - 0x0180F3 06:80E3: A5 03     LDA ram_0003
-C - - - - - 0x0180F5 06:80E5: C5 05     CMP ram_0005    ; max addr hi
+C - - - - - 0x0180F3 06:80E3: A5 03     LDA ram_0003_temp
+C - - - - - 0x0180F5 06:80E5: C5 05     CMP ram_0005_temp    ; max addr hi
 C - - - - - 0x0180F7 06:80E7: D0 03     BNE bra_80EC_not_finished
 C - - - - - 0x0180F9 06:80E9: E6 13     INC ram_subscript
 C - - - - - 0x0180FB 06:80EB: 60        RTS
 bra_80EC_not_finished:
 ; bzk optimize, INC lo + BNE check + INC hi if needed
-C - - - - - 0x0180FC 06:80EC: A5 02     LDA ram_0002
+C - - - - - 0x0180FC 06:80EC: A5 02     LDA ram_0002_temp
 C - - - - - 0x0180FE 06:80EE: 18        CLC
 C - - - - - 0x0180FF 06:80EF: 69 01     ADC #< $0001
-C - - - - - 0x018101 06:80F1: 85 02     STA ram_0002
-C - - - - - 0x018103 06:80F3: A5 03     LDA ram_0003
+C - - - - - 0x018101 06:80F1: 85 02     STA ram_0002_temp
+C - - - - - 0x018103 06:80F3: A5 03     LDA ram_0003_temp
 C - - - - - 0x018105 06:80F5: 69 00     ADC #> $0001
-C - - - - - 0x018107 06:80F7: 85 03     STA ram_0003
-C - - - - - 0x018109 06:80F9: A5 00     LDA ram_0000
+C - - - - - 0x018107 06:80F7: 85 03     STA ram_0003_temp
+C - - - - - 0x018109 06:80F9: A5 00     LDA ram_0000_temp
 C - - - - - 0x01810B 06:80FB: 18        CLC
 C - - - - - 0x01810C 06:80FC: 69 01     ADC #< $0001
-C - - - - - 0x01810E 06:80FE: 85 00     STA ram_0000
-C - - - - - 0x018110 06:8100: A5 01     LDA ram_0001
+C - - - - - 0x01810E 06:80FE: 85 00     STA ram_0000_temp
+C - - - - - 0x018110 06:8100: A5 01     LDA ram_0001_temp
 C - - - - - 0x018112 06:8102: 69 00     ADC #> $0001
-C - - - - - 0x018114 06:8104: 85 01     STA ram_0001
+C - - - - - 0x018114 06:8104: 85 01     STA ram_0001_temp
 C - - - - - 0x018116 06:8106: 4C D9 80  JMP loc_80D9_loop
 
 
@@ -223,12 +223,12 @@ C - - - - - 0x018124 06:8114: AA        TAX
 C - - - - - 0x018125 06:8115: 0A        ASL
 C - - - - - 0x018126 06:8116: A8        TAY
 C - - - - - 0x018127 06:8117: B9 A2 83  LDA tbl_83A4 - $02,Y
-C - - - - - 0x01812A 06:811A: 85 00     STA ram_0000
+C - - - - - 0x01812A 06:811A: 85 00     STA ram_0000_temp
 C - - - - - 0x01812C 06:811C: B9 A3 83  LDA tbl_83A4 - $01,Y
-C - - - - - 0x01812F 06:811F: 85 01     STA ram_0001
+C - - - - - 0x01812F 06:811F: 85 01     STA ram_0001_temp
 C - - - - - 0x018131 06:8121: BC B5 83  LDY tbl_83B6_data_size - $01,X
 bra_8124_loop:
-C - - - - - 0x018134 06:8124: B1 00     LDA (ram_0000),Y
+C - - - - - 0x018134 06:8124: B1 00     LDA (ram_0000_temp),Y
 C - - - - - 0x018136 06:8126: 99 A7 6B  STA ram_6BA7,Y
 C - - - - - 0x018139 06:8129: 88        DEY
 C - - - - - 0x01813A 06:812A: 10 F8     BPL bra_8124_loop
@@ -6386,9 +6386,9 @@ tbl_A000_ppu_data:
 sub_0x01A090_write_buffer_to_ppu:
 C - - - - - 0x01A090 06:A080: A6 14     LDX ram_ppu_load_index
 C - - - - - 0x01A092 06:A082: BD 00 A0  LDA tbl_A000_ppu_data,X
-C - - - - - 0x01A095 06:A085: 85 00     STA ram_0000
+C - - - - - 0x01A095 06:A085: 85 00     STA ram_0000_t11_ppu_data
 C - - - - - 0x01A097 06:A087: BD 01 A0  LDA tbl_A000_ppu_data + $01,X
-C - - - - - 0x01A09A 06:A08A: 85 01     STA ram_0001
+C - - - - - 0x01A09A 06:A08A: 85 01     STA ram_0000_t11_ppu_data + $01
 C - - - - - 0x01A09C 06:A08C: 20 F6 A0  JSR sub_A0F6_write_to_ppu
 C - - - - - 0x01A09F 06:A08F: A9 3F     LDA #$3F
 C - - - - - 0x01A0A1 06:A091: 8D 00 03  STA ram_0300
@@ -6406,10 +6406,10 @@ bra_A0A2_loop:
 C - - - - - 0x01A0B2 06:A0A2: 48        PHA ; push ppu_hi
 C - - - - - 0x01A0B3 06:A0A3: 8D 06 20  STA $2006
 C - - - - - 0x01A0B6 06:A0A6: C8        INY
-C - - - - - 0x01A0B7 06:A0A7: B1 00     LDA (ram_0000),Y
+C - - - - - 0x01A0B7 06:A0A7: B1 00     LDA (ram_0000_t11_ppu_data),Y
 C - - - - - 0x01A0B9 06:A0A9: 8D 06 20  STA $2006
 C - - - - - 0x01A0BC 06:A0AC: C8        INY
-C - - - - - 0x01A0BD 06:A0AD: B1 00     LDA (ram_0000),Y
+C - - - - - 0x01A0BD 06:A0AD: B1 00     LDA (ram_0000_t11_ppu_data),Y
 C - - - - - 0x01A0BF 06:A0AF: 0A        ASL
 C - - - - - 0x01A0C0 06:A0B0: 48        PHA
 C - - - - - 0x01A0C1 06:A0B1: A5 FF     LDA ram_for_2000
@@ -6438,7 +6438,7 @@ bra_A0CE_loop:
 C - - - - - 0x01A0DE 06:A0CE: B0 01     BCS bra_A0D1_write_the_same_byte
 C - - - - - 0x01A0E0 06:A0D0: C8        INY
 bra_A0D1_write_the_same_byte:
-C - - - - - 0x01A0E1 06:A0D1: B1 00     LDA (ram_0000),Y
+C - - - - - 0x01A0E1 06:A0D1: B1 00     LDA (ram_0000_t11_ppu_data),Y
 C - - - - - 0x01A0E3 06:A0D3: 8D 07 20  STA $2007
 C - - - - - 0x01A0E6 06:A0D6: CA        DEX
 C - - - - - 0x01A0E7 06:A0D7: D0 F5     BNE bra_A0CE_loop
@@ -6453,15 +6453,15 @@ C - - - - - 0x01A0F7 06:A0E7: 8E 06 20  STX $2006
 bra_A0EA_not_palette:
 C - - - - - 0x01A0FA 06:A0EA: 38        SEC
 C - - - - - 0x01A0FB 06:A0EB: 98        TYA
-C - - - - - 0x01A0FC 06:A0EC: 65 00     ADC ram_0000
-C - - - - - 0x01A0FE 06:A0EE: 85 00     STA ram_0000
+C - - - - - 0x01A0FC 06:A0EC: 65 00     ADC ram_0000_t11_ppu_data
+C - - - - - 0x01A0FE 06:A0EE: 85 00     STA ram_0000_t11_ppu_data
 C - - - - - 0x01A100 06:A0F0: A9 00     LDA #$00
-C - - - - - 0x01A102 06:A0F2: 65 01     ADC ram_0001
-C - - - - - 0x01A104 06:A0F4: 85 01     STA ram_0001
+C - - - - - 0x01A102 06:A0F2: 65 01     ADC ram_0000_t11_ppu_data + $01
+C - - - - - 0x01A104 06:A0F4: 85 01     STA ram_0000_t11_ppu_data + $01
 sub_A0F6_write_to_ppu:
 C - - - - - 0x01A106 06:A0F6: AE 02 20  LDX $2002
 C - - - - - 0x01A109 06:A0F9: A0 00     LDY #$00
-C - - - - - 0x01A10B 06:A0FB: B1 00     LDA (ram_0000),Y
+C - - - - - 0x01A10B 06:A0FB: B1 00     LDA (ram_0000_t11_ppu_data),Y
 C - - - - - 0x01A10D 06:A0FD: 10 A3     BPL bra_A0A2_loop
 ; FF
 C - - - - - 0x01A10F 06:A0FF: 60        RTS
