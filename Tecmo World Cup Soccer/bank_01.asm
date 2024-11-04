@@ -6,59 +6,59 @@
 
 
 
-.export sub_0x004010
-.export ofs_0x004016
+.export sub_0x004010_update_camera_and_scroll_positions
+.export ofs_0x004016_draw_field
 .export sub_0x004019_scroll_field_during_gameplay
-.export sub_0x00401C
+.export sub_0x00401C_scroll_field_after_goal
 .export sub_0x00401F_update_cpu_tactics
-.export sub_0x004022
-.export ofs_0x004025
-.export sub_0x004028
-.export sub_0x00402B
+.export sub_0x004022_give_task_to_player_from_his_table
+.export ofs_0x004025_draw_bent_goal_net
+.export sub_0x004028_show_controllable_indicators_for_players
+.export sub_0x00402B_draw_animation
 .export sub_0x00402E_set_animation
-.export sub_0x004031
-.export sub_0x004034
-.export sub_0x004037
-.export sub_0x00403A
-.export sub_0x00403D
-.export sub_0x004040
-.export ofs_0x004043
-.export sub_0x004046
-.export sub_0x004049
+.export sub_0x004031_write_team_palette_to_buffer
+.export sub_0x004034_decrease_game_timer
+.export sub_0x004037_display_GOAL
+.export sub_0x00403A_display_big_score
+.export sub_0x00403D_set_base_stats_for_team_and_players
+.export sub_0x004040_calculate_initial_player_speed
+.export ofs_0x004043_spectators_palette_after_goal
+.export sub_0x004046_calculate_cpu_decision_or_his_direction
+.export sub_0x004049_prepare_behavior_tempate_for_cpu
 .export sub_0x00404C
-.export sub_0x00404F
-.export sub_0x004052
-.export sub_0x004055
-.export sub_0x004058
-.export sub_0x00405B
+.export sub_0x00404F_calculate_ball_side_relative_to_gk
+.export sub_0x004052_select_random_button_for_cpu_during_pk
+.export sub_0x004055_calculate_tactics_data_pointer_based_on_area
+.export sub_0x004058_update_behavior_template_pointer
+.export sub_0x00405B_8B3F_calculate_cpu_chance_for_fast_shoot
 
 
 
-sub_0x004010:
+sub_0x004010_update_camera_and_scroll_positions:
 ; bzk optimize
-C D 0 - - - 0x004010 01:8000: 4C 4E 80  JMP loc_804E
+C D 0 - - - 0x004010 01:8000: 4C 4E 80  JMP loc_804E_update_camera_and_scroll_positions
 
 
 ; bzk garbage
-- - - - - - 0x004013 01:8003: 4C 87 80  JMP loc_8087
+- - - - - - 0x004013 01:8003: 4C 87 80  JMP loc_8087_calculate_reminder_after_dividing_by_F0
 
 
 
-ofs_0x004016:
+ofs_0x004016_draw_field:
 ; bzk optimize
-C - - - - - 0x004016 01:8006: 4C A3 80  JMP loc_80A3
+C - - - - - 0x004016 01:8006: 4C A3 80  JMP loc_80A3_draw_field
 
 
 
 sub_0x004019_scroll_field_during_gameplay:
 ; bzk optimize
-C - - - - - 0x004019 01:8009: 4C D9 81  JMP loc_81D9
+C - - - - - 0x004019 01:8009: 4C D9 81  JMP loc_81D9_scroll_field_during_gameplay
 
 
 
-sub_0x00401C:
+sub_0x00401C_scroll_field_after_goal:
 ; bzk optimize
-C - - - - - 0x00401C 01:800C: 4C 7E 82  JMP loc_827E
+C - - - - - 0x00401C 01:800C: 4C 7E 82  JMP loc_827E_scroll_field_after_goal
 
 
 
@@ -68,27 +68,27 @@ C - - - - - 0x00401F 01:800F: 4C ED 87  JMP loc_87ED_update_cpu_tactics
 
 
 
-sub_0x004022:
+sub_0x004022_give_task_to_player_from_his_table:
 ; bzk optimize
-C - - - - - 0x004022 01:8012: 4C E0 88  JMP loc_88E0
+C - - - - - 0x004022 01:8012: 4C E0 88  JMP loc_88E0_give_task_to_player_from_his_table
 
 
 
-ofs_0x004025:
+ofs_0x004025_draw_bent_goal_net:
 ; bzk optimize
-C - - - - - 0x004025 01:8015: 4C 96 85  JMP loc_8596
+C - - - - - 0x004025 01:8015: 4C 96 85  JMP loc_8596_draw_bent_goal_net
 
 
 
-sub_0x004028:
+sub_0x004028_show_controllable_indicators_for_players:
 ; bzk optimize
-C - - - - - 0x004028 01:8018: 4C 3C 86  JMP loc_863C
+C - - - - - 0x004028 01:8018: 4C 3C 86  JMP loc_863C_show_controllable_indicators_for_players
 
 
 
-sub_0x00402B:
+sub_0x00402B_draw_animation:
 ; bzk optimize
-C - - - - - 0x00402B 01:801B: 4C 96 86  JMP loc_8696
+C - - - - - 0x00402B 01:801B: 4C 96 86  JMP loc_8696_draw_animation
 
 
 
@@ -98,57 +98,57 @@ C - - - - - 0x00402E 01:801E: 4C 8F 87  JMP loc_878F_set_animation
 
 
 
-sub_0x004031:
+sub_0x004031_write_team_palette_to_buffer:
 ; bzk optimize
-C - - - - - 0x004031 01:8021: 4C 21 85  JMP loc_8521
+C - - - - - 0x004031 01:8021: 4C 21 85  JMP loc_8521_write_team_palette_to_buffer
 
 
 
-sub_0x004034:
+sub_0x004034_decrease_game_timer:
 ; bzk optimize
-C - - - - - 0x004034 01:8024: 4C 7D 84  JMP loc_847D
+C - - - - - 0x004034 01:8024: 4C 7D 84  JMP loc_847D_decrease_game_timer
 
 
 
-sub_0x004037:
+sub_0x004037_display_GOAL:
 ; bzk optimize
-C - - - - - 0x004037 01:8027: 4C AA 83  JMP loc_83AA
+C - - - - - 0x004037 01:8027: 4C AA 83  JMP loc_83AA_display_GOAL
 
 
 
-sub_0x00403A:
+sub_0x00403A_display_big_score:
 ; bzk optimize
-C - - - - - 0x00403A 01:802A: 4C 61 83  JMP loc_8361
+C - - - - - 0x00403A 01:802A: 4C 61 83  JMP loc_8361_display_big_score
 
 
 
-sub_0x00403D:
+sub_0x00403D_set_base_stats_for_team_and_players:
 ; bzk optimize
-C - - - - - 0x00403D 01:802D: 4C 71 8A  JMP loc_8A71
+C - - - - - 0x00403D 01:802D: 4C 71 8A  JMP loc_8A71_set_base_stats_for_team_and_players
 
 
 
-sub_0x004040:
+sub_0x004040_calculate_initial_player_speed:
 ; bzk optimize
-C - - - - - 0x004040 01:8030: 4C F3 89  JMP loc_89F3
+C - - - - - 0x004040 01:8030: 4C F3 89  JMP loc_89F3_calculate_initial_player_speed
 
 
 
-ofs_0x004043:
+ofs_0x004043_spectators_palette_after_goal:
 ; bzk optimize
-C - - - - - 0x004043 01:8033: 4C 41 83  JMP loc_8341
+C - - - - - 0x004043 01:8033: 4C 41 83  JMP loc_8341_spectators_palette_after_goal
 
 
 
-sub_0x004046:
+sub_0x004046_calculate_cpu_decision_or_his_direction:
 ; bzk optimize
-C - - - - - 0x004046 01:8036: 4C E8 8B  JMP loc_8BE8
+C - - - - - 0x004046 01:8036: 4C E8 8B  JMP loc_8BE8_calculate_cpu_decision_or_his_direction
 
 
 
-sub_0x004049:
+sub_0x004049_prepare_behavior_tempate_for_cpu:
 ; bzk optimize
-C - - - - - 0x004049 01:8039: 4C 1A 8D  JMP loc_8D1A
+C - - - - - 0x004049 01:8039: 4C 1A 8D  JMP loc_8D1A_prepare_behavior_tempate_for_cpu
 
 
 
@@ -158,37 +158,37 @@ C - - - - - 0x00404C 01:803C: 4C DC 8B  JMP loc_8BDC
 
 
 
-sub_0x00404F:
+sub_0x00404F_calculate_ball_side_relative_to_gk:
 ; bzk optimize
-C - - - - - 0x00404F 01:803F: 4C 6B 8B  JMP loc_8B6B
+C - - - - - 0x00404F 01:803F: 4C 6B 8B  JMP loc_8B6B_calculate_ball_side_relative_to_gk
 
 
 
-sub_0x004052:
+sub_0x004052_select_random_button_for_cpu_during_pk:
 ; bzk optimize
-C - - - - - 0x004052 01:8042: 4C 24 8B  JMP loc_8B24
+C - - - - - 0x004052 01:8042: 4C 24 8B  JMP loc_8B24_select_random_button_for_cpu_during_pk
 
 
 
-sub_0x004055:
+sub_0x004055_calculate_tactics_data_pointer_based_on_area:
 ; bzk optimize
-C - - - - - 0x004055 01:8045: 4C 6C 88  JMP loc_886C
+C - - - - - 0x004055 01:8045: 4C 6C 88  JMP loc_886C_calculate_tactics_data_pointer_based_on_area
 
 
 
-sub_0x004058:
+sub_0x004058_update_behavior_template_pointer:
 ; bzk optimize
-C - - - - - 0x004058 01:8048: 4C B2 88  JMP loc_88B2
+C - - - - - 0x004058 01:8048: 4C B2 88  JMP loc_88B2_update_behavior_template_pointer
 
 
 
-sub_0x00405B:
+sub_0x00405B_8B3F_calculate_cpu_chance_for_fast_shoot:
 ; bzk optimize
-C - - - - - 0x00405B 01:804B: 4C 3F 8B  JMP loc_8B3F
+C - - - - - 0x00405B 01:804B: 4C 3F 8B  JMP loc_8B3F_calculate_cpu_chance_for_fast_shoot
 
 
 
-loc_804E:
+loc_804E_update_camera_and_scroll_positions:
 C D 0 - - - 0x00405E 01:804E: A9 00     LDA #$00
 C - - - - - 0x004060 01:8050: 85 2A     STA ram_002A_temp
 C - - - - - 0x004062 01:8052: AD 29 04  LDA ram_player_with_ball
@@ -224,8 +224,8 @@ C - - - - - 0x004096 01:8086: 60        RTS
 
 
 
-sub_8087:
-loc_8087:
+sub_8087_calculate_reminder_after_dividing_by_F0:
+loc_8087_calculate_reminder_after_dividing_by_F0:
 C - - - - - 0x004097 01:8087: A9 00     LDA #$00
 bra_8089:
 C - - - - - 0x004099 01:8089: 48        PHA
@@ -253,7 +253,8 @@ C - - - - - 0x0040B2 01:80A2: 60        RTS
 
 
 
-loc_80A3:
+loc_80A3_draw_field:
+loc_80A3_loop:
 C D 0 - - - 0x0040B3 01:80A3: A9 01     LDA #$01
 C - - - - - 0x0040B5 01:80A5: 20 09 C0  JSR sub_0x00C019_script_delay
 C - - - - - 0x0040B8 01:80A8: A9 00     LDA #$00
@@ -273,7 +274,7 @@ C - - - - - 0x0040D2 01:80C2: 98        TYA
 C - - - - - 0x0040D3 01:80C3: D0 07     BNE bra_80CC
 C - - - - - 0x0040D5 01:80C5: E0 10     CPX #$10
 C - - - - - 0x0040D7 01:80C7: B0 03     BCS bra_80CC
-C - - - - - 0x0040D9 01:80C9: 4C A3 80  JMP loc_80A3
+C - - - - - 0x0040D9 01:80C9: 4C A3 80  JMP loc_80A3_loop
 bra_80CC:
 C - - - - - 0x0040DC 01:80CC: A2 10     LDX #$10
 C - - - - - 0x0040DE 01:80CE: A0 00     LDY #$00
@@ -291,7 +292,7 @@ C - - - - - 0x0040F2 01:80E2: 98        TYA
 C - - - - - 0x0040F3 01:80E3: 6D C1 03  ADC ram_03C1
 C - - - - - 0x0040F6 01:80E6: 8D C1 03  STA ram_03C1
 C - - - - - 0x0040F9 01:80E9: A8        TAY
-C - - - - - 0x0040FA 01:80EA: 20 87 80  JSR sub_8087
+C - - - - - 0x0040FA 01:80EA: 20 87 80  JSR sub_8087_calculate_reminder_after_dividing_by_F0
 C - - - - - 0x0040FD 01:80ED: 86 2A     STX ram_002A_temp
 C - - - - - 0x0040FF 01:80EF: 84 2B     STY ram_002B_temp
 C - - - - - 0x004101 01:80F1: 24 2C     BIT ram_002C_temp
@@ -406,11 +407,11 @@ C - - - - - 0x0041DE 01:81CE: 4C 9E 81  JMP loc_819E
 bra_81D1:
 C - - - - - 0x0041E1 01:81D1: A9 80     LDA #$80
 C - - - - - 0x0041E3 01:81D3: 8D 7D 03  STA ram_037D
-C - - - - - 0x0041E6 01:81D6: 4C A3 80  JMP loc_80A3
+C - - - - - 0x0041E6 01:81D6: 4C A3 80  JMP loc_80A3_loop
 
 
 
-loc_81D9:
+loc_81D9_scroll_field_during_gameplay:
 C D 0 - - - 0x0041E9 01:81D9: AD 29 04  LDA ram_player_with_ball
 C - - - - - 0x0041EC 01:81DC: 10 02     BPL bra_81E0
 C - - - - - 0x0041EE 01:81DE: A9 16     LDA #$16
@@ -507,10 +508,10 @@ C - - - - - 0x004284 01:8274: 98        TYA
 C - - - - - 0x004285 01:8275: 6D BD 03  ADC ram_03BD
 C - - - - - 0x004288 01:8278: 8D BD 03  STA ram_03BD
 C - - - - - 0x00428B 01:827B: 8C B9 03  STY ram_03B9
-loc_827E:
+loc_827E_scroll_field_after_goal:
 C D 0 - - - 0x00428E 01:827E: AE BC 03  LDX ram_03BC
 C - - - - - 0x004291 01:8281: AC BD 03  LDY ram_03BD
-C - - - - - 0x004294 01:8284: 20 87 80  JSR sub_8087
+C - - - - - 0x004294 01:8284: 20 87 80  JSR sub_8087_calculate_reminder_after_dividing_by_F0
 C - - - - - 0x004297 01:8287: 86 3B     STX ram_scroll_Y
 C - - - - - 0x004299 01:8289: A2 00     LDX #$00
 bra_828B_loop:
@@ -645,9 +646,9 @@ tbl_8332:
 
 
 
-loc_8341:
+loc_8341_spectators_palette_after_goal:
 C D 0 - - - 0x004351 01:8341: A9 21     LDA #$21
-loc_8343:
+loc_8343_loop:
 C D 0 - - - 0x004353 01:8343: 48        PHA
 C - - - - - 0x004354 01:8344: 20 78 C0  JSR sub_0x00C088
 - D 0 - I - 0x004357 01:8347: 80 03     .word ram_0380
@@ -662,11 +663,11 @@ C - - - - - 0x004368 01:8358: C9 2D     CMP #$2D
 C - - - - - 0x00436A 01:835A: D0 02     BNE bra_835E
 C - - - - - 0x00436C 01:835C: A9 21     LDA #$21
 bra_835E:
-C - - - - - 0x00436E 01:835E: 4C 43 83  JMP loc_8343
+C - - - - - 0x00436E 01:835E: 4C 43 83  JMP loc_8343_loop
 
 
 
-loc_8361:
+loc_8361_display_big_score:
 C D 0 - - - 0x004371 01:8361: 20 51 C0  JSR sub_0x00C061_hide_all_sprites
 C - - - - - 0x004374 01:8364: A9 00     LDA #$00
 C - - - - - 0x004376 01:8366: 85 5B     STA ram_index_oam
@@ -720,7 +721,7 @@ tbl_83A7:
 
 
 
-loc_83AA:
+loc_83AA_display_GOAL:
 C D 0 - - - 0x0043BA 01:83AA: A9 00     LDA #$00
 bra_83AC:
 C - - - - - 0x0043BC 01:83AC: 48        PHA
@@ -730,13 +731,13 @@ C - - - - - 0x0043C2 01:83B2: 85 5B     STA ram_index_oam
 C - - - - - 0x0043C4 01:83B4: 68        PLA
 C - - - - - 0x0043C5 01:83B5: 48        PHA
 C - - - - - 0x0043C6 01:83B6: 18        CLC
-C - - - - - 0x0043C7 01:83B7: 20 D1 83  JSR sub_83D1
+C - - - - - 0x0043C7 01:83B7: 20 D1 83  JSR sub_83D1_display_letter
 C - - - - - 0x0043CA 01:83BA: 68        PLA
 C - - - - - 0x0043CB 01:83BB: 18        CLC
 C - - - - - 0x0043CC 01:83BC: 69 01     ADC #$01
 C - - - - - 0x0043CE 01:83BE: 48        PHA
 C - - - - - 0x0043CF 01:83BF: 38        SEC
-C - - - - - 0x0043D0 01:83C0: 20 D1 83  JSR sub_83D1
+C - - - - - 0x0043D0 01:83C0: 20 D1 83  JSR sub_83D1_display_letter
 C - - - - - 0x0043D3 01:83C3: A9 01     LDA #$01
 C - - - - - 0x0043D5 01:83C5: 20 09 C0  JSR sub_0x00C019_script_delay
 C - - - - - 0x0043D8 01:83C8: 68        PLA
@@ -747,38 +748,34 @@ C - - - - - 0x0043E0 01:83D0: 60        RTS
 
 
 
-sub_83D1:
+sub_83D1_display_letter:
 C - - - - - 0x0043E1 01:83D1: 29 03     AND #$03
+; * 03
 C - - - - - 0x0043E3 01:83D3: 85 2A     STA ram_002A_temp
 C - - - - - 0x0043E5 01:83D5: 0A        ASL
 C - - - - - 0x0043E6 01:83D6: 65 2A     ADC ram_002A_temp
 C - - - - - 0x0043E8 01:83D8: AA        TAX
 C - - - - - 0x0043E9 01:83D9: BD E9 83  LDA tbl_83E9,X
 C - - - - - 0x0043EC 01:83DC: 48        PHA
-C - - - - - 0x0043ED 01:83DD: BC EB 83  LDY tbl_83EB,X
-C - - - - - 0x0043F0 01:83E0: BD EA 83  LDA tbl_83EA,X
+C - - - - - 0x0043ED 01:83DD: BC EB 83  LDY tbl_83E9 + $02,X
+C - - - - - 0x0043F0 01:83E0: BD EA 83  LDA tbl_83E9 + $01,X
 C - - - - - 0x0043F3 01:83E3: AA        TAX
 C - - - - - 0x0043F4 01:83E4: 68        PLA
+; bzk optimize, JSR
 C - - - - - 0x0043F5 01:83E5: 20 F5 83  JSR sub_83F5
 C - - - - - 0x0043F8 01:83E8: 60        RTS
 
 
 
 tbl_83E9:
-- D 0 - - - 0x0043F9 01:83E9: 0A        .byte $0A   ; 
-tbl_83EA:
-- D 0 - - - 0x0043FA 01:83EA: 34        .byte $34   ; 
-tbl_83EB:
-- D 0 - - - 0x0043FB 01:83EB: 40        .byte $40   ; 
-- D 0 - - - 0x0043FC 01:83EC: 00        .byte $00   ; 
-- D 0 - - - 0x0043FD 01:83ED: 5C        .byte $5C   ; 
-- D 0 - - - 0x0043FE 01:83EE: 40        .byte $40   ; 
-- D 0 - - - 0x0043FF 01:83EF: 0B        .byte $0B   ; 
-- D 0 - - - 0x004400 01:83F0: 84        .byte $84   ; 
-- D 0 - - - 0x004401 01:83F1: 40        .byte $40   ; 
-- D 0 - - - 0x004402 01:83F2: 0C        .byte $0C   ; 
-- D 0 - - - 0x004403 01:83F3: AC        .byte $AC   ; 
-- D 0 - - - 0x004404 01:83F4: 40        .byte $40   ; 
+;                                              +--------------- letter
+;                                              |    +---------- X
+;                                              |    |    +----- Y
+;                                              |    |    |
+- D 0 - - - 0x0043F9 01:83E9: 0A        .byte $0A, $34, $40   ; 00 G
+- D 0 - - - 0x0043FC 01:83EC: 00        .byte $00, $5C, $40   ; 01 O
+- D 0 - - - 0x0043FF 01:83EF: 0B        .byte $0B, $84, $40   ; 02 A
+- D 0 - - - 0x004402 01:83F2: 0C        .byte $0C, $AC, $40   ; 03 L
 
 
 
@@ -894,7 +891,7 @@ tbl_8456:
 
 
 
-loc_847D:
+loc_847D_decrease_game_timer:
 C D 0 - - - 0x00448D 01:847D: AD A4 03  LDA ram_03A4
 C - - - - - 0x004490 01:8480: 29 10     AND #$10
 C - - - - - 0x004492 01:8482: D0 68     BNE bra_84EC_RTS
@@ -992,7 +989,7 @@ C - - - - - 0x004530 01:8520: 60        RTS
 
 
 
-loc_8521:
+loc_8521_write_team_palette_to_buffer:
 C D 0 - - - 0x004531 01:8521: A2 00     LDX #$00
 C - - - - - 0x004533 01:8523: AD A9 03  LDA ram_team_id
 C - - - - - 0x004536 01:8526: 20 3C 85  JSR sub_853C
@@ -1095,12 +1092,13 @@ tbl_8559:
 
 
 
-loc_8596:
+loc_8596_draw_bent_goal_net:
+loc_8596_loop:
 C D 0 - - - 0x0045A6 01:8596: 2C D2 03  BIT ram_03D2
 C - - - - - 0x0045A9 01:8599: 30 08     BMI bra_85A3
 C - - - - - 0x0045AB 01:859B: A9 01     LDA #$01
 C - - - - - 0x0045AD 01:859D: 20 09 C0  JSR sub_0x00C019_script_delay
-C - - - - - 0x0045B0 01:85A0: 4C 96 85  JMP loc_8596
+C - - - - - 0x0045B0 01:85A0: 4C 96 85  JMP loc_8596_loop
 bra_85A3:
 C - - - - - 0x0045B3 01:85A3: A9 01     LDA #$01
 C - - - - - 0x0045B5 01:85A5: 20 09 C0  JSR sub_0x00C019_script_delay
@@ -1128,7 +1126,7 @@ C - - - - - 0x0045E9 01:85D9: F0 02     BEQ bra_85DD
 C - - - - - 0x0045EB 01:85DB: A9 80     LDA #$80
 bra_85DD:
 C - - - - - 0x0045ED 01:85DD: 8D D2 03  STA ram_03D2
-C - - - - - 0x0045F0 01:85E0: 4C 96 85  JMP loc_8596
+C - - - - - 0x0045F0 01:85E0: 4C 96 85  JMP loc_8596_loop
 
 
 
@@ -1189,7 +1187,7 @@ C - - - - - 0x00464B 01:863B: 60        RTS
 
 
 
-loc_863C:
+loc_863C_show_controllable_indicators_for_players:
 C D 0 - - - 0x00464C 01:863C: AD A4 03  LDA ram_03A4
 C - - - - - 0x00464F 01:863F: 29 10     AND #$10
 C - - - - - 0x004651 01:8641: D0 19     BNE bra_865C_RTS
@@ -1233,7 +1231,7 @@ C - - - - - 0x004692 01:8682: 90 02     BCC bra_8686
 C - - - - - 0x004694 01:8684: A9 30     LDA #$30
 bra_8686:
 C - - - - - 0x004696 01:8686: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x004698 01:8688: 20 96 86  JSR sub_8696
+C - - - - - 0x004698 01:8688: 20 96 86  JSR sub_8696_draw_animation
 C - - - - - 0x00469B 01:868B: 68        PLA
 C - - - - - 0x00469C 01:868C: A0 11     LDY #con_plr_anim_id
 C - - - - - 0x00469E 01:868E: 91 61     STA (ram_0061_t01_player_data),Y
@@ -1245,8 +1243,8 @@ C - - - - - 0x0046A5 01:8695: 60        RTS
 
 
 
-loc_8696:
-sub_8696:
+loc_8696_draw_animation:
+sub_8696_draw_animation:
 C D 0 - - - 0x0046A6 01:8696: A0 00     LDY #con_plr_flags
 C - - - - - 0x0046A8 01:8698: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x0046AA 01:869A: 29 FD     AND #con_plr_flag_visible ^ $FF
@@ -1483,14 +1481,14 @@ tbl_87DE:
 
 
 loc_87ED_update_cpu_tactics:
-C D 0 - - - 0x0047FD 01:87ED: 2C 2C 04  BIT ram_042C
-C - - - - - 0x004800 01:87F0: 70 16     BVS bra_8808
-C - - - - - 0x004802 01:87F2: AD 2C 04  LDA ram_042C
-C - - - - - 0x004805 01:87F5: 30 01     BMI bra_87F8
+C D 0 - - - 0x0047FD 01:87ED: 2C 2C 04  BIT ram_field_flags
+C - - - - - 0x004800 01:87F0: 70 16     BVS bra_8808    ; if con_field_flag_gk_has_ball
+C - - - - - 0x004802 01:87F2: AD 2C 04  LDA ram_field_flags
+C - - - - - 0x004805 01:87F5: 30 01     BMI bra_87F8    ; if con_field_flag_update_tactics
 C - - - - - 0x004807 01:87F7: 60        RTS
 bra_87F8:
-C - - - - - 0x004808 01:87F8: 29 7F     AND #$7F
-C - - - - - 0x00480A 01:87FA: 8D 2C 04  STA ram_042C
+C - - - - - 0x004808 01:87F8: 29 7F     AND #con_field_flag_update_tactics ^ $FF
+C - - - - - 0x00480A 01:87FA: 8D 2C 04  STA ram_field_flags
 C - - - - - 0x00480D 01:87FD: A9 00     LDA #$00
 C - - - - - 0x00480F 01:87FF: 20 49 88  JSR sub_8849
 C - - - - - 0x004812 01:8802: A9 0B     LDA #$0B
@@ -1505,9 +1503,9 @@ C - - - - - 0x00481E 01:880E: F0 30     BEQ bra_8840
 C - - - - - 0x004820 01:8810: C9 0B     CMP #$0B
 C - - - - - 0x004822 01:8812: F0 2C     BEQ bra_8840
 C - - - - - 0x004824 01:8814: 20 57 C0  JSR sub_0x00C067_set_player_base_address_pointer
-C - - - - - 0x004827 01:8817: A0 12     LDY #con_plr_ai
+C - - - - - 0x004827 01:8817: A0 12     LDY #con_plr_state
 C - - - - - 0x004829 01:8819: B1 61     LDA (ram_0061_t01_player_data),Y
-C - - - - - 0x00482B 01:881B: C9 15     CMP #$15
+C - - - - - 0x00482B 01:881B: C9 15     CMP #con_state_run_to_base
 C - - - - - 0x00482D 01:881D: F0 21     BEQ bra_8840
 C - - - - - 0x00482F 01:881F: A0 00     LDY #con_plr_flags
 C - - - - - 0x004831 01:8821: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -1538,13 +1536,13 @@ C - - - - - 0x004858 01:8848: 60        RTS
 
 sub_8849:
 C - - - - - 0x004859 01:8849: 85 2A     STA ram_002A_temp
-C - - - - - 0x00485B 01:884B: 20 6C 88  JSR sub_886C
+C - - - - - 0x00485B 01:884B: 20 6C 88  JSR sub_886C_calculate_tactics_data_pointer_based_on_area
 C - - - - - 0x00485E 01:884E: E6 2A     INC ram_002A_temp
 C - - - - - 0x004860 01:8850: A9 0A     LDA #$0A
 C - - - - - 0x004862 01:8852: 85 2B     STA ram_002B_temp
 bra_8854:
 C - - - - - 0x004864 01:8854: A5 2A     LDA ram_002A_temp
-C - - - - - 0x004866 01:8856: 20 B2 88  JSR sub_88B2
+C - - - - - 0x004866 01:8856: 20 B2 88  JSR sub_88B2_update_behavior_template_pointer
 C - - - - - 0x004869 01:8859: A5 2B     LDA ram_002B_temp
 C - - - - - 0x00486B 01:885B: 0A        ASL
 C - - - - - 0x00486C 01:885C: 0A        ASL
@@ -1559,8 +1557,8 @@ C - - - - - 0x00487B 01:886B: 60        RTS
 
 
 
-loc_886C:
-sub_886C:
+loc_886C_calculate_tactics_data_pointer_based_on_area:
+sub_886C_calculate_tactics_data_pointer_based_on_area:
 C D 0 - - - 0x00487C 01:886C: 48        PHA
 C - - - - - 0x00487D 01:886D: C9 0B     CMP #$0B
 C - - - - - 0x00487F 01:886F: A9 00     LDA #$00
@@ -1609,8 +1607,8 @@ C - - - - - 0x0048C1 01:88B1: 60        RTS
 
 
 
-loc_88B2:
-sub_88B2:
+loc_88B2_update_behavior_template_pointer:
+sub_88B2_update_behavior_template_pointer:
 C D 0 - - - 0x0048C2 01:88B2: 48        PHA
 C - - - - - 0x0048C3 01:88B3: 20 57 C0  JSR sub_0x00C067_set_player_base_address_pointer
 C - - - - - 0x0048C6 01:88B6: 68        PLA
@@ -1642,9 +1640,9 @@ C - - - - - 0x0048EF 01:88DF: 60        RTS
 
 
 
-loc_88E0:
-C D 0 - - - 0x0048F0 01:88E0: 2C 2C 04  BIT ram_042C
-C - - - - - 0x0048F3 01:88E3: 70 38     BVS bra_891D
+loc_88E0_give_task_to_player_from_his_table:
+C D 0 - - - 0x0048F0 01:88E0: 2C 2C 04  BIT ram_field_flags
+C - - - - - 0x0048F3 01:88E3: 70 38     BVS bra_891D    ; if con_field_flag_gk_has_ball
 C - - - - - 0x0048F5 01:88E5: A2 00     LDX #$00
 C - - - - - 0x0048F7 01:88E7: AD 2B 04  LDA ram_player_global_id
 C - - - - - 0x0048FA 01:88EA: C9 0B     CMP #$0B
@@ -1691,8 +1689,8 @@ C - - - - - 0x00493D 01:892D: 4A        LSR
 C - - - - - 0x00493E 01:892E: 4A        LSR
 C - - - - - 0x00493F 01:892F: 4A        LSR
 C - - - - - 0x004940 01:8930: 20 2A C0  JSR sub_0x00C03A_bytes_after_JSR
-- - - - - - 0x004943 01:8933: 41 89     .word ofs_001_8941_00
-- D 0 - I - 0x004945 01:8935: 41 89     .word ofs_001_8941_01
+- - - - - - 0x004943 01:8933: 41 89     .word ofs_001_8941_00_set_idle_state
+- D 0 - I - 0x004945 01:8935: 41 89     .word ofs_001_8941_01_set_idle_state
 - D 0 - I - 0x004947 01:8937: 47 89     .word ofs_001_8947_02
 - D 0 - I - 0x004949 01:8939: 68 89     .word ofs_001_8968_03
 - D 0 - I - 0x00494B 01:893B: B0 89     .word ofs_001_89B0_04
@@ -1701,9 +1699,10 @@ C - - - - - 0x004940 01:8930: 20 2A C0  JSR sub_0x00C03A_bytes_after_JSR
 
 
 
-ofs_001_8941_00:
-ofs_001_8941_01:
-C - - J - - 0x004951 01:8941: A9 00     LDA #$00
+ofs_001_8941_00_set_idle_state:
+ofs_001_8941_01_set_idle_state:
+C - - J - - 0x004951 01:8941: A9 00     LDA #con_state_idle
+; bzk optimize, JMP
 C - - - - - 0x004953 01:8943: 20 5A C0  JSR sub_0x00C06A_prepare_player_state_handler
 C - - - - - 0x004956 01:8946: 60        RTS
 
@@ -1728,7 +1727,8 @@ C - - - - - 0x00496A 01:895A: 68        PLA
 C - - - - - 0x00496B 01:895B: A0 06     LDY #con_plr_action_timer_1
 C - - - - - 0x00496D 01:895D: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00496F 01:895F: 20 48 C0  JSR sub_0x00C058_set_aim_to_area_A
-C - - - - - 0x004972 01:8962: A9 0F     LDA #$0F
+C - - - - - 0x004972 01:8962: A9 0F     LDA #con_state_run_to_area
+; bzk optimize, JMP
 C - - - - - 0x004974 01:8964: 20 5A C0  JSR sub_0x00C06A_prepare_player_state_handler
 C - - - - - 0x004977 01:8967: 60        RTS
 
@@ -1757,7 +1757,8 @@ C - - - - - 0x004997 01:8987: 05 2C     ORA ram_002C_temp
 C - - - - - 0x004999 01:8989: 20 96 89  JSR sub_8996
 C - - - - - 0x00499C 01:898C: A0 06     LDY #con_plr_action_timer_1
 C - - - - - 0x00499E 01:898E: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x0049A0 01:8990: A9 10     LDA #$10
+C - - - - - 0x0049A0 01:8990: A9 10     LDA #con_state_run_near_ball
+; bzk optimize, JMP
 C - - - - - 0x0049A2 01:8992: 20 5A C0  JSR sub_0x00C06A_prepare_player_state_handler
 C - - - - - 0x0049A5 01:8995: 60        RTS
 
@@ -1786,7 +1787,7 @@ C - - - - - 0x0049BF 01:89AF: 60        RTS
 
 loc_89B0:
 ofs_001_89B0_04:
-C D 0 J - - 0x0049C0 01:89B0: A9 11     LDA #$11
+C D 0 J - - 0x0049C0 01:89B0: A9 11     LDA #con_state_follow_enemy
 C - - - - - 0x0049C2 01:89B2: 20 5A C0  JSR sub_0x00C06A_prepare_player_state_handler
 C - - - - - 0x0049C5 01:89B5: A0 00     LDY #con_plr_flags
 C - - - - - 0x0049C7 01:89B7: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -1814,7 +1815,7 @@ C - - - - - 0x0049E3 01:89D3: 90 02     BCC bra_89D7
 C - - - - - 0x0049E5 01:89D5: 69 81     ADC #$81
 bra_89D7:
 C - - - - - 0x0049E7 01:89D7: 20 4B 89  JSR sub_894B
-C - - - - - 0x0049EA 01:89DA: A9 14     LDA #$14
+C - - - - - 0x0049EA 01:89DA: A9 14     LDA #con_state_run_to_defense
 C - - - - - 0x0049EC 01:89DC: 20 5A C0  JSR sub_0x00C06A_prepare_player_state_handler
 C - - - - - 0x0049EF 01:89DF: A0 00     LDY #con_plr_flags
 C - - - - - 0x0049F1 01:89E1: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -1827,13 +1828,14 @@ C - - - - - 0x0049F9 01:89E9: 60        RTS
 
 ofs_001_89EA_06:
 C - - J - - 0x0049FA 01:89EA: 20 47 89  JSR sub_8947
-C - - - - - 0x0049FD 01:89ED: A9 15     LDA #$15
+C - - - - - 0x0049FD 01:89ED: A9 15     LDA #con_state_run_to_base
+; bzk optimize, JMP
 C - - - - - 0x0049FF 01:89EF: 20 5A C0  JSR sub_0x00C06A_prepare_player_state_handler
 C - - - - - 0x004A02 01:89F2: 60        RTS
 
 
 
-loc_89F3:
+loc_89F3_calculate_initial_player_speed:
 C D 0 - - - 0x004A03 01:89F3: 85 7A     STA ram_007A_temp
 C - - - - - 0x004A05 01:89F5: A0 00     LDY #$00
 C - - - - - 0x004A07 01:89F7: C9 0B     CMP #$0B
@@ -1916,7 +1918,7 @@ loc_8A67:
 
 
 
-loc_8A71:
+loc_8A71_set_base_stats_for_team_and_players:
 C D 0 - - - 0x004A81 01:8A71: A9 00     LDA #$00
 C - - - - - 0x004A83 01:8A73: 2C A4 03  BIT ram_03A4
 C - - - - - 0x004A86 01:8A76: 30 03     BMI bra_8A7B
@@ -2035,7 +2037,7 @@ tbl_8B19:
 
 
 
-loc_8B24:
+loc_8B24_select_random_button_for_cpu_during_pk:
 C D 0 - - - 0x004B34 01:8B24: AA        TAX
 C - - - - - 0x004B35 01:8B25: A0 00     LDY #$00
 C - - - - - 0x004B37 01:8B27: AD 7F 03  LDA ram_random + $01
@@ -2061,7 +2063,7 @@ tbl_8B3C:
 
 
 
-loc_8B3F:
+loc_8B3F_calculate_cpu_chance_for_fast_shoot:
 C D 0 - - - 0x004B4F 01:8B3F: 38        SEC
 C - - - - - 0x004B50 01:8B40: AD DE 03  LDA ram_ball_pos_Y_lo
 ; bzk optimize, no need to perform 16-nit substraction if low SBC = 00,
@@ -2092,7 +2094,7 @@ C - - - - - 0x004B7A 01:8B6A: 60        RTS
 
 
 
-loc_8B6B:
+loc_8B6B_calculate_ball_side_relative_to_gk:
 C D 0 - - - 0x004B7B 01:8B6B: 2C 29 04  BIT ram_player_with_ball
 C - - - - - 0x004B7E 01:8B6E: 10 03     BPL bra_8B73
 C - - - - - 0x004B80 01:8B70: 4C 97 8B  JMP loc_8B97
@@ -2188,7 +2190,7 @@ C - - - - - 0x004BF7 01:8BE7: 60        RTS
 
 
 
-loc_8BE8:
+loc_8BE8_calculate_cpu_decision_or_his_direction:
 C D 0 - - - 0x004BF8 01:8BE8: 24 82     BIT ram_flag_cpu_got_ball
 C - - - - - 0x004BFA 01:8BEA: 30 11     BMI bra_8BFD
 C - - - - - 0x004BFC 01:8BEC: A9 80     LDA #$80
@@ -2202,13 +2204,13 @@ C - - - - - 0x004C0B 01:8BFB: 85 85     STA ram_copy_area_id
 bra_8BFD:
 C - - - - - 0x004C0D 01:8BFD: A9 00     LDA #$00
 C - - - - - 0x004C0F 01:8BFF: 85 86     STA ram_cpu_player_decision
-C - - - - - 0x004C11 01:8C01: 20 A8 8C  JSR sub_8CA8
-C - - - - - 0x004C14 01:8C04: 20 4F 8C  JSR sub_8C4F
+C - - - - - 0x004C11 01:8C01: 20 A8 8C  JSR sub_8CA8_cpu_choses_partner_for_pass_or_shoots
+C - - - - - 0x004C14 01:8C04: 20 4F 8C  JSR sub_8C4F_set_direction_to_cpu_with_ball
 C - - - - - 0x004C17 01:8C07: C6 83     DEC ram_timer_before_cpu_changes_direction
 C - - - - - 0x004C19 01:8C09: D0 41     BNE bra_8C4C
 C - - - - - 0x004C1B 01:8C0B: A9 00     LDA #$00
 C - - - - - 0x004C1D 01:8C0D: 85 84     STA ram_cpu_buttons
-C - - - - - 0x004C1F 01:8C0F: 20 4F 8C  JSR sub_8C4F
+C - - - - - 0x004C1F 01:8C0F: 20 4F 8C  JSR sub_8C4F_set_direction_to_cpu_with_ball
 C - - - - - 0x004C22 01:8C12: A5 84     LDA ram_cpu_buttons
 C - - - - - 0x004C24 01:8C14: 29 0C     AND #$0C
 C - - - - - 0x004C26 01:8C16: D0 0F     BNE bra_8C27
@@ -2246,7 +2248,7 @@ C - - - - - 0x004C5E 01:8C4E: 60        RTS
 
 
 
-sub_8C4F:
+sub_8C4F_set_direction_to_cpu_with_ball:
 C - - - - - 0x004C5F 01:8C4F: A0 0D     LDY #con_plr_pos_Y_hi
 C - - - - - 0x004C61 01:8C51: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x004C63 01:8C53: C9 03     CMP #$03
@@ -2305,7 +2307,7 @@ C - - - - - 0x004CB7 01:8CA7: 60        RTS
 
 
 
-sub_8CA8:
+sub_8CA8_cpu_choses_partner_for_pass_or_shoots:
 C - - - - - 0x004CB8 01:8CA8: AC 27 04  LDY ram_area_id
 C - - - - - 0x004CBB 01:8CAB: C4 85     CPY ram_copy_area_id
 C - - - - - 0x004CBD 01:8CAD: D0 01     BNE bra_8CB0
@@ -2384,7 +2386,7 @@ C - - - - - 0x004D29 01:8D19: 60        RTS
 
 
 
-loc_8D1A:
+loc_8D1A_prepare_behavior_tempate_for_cpu:
 C D 0 - - - 0x004D2A 01:8D1A: A9 00     LDA #$00
 C - - - - - 0x004D2C 01:8D1C: 85 2B     STA ram_002B_temp
 C - - - - - 0x004D2E 01:8D1E: AD AA 03  LDA ram_team_id + $01

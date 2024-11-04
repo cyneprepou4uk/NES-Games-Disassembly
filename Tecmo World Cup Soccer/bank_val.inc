@@ -39,7 +39,7 @@ con_plr_unknown_0E                      = $0E ; don't know what this does yet
 con_plr_anim_cnt_hi                     = $0F ; animation counter
 con_plr_anim_cnt_lo                     = $10 ; animation counter
 con_plr_anim_id                         = $11 ; animaton index
-con_plr_ai                              = $12 ; current behavior index
+con_plr_state                           = $12 ; current behavior index, see con_state
 con_plr_direction                       = $13 ; direction
 con_plr_spd_fr_init                     = $14 ; base speed
 con_plr_spd_lo_init                     = $15 ; base speed
@@ -69,24 +69,40 @@ con_ball_flag_was_shooted               = $80 ;
 
 
 
-; con_plr_flag_unk_01                     = $01 ; ваще не понятно что это (может флаг обработки состояния?), но если флаг не стоит, игроки тупо убегают за экран
-; con_plr_flag_видимый                    = $02 ; игрок/мяч виден на экране
-; con_plr_flag_занятый                    = $04 ; игрок чем-то занят (предположительно бежит куда-то и ему нельзя мешать)
-; con_plr_flag_unk_08                     = $08 ; предположительно флаг того, что таблица игрока готова, затем код читает таблицу и ставит флаг busy, а этот очищает
-;                                                 ; состояние проверяется лишь в 0x00E50A, и затем сразу очищается если стоит
-; con_plr_flags_all                       = con_plr_flag_unk_01 + con_plr_flag_видимый + con_plr_flag_занятый + con_plr_flag_unk_08 ; 0F
-; 
-; ; эти 4 флага исключительно для мяча
-; con_ball_flag_мяч_в_воротах             = $10 ; если мяч залетел в ворота, выставляется флаг, и продолжает стоять даже если выкатился из ворот
-; con_ball_flag_мяч_в_анимации_толкания   = $20 ; если флаг стоит, мяч играет анимацию будто игрок пинает его ногой перед собой
-;                                                 ; если убрать запись, мяч будет тупо приклеен вблизи игрока и не будет шевелиться
-; con_ball_flag_мяч_привязан_к_игроку     = $40 ; если флаг стоит, мяч толкается впереди игрока (не очищается при ударе)
-;                                                 ; если убрать запись флага, мяч останется на месте (отклеится), но по нему все равно можно будет ударить
-;                                                 ; с любого места, так как игра все еще будет считать что игрок владеет мячом,
-;                                                 ; и при попадании подкатом по такому лежачему мячу игрок будет убиваться независимо от его местонахождения
-; con_ball_flag_удар_по_мячу              = $80 ; игрок делает пас/удар, выставляется флаг. очищается если игрок завладеет мячом
+; ram_field_flags
+con_field_flag_gk_has_ball              = $40 ; when gk can move with the ball in his hands
+con_field_flag_update_tactics           = $80 ; flag to update players tactics
 
 
+
+; con_plr_state
+; handlers at 0x00E6D2 0x00E53E
+con_state_idle                          = $00 ; 
+con_state_backup_follow_ball            = $01 ; 
+con_state_with_ball                     = $02 ; 
+con_state_follow_ball                   = $03 ; 
+con_state_without_ball                  = $04 ; 
+con_state_dead                          = $05 ; 
+con_state_dodge                         = $06 ; 
+con_state_shoot_fast                    = $07 ; 
+con_state_shoot_volley                  = $08 ; 
+; con_state_09                          = $09 ; 
+con_state_shoot_header                  = $0A ; 
+; con_state_0B                          = $0B ; 
+con_state_throw_in                      = $0C ; 
+con_state_goal_kick                     = $0D ; 
+con_state_corner_kick                   = $0E ; 
+con_state_run_to_area                   = $0F ; 
+con_state_run_near_ball                 = $10 ; 
+con_state_follow_enemy                  = $11 ; 
+con_state_freeze                        = $12 ; 
+con_state_kick_off                      = $13 ; 
+con_state_run_to_defense                = $14 ; 
+con_state_run_to_base                   = $15 ; 
+con_state_gk_get_ball                   = $16 ; 
+con_state_pk_player                     = $17 ; 
+con_state_pk_gk                         = $18 ; 
+con_state_pk_bench                      = $19 ; 
 
 
 

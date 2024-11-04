@@ -90,7 +90,7 @@ loc_C01E_infinite_loop:
 
 
 ; bzk garbage
-- - - - - - 0x00C037 03:C027: 4C 1D C7  JMP loc_C71D
+- - - - - - 0x00C037 03:C027: 4C 1D C7  JMP loc_C71D_check_conditions_for_making_gk_controllable
 
 
 
@@ -670,7 +670,7 @@ C - - - - - 0x00C3CA 03:C3BA: A9 03     LDA #$03
 C - - - - - 0x00C3CC 03:C3BC: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00C3CE 03:C3BE: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00C3D1 03:C3C1: 68        PLA
-C - - - - - 0x00C3D2 03:C3C2: 20 2D 80  JSR sub_0x00403D
+C - - - - - 0x00C3D2 03:C3C2: 20 2D 80  JSR sub_0x00403D_set_base_stats_for_team_and_players
 C - - - - - 0x00C3D5 03:C3C5: 20 07 C5  JSR sub_C507
 bra_C3C8:
 C - - - - - 0x00C3D8 03:C3C8: A9 01     LDA #$01
@@ -933,7 +933,7 @@ C - - - - - 0x00C5A8 03:C598: A9 05     LDA #$05
 C - - - - - 0x00C5AA 03:C59A: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00C5AC 03:C59C: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00C5AF 03:C59F: 68        PLA
-C - - - - - 0x00C5B0 03:C5A0: 20 30 80  JSR sub_0x008040
+C - - - - - 0x00C5B0 03:C5A0: 20 30 80  JSR sub_0x008040_display_info_during_pause
 bra_C5A3_loop:
 bra_C5A3_infinite_loop:
 C - - - - - 0x00C5B3 03:C5A3: A5 23     LDA ram_nmi_exit_flag
@@ -1051,13 +1051,15 @@ C - - - - - 0x00C634 03:C624: 4C 7A C5  JMP loc_C57A
 
 loc_C62F_prepare_player_state_handler:
 sub_C62F_prepare_player_state_handler:
+; in
+    ; X = con_state
 C D 2 - - - 0x00C63F 03:C62F: AA        TAX
 C - - - - - 0x00C640 03:C630: A0 00     LDY #con_plr_flags
 C - - - - - 0x00C642 03:C632: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00C644 03:C634: 29 04     AND #con_plr_flag_busy
 C - - - - - 0x00C646 03:C636: D0 19     BNE bra_C651_RTS
 C - - - - - 0x00C648 03:C638: 8A        TXA
-C - - - - - 0x00C649 03:C639: A0 12     LDY #con_plr_ai
+C - - - - - 0x00C649 03:C639: A0 12     LDY #con_plr_state
 C - - - - - 0x00C64B 03:C63B: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00C64D 03:C63D: 0A        ASL
 C - - - - - 0x00C64E 03:C63E: AA        TAX
@@ -1177,9 +1179,9 @@ C - - - - - 0x00C6D4 03:C6C4: CD AD 03  CMP ram_team_w_ball
 C - - - - - 0x00C6D7 03:C6C7: 8D 28 04  STA ram_last_team_with_ball
 C - - - - - 0x00C6DA 03:C6CA: 8D AD 03  STA ram_team_w_ball
 C - - - - - 0x00C6DD 03:C6CD: F0 0B     BEQ bra_C6DA
-C - - - - - 0x00C6DF 03:C6CF: A9 80     LDA #$80
-C - - - - - 0x00C6E1 03:C6D1: 0D 2C 04  ORA ram_042C
-C - - - - - 0x00C6E4 03:C6D4: 8D 2C 04  STA ram_042C
+C - - - - - 0x00C6DF 03:C6CF: A9 80     LDA #con_field_flag_update_tactics
+C - - - - - 0x00C6E1 03:C6D1: 0D 2C 04  ORA ram_field_flags
+C - - - - - 0x00C6E4 03:C6D4: 8D 2C 04  STA ram_field_flags
 C - - - - - 0x00C6E7 03:C6D7: 20 E1 C6  JSR sub_C6E1_select_new_controllable_player_for_opponent
 bra_C6DA:
 C - - - - - 0x00C6EA 03:C6DA: AD 29 04  LDA ram_player_with_ball
@@ -1197,23 +1199,24 @@ C - - - - - 0x00C6F9 03:C6E9: A0 00     LDY #con_plr_flags
 C - - - - - 0x00C6FB 03:C6EB: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00C6FD 03:C6ED: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00C6FF 03:C6EF: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00C701 03:C6F1: A9 00     LDA #$00
+C - - - - - 0x00C701 03:C6F1: A9 00     LDA #con_state_idle
 C - - - - - 0x00C703 03:C6F3: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 bra_C6F6:
 loc_C6F6:
-C - - - - - 0x00C706 03:C6F6: 20 1D C7  JSR sub_C71D
-C - - - - - 0x00C709 03:C6F9: B0 08     BCS bra_C703
+C - - - - - 0x00C706 03:C6F6: 20 1D C7  JSR sub_C71D_check_conditions_for_making_gk_controllable
+C - - - - - 0x00C709 03:C6F9: B0 08     BCS bra_C703_gk_should_be_controllable
 C - - - - - 0x00C70B 03:C6FB: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00C70E 03:C6FE: 49 0B     EOR #$0B
 C - - - - - 0x00C710 03:C700: 20 5B C9  JSR sub_C95B_select_closest_player_to_ball
-bra_C703:
+bra_C703_gk_should_be_controllable:
 C - - - - - 0x00C713 03:C703: 8D 2A 04  STA ram_player_without_ball
 C - - - - - 0x00C716 03:C706: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
 C - - - - - 0x00C719 03:C709: A0 00     LDY #con_plr_flags
 C - - - - - 0x00C71B 03:C70B: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00C71D 03:C70D: 29 04     AND #con_plr_flag_busy
 C - - - - - 0x00C71F 03:C70F: D0 06     BNE bra_C717
-C - - - - - 0x00C721 03:C711: A9 04     LDA #$04
+C - - - - - 0x00C721 03:C711: A9 04     LDA #con_state_without_ball
+; bzk optimize, JMP
 C - - - - - 0x00C723 03:C713: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00C726 03:C716: 60        RTS
 bra_C717:
@@ -1223,8 +1226,12 @@ bra_C717:
 
 
 
-sub_C71D:
-loc_C71D:
+sub_C71D_check_conditions_for_making_gk_controllable:
+loc_C71D_check_conditions_for_making_gk_controllable:
+; out
+    ; C
+        ; 0 = gk should not be controllable
+        ; 1 = gk should be controllable
 C - - - - - 0x00C72D 03:C71D: AE BC 03  LDX ram_03BC
 C - - - - - 0x00C730 03:C720: AC BD 03  LDY ram_03BD
 C - - - - - 0x00C733 03:C723: 38        SEC
@@ -2314,14 +2321,14 @@ C - - - - - 0x00CD07 03:CCF7: A9 03     LDA #$03
 C - - - - - 0x00CD09 03:CCF9: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00CD0B 03:CCFB: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00CD0E 03:CCFE: 68        PLA
-C - - - - - 0x00CD0F 03:CCFF: 20 39 80  JSR sub_0x004049
+C - - - - - 0x00CD0F 03:CCFF: 20 39 80  JSR sub_0x004049_prepare_behavior_tempate_for_cpu
 C - - - - - 0x00CD12 03:CD02: A2 0D     LDX #$0D
 C - - - - - 0x00CD14 03:CD04: A9 78     LDA #$78
 C - - - - - 0x00CD16 03:CD06: 95 01     STA ram_0001,X
 C - - - - - 0x00CD18 03:CD08: A9 02     LDA #$02
 C - - - - - 0x00CD1A 03:CD0A: 95 02     STA ram_0002,X
-C - - - - - 0x00CD1C 03:CD0C: A9 80     LDA #> (ofs_0x004016 - $01)
-C - - - - - 0x00CD1E 03:CD0E: A0 05     LDY #< (ofs_0x004016 - $01)
+C - - - - - 0x00CD1C 03:CD0C: A9 80     LDA #> (ofs_0x004016_draw_field - $01)
+C - - - - - 0x00CD1E 03:CD0E: A0 05     LDY #< (ofs_0x004016_draw_field - $01)
 C - - - - - 0x00CD20 03:CD10: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00CD23 03:CD13: A2 11     LDX #$11
 C - - - - - 0x00CD25 03:CD15: A9 96     LDA #$96
@@ -2336,15 +2343,15 @@ C - - - - - 0x00CD36 03:CD26: A9 D2     LDA #$D2
 C - - - - - 0x00CD38 03:CD28: 95 01     STA ram_0001,X
 C - - - - - 0x00CD3A 03:CD2A: A9 02     LDA #$02
 C - - - - - 0x00CD3C 03:CD2C: 95 02     STA ram_0002,X
-C - - - - - 0x00CD3E 03:CD2E: A9 80     LDA #> (ofs_0x004025 - $01)
-C - - - - - 0x00CD40 03:CD30: A0 14     LDY #< (ofs_0x004025 - $01)
+C - - - - - 0x00CD3E 03:CD2E: A9 80     LDA #> (ofs_0x004025_draw_bent_goal_net - $01)
+C - - - - - 0x00CD40 03:CD30: A0 14     LDY #< (ofs_0x004025_draw_bent_goal_net - $01)
 C - - - - - 0x00CD42 03:CD32: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00CD45 03:CD35: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00CD48 03:CD38: 18        CLC
 C - - - - - 0x00CD49 03:CD39: 69 06     ADC #$06
 C - - - - - 0x00CD4B 03:CD3B: 8D 29 04  STA ram_player_with_ball
 C - - - - - 0x00CD4E 03:CD3E: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
-C - - - - - 0x00CD51 03:CD41: A9 13     LDA #$13
+C - - - - - 0x00CD51 03:CD41: A9 13     LDA #con_state_kick_off
 C - - - - - 0x00CD53 03:CD43: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00CD56 03:CD46: A0 00     LDY #con_plr_flags
 C - - - - - 0x00CD58 03:CD48: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -2356,7 +2363,7 @@ C - - - - - 0x00CD63 03:CD53: 09 20     ORA #$20
 C - - - - - 0x00CD65 03:CD55: 8D A4 03  STA ram_03A4
 C - - - - - 0x00CD68 03:CD58: 20 2F D7  JSR sub_D72F
 C - - - - - 0x00CD6B 03:CD5B: A9 00     LDA #$00
-C - - - - - 0x00CD6D 03:CD5D: 8D 2C 04  STA ram_042C
+C - - - - - 0x00CD6D 03:CD5D: 8D 2C 04  STA ram_field_flags
 C - - - - - 0x00CD70 03:CD60: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00CD73 03:CD63: 49 0B     EOR #$0B
 C - - - - - 0x00CD75 03:CD65: 18        CLC
@@ -2383,7 +2390,7 @@ C - - - - - 0x00CDA1 03:CD91: A9 03     LDA #$03
 C - - - - - 0x00CDA3 03:CD93: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00CDA5 03:CD95: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00CDA8 03:CD98: 68        PLA
-C - - - - - 0x00CDA9 03:CD99: 20 00 80  JSR sub_0x004010
+C - - - - - 0x00CDA9 03:CD99: 20 00 80  JSR sub_0x004010_update_camera_and_scroll_positions
 C - - - - - 0x00CDAC 03:CD9C: 48        PHA
 C - - - - - 0x00CDAD 03:CD9D: A9 02     LDA #$02
 C - - - - - 0x00CDAF 03:CD9F: 85 67     STA ram_prg_bank_0
@@ -2411,7 +2418,7 @@ C - - - - - 0x00CDDB 03:CDCB: A9 03     LDA #$03
 C - - - - - 0x00CDDD 03:CDCD: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00CDDF 03:CDCF: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00CDE2 03:CDD2: 68        PLA
-C - - - - - 0x00CDE3 03:CDD3: 20 00 80  JSR sub_0x004010
+C - - - - - 0x00CDE3 03:CDD3: 20 00 80  JSR sub_0x004010_update_camera_and_scroll_positions
 C - - - - - 0x00CDE6 03:CDD6: 48        PHA
 C - - - - - 0x00CDE7 03:CDD7: A9 02     LDA #$02
 C - - - - - 0x00CDE9 03:CDD9: 85 67     STA ram_prg_bank_0
@@ -2454,7 +2461,7 @@ C - - - - - 0x00CE39 03:CE29: A0 00     LDY #con_plr_flags
 C - - - - - 0x00CE3B 03:CE2B: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00CE3D 03:CE2D: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00CE3F 03:CE2F: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00CE41 03:CE31: A9 00     LDA #$00
+C - - - - - 0x00CE41 03:CE31: A9 00     LDA #con_state_idle
 C - - - - - 0x00CE43 03:CE33: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 bra_CE36:
 C - - - - - 0x00CE46 03:CE36: A9 08     LDA #$08
@@ -2508,7 +2515,7 @@ C - - - - - 0x00CE9E 03:CE8E: A9 05     LDA #$05
 C - - - - - 0x00CEA0 03:CE90: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00CEA2 03:CE92: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00CEA5 03:CE95: 68        PLA
-C - - - - - 0x00CEA6 03:CE96: 20 24 80  JSR sub_0x008034
+C - - - - - 0x00CEA6 03:CE96: 20 24 80  JSR sub_0x008034_draw_penalty_screen
 C - - - - - 0x00CEA9 03:CE99: A5 28     LDA ram_for_2000
 C - - - - - 0x00CEAB 03:CE9B: 29 7F     AND #$7F
 C - - - - - 0x00CEAD 03:CE9D: 8D 00 20  STA $2000
@@ -2552,7 +2559,7 @@ C - - - - - 0x00CEF5 03:CEE5: A9 05     LDA #$05
 C - - - - - 0x00CEF7 03:CEE7: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00CEF9 03:CEE9: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00CEFC 03:CEEC: 68        PLA
-C - - - - - 0x00CEFD 03:CEED: 20 27 80  JSR sub_0x008037
+C - - - - - 0x00CEFD 03:CEED: 20 27 80  JSR sub_0x008037_diasplay_shooter_in_pk_and_set_players_positions
 bra_CEF0_loop:
 C - - - - - 0x00CF00 03:CEF0: A9 01     LDA #$01
 C - - - - - 0x00CF02 03:CEF2: 20 09 C6  JSR sub_C609_scripy_delay
@@ -2665,7 +2672,7 @@ C - - - - - 0x00CFB9 03:CFA9: A9 03     LDA #$03
 C - - - - - 0x00CFBB 03:CFAB: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00CFBD 03:CFAD: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00CFC0 03:CFB0: 68        PLA
-C - - - - - 0x00CFC1 03:CFB1: 20 21 80  JSR sub_0x004031
+C - - - - - 0x00CFC1 03:CFB1: 20 21 80  JSR sub_0x004031_write_team_palette_to_buffer
 C - - - - - 0x00CFC4 03:CFB4: 20 18 CB  JSR sub_CB18
 - D 2 - I - 0x00CFC7 03:CFB7: 80 03     .word ram_0380
 C - - - - - 0x00CFC9 03:CFB9: 60        RTS
@@ -2709,10 +2716,11 @@ tbl_CFBA:
 
 
 sub_CFDA_try_to_select_new_controllable_player:
-C - - - - - 0x00CFEA 03:CFDA: 20 1D C7  JSR sub_C71D
-C - - - - - 0x00CFED 03:CFDD: B0 72     BCS bra_D051
-C - - - - - 0x00CFEF 03:CFDF: 2C 2C 04  BIT ram_042C
+C - - - - - 0x00CFEA 03:CFDA: 20 1D C7  JSR sub_C71D_check_conditions_for_making_gk_controllable
+C - - - - - 0x00CFED 03:CFDD: B0 72     BCS bra_D051_gk_should_be_controllable
+C - - - - - 0x00CFEF 03:CFDF: 2C 2C 04  BIT ram_field_flags
 C - - - - - 0x00CFF2 03:CFE2: 50 03     BVC bra_CFE7
+; if con_field_flag_gk_has_ball
 C - - - - - 0x00CFF4 03:CFE4: 4C 74 D0  JMP loc_D074
 bra_CFE7:
 C - - - - - 0x00CFF7 03:CFE7: AD AD 03  LDA ram_team_w_ball
@@ -2724,9 +2732,9 @@ bra_CFF4:
 C - - - - - 0x00D004 03:CFF4: AD 2A 04  LDA ram_player_without_ball
 C - - - - - 0x00D007 03:CFF7: 30 20     BMI bra_D019
 C - - - - - 0x00D009 03:CFF9: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
-C - - - - - 0x00D00C 03:CFFC: A0 12     LDY #con_plr_ai
+C - - - - - 0x00D00C 03:CFFC: A0 12     LDY #con_plr_state
 C - - - - - 0x00D00E 03:CFFE: B1 61     LDA (ram_0061_t01_player_data),Y
-C - - - - - 0x00D010 03:D000: C9 04     CMP #$04
+C - - - - - 0x00D010 03:D000: C9 04     CMP #con_state_without_ball
 C - - - - - 0x00D012 03:D002: D0 15     BNE bra_D019
 C - - - - - 0x00D014 03:D004: A0 00     LDY #con_plr_flags
 C - - - - - 0x00D016 03:D006: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -2736,7 +2744,7 @@ C - - - - - 0x00D01C 03:D00C: A0 00     LDY #con_plr_flags
 C - - - - - 0x00D01E 03:D00E: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00D020 03:D010: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00D022 03:D012: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00D024 03:D014: A9 00     LDA #$00
+C - - - - - 0x00D024 03:D014: A9 00     LDA #con_state_idle
 C - - - - - 0x00D026 03:D016: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 bra_D019:
 C - - - - - 0x00D029 03:D019: AD AD 03  LDA ram_team_w_ball
@@ -2768,7 +2776,7 @@ C - - - - - 0x00D057 03:D047: F0 2B     BEQ bra_D074
 C - - - - - 0x00D059 03:D049: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00D05C 03:D04C: 49 0B     EOR #$0B
 C - - - - - 0x00D05E 03:D04E: 20 5B C9  JSR sub_C95B_select_closest_player_to_ball
-bra_D051:
+bra_D051_gk_should_be_controllable:
 C - - - - - 0x00D061 03:D051: CD 2A 04  CMP ram_player_without_ball
 C - - - - - 0x00D064 03:D054: F0 1D     BEQ bra_D073_RTS
 C - - - - - 0x00D066 03:D056: 8D 2A 04  STA ram_player_without_ball
@@ -2777,7 +2785,7 @@ C - - - - - 0x00D06C 03:D05C: A0 00     LDY #con_plr_flags
 C - - - - - 0x00D06E 03:D05E: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00D070 03:D060: 29 04     AND #con_plr_flag_busy
 C - - - - - 0x00D072 03:D062: D0 10     BNE bra_D074
-C - - - - - 0x00D074 03:D064: A9 04     LDA #$04
+C - - - - - 0x00D074 03:D064: A9 04     LDA #con_state_without_ball
 C - - - - - 0x00D076 03:D066: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00D079 03:D069: A0 00     LDY #con_plr_flags
 C - - - - - 0x00D07B 03:D06B: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -2865,7 +2873,7 @@ C - - - - - 0x00D10F 03:D0FF: A0 00     LDY #con_plr_flags
 C - - - - - 0x00D111 03:D101: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00D113 03:D103: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00D115 03:D105: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00D117 03:D107: A9 0C     LDA #$0C
+C - - - - - 0x00D117 03:D107: A9 0C     LDA #con_state_throw_in
 C - - - - - 0x00D119 03:D109: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00D11C 03:D10C: A0 00     LDY #con_plr_flags
 C - - - - - 0x00D11E 03:D10E: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -2896,7 +2904,7 @@ C - - - - - 0x00D144 03:D134: A9 05     LDA #$05
 C - - - - - 0x00D146 03:D136: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00D148 03:D138: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D14B 03:D13B: 68        PLA
-C - - - - - 0x00D14C 03:D13C: 20 21 80  JSR sub_0x008031
+C - - - - - 0x00D14C 03:D13C: 20 21 80  JSR sub_0x008031_set_players_positions_on_field_for_throw_in
 C - - - - - 0x00D14F 03:D13F: A9 80     LDA #$80
 C - - - - - 0x00D151 03:D141: 8D 2A 04  STA ram_player_without_ball
 C - - - - - 0x00D154 03:D144: A9 00     LDA #$00
@@ -2997,14 +3005,14 @@ C - - - - - 0x00D1F1 03:D1E1: A9 05     LDA #$05
 C - - - - - 0x00D1F3 03:D1E3: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00D1F5 03:D1E5: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D1F8 03:D1E8: 68        PLA
-C - - - - - 0x00D1F9 03:D1E9: 20 1E 80  JSR sub_0x00802E
+C - - - - - 0x00D1F9 03:D1E9: 20 1E 80  JSR sub_0x00802E_set_players_positions_on_field
 C - - - - - 0x00D1FC 03:D1EC: AD 29 04  LDA ram_player_with_ball
 C - - - - - 0x00D1FF 03:D1EF: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
 C - - - - - 0x00D202 03:D1F2: A0 00     LDY #con_plr_flags
 C - - - - - 0x00D204 03:D1F4: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00D206 03:D1F6: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00D208 03:D1F8: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00D20A 03:D1FA: A9 0D     LDA #$0D
+C - - - - - 0x00D20A 03:D1FA: A9 0D     LDA #con_state_goal_kick
 C - - - - - 0x00D20C 03:D1FC: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00D20F 03:D1FF: A0 00     LDY #con_plr_flags
 C - - - - - 0x00D211 03:D201: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -3032,7 +3040,7 @@ C - - - - - 0x00D23C 03:D22C: A9 03     LDA #$03
 C - - - - - 0x00D23E 03:D22E: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00D240 03:D230: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D243 03:D233: 68        PLA
-C - - - - - 0x00D244 03:D234: 20 00 80  JSR sub_0x004010
+C - - - - - 0x00D244 03:D234: 20 00 80  JSR sub_0x004010_update_camera_and_scroll_positions
 C - - - - - 0x00D247 03:D237: 48        PHA
 C - - - - - 0x00D248 03:D238: A9 02     LDA #$02
 C - - - - - 0x00D24A 03:D23A: 85 67     STA ram_prg_bank_0
@@ -3139,7 +3147,7 @@ C - - - - - 0x00D30A 03:D2FA: A0 00     LDY #con_plr_flags
 C - - - - - 0x00D30C 03:D2FC: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00D30E 03:D2FE: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00D310 03:D300: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00D312 03:D302: A9 0E     LDA #$0E
+C - - - - - 0x00D312 03:D302: A9 0E     LDA #con_state_corner_kick
 C - - - - - 0x00D314 03:D304: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00D317 03:D307: A0 00     LDY #con_plr_flags
 C - - - - - 0x00D319 03:D309: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -3154,7 +3162,7 @@ C - - - - - 0x00D327 03:D317: A9 05     LDA #$05
 C - - - - - 0x00D329 03:D319: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00D32B 03:D31B: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D32E 03:D31E: 68        PLA
-C - - - - - 0x00D32F 03:D31F: 20 1E 80  JSR sub_0x00802E
+C - - - - - 0x00D32F 03:D31F: 20 1E 80  JSR sub_0x00802E_set_players_positions_on_field
 C - - - - - 0x00D332 03:D322: A9 80     LDA #$80
 C - - - - - 0x00D334 03:D324: 8D 2A 04  STA ram_player_without_ball
 C - - - - - 0x00D337 03:D327: 20 ED DC  JSR sub_DCED
@@ -3168,7 +3176,7 @@ C - - - - - 0x00D344 03:D334: A9 03     LDA #$03
 C - - - - - 0x00D346 03:D336: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00D348 03:D338: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D34B 03:D33B: 68        PLA
-C - - - - - 0x00D34C 03:D33C: 20 00 80  JSR sub_0x004010
+C - - - - - 0x00D34C 03:D33C: 20 00 80  JSR sub_0x004010_update_camera_and_scroll_positions
 C - - - - - 0x00D34F 03:D33F: 48        PHA
 C - - - - - 0x00D350 03:D340: A9 02     LDA #$02
 C - - - - - 0x00D352 03:D342: 85 67     STA ram_prg_bank_0
@@ -3247,7 +3255,7 @@ C - - - - - 0x00D3A1 03:D391: B1 61     LDA (ram_0061_t01_player_data),Y
 ; con_plr_flag_08_unknown
 C - - - - - 0x00D3A3 03:D393: 29 F0     AND #$F0
 C - - - - - 0x00D3A5 03:D395: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00D3A7 03:D397: A9 12     LDA #$12
+C - - - - - 0x00D3A7 03:D397: A9 12     LDA #con_state_freeze
 C - - - - - 0x00D3A9 03:D399: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00D3AC 03:D39C: 68        PLA
 C - - - - - 0x00D3AD 03:D39D: 18        CLC
@@ -3291,7 +3299,7 @@ C - - - - - 0x00D3F1 03:D3E1: A9 03     LDA #$03
 C - - - - - 0x00D3F3 03:D3E3: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00D3F5 03:D3E5: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D3F8 03:D3E8: 68        PLA
-C - - - - - 0x00D3F9 03:D3E9: 20 0C 80  JSR sub_0x00401C
+C - - - - - 0x00D3F9 03:D3E9: 20 0C 80  JSR sub_0x00401C_scroll_field_after_goal
 C - - - - - 0x00D3FC 03:D3EC: 20 96 DE  JSR sub_DE96_sprite_engine
 C - - - - - 0x00D3FF 03:D3EF: 4C B1 D3  JMP loc_D3B1
 bra_D3F2:
@@ -3300,8 +3308,8 @@ C - - - - - 0x00D404 03:D3F4: A9 B4     LDA #$B4
 C - - - - - 0x00D406 03:D3F6: 95 01     STA ram_0001,X
 C - - - - - 0x00D408 03:D3F8: A9 02     LDA #$02
 C - - - - - 0x00D40A 03:D3FA: 95 02     STA ram_0002,X
-C - - - - - 0x00D40C 03:D3FC: A9 80     LDA #> (ofs_0x004043 - $01)
-C - - - - - 0x00D40E 03:D3FE: A0 32     LDY #< (ofs_0x004043 - $01)
+C - - - - - 0x00D40C 03:D3FC: A9 80     LDA #> (ofs_0x004043_spectators_palette_after_goal - $01)
+C - - - - - 0x00D40E 03:D3FE: A0 32     LDY #< (ofs_0x004043_spectators_palette_after_goal - $01)
 C - - - - - 0x00D410 03:D400: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00D413 03:D403: A9 00     LDA #$00
 C - - - - - 0x00D415 03:D405: 85 09     STA ram_0009
@@ -3329,7 +3337,7 @@ C - - - - - 0x00D43F 03:D42F: A9 03     LDA #$03
 C - - - - - 0x00D441 03:D431: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00D443 03:D433: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D446 03:D436: 68        PLA
-C - - - - - 0x00D447 03:D437: 20 27 80  JSR sub_0x004037
+C - - - - - 0x00D447 03:D437: 20 27 80  JSR sub_0x004037_display_GOAL
 C - - - - - 0x00D44A 03:D43A: 48        PHA
 C - - - - - 0x00D44B 03:D43B: A9 02     LDA #$02
 C - - - - - 0x00D44D 03:D43D: 85 67     STA ram_prg_bank_0
@@ -3337,7 +3345,7 @@ C - - - - - 0x00D44F 03:D43F: A9 03     LDA #$03
 C - - - - - 0x00D451 03:D441: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00D453 03:D443: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D456 03:D446: 68        PLA
-C - - - - - 0x00D457 03:D447: 20 2A 80  JSR sub_0x00403A
+C - - - - - 0x00D457 03:D447: 20 2A 80  JSR sub_0x00403A_display_big_score
 C - - - - - 0x00D45A 03:D44A: A9 28     LDA #$28
 C - - - - - 0x00D45C 03:D44C: 20 09 C6  JSR sub_C609_scripy_delay
 C - - - - - 0x00D45F 03:D44F: AE CA 03  LDX ram_03CA
@@ -3356,7 +3364,7 @@ C - - - - - 0x00D479 03:D469: A9 03     LDA #$03
 C - - - - - 0x00D47B 03:D46B: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00D47D 03:D46D: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D480 03:D470: 68        PLA
-C - - - - - 0x00D481 03:D471: 20 2A 80  JSR sub_0x00403A
+C - - - - - 0x00D481 03:D471: 20 2A 80  JSR sub_0x00403A_display_big_score
 C - - - - - 0x00D484 03:D474: A9 6E     LDA #$6E
 C - - - - - 0x00D486 03:D476: 20 09 C6  JSR sub_C609_scripy_delay
 C - - - - - 0x00D489 03:D479: 20 AF CA  JSR sub_CAAF_hide_all_sprites
@@ -3400,7 +3408,7 @@ C - - - - - 0x00D4C4 03:D4B4: B1 61     LDA (ram_0061_t01_player_data),Y
 ; con_plr_flag_08_unknown
 C - - - - - 0x00D4C6 03:D4B6: 29 F0     AND #$F0
 C - - - - - 0x00D4C8 03:D4B8: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00D4CA 03:D4BA: A9 00     LDA #$00
+C - - - - - 0x00D4CA 03:D4BA: A9 00     LDA #con_state_idle
 C - - - - - 0x00D4CC 03:D4BC: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 bra_D4BF:
 C - - - - - 0x00D4CF 03:D4BF: 68        PLA
@@ -3579,7 +3587,7 @@ C - - - - - 0x00D5C9 03:D5B9: A9 05     LDA #$05
 C - - - - - 0x00D5CB 03:D5BB: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00D5CD 03:D5BD: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00D5D0 03:D5C0: 68        PLA
-C - - - - - 0x00D5D1 03:D5C1: 20 1E 80  JSR sub_0x00802E
+C - - - - - 0x00D5D1 03:D5C1: 20 1E 80  JSR sub_0x00802E_set_players_positions_on_field
 C - - - - - 0x00D5D4 03:D5C4: A9 C0     LDA #$C0
 C - - - - - 0x00D5D6 03:D5C6: 85 2B     STA ram_002B_temp
 C - - - - - 0x00D5D8 03:D5C8: A9 01     LDA #$01
@@ -3668,8 +3676,8 @@ C - - - - - 0x00D67D 03:D66D: A9 78     LDA #$78
 C - - - - - 0x00D67F 03:D66F: 95 01     STA ram_0001,X
 C - - - - - 0x00D681 03:D671: A9 04     LDA #$04
 C - - - - - 0x00D683 03:D673: 95 02     STA ram_0002,X
-C - - - - - 0x00D685 03:D675: A9 80     LDA #> (ofs_0x00803D - $01)
-C - - - - - 0x00D687 03:D677: A0 2C     LDY #< (ofs_0x00803D - $01)
+C - - - - - 0x00D685 03:D675: A9 80     LDA #> (ofs_0x00803D_spectators_palette_after_pk_goal - $01)
+C - - - - - 0x00D687 03:D677: A0 2C     LDY #< (ofs_0x00803D_spectators_palette_after_pk_goal - $01)
 C - - - - - 0x00D689 03:D679: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00D68C 03:D67C: 38        SEC
 C - - - - - 0x00D68D 03:D67D: 4C 9F D6  JMP loc_D69F
@@ -3858,9 +3866,9 @@ C - - - - - 0x00D79A 03:D78A: 65 2A     ADC ram_002A_temp
 C - - - - - 0x00D79C 03:D78C: CD 27 04  CMP ram_area_id
 C - - - - - 0x00D79F 03:D78F: F0 0B     BEQ bra_D79C_RTS
 C - - - - - 0x00D7A1 03:D791: 8D 27 04  STA ram_area_id
-C - - - - - 0x00D7A4 03:D794: A9 80     LDA #$80
-C - - - - - 0x00D7A6 03:D796: 0D 2C 04  ORA ram_042C
-C - - - - - 0x00D7A9 03:D799: 8D 2C 04  STA ram_042C
+C - - - - - 0x00D7A4 03:D794: A9 80     LDA #con_field_flag_update_tactics
+C - - - - - 0x00D7A6 03:D796: 0D 2C 04  ORA ram_field_flags
+C - - - - - 0x00D7A9 03:D799: 8D 2C 04  STA ram_field_flags
 bra_D79C_RTS:
 C - - - - - 0x00D7AC 03:D79C: 60        RTS
 
@@ -4663,7 +4671,7 @@ C - - - - - 0x00DCD0 03:DCC0: 29 10     AND #con_ball_flag_inside_goal
 C - - - - - 0x00DCD2 03:DCC2: D0 28     BNE bra_DCEC_RTS
 C - - - - - 0x00DCD4 03:DCC4: A9 00     LDA #$00
 C - - - - - 0x00DCD6 03:DCC6: 20 5B C9  JSR sub_C95B_select_closest_player_to_ball
-C - - - - - 0x00DCD9 03:DCC9: A9 01     LDA #$01
+C - - - - - 0x00DCD9 03:DCC9: A9 01     LDA #con_state_backup_follow_ball
 C - - - - - 0x00DCDB 03:DCCB: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00DCDE 03:DCCE: A0 00     LDY #con_plr_flags
 C - - - - - 0x00DCE0 03:DCD0: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -4672,7 +4680,7 @@ C - - - - - 0x00DCE4 03:DCD4: 29 F7     AND #con_plr_flag_08_unknown ^ $FF
 C - - - - - 0x00DCE6 03:DCD6: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00DCE8 03:DCD8: A9 0B     LDA #$0B
 C - - - - - 0x00DCEA 03:DCDA: 20 5B C9  JSR sub_C95B_select_closest_player_to_ball
-C - - - - - 0x00DCED 03:DCDD: A9 01     LDA #$01
+C - - - - - 0x00DCED 03:DCDD: A9 01     LDA #con_state_backup_follow_ball
 C - - - - - 0x00DCEF 03:DCDF: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00DCF2 03:DCE2: A0 00     LDY #con_plr_flags
 C - - - - - 0x00DCF4 03:DCE4: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -4951,19 +4959,19 @@ C - - - - - 0x00DEB3 03:DEA3: 85 5B     STA ram_index_oam
 C - - - - - 0x00DEB5 03:DEA5: 85 5D     STA ram_overflow_oam
 C - - - - - 0x00DEB7 03:DEA7: A9 40     LDA #$40
 C - - - - - 0x00DEB9 03:DEA9: 85 5C     STA ram_free_sprites_counter
-C - - - - - 0x00DEBB 03:DEAB: 20 24 80  JSR sub_0x004034
+C - - - - - 0x00DEBB 03:DEAB: 20 24 80  JSR sub_0x004034_decrease_game_timer
 C - - - - - 0x00DEBE 03:DEAE: AD 29 04  LDA ram_player_with_ball
 C - - - - - 0x00DEC1 03:DEB1: 30 06     BMI bra_DEB9
 C - - - - - 0x00DEC3 03:DEB3: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
-C - - - - - 0x00DEC6 03:DEB6: 20 1B 80  JSR sub_0x00402B
+C - - - - - 0x00DEC6 03:DEB6: 20 1B 80  JSR sub_0x00402B_draw_animation
 bra_DEB9:
 C - - - - - 0x00DEC9 03:DEB9: A9 16     LDA #$16
 C - - - - - 0x00DECB 03:DEBB: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
-C - - - - - 0x00DECE 03:DEBE: 20 1B 80  JSR sub_0x00402B
+C - - - - - 0x00DECE 03:DEBE: 20 1B 80  JSR sub_0x00402B_draw_animation
 C - - - - - 0x00DED1 03:DEC1: A9 17     LDA #$17
 C - - - - - 0x00DED3 03:DEC3: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
-C - - - - - 0x00DED6 03:DEC6: 20 1B 80  JSR sub_0x00402B
-C - - - - - 0x00DED9 03:DEC9: 20 18 80  JSR sub_0x004028
+C - - - - - 0x00DED6 03:DEC6: 20 1B 80  JSR sub_0x00402B_draw_animation
+C - - - - - 0x00DED9 03:DEC9: 20 18 80  JSR sub_0x004028_show_controllable_indicators_for_players
 C - - - - - 0x00DEDC 03:DECC: A5 5C     LDA ram_free_sprites_counter
 C - - - - - 0x00DEDE 03:DECE: 48        PHA
 C - - - - - 0x00DEDF 03:DECF: A5 5B     LDA ram_index_oam
@@ -4989,7 +4997,7 @@ C - - - - - 0x00DEFB 03:DEEB: 48        PHA
 C - - - - - 0x00DEFC 03:DEEC: CD 29 04  CMP ram_player_with_ball
 C - - - - - 0x00DEFF 03:DEEF: F0 06     BEQ bra_DEF7
 C - - - - - 0x00DF01 03:DEF1: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
-C - - - - - 0x00DF04 03:DEF4: 20 1B 80  JSR sub_0x00402B
+C - - - - - 0x00DF04 03:DEF4: 20 1B 80  JSR sub_0x00402B_draw_animation
 bra_DEF7:
 C - - - - - 0x00DF07 03:DEF7: 68        PLA
 C - - - - - 0x00DF08 03:DEF8: 18        CLC
@@ -5068,15 +5076,15 @@ C - - - - - 0x00DF75 03:DF65: A9 00     LDA #$00
 bra_DF67_loop:
 C - - - - - 0x00DF77 03:DF67: 48        PHA
 C - - - - - 0x00DF78 03:DF68: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
-C - - - - - 0x00DF7B 03:DF6B: A0 12     LDY #con_plr_ai
+C - - - - - 0x00DF7B 03:DF6B: A0 12     LDY #con_plr_state
 C - - - - - 0x00DF7D 03:DF6D: B1 61     LDA (ram_0061_t01_player_data),Y
-C - - - - - 0x00DF7F 03:DF6F: C9 03     CMP #$03
+C - - - - - 0x00DF7F 03:DF6F: C9 03     CMP #con_state_follow_ball
 C - - - - - 0x00DF81 03:DF71: D0 0D     BNE bra_DF80
 C - - - - - 0x00DF83 03:DF73: A0 00     LDY #con_plr_flags
 C - - - - - 0x00DF85 03:DF75: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00DF87 03:DF77: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00DF89 03:DF79: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00DF8B 03:DF7B: A9 00     LDA #$00
+C - - - - - 0x00DF8B 03:DF7B: A9 00     LDA #con_state_idle
 C - - - - - 0x00DF8D 03:DF7D: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 bra_DF80:
 C - - - - - 0x00DF90 03:DF80: 68        PLA
@@ -5086,7 +5094,7 @@ C - - - - - 0x00DF94 03:DF84: C9 16     CMP #$16
 C - - - - - 0x00DF96 03:DF86: D0 DF     BNE bra_DF67_loop
 C - - - - - 0x00DF98 03:DF88: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00DF9B 03:DF8B: 20 DA C9  JSR sub_C9DA
-C - - - - - 0x00DF9E 03:DF8E: A9 03     LDA #$03
+C - - - - - 0x00DF9E 03:DF8E: A9 03     LDA #con_state_follow_ball
 C - - - - - 0x00DFA0 03:DF90: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00DFA3 03:DF93: A0 00     LDY #con_plr_flags
 C - - - - - 0x00DFA5 03:DF95: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -5096,7 +5104,7 @@ C - - - - - 0x00DFAB 03:DF9B: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00DFAD 03:DF9D: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00DFB0 03:DFA0: 49 0B     EOR #$0B
 C - - - - - 0x00DFB2 03:DFA2: 20 DA C9  JSR sub_C9DA
-C - - - - - 0x00DFB5 03:DFA5: A9 03     LDA #$03
+C - - - - - 0x00DFB5 03:DFA5: A9 03     LDA #con_state_follow_ball
 C - - - - - 0x00DFB7 03:DFA7: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00DFBA 03:DFAA: A0 00     LDY #con_plr_flags
 C - - - - - 0x00DFBC 03:DFAC: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -5393,6 +5401,7 @@ C - - - - - 0x00E169 03:E159: 38        SEC
 C - - - - - 0x00E16A 03:E15A: 60        RTS
 
 
+
 ; ограничение кипера на зоне
 tbl_E15B:
 - D 3 - - - 0x00E16B 03:E15B: B8        .byte $B8   ; 
@@ -5415,8 +5424,8 @@ tbl_E160:
 
 
 
-sub_E167:
-C - - - - - 0x00E177 03:E167: 20 30 80  JSR sub_0x004040
+sub_E167_set_initial_player_speed:
+C - - - - - 0x00E177 03:E167: 20 30 80  JSR sub_0x004040_calculate_initial_player_speed
 C - - - - - 0x00E17A 03:E16A: A0 14     LDY #con_plr_spd_fr_init
 C - - - - - 0x00E17C 03:E16C: A5 77     LDA ram_0077_temp
 C - - - - - 0x00E17E 03:E16E: 91 61     STA (ram_0061_t01_player_data),Y
@@ -5460,7 +5469,7 @@ C - - - - - 0x00E1C2 03:E1B2: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E1C4 03:E1B4: 20 80 E5  JSR sub_E580_calculate_player_speed
 C - - - - - 0x00E1C7 03:E1B7: A5 6F     LDA ram_player_local_id
 C - - - - - 0x00E1C9 03:E1B9: A2 01     LDX #$01
-C - - - - - 0x00E1CB 03:E1BB: 20 67 E1  JSR sub_E167
+C - - - - - 0x00E1CB 03:E1BB: 20 67 E1  JSR sub_E167_set_initial_player_speed
 C - - - - - 0x00E1CE 03:E1BE: A0 06     LDY #con_plr_action_timer_1
 C - - - - - 0x00E1D0 03:E1C0: A9 18     LDA #$18
 C - - - - - 0x00E1D2 03:E1C2: 91 61     STA (ram_0061_t01_player_data),Y
@@ -5507,7 +5516,7 @@ C - - - - - 0x00E223 03:E213: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E225 03:E215: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E227 03:E217: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00E229 03:E219: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E22B 03:E21B: A9 11     LDA #$11
+C - - - - - 0x00E22B 03:E21B: A9 11     LDA #con_state_follow_enemy
 C - - - - - 0x00E22D 03:E21D: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E230 03:E220: 4C 55 DF  JMP loc_DF55_check_next_player
 
@@ -5582,7 +5591,7 @@ C - - - - - 0x00E28C 03:E27C: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E28E 03:E27E: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E290 03:E280: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00E292 03:E282: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E294 03:E284: A9 06     LDA #$06
+C - - - - - 0x00E294 03:E284: A9 06     LDA #con_state_dodge
 C - - - - - 0x00E296 03:E286: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E299 03:E289: 4C 42 E3  JMP loc_E342
 bra_E28C:
@@ -5638,7 +5647,7 @@ C - - - - - 0x00E2F2 03:E2E2: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E2F4 03:E2E4: 90 67     BCC bra_E34D_RTS
 C - - - - - 0x00E2F6 03:E2E6: A5 6F     LDA ram_player_local_id
 C - - - - - 0x00E2F8 03:E2E8: A2 01     LDX #$01
-C - - - - - 0x00E2FA 03:E2EA: 20 30 80  JSR sub_0x004040
+C - - - - - 0x00E2FA 03:E2EA: 20 30 80  JSR sub_0x004040_calculate_initial_player_speed
 C - - - - - 0x00E2FD 03:E2ED: A5 77     LDA ram_0077_temp
 C - - - - - 0x00E2FF 03:E2EF: 8D 1D 04  STA ram_shoot_power_lo
 C - - - - - 0x00E302 03:E2F2: A5 78     LDA ram_0078_temp
@@ -5665,7 +5674,7 @@ C - - - - - 0x00E331 03:E321: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E333 03:E323: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E335 03:E325: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00E337 03:E327: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E339 03:E329: A9 05     LDA #$05
+C - - - - - 0x00E339 03:E329: A9 05     LDA #con_state_dead
 C - - - - - 0x00E33B 03:E32B: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E33E 03:E32E: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E340 03:E330: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -5773,7 +5782,7 @@ C - - - - - 0x00E3D7 03:E3C7: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E3D9 03:E3C9: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E3DB 03:E3CB: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00E3DD 03:E3CD: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E3DF 03:E3CF: A9 02     LDA #$02
+C - - - - - 0x00E3DF 03:E3CF: A9 02     LDA #con_state_with_ball
 C - - - - - 0x00E3E1 03:E3D1: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E3E4 03:E3D4: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E3E6 03:E3D6: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -5798,7 +5807,7 @@ C - - - - - 0x00E406 03:E3F6: A9 03     LDA #$03
 C - - - - - 0x00E408 03:E3F8: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00E40A 03:E3FA: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00E40D 03:E3FD: 68        PLA
-C - - - - - 0x00E40E 03:E3FE: 20 4B 80  JSR sub_0x00405B
+C - - - - - 0x00E40E 03:E3FE: 20 4B 80  JSR sub_0x00405B_8B3F_calculate_cpu_chance_for_fast_shoot
 C - - - - - 0x00E411 03:E401: 90 0C     BCC bra_E40F_RTS
 C - - - - - 0x00E413 03:E403: B0 0B     BCS bra_E410
 bra_E405:
@@ -5841,21 +5850,21 @@ C - - - - - 0x00E446 03:E436: 20 BD CA  JSR sub_CABD_bytes_after_JSR
 
 
 ofs_003_E43F_00:
-C - - J - - 0x00E44F 03:E43F: A9 07     LDA #$07
+C - - J - - 0x00E44F 03:E43F: A9 07     LDA #con_state_shoot_fast
 C - - - - - 0x00E451 03:E441: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E454 03:E444: 4C 54 E4  JMP loc_E454
 
 
 
 ofs_003_E447_01:
-C - - J - - 0x00E457 03:E447: A9 08     LDA #$08
+C - - J - - 0x00E457 03:E447: A9 08     LDA #con_state_shoot_volley
 C - - - - - 0x00E459 03:E449: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E45C 03:E44C: 4C 54 E4  JMP loc_E454
 
 
 
 ofs_003_E44F_02:
-C - - J - - 0x00E45F 03:E44F: A9 0A     LDA #$0A
+C - - J - - 0x00E45F 03:E44F: A9 0A     LDA #con_state_shoot_header
 C - - - - - 0x00E461 03:E451: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 
 
@@ -5990,7 +5999,7 @@ C - - - - - 0x00E50C 03:E4FC: F0 08     BEQ bra_E506
 C - - - - - 0x00E50E 03:E4FE: 8A        TXA
 C - - - - - 0x00E50F 03:E4FF: 29 F7     AND #$F7
 C - - - - - 0x00E511 03:E501: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E513 03:E503: 20 12 80  JSR sub_0x004022
+C - - - - - 0x00E513 03:E503: 20 12 80  JSR sub_0x004022_give_task_to_player_from_his_table
 bra_E506:
 C - - - - - 0x00E516 03:E506: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E518 03:E508: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -6010,14 +6019,14 @@ bra_E521:
 C - - - - - 0x00E531 03:E521: 8E 2B 04  STX ram_player_global_id
 C - - - - - 0x00E534 03:E524: 4C DE E4  JMP loc_E4DE
 sub_E527:
-C - - - - - 0x00E537 03:E527: A0 12     LDY #con_plr_ai
+C - - - - - 0x00E537 03:E527: A0 12     LDY #con_plr_state
 C - - - - - 0x00E539 03:E529: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E53B 03:E52B: 20 BD CA  JSR sub_CABD_bytes_after_JSR
-- D 3 - I - 0x00E53E 03:E52E: 7D E5     .word ofs_004_E57D_00
-- D 3 - I - 0x00E540 03:E530: 7D E5     .word ofs_004_E57D_01
+- D 3 - I - 0x00E53E 03:E52E: 7D E5     .word ofs_004_E57D_00_idle
+- D 3 - I - 0x00E540 03:E530: 7D E5     .word ofs_004_E57D_01_backup_follow_ball
 - D 3 - I - 0x00E542 03:E532: 76 E5     .word ofs_004_E576_02_RTS
 - D 3 - I - 0x00E544 03:E534: 9B E5     .word ofs_004_E59B_03_RTS
-- D 3 - I - 0x00E546 03:E536: 7D E5     .word ofs_004_E57D_04
+- D 3 - I - 0x00E546 03:E536: 7D E5     .word ofs_004_E57D_04_without_ball
 - D 3 - I - 0x00E548 03:E538: 76 E5     .word ofs_004_E576_05_RTS
 - - - - - - 0x00E54A 03:E53A: 76 E5     .word ofs_004_E576_06_RTS
 - - - - - - 0x00E54C 03:E53C: 76 E5     .word ofs_004_E576_07_RTS
@@ -6028,18 +6037,18 @@ C - - - - - 0x00E53B 03:E52B: 20 BD CA  JSR sub_CABD_bytes_after_JSR
 - - - - - - 0x00E556 03:E546: 76 E5     .word ofs_004_E576_0C_RTS
 - - - - - - 0x00E558 03:E548: 76 E5     .word ofs_004_E576_0D_RTS
 - - - - - - 0x00E55A 03:E54A: 76 E5     .word ofs_004_E576_0E_RTS
-- D 3 - I - 0x00E55C 03:E54C: 9C E5     .word ofs_004_E59C_0F
-- D 3 - I - 0x00E55E 03:E54E: A2 E5     .word ofs_004_E5A2_10
-- D 3 - I - 0x00E560 03:E550: E1 E5     .word ofs_004_E5E1_11
-- D 3 - I - 0x00E562 03:E552: 7D E5     .word ofs_004_E57D_12
-- D 3 - I - 0x00E564 03:E554: 7D E5     .word ofs_004_E57D_13
-- D 3 - I - 0x00E566 03:E556: 9C E5     .word ofs_004_E59C_14
-- D 3 - I - 0x00E568 03:E558: 9C E5     .word ofs_004_E59C_15
+- D 3 - I - 0x00E55C 03:E54C: 9C E5     .word ofs_004_E59C_0F_run_to_area
+- D 3 - I - 0x00E55E 03:E54E: A2 E5     .word ofs_004_E5A2_10_run_near_ball
+- D 3 - I - 0x00E560 03:E550: E1 E5     .word ofs_004_E5E1_11_follow_enemy
+- D 3 - I - 0x00E562 03:E552: 7D E5     .word ofs_004_E57D_12_freeze
+- D 3 - I - 0x00E564 03:E554: 7D E5     .word ofs_004_E57D_13_kick_off
+- D 3 - I - 0x00E566 03:E556: 9C E5     .word ofs_004_E59C_14_run_to_defense
+- D 3 - I - 0x00E568 03:E558: 9C E5     .word ofs_004_E59C_15_run_to_base
 - D 3 - I - 0x00E56A 03:E55A: 76 E5     .word ofs_004_E576_16_RTS
 
 
 
-sub_E55C:
+sub_E55C_set_aim_to_ball:
 C - - - - - 0x00E56C 03:E55C: A0 1A     LDY #con_plr_aim_X_lo
 C - - - - - 0x00E56E 03:E55E: AD D8 03  LDA ram_ball_pos_X_lo
 C - - - - - 0x00E571 03:E561: 91 61     STA (ram_0061_t01_player_data),Y
@@ -6073,17 +6082,17 @@ C - - J - - 0x00E586 03:E576: 60        RTS
 
 
 sub_E577:
-C - - - - - 0x00E587 03:E577: 20 5C E5  JSR sub_E55C
+C - - - - - 0x00E587 03:E577: 20 5C E5  JSR sub_E55C_set_aim_to_ball
 C - - - - - 0x00E58A 03:E57A: 4C E4 E5  JMP loc_E5E4
 
 
 
 loc_E57D:
-ofs_004_E57D_00:
-ofs_004_E57D_01:
-ofs_004_E57D_04:
-ofs_004_E57D_12:
-ofs_004_E57D_13:
+ofs_004_E57D_00_idle:
+ofs_004_E57D_01_backup_follow_ball:
+ofs_004_E57D_04_without_ball:
+ofs_004_E57D_12_freeze:
+ofs_004_E57D_13_kick_off:
 C D 3 J - - 0x00E58D 03:E57D: 20 77 E5  JSR sub_E577
 sub_E580_calculate_player_speed:
 loc_E580:
@@ -6112,35 +6121,35 @@ C - - J - - 0x00E5AB 03:E59B: 60        RTS
 
 
 
-ofs_004_E59C_0F:
-ofs_004_E59C_14:
-ofs_004_E59C_15:
+ofs_004_E59C_0F_run_to_area:
+ofs_004_E59C_14_run_to_defense:
+ofs_004_E59C_15_run_to_base:
 C - - J - - 0x00E5AC 03:E59C: 20 E4 E5  JSR sub_E5E4
 C - - - - - 0x00E5AF 03:E59F: 4C 80 E5  JMP loc_E580
 
 
 
-ofs_004_E5A2_10:
+ofs_004_E5A2_10_run_near_ball:
 C - - J - - 0x00E5B2 03:E5A2: A0 06     LDY #con_plr_action_timer_1
 C - - - - - 0x00E5B4 03:E5A4: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E5B6 03:E5A6: A0 05     LDY #$05
-C - - - - - 0x00E5B8 03:E5A8: 20 C6 E5  JSR sub_E5C6
+C - - - - - 0x00E5B8 03:E5A8: 20 C6 E5  JSR sub_E5C6_calculate_aim
 C - - - - - 0x00E5BB 03:E5AB: 98        TYA
 C - - - - - 0x00E5BC 03:E5AC: A0 1B     LDY #con_plr_aim_X_hi
-C - - - - - 0x00E5BE 03:E5AE: 20 DA E5  JSR sub_E5DA
+C - - - - - 0x00E5BE 03:E5AE: 20 DA E5  JSR sub_E5DA_set_aim
 C - - - - - 0x00E5C1 03:E5B1: A0 0C     LDY #con_plr_action_timer_2
 C - - - - - 0x00E5C3 03:E5B3: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E5C5 03:E5B5: A0 0B     LDY #$0B
-C - - - - - 0x00E5C7 03:E5B7: 20 C6 E5  JSR sub_E5C6
+C - - - - - 0x00E5C7 03:E5B7: 20 C6 E5  JSR sub_E5C6_calculate_aim
 C - - - - - 0x00E5CA 03:E5BA: 98        TYA
 C - - - - - 0x00E5CB 03:E5BB: A0 1D     LDY #con_plr_aim_Y_hi
-C - - - - - 0x00E5CD 03:E5BD: 20 DA E5  JSR sub_E5DA
+C - - - - - 0x00E5CD 03:E5BD: 20 DA E5  JSR sub_E5DA_set_aim
 C - - - - - 0x00E5D0 03:E5C0: 20 E4 E5  JSR sub_E5E4
 C - - - - - 0x00E5D3 03:E5C3: 4C 80 E5  JMP loc_E580
 
 
 
-sub_E5C6:
+sub_E5C6_calculate_aim:
 C - - - - - 0x00E5D6 03:E5C6: A2 00     LDX #$00
 C - - - - - 0x00E5D8 03:E5C8: 48        PHA
 C - - - - - 0x00E5D9 03:E5C9: 68        PLA
@@ -6159,7 +6168,7 @@ C - - - - - 0x00E5E9 03:E5D9: 60        RTS
 
 
 
-sub_E5DA:
+sub_E5DA_set_aim:
 ; in
     ; Y = con_plr_aim_X_hi/con_plr_aim_Y_hi
 C - - - - - 0x00E5EA 03:E5DA: 91 61     STA (ram_0061_t01_player_data),Y
@@ -6170,7 +6179,7 @@ C - - - - - 0x00E5F0 03:E5E0: 60        RTS
 
 
 
-ofs_004_E5E1_11:    ; bzk optimize
+ofs_004_E5E1_11_follow_enemy:    ; bzk optimize
 C - - J - - 0x00E5F1 03:E5E1: 4C 7D E5  JMP loc_E57D
 
 
@@ -6183,16 +6192,16 @@ C - - - - - 0x00E5FA 03:E5EA: F0 17     BEQ bra_E603_RTS
 C - - - - - 0x00E5FC 03:E5EC: C0 0B     CPY #$0B
 C - - - - - 0x00E5FE 03:E5EE: F0 13     BEQ bra_E603_RTS
 C - - - - - 0x00E600 03:E5F0: A9 00     LDA #$00
-C - - - - - 0x00E602 03:E5F2: AA        TAX
+C - - - - - 0x00E602 03:E5F2: AA        TAX ; 00
 C - - - - - 0x00E603 03:E5F3: 90 02     BCC bra_E5F7
 C - - - - - 0x00E605 03:E5F5: A9 0B     LDA #$0B
 bra_E5F7:
 C - - - - - 0x00E607 03:E5F7: 4D AD 03  EOR ram_team_w_ball
 C - - - - - 0x00E60A 03:E5FA: F0 01     BEQ bra_E5FD
-C - - - - - 0x00E60C 03:E5FC: E8        INX
+C - - - - - 0x00E60C 03:E5FC: E8        INX ; 01
 bra_E5FD:
 C - - - - - 0x00E60D 03:E5FD: AD 2B 04  LDA ram_player_global_id
-C - - - - - 0x00E610 03:E600: 20 67 E1  JSR sub_E167
+C - - - - - 0x00E610 03:E600: 20 67 E1  JSR sub_E167_set_initial_player_speed
 bra_E603_RTS:
 C - - - - - 0x00E613 03:E603: 60        RTS
 
@@ -6324,6 +6333,7 @@ C - - - - - 0x00E6D1 03:E6C1: 60        RTS
 
 
 tbl_E6C2_player_state_handler:
+; see con_state
 - D 3 - - - 0x00E6D2 03:E6C2: F6 E6     .word ofs_005_E6F6_00_idle - $01
 - D 3 - - - 0x00E6D4 03:E6C4: 6E E8     .word ofs_005_E86E_01_backup_follow_ball - $01
 - D 3 - - - 0x00E6D6 03:E6C6: D8 E8     .word ofs_005_E8D8_02_with_ball - $01
@@ -6333,9 +6343,9 @@ tbl_E6C2_player_state_handler:
 - D 3 - - - 0x00E6DE 03:E6CE: 67 F0     .word ofs_005_F067_06_dodge - $01
 - D 3 - - - 0x00E6E0 03:E6D0: D2 F2     .word ofs_005_F2D2_07_shoot_fast - $01
 - D 3 - - - 0x00E6E2 03:E6D2: 19 F3     .word ofs_005_F319_08_shoot_volley - $01
-- - - - - - 0x00E6E4 03:E6D4: 7A F3     .word ofs_005_F37A_09 - $01
+- - - - - - 0x00E6E4 03:E6D4: 7A F3     .word ofs_005_F37A_09 - $01 ; unused, index doesn't exist
 - D 3 - - - 0x00E6E6 03:E6D6: 7D F3     .word ofs_005_F37D_0A_shoot_header - $01
-- - - - - - 0x00E6E8 03:E6D8: D9 F3     .word ofs_005_F3D9_0B - $01
+- - - - - - 0x00E6E8 03:E6D8: D9 F3     .word ofs_005_F3D9_0B - $01 ; unused, index doesn't exist
 - D 3 - - - 0x00E6EA 03:E6DA: 5A F4     .word ofs_005_F45A_0C_throw_in - $01
 - D 3 - - - 0x00E6EC 03:E6DC: 63 F5     .word ofs_005_F563_0D_goal_kick - $01
 - D 3 - - - 0x00E6EE 03:E6DE: 85 F6     .word ofs_005_F685_0E_corner_kick - $01
@@ -6415,7 +6425,7 @@ C - - - - - 0x00E773 03:E763: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E775 03:E765: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E777 03:E767: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00E779 03:E769: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E77B 03:E76B: A9 02     LDA #$02
+C - - - - - 0x00E77B 03:E76B: A9 02     LDA #con_state_with_ball
 C - - - - - 0x00E77D 03:E76D: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E780 03:E770: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E782 03:E772: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -6428,7 +6438,7 @@ C - - - - - 0x00E790 03:E780: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E792 03:E782: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E794 03:E784: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00E796 03:E786: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E798 03:E788: A9 05     LDA #$05
+C - - - - - 0x00E798 03:E788: A9 05     LDA #con_state_dead
 C - - - - - 0x00E79A 03:E78A: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E79D 03:E78D: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E79F 03:E78F: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -6439,7 +6449,7 @@ C - - - - - 0x00E7A7 03:E797: A5 6F     LDA ram_player_local_id
 C - - - - - 0x00E7A9 03:E799: 20 B9 C6  JSR sub_C6B9
 C - - - - - 0x00E7AC 03:E79C: 4C 55 DF  JMP loc_DF55_check_next_player
 bra_E79F:
-C - - - - - 0x00E7AF 03:E79F: A9 05     LDA #$05
+C - - - - - 0x00E7AF 03:E79F: A9 05     LDA #con_state_dead
 C - - - - - 0x00E7B1 03:E7A1: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E7B4 03:E7A4: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E7B6 03:E7A6: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -6479,7 +6489,7 @@ C - - - - - 0x00E800 03:E7F0: A0 F9     LDY #< (ofs_D6FA - $01)
 C - - - - - 0x00E802 03:E7F2: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00E805 03:E7F5: A9 04     LDA #$04
 C - - - - - 0x00E807 03:E7F7: 20 52 C6  JSR sub_C652_set_delay_and_save_return_address
-C - - - - - 0x00E80A 03:E7FA: A9 05     LDA #$05
+C - - - - - 0x00E80A 03:E7FA: A9 05     LDA #con_state_dead
 C - - - - - 0x00E80C 03:E7FC: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E80F 03:E7FF: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E811 03:E801: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -6571,7 +6581,7 @@ C - - - - - 0x00E89B 03:E88B: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E89D 03:E88D: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E89F 03:E88F: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00E8A1 03:E891: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E8A3 03:E893: A9 00     LDA #$00
+C - - - - - 0x00E8A3 03:E893: A9 00     LDA #con_state_idle
 C - - - - - 0x00E8A5 03:E895: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E8A8 03:E898: 4C 55 DF  JMP loc_DF55_check_next_player
 bra_E89B:
@@ -6586,7 +6596,7 @@ C - - - - - 0x00E8B7 03:E8A7: 30 10     BMI bra_E8B9
 - - - - - - 0x00E8BE 03:E8AE: B1 61     LDA (ram_0061_t01_player_data),Y
 - - - - - - 0x00E8C0 03:E8B0: 29 FB     AND #con_plr_flag_busy ^ $FF
 - - - - - - 0x00E8C2 03:E8B2: 91 61     STA (ram_0061_t01_player_data),Y
-- - - - - - 0x00E8C4 03:E8B4: A9 00     LDA #$00
+- - - - - - 0x00E8C4 03:E8B4: A9 00     LDA #con_state_idle
 - - - - - - 0x00E8C6 03:E8B6: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 bra_E8B9:
 C - - - - - 0x00E8C9 03:E8B9: A5 6F     LDA ram_player_local_id
@@ -6595,7 +6605,7 @@ C - - - - - 0x00E8CE 03:E8BE: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E8D0 03:E8C0: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E8D2 03:E8C2: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00E8D4 03:E8C4: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E8D6 03:E8C6: A9 02     LDA #$02
+C - - - - - 0x00E8D6 03:E8C6: A9 02     LDA #con_state_with_ball
 C - - - - - 0x00E8D8 03:E8C8: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00E8DB 03:E8CB: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E8DD 03:E8CD: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -6632,7 +6642,7 @@ C - - - - - 0x00E915 03:E905: A0 9C     LDY #< (ofs_D79D - $01)
 C - - - - - 0x00E917 03:E907: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00E91A 03:E90A: A5 6F     LDA ram_player_local_id
 C - - - - - 0x00E91C 03:E90C: A2 02     LDX #$02
-C - - - - - 0x00E91E 03:E90E: 20 67 E1  JSR sub_E167
+C - - - - - 0x00E91E 03:E90E: 20 67 E1  JSR sub_E167_set_initial_player_speed
 C - - - - - 0x00E921 03:E911: A9 00     LDA #$00
 C - - - - - 0x00E923 03:E913: 85 82     STA ram_flag_cpu_got_ball
 bra_E915_loop:
@@ -6644,7 +6654,7 @@ C - - - - - 0x00E930 03:E920: F0 12     BEQ bra_E934
 C - - - - - 0x00E932 03:E922: AD 25 00  LDA a: ram_btn_hold + $01
 C - - - - - 0x00E935 03:E925: 2C A4 03  BIT ram_03A4
 C - - - - - 0x00E938 03:E928: 30 0A     BMI bra_E934
-C - - - - - 0x00E93A 03:E92A: 20 36 80  JSR sub_0x004046
+C - - - - - 0x00E93A 03:E92A: 20 36 80  JSR sub_0x004046_calculate_cpu_decision_or_his_direction
 C - - - - - 0x00E93D 03:E92D: 24 86     BIT ram_cpu_player_decision
 C - - - - - 0x00E93F 03:E92F: 10 03     BPL bra_E934
 C - - - - - 0x00E941 03:E931: 4C 25 EA  JMP loc_EA25_cpu_deciced_to_pass_or_shoot
@@ -6759,7 +6769,7 @@ C - - - - - 0x00EA25 03:EA15: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EA27 03:EA17: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00EA29 03:EA19: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00EA2B 03:EA1B: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00EA2D 03:EA1D: A9 00     LDA #$00
+C - - - - - 0x00EA2D 03:EA1D: A9 00     LDA #con_state_idle
 C - - - - - 0x00EA2F 03:EA1F: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00EA32 03:EA22: 4C 55 DF  JMP loc_DF55_check_next_player
 
@@ -6901,7 +6911,7 @@ C - - - - - 0x00EB15 03:EB05: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EB17 03:EB07: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00EB19 03:EB09: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00EB1B 03:EB0B: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00EB1D 03:EB0D: A9 00     LDA #$00
+C - - - - - 0x00EB1D 03:EB0D: A9 00     LDA #con_state_idle
 C - - - - - 0x00EB1F 03:EB0F: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00EB22 03:EB12: 4C 55 DF  JMP loc_DF55_check_next_player
 bra_EB15:
@@ -6933,7 +6943,7 @@ C - - - - - 0x00EB4D 03:EB3D: D0 03     BNE bra_EB42
 C - - - - - 0x00EB4F 03:EB3F: 4C 4B EC  JMP loc_EC4B
 bra_EB42:
 C - - - - - 0x00EB52 03:EB42: A2 01     LDX #$01
-C - - - - - 0x00EB54 03:EB44: 20 67 E1  JSR sub_E167
+C - - - - - 0x00EB54 03:EB44: 20 67 E1  JSR sub_E167_set_initial_player_speed
 C - - - - - 0x00EB57 03:EB47: AD A4 03  LDA ram_03A4
 C - - - - - 0x00EB5A 03:EB4A: 29 20     AND #$20
 C - - - - - 0x00EB5C 03:EB4C: F0 10     BEQ bra_EB5E
@@ -6954,7 +6964,7 @@ C - - - - - 0x00EB79 03:EB69: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EB7B 03:EB6B: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00EB7D 03:EB6D: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00EB7F 03:EB6F: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00EB81 03:EB71: A9 11     LDA #$11
+C - - - - - 0x00EB81 03:EB71: A9 11     LDA #con_state_follow_enemy
 C - - - - - 0x00EB83 03:EB73: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00EB86 03:EB76: 4C 55 DF  JMP loc_DF55_check_next_player
 bra_EB79:
@@ -6968,7 +6978,7 @@ C - - - - - 0x00EB95 03:EB85: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EB97 03:EB87: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00EB99 03:EB89: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00EB9B 03:EB8B: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00EB9D 03:EB8D: A9 00     LDA #$00
+C - - - - - 0x00EB9D 03:EB8D: A9 00     LDA #con_state_idle
 C - - - - - 0x00EB9F 03:EB8F: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00EBA2 03:EB92: 4C 55 DF  JMP loc_DF55_check_next_player
 bra_EB95:
@@ -6999,7 +7009,7 @@ C - - - - - 0x00EBD9 03:EBC9: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EBDB 03:EBCB: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00EBDD 03:EBCD: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00EBDF 03:EBCF: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00EBE1 03:EBD1: A9 05     LDA #$05
+C - - - - - 0x00EBE1 03:EBD1: A9 05     LDA #con_state_dead
 C - - - - - 0x00EBE3 03:EBD3: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00EBE6 03:EBD6: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EBE8 03:EBD8: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -7013,7 +7023,7 @@ C - - - - - 0x00EBF5 03:EBE5: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EBF7 03:EBE7: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00EBF9 03:EBE9: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00EBFB 03:EBEB: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00EBFD 03:EBED: A9 02     LDA #$02
+C - - - - - 0x00EBFD 03:EBED: A9 02     LDA #con_state_with_ball
 C - - - - - 0x00EBFF 03:EBEF: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00EC02 03:EBF2: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EC04 03:EBF4: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -7083,7 +7093,7 @@ C - - - - - 0x00EC5D 03:EC4D: A9 00     LDA #$00
 C - - - - - 0x00EC5F 03:EC4F: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00EC61 03:EC51: A5 6F     LDA ram_player_local_id
 C - - - - - 0x00EC63 03:EC53: A2 09     LDX #$09
-C - - - - - 0x00EC65 03:EC55: 20 67 E1  JSR sub_E167
+C - - - - - 0x00EC65 03:EC55: 20 67 E1  JSR sub_E167_set_initial_player_speed
 bra_EC58_loop:
 loc_EC58_loop:
 C D 3 - - - 0x00EC68 03:EC58: A9 01     LDA #$01
@@ -7105,7 +7115,7 @@ C - - - - - 0x00EC85 03:EC75: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EC87 03:EC77: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00EC89 03:EC79: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00EC8B 03:EC7B: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00EC8D 03:EC7D: A9 00     LDA #$00
+C - - - - - 0x00EC8D 03:EC7D: A9 00     LDA #con_state_idle
 C - - - - - 0x00EC8F 03:EC7F: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00EC92 03:EC82: A9 80     LDA #$80
 C - - - - - 0x00EC94 03:EC84: 8D 2A 04  STA ram_player_without_ball
@@ -7122,7 +7132,7 @@ C - - - - - 0x00ECA8 03:EC98: A9 03     LDA #$03
 C - - - - - 0x00ECAA 03:EC9A: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00ECAC 03:EC9C: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00ECAF 03:EC9F: 68        PLA
-C - - - - - 0x00ECB0 03:ECA0: 20 3F 80  JSR sub_0x00404F
+C - - - - - 0x00ECB0 03:ECA0: 20 3F 80  JSR sub_0x00404F_calculate_ball_side_relative_to_gk
 C - - - - - 0x00ECB3 03:ECA3: A9 06     LDA #$06
 C - - - - - 0x00ECB5 03:ECA5: 20 A5 E0  JSR sub_E0A5
 C - - - - - 0x00ECB8 03:ECA8: 4C B0 EC  JMP loc_ECB0
@@ -7166,7 +7176,7 @@ C - - - - - 0x00ED04 03:ECF4: C9 18     CMP #$18
 C - - - - - 0x00ED06 03:ECF6: 90 03     BCC bra_ECFB
 C - - - - - 0x00ED08 03:ECF8: 4C 58 EC  JMP loc_EC58_loop
 bra_ECFB:
-C - - - - - 0x00ED0B 03:ECFB: 20 5C E5  JSR sub_E55C
+C - - - - - 0x00ED0B 03:ECFB: 20 5C E5  JSR sub_E55C_set_aim_to_ball
 C - - - - - 0x00ED0E 03:ECFE: 20 13 E6  JSR sub_E613_set_player_movement_direction
 C - - - - - 0x00ED11 03:ED01: A0 13     LDY #con_plr_direction
 C - - - - - 0x00ED13 03:ED03: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -7350,7 +7360,7 @@ C - - - - - 0x00EE62 03:EE52: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EE64 03:EE54: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00EE66 03:EE56: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00EE68 03:EE58: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00EE6A 03:EE5A: A9 00     LDA #$00
+C - - - - - 0x00EE6A 03:EE5A: A9 00     LDA #con_state_idle
 C - - - - - 0x00EE6C 03:EE5C: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 bra_EE5F:
 C - - - - - 0x00EE6F 03:EE5F: A5 6F     LDA ram_player_local_id
@@ -7424,7 +7434,7 @@ C - - - - - 0x00EEF4 03:EEE4: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EEF6 03:EEE6: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00EEF8 03:EEE8: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00EEFA 03:EEEA: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00EEFC 03:EEEC: A9 00     LDA #$00
+C - - - - - 0x00EEFC 03:EEEC: A9 00     LDA #con_state_idle
 C - - - - - 0x00EEFE 03:EEEE: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00EF01 03:EEF1: A5 6F     LDA ram_player_local_id
 C - - - - - 0x00EF03 03:EEF3: 20 B9 C6  JSR sub_C6B9
@@ -7440,7 +7450,7 @@ C D 3 - - - 0x00EF0D 03:EEFD: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EF0F 03:EEFF: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00EF11 03:EF01: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00EF13 03:EF03: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00EF15 03:EF05: A9 16     LDA #$16
+C - - - - - 0x00EF15 03:EF05: A9 16     LDA #con_state_gk_get_ball
 C - - - - - 0x00EF17 03:EF07: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00EF1A 03:EF0A: A0 00     LDY #con_plr_flags
 C - - - - - 0x00EF1C 03:EF0C: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -7453,9 +7463,9 @@ C - - - - - 0x00EF29 03:EF19: 18        CLC
 C - - - - - 0x00EF2A 03:EF1A: 69 70     ADC #$70
 C - - - - - 0x00EF2C 03:EF1C: A0 06     LDY #con_plr_action_timer_1
 C - - - - - 0x00EF2E 03:EF1E: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00EF30 03:EF20: AD 2C 04  LDA ram_042C
-C - - - - - 0x00EF33 03:EF23: 09 40     ORA #$40
-C - - - - - 0x00EF35 03:EF25: 8D 2C 04  STA ram_042C
+C - - - - - 0x00EF30 03:EF20: AD 2C 04  LDA ram_field_flags
+C - - - - - 0x00EF33 03:EF23: 09 40     ORA #con_field_flag_gk_has_ball
+C - - - - - 0x00EF35 03:EF25: 8D 2C 04  STA ram_field_flags
 C - - - - - 0x00EF38 03:EF28: A9 80     LDA #$80
 C - - - - - 0x00EF3A 03:EF2A: 8D 2A 04  STA ram_player_without_ball
 C - - - - - 0x00EF3D 03:EF2D: 4C 55 DF  JMP loc_DF55_check_next_player
@@ -7708,7 +7718,7 @@ C - - - - - 0x00F052 03:F042: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F054 03:F044: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F056 03:F046: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F058 03:F048: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F05A 03:F04A: A9 00     LDA #$00
+C - - - - - 0x00F05A 03:F04A: A9 00     LDA #con_state_idle
 C - - - - - 0x00F05C 03:F04C: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F05F 03:F04F: A5 6F     LDA ram_player_local_id
 C - - - - - 0x00F061 03:F051: 48        PHA
@@ -7718,8 +7728,8 @@ C - - - - - 0x00F066 03:F056: A9 03     LDA #$03
 C - - - - - 0x00F068 03:F058: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00F06A 03:F05A: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00F06D 03:F05D: 68        PLA
-C - - - - - 0x00F06E 03:F05E: 20 45 80  JSR sub_0x004055
-C - - - - - 0x00F071 03:F061: 20 48 80  JSR sub_0x004058
+C - - - - - 0x00F06E 03:F05E: 20 45 80  JSR sub_0x004055_calculate_tactics_data_pointer_based_on_area
+C - - - - - 0x00F071 03:F061: 20 48 80  JSR sub_0x004058_update_behavior_template_pointer
 C - - - - - 0x00F074 03:F064: 4C 55 DF  JMP loc_DF55_check_next_player
 
 
@@ -7745,7 +7755,7 @@ C - - - - - 0x00F09E 03:F08E: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F0A0 03:F090: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F0A2 03:F092: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F0A4 03:F094: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F0A6 03:F096: A9 02     LDA #$02
+C - - - - - 0x00F0A6 03:F096: A9 02     LDA #con_state_with_ball
 C - - - - - 0x00F0A8 03:F098: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F0AB 03:F09B: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F0AD 03:F09D: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -7771,7 +7781,7 @@ C - - - - - 0x00F0CA 03:F0BA: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F0CC 03:F0BC: A0 06     LDY #con_plr_action_timer_1
 C - - - - - 0x00F0CE 03:F0BE: D1 61     CMP (ram_0061_t01_player_data),Y
 C - - - - - 0x00F0D0 03:F0C0: D0 08     BNE bra_F0CA
-C - - - - - 0x00F0D2 03:F0C2: A9 00     LDA #$00
+C - - - - - 0x00F0D2 03:F0C2: A9 00     LDA #con_state_idle
 C - - - - - 0x00F0D4 03:F0C4: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F0D7 03:F0C7: 4C 55 DF  JMP loc_DF55_check_next_player
 bra_F0CA:
@@ -7841,7 +7851,7 @@ C - - - - - 0x00F151 03:F141: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F153 03:F143: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F155 03:F145: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F157 03:F147: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F159 03:F149: A9 00     LDA #$00
+C - - - - - 0x00F159 03:F149: A9 00     LDA #con_state_idle
 C - - - - - 0x00F15B 03:F14B: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F15E 03:F14E: 4C 55 DF  JMP loc_DF55_check_next_player
 bra_F151:
@@ -7878,7 +7888,7 @@ C - - - - - 0x00F1A0 03:F190: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F1A2 03:F192: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F1A4 03:F194: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F1A6 03:F196: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F1A8 03:F198: A9 05     LDA #$05
+C - - - - - 0x00F1A8 03:F198: A9 05     LDA #con_state_dead
 C - - - - - 0x00F1AA 03:F19A: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F1AD 03:F19D: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F1AF 03:F19F: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -7894,7 +7904,7 @@ C - - - - - 0x00F1C1 03:F1B1: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F1C3 03:F1B3: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F1C5 03:F1B5: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F1C7 03:F1B7: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F1C9 03:F1B9: A9 02     LDA #$02
+C - - - - - 0x00F1C9 03:F1B9: A9 02     LDA #con_state_with_ball
 C - - - - - 0x00F1CB 03:F1BB: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F1CE 03:F1BE: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F1D0 03:F1C0: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -7907,7 +7917,7 @@ C - - - - - 0x00F1DB 03:F1CB: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F1DD 03:F1CD: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F1DF 03:F1CF: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F1E1 03:F1D1: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F1E3 03:F1D3: A9 05     LDA #$05
+C - - - - - 0x00F1E3 03:F1D3: A9 05     LDA #con_state_dead
 C - - - - - 0x00F1E5 03:F1D5: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F1E8 03:F1D8: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F1EA 03:F1DA: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -7990,7 +8000,7 @@ C - - - - - 0x00F274 03:F264: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F276 03:F266: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F278 03:F268: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F27A 03:F26A: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F27C 03:F26C: A9 02     LDA #$02
+C - - - - - 0x00F27C 03:F26C: A9 02     LDA #con_state_with_ball
 C - - - - - 0x00F27E 03:F26E: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F281 03:F271: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F283 03:F273: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -8003,12 +8013,12 @@ C - - - - - 0x00F291 03:F281: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F293 03:F283: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F295 03:F285: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F297 03:F287: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F299 03:F289: A9 04     LDA #$04
+C - - - - - 0x00F299 03:F289: A9 04     LDA #con_state_without_ball
 C - - - - - 0x00F29B 03:F28B: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F29E 03:F28E: AD 29 04  LDA ram_player_with_ball
 C - - - - - 0x00F2A1 03:F291: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
-C - - - - - 0x00F2A4 03:F294: A9 80     LDA #$80
-C - - - - - 0x00F2A6 03:F296: 8D 2C 04  STA ram_042C
+C - - - - - 0x00F2A4 03:F294: A9 80     LDA #con_field_flag_update_tactics
+C - - - - - 0x00F2A6 03:F296: 8D 2C 04  STA ram_field_flags
 C - - - - - 0x00F2A9 03:F299: AD A4 03  LDA ram_03A4
 C - - - - - 0x00F2AC 03:F29C: 29 DF     AND #$DF
 C - - - - - 0x00F2AE 03:F29E: 8D A4 03  STA ram_03A4
@@ -8030,7 +8040,7 @@ C - - - - - 0x00F2C6 03:F2B6: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F2C8 03:F2B8: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F2CA 03:F2BA: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F2CC 03:F2BC: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F2CE 03:F2BE: A9 00     LDA #$00
+C - - - - - 0x00F2CE 03:F2BE: A9 00     LDA #con_state_idle
 C - - - - - 0x00F2D0 03:F2C0: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F2D3 03:F2C3: 4C 55 DF  JMP loc_DF55_check_next_player
 bra_F2C6:
@@ -8072,7 +8082,7 @@ C - - - - - 0x00F319 03:F309: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F31B 03:F30B: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F31D 03:F30D: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F31F 03:F30F: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F321 03:F311: A9 00     LDA #$00
+C - - - - - 0x00F321 03:F311: A9 00     LDA #con_state_idle
 C - - - - - 0x00F323 03:F313: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F326 03:F316: 4C 55 DF  JMP loc_DF55_check_next_player
 
@@ -8115,7 +8125,7 @@ C - - - - - 0x00F37A 03:F36A: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F37C 03:F36C: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F37E 03:F36E: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F380 03:F370: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F382 03:F372: A9 00     LDA #$00
+C - - - - - 0x00F382 03:F372: A9 00     LDA #con_state_idle
 C - - - - - 0x00F384 03:F374: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F387 03:F377: 4C 55 DF  JMP loc_DF55_check_next_player
 
@@ -8165,7 +8175,7 @@ C - - - - - 0x00F3D9 03:F3C9: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F3DB 03:F3CB: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F3DD 03:F3CD: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F3DF 03:F3CF: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F3E1 03:F3D1: A9 00     LDA #$00
+C - - - - - 0x00F3E1 03:F3D1: A9 00     LDA #con_state_idle
 C - - - - - 0x00F3E3 03:F3D3: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F3E6 03:F3D6: 4C 55 DF  JMP loc_DF55_check_next_player
 
@@ -8201,7 +8211,7 @@ C - - - - - 0x00F428 03:F418: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F42A 03:F41A: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F42C 03:F41C: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F42E 03:F41E: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F430 03:F420: A9 00     LDA #$00
+C - - - - - 0x00F430 03:F420: A9 00     LDA #con_state_idle
 C - - - - - 0x00F432 03:F422: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F435 03:F425: 4C 55 DF  JMP loc_DF55_check_next_player
 
@@ -8356,11 +8366,11 @@ C - - - - - 0x00F55B 03:F54B: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F55D 03:F54D: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F55F 03:F54F: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F561 03:F551: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F563 03:F553: A9 00     LDA #$00
+C - - - - - 0x00F563 03:F553: A9 00     LDA #con_state_idle
 C - - - - - 0x00F565 03:F555: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
-C - - - - - 0x00F568 03:F558: A9 80     LDA #$80
-C - - - - - 0x00F56A 03:F55A: 0D 2C 04  ORA ram_042C
-C - - - - - 0x00F56D 03:F55D: 8D 2C 04  STA ram_042C
+C - - - - - 0x00F568 03:F558: A9 80     LDA #con_field_flag_update_tactics
+C - - - - - 0x00F56A 03:F55A: 0D 2C 04  ORA ram_field_flags
+C - - - - - 0x00F56D 03:F55D: 8D 2C 04  STA ram_field_flags
 C - - - - - 0x00F570 03:F560: 4C 55 DF  JMP loc_DF55_check_next_player
 
 
@@ -8389,9 +8399,9 @@ C - - - - - 0x00F59C 03:F58C: 20 80 E5  JSR sub_E580_calculate_player_speed
 bra_F58F_loop:
 C - - - - - 0x00F59F 03:F58F: A9 01     LDA #$01
 C - - - - - 0x00F5A1 03:F591: 20 52 C6  JSR sub_C652_set_delay_and_save_return_address
-C - - - - - 0x00F5A4 03:F594: A0 12     LDY #con_plr_ai
+C - - - - - 0x00F5A4 03:F594: A0 12     LDY #con_plr_state
 C - - - - - 0x00F5A6 03:F596: B1 61     LDA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F5A8 03:F598: C9 0D     CMP #$0D
+C - - - - - 0x00F5A8 03:F598: C9 0D     CMP #con_state_goal_kick
 C - - - - - 0x00F5AA 03:F59A: D0 0B     BNE bra_F5A7
 C - - - - - 0x00F5AC 03:F59C: 20 BA DF  JSR sub_DFBA_calculate_shoot_direction
 C - - - - - 0x00F5AF 03:F59F: A9 00     LDA #$00
@@ -8474,9 +8484,9 @@ C - - - - - 0x00F651 03:F641: A0 F9     LDY #< (ofs_D6FA - $01)
 C - - - - - 0x00F653 03:F643: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00F656 03:F646: A9 80     LDA #$80
 C - - - - - 0x00F658 03:F648: 8D 29 04  STA ram_player_with_ball
-C - - - - - 0x00F65B 03:F64B: AD 2C 04  LDA ram_042C
-C - - - - - 0x00F65E 03:F64E: 29 BF     AND #$BF
-C - - - - - 0x00F660 03:F650: 8D 2C 04  STA ram_042C
+C - - - - - 0x00F65B 03:F64B: AD 2C 04  LDA ram_field_flags
+C - - - - - 0x00F65E 03:F64E: 29 BF     AND #con_field_flag_gk_has_ball ^ $FF
+C - - - - - 0x00F660 03:F650: 8D 2C 04  STA ram_field_flags
 C - - - - - 0x00F663 03:F653: A9 02     LDA #$02
 C - - - - - 0x00F665 03:F655: 20 52 C6  JSR sub_C652_set_delay_and_save_return_address
 C - - - - - 0x00F668 03:F658: 20 5E DF  JSR sub_DF5E_select_2_players_to_follow_ball
@@ -8494,7 +8504,7 @@ C - - - - - 0x00F685 03:F675: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F687 03:F677: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F689 03:F679: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F68B 03:F67B: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F68D 03:F67D: A9 00     LDA #$00
+C - - - - - 0x00F68D 03:F67D: A9 00     LDA #con_state_idle
 C - - - - - 0x00F68F 03:F67F: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F692 03:F682: 4C 55 DF  JMP loc_DF55_check_next_player
 
@@ -8631,7 +8641,7 @@ C - - - - - 0x00F79C 03:F78C: A0 00     LDY #con_plr_flags
 C - - - - - 0x00F79E 03:F78E: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F7A0 03:F790: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00F7A2 03:F792: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00F7A4 03:F794: A9 00     LDA #$00
+C - - - - - 0x00F7A4 03:F794: A9 00     LDA #con_state_idle
 C - - - - - 0x00F7A6 03:F796: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F7A9 03:F799: 4C 55 DF  JMP loc_DF55_check_next_player
 
@@ -8687,7 +8697,7 @@ C - - - - - 0x00F7F7 03:F7E7: A9 03     LDA #$03
 C - - - - - 0x00F7F9 03:F7E9: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00F7FB 03:F7EB: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00F7FE 03:F7EE: 68        PLA
-C - - - - - 0x00F7FF 03:F7EF: 20 42 80  JSR sub_0x004052
+C - - - - - 0x00F7FF 03:F7EF: 20 42 80  JSR sub_0x004052_select_random_button_for_cpu_during_pk
 C - - - - - 0x00F802 03:F7F2: 4C FF F7  JMP loc_F7FF
 bra_F7F5:
 C - - - - - 0x00F805 03:F7F5: A9 C0     LDA #con_btns_AB
@@ -8718,7 +8728,7 @@ C - - - - - 0x00F83B 03:F82B: 20 10 C9  JSR sub_C910_prepare_sound
 C - - - - - 0x00F83E 03:F82E: 20 6D C6  JSR sub_C66D_increase_animation_counter
 C - - - - - 0x00F841 03:F831: A9 15     LDA #con_anim_15
 C - - - - - 0x00F843 03:F833: 20 1E 80  JSR sub_0x00402E_set_animation
-C - - - - - 0x00F846 03:F836: A9 19     LDA #$19
+C - - - - - 0x00F846 03:F836: A9 19     LDA #con_state_pk_bench
 C - - - - - 0x00F848 03:F838: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F84B 03:F83B: 4C 55 DF  JMP loc_DF55_check_next_player
 
@@ -8751,7 +8761,7 @@ C - - - - - 0x00F87A 03:F86A: A9 03     LDA #$03
 C - - - - - 0x00F87C 03:F86C: 85 68     STA ram_prg_bank_1
 C - - - - - 0x00F87E 03:F86E: 20 58 CB  JSR sub_CB58_prg_bankswitch
 C - - - - - 0x00F881 03:F871: 68        PLA
-C - - - - - 0x00F882 03:F872: 20 42 80  JSR sub_0x004052
+C - - - - - 0x00F882 03:F872: 20 42 80  JSR sub_0x004052_select_random_button_for_cpu_during_pk
 C - - - - - 0x00F885 03:F875: 4C 88 F8  JMP loc_F888
 bra_F878:
 C - - - - - 0x00F888 03:F878: A9 0B     LDA #con_btn_Up + con_btns_LR
@@ -8836,7 +8846,7 @@ bra_F915:
 C - - - - - 0x00F925 03:F915: 20 6D C6  JSR sub_C66D_increase_animation_counter
 C - - - - - 0x00F928 03:F918: A9 16     LDA #con_anim_16
 C - - - - - 0x00F92A 03:F91A: 20 1E 80  JSR sub_0x00402E_set_animation
-C - - - - - 0x00F92D 03:F91D: A9 19     LDA #$19
+C - - - - - 0x00F92D 03:F91D: A9 19     LDA #con_state_pk_bench
 C - - - - - 0x00F92F 03:F91F: 20 2F C6  JSR sub_C62F_prepare_player_state_handler
 C - - - - - 0x00F932 03:F922: 4C 55 DF  JMP loc_DF55_check_next_player
 

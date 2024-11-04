@@ -12,13 +12,13 @@
 .export sub_0x008022_set_logo_base_palette
 .export ofs_0x008025_draw_team_picture
 .export sub_0x008028_logo_screen_menu_handler
-.export sub_0x00802E
-.export sub_0x008031
-.export sub_0x008034
-.export sub_0x008037
+.export sub_0x00802E_set_players_positions_on_field
+.export sub_0x008031_set_players_positions_on_field_for_throw_in
+.export sub_0x008034_draw_penalty_screen
+.export sub_0x008037_diasplay_shooter_in_pk_and_set_players_positions
 .export sub_0x00803A_display_penalty_score
-.export ofs_0x00803D
-.export sub_0x008040
+.export ofs_0x00803D_spectators_palette_after_pk_goal
+.export sub_0x008040_display_info_during_pause
 .export sub_0x00B010
 
 
@@ -75,27 +75,27 @@ C - - - - - 0x008028 02:8018: 4C 20 8B  JMP loc_8B20_logo_screen_menu_handler
 
 
 
-sub_0x00802E:
+sub_0x00802E_set_players_positions_on_field:
 ; bzk optimize
-C - - - - - 0x00802E 02:801E: 4C 42 98  JMP loc_9842
+C - - - - - 0x00802E 02:801E: 4C 42 98  JMP loc_9842_set_players_positions_on_field
 
 
 
-sub_0x008031:
+sub_0x008031_set_players_positions_on_field_for_throw_in:
 ; bzk optimize
-C - - - - - 0x008031 02:8021: 4C 4F 97  JMP loc_974F
+C - - - - - 0x008031 02:8021: 4C 4F 97  JMP loc_974F_set_players_positions_on_field_for_throw_in
 
 
 
-sub_0x008034:
+sub_0x008034_draw_penalty_screen:
 ; bzk optimize
-C - - - - - 0x008034 02:8024: 4C 2A A0  JMP loc_A02A
+C - - - - - 0x008034 02:8024: 4C 2A A0  JMP loc_A02A_draw_penalty_screen
 
 
 
-sub_0x008037:
+sub_0x008037_diasplay_shooter_in_pk_and_set_players_positions:
 ; bzk optimize
-C - - - - - 0x008037 02:8027: 4C F0 A0  JMP loc_A0F0
+C - - - - - 0x008037 02:8027: 4C F0 A0  JMP loc_A0F0_diasplay_shooter_in_pk_and_set_players_positions
 
 
 
@@ -105,19 +105,19 @@ C - - - - - 0x00803A 02:802A: 4C ED A1  JMP loc_A1ED_display_penalty_score
 
 
 
-ofs_0x00803D:
+ofs_0x00803D_spectators_palette_after_pk_goal:
 ; bzk optimize
-C - - - - - 0x00803D 02:802D: 4C 30 A3  JMP loc_A330
+C - - - - - 0x00803D 02:802D: 4C 30 A3  JMP loc_A330_spectators_palette_after_pk_goal
 
 
 
-sub_0x008040:
+sub_0x008040_display_info_during_pause:
 ; bzk optimize
-C - - - - - 0x008040 02:8030: 4C 33 80  JMP loc_8033
+C - - - - - 0x008040 02:8030: 4C 33 80  JMP loc_8033_display_info_during_pause
 
 
 
-loc_8033:
+loc_8033_display_info_during_pause:
 C D 0 - - - 0x008043 02:8033: A9 09     LDA #$09
 C - - - - - 0x008045 02:8035: 85 6D     STA ram_chr_bank + $04
 C - - - - - 0x008047 02:8037: A2 80     LDX #$80
@@ -4296,7 +4296,7 @@ tbl_95BF:
 
 
 
-loc_974F:
+loc_974F_set_players_positions_on_field_for_throw_in:
 C D 0 - - - 0x00975F 02:974F: A2 00     LDX #$00
 C - - - - - 0x009761 02:9751: 86 2C     STX ram_002C_temp
 C - - - - - 0x009763 02:9753: 48        PHA
@@ -4332,7 +4332,7 @@ C - - - - - 0x009791 02:9781: A0 00     LDY #con_plr_flags
 C - - - - - 0x009793 02:9783: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x009795 02:9785: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x009797 02:9787: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x009799 02:9789: A9 00     LDA #$00
+C - - - - - 0x009799 02:9789: A9 00     LDA #con_state_idle
 C - - - - - 0x00979B 02:978B: 20 5A C0  JSR sub_0x00C06A_prepare_player_state_handler
 C - - - - - 0x00979E 02:978E: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x0097A1 02:9791: A6 2C     LDX ram_002C_temp
@@ -4458,7 +4458,7 @@ C - - - - - 0x009851 02:9841: 60        RTS
 
 
 
-loc_9842:
+loc_9842_set_players_positions_on_field:
 C D 0 - - - 0x009852 02:9842: 0A        ASL
 C - - - - - 0x009853 02:9843: AA        TAX
 C - - - - - 0x009854 02:9844: BD 22 99  LDA tbl_9922,X
@@ -4478,7 +4478,7 @@ C - - - - - 0x00986F 02:985F: A0 00     LDY #con_plr_flags
 C - - - - - 0x009871 02:9861: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x009873 02:9863: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x009875 02:9865: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x009877 02:9867: A9 00     LDA #$00
+C - - - - - 0x009877 02:9867: A9 00     LDA #con_state_idle
 C - - - - - 0x009879 02:9869: 20 5A C0  JSR sub_0x00C06A_prepare_player_state_handler
 C - - - - - 0x00987C 02:986C: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00987F 02:986F: A6 2C     LDX ram_002C_temp
@@ -6030,7 +6030,7 @@ _off007_9FD2_13:
 
 
 
-loc_A02A:
+loc_A02A_draw_penalty_screen:
 C D 1 - - - 0x00A03A 02:A02A: A2 00     LDX #$00
 C - - - - - 0x00A03C 02:A02C: A9 02     LDA #$02
 C - - - - - 0x00A03E 02:A02E: 20 18 C0  JSR sub_0x00C028_write_palette_to_buffer
@@ -6134,7 +6134,7 @@ C - - - - - 0x00A0FF 02:A0EF: 60        RTS
 
 
 
-loc_A0F0:
+loc_A0F0_diasplay_shooter_in_pk_and_set_players_positions:
 C D 1 - - - 0x00A100 02:A0F0: 20 9F A1  JSR sub_A19F
 C - - - - - 0x00A103 02:A0F3: 20 51 C0  JSR sub_0x00C061_hide_all_sprites
 C - - - - - 0x00A106 02:A0F6: A5 28     LDA ram_for_2000
@@ -6156,7 +6156,7 @@ C - - - - - 0x00A122 02:A112: A0 00     LDY #con_plr_flags
 C - - - - - 0x00A124 02:A114: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00A126 02:A116: 29 FB     AND #con_plr_flag_busy ^ $FF
 C - - - - - 0x00A128 02:A118: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00A12A 02:A11A: A9 19     LDA #$19
+C - - - - - 0x00A12A 02:A11A: A9 19     LDA #con_state_pk_bench
 C - - - - - 0x00A12C 02:A11C: 20 5A C0  JSR sub_0x00C06A_prepare_player_state_handler
 C - - - - - 0x00A12F 02:A11F: A0 11     LDY #con_plr_anim_id
 C - - - - - 0x00A131 02:A121: A9 00     LDA #$00
@@ -6171,14 +6171,14 @@ C - - - - - 0x00A140 02:A130: 18        CLC
 C - - - - - 0x00A141 02:A131: 69 09     ADC #$09
 C - - - - - 0x00A143 02:A133: 8D 29 04  STA ram_player_with_ball
 C - - - - - 0x00A146 02:A136: 20 57 C0  JSR sub_0x00C067_set_player_base_address_pointer
-C - - - - - 0x00A149 02:A139: A9 17     LDA #$17
+C - - - - - 0x00A149 02:A139: A9 17     LDA #con_state_pk_player
 C - - - - - 0x00A14B 02:A13B: 20 5A C0  JSR sub_0x00C06A_prepare_player_state_handler
 C - - - - - 0x00A14E 02:A13E: A2 00     LDX #$00
 C - - - - - 0x00A150 02:A140: 20 74 A1  JSR sub_A174
 C - - - - - 0x00A153 02:A143: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00A156 02:A146: 49 0B     EOR #$0B
 C - - - - - 0x00A158 02:A148: 20 57 C0  JSR sub_0x00C067_set_player_base_address_pointer
-C - - - - - 0x00A15B 02:A14B: A9 18     LDA #$18
+C - - - - - 0x00A15B 02:A14B: A9 18     LDA #con_state_pk_gk
 C - - - - - 0x00A15D 02:A14D: 20 5A C0  JSR sub_0x00C06A_prepare_player_state_handler
 C - - - - - 0x00A160 02:A150: A2 04     LDX #$04
 C - - - - - 0x00A162 02:A152: 20 74 A1  JSR sub_A174
@@ -6486,7 +6486,7 @@ C - - - - - 0x00A33F 02:A32F: 60        RTS
 
 
 
-loc_A330:
+loc_A330_spectators_palette_after_pk_goal:
 C D 1 - - - 0x00A340 02:A330: A9 00     LDA #$00
 bra_A332_loop:
 C - - - - - 0x00A342 02:A332: 48        PHA
