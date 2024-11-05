@@ -11,8 +11,7 @@ con_chr_bank                            = $00 ;
 
 
 ; ram_buttons
-; ram_000E
-; ram_000F
+; ram_SS_btns_press
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -215,7 +214,7 @@ con_mcb_exit                            = $FF ;
 
 
 ; todo
-; for 0x004311
+; index for 0x004311
 ; need comments 0x000C3B 0x00094E 0x002F20
 con_C301_00                             = $00 ; 
 con_C301_01                             = $01 ; 

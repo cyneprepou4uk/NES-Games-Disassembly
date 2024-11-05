@@ -2,15 +2,102 @@
 
 
 
-; ($indirect),Y
-ram_0000                                = $0000 ; 00002A 000217 00031A 000320 0003B4 0003CC 0003FE 00040C 0004B2 0004C8 00076E 000777 00088D 000897 0008F1 0008F9 000A07 000A2A 000AC1 000AC9 000ACB 000AD1 000BF6 000BFB 000BFF 000C77 000C91 000C93 000C9E 000CB8 000CCD 000CDD 000CE3 000CEB 000CF1 000D0A 000D13 000D1E 000D39 000D4F 000D75 000D86 000DA2 000DED 000DF4 000DF7 000DFA 000E59 000E6E 000EB2 000EBB 001251 0012CA 001618 00162A 001634 001637 0016C5 0016F0 0018A9 0018AF 0018BC 0019FC 001A01 001D86 001D8F 002619 00266E 002672 0026CB 0026D3 002989 002999 002A34 002A38 002C11 002C20 002C25 002FF3 002FFD 003085 00312A 00313A 003145 00314A 00319A 0031CC 0033B8 0033C6 0033DE 0033F0 0033F9 003401 00343E 00344C 003486 00348E 0034ED 0034F4 00350A 003511 00355E 003565 003575 00357C 003608 0036C1 003799 0037A1 0037A5 0037AF 0037B3 0037B9 003AB8 003AC2 003B33 003B36 003B3D 003B6C 003B84 003B89 003BDC 003BDF 003C0E 003C11 003D85 003D88 003F92 003FA8 004009 004018 004023 00403A 004048 00415A 00417F 0041B4 0041C2 0041C6 0041D1 0041D8 0041EE 0041F0 0041F6 0041FE 00421A 004230 004232 004238 00423C 00423E 004244 004249 004276 00428D 004290 004294 0042B0 004357 
-ram_0001                                = $0001 ; 00002A 00021D 000315 000318 000329 0003B9 0003D4 000403 000411 0004B7 0004D0 000775 00077D 000889 00089D 000A02 000A33 000AA3 000C05 000C7F 000C97 000C99 000CF7 000D15 000D23 000D41 000D51 000D7A 000D88 000DA4 000DAF 000DB7 000DBD 000DFC 000E61 000EC0 00126C 001274 0012CD 00161F 00162F 0016CC 001D96 00261D 0028D4 0028DA 00298F 0029A1 002C16 002C2A 002C2F 002C34 0031BB 0031C7 00360F 0036C7 003B42 003B71 003DF9 003E0D 00402C 004038 004044 0041BB 0041F2 00427D 0042B8 00435C 
+; 
+ram_0000_temp                           = $0000 ; 00002A 000217 00031A 000320 0003B4 0003CC 0003FE 00040C 0004B2 0004C8 00076E 000777 00088D 000897 0008F1 0008F9 000A07 000A2A 000AC1 000AC9 000ACB 000AD1 000BF6 000BFB 000BFF 000C77 000C91 000C93 000C9E 000CB8 000CCD 000CDD 000CE3 000CEB 000CF1 000D0A 000D13 000D1E 000D39 000D4F 000D75 000D86 000DA2 000DED 000DF4 000DF7 000DFA 000E59 000E6E 000EB2 000EBB 001251 0012CA 001618 00162A 001634 001637 0016C5 0016F0 0018A9 0018AF 0018BC 0019FC 001A01 001D86 001D8F 002619 00266E 002672 0026CB 0026D3 002989 002999 002A34 002A38 002C11 002C20 002C25 002FF3 002FFD 003085 00312A 00313A 003145 00314A 00319A 0031CC 0033B8 0033C6 0033DE 0033F0 0033F9 003401 00343E 00344C 003486 00348E 0034ED 0034F4 00350A 003511 00355E 003565 003575 00357C 003608 0036C1 003799 0037A1 0037A5 0037AF 0037B3 0037B9 003AB8 003AC2 003B33 003B36 003B3D 003B6C 003B84 003B89 003BDC 003BDF 003C0E 003C11 003D85 003D88 003F92 003FA8 004009 004018 004023 00403A 004048 00415A 00417F 0041B4 0041C2 0041C6 0041D1 0041D8 0041EE 0041F0 0041F6 0041FE 00421A 004230 004232 004238 00423C 00423E 004244 004249 004276 00428D 004290 004294 0042B0 004357 
+    ram_0000_t01                            = ram_0000_temp ; 
+    ram_0000_t02                            = ram_0000_temp ; 
+    ram_0000_t03                            = ram_0000_temp ; 
+    ram_0000_t04                            = ram_0000_temp ; 
+    ram_0000_t05                            = ram_0000_temp ; 
+    ram_0000_t06_lo                         = ram_0000_temp ; in pair with ram_0001_t02_hi
+    ram_0000_t07                            = ram_0000_temp ; 
+    ram_0000_t08_lo                         = ram_0000_temp ; in pair with ram_0001_t04_hi
+    ram_0000_t09_data                       = ram_0000_temp ; 2 addresses 0000-0001
+    ram_0000_t10                            = ram_0000_temp ; 
+    ram_0000_t11_pos_X_lo                   = ram_0000_temp ; in pair with ram_0001_t07_pos_X_hi
+    ram_0000_t12                            = ram_0000_temp ; 
+    ram_0000_t13_pos_X_lo                   = ram_0000_temp ; in pair with ram_0001_t09_pos_X_hi
+    ram_0000_t14_loop_counter               = ram_0000_temp ; 
+    ram_0000_t15_loop_counter               = ram_0000_temp ; 
+    ram_0000_t16_loop_counter               = ram_0000_temp ; 
+    ram_0000_t17_sprite_data                = ram_0000_temp ; 2 addresses 0000-0001
+    ram_0000_t18                            = ram_0000_temp ; 
+    ram_0000_t19                            = ram_0000_temp ; 
+    ram_0000_t20_pos_X_lo                   = ram_0000_temp ; in pair with ram_0001_t13_pos_X_hi
+    ram_0000_t21                            = ram_0000_temp ; 
+    ram_0000_t22                            = ram_0000_temp ; 
+    ram_0000_t23                            = ram_0000_temp ; 
+    ram_0000_t24_pos_X_lo                   = ram_0000_temp ; in pair with ram_0001_t14_pos_X_hi
+    ram_0000_t25_pos_Y_lo                   = ram_0000_temp ; 
+    ram_0000_t26                            = ram_0000_temp ; 
+    ram_0000_t27                            = ram_0000_temp ; 
+    ram_0000_t28                            = ram_0000_temp ; 
+    ram_0000_t29                            = ram_0000_temp ; 
+    ram_0000_t30_loop_counter               = ram_0000_temp ; 
+    ram_0000_t31                            = ram_0000_temp ; 
+    ram_0000_t32                            = ram_0000_temp ; 
+    ram_0000_t33                            = ram_0000_temp ; 
+    ram_0000_t34                            = ram_0000_temp ; 
+    ram_0000_t35                            = ram_0000_temp ; 
+    ram_0000_t36                            = ram_0000_temp ; 
+    ram_0000_t37                            = ram_0000_temp ; 
+    ram_0000_t38_loop_counter               = ram_0000_temp ; 
+    ram_0000_t39_loop_counter               = ram_0000_temp ; 
+    ram_0000_t40_data                       = ram_0000_temp ; 2 addresses 0000-0001
+    ram_0000_t41_data                       = ram_0000_temp ; 2 addresses 0000-0001
+    ram_0000_t42_Select_or_Start_button     = ram_0000_temp ; 
+    ram_0000_t43_colors_counter             = ram_0000_temp ; 
+    ram_0000_t44                            = ram_0000_temp ; 
+    ram_0000_t45_stage_data                 = ram_0000_temp ; 2 addresses 0000-0001
+    ram_0000_t46_data                       = ram_0000_temp ; 2 addresses 0000-0001
+    ram_0000_t47                            = ram_0000_temp ; 
+    ram_0000_t48                            = ram_0000_temp ; 
+    ram_0000_t49                            = ram_0000_temp ; 
+    ram_0000_t50                            = ram_0000_temp ; 
+
+
+; 
+ram_0001_temp                           = $0001 ; 00002A 00021D 000315 000318 000329 0003B9 0003D4 000403 000411 0004B7 0004D0 000775 00077D 000889 00089D 000A02 000A33 000AA3 000C05 000C7F 000C97 000C99 000CF7 000D15 000D23 000D41 000D51 000D7A 000D88 000DA4 000DAF 000DB7 000DBD 000DFC 000E61 000EC0 00126C 001274 0012CD 00161F 00162F 0016CC 001D96 00261D 0028D4 0028DA 00298F 0029A1 002C16 002C2A 002C2F 002C34 0031BB 0031C7 00360F 0036C7 003B42 003B71 003DF9 003E0D 00402C 004038 004044 0041BB 0041F2 00427D 0042B8 00435C 
+    ram_0001_t01                            = ram_0001_temp ; 
+    ram_0001_t02                            = ram_0001_temp ; 
+    ram_0001_t02_hi                         = ram_0001_temp ; in pair with ram_0000_t06_lo
+    ram_0001_t03                            = ram_0001_temp ; 
+    ram_0001_t04_hi                         = ram_0001_temp ; in pair with ram_0000_t08_lo
+    ram_0001_t05                            = ram_0001_temp ; 
+    ram_0001_t06                            = ram_0001_temp ; 
+    ram_0001_t07_pos_X_hi                   = ram_0001_temp ; in pair with ram_0000_t11_pos_X_lo
+    ram_0001_t08                            = ram_0001_temp ; 
+    ram_0001_t09_pos_X_hi                   = ram_0001_temp ; in pair with ram_0000_t13_pos_X_lo
+    ram_0001_t10_tiles_counter              = ram_0001_temp ; 
+    ram_0001_t11                            = ram_0001_temp ; 
+    ram_0001_t12                            = ram_0001_temp ; 
+    ram_0001_t13_pos_X_hi                   = ram_0001_temp ; in pair with ram_0000_t20_pos_X_lo
+    ram_0001_t14_pos_X_hi                   = ram_0001_temp ; in pair with ram_0000_t24_pos_X_lo
+    ram_0001_t15                            = ram_0001_temp ; 
 
 
 
-; ($indirect),Y
-ram_0002                                = $0002 ; 00002A 0003C1 0003DB 0004BF 0004D8 0009FD 000A0B 000A7D 000C86 000C8E 001DA5 00319F 003530 003DFE 003E0B 004346 0043DD 004426 004442 0044B1 
-ram_0003                                = $0003 ; 00002A 000A0D 000A28 000C8C 000C95 001DAA 0031A4 0031C5 00351C 003523 003526 003529 00352C 003532 003536 003E03 003E09 00434B 004375 0043FC 004400 004413 004417 00442B 004449 0044A7 0044C6 
+; 
+ram_0002_temp                           = $0002 ; 00002A 0003C1 0003DB 0004BF 0004D8 0009FD 000A0B 000A7D 000C86 000C8E 001DA5 00319F 003530 003DFE 003E0B 004346 0043DD 004426 004442 0044B1 
+    ram_0002_t01                            = ram_0002_temp ; 
+    ram_0002_t02                            = ram_0002_temp ; 
+    ram_0002_t03_lo                         = ram_0002_temp ; in pair with ram_0003_t02_hi
+    ram_0002_t04_data                       = ram_0002_temp ; 2 addresses 0002-0003
+    ram_0002_t05_screen_data                = ram_0002_temp ; 2 addresses 0002-0003
+    ram_0002_t06_data                       = ram_0002_temp ; 2 addresses 0002-0003
+    ram_0002_t07                            = ram_0002_temp ; 
+    ram_0002_t08_sprite_data_pointer        = ram_0002_temp ; 2 addresses 0002-0003
+    ram_0002_t09_spr_T                      = ram_0002_temp ; 
+    ram_0002_t10                            = ram_0002_temp ; 
+
+
+
+; 
+ram_0003_temp                           = $0003 ; 00002A 000A0D 000A28 000C8C 000C95 001DAA 0031A4 0031C5 00351C 003523 003526 003529 00352C 003532 003536 003E03 003E09 00434B 004375 0043FC 004400 004413 004417 00442B 004449 0044A7 0044C6 
+    ram_0003_t01_score_index                = ram_0003_temp ; 
+    ram_0003_t02_hi                         = ram_0003_temp ; in pair with ram_0002_t03_lo
+    ram_0003_t03                            = ram_0003_temp ; 
+    ram_0003_t04_spr_A                      = ram_0003_temp ; 
 
 
 
@@ -54,21 +141,34 @@ ram_extra_life_flag                     = $000D ; 00002A 0009F2 003779 00378F 00
 
 
 
-; buttons
-; see con_btn
-ram_000E                                = $000E ; 00002A 000073 00379F 0037A9 0037AB 0037B5 0037B7 
+; Select + Start buttons
+ram_Select_and_Start_btns               = $000E ; 00002A 000073 00379F 0037A9 0037AB 0037B5 0037B7 
 
 
 
-; buttons
-; see con_btn
-ram_000F                                = $000F ; 00002A 000075 00010F 0001F3 000206 002E4F 002E82 003021 0037AD 0037BD 0037BF 
+; presses Select or Start buttons
+ram_SS_btns_press                       = $000F ; 00002A 000075 00010F 0001F3 000206 002E4F 002E82 003021 0037AD 0037BD 0037BF 
 
 
 
 ; 
-ram_0010                                = $0010 ; 00002A 0001B4 0001C2 0001CD 0001D2 002E55 002EA1 002EE2 002EFB 002F86 002F8B 002F90 002F92 0030BD 0030C9 003AAD 0040E9 
-ram_0011                                = $0011 ; 00002A 002E59 002EA5 0030C1 0030CD 003AB1 0040ED 
+ram_0010_temp                           = $0010 ; 00002A 0001B4 0001C2 0001CD 0001D2 002E55 002EA1 002EE2 002EFB 002F86 002F8B 002F90 002F92 0030BD 0030C9 003AAD 0040E9 
+    ram_0010_t01_delay_lo                   = ram_0010_temp ; in pair with ram_0011_t01_delay_hi
+    ram_0010_t02_delay                      = ram_0010_temp ; 
+    ram_0010_t03_delay                      = ram_0010_temp ; 
+    ram_0010_t04_delay                      = ram_0010_temp ; 
+    ram_0010_t05_delay                      = ram_0010_temp ; 
+    ram_0010_t06_delay_lo                   = ram_0010_temp ; in pair with ram_0011_t02_delay_hi
+    ram_0010_t07_delay_lo                   = ram_0010_temp ; in pair with ram_0011_t03_delay_hi
+    ram_0010_t09                            = ram_0010_temp ; 
+
+
+
+; 
+ram_0011_temp                           = $0011 ; 00002A 002E59 002EA5 0030C1 0030CD 003AB1 0040ED 
+    ram_0011_t01_delay_hi                   = ram_0011_temp ; in pair with ram_0010_t01_delay_lo
+    ram_0011_t02_delay_hi                   = ram_0011_temp ; in pair with ram_0010_t06_delay_lo
+    ram_0011_t03_delay_hi                   = ram_0011_temp ; in pair with ram_0010_t07_delay_lo
 
 
 
@@ -103,56 +203,101 @@ ram_0017                                = $0017 ; 00002A 00366D 0038E3 003919 00
 
 
 
-; ($indirect),Y
-ram_0018                                = $0018 ; 00002A 003691 
-ram_0019                                = $0019 ; 00002A 003698 
+; 
+ram_0018_temp                           = $0018 ; 00002A 003691 
+    ram_0018_t01_data                      = ram_0018_temp ; 2 addresses 0018-0019
 
 
 
-; ($indirect),Y
-ram_001A                                = $001A ; 00002A 003B62 
-ram_001B                                = $001B ; 00002A 003B67 
+; used only in pair with ram_0018_temp
+; ram_0019                              = $0019 ; 00002A 003698 
 
 
 
-; ($indirect),Y 0x005988
-ram_001C                                = $001C ; 00002A 003BE9 
-ram_001D                                = $001D ; 00002A 003BE9 
+; 
+ram_001A_temp                           = $001A ; 00002A 003B62 
+    ram_001A_t01_data                       = ram_001A_temp ; 2 addresses 001A-001B
 
 
 
-; ($indirect),Y 0x00598A
-ram_001E                                = $001E ; 00002A 003BE9 
-ram_001F                                = $001F ; 00002A 003BE9 
+; used only in pair with ram_001A_temp
+; ram_001B                              = $001B ; 00002A 003B67 
 
 
 
-; 0x00598C
-ram_0020_data                           = $0020 ; 00002A 0035B9 003BE9 
+; 
+ram_001C_temp                           = $001C ; 00002A 003BE9 
+    ram_001C_t01_data                       = ram_001C_temp ; 2 addresses 001C-001D 0x005988
+
+
+
+; used only in pair with ram_001C_temp
+; ram_001D                             = $001D ; 00002A 003BE9 
+
+
+
+; 
+ram_001E_temp                           = $001E ; 00002A 003BE9 
+    ram_001E_t01_data                       = ram_001E_temp ; 2 addresses 001E-001F 0x00598A
+
+
+
+; used only in pair with ram_001E_temp
+; ram_001F                             = $001F ; 00002A 003BE9 
+
+
+
+; 
+ram_0020_temp                           = $0020 ; 00002A 0035B9 003BE9 
+    ram_0020_t01_data                       = ram_0020_temp ; 2 addresses 0020-0021 0x00598C
+
+
+
+; used only in pair with ram_0020_temp
 ; ram_0021                              = $0021 ; 00002A 0035BD 003BE9 
 
 
 
-; 0x00598E
-ram_0022_data                           = $0022 ; 00002A 0035CB 003BE9 
+; 
+ram_0022_temp                           = $0022 ; 00002A 0035CB 003BE9 
+    ram_0022_t01_data                       = ram_0022_temp ; 2 addresses 0022-0023 0x00598E
+
+
+
+; used only in pair with ram_0022_temp
 ; ram_0023                              = $0023 ; 00002A 0035CF 003BE9 
 
 
 
-; 0x005990
-ram_0024_data                           = $0024 ; 00002A 00352E 003BE9 
+; 
+ram_0024_temp                           = $0024 ; 00002A 00352E 003BE9 
+    ram_0024_t01_data                       = ram_0024_temp ; 2 addresses 0024-0025 0x005990
+
+
+
+; used only in pair with ram_0024_temp
 ; ram_0025                              = $0025 ; 00002A 003534 003BE9 
 
 
 
-; ($indirect),Y 0x005992
-ram_0026_data                           = $0026 ; 00002A 003BE9 
+; 
+ram_0026_temp                           = $0026 ; 00002A 003BE9 
+    ram_0026_t01_data                       = ram_0026_temp ; 2 addresses 0026-0027 0x005992
+
+
+
+; used only in pair with ram_0026_temp
 ; ram_0027                              = $0027 ; 00002A 003BE9 
 
 
 
-; ($indirect),Y
-ram_0028_data                           = $0028 ; 00002A 0035BB 0035CD 
+; 
+ram_0028_temp                           = $0028 ; 00002A 0035BB 0035CD 
+    ram_0028_t01_data                       = ram_0028_temp ; 2 addresses 0028-0029
+
+
+
+; used only in pair with ram_0028_temp
 ; ram_0029                              = $0029 ; 00002A 0035D3 
 
 
@@ -219,8 +364,9 @@ ram_0035                                = $0035 ; 00002A 002644 0033AA 003413 00
 
 
 
-; temp address, basically free
-ram_0036                                = $0036 ; 00002A 003DE5 003DF1 003DF4 
+; 
+ram_0036_temp                           = $0036 ; 00002A 003DE5 003DF1 003DF4 
+    ram_0036_t01                            = ram_0036_temp ; bzk optimize
 
 
 
@@ -244,18 +390,19 @@ ram_003B                                = $003B ; 00002A 0019F2 002908 002A19 00
 
 
 
-; flag 00/FF
-ram_003C                                = $003C ; 00002A 000E80 003CEE 003D00 003E8A 
+; 00 = 
+; FF = 
+ram_003C_flag                           = $003C ; 00002A 000E80 003CEE 003D00 003E8A 
 
 
 
 ; 
-ram_003D                                = $003D ; 00002A 000E97 003CF0 003D02 003D2C 003D35 003F1B 003F38 
+ram_003D_spd_Y_lo_camera                = $003D ; 00002A 000E97 003CF0 003D02 003D2C 003D35 003F1B 003F38 
 
 
 
 ; 
-ram_003E                                = $003E ; 00002A 000AFC 004203 
+ram_003E_pos_Y_lo                       = $003E ; 00002A 000AFC 004203 
 
 
 
@@ -264,7 +411,8 @@ ram_lives                               = $003F ; 00002A 00009A 00012C 00094C 00
 
 
 
-; 00 = not demo, 01 = demo mode
+; 00 = not demo
+; 01 = demo mode
 ram_demo_flag                           = $0040 ; 00002A 000077 00009C 0000C3 00010B 000145 000947 0009C8 002E67 002EC3 0037C2 0037F8 
 
 
@@ -308,8 +456,9 @@ ram_continue_flag                       = $0047 ; 00002A 000084 00014C 002DE5 00
 
 
 
-; 
-ram_0048                                = $0048 ; 00002A 0008BE 00092D 002E1F 002EC7 002F28 003006 003090 003AA9 003CAD 0040C1 
+; 00 = 
+; not 00 = 
+ram_0048_flag                           = $0048 ; 00002A 0008BE 00092D 002E1F 002EC7 002F28 003006 003090 003AA9 003CAD 0040C1 
 
 
 
@@ -318,8 +467,9 @@ ram_bonus_stage                         = $0049 ; 00002A 0000B9 000123 000159 00
 
 
 
-; 
-ram_004A                                = $004A ; 00002A 0000C1 000330 00033E 0004E0 000556 000631 0007DF 002A43 002B7D 
+; 00 = 
+; 01 = 
+ram_004A_flag                           = $004A ; 00002A 0000C1 000330 00033E 0004E0 000556 000631 0007DF 002A43 002B7D 
 
 
 
@@ -381,62 +531,62 @@ ram_0056                                = $0056 ; 00002A 003463 00346F 003471 00
 
 
 ; 
-ram_0057                                = $0057 ; 00002A 00346A 00369E 003FD3 003FEA 
+ram_0057_nametable_attribute            = $0057 ; 00002A 00346A 00369E 003FD3 003FEA 
 
 
 
 ; 
-ram_0058                                = $0058 ; 00002A 00431A 00434D 004392 
+ram_0058_animation_id                   = $0058 ; 00002A 00431A 00434D 004392 
 
 
 
 ; 
-ram_0059                                = $0059 ; 00002A 0008B8 000922 001D98 002F02 003008 004315 004388 00446B 
+ram_0059_pos_X_hi                       = $0059 ; 00002A 0008B8 000922 001D98 002F02 003008 004315 004388 00446B 
 
 
 
 ; 
-ram_005A                                = $005A ; 00002A 0008B4 0008D3 0008D8 00091E 00093A 000943 001D91 002F12 002FA8 002FC3 0043A9 004467 
+ram_005A_spr_X                          = $005A ; 00002A 0008B4 0008D3 0008D8 00091E 00093A 000943 001D91 002F12 002FA8 002FC3 0043A9 004467 
 
 
 
 ; 
-ram_005B                                = $005B ; 00002A 00446D 00449B 0044B9 0044E1 
+ram_005B_flag                           = $005B ; 00002A 00446D 00449B 0044B9 0044E1 
 
 
 
 ; 
-ram_005C                                = $005C ; 00002A 004469 0044D0 0044D8 0044DD 
+ram_005C_spr_X                          = $005C ; 00002A 004469 0044D0 0044D8 0044DD 
 
 
 
 ; 
-ram_005D                                = $005D ; 00002A 0008BC 000926 000936 001D9F 002F17 002FAC 002FB5 002FC7 004378 00438C 004398 
+ram_005D_spr_Y                          = $005D ; 00002A 0008BC 000926 000936 001D9F 002F17 002FAC 002FB5 002FC7 004378 00438C 004398 
 
 
 
 ; 
-ram_005E                                = $005E ; 00002A 004368 00436A 004404 004461 00446F 
+ram_005E_main_sprites_counter           = $005E ; 00002A 004368 00436A 004404 004461 00446F 
 
 
 
-; bzk optimize, uselees address, store value directly at ram_0062 instead
-ram_005F                                = $005F ; 00002A 00436F 00437C 
-
-
-
-; 
-ram_0060                                = $0060 ; 00002A 00437A 0043B6 0043BB 0044CB 
+; bzk optimize, uselees address, store value directly at ram_0062_useless_counter instead
+ram_005F_useless                        = $005F ; 00002A 00436F 00437C 
 
 
 
 ; 
-ram_0061                                = $0061 ; 00002A 0043CF 0043E6 0043F8 004406 00440D 004434 004452 004471 
+ram_0060_spr_Y                          = $0060 ; 00002A 00437A 0043B6 0043BB 0044CB 
 
 
 
-; ? counter
-ram_0062                                = $0062 ; 00002A 00437E 0043C5 
+; 
+ram_0061_sprites_counter                = $0061 ; 00002A 0043CF 0043E6 0043F8 004406 00440D 004434 004452 004471 
+
+
+
+; bzk optimize, doesn't do anything useful
+ram_0062_useless_counter                = $0062 ; 00002A 00437E 0043C5 
 
 
 
@@ -450,8 +600,9 @@ ram_stack_pointer                       = $0064 ; 00002A 004339 004386 00447E
 
 
 
-; 
-ram_0065                                = $0065 ; 00002A 0042D8 004311 00447C 
+; 00 = 
+; 01 = 
+ram_0065_flag                           = $0065 ; 00002A 0042D8 004311 00447C 
 
 
 
@@ -461,13 +612,13 @@ ram_global_obj_index                    = $0066 ; 00002A 000C49 000ED9 000F09 00
 
 
 
-; 
+; oam index?
 ram_0067                                = $0067 ; 00002A 000C24 000C29 000C3F 0042E6 004380 004396 0043B1 00441E 
 
 
 
-; 
-ram_0068                                = $0068 ; 00002A 0042DA 004474 004476 
+; 00-3F
+ram_0068_counter                        = $0068 ; 00002A 0042DA 004474 004476 
 
 
 
@@ -476,18 +627,21 @@ ram_frm_cnt                             = $0069 ; 00002A 0042DC 0042DE 004484
 
 
 
-; 
-ram_006A                                = $006A ; 00002A 00023F 0002FC 000342 000350 0003D9 0003DD 000441 000604 0006B5 0006D5 00073C 00080A 003D3B 003D3D 003FFC 
+; 00 = 
+; 01 = 
+; FF = 
+ram_plr_pos_Y_hi                        = $006A ; 00002A 00023F 0002FC 000342 000350 0003D9 0003DD 000441 000604 0006B5 0006D5 00073C 00080A 003D3B 003D3D 003FFC 
+
+
+
+; 00 = facing right 
+; 01 = facing left
+ram_player_facing                       = $006B ; 00002A 000241 000458 00045E 00059B 0005D2 0005ED 000654 000671 00069B 000835 004115 
 
 
 
 ; 
-ram_006B                                = $006B ; 00002A 000241 000458 00045E 00059B 0005D2 0005ED 000654 000671 00069B 000835 004115 
-
-
-
-; 
-ram_006C                                = $006C ; 00002A 000243 00065A 00065E 
+ram_player_previous_facing              = $006C ; 00002A 000243 00065A 00065E 
 
 
 
@@ -504,13 +658,15 @@ ram_skateboard_flag                     = $006E ; 00002A 00013A 000563 0005AC 00
 
 
 
-; 
-ram_006F                                = $006F ; 00002A 000245 0003A9 0004F2 00051A 00054C 000639 00067D 004107 
+; 00 = 
+; 01 = 
+ram_006F_flag                           = $006F ; 00002A 000245 0003A9 0004F2 00051A 00054C 000639 00067D 004107 
 
 
 
-; 
-ram_0070                                = $0070 ; 00002A 000247 0003AB 000454 000492 0004E4 000554 000629 0007DB 00405F 00410C 
+; 00 = 
+; 01 = 
+ram_0070_flag                           = $0070 ; 00002A 000247 0003AB 000454 000492 0004E4 000554 000629 0007DB 00405F 00410C 
 
 
 
@@ -534,8 +690,8 @@ ram_btn_B_flag                          = $0073 ; 00002A 000255 0007EB 0007EE 00
 
 
 
-; 
-ram_0074                                = $0074 ; 00002A 00024B 000635 00066A 00082B 000831 
+; 00-07
+ram_0074_counter                        = $0074 ; 00002A 00024B 000635 00066A 00082B 000831 
 
 
 
@@ -553,13 +709,15 @@ ram_stamina_lo                          = $0077 ; 00002A 000886 000894 000899 00
 
 
 
-; 
-ram_0078                                = $0078 ; 00002A 0000DA 0008C0 002CD3 002F3F 0040C7 0040F3 0040F9 
+; 00 = 
+; 01 = 
+ram_0078_flag                           = $0078 ; 00002A 0000DA 0008C0 002CD3 002F3F 0040C7 0040F3 0040F9 
 
 
 
-; 
-ram_0079                                = $0079 ; 00002A 000521 000535 00054E 000580 00058E 
+; 00 = 
+; 01 = 
+ram_0079_flag                           = $0079 ; 00002A 000521 000535 00054E 000580 00058E 
 
 
 
@@ -585,24 +743,21 @@ ram_007D                                = $007D ; 00002A 000D5B 000D9D 003B48
 
 
 
-; ($indirect),Y
-ram_0082                                = $0082 ; 00002A 000DBB 
-ram_0083                                = $0083 ; 00002A 000DC1 
+; 
+ram_0082_temp                           = $0082 ; 00002A 000DBB 
+    ram_0082_t01_data                       = ram_0082_temp ; 
+
+
+
+; used only in pair with ram_0082_temp
+; ram_0083                              = $0083 ; 00002A 000DC1 
 
 
 
 ; 
-ram_0084                                = $0084 ; 00002A 000215 000265 000811 000BFD 000CEF 000E20 001329 001A03 001A79 001AA1 001B7E 001C4C 
-
-
-
-; 
-ram_0085                                = $0085 ; 00002A 00021B 00026A 000816 000C03 000CF5 000E25 00132E 001A07 001A7E 001AA6 001B84 001B86 001C50 
-
-
-
-; 
-ram_0086                                = $0086 ; 00002A 000225 00022C 00026E 00081B 000C0A 000CFE 000E2A 001333 001A0B 001A86 001AAE 001B8A 001C58 
+ram_0084_pos_X_lo                       = $0084 ; 00002A 000215 000265 000811 000BFD 000CEF 000E20 001329 001A03 001A79 001AA1 001B7E 001C4C 0
+ram_0085_pos_X_hi                       = $0085 ; 00002A 00021B 00026A 000816 000C03 000CF5 000E25 00132E 001A07 001A7E 001AA6 001B84 001B86 001C50 
+ram_0086_pos_Y_lo                       = $0086 ; 00002A 000225 00022C 00026E 00081B 000C0A 000CFE 000E2A 001333 001A0B 001A86 001AAE 001B8A 001C58 
 
 
 
@@ -611,19 +766,25 @@ ram_0087_obj_id                         = $0087 ; 00002A 000230 000277 00081F 00
 
 
 
-; 
-ram_0088                                = $0088 ; 00002A 00269D 00269F 0026A6 0026C1 0026C4 003CA7 
-
-
-
-; ($indirect),Y
-ram_0089                                = $0089 ; 00002A 002694 
-ram_008A                                = $008A ; 00002A 002699 
+; 00-08
+ram_0088_counter                        = $0088 ; 00002A 00269D 00269F 0026A6 0026C1 0026C4 003CA7 
 
 
 
 ; 
-ram_008B                                = $008B ; 00002A 002991 0029EB 002ABF 002AD7 
+ram_0089_temp                           = $0089 ; 00002A 002694 
+    ram_0089_t01_data                       = ram_0089_temp ; 
+
+
+
+; used only in pair with ram_0089_temp
+; ram_008A                              = $008A ; 00002A 002699 
+
+
+
+; 00 = 
+; 01 = 
+ram_008B_flag                           = $008B ; 00002A 002991 0029EB 002ABF 002AD7 
 
 
 
@@ -2192,7 +2353,8 @@ ram_0552                                = $0552 ; 00003C 003C68 003DAF 003F04
 
 ; 00 = object doesn't exist?
 ; FF = object is falling down when killed with a weapon
-ram_0554_obj                              = $0554 ; 00003C 000EDB 001544 002E06 003061 0030B4 0030D4 0030FB 003109 00310C 003118 003123 
+ram_0554_obj                            = $0554 ; 00003C 000EDB 001544 002E06 003061 0030B4 0030D4 0030FB 003109 00310C 003118 003123 
+    ram_0554_plr                            = ram_0554_obj ; 
 ; ram_0555                              = $0555 ; 00003C 0007F6 000C4B 000E76 000EDB 002E09 003061 004141 
 ; ram_0556                              = $0556 ; 00003C 0007F6 000C4B 000DC6 000E76 000EDB 0012AE 001544 003061 004141 00414D 004162 
 ; ram_0557                              = $0557 ; 00003C 0007F6 000B17 000B55 000B6F 000C4B 000DC6 000E76 000EDB 0012AE 001544 004141 
@@ -2234,6 +2396,7 @@ ram_obj_id                              = $0564 ; 00003C 000E1D
 
 ; fraction
 ram_obj_pos_X_fr                        = $0574 ; 00003C 00046E 000489 0004C4 0004CA 000E35 
+    ram_plr_pos_X_fr                        = ram_obj_pos_X_fr ; 
 ; ram_0575                              = $0575 ; 00003C 
 ; ram_0576                              = $0576 ; 00003C 0004C4 0004CA 000E35 
 ; ram_0577                              = $0577 ; 00003C 000E35 
@@ -2254,6 +2417,7 @@ ram_obj_pos_X_fr                        = $0574 ; 00003C 00046E 000489 0004C4 00
 
 ; 
 ram_obj_pos_X_lo                        = $0584 ; 00003C 000262 0002B3 000383 00041E 00042F 00043A 000451 00047B 000484 0004CD 0004D2 000619 0006C3 000768 00080E 000B67 000E22 001315 00144E 0014CF 0014EB 0015D4 00186F 001918 001D8B 002995 00299B 0029D9 002DC3 002EAF 003067 003102 003D04 003D25 004029 0041AD 0041CE 00426F 0042A9 
+    ram_plr_pos_X_lo                        = ram_obj_pos_X_lo ; 
 ; ram_0585                              = $0585 ; 00003C 001D8B 002EAF 003067 
 ; ram_0586                              = $0586 ; 00003C 0004CD 0004D2 000E22 000E85 000E88 000EB7 000ECB 001D8B 003067 004029 0041AD 00426F 0042A9 
 ; ram_0587                              = $0587 ; 00003C 000B63 000E22 000E85 000E88 000EB7 000ECB 001D8B 00297D 002986 0029D2 004025 
@@ -2274,6 +2438,7 @@ ram_obj_pos_X_lo                        = $0584 ; 00003C 000262 0002B3 000383 00
 
 ; 
 ram_obj_pos_X_hi                        = $0594 ; 00003C 00023C 000267 00029A 00037E 000419 000433 00044D 000474 00048C 0004D5 0004DA 00060F 0006CC 000770 000813 000E27 001D93 00299E 0029A3 002DC9 002EB9 00306D 004031 0041B6 0041D3 004278 0042B2 
+    ram_plr_pos_X_hi                        = ram_obj_pos_X_hi ; 
 ; ram_0595                              = $0595 ; 00003C 001D93 002EB9 00306D 
 ; ram_0596                              = $0596 ; 00003C 0004D5 0004DA 000E27 000E8B 000E90 000EBD 000EC4 001D93 00306D 004031 0041B6 004278 0042B2 
 ; ram_0597                              = $0597 ; 00003C 000B5E 000E27 000E8B 000E90 000EBD 000EC4 001D93 002979 00298C 0029CD 00402E 
@@ -2293,7 +2458,8 @@ ram_obj_pos_X_hi                        = $0594 ; 00003C 00023C 000267 00029A 00
 
 
 ; 
-ram_obj_speed_X                         = $05A4 ; 00003C 000467 00046B 00048F 0004B4 00052D 000531 000541 000545 000567 000571 00057D 000584 000587 00058B 000592 000595 00059D 0005D4 0005EF 000E38 002B58 002C70 003098 00411B 0042A3 
+ram_obj_spd_X                           = $05A4 ; 00003C 000467 00046B 00048F 0004B4 00052D 000531 000541 000545 000567 000571 00057D 000584 000587 00058B 000592 000595 00059D 0005D4 0005EF 000E38 002B58 002C70 003098 00411B 0042A3 
+    ram_plr_spd_X                           = ram_obj_spd_X ; 
 ; ram_05A5                              = $05A5 ; 00003C 
 ; ram_05A6                              = $05A6 ; 00003C 0004B4 00083B 000E38 004157 0042A3 
 ; ram_05A7                              = $05A7 ; 00003C 000E38 002937 002A74 002A82 002A87 002A8A 
@@ -2314,6 +2480,7 @@ ram_obj_speed_X                         = $05A4 ; 00003C 000467 00046B 00048F 00
 
 ; fraction
 ram_obj_pos_Y_fr                        = $05B4 ; 00003C 0003A6 0003C8 0003CE 000E3B 
+    ram_plr_pos_Y_fr                        = ram_obj_pos_Y_fr ; 
 ; ram_05B5                              = $05B5 ; 00003C 
 ; ram_05B6                              = $05B6 ; 00003C 000408 00040E 000E3B 
 ; ram_05B7                              = $05B7 ; 00003C 000408 00040E 000E3B 
@@ -2334,6 +2501,7 @@ ram_obj_pos_Y_fr                        = $05B4 ; 00003C 0003A6 0003C8 0003CE 00
 
 ; 
 ram_obj_pos_Y_lo                        = $05C4 ; 00003C 000272 000346 000397 00039E 0003D1 0003D6 000608 0006D9 0007A1 000818 000E30 001D9C 0026ED 002A3A 002ACE 002DCF 002EBF 003073 003D31 003D37 00400F 0042C3 
+    ram_plr_pos_Y_lo                        = ram_obj_pos_Y_lo ; 
 ; ram_05C5                              = $05C5 ; 00003C 001D9C 002EBF 003073 
 ; ram_05C6                              = $05C6 ; 00003C 000E30 000E93 000E99 000EA8 0011DF 0011E2 001D9C 003073 0030ED 00400F 
 ; ram_05C7                              = $05C7 ; 00003C 000AF5 000AFE 000E30 000E93 000E99 000EA8 0011DF 0011E2 001D9C 0028D6 002ACB 00400B 
@@ -2353,7 +2521,8 @@ ram_obj_pos_Y_lo                        = $05C4 ; 00003C 000272 000346 000397 00
 
 
 ; 
-ram_gravity                             = $05D4 ; 00003C 0002E0 0002F6 000379 0003A3 0003B6 0003DF 0003ED 0004F6 000513 000E3E 0026DF 002705 002AC1 002B19 002B5B 004082 004110 
+ram_obj_gravity                         = $05D4 ; 00003C 0002E0 0002F6 000379 0003A3 0003B6 0003DF 0003ED 0004F6 000513 000E3E 0026DF 002705 002AC1 002B19 002B5B 004082 004110 
+    ram_plr_gravity                         = ram_obj_gravity ; 
 ; ram_05D5                              = $05D5 ; 00003C 
 ; ram_05D6                              = $05D6 ; 00003C 000400 000E3E 001228 00309D 
 ; ram_05D7                              = $05D7 ; 00003C 000400 000B84 000E3E 002943 002A70 
@@ -2535,6 +2704,7 @@ ram_0654_obj                            = $0654 ; 00004F 000E65 001D6F 001DA7
 ; item id from an egg? see con_item_id
 ; sometimes holds con_add_score
 ram_0664_obj                            = $0664 ; 00004F 0002D3 0002D8 0002EB 000E41 0030DF 00311D 00408C 
+    ram_0664_plr                            = ram_0664_obj ; 
 ; ram_0665                              = $0665 ; 00004F 
 ; ram_0666                              = $0666 ; 00004F 000840 000843 00084A 000872 000E41 
 ; ram_0667                              = $0667 ; 00004F 000AF1 000B8C 000B9D 000BB7 000E41 002921 0029BB 0029DE 002D5C 
@@ -2555,6 +2725,7 @@ ram_0664_obj                            = $0664 ; 00004F 0002D3 0002D8 0002EB 00
 
 ; 
 ram_0674_obj                            = $0674 ; 00004F 0002C1 0002C6 000307 000363 000375 000E44 004087 
+    ram_0674_plr                            = ram_0674_obj ; 
 ; ram_0675                              = $0675 ; 00004F 
 ; ram_0676                              = $0676 ; 00004F 000E44 
 ; ram_0677                              = $0677 ; 00004F 000B04 000B26 000B33 000B3B 000B4B 000B50 000B5A 000B6A 000B77 000B89 000E44 002916 0029D6 
@@ -2575,6 +2746,7 @@ ram_0674_obj                            = $0674 ; 00004F 0002C1 0002C6 000307 00
 
 ; 
 ram_0684_obj                            = $0684 ; 00004F 0005FD 000622 000DE8 000E50 000EE0 0011FE 001D82 
+    ram_0684_plr                            = ram_0684_obj ; 
 ; ram_0685                              = $0685 ; 00004F 000EE0 0011FE 001D82 
 ; ram_0686                              = $0686 ; 00004F 000DE8 000E50 000EE0 0011FE 001D79 001D82 003093 0030F6 003115 
 ; ram_0687                              = $0687 ; 00004F 000B09 000B42 000B72 000DE8 000E50 000EE0 0011FE 001D82 
