@@ -7550,6 +7550,7 @@ C - - - - - 0x03F60A 0F:F5FA: 20 62 82  JSR sub_0x028272
 C - - - - - 0x03F60D 0F:F5FD: A9 84     LDA #con_prg_bank + $84
 C - - - - - 0x03F60F 0F:F5FF: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F612 0F:F602: 20 D6 9E  JSR sub_0x009EE6
+; bzk optimize, JMP
 C - - - - - 0x03F615 0F:F605: 20 0C 80  JSR sub_0x00801C
 bra_F608_RTS:
 C - - - - - 0x03F618 0F:F608: 60        RTS

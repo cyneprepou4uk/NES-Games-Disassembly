@@ -489,6 +489,7 @@ C - - - - - 0x01030E 04:82FE: 90 F2     BCC bra_82F2_loop
 C - - - - - 0x010310 04:8300: E6 E5     INC ram_00E5_se_temp
 C - - - - - 0x010312 04:8302: D0 EE     BNE bra_82F2_loop
 bra_8304:
+; * 10
 C - - - - - 0x010314 04:8304: 0A        ASL
 C - - - - - 0x010315 04:8305: 26 E5     ROL ram_00E5_se_temp
 C - - - - - 0x010317 04:8307: 0A        ASL
@@ -600,6 +601,7 @@ C D 0 - - - 0x01039C 04:838C: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x01039E 04:838E: 29 0F     AND #$0F
 C - - - - - 0x0103A0 04:8390: 9D CF 03  STA ram_03CF_se,X
 C - - - - - 0x0103A3 04:8393: B1 E0     LDA (ram_00E0_se_t000_data),Y
+; / 10
 C - - - - - 0x0103A5 04:8395: 4A        LSR
 C - - - - - 0x0103A6 04:8396: 4A        LSR
 C - - - - - 0x0103A7 04:8397: 4A        LSR
@@ -747,7 +749,7 @@ C - - - - - 0x010465 04:8455: 9D D8 03  STA ram_03D8_se,X
 C - - - - - 0x010468 04:8458: BD 6E 01  LDA ram_016E_se,X
 C - - - - - 0x01046B 04:845B: 09 20     ORA #$20
 C - - - - - 0x01046D 04:845D: 9D 6E 01  STA ram_016E_se,X
-loc_8460:
+loc_8460_INY_and_read_next_byte:
 C D 0 - - - 0x010470 04:8460: C8        INY
 C - - - - - 0x010471 04:8461: 4C 01 80  JMP loc_8001_read_next_byte
 bra_8464_00:
@@ -756,11 +758,11 @@ C - - - - - 0x010477 04:8467: 29 DF     AND #$DF
 C - - - - - 0x010479 04:8469: 9D 6E 01  STA ram_016E_se,X
 C - - - - - 0x01047C 04:846C: A9 00     LDA #$00
 C - - - - - 0x01047E 04:846E: 9D D8 03  STA ram_03D8_se,X
-C - - - - - 0x010481 04:8471: 4C 60 84  JMP loc_8460
+C - - - - - 0x010481 04:8471: 4C 60 84  JMP loc_8460_INY_and_read_next_byte
 bra_8474:
 C - - - - - 0x010484 04:8474: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x010486 04:8476: 9D 62 01  STA ram_0162_se,X
-C - - - - - 0x010489 04:8479: 4C 60 84  JMP loc_8460
+C - - - - - 0x010489 04:8479: 4C 60 84  JMP loc_8460_INY_and_read_next_byte
 
 
 
@@ -816,12 +818,12 @@ C - - - - - 0x0104D5 04:84C5: 9D DB 03  STA ram_03DB_se,X
 C - - - - - 0x0104D8 04:84C8: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x0104DA 04:84CA: 29 0F     AND #$0F
 C - - - - - 0x0104DC 04:84CC: 9D E1 03  STA ram_03E1_se,X
-C - - - - - 0x0104DF 04:84CF: 4C 60 84  JMP loc_8460
+C - - - - - 0x0104DF 04:84CF: 4C 60 84  JMP loc_8460_INY_and_read_next_byte
 bra_84D2_00:
 C - - - - - 0x0104E2 04:84D2: BD 6E 01  LDA ram_016E_se,X
 C - - - - - 0x0104E5 04:84D5: 29 EF     AND #$EF
 C - - - - - 0x0104E7 04:84D7: 9D 6E 01  STA ram_016E_se,X
-C - - - - - 0x0104EA 04:84DA: 4C 60 84  JMP loc_8460
+C - - - - - 0x0104EA 04:84DA: 4C 60 84  JMP loc_8460_INY_and_read_next_byte
 
 
 

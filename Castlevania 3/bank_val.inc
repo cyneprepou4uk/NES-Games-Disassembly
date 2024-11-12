@@ -947,7 +947,7 @@ con_BD4F_8E                             = $8E ;
 con_BD4F_8F                             = $8F ; 
 con_BD4F_90                             = $90 ; 
 con_BD4F_91                             = $91 ; 
-con_BD4F_92                             = $92 ; 
+con_BD4F_92_Harpy_drops_enemy           = $92 ; 
 con_BD4F_93                             = $93 ; 
 con_BD4F_94                             = $94 ; 
 con_BD4F_95                             = $95 ; 
@@ -1116,7 +1116,7 @@ con_se_cb_1_F0                          = $F0 ; F0-F7 0x0105C4
 ; 0x0103E4
 con_se_cb_1_E6                          = $E6 ; 
 con_se_cb_1_E7                          = $E7 ; 
-con_se_cb_1_E8                          = $E8 ; todo доделать биты
+con_se_cb_1_E8                          = $E8 ; 
 con_se_cb_1_E9                          = $E9 ; todo доделать биты
 con_se_cb_1_EA                          = $EA ; 
 con_se_cb_1_EB                          = $EB ; 

@@ -2121,36 +2121,36 @@ C - - - - - 0x02CB00 0B:8AF0: 4C 20 8E  JMP loc_8E20
 
 
 
-ofs_039_8AF3_92:
+ofs_039_8AF3_92_Harpy_drops_enemy:
 C - - J - - 0x02CB03 0B:8AF3: 18        CLC
 C - - - - - 0x02CB04 0B:8AF4: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x02CB07 0B:8AF7: 69 10     ADC #$10
-C - - - - - 0x02CB09 0B:8AF9: 85 00     STA ram_0000_temp
+C - - - - - 0x02CB09 0B:8AF9: 85 00     STA ram_0000_t059_pos_Y_hi
 C - - - - - 0x02CB0B 0B:8AFB: BD 38 04  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x02CB0E 0B:8AFE: 85 01     STA ram_0001_t014_copy_obj_pos_X_hi
 C - - - - - 0x02CB10 0B:8B00: BD A8 04  LDA ram_obj_facing,X
-C - - - - - 0x02CB13 0B:8B03: 85 02     STA ram_0002_temp
+C - - - - - 0x02CB13 0B:8B03: 85 02     STA ram_0002_t034_obj_facing
 C - - - - - 0x02CB15 0B:8B05: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02CB18 0B:8B08: 09 60     ORA #con_obj_flag_20 + con_obj_flag_40
-C - - - - - 0x02CB1A 0B:8B0A: 85 03     STA ram_0003_temp
-C - - - - - 0x02CB1C 0B:8B0C: 86 08     STX ram_0008_temp
+C - - - - - 0x02CB1A 0B:8B0A: 85 03     STA ram_0003_t013_some_obj_flags
+C - - - - - 0x02CB1C 0B:8B0C: 86 08     STX ram_0008_t04A_object_index
 C - - - - - 0x02CB1E 0B:8B0E: 20 5A 8B  JSR sub_8B5A_search_for_empty_object_slot
 C - - - - - 0x02CB21 0B:8B11: D0 39     BNE bra_8B4C
-C - - - - - 0x02CB23 0B:8B13: 86 09     STX ram_0009_temp
-C - - - - - 0x02CB25 0B:8B15: A6 08     LDX ram_0008_temp
+C - - - - - 0x02CB23 0B:8B13: 86 09     STX ram_0009_t00B_object_index
+C - - - - - 0x02CB25 0B:8B15: A6 08     LDX ram_0008_t04A_object_index
 C - - - - - 0x02CB27 0B:8B17: 20 9E 81  JSR sub_819E
 C - - - - - 0x02CB2A 0B:8B1A: 20 EF 81  JSR sub_81EF
-C - - - - - 0x02CB2D 0B:8B1D: A6 09     LDX ram_0009_temp
+C - - - - - 0x02CB2D 0B:8B1D: A6 09     LDX ram_0009_t00B_object_index
 C - - - - - 0x02CB2F 0B:8B1F: 20 D7 FE  JSR sub_0x03FEE7_clear_object_speed_and_data
 C - - - - - 0x02CB32 0B:8B22: 20 4F 8B  JSR sub_8B4F_write_positions
-C - - - - - 0x02CB35 0B:8B25: A5 02     LDA ram_0002_temp
+C - - - - - 0x02CB35 0B:8B25: A5 02     LDA ram_0002_t034_obj_facing
 C - - - - - 0x02CB37 0B:8B27: 9D A8 04  STA ram_obj_facing,X
-C - - - - - 0x02CB3A 0B:8B2A: A5 03     LDA ram_0003_temp
+C - - - - - 0x02CB3A 0B:8B2A: A5 03     LDA ram_0003_t013_some_obj_flags
 C - - - - - 0x02CB3C 0B:8B2C: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x02CB3F 0B:8B2F: 20 C9 9F  JSR sub_9FC9
 C - - - - - 0x02CB42 0B:8B32: A9 52     LDA #$52
 C - - - - - 0x02CB44 0B:8B34: 9D 4E 05  STA ram_obj_id,X
-C - - - - - 0x02CB47 0B:8B37: A9 69     LDA #$69
+C - - - - - 0x02CB47 0B:8B37: A9 69     LDA #$69    ; dropped enemy for Harpy
 C - - - - - 0x02CB49 0B:8B39: 9D EF 05  STA ram_05EF_obj,X
 C - - - - - 0x02CB4C 0B:8B3C: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02CB4E 0B:8B3E: A9 72     LDA #$72
@@ -7989,13 +7989,13 @@ _off034_A7FC_65:
 ; 03 
 - D 1 - I - 0x02E818 0B:A808: 0C        .byte con_BD4F_compare_X_distance   ; 
 - D 1 - I - 0x02E819 0B:A809: 40        .byte $40   ; X
-- - - - - - 0x02E81A 0B:A80A: 00        .byte $00   ; 
-- - - - - - 0x02E81B 0B:A80B: 00        .byte $00   ; 
+- - - - - - 0x02E81A 0B:A80A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E81B 0B:A80B: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E81C 0B:A80C: 92        .byte con_BD4F_92   ; 
-- - - - - - 0x02E81D 0B:A80D: 00        .byte $00   ; 
-- - - - - - 0x02E81E 0B:A80E: 00        .byte $00   ; 
-- - - - - - 0x02E81F 0B:A80F: 00        .byte $00   ; 
+- D 1 - I - 0x02E81C 0B:A80C: 92        .byte con_BD4F_92_Harpy_drops_enemy   ; 
+- - - - - - 0x02E81D 0B:A80D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E81E 0B:A80E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E81F 0B:A80F: 00        .byte $00   ; placeholder
 ; 05 
 - D 1 - I - 0x02E820 0B:A810: 20        .byte con_BD4F_20   ; 
 - - - - - - 0x02E821 0B:A811: 00        .byte $00   ; 
@@ -13620,7 +13620,7 @@ tbl_BD4F:
 - D 1 - - - 0x02FE7D 0B:BE6D: C2 8B     .word ofs_039_8BC2_8F
 - D 1 - - - 0x02FE7F 0B:BE6F: B0 8B     .word ofs_039_8BB0_90
 - D 1 - - - 0x02FE81 0B:BE71: 40 82     .word ofs_039_8240_91
-- D 1 - - - 0x02FE83 0B:BE73: F3 8A     .word ofs_039_8AF3_92
+- D 1 - - - 0x02FE83 0B:BE73: F3 8A     .word ofs_039_8AF3_92_Harpy_drops_enemy
 - D 1 - - - 0x02FE85 0B:BE75: 69 8B     .word ofs_039_8B69_93
 - D 1 - - - 0x02FE87 0B:BE77: 75 8B     .word ofs_039_8B75_94
 - D 1 - - - 0x02FE89 0B:BE79: 07 83     .word ofs_039_8307_95
