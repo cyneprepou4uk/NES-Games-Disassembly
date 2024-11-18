@@ -729,19 +729,19 @@ off_8199_title_screen:
 
 
 loc_0x010302_background_stuff_for_title_screen:
-C D 0 - - - 0x010302 04:82F2: 85 00     STA ram_0000
+C D 0 - - - 0x010302 04:82F2: 85 00     STA ram_0000_temp
                                     .if con_bzk_hack = $00
 ; * 05
 C - - - - - 0x010304 04:82F4: 0A        ASL
 C - - - - - 0x010305 04:82F5: 0A        ASL
 ; C = 0
 C - - - - - 0x010306 04:82F6: 18        CLC ; bzk optimize, no need for CLC
-C - - - - - 0x010307 04:82F7: 65 00     ADC ram_0000
+C - - - - - 0x010307 04:82F7: 65 00     ADC ram_0000_temp
                                     .else
 ; * 06
                                         ASL
 ; C = 0
-                                        ADC ram_0000
+                                        ADC ram_0000_temp
                                         ASL
                                     .endif
 C - - - - - 0x010309 04:82F9: AA        TAX
@@ -769,9 +769,9 @@ C - - - - - 0x01032E 04:831E: 8D 0B 6F  STA ram_6F0B    ; hi
                                         STA ram_6F0B    ; hi
                                     .endif
 C - - - - - 0x010331 04:8321: A9 00     LDA #< ram_data_6F00
-C - - - - - 0x010333 04:8323: 85 00     STA ram_0000
+C - - - - - 0x010333 04:8323: 85 00     STA ram_0000_t09_screen_data
 C - - - - - 0x010335 04:8325: A9 6F     LDA #> ram_data_6F00
-C - - - - - 0x010337 04:8327: 85 01     STA ram_0001
+C - - - - - 0x010337 04:8327: 85 01     STA ram_0000_t09_screen_data + $01
 C - - - - - 0x010339 04:8329: 20 C2 C7  JSR sub_0x01C7D2_prepare_screen_data
 C - - - - - 0x01033C 04:832C: 4C EB C9  JMP loc_0x01C9FB_prg_bankswitch_0C
 
@@ -810,9 +810,9 @@ C D 0 - - - 0x010371 04:8361: A5 40     LDA ram_0040_palette
 C - - - - - 0x010373 04:8363: 0A        ASL
 C - - - - - 0x010374 04:8364: AA        TAX
 C - - - - - 0x010375 04:8365: BD 30 84  LDA tbl_8430,X
-C - - - - - 0x010378 04:8368: 85 00     STA ram_0000
+C - - - - - 0x010378 04:8368: 85 00     STA ram_0000_temp
 C - - - - - 0x01037A 04:836A: BD 31 84  LDA tbl_8430 + $01,X
-C - - - - - 0x01037D 04:836D: 85 01     STA ram_0001
+C - - - - - 0x01037D 04:836D: 85 01     STA ram_0001_temp
 ; bzk optimize, ram_0044 is always 00
 ; this code skips first 3 bytes of data, leaving a couple of placeholders
 C - - - - - 0x01037F 04:836F: A5 44     LDA ram_0044
@@ -820,15 +820,15 @@ C - - - - - 0x010381 04:8371: 0A        ASL
 C - - - - - 0x010382 04:8372: 18        CLC
 C - - - - - 0x010383 04:8373: 69 03     ADC #$03
 C - - - - - 0x010385 04:8375: A8        TAY
-C - - - - - 0x010386 04:8376: B1 00     LDA (ram_0000),Y
-C - - - - - 0x010388 04:8378: 85 02     STA ram_0002
+C - - - - - 0x010386 04:8376: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x010388 04:8378: 85 02     STA ram_0002_temp
 C - - - - - 0x01038A 04:837A: C8        INY
-C - - - - - 0x01038B 04:837B: B1 00     LDA (ram_0000),Y
-C - - - - - 0x01038D 04:837D: 85 03     STA ram_0003
+C - - - - - 0x01038B 04:837B: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x01038D 04:837D: 85 03     STA ram_0003_temp
 C - - - - - 0x01038F 04:837F: A0 00     LDY #$00
 C - - - - - 0x010391 04:8381: A2 00     LDX #$00
 bra_8383_loop:
-C - - - - - 0x010393 04:8383: B1 02     LDA (ram_0002),Y
+C - - - - - 0x010393 04:8383: B1 02     LDA (ram_0002_temp),Y
 C - - - - - 0x010395 04:8385: 95 56     STA ram_0046_pal_buffer + $10,X
 C - - - - - 0x010397 04:8387: E8        INX
 C - - - - - 0x010398 04:8388: C8        INY
@@ -838,9 +838,9 @@ C - - - - - 0x01039D 04:838D: A5 41     LDA ram_0041_palette
 C - - - - - 0x01039F 04:838F: 0A        ASL
 C - - - - - 0x0103A0 04:8390: AA        TAX
 C - - - - - 0x0103A1 04:8391: BD 5E 84  LDA tbl_845E_palette,X
-C - - - - - 0x0103A4 04:8394: 85 00     STA ram_0000
+C - - - - - 0x0103A4 04:8394: 85 00     STA ram_0000_temp
 C - - - - - 0x0103A6 04:8396: BD 5F 84  LDA tbl_845E_palette + $01,X
-C - - - - - 0x0103A9 04:8399: 85 01     STA ram_0001
+C - - - - - 0x0103A9 04:8399: 85 01     STA ram_0001_temp
 ; bzk optimize, ram_0045 is always 00
 ; this code skips first 3 bytes of data, leaving a bunch of placeholders
 C - - - - - 0x0103AB 04:839B: A5 45     LDA ram_0045
@@ -848,15 +848,15 @@ C - - - - - 0x0103AD 04:839D: 0A        ASL
 C - - - - - 0x0103AE 04:839E: 18        CLC
 C - - - - - 0x0103AF 04:839F: 69 03     ADC #$03
 C - - - - - 0x0103B1 04:83A1: A8        TAY
-C - - - - - 0x0103B2 04:83A2: B1 00     LDA (ram_0000),Y
-C - - - - - 0x0103B4 04:83A4: 85 02     STA ram_0002
+C - - - - - 0x0103B2 04:83A2: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0103B4 04:83A4: 85 02     STA ram_0002_temp
 C - - - - - 0x0103B6 04:83A6: C8        INY
-C - - - - - 0x0103B7 04:83A7: B1 00     LDA (ram_0000),Y
-C - - - - - 0x0103B9 04:83A9: 85 03     STA ram_0003
+C - - - - - 0x0103B7 04:83A7: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0103B9 04:83A9: 85 03     STA ram_0003_temp
 C - - - - - 0x0103BB 04:83AB: A0 00     LDY #$00
 C - - - - - 0x0103BD 04:83AD: A2 00     LDX #$00
 bra_83AF_loop:
-C - - - - - 0x0103BF 04:83AF: B1 02     LDA (ram_0002),Y
+C - - - - - 0x0103BF 04:83AF: B1 02     LDA (ram_0002_temp),Y
 C - - - - - 0x0103C1 04:83B1: 95 46     STA ram_0046_pal_buffer,X
 C - - - - - 0x0103C3 04:83B3: E8        INX
 C - - - - - 0x0103C4 04:83B4: C8        INY
@@ -907,19 +907,19 @@ C - - - - - 0x010406 04:83F6: 0A        ASL
 C - - - - - 0x010407 04:83F7: 0A        ASL
 C - - - - - 0x010408 04:83F8: 0A        ASL
 C - - - - - 0x010409 04:83F9: 0A        ASL
-C - - - - - 0x01040A 04:83FA: 85 00     STA ram_0000    ; brightness degree
+C - - - - - 0x01040A 04:83FA: 85 00     STA ram_0000_temp    ; brightness degree
 C - - - - - 0x01040C 04:83FC: A2 20     LDX #$20
 bra_83FE_loop:
 C - - - - - 0x01040E 04:83FE: B5 46     LDA ram_0046_pal_buffer,X
 C - - - - - 0x010410 04:8400: A8        TAY
 C - - - - - 0x010411 04:8401: 29 0F     AND #$0F
-C - - - - - 0x010413 04:8403: 85 01     STA ram_0001    ; color w/o brightness
+C - - - - - 0x010413 04:8403: 85 01     STA ram_0001_temp    ; color w/o brightness
 C - - - - - 0x010415 04:8405: 98        TYA
 C - - - - - 0x010416 04:8406: 29 30     AND #$30    ; check brightness
-C - - - - - 0x010418 04:8408: C5 00     CMP ram_0000    ; brightness degree
+C - - - - - 0x010418 04:8408: C5 00     CMP ram_0000_temp    ; brightness degree
 C - - - - - 0x01041A 04:840A: 90 06     BCC bra_8412
-C - - - - - 0x01041C 04:840C: A5 00     LDA ram_0000    ; brightness degree
-C - - - - - 0x01041E 04:840E: 05 01     ORA ram_0001    ; color w/o brightness
+C - - - - - 0x01041C 04:840C: A5 00     LDA ram_0000_temp    ; brightness degree
+C - - - - - 0x01041E 04:840E: 05 01     ORA ram_0001_temp    ; color w/o brightness
 C - - - - - 0x010420 04:8410: 95 46     STA ram_0046_pal_buffer,X
 bra_8412:
 C - - - - - 0x010422 04:8412: CA        DEX
