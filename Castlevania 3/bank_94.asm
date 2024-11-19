@@ -15098,9 +15098,9 @@ C - - - - - 0x02B20C 0A:B1FC: A2 03     LDX #$03
 C - - - - - 0x02B20E 0A:B1FE: A9 00     LDA #$00
 C - - - - - 0x02B210 0A:B200: 9D 20 05  STA ram_obj_spd_Y_hi,X
 C - - - - - 0x02B213 0A:B203: 9D F2 04  STA ram_obj_spd_X_hi,X
-C - - - - - 0x02B216 0A:B206: A9 40     LDA #$40
+C - - - - - 0x02B216 0A:B206: A9 40     LDA #< $0140
 C - - - - - 0x02B218 0A:B208: 9D 37 05  STA ram_obj_spd_Y_lo,X
-C - - - - - 0x02B21B 0A:B20B: A9 01     LDA #$01
+C - - - - - 0x02B21B 0A:B20B: A9 01     LDA #> $0140
 C - - - - - 0x02B21D 0A:B20D: 9D F2 04  STA ram_obj_spd_X_hi,X
 C - - - - - 0x02B220 0A:B210: A9 01     LDA #$01
 C - - - - - 0x02B222 0A:B212: 8D 84 07  STA ram_0784

@@ -1235,7 +1235,7 @@ tbl_8723:
 
 
 sub_8753_garbage_code:
-; bzk garbage?
+; bzk garbage, useless code
 C - - - - - 0x010763 04:8753: EA        NOP
 C - - - - - 0x010764 04:8754: EA        NOP
 C - - - - - 0x010765 04:8755: EA        NOP

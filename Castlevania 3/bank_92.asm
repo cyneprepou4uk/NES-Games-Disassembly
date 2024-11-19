@@ -11298,9 +11298,9 @@ C - - - - - 0x027A43 09:BA33: 4C 04 BC  JMP loc_BC04
 bra_BA36:
 C - - - - - 0x027A46 09:BA36: 4C 2C BC  JMP loc_BC2C
 bra_BA39_not_dead:
-C - - - - - 0x027A49 09:BA39: A9 00     LDA #$00
+C - - - - - 0x027A49 09:BA39: A9 00     LDA #> $0060
 C - - - - - 0x027A4B 09:BA3B: 9D F2 04  STA ram_obj_spd_X_hi,X
-C - - - - - 0x027A4E 09:BA3E: A9 60     LDA #$60
+C - - - - - 0x027A4E 09:BA3E: A9 60     LDA #< $0060
 C - - - - - 0x027A50 09:BA40: 9D 09 05  STA ram_obj_spd_X_lo,X
 C - - - - - 0x027A53 09:BA43: BD 45 06  LDA ram_obj_0646,X
 C - - - - - 0x027A56 09:BA46: 29 0F     AND #$0F
@@ -11319,9 +11319,9 @@ C - - - - - 0x027A6B 09:BA5B: 49 FF     EOR #$FF
 C - - - - - 0x027A6D 09:BA5D: 18        CLC
 C - - - - - 0x027A6E 09:BA5E: 69 01     ADC #$01
 C - - - - - 0x027A70 09:BA60: 85 00     STA ram_0000_temp
-C - - - - - 0x027A72 09:BA62: A9 FF     LDA #$FF
+C - - - - - 0x027A72 09:BA62: A9 FF     LDA #> $FFA0
 C - - - - - 0x027A74 09:BA64: 9D F2 04  STA ram_obj_spd_X_hi,X
-C - - - - - 0x027A77 09:BA67: A9 A0     LDA #$A0
+C - - - - - 0x027A77 09:BA67: A9 A0     LDA #< $FFA0
 C - - - - - 0x027A79 09:BA69: 9D 09 05  STA ram_obj_spd_X_lo,X
 bra_BA6C:
 C - - - - - 0x027A7C 09:BA6C: A5 00     LDA ram_0000_temp

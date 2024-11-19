@@ -755,6 +755,7 @@ C - - - - - 0x030C4B 0C:8C3B: 9D 15 01  STA ram_0115_se,X
 C - - - - - 0x030C4E 0C:8C3E: BD D8 03  LDA ram_03D8_se,X
 C - - - - - 0x030C51 0C:8C41: 29 0C     AND #$0C
 C - - - - - 0x030C53 0C:8C43: D0 26     BNE bra_8C6B
+; bzk optimize, useless JMP
 C - - - - - 0x030C55 0C:8C45: 4C 48 8C  JMP loc_8C48
 
 
@@ -769,6 +770,9 @@ C - - - - - 0x030C62 0C:8C52: 09 20     ORA #$20
 C - - - - - 0x030C64 0C:8C54: 9D 6E 01  STA ram_016E_se,X
 bra_8C57_RTS:
 C - - - - - 0x030C67 0C:8C57: 60        RTS
+
+
+
 bra_8C58:
 C - - - - - 0x030C68 0C:8C58: BD 15 01  LDA ram_0115_se,X
 C - - - - - 0x030C6B 0C:8C5B: 09 04     ORA #$04
@@ -779,6 +783,9 @@ C - - - - - 0x030C75 0C:8C65: 09 80     ORA #$80
 C - - - - - 0x030C77 0C:8C67: 9D C3 03  STA ram_03C3_se,X
 bra_8C6A_RTS:
 C - - - - - 0x030C7A 0C:8C6A: 60        RTS
+
+
+
 bra_8C6B:
 C - - - - - 0x030C7B 0C:8C6B: 4A        LSR
 C - - - - - 0x030C7C 0C:8C6C: 4A        LSR
@@ -897,6 +904,7 @@ C - - - - - 0x030D44 0C:8D34: 38        SEC
 C - - - - - 0x030D45 0C:8D35: E5 E2     SBC ram_00E2_se_temp
 C - - - - - 0x030D47 0C:8D37: 85 E2     STA ram_00E2_se_temp
 C - - - - - 0x030D49 0C:8D39: 20 40 8D  JSR sub_8D40
+; bzk optimize, JMP
 C - - - - - 0x030D4C 0C:8D3C: 20 6A 8D  JSR sub_8D6A
 C - - - - - 0x030D4F 0C:8D3F: 60        RTS
 
@@ -923,12 +931,12 @@ sub_8D54:
 C - - - - - 0x030D64 0C:8D54: 18        CLC
 C - - - - - 0x030D65 0C:8D55: 7D 83 01  ADC ram_0183_se,X
 C - - - - - 0x030D68 0C:8D58: 85 EC     STA ram_00EC_se
-C - - - - - 0x030D6A 0C:8D5A: 90 08     BCC bra_8D64
+C - - - - - 0x030D6A 0C:8D5A: 90 08     BCC bra_8D64_not_overflow
 C - - - - - 0x030D6C 0C:8D5C: BD 86 01  LDA ram_0186_se,X
 C - - - - - 0x030D6F 0C:8D5F: 85 ED     STA ram_00ED_se
 C - - - - - 0x030D71 0C:8D61: E6 ED     INC ram_00ED_se
 C - - - - - 0x030D73 0C:8D63: 60        RTS
-bra_8D64:
+bra_8D64_not_overflow:
 C - - - - - 0x030D74 0C:8D64: BD 86 01  LDA ram_0186_se,X
 C - - - - - 0x030D77 0C:8D67: 85 ED     STA ram_00ED_se
 C - - - - - 0x030D79 0C:8D69: 60        RTS
@@ -8308,10 +8316,10 @@ C - - - - - 0x032A58 0C:AA48: 9D A8 04  STA ram_obj_facing,X
 bra_AA4B:
 C - - - - - 0x032A5B 0C:AA4B: BD A8 04  LDA ram_obj_facing,X
 C - - - - - 0x032A5E 0C:AA4E: F0 04     BEQ bra_AA54_facing_right
-C - - - - - 0x032A60 0C:AA50: A9 FF     LDA #$FF
+C - - - - - 0x032A60 0C:AA50: A9 FF     LDA #$FF    ; > FF00
 C - - - - - 0x032A62 0C:AA52: D0 02     BNE bra_AA56    ; jmp
 bra_AA54_facing_right:
-C - - - - - 0x032A64 0C:AA54: A9 01     LDA #$01
+C - - - - - 0x032A64 0C:AA54: A9 01     LDA #$01    ; > 0100
 bra_AA56:
 C - - - - - 0x032A66 0C:AA56: A0 00     LDY #$00
 C - - - - - 0x032A68 0C:AA58: 20 9C A8  JSR sub_A89C_set_spd_X
@@ -8478,7 +8486,7 @@ bra_AB57_RTS:
 C - - - - - 0x032B67 0C:AB57: 60        RTS
 bra_AB58:
 C - - - - - 0x032B68 0C:AB58: A9 00     LDA #$00
-C - - - - - 0x032B6A 0C:AB5A: A8        TAY
+C - - - - - 0x032B6A 0C:AB5A: A8        TAY ; 00
 C - - - - - 0x032B6B 0C:AB5B: 20 A4 A8  JSR sub_A8A4_set_spd_Y
 C - - - - - 0x032B6E 0C:AB5E: 20 9C A8  JSR sub_A89C_set_spd_X
 C - - - - - 0x032B71 0C:AB61: BD 1C 04  LDA ram_obj_pos_Y_hi,X
@@ -9198,9 +9206,9 @@ C - - - - - 0x033012 0C:B002: A0 00     LDY #$00
 C - - - - - 0x033014 0C:B004: 20 63 B2  JSR sub_B263
 C - - - - - 0x033017 0C:B007: A9 C8     LDA #$C8
 C - - - - - 0x033019 0C:B009: 9D 1C 04  STA ram_obj_pos_Y_hi,X
-C - - - - - 0x03301C 0C:B00C: A9 20     LDA #$20
+C - - - - - 0x03301C 0C:B00C: A9 20     LDA #< $FF20
 C - - - - - 0x03301E 0C:B00E: 9D 37 05  STA ram_obj_spd_Y_lo,X
-C - - - - - 0x033021 0C:B011: A9 FF     LDA #$FF
+C - - - - - 0x033021 0C:B011: A9 FF     LDA #> $FF20
 C - - - - - 0x033023 0C:B013: 9D 20 05  STA ram_obj_spd_Y_hi,X
 C - - - - - 0x033026 0C:B016: A9 00     LDA #$00
 C - - - - - 0x033028 0C:B018: 9D F2 04  STA ram_obj_spd_X_hi,X
@@ -9218,15 +9226,15 @@ C - - - - - 0x03303D 0C:B02D: D0 2A     BNE bra_B059
 C - - - - - 0x03303F 0C:B02F: A9 B0     LDA #$B0
 C - - - - - 0x033041 0C:B031: DD 1C 04  CMP ram_obj_pos_Y_hi,X
 C - - - - - 0x033044 0C:B034: 90 22     BCC bra_B058_RTS
-C - - - - - 0x033046 0C:B036: A9 E0     LDA #$E0
+C - - - - - 0x033046 0C:B036: A9 E0     LDA #< $00E0
 C - - - - - 0x033048 0C:B038: 9D 09 05  STA ram_obj_spd_X_lo,X
-C - - - - - 0x03304B 0C:B03B: A9 00     LDA #$00
+C - - - - - 0x03304B 0C:B03B: A9 00     LDA #> $00E0
 C - - - - - 0x03304D 0C:B03D: 9D F2 04  STA ram_obj_spd_X_hi,X
 C - - - - - 0x033050 0C:B040: BD 45 06  LDA ram_obj_0646,X
 C - - - - - 0x033053 0C:B043: D0 0A     BNE bra_B04F
-C - - - - - 0x033055 0C:B045: A9 20     LDA #$20
+C - - - - - 0x033055 0C:B045: A9 20     LDA #< $FF20
 C - - - - - 0x033057 0C:B047: 9D 09 05  STA ram_obj_spd_X_lo,X
-C - - - - - 0x03305A 0C:B04A: A9 FF     LDA #$FF
+C - - - - - 0x03305A 0C:B04A: A9 FF     LDA #> $FF20
 C - - - - - 0x03305C 0C:B04C: 9D F2 04  STA ram_obj_spd_X_hi,X
 bra_B04F:
 C - - - - - 0x03305F 0C:B04F: FE 06 06  INC ram_obj_config,X
@@ -9471,9 +9479,9 @@ C - - - - - 0x0331F0 0C:B1E0: BD 09 05  LDA ram_obj_spd_X_lo,X
 C - - - - - 0x0331F3 0C:B1E3: C9 80     CMP #$80
 C - - - - - 0x0331F5 0C:B1E5: B0 0C     BCS bra_B1F3
 bra_B1E7:
-C - - - - - 0x0331F7 0C:B1E7: A9 FF     LDA #$FF
+C - - - - - 0x0331F7 0C:B1E7: A9 FF     LDA #> $FF80
 C - - - - - 0x0331F9 0C:B1E9: 9D F2 04  STA ram_obj_spd_X_hi,X
-C - - - - - 0x0331FC 0C:B1EC: A9 80     LDA #$80
+C - - - - - 0x0331FC 0C:B1EC: A9 80     LDA #< $FF80
 C - - - - - 0x0331FE 0C:B1EE: 9D 09 05  STA ram_obj_spd_X_lo,X
 C - - - - - 0x033201 0C:B1F1: 38        SEC
 C - - - - - 0x033202 0C:B1F2: 60        RTS
@@ -9495,9 +9503,9 @@ C - - - - - 0x03320C 0C:B1FC: BD 09 05  LDA ram_obj_spd_X_lo,X
 C - - - - - 0x03320F 0C:B1FF: C9 80     CMP #$80
 C - - - - - 0x033211 0C:B201: 90 0C     BCC bra_B20F
 bra_B203:
-C - - - - - 0x033213 0C:B203: A9 00     LDA #$00
+C - - - - - 0x033213 0C:B203: A9 00     LDA #> $0080
 C - - - - - 0x033215 0C:B205: 9D F2 04  STA ram_obj_spd_X_hi,X
-C - - - - - 0x033218 0C:B208: A9 80     LDA #$80
+C - - - - - 0x033218 0C:B208: A9 80     LDA #< $0080
 C - - - - - 0x03321A 0C:B20A: 9D 09 05  STA ram_obj_spd_X_lo,X
 C - - - - - 0x03321D 0C:B20D: 38        SEC
 C - - - - - 0x03321E 0C:B20E: 60        RTS

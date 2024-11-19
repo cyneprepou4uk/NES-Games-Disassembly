@@ -157,6 +157,54 @@ ram_0000_temp                           = $0000 ; 000554(W)  00055A(R)  000BB4(W
     ram_0000_t090                           = ram_0000_temp ; 
     ram_0000_t091                           = ram_0000_temp ; 
     ram_0000_t092                           = ram_0000_temp ; 
+    ram_0000_t093                           = ram_0000_temp ; 
+    ram_0000_t094_scroll_X                  = ram_0000_temp ; 
+    ram_0000_t095_base_nametable            = ram_0000_temp ; 
+    ram_0000_t096                           = ram_0000_temp ; 
+    ram_0000_t097_base_nametable            = ram_0000_temp ; 
+    ram_0000_t098_score                     = ram_0000_temp ; 
+    ram_0000_t099                           = ram_0000_temp ; 
+    ram_0000_t09A                           = ram_0000_temp ; 
+    ram_0000_t09B_ppu_addr_hi               = ram_0000_temp ; 
+    ram_0000_t09C_ppu_addr_hi               = ram_0000_temp ; 
+    ram_0000_t09D_pos_Y_hi                  = ram_0000_temp ; 
+    ram_0000_t09E_pos_X_hi                  = ram_0000_temp ; 
+    ram_0000_t09F                           = ram_0000_temp ; 
+    ram_0000_t0A0_obj_facing                = ram_0000_temp ; 
+    ram_0000_t0A1                           = ram_0000_temp ; 
+    ram_0000_t0A2                           = ram_0000_temp ; 
+    ram_0000_t0A3                           = ram_0000_temp ; 
+    ram_0000_t0A4                           = ram_0000_temp ; 
+    ram_0000_t0A5                           = ram_0000_temp ; 
+    ram_0000_t0A6_hash                      = ram_0000_temp ; 
+    ram_0000_t0A7                           = ram_0000_temp ; 
+    ram_0000_t0A8                           = ram_0000_temp ; 
+    ram_0000_t0A9                           = ram_0000_temp ; 
+    ram_0000_t0AA                           = ram_0000_temp ; 
+    ram_0000_t0AB                           = ram_0000_temp ; 
+    ram_0000_t0AC_obj_facing                = ram_0000_temp ; 
+    ram_0000_t0AD_hi                        = ram_0000_temp ; in pair with ram_0001_t03E_lo
+    ram_0000_t0AE                           = ram_0000_temp ; 
+    ram_0000_t0AF                           = ram_0000_temp ; 
+    ram_0000_t0B0_object_index              = ram_0000_temp ; 
+    ram_0000_t0B1                           = ram_0000_temp ; 
+    ram_0000_t0B2_obj_type                  = ram_0000_temp ; 
+    ram_0000_t0B3_spd_hi                    = ram_0000_temp ; in pair with ram_0001_t03F_spd_lo
+    ram_0000_t0B4_spd_Y_lo                  = ram_0000_temp ; 
+    ram_0000_t0B5                           = ram_0000_temp ; 
+    ram_0000_t0B6                           = ram_0000_temp ; 
+    ram_0000_t0B7                           = ram_0000_temp ; bzk optimize
+    ram_0000_t0B8                           = ram_0000_temp ; bzk optimize
+    ram_0000_t0B9                           = ram_0000_temp ; bzk optimize
+    ram_0000_t0BA                           = ram_0000_temp ; bzk optimize
+    ram_0000_t0BB                           = ram_0000_temp ; bzk optimize
+    ram_0000_t0BC                           = ram_0000_temp ; 
+    ram_0000_t0BD                           = ram_0000_temp ; 
+    ram_0000_t0BE                           = ram_0000_temp ; 
+    ram_0000_t0BF                           = ram_0000_temp ; 
+    ram_0000_t0C0                           = ram_0000_temp ; 
+    ram_0000_t0C1_pos_X_hi                  = ram_0000_temp ; 
+    ram_0000_t0C2_flag                      = ram_0000_temp ; 
 
 
 
@@ -219,6 +267,12 @@ ram_0001_temp                           = $0001 ; 000C45(W)  000C4D(R)  000C57(W
     ram_0001_t038                           = ram_0001_temp ; 
     ram_0001_t039                           = ram_0001_temp ; 
     ram_0001_t03A                           = ram_0001_temp ; 
+    ram_0001_t03B                           = ram_0001_temp ; 
+    ram_0001_t03C_counter                   = ram_0001_temp ; 
+    ram_0001_t03D_pos_X_hi_distance         = ram_0001_temp ; 
+    ram_0001_t03E_lo                        = ram_0001_temp ; in pair with ram_0000_t0AD_hi
+    ram_0001_t03F_spd_lo                    = ram_0001_temp ; in pair with ram_0000_t0B3_spd_hi
+    ram_0001_t040_object_index              = ram_0001_temp ; 
 
 
 
@@ -276,6 +330,8 @@ ram_0002_temp                           = $0002 ; 000C4B(W)  000C59(R)  000C5E(W
     ram_0002_t032                           = ram_0002_temp ; 
     ram_0002_t033                           = ram_0002_temp ; 
     ram_0002_t034_obj_facing                = ram_0002_temp ; 
+    ram_0002_t035_lo                        = ram_0002_temp ; in pair with ram_0003_t014_hi
+    ram_0002_t036_lo                        = ram_0002_temp ; in pair with ram_0003_t015_hi
 
 
 
@@ -301,6 +357,8 @@ ram_0003_temp                           = $0003 ; 000C87(Rx) 000C97(Rx) 00365B(W
     ram_0003_t011_ppu_addr_hi               = ram_0003_temp ; in pair with ram_0002_t026_ppu_addr_lo
     ram_0003_t012                           = ram_0003_temp ; 
     ram_0003_t013_some_obj_flags            = ram_0003_temp ; 
+    ram_0003_t014_hi                        = ram_0003_temp ; in pair with ram_0002_t035_lo
+    ram_0003_t015_hi                        = ram_0003_temp ; in pair with ram_0002_t036_lo
 
 
 
@@ -1510,9 +1568,18 @@ ram_00B1_temp                           = $00B1 ; 001830(W)  001838(W)  001883(W
 
 
 
-; todo
+; 
 ram_00B2                                = $00B2 ; 000F1B(R)  000F1F(W)  000F23(R)  001157(W)  028503(R)  02E1FA(W)  03E03F(Wi) 03E83C(Wx) 
-ram_00B3                                = $00B3 ; 0010EF(W)  008372(W)  00A6FA(R)  03CF41(R)  03E03F(Wi) 03E83C(Wx) 
+
+
+
+; 00 = 
+; 01 = 
+ram_00B3_flag                           = $00B3 ; 0010EF(W)  008372(W)  00A6FA(R)  03CF41(R)  03E03F(Wi) 03E83C(Wx) 
+
+
+
+; todo
 ram_00B4                                = $00B4 ; 000B8E(W)  000B94(W)  000BA4(R)  002057(W)  002074(R)  0029AD(W)  0029DF(R)  0042D9(W)  0042DC(R)  00430F(R)  004317(W)  006FDB(R)  007031(R)  007047(R)  00705A(R)  007078(W)  0072E8(R)  0072F8(R)  007378(R)  00739B(R)  0073B0(R)  0075F4(R)  007604(R)  007620(R)  00DDC9(W)  00DDD9(R)  00DE1F(W)  00DE48(R)  00DF0C(W)  00DF1F(R)  00DFB9(R)  00DFC4(W)  00DFDD(W)  02B148(R)  02B405(R)  02B485(R)  02B497(R)  02B4BC(R)  02B4EB(W)  02B4F3(R)  02B671(W)  02B75A(R)  02B77A(R)  02B7A3(R)  02B87E(R)  02B894(R)  02B93D(R)  03E03F(Wi) 03E83C(Wx) 
 ram_00B5                                = $00B5 ; 000B86(W)  000B98(W)  00205A(W)  0029B0(W)  0042D5(W)  00707B(W)  02B4EE(W)  02B674(W)  03E03F(Wi) 03E83C(Wx) 
 ram_00B6                                = $00B6 ; 03CC70(R)  03CC9B(R)  03CD00(R)  03CD2A(R)  03CD4D(W)  03CD4F(R)  03CD58(R)  03CD60(W)  03CD8D(W)  03E03F(Wi) 03E83C(Wx) 
@@ -3861,8 +3928,12 @@ ram_078D                                = $078D ; 001186(Wx) 001815(Wy) 00279D(W
 
 
 
+; 
+ram_078E_scroll_X                       = $078E ; 001186(Wx) 001815(Wy) 00649D(R)  006592(Wx) 0065CF(R)  00683C(Wx) 007689(Wx) 0093FD(Wy) 009D57(Wy) 009E97(Wx) 00BA1C(W)  032422(Ry) 032428(Wy) 03E03F(Wi) 03E84F(Wx) 
+
+
+
 ; todo
-ram_078E                                = $078E ; 001186(Wx) 001815(Wy) 00649D(R)  006592(Wx) 0065CF(R)  00683C(Wx) 007689(Wx) 0093FD(Wy) 009D57(Wy) 009E97(Wx) 00BA1C(W)  032422(Ry) 032428(Wy) 03E03F(Wi) 03E84F(Wx) 
 ram_078F                                = $078F ; 001186(Wx) 001815(Wy) 0060F3(Ry) 0064AC(R)  006592(Wx) 00683C(Wx) 00691A(W)  00694C(W)  007689(Wx) 0076A1(R)  0076A7(R)  0077C3(W)  007800(R)  007806(R)  007914(W)  00791B(R)  00A00B(Rx) 00B9FF(W)  00BA50(Wy) 03242B(Ry) 032430(Wy) 03E03F(Wi) 03E84F(Wx) 
 ram_0790                                = $0790 ; 001186(Wx) 001815(Wy) 00188D(R)  0018BA(R)  0018BF(W)  0018D5(R)  0018E4(R)  0018E9(W)  00298B(R)  002990(R)  002ABF(W)  002C47(R)  002D31(W)  0064A6(R)  006592(Wx) 00683C(Wx) 007593(Wy) 007696(Wy) 0076B4(Ry) 0077BA(Ry) 0077CA(Ry) 007811(Ry) 0093DE(Rx) 0093EC(Rx) 0093F4(Rx) 00A8F6(Wx) 00AAAF(Wx) 00AC77(Ry) 00AC7A(Wx) 00ACBA(Rx) 00AE6A(Wx) 00BA16(W)  00BA50(Wy) 02B331(W)  032422(Ry) 032428(Wy) 03E03F(Wi) 03E84F(Wx) 
 ram_0791                                = $0791 ; 001186(Wx) 001815(Wy) 001893(R)  0018C2(R)  0018C7(W)  0018CE(R)  0018DC(R)  0018E1(W)  0018EC(R)  0027CF(Ry) 00282D(Wy) 0060F3(Ry) 00683C(Wx) 00684B(W)  007593(Wy) 007696(Wy) 0076B4(Ry) 007811(Ry) 0093DE(Rx) 0093EC(Rx) 0093F4(Rx) 00A8F6(Wx) 00AAAF(Wx) 00AC77(Ry) 00AC7A(Wx) 00ACBA(Rx) 00AD25(Rx) 00AD2B(Wx) 00AE6A(Wx) 00B9B0(W)  00BA2C(R)  00BA4B(W)  024284(Wx) 0242C5(Rx) 02436C(Wx) 024396(Rx) 0243A1(Rx) 02442C(Wx) 024477(Wx) 02B336(W)  03242B(Ry) 032430(Wy) 03E03F(Wi) 03E84F(Wx) 

@@ -1058,7 +1058,7 @@ C - - - - - 0x03CF40 0F:CF30: 60        RTS
 
 
 sub_CF31:
-C - - - - - 0x03CF41 0F:CF31: A4 B3     LDY ram_00B3
+C - - - - - 0x03CF41 0F:CF31: A4 B3     LDY ram_00B3_flag
 C - - - - - 0x03CF43 0F:CF33: F0 37     BEQ bra_CF6C
 C - - - - - 0x03CF45 0F:CF35: A5 7D     LDA ram_007D
 C - - - - - 0x03CF47 0F:CF37: 29 F0     AND #$F0

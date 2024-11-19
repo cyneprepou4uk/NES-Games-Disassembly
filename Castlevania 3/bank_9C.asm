@@ -2810,14 +2810,14 @@ C - - - - - 0x038ED3 0E:8EC3: 90 12     BCC bra_8ED7
 C - - - - - 0x038ED5 0E:8EC5: 20 C2 91  JSR sub_91C2
 C - - - - - 0x038ED8 0E:8EC8: BD 09 05  LDA ram_obj_spd_X_lo,X
 C - - - - - 0x038EDB 0E:8ECB: 18        CLC
-C - - - - - 0x038EDC 0E:8ECC: 69 00     ADC #$00
+C - - - - - 0x038EDC 0E:8ECC: 69 00     ADC #< $0100
 C - - - - - 0x038EDE 0E:8ECE: A8        TAY
 C - - - - - 0x038EDF 0E:8ECF: BD F2 04  LDA ram_obj_spd_X_hi,X
-C - - - - - 0x038EE2 0E:8ED2: 69 01     ADC #$01
+C - - - - - 0x038EE2 0E:8ED2: 69 01     ADC #> $0100
 C - - - - - 0x038EE4 0E:8ED4: 4C 57 8F  JMP loc_8F57
 bra_8ED7:
-C - - - - - 0x038EE7 0E:8ED7: A0 00     LDY #$00
-C - - - - - 0x038EE9 0E:8ED9: A9 01     LDA #$01
+C - - - - - 0x038EE7 0E:8ED7: A0 00     LDY #< $0100
+C - - - - - 0x038EE9 0E:8ED9: A9 01     LDA #> $0100
 C - - - - - 0x038EEB 0E:8EDB: 4C 57 8F  JMP loc_8F57
 bra_8EDE_02:
 C - - - - - 0x038EEE 0E:8EDE: A9 00     LDA #> $0080
@@ -4005,14 +4005,14 @@ C - - - - - 0x039652 0E:9642: F0 14     BEQ bra_9658    ; jmp
 bra_9644_pressed_Right:
 C - - - - - 0x039654 0E:9644: A9 00     LDA #$00    ; facing right
 C - - - - - 0x039656 0E:9646: 9D A8 04  STA ram_obj_facing,X
-C - - - - - 0x039659 0E:9649: A9 01     LDA #$01
-C - - - - - 0x03965B 0E:964B: A0 00     LDY #$00
+C - - - - - 0x039659 0E:9649: A9 01     LDA #> $0100
+C - - - - - 0x03965B 0E:964B: A0 00     LDY #< $0100
 C - - - - - 0x03965D 0E:964D: F0 09     BEQ bra_9658    ; jmp
 bra_964F_pressed_Left:
 C - - - - - 0x03965F 0E:964F: A9 01     LDA #$01    ; facing left
 C - - - - - 0x039661 0E:9651: 9D A8 04  STA ram_obj_facing,X
-C - - - - - 0x039664 0E:9654: A9 FF     LDA #$FF
-C - - - - - 0x039666 0E:9656: A0 00     LDY #$00
+C - - - - - 0x039664 0E:9654: A9 FF     LDA #> $FF00
+C - - - - - 0x039666 0E:9656: A0 00     LDY #< $FF00
 bra_9658:
 C - - - - - 0x039668 0E:9658: 9D F2 04  STA ram_obj_spd_X_hi,X
 C - - - - - 0x03966B 0E:965B: 98        TYA
@@ -9388,9 +9388,9 @@ C - - - - - 0x03B776 0E:B766: B9 91 B4  LDA tbl_B491_spd_X,Y
 C - - - - - 0x03B779 0E:B769: 9D F2 04  STA ram_obj_spd_X_hi,X
 C - - - - - 0x03B77C 0E:B76C: B9 92 B4  LDA tbl_B491_spd_X + $01,Y
 C - - - - - 0x03B77F 0E:B76F: 9D 09 05  STA ram_obj_spd_X_lo,X
-C - - - - - 0x03B782 0E:B772: A9 FE     LDA #$FE
+C - - - - - 0x03B782 0E:B772: A9 FE     LDA #> $FE80
 C - - - - - 0x03B784 0E:B774: 9D 20 05  STA ram_obj_spd_Y_hi,X
-C - - - - - 0x03B787 0E:B777: A9 80     LDA #$80
+C - - - - - 0x03B787 0E:B777: A9 80     LDA #< $FE80
 C - - - - - 0x03B789 0E:B779: 9D 37 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x03B78C 0E:B77C: AD A8 04  LDA ram_plr_facing
 C - - - - - 0x03B78F 0E:B77F: 9D A8 04  STA ram_obj_facing,X
