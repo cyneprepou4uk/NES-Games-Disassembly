@@ -2408,12 +2408,12 @@ C - - - - - 0x038C68 0E:8C58: A9 23     LDA #con_sound_water_splash
 C - - - - - 0x038C6A 0E:8C5A: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x038C6D 0E:8C5D: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x038C6F 0E:8C5F: 29 03     AND #$03
-C - - - - - 0x038C71 0E:8C61: 85 00     STA ram_0000_temp
+C - - - - - 0x038C71 0E:8C61: 85 00     STA ram_0000_t0C3
 ; * 03
 C - - - - - 0x038C73 0E:8C63: 0A        ASL
 ; bzk optimize, value is too low, no need for CLC after ASL
 C - - - - - 0x038C74 0E:8C64: 18        CLC
-C - - - - - 0x038C75 0E:8C65: 65 00     ADC ram_0000_temp
+C - - - - - 0x038C75 0E:8C65: 65 00     ADC ram_0000_t0C3
 C - - - - - 0x038C77 0E:8C67: A8        TAY
 C - - - - - 0x038C78 0E:8C68: 85 0F     STA ram_000F_temp
 C - - - - - 0x038C7A 0E:8C6A: A2 14     LDX #$14
@@ -2422,10 +2422,10 @@ C - - - - - 0x038C7C 0E:8C6C: A4 0F     LDY ram_000F_temp
 C - - - - - 0x038C7E 0E:8C6E: B9 BD 8C  LDA tbl_8CBD_offset,Y
 ; * 06
 C - - - - - 0x038C81 0E:8C71: 0A        ASL
-C - - - - - 0x038C82 0E:8C72: 85 00     STA ram_0000_temp
+C - - - - - 0x038C82 0E:8C72: 85 00     STA ram_0000_t0C4
 C - - - - - 0x038C84 0E:8C74: 0A        ASL
 C - - - - - 0x038C85 0E:8C75: 18        CLC
-C - - - - - 0x038C86 0E:8C76: 65 00     ADC ram_0000_temp
+C - - - - - 0x038C86 0E:8C76: 65 00     ADC ram_0000_t0C4
 C - - - - - 0x038C88 0E:8C78: A8        TAY
 C - - - - - 0x038C89 0E:8C79: B9 C9 8C  LDA tbl_8CC9,Y
 C - - - - - 0x038C8C 0E:8C7C: 18        CLC

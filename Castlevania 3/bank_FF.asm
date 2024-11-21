@@ -765,7 +765,7 @@ C - - - - - 0x03CD7B 0F:CD6B: 0A        ASL
 C - - - - - 0x03CD7C 0F:CD6C: 0A        ASL
 C - - - - - 0x03CD7D 0F:CD6D: 18        CLC
 C - - - - - 0x03CD7E 0F:CD6E: 69 07     ADC #$07
-C - - - - - 0x03CD80 0F:CD70: D0 02     BNE bra_CD74
+C - - - - - 0x03CD80 0F:CD70: D0 02     BNE bra_CD74    ; jmp
 bra_CD72:
 C - - - - - 0x03CD82 0F:CD72: A9 00     LDA #$00
 bra_CD74:
@@ -1187,6 +1187,7 @@ C - - - - - 0x03CFFE 0F:CFEE: 65 51     ADC ram_0050_t000_data + $01
 C - - - - - 0x03D000 0F:CFF0: 95 53     STA ram_0053,X
 C - - - - - 0x03D002 0F:CFF2: F6 52     INC ram_0052,X
 C - - - - - 0x03D004 0F:CFF4: D0 02     BNE bra_CFF8_RTS
+; if overflow
 C - - - - - 0x03D006 0F:CFF6: F6 53     INC ram_0053,X
 bra_CFF8_RTS:
 C - - - - - 0x03D008 0F:CFF8: 60        RTS
@@ -4797,6 +4798,9 @@ C - - - - - 0x03E59A 0F:E58A: A9 00     LDA #< $0100
 C - - - - - 0x03E59C 0F:E58C: A0 01     LDY #> $0100
 sub_0x03E59E_set_screen_timer:
 loc_0x03E59E_set_screen_timer:
+; in
+    ; A = screen timer lo
+    ; Y = screen timer hi
 C D 3 - - - 0x03E59E 0F:E58E: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x03E5A0 0F:E590: 84 31     STY ram_screen_timer_hi
 C - - - - - 0x03E5A2 0F:E592: 60        RTS
@@ -8614,6 +8618,11 @@ loc_0x03FC2E:
 ; in
     ; A = 
     ; Y = 
+; out
+    ; A = 
+    ; Z
+        ; 0 = 
+        ; 1 = 
 C D 3 - - - 0x03FC2E 0F:FC1E: 85 10     STA ram_0010_t017_pos_X_hi
 C - - - - - 0x03FC30 0F:FC20: A5 68     LDA ram_0068
 C - - - - - 0x03FC32 0F:FC22: 30 D1     BMI bra_FBF5
