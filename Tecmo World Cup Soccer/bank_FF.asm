@@ -148,7 +148,7 @@ C - - - - - 0x00C058 03:C048: 4C 9D C8  JMP loc_C89D_set_aim_to_area_A
 
 
 ; bzk garbage
-- - - - - - 0x00C05B 03:C04B: 4C 43 C8  JMP loc_C843
+- - - - - - 0x00C05B 03:C04B: 4C 43 C8  JMP loc_C843_calculate_player_area
 
 
 ; bzk garbage
@@ -1448,8 +1448,25 @@ tbl_C819:
 
 
 
-sub_C843:
-loc_C843:
+sub_C843_calculate_player_area:
+loc_C843_calculate_player_area:
+; out
+    ; A = area
+        ; 00 01 02 03 04 05 06 07 08 09 = spectators
+        ; 0A 0B 0C 0D 0E 0F 10 11 12 13
+        ; 14 15 16 17 18 19 1A 1B 1C 1D
+        ; 1E 1F 20 21 22 23 24 25 26 27
+        ; 28 29 2A 2B 2C 2D 2E 2F 30 31
+        ; 32 33 34 35 36 37 38 39 3A 3B
+        ; 3C 3D 3E 3F 40 41 42 43 44 45
+        ; 46 47 48 49 4A 4B 4C 4D 4E 4F = center
+        ; 50 51 52 53 54 55 56 57 58 59
+        ; 5A 5B 5C 5D 5E 5F 60 61 62 63
+        ; 64 65 66 67 68 69 6A 6B 6C 6D
+        ; 6E 6F 70 71 72 73 74 75 76 77
+        ; 78 79 7A 7B 7C 7D 7E 7F 80 81
+        ; 82 83 84 85 86 87 88 89 8A 8B
+        ; 8C 8D 8E 8F 90 91 92 93 94 95 = spectators
 C - - - - - 0x00C853 03:C843: 38        SEC
 C - - - - - 0x00C854 03:C844: A0 05     LDY #con_plr_pos_X_lo
 C - - - - - 0x00C856 03:C846: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -1461,11 +1478,11 @@ C - - - - - 0x00C85D 03:C84D: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00C85F 03:C84F: E9 00     SBC #> $0010
 C - - - - - 0x00C861 03:C851: B0 03     BCS bra_C856
 C - - - - - 0x00C863 03:C853: A9 00     LDA #$00
-C - - - - - 0x00C865 03:C855: AA        TAX
+C - - - - - 0x00C865 03:C855: AA        TAX ; 00
 bra_C856:
 C - - - - - 0x00C866 03:C856: A8        TAY
 C - - - - - 0x00C867 03:C857: A9 00     LDA #$00
-loc_C859:
+loc_C859_loop:
 C D 2 - - - 0x00C869 03:C859: 48        PHA
 C - - - - - 0x00C86A 03:C85A: 38        SEC
 C - - - - - 0x00C86B 03:C85B: 8A        TXA
@@ -1477,7 +1494,7 @@ C - - - - - 0x00C872 03:C862: A8        TAY
 C - - - - - 0x00C873 03:C863: 68        PLA
 C - - - - - 0x00C874 03:C864: 90 05     BCC bra_C86B
 C - - - - - 0x00C876 03:C866: 69 00     ADC #$00
-C - - - - - 0x00C878 03:C868: 4C 59 C8  JMP loc_C859
+C - - - - - 0x00C878 03:C868: 4C 59 C8  JMP loc_C859_loop
 bra_C86B:
 C - - - - - 0x00C87B 03:C86B: C9 0A     CMP #$0A
 C - - - - - 0x00C87D 03:C86D: 90 02     BCC bra_C871
@@ -1499,7 +1516,7 @@ C - - - - - 0x00C894 03:C884: AA        TAX
 bra_C885:
 C - - - - - 0x00C895 03:C885: A8        TAY
 C - - - - - 0x00C896 03:C886: 68        PLA
-bra_C887:
+bra_C887_loop:
 C - - - - - 0x00C897 03:C887: 48        PHA
 C - - - - - 0x00C898 03:C888: 38        SEC
 C - - - - - 0x00C899 03:C889: 8A        TXA
@@ -1512,7 +1529,7 @@ C - - - - - 0x00C8A1 03:C891: 68        PLA
 C - - - - - 0x00C8A2 03:C892: 90 08     BCC bra_C89C_RTS
 C - - - - - 0x00C8A4 03:C894: 69 09     ADC #$09
 C - - - - - 0x00C8A6 03:C896: C9 96     CMP #$96
-C - - - - - 0x00C8A8 03:C898: 90 ED     BCC bra_C887
+C - - - - - 0x00C8A8 03:C898: 90 ED     BCC bra_C887_loop
 C - - - - - 0x00C8AA 03:C89A: E9 0A     SBC #$0A
 bra_C89C_RTS:
 C - - - - - 0x00C8AC 03:C89C: 60        RTS
@@ -5985,8 +6002,8 @@ C D 3 - - - 0x00E4EE 03:E4DE: A9 01     LDA #$01
 C - - - - - 0x00E4F0 03:E4E0: 20 09 C6  JSR sub_C609_scripy_delay
 C - - - - - 0x00E4F3 03:E4E3: AD 2B 04  LDA ram_player_global_id
 C - - - - - 0x00E4F6 03:E4E6: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
-C - - - - - 0x00E4F9 03:E4E9: 20 43 C8  JSR sub_C843
-C - - - - - 0x00E4FC 03:E4EC: A0 19     LDY #con_plr_unknown_19
+C - - - - - 0x00E4F9 03:E4E9: 20 43 C8  JSR sub_C843_calculate_player_area
+C - - - - - 0x00E4FC 03:E4EC: A0 19     LDY #con_plr_area
 C - - - - - 0x00E4FE 03:E4EE: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E500 03:E4F0: A0 00     LDY #con_plr_flags
 C - - - - - 0x00E502 03:E4F2: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -7776,7 +7793,7 @@ loc_F0B0:
 C D 3 - - - 0x00F0C0 03:F0B0: A9 01     LDA #$01
 C - - - - - 0x00F0C2 03:F0B2: 20 52 C6  JSR sub_C652_set_delay_and_save_return_address
 C - - - - - 0x00F0C5 03:F0B5: 20 37 C9  JSR sub_C937_set_unk_flag
-C - - - - - 0x00F0C8 03:F0B8: A0 19     LDY #con_plr_unknown_19
+C - - - - - 0x00F0C8 03:F0B8: A0 19     LDY #con_plr_area
 C - - - - - 0x00F0CA 03:F0BA: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F0CC 03:F0BC: A0 06     LDY #con_plr_action_timer_1
 C - - - - - 0x00F0CE 03:F0BE: D1 61     CMP (ram_0061_t01_player_data),Y
@@ -8031,7 +8048,7 @@ ofs_005_F2A4_14_run_to_defense:
 C D 3 - - - 0x00F2B4 03:F2A4: A9 01     LDA #$01
 C - - - - - 0x00F2B6 03:F2A6: 20 52 C6  JSR sub_C652_set_delay_and_save_return_address
 C - - - - - 0x00F2B9 03:F2A9: 20 37 C9  JSR sub_C937_set_unk_flag
-C - - - - - 0x00F2BC 03:F2AC: A0 19     LDY #con_plr_unknown_19
+C - - - - - 0x00F2BC 03:F2AC: A0 19     LDY #con_plr_area
 C - - - - - 0x00F2BE 03:F2AE: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00F2C0 03:F2B0: A0 06     LDY #$06
 C - - - - - 0x00F2C2 03:F2B2: D1 61     CMP (ram_0061_t01_player_data),Y

@@ -1800,7 +1800,7 @@ C - - - - - 0x0049CF 01:89BF: 60        RTS
 
 loc_89C0:
 ofs_001_89C0_05:
-C D 0 - - - 0x0049D0 01:89C0: A0 19     LDY #con_plr_unknown_19
+C D 0 - - - 0x0049D0 01:89C0: A0 19     LDY #con_plr_area
 C - - - - - 0x0049D2 01:89C2: B1 61     LDA (ram_0061_t01_player_data),Y
 bra_89C4_loop:
 C - - - - - 0x0049D4 01:89C4: C9 0A     CMP #$0A
