@@ -1981,6 +1981,7 @@ C - - - - - 0x000513 00:8503: C9 0C     CMP #$0C
 C - - - - - 0x000515 00:8505: D0 07     BNE bra_850E
 C - - - - - 0x000517 00:8507: AC F6 07  LDY ram_quest
 C - - - - - 0x00051A 00:850A: F0 02     BEQ bra_850E    ; if 1st quest
+; if 2nd quest
 C - - - - - 0x00051C 00:850C: A9 0F     LDA #$0F
 bra_850E:
 C - - - - - 0x00051E 00:850E: 0A        ASL

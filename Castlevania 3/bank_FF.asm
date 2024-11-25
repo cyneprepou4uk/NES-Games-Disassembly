@@ -9166,6 +9166,8 @@ C - - - - - 0x03FEE6 0F:FED6: 60        RTS
 
 
 sub_0x03FEE7_clear_object_speed_and_data:
+; out
+    ; A = 00
 C - - - - - 0x03FEE7 0F:FED7: 20 C8 FE  JSR sub_FEC8_clear_speed
 C - - - - - 0x03FEEA 0F:FEDA: A9 00     LDA #$00
 C - - - - - 0x03FEEC 0F:FEDC: 9D 7B 06  STA ram_obj_hp,X
