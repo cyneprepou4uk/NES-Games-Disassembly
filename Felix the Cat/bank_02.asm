@@ -8,7 +8,7 @@
 
 .export sub_0x004010_initialize_animation
 .export loc_0x004027_update_animation_for_all_objects
-.export loc_0x004072
+.export loc_0x004072_sprite_engine
 .export loc_0x00415E_hide_unused_sprites
 .export tbl_0x007207_index
 .export tbl_0x007227_colors
@@ -40,7 +40,7 @@ C - - - - - 0x004018 01:8008: A9 00     LDA #$00
 C - - - - - 0x00401A 01:800A: 9D 60 07  STA ram_obj_anim_cnt,X
 C - - - - - 0x00401D 01:800D: 20 AD 81  JSR sub_81AD_calculate_sprite_data_pointers
 C - - - - - 0x004020 01:8010: 88        DEY
-C - - - - - 0x004021 01:8011: B1 02     LDA (ram_0002_temp),Y
+C - - - - - 0x004021 01:8011: B1 02     LDA (ram_0002_t03_data),Y
 C - - - - - 0x004023 01:8013: 9D 4A 07  STA ram_obj_anim_timer,X
 C - - - - - 0x004026 01:8016: 60        RTS
 
@@ -72,7 +72,7 @@ C - - - - - 0x00404A 01:803A: FE 60 07  INC ram_obj_anim_cnt,X
 C - - - - - 0x00404D 01:803D: 20 AD 81  JSR sub_81AD_calculate_sprite_data_pointers
 C - - - - - 0x004050 01:8040: 88        DEY
 loc_8041_loop:
-C D 0 - - - 0x004051 01:8041: B1 02     LDA (ram_0002_temp),Y
+C D 0 - - - 0x004051 01:8041: B1 02     LDA (ram_0002_t03_data),Y
 ; bzk optimize, in case it's 00, the following byte is not needed,
 ; delete this last byte from everywhere, for example 0x00446D
 C - - - - - 0x004053 01:8043: F0 06     BEQ bra_804B_00
@@ -101,7 +101,7 @@ C - - - - - 0x004071 01:8061: 60        RTS
 
 
 
-loc_0x004072:
+loc_0x004072_sprite_engine:
 ; in
     ; X = object index
 C D 0 - - - 0x004072 01:8062: 20 AD 81  JSR sub_81AD_calculate_sprite_data_pointers
@@ -111,13 +111,13 @@ C - - - - - 0x00407A 01:806A: BD 76 07  LDA ram_0776_obj_flags,X
 C - - - - - 0x00407D 01:806D: 29 04     AND #con_0776_04
 C - - - - - 0x00407F 01:806F: D0 51     BNE bra_80C2_RTS
 C - - - - - 0x004081 01:8071: 20 60 81  JSR sub_8160    ; possible PLA + PLA
-C - - - - - 0x004084 01:8074: A4 00     LDY ram_0000_temp
+C - - - - - 0x004084 01:8074: A4 00     LDY ram_0000_t36_data_index
 C - - - - - 0x004086 01:8076: C6 03     DEC ram_0003_temp
-C - - - - - 0x004088 01:8078: B1 02     LDA (ram_0002_temp),Y
+C - - - - - 0x004088 01:8078: B1 02     LDA (ram_0002_t03_data),Y
 C - - - - - 0x00408A 01:807A: F0 46     BEQ bra_80C2_RTS
 C - - - - - 0x00408C 01:807C: 30 45     BMI bra_80C3_80_FF
 ; 01-7F
-C - - - - - 0x00408E 01:807E: 85 00     STA ram_0000_temp    ; counter
+C - - - - - 0x00408E 01:807E: 85 00     STA ram_0000_t31_sprites_counter
 C - - - - - 0x004090 01:8080: C8        INY
 C - - - - - 0x004091 01:8081: 8A        TXA
 C - - - - - 0x004092 01:8082: 48        PHA
@@ -129,13 +129,13 @@ C - - - - - 0x00409A 01:808A: C8        INY
 C - - - - - 0x00409B 01:808B: 20 07 81  JSR sub_8107_spr_Y
 C - - - - - 0x00409E 01:808E: D0 21     BNE bra_80B1_not_visible_Y
 C - - - - - 0x0040A0 01:8090: C8        INY
-C - - - - - 0x0040A1 01:8091: B1 02     LDA (ram_0002_temp),Y
+C - - - - - 0x0040A1 01:8091: B1 02     LDA (ram_0002_t03_data),Y
 C - - - - - 0x0040A3 01:8093: 9D 01 02  STA ram_spr_T,X
 C - - - - - 0x0040A6 01:8096: C8        INY
 C - - - - - 0x0040A7 01:8097: A5 0D     LDA ram_000D
 ; bzk optimize, 20 is never set, should be AND C3
 C - - - - - 0x0040A9 01:8099: 29 E3     AND #con_0776_HV_flip + con_0776_spr_A + $03 + $20
-C - - - - - 0x0040AB 01:809B: 51 02     EOR (ram_0002_temp),Y
+C - - - - - 0x0040AB 01:809B: 51 02     EOR (ram_0002_t03_data),Y
 C - - - - - 0x0040AD 01:809D: 9D 02 02  STA ram_spr_A,X
 C - - - - - 0x0040B0 01:80A0: C8        INY
 C - - - - - 0x0040B1 01:80A1: E8        INX
@@ -143,7 +143,7 @@ C - - - - - 0x0040B2 01:80A2: E8        INX
 C - - - - - 0x0040B3 01:80A3: E8        INX
 C - - - - - 0x0040B4 01:80A4: E8        INX
 C - - - - - 0x0040B5 01:80A5: F0 16     BEQ bra_80BD_overflow
-C - - - - - 0x0040B7 01:80A7: C6 00     DEC ram_0000_temp    ; counter
+C - - - - - 0x0040B7 01:80A7: C6 00     DEC ram_0000_t31_sprites_counter
 C - - - - - 0x0040B9 01:80A9: D0 DA     BNE bra_8085_loop
 C - - - - - 0x0040BB 01:80AB: 86 B4     STX ram_index_oam
 C - - - - - 0x0040BD 01:80AD: 68        PLA
@@ -155,7 +155,7 @@ bra_80B1_not_visible_Y:
 C - - - - - 0x0040C1 01:80B1: C8        INY
 C - - - - - 0x0040C2 01:80B2: C8        INY
 C - - - - - 0x0040C3 01:80B3: C8        INY
-C - - - - - 0x0040C4 01:80B4: C6 00     DEC ram_0000_temp    ; counter
+C - - - - - 0x0040C4 01:80B4: C6 00     DEC ram_0000_t31_sprites_counter
 C - - - - - 0x0040C6 01:80B6: D0 CD     BNE bra_8085_loop
 C - - - - - 0x0040C8 01:80B8: 86 B4     STX ram_index_oam
 C - - - - - 0x0040CA 01:80BA: 68        PLA
@@ -170,12 +170,12 @@ bra_80C2_RTS:
 C - - - - - 0x0040D2 01:80C2: 60        RTS
 bra_80C3_80_FF:
 C - - - - - 0x0040D3 01:80C3: 29 7F     AND #$7F
-C - - - - - 0x0040D5 01:80C5: 85 00     STA ram_0000_temp    ; counter
+C - - - - - 0x0040D5 01:80C5: 85 00     STA ram_0000_t32_sprites_counter
 C - - - - - 0x0040D7 01:80C7: C8        INY
 C - - - - - 0x0040D8 01:80C8: A5 0D     LDA ram_000D
 ; bzk optimize, 20 is never set, should be AND C3
 C - - - - - 0x0040DA 01:80CA: 29 E3     AND #con_0776_HV_flip + con_0776_spr_A + $03 + $20
-C - - - - - 0x0040DC 01:80CC: 51 02     EOR (ram_0002_temp),Y
+C - - - - - 0x0040DC 01:80CC: 51 02     EOR (ram_0002_t03_data),Y
 C - - - - - 0x0040DE 01:80CE: 85 0E     STA ram_000E_t01_spr_A
 C - - - - - 0x0040E0 01:80D0: C8        INY
 C - - - - - 0x0040E1 01:80D1: 8A        TXA
@@ -188,7 +188,7 @@ C - - - - - 0x0040EA 01:80DA: C8        INY
 C - - - - - 0x0040EB 01:80DB: 20 07 81  JSR sub_8107_spr_Y
 C - - - - - 0x0040EE 01:80DE: D0 1C     BNE bra_80FC_not_visible_Y
 C - - - - - 0x0040F0 01:80E0: C8        INY
-C - - - - - 0x0040F1 01:80E1: B1 02     LDA (ram_0002_temp),Y
+C - - - - - 0x0040F1 01:80E1: B1 02     LDA (ram_0002_t03_data),Y
 C - - - - - 0x0040F3 01:80E3: 9D 01 02  STA ram_spr_T,X
 C - - - - - 0x0040F6 01:80E6: C8        INY
 C - - - - - 0x0040F7 01:80E7: A5 0E     LDA ram_000E_t01_spr_A
@@ -198,7 +198,7 @@ C - - - - - 0x0040FD 01:80ED: E8        INX
 C - - - - - 0x0040FE 01:80EE: E8        INX
 C - - - - - 0x0040FF 01:80EF: E8        INX
 C - - - - - 0x004100 01:80F0: F0 CB     BEQ bra_80BD_overflow
-C - - - - - 0x004102 01:80F2: C6 00     DEC ram_0000_temp    ; counter
+C - - - - - 0x004102 01:80F2: C6 00     DEC ram_0000_t32_sprites_counter
 C - - - - - 0x004104 01:80F4: D0 DF     BNE bra_80D5_loop
 C - - - - - 0x004106 01:80F6: 86 B4     STX ram_index_oam
 C - - - - - 0x004108 01:80F8: 68        PLA
@@ -209,7 +209,7 @@ C - - - - - 0x00410B 01:80FB: C8        INY
 bra_80FC_not_visible_Y:
 C - - - - - 0x00410C 01:80FC: C8        INY
 C - - - - - 0x00410D 01:80FD: C8        INY
-C - - - - - 0x00410E 01:80FE: C6 00     DEC ram_0000_temp    ; counter
+C - - - - - 0x00410E 01:80FE: C6 00     DEC ram_0000_t32_sprites_counter
 C - - - - - 0x004110 01:8100: D0 D3     BNE bra_80D5_loop
 C - - - - - 0x004112 01:8102: 86 B4     STX ram_index_oam
 C - - - - - 0x004114 01:8104: 68        PLA
@@ -223,7 +223,7 @@ sub_8107_spr_Y:
     ; ram_000D = ram_0776_obj_flags
 C - - - - - 0x004117 01:8107: A5 0D     LDA ram_000D
 C - - - - - 0x004119 01:8109: 0A        ASL
-C - - - - - 0x00411A 01:810A: B1 02     LDA (ram_0002_temp),Y
+C - - - - - 0x00411A 01:810A: B1 02     LDA (ram_0002_t03_data),Y
 C - - - - - 0x00411C 01:810C: 90 04     BCC bra_8112_not_flipped_V
 ; if flipped vertically
 ; C = 1
@@ -232,16 +232,16 @@ C - - - - - 0x004120 01:8110: 49 FF     EOR #$FF
 bra_8112_not_flipped_V:
 C - - - - - 0x004122 01:8112: 30 0B     BMI bra_811F
 C - - - - - 0x004124 01:8114: 18        CLC
-C - - - - - 0x004125 01:8115: 65 06     ADC ram_0006_temp
+C - - - - - 0x004125 01:8115: 65 06     ADC ram_0006_t01_pos_Y_lo
 C - - - - - 0x004127 01:8117: 9D 00 02  STA ram_spr_Y,X
-C - - - - - 0x00412A 01:811A: A5 07     LDA ram_0007_temp
+C - - - - - 0x00412A 01:811A: A5 07     LDA ram_0007_t02_pos_Y_hi
 C - - - - - 0x00412C 01:811C: 69 00     ADC #$00
 C - - - - - 0x00412E 01:811E: 60        RTS
 bra_811F:
 C - - - - - 0x00412F 01:811F: 18        CLC
-C - - - - - 0x004130 01:8120: 65 06     ADC ram_0006_temp
+C - - - - - 0x004130 01:8120: 65 06     ADC ram_0006_t01_pos_Y_lo
 C - - - - - 0x004132 01:8122: 9D 00 02  STA ram_spr_Y,X
-C - - - - - 0x004135 01:8125: A5 07     LDA ram_0007_temp
+C - - - - - 0x004135 01:8125: A5 07     LDA ram_0007_t02_pos_Y_hi
 C - - - - - 0x004137 01:8127: 69 FF     ADC #$FF
 C - - - - - 0x004139 01:8129: 60        RTS
 
@@ -253,7 +253,7 @@ sub_812A_spr_X:
 C - - - - - 0x00413A 01:812A: A5 0D     LDA ram_000D
 C - - - - - 0x00413C 01:812C: 0A        ASL
 C - - - - - 0x00413D 01:812D: 0A        ASL
-C - - - - - 0x00413E 01:812E: B1 02     LDA (ram_0002_temp),Y
+C - - - - - 0x00413E 01:812E: B1 02     LDA (ram_0002_t03_data),Y
 C - - - - - 0x004140 01:8130: 90 04     BCC bra_8136_not_flipped_H
 ; if flipped horisontally
 ; C = 1
@@ -262,14 +262,14 @@ C - - - - - 0x004144 01:8134: 49 FF     EOR #$FF
 bra_8136_not_flipped_H:
 C - - - - - 0x004146 01:8136: 30 0B     BMI bra_8143
 C - - - - - 0x004148 01:8138: 18        CLC
-C - - - - - 0x004149 01:8139: 65 04     ADC ram_0004_temp
+C - - - - - 0x004149 01:8139: 65 04     ADC ram_0004_t09_spr_X_offset
 C - - - - - 0x00414B 01:813B: 9D 03 02  STA ram_spr_X,X
 C - - - - - 0x00414E 01:813E: A5 05     LDA ram_0005_temp
 C - - - - - 0x004150 01:8140: 69 00     ADC #$00
 C - - - - - 0x004152 01:8142: 60        RTS
 bra_8143:
 C - - - - - 0x004153 01:8143: 18        CLC
-C - - - - - 0x004154 01:8144: 65 04     ADC ram_0004_temp
+C - - - - - 0x004154 01:8144: 65 04     ADC ram_0004_t09_spr_X_offset
 C - - - - - 0x004156 01:8146: 9D 03 02  STA ram_spr_X,X
 C - - - - - 0x004159 01:8149: A5 05     LDA ram_0005_temp
 C - - - - - 0x00415B 01:814B: 69 FF     ADC #$FF
@@ -302,30 +302,30 @@ C - - - - - 0x004173 01:8163: 85 0D     STA ram_000D
 C - - - - - 0x004175 01:8165: BD 42 06  LDA ram_obj_pos_X_lo,X
 C - - - - - 0x004178 01:8168: 38        SEC
 C - - - - - 0x004179 01:8169: E5 B9     SBC ram_cam_pos_X_lo
-C - - - - - 0x00417B 01:816B: 85 04     STA ram_0004_temp
+C - - - - - 0x00417B 01:816B: 85 04     STA ram_0004_t09_spr_X_offset
 C - - - - - 0x00417D 01:816D: BD 58 06  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x004180 01:8170: E5 B7     SBC ram_cam_pos_X_hi
 C - - - - - 0x004182 01:8172: 85 05     STA ram_0005_temp
 C - - - - - 0x004184 01:8174: D0 2A     BNE bra_81A0
 bra_8176:
-C - - - - - 0x004186 01:8176: A5 04     LDA ram_0004_temp
+C - - - - - 0x004186 01:8176: A5 04     LDA ram_0004_t09_spr_X_offset
 C - - - - - 0x004188 01:8178: 18        CLC
 C - - - - - 0x004189 01:8179: 69 08     ADC #< $0008
-C - - - - - 0x00418B 01:817B: 85 04     STA ram_0004_temp
+C - - - - - 0x00418B 01:817B: 85 04     STA ram_0004_t09_spr_X_offset
 C - - - - - 0x00418D 01:817D: A5 05     LDA ram_0005_temp
 C - - - - - 0x00418F 01:817F: 69 00     ADC #> $0008
 C - - - - - 0x004191 01:8181: 85 05     STA ram_0005_temp
 C - - - - - 0x004193 01:8183: BD 84 06  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x004196 01:8186: 38        SEC
 C - - - - - 0x004197 01:8187: E5 BA     SBC ram_cam_pos_Y_lo
-C - - - - - 0x004199 01:8189: 85 06     STA ram_0006_temp
+C - - - - - 0x004199 01:8189: 85 06     STA ram_0006_t01_pos_Y_lo
 C - - - - - 0x00419B 01:818B: BD 9A 06  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x00419E 01:818E: E5 B8     SBC ram_cam_pos_Y_hi
-C - - - - - 0x0041A0 01:8190: 85 07     STA ram_0007_temp
-C - - - - - 0x0041A2 01:8192: A5 06     LDA ram_0006_temp
+C - - - - - 0x0041A0 01:8190: 85 07     STA ram_0007_t02_pos_Y_hi
+C - - - - - 0x0041A2 01:8192: A5 06     LDA ram_0006_t01_pos_Y_lo
 C - - - - - 0x0041A4 01:8194: 18        CLC
 C - - - - - 0x0041A5 01:8195: 69 20     ADC #< $0020
-C - - - - - 0x0041A7 01:8197: A5 07     LDA ram_0007_temp
+C - - - - - 0x0041A7 01:8197: A5 07     LDA ram_0007_t02_pos_Y_hi
 C - - - - - 0x0041A9 01:8199: 69 00     ADC #> $0020
 C - - - - - 0x0041AB 01:819B: F0 02     BEQ bra_819F_RTS
 C - - - - - 0x0041AD 01:819D: 68        PLA
@@ -333,7 +333,7 @@ C - - - - - 0x0041AE 01:819E: 68        PLA
 bra_819F_RTS:
 C - - - - - 0x0041AF 01:819F: 60        RTS
 bra_81A0:
-C - - - - - 0x0041B0 01:81A0: A5 04     LDA ram_0004_temp
+C - - - - - 0x0041B0 01:81A0: A5 04     LDA ram_0004_t09_spr_X_offset
 C - - - - - 0x0041B2 01:81A2: C9 20     CMP #$20
 C - - - - - 0x0041B4 01:81A4: 90 D0     BCC bra_8176
 C - - - - - 0x0041B6 01:81A6: C9 E0     CMP #$E0
@@ -349,34 +349,34 @@ sub_81AD_calculate_sprite_data_pointers:
 ; in
     ; X = object index
 ; out
-    ; ram_0000_temp = relative index
+    ; ram_0000_t36_data_index
 C - - - - - 0x0041BD 01:81AD: BD 00 06  LDA ram_0600_obj_id,X
 C - - - - - 0x0041C0 01:81B0: 0A        ASL
 C - - - - - 0x0041C1 01:81B1: A8        TAY
 C - - - - - 0x0041C2 01:81B2: B9 D8 81  LDA tbl_81D8,Y
-C - - - - - 0x0041C5 01:81B5: 85 00     STA ram_0000_temp
+C - - - - - 0x0041C5 01:81B5: 85 00     STA ram_0000_t25_data_ptr
 C - - - - - 0x0041C7 01:81B7: C8        INY
 C - - - - - 0x0041C8 01:81B8: B9 D8 81  LDA tbl_81D8,Y
-C - - - - - 0x0041CB 01:81BB: 85 01     STA ram_0001_temp
+C - - - - - 0x0041CB 01:81BB: 85 01     STA ram_0000_t25_data_ptr + $01
 C - - - - - 0x0041CD 01:81BD: BD 34 07  LDA ram_0734_obj,X
-; bzk bug? if A = 00, then Y = FE
-; this is obviously incorrect index, although data
-; from ram_0000_temp might not be read later in this case
+; bzk bug? if A = 00, then Y = FE at 0x0041D4
+; this is obviously incorrect index, although
+; data might not be read later in this case
 C - - - - - 0x0041D0 01:81C0: 0A        ASL
 C - - - - - 0x0041D1 01:81C1: A8        TAY
 C - - - - - 0x0041D2 01:81C2: 88        DEY
 C - - - - - 0x0041D3 01:81C3: 88        DEY
-C - - - - - 0x0041D4 01:81C4: B1 00     LDA (ram_0000_temp),Y
-C - - - - - 0x0041D6 01:81C6: 85 02     STA ram_0002_temp
+C - - - - - 0x0041D4 01:81C4: B1 00     LDA (ram_0000_t25_data_ptr),Y
+C - - - - - 0x0041D6 01:81C6: 85 02     STA ram_0002_t03_data
 C - - - - - 0x0041D8 01:81C8: C8        INY
-C - - - - - 0x0041D9 01:81C9: B1 00     LDA (ram_0000_temp),Y
-C - - - - - 0x0041DB 01:81CB: 85 03     STA ram_0003_temp
+C - - - - - 0x0041D9 01:81C9: B1 00     LDA (ram_0000_t25_data_ptr),Y
+C - - - - - 0x0041DB 01:81CB: 85 03     STA ram_0002_t03_data + $01
 C - - - - - 0x0041DD 01:81CD: BD 60 07  LDA ram_obj_anim_cnt,X
 C - - - - - 0x0041E0 01:81D0: 0A        ASL
 C - - - - - 0x0041E1 01:81D1: A8        TAY
 C - - - - - 0x0041E2 01:81D2: C8        INY
-C - - - - - 0x0041E3 01:81D3: B1 02     LDA (ram_0002_temp),Y
-C - - - - - 0x0041E5 01:81D5: 85 00     STA ram_0000_temp
+C - - - - - 0x0041E3 01:81D3: B1 02     LDA (ram_0002_t03_data),Y
+C - - - - - 0x0041E5 01:81D5: 85 00     STA ram_0000_t36_data_index
 ; bzk optimize, write DEY here, delete it from 0x004020 and 0x004050
 ; it will save 1 byte of memory, but will add 2 cycles here 0x004075
 ; so pick your poison

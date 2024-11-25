@@ -28,13 +28,13 @@ C - - - - - 0x000027 00:8017: 85 BD     STA ram_00BD
 C - - - - - 0x000029 00:8019: A6 33     LDX ram_round
 C - - - - - 0x00002B 00:801B: BD 09 E5  LDA tbl_0x01E519_round_data,X
 C - - - - - 0x00002E 00:801E: 29 0F     AND #$0F
-C - - - - - 0x000030 00:8020: 85 00     STA ram_0000_temp
+C - - - - - 0x000030 00:8020: 85 00     STA ram_0000_t33
 C - - - - - 0x000032 00:8022: AD 11 04  LDA ram_0411
 C - - - - - 0x000035 00:8025: F0 02     BEQ bra_8029
 C - - - - - 0x000037 00:8027: A9 09     LDA #$09
 bra_8029:
 C - - - - - 0x000039 00:8029: 18        CLC
-C - - - - - 0x00003A 00:802A: 65 00     ADC ram_0000_temp
+C - - - - - 0x00003A 00:802A: 65 00     ADC ram_0000_t33
 C - - - - - 0x00003C 00:802C: AA        TAX
 C - - - - - 0x00003D 00:802D: BD 53 80  LDA tbl_8053,X
 C - - - - - 0x000040 00:8030: 85 BB     STA ram_00BB
@@ -110,7 +110,7 @@ C - - - - - 0x000099 00:8089: 05 01     ORA ram_0001_temp
 C - - - - - 0x00009B 00:808B: 85 E2     STA ram_00E2
 C - - - - - 0x00009D 00:808D: A9 00     LDA #$00
 C - - - - - 0x00009F 00:808F: 85 E3     STA ram_00E3
-C - - - - - 0x0000A1 00:8091: 85 01     STA ram_0001_temp
+C - - - - - 0x0000A1 00:8091: 85 01     STA ram_0000_t20_round_data + $01
 C - - - - - 0x0000A3 00:8093: A9 17     LDA #$17
 C - - - - - 0x0000A5 00:8095: 20 CB 80  JSR sub_80CB
 C - - - - - 0x0000A8 00:8098: A9 00     LDA #$00
@@ -138,7 +138,7 @@ C - - - - - 0x0000C6 00:80B6: 4A        LSR
 C - - - - - 0x0000C7 00:80B7: 66 E2     ROR ram_00E2
 C - - - - - 0x0000C9 00:80B9: 85 E3     STA ram_00E3
 C - - - - - 0x0000CB 00:80BB: A9 00     LDA #$00
-C - - - - - 0x0000CD 00:80BD: 85 01     STA ram_0001_temp
+C - - - - - 0x0000CD 00:80BD: 85 01     STA ram_0000_t20_round_data + $01
 C - - - - - 0x0000CF 00:80BF: AD 0D 04  LDA ram_040D
 C - - - - - 0x0000D2 00:80C2: C9 01     CMP #$01
 C - - - - - 0x0000D4 00:80C4: D0 03     BNE bra_80C9
@@ -147,26 +147,26 @@ bra_80C9:
 C - - - - - 0x0000D9 00:80C9: A5 33     LDA ram_round
 sub_80CB:   ; A = 17
 C - - - - - 0x0000DB 00:80CB: 0A        ASL
-C - - - - - 0x0000DC 00:80CC: 26 01     ROL ram_0001_temp
+C - - - - - 0x0000DC 00:80CC: 26 01     ROL ram_0000_t20_round_data + $01
 C - - - - - 0x0000DE 00:80CE: 0A        ASL
-C - - - - - 0x0000DF 00:80CF: 26 01     ROL ram_0001_temp
+C - - - - - 0x0000DF 00:80CF: 26 01     ROL ram_0000_t20_round_data + $01
 C - - - - - 0x0000E1 00:80D1: 0A        ASL
-C - - - - - 0x0000E2 00:80D2: 26 01     ROL ram_0001_temp
+C - - - - - 0x0000E2 00:80D2: 26 01     ROL ram_0000_t20_round_data + $01
 C - - - - - 0x0000E4 00:80D4: 0A        ASL
-C - - - - - 0x0000E5 00:80D5: 26 01     ROL ram_0001_temp
+C - - - - - 0x0000E5 00:80D5: 26 01     ROL ram_0000_t20_round_data + $01
 C - - - - - 0x0000E7 00:80D7: 0A        ASL
-C - - - - - 0x0000E8 00:80D8: 26 01     ROL ram_0001_temp
+C - - - - - 0x0000E8 00:80D8: 26 01     ROL ram_0000_t20_round_data + $01
 C - - - - - 0x0000EA 00:80DA: 18        CLC
 C - - - - - 0x0000EB 00:80DB: 69 68     ADC #< tbl_8268_round_data
-C - - - - - 0x0000ED 00:80DD: 85 00     STA ram_0000_temp
+C - - - - - 0x0000ED 00:80DD: 85 00     STA ram_0000_t20_round_data
 C - - - - - 0x0000EF 00:80DF: A9 82     LDA #> tbl_8268_round_data
-C - - - - - 0x0000F1 00:80E1: 65 01     ADC ram_0001_temp
-C - - - - - 0x0000F3 00:80E3: 85 01     STA ram_0001_temp
+C - - - - - 0x0000F1 00:80E1: 65 01     ADC ram_0000_t20_round_data + $01
+C - - - - - 0x0000F3 00:80E3: 85 01     STA ram_0000_t20_round_data + $01
 C - - - - - 0x0000F5 00:80E5: A0 00     LDY #$00
-C - - - - - 0x0000F7 00:80E7: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0000F7 00:80E7: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0000F9 00:80E9: C8        INY ; 01
 C - - - - - 0x0000FA 00:80EA: 85 1C     STA ram_chr_bank_spr_1
-C - - - - - 0x0000FC 00:80EC: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0000FC 00:80EC: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0000FE 00:80EE: C8        INY ; 02
 C - - - - - 0x0000FF 00:80EF: 85 1E     STA ram_chr_bank_spr_2
 C - - - - - 0x000101 00:80F1: 38        SEC
@@ -187,7 +187,7 @@ C - - - - - 0x000122 00:8112: 8D ED 03  STA ram_03D6_obj_spr_A + $17
 C - - - - - 0x000125 00:8115: 8D EE 03  STA ram_03D6_obj_spr_A + $18
 C - - - - - 0x000128 00:8118: A9 0C     LDA #$0C
 C - - - - - 0x00012A 00:811A: 85 B1     STA ram_offset_chr_bank_bg_4
-C - - - - - 0x00012C 00:811C: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x00012C 00:811C: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x00012E 00:811E: C8        INY ; 03
 C - - - - - 0x00012F 00:811F: 85 20     STA ram_chr_bank_bg_1
 C - - - - - 0x000131 00:8121: 29 80     AND #$80
@@ -226,96 +226,96 @@ C - - - - - 0x00016C 00:815C: 69 01     ADC #$01    ; con_chr_bank + $0A
 C - - - - - 0x00016E 00:815E: 85 25     STA ram_chr_bank_bg_3 + $01
 C - - - - - 0x000170 00:8160: 69 01     ADC #$01    ; con_chr_bank + $0B
 C - - - - - 0x000172 00:8162: 85 27     STA ram_chr_bank_bg_4 + $01
-C - - - - - 0x000174 00:8164: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x000174 00:8164: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x000176 00:8166: C8        INY ; 04
 C - - - - - 0x000177 00:8167: 85 3A     STA ram_003A
-C - - - - - 0x000179 00:8169: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x000179 00:8169: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x00017B 00:816B: C8        INY ; 05
 C - - - - - 0x00017C 00:816C: 18        CLC
 C - - - - - 0x00017D 00:816D: 65 E2     ADC ram_00E2
 C - - - - - 0x00017F 00:816F: 85 E2     STA ram_00E2
-C - - - - - 0x000181 00:8171: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x000181 00:8171: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x000183 00:8173: 65 E3     ADC ram_00E3
 C - - - - - 0x000185 00:8175: 85 E3     STA ram_00E3
 C - - - - - 0x000187 00:8177: C8        INY ; 06
-C - - - - - 0x000188 00:8178: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x000188 00:8178: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x00018A 00:817A: C8        INY ; 07
 C - - - - - 0x00018B 00:817B: 18        CLC
 C - - - - - 0x00018C 00:817C: 65 E2     ADC ram_00E2
 C - - - - - 0x00018E 00:817E: 8D 04 03  STA ram_0304_round_data
-C - - - - - 0x000191 00:8181: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x000191 00:8181: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x000193 00:8183: 65 E3     ADC ram_00E3
 C - - - - - 0x000195 00:8185: 8D 05 03  STA ram_0304_round_data + $01
 C - - - - - 0x000198 00:8188: C8        INY ; 08
-C - - - - - 0x000199 00:8189: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x000199 00:8189: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x00019B 00:818B: C8        INY ; 09
 C - - - - - 0x00019C 00:818C: 85 CE     STA ram_00CE_t01_data
-C - - - - - 0x00019E 00:818E: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x00019E 00:818E: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001A0 00:8190: C8        INY ; 0A
 C - - - - - 0x0001A1 00:8191: 85 CF     STA ram_00CE_t01_data + $01
-C - - - - - 0x0001A3 00:8193: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001A3 00:8193: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001A5 00:8195: C8        INY ; 0B
 C - - - - - 0x0001A6 00:8196: 85 02     STA ram_0002_temp
 C - - - - - 0x0001A8 00:8198: 85 C8     STA ram_00C8_t01_data
-C - - - - - 0x0001AA 00:819A: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001AA 00:819A: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001AC 00:819C: C8        INY ; 0C
 C - - - - - 0x0001AD 00:819D: 85 03     STA ram_0003_temp
 C - - - - - 0x0001AF 00:819F: 85 C9     STA ram_00C8_t01_data + $01
-C - - - - - 0x0001B1 00:81A1: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001B1 00:81A1: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001B3 00:81A3: C8        INY ; 0D
 C - - - - - 0x0001B4 00:81A4: 85 DC     STA ram_00DC
-C - - - - - 0x0001B6 00:81A6: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001B6 00:81A6: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001B8 00:81A8: C8        INY ; 0E
 C - - - - - 0x0001B9 00:81A9: 85 DD     STA ram_00DD
-C - - - - - 0x0001BB 00:81AB: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001BB 00:81AB: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001BD 00:81AD: C8        INY ; 0F
 C - - - - - 0x0001BE 00:81AE: 85 DE     STA ram_00DE
-C - - - - - 0x0001C0 00:81B0: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001C0 00:81B0: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001C2 00:81B2: C8        INY ; 10
 C - - - - - 0x0001C3 00:81B3: 85 DF     STA ram_00DF
-C - - - - - 0x0001C5 00:81B5: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001C5 00:81B5: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001C7 00:81B7: C8        INY ; 11
 C - - - - - 0x0001C8 00:81B8: 85 E0     STA ram_00E0
-C - - - - - 0x0001CA 00:81BA: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001CA 00:81BA: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001CC 00:81BC: C8        INY ; 12
 C - - - - - 0x0001CD 00:81BD: 85 E1     STA ram_00E1
-C - - - - - 0x0001CF 00:81BF: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001CF 00:81BF: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001D1 00:81C1: C8        INY ; 13
 C - - - - - 0x0001D2 00:81C2: 85 BD     STA ram_00BD
-C - - - - - 0x0001D4 00:81C4: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001D4 00:81C4: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001D6 00:81C6: C8        INY ; 14
 C - - - - - 0x0001D7 00:81C7: 18        CLC
 C - - - - - 0x0001D8 00:81C8: ED CE 03  SBC ram_03CE
 C - - - - - 0x0001DB 00:81CB: 85 BB     STA ram_00BB
-C - - - - - 0x0001DD 00:81CD: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001DD 00:81CD: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001DF 00:81CF: C8        INY ; 15
 C - - - - - 0x0001E0 00:81D0: 85 BE     STA ram_00BE
-C - - - - - 0x0001E2 00:81D2: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001E2 00:81D2: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001E4 00:81D4: C8        INY ; 16
 C - - - - - 0x0001E5 00:81D5: 85 BC     STA ram_00BC
-C - - - - - 0x0001E7 00:81D7: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001E7 00:81D7: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001E9 00:81D9: C8        INY ; 17
 C - - - - - 0x0001EA 00:81DA: 8D 72 03  STA ram_0372
-C - - - - - 0x0001ED 00:81DD: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001ED 00:81DD: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001EF 00:81DF: C8        INY ; 18
 C - - - - - 0x0001F0 00:81E0: 8D 73 03  STA ram_0373
-C - - - - - 0x0001F3 00:81E3: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001F3 00:81E3: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001F5 00:81E5: C8        INY ; 19
 C - - - - - 0x0001F6 00:81E6: 8D 74 03  STA ram_0374
-C - - - - - 0x0001F9 00:81E9: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001F9 00:81E9: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001FB 00:81EB: C8        INY ; 1A
 C - - - - - 0x0001FC 00:81EC: 8D 82 03  STA ram_0382
-C - - - - - 0x0001FF 00:81EF: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x0001FF 00:81EF: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x000201 00:81F1: C8        INY ; 1B
 C - - - - - 0x000202 00:81F2: 8D 83 03  STA ram_0383
-C - - - - - 0x000205 00:81F5: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x000205 00:81F5: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x000207 00:81F7: C8        INY ; 1C
 C - - - - - 0x000208 00:81F8: 8D 19 06  STA ram_0616_obj + $03
-C - - - - - 0x00020B 00:81FB: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x00020B 00:81FB: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x00020D 00:81FD: C8        INY ; 1D
 ; bzk optimize, always 00
 C - - - - - 0x00020E 00:81FE: 85 40     STA ram_0040_palette
-C - - - - - 0x000210 00:8200: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x000210 00:8200: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x000212 00:8202: C8        INY ; 1E
 C - - - - - 0x000213 00:8203: 85 41     STA ram_0041_palette
 C - - - - - 0x000215 00:8205: AD 0D 04  LDA ram_040D
@@ -330,26 +330,26 @@ C - - - - - 0x000222 00:8212: F0 24     BEQ bra_8238
 ; bzk optimize, is it necessary to calculate pointers again?
 ; or maybe it's because of 0x0000A5 case?
 C - - - - - 0x000224 00:8214: A9 00     LDA #$00
-C - - - - - 0x000226 00:8216: 85 01     STA ram_0001_temp
+C - - - - - 0x000226 00:8216: 85 01     STA ram_0000_t21_round_data + $01
 C - - - - - 0x000228 00:8218: A5 33     LDA ram_round
 C - - - - - 0x00022A 00:821A: 0A        ASL
-C - - - - - 0x00022B 00:821B: 26 01     ROL ram_0001_temp
+C - - - - - 0x00022B 00:821B: 26 01     ROL ram_0000_t21_round_data + $01
 C - - - - - 0x00022D 00:821D: 0A        ASL
-C - - - - - 0x00022E 00:821E: 26 01     ROL ram_0001_temp
+C - - - - - 0x00022E 00:821E: 26 01     ROL ram_0000_t21_round_data + $01
 C - - - - - 0x000230 00:8220: 0A        ASL
-C - - - - - 0x000231 00:8221: 26 01     ROL ram_0001_temp
+C - - - - - 0x000231 00:8221: 26 01     ROL ram_0000_t21_round_data + $01
 C - - - - - 0x000233 00:8223: 0A        ASL
-C - - - - - 0x000234 00:8224: 26 01     ROL ram_0001_temp
+C - - - - - 0x000234 00:8224: 26 01     ROL ram_0000_t21_round_data + $01
 C - - - - - 0x000236 00:8226: 0A        ASL
-C - - - - - 0x000237 00:8227: 26 01     ROL ram_0001_temp
+C - - - - - 0x000237 00:8227: 26 01     ROL ram_0000_t21_round_data + $01
 C - - - - - 0x000239 00:8229: 18        CLC
 C - - - - - 0x00023A 00:822A: 69 68     ADC #< tbl_8268_round_data
-C - - - - - 0x00023C 00:822C: 85 00     STA ram_0000_temp
+C - - - - - 0x00023C 00:822C: 85 00     STA ram_0000_t21_round_data
 C - - - - - 0x00023E 00:822E: A9 82     LDA #> tbl_8268_round_data
-C - - - - - 0x000240 00:8230: 65 01     ADC ram_0001_temp
-C - - - - - 0x000242 00:8232: 85 01     STA ram_0001_temp
+C - - - - - 0x000240 00:8230: 65 01     ADC ram_0000_t21_round_data + $01
+C - - - - - 0x000242 00:8232: 85 01     STA ram_0000_t21_round_data + $01
 C - - - - - 0x000244 00:8234: A0 1D     LDY #$1D
-C - - - - - 0x000246 00:8236: B1 00     LDA (ram_0000_temp),Y
+C - - - - - 0x000246 00:8236: B1 00     LDA (ram_0000_t21_round_data),Y
 bra_8238:   ; A = con_0041_pal_02
 C - - - - - 0x000248 00:8238: 85 41     STA ram_0041_palette
 C - - - - - 0x00024A 00:823A: 60        RTS

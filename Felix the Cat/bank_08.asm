@@ -729,19 +729,19 @@ off_8199_title_screen:
 
 
 loc_0x010302_background_stuff_for_title_screen:
-C D 0 - - - 0x010302 04:82F2: 85 00     STA ram_0000_temp
+C D 0 - - - 0x010302 04:82F2: 85 00     STA ram_0000_t39
                                     .if con_bzk_hack = $00
 ; * 05
 C - - - - - 0x010304 04:82F4: 0A        ASL
 C - - - - - 0x010305 04:82F5: 0A        ASL
 ; C = 0
 C - - - - - 0x010306 04:82F6: 18        CLC ; bzk optimize, no need for CLC
-C - - - - - 0x010307 04:82F7: 65 00     ADC ram_0000_temp
+C - - - - - 0x010307 04:82F7: 65 00     ADC ram_0000_t39
                                     .else
 ; * 06
                                         ASL
 ; C = 0
-                                        ADC ram_0000_temp
+                                        ADC ram_0000_t39
                                         ASL
                                     .endif
 C - - - - - 0x010309 04:82F9: AA        TAX
@@ -809,26 +809,26 @@ loc_0x010371_prepare_palette:
 C D 0 - - - 0x010371 04:8361: A5 40     LDA ram_0040_palette
 C - - - - - 0x010373 04:8363: 0A        ASL
 C - - - - - 0x010374 04:8364: AA        TAX
-C - - - - - 0x010375 04:8365: BD 30 84  LDA tbl_8430,X
-C - - - - - 0x010378 04:8368: 85 00     STA ram_0000_temp
-C - - - - - 0x01037A 04:836A: BD 31 84  LDA tbl_8430 + $01,X
-C - - - - - 0x01037D 04:836D: 85 01     STA ram_0001_temp
-; bzk optimize, ram_0044 is always 00
+C - - - - - 0x010375 04:8365: BD 30 84  LDA tbl_8430_sprite_palette,X
+C - - - - - 0x010378 04:8368: 85 00     STA ram_0000_t26_spr_pal_data_ptr
+C - - - - - 0x01037A 04:836A: BD 31 84  LDA tbl_8430_sprite_palette + $01,X
+C - - - - - 0x01037D 04:836D: 85 01     STA ram_0000_t26_spr_pal_data_ptr + $01
+; bzk optimize, ram_0044_useless_00 is always 00
 ; this code skips first 3 bytes of data, leaving a couple of placeholders
-C - - - - - 0x01037F 04:836F: A5 44     LDA ram_0044
+C - - - - - 0x01037F 04:836F: A5 44     LDA ram_0044_useless_00
 C - - - - - 0x010381 04:8371: 0A        ASL
 C - - - - - 0x010382 04:8372: 18        CLC
 C - - - - - 0x010383 04:8373: 69 03     ADC #$03
 C - - - - - 0x010385 04:8375: A8        TAY
-C - - - - - 0x010386 04:8376: B1 00     LDA (ram_0000_temp),Y
-C - - - - - 0x010388 04:8378: 85 02     STA ram_0002_temp
+C - - - - - 0x010386 04:8376: B1 00     LDA (ram_0000_t26_spr_pal_data_ptr),Y
+C - - - - - 0x010388 04:8378: 85 02     STA ram_0002_t04_spr_pal_data
 C - - - - - 0x01038A 04:837A: C8        INY
-C - - - - - 0x01038B 04:837B: B1 00     LDA (ram_0000_temp),Y
-C - - - - - 0x01038D 04:837D: 85 03     STA ram_0003_temp
+C - - - - - 0x01038B 04:837B: B1 00     LDA (ram_0000_t26_spr_pal_data_ptr),Y
+C - - - - - 0x01038D 04:837D: 85 03     STA ram_0002_t04_spr_pal_data + $01
 C - - - - - 0x01038F 04:837F: A0 00     LDY #$00
 C - - - - - 0x010391 04:8381: A2 00     LDX #$00
 bra_8383_loop:
-C - - - - - 0x010393 04:8383: B1 02     LDA (ram_0002_temp),Y
+C - - - - - 0x010393 04:8383: B1 02     LDA (ram_0002_t04_spr_pal_data),Y
 C - - - - - 0x010395 04:8385: 95 56     STA ram_0046_pal_buffer + $10,X
 C - - - - - 0x010397 04:8387: E8        INX
 C - - - - - 0x010398 04:8388: C8        INY
@@ -837,26 +837,26 @@ C - - - - - 0x01039B 04:838B: D0 F6     BNE bra_8383_loop
 C - - - - - 0x01039D 04:838D: A5 41     LDA ram_0041_palette
 C - - - - - 0x01039F 04:838F: 0A        ASL
 C - - - - - 0x0103A0 04:8390: AA        TAX
-C - - - - - 0x0103A1 04:8391: BD 5E 84  LDA tbl_845E_palette,X
-C - - - - - 0x0103A4 04:8394: 85 00     STA ram_0000_temp
-C - - - - - 0x0103A6 04:8396: BD 5F 84  LDA tbl_845E_palette + $01,X
-C - - - - - 0x0103A9 04:8399: 85 01     STA ram_0001_temp
-; bzk optimize, ram_0045 is always 00
+C - - - - - 0x0103A1 04:8391: BD 5E 84  LDA tbl_845E_background_palette,X
+C - - - - - 0x0103A4 04:8394: 85 00     STA ram_0000_t27_bg_pal_data_ptr
+C - - - - - 0x0103A6 04:8396: BD 5F 84  LDA tbl_845E_background_palette + $01,X
+C - - - - - 0x0103A9 04:8399: 85 01     STA ram_0000_t27_bg_pal_data_ptr + $01
+; bzk optimize, ram_0045_useless_00 is always 00
 ; this code skips first 3 bytes of data, leaving a bunch of placeholders
-C - - - - - 0x0103AB 04:839B: A5 45     LDA ram_0045
+C - - - - - 0x0103AB 04:839B: A5 45     LDA ram_0045_useless_00
 C - - - - - 0x0103AD 04:839D: 0A        ASL
 C - - - - - 0x0103AE 04:839E: 18        CLC
 C - - - - - 0x0103AF 04:839F: 69 03     ADC #$03
 C - - - - - 0x0103B1 04:83A1: A8        TAY
-C - - - - - 0x0103B2 04:83A2: B1 00     LDA (ram_0000_temp),Y
-C - - - - - 0x0103B4 04:83A4: 85 02     STA ram_0002_temp
+C - - - - - 0x0103B2 04:83A2: B1 00     LDA (ram_0000_t27_bg_pal_data_ptr),Y
+C - - - - - 0x0103B4 04:83A4: 85 02     STA ram_0002_t05_bg_pal_data
 C - - - - - 0x0103B6 04:83A6: C8        INY
-C - - - - - 0x0103B7 04:83A7: B1 00     LDA (ram_0000_temp),Y
-C - - - - - 0x0103B9 04:83A9: 85 03     STA ram_0003_temp
+C - - - - - 0x0103B7 04:83A7: B1 00     LDA (ram_0000_t27_bg_pal_data_ptr),Y
+C - - - - - 0x0103B9 04:83A9: 85 03     STA ram_0002_t05_bg_pal_data + $01
 C - - - - - 0x0103BB 04:83AB: A0 00     LDY #$00
 C - - - - - 0x0103BD 04:83AD: A2 00     LDX #$00
 bra_83AF_loop:
-C - - - - - 0x0103BF 04:83AF: B1 02     LDA (ram_0002_temp),Y
+C - - - - - 0x0103BF 04:83AF: B1 02     LDA (ram_0002_t05_bg_pal_data),Y
 C - - - - - 0x0103C1 04:83B1: 95 46     STA ram_0046_pal_buffer,X
 C - - - - - 0x0103C3 04:83B3: E8        INX
 C - - - - - 0x0103C4 04:83B4: C8        INY
@@ -907,19 +907,19 @@ C - - - - - 0x010406 04:83F6: 0A        ASL
 C - - - - - 0x010407 04:83F7: 0A        ASL
 C - - - - - 0x010408 04:83F8: 0A        ASL
 C - - - - - 0x010409 04:83F9: 0A        ASL
-C - - - - - 0x01040A 04:83FA: 85 00     STA ram_0000_temp    ; brightness degree
+C - - - - - 0x01040A 04:83FA: 85 00     STA ram_0000_t34_brightness_degree
 C - - - - - 0x01040C 04:83FC: A2 20     LDX #$20
 bra_83FE_loop:
 C - - - - - 0x01040E 04:83FE: B5 46     LDA ram_0046_pal_buffer,X
 C - - - - - 0x010410 04:8400: A8        TAY
 C - - - - - 0x010411 04:8401: 29 0F     AND #$0F
-C - - - - - 0x010413 04:8403: 85 01     STA ram_0001_temp    ; color w/o brightness
+C - - - - - 0x010413 04:8403: 85 01     STA ram_0001_t01_base_color
 C - - - - - 0x010415 04:8405: 98        TYA
 C - - - - - 0x010416 04:8406: 29 30     AND #$30    ; check brightness
-C - - - - - 0x010418 04:8408: C5 00     CMP ram_0000_temp    ; brightness degree
+C - - - - - 0x010418 04:8408: C5 00     CMP ram_0000_t34_brightness_degree
 C - - - - - 0x01041A 04:840A: 90 06     BCC bra_8412
-C - - - - - 0x01041C 04:840C: A5 00     LDA ram_0000_temp    ; brightness degree
-C - - - - - 0x01041E 04:840E: 05 01     ORA ram_0001_temp    ; color w/o brightness
+C - - - - - 0x01041C 04:840C: A5 00     LDA ram_0000_t34_brightness_degree
+C - - - - - 0x01041E 04:840E: 05 01     ORA ram_0001_t01_base_color
 C - - - - - 0x010420 04:8410: 95 46     STA ram_0046_pal_buffer,X
 bra_8412:
 C - - - - - 0x010422 04:8412: CA        DEX
@@ -952,7 +952,7 @@ C - - - - - 0x01043F 04:842F: 60        RTS
 
 
 
-tbl_8430:
+tbl_8430_sprite_palette:
 - D 0 - - - 0x010440 04:8430: 34 84     .word off_8434_00
 - D 0 - - - 0x010442 04:8432: 59 84     .word off_8459_01
 
@@ -993,7 +993,7 @@ off_8459_01:
 
 
 
-tbl_845E_palette:
+tbl_845E_background_palette:
 ; see con_0041_pal
 - D 0 - - - 0x01046E 04:845E: 86 84     .word _off008_8486_00
 - D 0 - - - 0x010470 04:8460: 8B 84     .word _off008_848B_01
@@ -1025,95 +1025,133 @@ _off008_8486_00:
 - - - - - - 0x010497 04:8487: 39 84     .word off_8439
 - D 0 - I - 0x010499 04:8489: EA 84     .word off_84EA_00
 
+
+
 _off008_848B_01:
 - - - - - - 0x01049B 04:848B: 00        .byte $00   ; 
 - - - - - - 0x01049C 04:848C: 39 84     .word off_8439
 - D 0 - I - 0x01049E 04:848E: FA 84     .word off_84FA_01
+
+
 
 _off008_8490_02:
 - - - - - - 0x0104A0 04:8490: 00        .byte $00   ; 
 - - - - - - 0x0104A1 04:8491: 39 84     .word off_8439
 - D 0 - I - 0x0104A3 04:8493: 0A 85     .word off_850A_02
 
+
+
 _off008_8495_03:
 - - - - - - 0x0104A5 04:8495: 00        .byte $00   ; 
 - - - - - - 0x0104A6 04:8496: 39 84     .word off_8439
 - D 0 - I - 0x0104A8 04:8498: 2A 85     .word off_852A_03
+
+
 
 _off008_849A_04:
 - - - - - - 0x0104AA 04:849A: 00        .byte $00   ; 
 - - - - - - 0x0104AB 04:849B: 39 84     .word off_8439
 - D 0 - I - 0x0104AD 04:849D: 3A 85     .word off_853A_04
 
+
+
 _off008_849F_05:
 - - - - - - 0x0104AF 04:849F: 00        .byte $00   ; 
 - - - - - - 0x0104B0 04:84A0: 39 84     .word off_8439
 - D 0 - I - 0x0104B2 04:84A2: 5A 85     .word off_855A_05
+
+
 
 _off008_84A4_06:
 - - - - - - 0x0104B4 04:84A4: 00        .byte $00   ; 
 - - - - - - 0x0104B5 04:84A5: 39 84     .word off_8439
 - D 0 - I - 0x0104B7 04:84A7: 6A 85     .word off_856A_06
 
+
+
 _off008_84A9_07:
 - - - - - - 0x0104B9 04:84A9: 00        .byte $00   ; 
 - - - - - - 0x0104BA 04:84AA: 39 84     .word off_8439
 - D 0 - I - 0x0104BC 04:84AC: 7A 85     .word off_857A_07
+
+
 
 _off008_84AE_08:
 - - - - - - 0x0104BE 04:84AE: 00        .byte $00   ; 
 - - - - - - 0x0104BF 04:84AF: 39 84     .word off_8439
 - D 0 - I - 0x0104C1 04:84B1: 9A 85     .word off_859A_08
 
+
+
 _off008_84B3_09:
 - - - - - - 0x0104C3 04:84B3: 00        .byte $00   ; 
 - - - - - - 0x0104C4 04:84B4: 39 84     .word off_8439
 - D 0 - I - 0x0104C6 04:84B6: AA 85     .word off_85AA_09
+
+
 
 _off008_84B8_11:
 - - - - - - 0x0104C8 04:84B8: 00        .byte $00   ; 
 - - - - - - 0x0104C9 04:84B9: 39 84     .word off_8439
 - D 0 - I - 0x0104CB 04:84BB: BA 85     .word off_85BA_11
 
+
+
 _off008_84BD_0A:
 - - - - - - 0x0104CD 04:84BD: 00        .byte $00   ; 
 - - - - - - 0x0104CE 04:84BE: 39 84     .word off_8439
 - - - - - - 0x0104D0 04:84C0: EA 84     .word off_84EA_0A
+
+
 
 _off008_84C2_0B:
 - - - - - - 0x0104D2 04:84C2: 00        .byte $00   ; 
 - - - - - - 0x0104D3 04:84C3: 39 84     .word off_8439
 - D 0 - I - 0x0104D5 04:84C5: 4A 85     .word off_854A_0B
 
+
+
 _off008_84C7_0C:
 - - - - - - 0x0104D7 04:84C7: 00        .byte $00   ; 
 - - - - - - 0x0104D8 04:84C8: 39 84     .word off_8439
 - D 0 - I - 0x0104DA 04:84CA: 8A 85     .word off_858A_0C
+
+
 
 _off008_84CC_10:
 - - - - - - 0x0104DC 04:84CC: 00        .byte $00   ; 
 - - - - - - 0x0104DD 04:84CD: 39 84     .word off_8439
 - D 0 - I - 0x0104DF 04:84CF: 1A 85     .word off_851A_10
 
+
+
 _off008_84D1_0D:
 - - - - - - 0x0104E1 04:84D1: 00        .byte $00   ; 
 - - - - - - 0x0104E2 04:84D2: 39 84     .word off_8439
 - D 0 - I - 0x0104E4 04:84D4: CA 85     .word off_85CA_0D
+
+
 
 _off008_84D6_0E:
 - - - - - - 0x0104E6 04:84D6: 00        .byte $00   ; 
 - - - - - - 0x0104E7 04:84D7: 39 84     .word off_8439
 - D 0 - I - 0x0104E9 04:84D9: DA 85     .word off_85DA_0E
 
+
+
 _off008_84DB_13:
 - - - - - - 0x0104EB 04:84DB: 00        .byte $00   ; 
 - - - - - - 0x0104EC 04:84DC: 39 84     .word off_8439
 - D 0 - I - 0x0104EE 04:84DE: EA 85     .word off_85EA_13
 
+
+
 _off008_84E0_0F:
 - - - - - - 0x0104F0 04:84E0: 00        .byte $00   ; 
 - - - - - - 0x0104F1 04:84E1: 39 84     .word off_8439
 - D 0 - I - 0x0104F3 04:84E3: FA 85     .word off_85FA_0F
+
+
 
 _off008_84E5_12:
 - - - - - - 0x0104F5 04:84E5: 00        .byte $00   ; 
