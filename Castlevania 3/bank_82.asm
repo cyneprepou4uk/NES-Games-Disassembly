@@ -445,6 +445,7 @@ C - - J - - 0x004287 01:8277: A9 00     LDA #$00
 C - - - - - 0x004289 01:8279: 8D ED 07  STA ram_07ED
 C - - - - - 0x00428C 01:827C: 8D F3 07  STA ram_07F3
 C - - - - - 0x00428F 01:827F: EE EC 07  INC ram_07EC
+; bzk optimize, JMP
 C - - - - - 0x004292 01:8282: 20 DA E2  JSR sub_0x03E2EA_prg_bankswitch_dpcm_2
 C - - - - - 0x004295 01:8285: 60        RTS
 

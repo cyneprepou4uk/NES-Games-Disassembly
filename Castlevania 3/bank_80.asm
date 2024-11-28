@@ -9279,6 +9279,7 @@ C - - - - - 0x002B82 00:AB72: 90 01     BCC bra_AB75
 - - - - - - 0x002B84 00:AB74: C8        INY ; 01
 bra_AB75:
 C - - - - - 0x002B85 00:AB75: 8C 06 06  STY ram_plr_config
+; move player towards the stairs
 C - - - - - 0x002B88 00:AB78: A5 0D     LDA ram_000D_t003_where_are_stairs
 C - - - - - 0x002B8A 00:AB7A: F0 06     BEQ bra_AB82_to_the_right
 ; if to the left

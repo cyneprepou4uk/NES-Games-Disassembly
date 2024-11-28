@@ -3739,20 +3739,20 @@ C - - - - - 0x00975B 02:974B: C8        INY
 C - - - - - 0x00975C 02:974C: 20 5C EF  JSR sub_0x03EF6C_prepare_animation
 C - - - - - 0x00975F 02:974F: A0 01     LDY #$01
 C - - - - - 0x009761 02:9751: B1 02     LDA (ram_0002_t002_data),Y
-C - - - - - 0x009763 02:9753: 85 00     STA ram_0000_temp
+C - - - - - 0x009763 02:9753: 85 00     STA ram_0000_t113_pos_X_hi
 C - - - - - 0x009765 02:9755: F0 0E     BEQ bra_9765
 - - - - - - 0x009767 02:9757: BD A8 04  LDA ram_obj_facing,X
 - - - - - - 0x00976A 02:975A: F0 0C     BEQ bra_9768_facing_right
 - - - - - - 0x00976C 02:975C: BD 38 04  LDA ram_obj_pos_X_hi,X
 - - - - - - 0x00976F 02:975F: 38        SEC
-- - - - - - 0x009770 02:9760: E5 00     SBC ram_0000_temp
+- - - - - - 0x009770 02:9760: E5 00     SBC ram_0000_t113_pos_X_hi
 - - - - - - 0x009772 02:9762: 9D 38 04  STA ram_obj_pos_X_hi,X
 bra_9765:
 C - - - - - 0x009775 02:9765: 4C 71 97  JMP loc_9771
 bra_9768_facing_right:
 - - - - - - 0x009778 02:9768: BD 38 04  LDA ram_obj_pos_X_hi,X
 - - - - - - 0x00977B 02:976B: 18        CLC
-- - - - - - 0x00977C 02:976C: 65 00     ADC ram_0000_temp
+- - - - - - 0x00977C 02:976C: 65 00     ADC ram_0000_t113_pos_X_hi
 - - - - - - 0x00977E 02:976E: 9D 38 04  STA ram_obj_pos_X_hi,X
 loc_9771:
 C D 0 - - - 0x009781 02:9771: A0 02     LDY #$02
@@ -9216,33 +9216,33 @@ C - - - - - 0x00B0A3 02:B093: 4C 32 B1  JMP loc_B132
 bra_B096:
 C - - - - - 0x00B0A6 02:B096: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x00B0A9 02:B099: 29 01     AND #con_obj_flag_01
-C - - - - - 0x00B0AB 02:B09B: 85 01     STA ram_0001_temp
+C - - - - - 0x00B0AB 02:B09B: 85 01     STA ram_0001_t050_some_obj_flags
 C - - - - - 0x00B0AD 02:B09D: A9 00     LDA #$00
 C - - - - - 0x00B0AF 02:B09F: A4 6E     LDY ram_006E_cam_speed
 C - - - - - 0x00B0B1 02:B0A1: 10 02     BPL bra_B0A5
 C - - - - - 0x00B0B3 02:B0A3: A9 FF     LDA #$FF
 bra_B0A5:
-C - - - - - 0x00B0B5 02:B0A5: 85 00     STA ram_0000_temp
+C - - - - - 0x00B0B5 02:B0A5: 85 00     STA ram_0000_t114
 C - - - - - 0x00B0B7 02:B0A7: BD 38 04  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x00B0BA 02:B0AA: 38        SEC
 C - - - - - 0x00B0BB 02:B0AB: E5 6E     SBC ram_006E_cam_speed
 C - - - - - 0x00B0BD 02:B0AD: 9D 38 04  STA ram_obj_pos_X_hi,X
-C - - - - - 0x00B0C0 02:B0B0: A5 01     LDA ram_0001_temp
-C - - - - - 0x00B0C2 02:B0B2: E5 00     SBC ram_0000_temp
+C - - - - - 0x00B0C0 02:B0B0: A5 01     LDA ram_0001_t050_some_obj_flags
+C - - - - - 0x00B0C2 02:B0B2: E5 00     SBC ram_0000_t114
 C - - - - - 0x00B0C4 02:B0B4: 29 01     AND #$01
-C - - - - - 0x00B0C6 02:B0B6: 85 01     STA ram_0001_temp
+C - - - - - 0x00B0C6 02:B0B6: 85 01     STA ram_0001_t050_some_obj_flags
 C - - - - - 0x00B0C8 02:B0B8: D0 13     BNE bra_B0CD
 bra_B0BA:
-C - - - - - 0x00B0CA 02:B0BA: A5 01     LDA ram_0001_temp
+C - - - - - 0x00B0CA 02:B0BA: A5 01     LDA ram_0001_t050_some_obj_flags
 C - - - - - 0x00B0CC 02:B0BC: F0 04     BEQ bra_B0C2
 ; A = 01
 ; con_obj_flag_01
 C - - - - - 0x00B0CE 02:B0BE: 09 80     ORA #con_obj_flag_not_visible
-C - - - - - 0x00B0D0 02:B0C0: 85 01     STA ram_0001_temp
+C - - - - - 0x00B0D0 02:B0C0: 85 01     STA ram_0001_t050_some_obj_flags
 bra_B0C2:
 C - - - - - 0x00B0D2 02:B0C2: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x00B0D5 02:B0C5: 29 7E     AND #(con_obj_flag_01 + con_obj_flag_not_visible) ^ $FF
-C - - - - - 0x00B0D7 02:B0C7: 05 01     ORA ram_0001_temp
+C - - - - - 0x00B0D7 02:B0C7: 05 01     ORA ram_0001_t050_some_obj_flags
 C - - - - - 0x00B0D9 02:B0C9: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x00B0DC 02:B0CC: 60        RTS
 bra_B0CD:

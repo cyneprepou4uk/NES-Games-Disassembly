@@ -8421,7 +8421,7 @@ C - - - - - 0x01BE4B 06:BE3B: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x01BE4E 06:BE3E: A4 9E     LDY ram_009E_object_index
 C - - - - - 0x01BE50 06:BE40: B9 06 06  LDA ram_obj_config,Y
 C - - - - - 0x01BE53 06:BE43: 29 F0     AND #$F0
-C - - - - - 0x01BE55 06:BE45: 85 00     STA ram_0000_temp
+C - - - - - 0x01BE55 06:BE45: 85 00     STA ram_0000_t10C
 C - - - - - 0x01BE57 06:BE47: B9 06 06  LDA ram_obj_config,Y
 C - - - - - 0x01BE5A 06:BE4A: 29 0F     AND #$0F
 C - - - - - 0x01BE5C 06:BE4C: 18        CLC
@@ -8430,7 +8430,7 @@ C - - - - - 0x01BE5F 06:BE4F: C9 04     CMP #$04
 C - - - - - 0x01BE61 06:BE51: 90 02     BCC bra_BE55_not_overflow
 C - - - - - 0x01BE63 06:BE53: A9 04     LDA #$04
 bra_BE55_not_overflow:
-C - - - - - 0x01BE65 06:BE55: 05 00     ORA ram_0000_temp
+C - - - - - 0x01BE65 06:BE55: 05 00     ORA ram_0000_t10C
 C - - - - - 0x01BE67 06:BE57: 99 06 06  STA ram_obj_config,Y
 C - - - - - 0x01BE6A 06:BE5A: 29 0F     AND #$0F
 C - - - - - 0x01BE6C 06:BE5C: C9 01     CMP #$01

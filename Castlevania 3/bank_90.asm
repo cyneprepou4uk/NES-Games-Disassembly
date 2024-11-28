@@ -10446,7 +10446,7 @@ bra_BF19:
 C - - - - - 0x023F29 08:BF19: C9 10     CMP #$10
 C - - - - - 0x023F2B 08:BF1B: B0 3A     BCS bra_BF57_RTS
 C - - - - - 0x023F2D 08:BF1D: 20 58 BF  JSR sub_BF58
-C - - - - - 0x023F30 08:BF20: A5 00     LDA ram_0000_temp
+C - - - - - 0x023F30 08:BF20: A5 00     LDA ram_0000_t10A_pos_X_hi_distance
 C - - - - - 0x023F32 08:BF22: C9 08     CMP #$08
 C - - - - - 0x023F34 08:BF24: B0 31     BCS bra_BF57_RTS
 C - - - - - 0x023F36 08:BF26: 20 CE E5  JSR sub_0x03E5DE
@@ -10480,20 +10480,22 @@ C - - - - - 0x023F67 08:BF57: 60        RTS
 
 
 sub_BF58:
+; out
+    ; ram_0000_t10A_pos_X_hi_distance
 C - - - - - 0x023F68 08:BF58: A9 00     LDA #$00
 C - - - - - 0x023F6A 08:BF5A: 85 17     STA ram_0017_temp
 C - - - - - 0x023F6C 08:BF5C: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x023F6F 08:BF5F: 38        SEC
 C - - - - - 0x023F70 08:BF60: FD 38 04  SBC ram_obj_pos_X_hi,X
-C - - - - - 0x023F73 08:BF63: 85 00     STA ram_0000_temp
+C - - - - - 0x023F73 08:BF63: 85 00     STA ram_0000_t10A_pos_X_hi_distance
 C - - - - - 0x023F75 08:BF65: B0 0D     BCS bra_BF74
 C - - - - - 0x023F77 08:BF67: A9 01     LDA #$01
 C - - - - - 0x023F79 08:BF69: 85 17     STA ram_0017_temp
-C - - - - - 0x023F7B 08:BF6B: A5 00     LDA ram_0000_temp
+C - - - - - 0x023F7B 08:BF6B: A5 00     LDA ram_0000_t10A_pos_X_hi_distance
 C - - - - - 0x023F7D 08:BF6D: 49 FF     EOR #$FF
 C - - - - - 0x023F7F 08:BF6F: 18        CLC
 C - - - - - 0x023F80 08:BF70: 69 01     ADC #$01
-C - - - - - 0x023F82 08:BF72: 85 00     STA ram_0000_temp
+C - - - - - 0x023F82 08:BF72: 85 00     STA ram_0000_t10A_pos_X_hi_distance
 bra_BF74:
 C - - - - - 0x023F84 08:BF74: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x023F87 08:BF77: 38        SEC

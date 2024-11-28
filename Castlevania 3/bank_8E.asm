@@ -8596,11 +8596,11 @@ C - - - - - 0x01F4CE 07:B4BE: 85 09     STA ram_0008_t014_data + $01
 C - - - - - 0x01F4D0 07:B4C0: A5 33     LDA ram_blk_lo
 ; * 06
 C - - - - - 0x01F4D2 07:B4C2: 0A        ASL
-C - - - - - 0x01F4D3 07:B4C3: 85 00     STA ram_0000_temp
+C - - - - - 0x01F4D3 07:B4C3: 85 00     STA ram_0000_t10B
 C - - - - - 0x01F4D5 07:B4C5: 0A        ASL
 ; bzk optimize, value is too low, no need for CLC after ASL
 C - - - - - 0x01F4D6 07:B4C6: 18        CLC
-C - - - - - 0x01F4D7 07:B4C7: 65 00     ADC ram_0000_temp
+C - - - - - 0x01F4D7 07:B4C7: 65 00     ADC ram_0000_t10B
 C - - - - - 0x01F4D9 07:B4C9: A8        TAY
 C - - - - - 0x01F4DA 07:B4CA: B1 08     LDA (ram_0008_t014_data),Y
 C - - - - - 0x01F4DC 07:B4CC: C5 34     CMP ram_blk_fr
@@ -8800,6 +8800,13 @@ C - - - - - 0x01F601 07:B5F1: 60        RTS
 
 
 sub_0x01F602_check_stairs_if_pressed_down:
+; out
+    ; ram_000A_t01F
+    ; ram_000B_t006
+    ; ram_000D_t003_where_are_stairs
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x01F602 07:B5F2: A9 01     LDA #$01
 C - - - - - 0x01F604 07:B5F4: D0 02     BNE bra_B5F8    ; jmp
 
@@ -8807,7 +8814,8 @@ C - - - - - 0x01F604 07:B5F4: D0 02     BNE bra_B5F8    ; jmp
 
 sub_0x01F606_check_stairs_if_pressed_up:
 ; out
-    ; 000A = 
+    ; ram_000A_t01F
+    ; ram_000B_t006
     ; ram_000D_t003_where_are_stairs
     ; C
         ; 0 = 
@@ -8857,25 +8865,25 @@ C - - - - - 0x01F644 07:B634: A5 0C     LDA ram_000C_t006
 C - - - - - 0x01F646 07:B636: 38        SEC
 C - - - - - 0x01F647 07:B637: F1 69     SBC (ram_0069_t000_data),Y
 C - - - - - 0x01F649 07:B639: C8        INY
-C - - - - - 0x01F64A 07:B63A: 85 0B     STA ram_000B_temp
+C - - - - - 0x01F64A 07:B63A: 85 0B     STA ram_000B_t006
 C - - - - - 0x01F64C 07:B63C: A5 08     LDA ram_0008_temp
 C - - - - - 0x01F64E 07:B63E: F1 69     SBC (ram_0069_t000_data),Y
 C - - - - - 0x01F650 07:B640: 85 09     STA ram_0009_temp
 C - - - - - 0x01F652 07:B642: B0 15     BCS bra_B659
 C - - - - - 0x01F654 07:B644: C9 FF     CMP #$FF
 C - - - - - 0x01F656 07:B646: D0 20     BNE bra_B668
-C - - - - - 0x01F658 07:B648: A5 0B     LDA ram_000B_temp
+C - - - - - 0x01F658 07:B648: A5 0B     LDA ram_000B_t006
 C - - - - - 0x01F65A 07:B64A: C9 F3     CMP #$F3
 C - - - - - 0x01F65C 07:B64C: 90 1A     BCC bra_B668
 C - - - - - 0x01F65E 07:B64E: 49 FF     EOR #$FF
 C - - - - - 0x01F660 07:B650: 18        CLC
 C - - - - - 0x01F661 07:B651: 69 01     ADC #$01
-C - - - - - 0x01F663 07:B653: 85 0B     STA ram_000B_temp
+C - - - - - 0x01F663 07:B653: 85 0B     STA ram_000B_t006
 C - - - - - 0x01F665 07:B655: A2 00     LDX #$00    ; to the right
 C - - - - - 0x01F667 07:B657: F0 0A     BEQ bra_B663    ; jmp
 bra_B659:
 C - - - - - 0x01F669 07:B659: D0 0D     BNE bra_B668
-C - - - - - 0x01F66B 07:B65B: A5 0B     LDA ram_000B_temp
+C - - - - - 0x01F66B 07:B65B: A5 0B     LDA ram_000B_t006
 C - - - - - 0x01F66D 07:B65D: C9 0D     CMP #$0D
 C - - - - - 0x01F66F 07:B65F: B0 07     BCS bra_B668
 C - - - - - 0x01F671 07:B661: A2 01     LDX #$01    ; to the left

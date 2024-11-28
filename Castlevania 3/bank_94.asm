@@ -15997,20 +15997,22 @@ C - - - - - 0x02B676 0A:B666: 60        RTS
 sub_B667:
 C - - - - - 0x02B677 0A:B667: AD A1 07  LDA ram_07A1
 C - - - - - 0x02B67A 0A:B66A: F0 0D     BEQ bra_B679
+; FFFF00
 C - - - - - 0x02B67C 0A:B66C: A9 FF     LDA #$FF
-C - - - - - 0x02B67E 0A:B66E: 85 12     STA ram_0012_temp
+C - - - - - 0x02B67E 0A:B66E: 85 12     STA ram_0010_t01B + $02
 C - - - - - 0x02B680 0A:B670: A9 FF     LDA #$FF
-C - - - - - 0x02B682 0A:B672: 85 11     STA ram_0011_temp
+C - - - - - 0x02B682 0A:B672: 85 11     STA ram_0010_t01B + $01
 C - - - - - 0x02B684 0A:B674: A9 00     LDA #$00
-C - - - - - 0x02B686 0A:B676: 85 10     STA ram_0010_temp
+C - - - - - 0x02B686 0A:B676: 85 10     STA ram_0010_t01B
 C - - - - - 0x02B688 0A:B678: 60        RTS
 bra_B679:
+; 000100
 C - - - - - 0x02B689 0A:B679: A9 00     LDA #$00
-C - - - - - 0x02B68B 0A:B67B: 85 12     STA ram_0012_temp
+C - - - - - 0x02B68B 0A:B67B: 85 12     STA ram_0010_t01B + $02
 C - - - - - 0x02B68D 0A:B67D: A9 01     LDA #$01
-C - - - - - 0x02B68F 0A:B67F: 85 11     STA ram_0011_temp
+C - - - - - 0x02B68F 0A:B67F: 85 11     STA ram_0010_t01B + $01
 C - - - - - 0x02B691 0A:B681: A9 00     LDA #$00
-C - - - - - 0x02B693 0A:B683: 85 10     STA ram_0010_temp
+C - - - - - 0x02B693 0A:B683: 85 10     STA ram_0010_t01B
 C - - - - - 0x02B695 0A:B685: 60        RTS
 
 
@@ -16018,14 +16020,14 @@ C - - - - - 0x02B695 0A:B685: 60        RTS
 sub_B686:
 C - - - - - 0x02B696 0A:B686: AD A2 07  LDA ram_07A2
 C - - - - - 0x02B699 0A:B689: 18        CLC
-C - - - - - 0x02B69A 0A:B68A: 65 10     ADC ram_0010_temp
+C - - - - - 0x02B69A 0A:B68A: 65 10     ADC ram_0010_t01B
 C - - - - - 0x02B69C 0A:B68C: 8D A2 07  STA ram_07A2
-C - - - - - 0x02B69F 0A:B68F: AD A3 07  LDA ram_07A3
-C - - - - - 0x02B6A2 0A:B692: 65 11     ADC ram_0011_temp
-C - - - - - 0x02B6A4 0A:B694: 8D A3 07  STA ram_07A3
-C - - - - - 0x02B6A7 0A:B697: AD A4 07  LDA ram_07A4
-C - - - - - 0x02B6AA 0A:B69A: 65 12     ADC ram_0012_temp
-C - - - - - 0x02B6AC 0A:B69C: 8D A4 07  STA ram_07A4
+C - - - - - 0x02B69F 0A:B68F: AD A3 07  LDA ram_unk_07A3_scroll_X
+C - - - - - 0x02B6A2 0A:B692: 65 11     ADC ram_0010_t01B + $01
+C - - - - - 0x02B6A4 0A:B694: 8D A3 07  STA ram_unk_07A3_scroll_X
+C - - - - - 0x02B6A7 0A:B697: AD A4 07  LDA ram_unk_07A4
+C - - - - - 0x02B6AA 0A:B69A: 65 12     ADC ram_0010_t01B + $02
+C - - - - - 0x02B6AC 0A:B69C: 8D A4 07  STA ram_unk_07A4
 C - - - - - 0x02B6AF 0A:B69F: 60        RTS
 
 
@@ -16378,8 +16380,8 @@ C - - - - - 0x02B8BD 0A:B8AD: 20 C2 B8  JSR sub_B8C2
 bra_B8B0:
 C - - - - - 0x02B8C0 0A:B8B0: A9 00     LDA #$00
 C - - - - - 0x02B8C2 0A:B8B2: 8D A2 07  STA ram_07A2
-C - - - - - 0x02B8C5 0A:B8B5: 8D A3 07  STA ram_07A3
-C - - - - - 0x02B8C8 0A:B8B8: 8D A4 07  STA ram_07A4
+C - - - - - 0x02B8C5 0A:B8B5: 8D A3 07  STA ram_unk_07A3_scroll_X
+C - - - - - 0x02B8C8 0A:B8B8: 8D A4 07  STA ram_unk_07A4
 C - - - - - 0x02B8CB 0A:B8BB: A9 80     LDA #$80
 C - - - - - 0x02B8CD 0A:B8BD: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x02B8CF 0A:B8BF: E6 6B     INC ram_006B_subscript
@@ -16423,9 +16425,9 @@ bra_B8F2:
 C - - - - - 0x02B902 0A:B8F2: 20 67 B6  JSR sub_B667
 C - - - - - 0x02B905 0A:B8F5: 20 86 B6  JSR sub_B686
 C - - - - - 0x02B908 0A:B8F8: 20 A0 B6  JSR sub_B6A0
-C - - - - - 0x02B90B 0A:B8FB: AD A3 07  LDA ram_07A3
+C - - - - - 0x02B90B 0A:B8FB: AD A3 07  LDA ram_unk_07A3_scroll_X
 C - - - - - 0x02B90E 0A:B8FE: 85 FD     STA ram_scroll_X
-C - - - - - 0x02B910 0A:B900: AD A4 07  LDA ram_07A4
+C - - - - - 0x02B910 0A:B900: AD A4 07  LDA ram_unk_07A4
 C - - - - - 0x02B913 0A:B903: 29 01     AND #$01
 C - - - - - 0x02B915 0A:B905: 85 00     STA ram_0000_t0DE_base_nametable
 C - - - - - 0x02B917 0A:B907: A5 FF     LDA ram_for_2000

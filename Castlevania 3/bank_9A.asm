@@ -12773,6 +12773,7 @@ C - - - - - 0x0378F2 0D:B8E2: A5 12     LDA ram_0012_temp
 C - - - - - 0x0378F4 0D:B8E4: 0A        ASL
 C - - - - - 0x0378F5 0D:B8E5: 0A        ASL
 C - - - - - 0x0378F6 0D:B8E6: 26 04     ROL ram_0004_temp
+; * 20
 C - - - - - 0x0378F8 0D:B8E8: 0A        ASL
 C - - - - - 0x0378F9 0D:B8E9: 0A        ASL
 C - - - - - 0x0378FA 0D:B8EA: 0A        ASL

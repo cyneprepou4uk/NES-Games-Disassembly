@@ -1687,8 +1687,8 @@ C - - - - - 0x00CAE8 03:8AD8: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x00CAEB 03:8ADB: BD 06 06  LDA ram_obj_config,X
 C - - - - - 0x00CAEE 03:8ADE: 29 80     AND #$80
 C - - - - - 0x00CAF0 03:8AE0: D0 60     BNE bra_8B42
-C - - - - - 0x00CAF2 03:8AE2: A9 01     LDA #$01
-C - - - - - 0x00CAF4 03:8AE4: 85 00     STA ram_0000_temp
+C - - - - - 0x00CAF2 03:8AE2: A9 01     LDA #$01    ; facing left
+C - - - - - 0x00CAF4 03:8AE4: 85 00     STA ram_0000_t115_obj_facing
 C - - - - - 0x00CAF6 03:8AE6: BD 06 06  LDA ram_obj_config,X
 C - - - - - 0x00CAF9 03:8AE9: 29 7F     AND #$7F
 C - - - - - 0x00CAFB 03:8AEB: F0 06     BEQ bra_8AF3
@@ -1707,7 +1707,7 @@ C - - - - - 0x00CB0D 03:8AFD: B0 07     BCS bra_8B06
 C - - - - - 0x00CB0F 03:8AFF: 49 FF     EOR #$FF
 C - - - - - 0x00CB11 03:8B01: 18        CLC
 C - - - - - 0x00CB12 03:8B02: 69 01     ADC #$01
-C - - - - - 0x00CB14 03:8B04: C6 00     DEC ram_0000_temp
+C - - - - - 0x00CB14 03:8B04: C6 00     DEC ram_0000_t115_obj_facing   ; -> 00 (facing right)
 bra_8B06:
 C - - - - - 0x00CB16 03:8B06: C9 04     CMP #$04
 C - - - - - 0x00CB18 03:8B08: B0 15     BCS bra_8B1F
@@ -1723,7 +1723,7 @@ C - - - - - 0x00CB2C 03:8B1C: 4C 30 8B  JMP loc_8B30
 bra_8B1F:
 C - - - - - 0x00CB2F 03:8B1F: A9 04     LDA #$04
 C - - - - - 0x00CB31 03:8B21: 9D 65 05  STA ram_obj_state,X
-C - - - - - 0x00CB34 03:8B24: A5 00     LDA ram_0000_temp
+C - - - - - 0x00CB34 03:8B24: A5 00     LDA ram_0000_t115_obj_facing
 C - - - - - 0x00CB36 03:8B26: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x00CB39 03:8B29: F0 05     BEQ bra_8B30_facing_right
 C - - - - - 0x00CB3B 03:8B2B: A9 0C     LDA #$0C
@@ -1755,8 +1755,8 @@ C - - - - - 0x00CB6B 03:8B5B: B1 00     LDA (ram_0000_t013_data),Y
 C - - - - - 0x00CB6D 03:8B5D: C9 FF     CMP #$FF
 C - - - - - 0x00CB6F 03:8B5F: F0 09     BEQ bra_8B6A_FF
 C - - - - - 0x00CB71 03:8B61: 85 02     STA ram_0002_temp
-C - - - - - 0x00CB73 03:8B63: A9 01     LDA #$01
-C - - - - - 0x00CB75 03:8B65: 85 00     STA ram_0000_temp
+C - - - - - 0x00CB73 03:8B63: A9 01     LDA #$01    ; facing left
+C - - - - - 0x00CB75 03:8B65: 85 00     STA ram_0000_t115_obj_facing
 C - - - - - 0x00CB77 03:8B67: 4C F7 8A  JMP loc_8AF7
 bra_8B6A_FF:
 C - - - - - 0x00CB7A 03:8B6A: A9 40     LDA #$40
@@ -1800,16 +1800,16 @@ bra_8BB3_facing_right:
 C - - - - - 0x00CBC3 03:8BB3: BD A8 04  LDA ram_obj_facing,X
 C - - - - - 0x00CBC6 03:8BB6: 99 A8 04  STA ram_obj_facing,Y
 C - - - - - 0x00CBC9 03:8BB9: A9 F8     LDA #$F8
-C - - - - - 0x00CBCB 03:8BBB: 85 00     STA ram_0000_temp
+C - - - - - 0x00CBCB 03:8BBB: 85 00     STA ram_0000_t116_pos_Y_hi
 C - - - - - 0x00CBCD 03:8BBD: BD 1D 06  LDA ram_061D_obj,X
 C - - - - - 0x00CBD0 03:8BC0: 29 02     AND #$02
 C - - - - - 0x00CBD2 03:8BC2: F0 04     BEQ bra_8BC8
 C - - - - - 0x00CBD4 03:8BC4: A9 0C     LDA #$0C
-C - - - - - 0x00CBD6 03:8BC6: 85 00     STA ram_0000_temp
+C - - - - - 0x00CBD6 03:8BC6: 85 00     STA ram_0000_t116_pos_Y_hi
 bra_8BC8:
 C - - - - - 0x00CBD8 03:8BC8: B9 1C 04  LDA ram_obj_pos_Y_hi,Y
 C - - - - - 0x00CBDB 03:8BCB: 18        CLC
-C - - - - - 0x00CBDC 03:8BCC: 65 00     ADC ram_0000_temp
+C - - - - - 0x00CBDC 03:8BCC: 65 00     ADC ram_0000_t116_pos_Y_hi
 C - - - - - 0x00CBDE 03:8BCE: 99 1C 04  STA ram_obj_pos_Y_hi,Y
 C - - - - - 0x00CBE1 03:8BD1: 60        RTS
 

@@ -41,8 +41,8 @@
 
 
 
-loc_875E:
-sub_875E_4E_6C_play_music:
+loc_875E_disable_sound_engine:
+sub_875E_disable_sound_engine:
 sub_0x03076E_disable_sound_engine:
 C D 0 - - - 0x03076E 0C:875E: A9 00     LDA #$00
 C - - - - - 0x030770 0C:8760: 86 E2     STX ram_00E2_se_temp
@@ -167,16 +167,17 @@ C - - - - - 0x03084D 0C:883D: 4C F9 88  JMP loc_88F9_6D_7C_play_dmc
 bra_8840_01_6C:
 C - - - - - 0x030850 0C:8840: C9 4E     CMP #$4E
 C - - - - - 0x030852 0C:8842: 90 C9     BCC bra_880D_01_4D_play_sound
-C - - - - - 0x030854 0C:8844: 20 5E 87  JSR sub_875E_4E_6C_play_music
+; 4E-6C music 
+C - - - - - 0x030854 0C:8844: 20 5E 87  JSR sub_875E_disable_sound_engine
 bra_8847:
 C - - - - - 0x030857 0C:8847: 86 E4     STX ram_00E4_se_temp
 C - - - - - 0x030859 0C:8849: 84 E5     STY ram_00E5_se_temp
 C - - - - - 0x03085B 0C:884B: A5 EF     LDA ram_00EF_se
 C - - - - - 0x03085D 0C:884D: 0A        ASL
 C - - - - - 0x03085E 0C:884E: A8        TAY
-C - - - - - 0x03085F 0C:884F: B9 2C 8F  LDA tbl_8F2E - $02,Y
+C - - - - - 0x03085F 0C:884F: B9 2C 8F  LDA tbl_8F2E_sound_and_music_data - $02,Y
 C - - - - - 0x030862 0C:8852: 85 E8     STA ram_00E8_se_t000_data
-C - - - - - 0x030864 0C:8854: B9 2D 8F  LDA tbl_8F2E - $01,Y
+C - - - - - 0x030864 0C:8854: B9 2D 8F  LDA tbl_8F2E_sound_and_music_data - $01,Y
 C - - - - - 0x030867 0C:8857: 85 E9     STA ram_00E8_se_t000_data + $01
 C - - - - - 0x030869 0C:8859: A0 00     LDY #$00
 C - - - - - 0x03086B 0C:885B: B1 E8     LDA (ram_00E8_se_t000_data),Y
@@ -372,7 +373,7 @@ C - - - - - 0x0309BE 0C:89AE: 4C 23 8F  JMP loc_8F23_garbage_code
 sub_89B1:
 C - - - - - 0x0309C1 0C:89B1: C9 01     CMP #$01
 C - - - - - 0x0309C3 0C:89B3: D0 03     BNE bra_89B8
-C - - - - - 0x0309C5 0C:89B5: 4C 5E 87  JMP loc_875E
+C - - - - - 0x0309C5 0C:89B5: 4C 5E 87  JMP loc_875E_disable_sound_engine
 bra_89B8:
 C - - - - - 0x0309C8 0C:89B8: C9 02     CMP #$02
 C - - - - - 0x0309CA 0C:89BA: D0 0C     BNE bra_89C8
@@ -1260,7 +1261,7 @@ C - - - - - 0x030F3D 0C:8F2D: 60        RTS
 
 
 
-tbl_8F2E:
+tbl_8F2E_sound_and_music_data:
 ; sounds (see con_sound)
 - D 0 - - - 0x030F3E 0C:8F2E: 26 90     .word _off009_9026_01
 - D 0 - - - 0x030F40 0C:8F30: 2B 90     .word _off009_902B_02

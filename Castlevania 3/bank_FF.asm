@@ -117,8 +117,10 @@ tbl_0x03C95B_prg_bank:
 
 
 
-sub_C95A:
+sub_C95A_calculate_camera_speed:
 ; out
+    ; ram_000A_t028_spd_Y_lo
+    ; ram_000B_t009_spd_Y_hi
     ; ram_0017_t002_flag
 C - - - - - 0x03C96A 0F:C95A: A9 00     LDA #$00
 C - - - - - 0x03C96C 0F:C95C: 85 17     STA ram_0017_t002_flag
@@ -127,9 +129,9 @@ C - - - - - 0x03C970 0F:C960: C9 82     CMP #$82
 C - - - - - 0x03C972 0F:C962: B0 0B     BCS bra_C96F
 bra_C964:
 C - - - - - 0x03C974 0F:C964: AD 37 05  LDA ram_plr_spd_Y_lo
-C - - - - - 0x03C977 0F:C967: 85 0A     STA ram_000A_temp
+C - - - - - 0x03C977 0F:C967: 85 0A     STA ram_000A_t028_spd_Y_lo
 C - - - - - 0x03C979 0F:C969: AD 20 05  LDA ram_plr_spd_Y_hi
-C - - - - - 0x03C97C 0F:C96C: 85 0B     STA ram_000B_temp
+C - - - - - 0x03C97C 0F:C96C: 85 0B     STA ram_000B_t009_spd_Y_hi
 C - - - - - 0x03C97E 0F:C96E: 60        RTS
 bra_C96F:
 C - - - - - 0x03C97F 0F:C96F: C9 84     CMP #$84
@@ -149,9 +151,9 @@ C - - - - - 0x03C996 0F:C986: F0 02     BEQ bra_C98A
 C - - - - - 0x03C998 0F:C988: A0 03     LDY #$03
 bra_C98A:
 C - - - - - 0x03C99A 0F:C98A: B9 30 CA  LDA tbl_CA30,Y
-C - - - - - 0x03C99D 0F:C98D: 85 0A     STA ram_000A_temp
+C - - - - - 0x03C99D 0F:C98D: 85 0A     STA ram_000A_t028_spd_Y_lo
 C - - - - - 0x03C99F 0F:C98F: B9 31 CA  LDA tbl_CA30 + $01,Y
-C - - - - - 0x03C9A2 0F:C992: 85 0B     STA ram_000B_temp
+C - - - - - 0x03C9A2 0F:C992: 85 0B     STA ram_000B_t009_spd_Y_hi
 C - - - - - 0x03C9A4 0F:C994: B9 32 CA  LDA tbl_CA30 + $02,Y
 C - - - - - 0x03C9A7 0F:C997: 85 65     STA ram_0065
 C - - - - - 0x03C9A9 0F:C999: 60        RTS
@@ -159,7 +161,8 @@ bra_C99A:
 C - - - - - 0x03C9AA 0F:C99A: A9 02     LDA #$02
 C - - - - - 0x03C9AC 0F:C99C: 85 65     STA ram_0065
 C - - - - - 0x03C9AE 0F:C99E: A9 00     LDA #$00
-C - - - - - 0x03C9B0 0F:C9A0: 85 0B     STA ram_000B_temp
+C - - - - - 0x03C9B0 0F:C9A0: 85 0B     STA ram_000B_t009_spd_Y_hi
+; bzk bug? ram_000A_t028_spd_Y_lo is not specified
 C - - - - - 0x03C9B2 0F:C9A2: 60        RTS
 bra_C9A3:
 C - - - - - 0x03C9B3 0F:C9A3: A5 57     LDA ram_cam_pos_hi
@@ -172,25 +175,25 @@ C - - - - - 0x03C9BF 0F:C9AF: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x03C9C1 0F:C9B1: C9 30     CMP #$30
 C - - - - - 0x03C9C3 0F:C9B3: F0 AF     BEQ bra_C964
 bra_C9B5:
-C - - - - - 0x03C9C5 0F:C9B5: AC A4 07  LDY ram_07A4
+C - - - - - 0x03C9C5 0F:C9B5: AC A4 07  LDY ram_unk_07A4
 C - - - - - 0x03C9C8 0F:C9B8: D0 19     BNE bra_C9D3
 C - - - - - 0x03C9CA 0F:C9BA: A9 00     LDA #$00
-C - - - - - 0x03C9CC 0F:C9BC: 85 0A     STA ram_000A_temp
-C - - - - - 0x03C9CE 0F:C9BE: 85 0B     STA ram_000B_temp
-C - - - - - 0x03C9D0 0F:C9C0: EE A3 07  INC ram_07A3
-C - - - - - 0x03C9D3 0F:C9C3: AD A3 07  LDA ram_07A3
+C - - - - - 0x03C9CC 0F:C9BC: 85 0A     STA ram_000A_t028_spd_Y_lo
+C - - - - - 0x03C9CE 0F:C9BE: 85 0B     STA ram_000B_t009_spd_Y_hi
+C - - - - - 0x03C9D0 0F:C9C0: EE A3 07  INC ram_unk_07A3_scroll_X
+C - - - - - 0x03C9D3 0F:C9C3: AD A3 07  LDA ram_unk_07A3_scroll_X
 C - - - - - 0x03C9D6 0F:C9C6: C9 80     CMP #$80
 C - - - - - 0x03C9D8 0F:C9C8: 90 08     BCC bra_C9D2_RTS
 C - - - - - 0x03C9DA 0F:C9CA: A9 08     LDA #$08
 sub_C9CC:
-C - - - - - 0x03C9DC 0F:C9CC: 8D A3 07  STA ram_07A3
-C - - - - - 0x03C9DF 0F:C9CF: EE A4 07  INC ram_07A4
+C - - - - - 0x03C9DC 0F:C9CC: 8D A3 07  STA ram_unk_07A3_scroll_X
+C - - - - - 0x03C9DF 0F:C9CF: EE A4 07  INC ram_unk_07A4
 bra_C9D2_RTS:
 C - - - - - 0x03C9E2 0F:C9D2: 60        RTS
 bra_C9D3:
 C - - - - - 0x03C9E3 0F:C9D3: 88        DEY
 C - - - - - 0x03C9E4 0F:C9D4: D0 21     BNE bra_C9F7
-C - - - - - 0x03C9E6 0F:C9D6: CE A3 07  DEC ram_07A3
+C - - - - - 0x03C9E6 0F:C9D6: CE A3 07  DEC ram_unk_07A3_scroll_X
 C - - - - - 0x03C9E9 0F:C9D9: D0 0A     BNE bra_C9E5
 C - - - - - 0x03C9EB 0F:C9DB: A9 04     LDA #$04
 C - - - - - 0x03C9ED 0F:C9DD: 20 CC C9  JSR sub_C9CC
@@ -198,7 +201,7 @@ C - - - - - 0x03C9F0 0F:C9E0: A9 37     LDA #con_sound_37
 C - - - - - 0x03C9F2 0F:C9E2: 20 5F E2  JSR sub_E25F_play_sound
 bra_C9E5:
 C - - - - - 0x03C9F5 0F:C9E5: E6 17     INC ram_0017_t002_flag
-C - - - - - 0x03C9F7 0F:C9E7: AD A3 07  LDA ram_07A3
+C - - - - - 0x03C9F7 0F:C9E7: AD A3 07  LDA ram_unk_07A3_scroll_X
 C - - - - - 0x03C9FA 0F:C9EA: 29 01     AND #$01
 C - - - - - 0x03C9FC 0F:C9EC: 0A        ASL
 C - - - - - 0x03C9FD 0F:C9ED: A8        TAY
@@ -208,28 +211,28 @@ C - - - - - 0x03CA04 0F:C9F4: 4C 08 CA  JMP loc_CA08
 bra_C9F7:
 C - - - - - 0x03CA07 0F:C9F7: 88        DEY
 C - - - - - 0x03CA08 0F:C9F8: D0 17     BNE bra_CA11
-C - - - - - 0x03CA0A 0F:C9FA: CE A3 07  DEC ram_07A3
+C - - - - - 0x03CA0A 0F:C9FA: CE A3 07  DEC ram_unk_07A3_scroll_X
 C - - - - - 0x03CA0D 0F:C9FD: D0 05     BNE bra_CA04
 C - - - - - 0x03CA0F 0F:C9FF: A9 10     LDA #$10
 C - - - - - 0x03CA11 0F:CA01: 20 CC C9  JSR sub_C9CC
 bra_CA04:
 C - - - - - 0x03CA14 0F:CA04: A2 00     LDX #$00
-C - - - - - 0x03CA16 0F:CA06: A9 F8     LDA #$F8
+C - - - - - 0x03CA16 0F:CA06: A9 F8     LDA #$F8    ; > F800
 loc_CA08:
 C D 2 - - - 0x03CA18 0F:CA08: 86 65     STX ram_0065
-C - - - - - 0x03CA1A 0F:CA0A: 85 0B     STA ram_000B_temp
+C - - - - - 0x03CA1A 0F:CA0A: 85 0B     STA ram_000B_t009_spd_Y_hi
 C - - - - - 0x03CA1C 0F:CA0C: A9 00     LDA #$00
-C - - - - - 0x03CA1E 0F:CA0E: 85 0A     STA ram_000A_temp
+C - - - - - 0x03CA1E 0F:CA0E: 85 0A     STA ram_000A_t028_spd_Y_lo
 C - - - - - 0x03CA20 0F:CA10: 60        RTS
 bra_CA11:
-C - - - - - 0x03CA21 0F:CA11: CE A3 07  DEC ram_07A3
+C - - - - - 0x03CA21 0F:CA11: CE A3 07  DEC ram_unk_07A3_scroll_X
 C - - - - - 0x03CA24 0F:CA14: D0 08     BNE bra_CA1E
 C - - - - - 0x03CA26 0F:CA16: A9 00     LDA #$00
-C - - - - - 0x03CA28 0F:CA18: 8D A4 07  STA ram_07A4
-C - - - - - 0x03CA2B 0F:CA1B: 8D A3 07  STA ram_07A3
+C - - - - - 0x03CA28 0F:CA18: 8D A4 07  STA ram_unk_07A4
+C - - - - - 0x03CA2B 0F:CA1B: 8D A3 07  STA ram_unk_07A3_scroll_X
 bra_CA1E:
 C - - - - - 0x03CA2E 0F:CA1E: E6 17     INC ram_0017_t002_flag
-C - - - - - 0x03CA30 0F:CA20: AD A3 07  LDA ram_07A3
+C - - - - - 0x03CA30 0F:CA20: AD A3 07  LDA ram_unk_07A3_scroll_X
 C - - - - - 0x03CA33 0F:CA23: 29 01     AND #$01
 C - - - - - 0x03CA35 0F:CA25: 0A        ASL
 C - - - - - 0x03CA36 0F:CA26: A8        TAY
@@ -241,20 +244,20 @@ C - - - - - 0x03CA3D 0F:CA2D: 4C 08 CA  JMP loc_CA08
 
 tbl_CA30:
 ; 00 
-- D 2 - - - 0x03CA40 0F:CA30: C0 FF     .word $FFC0 ; 
+- D 2 - - - 0x03CA40 0F:CA30: C0 FF     .word $FFC0 ; spd_Y
 - D 2 - - - 0x03CA42 0F:CA32: 00        .byte $00   ; 
 ; 01 
-- D 2 - - - 0x03CA43 0F:CA33: 40 00     .word $0040 ; 
+- D 2 - - - 0x03CA43 0F:CA33: 40 00     .word $0040 ; spd_Y
 - D 2 - - - 0x03CA45 0F:CA35: 01        .byte $01   ; 
 
 
 
 tbl_CA36:
 ; 00 
-- D 2 - - - 0x03CA46 0F:CA36: 01        .byte $01   ; 
+- D 2 - - - 0x03CA46 0F:CA36: 01        .byte $01   ; spd_Y_hi
 - D 2 - - - 0x03CA47 0F:CA37: 01        .byte $01   ; 
 ; 01 
-- D 2 - - - 0x03CA48 0F:CA38: FF        .byte $FF   ; 
+- D 2 - - - 0x03CA48 0F:CA38: FF        .byte $FF   ; spd_Y_hi
 - D 2 - - - 0x03CA49 0F:CA39: 00        .byte $00   ; 
 
 
@@ -274,7 +277,7 @@ sub_CA3E:
     ; C
         ; 0 = 
         ; 1 = 
-C - - - - - 0x03CA4E 0F:CA3E: 20 5A C9  JSR sub_C95A
+C - - - - - 0x03CA4E 0F:CA3E: 20 5A C9  JSR sub_C95A_calculate_camera_speed
 C - - - - - 0x03CA51 0F:CA41: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x03CA53 0F:CA43: 85 08     STA ram_0008_t037_copy_cam_pos_lo
 C - - - - - 0x03CA55 0F:CA45: A4 65     LDY ram_0065
@@ -292,10 +295,10 @@ C - - - - - 0x03CA64 0F:CA54: 60        RTS
 bra_CA55_01:
 C - - - - - 0x03CA65 0F:CA55: 18        CLC
 C - - - - - 0x03CA66 0F:CA56: A5 58     LDA ram_0058
-C - - - - - 0x03CA68 0F:CA58: 65 0A     ADC ram_000A_temp
+C - - - - - 0x03CA68 0F:CA58: 65 0A     ADC ram_000A_t028_spd_Y_lo
 C - - - - - 0x03CA6A 0F:CA5A: 85 58     STA ram_0058
 C - - - - - 0x03CA6C 0F:CA5C: A5 56     LDA ram_cam_pos_lo
-C - - - - - 0x03CA6E 0F:CA5E: 65 0B     ADC ram_000B_temp
+C - - - - - 0x03CA6E 0F:CA5E: 65 0B     ADC ram_000B_t009_spd_Y_hi
 C - - - - - 0x03CA70 0F:CA60: 85 56     STA ram_cam_pos_lo
 C - - - - - 0x03CA72 0F:CA62: C9 F0     CMP #$F0
 C - - - - - 0x03CA74 0F:CA64: 90 0E     BCC bra_CA74
@@ -327,10 +330,10 @@ C - - - - - 0x03CA9F 0F:CA8F: 4C B3 CA  JMP loc_CAB3
 bra_CA92_00:
 C - - - - - 0x03CAA2 0F:CA92: 18        CLC
 C - - - - - 0x03CAA3 0F:CA93: A5 58     LDA ram_0058
-C - - - - - 0x03CAA5 0F:CA95: 65 0A     ADC ram_000A_temp
+C - - - - - 0x03CAA5 0F:CA95: 65 0A     ADC ram_000A_t028_spd_Y_lo
 C - - - - - 0x03CAA7 0F:CA97: 85 58     STA ram_0058
 C - - - - - 0x03CAA9 0F:CA99: A5 56     LDA ram_cam_pos_lo
-C - - - - - 0x03CAAB 0F:CA9B: 65 0B     ADC ram_000B_temp
+C - - - - - 0x03CAAB 0F:CA9B: 65 0B     ADC ram_000B_t009_spd_Y_hi
 C - - - - - 0x03CAAD 0F:CA9D: 85 56     STA ram_cam_pos_lo
 C - - - - - 0x03CAAF 0F:CA9F: B0 12     BCS bra_CAB3
 C - - - - - 0x03CAB1 0F:CAA1: A4 57     LDY ram_cam_pos_hi
@@ -1131,8 +1134,8 @@ sub_CF8C:
 C - - - - - 0x03CF9C 0F:CF8C: A9 1E     LDA #$1E
 C - - - - - 0x03CF9E 0F:CF8E: 85 FE     STA ram_for_2001
 C - - - - - 0x03CFA0 0F:CF90: A9 00     LDA #$00
-C - - - - - 0x03CFA2 0F:CF92: 8D A3 07  STA ram_07A3
-C - - - - - 0x03CFA5 0F:CF95: 8D A4 07  STA ram_07A4
+C - - - - - 0x03CFA2 0F:CF92: 8D A3 07  STA ram_unk_07A3_scroll_X
+C - - - - - 0x03CFA5 0F:CF95: 8D A4 07  STA ram_unk_07A4
 C - - - - - 0x03CFA8 0F:CF98: A9 02     LDA #$02
 C - - - - - 0x03CFAA 0F:CF9A: 85 72     STA ram_0072_chr_banks_config
 C - - - - - 0x03CFAC 0F:CF9C: A9 05     LDA #con_irq_05
@@ -5060,6 +5063,8 @@ C - - - - - 0x03E6E1 0F:E6D1: 4C E6 E2  JMP loc_E2E6_prg_bankswitch
 
 sub_0x03E6E4_check_stairs_if_pressed_down:
 ; out
+    ; ram_000A_t01F
+    ; ram_000B_t006
     ; ram_000D_t003_where_are_stairs
     ; C
         ; 0 = 
@@ -5073,6 +5078,8 @@ C - - - - - 0x03E6EC 0F:E6DC: 4C 7F E6  JMP loc_E67F_restore_prg_bank
 
 sub_0x03E6EF_check_stairs_if_pressed_up:
 ; out
+    ; ram_000A_t01F
+    ; ram_000B_t006
     ; ram_000D_t003_where_are_stairs
     ; C
         ; 0 = 
