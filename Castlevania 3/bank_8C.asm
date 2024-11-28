@@ -8485,6 +8485,8 @@ tbl_BE82:
 
 
 sub_0x01BE9E:
+; out
+    ; ram_0000_t07B
 C - - - - - 0x01BE9E 06:BE8E: A9 00     LDA #$00
 C - - - - - 0x01BEA0 06:BE90: 85 00     STA ram_0000_t07A
 C - - - - - 0x01BEA2 06:BE92: A5 04     LDA ram_0004_t013_pos_X_hi

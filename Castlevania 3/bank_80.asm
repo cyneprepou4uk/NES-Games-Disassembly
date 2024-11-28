@@ -2075,13 +2075,13 @@ C - - - - - 0x000598 00:8588: 71 0A     ADC (ram_000A_t014_palette_data),Y
 C - - - - - 0x00059A 00:858A: A8        TAY
 C - - - - - 0x00059B 00:858B: A6 1D     LDX ram_index_ppu_buffer
 C - - - - - 0x00059D 00:858D: A9 03     LDA #$03
-C - - - - - 0x00059F 00:858F: 85 0C     STA ram_000C_temp
+C - - - - - 0x00059F 00:858F: 85 0C     STA ram_000C_t00B_colors_counter
 bra_8591_loop:
 C - - - - - 0x0005A1 00:8591: B9 CE 89  LDA tbl_89CE_3_colors_for_sprites,Y
 C - - - - - 0x0005A4 00:8594: 9D F0 02  STA ram_ppu_buffer - $10,X
 C - - - - - 0x0005A7 00:8597: C8        INY
 C - - - - - 0x0005A8 00:8598: E8        INX
-C - - - - - 0x0005A9 00:8599: C6 0C     DEC ram_000C_temp
+C - - - - - 0x0005A9 00:8599: C6 0C     DEC ram_000C_t00B_colors_counter
 C - - - - - 0x0005AB 00:859B: D0 F4     BNE bra_8591_loop
 C - - - - - 0x0005AD 00:859D: 60        RTS
 
@@ -3567,7 +3567,7 @@ tbl_8B12_ppu:
 
 
 sub_8B1A_print_debug_menu_number:
-C - - - - - 0x000B2A 00:8B1A: 85 08     STA ram_0008_temp
+C - - - - - 0x000B2A 00:8B1A: 85 08     STA ram_0008_t05A_number
 C - - - - - 0x000B2C 00:8B1C: B9 12 8B  LDA tbl_8B12_ppu,Y
 C - - - - - 0x000B2F 00:8B1F: 85 61     STA ram_ppu_address_lo
 C - - - - - 0x000B31 00:8B21: B9 13 8B  LDA tbl_8B12_ppu + $01,Y
@@ -3875,7 +3875,7 @@ C - - - - - 0x000CA9 00:8C99: 85 62     STA ram_ppu_address_hi
 C - - - - - 0x000CAB 00:8C9B: A9 77     LDA #< $2077
 C - - - - - 0x000CAD 00:8C9D: 85 61     STA ram_ppu_address_lo
 C - - - - - 0x000CAF 00:8C9F: A5 84     LDA ram_hearts
-C - - - - - 0x000CB1 00:8CA1: 85 08     STA ram_0008_temp
+C - - - - - 0x000CB1 00:8CA1: 85 08     STA ram_0008_t05A_number
 C - - - - - 0x000CB3 00:8CA3: 4C FC E8  JMP loc_0x03E90C_print_number
 
 
@@ -3961,12 +3961,12 @@ C - - - - - 0x000D33 00:8D23: 85 62     STA ram_ppu_address_hi
 C - - - - - 0x000D35 00:8D25: A9 52     LDA #< $2052
 C - - - - - 0x000D37 00:8D27: 85 61     STA ram_ppu_address_lo
 C - - - - - 0x000D39 00:8D29: A5 7F     LDA ram_timer_x00
-C - - - - - 0x000D3B 00:8D2B: 85 08     STA ram_0008_temp
+C - - - - - 0x000D3B 00:8D2B: 85 08     STA ram_0008_t05A_number
 C - - - - - 0x000D3D 00:8D2D: 20 FC E8  JSR sub_0x03E90C_print_number
 C - - - - - 0x000D40 00:8D30: E6 61     INC ram_ppu_address_lo
 C - - - - - 0x000D42 00:8D32: E6 61     INC ram_ppu_address_lo
 C - - - - - 0x000D44 00:8D34: A5 7E     LDA ram_timer_0xx
-C - - - - - 0x000D46 00:8D36: 85 08     STA ram_0008_temp
+C - - - - - 0x000D46 00:8D36: 85 08     STA ram_0008_t05A_number
 C - - - - - 0x000D48 00:8D38: 4C FC E8  JMP loc_0x03E90C_print_number
 
 
@@ -3978,17 +3978,17 @@ C - - - - - 0x000D4D 00:8D3D: 85 62     STA ram_ppu_address_hi
 C - - - - - 0x000D4F 00:8D3F: A9 46     LDA #< $2046
 C - - - - - 0x000D51 00:8D41: 85 61     STA ram_ppu_address_lo
 C - - - - - 0x000D53 00:8D43: A5 38     LDA ram_score_xx0000
-C - - - - - 0x000D55 00:8D45: 85 08     STA ram_0008_temp
+C - - - - - 0x000D55 00:8D45: 85 08     STA ram_0008_t05A_number
 C - - - - - 0x000D57 00:8D47: 20 FC E8  JSR sub_0x03E90C_print_number
 C - - - - - 0x000D5A 00:8D4A: E6 61     INC ram_ppu_address_lo
 C - - - - - 0x000D5C 00:8D4C: E6 61     INC ram_ppu_address_lo
 C - - - - - 0x000D5E 00:8D4E: A5 37     LDA ram_score_00xx00
-C - - - - - 0x000D60 00:8D50: 85 08     STA ram_0008_temp
+C - - - - - 0x000D60 00:8D50: 85 08     STA ram_0008_t05A_number
 C - - - - - 0x000D62 00:8D52: 20 FC E8  JSR sub_0x03E90C_print_number
 C - - - - - 0x000D65 00:8D55: E6 61     INC ram_ppu_address_lo
 C - - - - - 0x000D67 00:8D57: E6 61     INC ram_ppu_address_lo
 C - - - - - 0x000D69 00:8D59: A5 36     LDA ram_score_0000xx
-C - - - - - 0x000D6B 00:8D5B: 85 08     STA ram_0008_temp
+C - - - - - 0x000D6B 00:8D5B: 85 08     STA ram_0008_t05A_number
 C - - - - - 0x000D6D 00:8D5D: 4C FC E8  JMP loc_0x03E90C_print_number
 
 
@@ -4235,7 +4235,7 @@ C - - - - - 0x000E4E 00:8E3E: 85 62     STA ram_ppu_address_hi
 C - - - - - 0x000E50 00:8E40: A9 97     LDA #< $2097
 C - - - - - 0x000E52 00:8E42: 85 61     STA ram_ppu_address_lo
 C - - - - - 0x000E54 00:8E44: A4 35     LDY ram_lives
-C - - - - - 0x000E56 00:8E46: 84 08     STY ram_0008_temp
+C - - - - - 0x000E56 00:8E46: 84 08     STY ram_0008_t05A_number
 C - - - - - 0x000E58 00:8E48: 4C FC E8  JMP loc_0x03E90C_print_number
 
 
@@ -10586,7 +10586,7 @@ C - - - - - 0x00345F 00:B44F: D0 04     BNE bra_B455
 bra_B455:
 C - - - - - 0x003465 00:B455: A2 10     LDX #$10
 bra_B457:
-C - - - - - 0x003467 00:B457: 86 08     STX ram_0008_temp
+C - - - - - 0x003467 00:B457: 86 08     STX ram_0008_t05B
 C - - - - - 0x003469 00:B459: A2 F0     LDX #$F0
 C - - - - - 0x00346B 00:B45B: A9 FB     LDA #$FB
 C - - - - - 0x00346D 00:B45D: 20 DD FC  JSR sub_0x03FCED
@@ -10595,12 +10595,12 @@ C - - - - - 0x003472 00:B462: A2 F0     LDX #$F0
 C - - - - - 0x003474 00:B464: A9 05     LDA #$05
 C - - - - - 0x003476 00:B466: 20 DD FC  JSR sub_0x03FCED
 C - - - - - 0x003479 00:B469: D0 DE     BNE bra_B449_RTS
-C - - - - - 0x00347B 00:B46B: A6 08     LDX ram_0008_temp
+C - - - - - 0x00347B 00:B46B: A6 08     LDX ram_0008_t05B
 C - - - - - 0x00347D 00:B46D: A9 FB     LDA #$FB
 C - - - - - 0x00347F 00:B46F: 20 DD FC  JSR sub_0x03FCED
 C - - - - - 0x003482 00:B472: D0 0A     BNE bra_B47E
 C - - - - - 0x003484 00:B474: A9 05     LDA #$05
-C - - - - - 0x003486 00:B476: A6 08     LDX ram_0008_temp
+C - - - - - 0x003486 00:B476: A6 08     LDX ram_0008_t05B
 C - - - - - 0x003488 00:B478: 20 DD FC  JSR sub_0x03FCED
 C - - - - - 0x00348B 00:B47B: D0 01     BNE bra_B47E
 - - - - - - 0x00348D 00:B47D: 60        RTS

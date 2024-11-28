@@ -8,8 +8,8 @@
 
 .export sub_0x034011_sprite_engine
 .export ofs_062_0x037792_00
-.export sub_0x0377CF
-.export ofs_062_0x0379F4_01
+.export sub_0x0377CF_crumbling_blocks
+.export ofs_062_0x0379F4_02_calculate_ppu_address
 .export sub_0x037DCC
 .export sub_0x037DFF
 
@@ -29,7 +29,7 @@ bra_800A:
 C - - - - - 0x03401A 0D:800A: A9 00     LDA #$00
 C - - - - - 0x03401C 0D:800C: 85 05     STA ram_0005_t003
 C - - - - - 0x03401E 0D:800E: A9 40     LDA #$40
-C - - - - - 0x034020 0D:8010: 85 07     STA ram_0007_temp
+C - - - - - 0x034020 0D:8010: 85 07     STA ram_0007_t019_sprites_counter
 C - - - - - 0x034022 0D:8012: A5 20     LDA ram_0020_base_oam_offset
 C - - - - - 0x034024 0D:8014: 18        CLC
 C - - - - - 0x034025 0D:8015: 69 44     ADC #$44
@@ -55,7 +55,7 @@ C - - - - - 0x03404D 0D:803D: E6 05     INC ram_0005_t003
 C - - - - - 0x03404F 0D:803F: D0 DA     BNE bra_801B_loop   ; jmp
 bra_8041_no_more_objects:
 C - - - - - 0x034051 0D:8041: A6 04     LDX ram_0004_temp
-C - - - - - 0x034053 0D:8043: A4 07     LDY ram_0007_temp
+C - - - - - 0x034053 0D:8043: A4 07     LDY ram_0007_t019_sprites_counter
 bra_8045_loop:
 ; hide unused sprites
 C - - - - - 0x034055 0D:8045: A9 F4     LDA #$F4
@@ -169,7 +169,7 @@ C - - - - - 0x0340EA 0D:80DA: 8A        TXA
 C - - - - - 0x0340EB 0D:80DB: 18        CLC
 C - - - - - 0x0340EC 0D:80DC: 69 C4     ADC #$C4
 C - - - - - 0x0340EE 0D:80DE: AA        TAX
-C - - - - - 0x0340EF 0D:80DF: C6 07     DEC ram_0007_temp
+C - - - - - 0x0340EF 0D:80DF: C6 07     DEC ram_0007_t019_sprites_counter
 C - - - - - 0x0340F1 0D:80E1: F0 13     BEQ bra_80F6
 C - - - - - 0x0340F3 0D:80E3: C6 03     DEC ram_0003_temp    ; sprites counter
 C - - - - - 0x0340F5 0D:80E5: D0 BA     BNE bra_80A1_loop
@@ -236,7 +236,7 @@ C - - - - - 0x034149 0D:8139: 8A        TXA
 C - - - - - 0x03414A 0D:813A: 18        CLC
 C - - - - - 0x03414B 0D:813B: 69 C4     ADC #$C4
 C - - - - - 0x03414D 0D:813D: AA        TAX
-C - - - - - 0x03414E 0D:813E: C6 07     DEC ram_0007_temp
+C - - - - - 0x03414E 0D:813E: C6 07     DEC ram_0007_t019_sprites_counter
 C - - - - - 0x034150 0D:8140: F0 B4     BEQ bra_80F6
 C - - - - - 0x034152 0D:8142: C6 03     DEC ram_0003_temp    ; sprites counter
 C - - - - - 0x034154 0D:8144: D0 B5     BNE bra_80FB_loop
@@ -12532,7 +12532,8 @@ C - - - - - 0x037784 0D:B774: B0 04     BCS bra_B77A
 C - - - - - 0x037786 0D:B776: C9 F0     CMP #$F0
 C - - - - - 0x037788 0D:B778: 90 02     BCC bra_B77C
 bra_B77A:
-- - - - - - 0x03778A 0D:B77A: 69 0F     ADC #$0F
+; C = 1
+- - - - - - 0x03778A 0D:B77A: 69 0F     ADC #$0F    ; 10
 bra_B77C:
 C - - - - - 0x03778C 0D:B77C: A8        TAY
 C - - - - - 0x03778D 0D:B77D: A5 0E     LDA ram_000E_temp
@@ -12549,7 +12550,7 @@ C D 1 - - - 0x037798 0D:B788: 29 F0     AND #$F0
 C - - - - - 0x03779A 0D:B78A: 4A        LSR
 C - - - - - 0x03779B 0D:B78B: 4A        LSR
 C - - - - - 0x03779C 0D:B78C: 4A        LSR
-C - - - - - 0x03779D 0D:B78D: 85 12     STA ram_0012_temp
+C - - - - - 0x03779D 0D:B78D: 85 12     STA ram_0012_t011_ppu_addr_lo
 C - - - - - 0x03779F 0D:B78F: 98        TYA
 C - - - - - 0x0377A0 0D:B790: A4 57     LDY ram_cam_pos_hi
 C - - - - - 0x0377A2 0D:B792: 38        SEC
@@ -12576,16 +12577,16 @@ C - - - - - 0x0377C0 0D:B7B0: 06 00     ASL ram_0000_t0C5
 C - - - - - 0x0377C2 0D:B7B2: 2A        ROL
 C - - - - - 0x0377C3 0D:B7B3: 06 00     ASL ram_0000_t0C5
 C - - - - - 0x0377C5 0D:B7B5: 2A        ROL
-C - - - - - 0x0377C6 0D:B7B6: 85 13     STA ram_0013_temp
-C - - - - - 0x0377C8 0D:B7B8: A5 12     LDA ram_0012_temp
+C - - - - - 0x0377C6 0D:B7B6: 85 13     STA ram_0013_t009_ppu_addr_hi
+C - - - - - 0x0377C8 0D:B7B8: A5 12     LDA ram_0012_t011_ppu_addr_lo
 C - - - - - 0x0377CA 0D:B7BA: 05 00     ORA ram_0000_t0C5
-C - - - - - 0x0377CC 0D:B7BC: 85 12     STA ram_0012_temp
+C - - - - - 0x0377CC 0D:B7BC: 85 12     STA ram_0012_t011_ppu_addr_lo
 bra_B7BE_RTS:
 C - - - - - 0x0377CE 0D:B7BE: 60        RTS
 
 
 
-sub_0x0377CF:
+sub_0x0377CF_crumbling_blocks:
 C - - - - - 0x0377CF 0D:B7BF: 84 09     STY ram_0009_temp
 C - - - - - 0x0377D1 0D:B7C1: A5 68     LDA ram_0068
 C - - - - - 0x0377D3 0D:B7C3: 10 36     BPL bra_B7FB
@@ -12598,24 +12599,24 @@ C - - - - - 0x0377E1 0D:B7D1: 20 05 BA  JSR sub_BA05
 C - - - - - 0x0377E4 0D:B7D4: 30 0B     BMI bra_B7E1
 C - - - - - 0x0377E6 0D:B7D6: A9 10     LDA #con_sound_10
 C - - - - - 0x0377E8 0D:B7D8: 20 5F E2  JSR sub_0x03E26F_play_sound
-C - - - - - 0x0377EB 0D:B7DB: 20 A3 B9  JSR sub_B9A3
-C - - - - - 0x0377EE 0D:B7DE: 4C 82 B9  JMP loc_B982
+C - - - - - 0x0377EB 0D:B7DB: 20 A3 B9  JSR sub_B9A3_shift_ppu_address
+C - - - - - 0x0377EE 0D:B7DE: 4C 82 B9  JMP loc_B982_write_to_buffer
 bra_B7E1:
 C - - - - - 0x0377F1 0D:B7E1: 20 E1 BA  JSR sub_BAE1
 C - - - - - 0x0377F4 0D:B7E4: B0 D8     BCS bra_B7BE_RTS
 C - - - - - 0x0377F6 0D:B7E6: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x0377F9 0D:B7E9: 18        CLC
 C - - - - - 0x0377FA 0D:B7EA: 69 08     ADC #$08
-C - - - - - 0x0377FC 0D:B7EC: 85 14     STA ram_0014_temp
+C - - - - - 0x0377FC 0D:B7EC: 85 14     STA ram_0014_t007_pos_Y_hi
 C - - - - - 0x0377FE 0D:B7EE: A5 0E     LDA ram_000E_temp
-C - - - - - 0x037800 0D:B7F0: 85 15     STA ram_0015_temp
+C - - - - - 0x037800 0D:B7F0: 85 15     STA ram_0015_t008_pos_X_hi
 C - - - - - 0x037802 0D:B7F2: 20 35 E9  JSR sub_0x03E945
 C - - - - - 0x037805 0D:B7F5: 20 31 B8  JSR sub_B831
 C - - - - - 0x037808 0D:B7F8: 4C 3F B8  JMP loc_B83F
 bra_B7FB:
-C - - - - - 0x03780B 0D:B7FB: A5 13     LDA ram_0013_temp
+C - - - - - 0x03780B 0D:B7FB: A5 13     LDA ram_0013_t003
 C - - - - - 0x03780D 0D:B7FD: 85 0E     STA ram_000E_temp
-C - - - - - 0x03780F 0D:B7FF: A5 14     LDA ram_0014_temp
+C - - - - - 0x03780F 0D:B7FF: A5 14     LDA ram_0014_t002
 C - - - - - 0x037811 0D:B801: 85 0F     STA ram_000F_temp
 C - - - - - 0x037813 0D:B803: 20 B8 B8  JSR sub_B8B8
 C - - - - - 0x037816 0D:B806: D0 B6     BNE bra_B7BE_RTS
@@ -12623,13 +12624,13 @@ C - - - - - 0x037818 0D:B808: 20 05 BA  JSR sub_BA05
 C - - - - - 0x03781B 0D:B80B: 30 0E     BMI bra_B81B
 C - - - - - 0x03781D 0D:B80D: A9 10     LDA #con_sound_10
 C - - - - - 0x03781F 0D:B80F: 20 5F E2  JSR sub_0x03E26F_play_sound
-C - - - - - 0x037822 0D:B812: 20 B2 B9  JSR sub_B9B2
-C - - - - - 0x037825 0D:B815: 20 A3 B9  JSR sub_B9A3
-C - - - - - 0x037828 0D:B818: 4C 82 B9  JMP loc_B982
+C - - - - - 0x037822 0D:B812: 20 B2 B9  JSR sub_B9B2_calculate_ppu_address
+C - - - - - 0x037825 0D:B815: 20 A3 B9  JSR sub_B9A3_shift_ppu_address
+C - - - - - 0x037828 0D:B818: 4C 82 B9  JMP loc_B982_write_to_buffer
 bra_B81B:
 C - - - - - 0x03782B 0D:B81B: 20 E7 BA  JSR sub_BAE7
 C - - - - - 0x03782E 0D:B81E: B0 3D     BCS bra_B85D_RTS
-C - - - - - 0x037830 0D:B820: 20 B2 B9  JSR sub_B9B2
+C - - - - - 0x037830 0D:B820: 20 B2 B9  JSR sub_B9B2_calculate_ppu_address
 C - - - - - 0x037833 0D:B823: A4 32     LDY ram_blk_hi
 C - - - - - 0x037835 0D:B825: B9 4B C9  LDA tbl_0x03C95B_prg_bank,Y
 C - - - - - 0x037838 0D:B828: 20 B3 E9  JSR sub_0x03E9C3
@@ -12639,7 +12640,7 @@ C - - - - - 0x03783E 0D:B82E: 4C 5E B8  JMP loc_B85E
 
 
 sub_B831:
-C - - - - - 0x037841 0D:B831: 20 E4 B9  JSR sub_B9E4
+C - - - - - 0x037841 0D:B831: 20 E4 B9  JSR sub_B9E4_calculate_ppu_address
 C - - - - - 0x037844 0D:B834: 20 DE B8  JSR sub_B8DE
 C - - - - - 0x037847 0D:B837: 20 4B B9  JSR sub_B94B
 C - - - - - 0x03784A 0D:B83A: A9 11     LDA #con_sound_11
@@ -12671,7 +12672,7 @@ loc_B85E:
 C D 1 - - - 0x03786E 0D:B85E: 20 83 B8  JSR sub_B883_find_empty_object_slot_01_11
 C - - - - - 0x037871 0D:B861: D0 1F     BNE bra_B882_RTS    ; if not found
 C - - - - - 0x037873 0D:B863: 20 91 B8  JSR sub_B891
-C - - - - - 0x037876 0D:B866: A5 12     LDA ram_0012_temp
+C - - - - - 0x037876 0D:B866: A5 12     LDA ram_0012_t011_ppu_addr_lo
 ; * 08
 C - - - - - 0x037878 0D:B868: 0A        ASL
 C - - - - - 0x037879 0D:B869: 0A        ASL
@@ -12769,7 +12770,7 @@ tbl_B8DC:
 sub_B8DE:
 C - - - - - 0x0378EE 0D:B8DE: A9 00     LDA #$00
 C - - - - - 0x0378F0 0D:B8E0: 85 04     STA ram_0004_temp
-C - - - - - 0x0378F2 0D:B8E2: A5 12     LDA ram_0012_temp
+C - - - - - 0x0378F2 0D:B8E2: A5 12     LDA ram_0012_t011_ppu_addr_lo
 C - - - - - 0x0378F4 0D:B8E4: 0A        ASL
 C - - - - - 0x0378F5 0D:B8E5: 0A        ASL
 C - - - - - 0x0378F6 0D:B8E6: 26 04     ROL ram_0004_temp
@@ -12822,6 +12823,8 @@ C - - - - - 0x037941 0D:B931: 60        RTS
 
 
 sub_B932:
+; out
+    ; ram_000C_temp
 C - - - - - 0x037942 0D:B932: 3D 43 B9  AND tbl_B943,X
 C - - - - - 0x037945 0D:B935: 85 01     STA ram_0001_t005
 C - - - - - 0x037947 0D:B937: A0 04     LDY #$04
@@ -12852,16 +12855,16 @@ tbl_B947:
 
 sub_B94B:
 C - - - - - 0x03795B 0D:B94B: A0 00     LDY #$00
-C - - - - - 0x03795D 0D:B94D: 20 70 B9  JSR sub_B970
+C - - - - - 0x03795D 0D:B94D: 20 70 B9  JSR sub_B970_write_to_buffer
 C - - - - - 0x037960 0D:B950: A9 20     LDA #$20
-C - - - - - 0x037962 0D:B952: 05 12     ORA ram_0012_temp
-C - - - - - 0x037964 0D:B954: 85 12     STA ram_0012_temp
-C - - - - - 0x037966 0D:B956: 20 70 B9  JSR sub_B970
+C - - - - - 0x037962 0D:B952: 05 12     ORA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x037964 0D:B954: 85 12     STA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x037966 0D:B956: 20 70 B9  JSR sub_B970_write_to_buffer
 C - - - - - 0x037969 0D:B959: A9 01     LDA #$01
 C - - - - - 0x03796B 0D:B95B: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x03796E 0D:B95E: A5 14     LDA ram_0014_temp    ; ppu lo
+C - - - - - 0x03796E 0D:B95E: A5 14     LDA ram_0014_t008_ppu_lo
 C - - - - - 0x037970 0D:B960: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x037973 0D:B963: A5 15     LDA ram_0015_temp    ; ppu hi
+C - - - - - 0x037973 0D:B963: A5 15     LDA ram_0015_t009_ppu_hi
 C - - - - - 0x037975 0D:B965: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
 C - - - - - 0x037978 0D:B968: A5 0C     LDA ram_000C_temp
 C - - - - - 0x03797A 0D:B96A: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
@@ -12869,8 +12872,8 @@ C - - - - - 0x03797D 0D:B96D: 4C 12 ED  JMP loc_0x03ED22_close_buffer
 
 
 
-sub_B970:
-C - - - - - 0x037980 0D:B970: 20 94 B9  JSR sub_B994
+sub_B970_write_to_buffer:
+C - - - - - 0x037980 0D:B970: 20 94 B9  JSR sub_B994_prepare_ppu_buffer
 C - - - - - 0x037983 0D:B973: B1 16     LDA (ram_0016_t000_data),Y
 C - - - - - 0x037985 0D:B975: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
 C - - - - - 0x037988 0D:B978: C8        INY
@@ -12881,8 +12884,8 @@ C - - - - - 0x03798F 0D:B97F: 4C 12 ED  JMP loc_0x03ED22_close_buffer
 
 
 
-loc_B982:
-C D 1 - - - 0x037992 0D:B982: 20 94 B9  JSR sub_B994
+loc_B982_write_to_buffer:
+C D 1 - - - 0x037992 0D:B982: 20 94 B9  JSR sub_B994_prepare_ppu_buffer
 C - - - - - 0x037995 0D:B985: A4 0A     LDY ram_000A_t01A
 C - - - - - 0x037997 0D:B987: B9 90 B9  LDA tbl_B990,Y
 C - - - - - 0x03799A 0D:B98A: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
@@ -12898,22 +12901,22 @@ tbl_B990:
 
 
 
-sub_B994:
+sub_B994_prepare_ppu_buffer:
 C - - - - - 0x0379A4 0D:B994: A9 01     LDA #$01
 C - - - - - 0x0379A6 0D:B996: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x0379A9 0D:B999: A5 12     LDA ram_0012_temp    ; ppu lo
+C - - - - - 0x0379A9 0D:B999: A5 12     LDA ram_0012_t011_ppu_addr_lo
 C - - - - - 0x0379AB 0D:B99B: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x0379AE 0D:B99E: A5 13     LDA ram_0013_temp    ; ppu hi
+C - - - - - 0x0379AE 0D:B99E: A5 13     LDA ram_0013_t009_ppu_addr_hi
 C - - - - - 0x0379B0 0D:B9A0: 4C 14 ED  JMP loc_0x03ED24_write_byte_to_buffer___unk_index
 
 
 
-sub_B9A3:
+sub_B9A3_shift_ppu_address:
 C - - - - - 0x0379B3 0D:B9A3: A4 0A     LDY ram_000A_t01A
 C - - - - - 0x0379B5 0D:B9A5: B9 AE B9  LDA tbl_B9AE,Y
 C - - - - - 0x0379B8 0D:B9A8: 18        CLC
-C - - - - - 0x0379B9 0D:B9A9: 65 12     ADC ram_0012_temp
-C - - - - - 0x0379BB 0D:B9AB: 85 12     STA ram_0012_temp
+C - - - - - 0x0379B9 0D:B9A9: 65 12     ADC ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0379BB 0D:B9AB: 85 12     STA ram_0012_t011_ppu_addr_lo
 C - - - - - 0x0379BD 0D:B9AD: 60        RTS
 
 
@@ -12926,63 +12929,75 @@ tbl_B9AE:
 
 
 
-sub_B9B2:
-C - - - - - 0x0379C2 0D:B9B2: A5 13     LDA ram_0013_temp
+sub_B9B2_calculate_ppu_address:
+; in
+    ; ram_0013_t003
+    ; ram_0014_t002
+; out
+    ; ram_0012_t011_ppu_addr_lo
+    ; ram_0013_t009_ppu_addr_hi
+C - - - - - 0x0379C2 0D:B9B2: A5 13     LDA ram_0013_t003
 C - - - - - 0x0379C4 0D:B9B4: 29 F0     AND #$F0
-C - - - - - 0x0379C6 0D:B9B6: 85 12     STA ram_0012_temp
-C - - - - - 0x0379C8 0D:B9B8: A5 14     LDA ram_0014_temp
+C - - - - - 0x0379C6 0D:B9B6: 85 12     STA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0379C8 0D:B9B8: A5 14     LDA ram_0014_t002
 C - - - - - 0x0379CA 0D:B9BA: 45 75     EOR ram_0075
 C - - - - - 0x0379CC 0D:B9BC: 4A        LSR
 C - - - - - 0x0379CD 0D:B9BD: A9 20     LDA #$20
 C - - - - - 0x0379CF 0D:B9BF: 90 02     BCC bra_B9C3
 C - - - - - 0x0379D1 0D:B9C1: A9 24     LDA #$24
 bra_B9C3:
-C - - - - - 0x0379D3 0D:B9C3: 85 13     STA ram_0013_temp
+C - - - - - 0x0379D3 0D:B9C3: 85 13     STA ram_0013_t009_ppu_addr_hi
 C - - - - - 0x0379D5 0D:B9C5: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x0379D8 0D:B9C8: 4A        LSR
 C - - - - - 0x0379D9 0D:B9C9: 4A        LSR
 C - - - - - 0x0379DA 0D:B9CA: 4A        LSR
 C - - - - - 0x0379DB 0D:B9CB: 4A        LSR
-C - - - - - 0x0379DC 0D:B9CC: 66 12     ROR ram_0012_temp
+C - - - - - 0x0379DC 0D:B9CC: 66 12     ROR ram_0012_t011_ppu_addr_lo
 C - - - - - 0x0379DE 0D:B9CE: 4A        LSR
-C - - - - - 0x0379DF 0D:B9CF: 66 12     ROR ram_0012_temp
+C - - - - - 0x0379DF 0D:B9CF: 66 12     ROR ram_0012_t011_ppu_addr_lo
 C - - - - - 0x0379E1 0D:B9D1: 4A        LSR
-C - - - - - 0x0379E2 0D:B9D2: 66 12     ROR ram_0012_temp
-C - - - - - 0x0379E4 0D:B9D4: 05 13     ORA ram_0013_temp
-C - - - - - 0x0379E6 0D:B9D6: 85 13     STA ram_0013_temp
+C - - - - - 0x0379E2 0D:B9D2: 66 12     ROR ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0379E4 0D:B9D4: 05 13     ORA ram_0013_t009_ppu_addr_hi
+C - - - - - 0x0379E6 0D:B9D6: 85 13     STA ram_0013_t009_ppu_addr_hi
 C - - - - - 0x0379E8 0D:B9D8: 18        CLC
 C - - - - - 0x0379E9 0D:B9D9: A9 40     LDA #$40
-C - - - - - 0x0379EB 0D:B9DB: 65 12     ADC ram_0012_temp
-C - - - - - 0x0379ED 0D:B9DD: 85 12     STA ram_0012_temp
+C - - - - - 0x0379EB 0D:B9DB: 65 12     ADC ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0379ED 0D:B9DD: 85 12     STA ram_0012_t011_ppu_addr_lo
 C - - - - - 0x0379EF 0D:B9DF: 90 02     BCC bra_B9E3_RTS
 ; if overflow
-C - - - - - 0x0379F1 0D:B9E1: E6 13     INC ram_0013_temp
+C - - - - - 0x0379F1 0D:B9E1: E6 13     INC ram_0013_t009_ppu_addr_hi
 bra_B9E3_RTS:
 C - - - - - 0x0379F3 0D:B9E3: 60        RTS
 
 
 
-sub_B9E4:
-ofs_062_0x0379F4_01:
-C - - - - - 0x0379F4 0D:B9E4: A5 13     LDA ram_0013_temp
+sub_B9E4_calculate_ppu_address:
+ofs_062_0x0379F4_02_calculate_ppu_address:
+; in
+    ; ram_0012_t011_ppu_addr_lo
+    ; ram_0013_t009_ppu_addr_hi
+; out
+    ; ram_0014_t008_ppu_lo
+    ; ram_0015_t009_ppu_hi
+C - - - - - 0x0379F4 0D:B9E4: A5 13     LDA ram_0013_t009_ppu_addr_hi
 C - - - - - 0x0379F6 0D:B9E6: 29 FC     AND #$FC
 C - - - - - 0x0379F8 0D:B9E8: 09 03     ORA #$03
-C - - - - - 0x0379FA 0D:B9EA: 85 15     STA ram_0015_temp
-C - - - - - 0x0379FC 0D:B9EC: A5 13     LDA ram_0013_temp
+C - - - - - 0x0379FA 0D:B9EA: 85 15     STA ram_0015_t009_ppu_hi
+C - - - - - 0x0379FC 0D:B9EC: A5 13     LDA ram_0013_t009_ppu_addr_hi
 C - - - - - 0x0379FE 0D:B9EE: 29 03     AND #$03
 C - - - - - 0x037A00 0D:B9F0: 09 0C     ORA #$0C
-C - - - - - 0x037A02 0D:B9F2: 85 14     STA ram_0014_temp
-C - - - - - 0x037A04 0D:B9F4: A5 12     LDA ram_0012_temp
+C - - - - - 0x037A02 0D:B9F2: 85 14     STA ram_0014_t008_ppu_lo
+C - - - - - 0x037A04 0D:B9F4: A5 12     LDA ram_0012_t011_ppu_addr_lo
 C - - - - - 0x037A06 0D:B9F6: 0A        ASL
-C - - - - - 0x037A07 0D:B9F7: 26 14     ROL ram_0014_temp
+C - - - - - 0x037A07 0D:B9F7: 26 14     ROL ram_0014_t008_ppu_lo
 C - - - - - 0x037A09 0D:B9F9: 0A        ASL
 C - - - - - 0x037A0A 0D:B9FA: 0A        ASL
 C - - - - - 0x037A0B 0D:B9FB: 0A        ASL
-C - - - - - 0x037A0C 0D:B9FC: 26 14     ROL ram_0014_temp
+C - - - - - 0x037A0C 0D:B9FC: 26 14     ROL ram_0014_t008_ppu_lo
 C - - - - - 0x037A0E 0D:B9FE: 0A        ASL
-C - - - - - 0x037A0F 0D:B9FF: 26 14     ROL ram_0014_temp
+C - - - - - 0x037A0F 0D:B9FF: 26 14     ROL ram_0014_t008_ppu_lo
 C - - - - - 0x037A11 0D:BA01: 0A        ASL
-C - - - - - 0x037A12 0D:BA02: 26 14     ROL ram_0014_temp
+C - - - - - 0x037A12 0D:BA02: 26 14     ROL ram_0014_t008_ppu_lo
 C - - - - - 0x037A14 0D:BA04: 60        RTS
 
 
@@ -13121,6 +13136,10 @@ tbl_BA65:
 
 
 sub_BAE1:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x037AF1 0D:BAE1: 20 3E BB  JSR sub_BB3E
 C - - - - - 0x037AF4 0D:BAE4: 90 06     BCC bra_BAEC
 bra_BAE6_RTS:
@@ -13269,6 +13288,12 @@ C - - - - - 0x037BA0 0D:BB90: 60        RTS
 
 
 sub_BB91:
+; in
+    ; ram_0000_t055
+    ; ram_000B_temp
+    ; ram_000F_temp
+; out
+    ; ram_0000_t055
 C - - - - - 0x037BA1 0D:BB91: A5 00     LDA ram_0000_t055
 C - - - - - 0x037BA3 0D:BB93: A4 32     LDY ram_blk_hi
 C - - - - - 0x037BA5 0D:BB95: C0 0A     CPY #$0A
@@ -13306,10 +13331,12 @@ C - - - - - 0x037BD5 0D:BBC5: 60        RTS
 
 
 tbl_BBC6:
+; 00 
 - - - - - - 0x037BD6 0D:BBC6: 02        .byte $02   ; 00 
 - - - - - - 0x037BD7 0D:BBC7: 01        .byte $01   ; 01 
-- D 1 - - - 0x037BD8 0D:BBC8: 03        .byte $03   ; 02 
-- - - - - - 0x037BD9 0D:BBC9: 04        .byte $04   ; 03 
+; 01 
+- D 1 - - - 0x037BD8 0D:BBC8: 03        .byte $03   ; 00 
+- - - - - - 0x037BD9 0D:BBC9: 04        .byte $04   ; 01 
 
 
 

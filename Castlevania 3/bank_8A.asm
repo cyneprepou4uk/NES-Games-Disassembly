@@ -11955,7 +11955,7 @@ C - - - - - 0x017D0B 05:BCFB: B9 3E BD  LDA tbl_BD3D + $01,Y
 C - - - - - 0x017D0E 05:BCFE: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x017D11 05:BD01: BD 65 05  LDA ram_obj_state,X
 C - - - - - 0x017D14 05:BD04: 4A        LSR
-C - - - - - 0x017D15 05:BD05: 85 02     STA ram_0002_temp
+C - - - - - 0x017D15 05:BD05: 85 02     STA ram_0002_t047_obj_state
 C - - - - - 0x017D17 05:BD07: A8        TAY
 C - - - - - 0x017D18 05:BD08: B9 6D BD  LDA tbl_BD6D_offset_for_spd_X,Y
 C - - - - - 0x017D1B 05:BD0B: A8        TAY
@@ -11963,7 +11963,7 @@ C - - - - - 0x017D1C 05:BD0C: B9 7D BD  LDA tbl_BD7D_speed,Y
 C - - - - - 0x017D1F 05:BD0F: 9D 09 05  STA ram_obj_spd_X_lo,X
 C - - - - - 0x017D22 05:BD12: B9 7E BD  LDA tbl_BD7D_speed + $01,Y
 C - - - - - 0x017D25 05:BD15: 9D F2 04  STA ram_obj_spd_X_hi,X
-C - - - - - 0x017D28 05:BD18: A4 02     LDY ram_0002_temp
+C - - - - - 0x017D28 05:BD18: A4 02     LDY ram_0002_t047_obj_state
 C - - - - - 0x017D2A 05:BD1A: B9 5D BD  LDA tbl_BD5D_offset_for_spd_Y,Y
 C - - - - - 0x017D2D 05:BD1D: A8        TAY
 C - - - - - 0x017D2E 05:BD1E: B9 7D BD  LDA tbl_BD7D_speed,Y
