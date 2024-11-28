@@ -2,6 +2,11 @@
 
 
 
+; MISC
+con_se_offset                           = $11 ; sound engine offset for RAM addresses
+
+
+
 ; ram_btn_hold
 ; ram_btn_press
 con_btn_Right                           = $01 ; 
@@ -32,6 +37,13 @@ con_enemy_tao                           = $01 ; TAO
 con_enemy_chen                          = $02 ; CHEN
 con_enemy_lang                          = $03 ; LANG
 con_enemy_mu                            = $04 ; MU
+
+
+
+; ram_0003_flag
+con_0003_20_unused                      = $20 ; was supposed to be 2 players?
+con_0003_40                             = $40 ; 
+con_0003_80_unused                      = $80 ; ???
 
 
 
@@ -84,5 +96,11 @@ con_FF80_2C                             = $2C ;
 ; con_FF80_2D                           = $2D ; unused
 ; con_FF80_2E                           = $2E ; unused
 con_FF80_2F                             = $2F ; 
+
+
+
+; control bytes for 0x003966
+con_F956_repeat                         = $34 ; 1st byte = counter, 2nd byte = tile
+con_F956_end_token                      = $39 ; end token
 
 
