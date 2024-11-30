@@ -1100,7 +1100,7 @@ C - - - - - 0x038598 0E:8588: A5 68     LDA ram_0068
 C - - - - - 0x03859A 0E:858A: 30 2B     BMI bra_85B7_RTS
 C - - - - - 0x03859C 0E:858C: A5 57     LDA ram_cam_pos_hi
 C - - - - - 0x03859E 0E:858E: 30 16     BMI bra_85A6
-C - - - - - 0x0385A0 0E:8590: C5 71     CMP ram_0071_blk_config
+C - - - - - 0x0385A0 0E:8590: C5 71     CMP ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x0385A2 0E:8592: F0 01     BEQ bra_8595
 C - - - - - 0x0385A4 0E:8594: 60        RTS
 bra_8595:
@@ -1108,7 +1108,7 @@ C - - - - - 0x0385A5 0E:8595: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x0385A7 0E:8597: 18        CLC
 C - - - - - 0x0385A8 0E:8598: 6D 38 04  ADC ram_plr_pos_X_hi
 C - - - - - 0x0385AB 0E:859B: 8D 38 04  STA ram_plr_pos_X_hi
-C - - - - - 0x0385AE 0E:859E: A5 71     LDA ram_0071_blk_config
+C - - - - - 0x0385AE 0E:859E: A5 71     LDA ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x0385B0 0E:85A0: 85 57     STA ram_cam_pos_hi
 C - - - - - 0x0385B2 0E:85A2: A9 00     LDA #$00
 C - - - - - 0x0385B4 0E:85A4: F0 0D     BEQ bra_85B3    ; jmp
@@ -1257,7 +1257,7 @@ bra_8679_RTS:
 C - - - - - 0x038689 0E:8679: 60        RTS
 bra_867A:
 C - - - - - 0x03868A 0E:867A: A5 57     LDA ram_cam_pos_hi
-C - - - - - 0x03868C 0E:867C: C5 71     CMP ram_0071_blk_config
+C - - - - - 0x03868C 0E:867C: C5 71     CMP ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x03868E 0E:867E: F0 F9     BEQ bra_8679_RTS
 C - - - - - 0x038690 0E:8680: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x038693 0E:8683: 38        SEC
@@ -1270,7 +1270,7 @@ C - - - - - 0x03869D 0E:868D: 65 08     ADC ram_0008_t03F
 C - - - - - 0x03869F 0E:868F: 90 E1     BCC bra_8672
 C - - - - - 0x0386A1 0E:8691: A4 57     LDY ram_cam_pos_hi
 C - - - - - 0x0386A3 0E:8693: C8        INY
-C - - - - - 0x0386A4 0E:8694: C4 71     CPY ram_0071_blk_config
+C - - - - - 0x0386A4 0E:8694: C4 71     CPY ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x0386A6 0E:8696: D0 D8     BNE bra_8670
 - - - - - - 0x0386A8 0E:8698: 18        CLC
 - - - - - - 0x0386A9 0E:8699: 69 80     ADC #$80
@@ -1302,7 +1302,7 @@ C - - - - - 0x0386CF 0E:86BF: F0 15     BEQ bra_86D6
 C - - - - - 0x0386D1 0E:86C1: D0 0C     BNE bra_86CF    ; jmp
 bra_86C3:
 C - - - - - 0x0386D3 0E:86C3: A5 57     LDA ram_cam_pos_hi
-C - - - - - 0x0386D5 0E:86C5: C5 71     CMP ram_0071_blk_config
+C - - - - - 0x0386D5 0E:86C5: C5 71     CMP ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x0386D7 0E:86C7: D0 06     BNE bra_86CF
 C - - - - - 0x0386D9 0E:86C9: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x0386DB 0E:86CB: C9 30     CMP #$30
@@ -1325,7 +1325,7 @@ C - - - - - 0x0386F2 0E:86E2: 29 01     AND #$01
 C - - - - - 0x0386F4 0E:86E4: F0 30     BEQ bra_8716
 C - - - - - 0x0386F6 0E:86E6: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x0386F9 0E:86E9: 10 2B     BPL bra_8716
-C - - - - - 0x0386FB 0E:86EB: A5 71     LDA ram_0071_blk_config
+C - - - - - 0x0386FB 0E:86EB: A5 71     LDA ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x0386FD 0E:86ED: C5 57     CMP ram_cam_pos_hi
 C - - - - - 0x0386FF 0E:86EF: D0 06     BNE bra_86F7
 C - - - - - 0x038701 0E:86F1: A5 56     LDA ram_cam_pos_lo
@@ -1397,7 +1397,7 @@ C - - - - - 0x038758 0E:8748: AD F2 04  LDA ram_plr_spd_X_hi
 C - - - - - 0x03875B 0E:874B: 30 35     BMI bra_8782
 C - - - - - 0x03875D 0E:874D: 0D 09 05  ORA ram_plr_spd_X_lo
 C - - - - - 0x038760 0E:8750: F0 2F     BEQ bra_8781_RTS
-C - - - - - 0x038762 0E:8752: A5 71     LDA ram_0071_blk_config
+C - - - - - 0x038762 0E:8752: A5 71     LDA ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x038764 0E:8754: C5 57     CMP ram_cam_pos_hi
 C - - - - - 0x038766 0E:8756: F0 0A     BEQ bra_8762
 C - - - - - 0x038768 0E:8758: AD 38 04  LDA ram_plr_pos_X_hi
@@ -4599,7 +4599,7 @@ C - - - - - 0x039A0C 0E:99FC: 90 16     BCC bra_9A14
 - - - - - - 0x039A0E 0E:99FE: A4 68     LDY ram_0068
 - - - - - - 0x039A10 0E:9A00: 10 12     BPL bra_9A14
 - - - - - - 0x039A12 0E:9A02: A5 57     LDA ram_cam_pos_hi
-- - - - - - 0x039A14 0E:9A04: C5 71     CMP ram_0071_blk_config
+- - - - - - 0x039A14 0E:9A04: C5 71     CMP ram_0071_blk_config_cam_pos_hi
 - - - - - - 0x039A16 0E:9A06: D0 06     BNE bra_9A0E
 - - - - - - 0x039A18 0E:9A08: A5 56     LDA ram_cam_pos_lo
 - - - - - - 0x039A1A 0E:9A0A: C9 30     CMP #$30
@@ -4684,7 +4684,7 @@ C - - - - - 0x039A7B 0E:9A6B: 38        SEC
 C - - - - - 0x039A7C 0E:9A6C: 60        RTS
 bra_9A6D:
 C - - - - - 0x039A7D 0E:9A6D: A5 57     LDA ram_cam_pos_hi
-C - - - - - 0x039A7F 0E:9A6F: C5 71     CMP ram_0071_blk_config
+C - - - - - 0x039A7F 0E:9A6F: C5 71     CMP ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x039A81 0E:9A71: D0 06     BNE bra_9A79
 C - - - - - 0x039A83 0E:9A73: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x039A85 0E:9A75: C9 30     CMP #$30
@@ -9405,8 +9405,8 @@ C - - - - - 0x03B7A1 0E:B791: 60        RTS
 
 
 ofs_035_04_B792_02:
-C - - J - - 0x03B7A2 0E:B792: A9 00     LDA #$00
-C - - - - - 0x03B7A4 0E:B794: A0 08     LDY #$08
+C - - J - - 0x03B7A2 0E:B792: A9 00     LDA #$00    ; pos_X_hi
+C - - - - - 0x03B7A4 0E:B794: A0 08     LDY #$08    ; pos_Y_hi
 C - - - - - 0x03B7A6 0E:B796: 20 1E FC  JSR sub_0x03FC2E
 C - - - - - 0x03B7A9 0E:B799: D0 1A     BNE bra_B7B5
 C - - - - - 0x03B7AB 0E:B79B: BD 37 05  LDA ram_obj_spd_Y_lo,X

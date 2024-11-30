@@ -5743,7 +5743,7 @@ C - - - - - 0x0060D5 01:A0C5: A5 7D     LDA ram_007D
 C - - - - - 0x0060D7 01:A0C7: 29 F0     AND #$F0
 C - - - - - 0x0060D9 01:A0C9: C9 40     CMP #$40
 C - - - - - 0x0060DB 01:A0CB: F0 0A     BEQ bra_A0D7
-C - - - - - 0x0060DD 01:A0CD: A5 B0     LDA ram_00B0_flag
+C - - - - - 0x0060DD 01:A0CD: A5 B0     LDA ram_00B0_oam_flag
 C - - - - - 0x0060DF 01:A0CF: F0 03     BEQ bra_A0D4
 C - - - - - 0x0060E1 01:A0D1: 20 3C E3  JSR sub_0x03E34C
 bra_A0D4:

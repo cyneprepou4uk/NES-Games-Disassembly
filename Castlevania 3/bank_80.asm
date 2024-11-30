@@ -4824,7 +4824,7 @@ C - - - - - 0x00114C 00:913C: 8D 65 05  STA ram_plr_state
 C - - - - - 0x00114F 00:913F: A9 00     LDA #$00
 C - - - - - 0x001151 00:9141: 85 78     STA ram_0078_flag
 C - - - - - 0x001153 00:9143: 85 80     STA ram_invinc_timer
-C - - - - - 0x001155 00:9145: 85 B0     STA ram_00B0_flag
+C - - - - - 0x001155 00:9145: 85 B0     STA ram_00B0_oam_flag
 C - - - - - 0x001157 00:9147: 85 B2     STA ram_00B2
 C - - - - - 0x001159 00:9149: 85 AD     STA ram_00AD_timer
 C - - - - - 0x00115B 00:914B: 85 2C     STA ram_002C_flag
@@ -9344,7 +9344,7 @@ C - - - - - 0x002BEF 00:ABDF: A9 00     LDA #$00
 C - - - - - 0x002BF1 00:ABE1: 8D A8 04  STA ram_plr_facing
 C - - - - - 0x002BF4 00:ABE4: 20 28 AC  JSR sub_AC28
 C - - - - - 0x002BF7 00:ABE7: A0 02     LDY #$02
-C - - - - - 0x002BF9 00:ABE9: B1 0A     LDA (ram_000A_t016_data),Y
+C - - - - - 0x002BF9 00:ABE9: B1 0A     LDA (ram_000A_t003_data),Y
 C - - - - - 0x002BFB 00:ABEB: CD 38 04  CMP ram_plr_pos_X_hi
 C - - - - - 0x002BFE 00:ABEE: 90 07     BCC bra_ABF7
 C - - - - - 0x002C00 00:ABF0: A9 01     LDA #$01
@@ -9359,7 +9359,7 @@ C - - - - - 0x002C0C 00:ABFC: A9 01     LDA #$01    ; facing left
 C - - - - - 0x002C0E 00:ABFE: 8D A8 04  STA ram_plr_facing
 C - - - - - 0x002C11 00:AC01: 20 28 AC  JSR sub_AC28
 C - - - - - 0x002C14 00:AC04: A0 01     LDY #$01
-C - - - - - 0x002C16 00:AC06: B1 0A     LDA (ram_000A_t016_data),Y
+C - - - - - 0x002C16 00:AC06: B1 0A     LDA (ram_000A_t003_data),Y
 C - - - - - 0x002C18 00:AC08: CD 38 04  CMP ram_plr_pos_X_hi
 C - - - - - 0x002C1B 00:AC0B: B0 EA     BCS bra_ABF7
 C - - - - - 0x002C1D 00:AC0D: A9 FF     LDA #$FF
@@ -9393,10 +9393,10 @@ C - - - - - 0x002C47 00:AC37: AD 90 07  LDA ram_0790
 C - - - - - 0x002C4A 00:AC3A: 0A        ASL
 C - - - - - 0x002C4B 00:AC3B: A8        TAY
 C - - - - - 0x002C4C 00:AC3C: B1 08     LDA (ram_0008_t026_data),Y
-C - - - - - 0x002C4E 00:AC3E: 85 0A     STA ram_000A_t016_data
+C - - - - - 0x002C4E 00:AC3E: 85 0A     STA ram_000A_t003_data
 C - - - - - 0x002C50 00:AC40: C8        INY
 C - - - - - 0x002C51 00:AC41: B1 08     LDA (ram_0008_t026_data),Y
-C - - - - - 0x002C53 00:AC43: 85 0B     STA ram_000A_t016_data + $01
+C - - - - - 0x002C53 00:AC43: 85 0B     STA ram_000A_t003_data + $01
 C - - - - - 0x002C55 00:AC45: 60        RTS
 
 
@@ -9683,7 +9683,7 @@ _off_ADBE_02:
 
 
 off_ADC2_00_00:
-; bzk optimize, 1st bytes are placeholders, see ram_000A_t016_data
+; bzk optimize, 1st bytes are placeholders, see ram_000A_t003_data
 - - - - - - 0x002DD2 00:ADC2: 80        .byte $80   ; placeholder
 - - - - - - 0x002DD3 00:ADC3: 80        .byte $80   ; pos_X_hi
 - D 1 - I - 0x002DD4 00:ADC4: F8        .byte $F8   ; pos_X_hi

@@ -12074,8 +12074,8 @@ C - - - - - 0x017DAD 05:BD9D: BD 06 06  LDA ram_obj_config,X
 C - - - - - 0x017DB0 05:BDA0: F0 03     BEQ bra_BDA5
 C - - - - - 0x017DB2 05:BDA2: 4C EA BD  JMP loc_BDEA
 bra_BDA5:
-C - - - - - 0x017DB5 05:BDA5: A9 00     LDA #$00
-C - - - - - 0x017DB7 05:BDA7: A8        TAY
+C - - - - - 0x017DB5 05:BDA5: A9 00     LDA #$00    ; pos_X_hi
+C - - - - - 0x017DB7 05:BDA7: A8        TAY ; 00    ; pos_Y_hi
 C - - - - - 0x017DB8 05:BDA8: 20 1E FC  JSR sub_0x03FC2E
 C - - - - - 0x017DBB 05:BDAB: D0 17     BNE bra_BDC4
 C - - - - - 0x017DBD 05:BDAD: BD 38 04  LDA ram_obj_pos_X_hi,X

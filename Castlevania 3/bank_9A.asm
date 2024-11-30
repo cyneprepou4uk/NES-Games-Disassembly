@@ -34,7 +34,7 @@ C - - - - - 0x034022 0D:8012: A5 20     LDA ram_0020_base_oam_offset
 C - - - - - 0x034024 0D:8014: 18        CLC
 C - - - - - 0x034025 0D:8015: 69 44     ADC #$44
 C - - - - - 0x034027 0D:8017: 85 20     STA ram_0020_base_oam_offset
-C - - - - - 0x034029 0D:8019: 85 04     STA ram_0004_temp
+C - - - - - 0x034029 0D:8019: 85 04     STA ram_0004_t01E_current_oam_offset
 bra_801B_loop:
 C - - - - - 0x03402B 0D:801B: A6 05     LDX ram_0005_t003
 C - - - - - 0x03402D 0D:801D: E0 1C     CPX #$1C
@@ -54,10 +54,10 @@ bra_803D_skip_object:
 C - - - - - 0x03404D 0D:803D: E6 05     INC ram_0005_t003
 C - - - - - 0x03404F 0D:803F: D0 DA     BNE bra_801B_loop   ; jmp
 bra_8041_no_more_objects:
-C - - - - - 0x034051 0D:8041: A6 04     LDX ram_0004_temp
+; hide unused sprites
+C - - - - - 0x034051 0D:8041: A6 04     LDX ram_0004_t01E_current_oam_offset
 C - - - - - 0x034053 0D:8043: A4 07     LDY ram_0007_t019_sprites_counter
 bra_8045_loop:
-; hide unused sprites
 C - - - - - 0x034055 0D:8045: A9 F4     LDA #$F4
 C - - - - - 0x034057 0D:8047: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x03405A 0D:804A: 8A        TXA
@@ -88,13 +88,13 @@ C - - - - - 0x03406D 0D:805D: 18        CLC
 C - - - - - 0x03406E 0D:805E: 65 01     ADC ram_0001_t007_copy_obj_pos_Y_hi
 C - - - - - 0x034070 0D:8060: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x034073 0D:8063: C8        INY
-C - - - - - 0x034074 0D:8064: A5 B0     LDA ram_00B0_flag
+C - - - - - 0x034074 0D:8064: A5 B0     LDA ram_00B0_oam_flag
 C - - - - - 0x034076 0D:8066: D0 EB     BNE bra_8053
 bra_8068:
 C - - - - - 0x034078 0D:8068: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_T
 bra_806A:
 C - - - - - 0x03407A 0D:806A: 9D 01 02  STA ram_spr_T,X
-C - - - - - 0x03407D 0D:806D: A5 10     LDA ram_0010_temp
+C - - - - - 0x03407D 0D:806D: A5 10     LDA ram_0010_t021_spr_A_flip
 C - - - - - 0x03407F 0D:806F: 4C CA 80  JMP loc_80CA
 
 
@@ -108,7 +108,7 @@ C - - - - - 0x034087 0D:8077: B0 3D     BCS bra_80B6    ; jmp
 
 sub_8079_draw_sprites_random_priority:
 C - - - - - 0x034089 0D:8079: BC 8C 04  LDY ram_obj_type,X
-C - - - - - 0x03408C 0D:807C: 84 0F     STY ram_000F_temp
+C - - - - - 0x03408C 0D:807C: 84 0F     STY ram_000F_t00F_obj_type
 C - - - - - 0x03408E 0D:807E: B9 3E 82  LDA tbl_823E_sprite_data,Y
 C - - - - - 0x034091 0D:8081: 85 08     STA ram_0008_t010_sprite_data_pointer
 C - - - - - 0x034093 0D:8083: B9 3F 82  LDA tbl_823E_sprite_data + $01,Y
@@ -121,11 +121,11 @@ C - - - - - 0x0340A0 0D:8090: B1 08     LDA (ram_0008_t010_sprite_data_pointer),
 C - - - - - 0x0340A2 0D:8092: 85 0B     STA ram_000A_t009_spr_data + $01
 C - - - - - 0x0340A4 0D:8094: A0 00     LDY #$00
 C - - - - - 0x0340A6 0D:8096: B1 0A     LDA (ram_000A_t009_spr_data),Y
-C - - - - - 0x0340A8 0D:8098: 85 03     STA ram_0003_temp    ; sprites counter
+C - - - - - 0x0340A8 0D:8098: 85 03     STA ram_0003_t021_sprites_counter
 C - - - - - 0x0340AA 0D:809A: BD A8 04  LDA ram_obj_facing,X
 C - - - - - 0x0340AD 0D:809D: F0 5A     BEQ bra_80F9_facing_right
 ; if facing left
-C - - - - - 0x0340AF 0D:809F: A6 04     LDX ram_0004_temp
+C - - - - - 0x0340AF 0D:809F: A6 04     LDX ram_0004_t01E_current_oam_offset
 bra_80A1_loop:
 C - - - - - 0x0340B1 0D:80A1: C8        INY
 C - - - - - 0x0340B2 0D:80A2: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_Y
@@ -137,7 +137,7 @@ C - - - - - 0x0340B8 0D:80A8: B0 B3     BCS bra_805D
 C - - - - - 0x0340BA 0D:80AA: 65 01     ADC ram_0001_t007_copy_obj_pos_Y_hi
 C - - - - - 0x0340BC 0D:80AC: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x0340BF 0D:80AF: C8        INY
-C - - - - - 0x0340C0 0D:80B0: A5 B0     LDA ram_00B0_flag
+C - - - - - 0x0340C0 0D:80B0: A5 B0     LDA ram_00B0_oam_flag
 C - - - - - 0x0340C2 0D:80B2: D0 BE     BNE bra_8072
 bra_80B4:
 C - - - - - 0x0340C4 0D:80B4: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_T
@@ -153,7 +153,7 @@ C - - - - - 0x0340D4 0D:80C4: D0 02     BNE bra_80C8
 bra_80C6:
 C - - - - - 0x0340D6 0D:80C6: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_A
 bra_80C8:
-C - - - - - 0x0340D8 0D:80C8: 85 10     STA ram_0010_temp
+C - - - - - 0x0340D8 0D:80C8: 85 10     STA ram_0010_t021_spr_A_flip
 loc_80CA:
 C D 0 - - - 0x0340DA 0D:80CA: 9D 02 02  STA ram_spr_A,X
 C - - - - - 0x0340DD 0D:80CD: C8        INY
@@ -171,9 +171,9 @@ C - - - - - 0x0340EC 0D:80DC: 69 C4     ADC #$C4
 C - - - - - 0x0340EE 0D:80DE: AA        TAX
 C - - - - - 0x0340EF 0D:80DF: C6 07     DEC ram_0007_t019_sprites_counter
 C - - - - - 0x0340F1 0D:80E1: F0 13     BEQ bra_80F6
-C - - - - - 0x0340F3 0D:80E3: C6 03     DEC ram_0003_temp    ; sprites counter
+C - - - - - 0x0340F3 0D:80E3: C6 03     DEC ram_0003_t021_sprites_counter
 C - - - - - 0x0340F5 0D:80E5: D0 BA     BNE bra_80A1_loop
-C - - - - - 0x0340F7 0D:80E7: 86 04     STX ram_0004_temp
+C - - - - - 0x0340F7 0D:80E7: 86 04     STX ram_0004_t01E_current_oam_offset
 C - - - - - 0x0340F9 0D:80E9: 60        RTS
 bra_80EA:
 C - - - - - 0x0340FA 0D:80EA: 18        CLC
@@ -188,8 +188,11 @@ bra_80F6:
 - - - - - - 0x034106 0D:80F6: 68        PLA
 - - - - - - 0x034107 0D:80F7: 68        PLA
 - - - - - - 0x034108 0D:80F8: 60        RTS
+
+
+
 bra_80F9_facing_right:
-C - - - - - 0x034109 0D:80F9: A6 04     LDX ram_0004_temp
+C - - - - - 0x034109 0D:80F9: A6 04     LDX ram_0004_t01E_current_oam_offset
 bra_80FB_loop:
 C - - - - - 0x03410B 0D:80FB: C8        INY
 C - - - - - 0x03410C 0D:80FC: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_Y
@@ -201,7 +204,7 @@ C - - - - - 0x034112 0D:8102: B0 5B     BCS bra_815F
 C - - - - - 0x034114 0D:8104: 65 01     ADC ram_0001_t007_copy_obj_pos_Y_hi
 C - - - - - 0x034116 0D:8106: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x034119 0D:8109: C8        INY
-C - - - - - 0x03411A 0D:810A: A5 B0     LDA ram_00B0_flag
+C - - - - - 0x03411A 0D:810A: A5 B0     LDA ram_00B0_oam_flag
 C - - - - - 0x03411C 0D:810C: D0 47     BNE bra_8155
 bra_810E:
 C - - - - - 0x03411E 0D:810E: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_T
@@ -218,7 +221,7 @@ bra_8120:
 C - - - - - 0x034130 0D:8120: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_A
 bra_8122:
 C - - - - - 0x034132 0D:8122: 49 40     EOR #$40
-C - - - - - 0x034134 0D:8124: 85 10     STA ram_0010_temp
+C - - - - - 0x034134 0D:8124: 85 10     STA ram_0010_t01F_spr_A_flip
 loc_8126:
 C D 0 - - - 0x034136 0D:8126: 9D 02 02  STA ram_spr_A,X
 C - - - - - 0x034139 0D:8129: C8        INY
@@ -238,9 +241,9 @@ C - - - - - 0x03414B 0D:813B: 69 C4     ADC #$C4
 C - - - - - 0x03414D 0D:813D: AA        TAX
 C - - - - - 0x03414E 0D:813E: C6 07     DEC ram_0007_t019_sprites_counter
 C - - - - - 0x034150 0D:8140: F0 B4     BEQ bra_80F6
-C - - - - - 0x034152 0D:8142: C6 03     DEC ram_0003_temp    ; sprites counter
+C - - - - - 0x034152 0D:8142: C6 03     DEC ram_0003_t021_sprites_counter
 C - - - - - 0x034154 0D:8144: D0 B5     BNE bra_80FB_loop
-C - - - - - 0x034156 0D:8146: 86 04     STX ram_0004_temp
+C - - - - - 0x034156 0D:8146: 86 04     STX ram_0004_t01E_current_oam_offset
 C - - - - - 0x034158 0D:8148: 60        RTS
 bra_8149:
 C - - - - - 0x034159 0D:8149: 18        CLC
@@ -271,13 +274,13 @@ C - - - - - 0x03416F 0D:815F: 18        CLC
 C - - - - - 0x034170 0D:8160: 65 01     ADC ram_0001_t007_copy_obj_pos_Y_hi
 C - - - - - 0x034172 0D:8162: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x034175 0D:8165: C8        INY
-C - - - - - 0x034176 0D:8166: A5 B0     LDA ram_00B0_flag
+C - - - - - 0x034176 0D:8166: A5 B0     LDA ram_00B0_oam_flag
 C - - - - - 0x034178 0D:8168: D0 0A     BNE bra_8174
 bra_816A:
 C - - - - - 0x03417A 0D:816A: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_T
 bra_816C:
 C - - - - - 0x03417C 0D:816C: 9D 01 02  STA ram_spr_T,X
-C - - - - - 0x03417F 0D:816F: A5 10     LDA ram_0010_temp
+C - - - - - 0x03417F 0D:816F: A5 10     LDA ram_0010_t01F_spr_A_flip
 C - - - - - 0x034181 0D:8171: 4C 26 81  JMP loc_8126
 bra_8174:
 C - - - - - 0x034184 0D:8174: 20 7B 81  JSR sub_817B
@@ -287,14 +290,19 @@ C - - - - - 0x034189 0D:8179: B0 F1     BCS bra_816C    ; jmp
 
 
 sub_817B:
-C - - - - - 0x03418B 0D:817B: A5 0F     LDA ram_000F_temp
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
+    ; A = spr_T
+C - - - - - 0x03418B 0D:817B: A5 0F     LDA ram_000F_t00F_obj_type
 C - - - - - 0x03418D 0D:817D: C9 16     CMP #$16
 C - - - - - 0x03418F 0D:817F: 90 06     BCC bra_8187_RTS
 C - - - - - 0x034191 0D:8181: B1 0A     LDA (ram_000A_t009_spr_data),Y    ; spr_T
 C - - - - - 0x034193 0D:8183: 18        CLC
 C - - - - - 0x034194 0D:8184: 69 80     ADC #$80
 C - - - - - 0x034196 0D:8186: 38        SEC
-bra_8187_RTS:
+bra_8187_RTS:   ; C = 0
 C - - - - - 0x034197 0D:8187: 60        RTS
 
 
@@ -304,7 +312,7 @@ C D 0 - - - 0x034198 0D:8188: A9 40     LDA #$40    ; 64 sprites limit
 C - - - - - 0x03419A 0D:818A: 85 05     STA ram_0005_t004_sprites_limit
 C - - - - - 0x03419C 0D:818C: A9 00     LDA #$00
 C - - - - - 0x03419E 0D:818E: 85 06     STA ram_0006_t009_object_index
-C - - - - - 0x0341A0 0D:8190: 85 04     STA ram_0004_t007_oam_index
+C - - - - - 0x0341A0 0D:8190: 85 04     STA ram_0004_t007_current_oam_offset
 C - - - - - 0x0341A2 0D:8192: A9 1C     LDA #$1C    ; 28 objects
 C - - - - - 0x0341A4 0D:8194: 85 07     STA ram_0007_t00D_objects_counter
 bra_8196_loop:
@@ -325,7 +333,7 @@ C - - - - - 0x0341C4 0D:81B4: E6 06     INC ram_0006_t009_object_index
 C - - - - - 0x0341C6 0D:81B6: C6 07     DEC ram_0007_t00D_objects_counter
 C - - - - - 0x0341C8 0D:81B8: D0 DC     BNE bra_8196_loop
 ; hide unused sprites
-C - - - - - 0x0341CA 0D:81BA: A6 04     LDX ram_0004_t007_oam_index
+C - - - - - 0x0341CA 0D:81BA: A6 04     LDX ram_0004_t007_current_oam_offset
 bra_81BC_loop:
 C - - - - - 0x0341CC 0D:81BC: A9 F4     LDA #$F4
 C - - - - - 0x0341CE 0D:81BE: 9D 00 02  STA ram_spr_Y,X
@@ -351,7 +359,7 @@ C - - - - - 0x0341DE 0D:81CE: 9D 00 02  STA ram_spr_Y,X
 C - - - - - 0x0341E1 0D:81D1: C8        INY
 C - - - - - 0x0341E2 0D:81D2: B1 0A     LDA (ram_000A_t008_spr_data),Y
 C - - - - - 0x0341E4 0D:81D4: 9D 01 02  STA ram_spr_T,X
-C - - - - - 0x0341E7 0D:81D7: A5 10     LDA ram_0010_temp
+C - - - - - 0x0341E7 0D:81D7: A5 10     LDA ram_0010_t020_spr_A_flip
 C - - - - - 0x0341E9 0D:81D9: 4C 22 82  JMP loc_8222
 
 
@@ -371,8 +379,8 @@ C - - - - - 0x034203 0D:81F3: 85 0B     STA ram_000A_t008_spr_data + $01
 C - - - - - 0x034205 0D:81F5: A0 00     LDY #$00
 C - - - - - 0x034207 0D:81F7: B1 0A     LDA (ram_000A_t008_spr_data),Y
 C - - - - - 0x034209 0D:81F9: 85 03     STA ram_0003_t007_sprites_counter
-C - - - - - 0x03420B 0D:81FB: A6 04     LDX ram_0004_t007_oam_index
-C - - - - - 0x03420D 0D:81FD: C8        INY
+C - - - - - 0x03420B 0D:81FB: A6 04     LDX ram_0004_t007_current_oam_offset
+C - - - - - 0x03420D 0D:81FD: C8        INY ; 01
 bra_81FE_loop:
 C - - - - - 0x03420E 0D:81FE: B1 0A     LDA (ram_000A_t008_spr_data),Y
 C - - - - - 0x034210 0D:8200: 10 C6     BPL bra_81C8_CLC
@@ -395,7 +403,7 @@ C - - - - - 0x03422C 0D:821C: D0 02     BNE bra_8220
 bra_821E:
 C - - - - - 0x03422E 0D:821E: B1 0A     LDA (ram_000A_t008_spr_data),Y
 bra_8220:
-C - - - - - 0x034230 0D:8220: 85 10     STA ram_0010_temp
+C - - - - - 0x034230 0D:8220: 85 10     STA ram_0010_t020_spr_A_flip
 loc_8222:
 C D 0 - - - 0x034232 0D:8222: 9D 02 02  STA ram_spr_A,X
 C - - - - - 0x034235 0D:8225: C8        INY
@@ -413,7 +421,7 @@ C - - - - - 0x034245 0D:8235: F0 04     BEQ bra_823B
 C - - - - - 0x034247 0D:8237: C6 03     DEC ram_0003_t007_sprites_counter
 C - - - - - 0x034249 0D:8239: D0 C3     BNE bra_81FE_loop
 bra_823B:
-C - - - - - 0x03424B 0D:823B: 86 04     STX ram_0004_t007_oam_index
+C - - - - - 0x03424B 0D:823B: 86 04     STX ram_0004_t007_current_oam_offset
 C - - - - - 0x03424D 0D:823D: 60        RTS
 
 

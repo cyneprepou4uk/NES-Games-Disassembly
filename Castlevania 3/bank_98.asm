@@ -7456,7 +7456,7 @@ C - - - - - 0x0325BB 0C:A5AB: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x0325BE 0C:A5AE: A9 00     LDA #$00
 C - - - - - 0x0325C0 0C:A5B0: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x0325C3 0C:A5B3: A9 01     LDA #$01
-C - - - - - 0x0325C5 0C:A5B5: 85 B0     STA ram_00B0_flag
+C - - - - - 0x0325C5 0C:A5B5: 85 B0     STA ram_00B0_oam_flag
 C - - - - - 0x0325C7 0C:A5B7: A5 78     LDA ram_0078_flag
 C - - - - - 0x0325C9 0C:A5B9: F0 05     BEQ bra_A5C0_RTS
 C - - - - - 0x0325CB 0C:A5BB: A0 00     LDY #$00
@@ -7939,12 +7939,12 @@ C - - - - - 0x03287E 0C:A86E: D0 02     BNE bra_A872    ; jmp
 bra_A870:
 C - - - - - 0x032880 0C:A870: A9 08     LDA #$08
 bra_A872:
-C - - - - - 0x032882 0C:A872: 85 07     STA ram_0007_t007
-C - - - - - 0x032884 0C:A874: A0 F8     LDY #$F8
+C - - - - - 0x032882 0C:A872: 85 07     STA ram_0007_t007_pos_X_hi
+C - - - - - 0x032884 0C:A874: A0 F8     LDY #$F8    ; pos_Y_hi
 C - - - - - 0x032886 0C:A876: 20 1E FC  JSR sub_0x03FC2E
 C - - - - - 0x032889 0C:A879: D0 1F     BNE bra_A89A_SEC
-C - - - - - 0x03288B 0C:A87B: A5 07     LDA ram_0007_t007
-C - - - - - 0x03288D 0C:A87D: A0 00     LDY #$00
+C - - - - - 0x03288B 0C:A87B: A5 07     LDA ram_0007_t007_pos_X_hi
+C - - - - - 0x03288D 0C:A87D: A0 00     LDY #$00    ; pos_Y_hi
 C - - - - - 0x03288F 0C:A87F: 20 1E FC  JSR sub_0x03FC2E
 C - - - - - 0x032892 0C:A882: D0 16     BNE bra_A89A_SEC
 C - - - - - 0x032894 0C:A884: 18        CLC
@@ -7957,12 +7957,12 @@ sub_A886:
     ; C
         ; 0 = 
         ; 1 = 
-C - - - - - 0x032896 0C:A886: A9 05     LDA #$05
-C - - - - - 0x032898 0C:A888: A0 10     LDY #$10
+C - - - - - 0x032896 0C:A886: A9 05     LDA #$05    ; pos_X_hi
+C - - - - - 0x032898 0C:A888: A0 10     LDY #$10    ; pos_Y_hi
 C - - - - - 0x03289A 0C:A88A: 20 1E FC  JSR sub_0x03FC2E
 C - - - - - 0x03289D 0C:A88D: D0 0B     BNE bra_A89A_SEC
-C - - - - - 0x03289F 0C:A88F: A9 FB     LDA #$FB
-C - - - - - 0x0328A1 0C:A891: A0 10     LDY #$10
+C - - - - - 0x03289F 0C:A88F: A9 FB     LDA #$FB    ; pos_X_hi
+C - - - - - 0x0328A1 0C:A891: A0 10     LDY #$10    ; pos_Y_hi
 C - - - - - 0x0328A3 0C:A893: 20 1E FC  JSR sub_0x03FC2E
 C - - - - - 0x0328A6 0C:A896: D0 02     BNE bra_A89A_SEC
 C - - - - - 0x0328A8 0C:A898: 18        CLC
@@ -8480,8 +8480,8 @@ C - - - - - 0x032B57 0C:AB47: A9 B4     LDA #$B4
 C - - - - - 0x032B59 0C:AB49: 9D 1C 04  STA ram_obj_pos_Y_hi,X
 C - - - - - 0x032B5C 0C:AB4C: D0 0A     BNE bra_AB58    ; jmp
 bra_AB4E:
-C - - - - - 0x032B5E 0C:AB4E: A9 00     LDA #$00
-C - - - - - 0x032B60 0C:AB50: A0 10     LDY #$10
+C - - - - - 0x032B5E 0C:AB4E: A9 00     LDA #$00    ; pos_X_hi
+C - - - - - 0x032B60 0C:AB50: A0 10     LDY #$10    ; pos_Y_hi
 C - - - - - 0x032B62 0C:AB52: 20 1E FC  JSR sub_0x03FC2E
 C - - - - - 0x032B65 0C:AB55: D0 01     BNE bra_AB58
 bra_AB57_RTS:
