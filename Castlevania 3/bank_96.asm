@@ -1385,13 +1385,14 @@ C - - - - - 0x02C6D7 0B:86C7: FE C1 05  INC ram_05C1_obj,X
 C - - - - - 0x02C6DA 0B:86CA: 60        RTS
 bra_86CB:
 ofs_039_86CB_12:
-C - - J - - 0x02C6DB 0B:86CB: A5 68     LDA ram_0068
-C - - - - - 0x02C6DD 0B:86CD: 10 09     BPL bra_86D8
+C - - J - - 0x02C6DB 0B:86CB: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x02C6DD 0B:86CD: 10 09     BPL bra_86D8_horisontal
+; if vertical
 C - - - - - 0x02C6DF 0B:86CF: 18        CLC
 C - - - - - 0x02C6E0 0B:86D0: BD 06 06  LDA ram_obj_config,X
 C - - - - - 0x02C6E3 0B:86D3: 65 6E     ADC ram_006E_cam_speed
 C - - - - - 0x02C6E5 0B:86D5: 9D 06 06  STA ram_obj_config,X
-bra_86D8:
+bra_86D8_horisontal:
 C - - - - - 0x02C6E8 0B:86D8: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x02C6EB 0B:86DB: 38        SEC
 C - - - - - 0x02C6EC 0B:86DC: FD 06 06  SBC ram_obj_config,X
@@ -1419,8 +1420,9 @@ C - - - - - 0x02C70C 0B:86FC: 9D 1D 06  STA ram_061D_obj,X
 C - - - - - 0x02C70F 0B:86FF: 20 62 86  JSR sub_8662
 bra_8702:
 ofs_039_8702_9D:
-C - - - - - 0x02C712 0B:8702: A5 68     LDA ram_0068
-C - - - - - 0x02C714 0B:8704: 10 D2     BPL bra_86D8
+C - - - - - 0x02C712 0B:8702: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x02C714 0B:8704: 10 D2     BPL bra_86D8_horisontal
+; if vertical
 C - - - - - 0x02C716 0B:8706: 38        SEC
 C - - - - - 0x02C717 0B:8707: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x02C71A 0B:870A: FD 06 06  SBC ram_obj_config,X
@@ -2226,14 +2228,15 @@ C - - - - - 0x02CBA0 0B:8B90: 60        RTS
 
 
 sub_8B91:
-C - - - - - 0x02CBA1 0B:8B91: A5 68     LDA ram_0068
-C - - - - - 0x02CBA3 0B:8B93: 30 09     BMI bra_8B9E
+C - - - - - 0x02CBA1 0B:8B91: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x02CBA3 0B:8B93: 30 09     BMI bra_8B9E_vertical
+; if horisontal
 sub_8B95:
 C - - - - - 0x02CBA5 0B:8B95: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x02CBA8 0B:8B98: 29 F0     AND #$F0
 C - - - - - 0x02CBAA 0B:8B9A: 9D 1C 04  STA ram_obj_pos_Y_hi,X
 C - - - - - 0x02CBAD 0B:8B9D: 60        RTS
-bra_8B9E:
+bra_8B9E_vertical:
 C - - - - - 0x02CBAE 0B:8B9E: 18        CLC
 C - - - - - 0x02CBAF 0B:8B9F: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x02CBB2 0B:8BA2: 65 56     ADC ram_cam_pos_lo
@@ -11448,8 +11451,8 @@ C - - - - - 0x02F384 0B:B374: 4C 54 B3  JMP loc_B354
 sub_B377:
 ; out
     ; C
-        ; 0 = 
-        ; 1 = 
+        ; 0 = close enougn
+        ; 1 = too far
 C - - - - - 0x02F387 0B:B377: A4 82     LDY ram_copy_plr_id
 C - - - - - 0x02F389 0B:B379: B9 43 BB  LDA tbl_BB43,Y
 C - - - - - 0x02F38C 0B:B37C: 85 00     STA ram_0000_t06C

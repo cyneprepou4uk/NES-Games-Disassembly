@@ -1078,11 +1078,12 @@ tbl_8568:
 
 
 sub_0x038580:
-C - - - - - 0x038580 0E:8570: A5 68     LDA ram_0068
+C - - - - - 0x038580 0E:8570: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x038582 0E:8572: C9 82     CMP #$82
-C - - - - - 0x038584 0E:8574: B0 01     BCS bra_8577
+C - - - - - 0x038584 0E:8574: B0 01     BCS bra_8577_auto_scroll_enabled
+; if auto scroll disabled
 C - - - - - 0x038586 0E:8576: 60        RTS
-bra_8577:
+bra_8577_auto_scroll_enabled:
 C - - - - - 0x038587 0E:8577: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x03858A 0E:857A: 18        CLC
 C - - - - - 0x03858B 0E:857B: 65 6E     ADC ram_006E_cam_speed
@@ -1096,8 +1097,9 @@ C - - - - - 0x038597 0E:8587: 60        RTS
 
 
 sub_0x038598:
-C - - - - - 0x038598 0E:8588: A5 68     LDA ram_0068
-C - - - - - 0x03859A 0E:858A: 30 2B     BMI bra_85B7_RTS
+C - - - - - 0x038598 0E:8588: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x03859A 0E:858A: 30 2B     BMI bra_85B7_RTS    ; if vertical
+; if horisontal
 C - - - - - 0x03859C 0E:858C: A5 57     LDA ram_cam_pos_hi
 C - - - - - 0x03859E 0E:858E: 30 16     BMI bra_85A6
 C - - - - - 0x0385A0 0E:8590: C5 71     CMP ram_0071_blk_config_cam_pos_hi
@@ -1133,10 +1135,11 @@ C - - - - - 0x0385CA 0E:85BA: 85 58     STA ram_0058
 C - - - - - 0x0385CC 0E:85BC: AD 65 05  LDA ram_plr_state
 C - - - - - 0x0385CF 0E:85BF: C9 16     CMP #con_plr_state_16
 C - - - - - 0x0385D1 0E:85C1: D0 4E     BNE bra_8611_RTS
-C - - - - - 0x0385D3 0E:85C3: A5 68     LDA ram_0068
-C - - - - - 0x0385D5 0E:85C5: 30 4B     BMI bra_8612
-C - - - - - 0x0385D7 0E:85C7: A5 73     LDA ram_0073_copy_0068
-C - - - - - 0x0385D9 0E:85C9: 30 4B     BMI bra_8616
+C - - - - - 0x0385D3 0E:85C3: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x0385D5 0E:85C5: 30 4B     BMI bra_8612_vertical
+; if horisontal
+C - - - - - 0x0385D7 0E:85C7: A5 73     LDA ram_prev_blk_scroll_type
+C - - - - - 0x0385D9 0E:85C9: 30 4B     BMI bra_8616_vertical
 C - - - - - 0x0385DB 0E:85CB: A2 00     LDX #$00
 bra_85CD:
 C - - - - - 0x0385DD 0E:85CD: AD 20 05  LDA ram_plr_spd_Y_hi
@@ -1175,10 +1178,10 @@ C - - - - - 0x03861B 0E:860B: F9 32 86  SBC tbl_8632_position,Y
 C - - - - - 0x03861E 0E:860E: 8D 38 04  STA ram_plr_pos_X_hi
 bra_8611_RTS:
 C - - - - - 0x038621 0E:8611: 60        RTS
-bra_8612:
+bra_8612_vertical:
 C - - - - - 0x038622 0E:8612: A2 08     LDX #$08
 C - - - - - 0x038624 0E:8614: D0 B7     BNE bra_85CD    ; jmp
-bra_8616:
+bra_8616_vertical:
 C - - - - - 0x038626 0E:8616: A2 10     LDX #$10
 C - - - - - 0x038628 0E:8618: D0 B3     BNE bra_85CD    ; jmp
 
@@ -1211,7 +1214,7 @@ tbl_8632_position:
 
 
 
-bra_8636:
+bra_8636_vertical:
 C - - - - - 0x038646 0E:8636: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x038648 0E:8638: F0 35     BEQ bra_866F_RTS
 C - - - - - 0x03864A 0E:863A: 18        CLC
@@ -1222,8 +1225,9 @@ C - - - - - 0x038651 0E:8641: 60        RTS
 
 
 sub_0x038652:
-C - - - - - 0x038652 0E:8642: A5 68     LDA ram_0068
-C - - - - - 0x038654 0E:8644: 30 F0     BMI bra_8636
+C - - - - - 0x038652 0E:8642: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x038654 0E:8644: 30 F0     BMI bra_8636_vertical
+; if horisontal
 C - - - - - 0x038656 0E:8646: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x038659 0E:8649: 30 2F     BMI bra_867A
 C - - - - - 0x03865B 0E:864B: A5 56     LDA ram_cam_pos_lo
@@ -1293,14 +1297,15 @@ C - - - - - 0x0386A6 0E:8696: D0 D8     BNE bra_8670
 
 
 bra_86B5:
-C - - - - - 0x0386C5 0E:86B5: A5 68     LDA ram_0068
+C - - - - - 0x0386C5 0E:86B5: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x0386C7 0E:86B7: 29 01     AND #$01
-C - - - - - 0x0386C9 0E:86B9: F0 08     BEQ bra_86C3
+C - - - - - 0x0386C9 0E:86B9: F0 08     BEQ bra_86C3_scroll_up
+; if scroll down
 C - - - - - 0x0386CB 0E:86BB: A5 57     LDA ram_cam_pos_hi
 C - - - - - 0x0386CD 0E:86BD: 05 56     ORA ram_cam_pos_lo
 C - - - - - 0x0386CF 0E:86BF: F0 15     BEQ bra_86D6
 C - - - - - 0x0386D1 0E:86C1: D0 0C     BNE bra_86CF    ; jmp
-bra_86C3:
+bra_86C3_scroll_up:
 C - - - - - 0x0386D3 0E:86C3: A5 57     LDA ram_cam_pos_hi
 C - - - - - 0x0386D5 0E:86C5: C5 71     CMP ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x0386D7 0E:86C7: D0 06     BNE bra_86CF
@@ -1312,7 +1317,7 @@ C - - - - - 0x0386DF 0E:86CF: 4C 16 87  JMP loc_8716
 
 
 
-bra_86D2:
+bra_86D2_vertical:
 C - - - - - 0x0386E2 0E:86D2: C9 82     CMP #$82
 C - - - - - 0x0386E4 0E:86D4: B0 DF     BCS bra_86B5
 bra_86D6:
@@ -1320,9 +1325,10 @@ C - - - - - 0x0386E6 0E:86D6: AD 20 05  LDA ram_plr_spd_Y_hi
 C - - - - - 0x0386E9 0E:86D9: 30 21     BMI bra_86FC
 C - - - - - 0x0386EB 0E:86DB: 0D 37 05  ORA ram_plr_spd_Y_lo
 C - - - - - 0x0386EE 0E:86DE: F0 31     BEQ bra_8711_RTS
-C - - - - - 0x0386F0 0E:86E0: A5 68     LDA ram_0068
+C - - - - - 0x0386F0 0E:86E0: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x0386F2 0E:86E2: 29 01     AND #$01
-C - - - - - 0x0386F4 0E:86E4: F0 30     BEQ bra_8716
+C - - - - - 0x0386F4 0E:86E4: F0 30     BEQ bra_8716    ; if scroll up
+; if scroll down
 C - - - - - 0x0386F6 0E:86E6: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x0386F9 0E:86E9: 10 2B     BPL bra_8716
 C - - - - - 0x0386FB 0E:86EB: A5 71     LDA ram_0071_blk_config_cam_pos_hi
@@ -1336,9 +1342,10 @@ C - - - - - 0x038707 0E:86F7: A9 01     LDA #$01
 C - - - - - 0x038709 0E:86F9: 85 65     STA ram_0065
 C - - - - - 0x03870B 0E:86FB: 60        RTS
 bra_86FC:
-C - - - - - 0x03870C 0E:86FC: A5 68     LDA ram_0068
+C - - - - - 0x03870C 0E:86FC: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x03870E 0E:86FE: 29 01     AND #$01
-C - - - - - 0x038710 0E:8700: D0 14     BNE bra_8716
+C - - - - - 0x038710 0E:8700: D0 14     BNE bra_8716    ; if scroll down
+; if scroll up
 C - - - - - 0x038712 0E:8702: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x038715 0E:8705: 30 0F     BMI bra_8716
 C - - - - - 0x038717 0E:8707: A5 56     LDA ram_cam_pos_lo
@@ -1353,8 +1360,9 @@ C - - - - - 0x038721 0E:8711: 60        RTS
 
 loc_8712:
 sub_8712:
-C D 0 - - - 0x038722 0E:8712: A5 68     LDA ram_0068
-C - - - - - 0x038724 0E:8714: 30 BC     BMI bra_86D2
+C D 0 - - - 0x038722 0E:8712: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x038724 0E:8714: 30 BC     BMI bra_86D2_vertical
+; if horisontal
 loc_8716:
 bra_8716:
 C D 0 - - - 0x038726 0E:8716: AD DB 04  LDA ram_plr_pos_Y_lo
@@ -1391,8 +1399,9 @@ sub_8740:
 bra_8740:
 C - - - - - 0x038750 0E:8740: A5 78     LDA ram_0078_flag
 C - - - - - 0x038752 0E:8742: D0 1E     BNE bra_8762
-C - - - - - 0x038754 0E:8744: A5 68     LDA ram_0068
-C - - - - - 0x038756 0E:8746: 30 1A     BMI bra_8762
+C - - - - - 0x038754 0E:8744: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x038756 0E:8746: 30 1A     BMI bra_8762    ; if vertical
+; if horisontal
 C - - - - - 0x038758 0E:8748: AD F2 04  LDA ram_plr_spd_X_hi
 C - - - - - 0x03875B 0E:874B: 30 35     BMI bra_8782
 C - - - - - 0x03875D 0E:874D: 0D 09 05  ORA ram_plr_spd_X_lo
@@ -1413,8 +1422,9 @@ C - - - - - 0x038779 0E:8769: 8D C4 04  STA ram_plr_pos_X_lo
 C - - - - - 0x03877C 0E:876C: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x03877F 0E:876F: 6D F2 04  ADC ram_plr_spd_X_hi
 C - - - - - 0x038782 0E:8772: 8D 38 04  STA ram_plr_pos_X_hi
-C - - - - - 0x038785 0E:8775: A4 68     LDY ram_0068
-C - - - - - 0x038787 0E:8777: 30 29     BMI bra_87A2
+C - - - - - 0x038785 0E:8775: A4 68     LDY ram_blk_scroll_type
+C - - - - - 0x038787 0E:8777: 30 29     BMI bra_87A2_vertical
+; if horisontal
 C - - - - - 0x038789 0E:8779: C9 18     CMP #$18
 C - - - - - 0x03878B 0E:877B: 90 1A     BCC bra_8797
 C - - - - - 0x03878D 0E:877D: C9 E9     CMP #$E9
@@ -1441,7 +1451,7 @@ C - - - - - 0x0387AB 0E:879B: A2 01     LDX #$01
 bra_879D:
 C - - - - - 0x0387AD 0E:879D: 20 9A E6  JSR sub_0x03E6AA
 C - - - - - 0x0387B0 0E:87A0: B0 30     BCS bra_87D2
-bra_87A2:
+bra_87A2_vertical:
 C - - - - - 0x0387B2 0E:87A2: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x0387B5 0E:87A5: C9 10     CMP #$10
 C - - - - - 0x0387B7 0E:87A7: 90 0A     BCC bra_87B3
@@ -2005,13 +2015,14 @@ C - - - - - 0x038A03 0E:89F3: B0 F1     BCS bra_89E6_RTS
 
 
 sub_8A02:
-C - - - - - 0x038A12 0E:8A02: A5 68     LDA ram_0068
-C - - - - - 0x038A14 0E:8A04: 30 09     BMI bra_8A0F
+C - - - - - 0x038A12 0E:8A02: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x038A14 0E:8A04: 30 09     BMI bra_8A0F_vertical
+; if horisontal
 C - - - - - 0x038A16 0E:8A06: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x038A19 0E:8A09: 29 F0     AND #$F0
 C - - - - - 0x038A1B 0E:8A0B: 8D 1C 04  STA ram_plr_pos_Y_hi
 C - - - - - 0x038A1E 0E:8A0E: 60        RTS
-bra_8A0F:
+bra_8A0F_vertical:
 C - - - - - 0x038A1F 0E:8A0F: 18        CLC
 C - - - - - 0x038A20 0E:8A10: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x038A23 0E:8A13: 65 56     ADC ram_cam_pos_lo
@@ -2068,8 +2079,9 @@ C - - - - - 0x038A7A 0E:8A6A: 29 0F     AND #$0F
 C - - - - - 0x038A7C 0E:8A6C: 85 8B     STA ram_008B
 C - - - - - 0x038A7E 0E:8A6E: A9 00     LDA #$00
 C - - - - - 0x038A80 0E:8A70: 85 81     STA ram_0081
-C - - - - - 0x038A82 0E:8A72: A5 68     LDA ram_0068
-C - - - - - 0x038A84 0E:8A74: 10 17     BPL bra_8A8D
+C - - - - - 0x038A82 0E:8A72: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x038A84 0E:8A74: 10 17     BPL bra_8A8D_horisontal
+; if vertical
 C - - - - - 0x038A86 0E:8A76: 29 01     AND #$01
 C - - - - - 0x038A88 0E:8A78: D0 04     BNE bra_8A7E
 C - - - - - 0x038A8A 0E:8A7A: A9 00     LDA #$00
@@ -2085,7 +2097,7 @@ C - - - - - 0x038A98 0E:8A88: 18        CLC
 C - - - - - 0x038A99 0E:8A89: 69 03     ADC #$03
 bra_8A8B:
 C - - - - - 0x038A9B 0E:8A8B: 85 D0     STA ram_00D0
-bra_8A8D:
+bra_8A8D_horisontal:
 C - - - - - 0x038A9D 0E:8A8D: A9 02     LDA #$02
 C - - - - - 0x038A9F 0E:8A8F: 85 65     STA ram_0065
 C - - - - - 0x038AA1 0E:8A91: AC 4E 05  LDY ram_plr_id
@@ -2179,7 +2191,7 @@ C - - - - - 0x038B19 0E:8B09: 60        RTS
 bra_8B0A_FF:
 C - - - - - 0x038B1A 0E:8B0A: A9 4E     LDA #con_music_death
 C - - - - - 0x038B1C 0E:8B0C: 20 5F E2  JSR sub_0x03E26F_play_sound
-C - - - - - 0x038B1F 0E:8B0F: 20 CE E5  JSR sub_0x03E5DE
+C - - - - - 0x038B1F 0E:8B0F: 20 CE E5  JSR sub_0x03E5DE_forbid_pausing
 C - - - - - 0x038B22 0E:8B12: A9 64     LDA #$64
 C - - - - - 0x038B24 0E:8B14: 8D D4 05  STA ram_05C1_obj + $13
 C - - - - - 0x038B27 0E:8B17: E6 BF     INC ram_00BF
@@ -2254,12 +2266,13 @@ C - - - - - 0x038B69 0E:8B59: 29 7F     AND #$7F
 C - - - - - 0x038B6B 0E:8B5B: A8        TAY
 C - - - - - 0x038B6C 0E:8B5C: D0 31     BNE bra_8B8F
 C - - - - - 0x038B6E 0E:8B5E: AD 1C 04  LDA ram_plr_pos_Y_hi
-C - - - - - 0x038B71 0E:8B61: A4 68     LDY ram_0068
-C - - - - - 0x038B73 0E:8B63: 30 06     BMI bra_8B6B
+C - - - - - 0x038B71 0E:8B61: A4 68     LDY ram_blk_scroll_type
+C - - - - - 0x038B73 0E:8B63: 30 06     BMI bra_8B6B_vertical
+; if horisontal
 C - - - - - 0x038B75 0E:8B65: C9 E0     CMP #$E0
 C - - - - - 0x038B77 0E:8B67: 90 08     BCC bra_8B71
 C - - - - - 0x038B79 0E:8B69: B0 21     BCS bra_8B8C    ; jmp
-bra_8B6B:
+bra_8B6B_vertical:
 C - - - - - 0x038B7B 0E:8B6B: C9 E0     CMP #$E0
 C - - - - - 0x038B7D 0E:8B6D: 90 02     BCC bra_8B71
 C - - - - - 0x038B7F 0E:8B6F: B0 1B     BCS bra_8B8C    ; jmp
@@ -2288,7 +2301,7 @@ C - - - - - 0x038BA7 0E:8B97: A9 80     LDA #$80
 C - - - - - 0x038BA9 0E:8B99: 8D D4 05  STA ram_05C1_obj + $13
 C - - - - - 0x038BAC 0E:8B9C: A9 4E     LDA #con_music_death
 C - - - - - 0x038BAE 0E:8B9E: 20 5F E2  JSR sub_0x03E26F_play_sound
-C - - - - - 0x038BB1 0E:8BA1: 20 CE E5  JSR sub_0x03E5DE
+C - - - - - 0x038BB1 0E:8BA1: 20 CE E5  JSR sub_0x03E5DE_forbid_pausing
 C - - - - - 0x038BB4 0E:8BA4: E6 BF     INC ram_00BF
 C - - - - - 0x038BB6 0E:8BA6: 60        RTS
 loc_8BA7:
@@ -2304,7 +2317,7 @@ C - - - - - 0x038BC3 0E:8BB3: 85 19     STA ram_0019_subscript
 C - - - - - 0x038BC5 0E:8BB5: AD 65 05  LDA ram_plr_state
 C - - - - - 0x038BC8 0E:8BB8: 09 80     ORA #con_plr_state_80
 C - - - - - 0x038BCA 0E:8BBA: 8D 65 05  STA ram_plr_state
-C - - - - - 0x038BCD 0E:8BBD: 4C CA E5  JMP loc_0x03E5DA
+C - - - - - 0x038BCD 0E:8BBD: 4C CA E5  JMP loc_0x03E5DA_allow_pausing
 
 
 
@@ -2328,8 +2341,9 @@ C - - - - - 0x038BE9 0E:8BD9: F0 21     BEQ bra_8BFC
 loc_8BDB:
 bra_8BDB:
 C D 0 - - - 0x038BEB 0E:8BDB: AD 1C 04  LDA ram_plr_pos_Y_hi
-C - - - - - 0x038BEE 0E:8BDE: A4 68     LDY ram_0068
-C - - - - - 0x038BF0 0E:8BE0: 10 12     BPL bra_8BF4
+C - - - - - 0x038BEE 0E:8BDE: A4 68     LDY ram_blk_scroll_type
+C - - - - - 0x038BF0 0E:8BE0: 10 12     BPL bra_8BF4_horisontal
+; if vertical
 C - - - - - 0x038BF2 0E:8BE2: C9 E0     CMP #$E0
 C - - - - - 0x038BF4 0E:8BE4: B0 0B     BCS bra_8BF1
 C - - - - - 0x038BF6 0E:8BE6: C0 83     CPY #$83
@@ -2339,7 +2353,7 @@ C - - - - - 0x038BFC 0E:8BEC: B0 0D     BCS bra_8BFB_RTS
 C - - - - - 0x038BFE 0E:8BEE: 4C 98 83  JMP loc_8398_kill_player
 bra_8BF1:
 C - - - - - 0x038C01 0E:8BF1: 4C F9 8C  JMP loc_8CF9
-bra_8BF4:
+bra_8BF4_horisontal:
 C - - - - - 0x038C04 0E:8BF4: C9 E0     CMP #$E0
 C - - - - - 0x038C06 0E:8BF6: 90 03     BCC bra_8BFB_RTS
 C - - - - - 0x038C08 0E:8BF8: 4C F9 8C  JMP loc_8CF9
@@ -4596,8 +4610,9 @@ sub_99F7:
 C - - - - - 0x039A07 0E:99F7: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x039A0A 0E:99FA: C9 D7     CMP #$D7
 C - - - - - 0x039A0C 0E:99FC: 90 16     BCC bra_9A14
-- - - - - - 0x039A0E 0E:99FE: A4 68     LDY ram_0068
-- - - - - - 0x039A10 0E:9A00: 10 12     BPL bra_9A14
+- - - - - - 0x039A0E 0E:99FE: A4 68     LDY ram_blk_scroll_type
+- - - - - - 0x039A10 0E:9A00: 10 12     BPL bra_9A14    ; if horisontal
+; if vertical
 - - - - - - 0x039A12 0E:9A02: A5 57     LDA ram_cam_pos_hi
 - - - - - - 0x039A14 0E:9A04: C5 71     CMP ram_0071_blk_config_cam_pos_hi
 - - - - - - 0x039A16 0E:9A06: D0 06     BNE bra_9A0E
@@ -4605,7 +4620,7 @@ C - - - - - 0x039A0C 0E:99FC: 90 16     BCC bra_9A14
 - - - - - - 0x039A1A 0E:9A0A: C9 30     CMP #$30
 - - - - - - 0x039A1C 0E:9A0C: F0 06     BEQ bra_9A14
 bra_9A0E:
-- - - - - - 0x039A1E 0E:9A0E: C0 82     CPY #$82
+- - - - - - 0x039A1E 0E:9A0E: C0 82     CPY #$80 + $02
 - - - - - - 0x039A20 0E:9A10: B0 02     BCS bra_9A14
 - - - - - - 0x039A22 0E:9A12: 38        SEC
 - - - - - - 0x039A23 0E:9A13: 60        RTS
@@ -4623,13 +4638,15 @@ sub_9A16:
 C - - - - - 0x039A26 0E:9A16: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x039A29 0E:9A19: C9 37     CMP #$37
 C - - - - - 0x039A2B 0E:9A1B: B0 F7     BCS bra_9A14
-C - - - - - 0x039A2D 0E:9A1D: A4 68     LDY ram_0068
-C - - - - - 0x039A2F 0E:9A1F: 10 F3     BPL bra_9A14
+C - - - - - 0x039A2D 0E:9A1D: A4 68     LDY ram_blk_scroll_type
+C - - - - - 0x039A2F 0E:9A1F: 10 F3     BPL bra_9A14    ; if horisontal
+; if vertical
 - - - - - - 0x039A31 0E:9A21: A5 57     LDA ram_cam_pos_hi
 - - - - - - 0x039A33 0E:9A23: 05 56     ORA ram_cam_pos_lo
 - - - - - - 0x039A35 0E:9A25: F0 ED     BEQ bra_9A14
 - - - - - - 0x039A37 0E:9A27: C0 82     CPY #$82
-- - - - - - 0x039A39 0E:9A29: B0 E9     BCS bra_9A14
+- - - - - - 0x039A39 0E:9A29: B0 E9     BCS bra_9A14    ; if auto scroll enabled
+; if auto scroll disabled
 - - - - - - 0x039A3B 0E:9A2B: 38        SEC
 - - - - - - 0x039A3C 0E:9A2C: 60        RTS
 
@@ -4643,25 +4660,27 @@ sub_9A2D:
 C - - - - - 0x039A3D 0E:9A2D: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x039A40 0E:9A30: AE 20 05  LDX ram_plr_spd_Y_hi
 C - - - - - 0x039A43 0E:9A33: 30 10     BMI bra_9A45
-C - - - - - 0x039A45 0E:9A35: A6 68     LDX ram_0068
-C - - - - - 0x039A47 0E:9A37: 30 06     BMI bra_9A3F
+C - - - - - 0x039A45 0E:9A35: A6 68     LDX ram_blk_scroll_type
+C - - - - - 0x039A47 0E:9A37: 30 06     BMI bra_9A3F_vertical
+; if horisontal
 C - - - - - 0x039A49 0E:9A39: C9 D3     CMP #$D3
 C - - - - - 0x039A4B 0E:9A3B: B0 22     BCS bra_9A5F
 C - - - - - 0x039A4D 0E:9A3D: 18        CLC
 C - - - - - 0x039A4E 0E:9A3E: 60        RTS
-bra_9A3F:
+bra_9A3F_vertical:
 C - - - - - 0x039A4F 0E:9A3F: C9 D6     CMP #$D6
 C - - - - - 0x039A51 0E:9A41: B0 2A     BCS bra_9A6D
 C - - - - - 0x039A53 0E:9A43: 18        CLC
 C - - - - - 0x039A54 0E:9A44: 60        RTS
 bra_9A45:
-C - - - - - 0x039A55 0E:9A45: A6 68     LDX ram_0068
-C - - - - - 0x039A57 0E:9A47: 30 06     BMI bra_9A4F
+C - - - - - 0x039A55 0E:9A45: A6 68     LDX ram_blk_scroll_type
+C - - - - - 0x039A57 0E:9A47: 30 06     BMI bra_9A4F_vertical
+; if horisontal
 C - - - - - 0x039A59 0E:9A49: C9 29     CMP #$29
 C - - - - - 0x039A5B 0E:9A4B: 90 08     BCC bra_9A55
 C - - - - - 0x039A5D 0E:9A4D: 18        CLC
 C - - - - - 0x039A5E 0E:9A4E: 60        RTS
-bra_9A4F:
+bra_9A4F_vertical:
 C - - - - - 0x039A5F 0E:9A4F: C9 34     CMP #$34
 C - - - - - 0x039A61 0E:9A51: 90 2E     BCC bra_9A81
 bra_9A53:
@@ -4690,19 +4709,21 @@ C - - - - - 0x039A83 0E:9A73: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x039A85 0E:9A75: C9 30     CMP #$30
 C - - - - - 0x039A87 0E:9A77: F0 E6     BEQ bra_9A5F
 bra_9A79:
-- - - - - - 0x039A89 0E:9A79: A5 68     LDA ram_0068
-- - - - - - 0x039A8B 0E:9A7B: C9 83     CMP #$83
+- - - - - - 0x039A89 0E:9A79: A5 68     LDA ram_blk_scroll_type
+- - - - - - 0x039A8B 0E:9A7B: C9 83     CMP #$83    ; vertical + auto scroll down
 - - - - - - 0x039A8D 0E:9A7D: D0 D4     BNE bra_9A53
+; if 83
 - - - - - - 0x039A8F 0E:9A7F: 38        SEC
 - - - - - - 0x039A90 0E:9A80: 60        RTS
 bra_9A81:
 C - - - - - 0x039A91 0E:9A81: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x039A93 0E:9A83: 05 57     ORA ram_cam_pos_hi
 C - - - - - 0x039A95 0E:9A85: F0 D8     BEQ bra_9A5F
-- - - - - - 0x039A97 0E:9A87: A5 68     LDA ram_0068
-- - - - - - 0x039A99 0E:9A89: C9 82     CMP #$82
+- - - - - - 0x039A97 0E:9A87: A5 68     LDA ram_blk_scroll_type
+; check for auto scroll up
+- - - - - - 0x039A99 0E:9A89: C9 82     CMP #$82    ; vertical + auto scroll up
 - - - - - - 0x039A9B 0E:9A8B: F0 04     BEQ bra_9A91
-- - - - - - 0x039A9D 0E:9A8D: C9 84     CMP #$84
+- - - - - - 0x039A9D 0E:9A8D: C9 84     CMP #$84    ; vertical + fast auto scroll up
 - - - - - - 0x039A9F 0E:9A8F: D0 C2     BNE bra_9A53
 bra_9A91:
 - - - - - - 0x039AA1 0E:9A91: 38        SEC
@@ -4773,8 +4794,9 @@ bra_9AF0:
 C - - - - - 0x039B00 0E:9AF0: A9 00     LDA #$00
 C - - - - - 0x039B02 0E:9AF2: 8D C4 04  STA ram_plr_pos_X_lo
 C - - - - - 0x039B05 0E:9AF5: 8D DB 04  STA ram_plr_pos_Y_lo
-C - - - - - 0x039B08 0E:9AF8: A4 68     LDY ram_0068
-C - - - - - 0x039B0A 0E:9AFA: 10 1F     BPL bra_9B1B
+C - - - - - 0x039B08 0E:9AF8: A4 68     LDY ram_blk_scroll_type
+C - - - - - 0x039B0A 0E:9AFA: 10 1F     BPL bra_9B1B_horisontal
+; if vertical
 C - - - - - 0x039B0C 0E:9AFC: AC 4E 05  LDY ram_plr_id
 C - - - - - 0x039B0F 0E:9AFF: C0 02     CPY #$02
 C - - - - - 0x039B11 0E:9B01: F0 DE     BEQ bra_9AE1
@@ -4793,7 +4815,7 @@ C - - - - - 0x039B25 0E:9B15: 18        CLC
 C - - - - - 0x039B26 0E:9B16: 69 03     ADC #$03
 loc_9B18:
 C D 0 - - - 0x039B28 0E:9B18: 8D 1C 04  STA ram_plr_pos_Y_hi
-bra_9B1B:
+bra_9B1B_horisontal:
 C - - - - - 0x039B2B 0E:9B1B: AD 20 05  LDA ram_plr_spd_Y_hi
 C - - - - - 0x039B2E 0E:9B1E: 30 44     BMI bra_9B64
 C - - - - - 0x039B30 0E:9B20: A2 12     LDX #$12
@@ -5311,8 +5333,9 @@ C - - - - - 0x039E4C 0E:9E3C: 4C 42 9E  JMP loc_9E42
 sub_9E3F:
 C - - - - - 0x039E4F 0E:9E3F: AD 38 04  LDA ram_plr_pos_X_hi
 loc_9E42:
-C D 0 - - - 0x039E52 0E:9E42: A4 68     LDY ram_0068
-C - - - - - 0x039E54 0E:9E44: 30 0C     BMI bra_9E52
+C D 0 - - - 0x039E52 0E:9E42: A4 68     LDY ram_blk_scroll_type
+C - - - - - 0x039E54 0E:9E44: 30 0C     BMI bra_9E52_vertical
+; if horisontal
 C - - - - - 0x039E56 0E:9E46: 18        CLC
 C - - - - - 0x039E57 0E:9E47: 65 56     ADC ram_cam_pos_lo
 C - - - - - 0x039E59 0E:9E49: 29 F8     AND #$F8
@@ -5320,7 +5343,7 @@ C - - - - - 0x039E5B 0E:9E4B: 38        SEC
 C - - - - - 0x039E5C 0E:9E4C: E5 56     SBC ram_cam_pos_lo
 C - - - - - 0x039E5E 0E:9E4E: 8D 38 04  STA ram_plr_pos_X_hi
 C - - - - - 0x039E61 0E:9E51: 60        RTS
-bra_9E52:
+bra_9E52_vertical:
 C - - - - - 0x039E62 0E:9E52: 29 F8     AND #$F8
 C - - - - - 0x039E64 0E:9E54: 8D 38 04  STA ram_plr_pos_X_hi
 C - - - - - 0x039E67 0E:9E57: 60        RTS
@@ -6426,8 +6449,9 @@ C - - - - - 0x03A568 0E:A558: 18        CLC
 C - - - - - 0x03A569 0E:A559: A9 01     LDA #$01
 C - - - - - 0x03A56B 0E:A55B: 6D 38 04  ADC ram_plr_pos_X_hi
 loc_A55E:
-C D 1 - - - 0x03A56E 0E:A55E: A4 68     LDY ram_0068
-C - - - - - 0x03A570 0E:A560: 30 0C     BMI bra_A56E
+C D 1 - - - 0x03A56E 0E:A55E: A4 68     LDY ram_blk_scroll_type
+C - - - - - 0x03A570 0E:A560: 30 0C     BMI bra_A56E_vertical
+; if horisontal
 C - - - - - 0x03A572 0E:A562: 18        CLC
 C - - - - - 0x03A573 0E:A563: 65 56     ADC ram_cam_pos_lo
 C - - - - - 0x03A575 0E:A565: 29 F8     AND #$F8
@@ -6435,7 +6459,7 @@ C - - - - - 0x03A577 0E:A567: 38        SEC
 C - - - - - 0x03A578 0E:A568: E5 56     SBC ram_cam_pos_lo
 C - - - - - 0x03A57A 0E:A56A: 8D D8 05  STA ram_05D8_plr
 C - - - - - 0x03A57D 0E:A56D: 60        RTS
-bra_A56E:
+bra_A56E_vertical:
 C - - - - - 0x03A57E 0E:A56E: 29 F8     AND #$F8
 C - - - - - 0x03A580 0E:A570: 8D D8 05  STA ram_05D8_plr
 C - - - - - 0x03A583 0E:A573: 60        RTS
@@ -9630,8 +9654,9 @@ C - - - - - 0x03B952 0E:B942: 60        RTS
 
 
 loc_B943:
-C D 1 - - - 0x03B953 0E:B943: A5 68     LDA ram_0068
-C - - - - - 0x03B955 0E:B945: 30 09     BMI bra_B950_RTS
+C D 1 - - - 0x03B953 0E:B943: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x03B955 0E:B945: 30 09     BMI bra_B950_RTS    ; if vertical
+; if horisontal
 C - - - - - 0x03B957 0E:B947: BD EF 05  LDA ram_05EF_obj,X
 C - - - - - 0x03B95A 0E:B94A: 38        SEC
 C - - - - - 0x03B95B 0E:B94B: E5 6E     SBC ram_006E_cam_speed
@@ -9643,14 +9668,15 @@ C - - - - - 0x03B960 0E:B950: 60        RTS
 
 loc_B951:
 sub_B951:
-C D 1 - - - 0x03B961 0E:B951: A5 68     LDA ram_0068
-C - - - - - 0x03B963 0E:B953: 30 0A     BMI bra_B95F
+C D 1 - - - 0x03B961 0E:B951: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x03B963 0E:B953: 30 0A     BMI bra_B95F_vertical
+; if horisontal
 C - - - - - 0x03B965 0E:B955: BD 38 04  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x03B968 0E:B958: 38        SEC
 C - - - - - 0x03B969 0E:B959: E5 6E     SBC ram_006E_cam_speed
 C - - - - - 0x03B96B 0E:B95B: 9D 38 04  STA ram_obj_pos_X_hi,X
 C - - - - - 0x03B96E 0E:B95E: 60        RTS
-bra_B95F:
+bra_B95F_vertical:
 C - - - - - 0x03B96F 0E:B95F: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x03B972 0E:B962: 18        CLC
 C - - - - - 0x03B973 0E:B963: 65 6E     ADC ram_006E_cam_speed

@@ -45,7 +45,7 @@ loc_875E_disable_sound_engine:
 sub_875E_disable_sound_engine:
 sub_0x03076E_disable_sound_engine:
 C D 0 - - - 0x03076E 0C:875E: A9 00     LDA #$00
-C - - - - - 0x030770 0C:8760: 86 E2     STX ram_00E2_se_temp
+C - - - - - 0x030770 0C:8760: 86 E2     STX ram_00E2_se_t011_save_X
 C - - - - - 0x030772 0C:8762: AA        TAX ; 00
 bra_8763_loop:
 C - - - - - 0x030773 0C:8763: 9D 07 01  STA ram_0107_se,X
@@ -75,7 +75,7 @@ C - - - - - 0x0307A0 0C:8790: 8D 8F 01  STA ram_018F_se_flag
 C - - - - - 0x0307A3 0C:8793: 8D 8E 01  STA ram_018E_se
 C - - - - - 0x0307A6 0C:8796: 8D 8D 01  STA ram_018D_se
 C - - - - - 0x0307A9 0C:8799: 8D C8 06  STA ram_06C8_se
-C - - - - - 0x0307AC 0C:879C: A6 E2     LDX ram_00E2_se_temp
+C - - - - - 0x0307AC 0C:879C: A6 E2     LDX ram_00E2_se_t011_save_X
 loc_879E:
 C D 0 - - - 0x0307AE 0C:879E: A9 0B     LDA #$0B
 C - - - - - 0x0307B0 0C:87A0: 8D 15 40  STA $4015
@@ -170,8 +170,8 @@ C - - - - - 0x030852 0C:8842: 90 C9     BCC bra_880D_01_4D_play_sound
 ; 4E-6C music 
 C - - - - - 0x030854 0C:8844: 20 5E 87  JSR sub_875E_disable_sound_engine
 bra_8847:
-C - - - - - 0x030857 0C:8847: 86 E4     STX ram_00E4_se_temp
-C - - - - - 0x030859 0C:8849: 84 E5     STY ram_00E5_se_temp
+C - - - - - 0x030857 0C:8847: 86 E4     STX ram_00E4_se_t000_save_X
+C - - - - - 0x030859 0C:8849: 84 E5     STY ram_00E5_se_t000_save_Y
 C - - - - - 0x03085B 0C:884B: A5 EF     LDA ram_00EF_se
 C - - - - - 0x03085D 0C:884D: 0A        ASL
 C - - - - - 0x03085E 0C:884E: A8        TAY
@@ -239,9 +239,9 @@ C - - - - - 0x0308D5 0C:88C5: 9D AC 06  STA ram_06AC_se,X
 bra_88C8:
 C - - - - - 0x0308D8 0C:88C8: A5 EB     LDA ram_00EB_se_prg_bank
 C - - - - - 0x0308DA 0C:88CA: 9D 95 01  STA ram_se_prg_bank,X
-C - - - - - 0x0308DD 0C:88CD: 84 E2     STY ram_00E2_se_temp
+C - - - - - 0x0308DD 0C:88CD: 84 E2     STY ram_00E2_se_t012_save_Y
 C - - - - - 0x0308DF 0C:88CF: A0 00     LDY #$00
-C - - - - - 0x0308E1 0C:88D1: 20 B5 E1  JSR sub_0x03E1C5
+C - - - - - 0x0308E1 0C:88D1: 20 B5 E1  JSR sub_0x03E1C5_read_byte_from_data
 C - - - - - 0x0308E4 0C:88D4: C8        INY ; 01
 C - - - - - 0x0308E5 0C:88D5: C9 10     CMP #$10
 C - - - - - 0x0308E7 0C:88D7: 90 09     BCC bra_88E2
@@ -253,7 +253,7 @@ C - - - - - 0x0308F1 0C:88E1: 88        DEY ; 00
 bra_88E2:
 C - - - - - 0x0308F2 0C:88E2: 98        TYA
 C - - - - - 0x0308F3 0C:88E3: 9D 15 01  STA ram_0115_se,X
-C - - - - - 0x0308F6 0C:88E6: A4 E2     LDY ram_00E2_se_temp
+C - - - - - 0x0308F6 0C:88E6: A4 E2     LDY ram_00E2_se_t012_save_Y
 C - - - - - 0x0308F8 0C:88E8: A5 EF     LDA ram_00EF_se
 C - - - - - 0x0308FA 0C:88EA: 9D 07 01  STA ram_0107_se,X
 loc_88ED:
@@ -261,8 +261,8 @@ C D 0 - - - 0x0308FD 0C:88ED: C6 EA     DEC ram_00EA_se
 C - - - - - 0x0308FF 0C:88EF: 30 03     BMI bra_88F4
 C - - - - - 0x030901 0C:88F1: 4C 64 88  JMP loc_8864_loop
 bra_88F4:
-C - - - - - 0x030904 0C:88F4: A6 E4     LDX ram_00E4_se_temp
-C - - - - - 0x030906 0C:88F6: A4 E5     LDY ram_00E5_se_temp
+C - - - - - 0x030904 0C:88F4: A6 E4     LDX ram_00E4_se_t000_save_X
+C - - - - - 0x030906 0C:88F6: A4 E5     LDY ram_00E5_se_t000_save_Y
 C - - - - - 0x030908 0C:88F8: 60        RTS
 
 
@@ -804,13 +804,13 @@ C - - - - - 0x030C8A 0C:8C7A: 30 2A     BMI bra_8CA6
 C - - - - - 0x030C8C 0C:8C7C: 84 E2     STY ram_00E2_se_temp
 C - - - - - 0x030C8E 0C:8C7E: BD AC 06  LDA ram_06AC_se,X
 C - - - - - 0x030C91 0C:8C81: 29 0F     AND #$0F
-C - - - - - 0x030C93 0C:8C83: 85 E4     STA ram_00E4_se_temp
+C - - - - - 0x030C93 0C:8C83: 85 E4     STA ram_00E4_se_t001
 C - - - - - 0x030C95 0C:8C85: BD AF 06  LDA ram_06AF_se,X
 C - - - - - 0x030C98 0C:8C88: 38        SEC
 C - - - - - 0x030C99 0C:8C89: E9 01     SBC #$01
 C - - - - - 0x030C9B 0C:8C8B: 29 03     AND #$03
 C - - - - - 0x030C9D 0C:8C8D: 38        SEC
-C - - - - - 0x030C9E 0C:8C8E: E5 E4     SBC ram_00E4_se_temp
+C - - - - - 0x030C9E 0C:8C8E: E5 E4     SBC ram_00E4_se_t001
 C - - - - - 0x030CA0 0C:8C90: 29 03     AND #$03
 C - - - - - 0x030CA2 0C:8C92: E0 00     CPX #$00
 C - - - - - 0x030CA4 0C:8C94: F0 02     BEQ bra_8C98
@@ -7648,7 +7648,7 @@ tbl_A6DF_position:
 ofs_005_A6E7_19:
 C - - J - - 0x0326F7 0C:A6E7: A9 7B     LDA #con_dmc_boss_death
 C - - - - - 0x0326F9 0C:A6E9: 20 5F E2  JSR sub_0x03E26F_play_sound
-C - - - - - 0x0326FC 0C:A6EC: 20 CE E5  JSR sub_0x03E5DE
+C - - - - - 0x0326FC 0C:A6EC: 20 CE E5  JSR sub_0x03E5DE_forbid_pausing
 C - - - - - 0x0326FF 0C:A6EF: A9 00     LDA #$00
 C - - - - - 0x032701 0C:A6F1: 85 03     STA ram_0000_t046_add_score + $03
 C - - - - - 0x032703 0C:A6F3: 85 01     STA ram_0000_t046_add_score + $01

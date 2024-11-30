@@ -39,7 +39,7 @@
 .export sub_0x001015_check_for_special_name
 .export loc_0x00108F
 .export ofs_041_0x0010DD_06_set_chr_banks
-.export sub_0x0010E6
+.export sub_0x0010E6_clear_stopwatch_data
 .export sub_0x0010F2
 .export sub_0x001117
 .export sub_0x001127
@@ -48,8 +48,8 @@
 .export sub_0x0011E5
 .export loc_0x001225
 .export loc_0x001298
-.export loc_0x00147A
-.export loc_0x00149B
+.export loc_0x00147A_swap_players_V
+.export loc_0x00149B_swap_players_H
 .export loc_0x0016DF_RTS    ; bzk this export is never used
 .export sub_0x0016E0
 .export sub_0x001712
@@ -4014,11 +4014,12 @@ C - - - - - 0x000D8D 00:8D7D: 20 97 8C  JSR sub_8C97_print_hearts_amount
 C - - - - - 0x000D90 00:8D80: 20 3C 8E  JSR sub_8E3C_print_lives_amount
 C - - - - - 0x000D93 00:8D83: 20 4B 8E  JSR sub_8E4B
 C - - - - - 0x000D96 00:8D86: A9 24     LDA #$24
-C - - - - - 0x000D98 00:8D88: A6 68     LDX ram_0068
-C - - - - - 0x000D9A 00:8D8A: 10 03     BPL bra_8D8F
+C - - - - - 0x000D98 00:8D88: A6 68     LDX ram_blk_scroll_type
+C - - - - - 0x000D9A 00:8D8A: 10 03     BPL bra_8D8F_horisontal
+; if vertical
 C - - - - - 0x000D9C 00:8D8C: 38        SEC
 C - - - - - 0x000D9D 00:8D8D: E9 04     SBC #$04
-bra_8D8F:
+bra_8D8F_horisontal:
 C - - - - - 0x000D9F 00:8D8F: 8D 34 04  STA ram_obj_pos_Y_hi + $18
 C - - - - - 0x000DA2 00:8D92: 8D 35 04  STA ram_obj_pos_Y_hi + $19
 C - - - - - 0x000DA5 00:8D95: 60        RTS
@@ -4281,11 +4282,12 @@ C - - - - - 0x000E8D 00:8E7D: 8C C1 04  STY ram_obj_facing + $19
 C - - - - - 0x000E90 00:8E80: A9 D8     LDA #$D8
 C - - - - - 0x000E92 00:8E82: 8D 51 04  STA ram_obj_pos_X_hi + $19
 C - - - - - 0x000E95 00:8E85: A9 24     LDA #$24
-C - - - - - 0x000E97 00:8E87: A6 68     LDX ram_0068
-C - - - - - 0x000E99 00:8E89: 10 03     BPL bra_8E8E
+C - - - - - 0x000E97 00:8E87: A6 68     LDX ram_blk_scroll_type
+C - - - - - 0x000E99 00:8E89: 10 03     BPL bra_8E8E_horisontal
+; if vertical
 C - - - - - 0x000E9B 00:8E8B: 38        SEC
 C - - - - - 0x000E9C 00:8E8C: E9 04     SBC #$04
-bra_8E8E:
+bra_8E8E_horisontal:
 C - - - - - 0x000E9E 00:8E8E: 8D 35 04  STA ram_obj_pos_Y_hi + $19
 C - - - - - 0x000EA1 00:8E91: 60        RTS
 
@@ -4307,11 +4309,12 @@ C - - - - - 0x000EB7 00:8EA7: 8D A4 04  STA ram_obj_type + $18
 C - - - - - 0x000EBA 00:8EAA: B9 D1 8E  LDA tbl_8ECF + $02,Y
 C - - - - - 0x000EBD 00:8EAD: 8D 50 04  STA ram_obj_pos_X_hi + $18
 C - - - - - 0x000EC0 00:8EB0: B9 D2 8E  LDA tbl_8ECF + $03,Y
-C - - - - - 0x000EC3 00:8EB3: A6 68     LDX ram_0068
-C - - - - - 0x000EC5 00:8EB5: 10 03     BPL bra_8EBA
+C - - - - - 0x000EC3 00:8EB3: A6 68     LDX ram_blk_scroll_type
+C - - - - - 0x000EC5 00:8EB5: 10 03     BPL bra_8EBA_vertical
+; if horisontal
 C - - - - - 0x000EC7 00:8EB7: 38        SEC
 C - - - - - 0x000EC8 00:8EB8: E9 04     SBC #$04
-bra_8EBA:
+bra_8EBA_vertical:
 C - - - - - 0x000ECA 00:8EBA: 8D 34 04  STA ram_obj_pos_Y_hi + $18
 C - - - - - 0x000ECD 00:8EBD: B9 D3 8E  LDA tbl_8ECF + $04,Y
 C - - - - - 0x000ED0 00:8EC0: 8D 6C 04  STA ram_0454_obj + $18
@@ -4760,8 +4763,9 @@ C - - - - - 0x0010E5 00:90D5: 60        RTS
 
 
 
-sub_90D6:
-sub_0x0010E6:
+sub_90D6_clear_stopwatch_data:
+sub_0x0010E6_clear_stopwatch_data:
+; bzk optimize, move to bank FF
 C - - - - - 0x0010E6 00:90D6: A9 00     LDA #$00
 C - - - - - 0x0010E8 00:90D8: 85 AB     STA ram_stopwatch_flag
 C - - - - - 0x0010EA 00:90DA: 85 AC     STA ram_stopwatch_timer
@@ -4783,7 +4787,7 @@ C - - - - - 0x001104 00:90F4: 8D 19 04  STA ram_obj_anim_id + $19
 C - - - - - 0x001107 00:90F7: 85 74     STA ram_0074_flag
 C - - - - - 0x001109 00:90F9: 85 75     STA ram_0075
 C - - - - - 0x00110B 00:90FB: 8D 65 05  STA ram_plr_state   ; con_plr_state_00
-C - - - - - 0x00110E 00:90FE: 20 D6 90  JSR sub_90D6
+C - - - - - 0x00110E 00:90FE: 20 D6 90  JSR sub_90D6_clear_stopwatch_data
 C - - - - - 0x001111 00:9101: 20 62 E8  JSR sub_0x03E872_clear_00F0_00F7
 C - - - - - 0x001114 00:9104: 4C 30 91  JMP loc_9130
 
@@ -4793,7 +4797,7 @@ sub_0x001117:
 C - - - - - 0x001117 00:9107: A9 00     LDA #$00
 C - - - - - 0x001119 00:9109: 8D 20 05  STA ram_plr_spd_Y_hi
 C - - - - - 0x00111C 00:910C: 8D 37 05  STA ram_plr_spd_Y_lo
-C - - - - - 0x00111F 00:910F: 20 D6 90  JSR sub_90D6
+C - - - - - 0x00111F 00:910F: 20 D6 90  JSR sub_90D6_clear_stopwatch_data
 C - - - - - 0x001122 00:9112: 20 62 E8  JSR sub_0x03E872_clear_00F0_00F7
 ; bzk dangerous branch, better use JMP
 C - - - - - 0x001125 00:9115: B0 19     BCS bra_9130    ; jmp
@@ -4827,7 +4831,7 @@ C - - - - - 0x001153 00:9143: 85 80     STA ram_invinc_timer
 C - - - - - 0x001155 00:9145: 85 B0     STA ram_00B0_oam_flag
 C - - - - - 0x001157 00:9147: 85 B2     STA ram_00B2
 C - - - - - 0x001159 00:9149: 85 AD     STA ram_00AD_timer
-C - - - - - 0x00115B 00:914B: 85 2C     STA ram_002C_flag
+C - - - - - 0x00115B 00:914B: 85 2C     STA ram_pause_ability_flag  ; allow
 C - - - - - 0x00115D 00:914D: 85 C0     STA ram_00C0
 C - - - - - 0x00115F 00:914F: 85 C2     STA ram_00C2
 C - - - - - 0x001161 00:9151: 85 C8     STA ram_00C8
@@ -4845,10 +4849,11 @@ C - - - - - 0x00117A 00:916A: 8D 1B 04  STA ram_obj_anim_id + $1B
 ; con_obj_flag_00
 C - - - - - 0x00117D 00:916D: 8D 8A 04  STA ram_obj_flags + $1A
 C - - - - - 0x001180 00:9170: 8D 8B 04  STA ram_obj_flags + $1B
+; clear 0780-07C2
 C - - - - - 0x001183 00:9173: A2 00     LDX #$00
 C - - - - - 0x001185 00:9175: 8A        TXA ; 00
-bra_9176_loop:  ; 0780-07C2
-C - - - - - 0x001186 00:9176: 9D 80 07  STA ram_0780,X
+bra_9176_loop:
+C - - - - - 0x001186 00:9176: 9D 80 07  STA $0780,X
 C - - - - - 0x001189 00:9179: E8        INX
 C - - - - - 0x00118A 00:917A: E0 43     CPX #$43
 C - - - - - 0x00118C 00:917C: D0 F8     BNE bra_9176_loop
@@ -4873,7 +4878,7 @@ C - - - - - 0x00119B 00:918B: A9 B0     LDA #$B0
 C - - - - - 0x00119D 00:918D: 85 FF     STA ram_for_2000
 C - - - - - 0x00119F 00:918F: 20 66 E6  JSR sub_0x03E676
 C - - - - - 0x0011A2 00:9192: 20 CD 90  JSR sub_90CD_set_chr_banks
-C - - - - - 0x0011A5 00:9195: 20 CA E5  JSR sub_0x03E5DA
+C - - - - - 0x0011A5 00:9195: 20 CA E5  JSR sub_0x03E5DA_allow_pausing
 C - - - - - 0x0011A8 00:9198: AD 4E 05  LDA ram_plr_id
 C - - - - - 0x0011AB 00:919B: 48        PHA
 C - - - - - 0x0011AC 00:919C: A5 BD     LDA ram_copy_hp_boss
@@ -5060,7 +5065,7 @@ C - - - - - 0x0012CC 00:92BC: A8        TAY
 C - - - - - 0x0012CD 00:92BD: B9 E2 92  LDA tbl_92E2,Y
 C - - - - - 0x0012D0 00:92C0: 8D A8 04  STA ram_plr_facing
 C - - - - - 0x0012D3 00:92C3: 84 C6     STY ram_00C6
-C - - - - - 0x0012D5 00:92C5: 20 CE E5  JSR sub_0x03E5DE
+C - - - - - 0x0012D5 00:92C5: 20 CE E5  JSR sub_0x03E5DE_forbid_pausing
 C - - - - - 0x0012D8 00:92C8: A9 00     LDA #con_obj_flag_00
 C - - - - - 0x0012DA 00:92CA: 8D 70 04  STA ram_plr_flags
 C - - - - - 0x0012DD 00:92CD: A9 00     LDA #$00
@@ -5347,7 +5352,7 @@ C - - - - - 0x001479 00:9469: 60        RTS
 
 
 
-loc_0x00147A:
+loc_0x00147A_swap_players_V:
 C D 0 - - - 0x00147A 00:946A: A5 6B     LDA ram_006B_subscript
 C - - - - - 0x00147C 00:946C: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
 - D 0 - I - 0x00147F 00:946F: AC 94     .word ofs_031_0C_94AC_00
@@ -5367,7 +5372,7 @@ C - - - - - 0x00147C 00:946C: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_
 
 
 
-loc_0x00149B:
+loc_0x00149B_swap_players_H:
 C D 0 - - - 0x00149B 00:948B: A5 6B     LDA ram_006B_subscript
 C - - - - - 0x00149D 00:948D: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
 - D 0 - I - 0x0014A0 00:9490: AC 94     .word ofs_031_0D_94AC_00
@@ -5391,7 +5396,7 @@ ofs_031_0C_94AC_00:
 ofs_031_0D_94AC_00:
 C - - J - - 0x0014BC 00:94AC: A9 46     LDA #con_sound_swap_player
 C - - - - - 0x0014BE 00:94AE: 20 5F E2  JSR sub_0x03E26F_play_sound
-C - - - - - 0x0014C1 00:94B1: 20 CE E5  JSR sub_0x03E5DE
+C - - - - - 0x0014C1 00:94B1: 20 CE E5  JSR sub_0x03E5DE_forbid_pausing
 C - - - - - 0x0014C4 00:94B4: A9 3C     LDA #$3C
 C - - - - - 0x0014C6 00:94B6: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x0014C8 00:94B8: E6 6B     INC ram_006B_subscript
@@ -5732,7 +5737,7 @@ loc_96AD:
 C D 0 - - - 0x0016BD 00:96AD: 85 2A     STA ram_002A_script
 C - - - - - 0x0016BF 00:96AF: A9 00     LDA #$00
 C - - - - - 0x0016C1 00:96B1: 8D 54 04  STA ram_0454_plr
-C - - - - - 0x0016C4 00:96B4: 20 CA E5  JSR sub_0x03E5DA
+C - - - - - 0x0016C4 00:96B4: 20 CA E5  JSR sub_0x03E5DA_allow_pausing
 C - - - - - 0x0016C7 00:96B7: A9 00     LDA #$00
 C - - - - - 0x0016C9 00:96B9: 8D 05 05  STA ram_obj_spd_X_hi + $13
 C - - - - - 0x0016CC 00:96BC: 8D 1C 05  STA ram_obj_spd_X_lo + $13
@@ -6881,8 +6886,8 @@ C - - - - - 0x001E16 00:9E06: E8        INX
 C - - - - - 0x001E17 00:9E07: E0 08     CPX #$08
 C - - - - - 0x001E19 00:9E09: D0 F8     BNE bra_9E03_loop
 C - - - - - 0x001E1B 00:9E0B: 20 95 E7  JSR sub_0x03E7A5
-C - - - - - 0x001E1E 00:9E0E: A9 01     LDA #$01
-C - - - - - 0x001E20 00:9E10: 85 2C     STA ram_002C_flag
+C - - - - - 0x001E1E 00:9E0E: A9 01     LDA #$01    ; forbid
+C - - - - - 0x001E20 00:9E10: 85 2C     STA ram_pause_ability_flag
 C - - - - - 0x001E22 00:9E12: 20 66 E6  JSR sub_0x03E676
 C - - - - - 0x001E25 00:9E15: 20 B4 A2  JSR sub_A2B4
 C - - - - - 0x001E28 00:9E18: 20 27 E2  JSR sub_0x03E237_disable_sound_engine
@@ -9160,16 +9165,16 @@ C - - - - - 0x002ABF 00:AAAF: 8D 90 07  STA ram_0790
 C - - - - - 0x002AC2 00:AAB2: A9 44     LDA #$44
 C - - - - - 0x002AC4 00:AAB4: 8D 87 07  STA ram_0787
 C - - - - - 0x002AC7 00:AAB7: A9 00     LDA #$00
-C - - - - - 0x002AC9 00:AAB9: 85 68     STA ram_0068
+C - - - - - 0x002AC9 00:AAB9: 85 68     STA ram_blk_scroll_type   ; horisontal
 C - - - - - 0x002ACB 00:AABB: 85 56     STA ram_cam_pos_lo
 C - - - - - 0x002ACD 00:AABD: 85 57     STA ram_cam_pos_hi
 C - - - - - 0x002ACF 00:AABF: AD 80 07  LDA ram_0780
 C - - - - - 0x002AD2 00:AAC2: 0A        ASL
 C - - - - - 0x002AD3 00:AAC3: A8        TAY
-C - - - - - 0x002AD4 00:AAC4: B9 96 AD  LDA tbl_AD96,Y
-C - - - - - 0x002AD7 00:AAC7: 85 69     STA ram_0069_t000_data
-C - - - - - 0x002AD9 00:AAC9: B9 97 AD  LDA tbl_AD96 + $01,Y
-C - - - - - 0x002ADC 00:AACC: 85 6A     STA ram_0069_t000_data + $01
+C - - - - - 0x002AD4 00:AAC4: B9 96 AD  LDA tbl_AD96_stairs_data,Y
+C - - - - - 0x002AD7 00:AAC7: 85 69     STA ram_data_stairs
+C - - - - - 0x002AD9 00:AAC9: B9 97 AD  LDA tbl_AD96_stairs_data + $01,Y
+C - - - - - 0x002ADC 00:AACC: 85 6A     STA ram_data_stairs + $01
 C - - - - - 0x002ADE 00:AACE: A9 00     LDA #$00
 C - - - - - 0x002AE0 00:AAD0: 20 57 EF  JSR sub_0x03EF67_prepare_player_animation
 C - - - - - 0x002AE3 00:AAD3: EE 65 05  INC ram_plr_state
@@ -9621,7 +9626,7 @@ C - - - - - 0x002DA3 00:AD93: 4C 12 ED  JMP loc_0x03ED22_close_buffer
 
 
 
-tbl_AD96:
+tbl_AD96_stairs_data:
 - D 1 - - - 0x002DA6 00:AD96: 64 B8     .word _off014_0x01F874_00
 - D 1 - - - 0x002DA8 00:AD98: 71 B8     .word _off014_0x01F881_01
 - D 1 - - - 0x002DAA 00:AD9A: 78 B8     .word _off014_0x01F888_02
@@ -10542,7 +10547,7 @@ ofs_028_B413_00:
 ofs_028_B413_01:
 C - - J - - 0x003423 00:B413: 20 DA E2  JSR sub_0x03E2EA_prg_bankswitch_dpcm_2
 C - - - - - 0x003426 00:B416: 20 E3 B3  JSR sub_B3E3
-C - - - - - 0x003429 00:B419: 20 CE E5  JSR sub_0x03E5DE
+C - - - - - 0x003429 00:B419: 20 CE E5  JSR sub_0x03E5DE_forbid_pausing
 C - - - - - 0x00342C 00:B41C: E6 6B     INC ram_006B_subscript
 C - - - - - 0x00342E 00:B41E: 60        RTS
 
@@ -10742,7 +10747,7 @@ C - - - - - 0x003570 00:B560: 60        RTS
 ofs_028_B561_0B:
 C - - J - - 0x003571 00:B561: A9 02     LDA #$02
 C - - - - - 0x003573 00:B563: 85 1C     STA ram_disable_rendering_timer
-C - - - - - 0x003575 00:B565: 20 CA E5  JSR sub_0x03E5DA
+C - - - - - 0x003575 00:B565: 20 CA E5  JSR sub_0x03E5DA_allow_pausing
 C - - - - - 0x003578 00:B568: 20 E3 B3  JSR sub_B3E3
 C - - - - - 0x00357B 00:B56B: A9 00     LDA #con_irq_00
 C - - - - - 0x00357D 00:B56D: 85 3F     STA ram_003F_copy_irq_handler

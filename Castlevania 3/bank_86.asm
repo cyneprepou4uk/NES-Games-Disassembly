@@ -2565,7 +2565,7 @@ C - - - - - 0x00D123 03:9113: 4A        LSR
 C - - - - - 0x00D124 03:9114: A8        TAY
 C - - - - - 0x00D125 03:9115: B9 38 91  LDA tbl_9138,Y
 C - - - - - 0x00D128 03:9118: D0 11     BNE bra_912B
-C - - - - - 0x00D12A 03:911A: A5 00     LDA ram_0000_temp
+C - - - - - 0x00D12A 03:911A: A5 00     LDA ram_0000_t11B_pos_X_hi_distance
 C - - - - - 0x00D12C 03:911C: C9 18     CMP #$18
 C - - - - - 0x00D12E 03:911E: 90 0B     BCC bra_912B
 C - - - - - 0x00D130 03:9120: BD 06 06  LDA ram_obj_config,X
@@ -3411,18 +3411,18 @@ C - - - - - 0x00D6CA 03:96BA: D0 4C     BNE bra_9708
 C - - - - - 0x00D6CC 03:96BC: BD 1D 06  LDA ram_061D_obj,X
 C - - - - - 0x00D6CF 03:96BF: D0 44     BNE bra_9705
 C - - - - - 0x00D6D1 03:96C1: A9 04     LDA #$04
-C - - - - - 0x00D6D3 03:96C3: 85 05     STA ram_0005_temp
+C - - - - - 0x00D6D3 03:96C3: 85 05     STA ram_0005_t016_obj_state
 C - - - - - 0x00D6D5 03:96C5: BD A8 04  LDA ram_obj_facing,X
 C - - - - - 0x00D6D8 03:96C8: F0 04     BEQ bra_96CE_facing_right
 C - - - - - 0x00D6DA 03:96CA: A9 0C     LDA #$0C
-C - - - - - 0x00D6DC 03:96CC: 85 05     STA ram_0005_temp
+C - - - - - 0x00D6DC 03:96CC: 85 05     STA ram_0005_t016_obj_state
 bra_96CE_facing_right:
 C - - - - - 0x00D6DE 03:96CE: A9 04     LDA #$04
 C - - - - - 0x00D6E0 03:96D0: 85 04     STA ram_0004_temp
 bra_96D2_loop:
 C - - - - - 0x00D6E2 03:96D2: A9 1E     LDA #$1E
 C - - - - - 0x00D6E4 03:96D4: 20 68 99  JSR sub_9968
-C - - - - - 0x00D6E7 03:96D7: A5 05     LDA ram_0005_temp
+C - - - - - 0x00D6E7 03:96D7: A5 05     LDA ram_0005_t016_obj_state
 C - - - - - 0x00D6E9 03:96D9: 0A        ASL
 C - - - - - 0x00D6EA 03:96DA: 99 65 05  STA ram_obj_state,Y
 C - - - - - 0x00D6ED 03:96DD: BD A8 04  LDA ram_obj_facing,X
@@ -3450,12 +3450,12 @@ C - - - - - 0x00D71B 03:970B: D0 2E     BNE bra_973B
 C - - - - - 0x00D71D 03:970D: 20 AF 97  JSR sub_97AF
 C - - - - - 0x00D720 03:9710: A9 1D     LDA #$1D
 C - - - - - 0x00D722 03:9712: 20 68 99  JSR sub_9968
-C - - - - - 0x00D725 03:9715: A5 05     LDA ram_0005_temp
+C - - - - - 0x00D725 03:9715: A5 05     LDA ram_0005_t015_obj_state
 C - - - - - 0x00D727 03:9717: 99 65 05  STA ram_obj_state,Y
 C - - - - - 0x00D72A 03:971A: BD A8 04  LDA ram_obj_facing,X
 C - - - - - 0x00D72D 03:971D: 99 A8 04  STA ram_obj_facing,Y
 C - - - - - 0x00D730 03:9720: 20 9F 97  JSR sub_979F
-C - - - - - 0x00D733 03:9723: A5 05     LDA ram_0005_temp
+C - - - - - 0x00D733 03:9723: A5 05     LDA ram_0005_t015_obj_state
 C - - - - - 0x00D735 03:9725: A0 14     LDY #$14
 C - - - - - 0x00D737 03:9727: C9 1A     CMP #$1A
 C - - - - - 0x00D739 03:9729: B0 04     BCS bra_972F
@@ -3544,6 +3544,8 @@ tbl_97AB:
 
 
 sub_97AF:
+; out
+    ; ram_0005_t015_obj_state
 C - - - - - 0x00D7BF 03:97AF: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x00D7C2 03:97B2: 85 04     STA ram_0004_t013_pos_X_hi
 C - - - - - 0x00D7C4 03:97B4: A0 00     LDY #$00
@@ -3577,13 +3579,13 @@ bra_97D9:
 - - - - - - 0x00D7FB 03:97EB: A8        TAY
 - - - - - - 0x00D7FC 03:97EC: 68        PLA
 - - - - - - 0x00D7FD 03:97ED: 59 04 98  EOR tbl_9804,Y
-- - - - - - 0x00D800 03:97F0: 85 00     STA ram_0000_temp
+- - - - - - 0x00D800 03:97F0: 85 00     STA ram_0000_temp   ; ???
 - - - - - - 0x00D802 03:97F2: 05 01     ORA ram_0001_t055
-- - - - - - 0x00D804 03:97F4: 85 05     STA ram_0005_temp
+- - - - - - 0x00D804 03:97F4: 85 05     STA ram_0005_t015_obj_state
 - - - - - - 0x00D806 03:97F6: 60        RTS
 bra_97F7:
-C - - - - - 0x00D807 03:97F7: A5 00     LDA ram_0000_temp
-C - - - - - 0x00D809 03:97F9: 85 05     STA ram_0005_temp
+C - - - - - 0x00D807 03:97F7: A5 00     LDA ram_0000_t07B
+C - - - - - 0x00D809 03:97F9: 85 05     STA ram_0005_t015_obj_state
 C - - - - - 0x00D80B 03:97FB: 60        RTS
 bra_97FC_facing_right:
 C - - - - - 0x00D80C 03:97FC: 29 10     AND #$10
@@ -4535,7 +4537,7 @@ C - - - - - 0x00DD74 03:9D64: 20 30 FF  JSR sub_0x03FF40
 C - - - - - 0x00DD77 03:9D67: A4 00     LDY ram_0000_t07B
 sub_9D69:
 C - - - - - 0x00DD79 03:9D69: A9 04     LDA #$04
-C - - - - - 0x00DD7B 03:9D6B: 85 05     STA ram_0005_temp
+C - - - - - 0x00DD7B 03:9D6B: 85 05     STA ram_0005_t00F_speed_data_offset
 C - - - - - 0x00DD7D 03:9D6D: 4C 40 FF  JMP loc_0x03FF50
 
 

@@ -75,7 +75,7 @@
 .export off_ch_01_0x012FF7_68
 .export off_ch_02_0x013135_68
 .export off_ch_05_0x0131C3_68_FF
-.export sub_0x0131C4
+.export sub_0x0131C4_try_to_swap_players
 .export sub_0x01320B
 .export sub_0x013358
 .export sub_0x013364
@@ -9790,38 +9790,39 @@ off_ch_05_0x0131C3_68_FF:
 
 
 
-sub_0x0131C4:
+sub_0x0131C4_try_to_swap_players:
 ; out
     ; C
-        ; 0 = 
-        ; 1 = 
+        ; 0 = fail
+        ; 1 = success
 C - - - - - 0x0131C4 04:B1B4: A5 C4     LDA ram_00C4
 C - - - - - 0x0131C6 04:B1B6: 05 C5     ORA ram_00C5
-C - - - - - 0x0131C8 04:B1B8: D0 2A     BNE bra_B1E4
+C - - - - - 0x0131C8 04:B1B8: D0 2A     BNE bra_B1E4_fail
 C - - - - - 0x0131CA 04:B1BA: A5 3B     LDA ram_player
 C - - - - - 0x0131CC 04:B1BC: 49 01     EOR #$01
 C - - - - - 0x0131CE 04:B1BE: A8        TAY
 C - - - - - 0x0131CF 04:B1BF: B9 39 00  LDA ram_0039,Y
-C - - - - - 0x0131D2 04:B1C2: 30 20     BMI bra_B1E4
+C - - - - - 0x0131D2 04:B1C2: 30 20     BMI bra_B1E4_fail
 C - - - - - 0x0131D4 04:B1C4: AD 65 05  LDA ram_plr_state
 C - - - - - 0x0131D7 04:B1C7: C9 2C     CMP #con_plr_state_2C
-C - - - - - 0x0131D9 04:B1C9: F0 19     BEQ bra_B1E4
+C - - - - - 0x0131D9 04:B1C9: F0 19     BEQ bra_B1E4_fail
 C - - - - - 0x0131DB 04:B1CB: C9 2E     CMP #con_plr_state_death
-C - - - - - 0x0131DD 04:B1CD: F0 15     BEQ bra_B1E4
-C - - - - - 0x0131DF 04:B1CF: A5 68     LDA ram_0068
-C - - - - - 0x0131E1 04:B1D1: 30 0D     BMI bra_B1E0
+C - - - - - 0x0131DD 04:B1CD: F0 15     BEQ bra_B1E4_fail
+C - - - - - 0x0131DF 04:B1CF: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x0131E1 04:B1D1: 30 0D     BMI bra_B1E0_vertical
+; if horisontal
 C - - - - - 0x0131E3 04:B1D3: 20 E6 B1  JSR sub_B1E6_save_some_values
-C - - - - - 0x0131E6 04:B1D6: A9 0B     LDA #con_002A_0B
+C - - - - - 0x0131E6 04:B1D6: A9 0B     LDA #con_002A_swap_players_H
 bra_B1D8:
 C - - - - - 0x0131E8 04:B1D8: 85 2A     STA ram_002A_script
 C - - - - - 0x0131EA 04:B1DA: A9 00     LDA #$00
 C - - - - - 0x0131EC 04:B1DC: 85 6B     STA ram_006B_subscript
 C - - - - - 0x0131EE 04:B1DE: 38        SEC
 C - - - - - 0x0131EF 04:B1DF: 60        RTS
-bra_B1E0:
-C - - - - - 0x0131F0 04:B1E0: A9 0C     LDA #con_002A_0C
+bra_B1E0_vertical:
+C - - - - - 0x0131F0 04:B1E0: A9 0C     LDA #con_002A_swap_players_V
 C - - - - - 0x0131F2 04:B1E2: D0 F4     BNE bra_B1D8    ; jmp
-bra_B1E4:
+bra_B1E4_fail:
 C - - - - - 0x0131F4 04:B1E4: 18        CLC
 C - - - - - 0x0131F5 04:B1E5: 60        RTS
 
@@ -10243,7 +10244,7 @@ tbl_B3AD:
 
 _off024_B3CB_00:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x0133DB 04:B3CB: 50        .byte $05 * $10 + $00   ; 
 - D 1 - I - 0x0133DC 04:B3CC: 40        .byte $04 * $10 + $00   ; 
@@ -10254,7 +10255,7 @@ _off024_B3CB_00:
 
 _off024_B3CF_01:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x0133DF 04:B3CF: 40        .byte $04 * $10 + $00   ; 
 - D 1 - I - 0x0133E0 04:B3D0: 30        .byte $03 * $10 + $00   ; 
@@ -10267,7 +10268,7 @@ _off024_B3CF_01:
 
 _off024_B3D5_02:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x0133E5 04:B3D5: 30        .byte $03 * $10 + $00   ; 
 - D 1 - I - 0x0133E6 04:B3D6: 20        .byte $02 * $10 + $00   ; 
@@ -10279,7 +10280,7 @@ _off024_B3D5_02:
 
 _off024_B3DA_03:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x0133EA 04:B3DA: 42        .byte $04 * $10 + $02   ; 
 - D 1 - I - 0x0133EB 04:B3DB: 30        .byte $03 * $10 + $00   ; 
@@ -10291,7 +10292,7 @@ _off024_B3DA_03:
 
 _off024_B3DF_04:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x0133EF 04:B3DF: 40        .byte $04 * $10 + $00   ; 
 - D 1 - I - 0x0133F0 04:B3E0: 30        .byte $03 * $10 + $00   ; 
@@ -10301,7 +10302,7 @@ _off024_B3DF_04:
 
 _off024_B3E2_05:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x0133F2 04:B3E2: 50        .byte $05 * $10 + $00   ; 
 - - - - - - 0x0133F3 04:B3E3: 40        .byte $04 * $10 + $00   ; 
@@ -10312,7 +10313,7 @@ _off024_B3E2_05:
 
 _off024_B3E6_06:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x0133F6 04:B3E6: 41        .byte $04 * $10 + $01   ; 
 - D 1 - I - 0x0133F7 04:B3E7: 30        .byte $03 * $10 + $00   ; 
@@ -10322,7 +10323,7 @@ _off024_B3E6_06:
 
 _off024_B3E9_07:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x0133F9 04:B3E9: 61        .byte $06 * $10 + $01   ; 
 - D 1 - I - 0x0133FA 04:B3EA: 50        .byte $05 * $10 + $00   ; 
@@ -10336,7 +10337,7 @@ _off024_B3E9_07:
 
 _off024_B3F0_08:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x013400 04:B3F0: 41        .byte $04 * $10 + $01   ; 
 - D 1 - I - 0x013401 04:B3F1: 30        .byte $03 * $10 + $00   ; 
@@ -10348,7 +10349,7 @@ _off024_B3F0_08:
 
 _off024_B3F5_09:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x013405 04:B3F5: 30        .byte $03 * $10 + $00   ; 
 - D 1 - I - 0x013406 04:B3F6: 20        .byte $02 * $10 + $00   ; 
@@ -10357,7 +10358,7 @@ _off024_B3F5_09:
 
 _off024_B3F7_0A:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x013407 04:B3F7: 50        .byte $05 * $10 + $00   ; 
 - D 1 - I - 0x013408 04:B3F8: 40        .byte $04 * $10 + $00   ; 
@@ -10371,7 +10372,7 @@ _off024_B3F7_0A:
 
 _off024_B3FE_0B:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x01340E 04:B3FE: 50        .byte $05 * $10 + $00   ; 
 - D 1 - I - 0x01340F 04:B3FF: 40        .byte $04 * $10 + $00   ; 
@@ -10381,7 +10382,7 @@ _off024_B3FE_0B:
 
 _off024_B401_0C:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x013411 04:B401: 40        .byte $04 * $10 + $00   ; 
 - D 1 - I - 0x013412 04:B402: 30        .byte $03 * $10 + $00   ; 
@@ -10391,7 +10392,7 @@ _off024_B401_0C:
 
 _off024_B404_0D:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x013414 04:B404: 50        .byte $05 * $10 + $00   ; 
 - D 1 - I - 0x013415 04:B405: 40        .byte $04 * $10 + $00   ; 
@@ -10402,7 +10403,7 @@ _off024_B404_0D:
 
 _off024_B408_0E:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- 
+;                                              |           +----- blk_fr
 ;                                              |           |
 - D 1 - I - 0x013418 04:B408: 32        .byte $03 * $10 + $02   ; 
 - D 1 - I - 0x013419 04:B409: 20        .byte $02 * $10 + $00   ; 
@@ -11989,8 +11990,9 @@ C - - - - - 0x013921 04:B911: 10 01     BPL bra_B914
 C - - - - - 0x013923 04:B913: 88        DEY ; FF
 bra_B914:
 C - - - - - 0x013924 04:B914: 84 00     STY ram_0000_t118
-C - - - - - 0x013926 04:B916: A5 68     LDA ram_0068
-C - - - - - 0x013928 04:B918: 30 18     BMI bra_B932
+C - - - - - 0x013926 04:B916: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x013928 04:B918: 30 18     BMI bra_B932_vertical
+; if horisontal
 C - - - - - 0x01392A 04:B91A: 38        SEC
 C - - - - - 0x01392B 04:B91B: BD 38 04  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x01392E 04:B91E: E5 6E     SBC ram_006E_cam_speed
@@ -12002,7 +12004,7 @@ C - - - - - 0x01393A 04:B92A: 29 01     AND #$01
 C - - - - - 0x01393C 04:B92C: 05 01     ORA ram_0001_t05B_some_obj_flags
 C - - - - - 0x01393E 04:B92E: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x013941 04:B931: 60        RTS
-bra_B932:
+bra_B932_vertical:
 C - - - - - 0x013942 04:B932: 29 01     AND #$01
 C - - - - - 0x013944 04:B934: D0 2F     BNE bra_B965
 C - - - - - 0x013946 04:B936: 18        CLC
@@ -12050,12 +12052,13 @@ C - - - - - 0x013997 04:B987: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x01399A 04:B98A: C9 4B     CMP #$4B
 C - - - - - 0x01399C 04:B98C: D0 1D     BNE bra_B9AB_RTS
 C - - - - - 0x01399E 04:B98E: A0 00     LDY #$00
-C - - - - - 0x0139A0 04:B990: A5 68     LDA ram_0068
+C - - - - - 0x0139A0 04:B990: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x0139A2 04:B992: 29 01     AND #$01
-C - - - - - 0x0139A4 04:B994: F0 02     BEQ bra_B998
+C - - - - - 0x0139A4 04:B994: F0 02     BEQ bra_B998_scroll_up
+; if scroll down
 ; bzk optimize, DEY
 C - - - - - 0x0139A6 04:B996: A0 FF     LDY #$FF
-bra_B998:
+bra_B998_scroll_up:
 C - - - - - 0x0139A8 04:B998: 84 04     STY ram_0004_temp
 C - - - - - 0x0139AA 04:B99A: 18        CLC
 C - - - - - 0x0139AB 04:B99B: BD 06 06  LDA ram_obj_config,X

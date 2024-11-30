@@ -124,18 +124,20 @@ sub_C95A_calculate_camera_speed:
     ; ram_0017_t002_flag
 C - - - - - 0x03C96A 0F:C95A: A9 00     LDA #$00
 C - - - - - 0x03C96C 0F:C95C: 85 17     STA ram_0017_t002_flag
-C - - - - - 0x03C96E 0F:C95E: A5 68     LDA ram_0068
+C - - - - - 0x03C96E 0F:C95E: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x03C970 0F:C960: C9 82     CMP #$82
-C - - - - - 0x03C972 0F:C962: B0 0B     BCS bra_C96F
+C - - - - - 0x03C972 0F:C962: B0 0B     BCS bra_C96F_auto_scroll_enabled
+; if auto scroll disabled
 bra_C964:
 C - - - - - 0x03C974 0F:C964: AD 37 05  LDA ram_plr_spd_Y_lo
 C - - - - - 0x03C977 0F:C967: 85 0A     STA ram_000A_t028_spd_Y_lo
 C - - - - - 0x03C979 0F:C969: AD 20 05  LDA ram_plr_spd_Y_hi
 C - - - - - 0x03C97C 0F:C96C: 85 0B     STA ram_000B_t009_spd_Y_hi
 C - - - - - 0x03C97E 0F:C96E: 60        RTS
-bra_C96F:
+bra_C96F_auto_scroll_enabled:
 C - - - - - 0x03C97F 0F:C96F: C9 84     CMP #$84
-C - - - - - 0x03C981 0F:C971: F0 30     BEQ bra_C9A3
+C - - - - - 0x03C981 0F:C971: F0 30     BEQ bra_C9A3_fast_auto_scroll_enabled
+; if fast auto scroll disabled
 C - - - - - 0x03C983 0F:C973: A5 57     LDA ram_cam_pos_hi
 C - - - - - 0x03C985 0F:C975: C5 71     CMP ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x03C987 0F:C977: D0 06     BNE bra_C97F
@@ -144,9 +146,9 @@ C - - - - - 0x03C98B 0F:C97B: C9 30     CMP #$30
 C - - - - - 0x03C98D 0F:C97D: F0 E5     BEQ bra_C964
 bra_C97F:
 C - - - - - 0x03C98F 0F:C97F: A0 00     LDY #$00
-C - - - - - 0x03C991 0F:C981: A5 68     LDA ram_0068
+C - - - - - 0x03C991 0F:C981: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x03C993 0F:C983: 38        SEC
-C - - - - - 0x03C994 0F:C984: E9 82     SBC #$82
+C - - - - - 0x03C994 0F:C984: E9 82     SBC #$82    ; vertical + auto scroll up
 C - - - - - 0x03C996 0F:C986: F0 02     BEQ bra_C98A
 C - - - - - 0x03C998 0F:C988: A0 03     LDY #$03
 bra_C98A:
@@ -164,7 +166,7 @@ C - - - - - 0x03C9AE 0F:C99E: A9 00     LDA #$00
 C - - - - - 0x03C9B0 0F:C9A0: 85 0B     STA ram_000B_t009_spd_Y_hi
 ; bzk bug? ram_000A_t028_spd_Y_lo is not specified
 C - - - - - 0x03C9B2 0F:C9A2: 60        RTS
-bra_C9A3:
+bra_C9A3_fast_auto_scroll_enabled:
 C - - - - - 0x03C9B3 0F:C9A3: A5 57     LDA ram_cam_pos_hi
 C - - - - - 0x03C9B5 0F:C9A5: 05 56     ORA ram_cam_pos_lo
 C - - - - - 0x03C9B7 0F:C9A7: F0 F1     BEQ bra_C99A
@@ -1168,24 +1170,25 @@ C - - - - - 0x03CFD9 0F:CFC9: 85 5C     STA ram_drawing_ahead
 sub_CFCB:
 C - - - - - 0x03CFDB 0F:CFCB: A2 00     LDX #$00
 C - - - - - 0x03CFDD 0F:CFCD: A0 00     LDY #$00
-C - - - - - 0x03CFDF 0F:CFCF: A5 68     LDA ram_0068
+C - - - - - 0x03CFDF 0F:CFCF: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x03CFE1 0F:CFD1: 29 01     AND #$01
-C - - - - - 0x03CFE3 0F:CFD3: F0 04     BEQ bra_CFD9
+C - - - - - 0x03CFE3 0F:CFD3: F0 04     BEQ bra_CFD9_scroll_up
+; if scroll down
 C - - - - - 0x03CFE5 0F:CFD5: A0 01     LDY #$01
 C - - - - - 0x03CFE7 0F:CFD7: A2 02     LDX #$02
-bra_CFD9:
+bra_CFD9_scroll_up:
 C - - - - - 0x03CFE9 0F:CFD9: A9 00     LDA #$00
-C - - - - - 0x03CFEB 0F:CFDB: 85 05     STA ram_0005_temp
+C - - - - - 0x03CFEB 0F:CFDB: 85 05     STA ram_0005_t01C_data_offset_hi
 C - - - - - 0x03CFED 0F:CFDD: B9 59 00  LDA ram_blk_section,Y
 C - - - - - 0x03CFF0 0F:CFE0: 0A        ASL
 C - - - - - 0x03CFF1 0F:CFE1: 0A        ASL
-C - - - - - 0x03CFF2 0F:CFE2: 26 05     ROL ram_0005_temp
+C - - - - - 0x03CFF2 0F:CFE2: 26 05     ROL ram_0005_t01C_data_offset_hi
 C - - - - - 0x03CFF4 0F:CFE4: 0A        ASL
-C - - - - - 0x03CFF5 0F:CFE5: 26 05     ROL ram_0005_temp
+C - - - - - 0x03CFF5 0F:CFE5: 26 05     ROL ram_0005_t01C_data_offset_hi
 C - - - - - 0x03CFF7 0F:CFE7: 18        CLC
 C - - - - - 0x03CFF8 0F:CFE8: 65 50     ADC ram_0050_t000_data
 C - - - - - 0x03CFFA 0F:CFEA: 95 52     STA ram_0052,X
-C - - - - - 0x03CFFC 0F:CFEC: A5 05     LDA ram_0005_temp
+C - - - - - 0x03CFFC 0F:CFEC: A5 05     LDA ram_0005_t01C_data_offset_hi
 C - - - - - 0x03CFFE 0F:CFEE: 65 51     ADC ram_0050_t000_data + $01
 C - - - - - 0x03D000 0F:CFF0: 95 53     STA ram_0053,X
 C - - - - - 0x03D002 0F:CFF2: F6 52     INC ram_0052,X
@@ -1268,28 +1271,28 @@ C - - - - - 0x03D076 0F:D066: 60        RTS
 sub_D067:
 ofs_041_0x03D077_03:
 C - - - - - 0x03D077 0F:D067: 20 00 C9  JSR sub_C900_select_prg_bank_for_blk_1
-C - - - - - 0x03D07A 0F:D06A: A5 68     LDA ram_0068
-C - - - - - 0x03D07C 0F:D06C: 85 73     STA ram_0073_copy_0068
+C - - - - - 0x03D07A 0F:D06A: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x03D07C 0F:D06C: 85 73     STA ram_prev_blk_scroll_type
 C - - - - - 0x03D07E 0F:D06E: A5 32     LDA ram_blk_hi
 C - - - - - 0x03D080 0F:D070: 0A        ASL
-C - - - - - 0x03D081 0F:D071: 85 0C     STA ram_000C_temp
+C - - - - - 0x03D081 0F:D071: 85 0C     STA ram_000C_t015_blk_hi_x2
 C - - - - - 0x03D083 0F:D073: A8        TAY
-C - - - - - 0x03D084 0F:D074: B9 2E D6  LDA tbl_D62E,Y
-C - - - - - 0x03D087 0F:D077: 85 08     STA ram_0008_t002_data
-C - - - - - 0x03D089 0F:D079: B9 2F D6  LDA tbl_D62E + $01,Y
-C - - - - - 0x03D08C 0F:D07C: 85 09     STA ram_0008_t002_data + $01
+C - - - - - 0x03D084 0F:D074: B9 2E D6  LDA tbl_D62E_blk_type,Y
+C - - - - - 0x03D087 0F:D077: 85 08     STA ram_0008_t002_blk_type_data_ptr
+C - - - - - 0x03D089 0F:D079: B9 2F D6  LDA tbl_D62E_blk_type + $01,Y
+C - - - - - 0x03D08C 0F:D07C: 85 09     STA ram_0008_t002_blk_type_data_ptr + $01
 C - - - - - 0x03D08E 0F:D07E: A5 33     LDA ram_blk_lo
 C - - - - - 0x03D090 0F:D080: 0A        ASL
-C - - - - - 0x03D091 0F:D081: 85 0D     STA ram_000D_temp
+C - - - - - 0x03D091 0F:D081: 85 0D     STA ram_000D_temp   ; ???
 C - - - - - 0x03D093 0F:D083: A8        TAY
-C - - - - - 0x03D094 0F:D084: B1 08     LDA (ram_0008_t002_data),Y
-C - - - - - 0x03D096 0F:D086: 85 0A     STA ram_000A_t005_data
+C - - - - - 0x03D094 0F:D084: B1 08     LDA (ram_0008_t002_blk_type_data_ptr),Y
+C - - - - - 0x03D096 0F:D086: 85 0A     STA ram_000A_t005_blk_type_data
 C - - - - - 0x03D098 0F:D088: C8        INY
-C - - - - - 0x03D099 0F:D089: B1 08     LDA (ram_0008_t002_data),Y
-C - - - - - 0x03D09B 0F:D08B: 85 0B     STA ram_000A_t005_data + $01
+C - - - - - 0x03D099 0F:D089: B1 08     LDA (ram_0008_t002_blk_type_data_ptr),Y
+C - - - - - 0x03D09B 0F:D08B: 85 0B     STA ram_000A_t005_blk_type_data + $01
 C - - - - - 0x03D09D 0F:D08D: A4 34     LDY ram_blk_fr
-C - - - - - 0x03D09F 0F:D08F: B1 0A     LDA (ram_000A_t005_data),Y
-C - - - - - 0x03D0A1 0F:D091: 85 68     STA ram_0068
+C - - - - - 0x03D09F 0F:D08F: B1 0A     LDA (ram_000A_t005_blk_type_data),Y
+C - - - - - 0x03D0A1 0F:D091: 85 68     STA ram_blk_scroll_type
 C - - - - - 0x03D0A3 0F:D093: 20 9B D4  JSR sub_D49B_prepare_blk_data_pointers
 C - - - - - 0x03D0A6 0F:D096: 20 05 C9  JSR sub_C905_select_proper_prg_bank_for_blk
 C - - - - - 0x03D0A9 0F:D099: A0 00     LDY #$00
@@ -1301,7 +1304,7 @@ C - - - - - 0x03D0B3 0F:D0A3: F0 1B     BEQ bra_D0C0_0D
 C - - - - - 0x03D0B5 0F:D0A5: C9 0E     CMP #$0E
 C - - - - - 0x03D0B7 0F:D0A7: F0 41     BEQ bra_D0EA_0E
 bra_D0A9:
-C - - - - - 0x03D0B9 0F:D0A9: A4 0C     LDY ram_000C_temp
+C - - - - - 0x03D0B9 0F:D0A9: A4 0C     LDY ram_000C_t015_blk_hi_x2
 bra_D0AB:
 C - - - - - 0x03D0BB 0F:D0AB: B9 F2 D5  LDA tbl_D5F2_4x4_tile_blocks,Y
 C - - - - - 0x03D0BE 0F:D0AE: 85 5D     STA ram_tile_blocks_data
@@ -1350,22 +1353,24 @@ C - - - - - 0x03D106 0F:D0F6: D0 B3     BNE bra_D0AB    ; jmp
 
 sub_D0F8:
 ofs_041_0x03D108_04:
-C - - - - - 0x03D108 0F:D0F8: A5 68     LDA ram_0068
-C - - - - - 0x03D10A 0F:D0FA: 10 3F     BPL bra_D13B
+C - - - - - 0x03D108 0F:D0F8: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x03D10A 0F:D0FA: 10 3F     BPL bra_D13B_horisontal
+; if vertical
 C - - - - - 0x03D10C 0F:D0FC: AD 20 05  LDA ram_plr_spd_Y_hi
 C - - - - - 0x03D10F 0F:D0FF: 0D 37 05  ORA ram_plr_spd_Y_lo
 C - - - - - 0x03D112 0F:D102: F0 0D     BEQ bra_D111
 C - - - - - 0x03D114 0F:D104: AD 20 05  LDA ram_plr_spd_Y_hi
 C - - - - - 0x03D117 0F:D107: 10 0E     BPL bra_D117
-bra_D109:
+bra_D109_scroll_up:
 C - - - - - 0x03D119 0F:D109: A5 71     LDA ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x03D11B 0F:D10B: 85 57     STA ram_cam_pos_hi
 C - - - - - 0x03D11D 0F:D10D: A9 30     LDA #$30
 C - - - - - 0x03D11F 0F:D10F: D0 0A     BNE bra_D11B    ; jmp
 bra_D111:
-C - - - - - 0x03D121 0F:D111: A5 68     LDA ram_0068
+C - - - - - 0x03D121 0F:D111: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x03D123 0F:D113: 29 01     AND #$01
-C - - - - - 0x03D125 0F:D115: F0 F2     BEQ bra_D109
+C - - - - - 0x03D125 0F:D115: F0 F2     BEQ bra_D109_scroll_up
+; if scroll down
 bra_D117:
 C - - - - - 0x03D127 0F:D117: A9 00     LDA #$00
 C - - - - - 0x03D129 0F:D119: 85 57     STA ram_cam_pos_hi
@@ -1391,8 +1396,11 @@ C - - - - - 0x03D145 0F:D135: 18        CLC
 C - - - - - 0x03D146 0F:D136: 69 07     ADC #$07
 C - - - - - 0x03D148 0F:D138: 85 5A     STA ram_section_ahead
 C - - - - - 0x03D14A 0F:D13A: 60        RTS
+
+
+
+bra_D13B_horisontal:
 sub_D13B:
-bra_D13B:
 C - - - - - 0x03D14B 0F:D13B: A5 57     LDA ram_cam_pos_hi
 C - - - - - 0x03D14D 0F:D13D: 30 2A     BMI bra_D169
 C - - - - - 0x03D14F 0F:D13F: C5 71     CMP ram_0071_blk_config_cam_pos_hi
@@ -1870,11 +1878,12 @@ bra_D421:
 C - - - - - 0x03D431 0F:D421: B1 0A     LDA (ram_000A_t002_data),Y
 C - - - - - 0x03D433 0F:D423: 29 F0     AND #$F0
 C - - - - - 0x03D435 0F:D425: C9 D0     CMP #$D0
-C - - - - - 0x03D437 0F:D427: F0 37     BEQ bra_D460_D0_DF
+C - - - - - 0x03D437 0F:D427: F0 37     BEQ bra_D460_D0_D3
 C - - - - - 0x03D439 0F:D429: C9 80     CMP #$80
 C - - - - - 0x03D43B 0F:D42B: F0 2A     BEQ bra_D457_80_8F
-C - - - - - 0x03D43D 0F:D42D: A5 68     LDA ram_0068
-C - - - - - 0x03D43F 0F:D42F: 30 11     BMI bra_D442
+C - - - - - 0x03D43D 0F:D42D: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x03D43F 0F:D42F: 30 11     BMI bra_D442_vertical
+; if horisontal
 C - - - - - 0x03D441 0F:D431: A5 57     LDA ram_cam_pos_hi
 C - - - - - 0x03D443 0F:D433: 18        CLC
 C - - - - - 0x03D444 0F:D434: 71 0A     ADC (ram_000A_t002_data),Y
@@ -1888,7 +1897,7 @@ C - - - - - 0x03D44F 0F:D43F: E6 34     INC ram_blk_fr
 loc_D441_RTS:   ; bzk optimize
 bra_D441_RTS:
 C D 2 - - - 0x03D451 0F:D441: 60        RTS
-bra_D442:
+bra_D442_vertical:
 C - - - - - 0x03D452 0F:D442: B1 0A     LDA (ram_000A_t002_data),Y
 ; / 10
 C - - - - - 0x03D454 0F:D444: 4A        LSR
@@ -1908,7 +1917,7 @@ C - - - - - 0x03D467 0F:D457: B1 0A     LDA (ram_000A_t002_data),Y
 C - - - - - 0x03D469 0F:D459: 29 0F     AND #$0F
 C - - - - - 0x03D46B 0F:D45B: 85 34     STA ram_blk_fr
 C - - - - - 0x03D46D 0F:D45D: 4C 41 D4  JMP loc_D441_RTS
-bra_D460_D0_DF:
+bra_D460_D0_D3:
 C - - - - - 0x03D470 0F:D460: B1 0A     LDA (ram_000A_t002_data),Y
 C - - - - - 0x03D472 0F:D462: 29 0F     AND #$0F
 C - - - - - 0x03D474 0F:D464: 0A        ASL
@@ -2207,7 +2216,7 @@ tbl_D610_nametable_attributes:
 
 
 
-tbl_D62E:
+tbl_D62E_blk_type:
 - D 2 - - - 0x03D63E 0F:D62E: 4C D6     .word _off043_D64C_00
 - D 2 - - - 0x03D640 0F:D630: 54 D6     .word _off043_D654_01
 - D 2 - - - 0x03D642 0F:D632: 60 D6     .word _off043_D660_02
@@ -2351,421 +2360,421 @@ _off043_D6C6_0E:
 
 
 off_D6CC_00_00:
-- D 2 - I - 0x03D6DC 0F:D6CC: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D6DC 0F:D6CC: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D6CD_00_01:
-- D 2 - I - 0x03D6DD 0F:D6CD: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D6DE 0F:D6CE: 80        .byte $80   ; 01 
-- D 2 - I - 0x03D6DF 0F:D6CF: 00        .byte $00   ; 02 
-- D 2 - I - 0x03D6E0 0F:D6D0: 00        .byte $00   ; 03 
+- D 2 - I - 0x03D6DD 0F:D6CD: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D6DE 0F:D6CE: 80        .byte $80   ; 01 vertical + scroll up
+- D 2 - I - 0x03D6DF 0F:D6CF: 00        .byte $00   ; 02 horisontal
+- D 2 - I - 0x03D6E0 0F:D6D0: 00        .byte $00   ; 03 horisontal
 
 
 ; bzk garbage, no such blk_fr
-- - - - - - 0x03D6E1 0F:D6D1: 00        .byte $00   ; 04 
+- - - - - - 0x03D6E1 0F:D6D1: 00        .byte $00   ; 04 horisontal
 
 
 
 off_D6D2_00_02:
-- D 2 - I - 0x03D6E2 0F:D6D2: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D6E3 0F:D6D3: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D6E2 0F:D6D2: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D6E3 0F:D6D3: 00        .byte $00   ; 01 horisontal
 
 
 ; bzk garbage, no such blk_fr
-- - - - - - 0x03D6E4 0F:D6D4: 00        .byte $00   ; 02 
-- - - - - - 0x03D6E5 0F:D6D5: 00        .byte $00   ; 03 
-- - - - - - 0x03D6E6 0F:D6D6: 00        .byte $00   ; 04 
+- - - - - - 0x03D6E4 0F:D6D4: 00        .byte $00   ; 02 horisontal
+- - - - - - 0x03D6E5 0F:D6D5: 00        .byte $00   ; 03 horisontal
+- - - - - - 0x03D6E6 0F:D6D6: 00        .byte $00   ; 04 horisontal
 
 
 
 off_D6D7_00_03:
-- D 2 - I - 0x03D6E7 0F:D6D7: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D6E7 0F:D6D7: 00        .byte $00   ; 00 horisontal
 
 
 ; bzk garbage, no such blk_fr
-- - - - - - 0x03D6E8 0F:D6D8: 00        .byte $00   ; 01 
-- - - - - - 0x03D6E9 0F:D6D9: 00        .byte $00   ; 02 
-- - - - - - 0x03D6EA 0F:D6DA: 00        .byte $00   ; 03 
-- - - - - - 0x03D6EB 0F:D6DB: 00        .byte $00   ; 04 
+- - - - - - 0x03D6E8 0F:D6D8: 00        .byte $00   ; 01 horisontal
+- - - - - - 0x03D6E9 0F:D6D9: 00        .byte $00   ; 02 horisontal
+- - - - - - 0x03D6EA 0F:D6DA: 00        .byte $00   ; 03 horisontal
+- - - - - - 0x03D6EB 0F:D6DB: 00        .byte $00   ; 04 horisontal
 
 
 
 off_D6DC_01_00:
-- D 2 - I - 0x03D6EC 0F:D6DC: 80        .byte $80   ; 00 
-- D 2 - I - 0x03D6ED 0F:D6DD: 00        .byte $00   ; 01 
-- D 2 - I - 0x03D6EE 0F:D6DE: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D6EC 0F:D6DC: 80        .byte $80   ; 00 vertical + scroll up
+- D 2 - I - 0x03D6ED 0F:D6DD: 00        .byte $00   ; 01 horisontal
+- D 2 - I - 0x03D6EE 0F:D6DE: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D6DF_01_01:
-- D 2 - I - 0x03D6EF 0F:D6DF: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D6F0 0F:D6E0: 80        .byte $80   ; 01 
-- D 2 - I - 0x03D6F1 0F:D6E1: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D6EF 0F:D6DF: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D6F0 0F:D6E0: 80        .byte $80   ; 01 vertical + scroll up
+- D 2 - I - 0x03D6F1 0F:D6E1: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D6E2_01_02:
-- D 2 - I - 0x03D6F2 0F:D6E2: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D6F3 0F:D6E3: 80        .byte $80   ; 01 
-- D 2 - I - 0x03D6F4 0F:D6E4: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D6F2 0F:D6E2: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D6F3 0F:D6E3: 80        .byte $80   ; 01 vertical + scroll up
+- D 2 - I - 0x03D6F4 0F:D6E4: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D6E5_01_03:
-- D 2 - I - 0x03D6F5 0F:D6E5: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D6F6 0F:D6E6: 81        .byte $81   ; 01 
-- D 2 - I - 0x03D6F7 0F:D6E7: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D6F5 0F:D6E5: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D6F6 0F:D6E6: 81        .byte $81   ; 01 vertical + scroll down
+- D 2 - I - 0x03D6F7 0F:D6E7: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D6E8_01_04:
-- D 2 - I - 0x03D6F8 0F:D6E8: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D6F9 0F:D6E9: 81        .byte $81   ; 01 
-- D 2 - I - 0x03D6FA 0F:D6EA: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D6F8 0F:D6E8: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D6F9 0F:D6E9: 81        .byte $81   ; 01 vertical + scroll down
+- D 2 - I - 0x03D6FA 0F:D6EA: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D6EB_01_05:
-- D 2 - I - 0x03D6FB 0F:D6EB: 81        .byte $81   ; 00 
-- D 2 - I - 0x03D6FC 0F:D6EC: 00        .byte $00   ; 01 
-- D 2 - I - 0x03D6FD 0F:D6ED: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D6FB 0F:D6EB: 81        .byte $81   ; 00 vertical + scroll down
+- D 2 - I - 0x03D6FC 0F:D6EC: 00        .byte $00   ; 01 horisontal
+- D 2 - I - 0x03D6FD 0F:D6ED: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D6EE_02_00:
-- D 2 - I - 0x03D6FE 0F:D6EE: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D6FF 0F:D6EF: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D6FE 0F:D6EE: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D6FF 0F:D6EF: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D6F0_02_01:
-- D 2 - I - 0x03D700 0F:D6F0: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D700 0F:D6F0: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D6F1_02_02:
-- D 2 - I - 0x03D701 0F:D6F1: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D702 0F:D6F2: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D701 0F:D6F1: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D702 0F:D6F2: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D6F3_02_03:
-- D 2 - I - 0x03D703 0F:D6F3: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D704 0F:D6F4: 00        .byte $00   ; 01 
-- D 2 - I - 0x03D705 0F:D6F5: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D703 0F:D6F3: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D704 0F:D6F4: 00        .byte $00   ; 01 horisontal
+- D 2 - I - 0x03D705 0F:D6F5: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D6F6_02_04:
-- D 2 - I - 0x03D706 0F:D6F6: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D707 0F:D6F7: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D706 0F:D6F6: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D707 0F:D6F7: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D6F8_03_00:
-- D 2 - I - 0x03D708 0F:D6F8: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D709 0F:D6F9: 00        .byte $00   ; 01 
-- D 2 - I - 0x03D70A 0F:D6FA: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D708 0F:D6F8: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D709 0F:D6F9: 00        .byte $00   ; 01 horisontal
+- D 2 - I - 0x03D70A 0F:D6FA: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D6FB_03_01:
-- D 2 - I - 0x03D70B 0F:D6FB: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D70C 0F:D6FC: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D70B 0F:D6FB: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D70C 0F:D6FC: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D6FD_03_02:
-- D 2 - I - 0x03D70D 0F:D6FD: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D70E 0F:D6FE: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D70D 0F:D6FD: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D70E 0F:D6FE: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D6FF_03_03:
-- D 2 - I - 0x03D70F 0F:D6FF: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D710 0F:D700: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D70F 0F:D6FF: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D710 0F:D700: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D701_03_04:
-- D 2 - I - 0x03D711 0F:D701: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D712 0F:D702: 00        .byte $00   ; 01 
-- D 2 - I - 0x03D713 0F:D703: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D711 0F:D701: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D712 0F:D702: 00        .byte $00   ; 01 horisontal
+- D 2 - I - 0x03D713 0F:D703: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D704_04_00:
-- D 2 - I - 0x03D714 0F:D704: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D715 0F:D705: 80        .byte $80   ; 01 
-- D 2 - I - 0x03D716 0F:D706: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D714 0F:D704: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D715 0F:D705: 80        .byte $80   ; 01 vertical + scroll up
+- D 2 - I - 0x03D716 0F:D706: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D707_04_01:
-- D 2 - I - 0x03D717 0F:D707: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D718 0F:D708: 84        .byte $84   ; 01 
-- D 2 - I - 0x03D719 0F:D709: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D717 0F:D707: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D718 0F:D708: 84        .byte $84   ; 01 vertical + fast auto scroll up
+- D 2 - I - 0x03D719 0F:D709: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D70A_04_02:
-- D 2 - I - 0x03D71A 0F:D70A: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D71B 0F:D70B: 80        .byte $80   ; 01 
-- D 2 - I - 0x03D71C 0F:D70C: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D71A 0F:D70A: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D71B 0F:D70B: 80        .byte $80   ; 01 vertical + scroll up
+- D 2 - I - 0x03D71C 0F:D70C: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D70D_05_00:
-- D 2 - I - 0x03D71D 0F:D70D: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D71D 0F:D70D: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D70E_05_01:
-- D 2 - I - 0x03D71E 0F:D70E: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D71E 0F:D70E: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D70F_05_02:
-- D 2 - I - 0x03D71F 0F:D70F: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D720 0F:D710: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D71F 0F:D70F: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D720 0F:D710: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D711_05_03:
-- D 2 - I - 0x03D721 0F:D711: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D722 0F:D712: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D721 0F:D711: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D722 0F:D712: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D713_06_00:
-- D 2 - I - 0x03D723 0F:D713: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D724 0F:D714: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D723 0F:D713: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D724 0F:D714: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D715_06_01:
-- D 2 - I - 0x03D725 0F:D715: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D725 0F:D715: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D716_06_02:
-- D 2 - I - 0x03D726 0F:D716: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D727 0F:D717: 00        .byte $00   ; 01 
-- D 2 - I - 0x03D728 0F:D718: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D726 0F:D716: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D727 0F:D717: 00        .byte $00   ; 01 horisontal
+- D 2 - I - 0x03D728 0F:D718: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D719_07_00:
-- D 2 - I - 0x03D729 0F:D719: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D72A 0F:D71A: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D729 0F:D719: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D72A 0F:D71A: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D71B_07_01:
-- D 2 - I - 0x03D72B 0F:D71B: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D72B 0F:D71B: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D71C_07_02:
-- D 2 - I - 0x03D72C 0F:D71C: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D72C 0F:D71C: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D71D_07_03:
-- D 2 - I - 0x03D72D 0F:D71D: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D72D 0F:D71D: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D71E_07_04:
-- D 2 - I - 0x03D72E 0F:D71E: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D72F 0F:D71F: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D72E 0F:D71E: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D72F 0F:D71F: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D720_07_05:
-- D 2 - I - 0x03D730 0F:D720: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D731 0F:D721: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D730 0F:D720: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D731 0F:D721: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D722_07_06:
-- D 2 - I - 0x03D732 0F:D722: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D732 0F:D722: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D723_08_00:
-- D 2 - I - 0x03D733 0F:D723: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D734 0F:D724: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D733 0F:D723: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D734 0F:D724: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D725_08_01:
-- D 2 - I - 0x03D735 0F:D725: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D735 0F:D725: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D726_08_02:
-- D 2 - I - 0x03D736 0F:D726: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D737 0F:D727: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D736 0F:D726: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D737 0F:D727: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D728_08_03:
-- D 2 - I - 0x03D738 0F:D728: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D738 0F:D728: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D729_08_04:
-- D 2 - I - 0x03D739 0F:D729: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D739 0F:D729: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D72A_09_00:
-- D 2 - I - 0x03D73A 0F:D72A: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D73B 0F:D72B: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D73A 0F:D72A: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D73B 0F:D72B: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D72C_09_01:
-- D 2 - I - 0x03D73C 0F:D72C: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D73D 0F:D72D: 00        .byte $00   ; 01 
-- D 2 - I - 0x03D73E 0F:D72E: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D73C 0F:D72C: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D73D 0F:D72D: 00        .byte $00   ; 01 horisontal
+- D 2 - I - 0x03D73E 0F:D72E: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D72F_0A_00:
-- D 2 - I - 0x03D73F 0F:D72F: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D740 0F:D730: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D73F 0F:D72F: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D740 0F:D730: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D731_0A_01:
-- D 2 - I - 0x03D741 0F:D731: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D741 0F:D731: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D732_0A_02:
-- D 2 - I - 0x03D742 0F:D732: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D742 0F:D732: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D733_0A_03:
-- D 2 - I - 0x03D743 0F:D733: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D744 0F:D734: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D743 0F:D733: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D744 0F:D734: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D735_0A_04:
-- D 2 - I - 0x03D745 0F:D735: 80        .byte $80   ; 00 
-- D 2 - I - 0x03D746 0F:D736: 00        .byte $00   ; 01 
-- D 2 - I - 0x03D747 0F:D737: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D745 0F:D735: 80        .byte $80   ; 00 vertical + scroll up
+- D 2 - I - 0x03D746 0F:D736: 00        .byte $00   ; 01 horisontal
+- D 2 - I - 0x03D747 0F:D737: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D738_0A_05:
-- D 2 - I - 0x03D748 0F:D738: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D749 0F:D739: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D748 0F:D738: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D749 0F:D739: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D73A_0A_06:
-- D 2 - I - 0x03D74A 0F:D73A: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D74B 0F:D73B: 82        .byte $82   ; 01 
-- D 2 - I - 0x03D74C 0F:D73C: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D74A 0F:D73A: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D74B 0F:D73B: 82        .byte $82   ; 01 auto scroll up
+- D 2 - I - 0x03D74C 0F:D73C: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D73D_0B_00:
-- D 2 - I - 0x03D74D 0F:D73D: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D74E 0F:D73E: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D74D 0F:D73D: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D74E 0F:D73E: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D73F_0B_01:
-- D 2 - I - 0x03D74F 0F:D73F: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D750 0F:D740: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D74F 0F:D73F: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D750 0F:D740: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D741_0B_02:
-- D 2 - I - 0x03D751 0F:D741: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D752 0F:D742: 83        .byte $83   ; 01 
-- D 2 - I - 0x03D753 0F:D743: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D751 0F:D741: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D752 0F:D742: 83        .byte $83   ; 01 vertical + auto scroll down
+- D 2 - I - 0x03D753 0F:D743: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D744_0C_00:
-- D 2 - I - 0x03D754 0F:D744: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D755 0F:D745: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D754 0F:D744: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D755 0F:D745: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D746_0C_01:
-- D 2 - I - 0x03D756 0F:D746: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D756 0F:D746: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D747_0C_02:
-- D 2 - I - 0x03D757 0F:D747: 00        .byte $00   ; 00 
+- D 2 - I - 0x03D757 0F:D747: 00        .byte $00   ; 00 horisontal
 
 
 
 off_D748_0D_00:
-- D 2 - I - 0x03D758 0F:D748: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D759 0F:D749: 00        .byte $00   ; 01 
-- D 2 - I - 0x03D75A 0F:D74A: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D758 0F:D748: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D759 0F:D749: 00        .byte $00   ; 01 horisontal
+- D 2 - I - 0x03D75A 0F:D74A: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D74B_0D_01:
-- D 2 - I - 0x03D75B 0F:D74B: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D75C 0F:D74C: 80        .byte $80   ; 01 
-- D 2 - I - 0x03D75D 0F:D74D: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D75B 0F:D74B: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D75C 0F:D74C: 80        .byte $80   ; 01 vertical + scroll up
+- D 2 - I - 0x03D75D 0F:D74D: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D74E_0D_02:
-- D 2 - I - 0x03D75E 0F:D74E: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D75F 0F:D74F: 84        .byte $84   ; 01 
-- D 2 - I - 0x03D760 0F:D750: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D75E 0F:D74E: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D75F 0F:D74F: 84        .byte $84   ; 01 vertical + fast auto scroll up
+- D 2 - I - 0x03D760 0F:D750: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D751_0D_03:
-- D 2 - I - 0x03D761 0F:D751: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D762 0F:D752: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D761 0F:D751: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D762 0F:D752: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D753_0E_00:
-- D 2 - I - 0x03D763 0F:D753: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D764 0F:D754: 83        .byte $83   ; 01 
-- D 2 - I - 0x03D765 0F:D755: 00        .byte $00   ; 02 
+- D 2 - I - 0x03D763 0F:D753: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D764 0F:D754: 83        .byte $83   ; 01 vertical + auto scroll down
+- D 2 - I - 0x03D765 0F:D755: 00        .byte $00   ; 02 horisontal
 
 
 
 off_D756_0E_01:
-- D 2 - I - 0x03D766 0F:D756: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D767 0F:D757: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D766 0F:D756: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D767 0F:D757: 00        .byte $00   ; 01 horisontal
 
 
 
 off_D758_0E_02:
-- D 2 - I - 0x03D768 0F:D758: 00        .byte $00   ; 00 
-- D 2 - I - 0x03D769 0F:D759: 00        .byte $00   ; 01 
+- D 2 - I - 0x03D768 0F:D758: 00        .byte $00   ; 00 horisontal
+- D 2 - I - 0x03D769 0F:D759: 00        .byte $00   ; 01 horisontal
 
 
 
 tbl_D75A:
-- D 2 - - - 0x03D76A 0F:D75A: 62 D7     .word off_D762_00
-- D 2 - - - 0x03D76C 0F:D75C: 68 D7     .word off_D768_01
-- - - - - - 0x03D76E 0F:D75E: 6A D7     .word off_D76A_02
-- D 2 - - - 0x03D770 0F:D760: 70 D7     .word off_D770_03
+- D 2 - - - 0x03D76A 0F:D75A: 62 D7     .word off_D762_D0
+- D 2 - - - 0x03D76C 0F:D75C: 68 D7     .word off_D768_D1
+- - - - - - 0x03D76E 0F:D75E: 6A D7     .word off_D76A_D2
+- D 2 - - - 0x03D770 0F:D760: 70 D7     .word off_D770_D3
 
 
 
-off_D762_00:
+off_D762_D0:
 ; 
 - D 2 - I - 0x03D772 0F:D762: F0        .byte $F0   ; 
 - D 2 - I - 0x03D773 0F:D763: 01        .byte $01   ; 
@@ -2778,14 +2787,14 @@ off_D762_00:
 
 
 
-off_D768_01:
+off_D768_D1:
 ; 
 - D 2 - I - 0x03D778 0F:D768: F1        .byte $F1   ; 
 - D 2 - I - 0x03D779 0F:D769: 00        .byte $00   ; 
 
 
 
-off_D76A_02:
+off_D76A_D2:
 ; 
 - - - - - - 0x03D77A 0F:D76A: F0        .byte $F0   ; 
 - - - - - - 0x03D77B 0F:D76B: 01        .byte $01   ; 
@@ -2798,7 +2807,7 @@ off_D76A_02:
 
 
 
-off_D770_03:
+off_D770_D3:
 ; 
 - D 2 - I - 0x03D780 0F:D770: F1        .byte $F1   ; 
 - D 2 - I - 0x03D781 0F:D771: 03        .byte $03   ; 
@@ -3603,7 +3612,7 @@ _off006_0x03DBCC_02:
 .export sub_0x03E1A9
 .export loc_0x03E1B6
 .export loc_0x03E1BB_play_dmc
-.export sub_0x03E1C5
+.export sub_0x03E1C5_read_byte_from_data
 .export loc_0x03E1D5
 .export sub_0x03E1DE
 .export sub_0x03E1EE
@@ -3638,9 +3647,9 @@ _off006_0x03DBCC_02:
 .export sub_0x03E5CF
 .export loc_0x03E5CF
 .export sub_0x03E5D1
-.export sub_0x03E5DA
-.export loc_0x03E5DA
-.export sub_0x03E5DE
+.export sub_0x03E5DA_allow_pausing
+.export loc_0x03E5DA_allow_pausing
+.export sub_0x03E5DE_forbid_pausing
 .export sub_0x03E5E3
 .export sub_0x03E614
 .export sub_0x03E621
@@ -4078,7 +4087,7 @@ C - - - - - 0x03E1C2 0F:E1B2: 4C F9 88  JMP loc_0x030909_play_dmc
 
 
 
-sub_0x03E1C5:
+sub_0x03E1C5_read_byte_from_data:
 ; Y = 00
 C - - - - - 0x03E1C5 0F:E1B5: BD 95 01  LDA ram_se_prg_bank,X
 ; A = 88 8A 98
@@ -4864,19 +4873,21 @@ C - - - - - 0x03E5D9 0F:E5C9: 60        RTS
 
 
 
-sub_E5CA:
-sub_0x03E5DA:
-loc_0x03E5DA:
-C D 3 - - - 0x03E5DA 0F:E5CA: A9 00     LDA #$00
+sub_E5CA_allow_pausing:
+sub_0x03E5DA_allow_pausing:
+loc_0x03E5DA_allow_pausing:
+; bzk optimize
+C D 3 - - - 0x03E5DA 0F:E5CA: A9 00     LDA #$00    ; allow
 C - - - - - 0x03E5DC 0F:E5CC: F0 02     BEQ bra_E5D0    ; jmp
 
 
 
-sub_E5CE:
-sub_0x03E5DE:
-C - - - - - 0x03E5DE 0F:E5CE: A9 01     LDA #$01
+sub_E5CE_forbid_pausing:
+sub_0x03E5DE_forbid_pausing:
+; bzk optimize
+C - - - - - 0x03E5DE 0F:E5CE: A9 01     LDA #$01    ; forbid
 bra_E5D0:
-C - - - - - 0x03E5E0 0F:E5D0: 85 2C     STA ram_002C_flag
+C - - - - - 0x03E5E0 0F:E5D0: 85 2C     STA ram_pause_ability_flag
 C - - - - - 0x03E5E2 0F:E5D2: 60        RTS
 
 
@@ -4919,6 +4930,10 @@ C - - - - - 0x03E61E 0F:E60E: 4C E6 E2  JMP loc_E2E6_prg_bankswitch
 
 
 sub_0x03E621:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x03E621 0F:E611: A9 88     LDA #con_prg_bank + $88
 C - - - - - 0x03E623 0F:E613: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E626 0F:E616: 20 AC B9  JSR sub_0x0139BC
@@ -7226,8 +7241,8 @@ C - - - - - 0x03F39E 0F:F38E: 20 6D E8  JSR sub_E86D_jump_to_pointers_after_JSR_
 - D 3 - I - 0x03F3B1 0F:F3A1: 4B F9     .word ofs_001_F94B_08
 - D 3 - I - 0x03F3B3 0F:F3A3: 92 D3     .word ofs_001_D392_09
 - D 3 - I - 0x03F3B5 0F:F3A5: 06 F5     .word ofs_001_F506_0A
-- D 3 - I - 0x03F3B7 0F:F3A7: 1E F8     .word ofs_001_F81E_0B
-- D 3 - I - 0x03F3B9 0F:F3A9: 26 F8     .word ofs_001_F826_0C
+- D 3 - I - 0x03F3B7 0F:F3A7: 1E F8     .word ofs_001_F81E_0B_swap_players_H
+- D 3 - I - 0x03F3B9 0F:F3A9: 26 F8     .word ofs_001_F826_0C_swap_players_V
 - - - - - - 0x03F3BB 0F:F3AB: 2E F8     .word ofs_001_F82E_0D   ; unused, index doesnt't exist
 - - - - - - 0x03F3BD 0F:F3AD: 2E F8     .word ofs_001_F82E_0E   ; unused, index doesnt't exist
 - D 3 - I - 0x03F3BF 0F:F3AF: DC F4     .word ofs_001_F4DC_0F
@@ -7295,22 +7310,23 @@ C - - - - - 0x03F41D 0F:F40D: 20 42 86  JSR sub_0x038652
 C - - - - - 0x03F420 0F:F410: 20 F8 D0  JSR sub_D0F8
 C - - - - - 0x03F423 0F:F413: A9 8E     LDA #con_prg_bank + $8E
 C - - - - - 0x03F425 0F:F415: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
-C - - - - - 0x03F428 0F:F418: 20 3F B5  JSR sub_0x01F54F
+C - - - - - 0x03F428 0F:F418: 20 3F B5  JSR sub_0x01F54F_prepare_stairs_data_pointers
 C - - - - - 0x03F42B 0F:F41B: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F42D 0F:F41D: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F430 0F:F420: 20 02 97  JSR sub_0x001712
 C - - - - - 0x03F433 0F:F423: B0 19     BCS bra_F43E
 loc_F425:
 bra_F425:
-C D 3 - - - 0x03F435 0F:F425: A5 68     LDA ram_0068
-C - - - - - 0x03F437 0F:F427: 30 0A     BMI bra_F433
+C D 3 - - - 0x03F435 0F:F425: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x03F437 0F:F427: 30 0A     BMI bra_F433_vertical
+; if horisontal
 C - - - - - 0x03F439 0F:F429: 20 83 CD  JSR sub_CD83
 C - - - - - 0x03F43C 0F:F42C: A9 00     LDA #$00
 C - - - - - 0x03F43E 0F:F42E: 85 8D     STA ram_008D_flag
 ; -> con_002A_02
 C - - - - - 0x03F440 0F:F430: E6 2A     INC ram_002A_script
 C - - - - - 0x03F442 0F:F432: 60        RTS
-bra_F433:
+bra_F433_vertical:
 C - - - - - 0x03F443 0F:F433: 20 7B CD  JSR sub_CD7B
 C - - - - - 0x03F446 0F:F436: A9 00     LDA #$00
 C - - - - - 0x03F448 0F:F438: 85 8D     STA ram_008D_flag
@@ -7340,7 +7356,7 @@ bra_F464:
 C - - - - - 0x03F474 0F:F464: A9 02     LDA #$02
 C - - - - - 0x03F476 0F:F466: 85 1C     STA ram_disable_rendering_timer
 C - - - - - 0x03F478 0F:F468: 20 83 CD  JSR sub_CD83
-C - - - - - 0x03F47B 0F:F46B: 20 57 F7  JSR sub_F757_prepare_nametable_mapping
+C - - - - - 0x03F47B 0F:F46B: 20 57 F7  JSR sub_F757_prepare_nametable_mapping_E4
 C - - - - - 0x03F47E 0F:F46E: A9 00     LDA #$00
 C - - - - - 0x03F480 0F:F470: 85 64     STA ram_0064_timer
 C - - - - - 0x03F482 0F:F472: A9 09     LDA #con_002A_09
@@ -7359,7 +7375,7 @@ C - - - - - 0x03F48D 0F:F47D: 85 1C     STA ram_disable_rendering_timer
 C - - - - - 0x03F48F 0F:F47F: A5 8D     LDA ram_008D_flag
 C - - - - - 0x03F491 0F:F481: D0 0E     BNE bra_F491
 loc_F483:
-C D 3 - - - 0x03F493 0F:F483: 20 57 F7  JSR sub_F757_prepare_nametable_mapping
+C D 3 - - - 0x03F493 0F:F483: 20 57 F7  JSR sub_F757_prepare_nametable_mapping_E4
 loc_F486:
 C D 3 - - - 0x03F496 0F:F486: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F498 0F:F488: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
@@ -7452,7 +7468,7 @@ C - - - - - 0x03F523 0F:F513: 20 29 85  JSR sub_0x038539
 bra_F516:
 loc_F516:
 ofs_001_F516_03:
-C D 3 J - - 0x03F526 0F:F516: 20 5D F5  JSR sub_F55D
+C D 3 J - - 0x03F526 0F:F516: 20 5D F5  JSR sub_F55D_try_to_swap_players
 C - - - - - 0x03F529 0F:F519: B0 41     BCS bra_F55C_RTS
 C - - - - - 0x03F52B 0F:F51B: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F52D 0F:F51D: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
@@ -7485,13 +7501,14 @@ C - - - - - 0x03F56C 0F:F55C: 60        RTS
 
 
 
-sub_F55D:
+sub_F55D_try_to_swap_players:
 ; out
     ; C
         ; 0 = 
         ; 1 = 
-C - - - - - 0x03F56D 0F:F55D: A5 2C     LDA ram_002C_flag
+C - - - - - 0x03F56D 0F:F55D: A5 2C     LDA ram_pause_ability_flag
 C - - - - - 0x03F56F 0F:F55F: D0 2A     BNE bra_F58B
+; if pausing is allowed
 C - - - - - 0x03F571 0F:F561: A5 26     LDA ram_btn_press
 C - - - - - 0x03F573 0F:F563: 29 20     AND #con_btn_Select
 C - - - - - 0x03F575 0F:F565: F0 24     BEQ bra_F58B
@@ -7504,7 +7521,7 @@ C - - - - - 0x03F583 0F:F573: C9 1B     CMP #con_002A_1B
 C - - - - - 0x03F585 0F:F575: F0 14     BEQ bra_F58B
 C - - - - - 0x03F587 0F:F577: A9 88     LDA #con_prg_bank + $88
 C - - - - - 0x03F589 0F:F579: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
-C - - - - - 0x03F58C 0F:F57C: 20 B4 B1  JSR sub_0x0131C4
+C - - - - - 0x03F58C 0F:F57C: 20 B4 B1  JSR sub_0x0131C4_try_to_swap_players
 C - - - - - 0x03F58F 0F:F57F: 90 0A     BCC bra_F58B
 C - - - - - 0x03F591 0F:F581: A9 94     LDA #con_prg_bank + $94
 C - - - - - 0x03F593 0F:F583: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
@@ -7522,7 +7539,7 @@ C - - J - - 0x03F59D 0F:F58D: A9 02     LDA #$02
 C - - - - - 0x03F59F 0F:F58F: 85 1C     STA ram_disable_rendering_timer
 C - - - - - 0x03F5A1 0F:F591: A5 8D     LDA ram_008D_flag
 C - - - - - 0x03F5A3 0F:F593: D0 06     BNE bra_F59B
-C - - - - - 0x03F5A5 0F:F595: 20 5B F7  JSR sub_F75B_prepare_nametable_mapping
+C - - - - - 0x03F5A5 0F:F595: 20 5B F7  JSR sub_F75B_prepare_nametable_mapping_D8
 C - - - - - 0x03F5A8 0F:F598: 4C 86 F4  JMP loc_F486
 bra_F59B:
 C - - - - - 0x03F5AB 0F:F59B: 20 47 CC  JSR sub_CC47
@@ -7546,7 +7563,7 @@ C - - - - - 0x03F5CD 0F:F5BD: 60        RTS
 
 
 ofs_001_F5BE_05:
-C - - J - - 0x03F5CE 0F:F5BE: 20 5D F5  JSR sub_F55D
+C - - J - - 0x03F5CE 0F:F5BE: 20 5D F5  JSR sub_F55D_try_to_swap_players
 C - - - - - 0x03F5D1 0F:F5C1: B0 45     BCS bra_F608_RTS
 C - - - - - 0x03F5D3 0F:F5C3: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F5D5 0F:F5C5: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
@@ -7671,7 +7688,7 @@ C - - - - - 0x03F693 0F:F683: A5 25     LDA ram_for_5105
 C - - - - - 0x03F695 0F:F685: C9 FF     CMP #$FF
 C - - - - - 0x03F697 0F:F687: F0 35     BEQ bra_F6BE_RTS
 C - - - - - 0x03F699 0F:F689: A5 1E     LDA ram_001E_useless_00
-C - - - - - 0x03F69B 0F:F68B: 05 2C     ORA ram_002C_flag
+C - - - - - 0x03F69B 0F:F68B: 05 2C     ORA ram_pause_ability_flag
 C - - - - - 0x03F69D 0F:F68D: 05 1C     ORA ram_disable_rendering_timer
 C - - - - - 0x03F69F 0F:F68F: 05 AB     ORA ram_stopwatch_flag
 C - - - - - 0x03F6A1 0F:F691: D0 2B     BNE bra_F6BE_RTS
@@ -7754,7 +7771,7 @@ C - - - - - 0x03F702 0F:F6F2: 20 8F E6  JSR sub_E68F
 ; -> con_002A_14
 C - - - - - 0x03F705 0F:F6F5: E6 2A     INC ram_002A_script
 loc_F6F7:
-C D 3 - - - 0x03F707 0F:F6F7: 20 57 F7  JSR sub_F757_prepare_nametable_mapping
+C D 3 - - - 0x03F707 0F:F6F7: 20 57 F7  JSR sub_F757_prepare_nametable_mapping_E4
 C - - - - - 0x03F70A 0F:F6FA: A9 00     LDA #$00
 C - - - - - 0x03F70C 0F:F6FC: 85 C9     STA ram_00C9
 bra_F6FE:
@@ -7796,7 +7813,7 @@ C - - - - - 0x03F743 0F:F733: 20 B8 85  JSR sub_0x0385C8
 C - - - - - 0x03F746 0F:F736: 20 F8 D0  JSR sub_D0F8
 C - - - - - 0x03F749 0F:F739: A9 8E     LDA #con_prg_bank + $8E
 C - - - - - 0x03F74B 0F:F73B: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
-C - - - - - 0x03F74E 0F:F73E: 20 3F B5  JSR sub_0x01F54F
+C - - - - - 0x03F74E 0F:F73E: 20 3F B5  JSR sub_0x01F54F_prepare_stairs_data_pointers
 C - - - - - 0x03F751 0F:F741: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F753 0F:F743: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F756 0F:F746: 20 02 97  JSR sub_0x001712
@@ -7811,19 +7828,19 @@ C - - - - - 0x03F762 0F:F752: 60        RTS
 
 sub_F753_prepare_single_screen_fill_mode_nametable_mapping:
 C - - - - - 0x03F763 0F:F753: A9 FF     LDA #$FF
-C - - - - - 0x03F765 0F:F755: D0 0E     BNE bra_F765    ; jmp
+C - - - - - 0x03F765 0F:F755: D0 0E     BNE bra_F765_set_nametable_mapping    ; jmp
 
 
 
-sub_F757_prepare_nametable_mapping:
+sub_F757_prepare_nametable_mapping_E4:
 C - - - - - 0x03F767 0F:F757: A9 E4     LDA #$E4
-C - - - - - 0x03F769 0F:F759: D0 0A     BNE bra_F765    ; jmp
+C - - - - - 0x03F769 0F:F759: D0 0A     BNE bra_F765_set_nametable_mapping    ; jmp
 
 
 
-sub_F75B_prepare_nametable_mapping:
+sub_F75B_prepare_nametable_mapping_D8:
 C - - - - - 0x03F76B 0F:F75B: A9 D8     LDA #$D8
-C - - - - - 0x03F76D 0F:F75D: D0 06     BNE bra_F765    ; jmp
+C - - - - - 0x03F76D 0F:F75D: D0 06     BNE bra_F765_set_nametable_mapping    ; jmp
 
 
 
@@ -7831,7 +7848,7 @@ loc_F75F_prepare_vertical_nametable_mapping:
 sub_F75F_prepare_vertical_nametable_mapping:
 C D 3 - - - 0x03F76F 0F:F75F: A9 44     LDA #$44
 ; bzk optimize, delete BNE if you delete 0x03F773
-C - - - - - 0x03F771 0F:F761: D0 02     BNE bra_F765    ; jmp
+C - - - - - 0x03F771 0F:F761: D0 02     BNE bra_F765_set_nametable_mapping    ; jmp
 
 
 ; bzk garbage, although I suggest to use this instead of 0x006E98
@@ -7839,7 +7856,7 @@ C - - - - - 0x03F771 0F:F761: D0 02     BNE bra_F765    ; jmp
 
 
 
-bra_F765:
+bra_F765_set_nametable_mapping:
 C - - - - - 0x03F775 0F:F765: 85 25     STA ram_for_5105
 C - - - - - 0x03F777 0F:F767: 60        RTS
 
@@ -7896,7 +7913,7 @@ C - - - - - 0x03F7BA 0F:F7AA: 20 C5 E6  JSR sub_E6C5
 C - - - - - 0x03F7BD 0F:F7AD: AD 65 05  LDA ram_plr_state
 C - - - - - 0x03F7C0 0F:F7B0: C9 02     CMP #con_plr_state_idle_on_ground
 C - - - - - 0x03F7C2 0F:F7B2: D0 30     BNE bra_F7E4
-C - - - - - 0x03F7C4 0F:F7B4: 20 CA E5  JSR sub_E5CA
+C - - - - - 0x03F7C4 0F:F7B4: 20 CA E5  JSR sub_E5CA_allow_pausing
 C - - - - - 0x03F7C7 0F:F7B7: A9 16     LDA #con_002A_16
 C - - - - - 0x03F7C9 0F:F7B9: 85 2A     STA ram_002A_script
 C - - - - - 0x03F7CB 0F:F7BB: 60        RTS
@@ -7914,7 +7931,7 @@ C - - - - - 0x03F7DA 0F:F7CA: A9 08     LDA #$08
 C - - - - - 0x03F7DC 0F:F7CC: 85 6B     STA ram_006B_subscript
 C - - - - - 0x03F7DE 0F:F7CE: 60        RTS
 bra_F7CF:
-C - - - - - 0x03F7DF 0F:F7CF: 20 5D F5  JSR sub_F55D
+C - - - - - 0x03F7DF 0F:F7CF: 20 5D F5  JSR sub_F55D_try_to_swap_players
 C - - - - - 0x03F7E2 0F:F7D2: B0 49     BCS bra_F81D_RTS
 C - - - - - 0x03F7E4 0F:F7D4: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F7E6 0F:F7D6: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
@@ -7952,17 +7969,17 @@ C - - - - - 0x03F82D 0F:F81D: 60        RTS
 
 
 
-ofs_001_F81E_0B:
+ofs_001_F81E_0B_swap_players_H:
 C - - J - - 0x03F82E 0F:F81E: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F830 0F:F820: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
-C - - - - - 0x03F833 0F:F823: 4C 8B 94  JMP loc_0x00149B
+C - - - - - 0x03F833 0F:F823: 4C 8B 94  JMP loc_0x00149B_swap_players_H
 
 
 
-ofs_001_F826_0C:
+ofs_001_F826_0C_swap_players_V:
 C - - J - - 0x03F836 0F:F826: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F838 0F:F828: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
-C - - - - - 0x03F83B 0F:F82B: 4C 6A 94  JMP loc_0x00147A
+C - - - - - 0x03F83B 0F:F82B: 4C 6A 94  JMP loc_0x00147A_swap_players_V
 
 
 
@@ -7999,7 +8016,7 @@ C - - - - - 0x03F848 0F:F838: 20 6D E8  JSR sub_E86D_jump_to_pointers_after_JSR_
 
 ofs_002_F85B_00:
 ofs_002_F85B_08:
-C - - J - - 0x03F86B 0F:F85B: 20 CE E5  JSR sub_E5CE
+C - - J - - 0x03F86B 0F:F85B: 20 CE E5  JSR sub_E5CE_forbid_pausing
 C - - - - - 0x03F86E 0F:F85E: 20 F7 E7  JSR sub_E7F7_clear_all_objects_data
 C - - - - - 0x03F871 0F:F861: E6 6B     INC ram_006B_subscript
 C - - - - - 0x03F873 0F:F863: 60        RTS
@@ -8041,9 +8058,9 @@ C - - - - - 0x03F898 0F:F888: 85 1C     STA ram_disable_rendering_timer
 C - - - - - 0x03F89A 0F:F88A: 20 62 E8  JSR sub_E862_clear_00F0_00F7
 C - - - - - 0x03F89D 0F:F88D: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F89F 0F:F88F: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
-C - - - - - 0x03F8A2 0F:F892: 20 D6 90  JSR sub_0x0010E6
+C - - - - - 0x03F8A2 0F:F892: 20 D6 90  JSR sub_0x0010E6_clear_stopwatch_data
 C - - - - - 0x03F8A5 0F:F895: 20 A0 E7  JSR sub_E7A0
-C - - - - - 0x03F8A8 0F:F898: 20 CE E5  JSR sub_E5CE
+C - - - - - 0x03F8A8 0F:F898: 20 CE E5  JSR sub_E5CE_forbid_pausing
 C - - - - - 0x03F8AB 0F:F89B: E6 6B     INC ram_006B_subscript
 C - - - - - 0x03F8AD 0F:F89D: 60        RTS
 
@@ -8061,7 +8078,7 @@ C - - - - - 0x03F8C2 0F:F8B2: 20 42 86  JSR sub_0x038652
 C - - - - - 0x03F8C5 0F:F8B5: 20 F8 D0  JSR sub_D0F8
 C - - - - - 0x03F8C8 0F:F8B8: A9 8E     LDA #con_prg_bank + $8E
 C - - - - - 0x03F8CA 0F:F8BA: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
-C - - - - - 0x03F8CD 0F:F8BD: 20 3F B5  JSR sub_0x01F54F
+C - - - - - 0x03F8CD 0F:F8BD: 20 3F B5  JSR sub_0x01F54F_prepare_stairs_data_pointers
 C - - - - - 0x03F8D0 0F:F8C0: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F8D2 0F:F8C2: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F8D5 0F:F8C5: 20 02 97  JSR sub_0x001712
@@ -8135,7 +8152,7 @@ C - - - - - 0x03F94F 0F:F93F: 60        RTS
 
 
 ofs_002_F940_07:
-C - - J - - 0x03F950 0F:F940: 20 CA E5  JSR sub_E5CA
+C - - J - - 0x03F950 0F:F940: 20 CA E5  JSR sub_E5CA_allow_pausing
 C - - - - - 0x03F953 0F:F943: 20 F9 CF  JSR sub_CFF9
 C - - - - - 0x03F956 0F:F946: A9 03     LDA #con_002A_03
 C - - - - - 0x03F958 0F:F948: 85 2A     STA ram_002A_script
@@ -8162,7 +8179,7 @@ C - - - - - 0x03F95D 0F:F94D: 20 6D E8  JSR sub_E86D_jump_to_pointers_after_JSR_
 ofs_003_F964_00:
 C - - J - - 0x03F974 0F:F964: E6 33     INC ram_blk_lo
 C - - - - - 0x03F976 0F:F966: 20 95 E7  JSR sub_E795
-C - - - - - 0x03F979 0F:F969: 20 CE E5  JSR sub_E5CE
+C - - - - - 0x03F979 0F:F969: 20 CE E5  JSR sub_E5CE_forbid_pausing
 C - - - - - 0x03F97C 0F:F96C: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F97E 0F:F96E: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F981 0F:F971: 20 96 8D  JSR sub_0x000DA6_print_blk_number
@@ -8172,7 +8189,7 @@ C - - - - - 0x03F989 0F:F979: 20 67 D0  JSR sub_D067
 C - - - - - 0x03F98C 0F:F97C: 20 F8 D0  JSR sub_D0F8
 C - - - - - 0x03F98F 0F:F97F: A9 8E     LDA #con_prg_bank + $8E
 C - - - - - 0x03F991 0F:F981: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
-C - - - - - 0x03F994 0F:F984: 20 3F B5  JSR sub_0x01F54F
+C - - - - - 0x03F994 0F:F984: 20 3F B5  JSR sub_0x01F54F_prepare_stairs_data_pointers
 C - - - - - 0x03F997 0F:F987: 20 64 CD  JSR sub_CD64
 C - - - - - 0x03F99A 0F:F98A: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F99C 0F:F98C: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
@@ -8465,7 +8482,7 @@ C - - - - - 0x03FB68 0F:FB58: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03FB6B 0F:FB5B: 20 E1 97  JSR sub_0x0017F1
 bra_FB5E:
 C - - - - - 0x03FB6E 0F:FB5E: 20 EC E5  JSR sub_E5EC
-C - - - - - 0x03FB71 0F:FB61: 20 CA E5  JSR sub_E5CA
+C - - - - - 0x03FB71 0F:FB61: 20 CA E5  JSR sub_E5CA_allow_pausing
 C - - - - - 0x03FB74 0F:FB64: A9 03     LDA #con_002A_03
 C - - - - - 0x03FB76 0F:FB66: 85 2A     STA ram_002A_script
 C - - - - - 0x03FB78 0F:FB68: 60        RTS
@@ -8601,7 +8618,7 @@ C - - - - - 0x03FBFA 0F:FBEA: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03FBFD 0F:FBED: 20 BF B7  JSR sub_0x0377CF_crumbling_blocks
 C - - - - - 0x03FC00 0F:FBF0: A9 9C     LDA #con_prg_bank + $9C
 C - - - - - 0x03FC02 0F:FBF2: 4C E6 E2  JMP loc_E2E6_prg_bankswitch
-bra_FBF5:
+bra_FBF5_vertical:
 C - - - - - 0x03FC05 0F:FBF5: A5 10     LDA ram_0010_temp
 C - - - - - 0x03FC07 0F:FBF7: 18        CLC
 C - - - - - 0x03FC08 0F:FBF8: 7D 38 04  ADC ram_obj_pos_X_hi,X
@@ -8643,8 +8660,9 @@ loc_0x03FC2E:
         ; 0 = 
         ; 1 = 
 C D 3 - - - 0x03FC2E 0F:FC1E: 85 10     STA ram_0010_t017_pos_X_hi
-C - - - - - 0x03FC30 0F:FC20: A5 68     LDA ram_0068
-C - - - - - 0x03FC32 0F:FC22: 30 D1     BMI bra_FBF5
+C - - - - - 0x03FC30 0F:FC20: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x03FC32 0F:FC22: 30 D1     BMI bra_FBF5_vertical
+; if horisontal
 C - - - - - 0x03FC34 0F:FC24: A5 10     LDA ram_0010_t017_pos_X_hi
 C - - - - - 0x03FC36 0F:FC26: C9 80     CMP #$80
 C - - - - - 0x03FC38 0F:FC28: 90 04     BCC bra_FC2E
@@ -8700,7 +8718,7 @@ C - - - - - 0x03FC8E 0F:FC7E: 60        RTS
 
 
 
-bra_FC7F:
+bra_FC7F_vertical:
 C - - - - - 0x03FC8F 0F:FC7F: 68        PLA
 C - - - - - 0x03FC90 0F:FC80: 18        CLC
 C - - - - - 0x03FC91 0F:FC81: 6D 38 04  ADC ram_plr_pos_X_hi
@@ -8781,8 +8799,9 @@ sub_0x03FCED:
     ; ram_0014_t002
     ; ram_00A5
 C - - - - - 0x03FCED 0F:FCDD: 48        PHA
-C - - - - - 0x03FCEE 0F:FCDE: A5 68     LDA ram_0068
-C - - - - - 0x03FCF0 0F:FCE0: 30 9D     BMI bra_FC7F
+C - - - - - 0x03FCEE 0F:FCDE: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x03FCF0 0F:FCE0: 30 9D     BMI bra_FC7F_vertical
+; if horisontal
 C - - - - - 0x03FCF2 0F:FCE2: 68        PLA
 C - - - - - 0x03FCF3 0F:FCE3: 18        CLC
 C - - - - - 0x03FCF4 0F:FCE4: 6D 38 04  ADC ram_plr_pos_X_hi

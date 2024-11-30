@@ -12596,8 +12596,9 @@ C - - - - - 0x0377CE 0D:B7BE: 60        RTS
 
 sub_0x0377CF_crumbling_blocks:
 C - - - - - 0x0377CF 0D:B7BF: 84 09     STY ram_0009_temp
-C - - - - - 0x0377D1 0D:B7C1: A5 68     LDA ram_0068
-C - - - - - 0x0377D3 0D:B7C3: 10 36     BPL bra_B7FB
+C - - - - - 0x0377D1 0D:B7C1: A5 68     LDA ram_blk_scroll_type
+C - - - - - 0x0377D3 0D:B7C3: 10 36     BPL bra_B7FB_horisontal
+; if vertical
 C - - - - - 0x0377D5 0D:B7C5: A5 10     LDA ram_0010_temp
 C - - - - - 0x0377D7 0D:B7C7: 85 0E     STA ram_000E_temp
 C - - - - - 0x0377D9 0D:B7C9: 20 65 B7  JSR sub_B765
@@ -12621,7 +12622,7 @@ C - - - - - 0x037800 0D:B7F0: 85 15     STA ram_0015_t008_pos_X_hi
 C - - - - - 0x037802 0D:B7F2: 20 35 E9  JSR sub_0x03E945
 C - - - - - 0x037805 0D:B7F5: 20 31 B8  JSR sub_B831
 C - - - - - 0x037808 0D:B7F8: 4C 3F B8  JMP loc_B83F
-bra_B7FB:
+bra_B7FB_horisontal:
 C - - - - - 0x03780B 0D:B7FB: A5 13     LDA ram_0013_t003
 C - - - - - 0x03780D 0D:B7FD: 85 0E     STA ram_000E_temp
 C - - - - - 0x03780F 0D:B7FF: A5 14     LDA ram_0014_t002

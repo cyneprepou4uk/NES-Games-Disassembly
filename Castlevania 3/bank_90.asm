@@ -4527,7 +4527,7 @@ C - - - - - 0x023F2D 08:BF1D: 20 58 BF  JSR sub_BF58
 C - - - - - 0x023F30 08:BF20: A5 00     LDA ram_0000_t10A_pos_X_hi_distance
 C - - - - - 0x023F32 08:BF22: C9 08     CMP #$08
 C - - - - - 0x023F34 08:BF24: B0 31     BCS bra_BF57_RTS
-C - - - - - 0x023F36 08:BF26: 20 CE E5  JSR sub_0x03E5DE
+C - - - - - 0x023F36 08:BF26: 20 CE E5  JSR sub_0x03E5DE_forbid_pausing
 C - - - - - 0x023F39 08:BF29: A5 32     LDA ram_blk_hi
 C - - - - - 0x023F3B 08:BF2B: C9 0E     CMP #$0E
 C - - - - - 0x023F3D 08:BF2D: D0 04     BNE bra_BF33
