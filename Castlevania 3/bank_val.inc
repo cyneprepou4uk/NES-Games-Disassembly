@@ -55,21 +55,21 @@ con_player_off                          = $FF ; con_player_off
 
 
 
-; ram_subweapon
+; ram_subweapon_id
 ; handler at 0x03AEF0
-; 0x03AEF0 ?
-con_weapon_00                           = $00 ; con_weapon_00
-con_weapon_axe                          = $01 ; con_weapon_axe
-con_weapon_cross                        = $02 ; con_weapon_cross
-con_weapon_knife                        = $03 ; con_weapon_knife
-con_weapon_holy_water                   = $04 ; con_weapon_holy_water
-con_weapon_fireball                     = $05 ; con_weapon_fireball
-con_weapon_freeze                       = $06 ; con_weapon_freeze
-con_weapon_blue_balls                   = $07 ; con_weapon_blue_balls
-con_weapon_g_knife                      = $08 ; con_weapon_g_knife
-con_weapon_g_axe                        = $09 ; con_weapon_g_axe
-; con_weapon_0A                         = $0A ; unused
-con_weapon_stopwatch                    = $0B ; con_weapon_stopwatch
+; need comments 0x02E260
+con_subweapon_none                      = $00 ; 
+con_subweapon_axe                       = $01 ; Trevor only
+con_subweapon_cross                     = $02 ; 
+con_subweapon_knife                     = $03 ; Trevor only
+con_subweapon_holy_water                = $04 ; 
+con_subweapon_fireball                  = $05 ; 
+con_subweapon_freeze                    = $06 ; 
+con_subweapon_blue_balls                = $07 ; 
+con_subweapon_g_knife                   = $08 ; Grant only
+con_subweapon_g_axe                     = $09 ; Grant only
+; con_subweapon_0A                      = $0A ; 
+con_subweapon_stopwatch                 = $0B ; 
 
 
 

@@ -3686,14 +3686,14 @@ sub_0x01F4BE:
         ; 1 = 
 C - - - - - 0x01F4BE 07:B4AE: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x01F4C0 07:B4B0: D0 7A     BNE bra_B52C
-C - - - - - 0x01F4C2 07:B4B2: A5 32     LDA ram_blk_hi
+C - - - - - 0x01F4C2 07:B4B2: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x01F4C4 07:B4B4: 0A        ASL
 C - - - - - 0x01F4C5 07:B4B5: A8        TAY
 C - - - - - 0x01F4C6 07:B4B6: B9 6D B6  LDA tbl_B66D,Y
 C - - - - - 0x01F4C9 07:B4B9: 85 08     STA ram_0008_t014_data
 C - - - - - 0x01F4CB 07:B4BB: B9 6E B6  LDA tbl_B66D + $01,Y
 C - - - - - 0x01F4CE 07:B4BE: 85 09     STA ram_0008_t014_data + $01
-C - - - - - 0x01F4D0 07:B4C0: A5 33     LDA ram_blk_lo
+C - - - - - 0x01F4D0 07:B4C0: A5 33     LDA ram_blk_id_lo
 ; * 06
 C - - - - - 0x01F4D2 07:B4C2: 0A        ASL
 C - - - - - 0x01F4D3 07:B4C3: 85 00     STA ram_0000_t10B
@@ -3703,7 +3703,7 @@ C - - - - - 0x01F4D6 07:B4C6: 18        CLC
 C - - - - - 0x01F4D7 07:B4C7: 65 00     ADC ram_0000_t10B
 C - - - - - 0x01F4D9 07:B4C9: A8        TAY
 C - - - - - 0x01F4DA 07:B4CA: B1 08     LDA (ram_0008_t014_data),Y
-C - - - - - 0x01F4DC 07:B4CC: C5 34     CMP ram_blk_fr
+C - - - - - 0x01F4DC 07:B4CC: C5 34     CMP ram_blk_id_fr
 C - - - - - 0x01F4DE 07:B4CE: D0 5C     BNE bra_B52C
 C - - - - - 0x01F4E0 07:B4D0: C8        INY
 C - - - - - 0x01F4E1 07:B4D1: B1 08     LDA (ram_0008_t014_data),Y
@@ -3741,7 +3741,7 @@ C - - - - - 0x01F514 07:B504: C9 04     CMP #con_plr_state_move_on_ground
 C - - - - - 0x01F516 07:B506: D0 22     BNE bra_B52A
 C - - - - - 0x01F518 07:B508: C8        INY
 C - - - - - 0x01F519 07:B509: B1 08     LDA (ram_0008_t014_data),Y
-C - - - - - 0x01F51B 07:B50B: 85 34     STA ram_blk_fr
+C - - - - - 0x01F51B 07:B50B: 85 34     STA ram_blk_id_fr
 C - - - - - 0x01F51D 07:B50D: 86 65     STX ram_0065
 C - - - - - 0x01F51F 07:B50F: 8A        TXA
 C - - - - - 0x01F520 07:B510: 49 01     EOR #$01
@@ -3774,14 +3774,14 @@ bra_B52E:
 
 
 sub_0x01F54F_prepare_stairs_data_pointers:
-C - - - - - 0x01F54F 07:B53F: A5 32     LDA ram_blk_hi
+C - - - - - 0x01F54F 07:B53F: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x01F551 07:B541: 0A        ASL
 C - - - - - 0x01F552 07:B542: A8        TAY
 C - - - - - 0x01F553 07:B543: B9 C6 B7  LDA tbl_B7C6_stairs_data,Y
 C - - - - - 0x01F556 07:B546: 85 08     STA ram_0008_t013_data
 C - - - - - 0x01F558 07:B548: B9 C7 B7  LDA tbl_B7C6_stairs_data + $01,Y
 C - - - - - 0x01F55B 07:B54B: 85 09     STA ram_0008_t013_data + $01
-C - - - - - 0x01F55D 07:B54D: A5 33     LDA ram_blk_lo
+C - - - - - 0x01F55D 07:B54D: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x01F55F 07:B54F: 0A        ASL
 C - - - - - 0x01F560 07:B550: A8        TAY
 C - - - - - 0x01F561 07:B551: B1 08     LDA (ram_0008_t013_data),Y
@@ -3789,7 +3789,7 @@ C - - - - - 0x01F563 07:B553: 85 0A     STA ram_000A_t00B_data
 C - - - - - 0x01F565 07:B555: C8        INY
 C - - - - - 0x01F566 07:B556: B1 08     LDA (ram_0008_t013_data),Y
 C - - - - - 0x01F568 07:B558: 85 0B     STA ram_000A_t00B_data + $01
-C - - - - - 0x01F56A 07:B55A: A5 34     LDA ram_blk_fr
+C - - - - - 0x01F56A 07:B55A: A5 34     LDA ram_blk_id_fr
 C - - - - - 0x01F56C 07:B55C: 0A        ASL
 C - - - - - 0x01F56D 07:B55D: A8        TAY
 C - - - - - 0x01F56E 07:B55E: B1 0A     LDA (ram_000A_t00B_data),Y
@@ -3832,12 +3832,13 @@ C - - - - - 0x01F598 07:B588: B1 69     LDA (ram_data_stairs),Y
 C - - - - - 0x01F59A 07:B58A: C8        INY
 C - - - - - 0x01F59B 07:B58B: C9 FF     CMP #$FF
 C - - - - - 0x01F59D 07:B58D: F0 61     BEQ bra_B5F0
-C - - - - - 0x01F59F 07:B58F: A6 0E     LDX ram_000E_temp
-C - - - - - 0x01F5A1 07:B591: F0 05     BEQ bra_B598
+C - - - - - 0x01F59F 07:B58F: A6 0E     LDX ram_000E_t003_pressed_Up_or_Down
+C - - - - - 0x01F5A1 07:B591: F0 05     BEQ bra_B598_pressed_Up
+; if pressed Down
 C - - - - - 0x01F5A3 07:B593: 0A        ASL
 C - - - - - 0x01F5A4 07:B594: 90 56     BCC bra_B5EC
 C - - - - - 0x01F5A6 07:B596: B0 03     BCS bra_B59B    ; jmp
-bra_B598:
+bra_B598_pressed_Up:
 C - - - - - 0x01F5A8 07:B598: 0A        ASL
 C - - - - - 0x01F5A9 07:B599: B0 51     BCS bra_B5EC
 bra_B59B:

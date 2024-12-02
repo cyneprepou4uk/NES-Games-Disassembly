@@ -9869,6 +9869,7 @@ sub_B213_change_state_when_switching_players:
 C - - - - - 0x013223 04:B213: A4 3A     LDY ram_partner
 C - - - - - 0x013225 04:B215: 88        DEY
 C - - - - - 0x013226 04:B216: 98        TYA
+; * 04
 C - - - - - 0x013227 04:B217: 0A        ASL
 C - - - - - 0x013228 04:B218: 0A        ASL
 C - - - - - 0x013229 04:B219: 85 00     STA ram_0000_t117
@@ -10128,17 +10129,17 @@ off_B303_05_from_Alucard_to_Trevor:
 
 
 sub_B325:
-C - - - - - 0x013335 04:B325: A5 32     LDA ram_blk_hi
+C - - - - - 0x013335 04:B325: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x013337 04:B327: 0A        ASL
 C - - - - - 0x013338 04:B328: A8        TAY
 C - - - - - 0x013339 04:B329: B9 AD B3  LDA tbl_B3AD,Y
 C - - - - - 0x01333C 04:B32C: 85 08     STA ram_0008_t017_data
 C - - - - - 0x01333E 04:B32E: B9 AE B3  LDA tbl_B3AD + $01,Y
 C - - - - - 0x013341 04:B331: 85 09     STA ram_0008_t017_data + $01
-C - - - - - 0x013343 04:B333: A4 33     LDY ram_blk_lo
+C - - - - - 0x013343 04:B333: A4 33     LDY ram_blk_id_lo
 C - - - - - 0x013345 04:B335: B1 08     LDA (ram_0008_t017_data),Y
 C - - - - - 0x013347 04:B337: 29 0F     AND #$0F
-C - - - - - 0x013349 04:B339: 85 34     STA ram_blk_fr
+C - - - - - 0x013349 04:B339: 85 34     STA ram_blk_id_fr
 C - - - - - 0x01334B 04:B33B: B1 08     LDA (ram_0008_t017_data),Y
 ; * 10
 C - - - - - 0x01334D 04:B33D: 4A        LSR
@@ -10153,11 +10154,11 @@ C - - - - - 0x013357 04:B347: 60        RTS
 
 
 sub_0x013358:
-C - - - - - 0x013358 04:B348: A5 34     LDA ram_blk_fr
+C - - - - - 0x013358 04:B348: A5 34     LDA ram_blk_id_fr
 C - - - - - 0x01335A 04:B34A: 48        PHA
 C - - - - - 0x01335B 04:B34B: 20 25 B3  JSR sub_B325
 C - - - - - 0x01335E 04:B34E: 68        PLA
-C - - - - - 0x01335F 04:B34F: 85 34     STA ram_blk_fr
+C - - - - - 0x01335F 04:B34F: 85 34     STA ram_blk_id_fr
 C - - - - - 0x013361 04:B351: 4C 57 B3  JMP loc_B357
 
 
@@ -10179,14 +10180,14 @@ C - - - - - 0x01337A 04:B36A: 60        RTS
 
 
 sub_B36B_set_player_spawn_position:
-C - - - - - 0x01337B 04:B36B: A5 32     LDA ram_blk_hi
+C - - - - - 0x01337B 04:B36B: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x01337D 04:B36D: 0A        ASL
 C - - - - - 0x01337E 04:B36E: A8        TAY
 C - - - - - 0x01337F 04:B36F: B9 0B B4  LDA tbl_B40B_spawn_positions,Y
 C - - - - - 0x013382 04:B372: 85 08     STA ram_0008_t016_data
 C - - - - - 0x013384 04:B374: B9 0C B4  LDA tbl_B40B_spawn_positions + $01,Y
 C - - - - - 0x013387 04:B377: 85 09     STA ram_0008_t016_data + $01
-C - - - - - 0x013389 04:B379: A5 33     LDA ram_blk_lo
+C - - - - - 0x013389 04:B379: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x01338B 04:B37B: 0A        ASL
 C - - - - - 0x01338C 04:B37C: A8        TAY
 C - - - - - 0x01338D 04:B37D: B1 08     LDA (ram_0008_t016_data),Y
@@ -10194,14 +10195,14 @@ C - - - - - 0x01338F 04:B37F: 85 0A     STA ram_000A_t00C_data
 C - - - - - 0x013391 04:B381: C8        INY
 C - - - - - 0x013392 04:B382: B1 08     LDA (ram_0008_t016_data),Y
 C - - - - - 0x013394 04:B384: 85 0B     STA ram_000A_t00C_data + $01
-C - - - - - 0x013396 04:B386: A5 34     LDA ram_blk_fr
+C - - - - - 0x013396 04:B386: A5 34     LDA ram_blk_id_fr
 C - - - - - 0x013398 04:B388: 0A        ASL
 C - - - - - 0x013399 04:B389: A8        TAY
 C - - - - - 0x01339A 04:B38A: B1 0A     LDA (ram_000A_t00C_data),Y
 C - - - - - 0x01339C 04:B38C: 29 F0     AND #$F0
 C - - - - - 0x01339E 04:B38E: 8D 38 04  STA ram_plr_pos_X_hi
 C - - - - - 0x0133A1 04:B391: B1 0A     LDA (ram_000A_t00C_data),Y
-; * 04
+; * 10
 C - - - - - 0x0133A3 04:B393: 0A        ASL
 C - - - - - 0x0133A4 04:B394: 0A        ASL
 C - - - - - 0x0133A5 04:B395: 0A        ASL
@@ -10244,7 +10245,7 @@ tbl_B3AD:
 
 _off024_B3CB_00:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x0133DB 04:B3CB: 50        .byte $05 * $10 + $00   ; 
 - D 1 - I - 0x0133DC 04:B3CC: 40        .byte $04 * $10 + $00   ; 
@@ -10255,7 +10256,7 @@ _off024_B3CB_00:
 
 _off024_B3CF_01:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x0133DF 04:B3CF: 40        .byte $04 * $10 + $00   ; 
 - D 1 - I - 0x0133E0 04:B3D0: 30        .byte $03 * $10 + $00   ; 
@@ -10268,7 +10269,7 @@ _off024_B3CF_01:
 
 _off024_B3D5_02:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x0133E5 04:B3D5: 30        .byte $03 * $10 + $00   ; 
 - D 1 - I - 0x0133E6 04:B3D6: 20        .byte $02 * $10 + $00   ; 
@@ -10280,7 +10281,7 @@ _off024_B3D5_02:
 
 _off024_B3DA_03:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x0133EA 04:B3DA: 42        .byte $04 * $10 + $02   ; 
 - D 1 - I - 0x0133EB 04:B3DB: 30        .byte $03 * $10 + $00   ; 
@@ -10292,7 +10293,7 @@ _off024_B3DA_03:
 
 _off024_B3DF_04:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x0133EF 04:B3DF: 40        .byte $04 * $10 + $00   ; 
 - D 1 - I - 0x0133F0 04:B3E0: 30        .byte $03 * $10 + $00   ; 
@@ -10302,7 +10303,7 @@ _off024_B3DF_04:
 
 _off024_B3E2_05:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x0133F2 04:B3E2: 50        .byte $05 * $10 + $00   ; 
 - - - - - - 0x0133F3 04:B3E3: 40        .byte $04 * $10 + $00   ; 
@@ -10313,7 +10314,7 @@ _off024_B3E2_05:
 
 _off024_B3E6_06:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x0133F6 04:B3E6: 41        .byte $04 * $10 + $01   ; 
 - D 1 - I - 0x0133F7 04:B3E7: 30        .byte $03 * $10 + $00   ; 
@@ -10323,7 +10324,7 @@ _off024_B3E6_06:
 
 _off024_B3E9_07:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x0133F9 04:B3E9: 61        .byte $06 * $10 + $01   ; 
 - D 1 - I - 0x0133FA 04:B3EA: 50        .byte $05 * $10 + $00   ; 
@@ -10337,7 +10338,7 @@ _off024_B3E9_07:
 
 _off024_B3F0_08:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x013400 04:B3F0: 41        .byte $04 * $10 + $01   ; 
 - D 1 - I - 0x013401 04:B3F1: 30        .byte $03 * $10 + $00   ; 
@@ -10349,7 +10350,7 @@ _off024_B3F0_08:
 
 _off024_B3F5_09:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x013405 04:B3F5: 30        .byte $03 * $10 + $00   ; 
 - D 1 - I - 0x013406 04:B3F6: 20        .byte $02 * $10 + $00   ; 
@@ -10358,7 +10359,7 @@ _off024_B3F5_09:
 
 _off024_B3F7_0A:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x013407 04:B3F7: 50        .byte $05 * $10 + $00   ; 
 - D 1 - I - 0x013408 04:B3F8: 40        .byte $04 * $10 + $00   ; 
@@ -10372,7 +10373,7 @@ _off024_B3F7_0A:
 
 _off024_B3FE_0B:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x01340E 04:B3FE: 50        .byte $05 * $10 + $00   ; 
 - D 1 - I - 0x01340F 04:B3FF: 40        .byte $04 * $10 + $00   ; 
@@ -10382,7 +10383,7 @@ _off024_B3FE_0B:
 
 _off024_B401_0C:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x013411 04:B401: 40        .byte $04 * $10 + $00   ; 
 - D 1 - I - 0x013412 04:B402: 30        .byte $03 * $10 + $00   ; 
@@ -10392,7 +10393,7 @@ _off024_B401_0C:
 
 _off024_B404_0D:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x013414 04:B404: 50        .byte $05 * $10 + $00   ; 
 - D 1 - I - 0x013415 04:B405: 40        .byte $04 * $10 + $00   ; 
@@ -10403,7 +10404,7 @@ _off024_B404_0D:
 
 _off024_B408_0E:
 ;                                              +----------------- game timer (hundreds)
-;                                              |           +----- blk_fr
+;                                              |           +----- blk_id_fr
 ;                                              |           |
 - D 1 - I - 0x013418 04:B408: 32        .byte $03 * $10 + $02   ; 
 - D 1 - I - 0x013419 04:B409: 20        .byte $02 * $10 + $00   ; 
@@ -11205,7 +11206,7 @@ sub_0x0135C7:
 C - - - - - 0x0135C7 04:B5B7: A5 1F     LDA ram_random
 C - - - - - 0x0135C9 04:B5B9: 29 03     AND #$03
 C - - - - - 0x0135CB 04:B5BB: 85 09     STA ram_0009_t013
-C - - - - - 0x0135CD 04:B5BD: A5 32     LDA ram_blk_hi
+C - - - - - 0x0135CD 04:B5BD: A5 32     LDA ram_blk_id_hi
 ; * 04
 C - - - - - 0x0135CF 04:B5BF: 0A        ASL
 C - - - - - 0x0135D0 04:B5C0: 0A        ASL
@@ -11585,11 +11586,11 @@ C - - - - - 0x013728 04:B718: 38        SEC
 C - - - - - 0x013729 04:B719: E9 48     SBC #$48
 C - - - - - 0x01372B 04:B71B: A8        TAY
 C - - - - - 0x01372C 04:B71C: B9 D1 B6  LDA tbl_B6D1,Y
-C - - - - - 0x01372F 04:B71F: 85 02     STA ram_0000_t046_add_score + $02
+C - - - - - 0x01372F 04:B71F: 85 02     STA ram_0000_t046_add + $02
 C - - - - - 0x013731 04:B721: B9 F1 B6  LDA tbl_B6F1,Y
-C - - - - - 0x013734 04:B724: 85 01     STA ram_0000_t046_add_score + $01
+C - - - - - 0x013734 04:B724: 85 01     STA ram_0000_t046_add + $01
 C - - - - - 0x013736 04:B726: A9 00     LDA #$00
-C - - - - - 0x013738 04:B728: 85 03     STA ram_0000_t046_add_score + $03
+C - - - - - 0x013738 04:B728: 85 03     STA ram_0000_t046_add + $03
 C - - - - - 0x01373A 04:B72A: 20 77 E7  JSR sub_0x03E787_add_points
 C - - - - - 0x01373D 04:B72D: A6 6C     LDX ram_006C_object_index
 bra_B72F_RTS:
@@ -11940,13 +11941,13 @@ sub_B8DA_check_for_blk_0E_01_01:
     ; Z
         ; 0 = it's 0E-01-01
         ; 1 = it's not 0E-01-01
-C - - - - - 0x0138EA 04:B8DA: A5 32     LDA ram_blk_hi
+C - - - - - 0x0138EA 04:B8DA: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x0138EC 04:B8DC: C9 0E     CMP #$0E
 C - - - - - 0x0138EE 04:B8DE: D0 0A     BNE bra_B8EA_RTS
-C - - - - - 0x0138F0 04:B8E0: A5 33     LDA ram_blk_lo
+C - - - - - 0x0138F0 04:B8E0: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x0138F2 04:B8E2: C9 01     CMP #$01
 C - - - - - 0x0138F4 04:B8E4: D0 04     BNE bra_B8EA_RTS
-C - - - - - 0x0138F6 04:B8E6: A5 34     LDA ram_blk_fr
+C - - - - - 0x0138F6 04:B8E6: A5 34     LDA ram_blk_id_fr
 C - - - - - 0x0138F8 04:B8E8: C9 01     CMP #$01
 bra_B8EA_RTS:
 C - - - - - 0x0138FA 04:B8EA: 60        RTS

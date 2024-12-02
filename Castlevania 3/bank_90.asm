@@ -4284,6 +4284,7 @@ _off003_0x023DE5_5C:
 sub_0x023E31:
 ; triggers when boss appears
 C - - - - - 0x023E31 08:BE21: BD 4E 05  LDA ram_obj_id,X
+; * 04
 C - - - - - 0x023E34 08:BE24: 0A        ASL
 C - - - - - 0x023E35 08:BE25: 0A        ASL
 C - - - - - 0x023E36 08:BE26: A8        TAY
@@ -4528,7 +4529,7 @@ C - - - - - 0x023F30 08:BF20: A5 00     LDA ram_0000_t10A_pos_X_hi_distance
 C - - - - - 0x023F32 08:BF22: C9 08     CMP #$08
 C - - - - - 0x023F34 08:BF24: B0 31     BCS bra_BF57_RTS
 C - - - - - 0x023F36 08:BF26: 20 CE E5  JSR sub_0x03E5DE_forbid_pausing
-C - - - - - 0x023F39 08:BF29: A5 32     LDA ram_blk_hi
+C - - - - - 0x023F39 08:BF29: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x023F3B 08:BF2B: C9 0E     CMP #$0E
 C - - - - - 0x023F3D 08:BF2D: D0 04     BNE bra_BF33
 C - - - - - 0x023F3F 08:BF2F: A9 64     LDA #con_music_64

@@ -243,6 +243,7 @@ C - - - - - 0x010173 04:8163: 9D 6E 01  STA ram_016E_se,X
 loc_8166:
 C D 0 - - - 0x010176 04:8166: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x010178 04:8168: 29 F0     AND #$F0
+; / 08
 C - - - - - 0x01017A 04:816A: 4A        LSR
 C - - - - - 0x01017B 04:816B: 4A        LSR
 C - - - - - 0x01017C 04:816C: 4A        LSR
@@ -801,10 +802,12 @@ C - - - - - 0x0104AF 04:849F: 9D 6E 01  STA ram_016E_se,X
 C - - - - - 0x0104B2 04:84A2: C8        INY
 C - - - - - 0x0104B3 04:84A3: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x0104B5 04:84A5: 29 F0     AND #$F0
+; / 10
 C - - - - - 0x0104B7 04:84A7: 4A        LSR
 C - - - - - 0x0104B8 04:84A8: 4A        LSR
 C - - - - - 0x0104B9 04:84A9: 4A        LSR
 C - - - - - 0x0104BA 04:84AA: 4A        LSR
+; bzk optimize, useless CMP
 C - - - - - 0x0104BB 04:84AB: C9 00     CMP #$00
 C - - - - - 0x0104BD 04:84AD: F0 16     BEQ bra_84C5
 C - - - - - 0x0104BF 04:84AF: 85 E2     STA ram_00E2_se_t00F
