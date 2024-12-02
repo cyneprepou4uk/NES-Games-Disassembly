@@ -4298,8 +4298,8 @@ C - - - - - 0x023E48 08:BE38: B9 4B BE  LDA tbl_BE49 + $02,Y
 C - - - - - 0x023E4B 08:BE3B: A4 01     LDY ram_0001_t05A
 C - - - - - 0x023E4D 08:BE3D: 20 5C EF  JSR sub_0x03EF6C_prepare_animation
 C - - - - - 0x023E50 08:BE40: A9 80     LDA #$80
-C - - - - - 0x023E52 08:BE42: 1D EF 05  ORA ram_05EF_obj,X
-C - - - - - 0x023E55 08:BE45: 9D EF 05  STA ram_05EF_obj,X
+C - - - - - 0x023E52 08:BE42: 1D EF 05  ORA ram_obj_ai_script,X
+C - - - - - 0x023E55 08:BE45: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x023E58 08:BE48: 60        RTS
 
 
@@ -4495,7 +4495,7 @@ C - - J - - 0x023EE9 08:BED9: A9 00     LDA #$00
 C - - - - - 0x023EEB 08:BEDB: 9D 57 06  STA ram_obj_0658,X
 C - - - - - 0x023EEE 08:BEDE: 9D F2 04  STA ram_obj_spd_X_hi,X
 C D 1 - - - 0x023EF1 08:BEE1: 9D 09 05  STA ram_obj_spd_X_lo,X
-C D 1 - - - 0x023EF4 08:BEE4: BD C1 05  LDA ram_05C1_obj,X
+C D 1 - - - 0x023EF4 08:BEE4: BD C1 05  LDA ram_obj_ai_subscript,X
 C - - - - - 0x023EF7 08:BEE7: C9 01     CMP #$01
 C D 1 - - - 0x023EF9 08:BEE9: D0 0F     BNE bra_BEFA
 C D 1 - - - 0x023EFB 08:BEEB: A9 00     LDA #$00    ; pos_X_hi
@@ -4503,13 +4503,13 @@ C - - - - - 0x023EFD 08:BEED: A0 08     LDY #$08    ; pos_Y_hi
 C - - - - - 0x023EFF 08:BEEF: 20 1E FC  JSR sub_0x03FC2E
 C - - - - - 0x023F02 08:BEF2: F0 06     BEQ bra_BEFA
 C - - - - - 0x023F04 08:BEF4: 20 C8 FE  JSR sub_0x03FED8_clear_speed
-C - - - - - 0x023F07 08:BEF7: FE C1 05  INC ram_05C1_obj,X
+C - - - - - 0x023F07 08:BEF7: FE C1 05  INC ram_obj_ai_subscript,X
 bra_BEFA:
-C - - - - - 0x023F0A 08:BEFA: BD EF 05  LDA ram_05EF_obj,X
+C - - - - - 0x023F0A 08:BEFA: BD EF 05  LDA ram_obj_ai_script,X
 C - - - - - 0x023F0D 08:BEFD: 29 7F     AND #$7F
 C - - - - - 0x023F0F 08:BEFF: C9 63     CMP #$63
 C - - - - - 0x023F11 08:BF01: D0 08     BNE bra_BF0B
-C - - - - - 0x023F13 08:BF03: BD C1 05  LDA ram_05C1_obj,X
+C - - - - - 0x023F13 08:BF03: BD C1 05  LDA ram_obj_ai_subscript,X
 C - - - - - 0x023F16 08:BF06: C9 02     CMP #$02
 C - - - - - 0x023F18 08:BF08: B0 01     BCS bra_BF0B
 C - - - - - 0x023F1A 08:BF0A: 60        RTS

@@ -4576,9 +4576,9 @@ C - - - - - 0x01BE71 06:BE61: A8        TAY
 C - - - - - 0x01BE72 06:BE62: B9 75 BE  LDA tbl_BE75,Y
 C - - - - - 0x01BE75 06:BE65: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x01BE78 06:BE68: B9 76 BE  LDA tbl_BE75 + $01,Y
-C - - - - - 0x01BE7B 06:BE6B: 9D EF 05  STA ram_05EF_obj,X
+C - - - - - 0x01BE7B 06:BE6B: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x01BE7E 06:BE6E: A9 04     LDA #$04
-C - - - - - 0x01BE80 06:BE70: 9D C1 05  STA ram_05C1_obj,X
+C - - - - - 0x01BE80 06:BE70: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x01BE83 06:BE73: 38        SEC
 C - - - - - 0x01BE84 06:BE74: 60        RTS
 

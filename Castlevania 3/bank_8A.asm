@@ -11788,7 +11788,7 @@ C - - - - - 0x017C00 05:BBF0: 9D 1C 04  STA ram_obj_pos_Y_hi,X
 C - - - - - 0x017C03 05:BBF3: A9 6C     LDA #$6C
 C - - - - - 0x017C05 05:BBF5: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x017C08 05:BBF8: A9 1B     LDA #$1B
-C - - - - - 0x017C0A 05:BBFA: 9D EF 05  STA ram_05EF_obj,X
+C - - - - - 0x017C0A 05:BBFA: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x017C0D 05:BBFD: A9 60     LDA #con_obj_flag_20 + con_obj_flag_40
 C - - - - - 0x017C0F 05:BBFF: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x017C12 05:BC02: 20 0B BC  JSR sub_BC0B
@@ -11801,7 +11801,7 @@ C - - - - - 0x017C1A 05:BC0A: 60        RTS
 
 sub_BC0B:
 C - - - - - 0x017C1B 05:BC0B: A9 00     LDA #$00
-C - - - - - 0x017C1D 05:BC0D: 9D C1 05  STA ram_05C1_obj,X
+C - - - - - 0x017C1D 05:BC0D: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x017C20 05:BC10: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x017C23 05:BC13: 9D 8C 04  STA ram_obj_type,X  ; con_obj_type_00
 C - - - - - 0x017C26 05:BC16: 9D 57 06  STA ram_obj_0658,X
@@ -11814,7 +11814,7 @@ C - - - - - 0x017C2A 05:BC1A: BD 1D 06  LDA ram_061D_obj,X
 C - - - - - 0x017C2D 05:BC1D: AA        TAX
 C - - - - - 0x017C2E 05:BC1E: 20 0B BC  JSR sub_BC0B
 C - - - - - 0x017C31 05:BC21: 9D 4E 05  STA ram_obj_id,X
-C - - - - - 0x017C34 05:BC24: 9D EF 05  STA ram_05EF_obj,X
+C - - - - - 0x017C34 05:BC24: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x017C37 05:BC27: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x017C39 05:BC29: 4C D1 BB  JMP loc_BBD1
 
@@ -11834,10 +11834,10 @@ bra_BC30_loop:
 - - - - - - 0x017C53 05:BC43: A9 6C     LDA #$6C
 - - - - - - 0x017C55 05:BC45: 9D 4E 05  STA ram_obj_id,X
 - - - - - - 0x017C58 05:BC48: A9 6B     LDA #$6B
-- - - - - - 0x017C5A 05:BC4A: 9D EF 05  STA ram_05EF_obj,X
+- - - - - - 0x017C5A 05:BC4A: 9D EF 05  STA ram_obj_ai_script,X
 - - - - - - 0x017C5D 05:BC4D: A9 00     LDA #$00
 - - - - - - 0x017C5F 05:BC4F: 9D 57 06  STA ram_obj_0658,X
-- - - - - - 0x017C62 05:BC52: 9D C1 05  STA ram_05C1_obj,X
+- - - - - - 0x017C62 05:BC52: 9D C1 05  STA ram_obj_ai_subscript,X
 - - - - - - 0x017C65 05:BC55: E8        INX
 - - - - - - 0x017C66 05:BC56: C8        INY
 - - - - - - 0x017C67 05:BC57: E0 09     CPX #$09
@@ -11879,7 +11879,7 @@ C - - - - - 0x017C84 05:BC74: 60        RTS
 
 
 ofs_042_0x017C85_2C:
-C - - J - - 0x017C85 05:BC75: BD C1 05  LDA ram_05C1_obj,X
+C - - J - - 0x017C85 05:BC75: BD C1 05  LDA ram_obj_ai_subscript,X
 C - - - - - 0x017C88 05:BC78: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
 - D 1 - I - 0x017C8B 05:BC7B: 85 BC     .word ofs_017_BC85_00
 - D 1 - I - 0x017C8D 05:BC7D: DA BC     .word ofs_017_BCDA_01
@@ -11903,13 +11903,13 @@ C - - - - - 0x017CA5 05:BC95: 69 05     ADC #$05
 C - - - - - 0x017CA7 05:BC97: 85 01     STA ram_0001_t04C_counter
 bra_BC99_loop:
 C - - - - - 0x017CA9 05:BC99: A9 80     LDA #$80
-C - - - - - 0x017CAB 05:BC9B: 99 EF 05  STA ram_05EF_obj,Y
+C - - - - - 0x017CAB 05:BC9B: 99 EF 05  STA ram_obj_ai_script,Y
 C - - - - - 0x017CAE 05:BC9E: A9 00     LDA #$00
 C - - - - - 0x017CB0 05:BCA0: 99 00 04  STA ram_obj_anim_id,Y
 C - - - - - 0x017CB3 05:BCA3: A9 2C     LDA #$2C
 C - - - - - 0x017CB5 05:BCA5: 99 4E 05  STA ram_obj_id,Y
 C - - - - - 0x017CB8 05:BCA8: A9 01     LDA #$01
-C - - - - - 0x017CBA 05:BCAA: 99 C1 05  STA ram_05C1_obj,Y
+C - - - - - 0x017CBA 05:BCAA: 99 C1 05  STA ram_obj_ai_subscript,Y
 C - - - - - 0x017CBD 05:BCAD: A5 00     LDA ram_0000_t10E_counter
 C - - - - - 0x017CBF 05:BCAF: 99 06 06  STA ram_obj_config,Y
 C - - - - - 0x017CC2 05:BCB2: 8A        TXA
@@ -11930,7 +11930,7 @@ C - - - - - 0x017CE4 05:BCD4: C5 01     CMP ram_0001_t04C_counter
 C - - - - - 0x017CE6 05:BCD6: D0 C1     BNE bra_BC99_loop
 C - - - - - 0x017CE8 05:BCD8: A6 6C     LDX ram_006C_object_index
 ofs_017_BCDA_01:
-C - - - - - 0x017CEA 05:BCDA: FE C1 05  INC ram_05C1_obj,X
+C - - - - - 0x017CEA 05:BCDA: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x017CED 05:BCDD: 60        RTS
 
 
@@ -11977,7 +11977,7 @@ C - - - - - 0x017D41 05:BD31: 9D 70 04  STA ram_obj_flags,X
 bra_BD34:
 C - - - - - 0x017D44 05:BD34: A9 30     LDA #$30
 C - - - - - 0x017D46 05:BD36: 9D 57 06  STA ram_obj_0658,X
-C - - - - - 0x017D49 05:BD39: FE C1 05  INC ram_05C1_obj,X
+C - - - - - 0x017D49 05:BD39: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x017D4C 05:BD3C: 60        RTS
 
 
