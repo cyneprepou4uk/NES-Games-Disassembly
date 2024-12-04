@@ -11785,14 +11785,14 @@ sub_B83E:
 C - - - - - 0x01384E 04:B83E: BD 45 06  LDA ram_obj_0646,X
 C - - - - - 0x013851 04:B841: AA        TAX
 C - - - - - 0x013852 04:B842: A9 03     LDA #$03
-C - - - - - 0x013854 04:B844: BC C2 07  LDY ram_07C2,X
-C - - - - - 0x013857 04:B847: C0 18     CPY #$18
+C - - - - - 0x013854 04:B844: BC C2 07  LDY ram_spawner_script,X
+C - - - - - 0x013857 04:B847: C0 18     CPY #con_spawner_18
 C - - - - - 0x013859 04:B849: F0 06     BEQ bra_B851
-C - - - - - 0x01385B 04:B84B: C0 4B     CPY #$4B
+C - - - - - 0x01385B 04:B84B: C0 4B     CPY #con_spawner_4B
 C - - - - - 0x01385D 04:B84D: F0 02     BEQ bra_B851
 C - - - - - 0x01385F 04:B84F: A9 02     LDA #$02
 bra_B851:
-C - - - - - 0x013861 04:B851: 9D C8 07  STA ram_07C8,X
+C - - - - - 0x013861 04:B851: 9D C8 07  STA ram_spawner_subscript,X
 C - - - - - 0x013864 04:B854: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x013866 04:B856: 60        RTS
 

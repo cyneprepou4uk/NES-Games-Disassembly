@@ -2429,7 +2429,7 @@ tbl_8C56:
 sub_8C58:
 loc_8C58:
 sub_0x038C68:
-C - - - - - 0x038C68 0E:8C58: A9 23     LDA #con_sound_water_splash
+C - - - - - 0x038C68 0E:8C58: A9 23     LDA #con_sound_water_splash_2
 C - - - - - 0x038C6A 0E:8C5A: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x038C6D 0E:8C5D: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x038C6F 0E:8C5F: 29 03     AND #$03

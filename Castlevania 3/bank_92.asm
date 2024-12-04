@@ -924,18 +924,19 @@ bra_8505:
 - - - - - - 0x02451A 09:850A: B0 47     BCS bra_8553
 loc_850C:
 C D 0 - - - 0x02451C 09:850C: A4 C3     LDY ram_00C3
-C - - - - - 0x02451E 09:850E: B9 C2 07  LDA ram_07C2,Y
+C - - - - - 0x02451E 09:850E: B9 C2 07  LDA ram_spawner_script,Y
 C - - - - - 0x024521 09:8511: C9 05     CMP #$05
-C - - - - - 0x024523 09:8513: 90 11     BCC bra_8526
+C - - - - - 0x024523 09:8513: 90 11     BCC bra_8526    ; if 00-04
 C - - - - - 0x024525 09:8515: C9 0B     CMP #$0B
-C - - - - - 0x024527 09:8517: 90 08     BCC bra_8521
+C - - - - - 0x024527 09:8517: 90 08     BCC bra_8521    ; if 05-0A
 C - - - - - 0x024529 09:8519: C9 1B     CMP #$1B
-C - - - - - 0x02452B 09:851B: 90 09     BCC bra_8526
+C - - - - - 0x02452B 09:851B: 90 09     BCC bra_8526    ; if 0B-1A
 C - - - - - 0x02452D 09:851D: C9 27     CMP #$27
-C - - - - - 0x02452F 09:851F: B0 05     BCS bra_8526
-bra_8521:
+C - - - - - 0x02452F 09:851F: B0 05     BCS bra_8526    ; if 27-52
+; if 1B-26
+bra_8521:   ; if 05-0A
 C - - - - - 0x024531 09:8521: A9 00     LDA #$00
-C - - - - - 0x024533 09:8523: 99 C8 07  STA ram_07C8,Y
+C - - - - - 0x024533 09:8523: 99 C8 07  STA ram_spawner_subscript,Y
 bra_8526:
 C - - - - - 0x024536 09:8526: A9 00     LDA #$00
 C - - - - - 0x024538 09:8528: 85 C1     STA ram_00C1
@@ -10732,6 +10733,7 @@ C - - - - - 0x0275C9 09:B5B9: 85 BA     STA ram_00BA
 C - - - - - 0x0275CB 09:B5BB: AC EC 07  LDY ram_07EC
 C - - - - - 0x0275CE 09:B5BE: 88        DEY
 C - - - - - 0x0275CF 09:B5BF: 84 BC     STY ram_00BC
+; bzk optimize, useless LDY + DEY
 C - - - - - 0x0275D1 09:B5C1: AC EC 07  LDY ram_07EC
 C - - - - - 0x0275D4 09:B5C4: 88        DEY
 C - - - - - 0x0275D5 09:B5C5: D0 03     BNE bra_B5CA

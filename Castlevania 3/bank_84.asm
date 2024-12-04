@@ -3605,14 +3605,14 @@ C - - - - - 0x009646 02:9636: 20 69 9B  JSR sub_9B69
 C - - - - - 0x009649 02:9639: A5 08     LDA ram_0008_t045
 C - - - - - 0x00964B 02:963B: 29 10     AND #$10
 C - - - - - 0x00964D 02:963D: F0 0B     BEQ bra_964A
-C - - - - - 0x00964F 02:963F: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x00964F 02:963F: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x009652 02:9642: 29 F0     AND #$F0
-C - - - - - 0x009654 02:9644: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x009654 02:9644: 99 E0 06  STA ram_06E0_level_data,Y
 C - - - - - 0x009657 02:9647: 4C 52 96  JMP loc_9652
 bra_964A:
-C - - - - - 0x00965A 02:964A: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x00965A 02:964A: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x00965D 02:964D: 29 0F     AND #$0F
-C - - - - - 0x00965F 02:964F: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x00965F 02:964F: 99 E0 06  STA ram_06E0_level_data,Y
 loc_9652:
 C D 0 - - - 0x009662 02:9652: 85 0E     STA ram_000E_temp   ; ???
 C - - - - - 0x009664 02:9654: 20 00 9B  JSR sub_9B00_prepare_ppu_address
@@ -4034,14 +4034,14 @@ C - - - - - 0x0098E6 02:98D6: 20 69 9B  JSR sub_9B69
 C - - - - - 0x0098E9 02:98D9: A5 08     LDA ram_0008_t045
 C - - - - - 0x0098EB 02:98DB: 29 10     AND #$10
 C - - - - - 0x0098ED 02:98DD: F0 0B     BEQ bra_98EA
-C - - - - - 0x0098EF 02:98DF: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x0098EF 02:98DF: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x0098F2 02:98E2: 29 F0     AND #$F0
-C - - - - - 0x0098F4 02:98E4: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x0098F4 02:98E4: 99 E0 06  STA ram_06E0_level_data,Y
 C - - - - - 0x0098F7 02:98E7: 4C F2 98  JMP loc_98F2
 bra_98EA:
-C - - - - - 0x0098FA 02:98EA: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x0098FA 02:98EA: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x0098FD 02:98ED: 29 0F     AND #$0F
-C - - - - - 0x0098FF 02:98EF: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x0098FF 02:98EF: 99 E0 06  STA ram_06E0_level_data,Y
 loc_98F2:
 ; triggers when falling acid drop begin to melt a block
 C D 0 - - - 0x009902 02:98F2: 20 C4 99  JSR sub_99C4
@@ -4121,16 +4121,16 @@ sub_9963:
 C - - - - - 0x009973 02:9963: A5 08     LDA ram_0008_t045
 C - - - - - 0x009975 02:9965: 29 10     AND #$10
 C - - - - - 0x009977 02:9967: F0 0D     BEQ bra_9976
-C - - - - - 0x009979 02:9969: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x009979 02:9969: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x00997C 02:996C: 29 F0     AND #$F0
 C - - - - - 0x00997E 02:996E: 09 08     ORA #$08
-C - - - - - 0x009980 02:9970: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x009980 02:9970: 99 E0 06  STA ram_06E0_level_data,Y
 C - - - - - 0x009983 02:9973: 4C 80 99  JMP loc_9980_RTS
 bra_9976:
-C - - - - - 0x009986 02:9976: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x009986 02:9976: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x009989 02:9979: 29 0F     AND #$0F
 C - - - - - 0x00998B 02:997B: 09 80     ORA #$80
-C - - - - - 0x00998D 02:997D: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x00998D 02:997D: 99 E0 06  STA ram_06E0_level_data,Y
 loc_9980_RTS:   ; bzk optimize
 C D 0 - - - 0x009990 02:9980: 60        RTS
 
@@ -4177,7 +4177,7 @@ C - - - - - 0x0099BF 02:99AF: 0A        ASL
 C - - - - - 0x0099C0 02:99B0: 05 01     ORA ram_0001_t036
 C - - - - - 0x0099C2 02:99B2: 4C C1 99  JMP loc_99C1
 bra_99B5:
-C - - - - - 0x0099C5 02:99B5: B9 E8 06  LDA ram_06E8,Y
+C - - - - - 0x0099C5 02:99B5: B9 E8 06  LDA ram_06E0_level_data + $08,Y
 C - - - - - 0x0099C8 02:99B8: 20 F0 99  JSR sub_99F0
 ; * 10
 C - - - - - 0x0099CB 02:99BB: 0A        ASL
@@ -4212,7 +4212,7 @@ C - - - - - 0x0099EB 02:99DB: 0A        ASL
 C - - - - - 0x0099EC 02:99DC: 05 01     ORA ram_0001_t036
 C - - - - - 0x0099EE 02:99DE: 4C ED 99  JMP loc_99ED
 bra_99E1:
-C - - - - - 0x0099F1 02:99E1: B9 E1 06  LDA ram_06E1,Y
+C - - - - - 0x0099F1 02:99E1: B9 E1 06  LDA ram_06E0_level_data + $01,Y
 C - - - - - 0x0099F4 02:99E4: 20 F0 99  JSR sub_99F0
 ; * 10
 C - - - - - 0x0099F7 02:99E7: 0A        ASL
@@ -9214,7 +9214,7 @@ C - - - - - 0x00B01D 02:B00D: 18        CLC
 C - - - - - 0x00B01E 02:B00E: 69 08     ADC #$08
 C - - - - - 0x00B020 02:B010: A8        TAY
 C - - - - - 0x00B021 02:B011: BD 38 04  LDA ram_obj_pos_X_hi,X
-C - - - - - 0x00B024 02:B014: 20 16 FC  JSR sub_0x03FC26
+C - - - - - 0x00B024 02:B014: 20 16 FC  JSR sub_0x03FC26_check_tile
 C - - - - - 0x00B027 02:B017: F0 03     BEQ bra_B01C
 bra_B019:
 C - - - - - 0x00B029 02:B019: FE 8D 07  INC ram_078D,X
@@ -9837,14 +9837,14 @@ C - - - - - 0x00B401 02:B3F1: 20 1E FC  JSR sub_0x03FC2E
 C - - - - - 0x00B404 02:B3F4: BD 38 04  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x00B407 02:B3F7: 29 10     AND #$10
 C - - - - - 0x00B409 02:B3F9: D0 07     BNE bra_B402
-C - - - - - 0x00B40B 02:B3FB: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x00B40B 02:B3FB: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x00B40E 02:B3FE: 29 0F     AND #$0F
 C - - - - - 0x00B410 02:B400: 10 05     BPL bra_B407
 bra_B402:
-- - - - - - 0x00B412 02:B402: B9 E0 06  LDA ram_06E0,Y
+- - - - - - 0x00B412 02:B402: B9 E0 06  LDA ram_06E0_level_data,Y
 - - - - - - 0x00B415 02:B405: 29 F0     AND #$F0
 bra_B407:
-C - - - - - 0x00B417 02:B407: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x00B417 02:B407: 99 E0 06  STA ram_06E0_level_data,Y
 C - - - - - 0x00B41A 02:B40A: 4C BB B4  JMP loc_B4BB
 
 
@@ -9944,14 +9944,14 @@ C - - - - - 0x00B4B2 02:B4A2: A8        TAY
 C - - - - - 0x00B4B3 02:B4A3: A5 0A     LDA ram_000A_t026
 C - - - - - 0x00B4B5 02:B4A5: 29 10     AND #$10
 C - - - - - 0x00B4B7 02:B4A7: D0 0A     BNE bra_B4B3
-C - - - - - 0x00B4B9 02:B4A9: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x00B4B9 02:B4A9: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x00B4BC 02:B4AC: 29 0F     AND #$0F
-C - - - - - 0x00B4BE 02:B4AE: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x00B4BE 02:B4AE: 99 E0 06  STA ram_06E0_level_data,Y
 C - - - - - 0x00B4C1 02:B4B1: 10 08     BPL bra_B4BB
 bra_B4B3:
-C - - - - - 0x00B4C3 02:B4B3: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x00B4C3 02:B4B3: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x00B4C6 02:B4B6: 29 F0     AND #$F0
-C - - - - - 0x00B4C8 02:B4B8: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x00B4C8 02:B4B8: 99 E0 06  STA ram_06E0_level_data,Y
 bra_B4BB:
 loc_B4BB:
 C D 1 - - - 0x00B4CB 02:B4BB: A6 6C     LDX ram_006C_object_index

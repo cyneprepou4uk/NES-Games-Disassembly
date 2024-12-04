@@ -9592,16 +9592,16 @@ C - - - - - 0x033287 0C:B277: E9 10     SBC #$10
 C - - - - - 0x033289 0C:B279: 29 10     AND #$10
 C - - - - - 0x03328B 0C:B27B: D0 06     BNE bra_B283
 C - - - - - 0x03328D 0C:B27D: A5 10     LDA ram_0010_t022
-C - - - - - 0x03328F 0C:B27F: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x03328F 0C:B27F: 99 E0 06  STA ram_06E0_level_data,Y
 C - - - - - 0x033292 0C:B282: 60        RTS
 bra_B283:
 C - - - - - 0x033293 0C:B283: A5 10     LDA ram_0010_t022
 C - - - - - 0x033295 0C:B285: 29 0F     AND #$0F
 C - - - - - 0x033297 0C:B287: 85 11     STA ram_0011_t017
-C - - - - - 0x033299 0C:B289: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x033299 0C:B289: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x03329C 0C:B28C: 29 F0     AND #$F0
 C - - - - - 0x03329E 0C:B28E: 05 11     ORA ram_0011_t017
-C - - - - - 0x0332A0 0C:B290: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x0332A0 0C:B290: 99 E0 06  STA ram_06E0_level_data,Y
 C - - - - - 0x0332A3 0C:B293: 98        TYA
 C - - - - - 0x0332A4 0C:B294: 18        CLC
 C - - - - - 0x0332A5 0C:B295: 69 0C     ADC #$0C
@@ -9609,10 +9609,10 @@ C - - - - - 0x0332A7 0C:B297: A8        TAY
 C - - - - - 0x0332A8 0C:B298: A5 10     LDA ram_0010_t022
 C - - - - - 0x0332AA 0C:B29A: 29 F0     AND #$F0
 C - - - - - 0x0332AC 0C:B29C: 85 11     STA ram_0011_t018
-C - - - - - 0x0332AE 0C:B29E: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x0332AE 0C:B29E: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x0332B1 0C:B2A1: 29 0F     AND #$0F
 C - - - - - 0x0332B3 0C:B2A3: 05 11     ORA ram_0011_t018
-C - - - - - 0x0332B5 0C:B2A5: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x0332B5 0C:B2A5: 99 E0 06  STA ram_06E0_level_data,Y
 C - - - - - 0x0332B8 0C:B2A8: 60        RTS
 
 

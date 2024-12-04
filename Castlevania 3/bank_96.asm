@@ -243,7 +243,7 @@ bra_810C_RTS:
 
 
 
-loc_810D:   ; bzk optimize, single JMP to here
+loc_810D_clear_ai_script:   ; bzk optimize, single JMP to here
 ofs_039_810D_00:
 ; con_BD4F_00
 C D 0 J - - 0x02C11D 0B:810D: A9 00     LDA #$00
@@ -286,7 +286,7 @@ C - - - - - 0x02C133 0B:8123: 90 FA     BCC bra_811F_RTS
 C - - - - - 0x02C135 0B:8125: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x02C138 0B:8128: C5 CA     CMP ram_00CA
 C - - - - - 0x02C13A 0B:812A: 90 F3     BCC bra_811F_RTS
-- - - - - - 0x02C13C 0B:812C: 20 B2 84  JSR sub_84B2
+- - - - - - 0x02C13C 0B:812C: 20 B2 84  JSR sub_84B2_delete_object_and_clear_ai_script
 - - - - - - 0x02C13F 0B:812F: 38        SEC
 - - - - - - 0x02C140 0B:8130: 60        RTS
 
@@ -356,7 +356,7 @@ ofs_039_8183_9E:
 - - - - - - 0x02C19B 0B:818B: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 - - - - - - 0x02C19E 0B:818E: C9 F8     CMP #$F8
 - - - - - - 0x02C1A0 0B:8190: 90 08     BCC bra_819A_RTS
-- - - - - - 0x02C1A2 0B:8192: A9 23     LDA #con_sound_water_splash
+- - - - - - 0x02C1A2 0B:8192: A9 23     LDA #con_sound_water_splash_2
 - - - - - - 0x02C1A4 0B:8194: 20 5F E2  JSR sub_0x03E26F_play_sound
 - - - - - - 0x02C1A7 0B:8197: FE C1 05  INC ram_obj_ai_subscript,X
 bra_819A_RTS:
@@ -1082,12 +1082,12 @@ C - - - - - 0x02C4BE 0B:84AE: 90 E1     BCC bra_8491_next_subscript    ; jmp
 
 bra_84B0:
 C - - - - - 0x02C4C0 0B:84B0: A6 6C     LDX ram_006C_object_index
-loc_84B2:
-sub_84B2:
-ofs_039_84B2_27:
+loc_84B2_delete_object_and_clear_ai_script:
+sub_84B2_delete_object_and_clear_ai_script:
+ofs_039_84B2_27_delete_object_and_clear_ai_script:
 ; con_BD4F_27
-C D 0 J - - 0x02C4C2 0B:84B2: 20 36 8E  JSR sub_8E36
-C - - - - - 0x02C4C5 0B:84B5: 4C 0D 81  JMP loc_810D
+C D 0 J - - 0x02C4C2 0B:84B2: 20 36 8E  JSR sub_8E36_delete_object
+C - - - - - 0x02C4C5 0B:84B5: 4C 0D 81  JMP loc_810D_clear_ai_script
 
 
 
@@ -1323,7 +1323,7 @@ C - - J - - 0x02C64E 0B:863E: A0 01     LDY #$01
 C - - - - - 0x02C650 0B:8640: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C652 0B:8642: DD 1C 04  CMP ram_obj_pos_Y_hi,X
 C - - - - - 0x02C655 0B:8645: B0 F6     BCS bra_863D_RTS
-C - - - - - 0x02C657 0B:8647: 4C B2 84  JMP loc_84B2
+C - - - - - 0x02C657 0B:8647: 4C B2 84  JMP loc_84B2_delete_object_and_clear_ai_script
 
 
 
@@ -1733,7 +1733,7 @@ C - - - - - 0x02C85E 0B:884E: BC 1C 04  LDY ram_obj_pos_Y_hi,X
 C - - - - - 0x02C861 0B:8851: 20 1E FC  JSR sub_0x03FC2E
 C - - - - - 0x02C864 0B:8854: D0 20     BNE bra_8876
 C - - - - - 0x02C866 0B:8856: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02C868 0B:8858: A9 22     LDA #con_sound_22
+C - - - - - 0x02C868 0B:8858: A9 22     LDA #con_sound_water_splash_1
 C - - - - - 0x02C86A 0B:885A: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x02C86D 0B:885D: 20 AA 81  JSR sub_81AA
 C - - - - - 0x02C870 0B:8860: 20 30 82  JSR sub_8230_set_facing_towards_player
@@ -1806,7 +1806,7 @@ C - - - - - 0x02C8D0 0B:88C0: E9 10     SBC #$10
 C - - - - - 0x02C8D2 0B:88C2: C5 CA     CMP ram_00CA
 C - - - - - 0x02C8D4 0B:88C4: 90 E0     BCC bra_88A6_RTS
 C - - - - - 0x02C8D6 0B:88C6: 20 2B 99  JSR sub_992B
-C - - - - - 0x02C8D9 0B:88C9: 4C B2 84  JMP loc_84B2
+C - - - - - 0x02C8D9 0B:88C9: 4C B2 84  JMP loc_84B2_delete_object_and_clear_ai_script
 
 
 
@@ -2566,12 +2566,12 @@ C - - - - - 0x02CD04 0B:8CF4: BC 06 06  LDY ram_obj_config,X
 C - - - - - 0x02CD07 0B:8CF7: B9 1C 8D  LDA tbl_8D1C,Y
 C - - - - - 0x02CD0A 0B:8CFA: A8        TAY
 C - - - - - 0x02CD0B 0B:8CFB: BD 38 04  LDA ram_obj_pos_X_hi,X
-C - - - - - 0x02CD0E 0B:8CFE: 20 16 FC  JSR sub_0x03FC26
+C - - - - - 0x02CD0E 0B:8CFE: 20 16 FC  JSR sub_0x03FC26_check_tile
 C - - - - - 0x02CD11 0B:8D01: D0 0A     BNE bra_8D0D
 C - - - - - 0x02CD13 0B:8D03: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02CD15 0B:8D05: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02CD18 0B:8D08: D0 EA     BNE bra_8CF4
-C - - - - - 0x02CD1A 0B:8D0A: 4C B2 84  JMP loc_84B2
+C - - - - - 0x02CD1A 0B:8D0A: 4C B2 84  JMP loc_84B2_delete_object_and_clear_ai_script
 bra_8D0D:
 C - - - - - 0x02CD1D 0B:8D0D: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02CD1F 0B:8D0F: BC 06 06  LDY ram_obj_config,X
@@ -2605,10 +2605,10 @@ C - - - - - 0x02CD39 0B:8D29: 18        CLC
 C - - - - - 0x02CD3A 0B:8D2A: 69 10     ADC #$10
 C - - - - - 0x02CD3C 0B:8D2C: A8        TAY
 C - - - - - 0x02CD3D 0B:8D2D: BD 38 04  LDA ram_obj_pos_X_hi,X
-C - - - - - 0x02CD40 0B:8D30: 20 16 FC  JSR sub_0x03FC26
+C - - - - - 0x02CD40 0B:8D30: 20 16 FC  JSR sub_0x03FC26_check_tile
 C - - - - - 0x02CD43 0B:8D33: C9 01     CMP #$01
-C - - - - - 0x02CD45 0B:8D35: D0 20     BNE bra_8D57
-C - - - - - 0x02CD47 0B:8D37: F0 39     BEQ bra_8D72    ; jmp
+C - - - - - 0x02CD45 0B:8D35: D0 20     BNE bra_8D57_delete_object_and_clear_ai_script
+C - - - - - 0x02CD47 0B:8D37: F0 39     BEQ bra_8D72_next_ai_subscript    ; jmp
 
 
 
@@ -2620,16 +2620,16 @@ C - - - - - 0x02CD4E 0B:8D3E: 18        CLC
 C - - - - - 0x02CD4F 0B:8D3F: 69 10     ADC #$10
 C - - - - - 0x02CD51 0B:8D41: A8        TAY
 C - - - - - 0x02CD52 0B:8D42: BD 38 04  LDA ram_obj_pos_X_hi,X
-C - - - - - 0x02CD55 0B:8D45: 20 16 FC  JSR sub_0x03FC26
+C - - - - - 0x02CD55 0B:8D45: 20 16 FC  JSR sub_0x03FC26_check_tile
 C - - - - - 0x02CD58 0B:8D48: C9 01     CMP #$01
-C - - - - - 0x02CD5A 0B:8D4A: D0 0B     BNE bra_8D57
+C - - - - - 0x02CD5A 0B:8D4A: D0 0B     BNE bra_8D57_delete_object_and_clear_ai_script
 C - - - - - 0x02CD5C 0B:8D4C: BC 1C 04  LDY ram_obj_pos_Y_hi,X
 C - - - - - 0x02CD5F 0B:8D4F: BD 38 04  LDA ram_obj_pos_X_hi,X
-C - - - - - 0x02CD62 0B:8D52: 20 16 FC  JSR sub_0x03FC26
+C - - - - - 0x02CD62 0B:8D52: 20 16 FC  JSR sub_0x03FC26_check_tile
 C - - - - - 0x02CD65 0B:8D55: F0 05     BEQ bra_8D5C
-bra_8D57:
+bra_8D57_delete_object_and_clear_ai_script:
 C - - - - - 0x02CD67 0B:8D57: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02CD69 0B:8D59: 4C B2 84  JMP loc_84B2
+C - - - - - 0x02CD69 0B:8D59: 4C B2 84  JMP loc_84B2_delete_object_and_clear_ai_script
 bra_8D5C:
 C - - - - - 0x02CD6C 0B:8D5C: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02CD6E 0B:8D5E: 38        SEC
@@ -2640,7 +2640,7 @@ C - - - - - 0x02CD77 0B:8D67: A9 00     LDA #$00
 C - - - - - 0x02CD79 0B:8D69: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x02CD7C 0B:8D6C: 20 EF 81  JSR sub_81EF
 C - - - - - 0x02CD7F 0B:8D6F: 20 D4 81  JSR sub_81D4
-bra_8D72:
+bra_8D72_next_ai_subscript:
 C - - - - - 0x02CD82 0B:8D72: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CD85 0B:8D75: 60        RTS
 
@@ -2673,7 +2673,7 @@ C - - - - - 0x02CD9C 0B:8D8C: C8        INY ; 01
 C - - - - - 0x02CD9D 0B:8D8D: B1 02     LDA (ram_0002_t007_data),Y  ; pos_X_hi
 C - - - - - 0x02CD9F 0B:8D8F: A4 00     LDY ram_0000_t0D2_pos_Y_hi
 C - - - - - 0x02CDA1 0B:8D91: 20 1E FC  JSR sub_0x03FC2E
-C - - - - - 0x02CDA4 0B:8D94: D0 C1     BNE bra_8D57
+C - - - - - 0x02CDA4 0B:8D94: D0 C1     BNE bra_8D57_delete_object_and_clear_ai_script
 C - - - - - 0x02CDA6 0B:8D96: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02CDA8 0B:8D98: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CDAB 0B:8D9B: 60        RTS
@@ -2773,7 +2773,7 @@ C - - - - - 0x02CE3E 0B:8E2E: C9 18     CMP #$18
 C - - - - - 0x02CE40 0B:8E30: 90 04     BCC bra_8E36
 C - - - - - 0x02CE42 0B:8E32: C9 E8     CMP #$E8
 C - - - - - 0x02CE44 0B:8E34: 90 08     BCC bra_8E3E_RTS
-sub_8E36:
+sub_8E36_delete_object:
 bra_8E36:
 C - - - - - 0x02CE46 0B:8E36: A9 00     LDA #$00
 C - - - - - 0x02CE48 0B:8E38: 9D 4E 05  STA ram_obj_id,X
@@ -3949,9 +3949,9 @@ bra_94D4:
 C - - - - - 0x02D4E4 0B:94D4: BD 45 06  LDA ram_obj_0646,X
 C - - - - - 0x02D4E7 0B:94D7: AA        TAX
 C - - - - - 0x02D4E8 0B:94D8: A9 00     LDA #$00
-C - - - - - 0x02D4EA 0B:94DA: 9D C8 07  STA ram_07C8,X
+C - - - - - 0x02D4EA 0B:94DA: 9D C8 07  STA ram_spawner_subscript,X
 C - - - - - 0x02D4ED 0B:94DD: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D4EF 0B:94DF: 4C B2 84  JMP loc_84B2
+C - - - - - 0x02D4EF 0B:94DF: 4C B2 84  JMP loc_84B2_delete_object_and_clear_ai_script
 
 
 
@@ -4207,7 +4207,7 @@ C - - - - - 0x02D638 0B:9628: BD 06 06  LDA ram_obj_config,X
 C - - - - - 0x02D63B 0B:962B: 20 7F 80  JSR sub_807F_increase_spd_Y
 C - - - - - 0x02D63E 0B:962E: 4C B8 84  JMP loc_84B8
 bra_9631:
-C - - - - - 0x02D641 0B:9631: 4C B2 84  JMP loc_84B2
+C - - - - - 0x02D641 0B:9631: 4C B2 84  JMP loc_84B2_delete_object_and_clear_ai_script
 
 
 
@@ -5634,7 +5634,7 @@ C - - - - - 0x02DDE1 0B:9DD1: 60        RTS
 bra_9DD2:
 - - - - - - 0x02DDE2 0B:9DD2: A2 01     LDX #$01
 bra_9DD4_loop:
-- - - - - - 0x02DDE4 0B:9DD4: 20 B2 84  JSR sub_84B2
+- - - - - - 0x02DDE4 0B:9DD4: 20 B2 84  JSR sub_84B2_delete_object_and_clear_ai_script
 ; A = 00 (from 0x02C11D)
 ; bzk warning, this is dangerous to expect 00 after JSR
 - - - - - - 0x02DDE7 0B:9DD7: 9D 70 04  STA ram_obj_flags,X ; con_obj_flag_00
@@ -5644,7 +5644,7 @@ bra_9DD4_loop:
 - - - - - - 0x02DDEF 0B:9DDF: AD 4D 06  LDA ram_obj_0646 + $08
 - - - - - - 0x02DDF2 0B:9DE2: AA        TAX
 - - - - - - 0x02DDF3 0B:9DE3: A9 02     LDA #$02
-- - - - - - 0x02DDF5 0B:9DE5: 9D C8 07  STA ram_07C8,X
+- - - - - - 0x02DDF5 0B:9DE5: 9D C8 07  STA ram_spawner_subscript,X
 - - - - - - 0x02DDF8 0B:9DE8: 60        RTS
 
 
@@ -6199,7 +6199,7 @@ C - - - - - 0x02E0A4 0B:A094: 90 F3     BCC bra_A089_RTS
 - - - - - - 0x02E0AB 0B:A09B: F0 03     BEQ bra_A0A0
 - - - - - - 0x02E0AD 0B:A09D: 20 2B 99  JSR sub_992B
 bra_A0A0:
-- - - - - - 0x02E0B0 0B:A0A0: 4C B2 84  JMP loc_84B2
+- - - - - - 0x02E0B0 0B:A0A0: 4C B2 84  JMP loc_84B2_delete_object_and_clear_ai_script
 
 
 
@@ -6442,7 +6442,7 @@ C - - - - - 0x02E1F3 0B:A1E3: E8        INX
 C - - - - - 0x02E1F4 0B:A1E4: E0 0D     CPX #$0D
 C - - - - - 0x02E1F6 0B:A1E6: 90 D4     BCC bra_A1BC_loop
 C - - - - - 0x02E1F8 0B:A1E8: A9 20     LDA #$20
-C - - - - - 0x02E1FA 0B:A1EA: 85 B2     STA ram_00B2
+C - - - - - 0x02E1FA 0B:A1EA: 85 B2     STA ram_00B2_counter
 C - - - - - 0x02E1FC 0B:A1EC: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02E1FE 0B:A1EE: 60        RTS
 
@@ -9655,7 +9655,7 @@ _off034_ABF8_6A:
 - - - - - - 0x02EC57 0B:AC47: 00        .byte $00   ; 
 ; 14 
 - D 1 - I - 0x02EC58 0B:AC48: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02EC59 0B:AC49: 23        .byte con_sound_water_splash   ; 
+- D 1 - I - 0x02EC59 0B:AC49: 23        .byte con_sound_water_splash_2   ; 
 - - - - - - 0x02EC5A 0B:AC4A: 00        .byte $00   ; 
 - - - - - - 0x02EC5B 0B:AC4B: 00        .byte $00   ; 
 ; 15 
@@ -9690,7 +9690,7 @@ _off034_AC50_14:
 - - - - - - 0x02EC6F 0B:AC5F: 00        .byte $00   ; 
 ; 04 
 - D 1 - I - 0x02EC70 0B:AC60: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02EC71 0B:AC61: 22        .byte con_sound_22   ; 
+- D 1 - I - 0x02EC71 0B:AC61: 22        .byte con_sound_water_splash_1   ; 
 - - - - - - 0x02EC72 0B:AC62: 00        .byte $00   ; 
 - - - - - - 0x02EC73 0B:AC63: 00        .byte $00   ; 
 ; 05 
@@ -9843,7 +9843,7 @@ _off034_AC50_14:
 - - - - - - 0x02ECEB 0B:ACDB: 00        .byte $00   ; 
 ; 23 
 - - - - - - 0x02ECEC 0B:ACDC: 6C        .byte con_BD4F_play_sound   ; 
-- - - - - - 0x02ECED 0B:ACDD: 23        .byte con_sound_water_splash   ; 
+- - - - - - 0x02ECED 0B:ACDD: 23        .byte con_sound_water_splash_2   ; 
 - - - - - - 0x02ECEE 0B:ACDE: 00        .byte $00   ; 
 - - - - - - 0x02ECEF 0B:ACDF: 00        .byte $00   ; 
 ; 24 
@@ -9917,7 +9917,7 @@ _off034_ACEC_27:
 - - - - - - 0x02ED23 0B:AD13: 00        .byte $00   ; 
 ; 0A 
 - D 1 - I - 0x02ED24 0B:AD14: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02ED25 0B:AD15: 22        .byte con_sound_22   ; 
+- D 1 - I - 0x02ED25 0B:AD15: 22        .byte con_sound_water_splash_1   ; 
 - - - - - - 0x02ED26 0B:AD16: 00        .byte $00   ; 
 - - - - - - 0x02ED27 0B:AD17: 00        .byte $00   ; 
 ; 0B 
@@ -10036,7 +10036,7 @@ _off034_AD48_29:
 - - - - - - 0x02ED7F 0B:AD6F: 00        .byte $00   ; 
 ; 0A 
 - D 1 - I - 0x02ED80 0B:AD70: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02ED81 0B:AD71: 22        .byte con_sound_22   ; 
+- D 1 - I - 0x02ED81 0B:AD71: 22        .byte con_sound_water_splash_1   ; 
 - - - - - - 0x02ED82 0B:AD72: 00        .byte $00   ; 
 - - - - - - 0x02ED83 0B:AD73: 00        .byte $00   ; 
 ; 0B 
@@ -10194,7 +10194,7 @@ _off034_AD48_29:
 - - - - - - 0x02EDFF 0B:ADEF: 00        .byte $00   ; 
 ; 2A 
 - D 1 - I - 0x02EE00 0B:ADF0: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02EE01 0B:ADF1: 23        .byte con_sound_water_splash   ; 
+- D 1 - I - 0x02EE01 0B:ADF1: 23        .byte con_sound_water_splash_2   ; 
 - - - - - - 0x02EE02 0B:ADF2: 00        .byte $00   ; 
 - - - - - - 0x02EE03 0B:ADF3: 00        .byte $00   ; 
 ; 2B 
@@ -10333,8 +10333,8 @@ _off034_AE08_25:
 
 
 
-_off034_AE58_26:
-; con_BEA1_26
+_off034_AE58_26_swamp_frog:
+; con_BEA1_swamp_frog
 ; 00 
 - D 1 - I - 0x02EE68 0B:AE58: A7        .byte con_BD4F_A7   ; 
 - D 1 - I - 0x02EE69 0B:AE59: 05        .byte $05   ; 
@@ -10352,7 +10352,7 @@ _off034_AE58_26:
 - - - - - - 0x02EE73 0B:AE63: 00        .byte $00   ; 
 ; 03 
 - D 1 - I - 0x02EE74 0B:AE64: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02EE75 0B:AE65: 22        .byte con_sound_22   ; 
+- D 1 - I - 0x02EE75 0B:AE65: 22        .byte con_sound_water_splash_1   ; 
 - - - - - - 0x02EE76 0B:AE66: 00        .byte $00   ; 
 - - - - - - 0x02EE77 0B:AE67: 00        .byte $00   ; 
 ; 04 
@@ -13807,7 +13807,7 @@ tbl_BD4F:
 - - - - - - 0x02FDA7 0B:BD97: D3 8A     .word ofs_039_8AD3_24   ; unused, index doesn't exist
 - D 1 - - - 0x02FDA9 0B:BD99: 65 8A     .word ofs_039_8A65_25
 - D 1 - - - 0x02FDAB 0B:BD9B: 29 8A     .word ofs_039_8A29_26
-- D 1 - - - 0x02FDAD 0B:BD9D: B2 84     .word ofs_039_84B2_27
+- D 1 - - - 0x02FDAD 0B:BD9D: B2 84     .word ofs_039_84B2_27_delete_object_and_clear_ai_script
 - D 1 - - - 0x02FDAF 0B:BD9F: 27 90     .word ofs_039_9027_28
 - D 1 - - - 0x02FDB1 0B:BDA1: F1 8F     .word ofs_039_8FF1_29
 - D 1 - - - 0x02FDB3 0B:BDA3: A7 81     .word ofs_039_81A7_2A
@@ -13980,7 +13980,7 @@ tbl_BEA1:
 - D 1 - - - 0x02FEF7 0B:BEE7: A8 AA     .word _off034_AAA8_23
 - D 1 - - - 0x02FEF9 0B:BEE9: A8 A5     .word _off034_A5A8_24
 - D 1 - - - 0x02FEFB 0B:BEEB: 08 AE     .word _off034_AE08_25
-- D 1 - - - 0x02FEFD 0B:BEED: 58 AE     .word _off034_AE58_26
+- D 1 - - - 0x02FEFD 0B:BEED: 58 AE     .word _off034_AE58_26_swamp_frog
 - D 1 - - - 0x02FEFF 0B:BEEF: EC AC     .word _off034_ACEC_27
 - D 1 - - - 0x02FF01 0B:BEF1: F8 AD     .word _off034_ADF8_28
 - D 1 - - - 0x02FF03 0B:BEF3: 48 AD     .word _off034_AD48_29

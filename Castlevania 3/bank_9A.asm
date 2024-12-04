@@ -12831,7 +12831,7 @@ C - - - - - 0x037919 0D:B909: 4A        LSR
 bra_B90A:
 C - - - - - 0x03791A 0D:B90A: 85 00     STA ram_0000_t055
 C - - - - - 0x03791C 0D:B90C: A4 09     LDY ram_0009_t024
-C - - - - - 0x03791E 0D:B90E: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x03791E 0D:B90E: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x037921 0D:B911: 3D 50 BA  AND tbl_BA50,X
 C - - - - - 0x037924 0D:B914: D0 2C     BNE bra_B942_RTS
 C - - - - - 0x037926 0D:B916: A5 16     LDA ram_0016_temp
@@ -13058,10 +13058,10 @@ sub_BA05:
 C - - - - - 0x037A15 0D:BA05: A5 A5     LDA ram_00A5
 C - - - - - 0x037A17 0D:BA07: AA        TAX
 C - - - - - 0x037A18 0D:BA08: A4 09     LDY ram_0009_t024
-C - - - - - 0x037A1A 0D:BA0A: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x037A1A 0D:BA0A: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x037A1D 0D:BA0D: 3D 50 BA  AND tbl_BA50,X
 C - - - - - 0x037A20 0D:BA10: 85 00     STA ram_0000_t052
-C - - - - - 0x037A22 0D:BA12: B9 E0 06  LDA ram_06E0,Y
+C - - - - - 0x037A22 0D:BA12: B9 E0 06  LDA ram_06E0_level_data,Y
 C - - - - - 0x037A25 0D:BA15: 3D 4E BA  AND tbl_BA4E,X
 C - - - - - 0x037A28 0D:BA18: DD 48 BA  CMP tbl_BA48,X
 C - - - - - 0x037A2B 0D:BA1B: D0 0A     BNE bra_BA27
@@ -13077,7 +13077,7 @@ loc_BA2E:
 C D 1 - - - 0x037A3E 0D:BA2E: 3D 4E BA  AND tbl_BA4E,X
 C - - - - - 0x037A41 0D:BA31: 85 0A     STA ram_000A_t01A
 C - - - - - 0x037A43 0D:BA33: 05 00     ORA ram_0000_t052
-C - - - - - 0x037A45 0D:BA35: 99 E0 06  STA ram_06E0,Y
+C - - - - - 0x037A45 0D:BA35: 99 E0 06  STA ram_06E0_level_data,Y
 C - - - - - 0x037A48 0D:BA38: A5 0A     LDA ram_000A_t01A
 C - - - - - 0x037A4A 0D:BA3A: C9 10     CMP #$10
 C - - - - - 0x037A4C 0D:BA3C: 90 04     BCC bra_BA42

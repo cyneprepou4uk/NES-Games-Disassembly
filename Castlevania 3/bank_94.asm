@@ -11,7 +11,7 @@
 .export sub_0x028208
 .export sub_0x028272
 .export sub_0x0284AE
-.export sub_0x0284FA
+.export sub_0x0284FA_spawners_handler
 .export sub_0x028F39
 .export sub_0x028F8D
 .export loc_0x02B0FA
@@ -83,13 +83,15 @@ C - - - - - 0x02802D 0A:801D: 60        RTS
 
 
 
-sub_801E:
+sub_801E_prepare_blk_data_pointers:
+; out
+    ; ram_0098_t000_data
 C - - - - - 0x02802E 0A:801E: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x028030 0A:8020: 0A        ASL
 C - - - - - 0x028031 0A:8021: A8        TAY
-C - - - - - 0x028032 0A:8022: B9 7F 93  LDA tbl_937F,Y
+C - - - - - 0x028032 0A:8022: B9 7F 93  LDA tbl_937F_blk_data,Y
 C - - - - - 0x028035 0A:8025: 85 06     STA ram_0006_t001_data
-C - - - - - 0x028037 0A:8027: B9 80 93  LDA tbl_937F + $01,Y
+C - - - - - 0x028037 0A:8027: B9 80 93  LDA tbl_937F_blk_data + $01,Y
 C - - - - - 0x02803A 0A:802A: 85 07     STA ram_0006_t001_data + $01
 C - - - - - 0x02803C 0A:802C: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x02803E 0A:802E: 0A        ASL
@@ -113,14 +115,16 @@ C - - - - - 0x028056 0A:8046: 60        RTS
 
 sub_0x028057:
 C - - - - - 0x028057 0A:8047: A2 00     LDX #$00
-bra_8049_loop:  ; 00F0-00F3
+bra_8049_loop:
+; 00F0-00F3
+; bzk optimize, start with LDX 03, use DEX + BPL
 C - - - - - 0x028059 0A:8049: A9 00     LDA #$00
 C - - - - - 0x02805B 0A:804B: 95 F0     STA ram_00F0,X
 C - - - - - 0x02805D 0A:804D: E8        INX
 C - - - - - 0x02805E 0A:804E: E0 04     CPX #$04
 C - - - - - 0x028060 0A:8050: 90 F7     BCC bra_8049_loop
 C - - - - - 0x028062 0A:8052: 20 11 80  JSR sub_8011
-C - - - - - 0x028065 0A:8055: 20 1E 80  JSR sub_801E
+C - - - - - 0x028065 0A:8055: 20 1E 80  JSR sub_801E_prepare_blk_data_pointers
 C - - - - - 0x028068 0A:8058: A9 06     LDA #$06
 C - - - - - 0x02806A 0A:805A: 85 0C     STA ram_000C_t00C_loop_counter
 C - - - - - 0x02806C 0A:805C: A5 56     LDA ram_cam_pos_lo
@@ -234,9 +238,9 @@ C - - - - - 0x02811A 0A:810A: B0 0E     BCS bra_811A_80_FF
 ; 00-7F
 bra_810C:
 C - - - - - 0x02811C 0A:810C: A8        TAY
-C - - - - - 0x02811D 0A:810D: B9 3F A0  LDA tbl_A03F,Y
+C - - - - - 0x02811D 0A:810D: B9 3F A0  LDA tbl_A03F_spawners_data,Y
 C - - - - - 0x028120 0A:8110: 85 00     STA ram_0000_t007_data
-C - - - - - 0x028122 0A:8112: B9 40 A0  LDA tbl_A03F + $01,Y
+C - - - - - 0x028122 0A:8112: B9 40 A0  LDA tbl_A03F_spawners_data + $01,Y
 C - - - - - 0x028125 0A:8115: 85 01     STA ram_0000_t007_data + $01
 C - - - - - 0x028127 0A:8117: 4C 32 81  JMP loc_8132
 bra_811A_80_FF:
@@ -250,36 +254,36 @@ C - - - - - 0x028133 0A:8123: A9 00     LDA #$00    ; con_A03F_00
 C - - - - - 0x028135 0A:8125: F0 E5     BEQ bra_810C    ; jmp
 bra_8127:
 C - - - - - 0x028137 0A:8127: A8        TAY
-C - - - - - 0x028138 0A:8128: B9 3F A1  LDA tbl_A03F + $100,Y
+C - - - - - 0x028138 0A:8128: B9 3F A1  LDA tbl_A03F_spawners_data + $100,Y
 C - - - - - 0x02813B 0A:812B: 85 00     STA ram_0000_t007_data
-C - - - - - 0x02813D 0A:812D: B9 40 A1  LDA tbl_A03F + $100 + $01,Y
+C - - - - - 0x02813D 0A:812D: B9 40 A1  LDA tbl_A03F_spawners_data + $100 + $01,Y
 C - - - - - 0x028140 0A:8130: 85 01     STA ram_0000_t007_data + $01
 loc_8132:
 C D 0 - - - 0x028142 0A:8132: A0 00     LDY #$00
 C - - - - - 0x028144 0A:8134: B1 00     LDA (ram_0000_t007_data),Y
-C - - - - - 0x028146 0A:8136: 9D C2 07  STA ram_07C2,X
-C - - - - - 0x028149 0A:8139: F0 3D     BEQ bra_8178
+C - - - - - 0x028146 0A:8136: 9D C2 07  STA ram_spawner_script,X
+C - - - - - 0x028149 0A:8139: F0 3D     BEQ bra_8178_skip    ; if con_spawner_00
 C - - - - - 0x02814B 0A:813B: C8        INY ; 01
 C - - - - - 0x02814C 0A:813C: B1 00     LDA (ram_0000_t007_data),Y
 C - - - - - 0x02814E 0A:813E: 18        CLC
 C - - - - - 0x02814F 0A:813F: 65 09     ADC ram_0009_t023_lo
-C - - - - - 0x028151 0A:8141: 9D DA 07  STA ram_07DA,X
+C - - - - - 0x028151 0A:8141: 9D DA 07  STA ram_spawner_pos_X_hi,X
 C - - - - - 0x028154 0A:8144: A5 0A     LDA ram_000A_t038_hi
 C - - - - - 0x028156 0A:8146: 69 00     ADC #$00
 C - - - - - 0x028158 0A:8148: 29 01     AND #$01
-C - - - - - 0x02815A 0A:814A: 9D E0 07  STA ram_07E0,X
+C - - - - - 0x02815A 0A:814A: 9D E0 07  STA ram_07E0_spawner_cfg,X
 C - - - - - 0x02815D 0A:814D: C8        INY ; 02
 C - - - - - 0x02815E 0A:814E: B1 00     LDA (ram_0000_t007_data),Y
-C - - - - - 0x028160 0A:8150: 9D D4 07  STA ram_07D4,X
+C - - - - - 0x028160 0A:8150: 9D D4 07  STA ram_spawner_pos_Y_hi,X
 C - - - - - 0x028163 0A:8153: C8        INY ; 03
 C - - - - - 0x028164 0A:8154: B1 00     LDA (ram_0000_t007_data),Y
-C - - - - - 0x028166 0A:8156: 9D E6 07  STA ram_07E6,X
+C - - - - - 0x028166 0A:8156: 9D E6 07  STA ram_07E6_spawner_cfg,X
 C - - - - - 0x028169 0A:8159: C8        INY ; 04
 C - - - - - 0x02816A 0A:815A: B1 00     LDA (ram_0000_t007_data),Y
-C - - - - - 0x02816C 0A:815C: 9D CE 07  STA ram_07CE,X
+C - - - - - 0x02816C 0A:815C: 9D CE 07  STA ram_spawner_delay,X
 C - - - - - 0x02816F 0A:815F: 8A        TXA
 C - - - - - 0x028170 0A:8160: 48        PHA
-C - - - - - 0x028171 0A:8161: BD C8 07  LDA ram_07C8,X
+C - - - - - 0x028171 0A:8161: BD C8 07  LDA ram_spawner_subscript,X
 ; / 10
 C - - - - - 0x028174 0A:8164: 4A        LSR
 C - - - - - 0x028175 0A:8165: 4A        LSR
@@ -292,9 +296,9 @@ C - - - - - 0x02817E 0A:816E: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x028181 0A:8171: 68        PLA
 C - - - - - 0x028182 0A:8172: AA        TAX
 C - - - - - 0x028183 0A:8173: A9 00     LDA #$00
-C - - - - - 0x028185 0A:8175: 9D C8 07  STA ram_07C8,X
-bra_8178:
-C - - - - - 0x028188 0A:8178: 20 8D 84  JSR sub_848D_check_for_certain_blk
+C - - - - - 0x028185 0A:8175: 9D C8 07  STA ram_spawner_subscript,X
+bra_8178_skip:
+C - - - - - 0x028188 0A:8178: 20 8D 84  JSR sub_848D_check_for_0E_01_01_blk
 C - - - - - 0x02818B 0A:817B: D0 01     BNE bra_817E_no_match
 ; if match
 C - - - - - 0x02818D 0A:817D: 60        RTS
@@ -368,12 +372,12 @@ C - - - - - 0x028207 0A:81F7: 60        RTS
 
 
 sub_0x028208:
-C - - - - - 0x028208 0A:81F8: 20 69 83  JSR sub_8369
+C - - - - - 0x028208 0A:81F8: 20 69 83  JSR sub_8369_clear_spawners
 C - - - - - 0x02820B 0A:81FB: A9 00     LDA #$00
 C - - - - - 0x02820D 0A:81FD: 85 79     STA ram_0079
 C - - - - - 0x02820F 0A:81FF: 85 7A     STA ram_007A
 loc_8201_loop:
-C D 0 - - - 0x028211 0A:8201: 20 1E 80  JSR sub_801E
+C D 0 - - - 0x028211 0A:8201: 20 1E 80  JSR sub_801E_prepare_blk_data_pointers
 C - - - - - 0x028214 0A:8204: A4 79     LDY ram_0079
 C - - - - - 0x028216 0A:8206: B1 98     LDA (ram_0098_t000_data),Y
 C - - - - - 0x028218 0A:8208: C9 FF     CMP #$FF
@@ -433,6 +437,8 @@ C - - - - - 0x028271 0A:8261: 60        RTS
 
 
 sub_0x028272:
+; in
+    ; ram_0098_t000_data
 C - - - - - 0x028272 0A:8262: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x028274 0A:8264: 29 F0     AND #$F0
 C - - - - - 0x028276 0A:8266: C5 77     CMP ram_0077_prev_cam_pos_lo
@@ -443,6 +449,7 @@ C - - - - - 0x02827F 0A:826F: 90 F0     BCC bra_8261_RTS
 sub_8271:
 ; in
     ; ram_000A_t030_pos_Y_hi
+    ; ram_0098_t000_data
 C - - - - - 0x028281 0A:8271: 18        CLC
 C - - - - - 0x028282 0A:8272: A5 79     LDA ram_0079
 C - - - - - 0x028284 0A:8274: 69 07     ADC #$07
@@ -451,25 +458,26 @@ C - - - - - 0x028288 0A:8278: C8        INY
 C - - - - - 0x028289 0A:8279: B1 98     LDA (ram_0098_t000_data),Y
 C - - - - - 0x02828B 0A:827B: 30 2B     BMI bra_82A8_80_FF
 ; 00-7F
-C - - - - - 0x02828D 0A:827D: 20 5B 83  JSR sub_835B
-C - - - - - 0x028290 0A:8280: D0 54     BNE bra_82D6_RTS
+C - - - - - 0x02828D 0A:827D: 20 5B 83  JSR sub_835B_find_empty_spawner_slot
+C - - - - - 0x028290 0A:8280: D0 54     BNE bra_82D6_RTS    ; if not found
+; if found
 C - - - - - 0x028292 0A:8282: B1 98     LDA (ram_0098_t000_data),Y
-C - - - - - 0x028294 0A:8284: 9D C2 07  STA ram_07C2,X
+C - - - - - 0x028294 0A:8284: 9D C2 07  STA ram_spawner_script,X
 C - - - - - 0x028297 0A:8287: C8        INY
 C - - - - - 0x028298 0A:8288: B1 98     LDA (ram_0098_t000_data),Y
-C - - - - - 0x02829A 0A:828A: 9D DA 07  STA ram_07DA,X
+C - - - - - 0x02829A 0A:828A: 9D DA 07  STA ram_spawner_pos_X_hi,X
 C - - - - - 0x02829D 0A:828D: C8        INY
 C - - - - - 0x02829E 0A:828E: C8        INY
 C - - - - - 0x02829F 0A:828F: B1 98     LDA (ram_0098_t000_data),Y
-C - - - - - 0x0282A1 0A:8291: 9D E6 07  STA ram_07E6,X
+C - - - - - 0x0282A1 0A:8291: 9D E6 07  STA ram_07E6_spawner_cfg,X
 C - - - - - 0x0282A4 0A:8294: C8        INY
 C - - - - - 0x0282A5 0A:8295: B1 98     LDA (ram_0098_t000_data),Y
-C - - - - - 0x0282A7 0A:8297: 9D CE 07  STA ram_07CE,X
+C - - - - - 0x0282A7 0A:8297: 9D CE 07  STA ram_spawner_delay,X
 C - - - - - 0x0282AA 0A:829A: A5 0A     LDA ram_000A_t030_pos_Y_hi
-C - - - - - 0x0282AC 0A:829C: 9D D4 07  STA ram_07D4,X
+C - - - - - 0x0282AC 0A:829C: 9D D4 07  STA ram_spawner_pos_Y_hi,X
 C - - - - - 0x0282AF 0A:829F: A9 00     LDA #$00
-C - - - - - 0x0282B1 0A:82A1: 9D E0 07  STA ram_07E0,X
-C - - - - - 0x0282B4 0A:82A4: 9D C8 07  STA ram_07C8,X
+C - - - - - 0x0282B1 0A:82A1: 9D E0 07  STA ram_07E0_spawner_cfg,X
+C - - - - - 0x0282B4 0A:82A4: 9D C8 07  STA ram_spawner_subscript,X
 C - - - - - 0x0282B7 0A:82A7: 60        RTS
 bra_82A8_80_FF:
 C - - - - - 0x0282B8 0A:82A8: 20 4D 83  JSR sub_834D_find_empty_object_slot_0D_12
@@ -499,6 +507,8 @@ C - - - - - 0x0282E6 0A:82D6: 60        RTS
 
 
 sub_82D7:
+; in
+    ; ram_0098_t000_data
 ; out
     ; C
         ; 0 = 
@@ -631,14 +641,15 @@ C - - - - - 0x028367 0A:8357: 90 F6     BCC bra_834F_loop
 
 
 
-sub_835B:
+sub_835B_find_empty_spawner_slot:
 ; out
     ; Z
-        ; 0 = 
-        ; 1 = 
+        ; 0 = not found
+        ; 1 = found
+    ; X = slot index
 C - - - - - 0x02836B 0A:835B: A2 00     LDX #$00
 bra_835D_loop:  ; 07C2-07C7
-C - - - - - 0x02836D 0A:835D: BD C2 07  LDA ram_07C2,X
+C - - - - - 0x02836D 0A:835D: BD C2 07  LDA ram_spawner_script,X
 C - - - - - 0x028370 0A:8360: F0 2F     BEQ bra_8391_RTS
 C - - - - - 0x028372 0A:8362: E8        INX
 C - - - - - 0x028373 0A:8363: E0 06     CPX #$06
@@ -647,11 +658,11 @@ C - - - - - 0x028375 0A:8365: 90 F6     BCC bra_835D_loop
 
 
 
-sub_8369:
+sub_8369_clear_spawners:
 C - - - - - 0x028379 0A:8369: A2 00     LDX #$00
-C - - - - - 0x02837B 0A:836B: 8A        TXA ; 00
+C - - - - - 0x02837B 0A:836B: 8A        TXA ; 00    con_spawner_00
 bra_836C_loop:
-C - - - - - 0x02837C 0A:836C: 9D C2 07  STA ram_07C2,X
+C - - - - - 0x02837C 0A:836C: 9D C2 07  STA ram_spawner_script,X
 C - - - - - 0x02837F 0A:836F: E8        INX
 C - - - - - 0x028380 0A:8370: E0 06     CPX #$06
 C - - - - - 0x028382 0A:8372: 90 F8     BCC bra_836C_loop
@@ -688,7 +699,7 @@ bra_838F:
 ; bzk optimize, better write LDA 01 + RTS instead of branches here.
 ; takes a bit more space, but looks better. and repoint BEQ's to their own RTS's
 C - - - - - 0x02839F 0A:838F: A9 01     LDA #$01
-bra_8391_RTS:
+bra_8391_RTS:   ; Z = 1
 C - - - - - 0x0283A1 0A:8391: 60        RTS
 
 
@@ -770,27 +781,27 @@ C - - - - - 0x0283E6 0A:83D6: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x0283E8 0A:83D8: 30 14     BMI bra_83EE_vertical
 ; if horisontal
 C - - - - - 0x0283EA 0A:83DA: 38        SEC
-C - - - - - 0x0283EB 0A:83DB: BD DA 07  LDA ram_07DA,X
+C - - - - - 0x0283EB 0A:83DB: BD DA 07  LDA ram_spawner_pos_X_hi,X
 C - - - - - 0x0283EE 0A:83DE: E5 6E     SBC ram_006E_cam_speed
-C - - - - - 0x0283F0 0A:83E0: 9D DA 07  STA ram_07DA,X
-C - - - - - 0x0283F3 0A:83E3: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x0283F0 0A:83E0: 9D DA 07  STA ram_spawner_pos_X_hi,X
+C - - - - - 0x0283F3 0A:83E3: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x0283F6 0A:83E6: E5 00     SBC ram_0000_t0DA
 C - - - - - 0x0283F8 0A:83E8: 29 01     AND #$01
-C - - - - - 0x0283FA 0A:83EA: 9D E0 07  STA ram_07E0,X
+C - - - - - 0x0283FA 0A:83EA: 9D E0 07  STA ram_07E0_spawner_cfg,X
 C - - - - - 0x0283FD 0A:83ED: 60        RTS
 bra_83EE_vertical:
 C - - - - - 0x0283FE 0A:83EE: 18        CLC
-C - - - - - 0x0283FF 0A:83EF: BD D4 07  LDA ram_07D4,X
+C - - - - - 0x0283FF 0A:83EF: BD D4 07  LDA ram_spawner_pos_Y_hi,X
 C - - - - - 0x028402 0A:83F2: 65 6E     ADC ram_006E_cam_speed
-C - - - - - 0x028404 0A:83F4: 9D D4 07  STA ram_07D4,X
-C - - - - - 0x028407 0A:83F7: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x028404 0A:83F4: 9D D4 07  STA ram_spawner_pos_Y_hi,X
+C - - - - - 0x028407 0A:83F7: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x02840A 0A:83FA: 65 00     ADC ram_0000_t0DA
 C - - - - - 0x02840C 0A:83FC: 29 01     AND #$01
-C - - - - - 0x02840E 0A:83FE: 9D E0 07  STA ram_07E0,X
-C - - - - - 0x028411 0A:8401: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x02840E 0A:83FE: 9D E0 07  STA ram_07E0_spawner_cfg,X
+C - - - - - 0x028411 0A:8401: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028414 0A:8404: F0 05     BEQ bra_840B_RTS
-C - - - - - 0x028416 0A:8406: A9 00     LDA #$00
-C - - - - - 0x028418 0A:8408: 9D C2 07  STA ram_07C2,X
+C - - - - - 0x028416 0A:8406: A9 00     LDA #con_spawner_00
+C - - - - - 0x028418 0A:8408: 9D C2 07  STA ram_spawner_script,X
 bra_840B_RTS:
 C - - - - - 0x02841B 0A:840B: 60        RTS
 
@@ -932,7 +943,7 @@ tbl_846D:
 
 
 
-sub_848D_check_for_certain_blk:
+sub_848D_check_for_0E_01_01_blk:
 ; out
     ; Z
         ; 0 = match
@@ -1001,15 +1012,15 @@ C - - - - - 0x0284F9 0A:84E9: 60        RTS
 
 
 
-sub_0x0284FA:
+sub_0x0284FA_spawners_handler:
 C - - - - - 0x0284FA 0A:84EA: A2 00     LDX #$00
 bra_84EC_loop:
-C - - - - - 0x0284FC 0A:84EC: BD C2 07  LDA ram_07C2,X
-C - - - - - 0x0284FF 0A:84EF: F0 0E     BEQ bra_84FF
+C - - - - - 0x0284FC 0A:84EC: BD C2 07  LDA ram_spawner_script,X
+C - - - - - 0x0284FF 0A:84EF: F0 0E     BEQ bra_84FF    ; if con_spawner_00
 C - - - - - 0x028501 0A:84F1: 86 6C     STX ram_006C_object_index
-C - - - - - 0x028503 0A:84F3: A5 B2     LDA ram_00B2
+C - - - - - 0x028503 0A:84F3: A5 B2     LDA ram_00B2_counter
 C - - - - - 0x028505 0A:84F5: D0 05     BNE bra_84FC
-C - - - - - 0x028507 0A:84F7: 20 05 85  JSR sub_8505
+C - - - - - 0x028507 0A:84F7: 20 05 85  JSR sub_8505_spawner_handler
 C - - - - - 0x02850A 0A:84FA: A6 6C     LDX ram_006C_object_index
 bra_84FC:
 C - - - - - 0x02850C 0A:84FC: 20 CD 83  JSR sub_83CD
@@ -1021,15 +1032,15 @@ C - - - - - 0x028514 0A:8504: 60        RTS
 
 
 
-sub_8505:
-C - - - - - 0x028515 0A:8505: BD C2 07  LDA ram_07C2,X
+sub_8505_spawner_handler:
+C - - - - - 0x028515 0A:8505: BD C2 07  LDA ram_spawner_script,X
 C - - - - - 0x028518 0A:8508: 0A        ASL
 C - - - - - 0x028519 0A:8509: A8        TAY
-C - - - - - 0x02851A 0A:850A: B9 27 85  LDA tbl_8527,Y
+C - - - - - 0x02851A 0A:850A: B9 27 85  LDA tbl_8527_spawners,Y
 C - - - - - 0x02851D 0A:850D: 85 00     STA ram_0000_t005_data
-C - - - - - 0x02851F 0A:850F: B9 28 85  LDA tbl_8527 + $01,Y
+C - - - - - 0x02851F 0A:850F: B9 28 85  LDA tbl_8527_spawners + $01,Y
 C - - - - - 0x028522 0A:8512: 85 01     STA ram_0000_t005_data + $01
-C - - - - - 0x028524 0A:8514: BD C8 07  LDA ram_07C8,X
+C - - - - - 0x028524 0A:8514: BD C8 07  LDA ram_spawner_subscript,X
 C - - - - - 0x028527 0A:8517: 29 0F     AND #$0F
 C - - - - - 0x028529 0A:8519: 0A        ASL
 C - - - - - 0x02852A 0A:851A: A8        TAY
@@ -1042,7 +1053,8 @@ C - - - - - 0x028534 0A:8524: 6C 02 00  JMP (ram_0002_t00D_jmp)
 
 
 
-tbl_8527:
+tbl_8527_spawners:
+; see con_spawner
 - - - - - - 0x028537 0A:8527: D3 85     .word _off033_85D3_00
 - D 0 - - - 0x028539 0A:8529: D7 85     .word _off033_85D7_01
 - D 0 - - - 0x02853B 0A:852B: 29 86     .word _off033_8629_02
@@ -1077,7 +1089,7 @@ tbl_8527:
 - D 0 - - - 0x028575 0A:8565: A0 90     .word _off033_90A0_1F
 - D 0 - - - 0x028577 0A:8567: D1 8E     .word _off033_8ED1_20
 - D 0 - - - 0x028579 0A:8569: D1 8E     .word _off033_8ED1_21
-- - - - - - 0x02857B 0A:856B: D1 8E     .word _off033_8ED1_22
+- - - - - - 0x02857B 0A:856B: D1 8E     .word _off033_8ED1_22   ; index exists but never used
 - D 0 - - - 0x02857D 0A:856D: D1 8E     .word _off033_8ED1_23
 - D 0 - - - 0x02857F 0A:856F: D1 8E     .word _off033_8ED1_24
 - D 0 - - - 0x028581 0A:8571: D1 8E     .word _off033_8ED1_25
@@ -1090,20 +1102,20 @@ tbl_8527:
 - - - - - - 0x02858F 0A:857F: EF 8A     .word _off033_8AEF_2C
 - D 0 - - - 0x028591 0A:8581: 48 89     .word _off033_8948_2D
 - D 0 - - - 0x028593 0A:8583: 65 8C     .word _off033_8C65_2E
-- - - - - - 0x028595 0A:8585: D3 85     .word _off033_85D3_2F
-- - - - - - 0x028597 0A:8587: D3 85     .word _off033_85D3_30
-- - - - - - 0x028599 0A:8589: D3 85     .word _off033_85D3_31
+- - - - - - 0x028595 0A:8585: D3 85     .word _off033_85D3_2F   ; unused, index doesn't exist
+- - - - - - 0x028597 0A:8587: D3 85     .word _off033_85D3_30   ; unused, index doesn't exist
+- - - - - - 0x028599 0A:8589: D3 85     .word _off033_85D3_31   ; unused, index doesn't exist
 - D 0 - - - 0x02859B 0A:858B: AB 8B     .word _off033_8BAB_32
-- - - - - - 0x02859D 0A:858D: D3 85     .word _off033_85D3_33
-- - - - - - 0x02859F 0A:858F: D3 85     .word _off033_85D3_34
-- - - - - - 0x0285A1 0A:8591: D3 85     .word _off033_85D3_35
+- - - - - - 0x02859D 0A:858D: D3 85     .word _off033_85D3_33   ; unused, index doesn't exist
+- - - - - - 0x02859F 0A:858F: D3 85     .word _off033_85D3_34   ; unused, index doesn't exist
+- - - - - - 0x0285A1 0A:8591: D3 85     .word _off033_85D3_35   ; unused, index doesn't exist
 - D 0 - - - 0x0285A3 0A:8593: 93 8D     .word _off033_8D93_36
-- - - - - - 0x0285A5 0A:8595: D3 85     .word _off033_85D3_37
-- - - - - - 0x0285A7 0A:8597: D3 85     .word _off033_85D3_38
+- - - - - - 0x0285A5 0A:8595: D3 85     .word _off033_85D3_37   ; unused, index doesn't exist
+- - - - - - 0x0285A7 0A:8597: D3 85     .word _off033_85D3_38   ; unused, index doesn't exist
 - D 0 - - - 0x0285A9 0A:8599: 93 8D     .word _off033_8D93_39
 - D 0 - - - 0x0285AB 0A:859B: 52 86     .word _off033_8652_3A
 - D 0 - - - 0x0285AD 0A:859D: BC 87     .word _off033_87BC_3B
-- D 0 - - - 0x0285AF 0A:859F: 69 87     .word _off033_8769_3C
+- D 0 - - - 0x0285AF 0A:859F: 69 87     .word _off033_8769_3C_swamp_frog
 - D 0 - - - 0x0285B1 0A:85A1: B3 86     .word _off033_86B3_3D
 - D 0 - - - 0x0285B3 0A:85A3: B9 86     .word _off033_86B9_3E
 - D 0 - - - 0x0285B5 0A:85A5: AB 8B     .word _off033_8BAB_3F
@@ -1147,20 +1159,22 @@ ofs_040_00_85D2_01_RTS:
 
 
 _off033_85D3_00:
-_off033_85D3_2F:
-_off033_85D3_30:
-_off033_85D3_31:
-_off033_85D3_33:
-_off033_85D3_34:
-_off033_85D3_35:
-_off033_85D3_37:
-_off033_85D3_38:
+; con_spawner_00
+_off033_85D3_2F:    ; bzk garbage label
+_off033_85D3_30:    ; bzk garbage label
+_off033_85D3_31:    ; bzk garbage label
+_off033_85D3_33:    ; bzk garbage label
+_off033_85D3_34:    ; bzk garbage label
+_off033_85D3_35:    ; bzk garbage label
+_off033_85D3_37:    ; bzk garbage label
+_off033_85D3_38:    ; bzk garbage label
 - - - - - - 0x0285E3 0A:85D3: D2 85     .word ofs_040_00_85D2_00_RTS
 - - - - - - 0x0285E5 0A:85D5: D2 85     .word ofs_040_00_85D2_01_RTS
 
 
 
 _off033_85D7_01:
+; con_spawner_01
 - D 0 - I - 0x0285E7 0A:85D7: DB 85     .word ofs_040_01_85DB_00
 - D 0 - I - 0x0285E9 0A:85D9: E6 85     .word ofs_040_01_85E6_01
 
@@ -1168,10 +1182,10 @@ _off033_85D7_01:
 
 ofs_040_01_85DB_00:
 C - - J - - 0x0285EB 0A:85DB: 20 EB 85  JSR sub_85EB
-loc_85DE:
-sub_85DE:
+loc_85DE_prepare_next_spawner_subscript:
+sub_85DE_prepare_next_spawner_subscript:
 C D 0 - - - 0x0285EE 0A:85DE: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x0285F0 0A:85E0: FE C8 07  INC ram_07C8,X
+C - - - - - 0x0285F0 0A:85E0: FE C8 07  INC ram_spawner_subscript,X
 bra_85E3_RTS:
 C - - - - - 0x0285F3 0A:85E3: 60        RTS
 
@@ -1184,10 +1198,10 @@ tbl_85E4_pos_X_hi:
 
 
 ofs_040_01_85E6_01:
-C - - J - - 0x0285F6 0A:85E6: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x0285F6 0A:85E6: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x0285F9 0A:85E9: D0 F8     BNE bra_85E3_RTS
 sub_85EB:
-C - - - - - 0x0285FB 0A:85EB: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x0285FB 0A:85EB: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x0285FE 0A:85EE: 20 73 8D  JSR sub_8D73
 C - - - - - 0x028601 0A:85F1: D0 2E     BNE bra_8621
 C - - - - - 0x028603 0A:85F3: 20 B3 89  JSR sub_89B3
@@ -1200,13 +1214,13 @@ C - - - - - 0x028612 0A:8602: BD 38 04  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x028615 0A:8605: 85 08     STA ram_0008_t065
 C - - - - - 0x028617 0A:8607: 8A        TXA
 C - - - - - 0x028618 0A:8608: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02861A 0A:860A: 9D E6 07  STA ram_07E6,X
+C - - - - - 0x02861A 0A:860A: 9D E6 07  STA ram_07E6_spawner_cfg,X
 C - - - - - 0x02861D 0A:860D: A0 A4     LDY #$A4
 C - - - - - 0x02861F 0A:860F: A5 08     LDA ram_0008_t065
-C - - - - - 0x028621 0A:8611: 20 16 FC  JSR sub_0x03FC26
+C - - - - - 0x028621 0A:8611: 20 16 FC  JSR sub_0x03FC26_check_tile
 C - - - - - 0x028624 0A:8614: F0 0B     BEQ bra_8621
 C - - - - - 0x028626 0A:8616: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x028628 0A:8618: BD E6 07  LDA ram_07E6,X
+C - - - - - 0x028628 0A:8618: BD E6 07  LDA ram_07E6_spawner_cfg,X
 C - - - - - 0x02862B 0A:861B: AA        TAX
 C - - - - - 0x02862C 0A:861C: A9 90     LDA #$90
 C - - - - - 0x02862E 0A:861E: 9D 1C 04  STA ram_obj_pos_Y_hi,X
@@ -1214,22 +1228,23 @@ bra_8621:
 C - - - - - 0x028631 0A:8621: A9 81     LDA #$81
 loc_8623:
 C D 0 - - - 0x028633 0A:8623: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x028635 0A:8625: 9D CE 07  STA ram_07CE,X
+C - - - - - 0x028635 0A:8625: 9D CE 07  STA ram_spawner_delay,X
 bra_8628_RTS:
 C - - - - - 0x028638 0A:8628: 60        RTS
 
 
 
 _off033_8629_02:
+; con_spawner_02
 - D 0 - I - 0x028639 0A:8629: 2D 86     .word ofs_040_02_862D_00
 - D 0 - I - 0x02863B 0A:862B: 4B 86     .word ofs_040_02_864B_01
 
 
 
 ofs_040_02_862D_00:
-C - - J - - 0x02863D 0A:862D: FE C8 07  INC ram_07C8,X
+C - - J - - 0x02863D 0A:862D: FE C8 07  INC ram_spawner_subscript,X
 bra_8630:
-C - - - - - 0x028640 0A:8630: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028640 0A:8630: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028643 0A:8633: 20 73 8D  JSR sub_8D73
 C - - - - - 0x028646 0A:8636: D0 0B     BNE bra_8643
 C - - - - - 0x028648 0A:8638: 20 DE 8D  JSR sub_8DDE
@@ -1239,20 +1254,21 @@ C - - - - - 0x028650 0A:8640: 9D 70 04  STA ram_obj_flags,X
 bra_8643:
 C - - - - - 0x028653 0A:8643: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x028655 0A:8645: A9 81     LDA #$81
-C - - - - - 0x028657 0A:8647: 9D CE 07  STA ram_07CE,X
+C - - - - - 0x028657 0A:8647: 9D CE 07  STA ram_spawner_delay,X
 bra_864A_RTS:
 C - - - - - 0x02865A 0A:864A: 60        RTS
 
 
 
 ofs_040_02_864B_01:
-C - - J - - 0x02865B 0A:864B: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x02865B 0A:864B: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x02865E 0A:864E: D0 D8     BNE bra_8628_RTS
 C - - - - - 0x028660 0A:8650: F0 DE     BEQ bra_8630    ; jmp
 
 
 
 _off033_8652_3A:
+; con_spawner_3A
 - D 0 - I - 0x028662 0A:8652: 56 86     .word ofs_040_3A_8656_00
 - D 0 - I - 0x028664 0A:8654: 5C 86     .word ofs_040_3A_865C_01
 
@@ -1260,15 +1276,15 @@ _off033_8652_3A:
 
 ofs_040_3A_8656_00:
 C - - J - - 0x028666 0A:8656: 20 61 86  JSR sub_8661
-C - - - - - 0x028669 0A:8659: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028669 0A:8659: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 
 
 
 ofs_040_3A_865C_01:
-C - - J - - 0x02866C 0A:865C: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x02866C 0A:865C: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x02866F 0A:865F: D0 E9     BNE bra_864A_RTS
 sub_8661:
-C - - - - - 0x028671 0A:8661: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028671 0A:8661: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028674 0A:8664: 20 73 8D  JSR sub_8D73
 C - - - - - 0x028677 0A:8667: D0 0B     BNE bra_8674
 C - - - - - 0x028679 0A:8669: 20 B7 89  JSR sub_89B7
@@ -1278,12 +1294,13 @@ C - - - - - 0x028681 0A:8671: 20 DE 8D  JSR sub_8DDE
 bra_8674:
 C - - - - - 0x028684 0A:8674: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x028686 0A:8676: A9 47     LDA #$47
-C - - - - - 0x028688 0A:8678: 9D CE 07  STA ram_07CE,X
+C - - - - - 0x028688 0A:8678: 9D CE 07  STA ram_spawner_delay,X
 C - - - - - 0x02868B 0A:867B: 60        RTS
 
 
 
 _off033_867C_4F:
+; con_spawner_4F
 - D 0 - I - 0x02868C 0A:867C: 80 86     .word ofs_040_4F_8680_00
 - D 0 - I - 0x02868E 0A:867E: 86 86     .word ofs_040_4F_8686_01
 
@@ -1291,15 +1308,15 @@ _off033_867C_4F:
 
 ofs_040_4F_8680_00:
 C - - J - - 0x028690 0A:8680: 20 8B 86  JSR sub_868B
-C - - - - - 0x028693 0A:8683: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028693 0A:8683: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 
 
 
 ofs_040_4F_8686_01:
-C - - J - - 0x028696 0A:8686: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x028696 0A:8686: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x028699 0A:8689: D0 27     BNE bra_86B2_RTS
 sub_868B:
-C - - - - - 0x02869B 0A:868B: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x02869B 0A:868B: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x02869E 0A:868E: 20 73 8D  JSR sub_8D73
 C - - - - - 0x0286A1 0A:8691: D0 18     BNE bra_86AB
 C - - - - - 0x0286A3 0A:8693: 20 B3 89  JSR sub_89B3
@@ -1307,8 +1324,8 @@ C - - - - - 0x0286A6 0A:8696: B9 E4 85  LDA tbl_85E4_pos_X_hi,Y
 C - - - - - 0x0286A9 0A:8699: 85 00     STA ram_0000_t0E6_pos_X_hi
 C - - - - - 0x0286AB 0A:869B: AD F6 07  LDA ram_quest
 C - - - - - 0x0286AE 0A:869E: F0 08     BEQ bra_86A8_1st_quest
-C - - - - - 0x0286B0 0A:86A0: A9 70     LDA #$70
-C - - - - - 0x0286B2 0A:86A2: 85 02     STA ram_0002_t038
+C - - - - - 0x0286B0 0A:86A0: A9 70     LDA #con_BEA1_70
+C - - - - - 0x0286B2 0A:86A2: 85 02     STA ram_0002_t038_ai_script
 C - - - - - 0x0286B4 0A:86A4: A9 66     LDA #$66
 C - - - - - 0x0286B6 0A:86A6: 85 03     STA ram_0003_t016_obj_id
 bra_86A8_1st_quest:
@@ -1316,13 +1333,14 @@ C - - - - - 0x0286B8 0A:86A8: 20 DE 8D  JSR sub_8DDE
 bra_86AB:
 C - - - - - 0x0286BB 0A:86AB: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x0286BD 0A:86AD: A9 41     LDA #$41
-C - - - - - 0x0286BF 0A:86AF: 9D CE 07  STA ram_07CE,X
+C - - - - - 0x0286BF 0A:86AF: 9D CE 07  STA ram_spawner_delay,X
 bra_86B2_RTS:
 C - - - - - 0x0286C2 0A:86B2: 60        RTS
 
 
 
 _off033_86B3_3D:
+; con_spawner_3D
 - D 0 - I - 0x0286C3 0A:86B3: C3 86     .word ofs_040_3D_86C3_00
 - D 0 - I - 0x0286C5 0A:86B5: FD 86     .word ofs_040_3D_86FD_01
 - D 0 - I - 0x0286C7 0A:86B7: 0E 87     .word ofs_040_3D_870E_02
@@ -1330,6 +1348,7 @@ _off033_86B3_3D:
 
 
 _off033_86B9_3E:
+; con_spawner_3E
 - D 0 - I - 0x0286C9 0A:86B9: C9 86     .word ofs_040_3E_86C9_00
 - D 0 - I - 0x0286CB 0A:86BB: FD 86     .word ofs_040_3E_86FD_01
 - D 0 - I - 0x0286CD 0A:86BD: 0E 87     .word ofs_040_3E_870E_02
@@ -1337,6 +1356,7 @@ _off033_86B9_3E:
 
 
 _off033_86BF_12:
+; con_spawner_12
 - D 0 - I - 0x0286CF 0A:86BF: C9 86     .word ofs_040_12_86C9_00
 - D 0 - I - 0x0286D1 0A:86C1: EF 86     .word ofs_040_12_86EF_01
 
@@ -1348,9 +1368,9 @@ C - - - - - 0x0286D5 0A:86C5: C9 1B     CMP #con_002A_1B
 C - - - - - 0x0286D7 0A:86C7: F0 25     BEQ bra_86EE_RTS
 ofs_040_12_86C9_00:
 ofs_040_3E_86C9_00:
-C - - - - - 0x0286D9 0A:86C9: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x0286D9 0A:86C9: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x0286DC 0A:86CC: D0 20     BNE bra_86EE_RTS
-C - - - - - 0x0286DE 0A:86CE: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x0286DE 0A:86CE: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x0286E1 0A:86D1: 20 54 8E  JSR sub_8E54_find_empty_object_slot
 C - - - - - 0x0286E4 0A:86D4: D0 18     BNE bra_86EE_RTS
 C - - - - - 0x0286E6 0A:86D6: 8A        TXA
@@ -1364,8 +1384,8 @@ loc_86E4:
 C D 0 - - - 0x0286F4 0A:86E4: 20 DE 8D  JSR sub_8DDE
 loc_86E7:
 C D 0 - - - 0x0286F7 0A:86E7: 8A        TXA
-C - - - - - 0x0286F8 0A:86E8: 20 DE 85  JSR sub_85DE
-C - - - - - 0x0286FB 0A:86EB: 9D E6 07  STA ram_07E6,X
+C - - - - - 0x0286F8 0A:86E8: 20 DE 85  JSR sub_85DE_prepare_next_spawner_subscript
+C - - - - - 0x0286FB 0A:86EB: 9D E6 07  STA ram_07E6_spawner_cfg,X
 bra_86EE_RTS:
 C - - - - - 0x0286FE 0A:86EE: 60        RTS
 
@@ -1373,24 +1393,24 @@ C - - - - - 0x0286FE 0A:86EE: 60        RTS
 
 ofs_040_12_86EF_01:
 ofs_040_3C_86EF_02:
-C - - J - - 0x0286FF 0A:86EF: BC E6 07  LDY ram_07E6,X
+C - - J - - 0x0286FF 0A:86EF: BC E6 07  LDY ram_07E6_spawner_cfg,X
 C - - - - - 0x028702 0A:86F2: B9 4E 05  LDA ram_obj_id,Y
 C - - - - - 0x028705 0A:86F5: D0 F7     BNE bra_86EE_RTS
 C - - - - - 0x028707 0A:86F7: A9 00     LDA #$00
-C - - - - - 0x028709 0A:86F9: 9D C8 07  STA ram_07C8,X
+C - - - - - 0x028709 0A:86F9: 9D C8 07  STA ram_spawner_subscript,X
 C - - - - - 0x02870C 0A:86FC: 60        RTS
 
 
 
 ofs_040_3D_86FD_01:
 ofs_040_3E_86FD_01:
-C - - J - - 0x02870D 0A:86FD: BC E6 07  LDY ram_07E6,X
+C - - J - - 0x02870D 0A:86FD: BC E6 07  LDY ram_07E6_spawner_cfg,X
 C - - - - - 0x028710 0A:8700: B9 4E 05  LDA ram_obj_id,Y
 C - - - - - 0x028713 0A:8703: D0 E9     BNE bra_86EE_RTS
 C - - - - - 0x028715 0A:8705: A9 40     LDA #$40
 loc_8707:
-C D 0 - - - 0x028717 0A:8707: 9D CE 07  STA ram_07CE,X
-C - - - - - 0x02871A 0A:870A: FE C8 07  INC ram_07C8,X
+C D 0 - - - 0x028717 0A:8707: 9D CE 07  STA ram_spawner_delay,X
+C - - - - - 0x02871A 0A:870A: FE C8 07  INC ram_spawner_subscript,X
 C - - - - - 0x02871D 0A:870D: 60        RTS
 
 
@@ -1398,15 +1418,16 @@ C - - - - - 0x02871D 0A:870D: 60        RTS
 ofs_040_3D_870E_02:
 ofs_040_3E_870E_02:
 ofs_040_51_870E_02:
-C - - J - - 0x02871E 0A:870E: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x02871E 0A:870E: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x028721 0A:8711: D0 DB     BNE bra_86EE_RTS
 C - - - - - 0x028723 0A:8713: A9 00     LDA #$00
-C - - - - - 0x028725 0A:8715: 9D C8 07  STA ram_07C8,X
+C - - - - - 0x028725 0A:8715: 9D C8 07  STA ram_spawner_subscript,X
 C - - - - - 0x028728 0A:8718: 60        RTS
 
 
 
 _off033_8719_51:
+; con_spawner_51
 - D 0 - I - 0x028729 0A:8719: 1F 87     .word ofs_040_51_871F_00
 - D 0 - I - 0x02872B 0A:871B: 5C 87     .word ofs_040_51_875C_01
 - D 0 - I - 0x02872D 0A:871D: 0E 87     .word ofs_040_51_870E_02
@@ -1417,7 +1438,7 @@ ofs_040_51_871F_00:
 C - - J - - 0x02872F 0A:871F: A5 CA     LDA ram_00CA
 C - - - - - 0x028731 0A:8721: C9 80     CMP #$80
 C - - - - - 0x028733 0A:8723: 90 24     BCC bra_8749_RTS
-C - - - - - 0x028735 0A:8725: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028735 0A:8725: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028738 0A:8728: 20 73 8D  JSR sub_8D73
 C - - - - - 0x02873B 0A:872B: D0 1C     BNE bra_8749_RTS
 C - - - - - 0x02873D 0A:872D: AC A8 04  LDY ram_plr_facing
@@ -1469,7 +1490,7 @@ tbl_875A_offset:
 
 
 ofs_040_51_875C_01:
-C - - J - - 0x02876C 0A:875C: BC E6 07  LDY ram_07E6,X
+C - - J - - 0x02876C 0A:875C: BC E6 07  LDY ram_07E6_spawner_cfg,X
 C - - - - - 0x02876F 0A:875F: B9 4E 05  LDA ram_obj_id,Y
 C - - - - - 0x028772 0A:8762: D0 8A     BNE bra_86EE_RTS
 C - - - - - 0x028774 0A:8764: A9 81     LDA #$81
@@ -1477,7 +1498,8 @@ C - - - - - 0x028776 0A:8766: 4C 07 87  JMP loc_8707
 
 
 
-_off033_8769_3C:
+_off033_8769_3C_swamp_frog:
+; con_spawner_swamp_frog
 - D 0 - I - 0x028779 0A:8769: 6F 87     .word ofs_040_3C_876F_00
 - D 0 - I - 0x02877B 0A:876B: 87 87     .word ofs_040_3C_8787_01
 - D 0 - I - 0x02877D 0A:876D: EF 86     .word ofs_040_3C_86EF_02
@@ -1485,20 +1507,20 @@ _off033_8769_3C:
 
 
 ofs_040_3C_876F_00:
-C - - J - - 0x02877F 0A:876F: 20 DE 85  JSR sub_85DE
+C - - J - - 0x02877F 0A:876F: 20 DE 85  JSR sub_85DE_prepare_next_spawner_subscript
 bra_8772:
 C - - - - - 0x028782 0A:8772: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x028784 0A:8774: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x028786 0A:8776: 7D 38 04  ADC ram_obj_pos_X_hi,X
 C - - - - - 0x028789 0A:8779: 29 03     AND #$03
 C - - - - - 0x02878B 0A:877B: A8        TAY
-C - - - - - 0x02878C 0A:877C: B9 83 87  LDA tbl_8783,Y
-C - - - - - 0x02878F 0A:877F: 9D CE 07  STA ram_07CE,X
+C - - - - - 0x02878C 0A:877C: B9 83 87  LDA tbl_8783_spawner_delay,Y
+C - - - - - 0x02878F 0A:877F: 9D CE 07  STA ram_spawner_delay,X
 C - - - - - 0x028792 0A:8782: 60        RTS
 
 
 
-tbl_8783:
+tbl_8783_spawner_delay:
 - D 0 - - - 0x028793 0A:8783: 08        .byte $08   ; 00 
 - D 0 - - - 0x028794 0A:8784: 38        .byte $38   ; 01 
 - D 0 - - - 0x028795 0A:8785: 18        .byte $18   ; 02 
@@ -1507,11 +1529,11 @@ tbl_8783:
 
 
 ofs_040_3C_8787_01:
-C - - J - - 0x028797 0A:8787: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x028797 0A:8787: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x02879A 0A:878A: D0 70     BNE bra_87FC_RTS
-C - - - - - 0x02879C 0A:878C: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x02879C 0A:878C: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x02879F 0A:878F: 20 83 83  JSR sub_8383_find_empty_object_slot_01_03
-C - - - - - 0x0287A2 0A:8792: D0 DE     BNE bra_8772
+C - - - - - 0x0287A2 0A:8792: D0 DE     BNE bra_8772    ; if not found
 C - - - - - 0x0287A4 0A:8794: 8A        TXA
 C - - - - - 0x0287A5 0A:8795: 65 1A     ADC ram_frm_cnt
 C - - - - - 0x0287A7 0A:8797: 6D 38 04  ADC ram_plr_pos_X_hi
@@ -1551,6 +1573,7 @@ tbl_87BA_offset:
 
 
 _off033_87BC_3B:
+; con_spawner_3B
 - D 0 - I - 0x0287CC 0A:87BC: C0 87     .word ofs_040_3B_87C0_00
 - D 0 - I - 0x0287CE 0A:87BE: C6 87     .word ofs_040_3B_87C6_01
 
@@ -1558,15 +1581,15 @@ _off033_87BC_3B:
 
 ofs_040_3B_87C0_00:
 C - - J - - 0x0287D0 0A:87C0: 20 CB 87  JSR sub_87CB
-C - - - - - 0x0287D3 0A:87C3: 4C DE 85  JMP loc_85DE
+C - - - - - 0x0287D3 0A:87C3: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 
 
 
 ofs_040_3B_87C6_01:
-C - - J - - 0x0287D6 0A:87C6: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x0287D6 0A:87C6: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x0287D9 0A:87C9: D0 31     BNE bra_87FC_RTS
 sub_87CB:
-C - - - - - 0x0287DB 0A:87CB: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x0287DB 0A:87CB: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x0287DE 0A:87CE: 20 73 8D  JSR sub_8D73
 C - - - - - 0x0287E1 0A:87D1: D0 1B     BNE bra_87EE
 C - - - - - 0x0287E3 0A:87D3: 8A        TXA
@@ -1588,7 +1611,7 @@ C - - - - - 0x028802 0A:87F2: AC F6 07  LDY ram_quest
 C - - - - - 0x028805 0A:87F5: F0 02     BEQ bra_87F9_1st_quest
 C - - - - - 0x028807 0A:87F7: A9 30     LDA #$30
 bra_87F9_1st_quest:
-C - - - - - 0x028809 0A:87F9: 9D CE 07  STA ram_07CE,X
+C - - - - - 0x028809 0A:87F9: 9D CE 07  STA ram_spawner_delay,X
 bra_87FC_RTS:
 C - - - - - 0x02880C 0A:87FC: 60        RTS
 
@@ -1625,15 +1648,16 @@ tbl_880D_offset:
 
 
 _off033_880F_4A:
+; con_spawner_4A
 - D 0 - I - 0x02881F 0A:880F: 13 88     .word ofs_040_4A_8813_00
 - D 0 - I - 0x028821 0A:8811: 24 88     .word ofs_040_4A_8824_01
 
 
 
 ofs_040_4A_8813_00:
-C - - J - - 0x028823 0A:8813: FE C8 07  INC ram_07C8,X
+C - - J - - 0x028823 0A:8813: FE C8 07  INC ram_spawner_subscript,X
 bra_8816:
-C - - - - - 0x028826 0A:8816: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028826 0A:8816: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028829 0A:8819: 20 AE 83  JSR sub_83AE_find_empty_object_slot_0A_0C
 C - - - - - 0x02882C 0A:881C: D0 03     BNE bra_8821
 C - - - - - 0x02882E 0A:881E: 20 3C 88  JSR sub_883C
@@ -1643,7 +1667,7 @@ C - - - - - 0x028831 0A:8821: 4C B6 88  JMP loc_88B6
 
 
 ofs_040_4A_8824_01:
-C - - J - - 0x028834 0A:8824: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x028834 0A:8824: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x028837 0A:8827: F0 ED     BEQ bra_8816
 bra_8829_RTS:
 C - - - - - 0x028839 0A:8829: 60        RTS
@@ -1651,16 +1675,17 @@ C - - - - - 0x028839 0A:8829: 60        RTS
 
 
 _off033_882A_48:
+; con_spawner_48
 - D 0 - I - 0x02883A 0A:882A: 2E 88     .word ofs_040_48_882E_00
 - D 0 - I - 0x02883C 0A:882C: 72 88     .word ofs_040_48_8872_01
 
 
 
 ofs_040_48_882E_00:
-C - - J - - 0x02883E 0A:882E: FE C8 07  INC ram_07C8,X
+C - - J - - 0x02883E 0A:882E: FE C8 07  INC ram_spawner_subscript,X
 bra_8831:
 C - - - - - 0x028841 0A:8831: 20 B6 88  JSR sub_88B6
-C - - - - - 0x028844 0A:8834: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028844 0A:8834: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028847 0A:8837: 20 73 8D  JSR sub_8D73
 C - - - - - 0x02884A 0A:883A: D0 ED     BNE bra_8829_RTS
 sub_883C:
@@ -1707,7 +1732,7 @@ tbl_886A:
 
 
 ofs_040_48_8872_01:
-C - - J - - 0x028882 0A:8872: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x028882 0A:8872: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x028885 0A:8875: F0 BA     BEQ bra_8831
 bra_8877_RTS:
 C - - - - - 0x028887 0A:8877: 60        RTS
@@ -1715,6 +1740,7 @@ C - - - - - 0x028887 0A:8877: 60        RTS
 
 
 _off033_8878_03:
+; con_spawner_03
 - D 0 - I - 0x028888 0A:8878: 7C 88     .word ofs_040_03_887C_00
 - D 0 - I - 0x02888A 0A:887A: 84 88     .word ofs_040_03_8884_01
 
@@ -1722,7 +1748,7 @@ _off033_8878_03:
 
 ofs_040_03_887C_00:
 C - - J - - 0x02888C 0A:887C: 20 89 88  JSR sub_8889
-C - - - - - 0x02888F 0A:887F: 4C DE 85  JMP loc_85DE
+C - - - - - 0x02888F 0A:887F: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 
 
 
@@ -1736,7 +1762,7 @@ ofs_040_03_8884_01:
 C - - J - - 0x028894 0A:8884: 20 28 8E  JSR sub_8E28
 C - - - - - 0x028897 0A:8887: D0 3A     BNE bra_88C3_RTS
 sub_8889:
-C - - - - - 0x028899 0A:8889: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028899 0A:8889: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x02889C 0A:888C: 20 54 8E  JSR sub_8E54_find_empty_object_slot
 C - - - - - 0x02889F 0A:888F: D0 25     BNE bra_88B6
 C - - - - - 0x0288A1 0A:8891: A5 32     LDA ram_blk_id_hi
@@ -1775,14 +1801,15 @@ loc_88C4:
 sub_88C4:
 C D 0 - - - 0x0288D4 0A:88C4: AD F6 07  LDA ram_quest
 C - - - - - 0x0288D7 0A:88C7: F0 04     BEQ bra_88CD_1st_quest
-C - - - - - 0x0288D9 0A:88C9: A9 6D     LDA #$6D
-C - - - - - 0x0288DB 0A:88CB: 85 02     STA ram_0002_t038
+C - - - - - 0x0288D9 0A:88C9: A9 6D     LDA #con_BEA1_6D
+C - - - - - 0x0288DB 0A:88CB: 85 02     STA ram_0002_t038_ai_script
 bra_88CD_1st_quest:
 C - - - - - 0x0288DD 0A:88CD: 4C DE 8D  JMP loc_8DDE
 
 
 
 _off033_88D0_46:
+; con_spawner_46
 - D 0 - I - 0x0288E0 0A:88D0: D4 88     .word ofs_040_46_88D4_00
 - D 0 - I - 0x0288E2 0A:88D2: DF 88     .word ofs_040_46_88DF_01
 
@@ -1790,31 +1817,31 @@ _off033_88D0_46:
 
 ofs_040_46_88D4_00:
 C - - J - - 0x0288E4 0A:88D4: A9 00     LDA #$00
-C - - - - - 0x0288E6 0A:88D6: 9D E6 07  STA ram_07E6,X
+C - - - - - 0x0288E6 0A:88D6: 9D E6 07  STA ram_07E6_spawner_cfg,X
 C - - - - - 0x0288E9 0A:88D9: 20 E4 88  JSR sub_88E4
-C - - - - - 0x0288EC 0A:88DC: 4C DE 85  JMP loc_85DE
+C - - - - - 0x0288EC 0A:88DC: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 
 
 
 ofs_040_46_88DF_01:
-C - - J - - 0x0288EF 0A:88DF: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x0288EF 0A:88DF: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x0288F2 0A:88E2: D0 93     BNE bra_8877_RTS
 sub_88E4:
-C - - - - - 0x0288F4 0A:88E4: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x0288F4 0A:88E4: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x0288F7 0A:88E7: 20 A0 83  JSR sub_83A0_find_empty_object_slot_04_06
 C - - - - - 0x0288FA 0A:88EA: D0 24     BNE bra_8910
-C - - - - - 0x0288FC 0A:88EC: BD E6 07  LDA ram_07E6,X
+C - - - - - 0x0288FC 0A:88EC: BD E6 07  LDA ram_07E6_spawner_cfg,X
 C - - - - - 0x0288FF 0A:88EF: C9 08     CMP #$08
 C - - - - - 0x028901 0A:88F1: 90 05     BCC bra_88F8
 C - - - - - 0x028903 0A:88F3: A9 00     LDA #$00
-C - - - - - 0x028905 0A:88F5: 9D E6 07  STA ram_07E6,X
+C - - - - - 0x028905 0A:88F5: 9D E6 07  STA ram_07E6_spawner_cfg,X
 bra_88F8:
-C - - - - - 0x028908 0A:88F8: BC E6 07  LDY ram_07E6,X
+C - - - - - 0x028908 0A:88F8: BC E6 07  LDY ram_07E6_spawner_cfg,X
 C - - - - - 0x02890B 0A:88FB: B9 25 89  LDA tbl_8925_pos_Y_hi,Y
 C - - - - - 0x02890E 0A:88FE: 85 01     STA ram_0001_t047_pos_Y_hi
 C - - - - - 0x028910 0A:8900: B9 1D 89  LDA tbl_891D_pos_X_hi,Y
 C - - - - - 0x028913 0A:8903: 85 00     STA ram_0000_t0E6_pos_X_hi
-C - - - - - 0x028915 0A:8905: FE E6 07  INC ram_07E6,X
+C - - - - - 0x028915 0A:8905: FE E6 07  INC ram_07E6_spawner_cfg,X
 C - - - - - 0x028918 0A:8908: 20 2D 89  JSR sub_892D
 C - - - - - 0x02891B 0A:890B: D0 03     BNE bra_8910
 C - - - - - 0x02891D 0A:890D: 20 DE 8D  JSR sub_8DDE
@@ -1876,6 +1903,7 @@ bra_8942:
 
 
 _off033_8948_2D:
+; con_spawner_2D
 - D 0 - I - 0x028958 0A:8948: 4C 89     .word ofs_040_2D_894C_00
 - D 0 - I - 0x02895A 0A:894A: 52 89     .word ofs_040_2D_8952_01
 
@@ -1883,17 +1911,17 @@ _off033_8948_2D:
 
 ofs_040_2D_894C_00:
 C - - J - - 0x02895C 0A:894C: 20 57 89  JSR sub_8957
-C - - - - - 0x02895F 0A:894F: 4C DE 85  JMP loc_85DE
+C - - - - - 0x02895F 0A:894F: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 
 
 
 ofs_040_2D_8952_01:
-C - - J - - 0x028962 0A:8952: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x028962 0A:8952: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x028965 0A:8955: D0 16     BNE bra_896D_RTS
 sub_8957:
 C - - - - - 0x028967 0A:8957: A9 80     LDA #$80
-C - - - - - 0x028969 0A:8959: 9D CE 07  STA ram_07CE,X
-C - - - - - 0x02896C 0A:895C: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028969 0A:8959: 9D CE 07  STA ram_spawner_delay,X
+C - - - - - 0x02896C 0A:895C: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x02896F 0A:895F: 20 7B 8D  JSR sub_8D7B
 C - - - - - 0x028972 0A:8962: D0 09     BNE bra_896D_RTS
 C - - - - - 0x028974 0A:8964: AC A8 04  LDY ram_plr_facing
@@ -1913,6 +1941,9 @@ tbl_896E_pos_X_hi:
 _off033_8970_0C:
 _off033_8970_2B:
 _off033_8970_47:
+; con_spawner_0C
+; con_spawner_2B
+; con_spawner_47
 - D 0 - I - 0x028980 0A:8970: 74 89     .word ofs_040_0C_8974_00
 - D 0 - I - 0x028982 0A:8972: 7A 89     .word ofs_040_0C_897A_01
 
@@ -1920,7 +1951,7 @@ _off033_8970_47:
 
 ofs_040_0C_8974_00:
 C - - J - - 0x028984 0A:8974: 20 7F 89  JSR sub_897F
-C - - - - - 0x028987 0A:8977: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028987 0A:8977: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 
 
 
@@ -1929,9 +1960,9 @@ C - - J - - 0x02898A 0A:897A: 20 28 8E  JSR sub_8E28
 C - - - - - 0x02898D 0A:897D: D0 5A     BNE bra_89D9_RTS
 sub_897F:
 C - - - - - 0x02898F 0A:897F: A9 C0     LDA #$C0
-C - - - - - 0x028991 0A:8981: 9D CE 07  STA ram_07CE,X
-C - - - - - 0x028994 0A:8984: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x028997 0A:8987: 20 8D 84  JSR sub_848D_check_for_certain_blk
+C - - - - - 0x028991 0A:8981: 9D CE 07  STA ram_spawner_delay,X
+C - - - - - 0x028994 0A:8984: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x028997 0A:8987: 20 8D 84  JSR sub_848D_check_for_0E_01_01_blk
 C - - - - - 0x02899A 0A:898A: D0 06     BNE bra_8992_no_match
 ; if match
 C - - - - - 0x02899C 0A:898C: 20 89 8E  JSR sub_8E89
@@ -2027,13 +2058,14 @@ C - - - - - 0x028A18 0A:8A08: 60        RTS
 
 
 _off033_8A09_52:
+; con_spawner_52
 - D 0 - I - 0x028A19 0A:8A09: 17 8A     .word ofs_040_52_8A17_00
 - D 0 - I - 0x028A1B 0A:8A0B: 0D 8A     .word ofs_040_52_8A0D_01
 
 
 
 ofs_040_52_8A0D_01:
-C - - J - - 0x028A1D 0A:8A0D: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x028A1D 0A:8A0D: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x028A20 0A:8A10: F0 10     BEQ bra_8A22
 bra_8A12_RTS:
 C - - - - - 0x028A22 0A:8A12: 60        RTS
@@ -2041,6 +2073,7 @@ C - - - - - 0x028A22 0A:8A12: 60        RTS
 
 
 _off033_8A13_04:
+; con_spawner_04
 - D 0 - I - 0x028A23 0A:8A13: 17 8A     .word ofs_040_04_8A17_00
 - D 0 - I - 0x028A25 0A:8A15: 1D 8A     .word ofs_040_04_8A1D_01
 
@@ -2049,7 +2082,7 @@ _off033_8A13_04:
 ofs_040_04_8A17_00:
 ofs_040_52_8A17_00:
 C - - J - - 0x028A27 0A:8A17: 20 22 8A  JSR sub_8A22
-C - - - - - 0x028A2A 0A:8A1A: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028A2A 0A:8A1A: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 
 
 
@@ -2059,8 +2092,8 @@ C - - - - - 0x028A30 0A:8A20: D0 F0     BNE bra_8A12_RTS
 bra_8A22:
 sub_8A22:
 C - - - - - 0x028A32 0A:8A22: A9 90     LDA #$90
-C - - - - - 0x028A34 0A:8A24: 9D CE 07  STA ram_07CE,X
-C - - - - - 0x028A37 0A:8A27: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028A34 0A:8A24: 9D CE 07  STA ram_spawner_delay,X
+C - - - - - 0x028A37 0A:8A27: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028A3A 0A:8A2A: 20 7B 8D  JSR sub_8D7B
 C - - - - - 0x028A3D 0A:8A2D: D0 72     BNE bra_8AA1_RTS
 C - - - - - 0x028A3F 0A:8A2F: 20 44 8A  JSR sub_8A44
@@ -2091,10 +2124,10 @@ C - - - - - 0x028A63 0A:8A53: 60        RTS
 
 
 ofs_040_1A_8A54_01:
-C - - J - - 0x028A64 0A:8A54: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x028A64 0A:8A54: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x028A67 0A:8A57: D0 05     BNE bra_8A5E_RTS
 C - - - - - 0x028A69 0A:8A59: A9 00     LDA #$00
-C - - - - - 0x028A6B 0A:8A5B: 9D C8 07  STA ram_07C8,X
+C - - - - - 0x028A6B 0A:8A5B: 9D C8 07  STA ram_spawner_subscript,X
 bra_8A5E_RTS:
 C - - - - - 0x028A6E 0A:8A5E: 60        RTS
 
@@ -2102,39 +2135,41 @@ C - - - - - 0x028A6E 0A:8A5E: 60        RTS
 
 _off033_8A5F_1A:
 _off033_8A5F_50:
+; con_spawner_1A
+; con_spawner_50
 - D 0 - I - 0x028A6F 0A:8A5F: 63 8A     .word ofs_040_1A_8A63_00
 - D 0 - I - 0x028A71 0A:8A61: 54 8A     .word ofs_040_1A_8A54_01
 
 
 
 ofs_040_1A_8A63_00:
-C - - J - - 0x028A73 0A:8A63: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028A73 0A:8A63: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028A76 0A:8A66: D0 39     BNE bra_8AA1_RTS
 C - - - - - 0x028A78 0A:8A68: 20 1A 8E  JSR sub_8E1A
 C - - - - - 0x028A7B 0A:8A6B: C9 20     CMP #$20
 C - - - - - 0x028A7D 0A:8A6D: B0 32     BCS bra_8AA1_RTS
 C - - - - - 0x028A7F 0A:8A6F: A9 02     LDA #$02
-C - - - - - 0x028A81 0A:8A71: 9D E6 07  STA ram_07E6,X
-C - - - - - 0x028A84 0A:8A74: 20 DE 85  JSR sub_85DE
+C - - - - - 0x028A81 0A:8A71: 9D E6 07  STA ram_07E6_spawner_cfg,X
+C - - - - - 0x028A84 0A:8A74: 20 DE 85  JSR sub_85DE_prepare_next_spawner_subscript
 bra_8A77_loop:
-C - - - - - 0x028A87 0A:8A77: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028A87 0A:8A77: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028A8A 0A:8A7A: 20 54 8E  JSR sub_8E54_find_empty_object_slot
 C - - - - - 0x028A8D 0A:8A7D: D0 16     BNE bra_8A95
 C - - - - - 0x028A8F 0A:8A7F: 20 DE 8D  JSR sub_8DDE
 C - - - - - 0x028A92 0A:8A82: 86 09     STX ram_0009_t026_save_X
 C - - - - - 0x028A94 0A:8A84: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x028A96 0A:8A86: 18        CLC
-C - - - - - 0x028A97 0A:8A87: BC E6 07  LDY ram_07E6,X
+C - - - - - 0x028A97 0A:8A87: BC E6 07  LDY ram_07E6_spawner_cfg,X
 C - - - - - 0x028A9A 0A:8A8A: B9 A2 8A  LDA tbl_8AA2,Y
-C - - - - - 0x028A9D 0A:8A8D: 7D DA 07  ADC ram_07DA,X
+C - - - - - 0x028A9D 0A:8A8D: 7D DA 07  ADC ram_spawner_pos_X_hi,X
 C - - - - - 0x028AA0 0A:8A90: A6 09     LDX ram_0009_t026_save_X
 C - - - - - 0x028AA2 0A:8A92: 9D 38 04  STA ram_obj_pos_X_hi,X
 bra_8A95:
 C - - - - - 0x028AA5 0A:8A95: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x028AA7 0A:8A97: DE E6 07  DEC ram_07E6,X
+C - - - - - 0x028AA7 0A:8A97: DE E6 07  DEC ram_07E6_spawner_cfg,X
 C - - - - - 0x028AAA 0A:8A9A: D0 DB     BNE bra_8A77_loop
 C - - - - - 0x028AAC 0A:8A9C: A9 28     LDA #$28
-C - - - - - 0x028AAE 0A:8A9E: 9D CE 07  STA ram_07CE,X
+C - - - - - 0x028AAE 0A:8A9E: 9D CE 07  STA ram_spawner_delay,X
 bra_8AA1_RTS:
 C - - - - - 0x028AB1 0A:8AA1: 60        RTS
 
@@ -2148,6 +2183,7 @@ tbl_8AA2:
 
 
 _off033_8AA5_4B:
+; con_spawner_4B
 - D 0 - I - 0x028AB5 0A:8AA5: B5 8A     .word ofs_040_4B_8AB5_00
 - D 0 - I - 0x028AB7 0A:8AA7: C2 8A     .word ofs_040_4B_8AC2_01
 - D 0 - I - 0x028AB9 0A:8AA9: D7 8A     .word ofs_040_4B_8AD7_02_RTS
@@ -2156,6 +2192,7 @@ _off033_8AA5_4B:
 
 
 _off033_8AAD_18:
+; con_spawner_18
 - D 0 - I - 0x028ABD 0A:8AAD: B5 8A     .word ofs_040_18_8AB5_00
 - D 0 - I - 0x028ABF 0A:8AAF: BD 8A     .word ofs_040_18_8ABD_01
 - D 0 - I - 0x028AC1 0A:8AB1: D7 8A     .word ofs_040_18_8AD7_02_RTS
@@ -2165,25 +2202,25 @@ _off033_8AAD_18:
 
 ofs_040_18_8AB5_00:
 ofs_040_4B_8AB5_00:
-C - - J - - 0x028AC5 0A:8AB5: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028AC5 0A:8AB5: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028AC8 0A:8AB8: D0 1D     BNE bra_8AD7_RTS
-C - - - - - 0x028ACA 0A:8ABA: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028ACA 0A:8ABA: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 
 
 
 ofs_040_18_8ABD_01:
-C - - J - - 0x028ACD 0A:8ABD: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x028ACD 0A:8ABD: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x028AD0 0A:8AC0: D0 15     BNE bra_8AD7_RTS
 ofs_040_4B_8AC2_01:
-C - - - - - 0x028AD2 0A:8AC2: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x028AD5 0A:8AC5: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x028AD2 0A:8AC2: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x028AD5 0A:8AC5: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028AD8 0A:8AC8: D0 08     BNE bra_8AD2
 C - - - - - 0x028ADA 0A:8ACA: 20 54 8E  JSR sub_8E54_find_empty_object_slot
 C - - - - - 0x028ADD 0A:8ACD: D0 03     BNE bra_8AD2
 C - - - - - 0x028ADF 0A:8ACF: 20 BE 8B  JSR sub_8BBE
 bra_8AD2:
 C - - - - - 0x028AE2 0A:8AD2: A9 80     LDA #$80
-C - - - - - 0x028AE4 0A:8AD4: 9D CE 07  STA ram_07CE,X
+C - - - - - 0x028AE4 0A:8AD4: 9D CE 07  STA ram_spawner_delay,X
 bra_8AD7_RTS:
 ofs_040_18_8AD7_02_RTS:
 ofs_040_4B_8AD7_02_RTS:
@@ -2192,6 +2229,7 @@ C - - - - - 0x028AE7 0A:8AD7: 60        RTS
 
 
 _off033_8AD8_44:
+; con_spawner_44
 - D 0 - I - 0x028AE8 0A:8AD8: DE 8A     .word ofs_040_44_8ADE_00
 - D 0 - I - 0x028AEA 0A:8ADA: EE 8A     .word ofs_040_44_8AEE_01_RTS
 - D 0 - I - 0x028AEC 0A:8ADC: E9 8A     .word ofs_040_44_8AE9_02
@@ -2199,7 +2237,7 @@ _off033_8AD8_44:
 
 
 ofs_040_44_8ADE_00:
-C - - J - - 0x028AEE 0A:8ADE: 20 E7 8D  JSR sub_8DE7
+C - - J - - 0x028AEE 0A:8ADE: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028AF1 0A:8AE1: 20 8B 8D  JSR sub_8D8B_find_empty_object_slot
 C - - - - - 0x028AF4 0A:8AE4: D0 F1     BNE bra_8AD7_RTS    ; if not found
 ; if found
@@ -2209,7 +2247,7 @@ C - - - - - 0x028AF6 0A:8AE6: 4C BE 8B  JMP loc_8BBE
 
 ofs_040_44_8AE9_02:
 C - - J - - 0x028AF9 0A:8AE9: A9 00     LDA #$00
-C - - - - - 0x028AFB 0A:8AEB: 9D C8 07  STA ram_07C8,X
+C - - - - - 0x028AFB 0A:8AEB: 9D C8 07  STA ram_spawner_subscript,X
 ofs_040_44_8AEE_01_RTS:
 C - - J - - 0x028AFE 0A:8AEE: 60        RTS
 
@@ -2217,6 +2255,8 @@ C - - J - - 0x028AFE 0A:8AEE: 60        RTS
 
 _off033_8AEF_2C:
 _off033_8AEF_45:
+; con_spawner_2C
+; con_spawner_45
 - D 0 - I - 0x028AFF 0A:8AEF: F5 8A     .word ofs_040_45_8AF5_00
 - D 0 - I - 0x028B01 0A:8AF1: 15 8B     .word ofs_040_45_8B15_01_RTS
 - D 0 - I - 0x028B03 0A:8AF3: 57 8C     .word ofs_040_45_8C57_02
@@ -2224,10 +2264,10 @@ _off033_8AEF_45:
 
 
 ofs_040_45_8AF5_00:
-C - - J - - 0x028B05 0A:8AF5: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028B05 0A:8AF5: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028B08 0A:8AF8: D0 1B     BNE bra_8B15_RTS
-C - - - - - 0x028B0A 0A:8AFA: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x028B0D 0A:8AFD: BD E6 07  LDA ram_07E6,X
+C - - - - - 0x028B0A 0A:8AFA: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x028B0D 0A:8AFD: BD E6 07  LDA ram_07E6_spawner_cfg,X
 C - - - - - 0x028B10 0A:8B00: 85 04     STA ram_0004_t025
 C - - - - - 0x028B12 0A:8B02: 20 B9 FE  JSR sub_0x03FEC9_find_empty_object_slot_01_0C
 C - - - - - 0x028B15 0A:8B05: D0 0E     BNE bra_8B15_RTS    ; if not found
@@ -2236,7 +2276,7 @@ C - - - - - 0x028B17 0A:8B07: 20 DE 8D  JSR sub_8DDE
 C - - - - - 0x028B1A 0A:8B0A: 20 D5 8B  JSR sub_8BD5
 C - - - - - 0x028B1D 0A:8B0D: A5 04     LDA ram_0004_t025
 C - - - - - 0x028B1F 0A:8B0F: 9D 33 06  STA ram_obj_0634,X
-C - - - - - 0x028B22 0A:8B12: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028B22 0A:8B12: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 bra_8B15_RTS:
 ofs_040_45_8B15_01_RTS:
 C - - J - - 0x028B25 0A:8B15: 60        RTS
@@ -2244,6 +2284,7 @@ C - - J - - 0x028B25 0A:8B15: 60        RTS
 
 
 _off033_8B16_11:
+; con_spawner_11
 - D 0 - I - 0x028B26 0A:8B16: 1C 8B     .word ofs_040_11_8B1C_00
 - D 0 - I - 0x028B28 0A:8B18: F8 8B     .word ofs_040_11_8BF8_01_RTS
 - D 0 - I - 0x028B2A 0A:8B1A: 57 8C     .word ofs_040_11_8C57_02
@@ -2251,9 +2292,9 @@ _off033_8B16_11:
 
 
 ofs_040_11_8B1C_00:
-C - - J - - 0x028B2C 0A:8B1C: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028B2C 0A:8B1C: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028B2F 0A:8B1F: D0 3F     BNE bra_8B60_RTS
-C - - - - - 0x028B31 0A:8B21: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028B31 0A:8B21: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028B34 0A:8B24: 20 AE 83  JSR sub_83AE_find_empty_object_slot_0A_0C
 C - - - - - 0x028B37 0A:8B27: D0 37     BNE bra_8B60_RTS
 C - - - - - 0x028B39 0A:8B29: 4C BE 8B  JMP loc_8BBE
@@ -2261,6 +2302,7 @@ C - - - - - 0x028B39 0A:8B29: 4C BE 8B  JMP loc_8BBE
 
 
 _off033_8B2C_0F:
+; con_spawner_0F
 - D 0 - I - 0x028B3C 0A:8B2C: 32 8B     .word ofs_040_0F_8B32_00
 - D 0 - I - 0x028B3E 0A:8B2E: F8 8B     .word ofs_040_0F_8BF8_01_RTS
 - D 0 - I - 0x028B40 0A:8B30: 57 8C     .word ofs_040_0F_8C57_02
@@ -2268,11 +2310,11 @@ _off033_8B2C_0F:
 
 
 ofs_040_0F_8B32_00:
-C - - J - - 0x028B42 0A:8B32: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028B42 0A:8B32: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028B45 0A:8B35: D0 29     BNE bra_8B60_RTS
 C - - - - - 0x028B47 0A:8B37: 20 9C 8E  JSR sub_8E9C
 C - - - - - 0x028B4A 0A:8B3A: D0 0E     BNE bra_8B4A
-C - - - - - 0x028B4C 0A:8B3C: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028B4C 0A:8B3C: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028B4F 0A:8B3F: 20 50 8E  JSR sub_8E50
 C - - - - - 0x028B52 0A:8B42: D0 06     BNE bra_8B4A
 C - - - - - 0x028B54 0A:8B44: 20 FF 8D  JSR sub_8DFF
@@ -2283,6 +2325,7 @@ C - - - - - 0x028B5A 0A:8B4A: 4C CD 8B  JMP loc_8BCD
 
 
 _off033_8B4D_49:
+; con_spawner_49
 - D 0 - I - 0x028B5D 0A:8B4D: 53 8B     .word ofs_040_49_8B53_00
 - D 0 - I - 0x028B5F 0A:8B4F: F8 8B     .word ofs_040_49_8BF8_01_RTS
 - - - - - - 0x028B61 0A:8B51: 57 8C     .word ofs_040_49_8C57_02
@@ -2290,9 +2333,9 @@ _off033_8B4D_49:
 
 
 ofs_040_49_8B53_00:
-C - - J - - 0x028B63 0A:8B53: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028B63 0A:8B53: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028B66 0A:8B56: D0 08     BNE bra_8B60_RTS
-C - - - - - 0x028B68 0A:8B58: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028B68 0A:8B58: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028B6B 0A:8B5B: 20 AE 83  JSR sub_83AE_find_empty_object_slot_0A_0C
 C - - - - - 0x028B6E 0A:8B5E: F0 5E     BEQ bra_8BBE
 bra_8B60_RTS:
@@ -2302,6 +2345,8 @@ C - - - - - 0x028B70 0A:8B60: 60        RTS
 
 _off033_8B61_0B:
 _off033_8B61_40:
+; con_spawner_0B
+; con_spawner_40
 - D 0 - I - 0x028B71 0A:8B61: 67 8B     .word ofs_040_0B_8B67_00
 - D 0 - I - 0x028B73 0A:8B63: F8 8B     .word ofs_040_0B_8BF8_01_RTS
 - D 0 - I - 0x028B75 0A:8B65: 57 8C     .word ofs_040_0B_8C57_02
@@ -2309,9 +2354,9 @@ _off033_8B61_40:
 
 
 ofs_040_0B_8B67_00:
-C - - J - - 0x028B77 0A:8B67: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028B77 0A:8B67: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028B7A 0A:8B6A: D0 3E     BNE bra_8BAA_RTS
-C - - - - - 0x028B7C 0A:8B6C: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028B7C 0A:8B6C: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028B7F 0A:8B6F: 20 54 8E  JSR sub_8E54_find_empty_object_slot
 C - - - - - 0x028B82 0A:8B72: D0 36     BNE bra_8BAA_RTS
 C - - - - - 0x028B84 0A:8B74: AD F6 07  LDA ram_quest
@@ -2328,8 +2373,8 @@ C - - - - - 0x028B97 0A:8B87: D0 06     BNE bra_8B8F
 - - - - - - 0x028B9B 0A:8B8B: C9 01     CMP #$01
 - - - - - - 0x028B9D 0A:8B8D: F0 2F     BEQ bra_8BBE
 bra_8B8F:
-C - - - - - 0x028B9F 0A:8B8F: A9 71     LDA #$71
-C - - - - - 0x028BA1 0A:8B91: 85 02     STA ram_0002_t038
+C - - - - - 0x028B9F 0A:8B8F: A9 71     LDA #con_BEA1_71
+C - - - - - 0x028BA1 0A:8B91: 85 02     STA ram_0002_t038_ai_script
 C - - - - - 0x028BA3 0A:8B93: A9 67     LDA #$67
 C - - - - - 0x028BA5 0A:8B95: 85 03     STA ram_0003_t016_obj_id
 C - - - - - 0x028BA7 0A:8B97: 20 FF 8D  JSR sub_8DFF
@@ -2338,7 +2383,7 @@ C - - - - - 0x028BAC 0A:8B9C: 9D 7B 06  STA ram_obj_hp,X
 C - - - - - 0x028BAF 0A:8B9F: A9 33     LDA #$33
 C - - - - - 0x028BB1 0A:8BA1: 9D 57 06  STA ram_obj_0658,X
 C - - - - - 0x028BB4 0A:8BA4: 20 D5 8B  JSR sub_8BD5
-C - - - - - 0x028BB7 0A:8BA7: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028BB7 0A:8BA7: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 bra_8BAA_RTS:
 C - - - - - 0x028BBA 0A:8BAA: 60        RTS
 
@@ -2352,6 +2397,14 @@ _off033_8BAB_19:
 _off033_8BAB_28:
 _off033_8BAB_32:
 _off033_8BAB_3F:
+; con_spawner_13
+; con_spawner_15
+; con_spawner_16
+; con_spawner_17
+; con_spawner_19
+; con_spawner_28
+; con_spawner_32
+; con_spawner_3F
 - D 0 - I - 0x028BBB 0A:8BAB: B1 8B     .word ofs_040_13_8BB1_00
 - D 0 - I - 0x028BBD 0A:8BAD: F8 8B     .word ofs_040_13_8BF8_01_RTS
 - D 0 - I - 0x028BBF 0A:8BAF: 57 8C     .word ofs_040_13_8C57_02
@@ -2359,9 +2412,9 @@ _off033_8BAB_3F:
 
 
 ofs_040_13_8BB1_00:
-C - - J - - 0x028BC1 0A:8BB1: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028BC1 0A:8BB1: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028BC4 0A:8BB4: D0 42     BNE bra_8BF8_RTS
-C - - - - - 0x028BC6 0A:8BB6: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028BC6 0A:8BB6: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028BC9 0A:8BB9: 20 54 8E  JSR sub_8E54_find_empty_object_slot
 C - - - - - 0x028BCC 0A:8BBC: D0 0F     BNE bra_8BCD
 bra_8BBE:
@@ -2372,12 +2425,12 @@ loc_8BC1:
 C D 0 - - - 0x028BD1 0A:8BC1: 20 32 93  JSR sub_9332_set_hp_for_enemy
 C - - - - - 0x028BD4 0A:8BC4: 20 EC E7  JSR sub_0x03E7FC
 C - - - - - 0x028BD7 0A:8BC7: 20 D5 8B  JSR sub_8BD5
-C - - - - - 0x028BDA 0A:8BCA: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028BDA 0A:8BCA: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 loc_8BCD:
 bra_8BCD:
 C D 0 - - - 0x028BDD 0A:8BCD: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x028BDF 0A:8BCF: A9 02     LDA #$02
-C - - - - - 0x028BE1 0A:8BD1: 9D C8 07  STA ram_07C8,X
+C - - - - - 0x028BE1 0A:8BD1: 9D C8 07  STA ram_spawner_subscript,X
 C - - - - - 0x028BE4 0A:8BD4: 60        RTS
 
 
@@ -2397,10 +2450,10 @@ C - - - - - 0x028BF7 0A:8BE7: 0A        ASL
 C - - - - - 0x028BF8 0A:8BE8: 0A        ASL
 C - - - - - 0x028BF9 0A:8BE9: 0A        ASL
 C - - - - - 0x028BFA 0A:8BEA: 85 06     STA ram_0006_t005
-C - - - - - 0x028BFC 0A:8BEC: BD C8 07  LDA ram_07C8,X
+C - - - - - 0x028BFC 0A:8BEC: BD C8 07  LDA ram_spawner_subscript,X
 C - - - - - 0x028BFF 0A:8BEF: 29 0F     AND #$0F
 C - - - - - 0x028C01 0A:8BF1: 05 06     ORA ram_0006_t005
-C - - - - - 0x028C03 0A:8BF3: 9D C8 07  STA ram_07C8,X
+C - - - - - 0x028C03 0A:8BF3: 9D C8 07  STA ram_spawner_subscript,X
 C - - - - - 0x028C06 0A:8BF6: 68        PLA
 C - - - - - 0x028C07 0A:8BF7: AA        TAX
 bra_8BF8_RTS:
@@ -2421,6 +2474,9 @@ C - - - - - 0x028C08 0A:8BF8: 60        RTS
 _off033_8BF9_10:
 _off033_8BF9_14:
 _off033_8BF9_27:
+; con_spawner_10
+; con_spawner_14
+; con_spawner_27
 - D 0 - I - 0x028C09 0A:8BF9: FF 8B     .word ofs_040_10_8BFF_00
 - D 0 - I - 0x028C0B 0A:8BFB: F8 8B     .word ofs_040_10_8BF8_01_RTS
 - D 0 - I - 0x028C0D 0A:8BFD: 57 8C     .word ofs_040_10_8C57_02
@@ -2428,8 +2484,8 @@ _off033_8BF9_27:
 
 
 ofs_040_10_8BFF_00:
-C - - J - - 0x028C0F 0A:8BFF: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x028C12 0A:8C02: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028C0F 0A:8BFF: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x028C12 0A:8C02: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028C15 0A:8C05: D0 F1     BNE bra_8BF8_RTS
 C - - - - - 0x028C17 0A:8C07: 20 54 8E  JSR sub_8E54_find_empty_object_slot
 C - - - - - 0x028C1A 0A:8C0A: D0 EC     BNE bra_8BF8_RTS
@@ -2438,6 +2494,7 @@ C - - - - - 0x028C1C 0A:8C0C: 4C BE 8B  JMP loc_8BBE
 
 
 _off033_8C0F_29:
+; con_spawner_29
 - D 0 - I - 0x028C1F 0A:8C0F: 15 8C     .word ofs_040_29_8C15_00
 - D 0 - I - 0x028C21 0A:8C11: 35 8C     .word ofs_040_29_8C35_01
 - D 0 - I - 0x028C23 0A:8C13: 4C 8C     .word ofs_040_29_8C4C_02
@@ -2445,8 +2502,8 @@ _off033_8C0F_29:
 
 
 ofs_040_29_8C15_00:
-C - - J - - 0x028C25 0A:8C15: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x028C28 0A:8C18: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028C25 0A:8C15: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x028C28 0A:8C18: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028C2B 0A:8C1B: D0 47     BNE bra_8C64_RTS
 C - - - - - 0x028C2D 0A:8C1D: 20 54 8E  JSR sub_8E54_find_empty_object_slot
 C - - - - - 0x028C30 0A:8C20: D0 42     BNE bra_8C64_RTS
@@ -2455,21 +2512,21 @@ C - - - - - 0x028C35 0A:8C25: 20 32 93  JSR sub_9332_set_hp_for_enemy
 C - - - - - 0x028C38 0A:8C28: 20 EC E7  JSR sub_0x03E7FC
 C - - - - - 0x028C3B 0A:8C2B: 8A        TXA
 C - - - - - 0x028C3C 0A:8C2C: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x028C3E 0A:8C2E: 9D E6 07  STA ram_07E6,X
-C - - - - - 0x028C41 0A:8C31: FE C8 07  INC ram_07C8,X
+C - - - - - 0x028C3E 0A:8C2E: 9D E6 07  STA ram_07E6_spawner_cfg,X
+C - - - - - 0x028C41 0A:8C31: FE C8 07  INC ram_spawner_subscript,X
 C - - - - - 0x028C44 0A:8C34: 60        RTS
 
 
 
 ofs_040_29_8C35_01:
-C - - J - - 0x028C45 0A:8C35: BD E6 07  LDA ram_07E6,X
+C - - J - - 0x028C45 0A:8C35: BD E6 07  LDA ram_07E6_spawner_cfg,X
 C - - - - - 0x028C48 0A:8C38: AA        TAX
 C - - - - - 0x028C49 0A:8C39: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x028C4C 0A:8C3C: D0 0B     BNE bra_8C49
 C - - - - - 0x028C4E 0A:8C3E: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x028C50 0A:8C40: FE C8 07  INC ram_07C8,X
+C - - - - - 0x028C50 0A:8C40: FE C8 07  INC ram_spawner_subscript,X
 C - - - - - 0x028C53 0A:8C43: A9 80     LDA #$80
-C - - - - - 0x028C55 0A:8C45: 9D CE 07  STA ram_07CE,X
+C - - - - - 0x028C55 0A:8C45: 9D CE 07  STA ram_spawner_delay,X
 C - - - - - 0x028C58 0A:8C48: 60        RTS
 bra_8C49:
 C - - - - - 0x028C59 0A:8C49: A6 6C     LDX ram_006C_object_index
@@ -2479,10 +2536,10 @@ C - - - - - 0x028C5B 0A:8C4B: 60        RTS
 
 
 ofs_040_29_8C4C_02:
-C - - J - - 0x028C5C 0A:8C4C: DE CE 07  DEC ram_07CE,X
+C - - J - - 0x028C5C 0A:8C4C: DE CE 07  DEC ram_spawner_delay,X
 C - - - - - 0x028C5F 0A:8C4F: D0 FA     BNE bra_8C4B_RTS
 C - - - - - 0x028C61 0A:8C51: A9 00     LDA #$00
-C - - - - - 0x028C63 0A:8C53: 9D C8 07  STA ram_07C8,X
+C - - - - - 0x028C63 0A:8C53: 9D C8 07  STA ram_spawner_subscript,X
 C - - - - - 0x028C66 0A:8C56: 60        RTS
 
 
@@ -2503,17 +2560,18 @@ ofs_040_45_8C57_02:
 ofs_040_49_8C57_02:
 ofs_040_18_8C57_03:
 ofs_040_4B_8C57_03:
-C - - J - - 0x028C67 0A:8C57: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028C67 0A:8C57: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028C6A 0A:8C5A: F0 9C     BEQ bra_8BF8_RTS
-C - - - - - 0x028C6C 0A:8C5C: BD C8 07  LDA ram_07C8,X
+C - - - - - 0x028C6C 0A:8C5C: BD C8 07  LDA ram_spawner_subscript,X
 C - - - - - 0x028C6F 0A:8C5F: 29 F0     AND #$F0
-C - - - - - 0x028C71 0A:8C61: 9D C8 07  STA ram_07C8,X
+C - - - - - 0x028C71 0A:8C61: 9D C8 07  STA ram_spawner_subscript,X
 bra_8C64_RTS:
 C - - - - - 0x028C74 0A:8C64: 60        RTS
 
 
 
 _off033_8C65_2E:
+; con_spawner_2E
 - D 0 - I - 0x028C75 0A:8C65: 6B 8C     .word ofs_040_2E_8C6B_00
 - D 0 - I - 0x028C77 0A:8C67: F8 8B     .word ofs_040_2E_8BF8_01_RTS
 - D 0 - I - 0x028C79 0A:8C69: 57 8C     .word ofs_040_2E_8C57_02
@@ -2521,7 +2579,7 @@ _off033_8C65_2E:
 
 
 ofs_040_2E_8C6B_00:
-C - - J - - 0x028C7B 0A:8C6B: 20 E7 8D  JSR sub_8DE7
+C - - J - - 0x028C7B 0A:8C6B: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028C7E 0A:8C6E: 20 83 8D  JSR sub_8D83
 C - - - - - 0x028C81 0A:8C71: D0 85     BNE bra_8BF8_RTS
 C - - - - - 0x028C83 0A:8C73: 4C BE 8B  JMP loc_8BBE
@@ -2530,6 +2588,8 @@ C - - - - - 0x028C83 0A:8C73: 4C BE 8B  JMP loc_8BBE
 
 _off033_8C76_0E:
 _off033_8C76_41:
+; con_spawner_0E
+; con_spawner_41
 - D 0 - I - 0x028C86 0A:8C76: 7C 8C     .word ofs_040_0E_8C7C_00
 - D 0 - I - 0x028C88 0A:8C78: F8 8B     .word ofs_040_0E_8BF8_01_RTS
 - D 0 - I - 0x028C8A 0A:8C7A: 57 8C     .word ofs_040_0E_8C57_02
@@ -2537,10 +2597,10 @@ _off033_8C76_41:
 
 
 ofs_040_0E_8C7C_00:
-C - - J - - 0x028C8C 0A:8C7C: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x028C8F 0A:8C7F: BD CE 07  LDA ram_07CE,X
+C - - J - - 0x028C8C 0A:8C7C: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x028C8F 0A:8C7F: BD CE 07  LDA ram_spawner_delay,X
 C - - - - - 0x028C92 0A:8C82: 85 04     STA ram_0004_t024
-C - - - - - 0x028C94 0A:8C84: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x028C94 0A:8C84: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028C97 0A:8C87: D0 DB     BNE bra_8C64_RTS
 C - - - - - 0x028C99 0A:8C89: 20 54 8E  JSR sub_8E54_find_empty_object_slot
 C - - - - - 0x028C9C 0A:8C8C: D0 D6     BNE bra_8C64_RTS
@@ -2549,11 +2609,12 @@ C D 0 - - - 0x028C9E 0A:8C8E: 20 DE 8D  JSR sub_8DDE
 C - - - - - 0x028CA1 0A:8C91: 20 D5 8B  JSR sub_8BD5
 C - - - - - 0x028CA4 0A:8C94: A5 04     LDA ram_0004_t024
 C - - - - - 0x028CA6 0A:8C96: 9D 33 06  STA ram_obj_0634,X
-C - - - - - 0x028CA9 0A:8C99: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028CA9 0A:8C99: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 
 
 
 _off033_8C9C_2A:
+; con_spawner_2A
 - D 0 - I - 0x028CAC 0A:8C9C: A2 8C     .word ofs_040_2A_8CA2_00
 - D 0 - I - 0x028CAE 0A:8C9E: F8 8B     .word ofs_040_2A_8BF8_01_RTS
 - - - - - - 0x028CB0 0A:8CA0: 57 8C     .word ofs_040_2A_8C57_02
@@ -2561,8 +2622,8 @@ _off033_8C9C_2A:
 
 
 ofs_040_2A_8CA2_00:
-C - - J - - 0x028CB2 0A:8CA2: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x028CB5 0A:8CA5: BD CE 07  LDA ram_07CE,X
+C - - J - - 0x028CB2 0A:8CA2: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x028CB5 0A:8CA5: BD CE 07  LDA ram_spawner_delay,X
 C - - - - - 0x028CB8 0A:8CA8: 85 04     STA ram_0004_t024
 C - - - - - 0x028CBA 0A:8CAA: 20 B9 FE  JSR sub_0x03FEC9_find_empty_object_slot_01_0C
 C - - - - - 0x028CBD 0A:8CAD: D0 23     BNE bra_8CD2_RTS    ; if not found
@@ -2572,6 +2633,7 @@ C - - - - - 0x028CBF 0A:8CAF: 4C 8E 8C  JMP loc_8C8E
 
 
 _off033_8CB2_0D:
+; con_spawner_0D
 - D 0 - I - 0x028CC2 0A:8CB2: B8 8C     .word ofs_040_0D_8CB8_00
 - D 0 - I - 0x028CC4 0A:8CB4: F8 8B     .word ofs_040_0D_8BF8_01_RTS
 - - - - - - 0x028CC6 0A:8CB6: 57 8C     .word ofs_040_0D_8C57_02
@@ -2579,23 +2641,24 @@ _off033_8CB2_0D:
 
 
 ofs_040_0D_8CB8_00:
-C - - J - - 0x028CC8 0A:8CB8: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x028CCB 0A:8CBB: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028CC8 0A:8CB8: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x028CCB 0A:8CBB: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028CCE 0A:8CBE: D0 12     BNE bra_8CD2_RTS
 C - - - - - 0x028CD0 0A:8CC0: 20 A0 83  JSR sub_83A0_find_empty_object_slot_04_06
 C - - - - - 0x028CD3 0A:8CC3: D0 06     BNE bra_8CCB
 C - - - - - 0x028CD5 0A:8CC5: 20 DE 8D  JSR sub_8DDE
-C - - - - - 0x028CD8 0A:8CC8: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028CD8 0A:8CC8: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 bra_8CCB:
 - - - - - - 0x028CDB 0A:8CCB: A6 6C     LDX ram_006C_object_index
 - - - - - - 0x028CDD 0A:8CCD: A9 02     LDA #$02
-- - - - - - 0x028CDF 0A:8CCF: 9D C8 07  STA ram_07C8,X
+- - - - - - 0x028CDF 0A:8CCF: 9D C8 07  STA ram_spawner_subscript,X
 bra_8CD2_RTS:
 C - - - - - 0x028CE2 0A:8CD2: 60        RTS
 
 
 
 _off033_8CD3_43:
+; con_spawner_43
 - D 0 - I - 0x028CE3 0A:8CD3: D9 8C     .word ofs_040_43_8CD9_00
 - D 0 - I - 0x028CE5 0A:8CD5: 61 8D     .word ofs_040_43_8D61_01_RTS
 - - - - - - 0x028CE7 0A:8CD7: 57 8C     .word ofs_040_43_8C57_02
@@ -2603,11 +2666,11 @@ _off033_8CD3_43:
 
 
 ofs_040_43_8CD9_00:
-C - - J - - 0x028CE9 0A:8CD9: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028CE9 0A:8CD9: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028CEC 0A:8CDC: D0 F4     BNE bra_8CD2_RTS
-C - - - - - 0x028CEE 0A:8CDE: BD E6 07  LDA ram_07E6,X
+C - - - - - 0x028CEE 0A:8CDE: BD E6 07  LDA ram_07E6_spawner_cfg,X
 C - - - - - 0x028CF1 0A:8CE1: 85 17     STA ram_0017_t007_obj_facing
-C - - - - - 0x028CF3 0A:8CE3: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028CF3 0A:8CE3: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028CF6 0A:8CE6: A2 01     LDX #$01
 C - - - - - 0x028CF8 0A:8CE8: 20 D7 FE  JSR sub_0x03FEE7_clear_object_speed_and_data
 ; A = 00
@@ -2657,9 +2720,9 @@ C - - - - - 0x028D61 0A:8D51: 9D 45 06  STA ram_obj_0646,X
 C - - - - - 0x028D64 0A:8D54: 8A        TXA
 C - - - - - 0x028D65 0A:8D55: A8        TAY
 C - - - - - 0x028D66 0A:8D56: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x028D68 0A:8D58: BD E6 07  LDA ram_07E6,X
+C - - - - - 0x028D68 0A:8D58: BD E6 07  LDA ram_07E6_spawner_cfg,X
 C - - - - - 0x028D6B 0A:8D5B: 99 33 06  STA ram_obj_0634,Y
-C - - - - - 0x028D6E 0A:8D5E: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028D6E 0A:8D5E: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 
 
 
@@ -2689,7 +2752,7 @@ sub_8D66_find_empty_object_slot:
     ; X = slot index
 C - - - - - 0x028D76 0A:8D66: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x028D78 0A:8D68: D0 08     BNE bra_8D72_RTS
-C - - - - - 0x028D7A 0A:8D6A: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x028D7A 0A:8D6A: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028D7D 0A:8D6D: D0 03     BNE bra_8D72_RTS
 C - - - - - 0x028D7F 0A:8D6F: 4C B9 FE  JMP loc_0x03FEC9_find_empty_object_slot_01_0C
 bra_8D72_RTS:
@@ -2699,21 +2762,21 @@ C - - - - - 0x028D82 0A:8D72: 60        RTS
 
 
 sub_8D73:
-C - - - - - 0x028D83 0A:8D73: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x028D83 0A:8D73: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028D86 0A:8D76: D0 FA     BNE bra_8D72_RTS
 C - - - - - 0x028D88 0A:8D78: 4C 83 83  JMP loc_8383_find_empty_object_slot_01_03
 
 
 
 sub_8D7B:
-C - - - - - 0x028D8B 0A:8D7B: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x028D8B 0A:8D7B: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028D8E 0A:8D7E: D0 F2     BNE bra_8D72_RTS
 C - - - - - 0x028D90 0A:8D80: 4C A0 83  JMP loc_83A0_find_empty_object_slot_04_06
 
 
 
 sub_8D83:
-C - - - - - 0x028D93 0A:8D83: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x028D93 0A:8D83: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028D96 0A:8D86: D0 EA     BNE bra_8D72_RTS
 C - - - - - 0x028D98 0A:8D88: 4C 92 83  JMP loc_8392_find_empty_object_slot_07_08
 
@@ -2724,7 +2787,7 @@ sub_8D8B_find_empty_object_slot:
     ; Z
         ; 0 = not found
         ; 1 = found
-C - - - - - 0x028D9B 0A:8D8B: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x028D9B 0A:8D8B: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028D9E 0A:8D8E: D0 E2     BNE bra_8D72_RTS    ; Z = 0
 C - - - - - 0x028DA0 0A:8D90: 4C B9 FE  JMP loc_0x03FEC9_find_empty_object_slot_01_0C
 
@@ -2734,6 +2797,10 @@ _off033_8D93_36:
 _off033_8D93_39:
 _off033_8D93_4D:
 _off033_8D93_4E:
+; con_spawner_36
+; con_spawner_39
+; con_spawner_4D
+; con_spawner_4E
 - D 0 - I - 0x028DA3 0A:8D93: 99 8D     .word ofs_040_36_8D99_00
 - D 0 - I - 0x028DA5 0A:8D95: C4 8D     .word ofs_040_36_8DC4_01_RTS
 - D 0 - I - 0x028DA7 0A:8D97: 57 8C     .word ofs_040_36_8C57_02
@@ -2741,9 +2808,9 @@ _off033_8D93_4E:
 
 
 ofs_040_36_8D99_00:
-C - - J - - 0x028DA9 0A:8D99: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028DA9 0A:8D99: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028DAC 0A:8D9C: D0 26     BNE bra_8DC4_RTS
-C - - - - - 0x028DAE 0A:8D9E: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028DAE 0A:8D9E: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028DB1 0A:8DA1: 20 B9 FE  JSR sub_0x03FEC9_find_empty_object_slot_01_0C
 C - - - - - 0x028DB4 0A:8DA4: A9 08     LDA #$08
 C - - - - - 0x028DB6 0A:8DA6: 9D 57 06  STA ram_obj_0658,X
@@ -2757,7 +2824,7 @@ C - - - - - 0x028DC6 0A:8DB6: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x028DC9 0A:8DB9: 09 A8     ORA #con_obj_flag_08 + con_obj_flag_20 + con_obj_flag_not_visible
 C - - - - - 0x028DCB 0A:8DBB: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x028DCE 0A:8DBE: 20 D5 8B  JSR sub_8BD5
-C - - - - - 0x028DD1 0A:8DC1: 4C DE 85  JMP loc_85DE
+C - - - - - 0x028DD1 0A:8DC1: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
 bra_8DC4_RTS:
 ofs_040_36_8DC4_01_RTS:
 ofs_040_42_8DC4_01_RTS:
@@ -2767,6 +2834,8 @@ C - - J - - 0x028DD4 0A:8DC4: 60        RTS
 
 _off033_8DC5_42:
 _off033_8DC5_4C:
+; con_spawner_42
+; con_spawner_4C
 - D 0 - I - 0x028DD5 0A:8DC5: CB 8D     .word ofs_040_42_8DCB_00
 - D 0 - I - 0x028DD7 0A:8DC7: C4 8D     .word ofs_040_42_8DC4_01_RTS
 - D 0 - I - 0x028DD9 0A:8DC9: 57 8C     .word ofs_040_42_8C57_02
@@ -2774,9 +2843,9 @@ _off033_8DC5_4C:
 
 
 ofs_040_42_8DCB_00:
-C - - J - - 0x028DDB 0A:8DCB: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x028DDB 0A:8DCB: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028DDE 0A:8DCE: D0 F4     BNE bra_8DC4_RTS
-C - - - - - 0x028DE0 0A:8DD0: 20 E7 8D  JSR sub_8DE7
+C - - - - - 0x028DE0 0A:8DD0: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028DE3 0A:8DD3: 20 B9 FE  JSR sub_0x03FEC9_find_empty_object_slot_01_0C
 C - - - - - 0x028DE6 0A:8DD6: A9 0E     LDA #$0E
 C - - - - - 0x028DE8 0A:8DD8: 9D 57 06  STA ram_obj_0658,X
@@ -2792,14 +2861,14 @@ C - - - - - 0x028DF4 0A:8DE4: 4C EC E7  JMP loc_0x03E7FC
 
 
 
-sub_8DE7:
-C - - - - - 0x028DF7 0A:8DE7: BD DA 07  LDA ram_07DA,X
+sub_8DE7_prepare_object_data:
+C - - - - - 0x028DF7 0A:8DE7: BD DA 07  LDA ram_spawner_pos_X_hi,X
 C - - - - - 0x028DFA 0A:8DEA: 85 00     STA ram_0000_t0E6_pos_X_hi
-C - - - - - 0x028DFC 0A:8DEC: BD D4 07  LDA ram_07D4,X
+C - - - - - 0x028DFC 0A:8DEC: BD D4 07  LDA ram_spawner_pos_Y_hi,X
 C - - - - - 0x028DFF 0A:8DEF: 85 01     STA ram_0001_t047_pos_Y_hi
-C - - - - - 0x028E01 0A:8DF1: BC C2 07  LDY ram_07C2,X
-C - - - - - 0x028E04 0A:8DF4: B9 82 92  LDA tbl_9282,Y
-C - - - - - 0x028E07 0A:8DF7: 85 02     STA ram_0002_t038
+C - - - - - 0x028E01 0A:8DF1: BC C2 07  LDY ram_spawner_script,X
+C - - - - - 0x028E04 0A:8DF4: B9 82 92  LDA tbl_9282_ai_script,Y
+C - - - - - 0x028E07 0A:8DF7: 85 02     STA ram_0002_t038_ai_script
 C - - - - - 0x028E09 0A:8DF9: B9 DA 92  LDA tbl_92DA_obj_id,Y
 C - - - - - 0x028E0C 0A:8DFC: 85 03     STA ram_0003_t016_obj_id
 C - - - - - 0x028E0E 0A:8DFE: 60        RTS
@@ -2813,7 +2882,7 @@ C - - - - - 0x028E15 0A:8E05: A5 00     LDA ram_0000_t0E6_pos_X_hi
 C - - - - - 0x028E17 0A:8E07: 9D 38 04  STA ram_obj_pos_X_hi,X
 C - - - - - 0x028E1A 0A:8E0A: A5 01     LDA ram_0001_t047_pos_Y_hi
 C - - - - - 0x028E1C 0A:8E0C: 9D 1C 04  STA ram_obj_pos_Y_hi,X
-C - - - - - 0x028E1F 0A:8E0F: A5 02     LDA ram_0002_t038
+C - - - - - 0x028E1F 0A:8E0F: A5 02     LDA ram_0002_t038_ai_script
 C - - - - - 0x028E21 0A:8E11: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x028E24 0A:8E14: A5 03     LDA ram_0003_t016_obj_id
 C - - - - - 0x028E26 0A:8E16: 9D 4E 05  STA ram_obj_id,X
@@ -2823,7 +2892,7 @@ C - - - - - 0x028E29 0A:8E19: 60        RTS
 
 sub_8E1A:
 C - - - - - 0x028E2A 0A:8E1A: 38        SEC
-C - - - - - 0x028E2B 0A:8E1B: BD DA 07  LDA ram_07DA,X
+C - - - - - 0x028E2B 0A:8E1B: BD DA 07  LDA ram_spawner_pos_X_hi,X
 C - - - - - 0x028E2E 0A:8E1E: ED 38 04  SBC ram_plr_pos_X_hi
 C - - - - - 0x028E31 0A:8E21: B0 04     BCS bra_8E27_RTS
 C - - - - - 0x028E33 0A:8E23: 49 FF     EOR #$FF
@@ -2847,15 +2916,15 @@ C - - - - - 0x028E49 0A:8E39: C9 01     CMP #$01
 C - - - - - 0x028E4B 0A:8E3B: D0 0F     BNE bra_8E4C
 C - - - - - 0x028E4D 0A:8E3D: F0 07     BEQ bra_8E46    ; jmp
 bra_8E3F:
-- - - - - - 0x028E4F 0A:8E3F: BD C2 07  LDA ram_07C2,X
-- - - - - - 0x028E52 0A:8E42: C9 0C     CMP #$0C
+- - - - - - 0x028E4F 0A:8E3F: BD C2 07  LDA ram_spawner_script,X
+- - - - - - 0x028E52 0A:8E42: C9 0C     CMP #con_spawner_0C
 - - - - - - 0x028E54 0A:8E44: D0 06     BNE bra_8E4C
 bra_8E46:
 C - - - - - 0x028E56 0A:8E46: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x028E58 0A:8E48: 29 01     AND #$01
 C - - - - - 0x028E5A 0A:8E4A: D0 03     BNE bra_8E4F_RTS
 bra_8E4C:
-C - - - - - 0x028E5C 0A:8E4C: DE CE 07  DEC ram_07CE,X
+C - - - - - 0x028E5C 0A:8E4C: DE CE 07  DEC ram_spawner_delay,X
 bra_8E4F_RTS:
 C - - - - - 0x028E5F 0A:8E4F: 60        RTS
 
@@ -2926,7 +2995,7 @@ C - - - - - 0x028EA9 0A:8E99: 4C 64 8E  JMP loc_8E64
 
 
 sub_8E9C:
-C - - - - - 0x028EAC 0A:8E9C: BC C2 07  LDY ram_07C2,X
+C - - - - - 0x028EAC 0A:8E9C: BC C2 07  LDY ram_spawner_script,X
 C - - - - - 0x028EAF 0A:8E9F: B9 DA 92  LDA tbl_92DA_obj_id,Y
 C - - - - - 0x028EB2 0A:8EA2: 85 0A     STA ram_000A_t039_obj_id
 C - - - - - 0x028EB4 0A:8EA4: A2 01     LDX #$01
@@ -2970,11 +3039,21 @@ _off033_8ED1_07:
 _off033_8ED1_1B:
 _off033_8ED1_20:
 _off033_8ED1_21:
-_off033_8ED1_22:
+_off033_8ED1_22:    ; bzk garbage label
 _off033_8ED1_23:
 _off033_8ED1_24:
 _off033_8ED1_25:
 _off033_8ED1_26:
+; con_spawner_05
+; con_spawner_06
+; con_spawner_07
+; con_spawner_1B
+; con_spawner_20
+; con_spawner_21
+; con_spawner_23
+; con_spawner_24
+; con_spawner_25
+; con_spawner_26
 - D 0 - I - 0x028EE1 0A:8ED1: D7 8E     .word ofs_040_05_8ED7_00
 - D 0 - I - 0x028EE3 0A:8ED3: EB 8E     .word ofs_040_05_8EEB_01
 - D 0 - I - 0x028EE5 0A:8ED5: 15 8F     .word ofs_040_05_8F15_02_RTS
@@ -2986,7 +3065,7 @@ C - - J - - 0x028EE7 0A:8ED7: 20 45 8F  JSR sub_8F45_check_for_blk_01_03
 C - - - - - 0x028EEA 0A:8EDA: 90 01     BCC bra_8EDD
 C - - - - - 0x028EEC 0A:8EDC: 60        RTS
 bra_8EDD:
-C - - - - - 0x028EED 0A:8EDD: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x028EED 0A:8EDD: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028EF0 0A:8EE0: D0 33     BNE bra_8F15_RTS
 C - - - - - 0x028EF2 0A:8EE2: 20 74 92  JSR sub_9274_clear_07EC_07F3
 C - - - - - 0x028EF5 0A:8EE5: 20 BC 83  JSR sub_83BC_clear_objects_data_01_0C
@@ -2999,8 +3078,8 @@ C - - J - - 0x028EFB 0A:8EEB: 20 45 8F  JSR sub_8F45_check_for_blk_01_03
 C - - - - - 0x028EFE 0A:8EEE: 90 01     BCC bra_8EF1
 - - - - - - 0x028F00 0A:8EF0: 60        RTS
 bra_8EF1:
-C - - - - - 0x028F01 0A:8EF1: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x028F04 0A:8EF4: BD E0 07  LDA ram_07E0,X
+C - - - - - 0x028F01 0A:8EF1: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x028F04 0A:8EF4: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028F07 0A:8EF7: D0 1C     BNE bra_8F15_RTS
 C - - - - - 0x028F09 0A:8EF9: A9 80     LDA #$80
 C - - - - - 0x028F0B 0A:8EFB: 8D F3 07  STA ram_07F3
@@ -3012,7 +3091,7 @@ C - - - - - 0x028F18 0A:8F08: 20 16 8F  JSR sub_8F16
 C - - - - - 0x028F1B 0A:8F0B: 20 73 8F  JSR sub_8F73
 loc_8F0E:
 C D 0 - - - 0x028F1E 0A:8F0E: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x028F20 0A:8F10: FE C8 07  INC ram_07C8,X
+C - - - - - 0x028F20 0A:8F10: FE C8 07  INC ram_spawner_subscript,X
 C - - - - - 0x028F23 0A:8F13: 86 C3     STX ram_00C3
 bra_8F15_RTS:
 ofs_040_08_8F15_01_RTS:
@@ -3190,6 +3269,7 @@ tbl_8FA8_colors:
 
 
 _off033_8FFC_1D:
+; con_spawner_1D
 - D 0 - I - 0x02900C 0A:8FFC: 02 90     .word ofs_040_1D_9002_00
 - D 0 - I - 0x02900E 0A:8FFE: 1C 90     .word ofs_040_1D_901C_01
 - D 0 - I - 0x029010 0A:9000: 9F 90     .word ofs_040_1D_909F_02_RTS
@@ -3200,7 +3280,7 @@ ofs_040_1C_9002_00:
 ofs_040_1D_9002_00:
 ofs_040_1E_9002_00:
 ofs_040_1F_9002_00:
-C - - J - - 0x029012 0A:9002: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x029012 0A:9002: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x029015 0A:9005: F0 01     BEQ bra_9008
 C - - - - - 0x029017 0A:9007: 60        RTS
 bra_9008:
@@ -3220,7 +3300,7 @@ C - - - - - 0x029029 0A:9019: 4C 0E 8F  JMP loc_8F0E
 
 
 ofs_040_1D_901C_01:
-C - - J - - 0x02902C 0A:901C: 20 E7 8D  JSR sub_8DE7
+C - - J - - 0x02902C 0A:901C: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x02902F 0A:901F: A5 BD     LDA ram_copy_hp_boss
 C - - - - - 0x029031 0A:9021: 85 16     STA ram_0016_temp
 C - - - - - 0x029033 0A:9023: A9 0C     LDA #$0C
@@ -3246,7 +3326,7 @@ C - - - - - 0x029056 0A:9046: 85 3D     STA ram_hp_boss
 C - - - - - 0x029058 0A:9048: A9 2D     LDA #$2D
 C - - - - - 0x02905A 0A:904A: 85 03     STA ram_0003_temp   ; ram_0003_t016_obj_id ???
 C - - - - - 0x02905C 0A:904C: A9 80     LDA #$80
-C - - - - - 0x02905E 0A:904E: 85 02     STA ram_0002_temp   ; ram_0002_t038 ???
+C - - - - - 0x02905E 0A:904E: 85 02     STA ram_0002_temp   ; ram_0002_t038_ai_script ???
 C - - - - - 0x029060 0A:9050: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x029062 0A:9052: C9 02     CMP #$02
 C - - - - - 0x029064 0A:9054: F0 07     BEQ bra_905D
@@ -3290,13 +3370,14 @@ C - - - - - 0x0290A2 0A:9092: A5 15     LDA ram_0015_t006_loop_counter
 C - - - - - 0x0290A4 0A:9094: 9D 1D 06  STA ram_061D_obj,X
 C - - - - - 0x0290A7 0A:9097: 20 73 8F  JSR sub_8F73
 C - - - - - 0x0290AA 0A:909A: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x0290AC 0A:909C: FE C8 07  INC ram_07C8,X
+C - - - - - 0x0290AC 0A:909C: FE C8 07  INC ram_spawner_subscript,X
 ofs_040_1D_909F_02_RTS:
 C - - - - - 0x0290AF 0A:909F: 60        RTS
 
 
 
 _off033_90A0_1F:
+; con_spawner_1F
 - D 0 - I - 0x0290B0 0A:90A0: 02 90     .word ofs_040_1F_9002_00
 - D 0 - I - 0x0290B2 0A:90A2: A6 90     .word ofs_040_1F_90A6_01
 - D 0 - I - 0x0290B4 0A:90A4: DC 90     .word ofs_040_1F_90DC_02_RTS
@@ -3304,8 +3385,8 @@ _off033_90A0_1F:
 
 
 ofs_040_1F_90A6_01:
-C - - J - - 0x0290B6 0A:90A6: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x0290B9 0A:90A9: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x0290B6 0A:90A6: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x0290B9 0A:90A9: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x0290BC 0A:90AC: D0 2E     BNE bra_90DC_RTS
 C - - - - - 0x0290BE 0A:90AE: A9 80     LDA #$80
 C - - - - - 0x0290C0 0A:90B0: 8D F3 07  STA ram_07F3
@@ -3327,7 +3408,7 @@ C - - - - - 0x0290E0 0A:90D0: CA        DEX
 C - - - - - 0x0290E1 0A:90D1: 20 16 8F  JSR sub_8F16
 C - - - - - 0x0290E4 0A:90D4: 20 73 8F  JSR sub_8F73
 C - - - - - 0x0290E7 0A:90D7: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x0290E9 0A:90D9: FE C8 07  INC ram_07C8,X
+C - - - - - 0x0290E9 0A:90D9: FE C8 07  INC ram_spawner_subscript,X
 bra_90DC_RTS:
 ofs_040_1F_90DC_02_RTS:
 C - - - - - 0x0290EC 0A:90DC: 60        RTS
@@ -3335,6 +3416,7 @@ C - - - - - 0x0290EC 0A:90DC: 60        RTS
 
 
 _off033_90DD_1E:
+; con_spawner_1E
 - D 0 - I - 0x0290ED 0A:90DD: 02 90     .word ofs_040_1E_9002_00
 - D 0 - I - 0x0290EF 0A:90DF: E3 90     .word ofs_040_1E_90E3_01
 - D 0 - I - 0x0290F1 0A:90E1: 41 91     .word ofs_040_1E_9141_02_RTS
@@ -3342,8 +3424,8 @@ _off033_90DD_1E:
 
 
 ofs_040_1E_90E3_01:
-C - - J - - 0x0290F3 0A:90E3: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x0290F6 0A:90E6: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x0290F3 0A:90E3: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x0290F6 0A:90E6: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x0290F9 0A:90E9: D0 56     BNE bra_9141_RTS
 C - - - - - 0x0290FB 0A:90EB: A9 80     LDA #$80
 C - - - - - 0x0290FD 0A:90ED: 8D F3 07  STA ram_07F3
@@ -3387,7 +3469,7 @@ C - - - - - 0x029145 0A:9135: CA        DEX
 C - - - - - 0x029146 0A:9136: 20 16 8F  JSR sub_8F16
 C - - - - - 0x029149 0A:9139: 20 73 8F  JSR sub_8F73
 C - - - - - 0x02914C 0A:913C: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02914E 0A:913E: FE C8 07  INC ram_07C8,X
+C - - - - - 0x02914E 0A:913E: FE C8 07  INC ram_spawner_subscript,X
 bra_9141_RTS:
 ofs_040_1E_9141_02_RTS:
 C - - - - - 0x029151 0A:9141: 60        RTS
@@ -3407,6 +3489,7 @@ tbl_9142_pos_X_hi:
 
 
 _off033_914A_1C:
+; con_spawner_1C
 - D 0 - I - 0x02915A 0A:914A: 02 90     .word ofs_040_1C_9002_00
 - D 0 - I - 0x02915C 0A:914C: 50 91     .word ofs_040_1C_9150_01
 - D 0 - I - 0x02915E 0A:914E: A2 91     .word ofs_040_1C_91A2_02_RTS
@@ -3414,8 +3497,8 @@ _off033_914A_1C:
 
 
 ofs_040_1C_9150_01:
-C - - J - - 0x029160 0A:9150: 20 E7 8D  JSR sub_8DE7
-C - - - - - 0x029163 0A:9153: BD E0 07  LDA ram_07E0,X
+C - - J - - 0x029160 0A:9150: 20 E7 8D  JSR sub_8DE7_prepare_object_data
+C - - - - - 0x029163 0A:9153: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x029166 0A:9156: D0 4A     BNE bra_91A2_RTS
 C - - - - - 0x029168 0A:9158: A9 80     LDA #$80
 C - - - - - 0x02916A 0A:915A: 8D F3 07  STA ram_07F3
@@ -3453,7 +3536,7 @@ C - - - - - 0x0291A6 0A:9196: CA        DEX
 C - - - - - 0x0291A7 0A:9197: 20 16 8F  JSR sub_8F16
 C - - - - - 0x0291AA 0A:919A: 20 73 8F  JSR sub_8F73
 C - - - - - 0x0291AD 0A:919D: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x0291AF 0A:919F: FE C8 07  INC ram_07C8,X
+C - - - - - 0x0291AF 0A:919F: FE C8 07  INC ram_spawner_subscript,X
 bra_91A2_RTS:
 ofs_040_1C_91A2_02_RTS:
 C - - - - - 0x0291B2 0A:91A2: 60        RTS
@@ -3473,12 +3556,14 @@ tbl_91A3_pos_X_hi:
 
 
 _off033_91AB_09:
+; con_spawner_09
 - D 0 - I - 0x0291BB 0A:91AB: B3 91     .word ofs_040_09_91B3_00
 - D 0 - I - 0x0291BD 0A:91AD: 15 8F     .word ofs_040_09_8F15_01_RTS
 
 
 
 _off033_91AF_08:
+; con_spawner_08
 - D 0 - I - 0x0291BF 0A:91AF: CD 91     .word ofs_040_08_91CD_00
 - D 0 - I - 0x0291C1 0A:91B1: 15 8F     .word ofs_040_08_8F15_01_RTS
 
@@ -3535,7 +3620,7 @@ C - - - - - 0x02921D 0A:920D: C6 10     DEC ram_0010_temp
 C - - - - - 0x02921F 0A:920F: D0 C5     BNE bra_91D6_loop
 bra_9211:
 C - - - - - 0x029221 0A:9211: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x029223 0A:9213: FE C8 07  INC ram_07C8,X
+C - - - - - 0x029223 0A:9213: FE C8 07  INC ram_spawner_subscript,X
 bra_9216_RTS:
 C - - - - - 0x029226 0A:9216: 60        RTS
 
@@ -3556,6 +3641,7 @@ tbl_921A_pos_Y_hi:
 
 
 _off033_921D_0A:
+; con_spawner_0A
 - D 0 - I - 0x02922D 0A:921D: 21 92     .word ofs_040_0A_9221_00
 - D 0 - I - 0x02922F 0A:921F: 15 8F     .word ofs_040_0A_8F15_01_RTS
 
@@ -3593,7 +3679,7 @@ C - - - - - 0x02926D 0A:925D: 9D 37 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x029270 0A:9260: C6 10     DEC ram_0010_temp
 C - - - - - 0x029272 0A:9262: 10 C6     BPL bra_922A_loop
 C - - - - - 0x029274 0A:9264: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x029276 0A:9266: FE C8 07  INC ram_07C8,X
+C - - - - - 0x029276 0A:9266: FE C8 07  INC ram_spawner_subscript,X
 bra_9269_RTS:
 C - - - - - 0x029279 0A:9269: 60        RTS
 
@@ -3631,90 +3717,93 @@ C - - - - - 0x029291 0A:9281: 60        RTS
 
 
 
-tbl_9282:
-- - - - - - 0x029292 0A:9282: 00        .byte $00   ; 00 
-- D 0 - - - 0x029293 0A:9283: 01        .byte $01   ; 01 
-- D 0 - - - 0x029294 0A:9284: 02        .byte $02   ; 02 
-- D 0 - - - 0x029295 0A:9285: 07        .byte $07   ; 03 
-- D 0 - - - 0x029296 0A:9286: 0D        .byte $0D   ; 04 
-- D 0 - - - 0x029297 0A:9287: 00        .byte $00   ; 05 
-- D 0 - - - 0x029298 0A:9288: 00        .byte $00   ; 06 
-- D 0 - - - 0x029299 0A:9289: 00        .byte $00   ; 07 
-- - - - - - 0x02929A 0A:928A: 00        .byte $00   ; 08 
-- - - - - - 0x02929B 0A:928B: 00        .byte $00   ; 09 
-- - - - - - 0x02929C 0A:928C: 00        .byte $00   ; 0A 
-- D 0 - - - 0x02929D 0A:928D: 0E        .byte $0E   ; 0B 
-- D 0 - - - 0x02929E 0A:928E: 05        .byte $05   ; 0C 
-- D 0 - - - 0x02929F 0A:928F: 06        .byte $06   ; 0D 
-- D 0 - - - 0x0292A0 0A:9290: 12        .byte $12   ; 0E 
-- D 0 - - - 0x0292A1 0A:9291: 11        .byte $11   ; 0F 
-- D 0 - - - 0x0292A2 0A:9292: 03        .byte $03   ; 10 
-- D 0 - - - 0x0292A3 0A:9293: 10        .byte $10   ; 11 
-- D 0 - - - 0x0292A4 0A:9294: 14        .byte $14   ; 12 
-- D 0 - - - 0x0292A5 0A:9295: 21        .byte $21   ; 13 
-- D 0 - - - 0x0292A6 0A:9296: 0B        .byte $0B   ; 14 
-- D 0 - - - 0x0292A7 0A:9297: 0F        .byte $0F   ; 15 
-- D 0 - - - 0x0292A8 0A:9298: 09        .byte $09   ; 16 
-- D 0 - - - 0x0292A9 0A:9299: 0A        .byte $0A   ; 17 
-- D 0 - - - 0x0292AA 0A:929A: 08        .byte $08   ; 18 
-- D 0 - - - 0x0292AB 0A:929B: 17        .byte $17   ; 19 
-- D 0 - - - 0x0292AC 0A:929C: 16        .byte $16   ; 1A 
-- D 0 - - - 0x0292AD 0A:929D: 00        .byte $00   ; 1B 
-- D 0 - - - 0x0292AE 0A:929E: 00        .byte $00   ; 1C 
-- D 0 - - - 0x0292AF 0A:929F: 00        .byte $00   ; 1D 
-- D 0 - - - 0x0292B0 0A:92A0: 00        .byte $00   ; 1E 
-- D 0 - - - 0x0292B1 0A:92A1: 00        .byte $00   ; 1F 
-- D 0 - - - 0x0292B2 0A:92A2: 00        .byte $00   ; 20 
-- D 0 - - - 0x0292B3 0A:92A3: 00        .byte $00   ; 21 
-- - - - - - 0x0292B4 0A:92A4: 00        .byte $00   ; 22 
-- D 0 - - - 0x0292B5 0A:92A5: 00        .byte $00   ; 23 
-- D 0 - - - 0x0292B6 0A:92A6: 00        .byte $00   ; 24 
-- D 0 - - - 0x0292B7 0A:92A7: 00        .byte $00   ; 25 
-- D 0 - - - 0x0292B8 0A:92A8: 00        .byte $00   ; 26 
-- D 0 - - - 0x0292B9 0A:92A9: 04        .byte $04   ; 27 
-- D 0 - - - 0x0292BA 0A:92AA: 1C        .byte $1C   ; 28 
-- D 0 - - - 0x0292BB 0A:92AB: 1D        .byte $1D   ; 29 
-- D 0 - - - 0x0292BC 0A:92AC: 1E        .byte $1E   ; 2A 
-- - - - - - 0x0292BD 0A:92AD: 6E        .byte $6E   ; 2B 
-- - - - - - 0x0292BE 0A:92AE: 6F        .byte $6F   ; 2C 
-- D 0 - - - 0x0292BF 0A:92AF: 0C        .byte $0C   ; 2D 
-- D 0 - - - 0x0292C0 0A:92B0: 22        .byte $22   ; 2E 
-- - - - - - 0x0292C1 0A:92B1: 00        .byte $00   ; 2F 
-- - - - - - 0x0292C2 0A:92B2: 00        .byte $00   ; 30 
-- - - - - - 0x0292C3 0A:92B3: 00        .byte $00   ; 31 
-- D 0 - - - 0x0292C4 0A:92B4: 13        .byte $13   ; 32 
-- - - - - - 0x0292C5 0A:92B5: 00        .byte $00   ; 33 
-- - - - - - 0x0292C6 0A:92B6: 00        .byte $00   ; 34 
-- - - - - - 0x0292C7 0A:92B7: 00        .byte $00   ; 35 
-- D 0 - - - 0x0292C8 0A:92B8: 00        .byte $00   ; 36 
-- - - - - - 0x0292C9 0A:92B9: 00        .byte $00   ; 37 
-- - - - - - 0x0292CA 0A:92BA: 00        .byte $00   ; 38 
-- D 0 - - - 0x0292CB 0A:92BB: 00        .byte $00   ; 39 
-- D 0 - - - 0x0292CC 0A:92BC: 24        .byte $24   ; 3A 
-- D 0 - - - 0x0292CD 0A:92BD: 25        .byte $25   ; 3B 
-- D 0 - - - 0x0292CE 0A:92BE: 26        .byte $26   ; 3C 
-- D 0 - - - 0x0292CF 0A:92BF: 27        .byte $27   ; 3D 
-- D 0 - - - 0x0292D0 0A:92C0: 29        .byte $29   ; 3E 
-- D 0 - - - 0x0292D1 0A:92C1: 28        .byte $28   ; 3F 
-- D 0 - - - 0x0292D2 0A:92C2: 2B        .byte $2B   ; 40 
-- D 0 - - - 0x0292D3 0A:92C3: 2F        .byte $2F   ; 41 
-- D 0 - - - 0x0292D4 0A:92C4: 00        .byte $00   ; 42 
-- D 0 - - - 0x0292D5 0A:92C5: 2C        .byte $2C   ; 43 
-- D 0 - - - 0x0292D6 0A:92C6: 63        .byte $63   ; 44 
-- D 0 - - - 0x0292D7 0A:92C7: 64        .byte $64   ; 45 
-- D 0 - - - 0x0292D8 0A:92C8: 65        .byte $65   ; 46 
-- D 0 - - - 0x0292D9 0A:92C9: 66        .byte $66   ; 47 
-- D 0 - - - 0x0292DA 0A:92CA: 07        .byte $07   ; 48 
-- D 0 - - - 0x0292DB 0A:92CB: 10        .byte $10   ; 49 
-- D 0 - - - 0x0292DC 0A:92CC: 07        .byte $07   ; 4A 
-- D 0 - - - 0x0292DD 0A:92CD: 68        .byte $68   ; 4B 
-- D 0 - - - 0x0292DE 0A:92CE: 00        .byte $00   ; 4C 
-- D 0 - - - 0x0292DF 0A:92CF: 00        .byte $00   ; 4D 
-- D 0 - - - 0x0292E0 0A:92D0: 00        .byte $00   ; 4E 
-- D 0 - - - 0x0292E1 0A:92D1: 01        .byte $01   ; 4F 
-- D 0 - - - 0x0292E2 0A:92D2: 16        .byte $16   ; 50 
-- D 0 - - - 0x0292E3 0A:92D3: 6A        .byte $6A   ; 51 
-- D 0 - - - 0x0292E4 0A:92D4: 0D        .byte $0D   ; 52 
+tbl_9282_ai_script:
+- - - - - - 0x029292 0A:9282: 00        .byte con_BEA1_00   ; 00 
+- D 0 - - - 0x029293 0A:9283: 01        .byte con_BEA1_01   ; 01 
+- D 0 - - - 0x029294 0A:9284: 02        .byte con_BEA1_02   ; 02 
+- D 0 - - - 0x029295 0A:9285: 07        .byte con_BEA1_07   ; 03 
+- D 0 - - - 0x029296 0A:9286: 0D        .byte con_BEA1_0D   ; 04 
+- D 0 - - - 0x029297 0A:9287: 00        .byte con_BEA1_00   ; 05 
+- D 0 - - - 0x029298 0A:9288: 00        .byte con_BEA1_00   ; 06 
+- D 0 - - - 0x029299 0A:9289: 00        .byte con_BEA1_00   ; 07 
+- - - - - - 0x02929A 0A:928A: 00        .byte con_BEA1_00   ; 08 
+- - - - - - 0x02929B 0A:928B: 00        .byte con_BEA1_00   ; 09 
+- - - - - - 0x02929C 0A:928C: 00        .byte con_BEA1_00   ; 0A 
+- D 0 - - - 0x02929D 0A:928D: 0E        .byte con_BEA1_0E   ; 0B 
+- D 0 - - - 0x02929E 0A:928E: 05        .byte con_BEA1_05   ; 0C 
+- D 0 - - - 0x02929F 0A:928F: 06        .byte con_BEA1_06   ; 0D 
+- D 0 - - - 0x0292A0 0A:9290: 12        .byte con_BEA1_12   ; 0E 
+- D 0 - - - 0x0292A1 0A:9291: 11        .byte con_BEA1_11   ; 0F 
+- D 0 - - - 0x0292A2 0A:9292: 03        .byte con_BEA1_03   ; 10 
+- D 0 - - - 0x0292A3 0A:9293: 10        .byte con_BEA1_10   ; 11 
+- D 0 - - - 0x0292A4 0A:9294: 14        .byte con_BEA1_14   ; 12 
+- D 0 - - - 0x0292A5 0A:9295: 21        .byte con_BEA1_21   ; 13 
+- D 0 - - - 0x0292A6 0A:9296: 0B        .byte con_BEA1_0B   ; 14 
+- D 0 - - - 0x0292A7 0A:9297: 0F        .byte con_BEA1_0F   ; 15 
+- D 0 - - - 0x0292A8 0A:9298: 09        .byte con_BEA1_09   ; 16 
+- D 0 - - - 0x0292A9 0A:9299: 0A        .byte con_BEA1_0A   ; 17 
+- D 0 - - - 0x0292AA 0A:929A: 08        .byte con_BEA1_08   ; 18 
+- D 0 - - - 0x0292AB 0A:929B: 17        .byte con_BEA1_17   ; 19 
+- D 0 - - - 0x0292AC 0A:929C: 16        .byte con_BEA1_16   ; 1A 
+- D 0 - - - 0x0292AD 0A:929D: 00        .byte con_BEA1_00   ; 1B 
+- D 0 - - - 0x0292AE 0A:929E: 00        .byte con_BEA1_00   ; 1C 
+- D 0 - - - 0x0292AF 0A:929F: 00        .byte con_BEA1_00   ; 1D 
+- D 0 - - - 0x0292B0 0A:92A0: 00        .byte con_BEA1_00   ; 1E 
+- D 0 - - - 0x0292B1 0A:92A1: 00        .byte con_BEA1_00   ; 1F 
+- D 0 - - - 0x0292B2 0A:92A2: 00        .byte con_BEA1_00   ; 20 
+- D 0 - - - 0x0292B3 0A:92A3: 00        .byte con_BEA1_00   ; 21 
+- - - - - - 0x0292B4 0A:92A4: 00        .byte con_BEA1_00   ; 22 index exists but never used
+- D 0 - - - 0x0292B5 0A:92A5: 00        .byte con_BEA1_00   ; 23 
+- D 0 - - - 0x0292B6 0A:92A6: 00        .byte con_BEA1_00   ; 24 
+- D 0 - - - 0x0292B7 0A:92A7: 00        .byte con_BEA1_00   ; 25 
+- D 0 - - - 0x0292B8 0A:92A8: 00        .byte con_BEA1_00   ; 26 
+- D 0 - - - 0x0292B9 0A:92A9: 04        .byte con_BEA1_04   ; 27 
+- D 0 - - - 0x0292BA 0A:92AA: 1C        .byte con_BEA1_1C   ; 28 
+- D 0 - - - 0x0292BB 0A:92AB: 1D        .byte con_BEA1_1D   ; 29 
+- D 0 - - - 0x0292BC 0A:92AC: 1E        .byte con_BEA1_1E   ; 2A 
+- - - - - - 0x0292BD 0A:92AD: 6E        .byte con_BEA1_6E   ; 2B 
+- - - - - - 0x0292BE 0A:92AE: 6F        .byte con_BEA1_6F   ; 2C 
+- D 0 - - - 0x0292BF 0A:92AF: 0C        .byte con_BEA1_0C   ; 2D 
+- D 0 - - - 0x0292C0 0A:92B0: 22        .byte con_BEA1_22   ; 2E 
+- - - - - - 0x0292C1 0A:92B1: 00        .byte con_BEA1_00   ; 2F unused, index doesn't exist
+- - - - - - 0x0292C2 0A:92B2: 00        .byte con_BEA1_00   ; 30 unused, index doesn't exist
+- - - - - - 0x0292C3 0A:92B3: 00        .byte con_BEA1_00   ; 31 unused, index doesn't exist
+- D 0 - - - 0x0292C4 0A:92B4: 13        .byte con_BEA1_13   ; 32 
+- - - - - - 0x0292C5 0A:92B5: 00        .byte con_BEA1_00   ; 33 unused, index doesn't exist
+- - - - - - 0x0292C6 0A:92B6: 00        .byte con_BEA1_00   ; 34 unused, index doesn't exist
+- - - - - - 0x0292C7 0A:92B7: 00        .byte con_BEA1_00   ; 35 unused, index doesn't exist
+- D 0 - - - 0x0292C8 0A:92B8: 00        .byte con_BEA1_00   ; 36 
+- - - - - - 0x0292C9 0A:92B9: 00        .byte con_BEA1_00   ; 37 unused, index doesn't exist
+- - - - - - 0x0292CA 0A:92BA: 00        .byte con_BEA1_00   ; 38 unused, index doesn't exist
+- D 0 - - - 0x0292CB 0A:92BB: 00        .byte con_BEA1_00   ; 39 
+- D 0 - - - 0x0292CC 0A:92BC: 24        .byte con_BEA1_24   ; 3A 
+- D 0 - - - 0x0292CD 0A:92BD: 25        .byte con_BEA1_25   ; 3B 
+- D 0 - - - 0x0292CE 0A:92BE: 26        .byte con_BEA1_swamp_frog   ; 3C swamp frog
+- D 0 - - - 0x0292CF 0A:92BF: 27        .byte con_BEA1_27   ; 3D 
+- D 0 - - - 0x0292D0 0A:92C0: 29        .byte con_BEA1_29   ; 3E 
+- D 0 - - - 0x0292D1 0A:92C1: 28        .byte con_BEA1_28   ; 3F 
+- D 0 - - - 0x0292D2 0A:92C2: 2B        .byte con_BEA1_2B   ; 40 
+- D 0 - - - 0x0292D3 0A:92C3: 2F        .byte con_BEA1_2F   ; 41 
+- D 0 - - - 0x0292D4 0A:92C4: 00        .byte con_BEA1_00   ; 42 
+- D 0 - - - 0x0292D5 0A:92C5: 2C        .byte con_BEA1_2C   ; 43 
+- D 0 - - - 0x0292D6 0A:92C6: 63        .byte con_BEA1_63   ; 44 
+- D 0 - - - 0x0292D7 0A:92C7: 64        .byte con_BEA1_64   ; 45 
+- D 0 - - - 0x0292D8 0A:92C8: 65        .byte con_BEA1_65   ; 46 
+- D 0 - - - 0x0292D9 0A:92C9: 66        .byte con_BEA1_66   ; 47 
+- D 0 - - - 0x0292DA 0A:92CA: 07        .byte con_BEA1_07   ; 48 
+- D 0 - - - 0x0292DB 0A:92CB: 10        .byte con_BEA1_10   ; 49 
+- D 0 - - - 0x0292DC 0A:92CC: 07        .byte con_BEA1_07   ; 4A 
+- D 0 - - - 0x0292DD 0A:92CD: 68        .byte con_BEA1_68   ; 4B 
+- D 0 - - - 0x0292DE 0A:92CE: 00        .byte con_BEA1_00   ; 4C 
+- D 0 - - - 0x0292DF 0A:92CF: 00        .byte con_BEA1_00   ; 4D 
+- D 0 - - - 0x0292E0 0A:92D0: 00        .byte con_BEA1_00   ; 4E 
+- D 0 - - - 0x0292E1 0A:92D1: 01        .byte con_BEA1_01   ; 4F 
+- D 0 - - - 0x0292E2 0A:92D2: 16        .byte con_BEA1_16   ; 50 
+- D 0 - - - 0x0292E3 0A:92D3: 6A        .byte con_BEA1_6A   ; 51 
+- D 0 - - - 0x0292E4 0A:92D4: 0D        .byte con_BEA1_0D   ; 52 
+
+
+; bzk garbage, no such indexes
 - - - - - - 0x0292E5 0A:92D5: 00        .byte $00   ; 53 
 - - - - - - 0x0292E6 0A:92D6: 00        .byte $00   ; 54 
 - - - - - - 0x0292E7 0A:92D7: 00        .byte $00   ; 55 
@@ -3758,7 +3847,7 @@ tbl_92DA_obj_id:
 - D 0 - - - 0x029309 0A:92F9: 08        .byte $08   ; 1F 
 - D 0 - - - 0x02930A 0A:92FA: 09        .byte $09   ; 20 
 - D 0 - - - 0x02930B 0A:92FB: 07        .byte $07   ; 21 
-- - - - - - 0x02930C 0A:92FC: 00        .byte $00   ; 22 
+- - - - - - 0x02930C 0A:92FC: 00        .byte $00   ; 22 index exists but never used
 - D 0 - - - 0x02930D 0A:92FD: 0C        .byte $0C   ; 23 
 - D 0 - - - 0x02930E 0A:92FE: 0B        .byte $0B   ; 24 
 - D 0 - - - 0x02930F 0A:92FF: 09        .byte $09   ; 25 
@@ -3771,20 +3860,20 @@ tbl_92DA_obj_id:
 - - - - - - 0x029316 0A:9306: 64        .byte $64   ; 2C 
 - D 0 - - - 0x029317 0A:9307: 50        .byte $50   ; 2D 
 - D 0 - - - 0x029318 0A:9308: 5E        .byte $5E   ; 2E 
-- - - - - - 0x029319 0A:9309: 7D        .byte $7D   ; 2F 
-- - - - - - 0x02931A 0A:930A: 82        .byte $82   ; 30 
-- - - - - - 0x02931B 0A:930B: 80        .byte $80   ; 31 
+- - - - - - 0x029319 0A:9309: 7D        .byte $7D   ; 2F unused, index doesn't exist
+- - - - - - 0x02931A 0A:930A: 82        .byte $82   ; 30 unused, index doesn't exist
+- - - - - - 0x02931B 0A:930B: 80        .byte $80   ; 31 unused, index doesn't exist
 - D 0 - - - 0x02931C 0A:930C: 4D        .byte $4D   ; 32 
-- - - - - - 0x02931D 0A:930D: 7F        .byte $7F   ; 33 
-- - - - - - 0x02931E 0A:930E: 7E        .byte $7E   ; 34 
-- - - - - - 0x02931F 0A:930F: 84        .byte $84   ; 35 
+- - - - - - 0x02931D 0A:930D: 7F        .byte $7F   ; 33 unused, index doesn't exist
+- - - - - - 0x02931E 0A:930E: 7E        .byte $7E   ; 34 unused, index doesn't exist
+- - - - - - 0x02931F 0A:930F: 84        .byte $84   ; 35 unused, index doesn't exist
 - D 0 - - - 0x029320 0A:9310: 76        .byte $76   ; 36 
-- - - - - - 0x029321 0A:9311: 7B        .byte $7B   ; 37 
-- - - - - - 0x029322 0A:9312: 7C        .byte $7C   ; 38 
+- - - - - - 0x029321 0A:9311: 7B        .byte $7B   ; 37 unused, index doesn't exist
+- - - - - - 0x029322 0A:9312: 7C        .byte $7C   ; 38 unused, index doesn't exist
 - D 0 - - - 0x029323 0A:9313: 75        .byte $75   ; 39 
 - D 0 - - - 0x029324 0A:9314: 48        .byte $48   ; 3A 
 - D 0 - - - 0x029325 0A:9315: 60        .byte $60   ; 3B 
-- D 0 - - - 0x029326 0A:9316: 61        .byte $61   ; 3C 
+- D 0 - - - 0x029326 0A:9316: 61        .byte $61   ; 3C swamp frog
 - D 0 - - - 0x029327 0A:9317: 58        .byte $58   ; 3D 
 - D 0 - - - 0x029328 0A:9318: 58        .byte $58   ; 3E 
 - D 0 - - - 0x029329 0A:9319: 62        .byte $62   ; 3F 
@@ -3807,6 +3896,9 @@ tbl_92DA_obj_id:
 - D 0 - - - 0x02933A 0A:932A: 5A        .byte $5A   ; 50 
 - D 0 - - - 0x02933B 0A:932B: 58        .byte $58   ; 51 
 - D 0 - - - 0x02933C 0A:932C: 51        .byte $51   ; 52 
+
+
+; bzk garbage, no such indexes
 - - - - - - 0x02933D 0A:932D: 00        .byte $00   ; 53 
 - - - - - - 0x02933E 0A:932E: 00        .byte $00   ; 54 
 - - - - - - 0x02933F 0A:932F: 00        .byte $00   ; 55 
@@ -3888,7 +3980,7 @@ tbl_934F:
 
 
 
-tbl_937F:
+tbl_937F_blk_data:
 - D 0 - - - 0x02938F 0A:937F: 9D 93     .word _off032_939D_00
 - D 0 - - - 0x029391 0A:9381: A5 93     .word _off032_93A5_01
 - D 0 - - - 0x029393 0A:9383: B1 93     .word _off032_93B1_02
@@ -6163,7 +6255,7 @@ off_9911_06_00_00:
 - D 0 - I - 0x02992B 0A:991B: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02992C 0A:991C: 99        .byte con_A644_99   ; 
 ; 06 
-- D 0 - I - 0x02992D 0A:991D: 6C        .byte con_A03F_6C   ; 
+- D 0 - I - 0x02992D 0A:991D: 6C        .byte con_A03F_swamp_frog   ; 
 - D 0 - I - 0x02992E 0A:991E: 00        .byte con_A644_00   ; 
 ; 07 
 - D 0 - I - 0x02992F 0A:991F: 00        .byte con_A03F_00   ; 
@@ -6188,7 +6280,7 @@ off_9925_06_00_01:
 - D 0 - I - 0x029939 0A:9929: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02993A 0A:992A: 9E        .byte con_A644_9E   ; 
 ; 03 
-- D 0 - I - 0x02993B 0A:992B: 6C        .byte con_A03F_6C   ; 
+- D 0 - I - 0x02993B 0A:992B: 6C        .byte con_A03F_swamp_frog   ; 
 - D 0 - I - 0x02993C 0A:992C: 00        .byte con_A644_00   ; 
 ; 04 
 - D 0 - I - 0x02993D 0A:992D: 00        .byte con_A03F_00   ; 
@@ -6203,7 +6295,7 @@ off_9925_06_00_01:
 - D 0 - I - 0x029943 0A:9933: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029944 0A:9934: 00        .byte con_A644_00   ; 
 ; 08 
-- D 0 - I - 0x029945 0A:9935: 6C        .byte con_A03F_6C   ; 
+- D 0 - I - 0x029945 0A:9935: 6C        .byte con_A03F_swamp_frog   ; 
 - D 0 - I - 0x029946 0A:9936: 00        .byte con_A644_00   ; 
 ; 09 
 - D 0 - I - 0x029947 0A:9937: 00        .byte con_A03F_00   ; 
@@ -6212,7 +6304,7 @@ off_9925_06_00_01:
 - D 0 - I - 0x029949 0A:9939: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02994A 0A:993A: 00        .byte con_A644_00   ; 
 ; 0B 
-- D 0 - I - 0x02994B 0A:993B: 6C        .byte con_A03F_6C   ; 
+- D 0 - I - 0x02994B 0A:993B: 6C        .byte con_A03F_swamp_frog   ; 
 - D 0 - I - 0x02994C 0A:993C: 00        .byte con_A644_00   ; 
 ; 0C 
 - D 0 - I - 0x02994D 0A:993D: 00        .byte con_A03F_00   ; 
@@ -9134,7 +9226,7 @@ off_A023_0E_02_01:
 
 
 
-tbl_A03F:
+tbl_A03F_spawners_data:
 ; see con_A03F
 - D 1 - - - 0x02A04F 0A:A03F: 07 A2     .word _off028_A207_00
 - D 1 - - - 0x02A051 0A:A041: 0C A2     .word _off028_A20C_01
@@ -9244,7 +9336,7 @@ tbl_A03F:
 - D 1 - - - 0x02A121 0A:A111: 0F A4     .word _off028_A40F_69
 - D 1 - - - 0x02A123 0A:A113: 14 A4     .word _off028_A414_6A
 - D 1 - - - 0x02A125 0A:A115: 19 A4     .word _off028_A419_6B
-- D 1 - - - 0x02A127 0A:A117: 1E A4     .word _off028_A41E_6C
+- D 1 - - - 0x02A127 0A:A117: 1E A4     .word _off028_A41E_6C_swamp_frog
 - - - - - - 0x02A129 0A:A119: 23 A4     .word _off028_A423_6D   ; unused, index doesn't exist
 - D 1 - - - 0x02A12B 0A:A11B: 28 A4     .word _off028_A428_6E
 - D 1 - - - 0x02A12D 0A:A11D: 2D A4     .word _off028_A42D_6F
@@ -9368,7 +9460,10 @@ tbl_A03F:
 
 
 _off028_A207_00:
-- D 1 - I - 0x02A217 0A:A207: 00        .byte $00   ; 
+- D 1 - I - 0x02A217 0A:A207: 00        .byte con_spawner_00   ; 
+
+
+; bzk garbage
 - - - - - - 0x02A218 0A:A208: 00        .byte $00   ; 
 - - - - - - 0x02A219 0A:A209: 00        .byte $00   ; 
 - - - - - - 0x02A21A 0A:A20A: 00        .byte $00   ; 
@@ -9377,7 +9472,7 @@ _off028_A207_00:
 
 
 _off028_A20C_01:
-- D 1 - I - 0x02A21C 0A:A20C: 01        .byte $01   ; 
+- D 1 - I - 0x02A21C 0A:A20C: 01        .byte con_spawner_01   ; 
 - D 1 - I - 0x02A21D 0A:A20D: 20        .byte $20   ; 
 - D 1 - I - 0x02A21E 0A:A20E: C0        .byte $C0   ; 
 - D 1 - I - 0x02A21F 0A:A20F: 00        .byte $00   ; 
@@ -9386,7 +9481,7 @@ _off028_A20C_01:
 
 
 _off028_A211_02:
-- D 1 - I - 0x02A221 0A:A211: 16        .byte $16   ; 
+- D 1 - I - 0x02A221 0A:A211: 16        .byte con_spawner_16   ; 
 - D 1 - I - 0x02A222 0A:A212: 20        .byte $20   ; 
 - D 1 - I - 0x02A223 0A:A213: B0        .byte $B0   ; 
 - D 1 - I - 0x02A224 0A:A214: 00        .byte $00   ; 
@@ -9395,7 +9490,7 @@ _off028_A211_02:
 
 
 _off028_A216_03:
-- D 1 - I - 0x02A226 0A:A216: 05        .byte $05   ; 
+- D 1 - I - 0x02A226 0A:A216: 05        .byte con_spawner_05   ; 
 - D 1 - I - 0x02A227 0A:A217: 00        .byte $00   ; 
 - D 1 - I - 0x02A228 0A:A218: A8        .byte $A8   ; 
 - D 1 - I - 0x02A229 0A:A219: 00        .byte $00   ; 
@@ -9404,7 +9499,7 @@ _off028_A216_03:
 
 
 _off028_A21B_04:
-- D 1 - I - 0x02A22B 0A:A21B: 06        .byte $06   ; 
+- D 1 - I - 0x02A22B 0A:A21B: 06        .byte con_spawner_06   ; 
 - D 1 - I - 0x02A22C 0A:A21C: 00        .byte $00   ; 
 - D 1 - I - 0x02A22D 0A:A21D: B0        .byte $B0   ; 
 - D 1 - I - 0x02A22E 0A:A21E: 00        .byte $00   ; 
@@ -9413,7 +9508,7 @@ _off028_A21B_04:
 
 
 _off028_A220_05:
-- D 1 - I - 0x02A230 0A:A220: 07        .byte $07   ; 
+- D 1 - I - 0x02A230 0A:A220: 07        .byte con_spawner_07   ; 
 - D 1 - I - 0x02A231 0A:A221: 30        .byte $30   ; 
 - D 1 - I - 0x02A232 0A:A222: 70        .byte $70   ; 
 - D 1 - I - 0x02A233 0A:A223: 00        .byte $00   ; 
@@ -9422,7 +9517,7 @@ _off028_A220_05:
 
 
 _off028_A225_06:
-- D 1 - I - 0x02A235 0A:A225: 08        .byte $08   ; 
+- D 1 - I - 0x02A235 0A:A225: 08        .byte con_spawner_08   ; 
 - D 1 - I - 0x02A236 0A:A226: 20        .byte $20   ; 
 - D 1 - I - 0x02A237 0A:A227: C0        .byte $C0   ; 
 - D 1 - I - 0x02A238 0A:A228: 00        .byte $00   ; 
@@ -9431,7 +9526,7 @@ _off028_A225_06:
 
 
 _off028_A22A_07:
-- D 1 - I - 0x02A23A 0A:A22A: 09        .byte $09   ; 
+- D 1 - I - 0x02A23A 0A:A22A: 09        .byte con_spawner_09   ; 
 - D 1 - I - 0x02A23B 0A:A22B: 20        .byte $20   ; 
 - D 1 - I - 0x02A23C 0A:A22C: 40        .byte $40   ; 
 - D 1 - I - 0x02A23D 0A:A22D: 00        .byte $00   ; 
@@ -9440,7 +9535,7 @@ _off028_A22A_07:
 
 
 _off028_A22F_08:
-- D 1 - I - 0x02A23F 0A:A22F: 0A        .byte $0A   ; 
+- D 1 - I - 0x02A23F 0A:A22F: 0A        .byte con_spawner_0A   ; 
 - D 1 - I - 0x02A240 0A:A230: 20        .byte $20   ; 
 - D 1 - I - 0x02A241 0A:A231: 40        .byte $40   ; 
 - D 1 - I - 0x02A242 0A:A232: 00        .byte $00   ; 
@@ -9449,7 +9544,7 @@ _off028_A22F_08:
 
 
 _off028_A234_09:
-- D 1 - I - 0x02A244 0A:A234: 03        .byte $03   ; 
+- D 1 - I - 0x02A244 0A:A234: 03        .byte con_spawner_03   ; 
 - D 1 - I - 0x02A245 0A:A235: 20        .byte $20   ; 
 - D 1 - I - 0x02A246 0A:A236: C0        .byte $C0   ; 
 - D 1 - I - 0x02A247 0A:A237: 00        .byte $00   ; 
@@ -9458,7 +9553,7 @@ _off028_A234_09:
 
 
 _off028_A239_0A:
-- D 1 - I - 0x02A249 0A:A239: 0B        .byte $0B   ; 
+- D 1 - I - 0x02A249 0A:A239: 0B        .byte con_spawner_0B   ; 
 - D 1 - I - 0x02A24A 0A:A23A: 20        .byte $20   ; 
 - D 1 - I - 0x02A24B 0A:A23B: 88        .byte $88   ; 
 - D 1 - I - 0x02A24C 0A:A23C: 00        .byte $00   ; 
@@ -9467,7 +9562,7 @@ _off028_A239_0A:
 
 
 _off028_A23E_0B:
-- D 1 - I - 0x02A24E 0A:A23E: 0C        .byte $0C   ; 
+- D 1 - I - 0x02A24E 0A:A23E: 0C        .byte con_spawner_0C   ; 
 - D 1 - I - 0x02A24F 0A:A23F: 20        .byte $20   ; 
 - D 1 - I - 0x02A250 0A:A240: 98        .byte $98   ; 
 - D 1 - I - 0x02A251 0A:A241: 00        .byte $00   ; 
@@ -9477,7 +9572,7 @@ _off028_A23E_0B:
 
 _off028_A243_0C:
 ; bzk garbage
-- - - - - - 0x02A253 0A:A243: 0D        .byte $0D   ; 
+- - - - - - 0x02A253 0A:A243: 0D        .byte $0D   ; con_spawner_0D
 - - - - - - 0x02A254 0A:A244: 08        .byte $08   ; 
 - - - - - - 0x02A255 0A:A245: 98        .byte $98   ; 
 - - - - - - 0x02A256 0A:A246: 00        .byte $00   ; 
@@ -9487,7 +9582,7 @@ _off028_A243_0C:
 
 _off028_A248_0D:
 ; bzk garbage
-- - - - - - 0x02A258 0A:A248: 0E        .byte $0E   ; 
+- - - - - - 0x02A258 0A:A248: 0E        .byte $0E   ; con_spawner_0E
 - - - - - - 0x02A259 0A:A249: 08        .byte $08   ; 
 - - - - - - 0x02A25A 0A:A24A: 90        .byte $90   ; 
 - - - - - - 0x02A25B 0A:A24B: 00        .byte $00   ; 
@@ -9496,7 +9591,7 @@ _off028_A248_0D:
 
 
 _off028_A24D_0E:
-- D 1 - I - 0x02A25D 0A:A24D: 02        .byte $02   ; 
+- D 1 - I - 0x02A25D 0A:A24D: 02        .byte con_spawner_02   ; 
 - D 1 - I - 0x02A25E 0A:A24E: 18        .byte $18   ; 
 - D 1 - I - 0x02A25F 0A:A24F: 90        .byte $90   ; 
 - D 1 - I - 0x02A260 0A:A250: 00        .byte $00   ; 
@@ -9505,7 +9600,7 @@ _off028_A24D_0E:
 
 
 _off028_A252_0F:
-- D 1 - I - 0x02A262 0A:A252: 0F        .byte $0F   ; 
+- D 1 - I - 0x02A262 0A:A252: 0F        .byte con_spawner_0F   ; 
 - D 1 - I - 0x02A263 0A:A253: 20        .byte $20   ; 
 - D 1 - I - 0x02A264 0A:A254: 70        .byte $70   ; 
 - D 1 - I - 0x02A265 0A:A255: 00        .byte $00   ; 
@@ -9514,7 +9609,7 @@ _off028_A252_0F:
 
 
 _off028_A257_10:
-- D 1 - I - 0x02A267 0A:A257: 0B        .byte $0B   ; 
+- D 1 - I - 0x02A267 0A:A257: 0B        .byte con_spawner_0B   ; 
 - D 1 - I - 0x02A268 0A:A258: 20        .byte $20   ; 
 - D 1 - I - 0x02A269 0A:A259: 78        .byte $78   ; 
 - D 1 - I - 0x02A26A 0A:A25A: 00        .byte $00   ; 
@@ -9523,7 +9618,7 @@ _off028_A257_10:
 
 
 _off028_A25C_11:
-- D 1 - I - 0x02A26C 0A:A25C: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A26C 0A:A25C: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A26D 0A:A25D: 08        .byte $08   ; 
 - D 1 - I - 0x02A26E 0A:A25E: B0        .byte $B0   ; 
 - D 1 - I - 0x02A26F 0A:A25F: 00        .byte $00   ; 
@@ -9533,7 +9628,7 @@ _off028_A25C_11:
 
 _off028_A261_12:
 ; bzk garbage
-- - - - - - 0x02A271 0A:A261: 10        .byte $10   ; 
+- - - - - - 0x02A271 0A:A261: 10        .byte $10   ; con_spawner_10
 - - - - - - 0x02A272 0A:A262: 20        .byte $20   ; 
 - - - - - - 0x02A273 0A:A263: B0        .byte $B0   ; 
 - - - - - - 0x02A274 0A:A264: 00        .byte $00   ; 
@@ -9542,7 +9637,7 @@ _off028_A261_12:
 
 
 _off028_A266_13:
-- D 1 - I - 0x02A276 0A:A266: 14        .byte $14   ; 
+- D 1 - I - 0x02A276 0A:A266: 14        .byte con_spawner_14   ; 
 - D 1 - I - 0x02A277 0A:A267: 20        .byte $20   ; 
 - D 1 - I - 0x02A278 0A:A268: 40        .byte $40   ; 
 - D 1 - I - 0x02A279 0A:A269: 00        .byte $00   ; 
@@ -9551,7 +9646,7 @@ _off028_A266_13:
 
 
 _off028_A26B_14:
-- D 1 - I - 0x02A27B 0A:A26B: 18        .byte $18   ; 
+- D 1 - I - 0x02A27B 0A:A26B: 18        .byte con_spawner_18   ; 
 - D 1 - I - 0x02A27C 0A:A26C: 20        .byte $20   ; 
 - D 1 - I - 0x02A27D 0A:A26D: 40        .byte $40   ; 
 - D 1 - I - 0x02A27E 0A:A26E: 40        .byte $40   ; 
@@ -9560,7 +9655,7 @@ _off028_A26B_14:
 
 
 _off028_A270_15:
-- D 1 - I - 0x02A280 0A:A270: 16        .byte $16   ; 
+- D 1 - I - 0x02A280 0A:A270: 16        .byte con_spawner_16   ; 
 - D 1 - I - 0x02A281 0A:A271: 20        .byte $20   ; 
 - D 1 - I - 0x02A282 0A:A272: 50        .byte $50   ; 
 - D 1 - I - 0x02A283 0A:A273: 00        .byte $00   ; 
@@ -9569,7 +9664,7 @@ _off028_A270_15:
 
 
 _off028_A275_16:
-- D 1 - I - 0x02A285 0A:A275: 19        .byte $19   ; 
+- D 1 - I - 0x02A285 0A:A275: 19        .byte con_spawner_19   ; 
 - D 1 - I - 0x02A286 0A:A276: 20        .byte $20   ; 
 - D 1 - I - 0x02A287 0A:A277: 90        .byte $90   ; 
 - D 1 - I - 0x02A288 0A:A278: 00        .byte $00   ; 
@@ -9578,7 +9673,7 @@ _off028_A275_16:
 
 
 _off028_A27A_17:
-- D 1 - I - 0x02A28A 0A:A27A: 04        .byte $04   ; 
+- D 1 - I - 0x02A28A 0A:A27A: 04        .byte con_spawner_04   ; 
 - D 1 - I - 0x02A28B 0A:A27B: 20        .byte $20   ; 
 - D 1 - I - 0x02A28C 0A:A27C: 40        .byte $40   ; 
 - D 1 - I - 0x02A28D 0A:A27D: 00        .byte $00   ; 
@@ -9588,7 +9683,7 @@ _off028_A27A_17:
 
 _off028_A27F_18:
 ; bzk garbage
-- - - - - - 0x02A28F 0A:A27F: 17        .byte $17   ; 
+- - - - - - 0x02A28F 0A:A27F: 17        .byte $17   ; con_spawner_17
 - - - - - - 0x02A290 0A:A280: 20        .byte $20   ; 
 - - - - - - 0x02A291 0A:A281: A0        .byte $A0   ; 
 - - - - - - 0x02A292 0A:A282: 00        .byte $00   ; 
@@ -9598,7 +9693,7 @@ _off028_A27F_18:
 
 _off028_A284_19:
 ; bzk garbage
-- - - - - - 0x02A294 0A:A284: 11        .byte $11   ; 
+- - - - - - 0x02A294 0A:A284: 11        .byte $11   ; con_spawner_11
 - - - - - - 0x02A295 0A:A285: 08        .byte $08   ; 
 - - - - - - 0x02A296 0A:A286: 80        .byte $80   ; 
 - - - - - - 0x02A297 0A:A287: 00        .byte $00   ; 
@@ -9608,7 +9703,7 @@ _off028_A284_19:
 
 _off028_A289_1A:
 ; bzk garbage
-- - - - - - 0x02A299 0A:A289: 1A        .byte $1A   ; 
+- - - - - - 0x02A299 0A:A289: 1A        .byte $1A   ; con_spawner_1A
 - - - - - - 0x02A29A 0A:A28A: 08        .byte $08   ; 
 - - - - - - 0x02A29B 0A:A28B: A0        .byte $A0   ; 
 - - - - - - 0x02A29C 0A:A28C: 00        .byte $00   ; 
@@ -9617,7 +9712,7 @@ _off028_A289_1A:
 
 
 _off028_A28E_1B:
-- D 1 - I - 0x02A29E 0A:A28E: 12        .byte $12   ; 
+- D 1 - I - 0x02A29E 0A:A28E: 12        .byte con_spawner_12   ; 
 - D 1 - I - 0x02A29F 0A:A28F: 08        .byte $08   ; 
 - D 1 - I - 0x02A2A0 0A:A290: F0        .byte $F0   ; 
 - D 1 - I - 0x02A2A1 0A:A291: 00        .byte $00   ; 
@@ -9626,7 +9721,7 @@ _off028_A28E_1B:
 
 
 _off028_A293_1C:
-- D 1 - I - 0x02A2A3 0A:A293: 15        .byte $15   ; 
+- D 1 - I - 0x02A2A3 0A:A293: 15        .byte con_spawner_15   ; 
 - D 1 - I - 0x02A2A4 0A:A294: 18        .byte $18   ; 
 - D 1 - I - 0x02A2A5 0A:A295: 98        .byte $98   ; 
 - D 1 - I - 0x02A2A6 0A:A296: 00        .byte $00   ; 
@@ -9635,7 +9730,7 @@ _off028_A293_1C:
 
 
 _off028_A298_1D:
-- D 1 - I - 0x02A2A8 0A:A298: 16        .byte $16   ; 
+- D 1 - I - 0x02A2A8 0A:A298: 16        .byte con_spawner_16   ; 
 - D 1 - I - 0x02A2A9 0A:A299: 20        .byte $20   ; 
 - D 1 - I - 0x02A2AA 0A:A29A: A0        .byte $A0   ; 
 - D 1 - I - 0x02A2AB 0A:A29B: 00        .byte $00   ; 
@@ -9644,7 +9739,7 @@ _off028_A298_1D:
 
 
 _off028_A29D_1E:
-- D 1 - I - 0x02A2AD 0A:A29D: 1B        .byte $1B   ; 
+- D 1 - I - 0x02A2AD 0A:A29D: 1B        .byte con_spawner_1B   ; 
 - D 1 - I - 0x02A2AE 0A:A29E: 08        .byte $08   ; 
 - D 1 - I - 0x02A2AF 0A:A29F: 7C        .byte $7C   ; 
 - D 1 - I - 0x02A2B0 0A:A2A0: 00        .byte $00   ; 
@@ -9653,7 +9748,7 @@ _off028_A29D_1E:
 
 
 _off028_A2A2_1F:
-- D 1 - I - 0x02A2B2 0A:A2A2: 1C        .byte $1C   ; 
+- D 1 - I - 0x02A2B2 0A:A2A2: 1C        .byte con_spawner_1C   ; 
 - D 1 - I - 0x02A2B3 0A:A2A3: 00        .byte $00   ; 
 - D 1 - I - 0x02A2B4 0A:A2A4: A0        .byte $A0   ; 
 - D 1 - I - 0x02A2B5 0A:A2A5: 00        .byte $00   ; 
@@ -9662,7 +9757,7 @@ _off028_A2A2_1F:
 
 
 _off028_A2A7_20:
-- D 1 - I - 0x02A2B7 0A:A2A7: 1D        .byte $1D   ; 
+- D 1 - I - 0x02A2B7 0A:A2A7: 1D        .byte con_spawner_1D   ; 
 - D 1 - I - 0x02A2B8 0A:A2A8: 3C        .byte $3C   ; 
 - D 1 - I - 0x02A2B9 0A:A2A9: 48        .byte $48   ; 
 - D 1 - I - 0x02A2BA 0A:A2AA: 00        .byte $00   ; 
@@ -9671,7 +9766,7 @@ _off028_A2A7_20:
 
 
 _off028_A2AC_21:
-- D 1 - I - 0x02A2BC 0A:A2AC: 27        .byte $27   ; 
+- D 1 - I - 0x02A2BC 0A:A2AC: 27        .byte con_spawner_27   ; 
 - D 1 - I - 0x02A2BD 0A:A2AD: 18        .byte $18   ; 
 - D 1 - I - 0x02A2BE 0A:A2AE: 70        .byte $70   ; 
 - D 1 - I - 0x02A2BF 0A:A2AF: 00        .byte $00   ; 
@@ -9680,7 +9775,7 @@ _off028_A2AC_21:
 
 
 _off028_A2B1_22:
-- D 1 - I - 0x02A2C1 0A:A2B1: 10        .byte $10   ; 
+- D 1 - I - 0x02A2C1 0A:A2B1: 10        .byte con_spawner_10   ; 
 - D 1 - I - 0x02A2C2 0A:A2B2: 10        .byte $10   ; 
 - D 1 - I - 0x02A2C3 0A:A2B3: 50        .byte $50   ; 
 - D 1 - I - 0x02A2C4 0A:A2B4: 00        .byte $00   ; 
@@ -9689,7 +9784,7 @@ _off028_A2B1_22:
 
 
 _off028_A2B6_23:
-- D 1 - I - 0x02A2C6 0A:A2B6: 15        .byte $15   ; 
+- D 1 - I - 0x02A2C6 0A:A2B6: 15        .byte con_spawner_15   ; 
 - D 1 - I - 0x02A2C7 0A:A2B7: 08        .byte $08   ; 
 - D 1 - I - 0x02A2C8 0A:A2B8: 68        .byte $68   ; 
 - D 1 - I - 0x02A2C9 0A:A2B9: 00        .byte $00   ; 
@@ -9698,7 +9793,7 @@ _off028_A2B6_23:
 
 
 _off028_A2BB_24:
-- D 1 - I - 0x02A2CB 0A:A2BB: 21        .byte $21   ; 
+- D 1 - I - 0x02A2CB 0A:A2BB: 21        .byte con_spawner_21   ; 
 - D 1 - I - 0x02A2CC 0A:A2BC: 10        .byte $10   ; 
 - D 1 - I - 0x02A2CD 0A:A2BD: A0        .byte $A0   ; 
 - D 1 - I - 0x02A2CE 0A:A2BE: 00        .byte $00   ; 
@@ -9708,7 +9803,7 @@ _off028_A2BB_24:
 
 _off028_A2C0_25:
 ; bzk garbage
-- - - - - - 0x02A2D0 0A:A2C0: 0F        .byte $0F   ; 
+- - - - - - 0x02A2D0 0A:A2C0: 0F        .byte $0F   ; con_spawner_0F
 - - - - - - 0x02A2D1 0A:A2C1: 20        .byte $20   ; 
 - - - - - - 0x02A2D2 0A:A2C2: B0        .byte $B0   ; 
 - - - - - - 0x02A2D3 0A:A2C3: 00        .byte $00   ; 
@@ -9717,7 +9812,7 @@ _off028_A2C0_25:
 
 
 _off028_A2C5_26:
-- D 1 - I - 0x02A2D5 0A:A2C5: 0B        .byte $0B   ; 
+- D 1 - I - 0x02A2D5 0A:A2C5: 0B        .byte con_spawner_0B   ; 
 - D 1 - I - 0x02A2D6 0A:A2C6: 20        .byte $20   ; 
 - D 1 - I - 0x02A2D7 0A:A2C7: B8        .byte $B8   ; 
 - D 1 - I - 0x02A2D8 0A:A2C8: 00        .byte $00   ; 
@@ -9726,7 +9821,7 @@ _off028_A2C5_26:
 
 
 _off028_A2CA_27:
-- D 1 - I - 0x02A2DA 0A:A2CA: 1E        .byte $1E   ; 
+- D 1 - I - 0x02A2DA 0A:A2CA: 1E        .byte con_spawner_1E   ; 
 - D 1 - I - 0x02A2DB 0A:A2CB: 00        .byte $00   ; 
 - D 1 - I - 0x02A2DC 0A:A2CC: B8        .byte $B8   ; 
 - D 1 - I - 0x02A2DD 0A:A2CD: 00        .byte $00   ; 
@@ -9735,8 +9830,8 @@ _off028_A2CA_27:
 
 
 _off028_A2CF_28:
-; bzk garbage
-- - - - - - 0x02A2DF 0A:A2CF: 1F        .byte $1F   ; 
+; bzkcon_spawner_garbage
+- - - - - - 0x02A2DF 0A:A2CF: 1F        .byte $1F   ; con_spawner_1F
 - - - - - - 0x02A2E0 0A:A2D0: 20        .byte $20   ; 
 - - - - - - 0x02A2E1 0A:A2D1: A0        .byte $A0   ; 
 - - - - - - 0x02A2E2 0A:A2D2: 00        .byte $00   ; 
@@ -9745,7 +9840,7 @@ _off028_A2CF_28:
 
 
 _off028_A2D4_29:
-- D 1 - I - 0x02A2E4 0A:A2D4: 20        .byte $20   ; 
+- D 1 - I - 0x02A2E4 0A:A2D4: 20        .byte con_spawner_20   ; 
 - D 1 - I - 0x02A2E5 0A:A2D5: 00        .byte $00   ; 
 - D 1 - I - 0x02A2E6 0A:A2D6: 90        .byte $90   ; 
 - D 1 - I - 0x02A2E7 0A:A2D7: 00        .byte $00   ; 
@@ -9755,7 +9850,7 @@ _off028_A2D4_29:
 
 _off028_A2D9_2A:
 ; bzk garbage
-- - - - - - 0x02A2E9 0A:A2D9: 22        .byte $22   ; 
+- - - - - - 0x02A2E9 0A:A2D9: 22        .byte $22   ; con_spawner_22
 - - - - - - 0x02A2EA 0A:A2DA: 20        .byte $20   ; 
 - - - - - - 0x02A2EB 0A:A2DB: A0        .byte $A0   ; 
 - - - - - - 0x02A2EC 0A:A2DC: 00        .byte $00   ; 
@@ -9764,7 +9859,7 @@ _off028_A2D9_2A:
 
 
 _off028_A2DE_2B:
-- D 1 - I - 0x02A2EE 0A:A2DE: 23        .byte $23   ; 
+- D 1 - I - 0x02A2EE 0A:A2DE: 23        .byte con_spawner_23   ; 
 - D 1 - I - 0x02A2EF 0A:A2DF: 00        .byte $00   ; 
 - D 1 - I - 0x02A2F0 0A:A2E0: 50        .byte $50   ; 
 - D 1 - I - 0x02A2F1 0A:A2E1: 00        .byte $00   ; 
@@ -9773,7 +9868,7 @@ _off028_A2DE_2B:
 
 
 _off028_A2E3_2C:
-- D 1 - I - 0x02A2F3 0A:A2E3: 24        .byte $24   ; 
+- D 1 - I - 0x02A2F3 0A:A2E3: 24        .byte con_spawner_24   ; 
 - D 1 - I - 0x02A2F4 0A:A2E4: 20        .byte $20   ; 
 - D 1 - I - 0x02A2F5 0A:A2E5: B0        .byte $B0   ; 
 - D 1 - I - 0x02A2F6 0A:A2E6: 00        .byte $00   ; 
@@ -9782,7 +9877,7 @@ _off028_A2E3_2C:
 
 
 _off028_A2E8_2D:
-- D 1 - I - 0x02A2F8 0A:A2E8: 25        .byte $25   ; 
+- D 1 - I - 0x02A2F8 0A:A2E8: 25        .byte con_spawner_25   ; 
 - D 1 - I - 0x02A2F9 0A:A2E9: 00        .byte $00   ; 
 - D 1 - I - 0x02A2FA 0A:A2EA: A0        .byte $A0   ; 
 - D 1 - I - 0x02A2FB 0A:A2EB: 00        .byte $00   ; 
@@ -9791,7 +9886,7 @@ _off028_A2E8_2D:
 
 
 _off028_A2ED_2E:
-- D 1 - I - 0x02A2FD 0A:A2ED: 26        .byte $26   ; 
+- D 1 - I - 0x02A2FD 0A:A2ED: 26        .byte con_spawner_26   ; 
 - D 1 - I - 0x02A2FE 0A:A2EE: 40        .byte $40   ; 
 - D 1 - I - 0x02A2FF 0A:A2EF: A0        .byte $A0   ; 
 - D 1 - I - 0x02A300 0A:A2F0: 00        .byte $00   ; 
@@ -9800,7 +9895,7 @@ _off028_A2ED_2E:
 
 
 _off028_A2F2_2F:
-- D 1 - I - 0x02A302 0A:A2F2: 28        .byte $28   ; 
+- D 1 - I - 0x02A302 0A:A2F2: 28        .byte con_spawner_28   ; 
 - D 1 - I - 0x02A303 0A:A2F3: 20        .byte $20   ; 
 - D 1 - I - 0x02A304 0A:A2F4: 90        .byte $90   ; 
 - D 1 - I - 0x02A305 0A:A2F5: 00        .byte $00   ; 
@@ -9809,7 +9904,7 @@ _off028_A2F2_2F:
 
 
 _off028_A2F7_30:
-- D 1 - I - 0x02A307 0A:A2F7: 29        .byte $29   ; 
+- D 1 - I - 0x02A307 0A:A2F7: 29        .byte con_spawner_29   ; 
 - D 1 - I - 0x02A308 0A:A2F8: 20        .byte $20   ; 
 - D 1 - I - 0x02A309 0A:A2F9: 30        .byte $30   ; 
 - D 1 - I - 0x02A30A 0A:A2FA: 00        .byte $00   ; 
@@ -9818,7 +9913,7 @@ _off028_A2F7_30:
 
 
 _off028_A2FC_31:
-- D 1 - I - 0x02A30C 0A:A2FC: 28        .byte $28   ; 
+- D 1 - I - 0x02A30C 0A:A2FC: 28        .byte con_spawner_28   ; 
 - D 1 - I - 0x02A30D 0A:A2FD: 18        .byte $18   ; 
 - D 1 - I - 0x02A30E 0A:A2FE: 70        .byte $70   ; 
 - D 1 - I - 0x02A30F 0A:A2FF: 00        .byte $00   ; 
@@ -9827,7 +9922,7 @@ _off028_A2FC_31:
 
 
 _off028_A301_32:
-- D 1 - I - 0x02A311 0A:A301: 52        .byte $52   ; 
+- D 1 - I - 0x02A311 0A:A301: 52        .byte con_spawner_52   ; 
 - D 1 - I - 0x02A312 0A:A302: 20        .byte $20   ; 
 - D 1 - I - 0x02A313 0A:A303: 40        .byte $40   ; 
 - D 1 - I - 0x02A314 0A:A304: 00        .byte $00   ; 
@@ -9836,7 +9931,7 @@ _off028_A301_32:
 
 
 _off028_A306_33:
-- D 1 - I - 0x02A316 0A:A306: 11        .byte $11   ; 
+- D 1 - I - 0x02A316 0A:A306: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02A317 0A:A307: 08        .byte $08   ; 
 - D 1 - I - 0x02A318 0A:A308: B0        .byte $B0   ; 
 - D 1 - I - 0x02A319 0A:A309: 00        .byte $00   ; 
@@ -9845,7 +9940,7 @@ _off028_A306_33:
 
 
 _off028_A30B_34:
-- D 1 - I - 0x02A31B 0A:A30B: 0F        .byte $0F   ; 
+- D 1 - I - 0x02A31B 0A:A30B: 0F        .byte con_spawner_0F   ; 
 - D 1 - I - 0x02A31C 0A:A30C: 20        .byte $20   ; 
 - D 1 - I - 0x02A31D 0A:A30D: 50        .byte $50   ; 
 - D 1 - I - 0x02A31E 0A:A30E: 00        .byte $00   ; 
@@ -9854,7 +9949,7 @@ _off028_A30B_34:
 
 
 _off028_A310_35:
-- D 1 - I - 0x02A320 0A:A310: 43        .byte $43   ; 
+- D 1 - I - 0x02A320 0A:A310: 43        .byte con_spawner_43   ; 
 - D 1 - I - 0x02A321 0A:A311: 20        .byte $20   ; 
 - D 1 - I - 0x02A322 0A:A312: 60        .byte $60   ; 
 - D 1 - I - 0x02A323 0A:A313: 00        .byte $00   ; 
@@ -9863,7 +9958,7 @@ _off028_A310_35:
 
 
 _off028_A315_36:
-- D 1 - I - 0x02A325 0A:A315: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A325 0A:A315: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A326 0A:A316: 08        .byte $08   ; 
 - D 1 - I - 0x02A327 0A:A317: 90        .byte $90   ; 
 - D 1 - I - 0x02A328 0A:A318: 00        .byte $00   ; 
@@ -9872,7 +9967,7 @@ _off028_A315_36:
 
 
 _off028_A31A_37:
-- D 1 - I - 0x02A32A 0A:A31A: 44        .byte $44   ; 
+- D 1 - I - 0x02A32A 0A:A31A: 44        .byte con_spawner_44   ; 
 - D 1 - I - 0x02A32B 0A:A31B: 00        .byte $00   ; 
 - D 1 - I - 0x02A32C 0A:A31C: 7C        .byte $7C   ; 
 - D 1 - I - 0x02A32D 0A:A31D: 00        .byte $00   ; 
@@ -9881,7 +9976,7 @@ _off028_A31A_37:
 
 
 _off028_A31F_38:
-- D 1 - I - 0x02A32F 0A:A31F: 44        .byte $44   ; 
+- D 1 - I - 0x02A32F 0A:A31F: 44        .byte con_spawner_44   ; 
 - D 1 - I - 0x02A330 0A:A320: 08        .byte $08   ; 
 - D 1 - I - 0x02A331 0A:A321: 8C        .byte $8C   ; 
 - D 1 - I - 0x02A332 0A:A322: 00        .byte $00   ; 
@@ -9890,7 +9985,7 @@ _off028_A31F_38:
 
 
 _off028_A324_39:
-- D 1 - I - 0x02A334 0A:A324: 11        .byte $11   ; 
+- D 1 - I - 0x02A334 0A:A324: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02A335 0A:A325: 08        .byte $08   ; 
 - D 1 - I - 0x02A336 0A:A326: 70        .byte $70   ; 
 - D 1 - I - 0x02A337 0A:A327: 00        .byte $00   ; 
@@ -9899,7 +9994,7 @@ _off028_A324_39:
 
 
 _off028_A329_3A:
-- D 1 - I - 0x02A339 0A:A329: 28        .byte $28   ; 
+- D 1 - I - 0x02A339 0A:A329: 28        .byte con_spawner_28   ; 
 - D 1 - I - 0x02A33A 0A:A32A: 20        .byte $20   ; 
 - D 1 - I - 0x02A33B 0A:A32B: 80        .byte $80   ; 
 - D 1 - I - 0x02A33C 0A:A32C: 00        .byte $00   ; 
@@ -9908,7 +10003,7 @@ _off028_A329_3A:
 
 
 _off028_A32E_3B:
-- D 1 - I - 0x02A33E 0A:A32E: 28        .byte $28   ; 
+- D 1 - I - 0x02A33E 0A:A32E: 28        .byte con_spawner_28   ; 
 - D 1 - I - 0x02A33F 0A:A32F: 00        .byte $00   ; 
 - D 1 - I - 0x02A340 0A:A330: B0        .byte $B0   ; 
 - D 1 - I - 0x02A341 0A:A331: 00        .byte $00   ; 
@@ -9917,7 +10012,7 @@ _off028_A32E_3B:
 
 
 _off028_A333_3C:
-- D 1 - I - 0x02A343 0A:A333: 44        .byte $44   ; 
+- D 1 - I - 0x02A343 0A:A333: 44        .byte con_spawner_44   ; 
 - D 1 - I - 0x02A344 0A:A334: 30        .byte $30   ; 
 - D 1 - I - 0x02A345 0A:A335: 88        .byte $88   ; 
 - D 1 - I - 0x02A346 0A:A336: 00        .byte $00   ; 
@@ -9926,7 +10021,7 @@ _off028_A333_3C:
 
 
 _off028_A338_3D:
-- D 1 - I - 0x02A348 0A:A338: 27        .byte $27   ; 
+- D 1 - I - 0x02A348 0A:A338: 27        .byte con_spawner_27   ; 
 - D 1 - I - 0x02A349 0A:A339: 18        .byte $18   ; 
 - D 1 - I - 0x02A34A 0A:A33A: 40        .byte $40   ; 
 - D 1 - I - 0x02A34B 0A:A33B: 00        .byte $00   ; 
@@ -9935,7 +10030,7 @@ _off028_A338_3D:
 
 
 _off028_A33D_3E:
-- D 1 - I - 0x02A34D 0A:A33D: 10        .byte $10   ; 
+- D 1 - I - 0x02A34D 0A:A33D: 10        .byte con_spawner_10   ; 
 - D 1 - I - 0x02A34E 0A:A33E: 18        .byte $18   ; 
 - D 1 - I - 0x02A34F 0A:A33F: 30        .byte $30   ; 
 - D 1 - I - 0x02A350 0A:A340: 00        .byte $00   ; 
@@ -9944,7 +10039,7 @@ _off028_A33D_3E:
 
 
 _off028_A342_3F:
-- D 1 - I - 0x02A352 0A:A342: 41        .byte $41   ; 
+- D 1 - I - 0x02A352 0A:A342: 41        .byte con_spawner_41   ; 
 - D 1 - I - 0x02A353 0A:A343: 10        .byte $10   ; 
 - D 1 - I - 0x02A354 0A:A344: 70        .byte $70   ; 
 - D 1 - I - 0x02A355 0A:A345: 00        .byte $00   ; 
@@ -9953,7 +10048,7 @@ _off028_A342_3F:
 
 
 _off028_A347_40:
-- D 1 - I - 0x02A357 0A:A347: 41        .byte $41   ; 
+- D 1 - I - 0x02A357 0A:A347: 41        .byte con_spawner_41   ; 
 - D 1 - I - 0x02A358 0A:A348: 08        .byte $08   ; 
 - D 1 - I - 0x02A359 0A:A349: 70        .byte $70   ; 
 - D 1 - I - 0x02A35A 0A:A34A: 00        .byte $00   ; 
@@ -9962,7 +10057,7 @@ _off028_A347_40:
 
 
 _off028_A34C_41:
-- D 1 - I - 0x02A35C 0A:A34C: 0F        .byte $0F   ; 
+- D 1 - I - 0x02A35C 0A:A34C: 0F        .byte con_spawner_0F   ; 
 - D 1 - I - 0x02A35D 0A:A34D: 20        .byte $20   ; 
 - D 1 - I - 0x02A35E 0A:A34E: 90        .byte $90   ; 
 - D 1 - I - 0x02A35F 0A:A34F: 00        .byte $00   ; 
@@ -9972,7 +10067,7 @@ _off028_A34C_41:
 
 _off028_A351_42:
 ; bzk garbage
-- - - - - - 0x02A361 0A:A351: 11        .byte $11   ; 
+- - - - - - 0x02A361 0A:A351: 11        .byte $11   ; con_spawner_11
 - - - - - - 0x02A362 0A:A352: 08        .byte $08   ; 
 - - - - - - 0x02A363 0A:A353: 50        .byte $50   ; 
 - - - - - - 0x02A364 0A:A354: 00        .byte $00   ; 
@@ -9982,7 +10077,7 @@ _off028_A351_42:
 
 _off028_A356_43:
 ; bzk garbage
-- - - - - - 0x02A366 0A:A356: 0E        .byte $0E   ; 
+- - - - - - 0x02A366 0A:A356: 0E        .byte $0E   ; con_spawner_0E
 - - - - - - 0x02A367 0A:A357: 20        .byte $20   ; 
 - - - - - - 0x02A368 0A:A358: 70        .byte $70   ; 
 - - - - - - 0x02A369 0A:A359: 00        .byte $00   ; 
@@ -9991,7 +10086,7 @@ _off028_A356_43:
 
 
 _off028_A35B_44:
-- D 1 - I - 0x02A36B 0A:A35B: 27        .byte $27   ; 
+- D 1 - I - 0x02A36B 0A:A35B: 27        .byte con_spawner_27   ; 
 - D 1 - I - 0x02A36C 0A:A35C: 24        .byte $24   ; 
 - D 1 - I - 0x02A36D 0A:A35D: 38        .byte $38   ; 
 - D 1 - I - 0x02A36E 0A:A35E: 00        .byte $00   ; 
@@ -10000,7 +10095,7 @@ _off028_A35B_44:
 
 
 _off028_A360_45:
-- D 1 - I - 0x02A370 0A:A360: 44        .byte $44   ; 
+- D 1 - I - 0x02A370 0A:A360: 44        .byte con_spawner_44   ; 
 - D 1 - I - 0x02A371 0A:A361: 30        .byte $30   ; 
 - D 1 - I - 0x02A372 0A:A362: 8C        .byte $8C   ; 
 - D 1 - I - 0x02A373 0A:A363: 00        .byte $00   ; 
@@ -10009,7 +10104,7 @@ _off028_A360_45:
 
 
 _off028_A365_46:
-- D 1 - I - 0x02A375 0A:A365: 44        .byte $44   ; 
+- D 1 - I - 0x02A375 0A:A365: 44        .byte con_spawner_44   ; 
 - D 1 - I - 0x02A376 0A:A366: 34        .byte $34   ; 
 - D 1 - I - 0x02A377 0A:A367: 80        .byte $80   ; 
 - D 1 - I - 0x02A378 0A:A368: 00        .byte $00   ; 
@@ -10018,7 +10113,7 @@ _off028_A365_46:
 
 
 _off028_A36A_47:
-- D 1 - I - 0x02A37A 0A:A36A: 44        .byte $44   ; 
+- D 1 - I - 0x02A37A 0A:A36A: 44        .byte con_spawner_44   ; 
 - D 1 - I - 0x02A37B 0A:A36B: 38        .byte $38   ; 
 - D 1 - I - 0x02A37C 0A:A36C: 70        .byte $70   ; 
 - D 1 - I - 0x02A37D 0A:A36D: 00        .byte $00   ; 
@@ -10027,7 +10122,7 @@ _off028_A36A_47:
 
 
 _off028_A36F_48:
-- D 1 - I - 0x02A37F 0A:A36F: 44        .byte $44   ; 
+- D 1 - I - 0x02A37F 0A:A36F: 44        .byte con_spawner_44   ; 
 - D 1 - I - 0x02A380 0A:A370: 20        .byte $20   ; 
 - D 1 - I - 0x02A381 0A:A371: 8C        .byte $8C   ; 
 - D 1 - I - 0x02A382 0A:A372: 00        .byte $00   ; 
@@ -10037,7 +10132,7 @@ _off028_A36F_48:
 
 _off028_A374_49:
 ; bzk garbage
-- - - - - - 0x02A384 0A:A374: 45        .byte $45   ; 
+- - - - - - 0x02A384 0A:A374: 45        .byte $45   ; con_spawner_45
 - - - - - - 0x02A385 0A:A375: 10        .byte $10   ; 
 - - - - - - 0x02A386 0A:A376: 58        .byte $58   ; 
 - - - - - - 0x02A387 0A:A377: 00        .byte $00   ; 
@@ -10046,7 +10141,7 @@ _off028_A374_49:
 
 
 _off028_A379_4A:
-- D 1 - I - 0x02A389 0A:A379: 45        .byte $45   ; 
+- D 1 - I - 0x02A389 0A:A379: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02A38A 0A:A37A: 30        .byte $30   ; 
 - D 1 - I - 0x02A38B 0A:A37B: 58        .byte $58   ; 
 - D 1 - I - 0x02A38C 0A:A37C: 02        .byte $02   ; 
@@ -10055,7 +10150,7 @@ _off028_A379_4A:
 
 
 _off028_A37E_4B:
-- D 1 - I - 0x02A38E 0A:A37E: 45        .byte $45   ; 
+- D 1 - I - 0x02A38E 0A:A37E: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02A38F 0A:A37F: 10        .byte $10   ; 
 - D 1 - I - 0x02A390 0A:A380: 78        .byte $78   ; 
 - D 1 - I - 0x02A391 0A:A381: 03        .byte $03   ; 
@@ -10065,7 +10160,7 @@ _off028_A37E_4B:
 
 _off028_A383_4C:
 ; bzk garbage
-- - - - - - 0x02A393 0A:A383: 45        .byte $45   ; 
+- - - - - - 0x02A393 0A:A383: 45        .byte $45   ; con_spawner_45
 - - - - - - 0x02A394 0A:A384: 20        .byte $20   ; 
 - - - - - - 0x02A395 0A:A385: B8        .byte $B8   ; 
 - - - - - - 0x02A396 0A:A386: 03        .byte $03   ; 
@@ -10075,7 +10170,7 @@ _off028_A383_4C:
 
 _off028_A388_4D:
 ; bzk garbage
-- - - - - - 0x02A398 0A:A388: 45        .byte $45   ; 
+- - - - - - 0x02A398 0A:A388: 45        .byte $45   ; con_spawner_45
 - - - - - - 0x02A399 0A:A389: 28        .byte $28   ; 
 - - - - - - 0x02A39A 0A:A38A: 98        .byte $98   ; 
 - - - - - - 0x02A39B 0A:A38B: 04        .byte $04   ; 
@@ -10084,7 +10179,7 @@ _off028_A388_4D:
 
 
 _off028_A38D_4E:
-- D 1 - I - 0x02A39D 0A:A38D: 46        .byte $46   ; 
+- D 1 - I - 0x02A39D 0A:A38D: 46        .byte con_spawner_46   ; 
 - D 1 - I - 0x02A39E 0A:A38E: 10        .byte $10   ; 
 - D 1 - I - 0x02A39F 0A:A38F: 40        .byte $40   ; 
 - D 1 - I - 0x02A3A0 0A:A390: 04        .byte $04   ; 
@@ -10093,7 +10188,7 @@ _off028_A38D_4E:
 
 
 _off028_A392_4F:
-- D 1 - I - 0x02A3A2 0A:A392: 43        .byte $43   ; 
+- D 1 - I - 0x02A3A2 0A:A392: 43        .byte con_spawner_43   ; 
 - D 1 - I - 0x02A3A3 0A:A393: 00        .byte $00   ; 
 - D 1 - I - 0x02A3A4 0A:A394: 90        .byte $90   ; 
 - D 1 - I - 0x02A3A5 0A:A395: 00        .byte $00   ; 
@@ -10102,7 +10197,7 @@ _off028_A392_4F:
 
 
 _off028_A397_50:
-- D 1 - I - 0x02A3A7 0A:A397: 43        .byte $43   ; 
+- D 1 - I - 0x02A3A7 0A:A397: 43        .byte con_spawner_43   ; 
 - D 1 - I - 0x02A3A8 0A:A398: 00        .byte $00   ; 
 - D 1 - I - 0x02A3A9 0A:A399: 60        .byte $60   ; 
 - D 1 - I - 0x02A3AA 0A:A39A: 00        .byte $00   ; 
@@ -10111,7 +10206,7 @@ _off028_A397_50:
 
 
 _off028_A39C_51:
-- D 1 - I - 0x02A3AC 0A:A39C: 36        .byte $36   ; 
+- D 1 - I - 0x02A3AC 0A:A39C: 36        .byte con_spawner_36   ; 
 - D 1 - I - 0x02A3AD 0A:A39D: 30        .byte $30   ; 
 - D 1 - I - 0x02A3AE 0A:A39E: 58        .byte $58   ; 
 - D 1 - I - 0x02A3AF 0A:A39F: 00        .byte $00   ; 
@@ -10121,7 +10216,7 @@ _off028_A39C_51:
 
 _off028_A3A1_52:
 ; bzk garbage
-- - - - - - 0x02A3B1 0A:A3A1: 18        .byte $18   ; 
+- - - - - - 0x02A3B1 0A:A3A1: 18        .byte $18   ; con_spawner_18
 - - - - - - 0x02A3B2 0A:A3A2: 20        .byte $20   ; 
 - - - - - - 0x02A3B3 0A:A3A3: A0        .byte $A0   ; 
 - - - - - - 0x02A3B4 0A:A3A4: 40        .byte $40   ; 
@@ -10130,7 +10225,7 @@ _off028_A3A1_52:
 
 
 _off028_A3A6_53:
-- D 1 - I - 0x02A3B6 0A:A3A6: 43        .byte $43   ; 
+- D 1 - I - 0x02A3B6 0A:A3A6: 43        .byte con_spawner_43   ; 
 - D 1 - I - 0x02A3B7 0A:A3A7: 20        .byte $20   ; 
 - D 1 - I - 0x02A3B8 0A:A3A8: 90        .byte $90   ; 
 - D 1 - I - 0x02A3B9 0A:A3A9: 01        .byte $01   ; 
@@ -10139,7 +10234,7 @@ _off028_A3A6_53:
 
 
 _off028_A3AB_54:
-- D 1 - I - 0x02A3BB 0A:A3AB: 3E        .byte $3E   ; 
+- D 1 - I - 0x02A3BB 0A:A3AB: 3E        .byte con_spawner_3E   ; 
 - D 1 - I - 0x02A3BC 0A:A3AC: 20        .byte $20   ; 
 - D 1 - I - 0x02A3BD 0A:A3AD: D0        .byte $D0   ; 
 - D 1 - I - 0x02A3BE 0A:A3AE: 00        .byte $00   ; 
@@ -10148,7 +10243,7 @@ _off028_A3AB_54:
 
 
 _off028_A3B0_55:
-- D 1 - I - 0x02A3C0 0A:A3B0: 47        .byte $47   ; 
+- D 1 - I - 0x02A3C0 0A:A3B0: 47        .byte con_spawner_47   ; 
 - D 1 - I - 0x02A3C1 0A:A3B1: 20        .byte $20   ; 
 - D 1 - I - 0x02A3C2 0A:A3B2: 80        .byte $80   ; 
 - D 1 - I - 0x02A3C3 0A:A3B3: 00        .byte $00   ; 
@@ -10157,7 +10252,7 @@ _off028_A3B0_55:
 
 
 _off028_A3B5_56:
-- D 1 - I - 0x02A3C5 0A:A3B5: 11        .byte $11   ; 
+- D 1 - I - 0x02A3C5 0A:A3B5: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02A3C6 0A:A3B6: 08        .byte $08   ; 
 - D 1 - I - 0x02A3C7 0A:A3B7: A0        .byte $A0   ; 
 - D 1 - I - 0x02A3C8 0A:A3B8: 00        .byte $00   ; 
@@ -10166,7 +10261,7 @@ _off028_A3B5_56:
 
 
 _off028_A3BA_57:
-- D 1 - I - 0x02A3CA 0A:A3BA: 18        .byte $18   ; 
+- D 1 - I - 0x02A3CA 0A:A3BA: 18        .byte con_spawner_18   ; 
 - D 1 - I - 0x02A3CB 0A:A3BB: 20        .byte $20   ; 
 - D 1 - I - 0x02A3CC 0A:A3BC: 68        .byte $68   ; 
 - D 1 - I - 0x02A3CD 0A:A3BD: 40        .byte $40   ; 
@@ -10175,7 +10270,7 @@ _off028_A3BA_57:
 
 
 _off028_A3BF_58:
-- D 1 - I - 0x02A3CF 0A:A3BF: 40        .byte $40   ; 
+- D 1 - I - 0x02A3CF 0A:A3BF: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02A3D0 0A:A3C0: 20        .byte $20   ; 
 - D 1 - I - 0x02A3D1 0A:A3C1: B0        .byte $B0   ; 
 - D 1 - I - 0x02A3D2 0A:A3C2: 00        .byte $00   ; 
@@ -10184,7 +10279,7 @@ _off028_A3BF_58:
 
 
 _off028_A3C4_59:
-- D 1 - I - 0x02A3D4 0A:A3C4: 40        .byte $40   ; 
+- D 1 - I - 0x02A3D4 0A:A3C4: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02A3D5 0A:A3C5: 20        .byte $20   ; 
 - D 1 - I - 0x02A3D6 0A:A3C6: 90        .byte $90   ; 
 - D 1 - I - 0x02A3D7 0A:A3C7: 00        .byte $00   ; 
@@ -10193,7 +10288,7 @@ _off028_A3C4_59:
 
 
 _off028_A3C9_5A:
-- D 1 - I - 0x02A3D9 0A:A3C9: 40        .byte $40   ; 
+- D 1 - I - 0x02A3D9 0A:A3C9: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02A3DA 0A:A3CA: 30        .byte $30   ; 
 - D 1 - I - 0x02A3DB 0A:A3CB: B0        .byte $B0   ; 
 - D 1 - I - 0x02A3DC 0A:A3CC: 00        .byte $00   ; 
@@ -10203,7 +10298,7 @@ _off028_A3C9_5A:
 
 _off028_A3CE_5B:
 _off028_A3CE_5C:
-- D 1 - I - 0x02A3DE 0A:A3CE: 49        .byte $49   ; 
+- D 1 - I - 0x02A3DE 0A:A3CE: 49        .byte con_spawner_49   ; 
 - D 1 - I - 0x02A3DF 0A:A3CF: 20        .byte $20   ; 
 - D 1 - I - 0x02A3E0 0A:A3D0: 50        .byte $50   ; 
 - D 1 - I - 0x02A3E1 0A:A3D1: 00        .byte $00   ; 
@@ -10212,7 +10307,7 @@ _off028_A3CE_5C:
 
 
 _off028_A3D3_5D:
-- D 1 - I - 0x02A3E3 0A:A3D3: 28        .byte $28   ; 
+- D 1 - I - 0x02A3E3 0A:A3D3: 28        .byte con_spawner_28   ; 
 - D 1 - I - 0x02A3E4 0A:A3D4: 20        .byte $20   ; 
 - D 1 - I - 0x02A3E5 0A:A3D5: 50        .byte $50   ; 
 - D 1 - I - 0x02A3E6 0A:A3D6: 00        .byte $00   ; 
@@ -10221,7 +10316,7 @@ _off028_A3D3_5D:
 
 
 _off028_A3D8_5E:
-- D 1 - I - 0x02A3E8 0A:A3D8: 28        .byte $28   ; 
+- D 1 - I - 0x02A3E8 0A:A3D8: 28        .byte con_spawner_28   ; 
 - D 1 - I - 0x02A3E9 0A:A3D9: 20        .byte $20   ; 
 - D 1 - I - 0x02A3EA 0A:A3DA: 60        .byte $60   ; 
 - D 1 - I - 0x02A3EB 0A:A3DB: 00        .byte $00   ; 
@@ -10230,7 +10325,7 @@ _off028_A3D8_5E:
 
 
 _off028_A3DD_5F:
-- D 1 - I - 0x02A3ED 0A:A3DD: 2D        .byte $2D   ; 
+- D 1 - I - 0x02A3ED 0A:A3DD: 2D        .byte con_spawner_2D   ; 
 - D 1 - I - 0x02A3EE 0A:A3DE: 20        .byte $20   ; 
 - D 1 - I - 0x02A3EF 0A:A3DF: A0        .byte $A0   ; 
 - D 1 - I - 0x02A3F0 0A:A3E0: 00        .byte $00   ; 
@@ -10239,7 +10334,7 @@ _off028_A3DD_5F:
 
 
 _off028_A3E2_60:
-- D 1 - I - 0x02A3F2 0A:A3E2: 2E        .byte $2E   ; 
+- D 1 - I - 0x02A3F2 0A:A3E2: 2E        .byte con_spawner_2E   ; 
 - D 1 - I - 0x02A3F3 0A:A3E3: 20        .byte $20   ; 
 - D 1 - I - 0x02A3F4 0A:A3E4: B8        .byte $B8   ; 
 - D 1 - I - 0x02A3F5 0A:A3E5: 00        .byte $00   ; 
@@ -10248,7 +10343,7 @@ _off028_A3E2_60:
 
 
 _off028_A3E7_61:
-- D 1 - I - 0x02A3F7 0A:A3E7: 19        .byte $19   ; 
+- D 1 - I - 0x02A3F7 0A:A3E7: 19        .byte con_spawner_19   ; 
 - D 1 - I - 0x02A3F8 0A:A3E8: 20        .byte $20   ; 
 - D 1 - I - 0x02A3F9 0A:A3E9: 60        .byte $60   ; 
 - D 1 - I - 0x02A3FA 0A:A3EA: 00        .byte $00   ; 
@@ -10257,7 +10352,7 @@ _off028_A3E7_61:
 
 
 _off028_A3EC_62:
-- D 1 - I - 0x02A3FC 0A:A3EC: 1F        .byte $1F   ; 
+- D 1 - I - 0x02A3FC 0A:A3EC: 1F        .byte con_spawner_1F   ; 
 - D 1 - I - 0x02A3FD 0A:A3ED: 00        .byte $00   ; 
 - D 1 - I - 0x02A3FE 0A:A3EE: 00        .byte $00   ; 
 - D 1 - I - 0x02A3FF 0A:A3EF: 00        .byte $00   ; 
@@ -10266,7 +10361,7 @@ _off028_A3EC_62:
 
 
 _off028_A3F1_63:
-- D 1 - I - 0x02A401 0A:A3F1: 39        .byte $39   ; 
+- D 1 - I - 0x02A401 0A:A3F1: 39        .byte con_spawner_39   ; 
 - D 1 - I - 0x02A402 0A:A3F2: 30        .byte $30   ; 
 - D 1 - I - 0x02A403 0A:A3F3: B8        .byte $B8   ; 
 - D 1 - I - 0x02A404 0A:A3F4: 00        .byte $00   ; 
@@ -10275,7 +10370,7 @@ _off028_A3F1_63:
 
 
 _off028_A3F6_64:
-- D 1 - I - 0x02A406 0A:A3F6: 13        .byte $13   ; 
+- D 1 - I - 0x02A406 0A:A3F6: 13        .byte con_spawner_13   ; 
 - D 1 - I - 0x02A407 0A:A3F7: 20        .byte $20   ; 
 - D 1 - I - 0x02A408 0A:A3F8: B0        .byte $B0   ; 
 - D 1 - I - 0x02A409 0A:A3F9: 00        .byte $00   ; 
@@ -10284,7 +10379,7 @@ _off028_A3F6_64:
 
 
 _off028_A3FB_65:
-- D 1 - I - 0x02A40B 0A:A3FB: 16        .byte $16   ; 
+- D 1 - I - 0x02A40B 0A:A3FB: 16        .byte con_spawner_16   ; 
 - D 1 - I - 0x02A40C 0A:A3FC: 20        .byte $20   ; 
 - D 1 - I - 0x02A40D 0A:A3FD: 70        .byte $70   ; 
 - D 1 - I - 0x02A40E 0A:A3FE: 00        .byte $00   ; 
@@ -10293,7 +10388,7 @@ _off028_A3FB_65:
 
 
 _off028_A400_66:
-- D 1 - I - 0x02A410 0A:A400: 3A        .byte $3A   ; 
+- D 1 - I - 0x02A410 0A:A400: 3A        .byte con_spawner_3A   ; 
 - D 1 - I - 0x02A411 0A:A401: 20        .byte $20   ; 
 - D 1 - I - 0x02A412 0A:A402: A0        .byte $A0   ; 
 - D 1 - I - 0x02A413 0A:A403: 00        .byte $00   ; 
@@ -10302,7 +10397,7 @@ _off028_A400_66:
 
 
 _off028_A405_67:
-- D 1 - I - 0x02A415 0A:A405: 17        .byte $17   ; 
+- D 1 - I - 0x02A415 0A:A405: 17        .byte con_spawner_17   ; 
 - D 1 - I - 0x02A416 0A:A406: 20        .byte $20   ; 
 - D 1 - I - 0x02A417 0A:A407: B0        .byte $B0   ; 
 - D 1 - I - 0x02A418 0A:A408: 00        .byte $00   ; 
@@ -10311,7 +10406,7 @@ _off028_A405_67:
 
 
 _off028_A40A_68:
-- D 1 - I - 0x02A41A 0A:A40A: 17        .byte $17   ; 
+- D 1 - I - 0x02A41A 0A:A40A: 17        .byte con_spawner_17   ; 
 - D 1 - I - 0x02A41B 0A:A40B: 20        .byte $20   ; 
 - D 1 - I - 0x02A41C 0A:A40C: 90        .byte $90   ; 
 - D 1 - I - 0x02A41D 0A:A40D: 00        .byte $00   ; 
@@ -10320,7 +10415,7 @@ _off028_A40A_68:
 
 
 _off028_A40F_69:
-- D 1 - I - 0x02A41F 0A:A40F: 0B        .byte $0B   ; 
+- D 1 - I - 0x02A41F 0A:A40F: 0B        .byte con_spawner_0B   ; 
 - D 1 - I - 0x02A420 0A:A410: 20        .byte $20   ; 
 - D 1 - I - 0x02A421 0A:A411: A8        .byte $A8   ; 
 - D 1 - I - 0x02A422 0A:A412: 00        .byte $00   ; 
@@ -10329,7 +10424,7 @@ _off028_A40F_69:
 
 
 _off028_A414_6A:
-- D 1 - I - 0x02A424 0A:A414: 0B        .byte $0B   ; 
+- D 1 - I - 0x02A424 0A:A414: 0B        .byte con_spawner_0B   ; 
 - D 1 - I - 0x02A425 0A:A415: 20        .byte $20   ; 
 - D 1 - I - 0x02A426 0A:A416: 98        .byte $98   ; 
 - D 1 - I - 0x02A427 0A:A417: 00        .byte $00   ; 
@@ -10338,7 +10433,7 @@ _off028_A414_6A:
 
 
 _off028_A419_6B:
-- D 1 - I - 0x02A429 0A:A419: 3B        .byte $3B   ; 
+- D 1 - I - 0x02A429 0A:A419: 3B        .byte con_spawner_3B   ; 
 - D 1 - I - 0x02A42A 0A:A41A: 20        .byte $20   ; 
 - D 1 - I - 0x02A42B 0A:A41B: A0        .byte $A0   ; 
 - D 1 - I - 0x02A42C 0A:A41C: 00        .byte $00   ; 
@@ -10346,8 +10441,8 @@ _off028_A419_6B:
 
 
 
-_off028_A41E_6C:
-- D 1 - I - 0x02A42E 0A:A41E: 3C        .byte $3C   ; 
+_off028_A41E_6C_swamp_frog:
+- D 1 - I - 0x02A42E 0A:A41E: 3C        .byte con_spawner_swamp_frog   ; 
 - D 1 - I - 0x02A42F 0A:A41F: 14        .byte $14   ; 
 - D 1 - I - 0x02A430 0A:A420: B0        .byte $B0   ; 
 - D 1 - I - 0x02A431 0A:A421: 00        .byte $00   ; 
@@ -10357,7 +10452,7 @@ _off028_A41E_6C:
 
 _off028_A423_6D:
 ; bzk garbage
-- - - - - - 0x02A433 0A:A423: 27        .byte $27   ; 
+- - - - - - 0x02A433 0A:A423: 27        .byte $27   ; con_spawner_27
 - - - - - - 0x02A434 0A:A424: 18        .byte $18   ; 
 - - - - - - 0x02A435 0A:A425: 50        .byte $50   ; 
 - - - - - - 0x02A436 0A:A426: 00        .byte $00   ; 
@@ -10366,7 +10461,7 @@ _off028_A423_6D:
 
 
 _off028_A428_6E:
-- D 1 - I - 0x02A438 0A:A428: 19        .byte $19   ; 
+- D 1 - I - 0x02A438 0A:A428: 19        .byte con_spawner_19   ; 
 - D 1 - I - 0x02A439 0A:A429: 20        .byte $20   ; 
 - D 1 - I - 0x02A43A 0A:A42A: 50        .byte $50   ; 
 - D 1 - I - 0x02A43B 0A:A42B: 00        .byte $00   ; 
@@ -10375,7 +10470,7 @@ _off028_A428_6E:
 
 
 _off028_A42D_6F:
-- D 1 - I - 0x02A43D 0A:A42D: 3D        .byte $3D   ; 
+- D 1 - I - 0x02A43D 0A:A42D: 3D        .byte con_spawner_3D   ; 
 - D 1 - I - 0x02A43E 0A:A42E: 20        .byte $20   ; 
 - D 1 - I - 0x02A43F 0A:A42F: 88        .byte $88   ; 
 - D 1 - I - 0x02A440 0A:A430: 00        .byte $00   ; 
@@ -10384,7 +10479,7 @@ _off028_A42D_6F:
 
 
 _off028_A432_70:
-- D 1 - I - 0x02A442 0A:A432: 3E        .byte $3E   ; 
+- D 1 - I - 0x02A442 0A:A432: 3E        .byte con_spawner_3E   ; 
 - D 1 - I - 0x02A443 0A:A433: 20        .byte $20   ; 
 - D 1 - I - 0x02A444 0A:A434: B0        .byte $B0   ; 
 - D 1 - I - 0x02A445 0A:A435: 00        .byte $00   ; 
@@ -10393,7 +10488,7 @@ _off028_A432_70:
 
 
 _off028_A437_71:
-- D 1 - I - 0x02A447 0A:A437: 3F        .byte $3F   ; 
+- D 1 - I - 0x02A447 0A:A437: 3F        .byte con_spawner_3F   ; 
 - D 1 - I - 0x02A448 0A:A438: 20        .byte $20   ; 
 - D 1 - I - 0x02A449 0A:A439: B0        .byte $B0   ; 
 - D 1 - I - 0x02A44A 0A:A43A: 00        .byte $00   ; 
@@ -10402,7 +10497,7 @@ _off028_A437_71:
 
 
 _off028_A43C_72:
-- D 1 - I - 0x02A44C 0A:A43C: 1A        .byte $1A   ; 
+- D 1 - I - 0x02A44C 0A:A43C: 1A        .byte con_spawner_1A   ; 
 - D 1 - I - 0x02A44D 0A:A43D: 30        .byte $30   ; 
 - D 1 - I - 0x02A44E 0A:A43E: 70        .byte $70   ; 
 - D 1 - I - 0x02A44F 0A:A43F: 00        .byte $00   ; 
@@ -10412,7 +10507,7 @@ _off028_A43C_72:
 
 _off028_A441_73:
 ; bzk garbage
-- - - - - - 0x02A451 0A:A441: 41        .byte $41   ; 
+- - - - - - 0x02A451 0A:A441: 41        .byte $41   ; con_spawner_41
 - - - - - - 0x02A452 0A:A442: 10        .byte $10   ; 
 - - - - - - 0x02A453 0A:A443: 70        .byte $70   ; 
 - - - - - - 0x02A454 0A:A444: 00        .byte $00   ; 
@@ -10421,7 +10516,7 @@ _off028_A441_73:
 
 
 _off028_A446_74:
-- D 1 - I - 0x02A456 0A:A446: 42        .byte $42   ; 
+- D 1 - I - 0x02A456 0A:A446: 42        .byte con_spawner_42   ; 
 - D 1 - I - 0x02A457 0A:A447: 00        .byte $00   ; 
 - D 1 - I - 0x02A458 0A:A448: B0        .byte $B0   ; 
 - D 1 - I - 0x02A459 0A:A449: 00        .byte $00   ; 
@@ -10430,7 +10525,7 @@ _off028_A446_74:
 
 
 _off028_A44B_75:
-- D 1 - I - 0x02A45B 0A:A44B: 28        .byte $28   ; 
+- D 1 - I - 0x02A45B 0A:A44B: 28        .byte con_spawner_28   ; 
 - D 1 - I - 0x02A45C 0A:A44C: 20        .byte $20   ; 
 - D 1 - I - 0x02A45D 0A:A44D: A0        .byte $A0   ; 
 - D 1 - I - 0x02A45E 0A:A44E: 00        .byte $00   ; 
@@ -10440,7 +10535,7 @@ _off028_A44B_75:
 
 _off028_A450_76:
 ; bzk garbage
-- - - - - - 0x02A460 0A:A450: 19        .byte $19   ; 
+- - - - - - 0x02A460 0A:A450: 19        .byte $19   ; con_spawner_19
 - - - - - - 0x02A461 0A:A451: 30        .byte $30   ; 
 - - - - - - 0x02A462 0A:A452: B0        .byte $B0   ; 
 - - - - - - 0x02A463 0A:A453: 00        .byte $00   ; 
@@ -10449,7 +10544,7 @@ _off028_A450_76:
 
 
 _off028_A455_77:
-- D 1 - I - 0x02A465 0A:A455: 16        .byte $16   ; 
+- D 1 - I - 0x02A465 0A:A455: 16        .byte con_spawner_16   ; 
 - D 1 - I - 0x02A466 0A:A456: 20        .byte $20   ; 
 - D 1 - I - 0x02A467 0A:A457: 60        .byte $60   ; 
 - D 1 - I - 0x02A468 0A:A458: 00        .byte $00   ; 
@@ -10458,7 +10553,7 @@ _off028_A455_77:
 
 
 _off028_A45A_78:
-- D 1 - I - 0x02A46A 0A:A45A: 16        .byte $16   ; 
+- D 1 - I - 0x02A46A 0A:A45A: 16        .byte con_spawner_16   ; 
 - D 1 - I - 0x02A46B 0A:A45B: 20        .byte $20   ; 
 - D 1 - I - 0x02A46C 0A:A45C: 90        .byte $90   ; 
 - D 1 - I - 0x02A46D 0A:A45D: 00        .byte $00   ; 
@@ -10467,7 +10562,7 @@ _off028_A45A_78:
 
 
 _off028_A45F_79:
-- D 1 - I - 0x02A46F 0A:A45F: 18        .byte $18   ; 
+- D 1 - I - 0x02A46F 0A:A45F: 18        .byte con_spawner_18   ; 
 - D 1 - I - 0x02A470 0A:A460: 20        .byte $20   ; 
 - D 1 - I - 0x02A471 0A:A461: 80        .byte $80   ; 
 - D 1 - I - 0x02A472 0A:A462: 40        .byte $40   ; 
@@ -10476,7 +10571,7 @@ _off028_A45F_79:
 
 
 _off028_A464_7A:
-- D 1 - I - 0x02A474 0A:A464: 45        .byte $45   ; 
+- D 1 - I - 0x02A474 0A:A464: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02A475 0A:A465: 38        .byte $38   ; 
 - D 1 - I - 0x02A476 0A:A466: C8        .byte $C8   ; 
 - D 1 - I - 0x02A477 0A:A467: 04        .byte $04   ; 
@@ -10486,7 +10581,7 @@ _off028_A464_7A:
 
 _off028_A469_7B:
 ; bzk garbage
-- - - - - - 0x02A479 0A:A469: 0F        .byte $0F   ; 
+- - - - - - 0x02A479 0A:A469: 0F        .byte $0F   ; con_spawner_0F
 - - - - - - 0x02A47A 0A:A46A: 38        .byte $38   ; 
 - - - - - - 0x02A47B 0A:A46B: 90        .byte $90   ; 
 - - - - - - 0x02A47C 0A:A46C: 00        .byte $00   ; 
@@ -10495,7 +10590,7 @@ _off028_A469_7B:
 
 
 _off028_A46E_7C:
-- D 1 - I - 0x02A47E 0A:A46E: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A47E 0A:A46E: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A47F 0A:A46F: 08        .byte $08   ; 
 - D 1 - I - 0x02A480 0A:A470: 70        .byte $70   ; 
 - D 1 - I - 0x02A481 0A:A471: 00        .byte $00   ; 
@@ -10504,7 +10599,7 @@ _off028_A46E_7C:
 
 
 _off028_A473_7D:
-- D 1 - I - 0x02A483 0A:A473: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A483 0A:A473: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A484 0A:A474: 28        .byte $28   ; 
 - D 1 - I - 0x02A485 0A:A475: 90        .byte $90   ; 
 - D 1 - I - 0x02A486 0A:A476: 00        .byte $00   ; 
@@ -10513,7 +10608,7 @@ _off028_A473_7D:
 
 
 _off028_A478_7E:
-- D 1 - I - 0x02A488 0A:A478: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A488 0A:A478: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A489 0A:A479: 10        .byte $10   ; 
 - D 1 - I - 0x02A48A 0A:A47A: 40        .byte $40   ; 
 - D 1 - I - 0x02A48B 0A:A47B: 00        .byte $00   ; 
@@ -10522,7 +10617,7 @@ _off028_A478_7E:
 
 
 _off028_A47D_7F:
-- D 1 - I - 0x02A48D 0A:A47D: 27        .byte $27   ; 
+- D 1 - I - 0x02A48D 0A:A47D: 27        .byte con_spawner_27   ; 
 - D 1 - I - 0x02A48E 0A:A47E: 04        .byte $04   ; 
 - D 1 - I - 0x02A48F 0A:A47F: 48        .byte $48   ; 
 - D 1 - I - 0x02A490 0A:A480: 00        .byte $00   ; 
@@ -10531,7 +10626,7 @@ _off028_A47D_7F:
 
 
 _off028_A482_80:
-- D 1 - I - 0x02A492 0A:A482: 27        .byte $27   ; 
+- D 1 - I - 0x02A492 0A:A482: 27        .byte con_spawner_27   ; 
 - D 1 - I - 0x02A493 0A:A483: 20        .byte $20   ; 
 - D 1 - I - 0x02A494 0A:A484: 50        .byte $50   ; 
 - D 1 - I - 0x02A495 0A:A485: 00        .byte $00   ; 
@@ -10541,7 +10636,7 @@ _off028_A482_80:
 
 _off028_A487_81:
 ; bzk garbage
-- - - - - - 0x02A497 0A:A487: 45        .byte $45   ; 
+- - - - - - 0x02A497 0A:A487: 45        .byte $45   ; con_spawner_45
 - - - - - - 0x02A498 0A:A488: 10        .byte $10   ; 
 - - - - - - 0x02A499 0A:A489: 78        .byte $78   ; 
 - - - - - - 0x02A49A 0A:A48A: 02        .byte $02   ; 
@@ -10550,7 +10645,7 @@ _off028_A487_81:
 
 
 _off028_A48C_82:
-- D 1 - I - 0x02A49C 0A:A48C: 0B        .byte $0B   ; 
+- D 1 - I - 0x02A49C 0A:A48C: 0B        .byte con_spawner_0B   ; 
 - D 1 - I - 0x02A49D 0A:A48D: 30        .byte $30   ; 
 - D 1 - I - 0x02A49E 0A:A48E: 58        .byte $58   ; 
 - D 1 - I - 0x02A49F 0A:A48F: 00        .byte $00   ; 
@@ -10559,7 +10654,7 @@ _off028_A48C_82:
 
 
 _off028_A491_83:
-- D 1 - I - 0x02A4A1 0A:A491: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A4A1 0A:A491: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A4A2 0A:A492: 08        .byte $08   ; 
 - D 1 - I - 0x02A4A3 0A:A493: 90        .byte $90   ; 
 - D 1 - I - 0x02A4A4 0A:A494: 00        .byte $00   ; 
@@ -10569,7 +10664,7 @@ _off028_A491_83:
 
 _off028_A496_84:
 ; bzk garbage
-- - - - - - 0x02A4A6 0A:A496: 10        .byte $10   ; 
+- - - - - - 0x02A4A6 0A:A496: 10        .byte $10   ; con_spawner_10
 - - - - - - 0x02A4A7 0A:A497: 30        .byte $30   ; 
 - - - - - - 0x02A4A8 0A:A498: 70        .byte $70   ; 
 - - - - - - 0x02A4A9 0A:A499: 02        .byte $02   ; 
@@ -10578,7 +10673,7 @@ _off028_A496_84:
 
 
 _off028_A49B_85:
-- D 1 - I - 0x02A4AB 0A:A49B: 4B        .byte $4B   ; 
+- D 1 - I - 0x02A4AB 0A:A49B: 4B        .byte con_spawner_4B   ; 
 - D 1 - I - 0x02A4AC 0A:A49C: 30        .byte $30   ; 
 - D 1 - I - 0x02A4AD 0A:A49D: 60        .byte $60   ; 
 - D 1 - I - 0x02A4AE 0A:A49E: 00        .byte $00   ; 
@@ -10587,7 +10682,7 @@ _off028_A49B_85:
 
 
 _off028_A4A0_86:
-- D 1 - I - 0x02A4B0 0A:A4A0: 4B        .byte $4B   ; 
+- D 1 - I - 0x02A4B0 0A:A4A0: 4B        .byte con_spawner_4B   ; 
 - D 1 - I - 0x02A4B1 0A:A4A1: 20        .byte $20   ; 
 - D 1 - I - 0x02A4B2 0A:A4A2: 70        .byte $70   ; 
 - D 1 - I - 0x02A4B3 0A:A4A3: 00        .byte $00   ; 
@@ -10596,7 +10691,7 @@ _off028_A4A0_86:
 
 
 _off028_A4A5_87:
-- D 1 - I - 0x02A4B5 0A:A4A5: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A4B5 0A:A4A5: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A4B6 0A:A4A6: 08        .byte $08   ; 
 - D 1 - I - 0x02A4B7 0A:A4A7: 90        .byte $90   ; 
 - D 1 - I - 0x02A4B8 0A:A4A8: 00        .byte $00   ; 
@@ -10605,7 +10700,7 @@ _off028_A4A5_87:
 
 
 _off028_A4AA_88:
-- D 1 - I - 0x02A4BA 0A:A4AA: 27        .byte $27   ; 
+- D 1 - I - 0x02A4BA 0A:A4AA: 27        .byte con_spawner_27   ; 
 - D 1 - I - 0x02A4BB 0A:A4AB: 10        .byte $10   ; 
 - D 1 - I - 0x02A4BC 0A:A4AC: 60        .byte $60   ; 
 - D 1 - I - 0x02A4BD 0A:A4AD: 00        .byte $00   ; 
@@ -10614,7 +10709,7 @@ _off028_A4AA_88:
 
 
 _off028_A4AF_89:
-- D 1 - I - 0x02A4BF 0A:A4AF: 4B        .byte $4B   ; 
+- D 1 - I - 0x02A4BF 0A:A4AF: 4B        .byte con_spawner_4B   ; 
 - D 1 - I - 0x02A4C0 0A:A4B0: 10        .byte $10   ; 
 - D 1 - I - 0x02A4C1 0A:A4B1: 90        .byte $90   ; 
 - D 1 - I - 0x02A4C2 0A:A4B2: 00        .byte $00   ; 
@@ -10623,7 +10718,7 @@ _off028_A4AF_89:
 
 
 _off028_A4B4_8A:
-- D 1 - I - 0x02A4C4 0A:A4B4: 0D        .byte $0D   ; 
+- D 1 - I - 0x02A4C4 0A:A4B4: 0D        .byte con_spawner_0D   ; 
 - D 1 - I - 0x02A4C5 0A:A4B5: 08        .byte $08   ; 
 - D 1 - I - 0x02A4C6 0A:A4B6: 88        .byte $88   ; 
 - D 1 - I - 0x02A4C7 0A:A4B7: 00        .byte $00   ; 
@@ -10632,7 +10727,7 @@ _off028_A4B4_8A:
 
 
 _off028_A4B9_8B:
-- D 1 - I - 0x02A4C9 0A:A4B9: 0D        .byte $0D   ; 
+- D 1 - I - 0x02A4C9 0A:A4B9: 0D        .byte con_spawner_0D   ; 
 - D 1 - I - 0x02A4CA 0A:A4BA: 30        .byte $30   ; 
 - D 1 - I - 0x02A4CB 0A:A4BB: 88        .byte $88   ; 
 - D 1 - I - 0x02A4CC 0A:A4BC: 00        .byte $00   ; 
@@ -10641,7 +10736,7 @@ _off028_A4B9_8B:
 
 
 _off028_A4BE_8C:
-- D 1 - I - 0x02A4CE 0A:A4BE: 4C        .byte $4C   ; 
+- D 1 - I - 0x02A4CE 0A:A4BE: 4C        .byte con_spawner_4C   ; 
 - D 1 - I - 0x02A4CF 0A:A4BF: 20        .byte $20   ; 
 - D 1 - I - 0x02A4D0 0A:A4C0: 80        .byte $80   ; 
 - D 1 - I - 0x02A4D1 0A:A4C1: 00        .byte $00   ; 
@@ -10650,7 +10745,7 @@ _off028_A4BE_8C:
 
 
 _off028_A4C3_8D:
-- D 1 - I - 0x02A4D3 0A:A4C3: 45        .byte $45   ; 
+- D 1 - I - 0x02A4D3 0A:A4C3: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02A4D4 0A:A4C4: 20        .byte $20   ; 
 - D 1 - I - 0x02A4D5 0A:A4C5: B8        .byte $B8   ; 
 - D 1 - I - 0x02A4D6 0A:A4C6: 02        .byte $02   ; 
@@ -10659,7 +10754,7 @@ _off028_A4C3_8D:
 
 
 _off028_A4C8_8E:
-- D 1 - I - 0x02A4D8 0A:A4C8: 45        .byte $45   ; 
+- D 1 - I - 0x02A4D8 0A:A4C8: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02A4D9 0A:A4C9: 30        .byte $30   ; 
 - D 1 - I - 0x02A4DA 0A:A4CA: B8        .byte $B8   ; 
 - D 1 - I - 0x02A4DB 0A:A4CB: 02        .byte $02   ; 
@@ -10668,7 +10763,7 @@ _off028_A4C8_8E:
 
 
 _off028_A4CD_8F:
-- D 1 - I - 0x02A4DD 0A:A4CD: 45        .byte $45   ; 
+- D 1 - I - 0x02A4DD 0A:A4CD: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02A4DE 0A:A4CE: 30        .byte $30   ; 
 - D 1 - I - 0x02A4DF 0A:A4CF: B8        .byte $B8   ; 
 - D 1 - I - 0x02A4E0 0A:A4D0: 00        .byte $00   ; 
@@ -10677,7 +10772,7 @@ _off028_A4CD_8F:
 
 
 _off028_A4D2_90:
-- D 1 - I - 0x02A4E2 0A:A4D2: 45        .byte $45   ; 
+- D 1 - I - 0x02A4E2 0A:A4D2: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02A4E3 0A:A4D3: 20        .byte $20   ; 
 - D 1 - I - 0x02A4E4 0A:A4D4: A8        .byte $A8   ; 
 - D 1 - I - 0x02A4E5 0A:A4D5: 00        .byte $00   ; 
@@ -10687,7 +10782,7 @@ _off028_A4D2_90:
 
 _off028_A4D7_91:
 ; bzk garbage
-- - - - - - 0x02A4E7 0A:A4D7: 3F        .byte $3F   ; 
+- - - - - - 0x02A4E7 0A:A4D7: 3F        .byte $3F   ; con_spawner_3F
 - - - - - - 0x02A4E8 0A:A4D8: 20        .byte $20   ; 
 - - - - - - 0x02A4E9 0A:A4D9: 70        .byte $70   ; 
 - - - - - - 0x02A4EA 0A:A4DA: 00        .byte $00   ; 
@@ -10696,7 +10791,7 @@ _off028_A4D7_91:
 
 
 _off028_A4DC_92:
-- D 1 - I - 0x02A4EC 0A:A4DC: 1A        .byte $1A   ; 
+- D 1 - I - 0x02A4EC 0A:A4DC: 1A        .byte con_spawner_1A   ; 
 - D 1 - I - 0x02A4ED 0A:A4DD: 20        .byte $20   ; 
 - D 1 - I - 0x02A4EE 0A:A4DE: 90        .byte $90   ; 
 - D 1 - I - 0x02A4EF 0A:A4DF: 00        .byte $00   ; 
@@ -10705,7 +10800,7 @@ _off028_A4DC_92:
 
 
 _off028_A4E1_93:
-- D 1 - I - 0x02A4F1 0A:A4E1: 14        .byte $14   ; 
+- D 1 - I - 0x02A4F1 0A:A4E1: 14        .byte con_spawner_14   ; 
 - D 1 - I - 0x02A4F2 0A:A4E2: 20        .byte $20   ; 
 - D 1 - I - 0x02A4F3 0A:A4E3: 50        .byte $50   ; 
 - D 1 - I - 0x02A4F4 0A:A4E4: 00        .byte $00   ; 
@@ -10714,7 +10809,7 @@ _off028_A4E1_93:
 
 
 _off028_A4E6_94:
-- D 1 - I - 0x02A4F6 0A:A4E6: 1A        .byte $1A   ; 
+- D 1 - I - 0x02A4F6 0A:A4E6: 1A        .byte con_spawner_1A   ; 
 - D 1 - I - 0x02A4F7 0A:A4E7: 20        .byte $20   ; 
 - D 1 - I - 0x02A4F8 0A:A4E8: B0        .byte $B0   ; 
 - D 1 - I - 0x02A4F9 0A:A4E9: 00        .byte $00   ; 
@@ -10723,7 +10818,7 @@ _off028_A4E6_94:
 
 
 _off028_A4EB_95:
-- D 1 - I - 0x02A4FB 0A:A4EB: 15        .byte $15   ; 
+- D 1 - I - 0x02A4FB 0A:A4EB: 15        .byte con_spawner_15   ; 
 - D 1 - I - 0x02A4FC 0A:A4EC: 28        .byte $28   ; 
 - D 1 - I - 0x02A4FD 0A:A4ED: 78        .byte $78   ; 
 - D 1 - I - 0x02A4FE 0A:A4EE: 00        .byte $00   ; 
@@ -10732,7 +10827,7 @@ _off028_A4EB_95:
 
 
 _off028_A4F0_96:
-- D 1 - I - 0x02A500 0A:A4F0: 40        .byte $40   ; 
+- D 1 - I - 0x02A500 0A:A4F0: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02A501 0A:A4F1: 20        .byte $20   ; 
 - D 1 - I - 0x02A502 0A:A4F2: 80        .byte $80   ; 
 - D 1 - I - 0x02A503 0A:A4F3: 00        .byte $00   ; 
@@ -10742,7 +10837,7 @@ _off028_A4F0_96:
 
 _off028_A4F5_97:
 ; bzk garbage
-- - - - - - 0x02A505 0A:A4F5: 0D        .byte $0D   ; 
+- - - - - - 0x02A505 0A:A4F5: 0D        .byte $0D   ; con_spawner_0D
 - - - - - - 0x02A506 0A:A4F6: 20        .byte $20   ; 
 - - - - - - 0x02A507 0A:A4F7: 60        .byte $60   ; 
 - - - - - - 0x02A508 0A:A4F8: 00        .byte $00   ; 
@@ -10751,7 +10846,7 @@ _off028_A4F5_97:
 
 
 _off028_A4FA_98:
-- D 1 - I - 0x02A50A 0A:A4FA: 0F        .byte $0F   ; 
+- D 1 - I - 0x02A50A 0A:A4FA: 0F        .byte con_spawner_0F   ; 
 - D 1 - I - 0x02A50B 0A:A4FB: 20        .byte $20   ; 
 - D 1 - I - 0x02A50C 0A:A4FC: 80        .byte $80   ; 
 - D 1 - I - 0x02A50D 0A:A4FD: 00        .byte $00   ; 
@@ -10760,7 +10855,7 @@ _off028_A4FA_98:
 
 
 _off028_A4FF_99:
-- D 1 - I - 0x02A50F 0A:A4FF: 15        .byte $15   ; 
+- D 1 - I - 0x02A50F 0A:A4FF: 15        .byte con_spawner_15   ; 
 - D 1 - I - 0x02A510 0A:A500: 30        .byte $30   ; 
 - D 1 - I - 0x02A511 0A:A501: 68        .byte $68   ; 
 - D 1 - I - 0x02A512 0A:A502: 00        .byte $00   ; 
@@ -10769,7 +10864,7 @@ _off028_A4FF_99:
 
 
 _off028_A504_9A:
-- D 1 - I - 0x02A514 0A:A504: 15        .byte $15   ; 
+- D 1 - I - 0x02A514 0A:A504: 15        .byte con_spawner_15   ; 
 - D 1 - I - 0x02A515 0A:A505: 20        .byte $20   ; 
 - D 1 - I - 0x02A516 0A:A506: C8        .byte $C8   ; 
 - D 1 - I - 0x02A517 0A:A507: 00        .byte $00   ; 
@@ -10778,7 +10873,7 @@ _off028_A504_9A:
 
 
 _off028_A509_9B:
-- D 1 - I - 0x02A519 0A:A509: 27        .byte $27   ; 
+- D 1 - I - 0x02A519 0A:A509: 27        .byte con_spawner_27   ; 
 - D 1 - I - 0x02A51A 0A:A50A: 00        .byte $00   ; 
 - D 1 - I - 0x02A51B 0A:A50B: 30        .byte $30   ; 
 - D 1 - I - 0x02A51C 0A:A50C: 00        .byte $00   ; 
@@ -10787,7 +10882,7 @@ _off028_A509_9B:
 
 
 _off028_A50E_9C:
-- D 1 - I - 0x02A51E 0A:A50E: 27        .byte $27   ; 
+- D 1 - I - 0x02A51E 0A:A50E: 27        .byte con_spawner_27   ; 
 - D 1 - I - 0x02A51F 0A:A50F: 10        .byte $10   ; 
 - D 1 - I - 0x02A520 0A:A510: 30        .byte $30   ; 
 - D 1 - I - 0x02A521 0A:A511: 00        .byte $00   ; 
@@ -10796,7 +10891,7 @@ _off028_A50E_9C:
 
 
 _off028_A513_9D:
-- D 1 - I - 0x02A523 0A:A513: 4A        .byte $4A   ; 
+- D 1 - I - 0x02A523 0A:A513: 4A        .byte con_spawner_4A   ; 
 - D 1 - I - 0x02A524 0A:A514: 20        .byte $20   ; 
 - D 1 - I - 0x02A525 0A:A515: 60        .byte $60   ; 
 - D 1 - I - 0x02A526 0A:A516: 00        .byte $00   ; 
@@ -10806,7 +10901,7 @@ _off028_A513_9D:
 
 _off028_A518_9E:
 ; bzk garbage
-- - - - - - 0x02A528 0A:A518: 02        .byte $02   ; 
+- - - - - - 0x02A528 0A:A518: 02        .byte $02   ; con_spawner_02
 - - - - - - 0x02A529 0A:A519: 20        .byte $20   ; 
 - - - - - - 0x02A52A 0A:A51A: C0        .byte $C0   ; 
 - - - - - - 0x02A52B 0A:A51B: 00        .byte $00   ; 
@@ -10815,7 +10910,7 @@ _off028_A518_9E:
 
 
 _off028_A51D_9F:
-- D 1 - I - 0x02A52D 0A:A51D: 32        .byte $32   ; 
+- D 1 - I - 0x02A52D 0A:A51D: 32        .byte con_spawner_32   ; 
 - D 1 - I - 0x02A52E 0A:A51E: 00        .byte $00   ; 
 - D 1 - I - 0x02A52F 0A:A51F: B0        .byte $B0   ; 
 - D 1 - I - 0x02A530 0A:A520: 00        .byte $00   ; 
@@ -10824,7 +10919,7 @@ _off028_A51D_9F:
 
 
 _off028_A522_A0:
-- D 1 - I - 0x02A532 0A:A522: 32        .byte $32   ; 
+- D 1 - I - 0x02A532 0A:A522: 32        .byte con_spawner_32   ; 
 - D 1 - I - 0x02A533 0A:A523: 20        .byte $20   ; 
 - D 1 - I - 0x02A534 0A:A524: 50        .byte $50   ; 
 - D 1 - I - 0x02A535 0A:A525: 00        .byte $00   ; 
@@ -10834,7 +10929,7 @@ _off028_A522_A0:
 
 _off028_A527_A1:
 ; bzk garbage
-- - - - - - 0x02A537 0A:A527: 13        .byte $13   ; 
+- - - - - - 0x02A537 0A:A527: 13        .byte $13   ; con_spawner_13
 - - - - - - 0x02A538 0A:A528: 20        .byte $20   ; 
 - - - - - - 0x02A539 0A:A529: C0        .byte $C0   ; 
 - - - - - - 0x02A53A 0A:A52A: 00        .byte $00   ; 
@@ -10843,7 +10938,7 @@ _off028_A527_A1:
 
 
 _off028_A52C_A2:
-- D 1 - I - 0x02A53C 0A:A52C: 0B        .byte $0B   ; 
+- D 1 - I - 0x02A53C 0A:A52C: 0B        .byte con_spawner_0B   ; 
 - D 1 - I - 0x02A53D 0A:A52D: 38        .byte $38   ; 
 - D 1 - I - 0x02A53E 0A:A52E: 78        .byte $78   ; 
 - D 1 - I - 0x02A53F 0A:A52F: 00        .byte $00   ; 
@@ -10852,7 +10947,7 @@ _off028_A52C_A2:
 
 
 _off028_A531_A3:
-- D 1 - I - 0x02A541 0A:A531: 0B        .byte $0B   ; 
+- D 1 - I - 0x02A541 0A:A531: 0B        .byte con_spawner_0B   ; 
 - D 1 - I - 0x02A542 0A:A532: 10        .byte $10   ; 
 - D 1 - I - 0x02A543 0A:A533: B8        .byte $B8   ; 
 - D 1 - I - 0x02A544 0A:A534: 00        .byte $00   ; 
@@ -10861,7 +10956,7 @@ _off028_A531_A3:
 
 
 _off028_A536_A4:
-- D 1 - I - 0x02A546 0A:A536: 17        .byte $17   ; 
+- D 1 - I - 0x02A546 0A:A536: 17        .byte con_spawner_17   ; 
 - D 1 - I - 0x02A547 0A:A537: 20        .byte $20   ; 
 - D 1 - I - 0x02A548 0A:A538: C0        .byte $C0   ; 
 - D 1 - I - 0x02A549 0A:A539: 00        .byte $00   ; 
@@ -10870,7 +10965,7 @@ _off028_A536_A4:
 
 
 _off028_A53B_A5:
-- D 1 - I - 0x02A54B 0A:A53B: 13        .byte $13   ; 
+- D 1 - I - 0x02A54B 0A:A53B: 13        .byte con_spawner_13   ; 
 - D 1 - I - 0x02A54C 0A:A53C: 20        .byte $20   ; 
 - D 1 - I - 0x02A54D 0A:A53D: 70        .byte $70   ; 
 - D 1 - I - 0x02A54E 0A:A53E: 00        .byte $00   ; 
@@ -10879,7 +10974,7 @@ _off028_A53B_A5:
 
 
 _off028_A540_A6:
-- D 1 - I - 0x02A550 0A:A540: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A550 0A:A540: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A551 0A:A541: 20        .byte $20   ; 
 - D 1 - I - 0x02A552 0A:A542: A0        .byte $A0   ; 
 - D 1 - I - 0x02A553 0A:A543: 00        .byte $00   ; 
@@ -10888,7 +10983,7 @@ _off028_A540_A6:
 
 
 _off028_A545_A7:
-- D 1 - I - 0x02A555 0A:A545: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A555 0A:A545: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A556 0A:A546: 20        .byte $20   ; 
 - D 1 - I - 0x02A557 0A:A547: 50        .byte $50   ; 
 - D 1 - I - 0x02A558 0A:A548: 00        .byte $00   ; 
@@ -10897,7 +10992,7 @@ _off028_A545_A7:
 
 
 _off028_A54A_A8:
-- D 1 - I - 0x02A55A 0A:A54A: 3D        .byte $3D   ; 
+- D 1 - I - 0x02A55A 0A:A54A: 3D        .byte con_spawner_3D   ; 
 - D 1 - I - 0x02A55B 0A:A54B: 20        .byte $20   ; 
 - D 1 - I - 0x02A55C 0A:A54C: B8        .byte $B8   ; 
 - D 1 - I - 0x02A55D 0A:A54D: 00        .byte $00   ; 
@@ -10906,7 +11001,7 @@ _off028_A54A_A8:
 
 
 _off028_A54F_A9:
-- D 1 - I - 0x02A55F 0A:A54F: 3D        .byte $3D   ; 
+- D 1 - I - 0x02A55F 0A:A54F: 3D        .byte con_spawner_3D   ; 
 - D 1 - I - 0x02A560 0A:A550: 20        .byte $20   ; 
 - D 1 - I - 0x02A561 0A:A551: 68        .byte $68   ; 
 - D 1 - I - 0x02A562 0A:A552: 00        .byte $00   ; 
@@ -10915,7 +11010,7 @@ _off028_A54F_A9:
 
 
 _off028_A554_AA:
-- D 1 - I - 0x02A564 0A:A554: 0F        .byte $0F   ; 
+- D 1 - I - 0x02A564 0A:A554: 0F        .byte con_spawner_0F   ; 
 - D 1 - I - 0x02A565 0A:A555: 00        .byte $00   ; 
 - D 1 - I - 0x02A566 0A:A556: 70        .byte $70   ; 
 - D 1 - I - 0x02A567 0A:A557: 00        .byte $00   ; 
@@ -10924,7 +11019,7 @@ _off028_A554_AA:
 
 
 _off028_A559_AB:
-- D 1 - I - 0x02A569 0A:A559: 4D        .byte $4D   ; 
+- D 1 - I - 0x02A569 0A:A559: 4D        .byte con_spawner_4D   ; 
 - D 1 - I - 0x02A56A 0A:A55A: 00        .byte $00   ; 
 - D 1 - I - 0x02A56B 0A:A55B: 48        .byte $48   ; 
 - D 1 - I - 0x02A56C 0A:A55C: 00        .byte $00   ; 
@@ -10933,7 +11028,7 @@ _off028_A559_AB:
 
 
 _off028_A55E_AC:
-- D 1 - I - 0x02A56E 0A:A55E: 4E        .byte $4E   ; 
+- D 1 - I - 0x02A56E 0A:A55E: 4E        .byte con_spawner_4E   ; 
 - D 1 - I - 0x02A56F 0A:A55F: 30        .byte $30   ; 
 - D 1 - I - 0x02A570 0A:A560: 98        .byte $98   ; 
 - D 1 - I - 0x02A571 0A:A561: 00        .byte $00   ; 
@@ -10942,7 +11037,7 @@ _off028_A55E_AC:
 
 
 _off028_A563_AD:
-- D 1 - I - 0x02A573 0A:A563: 13        .byte $13   ; 
+- D 1 - I - 0x02A573 0A:A563: 13        .byte con_spawner_13   ; 
 - D 1 - I - 0x02A574 0A:A564: 20        .byte $20   ; 
 - D 1 - I - 0x02A575 0A:A565: 80        .byte $80   ; 
 - D 1 - I - 0x02A576 0A:A566: 00        .byte $00   ; 
@@ -10951,7 +11046,7 @@ _off028_A563_AD:
 
 
 _off028_A568_AE:
-- D 1 - I - 0x02A578 0A:A568: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A578 0A:A568: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A579 0A:A569: 20        .byte $20   ; 
 - D 1 - I - 0x02A57A 0A:A56A: B0        .byte $B0   ; 
 - D 1 - I - 0x02A57B 0A:A56B: 00        .byte $00   ; 
@@ -10960,7 +11055,7 @@ _off028_A568_AE:
 
 
 _off028_A56D_AF:
-- D 1 - I - 0x02A57D 0A:A56D: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A57D 0A:A56D: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A57E 0A:A56E: 30        .byte $30   ; 
 - D 1 - I - 0x02A57F 0A:A56F: B0        .byte $B0   ; 
 - D 1 - I - 0x02A580 0A:A570: 00        .byte $00   ; 
@@ -10969,7 +11064,7 @@ _off028_A56D_AF:
 
 
 _off028_A572_B0:
-- D 1 - I - 0x02A582 0A:A572: 0F        .byte $0F   ; 
+- D 1 - I - 0x02A582 0A:A572: 0F        .byte con_spawner_0F   ; 
 - D 1 - I - 0x02A583 0A:A573: 00        .byte $00   ; 
 - D 1 - I - 0x02A584 0A:A574: 60        .byte $60   ; 
 - D 1 - I - 0x02A585 0A:A575: 00        .byte $00   ; 
@@ -10978,7 +11073,7 @@ _off028_A572_B0:
 
 
 _off028_A577_B1:
-- D 1 - I - 0x02A587 0A:A577: 4F        .byte $4F   ; 
+- D 1 - I - 0x02A587 0A:A577: 4F        .byte con_spawner_4F   ; 
 - D 1 - I - 0x02A588 0A:A578: 14        .byte $14   ; 
 - D 1 - I - 0x02A589 0A:A579: C0        .byte $C0   ; 
 - D 1 - I - 0x02A58A 0A:A57A: 00        .byte $00   ; 
@@ -10987,7 +11082,7 @@ _off028_A577_B1:
 
 
 _off028_A57C_B2:
-- D 1 - I - 0x02A58C 0A:A57C: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A58C 0A:A57C: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A58D 0A:A57D: 10        .byte $10   ; 
 - D 1 - I - 0x02A58E 0A:A57E: 80        .byte $80   ; 
 - D 1 - I - 0x02A58F 0A:A57F: 00        .byte $00   ; 
@@ -10996,7 +11091,7 @@ _off028_A57C_B2:
 
 
 _off028_A581_B3:
-- D 1 - I - 0x02A591 0A:A581: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A591 0A:A581: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A592 0A:A582: 30        .byte $30   ; 
 - D 1 - I - 0x02A593 0A:A583: 80        .byte $80   ; 
 - D 1 - I - 0x02A594 0A:A584: 00        .byte $00   ; 
@@ -11006,7 +11101,7 @@ _off028_A581_B3:
 
 _off028_A586_B4:
 ; bzk garbage
-- - - - - - 0x02A596 0A:A586: 11        .byte $11   ; 
+- - - - - - 0x02A596 0A:A586: 11        .byte $11   ; con_spawner_11
 - - - - - - 0x02A597 0A:A587: 30        .byte $30   ; 
 - - - - - - 0x02A598 0A:A588: 90        .byte $90   ; 
 - - - - - - 0x02A599 0A:A589: 00        .byte $00   ; 
@@ -11015,7 +11110,7 @@ _off028_A586_B4:
 
 
 _off028_A58B_B5:
-- D 1 - I - 0x02A59B 0A:A58B: 11        .byte $11   ; 
+- D 1 - I - 0x02A59B 0A:A58B: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02A59C 0A:A58C: 20        .byte $20   ; 
 - D 1 - I - 0x02A59D 0A:A58D: 60        .byte $60   ; 
 - D 1 - I - 0x02A59E 0A:A58E: 00        .byte $00   ; 
@@ -11024,7 +11119,7 @@ _off028_A58B_B5:
 
 
 _off028_A590_B6:
-- D 1 - I - 0x02A5A0 0A:A590: 15        .byte $15   ; 
+- D 1 - I - 0x02A5A0 0A:A590: 15        .byte con_spawner_15   ; 
 - D 1 - I - 0x02A5A1 0A:A591: 20        .byte $20   ; 
 - D 1 - I - 0x02A5A2 0A:A592: B8        .byte $B8   ; 
 - D 1 - I - 0x02A5A3 0A:A593: 00        .byte $00   ; 
@@ -11034,7 +11129,7 @@ _off028_A590_B6:
 
 _off028_A595_B7:
 ; bzk garbage
-- - - - - - 0x02A5A5 0A:A595: 43        .byte $43   ; 
+- - - - - - 0x02A5A5 0A:A595: 43        .byte $43   ; con_spawner_43
 - - - - - - 0x02A5A6 0A:A596: 38        .byte $38   ; 
 - - - - - - 0x02A5A7 0A:A597: 60        .byte $60   ; 
 - - - - - - 0x02A5A8 0A:A598: 01        .byte $01   ; 
@@ -11044,7 +11139,7 @@ _off028_A595_B7:
 
 _off028_A59A_B8:
 ; bzk garbage
-- - - - - - 0x02A5AA 0A:A59A: 32        .byte $32   ; 
+- - - - - - 0x02A5AA 0A:A59A: 32        .byte $32   ; con_spawner_32
 - - - - - - 0x02A5AB 0A:A59B: 00        .byte $00   ; 
 - - - - - - 0x02A5AC 0A:A59C: 80        .byte $80   ; 
 - - - - - - 0x02A5AD 0A:A59D: 00        .byte $00   ; 
@@ -11053,7 +11148,7 @@ _off028_A59A_B8:
 
 
 _off028_A59F_B9:
-- D 1 - I - 0x02A5AF 0A:A59F: 3E        .byte $3E   ; 
+- D 1 - I - 0x02A5AF 0A:A59F: 3E        .byte con_spawner_3E   ; 
 - D 1 - I - 0x02A5B0 0A:A5A0: 20        .byte $20   ; 
 - D 1 - I - 0x02A5B1 0A:A5A1: D8        .byte $D8   ; 
 - D 1 - I - 0x02A5B2 0A:A5A2: 00        .byte $00   ; 
@@ -11062,7 +11157,7 @@ _off028_A59F_B9:
 
 
 _off028_A5A4_BA:
-- D 1 - I - 0x02A5B4 0A:A5A4: 32        .byte $32   ; 
+- D 1 - I - 0x02A5B4 0A:A5A4: 32        .byte con_spawner_32   ; 
 - D 1 - I - 0x02A5B5 0A:A5A5: 08        .byte $08   ; 
 - D 1 - I - 0x02A5B6 0A:A5A6: 70        .byte $70   ; 
 - D 1 - I - 0x02A5B7 0A:A5A7: 00        .byte $00   ; 
@@ -11071,7 +11166,7 @@ _off028_A5A4_BA:
 
 
 _off028_A5A9_BB:
-- D 1 - I - 0x02A5B9 0A:A5A9: 11        .byte $11   ; 
+- D 1 - I - 0x02A5B9 0A:A5A9: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02A5BA 0A:A5AA: 20        .byte $20   ; 
 - D 1 - I - 0x02A5BB 0A:A5AB: 50        .byte $50   ; 
 - D 1 - I - 0x02A5BC 0A:A5AC: 00        .byte $00   ; 
@@ -11080,7 +11175,7 @@ _off028_A5A9_BB:
 
 
 _off028_A5AE_BC:
-- D 1 - I - 0x02A5BE 0A:A5AE: 50        .byte $50   ; 
+- D 1 - I - 0x02A5BE 0A:A5AE: 50        .byte con_spawner_50   ; 
 - D 1 - I - 0x02A5BF 0A:A5AF: 20        .byte $20   ; 
 - D 1 - I - 0x02A5C0 0A:A5B0: B0        .byte $B0   ; 
 - D 1 - I - 0x02A5C1 0A:A5B1: 00        .byte $00   ; 
@@ -11089,7 +11184,7 @@ _off028_A5AE_BC:
 
 
 _off028_A5B3_BD:
-- D 1 - I - 0x02A5C3 0A:A5B3: 0E        .byte $0E   ; 
+- D 1 - I - 0x02A5C3 0A:A5B3: 0E        .byte con_spawner_0E   ; 
 - D 1 - I - 0x02A5C4 0A:A5B4: 30        .byte $30   ; 
 - D 1 - I - 0x02A5C5 0A:A5B5: 60        .byte $60   ; 
 - D 1 - I - 0x02A5C6 0A:A5B6: 00        .byte $00   ; 
@@ -11098,7 +11193,7 @@ _off028_A5B3_BD:
 
 
 _off028_A5B8_BE:
-- D 1 - I - 0x02A5C8 0A:A5B8: 14        .byte $14   ; 
+- D 1 - I - 0x02A5C8 0A:A5B8: 14        .byte con_spawner_14   ; 
 - D 1 - I - 0x02A5C9 0A:A5B9: 20        .byte $20   ; 
 - D 1 - I - 0x02A5CA 0A:A5BA: 48        .byte $48   ; 
 - D 1 - I - 0x02A5CB 0A:A5BB: 00        .byte $00   ; 
@@ -11107,7 +11202,7 @@ _off028_A5B8_BE:
 
 
 _off028_A5BD_BF:
-- D 1 - I - 0x02A5CD 0A:A5BD: 51        .byte $51   ; 
+- D 1 - I - 0x02A5CD 0A:A5BD: 51        .byte con_spawner_51   ; 
 - D 1 - I - 0x02A5CE 0A:A5BE: 20        .byte $20   ; 
 - D 1 - I - 0x02A5CF 0A:A5BF: 40        .byte $40   ; 
 - D 1 - I - 0x02A5D0 0A:A5C0: 00        .byte $00   ; 
@@ -11116,7 +11211,7 @@ _off028_A5BD_BF:
 
 
 _off028_A5C2_C0:
-- D 1 - I - 0x02A5D2 0A:A5C2: 0D        .byte $0D   ; 
+- D 1 - I - 0x02A5D2 0A:A5C2: 0D        .byte con_spawner_0D   ; 
 - D 1 - I - 0x02A5D3 0A:A5C3: 20        .byte $20   ; 
 - D 1 - I - 0x02A5D4 0A:A5C4: 70        .byte $70   ; 
 - D 1 - I - 0x02A5D5 0A:A5C5: 00        .byte $00   ; 
@@ -11125,7 +11220,7 @@ _off028_A5C2_C0:
 
 
 _off028_A5C7_C1:
-- D 1 - I - 0x02A5D7 0A:A5C7: 14        .byte $14   ; 
+- D 1 - I - 0x02A5D7 0A:A5C7: 14        .byte con_spawner_14   ; 
 - D 1 - I - 0x02A5D8 0A:A5C8: 20        .byte $20   ; 
 - D 1 - I - 0x02A5D9 0A:A5C9: 60        .byte $60   ; 
 - D 1 - I - 0x02A5DA 0A:A5CA: 00        .byte $00   ; 
@@ -11134,7 +11229,7 @@ _off028_A5C7_C1:
 
 
 _off028_A5CC_C2:
-- D 1 - I - 0x02A5DC 0A:A5CC: 3F        .byte $3F   ; 
+- D 1 - I - 0x02A5DC 0A:A5CC: 3F        .byte con_spawner_3F   ; 
 - D 1 - I - 0x02A5DD 0A:A5CD: 20        .byte $20   ; 
 - D 1 - I - 0x02A5DE 0A:A5CE: 60        .byte $60   ; 
 - D 1 - I - 0x02A5DF 0A:A5CF: 00        .byte $00   ; 
@@ -11143,7 +11238,7 @@ _off028_A5CC_C2:
 
 
 _off028_A5D1_C3:
-- D 1 - I - 0x02A5E1 0A:A5D1: 45        .byte $45   ; 
+- D 1 - I - 0x02A5E1 0A:A5D1: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02A5E2 0A:A5D2: 10        .byte $10   ; 
 - D 1 - I - 0x02A5E3 0A:A5D3: A8        .byte $A8   ; 
 - D 1 - I - 0x02A5E4 0A:A5D4: 02        .byte $02   ; 
@@ -11152,7 +11247,7 @@ _off028_A5D1_C3:
 
 
 _off028_A5D6_C4:
-- D 1 - I - 0x02A5E6 0A:A5D6: 3F        .byte $3F   ; 
+- D 1 - I - 0x02A5E6 0A:A5D6: 3F        .byte con_spawner_3F   ; 
 - D 1 - I - 0x02A5E7 0A:A5D7: 20        .byte $20   ; 
 - D 1 - I - 0x02A5E8 0A:A5D8: C0        .byte $C0   ; 
 - D 1 - I - 0x02A5E9 0A:A5D9: 00        .byte $00   ; 
@@ -11161,7 +11256,7 @@ _off028_A5D6_C4:
 
 
 _off028_A5DB_C5:
-- D 1 - I - 0x02A5EB 0A:A5DB: 19        .byte $19   ; 
+- D 1 - I - 0x02A5EB 0A:A5DB: 19        .byte con_spawner_19   ; 
 - D 1 - I - 0x02A5EC 0A:A5DC: 20        .byte $20   ; 
 - D 1 - I - 0x02A5ED 0A:A5DD: 80        .byte $80   ; 
 - D 1 - I - 0x02A5EE 0A:A5DE: 00        .byte $00   ; 
@@ -11179,7 +11274,7 @@ _off028_A5E0_CC:
 _off028_A5E0_CD:
 _off028_A5E0_CE:
 _off028_A5E0_CF:
-- D 1 - I - 0x02A5F0 0A:A5E0: 40        .byte $40   ; 
+- D 1 - I - 0x02A5F0 0A:A5E0: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02A5F1 0A:A5E1: 30        .byte $30   ; 
 - D 1 - I - 0x02A5F2 0A:A5E2: 60        .byte $60   ; 
 - D 1 - I - 0x02A5F3 0A:A5E3: 00        .byte $00   ; 
@@ -11188,7 +11283,7 @@ _off028_A5E0_CF:
 
 
 _off028_A5E5_D0:
-- D 1 - I - 0x02A5F5 0A:A5E5: 11        .byte $11   ; 
+- D 1 - I - 0x02A5F5 0A:A5E5: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02A5F6 0A:A5E6: 08        .byte $08   ; 
 - D 1 - I - 0x02A5F7 0A:A5E7: 80        .byte $80   ; 
 - D 1 - I - 0x02A5F8 0A:A5E8: 00        .byte $00   ; 
@@ -11197,7 +11292,7 @@ _off028_A5E5_D0:
 
 
 _off028_A5EA_D1:
-- D 1 - I - 0x02A5FA 0A:A5EA: 02        .byte $02   ; 
+- D 1 - I - 0x02A5FA 0A:A5EA: 02        .byte con_spawner_02   ; 
 - D 1 - I - 0x02A5FB 0A:A5EB: 20        .byte $20   ; 
 - D 1 - I - 0x02A5FC 0A:A5EC: C0        .byte $C0   ; 
 - D 1 - I - 0x02A5FD 0A:A5ED: 00        .byte $00   ; 
@@ -11206,7 +11301,7 @@ _off028_A5EA_D1:
 
 
 _off028_A5EF_D2:
-- D 1 - I - 0x02A5FF 0A:A5EF: 48        .byte $48   ; 
+- D 1 - I - 0x02A5FF 0A:A5EF: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02A600 0A:A5F0: 20        .byte $20   ; 
 - D 1 - I - 0x02A601 0A:A5F1: 60        .byte $60   ; 
 - D 1 - I - 0x02A602 0A:A5F2: 00        .byte $00   ; 
@@ -11215,7 +11310,7 @@ _off028_A5EF_D2:
 
 
 _off028_A5F4_D3:
-- D 1 - I - 0x02A604 0A:A5F4: 18        .byte $18   ; 
+- D 1 - I - 0x02A604 0A:A5F4: 18        .byte con_spawner_18   ; 
 - D 1 - I - 0x02A605 0A:A5F5: 20        .byte $20   ; 
 - D 1 - I - 0x02A606 0A:A5F6: 40        .byte $40   ; 
 - D 1 - I - 0x02A607 0A:A5F7: 40        .byte $40   ; 
@@ -11224,7 +11319,7 @@ _off028_A5F4_D3:
 
 
 _off028_A5F9_D4:
-- D 1 - I - 0x02A609 0A:A5F9: 0C        .byte $0C   ; 
+- D 1 - I - 0x02A609 0A:A5F9: 0C        .byte con_spawner_0C   ; 
 - D 1 - I - 0x02A60A 0A:A5FA: 20        .byte $20   ; 
 - D 1 - I - 0x02A60B 0A:A5FB: 98        .byte $98   ; 
 - D 1 - I - 0x02A60C 0A:A5FC: 00        .byte $00   ; 
@@ -11233,7 +11328,7 @@ _off028_A5F9_D4:
 
 
 _off028_A5FE_D5:
-- - - - - - 0x02A60E 0A:A5FE: 10        .byte $10   ; 
+- - - - - - 0x02A60E 0A:A5FE: 10        .byte con_spawner_10   ; 
 - - - - - - 0x02A60F 0A:A5FF: 20        .byte $20   ; 
 - - - - - - 0x02A610 0A:A600: 40        .byte $40   ; 
 - - - - - - 0x02A611 0A:A601: 00        .byte $00   ; 
@@ -11242,7 +11337,7 @@ _off028_A5FE_D5:
 
 
 _off028_A603_D6:
-- - - - - - 0x02A613 0A:A603: 1A        .byte $1A   ; 
+- - - - - - 0x02A613 0A:A603: 1A        .byte con_spawner_1A   ; 
 - - - - - - 0x02A614 0A:A604: 20        .byte $20   ; 
 - - - - - - 0x02A615 0A:A605: 50        .byte $50   ; 
 - - - - - - 0x02A616 0A:A606: 00        .byte $00   ; 
@@ -11251,7 +11346,7 @@ _off028_A603_D6:
 
 
 _off028_A608_D7:
-- - - - - - 0x02A618 0A:A608: 13        .byte $13   ; 
+- - - - - - 0x02A618 0A:A608: 13        .byte con_spawner_13   ; 
 - - - - - - 0x02A619 0A:A609: 20        .byte $20   ; 
 - - - - - - 0x02A61A 0A:A60A: A0        .byte $A0   ; 
 - - - - - - 0x02A61B 0A:A60B: 00        .byte $00   ; 
@@ -11260,7 +11355,7 @@ _off028_A608_D7:
 
 
 _off028_A60D_D8:
-- - - - - - 0x02A61D 0A:A60D: 3D        .byte $3D   ; 
+- - - - - - 0x02A61D 0A:A60D: 3D        .byte con_spawner_3D   ; 
 - - - - - - 0x02A61E 0A:A60E: 20        .byte $20   ; 
 - - - - - - 0x02A61F 0A:A60F: 88        .byte $88   ; 
 - - - - - - 0x02A620 0A:A610: 00        .byte $00   ; 
@@ -11269,7 +11364,7 @@ _off028_A60D_D8:
 
 
 _off028_A612_D9:
-- - - - - - 0x02A622 0A:A612: 0F        .byte $0F   ; 
+- - - - - - 0x02A622 0A:A612: 0F        .byte con_spawner_0F   ; 
 - - - - - - 0x02A623 0A:A613: 30        .byte $30   ; 
 - - - - - - 0x02A624 0A:A614: A0        .byte $A0   ; 
 - - - - - - 0x02A625 0A:A615: 00        .byte $00   ; 
@@ -11278,7 +11373,7 @@ _off028_A612_D9:
 
 
 _off028_A617_DA:
-- - - - - - 0x02A627 0A:A617: 45        .byte $45   ; 
+- - - - - - 0x02A627 0A:A617: 45        .byte con_spawner_45   ; 
 - - - - - - 0x02A628 0A:A618: 10        .byte $10   ; 
 - - - - - - 0x02A629 0A:A619: 78        .byte $78   ; 
 - - - - - - 0x02A62A 0A:A61A: 02        .byte $02   ; 
@@ -11287,7 +11382,7 @@ _off028_A617_DA:
 
 
 _off028_A61C_DB:
-- - - - - - 0x02A62C 0A:A61C: 45        .byte $45   ; 
+- - - - - - 0x02A62C 0A:A61C: 45        .byte con_spawner_45   ; 
 - - - - - - 0x02A62D 0A:A61D: 10        .byte $10   ; 
 - - - - - - 0x02A62E 0A:A61E: 98        .byte $98   ; 
 - - - - - - 0x02A62F 0A:A61F: 02        .byte $02   ; 
@@ -11296,7 +11391,7 @@ _off028_A61C_DB:
 
 
 _off028_A621_DC:
-- - - - - - 0x02A631 0A:A621: 0F        .byte $0F   ; 
+- - - - - - 0x02A631 0A:A621: 0F        .byte con_spawner_0F   ; 
 - - - - - - 0x02A632 0A:A622: 00        .byte $00   ; 
 - - - - - - 0x02A633 0A:A623: 90        .byte $90   ; 
 - - - - - - 0x02A634 0A:A624: 00        .byte $00   ; 
@@ -11307,7 +11402,7 @@ _off028_A621_DC:
 _off028_A626_DD:
 _off028_A626_DF:
 ; bzk garbage
-- - - - - - 0x02A636 0A:A626: 13        .byte $13   ; 
+- - - - - - 0x02A636 0A:A626: 13        .byte $13   ; con_spawner_13
 - - - - - - 0x02A637 0A:A627: 20        .byte $20   ; 
 - - - - - - 0x02A638 0A:A628: 70        .byte $70   ; 
 - - - - - - 0x02A639 0A:A629: 00        .byte $00   ; 
@@ -11316,7 +11411,7 @@ _off028_A626_DF:
 
 
 _off028_A62B_DE:
-- D 1 - I - 0x02A63B 0A:A62B: 47        .byte $47   ; 
+- D 1 - I - 0x02A63B 0A:A62B: 47        .byte con_spawner_47   ; 
 - D 1 - I - 0x02A63C 0A:A62C: 20        .byte $20   ; 
 - D 1 - I - 0x02A63D 0A:A62D: 80        .byte $80   ; 
 - D 1 - I - 0x02A63E 0A:A62E: 00        .byte $00   ; 
@@ -11325,7 +11420,7 @@ _off028_A62B_DE:
 
 
 _off028_A630_E0:
-- - - - - - 0x02A640 0A:A630: 19        .byte $19   ; 
+- - - - - - 0x02A640 0A:A630: 19        .byte con_spawner_19   ; 
 - - - - - - 0x02A641 0A:A631: 20        .byte $20   ; 
 - - - - - - 0x02A642 0A:A632: 90        .byte $90   ; 
 - - - - - - 0x02A643 0A:A633: 00        .byte $00   ; 
@@ -11334,7 +11429,7 @@ _off028_A630_E0:
 
 
 _off028_A635_E1:
-- - - - - - 0x02A645 0A:A635: 2B        .byte $2B   ; 
+- - - - - - 0x02A645 0A:A635: 2B        .byte con_spawner_2B   ; 
 - - - - - - 0x02A646 0A:A636: 08        .byte $08   ; 
 - - - - - - 0x02A647 0A:A637: 88        .byte $88   ; 
 - - - - - - 0x02A648 0A:A638: 00        .byte $00   ; 
@@ -11343,7 +11438,7 @@ _off028_A635_E1:
 
 
 _off028_A63A_E2:
-- - - - - - 0x02A64A 0A:A63A: 16        .byte $16   ; 
+- - - - - - 0x02A64A 0A:A63A: 16        .byte con_spawner_16   ; 
 - - - - - - 0x02A64B 0A:A63B: 20        .byte $20   ; 
 - - - - - - 0x02A64C 0A:A63C: 70        .byte $70   ; 
 - - - - - - 0x02A64D 0A:A63D: 00        .byte $00   ; 
@@ -11352,7 +11447,7 @@ _off028_A63A_E2:
 
 
 _off028_A63F_E3:
-- - - - - - 0x02A64F 0A:A63F: 2C        .byte $2C   ; 
+- - - - - - 0x02A64F 0A:A63F: 2C        .byte con_spawner_2C   ; 
 - - - - - - 0x02A650 0A:A640: 10        .byte $10   ; 
 - - - - - - 0x02A651 0A:A641: 78        .byte $78   ; 
 - - - - - - 0x02A652 0A:A642: 03        .byte $03   ; 
@@ -13690,7 +13785,7 @@ off_AC34_00_01_01:
 - - - - - - 0x02AC4A 0A:AC3A: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AC4B 0A:AC3B: 01 52     .dbyt $0152 ; 
-- D 1 - I - 0x02AC4D 0A:AC3D: 0D        .byte $0D   ; 
+- D 1 - I - 0x02AC4D 0A:AC3D: 0D        .byte con_spawner_0D   ; 
 - D 1 - I - 0x02AC4E 0A:AC3E: D8        .byte $D8   ; 
 - - - - - - 0x02AC4F 0A:AC3F: AD        .byte $AD   ; 
 - D 1 - I - 0x02AC50 0A:AC40: 00        .byte $00   ; 
@@ -13711,14 +13806,14 @@ off_AC34_00_01_01:
 - - - - - - 0x02AC5F 0A:AC4F: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AC60 0A:AC50: 00 B2     .dbyt $00B2 ; 
-- D 1 - I - 0x02AC62 0A:AC52: 0D        .byte $0D   ; 
+- D 1 - I - 0x02AC62 0A:AC52: 0D        .byte con_spawner_0D   ; 
 - D 1 - I - 0x02AC63 0A:AC53: D8        .byte $D8   ; 
 - - - - - - 0x02AC64 0A:AC54: AD        .byte $AD   ; 
 - D 1 - I - 0x02AC65 0A:AC55: 00        .byte $00   ; 
 - D 1 - I - 0x02AC66 0A:AC56: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AC67 0A:AC57: 00 78     .dbyt $0078 ; 
-- D 1 - I - 0x02AC69 0A:AC59: 0D        .byte $0D   ; 
+- D 1 - I - 0x02AC69 0A:AC59: 0D        .byte con_spawner_0D   ; 
 - D 1 - I - 0x02AC6A 0A:AC5A: 28        .byte $28   ; 
 - - - - - - 0x02AC6B 0A:AC5B: AD        .byte $AD   ; 
 - D 1 - I - 0x02AC6C 0A:AC5C: 00        .byte $00   ; 
@@ -13759,7 +13854,7 @@ off_AC74_01_00_00:
 - - - - - - 0x02AC8A 0A:AC7A: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AC8B 0A:AC7B: 02 2C     .dbyt $022C ; 
-- D 1 - I - 0x02AC8D 0A:AC7D: 32        .byte $32   ; 
+- D 1 - I - 0x02AC8D 0A:AC7D: 32        .byte con_spawner_32   ; 
 - D 1 - I - 0x02AC8E 0A:AC7E: 40        .byte $40   ; 
 - - - - - - 0x02AC8F 0A:AC7F: AD        .byte $AD   ; 
 - D 1 - I - 0x02AC90 0A:AC80: 00        .byte $00   ; 
@@ -13787,7 +13882,7 @@ off_AC74_01_00_00:
 - - - - - - 0x02ACA6 0A:AC96: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02ACA7 0A:AC97: 01 AC     .dbyt $01AC ; 
-- D 1 - I - 0x02ACA9 0A:AC99: 40        .byte $40   ; 
+- D 1 - I - 0x02ACA9 0A:AC99: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02ACAA 0A:AC9A: 40        .byte $40   ; 
 - - - - - - 0x02ACAB 0A:AC9B: AE        .byte $AE   ; 
 - D 1 - I - 0x02ACAC 0A:AC9C: 00        .byte $00   ; 
@@ -13856,7 +13951,7 @@ off_ACD0_01_01_01:
 - - - - - - 0x02ACE6 0A:ACD6: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02ACE7 0A:ACD7: 01 70     .dbyt $0170 ; 
-- D 1 - I - 0x02ACE9 0A:ACD9: 4A        .byte $4A   ; 
+- D 1 - I - 0x02ACE9 0A:ACD9: 4A        .byte con_spawner_4A   ; 
 - D 1 - I - 0x02ACEA 0A:ACDA: 20        .byte $20   ; 
 - - - - - - 0x02ACEB 0A:ACDB: AE        .byte $AE   ; 
 - D 1 - I - 0x02ACEC 0A:ACDC: 00        .byte $00   ; 
@@ -13884,7 +13979,7 @@ off_ACD0_01_01_01:
 - - - - - - 0x02AD02 0A:ACF2: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AD03 0A:ACF3: 00 40     .dbyt $0040 ; 
-- D 1 - I - 0x02AD05 0A:ACF5: 4A        .byte $4A   ; 
+- D 1 - I - 0x02AD05 0A:ACF5: 4A        .byte con_spawner_4A   ; 
 - D 1 - I - 0x02AD06 0A:ACF6: 80        .byte $80   ; 
 - - - - - - 0x02AD07 0A:ACF7: AE        .byte $AE   ; 
 - D 1 - I - 0x02AD08 0A:ACF8: 00        .byte $00   ; 
@@ -13904,28 +13999,28 @@ off_ACD0_01_01_01:
 off_AD02_01_02_01:
 ; 
 - D 1 - I - 0x02AD12 0A:AD02: 02 C0     .dbyt $02C0 ; 
-- D 1 - I - 0x02AD14 0A:AD04: 48        .byte $48   ; 
+- D 1 - I - 0x02AD14 0A:AD04: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02AD15 0A:AD05: 80        .byte $80   ; 
 - - - - - - 0x02AD16 0A:AD06: A3        .byte $A3   ; 
 - D 1 - I - 0x02AD17 0A:AD07: F0        .byte $F0   ; 
 - D 1 - I - 0x02AD18 0A:AD08: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AD19 0A:AD09: 01 E0     .dbyt $01E0 ; 
-- D 1 - I - 0x02AD1B 0A:AD0B: 48        .byte $48   ; 
+- D 1 - I - 0x02AD1B 0A:AD0B: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02AD1C 0A:AD0C: 80        .byte $80   ; 
 - - - - - - 0x02AD1D 0A:AD0D: A3        .byte $A3   ; 
 - D 1 - I - 0x02AD1E 0A:AD0E: F0        .byte $F0   ; 
 - D 1 - I - 0x02AD1F 0A:AD0F: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AD20 0A:AD10: 01 00     .dbyt $0100 ; 
-- D 1 - I - 0x02AD22 0A:AD12: 48        .byte $48   ; 
+- D 1 - I - 0x02AD22 0A:AD12: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02AD23 0A:AD13: 80        .byte $80   ; 
 - - - - - - 0x02AD24 0A:AD14: A3        .byte $A3   ; 
 - D 1 - I - 0x02AD25 0A:AD15: F0        .byte $F0   ; 
 - D 1 - I - 0x02AD26 0A:AD16: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AD27 0A:AD17: 00 20     .dbyt $0020 ; 
-- D 1 - I - 0x02AD29 0A:AD19: 48        .byte $48   ; 
+- D 1 - I - 0x02AD29 0A:AD19: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02AD2A 0A:AD1A: 80        .byte $80   ; 
 - - - - - - 0x02AD2B 0A:AD1B: A3        .byte $A3   ; 
 - D 1 - I - 0x02AD2C 0A:AD1C: F0        .byte $F0   ; 
@@ -13938,35 +14033,35 @@ off_AD02_01_02_01:
 off_AD1F_01_03_01:
 ; 
 - D 1 - I - 0x02AD2F 0A:AD1F: 00 40     .dbyt $0040 ; 
-- D 1 - I - 0x02AD31 0A:AD21: 48        .byte $48   ; 
+- D 1 - I - 0x02AD31 0A:AD21: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02AD32 0A:AD22: 80        .byte $80   ; 
 - - - - - - 0x02AD33 0A:AD23: A3        .byte $A3   ; 
 - D 1 - I - 0x02AD34 0A:AD24: 0A        .byte $0A   ; 
 - D 1 - I - 0x02AD35 0A:AD25: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AD36 0A:AD26: 00 D0     .dbyt $00D0 ; 
-- D 1 - I - 0x02AD38 0A:AD28: 48        .byte $48   ; 
+- D 1 - I - 0x02AD38 0A:AD28: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02AD39 0A:AD29: 80        .byte $80   ; 
 - - - - - - 0x02AD3A 0A:AD2A: A3        .byte $A3   ; 
 - D 1 - I - 0x02AD3B 0A:AD2B: 0A        .byte $0A   ; 
 - D 1 - I - 0x02AD3C 0A:AD2C: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AD3D 0A:AD2D: 01 40     .dbyt $0140 ; 
-- D 1 - I - 0x02AD3F 0A:AD2F: 48        .byte $48   ; 
+- D 1 - I - 0x02AD3F 0A:AD2F: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02AD40 0A:AD30: 80        .byte $80   ; 
 - - - - - - 0x02AD41 0A:AD31: A3        .byte $A3   ; 
 - D 1 - I - 0x02AD42 0A:AD32: 0A        .byte $0A   ; 
 - D 1 - I - 0x02AD43 0A:AD33: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AD44 0A:AD34: 02 10     .dbyt $0210 ; 
-- D 1 - I - 0x02AD46 0A:AD36: 48        .byte $48   ; 
+- D 1 - I - 0x02AD46 0A:AD36: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02AD47 0A:AD37: 80        .byte $80   ; 
 - - - - - - 0x02AD48 0A:AD38: A3        .byte $A3   ; 
 - D 1 - I - 0x02AD49 0A:AD39: 0A        .byte $0A   ; 
 - D 1 - I - 0x02AD4A 0A:AD3A: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AD4B 0A:AD3B: 02 C0     .dbyt $02C0 ; 
-- D 1 - I - 0x02AD4D 0A:AD3D: 48        .byte $48   ; 
+- D 1 - I - 0x02AD4D 0A:AD3D: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02AD4E 0A:AD3E: 80        .byte $80   ; 
 - - - - - - 0x02AD4F 0A:AD3F: A3        .byte $A3   ; 
 - D 1 - I - 0x02AD50 0A:AD40: 0A        .byte $0A   ; 
@@ -13986,7 +14081,7 @@ off_AD43_01_04_01:
 - - - - - - 0x02AD59 0A:AD49: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AD5A 0A:AD4A: 00 40     .dbyt $0040 ; 
-- D 1 - I - 0x02AD5C 0A:AD4C: 4A        .byte $4A   ; 
+- D 1 - I - 0x02AD5C 0A:AD4C: 4A        .byte con_spawner_4A   ; 
 - D 1 - I - 0x02AD5D 0A:AD4D: 80        .byte $80   ; 
 - - - - - - 0x02AD5E 0A:AD4E: AE        .byte $AE   ; 
 - D 1 - I - 0x02AD5F 0A:AD4F: 00        .byte $00   ; 
@@ -14014,7 +14109,7 @@ off_AD43_01_04_01:
 - - - - - - 0x02AD75 0A:AD65: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AD76 0A:AD66: 01 70     .dbyt $0170 ; 
-- D 1 - I - 0x02AD78 0A:AD68: 4A        .byte $4A   ; 
+- D 1 - I - 0x02AD78 0A:AD68: 4A        .byte con_spawner_4A   ; 
 - D 1 - I - 0x02AD79 0A:AD69: 20        .byte $20   ; 
 - - - - - - 0x02AD7A 0A:AD6A: AE        .byte $AE   ; 
 - D 1 - I - 0x02AD7B 0A:AD6B: 00        .byte $00   ; 
@@ -14055,7 +14150,7 @@ off_AD75_01_05_00:
 - - - - - - 0x02AD99 0A:AD89: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AD9A 0A:AD8A: 00 80     .dbyt $0080 ; 
-- D 1 - I - 0x02AD9C 0A:AD8C: 4A        .byte $4A   ; 
+- D 1 - I - 0x02AD9C 0A:AD8C: 4A        .byte con_spawner_4A   ; 
 - D 1 - I - 0x02AD9D 0A:AD8D: 80        .byte $80   ; 
 - - - - - - 0x02AD9E 0A:AD8E: AE        .byte $AE   ; 
 - D 1 - I - 0x02AD9F 0A:AD8F: 00        .byte $00   ; 
@@ -14083,7 +14178,7 @@ off_AD75_01_05_00:
 - - - - - - 0x02ADB5 0A:ADA5: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02ADB6 0A:ADA6: 01 60     .dbyt $0160 ; 
-- D 1 - I - 0x02ADB8 0A:ADA8: 4A        .byte $4A   ; 
+- D 1 - I - 0x02ADB8 0A:ADA8: 4A        .byte con_spawner_4A   ; 
 - D 1 - I - 0x02ADB9 0A:ADA9: 80        .byte $80   ; 
 - - - - - - 0x02ADBA 0A:ADAA: AE        .byte $AE   ; 
 - D 1 - I - 0x02ADBB 0A:ADAB: 00        .byte $00   ; 
@@ -14097,7 +14192,7 @@ off_AD75_01_05_00:
 - - - - - - 0x02ADC3 0A:ADB3: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02ADC4 0A:ADB4: 01 A8     .dbyt $01A8 ; 
-- D 1 - I - 0x02ADC6 0A:ADB6: 40        .byte $40   ; 
+- D 1 - I - 0x02ADC6 0A:ADB6: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02ADC7 0A:ADB7: 40        .byte $40   ; 
 - - - - - - 0x02ADC8 0A:ADB8: AE        .byte $AE   ; 
 - D 1 - I - 0x02ADC9 0A:ADB9: 00        .byte $00   ; 
@@ -14111,7 +14206,7 @@ off_AD75_01_05_00:
 - - - - - - 0x02ADD1 0A:ADC1: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02ADD2 0A:ADC2: 01 D0     .dbyt $01D0 ; 
-- D 1 - I - 0x02ADD4 0A:ADC4: 4A        .byte $4A   ; 
+- D 1 - I - 0x02ADD4 0A:ADC4: 4A        .byte con_spawner_4A   ; 
 - D 1 - I - 0x02ADD5 0A:ADC5: 80        .byte $80   ; 
 - - - - - - 0x02ADD6 0A:ADC6: AE        .byte $AE   ; 
 - D 1 - I - 0x02ADD7 0A:ADC7: 00        .byte $00   ; 
@@ -14132,7 +14227,7 @@ off_AD75_01_05_00:
 - - - - - - 0x02ADE6 0A:ADD6: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02ADE7 0A:ADD7: 02 28     .dbyt $0228 ; 
-- D 1 - I - 0x02ADE9 0A:ADD9: 32        .byte $32   ; 
+- D 1 - I - 0x02ADE9 0A:ADD9: 32        .byte con_spawner_32   ; 
 - D 1 - I - 0x02ADEA 0A:ADDA: 40        .byte $40   ; 
 - - - - - - 0x02ADEB 0A:ADDB: AD        .byte $AD   ; 
 - D 1 - I - 0x02ADEC 0A:ADDC: 00        .byte $00   ; 
@@ -14153,7 +14248,7 @@ off_AD75_01_05_00:
 - - - - - - 0x02ADFB 0A:ADEB: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02ADFC 0A:ADEC: 02 B0     .dbyt $02B0 ; 
-- D 1 - I - 0x02ADFE 0A:ADEE: 4C        .byte $4C   ; 
+- D 1 - I - 0x02ADFE 0A:ADEE: 4C        .byte con_spawner_4C   ; 
 - D 1 - I - 0x02ADFF 0A:ADEF: 40        .byte $40   ; 
 - - - - - - 0x02AE00 0A:ADF0: AD        .byte $AD   ; 
 - D 1 - I - 0x02AE01 0A:ADF1: 00        .byte $00   ; 
@@ -14180,7 +14275,7 @@ off_ADF4_04_00_01:
 - - - - - - 0x02AE11 0A:AE01: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AE12 0A:AE02: 02 40     .dbyt $0240 ; 
-- D 1 - I - 0x02AE14 0A:AE04: 04        .byte $04   ; 
+- D 1 - I - 0x02AE14 0A:AE04: 04        .byte con_spawner_04   ; 
 - D 1 - I - 0x02AE15 0A:AE05: 10        .byte $10   ; 
 - - - - - - 0x02AE16 0A:AE06: AE        .byte $AE   ; 
 - D 1 - I - 0x02AE17 0A:AE07: 00        .byte $00   ; 
@@ -14201,7 +14296,7 @@ off_ADF4_04_00_01:
 - - - - - - 0x02AE26 0A:AE16: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AE27 0A:AE17: 01 D0     .dbyt $01D0 ; 
-- D 1 - I - 0x02AE29 0A:AE19: 04        .byte $04   ; 
+- D 1 - I - 0x02AE29 0A:AE19: 04        .byte con_spawner_04   ; 
 - D 1 - I - 0x02AE2A 0A:AE1A: 10        .byte $10   ; 
 - - - - - - 0x02AE2B 0A:AE1B: AE        .byte $AE   ; 
 - D 1 - I - 0x02AE2C 0A:AE1C: 00        .byte $00   ; 
@@ -14229,7 +14324,7 @@ off_ADF4_04_00_01:
 - - - - - - 0x02AE42 0A:AE32: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AE43 0A:AE33: 00 A0     .dbyt $00A0 ; 
-- D 1 - I - 0x02AE45 0A:AE35: 04        .byte $04   ; 
+- D 1 - I - 0x02AE45 0A:AE35: 04        .byte con_spawner_04   ; 
 - D 1 - I - 0x02AE46 0A:AE36: 80        .byte $80   ; 
 - - - - - - 0x02AE47 0A:AE37: AE        .byte $AE   ; 
 - D 1 - I - 0x02AE48 0A:AE38: 00        .byte $00   ; 
@@ -14243,7 +14338,7 @@ off_ADF4_04_00_01:
 - - - - - - 0x02AE50 0A:AE40: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AE51 0A:AE41: 00 30     .dbyt $0030 ; 
-- D 1 - I - 0x02AE53 0A:AE43: 04        .byte $04   ; 
+- D 1 - I - 0x02AE53 0A:AE43: 04        .byte con_spawner_04   ; 
 - D 1 - I - 0x02AE54 0A:AE44: 80        .byte $80   ; 
 - - - - - - 0x02AE55 0A:AE45: AE        .byte $AE   ; 
 - D 1 - I - 0x02AE56 0A:AE46: 00        .byte $00   ; 
@@ -14263,14 +14358,14 @@ off_ADF4_04_00_01:
 off_AE50_04_01_01:
 ; 
 - D 1 - I - 0x02AE60 0A:AE50: 02 8A     .dbyt $028A ; 
-- D 1 - I - 0x02AE62 0A:AE52: 40        .byte $40   ; 
+- D 1 - I - 0x02AE62 0A:AE52: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02AE63 0A:AE53: 80        .byte $80   ; 
 - - - - - - 0x02AE64 0A:AE54: A4        .byte $A4   ; 
 - D 1 - I - 0x02AE65 0A:AE55: 00        .byte $00   ; 
 - D 1 - I - 0x02AE66 0A:AE56: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AE67 0A:AE57: 02 5C     .dbyt $025C ; 
-- D 1 - I - 0x02AE69 0A:AE59: 40        .byte $40   ; 
+- D 1 - I - 0x02AE69 0A:AE59: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02AE6A 0A:AE5A: 60        .byte $60   ; 
 - - - - - - 0x02AE6B 0A:AE5B: AE        .byte $AE   ; 
 - D 1 - I - 0x02AE6C 0A:AE5C: 00        .byte $00   ; 
@@ -14284,7 +14379,7 @@ off_AE50_04_01_01:
 - - - - - - 0x02AE74 0A:AE64: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AE75 0A:AE65: 02 10     .dbyt $0210 ; 
-- D 1 - I - 0x02AE77 0A:AE67: 40        .byte $40   ; 
+- D 1 - I - 0x02AE77 0A:AE67: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02AE78 0A:AE68: 50        .byte $50   ; 
 - - - - - - 0x02AE79 0A:AE69: A3        .byte $A3   ; 
 - D 1 - I - 0x02AE7A 0A:AE6A: 00        .byte $00   ; 
@@ -14298,14 +14393,14 @@ off_AE50_04_01_01:
 - - - - - - 0x02AE82 0A:AE72: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AE83 0A:AE73: 01 9E     .dbyt $019E ; 
-- D 1 - I - 0x02AE85 0A:AE75: 40        .byte $40   ; 
+- D 1 - I - 0x02AE85 0A:AE75: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02AE86 0A:AE76: C0        .byte $C0   ; 
 - - - - - - 0x02AE87 0A:AE77: AE        .byte $AE   ; 
 - D 1 - I - 0x02AE88 0A:AE78: 00        .byte $00   ; 
 - D 1 - I - 0x02AE89 0A:AE79: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AE8A 0A:AE7A: 01 5B     .dbyt $015B ; 
-- D 1 - I - 0x02AE8C 0A:AE7C: 40        .byte $40   ; 
+- D 1 - I - 0x02AE8C 0A:AE7C: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02AE8D 0A:AE7D: C0        .byte $C0   ; 
 - - - - - - 0x02AE8E 0A:AE7E: AE        .byte $AE   ; 
 - D 1 - I - 0x02AE8F 0A:AE7F: 00        .byte $00   ; 
@@ -14319,7 +14414,7 @@ off_AE50_04_01_01:
 - - - - - - 0x02AE97 0A:AE87: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AE98 0A:AE88: 01 1E     .dbyt $011E ; 
-- D 1 - I - 0x02AE9A 0A:AE8A: 40        .byte $40   ; 
+- D 1 - I - 0x02AE9A 0A:AE8A: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02AE9B 0A:AE8B: 40        .byte $40   ; 
 - - - - - - 0x02AE9C 0A:AE8C: AD        .byte $AD   ; 
 - D 1 - I - 0x02AE9D 0A:AE8D: 00        .byte $00   ; 
@@ -14340,7 +14435,7 @@ off_AE50_04_01_01:
 - - - - - - 0x02AEAC 0A:AE9C: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AEAD 0A:AE9D: 00 8E     .dbyt $008E ; 
-- D 1 - I - 0x02AEAF 0A:AE9F: 40        .byte $40   ; 
+- D 1 - I - 0x02AEAF 0A:AE9F: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02AEB0 0A:AEA0: C0        .byte $C0   ; 
 - - - - - - 0x02AEB1 0A:AEA1: AD        .byte $AD   ; 
 - D 1 - I - 0x02AEB2 0A:AEA2: 00        .byte $00   ; 
@@ -14354,7 +14449,7 @@ off_AE50_04_01_01:
 - - - - - - 0x02AEBA 0A:AEAA: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AEBB 0A:AEAB: 00 64     .dbyt $0064 ; 
-- D 1 - I - 0x02AEBD 0A:AEAD: 40        .byte $40   ; 
+- D 1 - I - 0x02AEBD 0A:AEAD: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02AEBE 0A:AEAE: 40        .byte $40   ; 
 - - - - - - 0x02AEBF 0A:AEAF: AD        .byte $AD   ; 
 - D 1 - I - 0x02AEC0 0A:AEB0: 00        .byte $00   ; 
@@ -14381,70 +14476,70 @@ off_AE50_04_01_01:
 off_AEC1_04_02_01:
 ; 
 - D 1 - I - 0x02AED1 0A:AEC1: 01 AA     .dbyt $01AA ; 
-- D 1 - I - 0x02AED3 0A:AEC3: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AED3 0A:AEC3: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AED4 0A:AEC4: EC        .byte $EC   ; 
 - - - - - - 0x02AED5 0A:AEC5: 00        .byte $00   ; 
 - D 1 - I - 0x02AED6 0A:AEC6: 00        .byte $00   ; 
 - D 1 - I - 0x02AED7 0A:AEC7: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AED8 0A:AEC8: 01 8A     .dbyt $018A ; 
-- D 1 - I - 0x02AEDA 0A:AECA: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AEDA 0A:AECA: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AEDB 0A:AECB: EC        .byte $EC   ; 
 - - - - - - 0x02AEDC 0A:AECC: 00        .byte $00   ; 
 - D 1 - I - 0x02AEDD 0A:AECD: 00        .byte $00   ; 
 - D 1 - I - 0x02AEDE 0A:AECE: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AEDF 0A:AECF: 01 6A     .dbyt $016A ; 
-- D 1 - I - 0x02AEE1 0A:AED1: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AEE1 0A:AED1: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AEE2 0A:AED2: 0C        .byte $0C   ; 
 - - - - - - 0x02AEE3 0A:AED3: 00        .byte $00   ; 
 - D 1 - I - 0x02AEE4 0A:AED4: 00        .byte $00   ; 
 - D 1 - I - 0x02AEE5 0A:AED5: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AEE6 0A:AED6: 01 4A     .dbyt $014A ; 
-- D 1 - I - 0x02AEE8 0A:AED8: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AEE8 0A:AED8: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AEE9 0A:AED9: 0C        .byte $0C   ; 
 - - - - - - 0x02AEEA 0A:AEDA: 00        .byte $00   ; 
 - D 1 - I - 0x02AEEB 0A:AEDB: 00        .byte $00   ; 
 - D 1 - I - 0x02AEEC 0A:AEDC: 01        .byte $01   ; 
 ; 
 - D 1 - I - 0x02AEED 0A:AEDD: 00 CA     .dbyt $00CA ; 
-- D 1 - I - 0x02AEEF 0A:AEDF: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AEEF 0A:AEDF: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AEF0 0A:AEE0: EC        .byte $EC   ; 
 - - - - - - 0x02AEF1 0A:AEE1: 00        .byte $00   ; 
 - D 1 - I - 0x02AEF2 0A:AEE2: 00        .byte $00   ; 
 - D 1 - I - 0x02AEF3 0A:AEE3: 01        .byte $01   ; 
 ; 
 - D 1 - I - 0x02AEF4 0A:AEE4: 00 8C     .dbyt $008C ; 
-- D 1 - I - 0x02AEF6 0A:AEE6: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AEF6 0A:AEE6: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AEF7 0A:AEE7: 0C        .byte $0C   ; 
 - - - - - - 0x02AEF8 0A:AEE8: 00        .byte $00   ; 
 - D 1 - I - 0x02AEF9 0A:AEE9: 00        .byte $00   ; 
 - D 1 - I - 0x02AEFA 0A:AEEA: 01        .byte $01   ; 
 ; 
 - D 1 - I - 0x02AEFB 0A:AEEB: 00 6A     .dbyt $006A ; 
-- D 1 - I - 0x02AEFD 0A:AEED: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AEFD 0A:AEED: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AEFE 0A:AEEE: EC        .byte $EC   ; 
 - - - - - - 0x02AEFF 0A:AEEF: 00        .byte $00   ; 
 - D 1 - I - 0x02AF00 0A:AEF0: 00        .byte $00   ; 
 - D 1 - I - 0x02AF01 0A:AEF1: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AF02 0A:AEF2: 00 4A     .dbyt $004A ; 
-- D 1 - I - 0x02AF04 0A:AEF4: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AF04 0A:AEF4: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AF05 0A:AEF5: 0C        .byte $0C   ; 
 - - - - - - 0x02AF06 0A:AEF6: 00        .byte $00   ; 
 - D 1 - I - 0x02AF07 0A:AEF7: 00        .byte $00   ; 
 - D 1 - I - 0x02AF08 0A:AEF8: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AF09 0A:AEF9: 00 2A     .dbyt $002A ; 
-- D 1 - I - 0x02AF0B 0A:AEFB: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AF0B 0A:AEFB: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AF0C 0A:AEFC: EC        .byte $EC   ; 
 - - - - - - 0x02AF0D 0A:AEFD: 00        .byte $00   ; 
 - D 1 - I - 0x02AF0E 0A:AEFE: 00        .byte $00   ; 
 - D 1 - I - 0x02AF0F 0A:AEFF: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AF10 0A:AF00: 00 0C     .dbyt $000C ; 
-- - - - - - 0x02AF12 0A:AF02: 2A        .byte $2A   ; 
+- - - - - - 0x02AF12 0A:AF02: 2A        .byte con_spawner_2A   ; 
 - - - - - - 0x02AF13 0A:AF03: 0C        .byte $0C   ; 
 - - - - - - 0x02AF14 0A:AF04: 00        .byte $00   ; 
 - - - - - - 0x02AF15 0A:AF05: 00        .byte $00   ; 
@@ -14484,7 +14579,7 @@ off_AF17_0A_06_01:
 - - - - - - 0x02AF2D 0A:AF1D: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AF2E 0A:AF1E: 03 88     .dbyt $0388 ; 
-- D 1 - I - 0x02AF30 0A:AF20: 40        .byte $40   ; 
+- D 1 - I - 0x02AF30 0A:AF20: 40        .byte con_spawner_40   ; 
 - D 1 - I - 0x02AF31 0A:AF21: 80        .byte $80   ; 
 - - - - - - 0x02AF32 0A:AF22: AE        .byte $AE   ; 
 - D 1 - I - 0x02AF33 0A:AF23: 00        .byte $00   ; 
@@ -14512,7 +14607,7 @@ off_AF17_0A_06_01:
 - - - - - - 0x02AF49 0A:AF39: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AF4A 0A:AF3A: 02 D8     .dbyt $02D8 ; 
-- D 1 - I - 0x02AF4C 0A:AF3C: 11        .byte $11   ; 
+- D 1 - I - 0x02AF4C 0A:AF3C: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02AF4D 0A:AF3D: E0        .byte $E0   ; 
 - - - - - - 0x02AF4E 0A:AF3E: AE        .byte $AE   ; 
 - D 1 - I - 0x02AF4F 0A:AF3F: 00        .byte $00   ; 
@@ -14533,7 +14628,7 @@ off_AF17_0A_06_01:
 - - - - - - 0x02AF5E 0A:AF4E: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AF5F 0A:AF4F: 02 68     .dbyt $0268 ; 
-- D 1 - I - 0x02AF61 0A:AF51: 11        .byte $11   ; 
+- D 1 - I - 0x02AF61 0A:AF51: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02AF62 0A:AF52: A0        .byte $A0   ; 
 - - - - - - 0x02AF63 0A:AF53: AE        .byte $AE   ; 
 - D 1 - I - 0x02AF64 0A:AF54: 00        .byte $00   ; 
@@ -14554,7 +14649,7 @@ off_AF17_0A_06_01:
 - - - - - - 0x02AF73 0A:AF63: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AF74 0A:AF64: 01 E0     .dbyt $01E0 ; 
-- D 1 - I - 0x02AF76 0A:AF66: 04        .byte $04   ; 
+- D 1 - I - 0x02AF76 0A:AF66: 04        .byte con_spawner_04   ; 
 - D 1 - I - 0x02AF77 0A:AF67: F0        .byte $F0   ; 
 - - - - - - 0x02AF78 0A:AF68: AE        .byte $AE   ; 
 - D 1 - I - 0x02AF79 0A:AF69: 00        .byte $00   ; 
@@ -14568,14 +14663,14 @@ off_AF17_0A_06_01:
 - D 1 - I - 0x02AF81 0A:AF71: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AF82 0A:AF72: 01 A8     .dbyt $01A8 ; 
-- D 1 - I - 0x02AF84 0A:AF74: 11        .byte $11   ; 
+- D 1 - I - 0x02AF84 0A:AF74: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02AF85 0A:AF75: 60        .byte $60   ; 
 - - - - - - 0x02AF86 0A:AF76: AE        .byte $AE   ; 
 - D 1 - I - 0x02AF87 0A:AF77: 00        .byte $00   ; 
 - D 1 - I - 0x02AF88 0A:AF78: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AF89 0A:AF79: 01 90     .dbyt $0190 ; 
-- D 1 - I - 0x02AF8B 0A:AF7B: 04        .byte $04   ; 
+- D 1 - I - 0x02AF8B 0A:AF7B: 04        .byte con_spawner_04   ; 
 - D 1 - I - 0x02AF8C 0A:AF7C: F0        .byte $F0   ; 
 - - - - - - 0x02AF8D 0A:AF7D: AE        .byte $AE   ; 
 - D 1 - I - 0x02AF8E 0A:AF7E: 00        .byte $00   ; 
@@ -14610,21 +14705,21 @@ off_AF17_0A_06_01:
 - D 1 - I - 0x02AFAB 0A:AF9B: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AFAC 0A:AF9C: 00 A8     .dbyt $00A8 ; 
-- D 1 - I - 0x02AFAE 0A:AF9E: 11        .byte $11   ; 
+- D 1 - I - 0x02AFAE 0A:AF9E: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02AFAF 0A:AF9F: 50        .byte $50   ; 
 - - - - - - 0x02AFB0 0A:AFA0: AE        .byte $AE   ; 
 - D 1 - I - 0x02AFB1 0A:AFA1: 00        .byte $00   ; 
 - D 1 - I - 0x02AFB2 0A:AFA2: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AFB3 0A:AFA3: 00 80     .dbyt $0080 ; 
-- D 1 - I - 0x02AFB5 0A:AFA5: 04        .byte $04   ; 
+- D 1 - I - 0x02AFB5 0A:AFA5: 04        .byte con_spawner_04   ; 
 - D 1 - I - 0x02AFB6 0A:AFA6: F0        .byte $F0   ; 
 - - - - - - 0x02AFB7 0A:AFA7: AE        .byte $AE   ; 
 - D 1 - I - 0x02AFB8 0A:AFA8: 00        .byte $00   ; 
 - D 1 - I - 0x02AFB9 0A:AFA9: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AFBA 0A:AFAA: 00 30     .dbyt $0030 ; 
-- D 1 - I - 0x02AFBC 0A:AFAC: 04        .byte $04   ; 
+- D 1 - I - 0x02AFBC 0A:AFAC: 04        .byte con_spawner_04   ; 
 - D 1 - I - 0x02AFBD 0A:AFAD: F0        .byte $F0   ; 
 - - - - - - 0x02AFBE 0A:AFAE: AE        .byte $AE   ; 
 - D 1 - I - 0x02AFBF 0A:AFAF: 00        .byte $00   ; 
@@ -14678,56 +14773,56 @@ off_AFB2_0B_02_01:
 off_AFD6_0D_01_01:
 ; 
 - D 1 - I - 0x02AFE6 0A:AFD6: 01 94     .dbyt $0194 ; 
-- D 1 - I - 0x02AFE8 0A:AFD8: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AFE8 0A:AFD8: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AFE9 0A:AFD9: EC        .byte $EC   ; 
 - - - - - - 0x02AFEA 0A:AFDA: 00        .byte $00   ; 
 - D 1 - I - 0x02AFEB 0A:AFDB: 00        .byte $00   ; 
 - D 1 - I - 0x02AFEC 0A:AFDC: 01        .byte $01   ; 
 ; 
 - D 1 - I - 0x02AFED 0A:AFDD: 01 40     .dbyt $0140 ; 
-- D 1 - I - 0x02AFEF 0A:AFDF: 04        .byte $04   ; 
+- D 1 - I - 0x02AFEF 0A:AFDF: 04        .byte con_spawner_04   ; 
 - D 1 - I - 0x02AFF0 0A:AFE0: F0        .byte $F0   ; 
 - - - - - - 0x02AFF1 0A:AFE1: AE        .byte $AE   ; 
 - D 1 - I - 0x02AFF2 0A:AFE2: 00        .byte $00   ; 
 - D 1 - I - 0x02AFF3 0A:AFE3: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AFF4 0A:AFE4: 01 34     .dbyt $0134 ; 
-- D 1 - I - 0x02AFF6 0A:AFE6: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AFF6 0A:AFE6: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AFF7 0A:AFE7: 14        .byte $14   ; 
 - - - - - - 0x02AFF8 0A:AFE8: 00        .byte $00   ; 
 - D 1 - I - 0x02AFF9 0A:AFE9: 00        .byte $00   ; 
 - D 1 - I - 0x02AFFA 0A:AFEA: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02AFFB 0A:AFEB: 01 14     .dbyt $0114 ; 
-- D 1 - I - 0x02AFFD 0A:AFED: 2A        .byte $2A   ; 
+- D 1 - I - 0x02AFFD 0A:AFED: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02AFFE 0A:AFEE: EC        .byte $EC   ; 
 - - - - - - 0x02AFFF 0A:AFEF: 00        .byte $00   ; 
 - D 1 - I - 0x02B000 0A:AFF0: 00        .byte $00   ; 
 - D 1 - I - 0x02B001 0A:AFF1: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B002 0A:AFF2: 00 D4     .dbyt $00D4 ; 
-- D 1 - I - 0x02B004 0A:AFF4: 2A        .byte $2A   ; 
+- D 1 - I - 0x02B004 0A:AFF4: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02B005 0A:AFF5: EC        .byte $EC   ; 
 - - - - - - 0x02B006 0A:AFF6: 00        .byte $00   ; 
 - D 1 - I - 0x02B007 0A:AFF7: 00        .byte $00   ; 
 - D 1 - I - 0x02B008 0A:AFF8: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B009 0A:AFF9: 00 60     .dbyt $0060 ; 
-- D 1 - I - 0x02B00B 0A:AFFB: 04        .byte $04   ; 
+- D 1 - I - 0x02B00B 0A:AFFB: 04        .byte con_spawner_04   ; 
 - D 1 - I - 0x02B00C 0A:AFFC: F0        .byte $F0   ; 
 - - - - - - 0x02B00D 0A:AFFD: AE        .byte $AE   ; 
 - D 1 - I - 0x02B00E 0A:AFFE: 00        .byte $00   ; 
 - D 1 - I - 0x02B00F 0A:AFFF: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B010 0A:B000: 00 54     .dbyt $0054 ; 
-- D 1 - I - 0x02B012 0A:B002: 2A        .byte $2A   ; 
+- D 1 - I - 0x02B012 0A:B002: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02B013 0A:B003: EC        .byte $EC   ; 
 - - - - - - 0x02B014 0A:B004: 00        .byte $00   ; 
 - D 1 - I - 0x02B015 0A:B005: 00        .byte $00   ; 
 - D 1 - I - 0x02B016 0A:B006: 01        .byte $01   ; 
 ; 
 - D 1 - I - 0x02B017 0A:B007: 00 36     .dbyt $0036 ; 
-- D 1 - I - 0x02B019 0A:B009: 2A        .byte $2A   ; 
+- D 1 - I - 0x02B019 0A:B009: 2A        .byte con_spawner_2A   ; 
 - D 1 - I - 0x02B01A 0A:B00A: 14        .byte $14   ; 
 - - - - - - 0x02B01B 0A:B00B: 00        .byte $00   ; 
 - D 1 - I - 0x02B01C 0A:B00C: 00        .byte $00   ; 
@@ -14747,14 +14842,14 @@ off_B00F_0D_02_01:
 - - - - - - 0x02B025 0A:B015: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B026 0A:B016: 03 94     .dbyt $0394 ; 
-- D 1 - I - 0x02B028 0A:B018: 45        .byte $45   ; 
+- D 1 - I - 0x02B028 0A:B018: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02B029 0A:B019: 80        .byte $80   ; 
 - - - - - - 0x02B02A 0A:B01A: 00        .byte $00   ; 
 - D 1 - I - 0x02B02B 0A:B01B: 00        .byte $00   ; 
 - D 1 - I - 0x02B02C 0A:B01C: 04        .byte $04   ; 
 ; 
 - D 1 - I - 0x02B02D 0A:B01D: 03 5B     .dbyt $035B ; 
-- D 1 - I - 0x02B02F 0A:B01F: 11        .byte $11   ; 
+- D 1 - I - 0x02B02F 0A:B01F: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02B030 0A:B020: 30        .byte $30   ; 
 - - - - - - 0x02B031 0A:B021: 00        .byte $00   ; 
 - D 1 - I - 0x02B032 0A:B022: 00        .byte $00   ; 
@@ -14768,7 +14863,7 @@ off_B00F_0D_02_01:
 - - - - - - 0x02B03A 0A:B02A: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B03B 0A:B02B: 03 14     .dbyt $0314 ; 
-- D 1 - I - 0x02B03D 0A:B02D: 11        .byte $11   ; 
+- D 1 - I - 0x02B03D 0A:B02D: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02B03E 0A:B02E: 50        .byte $50   ; 
 - - - - - - 0x02B03F 0A:B02F: 00        .byte $00   ; 
 - D 1 - I - 0x02B040 0A:B030: 00        .byte $00   ; 
@@ -14789,7 +14884,7 @@ off_B00F_0D_02_01:
 - - - - - - 0x02B04F 0A:B03F: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B050 0A:B040: 02 94     .dbyt $0294 ; 
-- D 1 - I - 0x02B052 0A:B042: 45        .byte $45   ; 
+- D 1 - I - 0x02B052 0A:B042: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02B053 0A:B043: 60        .byte $60   ; 
 - - - - - - 0x02B054 0A:B044: 00        .byte $00   ; 
 - D 1 - I - 0x02B055 0A:B045: 00        .byte $00   ; 
@@ -14810,21 +14905,21 @@ off_B00F_0D_02_01:
 - - - - - - 0x02B064 0A:B054: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B065 0A:B055: 02 1C     .dbyt $021C ; 
-- D 1 - I - 0x02B067 0A:B057: 11        .byte $11   ; 
+- D 1 - I - 0x02B067 0A:B057: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02B068 0A:B058: 80        .byte $80   ; 
 - - - - - - 0x02B069 0A:B059: 00        .byte $00   ; 
 - D 1 - I - 0x02B06A 0A:B05A: 00        .byte $00   ; 
 - D 1 - I - 0x02B06B 0A:B05B: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B06C 0A:B05C: 01 B4     .dbyt $01B4 ; 
-- D 1 - I - 0x02B06E 0A:B05E: 45        .byte $45   ; 
+- D 1 - I - 0x02B06E 0A:B05E: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02B06F 0A:B05F: 80        .byte $80   ; 
 - - - - - - 0x02B070 0A:B060: A4        .byte $A4   ; 
 - D 1 - I - 0x02B071 0A:B061: 00        .byte $00   ; 
 - D 1 - I - 0x02B072 0A:B062: 04        .byte $04   ; 
 ; 
 - D 1 - I - 0x02B073 0A:B063: 01 6C     .dbyt $016C ; 
-- D 1 - I - 0x02B075 0A:B065: 11        .byte $11   ; 
+- D 1 - I - 0x02B075 0A:B065: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02B076 0A:B066: 70        .byte $70   ; 
 - - - - - - 0x02B077 0A:B067: 00        .byte $00   ; 
 - D 1 - I - 0x02B078 0A:B068: 00        .byte $00   ; 
@@ -14838,7 +14933,7 @@ off_B00F_0D_02_01:
 - - - - - - 0x02B080 0A:B070: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B081 0A:B071: 01 40     .dbyt $0140 ; 
-- D 1 - I - 0x02B083 0A:B073: 11        .byte $11   ; 
+- D 1 - I - 0x02B083 0A:B073: 11        .byte con_spawner_11   ; 
 - D 1 - I - 0x02B084 0A:B074: 60        .byte $60   ; 
 - - - - - - 0x02B085 0A:B075: 00        .byte $00   ; 
 - D 1 - I - 0x02B086 0A:B076: 00        .byte $00   ; 
@@ -14852,14 +14947,14 @@ off_B00F_0D_02_01:
 - - - - - - 0x02B08E 0A:B07E: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B08F 0A:B07F: 01 08     .dbyt $0108 ; 
-- D 1 - I - 0x02B091 0A:B081: 45        .byte $45   ; 
+- D 1 - I - 0x02B091 0A:B081: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02B092 0A:B082: 50        .byte $50   ; 
 - - - - - - 0x02B093 0A:B083: A4        .byte $A4   ; 
 - D 1 - I - 0x02B094 0A:B084: 00        .byte $00   ; 
 - D 1 - I - 0x02B095 0A:B085: 04        .byte $04   ; 
 ; 
 - D 1 - I - 0x02B096 0A:B086: 00 D8     .dbyt $00D8 ; 
-- D 1 - I - 0x02B098 0A:B088: 45        .byte $45   ; 
+- D 1 - I - 0x02B098 0A:B088: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02B099 0A:B089: 80        .byte $80   ; 
 - - - - - - 0x02B09A 0A:B08A: A4        .byte $A4   ; 
 - D 1 - I - 0x02B09B 0A:B08B: 00        .byte $00   ; 
@@ -14873,14 +14968,14 @@ off_B00F_0D_02_01:
 - - - - - - 0x02B0A3 0A:B093: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B0A4 0A:B094: 00 60     .dbyt $0060 ; 
-- D 1 - I - 0x02B0A6 0A:B096: 45        .byte $45   ; 
+- D 1 - I - 0x02B0A6 0A:B096: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02B0A7 0A:B097: C0        .byte $C0   ; 
 - - - - - - 0x02B0A8 0A:B098: A4        .byte $A4   ; 
 - D 1 - I - 0x02B0A9 0A:B099: 00        .byte $00   ; 
 - D 1 - I - 0x02B0AA 0A:B09A: 04        .byte $04   ; 
 ; 
 - D 1 - I - 0x02B0AB 0A:B09B: 00 40     .dbyt $0040 ; 
-- D 1 - I - 0x02B0AD 0A:B09D: 45        .byte $45   ; 
+- D 1 - I - 0x02B0AD 0A:B09D: 45        .byte con_spawner_45   ; 
 - D 1 - I - 0x02B0AE 0A:B09E: 80        .byte $80   ; 
 - - - - - - 0x02B0AF 0A:B09F: A4        .byte $A4   ; 
 - D 1 - I - 0x02B0B0 0A:B0A0: 00        .byte $00   ; 
@@ -14907,14 +15002,14 @@ off_B00F_0D_02_01:
 off_B0B1_0E_00_01:
 ; 
 - D 1 - I - 0x02B0C1 0A:B0B1: 00 D0     .dbyt $00D0 ; 
-- D 1 - I - 0x02B0C3 0A:B0B3: 48        .byte $48   ; 
+- D 1 - I - 0x02B0C3 0A:B0B3: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02B0C4 0A:B0B4: 80        .byte $80   ; 
 - - - - - - 0x02B0C5 0A:B0B5: A3        .byte $A3   ; 
 - D 1 - I - 0x02B0C6 0A:B0B6: F0        .byte $F0   ; 
 - D 1 - I - 0x02B0C7 0A:B0B7: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B0C8 0A:B0B8: 01 10     .dbyt $0110 ; 
-- D 1 - I - 0x02B0CA 0A:B0BA: 48        .byte $48   ; 
+- D 1 - I - 0x02B0CA 0A:B0BA: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02B0CB 0A:B0BB: 80        .byte $80   ; 
 - - - - - - 0x02B0CC 0A:B0BC: A3        .byte $A3   ; 
 - D 1 - I - 0x02B0CD 0A:B0BD: F0        .byte $F0   ; 
@@ -14928,7 +15023,7 @@ off_B0B1_0E_00_01:
 - - - - - - 0x02B0D5 0A:B0C5: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B0D6 0A:B0C6: 01 50     .dbyt $0150 ; 
-- D 1 - I - 0x02B0D8 0A:B0C8: 48        .byte $48   ; 
+- D 1 - I - 0x02B0D8 0A:B0C8: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02B0D9 0A:B0C9: 80        .byte $80   ; 
 - - - - - - 0x02B0DA 0A:B0CA: A3        .byte $A3   ; 
 - D 1 - I - 0x02B0DB 0A:B0CB: F0        .byte $F0   ; 
@@ -14942,7 +15037,7 @@ off_B0B1_0E_00_01:
 - - - - - - 0x02B0E3 0A:B0D3: 00        .byte $00   ; 
 ; 
 - D 1 - I - 0x02B0E4 0A:B0D4: 01 80     .dbyt $0180 ; 
-- D 1 - I - 0x02B0E6 0A:B0D6: 48        .byte $48   ; 
+- D 1 - I - 0x02B0E6 0A:B0D6: 48        .byte con_spawner_48   ; 
 - D 1 - I - 0x02B0E7 0A:B0D7: 80        .byte $80   ; 
 - - - - - - 0x02B0E8 0A:B0D8: A3        .byte $A3   ; 
 - D 1 - I - 0x02B0E9 0A:B0D9: F0        .byte $F0   ; 

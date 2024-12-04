@@ -295,6 +295,96 @@ con_002A_1F                             = $1F ;
 
 
 
+
+; ram_spawner_script
+; handlers at 0x028537
+; need comments 0x024521
+con_spawner_00                          = $00 ; 
+con_spawner_01                          = $01 ; 
+con_spawner_02                          = $02 ; 
+con_spawner_03                          = $03 ; 
+con_spawner_04                          = $04 ; 
+con_spawner_05                          = $05 ; 
+con_spawner_06                          = $06 ; 
+con_spawner_07                          = $07 ; 
+con_spawner_08                          = $08 ; 
+con_spawner_09                          = $09 ; 
+con_spawner_0A                          = $0A ; 
+con_spawner_0B                          = $0B ; 
+con_spawner_0C                          = $0C ; 
+con_spawner_0D                          = $0D ; 
+con_spawner_0E                          = $0E ; 
+con_spawner_0F                          = $0F ; 
+con_spawner_10                          = $10 ; 
+con_spawner_11                          = $11 ; 
+con_spawner_12                          = $12 ; 
+con_spawner_13                          = $13 ; 
+con_spawner_14                          = $14 ; 
+con_spawner_15                          = $15 ; 
+con_spawner_16                          = $16 ; 
+con_spawner_17                          = $17 ; 
+con_spawner_18                          = $18 ; 
+con_spawner_19                          = $19 ; 
+con_spawner_1A                          = $1A ; 
+con_spawner_1B                          = $1B ; 
+con_spawner_1C                          = $1C ; 
+con_spawner_1D                          = $1D ; 
+con_spawner_1E                          = $1E ; 
+con_spawner_1F                          = $1F ; 
+con_spawner_20                          = $20 ; 
+con_spawner_21                          = $21 ; 
+; con_spawner_22                        = $22 ; index exists but never used
+con_spawner_23                          = $23 ; 
+con_spawner_24                          = $24 ; 
+con_spawner_25                          = $25 ; 
+con_spawner_26                          = $26 ; 
+con_spawner_27                          = $27 ; 
+con_spawner_28                          = $28 ; 
+con_spawner_29                          = $29 ; 
+con_spawner_2A                          = $2A ; 
+con_spawner_2B                          = $2B ; 
+con_spawner_2C                          = $2C ; 
+con_spawner_2D                          = $2D ; 
+con_spawner_2E                          = $2E ; 
+; con_spawner_2F                        = $2F ; unused
+; con_spawner_30                        = $30 ; unused
+; con_spawner_31                        = $31 ; unused
+con_spawner_32                          = $32 ; 
+; con_spawner_33                        = $33 ; unused
+; con_spawner_34                        = $34 ; unused
+; con_spawner_35                        = $35 ; unused
+con_spawner_36                          = $36 ; 
+; con_spawner_37                        = $37 ; unused
+; con_spawner_38                        = $38 ; unused
+con_spawner_39                          = $39 ; 
+con_spawner_3A                          = $3A ; 
+con_spawner_3B                          = $3B ; 
+con_spawner_swamp_frog                  = $3C ; 
+con_spawner_3D                          = $3D ; 
+con_spawner_3E                          = $3E ; 
+con_spawner_3F                          = $3F ; 
+con_spawner_40                          = $40 ; 
+con_spawner_41                          = $41 ; 
+con_spawner_42                          = $42 ; 
+con_spawner_43                          = $43 ; 
+con_spawner_44                          = $44 ; 
+con_spawner_45                          = $45 ; 
+con_spawner_46                          = $46 ; 
+con_spawner_47                          = $47 ; 
+con_spawner_48                          = $48 ; 
+con_spawner_49                          = $49 ; 
+con_spawner_4A                          = $4A ; 
+con_spawner_4B                          = $4B ; 
+con_spawner_4C                          = $4C ; 
+con_spawner_4D                          = $4D ; 
+con_spawner_4E                          = $4E ; 
+con_spawner_4F                          = $4F ; 
+con_spawner_50                          = $50 ; 
+con_spawner_51                          = $51 ; 
+con_spawner_52                          = $52 ; 
+
+
+
 ; index for 0x02B626
 con_B616_update_bg_spr_palette          = $00 ; update background and sprite palette
 con_B616_01                             = $01 ; 
@@ -1008,8 +1098,8 @@ con_sound_1E                            = $1E ; = 21
 con_sound_Alucard_fireball              = $1F ; 
 con_sound_20                            = $20 ; 
 con_sound_21                            = $21 ; = 1E
-con_sound_22                            = $22 ; 
-con_sound_water_splash                  = $23 ; 
+con_sound_water_splash_1                = $22 ; 
+con_sound_water_splash_2                = $23 ; 
 con_sound_24                            = $24 ; 
 con_sound_25                            = $25 ; 
 con_sound_26                            = $26 ; 
@@ -1277,7 +1367,7 @@ con_BEA1_22                             = $22 ;
 con_BEA1_23                             = $23 ; 
 con_BEA1_24                             = $24 ; 
 con_BEA1_25                             = $25 ; 
-con_BEA1_26                             = $26 ; 
+con_BEA1_swamp_frog                             = $26 ; 
 con_BEA1_27                             = $27 ; 
 con_BEA1_28                             = $28 ; 
 con_BEA1_29                             = $29 ; 
@@ -1466,7 +1556,7 @@ con_A03F_68                             = $68 ;
 con_A03F_69                             = $69 ; 
 con_A03F_6A                             = $6A ; 
 con_A03F_6B                             = $6B ; 
-con_A03F_6C                             = $6C ; 
+con_A03F_swamp_frog                     = $6C ; 
 ; con_A03F_6D                           = $6D ; unused
 con_A03F_6E                             = $6E ; 
 con_A03F_6F                             = $6F ; 

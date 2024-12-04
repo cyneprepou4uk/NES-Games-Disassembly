@@ -5686,7 +5686,7 @@ C - - J - - 0x00606A 01:A05A: AD ED 07  LDA ram_07ED
 C - - - - - 0x00606D 01:A05D: F0 12     BEQ bra_A071
 C - - - - - 0x00606F 01:A05F: AA        TAX
 C - - - - - 0x006070 01:A060: A8        TAY
-C - - - - - 0x006071 01:A061: 20 2D E3  JSR sub_0x03E33D
+C - - - - - 0x006071 01:A061: 20 2D E3  JSR sub_0x03E33D_set_7F_for_all_bg_chr_banks
 bra_A064_garbage_loop:
 C - - - - - 0x006074 01:A064: A9 0B     LDA #$0B
 C - - - - - 0x006076 01:A066: 85 44     STA ram_0044_t002_garbage_loop_cnt
@@ -5883,7 +5883,7 @@ C - - J - - 0x0061A0 01:A190: A5 43     LDA ram_scanline
 C - - - - - 0x0061A2 01:A192: 8D 03 52  STA $5203
 C - - - - - 0x0061A5 01:A195: A2 0C     LDX #$0C
 C - - - - - 0x0061A7 01:A197: 20 01 E0  JSR sub_0x03E011_garbage_loop_X
-C - - - - - 0x0061AA 01:A19A: 20 2D E3  JSR sub_0x03E33D
+C - - - - - 0x0061AA 01:A19A: 20 2D E3  JSR sub_0x03E33D_set_7F_for_all_bg_chr_banks
 C - - - - - 0x0061AD 01:A19D: A9 55     LDA #$55
 C - - - - - 0x0061AF 01:A19F: 8D 05 51  STA $5105
 C - - - - - 0x0061B2 01:A1A2: A5 6F     LDA ram_copy_cam_pos_lo
@@ -6028,19 +6028,19 @@ ofs_irq_handler_A2A1_0A:
 ofs_irq_handler_A2A1_0F:
 C - - J - - 0x0062B1 01:A2A1: A0 05     LDY #$05
 bra_A2A3_garbage_loop:
-C - - - - - 0x0062B3 01:A2A3: 20 22 E3  JSR sub_0x03E332
+C - - - - - 0x0062B3 01:A2A3: 20 22 E3  JSR sub_0x03E332_set_2_7F_spr_chr_banks
 C - - - - - 0x0062B6 01:A2A6: 20 05 E0  JSR sub_0x03E015_garbage_loop_0F
 C - - - - - 0x0062B9 01:A2A9: 20 52 E3  JSR sub_0x03E362
 C - - - - - 0x0062BC 01:A2AC: 20 05 E0  JSR sub_0x03E015_garbage_loop_0F
-C - - - - - 0x0062BF 01:A2AF: 20 22 E3  JSR sub_0x03E332
+C - - - - - 0x0062BF 01:A2AF: 20 22 E3  JSR sub_0x03E332_set_2_7F_spr_chr_banks
 C - - - - - 0x0062C2 01:A2B2: 20 05 E0  JSR sub_0x03E015_garbage_loop_0F
 C - - - - - 0x0062C5 01:A2B5: 20 52 E3  JSR sub_0x03E362
 C - - - - - 0x0062C8 01:A2B8: 20 05 E0  JSR sub_0x03E015_garbage_loop_0F
-C - - - - - 0x0062CB 01:A2BB: 20 22 E3  JSR sub_0x03E332
+C - - - - - 0x0062CB 01:A2BB: 20 22 E3  JSR sub_0x03E332_set_2_7F_spr_chr_banks
 C - - - - - 0x0062CE 01:A2BE: 20 05 E0  JSR sub_0x03E015_garbage_loop_0F
 C - - - - - 0x0062D1 01:A2C1: 20 52 E3  JSR sub_0x03E362
 C - - - - - 0x0062D4 01:A2C4: 20 05 E0  JSR sub_0x03E015_garbage_loop_0F
-C - - - - - 0x0062D7 01:A2C7: 20 22 E3  JSR sub_0x03E332
+C - - - - - 0x0062D7 01:A2C7: 20 22 E3  JSR sub_0x03E332_set_2_7F_spr_chr_banks
 C - - - - - 0x0062DA 01:A2CA: 20 05 E0  JSR sub_0x03E015_garbage_loop_0F
 C - - - - - 0x0062DD 01:A2CD: 20 52 E3  JSR sub_0x03E362
 C - - - - - 0x0062E0 01:A2D0: A2 10     LDX #$10
@@ -6068,7 +6068,7 @@ C - - - - - 0x0062FF 01:A2EF: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A2F2_11:
-C - - J - - 0x006302 01:A2F2: 20 22 E3  JSR sub_0x03E332
+C - - J - - 0x006302 01:A2F2: 20 22 E3  JSR sub_0x03E332_set_2_7F_spr_chr_banks
 C - - - - - 0x006305 01:A2F5: 4C 3A E1  JMP loc_0x03E14A
 
 
@@ -6281,7 +6281,7 @@ tbl_A41A:
 ofs_irq_handler_A41D_1B:
 C - - J - - 0x00642D 01:A41D: AD 8A 07  LDA ram_078A
 C - - - - - 0x006430 01:A420: 8D 03 52  STA $5203
-C - - - - - 0x006433 01:A423: 20 5E A4  JSR sub_A45E_set_chr_banks
+C - - - - - 0x006433 01:A423: 20 5E A4  JSR sub_A45E_set_fixed_chr_banks_1
 C - - - - - 0x006436 01:A426: AC 89 07  LDY ram_0789
 C - - - - - 0x006439 01:A429: B9 31 A4  LDA tbl_A431,Y
 C - - - - - 0x00643C 01:A42C: 85 6D     STA ram_006D_irq_handler
@@ -6304,7 +6304,7 @@ C - - - - - 0x006447 01:A437: 10 FD     BPL bra_A436_garbage_loop
 C - - - - - 0x006449 01:A439: A5 FF     LDA ram_for_2000
 C - - - - - 0x00644B 01:A43B: 49 01     EOR #$01
 C - - - - - 0x00644D 01:A43D: 8D 00 20  STA $2000
-C - - - - - 0x006450 01:A440: 20 73 A4  JSR sub_A473_set_chr_banks
+C - - - - - 0x006450 01:A440: 20 73 A4  JSR sub_A473_set_fixed_chr_banks_2
 C - - - - - 0x006453 01:A443: AD 8B 07  LDA ram_078B
 C - - - - - 0x006456 01:A446: AC 89 07  LDY ram_0789
 C - - - - - 0x006459 01:A449: C0 01     CPY #$01
@@ -6319,12 +6319,12 @@ C - - - - - 0x006465 01:A455: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A458_1D:
-C - - J - - 0x006468 01:A458: 20 2D E3  JSR sub_0x03E33D
+C - - J - - 0x006468 01:A458: 20 2D E3  JSR sub_0x03E33D_set_7F_for_all_bg_chr_banks
 C - - - - - 0x00646B 01:A45B: 4C 3A E1  JMP loc_0x03E14A
 
 
 
-sub_A45E_set_chr_banks:
+sub_A45E_set_fixed_chr_banks_1:
 ; bzk optimize, single JSR to here
 C - - - - - 0x00646E 01:A45E: A9 74     LDA #con__chr_bank + $74
 C - - - - - 0x006470 01:A460: 8D 28 51  STA $5128
@@ -6338,7 +6338,7 @@ C - - - - - 0x006482 01:A472: 60        RTS
 
 
 
-sub_A473_set_chr_banks:
+sub_A473_set_fixed_chr_banks_2:
 ; bzk optimize, single JSR to here
 C - - - - - 0x006483 01:A473: A9 78     LDA #con__chr_bank + $78
 C - - - - - 0x006485 01:A475: 8D 28 51  STA $5128
@@ -6570,7 +6570,7 @@ C - - - - - 0x0065CF 01:A5BF: AD 8E 07  LDA ram_078E_scroll_X
 C - - - - - 0x0065D2 01:A5C2: 8D 05 20  STA $2005
 C - - - - - 0x0065D5 01:A5C5: A9 00     LDA #$00
 C - - - - - 0x0065D7 01:A5C7: 8D 05 20  STA $2005
-C - - - - - 0x0065DA 01:A5CA: 20 2D E3  JSR sub_0x03E33D
+C - - - - - 0x0065DA 01:A5CA: 20 2D E3  JSR sub_0x03E33D_set_7F_for_all_bg_chr_banks
 ; -> con_irq_2B
 C - - - - - 0x0065DD 01:A5CD: E6 6D     INC ram_006D_irq_handler
 C - - - - - 0x0065DF 01:A5CF: 4C 3F E1  JMP loc_0x03E14F

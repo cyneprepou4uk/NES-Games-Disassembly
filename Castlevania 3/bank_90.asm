@@ -4546,6 +4546,7 @@ C - - - - - 0x023F52 08:BF42: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x023F55 08:BF45: A0 07     LDY #$07
 C - - - - - 0x023F57 08:BF47: A9 00     LDA #$00
 bra_BF49_loop:
+; 07EC-07F3
 C - - - - - 0x023F59 08:BF49: 99 EC 07  STA ram_07EC,Y
 C - - - - - 0x023F5C 08:BF4C: 88        DEY
 C - - - - - 0x023F5D 08:BF4D: D0 FA     BNE bra_BF49_loop
