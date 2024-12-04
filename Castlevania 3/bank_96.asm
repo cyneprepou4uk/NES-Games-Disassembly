@@ -2209,8 +2209,8 @@ C - - - - - 0x02CAF6 0B:8AE6: 4C 7E 8A  JMP loc_8A7E
 
 
 ofs_039_8AE9_31:
-ofs_039_8AE9_32:
 ; con_BD4F_31
+ofs_039_8AE9_32:
 ; con_BD4F_32
 C - - J - - 0x02CAF9 0B:8AE9: A0 01     LDY #$01
 C - - - - - 0x02CAFB 0B:8AEB: B1 02     LDA (ram_0002_t007_data),Y
@@ -4224,12 +4224,12 @@ C - - - - - 0x02D651 0B:9641: 4C B8 84  JMP loc_84B8
 
 
 ofs_039_9644_47:
-ofs_039_9644_4A:
-ofs_039_9644_4B:
-ofs_039_9644_4C:
 ; con_BD4F_47
+ofs_039_9644_4A:
 ; con_BD4F_4A
+ofs_039_9644_4B:
 ; con_BD4F_4B
+ofs_039_9644_4C:
 ; con_BD4F_4C
 C - - J - - 0x02D654 0B:9644: A9 00     LDA #$00
 C - - - - - 0x02D656 0B:9646: 9D 33 06  STA ram_obj_0634,X
@@ -6932,8 +6932,8 @@ _off034_A40B_60:
 ; 06 
 - D 1 - I - 0x02E433 0B:A423: 6C        .byte con_BD4F_play_sound   ; 
 - D 1 - I - 0x02E434 0B:A424: 2D        .byte con_sound_2D   ; 
-- - - - - - 0x02E435 0B:A425: 00        .byte $00   ; 
-- - - - - - 0x02E436 0B:A426: 00        .byte $00   ; 
+- - - - - - 0x02E435 0B:A425: 00        .byte $00   ; placeholder
+- - - - - - 0x02E436 0B:A426: 00        .byte $00   ; placeholder
 ; 07 
 - D 1 - I - 0x02E437 0B:A427: 30        .byte con_BD4F_30   ; 
 - D 1 - I - 0x02E438 0B:A428: 02        .byte $02   ; 
@@ -9180,8 +9180,8 @@ _off034_AAD0_0D:
 
 
 _off034_AADC_03:
-_off034_AADC_04:
 ; con_BEA1_03
+_off034_AADC_04:
 ; con_BEA1_04
 ; 00 
 - D 1 - I - 0x02EAEC 0B:AADC: 8D        .byte con_BD4F_8D   ; 
@@ -9656,8 +9656,8 @@ _off034_ABF8_6A:
 ; 14 
 - D 1 - I - 0x02EC58 0B:AC48: 6C        .byte con_BD4F_play_sound   ; 
 - D 1 - I - 0x02EC59 0B:AC49: 23        .byte con_sound_water_splash_2   ; 
-- - - - - - 0x02EC5A 0B:AC4A: 00        .byte $00   ; 
-- - - - - - 0x02EC5B 0B:AC4B: 00        .byte $00   ; 
+- - - - - - 0x02EC5A 0B:AC4A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC5B 0B:AC4B: 00        .byte $00   ; placeholder
 ; 15 
 - D 1 - I - 0x02EC5C 0B:AC4C: 27        .byte con_BD4F_27   ; 
 - - - - - - 0x02EC5D 0B:AC4D: 00        .byte $00   ; 
@@ -9691,8 +9691,8 @@ _off034_AC50_14:
 ; 04 
 - D 1 - I - 0x02EC70 0B:AC60: 6C        .byte con_BD4F_play_sound   ; 
 - D 1 - I - 0x02EC71 0B:AC61: 22        .byte con_sound_water_splash_1   ; 
-- - - - - - 0x02EC72 0B:AC62: 00        .byte $00   ; 
-- - - - - - 0x02EC73 0B:AC63: 00        .byte $00   ; 
+- - - - - - 0x02EC72 0B:AC62: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC73 0B:AC63: 00        .byte $00   ; placeholder
 ; 05 
 - D 1 - I - 0x02EC74 0B:AC64: 63        .byte con_BD4F_63   ; 
 - D 1 - I - 0x02EC75 0B:AC65: F9        .byte $F9   ; spd_Y_hi
@@ -9844,8 +9844,8 @@ _off034_AC50_14:
 ; 23 
 - - - - - - 0x02ECEC 0B:ACDC: 6C        .byte con_BD4F_play_sound   ; 
 - - - - - - 0x02ECED 0B:ACDD: 23        .byte con_sound_water_splash_2   ; 
-- - - - - - 0x02ECEE 0B:ACDE: 00        .byte $00   ; 
-- - - - - - 0x02ECEF 0B:ACDF: 00        .byte $00   ; 
+- - - - - - 0x02ECEE 0B:ACDE: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECEF 0B:ACDF: 00        .byte $00   ; placeholder
 ; 24 
 - - - - - - 0x02ECF0 0B:ACE0: 27        .byte con_BD4F_27   ; 
 - - - - - - 0x02ECF1 0B:ACE1: 00        .byte $00   ; 
@@ -9918,8 +9918,8 @@ _off034_ACEC_27:
 ; 0A 
 - D 1 - I - 0x02ED24 0B:AD14: 6C        .byte con_BD4F_play_sound   ; 
 - D 1 - I - 0x02ED25 0B:AD15: 22        .byte con_sound_water_splash_1   ; 
-- - - - - - 0x02ED26 0B:AD16: 00        .byte $00   ; 
-- - - - - - 0x02ED27 0B:AD17: 00        .byte $00   ; 
+- - - - - - 0x02ED26 0B:AD16: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED27 0B:AD17: 00        .byte $00   ; placeholder
 ; 0B 
 - D 1 - I - 0x02ED28 0B:AD18: 68        .byte con_BD4F_68   ; 
 - D 1 - I - 0x02ED29 0B:AD19: 18        .byte $18   ; 
@@ -10037,8 +10037,8 @@ _off034_AD48_29:
 ; 0A 
 - D 1 - I - 0x02ED80 0B:AD70: 6C        .byte con_BD4F_play_sound   ; 
 - D 1 - I - 0x02ED81 0B:AD71: 22        .byte con_sound_water_splash_1   ; 
-- - - - - - 0x02ED82 0B:AD72: 00        .byte $00   ; 
-- - - - - - 0x02ED83 0B:AD73: 00        .byte $00   ; 
+- - - - - - 0x02ED82 0B:AD72: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED83 0B:AD73: 00        .byte $00   ; placeholder
 ; 0B 
 - D 1 - I - 0x02ED84 0B:AD74: 63        .byte con_BD4F_63   ; 
 - D 1 - I - 0x02ED85 0B:AD75: FA        .byte $FA   ; spd_Y_hi
@@ -10195,8 +10195,8 @@ _off034_AD48_29:
 ; 2A 
 - D 1 - I - 0x02EE00 0B:ADF0: 6C        .byte con_BD4F_play_sound   ; 
 - D 1 - I - 0x02EE01 0B:ADF1: 23        .byte con_sound_water_splash_2   ; 
-- - - - - - 0x02EE02 0B:ADF2: 00        .byte $00   ; 
-- - - - - - 0x02EE03 0B:ADF3: 00        .byte $00   ; 
+- - - - - - 0x02EE02 0B:ADF2: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE03 0B:ADF3: 00        .byte $00   ; placeholder
 ; 2B 
 - D 1 - I - 0x02EE04 0B:ADF4: 27        .byte con_BD4F_27   ; 
 - - - - - - 0x02EE05 0B:ADF5: 00        .byte $00   ; 
@@ -10239,8 +10239,8 @@ _off034_AE08_25:
 ; 01 
 - D 1 - I - 0x02EE1C 0B:AE0C: 6C        .byte con_BD4F_play_sound   ; 
 - D 1 - I - 0x02EE1D 0B:AE0D: 0F        .byte con_sound_0F   ; 
-- - - - - - 0x02EE1E 0B:AE0E: 00        .byte $00   ; 
-- - - - - - 0x02EE1F 0B:AE0F: 00        .byte $00   ; 
+- - - - - - 0x02EE1E 0B:AE0E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE1F 0B:AE0F: 00        .byte $00   ; placeholder
 ; 02 
 - D 1 - I - 0x02EE20 0B:AE10: 0B        .byte con_BD4F_0B   ; 
 - D 1 - I - 0x02EE21 0B:AE11: 12        .byte con_obj_type_12   ; 
@@ -10353,8 +10353,8 @@ _off034_AE58_26_swamp_frog:
 ; 03 
 - D 1 - I - 0x02EE74 0B:AE64: 6C        .byte con_BD4F_play_sound   ; 
 - D 1 - I - 0x02EE75 0B:AE65: 22        .byte con_sound_water_splash_1   ; 
-- - - - - - 0x02EE76 0B:AE66: 00        .byte $00   ; 
-- - - - - - 0x02EE77 0B:AE67: 00        .byte $00   ; 
+- - - - - - 0x02EE76 0B:AE66: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE77 0B:AE67: 00        .byte $00   ; placeholder
 ; 04 
 - D 1 - I - 0x02EE78 0B:AE68: 5B        .byte con_BD4F_5B   ; 
 - D 1 - I - 0x02EE79 0B:AE69: 01        .byte $01   ; 
@@ -10913,8 +10913,8 @@ _off034_AFEC_5D:
 
 
 _off034_AFF8_18:
-_off034_AFF8_72:
 ; con_BEA1_18
+_off034_AFF8_72:
 ; con_BEA1_72
 ; 00 
 - D 1 - I - 0x02F008 0B:AFF8: 13        .byte con_BD4F_13   ; 
@@ -10979,8 +10979,8 @@ _off034_B01C_1A:
 ; 01 
 - D 1 - I - 0x02F030 0B:B020: 6C        .byte con_BD4F_play_sound   ; 
 - D 1 - I - 0x02F031 0B:B021: 27        .byte con_sound_kill_enemy   ; 
-- - - - - - 0x02F032 0B:B022: 00        .byte $00   ; 
-- - - - - - 0x02F033 0B:B023: 00        .byte $00   ; 
+- - - - - - 0x02F032 0B:B022: 00        .byte $00   ; placeholder
+- - - - - - 0x02F033 0B:B023: 00        .byte $00   ; placeholder
 ; 02 
 - D 1 - I - 0x02F034 0B:B024: 1F        .byte con_BD4F_set_timer   ; 
 - D 1 - I - 0x02F035 0B:B025: 20        .byte $20   ; 
@@ -11174,44 +11174,44 @@ _off034_B088_4E:
 
 
 _off034_B0A0_33:
-_off034_B0A0_34:
-_off034_B0A0_35:
-_off034_B0A0_36:
-_off034_B0A0_37:
-_off034_B0A0_38:
-_off034_B0A0_39:
-_off034_B0A0_3A:
-_off034_B0A0_3B:
-_off034_B0A0_3C:
-_off034_B0A0_3D:
-_off034_B0A0_3E:
-_off034_B0A0_3F:
-_off034_B0A0_40:
-_off034_B0A0_41:
-_off034_B0A0_42:
-_off034_B0A0_4C:
-_off034_B0A0_4D:
-_off034_B0A0_4F:
-_off034_B0A0_50:
 ; con_BEA1_33
+_off034_B0A0_34:
 ; con_BEA1_34
+_off034_B0A0_35:
 ; con_BEA1_35
+_off034_B0A0_36:
 ; con_BEA1_36
+_off034_B0A0_37:
 ; con_BEA1_37
+_off034_B0A0_38:
 ; con_BEA1_38
+_off034_B0A0_39:
 ; con_BEA1_39
+_off034_B0A0_3A:
 ; con_BEA1_3A
+_off034_B0A0_3B:
 ; con_BEA1_3B
+_off034_B0A0_3C:
 ; con_BEA1_3C
+_off034_B0A0_3D:
 ; con_BEA1_3D
+_off034_B0A0_3E:
 ; con_BEA1_3E
+_off034_B0A0_3F:
 ; con_BEA1_3F
+_off034_B0A0_40:
 ; con_BEA1_40
+_off034_B0A0_41:
 ; con_BEA1_41
+_off034_B0A0_42:
 ; con_BEA1_42
+_off034_B0A0_4C:
 ; con_BEA1_4C
+_off034_B0A0_4D:
 ; con_BEA1_4D
+_off034_B0A0_4F:
 ; con_BEA1_4F
+_off034_B0A0_50:
 ; con_BEA1_50
 ; 00 
 - D 1 - I - 0x02F0B0 0B:B0A0: 4F        .byte con_BD4F_4F   ; 
@@ -11241,22 +11241,22 @@ _off034_B0A0_50:
 
 
 _off034_B0B4_43:
-_off034_B0B4_44:
-_off034_B0B4_45:
-_off034_B0B4_46:
-_off034_B0B4_47:
-_off034_B0B4_48:
-_off034_B0B4_49:
-_off034_B0B4_4A:
-_off034_B0B4_4B:
 ; con_BEA1_43
+_off034_B0B4_44:
 ; con_BEA1_44
+_off034_B0B4_45:
 ; con_BEA1_45
+_off034_B0B4_46:
 ; con_BEA1_46
+_off034_B0B4_47:
 ; con_BEA1_47
+_off034_B0B4_48:
 ; con_BEA1_48
+_off034_B0B4_49:
 ; con_BEA1_49
+_off034_B0B4_4A:
 ; con_BEA1_4A
+_off034_B0B4_4B:
 ; con_BEA1_4B
 ; 00 
 - D 1 - I - 0x02F0C4 0B:B0B4: 4F        .byte con_BD4F_4F   ; 
@@ -11301,10 +11301,10 @@ _off034_B0B4_4B:
 
 
 _off034_B0D4_51:
-_off034_B0D4_52:
-_off034_B0D4_53:
 ; con_BEA1_51
+_off034_B0D4_52:
 ; con_BEA1_52
+_off034_B0D4_53:
 ; con_BEA1_53
 ; 00 
 - - - - - - 0x02F0E4 0B:B0D4: 00        .byte con_BD4F_00   ; 
@@ -14061,18 +14061,18 @@ tbl_BEA1:
 
 
 _off034_BF87_00:
-_off034_BF87_15:
-_off034_BF87_1F:
-_off034_BF87_54:
-_off034_BF87_55:
-_off034_BF87_56:
 ; con_BEA1_00
+_off034_BF87_15:
 ; con_BEA1_15
+_off034_BF87_1F:
 ; con_BEA1_1F
+_off034_BF87_54:
 ; con_BEA1_54
+_off034_BF87_55:
 ; con_BEA1_55
+_off034_BF87_56:
 ; con_BEA1_56
-; 
+; 00 
 - - - - - - 0x02FF97 0B:BF87: 19        .byte con_BD4F_19   ; 
 - - - - - - 0x02FF98 0B:BF88: 00        .byte $00   ; 
 - - - - - - 0x02FF99 0B:BF89: 00        .byte $00   ; 

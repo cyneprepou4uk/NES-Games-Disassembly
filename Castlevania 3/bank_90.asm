@@ -3997,6 +3997,7 @@ _off046_0x023BB7_04:
 
 
 _off003_0x023BFF_32:
+; con_98E4_32_credits
 - D 1 - I - 0x023BFF 08:BBEF: B1 25     .word $25B1 ; ppu address
 - D 1 - I - 0x023C01 08:BBF1: D5        .byte $D5, $C0, $CC, $CF, $C8, $D1, $C4   ; VAMPIRE
 
@@ -4020,6 +4021,7 @@ _off003_0x023BFF_32:
 
 
 _off003_0x023C26_33:
+; con_98E4_33_credits
 - D 1 - I - 0x023C26 08:BC16: A1 25     .word $25A1 ; ppu address
 - D 1 - I - 0x023C28 08:BC18: C0        .byte $C0, $C2, $D1, $CE, $C1, $C0, $D3, $F8   ; ACROBAT:
 
@@ -4033,6 +4035,7 @@ _off003_0x023C26_33:
 
 
 _off003_0x023C41_34:
+; con_98E4_34_credits
 - D 1 - I - 0x023C41 08:BC31: B1 25     .word $25B1 ; ppu address
 - D 1 - I - 0x023C43 08:BC33: F6        .byte $F6, $C0, $CB, $D4, $C2, $C0, $D1, $C3, $F7   ; "ALUCARD"
 
@@ -4051,6 +4054,7 @@ _off003_0x023C41_34:
 
 
 _off003_0x023C60_35:
+; con_98E4_35_credits
 - D 1 - I - 0x023C60 08:BC50: 61 25     .word $2561 ; ppu address
 - D 1 - I - 0x023C62 08:BC52: CF        .byte $CF, $D1, $CE, $C3, $D4, $C2, $C4, $C3, $00, $C1, $D8   ; PRODUCED BY
 
@@ -4074,6 +4078,7 @@ _off003_0x023C60_35:
 
 
 _off003_0x023C94_36:
+; con_98E4_36_credits
 - D 1 - I - 0x023C94 08:BC84: A1 25     .word $25A1 ; ppu address
 - D 1 - I - 0x023C96 08:BC86: C0        .byte $C0, $CD, $C3, $00, $D2, $D3, $C0, $D1, $D1, $C8, $CD, $C6, $F8   ; AND STARRING:
 
@@ -4097,7 +4102,9 @@ _off003_0x023C94_36:
 
 
 _off003_0x023CC6_37:
+; con_98E4_37_credits
 _off003_0x023CC6_63:
+; con_98E4_63
 - D 1 - I - 0x023CC6 08:BCB6: 51 25     .word $2551 ; ppu address
 - D 1 - I - 0x023CC8 08:BCB8: CF        .byte $CF, $DF, $FB, $EA, $DF, $EB, $EC, $EC, $DE, $DF, $F8   ; Programmer:
 
@@ -4131,7 +4138,9 @@ _off003_0x023CC6_63:
 
 
 _off003_0x023D0F_38:
+; con_98E4_38_credits
 _off003_0x023D0F_64:
+; con_98E4_64
 - D 1 - I - 0x023D0F 08:BCFF: A1 25     .word $25A1 ; ppu address
 - D 1 - I - 0x023D11 08:BD01: D2        .byte $D2, $FB, $FC, $FD, $E7, $F8   ; Sound:
 
@@ -4155,6 +4164,7 @@ _off003_0x023D0F_64:
 
 
 _off003_0x023D3E_65:
+; con_98E4_65_credits
 - D 1 - I - 0x023D3E 08:BD2E: 71 25     .word $2571 ; ppu address
 - D 1 - I - 0x023D40 08:BD30: CF        .byte $CF, $EE, $EB, $FD, $FD, $DE, $DF, $F8   ; Planner:
 
@@ -4178,6 +4188,7 @@ _off003_0x023D3E_65:
 
 
 _off003_0x023D6C_66:
+; con_98E4_66_credits
 - D 1 - I - 0x023D6C 08:BD5C: 41 25     .word $2541 ; ppu address
 - D 1 - I - 0x023D6E 08:BD5E: D2        .byte $D2, $F4, $DE, $DC, $ED, $EB, $EE   ; Special
 
@@ -4216,6 +4227,7 @@ _off003_0x023D6C_66:
 
 
 _off003_0x023DC1_5B:
+; con_98E4_5B_credits
 - D 1 - I - 0x023DC1 08:BDB1: 46 25     .word $2546 ; ppu address
 - D 1 - I - 0x023DC3 08:BDB3: D3        .byte $D3, $C7, $C0, $CD, $CA, $00, $D8, $CE, $D4, $00, $D5, $C4, $D1, $D8, $00, $CC, $D4, $C2, $C7   ; THANK YOU VERY MUCH
 
@@ -4229,6 +4241,7 @@ _off003_0x023DC1_5B:
 
 
 _off003_0x023DE5_5C:
+; con_98E4_5C_credits
 - D 1 - I - 0x023DE5 08:BDD5: 4A 25     .word $254A ; ppu address
 - D 1 - I - 0x023DE7 08:BDD7: CF        .byte $CF, $D1, $C4, $D2, $C4, $CD, $D3, $C4, $C3, $00, $C1, $D8   ; PRESENTED BY
 

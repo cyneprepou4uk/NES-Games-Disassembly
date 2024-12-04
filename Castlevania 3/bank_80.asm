@@ -76,6 +76,7 @@
 sub_8001:
 sub_0x000011:
 ofs_041_0x000011_01:
+; con_B616_01
 C - - - - - 0x000011 00:8001: AC 4E 05  LDY ram_plr_id
 C - - - - - 0x000014 00:8004: B9 0F 80  LDA tbl_800F_chr_bank,Y
 C - - - - - 0x000017 00:8007: 85 46     STA ram_chr_bank_5120
@@ -97,6 +98,7 @@ tbl_800F_chr_bank:
 sub_0x000023:
 ofs_0x000023_00:
 ofs_041_0x000023_02:
+; con_B616_02
 C - - - - - 0x000023 00:8013: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x000025 00:8015: 0A        ASL
 C - - - - - 0x000026 00:8016: A8        TAY
@@ -2015,6 +2017,7 @@ sub_852C_update_background_and_sprite_palette:
 sub_0x00053C_update_background_and_sprite_palette:
 ofs_0x00053C_update_background_and_sprite_palette:
 ofs_041_0x00053C_00_update_background_and_sprite_palette:
+; con_B616_update_bg_spr_palette
 C - - - - - 0x00053C 00:852C: A9 09     LDA #con_98E4_09_spr_pal
 C - - - - - 0x00053E 00:852E: 20 E9 EC  JSR sub_0x03ECF9_write_data_to_ppu_buffer
 C - - - - - 0x000541 00:8531: 20 01 85  JSR sub_8501_prepare_palette_pointers_for_current_area
@@ -2754,6 +2757,7 @@ off_8764_0E_02_bg:
 
 
 _off003_8766_09:
+; con_98E4_09_spr_pal
 - D 0 - I - 0x000776 00:8766: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x000778 00:8768: 0F        .byte $0F, $16, $26, $20   ; 
 - D 0 - I - 0x00077C 00:876C: 0F        .byte $0F, $16, $26, $20   ; 
@@ -3318,6 +3322,7 @@ off_8980_0F___0C_00_spr:
 
 
 _off003_8982_0A_palette_Trevor:
+; con_98E4_Trevor_spr_pal
 - D 0 - I - 0x000992 00:8982: 10 3F     .word $3F10 ; ppu address
 - D 0 - I - 0x000994 00:8984: 0F        .byte $0F, $08, $26, $37   ; 
 - D 0 - I - 0x000998 00:8988: 0F        .byte $0F, $0F, $22, $34   ; 
@@ -3329,6 +3334,7 @@ _off003_8982_0A_palette_Trevor:
 
 
 _off003_8995_0C_palette_Grant:
+; con_98E4_Grant_spr_pal
 - D 0 - I - 0x0009A5 00:8995: 10 3F     .word $3F10 ; ppu address
 - D 0 - I - 0x0009A7 00:8997: 0F        .byte $0F, $08, $15, $38   ; 
 - D 0 - I - 0x0009AB 00:899B: 0F        .byte $0F, $0F, $22, $34   ; 
@@ -3340,6 +3346,7 @@ _off003_8995_0C_palette_Grant:
 
 
 _off003_89A8_0B_palette_Sypha:
+; con_98E4_Sypha_spr_pal
 - D 0 - I - 0x0009B8 00:89A8: 10 3F     .word $3F10 ; ppu address
 - D 0 - I - 0x0009BA 00:89AA: 0F        .byte $0F, $21, $11, $20   ; 
 - D 0 - I - 0x0009BE 00:89AE: 0F        .byte $0F, $0F, $22, $34   ; 
@@ -3351,6 +3358,7 @@ _off003_89A8_0B_palette_Sypha:
 
 
 _off003_89BB_0D_palette_Alucard:
+; con_98E4_Alucard_spr_pal
 - D 0 - I - 0x0009CB 00:89BB: 10 3F     .word $3F10 ; ppu address
 - D 0 - I - 0x0009CD 00:89BD: 0F        .byte $0F, $0F, $15, $36   ; 
 - D 0 - I - 0x0009D1 00:89C1: 0F        .byte $0F, $0F, $22, $34   ; 
@@ -4769,6 +4777,7 @@ C - - - - - 0x0010DC 00:90CC: 60        RTS
 
 sub_90CD_set_chr_banks:
 ofs_041_0x0010DD_06_set_chr_banks:
+; con_B616_set_chr_banks
 C - - - - - 0x0010DD 00:90CD: A9 40     LDA #con__chr_bank + $40
 C - - - - - 0x0010DF 00:90CF: 85 4A     STA ram_chr_bank_5124_5128
 C - - - - - 0x0010E1 00:90D1: A9 43     LDA #con__chr_bank + $43
@@ -6088,7 +6097,7 @@ tbl_98E4:
 - - - - - - 0x0018F6 00:98E6: 33 9B     .word _off003_9B33_01   ; unused, index doesn't exist
 - D 0 - - - 0x0018F8 00:98E8: 33 9B     .word _off003_9B33_02_konami_1990
 - D 0 - - - 0x0018FA 00:98EA: 58 9B     .word _off003_9B58_03_game_over
-- D 0 - - - 0x0018FC 00:98EC: AA 9B     .word _off003_9BAA_04
+- D 0 - - - 0x0018FC 00:98EC: AA 9B     .word _off003_9BAA_04_3F00_0000
 - D 0 - - - 0x0018FE 00:98EE: 87 9B     .word _off003_9B87_05
 - - - - - - 0x001900 00:98F0: 25 9B     .word _off003_9B25_06   ; unused, index doesn't exist
 - - - - - - 0x001902 00:98F2: 2C 9B     .word _off003_9B2C_07   ; unused, index doesn't exist
@@ -6125,7 +6134,7 @@ tbl_98E4:
 - D 0 - - - 0x001940 00:9930: 4D 9B     .word _off003_9B4D_26_password
 - D 0 - - - 0x001942 00:9932: 64 9B     .word _off003_9B64_27_continue
 - D 0 - - - 0x001944 00:9934: 6F 9B     .word _off003_9B6F_28_password
-- D 0 - - - 0x001946 00:9936: A0 07     .word ram_07A0     ; 29 custom palette
+- D 0 - - - 0x001946 00:9936: A0 07     .word ram_07A0     ; 29 con_98E4_custom_palette
 - D 0 - - - 0x001948 00:9938: B6 9C     .word _off003_9CB6_2A
 - D 0 - - - 0x00194A 00:993A: C9 9C     .word _off003_9CC9_2B
 - D 0 - - - 0x00194C 00:993C: EF 9C     .word _off003_9CEF_2C
@@ -6192,6 +6201,7 @@ tbl_98E4:
 
 
 _off003_99B4_0E_hud:
+; con_98E4_hud
 - D 0 - I - 0x0019C4 00:99B4: 40 20     .word $2040 ; ppu address
 - D 0 - I - 0x0019C6 00:99B6: 62        .byte $62, $52, $5E, $61, $54, $4D   ; SCORE-
 
@@ -6245,6 +6255,7 @@ _off003_99B4_0E_hud:
 
 
 _off003_99FE_0F:
+; con_98E4_0F
 - D 0 - I - 0x001A0E 00:99FE: 7D 20     .word $207D ; ppu address
 - D 0 - I - 0x001A10 00:9A00: 88        .byte $88, $89   ; 
 
@@ -6263,6 +6274,7 @@ _off003_99FE_0F:
 
 
 _off003_9A0D_11:
+; con_98E4_11
 - D 0 - I - 0x001A1D 00:9A0D: 7D 20     .word $207D ; ppu address
 - D 0 - I - 0x001A1F 00:9A0F: 8A        .byte $8A, $8B   ; 
 
@@ -6281,6 +6293,7 @@ _off003_9A0D_11:
 
 
 _off003_9A1C_10:
+; con_98E4_10
 - D 0 - I - 0x001A2C 00:9A1C: 7D 20     .word $207D ; ppu address
 - D 0 - I - 0x001A2E 00:9A1E: 8C        .byte $8C, $8D   ; 
 
@@ -6299,6 +6312,7 @@ _off003_9A1C_10:
 
 
 _off003_9A2B_12:
+; con_98E4_12
 - D 0 - I - 0x001A3B 00:9A2B: 7D 20     .word $207D ; ppu address
 - D 0 - I - 0x001A3D 00:9A2D: 8E        .byte $8E, $8F   ; 
 
@@ -6317,6 +6331,7 @@ _off003_9A2B_12:
 
 
 _off003_9A3A_5F:
+; con_98E4_5F_bg_pal
 - D 0 - I - 0x001A4A 00:9A3A: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001A4C 00:9A3C: 0F        .byte $0F, $16, $26, $20   ; 
 - D 0 - I - 0x001A50 00:9A40: 0F        .byte $0F, $00, $04, $10   ; 
@@ -6328,6 +6343,7 @@ _off003_9A3A_5F:
 
 
 _off003_9A4D_5D:
+; con_98E4_5D_bg_pal
 - D 0 - I - 0x001A5D 00:9A4D: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001A5F 00:9A4F: 0F        .byte $0F, $16, $26, $20   ; 
 - D 0 - I - 0x001A63 00:9A53: 0F        .byte $0F, $16, $27, $10   ; 
@@ -6339,6 +6355,7 @@ _off003_9A4D_5D:
 
 
 _off003_9A60_4A:
+; con_98E4_4A_bg_pal
 - D 0 - I - 0x001A70 00:9A60: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001A72 00:9A62: 0F        .byte $0F, $16, $26, $20   ; 
 - D 0 - I - 0x001A76 00:9A66: 0F        .byte $0F, $07, $17, $27   ; 
@@ -6350,6 +6367,7 @@ _off003_9A60_4A:
 
 
 _off003_9A73_4B:
+; con_98E4_4B_bg_pal
 - D 0 - I - 0x001A83 00:9A73: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001A85 00:9A75: 0F        .byte $0F, $16, $26, $20   ; 
 - D 0 - I - 0x001A89 00:9A79: 0F        .byte $0F, $07, $27, $37   ; 
@@ -6361,6 +6379,7 @@ _off003_9A73_4B:
 
 
 _off003_9A86_4C:
+; con_98E4_4C_bg_pal
 - D 0 - I - 0x001A96 00:9A86: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001A98 00:9A88: 0F        .byte $0F, $16, $26, $20   ; 
 - D 0 - I - 0x001A9C 00:9A8C: 0F        .byte $0F, $17, $27, $37   ; 
@@ -6372,6 +6391,7 @@ _off003_9A86_4C:
 
 
 _off003_9A99_20:
+; con_98E4_20_bg_pal
 - - - - - - 0x001AA9 00:9A99: 00 3F     .word $3F00 ; ppu address
 - - - - - - 0x001AAB 00:9A9B: 0F        .byte $0F, $16, $26, $20   ; 
 - - - - - - 0x001AAF 00:9A9F: 0F        .byte $0F, $22, $12, $20   ; 
@@ -6383,6 +6403,7 @@ _off003_9A99_20:
 
 
 _off003_9AAC_48:
+; con_98E4_48
 - D 0 - I - 0x001ABC 00:9AAC: 0F 25     .word $250F ; ppu address
 - D 0 - I - 0x001ABE 00:9AAE: 4E        .byte $4E, $7D, $7D, $4F   ; 
 
@@ -6416,6 +6437,7 @@ _off003_9AAC_48:
 
 
 _off003_9AE6_49:
+; con_98E4_49
 - D 0 - I - 0x001AF6 00:9AE6: CD 25     .word $25CD ; ppu address
 - D 0 - I - 0x001AF8 00:9AE8: 70        .byte $70, $71, $72, $73, $74, $75, $76, $77   ; 
 
@@ -6444,6 +6466,7 @@ _off003_9AE6_49:
 
 
 _off003_9B13_47:
+; con_98E4_47
 - D 0 - I - 0x001B23 00:9B13: D3 27     .word $27D3 ; ppu address
 - D 0 - I - 0x001B25 00:9B15: 55        .byte $55, $55, $55   ; 
 
@@ -6462,6 +6485,7 @@ _off003_9B13_47:
 
 
 _off003_9B25_06:
+; con_98E4_06
 ; bzk garbage
 - - - - - - 0x001B35 00:9B25: 0E 22     .word $220E ; ppu address
 - - - - - - 0x001B37 00:9B27: 47        .byte $47, $41, $4D, $45   ; 
@@ -6471,6 +6495,7 @@ _off003_9B25_06:
 
 
 _off003_9B2C_07:
+; con_98E4_07
 ; bzk garbage
 - - - - - - 0x001B3C 00:9B2C: 0E 22     .word $220E ; ppu address
 - - - - - - 0x001B3E 00:9B2E: 44        .byte $44, $45, $4D, $4F   ; 
@@ -6480,7 +6505,9 @@ _off003_9B2C_07:
 
 
 _off003_9B33_01:
+; con_98E4_01
 _off003_9B33_02_konami_1990:
+; con_98E4_konami
 - D 0 - I - 0x001B43 00:9B33: CA 22     .word $22CA ; ppu address
 - D 0 - I - 0x001B45 00:9B35: 21        .byte $21, $00, $5A, $5E, $5D, $50, $5C, $58, $00, $42, $4A, $4A, $41   ; KONAMI 1990
 
@@ -6489,6 +6516,7 @@ _off003_9B33_02_konami_1990:
 
 
 _off003_9B43_00_opening:
+; con_98E4_opening
 ; flashes when this option is selected
 - D 0 - I - 0x001B53 00:9B43: 27 23     .word $2327 ; ppu address
 - D 0 - I - 0x001B55 00:9B45: 1E        .byte $1E, $1F, $14, $1D, $18, $1D, $16   ; OPENING
@@ -6498,6 +6526,7 @@ _off003_9B43_00_opening:
 
 
 _off003_9B4D_26_password:
+; con_98E4_26_password
 ; flashes when this option is selected
 - D 0 - I - 0x001B5D 00:9B4D: 32 23     .word $2332 ; ppu address
 - D 0 - I - 0x001B5F 00:9B4F: 1F        .byte $1F, $10, $22, $22, $26, $1E, $21, $13   ; PASSWORD
@@ -6507,6 +6536,7 @@ _off003_9B4D_26_password:
 
 
 _off003_9B58_03_game_over:
+; con_98E4_game_over
 - D 0 - I - 0x001B68 00:9B58: EC 21     .word $21EC ; ppu address
 - D 0 - I - 0x001B6A 00:9B5A: 56        .byte $56, $50, $5C, $54, $00, $5E, $65, $54, $61   ; GAME OVER
 
@@ -6515,6 +6545,7 @@ _off003_9B58_03_game_over:
 
 
 _off003_9B64_27_continue:
+; con_98E4_continue
 - D 0 - I - 0x001B74 00:9B64: 8C 22     .word $228C ; ppu address
 - D 0 - I - 0x001B76 00:9B66: 52        .byte $52, $5E, $5D, $63, $58, $5D, $64, $54   ; CONTINUE
 
@@ -6523,6 +6554,7 @@ _off003_9B64_27_continue:
 
 
 _off003_9B6F_28_password:
+; con_98E4_28_password
 - D 0 - I - 0x001B7F 00:9B6F: EC 22     .word $22EC ; ppu address
 - D 0 - I - 0x001B81 00:9B71: 5F        .byte $5F, $50, $62, $62, $66, $5E, $61, $53   ; PASSWORD
 
@@ -6531,6 +6563,7 @@ _off003_9B6F_28_password:
 
 
 _off003_9B7A_08_game_start:
+; con_98E4_08
 ; bzk garbage
 - - - - - - 0x001B8A 00:9B7A: CD 22     .word $22CD ; ppu address
 - - - - - - 0x001B8C 00:9B7C: 56        .byte $56, $50, $5C, $54, $00, $62, $63, $50, $61, $63   ; GAME START
@@ -6540,6 +6573,7 @@ _off003_9B7A_08_game_start:
 
 
 _off003_9B87_05:
+; con_98E4_05_bg_spr_pal
 - D 0 - I - 0x001B97 00:9B87: 00 3F     .word $3F00 ; ppu address
 ; background colors
 - D 0 - I - 0x001B99 00:9B89: 0F        .byte $0F, $16, $05, $20   ; 
@@ -6553,7 +6587,8 @@ _off003_9B87_05:
 - D 0 - I - 0x001BB5 00:9BA5: 0F        .byte $0F, $06, $30, $30   ; 
 
 - D 0 - I - 0x001BB9 00:9BA9: FE        .byte $FE   ; continue
-_off003_9BAA_04:    ; ???
+_off003_9BAA_04_3F00_0000:
+; con_98E4_3F00_0000
 - D 0 - I - 0x001BBA 00:9BAA: 00 3F     .word $3F00 ; ppu address
 
 - D 0 - I - 0x001BBC 00:9BAC: FE        .byte $FE   ; continue
@@ -6565,6 +6600,7 @@ _off003_9BAA_04:    ; ???
 
 
 _off003_9BB0_18:
+; con_98E4_18_bg_pal
 - D 0 - I - 0x001BC0 00:9BB0: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001BC2 00:9BB2: 0F        .byte $0F, $07, $17, $20   ; 
 - D 0 - I - 0x001BC6 00:9BB6: 0F        .byte $0F, $07, $17, $20   ; 
@@ -6576,7 +6612,9 @@ _off003_9BB0_18:
 
 
 _off003_9BC3_13:
+; con_98E4_13
 _off003_9BC3_14:
+; con_98E4_14_bg_pal
 - D 0 - I - 0x001BD3 00:9BC3: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001BD5 00:9BC5: 0F        .byte $0F, $07, $17, $20   ; 
 - D 0 - I - 0x001BD9 00:9BC9: 0F        .byte $0F, $01, $12, $20   ; 
@@ -6588,6 +6626,7 @@ _off003_9BC3_14:
 
 
 _off003_9BD6_15:
+; con_98E4_15_bg_pal
 - D 0 - I - 0x001BE6 00:9BD6: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001BE8 00:9BD8: 0F        .byte $0F, $07, $17, $20   ; 
 - D 0 - I - 0x001BEC 00:9BDC: 0F        .byte $0F, $01, $21, $31   ; 
@@ -6599,6 +6638,7 @@ _off003_9BD6_15:
 
 
 _off003_9BE9_16:
+; con_98E4_16_bg_pal
 - D 0 - I - 0x001BF9 00:9BE9: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001BFB 00:9BEB: 0F        .byte $0F, $07, $17, $20   ; 
 - D 0 - I - 0x001BFF 00:9BEF: 0F        .byte $0F, $06, $0B, $10   ; 
@@ -6610,6 +6650,7 @@ _off003_9BE9_16:
 
 
 _off003_9BFC_17:
+; con_98E4_17
 - D 0 - I - 0x001C0C 00:9BFC: 2C 21     .word $212C ; ppu address
 - D 0 - I - 0x001C0E 00:9BFE: 38        .byte $38, $39, $3A   ; 
 
@@ -6633,6 +6674,7 @@ _off003_9BFC_17:
 
 
 _off003_9C11_19:
+; con_98E4_19_bg_pal
 - D 0 - I - 0x001C21 00:9C11: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001C23 00:9C13: 0F        .byte $0F, $16, $26, $20   ; 
 - D 0 - I - 0x001C27 00:9C17: 0F        .byte $0F, $0B, $1B, $01   ; 
@@ -6644,6 +6686,7 @@ _off003_9C11_19:
 
 
 _off003_9C24_1A:
+; con_98E4_1A_bg_pal
 - D 0 - I - 0x001C34 00:9C24: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001C36 00:9C26: 0F        .byte $0F, $16, $26, $20   ; 
 - D 0 - I - 0x001C3A 00:9C2A: 0F        .byte $0F, $0B, $1B, $01   ; 
@@ -6655,6 +6698,7 @@ _off003_9C24_1A:
 
 
 _off003_9C37_1B:
+; con_98E4_1B_bg_pal
 - D 0 - I - 0x001C47 00:9C37: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001C49 00:9C39: 0F        .byte $0F, $16, $26, $20   ; 
 - D 0 - I - 0x001C4D 00:9C3D: 0F        .byte $0F, $0B, $1B, $01   ; 
@@ -6666,6 +6710,7 @@ _off003_9C37_1B:
 
 
 _off003_9C4A_1C:
+; con_98E4_1C_bg_pal
 - D 0 - I - 0x001C5A 00:9C4A: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001C5C 00:9C4C: 0F        .byte $0F, $16, $26, $20   ; 
 - D 0 - I - 0x001C60 00:9C50: 0F        .byte $0F, $0B, $1B, $01   ; 
@@ -6677,6 +6722,7 @@ _off003_9C4A_1C:
 
 
 _off003_9C5D_1D:
+; con_98E4_1D_bg_pal
 - D 0 - I - 0x001C6D 00:9C5D: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001C6F 00:9C5F: 0F        .byte $0F, $06, $16, $20   ; 
 - D 0 - I - 0x001C73 00:9C63: 0F        .byte $0F, $0F, $00, $0A   ; 
@@ -6688,6 +6734,7 @@ _off003_9C5D_1D:
 
 
 _off003_9C70_1E:
+; con_98E4_1E_bg_spr_pal
 - D 0 - I - 0x001C80 00:9C70: 00 3F     .word $3F00 ; ppu address
 ; background colors
 - D 0 - I - 0x001C82 00:9C72: 0F        .byte $0F, $08, $18, $38   ; 
@@ -6705,6 +6752,7 @@ _off003_9C70_1E:
 
 
 _off003_9C93_1F:
+; con_98E4_1F_bg_spr_pal
 - D 0 - I - 0x001CA3 00:9C93: 00 3F     .word $3F00 ; ppu address
 ; background colors
 - D 0 - I - 0x001CA5 00:9C95: 0F        .byte $0F, $16, $26, $20   ; 
@@ -6722,6 +6770,7 @@ _off003_9C93_1F:
 
 
 _off003_9CB6_2A:
+; con_98E4_2A_bg_pal
 - D 0 - I - 0x001CC6 00:9CB6: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001CC8 00:9CB8: 0F        .byte $0F, $0F, $26, $16   ; 
 - D 0 - I - 0x001CCC 00:9CBC: 0F        .byte $0F, $0F, $07, $27   ; 
@@ -6733,6 +6782,7 @@ _off003_9CB6_2A:
 
 
 _off003_9CC9_2B:
+; con_98E4_2B_spr_pal
 - D 0 - I - 0x001CD9 00:9CC9: 10 3F     .word $3F10 ; ppu address
 - D 0 - I - 0x001CDB 00:9CCB: 38        .byte $38, $08, $27, $38   ; 
 - D 0 - I - 0x001CDF 00:9CCF: 38        .byte $38, $0F, $0C, $33   ; 
@@ -6744,6 +6794,7 @@ _off003_9CC9_2B:
 
 
 _off003_9CDC_2D:
+; con_98E4_2D_spr_pal
 - D 0 - I - 0x001CEC 00:9CDC: 10 3F     .word $3F10 ; ppu address
 - D 0 - I - 0x001CEE 00:9CDE: 38        .byte $38, $08, $27, $38   ; 
 - D 0 - I - 0x001CF2 00:9CE2: 38        .byte $38, $0F, $0C, $33   ; 
@@ -6755,6 +6806,7 @@ _off003_9CDC_2D:
 
 
 _off003_9CEF_2C:
+; con_98E4_2C_spr_pal
 - D 0 - I - 0x001CFF 00:9CEF: 10 3F     .word $3F10 ; ppu address
 - D 0 - I - 0x001D01 00:9CF1: 38        .byte $38, $08, $27, $38   ; 
 - D 0 - I - 0x001D05 00:9CF5: 38        .byte $38, $0F, $0C, $33   ; 
@@ -6766,6 +6818,7 @@ _off003_9CEF_2C:
 
 
 _off003_9D02_2E:
+; con_98E4_2E_bg_pal
 - D 0 - I - 0x001D12 00:9D02: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001D14 00:9D04: 0F        .byte $0F, $0F, $0F, $20   ; 
 - D 0 - I - 0x001D18 00:9D08: 0F        .byte $0F, $0F, $0F, $0F   ; 
@@ -6777,6 +6830,7 @@ _off003_9D02_2E:
 
 
 _off003_9D15_2F:
+; con_98E4_2F_spr_pal
 - D 0 - I - 0x001D25 00:9D15: 10 3F     .word $3F10 ; ppu address
 - D 0 - I - 0x001D27 00:9D17: 0F        .byte $0F, $08, $27, $38   ; 
 - D 0 - I - 0x001D2B 00:9D1B: 0F        .byte $0F, $0F, $0C, $33   ; 
@@ -6788,6 +6842,7 @@ _off003_9D15_2F:
 
 
 _off003_9D28_31:
+; con_98E4_31_spr_pal
 - D 0 - I - 0x001D38 00:9D28: 10 3F     .word $3F10 ; ppu address
 - D 0 - I - 0x001D3A 00:9D2A: 0F        .byte $0F, $08, $27, $38   ; 
 - D 0 - I - 0x001D3E 00:9D2E: 0F        .byte $0F, $0F, $0C, $33   ; 
@@ -6799,6 +6854,7 @@ _off003_9D28_31:
 
 
 _off003_9D3B_30:
+; con_98E4_30_spr_pal
 - D 0 - I - 0x001D4B 00:9D3B: 10 3F     .word $3F10 ; ppu address
 - D 0 - I - 0x001D4D 00:9D3D: 0F        .byte $0F, $08, $27, $38   ; 
 - D 0 - I - 0x001D51 00:9D41: 0F        .byte $0F, $0F, $0C, $33   ; 
@@ -6810,6 +6866,7 @@ _off003_9D3B_30:
 
 
 _off003_9D4E_5E:
+; con_98E4_5E_bg_pal
 - D 0 - I - 0x001D5E 00:9D4E: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001D60 00:9D50: 0F        .byte $0F, $16, $05, $20   ; 
 - D 0 - I - 0x001D64 00:9D54: 0F        .byte $0F, $13, $02, $20   ; 
@@ -6821,6 +6878,7 @@ _off003_9D4E_5E:
 
 
 _off003_9D61_62:
+; con_98E4_62_bg_pal
 - D 0 - I - 0x001D71 00:9D61: 00 3F     .word $3F00 ; ppu address
 - D 0 - I - 0x001D73 00:9D63: 0F        .byte $0F, $0F, $0F, $0F   ; 
 - D 0 - I - 0x001D77 00:9D67: 0F        .byte $0F, $10, $05, $01   ; 
@@ -6832,9 +6890,13 @@ _off003_9D61_62:
 
 
 _off003_9D74_21:
+; con_98E4_21
 _off003_9D74_22_not_complete_try_again:
+; con_98E4_not_complete_try_again
 _off003_9D74_24:
+; con_98E4_24
 _off003_9D74_25:
+; con_98E4_25
 - D 0 - I - 0x001D84 00:9D74: 2A 22     .word $222A ; ppu address
 - D 0 - I - 0x001D86 00:9D76: 5D        .byte $5D, $5E, $63, $00, $52, $5E, $5C, $5F, $5B, $54, $63, $54   ; NOT COMPLETE
 
@@ -6848,6 +6910,7 @@ _off003_9D74_25:
 
 
 _off003_9D8F_23:
+; con_98E4_23
 - D 0 - I - 0x001D9F 00:9D8F: 08 22     .word $2208 ; ppu address
 - D 0 - I - 0x001DA1 00:9D91: 86        .byte $86, $A4, $A4, $A4, $A4, $A4, $A4, $A4, $A4, $A4, $A4, $A4, $A4, $A4, $A4, $87   ; 
 
@@ -9119,6 +9182,7 @@ C - - - - - 0x002A59 00:AA49: 20 86 E8  JSR sub_0x03E896_jump_to_pointers_after_
 
 
 ofs_034_AA60_12_RTS:
+; con_path_sel_off_screen
 ; bzk garbage
 - - - - - - 0x002A70 00:AA60: 60        RTS
 
@@ -9147,6 +9211,7 @@ tbl_AA67:
 
 
 ofs_034_AA6B_00:
+; con_path_sel_00
 C - - J - - 0x002A7B 00:AA6B: AC 4E 05  LDY ram_plr_id
 C - - - - - 0x002A7E 00:AA6E: B9 DA AA  LDA tbl_AADA,Y
 C - - - - - 0x002A81 00:AA71: 8D 8C 04  STA ram_plr_type
@@ -9222,7 +9287,9 @@ tbl_AADE:
 
 
 ofs_034_AAF0_02_auto_walking_out_of_screen:
+; con_path_sel_auto_walk_out_of_screen
 ofs_034_AAF0_10_auto_walking_to_exit:
+; con_path_sel_auto_walk_to_exit
 C - - J - - 0x002B00 00:AAF0: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x002B02 00:AAF2: 29 0F     AND #$0F
 C - - - - - 0x002B04 00:AAF4: D0 05     BNE bra_AAFB
@@ -9254,6 +9321,7 @@ C - - - - - 0x002B39 00:AB29: 60        RTS
 
 
 ofs_034_AB2A_04_idle_on_ground:
+; con_path_sel_idle_on_ground
 C - - J - - 0x002B3A 00:AB2A: A5 28     LDA ram_btn_hold
 C - - - - - 0x002B3C 00:AB2C: 4A        LSR
 C - - - - - 0x002B3D 00:AB2D: B0 71     BCS bra_ABA0_pressed_Right
@@ -9341,6 +9409,7 @@ C - - - - - 0x002BC8 00:ABB8: 4C 93 AB  JMP loc_AB93
 
 
 ofs_034_ABBB_06_move_on_ground:
+; con_path_sel_move_on_ground
 C - - J - - 0x002BCB 00:ABBB: A5 28     LDA ram_btn_hold
 C - - - - - 0x002BCD 00:ABBD: 4A        LSR
 C - - - - - 0x002BCE 00:ABBE: B0 1F     BCS bra_ABDF_pressed_Right
@@ -9469,6 +9538,7 @@ C - - - - - 0x002C98 00:AC88: 60        RTS
 
 
 ofs_034_AC89_08_move_towards_stairs:
+; con_path_sel_move_towards_stairs
 C - - J - - 0x002C99 00:AC89: AD 1D 06  LDA ram_061D_plr
 C - - - - - 0x002C9C 00:AC8C: F0 09     BEQ bra_AC97
 C - - - - - 0x002C9E 00:AC8E: CE 1D 06  DEC ram_061D_plr
@@ -9482,6 +9552,7 @@ C - - - - - 0x002CAC 00:AC9C: 60        RTS
 
 
 ofs_034_AC9D_0A_climb_on_stairs:
+; con_path_sel_attach_to_stairs
 C - - J - - 0x002CAD 00:AC9D: AD C1 05  LDA ram_05C1_plr
 C - - - - - 0x002CB0 00:ACA0: D0 03     BNE bra_ACA5
 C - - - - - 0x002CB2 00:ACA2: 4C 3C AD  JMP loc_AD3C
@@ -9491,6 +9562,7 @@ C - - - - - 0x002CB5 00:ACA5: 4C 33 AD  JMP loc_AD33
 
 
 ofs_034_ACA8_0C_idle_on_stairs:
+; con_path_sel_idle_on_stairs
 C - - J - - 0x002CB8 00:ACA8: A5 28     LDA ram_btn_hold
 C - - - - - 0x002CBA 00:ACAA: 4A        LSR
 C - - - - - 0x002CBB 00:ACAB: B0 0D     BCS bra_ACBA_pressed_Right    ; if not con_btn_Right
@@ -9532,6 +9604,7 @@ C - - - - - 0x002CF7 00:ACE7: 4C 42 AD  JMP loc_AD42
 
 
 ofs_034_ACEA_0E_move_on_stairs:
+; con_path_sel_move_on_stairs
 C - - J - - 0x002CFA 00:ACEA: 20 CB AB  JSR sub_ABCB
 C - - - - - 0x002CFD 00:ACED: AD DB 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x002D00 00:ACF0: 18        CLC

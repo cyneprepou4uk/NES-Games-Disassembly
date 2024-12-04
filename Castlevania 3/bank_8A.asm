@@ -11243,6 +11243,7 @@ off_ch_05_0x017840_67:
 
 
 _off005_0x017849_1C:
+; con_EC77_1C
 - D 1 - I - 0x017849 05:B839: 80 2C     .word $2C80 ; ppu address
 
 - D 1 - I - 0x01784B 05:B83B: 03        .byte $03   ; write 03 times tile 00
@@ -11480,6 +11481,7 @@ _off005_0x017849_1C:
 
 
 _off005_0x017A0A_10:
+; con_EC77_10
 - D 1 - I - 0x017A0A 05:B9FA: 00 2C     .word $2C00 ; ppu address
 _off012_0x017A0C_02:
 - D 1 - I - 0x017A0C 05:B9FC: 03        .byte $03   ; write 03 times tile 00
@@ -11562,6 +11564,7 @@ _off012_0x017A0C_02:
 
 
 _off005_0x017A6C_12:
+; con_EC77_12
 - D 1 - I - 0x017A6C 05:BA5C: C0 2F     .word $2FC0 ; ppu address
 _off012_0x017A6E_03:
 - D 1 - I - 0x017A6E 05:BA5E: 88        .byte $08 + $80   ; write these tiles 08 length
@@ -11572,6 +11575,7 @@ _off012_0x017A6E_03:
 
 
 _off005_0x017A78_0E:
+; con_EC77_0E
 - D 1 - I - 0x017A78 05:BA68: 40 22     .word $2240 ; ppu address
 _off012_0x017A7A_00:
 - D 1 - I - 0x017A7A 05:BA6A: 03        .byte $03   ; write 03 times tile 00
@@ -11751,6 +11755,7 @@ _off012_0x017A7A_00:
 
 
 _off005_0x017BCC_14:
+; con_EC77_14
 - D 1 - I - 0x017BCC 05:BBBC: C0 23     .word $23C0 ; ppu address
 _off012_0x017BCE_01:
 - D 1 - I - 0x017BCE 05:BBBE: 18        .byte $18   ; write 18 times tile 00

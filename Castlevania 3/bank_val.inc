@@ -185,7 +185,7 @@ con_obj_flag_not_visible                = $80 ; not visible if set
 
 ; ram_006D_irq_handler
 ; ram_003F_copy_irq_handler
-; handler at 0x03E137
+; handlers at 0x03E137
 con_irq_00                              = $00 ; 
 con_irq_01                              = $01 ; 
 con_irq_02                              = $02 ; 
@@ -402,7 +402,7 @@ con_B616_decrease_brightness            = $08 ;
 con_8277_00                             = $00 ; 
 con_8277_01                             = $01 ; 
 con_8277_02                             = $02 ; 
-con_8277_03                             = $03 ; 
+con_8277_delete_object                  = $03 ; 
 con_8277_04                             = $04 ; 
 con_8277_05                             = $05 ; 
 con_8277_06                             = $06 ; 
@@ -421,7 +421,7 @@ con_8277_12                             = $12 ;
 con_8277_13                             = $13 ; 
 con_8277_14                             = $14 ; 
 con_8277_15                             = $15 ; 
-con_8277_16_play_sound                  = $16 ; 
+con_8277_play_sound                     = $16 ; 
 
 
 
@@ -485,7 +485,7 @@ con_8671_25                             = $25 ;
 con_8671_26                             = $26 ; 
 con_8671_27                             = $27 ; 
 con_8671_28                             = $28 ; 
-con_8671_29_clear_object_data           = $29 ; 
+con_8671_clear_object_data              = $29 ; 
 con_8671_2A                             = $2A ; 
 con_8671_2B                             = $2B ; 
 con_8671_2C                             = $2C ; 
@@ -495,7 +495,7 @@ con_8671_2F                             = $2F ;
 con_8671_30                             = $30 ; 
 con_8671_31                             = $31 ; 
 con_8671_32                             = $32 ; 
-con_8671_33_move_object                 = $33 ; 
+con_8671_move_object                    = $33 ; 
 con_8671_34                             = $34 ; 
 con_8671_35                             = $35 ; 
 con_8671_36                             = $36 ; 
@@ -517,7 +517,7 @@ con_8671_44                             = $44 ;
 con_8671_46                             = $46 ; 
 con_8671_47                             = $47 ; 
 con_8671_48                             = $48 ; 
-con_8671_49_increase_speed_Y            = $49 ; 
+con_8671_increase_speed_Y               = $49 ; 
 con_8671_4A                             = $4A ; 
 
 
@@ -557,7 +557,7 @@ con_98E4_1E_bg_spr_pal                  = $1E ; background and sprite palette
 con_98E4_1F_bg_spr_pal                  = $1F ; background and sprite palette
 con_98E4_20_bg_pal                      = $20 ; background palette
 ; con_98E4_21                           = $21 ; unused
-con_98E4_22                             = $22 ; 
+con_98E4_not_complete_try_again         = $22 ; 
 con_98E4_23                             = $23 ; 
 ; con_98E4_24                           = $24 ; unused
 ; con_98E4_25                           = $25 ; unused
@@ -748,7 +748,7 @@ con_EC77_password                       = $1A ;
 con_EC77_1C                             = $1C ; 
 con_EC77_1E                             = $1E ; 
 con_EC77_20                             = $20 ; 
-con_EC77_22_credits_logo                = $22 ; castlevania logo before actual credits begin
+con_EC77_credits_logo                   = $22 ; castlevania logo before actual credits begin
 con_EC77_24                             = $24 ; 
 
 
@@ -886,7 +886,7 @@ con_A452_04                             = $04 ;
 con_A452_05                             = $05 ; 
 con_A452_06                             = $06 ; 
 con_A452_07                             = $07 ; 
-con_A452_08                             = $08 ; 
+con_A452_deal_damage_to_boss            = $08 ; 
 
 
 
@@ -1367,7 +1367,7 @@ con_BEA1_22                             = $22 ;
 con_BEA1_23                             = $23 ; 
 con_BEA1_24                             = $24 ; 
 con_BEA1_25                             = $25 ; 
-con_BEA1_swamp_frog                             = $26 ; 
+con_BEA1_swamp_frog                     = $26 ; 
 con_BEA1_27                             = $27 ; 
 con_BEA1_28                             = $28 ; 
 con_BEA1_29                             = $29 ; 

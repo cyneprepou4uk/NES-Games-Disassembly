@@ -12338,6 +12338,7 @@ C - - - - - 0x013AE3 04:BAD3: 60        RTS
 
 
 _off005_0x013AE4_16:
+; con_EC77_16
 - D 1 - I - 0x013AE4 04:BAD4: 00 20     .word $2000 ; ppu address
 
 - D 1 - I - 0x013AE6 04:BAD6: 40        .byte $40   ; write 40 times tile 00

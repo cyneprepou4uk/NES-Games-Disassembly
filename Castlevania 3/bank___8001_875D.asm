@@ -559,6 +559,7 @@ C - - - - - 0x010345 04:8335: F0 E5     BEQ bra_831C
 
 
 ofs_060_833A_00___C0_CF:
+; con_se_cb_1_C0
 C - - J - - 0x01034A 04:833A: 20 9F 82  JSR sub_829F
 C - - - - - 0x01034D 04:833D: A9 00     LDA #$00
 C - - - - - 0x01034F 04:833F: E0 02     CPX #$02
@@ -582,6 +583,7 @@ C - - - - - 0x010370 04:8360: 4C D6 86  JMP loc_86D6
 
 
 ofs_060_8363_01___D0_DF:
+; con_se_cb_1_D0
 C - - J - - 0x010373 04:8363: 9D 0E 01  STA ram_010E_se,X
 C - - - - - 0x010376 04:8366: C8        INY
 C - - - - - 0x010377 04:8367: B1 E0     LDA (ram_00E0_se_t000_data),Y
@@ -624,6 +626,7 @@ C - - - - - 0x0103B4 04:83A4: 4C 01 80  JMP loc_8001_read_next_byte
 
 
 ofs_060_83A7_02___E0_EF:
+; con_se_cb_1_E0
 C - - J - - 0x0103B7 04:83A7: 85 E2     STA ram_00E2_se_t00E
 C - - - - - 0x0103B9 04:83A9: BD 6E 01  LDA ram_016E_se,X
 C - - - - - 0x0103BC 04:83AC: 29 7F     AND #$7F
@@ -666,6 +669,7 @@ tbl_83D4:
 
 
 ofs_058_83E8_E6:
+; con_se_cb_1_E6
 C - - J - - 0x0103F8 04:83E8: C8        INY
 C - - - - - 0x0103F9 04:83E9: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x0103FB 04:83EB: 9D 0E 01  STA ram_010E_se,X
@@ -681,6 +685,7 @@ C - - - - - 0x01040C 04:83FC: 4C 01 80  JMP loc_8001_read_next_byte
 
 
 ofs_058_83FF_E7:
+; con_se_cb_1_E7
 C - - J - - 0x01040F 04:83FF: C8        INY
 C - - - - - 0x010410 04:8400: BD 6E 01  LDA ram_016E_se,X
 C - - - - - 0x010413 04:8403: 09 80     ORA #$80
@@ -740,12 +745,14 @@ C - - - - - 0x010453 04:8443: 4C 01 80  JMP loc_8001_read_next_byte
 
 
 ofs_058_8446_E8:
+; con_se_cb_1_E8
 C - - J - - 0x010456 04:8446: C8        INY
 C - - - - - 0x010457 04:8447: 4C 8C 83  JMP loc_838C
 
 
 
 ofs_058_844A_E9:
+; con_se_cb_1_E9
 C - - J - - 0x01045A 04:844A: C8        INY
 C - - - - - 0x01045B 04:844B: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x01045D 04:844D: F0 15     BEQ bra_8464_00
@@ -774,6 +781,7 @@ C - - - - - 0x010489 04:8479: 4C 60 84  JMP loc_8460_INY_and_read_next_byte
 
 
 ofs_058_847C_EA:
+; con_se_cb_1_EA
 C - - J - - 0x01048C 04:847C: C8        INY
 C - - - - - 0x01048D 04:847D: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x01048F 04:847F: 30 08     BMI bra_8489
@@ -790,6 +798,7 @@ C - - - - - 0x01049C 04:848C: 4C 82 84  JMP loc_8482
 
 
 ofs_058_848F_EB:
+; con_se_cb_1_EB
 C - - J - - 0x01049F 04:848F: C8        INY
 C - - - - - 0x0104A0 04:8490: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x0104A2 04:8492: F0 3E     BEQ bra_84D2_00
@@ -837,6 +846,7 @@ C - - - - - 0x0104EA 04:84DA: 4C 60 84  JMP loc_8460_INY_and_read_next_byte
 
 
 ofs_058_84DD_EC:
+; con_se_cb_1_EC
 C - - J - - 0x0104ED 04:84DD: C8        INY
 C - - - - - 0x0104EE 04:84DE: BD 6E 01  LDA ram_016E_se,X
 C - - - - - 0x0104F1 04:84E1: 10 08     BPL bra_84EB
@@ -869,11 +879,17 @@ C - - - - - 0x01051B 04:850B: D0 F5     BNE bra_8502    ; jmp
 
 
 ofs_038_inc_850D_EB:
+; con_se_cb_2_EB
 ofs_038_inc_850D_EC:
-ofs_038_inc_850D_EE:
+; con_se_cb_2_EC
 ofs_038_inc_850D_ED:
+; con_se_cb_2_ED
+ofs_038_inc_850D_EE:
+; con_se_cb_2_EE
 ofs_058_850D_ED:
+; con_se_cb_1_ED
 ofs_058_850D_EF:
+; con_se_cb_1_EF
 C - - J - - 0x01051D 04:850D: C8        INY
 C - - - - - 0x01051E 04:850E: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x010520 04:8510: 9D 73 01  STA ram_0173_se,X
@@ -884,6 +900,7 @@ C - - - - - 0x010527 04:8517: 4C FA E1  JMP loc_0x03E20A
 
 
 ofs_058_851A_EE:
+; con_se_cb_1_EE
 C - - J - - 0x01052A 04:851A: C8        INY
 C - - - - - 0x01052B 04:851B: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x01052D 04:851D: 8D 8E 01  STA ram_018E_se
@@ -902,6 +919,7 @@ C - - - - - 0x010540 04:8530: 4C 66 85  JMP loc_8566
 
 
 bra_8533_FE:
+; con_se_cb_1_FE
 C - - - - - 0x010543 04:8533: C8        INY
 C - - - - - 0x010544 04:8534: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x010546 04:8536: C9 FF     CMP #$FF
@@ -973,6 +991,7 @@ C - - - - - 0x0105B0 04:85A0: 4C 04 E2  JMP loc_0x03E214
 loc_85A3_F0_FF:
 loc_inc_85A3_F0_FF:
 ofs_060_85A3_03___F0_FF:
+; con_se_cb_1_F0
 C D 0 - - - 0x0105B3 04:85A3: C9 0E     CMP #$0E
 C - - - - - 0x0105B5 04:85A5: F0 8C     BEQ bra_8533_FE
 C - - - - - 0x0105B7 04:85A7: 90 03     BCC bra_85AC_F0_FD
@@ -992,6 +1011,7 @@ C - - - - - 0x0105CD 04:85BD: F0 1E     BEQ bra_85DD_channel_02
 C - - - - - 0x0105CF 04:85BF: C8        INY
 C - - - - - 0x0105D0 04:85C0: 4C 01 80  JMP loc_8001_read_next_byte
 bra_85C3_FB:
+; con_se_cb_1_FB
 C - - - - - 0x0105D3 04:85C3: C8        INY
 C - - - - - 0x0105D4 04:85C4: 98        TYA
 C - - - - - 0x0105D5 04:85C5: 18        CLC
@@ -1026,6 +1046,7 @@ C - - - - - 0x010617 04:8607: 29 7F     AND #$7F
 C - - - - - 0x010619 04:8609: 9D 6E 01  STA ram_016E_se,X
 C - - - - - 0x01061C 04:860C: 4C D6 86  JMP loc_86D6
 bra_860F_FD:
+; con_se_cb_1_FD
 C - - - - - 0x01061F 04:860F: BD 15 01  LDA ram_0115_se,X
 C - - - - - 0x010622 04:8612: 29 20     AND #$20
 C - - - - - 0x010624 04:8614: F0 03     BEQ bra_8619
@@ -1064,6 +1085,7 @@ C - - - - - 0x01065B 04:864B: 4C FA E1  JMP loc_0x03E20A
 
 
 loc_864E_FF:
+; con_se_cb_1_FF
 C D 0 - - - 0x01065E 04:864E: BD 07 01  LDA ram_0107_se,X
 C - - - - - 0x010661 04:8651: 85 E4     STA ram_00E4_se_temp    ; ???
 C - - - - - 0x010663 04:8653: A9 00     LDA #$00

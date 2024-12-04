@@ -4014,6 +4014,7 @@ C - - - - - 0x039632 0E:9622: A5 28     LDA ram_btn_hold
 C - - - - - 0x039634 0E:9624: 85 10     STA ram_0010_t00E_buttons
 C - - - - - 0x039636 0E:9626: A2 00     LDX #$00
 ofs_036_0x039638_00:
+; con_A452_00
 C - - - - - 0x039638 0E:9628: A9 16     LDA #$16
 C - - - - - 0x03963A 0E:962A: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x03963D 0E:962D: A9 00     LDA #$00
@@ -4191,6 +4192,7 @@ C - - - - - 0x03975A 0E:974A: 8D 65 05  STA ram_plr_state
 C - - - - - 0x03975D 0E:974D: A2 00     LDX #$00
 sub_974F:
 ofs_036_0x03975F_02:
+; con_A452_02
 C - - - - - 0x03975F 0E:974F: A9 0C     LDA #$0C
 C - - - - - 0x039761 0E:9751: 9D D8 05  STA ram_05D8_obj,X
 C - - - - - 0x039764 0E:9754: A9 01     LDA #$01
@@ -4425,6 +4427,7 @@ C - - - - - 0x0398D2 0E:98C2: C9 26     CMP #con_plr_state_knockback
 C - - - - - 0x0398D4 0E:98C4: F0 CC     BEQ bra_9892
 C - - - - - 0x0398D6 0E:98C6: A2 00     LDX #$00
 ofs_036_0x0398D8_01:
+; con_A452_01
 C - - - - - 0x0398D8 0E:98C8: A9 00     LDA #$00
 C - - - - - 0x0398DA 0E:98CA: 9D 37 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x0398DD 0E:98CD: 9D DB 04  STA ram_obj_pos_Y_lo,X
@@ -7885,6 +7888,7 @@ C - - - - - 0x03AE4E 0E:AE3E: 60        RTS
 
 
 ofs_036_0x03AE4F_04:
+; con_A452_04
 C - - J - - 0x03AE4F 0E:AE3F: A9 01     LDA #$01
 C - - - - - 0x03AE51 0E:AE41: 85 10     STA ram_0010_t01C_object_index
 C - - - - - 0x03AE53 0E:AE43: AD EC 07  LDA ram_07EC
@@ -9831,6 +9835,7 @@ C - - - - - 0x03BA1F 0E:BA0F: F0 4B     BEQ bra_BA5C
 C - - - - - 0x03BA21 0E:BA11: C9 0B     CMP #con_subweapon_stopwatch
 C - - - - - 0x03BA23 0E:BA13: F0 2E     BEQ bra_BA43
 ofs_036_0x03BA25_03:
+; con_A452_03
 C - - - - - 0x03BA25 0E:BA15: B9 87 00  LDA ram_subweapon_multiplier,Y
 C - - - - - 0x03BA28 0E:BA18: 85 09     STA ram_0009_t01B
 C - - - - - 0x03BA2A 0E:BA1A: A9 03     LDA #$03
@@ -9887,6 +9892,7 @@ sub_BA69:
         ; 1 = 
 C - - - - - 0x03BA79 0E:BA69: A2 14     LDX #$14
 ofs_036_0x03BA7B_06:
+; con_A452_06
 C - - - - - 0x03BA7B 0E:BA6B: A4 3B     LDY ram_player
 C - - - - - 0x03BA7D 0E:BA6D: B9 8E 00  LDA ram_subweapon_power,Y
 C - - - - - 0x03BA80 0E:BA70: 85 09     STA ram_0009_t01C
@@ -10001,6 +10007,7 @@ sub_BAF2:
         ; 1 = 
 C - - - - - 0x03BB02 0E:BAF2: A2 00     LDX #$00
 ofs_036_0x03BB04_05:
+; con_A452_05
 C - - - - - 0x03BB04 0E:BAF4: DE 7C 05  DEC ram_obj_anim_timer,X
 C - - - - - 0x03BB07 0E:BAF7: F0 02     BEQ bra_BAFB
 C - - - - - 0x03BB09 0E:BAF9: 18        CLC
@@ -10440,6 +10447,7 @@ tbl_BC7D:
 
 
 ofs_036_0x03BC91_07:
+; con_A452_07
 C - - J - - 0x03BC91 0E:BC81: A9 01     LDA #$01
 C - - - - - 0x03BC93 0E:BC83: 85 10     STA ram_0010_t00D_object_index
 C - - - - - 0x03BC95 0E:BC85: A2 05     LDX #$05

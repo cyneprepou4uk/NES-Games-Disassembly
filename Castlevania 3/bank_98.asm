@@ -1062,6 +1062,7 @@ C - - - - - 0x030E21 0C:8E11: 6C E2 00  JMP (ram_00E2_se_t005_jmp)
 
 
 ofs_038_8E14_E6:
+; con_se_cb_2_E6
 C - - J - - 0x030E24 0C:8E14: C8        INY
 C - - - - - 0x030E25 0C:8E15: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x030E27 0C:8E17: 9D 0E 01  STA ram_010E_se,X
@@ -1073,6 +1074,7 @@ C - - - - - 0x030E2B 0C:8E1B: 4C DE 8D  JMP loc_8DDE
 
 
 ofs_038_8E1E_E7:
+; con_se_cb_2_E7
 C - - J - - 0x030E2E 0C:8E1E: BD 15 01  LDA ram_0115_se,X
 C - - - - - 0x030E31 0C:8E21: 09 02     ORA #$02
 C - - - - - 0x030E33 0C:8E23: 9D 15 01  STA ram_0115_se,X
@@ -1081,6 +1083,7 @@ C - - - - - 0x030E36 0C:8E26: D0 F2     BNE bra_8E1A    ; jmp
 
 
 ofs_038_8E28_E8:
+; con_se_cb_2_E8
 C - - J - - 0x030E38 0C:8E28: C8        INY
 C - - - - - 0x030E39 0C:8E29: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x030E3B 0C:8E2B: 9D 69 01  STA ram_0169_se,X
@@ -1089,6 +1092,7 @@ C - - - - - 0x030E3E 0C:8E2E: 4C 1A 8E  JMP loc_8E1A
 
 
 ofs_038_8E31_E9:
+; con_se_cb_2_E9
 ; bzk garbage
 - - - - - - 0x030E41 0C:8E31: C8        INY
 - - - - - - 0x030E42 0C:8E32: B1 E0     LDA (ram_00E0_se_t000_data),Y
@@ -1098,6 +1102,7 @@ ofs_038_8E31_E9:
 
 
 ofs_038_8E39_EA:
+; con_se_cb_2_EA
 C - - J - - 0x030E49 0C:8E39: C8        INY
 C - - - - - 0x030E4A 0C:8E3A: B1 E0     LDA (ram_00E0_se_t000_data),Y
 C - - - - - 0x030E4C 0C:8E3C: 4C 8E 8E  JMP loc_8E8E
@@ -1105,6 +1110,7 @@ C - - - - - 0x030E4C 0C:8E3C: 4C 8E 8E  JMP loc_8E8E
 
 
 ofs_038_8E3F_EF:
+; con_se_cb_2_EF
 - - - - - - 0x030E4F 0C:8E3F: BD 15 01  LDA ram_0115_se,X
 - - - - - - 0x030E52 0C:8E42: 29 F9     AND #$F9
 - - - - - - 0x030E54 0C:8E44: 9D 15 01  STA ram_0115_se,X
@@ -1280,7 +1286,7 @@ tbl_8F2E_sound_and_music_data:
 - D 0 - - - 0x030F58 0C:8F48: 8E 91     .word _off009_918E_0E
 - D 0 - - - 0x030F5A 0C:8F4A: 64 91     .word _off009_9164_0F
 - D 0 - - - 0x030F5C 0C:8F4C: C7 91     .word _off009_91C7_10
-- D 0 - - - 0x030F5E 0C:8F4E: 74 91     .word _off009_9174_11
+- D 0 - - - 0x030F5E 0C:8F4E: 74 91     .word _off009_9174_11_block
 - D 0 - - - 0x030F60 0C:8F50: 35 91     .word _off009_9135_12
 - D 0 - - - 0x030F62 0C:8F52: 7B 90     .word _off009_907B_13_throw_axe
 - D 0 - - - 0x030F64 0C:8F54: 80 90     .word _off009_9080_14_throw_knife
@@ -1297,8 +1303,8 @@ tbl_8F2E_sound_and_music_data:
 - D 0 - - - 0x030F7A 0C:8F6A: 28 91     .word _off009_9128_1F_Alucard_fireball
 - D 0 - - - 0x030F7C 0C:8F6C: 64 90     .word _off009_9064_20
 - D 0 - - - 0x030F7E 0C:8F6E: 18 91     .word _off009_9118_21   ; = 1E
-- D 0 - - - 0x030F80 0C:8F70: A6 90     .word _off009_90A6_22
-- D 0 - - - 0x030F82 0C:8F72: AB 90     .word _off009_90AB_23
+- D 0 - - - 0x030F80 0C:8F70: A6 90     .word _off009_90A6_22_water_splash_1
+- D 0 - - - 0x030F82 0C:8F72: AB 90     .word _off009_90AB_23_water_splash_2
 - D 0 - - - 0x030F84 0C:8F74: 06 91     .word _off009_9106_24
 - D 0 - - - 0x030F86 0C:8F76: 5F 90     .word _off009_905F_25
 - D 0 - - - 0x030F88 0C:8F78: 84 91     .word _off009_9184_26
@@ -1333,7 +1339,7 @@ tbl_8F2E_sound_and_music_data:
 - D 0 - - - 0x030FC2 0C:8FB2: 9B 91     .word _off009_919B_43
 - D 0 - - - 0x030FC4 0C:8FB4: E1 91     .word _off009_91E1_44
 - D 0 - - - 0x030FC6 0C:8FB6: E9 91     .word _off009_91E9_45
-- D 0 - - - 0x030FC8 0C:8FB8: A3 91     .word _off009_91A3_46
+- D 0 - - - 0x030FC8 0C:8FB8: A3 91     .word _off009_91A3_46_swap_player
 - D 0 - - - 0x030FCA 0C:8FBA: EE 91     .word _off009_91EE_47
 - D 0 - - - 0x030FCC 0C:8FBC: D9 91     .word _off009_91D9_48_orb
 - D 0 - - - 0x030FCE 0C:8FBE: EF 90     .word _off009_90EF_49_low_time
@@ -1394,6 +1400,7 @@ tbl_8F2E_sound_and_music_data:
 
 
 _off009_9026_01:
+; con_sound_01
 - D 0 - I - 0x031036 0C:9026: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031037 0C:9027: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031038 0C:9028: 06        .byte $06   ; 
@@ -1402,6 +1409,7 @@ _off009_9026_01:
 
 
 _off009_902B_02:
+; con_sound_02
 - D 0 - I - 0x03103B 0C:902B: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03103C 0C:902C: 00        .byte $00   ; channels counter
 - D 0 - I - 0x03103D 0C:902D: 06        .byte $06   ; 
@@ -1410,6 +1418,7 @@ _off009_902B_02:
 
 
 _off009_9030_03:
+; con_sound_03
 - D 0 - I - 0x031040 0C:9030: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031041 0C:9031: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031042 0C:9032: 06        .byte $06   ; 
@@ -1418,6 +1427,7 @@ _off009_9030_03:
 
 
 _off009_9035_04:
+; con_sound_04
 - - - - - - 0x031045 0C:9035: 98        .byte con_prg_bank + $98   ; 
 - - - - - - 0x031046 0C:9036: 00        .byte $00   ; channels counter
 - - - - - - 0x031047 0C:9037: 06        .byte $06   ; 
@@ -1426,6 +1436,7 @@ _off009_9035_04:
 
 
 _off009_903A_05:
+; con_sound_05
 - D 0 - I - 0x03104A 0C:903A: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03104B 0C:903B: 00        .byte $00   ; channels counter
 - D 0 - I - 0x03104C 0C:903C: 06        .byte $06   ; 
@@ -1434,6 +1445,7 @@ _off009_903A_05:
 
 
 _off009_903F_06:
+; con_sound_06
 - D 0 - I - 0x03104F 0C:903F: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031050 0C:9040: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031051 0C:9041: 03        .byte $03   ; 
@@ -1444,6 +1456,7 @@ _off009_903F_06:
 
 
 _off009_9047_07:
+; con_sound_07
 - D 0 - I - 0x031057 0C:9047: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031058 0C:9048: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031059 0C:9049: 03        .byte $03   ; 
@@ -1454,6 +1467,7 @@ _off009_9047_07:
 
 
 _off009_904F_09_step:
+; con_sound_step
 - D 0 - I - 0x03105F 0C:904F: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031060 0C:9050: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031061 0C:9051: 03        .byte $03   ; 
@@ -1464,6 +1478,7 @@ _off009_904F_09_step:
 
 
 _off009_9057_0B_land:
+; con_sound_land
 - D 0 - I - 0x031067 0C:9057: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031068 0C:9058: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031069 0C:9059: 03        .byte $03   ; 
@@ -1474,6 +1489,7 @@ _off009_9057_0B_land:
 
 
 _off009_905F_25:
+; con_sound_25
 - D 0 - I - 0x03106F 0C:905F: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031070 0C:9060: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031071 0C:9061: 06        .byte $06   ; 
@@ -1482,6 +1498,7 @@ _off009_905F_25:
 
 
 _off009_9064_20:
+; con_sound_20
 - D 0 - I - 0x031074 0C:9064: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031075 0C:9065: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031076 0C:9066: 06        .byte $06   ; 
@@ -1490,6 +1507,7 @@ _off009_9064_20:
 
 
 _off009_9069_1C_pick_up_weapon:
+; con_sound_pick_up_weapon
 - D 0 - I - 0x031079 0C:9069: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03107A 0C:906A: 00        .byte $00   ; channels counter
 - D 0 - I - 0x03107B 0C:906B: 03        .byte $03   ; 
@@ -1498,6 +1516,7 @@ _off009_9069_1C_pick_up_weapon:
 
 
 _off009_906E_0C_door:
+; con_sound_door
 - D 0 - I - 0x03107E 0C:906E: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03107F 0C:906F: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031080 0C:9070: 03        .byte $03   ; 
@@ -1508,6 +1527,7 @@ _off009_906E_0C_door:
 
 
 _off009_9076_34_destroy_block:
+; con_sound_destroy_block
 - D 0 - I - 0x031086 0C:9076: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031087 0C:9077: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031088 0C:9078: 06        .byte $06   ; 
@@ -1516,6 +1536,7 @@ _off009_9076_34_destroy_block:
 
 
 _off009_907B_13_throw_axe:
+; con_sound_throw_axe
 - D 0 - I - 0x03108B 0C:907B: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03108C 0C:907C: 00        .byte $00   ; channels counter
 - D 0 - I - 0x03108D 0C:907D: 06        .byte $06   ; 
@@ -1524,6 +1545,7 @@ _off009_907B_13_throw_axe:
 
 
 _off009_9080_14_throw_knife:
+; con_sound_throw_knife
 - D 0 - I - 0x031090 0C:9080: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031091 0C:9081: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031092 0C:9082: 06        .byte $06   ; 
@@ -1532,6 +1554,7 @@ _off009_9080_14_throw_knife:
 
 
 _off009_9085_15:
+; con_sound_15
 - D 0 - I - 0x031095 0C:9085: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031096 0C:9086: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031097 0C:9087: 06        .byte $06   ; 
@@ -1540,6 +1563,7 @@ _off009_9085_15:
 
 
 _off009_908A_16:
+; con_sound_16
 - D 0 - I - 0x03109A 0C:908A: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03109B 0C:908B: 01        .byte $01   ; channels counter
 - D 0 - I - 0x03109C 0C:908C: 03        .byte $03   ; 
@@ -1550,6 +1574,7 @@ _off009_908A_16:
 
 
 _off009_9092_17:
+; con_sound_17
 - D 0 - I - 0x0310A2 0C:9092: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310A3 0C:9093: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0310A4 0C:9094: 03        .byte $03   ; 
@@ -1558,6 +1583,7 @@ _off009_9092_17:
 
 
 _off009_9097_2C_pick_up_meat:
+; con_sound_pick_up_meat
 - D 0 - I - 0x0310A7 0C:9097: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310A8 0C:9098: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0310A9 0C:9099: 03        .byte $03   ; 
@@ -1566,6 +1592,7 @@ _off009_9097_2C_pick_up_meat:
 
 
 _off009_909C_18_pick_up_money:
+; con_sound_pick_up_money
 - D 0 - I - 0x0310AC 0C:909C: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310AD 0C:909D: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0310AE 0C:909E: 03        .byte $03   ; 
@@ -1574,6 +1601,7 @@ _off009_909C_18_pick_up_money:
 
 
 _off009_90A1_1B_pick_up_heart:
+; con_sound_pick_up_heart
 - D 0 - I - 0x0310B1 0C:90A1: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310B2 0C:90A2: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0310B3 0C:90A3: 03        .byte $03   ; 
@@ -1581,7 +1609,8 @@ _off009_90A1_1B_pick_up_heart:
 
 
 
-_off009_90A6_22:
+_off009_90A6_22_water_splash_1:
+; con_sound_water_splash_1
 - D 0 - I - 0x0310B6 0C:90A6: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310B7 0C:90A7: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0310B8 0C:90A8: 06        .byte $06   ; 
@@ -1589,7 +1618,8 @@ _off009_90A6_22:
 
 
 
-_off009_90AB_23:
+_off009_90AB_23_water_splash_2:
+; con_sound_water_splash_2
 - D 0 - I - 0x0310BB 0C:90AB: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310BC 0C:90AC: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0310BD 0C:90AD: 06        .byte $06   ; 
@@ -1598,6 +1628,7 @@ _off009_90AB_23:
 
 
 _off009_90B0_0A:
+; con_sound_0A
 - D 0 - I - 0x0310C0 0C:90B0: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310C1 0C:90B1: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0310C2 0C:90B2: 03        .byte $03   ; 
@@ -1606,6 +1637,7 @@ _off009_90B0_0A:
 
 
 _off009_90B5_29_hit_enemy:
+; con_sound_hit_enemy
 - D 0 - I - 0x0310C5 0C:90B5: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310C6 0C:90B6: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0310C7 0C:90B7: 03        .byte $03   ; 
@@ -1616,6 +1648,7 @@ _off009_90B5_29_hit_enemy:
 
 
 _off009_90BD_33_destroy_candle:
+; con_sound_destroy_candle
 - D 0 - I - 0x0310CD 0C:90BD: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310CE 0C:90BE: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0310CF 0C:90BF: 03        .byte $03   ; 
@@ -1626,6 +1659,7 @@ _off009_90BD_33_destroy_candle:
 
 
 _off009_90C5_27_kill_enemy:
+; con_sound_kill_enemy
 - D 0 - I - 0x0310D5 0C:90C5: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310D6 0C:90C6: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0310D7 0C:90C7: 03        .byte $03   ; 
@@ -1636,6 +1670,7 @@ _off009_90C5_27_kill_enemy:
 
 
 _off009_90CD_2B:
+; con_sound_2B
 - D 0 - I - 0x0310DD 0C:90CD: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310DE 0C:90CE: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0310DF 0C:90CF: 03        .byte $03   ; 
@@ -1646,6 +1681,7 @@ _off009_90CD_2B:
 
 
 _off009_90D5_28:
+; con_sound_28
 - D 0 - I - 0x0310E5 0C:90D5: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310E6 0C:90D6: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0310E7 0C:90D7: 03        .byte $03   ; 
@@ -1656,6 +1692,7 @@ _off009_90D5_28:
 
 
 _off009_90DD_2A:
+; con_sound_2A
 - D 0 - I - 0x0310ED 0C:90DD: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310EE 0C:90DE: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0310EF 0C:90DF: 03        .byte $03   ; 
@@ -1666,6 +1703,7 @@ _off009_90DD_2A:
 
 
 _off009_90E5_2D:
+; con_sound_2D
 - D 0 - I - 0x0310F5 0C:90E5: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310F6 0C:90E6: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0310F7 0C:90E7: 06        .byte $06   ; 
@@ -1674,6 +1712,7 @@ _off009_90E5_2D:
 
 
 _off009_90EA_2E_thunder:
+; con_sound_thunder
 - D 0 - I - 0x0310FA 0C:90EA: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0310FB 0C:90EB: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0310FC 0C:90EC: 06        .byte $06   ; 
@@ -1682,6 +1721,7 @@ _off009_90EA_2E_thunder:
 
 
 _off009_90EF_49_low_time:
+; con_sound_low_time
 - D 0 - I - 0x0310FF 0C:90EF: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031100 0C:90F0: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031101 0C:90F1: 03        .byte $03   ; 
@@ -1690,6 +1730,7 @@ _off009_90EF_49_low_time:
 
 
 _off009_90F4_2F:
+; con_sound_2F
 - D 0 - I - 0x031104 0C:90F4: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031105 0C:90F5: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031106 0C:90F6: 03        .byte $03   ; 
@@ -1700,6 +1741,7 @@ _off009_90F4_2F:
 
 
 _off009_90FC_30:
+; con_sound_30
 - D 0 - I - 0x03110C 0C:90FC: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03110D 0C:90FD: 00        .byte $00   ; channels counter
 - D 0 - I - 0x03110E 0C:90FE: 06        .byte $06   ; 
@@ -1708,6 +1750,7 @@ _off009_90FC_30:
 
 
 _off009_9101_31:
+; con_sound_31
 - D 0 - I - 0x031111 0C:9101: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031112 0C:9102: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031113 0C:9103: 06        .byte $06   ; 
@@ -1716,6 +1759,7 @@ _off009_9101_31:
 
 
 _off009_9106_24:
+; con_sound_24
 - D 0 - I - 0x031116 0C:9106: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031117 0C:9107: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031118 0C:9108: 03        .byte $03   ; 
@@ -1726,6 +1770,7 @@ _off009_9106_24:
 
 
 _off009_910E_3C_stopwatch_tick:
+; con_sound_stopwatch_tick
 - D 0 - I - 0x03111E 0C:910E: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03111F 0C:910F: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031120 0C:9110: 03        .byte $03   ; 
@@ -1734,6 +1779,7 @@ _off009_910E_3C_stopwatch_tick:
 
 
 _off009_9113_1D:
+; con_sound_1D
 ; bzk garbage
 - - - - - - 0x031123 0C:9113: 98        .byte con_prg_bank + $98   ; 
 - - - - - - 0x031124 0C:9114: 00        .byte $00   ; channels counter
@@ -1743,6 +1789,7 @@ _off009_9113_1D:
 
 
 _off009_9118_21:
+; con_sound_21
 - D 0 - I - 0x031128 0C:9118: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031129 0C:9119: 01        .byte $01   ; channels counter
 - D 0 - I - 0x03112A 0C:911A: 03        .byte $03   ; 
@@ -1753,6 +1800,7 @@ _off009_9118_21:
 
 
 _off009_9120_1E:
+; con_sound_1E
 - D 0 - I - 0x031130 0C:9120: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031131 0C:9121: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031132 0C:9122: 03        .byte $03   ; 
@@ -1763,6 +1811,7 @@ _off009_9120_1E:
 
 
 _off009_9128_1F_Alucard_fireball:
+; con_sound_Alucard_fireball
 - D 0 - I - 0x031138 0C:9128: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031139 0C:9129: 00        .byte $00   ; channels counter
 - D 0 - I - 0x03113A 0C:912A: 06        .byte $06   ; 
@@ -1771,6 +1820,7 @@ _off009_9128_1F_Alucard_fireball:
 
 
 _off009_912D_35:
+; con_sound_35
 - D 0 - I - 0x03113D 0C:912D: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03113E 0C:912E: 01        .byte $01   ; channels counter
 - D 0 - I - 0x03113F 0C:912F: 03        .byte $03   ; 
@@ -1781,6 +1831,7 @@ _off009_912D_35:
 
 
 _off009_9135_12:
+; con_sound_12
 - D 0 - I - 0x031145 0C:9135: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031146 0C:9136: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031147 0C:9137: 03        .byte $03   ; 
@@ -1791,6 +1842,7 @@ _off009_9135_12:
 
 
 _off009_913D_36_rotate_platform:
+; con_sound_rotate_platform
 - D 0 - I - 0x03114D 0C:913D: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03114E 0C:913E: 00        .byte $00   ; channels counter
 - D 0 - I - 0x03114F 0C:913F: 03        .byte $03   ; 
@@ -1799,6 +1851,7 @@ _off009_913D_36_rotate_platform:
 
 
 _off009_9142_37:
+; con_sound_37
 - D 0 - I - 0x031152 0C:9142: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031153 0C:9143: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031154 0C:9144: 03        .byte $03   ; 
@@ -1809,6 +1862,7 @@ _off009_9142_37:
 
 
 _off009_914A_38:
+; con_sound_38
 - D 0 - I - 0x03115A 0C:914A: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03115B 0C:914B: 01        .byte $01   ; channels counter
 - D 0 - I - 0x03115C 0C:914C: 03        .byte $03   ; 
@@ -1819,6 +1873,7 @@ _off009_914A_38:
 
 
 _off009_9152_08:
+; con_sound_08
 - D 0 - I - 0x031162 0C:9152: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031163 0C:9153: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031164 0C:9154: 03        .byte $03   ; 
@@ -1827,6 +1882,7 @@ _off009_9152_08:
 
 
 _off009_9157_32:
+; con_sound_32
 - D 0 - I - 0x031167 0C:9157: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031168 0C:9158: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031169 0C:9159: 06        .byte $06   ; 
@@ -1835,6 +1891,7 @@ _off009_9157_32:
 
 
 _off009_915C_39:
+; con_sound_39
 - D 0 - I - 0x03116C 0C:915C: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03116D 0C:915D: 01        .byte $01   ; channels counter
 - D 0 - I - 0x03116E 0C:915E: 03        .byte $03   ; 
@@ -1845,6 +1902,7 @@ _off009_915C_39:
 
 
 _off009_9164_0F:
+; con_sound_0F
 - D 0 - I - 0x031174 0C:9164: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031175 0C:9165: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031176 0C:9166: 03        .byte $03   ; 
@@ -1855,6 +1913,7 @@ _off009_9164_0F:
 
 
 _off009_916C_3A_earthshake:
+; con_sound_earthshake
 - D 0 - I - 0x03117C 0C:916C: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03117D 0C:916D: 01        .byte $01   ; channels counter
 - D 0 - I - 0x03117E 0C:916E: 03        .byte $03   ; 
@@ -1864,7 +1923,8 @@ _off009_916C_3A_earthshake:
 
 
 
-_off009_9174_11:
+_off009_9174_11_block:
+; con_sound_block
 - D 0 - I - 0x031184 0C:9174: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031185 0C:9175: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031186 0C:9176: 03        .byte $03   ; 
@@ -1875,6 +1935,7 @@ _off009_9174_11:
 
 
 _off009_917C_3B:
+; con_sound_3B
 - D 0 - I - 0x03118C 0C:917C: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03118D 0C:917D: 01        .byte $01   ; channels counter
 - D 0 - I - 0x03118E 0C:917E: 03        .byte $03   ; 
@@ -1885,6 +1946,7 @@ _off009_917C_3B:
 
 
 _off009_9184_26:
+; con_sound_26
 - D 0 - I - 0x031194 0C:9184: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031195 0C:9185: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031196 0C:9186: 06        .byte $06   ; 
@@ -1893,6 +1955,7 @@ _off009_9184_26:
 
 
 _off009_9189_0D:
+; con_sound_0D
 - D 0 - I - 0x031199 0C:9189: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03119A 0C:918A: 00        .byte $00   ; channels counter
 - D 0 - I - 0x03119B 0C:918B: 03        .byte $03   ; 
@@ -1901,6 +1964,7 @@ _off009_9189_0D:
 
 
 _off009_918E_0E:
+; con_sound_0E
 - D 0 - I - 0x03119E 0C:918E: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03119F 0C:918F: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0311A0 0C:9190: 06        .byte $06   ; 
@@ -1909,6 +1973,7 @@ _off009_918E_0E:
 
 
 _off009_9193_3D:
+; con_sound_3D
 - D 0 - I - 0x0311A3 0C:9193: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311A4 0C:9194: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0311A5 0C:9195: 03        .byte $03   ; 
@@ -1919,6 +1984,7 @@ _off009_9193_3D:
 
 
 _off009_919B_43:
+; con_sound_43
 - D 0 - I - 0x0311AB 0C:919B: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311AC 0C:919C: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0311AD 0C:919D: 03        .byte $03   ; 
@@ -1928,7 +1994,8 @@ _off009_919B_43:
 
 
 
-_off009_91A3_46:
+_off009_91A3_46_swap_player:
+; con_sound_swap_player
 - D 0 - I - 0x0311B3 0C:91A3: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311B4 0C:91A4: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0311B5 0C:91A5: 03        .byte $03   ; 
@@ -1937,6 +2004,7 @@ _off009_91A3_46:
 
 
 _off009_91A8_3E:
+; con_sound_3E
 - D 0 - I - 0x0311B8 0C:91A8: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311B9 0C:91A9: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0311BA 0C:91AA: 03        .byte $03   ; 
@@ -1947,6 +2015,7 @@ _off009_91A8_3E:
 
 
 _off009_91B0_1A_heart_count:
+; con_sound_heart_count
 - D 0 - I - 0x0311C0 0C:91B0: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311C1 0C:91B1: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0311C2 0C:91B2: 03        .byte $03   ; 
@@ -1955,6 +2024,7 @@ _off009_91B0_1A_heart_count:
 
 
 _off009_91B5_19_score_count:
+; con_sound_score_count
 - D 0 - I - 0x0311C5 0C:91B5: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311C6 0C:91B6: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0311C7 0C:91B7: 03        .byte $03   ; 
@@ -1963,6 +2033,7 @@ _off009_91B5_19_score_count:
 
 
 _off009_91BA_3F:
+; con_sound_3F
 - D 0 - I - 0x0311CA 0C:91BA: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311CB 0C:91BB: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0311CC 0C:91BC: 03        .byte $03   ; 
@@ -1973,6 +2044,7 @@ _off009_91BA_3F:
 
 
 _off009_91C2_40_wrong_psw:
+; con_sound_wrong_psw
 - D 0 - I - 0x0311D2 0C:91C2: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311D3 0C:91C3: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0311D4 0C:91C4: 03        .byte $03   ; 
@@ -1981,6 +2053,7 @@ _off009_91C2_40_wrong_psw:
 
 
 _off009_91C7_10:
+; con_sound_10
 - D 0 - I - 0x0311D7 0C:91C7: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311D8 0C:91C8: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0311D9 0C:91C9: 03        .byte $03   ; 
@@ -1991,6 +2064,7 @@ _off009_91C7_10:
 
 
 _off009_91CF_41_boss_to_partner:
+; con_sound_boss_to_partner
 - D 0 - I - 0x0311DF 0C:91CF: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311E0 0C:91D0: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0311E1 0C:91D1: 03        .byte $03   ; 
@@ -1999,6 +2073,7 @@ _off009_91CF_41_boss_to_partner:
 
 
 _off009_91D4_42:
+; con_sound_42
 - D 0 - I - 0x0311E4 0C:91D4: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311E5 0C:91D5: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0311E6 0C:91D6: 06        .byte $06   ; 
@@ -2007,6 +2082,7 @@ _off009_91D4_42:
 
 
 _off009_91D9_48_orb:
+; con_sound_orb
 - D 0 - I - 0x0311E9 0C:91D9: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311EA 0C:91DA: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0311EB 0C:91DB: 03        .byte $03   ; 
@@ -2017,6 +2093,7 @@ _off009_91D9_48_orb:
 
 
 _off009_91E1_44:
+; con_sound_44
 - D 0 - I - 0x0311F1 0C:91E1: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311F2 0C:91E2: 01        .byte $01   ; channels counter
 - D 0 - I - 0x0311F3 0C:91E3: 03        .byte $03   ; 
@@ -2027,6 +2104,7 @@ _off009_91E1_44:
 
 
 _off009_91E9_45:
+; con_sound_45
 - D 0 - I - 0x0311F9 0C:91E9: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311FA 0C:91EA: 00        .byte $00   ; channels counter
 - D 0 - I - 0x0311FB 0C:91EB: 03        .byte $03   ; 
@@ -2035,6 +2113,7 @@ _off009_91E9_45:
 
 
 _off009_91EE_47:
+; con_sound_47
 - D 0 - I - 0x0311FE 0C:91EE: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x0311FF 0C:91EF: 01        .byte $01   ; channels counter
 - D 0 - I - 0x031200 0C:91F0: 03        .byte $03   ; 
@@ -2045,6 +2124,7 @@ _off009_91EE_47:
 
 
 _off009_91F6_4A_pick_up_cross:
+; con_sound_pick_up_cross
 - D 0 - I - 0x031206 0C:91F6: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031207 0C:91F7: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031208 0C:91F8: 03        .byte $03   ; 
@@ -2053,6 +2133,7 @@ _off009_91F6_4A_pick_up_cross:
 
 
 _off009_91FB_4B_extra_life:
+; con_sound_extra_life
 - D 0 - I - 0x03120B 0C:91FB: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x03120C 0C:91FC: 01        .byte $01   ; channels counter
 - D 0 - I - 0x03120D 0C:91FD: 03        .byte $03   ; 
@@ -2063,6 +2144,7 @@ _off009_91FB_4B_extra_life:
 
 
 _off009_9203_4C_handshake:
+; con_sound_handshake
 - D 0 - I - 0x031213 0C:9203: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031214 0C:9204: 00        .byte $00   ; channels counter
 - D 0 - I - 0x031215 0C:9205: 03        .byte $03   ; 
@@ -2071,6 +2153,7 @@ _off009_9203_4C_handshake:
 
 
 _off009_9208_4D:
+; con_sound_4D
 - D 0 - I - 0x031218 0C:9208: 98        .byte con_prg_bank + $98   ; 
 - D 0 - I - 0x031219 0C:9209: 00        .byte $00   ; channels counter
 - D 0 - I - 0x03121A 0C:920A: 03        .byte $03   ; 
@@ -2079,6 +2162,7 @@ _off009_9208_4D:
 
 
 _off010_920D_4E_death:
+; con_music_death
 - D 0 - I - 0x03121D 0C:920D: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x03121E 0C:920E: 03        .byte $03   ; channels counter
 - D 0 - I - 0x03121F 0C:920F: 00        .byte $00   ; 
@@ -2093,6 +2177,7 @@ _off010_920D_4E_death:
 
 
 _off010_921B_4F:
+; con_music_4F
 - D 0 - I - 0x03122B 0C:921B: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x03122C 0C:921C: 03        .byte $03   ; channels counter
 - D 0 - I - 0x03122D 0C:921D: 00        .byte $00   ; 
@@ -2107,6 +2192,7 @@ _off010_921B_4F:
 
 
 _off010_9229_50:
+; con_music_50
 - D 0 - I - 0x031239 0C:9229: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x03123A 0C:922A: 03        .byte $03   ; channels counter
 - D 0 - I - 0x03123B 0C:922B: 00        .byte $00   ; 
@@ -2121,6 +2207,7 @@ _off010_9229_50:
 
 
 _off010_9237_51:
+; con_music_51
 - D 0 - I - 0x031247 0C:9237: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x031248 0C:9238: 03        .byte $03   ; channels counter
 - D 0 - I - 0x031249 0C:9239: 00        .byte $00   ; 
@@ -2135,6 +2222,7 @@ _off010_9237_51:
 
 
 _off010_9245_52:
+; con_music_52
 - D 0 - I - 0x031255 0C:9245: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x031256 0C:9246: 03        .byte $03   ; channels counter
 - D 0 - I - 0x031257 0C:9247: 00        .byte $00   ; 
@@ -2149,6 +2237,7 @@ _off010_9245_52:
 
 
 _off010_9253_53:
+; con_music_53
 - D 0 - I - 0x031263 0C:9253: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x031264 0C:9254: 03        .byte $03   ; channels counter
 - D 0 - I - 0x031265 0C:9255: 00        .byte $00   ; 
@@ -2163,6 +2252,7 @@ _off010_9253_53:
 
 
 _off010_9261_54:
+; con_music_54
 - D 0 - I - 0x031271 0C:9261: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x031272 0C:9262: 03        .byte $03   ; channels counter
 - D 0 - I - 0x031273 0C:9263: 00        .byte $00   ; 
@@ -2177,6 +2267,7 @@ _off010_9261_54:
 
 
 _off010_926F_55:
+; con_music_55
 - D 0 - I - 0x03127F 0C:926F: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x031280 0C:9270: 03        .byte $03   ; channels counter
 - D 0 - I - 0x031281 0C:9271: 00        .byte $00   ; 
@@ -2191,6 +2282,7 @@ _off010_926F_55:
 
 
 _off010_927D_56:
+; con_music_56
 - D 0 - I - 0x03128D 0C:927D: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x03128E 0C:927E: 03        .byte $03   ; channels counter
 - D 0 - I - 0x03128F 0C:927F: 00        .byte $00   ; 
@@ -2205,6 +2297,7 @@ _off010_927D_56:
 
 
 _off010_928B_57:
+; con_music_57
 - D 0 - I - 0x03129B 0C:928B: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x03129C 0C:928C: 03        .byte $03   ; channels counter
 - D 0 - I - 0x03129D 0C:928D: 00        .byte $00   ; 
@@ -2219,6 +2312,7 @@ _off010_928B_57:
 
 
 _off010_9299_58:
+; con_music_58
 - D 0 - I - 0x0312A9 0C:9299: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x0312AA 0C:929A: 03        .byte $03   ; channels counter
 - D 0 - I - 0x0312AB 0C:929B: 00        .byte $00   ; 
@@ -2233,6 +2327,7 @@ _off010_9299_58:
 
 
 _off010_92A7_59:
+; con_music_59
 - D 0 - I - 0x0312B7 0C:92A7: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x0312B8 0C:92A8: 03        .byte $03   ; channels counter
 - D 0 - I - 0x0312B9 0C:92A9: 00        .byte $00   ; 
@@ -2247,6 +2342,7 @@ _off010_92A7_59:
 
 
 _off010_92B5_5A:
+; con_music_5A
 - D 0 - I - 0x0312C5 0C:92B5: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x0312C6 0C:92B6: 03        .byte $03   ; channels counter
 - D 0 - I - 0x0312C7 0C:92B7: 00        .byte $00   ; 
@@ -2261,6 +2357,7 @@ _off010_92B5_5A:
 
 
 _off010_92C3_5B:
+; con_music_5B
 - D 0 - I - 0x0312D3 0C:92C3: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x0312D4 0C:92C4: 03        .byte $03   ; channels counter
 - D 0 - I - 0x0312D5 0C:92C5: 00        .byte $00   ; 
@@ -2275,6 +2372,7 @@ _off010_92C3_5B:
 
 
 _off010_92D1_5C:
+; con_music_5C
 - D 0 - I - 0x0312E1 0C:92D1: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x0312E2 0C:92D2: 03        .byte $03   ; channels counter
 - D 0 - I - 0x0312E3 0C:92D3: 00        .byte $00   ; 
@@ -2289,6 +2387,7 @@ _off010_92D1_5C:
 
 
 _off010_92DF_5D:
+; con_music_5D
 - D 0 - I - 0x0312EF 0C:92DF: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x0312F0 0C:92E0: 03        .byte $03   ; channels counter
 - D 0 - I - 0x0312F1 0C:92E1: 00        .byte $00   ; 
@@ -2303,6 +2402,7 @@ _off010_92DF_5D:
 
 
 _off010_92ED_5E:
+; con_music_5E
 - D 0 - I - 0x0312FD 0C:92ED: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x0312FE 0C:92EE: 03        .byte $03   ; channels counter
 - D 0 - I - 0x0312FF 0C:92EF: 00        .byte $00   ; 
@@ -2317,6 +2417,7 @@ _off010_92ED_5E:
 
 
 _off010_92FB_5F:
+; con_music_5F
 - D 0 - I - 0x03130B 0C:92FB: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x03130C 0C:92FC: 03        .byte $03   ; channels counter
 - D 0 - I - 0x03130D 0C:92FD: 00        .byte $00   ; 
@@ -2331,6 +2432,7 @@ _off010_92FB_5F:
 
 
 _off010_9309_60:
+; con_music_60
 - D 0 - I - 0x031319 0C:9309: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x03131A 0C:930A: 03        .byte $03   ; channels counter
 - D 0 - I - 0x03131B 0C:930B: 00        .byte $00   ; 
@@ -2345,6 +2447,7 @@ _off010_9309_60:
 
 
 _off010_9317_61:
+; con_music_61
 - D 0 - I - 0x031327 0C:9317: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x031328 0C:9318: 03        .byte $03   ; channels counter
 - D 0 - I - 0x031329 0C:9319: 00        .byte $00   ; 
@@ -2359,6 +2462,7 @@ _off010_9317_61:
 
 
 _off010_9325_62_enter_name_psw:
+; con_music_enter_name_psw
 - D 0 - I - 0x031335 0C:9325: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x031336 0C:9326: 03        .byte $03   ; channels counter
 - D 0 - I - 0x031337 0C:9327: 00        .byte $00   ; 
@@ -2373,6 +2477,7 @@ _off010_9325_62_enter_name_psw:
 
 
 _off010_9333_63_stage_complete:
+; con_music_stage_complete
 - D 0 - I - 0x031343 0C:9333: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x031344 0C:9334: 03        .byte $03   ; channels counter
 - D 0 - I - 0x031345 0C:9335: 00        .byte $00   ; 
@@ -2387,6 +2492,7 @@ _off010_9333_63_stage_complete:
 
 
 _off010_9341_64:
+; con_music_64
 - D 0 - I - 0x031351 0C:9341: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x031352 0C:9342: 03        .byte $03   ; channels counter
 - D 0 - I - 0x031353 0C:9343: 00        .byte $00   ; 
@@ -2401,6 +2507,7 @@ _off010_9341_64:
 
 
 _off010_934F_65_game_over:
+; con_music_game_over
 - D 0 - I - 0x03135F 0C:934F: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x031360 0C:9350: 03        .byte $03   ; channels counter
 - D 0 - I - 0x031361 0C:9351: 00        .byte $00   ; 
@@ -2415,6 +2522,7 @@ _off010_934F_65_game_over:
 
 
 _off010_935D_66_title_screen:
+; con_music_title_screen
 - D 0 - I - 0x03136D 0C:935D: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x03136E 0C:935E: 03        .byte $03   ; channels counter
 - D 0 - I - 0x03136F 0C:935F: 00        .byte $00   ; 
@@ -2429,6 +2537,7 @@ _off010_935D_66_title_screen:
 
 
 _off010_936B_67:
+; con_music_67
 - D 0 - I - 0x03137B 0C:936B: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x03137C 0C:936C: 03        .byte $03   ; channels counter
 - D 0 - I - 0x03137D 0C:936D: 00        .byte $00   ; 
@@ -2443,6 +2552,7 @@ _off010_936B_67:
 
 
 _off010_9379_68:
+; con_music_68
 - D 0 - I - 0x031389 0C:9379: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x03138A 0C:937A: 03        .byte $03   ; channels counter
 - D 0 - I - 0x03138B 0C:937B: 00        .byte $00   ; 
@@ -2457,6 +2567,7 @@ _off010_9379_68:
 
 
 _off010_9387_69:
+; con_music_69
 - D 0 - I - 0x031397 0C:9387: 8A        .byte con_prg_bank + $8A   ; 
 - D 0 - I - 0x031398 0C:9388: 03        .byte $03   ; channels counter
 - D 0 - I - 0x031399 0C:9389: 00        .byte $00   ; 
@@ -2471,6 +2582,7 @@ _off010_9387_69:
 
 
 _off010_9395_6A:
+; con_music_6A
 - D 0 - I - 0x0313A5 0C:9395: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x0313A6 0C:9396: 03        .byte $03   ; channels counter
 - D 0 - I - 0x0313A7 0C:9397: 00        .byte $00   ; 
@@ -2485,6 +2597,7 @@ _off010_9395_6A:
 
 
 _off010_93A3_6B_dialog:
+; con_music_dialog
 - D 0 - I - 0x0313B3 0C:93A3: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x0313B4 0C:93A4: 03        .byte $03   ; channels counter
 - D 0 - I - 0x0313B5 0C:93A5: 00        .byte $00   ; 
@@ -2499,6 +2612,7 @@ _off010_93A3_6B_dialog:
 
 
 _off010_93B1_6C:
+; con_music_6C
 - D 0 - I - 0x0313C1 0C:93B1: 88        .byte con_prg_bank + $88   ; 
 - D 0 - I - 0x0313C2 0C:93B2: 03        .byte $03   ; channels counter
 - D 0 - I - 0x0313C3 0C:93B3: 00        .byte $00   ; 
@@ -5717,12 +5831,14 @@ tbl_9E7B:
 
 
 _off036_9EBB_00:
+; con_9E25_00
 - D 0 - I - 0x031ECB 0C:9EBB: 11        .byte $11   ; 
 - D 0 - I - 0x031ECC 0C:9EBC: FF        .byte $FF   ; end token
 
 
 
 _off036_9EBD_01:
+; con_9E25_01
 - D 0 - I - 0x031ECD 0C:9EBD: 1D        .byte $1D   ; 
 - D 0 - I - 0x031ECE 0C:9EBE: 18        .byte $18   ; 
 - D 0 - I - 0x031ECF 0C:9EBF: 17        .byte $17   ; 
@@ -5738,6 +5854,7 @@ _off036_9EBD_01:
 
 
 _off036_9EC8_02:
+; con_9E25_02
 ; bzk garbage?
 - - - - - - 0x031ED8 0C:9EC8: 18        .byte $18   ; 
 - - - - - - 0x031ED9 0C:9EC9: 16        .byte $16   ; 
@@ -5760,6 +5877,7 @@ _off036_9EC8_02:
 
 
 _off036_9ED9_03:
+; con_9E25_03
 - D 0 - I - 0x031EE9 0C:9ED9: 14        .byte $14   ; 
 - D 0 - I - 0x031EEA 0C:9EDA: 15        .byte $15   ; 
 - D 0 - I - 0x031EEB 0C:9EDB: 16        .byte $16   ; 
@@ -5768,6 +5886,7 @@ _off036_9ED9_03:
 
 
 _off036_9EDD_04:
+; con_9E25_04
 - D 0 - I - 0x031EED 0C:9EDD: 11        .byte $11   ; 
 - D 0 - I - 0x031EEE 0C:9EDE: 12        .byte $12   ; 
 - D 0 - I - 0x031EEF 0C:9EDF: 13        .byte $13   ; 
@@ -5777,6 +5896,7 @@ _off036_9EDD_04:
 
 
 _off036_9EE2_05:
+; con_9E25_05
 - D 0 - I - 0x031EF2 0C:9EE2: 21        .byte $21   ; 
 - D 0 - I - 0x031EF3 0C:9EE3: 32        .byte $32   ; 
 - D 0 - I - 0x031EF4 0C:9EE4: 43        .byte $43   ; 
@@ -5788,6 +5908,7 @@ _off036_9EE2_05:
 
 
 _off036_9EE9_06:
+; con_9E25_06
 - D 0 - I - 0x031EF9 0C:9EE9: 1D        .byte $1D   ; 
 - D 0 - I - 0x031EFA 0C:9EEA: 18        .byte $18   ; 
 - D 0 - I - 0x031EFB 0C:9EEB: 17        .byte $17   ; 
@@ -5799,6 +5920,7 @@ _off036_9EE9_06:
 
 
 _off036_9EF0_07:
+; con_9E25_07
 - D 0 - I - 0x031F00 0C:9EF0: 17        .byte $17   ; 
 - D 0 - I - 0x031F01 0C:9EF1: 16        .byte $16   ; 
 - D 0 - I - 0x031F02 0C:9EF2: 15        .byte $15   ; 
@@ -5824,6 +5946,7 @@ _off036_9EF0_07:
 
 
 _off036_9F05_08:
+; con_9E25_08
 - D 0 - I - 0x031F15 0C:9F05: 2A        .byte $2A   ; 
 - D 0 - I - 0x031F16 0C:9F06: 16        .byte $16   ; 
 - D 0 - I - 0x031F17 0C:9F07: 29        .byte $29   ; 
@@ -5837,6 +5960,7 @@ _off036_9F05_08:
 
 
 _off036_9F0E_09:
+; con_9E25_09
 - D 0 - I - 0x031F1E 0C:9F0E: 18        .byte $18   ; 
 - D 0 - I - 0x031F1F 0C:9F0F: 37        .byte $37   ; 
 - D 0 - I - 0x031F20 0C:9F10: 16        .byte $16   ; 
@@ -5848,6 +5972,7 @@ _off036_9F0E_09:
 
 
 _off036_9F15_0A:
+; con_9E25_0A
 - D 0 - I - 0x031F25 0C:9F15: 37        .byte $37   ; 
 - D 0 - I - 0x031F26 0C:9F16: 56        .byte $56   ; 
 - D 0 - I - 0x031F27 0C:9F17: 45        .byte $45   ; 
@@ -5863,6 +5988,7 @@ _off036_9F15_0A:
 
 
 _off036_9F20_0B:
+; con_9E25_0B
 - D 0 - I - 0x031F30 0C:9F20: 17        .byte $17   ; 
 - D 0 - I - 0x031F31 0C:9F21: 16        .byte $16   ; 
 - D 0 - I - 0x031F32 0C:9F22: 15        .byte $15   ; 
@@ -5883,6 +6009,7 @@ _off036_9F20_0B:
 
 
 _off036_9F30_0C:
+; con_9E25_0C
 - D 0 - I - 0x031F40 0C:9F30: 17        .byte $17   ; 
 - D 0 - I - 0x031F41 0C:9F31: 16        .byte $16   ; 
 - D 0 - I - 0x031F42 0C:9F32: 15        .byte $15   ; 
@@ -5901,6 +6028,7 @@ _off036_9F30_0C:
 
 
 _off036_9F3E_0D:
+; con_9E25_0D
 ; bzk garbage
 - - - - - - 0x031F4E 0C:9F3E: 18        .byte $18   ; 
 - - - - - - 0x031F4F 0C:9F3F: 47        .byte $47   ; 
@@ -5915,6 +6043,7 @@ _off036_9F3E_0D:
 
 
 _off036_9F47_0E:
+; con_9E25_0E
 ; bzk garbage
 - - - - - - 0x031F57 0C:9F47: 16        .byte $16   ; 
 - - - - - - 0x031F58 0C:9F48: 37        .byte $37   ; 
@@ -5928,6 +6057,7 @@ _off036_9F47_0E:
 
 
 _off036_9F4F_0F:
+; con_9E25_0F
 ; bzk garbage
 - - - - - - 0x031F5F 0C:9F4F: 16        .byte $16   ; 
 - - - - - - 0x031F60 0C:9F50: 17        .byte $17   ; 
@@ -5941,6 +6071,7 @@ _off036_9F4F_0F:
 
 
 _off036_9F57_10:
+; con_9E25_10
 - D 0 - I - 0x031F67 0C:9F57: 18        .byte $18   ; 
 - D 0 - I - 0x031F68 0C:9F58: 47        .byte $47   ; 
 - D 0 - I - 0x031F69 0C:9F59: 56        .byte $56   ; 
@@ -5951,6 +6082,7 @@ _off036_9F57_10:
 
 
 _off036_9F5D_11:
+; con_9E25_11
 - D 0 - I - 0x031F6D 0C:9F5D: 38        .byte $38   ; 
 - D 0 - I - 0x031F6E 0C:9F5E: 36        .byte $36   ; 
 - D 0 - I - 0x031F6F 0C:9F5F: 34        .byte $34   ; 
@@ -5961,6 +6093,7 @@ _off036_9F5D_11:
 
 
 _off036_9F63_12:
+; con_9E25_12
 - D 0 - I - 0x031F73 0C:9F63: 18        .byte $18   ; 
 - D 0 - I - 0x031F74 0C:9F64: 37        .byte $37   ; 
 - D 0 - I - 0x031F75 0C:9F65: 26        .byte $26   ; 
@@ -5971,6 +6104,7 @@ _off036_9F63_12:
 
 
 _off036_9F69_13:
+; con_9E25_13
 - D 0 - I - 0x031F79 0C:9F69: 28        .byte $28   ; 
 - D 0 - I - 0x031F7A 0C:9F6A: 37        .byte $37   ; 
 - D 0 - I - 0x031F7B 0C:9F6B: 25        .byte $25   ; 
@@ -5980,6 +6114,7 @@ _off036_9F69_13:
 
 
 _off036_9F6E_14:
+; con_9E25_14
 - D 0 - I - 0x031F7E 0C:9F6E: 18        .byte $18   ; 
 - D 0 - I - 0x031F7F 0C:9F6F: 37        .byte $37   ; 
 - D 0 - I - 0x031F80 0C:9F70: 66        .byte $66   ; 
@@ -6001,6 +6136,7 @@ _off036_9F6E_14:
 
 
 _off036_9F7F_15:
+; con_9E25_15
 - D 0 - I - 0x031F8F 0C:9F7F: 27        .byte $27   ; 
 - D 0 - I - 0x031F90 0C:9F80: 15        .byte $15   ; 
 - D 0 - I - 0x031F91 0C:9F81: 12        .byte $12   ; 
@@ -6009,6 +6145,7 @@ _off036_9F7F_15:
 
 
 _off036_9F83_16:
+; con_9E25_16
 - D 0 - I - 0x031F93 0C:9F83: 18        .byte $18   ; 
 - D 0 - I - 0x031F94 0C:9F84: 26        .byte $26   ; 
 - D 0 - I - 0x031F95 0C:9F85: 34        .byte $34   ; 
@@ -6019,6 +6156,7 @@ _off036_9F83_16:
 
 
 _off036_9F89_17:
+; con_9E25_17
 - D 0 - I - 0x031F99 0C:9F89: 27        .byte $27   ; 
 - D 0 - I - 0x031F9A 0C:9F8A: 25        .byte $25   ; 
 - D 0 - I - 0x031F9B 0C:9F8B: 14        .byte $14   ; 
@@ -6027,6 +6165,7 @@ _off036_9F89_17:
 
 
 _off036_9F8D_18:
+; con_9E25_18
 - D 0 - I - 0x031F9D 0C:9F8D: 16        .byte $16   ; 
 - D 0 - I - 0x031F9E 0C:9F8E: 25        .byte $25   ; 
 - D 0 - I - 0x031F9F 0C:9F8F: 14        .byte $14   ; 
@@ -6037,6 +6176,7 @@ _off036_9F8D_18:
 
 
 _off036_9F93_19:
+; con_9E25_19
 - D 0 - I - 0x031FA3 0C:9F93: 18        .byte $18   ; 
 - D 0 - I - 0x031FA4 0C:9F94: 16        .byte $16   ; 
 - D 0 - I - 0x031FA5 0C:9F95: 25        .byte $25   ; 
@@ -6046,6 +6186,7 @@ _off036_9F93_19:
 
 
 _off036_9F98_1A:
+; con_9E25_1A
 - D 0 - I - 0x031FA8 0C:9F98: 38        .byte $38   ; 
 - D 0 - I - 0x031FA9 0C:9F99: 27        .byte $27   ; 
 - D 0 - I - 0x031FAA 0C:9F9A: 25        .byte $25   ; 
@@ -6055,6 +6196,7 @@ _off036_9F98_1A:
 
 
 _off036_9F9D_1B:
+; con_9E25_1B
 - D 0 - I - 0x031FAD 0C:9F9D: 16        .byte $16   ; 
 - D 0 - I - 0x031FAE 0C:9F9E: 27        .byte $27   ; 
 - D 0 - I - 0x031FAF 0C:9F9F: 28        .byte $28   ; 
@@ -6065,6 +6207,7 @@ _off036_9F9D_1B:
 
 
 _off036_9FA3_1C:
+; con_9E25_1C
 - D 0 - I - 0x031FB3 0C:9FA3: 38        .byte $38   ; 
 - D 0 - I - 0x031FB4 0C:9FA4: 26        .byte $26   ; 
 - D 0 - I - 0x031FB5 0C:9FA5: 34        .byte $34   ; 
@@ -6074,6 +6217,7 @@ _off036_9FA3_1C:
 
 
 _off036_9FA8_1D:
+; con_9E25_1D
 - D 0 - I - 0x031FB8 0C:9FA8: 29        .byte $29   ; 
 - D 0 - I - 0x031FB9 0C:9FA9: 25        .byte $25   ; 
 - D 0 - I - 0x031FBA 0C:9FAA: 24        .byte $24   ; 
@@ -6083,6 +6227,7 @@ _off036_9FA8_1D:
 
 
 _off036_9FAD_1E:
+; con_9E25_1E
 - D 0 - I - 0x031FBD 0C:9FAD: 38        .byte $38   ; 
 - D 0 - I - 0x031FBE 0C:9FAE: 16        .byte $16   ; 
 - D 0 - I - 0x031FBF 0C:9FAF: 14        .byte $14   ; 
@@ -6094,6 +6239,7 @@ _off036_9FAD_1E:
 
 
 _off036_9FB4_1F:
+; con_9E25_1F
 - D 0 - I - 0x031FC4 0C:9FB4: 16        .byte $16   ; 
 - D 0 - I - 0x031FC5 0C:9FB5: 37        .byte $37   ; 
 - D 0 - I - 0x031FC6 0C:9FB6: 35        .byte $35   ; 
@@ -6104,6 +6250,7 @@ _off036_9FB4_1F:
 
 
 _off036_9FBA_20:
+; con_9E25_20
 - D 0 - I - 0x031FCA 0C:9FBA: 18        .byte $18   ; 
 - D 0 - I - 0x031FCB 0C:9FBB: 47        .byte $47   ; 
 - D 0 - I - 0x031FCC 0C:9FBC: F6        .byte $F6   ; 
@@ -6117,6 +6264,7 @@ _off036_9FBA_20:
 
 
 _off036_9FC3_21:
+; con_9E25_21
 - D 0 - I - 0x031FD3 0C:9FC3: 39        .byte $39   ; 
 - D 0 - I - 0x031FD4 0C:9FC4: 28        .byte $28   ; 
 - D 0 - I - 0x031FD5 0C:9FC5: 25        .byte $25   ; 
@@ -6125,6 +6273,7 @@ _off036_9FC3_21:
 
 
 _off036_9FC7_22:
+; con_9E25_22
 - D 0 - I - 0x031FD7 0C:9FC7: 18        .byte $18   ; 
 - D 0 - I - 0x031FD8 0C:9FC8: 25        .byte $25   ; 
 - D 0 - I - 0x031FD9 0C:9FC9: 24        .byte $24   ; 
@@ -6133,6 +6282,7 @@ _off036_9FC7_22:
 
 
 _off036_9FCB_23:
+; con_9E25_23
 - D 0 - I - 0x031FDB 0C:9FCB: 14        .byte $14   ; 
 - D 0 - I - 0x031FDC 0C:9FCC: 25        .byte $25   ; 
 - D 0 - I - 0x031FDD 0C:9FCD: 36        .byte $36   ; 
@@ -6141,6 +6291,7 @@ _off036_9FCB_23:
 
 
 _off036_9FCF_24:
+; con_9E25_24
 - D 0 - I - 0x031FDF 0C:9FCF: 49        .byte $49   ; 
 - D 0 - I - 0x031FE0 0C:9FD0: 48        .byte $48   ; 
 - D 0 - I - 0x031FE1 0C:9FD1: 47        .byte $47   ; 
@@ -6151,6 +6302,7 @@ _off036_9FCF_24:
 
 
 _off036_9FD5_25:
+; con_9E25_25
 - D 0 - I - 0x031FE5 0C:9FD5: 14        .byte $14   ; 
 - D 0 - I - 0x031FE6 0C:9FD6: 19        .byte $19   ; 
 - D 0 - I - 0x031FE7 0C:9FD7: 28        .byte $28   ; 
@@ -6162,6 +6314,7 @@ _off036_9FD5_25:
 
 
 _off036_9FDC_26:
+; con_9E25_26
 - D 0 - I - 0x031FEC 0C:9FDC: 23        .byte $23   ; 
 - D 0 - I - 0x031FED 0C:9FDD: 19        .byte $19   ; 
 - D 0 - I - 0x031FEE 0C:9FDE: 28        .byte $28   ; 
@@ -6175,6 +6328,7 @@ _off036_9FDC_26:
 
 
 _off036_9FE5_27:
+; con_9E25_27
 - D 0 - I - 0x031FF5 0C:9FE5: 24        .byte $24   ; 
 - D 0 - I - 0x031FF6 0C:9FE6: 75        .byte $75   ; 
 - D 0 - I - 0x031FF7 0C:9FE7: 86        .byte $86   ; 
@@ -6199,6 +6353,7 @@ _off036_9FE5_27:
 
 
 _off036_9FF9_28:
+; con_9E25_28
 - D 0 - I - 0x032009 0C:9FF9: 24        .byte $24   ; 
 - D 0 - I - 0x03200A 0C:9FFA: 25        .byte $25   ; 
 - D 0 - I - 0x03200B 0C:9FFB: 36        .byte $36   ; 
@@ -6207,6 +6362,7 @@ _off036_9FF9_28:
 
 
 _off036_9FFD_29:
+; con_9E25_29
 - D 0 - I - 0x03200D 0C:9FFD: 16        .byte $16   ; 
 - D 0 - I - 0x03200E 0C:9FFE: 18        .byte $18   ; 
 - D 0 - I - 0x03200F 0C:9FFF: 17        .byte $17   ; 
@@ -6218,6 +6374,7 @@ _off036_9FFD_29:
 
 
 _off036_A004_2A:
+; con_9E25_2A
 - D 1 - I - 0x032014 0C:A004: 23        .byte $23   ; 
 - D 1 - I - 0x032015 0C:A005: 34        .byte $34   ; 
 - D 1 - I - 0x032016 0C:A006: 65        .byte $65   ; 
@@ -6239,6 +6396,7 @@ _off036_A004_2A:
 
 
 _off037_A015_50:
+; con_9E7B_50
 - D 1 - I - 0x032025 0C:A015: FB        .byte $FB   ; FB
 - D 1 - I - 0x032026 0C:A016: 11        .byte $11   ; 
 - D 1 - I - 0x032027 0C:A017: 12        .byte $12   ; 
@@ -6258,6 +6416,7 @@ _off037_A015_50:
 
 
 _off037_A024_51:
+; con_9E7B_51
 - D 1 - I - 0x032034 0C:A024: FB        .byte $FB   ; FB
 - D 1 - I - 0x032035 0C:A025: 21        .byte $21   ; 
 - D 1 - I - 0x032036 0C:A026: 22        .byte $22   ; 
@@ -6273,6 +6432,7 @@ _off037_A024_51:
 
 
 _off037_A02F_52:
+; con_9E7B_52
 ; bzk garbage
 - - - - - - 0x03203F 0C:A02F: FB        .byte $FB   ; FB
 - - - - - - 0x032040 0C:A030: 61        .byte $61   ; 
@@ -6285,6 +6445,7 @@ _off037_A02F_52:
 
 
 _off037_A036_53:
+; con_9E7B_53
 - D 1 - I - 0x032046 0C:A036: FB        .byte $FB   ; FB
 - D 1 - I - 0x032047 0C:A037: 11        .byte $11   ; 
 - D 1 - I - 0x032048 0C:A038: 12        .byte $12   ; 
@@ -6304,6 +6465,7 @@ _off037_A036_53:
 
 
 _off037_A045_54:
+; con_9E7B_54
 - D 1 - I - 0x032055 0C:A045: FB        .byte $FB   ; FB
 - D 1 - I - 0x032056 0C:A046: 11        .byte $11   ; 
 - D 1 - I - 0x032057 0C:A047: 22        .byte $22   ; 
@@ -6319,6 +6481,7 @@ _off037_A045_54:
 
 
 _off037_A050_55:
+; con_9E7B_55
 - D 1 - I - 0x032060 0C:A050: FB        .byte $FB   ; FB
 - D 1 - I - 0x032061 0C:A051: 31        .byte $31   ; 
 - D 1 - I - 0x032062 0C:A052: 20        .byte $20   ; 
@@ -6330,6 +6493,7 @@ _off037_A050_55:
 
 
 _off037_A057_56:
+; con_9E7B_56
 - D 1 - I - 0x032067 0C:A057: FB        .byte $FB   ; FB
 - D 1 - I - 0x032068 0C:A058: 51        .byte $51   ; 
 - D 1 - I - 0x032069 0C:A059: 10        .byte $10   ; 
@@ -6345,6 +6509,7 @@ _off037_A057_56:
 
 
 _off037_A062_57:
+; con_9E7B_57
 - D 1 - I - 0x032072 0C:A062: FB        .byte $FB   ; FB
 - D 1 - I - 0x032073 0C:A063: 1F        .byte $1F   ; 
 - D 1 - I - 0x032074 0C:A064: 1E        .byte $1E   ; 
@@ -6360,6 +6525,7 @@ _off037_A062_57:
 
 
 _off037_A06D_58:
+; con_9E7B_58
 - D 1 - I - 0x03207D 0C:A06D: FB        .byte $FB   ; FB
 - D 1 - I - 0x03207E 0C:A06E: 10        .byte $10   ; 
 - D 1 - I - 0x03207F 0C:A06F: 2F        .byte $2F   ; 
@@ -6371,6 +6537,7 @@ _off037_A06D_58:
 
 
 _off037_A074_59:
+; con_9E7B_59
 - D 1 - I - 0x032084 0C:A074: FB        .byte $FB   ; FB
 - D 1 - I - 0x032085 0C:A075: 20        .byte $20   ; 
 - D 1 - I - 0x032086 0C:A076: 21        .byte $21   ; 
@@ -6382,6 +6549,7 @@ _off037_A074_59:
 
 
 _off037_A07B_5A:
+; con_9E7B_5A
 - D 1 - I - 0x03208B 0C:A07B: FB        .byte $FB   ; FB
 - D 1 - I - 0x03208C 0C:A07C: 30        .byte $30   ; 
 - D 1 - I - 0x03208D 0C:A07D: 2F        .byte $2F   ; 
@@ -6391,6 +6559,7 @@ _off037_A07B_5A:
 
 
 _off037_A080_5B:
+; con_9E7B_5B
 - D 1 - I - 0x032090 0C:A080: FB        .byte $FB   ; FB
 - D 1 - I - 0x032091 0C:A081: 50        .byte $50   ; 
 - D 1 - I - 0x032092 0C:A082: 2F        .byte $2F   ; 
@@ -6403,6 +6572,7 @@ _off037_A080_5B:
 
 
 _off037_A088_5C:
+; con_9E7B_5C
 - D 1 - I - 0x032098 0C:A088: 80        .byte $80   ; 
 - D 1 - I - 0x032099 0C:A089: FB        .byte $FB   ; FB
 - D 1 - I - 0x03209A 0C:A08A: 20        .byte $20   ; 
@@ -6419,6 +6589,7 @@ _off037_A088_5C:
 
 
 _off037_A094_5D:
+; con_9E7B_5D
 - D 1 - I - 0x0320A4 0C:A094: 60        .byte $60   ; 
 - D 1 - I - 0x0320A5 0C:A095: FB        .byte $FB   ; FB
 - D 1 - I - 0x0320A6 0C:A096: 1F        .byte $1F   ; 
@@ -6435,6 +6606,7 @@ _off037_A094_5D:
 
 
 _off037_A0A0_5E:
+; con_9E7B_5E
 - D 1 - I - 0x0320B0 0C:A0A0: 40        .byte $40   ; 
 - D 1 - I - 0x0320B1 0C:A0A1: FB        .byte $FB   ; FB
 - D 1 - I - 0x0320B2 0C:A0A2: 30        .byte $30   ; 
@@ -6447,6 +6619,7 @@ _off037_A0A0_5E:
 
 
 _off037_A0A8_5F:
+; con_9E7B_5F
 - D 1 - I - 0x0320B8 0C:A0A8: FB        .byte $FB   ; FB
 - D 1 - I - 0x0320B9 0C:A0A9: 1F        .byte $1F   ; 
 - D 1 - I - 0x0320BA 0C:A0AA: 2E        .byte $2E   ; 
@@ -6462,6 +6635,7 @@ _off037_A0A8_5F:
 
 
 _off037_A0B3_60:
+; con_9E7B_60
 - D 1 - I - 0x0320C3 0C:A0B3: 60        .byte $60   ; 
 - D 1 - I - 0x0320C4 0C:A0B4: FB        .byte $FB   ; FB
 - D 1 - I - 0x0320C5 0C:A0B5: 3F        .byte $3F   ; 
@@ -6474,6 +6648,7 @@ _off037_A0B3_60:
 
 
 _off037_A0BB_61:
+; con_9E7B_61
 - D 1 - I - 0x0320CB 0C:A0BB: 80        .byte $80   ; 
 - D 1 - I - 0x0320CC 0C:A0BC: FB        .byte $FB   ; FB
 - D 1 - I - 0x0320CD 0C:A0BD: 20        .byte $20   ; 
@@ -6491,6 +6666,7 @@ _off037_A0BB_61:
 
 
 _off037_A0C8_62:
+; con_9E7B_62
 - D 1 - I - 0x0320D8 0C:A0C8: 90        .byte $90   ; 
 - D 1 - I - 0x0320D9 0C:A0C9: FB        .byte $FB   ; FB
 - D 1 - I - 0x0320DA 0C:A0CA: 10        .byte $10   ; 
@@ -6506,6 +6682,7 @@ _off037_A0C8_62:
 
 
 _off037_A0D3_63:
+; con_9E7B_63
 - D 1 - I - 0x0320E3 0C:A0D3: FB        .byte $FB   ; FB
 - D 1 - I - 0x0320E4 0C:A0D4: 40        .byte $40   ; 
 - D 1 - I - 0x0320E5 0C:A0D5: 4F        .byte $4F   ; 
@@ -6517,6 +6694,7 @@ _off037_A0D3_63:
 
 
 _off037_A0DA_64:
+; con_9E7B_64
 - D 1 - I - 0x0320EA 0C:A0DA: 70        .byte $70   ; 
 - D 1 - I - 0x0320EB 0C:A0DB: FB        .byte $FB   ; FB
 - D 1 - I - 0x0320EC 0C:A0DC: 1F        .byte $1F   ; 
@@ -6533,6 +6711,7 @@ _off037_A0DA_64:
 
 
 _off037_A0E6_65:
+; con_9E7B_65
 - D 1 - I - 0x0320F6 0C:A0E6: FB        .byte $FB   ; FB
 - D 1 - I - 0x0320F7 0C:A0E7: 20        .byte $20   ; 
 - D 1 - I - 0x0320F8 0C:A0E8: 1F        .byte $1F   ; 
@@ -6548,6 +6727,7 @@ _off037_A0E6_65:
 
 
 _off037_A0F1_66:
+; con_9E7B_66
 - D 1 - I - 0x032101 0C:A0F1: 30        .byte $30   ; 
 - D 1 - I - 0x032102 0C:A0F2: FB        .byte $FB   ; FB
 - D 1 - I - 0x032103 0C:A0F3: 3F        .byte $3F   ; 
@@ -6560,6 +6740,7 @@ _off037_A0F1_66:
 
 
 _off037_A0F9_67:
+; con_9E7B_67
 - D 1 - I - 0x032109 0C:A0F9: 20        .byte $20   ; 
 - D 1 - I - 0x03210A 0C:A0FA: FB        .byte $FB   ; FB
 - D 1 - I - 0x03210B 0C:A0FB: 20        .byte $20   ; 
@@ -6576,6 +6757,7 @@ _off037_A0F9_67:
 
 
 _off037_A105_68:
+; con_9E7B_68
 - D 1 - I - 0x032115 0C:A105: FB        .byte $FB   ; FB
 - D 1 - I - 0x032116 0C:A106: 20        .byte $20   ; 
 - D 1 - I - 0x032117 0C:A107: 1F        .byte $1F   ; 
@@ -6591,6 +6773,7 @@ _off037_A105_68:
 
 
 _off037_A110_69:
+; con_9E7B_69
 - D 1 - I - 0x032120 0C:A110: FB        .byte $FB   ; FB
 - D 1 - I - 0x032121 0C:A111: 20        .byte $20   ; 
 - D 1 - I - 0x032122 0C:A112: 11        .byte $11   ; 
@@ -6606,6 +6789,7 @@ _off037_A110_69:
 
 
 _off037_A11B_6A:
+; con_9E7B_6A
 - D 1 - I - 0x03212B 0C:A11B: 30        .byte $30   ; 
 - D 1 - I - 0x03212C 0C:A11C: FB        .byte $FB   ; FB
 - D 1 - I - 0x03212D 0C:A11D: 20        .byte $20   ; 
@@ -6623,6 +6807,7 @@ _off037_A11B_6A:
 
 
 _off037_A128_6B:
+; con_9E7B_6B
 - D 1 - I - 0x032138 0C:A128: 90        .byte $90   ; 
 - D 1 - I - 0x032139 0C:A129: FB        .byte $FB   ; FB
 - D 1 - I - 0x03213A 0C:A12A: 2F        .byte $2F   ; 
@@ -6639,6 +6824,7 @@ _off037_A128_6B:
 
 
 _off037_A134_6C:
+; con_9E7B_6C
 - D 1 - I - 0x032144 0C:A134: 30        .byte $30   ; 
 - D 1 - I - 0x032145 0C:A135: FB        .byte $FB   ; FB
 - D 1 - I - 0x032146 0C:A136: 2F        .byte $2F   ; 
@@ -6655,6 +6841,7 @@ _off037_A134_6C:
 
 
 _off037_A140_6D:
+; con_9E7B_6D
 - D 1 - I - 0x032150 0C:A140: FB        .byte $FB   ; FB
 - D 1 - I - 0x032151 0C:A141: 10        .byte $10   ; 
 - D 1 - I - 0x032152 0C:A142: 4F        .byte $4F   ; 
@@ -6666,6 +6853,7 @@ _off037_A140_6D:
 
 
 _off037_A147_6E:
+; con_9E7B_6E
 - D 1 - I - 0x032157 0C:A147: 70        .byte $70   ; 
 - D 1 - I - 0x032158 0C:A148: FB        .byte $FB   ; FB
 - D 1 - I - 0x032159 0C:A149: 3F        .byte $3F   ; 
@@ -6678,6 +6866,7 @@ _off037_A147_6E:
 
 
 _off037_A14F_6F:
+; con_9E7B_6F
 ; bzk garbage
 - - - - - - 0x03215F 0C:A14F: FF        .byte $FF   ; end token
 
@@ -6880,6 +7069,7 @@ C - - - - - 0x032293 0C:A283: D0 F0     BNE bra_A275_loop
 
 
 _off003_0x032295_67:
+; con_98E4_67
 - D 1 - I - 0x032295 0C:A285: CB 22     .word $22CB ; ppu address
 - D 1 - I - 0x032297 0C:A287: 22        .byte $22, $1E, $24, $1D, $13, $00, $1C, $1E, $13, $14   ; 
 
@@ -7514,7 +7704,7 @@ C - - - - - 0x03261D 0C:A60D: 4C 20 A6  JMP loc_A620
 
 ofs_042_0x032620_0B:
 C - - J - - 0x032620 0C:A610: A9 03     LDA #$03    ; damage offset
-C - - - - - 0x032622 0C:A612: A2 08     LDX #con_A452_08
+C - - - - - 0x032622 0C:A612: A2 08     LDX #con_A452_deal_damage_to_boss
 C - - - - - 0x032624 0C:A614: 20 40 A4  JSR sub_A440_deal_damage_to_boss
 C - - - - - 0x032627 0C:A617: A5 3D     LDA ram_hp_boss
 C - - - - - 0x032629 0C:A619: F0 A6     BEQ bra_A5C1
@@ -8546,6 +8736,7 @@ C - - - - - 0x032BB7 0C:ABA7: 60        RTS
 ofs_005_ABA8_14:
 ofs_005_ABA8_15:
 _off005_0x032BB8_0C:
+; con_EC77_0C
 - D 1 - I - 0x032BB8 0C:ABA8: 00 20     .word $2000 ; ppu address
 
 - D 1 - I - 0x032BBA 0C:ABAA: 7E        .byte $7E   ; write 7E times tile 00
@@ -8706,6 +8897,7 @@ _off005_0x032BB8_0C:
 
 
 _off005_0x032D8C_1E:
+; con_EC77_1E
 - D 1 - I - 0x032D8C 0C:AD7C: 00 20     .word $2000 ; ppu address
 
 - D 1 - I - 0x032D8E 0C:AD7E: 44        .byte $44   ; write 44 times tile 00
@@ -9745,6 +9937,7 @@ tbl_B321_pos_X_hi:
 
 
 _off005_0x033337_1A_password_screen:
+; con_EC77_password
 - D 1 - I - 0x033337 0C:B327: 00 20     .word $2000 ; ppu address
 
 - D 1 - I - 0x033339 0C:B329: C6        .byte $46 + $80   ; write these tiles 46 length

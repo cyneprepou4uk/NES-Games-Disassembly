@@ -834,6 +834,7 @@ C - - - - - 0x03CDC6 0F:CDB6: D0 1A     BNE bra_CDD2    ; jmp
 
 
 ofs_041_0x03CDC8_05:
+; con_B616_05
 ; triggers during credits
 C - - J - - 0x03CDC8 0F:CDB8: A9 00     LDA #$00
 C - - - - - 0x03CDCA 0F:CDBA: 85 5C     STA ram_drawing_ahead
@@ -1274,6 +1275,7 @@ C - - - - - 0x03D076 0F:D066: 60        RTS
 
 sub_D067:
 ofs_041_0x03D077_03:
+; con_B616_03
 C - - - - - 0x03D077 0F:D067: 20 00 C9  JSR sub_C900_select_prg_bank_for_blk_1
 C - - - - - 0x03D07A 0F:D06A: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x03D07C 0F:D06C: 85 73     STA ram_prev_blk_scroll_type
@@ -1357,6 +1359,7 @@ C - - - - - 0x03D106 0F:D0F6: D0 B3     BNE bra_D0AB    ; jmp
 
 sub_D0F8:
 ofs_041_0x03D108_04:
+; con_B616_04
 C - - - - - 0x03D108 0F:D0F8: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x03D10A 0F:D0FA: 10 3F     BPL bra_D13B_horisontal
 ; if vertical
@@ -1778,6 +1781,7 @@ C - - - - - 0x03D39F 0F:D38F: 4C 30 D3  JMP loc_D330
 
 
 ofs_001_D392_09:
+; con_002A_09
 C - - J - - 0x03D3A2 0F:D392: A5 64     LDA ram_0064_timer
 C - - - - - 0x03D3A4 0F:D394: C9 08     CMP #$08
 C - - - - - 0x03D3A6 0F:D396: F0 0D     BEQ bra_D3A5
@@ -2824,6 +2828,7 @@ off_D770_D3:
 
 
 _off005_D772_22_credits_logo_screen:
+; con_EC77_credits_logo
 off_0x03D782_01_credits_logo_screen:
 ; castlevania logo before actual credits begin
 - D 2 - I - 0x03D782 0F:D772: 00 28     .word $2800 ; ppu address
@@ -4009,6 +4014,7 @@ C - - - - - 0x03E147 0F:E137: 6C 44 00  JMP (ram_0044_t001_irq_handler_jmp)
 bra_E13A_80:
 loc_0x03E14A:
 ofs_irq_handler_0x03E14A_00:
+; con_irq_00
 C D 3 - - - 0x03E14A 0F:E13A: A9 00     LDA #$00
 C - - - - - 0x03E14C 0F:E13C: 8D 04 52  STA $5204
 loc_0x03E14F:
@@ -4464,7 +4470,7 @@ C - - - - - 0x03E38F 0F:E37F: 20 6D E8  JSR sub_E86D_jump_to_pointers_after_JSR_
 - D 3 - I - 0x03E39E 0F:E38E: B6 E4     .word ofs_000_E4B6_06_game_over
 - D 3 - I - 0x03E3A0 0F:E390: 43 E5     .word ofs_000_E543_07_debug_menu_handler   ; unused, index doesn't exist, manual activation only
 - D 3 - I - 0x03E3A2 0F:E392: 1B E5     .word ofs_000_E51B_08
-- D 3 - I - 0x03E3A4 0F:E394: 23 E5     .word ofs_000_E523_09_praying
+- D 3 - I - 0x03E3A4 0F:E394: 23 E5     .word ofs_000_E523_09_prayer
 - D 3 - I - 0x03E3A6 0F:E396: 4B E5     .word ofs_000_E54B_0A_enter_your_name___main
 - D 3 - I - 0x03E3A8 0F:E398: 53 E5     .word ofs_000_E553_0B
 - D 3 - I - 0x03E3AA 0F:E39A: 2B E5     .word ofs_000_E52B_0C
@@ -4475,6 +4481,7 @@ C - - - - - 0x03E38F 0F:E37F: 20 6D E8  JSR sub_E86D_jump_to_pointers_after_JSR_
 
 
 ofs_000_E3A2_00_title_screen:
+; con_0018_title_screen
 C - - J - - 0x03E3B2 0F:E3A2: A6 19     LDX ram_0019_subscript
 C - - - - - 0x03E3B4 0F:E3A4: D0 0D     BNE bra_E3B3
 ; 00
@@ -4552,7 +4559,8 @@ C - - - - - 0x03E42B 0F:E41B: A9 80     LDA #$80
 C - - - - - 0x03E42D 0F:E41D: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x03E42F 0F:E41F: E6 19     INC ram_0019_subscript
 bra_E421_RTS:
-ofs_000_E421_01_RTS:    ; bzk unused labe;
+ofs_000_E421_01_RTS:    ; bzk unused label
+; con_0018_01
 C - - - - - 0x03E431 0F:E421: 60        RTS
 bra_E422:
 ; 05
@@ -4583,6 +4591,7 @@ tbl_E440_word:
 
 
 ofs_000_E442_02_enter_your_name___init:
+; con_0018_enter_your_name
 C - - J - - 0x03E452 0F:E442: A5 6B     LDA ram_006B_subscript
 C - - - - - 0x03E454 0F:E444: 48        PHA ; save opening/password option
 C - - - - - 0x03E455 0F:E445: 20 24 E8  JSR sub_E824_clear_memory
@@ -4596,6 +4605,7 @@ C - - - - - 0x03E461 0F:E451: 4C 74 E5  JMP loc_E574_prepare_script
 
 
 ofs_000_E454_03:
+; con_0018_03
 C - - J - - 0x03E464 0F:E454: A9 00     LDA #con_002A_00
 C - - - - - 0x03E466 0F:E456: 85 2A     STA ram_002A_script
 C - - - - - 0x03E468 0F:E458: 20 28 E8  JSR sub_E828_clear_memory
@@ -4606,6 +4616,7 @@ C - - - - - 0x03E471 0F:E461: 4C 6D E5  JMP loc_E56D_prepare_next_script
 
 
 ofs_000_E464_05_death:
+; con_0018_death
 C - - J - - 0x03E474 0F:E464: A9 02     LDA #$02
 C - - - - - 0x03E476 0F:E466: 85 1C     STA ram_disable_rendering_timer
 C - - - - - 0x03E478 0F:E468: A4 19     LDY ram_0019_subscript
@@ -4662,6 +4673,7 @@ C - - - - - 0x03E4C3 0F:E4B3: 4C 74 E5  JMP loc_E574_prepare_script
 
 
 ofs_000_E4B6_06_game_over:
+; con_0018_game_over
 C - - J - - 0x03E4C6 0F:E4B6: A4 19     LDY ram_0019_subscript
 C - - - - - 0x03E4C8 0F:E4B8: D0 36     BNE bra_E4F0
 ; 00
@@ -4706,6 +4718,7 @@ C - - - - - 0x03E515 0F:E505: A9 0B     LDA #con_0018_0B
 C - - - - - 0x03E517 0F:E507: 4C 74 E5  JMP loc_E574_prepare_script
 bra_E50A:
 ofs_000_E50A_0E:
+; con_0018_0E
 C - - - - - 0x03E51A 0F:E50A: 20 19 E8  JSR sub_E819
 C - - - - - 0x03E51D 0F:E50D: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03E51F 0F:E50F: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
@@ -4716,13 +4729,15 @@ C - - - - - 0x03E528 0F:E518: 4C A8 E4  JMP loc_E4A8
 
 
 ofs_000_E51B_08:
+; con_0018_08
 C - - J - - 0x03E52B 0F:E51B: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03E52D 0F:E51D: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E530 0F:E520: 4C B7 A5  JMP loc_0x0025C7
 
 
 
-ofs_000_E523_09_praying:
+ofs_000_E523_09_prayer:
+; con_0018_prayer
 C - - J - - 0x03E533 0F:E523: A9 82     LDA #con_prg_bank + $82
 C - - - - - 0x03E535 0F:E525: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E538 0F:E528: 4C 0C A6  JMP loc_0x00661C_prayer_handler
@@ -4730,6 +4745,7 @@ C - - - - - 0x03E538 0F:E528: 4C 0C A6  JMP loc_0x00661C_prayer_handler
 
 
 ofs_000_E52B_0C:
+; con_0018_0C
 C - - J - - 0x03E53B 0F:E52B: A9 94     LDA #con_prg_bank + $94
 C - - - - - 0x03E53D 0F:E52D: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E540 0F:E530: 4C EA B0  JMP loc_0x02B0FA
@@ -4737,6 +4753,7 @@ C - - - - - 0x03E540 0F:E530: 4C EA B0  JMP loc_0x02B0FA
 
 
 ofs_000_E533_0D:
+; con_0018_0D
 C - - J - - 0x03E543 0F:E533: A9 94     LDA #con_prg_bank + $94
 C - - - - - 0x03E545 0F:E535: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E548 0F:E538: 4C 31 B6  JMP loc_0x02B641
@@ -4744,6 +4761,7 @@ C - - - - - 0x03E548 0F:E538: 4C 31 B6  JMP loc_0x02B641
 
 
 ofs_000_E53B_0F:
+; con_0018_0F
 C - - J - - 0x03E54B 0F:E53B: A9 98     LDA #con_prg_bank + $98
 C - - - - - 0x03E54D 0F:E53D: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E550 0F:E540: 4C 90 A1  JMP loc_0x0321A0
@@ -4751,6 +4769,7 @@ C - - - - - 0x03E550 0F:E540: 4C 90 A1  JMP loc_0x0321A0
 
 
 ofs_000_E543_07_debug_menu_handler:
+; con_0018_07
 C - - J - - 0x03E553 0F:E543: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03E555 0F:E545: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E558 0F:E548: 4C 1C 8A  JMP loc_0x000A2C_debug_menu_handler
@@ -4758,6 +4777,7 @@ C - - - - - 0x03E558 0F:E548: 4C 1C 8A  JMP loc_0x000A2C_debug_menu_handler
 
 
 ofs_000_E54B_0A_enter_your_name___main:
+; con_0018_name_password
 C - - J - - 0x03E55B 0F:E54B: A9 82     LDA #con_prg_bank + $82
 C - - - - - 0x03E55D 0F:E54D: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E560 0F:E550: 4C 65 AF  JMP loc_0x006F75_enter_your_name_handler
@@ -4765,6 +4785,7 @@ C - - - - - 0x03E560 0F:E550: 4C 65 AF  JMP loc_0x006F75_enter_your_name_handler
 
 
 ofs_000_E553_0B:
+; con_0018_0B
 C - - J - - 0x03E563 0F:E553: A9 82     LDA #con_prg_bank + $82
 C - - - - - 0x03E565 0F:E555: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E568 0F:E558: 4C A2 B5  JMP loc_0x0075B2
@@ -6247,10 +6268,15 @@ tbl_EC77_static_screen_data:
 
 
 _off005_EC9D_00_clear_screen:
+; con_EC77_clear
 _off005_EC9D_04:
+; con_EC77_04
 _off005_EC9D_06:
+; con_EC77_06
 _off005_EC9D_08:
+; con_EC77_08
 _off005_EC9D_0A:
+; con_EC77_0A
 - D 3 - I - 0x03ECAD 0F:EC9D: 00 20     .word $2000 ; ppu address
 
 - D 3 - I - 0x03ECAF 0F:EC9F: 78        .byte $78   ; write 78 times tile 00
@@ -7242,6 +7268,7 @@ _off019_F362_14:
 
 
 ofs_000_F384_04_gameplay:
+; con_0018_gameplay
 C - - J - - 0x03F394 0F:F384: 20 83 F6  JSR sub_F683_pause_and_unpause
 C - - - - - 0x03F397 0F:F387: A5 2B     LDA ram_pause_flag
 C - - - - - 0x03F399 0F:F389: F0 01     BEQ bra_F38C_not_paused
@@ -7310,6 +7337,7 @@ C - - - - - 0x03F3FD 0F:F3ED: 4C B2 91  JMP loc_0x0011C2
 
 
 ofs_001_F3F0_00:
+; con_002A_00
 C - - J - - 0x03F400 0F:F3F0: 20 FD EB  JSR sub_EBFD_clear_nametables
 ; -> con_002A_01
 C - - - - - 0x03F403 0F:F3F3: E6 2A     INC ram_002A_script
@@ -7318,6 +7346,7 @@ C - - - - - 0x03F405 0F:F3F5: 60        RTS
 
 
 ofs_001_F3F6_01:
+; con_002A_01
 C - - J - - 0x03F406 0F:F3F6: 20 53 F7  JSR sub_F753_prepare_single_screen_fill_mode_nametable_mapping
 C - - - - - 0x03F409 0F:F3F9: 20 DA E2  JSR sub_E2DA_prg_bankswitch_dpcm_2
 C - - - - - 0x03F40C 0F:F3FC: 20 D3 E5  JSR sub_E5D3
@@ -7390,6 +7419,7 @@ C - - - - - 0x03F489 0F:F479: D0 F9     BNE bra_F474    ; jmp
 
 
 ofs_001_F47B_02:
+; con_002A_02
 C - - J - - 0x03F48B 0F:F47B: A9 02     LDA #$02
 C - - - - - 0x03F48D 0F:F47D: 85 1C     STA ram_disable_rendering_timer
 C - - - - - 0x03F48F 0F:F47F: A5 8D     LDA ram_008D_flag
@@ -7451,6 +7481,7 @@ C - - - - - 0x03F4E9 0F:F4D9: 4C 29 BC  JMP loc_0x03BC39
 
 
 ofs_001_F4DC_0F:
+; con_002A_0F
 C - - J - - 0x03F4EC 0F:F4DC: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F4EE 0F:F4DE: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F4F1 0F:F4E1: 20 D0 96  JSR sub_0x0016E0
@@ -7464,6 +7495,7 @@ C - - - - - 0x03F4FE 0F:F4EE: 60        RTS
 
 
 ofs_001_F4EF_1B:
+; con_002A_1B
 C - - J - - 0x03F4FF 0F:F4EF: A5 C7     LDA ram_00C7
 C - - - - - 0x03F501 0F:F4F1: F0 08     BEQ bra_F4FB
 C - - - - - 0x03F503 0F:F4F3: C6 C7     DEC ram_00C7
@@ -7479,6 +7511,7 @@ C - - - - - 0x03F513 0F:F503: 4C 16 F5  JMP loc_F516
 
 
 ofs_001_F506_0A:
+; con_002A_0A
 C - - J - - 0x03F516 0F:F506: A9 98     LDA #con_prg_bank + $98
 C - - - - - 0x03F518 0F:F508: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F51B 0F:F50B: 20 FE A3  JSR sub_0x03240E
@@ -7488,6 +7521,7 @@ C - - - - - 0x03F523 0F:F513: 20 29 85  JSR sub_0x038539
 bra_F516:
 loc_F516:
 ofs_001_F516_03:
+; con_002A_03
 C D 3 J - - 0x03F526 0F:F516: 20 5D F5  JSR sub_F55D_try_to_swap_players
 C - - - - - 0x03F529 0F:F519: B0 41     BCS bra_F55C_RTS
 C - - - - - 0x03F52B 0F:F51B: A9 80     LDA #con_prg_bank + $80
@@ -7555,6 +7589,7 @@ C - - - - - 0x03F59C 0F:F58C: 60        RTS
 
 
 ofs_001_F58D_04:
+; con_002A_04
 C - - J - - 0x03F59D 0F:F58D: A9 02     LDA #$02
 C - - - - - 0x03F59F 0F:F58F: 85 1C     STA ram_disable_rendering_timer
 C - - - - - 0x03F5A1 0F:F591: A5 8D     LDA ram_008D_flag
@@ -7583,6 +7618,7 @@ C - - - - - 0x03F5CD 0F:F5BD: 60        RTS
 
 
 ofs_001_F5BE_05:
+; con_002A_05
 C - - J - - 0x03F5CE 0F:F5BE: 20 5D F5  JSR sub_F55D_try_to_swap_players
 C - - - - - 0x03F5D1 0F:F5C1: B0 45     BCS bra_F608_RTS
 C - - - - - 0x03F5D3 0F:F5C3: A9 80     LDA #con_prg_bank + $80
@@ -7618,6 +7654,7 @@ C - - - - - 0x03F618 0F:F608: 60        RTS
 
 
 ofs_001_F609_06:
+; con_002A_06
 C - - J - - 0x03F619 0F:F609: A9 02     LDA #$02
 C - - - - - 0x03F61B 0F:F60B: 85 1C     STA ram_disable_rendering_timer
 C - - - - - 0x03F61D 0F:F60D: 20 DA E2  JSR sub_E2DA_prg_bankswitch_dpcm_2
@@ -7629,6 +7666,7 @@ C - - - - - 0x03F627 0F:F617: 60        RTS
 
 
 ofs_001_F618_07:
+; con_002A_07
 C - - J - - 0x03F628 0F:F618: A9 02     LDA #$02
 C - - - - - 0x03F62A 0F:F61A: 85 1C     STA ram_disable_rendering_timer
 C - - - - - 0x03F62C 0F:F61C: 20 A0 E7  JSR sub_E7A0
@@ -7641,12 +7679,14 @@ C - - - - - 0x03F639 0F:F629: 60        RTS
 
 
 ofs_001_F62A_12_RTS:
+; con_002A_12
 ; bzk optimize
 - - - - - - 0x03F63A 0F:F62A: 60        RTS
 
 
 
 ofs_001_F62B_17:
+; con_002A_17
 C - - J - - 0x03F63B 0F:F62B: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F63D 0F:F62D: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F640 0F:F630: 4C DB 9D  JMP loc_0x001DEB
@@ -7654,6 +7694,7 @@ C - - - - - 0x03F640 0F:F630: 4C DB 9D  JMP loc_0x001DEB
 
 
 ofs_001_F633_11:
+; con_002A_11
 C - - J - - 0x03F643 0F:F633: A9 82     LDA #con_prg_bank + $82
 C - - - - - 0x03F645 0F:F635: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F648 0F:F638: AE EC 07  LDX ram_07EC
@@ -7744,6 +7785,7 @@ C - - - - - 0x03F6CE 0F:F6BE: 60        RTS
 
 
 ofs_001_F6BF_1A:
+; con_002A_1A
 C - - J - - 0x03F6CF 0F:F6BF: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F6D1 0F:F6C1: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F6D4 0F:F6C4: 4C 1A BB  JMP loc_0x003B2A
@@ -7751,6 +7793,7 @@ C - - - - - 0x03F6D4 0F:F6C4: 4C 1A BB  JMP loc_0x003B2A
 
 
 ofs_001_F6C7_18:
+; con_002A_18
 C - - J - - 0x03F6D7 0F:F6C7: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F6D9 0F:F6C9: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F6DC 0F:F6CC: 4C 88 92  JMP loc_0x001298
@@ -7758,6 +7801,7 @@ C - - - - - 0x03F6DC 0F:F6CC: 4C 88 92  JMP loc_0x001298
 
 
 ofs_001_F6CF_1C:
+; con_002A_1C
 C - - J - - 0x03F6DF 0F:F6CF: A9 00     LDA #$00
 C - - - - - 0x03F6E1 0F:F6D1: 85 6B     STA ram_006B_subscript
 C - - - - - 0x03F6E3 0F:F6D3: 20 DA E2  JSR sub_E2DA_prg_bankswitch_dpcm_2
@@ -7768,6 +7812,7 @@ C - - - - - 0x03F6E8 0F:F6D8: 60        RTS
 
 
 ofs_001_F6D9_1D:
+; con_002A_1D
 C - - J - - 0x03F6E9 0F:F6D9: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F6EB 0F:F6DB: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F6EE 0F:F6DE: 4C EA B3  JMP loc_0x0033FA
@@ -7785,6 +7830,7 @@ C - - - - - 0x03F6FB 0F:F6EB: 4C F7 F6  JMP loc_F6F7
 
 
 ofs_001_F6EE_13:
+; con_002A_13
 C - - J - - 0x03F6FE 0F:F6EE: A9 03     LDA #$03
 C - - - - - 0x03F700 0F:F6F0: 85 33     STA ram_blk_id_lo
 C - - - - - 0x03F702 0F:F6F2: 20 8F E6  JSR sub_E68F
@@ -7819,6 +7865,7 @@ C - - - - - 0x03F727 0F:F717: 60        RTS
 
 sub_F718:
 ofs_001_F718_14:
+; con_002A_14
 C - - J - - 0x03F728 0F:F718: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F72A 0F:F71A: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F72D 0F:F71D: 20 3E B6  JSR sub_0x00364E
@@ -7898,6 +7945,7 @@ C - - - - - 0x03F787 0F:F777: 60        RTS
 
 sub_F778:
 ofs_001_F778_15:
+; con_002A_15
 C - - J - - 0x03F788 0F:F778: A9 02     LDA #$02
 C - - - - - 0x03F78A 0F:F77A: 85 1C     STA ram_disable_rendering_timer
 C - - - - - 0x03F78C 0F:F77C: A5 8D     LDA ram_008D_flag
@@ -7941,6 +7989,7 @@ C - - - - - 0x03F7CB 0F:F7BB: 60        RTS
 
 
 ofs_001_F7BC_16:
+; con_002A_16
 C - - J - - 0x03F7CC 0F:F7BC: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F7CE 0F:F7BE: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F7D1 0F:F7C1: 20 D0 96  JSR sub_0x0016E0
@@ -7990,6 +8039,7 @@ C - - - - - 0x03F82D 0F:F81D: 60        RTS
 
 
 ofs_001_F81E_0B_swap_players_H:
+; con_002A_swap_players_H
 C - - J - - 0x03F82E 0F:F81E: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F830 0F:F820: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F833 0F:F823: 4C 8B 94  JMP loc_0x00149B_swap_players_H
@@ -7997,6 +8047,7 @@ C - - - - - 0x03F833 0F:F823: 4C 8B 94  JMP loc_0x00149B_swap_players_H
 
 
 ofs_001_F826_0C_swap_players_V:
+; con_002A_swap_players_V
 C - - J - - 0x03F836 0F:F826: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F838 0F:F828: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03F83B 0F:F82B: 4C 6A 94  JMP loc_0x00147A_swap_players_V
@@ -8004,7 +8055,9 @@ C - - - - - 0x03F83B 0F:F82B: 4C 6A 94  JMP loc_0x00147A_swap_players_V
 
 
 ofs_001_F82E_0D:
+; con_002A_0D
 ofs_001_F82E_0E:
+; con_002A_0E
 ; bzk garbage
 - - - - - - 0x03F83E 0F:F82E: A9 80     LDA #con_prg_bank + $80
 - - - - - - 0x03F840 0F:F830: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
@@ -8013,6 +8066,7 @@ ofs_001_F82E_0E:
 
 
 ofs_001_F836_10:
+; con_002A_10
 C - - J - - 0x03F846 0F:F836: A5 6B     LDA ram_006B_subscript
 C - - - - - 0x03F848 0F:F838: 20 6D E8  JSR sub_E86D_jump_to_pointers_after_JSR_A
 - D 3 - I - 0x03F84B 0F:F83B: 5B F8     .word ofs_002_F85B_00
@@ -8181,6 +8235,7 @@ C - - - - - 0x03F95A 0F:F94A: 60        RTS
 
 
 ofs_001_F94B_08:
+; con_002A_08
 C - - J - - 0x03F95B 0F:F94B: A5 6B     LDA ram_006B_subscript
 C - - - - - 0x03F95D 0F:F94D: 20 6D E8  JSR sub_E86D_jump_to_pointers_after_JSR_A
 - D 3 - I - 0x03F960 0F:F950: 64 F9     .word ofs_003_F964_00
@@ -8565,6 +8620,7 @@ C - - - - - 0x03FBB3 0F:FBA3: 60        RTS
 
 sub_0x03FBB4_increase_brightness:
 ofs_041_0x03FBB4_07_increase_brightness:
+; con_B616_increase_brightness
 C - - - - - 0x03FBB4 0F:FBA4: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03FBB6 0F:FBA6: 20 E0 E2  JSR sub_E2E0_prg_bankswitch
 C - - - - - 0x03FBB9 0F:FBA9: 20 70 8B  JSR sub_0x000B80_increase_brightness
@@ -8575,6 +8631,7 @@ C - - - - - 0x03FBBC 0F:FBAC: 4C 7F E6  JMP loc_E67F_restore_prg_bank
 sub_0x03FBBF_decrease_brightness:
 loc_0x03FBBF_decrease_brightness:
 ofs_041_0x03FBB4_08_decrease_brightness:
+; con_B616_decrease_brightness
 C D 3 - - - 0x03FBBF 0F:FBAF: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03FBC1 0F:FBB1: 20 E0 E2  JSR sub_E2E0_prg_bankswitch
 C - - - - - 0x03FBC4 0F:FBB4: 20 74 8B  JSR sub_0x000B84_decrease_brightness

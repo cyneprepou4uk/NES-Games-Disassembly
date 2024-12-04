@@ -1828,6 +1828,7 @@ tbl_8A26_partner_speech:
 
 
 _off007_8A42_00_Grant_intro_1:
+; con_8A26_Grant_intro_1
 - D 0 - I - 0x004A52 01:8A42: B2 8A     .word off_8AB2_00_00
 - D 0 - I - 0x004A54 01:8A44: C4 8A     .word off_8AC4_00_01
 - D 0 - I - 0x004A56 01:8A46: D4 8A     .word off_8AD4_00_02
@@ -1836,6 +1837,7 @@ _off007_8A42_00_Grant_intro_1:
 
 
 _off007_8A4A_02_Grant_intro_2:
+; con_8A26_Grant_intro_2
 - D 0 - I - 0x004A5A 01:8A4A: E9 8A     .word off_8AE9_02_00
 - D 0 - I - 0x004A5C 01:8A4C: FD 8A     .word off_8AFD_02_01
 - D 0 - I - 0x004A5E 01:8A4E: 11 8B     .word off_8B11_02_02
@@ -1844,6 +1846,7 @@ _off007_8A4A_02_Grant_intro_2:
 
 
 _off007_8A52_04_what_will_you_do:
+; con_8A26_what_will_you_do
 - D 0 - I - 0x004A62 01:8A52: 24 8B     .word off_8B24_04_00
 - D 0 - I - 0x004A64 01:8A54: 36 8B     .word off_8B36_04_01
 - D 0 - I - 0x004A66 01:8A56: 4B 8B     .word off_8B4B_04_02
@@ -1852,6 +1855,7 @@ _off007_8A52_04_what_will_you_do:
 
 
 _off007_8A5A_06_Grant_take:
+; con_8A26_Grant_take
 - D 0 - I - 0x004A6A 01:8A5A: 5F 8B     .word off_8B5F_06_00
 - D 0 - I - 0x004A6C 01:8A5C: 6E 8B     .word off_8B6E_06_01
 - D 0 - I - 0x004A6E 01:8A5E: 7E 8B     .word off_8B7E_06_02
@@ -1860,6 +1864,7 @@ _off007_8A5A_06_Grant_take:
 
 
 _off007_8A62_08_Grant_leave:
+; con_8A26_Grant_leave
 - D 0 - I - 0x004A72 01:8A62: 8C 8B     .word off_8B8C_08_00
 - D 0 - I - 0x004A74 01:8A64: 9F 8B     .word off_8B9F_08_01
 - D 0 - I - 0x004A76 01:8A66: B2 8B     .word off_8BB2_08_02
@@ -1868,6 +1873,7 @@ _off007_8A62_08_Grant_leave:
 
 
 _off007_8A6A_0A_swap_partner:
+; con_8A26_swap_partner
 - D 0 - I - 0x004A7A 01:8A6A: C4 8B     .word off_8BC4_0A_00
 - D 0 - I - 0x004A7C 01:8A6C: D4 8B     .word off_8BD4_0A_01
 - D 0 - I - 0x004A7E 01:8A6E: E5 8B     .word off_8BE5_0A_02
@@ -1876,6 +1882,7 @@ _off007_8A6A_0A_swap_partner:
 
 
 _off007_8A72_0C_Sypha_intro_1:
+; con_8A26_Sypha_intro_1
 - D 0 - I - 0x004A82 01:8A72: F7 8B     .word off_8BF7_0C_00
 - D 0 - I - 0x004A84 01:8A74: 0A 8C     .word off_8C0A_0C_01
 - D 0 - I - 0x004A86 01:8A76: 1D 8C     .word off_8C1D_0C_02
@@ -1884,6 +1891,7 @@ _off007_8A72_0C_Sypha_intro_1:
 
 
 _off007_8A7A_0E_Sypha_intro_2:
+; con_8A26_Sypha_intro_2
 - D 0 - I - 0x004A8A 01:8A7A: 2D 8C     .word off_8C2D_0E_00
 - D 0 - I - 0x004A8C 01:8A7C: 3B 8C     .word off_8C3B_0E_01
 - D 0 - I - 0x004A8E 01:8A7E: 4B 8C     .word off_8C4B_0E_02
@@ -1892,6 +1900,7 @@ _off007_8A7A_0E_Sypha_intro_2:
 
 
 _off007_8A82_10_Sypha_take:
+; con_8A26_Sypha_take
 - D 0 - I - 0x004A92 01:8A82: 54 8C     .word off_8C54_10_00
 - D 0 - I - 0x004A94 01:8A84: 63 8C     .word off_8C63_10_01
 - D 0 - I - 0x004A96 01:8A86: 74 8C     .word off_8C74_10_02
@@ -1900,6 +1909,7 @@ _off007_8A82_10_Sypha_take:
 
 
 _off007_8A8A_12_Sypha_leave:
+; con_8A26_Sypha_leave
 - D 0 - I - 0x004A9A 01:8A8A: 82 8C     .word off_8C82_12_00
 - D 0 - I - 0x004A9C 01:8A8C: 95 8C     .word off_8C95_12_01
 - D 0 - I - 0x004A9E 01:8A8E: A8 8C     .word off_8CA8_12_02
@@ -1908,6 +1918,7 @@ _off007_8A8A_12_Sypha_leave:
 
 
 _off007_8A92_14_Alucard_intro_1:
+; con_8A26_Alucard_intro_1
 - D 0 - I - 0x004AA2 01:8A92: B4 8C     .word off_8CB4_14_00
 - D 0 - I - 0x004AA4 01:8A94: C6 8C     .word off_8CC6_14_01
 - D 0 - I - 0x004AA6 01:8A96: DA 8C     .word off_8CDA_14_02
@@ -1916,6 +1927,7 @@ _off007_8A92_14_Alucard_intro_1:
 
 
 _off007_8A9A_16_Alucard_intro_2:
+; con_8A26_Alucard_intro_2
 - D 0 - I - 0x004AAA 01:8A9A: EB 8C     .word off_8CEB_16_00
 - D 0 - I - 0x004AAC 01:8A9C: F9 8C     .word off_8CF9_16_01
 - D 0 - I - 0x004AAE 01:8A9E: 09 8D     .word off_8D09_16_02
@@ -1924,6 +1936,7 @@ _off007_8A9A_16_Alucard_intro_2:
 
 
 _off007_8AA2_18_Alucard_take:
+; con_8A26_Alucard_take
 - D 0 - I - 0x004AB2 01:8AA2: 12 8D     .word off_8D12_18_00
 - D 0 - I - 0x004AB4 01:8AA4: 23 8D     .word off_8D23_18_01
 - D 0 - I - 0x004AB6 01:8AA6: 34 8D     .word off_8D34_18_02
@@ -1932,6 +1945,7 @@ _off007_8AA2_18_Alucard_take:
 
 
 _off007_8AAA_1A_Alucard_leave:
+; con_8A26_Alucard_leave
 - D 0 - I - 0x004ABA 01:8AAA: 49 8D     .word off_8D49_1A_00
 - D 0 - I - 0x004ABC 01:8AAC: 5C 8D     .word off_8D5C_1A_01
 - D 0 - I - 0x004ABE 01:8AAE: 6F 8D     .word off_8D6F_1A_02
@@ -5606,6 +5620,7 @@ C - - - - - 0x005FE0 01:9FD0: 60        RTS
 
 
 ofs_irq_handler_9FD1_23:
+; con_irq_23
 C - - J - - 0x005FE1 01:9FD1: A9 7F     LDA #con__chr_bank + $7F
 C - - - - - 0x005FE3 01:9FD3: 8D 22 51  STA $5122
 C - - - - - 0x005FE6 01:9FD6: 4C 3A E1  JMP loc_0x03E14A
@@ -5613,6 +5628,7 @@ C - - - - - 0x005FE6 01:9FD6: 4C 3A E1  JMP loc_0x03E14A
 
 
 ofs_irq_handler_9FD9_19:
+; con_irq_19
 C - - J - - 0x005FE9 01:9FD9: AD 02 20  LDA $2002
 C - - - - - 0x005FEC 01:9FDC: AE 8C 07  LDX ram_078C
 C - - - - - 0x005FEF 01:9FDF: AD 8D 07  LDA ram_078D
@@ -5638,6 +5654,7 @@ C - - - - - 0x00601A 01:A00A: 4C 3A E1  JMP loc_0x03E14A
 
 
 ofs_irq_handler_A00D_17:
+; con_irq_17
 C - - J - - 0x00601D 01:A00D: 20 97 A0  JSR sub_A097
 C - - - - - 0x006020 01:A010: 20 CB 9F  JSR sub_9FCB_set_vertical_nametable_mapping
 C - - - - - 0x006023 01:A013: 20 6D E3  JSR sub_0x03E37D
@@ -5651,6 +5668,7 @@ C - - - - - 0x006030 01:A020: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A023_18:
+; con_irq_18
 C - - J - - 0x006033 01:A023: A0 12     LDY #$12
 bra_A025_garbage_loop:
 C - - - - - 0x006035 01:A025: 88        DEY
@@ -5682,6 +5700,7 @@ C - - - - - 0x006067 01:A057: 4C 3A E1  JMP loc_0x03E14A
 
 
 ofs_irq_handler_A05A_16:
+; con_irq_16
 C - - J - - 0x00606A 01:A05A: AD ED 07  LDA ram_07ED
 C - - - - - 0x00606D 01:A05D: F0 12     BEQ bra_A071
 C - - - - - 0x00606F 01:A05F: AA        TAX
@@ -5739,6 +5758,7 @@ C - - - - - 0x0060CB 01:A0BB: 60        RTS
 
 
 ofs_irq_handler_A0BC_01:
+; con_irq_01
 C - - J - - 0x0060CC 01:A0BC: 20 97 A0  JSR sub_A097
 C - - - - - 0x0060CF 01:A0BF: 20 CB 9F  JSR sub_9FCB_set_vertical_nametable_mapping
 C - - - - - 0x0060D2 01:A0C2: 20 6D E3  JSR sub_0x03E37D
@@ -5772,6 +5792,7 @@ C - - - - - 0x0060FE 01:A0EE: 60        RTS
 
 
 ofs_irq_handler_A0EF_02:
+; con_irq_02
 C - - J - - 0x0060FF 01:A0EF: 20 97 A0  JSR sub_A097
 C - - - - - 0x006102 01:A0F2: 20 CB 9F  JSR sub_9FCB_set_vertical_nametable_mapping
 ; bzk optimize, are these 2 STA's necessary?
@@ -5815,6 +5836,7 @@ C - - - - - 0x00613E 01:A12E: 60        RTS
 
 
 ofs_irq_handler_A12F_03:
+; con_irq_03
 C - - J - - 0x00613F 01:A12F: A2 01     LDX #$01
 C - - - - - 0x006141 01:A131: 20 01 E0  JSR sub_0x03E011_garbage_loop_X
 C - - - - - 0x006144 01:A134: 20 21 A1  JSR sub_A121_set_scroll
@@ -5825,6 +5847,7 @@ C - - - - - 0x006149 01:A139: 4C 44 A1  JMP loc_A144
 
 
 ofs_irq_handler_A13C_04:
+; con_irq_04
 C - - J - - 0x00614C 01:A13C: A2 01     LDX #$01
 C - - - - - 0x00614E 01:A13E: 20 01 E0  JSR sub_0x03E011_garbage_loop_X
 C - - - - - 0x006151 01:A141: 20 21 A1  JSR sub_A121_set_scroll
@@ -5850,6 +5873,7 @@ C - - - - - 0x006177 01:A167: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A16A_2D:
+; con_irq_2D
 C - - J - - 0x00617A 01:A16A: 20 97 A0  JSR sub_A097
 C - - - - - 0x00617D 01:A16D: 20 CB 9F  JSR sub_9FCB_set_vertical_nametable_mapping
 ; bzk optimize, are these 2 STA's necessary?
@@ -5860,7 +5884,9 @@ C - - - - - 0x006186 01:A176: 4C 3A E1  JMP loc_0x03E14A
 
 
 ofs_irq_handler_A179_05:
+; con_irq_05
 ofs_irq_handler_A179_0B:
+; con_irq_0B
 C - - J - - 0x006189 01:A179: A5 89     LDA ram_0089_scanline
 C - - - - - 0x00618B 01:A17B: 8D 03 52  STA $5203
 C - - - - - 0x00618E 01:A17E: A5 6F     LDA ram_copy_cam_pos_lo
@@ -5878,7 +5904,9 @@ C - - - - - 0x00619D 01:A18D: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A190_06:
+; con_irq_06
 ofs_irq_handler_A190_0C:
+; con_irq_0C
 C - - J - - 0x0061A0 01:A190: A5 43     LDA ram_scanline
 C - - - - - 0x0061A2 01:A192: 8D 03 52  STA $5203
 C - - - - - 0x0061A5 01:A195: A2 0C     LDX #$0C
@@ -5909,6 +5937,7 @@ C - - - - - 0x0061CC 01:A1BC: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A1BF_07:
+; con_irq_07
 C - - J - - 0x0061CF 01:A1BF: A5 43     LDA ram_scanline
 C - - - - - 0x0061D1 01:A1C1: 8D 03 52  STA $5203
 C - - - - - 0x0061D4 01:A1C4: A2 02     LDX #$02
@@ -5930,6 +5959,7 @@ C - - - - - 0x0061F5 01:A1E5: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A1E8_08:
+; con_irq_08
 C - - J - - 0x0061F8 01:A1E8: A2 01     LDX #$01
 C - - - - - 0x0061FA 01:A1EA: 20 01 E0  JSR sub_0x03E011_garbage_loop_X
 C - - - - - 0x0061FD 01:A1ED: A5 4B     LDA ram_chr_bank______5129
@@ -5957,6 +5987,7 @@ C - - - - - 0x00622B 01:A21B: 4C 15 A2  JMP loc_A215
 
 
 ofs_irq_handler_A21E_0D:
+; con_irq_0D
 C - - J - - 0x00622E 01:A21E: A5 43     LDA ram_scanline
 C - - - - - 0x006230 01:A220: 8D 03 52  STA $5203
 C - - - - - 0x006233 01:A223: A2 01     LDX #$01
@@ -5980,6 +6011,7 @@ C - - - - - 0x006258 01:A248: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A24B_0E:
+; con_irq_0E
 C - - J - - 0x00625B 01:A24B: A2 01     LDX #$01
 C - - - - - 0x00625D 01:A24D: 20 01 E0  JSR sub_0x03E011_garbage_loop_X
 C - - - - - 0x006260 01:A250: 20 42 E3  JSR sub_0x03E352
@@ -6001,6 +6033,7 @@ C - - - - - 0x006281 01:A271: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A274_09:
+; con_irq_09
 C - - J - - 0x006284 01:A274: 20 97 A0  JSR sub_A097
 C - - - - - 0x006287 01:A277: 20 CB 9F  JSR sub_9FCB_set_vertical_nametable_mapping
 C - - - - - 0x00628A 01:A27A: 20 6D E3  JSR sub_0x03E37D
@@ -6025,7 +6058,9 @@ C - - - - - 0x0062AE 01:A29E: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A2A1_0A:
+; con_irq_0A
 ofs_irq_handler_A2A1_0F:
+; con_irq_0F
 C - - J - - 0x0062B1 01:A2A1: A0 05     LDY #$05
 bra_A2A3_garbage_loop:
 C - - - - - 0x0062B3 01:A2A3: 20 22 E3  JSR sub_0x03E332_set_2_7F_spr_chr_banks
@@ -6055,6 +6090,7 @@ C - - - - - 0x0062E9 01:A2D9: 4C 3A E1  JMP loc_0x03E14A
 
 
 ofs_irq_handler_A2DC_10:
+; con_irq_10
 C - - J - - 0x0062EC 01:A2DC: 20 97 A0  JSR sub_A097
 C - - - - - 0x0062EF 01:A2DF: 20 CB 9F  JSR sub_9FCB_set_vertical_nametable_mapping
 C - - - - - 0x0062F2 01:A2E2: 20 6D E3  JSR sub_0x03E37D
@@ -6068,12 +6104,14 @@ C - - - - - 0x0062FF 01:A2EF: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A2F2_11:
+; con_irq_11
 C - - J - - 0x006302 01:A2F2: 20 22 E3  JSR sub_0x03E332_set_2_7F_spr_chr_banks
 C - - - - - 0x006305 01:A2F5: 4C 3A E1  JMP loc_0x03E14A
 
 
 
 ofs_irq_handler_A2F8_12:
+; con_irq_12
 C - - J - - 0x006308 01:A2F8: 20 97 A0  JSR sub_A097
 C - - - - - 0x00630B 01:A2FB: 20 CB 9F  JSR sub_9FCB_set_vertical_nametable_mapping
 C - - - - - 0x00630E 01:A2FE: 20 6D E3  JSR sub_0x03E37D
@@ -6118,7 +6156,9 @@ C - - - - - 0x006354 01:A344: 60        RTS
 
 
 ofs_irq_handler_A345_13:
+; con_irq_13
 ofs_irq_handler_A345_24:
+; con_irq_24
 C - - J - - 0x006355 01:A345: 20 97 A0  JSR sub_A097
 C - - - - - 0x006358 01:A348: 20 CB 9F  JSR sub_9FCB_set_vertical_nametable_mapping
 C - - - - - 0x00635B 01:A34B: 20 6D E3  JSR sub_0x03E37D
@@ -6179,7 +6219,9 @@ tbl_A393:
 
 
 ofs_irq_handler_A39B_14:
+; con_irq_14
 ofs_irq_handler_A39B_25:
+; con_irq_25
 C - - J - - 0x0063AB 01:A39B: A5 43     LDA ram_scanline
 C - - - - - 0x0063AD 01:A39D: 8D 03 52  STA $5203
 C - - - - - 0x0063B0 01:A3A0: A5 43     LDA ram_scanline
@@ -6204,6 +6246,7 @@ C - - - - - 0x0063CF 01:A3BF: D0 0B     BNE bra_A3CC    ; jmp
 
 
 ofs_irq_handler_A3C1_27:
+; con_irq_27
 C - - J - - 0x0063D1 01:A3C1: A5 43     LDA ram_scanline
 C - - - - - 0x0063D3 01:A3C3: 8D 03 52  STA $5203
 bra_A3C6:
@@ -6232,6 +6275,7 @@ tbl_A3D4:
 
 
 ofs_irq_handler_A3DA_26:
+; con_irq_26
 C - - J - - 0x0063EA 01:A3DA: A5 43     LDA ram_scanline
 C - - - - - 0x0063EC 01:A3DC: 8D 03 52  STA $5203
 C - - - - - 0x0063EF 01:A3DF: 20 3C E3  JSR sub_0x03E34C
@@ -6246,13 +6290,16 @@ C - - - - - 0x0063FB 01:A3EB: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A3EE_15:
+; con_irq_15
 ofs_irq_handler_A3EE_28:
+; con_irq_28
 C - - J - - 0x0063FE 01:A3EE: 20 3C E3  JSR sub_0x03E34C
 C - - - - - 0x006401 01:A3F1: 4C 3A E1  JMP loc_0x03E14A
 
 
 
 ofs_irq_handler_A3F4_1A:
+; con_irq_1A
 C - - J - - 0x006404 01:A3F4: A5 89     LDA ram_0089_scanline
 C - - - - - 0x006406 01:A3F6: 8D 03 52  STA $5203
 C - - - - - 0x006409 01:A3F9: AC 82 07  LDY ram_0782
@@ -6279,6 +6326,7 @@ tbl_A41A:
 
 
 ofs_irq_handler_A41D_1B:
+; con_irq_1B
 C - - J - - 0x00642D 01:A41D: AD 8A 07  LDA ram_078A
 C - - - - - 0x006430 01:A420: 8D 03 52  STA $5203
 C - - - - - 0x006433 01:A423: 20 5E A4  JSR sub_A45E_set_fixed_chr_banks_1
@@ -6297,6 +6345,7 @@ tbl_A431:
 
 
 ofs_irq_handler_A434_1C:
+; con_irq_1C
 C - - J - - 0x006444 01:A434: A2 10     LDX #$10
 bra_A436_garbage_loop:
 C - - - - - 0x006446 01:A436: CA        DEX
@@ -6319,6 +6368,7 @@ C - - - - - 0x006465 01:A455: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A458_1D:
+; con_irq_1D
 C - - J - - 0x006468 01:A458: 20 2D E3  JSR sub_0x03E33D_set_7F_for_all_bg_chr_banks
 C - - - - - 0x00646B 01:A45B: 4C 3A E1  JMP loc_0x03E14A
 
@@ -6353,7 +6403,9 @@ C - - - - - 0x006497 01:A487: 60        RTS
 
 
 ofs_irq_handler_A488_1E:
+; con_irq_1E
 ofs_irq_handler_A488_21:
+; con_irq_21
 C - - J - - 0x006498 01:A488: A5 89     LDA ram_0089_scanline
 C - - - - - 0x00649A 01:A48A: 8D 03 52  STA $5203
 C - - - - - 0x00649D 01:A48D: AD 8E 07  LDA ram_078E_scroll_X
@@ -6387,6 +6439,7 @@ C - - - - - 0x0064D5 01:A4C5: 4C 3A E1  JMP loc_0x03E14A
 
 
 ofs_irq_handler_A4C8_1F:
+; con_irq_1F
 C - - J - - 0x0064D8 01:A4C8: AD 89 07  LDA ram_0789
 C - - - - - 0x0064DB 01:A4CB: 8D 03 52  STA $5203
 C - - - - - 0x0064DE 01:A4CE: AD 92 07  LDA ram_0792
@@ -6404,6 +6457,7 @@ C - - - - - 0x0064F3 01:A4E3: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A4E6_20:
+; con_irq_20
 C - - J - - 0x0064F6 01:A4E6: AD 92 07  LDA ram_0792
 C - - - - - 0x0064F9 01:A4E9: 18        CLC
 C - - - - - 0x0064FA 01:A4EA: 69 02     ADC #$02
@@ -6420,6 +6474,7 @@ C - - - - - 0x00650E 01:A4FE: 4C 3A E1  JMP loc_0x03E14A
 
 
 ofs_irq_handler_A501_22:
+; con_irq_22
 - - - - - - 0x006511 01:A501: A2 08     LDX #$08
 bra_A503_loop:
 - - - - - - 0x006513 01:A503: 8A        TXA
@@ -6532,6 +6587,7 @@ tbl_A550_chr_banks:
 
 
 ofs_irq_handler_A578_29:
+; con_irq_29
 C - - J - - 0x006588 01:A578: A5 89     LDA ram_0089_scanline
 C - - - - - 0x00658A 01:A57A: 8D 03 52  STA $5203
 C - - - - - 0x00658D 01:A57D: A2 07     LDX #$07
@@ -6555,6 +6611,7 @@ C - - - - - 0x0065AD 01:A59D: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A5A0_2A:
+; con_irq_2A
 C - - J - - 0x0065B0 01:A5A0: AD 8A 07  LDA ram_078A
 C - - - - - 0x0065B3 01:A5A3: 8D 03 52  STA $5203
 C - - - - - 0x0065B6 01:A5A6: A9 55     LDA #$55
@@ -6578,6 +6635,7 @@ C - - - - - 0x0065DF 01:A5CF: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A5D2_2B:
+; con_irq_2B
 C - - J - - 0x0065E2 01:A5D2: AD 8B 07  LDA ram_078B
 C - - - - - 0x0065E5 01:A5D5: 8D 03 52  STA $5203
 C - - - - - 0x0065E8 01:A5D8: A2 0C     LDX #$0C
@@ -6590,6 +6648,7 @@ C - - - - - 0x0065F2 01:A5E2: 4C 3F E1  JMP loc_0x03E14F
 
 
 ofs_irq_handler_A5E5_2C:
+; con_irq_2C
 C - - J - - 0x0065F5 01:A5E5: A2 14     LDX #$14
 C - - - - - 0x0065F7 01:A5E7: 20 01 E0  JSR sub_0x03E011_garbage_loop_X
 C - - - - - 0x0065FA 01:A5EA: A9 44     LDA #$44
@@ -8890,7 +8949,7 @@ C - - - - - 0x007360 01:B350: 60        RTS
 
 
 ofs_024_B351_09:
-C - - J - - 0x007361 01:B351: A9 22     LDA #con_98E4_22
+C - - J - - 0x007361 01:B351: A9 22     LDA #con_98E4_not_complete_try_again
 C - - - - - 0x007363 01:B353: 20 AB B3  JSR sub_B3AB
 C - - - - - 0x007366 01:B356: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x007368 01:B358: D0 F6     BNE bra_B350_RTS
@@ -10041,6 +10100,7 @@ tbl_B986_password_position:
 
 
 _off005_0x0079B6_18_enter_your_name_screen:
+; con_EC77_enter_your_name
 - D 1 - I - 0x0079B6 01:B9A6: 00 20     .word $2000 ; ppu address
 
 - D 1 - I - 0x0079B8 01:B9A8: 8E        .byte $0E + $80   ; write these tiles 0E length
