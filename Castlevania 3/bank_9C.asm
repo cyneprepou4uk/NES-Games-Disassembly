@@ -1348,8 +1348,8 @@ C - - - - - 0x038701 0E:86F1: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x038703 0E:86F3: C9 30     CMP #$30
 C - - - - - 0x038705 0E:86F5: F0 1F     BEQ bra_8716
 bra_86F7:
-C - - - - - 0x038707 0E:86F7: A9 01     LDA #$01
-C - - - - - 0x038709 0E:86F9: 85 65     STA ram_0065
+C - - - - - 0x038707 0E:86F7: A9 01     LDA #$01    ; right
+C - - - - - 0x038709 0E:86F9: 85 65     STA ram_camera_movement_direction
 C - - - - - 0x03870B 0E:86FB: 60        RTS
 bra_86FC:
 C - - - - - 0x03870C 0E:86FC: A5 68     LDA ram_blk_scroll_type
@@ -1361,8 +1361,8 @@ C - - - - - 0x038715 0E:8705: 30 0F     BMI bra_8716
 C - - - - - 0x038717 0E:8707: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x038719 0E:8709: 05 57     ORA ram_cam_pos_hi
 C - - - - - 0x03871B 0E:870B: F0 09     BEQ bra_8716
-C - - - - - 0x03871D 0E:870D: A9 00     LDA #$00
-C - - - - - 0x03871F 0E:870F: 85 65     STA ram_0065
+C - - - - - 0x03871D 0E:870D: A9 00     LDA #$00    ; left
+C - - - - - 0x03871F 0E:870F: 85 65     STA ram_camera_movement_direction
 bra_8711_RTS:
 C - - - - - 0x038721 0E:8711: 60        RTS
 
@@ -1421,8 +1421,8 @@ C - - - - - 0x038764 0E:8754: C5 57     CMP ram_cam_pos_hi
 C - - - - - 0x038766 0E:8756: F0 0A     BEQ bra_8762
 C - - - - - 0x038768 0E:8758: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x03876B 0E:875B: 10 05     BPL bra_8762
-C - - - - - 0x03876D 0E:875D: A9 01     LDA #$01
-C - - - - - 0x03876F 0E:875F: 85 65     STA ram_0065
+C - - - - - 0x03876D 0E:875D: A9 01     LDA #$01    ; right
+C - - - - - 0x03876F 0E:875F: 85 65     STA ram_camera_movement_direction
 C - - - - - 0x038771 0E:8761: 60        RTS
 bra_8762:
 C - - - - - 0x038772 0E:8762: AD C4 04  LDA ram_plr_pos_X_lo
@@ -1436,9 +1436,9 @@ C - - - - - 0x038785 0E:8775: A4 68     LDY ram_blk_scroll_type
 C - - - - - 0x038787 0E:8777: 30 29     BMI bra_87A2_vertical
 ; if horisontal
 C - - - - - 0x038789 0E:8779: C9 18     CMP #$18
-C - - - - - 0x03878B 0E:877B: 90 1A     BCC bra_8797
+C - - - - - 0x03878B 0E:877B: 90 1A     BCC bra_8797_left_corner
 C - - - - - 0x03878D 0E:877D: C9 E9     CMP #$E9
-C - - - - - 0x03878F 0E:877F: B0 1A     BCS bra_879B
+C - - - - - 0x03878F 0E:877F: B0 1A     BCS bra_879B_right_corner
 bra_8781_RTS:
 C - - - - - 0x038791 0E:8781: 60        RTS
 bra_8782:
@@ -1450,17 +1450,18 @@ C - - - - - 0x03879A 0E:878A: F0 D6     BEQ bra_8762
 C - - - - - 0x03879C 0E:878C: AC 38 04  LDY ram_plr_pos_X_hi
 C - - - - - 0x03879F 0E:878F: 88        DEY
 C - - - - - 0x0387A0 0E:8790: 30 D0     BMI bra_8762
-C - - - - - 0x0387A2 0E:8792: A9 00     LDA #$00
-C - - - - - 0x0387A4 0E:8794: 85 65     STA ram_0065
+C - - - - - 0x0387A2 0E:8792: A9 00     LDA #$00    ; left
+C - - - - - 0x0387A4 0E:8794: 85 65     STA ram_camera_movement_direction
 C - - - - - 0x0387A6 0E:8796: 60        RTS
-bra_8797:
+bra_8797_left_corner:
 C - - - - - 0x0387A7 0E:8797: A2 00     LDX #$00
 C - - - - - 0x0387A9 0E:8799: F0 02     BEQ bra_879D    ; jmp
-bra_879B:
+bra_879B_right_corner:
 C - - - - - 0x0387AB 0E:879B: A2 01     LDX #$01
 bra_879D:
-C - - - - - 0x0387AD 0E:879D: 20 9A E6  JSR sub_0x03E6AA
-C - - - - - 0x0387B0 0E:87A0: B0 30     BCS bra_87D2
+C - - - - - 0x0387AD 0E:879D: 20 9A E6  JSR sub_0x03E6AA_check_player_collision_with_doors
+C - - - - - 0x0387B0 0E:87A0: B0 30     BCS bra_87D2_player_is_near_door
+; if player is away from the door
 bra_87A2_vertical:
 C - - - - - 0x0387B2 0E:87A2: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x0387B5 0E:87A5: C9 10     CMP #$10
@@ -1487,12 +1488,13 @@ C - - - - - 0x0387D6 0E:87C6: D0 09     BNE bra_87D1_RTS
 - - - - - - 0x0387E0 0E:87D0: 60        RTS
 bra_87D1_RTS:
 C - - - - - 0x0387E1 0E:87D1: 60        RTS
-bra_87D2:
+bra_87D2_player_is_near_door:
 C - - - - - 0x0387E2 0E:87D2: E0 00     CPX #$00
-C - - - - - 0x0387E4 0E:87D4: F0 04     BEQ bra_87DA
+C - - - - - 0x0387E4 0E:87D4: F0 04     BEQ bra_87DA_left_corner
+; if right corner
 C - - - - - 0x0387E6 0E:87D6: A9 E9     LDA #$E9
 C - - - - - 0x0387E8 0E:87D8: D0 02     BNE bra_87DC    ; jmp
-bra_87DA:
+bra_87DA_left_corner:
 C - - - - - 0x0387EA 0E:87DA: A9 17     LDA #$17
 bra_87DC:
 C - - - - - 0x0387EC 0E:87DC: 8D 38 04  STA ram_plr_pos_X_hi
@@ -1952,8 +1954,8 @@ C - - - - - 0x0389A5 0E:8995: 60        RTS
 
 
 sub_8996:
-C - - - - - 0x0389A6 0E:8996: A5 7E     LDA ram_timer_0xx
-C - - - - - 0x0389A8 0E:8998: 05 7F     ORA ram_timer_x00
+C - - - - - 0x0389A6 0E:8996: A5 7E     LDA ram_blk_timer_0xx
+C - - - - - 0x0389A8 0E:8998: 05 7F     ORA ram_blk_timer_x00
 C - - - - - 0x0389AA 0E:899A: D0 07     BNE bra_89A3_still_have_time
 ; if time is up
 C - - - - - 0x0389AC 0E:899C: 20 98 83  JSR sub_8398_kill_player
@@ -1963,27 +1965,27 @@ C - - - - - 0x0389B2 0E:89A2: 60        RTS
 bra_89A3_still_have_time:
 sub_0x0389B3_display_time:
 ; bzk optimize, timer is always 3 digits, remove calculations for ram_0004_t006_timer_x00_tens
-C - - - - - 0x0389B3 0E:89A3: A5 7E     LDA ram_timer_0xx
+C - - - - - 0x0389B3 0E:89A3: A5 7E     LDA ram_blk_timer_0xx
 C - - - - - 0x0389B5 0E:89A5: 29 0F     AND #$0F
 C - - - - - 0x0389B7 0E:89A7: 85 01     STA ram_0001_t001_timer_0xx_ones
-C - - - - - 0x0389B9 0E:89A9: A5 7E     LDA ram_timer_0xx
+C - - - - - 0x0389B9 0E:89A9: A5 7E     LDA ram_blk_timer_0xx
 C - - - - - 0x0389BB 0E:89AB: 29 F0     AND #$F0
 C - - - - - 0x0389BD 0E:89AD: 85 02     STA ram_0002_t016_timer_0xx_tens
-C - - - - - 0x0389BF 0E:89AF: A5 7F     LDA ram_timer_x00
+C - - - - - 0x0389BF 0E:89AF: A5 7F     LDA ram_blk_timer_x00
 C - - - - - 0x0389C1 0E:89B1: 29 0F     AND #$0F
 C - - - - - 0x0389C3 0E:89B3: 85 03     STA ram_0003_t002_timer_x00_ones
-C - - - - - 0x0389C5 0E:89B5: A5 7F     LDA ram_timer_x00
+C - - - - - 0x0389C5 0E:89B5: A5 7F     LDA ram_blk_timer_x00
 C - - - - - 0x0389C7 0E:89B7: 29 F0     AND #$F0
 C - - - - - 0x0389C9 0E:89B9: 85 04     STA ram_0004_t006_timer_x00_tens
 C - - - - - 0x0389CB 0E:89BB: 20 CF 89  JSR sub_89CF
 C - - - - - 0x0389CE 0E:89BE: A5 01     LDA ram_0001_t001_timer_0xx_ones
 C - - - - - 0x0389D0 0E:89C0: 29 0F     AND #$0F
 C - - - - - 0x0389D2 0E:89C2: 05 02     ORA ram_0002_t016_timer_0xx_tens
-C - - - - - 0x0389D4 0E:89C4: 85 7E     STA ram_timer_0xx
+C - - - - - 0x0389D4 0E:89C4: 85 7E     STA ram_blk_timer_0xx
 C - - - - - 0x0389D6 0E:89C6: A5 03     LDA ram_0003_t002_timer_x00_ones
 C - - - - - 0x0389D8 0E:89C8: 29 0F     AND #$0F
 C - - - - - 0x0389DA 0E:89CA: 05 04     ORA ram_0004_t006_timer_x00_tens
-C - - - - - 0x0389DC 0E:89CC: 85 7F     STA ram_timer_x00
+C - - - - - 0x0389DC 0E:89CC: 85 7F     STA ram_blk_timer_x00
 C - - - - - 0x0389DE 0E:89CE: 60        RTS
 
 
@@ -2048,9 +2050,9 @@ C - - - - - 0x038A30 0E:8A20: 60        RTS
 
 
 sub_0x038A31:
-C - - - - - 0x038A31 0E:8A21: A5 7F     LDA ram_timer_x00
+C - - - - - 0x038A31 0E:8A21: A5 7F     LDA ram_blk_timer_x00
 C - - - - - 0x038A33 0E:8A23: D0 11     BNE bra_8A36
-C - - - - - 0x038A35 0E:8A25: A5 7E     LDA ram_timer_0xx
+C - - - - - 0x038A35 0E:8A25: A5 7E     LDA ram_blk_timer_0xx
 C - - - - - 0x038A37 0E:8A27: C9 20     CMP #$20
 C - - - - - 0x038A39 0E:8A29: B0 0B     BCS bra_8A36
 C - - - - - 0x038A3B 0E:8A2B: A5 1A     LDA ram_frm_cnt
@@ -2108,8 +2110,8 @@ C - - - - - 0x038A99 0E:8A89: 69 03     ADC #$03
 bra_8A8B:
 C - - - - - 0x038A9B 0E:8A8B: 85 D0     STA ram_00D0
 bra_8A8D_horisontal:
-C - - - - - 0x038A9D 0E:8A8D: A9 02     LDA #$02
-C - - - - - 0x038A9F 0E:8A8F: 85 65     STA ram_0065
+C - - - - - 0x038A9D 0E:8A8D: A9 02     LDA #$02    ; not moving
+C - - - - - 0x038A9F 0E:8A8F: 85 65     STA ram_camera_movement_direction
 C - - - - - 0x038AA1 0E:8A91: AC 4E 05  LDY ram_plr_id
 C - - - - - 0x038AA4 0E:8A94: F0 0C     BEQ bra_8AA2_Trevor
 C - - - - - 0x038AA6 0E:8A96: 88        DEY

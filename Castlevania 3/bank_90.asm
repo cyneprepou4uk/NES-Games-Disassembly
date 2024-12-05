@@ -59,6 +59,7 @@ _off044_0x020011_00:
 off_8009_00_00:
 - - - - - - 0x020019 08:8009: 00        .byte $00   ; 
 - D 0 - I - 0x02001A 08:800A: AA 80     .word _off047_80AA_00_00_00
+; stairs transition data (none for this blk)
 
 
 
@@ -68,14 +69,19 @@ off_800C_00_01:
 - D 0 - I - 0x02001F 08:800F: 29 80     .word _off047_8029_00_01_01
 - D 0 - I - 0x020021 08:8011: CD 81     .word _off047_81CD_00_01_02
 - D 0 - I - 0x020023 08:8013: 6C 81     .word _off047_816C_00_01_03
-- - - - - - 0x020025 08:8015: E0        .byte $E0   ; 
-- D 0 - I - 0x020026 08:8016: 81        .byte $81   ; 
-- - - - - - 0x020027 08:8017: 00        .byte $00   ; 
-- D 0 - I - 0x020028 08:8018: 30        .byte $30   ; 
-- - - - - - 0x020029 08:8019: E0        .byte $E0   ; 
-- - - - - - 0x02002A 08:801A: 01        .byte $01   ; 
-- D 0 - I - 0x02002B 08:801B: D0        .byte $D0   ; 
-- - - - - - 0x02002C 08:801C: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x020025 08:8015: E0        .byte $E0   ; up
+- D 0 - I - 0x020026 08:8016: 81        .byte $80 + $01   ; down
+; 01 
+- - - - - - 0x020027 08:8017: 00        .byte $00   ; up
+- D 0 - I - 0x020028 08:8018: 30        .byte $03 * $10 + $00   ; down
+; 02 
+- - - - - - 0x020029 08:8019: E0        .byte $E0   ; up
+- - - - - - 0x02002A 08:801A: 01        .byte $01   ; down
+; 03 
+- D 0 - I - 0x02002B 08:801B: D0        .byte con_D75A_D0   ; up
+- - - - - - 0x02002C 08:801C: E0        .byte $E0   ; down
 
 
 
@@ -83,16 +89,20 @@ off_801D_00_02:
 - D 0 - I - 0x02002D 08:801D: 01        .byte $01   ; 
 - D 0 - I - 0x02002E 08:801E: EF 82     .word _off047_82EF_00_02_00
 - D 0 - I - 0x020030 08:8020: 5E 82     .word _off047_825E_00_02_01
-- - - - - - 0x020032 08:8022: E0        .byte $E0   ; 
-- - - - - - 0x020033 08:8023: 02        .byte $02   ; 
-- D 0 - I - 0x020034 08:8024: FE        .byte $FE   ; 
-- - - - - - 0x020035 08:8025: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x020032 08:8022: E0        .byte $E0   ; up
+- - - - - - 0x020033 08:8023: 02        .byte $02   ; down
+; 01 
+- D 0 - I - 0x020034 08:8024: FE        .byte $FE   ; up
+- - - - - - 0x020035 08:8025: E0        .byte $E0   ; down
 
 
 
 off_8026_00_03:
 - - - - - - 0x020036 08:8026: 00        .byte $00   ; 
 - D 0 - I - 0x020037 08:8027: 80 83     .word _off047_8380_00_03_00
+; stairs transition data (none for this blk)
 
 
 
@@ -1025,12 +1035,16 @@ off_8DEE_01_00:
 - D 0 - I - 0x020DFF 08:8DEF: 3C 8E     .word _off047_8E3C_01_00_00
 - D 0 - I - 0x020E01 08:8DF1: 26 92     .word _off047_9226_01_00_01
 - D 0 - I - 0x020E03 08:8DF3: 64 91     .word _off047_9164_01_00_02
-- - - - - - 0x020E05 08:8DF5: E0        .byte $E0   ; 
-- D 0 - I - 0x020E06 08:8DF6: 11        .byte $11   ; 
-- - - - - - 0x020E07 08:8DF7: 80        .byte $80   ; 
-- D 0 - I - 0x020E08 08:8DF8: 00        .byte $00   ; 
-- - - - - - 0x020E09 08:8DF9: 00        .byte $00   ; 
-- - - - - - 0x020E0A 08:8DFA: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x020E05 08:8DF5: E0        .byte $E0   ; up
+- D 0 - I - 0x020E06 08:8DF6: 11        .byte $01 * $10 + $01   ; down
+; 01 
+- - - - - - 0x020E07 08:8DF7: 80        .byte $80 + $00   ; up
+- D 0 - I - 0x020E08 08:8DF8: 00        .byte $00   ; down
+; 02 
+- - - - - - 0x020E09 08:8DF9: 00        .byte $00   ; up
+- - - - - - 0x020E0A 08:8DFA: E0        .byte $E0   ; down
 
 
 
@@ -1039,12 +1053,16 @@ off_8DFB_01_01:
 - D 0 - I - 0x020E0C 08:8DFC: C5 91     .word _off047_91C5_01_01_00
 - D 0 - I - 0x020E0E 08:8DFE: FD 8E     .word _off047_8EFD_01_01_01
 - D 0 - I - 0x020E10 08:8E00: 02 91     .word _off047_9102_01_01_02
-- - - - - - 0x020E12 08:8E02: E0        .byte $E0   ; 
-- D 0 - I - 0x020E13 08:8E03: 81        .byte $81   ; 
-- - - - - - 0x020E14 08:8E04: 00        .byte $00   ; 
-- D 0 - I - 0x020E15 08:8E05: 20        .byte $20   ; 
-- - - - - - 0x020E16 08:8E06: 81        .byte $81   ; 
-- - - - - - 0x020E17 08:8E07: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x020E12 08:8E02: E0        .byte $E0   ; up
+- D 0 - I - 0x020E13 08:8E03: 81        .byte $80 + $01   ; down
+; 01 
+- - - - - - 0x020E14 08:8E04: 00        .byte $00   ; up
+- D 0 - I - 0x020E15 08:8E05: 20        .byte $02 * $10 + $00   ; down
+; 02 
+- - - - - - 0x020E16 08:8E06: 81        .byte $80 + $01   ; up
+- - - - - - 0x020E17 08:8E07: E0        .byte $E0   ; down
 
 
 
@@ -1053,12 +1071,16 @@ off_8E08_01_02:
 - D 0 - I - 0x020E19 08:8E09: 33 91     .word _off047_9133_01_02_00
 - D 0 - I - 0x020E1B 08:8E0B: 7E 8F     .word _off047_8F7E_01_02_01
 - D 0 - I - 0x020E1D 08:8E0D: 3F 90     .word _off047_903F_01_02_02
-- - - - - - 0x020E1F 08:8E0F: E0        .byte $E0   ; 
-- D 0 - I - 0x020E20 08:8E10: 81        .byte $81   ; 
-- - - - - - 0x020E21 08:8E11: 00        .byte $00   ; 
-- D 0 - I - 0x020E22 08:8E12: 21        .byte $21   ; 
-- D 0 - I - 0x020E23 08:8E13: 81        .byte $81   ; 
-- - - - - - 0x020E24 08:8E14: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x020E1F 08:8E0F: E0        .byte $E0   ; up
+- D 0 - I - 0x020E20 08:8E10: 81        .byte $80 + $01   ; down
+; 01 
+- - - - - - 0x020E21 08:8E11: 00        .byte $00   ; up
+- D 0 - I - 0x020E22 08:8E12: 21        .byte $02 * $10 + $01   ; down
+; 02 
+- D 0 - I - 0x020E23 08:8E13: 81        .byte $80 + $01   ; up
+- - - - - - 0x020E24 08:8E14: E0        .byte $E0   ; down
 
 
 
@@ -1067,12 +1089,16 @@ off_8E15_01_03:
 - D 0 - I - 0x020E26 08:8E16: D1 90     .word _off047_90D1_01_03_00
 - D 0 - I - 0x020E28 08:8E18: 7E 8F     .word _off047_8F7E_01_03_01
 - D 0 - I - 0x020E2A 08:8E1A: 3F 90     .word _off047_903F_01_03_02
-- - - - - - 0x020E2C 08:8E1C: E0        .byte $E0   ; 
-- - - - - - 0x020E2D 08:8E1D: 81        .byte $81   ; 
-- D 0 - I - 0x020E2E 08:8E1E: 00        .byte $00   ; 
-- - - - - - 0x020E2F 08:8E1F: 21        .byte $21   ; 
-- D 0 - I - 0x020E30 08:8E20: 81        .byte $81   ; 
-- - - - - - 0x020E31 08:8E21: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x020E2C 08:8E1C: E0        .byte $E0   ; up
+- - - - - - 0x020E2D 08:8E1D: 81        .byte $80 + $01   ; down
+; 01 
+- D 0 - I - 0x020E2E 08:8E1E: 00        .byte $00 * $10 + $00   ; up
+- - - - - - 0x020E2F 08:8E1F: 21        .byte $21   ; down
+; 02 
+- D 0 - I - 0x020E30 08:8E20: 81        .byte $80 + $01   ; up
+- - - - - - 0x020E31 08:8E21: E0        .byte $E0   ; down
 
 
 
@@ -1081,12 +1107,16 @@ off_8E22_01_04:
 - D 0 - I - 0x020E33 08:8E23: E8 92     .word _off047_92E8_01_04_00
 - D 0 - I - 0x020E35 08:8E25: FD 8E     .word _off047_8EFD_01_04_01
 - D 0 - I - 0x020E37 08:8E27: A0 90     .word _off047_90A0_01_04_02
-- - - - - - 0x020E39 08:8E29: E0        .byte $E0   ; 
-- - - - - - 0x020E3A 08:8E2A: 81        .byte $81   ; 
-- D 0 - I - 0x020E3B 08:8E2B: 00        .byte $00   ; 
-- - - - - - 0x020E3C 08:8E2C: 20        .byte $20   ; 
-- D 0 - I - 0x020E3D 08:8E2D: 81        .byte $81   ; 
-- - - - - - 0x020E3E 08:8E2E: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x020E39 08:8E29: E0        .byte $E0   ; up
+- - - - - - 0x020E3A 08:8E2A: 81        .byte $80 + $01   ; down
+; 01 
+- D 0 - I - 0x020E3B 08:8E2B: 00        .byte $00 * $10 + $00   ; up
+- - - - - - 0x020E3C 08:8E2C: 20        .byte $20   ; down
+; 02 
+- D 0 - I - 0x020E3D 08:8E2D: 81        .byte $80 + $01   ; up
+- - - - - - 0x020E3E 08:8E2E: E0        .byte $E0   ; down
 
 
 
@@ -1095,12 +1125,16 @@ off_8E2F_01_05:
 - D 0 - I - 0x020E40 08:8E30: 3C 8E     .word _off047_8E3C_01_05_00
 - D 0 - I - 0x020E42 08:8E32: 26 92     .word _off047_9226_01_05_01
 - D 0 - I - 0x020E44 08:8E34: 87 92     .word _off047_9287_01_05_02
-- - - - - - 0x020E46 08:8E36: E0        .byte $E0   ; 
-- - - - - - 0x020E47 08:8E37: 11        .byte $11   ; 
-- D 0 - I - 0x020E48 08:8E38: 80        .byte $80   ; 
-- - - - - - 0x020E49 08:8E39: 00        .byte $00   ; 
-- D 0 - I - 0x020E4A 08:8E3A: 00        .byte $00   ; 
-- - - - - - 0x020E4B 08:8E3B: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x020E46 08:8E36: E0        .byte $E0   ; up
+- - - - - - 0x020E47 08:8E37: 11        .byte $11   ; down
+; 01 
+- D 0 - I - 0x020E48 08:8E38: 80        .byte $80 + $00   ; up
+- - - - - - 0x020E49 08:8E39: 00        .byte $00   ; down
+; 02 
+- D 0 - I - 0x020E4A 08:8E3A: 00        .byte $00   ; up
+- - - - - - 0x020E4B 08:8E3B: E0        .byte $E0   ; down
 
 
 
@@ -1816,16 +1850,20 @@ off_99B9_02_00:
 - D 0 - I - 0x0219C9 08:99B9: 01        .byte $01   ; 
 - D 0 - I - 0x0219CA 08:99BA: 57 9C     .word _off047_9C57_02_00_00
 - D 0 - I - 0x0219CC 08:99BC: 05 9B     .word _off047_9B05_02_00_01
-- - - - - - 0x0219CE 08:99BE: E0        .byte $E0   ; 
-- D 0 - I - 0x0219CF 08:99BF: 00        .byte $00   ; 
-- - - - - - 0x0219D0 08:99C0: 00        .byte $00   ; 
-- D 0 - I - 0x0219D1 08:99C1: D1        .byte $D1   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x0219CE 08:99BE: E0        .byte $E0   ; up
+- D 0 - I - 0x0219CF 08:99BF: 00        .byte $00   ; down
+; 01 
+- - - - - - 0x0219D0 08:99C0: 00        .byte $00   ; up
+- D 0 - I - 0x0219D1 08:99C1: D1        .byte con_D75A_D1   ; down
 
 
 
 off_99C2_02_01:
 - - - - - - 0x0219D2 08:99C2: 00        .byte $00   ; 
 - D 0 - I - 0x0219D3 08:99C3: E4 99     .word _off047_99E4_02_01_00
+; stairs transition data (none for this blk)
 
 
 
@@ -1833,10 +1871,13 @@ off_99C5_02_02:
 - D 0 - I - 0x0219D5 08:99C5: 01        .byte $01   ; 
 - D 0 - I - 0x0219D6 08:99C6: E8 9C     .word _off047_9CE8_02_02_00
 - D 0 - I - 0x0219D8 08:99C8: 96 9B     .word _off047_9B96_02_02_01
-- - - - - - 0x0219DA 08:99CA: E0        .byte $E0   ; 
-- D 0 - I - 0x0219DB 08:99CB: 00        .byte $00   ; 
-- D 0 - I - 0x0219DC 08:99CC: 00        .byte $00   ; 
-- - - - - - 0x0219DD 08:99CD: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x0219DA 08:99CA: E0        .byte $E0   ; up
+- D 0 - I - 0x0219DB 08:99CB: 00        .byte $00   ; down
+; 01 
+- D 0 - I - 0x0219DC 08:99CC: 00        .byte $00   ; up
+- - - - - - 0x0219DD 08:99CD: E0        .byte $E0   ; down
 
 
 
@@ -1845,12 +1886,16 @@ off_99CE_02_03:
 - D 0 - I - 0x0219DF 08:99CF: 5C 9F     .word _off047_9F5C_02_03_00
 - D 0 - I - 0x0219E1 08:99D1: DA 9D     .word _off047_9DDA_02_03_01
 - D 0 - I - 0x0219E3 08:99D3: A9 9D     .word _off047_9DA9_02_03_02
-- - - - - - 0x0219E5 08:99D5: E0        .byte $E0   ; 
-- - - - - - 0x0219E6 08:99D6: 03        .byte $03   ; 
-- D 0 - I - 0x0219E7 08:99D7: FD        .byte $FD   ; 
-- - - - - - 0x0219E8 08:99D8: 00        .byte $00   ; 
-- D 0 - I - 0x0219E9 08:99D9: 00        .byte $00   ; 
-- - - - - - 0x0219EA 08:99DA: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x0219E5 08:99D5: E0        .byte $E0   ; up
+- - - - - - 0x0219E6 08:99D6: 03        .byte $03   ; down
+; 01 
+- D 0 - I - 0x0219E7 08:99D7: FD        .byte $FD   ; up
+- - - - - - 0x0219E8 08:99D8: 00        .byte $00   ; down
+; 02 
+- D 0 - I - 0x0219E9 08:99D9: 00        .byte $00   ; up
+- - - - - - 0x0219EA 08:99DA: E0        .byte $E0   ; down
 
 
 
@@ -1858,10 +1903,13 @@ off_99DB_02_04:
 - D 0 - I - 0x0219EB 08:99DB: 01        .byte $01   ; 
 - D 0 - I - 0x0219EC 08:99DC: 8D 9F     .word _off047_9F8D_02_04_00
 - D 0 - I - 0x0219EE 08:99DE: 9B 9E     .word _off047_9E9B_02_04_01
-- - - - - - 0x0219F0 08:99E0: E0        .byte $E0   ; 
-- - - - - - 0x0219F1 08:99E1: 00        .byte $00   ; 
-- D 0 - I - 0x0219F2 08:99E2: 00        .byte $00   ; 
-- - - - - - 0x0219F3 08:99E3: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x0219F0 08:99E0: E0        .byte $E0   ; up
+- - - - - - 0x0219F1 08:99E1: 00        .byte $00   ; down
+; 01 
+- D 0 - I - 0x0219F2 08:99E2: 00        .byte $00   ; up
+- - - - - - 0x0219F3 08:99E3: E0        .byte $E0   ; down
 
 
 
@@ -2592,12 +2640,16 @@ off_A68C_03_00:
 - D 1 - I - 0x02269D 08:A68D: 06 A9     .word _off047_A906_03_00_00
 - D 1 - I - 0x02269F 08:A68F: 83 A7     .word _off047_A783_03_00_01
 - D 1 - I - 0x0226A1 08:A691: C1 A6     .word _off047_A6C1_03_00_02
-- - - - - - 0x0226A3 08:A693: E0        .byte $E0   ; 
-- - - - - - 0x0226A4 08:A694: 01        .byte $01   ; 
-- D 1 - I - 0x0226A5 08:A695: FF        .byte $FF   ; 
-- - - - - - 0x0226A6 08:A696: 01        .byte $01   ; 
-- D 1 - I - 0x0226A7 08:A697: FF        .byte $FF   ; 
-- - - - - - 0x0226A8 08:A698: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x0226A3 08:A693: E0        .byte $E0   ; up
+- - - - - - 0x0226A4 08:A694: 01        .byte $01   ; down
+; 01 
+- D 1 - I - 0x0226A5 08:A695: FF        .byte $FF   ; up
+- - - - - - 0x0226A6 08:A696: 01        .byte $01   ; down
+; 02 
+- D 1 - I - 0x0226A7 08:A697: FF        .byte $FF   ; up
+- - - - - - 0x0226A8 08:A698: E0        .byte $E0   ; down
 
 
 
@@ -2605,10 +2657,13 @@ off_A699_03_01:
 - D 1 - I - 0x0226A9 08:A699: 01        .byte $01   ; 
 - D 1 - I - 0x0226AA 08:A69A: 67 A9     .word _off047_A967_03_01_00
 - D 1 - I - 0x0226AC 08:A69C: A5 A8     .word _off047_A8A5_03_01_01
-- - - - - - 0x0226AE 08:A69E: E0        .byte $E0   ; 
-- D 1 - I - 0x0226AF 08:A69F: FD        .byte $FD   ; 
-- - - - - - 0x0226B0 08:A6A0: 03        .byte $03   ; 
-- - - - - - 0x0226B1 08:A6A1: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x0226AE 08:A69E: E0        .byte $E0   ; up
+- D 1 - I - 0x0226AF 08:A69F: FD        .byte $FD   ; down
+; 01 
+- - - - - - 0x0226B0 08:A6A0: 03        .byte $03   ; up
+- - - - - - 0x0226B1 08:A6A1: E0        .byte $E0   ; down
 
 
 
@@ -2616,10 +2671,13 @@ off_A6A2_03_02:
 - D 1 - I - 0x0226B2 08:A6A2: 01        .byte $01   ; 
 - D 1 - I - 0x0226B3 08:A6A3: E4 A7     .word _off047_A7E4_03_02_00
 - D 1 - I - 0x0226B5 08:A6A5: 22 A7     .word _off047_A722_03_02_01
-- - - - - - 0x0226B7 08:A6A7: E0        .byte $E0   ; 
-- D 1 - I - 0x0226B8 08:A6A8: 00        .byte $00   ; 
-- - - - - - 0x0226B9 08:A6A9: 00        .byte $00   ; 
-- - - - - - 0x0226BA 08:A6AA: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x0226B7 08:A6A7: E0        .byte $E0   ; up
+- D 1 - I - 0x0226B8 08:A6A8: 00        .byte $00   ; down
+; 01 
+- - - - - - 0x0226B9 08:A6A9: 00        .byte $00   ; up
+- - - - - - 0x0226BA 08:A6AA: E0        .byte $E0   ; down
 
 
 
@@ -2627,10 +2685,13 @@ off_A6AB_03_03:
 - D 1 - I - 0x0226BB 08:A6AB: 01        .byte $01   ; 
 - D 1 - I - 0x0226BC 08:A6AC: 1A AB     .word _off047_AB1A_03_03_00
 - D 1 - I - 0x0226BE 08:A6AE: 58 AA     .word _off047_AA58_03_03_01
-- - - - - - 0x0226C0 08:A6B0: E0        .byte $E0   ; 
-- D 1 - I - 0x0226C1 08:A6B1: 00        .byte $00   ; 
-- - - - - - 0x0226C2 08:A6B2: 00        .byte $00   ; 
-- - - - - - 0x0226C3 08:A6B3: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x0226C0 08:A6B0: E0        .byte $E0   ; up
+- D 1 - I - 0x0226C1 08:A6B1: 00        .byte $00   ; down
+; 01 
+- - - - - - 0x0226C2 08:A6B2: 00        .byte $00   ; up
+- - - - - - 0x0226C3 08:A6B3: E0        .byte $E0   ; down
 
 
 
@@ -2639,12 +2700,16 @@ off_A6B4_03_04:
 - D 1 - I - 0x0226C5 08:A6B5: 3C AC     .word _off047_AC3C_03_04_00
 - D 1 - I - 0x0226C7 08:A6B7: AB AB     .word _off047_ABAB_03_04_01
 - D 1 - I - 0x0226C9 08:A6B9: E9 AA     .word _off047_AAE9_03_04_02
-- - - - - - 0x0226CB 08:A6BB: E0        .byte $E0   ; 
-- D 1 - I - 0x0226CC 08:A6BC: 01        .byte $01   ; 
-- D 1 - I - 0x0226CD 08:A6BD: FF        .byte $FF   ; 
-- - - - - - 0x0226CE 08:A6BE: 00        .byte $00   ; 
-- D 1 - I - 0x0226CF 08:A6BF: 00        .byte $00   ; 
-- - - - - - 0x0226D0 08:A6C0: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x0226CB 08:A6BB: E0        .byte $E0   ; up
+- D 1 - I - 0x0226CC 08:A6BC: 01        .byte $01   ; down
+; 01 
+- D 1 - I - 0x0226CD 08:A6BD: FF        .byte $FF   ; up
+- - - - - - 0x0226CE 08:A6BE: 00        .byte $00   ; down
+; 02 
+- D 1 - I - 0x0226CF 08:A6BF: 00        .byte $00   ; up
+- - - - - - 0x0226D0 08:A6C0: E0        .byte $E0   ; down
 
 
 
@@ -3416,12 +3481,16 @@ off_B317_04_00:
 - D 1 - I - 0x023328 08:B318: C6 B6     .word _off047_B6C6_04_00_00
 - D 1 - I - 0x02332A 08:B31A: FF B3     .word _off047_B3FF_04_00_01
 - D 1 - I - 0x02332C 08:B31C: 64 B6     .word _off047_B664_04_00_02
-- - - - - - 0x02332E 08:B31E: E0        .byte $E0   ; 
-- D 1 - I - 0x02332F 08:B31F: 81        .byte $81   ; 
-- - - - - - 0x023330 08:B320: 01        .byte $01   ; 
-- D 1 - I - 0x023331 08:B321: 20        .byte $20   ; 
-- - - - - - 0x023332 08:B322: 81        .byte $81   ; 
-- - - - - - 0x023333 08:B323: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x02332E 08:B31E: E0        .byte $E0   ; up
+- D 1 - I - 0x02332F 08:B31F: 81        .byte $80 + $01   ; down
+; 01 
+- - - - - - 0x023330 08:B320: 01        .byte $01   ; up
+- D 1 - I - 0x023331 08:B321: 20        .byte $02 * $10 + $00   ; down
+; 02 
+- - - - - - 0x023332 08:B322: 81        .byte $80 + $01   ; up
+- - - - - - 0x023333 08:B323: E0        .byte $E0   ; down
 
 
 
@@ -3430,12 +3499,16 @@ off_B324_04_01:
 - D 1 - I - 0x023335 08:B325: 95 B6     .word _off047_B695_04_01_00
 - D 1 - I - 0x023337 08:B327: 3E B3     .word _off047_B33E_04_01_01
 - D 1 - I - 0x023339 08:B329: 72 B5     .word _off047_B572_04_01_02
-- - - - - - 0x02333B 08:B32B: E0        .byte $E0   ; 
-- D 1 - I - 0x02333C 08:B32C: 81        .byte $81   ; 
-- - - - - - 0x02333D 08:B32D: 00        .byte $00   ; 
-- D 1 - I - 0x02333E 08:B32E: 21        .byte $21   ; 
-- - - - - - 0x02333F 08:B32F: 81        .byte $81   ; 
-- - - - - - 0x023340 08:B330: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x02333B 08:B32B: E0        .byte $E0   ; up
+- D 1 - I - 0x02333C 08:B32C: 81        .byte $80 + $01   ; down
+; 01 
+- - - - - - 0x02333D 08:B32D: 00        .byte $00   ; up
+- D 1 - I - 0x02333E 08:B32E: 21        .byte $02 * $10 + $01   ; down
+; 02 
+- - - - - - 0x02333F 08:B32F: 81        .byte $80 + $01   ; up
+- - - - - - 0x023340 08:B330: E0        .byte $E0   ; down
 
 
 
@@ -3444,12 +3517,16 @@ off_B331_04_02:
 - D 1 - I - 0x023342 08:B332: 41 B5     .word _off047_B541_04_02_00
 - D 1 - I - 0x023344 08:B334: C0 B4     .word _off047_B4C0_04_02_01
 - D 1 - I - 0x023346 08:B336: D3 B5     .word _off047_B5D3_04_02_02
-- - - - - - 0x023348 08:B338: E0        .byte $E0   ; 
-- D 1 - I - 0x023349 08:B339: 81        .byte $81   ; 
-- - - - - - 0x02334A 08:B33A: 00        .byte $00   ; 
-- D 1 - I - 0x02334B 08:B33B: 20        .byte $20   ; 
-- - - - - - 0x02334C 08:B33C: 81        .byte $81   ; 
-- - - - - - 0x02334D 08:B33D: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x023348 08:B338: E0        .byte $E0   ; up
+- D 1 - I - 0x023349 08:B339: 81        .byte $80 + $01   ; down
+; 01 
+- - - - - - 0x02334A 08:B33A: 00        .byte $00   ; up
+- D 1 - I - 0x02334B 08:B33B: 20        .byte $02 * $10 + $00   ; down
+; 02 
+- - - - - - 0x02334C 08:B33C: 81        .byte $80 + $01   ; up
+- - - - - - 0x02334D 08:B33D: E0        .byte $E0   ; down
 
 
 

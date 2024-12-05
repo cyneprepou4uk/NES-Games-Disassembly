@@ -157,11 +157,11 @@ C - - - - - 0x03C99D 0F:C98D: 85 0A     STA ram_000A_t028_spd_Y_lo
 C - - - - - 0x03C99F 0F:C98F: B9 31 CA  LDA tbl_CA30 + $01,Y
 C - - - - - 0x03C9A2 0F:C992: 85 0B     STA ram_000B_t009_spd_Y_hi
 C - - - - - 0x03C9A4 0F:C994: B9 32 CA  LDA tbl_CA30 + $02,Y
-C - - - - - 0x03C9A7 0F:C997: 85 65     STA ram_0065
+C - - - - - 0x03C9A7 0F:C997: 85 65     STA ram_camera_movement_direction
 C - - - - - 0x03C9A9 0F:C999: 60        RTS
 bra_C99A:
-C - - - - - 0x03C9AA 0F:C99A: A9 02     LDA #$02
-C - - - - - 0x03C9AC 0F:C99C: 85 65     STA ram_0065
+C - - - - - 0x03C9AA 0F:C99A: A9 02     LDA #$02    ; not moving
+C - - - - - 0x03C9AC 0F:C99C: 85 65     STA ram_camera_movement_direction
 C - - - - - 0x03C9AE 0F:C99E: A9 00     LDA #$00
 C - - - - - 0x03C9B0 0F:C9A0: 85 0B     STA ram_000B_t009_spd_Y_hi
 ; bzk bug? ram_000A_t028_spd_Y_lo is not specified
@@ -218,10 +218,10 @@ C - - - - - 0x03CA0D 0F:C9FD: D0 05     BNE bra_CA04
 C - - - - - 0x03CA0F 0F:C9FF: A9 10     LDA #$10
 C - - - - - 0x03CA11 0F:CA01: 20 CC C9  JSR sub_C9CC
 bra_CA04:
-C - - - - - 0x03CA14 0F:CA04: A2 00     LDX #$00
+C - - - - - 0x03CA14 0F:CA04: A2 00     LDX #$00    ; left
 C - - - - - 0x03CA16 0F:CA06: A9 F8     LDA #$F8    ; > F800
 loc_CA08:
-C D 2 - - - 0x03CA18 0F:CA08: 86 65     STX ram_0065
+C D 2 - - - 0x03CA18 0F:CA08: 86 65     STX ram_camera_movement_direction
 C - - - - - 0x03CA1A 0F:CA0A: 85 0B     STA ram_000B_t009_spd_Y_hi
 C - - - - - 0x03CA1C 0F:CA0C: A9 00     LDA #$00
 C - - - - - 0x03CA1E 0F:CA0E: 85 0A     STA ram_000A_t028_spd_Y_lo
@@ -247,30 +247,30 @@ C - - - - - 0x03CA3D 0F:CA2D: 4C 08 CA  JMP loc_CA08
 tbl_CA30:
 ; 00 
 - D 2 - - - 0x03CA40 0F:CA30: C0 FF     .word $FFC0 ; spd_Y
-- D 2 - - - 0x03CA42 0F:CA32: 00        .byte $00   ; 
+- D 2 - - - 0x03CA42 0F:CA32: 00        .byte $00   ; camera movement direction (left)
 ; 01 
 - D 2 - - - 0x03CA43 0F:CA33: 40 00     .word $0040 ; spd_Y
-- D 2 - - - 0x03CA45 0F:CA35: 01        .byte $01   ; 
+- D 2 - - - 0x03CA45 0F:CA35: 01        .byte $01   ; camera movement direction (right)
 
 
 
 tbl_CA36:
 ; 00 
 - D 2 - - - 0x03CA46 0F:CA36: 01        .byte $01   ; spd_Y_hi
-- D 2 - - - 0x03CA47 0F:CA37: 01        .byte $01   ; 
+- D 2 - - - 0x03CA47 0F:CA37: 01        .byte $01   ; camera movement direction (right)
 ; 01 
 - D 2 - - - 0x03CA48 0F:CA38: FF        .byte $FF   ; spd_Y_hi
-- D 2 - - - 0x03CA49 0F:CA39: 00        .byte $00   ; 
+- D 2 - - - 0x03CA49 0F:CA39: 00        .byte $00   ; camera movement direction (left)
 
 
 
 tbl_CA3A:
 ; 00 
-- D 2 - - - 0x03CA4A 0F:CA3A: 02        .byte $02   ; 
-- D 2 - - - 0x03CA4B 0F:CA3B: 01        .byte $01   ; 
+- D 2 - - - 0x03CA4A 0F:CA3A: 02        .byte $02   ; spd_Y_hi
+- D 2 - - - 0x03CA4B 0F:CA3B: 01        .byte $01   ; camera movement direction (right)
 ; 01 
-- D 2 - - - 0x03CA4C 0F:CA3C: FE        .byte $FE   ; 
-- D 2 - - - 0x03CA4D 0F:CA3D: 00        .byte $00   ; 
+- D 2 - - - 0x03CA4C 0F:CA3C: FE        .byte $FE   ; spd_Y_hi
+- D 2 - - - 0x03CA4D 0F:CA3D: 00        .byte $00   ; camera movement direction (left)
 
 
 
@@ -282,11 +282,11 @@ sub_CA3E:
 C - - - - - 0x03CA4E 0F:CA3E: 20 5A C9  JSR sub_C95A_calculate_camera_speed
 C - - - - - 0x03CA51 0F:CA41: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x03CA53 0F:CA43: 85 08     STA ram_0008_t037_copy_cam_pos_lo
-C - - - - - 0x03CA55 0F:CA45: A4 65     LDY ram_0065
-C - - - - - 0x03CA57 0F:CA47: F0 49     BEQ bra_CA92_00
+C - - - - - 0x03CA55 0F:CA45: A4 65     LDY ram_camera_movement_direction
+C - - - - - 0x03CA57 0F:CA47: F0 49     BEQ bra_CA92_00_left
 C - - - - - 0x03CA59 0F:CA49: 88        DEY
-C - - - - - 0x03CA5A 0F:CA4A: F0 09     BEQ bra_CA55_01
-; 02
+C - - - - - 0x03CA5A 0F:CA4A: F0 09     BEQ bra_CA55_01_right
+; 02 if not moving
 bra_CA4C:
 C - - - - - 0x03CA5C 0F:CA4C: 38        SEC
 C - - - - - 0x03CA5D 0F:CA4D: A5 08     LDA ram_0008_t037_copy_cam_pos_lo
@@ -294,7 +294,7 @@ C - - - - - 0x03CA5F 0F:CA4F: E5 56     SBC ram_cam_pos_lo
 C - - - - - 0x03CA61 0F:CA51: 85 6E     STA ram_006E_cam_speed
 C - - - - - 0x03CA63 0F:CA53: 18        CLC
 C - - - - - 0x03CA64 0F:CA54: 60        RTS
-bra_CA55_01:
+bra_CA55_01_right:
 C - - - - - 0x03CA65 0F:CA55: 18        CLC
 C - - - - - 0x03CA66 0F:CA56: A5 58     LDA ram_0058
 C - - - - - 0x03CA68 0F:CA58: 65 0A     ADC ram_000A_t028_spd_Y_lo
@@ -329,7 +329,7 @@ C - - - - - 0x03CA99 0F:CA89: 85 56     STA ram_cam_pos_lo
 C - - - - - 0x03CA9B 0F:CA8B: 85 57     STA ram_cam_pos_hi
 C - - - - - 0x03CA9D 0F:CA8D: 85 58     STA ram_0058
 C - - - - - 0x03CA9F 0F:CA8F: 4C B3 CA  JMP loc_CAB3
-bra_CA92_00:
+bra_CA92_00_left:
 C - - - - - 0x03CAA2 0F:CA92: 18        CLC
 C - - - - - 0x03CAA3 0F:CA93: A5 58     LDA ram_0058
 C - - - - - 0x03CAA5 0F:CA95: 65 0A     ADC ram_000A_t028_spd_Y_lo
@@ -357,8 +357,9 @@ C - - - - - 0x03CAC9 0F:CAB9: 29 F8     AND #$F8
 C - - - - - 0x03CACB 0F:CABB: C5 66     CMP ram_0066
 C - - - - - 0x03CACD 0F:CABD: F0 8D     BEQ bra_CA4C
 C - - - - - 0x03CACF 0F:CABF: 85 66     STA ram_0066
-C - - - - - 0x03CAD1 0F:CAC1: A4 65     LDY ram_0065
-C - - - - - 0x03CAD3 0F:CAC3: F0 33     BEQ bra_CAF8
+C - - - - - 0x03CAD1 0F:CAC1: A4 65     LDY ram_camera_movement_direction
+C - - - - - 0x03CAD3 0F:CAC3: F0 33     BEQ bra_CAF8_left
+; if right
 C - - - - - 0x03CAD5 0F:CAC5: A4 5C     LDY ram_drawing_ahead
 C - - - - - 0x03CAD7 0F:CAC7: C8        INY
 C - - - - - 0x03CAD8 0F:CAC8: C0 1E     CPY #$1E
@@ -371,7 +372,7 @@ C - - - - - 0x03CAE3 0F:CAD3: A0 00     LDY #$00
 bra_CAD5:
 C - - - - - 0x03CAE5 0F:CAD5: 84 5C     STY ram_drawing_ahead
 loc_CAD7:
-C D 2 - - - 0x03CAE7 0F:CAD7: A4 65     LDY ram_0065
+C D 2 - - - 0x03CAE7 0F:CAD7: A4 65     LDY ram_camera_movement_direction
 C - - - - - 0x03CAE9 0F:CAD9: B9 59 00  LDA ram_blk_section,Y
 C - - - - - 0x03CAEC 0F:CADC: 29 F8     AND #$F8
 C - - - - - 0x03CAEE 0F:CADE: 99 59 00  STA ram_blk_section,Y
@@ -387,7 +388,7 @@ C - - - - - 0x03CB02 0F:CAF2: E5 56     SBC ram_cam_pos_lo
 C - - - - - 0x03CB04 0F:CAF4: 85 6E     STA ram_006E_cam_speed
 C - - - - - 0x03CB06 0F:CAF6: 38        SEC
 C - - - - - 0x03CB07 0F:CAF7: 60        RTS
-bra_CAF8:
+bra_CAF8_left:
 C - - - - - 0x03CB08 0F:CAF8: A4 5B     LDY ram_drawing_behind
 C - - - - - 0x03CB0A 0F:CAFA: 88        DEY
 C - - - - - 0x03CB0B 0F:CAFB: 10 09     BPL bra_CB06
@@ -406,7 +407,7 @@ sub_CB0B:
 C - - - - - 0x03CB1B 0F:CB0B: 20 3E CA  JSR sub_CA3E
 C - - - - - 0x03CB1E 0F:CB0E: 90 0A     BCC bra_CB1A_RTS
 C - - - - - 0x03CB20 0F:CB10: 20 05 C9  JSR sub_C905_select_proper_prg_bank_for_blk
-C - - - - - 0x03CB23 0F:CB13: A4 65     LDY ram_0065
+C - - - - - 0x03CB23 0F:CB13: A4 65     LDY ram_camera_movement_direction
 C - - - - - 0x03CB25 0F:CB15: B9 59 00  LDA ram_blk_section,Y
 C - - - - - 0x03CB28 0F:CB18: 10 01     BPL bra_CB1B
 bra_CB1A_RTS:
@@ -420,7 +421,7 @@ C - - - - - 0x03CB30 0F:CB20: 85 10     STA ram_0010_t002_data
 C - - - - - 0x03CB32 0F:CB22: B5 53     LDA ram_0053,X
 C - - - - - 0x03CB34 0F:CB24: 85 11     STA ram_0010_t002_data + $01
 C - - - - - 0x03CB36 0F:CB26: A2 FF     LDX #$FF
-C - - - - - 0x03CB38 0F:CB28: A4 65     LDY ram_0065
+C - - - - - 0x03CB38 0F:CB28: A4 65     LDY ram_camera_movement_direction
 C - - - - - 0x03CB3A 0F:CB2A: B9 5B 00  LDA ram_blk_drawing,Y
 C - - - - - 0x03CB3D 0F:CB2D: 29 01     AND #$01
 C - - - - - 0x03CB3F 0F:CB2F: D0 08     BNE bra_CB39
@@ -453,7 +454,7 @@ C - - - - - 0x03CB68 0F:CB58: 85 06     STA ram_0006_t011
 C - - - - - 0x03CB6A 0F:CB5A: E8        INX
 C - - - - - 0x03CB6B 0F:CB5B: A9 00     LDA #$00
 C - - - - - 0x03CB6D 0F:CB5D: 85 61     STA ram_ppu_address_lo
-C - - - - - 0x03CB6F 0F:CB5F: A4 65     LDY ram_0065
+C - - - - - 0x03CB6F 0F:CB5F: A4 65     LDY ram_camera_movement_direction
 C - - - - - 0x03CB71 0F:CB61: B9 59 00  LDA ram_blk_section,Y
 C - - - - - 0x03CB74 0F:CB64: 29 07     AND #$07
 C - - - - - 0x03CB76 0F:CB66: 4A        LSR
@@ -764,8 +765,9 @@ tbl_CD5C:
 
 
 sub_CD64:
-C - - - - - 0x03CD74 0F:CD64: A5 65     LDA ram_0065
-C - - - - - 0x03CD76 0F:CD66: D0 0A     BNE bra_CD72
+C - - - - - 0x03CD74 0F:CD64: A5 65     LDA ram_camera_movement_direction
+C - - - - - 0x03CD76 0F:CD66: D0 0A     BNE bra_CD72_right
+; if left
 C - - - - - 0x03CD78 0F:CD68: A5 71     LDA ram_0071_blk_config_cam_pos_hi
 ; * 08
 C - - - - - 0x03CD7A 0F:CD6A: 0A        ASL
@@ -774,7 +776,7 @@ C - - - - - 0x03CD7C 0F:CD6C: 0A        ASL
 C - - - - - 0x03CD7D 0F:CD6D: 18        CLC
 C - - - - - 0x03CD7E 0F:CD6E: 69 07     ADC #$07
 C - - - - - 0x03CD80 0F:CD70: D0 02     BNE bra_CD74    ; jmp
-bra_CD72:
+bra_CD72_right:
 C - - - - - 0x03CD82 0F:CD72: A9 00     LDA #$00
 bra_CD74:
 C - - - - - 0x03CD84 0F:CD74: 85 5A     STA ram_section_ahead
@@ -804,6 +806,10 @@ C - - - - - 0x03CD9B 0F:CD8B: 60        RTS
 
 
 sub_CD8C:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x03CD9C 0F:CD8C: A9 03     LDA #$03
 C - - - - - 0x03CD9E 0F:CD8E: 85 07     STA ram_0007_t003
 C - - - - - 0x03CDA0 0F:CD90: A0 00     LDY #$00
@@ -813,13 +819,14 @@ C - - - - - 0x03CDA6 0F:CD96: F0 02     BEQ bra_CD9A
 C - - - - - 0x03CDA8 0F:CD98: A0 03     LDY #$03
 bra_CD9A:
 C - - - - - 0x03CDAA 0F:CD9A: 84 5C     STY ram_drawing_ahead
-C - - - - - 0x03CDAC 0F:CD9C: A5 65     LDA ram_0065
-C - - - - - 0x03CDAE 0F:CD9E: D0 08     BNE bra_CDA8
+C - - - - - 0x03CDAC 0F:CD9C: A5 65     LDA ram_camera_movement_direction
+C - - - - - 0x03CDAE 0F:CD9E: D0 08     BNE bra_CDA8_right
+; if left
 C - - - - - 0x03CDB0 0F:CDA0: A5 71     LDA ram_0071_blk_config_cam_pos_hi
 C - - - - - 0x03CDB2 0F:CDA2: 29 01     AND #$01
 C - - - - - 0x03CDB4 0F:CDA4: D0 1A     BNE bra_CDC0
 C - - - - - 0x03CDB6 0F:CDA6: F0 06     BEQ bra_CDAE    ; jmp
-bra_CDA8:
+bra_CDA8_right:
 C - - - - - 0x03CDB8 0F:CDA8: A5 57     LDA ram_cam_pos_hi
 C - - - - - 0x03CDBA 0F:CDAA: 29 01     AND #$01
 C - - - - - 0x03CDBC 0F:CDAC: D0 12     BNE bra_CDC0
@@ -1457,13 +1464,14 @@ C - - - - - 0x03D182 0F:D172: 4C 54 D1  JMP loc_D154
 
 sub_D175:
 loc_D175:
-C D 2 - - - 0x03D185 0F:D175: A5 65     LDA ram_0065
+C D 2 - - - 0x03D185 0F:D175: A5 65     LDA ram_camera_movement_direction
 C - - - - - 0x03D187 0F:D177: C9 02     CMP #$02
-C - - - - - 0x03D189 0F:D179: D0 02     BNE bra_D17D
+C - - - - - 0x03D189 0F:D179: D0 02     BNE bra_D17D_moving
+; if not moving
 C - - - - - 0x03D18B 0F:D17B: A5 A1     LDA ram_00A1
-bra_D17D:
+bra_D17D_moving:
 C - - - - - 0x03D18D 0F:D17D: 85 A0     STA ram_00A0
-C - - - - - 0x03D18F 0F:D17F: A5 65     LDA ram_0065
+C - - - - - 0x03D18F 0F:D17F: A5 65     LDA ram_camera_movement_direction
 C - - - - - 0x03D191 0F:D181: 85 A1     STA ram_00A1
 C - - - - - 0x03D193 0F:D183: 20 25 D3  JSR sub_D325
 C - - - - - 0x03D196 0F:D186: A5 A0     LDA ram_00A0
@@ -1714,11 +1722,11 @@ tbl_D31F_ppu_address_lo:
 sub_D325:
 C - - - - - 0x03D335 0F:D325: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x03D337 0F:D327: 85 08     STA ram_0008_t035_copy_cam_pos_lo
-C - - - - - 0x03D339 0F:D329: A4 65     LDY ram_0065
-C - - - - - 0x03D33B 0F:D32B: F0 0F     BEQ bra_D33C_00
+C - - - - - 0x03D339 0F:D329: A4 65     LDY ram_camera_movement_direction
+C - - - - - 0x03D33B 0F:D32B: F0 0F     BEQ bra_D33C_00_left
 C - - - - - 0x03D33D 0F:D32D: 88        DEY
-C - - - - - 0x03D33E 0F:D32E: F0 08     BEQ bra_D338_01
-; 02+
+C - - - - - 0x03D33E 0F:D32E: F0 08     BEQ bra_D338_01_right
+; 02 not moving
 loc_D330:
 bra_D330:
 C D 2 - - - 0x03D340 0F:D330: A5 56     LDA ram_cam_pos_lo
@@ -1726,10 +1734,10 @@ C - - - - - 0x03D342 0F:D332: 38        SEC
 C - - - - - 0x03D343 0F:D333: E5 08     SBC ram_0008_t035_copy_cam_pos_lo
 C - - - - - 0x03D345 0F:D335: 85 6E     STA ram_006E_cam_speed
 C - - - - - 0x03D347 0F:D337: 60        RTS
-bra_D338_01:
+bra_D338_01_right:
 C - - - - - 0x03D348 0F:D338: A9 00     LDA #$00
 C - - - - - 0x03D34A 0F:D33A: F0 02     BEQ bra_D33E    ; jmp
-bra_D33C_00:
+bra_D33C_00_left:
 C - - - - - 0x03D34C 0F:D33C: A9 FF     LDA #$FF
 bra_D33E:
 C - - - - - 0x03D34E 0F:D33E: 85 00     STA ram_0000_t02E_cam_pos_hi
@@ -1761,12 +1769,13 @@ C - - - - - 0x03D37D 0F:D36D: 29 E0     AND #$E0
 C - - - - - 0x03D37F 0F:D36F: C5 66     CMP ram_0066
 C - - - - - 0x03D381 0F:D371: F0 BD     BEQ bra_D330
 C - - - - - 0x03D383 0F:D373: 85 66     STA ram_0066
-C - - - - - 0x03D385 0F:D375: A4 65     LDY ram_0065
-C - - - - - 0x03D387 0F:D377: F0 06     BEQ bra_D37F
+C - - - - - 0x03D385 0F:D375: A4 65     LDY ram_camera_movement_direction
+C - - - - - 0x03D387 0F:D377: F0 06     BEQ bra_D37F_left
+; if right
 C - - - - - 0x03D389 0F:D379: E6 59     INC ram_section_behind
 C - - - - - 0x03D38B 0F:D37B: E6 5A     INC ram_section_ahead
-C - - - - - 0x03D38D 0F:D37D: 10 04     BPL bra_D383
-bra_D37F:
+C - - - - - 0x03D38D 0F:D37D: 10 04     BPL bra_D383    ; jmp?
+bra_D37F_left:
 C - - - - - 0x03D38F 0F:D37F: C6 59     DEC ram_section_behind
 C - - - - - 0x03D391 0F:D381: C6 5A     DEC ram_section_ahead
 bra_D383:
@@ -1870,29 +1879,33 @@ C - - - - - 0x03D413 0F:D403: B1 0A     LDA (ram_000A_t002_data),Y
 C - - - - - 0x03D415 0F:D405: 18        CLC
 C - - - - - 0x03D416 0F:D406: 69 01     ADC #$01
 C - - - - - 0x03D418 0F:D408: C8        INY ; 01
-C - - - - - 0x03D419 0F:D409: 84 00     STY ram_0000_t02D
+; bzk optimize, always 01
+; get offset for stairs transition data below pointers
+C - - - - - 0x03D419 0F:D409: 84 00     STY ram_0000_t128_useless_01
 C - - - - - 0x03D41B 0F:D40B: 0A        ASL
 C - - - - - 0x03D41C 0F:D40C: 18        CLC
-C - - - - - 0x03D41D 0F:D40D: 65 00     ADC ram_0000_t02D
+C - - - - - 0x03D41D 0F:D40D: 65 00     ADC ram_0000_t128_useless_01
 C - - - - - 0x03D41F 0F:D40F: 85 00     STA ram_0000_t02D
 C - - - - - 0x03D421 0F:D411: A5 34     LDA ram_blk_id_fr
 C - - - - - 0x03D423 0F:D413: 0A        ASL
+; bzk optimize, value is too low, no need for CLC after ASL
 C - - - - - 0x03D424 0F:D414: 18        CLC
 C - - - - - 0x03D425 0F:D415: 65 00     ADC ram_0000_t02D
 C - - - - - 0x03D427 0F:D417: A8        TAY
 loc_D418_loop:
-C D 2 - - - 0x03D428 0F:D418: A2 00     LDX #$00
+C D 2 - - - 0x03D428 0F:D418: A2 00     LDX #$00    ; moving up flag
 C - - - - - 0x03D42A 0F:D41A: AD 20 05  LDA ram_plr_spd_Y_hi
-C - - - - - 0x03D42D 0F:D41D: 10 02     BPL bra_D421
-C - - - - - 0x03D42F 0F:D41F: E8        INX ; 01
+C - - - - - 0x03D42D 0F:D41D: 10 02     BPL bra_D421_moving_up
+; if moving down
+C - - - - - 0x03D42F 0F:D41F: E8        INX ; 01 moving down flag
 C - - - - - 0x03D430 0F:D420: C8        INY
-bra_D421:
+bra_D421_moving_up:
 C - - - - - 0x03D431 0F:D421: B1 0A     LDA (ram_000A_t002_data),Y
 C - - - - - 0x03D433 0F:D423: 29 F0     AND #$F0
 C - - - - - 0x03D435 0F:D425: C9 D0     CMP #$D0
 C - - - - - 0x03D437 0F:D427: F0 37     BEQ bra_D460_D0_D3
 C - - - - - 0x03D439 0F:D429: C9 80     CMP #$80
-C - - - - - 0x03D43B 0F:D42B: F0 2A     BEQ bra_D457_80_8F
+C - - - - - 0x03D43B 0F:D42B: F0 2A     BEQ bra_D457_80_81
 C - - - - - 0x03D43D 0F:D42D: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x03D43F 0F:D42F: 30 11     BMI bra_D442_vertical
 ; if horisontal
@@ -1901,10 +1914,12 @@ C - - - - - 0x03D443 0F:D433: 18        CLC
 C - - - - - 0x03D444 0F:D434: 71 0A     ADC (ram_000A_t002_data),Y
 C - - - - - 0x03D446 0F:D436: 85 57     STA ram_cam_pos_hi
 C - - - - - 0x03D448 0F:D438: CA        DEX
-C - - - - - 0x03D449 0F:D439: F0 04     BEQ bra_D43F
+C - - - - - 0x03D449 0F:D439: F0 04     BEQ bra_D43F_moving_down
+; if moving up
 C - - - - - 0x03D44B 0F:D43B: C6 34     DEC ram_blk_id_fr
-C - - - - - 0x03D44D 0F:D43D: 10 02     BPL bra_D441_RTS
-bra_D43F:
+C - - - - - 0x03D44D 0F:D43D: 10 02     BPL bra_D441_RTS    ; if not underflow
+; if underflow
+bra_D43F_moving_down:
 C - - - - - 0x03D44F 0F:D43F: E6 34     INC ram_blk_id_fr
 loc_D441_RTS:   ; bzk optimize
 bra_D441_RTS:
@@ -1924,7 +1939,7 @@ C - - - - - 0x03D460 0F:D450: A9 00     LDA #$00
 C - - - - - 0x03D462 0F:D452: 85 56     STA ram_cam_pos_lo
 C - - - - - 0x03D464 0F:D454: 85 58     STA ram_0058
 C - - - - - 0x03D466 0F:D456: 60        RTS
-bra_D457_80_8F:
+bra_D457_80_81:
 C - - - - - 0x03D467 0F:D457: B1 0A     LDA (ram_000A_t002_data),Y
 C - - - - - 0x03D469 0F:D459: 29 0F     AND #$0F
 C - - - - - 0x03D46B 0F:D45B: 85 34     STA ram_blk_id_fr
@@ -1934,9 +1949,9 @@ C - - - - - 0x03D470 0F:D460: B1 0A     LDA (ram_000A_t002_data),Y
 C - - - - - 0x03D472 0F:D462: 29 0F     AND #$0F
 C - - - - - 0x03D474 0F:D464: 0A        ASL
 C - - - - - 0x03D475 0F:D465: A8        TAY
-C - - - - - 0x03D476 0F:D466: B9 5A D7  LDA tbl_D75A,Y
+C - - - - - 0x03D476 0F:D466: B9 5A D7  LDA tbl_D75A_stairs_transition_data,Y
 C - - - - - 0x03D479 0F:D469: 85 0A     STA ram_000A_t002_data
-C - - - - - 0x03D47B 0F:D46B: B9 5B D7  LDA tbl_D75A + $01,Y
+C - - - - - 0x03D47B 0F:D46B: B9 5B D7  LDA tbl_D75A_stairs_transition_data + $01,Y
 C - - - - - 0x03D47E 0F:D46E: 85 0B     STA ram_000A_t002_data + $01
 C - - - - - 0x03D480 0F:D470: A0 00     LDY #$00
 C - - - - - 0x03D482 0F:D472: B1 0A     LDA (ram_000A_t002_data),Y
@@ -2779,10 +2794,11 @@ off_D758_0E_02:
 
 
 
-tbl_D75A:
+tbl_D75A_stairs_transition_data:
+; see con_D75A
 - D 2 - - - 0x03D76A 0F:D75A: 62 D7     .word off_D762_D0
 - D 2 - - - 0x03D76C 0F:D75C: 68 D7     .word off_D768_D1
-- - - - - - 0x03D76E 0F:D75E: 6A D7     .word off_D76A_D2
+- - - - - - 0x03D76E 0F:D75E: 6A D7     .word off_D76A_D2   ; unused, index doesn't exist
 - D 2 - - - 0x03D770 0F:D760: 70 D7     .word off_D770_D3
 
 
@@ -2808,6 +2824,7 @@ off_D768_D1:
 
 
 off_D76A_D2:
+; bzk garbage
 ; 
 - - - - - - 0x03D77A 0F:D76A: F0        .byte $F0   ; 
 - - - - - - 0x03D77B 0F:D76B: 01        .byte $01   ; 
@@ -3678,7 +3695,7 @@ _off006_0x03DBCC_02:
 .export sub_0x03E687
 .export sub_0x03E694
 .export sub_0x03E69F
-.export sub_0x03E6AA
+.export sub_0x03E6AA_check_player_collision_with_doors
 .export loc_0x03E6B5
 .export sub_0x03E6C5
 .export sub_0x03E6D5
@@ -3698,8 +3715,8 @@ _off006_0x03DBCC_02:
 .export loc_0x03E77C
 .export sub_0x03E787_add_points
 .export sub_0x03E79A
-.export sub_0x03E7A5
-.export loc_0x03E7A5
+.export sub_0x03E7A5_clear_some_stuff
+.export loc_0x03E7A5_clear_some_stuff
 .export sub_0x03E7BB
 .export sub_0x03E7C6
 .export sub_0x03E7D1
@@ -5058,7 +5075,7 @@ C - - - - - 0x03E691 0F:E681: 4C E6 E2  JMP loc_E2E6_prg_bankswitch
 sub_0x03E694:
 C - - - - - 0x03E694 0F:E684: A9 88     LDA #con_prg_bank + $88
 C - - - - - 0x03E696 0F:E686: 20 E0 E2  JSR sub_E2E0_prg_bankswitch
-C - - - - - 0x03E699 0F:E689: 20 48 B3  JSR sub_0x013358
+C - - - - - 0x03E699 0F:E689: 20 48 B3  JSR sub_0x013358_prepare_blk_timer___player_spawn_position
 C - - - - - 0x03E69C 0F:E68C: 4C 7F E6  JMP loc_E67F_restore_prg_bank
 
 
@@ -5068,15 +5085,24 @@ loc_E68F:
 sub_0x03E69F:
 C D 3 - - - 0x03E69F 0F:E68F: A9 88     LDA #con_prg_bank + $88
 C - - - - - 0x03E6A1 0F:E691: 20 E0 E2  JSR sub_E2E0_prg_bankswitch
-C - - - - - 0x03E6A4 0F:E694: 20 54 B3  JSR sub_0x013364
+C - - - - - 0x03E6A4 0F:E694: 20 54 B3  JSR sub_0x013364_prepare_timer___blk_id_fr___player_spawn_position
 C - - - - - 0x03E6A7 0F:E697: 4C 7F E6  JMP loc_E67F_restore_prg_bank
 
 
 
-sub_0x03E6AA:
+sub_0x03E6AA_check_player_collision_with_doors:
+; in
+    ; X = corner
+        ; 00 = left
+        ; 01 = right
+; out
+    ; X = corner (same as in)
+    ; C
+        ; 0 = player is away from the door
+        ; 1 = player is near the door
 C - - - - - 0x03E6AA 0F:E69A: A9 8E     LDA #con_prg_bank + $8E
 C - - - - - 0x03E6AC 0F:E69C: 20 E0 E2  JSR sub_E2E0_prg_bankswitch
-C - - - - - 0x03E6AF 0F:E69F: 20 AE B4  JSR sub_0x01F4BE
+C - - - - - 0x03E6AF 0F:E69F: 20 AE B4  JSR sub_0x01F4BE_check_player_collision_with_doors
 C - - - - - 0x03E6B2 0F:E6A2: 4C 7F E6  JMP loc_E67F_restore_prg_bank
 
 
@@ -5273,12 +5299,12 @@ C - - - - - 0x03E7A2 0F:E792: 4C 7F E6  JMP loc_E67F_restore_prg_bank
 
 
 
-sub_E795:
-sub_0x03E7A5:
-loc_0x03E7A5:
+sub_E795_clear_some_stuff:
+sub_0x03E7A5_clear_some_stuff:
+loc_0x03E7A5_clear_some_stuff:
 C D 3 - - - 0x03E7A5 0F:E795: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03E7A7 0F:E797: 20 E0 E2  JSR sub_E2E0_prg_bankswitch
-C - - - - - 0x03E7AA 0F:E79A: 20 07 91  JSR sub_0x001117
+C - - - - - 0x03E7AA 0F:E79A: 20 07 91  JSR sub_0x001117_clear_some_stuff
 C - - - - - 0x03E7AD 0F:E79D: 4C 7F E6  JMP loc_E67F_restore_prg_bank
 
 
@@ -5720,6 +5746,7 @@ C - - - - - 0x03E9A8 0F:E998: D0 0C     BNE bra_E9A6
 - - - - - - 0x03E9AE 0F:E99E: A4 34     LDY ram_blk_id_fr
 - - - - - - 0x03E9B0 0F:E9A0: C0 01     CPY #$01
 - - - - - - 0x03E9B2 0F:E9A2: D0 02     BNE bra_E9A6
+; if 0E-00-01
 - - - - - - 0x03E9B4 0F:E9A4: A9 01     LDA #$01
 bra_E9A6:
 C - - - - - 0x03E9B6 0F:E9A6: 48        PHA
@@ -7285,7 +7312,7 @@ C - - - - - 0x03F39E 0F:F38E: 20 6D E8  JSR sub_E86D_jump_to_pointers_after_JSR_
 - D 3 - I - 0x03F3AB 0F:F39B: BE F5     .word ofs_001_F5BE_05
 - D 3 - I - 0x03F3AD 0F:F39D: 09 F6     .word ofs_001_F609_06
 - D 3 - I - 0x03F3AF 0F:F39F: 18 F6     .word ofs_001_F618_07
-- D 3 - I - 0x03F3B1 0F:F3A1: 4B F9     .word ofs_001_F94B_08
+- D 3 - I - 0x03F3B1 0F:F3A1: 4B F9     .word ofs_001_F94B_08_go_through_door
 - D 3 - I - 0x03F3B3 0F:F3A3: 92 D3     .word ofs_001_D392_09
 - D 3 - I - 0x03F3B5 0F:F3A5: 06 F5     .word ofs_001_F506_0A
 - D 3 - I - 0x03F3B7 0F:F3A7: 1E F8     .word ofs_001_F81E_0B_swap_players_H
@@ -8234,26 +8261,26 @@ C - - - - - 0x03F95A 0F:F94A: 60        RTS
 
 
 
-ofs_001_F94B_08:
-; con_002A_08
+ofs_001_F94B_08_go_through_door:
+; con_002A_go_through_door
 C - - J - - 0x03F95B 0F:F94B: A5 6B     LDA ram_006B_subscript
 C - - - - - 0x03F95D 0F:F94D: 20 6D E8  JSR sub_E86D_jump_to_pointers_after_JSR_A
-- D 3 - I - 0x03F960 0F:F950: 64 F9     .word ofs_003_F964_00
+- D 3 - I - 0x03F960 0F:F950: 64 F9     .word ofs_003_F964_00_prepare_next_blk_lo
 - D 3 - I - 0x03F962 0F:F952: A8 F9     .word ofs_003_F9A8_01
-- D 3 - I - 0x03F964 0F:F954: C3 F9     .word ofs_003_F9C3_02
+- D 3 - I - 0x03F964 0F:F954: C3 F9     .word ofs_003_F9C3_02_scroll_camera
 - D 3 - I - 0x03F966 0F:F956: EB F9     .word ofs_003_F9EB_03
-- D 3 - I - 0x03F968 0F:F958: 99 FA     .word ofs_003_FA99_04
-- D 3 - I - 0x03F96A 0F:F95A: B9 FA     .word ofs_003_FAB9_05
-- D 3 - I - 0x03F96C 0F:F95C: E1 FA     .word ofs_003_FAE1_06
+- D 3 - I - 0x03F968 0F:F958: 99 FA     .word ofs_003_FA99_04_open_door
+- D 3 - I - 0x03F96A 0F:F95A: B9 FA     .word ofs_003_FAB9_05_player_walks_in
+- D 3 - I - 0x03F96C 0F:F95C: E1 FA     .word ofs_003_FAE1_06_close_door
 - D 3 - I - 0x03F96E 0F:F95E: A8 F9     .word ofs_003_F9A8_07
-- D 3 - I - 0x03F970 0F:F960: C3 F9     .word ofs_003_F9C3_08
+- D 3 - I - 0x03F970 0F:F960: C3 F9     .word ofs_003_F9C3_08_scroll_camera
 - D 3 - I - 0x03F972 0F:F962: 26 FB     .word ofs_003_FB26_09
 
 
 
-ofs_003_F964_00:
+ofs_003_F964_00_prepare_next_blk_lo:
 C - - J - - 0x03F974 0F:F964: E6 33     INC ram_blk_id_lo
-C - - - - - 0x03F976 0F:F966: 20 95 E7  JSR sub_E795
+C - - - - - 0x03F976 0F:F966: 20 95 E7  JSR sub_E795_clear_some_stuff
 C - - - - - 0x03F979 0F:F969: 20 CE E5  JSR sub_E5CE_forbid_pausing
 C - - - - - 0x03F97C 0F:F96C: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F97E 0F:F96E: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
@@ -8288,9 +8315,9 @@ ofs_003_F9A8_01:
 ofs_003_F9A8_07:
 C - - J - - 0x03F9B8 0F:F9A8: 20 8C CD  JSR sub_CD8C
 C - - - - - 0x03F9BB 0F:F9AB: B0 0F     BCS bra_F9BC
-C - - - - - 0x03F9BD 0F:F9AD: A5 65     LDA ram_0065
-C - - - - - 0x03F9BF 0F:F9AF: D0 0A     BNE bra_F9BB_RTS
-bra_F9B1:
+C - - - - - 0x03F9BD 0F:F9AD: A5 65     LDA ram_camera_movement_direction
+C - - - - - 0x03F9BF 0F:F9AF: D0 0A     BNE bra_F9BB_RTS    ; if right
+bra_F9B1_left:
 C - - - - - 0x03F9C1 0F:F9B1: A5 5C     LDA ram_drawing_ahead
 C - - - - - 0x03F9C3 0F:F9B3: C9 06     CMP #$06
 C - - - - - 0x03F9C5 0F:F9B5: D0 04     BNE bra_F9BB_RTS
@@ -8300,28 +8327,30 @@ bra_F9BB_RTS:
 C - - - - - 0x03F9CB 0F:F9BB: 60        RTS
 bra_F9BC:
 C - - - - - 0x03F9CC 0F:F9BC: E6 6B     INC ram_006B_subscript
-C - - - - - 0x03F9CE 0F:F9BE: A5 65     LDA ram_0065
-C - - - - - 0x03F9D0 0F:F9C0: F0 EF     BEQ bra_F9B1
+C - - - - - 0x03F9CE 0F:F9BE: A5 65     LDA ram_camera_movement_direction
+C - - - - - 0x03F9D0 0F:F9C0: F0 EF     BEQ bra_F9B1_left
+; if right
 C - - - - - 0x03F9D2 0F:F9C2: 60        RTS
 
 
 
-ofs_003_F9C3_02:
-ofs_003_F9C3_08:
-C - - J - - 0x03F9D3 0F:F9C3: A5 65     LDA ram_0065
-C - - - - - 0x03F9D5 0F:F9C5: F0 0F     BEQ bra_F9D6
+ofs_003_F9C3_02_scroll_camera:
+ofs_003_F9C3_08_scroll_camera:
+C - - J - - 0x03F9D3 0F:F9C3: A5 65     LDA ram_camera_movement_direction
+C - - - - - 0x03F9D5 0F:F9C5: F0 0F     BEQ bra_F9D6_left
+; if right
 C - - - - - 0x03F9D7 0F:F9C7: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x03F9DA 0F:F9CA: 38        SEC
 C - - - - - 0x03F9DB 0F:F9CB: E9 01     SBC #$01
 C - - - - - 0x03F9DD 0F:F9CD: 8D 38 04  STA ram_plr_pos_X_hi
-C - - - - - 0x03F9E0 0F:F9D0: 20 69 FB  JSR sub_FB69
+C - - - - - 0x03F9E0 0F:F9D0: 20 69 FB  JSR sub_FB69_move_camera_right_1_pixel
 C - - - - - 0x03F9E3 0F:F9D3: 4C E2 F9  JMP loc_F9E2
-bra_F9D6:
+bra_F9D6_left:
 C - - - - - 0x03F9E6 0F:F9D6: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x03F9E9 0F:F9D9: 18        CLC
 C - - - - - 0x03F9EA 0F:F9DA: 69 01     ADC #$01
 C - - - - - 0x03F9EC 0F:F9DC: 8D 38 04  STA ram_plr_pos_X_hi
-C - - - - - 0x03F9EF 0F:F9DF: 20 77 FB  JSR sub_FB77
+C - - - - - 0x03F9EF 0F:F9DF: 20 77 FB  JSR sub_FB77_move_camera_left_1_pixel
 loc_F9E2:
 C D 3 - - - 0x03F9F2 0F:F9E2: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x03F9F4 0F:F9E4: 29 7F     AND #$7F
@@ -8355,7 +8384,7 @@ C - - - - - 0x03FA28 0F:FA18: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x03FA2B 0F:FA1B: 69 08     ADC #$08
 C - - - - - 0x03FA2D 0F:FA1D: 29 F0     AND #$F0
 C - - - - - 0x03FA2F 0F:FA1F: 9D 1C 04  STA ram_obj_pos_Y_hi,X
-C - - - - - 0x03FA32 0F:FA22: A5 65     LDA ram_0065
+C - - - - - 0x03FA32 0F:FA22: A5 65     LDA ram_camera_movement_direction
 C - - - - - 0x03FA34 0F:FA24: 0A        ASL
 C - - - - - 0x03FA35 0F:FA25: A8        TAY
 C - - - - - 0x03FA36 0F:FA26: B9 95 FA  LDA tbl_FA95,Y
@@ -8375,7 +8404,7 @@ C - - - - - 0x03FA53 0F:FA43: 0A        ASL
 C - - - - - 0x03FA54 0F:FA44: 26 62     ROL ram_ppu_address_hi
 C - - - - - 0x03FA56 0F:FA46: 29 E0     AND #$E0
 C - - - - - 0x03FA58 0F:FA48: 85 61     STA ram_ppu_address_lo
-C - - - - - 0x03FA5A 0F:FA4A: A4 65     LDY ram_0065
+C - - - - - 0x03FA5A 0F:FA4A: A4 65     LDY ram_camera_movement_direction
 C - - - - - 0x03FA5C 0F:FA4C: B9 8F FA  LDA tbl_FA8F,Y
 C - - - - - 0x03FA5F 0F:FA4F: 18        CLC
 C - - - - - 0x03FA60 0F:FA50: 65 61     ADC ram_ppu_address_lo
@@ -8383,11 +8412,12 @@ C - - - - - 0x03FA62 0F:FA52: 85 61     STA ram_ppu_address_lo
 C - - - - - 0x03FA64 0F:FA54: A5 75     LDA ram_0075
 C - - - - - 0x03FA66 0F:FA56: 29 01     AND #$01
 C - - - - - 0x03FA68 0F:FA58: 85 00     STA ram_0000_t02B
-C - - - - - 0x03FA6A 0F:FA5A: A5 65     LDA ram_0065
-C - - - - - 0x03FA6C 0F:FA5C: D0 04     BNE bra_FA62
+C - - - - - 0x03FA6A 0F:FA5A: A5 65     LDA ram_camera_movement_direction
+C - - - - - 0x03FA6C 0F:FA5C: D0 04     BNE bra_FA62_right
+; if left
 C - - - - - 0x03FA6E 0F:FA5E: A2 24     LDX #$24    ; > 24xx
 C - - - - - 0x03FA70 0F:FA60: D0 02     BNE bra_FA64    ; jmp
-bra_FA62:
+bra_FA62_right:
 C - - - - - 0x03FA72 0F:FA62: A2 20     LDX #$20    ; > 20xx
 bra_FA64:
 C - - - - - 0x03FA74 0F:FA64: A5 57     LDA ram_cam_pos_hi
@@ -8418,8 +8448,8 @@ C - - - - - 0x03FA9C 0F:FA8C: 4C DE E8  JMP loc_E8DE_store_index_and_close_buffe
 
 
 tbl_FA8F:
-- D 3 - - - 0x03FA9F 0F:FA8F: 01        .byte $01   ; 00 
-- D 3 - - - 0x03FAA0 0F:FA90: 1E        .byte $1E   ; 01 
+- D 3 - - - 0x03FA9F 0F:FA8F: 01        .byte $01   ; 00 left
+- D 3 - - - 0x03FAA0 0F:FA90: 1E        .byte $1E   ; 01 right
 
 
 
@@ -8435,12 +8465,12 @@ tbl_FA95:
 ;                                              +---------- pos_X_hi
 ;                                              |    +----- facing
 ;                                              |    |
-- D 3 - - - 0x03FAA5 0F:FA95: 8C        .byte $8C, $01   ; 00 
-- D 3 - - - 0x03FAA7 0F:FA97: 74        .byte $74, $00   ; 01 
+- D 3 - - - 0x03FAA5 0F:FA95: 8C        .byte $8C, $01   ; 00 left
+- D 3 - - - 0x03FAA7 0F:FA97: 74        .byte $74, $00   ; 01 right
 
 
 
-ofs_003_FA99_04:
+ofs_003_FA99_04_open_door:
 C - - J - - 0x03FAA9 0F:FA99: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x03FAAB 0F:FA9B: D0 0C     BNE bra_FAA9
 C - - - - - 0x03FAAD 0F:FA9D: A9 00     LDA #$00
@@ -8461,7 +8491,7 @@ C - - - - - 0x03FAC8 0F:FAB8: 60        RTS
 
 
 
-ofs_003_FAB9_05:
+ofs_003_FAB9_05_player_walks_in:
 C - - J - - 0x03FAC9 0F:FAB9: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x03FACB 0F:FABB: D0 0C     BNE bra_FAC9
 C - - - - - 0x03FACD 0F:FABD: A9 0C     LDA #con_obj_type_0C
@@ -8471,13 +8501,14 @@ C - - - - - 0x03FAD3 0F:FAC3: 20 5C EF  JSR sub_EF5C_prepare_animation
 C - - - - - 0x03FAD6 0F:FAC6: E6 6B     INC ram_006B_subscript
 C - - - - - 0x03FAD8 0F:FAC8: 60        RTS
 bra_FAC9:
-C - - - - - 0x03FAD9 0F:FAC9: A5 65     LDA ram_0065
-C - - - - - 0x03FADB 0F:FACB: F0 08     BEQ bra_FAD5
+C - - - - - 0x03FAD9 0F:FAC9: A5 65     LDA ram_camera_movement_direction
+C - - - - - 0x03FADB 0F:FACB: F0 08     BEQ bra_FAD5_left
+; if right
 C - - - - - 0x03FADD 0F:FACD: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x03FAE0 0F:FAD0: 18        CLC
 C - - - - - 0x03FAE1 0F:FAD1: 69 01     ADC #$01
 C - - - - - 0x03FAE3 0F:FAD3: D0 06     BNE bra_FADB
-bra_FAD5:
+bra_FAD5_left:
 C - - - - - 0x03FAE5 0F:FAD5: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x03FAE8 0F:FAD8: 38        SEC
 C - - - - - 0x03FAE9 0F:FAD9: E9 01     SBC #$01
@@ -8487,7 +8518,7 @@ C - - - - - 0x03FAEE 0F:FADE: 4C 73 EF  JMP loc_EF73_player_animation_handler
 
 
 
-ofs_003_FAE1_06:
+ofs_003_FAE1_06_close_door:
 C - - J - - 0x03FAF1 0F:FAE1: A2 13     LDX #$13
 C - - - - - 0x03FAF3 0F:FAE3: 20 75 EF  JSR sub_EF75_object_animation_handler
 C - - - - - 0x03FAF6 0F:FAE6: BD 93 05  LDA ram_obj_anim_cnt,X
@@ -8565,7 +8596,8 @@ C - - - - - 0x03FB78 0F:FB68: 60        RTS
 
 
 
-sub_FB69:
+sub_FB69_move_camera_right_1_pixel:
+; bzk optimize, INC lo + BNE + INC hi
 C - - - - - 0x03FB79 0F:FB69: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x03FB7B 0F:FB6B: 18        CLC
 C - - - - - 0x03FB7C 0F:FB6C: 69 01     ADC #< $0001
@@ -8577,7 +8609,8 @@ C - - - - - 0x03FB86 0F:FB76: 60        RTS
 
 
 
-sub_FB77:
+sub_FB77_move_camera_left_1_pixel:
+; bzk optimize, DEC lo + LDA lo + CMP FF + BNE + DEC hi
 C - - - - - 0x03FB87 0F:FB77: A5 56     LDA ram_cam_pos_lo
 C - - - - - 0x03FB89 0F:FB79: 38        SEC
 C - - - - - 0x03FB8A 0F:FB7A: E9 01     SBC #< $0001

@@ -28,7 +28,7 @@
 .export _off045_0x01EE71_0B
 .export _off046_0x01F441_0B
 .export tbl_0x01F49E_4x4_blocks_indexes
-.export sub_0x01F4BE
+.export sub_0x01F4BE_check_player_collision_with_doors
 .export sub_0x01F54F_prepare_stairs_data_pointers
 .export sub_0x01F602_check_stairs_if_pressed_down
 .export sub_0x01F606_check_stairs_if_pressed_up
@@ -54,12 +54,14 @@ _off044_0x01C011_05:
 off_8009_05_00:
 - - - - - - 0x01C019 07:8009: 00        .byte $00   ; 
 - D 0 - I - 0x01C01A 07:800A: 21 80     .word _off047_8021_05_00_00
+; stairs transition data (none for this blk)
 
 
 
 off_800C_05_01:
 - D 0 - I - 0x01C01C 07:800C: 00        .byte $00   ; 
 - D 0 - I - 0x01C01D 07:800D: 82 80     .word _off047_8082_05_01_00
+; stairs transition data (none for this blk)
 
 
 
@@ -67,10 +69,13 @@ off_800F_05_02:
 - D 0 - I - 0x01C01F 07:800F: 01        .byte $01   ; 
 - D 0 - I - 0x01C020 07:8010: 04 82     .word _off047_8204_05_02_00
 - D 0 - I - 0x01C022 07:8012: 43 81     .word _off047_8143_05_02_01
-- - - - - - 0x01C024 07:8014: E0        .byte $E0   ; 
-- D 0 - I - 0x01C025 07:8015: 01        .byte $01   ; 
-- D 0 - I - 0x01C026 07:8016: FF        .byte $FF   ; 
-- - - - - - 0x01C027 07:8017: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01C024 07:8014: E0        .byte $E0   ; up
+- D 0 - I - 0x01C025 07:8015: 01        .byte $01   ; down
+; 01 
+- D 0 - I - 0x01C026 07:8016: FF        .byte $FF   ; up
+- - - - - - 0x01C027 07:8017: E0        .byte $E0   ; down
 
 
 
@@ -78,10 +83,13 @@ off_8018_05_03:
 - D 0 - I - 0x01C028 07:8018: 01        .byte $01   ; 
 - D 0 - I - 0x01C029 07:8019: 26 83     .word _off047_8326_05_03_00
 - D 0 - I - 0x01C02B 07:801B: 65 82     .word _off047_8265_05_03_01
-- - - - - - 0x01C02D 07:801D: E0        .byte $E0   ; 
-- - - - - - 0x01C02E 07:801E: 03        .byte $03   ; 
-- D 0 - I - 0x01C02F 07:801F: FD        .byte $FD   ; 
-- - - - - - 0x01C030 07:8020: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01C02D 07:801D: E0        .byte $E0   ; up
+- - - - - - 0x01C02E 07:801E: 03        .byte $03   ; down
+; 01 
+- D 0 - I - 0x01C02F 07:801F: FD        .byte $FD   ; up
+- - - - - - 0x01C030 07:8020: E0        .byte $E0   ; down
 
 
 
@@ -713,16 +721,20 @@ off_8A05_06_00:
 - D 0 - I - 0x01CA15 07:8A05: 01        .byte $01   ; 
 - D 0 - I - 0x01CA16 07:8A06: 70 8B     .word _off047_8B70_06_00_00
 - D 0 - I - 0x01CA18 07:8A08: 1E 8A     .word _off047_8A1E_06_00_01
-- - - - - - 0x01CA1A 07:8A0A: E0        .byte $E0   ; 
-- - - - - - 0x01CA1B 07:8A0B: 03        .byte $03   ; 
-- D 0 - I - 0x01CA1C 07:8A0C: FD        .byte $FD   ; 
-- - - - - - 0x01CA1D 07:8A0D: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01CA1A 07:8A0A: E0        .byte $E0   ; up
+- - - - - - 0x01CA1B 07:8A0B: 03        .byte $03   ; down
+; 01 
+- D 0 - I - 0x01CA1C 07:8A0C: FD        .byte $FD   ; up
+- - - - - - 0x01CA1D 07:8A0D: E0        .byte $E0   ; down
 
 
 
 off_8A0E_06_01:
 - - - - - - 0x01CA1E 07:8A0E: 00        .byte $00   ; 
 - D 0 - I - 0x01CA1F 07:8A0F: 02 8C     .word _off047_8C02_06_01_00
+; stairs transition data (none for this blk)
 
 
 
@@ -731,12 +743,16 @@ off_8A11_06_02:
 - D 0 - I - 0x01CA22 07:8A12: D1 8B     .word _off047_8BD1_06_02_00
 - D 0 - I - 0x01CA24 07:8A14: DF 8A     .word _off047_8ADF_06_02_01
 - D 0 - I - 0x01CA26 07:8A16: 23 8D     .word _off047_8D23_06_02_02
-- - - - - - 0x01CA28 07:8A18: E0        .byte $E0   ; 
-- - - - - - 0x01CA29 07:8A19: 02        .byte $02   ; 
-- D 0 - I - 0x01CA2A 07:8A1A: FE        .byte $FE   ; 
-- - - - - - 0x01CA2B 07:8A1B: 01        .byte $01   ; 
-- D 0 - I - 0x01CA2C 07:8A1C: FF        .byte $FF   ; 
-- - - - - - 0x01CA2D 07:8A1D: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01CA28 07:8A18: E0        .byte $E0   ; up
+- - - - - - 0x01CA29 07:8A19: 02        .byte $02   ; down
+; 01 
+- D 0 - I - 0x01CA2A 07:8A1A: FE        .byte $FE   ; up
+- - - - - - 0x01CA2B 07:8A1B: 01        .byte $01   ; down
+; 02 
+- D 0 - I - 0x01CA2C 07:8A1C: FF        .byte $FF   ; up
+- - - - - - 0x01CA2D 07:8A1D: E0        .byte $E0   ; down
 
 
 
@@ -1237,28 +1253,34 @@ off_91F4_07_00:
 - D 0 - I - 0x01D204 07:91F4: 01        .byte $01   ; 
 - D 0 - I - 0x01D205 07:91F5: D3 96     .word _off047_96D3_07_00_00
 - D 0 - I - 0x01D207 07:91F7: E2 95     .word _off047_95E2_07_00_01
-- - - - - - 0x01D209 07:91F9: E0        .byte $E0   ; 
-- - - - - - 0x01D20A 07:91FA: 02        .byte $02   ; 
-- D 0 - I - 0x01D20B 07:91FB: FE        .byte $FE   ; 
-- - - - - - 0x01D20C 07:91FC: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01D209 07:91F9: E0        .byte $E0   ; up
+- - - - - - 0x01D20A 07:91FA: 02        .byte $02   ; down
+; 01 
+- D 0 - I - 0x01D20B 07:91FB: FE        .byte $FE   ; up
+- - - - - - 0x01D20C 07:91FC: E0        .byte $E0   ; down
 
 
 
 off_91FD_07_01:
 - - - - - - 0x01D20D 07:91FD: 00        .byte $00   ; 
 - D 0 - I - 0x01D20E 07:91FE: 34 97     .word _off047_9734_07_01_00
+; stairs transition data (none for this blk)
 
 
 
 off_9200_07_02:
 - - - - - - 0x01D210 07:9200: 00        .byte $00   ; 
 - D 0 - I - 0x01D211 07:9201: 8F 94     .word _off047_948F_07_02_00
+; stairs transition data (none for this blk)
 
 
 
 off_9203_07_03:
 - - - - - - 0x01D213 07:9203: 00        .byte $00   ; 
 - D 0 - I - 0x01D214 07:9204: C0 94     .word _off047_94C0_07_03_00
+; stairs transition data (none for this blk)
 
 
 
@@ -1266,10 +1288,13 @@ off_9206_07_04:
 - D 0 - I - 0x01D216 07:9206: 01        .byte $01   ; 
 - D 0 - I - 0x01D217 07:9207: 21 95     .word _off047_9521_07_04_00
 - D 0 - I - 0x01D219 07:9209: 6D 93     .word _off047_936D_07_04_01
-- - - - - - 0x01D21B 07:920B: E0        .byte $E0   ; 
-- D 0 - I - 0x01D21C 07:920C: FD        .byte $FD   ; 
-- - - - - - 0x01D21D 07:920D: 03        .byte $03   ; 
-- - - - - - 0x01D21E 07:920E: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01D21B 07:920B: E0        .byte $E0   ; up
+- D 0 - I - 0x01D21C 07:920C: FD        .byte $FD   ; down
+; 01 
+- - - - - - 0x01D21D 07:920D: 03        .byte $03   ; up
+- - - - - - 0x01D21E 07:920E: E0        .byte $E0   ; down
 
 
 
@@ -1277,16 +1302,20 @@ off_920F_07_05:
 - D 0 - I - 0x01D21F 07:920F: 01        .byte $01   ; 
 - D 0 - I - 0x01D220 07:9210: CE 93     .word _off047_93CE_07_05_00
 - D 0 - I - 0x01D222 07:9212: 0C 93     .word _off047_930C_07_05_01
-- - - - - - 0x01D224 07:9214: E0        .byte $E0   ; 
-- D 0 - I - 0x01D225 07:9215: FE        .byte $FE   ; 
-- - - - - - 0x01D226 07:9216: 02        .byte $02   ; 
-- - - - - - 0x01D227 07:9217: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01D224 07:9214: E0        .byte $E0   ; up
+- D 0 - I - 0x01D225 07:9215: FE        .byte $FE   ; down
+; 01 
+- - - - - - 0x01D226 07:9216: 02        .byte $02   ; up
+- - - - - - 0x01D227 07:9217: E0        .byte $E0   ; down
 
 
 
 off_9218_07_06:
 - - - - - - 0x01D228 07:9218: 00        .byte $00   ; 
 - D 0 - I - 0x01D229 07:9219: 1B 92     .word _off047_921B_07_06_00
+; stairs transition data (none for this blk)
 
 
 
@@ -2172,16 +2201,20 @@ off_9E5F_08_00:
 - D 0 - I - 0x01DE6F 07:9E5F: 01        .byte $01   ; 
 - D 0 - I - 0x01DE70 07:9E60: C4 A3     .word _off047_A3C4_08_00_00
 - D 0 - I - 0x01DE72 07:9E62: D3 A2     .word _off047_A2D3_08_00_01
-- - - - - - 0x01DE74 07:9E64: E0        .byte $E0   ; 
-- D 0 - I - 0x01DE75 07:9E65: 01        .byte $01   ; 
-- D 0 - I - 0x01DE76 07:9E66: FF        .byte $FF   ; 
-- - - - - - 0x01DE77 07:9E67: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01DE74 07:9E64: E0        .byte $E0   ; up
+- D 0 - I - 0x01DE75 07:9E65: 01        .byte $01   ; down
+; 01 
+- D 0 - I - 0x01DE76 07:9E66: FF        .byte $FF   ; up
+- - - - - - 0x01DE77 07:9E67: E0        .byte $E0   ; down
 
 
 
 off_9E68_08_01:
 - - - - - - 0x01DE78 07:9E68: 00        .byte $00   ; 
 - D 0 - I - 0x01DE79 07:9E69: E2 A1     .word _off047_A1E2_08_01_00
+; stairs transition data (none for this blk)
 
 
 
@@ -2189,26 +2222,33 @@ off_9E6B_08_02:
 - D 0 - I - 0x01DE7B 07:9E6B: 01        .byte $01   ; 
 - D 0 - I - 0x01DE7C 07:9E6C: 21 A1     .word _off047_A121_08_02_00
 - D 0 - I - 0x01DE7E 07:9E6E: 9F 9F     .word _off047_9F9F_08_02_01
-- - - - - - 0x01DE80 07:9E70: E0        .byte $E0   ; 
-- D 0 - I - 0x01DE81 07:9E71: 00        .byte $00   ; 
-- - - - - - 0x01DE82 07:9E72: 00        .byte $00   ; 
-- - - - - - 0x01DE83 07:9E73: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01DE80 07:9E70: E0        .byte $E0   ; up
+- D 0 - I - 0x01DE81 07:9E71: 00        .byte $00   ; down
+; 01 
+- - - - - - 0x01DE82 07:9E72: 00        .byte $00   ; up
+- - - - - - 0x01DE83 07:9E73: E0        .byte $E0   ; down
 
 
 
 off_9E74_08_03:
 - D 0 - I - 0x01DE84 07:9E74: 00        .byte $00   ; 
 - D 0 - I - 0x01DE85 07:9E75: 30 A0     .word _off047_A030_08_03_00
-- - - - - - 0x01DE87 07:9E77: E0        .byte $E0   ; 
-- D 0 - I - 0x01DE88 07:9E78: D3        .byte $D3   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01DE87 07:9E77: E0        .byte $E0   ; up
+- D 0 - I - 0x01DE88 07:9E78: D3        .byte con_D75A_D3   ; down
 
 
 
 off_9E79_08_04:
 - - - - - - 0x01DE89 07:9E79: 00        .byte $00   ; 
 - D 0 - I - 0x01DE8A 07:9E7A: AE 9E     .word _off047_9EAE_08_04_00
-- - - - - - 0x01DE8C 07:9E7C: E0        .byte $E0   ; 
-- - - - - - 0x01DE8D 07:9E7D: D3        .byte $D3   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01DE8C 07:9E7C: E0        .byte $E0   ; up
+- - - - - - 0x01DE8D 07:9E7D: D3        .byte con_D75A_D3   ; down
 
 
 ; bzk garbage
@@ -2978,10 +3018,13 @@ off_AA8B_0B_00:
 - D 1 - I - 0x01EA9B 07:AA8B: 01        .byte $01   ; 
 - D 1 - I - 0x01EA9C 07:AA8C: 3F AD     .word _off047_AD3F_0B_00_00
 - D 1 - I - 0x01EA9E 07:AA8E: DE AC     .word _off047_ACDE_0B_00_01
-- - - - - - 0x01EAA0 07:AA90: E0        .byte $E0   ; 
-- D 1 - I - 0x01EAA1 07:AA91: FE        .byte $FE   ; 
-- - - - - - 0x01EAA2 07:AA92: 02        .byte $02   ; 
-- - - - - - 0x01EAA3 07:AA93: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01EAA0 07:AA90: E0        .byte $E0   ; up
+- D 1 - I - 0x01EAA1 07:AA91: FE        .byte $FE   ; down
+; 01 
+- - - - - - 0x01EAA2 07:AA92: 02        .byte $02   ; up
+- - - - - - 0x01EAA3 07:AA93: E0        .byte $E0   ; down
 
 
 
@@ -2989,10 +3032,13 @@ off_AA94_0B_01:
 - D 1 - I - 0x01EAA4 07:AA94: 01        .byte $01   ; 
 - D 1 - I - 0x01EAA5 07:AA95: 4D AC     .word _off047_AC4D_0B_01_00
 - D 1 - I - 0x01EAA7 07:AA97: 2B AB     .word _off047_AB2B_0B_01_01
-- - - - - - 0x01EAA9 07:AA99: E0        .byte $E0   ; 
-- D 1 - I - 0x01EAAA 07:AA9A: 00        .byte $00   ; 
-- - - - - - 0x01EAAB 07:AA9B: 00        .byte $00   ; 
-- - - - - - 0x01EAAC 07:AA9C: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01EAA9 07:AA99: E0        .byte $E0   ; up
+- D 1 - I - 0x01EAAA 07:AA9A: 00        .byte $00   ; down
+; 01 
+- - - - - - 0x01EAAB 07:AA9B: 00        .byte $00   ; up
+- - - - - - 0x01EAAC 07:AA9C: E0        .byte $E0   ; down
 
 
 
@@ -3001,12 +3047,16 @@ off_AA9D_0B_02:
 - D 1 - I - 0x01EAAE 07:AA9E: 00 AE     .word _off047_AE00_0B_02_00
 - D 1 - I - 0x01EAB0 07:AAA0: AA AA     .word _off047_AAAA_0B_02_01
 - D 1 - I - 0x01EAB2 07:AAA2: BC AB     .word _off047_ABBC_0B_02_02
-- - - - - - 0x01EAB4 07:AAA4: E0        .byte $E0   ; 
-- - - - - - 0x01EAB5 07:AAA5: 81        .byte $81   ; 
-- D 1 - I - 0x01EAB6 07:AAA6: 00        .byte $00   ; 
-- - - - - - 0x01EAB7 07:AAA7: 22        .byte $22   ; 
-- D 1 - I - 0x01EAB8 07:AAA8: 81        .byte $81   ; 
-- - - - - - 0x01EAB9 07:AAA9: E0        .byte $E0   ; 
+; stairs transition data
+; 00 
+- - - - - - 0x01EAB4 07:AAA4: E0        .byte $E0   ; up
+- - - - - - 0x01EAB5 07:AAA5: 81        .byte $80 + $01   ; down
+; 01 
+- D 1 - I - 0x01EAB6 07:AAA6: 00        .byte $00 * $10 + $00   ; up
+- - - - - - 0x01EAB7 07:AAA7: 22        .byte $22   ; down
+; 02 
+- D 1 - I - 0x01EAB8 07:AAA8: 81        .byte $80 + $01   ; up
+- - - - - - 0x01EAB9 07:AAA9: E0        .byte $E0   ; down
 
 
 
@@ -3679,19 +3729,24 @@ tbl_0x01F49E_4x4_blocks_indexes:
 
 
 
-sub_0x01F4BE:
+sub_0x01F4BE_check_player_collision_with_doors:
+; in
+    ; X = corner
+        ; 00 = left
+        ; 01 = right
 ; out
+    ; X = corner (same as in)
     ; C
-        ; 0 = 
-        ; 1 = 
+        ; 0 = player is away from the door
+        ; 1 = player is near the door
 C - - - - - 0x01F4BE 07:B4AE: A5 56     LDA ram_cam_pos_lo
-C - - - - - 0x01F4C0 07:B4B0: D0 7A     BNE bra_B52C
+C - - - - - 0x01F4C0 07:B4B0: D0 7A     BNE bra_B52C_fail
 C - - - - - 0x01F4C2 07:B4B2: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x01F4C4 07:B4B4: 0A        ASL
 C - - - - - 0x01F4C5 07:B4B5: A8        TAY
-C - - - - - 0x01F4C6 07:B4B6: B9 6D B6  LDA tbl_B66D,Y
+C - - - - - 0x01F4C6 07:B4B6: B9 6D B6  LDA tbl_B66D_doors_data,Y
 C - - - - - 0x01F4C9 07:B4B9: 85 08     STA ram_0008_t014_data
-C - - - - - 0x01F4CB 07:B4BB: B9 6E B6  LDA tbl_B66D + $01,Y
+C - - - - - 0x01F4CB 07:B4BB: B9 6E B6  LDA tbl_B66D_doors_data + $01,Y
 C - - - - - 0x01F4CE 07:B4BE: 85 09     STA ram_0008_t014_data + $01
 C - - - - - 0x01F4D0 07:B4C0: A5 33     LDA ram_blk_id_lo
 ; * 06
@@ -3704,15 +3759,17 @@ C - - - - - 0x01F4D7 07:B4C7: 65 00     ADC ram_0000_t10B
 C - - - - - 0x01F4D9 07:B4C9: A8        TAY
 C - - - - - 0x01F4DA 07:B4CA: B1 08     LDA (ram_0008_t014_data),Y
 C - - - - - 0x01F4DC 07:B4CC: C5 34     CMP ram_blk_id_fr
-C - - - - - 0x01F4DE 07:B4CE: D0 5C     BNE bra_B52C
+C - - - - - 0x01F4DE 07:B4CE: D0 5C     BNE bra_B52C_fail
 C - - - - - 0x01F4E0 07:B4D0: C8        INY
 C - - - - - 0x01F4E1 07:B4D1: B1 08     LDA (ram_0008_t014_data),Y
 C - - - - - 0x01F4E3 07:B4D3: C5 57     CMP ram_cam_pos_hi
-C - - - - - 0x01F4E5 07:B4D5: D0 55     BNE bra_B52C
+C - - - - - 0x01F4E5 07:B4D5: D0 55     BNE bra_B52C_fail
+; check corner
 C - - - - - 0x01F4E7 07:B4D7: C8        INY
 C - - - - - 0x01F4E8 07:B4D8: 8A        TXA
 C - - - - - 0x01F4E9 07:B4D9: D1 08     CMP (ram_0008_t014_data),Y
-C - - - - - 0x01F4EB 07:B4DB: D0 4F     BNE bra_B52C
+C - - - - - 0x01F4EB 07:B4DB: D0 4F     BNE bra_B52C_fail
+; door 1
 C - - - - - 0x01F4ED 07:B4DD: C8        INY
 C - - - - - 0x01F4EE 07:B4DE: B1 08     LDA (ram_0008_t014_data),Y
 C - - - - - 0x01F4F0 07:B4E0: C8        INY
@@ -3725,6 +3782,7 @@ C - - - - - 0x01F4F9 07:B4E9: C9 08     CMP #$08
 C - - - - - 0x01F4FB 07:B4EB: B0 02     BCS bra_B4EF
 C - - - - - 0x01F4FD 07:B4ED: 90 0E     BCC bra_B4FD    ; jmp
 bra_B4EF:
+; door 2
 C - - - - - 0x01F4FF 07:B4EF: B1 08     LDA (ram_0008_t014_data),Y
 C - - - - - 0x01F501 07:B4F1: 38        SEC
 C - - - - - 0x01F502 07:B4F2: ED 1C 04  SBC ram_plr_pos_Y_hi
@@ -3732,17 +3790,17 @@ C - - - - - 0x01F505 07:B4F5: B0 02     BCS bra_B4F9
 C - - - - - 0x01F507 07:B4F7: 49 FF     EOR #$FF
 bra_B4F9:
 C - - - - - 0x01F509 07:B4F9: C9 08     CMP #$08
-C - - - - - 0x01F50B 07:B4FB: B0 2D     BCS bra_B52A
+C - - - - - 0x01F50B 07:B4FB: B0 2D     BCS bra_B52A_success
 bra_B4FD:
 C - - - - - 0x01F50D 07:B4FD: AD 65 05  LDA ram_plr_state
 C - - - - - 0x01F510 07:B500: C9 34     CMP #con_plr_state_34
 C - - - - - 0x01F512 07:B502: F0 2A     BEQ bra_B52E
 C - - - - - 0x01F514 07:B504: C9 04     CMP #con_plr_state_move_on_ground
-C - - - - - 0x01F516 07:B506: D0 22     BNE bra_B52A
+C - - - - - 0x01F516 07:B506: D0 22     BNE bra_B52A_success
 C - - - - - 0x01F518 07:B508: C8        INY
 C - - - - - 0x01F519 07:B509: B1 08     LDA (ram_0008_t014_data),Y
 C - - - - - 0x01F51B 07:B50B: 85 34     STA ram_blk_id_fr
-C - - - - - 0x01F51D 07:B50D: 86 65     STX ram_0065
+C - - - - - 0x01F51D 07:B50D: 86 65     STX ram_camera_movement_direction
 C - - - - - 0x01F51F 07:B50F: 8A        TXA
 C - - - - - 0x01F520 07:B510: 49 01     EOR #$01
 C - - - - - 0x01F522 07:B512: 8D A8 04  STA ram_plr_facing
@@ -3751,20 +3809,20 @@ C - - - - - 0x01F528 07:B518: 09 80     ORA #con_plr_state_80
 C - - - - - 0x01F52A 07:B51A: 8D 65 05  STA ram_plr_state
 C - - - - - 0x01F52D 07:B51D: A9 02     LDA #$02
 C - - - - - 0x01F52F 07:B51F: 8D 00 04  STA ram_plr_anim_id
-C - - - - - 0x01F532 07:B522: A9 08     LDA #con_002A_08
+C - - - - - 0x01F532 07:B522: A9 08     LDA #con_002A_go_through_door
 C - - - - - 0x01F534 07:B524: 85 2A     STA ram_002A_script
 C - - - - - 0x01F536 07:B526: A9 00     LDA #$00
 C - - - - - 0x01F538 07:B528: 85 6B     STA ram_006B_subscript
-bra_B52A:
+bra_B52A_success:
 C - - - - - 0x01F53A 07:B52A: 38        SEC
 C - - - - - 0x01F53B 07:B52B: 60        RTS
-bra_B52C:
+bra_B52C_fail:
 C - - - - - 0x01F53C 07:B52C: 18        CLC
 C - - - - - 0x01F53D 07:B52D: 60        RTS
 bra_B52E:
 - - - - - - 0x01F53E 07:B52E: AD 4E 05  LDA ram_plr_id
-- - - - - - 0x01F541 07:B531: C9 03     CMP #$03
-- - - - - - 0x01F543 07:B533: D0 F5     BNE bra_B52A
+- - - - - - 0x01F541 07:B531: C9 03     CMP #con_player_Alucard
+- - - - - - 0x01F543 07:B533: D0 F5     BNE bra_B52A_success
 - - - - - - 0x01F545 07:B535: A9 36     LDA #con_plr_state_36
 - - - - - - 0x01F547 07:B537: 8D 65 05  STA ram_plr_state
 - - - - - - 0x01F54A 07:B53A: 8E D8 05  STX ram_05D8_plr
@@ -4004,7 +4062,7 @@ C - - - - - 0x01F67C 07:B66C: 60        RTS
 
 
 
-tbl_B66D:
+tbl_B66D_doors_data:
 - D 1 - - - 0x01F67D 07:B66D: 8B B6     .word _off029_B68B_00
 - D 1 - - - 0x01F67F 07:B66F: 9E B6     .word _off029_B69E_01
 - D 1 - - - 0x01F681 07:B671: BD B6     .word _off029_B6BD_02
@@ -4024,442 +4082,232 @@ tbl_B66D:
 
 
 _off029_B68B_00:
-; 00 
-- D 1 - I - 0x01F69B 07:B68B: 00        .byte $00   ; 
-- D 1 - I - 0x01F69C 07:B68C: 02        .byte $02   ; 
-- D 1 - I - 0x01F69D 07:B68D: 01        .byte $01   ; 
-- D 1 - I - 0x01F69E 07:B68E: B0        .byte $B0   ; 
-- D 1 - I - 0x01F69F 07:B68F: B0        .byte $B0   ; 
-- D 1 - I - 0x01F6A0 07:B690: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F6A1 07:B691: 02        .byte $02   ; 
-- D 1 - I - 0x01F6A2 07:B692: 02        .byte $02   ; 
-- D 1 - I - 0x01F6A3 07:B693: 01        .byte $01   ; 
-- D 1 - I - 0x01F6A4 07:B694: 90        .byte $90   ; 
-- - - - - - 0x01F6A5 07:B695: 90        .byte $90   ; 
-- D 1 - I - 0x01F6A6 07:B696: 01        .byte $01   ; 
-; 02 
-- D 1 - I - 0x01F6A7 07:B697: 00        .byte $00   ; 
-- D 1 - I - 0x01F6A8 07:B698: 02        .byte $02   ; 
-- D 1 - I - 0x01F6A9 07:B699: 01        .byte $01   ; 
-- D 1 - I - 0x01F6AA 07:B69A: B0        .byte $B0   ; 
-- D 1 - I - 0x01F6AB 07:B69B: B0        .byte $B0   ; 
-- D 1 - I - 0x01F6AC 07:B69C: 00        .byte $00   ; 
-; 03 
-- D 1 - I - 0x01F6AD 07:B69D: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F69B 07:B68B: 00        .byte $00, $02, $01, $B0, $B0, $00   ; 00 
+- D 1 - I - 0x01F6A1 07:B691: 02        .byte $02, $02, $01, $90, $90, $01   ; 01 
+- D 1 - I - 0x01F6A7 07:B697: 00        .byte $00, $02, $01, $B0, $B0, $00   ; 02 
+- D 1 - I - 0x01F6AD 07:B69D: FF        .byte $FF   ; 04 
 
 
 
 _off029_B69E_01:
-; 00 
-- D 1 - I - 0x01F6AE 07:B69E: 02        .byte $02   ; 
-- D 1 - I - 0x01F6AF 07:B69F: 01        .byte $01   ; 
-- D 1 - I - 0x01F6B0 07:B6A0: 01        .byte $01   ; 
-- D 1 - I - 0x01F6B1 07:B6A1: 70        .byte $70   ; 
-- D 1 - I - 0x01F6B2 07:B6A2: 70        .byte $70   ; 
-- D 1 - I - 0x01F6B3 07:B6A3: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F6B4 07:B6A4: 02        .byte $02   ; 
-- D 1 - I - 0x01F6B5 07:B6A5: 00        .byte $00   ; 
-- D 1 - I - 0x01F6B6 07:B6A6: 01        .byte $01   ; 
-- D 1 - I - 0x01F6B7 07:B6A7: 90        .byte $90   ; 
-- - - - - - 0x01F6B8 07:B6A8: 90        .byte $90   ; 
-- D 1 - I - 0x01F6B9 07:B6A9: 00        .byte $00   ; 
-; 02 
-- D 1 - I - 0x01F6BA 07:B6AA: FF        .byte $FF   ; 
-- - - - - - 0x01F6BB 07:B6AB: E0        .byte $E0   ; 
-- - - - - - 0x01F6BC 07:B6AC: E0        .byte $E0   ; 
-- - - - - - 0x01F6BD 07:B6AD: E0        .byte $E0   ; 
-- - - - - - 0x01F6BE 07:B6AE: E0        .byte $E0   ; 
-- - - - - - 0x01F6BF 07:B6AF: E0        .byte $E0   ; 
-; 03 
-- D 1 - I - 0x01F6C0 07:B6B0: 00        .byte $00   ; 
-- D 1 - I - 0x01F6C1 07:B6B1: 00        .byte $00   ; 
-- D 1 - I - 0x01F6C2 07:B6B2: 00        .byte $00   ; 
-- D 1 - I - 0x01F6C3 07:B6B3: 90        .byte $90   ; 
-- D 1 - I - 0x01F6C4 07:B6B4: 90        .byte $90   ; 
-- D 1 - I - 0x01F6C5 07:B6B5: 02        .byte $02   ; 
-; 04 
-- D 1 - I - 0x01F6C6 07:B6B6: 00        .byte $00   ; 
-- D 1 - I - 0x01F6C7 07:B6B7: 00        .byte $00   ; 
-- D 1 - I - 0x01F6C8 07:B6B8: 00        .byte $00   ; 
-- D 1 - I - 0x01F6C9 07:B6B9: 70        .byte $70   ; 
-- - - - - - 0x01F6CA 07:B6BA: 70        .byte $70   ; 
-- D 1 - I - 0x01F6CB 07:B6BB: 02        .byte $02   ; 
-; 05 
-- - - - - - 0x01F6CC 07:B6BC: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F6AE 07:B69E: 02        .byte $02, $01, $01, $70, $70, $00   ; 00 
+- D 1 - I - 0x01F6B4 07:B6A4: 02        .byte $02, $00, $01, $90, $90, $00   ; 01 
+- D 1 - I - 0x01F6BA 07:B6AA: FF        .byte $FF, $E0, $E0, $E0, $E0, $E0   ; 02 
+- D 1 - I - 0x01F6C0 07:B6B0: 00        .byte $00, $00, $00, $90, $90, $02   ; 03 
+- D 1 - I - 0x01F6C6 07:B6B6: 00        .byte $00, $00, $00, $70, $70, $02   ; 04 
+- - - - - - 0x01F6CC 07:B6BC: FF        .byte $FF   ; 05 
 
 
 
 _off029_B6BD_02:
-; 00 
-- D 1 - I - 0x01F6CD 07:B6BD: E0        .byte $E0   ; 
-- - - - - - 0x01F6CE 07:B6BE: E0        .byte $E0   ; 
-- - - - - - 0x01F6CF 07:B6BF: E0        .byte $E0   ; 
-- - - - - - 0x01F6D0 07:B6C0: E0        .byte $E0   ; 
-- - - - - - 0x01F6D1 07:B6C1: E0        .byte $E0   ; 
-- - - - - - 0x01F6D2 07:B6C2: E0        .byte $E0   ; 
-; 01 
-- D 1 - I - 0x01F6D3 07:B6C3: 00        .byte $00   ; 
-- D 1 - I - 0x01F6D4 07:B6C4: 05        .byte $05   ; 
-- D 1 - I - 0x01F6D5 07:B6C5: 01        .byte $01   ; 
-- D 1 - I - 0x01F6D6 07:B6C6: B0        .byte $B0   ; 
-- - - - - - 0x01F6D7 07:B6C7: B0        .byte $B0   ; 
-- D 1 - I - 0x01F6D8 07:B6C8: 00        .byte $00   ; 
-; 02 
-- D 1 - I - 0x01F6D9 07:B6C9: E0        .byte $E0   ; 
-- - - - - - 0x01F6DA 07:B6CA: E0        .byte $E0   ; 
-- - - - - - 0x01F6DB 07:B6CB: E0        .byte $E0   ; 
-- - - - - - 0x01F6DC 07:B6CC: E0        .byte $E0   ; 
-- - - - - - 0x01F6DD 07:B6CD: E0        .byte $E0   ; 
-- - - - - - 0x01F6DE 07:B6CE: E0        .byte $E0   ; 
-; 03 
-- D 1 - I - 0x01F6DF 07:B6CF: 00        .byte $00   ; 
-- D 1 - I - 0x01F6E0 07:B6D0: 00        .byte $00   ; 
-- D 1 - I - 0x01F6E1 07:B6D1: 00        .byte $00   ; 
-- D 1 - I - 0x01F6E2 07:B6D2: 90        .byte $90   ; 
-- D 1 - I - 0x01F6E3 07:B6D3: 90        .byte $90   ; 
-- D 1 - I - 0x01F6E4 07:B6D4: 01        .byte $01   ; 
-; 04 
-- D 1 - I - 0x01F6E5 07:B6D5: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F6CD 07:B6BD: E0        .byte $E0, $E0, $E0, $E0, $E0, $E0   ; 00 
+- D 1 - I - 0x01F6D3 07:B6C3: 00        .byte $00, $05, $01, $B0, $B0, $00   ; 01 
+- D 1 - I - 0x01F6D9 07:B6C9: E0        .byte $E0, $E0, $E0, $E0, $E0, $E0   ; 02 
+- D 1 - I - 0x01F6DF 07:B6CF: 00        .byte $00, $00, $00, $90, $90, $01   ; 03 
+- D 1 - I - 0x01F6E5 07:B6D5: FF        .byte $FF   ; 04 
 
 
 
 _off029_B6D6_03:
-; 00 
-- D 1 - I - 0x01F6E6 07:B6D6: 00        .byte $00   ; 
-- D 1 - I - 0x01F6E7 07:B6D7: 01        .byte $01   ; 
-- D 1 - I - 0x01F6E8 07:B6D8: 01        .byte $01   ; 
-- D 1 - I - 0x01F6E9 07:B6D9: 90        .byte $90   ; 
-- D 1 - I - 0x01F6EA 07:B6DA: 90        .byte $90   ; 
-- D 1 - I - 0x01F6EB 07:B6DB: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F6EC 07:B6DC: 01        .byte $01   ; 
-- D 1 - I - 0x01F6ED 07:B6DD: 00        .byte $00   ; 
-- D 1 - I - 0x01F6EE 07:B6DE: 00        .byte $00   ; 
-- D 1 - I - 0x01F6EF 07:B6DF: 70        .byte $70   ; 
-- - - - - - 0x01F6F0 07:B6E0: 70        .byte $70   ; 
-- D 1 - I - 0x01F6F1 07:B6E1: 00        .byte $00   ; 
-; 02 
-- D 1 - I - 0x01F6F2 07:B6E2: E0        .byte $E0   ; 
-- - - - - - 0x01F6F3 07:B6E3: E0        .byte $E0   ; 
-- - - - - - 0x01F6F4 07:B6E4: E0        .byte $E0   ; 
-- - - - - - 0x01F6F5 07:B6E5: E0        .byte $E0   ; 
-- - - - - - 0x01F6F6 07:B6E6: E0        .byte $E0   ; 
-- - - - - - 0x01F6F7 07:B6E7: E0        .byte $E0   ; 
-; 03 
-- D 1 - I - 0x01F6F8 07:B6E8: 01        .byte $01   ; 
-- D 1 - I - 0x01F6F9 07:B6E9: 02        .byte $02   ; 
-- D 1 - I - 0x01F6FA 07:B6EA: 01        .byte $01   ; 
-- D 1 - I - 0x01F6FB 07:B6EB: 90        .byte $90   ; 
-- D 1 - I - 0x01F6FC 07:B6EC: 90        .byte $90   ; 
-- D 1 - I - 0x01F6FD 07:B6ED: 02        .byte $02   ; 
-; 04 
-- D 1 - I - 0x01F6FE 07:B6EE: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F6E6 07:B6D6: 00        .byte $00, $01, $01, $90, $90, $00   ; 00 
+- D 1 - I - 0x01F6EC 07:B6DC: 01        .byte $01, $00, $00, $70, $70, $00   ; 01 
+- D 1 - I - 0x01F6F2 07:B6E2: E0        .byte $E0, $E0, $E0, $E0, $E0, $E0   ; 02 
+- D 1 - I - 0x01F6F8 07:B6E8: 01        .byte $01, $02, $01, $90, $90, $02   ; 03 
+- D 1 - I - 0x01F6FE 07:B6EE: FF        .byte $FF   ; 04 
 
 
 
 _off029_B6EF_04:
-; 00 
-- D 1 - I - 0x01F6FF 07:B6EF: 02        .byte $02   ; 
-- D 1 - I - 0x01F700 07:B6F0: 00        .byte $00   ; 
-- D 1 - I - 0x01F701 07:B6F1: 01        .byte $01   ; 
-- D 1 - I - 0x01F702 07:B6F2: 80        .byte $80   ; 
-- - - - - - 0x01F703 07:B6F3: 80        .byte $80   ; 
-- D 1 - I - 0x01F704 07:B6F4: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F705 07:B6F5: 02        .byte $02   ; 
-- D 1 - I - 0x01F706 07:B6F6: 00        .byte $00   ; 
-- D 1 - I - 0x01F707 07:B6F7: 00        .byte $00   ; 
-- D 1 - I - 0x01F708 07:B6F8: 70        .byte $70   ; 
-- - - - - - 0x01F709 07:B6F9: 70        .byte $70   ; 
-- D 1 - I - 0x01F70A 07:B6FA: 00        .byte $00   ; 
-; 02 
-- D 1 - I - 0x01F70B 07:B6FB: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F6FF 07:B6EF: 02        .byte $02, $00, $01, $80, $80, $00   ; 00 
+- D 1 - I - 0x01F705 07:B6F5: 02        .byte $02, $00, $00, $70, $70, $00   ; 01 
+- D 1 - I - 0x01F70B 07:B6FB: FF        .byte $FF   ; 02 
 
 
 
 _off029_B6FC_05:
-; 00 
-- D 1 - I - 0x01F70C 07:B6FC: 00        .byte $00   ; 
-- D 1 - I - 0x01F70D 07:B6FD: 01        .byte $01   ; 
-- D 1 - I - 0x01F70E 07:B6FE: 01        .byte $01   ; 
-- D 1 - I - 0x01F70F 07:B6FF: 70        .byte $70   ; 
-- - - - - - 0x01F710 07:B700: 70        .byte $70   ; 
-- D 1 - I - 0x01F711 07:B701: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F712 07:B702: 00        .byte $00   ; 
-- D 1 - I - 0x01F713 07:B703: 03        .byte $03   ; 
-- D 1 - I - 0x01F714 07:B704: 01        .byte $01   ; 
-- D 1 - I - 0x01F715 07:B705: 70        .byte $70   ; 
-- - - - - - 0x01F716 07:B706: 70        .byte $70   ; 
-- D 1 - I - 0x01F717 07:B707: 01        .byte $01   ; 
-; 02 
-- D 1 - I - 0x01F718 07:B708: 01        .byte $01   ; 
-- D 1 - I - 0x01F719 07:B709: 03        .byte $03   ; 
-- D 1 - I - 0x01F71A 07:B70A: 01        .byte $01   ; 
-- D 1 - I - 0x01F71B 07:B70B: 70        .byte $70   ; 
-- - - - - - 0x01F71C 07:B70C: 70        .byte $70   ; 
-- D 1 - I - 0x01F71D 07:B70D: 01        .byte $01   ; 
-; 03 
-- D 1 - I - 0x01F71E 07:B70E: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F70C 07:B6FC: 00        .byte $00, $01, $01, $70, $70, $00   ; 00 
+- D 1 - I - 0x01F712 07:B702: 00        .byte $00, $03, $01, $70, $70, $01   ; 01 
+- D 1 - I - 0x01F718 07:B708: 01        .byte $01, $03, $01, $70, $70, $01   ; 02 
+- D 1 - I - 0x01F71E 07:B70E: FF        .byte $FF   ; 03 
 
 
 
 _off029_B70F_06:
-; 00 
-- D 1 - I - 0x01F71F 07:B70F: 00        .byte $00   ; 
-- D 1 - I - 0x01F720 07:B710: 01        .byte $01   ; 
-- D 1 - I - 0x01F721 07:B711: 01        .byte $01   ; 
-- D 1 - I - 0x01F722 07:B712: 90        .byte $90   ; 
-- - - - - - 0x01F723 07:B713: 90        .byte $90   ; 
-- D 1 - I - 0x01F724 07:B714: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F725 07:B715: 00        .byte $00   ; 
-- D 1 - I - 0x01F726 07:B716: 05        .byte $05   ; 
-- D 1 - I - 0x01F727 07:B717: 01        .byte $01   ; 
-- D 1 - I - 0x01F728 07:B718: 90        .byte $90   ; 
-- - - - - - 0x01F729 07:B719: 90        .byte $90   ; 
-- D 1 - I - 0x01F72A 07:B71A: 02        .byte $02   ; 
-; 02 
-- D 1 - I - 0x01F72B 07:B71B: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F71F 07:B70F: 00        .byte $00, $01, $01, $90, $90, $00   ; 00 
+- D 1 - I - 0x01F725 07:B715: 00        .byte $00, $05, $01, $90, $90, $02   ; 01 
+- D 1 - I - 0x01F72B 07:B71B: FF        .byte $FF   ; 02 
 
 
 
 _off029_B71C_07:
-; 00 
-- D 1 - I - 0x01F72C 07:B71C: 00        .byte $00   ; 
-- D 1 - I - 0x01F72D 07:B71D: 01        .byte $01   ; 
-- D 1 - I - 0x01F72E 07:B71E: 01        .byte $01   ; 
-- D 1 - I - 0x01F72F 07:B71F: 60        .byte $60   ; 
-- D 1 - I - 0x01F730 07:B720: B0        .byte $B0   ; 
-- D 1 - I - 0x01F731 07:B721: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F732 07:B722: 00        .byte $00   ; 
-- D 1 - I - 0x01F733 07:B723: 01        .byte $01   ; 
-- D 1 - I - 0x01F734 07:B724: 01        .byte $01   ; 
-- D 1 - I - 0x01F735 07:B725: 70        .byte $70   ; 
-- D 1 - I - 0x01F736 07:B726: C0        .byte $C0   ; 
-- D 1 - I - 0x01F737 07:B727: 00        .byte $00   ; 
-; 02 
-- D 1 - I - 0x01F738 07:B728: 00        .byte $00   ; 
-- D 1 - I - 0x01F739 07:B729: 00        .byte $00   ; 
-- D 1 - I - 0x01F73A 07:B72A: 01        .byte $01   ; 
-- D 1 - I - 0x01F73B 07:B72B: 60        .byte $60   ; 
-- D 1 - I - 0x01F73C 07:B72C: C0        .byte $C0   ; 
-- D 1 - I - 0x01F73D 07:B72D: 00        .byte $00   ; 
-; 03 
-- D 1 - I - 0x01F73E 07:B72E: 00        .byte $00   ; 
-- D 1 - I - 0x01F73F 07:B72F: 01        .byte $01   ; 
-- D 1 - I - 0x01F740 07:B730: 01        .byte $01   ; 
-- D 1 - I - 0x01F741 07:B731: 60        .byte $60   ; 
-- D 1 - I - 0x01F742 07:B732: B0        .byte $B0   ; 
-- D 1 - I - 0x01F743 07:B733: 00        .byte $00   ; 
-; 04 
-- D 1 - I - 0x01F744 07:B734: E0        .byte $E0   ; 
-- - - - - - 0x01F745 07:B735: E0        .byte $E0   ; 
-- - - - - - 0x01F746 07:B736: E0        .byte $E0   ; 
-- - - - - - 0x01F747 07:B737: E0        .byte $E0   ; 
-- - - - - - 0x01F748 07:B738: E0        .byte $E0   ; 
-- - - - - - 0x01F749 07:B739: E0        .byte $E0   ; 
-; 05 
-- D 1 - I - 0x01F74A 07:B73A: E0        .byte $E0   ; 
-- - - - - - 0x01F74B 07:B73B: E0        .byte $E0   ; 
-- - - - - - 0x01F74C 07:B73C: E0        .byte $E0   ; 
-- - - - - - 0x01F74D 07:B73D: E0        .byte $E0   ; 
-- - - - - - 0x01F74E 07:B73E: E0        .byte $E0   ; 
-- - - - - - 0x01F74F 07:B73F: E0        .byte $E0   ; 
-; 06 
-- D 1 - I - 0x01F750 07:B740: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F72C 07:B71C: 00        .byte $00, $01, $01, $60, $B0, $00   ; 00 
+- D 1 - I - 0x01F732 07:B722: 00        .byte $00, $01, $01, $70, $C0, $00   ; 01 
+- D 1 - I - 0x01F738 07:B728: 00        .byte $00, $00, $01, $60, $C0, $00   ; 02 
+- D 1 - I - 0x01F73E 07:B72E: 00        .byte $00, $01, $01, $60, $B0, $00   ; 03 
+- D 1 - I - 0x01F744 07:B734: E0        .byte $E0, $E0, $E0, $E0, $E0, $E0   ; 04 
+- D 1 - I - 0x01F74A 07:B73A: E0        .byte $E0, $E0, $E0, $E0, $E0, $E0   ; 05 
+- D 1 - I - 0x01F750 07:B740: FF        .byte $FF   ; 06 
 
 
 
 _off029_B741_08:
-; 00 
-- D 1 - I - 0x01F751 07:B741: 01        .byte $01   ; 
-- D 1 - I - 0x01F752 07:B742: 00        .byte $00   ; 
-- D 1 - I - 0x01F753 07:B743: 00        .byte $00   ; 
-- D 1 - I - 0x01F754 07:B744: 90        .byte $90   ; 
-- - - - - - 0x01F755 07:B745: 90        .byte $90   ; 
-- D 1 - I - 0x01F756 07:B746: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F757 07:B747: 00        .byte $00   ; 
-- D 1 - I - 0x01F758 07:B748: 00        .byte $00   ; 
-- D 1 - I - 0x01F759 07:B749: 00        .byte $00   ; 
-- D 1 - I - 0x01F75A 07:B74A: 90        .byte $90   ; 
-- - - - - - 0x01F75B 07:B74B: 90        .byte $90   ; 
-- D 1 - I - 0x01F75C 07:B74C: 00        .byte $00   ; 
-; 02 
-- - - - - - 0x01F75D 07:B74D: E0        .byte $E0   ; 
-- - - - - - 0x01F75E 07:B74E: E0        .byte $E0   ; 
-- - - - - - 0x01F75F 07:B74F: E0        .byte $E0   ; 
-- - - - - - 0x01F760 07:B750: E0        .byte $E0   ; 
-- - - - - - 0x01F761 07:B751: E0        .byte $E0   ; 
-- - - - - - 0x01F762 07:B752: E0        .byte $E0   ; 
-; 03 
-- - - - - - 0x01F763 07:B753: E0        .byte $E0   ; 
-- - - - - - 0x01F764 07:B754: E0        .byte $E0   ; 
-- - - - - - 0x01F765 07:B755: E0        .byte $E0   ; 
-- - - - - - 0x01F766 07:B756: E0        .byte $E0   ; 
-- - - - - - 0x01F767 07:B757: E0        .byte $E0   ; 
-- - - - - - 0x01F768 07:B758: E0        .byte $E0   ; 
-; 04 
-- - - - - - 0x01F769 07:B759: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F751 07:B741: 01        .byte $01, $00, $00, $90, $90, $00   ; 00 
+- D 1 - I - 0x01F757 07:B747: 00        .byte $00, $00, $00, $90, $90, $00   ; 01 
+- - - - - - 0x01F75D 07:B74D: E0        .byte $E0, $E0, $E0, $E0, $E0, $E0   ; 02 
+- - - - - - 0x01F763 07:B753: E0        .byte $E0, $E0, $E0, $E0, $E0, $E0   ; 03 
+- - - - - - 0x01F769 07:B759: FF        .byte $FF   ; 04 
 
 
 
 _off029_B75A_09:
-; 00 
-- D 1 - I - 0x01F76A 07:B75A: 01        .byte $01   ; 
-- D 1 - I - 0x01F76B 07:B75B: 00        .byte $00   ; 
-- D 1 - I - 0x01F76C 07:B75C: 00        .byte $00   ; 
-- D 1 - I - 0x01F76D 07:B75D: 90        .byte $90   ; 
-- D 1 - I - 0x01F76E 07:B75E: 90        .byte $90   ; 
-- D 1 - I - 0x01F76F 07:B75F: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F770 07:B760: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F76A 07:B75A: 01        .byte $01, $00, $00, $90, $90, $00   ; 00 
+- D 1 - I - 0x01F770 07:B760: FF        .byte $FF   ; 01 
 
 
 
 _off029_B761_0A:
-; 00 
-- D 1 - I - 0x01F771 07:B761: 01        .byte $01   ; 
-- D 1 - I - 0x01F772 07:B762: 00        .byte $00   ; 
-- D 1 - I - 0x01F773 07:B763: 00        .byte $00   ; 
-- D 1 - I - 0x01F774 07:B764: 70        .byte $70   ; 
-- D 1 - I - 0x01F775 07:B765: 70        .byte $70   ; 
-- D 1 - I - 0x01F776 07:B766: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F777 07:B767: 00        .byte $00   ; 
-- D 1 - I - 0x01F778 07:B768: 00        .byte $00   ; 
-- D 1 - I - 0x01F779 07:B769: 00        .byte $00   ; 
-- D 1 - I - 0x01F77A 07:B76A: 70        .byte $70   ; 
-- - - - - - 0x01F77B 07:B76B: 70        .byte $70   ; 
-- D 1 - I - 0x01F77C 07:B76C: 00        .byte $00   ; 
-; 02 
-- D 1 - I - 0x01F77D 07:B76D: 00        .byte $00   ; 
-- D 1 - I - 0x01F77E 07:B76E: 00        .byte $00   ; 
-- D 1 - I - 0x01F77F 07:B76F: 00        .byte $00   ; 
-- D 1 - I - 0x01F780 07:B770: 70        .byte $70   ; 
-- - - - - - 0x01F781 07:B771: 70        .byte $70   ; 
-- D 1 - I - 0x01F782 07:B772: 00        .byte $00   ; 
-; 03 
-- D 1 - I - 0x01F783 07:B773: E0        .byte $E0   ; 
-- - - - - - 0x01F784 07:B774: E0        .byte $E0   ; 
-- - - - - - 0x01F785 07:B775: E0        .byte $E0   ; 
-- - - - - - 0x01F786 07:B776: E0        .byte $E0   ; 
-- - - - - - 0x01F787 07:B777: E0        .byte $E0   ; 
-- - - - - - 0x01F788 07:B778: E0        .byte $E0   ; 
-; 04 
-- D 1 - I - 0x01F789 07:B779: 02        .byte $02   ; 
-- D 1 - I - 0x01F78A 07:B77A: 00        .byte $00   ; 
-- D 1 - I - 0x01F78B 07:B77B: 00        .byte $00   ; 
-- D 1 - I - 0x01F78C 07:B77C: 70        .byte $70   ; 
-- D 1 - I - 0x01F78D 07:B77D: 70        .byte $70   ; 
-- D 1 - I - 0x01F78E 07:B77E: 00        .byte $00   ; 
-; 05 
-- D 1 - I - 0x01F78F 07:B77F: 01        .byte $01   ; 
-- D 1 - I - 0x01F790 07:B780: 00        .byte $00   ; 
-- D 1 - I - 0x01F791 07:B781: 00        .byte $00   ; 
-- D 1 - I - 0x01F792 07:B782: 90        .byte $90   ; 
-- - - - - - 0x01F793 07:B783: 90        .byte $90   ; 
-- D 1 - I - 0x01F794 07:B784: 00        .byte $00   ; 
-; 06 
-- D 1 - I - 0x01F795 07:B785: 01        .byte $01   ; 
-- - - - - - 0x01F796 07:B786: 00        .byte $00   ; 
-- - - - - - 0x01F797 07:B787: 00        .byte $00   ; 
-- - - - - - 0x01F798 07:B788: 90        .byte $90   ; 
-- - - - - - 0x01F799 07:B789: 90        .byte $90   ; 
-- - - - - - 0x01F79A 07:B78A: 00        .byte $00   ; 
-; 07 
-- - - - - - 0x01F79B 07:B78B: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F771 07:B761: 01        .byte $01, $00, $00, $70, $70, $00   ; 00 
+- D 1 - I - 0x01F777 07:B767: 00        .byte $00, $00, $00, $70, $70, $00   ; 01 
+- D 1 - I - 0x01F77D 07:B76D: 00        .byte $00, $00, $00, $70, $70, $00   ; 02 
+- D 1 - I - 0x01F783 07:B773: E0        .byte $E0, $E0, $E0, $E0, $E0, $E0   ; 03 
+- D 1 - I - 0x01F789 07:B779: 02        .byte $02, $00, $00, $70, $70, $00   ; 04 
+- D 1 - I - 0x01F78F 07:B77F: 01        .byte $01, $00, $00, $90, $90, $00   ; 05 
+- D 1 - I - 0x01F795 07:B785: 01        .byte $01, $00, $00, $90, $90,  $0   ; 06 
+- - - - - - 0x01F79B 07:B78B: FF        .byte $FF   ; 07 
 
 
 
 _off029_B78C_0B:
-; 00 
-- D 1 - I - 0x01F79C 07:B78C: 01        .byte $01   ; 
-- D 1 - I - 0x01F79D 07:B78D: 01        .byte $01   ; 
-- D 1 - I - 0x01F79E 07:B78E: 01        .byte $01   ; 
-- D 1 - I - 0x01F79F 07:B78F: 70        .byte $70   ; 
-- - - - - - 0x01F7A0 07:B790: 70        .byte $70   ; 
-- D 1 - I - 0x01F7A1 07:B791: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F7A2 07:B792: 01        .byte $01   ; 
-- D 1 - I - 0x01F7A3 07:B793: 02        .byte $02   ; 
-- D 1 - I - 0x01F7A4 07:B794: 01        .byte $01   ; 
-- D 1 - I - 0x01F7A5 07:B795: 70        .byte $70   ; 
-- - - - - - 0x01F7A6 07:B796: 70        .byte $70   ; 
-- D 1 - I - 0x01F7A7 07:B797: 02        .byte $02   ; 
-; 02 
-- D 1 - I - 0x01F7A8 07:B798: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F79C 07:B78C: 01        .byte $01, $01, $01, $70, $70, $00   ; 00 
+- D 1 - I - 0x01F7A2 07:B792: 01        .byte $01, $02, $01, $70, $70, $02   ; 01 
+- D 1 - I - 0x01F7A8 07:B798: FF        .byte $FF   ; 02 
 
 
 
 _off029_B799_0D:
-; 00 
-- D 1 - I - 0x01F7A9 07:B799: 02        .byte $02   ; 
-- D 1 - I - 0x01F7AA 07:B79A: 00        .byte $00   ; 
-- D 1 - I - 0x01F7AB 07:B79B: 00        .byte $00   ; 
-- D 1 - I - 0x01F7AC 07:B79C: B0        .byte $B0   ; 
-- - - - - - 0x01F7AD 07:B79D: B0        .byte $B0   ; 
-- D 1 - I - 0x01F7AE 07:B79E: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F7AF 07:B79F: 02        .byte $02   ; 
-- D 1 - I - 0x01F7B0 07:B7A0: 00        .byte $00   ; 
-- D 1 - I - 0x01F7B1 07:B7A1: 01        .byte $01   ; 
-- D 1 - I - 0x01F7B2 07:B7A2: B0        .byte $B0   ; 
-- - - - - - 0x01F7B3 07:B7A3: B0        .byte $B0   ; 
-- D 1 - I - 0x01F7B4 07:B7A4: 00        .byte $00   ; 
-; 02 
-- D 1 - I - 0x01F7B5 07:B7A5: 02        .byte $02   ; 
-- D 1 - I - 0x01F7B6 07:B7A6: 00        .byte $00   ; 
-- D 1 - I - 0x01F7B7 07:B7A7: 00        .byte $00   ; 
-- D 1 - I - 0x01F7B8 07:B7A8: A0        .byte $A0   ; 
-- - - - - - 0x01F7B9 07:B7A9: A0        .byte $A0   ; 
-- D 1 - I - 0x01F7BA 07:B7AA: 00        .byte $00   ; 
-; 03 
-- D 1 - I - 0x01F7BB 07:B7AB: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F7A9 07:B799: 02        .byte $02, $00, $00, $B0, $B0, $00   ; 00 
+- D 1 - I - 0x01F7AF 07:B79F: 02        .byte $02, $00, $01, $B0, $B0, $00   ; 01 
+- D 1 - I - 0x01F7B5 07:B7A5: 02        .byte $02, $00, $00, $A0, $A0, $00   ; 02 
+- D 1 - I - 0x01F7BB 07:B7AB: FF        .byte $FF   ; 03 
 
 
 
 _off029_B7AC_0C:
-; 00 
-- D 1 - I - 0x01F7BC 07:B7AC: 01        .byte $01   ; 
-- D 1 - I - 0x01F7BD 07:B7AD: 01        .byte $01   ; 
-- D 1 - I - 0x01F7BE 07:B7AE: 01        .byte $01   ; 
-- D 1 - I - 0x01F7BF 07:B7AF: A0        .byte $A0   ; 
-- - - - - - 0x01F7C0 07:B7B0: A0        .byte $A0   ; 
-- D 1 - I - 0x01F7C1 07:B7B1: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F7C2 07:B7B2: E0        .byte $E0   ; 
-- - - - - - 0x01F7C3 07:B7B3: E0        .byte $E0   ; 
-- - - - - - 0x01F7C4 07:B7B4: E0        .byte $E0   ; 
-- - - - - - 0x01F7C5 07:B7B5: E0        .byte $E0   ; 
-- - - - - - 0x01F7C6 07:B7B6: E0        .byte $E0   ; 
-- - - - - - 0x01F7C7 07:B7B7: E0        .byte $E0   ; 
-; 02 
-- D 1 - I - 0x01F7C8 07:B7B8: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F7BC 07:B7AC: 01        .byte $01, $01, $01, $A0, $A0, $00   ; 00 
+- D 1 - I - 0x01F7C2 07:B7B2: E0        .byte $E0, $E0, $E0, $E0, $E0, $E0   ; 01 
+- D 1 - I - 0x01F7C8 07:B7B8: FF        .byte $FF   ; 02 
 
 
 
 _off029_B7B9_0E:
-; 00 
-- D 1 - I - 0x01F7C9 07:B7B9: 00        .byte $00   ; 
-- D 1 - I - 0x01F7CA 07:B7BA: 00        .byte $00   ; 
-- D 1 - I - 0x01F7CB 07:B7BB: 00        .byte $00   ; 
-- D 1 - I - 0x01F7CC 07:B7BC: 80        .byte $80   ; 
-- - - - - - 0x01F7CD 07:B7BD: 80        .byte $80   ; 
-- D 1 - I - 0x01F7CE 07:B7BE: 00        .byte $00   ; 
-; 01 
-- D 1 - I - 0x01F7CF 07:B7BF: E0        .byte $E0   ; 
-- - - - - - 0x01F7D0 07:B7C0: E0        .byte $E0   ; 
-- - - - - - 0x01F7D1 07:B7C1: E0        .byte $E0   ; 
-- - - - - - 0x01F7D2 07:B7C2: E0        .byte $E0   ; 
-- - - - - - 0x01F7D3 07:B7C3: E0        .byte $E0   ; 
-- - - - - - 0x01F7D4 07:B7C4: E0        .byte $E0   ; 
-; 02 
-- D 1 - I - 0x01F7D5 07:B7C5: FF        .byte $FF   ; end token
+;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
+;                                              |    +------------------------- compare cam_pos_hi
+;                                              |    |    +-------------------- compare corner
+;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    |    |    +----- next blk_id_fr
+;                                              |    |    |    |    |    |
+- D 1 - I - 0x01F7C9 07:B7B9: 00        .byte $00, $00, $00, $80, $80, $00   ; 00 
+- D 1 - I - 0x01F7CF 07:B7BF: E0        .byte $E0, $E0, $E0, $E0, $E0, $E0   ; 01 
+- D 1 - I - 0x01F7D5 07:B7C5: FF        .byte $FF   ; 02 
 
 
 

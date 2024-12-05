@@ -3170,15 +3170,16 @@ loc_93C4:
         ; 0 = 
         ; 1 = 
 C - - - - - 0x0093D4 02:93C4: A4 00     LDY ram_0000_t0AF
-C - - - - - 0x0093D6 02:93C6: A5 65     LDA ram_0065
-C - - - - - 0x0093D8 02:93C8: D0 0E     BNE bra_93D8
+C - - - - - 0x0093D6 02:93C6: A5 65     LDA ram_camera_movement_direction
+C - - - - - 0x0093D8 02:93C8: D0 0E     BNE bra_93D8_right
+; if left
 C - - - - - 0x0093DA 02:93CA: A5 00     LDA ram_0000_t0AF
 C - - - - - 0x0093DC 02:93CC: F0 27     BEQ bra_93F5
 C - - - - - 0x0093DE 02:93CE: BD 8F 07  LDA ram_078F,X
 C - - - - - 0x0093E1 02:93D1: D9 A1 07  CMP ram_07A1,Y
 C - - - - - 0x0093E4 02:93D4: 10 14     BPL bra_93EA
 C - - - - - 0x0093E6 02:93D6: 30 0C     BMI bra_93E4    ; jmp
-bra_93D8:
+bra_93D8_right:
 C - - - - - 0x0093E8 02:93D8: A5 00     LDA ram_0000_t0AF
 C - - - - - 0x0093EA 02:93DA: D0 19     BNE bra_93F5
 C - - - - - 0x0093EC 02:93DC: BD 8F 07  LDA ram_078F,X
@@ -5133,17 +5134,17 @@ C - - - - - 0x009EE5 02:9ED5: 60        RTS
 sub_0x009EE6:
 C - - - - - 0x009EE6 02:9ED6: A5 96     LDA ram_0096_flag
 C - - - - - 0x009EE8 02:9ED8: F0 07     BEQ bra_9EE1_RTS
-C - - - - - 0x009EEA 02:9EDA: A4 65     LDY ram_0065
-C - - - - - 0x009EEC 02:9EDC: F0 0A     BEQ bra_9EE8_00
+C - - - - - 0x009EEA 02:9EDA: A4 65     LDY ram_camera_movement_direction
+C - - - - - 0x009EEC 02:9EDC: F0 0A     BEQ bra_9EE8_00_left
 C - - - - - 0x009EEE 02:9EDE: 88        DEY
-C - - - - - 0x009EEF 02:9EDF: F0 01     BEQ bra_9EE2_01
-; 02
+C - - - - - 0x009EEF 02:9EDF: F0 01     BEQ bra_9EE2_01_right
+; 02 if not moving
 bra_9EE1_RTS:
 C - - - - - 0x009EF1 02:9EE1: 60        RTS
-bra_9EE2_01:
+bra_9EE2_01_right:
 C - - - - - 0x009EF2 02:9EE2: AE A2 07  LDX ram_07A2
 C - - - - - 0x009EF5 02:9EE5: 4C ED 9E  JMP loc_9EED
-bra_9EE8_00:
+bra_9EE8_00_left:
 C - - - - - 0x009EF8 02:9EE8: AE A1 07  LDX ram_07A1
 C - - - - - 0x009EFB 02:9EEB: 30 F4     BMI bra_9EE1_RTS
 loc_9EED:
@@ -5239,11 +5240,12 @@ C - - - - - 0x009F89 02:9F79: 90 02     BCC bra_9F7D
 C - - - - - 0x009F8B 02:9F7B: D0 38     BNE bra_9FB5_RTS
 bra_9F7D:
 C - - - - - 0x009F8D 02:9F7D: 86 6C     STX ram_006C_object_index
-C - - - - - 0x009F8F 02:9F7F: A5 65     LDA ram_0065
-C - - - - - 0x009F91 02:9F81: F0 05     BEQ bra_9F88
+C - - - - - 0x009F8F 02:9F7F: A5 65     LDA ram_camera_movement_direction
+C - - - - - 0x009F91 02:9F81: F0 05     BEQ bra_9F88_left
+; if right
 C - - - - - 0x009F93 02:9F83: EE A2 07  INC ram_07A2
 C - - - - - 0x009F96 02:9F86: D0 03     BNE bra_9F8B
-bra_9F88:
+bra_9F88_left:
 C - - - - - 0x009F98 02:9F88: CE A1 07  DEC ram_07A1
 bra_9F8B:
 C - - - - - 0x009F9B 02:9F8B: A5 02     LDA ram_0002_t04A_lo
@@ -5269,14 +5271,14 @@ C - - - - - 0x009FB7 02:9FA7: 6C 08 00  JMP (ram_0008_t030_jmp)
 sub_0x009FBA:
 C - - - - - 0x009FBA 02:9FAA: A5 96     LDA ram_0096_flag
 C - - - - - 0x009FBC 02:9FAC: F0 07     BEQ bra_9FB5_RTS
-C - - - - - 0x009FBE 02:9FAE: A4 65     LDY ram_0065
-C - - - - - 0x009FC0 02:9FB0: F0 04     BEQ bra_9FB6_00
+C - - - - - 0x009FBE 02:9FAE: A4 65     LDY ram_camera_movement_direction
+C - - - - - 0x009FC0 02:9FB0: F0 04     BEQ bra_9FB6_00_left
 C - - - - - 0x009FC2 02:9FB2: 88        DEY
-C - - - - - 0x009FC3 02:9FB3: F0 43     BEQ bra_9FF8_01
-; 02
+C - - - - - 0x009FC3 02:9FB3: F0 43     BEQ bra_9FF8_01_right
+; 02 if not moving
 bra_9FB5_RTS:
 C - - - - - 0x009FC5 02:9FB5: 60        RTS
-bra_9FB6_00:
+bra_9FB6_00_left:
 C - - - - - 0x009FC6 02:9FB6: AE A1 07  LDX ram_07A1
 C - - - - - 0x009FC9 02:9FB9: 30 FA     BMI bra_9FB5_RTS
 C - - - - - 0x009FCB 02:9FBB: BD 82 07  LDA ram_0782,X
@@ -5315,7 +5317,7 @@ C - - - - - 0x009FFD 02:9FED: A9 01     LDA #$01
 C - - - - - 0x009FFF 02:9FEF: 9D 82 07  STA ram_0782,X
 C - - - - - 0x00A002 02:9FF2: CE A1 07  DEC ram_07A1
 C - - - - - 0x00A005 02:9FF5: 4C 3B A0  JMP loc_A03B
-bra_9FF8_01:
+bra_9FF8_01_right:
 C - - - - - 0x00A008 02:9FF8: AE A2 07  LDX ram_07A2
 C - - - - - 0x00A00B 02:9FFB: BD 82 07  LDA ram_0782,X
 C - - - - - 0x00A00E 02:9FFE: D0 B5     BNE bra_9FB5_RTS
@@ -7734,12 +7736,13 @@ C - - - - - 0x00A72B 02:A71B: 4C CE AA  JMP loc_AACE_RTS
 bra_A71E_RTS:
 - - - - - - 0x00A72E 02:A71E: 60        RTS
 bra_A71F:
-- - - - - - 0x00A72F 02:A71F: A4 65     LDY ram_0065
-- - - - - - 0x00A731 02:A721: F0 09     BEQ bra_A72C
+- - - - - - 0x00A72F 02:A71F: A4 65     LDY ram_camera_movement_direction
+- - - - - - 0x00A731 02:A721: F0 09     BEQ bra_A72C_left
+; if right
 - - - - - - 0x00A733 02:A723: CE A2 07  DEC ram_07A2
 - - - - - - 0x00A736 02:A726: AE A2 07  LDX ram_07A2
 - - - - - - 0x00A739 02:A729: 4C 32 A7  JMP loc_A732
-bra_A72C:
+bra_A72C_left:
 - - - - - - 0x00A73C 02:A72C: EE A1 07  INC ram_07A1
 - - - - - - 0x00A73F 02:A72F: AE A1 07  LDX ram_07A1
 loc_A732:

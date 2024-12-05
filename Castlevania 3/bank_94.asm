@@ -195,11 +195,12 @@ C - - - - - 0x0280D5 0A:80C5: 85 77     STA ram_0077_prev_cam_pos_lo
 C - - - - - 0x0280D7 0A:80C7: 20 01 80  JSR sub_8001
 C - - - - - 0x0280DA 0A:80CA: A9 00     LDA #$00
 C - - - - - 0x0280DC 0A:80CC: A0 C0     LDY #$C0
-C - - - - - 0x0280DE 0A:80CE: A6 65     LDX ram_0065
-C - - - - - 0x0280E0 0A:80D0: F0 04     BEQ bra_80D6
+C - - - - - 0x0280DE 0A:80CE: A6 65     LDX ram_camera_movement_direction
+C - - - - - 0x0280E0 0A:80D0: F0 04     BEQ bra_80D6_left
+; if right
 C - - - - - 0x0280E2 0A:80D2: A9 05     LDA #$05
 C - - - - - 0x0280E4 0A:80D4: A0 00     LDY #$00
-bra_80D6:
+bra_80D6_left:
 C - - - - - 0x0280E6 0A:80D6: 84 09     STY ram_0009_t023_lo
 C - - - - - 0x0280E8 0A:80D8: 85 08     STA ram_0008_t067
 C - - - - - 0x0280EA 0A:80DA: A5 56     LDA ram_cam_pos_lo

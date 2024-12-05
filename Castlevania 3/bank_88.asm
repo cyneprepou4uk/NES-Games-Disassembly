@@ -77,8 +77,8 @@
 .export off_ch_05_0x0131C3_68_FF
 .export sub_0x0131C4_try_to_swap_players
 .export sub_0x01320B
-.export sub_0x013358
-.export sub_0x013364
+.export sub_0x013358_prepare_blk_timer___player_spawn_position
+.export sub_0x013364_prepare_timer___blk_id_fr___player_spawn_position
 .export sub_0x0135C7
 .export sub_0x01361C
 .export sub_0x01369E
@@ -10128,7 +10128,7 @@ off_B303_05_from_Alucard_to_Trevor:
 
 
 
-sub_B325:
+sub_B325_prepare_blk_id_fr_and_blk_timer:
 C - - - - - 0x013335 04:B325: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x013337 04:B327: 0A        ASL
 C - - - - - 0x013338 04:B328: A8        TAY
@@ -10146,29 +10146,29 @@ C - - - - - 0x01334D 04:B33D: 4A        LSR
 C - - - - - 0x01334E 04:B33E: 4A        LSR
 C - - - - - 0x01334F 04:B33F: 4A        LSR
 C - - - - - 0x013350 04:B340: 4A        LSR
-C - - - - - 0x013351 04:B341: 85 7F     STA ram_timer_x00
+C - - - - - 0x013351 04:B341: 85 7F     STA ram_blk_timer_x00
 C - - - - - 0x013353 04:B343: A9 00     LDA #$00
-C - - - - - 0x013355 04:B345: 85 7E     STA ram_timer_0xx
+C - - - - - 0x013355 04:B345: 85 7E     STA ram_blk_timer_0xx
 C - - - - - 0x013357 04:B347: 60        RTS
 
 
 
-sub_0x013358:
+sub_0x013358_prepare_blk_timer___player_spawn_position:
 C - - - - - 0x013358 04:B348: A5 34     LDA ram_blk_id_fr
 C - - - - - 0x01335A 04:B34A: 48        PHA
-C - - - - - 0x01335B 04:B34B: 20 25 B3  JSR sub_B325
+C - - - - - 0x01335B 04:B34B: 20 25 B3  JSR sub_B325_prepare_blk_id_fr_and_blk_timer
 C - - - - - 0x01335E 04:B34E: 68        PLA
 C - - - - - 0x01335F 04:B34F: 85 34     STA ram_blk_id_fr
-C - - - - - 0x013361 04:B351: 4C 57 B3  JMP loc_B357
+C - - - - - 0x013361 04:B351: 4C 57 B3  JMP loc_B357_set_player_spawn_position
 
 
 
-sub_0x013364:
-C - - - - - 0x013364 04:B354: 20 25 B3  JSR sub_B325
-loc_B357:
+sub_0x013364_prepare_timer___blk_id_fr___player_spawn_position:
+C - - - - - 0x013364 04:B354: 20 25 B3  JSR sub_B325_prepare_blk_id_fr_and_blk_timer
+loc_B357_set_player_spawn_position:
 C D 1 - - - 0x013367 04:B357: 20 6B B3  JSR sub_B36B_set_player_spawn_position
 C - - - - - 0x01336A 04:B35A: AD 4E 05  LDA ram_plr_id
-C - - - - - 0x01336D 04:B35D: C9 02     CMP #$02
+C - - - - - 0x01336D 04:B35D: C9 02     CMP #con_player_Grant
 C - - - - - 0x01336F 04:B35F: D0 09     BNE bra_B36A_RTS
 C - - - - - 0x013371 04:B361: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x013374 04:B364: 18        CLC

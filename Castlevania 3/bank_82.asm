@@ -126,8 +126,8 @@ C - - - - - 0x004095 01:8085: D0 1F     BNE bra_80A6    ; jmp
 
 
 ofs_048_8087_05:
-C - - J - - 0x004097 01:8087: A5 7E     LDA ram_timer_0xx
-C - - - - - 0x004099 01:8089: 05 7F     ORA ram_timer_x00
+C - - J - - 0x004097 01:8087: A5 7E     LDA ram_blk_timer_0xx
+C - - - - - 0x004099 01:8089: 05 7F     ORA ram_blk_timer_x00
 C - - - - - 0x00409B 01:808B: F0 10     BEQ bra_809D_time_is_up
 C - - - - - 0x00409D 01:808D: 20 56 E6  JSR sub_0x03E666_display_time
 C - - - - - 0x0040A0 01:8090: 4C AA 80  JMP loc_80AA

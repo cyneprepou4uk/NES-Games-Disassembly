@@ -268,7 +268,7 @@ con_002A_04                             = $04 ;
 con_002A_05                             = $05 ; 
 con_002A_06                             = $06 ; 
 con_002A_07                             = $07 ; 
-con_002A_08                             = $08 ; 
+con_002A_go_through_door                = $08 ; 
 con_002A_09                             = $09 ; 
 con_002A_0A                             = $0A ; 
 con_002A_swap_players_H                 = $0B ; during horisontal blk
@@ -293,6 +293,13 @@ con_002A_1D                             = $1D ;
 con_002A_1E                             = $1E ; 
 con_002A_1F                             = $1F ; 
 
+
+
+; index for 0x03D76A
+con_D75A_D0                             = $D0 ; 
+con_D75A_D1                             = $D1 ; 
+; con_D75A_D2                           = $D2 ; unused
+con_D75A_D3                             = $D3 ; 
 
 
 

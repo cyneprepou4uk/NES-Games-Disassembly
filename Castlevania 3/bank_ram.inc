@@ -306,6 +306,7 @@ ram_0000_temp                           = $0000 ; 000554(W)  00055A(R)  000BB4(W
     ram_0000_t125_lo                        = ram_0000_temp ; in pair with ram_0001_t06A_hi
     ram_0000_t126_lo                        = ram_0000_temp ; in pair with ram_0001_t06B_hi
     ram_0000_t127_pos_Y_hi                  = ram_0000_temp ; 
+    ram_0000_t128_useless_01                = ram_0000_temp ; bzk optimize
 
 
 
@@ -1611,8 +1612,11 @@ ram_0064_timer                          = $0064 ; 02B665(W)  03CD64(W)  03CD88(W
 
 
 
-; 
-ram_0065                                = $0065 ; 0013DB(R)  0093D6(R)  009EEA(R)  009F8F(R)  009FBE(R)  01F51D(W)  0280DE(R)  038709(W)  03871F(W)  03876F(W)  0387A4(W)  038A9F(W)  03C9A7(W)  03C9AC(W)  03CA18(W)  03CA55(R)  03CAD1(R)  03CAE7(R)  03CB23(R)  03CB38(R)  03CB6F(R)  03CD74(R)  03CDAC(R)  03D185(R)  03D18F(R)  03D339(R)  03D385(R)  03E03F(Wi) 03E83C(Wx) 03F9BD(R)  03F9CE(R)  03F9D3(R)  03FA32(R)  03FA5A(R)  03FA6A(R)  03FAD9(R)  
+; movement by X axis
+; 00 = camera is moving to the left
+; 01 = camera is moving to the right
+; 02 = camera is not moving (fixed in one place, like at the end of the blk)
+ram_camera_movement_direction           = $0065 ; 0013DB(R)  0093D6(R)  009EEA(R)  009F8F(R)  009FBE(R)  01F51D(W)  0280DE(R)  038709(W)  03871F(W)  03876F(W)  0387A4(W)  038A9F(W)  03C9A7(W)  03C9AC(W)  03CA18(W)  03CA55(R)  03CAD1(R)  03CAE7(R)  03CB23(R)  03CB38(R)  03CB6F(R)  03CD74(R)  03CDAC(R)  03D185(R)  03D18F(R)  03D339(R)  03D385(R)  03E03F(Wi) 03E83C(Wx) 03F9BD(R)  03F9CE(R)  03F9D3(R)  03FA32(R)  03FA5A(R)  03FA6A(R)  03FAD9(R)  
 
 
 
@@ -1745,12 +1749,12 @@ ram_007D                                = $007D ; 0016F2(R)  001730(W)  00173C(W
 
 
 ; game time, tens and ones
-ram_timer_0xx                           = $007E ; 000D44(R)  004097(R)  013355(W)  0389A6(R)  0389B3(R)  0389B9(R)  0389D4(W)  038A35(R)  03E03F(Wi) 03E83C(Wx) 
+ram_blk_timer_0xx                       = $007E ; 000D44(R)  004097(R)  013355(W)  0389A6(R)  0389B3(R)  0389B9(R)  0389D4(W)  038A35(R)  03E03F(Wi) 03E83C(Wx) 
 
 
 
 ; game time, hundreds
-ram_timer_x00                           = $007F ; 000D39(R)  004099(R)  013351(W)  0389A8(R)  0389BF(R)  0389C5(R)  0389DC(W)  038A31(R)  03E03F(Wi) 03E83C(Wx) 
+ram_blk_timer_x00                       = $007F ; 000D39(R)  004099(R)  013351(W)  0389A8(R)  0389BF(R)  0389C5(R)  0389DC(W)  038A31(R)  03E03F(Wi) 03E83C(Wx) 
 
 
 
@@ -1934,7 +1938,7 @@ ram_00A3_frm_cnt                        = $00A3 ; 008A5B(R)  008C3B(R)  00D6C6(R
 
 
 ; 
-ram_00A4_data_index                     = $00A4 ; 001243(W)  001E36(R)  002116(R)  00211A(R)  03E03F(Wi) 03E83C(Wx) 
+ram_00A4_blk_data_index                 = $00A4 ; 001243(W)  001E36(R)  002116(R)  00211A(R)  03E03F(Wi) 03E83C(Wx) 
 
 
 
