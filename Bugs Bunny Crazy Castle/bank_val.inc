@@ -1,7 +1,10 @@
 ; keep your global constant values inside this file
 
-; MISC разное
+
+
+; MISC
 con_prg_bank                            = $00 ; 
+con_se_offset                           = $18 ; sound engine offset for RAM addresses
 
 
 
@@ -39,7 +42,7 @@ con_script_generate_password            = $07 ;
 
 ; ram_0018_flag
 con_0018_01                             = $01 ; 
-con_0018_02                             = $02 ; 
+con_0018_02                             = $02 ; never used
 con_0018_04                             = $04 ; 
 con_0018_08                             = $08 ; 
 con_0018_10                             = $10 ; 
@@ -54,7 +57,7 @@ con_00F0_00                             = $00 ;
 ; con_00F0_01                           = $01 ; 
 con_00F0_02                             = $02 ; 
 con_00F0_04                             = $04 ; 
-con_00F0_08                             = $08 ; prg bankswitch in progress if set
+con_00F0_08_bsw_in_progress             = $08 ; prg bankswitch is in progress if set
 ; con_00F0_10                           = $10 ; 
 ; con_00F0_20                           = $20 ; 
 con_00F0_40                             = $40 ; useless flag, never set
@@ -102,7 +105,29 @@ con_item_id_sign_03                     = $09 ; "no carrot" sign to access bonus
 
 
 
-; ram_0044
+; index for 0x00F816
+con_F806_00                             = $00 ; 
+con_F806_01                             = $01 ; 
+; con_F806_02                           = $02 ; 
+con_F806_03                             = $03 ; 
+; con_F806_04                           = $04 ; 
+
+
+
+; ram_se_0700_flags
+con_0700_00                             = $00 ; 
+; con_0700_01                           = $01 ; unused
+; con_0700_02                           = $02 ; unused
+; con_0700_04                           = $04 ; unused
+; con_0700_08                           = $08 ; unused
+; con_0700_10                           = $10 ; unused
+con_0700_20                             = $20 ; 
+con_0700_40                             = $40 ; 
+con_0700_80                             = $80 ; 
+
+
+
+; ram_0044_se_t03
 ; need comments at 0x009E10
 con_music_title                         = $01 ; title screen
 con_music_soundtrack_1                  = $02 ; bricks stage soundtrack
