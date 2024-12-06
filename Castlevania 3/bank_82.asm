@@ -70,7 +70,7 @@ C - - - - - 0x004047 01:8037: 60        RTS
 
 ofs_048_8038_02:
 C - - J - - 0x004048 01:8038: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00404A 01:803A: C9 0E     CMP #$0E
+C - - - - - 0x00404A 01:803A: C9 0E     CMP #$0E    ; Final Clock Tower
 C - - - - - 0x00404C 01:803C: D0 04     BNE bra_8042
 C - - - - - 0x00404E 01:803E: A9 D0     LDA #$D0
 C - - - - - 0x004050 01:8040: D0 EF     BNE bra_8031    ; jmp
@@ -107,14 +107,14 @@ C - - - - - 0x004087 01:8077: 60        RTS
 
 
 tbl_8078:
-- - - - - - 0x004088 01:8078: 00        .byte $00   ; 00 
-- D 0 - - - 0x004089 01:8079: 03        .byte $03   ; 01 
-- D 0 - - - 0x00408A 01:807A: 02        .byte $02   ; 02 
-- - - - - - 0x00408B 01:807B: 00        .byte $00   ; 03 
-- - - - - - 0x00408C 01:807C: 00        .byte $00   ; 04 
-- - - - - - 0x00408D 01:807D: 00        .byte $00   ; 05 
-- - - - - - 0x00408E 01:807E: 00        .byte $00   ; 06 
-- D 0 - - - 0x00408F 01:807F: 05        .byte $05   ; 07 
+- - - - - - 0x004088 01:8078: 00        .byte $00   ; 00 Warakiya
+- D 0 - - - 0x004089 01:8079: 03        .byte $03   ; 01 Clock Tower
+- D 0 - - - 0x00408A 01:807A: 02        .byte $02   ; 02 Forest of Madness
+- - - - - - 0x00408B 01:807B: 00        .byte $00   ; 03 Ship of Fools
+- - - - - - 0x00408C 01:807C: 00        .byte $00   ; 04 Tower of Terror
+- - - - - - 0x00408D 01:807D: 00        .byte $00   ; 05 Causeway
+- - - - - - 0x00408E 01:807E: 00        .byte $00   ; 06 Murky Marshes
+- D 0 - - - 0x00408F 01:807F: 05        .byte $05   ; 07 Caves of Alucard
 
 
 
@@ -233,7 +233,7 @@ C - - - - - 0x004123 01:8113: 4C A1 80  JMP loc_80A1
 
 ofs_048_8116_0C:
 C - - J - - 0x004126 01:8116: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x004128 01:8118: C9 01     CMP #$01
+C - - - - - 0x004128 01:8118: C9 01     CMP #$01    ; Clock Tower
 C - - - - - 0x00412A 01:811A: D0 02     BNE bra_811E
 ; A = 01
 C - - - - - 0x00412C 01:811C: 85 2F     STA ram_002F_flag
@@ -254,7 +254,7 @@ C - - - - - 0x004146 01:8136: D0 27     BNE bra_815F    ; if 2nd quest
 C - - - - - 0x004148 01:8138: 20 93 E5  JSR sub_0x03E5A3_check_for_special_name
 C - - - - - 0x00414B 01:813B: B0 22     BCS bra_815F
 C - - - - - 0x00414D 01:813D: A4 32     LDY ram_blk_id_hi
-C - - - - - 0x00414F 01:813F: C0 07     CPY #$07
+C - - - - - 0x00414F 01:813F: C0 07     CPY #$07    ; Caves of Alucard
 C - - - - - 0x004151 01:8141: D0 06     BNE bra_8149
 C - - - - - 0x004153 01:8143: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x004155 01:8145: C9 06     CMP #$06
@@ -263,7 +263,7 @@ bra_8149:
 C - - - - - 0x004159 01:8149: 4C A6 80  JMP loc_80A6
 bra_814C:
 C - - - - - 0x00415C 01:814C: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00415E 01:814E: C9 0E     CMP #$0E
+C - - - - - 0x00415E 01:814E: C9 0E     CMP #$0E    ; Final Clock Tower
 C - - - - - 0x004160 01:8150: D0 04     BNE bra_8156
 C - - - - - 0x004162 01:8152: A9 0C     LDA #con_0018_0C
 C - - - - - 0x004164 01:8154: D0 02     BNE bra_8158    ; jmp
@@ -290,21 +290,21 @@ C - - - - - 0x004180 01:8170: 60        RTS
 
 
 tbl_8171:
-- D 0 - - - 0x004181 01:8171: 02        .byte $02   ; 00 
-- D 0 - - - 0x004182 01:8172: 01        .byte $01   ; 01 
-- D 0 - - - 0x004183 01:8173: 01        .byte $01   ; 02 
-- D 0 - - - 0x004184 01:8174: 00        .byte $00   ; 03 
-- D 0 - - - 0x004185 01:8175: 00        .byte $00   ; 04 
-- D 0 - - - 0x004186 01:8176: 00        .byte $00   ; 05 
-- D 0 - - - 0x004187 01:8177: 00        .byte $00   ; 06 
-- D 0 - - - 0x004188 01:8178: 01        .byte $01   ; 07 
-- D 0 - - - 0x004189 01:8179: 00        .byte $00   ; 08 
-- D 0 - - - 0x00418A 01:817A: 00        .byte $00   ; 09 
-- D 0 - - - 0x00418B 01:817B: 00        .byte $00   ; 0A 
-- D 0 - - - 0x00418C 01:817C: 00        .byte $00   ; 0B 
-- D 0 - - - 0x00418D 01:817D: 00        .byte $00   ; 0C 
-- D 0 - - - 0x00418E 01:817E: 00        .byte $00   ; 0D 
-- D 0 - - - 0x00418F 01:817F: 02        .byte $02   ; 0E 
+- D 0 - - - 0x004181 01:8171: 02        .byte $02   ; 00 Warakiya
+- D 0 - - - 0x004182 01:8172: 01        .byte $01   ; 01 Clock Tower
+- D 0 - - - 0x004183 01:8173: 01        .byte $01   ; 02 Forest of Madness
+- D 0 - - - 0x004184 01:8174: 00        .byte $00   ; 03 Ship of Fools
+- D 0 - - - 0x004185 01:8175: 00        .byte $00   ; 04 Tower of Terror
+- D 0 - - - 0x004186 01:8176: 00        .byte $00   ; 05 Causeway
+- D 0 - - - 0x004187 01:8177: 00        .byte $00   ; 06 Murky Marshes
+- D 0 - - - 0x004188 01:8178: 01        .byte $01   ; 07 Caves of Alucard
+- D 0 - - - 0x004189 01:8179: 00        .byte $00   ; 08 Sunken City
+- D 0 - - - 0x00418A 01:817A: 00        .byte $00   ; 09 Catacombs
+- D 0 - - - 0x00418B 01:817B: 00        .byte $00   ; 0A Mountain Range
+- D 0 - - - 0x00418C 01:817C: 00        .byte $00   ; 0B Castle Courtyard
+- D 0 - - - 0x00418D 01:817D: 00        .byte $00   ; 0C Main Hall
+- D 0 - - - 0x00418E 01:817E: 00        .byte $00   ; 0D Castle Tower
+- D 0 - - - 0x00418F 01:817F: 02        .byte $02   ; 0E Final Clock Tower
 
 
 
@@ -324,7 +324,7 @@ loc_819B:
 C D 0 - - - 0x0041AB 01:819B: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x0041AE 01:819E: F0 1A     BEQ bra_81BA
 C - - - - - 0x0041B0 01:81A0: A4 32     LDY ram_blk_id_hi
-C - - - - - 0x0041B2 01:81A2: C0 02     CPY #$02
+C - - - - - 0x0041B2 01:81A2: C0 02     CPY #$02    ; Forest of Madness
 C - - - - - 0x0041B4 01:81A4: D0 06     BNE bra_81AC
 C - - - - - 0x0041B6 01:81A6: 20 6F 96  JSR sub_966F
 C - - - - - 0x0041B9 01:81A9: 4C 63 82  JMP loc_8263
@@ -405,7 +405,7 @@ C - - - - - 0x004252 01:8242: 4C 63 82  JMP loc_8263
 
 loc_8245:
 C D 0 - - - 0x004255 01:8245: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x004257 01:8247: C9 02     CMP #$02
+C - - - - - 0x004257 01:8247: C9 02     CMP #$02    ; Forest of Madness
 C - - - - - 0x004259 01:8249: D0 18     BNE bra_8263
 C - - - - - 0x00425B 01:824B: A9 06     LDA #$06
 C - - - - - 0x00425D 01:824D: 9D 4E 05  STA ram_obj_id,X
@@ -487,7 +487,7 @@ _off050_8294_02:
 
 ofs_049_82A0_00:
 C - - J - - 0x0042B0 01:82A0: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0042B2 01:82A2: C9 02     CMP #$02
+C - - - - - 0x0042B2 01:82A2: C9 02     CMP #$02    ; Forest of Madness
 C - - - - - 0x0042B4 01:82A4: D0 01     BNE bra_82A7
 C - - - - - 0x0042B6 01:82A6: 60        RTS
 bra_82A7:
@@ -507,14 +507,14 @@ C - - - - - 0x0042C8 01:82B8: 4C C3 82  JMP loc_82C3
 
 
 tbl_82BB:
-- - - - - - 0x0042CB 01:82BB: 00        .byte $00   ; 00 
-- D 0 - - - 0x0042CC 01:82BC: 01        .byte $01   ; 01 
-- D 0 - - - 0x0042CD 01:82BD: 02        .byte $02   ; 02 
-- - - - - - 0x0042CE 01:82BE: 00        .byte $00   ; 03 
-- - - - - - 0x0042CF 01:82BF: 00        .byte $00   ; 04 
-- - - - - - 0x0042D0 01:82C0: 00        .byte $00   ; 05 
-- - - - - - 0x0042D1 01:82C1: 00        .byte $00   ; 06 
-- D 0 - - - 0x0042D2 01:82C2: 03        .byte $03   ; 07 
+- - - - - - 0x0042CB 01:82BB: 00        .byte $00   ; 00 Warakiya
+- D 0 - - - 0x0042CC 01:82BC: 01        .byte $01   ; 01 Clock Tower
+- D 0 - - - 0x0042CD 01:82BD: 02        .byte $02   ; 02 Forest of Madness
+- - - - - - 0x0042CE 01:82BE: 00        .byte $00   ; 03 Ship of Fools
+- - - - - - 0x0042CF 01:82BF: 00        .byte $00   ; 04 Tower of Terror
+- - - - - - 0x0042D0 01:82C0: 00        .byte $00   ; 05 Causeway
+- - - - - - 0x0042D1 01:82C1: 00        .byte $00   ; 06 Murky Marshes
+- D 0 - - - 0x0042D2 01:82C2: 03        .byte $03   ; 07 Caves of Alucard
 
 
 
@@ -959,14 +959,14 @@ C - - - - - 0x004554 01:8544: 60        RTS
 
 
 tbl_8545:
-- - - - - - 0x004555 01:8545: 00        .byte $00   ; 00 
-- D 0 - - - 0x004556 01:8546: 07        .byte $07   ; 01 
-- D 0 - - - 0x004557 01:8547: 0D        .byte $0D   ; 02 
-- - - - - - 0x004558 01:8548: 00        .byte $00   ; 03 
-- - - - - - 0x004559 01:8549: 00        .byte $00   ; 04 
-- - - - - - 0x00455A 01:854A: 00        .byte $00   ; 05 
-- - - - - - 0x00455B 01:854B: 00        .byte $00   ; 06 
-- D 0 - - - 0x00455C 01:854C: 0E        .byte $0E   ; 07 
+- - - - - - 0x004555 01:8545: 00        .byte $00   ; 00 Warakiya
+- D 0 - - - 0x004556 01:8546: 07        .byte $07   ; 01 Clock Tower
+- D 0 - - - 0x004557 01:8547: 0D        .byte $0D   ; 02 Forest of Madness
+- - - - - - 0x004558 01:8548: 00        .byte $00   ; 03 Ship of Fools
+- - - - - - 0x004559 01:8549: 00        .byte $00   ; 04 Tower of Terror
+- - - - - - 0x00455A 01:854A: 00        .byte $00   ; 05 Causeway
+- - - - - - 0x00455B 01:854B: 00        .byte $00   ; 06 Murky Marshes
+- D 0 - - - 0x00455C 01:854C: 0E        .byte $0E   ; 07 Caves of Alucard
 
 
 
@@ -1052,62 +1052,62 @@ C - - - - - 0x0045D8 01:85C8: 60        RTS
 
 
 tbl_85C9_partner_intro_1:
-- - - - - - 0x0045D9 01:85C9: 00        .byte $00   ; 00 unused
-- D 0 - - - 0x0045DA 01:85CA: 00        .byte con_8A26_Grant_intro_1   ; 01 
-- D 0 - - - 0x0045DB 01:85CB: 0C        .byte con_8A26_Sypha_intro_1   ; 02 
-- - - - - - 0x0045DC 01:85CC: 00        .byte $00   ; 03 unused
-- - - - - - 0x0045DD 01:85CD: 00        .byte $00   ; 04 unused
-- - - - - - 0x0045DE 01:85CE: 00        .byte $00   ; 05 unused
-- - - - - - 0x0045DF 01:85CF: 00        .byte $00   ; 06 unused
-- D 0 - - - 0x0045E0 01:85D0: 14        .byte con_8A26_Alucard_intro_1   ; 07 
+- - - - - - 0x0045D9 01:85C9: 00        .byte $00   ; 00 placeholder
+- D 0 - - - 0x0045DA 01:85CA: 00        .byte con_8A26_Grant_intro_1   ; 01 Clock Tower
+- D 0 - - - 0x0045DB 01:85CB: 0C        .byte con_8A26_Sypha_intro_1   ; 02 Forest of Madness
+- - - - - - 0x0045DC 01:85CC: 00        .byte $00   ; 03 placeholder
+- - - - - - 0x0045DD 01:85CD: 00        .byte $00   ; 04 placeholder
+- - - - - - 0x0045DE 01:85CE: 00        .byte $00   ; 05 placeholder
+- - - - - - 0x0045DF 01:85CF: 00        .byte $00   ; 06 placeholder
+- D 0 - - - 0x0045E0 01:85D0: 14        .byte con_8A26_Alucard_intro_1   ; 07 Caves of Alucard
 
 
 
 tbl_85D1_partner_intro_2:
-- - - - - - 0x0045E1 01:85D1: 00        .byte $00   ; 00 unused
-- D 0 - - - 0x0045E2 01:85D2: 02        .byte con_8A26_Grant_intro_2   ; 01 
-- D 0 - - - 0x0045E3 01:85D3: 0E        .byte con_8A26_Sypha_intro_2   ; 02 
-- - - - - - 0x0045E4 01:85D4: 00        .byte $00   ; 03 unused
-- - - - - - 0x0045E5 01:85D5: 00        .byte $00   ; 04 unused
-- - - - - - 0x0045E6 01:85D6: 00        .byte $00   ; 05 unused
-- - - - - - 0x0045E7 01:85D7: 00        .byte $00   ; 06 unused
-- D 0 - - - 0x0045E8 01:85D8: 16        .byte con_8A26_Alucard_intro_2   ; 07 
+- - - - - - 0x0045E1 01:85D1: 00        .byte $00   ; 00 placeholder
+- D 0 - - - 0x0045E2 01:85D2: 02        .byte con_8A26_Grant_intro_2   ; 01 Clock Tower
+- D 0 - - - 0x0045E3 01:85D3: 0E        .byte con_8A26_Sypha_intro_2   ; 02 Forest of Madness
+- - - - - - 0x0045E4 01:85D4: 00        .byte $00   ; 03 placeholder
+- - - - - - 0x0045E5 01:85D5: 00        .byte $00   ; 04 placeholder
+- - - - - - 0x0045E6 01:85D6: 00        .byte $00   ; 05 placeholder
+- - - - - - 0x0045E7 01:85D7: 00        .byte $00   ; 06 placeholder
+- D 0 - - - 0x0045E8 01:85D8: 16        .byte con_8A26_Alucard_intro_2   ; 07 Caves of Alucard
 
 
 
 tbl_85D9_partner_take:
-- - - - - - 0x0045E9 01:85D9: 00        .byte $00   ; 00 unused
-- D 0 - - - 0x0045EA 01:85DA: 06        .byte con_8A26_Grant_take   ; 01 
-- D 0 - - - 0x0045EB 01:85DB: 10        .byte con_8A26_Sypha_take   ; 02 
-- - - - - - 0x0045EC 01:85DC: 00        .byte $00   ; 03 unused
-- - - - - - 0x0045ED 01:85DD: 00        .byte $00   ; 04 unused
-- - - - - - 0x0045EE 01:85DE: 00        .byte $00   ; 05 unused
-- - - - - - 0x0045EF 01:85DF: 00        .byte $00   ; 06 unused
-- D 0 - - - 0x0045F0 01:85E0: 18        .byte con_8A26_Alucard_take   ; 07 
+- - - - - - 0x0045E9 01:85D9: 00        .byte $00   ; 00 placeholder
+- D 0 - - - 0x0045EA 01:85DA: 06        .byte con_8A26_Grant_take   ; 01 Clock Tower
+- D 0 - - - 0x0045EB 01:85DB: 10        .byte con_8A26_Sypha_take   ; 02 Forest of Madness
+- - - - - - 0x0045EC 01:85DC: 00        .byte $00   ; 03 placeholder
+- - - - - - 0x0045ED 01:85DD: 00        .byte $00   ; 04 placeholder
+- - - - - - 0x0045EE 01:85DE: 00        .byte $00   ; 05 placeholder
+- - - - - - 0x0045EF 01:85DF: 00        .byte $00   ; 06 placeholder
+- D 0 - - - 0x0045F0 01:85E0: 18        .byte con_8A26_Alucard_take   ; 07 Caves of Alucard
 
 
 
 tbl_85E1_partner_leave:
-- - - - - - 0x0045F1 01:85E1: 00        .byte $00   ; 00 unused
-- D 0 - - - 0x0045F2 01:85E2: 08        .byte con_8A26_Grant_leave   ; 01 
-- D 0 - - - 0x0045F3 01:85E3: 12        .byte con_8A26_Sypha_leave   ; 02 
-- - - - - - 0x0045F4 01:85E4: 00        .byte $00   ; 03 unused
-- - - - - - 0x0045F5 01:85E5: 00        .byte $00   ; 04 unused
-- - - - - - 0x0045F6 01:85E6: 00        .byte $00   ; 05 unused
-- - - - - - 0x0045F7 01:85E7: 00        .byte $00   ; 06 unused
-- D 0 - - - 0x0045F8 01:85E8: 1A        .byte con_8A26_Alucard_leave   ; 07 
+- - - - - - 0x0045F1 01:85E1: 00        .byte $00   ; 00 placeholder
+- D 0 - - - 0x0045F2 01:85E2: 08        .byte con_8A26_Grant_leave   ; 01 Clock Tower
+- D 0 - - - 0x0045F3 01:85E3: 12        .byte con_8A26_Sypha_leave   ; 02 Forest of Madness
+- - - - - - 0x0045F4 01:85E4: 00        .byte $00   ; 03 placeholder
+- - - - - - 0x0045F5 01:85E5: 00        .byte $00   ; 04 placeholder
+- - - - - - 0x0045F6 01:85E6: 00        .byte $00   ; 05 placeholder
+- - - - - - 0x0045F7 01:85E7: 00        .byte $00   ; 06 placeholder
+- D 0 - - - 0x0045F8 01:85E8: 1A        .byte con_8A26_Alucard_leave   ; 07 Caves of Alucard
 
 
 
 tbl_85E9_swap_partner:
-- - - - - - 0x0045F9 01:85E9: 00        .byte $00   ; 00 unused
-- - - - - - 0x0045FA 01:85EA: 0A        .byte con_8A26_swap_partner   ; 01 
-- D 0 - - - 0x0045FB 01:85EB: 0A        .byte con_8A26_swap_partner   ; 02 
-- - - - - - 0x0045FC 01:85EC: 00        .byte $00   ; 03 unused
-- - - - - - 0x0045FD 01:85ED: 00        .byte $00   ; 04 unused
-- - - - - - 0x0045FE 01:85EE: 00        .byte $00   ; 05 unused
-- - - - - - 0x0045FF 01:85EF: 00        .byte $00   ; 06 unused
-- D 0 - - - 0x004600 01:85F0: 0A        .byte con_8A26_swap_partner   ; 07 
+- - - - - - 0x0045F9 01:85E9: 00        .byte $00   ; 00 placeholder
+- - - - - - 0x0045FA 01:85EA: 0A        .byte con_8A26_swap_partner   ; 01 Clock Tower
+- D 0 - - - 0x0045FB 01:85EB: 0A        .byte con_8A26_swap_partner   ; 02 Forest of Madness
+- - - - - - 0x0045FC 01:85EC: 00        .byte $00   ; 03 placeholder
+- - - - - - 0x0045FD 01:85ED: 00        .byte $00   ; 04 placeholder
+- - - - - - 0x0045FE 01:85EE: 00        .byte $00   ; 05 placeholder
+- - - - - - 0x0045FF 01:85EF: 00        .byte $00   ; 06 placeholder
+- D 0 - - - 0x004600 01:85F0: 0A        .byte con_8A26_swap_partner   ; 07 Caves of Alucard
 
 
 
@@ -1440,13 +1440,13 @@ ofs_051_87F5_1D:
 C - - J - - 0x004805 01:87F5: A9 12     LDA #$12
 C - - - - - 0x004807 01:87F7: 8D EF 07  STA ram_07EF
 C - - - - - 0x00480A 01:87FA: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00480C 01:87FC: C9 01     CMP #$01
-C - - - - - 0x00480E 01:87FE: F0 0B     BEQ bra_880B
+C - - - - - 0x00480C 01:87FC: C9 01     CMP #$01    ; Clock Tower
+C - - - - - 0x00480E 01:87FE: F0 0B     BEQ bra_880B_01_Clock_Tower
 C - - - - - 0x004810 01:8800: A9 00     LDA #$00
 C - - - - - 0x004812 01:8802: 8D EF 07  STA ram_07EF
 C - - - - - 0x004815 01:8805: EE ED 07  INC ram_07ED
 C - - - - - 0x004818 01:8808: 4C 10 88  JMP loc_8810
-bra_880B:
+bra_880B_01_Clock_Tower:
 - - - - - - 0x00481B 01:880B: A9 80     LDA #$80
 - - - - - - 0x00481D 01:880D: 8D F2 07  STA ram_07F2
 loc_8810:
@@ -1516,7 +1516,7 @@ ofs_051_8872_21:
 C - - J - - 0x004882 01:8872: A9 0B     LDA #$0B
 C - - - - - 0x004884 01:8874: 8D EF 07  STA ram_07EF
 C - - - - - 0x004887 01:8877: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x004889 01:8879: C9 01     CMP #$01
+C - - - - - 0x004889 01:8879: C9 01     CMP #$01    ; Clock Tower
 C - - - - - 0x00488B 01:887B: D0 15     BNE bra_8892
 C - - - - - 0x00488D 01:887D: A9 03     LDA #$03
 C - - - - - 0x00488F 01:887F: 85 00     STA ram_0000_t09A
@@ -1544,7 +1544,7 @@ C - - - - - 0x0048B2 01:88A2: 4A        LSR
 C - - - - - 0x0048B3 01:88A3: 29 0F     AND #$0F
 C - - - - - 0x0048B5 01:88A5: A8        TAY
 C - - - - - 0x0048B6 01:88A6: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0048B8 01:88A8: C9 01     CMP #$01
+C - - - - - 0x0048B8 01:88A8: C9 01     CMP #$01    ; Clock Tower
 C - - - - - 0x0048BA 01:88AA: D0 13     BNE bra_88BF
 C - - - - - 0x0048BC 01:88AC: B9 CC 88  LDA tbl_88CC,Y
 C - - - - - 0x0048BF 01:88AF: 85 FC     STA ram_scroll_Y
@@ -2585,14 +2585,14 @@ C - - - - - 0x004F43 01:8F33: 60        RTS
 
 
 tbl_8F34_offset:
-- - - - - - 0x004F44 01:8F34: 00        .byte $00   ; 00 
-- D 0 - - - 0x004F45 01:8F35: 00        .byte $00   ; 01 
-- D 0 - - - 0x004F46 01:8F36: 30        .byte $30   ; 02 
-- - - - - - 0x004F47 01:8F37: 00        .byte $00   ; 03 
-- - - - - - 0x004F48 01:8F38: 00        .byte $00   ; 04 
-- - - - - - 0x004F49 01:8F39: 00        .byte $00   ; 05 
-- - - - - - 0x004F4A 01:8F3A: 00        .byte $00   ; 06 
-- D 0 - - - 0x004F4B 01:8F3B: 30        .byte $30   ; 07 
+- - - - - - 0x004F44 01:8F34: 00        .byte $00   ; 00 Warakiya
+- D 0 - - - 0x004F45 01:8F35: 00        .byte $00   ; 01 Clock Tower
+- D 0 - - - 0x004F46 01:8F36: 30        .byte $30   ; 02 Forest of Madness
+- - - - - - 0x004F47 01:8F37: 00        .byte $00   ; 03 Ship of Fools
+- - - - - - 0x004F48 01:8F38: 00        .byte $00   ; 04 Tower of Terror
+- - - - - - 0x004F49 01:8F39: 00        .byte $00   ; 05 Causeway
+- - - - - - 0x004F4A 01:8F3A: 00        .byte $00   ; 06 Murky Marshes
+- D 0 - - - 0x004F4B 01:8F3B: 30        .byte $30   ; 07 Caves of Alucard
 
 
 
@@ -3139,20 +3139,20 @@ C - - - - - 0x0052A5 01:9295: 60        RTS
 
 
 tbl_9296_offset:
-- - - - - - 0x0052A6 01:9296: 00        .byte off_929E_00 - tbl__929E   ; 00 
-- D 0 - - - 0x0052A7 01:9297: 00        .byte off_929E_00 - tbl__929E   ; 01 
-- D 0 - - - 0x0052A8 01:9298: 13        .byte off_92B1_13 - tbl__929E   ; 02 
-- - - - - - 0x0052A9 01:9299: 00        .byte off_929E_00 - tbl__929E   ; 03 
-- - - - - - 0x0052AA 01:929A: 00        .byte off_929E_00 - tbl__929E   ; 04 
-- - - - - - 0x0052AB 01:929B: 00        .byte off_929E_00 - tbl__929E   ; 05 
-- - - - - - 0x0052AC 01:929C: 00        .byte off_929E_00 - tbl__929E   ; 06 
-- D 0 - - - 0x0052AD 01:929D: 2C        .byte off_92CA_2C - tbl__929E   ; 07 
+- - - - - - 0x0052A6 01:9296: 00        .byte $00   ; 00 placeholder
+- D 0 - - - 0x0052A7 01:9297: 00        .byte off_929E_01_Clock_Tower - tbl__929E   ; 01 Clock Tower
+- D 0 - - - 0x0052A8 01:9298: 13        .byte off_92B1_02_Forest_of_Madness - tbl__929E   ; 02 Forest of Madness
+- - - - - - 0x0052A9 01:9299: 00        .byte $00   ; 03 placeholder
+- - - - - - 0x0052AA 01:929A: 00        .byte $00   ; 04 placeholder
+- - - - - - 0x0052AB 01:929B: 00        .byte $00   ; 05 placeholder
+- - - - - - 0x0052AC 01:929C: 00        .byte $00   ; 06 placeholder
+- D 0 - - - 0x0052AD 01:929D: 2C        .byte off_92CA_07_Caves_of_Alucard - tbl__929E   ; 07 Caves of Alucard
 
 
 
 tbl_929E:
 tbl__929E:
-off_929E_00:
+off_929E_01_Clock_Tower:
 - D 0 - - - 0x0052AE 01:929E: 02 42     .dbyt $0242 ; offset for ppu, 0242 = 2242/2642
 - D 0 - - - 0x0052B0 01:92A0: 06        .byte $06   ; counter of 00s
 
@@ -3175,7 +3175,7 @@ off_929E_00:
 
 
 
-off_92B1_13:
+off_92B1_02_Forest_of_Madness:
 - D 0 - - - 0x0052C1 01:92B1: 02 84     .dbyt $0284 ; offset for ppu, 0284 = 2284/2684
 - D 0 - - - 0x0052C3 01:92B3: 02        .byte $02   ; counter of 00s
 
@@ -3204,7 +3204,7 @@ off_92B1_13:
 
 
 
-off_92CA_2C:
+off_92CA_07_Caves_of_Alucard:
 - D 0 - - - 0x0052DA 01:92CA: 02 80     .dbyt $0280 ; offset for ppu, 0280 = 2280/2680
 - D 0 - - - 0x0052DC 01:92CC: 04        .byte $04   ; counter of 00s
 
@@ -4260,14 +4260,14 @@ C - - - - - 0x0058C5 01:98B5: 60        RTS
 
 tbl_98B6_B0:
 ; bzk optimize, same bytes
-- - - - - - 0x0058C6 01:98B6: B0        .byte $B0   ; 00 
-- D 0 - - - 0x0058C7 01:98B7: B0        .byte $B0   ; 01 
-- D 0 - - - 0x0058C8 01:98B8: B0        .byte $B0   ; 02 
-- - - - - - 0x0058C9 01:98B9: B0        .byte $B0   ; 03 
-- - - - - - 0x0058CA 01:98BA: B0        .byte $B0   ; 04 
-- - - - - - 0x0058CB 01:98BB: B0        .byte $B0   ; 05 
-- - - - - - 0x0058CC 01:98BC: B0        .byte $B0   ; 06 
-- D 0 - - - 0x0058CD 01:98BD: B0        .byte $B0   ; 07 
+- - - - - - 0x0058C6 01:98B6: B0        .byte $B0   ; 00 placeholder
+- D 0 - - - 0x0058C7 01:98B7: B0        .byte $B0   ; 01 Clock Tower
+- D 0 - - - 0x0058C8 01:98B8: B0        .byte $B0   ; 02 Forest of Madness
+- - - - - - 0x0058C9 01:98B9: B0        .byte $B0   ; 03 placeholder
+- - - - - - 0x0058CA 01:98BA: B0        .byte $B0   ; 04 placeholder
+- - - - - - 0x0058CB 01:98BB: B0        .byte $B0   ; 05 placeholder
+- - - - - - 0x0058CC 01:98BC: B0        .byte $B0   ; 06 placeholder
+- D 0 - - - 0x0058CD 01:98BD: B0        .byte $B0   ; 07 Caves of Alucard
 
 
 

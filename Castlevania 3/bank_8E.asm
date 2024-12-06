@@ -7,26 +7,26 @@
 
 
 
-.export _off044_0x01C011_05
-.export _off047_0x01C397_0D_03_00
-.export _off047_0x01C428_0D_02_02
-.export _off045_0x01C459_05
-.export _off046_0x01C9B9_05
-.export _off044_0x01CA0F_06
-.export _off045_0x01CD94_06
-.export _off046_0x01D1B4_06
-.export _off044_0x01D1F6_07
+.export _off044_0x01C011_05_Causeway
+.export _off047_0x01C397_0D_03_00_Castle_Tower
+.export _off047_0x01C428_0D_02_02_Castle_Tower
+.export _off045_0x01C459_05_Causeway
+.export _off046_0x01C9B9_05_Causeway
+.export _off044_0x01CA0F_06_Murky_Marshes
+.export _off045_0x01CD94_06_Murky_Marshes
+.export _off046_0x01D1B4_06_Murky_Marshes
+.export _off044_0x01D1F6_07_Caves_of_Alucard
 .export _off031_0x01D6B3_05
 .export _off031_0x01D7A5_04
 .export _off031_0x01D7D5_03
-.export _off045_0x01D805_07
-.export _off046_0x01DE05_07
-.export _off044_0x01DE65_08
-.export _off045_0x01E435_08
-.export _off046_0x01EA35_08
-.export _off044_0x01EA95_0B
-.export _off045_0x01EE71_0B
-.export _off046_0x01F441_0B
+.export _off045_0x01D805_07_Caves_of_Alucard
+.export _off046_0x01DE05_07_Caves_of_Alucard
+.export _off044_0x01DE65_08_Sunken_City
+.export _off045_0x01E435_08_Sunken_City
+.export _off046_0x01EA35_08_Sunken_City
+.export _off044_0x01EA95_0B_Castle_Courtyard
+.export _off045_0x01EE71_0B_Castle_Courtyard
+.export _off046_0x01F441_0B_Castle_Courtyard
 .export tbl_0x01F49E_4x4_blocks_indexes
 .export sub_0x01F4BE_check_player_collision_with_doors
 .export sub_0x01F54F_prepare_stairs_data_pointers
@@ -43,57 +43,57 @@
 
 
 
-_off044_0x01C011_05:
-- D 0 - I - 0x01C011 07:8001: 09 80     .word off_8009_05_00
-- D 0 - I - 0x01C013 07:8003: 0C 80     .word off_800C_05_01
-- D 0 - I - 0x01C015 07:8005: 0F 80     .word off_800F_05_02
-- D 0 - I - 0x01C017 07:8007: 18 80     .word off_8018_05_03
+_off044_0x01C011_05_Causeway:
+- D 0 - I - 0x01C011 07:8001: 09 80     .word off_8009_05_00_Causeway
+- D 0 - I - 0x01C013 07:8003: 0C 80     .word off_800C_05_01_Causeway
+- D 0 - I - 0x01C015 07:8005: 0F 80     .word off_800F_05_02_Causeway
+- D 0 - I - 0x01C017 07:8007: 18 80     .word off_8018_05_03_Causeway
 
 
 
-off_8009_05_00:
+off_8009_05_00_Causeway:
 - - - - - - 0x01C019 07:8009: 00        .byte $00   ; 
-- D 0 - I - 0x01C01A 07:800A: 21 80     .word _off047_8021_05_00_00
+- D 0 - I - 0x01C01A 07:800A: 21 80     .word _off047_8021_05_00_00_Causeway
 ; stairs transition data (none for this blk)
 
 
 
-off_800C_05_01:
+off_800C_05_01_Causeway:
 - D 0 - I - 0x01C01C 07:800C: 00        .byte $00   ; 
-- D 0 - I - 0x01C01D 07:800D: 82 80     .word _off047_8082_05_01_00
+- D 0 - I - 0x01C01D 07:800D: 82 80     .word _off047_8082_05_01_00_Causeway
 ; stairs transition data (none for this blk)
 
 
 
-off_800F_05_02:
+off_800F_05_02_Causeway:
 - D 0 - I - 0x01C01F 07:800F: 01        .byte $01   ; 
-- D 0 - I - 0x01C020 07:8010: 04 82     .word _off047_8204_05_02_00
-- D 0 - I - 0x01C022 07:8012: 43 81     .word _off047_8143_05_02_01
+- D 0 - I - 0x01C020 07:8010: 04 82     .word _off047_8204_05_02_00_Causeway
+- D 0 - I - 0x01C022 07:8012: 43 81     .word _off047_8143_05_02_01_Causeway
 ; stairs transition data
 ; 00 
-- - - - - - 0x01C024 07:8014: E0        .byte $E0   ; up
-- D 0 - I - 0x01C025 07:8015: 01        .byte $01   ; down
+- - - - - - 0x01C024 07:8014: E0        .byte $E0   ; down
+- D 0 - I - 0x01C025 07:8015: 01        .byte $01   ; up
 ; 01 
-- D 0 - I - 0x01C026 07:8016: FF        .byte $FF   ; up
-- - - - - - 0x01C027 07:8017: E0        .byte $E0   ; down
+- D 0 - I - 0x01C026 07:8016: FF        .byte $FF   ; down
+- - - - - - 0x01C027 07:8017: E0        .byte $E0   ; up
 
 
 
-off_8018_05_03:
+off_8018_05_03_Causeway:
 - D 0 - I - 0x01C028 07:8018: 01        .byte $01   ; 
-- D 0 - I - 0x01C029 07:8019: 26 83     .word _off047_8326_05_03_00
-- D 0 - I - 0x01C02B 07:801B: 65 82     .word _off047_8265_05_03_01
+- D 0 - I - 0x01C029 07:8019: 26 83     .word _off047_8326_05_03_00_Causeway
+- D 0 - I - 0x01C02B 07:801B: 65 82     .word _off047_8265_05_03_01_Causeway
 ; stairs transition data
 ; 00 
-- - - - - - 0x01C02D 07:801D: E0        .byte $E0   ; up
-- - - - - - 0x01C02E 07:801E: 03        .byte $03   ; down
+- - - - - - 0x01C02D 07:801D: E0        .byte $E0   ; down
+- - - - - - 0x01C02E 07:801E: 03        .byte $03   ; up
 ; 01 
-- D 0 - I - 0x01C02F 07:801F: FD        .byte $FD   ; up
-- - - - - - 0x01C030 07:8020: E0        .byte $E0   ; down
+- D 0 - I - 0x01C02F 07:801F: FD        .byte $FD   ; down
+- - - - - - 0x01C030 07:8020: E0        .byte $E0   ; up
 
 
 
-_off047_8021_05_00_00:
+_off047_8021_05_00_00_Causeway:
 - D 0 - I - 0x01C031 07:8021: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01C032 07:8022: 13        .byte $13, $0A, $0B, $00, $00, $00, $00, $04   ; 
 - D 0 - I - 0x01C03A 07:802A: 13        .byte $13, $02, $07, $09, $00, $00, $00, $0A   ; 
@@ -110,7 +110,7 @@ _off047_8021_05_00_00:
 
 
 
-_off047_8082_05_01_00:
+_off047_8082_05_01_00_Causeway:
 - D 0 - I - 0x01C092 07:8082: 03        .byte $03   ; cam_pos_hi
 - D 0 - I - 0x01C093 07:8083: 00        .byte $00, $00, $00, $00, $00, $0A, $0B, $00   ; 
 - D 0 - I - 0x01C09B 07:808B: 00        .byte $00, $00, $00, $40, $12, $0E, $0B, $00   ; 
@@ -139,7 +139,7 @@ _off047_8082_05_01_00:
 
 
 
-_off047_8143_05_02_01:
+_off047_8143_05_02_01_Causeway:
 - D 0 - I - 0x01C153 07:8143: 03        .byte $03   ; cam_pos_hi
 - D 0 - I - 0x01C154 07:8144: 35        .byte $35, $39, $39, $39, $39, $36, $39, $39   ; 
 - D 0 - I - 0x01C15C 07:814C: 01        .byte $01, $32, $30, $36, $30, $36, $32, $34   ; 
@@ -168,7 +168,7 @@ _off047_8143_05_02_01:
 
 
 
-_off047_8204_05_02_00:
+_off047_8204_05_02_00_Causeway:
 - D 0 - I - 0x01C214 07:8204: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01C215 07:8205: 39        .byte $39, $36, $39, $14, $39, $39, $36, $13   ; 
 - D 0 - I - 0x01C21D 07:820D: 32        .byte $32, $3A, $14, $32, $3C, $35, $36, $13   ; 
@@ -185,7 +185,7 @@ _off047_8204_05_02_00:
 
 
 
-_off047_8265_05_03_01:
+_off047_8265_05_03_01_Causeway:
 - D 0 - I - 0x01C275 07:8265: 03        .byte $03   ; cam_pos_hi
 - D 0 - I - 0x01C276 07:8266: 0E        .byte $0E, $04, $00, $00, $00, $0A, $00, $00   ; 
 - D 0 - I - 0x01C27E 07:826E: 0C        .byte $0C, $08, $0C, $0B, $04, $0E, $00, $00   ; 
@@ -214,7 +214,7 @@ _off047_8265_05_03_01:
 
 
 
-_off047_8326_05_03_00:
+_off047_8326_05_03_00_Causeway:
 - D 0 - I - 0x01C336 07:8326: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01C337 07:8327: 0A        .byte $0A, $01, $00, $00, $1A, $0C, $08, $0C   ; 
 - D 0 - I - 0x01C33F 07:832F: 0E        .byte $0E, $01, $00, $1A, $0C, $0C, $3A, $0C   ; 
@@ -231,7 +231,7 @@ _off047_8326_05_03_00:
 
 
 
-_off047_0x01C397_0D_03_00:
+_off047_0x01C397_0D_03_00_Castle_Tower:
 - D 0 - I - 0x01C397 07:8387: 02        .byte $02   ; cam_pos_hi
 - D 0 - I - 0x01C398 07:8388: 01        .byte $01, $0A, $0C, $01, $01, $0A, $01, $01   ; 
 - D 0 - I - 0x01C3A0 07:8390: 0A        .byte $0A, $0E, $05, $05, $05, $05, $05, $05   ; 
@@ -254,7 +254,7 @@ _off047_0x01C397_0D_03_00:
 
 
 
-_off047_0x01C428_0D_02_02:
+_off047_0x01C428_0D_02_02_Castle_Tower:
 - D 0 - I - 0x01C428 07:8418: 00        .byte $00   ; cam_pos_hi
 - D 0 - I - 0x01C429 07:8419: 13        .byte $13, $01, $01, $01, $01, $01, $36, $01   ; 
 - D 0 - I - 0x01C431 07:8421: 13        .byte $13, $0C, $0C, $05, $05, $05, $05, $05   ; 
@@ -265,7 +265,7 @@ _off047_0x01C428_0D_02_02:
 
 
 
-_off045_0x01C459_05:
+_off045_0x01C459_05_Causeway:
 ; 00 
 - D 0 - I - 0x01C459 07:8449: 3F        .byte $3F, $3F, $3F, $3F   ; 
 - D 0 - I - 0x01C45D 07:844D: 3F        .byte $3F, $3F, $3F, $3F   ; 
@@ -699,7 +699,7 @@ _off045_0x01C459_05:
 
 
 
-_off046_0x01C9B9_05:
+_off046_0x01C9B9_05_Causeway:
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x01C9B9 07:89A9: 55        .byte $55, $AA, $55, $55, $55, $05, $55, $55, $55, $55, $55, $55, $55, $04, $55, $5A   ; 00 
 - D 0 - I - 0x01C9C9 07:89B9: AA        .byte $AA, $AA, $55, $00, $82, $80, $20, $28, $20, $55, $41, $14, $22, $50, $51, $AA   ; 10 
@@ -710,53 +710,53 @@ _off046_0x01C9B9_05:
 
 
 
-_off044_0x01CA0F_06:
-- D 0 - I - 0x01CA0F 07:89FF: 05 8A     .word off_8A05_06_00
-- D 0 - I - 0x01CA11 07:8A01: 0E 8A     .word off_8A0E_06_01
-- D 0 - I - 0x01CA13 07:8A03: 11 8A     .word off_8A11_06_02
+_off044_0x01CA0F_06_Murky_Marshes:
+- D 0 - I - 0x01CA0F 07:89FF: 05 8A     .word off_8A05_06_00_Murky_Marshes
+- D 0 - I - 0x01CA11 07:8A01: 0E 8A     .word off_8A0E_06_01_Murky_Marshes
+- D 0 - I - 0x01CA13 07:8A03: 11 8A     .word off_8A11_06_02_Murky_Marshes
 
 
 
-off_8A05_06_00:
+off_8A05_06_00_Murky_Marshes:
 - D 0 - I - 0x01CA15 07:8A05: 01        .byte $01   ; 
-- D 0 - I - 0x01CA16 07:8A06: 70 8B     .word _off047_8B70_06_00_00
-- D 0 - I - 0x01CA18 07:8A08: 1E 8A     .word _off047_8A1E_06_00_01
+- D 0 - I - 0x01CA16 07:8A06: 70 8B     .word _off047_8B70_06_00_00_Murky_Marshes
+- D 0 - I - 0x01CA18 07:8A08: 1E 8A     .word _off047_8A1E_06_00_01_Murky_Marshes
 ; stairs transition data
 ; 00 
-- - - - - - 0x01CA1A 07:8A0A: E0        .byte $E0   ; up
-- - - - - - 0x01CA1B 07:8A0B: 03        .byte $03   ; down
+- - - - - - 0x01CA1A 07:8A0A: E0        .byte $E0   ; down
+- - - - - - 0x01CA1B 07:8A0B: 03        .byte $03   ; up
 ; 01 
-- D 0 - I - 0x01CA1C 07:8A0C: FD        .byte $FD   ; up
-- - - - - - 0x01CA1D 07:8A0D: E0        .byte $E0   ; down
+- D 0 - I - 0x01CA1C 07:8A0C: FD        .byte $FD   ; down
+- - - - - - 0x01CA1D 07:8A0D: E0        .byte $E0   ; up
 
 
 
-off_8A0E_06_01:
+off_8A0E_06_01_Murky_Marshes:
 - - - - - - 0x01CA1E 07:8A0E: 00        .byte $00   ; 
-- D 0 - I - 0x01CA1F 07:8A0F: 02 8C     .word _off047_8C02_06_01_00
+- D 0 - I - 0x01CA1F 07:8A0F: 02 8C     .word _off047_8C02_06_01_00_Murky_Marshes
 ; stairs transition data (none for this blk)
 
 
 
-off_8A11_06_02:
+off_8A11_06_02_Murky_Marshes:
 - D 0 - I - 0x01CA21 07:8A11: 02        .byte $02   ; 
-- D 0 - I - 0x01CA22 07:8A12: D1 8B     .word _off047_8BD1_06_02_00
-- D 0 - I - 0x01CA24 07:8A14: DF 8A     .word _off047_8ADF_06_02_01
-- D 0 - I - 0x01CA26 07:8A16: 23 8D     .word _off047_8D23_06_02_02
+- D 0 - I - 0x01CA22 07:8A12: D1 8B     .word _off047_8BD1_06_02_00_Murky_Marshes
+- D 0 - I - 0x01CA24 07:8A14: DF 8A     .word _off047_8ADF_06_02_01_Murky_Marshes
+- D 0 - I - 0x01CA26 07:8A16: 23 8D     .word _off047_8D23_06_02_02_Murky_Marshes
 ; stairs transition data
 ; 00 
-- - - - - - 0x01CA28 07:8A18: E0        .byte $E0   ; up
-- - - - - - 0x01CA29 07:8A19: 02        .byte $02   ; down
+- - - - - - 0x01CA28 07:8A18: E0        .byte $E0   ; down
+- - - - - - 0x01CA29 07:8A19: 02        .byte $02   ; up
 ; 01 
-- D 0 - I - 0x01CA2A 07:8A1A: FE        .byte $FE   ; up
-- - - - - - 0x01CA2B 07:8A1B: 01        .byte $01   ; down
+- D 0 - I - 0x01CA2A 07:8A1A: FE        .byte $FE   ; down
+- - - - - - 0x01CA2B 07:8A1B: 01        .byte $01   ; up
 ; 02 
-- D 0 - I - 0x01CA2C 07:8A1C: FF        .byte $FF   ; up
-- - - - - - 0x01CA2D 07:8A1D: E0        .byte $E0   ; down
+- D 0 - I - 0x01CA2C 07:8A1C: FF        .byte $FF   ; down
+- - - - - - 0x01CA2D 07:8A1D: E0        .byte $E0   ; up
 
 
 
-_off047_8A1E_06_00_01:
+_off047_8A1E_06_00_01_Murky_Marshes:
 - D 0 - I - 0x01CA2E 07:8A1E: 03        .byte $03   ; cam_pos_hi
 - D 0 - I - 0x01CA2F 07:8A1F: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - D 0 - I - 0x01CA37 07:8A27: 02        .byte $02, $03, $00, $00, $00, $02, $03, $01   ; 
@@ -785,7 +785,7 @@ _off047_8A1E_06_00_01:
 
 
 
-_off047_8ADF_06_02_01:
+_off047_8ADF_06_02_01_Murky_Marshes:
 - D 0 - I - 0x01CAEF 07:8ADF: 02        .byte $02   ; cam_pos_hi
 - D 0 - I - 0x01CAF0 07:8AE0: 35        .byte $35, $22, $21, $37, $32, $20, $22, $2E   ; 
 - D 0 - I - 0x01CAF8 07:8AE8: 35        .byte $35, $22, $37, $32, $21, $20, $22, $2C   ; 
@@ -808,7 +808,7 @@ _off047_8ADF_06_02_01:
 
 
 
-_off047_8B70_06_00_00:
+_off047_8B70_06_00_00_Murky_Marshes:
 - D 0 - I - 0x01CB80 07:8B70: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01CB81 07:8B71: 2E        .byte $2E, $2E, $2E, $2E, $2E, $2E, $13, $36   ; 
 - D 0 - I - 0x01CB89 07:8B79: 2E        .byte $2E, $2E, $2E, $2E, $2E, $2E, $12, $13   ; 
@@ -825,7 +825,7 @@ _off047_8B70_06_00_00:
 
 
 
-_off047_8BD1_06_02_00:
+_off047_8BD1_06_02_00_Murky_Marshes:
 - D 0 - I - 0x01CBE1 07:8BD1: 00        .byte $00   ; cam_pos_hi
 - D 0 - I - 0x01CBE2 07:8BD2: 20        .byte $20, $20, $21, $20, $37, $32, $22, $2E   ; 
 - D 0 - I - 0x01CBEA 07:8BDA: 21        .byte $21, $22, $37, $37, $32, $20, $20, $2E   ; 
@@ -836,7 +836,7 @@ _off047_8BD1_06_02_00:
 
 
 
-_off047_8C02_06_01_00:
+_off047_8C02_06_01_00_Murky_Marshes:
 - D 0 - I - 0x01CC12 07:8C02: 05        .byte $05   ; cam_pos_hi
 - D 0 - I - 0x01CC13 07:8C03: 2E        .byte $2E, $2E, $2E, $2E, $2E, $2E, $2E, $2E   ; 
 - D 0 - I - 0x01CC1B 07:8C0B: 2F        .byte $2F, $22, $04, $22, $2C, $2F, $04, $22   ; 
@@ -877,7 +877,7 @@ _off047_8C02_06_01_00:
 
 
 
-_off047_8D23_06_02_02:
+_off047_8D23_06_02_02_Murky_Marshes:
 - D 0 - I - 0x01CD33 07:8D23: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01CD34 07:8D24: 20        .byte $20, $20, $22, $20, $20, $2C, $2E, $2E   ; 
 - D 0 - I - 0x01CD3C 07:8D2C: 20        .byte $20, $21, $20, $37, $04, $36, $22, $2C   ; 
@@ -894,7 +894,7 @@ _off047_8D23_06_02_02:
 
 
 
-_off045_0x01CD94_06:
+_off045_0x01CD94_06_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x01CD94 07:8D84: 3D        .byte $3D, $3D, $3D, $3D   ; 
 - D 0 - I - 0x01CD98 07:8D88: 3D        .byte $3D, $3D, $3D, $3D   ; 
@@ -1228,7 +1228,7 @@ _off045_0x01CD94_06:
 
 
 
-_off046_0x01D1B4_06:
+_off046_0x01D1B4_06_Murky_Marshes:
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x01D1B4 07:91A4: FF        .byte $FF, $FF, $FF, $FF, $FF, $AF, $0A, $AA, $AB, $AA, $AA, $AA, $AA, $AA, $AA, $AA   ; 00 
 - D 0 - I - 0x01D1C4 07:91B4: 00        .byte $00, $55, $AA, $AA, $00, $00, $0F, $FF, $A5, $A0, $AF, $AA, $50, $50, $55, $A0   ; 10 
@@ -1238,88 +1238,88 @@ _off046_0x01D1B4_06:
 
 
 
-_off044_0x01D1F6_07:
-- D 0 - I - 0x01D1F6 07:91E6: F4 91     .word off_91F4_07_00
-- D 0 - I - 0x01D1F8 07:91E8: FD 91     .word off_91FD_07_01
-- D 0 - I - 0x01D1FA 07:91EA: 00 92     .word off_9200_07_02
-- D 0 - I - 0x01D1FC 07:91EC: 03 92     .word off_9203_07_03
-- D 0 - I - 0x01D1FE 07:91EE: 06 92     .word off_9206_07_04
-- D 0 - I - 0x01D200 07:91F0: 0F 92     .word off_920F_07_05
-- D 0 - I - 0x01D202 07:91F2: 18 92     .word off_9218_07_06
+_off044_0x01D1F6_07_Caves_of_Alucard:
+- D 0 - I - 0x01D1F6 07:91E6: F4 91     .word off_91F4_07_00_Caves_of_Alucard
+- D 0 - I - 0x01D1F8 07:91E8: FD 91     .word off_91FD_07_01_Caves_of_Alucard
+- D 0 - I - 0x01D1FA 07:91EA: 00 92     .word off_9200_07_02_Caves_of_Alucard
+- D 0 - I - 0x01D1FC 07:91EC: 03 92     .word off_9203_07_03_Caves_of_Alucard
+- D 0 - I - 0x01D1FE 07:91EE: 06 92     .word off_9206_07_04_Caves_of_Alucard
+- D 0 - I - 0x01D200 07:91F0: 0F 92     .word off_920F_07_05_Caves_of_Alucard
+- D 0 - I - 0x01D202 07:91F2: 18 92     .word off_9218_07_06_Caves_of_Alucard
 
 
 
-off_91F4_07_00:
+off_91F4_07_00_Caves_of_Alucard:
 - D 0 - I - 0x01D204 07:91F4: 01        .byte $01   ; 
-- D 0 - I - 0x01D205 07:91F5: D3 96     .word _off047_96D3_07_00_00
-- D 0 - I - 0x01D207 07:91F7: E2 95     .word _off047_95E2_07_00_01
+- D 0 - I - 0x01D205 07:91F5: D3 96     .word _off047_96D3_07_00_00_Caves_of_Alucard
+- D 0 - I - 0x01D207 07:91F7: E2 95     .word _off047_95E2_07_00_01_Caves_of_Alucard
 ; stairs transition data
 ; 00 
-- - - - - - 0x01D209 07:91F9: E0        .byte $E0   ; up
-- - - - - - 0x01D20A 07:91FA: 02        .byte $02   ; down
+- - - - - - 0x01D209 07:91F9: E0        .byte $E0   ; down
+- - - - - - 0x01D20A 07:91FA: 02        .byte $02   ; up
 ; 01 
-- D 0 - I - 0x01D20B 07:91FB: FE        .byte $FE   ; up
-- - - - - - 0x01D20C 07:91FC: E0        .byte $E0   ; down
+- D 0 - I - 0x01D20B 07:91FB: FE        .byte $FE   ; down
+- - - - - - 0x01D20C 07:91FC: E0        .byte $E0   ; up
 
 
 
-off_91FD_07_01:
+off_91FD_07_01_Caves_of_Alucard:
 - - - - - - 0x01D20D 07:91FD: 00        .byte $00   ; 
-- D 0 - I - 0x01D20E 07:91FE: 34 97     .word _off047_9734_07_01_00
+- D 0 - I - 0x01D20E 07:91FE: 34 97     .word _off047_9734_07_01_00_Caves_of_Alucard
 ; stairs transition data (none for this blk)
 
 
 
-off_9200_07_02:
+off_9200_07_02_Caves_of_Alucard:
 - - - - - - 0x01D210 07:9200: 00        .byte $00   ; 
-- D 0 - I - 0x01D211 07:9201: 8F 94     .word _off047_948F_07_02_00
+- D 0 - I - 0x01D211 07:9201: 8F 94     .word _off047_948F_07_02_00_Caves_of_Alucard
 ; stairs transition data (none for this blk)
 
 
 
-off_9203_07_03:
+off_9203_07_03_Caves_of_Alucard:
 - - - - - - 0x01D213 07:9203: 00        .byte $00   ; 
-- D 0 - I - 0x01D214 07:9204: C0 94     .word _off047_94C0_07_03_00
+- D 0 - I - 0x01D214 07:9204: C0 94     .word _off047_94C0_07_03_00_Caves_of_Alucard
 ; stairs transition data (none for this blk)
 
 
 
-off_9206_07_04:
+off_9206_07_04_Caves_of_Alucard:
 - D 0 - I - 0x01D216 07:9206: 01        .byte $01   ; 
-- D 0 - I - 0x01D217 07:9207: 21 95     .word _off047_9521_07_04_00
-- D 0 - I - 0x01D219 07:9209: 6D 93     .word _off047_936D_07_04_01
+- D 0 - I - 0x01D217 07:9207: 21 95     .word _off047_9521_07_04_00_Caves_of_Alucard
+- D 0 - I - 0x01D219 07:9209: 6D 93     .word _off047_936D_07_04_01_Caves_of_Alucard
 ; stairs transition data
 ; 00 
-- - - - - - 0x01D21B 07:920B: E0        .byte $E0   ; up
-- D 0 - I - 0x01D21C 07:920C: FD        .byte $FD   ; down
+- - - - - - 0x01D21B 07:920B: E0        .byte $E0   ; down
+- D 0 - I - 0x01D21C 07:920C: FD        .byte $FD   ; up
 ; 01 
-- - - - - - 0x01D21D 07:920D: 03        .byte $03   ; up
-- - - - - - 0x01D21E 07:920E: E0        .byte $E0   ; down
+- - - - - - 0x01D21D 07:920D: 03        .byte $03   ; down
+- - - - - - 0x01D21E 07:920E: E0        .byte $E0   ; up
 
 
 
-off_920F_07_05:
+off_920F_07_05_Caves_of_Alucard:
 - D 0 - I - 0x01D21F 07:920F: 01        .byte $01   ; 
-- D 0 - I - 0x01D220 07:9210: CE 93     .word _off047_93CE_07_05_00
-- D 0 - I - 0x01D222 07:9212: 0C 93     .word _off047_930C_07_05_01
+- D 0 - I - 0x01D220 07:9210: CE 93     .word _off047_93CE_07_05_00_Caves_of_Alucard
+- D 0 - I - 0x01D222 07:9212: 0C 93     .word _off047_930C_07_05_01_Caves_of_Alucard
 ; stairs transition data
 ; 00 
-- - - - - - 0x01D224 07:9214: E0        .byte $E0   ; up
-- D 0 - I - 0x01D225 07:9215: FE        .byte $FE   ; down
+- - - - - - 0x01D224 07:9214: E0        .byte $E0   ; down
+- D 0 - I - 0x01D225 07:9215: FE        .byte $FE   ; up
 ; 01 
-- - - - - - 0x01D226 07:9216: 02        .byte $02   ; up
-- - - - - - 0x01D227 07:9217: E0        .byte $E0   ; down
+- - - - - - 0x01D226 07:9216: 02        .byte $02   ; down
+- - - - - - 0x01D227 07:9217: E0        .byte $E0   ; up
 
 
 
-off_9218_07_06:
+off_9218_07_06_Caves_of_Alucard:
 - - - - - - 0x01D228 07:9218: 00        .byte $00   ; 
-- D 0 - I - 0x01D229 07:9219: 1B 92     .word _off047_921B_07_06_00
+- D 0 - I - 0x01D229 07:9219: 1B 92     .word _off047_921B_07_06_00_Caves_of_Alucard
 ; stairs transition data (none for this blk)
 
 
 
-_off047_921B_07_06_00:
+_off047_921B_07_06_00_Caves_of_Alucard:
 - D 0 - I - 0x01D22B 07:921B: 04        .byte $04   ; cam_pos_hi
 - D 0 - I - 0x01D22C 07:921C: 12        .byte $12, $12, $12, $12, $12, $12, $12, $12   ; 
 - D 0 - I - 0x01D234 07:9224: 39        .byte $39, $33, $57, $37, $37, $56, $33, $37   ; 
@@ -1354,7 +1354,7 @@ _off047_921B_07_06_00:
 
 
 
-_off047_930C_07_05_01:
+_off047_930C_07_05_01_Caves_of_Alucard:
 - D 0 - I - 0x01D31C 07:930C: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01D31D 07:930D: 12        .byte $12, $00, $14, $00, $00, $19, $00, $00   ; 
 - D 0 - I - 0x01D325 07:9315: 12        .byte $12, $2B, $18, $14, $15, $2B, $2F, $2B   ; 
@@ -1371,7 +1371,7 @@ _off047_930C_07_05_01:
 
 
 
-_off047_936D_07_04_01:
+_off047_936D_07_04_01_Caves_of_Alucard:
 - D 0 - I - 0x01D37D 07:936D: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01D37E 07:936E: 00        .byte $00, $00, $18, $1B, $1A, $00, $5F, $37   ; 
 - D 0 - I - 0x01D386 07:9376: 2E        .byte $2E, $2E, $2B, $1A, $19, $52, $5F, $37   ; 
@@ -1388,7 +1388,7 @@ _off047_936D_07_04_01:
 
 
 
-_off047_93CE_07_05_00:
+_off047_93CE_07_05_00_Caves_of_Alucard:
 - D 0 - I - 0x01D3DE 07:93CE: 03        .byte $03   ; cam_pos_hi
 - D 0 - I - 0x01D3DF 07:93CF: 1D        .byte $1D, $1D, $1D, $1D, $1D, $1D, $1D, $1D   ; 
 - D 0 - I - 0x01D3E7 07:93D7: 1D        .byte $1D, $1F, $1F, $1F, $1F, $1F, $1F, $1F   ; 
@@ -1417,7 +1417,7 @@ _off047_93CE_07_05_00:
 
 
 
-_off047_948F_07_02_00:
+_off047_948F_07_02_00_Caves_of_Alucard:
 - D 0 - I - 0x01D49F 07:948F: 00        .byte $00   ; cam_pos_hi
 - D 0 - I - 0x01D4A0 07:9490: 12        .byte $12, $00, $00, $1A, $1A, $18, $1A, $12   ; 
 - D 0 - I - 0x01D4A8 07:9498: 19        .byte $19, $2E, $15, $1A, $10, $3C, $1A, $3B   ; 
@@ -1428,7 +1428,7 @@ _off047_948F_07_02_00:
 
 
 
-_off047_94C0_07_03_00:
+_off047_94C0_07_03_00_Caves_of_Alucard:
 - D 0 - I - 0x01D4D0 07:94C0: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01D4D1 07:94C1: 12        .byte $12, $12, $12, $12, $12, $12, $12, $12   ; 
 - D 0 - I - 0x01D4D9 07:94C9: 1A        .byte $1A, $1A, $1A, $1A, $11, $17, $18, $14   ; 
@@ -1445,7 +1445,7 @@ _off047_94C0_07_03_00:
 
 
 
-_off047_9521_07_04_00:
+_off047_9521_07_04_00_Caves_of_Alucard:
 - D 0 - I - 0x01D531 07:9521: 03        .byte $03   ; cam_pos_hi
 - D 0 - I - 0x01D532 07:9522: 12        .byte $12, $12, $12, $12, $01, $12, $01, $12   ; 
 - D 0 - I - 0x01D53A 07:952A: 18        .byte $18, $1A, $14, $05, $02, $05, $05, $01   ; 
@@ -1474,7 +1474,7 @@ _off047_9521_07_04_00:
 
 
 
-_off047_95E2_07_00_01:
+_off047_95E2_07_00_01_Caves_of_Alucard:
 - D 0 - I - 0x01D5F2 07:95E2: 03        .byte $03   ; cam_pos_hi
 - D 0 - I - 0x01D5F3 07:95E3: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00   ; 
 - D 0 - I - 0x01D5FB 07:95EB: 10        .byte $10, $10, $10, $10, $3C, $3C, $10, $10   ; 
@@ -1555,7 +1555,7 @@ _off031_0x01D6B3_05:
 
 
 
-_off047_96D3_07_00_00:
+_off047_96D3_07_00_00_Caves_of_Alucard:
 - D 0 - I - 0x01D6E3 07:96D3: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01D6E4 07:96D4: 12        .byte $12, $1B, $1A, $00, $22, $18, $1A, $1A   ; 
 - D 0 - I - 0x01D6EC 07:96DC: 12        .byte $12, $1A, $1A, $22, $00, $00, $18, $19   ; 
@@ -1572,7 +1572,7 @@ _off047_96D3_07_00_00:
 
 
 
-_off047_9734_07_01_00:
+_off047_9734_07_01_00_Caves_of_Alucard:
 - D 0 - I - 0x01D744 07:9734: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01D745 07:9735: 12        .byte $12, $12, $12, $12, $12, $12, $12, $12   ; 
 - D 0 - I - 0x01D74D 07:973D: 18        .byte $18, $1A, $1A, $13, $13, $13, $13, $15   ; 
@@ -1693,7 +1693,7 @@ _off031_0x01D7D5_03:
 
 
 
-_off045_0x01D805_07:
+_off045_0x01D805_07_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x01D805 07:97F5: 00        .byte $00, $00, $00, $00   ; 
 - D 0 - I - 0x01D809 07:97F9: 00        .byte $00, $00, $00, $00   ; 
@@ -2177,7 +2177,7 @@ _off045_0x01D805_07:
 
 
 
-_off046_0x01DE05_07:
+_off046_0x01DE05_07_Caves_of_Alucard:
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x01DE05 07:9DF5: 00        .byte $00, $FF, $FF, $FF, $FF, $FF, $FC, $FF, $FF, $FF, $FF, $55, $F0, $0F, $FB, $00   ; 00 
 - D 0 - I - 0x01DE15 07:9E05: 0A        .byte $0A, $A0, $00, $00, $AA, $AA, $A2, $A8, $AA, $AA, $AA, $AA, $00, $00, $80, $A0   ; 10 
@@ -2188,67 +2188,67 @@ _off046_0x01DE05_07:
 
 
 
-_off044_0x01DE65_08:
-- D 0 - I - 0x01DE65 07:9E55: 5F 9E     .word off_9E5F_08_00
-- D 0 - I - 0x01DE67 07:9E57: 68 9E     .word off_9E68_08_01
-- D 0 - I - 0x01DE69 07:9E59: 6B 9E     .word off_9E6B_08_02
-- D 0 - I - 0x01DE6B 07:9E5B: 74 9E     .word off_9E74_08_03
-- D 0 - I - 0x01DE6D 07:9E5D: 79 9E     .word off_9E79_08_04
+_off044_0x01DE65_08_Sunken_City:
+- D 0 - I - 0x01DE65 07:9E55: 5F 9E     .word off_9E5F_08_00_Sunken_City
+- D 0 - I - 0x01DE67 07:9E57: 68 9E     .word off_9E68_08_01_Sunken_City
+- D 0 - I - 0x01DE69 07:9E59: 6B 9E     .word off_9E6B_08_02_Sunken_City
+- D 0 - I - 0x01DE6B 07:9E5B: 74 9E     .word off_9E74_08_03_Sunken_City
+- D 0 - I - 0x01DE6D 07:9E5D: 79 9E     .word off_9E79_08_04_Sunken_City
 
 
 
-off_9E5F_08_00:
+off_9E5F_08_00_Sunken_City:
 - D 0 - I - 0x01DE6F 07:9E5F: 01        .byte $01   ; 
-- D 0 - I - 0x01DE70 07:9E60: C4 A3     .word _off047_A3C4_08_00_00
-- D 0 - I - 0x01DE72 07:9E62: D3 A2     .word _off047_A2D3_08_00_01
+- D 0 - I - 0x01DE70 07:9E60: C4 A3     .word _off047_A3C4_08_00_00_Sunken_City
+- D 0 - I - 0x01DE72 07:9E62: D3 A2     .word _off047_A2D3_08_00_01_Sunken_City
 ; stairs transition data
 ; 00 
-- - - - - - 0x01DE74 07:9E64: E0        .byte $E0   ; up
-- D 0 - I - 0x01DE75 07:9E65: 01        .byte $01   ; down
+- - - - - - 0x01DE74 07:9E64: E0        .byte $E0   ; down
+- D 0 - I - 0x01DE75 07:9E65: 01        .byte $01   ; up
 ; 01 
-- D 0 - I - 0x01DE76 07:9E66: FF        .byte $FF   ; up
-- - - - - - 0x01DE77 07:9E67: E0        .byte $E0   ; down
+- D 0 - I - 0x01DE76 07:9E66: FF        .byte $FF   ; down
+- - - - - - 0x01DE77 07:9E67: E0        .byte $E0   ; up
 
 
 
-off_9E68_08_01:
+off_9E68_08_01_Sunken_City:
 - - - - - - 0x01DE78 07:9E68: 00        .byte $00   ; 
-- D 0 - I - 0x01DE79 07:9E69: E2 A1     .word _off047_A1E2_08_01_00
+- D 0 - I - 0x01DE79 07:9E69: E2 A1     .word _off047_A1E2_08_01_00_Sunken_City
 ; stairs transition data (none for this blk)
 
 
 
-off_9E6B_08_02:
+off_9E6B_08_02_Sunken_City:
 - D 0 - I - 0x01DE7B 07:9E6B: 01        .byte $01   ; 
-- D 0 - I - 0x01DE7C 07:9E6C: 21 A1     .word _off047_A121_08_02_00
-- D 0 - I - 0x01DE7E 07:9E6E: 9F 9F     .word _off047_9F9F_08_02_01
+- D 0 - I - 0x01DE7C 07:9E6C: 21 A1     .word _off047_A121_08_02_00_Sunken_City
+- D 0 - I - 0x01DE7E 07:9E6E: 9F 9F     .word _off047_9F9F_08_02_01_Sunken_City
 ; stairs transition data
 ; 00 
-- - - - - - 0x01DE80 07:9E70: E0        .byte $E0   ; up
-- D 0 - I - 0x01DE81 07:9E71: 00        .byte $00   ; down
+- - - - - - 0x01DE80 07:9E70: E0        .byte $E0   ; down
+- D 0 - I - 0x01DE81 07:9E71: 00        .byte $00   ; up
 ; 01 
-- - - - - - 0x01DE82 07:9E72: 00        .byte $00   ; up
-- - - - - - 0x01DE83 07:9E73: E0        .byte $E0   ; down
+- - - - - - 0x01DE82 07:9E72: 00        .byte $00   ; down
+- - - - - - 0x01DE83 07:9E73: E0        .byte $E0   ; up
 
 
 
-off_9E74_08_03:
+off_9E74_08_03_Sunken_City:
 - D 0 - I - 0x01DE84 07:9E74: 00        .byte $00   ; 
-- D 0 - I - 0x01DE85 07:9E75: 30 A0     .word _off047_A030_08_03_00
+- D 0 - I - 0x01DE85 07:9E75: 30 A0     .word _off047_A030_08_03_00_Sunken_City
 ; stairs transition data
 ; 00 
-- - - - - - 0x01DE87 07:9E77: E0        .byte $E0   ; up
-- D 0 - I - 0x01DE88 07:9E78: D3        .byte con_D75A_D3   ; down
+- - - - - - 0x01DE87 07:9E77: E0        .byte $E0   ; down
+- D 0 - I - 0x01DE88 07:9E78: D3        .byte con_D75A_D3   ; up
 
 
 
-off_9E79_08_04:
+off_9E79_08_04_Sunken_City:
 - - - - - - 0x01DE89 07:9E79: 00        .byte $00   ; 
-- D 0 - I - 0x01DE8A 07:9E7A: AE 9E     .word _off047_9EAE_08_04_00
+- D 0 - I - 0x01DE8A 07:9E7A: AE 9E     .word _off047_9EAE_08_04_00_Sunken_City
 ; stairs transition data
 ; 00 
-- - - - - - 0x01DE8C 07:9E7C: E0        .byte $E0   ; up
-- - - - - - 0x01DE8D 07:9E7D: D3        .byte con_D75A_D3   ; down
+- - - - - - 0x01DE8C 07:9E7C: E0        .byte $E0   ; down
+- - - - - - 0x01DE8D 07:9E7D: D3        .byte con_D75A_D3   ; up
 
 
 ; bzk garbage
@@ -2303,7 +2303,7 @@ off_9E79_08_04:
 
 
 
-_off047_9EAE_08_04_00:
+_off047_9EAE_08_04_00_Sunken_City:
 - D 0 - I - 0x01DEBE 07:9EAE: 04        .byte $04   ; cam_pos_hi
 - D 0 - I - 0x01DEBF 07:9EAF: 30        .byte $30, $22, $21, $22, $23, $22, $21, $24   ; 
 - D 0 - I - 0x01DEC7 07:9EB7: 30        .byte $30, $24, $25, $26, $27, $24, $25, $00   ; 
@@ -2338,7 +2338,7 @@ _off047_9EAE_08_04_00:
 
 
 
-_off047_9F9F_08_02_01:
+_off047_9F9F_08_02_01_Sunken_City:
 - D 0 - I - 0x01DFAF 07:9F9F: 02        .byte $02   ; cam_pos_hi
 - D 0 - I - 0x01DFB0 07:9FA0: 00        .byte $00, $22, $21, $4B, $57, $4B, $57, $4B   ; 
 - D 0 - I - 0x01DFB8 07:9FA8: 23        .byte $23, $21, $21, $24, $57, $4B, $57, $51   ; 
@@ -2361,7 +2361,7 @@ _off047_9F9F_08_02_01:
 
 
 
-_off047_A030_08_03_00:
+_off047_A030_08_03_00_Sunken_City:
 - D 1 - I - 0x01E040 07:A030: 04        .byte $04   ; cam_pos_hi
 - D 1 - I - 0x01E041 07:A031: 00        .byte $00, $00, $00, $00, $28, $00, $21, $22   ; 
 - D 1 - I - 0x01E049 07:A039: 1E        .byte $1E, $1E, $1E, $42, $2A, $28, $25, $26   ; 
@@ -2396,7 +2396,7 @@ _off047_A030_08_03_00:
 
 
 
-_off047_A121_08_02_00:
+_off047_A121_08_02_00_Sunken_City:
 - D 1 - I - 0x01E131 07:A121: 03        .byte $03   ; cam_pos_hi
 - D 1 - I - 0x01E132 07:A122: 24        .byte $24, $57, $37, $27, $27, $24, $25, $4B   ; 
 - D 1 - I - 0x01E13A 07:A12A: 26        .byte $26, $37, $57, $2A, $2A, $11, $28, $00   ; 
@@ -2425,7 +2425,7 @@ _off047_A121_08_02_00:
 
 
 
-_off047_A1E2_08_01_00:
+_off047_A1E2_08_01_00_Sunken_City:
 - D 1 - I - 0x01E1F2 07:A1E2: 04        .byte $04   ; cam_pos_hi
 - D 1 - I - 0x01E1F3 07:A1E3: 30        .byte $30, $22, $23, $22, $21, $24, $21, $22   ; 
 - D 1 - I - 0x01E1FB 07:A1EB: 30        .byte $30, $2A, $27, $28, $25, $00, $25, $00   ; 
@@ -2460,7 +2460,7 @@ _off047_A1E2_08_01_00:
 
 
 
-_off047_A2D3_08_00_01:
+_off047_A2D3_08_00_01_Sunken_City:
 - D 1 - I - 0x01E2E3 07:A2D3: 04        .byte $04   ; cam_pos_hi
 - D 1 - I - 0x01E2E4 07:A2D4: 30        .byte $30, $21, $22, $23, $21, $21, $21, $22   ; 
 - D 1 - I - 0x01E2EC 07:A2DC: 30        .byte $30, $25, $2A, $27, $27, $24, $25, $00   ; 
@@ -2495,7 +2495,7 @@ _off047_A2D3_08_00_01:
 
 
 
-_off047_A3C4_08_00_00:
+_off047_A3C4_08_00_00_Sunken_City:
 - D 1 - I - 0x01E3D4 07:A3C4: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01E3D5 07:A3C5: 11        .byte $11, $53, $3B, $26, $28, $26, $26, $26   ; 
 - D 1 - I - 0x01E3DD 07:A3CD: 15        .byte $15, $37, $2A, $29, $11, $2A, $40, $2A   ; 
@@ -2512,7 +2512,7 @@ _off047_A3C4_08_00_00:
 
 
 
-_off045_0x01E435_08:
+_off045_0x01E435_08_Sunken_City:
 ; 00 
 - D 1 - I - 0x01E435 07:A425: 00        .byte $00, $00, $00, $00   ; 
 - D 1 - I - 0x01E439 07:A429: 00        .byte $00, $00, $00, $00   ; 
@@ -2996,7 +2996,7 @@ _off045_0x01E435_08:
 
 
 
-_off046_0x01EA35_08:
+_off046_0x01EA35_08_Sunken_City:
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01EA35 07:AA25: 00        .byte $00, $FF, $AF, $EF, $FF, $AB, $EA, $3F, $55, $55, $55, $FA, $AF, $FF, $55, $55   ; 00 
 - D 1 - I - 0x01EA45 07:AA35: 0F        .byte $0F, $FF, $3F, $03, $FC, $0F, $CF, $FF, $00, $00, $0F, $FF, $E0, $0F, $0A, $0A   ; 10 
@@ -3007,60 +3007,60 @@ _off046_0x01EA35_08:
 
 
 
-_off044_0x01EA95_0B:
-- D 1 - I - 0x01EA95 07:AA85: 8B AA     .word off_AA8B_0B_00
-- D 1 - I - 0x01EA97 07:AA87: 94 AA     .word off_AA94_0B_01
-- D 1 - I - 0x01EA99 07:AA89: 9D AA     .word off_AA9D_0B_02
+_off044_0x01EA95_0B_Castle_Courtyard:
+- D 1 - I - 0x01EA95 07:AA85: 8B AA     .word off_AA8B_0B_00_Castle_Courtyard
+- D 1 - I - 0x01EA97 07:AA87: 94 AA     .word off_AA94_0B_01_Castle_Courtyard
+- D 1 - I - 0x01EA99 07:AA89: 9D AA     .word off_AA9D_0B_02_Castle_Courtyard
 
 
 
-off_AA8B_0B_00:
+off_AA8B_0B_00_Castle_Courtyard:
 - D 1 - I - 0x01EA9B 07:AA8B: 01        .byte $01   ; 
-- D 1 - I - 0x01EA9C 07:AA8C: 3F AD     .word _off047_AD3F_0B_00_00
-- D 1 - I - 0x01EA9E 07:AA8E: DE AC     .word _off047_ACDE_0B_00_01
+- D 1 - I - 0x01EA9C 07:AA8C: 3F AD     .word _off047_AD3F_0B_00_00_Castle_Courtyard
+- D 1 - I - 0x01EA9E 07:AA8E: DE AC     .word _off047_ACDE_0B_00_01_Castle_Courtyard
 ; stairs transition data
 ; 00 
-- - - - - - 0x01EAA0 07:AA90: E0        .byte $E0   ; up
-- D 1 - I - 0x01EAA1 07:AA91: FE        .byte $FE   ; down
+- - - - - - 0x01EAA0 07:AA90: E0        .byte $E0   ; down
+- D 1 - I - 0x01EAA1 07:AA91: FE        .byte $FE   ; up
 ; 01 
-- - - - - - 0x01EAA2 07:AA92: 02        .byte $02   ; up
-- - - - - - 0x01EAA3 07:AA93: E0        .byte $E0   ; down
+- - - - - - 0x01EAA2 07:AA92: 02        .byte $02   ; down
+- - - - - - 0x01EAA3 07:AA93: E0        .byte $E0   ; up
 
 
 
-off_AA94_0B_01:
+off_AA94_0B_01_Castle_Courtyard:
 - D 1 - I - 0x01EAA4 07:AA94: 01        .byte $01   ; 
-- D 1 - I - 0x01EAA5 07:AA95: 4D AC     .word _off047_AC4D_0B_01_00
-- D 1 - I - 0x01EAA7 07:AA97: 2B AB     .word _off047_AB2B_0B_01_01
+- D 1 - I - 0x01EAA5 07:AA95: 4D AC     .word _off047_AC4D_0B_01_00_Castle_Courtyard
+- D 1 - I - 0x01EAA7 07:AA97: 2B AB     .word _off047_AB2B_0B_01_01_Castle_Courtyard
 ; stairs transition data
 ; 00 
-- - - - - - 0x01EAA9 07:AA99: E0        .byte $E0   ; up
-- D 1 - I - 0x01EAAA 07:AA9A: 00        .byte $00   ; down
+- - - - - - 0x01EAA9 07:AA99: E0        .byte $E0   ; down
+- D 1 - I - 0x01EAAA 07:AA9A: 00        .byte $00   ; up
 ; 01 
-- - - - - - 0x01EAAB 07:AA9B: 00        .byte $00   ; up
-- - - - - - 0x01EAAC 07:AA9C: E0        .byte $E0   ; down
+- - - - - - 0x01EAAB 07:AA9B: 00        .byte $00   ; down
+- - - - - - 0x01EAAC 07:AA9C: E0        .byte $E0   ; up
 
 
 
-off_AA9D_0B_02:
+off_AA9D_0B_02_Castle_Courtyard:
 - D 1 - I - 0x01EAAD 07:AA9D: 02        .byte $02   ; 
-- D 1 - I - 0x01EAAE 07:AA9E: 00 AE     .word _off047_AE00_0B_02_00
-- D 1 - I - 0x01EAB0 07:AAA0: AA AA     .word _off047_AAAA_0B_02_01
-- D 1 - I - 0x01EAB2 07:AAA2: BC AB     .word _off047_ABBC_0B_02_02
+- D 1 - I - 0x01EAAE 07:AA9E: 00 AE     .word _off047_AE00_0B_02_00_Castle_Courtyard
+- D 1 - I - 0x01EAB0 07:AAA0: AA AA     .word _off047_AAAA_0B_02_01_Castle_Courtyard
+- D 1 - I - 0x01EAB2 07:AAA2: BC AB     .word _off047_ABBC_0B_02_02_Castle_Courtyard
 ; stairs transition data
 ; 00 
-- - - - - - 0x01EAB4 07:AAA4: E0        .byte $E0   ; up
-- - - - - - 0x01EAB5 07:AAA5: 81        .byte $80 + $01   ; down
+- - - - - - 0x01EAB4 07:AAA4: E0        .byte $E0   ; down
+- - - - - - 0x01EAB5 07:AAA5: 81        .byte $80 + $01   ; up
 ; 01 
-- D 1 - I - 0x01EAB6 07:AAA6: 00        .byte $00 * $10 + $00   ; up
-- - - - - - 0x01EAB7 07:AAA7: 22        .byte $22   ; down
+- D 1 - I - 0x01EAB6 07:AAA6: 00        .byte $00 * $10 + $00   ; down
+- - - - - - 0x01EAB7 07:AAA7: 22        .byte $22   ; up
 ; 02 
-- D 1 - I - 0x01EAB8 07:AAA8: 81        .byte $80 + $01   ; up
-- - - - - - 0x01EAB9 07:AAA9: E0        .byte $E0   ; down
+- D 1 - I - 0x01EAB8 07:AAA8: 81        .byte $80 + $01   ; down
+- - - - - - 0x01EAB9 07:AAA9: E0        .byte $E0   ; up
 
 
 
-_off047_AAAA_0B_02_01:
+_off047_AAAA_0B_02_01_Castle_Courtyard:
 - D 1 - I - 0x01EABA 07:AAAA: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01EABB 07:AAAB: 00        .byte $00, $00, $00, $41, $46, $46, $46, $46   ; 
 - D 1 - I - 0x01EAC3 07:AAB3: 3F        .byte $3F, $00, $41, $46, $46, $3D, $42, $43   ; 
@@ -3081,7 +3081,7 @@ _off047_AAAA_0B_02_01:
 
 
 
-_off047_AB2B_0B_01_01:
+_off047_AB2B_0B_01_01_Castle_Courtyard:
 - D 1 - I - 0x01EB3B 07:AB2B: 02        .byte $02   ; cam_pos_hi
 - D 1 - I - 0x01EB3C 07:AB2C: 18        .byte $18, $18, $18, $18, $18, $18, $18, $18   ; 
 - D 1 - I - 0x01EB44 07:AB34: 18        .byte $18, $3D, $18, $18, $18, $18, $18, $18   ; 
@@ -3104,7 +3104,7 @@ _off047_AB2B_0B_01_01:
 
 
 
-_off047_ABBC_0B_02_02:
+_off047_ABBC_0B_02_02_Castle_Courtyard:
 - D 1 - I - 0x01EBCC 07:ABBC: 02        .byte $02   ; cam_pos_hi
 - D 1 - I - 0x01EBCD 07:ABBD: 00        .byte $00, $3C, $2D, $18, $18, $18, $18, $18   ; 
 - D 1 - I - 0x01EBD5 07:ABC5: 00        .byte $00, $3C, $3D, $21, $21, $21, $21, $21   ; 
@@ -3127,7 +3127,7 @@ _off047_ABBC_0B_02_02:
 
 
 
-_off047_AC4D_0B_01_00:
+_off047_AC4D_0B_01_00_Castle_Courtyard:
 - D 1 - I - 0x01EC5D 07:AC4D: 02        .byte $02   ; cam_pos_hi
 - D 1 - I - 0x01EC5E 07:AC4E: 00        .byte $00, $26, $2F, $00, $05, $2A, $0B, $00   ; 
 - D 1 - I - 0x01EC66 07:AC56: 00        .byte $00, $2A, $2B, $00, $05, $26, $2B, $0B   ; 
@@ -3150,7 +3150,7 @@ _off047_AC4D_0B_01_00:
 
 
 
-_off047_ACDE_0B_00_01:
+_off047_ACDE_0B_00_01_Castle_Courtyard:
 - D 1 - I - 0x01ECEE 07:ACDE: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01ECEF 07:ACDF: 18        .byte $18, $18, $00, $00, $00, $20, $18, $18   ; 
 - D 1 - I - 0x01ECF7 07:ACE7: 21        .byte $21, $21, $00, $00, $00, $24, $21, $21   ; 
@@ -3167,7 +3167,7 @@ _off047_ACDE_0B_00_01:
 
 
 
-_off047_AD3F_0B_00_00:
+_off047_AD3F_0B_00_00_Castle_Courtyard:
 - D 1 - I - 0x01ED4F 07:AD3F: 03        .byte $03   ; cam_pos_hi
 - D 1 - I - 0x01ED50 07:AD40: 05        .byte $05, $36, $36, $36, $36, $36, $36, $35   ; 
 - D 1 - I - 0x01ED58 07:AD48: 1B        .byte $1B, $00, $3C, $00, $00, $3C, $00, $39   ; 
@@ -3196,7 +3196,7 @@ _off047_AD3F_0B_00_00:
 
 
 
-_off047_AE00_0B_02_00:
+_off047_AE00_0B_02_00_Castle_Courtyard:
 - D 1 - I - 0x01EE10 07:AE00: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01EE11 07:AE01: 05        .byte $05, $3C, $3F, $0A, $3F, $57, $3C, $35   ; 
 - D 1 - I - 0x01EE19 07:AE09: 05        .byte $05, $3C, $0A, $3F, $3F, $57, $38, $39   ; 
@@ -3213,7 +3213,7 @@ _off047_AE00_0B_02_00:
 
 
 
-_off045_0x01EE71_0B:
+_off045_0x01EE71_0B_Castle_Courtyard:
 ; 00 
 - D 1 - I - 0x01EE71 07:AE61: 00        .byte $00, $00, $00, $00   ; 
 - D 1 - I - 0x01EE75 07:AE65: 00        .byte $00, $00, $00, $00   ; 
@@ -3682,7 +3682,7 @@ _off045_0x01EE71_0B:
 
 
 
-_off046_0x01F441_0B:
+_off046_0x01F441_0B_Castle_Courtyard:
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01F441 07:B431: AA        .byte $AA, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $AA   ; 00 
 - D 1 - I - 0x01F451 07:B441: AA        .byte $AA, $AA, $AA, $5A, $5A, $AA, $A5, $A5, $FF, $FF, $04, $08, $FF, $FF, $AF, $00   ; 10 
@@ -4063,25 +4063,25 @@ C - - - - - 0x01F67C 07:B66C: 60        RTS
 
 
 tbl_B66D_doors_data:
-- D 1 - - - 0x01F67D 07:B66D: 8B B6     .word _off029_B68B_00
-- D 1 - - - 0x01F67F 07:B66F: 9E B6     .word _off029_B69E_01
-- D 1 - - - 0x01F681 07:B671: BD B6     .word _off029_B6BD_02
-- D 1 - - - 0x01F683 07:B673: D6 B6     .word _off029_B6D6_03
-- D 1 - - - 0x01F685 07:B675: EF B6     .word _off029_B6EF_04
-- D 1 - - - 0x01F687 07:B677: FC B6     .word _off029_B6FC_05
-- D 1 - - - 0x01F689 07:B679: 0F B7     .word _off029_B70F_06
-- D 1 - - - 0x01F68B 07:B67B: 1C B7     .word _off029_B71C_07
-- D 1 - - - 0x01F68D 07:B67D: 41 B7     .word _off029_B741_08
-- D 1 - - - 0x01F68F 07:B67F: 5A B7     .word _off029_B75A_09
-- D 1 - - - 0x01F691 07:B681: 61 B7     .word _off029_B761_0A
-- D 1 - - - 0x01F693 07:B683: 8C B7     .word _off029_B78C_0B
-- D 1 - - - 0x01F695 07:B685: AC B7     .word _off029_B7AC_0C
-- D 1 - - - 0x01F697 07:B687: 99 B7     .word _off029_B799_0D
-- D 1 - - - 0x01F699 07:B689: B9 B7     .word _off029_B7B9_0E
+- D 1 - - - 0x01F67D 07:B66D: 8B B6     .word _off029_B68B_00_Warakiya
+- D 1 - - - 0x01F67F 07:B66F: 9E B6     .word _off029_B69E_01_Clock_Tower
+- D 1 - - - 0x01F681 07:B671: BD B6     .word _off029_B6BD_02_Forest_of_Madness
+- D 1 - - - 0x01F683 07:B673: D6 B6     .word _off029_B6D6_03_Ship_of_Fools
+- D 1 - - - 0x01F685 07:B675: EF B6     .word _off029_B6EF_04_Tower_of_Terror
+- D 1 - - - 0x01F687 07:B677: FC B6     .word _off029_B6FC_05_Causeway
+- D 1 - - - 0x01F689 07:B679: 0F B7     .word _off029_B70F_06_Murky_Marshes
+- D 1 - - - 0x01F68B 07:B67B: 1C B7     .word _off029_B71C_07_Caves_of_Alucard
+- D 1 - - - 0x01F68D 07:B67D: 41 B7     .word _off029_B741_08_Sunken_City
+- D 1 - - - 0x01F68F 07:B67F: 5A B7     .word _off029_B75A_09_Catacombs
+- D 1 - - - 0x01F691 07:B681: 61 B7     .word _off029_B761_0A_Mountain_Range
+- D 1 - - - 0x01F693 07:B683: 8C B7     .word _off029_B78C_0B_Castle_Courtyard
+- D 1 - - - 0x01F695 07:B685: AC B7     .word _off029_B7AC_0C_Main_Hall
+- D 1 - - - 0x01F697 07:B687: 99 B7     .word _off029_B799_0D_Castle_Tower
+- D 1 - - - 0x01F699 07:B689: B9 B7     .word _off029_B7B9_0E_Final_Clock_Tower
 
 
 
-_off029_B68B_00:
+_off029_B68B_00_Warakiya:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4096,7 +4096,7 @@ _off029_B68B_00:
 
 
 
-_off029_B69E_01:
+_off029_B69E_01_Clock_Tower:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4113,7 +4113,7 @@ _off029_B69E_01:
 
 
 
-_off029_B6BD_02:
+_off029_B6BD_02_Forest_of_Madness:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4129,7 +4129,7 @@ _off029_B6BD_02:
 
 
 
-_off029_B6D6_03:
+_off029_B6D6_03_Ship_of_Fools:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4145,7 +4145,7 @@ _off029_B6D6_03:
 
 
 
-_off029_B6EF_04:
+_off029_B6EF_04_Tower_of_Terror:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4159,7 +4159,7 @@ _off029_B6EF_04:
 
 
 
-_off029_B6FC_05:
+_off029_B6FC_05_Causeway:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4174,7 +4174,7 @@ _off029_B6FC_05:
 
 
 
-_off029_B70F_06:
+_off029_B70F_06_Murky_Marshes:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4188,7 +4188,7 @@ _off029_B70F_06:
 
 
 
-_off029_B71C_07:
+_off029_B71C_07_Caves_of_Alucard:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4206,7 +4206,7 @@ _off029_B71C_07:
 
 
 
-_off029_B741_08:
+_off029_B741_08_Sunken_City:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4222,7 +4222,7 @@ _off029_B741_08:
 
 
 
-_off029_B75A_09:
+_off029_B75A_09_Catacombs:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4235,7 +4235,7 @@ _off029_B75A_09:
 
 
 
-_off029_B761_0A:
+_off029_B761_0A_Mountain_Range:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4254,7 +4254,7 @@ _off029_B761_0A:
 
 
 
-_off029_B78C_0B:
+_off029_B78C_0B_Castle_Courtyard:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4268,7 +4268,7 @@ _off029_B78C_0B:
 
 
 
-_off029_B799_0D:
+_off029_B799_0D_Castle_Tower:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4283,7 +4283,7 @@ _off029_B799_0D:
 
 
 
-_off029_B7AC_0C:
+_off029_B7AC_0C_Main_Hall:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4297,7 +4297,7 @@ _off029_B7AC_0C:
 
 
 
-_off029_B7B9_0E:
+_off029_B7B9_0E_Final_Clock_Tower:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
@@ -4312,145 +4312,145 @@ _off029_B7B9_0E:
 
 
 tbl_B7C6_stairs_data:
-- D 1 - - - 0x01F7D6 07:B7C6: E4 B7     .word _off027_B7E4_00
-- D 1 - - - 0x01F7D8 07:B7C8: EC B7     .word _off027_B7EC_01
-- D 1 - - - 0x01F7DA 07:B7CA: F8 B7     .word _off027_B7F8_02
-- D 1 - - - 0x01F7DC 07:B7CC: 02 B8     .word _off027_B802_03
-- D 1 - - - 0x01F7DE 07:B7CE: 0C B8     .word _off027_B80C_04
-- D 1 - - - 0x01F7E0 07:B7D0: 12 B8     .word _off027_B812_05
-- D 1 - - - 0x01F7E2 07:B7D2: 1A B8     .word _off027_B81A_06
-- D 1 - - - 0x01F7E4 07:B7D4: 20 B8     .word _off027_B820_07
-- D 1 - - - 0x01F7E6 07:B7D6: 2E B8     .word _off027_B82E_08
-- D 1 - - - 0x01F7E8 07:B7D8: 38 B8     .word _off027_B838_09
-- D 1 - - - 0x01F7EA 07:B7DA: 3C B8     .word _off027_B83C_0A
-- D 1 - - - 0x01F7EC 07:B7DC: 4A B8     .word _off027_B84A_0B
-- D 1 - - - 0x01F7EE 07:B7DE: 50 B8     .word _off027_B850_0C
-- D 1 - - - 0x01F7F0 07:B7E0: 56 B8     .word _off027_B856_0D
-- D 1 - - - 0x01F7F2 07:B7E2: 5E B8     .word _off027_B85E_0E
+- D 1 - - - 0x01F7D6 07:B7C6: E4 B7     .word _off027_B7E4_00_Warakiya
+- D 1 - - - 0x01F7D8 07:B7C8: EC B7     .word _off027_B7EC_01_Clock_Tower
+- D 1 - - - 0x01F7DA 07:B7CA: F8 B7     .word _off027_B7F8_02_Forest_of_Madness
+- D 1 - - - 0x01F7DC 07:B7CC: 02 B8     .word _off027_B802_03_Ship_of_Fools
+- D 1 - - - 0x01F7DE 07:B7CE: 0C B8     .word _off027_B80C_04_Tower_of_Terror
+- D 1 - - - 0x01F7E0 07:B7D0: 12 B8     .word _off027_B812_05_Causeway
+- D 1 - - - 0x01F7E2 07:B7D2: 1A B8     .word _off027_B81A_06_Murky_Marshes
+- D 1 - - - 0x01F7E4 07:B7D4: 20 B8     .word _off027_B820_07_Caves_of_Alucard
+- D 1 - - - 0x01F7E6 07:B7D6: 2E B8     .word _off027_B82E_08_Sunken_City
+- D 1 - - - 0x01F7E8 07:B7D8: 38 B8     .word _off027_B838_09_Catacombs
+- D 1 - - - 0x01F7EA 07:B7DA: 3C B8     .word _off027_B83C_0A_Mountain_Range
+- D 1 - - - 0x01F7EC 07:B7DC: 4A B8     .word _off027_B84A_0B_Castle_Courtyard
+- D 1 - - - 0x01F7EE 07:B7DE: 50 B8     .word _off027_B850_0C_Main_Hall
+- D 1 - - - 0x01F7F0 07:B7E0: 56 B8     .word _off027_B856_0D_Castle_Tower
+- D 1 - - - 0x01F7F2 07:B7E2: 5E B8     .word _off027_B85E_0E_Final_Clock_Tower
 
 
 
-_off027_B7E4_00:
-- D 1 - I - 0x01F7F4 07:B7E4: 7F B8     .word _off051_B87F_00_00
-- D 1 - I - 0x01F7F6 07:B7E6: 81 B8     .word _off051_B881_00_01
-- D 1 - I - 0x01F7F8 07:B7E8: 89 B8     .word _off051_B889_00_02
-- D 1 - I - 0x01F7FA 07:B7EA: 8D B8     .word _off051_B88D_00_03
+_off027_B7E4_00_Warakiya:
+- D 1 - I - 0x01F7F4 07:B7E4: 7F B8     .word _off051_B87F_00_00_Warakiya
+- D 1 - I - 0x01F7F6 07:B7E6: 81 B8     .word _off051_B881_00_01_Warakiya
+- D 1 - I - 0x01F7F8 07:B7E8: 89 B8     .word _off051_B889_00_02_Warakiya
+- D 1 - I - 0x01F7FA 07:B7EA: 8D B8     .word _off051_B88D_00_03_Warakiya
 
 
 
-_off027_B7EC_01:
-- D 1 - I - 0x01F7FC 07:B7EC: 0F B9     .word _off051_B90F_01_00
-- D 1 - I - 0x01F7FE 07:B7EE: 15 B9     .word _off051_B915_01_01
-- D 1 - I - 0x01F800 07:B7F0: 1B B9     .word _off051_B91B_01_02
-- D 1 - I - 0x01F802 07:B7F2: 1B B9     .word _off051_B91B_01_03
-- D 1 - I - 0x01F804 07:B7F4: 15 B9     .word _off051_B915_01_04
-- D 1 - I - 0x01F806 07:B7F6: 0F B9     .word _off051_B90F_01_05
+_off027_B7EC_01_Clock_Tower:
+- D 1 - I - 0x01F7FC 07:B7EC: 0F B9     .word _off051_B90F_01_00_Clock_Tower
+- D 1 - I - 0x01F7FE 07:B7EE: 15 B9     .word _off051_B915_01_01_Clock_Tower
+- D 1 - I - 0x01F800 07:B7F0: 1B B9     .word _off051_B91B_01_02_Clock_Tower
+- D 1 - I - 0x01F802 07:B7F2: 1B B9     .word _off051_B91B_01_03_Clock_Tower
+- D 1 - I - 0x01F804 07:B7F4: 15 B9     .word _off051_B915_01_04_Clock_Tower
+- D 1 - I - 0x01F806 07:B7F6: 0F B9     .word _off051_B90F_01_05_Clock_Tower
 
 
 
-_off027_B7F8_02:
-- D 1 - I - 0x01F808 07:B7F8: 0E BA     .word _off051_BA0E_02_00
-- D 1 - I - 0x01F80A 07:B7FA: 12 BA     .word _off051_BA12_02_01
-- D 1 - I - 0x01F80C 07:B7FC: 14 BA     .word _off051_BA14_02_02
-- D 1 - I - 0x01F80E 07:B7FE: 18 BA     .word _off051_BA18_02_03
-- D 1 - I - 0x01F810 07:B800: 1E BA     .word _off051_BA1E_02_04
+_off027_B7F8_02_Forest_of_Madness:
+- D 1 - I - 0x01F808 07:B7F8: 0E BA     .word _off051_BA0E_02_00_Forest_of_Madness
+- D 1 - I - 0x01F80A 07:B7FA: 12 BA     .word _off051_BA12_02_01_Forest_of_Madness
+- D 1 - I - 0x01F80C 07:B7FC: 14 BA     .word _off051_BA14_02_02_Forest_of_Madness
+- D 1 - I - 0x01F80E 07:B7FE: 18 BA     .word _off051_BA18_02_03_Forest_of_Madness
+- D 1 - I - 0x01F810 07:B800: 1E BA     .word _off051_BA1E_02_04_Forest_of_Madness
 
 
 
-_off027_B802_03:
-- D 1 - I - 0x01F812 07:B802: 6A BA     .word _off051_BA6A_03_00
-- D 1 - I - 0x01F814 07:B804: 70 BA     .word _off051_BA70_03_01
-- D 1 - I - 0x01F816 07:B806: 74 BA     .word _off051_BA74_03_02
-- D 1 - I - 0x01F818 07:B808: 78 BA     .word _off051_BA78_03_03
-- D 1 - I - 0x01F81A 07:B80A: 7C BA     .word _off051_BA7C_03_04
+_off027_B802_03_Ship_of_Fools:
+- D 1 - I - 0x01F812 07:B802: 6A BA     .word _off051_BA6A_03_00_Ship_of_Fools
+- D 1 - I - 0x01F814 07:B804: 70 BA     .word _off051_BA70_03_01_Ship_of_Fools
+- D 1 - I - 0x01F816 07:B806: 74 BA     .word _off051_BA74_03_02_Ship_of_Fools
+- D 1 - I - 0x01F818 07:B808: 78 BA     .word _off051_BA78_03_03_Ship_of_Fools
+- D 1 - I - 0x01F81A 07:B80A: 7C BA     .word _off051_BA7C_03_04_Ship_of_Fools
 
 
 
-_off027_B80C_04:
-- D 1 - I - 0x01F81C 07:B80C: 06 BB     .word _off051_BB06_04_00
-- D 1 - I - 0x01F81E 07:B80E: 0C BB     .word _off051_BB0C_04_01
-- D 1 - I - 0x01F820 07:B810: 12 BB     .word _off051_BB12_04_02
+_off027_B80C_04_Tower_of_Terror:
+- D 1 - I - 0x01F81C 07:B80C: 06 BB     .word _off051_BB06_04_00_Tower_of_Terror
+- D 1 - I - 0x01F81E 07:B80E: 0C BB     .word _off051_BB0C_04_01_Tower_of_Terror
+- D 1 - I - 0x01F820 07:B810: 12 BB     .word _off051_BB12_04_02_Tower_of_Terror
 
 
 
-_off027_B812_05:
-- D 1 - I - 0x01F822 07:B812: ED BB     .word _off051_BBED_05_00
-- D 1 - I - 0x01F824 07:B814: EF BB     .word _off051_BBEF_05_01
-- D 1 - I - 0x01F826 07:B816: F1 BB     .word _off051_BBF1_05_02
-- D 1 - I - 0x01F828 07:B818: F5 BB     .word _off051_BBF5_05_03
+_off027_B812_05_Causeway:
+- D 1 - I - 0x01F822 07:B812: ED BB     .word _off051_BBED_05_00_Causeway
+- D 1 - I - 0x01F824 07:B814: EF BB     .word _off051_BBEF_05_01_Causeway
+- D 1 - I - 0x01F826 07:B816: F1 BB     .word _off051_BBF1_05_02_Causeway
+- D 1 - I - 0x01F828 07:B818: F5 BB     .word _off051_BBF5_05_03_Causeway
 
 
 
-_off027_B81A_06:
-- D 1 - I - 0x01F82A 07:B81A: 46 BC     .word _off051_BC46_06_00
-- D 1 - I - 0x01F82C 07:B81C: 4A BC     .word _off051_BC4A_06_01
-- D 1 - I - 0x01F82E 07:B81E: 4C BC     .word _off051_BC4C_06_02
+_off027_B81A_06_Murky_Marshes:
+- D 1 - I - 0x01F82A 07:B81A: 46 BC     .word _off051_BC46_06_00_Murky_Marshes
+- D 1 - I - 0x01F82C 07:B81C: 4A BC     .word _off051_BC4A_06_01_Murky_Marshes
+- D 1 - I - 0x01F82E 07:B81E: 4C BC     .word _off051_BC4C_06_02_Murky_Marshes
 
 
 
-_off027_B820_07:
-- D 1 - I - 0x01F830 07:B820: 69 BC     .word _off051_BC69_07_00
-- D 1 - I - 0x01F832 07:B822: 6D BC     .word _off051_BC6D_07_01
-- D 1 - I - 0x01F834 07:B824: 6F BC     .word _off051_BC6F_07_02
-- D 1 - I - 0x01F836 07:B826: 71 BC     .word _off051_BC71_07_03
-- D 1 - I - 0x01F838 07:B828: 73 BC     .word _off051_BC73_07_04
-- D 1 - I - 0x01F83A 07:B82A: 77 BC     .word _off051_BC77_07_05
-- D 1 - I - 0x01F83C 07:B82C: 7B BC     .word _off051_BC7B_07_06
+_off027_B820_07_Caves_of_Alucard:
+- D 1 - I - 0x01F830 07:B820: 69 BC     .word _off051_BC69_07_00_Caves_of_Alucard
+- D 1 - I - 0x01F832 07:B822: 6D BC     .word _off051_BC6D_07_01_Caves_of_Alucard
+- D 1 - I - 0x01F834 07:B824: 6F BC     .word _off051_BC6F_07_02_Caves_of_Alucard
+- D 1 - I - 0x01F836 07:B826: 71 BC     .word _off051_BC71_07_03_Caves_of_Alucard
+- D 1 - I - 0x01F838 07:B828: 73 BC     .word _off051_BC73_07_04_Caves_of_Alucard
+- D 1 - I - 0x01F83A 07:B82A: 77 BC     .word _off051_BC77_07_05_Caves_of_Alucard
+- D 1 - I - 0x01F83C 07:B82C: 7B BC     .word _off051_BC7B_07_06_Caves_of_Alucard
 
 
 
-_off027_B82E_08:
-- D 1 - I - 0x01F83E 07:B82E: D9 BC     .word _off051_BCD9_08_00
-- D 1 - I - 0x01F840 07:B830: DD BC     .word _off051_BCDD_08_01
-- D 1 - I - 0x01F842 07:B832: DF BC     .word _off051_BCDF_08_02
-- D 1 - I - 0x01F844 07:B834: E3 BC     .word _off051_BCE3_08_03
-- D 1 - I - 0x01F846 07:B836: E5 BC     .word _off051_BCE5_08_04
+_off027_B82E_08_Sunken_City:
+- D 1 - I - 0x01F83E 07:B82E: D9 BC     .word _off051_BCD9_08_00_Sunken_City
+- D 1 - I - 0x01F840 07:B830: DD BC     .word _off051_BCDD_08_01_Sunken_City
+- D 1 - I - 0x01F842 07:B832: DF BC     .word _off051_BCDF_08_02_Sunken_City
+- D 1 - I - 0x01F844 07:B834: E3 BC     .word _off051_BCE3_08_03_Sunken_City
+- D 1 - I - 0x01F846 07:B836: E5 BC     .word _off051_BCE5_08_04_Sunken_City
 
 
 
-_off027_B838_09:
-- D 1 - I - 0x01F848 07:B838: 4F BD     .word _off051_BD4F_09_00
-- D 1 - I - 0x01F84A 07:B83A: 53 BD     .word _off051_BD53_09_01
+_off027_B838_09_Catacombs:
+- D 1 - I - 0x01F848 07:B838: 4F BD     .word _off051_BD4F_09_00_Catacombs
+- D 1 - I - 0x01F84A 07:B83A: 53 BD     .word _off051_BD53_09_01_Catacombs
 
 
 
-_off027_B83C_0A:
-- D 1 - I - 0x01F84C 07:B83C: A0 BD     .word _off051_BDA0_0A_00
-- D 1 - I - 0x01F84E 07:B83E: A4 BD     .word _off051_BDA4_0A_01
-- D 1 - I - 0x01F850 07:B840: A6 BD     .word _off051_BDA6_0A_02
-- D 1 - I - 0x01F852 07:B842: A8 BD     .word _off051_BDA8_0A_03
-- D 1 - I - 0x01F854 07:B844: AC BD     .word _off051_BDAC_0A_04
-- D 1 - I - 0x01F856 07:B846: B2 BD     .word _off051_BDB2_0A_05
-- D 1 - I - 0x01F858 07:B848: B6 BD     .word _off051_BDB6_0A_06
+_off027_B83C_0A_Mountain_Range:
+- D 1 - I - 0x01F84C 07:B83C: A0 BD     .word _off051_BDA0_0A_00_Mountain_Range
+- D 1 - I - 0x01F84E 07:B83E: A4 BD     .word _off051_BDA4_0A_01_Mountain_Range
+- D 1 - I - 0x01F850 07:B840: A6 BD     .word _off051_BDA6_0A_02_Mountain_Range
+- D 1 - I - 0x01F852 07:B842: A8 BD     .word _off051_BDA8_0A_03_Mountain_Range
+- D 1 - I - 0x01F854 07:B844: AC BD     .word _off051_BDAC_0A_04_Mountain_Range
+- D 1 - I - 0x01F856 07:B846: B2 BD     .word _off051_BDB2_0A_05_Mountain_Range
+- D 1 - I - 0x01F858 07:B848: B6 BD     .word _off051_BDB6_0A_06_Mountain_Range
 
 
 
-_off027_B84A_0B:
-- D 1 - I - 0x01F85A 07:B84A: 3A BE     .word _off051_BE3A_0B_00
-- D 1 - I - 0x01F85C 07:B84C: 3E BE     .word _off051_BE3E_0B_01
-- D 1 - I - 0x01F85E 07:B84E: 42 BE     .word _off051_BE42_0B_02
+_off027_B84A_0B_Castle_Courtyard:
+- D 1 - I - 0x01F85A 07:B84A: 3A BE     .word _off051_BE3A_0B_00_Castle_Courtyard
+- D 1 - I - 0x01F85C 07:B84C: 3E BE     .word _off051_BE3E_0B_01_Castle_Courtyard
+- D 1 - I - 0x01F85E 07:B84E: 42 BE     .word _off051_BE42_0B_02_Castle_Courtyard
 
 
 
-_off027_B850_0C:
-- D 1 - I - 0x01F860 07:B850: 7F BE     .word _off051_BE7F_0C_00
-- D 1 - I - 0x01F862 07:B852: 83 BE     .word _off051_BE83_0C_01
-- D 1 - I - 0x01F864 07:B854: 87 BE     .word _off051_BE87_0C_02
+_off027_B850_0C_Main_Hall:
+- D 1 - I - 0x01F860 07:B850: 7F BE     .word _off051_BE7F_0C_00_Main_Hall
+- D 1 - I - 0x01F862 07:B852: 83 BE     .word _off051_BE83_0C_01_Main_Hall
+- D 1 - I - 0x01F864 07:B854: 87 BE     .word _off051_BE87_0C_02_Main_Hall
 
 
 
-_off027_B856_0D:
-- D 1 - I - 0x01F866 07:B856: B8 BE     .word _off051_BEB8_0D_00
-- D 1 - I - 0x01F868 07:B858: BE BE     .word _off051_BEBE_0D_01
-- D 1 - I - 0x01F86A 07:B85A: C4 BE     .word _off051_BEC4_0D_02
-- D 1 - I - 0x01F86C 07:B85C: CA BE     .word _off051_BECA_0D_03
+_off027_B856_0D_Castle_Tower:
+- D 1 - I - 0x01F866 07:B856: B8 BE     .word _off051_BEB8_0D_00_Castle_Tower
+- D 1 - I - 0x01F868 07:B858: BE BE     .word _off051_BEBE_0D_01_Castle_Tower
+- D 1 - I - 0x01F86A 07:B85A: C4 BE     .word _off051_BEC4_0D_02_Castle_Tower
+- D 1 - I - 0x01F86C 07:B85C: CA BE     .word _off051_BECA_0D_03_Castle_Tower
 
 
 
-_off027_B85E_0E:
-- D 1 - I - 0x01F86E 07:B85E: 8D BF     .word _off051_BF8D_0E_00
-- D 1 - I - 0x01F870 07:B860: 93 BF     .word _off051_BF93_0E_01
-- D 1 - I - 0x01F872 07:B862: 97 BF     .word _off051_BF97_0E_02
+_off027_B85E_0E_Final_Clock_Tower:
+- D 1 - I - 0x01F86E 07:B85E: 8D BF     .word _off051_BF8D_0E_00_Final_Clock_Tower
+- D 1 - I - 0x01F870 07:B860: 93 BF     .word _off051_BF93_0E_01_Final_Clock_Tower
+- D 1 - I - 0x01F872 07:B862: 97 BF     .word _off051_BF97_0E_02_Final_Clock_Tower
 
 
 
@@ -4496,31 +4496,31 @@ _off014_0x01F888_02:
 
 
 
-_off051_B87F_00_00:
-- D 1 - I - 0x01F88F 07:B87F: 8F B8     .word off_B88F_00_00_00
+_off051_B87F_00_00_Warakiya:
+- D 1 - I - 0x01F88F 07:B87F: 8F B8     .word off_B88F_00_00_00_Warakiya
 
 
 
-_off051_B881_00_01:
-- D 1 - I - 0x01F891 07:B881: 9C B8     .word off_B89C_00_01_00
-- D 1 - I - 0x01F893 07:B883: AC B8     .word off_B8AC_00_01_01
-- D 1 - I - 0x01F895 07:B885: CB B8     .word off_B8CB_00_01_02
-- D 1 - I - 0x01F897 07:B887: DB B8     .word off_B8DB_00_01_03
+_off051_B881_00_01_Warakiya:
+- D 1 - I - 0x01F891 07:B881: 9C B8     .word off_B89C_00_01_00_Warakiya
+- D 1 - I - 0x01F893 07:B883: AC B8     .word off_B8AC_00_01_01_Warakiya
+- D 1 - I - 0x01F895 07:B885: CB B8     .word off_B8CB_00_01_02_Warakiya
+- D 1 - I - 0x01F897 07:B887: DB B8     .word off_B8DB_00_01_03_Warakiya
 
 
 
-_off051_B889_00_02:
-- D 1 - I - 0x01F899 07:B889: EE B8     .word off_B8EE_00_02_00
-- D 1 - I - 0x01F89B 07:B88B: 04 B9     .word off_B904_00_02_01
+_off051_B889_00_02_Warakiya:
+- D 1 - I - 0x01F899 07:B889: EE B8     .word off_B8EE_00_02_00_Warakiya
+- D 1 - I - 0x01F89B 07:B88B: 04 B9     .word off_B904_00_02_01_Warakiya
 
 
 
-_off051_B88D_00_03:
-- D 1 - I - 0x01F89D 07:B88D: 08 B9     .word off_B908_00_03_00
+_off051_B88D_00_03_Warakiya:
+- D 1 - I - 0x01F89D 07:B88D: 08 B9     .word off_B908_00_03_00_Warakiya
 
 
 
-off_B88F_00_00_00:
+off_B88F_00_00_00_Warakiya:
 ; 
 - D 1 - I - 0x01F89F 07:B88F: 0C        .byte $0C   ; 
 - D 1 - I - 0x01F8A0 07:B890: 50 01     .word $0150 ; 
@@ -4538,7 +4538,7 @@ off_B88F_00_00_00:
 
 
 
-off_B89C_00_01_00:
+off_B89C_00_01_00_Warakiya:
 ; 
 - D 1 - I - 0x01F8AC 07:B89C: 4B        .byte $4B   ; 
 - D 1 - I - 0x01F8AD 07:B89D: 80 00     .word $0080 ; 
@@ -4559,7 +4559,7 @@ off_B89C_00_01_00:
 
 
 
-off_B8AC_00_01_01:
+off_B8AC_00_01_01_Warakiya:
 ; 
 - D 1 - I - 0x01F8BC 07:B8AC: C1        .byte $C1   ; 
 - D 1 - I - 0x01F8BD 07:B8AD: B0 40     .word $40B0 ; 
@@ -4595,7 +4595,7 @@ off_B8AC_00_01_01:
 
 
 
-off_B8CB_00_01_02:
+off_B8CB_00_01_02_Warakiya:
 ; 
 - D 1 - I - 0x01F8DB 07:B8CB: 49        .byte $49   ; 
 - D 1 - I - 0x01F8DC 07:B8CC: 80 00     .word $0080 ; 
@@ -4616,7 +4616,7 @@ off_B8CB_00_01_02:
 
 
 
-off_B8DB_00_01_03:
+off_B8DB_00_01_03_Warakiya:
 ; 
 - D 1 - I - 0x01F8EB 07:B8DB: CB        .byte $CB   ; 
 - D 1 - I - 0x01F8EC 07:B8DC: 20 00     .word $0020 ; 
@@ -4640,7 +4640,7 @@ off_B8DB_00_01_03:
 
 
 
-off_B8EE_00_02_00:
+off_B8EE_00_02_00_Warakiya:
 ; 
 - D 1 - I - 0x01F8FE 07:B8EE: 05        .byte $05   ; 
 - - - - - - 0x01F8FF 07:B8EF: 60 00     .word $0060 ; 
@@ -4667,7 +4667,7 @@ off_B8EE_00_02_00:
 
 
 
-off_B904_00_02_01:
+off_B904_00_02_01_Warakiya:
 ; 
 - D 1 - I - 0x01F914 07:B904: 8A        .byte $8A   ; 
 - D 1 - I - 0x01F915 07:B905: D0 02     .word $02D0 ; 
@@ -4676,7 +4676,7 @@ off_B904_00_02_01:
 
 
 
-off_B908_00_03_00:
+off_B908_00_03_00_Warakiya:
 ; 
 - D 1 - I - 0x01F918 07:B908: 0B        .byte $0B   ; 
 - D 1 - I - 0x01F919 07:B909: 00 01     .word $0100 ; 
@@ -4688,31 +4688,31 @@ off_B908_00_03_00:
 
 
 
-_off051_B90F_01_00:
-_off051_B90F_01_05:
-- D 1 - I - 0x01F91F 07:B90F: 21 B9     .word off_B921_01_00_00
-- D 1 - I - 0x01F921 07:B911: 6D B9     .word off_B96D_01_00_01
-- D 1 - I - 0x01F923 07:B913: 8C B9     .word off_B98C_01_00_02
+_off051_B90F_01_00_Clock_Tower:
+_off051_B90F_01_05_Clock_Tower:
+- D 1 - I - 0x01F91F 07:B90F: 21 B9     .word off_B921_01_00_00_Clock_Tower
+- D 1 - I - 0x01F921 07:B911: 6D B9     .word off_B96D_01_00_01_Clock_Tower
+- D 1 - I - 0x01F923 07:B913: 8C B9     .word off_B98C_01_00_02_Clock_Tower
 
 
 
-_off051_B915_01_01:
-_off051_B915_01_04:
-- D 1 - I - 0x01F925 07:B915: 90 B9     .word off_B990_01_01_00
-- D 1 - I - 0x01F927 07:B917: A6 B9     .word off_B9A6_01_01_01
-- D 1 - I - 0x01F929 07:B919: D1 B9     .word off_B9D1_01_01_02
+_off051_B915_01_01_Clock_Tower:
+_off051_B915_01_04_Clock_Tower:
+- D 1 - I - 0x01F925 07:B915: 90 B9     .word off_B990_01_01_00_Clock_Tower
+- D 1 - I - 0x01F927 07:B917: A6 B9     .word off_B9A6_01_01_01_Clock_Tower
+- D 1 - I - 0x01F929 07:B919: D1 B9     .word off_B9D1_01_01_02_Clock_Tower
 
 
 
-_off051_B91B_01_02:
-_off051_B91B_01_03:
-- D 1 - I - 0x01F92B 07:B91B: D5 B9     .word off_B9D5_01_02_00
-- D 1 - I - 0x01F92D 07:B91D: DF B9     .word off_B9DF_01_02_01
-- D 1 - I - 0x01F92F 07:B91F: 04 BA     .word off_BA04_01_02_02
+_off051_B91B_01_02_Clock_Tower:
+_off051_B91B_01_03_Clock_Tower:
+- D 1 - I - 0x01F92B 07:B91B: D5 B9     .word off_B9D5_01_02_00_Clock_Tower
+- D 1 - I - 0x01F92D 07:B91D: DF B9     .word off_B9DF_01_02_01_Clock_Tower
+- D 1 - I - 0x01F92F 07:B91F: 04 BA     .word off_BA04_01_02_02_Clock_Tower
 
 
 
-off_B921_01_00_00:
+off_B921_01_00_00_Clock_Tower:
 ; 
 - D 1 - I - 0x01F931 07:B921: 02        .byte $02   ; 
 - D 1 - I - 0x01F932 07:B922: B0 60     .word $60B0 ; 
@@ -4793,7 +4793,7 @@ off_B921_01_00_00:
 
 
 
-off_B96D_01_00_01:
+off_B96D_01_00_01_Clock_Tower:
 ; 
 - D 1 - I - 0x01F97D 07:B96D: CB        .byte $CB   ; 
 - D 1 - I - 0x01F97E 07:B96E: 00 01     .word $0100 ; 
@@ -4829,7 +4829,7 @@ off_B96D_01_00_01:
 
 
 
-off_B98C_01_00_02:
+off_B98C_01_00_02_Clock_Tower:
 ; 
 - D 1 - I - 0x01F99C 07:B98C: 8B        .byte $8B   ; 
 - D 1 - I - 0x01F99D 07:B98D: 80 00     .word $0080 ; 
@@ -4838,7 +4838,7 @@ off_B98C_01_00_02:
 
 
 
-off_B990_01_01_00:
+off_B990_01_01_00_Clock_Tower:
 ; 
 - D 1 - I - 0x01F9A0 07:B990: C7        .byte $C7   ; 
 - - - - - - 0x01F9A1 07:B991: 20 00     .word $0020 ; 
@@ -4865,7 +4865,7 @@ off_B990_01_01_00:
 
 
 
-off_B9A6_01_01_01:
+off_B9A6_01_01_01_Clock_Tower:
 ; 
 - D 1 - I - 0x01F9B6 07:B9A6: 00        .byte $00   ; 
 - D 1 - I - 0x01F9B7 07:B9A7: 30 20     .word $2030 ; 
@@ -4913,7 +4913,7 @@ off_B9A6_01_01_01:
 
 
 
-off_B9D1_01_01_02:
+off_B9D1_01_01_02_Clock_Tower:
 ; 
 - D 1 - I - 0x01F9E1 07:B9D1: 89        .byte $89   ; 
 - D 1 - I - 0x01F9E2 07:B9D2: A0 00     .word $00A0 ; 
@@ -4922,7 +4922,7 @@ off_B9D1_01_01_02:
 
 
 
-off_B9D5_01_02_00:
+off_B9D5_01_02_00_Clock_Tower:
 ; 
 - D 1 - I - 0x01F9E5 07:B9D5: 05        .byte $05   ; 
 - D 1 - I - 0x01F9E6 07:B9D6: 40 00     .word $0040 ; 
@@ -4937,7 +4937,7 @@ off_B9D5_01_02_00:
 
 
 
-off_B9DF_01_02_01:
+off_B9DF_01_02_01_Clock_Tower:
 ; 
 - D 1 - I - 0x01F9EF 07:B9DF: 00        .byte $00   ; 
 - D 1 - I - 0x01F9F0 07:B9E0: 30 20     .word $2030 ; 
@@ -4979,7 +4979,7 @@ off_B9DF_01_02_01:
 
 
 
-off_BA04_01_02_02:
+off_BA04_01_02_02_Clock_Tower:
 ; 
 - D 1 - I - 0x01FA14 07:BA04: 89        .byte $89   ; 
 - D 1 - I - 0x01FA15 07:BA05: A0 01     .word $01A0 ; 
@@ -4994,37 +4994,37 @@ off_BA04_01_02_02:
 
 
 
-_off051_BA0E_02_00:
-- D 1 - I - 0x01FA1E 07:BA0E: 22 BA     .word off_BA22_02_00_00
-- D 1 - I - 0x01FA20 07:BA10: 2C BA     .word off_BA2C_02_00_01
+_off051_BA0E_02_00_Forest_of_Madness:
+- D 1 - I - 0x01FA1E 07:BA0E: 22 BA     .word off_BA22_02_00_00_Forest_of_Madness
+- D 1 - I - 0x01FA20 07:BA10: 2C BA     .word off_BA2C_02_00_01_Forest_of_Madness
 
 
 
-_off051_BA12_02_01:
-- D 1 - I - 0x01FA22 07:BA12: 32 BA     .word off_BA32_02_01_00
+_off051_BA12_02_01_Forest_of_Madness:
+- D 1 - I - 0x01FA22 07:BA12: 32 BA     .word off_BA32_02_01_00_Forest_of_Madness
 
 
 
-_off051_BA14_02_02:
-- D 1 - I - 0x01FA24 07:BA14: 33 BA     .word off_BA33_02_02_00
-- D 1 - I - 0x01FA26 07:BA16: 40 BA     .word off_BA40_02_02_01
+_off051_BA14_02_02_Forest_of_Madness:
+- D 1 - I - 0x01FA24 07:BA14: 33 BA     .word off_BA33_02_02_00_Forest_of_Madness
+- D 1 - I - 0x01FA26 07:BA16: 40 BA     .word off_BA40_02_02_01_Forest_of_Madness
 
 
 
-_off051_BA18_02_03:
-- D 1 - I - 0x01FA28 07:BA18: 47 BA     .word off_BA47_02_03_00
-- D 1 - I - 0x01FA2A 07:BA1A: 4B BA     .word off_BA4B_02_03_01
-- D 1 - I - 0x01FA2C 07:BA1C: 52 BA     .word off_BA52_02_03_02
+_off051_BA18_02_03_Forest_of_Madness:
+- D 1 - I - 0x01FA28 07:BA18: 47 BA     .word off_BA47_02_03_00_Forest_of_Madness
+- D 1 - I - 0x01FA2A 07:BA1A: 4B BA     .word off_BA4B_02_03_01_Forest_of_Madness
+- D 1 - I - 0x01FA2C 07:BA1C: 52 BA     .word off_BA52_02_03_02_Forest_of_Madness
 
 
 
-_off051_BA1E_02_04:
-- D 1 - I - 0x01FA2E 07:BA1E: 56 BA     .word off_BA56_02_04_00
-- D 1 - I - 0x01FA30 07:BA20: 5A BA     .word off_BA5A_02_04_01
+_off051_BA1E_02_04_Forest_of_Madness:
+- D 1 - I - 0x01FA2E 07:BA1E: 56 BA     .word off_BA56_02_04_00_Forest_of_Madness
+- D 1 - I - 0x01FA30 07:BA20: 5A BA     .word off_BA5A_02_04_01_Forest_of_Madness
 
 
 
-off_BA22_02_00_00:
+off_BA22_02_00_00_Forest_of_Madness:
 ; 
 - D 1 - I - 0x01FA32 07:BA22: 0B        .byte $0B   ; 
 - D 1 - I - 0x01FA33 07:BA23: 80 02     .word $0280 ; 
@@ -5039,19 +5039,19 @@ off_BA22_02_00_00:
 
 
 
-off_BA2C_02_00_01:
+off_BA2C_02_00_01_Forest_of_Madness:
 ; 
 - D 1 - I - 0x01FA3C 07:BA2C: CA        .byte $CA   ; 
 - - - - - - 0x01FA3D 07:BA2D: 50 02     .word $0250 ; 
 ; 
 - D 1 - I - 0x01FA3F 07:BA2F: 07        .byte $07   ; 
 - D 1 - I - 0x01FA40 07:BA30: 20 00     .word $0020 ; 
-off_BA32_02_01_00:
+off_BA32_02_01_00_Forest_of_Madness:
 - D 1 - I - 0x01FA42 07:BA32: FF        .byte $FF   ; end token
 
 
 
-off_BA33_02_02_00:
+off_BA33_02_02_00_Forest_of_Madness:
 ; 
 - D 1 - I - 0x01FA43 07:BA33: 4B        .byte $4B   ; 
 - D 1 - I - 0x01FA44 07:BA34: E0 00     .word $00E0 ; 
@@ -5069,7 +5069,7 @@ off_BA33_02_02_00:
 
 
 
-off_BA40_02_02_01:
+off_BA40_02_02_01_Forest_of_Madness:
 ; 
 - D 1 - I - 0x01FA50 07:BA40: 89        .byte $89   ; 
 - D 1 - I - 0x01FA51 07:BA41: 00 01     .word $0100 ; 
@@ -5081,7 +5081,7 @@ off_BA40_02_02_01:
 
 
 
-off_BA47_02_03_00:
+off_BA47_02_03_00_Forest_of_Madness:
 ; 
 - D 1 - I - 0x01FA57 07:BA47: 45        .byte $45   ; 
 - - - - - - 0x01FA58 07:BA48: E0 00     .word $00E0 ; 
@@ -5090,7 +5090,7 @@ off_BA47_02_03_00:
 
 
 
-off_BA4B_02_03_01:
+off_BA4B_02_03_01_Forest_of_Madness:
 ; 
 - D 1 - I - 0x01FA5B 07:BA4B: 05        .byte $05   ; 
 - - - - - - 0x01FA5C 07:BA4C: 60 00     .word $0060 ; 
@@ -5102,7 +5102,7 @@ off_BA4B_02_03_01:
 
 
 
-off_BA52_02_03_02:
+off_BA52_02_03_02_Forest_of_Madness:
 ; 
 - D 1 - I - 0x01FA62 07:BA52: 8B        .byte $8B   ; 
 - D 1 - I - 0x01FA63 07:BA53: C0 00     .word $00C0 ; 
@@ -5111,7 +5111,7 @@ off_BA52_02_03_02:
 
 
 
-off_BA56_02_04_00:
+off_BA56_02_04_00_Forest_of_Madness:
 ; 
 - D 1 - I - 0x01FA66 07:BA56: 09        .byte $09   ; 
 - D 1 - I - 0x01FA67 07:BA57: 40 00     .word $0040 ; 
@@ -5120,7 +5120,7 @@ off_BA56_02_04_00:
 
 
 
-off_BA5A_02_04_01:
+off_BA5A_02_04_01_Forest_of_Madness:
 ; 
 - D 1 - I - 0x01FA6A 07:BA5A: 0B        .byte $0B   ; 
 - D 1 - I - 0x01FA6B 07:BA5B: 40 00     .word $0040 ; 
@@ -5141,39 +5141,39 @@ off_BA5A_02_04_01:
 
 
 
-_off051_BA6A_03_00:
-- D 1 - I - 0x01FA7A 07:BA6A: 9F BA     .word off_BA9F_03_00_00
-- D 1 - I - 0x01FA7C 07:BA6C: 86 BA     .word off_BA86_03_00_01
-- D 1 - I - 0x01FA7E 07:BA6E: 82 BA     .word off_BA82_03_00_02
+_off051_BA6A_03_00_Ship_of_Fools:
+- D 1 - I - 0x01FA7A 07:BA6A: 9F BA     .word off_BA9F_03_00_00_Ship_of_Fools
+- D 1 - I - 0x01FA7C 07:BA6C: 86 BA     .word off_BA86_03_00_01_Ship_of_Fools
+- D 1 - I - 0x01FA7E 07:BA6E: 82 BA     .word off_BA82_03_00_02_Ship_of_Fools
 
 
 
-_off051_BA70_03_01:
-- D 1 - I - 0x01FA80 07:BA70: A9 BA     .word off_BAA9_03_01_00
-- D 1 - I - 0x01FA82 07:BA72: BF BA     .word off_BABF_03_01_01
+_off051_BA70_03_01_Ship_of_Fools:
+- D 1 - I - 0x01FA80 07:BA70: A9 BA     .word off_BAA9_03_01_00_Ship_of_Fools
+- D 1 - I - 0x01FA82 07:BA72: BF BA     .word off_BABF_03_01_01_Ship_of_Fools
 
 
 
-_off051_BA74_03_02:
-- D 1 - I - 0x01FA84 07:BA74: C9 BA     .word off_BAC9_03_02_00
-- D 1 - I - 0x01FA86 07:BA76: D3 BA     .word off_BAD3_03_02_01
+_off051_BA74_03_02_Ship_of_Fools:
+- D 1 - I - 0x01FA84 07:BA74: C9 BA     .word off_BAC9_03_02_00_Ship_of_Fools
+- D 1 - I - 0x01FA86 07:BA76: D3 BA     .word off_BAD3_03_02_01_Ship_of_Fools
 
 
 
-_off051_BA78_03_03:
-- D 1 - I - 0x01FA88 07:BA78: D7 BA     .word off_BAD7_03_03_00
-- D 1 - I - 0x01FA8A 07:BA7A: E1 BA     .word off_BAE1_03_03_01
+_off051_BA78_03_03_Ship_of_Fools:
+- D 1 - I - 0x01FA88 07:BA78: D7 BA     .word off_BAD7_03_03_00_Ship_of_Fools
+- D 1 - I - 0x01FA8A 07:BA7A: E1 BA     .word off_BAE1_03_03_01_Ship_of_Fools
 
 
 
-_off051_BA7C_03_04:
-- D 1 - I - 0x01FA8C 07:BA7C: EB BA     .word off_BAEB_03_04_00
-- D 1 - I - 0x01FA8E 07:BA7E: F2 BA     .word off_BAF2_03_04_01
-- D 1 - I - 0x01FA90 07:BA80: 02 BB     .word off_BB02_03_04_02
+_off051_BA7C_03_04_Ship_of_Fools:
+- D 1 - I - 0x01FA8C 07:BA7C: EB BA     .word off_BAEB_03_04_00_Ship_of_Fools
+- D 1 - I - 0x01FA8E 07:BA7E: F2 BA     .word off_BAF2_03_04_01_Ship_of_Fools
+- D 1 - I - 0x01FA90 07:BA80: 02 BB     .word off_BB02_03_04_02_Ship_of_Fools
 
 
 
-off_BA82_03_00_02:
+off_BA82_03_00_02_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FA92 07:BA82: C9        .byte $C9   ; 
 - D 1 - I - 0x01FA93 07:BA83: 60 01     .word $0160 ; 
@@ -5182,7 +5182,7 @@ off_BA82_03_00_02:
 
 
 
-off_BA86_03_00_01:
+off_BA86_03_00_01_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FA96 07:BA86: 85        .byte $85   ; 
 - D 1 - I - 0x01FA97 07:BA87: 80 00     .word $0080 ; 
@@ -5212,7 +5212,7 @@ off_BA86_03_00_01:
 
 
 
-off_BA9F_03_00_00:
+off_BA9F_03_00_00_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FAAF 07:BA9F: 05        .byte $05   ; 
 - D 1 - I - 0x01FAB0 07:BAA0: 40 00     .word $0040 ; 
@@ -5227,7 +5227,7 @@ off_BA9F_03_00_00:
 
 
 
-off_BAA9_03_01_00:
+off_BAA9_03_01_00_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FAB9 07:BAA9: C9        .byte $C9   ; 
 - D 1 - I - 0x01FABA 07:BAAA: 20 02     .word $0220 ; 
@@ -5254,7 +5254,7 @@ off_BAA9_03_01_00:
 
 
 
-off_BABF_03_01_01:
+off_BABF_03_01_01_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FACF 07:BABF: CB        .byte $CB   ; 
 - - - - - - 0x01FAD0 07:BAC0: 40 00     .word $0040 ; 
@@ -5269,7 +5269,7 @@ off_BABF_03_01_01:
 
 
 
-off_BAC9_03_02_00:
+off_BAC9_03_02_00_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FAD9 07:BAC9: 07        .byte $07   ; 
 - D 1 - I - 0x01FADA 07:BACA: 40 00     .word $0040 ; 
@@ -5284,7 +5284,7 @@ off_BAC9_03_02_00:
 
 
 
-off_BAD3_03_02_01:
+off_BAD3_03_02_01_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FAE3 07:BAD3: 87        .byte $87   ; 
 - - - - - - 0x01FAE4 07:BAD4: 00 01     .word $0100 ; 
@@ -5293,7 +5293,7 @@ off_BAD3_03_02_01:
 
 
 
-off_BAD7_03_03_00:
+off_BAD7_03_03_00_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FAE7 07:BAD7: 06        .byte $06   ; 
 - D 1 - I - 0x01FAE8 07:BAD8: 30 00     .word $0030 ; 
@@ -5308,7 +5308,7 @@ off_BAD7_03_03_00:
 
 
 
-off_BAE1_03_03_01:
+off_BAE1_03_03_01_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FAF1 07:BAE1: 8B        .byte $8B   ; 
 - - - - - - 0x01FAF2 07:BAE2: A0 00     .word $00A0 ; 
@@ -5323,7 +5323,7 @@ off_BAE1_03_03_01:
 
 
 
-off_BAEB_03_04_00:
+off_BAEB_03_04_00_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FAFB 07:BAEB: 44        .byte $44   ; 
 - D 1 - I - 0x01FAFC 07:BAEC: 50 00     .word $0050 ; 
@@ -5335,7 +5335,7 @@ off_BAEB_03_04_00:
 
 
 
-off_BAF2_03_04_01:
+off_BAF2_03_04_01_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FB02 07:BAF2: 05        .byte $05   ; 
 - - - - - - 0x01FB03 07:BAF3: 60 00     .word $0060 ; 
@@ -5356,7 +5356,7 @@ off_BAF2_03_04_01:
 
 
 
-off_BB02_03_04_02:
+off_BB02_03_04_02_Ship_of_Fools:
 ; 
 - D 1 - I - 0x01FB12 07:BB02: 89        .byte $89   ; 
 - D 1 - I - 0x01FB13 07:BB03: E0 00     .word $00E0 ; 
@@ -5365,28 +5365,28 @@ off_BB02_03_04_02:
 
 
 
-_off051_BB06_04_00:
-- D 1 - I - 0x01FB16 07:BB06: 18 BB     .word off_BB18_04_00_00
-- D 1 - I - 0x01FB18 07:BB08: 1C BB     .word off_BB1C_04_00_01
-- D 1 - I - 0x01FB1A 07:BB0A: 41 BB     .word off_BB41_04_00_02
+_off051_BB06_04_00_Tower_of_Terror:
+- D 1 - I - 0x01FB16 07:BB06: 18 BB     .word off_BB18_04_00_00_Tower_of_Terror
+- D 1 - I - 0x01FB18 07:BB08: 1C BB     .word off_BB1C_04_00_01_Tower_of_Terror
+- D 1 - I - 0x01FB1A 07:BB0A: 41 BB     .word off_BB41_04_00_02_Tower_of_Terror
 
 
 
-_off051_BB0C_04_01:
-- D 1 - I - 0x01FB1C 07:BB0C: 51 BB     .word off_BB51_04_01_00
-- D 1 - I - 0x01FB1E 07:BB0E: 61 BB     .word off_BB61_04_01_01
-- D 1 - I - 0x01FB20 07:BB10: 92 BB     .word off_BB92_04_01_02
+_off051_BB0C_04_01_Tower_of_Terror:
+- D 1 - I - 0x01FB1C 07:BB0C: 51 BB     .word off_BB51_04_01_00_Tower_of_Terror
+- D 1 - I - 0x01FB1E 07:BB0E: 61 BB     .word off_BB61_04_01_01_Tower_of_Terror
+- D 1 - I - 0x01FB20 07:BB10: 92 BB     .word off_BB92_04_01_02_Tower_of_Terror
 
 
 
-_off051_BB12_04_02:
-- D 1 - I - 0x01FB22 07:BB12: 9C BB     .word off_BB9C_04_02_00
-- D 1 - I - 0x01FB24 07:BB14: AC BB     .word off_BBAC_04_02_01
-- D 1 - I - 0x01FB26 07:BB16: CB BB     .word off_BBCB_04_02_02
+_off051_BB12_04_02_Tower_of_Terror:
+- D 1 - I - 0x01FB22 07:BB12: 9C BB     .word off_BB9C_04_02_00_Tower_of_Terror
+- D 1 - I - 0x01FB24 07:BB14: AC BB     .word off_BBAC_04_02_01_Tower_of_Terror
+- D 1 - I - 0x01FB26 07:BB16: CB BB     .word off_BBCB_04_02_02_Tower_of_Terror
 
 
 
-off_BB18_04_00_00:
+off_BB18_04_00_00_Tower_of_Terror:
 ; 
 - D 1 - I - 0x01FB28 07:BB18: 45        .byte $45   ; 
 - D 1 - I - 0x01FB29 07:BB19: C0 01     .word $01C0 ; 
@@ -5395,7 +5395,7 @@ off_BB18_04_00_00:
 
 
 
-off_BB1C_04_00_01:
+off_BB1C_04_00_01_Tower_of_Terror:
 ; 
 - D 1 - I - 0x01FB2C 07:BB1C: 00        .byte $00   ; 
 - D 1 - I - 0x01FB2D 07:BB1D: 40 30     .word $3040 ; 
@@ -5437,7 +5437,7 @@ off_BB1C_04_00_01:
 
 
 
-off_BB41_04_00_02:
+off_BB41_04_00_02_Tower_of_Terror:
 ; 
 - D 1 - I - 0x01FB51 07:BB41: 8B        .byte $8B   ; 
 - - - - - - 0x01FB52 07:BB42: A0 00     .word $00A0 ; 
@@ -5458,7 +5458,7 @@ off_BB41_04_00_02:
 
 
 
-off_BB51_04_01_00:
+off_BB51_04_01_00_Tower_of_Terror:
 ; 
 - D 1 - I - 0x01FB61 07:BB51: 0A        .byte $0A   ; 
 - D 1 - I - 0x01FB62 07:BB52: B0 00     .word $00B0 ; 
@@ -5479,7 +5479,7 @@ off_BB51_04_01_00:
 
 
 
-off_BB61_04_01_01:
+off_BB61_04_01_01_Tower_of_Terror:
 ; 
 - D 1 - I - 0x01FB71 07:BB61: 40        .byte $40   ; 
 - D 1 - I - 0x01FB72 07:BB62: 30 E0     .word $E030 ; 
@@ -5533,7 +5533,7 @@ off_BB61_04_01_01:
 
 
 
-off_BB92_04_01_02:
+off_BB92_04_01_02_Tower_of_Terror:
 ; 
 - D 1 - I - 0x01FBA2 07:BB92: CB        .byte $CB   ; 
 - - - - - - 0x01FBA3 07:BB93: 80 01     .word $0180 ; 
@@ -5548,7 +5548,7 @@ off_BB92_04_01_02:
 
 
 
-off_BB9C_04_02_00:
+off_BB9C_04_02_00_Tower_of_Terror:
 ; 
 - D 1 - I - 0x01FBAC 07:BB9C: 0A        .byte $0A   ; 
 - D 1 - I - 0x01FBAD 07:BB9D: 30 00     .word $0030 ; 
@@ -5569,7 +5569,7 @@ off_BB9C_04_02_00:
 
 
 
-off_BBAC_04_02_01:
+off_BBAC_04_02_01_Tower_of_Terror:
 ; 
 - D 1 - I - 0x01FBBC 07:BBAC: 40        .byte $40   ; 
 - D 1 - I - 0x01FBBD 07:BBAD: 30 C0     .word $C030 ; 
@@ -5605,7 +5605,7 @@ off_BBAC_04_02_01:
 
 
 
-off_BBCB_04_02_02:
+off_BBCB_04_02_02_Tower_of_Terror:
 ; 
 - D 1 - I - 0x01FBDB 07:BBCB: CA        .byte $CA   ; 
 - D 1 - I - 0x01FBDC 07:BBCC: 50 00     .word $0050 ; 
@@ -5644,29 +5644,29 @@ off_BBCB_04_02_02:
 
 
 
-_off051_BBED_05_00:
-- D 1 - I - 0x01FBFD 07:BBED: F9 BB     .word off_BBF9_05_00_00
+_off051_BBED_05_00_Causeway:
+- D 1 - I - 0x01FBFD 07:BBED: F9 BB     .word off_BBF9_05_00_00_Causeway
 
 
 
-_off051_BBEF_05_01:
-- D 1 - I - 0x01FBFF 07:BBEF: 05 BC     .word off_BC05_05_01_00
+_off051_BBEF_05_01_Causeway:
+- D 1 - I - 0x01FBFF 07:BBEF: 05 BC     .word off_BC05_05_01_00_Causeway
 
 
 
-_off051_BBF1_05_02:
-- D 1 - I - 0x01FC01 07:BBF1: 06 BC     .word off_BC06_05_02_00
-- D 1 - I - 0x01FC03 07:BBF3: 25 BC     .word off_BC25_05_02_01
+_off051_BBF1_05_02_Causeway:
+- D 1 - I - 0x01FC01 07:BBF1: 06 BC     .word off_BC06_05_02_00_Causeway
+- D 1 - I - 0x01FC03 07:BBF3: 25 BC     .word off_BC25_05_02_01_Causeway
 
 
 
-_off051_BBF5_05_03:
-- D 1 - I - 0x01FC05 07:BBF5: 3E BC     .word off_BC3E_05_03_00
-- D 1 - I - 0x01FC07 07:BBF7: 42 BC     .word off_BC42_05_03_01
+_off051_BBF5_05_03_Causeway:
+- D 1 - I - 0x01FC05 07:BBF5: 3E BC     .word off_BC3E_05_03_00_Causeway
+- D 1 - I - 0x01FC07 07:BBF7: 42 BC     .word off_BC42_05_03_01_Causeway
 
 
 
-off_BBF9_05_00_00:
+off_BBF9_05_00_00_Causeway:
 ; 
 - D 1 - I - 0x01FC09 07:BBF9: 09        .byte $09   ; 
 - D 1 - I - 0x01FC0A 07:BBFA: A0 00     .word $00A0 ; 
@@ -5679,12 +5679,12 @@ off_BBF9_05_00_00:
 ; 
 - D 1 - I - 0x01FC12 07:BC02: 49        .byte $49   ; 
 - - - - - - 0x01FC13 07:BC03: A0 01     .word $01A0 ; 
-off_BC05_05_01_00:
+off_BC05_05_01_00_Causeway:
 - D 1 - I - 0x01FC15 07:BC05: FF        .byte $FF   ; end token
 
 
 
-off_BC06_05_02_00:
+off_BC06_05_02_00_Causeway:
 ; 
 - D 1 - I - 0x01FC16 07:BC06: 05        .byte $05   ; 
 - D 1 - I - 0x01FC17 07:BC07: 40 00     .word $0040 ; 
@@ -5720,7 +5720,7 @@ off_BC06_05_02_00:
 
 
 
-off_BC25_05_02_01:
+off_BC25_05_02_01_Causeway:
 ; 
 - D 1 - I - 0x01FC35 07:BC25: 89        .byte $89   ; 
 - D 1 - I - 0x01FC36 07:BC26: C0 01     .word $01C0 ; 
@@ -5750,7 +5750,7 @@ off_BC25_05_02_01:
 
 
 
-off_BC3E_05_03_00:
+off_BC3E_05_03_00_Causeway:
 ; 
 - D 1 - I - 0x01FC4E 07:BC3E: 07        .byte $07   ; 
 - D 1 - I - 0x01FC4F 07:BC3F: 40 00     .word $0040 ; 
@@ -5759,7 +5759,7 @@ off_BC3E_05_03_00:
 
 
 
-off_BC42_05_03_01:
+off_BC42_05_03_01_Causeway:
 ; 
 - D 1 - I - 0x01FC52 07:BC42: 89        .byte $89   ; 
 - D 1 - I - 0x01FC53 07:BC43: E0 03     .word $03E0 ; 
@@ -5768,25 +5768,25 @@ off_BC42_05_03_01:
 
 
 
-_off051_BC46_06_00:
-- D 1 - I - 0x01FC56 07:BC46: 52 BC     .word off_BC52_06_00_00
-- D 1 - I - 0x01FC58 07:BC48: 56 BC     .word off_BC56_06_00_01
+_off051_BC46_06_00_Murky_Marshes:
+- D 1 - I - 0x01FC56 07:BC46: 52 BC     .word off_BC52_06_00_00_Murky_Marshes
+- D 1 - I - 0x01FC58 07:BC48: 56 BC     .word off_BC56_06_00_01_Murky_Marshes
 
 
 
-_off051_BC4A_06_01:
-- D 1 - I - 0x01FC5A 07:BC4A: 59 BC     .word off_BC59_06_01_00
+_off051_BC4A_06_01_Murky_Marshes:
+- D 1 - I - 0x01FC5A 07:BC4A: 59 BC     .word off_BC59_06_01_00_Murky_Marshes
 
 
 
-_off051_BC4C_06_02:
-- D 1 - I - 0x01FC5C 07:BC4C: 5A BC     .word off_BC5A_06_02_00
-- D 1 - I - 0x01FC5E 07:BC4E: 5E BC     .word off_BC5E_06_02_01
-- D 1 - I - 0x01FC60 07:BC50: 65 BC     .word off_BC65_06_02_02
+_off051_BC4C_06_02_Murky_Marshes:
+- D 1 - I - 0x01FC5C 07:BC4C: 5A BC     .word off_BC5A_06_02_00_Murky_Marshes
+- D 1 - I - 0x01FC5E 07:BC4E: 5E BC     .word off_BC5E_06_02_01_Murky_Marshes
+- D 1 - I - 0x01FC60 07:BC50: 65 BC     .word off_BC65_06_02_02_Murky_Marshes
 
 
 
-off_BC52_06_00_00:
+off_BC52_06_00_00_Murky_Marshes:
 ; 
 - D 1 - I - 0x01FC62 07:BC52: 45        .byte $45   ; 
 - - - - - - 0x01FC63 07:BC53: 00 01     .word $0100 ; 
@@ -5795,16 +5795,16 @@ off_BC52_06_00_00:
 
 
 
-off_BC56_06_00_01:
+off_BC56_06_00_01_Murky_Marshes:
 ; 
 - D 1 - I - 0x01FC66 07:BC56: C9        .byte $C9   ; 
 - D 1 - I - 0x01FC67 07:BC57: 80 03     .word $0380 ; 
-off_BC59_06_01_00:
+off_BC59_06_01_00_Murky_Marshes:
 - D 1 - I - 0x01FC69 07:BC59: FF        .byte $FF   ; end token
 
 
 
-off_BC5A_06_02_00:
+off_BC5A_06_02_00_Murky_Marshes:
 ; 
 - D 1 - I - 0x01FC6A 07:BC5A: 05        .byte $05   ; 
 - - - - - - 0x01FC6B 07:BC5B: 80 00     .word $0080 ; 
@@ -5813,7 +5813,7 @@ off_BC5A_06_02_00:
 
 
 
-off_BC5E_06_02_01:
+off_BC5E_06_02_01_Murky_Marshes:
 ; 
 - D 1 - I - 0x01FC6E 07:BC5E: 07        .byte $07   ; 
 - - - - - - 0x01FC6F 07:BC5F: 40 00     .word $0040 ; 
@@ -5825,7 +5825,7 @@ off_BC5E_06_02_01:
 
 
 
-off_BC65_06_02_02:
+off_BC65_06_02_02_Murky_Marshes:
 ; 
 - D 1 - I - 0x01FC75 07:BC65: 8B        .byte $8B   ; 
 - D 1 - I - 0x01FC76 07:BC66: C0 01     .word $01C0 ; 
@@ -5834,45 +5834,45 @@ off_BC65_06_02_02:
 
 
 
-_off051_BC69_07_00:
-- D 1 - I - 0x01FC79 07:BC69: 7D BC     .word off_BC7D_07_00_00
-- D 1 - I - 0x01FC7B 07:BC6B: 81 BC     .word off_BC81_07_00_01
+_off051_BC69_07_00_Caves_of_Alucard:
+- D 1 - I - 0x01FC79 07:BC69: 7D BC     .word off_BC7D_07_00_00_Caves_of_Alucard
+- D 1 - I - 0x01FC7B 07:BC6B: 81 BC     .word off_BC81_07_00_01_Caves_of_Alucard
 
 
 
-_off051_BC6D_07_01:
-- D 1 - I - 0x01FC7D 07:BC6D: 85 BC     .word off_BC85_07_xx_00
+_off051_BC6D_07_01_Caves_of_Alucard:
+- D 1 - I - 0x01FC7D 07:BC6D: 85 BC     .word off_BC85_07_01_00_Caves_of_Alucard
 
 
 
-_off051_BC6F_07_02:
-- D 1 - I - 0x01FC7F 07:BC6F: 85 BC     .word off_BC85_07_xx_00
+_off051_BC6F_07_02_Caves_of_Alucard:
+- D 1 - I - 0x01FC7F 07:BC6F: 85 BC     .word off_BC85_07_02_00_Caves_of_Alucard
 
 
 
-_off051_BC71_07_03:
-- D 1 - I - 0x01FC81 07:BC71: 85 BC     .word off_BC85_07_xx_00
+_off051_BC71_07_03_Caves_of_Alucard:
+- D 1 - I - 0x01FC81 07:BC71: 85 BC     .word off_BC85_07_03_00_Caves_of_Alucard
 
 
 
-_off051_BC73_07_04:
-- D 1 - I - 0x01FC83 07:BC73: 86 BC     .word off_BC86_07_04_00
-- D 1 - I - 0x01FC85 07:BC75: 9C BC     .word off_BC9C_07_04_01
+_off051_BC73_07_04_Caves_of_Alucard:
+- D 1 - I - 0x01FC83 07:BC73: 86 BC     .word off_BC86_07_04_00_Caves_of_Alucard
+- D 1 - I - 0x01FC85 07:BC75: 9C BC     .word off_BC9C_07_04_01_Caves_of_Alucard
 
 
 
-_off051_BC77_07_05:
-- D 1 - I - 0x01FC87 07:BC77: A0 BC     .word off_BCA0_07_05_00
-- D 1 - I - 0x01FC89 07:BC79: AA BC     .word off_BCAA_07_05_01
+_off051_BC77_07_05_Caves_of_Alucard:
+- D 1 - I - 0x01FC87 07:BC77: A0 BC     .word off_BCA0_07_05_00_Caves_of_Alucard
+- D 1 - I - 0x01FC89 07:BC79: AA BC     .word off_BCAA_07_05_01_Caves_of_Alucard
 
 
 
-_off051_BC7B_07_06:
-- D 1 - I - 0x01FC8B 07:BC7B: B4 BC     .word off_BCB4_07_06_00
+_off051_BC7B_07_06_Caves_of_Alucard:
+- D 1 - I - 0x01FC8B 07:BC7B: B4 BC     .word off_BCB4_07_06_00_Caves_of_Alucard
 
 
 
-off_BC7D_07_00_00:
+off_BC7D_07_00_00_Caves_of_Alucard:
 ; 
 - D 1 - I - 0x01FC8D 07:BC7D: 06        .byte $06   ; 
 - D 1 - I - 0x01FC8E 07:BC7E: 50 00     .word $0050 ; 
@@ -5881,7 +5881,7 @@ off_BC7D_07_00_00:
 
 
 
-off_BC81_07_00_01:
+off_BC81_07_00_01_Caves_of_Alucard:
 ; 
 - D 1 - I - 0x01FC91 07:BC81: 8B        .byte $8B   ; 
 - D 1 - I - 0x01FC92 07:BC82: C0 02     .word $02C0 ; 
@@ -5890,14 +5890,16 @@ off_BC81_07_00_01:
 
 
 
-off_BC85_07_xx_00:
+off_BC85_07_01_00_Caves_of_Alucard:
+off_BC85_07_02_00_Caves_of_Alucard:
+off_BC85_07_03_00_Caves_of_Alucard:
 ; bzk optimize, move pointer to 0x01FC94
 ; 
 - D 1 - I - 0x01FC95 07:BC85: FF        .byte $FF   ; end token
 
 
 
-off_BC86_07_04_00:
+off_BC86_07_04_00_Caves_of_Alucard:
 ; 
 - D 1 - I - 0x01FC96 07:BC86: 0C        .byte $0C   ; 
 - D 1 - I - 0x01FC97 07:BC87: F0 00     .word $00F0 ; 
@@ -5924,7 +5926,7 @@ off_BC86_07_04_00:
 
 
 
-off_BC9C_07_04_01:
+off_BC9C_07_04_01_Caves_of_Alucard:
 ; 
 - D 1 - I - 0x01FCAC 07:BC9C: CB        .byte $CB   ; 
 - D 1 - I - 0x01FCAD 07:BC9D: 40 00     .word $0040 ; 
@@ -5933,7 +5935,7 @@ off_BC9C_07_04_01:
 
 
 
-off_BCA0_07_05_00:
+off_BCA0_07_05_00_Caves_of_Alucard:
 ; 
 - D 1 - I - 0x01FCB0 07:BCA0: 09        .byte $09   ; 
 - D 1 - I - 0x01FCB1 07:BCA1: 60 03     .word $0360 ; 
@@ -5948,7 +5950,7 @@ off_BCA0_07_05_00:
 
 
 
-off_BCAA_07_05_01:
+off_BCAA_07_05_01_Caves_of_Alucard:
 ; 
 - D 1 - I - 0x01FCBA 07:BCAA: CB        .byte $CB   ; 
 - D 1 - I - 0x01FCBB 07:BCAB: 60 01     .word $0160 ; 
@@ -5963,7 +5965,7 @@ off_BCAA_07_05_01:
 
 
 
-off_BCB4_07_06_00:
+off_BCB4_07_06_00_Caves_of_Alucard:
 ; 
 - D 1 - I - 0x01FCC4 07:BCB4: C7        .byte $C7   ; 
 - D 1 - I - 0x01FCC5 07:BCB5: 20 00     .word $0020 ; 
@@ -6005,34 +6007,34 @@ off_BCB4_07_06_00:
 
 
 
-_off051_BCD9_08_00:
-- D 1 - I - 0x01FCE9 07:BCD9: E7 BC     .word off_BCE7_08_00_00
-- D 1 - I - 0x01FCEB 07:BCDB: F4 BC     .word off_BCF4_08_00_01
+_off051_BCD9_08_00_Sunken_City:
+- D 1 - I - 0x01FCE9 07:BCD9: E7 BC     .word off_BCE7_08_00_00_Sunken_City
+- D 1 - I - 0x01FCEB 07:BCDB: F4 BC     .word off_BCF4_08_00_01_Sunken_City
 
 
 
-_off051_BCDD_08_01:
-- D 1 - I - 0x01FCED 07:BCDD: 0D BD     .word off_BD0D_08_01_00
+_off051_BCDD_08_01_Sunken_City:
+- D 1 - I - 0x01FCED 07:BCDD: 0D BD     .word off_BD0D_08_01_00_Sunken_City
 
 
 
-_off051_BCDF_08_02:
-- D 1 - I - 0x01FCEF 07:BCDF: 1A BD     .word off_BD1A_08_02_00
-- D 1 - I - 0x01FCF1 07:BCE1: 2A BD     .word off_BD2A_08_02_01
+_off051_BCDF_08_02_Sunken_City:
+- D 1 - I - 0x01FCEF 07:BCDF: 1A BD     .word off_BD1A_08_02_00_Sunken_City
+- D 1 - I - 0x01FCF1 07:BCE1: 2A BD     .word off_BD2A_08_02_01_Sunken_City
 
 
 
-_off051_BCE3_08_03:
-- D 1 - I - 0x01FCF3 07:BCE3: 2E BD     .word off_BD2E_08_03_00
+_off051_BCE3_08_03_Sunken_City:
+- D 1 - I - 0x01FCF3 07:BCE3: 2E BD     .word off_BD2E_08_03_00_Sunken_City
 
 
 
-_off051_BCE5_08_04:
-- D 1 - I - 0x01FCF5 07:BCE5: 3E BD     .word off_BD3E_08_04_00
+_off051_BCE5_08_04_Sunken_City:
+- D 1 - I - 0x01FCF5 07:BCE5: 3E BD     .word off_BD3E_08_04_00_Sunken_City
 
 
 
-off_BCE7_08_00_00:
+off_BCE7_08_00_00_Sunken_City:
 ; 
 - D 1 - I - 0x01FCF7 07:BCE7: 05        .byte $05   ; 
 - D 1 - I - 0x01FCF8 07:BCE8: 20 00     .word $0020 ; 
@@ -6050,7 +6052,7 @@ off_BCE7_08_00_00:
 
 
 
-off_BCF4_08_00_01:
+off_BCF4_08_00_01_Sunken_City:
 ; 
 - D 1 - I - 0x01FD04 07:BCF4: C7        .byte $C7   ; 
 - - - - - - 0x01FD05 07:BCF5: 80 00     .word $0080 ; 
@@ -6080,7 +6082,7 @@ off_BCF4_08_00_01:
 
 
 
-off_BD0D_08_01_00:
+off_BD0D_08_01_00_Sunken_City:
 ; 
 - D 1 - I - 0x01FD1D 07:BD0D: 09        .byte $09   ; 
 - D 1 - I - 0x01FD1E 07:BD0E: A0 01     .word $01A0 ; 
@@ -6098,7 +6100,7 @@ off_BD0D_08_01_00:
 
 
 
-off_BD1A_08_02_00:
+off_BD1A_08_02_00_Sunken_City:
 ; 
 - D 1 - I - 0x01FD2A 07:BD1A: 05        .byte $05   ; 
 - D 1 - I - 0x01FD2B 07:BD1B: 20 00     .word $0020 ; 
@@ -6119,7 +6121,7 @@ off_BD1A_08_02_00:
 
 
 
-off_BD2A_08_02_01:
+off_BD2A_08_02_01_Sunken_City:
 ; 
 - D 1 - I - 0x01FD3A 07:BD2A: 8B        .byte $8B   ; 
 - - - - - - 0x01FD3B 07:BD2B: 80 00     .word $0080 ; 
@@ -6128,7 +6130,7 @@ off_BD2A_08_02_01:
 
 
 
-off_BD2E_08_03_00:
+off_BD2E_08_03_00_Sunken_City:
 ; 
 - D 1 - I - 0x01FD3E 07:BD2E: 05        .byte $05   ; 
 - D 1 - I - 0x01FD3F 07:BD2F: 40 03     .word $0340 ; 
@@ -6149,7 +6151,7 @@ off_BD2E_08_03_00:
 
 
 
-off_BD3E_08_04_00:
+off_BD3E_08_04_00_Sunken_City:
 ; 
 - D 1 - I - 0x01FD4E 07:BD3E: 09        .byte $09   ; 
 - D 1 - I - 0x01FD4F 07:BD3F: A0 04     .word $04A0 ; 
@@ -6174,20 +6176,20 @@ off_BD3E_08_04_00:
 
 
 
-_off051_BD4F_09_00:
-- D 1 - I - 0x01FD5F 07:BD4F: 59 BD     .word off_BD59_09_00_00
-- D 1 - I - 0x01FD61 07:BD51: 63 BD     .word off_BD63_09_00_01
+_off051_BD4F_09_00_Catacombs:
+- D 1 - I - 0x01FD5F 07:BD4F: 59 BD     .word off_BD59_09_00_00_Catacombs
+- D 1 - I - 0x01FD61 07:BD51: 63 BD     .word off_BD63_09_00_01_Catacombs
 
 
 
-_off051_BD53_09_01:
-- D 1 - I - 0x01FD63 07:BD53: 73 BD     .word off_BD73_09_01_00
-- D 1 - I - 0x01FD65 07:BD55: 77 BD     .word off_BD77_09_01_01
-- D 1 - I - 0x01FD67 07:BD57: 90 BD     .word off_BD90_09_01_02
+_off051_BD53_09_01_Catacombs:
+- D 1 - I - 0x01FD63 07:BD53: 73 BD     .word off_BD73_09_01_00_Catacombs
+- D 1 - I - 0x01FD65 07:BD55: 77 BD     .word off_BD77_09_01_01_Catacombs
+- D 1 - I - 0x01FD67 07:BD57: 90 BD     .word off_BD90_09_01_02_Catacombs
 
 
 
-off_BD59_09_00_00:
+off_BD59_09_00_00_Catacombs:
 ; 
 - D 1 - I - 0x01FD69 07:BD59: 0B        .byte $0B   ; 
 - D 1 - I - 0x01FD6A 07:BD5A: 40 00     .word $0040 ; 
@@ -6202,7 +6204,7 @@ off_BD59_09_00_00:
 
 
 
-off_BD63_09_00_01:
+off_BD63_09_00_01_Catacombs:
 ; 
 - D 1 - I - 0x01FD73 07:BD63: 0B        .byte $0B   ; 
 - D 1 - I - 0x01FD74 07:BD64: A0 01     .word $01A0 ; 
@@ -6223,7 +6225,7 @@ off_BD63_09_00_01:
 
 
 
-off_BD73_09_01_00:
+off_BD73_09_01_00_Catacombs:
 ; 
 - D 1 - I - 0x01FD83 07:BD73: 45        .byte $45   ; 
 - D 1 - I - 0x01FD84 07:BD74: A0 00     .word $00A0 ; 
@@ -6232,7 +6234,7 @@ off_BD73_09_01_00:
 
 
 
-off_BD77_09_01_01:
+off_BD77_09_01_01_Catacombs:
 ; 
 - D 1 - I - 0x01FD87 07:BD77: CA        .byte $CA   ; 
 - - - - - - 0x01FD88 07:BD78: 30 00     .word $0030 ; 
@@ -6262,7 +6264,7 @@ off_BD77_09_01_01:
 
 
 
-off_BD90_09_01_02:
+off_BD90_09_01_02_Catacombs:
 ; 
 - D 1 - I - 0x01FDA0 07:BD90: 0B        .byte $0B   ; 
 - D 1 - I - 0x01FDA1 07:BD91: 20 00     .word $0020 ; 
@@ -6283,49 +6285,49 @@ off_BD90_09_01_02:
 
 
 
-_off051_BDA0_0A_00:
-- D 1 - I - 0x01FDB0 07:BDA0: BC BD     .word off_BDBC_0A_00_00
-- D 1 - I - 0x01FDB2 07:BDA2: C6 BD     .word off_BDC6_0A_00_01
+_off051_BDA0_0A_00_Mountain_Range:
+- D 1 - I - 0x01FDB0 07:BDA0: BC BD     .word off_BDBC_0A_00_00_Mountain_Range
+- D 1 - I - 0x01FDB2 07:BDA2: C6 BD     .word off_BDC6_0A_00_01_Mountain_Range
 
 
 
-_off051_BDA4_0A_01:
-- D 1 - I - 0x01FDB4 07:BDA4: C9 BD     .word off_BDC9_0A_xx_00
+_off051_BDA4_0A_01_Mountain_Range:
+- D 1 - I - 0x01FDB4 07:BDA4: C9 BD     .word off_BDC9_0A_01_00_Mountain_Range
 
 
 
-_off051_BDA6_0A_02:
-- D 1 - I - 0x01FDB6 07:BDA6: C9 BD     .word off_BDC9_0A_xx_00
+_off051_BDA6_0A_02_Mountain_Range:
+- D 1 - I - 0x01FDB6 07:BDA6: C9 BD     .word off_BDC9_0A_02_00_Mountain_Range
 
 
 
-_off051_BDA8_0A_03:
-- D 1 - I - 0x01FDB8 07:BDA8: CA BD     .word off_BDCA_0A_03_00
-- D 1 - I - 0x01FDBA 07:BDAA: CE BD     .word off_BDCE_0A_03_01
+_off051_BDA8_0A_03_Mountain_Range:
+- D 1 - I - 0x01FDB8 07:BDA8: CA BD     .word off_BDCA_0A_03_00_Mountain_Range
+- D 1 - I - 0x01FDBA 07:BDAA: CE BD     .word off_BDCE_0A_03_01_Mountain_Range
 
 
 
-_off051_BDAC_0A_04:
-- D 1 - I - 0x01FDBC 07:BDAC: E4 BD     .word off_BDE4_0A_04_00
-- D 1 - I - 0x01FDBE 07:BDAE: E8 BD     .word off_BDE8_0A_04_01
-- D 1 - I - 0x01FDC0 07:BDB0: EF BD     .word off_BDEF_0A_04_02
+_off051_BDAC_0A_04_Mountain_Range:
+- D 1 - I - 0x01FDBC 07:BDAC: E4 BD     .word off_BDE4_0A_04_00_Mountain_Range
+- D 1 - I - 0x01FDBE 07:BDAE: E8 BD     .word off_BDE8_0A_04_01_Mountain_Range
+- D 1 - I - 0x01FDC0 07:BDB0: EF BD     .word off_BDEF_0A_04_02_Mountain_Range
 
 
 
-_off051_BDB2_0A_05:
-- D 1 - I - 0x01FDC2 07:BDB2: F3 BD     .word off_BDF3_0A_05_00
-- D 1 - I - 0x01FDC4 07:BDB4: F7 BD     .word off_BDF7_0A_05_01
+_off051_BDB2_0A_05_Mountain_Range:
+- D 1 - I - 0x01FDC2 07:BDB2: F3 BD     .word off_BDF3_0A_05_00_Mountain_Range
+- D 1 - I - 0x01FDC4 07:BDB4: F7 BD     .word off_BDF7_0A_05_01_Mountain_Range
 
 
 
-_off051_BDB6_0A_06:
-- D 1 - I - 0x01FDC6 07:BDB6: FB BD     .word off_BDFB_0A_06_00
-- D 1 - I - 0x01FDC8 07:BDB8: FF BD     .word off_BDFF_0A_06_01
-- D 1 - I - 0x01FDCA 07:BDBA: 33 BE     .word off_BE33_0A_06_02
+_off051_BDB6_0A_06_Mountain_Range:
+- D 1 - I - 0x01FDC6 07:BDB6: FB BD     .word off_BDFB_0A_06_00_Mountain_Range
+- D 1 - I - 0x01FDC8 07:BDB8: FF BD     .word off_BDFF_0A_06_01_Mountain_Range
+- D 1 - I - 0x01FDCA 07:BDBA: 33 BE     .word off_BE33_0A_06_02_Mountain_Range
 
 
 
-off_BDBC_0A_00_00:
+off_BDBC_0A_00_00_Mountain_Range:
 ; 
 - D 1 - I - 0x01FDCC 07:BDBC: 0B        .byte $0B   ; 
 - D 1 - I - 0x01FDCD 07:BDBD: 60 00     .word $0060 ; 
@@ -6340,16 +6342,17 @@ off_BDBC_0A_00_00:
 
 
 
-off_BDC6_0A_00_01:
+off_BDC6_0A_00_01_Mountain_Range:
 ; 
 - D 1 - I - 0x01FDD6 07:BDC6: 8B        .byte $8B   ; 
 - D 1 - I - 0x01FDD7 07:BDC7: 80 00     .word $0080 ; 
-off_BDC9_0A_xx_00:
+off_BDC9_0A_01_00_Mountain_Range:
+off_BDC9_0A_02_00_Mountain_Range:
 - D 1 - I - 0x01FDD9 07:BDC9: FF        .byte $FF   ; end token
 
 
 
-off_BDCA_0A_03_00:
+off_BDCA_0A_03_00_Mountain_Range:
 ; 
 - D 1 - I - 0x01FDDA 07:BDCA: 05        .byte $05   ; 
 - D 1 - I - 0x01FDDB 07:BDCB: 20 00     .word $0020 ; 
@@ -6358,7 +6361,7 @@ off_BDCA_0A_03_00:
 
 
 
-off_BDCE_0A_03_01:
+off_BDCE_0A_03_01_Mountain_Range:
 ; 
 - D 1 - I - 0x01FDDE 07:BDCE: 8B        .byte $8B   ; 
 - D 1 - I - 0x01FDDF 07:BDCF: 80 00     .word $0080 ; 
@@ -6385,7 +6388,7 @@ off_BDCE_0A_03_01:
 
 
 
-off_BDE4_0A_04_00:
+off_BDE4_0A_04_00_Mountain_Range:
 ; 
 - D 1 - I - 0x01FDF4 07:BDE4: 00        .byte $00   ; 
 - D 1 - I - 0x01FDF5 07:BDE5: 30 20     .word $2030 ; 
@@ -6394,7 +6397,7 @@ off_BDE4_0A_04_00:
 
 
 
-off_BDE8_0A_04_01:
+off_BDE8_0A_04_01_Mountain_Range:
 ; 
 - D 1 - I - 0x01FDF8 07:BDE8: 8B        .byte $8B   ; 
 - - - - - - 0x01FDF9 07:BDE9: 80 00     .word $0080 ; 
@@ -6406,7 +6409,7 @@ off_BDE8_0A_04_01:
 
 
 
-off_BDEF_0A_04_02:
+off_BDEF_0A_04_02_Mountain_Range:
 ; 
 - D 1 - I - 0x01FDFF 07:BDEF: CB        .byte $CB   ; 
 - D 1 - I - 0x01FE00 07:BDF0: 60 01     .word $0160 ; 
@@ -6415,7 +6418,7 @@ off_BDEF_0A_04_02:
 
 
 
-off_BDF3_0A_05_00:
+off_BDF3_0A_05_00_Mountain_Range:
 ; 
 - D 1 - I - 0x01FE03 07:BDF3: 04        .byte $04   ; 
 - D 1 - I - 0x01FE04 07:BDF4: 70 02     .word $0270 ; 
@@ -6424,7 +6427,7 @@ off_BDF3_0A_05_00:
 
 
 
-off_BDF7_0A_05_01:
+off_BDF7_0A_05_01_Mountain_Range:
 ; 
 - D 1 - I - 0x01FE07 07:BDF7: 89        .byte $89   ; 
 - D 1 - I - 0x01FE08 07:BDF8: E0 02     .word $02E0 ; 
@@ -6433,7 +6436,7 @@ off_BDF7_0A_05_01:
 
 
 
-off_BDFB_0A_06_00:
+off_BDFB_0A_06_00_Mountain_Range:
 ; 
 - D 1 - I - 0x01FE0B 07:BDFB: 07        .byte $07   ; 
 - D 1 - I - 0x01FE0C 07:BDFC: 40 00     .word $0040 ; 
@@ -6442,7 +6445,7 @@ off_BDFB_0A_06_00:
 
 
 
-off_BDFF_0A_06_01:
+off_BDFF_0A_06_01_Mountain_Range:
 ; 
 - D 1 - I - 0x01FE0F 07:BDFF: 40        .byte $40   ; 
 - D 1 - I - 0x01FE10 07:BE00: 30 80     .word $8030 ; 
@@ -6499,7 +6502,7 @@ off_BDFF_0A_06_01:
 
 
 
-off_BE33_0A_06_02:
+off_BE33_0A_06_02_Mountain_Range:
 ; 
 - D 1 - I - 0x01FE43 07:BE33: CB        .byte $CB   ; 
 - D 1 - I - 0x01FE44 07:BE34: 20 00     .word $0020 ; 
@@ -6511,26 +6514,26 @@ off_BE33_0A_06_02:
 
 
 
-_off051_BE3A_0B_00:
-- D 1 - I - 0x01FE4A 07:BE3A: 48 BE     .word off_BE48_0B_00_00
-- D 1 - I - 0x01FE4C 07:BE3C: 52 BE     .word off_BE52_0B_00_01
+_off051_BE3A_0B_00_Castle_Courtyard:
+- D 1 - I - 0x01FE4A 07:BE3A: 48 BE     .word off_BE48_0B_00_00_Castle_Courtyard
+- D 1 - I - 0x01FE4C 07:BE3C: 52 BE     .word off_BE52_0B_00_01_Castle_Courtyard
 
 
 
-_off051_BE3E_0B_01:
-- D 1 - I - 0x01FE4E 07:BE3E: 5C BE     .word off_BE5C_0B_01_00
-- D 1 - I - 0x01FE50 07:BE40: 66 BE     .word off_BE66_0B_01_01
+_off051_BE3E_0B_01_Castle_Courtyard:
+- D 1 - I - 0x01FE4E 07:BE3E: 5C BE     .word off_BE5C_0B_01_00_Castle_Courtyard
+- D 1 - I - 0x01FE50 07:BE40: 66 BE     .word off_BE66_0B_01_01_Castle_Courtyard
 
 
 
-_off051_BE42_0B_02:
-- D 1 - I - 0x01FE52 07:BE42: 6A BE     .word off_BE6A_0B_02_00
-- D 1 - I - 0x01FE54 07:BE44: 74 BE     .word off_BE74_0B_02_01
-- D 1 - I - 0x01FE56 07:BE46: 7B BE     .word off_BE7B_0B_02_02
+_off051_BE42_0B_02_Castle_Courtyard:
+- D 1 - I - 0x01FE52 07:BE42: 6A BE     .word off_BE6A_0B_02_00_Castle_Courtyard
+- D 1 - I - 0x01FE54 07:BE44: 74 BE     .word off_BE74_0B_02_01_Castle_Courtyard
+- D 1 - I - 0x01FE56 07:BE46: 7B BE     .word off_BE7B_0B_02_02_Castle_Courtyard
 
 
 
-off_BE48_0B_00_00:
+off_BE48_0B_00_00_Castle_Courtyard:
 ; 
 - D 1 - I - 0x01FE58 07:BE48: 0A        .byte $0A   ; 
 - D 1 - I - 0x01FE59 07:BE49: 70 03     .word $0370 ; 
@@ -6545,7 +6548,7 @@ off_BE48_0B_00_00:
 
 
 
-off_BE52_0B_00_01:
+off_BE52_0B_00_01_Castle_Courtyard:
 ; 
 - D 1 - I - 0x01FE62 07:BE52: CB        .byte $CB   ; 
 - - - - - - 0x01FE63 07:BE53: A0 00     .word $00A0 ; 
@@ -6560,7 +6563,7 @@ off_BE52_0B_00_01:
 
 
 
-off_BE5C_0B_01_00:
+off_BE5C_0B_01_00_Castle_Courtyard:
 ; 
 - D 1 - I - 0x01FE6C 07:BE5C: 46        .byte $46   ; 
 - D 1 - I - 0x01FE6D 07:BE5D: 10 01     .word $0110 ; 
@@ -6575,7 +6578,7 @@ off_BE5C_0B_01_00:
 
 
 
-off_BE66_0B_01_01:
+off_BE66_0B_01_01_Castle_Courtyard:
 ; 
 - D 1 - I - 0x01FE76 07:BE66: C9        .byte $C9   ; 
 - - - - - - 0x01FE77 07:BE67: 80 00     .word $0080 ; 
@@ -6584,7 +6587,7 @@ off_BE66_0B_01_01:
 
 
 
-off_BE6A_0B_02_00:
+off_BE6A_0B_02_00_Castle_Courtyard:
 ; 
 - D 1 - I - 0x01FE7A 07:BE6A: 06        .byte $06   ; 
 - - - - - - 0x01FE7B 07:BE6B: 30 00     .word $0030 ; 
@@ -6599,7 +6602,7 @@ off_BE6A_0B_02_00:
 
 
 
-off_BE74_0B_02_01:
+off_BE74_0B_02_01_Castle_Courtyard:
 ; 
 - D 1 - I - 0x01FE84 07:BE74: 00        .byte $00   ; 
 - D 1 - I - 0x01FE85 07:BE75: 30 40     .word $4030 ; 
@@ -6611,7 +6614,7 @@ off_BE74_0B_02_01:
 
 
 
-off_BE7B_0B_02_02:
+off_BE7B_0B_02_02_Castle_Courtyard:
 ; 
 - D 1 - I - 0x01FE8B 07:BE7B: 89        .byte $89   ; 
 - D 1 - I - 0x01FE8C 07:BE7C: C0 02     .word $02C0 ; 
@@ -6620,24 +6623,24 @@ off_BE7B_0B_02_02:
 
 
 
-_off051_BE7F_0C_00:
-- D 1 - I - 0x01FE8F 07:BE7F: 89 BE     .word off_BE89_0C_00_00
-- D 1 - I - 0x01FE91 07:BE81: 99 BE     .word off_BE99_0C_00_01
+_off051_BE7F_0C_00_Main_Hall:
+- D 1 - I - 0x01FE8F 07:BE7F: 89 BE     .word off_BE89_0C_00_00_Main_Hall
+- D 1 - I - 0x01FE91 07:BE81: 99 BE     .word off_BE99_0C_00_01_Main_Hall
 
 
 
-_off051_BE83_0C_01:
-- D 1 - I - 0x01FE93 07:BE83: 9D BE     .word off_BE9D_0C_01_00
-- D 1 - I - 0x01FE95 07:BE85: AD BE     .word off_BEAD_0C_01_01
+_off051_BE83_0C_01_Main_Hall:
+- D 1 - I - 0x01FE93 07:BE83: 9D BE     .word off_BE9D_0C_01_00_Main_Hall
+- D 1 - I - 0x01FE95 07:BE85: AD BE     .word off_BEAD_0C_01_01_Main_Hall
 
 
 
-_off051_BE87_0C_02:
-- D 1 - I - 0x01FE97 07:BE87: B1 BE     .word off_BEB1_0C_02_00
+_off051_BE87_0C_02_Main_Hall:
+- D 1 - I - 0x01FE97 07:BE87: B1 BE     .word off_BEB1_0C_02_00_Main_Hall
 
 
 
-off_BE89_0C_00_00:
+off_BE89_0C_00_00_Main_Hall:
 ; 
 - D 1 - I - 0x01FE99 07:BE89: 46        .byte $46   ; 
 - D 1 - I - 0x01FE9A 07:BE8A: D0 02     .word $02D0 ; 
@@ -6658,7 +6661,7 @@ off_BE89_0C_00_00:
 
 
 
-off_BE99_0C_00_01:
+off_BE99_0C_00_01_Main_Hall:
 ; 
 - D 1 - I - 0x01FEA9 07:BE99: CA        .byte $CA   ; 
 - D 1 - I - 0x01FEAA 07:BE9A: 50 00     .word $0050 ; 
@@ -6667,7 +6670,7 @@ off_BE99_0C_00_01:
 
 
 
-off_BE9D_0C_01_00:
+off_BE9D_0C_01_00_Main_Hall:
 ; 
 - D 1 - I - 0x01FEAD 07:BE9D: CA        .byte $CA   ; 
 - - - - - - 0x01FEAE 07:BE9E: 70 00     .word $0070 ; 
@@ -6688,7 +6691,7 @@ off_BE9D_0C_01_00:
 
 
 
-off_BEAD_0C_01_01:
+off_BEAD_0C_01_01_Main_Hall:
 ; 
 - D 1 - I - 0x01FEBD 07:BEAD: 06        .byte $06   ; 
 - D 1 - I - 0x01FEBE 07:BEAE: 30 00     .word $0030 ; 
@@ -6697,7 +6700,7 @@ off_BEAD_0C_01_01:
 
 
 
-off_BEB1_0C_02_00:
+off_BEB1_0C_02_00_Main_Hall:
 ; 
 - D 1 - I - 0x01FEC1 07:BEB1: C8        .byte $C8   ; 
 - - - - - - 0x01FEC2 07:BEB2: B0 00     .word $00B0 ; 
@@ -6709,34 +6712,34 @@ off_BEB1_0C_02_00:
 
 
 
-_off051_BEB8_0D_00:
-- D 1 - I - 0x01FEC8 07:BEB8: CE BE     .word off_BECE_0D_00_00
-- D 1 - I - 0x01FECA 07:BEBA: D8 BE     .word off_BED8_0D_00_01
-- D 1 - I - 0x01FECC 07:BEBC: E5 BE     .word off_BEE5_0D_00_02
+_off051_BEB8_0D_00_Castle_Tower:
+- D 1 - I - 0x01FEC8 07:BEB8: CE BE     .word off_BECE_0D_00_00_Castle_Tower
+- D 1 - I - 0x01FECA 07:BEBA: D8 BE     .word off_BED8_0D_00_01_Castle_Tower
+- D 1 - I - 0x01FECC 07:BEBC: E5 BE     .word off_BEE5_0D_00_02_Castle_Tower
 
 
 
-_off051_BEBE_0D_01:
-- D 1 - I - 0x01FECE 07:BEBE: E9 BE     .word off_BEE9_0D_01_00
-- D 1 - I - 0x01FED0 07:BEC0: F3 BE     .word off_BEF3_0D_01_01
-- D 1 - I - 0x01FED2 07:BEC2: 69 BF     .word off_BF69_0D_01_02
+_off051_BEBE_0D_01_Castle_Tower:
+- D 1 - I - 0x01FECE 07:BEBE: E9 BE     .word off_BEE9_0D_01_00_Castle_Tower
+- D 1 - I - 0x01FED0 07:BEC0: F3 BE     .word off_BEF3_0D_01_01_Castle_Tower
+- D 1 - I - 0x01FED2 07:BEC2: 69 BF     .word off_BF69_0D_01_02_Castle_Tower
 
 
 
-_off051_BEC4_0D_02:
-- D 1 - I - 0x01FED4 07:BEC4: 79 BF     .word off_BF79_0D_02_00
-- D 1 - I - 0x01FED6 07:BEC6: 0C BF     .word off_BF0C_0D_02_01
-- D 1 - I - 0x01FED8 07:BEC8: 83 BF     .word off_BF83_0D_02_02
+_off051_BEC4_0D_02_Castle_Tower:
+- D 1 - I - 0x01FED4 07:BEC4: 79 BF     .word off_BF79_0D_02_00_Castle_Tower
+- D 1 - I - 0x01FED6 07:BEC6: 0C BF     .word off_BF0C_0D_02_01_Castle_Tower
+- D 1 - I - 0x01FED8 07:BEC8: 83 BF     .word off_BF83_0D_02_02_Castle_Tower
 
 
 
-_off051_BECA_0D_03:
-- D 1 - I - 0x01FEDA 07:BECA: 5B BF     .word off_BF5B_0D_03_00
-- D 1 - I - 0x01FEDC 07:BECC: 65 BF     .word off_BF65_0D_03_01
+_off051_BECA_0D_03_Castle_Tower:
+- D 1 - I - 0x01FEDA 07:BECA: 5B BF     .word off_BF5B_0D_03_00_Castle_Tower
+- D 1 - I - 0x01FEDC 07:BECC: 65 BF     .word off_BF65_0D_03_01_Castle_Tower
 
 
 
-off_BECE_0D_00_00:
+off_BECE_0D_00_00_Castle_Tower:
 ; 
 - D 1 - I - 0x01FEDE 07:BECE: 49        .byte $49   ; 
 - D 1 - I - 0x01FEDF 07:BECF: C0 00     .word $00C0 ; 
@@ -6751,7 +6754,7 @@ off_BECE_0D_00_00:
 
 
 
-off_BED8_0D_00_01:
+off_BED8_0D_00_01_Castle_Tower:
 ; 
 - D 1 - I - 0x01FEE8 07:BED8: 8B        .byte $8B   ; 
 - D 1 - I - 0x01FEE9 07:BED9: 80 00     .word $0080 ; 
@@ -6769,7 +6772,7 @@ off_BED8_0D_00_01:
 
 
 
-off_BEE5_0D_00_02:
+off_BEE5_0D_00_02_Castle_Tower:
 ; 
 - D 1 - I - 0x01FEF5 07:BEE5: 8B        .byte $8B   ; 
 - - - - - - 0x01FEF6 07:BEE6: C0 00     .word $00C0 ; 
@@ -6778,7 +6781,7 @@ off_BEE5_0D_00_02:
 
 
 
-off_BEE9_0D_01_00:
+off_BEE9_0D_01_00_Castle_Tower:
 ; 
 - D 1 - I - 0x01FEF9 07:BEE9: 07        .byte $07   ; 
 - D 1 - I - 0x01FEFA 07:BEEA: 20 00     .word $0020 ; 
@@ -6793,7 +6796,7 @@ off_BEE9_0D_01_00:
 
 
 
-off_BEF3_0D_01_01:
+off_BEF3_0D_01_01_Castle_Tower:
 ; 
 - D 1 - I - 0x01FF03 07:BEF3: 40        .byte $40   ; 
 - D 1 - I - 0x01FF04 07:BEF4: 50 C0     .word $C050 ; 
@@ -6823,7 +6826,7 @@ off_BEF3_0D_01_01:
 
 
 
-off_BF0C_0D_02_01:
+off_BF0C_0D_02_01_Castle_Tower:
 ; 
 - D 1 - I - 0x01FF1C 07:BF0C: 40        .byte $40   ; 
 - D 1 - I - 0x01FF1D 07:BF0D: 30 E0     .word $E030 ; 
@@ -6907,7 +6910,7 @@ off_BF0C_0D_02_01:
 
 
 
-off_BF5B_0D_03_00:
+off_BF5B_0D_03_00_Castle_Tower:
 ; 
 - D 1 - I - 0x01FF6B 07:BF5B: 0A        .byte $0A   ; 
 - D 1 - I - 0x01FF6C 07:BF5C: 30 00     .word $0030 ; 
@@ -6922,7 +6925,7 @@ off_BF5B_0D_03_00:
 
 
 
-off_BF65_0D_03_01:
+off_BF65_0D_03_01_Castle_Tower:
 ; 
 - D 1 - I - 0x01FF75 07:BF65: 8B        .byte $8B   ; 
 - - - - - - 0x01FF76 07:BF66: E0 02     .word $02E0 ; 
@@ -6931,7 +6934,7 @@ off_BF65_0D_03_01:
 
 
 
-off_BF69_0D_01_02:
+off_BF69_0D_01_02_Castle_Tower:
 ; 
 - D 1 - I - 0x01FF79 07:BF69: CB        .byte $CB   ; 
 - - - - - - 0x01FF7A 07:BF6A: 40 00     .word $0040 ; 
@@ -6952,7 +6955,7 @@ off_BF69_0D_01_02:
 
 
 
-off_BF79_0D_02_00:
+off_BF79_0D_02_00_Castle_Tower:
 ; 
 - D 1 - I - 0x01FF89 07:BF79: 0B        .byte $0B   ; 
 - D 1 - I - 0x01FF8A 07:BF7A: 80 00     .word $0080 ; 
@@ -6967,7 +6970,7 @@ off_BF79_0D_02_00:
 
 
 
-off_BF83_0D_02_02:
+off_BF83_0D_02_02_Castle_Tower:
 ; 
 - D 1 - I - 0x01FF93 07:BF83: CA        .byte $CA   ; 
 - - - - - - 0x01FF94 07:BF84: 70 00     .word $0070 ; 
@@ -6982,26 +6985,26 @@ off_BF83_0D_02_02:
 
 
 
-_off051_BF8D_0E_00:
-- D 1 - I - 0x01FF9D 07:BF8D: 9B BF     .word off_BF9B_0E_00_00
-- D 1 - I - 0x01FF9F 07:BF8F: 9F BF     .word off_BF9F_0E_00_01
-- D 1 - I - 0x01FFA1 07:BF91: A6 BF     .word off_BFA6_0E_00_02
+_off051_BF8D_0E_00_Final_Clock_Tower:
+- D 1 - I - 0x01FF9D 07:BF8D: 9B BF     .word off_BF9B_0E_00_00_Final_Clock_Tower
+- D 1 - I - 0x01FF9F 07:BF8F: 9F BF     .word off_BF9F_0E_00_01_Final_Clock_Tower
+- D 1 - I - 0x01FFA1 07:BF91: A6 BF     .word off_BFA6_0E_00_02_Final_Clock_Tower
 
 
 
-_off051_BF93_0E_01:
-- D 1 - I - 0x01FFA3 07:BF93: AA BF     .word off_BFAA_0E_01_00
-- D 1 - I - 0x01FFA5 07:BF95: BA BF     .word off_BFBA_0E_01_01
+_off051_BF93_0E_01_Final_Clock_Tower:
+- D 1 - I - 0x01FFA3 07:BF93: AA BF     .word off_BFAA_0E_01_00_Final_Clock_Tower
+- D 1 - I - 0x01FFA5 07:BF95: BA BF     .word off_BFBA_0E_01_01_Final_Clock_Tower
 
 
 
-_off051_BF97_0E_02:
-- D 1 - I - 0x01FFA7 07:BF97: C4 BF     .word off_BFC4_0E_02_00
-- D 1 - I - 0x01FFA9 07:BF99: C8 BF     .word off_BFC8_0E_02_01
+_off051_BF97_0E_02_Final_Clock_Tower:
+- D 1 - I - 0x01FFA7 07:BF97: C4 BF     .word off_BFC4_0E_02_00_Final_Clock_Tower
+- D 1 - I - 0x01FFA9 07:BF99: C8 BF     .word off_BFC8_0E_02_01_Final_Clock_Tower
 
 
 
-off_BF9B_0E_00_00:
+off_BF9B_0E_00_00_Final_Clock_Tower:
 ; 
 - D 1 - I - 0x01FFAB 07:BF9B: 48        .byte $48   ; 
 - D 1 - I - 0x01FFAC 07:BF9C: B0 01     .word $01B0 ; 
@@ -7010,7 +7013,7 @@ off_BF9B_0E_00_00:
 
 
 
-off_BF9F_0E_00_01:
+off_BF9F_0E_00_01_Final_Clock_Tower:
 ; 
 - D 1 - I - 0x01FFAF 07:BF9F: 00        .byte $00   ; 
 - D 1 - I - 0x01FFB0 07:BFA0: 30 20     .word $2030 ; 
@@ -7022,7 +7025,7 @@ off_BF9F_0E_00_01:
 
 
 
-off_BFA6_0E_00_02:
+off_BFA6_0E_00_02_Final_Clock_Tower:
 ; 
 - D 1 - I - 0x01FFB6 07:BFA6: 8B        .byte $8B   ; 
 - D 1 - I - 0x01FFB7 07:BFA7: 80 00     .word $0080 ; 
@@ -7031,7 +7034,7 @@ off_BFA6_0E_00_02:
 
 
 
-off_BFAA_0E_01_00:
+off_BFAA_0E_01_00_Final_Clock_Tower:
 ; 
 - D 1 - I - 0x01FFBA 07:BFAA: C5        .byte $C5   ; 
 - - - - - - 0x01FFBB 07:BFAB: 40 00     .word $0040 ; 
@@ -7052,7 +7055,7 @@ off_BFAA_0E_01_00:
 
 
 
-off_BFBA_0E_01_01:
+off_BFBA_0E_01_01_Final_Clock_Tower:
 ; 
 - D 1 - I - 0x01FFCA 07:BFBA: 8C        .byte $8C   ; 
 - D 1 - I - 0x01FFCB 07:BFBB: F0 01     .word $01F0 ; 
@@ -7067,7 +7070,7 @@ off_BFBA_0E_01_01:
 
 
 
-off_BFC4_0E_02_00:
+off_BFC4_0E_02_00_Final_Clock_Tower:
 ; 
 - D 1 - I - 0x01FFD4 07:BFC4: 47        .byte $47   ; 
 - D 1 - I - 0x01FFD5 07:BFC5: A0 01     .word $01A0 ; 
@@ -7076,7 +7079,7 @@ off_BFC4_0E_02_00:
 
 
 
-off_BFC8_0E_02_01:
+off_BFC8_0E_02_01_Final_Clock_Tower:
 ; 
 - D 1 - I - 0x01FFD8 07:BFC8: C9        .byte $C9   ; 
 - D 1 - I - 0x01FFD9 07:BFC9: 00 02     .word $0200 ; 

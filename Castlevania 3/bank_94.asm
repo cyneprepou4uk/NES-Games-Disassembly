@@ -299,7 +299,7 @@ C - - - - - 0x028182 0A:8172: AA        TAX
 C - - - - - 0x028183 0A:8173: A9 00     LDA #$00
 C - - - - - 0x028185 0A:8175: 9D C8 07  STA ram_spawner_subscript,X
 bra_8178_skip:
-C - - - - - 0x028188 0A:8178: 20 8D 84  JSR sub_848D_check_for_0E_01_01_blk
+C - - - - - 0x028188 0A:8178: 20 8D 84  JSR sub_848D_check_for_Final_Clock_Tower_0E_01_01
 C - - - - - 0x02818B 0A:817B: D0 01     BNE bra_817E_no_match
 ; if match
 C - - - - - 0x02818D 0A:817D: 60        RTS
@@ -944,13 +944,13 @@ tbl_846D:
 
 
 
-sub_848D_check_for_0E_01_01_blk:
+sub_848D_check_for_Final_Clock_Tower_0E_01_01:
 ; out
     ; Z
-        ; 0 = match
+        ; 0 = 0E-01-01 (match)
         ; 1 = no match
 C - - - - - 0x02849D 0A:848D: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x02849F 0A:848F: C9 0E     CMP #$0E
+C - - - - - 0x02849F 0A:848F: C9 0E     CMP #$0E    ; Final Clock Tower
 C - - - - - 0x0284A1 0A:8491: D0 0A     BNE bra_849D_RTS
 C - - - - - 0x0284A3 0A:8493: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x0284A5 0A:8495: C9 01     CMP #$01
@@ -1373,7 +1373,8 @@ C - - - - - 0x0286D9 0A:86C9: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x0286DC 0A:86CC: D0 20     BNE bra_86EE_RTS
 C - - - - - 0x0286DE 0A:86CE: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x0286E1 0A:86D1: 20 54 8E  JSR sub_8E54_find_empty_object_slot
-C - - - - - 0x0286E4 0A:86D4: D0 18     BNE bra_86EE_RTS
+C - - - - - 0x0286E4 0A:86D4: D0 18     BNE bra_86EE_RTS    ; if not found
+; if found
 C - - - - - 0x0286E6 0A:86D6: 8A        TXA
 C - - - - - 0x0286E7 0A:86D7: 65 1A     ADC ram_frm_cnt
 C - - - - - 0x0286E9 0A:86D9: 6D 38 04  ADC ram_plr_pos_X_hi
@@ -1765,9 +1766,10 @@ C - - - - - 0x028897 0A:8887: D0 3A     BNE bra_88C3_RTS
 sub_8889:
 C - - - - - 0x028899 0A:8889: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x02889C 0A:888C: 20 54 8E  JSR sub_8E54_find_empty_object_slot
-C - - - - - 0x02889F 0A:888F: D0 25     BNE bra_88B6
+C - - - - - 0x02889F 0A:888F: D0 25     BNE bra_88B6    ; if not found
+; if found
 C - - - - - 0x0288A1 0A:8891: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0288A3 0A:8893: C9 0A     CMP #$0A
+C - - - - - 0x0288A3 0A:8893: C9 0A     CMP #$0A    ; Mountain Range
 C - - - - - 0x0288A5 0A:8895: D0 0D     BNE bra_88A4
 C - - - - - 0x0288A7 0A:8897: AD 1C 04  LDA ram_plr_pos_Y_hi
 C - - - - - 0x0288AA 0A:889A: C9 A0     CMP #$A0
@@ -1789,7 +1791,8 @@ sub_88B6:
 C D 0 - - - 0x0288C6 0A:88B6: A9 70     LDA #$70
 C - - - - - 0x0288C8 0A:88B8: A4 32     LDY ram_blk_id_hi
 C - - - - - 0x0288CA 0A:88BA: C0 0A     CPY #$0A
-C - - - - - 0x0288CC 0A:88BC: B0 02     BCS bra_88C0
+C - - - - - 0x0288CC 0A:88BC: B0 02     BCS bra_88C0    ; if 0A-0E
+; if 00-09
 C - - - - - 0x0288CE 0A:88BE: A9 A0     LDA #$A0
 bra_88C0:
 C - - - - - 0x0288D0 0A:88C0: 4C 23 86  JMP loc_8623
@@ -1849,10 +1852,10 @@ C - - - - - 0x02891D 0A:890D: 20 DE 8D  JSR sub_8DDE
 bra_8910:
 C - - - - - 0x028920 0A:8910: A9 80     LDA #$80
 C - - - - - 0x028922 0A:8912: A4 32     LDY ram_blk_id_hi
-C - - - - - 0x028924 0A:8914: C0 0D     CPY #$0D
-C - - - - - 0x028926 0A:8916: F0 02     BEQ bra_891A
+C - - - - - 0x028924 0A:8914: C0 0D     CPY #$0D    ; Castle Tower
+C - - - - - 0x028926 0A:8916: F0 02     BEQ bra_891A_Castle_Tower
 C - - - - - 0x028928 0A:8918: A9 FF     LDA #$FF
-bra_891A:
+bra_891A_Castle_Tower:
 C - - - - - 0x02892A 0A:891A: 4C 23 86  JMP loc_8623
 
 
@@ -1963,7 +1966,7 @@ sub_897F:
 C - - - - - 0x02898F 0A:897F: A9 C0     LDA #$C0
 C - - - - - 0x028991 0A:8981: 9D CE 07  STA ram_spawner_delay,X
 C - - - - - 0x028994 0A:8984: 20 E7 8D  JSR sub_8DE7_prepare_object_data
-C - - - - - 0x028997 0A:8987: 20 8D 84  JSR sub_848D_check_for_0E_01_01_blk
+C - - - - - 0x028997 0A:8987: 20 8D 84  JSR sub_848D_check_for_Final_Clock_Tower_0E_01_01
 C - - - - - 0x02899A 0A:898A: D0 06     BNE bra_8992_no_match
 ; if match
 C - - - - - 0x02899C 0A:898C: 20 89 8E  JSR sub_8E89
@@ -1971,10 +1974,11 @@ C - - - - - 0x02899F 0A:898F: F0 12     BEQ bra_89A3
 - - - - - - 0x0289A1 0A:8991: 60        RTS
 bra_8992_no_match:
 C - - - - - 0x0289A2 0A:8992: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0289A4 0A:8994: C9 01     CMP #$01
+C - - - - - 0x0289A4 0A:8994: C9 01     CMP #$01    ; Clock Tower
 C - - - - - 0x0289A6 0A:8996: D0 06     BNE bra_899E
-- - - - - - 0x0289A8 0A:8998: 20 C3 8E  JSR sub_8EC3
-- - - - - - 0x0289AB 0A:899B: F0 06     BEQ bra_89A3
+- - - - - - 0x0289A8 0A:8998: 20 C3 8E  JSR sub_8EC3_find_empty_object_slot_0B_0C
+- - - - - - 0x0289AB 0A:899B: F0 06     BEQ bra_89A3    ; if found
+; if not found
 - - - - - - 0x0289AD 0A:899D: 60        RTS
 bra_899E:
 C - - - - - 0x0289AE 0A:899E: 20 7B 8D  JSR sub_8D7B
@@ -2155,7 +2159,8 @@ C - - - - - 0x028A84 0A:8A74: 20 DE 85  JSR sub_85DE_prepare_next_spawner_subscr
 bra_8A77_loop:
 C - - - - - 0x028A87 0A:8A77: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028A8A 0A:8A7A: 20 54 8E  JSR sub_8E54_find_empty_object_slot
-C - - - - - 0x028A8D 0A:8A7D: D0 16     BNE bra_8A95
+C - - - - - 0x028A8D 0A:8A7D: D0 16     BNE bra_8A95    ; if not found
+; if found
 C - - - - - 0x028A8F 0A:8A7F: 20 DE 8D  JSR sub_8DDE
 C - - - - - 0x028A92 0A:8A82: 86 09     STX ram_0009_t026_save_X
 C - - - - - 0x028A94 0A:8A84: A6 6C     LDX ram_006C_object_index
@@ -2217,7 +2222,8 @@ C - - - - - 0x028AD2 0A:8AC2: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028AD5 0A:8AC5: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028AD8 0A:8AC8: D0 08     BNE bra_8AD2
 C - - - - - 0x028ADA 0A:8ACA: 20 54 8E  JSR sub_8E54_find_empty_object_slot
-C - - - - - 0x028ADD 0A:8ACD: D0 03     BNE bra_8AD2
+C - - - - - 0x028ADD 0A:8ACD: D0 03     BNE bra_8AD2    ; if not found
+; if found
 C - - - - - 0x028ADF 0A:8ACF: 20 BE 8B  JSR sub_8BBE
 bra_8AD2:
 C - - - - - 0x028AE2 0A:8AD2: A9 80     LDA #$80
@@ -2359,16 +2365,17 @@ C - - J - - 0x028B77 0A:8B67: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028B7A 0A:8B6A: D0 3E     BNE bra_8BAA_RTS
 C - - - - - 0x028B7C 0A:8B6C: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028B7F 0A:8B6F: 20 54 8E  JSR sub_8E54_find_empty_object_slot
-C - - - - - 0x028B82 0A:8B72: D0 36     BNE bra_8BAA_RTS
+C - - - - - 0x028B82 0A:8B72: D0 36     BNE bra_8BAA_RTS    ; if not found
+; if found
 C - - - - - 0x028B84 0A:8B74: AD F6 07  LDA ram_quest
 C - - - - - 0x028B87 0A:8B77: F0 45     BEQ bra_8BBE    ; if 1st quest
 C - - - - - 0x028B89 0A:8B79: A5 03     LDA ram_0003_t016_obj_id
 C - - - - - 0x028B8B 0A:8B7B: C9 63     CMP #$63
 C - - - - - 0x028B8D 0A:8B7D: D0 3F     BNE bra_8BBE
 C - - - - - 0x028B8F 0A:8B7F: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x028B91 0A:8B81: C9 0C     CMP #$0C
+C - - - - - 0x028B91 0A:8B81: C9 0C     CMP #$0C    ; Main Hall
 C - - - - - 0x028B93 0A:8B83: F0 39     BEQ bra_8BBE
-C - - - - - 0x028B95 0A:8B85: C9 01     CMP #$01
+C - - - - - 0x028B95 0A:8B85: C9 01     CMP #$01    ; Clock Tower
 C - - - - - 0x028B97 0A:8B87: D0 06     BNE bra_8B8F
 - - - - - - 0x028B99 0A:8B89: A5 34     LDA ram_blk_id_fr
 - - - - - - 0x028B9B 0A:8B8B: C9 01     CMP #$01
@@ -2417,7 +2424,8 @@ C - - J - - 0x028BC1 0A:8BB1: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028BC4 0A:8BB4: D0 42     BNE bra_8BF8_RTS
 C - - - - - 0x028BC6 0A:8BB6: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028BC9 0A:8BB9: 20 54 8E  JSR sub_8E54_find_empty_object_slot
-C - - - - - 0x028BCC 0A:8BBC: D0 0F     BNE bra_8BCD
+C - - - - - 0x028BCC 0A:8BBC: D0 0F     BNE bra_8BCD_not_found
+; if found
 bra_8BBE:
 sub_8BBE:
 loc_8BBE:
@@ -2427,8 +2435,8 @@ C D 0 - - - 0x028BD1 0A:8BC1: 20 32 93  JSR sub_9332_set_hp_for_enemy
 C - - - - - 0x028BD4 0A:8BC4: 20 EC E7  JSR sub_0x03E7FC
 C - - - - - 0x028BD7 0A:8BC7: 20 D5 8B  JSR sub_8BD5
 C - - - - - 0x028BDA 0A:8BCA: 4C DE 85  JMP loc_85DE_prepare_next_spawner_subscript
+bra_8BCD_not_found:
 loc_8BCD:
-bra_8BCD:
 C D 0 - - - 0x028BDD 0A:8BCD: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x028BDF 0A:8BCF: A9 02     LDA #$02
 C - - - - - 0x028BE1 0A:8BD1: 9D C8 07  STA ram_spawner_subscript,X
@@ -2489,7 +2497,8 @@ C - - J - - 0x028C0F 0A:8BFF: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028C12 0A:8C02: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028C15 0A:8C05: D0 F1     BNE bra_8BF8_RTS
 C - - - - - 0x028C17 0A:8C07: 20 54 8E  JSR sub_8E54_find_empty_object_slot
-C - - - - - 0x028C1A 0A:8C0A: D0 EC     BNE bra_8BF8_RTS
+C - - - - - 0x028C1A 0A:8C0A: D0 EC     BNE bra_8BF8_RTS    ; if not found
+; if found
 C - - - - - 0x028C1C 0A:8C0C: 4C BE 8B  JMP loc_8BBE
 
 
@@ -2507,7 +2516,8 @@ C - - J - - 0x028C25 0A:8C15: 20 E7 8D  JSR sub_8DE7_prepare_object_data
 C - - - - - 0x028C28 0A:8C18: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028C2B 0A:8C1B: D0 47     BNE bra_8C64_RTS
 C - - - - - 0x028C2D 0A:8C1D: 20 54 8E  JSR sub_8E54_find_empty_object_slot
-C - - - - - 0x028C30 0A:8C20: D0 42     BNE bra_8C64_RTS
+C - - - - - 0x028C30 0A:8C20: D0 42     BNE bra_8C64_RTS    ; if not found
+; if found
 C - - - - - 0x028C32 0A:8C22: 20 FF 8D  JSR sub_8DFF
 C - - - - - 0x028C35 0A:8C25: 20 32 93  JSR sub_9332_set_hp_for_enemy
 C - - - - - 0x028C38 0A:8C28: 20 EC E7  JSR sub_0x03E7FC
@@ -2604,7 +2614,8 @@ C - - - - - 0x028C92 0A:8C82: 85 04     STA ram_0004_t024
 C - - - - - 0x028C94 0A:8C84: BD E0 07  LDA ram_07E0_spawner_cfg,X
 C - - - - - 0x028C97 0A:8C87: D0 DB     BNE bra_8C64_RTS
 C - - - - - 0x028C99 0A:8C89: 20 54 8E  JSR sub_8E54_find_empty_object_slot
-C - - - - - 0x028C9C 0A:8C8C: D0 D6     BNE bra_8C64_RTS
+C - - - - - 0x028C9C 0A:8C8C: D0 D6     BNE bra_8C64_RTS    ; if not found
+; if found
 loc_8C8E:
 C D 0 - - - 0x028C9E 0A:8C8E: 20 DE 8D  JSR sub_8DDE
 C - - - - - 0x028CA1 0A:8C91: 20 D5 8B  JSR sub_8BD5
@@ -2908,15 +2919,17 @@ C - - - - - 0x028E38 0A:8E28: AC F6 07  LDY ram_quest
 C - - - - - 0x028E3B 0A:8E2B: F0 19     BEQ bra_8E46
 ; if 2nd quest
 C - - - - - 0x028E3D 0A:8E2D: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x028E3F 0A:8E2F: C9 04     CMP #$04
-C - - - - - 0x028E41 0A:8E31: F0 0C     BEQ bra_8E3F
-C - - - - - 0x028E43 0A:8E33: C9 0D     CMP #$0D
+C - - - - - 0x028E3F 0A:8E2F: C9 04     CMP #$04    ; Tower of Terror
+C - - - - - 0x028E41 0A:8E31: F0 0C     BEQ bra_8E3F_04_Tower_of_Terror
+; check for 0D-01-xx
+C - - - - - 0x028E43 0A:8E33: C9 0D     CMP #$0D    ; Castle Tower
 C - - - - - 0x028E45 0A:8E35: D0 15     BNE bra_8E4C
 C - - - - - 0x028E47 0A:8E37: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x028E49 0A:8E39: C9 01     CMP #$01
 C - - - - - 0x028E4B 0A:8E3B: D0 0F     BNE bra_8E4C
+; if 0D-01-xx
 C - - - - - 0x028E4D 0A:8E3D: F0 07     BEQ bra_8E46    ; jmp
-bra_8E3F:
+bra_8E3F_04_Tower_of_Terror:
 - - - - - - 0x028E4F 0A:8E3F: BD C2 07  LDA ram_spawner_script,X
 - - - - - - 0x028E52 0A:8E42: C9 0C     CMP #con_spawner_0C
 - - - - - - 0x028E54 0A:8E44: D0 06     BNE bra_8E4C
@@ -3022,7 +3035,12 @@ C - - - - - 0x028ED2 0A:8EC2: 60        RTS
 
 
 
-sub_8EC3:
+sub_8EC3_find_empty_object_slot_0B_0C:
+; out
+    ; Z
+        ; 0 = not found
+        ; 1 = found
+    ; X = slot index from 0x028ECE
 - - - - - - 0x028ED3 0A:8EC3: A2 0B     LDX #$0B
 bra_8EC5_loop:
 - - - - - - 0x028ED5 0A:8EC5: BD 4E 05  LDA ram_obj_id,X
@@ -3063,7 +3081,7 @@ _off033_8ED1_26:
 
 
 ofs_040_05_8ED7_00:
-C - - J - - 0x028EE7 0A:8ED7: 20 45 8F  JSR sub_8F45_check_for_blk_01_03
+C - - J - - 0x028EE7 0A:8ED7: 20 45 8F  JSR sub_8F45_check_for_Clock_Tower_01_03_xx
 C - - - - - 0x028EEA 0A:8EDA: 90 01     BCC bra_8EDD
 C - - - - - 0x028EEC 0A:8EDC: 60        RTS
 bra_8EDD:
@@ -3076,7 +3094,7 @@ C - - - - - 0x028EF8 0A:8EE8: 4C 0E 8F  JMP loc_8F0E
 
 
 ofs_040_05_8EEB_01:
-C - - J - - 0x028EFB 0A:8EEB: 20 45 8F  JSR sub_8F45_check_for_blk_01_03
+C - - J - - 0x028EFB 0A:8EEB: 20 45 8F  JSR sub_8F45_check_for_Clock_Tower_01_03_xx
 C - - - - - 0x028EFE 0A:8EEE: 90 01     BCC bra_8EF1
 - - - - - - 0x028F00 0A:8EF0: 60        RTS
 bra_8EF1:
@@ -3145,13 +3163,13 @@ C - - - - - 0x028F54 0A:8F44: 60        RTS
 
 
 
-sub_8F45_check_for_blk_01_03:
+sub_8F45_check_for_Clock_Tower_01_03_xx:
 ; out
     ; C
         ; 0 = not blk 01-03-xx
         ; 1 = blk 01-03-xx
 C - - - - - 0x028F55 0A:8F45: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x028F57 0A:8F47: C9 01     CMP #$01
+C - - - - - 0x028F57 0A:8F47: C9 01     CMP #$01    ; Clock Tower
 C - - - - - 0x028F59 0A:8F49: D0 08     BNE bra_8F53
 C - - - - - 0x028F5B 0A:8F4B: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x028F5D 0A:8F4D: C9 03     CMP #$03
@@ -3983,357 +4001,357 @@ tbl_934F:
 
 
 tbl_937F_blk_data:
-- D 0 - - - 0x02938F 0A:937F: 9D 93     .word _off032_939D_00
-- D 0 - - - 0x029391 0A:9381: A5 93     .word _off032_93A5_01
-- D 0 - - - 0x029393 0A:9383: B1 93     .word _off032_93B1_02
-- D 0 - - - 0x029395 0A:9385: BB 93     .word _off032_93BB_03
-- D 0 - - - 0x029397 0A:9387: C5 93     .word _off032_93C5_04
-- D 0 - - - 0x029399 0A:9389: CB 93     .word _off032_93CB_05
-- D 0 - - - 0x02939B 0A:938B: D3 93     .word _off032_93D3_06
-- D 0 - - - 0x02939D 0A:938D: D9 93     .word _off032_93D9_07
-- D 0 - - - 0x02939F 0A:938F: E7 93     .word _off032_93E7_08
-- D 0 - - - 0x0293A1 0A:9391: C5 9B     .word _off032_9BC5_09
-- D 0 - - - 0x0293A3 0A:9393: C9 9B     .word _off032_9BC9_0A
-- D 0 - - - 0x0293A5 0A:9395: D7 9B     .word _off032_9BD7_0B
-- D 0 - - - 0x0293A7 0A:9397: DD 9B     .word _off032_9BDD_0C
-- D 0 - - - 0x0293A9 0A:9399: E3 9B     .word _off032_9BE3_0D
-- D 0 - - - 0x0293AB 0A:939B: EB 9B     .word _off032_9BEB_0E
+- D 0 - - - 0x02938F 0A:937F: 9D 93     .word _off032_939D_00_Warakiya
+- D 0 - - - 0x029391 0A:9381: A5 93     .word _off032_93A5_01_Clock_Tower
+- D 0 - - - 0x029393 0A:9383: B1 93     .word _off032_93B1_02_Forest_of_Madness
+- D 0 - - - 0x029395 0A:9385: BB 93     .word _off032_93BB_03_Ship_of_Fools
+- D 0 - - - 0x029397 0A:9387: C5 93     .word _off032_93C5_04_Tower_of_Terror
+- D 0 - - - 0x029399 0A:9389: CB 93     .word _off032_93CB_05_Causeway
+- D 0 - - - 0x02939B 0A:938B: D3 93     .word _off032_93D3_06_Murky_Marshes
+- D 0 - - - 0x02939D 0A:938D: D9 93     .word _off032_93D9_07_Caves_of_Alucard
+- D 0 - - - 0x02939F 0A:938F: E7 93     .word _off032_93E7_08_Sunken_City
+- D 0 - - - 0x0293A1 0A:9391: C5 9B     .word _off032_9BC5_09_Catacombs
+- D 0 - - - 0x0293A3 0A:9393: C9 9B     .word _off032_9BC9_0A_Mountain_Range
+- D 0 - - - 0x0293A5 0A:9395: D7 9B     .word _off032_9BD7_0B_Castle_Courtyard
+- D 0 - - - 0x0293A7 0A:9397: DD 9B     .word _off032_9BDD_0C_Main_Hall
+- D 0 - - - 0x0293A9 0A:9399: E3 9B     .word _off032_9BE3_0D_Castle_Tower
+- D 0 - - - 0x0293AB 0A:939B: EB 9B     .word _off032_9BEB_0E_Final_Clock_Tower
 
 
 
-_off032_939D_00:
-- D 0 - I - 0x0293AD 0A:939D: F1 93     .word _off049_93F1_00_00
-- D 0 - I - 0x0293AF 0A:939F: F3 93     .word _off049_93F3_00_01
-- D 0 - I - 0x0293B1 0A:93A1: FB 93     .word _off049_93FB_00_02
-- D 0 - I - 0x0293B3 0A:93A3: FF 93     .word _off049_93FF_00_03
+_off032_939D_00_Warakiya:
+- D 0 - I - 0x0293AD 0A:939D: F1 93     .word _off049_93F1_00_00_Warakiya
+- D 0 - I - 0x0293AF 0A:939F: F3 93     .word _off049_93F3_00_01_Warakiya
+- D 0 - I - 0x0293B1 0A:93A1: FB 93     .word _off049_93FB_00_02_Warakiya
+- D 0 - I - 0x0293B3 0A:93A3: FF 93     .word _off049_93FF_00_03_Warakiya
 
 
 
-_off032_93A5_01:
-- D 0 - I - 0x0293B5 0A:93A5: 01 94     .word _off049_9401_01_00
-- D 0 - I - 0x0293B7 0A:93A7: 07 94     .word _off049_9407_01_01
-- D 0 - I - 0x0293B9 0A:93A9: 0D 94     .word _off049_940D_01_02
-- D 0 - I - 0x0293BB 0A:93AB: 13 94     .word _off049_9413_01_03
-- D 0 - I - 0x0293BD 0A:93AD: 19 94     .word _off049_9419_01_04
-- D 0 - I - 0x0293BF 0A:93AF: 1F 94     .word _off049_941F_01_05
+_off032_93A5_01_Clock_Tower:
+- D 0 - I - 0x0293B5 0A:93A5: 01 94     .word _off049_9401_01_00_Clock_Tower
+- D 0 - I - 0x0293B7 0A:93A7: 07 94     .word _off049_9407_01_01_Clock_Tower
+- D 0 - I - 0x0293B9 0A:93A9: 0D 94     .word _off049_940D_01_02_Clock_Tower
+- D 0 - I - 0x0293BB 0A:93AB: 13 94     .word _off049_9413_01_03_Clock_Tower
+- D 0 - I - 0x0293BD 0A:93AD: 19 94     .word _off049_9419_01_04_Clock_Tower
+- D 0 - I - 0x0293BF 0A:93AF: 1F 94     .word _off049_941F_01_05_Clock_Tower
 
 
 
-_off032_93B1_02:
-- D 0 - I - 0x0293C1 0A:93B1: 25 94     .word _off049_9425_02_00
-- D 0 - I - 0x0293C3 0A:93B3: 29 94     .word _off049_9429_02_01
-- D 0 - I - 0x0293C5 0A:93B5: 2B 94     .word _off049_942B_02_02
-- D 0 - I - 0x0293C7 0A:93B7: 2F 94     .word _off049_942F_02_03
-- D 0 - I - 0x0293C9 0A:93B9: 35 94     .word _off049_9435_02_04
+_off032_93B1_02_Forest_of_Madness:
+- D 0 - I - 0x0293C1 0A:93B1: 25 94     .word _off049_9425_02_00_Forest_of_Madness
+- D 0 - I - 0x0293C3 0A:93B3: 29 94     .word _off049_9429_02_01_Forest_of_Madness
+- D 0 - I - 0x0293C5 0A:93B5: 2B 94     .word _off049_942B_02_02_Forest_of_Madness
+- D 0 - I - 0x0293C7 0A:93B7: 2F 94     .word _off049_942F_02_03_Forest_of_Madness
+- D 0 - I - 0x0293C9 0A:93B9: 35 94     .word _off049_9435_02_04_Forest_of_Madness
 
 
 
-_off032_93BB_03:
-- D 0 - I - 0x0293CB 0A:93BB: 39 94     .word _off049_9439_03_00
-- D 0 - I - 0x0293CD 0A:93BD: 3F 94     .word _off049_943F_03_01
-- D 0 - I - 0x0293CF 0A:93BF: 43 94     .word _off049_9443_03_02
-- D 0 - I - 0x0293D1 0A:93C1: 47 94     .word _off049_9447_03_03
-- D 0 - I - 0x0293D3 0A:93C3: 4B 94     .word _off049_944B_03_04
+_off032_93BB_03_Ship_of_Fools:
+- D 0 - I - 0x0293CB 0A:93BB: 39 94     .word _off049_9439_03_00_Ship_of_Fools
+- D 0 - I - 0x0293CD 0A:93BD: 3F 94     .word _off049_943F_03_01_Ship_of_Fools
+- D 0 - I - 0x0293CF 0A:93BF: 43 94     .word _off049_9443_03_02_Ship_of_Fools
+- D 0 - I - 0x0293D1 0A:93C1: 47 94     .word _off049_9447_03_03_Ship_of_Fools
+- D 0 - I - 0x0293D3 0A:93C3: 4B 94     .word _off049_944B_03_04_Ship_of_Fools
 
 
 
-_off032_93C5_04:
-- D 0 - I - 0x0293D5 0A:93C5: 51 94     .word _off049_9451_04_00
-- D 0 - I - 0x0293D7 0A:93C7: 57 94     .word _off049_9457_04_01
-- D 0 - I - 0x0293D9 0A:93C9: 5D 94     .word _off049_945D_04_02
+_off032_93C5_04_Tower_of_Terror:
+- D 0 - I - 0x0293D5 0A:93C5: 51 94     .word _off049_9451_04_00_Tower_of_Terror
+- D 0 - I - 0x0293D7 0A:93C7: 57 94     .word _off049_9457_04_01_Tower_of_Terror
+- D 0 - I - 0x0293D9 0A:93C9: 5D 94     .word _off049_945D_04_02_Tower_of_Terror
 
 
 
-_off032_93CB_05:
-- D 0 - I - 0x0293DB 0A:93CB: 63 94     .word _off049_9463_05_00
-- D 0 - I - 0x0293DD 0A:93CD: 65 94     .word _off049_9465_05_01
-- D 0 - I - 0x0293DF 0A:93CF: 67 94     .word _off049_9467_05_02
-- D 0 - I - 0x0293E1 0A:93D1: 6B 94     .word _off049_946B_05_03
+_off032_93CB_05_Causeway:
+- D 0 - I - 0x0293DB 0A:93CB: 63 94     .word _off049_9463_05_00_Causeway
+- D 0 - I - 0x0293DD 0A:93CD: 65 94     .word _off049_9465_05_01_Causeway
+- D 0 - I - 0x0293DF 0A:93CF: 67 94     .word _off049_9467_05_02_Causeway
+- D 0 - I - 0x0293E1 0A:93D1: 6B 94     .word _off049_946B_05_03_Causeway
 
 
 
-_off032_93D3_06:
-- D 0 - I - 0x0293E3 0A:93D3: 6F 94     .word _off049_946F_06_00
-- D 0 - I - 0x0293E5 0A:93D5: 73 94     .word _off049_9473_06_01
-- D 0 - I - 0x0293E7 0A:93D7: 75 94     .word _off049_9475_06_02
+_off032_93D3_06_Murky_Marshes:
+- D 0 - I - 0x0293E3 0A:93D3: 6F 94     .word _off049_946F_06_00_Murky_Marshes
+- D 0 - I - 0x0293E5 0A:93D5: 73 94     .word _off049_9473_06_01_Murky_Marshes
+- D 0 - I - 0x0293E7 0A:93D7: 75 94     .word _off049_9475_06_02_Murky_Marshes
 
 
 
-_off032_93D9_07:
-- D 0 - I - 0x0293E9 0A:93D9: 7B 94     .word _off049_947B_07_00
-- D 0 - I - 0x0293EB 0A:93DB: 7F 94     .word _off049_947F_07_01
-- D 0 - I - 0x0293ED 0A:93DD: 81 94     .word _off049_9481_07_02
-- D 0 - I - 0x0293EF 0A:93DF: 83 94     .word _off049_9483_07_03
-- D 0 - I - 0x0293F1 0A:93E1: 85 94     .word _off049_9485_07_04
-- D 0 - I - 0x0293F3 0A:93E3: 89 94     .word _off049_9489_07_05
-- D 0 - I - 0x0293F5 0A:93E5: 8D 94     .word _off049_948D_07_06
+_off032_93D9_07_Caves_of_Alucard:
+- D 0 - I - 0x0293E9 0A:93D9: 7B 94     .word _off049_947B_07_00_Caves_of_Alucard
+- D 0 - I - 0x0293EB 0A:93DB: 7F 94     .word _off049_947F_07_01_Caves_of_Alucard
+- D 0 - I - 0x0293ED 0A:93DD: 81 94     .word _off049_9481_07_02_Caves_of_Alucard
+- D 0 - I - 0x0293EF 0A:93DF: 83 94     .word _off049_9483_07_03_Caves_of_Alucard
+- D 0 - I - 0x0293F1 0A:93E1: 85 94     .word _off049_9485_07_04_Caves_of_Alucard
+- D 0 - I - 0x0293F3 0A:93E3: 89 94     .word _off049_9489_07_05_Caves_of_Alucard
+- D 0 - I - 0x0293F5 0A:93E5: 8D 94     .word _off049_948D_07_06_Caves_of_Alucard
 
 
 
-_off032_93E7_08:
-- D 0 - I - 0x0293F7 0A:93E7: 8F 94     .word _off049_948F_08_00
-- D 0 - I - 0x0293F9 0A:93E9: 93 94     .word _off049_9493_08_01
-- D 0 - I - 0x0293FB 0A:93EB: 95 94     .word _off049_9495_08_02
-- D 0 - I - 0x0293FD 0A:93ED: 99 94     .word _off049_9499_08_03
-- D 0 - I - 0x0293FF 0A:93EF: 9B 94     .word _off049_949B_08_04
+_off032_93E7_08_Sunken_City:
+- D 0 - I - 0x0293F7 0A:93E7: 8F 94     .word _off049_948F_08_00_Sunken_City
+- D 0 - I - 0x0293F9 0A:93E9: 93 94     .word _off049_9493_08_01_Sunken_City
+- D 0 - I - 0x0293FB 0A:93EB: 95 94     .word _off049_9495_08_02_Sunken_City
+- D 0 - I - 0x0293FD 0A:93ED: 99 94     .word _off049_9499_08_03_Sunken_City
+- D 0 - I - 0x0293FF 0A:93EF: 9B 94     .word _off049_949B_08_04_Sunken_City
 
 
 
-_off049_93F1_00_00:
-- D 0 - I - 0x029401 0A:93F1: 9D 94     .word off_949D_00_00_00
+_off049_93F1_00_00_Warakiya:
+- D 0 - I - 0x029401 0A:93F1: 9D 94     .word off_949D_00_00_00_Warakiya
 
 
 
-_off049_93F3_00_01:
-- D 0 - I - 0x029403 0A:93F3: B9 94     .word off_94B9_00_01_00
-- D 0 - I - 0x029405 0A:93F5: 34 AC     .word off_AC34_00_01_01 ; special
-- D 0 - I - 0x029407 0A:93F7: C5 94     .word off_94C5_00_01_02
-- D 0 - I - 0x029409 0A:93F9: E1 94     .word off_94E1_00_01_03
+_off049_93F3_00_01_Warakiya:
+- D 0 - I - 0x029403 0A:93F3: B9 94     .word off_94B9_00_01_00_Warakiya
+- D 0 - I - 0x029405 0A:93F5: 34 AC     .word off_AC34_00_01_01_Warakiya ; special
+- D 0 - I - 0x029407 0A:93F7: C5 94     .word off_94C5_00_01_02_Warakiya
+- D 0 - I - 0x029409 0A:93F9: E1 94     .word off_94E1_00_01_03_Warakiya
 
 
 
-_off049_93FB_00_02:
-- D 0 - I - 0x02940B 0A:93FB: F5 94     .word off_94F5_00_02_00
-- D 0 - I - 0x02940D 0A:93FD: 11 95     .word off_9511_00_02_01
+_off049_93FB_00_02_Warakiya:
+- D 0 - I - 0x02940B 0A:93FB: F5 94     .word off_94F5_00_02_00_Warakiya
+- D 0 - I - 0x02940D 0A:93FD: 11 95     .word off_9511_00_02_01_Warakiya
 
 
 
-_off049_93FF_00_03:
-- D 0 - I - 0x02940F 0A:93FF: 2D 95     .word off_952D_00_03_00
+_off049_93FF_00_03_Warakiya:
+- D 0 - I - 0x02940F 0A:93FF: 2D 95     .word off_952D_00_03_00_Warakiya
 
 
 
-_off049_9401_01_00:
-- D 0 - I - 0x029411 0A:9401: 74 AC     .word off_AC74_01_00_00 ; special
-- D 0 - I - 0x029413 0A:9403: 51 95     .word off_9551_01_00_01
-- D 0 - I - 0x029415 0A:9405: 65 95     .word off_9565_01_00_02
+_off049_9401_01_00_Clock_Tower:
+- D 0 - I - 0x029411 0A:9401: 74 AC     .word off_AC74_01_00_00_Clock_Tower ; special
+- D 0 - I - 0x029413 0A:9403: 51 95     .word off_9551_01_00_01_Clock_Tower
+- D 0 - I - 0x029415 0A:9405: 65 95     .word off_9565_01_00_02_Clock_Tower
 
 
 
-_off049_9407_01_01:
-- D 0 - I - 0x029417 0A:9407: 79 95     .word off_9579_01_01_00
-- D 0 - I - 0x029419 0A:9409: D0 AC     .word off_ACD0_01_01_01 ; special
-- D 0 - I - 0x02941B 0A:940B: 8D 95     .word off_958D_01_01_02
+_off049_9407_01_01_Clock_Tower:
+- D 0 - I - 0x029417 0A:9407: 79 95     .word off_9579_01_01_00_Clock_Tower
+- D 0 - I - 0x029419 0A:9409: D0 AC     .word off_ACD0_01_01_01_Clock_Tower ; special
+- D 0 - I - 0x02941B 0A:940B: 8D 95     .word off_958D_01_01_02_Clock_Tower
 
 
 
-_off049_940D_01_02:
-- D 0 - I - 0x02941D 0A:940D: 99 95     .word off_9599_01_02_00
-- D 0 - I - 0x02941F 0A:940F: 02 AD     .word off_AD02_01_02_01 ; special
-- D 0 - I - 0x029421 0A:9411: A5 95     .word off_95A5_01_02_02
+_off049_940D_01_02_Clock_Tower:
+- D 0 - I - 0x02941D 0A:940D: 99 95     .word off_9599_01_02_00_Clock_Tower
+- D 0 - I - 0x02941F 0A:940F: 02 AD     .word off_AD02_01_02_01_Clock_Tower ; special
+- D 0 - I - 0x029421 0A:9411: A5 95     .word off_95A5_01_02_02_Clock_Tower
 
 
 
-_off049_9413_01_03:
-- D 0 - I - 0x029423 0A:9413: 99 95     .word off_9599_01_03_00
-- D 0 - I - 0x029425 0A:9415: 1F AD     .word off_AD1F_01_03_01 ; special
-- D 0 - I - 0x029427 0A:9417: A5 95     .word off_95A5_01_03_02
+_off049_9413_01_03_Clock_Tower:
+- D 0 - I - 0x029423 0A:9413: 99 95     .word off_9599_01_03_00_Clock_Tower
+- D 0 - I - 0x029425 0A:9415: 1F AD     .word off_AD1F_01_03_01_Clock_Tower ; special
+- D 0 - I - 0x029427 0A:9417: A5 95     .word off_95A5_01_03_02_Clock_Tower
 
 
 
-_off049_9419_01_04:
-- D 0 - I - 0x029429 0A:9419: 79 95     .word off_9579_01_04_00
-- D 0 - I - 0x02942B 0A:941B: 43 AD     .word off_AD43_01_04_01 ; special
-- D 0 - I - 0x02942D 0A:941D: 8D 95     .word off_958D_01_04_02
+_off049_9419_01_04_Clock_Tower:
+- D 0 - I - 0x029429 0A:9419: 79 95     .word off_9579_01_04_00_Clock_Tower
+- D 0 - I - 0x02942B 0A:941B: 43 AD     .word off_AD43_01_04_01_Clock_Tower ; special
+- D 0 - I - 0x02942D 0A:941D: 8D 95     .word off_958D_01_04_02_Clock_Tower
 
 
 
-_off049_941F_01_05:
-- D 0 - I - 0x02942F 0A:941F: 75 AD     .word off_AD75_01_05_00 ; special
-- D 0 - I - 0x029431 0A:9421: 51 95     .word off_9551_01_05_01
-- D 0 - I - 0x029433 0A:9423: 65 95     .word off_9565_01_05_02
+_off049_941F_01_05_Clock_Tower:
+- D 0 - I - 0x02942F 0A:941F: 75 AD     .word off_AD75_01_05_00_Clock_Tower ; special
+- D 0 - I - 0x029431 0A:9421: 51 95     .word off_9551_01_05_01_Clock_Tower
+- D 0 - I - 0x029433 0A:9423: 65 95     .word off_9565_01_05_02_Clock_Tower
 
 
 
-_off049_9425_02_00:
-- D 0 - I - 0x029435 0A:9425: B9 95     .word off_95B9_02_00_00
-- D 0 - I - 0x029437 0A:9427: D5 95     .word off_95D5_02_00_01
+_off049_9425_02_00_Forest_of_Madness:
+- D 0 - I - 0x029435 0A:9425: B9 95     .word off_95B9_02_00_00_Forest_of_Madness
+- D 0 - I - 0x029437 0A:9427: D5 95     .word off_95D5_02_00_01_Forest_of_Madness
 
 
 
-_off049_9429_02_01:
-- D 0 - I - 0x029439 0A:9429: F1 95     .word off_95F1_02_01_00
+_off049_9429_02_01_Forest_of_Madness:
+- D 0 - I - 0x029439 0A:9429: F1 95     .word off_95F1_02_01_00_Forest_of_Madness
 
 
 
-_off049_942B_02_02:
-- D 0 - I - 0x02943B 0A:942B: 25 96     .word off_9625_02_02_00
-- D 0 - I - 0x02943D 0A:942D: 49 96     .word off_9649_02_02_01
+_off049_942B_02_02_Forest_of_Madness:
+- D 0 - I - 0x02943B 0A:942B: 25 96     .word off_9625_02_02_00_Forest_of_Madness
+- D 0 - I - 0x02943D 0A:942D: 49 96     .word off_9649_02_02_01_Forest_of_Madness
 
 
 
-_off049_942F_02_03:
-- D 0 - I - 0x02943F 0A:942F: 6D 96     .word off_966D_02_03_00
-- D 0 - I - 0x029441 0A:9431: 79 96     .word off_9679_02_03_01
-- D 0 - I - 0x029443 0A:9433: 9D 96     .word off_969D_02_03_02
+_off049_942F_02_03_Forest_of_Madness:
+- D 0 - I - 0x02943F 0A:942F: 6D 96     .word off_966D_02_03_00_Forest_of_Madness
+- D 0 - I - 0x029441 0A:9431: 79 96     .word off_9679_02_03_01_Forest_of_Madness
+- D 0 - I - 0x029443 0A:9433: 9D 96     .word off_969D_02_03_02_Forest_of_Madness
 
 
 
-_off049_9435_02_04:
-- D 0 - I - 0x029445 0A:9435: A9 96     .word off_96A9_02_04_00
-- D 0 - I - 0x029447 0A:9437: BD 96     .word off_96BD_02_04_01
+_off049_9435_02_04_Forest_of_Madness:
+- D 0 - I - 0x029445 0A:9435: A9 96     .word off_96A9_02_04_00_Forest_of_Madness
+- D 0 - I - 0x029447 0A:9437: BD 96     .word off_96BD_02_04_01_Forest_of_Madness
 
 
 
-_off049_9439_03_00:
-- D 0 - I - 0x029449 0A:9439: E1 96     .word off_96E1_03_00_00
-- D 0 - I - 0x02944B 0A:943B: F5 96     .word off_96F5_03_00_01
-- D 0 - I - 0x02944D 0A:943D: 09 97     .word off_9709_03_00_02
+_off049_9439_03_00_Ship_of_Fools:
+- D 0 - I - 0x029449 0A:9439: E1 96     .word off_96E1_03_00_00_Ship_of_Fools
+- D 0 - I - 0x02944B 0A:943B: F5 96     .word off_96F5_03_00_01_Ship_of_Fools
+- D 0 - I - 0x02944D 0A:943D: 09 97     .word off_9709_03_00_02_Ship_of_Fools
 
 
 
-_off049_943F_03_01:
-- D 0 - I - 0x02944F 0A:943F: 1D 97     .word off_971D_03_01_00
-- D 0 - I - 0x029451 0A:9441: 49 97     .word off_9749_03_01_01
+_off049_943F_03_01_Ship_of_Fools:
+- D 0 - I - 0x02944F 0A:943F: 1D 97     .word off_971D_03_01_00_Ship_of_Fools
+- D 0 - I - 0x029451 0A:9441: 49 97     .word off_9749_03_01_01_Ship_of_Fools
 
 
 
-_off049_9443_03_02:
-- D 0 - I - 0x029453 0A:9443: 5D 97     .word off_975D_03_02_00
-- D 0 - I - 0x029455 0A:9445: 81 97     .word off_9781_03_02_01
+_off049_9443_03_02_Ship_of_Fools:
+- D 0 - I - 0x029453 0A:9443: 5D 97     .word off_975D_03_02_00_Ship_of_Fools
+- D 0 - I - 0x029455 0A:9445: 81 97     .word off_9781_03_02_01_Ship_of_Fools
 
 
 
-_off049_9447_03_03:
-- D 0 - I - 0x029457 0A:9447: 95 97     .word off_9795_03_03_00
-- D 0 - I - 0x029459 0A:9449: B1 97     .word off_97B1_03_03_01
+_off049_9447_03_03_Ship_of_Fools:
+- D 0 - I - 0x029457 0A:9447: 95 97     .word off_9795_03_03_00_Ship_of_Fools
+- D 0 - I - 0x029459 0A:9449: B1 97     .word off_97B1_03_03_01_Ship_of_Fools
 
 
 
-_off049_944B_03_04:
-- D 0 - I - 0x02945B 0A:944B: CD 97     .word off_97CD_03_04_00
-- D 0 - I - 0x02945D 0A:944D: D9 97     .word off_97D9_03_04_01
-- D 0 - I - 0x02945F 0A:944F: F5 97     .word off_97F5_03_04_02
+_off049_944B_03_04_Ship_of_Fools:
+- D 0 - I - 0x02945B 0A:944B: CD 97     .word off_97CD_03_04_00_Ship_of_Fools
+- D 0 - I - 0x02945D 0A:944D: D9 97     .word off_97D9_03_04_01_Ship_of_Fools
+- D 0 - I - 0x02945F 0A:944F: F5 97     .word off_97F5_03_04_02_Ship_of_Fools
 
 
 
-_off049_9451_04_00:
-- D 0 - I - 0x029461 0A:9451: 01 98     .word off_9801_04_00_00
-- D 0 - I - 0x029463 0A:9453: F4 AD     .word off_ADF4_04_00_01 ; special
-- D 0 - I - 0x029465 0A:9455: 15 98     .word off_9815_04_00_02
+_off049_9451_04_00_Tower_of_Terror:
+- D 0 - I - 0x029461 0A:9451: 01 98     .word off_9801_04_00_00_Tower_of_Terror
+- D 0 - I - 0x029463 0A:9453: F4 AD     .word off_ADF4_04_00_01_Tower_of_Terror ; special
+- D 0 - I - 0x029465 0A:9455: 15 98     .word off_9815_04_00_02_Tower_of_Terror
 
 
 
-_off049_9457_04_01:
-- D 0 - I - 0x029467 0A:9457: 21 98     .word off_9821_04_01_00
-- D 0 - I - 0x029469 0A:9459: 50 AE     .word off_AE50_04_01_01 ; special
-- D 0 - I - 0x02946B 0A:945B: 2D 98     .word off_982D_04_01_02
+_off049_9457_04_01_Tower_of_Terror:
+- D 0 - I - 0x029467 0A:9457: 21 98     .word off_9821_04_01_00_Tower_of_Terror
+- D 0 - I - 0x029469 0A:9459: 50 AE     .word off_AE50_04_01_01_Tower_of_Terror ; special
+- D 0 - I - 0x02946B 0A:945B: 2D 98     .word off_982D_04_01_02_Tower_of_Terror
 
 
 
-_off049_945D_04_02:
-- D 0 - I - 0x02946D 0A:945D: 41 98     .word off_9841_04_02_00
-- D 0 - I - 0x02946F 0A:945F: C1 AE     .word off_AEC1_04_02_01 ; special
-- D 0 - I - 0x029471 0A:9461: 4D 98     .word off_984D_04_02_02
+_off049_945D_04_02_Tower_of_Terror:
+- D 0 - I - 0x02946D 0A:945D: 41 98     .word off_9841_04_02_00_Tower_of_Terror
+- D 0 - I - 0x02946F 0A:945F: C1 AE     .word off_AEC1_04_02_01_Tower_of_Terror ; special
+- D 0 - I - 0x029471 0A:9461: 4D 98     .word off_984D_04_02_02_Tower_of_Terror
 
 
 
-_off049_9463_05_00:
-- D 0 - I - 0x029473 0A:9463: 69 98     .word off_9869_05_00_00
+_off049_9463_05_00_Causeway:
+- D 0 - I - 0x029473 0A:9463: 69 98     .word off_9869_05_00_00_Causeway
 
 
 
-_off049_9465_05_01:
-- D 0 - I - 0x029475 0A:9465: 7D 98     .word off_987D_05_01_00
+_off049_9465_05_01_Causeway:
+- D 0 - I - 0x029475 0A:9465: 7D 98     .word off_987D_05_01_00_Causeway
 
 
 
-_off049_9467_05_02:
-- D 0 - I - 0x029477 0A:9467: A1 98     .word off_98A1_05_02_00
-- D 0 - I - 0x029479 0A:9469: B5 98     .word off_98B5_05_02_01
+_off049_9467_05_02_Causeway:
+- D 0 - I - 0x029477 0A:9467: A1 98     .word off_98A1_05_02_00_Causeway
+- D 0 - I - 0x029479 0A:9469: B5 98     .word off_98B5_05_02_01_Causeway
 
 
 
-_off049_946B_05_03:
-- D 0 - I - 0x02947B 0A:946B: D9 98     .word off_98D9_05_03_00
-- D 0 - I - 0x02947D 0A:946D: ED 98     .word off_98ED_05_03_01
+_off049_946B_05_03_Causeway:
+- D 0 - I - 0x02947B 0A:946B: D9 98     .word off_98D9_05_03_00_Causeway
+- D 0 - I - 0x02947D 0A:946D: ED 98     .word off_98ED_05_03_01_Causeway
 
 
 
-_off049_946F_06_00:
-- D 0 - I - 0x02947F 0A:946F: 11 99     .word off_9911_06_00_00
-- D 0 - I - 0x029481 0A:9471: 25 99     .word off_9925_06_00_01
+_off049_946F_06_00_Murky_Marshes:
+- D 0 - I - 0x02947F 0A:946F: 11 99     .word off_9911_06_00_00_Murky_Marshes
+- D 0 - I - 0x029481 0A:9471: 25 99     .word off_9925_06_00_01_Murky_Marshes
 
 
 
-_off049_9473_06_01:
-- D 0 - I - 0x029483 0A:9473: 49 99     .word off_9949_06_01_00
+_off049_9473_06_01_Murky_Marshes:
+- D 0 - I - 0x029483 0A:9473: 49 99     .word off_9949_06_01_00_Murky_Marshes
 
 
 
-_off049_9475_06_02:
-- D 0 - I - 0x029485 0A:9475: 7D 99     .word off_997D_06_02_00
-- D 0 - I - 0x029487 0A:9477: 89 99     .word off_9989_06_02_01
-- D 0 - I - 0x029489 0A:9479: A5 99     .word off_99A5_06_02_02
+_off049_9475_06_02_Murky_Marshes:
+- D 0 - I - 0x029485 0A:9475: 7D 99     .word off_997D_06_02_00_Murky_Marshes
+- D 0 - I - 0x029487 0A:9477: 89 99     .word off_9989_06_02_01_Murky_Marshes
+- D 0 - I - 0x029489 0A:9479: A5 99     .word off_99A5_06_02_02_Murky_Marshes
 
 
 
-_off049_947B_07_00:
-- D 0 - I - 0x02948B 0A:947B: B9 99     .word off_99B9_07_00_00
-- D 0 - I - 0x02948D 0A:947D: CD 99     .word off_99CD_07_00_01
+_off049_947B_07_00_Caves_of_Alucard:
+- D 0 - I - 0x02948B 0A:947B: B9 99     .word off_99B9_07_00_00_Caves_of_Alucard
+- D 0 - I - 0x02948D 0A:947D: CD 99     .word off_99CD_07_00_01_Caves_of_Alucard
 
 
 
-_off049_947F_07_01:
-- D 0 - I - 0x02948F 0A:947F: F1 99     .word off_99F1_07_01_00
+_off049_947F_07_01_Caves_of_Alucard:
+- D 0 - I - 0x02948F 0A:947F: F1 99     .word off_99F1_07_01_00_Caves_of_Alucard
 
 
 
-_off049_9481_07_02:
-- D 0 - I - 0x029491 0A:9481: 05 9A     .word off_9A05_07_02_00
+_off049_9481_07_02_Caves_of_Alucard:
+- D 0 - I - 0x029491 0A:9481: 05 9A     .word off_9A05_07_02_00_Caves_of_Alucard
 
 
 
-_off049_9483_07_03:
-- D 0 - I - 0x029493 0A:9483: 11 9A     .word off_9A11_07_03_00
+_off049_9483_07_03_Caves_of_Alucard:
+- D 0 - I - 0x029493 0A:9483: 11 9A     .word off_9A11_07_03_00_Caves_of_Alucard
 
 
 
-_off049_9485_07_04:
-- D 0 - I - 0x029495 0A:9485: 25 9A     .word off_9A25_07_04_00
-- D 0 - I - 0x029497 0A:9487: 49 9A     .word off_9A49_07_04_01
+_off049_9485_07_04_Caves_of_Alucard:
+- D 0 - I - 0x029495 0A:9485: 25 9A     .word off_9A25_07_04_00_Caves_of_Alucard
+- D 0 - I - 0x029497 0A:9487: 49 9A     .word off_9A49_07_04_01_Caves_of_Alucard
 
 
 
-_off049_9489_07_05:
-- D 0 - I - 0x029499 0A:9489: 5D 9A     .word off_9A5D_07_05_00
-- D 0 - I - 0x02949B 0A:948B: 81 9A     .word off_9A81_07_05_01
+_off049_9489_07_05_Caves_of_Alucard:
+- D 0 - I - 0x029499 0A:9489: 5D 9A     .word off_9A5D_07_05_00_Caves_of_Alucard
+- D 0 - I - 0x02949B 0A:948B: 81 9A     .word off_9A81_07_05_01_Caves_of_Alucard
 
 
 
-_off049_948D_07_06:
-- D 0 - I - 0x02949D 0A:948D: 95 9A     .word off_9A95_07_06_00
+_off049_948D_07_06_Caves_of_Alucard:
+- D 0 - I - 0x02949D 0A:948D: 95 9A     .word off_9A95_07_06_00_Caves_of_Alucard
 
 
 
-_off049_948F_08_00:
-- D 0 - I - 0x02949F 0A:948F: C1 9A     .word off_9AC1_08_00_00
-- D 0 - I - 0x0294A1 0A:9491: D5 9A     .word off_9AD5_08_00_01
+_off049_948F_08_00_Sunken_City:
+- D 0 - I - 0x02949F 0A:948F: C1 9A     .word off_9AC1_08_00_00_Sunken_City
+- D 0 - I - 0x0294A1 0A:9491: D5 9A     .word off_9AD5_08_00_01_Sunken_City
 
 
 
-_off049_9493_08_01:
-- D 0 - I - 0x0294A3 0A:9493: 01 9B     .word off_9B01_08_01_00
+_off049_9493_08_01_Sunken_City:
+- D 0 - I - 0x0294A3 0A:9493: 01 9B     .word off_9B01_08_01_00_Sunken_City
 
 
 
-_off049_9495_08_02:
-- D 0 - I - 0x0294A5 0A:9495: 2D 9B     .word off_9B2D_08_02_00
-- D 0 - I - 0x0294A7 0A:9497: 51 9B     .word off_9B51_08_02_01
+_off049_9495_08_02_Sunken_City:
+- D 0 - I - 0x0294A5 0A:9495: 2D 9B     .word off_9B2D_08_02_00_Sunken_City
+- D 0 - I - 0x0294A7 0A:9497: 51 9B     .word off_9B51_08_02_01_Sunken_City
 
 
 
-_off049_9499_08_03:
-- D 0 - I - 0x0294A9 0A:9499: 6D 9B     .word off_9B6D_08_03_00
+_off049_9499_08_03_Sunken_City:
+- D 0 - I - 0x0294A9 0A:9499: 6D 9B     .word off_9B6D_08_03_00_Sunken_City
 
 
 
-_off049_949B_08_04:
-- D 0 - I - 0x0294AB 0A:949B: 99 9B     .word off_9B99_08_04_00
+_off049_949B_08_04_Sunken_City:
+- D 0 - I - 0x0294AB 0A:949B: 99 9B     .word off_9B99_08_04_00_Sunken_City
 
 
 
-off_949D_00_00_00:
+off_949D_00_00_00_Warakiya:
 ; 00 
 - D 0 - I - 0x0294AD 0A:949D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0294AE 0A:949E: 00        .byte con_A644_00   ; 
@@ -4379,7 +4397,7 @@ off_949D_00_00_00:
 
 
 
-off_94B9_00_01_00:
+off_94B9_00_01_00_Warakiya:
 ; 00 
 - D 0 - I - 0x0294C9 0A:94B9: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0294CA 0A:94BA: 00        .byte con_A644_00   ; 
@@ -4401,7 +4419,7 @@ off_94B9_00_01_00:
 
 
 
-off_94C5_00_01_02:
+off_94C5_00_01_02_Warakiya:
 ; 00 
 - D 0 - I - 0x0294D5 0A:94C5: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0294D6 0A:94C6: 00        .byte con_A644_00   ; 
@@ -4447,7 +4465,7 @@ off_94C5_00_01_02:
 
 
 
-off_94E1_00_01_03:
+off_94E1_00_01_03_Warakiya:
 ; 00 
 - D 0 - I - 0x0294F1 0A:94E1: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0294F2 0A:94E2: 00        .byte con_A644_00   ; 
@@ -4481,7 +4499,7 @@ off_94E1_00_01_03:
 
 
 
-off_94F5_00_02_00:
+off_94F5_00_02_00_Warakiya:
 ; 00 
 - D 0 - I - 0x029505 0A:94F5: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029506 0A:94F6: 00        .byte con_A644_00   ; 
@@ -4527,7 +4545,7 @@ off_94F5_00_02_00:
 
 
 
-off_9511_00_02_01:
+off_9511_00_02_01_Warakiya:
 ; 00 
 - D 0 - I - 0x029521 0A:9511: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029522 0A:9512: 00        .byte con_A644_00   ; 
@@ -4573,7 +4591,7 @@ off_9511_00_02_01:
 
 
 
-off_952D_00_03_00:
+off_952D_00_03_00_Warakiya:
 ; 00 
 - D 0 - I - 0x02953D 0A:952D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02953E 0A:952E: 00        .byte con_A644_00   ; 
@@ -4631,8 +4649,8 @@ off_952D_00_03_00:
 
 
 
-off_9551_01_00_01:
-off_9551_01_05_01:
+off_9551_01_00_01_Clock_Tower:
+off_9551_01_05_01_Clock_Tower:
 ; 00 
 - D 0 - I - 0x029561 0A:9551: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029562 0A:9552: 00        .byte con_A644_00   ; 
@@ -4666,8 +4684,8 @@ off_9551_01_05_01:
 
 
 
-off_9565_01_00_02:
-off_9565_01_05_02:
+off_9565_01_00_02_Clock_Tower:
+off_9565_01_05_02_Clock_Tower:
 ; 00 
 - D 0 - I - 0x029575 0A:9565: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029576 0A:9566: 00        .byte con_A644_00   ; 
@@ -4701,8 +4719,8 @@ off_9565_01_05_02:
 
 
 
-off_9579_01_01_00:
-off_9579_01_04_00:
+off_9579_01_01_00_Clock_Tower:
+off_9579_01_04_00_Clock_Tower:
 ; 00 
 - D 0 - I - 0x029589 0A:9579: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02958A 0A:957A: 00        .byte con_A644_00   ; 
@@ -4736,8 +4754,8 @@ off_9579_01_04_00:
 
 
 
-off_958D_01_01_02:
-off_958D_01_04_02:
+off_958D_01_01_02_Clock_Tower:
+off_958D_01_04_02_Clock_Tower:
 ; 00 
 - D 0 - I - 0x02959D 0A:958D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02959E 0A:958E: 00        .byte con_A644_00   ; 
@@ -4759,8 +4777,8 @@ off_958D_01_04_02:
 
 
 
-off_9599_01_02_00:
-off_9599_01_03_00:
+off_9599_01_02_00_Clock_Tower:
+off_9599_01_03_00_Clock_Tower:
 ; 00 
 - D 0 - I - 0x0295A9 0A:9599: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0295AA 0A:959A: 00        .byte con_A644_00   ; 
@@ -4782,8 +4800,8 @@ off_9599_01_03_00:
 
 
 
-off_95A5_01_02_02:
-off_95A5_01_03_02:
+off_95A5_01_02_02_Clock_Tower:
+off_95A5_01_03_02_Clock_Tower:
 ; 00 
 - D 0 - I - 0x0295B5 0A:95A5: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0295B6 0A:95A6: 00        .byte con_A644_00   ; 
@@ -4817,7 +4835,7 @@ off_95A5_01_03_02:
 
 
 
-off_95B9_02_00_00:
+off_95B9_02_00_00_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x0295C9 0A:95B9: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0295CA 0A:95BA: 00        .byte con_A644_00   ; 
@@ -4863,7 +4881,7 @@ off_95B9_02_00_00:
 
 
 
-off_95D5_02_00_01:
+off_95D5_02_00_01_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x0295E5 0A:95D5: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0295E6 0A:95D6: 00        .byte con_A644_00   ; 
@@ -4909,7 +4927,7 @@ off_95D5_02_00_01:
 
 
 
-off_95F1_02_01_00:
+off_95F1_02_01_00_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x029601 0A:95F1: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029602 0A:95F2: 00        .byte con_A644_00   ; 
@@ -4991,7 +5009,7 @@ off_95F1_02_01_00:
 
 
 
-off_9625_02_02_00:
+off_9625_02_02_00_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x029635 0A:9625: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029636 0A:9626: 00        .byte con_A644_00   ; 
@@ -5049,7 +5067,7 @@ off_9625_02_02_00:
 
 
 
-off_9649_02_02_01:
+off_9649_02_02_01_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x029659 0A:9649: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02965A 0A:964A: 00        .byte con_A644_00   ; 
@@ -5107,7 +5125,7 @@ off_9649_02_02_01:
 
 
 
-off_966D_02_03_00:
+off_966D_02_03_00_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x02967D 0A:966D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02967E 0A:966E: 00        .byte con_A644_00   ; 
@@ -5129,7 +5147,7 @@ off_966D_02_03_00:
 
 
 
-off_9679_02_03_01:
+off_9679_02_03_01_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x029689 0A:9679: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02968A 0A:967A: 00        .byte con_A644_00   ; 
@@ -5187,7 +5205,7 @@ off_9679_02_03_01:
 
 
 
-off_969D_02_03_02:
+off_969D_02_03_02_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x0296AD 0A:969D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0296AE 0A:969E: 00        .byte con_A644_00   ; 
@@ -5209,7 +5227,7 @@ off_969D_02_03_02:
 
 
 
-off_96A9_02_04_00:
+off_96A9_02_04_00_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x0296B9 0A:96A9: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0296BA 0A:96AA: 00        .byte con_A644_00   ; 
@@ -5243,7 +5261,7 @@ off_96A9_02_04_00:
 
 
 
-off_96BD_02_04_01:
+off_96BD_02_04_01_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x0296CD 0A:96BD: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0296CE 0A:96BE: 00        .byte con_A644_00   ; 
@@ -5301,7 +5319,7 @@ off_96BD_02_04_01:
 
 
 
-off_96E1_03_00_00:
+off_96E1_03_00_00_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x0296F1 0A:96E1: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0296F2 0A:96E2: 00        .byte con_A644_00   ; 
@@ -5335,7 +5353,7 @@ off_96E1_03_00_00:
 
 
 
-off_96F5_03_00_01:
+off_96F5_03_00_01_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x029705 0A:96F5: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029706 0A:96F6: 00        .byte con_A644_00   ; 
@@ -5369,7 +5387,7 @@ off_96F5_03_00_01:
 
 
 
-off_9709_03_00_02:
+off_9709_03_00_02_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x029719 0A:9709: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02971A 0A:970A: 00        .byte con_A644_00   ; 
@@ -5403,7 +5421,7 @@ off_9709_03_00_02:
 
 
 
-off_971D_03_01_00:
+off_971D_03_01_00_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x02972D 0A:971D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02972E 0A:971E: 00        .byte con_A644_00   ; 
@@ -5473,7 +5491,7 @@ off_971D_03_01_00:
 
 
 
-off_9749_03_01_01:
+off_9749_03_01_01_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x029759 0A:9749: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02975A 0A:974A: 00        .byte con_A644_00   ; 
@@ -5507,7 +5525,7 @@ off_9749_03_01_01:
 
 
 
-off_975D_03_02_00:
+off_975D_03_02_00_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x02976D 0A:975D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02976E 0A:975E: 00        .byte con_A644_00   ; 
@@ -5565,7 +5583,7 @@ off_975D_03_02_00:
 
 
 
-off_9781_03_02_01:
+off_9781_03_02_01_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x029791 0A:9781: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029792 0A:9782: 00        .byte con_A644_00   ; 
@@ -5599,7 +5617,7 @@ off_9781_03_02_01:
 
 
 
-off_9795_03_03_00:
+off_9795_03_03_00_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x0297A5 0A:9795: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0297A6 0A:9796: 00        .byte con_A644_00   ; 
@@ -5645,7 +5663,7 @@ off_9795_03_03_00:
 
 
 
-off_97B1_03_03_01:
+off_97B1_03_03_01_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x0297C1 0A:97B1: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0297C2 0A:97B2: 00        .byte con_A644_00   ; 
@@ -5691,7 +5709,7 @@ off_97B1_03_03_01:
 
 
 
-off_97CD_03_04_00:
+off_97CD_03_04_00_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x0297DD 0A:97CD: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0297DE 0A:97CE: 00        .byte con_A644_00   ; 
@@ -5713,7 +5731,7 @@ off_97CD_03_04_00:
 
 
 
-off_97D9_03_04_01:
+off_97D9_03_04_01_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x0297E9 0A:97D9: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0297EA 0A:97DA: 00        .byte con_A644_00   ; 
@@ -5759,7 +5777,7 @@ off_97D9_03_04_01:
 
 
 
-off_97F5_03_04_02:
+off_97F5_03_04_02_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x029805 0A:97F5: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029806 0A:97F6: 00        .byte con_A644_00   ; 
@@ -5781,7 +5799,7 @@ off_97F5_03_04_02:
 
 
 
-off_9801_04_00_00:
+off_9801_04_00_00_Tower_of_Terror:
 ; 00 
 - D 0 - I - 0x029811 0A:9801: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029812 0A:9802: 00        .byte con_A644_00   ; 
@@ -5815,7 +5833,7 @@ off_9801_04_00_00:
 
 
 
-off_9815_04_00_02:
+off_9815_04_00_02_Tower_of_Terror:
 ; 00 
 - D 0 - I - 0x029825 0A:9815: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029826 0A:9816: 00        .byte con_A644_00   ; 
@@ -5837,7 +5855,7 @@ off_9815_04_00_02:
 
 
 
-off_9821_04_01_00:
+off_9821_04_01_00_Tower_of_Terror:
 ; 00 
 - D 0 - I - 0x029831 0A:9821: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029832 0A:9822: 00        .byte con_A644_00   ; 
@@ -5859,7 +5877,7 @@ off_9821_04_01_00:
 
 
 
-off_982D_04_01_02:
+off_982D_04_01_02_Tower_of_Terror:
 ; 00 
 - D 0 - I - 0x02983D 0A:982D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02983E 0A:982E: 00        .byte con_A644_00   ; 
@@ -5893,7 +5911,7 @@ off_982D_04_01_02:
 
 
 
-off_9841_04_02_00:
+off_9841_04_02_00_Tower_of_Terror:
 ; 00 
 - D 0 - I - 0x029851 0A:9841: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029852 0A:9842: 00        .byte con_A644_00   ; 
@@ -5915,7 +5933,7 @@ off_9841_04_02_00:
 
 
 
-off_984D_04_02_02:
+off_984D_04_02_02_Tower_of_Terror:
 ; 00 
 - D 0 - I - 0x02985D 0A:984D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02985E 0A:984E: 00        .byte con_A644_00   ; 
@@ -5961,7 +5979,7 @@ off_984D_04_02_02:
 
 
 
-off_9869_05_00_00:
+off_9869_05_00_00_Causeway:
 ; 00 
 - D 0 - I - 0x029879 0A:9869: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02987A 0A:986A: 00        .byte con_A644_00   ; 
@@ -5995,7 +6013,7 @@ off_9869_05_00_00:
 
 
 
-off_987D_05_01_00:
+off_987D_05_01_00_Causeway:
 ; 00 
 - D 0 - I - 0x02988D 0A:987D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02988E 0A:987E: 00        .byte con_A644_00   ; 
@@ -6053,7 +6071,7 @@ off_987D_05_01_00:
 
 
 
-off_98A1_05_02_00:
+off_98A1_05_02_00_Causeway:
 ; 00 
 - D 0 - I - 0x0298B1 0A:98A1: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0298B2 0A:98A2: 00        .byte con_A644_00   ; 
@@ -6087,7 +6105,7 @@ off_98A1_05_02_00:
 
 
 
-off_98B5_05_02_01:
+off_98B5_05_02_01_Causeway:
 ; 00 
 - D 0 - I - 0x0298C5 0A:98B5: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0298C6 0A:98B6: 00        .byte con_A644_00   ; 
@@ -6145,7 +6163,7 @@ off_98B5_05_02_01:
 
 
 
-off_98D9_05_03_00:
+off_98D9_05_03_00_Causeway:
 ; 00 
 - D 0 - I - 0x0298E9 0A:98D9: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0298EA 0A:98DA: 00        .byte con_A644_00   ; 
@@ -6179,7 +6197,7 @@ off_98D9_05_03_00:
 
 
 
-off_98ED_05_03_01:
+off_98ED_05_03_01_Causeway:
 ; 00 
 - D 0 - I - 0x0298FD 0A:98ED: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0298FE 0A:98EE: 00        .byte con_A644_00   ; 
@@ -6237,7 +6255,7 @@ off_98ED_05_03_01:
 
 
 
-off_9911_06_00_00:
+off_9911_06_00_00_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x029921 0A:9911: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029922 0A:9912: 00        .byte con_A644_00   ; 
@@ -6271,7 +6289,7 @@ off_9911_06_00_00:
 
 
 
-off_9925_06_00_01:
+off_9925_06_00_01_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x029935 0A:9925: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029936 0A:9926: 00        .byte con_A644_00   ; 
@@ -6329,7 +6347,7 @@ off_9925_06_00_01:
 
 
 
-off_9949_06_01_00:
+off_9949_06_01_00_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x029959 0A:9949: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02995A 0A:994A: 00        .byte con_A644_00   ; 
@@ -6411,7 +6429,7 @@ off_9949_06_01_00:
 
 
 
-off_997D_06_02_00:
+off_997D_06_02_00_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x02998D 0A:997D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02998E 0A:997E: 00        .byte con_A644_00   ; 
@@ -6433,7 +6451,7 @@ off_997D_06_02_00:
 
 
 
-off_9989_06_02_01:
+off_9989_06_02_01_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x029999 0A:9989: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x02999A 0A:998A: 00        .byte con_A644_00   ; 
@@ -6479,7 +6497,7 @@ off_9989_06_02_01:
 
 
 
-off_99A5_06_02_02:
+off_99A5_06_02_02_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x0299B5 0A:99A5: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0299B6 0A:99A6: 00        .byte con_A644_00   ; 
@@ -6513,7 +6531,7 @@ off_99A5_06_02_02:
 
 
 
-off_99B9_07_00_00:
+off_99B9_07_00_00_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x0299C9 0A:99B9: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0299CA 0A:99BA: 00        .byte con_A644_00   ; 
@@ -6547,7 +6565,7 @@ off_99B9_07_00_00:
 
 
 
-off_99CD_07_00_01:
+off_99CD_07_00_01_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x0299DD 0A:99CD: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x0299DE 0A:99CE: 00        .byte con_A644_00   ; 
@@ -6605,7 +6623,7 @@ off_99CD_07_00_01:
 
 
 
-off_99F1_07_01_00:
+off_99F1_07_01_00_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x029A01 0A:99F1: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029A02 0A:99F2: 00        .byte con_A644_00   ; 
@@ -6639,7 +6657,7 @@ off_99F1_07_01_00:
 
 
 
-off_9A05_07_02_00:
+off_9A05_07_02_00_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x029A15 0A:9A05: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029A16 0A:9A06: 00        .byte con_A644_00   ; 
@@ -6661,7 +6679,7 @@ off_9A05_07_02_00:
 
 
 
-off_9A11_07_03_00:
+off_9A11_07_03_00_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x029A21 0A:9A11: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029A22 0A:9A12: 00        .byte con_A644_00   ; 
@@ -6695,7 +6713,7 @@ off_9A11_07_03_00:
 
 
 
-off_9A25_07_04_00:
+off_9A25_07_04_00_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x029A35 0A:9A25: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029A36 0A:9A26: 00        .byte con_A644_00   ; 
@@ -6753,7 +6771,7 @@ off_9A25_07_04_00:
 
 
 
-off_9A49_07_04_01:
+off_9A49_07_04_01_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x029A59 0A:9A49: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029A5A 0A:9A4A: 00        .byte con_A644_00   ; 
@@ -6787,7 +6805,7 @@ off_9A49_07_04_01:
 
 
 
-off_9A5D_07_05_00:
+off_9A5D_07_05_00_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x029A6D 0A:9A5D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029A6E 0A:9A5E: 00        .byte con_A644_00   ; 
@@ -6845,7 +6863,7 @@ off_9A5D_07_05_00:
 
 
 
-off_9A81_07_05_01:
+off_9A81_07_05_01_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x029A91 0A:9A81: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029A92 0A:9A82: 00        .byte con_A644_00   ; 
@@ -6879,7 +6897,7 @@ off_9A81_07_05_01:
 
 
 
-off_9A95_07_06_00:
+off_9A95_07_06_00_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x029AA5 0A:9A95: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029AA6 0A:9A96: 00        .byte con_A644_00   ; 
@@ -6949,7 +6967,7 @@ off_9A95_07_06_00:
 
 
 
-off_9AC1_08_00_00:
+off_9AC1_08_00_00_Sunken_City:
 ; 00 
 - D 0 - I - 0x029AD1 0A:9AC1: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029AD2 0A:9AC2: 00        .byte con_A644_00   ; 
@@ -6983,7 +7001,7 @@ off_9AC1_08_00_00:
 
 
 
-off_9AD5_08_00_01:
+off_9AD5_08_00_01_Sunken_City:
 ; 00 
 - D 0 - I - 0x029AE5 0A:9AD5: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029AE6 0A:9AD6: 00        .byte con_A644_00   ; 
@@ -7053,7 +7071,7 @@ off_9AD5_08_00_01:
 
 
 
-off_9B01_08_01_00:
+off_9B01_08_01_00_Sunken_City:
 ; 00 
 - D 0 - I - 0x029B11 0A:9B01: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029B12 0A:9B02: 00        .byte con_A644_00   ; 
@@ -7123,7 +7141,7 @@ off_9B01_08_01_00:
 
 
 
-off_9B2D_08_02_00:
+off_9B2D_08_02_00_Sunken_City:
 ; 00 
 - D 0 - I - 0x029B3D 0A:9B2D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029B3E 0A:9B2E: 00        .byte con_A644_00   ; 
@@ -7181,7 +7199,7 @@ off_9B2D_08_02_00:
 
 
 
-off_9B51_08_02_01:
+off_9B51_08_02_01_Sunken_City:
 ; 00 
 - D 0 - I - 0x029B61 0A:9B51: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029B62 0A:9B52: 00        .byte con_A644_00   ; 
@@ -7227,7 +7245,7 @@ off_9B51_08_02_01:
 
 
 
-off_9B6D_08_03_00:
+off_9B6D_08_03_00_Sunken_City:
 ; 00 
 - D 0 - I - 0x029B7D 0A:9B6D: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029B7E 0A:9B6E: 00        .byte con_A644_00   ; 
@@ -7297,7 +7315,7 @@ off_9B6D_08_03_00:
 
 
 
-off_9B99_08_04_00:
+off_9B99_08_04_00_Sunken_City:
 ; 00 
 - D 0 - I - 0x029BA9 0A:9B99: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029BAA 0A:9B9A: 00        .byte con_A644_00   ; 
@@ -7367,190 +7385,190 @@ off_9B99_08_04_00:
 
 
 
-_off032_9BC5_09:
-- D 0 - I - 0x029BD5 0A:9BC5: F1 9B     .word _off049_9BF1_09_00
-- D 0 - I - 0x029BD7 0A:9BC7: F5 9B     .word _off049_9BF5_09_01
+_off032_9BC5_09_Catacombs:
+- D 0 - I - 0x029BD5 0A:9BC5: F1 9B     .word _off049_9BF1_09_00_Catacombs
+- D 0 - I - 0x029BD7 0A:9BC7: F5 9B     .word _off049_9BF5_09_01_Catacombs
 
 
 
-_off032_9BC9_0A:
-- D 0 - I - 0x029BD9 0A:9BC9: FB 9B     .word _off049_9BFB_0A_00
-- D 0 - I - 0x029BDB 0A:9BCB: FF 9B     .word _off049_9BFF_0A_01
-- D 0 - I - 0x029BDD 0A:9BCD: 01 9C     .word _off049_9C01_0A_02
-- D 0 - I - 0x029BDF 0A:9BCF: 03 9C     .word _off049_9C03_0A_03
-- D 0 - I - 0x029BE1 0A:9BD1: 07 9C     .word _off049_9C07_0A_04
-- D 0 - I - 0x029BE3 0A:9BD3: 0D 9C     .word _off049_9C0D_0A_05
-- D 0 - I - 0x029BE5 0A:9BD5: 11 9C     .word _off049_9C11_0A_06
+_off032_9BC9_0A_Mountain_Range:
+- D 0 - I - 0x029BD9 0A:9BC9: FB 9B     .word _off049_9BFB_0A_00_Mountain_Range
+- D 0 - I - 0x029BDB 0A:9BCB: FF 9B     .word _off049_9BFF_0A_01_Mountain_Range
+- D 0 - I - 0x029BDD 0A:9BCD: 01 9C     .word _off049_9C01_0A_02_Mountain_Range
+- D 0 - I - 0x029BDF 0A:9BCF: 03 9C     .word _off049_9C03_0A_03_Mountain_Range
+- D 0 - I - 0x029BE1 0A:9BD1: 07 9C     .word _off049_9C07_0A_04_Mountain_Range
+- D 0 - I - 0x029BE3 0A:9BD3: 0D 9C     .word _off049_9C0D_0A_05_Mountain_Range
+- D 0 - I - 0x029BE5 0A:9BD5: 11 9C     .word _off049_9C11_0A_06_Mountain_Range
 
 
 
-_off032_9BD7_0B:
-- D 0 - I - 0x029BE7 0A:9BD7: 17 9C     .word _off049_9C17_0B_00
-- D 0 - I - 0x029BE9 0A:9BD9: 1B 9C     .word _off049_9C1B_0B_01
-- D 0 - I - 0x029BEB 0A:9BDB: 1F 9C     .word _off049_9C1F_0B_02
+_off032_9BD7_0B_Castle_Courtyard:
+- D 0 - I - 0x029BE7 0A:9BD7: 17 9C     .word _off049_9C17_0B_00_Castle_Courtyard
+- D 0 - I - 0x029BE9 0A:9BD9: 1B 9C     .word _off049_9C1B_0B_01_Castle_Courtyard
+- D 0 - I - 0x029BEB 0A:9BDB: 1F 9C     .word _off049_9C1F_0B_02_Castle_Courtyard
 
 
 
-_off032_9BDD_0C:
-- D 0 - I - 0x029BED 0A:9BDD: 25 9C     .word _off049_9C25_0C_00
-- D 0 - I - 0x029BEF 0A:9BDF: 29 9C     .word _off049_9C29_0C_01
-- D 0 - I - 0x029BF1 0A:9BE1: 2D 9C     .word _off049_9C2D_0C_02
+_off032_9BDD_0C_Main_Hall:
+- D 0 - I - 0x029BED 0A:9BDD: 25 9C     .word _off049_9C25_0C_00_Main_Hall
+- D 0 - I - 0x029BEF 0A:9BDF: 29 9C     .word _off049_9C29_0C_01_Main_Hall
+- D 0 - I - 0x029BF1 0A:9BE1: 2D 9C     .word _off049_9C2D_0C_02_Main_Hall
 
 
 
-_off032_9BE3_0D:
-- D 0 - I - 0x029BF3 0A:9BE3: 2F 9C     .word _off049_9C2F_0D_00
-- D 0 - I - 0x029BF5 0A:9BE5: 35 9C     .word _off049_9C35_0D_01
-- D 0 - I - 0x029BF7 0A:9BE7: 3B 9C     .word _off049_9C3B_0D_02
-- D 0 - I - 0x029BF9 0A:9BE9: 41 9C     .word _off049_9C41_0D_03
+_off032_9BE3_0D_Castle_Tower:
+- D 0 - I - 0x029BF3 0A:9BE3: 2F 9C     .word _off049_9C2F_0D_00_Castle_Tower
+- D 0 - I - 0x029BF5 0A:9BE5: 35 9C     .word _off049_9C35_0D_01_Castle_Tower
+- D 0 - I - 0x029BF7 0A:9BE7: 3B 9C     .word _off049_9C3B_0D_02_Castle_Tower
+- D 0 - I - 0x029BF9 0A:9BE9: 41 9C     .word _off049_9C41_0D_03_Castle_Tower
 
 
 
-_off032_9BEB_0E:
-- D 0 - I - 0x029BFB 0A:9BEB: 45 9C     .word _off049_9C45_0E_00
-- D 0 - I - 0x029BFD 0A:9BED: 4B 9C     .word _off049_9C4B_0E_01
-- D 0 - I - 0x029BFF 0A:9BEF: 4F 9C     .word _off049_9C4F_0E_02
+_off032_9BEB_0E_Final_Clock_Tower:
+- D 0 - I - 0x029BFB 0A:9BEB: 45 9C     .word _off049_9C45_0E_00_Final_Clock_Tower
+- D 0 - I - 0x029BFD 0A:9BED: 4B 9C     .word _off049_9C4B_0E_01_Final_Clock_Tower
+- D 0 - I - 0x029BFF 0A:9BEF: 4F 9C     .word _off049_9C4F_0E_02_Final_Clock_Tower
 
 
 
-_off049_9BF1_09_00:
-- D 0 - I - 0x029C01 0A:9BF1: 53 9C     .word off_9C53_09_00_00
-- D 0 - I - 0x029C03 0A:9BF3: 6F 9C     .word off_9C6F_09_00_01
+_off049_9BF1_09_00_Catacombs:
+- D 0 - I - 0x029C01 0A:9BF1: 53 9C     .word off_9C53_09_00_00_Catacombs
+- D 0 - I - 0x029C03 0A:9BF3: 6F 9C     .word off_9C6F_09_00_01_Catacombs
 
 
 
-_off049_9BF5_09_01:
-- D 0 - I - 0x029C05 0A:9BF5: 8B 9C     .word off_9C8B_09_01_00
-- D 0 - I - 0x029C07 0A:9BF7: 9F 9C     .word off_9C9F_09_01_01
-- D 0 - I - 0x029C09 0A:9BF9: C3 9C     .word off_9CC3_09_01_02
+_off049_9BF5_09_01_Catacombs:
+- D 0 - I - 0x029C05 0A:9BF5: 8B 9C     .word off_9C8B_09_01_00_Catacombs
+- D 0 - I - 0x029C07 0A:9BF7: 9F 9C     .word off_9C9F_09_01_01_Catacombs
+- D 0 - I - 0x029C09 0A:9BF9: C3 9C     .word off_9CC3_09_01_02_Catacombs
 
 
 
-_off049_9BFB_0A_00:
-- D 0 - I - 0x029C0B 0A:9BFB: D7 9C     .word off_9CD7_0A_00_00
-- D 0 - I - 0x029C0D 0A:9BFD: E3 9C     .word off_9CE3_0A_00_01
+_off049_9BFB_0A_00_Mountain_Range:
+- D 0 - I - 0x029C0B 0A:9BFB: D7 9C     .word off_9CD7_0A_00_00_Mountain_Range
+- D 0 - I - 0x029C0D 0A:9BFD: E3 9C     .word off_9CE3_0A_00_01_Mountain_Range
 
 
 
-_off049_9BFF_0A_01:
-- D 0 - I - 0x029C0F 0A:9BFF: EF 9C     .word off_9CEF_0A_01_00
+_off049_9BFF_0A_01_Mountain_Range:
+- D 0 - I - 0x029C0F 0A:9BFF: EF 9C     .word off_9CEF_0A_01_00_Mountain_Range
 
 
 
-_off049_9C01_0A_02:
-- D 0 - I - 0x029C11 0A:9C01: 03 9D     .word off_9D03_0A_02_00
+_off049_9C01_0A_02_Mountain_Range:
+- D 0 - I - 0x029C11 0A:9C01: 03 9D     .word off_9D03_0A_02_00_Mountain_Range
 
 
 
-_off049_9C03_0A_03:
-- D 0 - I - 0x029C13 0A:9C03: 0F 9D     .word off_9D0F_0A_03_00
-- D 0 - I - 0x029C15 0A:9C05: 2B 9D     .word off_9D2B_0A_03_01
+_off049_9C03_0A_03_Mountain_Range:
+- D 0 - I - 0x029C13 0A:9C03: 0F 9D     .word off_9D0F_0A_03_00_Mountain_Range
+- D 0 - I - 0x029C15 0A:9C05: 2B 9D     .word off_9D2B_0A_03_01_Mountain_Range
 
 
 
-_off049_9C07_0A_04:
-- D 0 - I - 0x029C17 0A:9C07: 08 AF     .word off_AF08_0A_04_00 ; special
-- D 0 - I - 0x029C19 0A:9C09: 47 9D     .word off_9D47_0A_04_01
-- D 0 - I - 0x029C1B 0A:9C0B: 5B 9D     .word off_9D5B_0A_04_02
+_off049_9C07_0A_04_Mountain_Range:
+- D 0 - I - 0x029C17 0A:9C07: 08 AF     .word off_AF08_0A_04_00_Mountain_Range ; special
+- D 0 - I - 0x029C19 0A:9C09: 47 9D     .word off_9D47_0A_04_01_Mountain_Range
+- D 0 - I - 0x029C1B 0A:9C0B: 5B 9D     .word off_9D5B_0A_04_02_Mountain_Range
 
 
 
-_off049_9C0D_0A_05:
-- D 0 - I - 0x029C1D 0A:9C0D: 6F 9D     .word off_9D6F_0A_05_00
-- D 0 - I - 0x029C1F 0A:9C0F: 8B 9D     .word off_9D8B_0A_05_01
+_off049_9C0D_0A_05_Mountain_Range:
+- D 0 - I - 0x029C1D 0A:9C0D: 6F 9D     .word off_9D6F_0A_05_00_Mountain_Range
+- D 0 - I - 0x029C1F 0A:9C0F: 8B 9D     .word off_9D8B_0A_05_01_Mountain_Range
 
 
 
-_off049_9C11_0A_06:
-- D 0 - I - 0x029C21 0A:9C11: A7 9D     .word off_9DA7_0A_06_00
-- D 0 - I - 0x029C23 0A:9C13: 17 AF     .word off_AF17_0A_06_01 ; special
-- D 0 - I - 0x029C25 0A:9C15: B3 9D     .word off_9DB3_0A_06_02
+_off049_9C11_0A_06_Mountain_Range:
+- D 0 - I - 0x029C21 0A:9C11: A7 9D     .word off_9DA7_0A_06_00_Mountain_Range
+- D 0 - I - 0x029C23 0A:9C13: 17 AF     .word off_AF17_0A_06_01_Mountain_Range ; special
+- D 0 - I - 0x029C25 0A:9C15: B3 9D     .word off_9DB3_0A_06_02_Mountain_Range
 
 
 
-_off049_9C17_0B_00:
-- D 0 - I - 0x029C27 0A:9C17: C7 9D     .word off_9DC7_0B_00_00
-- D 0 - I - 0x029C29 0A:9C19: EB 9D     .word off_9DEB_0B_00_01
+_off049_9C17_0B_00_Castle_Courtyard:
+- D 0 - I - 0x029C27 0A:9C17: C7 9D     .word off_9DC7_0B_00_00_Castle_Courtyard
+- D 0 - I - 0x029C29 0A:9C19: EB 9D     .word off_9DEB_0B_00_01_Castle_Courtyard
 
 
 
-_off049_9C1B_0B_01:
-- D 0 - I - 0x029C2B 0A:9C1B: FF 9D     .word off_9DFF_0B_01_00
-- D 0 - I - 0x029C2D 0A:9C1D: 1B 9E     .word off_9E1B_0B_01_01
+_off049_9C1B_0B_01_Castle_Courtyard:
+- D 0 - I - 0x029C2B 0A:9C1B: FF 9D     .word off_9DFF_0B_01_00_Castle_Courtyard
+- D 0 - I - 0x029C2D 0A:9C1D: 1B 9E     .word off_9E1B_0B_01_01_Castle_Courtyard
 
 
 
-_off049_9C1F_0B_02:
-- D 0 - I - 0x029C2F 0A:9C1F: 37 9E     .word off_9E37_0B_02_00
-- D 0 - I - 0x029C31 0A:9C21: B2 AF     .word off_AFB2_0B_02_01 ; special
-- D 0 - I - 0x029C33 0A:9C23: 4B 9E     .word off_9E4B_0B_02_02
+_off049_9C1F_0B_02_Castle_Courtyard:
+- D 0 - I - 0x029C2F 0A:9C1F: 37 9E     .word off_9E37_0B_02_00_Castle_Courtyard
+- D 0 - I - 0x029C31 0A:9C21: B2 AF     .word off_AFB2_0B_02_01_Castle_Courtyard ; special
+- D 0 - I - 0x029C33 0A:9C23: 4B 9E     .word off_9E4B_0B_02_02_Castle_Courtyard
 
 
 
-_off049_9C25_0C_00:
-- D 0 - I - 0x029C35 0A:9C25: 67 9E     .word off_9E67_0C_00_00
-- D 0 - I - 0x029C37 0A:9C27: 8B 9E     .word off_9E8B_0C_00_01
+_off049_9C25_0C_00_Main_Hall:
+- D 0 - I - 0x029C35 0A:9C25: 67 9E     .word off_9E67_0C_00_00_Main_Hall
+- D 0 - I - 0x029C37 0A:9C27: 8B 9E     .word off_9E8B_0C_00_01_Main_Hall
 
 
 
-_off049_9C29_0C_01:
-- D 0 - I - 0x029C39 0A:9C29: 9F 9E     .word off_9E9F_0C_01_00
-- D 0 - I - 0x029C3B 0A:9C2B: B3 9E     .word off_9EB3_0C_01_01
+_off049_9C29_0C_01_Main_Hall:
+- D 0 - I - 0x029C39 0A:9C29: 9F 9E     .word off_9E9F_0C_01_00_Main_Hall
+- D 0 - I - 0x029C3B 0A:9C2B: B3 9E     .word off_9EB3_0C_01_01_Main_Hall
 
 
 
-_off049_9C2D_0C_02:
-- D 0 - I - 0x029C3D 0A:9C2D: C7 9E     .word off_9EC7_0C_02_00
+_off049_9C2D_0C_02_Main_Hall:
+- D 0 - I - 0x029C3D 0A:9C2D: C7 9E     .word off_9EC7_0C_02_00_Main_Hall
 
 
 
-_off049_9C2F_0D_00:
-- D 0 - I - 0x029C3F 0A:9C2F: 03 9F     .word off_9F03_0D_00_00
-- D 0 - I - 0x029C41 0A:9C31: 0F 9F     .word off_9F0F_0D_00_01
-- D 0 - I - 0x029C43 0A:9C33: 3B 9F     .word off_9F3B_0D_00_02
+_off049_9C2F_0D_00_Castle_Tower:
+- D 0 - I - 0x029C3F 0A:9C2F: 03 9F     .word off_9F03_0D_00_00_Castle_Tower
+- D 0 - I - 0x029C41 0A:9C31: 0F 9F     .word off_9F0F_0D_00_01_Castle_Tower
+- D 0 - I - 0x029C43 0A:9C33: 3B 9F     .word off_9F3B_0D_00_02_Castle_Tower
 
 
 
-_off049_9C35_0D_01:
-- D 0 - I - 0x029C45 0A:9C35: 47 9F     .word off_9F47_0D_01_00
-- D 0 - I - 0x029C47 0A:9C37: D6 AF     .word off_AFD6_0D_01_01 ; special
-- D 0 - I - 0x029C49 0A:9C39: 5B 9F     .word off_9F5B_0D_01_02
+_off049_9C35_0D_01_Castle_Tower:
+- D 0 - I - 0x029C45 0A:9C35: 47 9F     .word off_9F47_0D_01_00_Castle_Tower
+- D 0 - I - 0x029C47 0A:9C37: D6 AF     .word off_AFD6_0D_01_01_Castle_Tower ; special
+- D 0 - I - 0x029C49 0A:9C39: 5B 9F     .word off_9F5B_0D_01_02_Castle_Tower
 
 
 
-_off049_9C3B_0D_02:
-- D 0 - I - 0x029C4B 0A:9C3B: 67 9F     .word off_9F67_0D_02_00
-- D 0 - I - 0x029C4D 0A:9C3D: 0F B0     .word off_B00F_0D_02_01 ; special
-- D 0 - I - 0x029C4F 0A:9C3F: 73 9F     .word off_9F73_0D_02_02
+_off049_9C3B_0D_02_Castle_Tower:
+- D 0 - I - 0x029C4B 0A:9C3B: 67 9F     .word off_9F67_0D_02_00_Castle_Tower
+- D 0 - I - 0x029C4D 0A:9C3D: 0F B0     .word off_B00F_0D_02_01_Castle_Tower ; special
+- D 0 - I - 0x029C4F 0A:9C3F: 73 9F     .word off_9F73_0D_02_02_Castle_Tower
 
 
 
-_off049_9C41_0D_03:
-- D 0 - I - 0x029C51 0A:9C41: 7F 9F     .word off_9F7F_0D_03_00
-- D 0 - I - 0x029C53 0A:9C43: 9B 9F     .word off_9F9B_0D_03_01
+_off049_9C41_0D_03_Castle_Tower:
+- D 0 - I - 0x029C51 0A:9C41: 7F 9F     .word off_9F7F_0D_03_00_Castle_Tower
+- D 0 - I - 0x029C53 0A:9C43: 9B 9F     .word off_9F9B_0D_03_01_Castle_Tower
 
 
 
-_off049_9C45_0E_00:
-- D 0 - I - 0x029C55 0A:9C45: B7 9F     .word off_9FB7_0E_00_00
-- D 0 - I - 0x029C57 0A:9C47: B1 B0     .word off_B0B1_0E_00_01 ; special
-- D 0 - I - 0x029C59 0A:9C49: CB 9F     .word off_9FCB_0E_00_02
+_off049_9C45_0E_00_Final_Clock_Tower:
+- D 0 - I - 0x029C55 0A:9C45: B7 9F     .word off_9FB7_0E_00_00_Final_Clock_Tower
+- D 0 - I - 0x029C57 0A:9C47: B1 B0     .word off_B0B1_0E_00_01_Final_Clock_Tower ; special
+- D 0 - I - 0x029C59 0A:9C49: CB 9F     .word off_9FCB_0E_00_02_Final_Clock_Tower
 
 
 
-_off049_9C4B_0E_01:
-- D 0 - I - 0x029C5B 0A:9C4B: DF 9F     .word off_9FDF_0E_01_00
-- D 0 - I - 0x029C5D 0A:9C4D: F3 9F     .word off_9FF3_0E_01_01
+_off049_9C4B_0E_01_Final_Clock_Tower:
+- D 0 - I - 0x029C5B 0A:9C4B: DF 9F     .word off_9FDF_0E_01_00_Final_Clock_Tower
+- D 0 - I - 0x029C5D 0A:9C4D: F3 9F     .word off_9FF3_0E_01_01_Final_Clock_Tower
 
 
 
-_off049_9C4F_0E_02:
-- D 0 - I - 0x029C5F 0A:9C4F: 0F A0     .word off_A00F_0E_02_00
-- D 0 - I - 0x029C61 0A:9C51: 23 A0     .word off_A023_0E_02_01
+_off049_9C4F_0E_02_Final_Clock_Tower:
+- D 0 - I - 0x029C5F 0A:9C4F: 0F A0     .word off_A00F_0E_02_00_Final_Clock_Tower
+- D 0 - I - 0x029C61 0A:9C51: 23 A0     .word off_A023_0E_02_01_Final_Clock_Tower
 
 
 
-off_9C53_09_00_00:
+off_9C53_09_00_00_Catacombs:
 ; 00 
 - D 0 - I - 0x029C63 0A:9C53: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029C64 0A:9C54: 00        .byte con_A644_00   ; 
@@ -7596,7 +7614,7 @@ off_9C53_09_00_00:
 
 
 
-off_9C6F_09_00_01:
+off_9C6F_09_00_01_Catacombs:
 ; 00 
 - D 0 - I - 0x029C7F 0A:9C6F: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029C80 0A:9C70: 00        .byte con_A644_00   ; 
@@ -7642,7 +7660,7 @@ off_9C6F_09_00_01:
 
 
 
-off_9C8B_09_01_00:
+off_9C8B_09_01_00_Catacombs:
 ; 00 
 - D 0 - I - 0x029C9B 0A:9C8B: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029C9C 0A:9C8C: 00        .byte con_A644_00   ; 
@@ -7676,7 +7694,7 @@ off_9C8B_09_01_00:
 
 
 
-off_9C9F_09_01_01:
+off_9C9F_09_01_01_Catacombs:
 ; 00 
 - D 0 - I - 0x029CAF 0A:9C9F: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029CB0 0A:9CA0: 00        .byte con_A644_00   ; 
@@ -7734,7 +7752,7 @@ off_9C9F_09_01_01:
 
 
 
-off_9CC3_09_01_02:
+off_9CC3_09_01_02_Catacombs:
 ; 00 
 - D 0 - I - 0x029CD3 0A:9CC3: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029CD4 0A:9CC4: 00        .byte con_A644_00   ; 
@@ -7768,7 +7786,7 @@ off_9CC3_09_01_02:
 
 
 
-off_9CD7_0A_00_00:
+off_9CD7_0A_00_00_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029CE7 0A:9CD7: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029CE8 0A:9CD8: 00        .byte con_A644_00   ; 
@@ -7790,7 +7808,7 @@ off_9CD7_0A_00_00:
 
 
 
-off_9CE3_0A_00_01:
+off_9CE3_0A_00_01_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029CF3 0A:9CE3: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029CF4 0A:9CE4: 00        .byte con_A644_00   ; 
@@ -7812,7 +7830,7 @@ off_9CE3_0A_00_01:
 
 
 
-off_9CEF_0A_01_00:
+off_9CEF_0A_01_00_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029CFF 0A:9CEF: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029D00 0A:9CF0: 00        .byte con_A644_00   ; 
@@ -7846,7 +7864,7 @@ off_9CEF_0A_01_00:
 
 
 
-off_9D03_0A_02_00:
+off_9D03_0A_02_00_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029D13 0A:9D03: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029D14 0A:9D04: 00        .byte con_A644_00   ; 
@@ -7868,7 +7886,7 @@ off_9D03_0A_02_00:
 
 
 
-off_9D0F_0A_03_00:
+off_9D0F_0A_03_00_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029D1F 0A:9D0F: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029D20 0A:9D10: 00        .byte con_A644_00   ; 
@@ -7914,7 +7932,7 @@ off_9D0F_0A_03_00:
 
 
 
-off_9D2B_0A_03_01:
+off_9D2B_0A_03_01_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029D3B 0A:9D2B: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029D3C 0A:9D2C: 00        .byte con_A644_00   ; 
@@ -7960,7 +7978,7 @@ off_9D2B_0A_03_01:
 
 
 
-off_9D47_0A_04_01:
+off_9D47_0A_04_01_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029D57 0A:9D47: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029D58 0A:9D48: 00        .byte con_A644_00   ; 
@@ -7994,7 +8012,7 @@ off_9D47_0A_04_01:
 
 
 
-off_9D5B_0A_04_02:
+off_9D5B_0A_04_02_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029D6B 0A:9D5B: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029D6C 0A:9D5C: 00        .byte con_A644_00   ; 
@@ -8028,7 +8046,7 @@ off_9D5B_0A_04_02:
 
 
 
-off_9D6F_0A_05_00:
+off_9D6F_0A_05_00_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029D7F 0A:9D6F: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029D80 0A:9D70: 00        .byte con_A644_00   ; 
@@ -8074,7 +8092,7 @@ off_9D6F_0A_05_00:
 
 
 
-off_9D8B_0A_05_01:
+off_9D8B_0A_05_01_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029D9B 0A:9D8B: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029D9C 0A:9D8C: 00        .byte con_A644_00   ; 
@@ -8120,7 +8138,7 @@ off_9D8B_0A_05_01:
 
 
 
-off_9DA7_0A_06_00:
+off_9DA7_0A_06_00_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029DB7 0A:9DA7: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029DB8 0A:9DA8: 00        .byte con_A644_00   ; 
@@ -8142,7 +8160,7 @@ off_9DA7_0A_06_00:
 
 
 
-off_9DB3_0A_06_02:
+off_9DB3_0A_06_02_Mountain_Range:
 ; 00 
 - D 0 - I - 0x029DC3 0A:9DB3: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029DC4 0A:9DB4: 00        .byte con_A644_00   ; 
@@ -8176,7 +8194,7 @@ off_9DB3_0A_06_02:
 
 
 
-off_9DC7_0B_00_00:
+off_9DC7_0B_00_00_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x029DD7 0A:9DC7: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029DD8 0A:9DC8: 00        .byte con_A644_00   ; 
@@ -8234,7 +8252,7 @@ off_9DC7_0B_00_00:
 
 
 
-off_9DEB_0B_00_01:
+off_9DEB_0B_00_01_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x029DFB 0A:9DEB: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029DFC 0A:9DEC: 00        .byte con_A644_00   ; 
@@ -8268,7 +8286,7 @@ off_9DEB_0B_00_01:
 
 
 
-off_9DFF_0B_01_00:
+off_9DFF_0B_01_00_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x029E0F 0A:9DFF: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029E10 0A:9E00: 00        .byte con_A644_00   ; 
@@ -8314,7 +8332,7 @@ off_9DFF_0B_01_00:
 
 
 
-off_9E1B_0B_01_01:
+off_9E1B_0B_01_01_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x029E2B 0A:9E1B: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029E2C 0A:9E1C: 00        .byte con_A644_00   ; 
@@ -8360,7 +8378,7 @@ off_9E1B_0B_01_01:
 
 
 
-off_9E37_0B_02_00:
+off_9E37_0B_02_00_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x029E47 0A:9E37: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029E48 0A:9E38: 00        .byte con_A644_00   ; 
@@ -8394,7 +8412,7 @@ off_9E37_0B_02_00:
 
 
 
-off_9E4B_0B_02_02:
+off_9E4B_0B_02_02_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x029E5B 0A:9E4B: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029E5C 0A:9E4C: 00        .byte con_A644_00   ; 
@@ -8440,7 +8458,7 @@ off_9E4B_0B_02_02:
 
 
 
-off_9E67_0C_00_00:
+off_9E67_0C_00_00_Main_Hall:
 ; 00 
 - D 0 - I - 0x029E77 0A:9E67: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029E78 0A:9E68: 00        .byte con_A644_00   ; 
@@ -8498,7 +8516,7 @@ off_9E67_0C_00_00:
 
 
 
-off_9E8B_0C_00_01:
+off_9E8B_0C_00_01_Main_Hall:
 ; 00 
 - D 0 - I - 0x029E9B 0A:9E8B: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029E9C 0A:9E8C: 00        .byte con_A644_00   ; 
@@ -8532,7 +8550,7 @@ off_9E8B_0C_00_01:
 
 
 
-off_9E9F_0C_01_00:
+off_9E9F_0C_01_00_Main_Hall:
 ; 00 
 - D 0 - I - 0x029EAF 0A:9E9F: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029EB0 0A:9EA0: 00        .byte con_A644_00   ; 
@@ -8566,7 +8584,7 @@ off_9E9F_0C_01_00:
 
 
 
-off_9EB3_0C_01_01:
+off_9EB3_0C_01_01_Main_Hall:
 ; 00 
 - D 0 - I - 0x029EC3 0A:9EB3: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029EC4 0A:9EB4: 00        .byte con_A644_00   ; 
@@ -8600,7 +8618,7 @@ off_9EB3_0C_01_01:
 
 
 
-off_9EC7_0C_02_00:
+off_9EC7_0C_02_00_Main_Hall:
 ; 00 
 - D 0 - I - 0x029ED7 0A:9EC7: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029ED8 0A:9EC8: 00        .byte con_A644_00   ; 
@@ -8694,7 +8712,7 @@ off_9EC7_0C_02_00:
 
 
 
-off_9F03_0D_00_00:
+off_9F03_0D_00_00_Castle_Tower:
 ; 00 
 - D 0 - I - 0x029F13 0A:9F03: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029F14 0A:9F04: 00        .byte con_A644_00   ; 
@@ -8716,7 +8734,7 @@ off_9F03_0D_00_00:
 
 
 
-off_9F0F_0D_00_01:
+off_9F0F_0D_00_01_Castle_Tower:
 ; 00 
 - D 0 - I - 0x029F1F 0A:9F0F: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029F20 0A:9F10: 00        .byte con_A644_00   ; 
@@ -8786,7 +8804,7 @@ off_9F0F_0D_00_01:
 
 
 
-off_9F3B_0D_00_02:
+off_9F3B_0D_00_02_Castle_Tower:
 ; 00 
 - D 0 - I - 0x029F4B 0A:9F3B: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029F4C 0A:9F3C: 00        .byte con_A644_00   ; 
@@ -8808,7 +8826,7 @@ off_9F3B_0D_00_02:
 
 
 
-off_9F47_0D_01_00:
+off_9F47_0D_01_00_Castle_Tower:
 ; 00 
 - D 0 - I - 0x029F57 0A:9F47: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029F58 0A:9F48: 00        .byte con_A644_00   ; 
@@ -8842,7 +8860,7 @@ off_9F47_0D_01_00:
 
 
 
-off_9F5B_0D_01_02:
+off_9F5B_0D_01_02_Castle_Tower:
 ; 00 
 - D 0 - I - 0x029F6B 0A:9F5B: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029F6C 0A:9F5C: 00        .byte con_A644_00   ; 
@@ -8864,7 +8882,7 @@ off_9F5B_0D_01_02:
 
 
 
-off_9F67_0D_02_00:
+off_9F67_0D_02_00_Castle_Tower:
 ; 00 
 - D 0 - I - 0x029F77 0A:9F67: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029F78 0A:9F68: 00        .byte con_A644_00   ; 
@@ -8886,7 +8904,7 @@ off_9F67_0D_02_00:
 
 
 
-off_9F73_0D_02_02:
+off_9F73_0D_02_02_Castle_Tower:
 ; 00 
 - D 0 - I - 0x029F83 0A:9F73: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029F84 0A:9F74: 00        .byte con_A644_00   ; 
@@ -8908,7 +8926,7 @@ off_9F73_0D_02_02:
 
 
 
-off_9F7F_0D_03_00:
+off_9F7F_0D_03_00_Castle_Tower:
 ; 00 
 - D 0 - I - 0x029F8F 0A:9F7F: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029F90 0A:9F80: 00        .byte con_A644_00   ; 
@@ -8954,7 +8972,7 @@ off_9F7F_0D_03_00:
 
 
 
-off_9F9B_0D_03_01:
+off_9F9B_0D_03_01_Castle_Tower:
 ; 00 
 - D 0 - I - 0x029FAB 0A:9F9B: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029FAC 0A:9F9C: 00        .byte con_A644_00   ; 
@@ -9000,7 +9018,7 @@ off_9F9B_0D_03_01:
 
 
 
-off_9FB7_0E_00_00:
+off_9FB7_0E_00_00_Final_Clock_Tower:
 ; 00 
 - D 0 - I - 0x029FC7 0A:9FB7: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029FC8 0A:9FB8: 00        .byte con_A644_00   ; 
@@ -9034,7 +9052,7 @@ off_9FB7_0E_00_00:
 
 
 
-off_9FCB_0E_00_02:
+off_9FCB_0E_00_02_Final_Clock_Tower:
 ; 00 
 - D 0 - I - 0x029FDB 0A:9FCB: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029FDC 0A:9FCC: 00        .byte con_A644_00   ; 
@@ -9068,7 +9086,7 @@ off_9FCB_0E_00_02:
 
 
 
-off_9FDF_0E_01_00:
+off_9FDF_0E_01_00_Final_Clock_Tower:
 ; 00 
 - D 0 - I - 0x029FEF 0A:9FDF: 00        .byte con_A03F_00   ; 
 - D 0 - I - 0x029FF0 0A:9FE0: 00        .byte con_A644_00   ; 
@@ -9102,7 +9120,7 @@ off_9FDF_0E_01_00:
 
 
 
-off_9FF3_0E_01_01:
+off_9FF3_0E_01_01_Final_Clock_Tower:
 ; 00 
 - D 0 - I - 0x02A003 0A:9FF3: 00        .byte con_A03F_00   ; 
 - - - - - - 0x02A004 0A:9FF4: 00        .byte con_A644_00   ; 
@@ -9148,7 +9166,7 @@ off_9FF3_0E_01_01:
 
 
 
-off_A00F_0E_02_00:
+off_A00F_0E_02_00_Final_Clock_Tower:
 ; 00 
 - - - - - - 0x02A01F 0A:A00F: 00        .byte con_A03F_00   ; 
 - - - - - - 0x02A020 0A:A010: 00        .byte con_A644_00   ; 
@@ -9182,7 +9200,7 @@ off_A00F_0E_02_00:
 
 
 
-off_A023_0E_02_01:
+off_A023_0E_02_01_Final_Clock_Tower:
 ; 00 
 - D 1 - I - 0x02A033 0A:A023: 00        .byte con_A03F_00   ; 
 - D 1 - I - 0x02A034 0A:A024: 00        .byte con_A644_00   ; 
@@ -14259,7 +14277,7 @@ _off030_AC30_FD:
 
 
 
-off_AC34_00_01_01:
+off_AC34_00_01_01_Warakiya:
 ; 
 - D 1 - I - 0x02AC44 0A:AC34: 01 80     .dbyt $0180 ; 
 - D 1 - I - 0x02AC46 0A:AC36: 90        .byte $90   ; 
@@ -14328,7 +14346,7 @@ off_AC34_00_01_01:
 
 
 
-off_AC74_01_00_00:
+off_AC74_01_00_00_Clock_Tower:
 ; 
 - D 1 - I - 0x02AC84 0A:AC74: 02 92     .dbyt $0292 ; 
 - D 1 - I - 0x02AC86 0A:AC76: 90        .byte $90   ; 
@@ -14425,7 +14443,7 @@ off_AC74_01_00_00:
 
 
 
-off_ACD0_01_01_01:
+off_ACD0_01_01_01_Clock_Tower:
 ; 
 - D 1 - I - 0x02ACE0 0A:ACD0: 01 80     .dbyt $0180 ; 
 - D 1 - I - 0x02ACE2 0A:ACD2: 90        .byte $90   ; 
@@ -14480,7 +14498,7 @@ off_ACD0_01_01_01:
 
 
 
-off_AD02_01_02_01:
+off_AD02_01_02_01_Clock_Tower:
 ; 
 - D 1 - I - 0x02AD12 0A:AD02: 02 C0     .dbyt $02C0 ; 
 - D 1 - I - 0x02AD14 0A:AD04: 48        .byte con_spawner_48   ; 
@@ -14514,7 +14532,7 @@ off_AD02_01_02_01:
 
 
 
-off_AD1F_01_03_01:
+off_AD1F_01_03_01_Clock_Tower:
 ; 
 - D 1 - I - 0x02AD2F 0A:AD1F: 00 40     .dbyt $0040 ; 
 - D 1 - I - 0x02AD31 0A:AD21: 48        .byte con_spawner_48   ; 
@@ -14555,7 +14573,7 @@ off_AD1F_01_03_01:
 
 
 
-off_AD43_01_04_01:
+off_AD43_01_04_01_Clock_Tower:
 ; 
 - D 1 - I - 0x02AD53 0A:AD43: 00 08     .dbyt $0008 ; 
 - D 1 - I - 0x02AD55 0A:AD45: 90        .byte $90   ; 
@@ -14610,7 +14628,7 @@ off_AD43_01_04_01:
 
 
 
-off_AD75_01_05_00:
+off_AD75_01_05_00_Clock_Tower:
 ; 
 - D 1 - I - 0x02AD85 0A:AD75: 00 10     .dbyt $0010 ; 
 - D 1 - I - 0x02AD87 0A:AD77: 90        .byte $90   ; 
@@ -14742,7 +14760,7 @@ off_AD75_01_05_00:
 
 
 
-off_ADF4_04_00_01:
+off_ADF4_04_00_01_Tower_of_Terror:
 ; 
 - D 1 - I - 0x02AE04 0A:ADF4: 02 80     .dbyt $0280 ; 
 - D 1 - I - 0x02AE06 0A:ADF6: 90        .byte $90   ; 
@@ -14839,7 +14857,7 @@ off_ADF4_04_00_01:
 
 
 
-off_AE50_04_01_01:
+off_AE50_04_01_01_Tower_of_Terror:
 ; 
 - D 1 - I - 0x02AE60 0A:AE50: 02 8A     .dbyt $028A ; 
 - D 1 - I - 0x02AE62 0A:AE52: 40        .byte con_spawner_40   ; 
@@ -14957,7 +14975,7 @@ off_AE50_04_01_01:
 
 
 
-off_AEC1_04_02_01:
+off_AEC1_04_02_01_Tower_of_Terror:
 ; 
 - D 1 - I - 0x02AED1 0A:AEC1: 01 AA     .dbyt $01AA ; 
 - D 1 - I - 0x02AED3 0A:AEC3: 2A        .byte con_spawner_2A   ; 
@@ -15033,7 +15051,7 @@ off_AEC1_04_02_01:
 
 
 
-off_AF08_0A_04_00:
+off_AF08_0A_04_00_Mountain_Range:
 ; 
 - D 1 - I - 0x02AF18 0A:AF08: 00 6C     .dbyt $006C ; 
 - D 1 - I - 0x02AF1A 0A:AF0A: 91        .byte $91   ; 
@@ -15053,7 +15071,7 @@ off_AF08_0A_04_00:
 
 
 
-off_AF17_0A_06_01:
+off_AF17_0A_06_01_Mountain_Range:
 ; 
 - D 1 - I - 0x02AF27 0A:AF17: 03 90     .dbyt $0390 ; 
 - D 1 - I - 0x02AF29 0A:AF19: 90        .byte $90   ; 
@@ -15213,7 +15231,7 @@ off_AF17_0A_06_01:
 
 
 
-off_AFB2_0B_02_01:
+off_AFB2_0B_02_01_Castle_Courtyard:
 ; 
 - D 1 - I - 0x02AFC2 0A:AFB2: 00 50     .dbyt $0050 ; 
 - D 1 - I - 0x02AFC4 0A:AFB4: 90        .byte $90   ; 
@@ -15254,7 +15272,7 @@ off_AFB2_0B_02_01:
 
 
 
-off_AFD6_0D_01_01:
+off_AFD6_0D_01_01_Castle_Tower:
 ; 
 - D 1 - I - 0x02AFE6 0A:AFD6: 01 94     .dbyt $0194 ; 
 - D 1 - I - 0x02AFE8 0A:AFD8: 2A        .byte con_spawner_2A   ; 
@@ -15316,7 +15334,7 @@ off_AFD6_0D_01_01:
 
 
 
-off_B00F_0D_02_01:
+off_B00F_0D_02_01_Castle_Tower:
 ; 
 - D 1 - I - 0x02B01F 0A:B00F: 03 90     .dbyt $0390 ; 
 - D 1 - I - 0x02B021 0A:B011: 90        .byte $90   ; 
@@ -15483,7 +15501,7 @@ off_B00F_0D_02_01:
 
 
 
-off_B0B1_0E_00_01:
+off_B0B1_0E_00_01_Final_Clock_Tower:
 ; 
 - D 1 - I - 0x02B0C1 0A:B0B1: 00 D0     .dbyt $00D0 ; 
 - D 1 - I - 0x02B0C3 0A:B0B3: 48        .byte con_spawner_48   ; 
@@ -16848,7 +16866,7 @@ bra_B7CE:
 C - - - - - 0x02B7DE 0A:B7CE: A9 01     LDA #$01    ; 2nd quest
 C - - - - - 0x02B7E0 0A:B7D0: 8D F6 07  STA ram_quest
 C - - - - - 0x02B7E3 0A:B7D3: A9 00     LDA #$00
-C - - - - - 0x02B7E5 0A:B7D5: 85 32     STA ram_blk_id_hi
+C - - - - - 0x02B7E5 0A:B7D5: 85 32     STA ram_blk_id_hi   ; Warakiya
 C - - - - - 0x02B7E7 0A:B7D7: 85 33     STA ram_blk_id_lo
 C - - - - - 0x02B7E9 0A:B7D9: 85 34     STA ram_blk_id_fr
 C - - - - - 0x02B7EB 0A:B7DB: 85 2F     STA ram_002F_flag
@@ -17117,12 +17135,12 @@ sub_B95C_credit_screen_data:
 C - - - - - 0x02B96C 0A:B95C: AD A0 07  LDA ram_07A0    ; credit screen counter
 C - - - - - 0x02B96F 0A:B95F: 0A        ASL
 C - - - - - 0x02B970 0A:B960: A8        TAY
-C - - - - - 0x02B971 0A:B961: B9 27 BA  LDA tbl_BA27_credit_screen_data,Y
-C - - - - - 0x02B974 0A:B964: 85 08     STA ram_0008_t02E_credit_screen_data
-C - - - - - 0x02B976 0A:B966: B9 28 BA  LDA tbl_BA27_credit_screen_data + $01,Y
-C - - - - - 0x02B979 0A:B969: 85 09     STA ram_0008_t02E_credit_screen_data + $01
+C - - - - - 0x02B971 0A:B961: B9 27 BA  LDA tbl_BA27_credits_screen_data,Y
+C - - - - - 0x02B974 0A:B964: 85 08     STA ram_0008_t02E_credits_screen_data
+C - - - - - 0x02B976 0A:B966: B9 28 BA  LDA tbl_BA27_credits_screen_data + $01,Y
+C - - - - - 0x02B979 0A:B969: 85 09     STA ram_0008_t02E_credits_screen_data + $01
 C - - - - - 0x02B97B 0A:B96B: A0 00     LDY #$00
-C - - - - - 0x02B97D 0A:B96D: 20 95 FB  JSR sub_0x03FBA5
+C - - - - - 0x02B97D 0A:B96D: 20 95 FB  JSR sub_0x03FBA5_get_byte_from_credits_screen_data
 ; bzk optimize, PHA + PLA instead of JSR at 0x02B986
 ; / 10
 C - - - - - 0x02B980 0A:B970: 4A        LSR
@@ -17130,11 +17148,11 @@ C - - - - - 0x02B981 0A:B971: 4A        LSR
 C - - - - - 0x02B982 0A:B972: 4A        LSR
 C - - - - - 0x02B983 0A:B973: 4A        LSR
 C - - - - - 0x02B984 0A:B974: 85 32     STA ram_blk_id_hi
-C - - - - - 0x02B986 0A:B976: 20 95 FB  JSR sub_0x03FBA5
+C - - - - - 0x02B986 0A:B976: 20 95 FB  JSR sub_0x03FBA5_get_byte_from_credits_screen_data
 C - - - - - 0x02B989 0A:B979: 29 0F     AND #$0F
 C - - - - - 0x02B98B 0A:B97B: 85 33     STA ram_blk_id_lo
 C - - - - - 0x02B98D 0A:B97D: C8        INY ; 01
-C - - - - - 0x02B98E 0A:B97E: 20 95 FB  JSR sub_0x03FBA5
+C - - - - - 0x02B98E 0A:B97E: 20 95 FB  JSR sub_0x03FBA5_get_byte_from_credits_screen_data
 ; bzk optimize, PHA + PLA instead of JSR at 0x02B997
 ; / 10
 C - - - - - 0x02B991 0A:B981: 4A        LSR
@@ -17142,7 +17160,7 @@ C - - - - - 0x02B992 0A:B982: 4A        LSR
 C - - - - - 0x02B993 0A:B983: 4A        LSR
 C - - - - - 0x02B994 0A:B984: 4A        LSR
 C - - - - - 0x02B995 0A:B985: 85 34     STA ram_blk_id_fr
-C - - - - - 0x02B997 0A:B987: 20 95 FB  JSR sub_0x03FBA5
+C - - - - - 0x02B997 0A:B987: 20 95 FB  JSR sub_0x03FBA5_get_byte_from_credits_screen_data
 C - - - - - 0x02B99A 0A:B98A: 29 0F     AND #$0F
 C - - - - - 0x02B99C 0A:B98C: 85 57     STA ram_cam_pos_hi
 C - - - - - 0x02B99E 0A:B98E: 29 01     AND #$01
@@ -17150,29 +17168,29 @@ C - - - - - 0x02B9A0 0A:B990: 85 75     STA ram_0075
 C - - - - - 0x02B9A2 0A:B992: A9 00     LDA #$00
 C - - - - - 0x02B9A4 0A:B994: 85 56     STA ram_cam_pos_lo
 C - - - - - 0x02B9A6 0A:B996: C8        INY ; 02
-C - - - - - 0x02B9A7 0A:B997: 20 95 FB  JSR sub_0x03FBA5
+C - - - - - 0x02B9A7 0A:B997: 20 95 FB  JSR sub_0x03FBA5_get_byte_from_credits_screen_data
 C - - - - - 0x02B9AA 0A:B99A: 8D A1 07  STA ram_07A1
 C - - - - - 0x02B9AD 0A:B99D: C8        INY ; 03
-C - - - - - 0x02B9AE 0A:B99E: 20 95 FB  JSR sub_0x03FBA5
+C - - - - - 0x02B9AE 0A:B99E: 20 95 FB  JSR sub_0x03FBA5_get_byte_from_credits_screen_data
 C - - - - - 0x02B9B1 0A:B9A1: 8D 4E 05  STA ram_plr_id
 C - - - - - 0x02B9B4 0A:B9A4: C8        INY ; 04
 C - - - - - 0x02B9B5 0A:B9A5: A2 01     LDX #$01
 loc_B9A7_loop:
-C D 1 - - - 0x02B9B7 0A:B9A7: 20 95 FB  JSR sub_0x03FBA5
+C D 1 - - - 0x02B9B7 0A:B9A7: 20 95 FB  JSR sub_0x03FBA5_get_byte_from_credits_screen_data
 C - - - - - 0x02B9BA 0A:B9AA: C9 FF     CMP #$FF
 C - - - - - 0x02B9BC 0A:B9AC: F0 29     BEQ bra_B9D7_RTS
 C - - - - - 0x02B9BE 0A:B9AE: 9D 8C 04  STA ram_obj_type,X
 C - - - - - 0x02B9C1 0A:B9B1: C8        INY
-C - - - - - 0x02B9C2 0A:B9B2: 20 95 FB  JSR sub_0x03FBA5
+C - - - - - 0x02B9C2 0A:B9B2: 20 95 FB  JSR sub_0x03FBA5_get_byte_from_credits_screen_data
 C - - - - - 0x02B9C5 0A:B9B5: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x02B9C8 0A:B9B8: C8        INY
-C - - - - - 0x02B9C9 0A:B9B9: 20 95 FB  JSR sub_0x03FBA5
+C - - - - - 0x02B9C9 0A:B9B9: 20 95 FB  JSR sub_0x03FBA5_get_byte_from_credits_screen_data
 C - - - - - 0x02B9CC 0A:B9BC: 9D 38 04  STA ram_obj_pos_X_hi,X
 C - - - - - 0x02B9CF 0A:B9BF: C8        INY
-C - - - - - 0x02B9D0 0A:B9C0: 20 95 FB  JSR sub_0x03FBA5
+C - - - - - 0x02B9D0 0A:B9C0: 20 95 FB  JSR sub_0x03FBA5_get_byte_from_credits_screen_data
 C - - - - - 0x02B9D3 0A:B9C3: 9D 1C 04  STA ram_obj_pos_Y_hi,X
 C - - - - - 0x02B9D6 0A:B9C6: C8        INY
-C - - - - - 0x02B9D7 0A:B9C7: 20 95 FB  JSR sub_0x03FBA5
+C - - - - - 0x02B9D7 0A:B9C7: 20 95 FB  JSR sub_0x03FBA5_get_byte_from_credits_screen_data
 C - - - - - 0x02B9DA 0A:B9CA: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x02B9DD 0A:B9CD: C8        INY
 C - - - - - 0x02B9DE 0A:B9CE: A9 01     LDA #$01
@@ -17254,7 +17272,7 @@ tbl_BA0B:
 
 
 
-tbl_BA27_credit_screen_data:
+tbl_BA27_credits_screen_data:
 - D 1 - - - 0x02BA37 0A:BA27: 16 BF     .word _off038_0x03BF26_00_Sypha
 - D 1 - - - 0x02BA39 0A:BA29: 4D BF     .word _off038_0x03BF5D_01_Grant
 - D 1 - - - 0x02BA3B 0A:BA2B: 75 BF     .word _off038_0x03BF85_02_Alucard

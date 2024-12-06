@@ -32,9 +32,9 @@
 
 bra_8001:
 C - - - - - 0x008011 02:8001: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x008013 02:8003: C9 0C     CMP #$0C
+C - - - - - 0x008013 02:8003: C9 0C     CMP #$0C    ; Main Hall
 C - - - - - 0x008015 02:8005: F0 09     BEQ bra_8010
-C - - - - - 0x008017 02:8007: C9 0E     CMP #$0E
+C - - - - - 0x008017 02:8007: C9 0E     CMP #$0E    ; Final Clock Tower
 C - - - - - 0x008019 02:8009: F0 05     BEQ bra_8010
 C - - - - - 0x00801B 02:800B: 60        RTS
 
@@ -818,11 +818,11 @@ C - - - - - 0x0082C9 02:82B9: 9D 54 04  STA ram_0454_obj,X
 C - - - - - 0x0082CC 02:82BC: A9 14     LDA #$14
 C - - - - - 0x0082CE 02:82BE: 85 00     STA ram_0000_t072
 C - - - - - 0x0082D0 02:82C0: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0082D2 02:82C2: C9 05     CMP #$05
-C - - - - - 0x0082D4 02:82C4: F0 04     BEQ bra_82CA
+C - - - - - 0x0082D2 02:82C2: C9 05     CMP #$05    ; Causeway
+C - - - - - 0x0082D4 02:82C4: F0 04     BEQ bra_82CA_05_Causeway
 C - - - - - 0x0082D6 02:82C6: A9 30     LDA #$30
 C - - - - - 0x0082D8 02:82C8: 85 00     STA ram_0000_t072
-bra_82CA:
+bra_82CA_05_Causeway:
 C - - - - - 0x0082DA 02:82CA: AD ED 07  LDA ram_07ED
 C - - - - - 0x0082DD 02:82CD: C5 00     CMP ram_0000_t072
 C - - - - - 0x0082DF 02:82CF: D0 43     BNE bra_8314
@@ -838,10 +838,10 @@ C - - - - - 0x0082F3 02:82E3: 69 00     ADC #$00
 C - - - - - 0x0082F5 02:82E5: 85 01     STA ram_0001_t073_hi
 C - - - - - 0x0082F7 02:82E7: A0 00     LDY #$00
 C - - - - - 0x0082F9 02:82E9: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0082FB 02:82EB: C9 05     CMP #$05
-C - - - - - 0x0082FD 02:82ED: F0 02     BEQ bra_82F1
+C - - - - - 0x0082FB 02:82EB: C9 05     CMP #$05    ; Causeway
+C - - - - - 0x0082FD 02:82ED: F0 02     BEQ bra_82F1_05_Causeway
 C - - - - - 0x0082FF 02:82EF: A0 02     LDY #$02
-bra_82F1:
+bra_82F1_05_Causeway:
 C - - - - - 0x008301 02:82F1: A5 00     LDA ram_0000_t073_lo
 C - - - - - 0x008303 02:82F3: 38        SEC
 C - - - - - 0x008304 02:82F4: F9 FA 83  SBC tbl_83FA,Y
@@ -933,11 +933,11 @@ C - - - - - 0x0083AC 02:839C: 90 0C     BCC bra_83AA
 - - - - - - 0x0083B7 02:83A7: 9D 70 04  STA ram_obj_flags,X
 bra_83AA:
 C - - - - - 0x0083BA 02:83AA: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0083BC 02:83AC: C9 05     CMP #$05
-C - - - - - 0x0083BE 02:83AE: F0 04     BEQ bra_83B4
+C - - - - - 0x0083BC 02:83AC: C9 05     CMP #$05    ; Causeway
+C - - - - - 0x0083BE 02:83AE: F0 04     BEQ bra_83B4_05_Causeway
 C - - - - - 0x0083C0 02:83B0: A9 0F     LDA #$0F
 C - - - - - 0x0083C2 02:83B2: D0 02     BNE bra_83B6    ; jmp
-bra_83B4:
+bra_83B4_05_Causeway:
 C - - - - - 0x0083C4 02:83B4: A9 0C     LDA #$0C
 bra_83B6:
 C - - - - - 0x0083C6 02:83B6: 9D 1D 06  STA ram_061D_obj,X
@@ -1416,12 +1416,14 @@ C - - - - - 0x00871A 02:870A: B0 01     BCS bra_870D
 bra_870D:
 C - - - - - 0x00871D 02:870D: 84 04     STY ram_0004_t017
 C - - - - - 0x00871F 02:870F: BC 06 06  LDY ram_obj_config,X
+; check for 0A-02-xx
 C - - - - - 0x008722 02:8712: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x008724 02:8714: C9 0A     CMP #$0A
+C - - - - - 0x008724 02:8714: C9 0A     CMP #$0A    ; Mountain Range
 C - - - - - 0x008726 02:8716: D0 0B     BNE bra_8723
 C - - - - - 0x008728 02:8718: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x00872A 02:871A: C9 02     CMP #$02
 C - - - - - 0x00872C 02:871C: D0 05     BNE bra_8723
+; if 0A-02-xx
 C - - - - - 0x00872E 02:871E: B9 D6 87  LDA tbl_87D6,Y
 C - - - - - 0x008731 02:8721: D0 03     BNE bra_8726    ; jmp
 bra_8723:
@@ -1632,11 +1634,13 @@ C - - - - - 0x008875 02:8865: 20 92 88  JSR sub_8892
 C - - - - - 0x008878 02:8868: BD C1 05  LDA ram_obj_ai_subscript,X
 C - - - - - 0x00887B 02:886B: C9 01     CMP #$01
 C - - - - - 0x00887D 02:886D: F0 1D     BEQ bra_888C
+; check for 0A-00-xx
 C - - - - - 0x00887F 02:886F: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x008881 02:8871: C9 0A     CMP #$0A
+C - - - - - 0x008881 02:8871: C9 0A     CMP #$0A    ; Mountain Range
 C - - - - - 0x008883 02:8873: D0 17     BNE bra_888C
 C - - - - - 0x008885 02:8875: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x008887 02:8877: D0 13     BNE bra_888C
+; if 0A-00-xx
 C - - - - - 0x008889 02:8879: BD 38 04  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x00888C 02:887C: 29 F0     AND #$F0
 C - - - - - 0x00888E 02:887E: C9 80     CMP #$80
@@ -2123,7 +2127,7 @@ loc_8BDD:
 sub_8BDD:
 C D 0 - - - 0x008BED 02:8BDD: A0 28     LDY #$28
 C - - - - - 0x008BEF 02:8BDF: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x008BF1 02:8BE1: C9 0D     CMP #$0D
+C - - - - - 0x008BF1 02:8BE1: C9 0D     CMP #$0D    ; Castle Tower
 C - - - - - 0x008BF3 02:8BE3: D0 02     BNE bra_8BE7
 C - - - - - 0x008BF5 02:8BE5: A0 3C     LDY #$3C
 bra_8BE7:
@@ -2234,11 +2238,11 @@ C - - - - - 0x008C48 02:8C38: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x008C4B 02:8C3B: 9D 45 06  STA ram_obj_0646,X
 C - - - - - 0x008C4E 02:8C3E: 86 17     STX ram_0017_t006_save_X
 C - - - - - 0x008C50 02:8C40: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x008C52 02:8C42: C9 0D     CMP #$0D
-C - - - - - 0x008C54 02:8C44: F0 04     BEQ bra_8C4A
+C - - - - - 0x008C52 02:8C42: C9 0D     CMP #$0D    ; Castle Tower
+C - - - - - 0x008C54 02:8C44: F0 04     BEQ bra_8C4A_0D_Castle_Tower
 C - - - - - 0x008C56 02:8C46: C9 02     CMP #$02
 C - - - - - 0x008C58 02:8C48: D0 07     BNE bra_8C51
-bra_8C4A:
+bra_8C4A_0D_Castle_Tower:
 C - - - - - 0x008C5A 02:8C4A: A5 08     LDA ram_0008_t04C
 C - - - - - 0x008C5C 02:8C4C: 18        CLC
 C - - - - - 0x008C5D 02:8C4D: 69 04     ADC #$04
@@ -3632,7 +3636,7 @@ loc_9652:
 C D 0 - - - 0x009662 02:9652: 85 0E     STA ram_000E_temp   ; ???
 C - - - - - 0x009664 02:9654: 20 00 9B  JSR sub_9B00_prepare_ppu_address
 C - - - - - 0x009667 02:9657: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x009669 02:9659: C9 0C     CMP #$0C
+C - - - - - 0x009669 02:9659: C9 0C     CMP #$0C    ; Main Hall
 C - - - - - 0x00966B 02:965B: D0 03     BNE bra_9660
 C - - - - - 0x00966D 02:965D: 4C F8 96  JMP loc_96F8
 bra_9660:
@@ -3848,7 +3852,8 @@ C - - - - - 0x0097D5 02:97C5: A9 02     LDA #$02
 C - - - - - 0x0097D7 02:97C7: 85 16     STA ram_0016_t00C_loop_counter
 C - - - - - 0x0097D9 02:97C9: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x0097DB 02:97CB: C9 0A     CMP #$0A
-C - - - - - 0x0097DD 02:97CD: 90 07     BCC bra_97D6
+C - - - - - 0x0097DD 02:97CD: 90 07     BCC bra_97D6    ; if 00-09
+; if 0A-0E
 C - - - - - 0x0097DF 02:97CF: A5 09     LDA ram_0009_t022
 C - - - - - 0x0097E1 02:97D1: 18        CLC
 C - - - - - 0x0097E2 02:97D2: 69 03     ADC #$03
@@ -5395,537 +5400,543 @@ tbl_A04F:
 
 
 tbl_A073:
-- D 1 - - - 0x00A083 02:A073: 91 A0     .word _off023_A091_00
-- D 1 - - - 0x00A085 02:A075: 99 A0     .word _off023_A099_01
-- D 1 - - - 0x00A087 02:A077: A5 A0     .word _off023_A0A5_02
-- D 1 - - - 0x00A089 02:A079: AF A0     .word _off023_A0AF_03
-- D 1 - - - 0x00A08B 02:A07B: B9 A0     .word _off023_A0B9_04
-- D 1 - - - 0x00A08D 02:A07D: BF A0     .word _off023_A0BF_05
-- D 1 - - - 0x00A08F 02:A07F: C7 A0     .word _off023_A0C7_06
-- D 1 - - - 0x00A091 02:A081: CD A0     .word _off023_A0CD_07
-- D 1 - - - 0x00A093 02:A083: DB A0     .word _off023_A0DB_08
-- D 1 - - - 0x00A095 02:A085: E5 A0     .word _off023_A0E5_09
-- D 1 - - - 0x00A097 02:A087: E9 A0     .word _off023_A0E9_0A
-- D 1 - - - 0x00A099 02:A089: F7 A0     .word _off023_A0F7_0B
-- D 1 - - - 0x00A09B 02:A08B: FD A0     .word _off023_A0FD_0C
-- D 1 - - - 0x00A09D 02:A08D: 03 A1     .word _off023_A103_0D
-- D 1 - - - 0x00A09F 02:A08F: 0B A1     .word _off023_A10B_0E
+- D 1 - - - 0x00A083 02:A073: 91 A0     .word _off023_A091_00_Warakiya
+- D 1 - - - 0x00A085 02:A075: 99 A0     .word _off023_A099_01_Clock_Tower
+- D 1 - - - 0x00A087 02:A077: A5 A0     .word _off023_A0A5_02_Forest_of_Madness
+- D 1 - - - 0x00A089 02:A079: AF A0     .word _off023_A0AF_03_Ship_of_Fools
+- D 1 - - - 0x00A08B 02:A07B: B9 A0     .word _off023_A0B9_04_Tower_of_Terror
+- D 1 - - - 0x00A08D 02:A07D: BF A0     .word _off023_A0BF_05_Causeway
+- D 1 - - - 0x00A08F 02:A07F: C7 A0     .word _off023_A0C7_06_Murky_Marshes
+- D 1 - - - 0x00A091 02:A081: CD A0     .word _off023_A0CD_07_Caves_of_Alucard
+- D 1 - - - 0x00A093 02:A083: DB A0     .word _off023_A0DB_08_Sunken_City
+- D 1 - - - 0x00A095 02:A085: E5 A0     .word _off023_A0E5_09_Catacombs
+- D 1 - - - 0x00A097 02:A087: E9 A0     .word _off023_A0E9_0A_Mountain_Range
+- D 1 - - - 0x00A099 02:A089: F7 A0     .word _off023_A0F7_0B_Castle_Courtyard
+- D 1 - - - 0x00A09B 02:A08B: FD A0     .word _off023_A0FD_0C_Main_Hall
+- D 1 - - - 0x00A09D 02:A08D: 03 A1     .word _off023_A103_0D_Castle_Tower
+- D 1 - - - 0x00A09F 02:A08F: 0B A1     .word _off023_A10B_0E_Final_Clock_Tower
 
 
 
-_off023_A091_00:
-- D 1 - I - 0x00A0A1 02:A091: 11 A1     .word off_A111_00_00
-- D 1 - I - 0x00A0A3 02:A093: 12 A1     .word off_A112_00_01
-- D 1 - I - 0x00A0A5 02:A095: 16 A1     .word off_A116_00_02
-- D 1 - I - 0x00A0A7 02:A097: 18 A1     .word off_A118_00_03
+_off023_A091_00_Warakiya:
+- D 1 - I - 0x00A0A1 02:A091: 11 A1     .word off_A111_00_00_Warakiya
+- D 1 - I - 0x00A0A3 02:A093: 12 A1     .word off_A112_00_01_Warakiya
+- D 1 - I - 0x00A0A5 02:A095: 16 A1     .word off_A116_00_02_Warakiya
+- D 1 - I - 0x00A0A7 02:A097: 18 A1     .word off_A118_00_03_Warakiya
 
 
 
-_off023_A099_01:
-- D 1 - I - 0x00A0A9 02:A099: 19 A1     .word off_A119_01_00
-- D 1 - I - 0x00A0AB 02:A09B: 1C A1     .word off_A11C_01_01
-- D 1 - I - 0x00A0AD 02:A09D: 1F A1     .word off_A11F_01_02
-- D 1 - I - 0x00A0AF 02:A09F: 22 A1     .word off_A122_01_03
-- D 1 - I - 0x00A0B1 02:A0A1: 25 A1     .word off_A125_01_04
-- D 1 - I - 0x00A0B3 02:A0A3: 28 A1     .word off_A128_01_05
+_off023_A099_01_Clock_Tower:
+- D 1 - I - 0x00A0A9 02:A099: 19 A1     .word off_A119_01_00_Clock_Tower
+- D 1 - I - 0x00A0AB 02:A09B: 1C A1     .word off_A11C_01_01_Clock_Tower
+- D 1 - I - 0x00A0AD 02:A09D: 1F A1     .word off_A11F_01_02_Clock_Tower
+- D 1 - I - 0x00A0AF 02:A09F: 22 A1     .word off_A122_01_03_Clock_Tower
+- D 1 - I - 0x00A0B1 02:A0A1: 25 A1     .word off_A125_01_04_Clock_Tower
+- D 1 - I - 0x00A0B3 02:A0A3: 28 A1     .word off_A128_01_05_Clock_Tower
 
 
 
-_off023_A0A5_02:
-- D 1 - I - 0x00A0B5 02:A0A5: 2B A1     .word off_A12B_02_00
-- D 1 - I - 0x00A0B7 02:A0A7: 2C A1     .word off_A12C_02_01
-- D 1 - I - 0x00A0B9 02:A0A9: 2D A1     .word off_A12D_02_02
-- D 1 - I - 0x00A0BB 02:A0AB: 2F A1     .word off_A12F_02_03
-- D 1 - I - 0x00A0BD 02:A0AD: 31 A1     .word off_A131_02_04
+_off023_A0A5_02_Forest_of_Madness:
+- D 1 - I - 0x00A0B5 02:A0A5: 2B A1     .word off_A12B_02_00_Forest_of_Madness
+- D 1 - I - 0x00A0B7 02:A0A7: 2C A1     .word off_A12C_02_01_Forest_of_Madness
+- D 1 - I - 0x00A0B9 02:A0A9: 2D A1     .word off_A12D_02_02_Forest_of_Madness
+- D 1 - I - 0x00A0BB 02:A0AB: 2F A1     .word off_A12F_02_03_Forest_of_Madness
+- D 1 - I - 0x00A0BD 02:A0AD: 31 A1     .word off_A131_02_04_Forest_of_Madness
 
 
 
-_off023_A0AF_03:
-- D 1 - I - 0x00A0BF 02:A0AF: 33 A1     .word off_A133_03_00
-- D 1 - I - 0x00A0C1 02:A0B1: 36 A1     .word off_A136_03_01
-- D 1 - I - 0x00A0C3 02:A0B3: 38 A1     .word off_A138_03_02
-- D 1 - I - 0x00A0C5 02:A0B5: 3A A1     .word off_A13A_03_03
-- D 1 - I - 0x00A0C7 02:A0B7: 3C A1     .word off_A13C_03_04
+_off023_A0AF_03_Ship_of_Fools:
+- D 1 - I - 0x00A0BF 02:A0AF: 33 A1     .word off_A133_03_00_Ship_of_Fools
+- D 1 - I - 0x00A0C1 02:A0B1: 36 A1     .word off_A136_03_01_Ship_of_Fools
+- D 1 - I - 0x00A0C3 02:A0B3: 38 A1     .word off_A138_03_02_Ship_of_Fools
+- D 1 - I - 0x00A0C5 02:A0B5: 3A A1     .word off_A13A_03_03_Ship_of_Fools
+- D 1 - I - 0x00A0C7 02:A0B7: 3C A1     .word off_A13C_03_04_Ship_of_Fools
 
 
 
-_off023_A0B9_04:
-- D 1 - I - 0x00A0C9 02:A0B9: 3F A1     .word off_A13F_04_00
-- D 1 - I - 0x00A0CB 02:A0BB: 42 A1     .word off_A142_04_01
-- D 1 - I - 0x00A0CD 02:A0BD: 45 A1     .word off_A145_04_02
+_off023_A0B9_04_Tower_of_Terror:
+- D 1 - I - 0x00A0C9 02:A0B9: 3F A1     .word off_A13F_04_00_Tower_of_Terror
+- D 1 - I - 0x00A0CB 02:A0BB: 42 A1     .word off_A142_04_01_Tower_of_Terror
+- D 1 - I - 0x00A0CD 02:A0BD: 45 A1     .word off_A145_04_02_Tower_of_Terror
 
 
 
-_off023_A0BF_05:
-- D 1 - I - 0x00A0CF 02:A0BF: 48 A1     .word off_A148_05_00
-- D 1 - I - 0x00A0D1 02:A0C1: 49 A1     .word off_A149_05_01
-- D 1 - I - 0x00A0D3 02:A0C3: 4A A1     .word off_A14A_05_02
-- D 1 - I - 0x00A0D5 02:A0C5: 4C A1     .word off_A14C_05_03
+_off023_A0BF_05_Causeway:
+- D 1 - I - 0x00A0CF 02:A0BF: 48 A1     .word off_A148_05_00_Causeway
+- D 1 - I - 0x00A0D1 02:A0C1: 49 A1     .word off_A149_05_01_Causeway
+- D 1 - I - 0x00A0D3 02:A0C3: 4A A1     .word off_A14A_05_02_Causeway
+- D 1 - I - 0x00A0D5 02:A0C5: 4C A1     .word off_A14C_05_03_Causeway
 
 
 
-_off023_A0C7_06:
-- D 1 - I - 0x00A0D7 02:A0C7: 4E A1     .word off_A14E_06_00
-- D 1 - I - 0x00A0D9 02:A0C9: 50 A1     .word off_A150_06_01
-- D 1 - I - 0x00A0DB 02:A0CB: 51 A1     .word off_A151_06_02
+_off023_A0C7_06_Murky_Marshes:
+- D 1 - I - 0x00A0D7 02:A0C7: 4E A1     .word off_A14E_06_00_Murky_Marshes
+- D 1 - I - 0x00A0D9 02:A0C9: 50 A1     .word off_A150_06_01_Murky_Marshes
+- D 1 - I - 0x00A0DB 02:A0CB: 51 A1     .word off_A151_06_02_Murky_Marshes
 
 
 
-_off023_A0CD_07:
-- D 1 - I - 0x00A0DD 02:A0CD: 54 A1     .word off_A154_07_00
-- D 1 - I - 0x00A0DF 02:A0CF: 56 A1     .word off_A156_07_01
-- D 1 - I - 0x00A0E1 02:A0D1: 59 A1     .word off_A159_07_02
-- D 1 - I - 0x00A0E3 02:A0D3: 5A A1     .word off_A15A_07_03
-- D 1 - I - 0x00A0E5 02:A0D5: 5C A1     .word off_A15C_07_04
-- D 1 - I - 0x00A0E7 02:A0D7: 5E A1     .word off_A15E_07_05
-- D 1 - I - 0x00A0E9 02:A0D9: 60 A1     .word off_A160_07_06
+_off023_A0CD_07_Caves_of_Alucard:
+- D 1 - I - 0x00A0DD 02:A0CD: 54 A1     .word off_A154_07_00_Caves_of_Alucard
+- D 1 - I - 0x00A0DF 02:A0CF: 56 A1     .word off_A156_07_01_Caves_of_Alucard
+- D 1 - I - 0x00A0E1 02:A0D1: 59 A1     .word off_A159_07_02_Caves_of_Alucard
+- D 1 - I - 0x00A0E3 02:A0D3: 5A A1     .word off_A15A_07_03_Caves_of_Alucard
+- D 1 - I - 0x00A0E5 02:A0D5: 5C A1     .word off_A15C_07_04_Caves_of_Alucard
+- D 1 - I - 0x00A0E7 02:A0D7: 5E A1     .word off_A15E_07_05_Caves_of_Alucard
+- D 1 - I - 0x00A0E9 02:A0D9: 60 A1     .word off_A160_07_06_Caves_of_Alucard
 
 
 
-_off023_A0DB_08:
-- D 1 - I - 0x00A0EB 02:A0DB: 61 A1     .word off_A161_08_00
-- D 1 - I - 0x00A0ED 02:A0DD: 63 A1     .word off_A163_08_01
-- D 1 - I - 0x00A0EF 02:A0DF: 64 A1     .word off_A164_08_02
-- D 1 - I - 0x00A0F1 02:A0E1: 66 A1     .word off_A166_08_03
-- D 1 - I - 0x00A0F3 02:A0E3: 67 A1     .word off_A167_08_04
+_off023_A0DB_08_Sunken_City:
+- D 1 - I - 0x00A0EB 02:A0DB: 61 A1     .word off_A161_08_00_Sunken_City
+- D 1 - I - 0x00A0ED 02:A0DD: 63 A1     .word off_A163_08_01_Sunken_City
+- D 1 - I - 0x00A0EF 02:A0DF: 64 A1     .word off_A164_08_02_Sunken_City
+- D 1 - I - 0x00A0F1 02:A0E1: 66 A1     .word off_A166_08_03_Sunken_City
+- D 1 - I - 0x00A0F3 02:A0E3: 67 A1     .word off_A167_08_04_Sunken_City
 
 
 
-_off023_A0E5_09:
-- D 1 - I - 0x00A0F5 02:A0E5: 68 A1     .word off_A168_09_00
-- D 1 - I - 0x00A0F7 02:A0E7: 6A A1     .word off_A16A_09_01
+_off023_A0E5_09_Catacombs:
+- D 1 - I - 0x00A0F5 02:A0E5: 68 A1     .word off_A168_09_00_Catacombs
+- D 1 - I - 0x00A0F7 02:A0E7: 6A A1     .word off_A16A_09_01_Catacombs
 
 
 
-_off023_A0E9_0A:
-- D 1 - I - 0x00A0F9 02:A0E9: 6D A1     .word off_A16D_0A_00
-- D 1 - I - 0x00A0FB 02:A0EB: 6F A1     .word off_A16F_0A_01
-- D 1 - I - 0x00A0FD 02:A0ED: 70 A1     .word off_A170_0A_02
-- D 1 - I - 0x00A0FF 02:A0EF: 71 A1     .word off_A171_0A_03
-- D 1 - I - 0x00A101 02:A0F1: 73 A1     .word off_A173_0A_04
-- D 1 - I - 0x00A103 02:A0F3: 76 A1     .word off_A176_0A_05
-- D 1 - I - 0x00A105 02:A0F5: 78 A1     .word off_A178_0A_06
+_off023_A0E9_0A_Mountain_Range:
+- D 1 - I - 0x00A0F9 02:A0E9: 6D A1     .word off_A16D_0A_00_Mountain_Range
+- D 1 - I - 0x00A0FB 02:A0EB: 6F A1     .word off_A16F_0A_01_Mountain_Range
+- D 1 - I - 0x00A0FD 02:A0ED: 70 A1     .word off_A170_0A_02_Mountain_Range
+- D 1 - I - 0x00A0FF 02:A0EF: 71 A1     .word off_A171_0A_03_Mountain_Range
+- D 1 - I - 0x00A101 02:A0F1: 73 A1     .word off_A173_0A_04_Mountain_Range
+- D 1 - I - 0x00A103 02:A0F3: 76 A1     .word off_A176_0A_05_Mountain_Range
+- D 1 - I - 0x00A105 02:A0F5: 78 A1     .word off_A178_0A_06_Mountain_Range
 
 
 
-_off023_A0F7_0B:
-- D 1 - I - 0x00A107 02:A0F7: 7B A1     .word off_A17B_0B_00
-- D 1 - I - 0x00A109 02:A0F9: 7D A1     .word off_A17D_0B_01
-- D 1 - I - 0x00A10B 02:A0FB: 7F A1     .word off_A17F_0B_02
+_off023_A0F7_0B_Castle_Courtyard:
+- D 1 - I - 0x00A107 02:A0F7: 7B A1     .word off_A17B_0B_00_Castle_Courtyard
+- D 1 - I - 0x00A109 02:A0F9: 7D A1     .word off_A17D_0B_01_Castle_Courtyard
+- D 1 - I - 0x00A10B 02:A0FB: 7F A1     .word off_A17F_0B_02_Castle_Courtyard
 
 
 
-_off023_A0FD_0C:
-- D 1 - I - 0x00A10D 02:A0FD: 82 A1     .word off_A182_0C_00
-- D 1 - I - 0x00A10F 02:A0FF: 84 A1     .word off_A184_0C_01
-- D 1 - I - 0x00A111 02:A101: 86 A1     .word off_A186_0C_02
+_off023_A0FD_0C_Main_Hall:
+- D 1 - I - 0x00A10D 02:A0FD: 82 A1     .word off_A182_0C_00_Main_Hall
+- D 1 - I - 0x00A10F 02:A0FF: 84 A1     .word off_A184_0C_01_Main_Hall
+- D 1 - I - 0x00A111 02:A101: 86 A1     .word off_A186_0C_02_Main_Hall
 
 
 
-_off023_A103_0D:
-- D 1 - I - 0x00A113 02:A103: 87 A1     .word off_A187_0D_00
-- D 1 - I - 0x00A115 02:A105: 8A A1     .word off_A18A_0D_01
-- D 1 - I - 0x00A117 02:A107: 8D A1     .word off_A18D_0D_02
-- D 1 - I - 0x00A119 02:A109: 90 A1     .word off_A190_0D_03
+_off023_A103_0D_Castle_Tower:
+- D 1 - I - 0x00A113 02:A103: 87 A1     .word off_A187_0D_00_Castle_Tower
+- D 1 - I - 0x00A115 02:A105: 8A A1     .word off_A18A_0D_01_Castle_Tower
+- D 1 - I - 0x00A117 02:A107: 8D A1     .word off_A18D_0D_02_Castle_Tower
+- D 1 - I - 0x00A119 02:A109: 90 A1     .word off_A190_0D_03_Castle_Tower
 
 
 
-_off023_A10B_0E:
-- D 1 - I - 0x00A11B 02:A10B: 92 A1     .word off_A192_0E_00
-- D 1 - I - 0x00A11D 02:A10D: 95 A1     .word off_A195_0E_01
-- D 1 - I - 0x00A11F 02:A10F: 97 A1     .word off_A197_0E_02
+_off023_A10B_0E_Final_Clock_Tower:
+- D 1 - I - 0x00A11B 02:A10B: 92 A1     .word off_A192_0E_00_Final_Clock_Tower
+- D 1 - I - 0x00A11D 02:A10D: 95 A1     .word off_A195_0E_01_Final_Clock_Tower
+- D 1 - I - 0x00A11F 02:A10F: 97 A1     .word off_A197_0E_02_Final_Clock_Tower
 
 
 
-off_A111_00_00:
-- D 1 - I - 0x00A121 02:A111: 00        .byte $00   ; 
+off_A111_00_00_Warakiya:
+- D 1 - I - 0x00A121 02:A111: 00        .byte $00   ; 00 
 
 
 
-off_A112_00_01:
-- D 1 - I - 0x00A122 02:A112: 00        .byte $00   ; 
-- D 1 - I - 0x00A123 02:A113: 00        .byte $00   ; 
-- D 1 - I - 0x00A124 02:A114: 01        .byte $01   ; 
-- D 1 - I - 0x00A125 02:A115: 00        .byte $00   ; 
+off_A112_00_01_Warakiya:
+- D 1 - I - 0x00A122 02:A112: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A123 02:A113: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A124 02:A114: 01        .byte $01   ; 02 
+- D 1 - I - 0x00A125 02:A115: 00        .byte $00   ; 03 
 
 
 
-off_A116_00_02:
-- D 1 - I - 0x00A126 02:A116: 1A        .byte $1A   ; 
-- D 1 - I - 0x00A127 02:A117: 00        .byte $00   ; 
+off_A116_00_02_Warakiya:
+- D 1 - I - 0x00A126 02:A116: 1A        .byte $1A   ; 00 
+- D 1 - I - 0x00A127 02:A117: 00        .byte $00   ; 01 
 
 
 
-off_A118_00_03:
-- D 1 - I - 0x00A128 02:A118: 00        .byte $00   ; 
+off_A118_00_03_Warakiya:
+- D 1 - I - 0x00A128 02:A118: 00        .byte $00   ; 00 
 
 
 
-off_A119_01_00:
-- D 1 - I - 0x00A129 02:A119: 02        .byte $02   ; 
-- D 1 - I - 0x00A12A 02:A11A: 00        .byte $00   ; 
-- D 1 - I - 0x00A12B 02:A11B: 03        .byte $03   ; 
+off_A119_01_00_Clock_Tower:
+- D 1 - I - 0x00A129 02:A119: 02        .byte $02   ; 00 
+- D 1 - I - 0x00A12A 02:A11A: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A12B 02:A11B: 03        .byte $03   ; 02 
 
 
 
-off_A11C_01_01:
-- D 1 - I - 0x00A12C 02:A11C: 04        .byte $04   ; 
-- D 1 - I - 0x00A12D 02:A11D: 05        .byte $05   ; 
-- D 1 - I - 0x00A12E 02:A11E: 06        .byte $06   ; 
+off_A11C_01_01_Clock_Tower:
+- D 1 - I - 0x00A12C 02:A11C: 04        .byte $04   ; 00 
+- D 1 - I - 0x00A12D 02:A11D: 05        .byte $05   ; 01 
+- D 1 - I - 0x00A12E 02:A11E: 06        .byte $06   ; 02 
 
 
 
-off_A11F_01_02:
-- D 1 - I - 0x00A12F 02:A11F: 07        .byte $07   ; 
-- D 1 - I - 0x00A130 02:A120: 08        .byte $08   ; 
-- D 1 - I - 0x00A131 02:A121: 09        .byte $09   ; 
+off_A11F_01_02_Clock_Tower:
+- D 1 - I - 0x00A12F 02:A11F: 07        .byte $07   ; 00 
+- D 1 - I - 0x00A130 02:A120: 08        .byte $08   ; 01 
+- D 1 - I - 0x00A131 02:A121: 09        .byte $09   ; 02 
 
 
 
-off_A122_01_03:
-- D 1 - I - 0x00A132 02:A122: 07        .byte $07   ; 
-- D 1 - I - 0x00A133 02:A123: 08        .byte $08   ; 
-- D 1 - I - 0x00A134 02:A124: 09        .byte $09   ; 
+off_A122_01_03_Clock_Tower:
+- D 1 - I - 0x00A132 02:A122: 07        .byte $07   ; 00 
+- D 1 - I - 0x00A133 02:A123: 08        .byte $08   ; 01 
+- D 1 - I - 0x00A134 02:A124: 09        .byte $09   ; 02 
 
 
 
-off_A125_01_04:
-- D 1 - I - 0x00A135 02:A125: 04        .byte $04   ; 
-- D 1 - I - 0x00A136 02:A126: 05        .byte $05   ; 
-- D 1 - I - 0x00A137 02:A127: 06        .byte $06   ; 
+off_A125_01_04_Clock_Tower:
+- D 1 - I - 0x00A135 02:A125: 04        .byte $04   ; 00 
+- D 1 - I - 0x00A136 02:A126: 05        .byte $05   ; 01 
+- D 1 - I - 0x00A137 02:A127: 06        .byte $06   ; 02 
 
 
 
-off_A128_01_05:
-- D 1 - I - 0x00A138 02:A128: 02        .byte $02   ; 
-- D 1 - I - 0x00A139 02:A129: 00        .byte $00   ; 
-- D 1 - I - 0x00A13A 02:A12A: 03        .byte $03   ; 
+off_A128_01_05_Clock_Tower:
+- D 1 - I - 0x00A138 02:A128: 02        .byte $02   ; 00 
+- D 1 - I - 0x00A139 02:A129: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A13A 02:A12A: 03        .byte $03   ; 02 
 
 
 
-off_A12B_02_00:
-- D 1 - I - 0x00A13B 02:A12B: 0A        .byte $0A   ; 
+off_A12B_02_00_Forest_of_Madness:
+- D 1 - I - 0x00A13B 02:A12B: 0A        .byte $0A   ; 00 
 
 
 
-off_A12C_02_01:
-- D 1 - I - 0x00A13C 02:A12C: 00        .byte $00   ; 
+off_A12C_02_01_Forest_of_Madness:
+- D 1 - I - 0x00A13C 02:A12C: 00        .byte $00   ; 00 
 
 
 
-off_A12D_02_02:
-- D 1 - I - 0x00A13D 02:A12D: 25        .byte $25   ; 
-- D 1 - I - 0x00A13E 02:A12E: 00        .byte $00   ; 
+off_A12D_02_02_Forest_of_Madness:
+- D 1 - I - 0x00A13D 02:A12D: 25        .byte $25   ; 00 
+- D 1 - I - 0x00A13E 02:A12E: 00        .byte $00   ; 01 
 
 
 
-off_A12F_02_03:
-- D 1 - I - 0x00A13F 02:A12F: 00        .byte $00   ; 
-- D 1 - I - 0x00A140 02:A130: 00        .byte $00   ; 
+off_A12F_02_03_Forest_of_Madness:
+- D 1 - I - 0x00A13F 02:A12F: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A140 02:A130: 00        .byte $00   ; 01 
 
 
 
-off_A131_02_04:
-- D 1 - I - 0x00A141 02:A131: 1B        .byte $1B   ; 
-- D 1 - I - 0x00A142 02:A132: 00        .byte $00   ; 
+off_A131_02_04_Forest_of_Madness:
+- D 1 - I - 0x00A141 02:A131: 1B        .byte $1B   ; 00 
+- D 1 - I - 0x00A142 02:A132: 00        .byte $00   ; 01 
 
 
 
-off_A133_03_00:
-- D 1 - I - 0x00A143 02:A133: 00        .byte $00   ; 
-- D 1 - I - 0x00A144 02:A134: 00        .byte $00   ; 
-- D 1 - I - 0x00A145 02:A135: 0B        .byte $0B   ; 
+off_A133_03_00_Ship_of_Fools:
+- D 1 - I - 0x00A143 02:A133: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A144 02:A134: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A145 02:A135: 0B        .byte $0B   ; 02 
 
 
 
-off_A136_03_01:
-- D 1 - I - 0x00A146 02:A136: 1C        .byte $1C   ; 
-- D 1 - I - 0x00A147 02:A137: 00        .byte $00   ; 
+off_A136_03_01_Ship_of_Fools:
+- D 1 - I - 0x00A146 02:A136: 1C        .byte $1C   ; 00 
+- D 1 - I - 0x00A147 02:A137: 00        .byte $00   ; 01 
 
 
 
-off_A138_03_02:
-- D 1 - I - 0x00A148 02:A138: 24        .byte $24   ; 
-- D 1 - I - 0x00A149 02:A139: 00        .byte $00   ; 
+off_A138_03_02_Ship_of_Fools:
+- D 1 - I - 0x00A148 02:A138: 24        .byte $24   ; 00 
+- D 1 - I - 0x00A149 02:A139: 00        .byte $00   ; 01 
 
 
 
-off_A13A_03_03:
-- D 1 - I - 0x00A14A 02:A13A: 1D        .byte $1D   ; 
-- D 1 - I - 0x00A14B 02:A13B: 0C        .byte $0C   ; 
+off_A13A_03_03_Ship_of_Fools:
+- D 1 - I - 0x00A14A 02:A13A: 1D        .byte $1D   ; 00 
+- D 1 - I - 0x00A14B 02:A13B: 0C        .byte $0C   ; 01 
 
 
 
-off_A13C_03_04:
-- D 1 - I - 0x00A14C 02:A13C: 28        .byte $28   ; 
-- D 1 - I - 0x00A14D 02:A13D: 00        .byte $00   ; 
-- D 1 - I - 0x00A14E 02:A13E: 00        .byte $00   ; 
+off_A13C_03_04_Ship_of_Fools:
+- D 1 - I - 0x00A14C 02:A13C: 28        .byte $28   ; 00 
+- D 1 - I - 0x00A14D 02:A13D: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A14E 02:A13E: 00        .byte $00   ; 02 
 
 
 
-off_A13F_04_00:
-- D 1 - I - 0x00A14F 02:A13F: 0D        .byte $0D   ; 
-- D 1 - I - 0x00A150 02:A140: 00        .byte $00   ; 
-- D 1 - I - 0x00A151 02:A141: 1E        .byte $1E   ; 
+off_A13F_04_00_Tower_of_Terror:
+- D 1 - I - 0x00A14F 02:A13F: 0D        .byte $0D   ; 00 
+- D 1 - I - 0x00A150 02:A140: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A151 02:A141: 1E        .byte $1E   ; 02 
 
 
 
-off_A142_04_01:
-- D 1 - I - 0x00A152 02:A142: 00        .byte $00   ; 
-- D 1 - I - 0x00A153 02:A143: 00        .byte $00   ; 
-- D 1 - I - 0x00A154 02:A144: 0E        .byte $0E   ; 
+off_A142_04_01_Tower_of_Terror:
+- D 1 - I - 0x00A152 02:A142: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A153 02:A143: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A154 02:A144: 0E        .byte $0E   ; 02 
 
 
 
-off_A145_04_02:
-- D 1 - I - 0x00A155 02:A145: 00        .byte $00   ; 
-- D 1 - I - 0x00A156 02:A146: 00        .byte $00   ; 
-- D 1 - I - 0x00A157 02:A147: 1F        .byte $1F   ; 
+off_A145_04_02_Tower_of_Terror:
+- D 1 - I - 0x00A155 02:A145: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A156 02:A146: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A157 02:A147: 1F        .byte $1F   ; 02 
 
 
 
-off_A148_05_00:
-- D 1 - I - 0x00A158 02:A148: 00        .byte $00   ; 
+off_A148_05_00_Causeway:
+- D 1 - I - 0x00A158 02:A148: 00        .byte $00   ; 00 
 
 
 
-off_A149_05_01:
-- D 1 - I - 0x00A159 02:A149: 00        .byte $00   ; 
+off_A149_05_01_Causeway:
+- D 1 - I - 0x00A159 02:A149: 00        .byte $00   ; 00 
 
 
 
-off_A14A_05_02:
-- D 1 - I - 0x00A15A 02:A14A: 00        .byte $00   ; 
-- D 1 - I - 0x00A15B 02:A14B: 20        .byte $20   ; 
+off_A14A_05_02_Causeway:
+- D 1 - I - 0x00A15A 02:A14A: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A15B 02:A14B: 20        .byte $20   ; 01 
 
 
 
-off_A14C_05_03:
-- D 1 - I - 0x00A15C 02:A14C: 00        .byte $00   ; 
-- D 1 - I - 0x00A15D 02:A14D: 0F        .byte $0F   ; 
+off_A14C_05_03_Causeway:
+- D 1 - I - 0x00A15C 02:A14C: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A15D 02:A14D: 0F        .byte $0F   ; 01 
 
 
 
-off_A14E_06_00:
-- D 1 - I - 0x00A15E 02:A14E: 21        .byte $21   ; 
-- D 1 - I - 0x00A15F 02:A14F: 00        .byte $00   ; 
+off_A14E_06_00_Murky_Marshes:
+- D 1 - I - 0x00A15E 02:A14E: 21        .byte $21   ; 00 
+- D 1 - I - 0x00A15F 02:A14F: 00        .byte $00   ; 01 
 
 
 
-off_A150_06_01:
-- D 1 - I - 0x00A160 02:A150: 22        .byte $22   ; 
+off_A150_06_01_Murky_Marshes:
+- D 1 - I - 0x00A160 02:A150: 22        .byte $22   ; 00 
 
 
 
-off_A151_06_02:
-- D 1 - I - 0x00A161 02:A151: 00        .byte $00   ; 
-- D 1 - I - 0x00A162 02:A152: 00        .byte $00   ; 
-- D 1 - I - 0x00A163 02:A153: 00        .byte $00   ; 
+off_A151_06_02_Murky_Marshes:
+- D 1 - I - 0x00A161 02:A151: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A162 02:A152: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A163 02:A153: 00        .byte $00   ; 02 
 
 
 
-off_A154_07_00:
-- D 1 - I - 0x00A164 02:A154: 10        .byte $10   ; 
-- D 1 - I - 0x00A165 02:A155: 11        .byte $11   ; 
+off_A154_07_00_Caves_of_Alucard:
+- D 1 - I - 0x00A164 02:A154: 10        .byte $10   ; 00 
+- D 1 - I - 0x00A165 02:A155: 11        .byte $11   ; 01 
 
 
 
-off_A156_07_01:
-- D 1 - I - 0x00A166 02:A156: 00        .byte $00   ; 
-- - - - - - 0x00A167 02:A157: 00        .byte $00   ; 
-- - - - - - 0x00A168 02:A158: 00        .byte $00   ; 
+off_A156_07_01_Caves_of_Alucard:
+- D 1 - I - 0x00A166 02:A156: 00        .byte $00   ; 00 
 
 
+; bzk garbage, no such blk
+- - - - - - 0x00A167 02:A157: 00        .byte $00   ; 01 
+- - - - - - 0x00A168 02:A158: 00        .byte $00   ; 02 
 
-off_A159_07_02:
-- D 1 - I - 0x00A169 02:A159: 12        .byte $12   ; 
 
 
+off_A159_07_02_Caves_of_Alucard:
+- D 1 - I - 0x00A169 02:A159: 12        .byte $12   ; 00 
 
-off_A15A_07_03:
-- D 1 - I - 0x00A16A 02:A15A: 23        .byte $23   ; 
-- - - - - - 0x00A16B 02:A15B: 00        .byte $00   ; 
 
 
+off_A15A_07_03_Caves_of_Alucard:
+- D 1 - I - 0x00A16A 02:A15A: 23        .byte $23   ; 00 
 
-off_A15C_07_04:
-- D 1 - I - 0x00A16C 02:A15C: 13        .byte $13   ; 
-- D 1 - I - 0x00A16D 02:A15D: 00        .byte $00   ; 
 
+; bzk garbage, no such blk
+- - - - - - 0x00A16B 02:A15B: 00        .byte $00   ; 01 
 
 
-off_A15E_07_05:
-- D 1 - I - 0x00A16E 02:A15E: 26        .byte $26   ; 
-- D 1 - I - 0x00A16F 02:A15F: 00        .byte $00   ; 
 
+off_A15C_07_04_Caves_of_Alucard:
+- D 1 - I - 0x00A16C 02:A15C: 13        .byte $13   ; 00 
+- D 1 - I - 0x00A16D 02:A15D: 00        .byte $00   ; 01 
 
 
-off_A160_07_06:
-- D 1 - I - 0x00A170 02:A160: 14        .byte $14   ; 
 
+off_A15E_07_05_Caves_of_Alucard:
+- D 1 - I - 0x00A16E 02:A15E: 26        .byte $26   ; 00 
+- D 1 - I - 0x00A16F 02:A15F: 00        .byte $00   ; 01 
 
 
-off_A161_08_00:
-- D 1 - I - 0x00A171 02:A161: 15        .byte $15   ; 
-- D 1 - I - 0x00A172 02:A162: 16        .byte $16   ; 
 
+off_A160_07_06_Caves_of_Alucard:
+- D 1 - I - 0x00A170 02:A160: 14        .byte $14   ; 00 
 
 
-off_A163_08_01:
-- D 1 - I - 0x00A173 02:A163: 17        .byte $17   ; 
 
+off_A161_08_00_Sunken_City:
+- D 1 - I - 0x00A171 02:A161: 15        .byte $15   ; 00 
+- D 1 - I - 0x00A172 02:A162: 16        .byte $16   ; 01 
 
 
-off_A164_08_02:
-- D 1 - I - 0x00A174 02:A164: 18        .byte $18   ; 
-- D 1 - I - 0x00A175 02:A165: 19        .byte $19   ; 
 
+off_A163_08_01_Sunken_City:
+- D 1 - I - 0x00A173 02:A163: 17        .byte $17   ; 00 
 
 
-off_A166_08_03:
-- D 1 - I - 0x00A176 02:A166: 42        .byte $42   ; 
 
+off_A164_08_02_Sunken_City:
+- D 1 - I - 0x00A174 02:A164: 18        .byte $18   ; 00 
+- D 1 - I - 0x00A175 02:A165: 19        .byte $19   ; 01 
 
 
-off_A167_08_04:
-- D 1 - I - 0x00A177 02:A167: 00        .byte $00   ; 
 
+off_A166_08_03_Sunken_City:
+- D 1 - I - 0x00A176 02:A166: 42        .byte $42   ; 00 
 
 
-off_A168_09_00:
-- D 1 - I - 0x00A178 02:A168: 39        .byte $39   ; 
-- D 1 - I - 0x00A179 02:A169: 00        .byte $00   ; 
 
+off_A167_08_04_Sunken_City:
+- D 1 - I - 0x00A177 02:A167: 00        .byte $00   ; 00 
 
 
-off_A16A_09_01:
-- D 1 - I - 0x00A17A 02:A16A: 00        .byte $00   ; 
-- D 1 - I - 0x00A17B 02:A16B: 3A        .byte $3A   ; 
-- D 1 - I - 0x00A17C 02:A16C: 00        .byte $00   ; 
 
+off_A168_09_00_Catacombs:
+- D 1 - I - 0x00A178 02:A168: 39        .byte $39   ; 00 
+- D 1 - I - 0x00A179 02:A169: 00        .byte $00   ; 01 
 
 
-off_A16D_0A_00:
-- D 1 - I - 0x00A17D 02:A16D: 00        .byte $00   ; 
-- D 1 - I - 0x00A17E 02:A16E: 34        .byte $34   ; 
 
+off_A16A_09_01_Catacombs:
+- D 1 - I - 0x00A17A 02:A16A: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A17B 02:A16B: 3A        .byte $3A   ; 01 
+- D 1 - I - 0x00A17C 02:A16C: 00        .byte $00   ; 02 
 
 
-off_A16F_0A_01:
-- D 1 - I - 0x00A17F 02:A16F: 00        .byte $00   ; 
 
+off_A16D_0A_00_Mountain_Range:
+- D 1 - I - 0x00A17D 02:A16D: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A17E 02:A16E: 34        .byte $34   ; 01 
 
 
-off_A170_0A_02:
-- D 1 - I - 0x00A180 02:A170: 35        .byte $35   ; 
 
+off_A16F_0A_01_Mountain_Range:
+- D 1 - I - 0x00A17F 02:A16F: 00        .byte $00   ; 00 
 
 
-off_A171_0A_03:
-- D 1 - I - 0x00A181 02:A171: 41        .byte $41   ; 
-- D 1 - I - 0x00A182 02:A172: 3D        .byte $3D   ; 
 
+off_A170_0A_02_Mountain_Range:
+- D 1 - I - 0x00A180 02:A170: 35        .byte $35   ; 00 
 
 
-off_A173_0A_04:
-- D 1 - I - 0x00A183 02:A173: 3B        .byte $3B   ; 
-- D 1 - I - 0x00A184 02:A174: 00        .byte $00   ; 
-- D 1 - I - 0x00A185 02:A175: 31        .byte $31   ; 
 
+off_A171_0A_03_Mountain_Range:
+- D 1 - I - 0x00A181 02:A171: 41        .byte $41   ; 00 
+- D 1 - I - 0x00A182 02:A172: 3D        .byte $3D   ; 01 
 
 
-off_A176_0A_05:
-- D 1 - I - 0x00A186 02:A176: 32        .byte $32   ; 
-- D 1 - I - 0x00A187 02:A177: 36        .byte $36   ; 
 
+off_A173_0A_04_Mountain_Range:
+- D 1 - I - 0x00A183 02:A173: 3B        .byte $3B   ; 00 
+- D 1 - I - 0x00A184 02:A174: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A185 02:A175: 31        .byte $31   ; 02 
 
 
-off_A178_0A_06:
-- D 1 - I - 0x00A188 02:A178: 00        .byte $00   ; 
-- D 1 - I - 0x00A189 02:A179: 00        .byte $00   ; 
-- D 1 - I - 0x00A18A 02:A17A: 3E        .byte $3E   ; 
 
+off_A176_0A_05_Mountain_Range:
+- D 1 - I - 0x00A186 02:A176: 32        .byte $32   ; 00 
+- D 1 - I - 0x00A187 02:A177: 36        .byte $36   ; 01 
 
 
-off_A17B_0B_00:
-- D 1 - I - 0x00A18B 02:A17B: 29        .byte $29   ; 
-- D 1 - I - 0x00A18C 02:A17C: 00        .byte $00   ; 
 
+off_A178_0A_06_Mountain_Range:
+- D 1 - I - 0x00A188 02:A178: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A189 02:A179: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A18A 02:A17A: 3E        .byte $3E   ; 02 
 
 
-off_A17D_0B_01:
-- D 1 - I - 0x00A18D 02:A17D: 2A        .byte $2A   ; 
-- D 1 - I - 0x00A18E 02:A17E: 33        .byte $33   ; 
 
+off_A17B_0B_00_Castle_Courtyard:
+- D 1 - I - 0x00A18B 02:A17B: 29        .byte $29   ; 00 
+- D 1 - I - 0x00A18C 02:A17C: 00        .byte $00   ; 01 
 
 
-off_A17F_0B_02:
-- D 1 - I - 0x00A18F 02:A17F: 2B        .byte $2B   ; 
-- D 1 - I - 0x00A190 02:A180: 00        .byte $00   ; 
-- D 1 - I - 0x00A191 02:A181: 00        .byte $00   ; 
 
+off_A17D_0B_01_Castle_Courtyard:
+- D 1 - I - 0x00A18D 02:A17D: 2A        .byte $2A   ; 00 
+- D 1 - I - 0x00A18E 02:A17E: 33        .byte $33   ; 01 
 
 
-off_A182_0C_00:
-- D 1 - I - 0x00A192 02:A182: 00        .byte $00   ; 
-- D 1 - I - 0x00A193 02:A183: 2C        .byte $2C   ; 
 
+off_A17F_0B_02_Castle_Courtyard:
+- D 1 - I - 0x00A18F 02:A17F: 2B        .byte $2B   ; 00 
+- D 1 - I - 0x00A190 02:A180: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A191 02:A181: 00        .byte $00   ; 02 
 
 
-off_A184_0C_01:
-- D 1 - I - 0x00A194 02:A184: 3F        .byte $3F   ; 
-- D 1 - I - 0x00A195 02:A185: 00        .byte $00   ; 
 
+off_A182_0C_00_Main_Hall:
+- D 1 - I - 0x00A192 02:A182: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A193 02:A183: 2C        .byte $2C   ; 01 
 
 
-off_A186_0C_02:
-- D 1 - I - 0x00A196 02:A186: 27        .byte $27   ; 
 
+off_A184_0C_01_Main_Hall:
+- D 1 - I - 0x00A194 02:A184: 3F        .byte $3F   ; 00 
+- D 1 - I - 0x00A195 02:A185: 00        .byte $00   ; 01 
 
 
-off_A187_0D_00:
-- D 1 - I - 0x00A197 02:A187: 00        .byte $00   ; 
-- D 1 - I - 0x00A198 02:A188: 2D        .byte $2D   ; 
-- D 1 - I - 0x00A199 02:A189: 00        .byte $00   ; 
 
+off_A186_0C_02_Main_Hall:
+- D 1 - I - 0x00A196 02:A186: 27        .byte $27   ; 00 
 
 
-off_A18A_0D_01:
-- D 1 - I - 0x00A19A 02:A18A: 3C        .byte $3C   ; 
-- D 1 - I - 0x00A19B 02:A18B: 00        .byte $00   ; 
-- D 1 - I - 0x00A19C 02:A18C: 00        .byte $00   ; 
 
+off_A187_0D_00_Castle_Tower:
+- D 1 - I - 0x00A197 02:A187: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A198 02:A188: 2D        .byte $2D   ; 01 
+- D 1 - I - 0x00A199 02:A189: 00        .byte $00   ; 02 
 
 
-off_A18D_0D_02:
-- D 1 - I - 0x00A19D 02:A18D: 00        .byte $00   ; 
-- D 1 - I - 0x00A19E 02:A18E: 2E        .byte $2E   ; 
-- D 1 - I - 0x00A19F 02:A18F: 2F        .byte $2F   ; 
 
+off_A18A_0D_01_Castle_Tower:
+- D 1 - I - 0x00A19A 02:A18A: 3C        .byte $3C   ; 00 
+- D 1 - I - 0x00A19B 02:A18B: 00        .byte $00   ; 01 
+- D 1 - I - 0x00A19C 02:A18C: 00        .byte $00   ; 02 
 
 
-off_A190_0D_03:
-- D 1 - I - 0x00A1A0 02:A190: 00        .byte $00   ; 
-- D 1 - I - 0x00A1A1 02:A191: 30        .byte $30   ; 
 
+off_A18D_0D_02_Castle_Tower:
+- D 1 - I - 0x00A19D 02:A18D: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A19E 02:A18E: 2E        .byte $2E   ; 01 
+- D 1 - I - 0x00A19F 02:A18F: 2F        .byte $2F   ; 02 
 
 
-off_A192_0E_00:
-- D 1 - I - 0x00A1A2 02:A192: 00        .byte $00   ; 
-- D 1 - I - 0x00A1A3 02:A193: 38        .byte $38   ; 
-- D 1 - I - 0x00A1A4 02:A194: 00        .byte $00   ; 
 
+off_A190_0D_03_Castle_Tower:
+- D 1 - I - 0x00A1A0 02:A190: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A1A1 02:A191: 30        .byte $30   ; 01 
 
 
-off_A195_0E_01:
-- D 1 - I - 0x00A1A5 02:A195: 40        .byte $40   ; 
-- D 1 - I - 0x00A1A6 02:A196: 37        .byte $37   ; 
 
+off_A192_0E_00_Final_Clock_Tower:
+- D 1 - I - 0x00A1A2 02:A192: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A1A3 02:A193: 38        .byte $38   ; 01 
+- D 1 - I - 0x00A1A4 02:A194: 00        .byte $00   ; 02 
 
 
-off_A197_0E_02:
-- D 1 - I - 0x00A1A7 02:A197: 00        .byte $00   ; 
-- D 1 - I - 0x00A1A8 02:A198: 00        .byte $00   ; 
+
+off_A195_0E_01_Final_Clock_Tower:
+- D 1 - I - 0x00A1A5 02:A195: 40        .byte $40   ; 00 
+- D 1 - I - 0x00A1A6 02:A196: 37        .byte $37   ; 01 
+
+
+
+off_A197_0E_02_Final_Clock_Tower:
+- D 1 - I - 0x00A1A7 02:A197: 00        .byte $00   ; 00 
+- D 1 - I - 0x00A1A8 02:A198: 00        .byte $00   ; 01 
 
 
 
@@ -7722,11 +7733,11 @@ C - - - - - 0x00A70C 02:A6FC: D0 EB     BNE bra_A6E9_RTS    ; if not found
 C - - - - - 0x00A70E 02:A6FE: A9 14     LDA #$14
 C - - - - - 0x00A710 02:A700: 8D ED 07  STA ram_07ED
 C - - - - - 0x00A713 02:A703: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00A715 02:A705: C9 05     CMP #$05
-C - - - - - 0x00A717 02:A707: F0 05     BEQ bra_A70E
+C - - - - - 0x00A715 02:A705: C9 05     CMP #$05    ; Causeway
+C - - - - - 0x00A717 02:A707: F0 05     BEQ bra_A70E_05_Causeway
 C - - - - - 0x00A719 02:A709: A9 30     LDA #$30
 C - - - - - 0x00A71B 02:A70B: 8D ED 07  STA ram_07ED
-bra_A70E:
+bra_A70E_05_Causeway:
 C - - - - - 0x00A71E 02:A70E: 20 9D AA  JSR sub_AA9D
 C - - - - - 0x00A721 02:A711: A9 01     LDA #$01
 C - - - - - 0x00A723 02:A713: 9D 06 06  STA ram_obj_config,X
@@ -8134,7 +8145,7 @@ C - - - - - 0x00A990 02:A980: A9 00     LDA #$00
 C - - - - - 0x00A992 02:A982: 85 09     STA ram_0009_t018
 bra_A984_loop:
 C - - - - - 0x00A994 02:A984: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00A996 02:A986: C9 0B     CMP #$0B
+C - - - - - 0x00A996 02:A986: C9 0B     CMP #$0B    ; Castle Courtyard
 C - - - - - 0x00A998 02:A988: D0 07     BNE bra_A991
 - - - - - - 0x00A99A 02:A98A: 20 CF AA  JSR sub_AACF_find_empty_object_slot_03_12
 - - - - - - 0x00A99D 02:A98D: D0 31     BNE bra_A9C0_RTS
@@ -8269,7 +8280,7 @@ C - - - - - 0x00AA48 02:AA38: D0 16     BNE bra_AA50    ; jmp
 ofs_047_AA3A_08:
 ; con_A04F_08
 C - - J - - 0x00AA4A 02:AA3A: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00AA4C 02:AA3C: C9 0A     CMP #$0A
+C - - - - - 0x00AA4C 02:AA3C: C9 0A     CMP #$0A    ; Mountain Range
 C - - - - - 0x00AA4E 02:AA3E: D0 0E     BNE bra_AA4E
 C - - - - - 0x00AA50 02:AA40: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x00AA52 02:AA42: C9 04     CMP #$04

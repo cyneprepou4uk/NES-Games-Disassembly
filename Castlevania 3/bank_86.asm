@@ -409,7 +409,7 @@ C - - - - - 0x00C272 03:8262: 85 12     STA ram_0012_t007_loop_counter
 bra_8264_loop:
 C - - - - - 0x00C274 03:8264: A9 1B     LDA #$1B
 C - - - - - 0x00C276 03:8266: 20 6E 99  JSR sub_996E
-C - - - - - 0x00C279 03:8269: 90 5F     BCC bra_82CA
+C - - - - - 0x00C279 03:8269: 90 5F     BCC bra_82CA_05_Causeway
 C - - - - - 0x00C27B 03:826B: A9 28     LDA #con_obj_flag_08 + con_obj_flag_20
 C - - - - - 0x00C27D 03:826D: 99 70 04  STA ram_obj_flags,Y
 C - - - - - 0x00C280 03:8270: A9 52     LDA #$52
@@ -453,7 +453,7 @@ C - - - - - 0x00C2D2 03:82C2: E6 12     INC ram_0012_t007_loop_counter
 C - - - - - 0x00C2D4 03:82C4: A5 12     LDA ram_0012_t007_loop_counter
 C - - - - - 0x00C2D6 03:82C6: C9 02     CMP #$02
 C - - - - - 0x00C2D8 03:82C8: 90 9A     BCC bra_8264_loop
-bra_82CA:
+bra_82CA_05_Causeway:
 C - - - - - 0x00C2DA 03:82CA: FE 06 06  INC ram_obj_config,X
 C - - - - - 0x00C2DD 03:82CD: A9 58     LDA #$58
 C - - - - - 0x00C2DF 03:82CF: 9D D8 05  STA ram_05D8_obj,X
@@ -882,15 +882,15 @@ C - - - - - 0x00C52C 03:851C: D0 21     BNE bra_853F
 C - - - - - 0x00C52E 03:851E: BD 1D 06  LDA ram_061D_obj,X
 C - - - - - 0x00C531 03:8521: D0 1B     BNE bra_853E_RTS
 C - - - - - 0x00C533 03:8523: A4 32     LDY ram_blk_id_hi
-C - - - - - 0x00C535 03:8525: C0 03     CPY #$03
-C - - - - - 0x00C537 03:8527: F0 0B     BEQ bra_8534
+C - - - - - 0x00C535 03:8525: C0 03     CPY #$03    ; Ship of Fools
+C - - - - - 0x00C537 03:8527: F0 0B     BEQ bra_8534_03_Ship_of_Fools
 C - - - - - 0x00C539 03:8529: A9 30     LDA #$30
-C - - - - - 0x00C53B 03:852B: C0 0A     CPY #$0A
-C - - - - - 0x00C53D 03:852D: F0 02     BEQ bra_8531
+C - - - - - 0x00C53B 03:852B: C0 0A     CPY #$0A    ; Mountain Range
+C - - - - - 0x00C53D 03:852D: F0 02     BEQ bra_8531_0A_Mountain_Range
 C - - - - - 0x00C53F 03:852F: A9 50     LDA #$50
-bra_8531:
+bra_8531_0A_Mountain_Range:
 C - - - - - 0x00C541 03:8531: 9D 1C 04  STA ram_obj_pos_Y_hi,X
-bra_8534:
+bra_8534_03_Ship_of_Fools:
 C - - - - - 0x00C544 03:8534: FE 1D 06  INC ram_061D_obj,X
 C - - - - - 0x00C547 03:8537: A9 10     LDA #con_obj_type_10
 C - - - - - 0x00C549 03:8539: A0 39     LDY #$39
@@ -903,7 +903,7 @@ C - - - - - 0x00C552 03:8542: F0 14     BEQ bra_8558
 C - - - - - 0x00C554 03:8544: C9 01     CMP #$01
 C - - - - - 0x00C556 03:8546: F0 13     BEQ bra_855B
 C - - - - - 0x00C558 03:8548: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00C55A 03:854A: C9 03     CMP #$03
+C - - - - - 0x00C55A 03:854A: C9 03     CMP #$03    ; Ship of Fools
 C - - - - - 0x00C55C 03:854C: F0 10     BEQ bra_855E
 C - - - - - 0x00C55E 03:854E: AD EE 07  LDA ram_07EE
 C - - - - - 0x00C561 03:8551: C9 03     CMP #$03
@@ -1083,7 +1083,7 @@ C - - - - - 0x00C6A6 03:8696: A9 0A     LDA #con_obj_type_0A
 C - - - - - 0x00C6A8 03:8698: A0 06     LDY #$06
 C - - - - - 0x00C6AA 03:869A: 20 5C EF  JSR sub_0x03EF6C_prepare_animation
 C - - - - - 0x00C6AD 03:869D: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00C6AF 03:869F: C9 03     CMP #$03
+C - - - - - 0x00C6AF 03:869F: C9 03     CMP #$03    ; Ship of Fools
 C - - - - - 0x00C6B1 03:86A1: D0 05     BNE bra_86A8
 C - - - - - 0x00C6B3 03:86A3: A9 0C     LDA #con_sound_door
 C - - - - - 0x00C6B5 03:86A5: 20 5F E2  JSR sub_0x03E26F_play_sound
@@ -1373,10 +1373,10 @@ C - - - - - 0x00C8D4 03:88C4: 4C DA 88  JMP loc_88DA_CLC
 sub_88C7:
 C - - - - - 0x00C8D7 03:88C7: A0 00     LDY #$00
 C - - - - - 0x00C8D9 03:88C9: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00C8DB 03:88CB: C9 03     CMP #$03
-C - - - - - 0x00C8DD 03:88CD: F0 02     BEQ bra_88D1
+C - - - - - 0x00C8DB 03:88CB: C9 03     CMP #$03    ; Ship of Fools
+C - - - - - 0x00C8DD 03:88CD: F0 02     BEQ bra_88D1_03_Ship_of_Fools
 C - - - - - 0x00C8DF 03:88CF: A0 02     LDY #$02
-bra_88D1:
+bra_88D1_03_Ship_of_Fools:
 C - - - - - 0x00C8E1 03:88D1: 98        TYA
 C - - - - - 0x00C8E2 03:88D2: 18        CLC
 C - - - - - 0x00C8E3 03:88D3: 6D EE 07  ADC ram_07EE
@@ -1492,10 +1492,10 @@ sub_8956:
     ; ram_0004_t021_table_index
 C - - - - - 0x00C966 03:8956: A0 00     LDY #$00
 C - - - - - 0x00C968 03:8958: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00C96A 03:895A: C9 03     CMP #$03
-C - - - - - 0x00C96C 03:895C: F0 02     BEQ bra_8960
+C - - - - - 0x00C96A 03:895A: C9 03     CMP #$03    ; Ship of Fools
+C - - - - - 0x00C96C 03:895C: F0 02     BEQ bra_8960_03_Ship_of_Fools
 C - - - - - 0x00C96E 03:895E: A0 02     LDY #$02
-bra_8960:
+bra_8960_03_Ship_of_Fools:
 C - - - - - 0x00C970 03:8960: 98        TYA
 C - - - - - 0x00C971 03:8961: 18        CLC
 C - - - - - 0x00C972 03:8962: 6D EE 07  ADC ram_07EE
@@ -1621,11 +1621,11 @@ bra_8A3E_RTS:
 ofs_042_0x00CA4F_0E:
 C - - J - - 0x00CA4F 03:8A3F: 20 3B 99  JSR sub_993B
 C - - - - - 0x00CA52 03:8A42: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00CA54 03:8A44: C9 03     CMP #$03
-C - - - - - 0x00CA56 03:8A46: F0 04     BEQ bra_8A4C
+C - - - - - 0x00CA54 03:8A44: C9 03     CMP #$03    ; Ship of Fools
+C - - - - - 0x00CA56 03:8A46: F0 04     BEQ bra_8A4C_03_Ship_of_Fools
 C - - - - - 0x00CA58 03:8A48: A9 04     LDA #$04
 C - - - - - 0x00CA5A 03:8A4A: D0 02     BNE bra_8A4E    ; jmp
-bra_8A4C:
+bra_8A4C_03_Ship_of_Fools:
 C - - - - - 0x00CA5C 03:8A4C: A9 03     LDA #$03
 bra_8A4E:
 C - - - - - 0x00CA5E 03:8A4E: 20 62 99  JSR sub_9962

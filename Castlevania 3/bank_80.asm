@@ -152,213 +152,277 @@ C - - - - - 0x000073 00:8063: 4C 5D E3  JMP loc_0x03E36D
 
 
 tbl_8066_chr_banks:
-- D 0 - - - 0x000076 00:8066: 84 80     .word _off000_8084_00
-- D 0 - - - 0x000078 00:8068: 94 80     .word _off000_8094_01
-- D 0 - - - 0x00007A 00:806A: AC 80     .word _off000_80AC_02
-- D 0 - - - 0x00007C 00:806C: C0 80     .word _off000_80C0_03
-- D 0 - - - 0x00007E 00:806E: D4 80     .word _off000_80D4_04
-- D 0 - - - 0x000080 00:8070: E0 80     .word _off000_80E0_05
-- D 0 - - - 0x000082 00:8072: F0 80     .word _off000_80F0_06
-- D 0 - - - 0x000084 00:8074: FC 80     .word _off000_80FC_07
-- D 0 - - - 0x000086 00:8076: 18 81     .word _off000_8118_08
-- D 0 - - - 0x000088 00:8078: 2C 81     .word _off000_812C_09
-- D 0 - - - 0x00008A 00:807A: 34 81     .word _off000_8134_0A
-- D 0 - - - 0x00008C 00:807C: 50 81     .word _off000_8150_0B
-- D 0 - - - 0x00008E 00:807E: 5C 81     .word _off000_815C_0C
-- D 0 - - - 0x000090 00:8080: 68 81     .word _off000_8168_0D
-- D 0 - - - 0x000092 00:8082: 78 81     .word _off000_8178_0E
+- D 0 - - - 0x000076 00:8066: 84 80     .word _off000_8084_00_Warakiya
+- D 0 - - - 0x000078 00:8068: 94 80     .word _off000_8094_01_Clock_Tower
+- D 0 - - - 0x00007A 00:806A: AC 80     .word _off000_80AC_02_Forest_of_Madness
+- D 0 - - - 0x00007C 00:806C: C0 80     .word _off000_80C0_03_Ship_of_Fools
+- D 0 - - - 0x00007E 00:806E: D4 80     .word _off000_80D4_04_Tower_of_Terror
+- D 0 - - - 0x000080 00:8070: E0 80     .word _off000_80E0_05_Causeway
+- D 0 - - - 0x000082 00:8072: F0 80     .word _off000_80F0_06_Murky_Marshes
+- D 0 - - - 0x000084 00:8074: FC 80     .word _off000_80FC_07_Caves_of_Alucard
+- D 0 - - - 0x000086 00:8076: 18 81     .word _off000_8118_08_Sunken_City
+- D 0 - - - 0x000088 00:8078: 2C 81     .word _off000_812C_09_Catacombs
+- D 0 - - - 0x00008A 00:807A: 34 81     .word _off000_8134_0A_Mountain_Range
+- D 0 - - - 0x00008C 00:807C: 50 81     .word _off000_8150_0B_Castle_Courtyard
+- D 0 - - - 0x00008E 00:807E: 5C 81     .word _off000_815C_0C_Main_Hall
+- D 0 - - - 0x000090 00:8080: 68 81     .word _off000_8168_0D_Castle_Tower
+- D 0 - - - 0x000092 00:8082: 78 81     .word _off000_8178_0E_Final_Clock_Tower
 
 
 
-_off000_8084_00:
-- D 0 - I - 0x000094 00:8084: 84 81     .word off_8184_00_00_bg
-- D 0 - I - 0x000096 00:8086: E0 82     .word off_82E0_00_00_spr
-- D 0 - I - 0x000098 00:8088: 87 81     .word off_8187_00_01_bg
-- D 0 - I - 0x00009A 00:808A: E2 82     .word off_82E2_00_01_spr
-- D 0 - I - 0x00009C 00:808C: 93 81     .word off_8193_00_02_bg
-- D 0 - I - 0x00009E 00:808E: EA 82     .word off_82EA_00_02_spr
-- D 0 - I - 0x0000A0 00:8090: 99 81     .word off_8199_00_03_bg
-- D 0 - I - 0x0000A2 00:8092: EE 82     .word off_82EE_00_03_spr
+_off000_8084_00_Warakiya:
+; 00 
+- D 0 - I - 0x000094 00:8084: 84 81     .word off_8184_00_00_bg_Warakiya
+- D 0 - I - 0x000096 00:8086: E0 82     .word off_82E0_00_00_spr_Warakiya
+; 01 
+- D 0 - I - 0x000098 00:8088: 87 81     .word off_8187_00_01_bg_Warakiya
+- D 0 - I - 0x00009A 00:808A: E2 82     .word off_82E2_00_01_spr_Warakiya
+; 02 
+- D 0 - I - 0x00009C 00:808C: 93 81     .word off_8193_00_02_bg_Warakiya
+- D 0 - I - 0x00009E 00:808E: EA 82     .word off_82EA_00_02_spr_Warakiya
+; 03 
+- D 0 - I - 0x0000A0 00:8090: 99 81     .word off_8199_00_03_bg_Warakiya
+- D 0 - I - 0x0000A2 00:8092: EE 82     .word off_82EE_00_03_spr_Warakiya
 
 
 
-_off000_8094_01:
-- D 0 - I - 0x0000A4 00:8094: 9C 81     .word off_819C_01_00_bg
-- D 0 - I - 0x0000A6 00:8096: F0 82     .word off_82F0_01_00_spr
-- D 0 - I - 0x0000A8 00:8098: A5 81     .word off_81A5_01_01_bg
-- D 0 - I - 0x0000AA 00:809A: F6 82     .word off_82F6_01_01_spr
-- D 0 - I - 0x0000AC 00:809C: AE 81     .word off_81AE_01_02_bg
-- D 0 - I - 0x0000AE 00:809E: FC 82     .word off_82FC_01_02_spr
-- D 0 - I - 0x0000B0 00:80A0: AE 81     .word off_81AE_01_03_bg
-- D 0 - I - 0x0000B2 00:80A2: 02 83     .word off_8302_01_03_spr
-- D 0 - I - 0x0000B4 00:80A4: A5 81     .word off_81A5_01_04_bg
-- D 0 - I - 0x0000B6 00:80A6: 08 83     .word off_8308_01_04_spr
-- D 0 - I - 0x0000B8 00:80A8: 9C 81     .word off_819C_01_05_bg
-- D 0 - I - 0x0000BA 00:80AA: 0E 83     .word off_830E_01_05_spr
+_off000_8094_01_Clock_Tower:
+; 00 
+- D 0 - I - 0x0000A4 00:8094: 9C 81     .word off_819C_01_00_bg_Clock_Tower
+- D 0 - I - 0x0000A6 00:8096: F0 82     .word off_82F0_01_00_spr_Clock_Tower
+; 01 
+- D 0 - I - 0x0000A8 00:8098: A5 81     .word off_81A5_01_01_bg_Clock_Tower
+- D 0 - I - 0x0000AA 00:809A: F6 82     .word off_82F6_01_01_spr_Clock_Tower
+; 02 
+- D 0 - I - 0x0000AC 00:809C: AE 81     .word off_81AE_01_02_bg_Clock_Tower
+- D 0 - I - 0x0000AE 00:809E: FC 82     .word off_82FC_01_02_spr_Clock_Tower
+; 03 
+- D 0 - I - 0x0000B0 00:80A0: AE 81     .word off_81AE_01_03_bg_Clock_Tower
+- D 0 - I - 0x0000B2 00:80A2: 02 83     .word off_8302_01_03_spr_Clock_Tower
+; 04 
+- D 0 - I - 0x0000B4 00:80A4: A5 81     .word off_81A5_01_04_bg_Clock_Tower
+- D 0 - I - 0x0000B6 00:80A6: 08 83     .word off_8308_01_04_spr_Clock_Tower
+; 05 
+- D 0 - I - 0x0000B8 00:80A8: 9C 81     .word off_819C_01_05_bg_Clock_Tower
+- D 0 - I - 0x0000BA 00:80AA: 0E 83     .word off_830E_01_05_spr_Clock_Tower
 
 
 
-_off000_80AC_02:
-- D 0 - I - 0x0000BC 00:80AC: B7 81     .word off_81B7_02_00_bg
-- D 0 - I - 0x0000BE 00:80AE: 14 83     .word off_8314_02_00_spr
-- D 0 - I - 0x0000C0 00:80B0: BD 81     .word off_81BD_02_01_bg
-- D 0 - I - 0x0000C2 00:80B2: 18 83     .word off_8318_02_01_spr
-- D 0 - I - 0x0000C4 00:80B4: C0 81     .word off_81C0_02_02_bg
-- D 0 - I - 0x0000C6 00:80B6: 1A 83     .word off_831A_02_02_spr
-- D 0 - I - 0x0000C8 00:80B8: C6 81     .word off_81C6_02_03_bg
-- D 0 - I - 0x0000CA 00:80BA: 1E 83     .word off_831E_02_03_spr
-- D 0 - I - 0x0000CC 00:80BC: CF 81     .word off_81CF_02_04_bg
-- D 0 - I - 0x0000CE 00:80BE: 24 83     .word off_8324_02_04_spr
+_off000_80AC_02_Forest_of_Madness:
+; 00 
+- D 0 - I - 0x0000BC 00:80AC: B7 81     .word off_81B7_02_00_bg_Forest_of_Madness
+- D 0 - I - 0x0000BE 00:80AE: 14 83     .word off_8314_02_00_spr_Forest_of_Madness
+; 01 
+- D 0 - I - 0x0000C0 00:80B0: BD 81     .word off_81BD_02_01_bg_Forest_of_Madness
+- D 0 - I - 0x0000C2 00:80B2: 18 83     .word off_8318_02_01_spr_Forest_of_Madness
+; 02 
+- D 0 - I - 0x0000C4 00:80B4: C0 81     .word off_81C0_02_02_bg_Forest_of_Madness
+- D 0 - I - 0x0000C6 00:80B6: 1A 83     .word off_831A_02_02_spr_Forest_of_Madness
+; 03 
+- D 0 - I - 0x0000C8 00:80B8: C6 81     .word off_81C6_02_03_bg_Forest_of_Madness
+- D 0 - I - 0x0000CA 00:80BA: 1E 83     .word off_831E_02_03_spr_Forest_of_Madness
+; 04 
+- D 0 - I - 0x0000CC 00:80BC: CF 81     .word off_81CF_02_04_bg_Forest_of_Madness
+- D 0 - I - 0x0000CE 00:80BE: 24 83     .word off_8324_02_04_spr_Forest_of_Madness
 
 
 
-_off000_80C0_03:
-- D 0 - I - 0x0000D0 00:80C0: D5 81     .word off_81D5_03_00_bg
-- D 0 - I - 0x0000D2 00:80C2: 28 83     .word off_8328_03_00_spr
-- D 0 - I - 0x0000D4 00:80C4: DE 81     .word off_81DE_03_01_bg
-- D 0 - I - 0x0000D6 00:80C6: 2E 83     .word off_832E_03_01_spr
-- D 0 - I - 0x0000D8 00:80C8: E4 81     .word off_81E4_03_02_bg
-- D 0 - I - 0x0000DA 00:80CA: 32 83     .word off_8332_03_02_spr
-- D 0 - I - 0x0000DC 00:80CC: EA 81     .word off_81EA_03_03_bg
-- D 0 - I - 0x0000DE 00:80CE: 36 83     .word off_8336_03_03_spr
-- D 0 - I - 0x0000E0 00:80D0: F0 81     .word off_81F0_03_04_bg
-- D 0 - I - 0x0000E2 00:80D2: 3A 83     .word off_833A_03_04_spr
+_off000_80C0_03_Ship_of_Fools:
+; 00 
+- D 0 - I - 0x0000D0 00:80C0: D5 81     .word off_81D5_03_00_bg_Ship_of_Fools
+- D 0 - I - 0x0000D2 00:80C2: 28 83     .word off_8328_03_00_spr_Ship_of_Fools
+; 01 
+- D 0 - I - 0x0000D4 00:80C4: DE 81     .word off_81DE_03_01_bg_Ship_of_Fools
+- D 0 - I - 0x0000D6 00:80C6: 2E 83     .word off_832E_03_01_spr_Ship_of_Fools
+; 02 
+- D 0 - I - 0x0000D8 00:80C8: E4 81     .word off_81E4_03_02_bg_Ship_of_Fools
+- D 0 - I - 0x0000DA 00:80CA: 32 83     .word off_8332_03_02_spr_Ship_of_Fools
+; 03 
+- D 0 - I - 0x0000DC 00:80CC: EA 81     .word off_81EA_03_03_bg_Ship_of_Fools
+- D 0 - I - 0x0000DE 00:80CE: 36 83     .word off_8336_03_03_spr_Ship_of_Fools
+; 04 
+- D 0 - I - 0x0000E0 00:80D0: F0 81     .word off_81F0_03_04_bg_Ship_of_Fools
+- D 0 - I - 0x0000E2 00:80D2: 3A 83     .word off_833A_03_04_spr_Ship_of_Fools
 
 
 
-_off000_80D4_04:
-- D 0 - I - 0x0000E4 00:80D4: F9 81     .word off_81F9_04_00_bg
-- D 0 - I - 0x0000E6 00:80D6: 40 83     .word off_8340_04_00_spr
-- D 0 - I - 0x0000E8 00:80D8: F9 81     .word off_81F9_04_01_bg
-- D 0 - I - 0x0000EA 00:80DA: 46 83     .word off_8346_04_01_spr
-- D 0 - I - 0x0000EC 00:80DC: 02 82     .word off_8202_04_02_bg
-- D 0 - I - 0x0000EE 00:80DE: 4C 83     .word off_834C_04_02_spr
+_off000_80D4_04_Tower_of_Terror:
+; 00 
+- D 0 - I - 0x0000E4 00:80D4: F9 81     .word off_81F9_04_00_bg_Tower_of_Terror
+- D 0 - I - 0x0000E6 00:80D6: 40 83     .word off_8340_04_00_spr_Tower_of_Terror
+; 01 
+- D 0 - I - 0x0000E8 00:80D8: F9 81     .word off_81F9_04_01_bg_Tower_of_Terror
+- D 0 - I - 0x0000EA 00:80DA: 46 83     .word off_8346_04_01_spr_Tower_of_Terror
+; 02 
+- D 0 - I - 0x0000EC 00:80DC: 02 82     .word off_8202_04_02_bg_Tower_of_Terror
+- D 0 - I - 0x0000EE 00:80DE: 4C 83     .word off_834C_04_02_spr_Tower_of_Terror
 
 
 
-_off000_80E0_05:
-- D 0 - I - 0x0000F0 00:80E0: 0B 82     .word off_820B_05_00_bg
-- D 0 - I - 0x0000F2 00:80E2: 52 83     .word off_8352_05_00_spr
-- D 0 - I - 0x0000F4 00:80E4: 0B 82     .word off_820B_05_01_bg
-- D 0 - I - 0x0000F6 00:80E6: 54 83     .word off_8354_05_01_spr
-- D 0 - I - 0x0000F8 00:80E8: 0E 82     .word off_820E_05_02_bg
-- D 0 - I - 0x0000FA 00:80EA: 56 83     .word off_8356_05_02_spr
-- D 0 - I - 0x0000FC 00:80EC: 0E 82     .word off_820E_05_03_bg
-- D 0 - I - 0x0000FE 00:80EE: 5A 83     .word off_835A_05_03_spr
+_off000_80E0_05_Causeway:
+; 00 
+- D 0 - I - 0x0000F0 00:80E0: 0B 82     .word off_820B_05_00_bg_Causeway
+- D 0 - I - 0x0000F2 00:80E2: 52 83     .word off_8352_05_00_spr_Causeway
+; 01 
+- D 0 - I - 0x0000F4 00:80E4: 0B 82     .word off_820B_05_01_bg_Causeway
+- D 0 - I - 0x0000F6 00:80E6: 54 83     .word off_8354_05_01_spr_Causeway
+; 02 
+- D 0 - I - 0x0000F8 00:80E8: 0E 82     .word off_820E_05_02_bg_Causeway
+- D 0 - I - 0x0000FA 00:80EA: 56 83     .word off_8356_05_02_spr_Causeway
+; 03 
+- D 0 - I - 0x0000FC 00:80EC: 0E 82     .word off_820E_05_03_bg_Causeway
+- D 0 - I - 0x0000FE 00:80EE: 5A 83     .word off_835A_05_03_spr_Causeway
 
 
 
-_off000_80F0_06:
-- D 0 - I - 0x000100 00:80F0: 14 82     .word off_8214_06_00_bg
-- D 0 - I - 0x000102 00:80F2: 5E 83     .word off_835E_06_00_spr
-- D 0 - I - 0x000104 00:80F4: 1A 82     .word off_821A_06_01_bg
-- D 0 - I - 0x000106 00:80F6: 62 83     .word off_8362_06_01_spr
-- D 0 - I - 0x000108 00:80F8: 1D 82     .word off_821D_06_02_bg
-- D 0 - I - 0x00010A 00:80FA: 64 83     .word off_8364_06_02_spr
+_off000_80F0_06_Murky_Marshes:
+; 00 
+- D 0 - I - 0x000100 00:80F0: 14 82     .word off_8214_06_00_bg_Murky_Marshes
+- D 0 - I - 0x000102 00:80F2: 5E 83     .word off_835E_06_00_spr_Murky_Marshes
+; 01 
+- D 0 - I - 0x000104 00:80F4: 1A 82     .word off_821A_06_01_bg_Murky_Marshes
+- D 0 - I - 0x000106 00:80F6: 62 83     .word off_8362_06_01_spr_Murky_Marshes
+; 02 
+- D 0 - I - 0x000108 00:80F8: 1D 82     .word off_821D_06_02_bg_Murky_Marshes
+- D 0 - I - 0x00010A 00:80FA: 64 83     .word off_8364_06_02_spr_Murky_Marshes
 
 
 
-_off000_80FC_07:
-- D 0 - I - 0x00010C 00:80FC: 26 82     .word off_8226_07_00_bg
-- D 0 - I - 0x00010E 00:80FE: 6A 83     .word off_836A_07_00_spr
-- D 0 - I - 0x000110 00:8100: 2C 82     .word off_822C_07_01_bg
-- D 0 - I - 0x000112 00:8102: 6E 83     .word off_836E_07_01_spr
-- D 0 - I - 0x000114 00:8104: 2C 82     .word off_822C_07_02_bg
-- D 0 - I - 0x000116 00:8106: 70 83     .word off_8370_07_02_spr
-- D 0 - I - 0x000118 00:8108: 2C 82     .word off_822C_07_03_bg
-- D 0 - I - 0x00011A 00:810A: 72 83     .word off_8372_07_03_spr
-- D 0 - I - 0x00011C 00:810C: 2F 82     .word off_822F_07_04_bg
-- D 0 - I - 0x00011E 00:810E: 74 83     .word off_8374_07_04_spr
-- D 0 - I - 0x000120 00:8110: 35 82     .word off_8235_07_05_bg
-- D 0 - I - 0x000122 00:8112: 78 83     .word off_8378_07_05_spr
-- D 0 - I - 0x000124 00:8114: 3B 82     .word off_823B_07_06_bg
-- D 0 - I - 0x000126 00:8116: 7C 83     .word off_837C_07_06_spr
+_off000_80FC_07_Caves_of_Alucard:
+; 00 
+- D 0 - I - 0x00010C 00:80FC: 26 82     .word off_8226_07_00_bg_Caves_of_Alucard
+- D 0 - I - 0x00010E 00:80FE: 6A 83     .word off_836A_07_00_spr_Caves_of_Alucard
+; 01 
+- D 0 - I - 0x000110 00:8100: 2C 82     .word off_822C_07_01_bg_Caves_of_Alucard
+- D 0 - I - 0x000112 00:8102: 6E 83     .word off_836E_07_01_spr_Caves_of_Alucard
+; 02 
+- D 0 - I - 0x000114 00:8104: 2C 82     .word off_822C_07_02_bg_Caves_of_Alucard
+- D 0 - I - 0x000116 00:8106: 70 83     .word off_8370_07_02_spr_Caves_of_Alucard
+; 03 
+- D 0 - I - 0x000118 00:8108: 2C 82     .word off_822C_07_03_bg_Caves_of_Alucard
+- D 0 - I - 0x00011A 00:810A: 72 83     .word off_8372_07_03_spr_Caves_of_Alucard
+; 04 
+- D 0 - I - 0x00011C 00:810C: 2F 82     .word off_822F_07_04_bg_Caves_of_Alucard
+- D 0 - I - 0x00011E 00:810E: 74 83     .word off_8374_07_04_spr_Caves_of_Alucard
+; 05 
+- D 0 - I - 0x000120 00:8110: 35 82     .word off_8235_07_05_bg_Caves_of_Alucard
+- D 0 - I - 0x000122 00:8112: 78 83     .word off_8378_07_05_spr_Caves_of_Alucard
+; 06 
+- D 0 - I - 0x000124 00:8114: 3B 82     .word off_823B_07_06_bg_Caves_of_Alucard
+- D 0 - I - 0x000126 00:8116: 7C 83     .word off_837C_07_06_spr_Caves_of_Alucard
 
 
 
-_off000_8118_08:
-- D 0 - I - 0x000128 00:8118: 3E 82     .word off_823E_08_00_bg
-- D 0 - I - 0x00012A 00:811A: 7E 83     .word off_837E_08_00_spr
-- D 0 - I - 0x00012C 00:811C: 44 82     .word off_8244_08_01_bg
-- D 0 - I - 0x00012E 00:811E: 82 83     .word off_8382_08_01_spr
-- D 0 - I - 0x000130 00:8120: 47 82     .word off_8247_08_02_bg
-- D 0 - I - 0x000132 00:8122: 84 83     .word off_8384_08_02_spr
-- D 0 - I - 0x000134 00:8124: 44 82     .word off_8244_08_03_bg
-- D 0 - I - 0x000136 00:8126: 88 83     .word off_8388_08_03_spr
-- D 0 - I - 0x000138 00:8128: 44 82     .word off_8244_08_04_bg
-- D 0 - I - 0x00013A 00:812A: 8A 83     .word off_838A_08_04_spr
+_off000_8118_08_Sunken_City:
+; 00 
+- D 0 - I - 0x000128 00:8118: 3E 82     .word off_823E_08_00_bg_Sunken_City
+- D 0 - I - 0x00012A 00:811A: 7E 83     .word off_837E_08_00_spr_Sunken_City
+; 01 
+- D 0 - I - 0x00012C 00:811C: 44 82     .word off_8244_08_01_bg_Sunken_City
+- D 0 - I - 0x00012E 00:811E: 82 83     .word off_8382_08_01_spr_Sunken_City
+; 02 
+- D 0 - I - 0x000130 00:8120: 47 82     .word off_8247_08_02_bg_Sunken_City
+- D 0 - I - 0x000132 00:8122: 84 83     .word off_8384_08_02_spr_Sunken_City
+; 03 
+- D 0 - I - 0x000134 00:8124: 44 82     .word off_8244_08_03_bg_Sunken_City
+- D 0 - I - 0x000136 00:8126: 88 83     .word off_8388_08_03_spr_Sunken_City
+; 04 
+- D 0 - I - 0x000138 00:8128: 44 82     .word off_8244_08_04_bg_Sunken_City
+- D 0 - I - 0x00013A 00:812A: 8A 83     .word off_838A_08_04_spr_Sunken_City
 
 
 
-_off000_812C_09:
-- D 0 - I - 0x00013C 00:812C: 4D 82     .word off_824D_09_00_bg
-- D 0 - I - 0x00013E 00:812E: 8C 83     .word off_838C_09_00_spr
-- D 0 - I - 0x000140 00:8130: 53 82     .word off_8253_09_01_bg
-- D 0 - I - 0x000142 00:8132: 90 83     .word off_8390_09_01_spr
+_off000_812C_09_Catacombs:
+; 00 
+- D 0 - I - 0x00013C 00:812C: 4D 82     .word off_824D_09_00_bg_Catacombs
+- D 0 - I - 0x00013E 00:812E: 8C 83     .word off_838C_09_00_spr_Catacombs
+; 01 
+- D 0 - I - 0x000140 00:8130: 53 82     .word off_8253_09_01_bg_Catacombs
+- D 0 - I - 0x000142 00:8132: 90 83     .word off_8390_09_01_spr_Catacombs
 
 
 
-_off000_8134_0A:
-- D 0 - I - 0x000144 00:8134: 5C 82     .word off_825C_0A_00_bg
-- D 0 - I - 0x000146 00:8136: 96 83     .word off_8396_0A_00_spr
-- D 0 - I - 0x000148 00:8138: 62 82     .word off_8262_0A_01_bg
-- D 0 - I - 0x00014A 00:813A: 9A 83     .word off_839A_0A_01_spr
-- D 0 - I - 0x00014C 00:813C: 65 82     .word off_8265_0A_02_bg
-- D 0 - I - 0x00014E 00:813E: 9C 83     .word off_839C_0A_02_spr
-- D 0 - I - 0x000150 00:8140: 68 82     .word off_8268_0A_03_bg
-- D 0 - I - 0x000152 00:8142: 9E 83     .word off_839E_0A_03_spr
-- D 0 - I - 0x000154 00:8144: 6E 82     .word off_826E_0A_04_bg
-- D 0 - I - 0x000156 00:8146: A2 83     .word off_83A2_0A_04_spr
-- D 0 - I - 0x000158 00:8148: 77 82     .word off_8277_0A_05_bg
-- D 0 - I - 0x00015A 00:814A: A8 83     .word off_83A8_0A_05_spr
-- D 0 - I - 0x00015C 00:814C: 7D 82     .word off_827D_0A_06_bg
-- D 0 - I - 0x00015E 00:814E: AC 83     .word off_83AC_0A_06_spr
+_off000_8134_0A_Mountain_Range:
+; 00 
+- D 0 - I - 0x000144 00:8134: 5C 82     .word off_825C_0A_00_bg_Mountain_Range
+- D 0 - I - 0x000146 00:8136: 96 83     .word off_8396_0A_00_spr_Mountain_Range
+; 01 
+- D 0 - I - 0x000148 00:8138: 62 82     .word off_8262_0A_01_bg_Mountain_Range
+- D 0 - I - 0x00014A 00:813A: 9A 83     .word off_839A_0A_01_spr_Mountain_Range
+; 02 
+- D 0 - I - 0x00014C 00:813C: 65 82     .word off_8265_0A_02_bg_Mountain_Range
+- D 0 - I - 0x00014E 00:813E: 9C 83     .word off_839C_0A_02_spr_Mountain_Range
+; 03 
+- D 0 - I - 0x000150 00:8140: 68 82     .word off_8268_0A_03_bg_Mountain_Range
+- D 0 - I - 0x000152 00:8142: 9E 83     .word off_839E_0A_03_spr_Mountain_Range
+; 04 
+- D 0 - I - 0x000154 00:8144: 6E 82     .word off_826E_0A_04_bg_Mountain_Range
+- D 0 - I - 0x000156 00:8146: A2 83     .word off_83A2_0A_04_spr_Mountain_Range
+; 05 
+- D 0 - I - 0x000158 00:8148: 77 82     .word off_8277_0A_05_bg_Mountain_Range
+- D 0 - I - 0x00015A 00:814A: A8 83     .word off_83A8_0A_05_spr_Mountain_Range
+; 06 
+- D 0 - I - 0x00015C 00:814C: 7D 82     .word off_827D_0A_06_bg_Mountain_Range
+- D 0 - I - 0x00015E 00:814E: AC 83     .word off_83AC_0A_06_spr_Mountain_Range
 
 
 
-_off000_8150_0B:
-- D 0 - I - 0x000160 00:8150: 86 82     .word off_8286_0B_00_bg
-- D 0 - I - 0x000162 00:8152: B2 83     .word off_83B2_0B_00_spr
-- D 0 - I - 0x000164 00:8154: 8C 82     .word off_828C_0B_01_bg
-- D 0 - I - 0x000166 00:8156: B6 83     .word off_83B6_0B_01_spr
-- D 0 - I - 0x000168 00:8158: 92 82     .word off_8292_0B_02_bg
-- D 0 - I - 0x00016A 00:815A: BA 83     .word off_83BA_0B_02_spr
+_off000_8150_0B_Castle_Courtyard:
+; 00 
+- D 0 - I - 0x000160 00:8150: 86 82     .word off_8286_0B_00_bg_Castle_Courtyard
+- D 0 - I - 0x000162 00:8152: B2 83     .word off_83B2_0B_00_spr_Castle_Courtyard
+; 01 
+- D 0 - I - 0x000164 00:8154: 8C 82     .word off_828C_0B_01_bg_Castle_Courtyard
+- D 0 - I - 0x000166 00:8156: B6 83     .word off_83B6_0B_01_spr_Castle_Courtyard
+; 02 
+- D 0 - I - 0x000168 00:8158: 92 82     .word off_8292_0B_02_bg_Castle_Courtyard
+- D 0 - I - 0x00016A 00:815A: BA 83     .word off_83BA_0B_02_spr_Castle_Courtyard
 
 
 
-_off000_815C_0C:
-- D 0 - I - 0x00016C 00:815C: 9B 82     .word off_829B_0C_00_bg
-- D 0 - I - 0x00016E 00:815E: C0 83     .word off_83C0_0C_00_spr
-- D 0 - I - 0x000170 00:8160: A1 82     .word off_82A1_0C_01_bg
-- D 0 - I - 0x000172 00:8162: C4 83     .word off_83C4_0C_01_spr
-- D 0 - I - 0x000174 00:8164: A7 82     .word off_82A7_0C_02_bg
-- D 0 - I - 0x000176 00:8166: C8 83     .word off_83C8_0C_02_spr
+_off000_815C_0C_Main_Hall:
+; 00 
+- D 0 - I - 0x00016C 00:815C: 9B 82     .word off_829B_0C_00_bg_Main_Hall
+- D 0 - I - 0x00016E 00:815E: C0 83     .word off_83C0_0C_00_spr_Main_Hall
+; 01 
+- D 0 - I - 0x000170 00:8160: A1 82     .word off_82A1_0C_01_bg_Main_Hall
+- D 0 - I - 0x000172 00:8162: C4 83     .word off_83C4_0C_01_spr_Main_Hall
+; 02 
+- D 0 - I - 0x000174 00:8164: A7 82     .word off_82A7_0C_02_bg_Main_Hall
+- D 0 - I - 0x000176 00:8166: C8 83     .word off_83C8_0C_02_spr_Main_Hall
 
 
 
-_off000_8168_0D:
-- D 0 - I - 0x000178 00:8168: AA 82     .word off_82AA_0D_00_bg
-- D 0 - I - 0x00017A 00:816A: CA 83     .word off_83CA_0D_00_spr
-- D 0 - I - 0x00017C 00:816C: B3 82     .word off_82B3_0D_01_bg
-- D 0 - I - 0x00017E 00:816E: D0 83     .word off_83D0_0D_01_spr
-- D 0 - I - 0x000180 00:8170: BC 82     .word off_82BC_0D_02_bg
-- D 0 - I - 0x000182 00:8172: D6 83     .word off_83D6_0D_02_spr
-- D 0 - I - 0x000184 00:8174: C5 82     .word off_82C5_0D_03_bg
-- D 0 - I - 0x000186 00:8176: DC 83     .word off_83DC_0D_03_spr
+_off000_8168_0D_Castle_Tower:
+; 00 
+- D 0 - I - 0x000178 00:8168: AA 82     .word off_82AA_0D_00_bg_Castle_Tower
+- D 0 - I - 0x00017A 00:816A: CA 83     .word off_83CA_0D_00_spr_Castle_Tower
+; 01 
+- D 0 - I - 0x00017C 00:816C: B3 82     .word off_82B3_0D_01_bg_Castle_Tower
+- D 0 - I - 0x00017E 00:816E: D0 83     .word off_83D0_0D_01_spr_Castle_Tower
+; 02 
+- D 0 - I - 0x000180 00:8170: BC 82     .word off_82BC_0D_02_bg_Castle_Tower
+- D 0 - I - 0x000182 00:8172: D6 83     .word off_83D6_0D_02_spr_Castle_Tower
+; 03 
+- D 0 - I - 0x000184 00:8174: C5 82     .word off_82C5_0D_03_bg_Castle_Tower
+- D 0 - I - 0x000186 00:8176: DC 83     .word off_83DC_0D_03_spr_Castle_Tower
 
 
 
-_off000_8178_0E:
-- D 0 - I - 0x000188 00:8178: CB 82     .word off_82CB_0E_00_bg
-- D 0 - I - 0x00018A 00:817A: E0 83     .word off_83E0_0E_00_spr
-- D 0 - I - 0x00018C 00:817C: D4 82     .word off_82D4_0E_01_bg
-- D 0 - I - 0x00018E 00:817E: E6 83     .word off_83E6_0E_01_spr
-- D 0 - I - 0x000190 00:8180: DA 82     .word off_82DA_0E_02_bg
-- D 0 - I - 0x000192 00:8182: EA 83     .word off_83EA_0E_02_spr
+_off000_8178_0E_Final_Clock_Tower:
+; 00 
+- D 0 - I - 0x000188 00:8178: CB 82     .word off_82CB_0E_00_bg_Final_Clock_Tower
+- D 0 - I - 0x00018A 00:817A: E0 83     .word off_83E0_0E_00_spr_Final_Clock_Tower
+; 01 
+- D 0 - I - 0x00018C 00:817C: D4 82     .word off_82D4_0E_01_bg_Final_Clock_Tower
+- D 0 - I - 0x00018E 00:817E: E6 83     .word off_83E6_0E_01_spr_Final_Clock_Tower
+; 02 
+- D 0 - I - 0x000190 00:8180: DA 82     .word off_82DA_0E_02_bg_Final_Clock_Tower
+- D 0 - I - 0x000192 00:8182: EA 83     .word off_83EA_0E_02_spr_Final_Clock_Tower
 
 
 
-off_8184_00_00_bg:
+off_8184_00_00_bg_Warakiya:
 ; 00 
 - D 0 - I - 0x000194 00:8184: 45        .byte con_chr_bank_bg + $45   ; 
 - D 0 - I - 0x000195 00:8185: 47        .byte con_chr_bank_bg + $47   ; 
@@ -366,7 +430,7 @@ off_8184_00_00_bg:
 
 
 
-off_8187_00_01_bg:
+off_8187_00_01_bg_Warakiya:
 ; 00 
 - D 0 - I - 0x000197 00:8187: 45        .byte con_chr_bank_bg + $45   ; 
 - D 0 - I - 0x000198 00:8188: 47        .byte con_chr_bank_bg + $47   ; 
@@ -386,7 +450,7 @@ off_8187_00_01_bg:
 
 
 
-off_8193_00_02_bg:
+off_8193_00_02_bg_Warakiya:
 ; 00 
 - D 0 - I - 0x0001A3 00:8193: 48        .byte con_chr_bank_bg + $48   ; 
 - D 0 - I - 0x0001A4 00:8194: 47        .byte con_chr_bank_bg + $47   ; 
@@ -398,7 +462,7 @@ off_8193_00_02_bg:
 
 
 
-off_8199_00_03_bg:
+off_8199_00_03_bg_Warakiya:
 ; 00 
 - D 0 - I - 0x0001A9 00:8199: 48        .byte con_chr_bank_bg + $48   ; 
 - D 0 - I - 0x0001AA 00:819A: 47        .byte con_chr_bank_bg + $47   ; 
@@ -406,8 +470,8 @@ off_8199_00_03_bg:
 
 
 
-off_819C_01_00_bg:
-off_819C_01_05_bg:
+off_819C_01_00_bg_Clock_Tower:
+off_819C_01_05_bg_Clock_Tower:
 ; 00 
 - D 0 - I - 0x0001AC 00:819C: 54        .byte con_chr_bank_bg + $54   ; 
 - D 0 - I - 0x0001AD 00:819D: 49        .byte con_chr_bank_bg + $49   ; 
@@ -423,8 +487,8 @@ off_819C_01_05_bg:
 
 
 
-off_81A5_01_01_bg:
-off_81A5_01_04_bg:
+off_81A5_01_01_bg_Clock_Tower:
+off_81A5_01_04_bg_Clock_Tower:
 ; 00 
 - D 0 - I - 0x0001B5 00:81A5: 54        .byte con_chr_bank_bg + $54   ; 
 - D 0 - I - 0x0001B6 00:81A6: 4A        .byte con_chr_bank_bg + $4A   ; 
@@ -440,8 +504,8 @@ off_81A5_01_04_bg:
 
 
 
-off_81AE_01_02_bg:
-off_81AE_01_03_bg:
+off_81AE_01_02_bg_Clock_Tower:
+off_81AE_01_03_bg_Clock_Tower:
 ; 00 
 - D 0 - I - 0x0001BE 00:81AE: 54        .byte con_chr_bank_bg + $54   ; 
 - D 0 - I - 0x0001BF 00:81AF: 4A        .byte con_chr_bank_bg + $4A   ; 
@@ -457,7 +521,7 @@ off_81AE_01_03_bg:
 
 
 
-off_81B7_02_00_bg:
+off_81B7_02_00_bg_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x0001C7 00:81B7: 4B        .byte con_chr_bank_bg + $4B   ; 
 - D 0 - I - 0x0001C8 00:81B8: 4D        .byte con_chr_bank_bg + $4D   ; 
@@ -469,7 +533,7 @@ off_81B7_02_00_bg:
 
 
 
-off_81BD_02_01_bg:
+off_81BD_02_01_bg_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x0001CD 00:81BD: 4B        .byte con_chr_bank_bg + $4B   ; 
 - D 0 - I - 0x0001CE 00:81BE: 4D        .byte con_chr_bank_bg + $4D   ; 
@@ -477,7 +541,7 @@ off_81BD_02_01_bg:
 
 
 
-off_81C0_02_02_bg:
+off_81C0_02_02_bg_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x0001D0 00:81C0: 4C        .byte con_chr_bank_bg + $4C   ; 
 - D 0 - I - 0x0001D1 00:81C1: 4D        .byte con_chr_bank_bg + $4D   ; 
@@ -489,7 +553,7 @@ off_81C0_02_02_bg:
 
 
 
-off_81C6_02_03_bg:
+off_81C6_02_03_bg_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x0001D6 00:81C6: 4C        .byte con_chr_bank_bg + $4C   ; 
 - D 0 - I - 0x0001D7 00:81C7: 4D        .byte con_chr_bank_bg + $4D   ; 
@@ -505,7 +569,7 @@ off_81C6_02_03_bg:
 
 
 
-off_81CF_02_04_bg:
+off_81CF_02_04_bg_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x0001DF 00:81CF: 4C        .byte con_chr_bank_bg + $4C   ; 
 - D 0 - I - 0x0001E0 00:81D0: 4D        .byte con_chr_bank_bg + $4D   ; 
@@ -517,7 +581,7 @@ off_81CF_02_04_bg:
 
 
 
-off_81D5_03_00_bg:
+off_81D5_03_00_bg_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x0001E5 00:81D5: 4F        .byte con_chr_bank_bg + $4F   ; 
 - D 0 - I - 0x0001E6 00:81D6: 50        .byte con_chr_bank_bg + $50   ; 
@@ -533,7 +597,7 @@ off_81D5_03_00_bg:
 
 
 
-off_81DE_03_01_bg:
+off_81DE_03_01_bg_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x0001EE 00:81DE: 4F        .byte con_chr_bank_bg + $4F   ; 
 - D 0 - I - 0x0001EF 00:81DF: 50        .byte con_chr_bank_bg + $50   ; 
@@ -545,7 +609,7 @@ off_81DE_03_01_bg:
 
 
 
-off_81E4_03_02_bg:
+off_81E4_03_02_bg_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x0001F4 00:81E4: 4F        .byte con_chr_bank_bg + $4F   ; 
 - D 0 - I - 0x0001F5 00:81E5: 50        .byte con_chr_bank_bg + $50   ; 
@@ -557,7 +621,7 @@ off_81E4_03_02_bg:
 
 
 
-off_81EA_03_03_bg:
+off_81EA_03_03_bg_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x0001FA 00:81EA: 4E        .byte con_chr_bank_bg + $4E   ; 
 - D 0 - I - 0x0001FB 00:81EB: 50        .byte con_chr_bank_bg + $50   ; 
@@ -569,7 +633,7 @@ off_81EA_03_03_bg:
 
 
 
-off_81F0_03_04_bg:
+off_81F0_03_04_bg_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x000200 00:81F0: 4F        .byte con_chr_bank_bg + $4F   ; 
 - D 0 - I - 0x000201 00:81F1: 50        .byte con_chr_bank_bg + $50   ; 
@@ -585,8 +649,8 @@ off_81F0_03_04_bg:
 
 
 
-off_81F9_04_00_bg:
-off_81F9_04_01_bg:
+off_81F9_04_00_bg_Tower_of_Terror:
+off_81F9_04_01_bg_Tower_of_Terror:
 ; 00 
 - D 0 - I - 0x000209 00:81F9: 6E        .byte con_chr_bank_bg + $6E   ; 
 - D 0 - I - 0x00020A 00:81FA: 4A        .byte con_chr_bank_bg + $4A   ; 
@@ -602,7 +666,7 @@ off_81F9_04_01_bg:
 
 
 
-off_8202_04_02_bg:
+off_8202_04_02_bg_Tower_of_Terror:
 ; 00 
 - D 0 - I - 0x000212 00:8202: 6E        .byte con_chr_bank_bg + $6E   ; 
 - D 0 - I - 0x000213 00:8203: 4A        .byte con_chr_bank_bg + $4A   ; 
@@ -618,8 +682,8 @@ off_8202_04_02_bg:
 
 
 
-off_820B_05_00_bg:
-off_820B_05_01_bg:
+off_820B_05_00_bg_Causeway:
+off_820B_05_01_bg_Causeway:
 ; 00 
 - D 0 - I - 0x00021B 00:820B: 54        .byte con_chr_bank_bg + $54   ; 
 - D 0 - I - 0x00021C 00:820C: 57        .byte con_chr_bank_bg + $57   ; 
@@ -627,8 +691,8 @@ off_820B_05_01_bg:
 
 
 
-off_820E_05_02_bg:
-off_820E_05_03_bg:
+off_820E_05_02_bg_Causeway:
+off_820E_05_03_bg_Causeway:
 ; 00 
 - D 0 - I - 0x00021E 00:820E: 54        .byte con_chr_bank_bg + $54   ; 
 - D 0 - I - 0x00021F 00:820F: 57        .byte con_chr_bank_bg + $57   ; 
@@ -640,7 +704,7 @@ off_820E_05_03_bg:
 
 
 
-off_8214_06_00_bg:
+off_8214_06_00_bg_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x000224 00:8214: 59        .byte con_chr_bank_bg + $59   ; 
 - D 0 - I - 0x000225 00:8215: 5A        .byte con_chr_bank_bg + $5A   ; 
@@ -652,7 +716,7 @@ off_8214_06_00_bg:
 
 
 
-off_821A_06_01_bg:
+off_821A_06_01_bg_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x00022A 00:821A: 59        .byte con_chr_bank_bg + $59   ; 
 - D 0 - I - 0x00022B 00:821B: 5A        .byte con_chr_bank_bg + $5A   ; 
@@ -660,7 +724,7 @@ off_821A_06_01_bg:
 
 
 
-off_821D_06_02_bg:
+off_821D_06_02_bg_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x00022D 00:821D: 59        .byte con_chr_bank_bg + $59   ; 
 - D 0 - I - 0x00022E 00:821E: 5A        .byte con_chr_bank_bg + $5A   ; 
@@ -676,7 +740,7 @@ off_821D_06_02_bg:
 
 
 
-off_8226_07_00_bg:
+off_8226_07_00_bg_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x000236 00:8226: 5B        .byte con_chr_bank_bg + $5B   ; 
 - D 0 - I - 0x000237 00:8227: 5D        .byte con_chr_bank_bg + $5D   ; 
@@ -688,9 +752,9 @@ off_8226_07_00_bg:
 
 
 
-off_822C_07_01_bg:
-off_822C_07_02_bg:
-off_822C_07_03_bg:
+off_822C_07_01_bg_Caves_of_Alucard:
+off_822C_07_02_bg_Caves_of_Alucard:
+off_822C_07_03_bg_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x00023C 00:822C: 5B        .byte con_chr_bank_bg + $5B   ; 
 - D 0 - I - 0x00023D 00:822D: 5D        .byte con_chr_bank_bg + $5D   ; 
@@ -698,7 +762,7 @@ off_822C_07_03_bg:
 
 
 
-off_822F_07_04_bg:
+off_822F_07_04_bg_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x00023F 00:822F: 5B        .byte con_chr_bank_bg + $5B   ; 
 - D 0 - I - 0x000240 00:8230: 5D        .byte con_chr_bank_bg + $5D   ; 
@@ -710,7 +774,7 @@ off_822F_07_04_bg:
 
 
 
-off_8235_07_05_bg:
+off_8235_07_05_bg_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x000245 00:8235: 5C        .byte con_chr_bank_bg + $5C   ; 
 - D 0 - I - 0x000246 00:8236: 5D        .byte con_chr_bank_bg + $5D   ; 
@@ -722,7 +786,7 @@ off_8235_07_05_bg:
 
 
 
-off_823B_07_06_bg:
+off_823B_07_06_bg_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x00024B 00:823B: 5C        .byte con_chr_bank_bg + $5C   ; 
 - D 0 - I - 0x00024C 00:823C: 5D        .byte con_chr_bank_bg + $5D   ; 
@@ -730,7 +794,7 @@ off_823B_07_06_bg:
 
 
 
-off_823E_08_00_bg:
+off_823E_08_00_bg_Sunken_City:
 ; 00 
 - D 0 - I - 0x00024E 00:823E: 5E        .byte con_chr_bank_bg + $5E   ; 
 - D 0 - I - 0x00024F 00:823F: 60        .byte con_chr_bank_bg + $60   ; 
@@ -742,9 +806,9 @@ off_823E_08_00_bg:
 
 
 
-off_8244_08_01_bg:
-off_8244_08_03_bg:
-off_8244_08_04_bg:
+off_8244_08_01_bg_Sunken_City:
+off_8244_08_03_bg_Sunken_City:
+off_8244_08_04_bg_Sunken_City:
 ; 00 
 - D 0 - I - 0x000254 00:8244: 5E        .byte con_chr_bank_bg + $5E   ; 
 - D 0 - I - 0x000255 00:8245: 60        .byte con_chr_bank_bg + $60   ; 
@@ -752,7 +816,7 @@ off_8244_08_04_bg:
 
 
 
-off_8247_08_02_bg:
+off_8247_08_02_bg_Sunken_City:
 ; 00 
 - D 0 - I - 0x000257 00:8247: 5E        .byte con_chr_bank_bg + $5E   ; 
 - D 0 - I - 0x000258 00:8248: 60        .byte con_chr_bank_bg + $60   ; 
@@ -764,7 +828,7 @@ off_8247_08_02_bg:
 
 
 
-off_824D_09_00_bg:
+off_824D_09_00_bg_Catacombs:
 ; 00 
 - D 0 - I - 0x00025D 00:824D: 61        .byte con_chr_bank_bg + $61   ; 
 - D 0 - I - 0x00025E 00:824E: 62        .byte con_chr_bank_bg + $62   ; 
@@ -776,7 +840,7 @@ off_824D_09_00_bg:
 
 
 
-off_8253_09_01_bg:
+off_8253_09_01_bg_Catacombs:
 ; 00 
 - D 0 - I - 0x000263 00:8253: 61        .byte con_chr_bank_bg + $61   ; 
 - D 0 - I - 0x000264 00:8254: 62        .byte con_chr_bank_bg + $62   ; 
@@ -792,7 +856,7 @@ off_8253_09_01_bg:
 
 
 
-off_825C_0A_00_bg:
+off_825C_0A_00_bg_Mountain_Range:
 ; 00 
 - D 0 - I - 0x00026C 00:825C: 67        .byte con_chr_bank_bg + $67   ; 
 - D 0 - I - 0x00026D 00:825D: 5D        .byte con_chr_bank_bg + $5D   ; 
@@ -804,7 +868,7 @@ off_825C_0A_00_bg:
 
 
 
-off_8262_0A_01_bg:
+off_8262_0A_01_bg_Mountain_Range:
 ; 00 
 - D 0 - I - 0x000272 00:8262: 67        .byte con_chr_bank_bg + $67   ; 
 - D 0 - I - 0x000273 00:8263: 68        .byte con_chr_bank_bg + $68   ; 
@@ -812,7 +876,7 @@ off_8262_0A_01_bg:
 
 
 
-off_8265_0A_02_bg:
+off_8265_0A_02_bg_Mountain_Range:
 ; 00 
 - D 0 - I - 0x000275 00:8265: 67        .byte con_chr_bank_bg + $67   ; 
 - D 0 - I - 0x000276 00:8266: 5D        .byte con_chr_bank_bg + $5D   ; 
@@ -820,7 +884,7 @@ off_8265_0A_02_bg:
 
 
 
-off_8268_0A_03_bg:
+off_8268_0A_03_bg_Mountain_Range:
 ; 00 
 - D 0 - I - 0x000278 00:8268: 67        .byte con_chr_bank_bg + $67   ; 
 - D 0 - I - 0x000279 00:8269: 5D        .byte con_chr_bank_bg + $5D   ; 
@@ -832,7 +896,7 @@ off_8268_0A_03_bg:
 
 
 
-off_826E_0A_04_bg:
+off_826E_0A_04_bg_Mountain_Range:
 ; 00 
 - D 0 - I - 0x00027E 00:826E: 67        .byte con_chr_bank_bg + $67   ; 
 - D 0 - I - 0x00027F 00:826F: 68        .byte con_chr_bank_bg + $68   ; 
@@ -848,7 +912,7 @@ off_826E_0A_04_bg:
 
 
 
-off_8277_0A_05_bg:
+off_8277_0A_05_bg_Mountain_Range:
 ; 00 
 - D 0 - I - 0x000287 00:8277: 67        .byte con_chr_bank_bg + $67   ; 
 - D 0 - I - 0x000288 00:8278: 68        .byte con_chr_bank_bg + $68   ; 
@@ -860,7 +924,7 @@ off_8277_0A_05_bg:
 
 
 
-off_827D_0A_06_bg:
+off_827D_0A_06_bg_Mountain_Range:
 ; 00 
 - D 0 - I - 0x00028D 00:827D: 67        .byte con_chr_bank_bg + $67   ; 
 - D 0 - I - 0x00028E 00:827E: 69        .byte con_chr_bank_bg + $69   ; 
@@ -876,7 +940,7 @@ off_827D_0A_06_bg:
 
 
 
-off_8286_0B_00_bg:
+off_8286_0B_00_bg_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x000296 00:8286: 65        .byte con_chr_bank_bg + $65   ; 
 - D 0 - I - 0x000297 00:8287: 66        .byte con_chr_bank_bg + $66   ; 
@@ -888,7 +952,7 @@ off_8286_0B_00_bg:
 
 
 
-off_828C_0B_01_bg:
+off_828C_0B_01_bg_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x00029C 00:828C: 65        .byte con_chr_bank_bg + $65   ; 
 - D 0 - I - 0x00029D 00:828D: 66        .byte con_chr_bank_bg + $66   ; 
@@ -900,7 +964,7 @@ off_828C_0B_01_bg:
 
 
 
-off_8292_0B_02_bg:
+off_8292_0B_02_bg_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x0002A2 00:8292: 51        .byte con_chr_bank_bg + $51   ; 
 - D 0 - I - 0x0002A3 00:8293: 66        .byte con_chr_bank_bg + $66   ; 
@@ -916,7 +980,7 @@ off_8292_0B_02_bg:
 
 
 
-off_829B_0C_00_bg:
+off_829B_0C_00_bg_Main_Hall:
 ; 00 
 - D 0 - I - 0x0002AB 00:829B: 52        .byte con_chr_bank_bg + $52   ; 
 - D 0 - I - 0x0002AC 00:829C: 6D        .byte con_chr_bank_bg + $6D   ; 
@@ -928,7 +992,7 @@ off_829B_0C_00_bg:
 
 
 
-off_82A1_0C_01_bg:
+off_82A1_0C_01_bg_Main_Hall:
 ; 00 
 - D 0 - I - 0x0002B1 00:82A1: 6C        .byte con_chr_bank_bg + $6C   ; 
 - D 0 - I - 0x0002B2 00:82A2: 6D        .byte con_chr_bank_bg + $6D   ; 
@@ -940,7 +1004,7 @@ off_82A1_0C_01_bg:
 
 
 
-off_82A7_0C_02_bg:
+off_82A7_0C_02_bg_Main_Hall:
 ; 00 
 - D 0 - I - 0x0002B7 00:82A7: 6C        .byte con_chr_bank_bg + $6C   ; 
 - D 0 - I - 0x0002B8 00:82A8: 6D        .byte con_chr_bank_bg + $6D   ; 
@@ -948,7 +1012,7 @@ off_82A7_0C_02_bg:
 
 
 
-off_82AA_0D_00_bg:
+off_82AA_0D_00_bg_Castle_Tower:
 ; 00 
 - D 0 - I - 0x0002BA 00:82AA: 4B        .byte con_chr_bank_bg + $4B   ; 
 - D 0 - I - 0x0002BB 00:82AB: 4D        .byte con_chr_bank_bg + $4D   ; 
@@ -964,7 +1028,7 @@ off_82AA_0D_00_bg:
 
 
 
-off_82B3_0D_01_bg:
+off_82B3_0D_01_bg_Castle_Tower:
 ; 00 
 - D 0 - I - 0x0002C3 00:82B3: 54        .byte con_chr_bank_bg + $54   ; 
 - D 0 - I - 0x0002C4 00:82B4: 64        .byte con_chr_bank_bg + $64   ; 
@@ -980,7 +1044,7 @@ off_82B3_0D_01_bg:
 
 
 
-off_82BC_0D_02_bg:
+off_82BC_0D_02_bg_Castle_Tower:
 ; 00 
 - D 0 - I - 0x0002CC 00:82BC: 54        .byte con_chr_bank_bg + $54   ; 
 - D 0 - I - 0x0002CD 00:82BD: 64        .byte con_chr_bank_bg + $64   ; 
@@ -996,7 +1060,7 @@ off_82BC_0D_02_bg:
 
 
 
-off_82C5_0D_03_bg:
+off_82C5_0D_03_bg_Castle_Tower:
 ; 00 
 - D 0 - I - 0x0002D5 00:82C5: 54        .byte con_chr_bank_bg + $54   ; 
 - D 0 - I - 0x0002D6 00:82C6: 57        .byte con_chr_bank_bg + $57   ; 
@@ -1008,7 +1072,7 @@ off_82C5_0D_03_bg:
 
 
 
-off_82CB_0E_00_bg:
+off_82CB_0E_00_bg_Final_Clock_Tower:
 ; 00 
 - D 0 - I - 0x0002DB 00:82CB: 6A        .byte con_chr_bank_bg + $6A   ; 
 - D 0 - I - 0x0002DC 00:82CC: 6B        .byte con_chr_bank_bg + $6B   ; 
@@ -1024,7 +1088,7 @@ off_82CB_0E_00_bg:
 
 
 
-off_82D4_0E_01_bg:
+off_82D4_0E_01_bg_Final_Clock_Tower:
 ; 00 
 - D 0 - I - 0x0002E4 00:82D4: 6A        .byte con_chr_bank_bg + $6A   ; 
 - D 0 - I - 0x0002E5 00:82D5: 6B        .byte con_chr_bank_bg + $6B   ; 
@@ -1036,7 +1100,7 @@ off_82D4_0E_01_bg:
 
 
 
-off_82DA_0E_02_bg:
+off_82DA_0E_02_bg_Final_Clock_Tower:
 ; 00 
 - D 0 - I - 0x0002EA 00:82DA: 6A        .byte con_chr_bank_bg + $6A   ; 
 - D 0 - I - 0x0002EB 00:82DB: 68        .byte con_chr_bank_bg + $68   ; 
@@ -1048,14 +1112,14 @@ off_82DA_0E_02_bg:
 
 
 
-off_82E0_00_00_spr:
+off_82E0_00_00_spr_Warakiya:
 ; 00 
 - D 0 - I - 0x0002F0 00:82E0: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x0002F1 00:82E1: 0B        .byte con_chr_bank_spr + $0B   ; 
 
 
 
-off_82E2_00_01_spr:
+off_82E2_00_01_spr_Warakiya:
 ; 00 
 - D 0 - I - 0x0002F2 00:82E2: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x0002F3 00:82E3: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1071,7 +1135,7 @@ off_82E2_00_01_spr:
 
 
 
-off_82EA_00_02_spr:
+off_82EA_00_02_spr_Warakiya:
 ; 00 
 - D 0 - I - 0x0002FA 00:82EA: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x0002FB 00:82EB: 0B        .byte con_chr_bank_spr + $0B   ; 
@@ -1081,14 +1145,14 @@ off_82EA_00_02_spr:
 
 
 
-off_82EE_00_03_spr:
+off_82EE_00_03_spr_Warakiya:
 ; 00 
 - D 0 - I - 0x0002FE 00:82EE: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x0002FF 00:82EF: 09        .byte con_chr_bank_spr + $09   ; 
 
 
 
-off_82F0_01_00_spr:
+off_82F0_01_00_spr_Clock_Tower:
 ; 00 
 - D 0 - I - 0x000300 00:82F0: 14        .byte con_chr_bank_spr + $14   ; 
 - D 0 - I - 0x000301 00:82F1: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1101,7 +1165,7 @@ off_82F0_01_00_spr:
 
 
 
-off_82F6_01_01_spr:
+off_82F6_01_01_spr_Clock_Tower:
 ; 00 
 - D 0 - I - 0x000306 00:82F6: 14        .byte con_chr_bank_spr + $14   ; 
 - D 0 - I - 0x000307 00:82F7: 0B        .byte con_chr_bank_spr + $0B   ; 
@@ -1114,7 +1178,7 @@ off_82F6_01_01_spr:
 
 
 
-off_82FC_01_02_spr:
+off_82FC_01_02_spr_Clock_Tower:
 ; 00 
 - D 0 - I - 0x00030C 00:82FC: 14        .byte con_chr_bank_spr + $14   ; 
 - D 0 - I - 0x00030D 00:82FD: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1127,7 +1191,7 @@ off_82FC_01_02_spr:
 
 
 
-off_8302_01_03_spr:
+off_8302_01_03_spr_Clock_Tower:
 ; 00 
 - D 0 - I - 0x000312 00:8302: 14        .byte con_chr_bank_spr + $14   ; 
 - D 0 - I - 0x000313 00:8303: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1140,7 +1204,7 @@ off_8302_01_03_spr:
 
 
 
-off_8308_01_04_spr:
+off_8308_01_04_spr_Clock_Tower:
 ; 00 
 - D 0 - I - 0x000318 00:8308: 14        .byte con_chr_bank_spr + $14   ; 
 - D 0 - I - 0x000319 00:8309: 0B        .byte con_chr_bank_spr + $0B   ; 
@@ -1153,7 +1217,7 @@ off_8308_01_04_spr:
 
 
 
-off_830E_01_05_spr:
+off_830E_01_05_spr_Clock_Tower:
 ; 00 
 - D 0 - I - 0x00031E 00:830E: 14        .byte con_chr_bank_spr + $14   ; 
 - D 0 - I - 0x00031F 00:830F: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1166,7 +1230,7 @@ off_830E_01_05_spr:
 
 
 
-off_8314_02_00_spr:
+off_8314_02_00_spr_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x000324 00:8314: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x000325 00:8315: 0F        .byte con_chr_bank_spr + $0F   ; 
@@ -1176,14 +1240,14 @@ off_8314_02_00_spr:
 
 
 
-off_8318_02_01_spr:
+off_8318_02_01_spr_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x000328 00:8318: 0C        .byte con_chr_bank_spr + $0C   ; 
 - D 0 - I - 0x000329 00:8319: 0D        .byte con_chr_bank_spr + $0D   ; 
 
 
 
-off_831A_02_02_spr:
+off_831A_02_02_spr_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x00032A 00:831A: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x00032B 00:831B: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1193,7 +1257,7 @@ off_831A_02_02_spr:
 
 
 
-off_831E_02_03_spr:
+off_831E_02_03_spr_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x00032E 00:831E: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x00032F 00:831F: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1206,7 +1270,7 @@ off_831E_02_03_spr:
 
 
 
-off_8324_02_04_spr:
+off_8324_02_04_spr_Forest_of_Madness:
 ; 00 
 - D 0 - I - 0x000334 00:8324: 1C        .byte con_chr_bank_spr + $1C   ; 
 - D 0 - I - 0x000335 00:8325: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1216,7 +1280,7 @@ off_8324_02_04_spr:
 
 
 
-off_8328_03_00_spr:
+off_8328_03_00_spr_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x000338 00:8328: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x000339 00:8329: 0F        .byte con_chr_bank_spr + $0F   ; 
@@ -1229,7 +1293,7 @@ off_8328_03_00_spr:
 
 
 
-off_832E_03_01_spr:
+off_832E_03_01_spr_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x00033E 00:832E: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x00033F 00:832F: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1239,7 +1303,7 @@ off_832E_03_01_spr:
 
 
 
-off_8332_03_02_spr:
+off_8332_03_02_spr_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x000342 00:8332: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x000343 00:8333: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1249,7 +1313,7 @@ off_8332_03_02_spr:
 
 
 
-off_8336_03_03_spr:
+off_8336_03_03_spr_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x000346 00:8336: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x000347 00:8337: 0F        .byte con_chr_bank_spr + $0F   ; 
@@ -1259,7 +1323,7 @@ off_8336_03_03_spr:
 
 
 
-off_833A_03_04_spr:
+off_833A_03_04_spr_Ship_of_Fools:
 ; 00 
 - D 0 - I - 0x00034A 00:833A: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x00034B 00:833B: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1272,7 +1336,7 @@ off_833A_03_04_spr:
 
 
 
-off_8340_04_00_spr:
+off_8340_04_00_spr_Tower_of_Terror:
 ; 00 
 - D 0 - I - 0x000350 00:8340: 12        .byte con_chr_bank_spr + $12   ; 
 - D 0 - I - 0x000351 00:8341: 15        .byte con_chr_bank_spr + $15   ; 
@@ -1285,7 +1349,7 @@ off_8340_04_00_spr:
 
 
 
-off_8346_04_01_spr:
+off_8346_04_01_spr_Tower_of_Terror:
 ; 00 
 - D 0 - I - 0x000356 00:8346: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x000357 00:8347: 0B        .byte con_chr_bank_spr + $0B   ; 
@@ -1298,7 +1362,7 @@ off_8346_04_01_spr:
 
 
 
-off_834C_04_02_spr:
+off_834C_04_02_spr_Tower_of_Terror:
 ; 00 
 - D 0 - I - 0x00035C 00:834C: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x00035D 00:834D: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1311,21 +1375,21 @@ off_834C_04_02_spr:
 
 
 
-off_8352_05_00_spr:
+off_8352_05_00_spr_Causeway:
 ; 00 
 - D 0 - I - 0x000362 00:8352: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x000363 00:8353: 09        .byte con_chr_bank_spr + $09   ; 
 
 
 
-off_8354_05_01_spr:
+off_8354_05_01_spr_Causeway:
 ; 00 
 - D 0 - I - 0x000364 00:8354: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x000365 00:8355: 17        .byte con_chr_bank_spr + $17   ; 
 
 
 
-off_8356_05_02_spr:
+off_8356_05_02_spr_Causeway:
 ; 00 
 - D 0 - I - 0x000366 00:8356: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x000367 00:8357: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1335,7 +1399,7 @@ off_8356_05_02_spr:
 
 
 
-off_835A_05_03_spr:
+off_835A_05_03_spr_Causeway:
 ; 00 
 - D 0 - I - 0x00036A 00:835A: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x00036B 00:835B: 0B        .byte con_chr_bank_spr + $0B   ; 
@@ -1345,7 +1409,7 @@ off_835A_05_03_spr:
 
 
 
-off_835E_06_00_spr:
+off_835E_06_00_spr_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x00036E 00:835E: 10        .byte con_chr_bank_spr + $10   ; 
 - D 0 - I - 0x00036F 00:835F: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1355,14 +1419,14 @@ off_835E_06_00_spr:
 
 
 
-off_8362_06_01_spr:
+off_8362_06_01_spr_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x000372 00:8362: 10        .byte con_chr_bank_spr + $10   ; 
 - D 0 - I - 0x000373 00:8363: 09        .byte con_chr_bank_spr + $09   ; 
 
 
 
-off_8364_06_02_spr:
+off_8364_06_02_spr_Murky_Marshes:
 ; 00 
 - D 0 - I - 0x000374 00:8364: 18        .byte con_chr_bank_spr + $18   ; 
 - D 0 - I - 0x000375 00:8365: 19        .byte con_chr_bank_spr + $19   ; 
@@ -1375,7 +1439,7 @@ off_8364_06_02_spr:
 
 
 
-off_836A_07_00_spr:
+off_836A_07_00_spr_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x00037A 00:836A: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x00037B 00:836B: 15        .byte con_chr_bank_spr + $15   ; 
@@ -1385,28 +1449,28 @@ off_836A_07_00_spr:
 
 
 
-off_836E_07_01_spr:
+off_836E_07_01_spr_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x00037E 00:836E: 0E        .byte con_chr_bank_spr + $0E   ; 
 - D 0 - I - 0x00037F 00:836F: 0B        .byte con_chr_bank_spr + $0B   ; 
 
 
 
-off_8370_07_02_spr:
+off_8370_07_02_spr_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x000380 00:8370: 18        .byte con_chr_bank_spr + $18   ; 
 - D 0 - I - 0x000381 00:8371: 15        .byte con_chr_bank_spr + $15   ; 
 
 
 
-off_8372_07_03_spr:
+off_8372_07_03_spr_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x000382 00:8372: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x000383 00:8373: 15        .byte con_chr_bank_spr + $15   ; 
 
 
 
-off_8374_07_04_spr:
+off_8374_07_04_spr_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x000384 00:8374: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x000385 00:8375: 15        .byte con_chr_bank_spr + $15   ; 
@@ -1416,7 +1480,7 @@ off_8374_07_04_spr:
 
 
 
-off_8378_07_05_spr:
+off_8378_07_05_spr_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x000388 00:8378: 0E        .byte con_chr_bank_spr + $0E   ; 
 - D 0 - I - 0x000389 00:8379: 15        .byte con_chr_bank_spr + $15   ; 
@@ -1426,14 +1490,14 @@ off_8378_07_05_spr:
 
 
 
-off_837C_07_06_spr:
+off_837C_07_06_spr_Caves_of_Alucard:
 ; 00 
 - D 0 - I - 0x00038C 00:837C: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x00038D 00:837D: 13        .byte con_chr_bank_spr + $13   ; 
 
 
 
-off_837E_08_00_spr:
+off_837E_08_00_spr_Sunken_City:
 ; 00 
 - D 0 - I - 0x00038E 00:837E: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x00038F 00:837F: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1443,14 +1507,14 @@ off_837E_08_00_spr:
 
 
 
-off_8382_08_01_spr:
+off_8382_08_01_spr_Sunken_City:
 ; 00 
 - D 0 - I - 0x000392 00:8382: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x000393 00:8383: 11        .byte con_chr_bank_spr + $11   ; 
 
 
 
-off_8384_08_02_spr:
+off_8384_08_02_spr_Sunken_City:
 ; 00 
 - D 0 - I - 0x000394 00:8384: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x000395 00:8385: 11        .byte con_chr_bank_spr + $11   ; 
@@ -1460,21 +1524,21 @@ off_8384_08_02_spr:
 
 
 
-off_8388_08_03_spr:
+off_8388_08_03_spr_Sunken_City:
 ; 00 
 - D 0 - I - 0x000398 00:8388: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x000399 00:8389: 11        .byte con_chr_bank_spr + $11   ; 
 
 
 
-off_838A_08_04_spr:
+off_838A_08_04_spr_Sunken_City:
 ; 00 
 - D 0 - I - 0x00039A 00:838A: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x00039B 00:838B: 11        .byte con_chr_bank_spr + $11   ; 
 
 
 
-off_838C_09_00_spr:
+off_838C_09_00_spr_Catacombs:
 ; 00 
 - D 0 - I - 0x00039C 00:838C: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x00039D 00:838D: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1484,7 +1548,7 @@ off_838C_09_00_spr:
 
 
 
-off_8390_09_01_spr:
+off_8390_09_01_spr_Catacombs:
 ; 00 
 - D 0 - I - 0x0003A0 00:8390: 0E        .byte con_chr_bank_spr + $0E   ; 
 - D 0 - I - 0x0003A1 00:8391: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1497,7 +1561,7 @@ off_8390_09_01_spr:
 
 
 
-off_8396_0A_00_spr:
+off_8396_0A_00_spr_Mountain_Range:
 ; 00 
 - D 0 - I - 0x0003A6 00:8396: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x0003A7 00:8397: 0F        .byte con_chr_bank_spr + $0F   ; 
@@ -1507,21 +1571,21 @@ off_8396_0A_00_spr:
 
 
 
-off_839A_0A_01_spr:
+off_839A_0A_01_spr_Mountain_Range:
 ; 00 
 - D 0 - I - 0x0003AA 00:839A: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x0003AB 00:839B: 09        .byte con_chr_bank_spr + $09   ; 
 
 
 
-off_839C_0A_02_spr:
+off_839C_0A_02_spr_Mountain_Range:
 ; 00 
 - D 0 - I - 0x0003AC 00:839C: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x0003AD 00:839D: 15        .byte con_chr_bank_spr + $15   ; 
 
 
 
-off_839E_0A_03_spr:
+off_839E_0A_03_spr_Mountain_Range:
 ; 00 
 - D 0 - I - 0x0003AE 00:839E: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x0003AF 00:839F: 0B        .byte con_chr_bank_spr + $0B   ; 
@@ -1531,7 +1595,7 @@ off_839E_0A_03_spr:
 
 
 
-off_83A2_0A_04_spr:
+off_83A2_0A_04_spr_Mountain_Range:
 ; 00 
 - D 0 - I - 0x0003B2 00:83A2: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x0003B3 00:83A3: 0B        .byte con_chr_bank_spr + $0B   ; 
@@ -1544,7 +1608,7 @@ off_83A2_0A_04_spr:
 
 
 
-off_83A8_0A_05_spr:
+off_83A8_0A_05_spr_Mountain_Range:
 ; 00 
 - D 0 - I - 0x0003B8 00:83A8: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x0003B9 00:83A9: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1554,7 +1618,7 @@ off_83A8_0A_05_spr:
 
 
 
-off_83AC_0A_06_spr:
+off_83AC_0A_06_spr_Mountain_Range:
 ; 00 
 - D 0 - I - 0x0003BC 00:83AC: 0C        .byte con_chr_bank_spr + $0C   ; 
 - D 0 - I - 0x0003BD 00:83AD: 0F        .byte con_chr_bank_spr + $0F   ; 
@@ -1567,7 +1631,7 @@ off_83AC_0A_06_spr:
 
 
 
-off_83B2_0B_00_spr:
+off_83B2_0B_00_spr_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x0003C2 00:83B2: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x0003C3 00:83B3: 0B        .byte con_chr_bank_spr + $0B   ; 
@@ -1577,7 +1641,7 @@ off_83B2_0B_00_spr:
 
 
 
-off_83B6_0B_01_spr:
+off_83B6_0B_01_spr_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x0003C6 00:83B6: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x0003C7 00:83B7: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1587,7 +1651,7 @@ off_83B6_0B_01_spr:
 
 
 
-off_83BA_0B_02_spr:
+off_83BA_0B_02_spr_Castle_Courtyard:
 ; 00 
 - D 0 - I - 0x0003CA 00:83BA: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x0003CB 00:83BB: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1600,7 +1664,7 @@ off_83BA_0B_02_spr:
 
 
 
-off_83C0_0C_00_spr:
+off_83C0_0C_00_spr_Main_Hall:
 ; 00 
 - D 0 - I - 0x0003D0 00:83C0: 08        .byte con_chr_bank_spr + $08   ; 
 - D 0 - I - 0x0003D1 00:83C1: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1610,7 +1674,7 @@ off_83C0_0C_00_spr:
 
 
 
-off_83C4_0C_01_spr:
+off_83C4_0C_01_spr_Main_Hall:
 ; 00 
 - D 0 - I - 0x0003D4 00:83C4: 0E        .byte con_chr_bank_spr + $0E   ; 
 - D 0 - I - 0x0003D5 00:83C5: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1620,14 +1684,14 @@ off_83C4_0C_01_spr:
 
 
 
-off_83C8_0C_02_spr:
+off_83C8_0C_02_spr_Main_Hall:
 ; 00 
 - D 0 - I - 0x0003D8 00:83C8: 14        .byte con_chr_bank_spr + $14   ; 
 - D 0 - I - 0x0003D9 00:83C9: 09        .byte con_chr_bank_spr + $09   ; 
 
 
 
-off_83CA_0D_00_spr:
+off_83CA_0D_00_spr_Castle_Tower:
 ; 00 
 - D 0 - I - 0x0003DA 00:83CA: 63        .byte con_chr_bank_spr + $63   ; 
 - D 0 - I - 0x0003DB 00:83CB: 64        .byte con_chr_bank_spr + $64   ; 
@@ -1640,7 +1704,7 @@ off_83CA_0D_00_spr:
 
 
 
-off_83D0_0D_01_spr:
+off_83D0_0D_01_spr_Castle_Tower:
 ; 00 
 - D 0 - I - 0x0003E0 00:83D0: 63        .byte con_chr_bank_spr + $63   ; 
 - D 0 - I - 0x0003E1 00:83D1: 64        .byte con_chr_bank_spr + $64   ; 
@@ -1653,7 +1717,7 @@ off_83D0_0D_01_spr:
 
 
 
-off_83D6_0D_02_spr:
+off_83D6_0D_02_spr_Castle_Tower:
 ; 00 
 - D 0 - I - 0x0003E6 00:83D6: 14        .byte con_chr_bank_spr + $14   ; 
 - D 0 - I - 0x0003E7 00:83D7: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1666,7 +1730,7 @@ off_83D6_0D_02_spr:
 
 
 
-off_83DC_0D_03_spr:
+off_83DC_0D_03_spr_Castle_Tower:
 ; 00 
 - D 0 - I - 0x0003EC 00:83DC: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x0003ED 00:83DD: 17        .byte con_chr_bank_spr + $17   ; 
@@ -1676,7 +1740,7 @@ off_83DC_0D_03_spr:
 
 
 
-off_83E0_0E_00_spr:
+off_83E0_0E_00_spr_Final_Clock_Tower:
 ; 00 
 - D 0 - I - 0x0003F0 00:83E0: 0A        .byte con_chr_bank_spr + $0A   ; 
 - D 0 - I - 0x0003F1 00:83E1: 09        .byte con_chr_bank_spr + $09   ; 
@@ -1689,7 +1753,7 @@ off_83E0_0E_00_spr:
 
 
 
-off_83E6_0E_01_spr:
+off_83E6_0E_01_spr_Final_Clock_Tower:
 ; 00 
 - D 0 - I - 0x0003F6 00:83E6: 0C        .byte con_chr_bank_spr + $0C   ; 
 - D 0 - I - 0x0003F7 00:83E7: 13        .byte con_chr_bank_spr + $13   ; 
@@ -1699,7 +1763,7 @@ off_83E6_0E_01_spr:
 
 
 
-off_83EA_0E_02_spr:
+off_83EA_0E_02_spr_Final_Clock_Tower:
 ; 00 
 - D 0 - I - 0x0003FA 00:83EA: 61        .byte con_chr_bank_spr + $61   ; 
 - D 0 - I - 0x0003FB 00:83EB: 62        .byte con_chr_bank_spr + $62   ; 
@@ -1984,7 +2048,7 @@ _off001_84FD_6D:
 
 sub_8501_prepare_palette_pointers_for_current_area:
 C - - - - - 0x000511 00:8501: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x000513 00:8503: C9 0C     CMP #$0C
+C - - - - - 0x000513 00:8503: C9 0C     CMP #$0C    ; Main Hall
 C - - - - - 0x000515 00:8505: D0 07     BNE bra_850E
 C - - - - - 0x000517 00:8507: AC F6 07  LDY ram_quest
 C - - - - - 0x00051A 00:850A: F0 02     BEQ bra_850E    ; if 1st quest
@@ -4082,25 +4146,25 @@ C - - - - - 0x000DDC 00:8DCC: 4C DD E8  JMP loc_0x03E8ED_increase_and_store_inde
 
 
 tbl_8DCF:
-- D 0 - - - 0x000DDF 00:8DCF: ED 8D     .word _off004_8DED_00
-- D 0 - - - 0x000DE1 00:8DD1: F2 8D     .word _off004_8DF2_01
-- D 0 - - - 0x000DE3 00:8DD3: F9 8D     .word _off004_8DF9_02
-- D 0 - - - 0x000DE5 00:8DD5: FF 8D     .word _off004_8DFF_03
-- D 0 - - - 0x000DE7 00:8DD7: 05 8E     .word _off004_8E05_04
-- D 0 - - - 0x000DE9 00:8DD9: 09 8E     .word _off004_8E09_05
-- D 0 - - - 0x000DEB 00:8DDB: 0E 8E     .word _off004_8E0E_06
-- D 0 - - - 0x000DED 00:8DDD: 12 8E     .word _off004_8E12_07
-- D 0 - - - 0x000DEF 00:8DDF: 1A 8E     .word _off004_8E1A_08
-- D 0 - - - 0x000DF1 00:8DE1: 20 8E     .word _off004_8E20_09
-- D 0 - - - 0x000DF3 00:8DE3: 23 8E     .word _off004_8E23_0A
-- D 0 - - - 0x000DF5 00:8DE5: 2B 8E     .word _off004_8E2B_0B
-- D 0 - - - 0x000DF7 00:8DE7: 2F 8E     .word _off004_8E2F_0C
-- D 0 - - - 0x000DF9 00:8DE9: 33 8E     .word _off004_8E33_0D
-- D 0 - - - 0x000DFB 00:8DEB: 38 8E     .word _off004_8E38_0E
+- D 0 - - - 0x000DDF 00:8DCF: ED 8D     .word _off004_8DED_00_Warakiya
+- D 0 - - - 0x000DE1 00:8DD1: F2 8D     .word _off004_8DF2_01_Clock_Tower
+- D 0 - - - 0x000DE3 00:8DD3: F9 8D     .word _off004_8DF9_02_Forest_of_Madness
+- D 0 - - - 0x000DE5 00:8DD5: FF 8D     .word _off004_8DFF_03_Ship_of_Fools
+- D 0 - - - 0x000DE7 00:8DD7: 05 8E     .word _off004_8E05_04_Tower_of_Terror
+- D 0 - - - 0x000DE9 00:8DD9: 09 8E     .word _off004_8E09_05_Causeway
+- D 0 - - - 0x000DEB 00:8DDB: 0E 8E     .word _off004_8E0E_06_Murky_Marshes
+- D 0 - - - 0x000DED 00:8DDD: 12 8E     .word _off004_8E12_07_Caves_of_Alucard
+- D 0 - - - 0x000DEF 00:8DDF: 1A 8E     .word _off004_8E1A_08_Sunken_City
+- D 0 - - - 0x000DF1 00:8DE1: 20 8E     .word _off004_8E20_09_Catacombs
+- D 0 - - - 0x000DF3 00:8DE3: 23 8E     .word _off004_8E23_0A_Mountain_Range
+- D 0 - - - 0x000DF5 00:8DE5: 2B 8E     .word _off004_8E2B_0B_Castle_Courtyard
+- D 0 - - - 0x000DF7 00:8DE7: 2F 8E     .word _off004_8E2F_0C_Main_Hall
+- D 0 - - - 0x000DF9 00:8DE9: 33 8E     .word _off004_8E33_0D_Castle_Tower
+- D 0 - - - 0x000DFB 00:8DEB: 38 8E     .word _off004_8E38_0E_Final_Clock_Tower
 
 
 
-_off004_8DED_00:
+_off004_8DED_00_Warakiya:
 - D 0 - I - 0x000DFD 00:8DED: 42        .byte $42   ; 
 
 - D 0 - I - 0x000DFE 00:8DEE: 42        .byte $42   ; 00 
@@ -4110,7 +4174,7 @@ _off004_8DED_00:
 
 
 
-_off004_8DF2_01:
+_off004_8DF2_01_Clock_Tower:
 - D 0 - I - 0x000E02 00:8DF2: 43        .byte $43   ; 
 
 - D 0 - I - 0x000E03 00:8DF3: 42        .byte $42   ; 00 
@@ -4122,7 +4186,7 @@ _off004_8DF2_01:
 
 
 
-_off004_8DF9_02:
+_off004_8DF9_02_Forest_of_Madness:
 - D 0 - I - 0x000E09 00:8DF9: 44        .byte $44   ; 
 
 - D 0 - I - 0x000E0A 00:8DFA: 41        .byte $41   ; 00 
@@ -4133,7 +4197,7 @@ _off004_8DF9_02:
 
 
 
-_off004_8DFF_03:
+_off004_8DFF_03_Ship_of_Fools:
 - D 0 - I - 0x000E0F 00:8DFF: 45        .byte $45   ; 
 
 - D 0 - I - 0x000E10 00:8E00: 50        .byte $50   ; 00 
@@ -4144,7 +4208,7 @@ _off004_8DFF_03:
 
 
 
-_off004_8E05_04:
+_off004_8E05_04_Tower_of_Terror:
 - D 0 - I - 0x000E15 00:8E05: 46        .byte $46   ; 
 
 - D 0 - I - 0x000E16 00:8E06: 50        .byte $50   ; 00 
@@ -4153,7 +4217,7 @@ _off004_8E05_04:
 
 
 
-_off004_8E09_05:
+_off004_8E09_05_Causeway:
 - D 0 - I - 0x000E19 00:8E09: 47        .byte $47   ; 
 
 - D 0 - I - 0x000E1A 00:8E0A: 50        .byte $50   ; 00 
@@ -4163,7 +4227,7 @@ _off004_8E09_05:
 
 
 
-_off004_8E0E_06:
+_off004_8E0E_06_Murky_Marshes:
 - D 0 - I - 0x000E1E 00:8E0E: 45        .byte $45   ; 
 
 - D 0 - I - 0x000E1F 00:8E0F: 42        .byte $42   ; 00 
@@ -4172,7 +4236,7 @@ _off004_8E0E_06:
 
 
 
-_off004_8E12_07:
+_off004_8E12_07_Caves_of_Alucard:
 - D 0 - I - 0x000E22 00:8E12: 46        .byte $46   ; 
 
 - D 0 - I - 0x000E23 00:8E13: 42        .byte $42   ; 00 
@@ -4185,7 +4249,7 @@ _off004_8E12_07:
 
 
 
-_off004_8E1A_08:
+_off004_8E1A_08_Sunken_City:
 - D 0 - I - 0x000E2A 00:8E1A: 47        .byte $47   ; 
 
 - D 0 - I - 0x000E2B 00:8E1B: 42        .byte $42   ; 00 
@@ -4196,7 +4260,7 @@ _off004_8E1A_08:
 
 
 
-_off004_8E20_09:
+_off004_8E20_09_Catacombs:
 - D 0 - I - 0x000E30 00:8E20: 47        .byte $47   ; 
 
 - D 0 - I - 0x000E31 00:8E21: 42        .byte $42   ; 00 
@@ -4204,7 +4268,7 @@ _off004_8E20_09:
 
 
 
-_off004_8E23_0A:
+_off004_8E23_0A_Mountain_Range:
 - D 0 - I - 0x000E33 00:8E23: 48        .byte $48   ; 
 
 - D 0 - I - 0x000E34 00:8E24: 42        .byte $42   ; 00 
@@ -4217,7 +4281,7 @@ _off004_8E23_0A:
 
 
 
-_off004_8E2B_0B:
+_off004_8E2B_0B_Castle_Courtyard:
 - D 0 - I - 0x000E3B 00:8E2B: 48        .byte $48   ; 
 
 - D 0 - I - 0x000E3C 00:8E2C: 50        .byte $50   ; 00 
@@ -4226,7 +4290,7 @@ _off004_8E2B_0B:
 
 
 
-_off004_8E2F_0C:
+_off004_8E2F_0C_Main_Hall:
 - D 0 - I - 0x000E3F 00:8E2F: 49        .byte $49   ; 
 
 - D 0 - I - 0x000E40 00:8E30: 42        .byte $42   ; 00 
@@ -4235,7 +4299,7 @@ _off004_8E2F_0C:
 
 
 
-_off004_8E33_0D:
+_off004_8E33_0D_Castle_Tower:
 - D 0 - I - 0x000E43 00:8E33: 4A        .byte $4A   ; 
 
 - D 0 - I - 0x000E44 00:8E34: 42        .byte $42   ; 00 
@@ -4245,7 +4309,7 @@ _off004_8E33_0D:
 
 
 
-_off004_8E38_0E:
+_off004_8E38_0E_Final_Clock_Tower:
 - D 0 - I - 0x000E48 00:8E38: 50        .byte $50   ; 
 
 - D 0 - I - 0x000E49 00:8E39: 42        .byte $42   ; 00 
@@ -4592,21 +4656,21 @@ tbl_8FD1:
 ;                                              |    +---------- 
 ;                                              |    |    +----- unused (placeholder)
 ;                                              |    |    |
-- D 0 - - - 0x000FE1 00:8FD1: 10        .byte $10, $00, $00   ; 00 
-- D 0 - - - 0x000FE4 00:8FD4: 02        .byte $02, $01, $02   ; 01 
-- - - - - - 0x000FE7 00:8FD7: 10        .byte $10, $03, $04   ; 02 
-- D 0 - - - 0x000FEA 00:8FDA: 10        .byte $10, $05, $05   ; 03 
-- D 0 - - - 0x000FED 00:8FDD: 10        .byte $10, $06, $06   ; 04 
-- - - - - - 0x000FF0 00:8FE0: 10        .byte $10, $07, $07   ; 05 
-- - - - - - 0x000FF3 00:8FE3: 10        .byte $10, $08, $08   ; 06 
-- - - - - - 0x000FF6 00:8FE6: 04        .byte $04, $09, $0A   ; 07 
-- - - - - - 0x000FF9 00:8FE9: 10        .byte $10, $0B, $0B   ; 08 
-- - - - - - 0x000FFC 00:8FEC: 10        .byte $10, $0C, $0C   ; 09 
-- - - - - - 0x000FFF 00:8FEF: 10        .byte $10, $0D, $0D   ; 0A 
-- D 0 - - - 0x001002 00:8FF2: 10        .byte $10, $0E, $0E   ; 0B 
-- - - - - - 0x001005 00:8FF5: 10        .byte $10, $0F, $0F   ; 0C 
-- - - - - - 0x001008 00:8FF8: 10        .byte $10, $10, $10   ; 0D 
-- - - - - - 0x00100B 00:8FFB: 10        .byte $10, $11, $11   ; 0E 
+- D 0 - - - 0x000FE1 00:8FD1: 10        .byte $10, $00, $00   ; 00 Warakiya
+- D 0 - - - 0x000FE4 00:8FD4: 02        .byte $02, $01, $02   ; 01 Clock Tower
+- - - - - - 0x000FE7 00:8FD7: 10        .byte $10, $03, $04   ; 02 Forest of Madness
+- D 0 - - - 0x000FEA 00:8FDA: 10        .byte $10, $05, $05   ; 03 Ship of Fools
+- D 0 - - - 0x000FED 00:8FDD: 10        .byte $10, $06, $06   ; 04 Tower of Terror
+- - - - - - 0x000FF0 00:8FE0: 10        .byte $10, $07, $07   ; 05 Causeway
+- - - - - - 0x000FF3 00:8FE3: 10        .byte $10, $08, $08   ; 06 Murky Marshes
+- - - - - - 0x000FF6 00:8FE6: 04        .byte $04, $09, $0A   ; 07 Caves of Alucard
+- - - - - - 0x000FF9 00:8FE9: 10        .byte $10, $0B, $0B   ; 08 Sunken City
+- - - - - - 0x000FFC 00:8FEC: 10        .byte $10, $0C, $0C   ; 09 Catacombs
+- - - - - - 0x000FFF 00:8FEF: 10        .byte $10, $0D, $0D   ; 0A Mountain Range
+- D 0 - - - 0x001002 00:8FF2: 10        .byte $10, $0E, $0E   ; 0B Castle Courtyard
+- - - - - - 0x001005 00:8FF5: 10        .byte $10, $0F, $0F   ; 0C Main Hall
+- - - - - - 0x001008 00:8FF8: 10        .byte $10, $10, $10   ; 0D Castle Tower
+- - - - - - 0x00100B 00:8FFB: 10        .byte $10, $11, $11   ; 0E Final Clock Tower
 
 
 
@@ -4954,12 +5018,12 @@ C - - - - - 0x0011EC 00:91DC: 60        RTS
 sub_91DD:
 C - - - - - 0x0011ED 00:91DD: 20 95 E7  JSR sub_0x03E7A5_clear_some_stuff
 C - - - - - 0x0011F0 00:91E0: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0011F2 00:91E2: C9 03     CMP #$03
-C - - - - - 0x0011F4 00:91E4: F0 23     BEQ bra_9209_03
-C - - - - - 0x0011F6 00:91E6: C9 0A     CMP #$0A
-C - - - - - 0x0011F8 00:91E8: F0 17     BEQ bra_9201_0A
-C - - - - - 0x0011FA 00:91EA: C9 0E     CMP #$0E
-C - - - - - 0x0011FC 00:91EC: F0 0D     BEQ bra_91FB_0E
+C - - - - - 0x0011F2 00:91E2: C9 03     CMP #$03    ; Ship of Fools
+C - - - - - 0x0011F4 00:91E4: F0 23     BEQ bra_9209_03_Ship_of_Fools
+C - - - - - 0x0011F6 00:91E6: C9 0A     CMP #$0A    ; Mountain Range
+C - - - - - 0x0011F8 00:91E8: F0 17     BEQ bra_9201_0A_Mountain_Range
+C - - - - - 0x0011FA 00:91EA: C9 0E     CMP #$0E    ; Final Clock Tower
+C - - - - - 0x0011FC 00:91EC: F0 0D     BEQ bra_91FB_0E_Final_Clock_Tower
 bra_91EE_refill:
 C - - - - - 0x0011FE 00:91EE: 20 C0 90  JSR sub_90C0_set_default_hp_and_hearts
 loc_91F1:
@@ -4968,16 +5032,16 @@ C - - - - - 0x001203 00:91F3: 8D 65 05  STA ram_plr_state   ; con_plr_state_00
 C - - - - - 0x001206 00:91F6: 85 75     STA ram_0075
 C - - - - - 0x001208 00:91F8: 85 74     STA ram_0074_flag
 C - - - - - 0x00120A 00:91FA: 60        RTS
-bra_91FB_0E:
+bra_91FB_0E_Final_Clock_Tower:
 C - - - - - 0x00120B 00:91FB: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x00120D 00:91FD: F0 EF     BEQ bra_91EE_refill
 C - - - - - 0x00120F 00:91FF: D0 0E     BNE bra_920F    ; jmp
-bra_9201_0A:
+bra_9201_0A_Mountain_Range:
 C - - - - - 0x001211 00:9201: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x001213 00:9203: C9 04     CMP #$04
 C - - - - - 0x001215 00:9205: F0 08     BEQ bra_920F
 C - - - - - 0x001217 00:9207: D0 E5     BNE bra_91EE_refill    ; jmp
-bra_9209_03:
+bra_9209_03_Ship_of_Fools:
 C - - - - - 0x001219 00:9209: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x00121B 00:920B: C9 03     CMP #$03
 C - - - - - 0x00121D 00:920D: D0 DF     BNE bra_91EE_refill
@@ -5075,13 +5139,13 @@ C - - - - - 0x0012B6 00:92A6: B9 D5 92  LDA tbl_92D5,Y
 C - - - - - 0x0012B9 00:92A9: C9 FF     CMP #$FF
 C - - - - - 0x0012BB 00:92AB: F0 08     BEQ bra_92B5_FF
 C - - - - - 0x0012BD 00:92AD: C5 32     CMP ram_blk_id_hi
-C - - - - - 0x0012BF 00:92AF: F0 06     BEQ bra_92B7
+C - - - - - 0x0012BF 00:92AF: F0 06     BEQ bra_92B7_match
 C - - - - - 0x0012C1 00:92B1: C8        INY
 C - - - - - 0x0012C2 00:92B2: C8        INY
 C - - - - - 0x0012C3 00:92B3: D0 F1     BNE bra_92A6_loop    ; jmp
 bra_92B5_FF:
 - - - - - - 0x0012C5 00:92B5: A0 00     LDY #$00
-bra_92B7:
+bra_92B7_match:
 C - - - - - 0x0012C7 00:92B7: B9 D6 92  LDA tbl_92D5 + $01,Y
 ; * 04
 C - - - - - 0x0012CA 00:92BA: 0A        ASL
@@ -5160,14 +5224,14 @@ C - - - - - 0x001318 00:9308: C9 E8     CMP #$E8
 C - - - - - 0x00131A 00:930A: 90 09     BCC bra_9315
 bra_930C:
 C - - - - - 0x00131C 00:930C: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x00131E 00:930E: C9 01     CMP #$01
-C - - - - - 0x001320 00:9310: F0 09     BEQ bra_931B
+C - - - - - 0x00131E 00:930E: C9 01     CMP #$01    ; Clock Tower
+C - - - - - 0x001320 00:9310: F0 09     BEQ bra_931B_01_Clock_Tower
 C - - - - - 0x001322 00:9312: E6 6B     INC ram_006B_subscript
 C - - - - - 0x001324 00:9314: 60        RTS
 bra_9315:
 C - - - - - 0x001325 00:9315: 20 31 93  JSR sub_9331
 C - - - - - 0x001328 00:9318: 4C 73 EF  JMP loc_0x03EF83_player_animation_handler
-bra_931B:
+bra_931B_01_Clock_Tower:
 C - - - - - 0x00132B 00:931B: A9 11     LDA #con_002A_11
 C - - - - - 0x00132D 00:931D: 85 2A     STA ram_002A_script
 C - - - - - 0x00132F 00:931F: A9 00     LDA #$00
@@ -5235,8 +5299,8 @@ C - - - - - 0x0013A6 00:9396: B9 09 94  LDA tbl_9408 + $01,Y
 ; bzk optimize, write value from 04A8 instead of from the table
 C - - - - - 0x0013A9 00:9399: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x0013AC 00:939C: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0013AE 00:939E: C9 01     CMP #$01
-C - - - - - 0x0013B0 00:93A0: F0 56     BEQ bra_93F8
+C - - - - - 0x0013AE 00:939E: C9 01     CMP #$01    ; Clock Tower
+C - - - - - 0x0013B0 00:93A0: F0 56     BEQ bra_93F8_01_Clock_Tower
 C - - - - - 0x0013B2 00:93A2: A9 00     LDA #$00
 C - - - - - 0x0013B4 00:93A4: 85 62     STA ram_ppu_address_hi
 C - - - - - 0x0013B6 00:93A6: AC 4E 05  LDY ram_plr_id
@@ -5288,7 +5352,7 @@ C - - - - - 0x001401 00:93F1: E8        INX
 C - - - - - 0x001402 00:93F2: 88        DEY
 C - - - - - 0x001403 00:93F3: D0 F9     BNE bra_93EE_loop
 C - - - - - 0x001405 00:93F5: 4C DE E8  JMP loc_0x03E8EE_store_index_and_close_buffer
-bra_93F8:
+bra_93F8_01_Clock_Tower:
 C - - - - - 0x001408 00:93F8: A9 2A     LDA #> $2A41
 C - - - - - 0x00140A 00:93FA: 85 62     STA ram_ppu_address_hi
 C - - - - - 0x00140C 00:93FC: A9 41     LDA #< $2A41
@@ -5840,18 +5904,18 @@ C - - - - - 0x001714 00:9704: B9 30 97  LDA tbl_9730,Y
 C - - - - - 0x001717 00:9707: C9 FF     CMP #$FF
 C - - - - - 0x001719 00:9709: F0 1F     BEQ bra_972A_FF
 C - - - - - 0x00171B 00:970B: C5 32     CMP ram_blk_id_hi
-C - - - - - 0x00171D 00:970D: D0 15     BNE bra_9724_next
+C - - - - - 0x00171D 00:970D: D0 15     BNE bra_9724_check_failed
 C - - - - - 0x00171F 00:970F: B9 31 97  LDA tbl_9730 + $01,Y
 C - - - - - 0x001722 00:9712: C5 33     CMP ram_blk_id_lo
-C - - - - - 0x001724 00:9714: D0 0E     BNE bra_9724_next
+C - - - - - 0x001724 00:9714: D0 0E     BNE bra_9724_check_failed
 C - - - - - 0x001726 00:9716: B9 32 97  LDA tbl_9730 + $02,Y
 C - - - - - 0x001729 00:9719: C5 34     CMP ram_blk_id_fr
-C - - - - - 0x00172B 00:971B: D0 07     BNE bra_9724_next
+C - - - - - 0x00172B 00:971B: D0 07     BNE bra_9724_check_failed
 C - - - - - 0x00172D 00:971D: B9 33 97  LDA tbl_9730 + $03,Y
 C - - - - - 0x001730 00:9720: 85 7D     STA ram_007D
 C - - - - - 0x001732 00:9722: 38        SEC
 C - - - - - 0x001733 00:9723: 60        RTS
-bra_9724_next:
+bra_9724_check_failed:
 C - - - - - 0x001734 00:9724: C8        INY
 C - - - - - 0x001735 00:9725: C8        INY
 C - - - - - 0x001736 00:9726: C8        INY
@@ -8418,10 +8482,10 @@ C - - - - - 0x0025EC 00:A5DC: 20 8A E7  JSR sub_0x03E79A
 C - - - - - 0x0025EF 00:A5DF: A0 00     LDY #$00
 C - - - - - 0x0025F1 00:A5E1: A5 32     LDA ram_blk_id_hi
 ; bzk optimize, no need for CMP 00
-C - - - - - 0x0025F3 00:A5E3: C9 00     CMP #$00
+C - - - - - 0x0025F3 00:A5E3: C9 00     CMP #$00    ; Warakiya
 C - - - - - 0x0025F5 00:A5E5: F0 06     BEQ bra_A5ED
 C - - - - - 0x0025F7 00:A5E7: C8        INY ; 01
-C - - - - - 0x0025F8 00:A5E8: C9 02     CMP #$02
+C - - - - - 0x0025F8 00:A5E8: C9 02     CMP #$02    ; Forest of Madness
 C - - - - - 0x0025FA 00:A5EA: F0 01     BEQ bra_A5ED
 C - - - - - 0x0025FC 00:A5EC: C8        INY ; 02
 bra_A5ED:
@@ -9154,9 +9218,9 @@ bra_AA26:
 C - - - - - 0x002A36 00:AA26: AD A8 04  LDA ram_plr_facing
 C - - - - - 0x002A39 00:AA29: 0A        ASL
 C - - - - - 0x002A3A 00:AA2A: A8        TAY
-C - - - - - 0x002A3B 00:AA2B: B9 67 AA  LDA tbl_AA67,Y
+C - - - - - 0x002A3B 00:AA2B: B9 67 AA  LDA tbl_AA67_spd_X,Y
 C - - - - - 0x002A3E 00:AA2E: 8D F2 04  STA ram_plr_spd_X_hi
-C - - - - - 0x002A41 00:AA31: B9 68 AA  LDA tbl_AA67 + $01,Y
+C - - - - - 0x002A41 00:AA31: B9 68 AA  LDA tbl_AA67_spd_X + $01,Y
 C - - - - - 0x002A44 00:AA34: 8D 09 05  STA ram_plr_spd_X_lo
 C - - - - - 0x002A47 00:AA37: A9 10     LDA #con_path_sel_auto_walk_to_exit
 C - - - - - 0x002A49 00:AA39: 8D 65 05  STA ram_plr_state
@@ -9204,13 +9268,9 @@ tbl_AA61:
 
 
 
-tbl_AA67:
-; 00 right
-- D 1 - - - 0x002A77 00:AA67: 00        .byte $00   ; 
-- D 1 - - - 0x002A78 00:AA68: C0        .byte $C0   ; 
-; 01 left
-- D 1 - - - 0x002A79 00:AA69: FF        .byte $FF   ; 
-- D 1 - - - 0x002A7A 00:AA6A: 40        .byte $40   ; 
+tbl_AA67_spd_X:
+- D 1 - - - 0x002A77 00:AA67: 00 C0     .dbyt $00C0 ; 00 right
+- D 1 - - - 0x002A79 00:AA69: FF 40     .dbyt $FF40 ; 01 left
 
 
 
@@ -9441,12 +9501,12 @@ C - - - - - 0x002BF7 00:ABE7: A0 02     LDY #$02
 C - - - - - 0x002BF9 00:ABE9: B1 0A     LDA (ram_000A_t003_data),Y
 C - - - - - 0x002BFB 00:ABEB: CD 38 04  CMP ram_plr_pos_X_hi
 C - - - - - 0x002BFE 00:ABEE: 90 07     BCC bra_ABF7
-C - - - - - 0x002C00 00:ABF0: A9 01     LDA #$01
-C - - - - - 0x002C02 00:ABF2: A0 00     LDY #$00
+C - - - - - 0x002C00 00:ABF0: A9 01     LDA #> $0100
+C - - - - - 0x002C02 00:ABF2: A0 00     LDY #< $0100
 C - - - - - 0x002C04 00:ABF4: 4C 11 AC  JMP loc_AC11
 bra_ABF7:
-- - - - - - 0x002C07 00:ABF7: A9 00     LDA #$00
-- - - - - - 0x002C09 00:ABF9: A8        TAY
+- - - - - - 0x002C07 00:ABF7: A9 00     LDA #$00    ; 0000
+- - - - - - 0x002C09 00:ABF9: A8        TAY ; 00
 - - - - - - 0x002C0A 00:ABFA: F0 15     BEQ bra_AC11    ; jmp
 bra_ABFC_pressed_Left:
 C - - - - - 0x002C0C 00:ABFC: A9 01     LDA #$01    ; facing left
@@ -9456,8 +9516,8 @@ C - - - - - 0x002C14 00:AC04: A0 01     LDY #$01
 C - - - - - 0x002C16 00:AC06: B1 0A     LDA (ram_000A_t003_data),Y
 C - - - - - 0x002C18 00:AC08: CD 38 04  CMP ram_plr_pos_X_hi
 C - - - - - 0x002C1B 00:AC0B: B0 EA     BCS bra_ABF7
-C - - - - - 0x002C1D 00:AC0D: A9 FF     LDA #$FF
-C - - - - - 0x002C1F 00:AC0F: A0 00     LDY #$00
+C - - - - - 0x002C1D 00:AC0D: A9 FF     LDA #> $FF00
+C - - - - - 0x002C1F 00:AC0F: A0 00     LDY #< $FF00
 loc_AC11:
 bra_AC11:
 C D 1 - - - 0x002C21 00:AC11: 8C 09 05  STY ram_plr_spd_X_lo
@@ -9469,8 +9529,8 @@ C - - - - - 0x002C2F 00:AC1F: 4C C8 AB  JMP loc_ABC8
 
 
 ; bzk garbage
-- - - - - - 0x002C32 00:AC22: A9 FF     LDA #$FF
-- - - - - - 0x002C34 00:AC24: A0 E0     LDY #$E0
+- - - - - - 0x002C32 00:AC22: A9 FF     LDA #> $FFE0
+- - - - - - 0x002C34 00:AC24: A0 E0     LDY #< $FFE0
 - - - - - - 0x002C36 00:AC26: D0 E9     BNE bra_AC11    ; jmp
 
 

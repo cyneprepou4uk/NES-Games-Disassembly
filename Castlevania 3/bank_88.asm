@@ -10225,25 +10225,25 @@ C - - - - - 0x0133BC 04:B3AC: 60        RTS
 
 
 tbl_B3AD:
-- D 1 - - - 0x0133BD 04:B3AD: CB B3     .word _off024_B3CB_00
-- D 1 - - - 0x0133BF 04:B3AF: CF B3     .word _off024_B3CF_01
-- D 1 - - - 0x0133C1 04:B3B1: D5 B3     .word _off024_B3D5_02
-- D 1 - - - 0x0133C3 04:B3B3: DA B3     .word _off024_B3DA_03
-- D 1 - - - 0x0133C5 04:B3B5: DF B3     .word _off024_B3DF_04
-- D 1 - - - 0x0133C7 04:B3B7: E2 B3     .word _off024_B3E2_05
-- D 1 - - - 0x0133C9 04:B3B9: E6 B3     .word _off024_B3E6_06
-- D 1 - - - 0x0133CB 04:B3BB: E9 B3     .word _off024_B3E9_07
-- D 1 - - - 0x0133CD 04:B3BD: F0 B3     .word _off024_B3F0_08
-- D 1 - - - 0x0133CF 04:B3BF: F5 B3     .word _off024_B3F5_09
-- D 1 - - - 0x0133D1 04:B3C1: F7 B3     .word _off024_B3F7_0A
-- D 1 - - - 0x0133D3 04:B3C3: FE B3     .word _off024_B3FE_0B
-- D 1 - - - 0x0133D5 04:B3C5: 01 B4     .word _off024_B401_0C
-- D 1 - - - 0x0133D7 04:B3C7: 04 B4     .word _off024_B404_0D
-- D 1 - - - 0x0133D9 04:B3C9: 08 B4     .word _off024_B408_0E
+- D 1 - - - 0x0133BD 04:B3AD: CB B3     .word _off024_B3CB_00_Warakiya
+- D 1 - - - 0x0133BF 04:B3AF: CF B3     .word _off024_B3CF_01_Clock_Tower
+- D 1 - - - 0x0133C1 04:B3B1: D5 B3     .word _off024_B3D5_02_Forest_of_Madness
+- D 1 - - - 0x0133C3 04:B3B3: DA B3     .word _off024_B3DA_03_Ship_of_Fools
+- D 1 - - - 0x0133C5 04:B3B5: DF B3     .word _off024_B3DF_04_Tower_of_Terror
+- D 1 - - - 0x0133C7 04:B3B7: E2 B3     .word _off024_B3E2_05_Causeway
+- D 1 - - - 0x0133C9 04:B3B9: E6 B3     .word _off024_B3E6_06_Murky_Marshes
+- D 1 - - - 0x0133CB 04:B3BB: E9 B3     .word _off024_B3E9_07_Caves_of_Alucard
+- D 1 - - - 0x0133CD 04:B3BD: F0 B3     .word _off024_B3F0_08_Sunken_City
+- D 1 - - - 0x0133CF 04:B3BF: F5 B3     .word _off024_B3F5_09_Catacombs
+- D 1 - - - 0x0133D1 04:B3C1: F7 B3     .word _off024_B3F7_0A_Mountain_Range
+- D 1 - - - 0x0133D3 04:B3C3: FE B3     .word _off024_B3FE_0B_Castle_Courtyard
+- D 1 - - - 0x0133D5 04:B3C5: 01 B4     .word _off024_B401_0C_Main_Hall
+- D 1 - - - 0x0133D7 04:B3C7: 04 B4     .word _off024_B404_0D_Castle_Tower
+- D 1 - - - 0x0133D9 04:B3C9: 08 B4     .word _off024_B408_0E_Final_Clock_Tower
 
 
 
-_off024_B3CB_00:
+_off024_B3CB_00_Warakiya:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10254,7 +10254,7 @@ _off024_B3CB_00:
 
 
 
-_off024_B3CF_01:
+_off024_B3CF_01_Clock_Tower:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10267,7 +10267,7 @@ _off024_B3CF_01:
 
 
 
-_off024_B3D5_02:
+_off024_B3D5_02_Forest_of_Madness:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10279,7 +10279,7 @@ _off024_B3D5_02:
 
 
 
-_off024_B3DA_03:
+_off024_B3DA_03_Ship_of_Fools:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10291,7 +10291,7 @@ _off024_B3DA_03:
 
 
 
-_off024_B3DF_04:
+_off024_B3DF_04_Tower_of_Terror:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10301,7 +10301,7 @@ _off024_B3DF_04:
 
 
 
-_off024_B3E2_05:
+_off024_B3E2_05_Causeway:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10312,7 +10312,7 @@ _off024_B3E2_05:
 
 
 
-_off024_B3E6_06:
+_off024_B3E6_06_Murky_Marshes:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10322,7 +10322,7 @@ _off024_B3E6_06:
 
 
 
-_off024_B3E9_07:
+_off024_B3E9_07_Caves_of_Alucard:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10336,7 +10336,7 @@ _off024_B3E9_07:
 
 
 
-_off024_B3F0_08:
+_off024_B3F0_08_Sunken_City:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10348,7 +10348,7 @@ _off024_B3F0_08:
 
 
 
-_off024_B3F5_09:
+_off024_B3F5_09_Catacombs:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10357,7 +10357,7 @@ _off024_B3F5_09:
 
 
 
-_off024_B3F7_0A:
+_off024_B3F7_0A_Mountain_Range:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10371,7 +10371,7 @@ _off024_B3F7_0A:
 
 
 
-_off024_B3FE_0B:
+_off024_B3FE_0B_Castle_Courtyard:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10381,7 +10381,7 @@ _off024_B3FE_0B:
 
 
 
-_off024_B401_0C:
+_off024_B401_0C_Main_Hall:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10391,7 +10391,7 @@ _off024_B401_0C:
 
 
 
-_off024_B404_0D:
+_off024_B404_0D_Castle_Tower:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10402,7 +10402,7 @@ _off024_B404_0D:
 
 
 
-_off024_B408_0E:
+_off024_B408_0E_Final_Clock_Tower:
 ;                                              +----------------- game timer (hundreds)
 ;                                              |           +----- blk_id_fr
 ;                                              |           |
@@ -10413,149 +10413,149 @@ _off024_B408_0E:
 
 
 tbl_B40B_spawn_positions:
-- D 1 - - - 0x01341B 04:B40B: 29 B4     .word _off025_B429_00
-- D 1 - - - 0x01341D 04:B40D: 31 B4     .word _off025_B431_01
-- D 1 - - - 0x01341F 04:B40F: 3D B4     .word _off025_B43D_02
-- D 1 - - - 0x013421 04:B411: 47 B4     .word _off025_B447_03
-- D 1 - - - 0x013423 04:B413: 51 B4     .word _off025_B451_04
-- D 1 - - - 0x013425 04:B415: 57 B4     .word _off025_B457_05
-- D 1 - - - 0x013427 04:B417: 5F B4     .word _off025_B45F_06
-- D 1 - - - 0x013429 04:B419: 65 B4     .word _off025_B465_07
-- D 1 - - - 0x01342B 04:B41B: 73 B4     .word _off025_B473_08
-- D 1 - - - 0x01342D 04:B41D: 7D B4     .word _off025_B47D_09
-- D 1 - - - 0x01342F 04:B41F: 81 B4     .word _off025_B481_0A
-- D 1 - - - 0x013431 04:B421: 8F B4     .word _off025_B48F_0B
-- D 1 - - - 0x013433 04:B423: 95 B4     .word _off025_B495_0C
-- D 1 - - - 0x013435 04:B425: 9B B4     .word _off025_B49B_0D
-- D 1 - - - 0x013437 04:B427: A3 B4     .word _off025_B4A3_0E
+- D 1 - - - 0x01341B 04:B40B: 29 B4     .word _off025_B429_00_Warakiya
+- D 1 - - - 0x01341D 04:B40D: 31 B4     .word _off025_B431_01_Clock_Tower
+- D 1 - - - 0x01341F 04:B40F: 3D B4     .word _off025_B43D_02_Forest_of_Madness
+- D 1 - - - 0x013421 04:B411: 47 B4     .word _off025_B447_03_Ship_of_Fools
+- D 1 - - - 0x013423 04:B413: 51 B4     .word _off025_B451_04_Tower_of_Terror
+- D 1 - - - 0x013425 04:B415: 57 B4     .word _off025_B457_05_Causeway
+- D 1 - - - 0x013427 04:B417: 5F B4     .word _off025_B45F_06_Murky_Marshes
+- D 1 - - - 0x013429 04:B419: 65 B4     .word _off025_B465_07_Caves_of_Alucard
+- D 1 - - - 0x01342B 04:B41B: 73 B4     .word _off025_B473_08_Sunken_City
+- D 1 - - - 0x01342D 04:B41D: 7D B4     .word _off025_B47D_09_Catacombs
+- D 1 - - - 0x01342F 04:B41F: 81 B4     .word _off025_B481_0A_Mountain_Range
+- D 1 - - - 0x013431 04:B421: 8F B4     .word _off025_B48F_0B_Castle_Courtyard
+- D 1 - - - 0x013433 04:B423: 95 B4     .word _off025_B495_0C_Main_Hall
+- D 1 - - - 0x013435 04:B425: 9B B4     .word _off025_B49B_0D_Castle_Tower
+- D 1 - - - 0x013437 04:B427: A3 B4     .word _off025_B4A3_0E_Final_Clock_Tower
 
 
 
-_off025_B429_00:
-- D 1 - I - 0x013439 04:B429: A9 B4     .word _off048_B4A9_00_00
-- D 1 - I - 0x01343B 04:B42B: AB B4     .word _off048_B4AB_00_01
-- D 1 - I - 0x01343D 04:B42D: B3 B4     .word _off048_B4B3_00_02
-- D 1 - I - 0x01343F 04:B42F: B7 B4     .word _off048_B4B7_00_03
+_off025_B429_00_Warakiya:
+- D 1 - I - 0x013439 04:B429: A9 B4     .word _off048_B4A9_00_00_Warakiya
+- D 1 - I - 0x01343B 04:B42B: AB B4     .word _off048_B4AB_00_01_Warakiya
+- D 1 - I - 0x01343D 04:B42D: B3 B4     .word _off048_B4B3_00_02_Warakiya
+- D 1 - I - 0x01343F 04:B42F: B7 B4     .word _off048_B4B7_00_03_Warakiya
 
 
 
-_off025_B431_01:
-- D 1 - I - 0x013441 04:B431: B9 B4     .word _off048_B4B9_01_00
-- D 1 - I - 0x013443 04:B433: BF B4     .word _off048_B4BF_01_01
-- D 1 - I - 0x013445 04:B435: C5 B4     .word _off048_B4C5_01_02
-- D 1 - I - 0x013447 04:B437: CB B4     .word _off048_B4CB_01_03
-- D 1 - I - 0x013449 04:B439: D1 B4     .word _off048_B4D1_01_04
-- D 1 - I - 0x01344B 04:B43B: D7 B4     .word _off048_B4D7_01_05
+_off025_B431_01_Clock_Tower:
+- D 1 - I - 0x013441 04:B431: B9 B4     .word _off048_B4B9_01_00_Clock_Tower
+- D 1 - I - 0x013443 04:B433: BF B4     .word _off048_B4BF_01_01_Clock_Tower
+- D 1 - I - 0x013445 04:B435: C5 B4     .word _off048_B4C5_01_02_Clock_Tower
+- D 1 - I - 0x013447 04:B437: CB B4     .word _off048_B4CB_01_03_Clock_Tower
+- D 1 - I - 0x013449 04:B439: D1 B4     .word _off048_B4D1_01_04_Clock_Tower
+- D 1 - I - 0x01344B 04:B43B: D7 B4     .word _off048_B4D7_01_05_Clock_Tower
 
 
 
-_off025_B43D_02:
-- D 1 - I - 0x01344D 04:B43D: DD B4     .word _off048_B4DD_02_00
-- D 1 - I - 0x01344F 04:B43F: E1 B4     .word _off048_B4E1_02_01
-- D 1 - I - 0x013451 04:B441: E3 B4     .word _off048_B4E3_02_02
-- D 1 - I - 0x013453 04:B443: E7 B4     .word _off048_B4E7_02_03
-- D 1 - I - 0x013455 04:B445: ED B4     .word _off048_B4ED_02_04
+_off025_B43D_02_Forest_of_Madness:
+- D 1 - I - 0x01344D 04:B43D: DD B4     .word _off048_B4DD_02_00_Forest_of_Madness
+- D 1 - I - 0x01344F 04:B43F: E1 B4     .word _off048_B4E1_02_01_Forest_of_Madness
+- D 1 - I - 0x013451 04:B441: E3 B4     .word _off048_B4E3_02_02_Forest_of_Madness
+- D 1 - I - 0x013453 04:B443: E7 B4     .word _off048_B4E7_02_03_Forest_of_Madness
+- D 1 - I - 0x013455 04:B445: ED B4     .word _off048_B4ED_02_04_Forest_of_Madness
 
 
 
-_off025_B447_03:
-- D 1 - I - 0x013457 04:B447: F1 B4     .word _off048_B4F1_03_00
-- D 1 - I - 0x013459 04:B449: F7 B4     .word _off048_B4F7_03_01
-- D 1 - I - 0x01345B 04:B44B: FB B4     .word _off048_B4FB_03_02
-- D 1 - I - 0x01345D 04:B44D: FF B4     .word _off048_B4FF_03_03
-- D 1 - I - 0x01345F 04:B44F: 03 B5     .word _off048_B503_03_04
+_off025_B447_03_Ship_of_Fools:
+- D 1 - I - 0x013457 04:B447: F1 B4     .word _off048_B4F1_03_00_Ship_of_Fools
+- D 1 - I - 0x013459 04:B449: F7 B4     .word _off048_B4F7_03_01_Ship_of_Fools
+- D 1 - I - 0x01345B 04:B44B: FB B4     .word _off048_B4FB_03_02_Ship_of_Fools
+- D 1 - I - 0x01345D 04:B44D: FF B4     .word _off048_B4FF_03_03_Ship_of_Fools
+- D 1 - I - 0x01345F 04:B44F: 03 B5     .word _off048_B503_03_04_Ship_of_Fools
 
 
 
-_off025_B451_04:
-- D 1 - I - 0x013461 04:B451: 09 B5     .word _off048_B509_04_00
-- D 1 - I - 0x013463 04:B453: 0F B5     .word _off048_B50F_04_01
-- D 1 - I - 0x013465 04:B455: 15 B5     .word _off048_B515_04_02
+_off025_B451_04_Tower_of_Terror:
+- D 1 - I - 0x013461 04:B451: 09 B5     .word _off048_B509_04_00_Tower_of_Terror
+- D 1 - I - 0x013463 04:B453: 0F B5     .word _off048_B50F_04_01_Tower_of_Terror
+- D 1 - I - 0x013465 04:B455: 15 B5     .word _off048_B515_04_02_Tower_of_Terror
 
 
 
-_off025_B457_05:
-- D 1 - I - 0x013467 04:B457: 1B B5     .word _off048_B51B_05_00
-- - - - - - 0x013469 04:B459: 1D B5     .word _off048_B51D_05_01
-- D 1 - I - 0x01346B 04:B45B: 1F B5     .word _off048_B51F_05_02
-- D 1 - I - 0x01346D 04:B45D: 23 B5     .word _off048_B523_05_03
+_off025_B457_05_Causeway:
+- D 1 - I - 0x013467 04:B457: 1B B5     .word _off048_B51B_05_00_Causeway
+- - - - - - 0x013469 04:B459: 1D B5     .word _off048_B51D_05_01_Causeway
+- D 1 - I - 0x01346B 04:B45B: 1F B5     .word _off048_B51F_05_02_Causeway
+- D 1 - I - 0x01346D 04:B45D: 23 B5     .word _off048_B523_05_03_Causeway
 
 
 
-_off025_B45F_06:
-- D 1 - I - 0x01346F 04:B45F: 27 B5     .word _off048_B527_06_00
-- D 1 - I - 0x013471 04:B461: 2B B5     .word _off048_B52B_06_01
-- D 1 - I - 0x013473 04:B463: 2D B5     .word _off048_B52D_06_02
+_off025_B45F_06_Murky_Marshes:
+- D 1 - I - 0x01346F 04:B45F: 27 B5     .word _off048_B527_06_00_Murky_Marshes
+- D 1 - I - 0x013471 04:B461: 2B B5     .word _off048_B52B_06_01_Murky_Marshes
+- D 1 - I - 0x013473 04:B463: 2D B5     .word _off048_B52D_06_02_Murky_Marshes
 
 
 
-_off025_B465_07:
-- D 1 - I - 0x013475 04:B465: 33 B5     .word _off048_B533_07_00
-- D 1 - I - 0x013477 04:B467: 37 B5     .word _off048_B537_07_01
-- D 1 - I - 0x013479 04:B469: 39 B5     .word _off048_B539_07_02
-- D 1 - I - 0x01347B 04:B46B: 3B B5     .word _off048_B53B_07_03
-- D 1 - I - 0x01347D 04:B46D: 3D B5     .word _off048_B53D_07_04
-- D 1 - I - 0x01347F 04:B46F: 41 B5     .word _off048_B541_07_05
-- D 1 - I - 0x013481 04:B471: 45 B5     .word _off048_B545_07_06
+_off025_B465_07_Caves_of_Alucard:
+- D 1 - I - 0x013475 04:B465: 33 B5     .word _off048_B533_07_00_Caves_of_Alucard
+- D 1 - I - 0x013477 04:B467: 37 B5     .word _off048_B537_07_01_Caves_of_Alucard
+- D 1 - I - 0x013479 04:B469: 39 B5     .word _off048_B539_07_02_Caves_of_Alucard
+- D 1 - I - 0x01347B 04:B46B: 3B B5     .word _off048_B53B_07_03_Caves_of_Alucard
+- D 1 - I - 0x01347D 04:B46D: 3D B5     .word _off048_B53D_07_04_Caves_of_Alucard
+- D 1 - I - 0x01347F 04:B46F: 41 B5     .word _off048_B541_07_05_Caves_of_Alucard
+- D 1 - I - 0x013481 04:B471: 45 B5     .word _off048_B545_07_06_Caves_of_Alucard
 
 
 
-_off025_B473_08:
-- D 1 - I - 0x013483 04:B473: 47 B5     .word _off048_B547_08_00
-- D 1 - I - 0x013485 04:B475: 4B B5     .word _off048_B54B_08_01
-- D 1 - I - 0x013487 04:B477: 4D B5     .word _off048_B54D_08_02
-- D 1 - I - 0x013489 04:B479: 51 B5     .word _off048_B551_08_03
-- D 1 - I - 0x01348B 04:B47B: 53 B5     .word _off048_B553_08_04
+_off025_B473_08_Sunken_City:
+- D 1 - I - 0x013483 04:B473: 47 B5     .word _off048_B547_08_00_Sunken_City
+- D 1 - I - 0x013485 04:B475: 4B B5     .word _off048_B54B_08_01_Sunken_City
+- D 1 - I - 0x013487 04:B477: 4D B5     .word _off048_B54D_08_02_Sunken_City
+- D 1 - I - 0x013489 04:B479: 51 B5     .word _off048_B551_08_03_Sunken_City
+- D 1 - I - 0x01348B 04:B47B: 53 B5     .word _off048_B553_08_04_Sunken_City
 
 
 
-_off025_B47D_09:
-- D 1 - I - 0x01348D 04:B47D: 55 B5     .word _off048_B555_09_00
-- D 1 - I - 0x01348F 04:B47F: 59 B5     .word _off048_B559_09_01
+_off025_B47D_09_Catacombs:
+- D 1 - I - 0x01348D 04:B47D: 55 B5     .word _off048_B555_09_00_Catacombs
+- D 1 - I - 0x01348F 04:B47F: 59 B5     .word _off048_B559_09_01_Catacombs
 
 
 
-_off025_B481_0A:
-- D 1 - I - 0x013491 04:B481: 5F B5     .word _off048_B55F_0A_00
-- D 1 - I - 0x013493 04:B483: 63 B5     .word _off048_B563_0A_01
-- D 1 - I - 0x013495 04:B485: 65 B5     .word _off048_B565_0A_02
-- D 1 - I - 0x013497 04:B487: 67 B5     .word _off048_B567_0A_03
-- D 1 - I - 0x013499 04:B489: 6B B5     .word _off048_B56B_0A_04
-- D 1 - I - 0x01349B 04:B48B: 71 B5     .word _off048_B571_0A_05
-- D 1 - I - 0x01349D 04:B48D: 75 B5     .word _off048_B575_0A_06
+_off025_B481_0A_Mountain_Range:
+- D 1 - I - 0x013491 04:B481: 5F B5     .word _off048_B55F_0A_00_Mountain_Range
+- D 1 - I - 0x013493 04:B483: 63 B5     .word _off048_B563_0A_01_Mountain_Range
+- D 1 - I - 0x013495 04:B485: 65 B5     .word _off048_B565_0A_02_Mountain_Range
+- D 1 - I - 0x013497 04:B487: 67 B5     .word _off048_B567_0A_03_Mountain_Range
+- D 1 - I - 0x013499 04:B489: 6B B5     .word _off048_B56B_0A_04_Mountain_Range
+- D 1 - I - 0x01349B 04:B48B: 71 B5     .word _off048_B571_0A_05_Mountain_Range
+- D 1 - I - 0x01349D 04:B48D: 75 B5     .word _off048_B575_0A_06_Mountain_Range
 
 
 
-_off025_B48F_0B:
-- D 1 - I - 0x01349F 04:B48F: 7B B5     .word _off048_B57B_0B_00
-- D 1 - I - 0x0134A1 04:B491: 7F B5     .word _off048_B57F_0B_01
-- D 1 - I - 0x0134A3 04:B493: 83 B5     .word _off048_B583_0B_02
+_off025_B48F_0B_Castle_Courtyard:
+- D 1 - I - 0x01349F 04:B48F: 7B B5     .word _off048_B57B_0B_00_Castle_Courtyard
+- D 1 - I - 0x0134A1 04:B491: 7F B5     .word _off048_B57F_0B_01_Castle_Courtyard
+- D 1 - I - 0x0134A3 04:B493: 83 B5     .word _off048_B583_0B_02_Castle_Courtyard
 
 
 
-_off025_B495_0C:
-- D 1 - I - 0x0134A5 04:B495: 89 B5     .word _off048_B589_0C_00
-- D 1 - I - 0x0134A7 04:B497: 8D B5     .word _off048_B58D_0C_01
-- D 1 - I - 0x0134A9 04:B499: 91 B5     .word _off048_B591_0C_02
+_off025_B495_0C_Main_Hall:
+- D 1 - I - 0x0134A5 04:B495: 89 B5     .word _off048_B589_0C_00_Main_Hall
+- D 1 - I - 0x0134A7 04:B497: 8D B5     .word _off048_B58D_0C_01_Main_Hall
+- D 1 - I - 0x0134A9 04:B499: 91 B5     .word _off048_B591_0C_02_Main_Hall
 
 
 
-_off025_B49B_0D:
-- D 1 - I - 0x0134AB 04:B49B: 93 B5     .word _off048_B593_0D_00
-- D 1 - I - 0x0134AD 04:B49D: 99 B5     .word _off048_B599_0D_01
-- D 1 - I - 0x0134AF 04:B49F: 9F B5     .word _off048_B59F_0D_02
-- D 1 - I - 0x0134B1 04:B4A1: A5 B5     .word _off048_B5A5_0D_03
+_off025_B49B_0D_Castle_Tower:
+- D 1 - I - 0x0134AB 04:B49B: 93 B5     .word _off048_B593_0D_00_Castle_Tower
+- D 1 - I - 0x0134AD 04:B49D: 99 B5     .word _off048_B599_0D_01_Castle_Tower
+- D 1 - I - 0x0134AF 04:B49F: 9F B5     .word _off048_B59F_0D_02_Castle_Tower
+- D 1 - I - 0x0134B1 04:B4A1: A5 B5     .word _off048_B5A5_0D_03_Castle_Tower
 
 
 
-_off025_B4A3_0E:
-- D 1 - I - 0x0134B3 04:B4A3: A9 B5     .word _off048_B5A9_0E_00
-- D 1 - I - 0x0134B5 04:B4A5: AF B5     .word _off048_B5AF_0E_01
-- D 1 - I - 0x0134B7 04:B4A7: B3 B5     .word _off048_B5B3_0E_02
+_off025_B4A3_0E_Final_Clock_Tower:
+- D 1 - I - 0x0134B3 04:B4A3: A9 B5     .word _off048_B5A9_0E_00_Final_Clock_Tower
+- D 1 - I - 0x0134B5 04:B4A5: AF B5     .word _off048_B5AF_0E_01_Final_Clock_Tower
+- D 1 - I - 0x0134B7 04:B4A7: B3 B5     .word _off048_B5B3_0E_02_Final_Clock_Tower
 
 
 
-_off048_B4A9_00_00:
+_off048_B4A9_00_00_Warakiya:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10564,7 +10564,7 @@ _off048_B4A9_00_00:
 
 
 
-_off048_B4AB_00_01:
+_off048_B4AB_00_01_Warakiya:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10576,7 +10576,7 @@ _off048_B4AB_00_01:
 
 
 
-_off048_B4B3_00_02:
+_off048_B4B3_00_02_Warakiya:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10586,7 +10586,7 @@ _off048_B4B3_00_02:
 
 
 
-_off048_B4B7_00_03:
+_off048_B4B7_00_03_Warakiya:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10595,7 +10595,7 @@ _off048_B4B7_00_03:
 
 
 
-_off048_B4B9_01_00:
+_off048_B4B9_01_00_Clock_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10606,7 +10606,7 @@ _off048_B4B9_01_00:
 
 
 
-_off048_B4BF_01_01:
+_off048_B4BF_01_01_Clock_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10617,7 +10617,7 @@ _off048_B4BF_01_01:
 
 
 
-_off048_B4C5_01_02:
+_off048_B4C5_01_02_Clock_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10628,7 +10628,7 @@ _off048_B4C5_01_02:
 
 
 
-_off048_B4CB_01_03:
+_off048_B4CB_01_03_Clock_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10639,7 +10639,7 @@ _off048_B4CB_01_03:
 
 
 
-_off048_B4D1_01_04:
+_off048_B4D1_01_04_Clock_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10650,7 +10650,7 @@ _off048_B4D1_01_04:
 
 
 
-_off048_B4D7_01_05:
+_off048_B4D7_01_05_Clock_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10661,7 +10661,7 @@ _off048_B4D7_01_05:
 
 
 
-_off048_B4DD_02_00:
+_off048_B4DD_02_00_Forest_of_Madness:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10671,7 +10671,7 @@ _off048_B4DD_02_00:
 
 
 
-_off048_B4E1_02_01:
+_off048_B4E1_02_01_Forest_of_Madness:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10680,7 +10680,7 @@ _off048_B4E1_02_01:
 
 
 
-_off048_B4E3_02_02:
+_off048_B4E3_02_02_Forest_of_Madness:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10690,7 +10690,7 @@ _off048_B4E3_02_02:
 
 
 
-_off048_B4E7_02_03:
+_off048_B4E7_02_03_Forest_of_Madness:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10701,7 +10701,7 @@ _off048_B4E7_02_03:
 
 
 
-_off048_B4ED_02_04:
+_off048_B4ED_02_04_Forest_of_Madness:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10711,7 +10711,7 @@ _off048_B4ED_02_04:
 
 
 
-_off048_B4F1_03_00:
+_off048_B4F1_03_00_Ship_of_Fools:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10722,7 +10722,7 @@ _off048_B4F1_03_00:
 
 
 
-_off048_B4F7_03_01:
+_off048_B4F7_03_01_Ship_of_Fools:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10732,7 +10732,7 @@ _off048_B4F7_03_01:
 
 
 
-_off048_B4FB_03_02:
+_off048_B4FB_03_02_Ship_of_Fools:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10742,7 +10742,7 @@ _off048_B4FB_03_02:
 
 
 
-_off048_B4FF_03_03:
+_off048_B4FF_03_03_Ship_of_Fools:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10752,7 +10752,7 @@ _off048_B4FF_03_03:
 
 
 
-_off048_B503_03_04:
+_off048_B503_03_04_Ship_of_Fools:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10763,7 +10763,7 @@ _off048_B503_03_04:
 
 
 
-_off048_B509_04_00:
+_off048_B509_04_00_Tower_of_Terror:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10774,7 +10774,7 @@ _off048_B509_04_00:
 
 
 
-_off048_B50F_04_01:
+_off048_B50F_04_01_Tower_of_Terror:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10785,7 +10785,7 @@ _off048_B50F_04_01:
 
 
 
-_off048_B515_04_02:
+_off048_B515_04_02_Tower_of_Terror:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10796,7 +10796,7 @@ _off048_B515_04_02:
 
 
 
-_off048_B51B_05_00:
+_off048_B51B_05_00_Causeway:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10805,7 +10805,7 @@ _off048_B51B_05_00:
 
 
 
-_off048_B51D_05_01:
+_off048_B51D_05_01_Causeway:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10814,7 +10814,7 @@ _off048_B51D_05_01:
 
 
 
-_off048_B51F_05_02:
+_off048_B51F_05_02_Causeway:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10824,7 +10824,7 @@ _off048_B51F_05_02:
 
 
 
-_off048_B523_05_03:
+_off048_B523_05_03_Causeway:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10834,7 +10834,7 @@ _off048_B523_05_03:
 
 
 
-_off048_B527_06_00:
+_off048_B527_06_00_Murky_Marshes:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10844,7 +10844,7 @@ _off048_B527_06_00:
 
 
 
-_off048_B52B_06_01:
+_off048_B52B_06_01_Murky_Marshes:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10853,7 +10853,7 @@ _off048_B52B_06_01:
 
 
 
-_off048_B52D_06_02:
+_off048_B52D_06_02_Murky_Marshes:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10864,7 +10864,7 @@ _off048_B52D_06_02:
 
 
 
-_off048_B533_07_00:
+_off048_B533_07_00_Caves_of_Alucard:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10874,7 +10874,7 @@ _off048_B533_07_00:
 
 
 
-_off048_B537_07_01:
+_off048_B537_07_01_Caves_of_Alucard:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10883,7 +10883,7 @@ _off048_B537_07_01:
 
 
 
-_off048_B539_07_02:
+_off048_B539_07_02_Caves_of_Alucard:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10892,7 +10892,7 @@ _off048_B539_07_02:
 
 
 
-_off048_B53B_07_03:
+_off048_B53B_07_03_Caves_of_Alucard:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10901,7 +10901,7 @@ _off048_B53B_07_03:
 
 
 
-_off048_B53D_07_04:
+_off048_B53D_07_04_Caves_of_Alucard:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10911,7 +10911,7 @@ _off048_B53D_07_04:
 
 
 
-_off048_B541_07_05:
+_off048_B541_07_05_Caves_of_Alucard:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10921,7 +10921,7 @@ _off048_B541_07_05:
 
 
 
-_off048_B545_07_06:
+_off048_B545_07_06_Caves_of_Alucard:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10930,7 +10930,7 @@ _off048_B545_07_06:
 
 
 
-_off048_B547_08_00:
+_off048_B547_08_00_Sunken_City:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10940,7 +10940,7 @@ _off048_B547_08_00:
 
 
 
-_off048_B54B_08_01:
+_off048_B54B_08_01_Sunken_City:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10949,7 +10949,7 @@ _off048_B54B_08_01:
 
 
 
-_off048_B54D_08_02:
+_off048_B54D_08_02_Sunken_City:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10959,7 +10959,7 @@ _off048_B54D_08_02:
 
 
 
-_off048_B551_08_03:
+_off048_B551_08_03_Sunken_City:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10968,7 +10968,7 @@ _off048_B551_08_03:
 
 
 
-_off048_B553_08_04:
+_off048_B553_08_04_Sunken_City:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10977,7 +10977,7 @@ _off048_B553_08_04:
 
 
 
-_off048_B555_09_00:
+_off048_B555_09_00_Catacombs:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10987,7 +10987,7 @@ _off048_B555_09_00:
 
 
 
-_off048_B559_09_01:
+_off048_B559_09_01_Catacombs:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -10998,7 +10998,7 @@ _off048_B559_09_01:
 
 
 
-_off048_B55F_0A_00:
+_off048_B55F_0A_00_Mountain_Range:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11008,7 +11008,7 @@ _off048_B55F_0A_00:
 
 
 
-_off048_B563_0A_01:
+_off048_B563_0A_01_Mountain_Range:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11017,7 +11017,7 @@ _off048_B563_0A_01:
 
 
 
-_off048_B565_0A_02:
+_off048_B565_0A_02_Mountain_Range:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11026,7 +11026,7 @@ _off048_B565_0A_02:
 
 
 
-_off048_B567_0A_03:
+_off048_B567_0A_03_Mountain_Range:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11036,7 +11036,7 @@ _off048_B567_0A_03:
 
 
 
-_off048_B56B_0A_04:
+_off048_B56B_0A_04_Mountain_Range:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11047,7 +11047,7 @@ _off048_B56B_0A_04:
 
 
 
-_off048_B571_0A_05:
+_off048_B571_0A_05_Mountain_Range:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11057,7 +11057,7 @@ _off048_B571_0A_05:
 
 
 
-_off048_B575_0A_06:
+_off048_B575_0A_06_Mountain_Range:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11068,7 +11068,7 @@ _off048_B575_0A_06:
 
 
 
-_off048_B57B_0B_00:
+_off048_B57B_0B_00_Castle_Courtyard:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11078,7 +11078,7 @@ _off048_B57B_0B_00:
 
 
 
-_off048_B57F_0B_01:
+_off048_B57F_0B_01_Castle_Courtyard:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11088,7 +11088,7 @@ _off048_B57F_0B_01:
 
 
 
-_off048_B583_0B_02:
+_off048_B583_0B_02_Castle_Courtyard:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11099,7 +11099,7 @@ _off048_B583_0B_02:
 
 
 
-_off048_B589_0C_00:
+_off048_B589_0C_00_Main_Hall:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11109,7 +11109,7 @@ _off048_B589_0C_00:
 
 
 
-_off048_B58D_0C_01:
+_off048_B58D_0C_01_Main_Hall:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11119,7 +11119,7 @@ _off048_B58D_0C_01:
 
 
 
-_off048_B591_0C_02:
+_off048_B591_0C_02_Main_Hall:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11128,7 +11128,7 @@ _off048_B591_0C_02:
 
 
 
-_off048_B593_0D_00:
+_off048_B593_0D_00_Castle_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11139,7 +11139,7 @@ _off048_B593_0D_00:
 
 
 
-_off048_B599_0D_01:
+_off048_B599_0D_01_Castle_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11150,7 +11150,7 @@ _off048_B599_0D_01:
 
 
 
-_off048_B59F_0D_02:
+_off048_B59F_0D_02_Castle_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11161,7 +11161,7 @@ _off048_B59F_0D_02:
 
 
 
-_off048_B5A5_0D_03:
+_off048_B5A5_0D_03_Castle_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11171,7 +11171,7 @@ _off048_B5A5_0D_03:
 
 
 
-_off048_B5A9_0E_00:
+_off048_B5A9_0E_00_Final_Clock_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11182,7 +11182,7 @@ _off048_B5A9_0E_00:
 
 
 
-_off048_B5AF_0E_01:
+_off048_B5AF_0E_01_Final_Clock_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11192,7 +11192,7 @@ _off048_B5AF_0E_01:
 
 
 
-_off048_B5B3_0E_02:
+_off048_B5B3_0E_02_Final_Clock_Tower:
 ;                                              +---------------------- pos_X_hi
 ;                                              |     +---------------- pos_Y_hi
 ;                                              |     |          +----- 
@@ -11220,77 +11220,77 @@ C - - - - - 0x0135DB 04:B5CB: 60        RTS
 
 
 tbl_B5CC:
-; 00 
+; 00 Warakiya
 - D 1 - - - 0x0135DC 04:B5CC: 95        .byte $95   ; 00 
 - - - - - - 0x0135DD 04:B5CD: 93        .byte $93   ; 01 
 - D 1 - - - 0x0135DE 04:B5CE: 93        .byte $93   ; 02 
 - - - - - - 0x0135DF 04:B5CF: 97        .byte $97   ; 03 
-; 01 
+; 01 Clock Tower
 - D 1 - - - 0x0135E0 04:B5D0: 93        .byte $93   ; 00 
 - - - - - - 0x0135E1 04:B5D1: 95        .byte $95   ; 01 
 - - - - - - 0x0135E2 04:B5D2: 97        .byte $97   ; 02 
 - - - - - - 0x0135E3 04:B5D3: 95        .byte $95   ; 03 
-; 02 
+; 02 Forest of Madness
 - D 1 - - - 0x0135E4 04:B5D4: 93        .byte $93   ; 00 
 - - - - - - 0x0135E5 04:B5D5: 97        .byte $97   ; 01 
 - - - - - - 0x0135E6 04:B5D6: 93        .byte $93   ; 02 
 - D 1 - - - 0x0135E7 04:B5D7: 95        .byte $95   ; 03 
-; 03 
+; 03 Ship of Fools
 - - - - - - 0x0135E8 04:B5D8: 93        .byte $93   ; 00 
 - - - - - - 0x0135E9 04:B5D9: 95        .byte $95   ; 01 
 - - - - - - 0x0135EA 04:B5DA: 93        .byte $93   ; 02 
 - D 1 - - - 0x0135EB 04:B5DB: 95        .byte $95   ; 03 
-; 04 
+; 04 Tower of Terror
 - - - - - - 0x0135EC 04:B5DC: 93        .byte $93   ; 00 
 - - - - - - 0x0135ED 04:B5DD: 95        .byte $95   ; 01 
 - D 1 - - - 0x0135EE 04:B5DE: 97        .byte $97   ; 02 
 - - - - - - 0x0135EF 04:B5DF: 95        .byte $95   ; 03 
-; 05 
+; 05 Causeway
 - D 1 - - - 0x0135F0 04:B5E0: 95        .byte $95   ; 00 
 - D 1 - - - 0x0135F1 04:B5E1: 95        .byte $95   ; 01 
 - - - - - - 0x0135F2 04:B5E2: 97        .byte $97   ; 02 
 - - - - - - 0x0135F3 04:B5E3: 95        .byte $95   ; 03 
-; 06 
+; 06 Murky Marshes
 - D 1 - - - 0x0135F4 04:B5E4: 95        .byte $95   ; 00 
 - D 1 - - - 0x0135F5 04:B5E5: 95        .byte $95   ; 01 
 - D 1 - - - 0x0135F6 04:B5E6: 97        .byte $97   ; 02 
 - D 1 - - - 0x0135F7 04:B5E7: 95        .byte $95   ; 03 
-; 07 
+; 07 Caves of Alucard
 - - - - - - 0x0135F8 04:B5E8: 97        .byte $97   ; 00 
 - D 1 - - - 0x0135F9 04:B5E9: 95        .byte $95   ; 01 
 - D 1 - - - 0x0135FA 04:B5EA: 93        .byte $93   ; 02 
 - - - - - - 0x0135FB 04:B5EB: 95        .byte $95   ; 03 
-; 08 
+; 08 Sunken City
 - - - - - - 0x0135FC 04:B5EC: 97        .byte $97   ; 00 
 - D 1 - - - 0x0135FD 04:B5ED: 95        .byte $95   ; 01 
 - - - - - - 0x0135FE 04:B5EE: 93        .byte $93   ; 02 
 - D 1 - - - 0x0135FF 04:B5EF: 93        .byte $93   ; 03 
-; 09 
+; 09 Catacombs
 - - - - - - 0x013600 04:B5F0: 97        .byte $97   ; 00 
 - D 1 - - - 0x013601 04:B5F1: 95        .byte $95   ; 01 
 - D 1 - - - 0x013602 04:B5F2: 93        .byte $93   ; 02 
 - D 1 - - - 0x013603 04:B5F3: 93        .byte $93   ; 03 
-; 0A 
+; 0A Mountain Range
 - D 1 - - - 0x013604 04:B5F4: 94        .byte $94   ; 00 
 - D 1 - - - 0x013605 04:B5F5: 96        .byte $96   ; 01 
 - - - - - - 0x013606 04:B5F6: 93        .byte $93   ; 02 
 - D 1 - - - 0x013607 04:B5F7: 94        .byte $94   ; 03 
-; 0B 
+; 0B Castle Courtyard
 - - - - - - 0x013608 04:B5F8: 97        .byte $97   ; 00 
 - - - - - - 0x013609 04:B5F9: 97        .byte $97   ; 01 
 - - - - - - 0x01360A 04:B5FA: 93        .byte $93   ; 02 
 - - - - - - 0x01360B 04:B5FB: 95        .byte $95   ; 03 
-; 0C 
+; 0C Main Hall
 - - - - - - 0x01360C 04:B5FC: 97        .byte $97   ; 00 
 - - - - - - 0x01360D 04:B5FD: 94        .byte $94   ; 01 
 - D 1 - - - 0x01360E 04:B5FE: 96        .byte $96   ; 02 
 - D 1 - - - 0x01360F 04:B5FF: 93        .byte $93   ; 03 
-; 0D 
+; 0D Castle Tower
 - - - - - - 0x013610 04:B600: 97        .byte $97   ; 00 
 - D 1 - - - 0x013611 04:B601: 97        .byte $97   ; 01 
 - D 1 - - - 0x013612 04:B602: 93        .byte $93   ; 02 
 - - - - - - 0x013613 04:B603: 95        .byte $95   ; 03 
-; 0E 
+; 0E Final Clock Tower
 - D 1 - - - 0x013614 04:B604: 93        .byte $93   ; 00 
 - - - - - - 0x013615 04:B605: 96        .byte $96   ; 01 
 - D 1 - - - 0x013616 04:B606: 95        .byte $95   ; 02 
@@ -11609,8 +11609,9 @@ bra_B73E:
 C - - - - - 0x01374E 04:B73E: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x013751 04:B741: 09 80     ORA #con_obj_flag_not_visible
 C - - - - - 0x013753 04:B743: 9D 70 04  STA ram_obj_flags,X
-C - - - - - 0x013756 04:B746: 20 DA B8  JSR sub_B8DA_check_for_blk_0E_01_01
+C - - - - - 0x013756 04:B746: 20 DA B8  JSR sub_B8DA_check_for_Final_Clock_Tower_0E_01_01
 C - - - - - 0x013759 04:B749: F0 04     BEQ bra_B74F
+; if 0E-01-01
 C - - - - - 0x01375B 04:B74B: E0 0D     CPX #$0D
 C - - - - - 0x01375D 04:B74D: B0 3B     BCS bra_B78A_RTS
 bra_B74F:
@@ -11935,14 +11936,14 @@ tbl_0x0138E1_pos_Y_hi:
 
 
 
-sub_B8DA_check_for_blk_0E_01_01:
-; bzk optimize, sing;e JSR to here
+sub_B8DA_check_for_Final_Clock_Tower_0E_01_01:
+; bzk optimize, single JSR to here
 ; out
     ; Z
         ; 0 = it's 0E-01-01
         ; 1 = it's not 0E-01-01
 C - - - - - 0x0138EA 04:B8DA: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0138EC 04:B8DC: C9 0E     CMP #$0E
+C - - - - - 0x0138EC 04:B8DC: C9 0E     CMP #$0E    ; Final Clock Tower
 C - - - - - 0x0138EE 04:B8DE: D0 0A     BNE bra_B8EA_RTS
 C - - - - - 0x0138F0 04:B8E0: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x0138F2 04:B8E2: C9 01     CMP #$01

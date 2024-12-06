@@ -717,7 +717,7 @@ ram_0008_temp                           = $0008 ; 00002A(W)  000423(W)  000445(W
     ram_0008_t009_data                      = ram_0008_temp ; 2 addresses 0008-0009
     ram_0008_t00A_data                      = ram_0008_temp ; 2 addresses 0008-0009
     ram_0008_t00B_data                      = ram_0008_temp ; 2 addresses 0008-0009
-    ram_0008_t00C_data                      = ram_0008_temp ; 2 addresses 0008-0009
+    ram_0008_t00C_damage_data               = ram_0008_temp ; 2 addresses 0008-0009
     ram_0008_t00D_data                      = ram_0008_temp ; 2 addresses 0008-0009
     ram_0008_t00E_spd_X_data                = ram_0008_temp ; 2 addresses 0008-0009
     ram_0008_t00F_sprite_data_pointer       = ram_0008_temp ; 2 addresses 0008-0009
@@ -751,7 +751,7 @@ ram_0008_temp                           = $0008 ; 00002A(W)  000423(W)  000445(W
     ram_0008_t02B_data                      = ram_0008_temp ; 2 addresses 0008-0009
     ram_0008_t02C_data                      = ram_0008_temp ; 2 addresses 0008-0009
     ram_0008_t02D_data                      = ram_0008_temp ; 2 addresses 0008-0009
-    ram_0008_t02E_credit_screen_data        = ram_0008_temp ; 2 addresses 0008-0009
+    ram_0008_t02E_credits_screen_data       = ram_0008_temp ; 2 addresses 0008-0009
     ram_0008_t02F_jmp                       = ram_0008_temp ; 2 addresses 0008-0009
     ram_0008_t030_jmp                       = ram_0008_temp ; 2 addresses 0008-0009
     ram_0008_t031_jmp                       = ram_0008_temp ; 2 addresses 0008-0009
@@ -1395,6 +1395,21 @@ ram_screen_timer_hi                     = $0031 ; 001E10(W)  001E6A(W)  001E98(R
 ; area/stage/level index
 ; highest bits of 24-bit 
 ; x-00
+; 00 = Warakiya
+; 01 = Clock Tower
+; 02 = Forest of Madness
+; 03 = Ship of Fools
+; 04 = Tower of Terror
+; 05 = Causeway
+; 06 = Murky Marshes
+; 07 = Caves of Alucard
+; 08 = Sunken City
+; 09 = Catacombs
+; 0A = Mountain Range
+; 0B = Castle Courtyard
+; 0C = Main Hall
+; 0D = Castle Tower
+; 0E = Final Clock Tower
 ram_blk_id_hi                           = $0032 ; 000023(R)  000511(R)  000DA6(R)  000FAB(W)  000FC0(R)  000FC4(R)  0011F0(R)  00122E(R)  0012BD(R)  00131C(R)  0013AC(R)  00171B(R)  002120(W)  0025F1(R)  002996(W)  004048(R)  004058(R)  004126(R)  00412E(R)  00414D(R)  00415C(R)  0041B0(R)  004255(R)  0042B0(R)  0042C0(R)  004541(R)  00455D(R)  004575(R)  00458F(R)  004598(R)  0045A1(R)  00480A(R)  004887(R)  0048B6(R)  004F13(R)  004F4F(R)  005275(R)  005416(R)  005887(R)  008011(R)  0082D0(R)  0082F9(R)  0083BA(R)  008722(R)  00887F(R)  008BEF(R)  008C50(R)  009667(R)  0097D9(R)  009EB5(R)  00A713(R)  00A994(R)  00AA4A(R)  00C533(R)  00C558(R)  00C6AD(R)  00C8D9(R)  00C968(R)  00CA52(R)  013335(R)  01337B(R)  0135CD(R)  0138EA(R)  01F4C2(R)  01F54F(R)  023F39(R)  02407F(R)  0244F5(R)  02457B(R)  0247CB(R)  024813(R)  024843(R)  024852(R)  0248A0(R)  0248F9(R)  0249DF(R)  0261F3(R)  026234(R)  026256(R)  026300(R)  0263C0(R)  0263DE(R)  02668B(R)  0266D5(R)  02802E(R)  02849D(R)  0288A1(R)  0288C8(R)  028922(R)  0289A2(R)  028B8F(R)  028E3D(R)  028F55(R)  02B7E5(W)  02B984(W)  02C123(R)  02C300(R)  02C8F9(R)  02CA81(R)  02CAC7(R)  02D174(R)  02DFDE(R)  02E493(R)  037833(R)  0378CA(R)  037B29(R)  037B73(R)  037BA3(R)  0380E9(R)  03816D(R)  03BC40(R)  03C910(R)  03C915(R)  03D07E(R)  03D0AF(R)  03D4AB(R)  03E03F(Wi) 03E485(R)  03E83C(Wx) 03E9A4(R)  03EA1B(R)  03EA4D(R)  03EAA5(R)  03EAEA(R)  03EB62(R)  03EBBA(R)  03F8FA(R)  
 
 

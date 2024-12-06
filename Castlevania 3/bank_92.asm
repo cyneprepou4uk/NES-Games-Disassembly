@@ -93,7 +93,7 @@ C - - - - - 0x024078 09:8068: 20 BA FF  JSR sub_0x03FFCA
 C - - - - - 0x02407B 09:806B: A9 00     LDA #$00
 C - - - - - 0x02407D 09:806D: 85 6E     STA ram_006E_cam_speed
 C - - - - - 0x02407F 09:806F: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x024081 09:8071: C9 0E     CMP #$0E
+C - - - - - 0x024081 09:8071: C9 0E     CMP #$0E    ; Final Clock Tower
 C - - - - - 0x024083 09:8073: F0 05     BEQ bra_807A
 C - - - - - 0x024085 09:8075: A9 5F     LDA #con_music_5F
 C - - - - - 0x024087 09:8077: 20 5F E2  JSR sub_0x03E26F_play_sound
@@ -444,7 +444,7 @@ sub_826D:
         ; 1 = 
 C - - - - - 0x02427D 09:826D: BD 69 06  LDA ram_obj_066A,X
 C - - - - - 0x024280 09:8270: 29 F0     AND #$F0
-C - - - - - 0x024282 09:8272: D0 56     BNE bra_82CA
+C - - - - - 0x024282 09:8272: D0 56     BNE bra_82CA_05_Causeway
 loc_8274:
 C - - - - - 0x024284 09:8274: DE 90 07  DEC ram_0790,X
 C - - - - - 0x024287 09:8277: D0 3C     BNE bra_82B5
@@ -494,7 +494,7 @@ C - - - - - 0x0242D7 09:82C7: 60        RTS
 bra_82C8:
 C - - - - - 0x0242D8 09:82C8: 18        CLC
 C - - - - - 0x0242D9 09:82C9: 60        RTS
-bra_82CA:
+bra_82CA_05_Causeway:
 - - - - - - 0x0242DA 09:82CA: BD 4E 05  LDA ram_obj_id,X
 - - - - - - 0x0242DD 09:82CD: C9 06     CMP #$06
 - - - - - - 0x0242DF 09:82CF: F0 3E     BEQ bra_830F
@@ -901,15 +901,17 @@ C - - - - - 0x0244EB 09:84DB: 29 01     AND #con_obj_flag_01
 C - - - - - 0x0244ED 09:84DD: F0 74     BEQ bra_8553
 C - - - - - 0x0244EF 09:84DF: A8        TAY ; 01
 ; bzk optimize, Y is always 01
-C - - - - - 0x0244F0 09:84E0: B9 AE 85  LDA tbl_85AE,Y
+; bzk bug?
+C - - - - - 0x0244F0 09:84E0: B9 AE 85  LDA tbl_85AE_02,Y
 C - - - - - 0x0244F3 09:84E3: F0 6E     BEQ bra_8553
 C - - - - - 0x0244F5 09:84E5: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0244F7 09:84E7: D9 CE 85  CMP tbl_85CE,Y
+C - - - - - 0x0244F7 09:84E7: D9 CE 85  CMP tbl_85CE_00_Warakiya,Y
 C - - - - - 0x0244FA 09:84EA: F0 06     BEQ bra_84F2
-C - - - - - 0x0244FC 09:84EC: B9 DE 85  LDA tbl_85DE,Y
+C - - - - - 0x0244FC 09:84EC: B9 DE 85  LDA tbl_85DE_01,Y
 C - - - - - 0x0244FF 09:84EF: 4C F5 84  JMP loc_84F5
 bra_84F2:
-- - - - - - 0x024502 09:84F2: B9 BE 85  LDA tbl_85BE,Y
+; bzk garbage
+- - - - - - 0x024502 09:84F2: B9 BE 85  LDA tbl_85BE_00,Y
 loc_84F5:
 C D 0 - - - 0x024505 09:84F5: F0 0E     BEQ bra_8505
 C - - - - - 0x024507 09:84F7: C9 FF     CMP #$FF
@@ -981,7 +983,7 @@ bra_8567:
 C - - - - - 0x024577 09:8567: C0 07     CPY #$07
 C - - - - - 0x024579 09:8569: D0 0A     BNE bra_8575
 C - - - - - 0x02457B 09:856B: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x02457D 09:856D: C9 04     CMP #$04
+C - - - - - 0x02457D 09:856D: C9 04     CMP #$04    ; Tower of Terror
 C - - - - - 0x02457F 09:856F: F0 04     BEQ bra_8575
 C - - - - - 0x024581 09:8571: A9 01     LDA #$01
 C - - - - - 0x024583 09:8573: D0 03     BNE bra_8578    ; jmp
@@ -1049,7 +1051,8 @@ tbl_85AA:
 
 
 
-tbl_85AE:
+tbl_85AE_02:
+; bzk optimize
 - - - - - - 0x0245BE 09:85AE: 00        .byte $00   ; 00 placeholder
 - D 0 - - - 0x0245BF 09:85AF: 02        .byte $02   ; 01 
 
@@ -1072,7 +1075,8 @@ tbl_85AE:
 
 
 
-tbl_85BE:
+tbl_85BE_00:
+; bzk garbage
 - - - - - - 0x0245CE 09:85BE: 00        .byte $00   ; 00 placeholder
 - - - - - - 0x0245CF 09:85BF: 00        .byte $00   ; 01 
 
@@ -1095,7 +1099,8 @@ tbl_85BE:
 
 
 
-tbl_85CE:
+tbl_85CE_00_Warakiya:
+; bzk optimize
 - - - - - - 0x0245DE 09:85CE: 00        .byte $00   ; 00 placeholder
 - D 0 - - - 0x0245DF 09:85CF: 00        .byte $00   ; 01 
 
@@ -1118,7 +1123,8 @@ tbl_85CE:
 
 
 
-tbl_85DE:
+tbl_85DE_01:
+; bzk optimize
 - - - - - - 0x0245EE 09:85DE: 00        .byte $00   ; 00 placeholder
 - D 0 - - - 0x0245EF 09:85DF: 01        .byte $01   ; 01 
 
@@ -1457,8 +1463,8 @@ C - - - - - 0x0247C7 09:87B7: 9D 1C 04  STA ram_obj_pos_Y_hi,X
 C - - - - - 0x0247CA 09:87BA: 60        RTS
 bra_87BB:
 C - - - - - 0x0247CB 09:87BB: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0247CD 09:87BD: F0 E8     BEQ bra_87A7
-C - - - - - 0x0247CF 09:87BF: C9 07     CMP #$07
+C - - - - - 0x0247CD 09:87BD: F0 E8     BEQ bra_87A7    ; if 00 Warakiya
+C - - - - - 0x0247CF 09:87BF: C9 07     CMP #$07    ; Caves of Alucard
 C - - - - - 0x0247D1 09:87C1: F0 E4     BEQ bra_87A7
 C - - - - - 0x0247D3 09:87C3: D0 D1     BNE bra_8796    ; jmp
 
@@ -1534,7 +1540,7 @@ C - - - - - 0x02480E 09:87FE: F0 03     BEQ bra_8803
 C - - - - - 0x024810 09:8800: 4C CB 88  JMP loc_88CB_CLC
 bra_8803:
 C - - - - - 0x024813 09:8803: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x024815 09:8805: C9 0E     CMP #$0E
+C - - - - - 0x024815 09:8805: C9 0E     CMP #$0E    ; Final Clock Tower
 C - - - - - 0x024817 09:8807: D0 0B     BNE bra_8814
 C - - - - - 0x024819 09:8809: AD EC 07  LDA ram_07EC
 C - - - - - 0x02481C 09:880C: C9 02     CMP #$02
@@ -1557,20 +1563,24 @@ C - - - - - 0x02483C 09:882C: C9 02     CMP #$02
 C - - - - - 0x02483E 09:882E: F0 03     BEQ bra_8833
 C - - - - - 0x024840 09:8830: 4C C9 88  JMP loc_88C9_SEC
 bra_8833:
+; check for 0A-03-xx
 C - - - - - 0x024843 09:8833: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x024845 09:8835: C9 0A     CMP #$0A
+C - - - - - 0x024845 09:8835: C9 0A     CMP #$0A    ; Mountain Range
 C - - - - - 0x024847 09:8837: D0 09     BNE bra_8842
 C - - - - - 0x024849 09:8839: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x02484B 09:883B: C9 03     CMP #$03
 C - - - - - 0x02484D 09:883D: D0 03     BNE bra_8842
+; if 0A-03-xx
 C - - - - - 0x02484F 09:883F: 4C CD 88  JMP loc_88CD
 bra_8842:
+; check for 03-02-xx
 C - - - - - 0x024852 09:8842: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x024854 09:8844: C9 03     CMP #$03
+C - - - - - 0x024854 09:8844: C9 03     CMP #$03    ; Ship of Fools
 C - - - - - 0x024856 09:8846: D0 2F     BNE bra_8877
 C - - - - - 0x024858 09:8848: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x02485A 09:884A: C9 02     CMP #$02
 C - - - - - 0x02485C 09:884C: D0 29     BNE bra_8877
+; if 03-02-xx
 C - - - - - 0x02485E 09:884E: A9 74     LDA #$74
 C - - - - - 0x024860 09:8850: 20 66 87  JSR sub_8766
 C - - - - - 0x024863 09:8853: A9 B0     LDA #$B0
@@ -1599,12 +1609,14 @@ C - - - - - 0x024895 09:8885: 99 EF 05  STA ram_obj_ai_script,Y
 C - - - - - 0x024898 09:8888: A9 80     LDA #$80
 C - - - - - 0x02489A 09:888A: 99 38 04  STA ram_obj_pos_X_hi,Y
 C - - - - - 0x02489D 09:888D: 99 1C 04  STA ram_obj_pos_Y_hi,Y
+; check for not 08-02-xx
 C - - - - - 0x0248A0 09:8890: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0248A2 09:8892: C9 08     CMP #$08
+C - - - - - 0x0248A2 09:8892: C9 08     CMP #$08    ; Sunken City
 C - - - - - 0x0248A4 09:8894: D0 10     BNE bra_88A6
 C - - - - - 0x0248A6 09:8896: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x0248A8 09:8898: C9 02     CMP #$02
 C - - - - - 0x0248AA 09:889A: F0 0A     BEQ bra_88A6
+; if not 08-02-xx
 C - - - - - 0x0248AC 09:889C: A9 60     LDA #$60
 C - - - - - 0x0248AE 09:889E: 99 1C 04  STA ram_obj_pos_Y_hi,Y
 C - - - - - 0x0248B1 09:88A1: A9 90     LDA #$90
@@ -1662,7 +1674,7 @@ C - - - - - 0x0248F2 09:88E2: BD 69 06  LDA ram_obj_066A,X
 C - - - - - 0x0248F5 09:88E5: 29 F0     AND #$F0
 C - - - - - 0x0248F7 09:88E7: F0 1B     BEQ bra_8904_RTS
 C - - - - - 0x0248F9 09:88E9: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0248FB 09:88EB: C9 0E     CMP #$0E
+C - - - - - 0x0248FB 09:88EB: C9 0E     CMP #$0E    ; Final Clock Tower
 C - - - - - 0x0248FD 09:88ED: D0 0B     BNE bra_88FA
 C - - - - - 0x0248FF 09:88EF: AD EC 07  LDA ram_07EC
 C - - - - - 0x024902 09:88F2: C9 02     CMP #$02
@@ -1847,11 +1859,11 @@ C - - - - - 0x0249D8 09:89C8: BD C1 05  LDA ram_obj_ai_subscript,X
 C - - - - - 0x0249DB 09:89CB: C9 0D     CMP #$0D
 C - - - - - 0x0249DD 09:89CD: D0 1F     BNE bra_89EE_RTS
 C - - - - - 0x0249DF 09:89CF: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0249E1 09:89D1: C9 0A     CMP #$0A
+C - - - - - 0x0249E1 09:89D1: C9 0A     CMP #$0A    ; Mountain Range
 C - - - - - 0x0249E3 09:89D3: F0 0E     BEQ bra_89E3
-C - - - - - 0x0249E5 09:89D5: C9 0B     CMP #$0B
+C - - - - - 0x0249E5 09:89D5: C9 0B     CMP #$0B    ; Castle Courtyard
 C - - - - - 0x0249E7 09:89D7: F0 0A     BEQ bra_89E3
-C - - - - - 0x0249E9 09:89D9: C9 03     CMP #$03
+C - - - - - 0x0249E9 09:89D9: C9 03     CMP #$03    ; Ship of Fools
 C - - - - - 0x0249EB 09:89DB: D0 11     BNE bra_89EE_RTS
 C - - - - - 0x0249ED 09:89DD: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x0249EF 09:89DF: C9 04     CMP #$04
@@ -7952,7 +7964,7 @@ sub_A1DE:
 C D 1 - - - 0x0261EE 09:A1DE: AD F6 07  LDA ram_quest
 C - - - - - 0x0261F1 09:A1E1: D0 0E     BNE bra_A1F1_2nd_quest
 C - - - - - 0x0261F3 09:A1E3: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0261F5 09:A1E5: F0 04     BEQ bra_A1EB
+C - - - - - 0x0261F5 09:A1E5: F0 04     BEQ bra_A1EB    ; if 00 Warakiya
 C - - - - - 0x0261F7 09:A1E7: A9 20     LDA #$20
 C - - - - - 0x0261F9 09:A1E9: D0 02     BNE bra_A1ED    ; jmp
 bra_A1EB:
@@ -7990,7 +8002,7 @@ bra_A21F:
 C - - - - - 0x02622F 09:A21F: A9 00     LDA #$00
 C - - - - - 0x026231 09:A221: 20 F4 87  JSR sub_87F4
 C - - - - - 0x026234 09:A224: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x026236 09:A226: F0 1E     BEQ bra_A246
+C - - - - - 0x026236 09:A226: F0 1E     BEQ bra_A246    ; if 00 Warakiya
 C - - - - - 0x026238 09:A228: BD 69 06  LDA ram_obj_066A,X
 C - - - - - 0x02623B 09:A22B: F0 19     BEQ bra_A246
 C - - - - - 0x02623D 09:A22D: 20 0B 87  JSR sub_870B
@@ -8005,7 +8017,7 @@ C - - - - - 0x026251 09:A241: A9 88     LDA #con_obj_flag_08 + con_obj_flag_not_
 C - - - - - 0x026253 09:A243: 99 70 04  STA ram_obj_flags,Y
 bra_A246:
 C - - - - - 0x026256 09:A246: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x026258 09:A248: F0 02     BEQ bra_A24C
+C - - - - - 0x026258 09:A248: F0 02     BEQ bra_A24C    ; if 00 Warakiya
 C - - - - - 0x02625A 09:A24A: A9 03     LDA #$03
 bra_A24C:   ; A = 00
 C - - - - - 0x02625C 09:A24C: 85 00     STA ram_0000_t08A_damage_offset
@@ -8104,7 +8116,7 @@ sub_A2F0:
         ; 0 = 
         ; 1 = 
 C - - - - - 0x026300 09:A2F0: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x026302 09:A2F2: C9 07     CMP #$07
+C - - - - - 0x026302 09:A2F2: C9 07     CMP #$07    ; Caves of Alucard
 C - - - - - 0x026304 09:A2F4: D0 31     BNE bra_A327
 C - - - - - 0x026306 09:A2F6: BD 38 04  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x026309 09:A2F9: C9 30     CMP #$30
@@ -8202,7 +8214,7 @@ C - - - - - 0x0263BB 09:A3AB: A9 0C     LDA #$0C
 C - - - - - 0x0263BD 09:A3AD: 4C 4F 86  JMP loc_864F
 bra_A3B0:
 C - - - - - 0x0263C0 09:A3B0: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0263C2 09:A3B2: F0 05     BEQ bra_A3B9
+C - - - - - 0x0263C2 09:A3B2: F0 05     BEQ bra_A3B9    ; if 00 Warakiya
 C - - - - - 0x0263C4 09:A3B4: A9 13     LDA #$13
 C - - - - - 0x0263C6 09:A3B6: 9D 57 06  STA ram_obj_0658,X
 bra_A3B9:
@@ -8218,7 +8230,7 @@ C - - - - - 0x0263D8 09:A3C8: 29 1F     AND #$1F
 C - - - - - 0x0263DA 09:A3CA: C9 01     CMP #$01
 C - - - - - 0x0263DC 09:A3CC: D0 3A     BNE bra_A408
 C - - - - - 0x0263DE 09:A3CE: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0263E0 09:A3D0: D0 1B     BNE bra_A3ED
+C - - - - - 0x0263E0 09:A3D0: D0 1B     BNE bra_A3ED    ; if not 00 Warakiya
 C - - - - - 0x0263E2 09:A3D2: BD 38 04  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x0263E5 09:A3D5: C9 18     CMP #$18
 C - - - - - 0x0263E7 09:A3D7: B0 2F     BCS bra_A408
@@ -8608,8 +8620,8 @@ C - - - - - 0x026684 09:A674: 20 C3 A4  JSR sub_A4C3
 C - - - - - 0x026687 09:A677: C9 2F     CMP #$2F
 C - - - - - 0x026689 09:A679: F0 4A     BEQ bra_A6C5
 C - - - - - 0x02668B 09:A67B: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x02668D 09:A67D: C9 02     CMP #$02
-C - - - - - 0x02668F 09:A67F: F0 29     BEQ bra_A6AA
+C - - - - - 0x02668D 09:A67D: C9 02     CMP #$02    ; Forest of Madness
+C - - - - - 0x02668F 09:A67F: F0 29     BEQ bra_A6AA_02_Forest_of_Madness
 C - - - - - 0x026691 09:A681: A0 01     LDY #$01
 C - - - - - 0x026693 09:A683: 86 00     STX ram_0000_t0F0
 bra_A685_loop:
@@ -8629,7 +8641,7 @@ C - - - - - 0x0266B3 09:A6A3: C8        INY
 C - - - - - 0x0266B4 09:A6A4: C0 0D     CPY #$0D
 C - - - - - 0x0266B6 09:A6A6: D0 DD     BNE bra_A685_loop
 C - - - - - 0x0266B8 09:A6A8: F0 07     BEQ bra_A6B1    ; jmp
-bra_A6AA:
+bra_A6AA_02_Forest_of_Madness:
 C - - - - - 0x0266BA 09:A6AA: 8A        TXA
 C - - - - - 0x0266BB 09:A6AB: 48        PHA
 C - - - - - 0x0266BC 09:A6AC: 20 04 9D  JSR sub_9D04
@@ -8646,7 +8658,7 @@ C - - - - - 0x0266D0 09:A6C0: A9 2F     LDA #$2F
 C - - - - - 0x0266D2 09:A6C2: 4C 4F 86  JMP loc_864F
 bra_A6C5:
 C - - - - - 0x0266D5 09:A6C5: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0266D7 09:A6C7: C9 02     CMP #$02
+C - - - - - 0x0266D7 09:A6C7: C9 02     CMP #$02    ; Forest of Madness
 C - - - - - 0x0266D9 09:A6C9: F0 31     BEQ bra_A6FC_RTS
 C - - - - - 0x0266DB 09:A6CB: BD C1 05  LDA ram_obj_ai_subscript,X
 C - - - - - 0x0266DE 09:A6CE: C9 09     CMP #$09

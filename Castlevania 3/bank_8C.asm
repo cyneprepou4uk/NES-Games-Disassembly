@@ -7,23 +7,23 @@
 
 
 
-.export _off044_0x018011_09
-.export _off045_0x0182D0_09
-.export _off046_0x0187D0_09
-.export _off044_0x018820_0A
+.export _off044_0x018011_09_Catacombs
+.export _off045_0x0182D0_09_Catacombs
+.export _off046_0x0187D0_09_Catacombs
+.export _off044_0x018820_0A_Mountain_Range
 .export _off031_0x018AE1_07
 .export _off031_0x018B11_06
-.export _off045_0x018EDB_0A
-.export _off046_0x019EDB_0A
-.export _off044_0x019FDB_0C
-.export _off045_0x01A2FB_0C
-.export _off046_0x01A8FB_0C
-.export _off044_0x01A95B_0D
-.export _off045_0x01AC9A_0D
-.export _off046_0x01B29A_0D
-.export _off044_0x01B2FA_0E
-.export _off045_0x01B5C5_0E
-.export _off046_0x01BD85_0E
+.export _off045_0x018EDB_0A_Mountain_Range
+.export _off046_0x019EDB_0A_Mountain_Range
+.export _off044_0x019FDB_0C_Main_Hall
+.export _off045_0x01A2FB_0C_Main_Hall
+.export _off046_0x01A8FB_0C_Main_Hall
+.export _off044_0x01A95B_0D_Castle_Tower
+.export _off045_0x01AC9A_0D_Castle_Tower
+.export _off046_0x01B29A_0D_Castle_Tower
+.export _off044_0x01B2FA_0E_Final_Clock_Tower
+.export _off045_0x01B5C5_0E_Final_Clock_Tower
+.export _off046_0x01BD85_0E_Final_Clock_Tower
 .export tbl_0x01BE01_4x4_blocks_indexes
 .export sub_0x01BE31
 .export sub_0x01BE9E
@@ -35,45 +35,45 @@
 
 
 
-_off044_0x018011_09:
-- D 0 - I - 0x018011 06:8001: 05 80     .word off_8005_09_00
-- D 0 - I - 0x018013 06:8003: 0E 80     .word off_800E_09_01
+_off044_0x018011_09_Catacombs:
+- D 0 - I - 0x018011 06:8001: 05 80     .word off_8005_09_00_Catacombs
+- D 0 - I - 0x018013 06:8003: 0E 80     .word off_800E_09_01_Catacombs
 
 
 
-off_8005_09_00:
+off_8005_09_00_Catacombs:
 - D 0 - I - 0x018015 06:8005: 01        .byte $01   ; 
-- D 0 - I - 0x018016 06:8006: 2F 82     .word _off047_822F_09_00_00
-- D 0 - I - 0x018018 06:8008: 9E 81     .word _off047_819E_09_00_01
+- D 0 - I - 0x018016 06:8006: 2F 82     .word _off047_822F_09_00_00_Catacombs
+- D 0 - I - 0x018018 06:8008: 9E 81     .word _off047_819E_09_00_01_Catacombs
 ; stairs transition data
 ; 00 
-- - - - - - 0x01801A 06:800A: E0        .byte $E0   ; up
-- D 0 - I - 0x01801B 06:800B: 01        .byte $01   ; down
+- - - - - - 0x01801A 06:800A: E0        .byte $E0   ; down
+- D 0 - I - 0x01801B 06:800B: 01        .byte $01   ; up
 ; 01 
-- - - - - - 0x01801C 06:800C: FF        .byte $FF   ; up
-- - - - - - 0x01801D 06:800D: E0        .byte $E0   ; down
+- - - - - - 0x01801C 06:800C: FF        .byte $FF   ; down
+- - - - - - 0x01801D 06:800D: E0        .byte $E0   ; up
 
 
 
-off_800E_09_01:
+off_800E_09_01_Catacombs:
 - D 0 - I - 0x01801E 06:800E: 02        .byte $02   ; 
-- D 0 - I - 0x01801F 06:800F: 3D 81     .word _off047_813D_09_01_00
-- D 0 - I - 0x018021 06:8011: 7C 80     .word _off047_807C_09_01_01
-- D 0 - I - 0x018023 06:8013: 1B 80     .word _off047_801B_09_01_02
+- D 0 - I - 0x01801F 06:800F: 3D 81     .word _off047_813D_09_01_00_Catacombs
+- D 0 - I - 0x018021 06:8011: 7C 80     .word _off047_807C_09_01_01_Catacombs
+- D 0 - I - 0x018023 06:8013: 1B 80     .word _off047_801B_09_01_02_Catacombs
 ; stairs transition data
 ; 00 
-- - - - - - 0x018025 06:8015: E0        .byte $E0   ; up
-- D 0 - I - 0x018026 06:8016: 00        .byte $00   ; down
+- - - - - - 0x018025 06:8015: E0        .byte $E0   ; down
+- D 0 - I - 0x018026 06:8016: 00        .byte $00   ; up
 ; 01 
-- - - - - - 0x018027 06:8017: 00        .byte $00   ; up
-- D 0 - I - 0x018028 06:8018: FD        .byte $FD   ; down
+- - - - - - 0x018027 06:8017: 00        .byte $00   ; down
+- D 0 - I - 0x018028 06:8018: FD        .byte $FD   ; up
 ; 02 
-- - - - - - 0x018029 06:8019: 03        .byte $03   ; up
-- - - - - - 0x01802A 06:801A: E0        .byte $E0   ; down
+- - - - - - 0x018029 06:8019: 03        .byte $03   ; down
+- - - - - - 0x01802A 06:801A: E0        .byte $E0   ; up
 
 
 
-_off047_801B_09_01_02:
+_off047_801B_09_01_02_Catacombs:
 - D 0 - I - 0x01802B 06:801B: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01802C 06:801C: 0C        .byte $0C, $08, $0A, $02, $20, $01, $08, $02   ; 
 - D 0 - I - 0x018034 06:8024: 08        .byte $08, $03, $02, $00, $22, $00, $20, $21   ; 
@@ -90,7 +90,7 @@ _off047_801B_09_01_02:
 
 
 
-_off047_807C_09_01_01:
+_off047_807C_09_01_01_Catacombs:
 - D 0 - I - 0x01808C 06:807C: 03        .byte $03   ; cam_pos_hi
 - D 0 - I - 0x01808D 06:807D: 10        .byte $10, $01, $0C, $08, $0C, $0C, $08, $10   ; 
 - D 0 - I - 0x018095 06:8085: 10        .byte $10, $03, $01, $02, $03, $0A, $02, $10   ; 
@@ -119,7 +119,7 @@ _off047_807C_09_01_01:
 
 
 
-_off047_813D_09_01_00:
+_off047_813D_09_01_00_Catacombs:
 - D 0 - I - 0x01814D 06:813D: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01814E 06:813E: 10        .byte $10, $4A, $00, $1B, $00, $00, $4A, $10   ; 
 - D 0 - I - 0x018156 06:8146: 10        .byte $10, $49, $4F, $00, $1B, $00, $49, $10   ; 
@@ -136,7 +136,7 @@ _off047_813D_09_01_00:
 
 
 
-_off047_819E_09_00_01:
+_off047_819E_09_00_01_Catacombs:
 - D 0 - I - 0x0181AE 06:819E: 02        .byte $02   ; cam_pos_hi
 - D 0 - I - 0x0181AF 06:819F: 10        .byte $10, $10, $10, $10, $10, $10, $10, $10   ; 
 - D 0 - I - 0x0181B7 06:81A7: 10        .byte $10, $4A, $00, $00, $10, $10, $10, $10   ; 
@@ -159,7 +159,7 @@ _off047_819E_09_00_01:
 
 
 
-_off047_822F_09_00_00:
+_off047_822F_09_00_00_Catacombs:
 - D 0 - I - 0x01823F 06:822F: 02        .byte $02   ; cam_pos_hi
 - D 0 - I - 0x018240 06:8230: 08        .byte $08, $0C, $08, $01, $02, $03, $01, $01   ; 
 - D 0 - I - 0x018248 06:8238: 0A        .byte $0A, $02, $16, $2F, $16, $1D, $00, $03   ; 
@@ -182,7 +182,7 @@ _off047_822F_09_00_00:
 
 
 
-_off045_0x0182D0_09:
+_off045_0x0182D0_09_Catacombs:
 ; 00 
 - D 0 - I - 0x0182D0 06:82C0: 00        .byte $00, $00, $00, $00   ; 
 - D 0 - I - 0x0182D4 06:82C4: 00        .byte $00, $00, $00, $00   ; 
@@ -586,7 +586,7 @@ _off045_0x0182D0_09:
 
 
 
-_off046_0x0187D0_09:
+_off046_0x0187D0_09_Catacombs:
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x0187D0 06:87C0: 00        .byte $00, $AA, $AA, $AA, $A5, $FB, $77, $55, $AA, $FF, $AA, $55, $AA, $FF, $74, $55   ; 00 
 - D 0 - I - 0x0187E0 06:87D0: FF        .byte $FF, $FF, $FF, $FF, $0F, $5F, $55, $FF, $8F, $FF, $FF, $FF, $88, $55, $FF, $FF   ; 10 
@@ -596,116 +596,116 @@ _off046_0x0187D0_09:
 
 
 
-_off044_0x018820_0A:
-- D 0 - I - 0x018820 06:8810: 1E 88     .word off_881E_0A_00
-- D 0 - I - 0x018822 06:8812: 27 88     .word off_8827_0A_01
-- D 0 - I - 0x018824 06:8814: 2C 88     .word off_882C_0A_02
-- D 0 - I - 0x018826 06:8816: 31 88     .word off_8831_0A_03
-- D 0 - I - 0x018828 06:8818: 3A 88     .word off_883A_0A_04
-- D 0 - I - 0x01882A 06:881A: 47 88     .word off_8847_0A_05
-- D 0 - I - 0x01882C 06:881C: 50 88     .word off_8850_0A_06
+_off044_0x018820_0A_Mountain_Range:
+- D 0 - I - 0x018820 06:8810: 1E 88     .word off_881E_0A_00_Mountain_Range
+- D 0 - I - 0x018822 06:8812: 27 88     .word off_8827_0A_01_Mountain_Range
+- D 0 - I - 0x018824 06:8814: 2C 88     .word off_882C_0A_02_Mountain_Range
+- D 0 - I - 0x018826 06:8816: 31 88     .word off_8831_0A_03_Mountain_Range
+- D 0 - I - 0x018828 06:8818: 3A 88     .word off_883A_0A_04_Mountain_Range
+- D 0 - I - 0x01882A 06:881A: 47 88     .word off_8847_0A_05_Mountain_Range
+- D 0 - I - 0x01882C 06:881C: 50 88     .word off_8850_0A_06_Mountain_Range
 
 
 
-off_881E_0A_00:
+off_881E_0A_00_Mountain_Range:
 - D 0 - I - 0x01882E 06:881E: 01        .byte $01   ; 
-- D 0 - I - 0x01882F 06:881F: 85 8C     .word _off047_8C85_0A_00_00
-- D 0 - I - 0x018831 06:8821: 54 8C     .word _off047_8C54_0A_00_01
+- D 0 - I - 0x01882F 06:881F: 85 8C     .word _off047_8C85_0A_00_00_Mountain_Range
+- D 0 - I - 0x018831 06:8821: 54 8C     .word _off047_8C54_0A_00_01_Mountain_Range
 ; stairs transition data
 ; 00 
-- - - - - - 0x018833 06:8823: E0        .byte $E0   ; up
-- D 0 - I - 0x018834 06:8824: 00        .byte $00   ; down
+- - - - - - 0x018833 06:8823: E0        .byte $E0   ; down
+- D 0 - I - 0x018834 06:8824: 00        .byte $00   ; up
 ; 01 
-- - - - - - 0x018835 06:8825: 00        .byte $00   ; up
-- - - - - - 0x018836 06:8826: E0        .byte $E0   ; down
+- - - - - - 0x018835 06:8825: 00        .byte $00   ; down
+- - - - - - 0x018836 06:8826: E0        .byte $E0   ; up
 
 
 
-off_8827_0A_01:
+off_8827_0A_01_Mountain_Range:
 - - - - - - 0x018837 06:8827: 00        .byte $00   ; 
-- D 0 - I - 0x018838 06:8828: F3 8B     .word _off047_8BF3_0A_01_00
+- D 0 - I - 0x018838 06:8828: F3 8B     .word _off047_8BF3_0A_01_00_Mountain_Range
 ; stairs transition data
 ; 00 
-- D 0 - I - 0x01883A 06:882A: E0        .byte $E0   ; up
-- D 0 - I - 0x01883B 06:882B: 00        .byte $00   ; down
+- D 0 - I - 0x01883A 06:882A: E0        .byte $E0   ; down
+- D 0 - I - 0x01883B 06:882B: 00        .byte $00   ; up
 
 
 
-off_882C_0A_02:
+off_882C_0A_02_Mountain_Range:
 - D 0 - I - 0x01883C 06:882C: 00        .byte $00   ; 
-- D 0 - I - 0x01883D 06:882D: C2 8B     .word _off047_8BC2_0A_02_00
+- D 0 - I - 0x01883D 06:882D: C2 8B     .word _off047_8BC2_0A_02_00_Mountain_Range
 ; stairs transition data
 ; 00 
-- D 0 - I - 0x01883F 06:882F: E0        .byte $E0   ; up
-- D 0 - I - 0x018840 06:8830: 00        .byte $00   ; down
+- D 0 - I - 0x01883F 06:882F: E0        .byte $E0   ; down
+- D 0 - I - 0x018840 06:8830: 00        .byte $00   ; up
 
 
 
-off_8831_0A_03:
+off_8831_0A_03_Mountain_Range:
 - D 0 - I - 0x018841 06:8831: 01        .byte $01   ; 
-- D 0 - I - 0x018842 06:8832: 31 8B     .word _off047_8B31_0A_03_00
-- D 0 - I - 0x018844 06:8834: 40 8A     .word _off047_8A40_0A_03_01
+- D 0 - I - 0x018842 06:8832: 31 8B     .word _off047_8B31_0A_03_00_Mountain_Range
+- D 0 - I - 0x018844 06:8834: 40 8A     .word _off047_8A40_0A_03_01_Mountain_Range
 ; stairs transition data
 ; 00 
-- - - - - - 0x018846 06:8836: E0        .byte $E0   ; up
-- D 0 - I - 0x018847 06:8837: 00        .byte $00   ; down
+- - - - - - 0x018846 06:8836: E0        .byte $E0   ; down
+- D 0 - I - 0x018847 06:8837: 00        .byte $00   ; up
 ; 01 
-- - - - - - 0x018848 06:8838: 00        .byte $00   ; up
-- - - - - - 0x018849 06:8839: E0        .byte $E0   ; down
+- - - - - - 0x018848 06:8838: 00        .byte $00   ; down
+- - - - - - 0x018849 06:8839: E0        .byte $E0   ; up
 
 
 
-off_883A_0A_04:
+off_883A_0A_04_Mountain_Range:
 - D 0 - I - 0x01884A 06:883A: 02        .byte $02   ; 
-- D 0 - I - 0x01884B 06:883B: 5D 88     .word _off047_885D_0A_04_00
-- D 0 - I - 0x01884D 06:883D: 6A 8E     .word _off047_8E6A_0A_04_01
-- D 0 - I - 0x01884F 06:883F: 09 8E     .word _off047_8E09_0A_04_02
+- D 0 - I - 0x01884B 06:883B: 5D 88     .word _off047_885D_0A_04_00_Mountain_Range
+- D 0 - I - 0x01884D 06:883D: 6A 8E     .word _off047_8E6A_0A_04_01_Mountain_Range
+- D 0 - I - 0x01884F 06:883F: 09 8E     .word _off047_8E09_0A_04_02_Mountain_Range
 ; stairs transition data
 ; 00 
-- - - - - - 0x018851 06:8841: E0        .byte $E0   ; up
-- D 0 - I - 0x018852 06:8842: 10        .byte $01 * $10 + $00   ; down
+- - - - - - 0x018851 06:8841: E0        .byte $E0   ; down
+- D 0 - I - 0x018852 06:8842: 10        .byte $01 * $10 + $00   ; up
 ; 01 
-- - - - - - 0x018853 06:8843: 80        .byte $80 + $00   ; up
-- D 0 - I - 0x018854 06:8844: 00        .byte $00   ; down
+- - - - - - 0x018853 06:8843: 80        .byte $80 + $00   ; down
+- D 0 - I - 0x018854 06:8844: 00        .byte $00   ; up
 ; 02 
-- - - - - - 0x018855 06:8845: 00        .byte $00   ; up
-- - - - - - 0x018856 06:8846: E0        .byte $E0   ; down
+- - - - - - 0x018855 06:8845: 00        .byte $00   ; down
+- - - - - - 0x018856 06:8846: E0        .byte $E0   ; up
 
 
 
-off_8847_0A_05:
+off_8847_0A_05_Mountain_Range:
 - D 0 - I - 0x018857 06:8847: 01        .byte $01   ; 
-- D 0 - I - 0x018858 06:8848: 78 8D     .word _off047_8D78_0A_05_00
-- D 0 - I - 0x01885A 06:884A: E7 8C     .word _off047_8CE7_0A_05_01
+- D 0 - I - 0x018858 06:8848: 78 8D     .word _off047_8D78_0A_05_00_Mountain_Range
+- D 0 - I - 0x01885A 06:884A: E7 8C     .word _off047_8CE7_0A_05_01_Mountain_Range
 ; stairs transition data
 ; 00 
-- - - - - - 0x01885C 06:884C: E0        .byte $E0   ; up
-- D 0 - I - 0x01885D 06:884D: 00        .byte $00   ; down
+- - - - - - 0x01885C 06:884C: E0        .byte $E0   ; down
+- D 0 - I - 0x01885D 06:884D: 00        .byte $00   ; up
 ; 01 
-- D 0 - I - 0x01885E 06:884E: 00        .byte $00   ; up
-- - - - - - 0x01885F 06:884F: E0        .byte $E0   ; down
+- D 0 - I - 0x01885E 06:884E: 00        .byte $00   ; down
+- - - - - - 0x01885F 06:884F: E0        .byte $E0   ; up
 
 
 
-off_8850_0A_06:
+off_8850_0A_06_Mountain_Range:
 - D 0 - I - 0x018860 06:8850: 02        .byte $02   ; 
-- D 0 - I - 0x018861 06:8851: B6 8C     .word _off047_8CB6_0A_06_00
-- D 0 - I - 0x018863 06:8853: DE 88     .word _off047_88DE_0A_06_01
-- D 0 - I - 0x018865 06:8855: DF 89     .word _off047_89DF_0A_06_02
+- D 0 - I - 0x018861 06:8851: B6 8C     .word _off047_8CB6_0A_06_00_Mountain_Range
+- D 0 - I - 0x018863 06:8853: DE 88     .word _off047_88DE_0A_06_01_Mountain_Range
+- D 0 - I - 0x018865 06:8855: DF 89     .word _off047_89DF_0A_06_02_Mountain_Range
 ; stairs transition data
 ; 00 
-- - - - - - 0x018867 06:8857: E0        .byte $E0   ; up
-- D 0 - I - 0x018868 06:8858: 81        .byte $80 + $01   ; down
+- - - - - - 0x018867 06:8857: E0        .byte $E0   ; down
+- D 0 - I - 0x018868 06:8858: 81        .byte $80 + $01   ; up
 ; 01 
-- - - - - - 0x018869 06:8859: 00        .byte $00   ; up
-- D 0 - I - 0x01886A 06:885A: 20        .byte $02 * $10 + $00   ; down
+- - - - - - 0x018869 06:8859: 00        .byte $00   ; down
+- D 0 - I - 0x01886A 06:885A: 20        .byte $02 * $10 + $00   ; up
 ; 02 
-- D 0 - I - 0x01886B 06:885B: 81        .byte $80 + $01   ; up
-- - - - - - 0x01886C 06:885C: E0        .byte $E0   ; down
+- D 0 - I - 0x01886B 06:885B: 81        .byte $80 + $01   ; down
+- - - - - - 0x01886C 06:885C: E0        .byte $E0   ; up
 
 
 
-_off047_885D_0A_04_00:
+_off047_885D_0A_04_00_Mountain_Range:
 - D 0 - I - 0x01886D 06:885D: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x01886E 06:885E: 86        .byte $86, $87, $35, $73, $69, $68, $69, $68   ; 
 - D 0 - I - 0x018876 06:8866: 87        .byte $87, $35, $73, $69, $68, $69, $68, $69   ; 
@@ -726,7 +726,7 @@ _off047_885D_0A_04_00:
 
 
 
-_off047_88DE_0A_06_01:
+_off047_88DE_0A_06_01_Mountain_Range:
 - D 0 - I - 0x0188EE 06:88DE: 03        .byte $03   ; cam_pos_hi
 - D 0 - I - 0x0188EF 06:88DF: 86        .byte $86, $D3, $DA, $CF, $C7, $DA, $CF, $AC   ; 
 - D 0 - I - 0x0188F7 06:88E7: D3        .byte $D3, $D4, $B0, $DA, $CF, $C7, $DA, $AC   ; 
@@ -763,7 +763,7 @@ _off047_88DE_0A_06_01:
 
 
 
-_off047_89DF_0A_06_02:
+_off047_89DF_0A_06_02_Mountain_Range:
 - D 0 - I - 0x0189EF 06:89DF: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x0189F0 06:89E0: C4        .byte $C4, $C4, $C4, $C5, $C9, $C4, $C4, $AC   ; 
 - D 0 - I - 0x0189F8 06:89E8: CF        .byte $CF, $C4, $C5, $C9, $CD, $F3, $F3, $AC   ; 
@@ -780,7 +780,7 @@ _off047_89DF_0A_06_02:
 
 
 
-_off047_8A40_0A_03_01:
+_off047_8A40_0A_03_01_Mountain_Range:
 - D 0 - I - 0x018A50 06:8A40: 02        .byte $02   ; cam_pos_hi
 - D 0 - I - 0x018A51 06:8A41: 25        .byte $25, $7A, $79, $78, $79, $78, $79, $78   ; 
 - D 0 - I - 0x018A59 06:8A49: 25        .byte $25, $6C, $7A, $7B, $7A, $79, $78, $7B   ; 
@@ -907,7 +907,7 @@ _off031_0x018B11_06:
 
 
 
-_off047_8B31_0A_03_00:
+_off047_8B31_0A_03_00_Mountain_Range:
 - D 0 - I - 0x018B41 06:8B31: 02        .byte $02   ; cam_pos_hi
 - D 0 - I - 0x018B42 06:8B32: 14        .byte $14, $49, $51, $42, $43, $14, $43, $42   ; 
 - D 0 - I - 0x018B4A 06:8B3A: 01        .byte $01, $53, $52, $15, $12, $01, $5F, $5F   ; 
@@ -930,7 +930,7 @@ _off047_8B31_0A_03_00:
 
 
 
-_off047_8BC2_0A_02_00:
+_off047_8BC2_0A_02_00_Mountain_Range:
 - D 0 - I - 0x018BD2 06:8BC2: 00        .byte $00   ; cam_pos_hi
 - D 0 - I - 0x018BD3 06:8BC3: 29        .byte $29, $42, $43, $14, $43, $42, $14, $42   ; 
 - D 0 - I - 0x018BDB 06:8BCB: 28        .byte $28, $12, $25, $25, $15, $12, $01, $12   ; 
@@ -941,7 +941,7 @@ _off047_8BC2_0A_02_00:
 
 
 
-_off047_8BF3_0A_01_00:
+_off047_8BF3_0A_01_00_Mountain_Range:
 - D 0 - I - 0x018C03 06:8BF3: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x018C04 06:8BF4: 29        .byte $29, $14, $43, $42, $14, $42, $43, $42   ; 
 - D 0 - I - 0x018C0C 06:8BFC: 28        .byte $28, $03, $15, $12, $01, $12, $02, $02   ; 
@@ -958,7 +958,7 @@ _off047_8BF3_0A_01_00:
 
 
 
-_off047_8C54_0A_00_01:
+_off047_8C54_0A_00_01_Mountain_Range:
 - D 0 - I - 0x018C64 06:8C54: 00        .byte $00   ; cam_pos_hi
 - D 0 - I - 0x018C65 06:8C55: 29        .byte $29, $14, $43, $42, $14, $42, $43, $42   ; 
 - D 0 - I - 0x018C6D 06:8C5D: 28        .byte $28, $25, $25, $25, $2E, $2F, $3A, $25   ; 
@@ -969,7 +969,7 @@ _off047_8C54_0A_00_01:
 
 
 
-_off047_8C85_0A_00_00:
+_off047_8C85_0A_00_00_Mountain_Range:
 - D 0 - I - 0x018C95 06:8C85: 00        .byte $00   ; cam_pos_hi
 - D 0 - I - 0x018C96 06:8C86: 6A        .byte $6A, $6B, $35, $68, $6B, $48, $49, $48   ; 
 - D 0 - I - 0x018C9E 06:8C8E: 00        .byte $00, $35, $68, $6B, $46, $49, $48, $49   ; 
@@ -980,7 +980,7 @@ _off047_8C85_0A_00_00:
 
 
 
-_off047_8CB6_0A_06_00:
+_off047_8CB6_0A_06_00_Mountain_Range:
 - D 0 - I - 0x018CC6 06:8CB6: 00        .byte $00   ; cam_pos_hi
 - D 0 - I - 0x018CC7 06:8CB7: 25        .byte $25, $C5, $C9, $CD, $E1, $C8, $C4, $AC   ; 
 - D 0 - I - 0x018CCF 06:8CBF: 25        .byte $25, $C6, $CD, $E1, $C8, $C4, $C6, $AC   ; 
@@ -991,7 +991,7 @@ _off047_8CB6_0A_06_00:
 
 
 
-_off047_8CE7_0A_05_01:
+_off047_8CE7_0A_05_01_Mountain_Range:
 - D 0 - I - 0x018CF7 06:8CE7: 02        .byte $02   ; cam_pos_hi
 - D 0 - I - 0x018CF8 06:8CE8: 25        .byte $25, $43, $42, $45, $C5, $C9, $C4, $C7   ; 
 - D 0 - I - 0x018D00 06:8CF0: 25        .byte $25, $44, $45, $C8, $C4, $C4, $C6, $C4   ; 
@@ -1014,7 +1014,7 @@ _off047_8CE7_0A_05_01:
 
 
 
-_off047_8D78_0A_05_00:
+_off047_8D78_0A_05_00_Mountain_Range:
 - D 0 - I - 0x018D88 06:8D78: 02        .byte $02   ; cam_pos_hi
 - D 0 - I - 0x018D89 06:8D79: 68        .byte $68, $69, $68, $69, $68, $69, $68, $68   ; 
 - D 0 - I - 0x018D91 06:8D81: 69        .byte $69, $68, $6A, $68, $69, $68, $6B, $6A   ; 
@@ -1037,7 +1037,7 @@ _off047_8D78_0A_05_00:
 
 
 
-_off047_8E09_0A_04_02:
+_off047_8E09_0A_04_02_Mountain_Range:
 - D 0 - I - 0x018E19 06:8E09: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x018E1A 06:8E0A: 25        .byte $25, $88, $6E, $FB, $FA, $BD, $FA, $FB   ; 
 - D 0 - I - 0x018E22 06:8E12: 26        .byte $26, $85, $9D, $9E, $9F, $A0, $A1, $A2   ; 
@@ -1054,7 +1054,7 @@ _off047_8E09_0A_04_02:
 
 
 
-_off047_8E6A_0A_04_01:
+_off047_8E6A_0A_04_01_Mountain_Range:
 - D 0 - I - 0x018E7A 06:8E6A: 01        .byte $01   ; cam_pos_hi
 - D 0 - I - 0x018E7B 06:8E6B: 25        .byte $25, $7E, $7F, $85, $98, $A6, $A4, $69   ; 
 - D 0 - I - 0x018E83 06:8E73: 25        .byte $25, $7F, $7E, $86, $96, $95, $A6, $A4   ; 
@@ -1071,7 +1071,7 @@ _off047_8E6A_0A_04_01:
 
 
 
-_off045_0x018EDB_0A:
+_off045_0x018EDB_0A_Mountain_Range:
 ; 00 
 - D 0 - I - 0x018EDB 06:8ECB: 00        .byte $00, $00, $00, $00   ; 
 - D 0 - I - 0x018EDF 06:8ECF: 00        .byte $00, $00, $00, $00   ; 
@@ -2355,7 +2355,7 @@ _off045_0x018EDB_0A:
 
 
 
-_off046_0x019EDB_0A:
+_off046_0x019EDB_0A_Mountain_Range:
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 0 - I - 0x019EDB 06:9ECB: AA        .byte $AA, $55, $55, $55, $A0, $AD, $AF, $20, $45, $DD, $FF, $FF, $50, $10, $A8, $FF   ; 00 
 - D 0 - I - 0x019EEB 06:9EDB: FF        .byte $FF, $FF, $65, $05, $5A, $15, $AF, $A1, $A0, $55, $15, $50, $A2, $A1, $F0, $BB   ; 10 
@@ -2376,49 +2376,49 @@ _off046_0x019EDB_0A:
 
 
 
-_off044_0x019FDB_0C:
-- D 0 - I - 0x019FDB 06:9FCB: D1 9F     .word off_9FD1_0C_00
-- D 0 - I - 0x019FDD 06:9FCD: DA 9F     .word off_9FDA_0C_01
-- D 0 - I - 0x019FDF 06:9FCF: E3 9F     .word off_9FE3_0C_02
+_off044_0x019FDB_0C_Main_Hall:
+- D 0 - I - 0x019FDB 06:9FCB: D1 9F     .word off_9FD1_0C_00_Main_Hall
+- D 0 - I - 0x019FDD 06:9FCD: DA 9F     .word off_9FDA_0C_01_Main_Hall
+- D 0 - I - 0x019FDF 06:9FCF: E3 9F     .word off_9FE3_0C_02_Main_Hall
 
 
 
-off_9FD1_0C_00:
+off_9FD1_0C_00_Main_Hall:
 - D 0 - I - 0x019FE1 06:9FD1: 01        .byte $01   ; 
-- D 0 - I - 0x019FE2 06:9FD2: 2A A2     .word _off047_A22A_0C_00_00
-- D 0 - I - 0x019FE4 06:9FD4: 68 A1     .word _off047_A168_0C_00_01
+- D 0 - I - 0x019FE2 06:9FD2: 2A A2     .word _off047_A22A_0C_00_00_Main_Hall
+- D 0 - I - 0x019FE4 06:9FD4: 68 A1     .word _off047_A168_0C_00_01_Main_Hall
 ; stairs transition data
 ; 00 
-- - - - - - 0x019FE6 06:9FD6: E0        .byte $E0   ; up
-- D 0 - I - 0x019FE7 06:9FD7: FE        .byte $FE   ; down
+- - - - - - 0x019FE6 06:9FD6: E0        .byte $E0   ; down
+- D 0 - I - 0x019FE7 06:9FD7: FE        .byte $FE   ; up
 ; 01 
-- - - - - - 0x019FE8 06:9FD8: 02        .byte $02   ; up
-- - - - - - 0x019FE9 06:9FD9: E0        .byte $E0   ; down
+- - - - - - 0x019FE8 06:9FD8: 02        .byte $02   ; down
+- - - - - - 0x019FE9 06:9FD9: E0        .byte $E0   ; up
 
 
 
-off_9FDA_0C_01:
+off_9FDA_0C_01_Main_Hall:
 - D 0 - I - 0x019FEA 06:9FDA: 01        .byte $01   ; 
-- D 0 - I - 0x019FEB 06:9FDB: C9 A1     .word _off047_A1C9_0C_01_00
-- D 0 - I - 0x019FED 06:9FDD: 07 A1     .word _off047_A107_0C_01_01
+- D 0 - I - 0x019FEB 06:9FDB: C9 A1     .word _off047_A1C9_0C_01_00_Main_Hall
+- D 0 - I - 0x019FED 06:9FDD: 07 A1     .word _off047_A107_0C_01_01_Main_Hall
 ; stairs transition data
 ; 00 
-- - - - - - 0x019FEF 06:9FDF: E0        .byte $E0   ; up
-- D 0 - I - 0x019FF0 06:9FE0: 00        .byte $00   ; down
+- - - - - - 0x019FEF 06:9FDF: E0        .byte $E0   ; down
+- D 0 - I - 0x019FF0 06:9FE0: 00        .byte $00   ; up
 ; 01 
-- - - - - - 0x019FF1 06:9FE1: 00        .byte $00   ; up
-- D 0 - I - 0x019FF2 06:9FE2: D1        .byte con_D75A_D1   ; down
+- - - - - - 0x019FF1 06:9FE1: 00        .byte $00   ; down
+- D 0 - I - 0x019FF2 06:9FE2: D1        .byte con_D75A_D1   ; up
 
 
 
-off_9FE3_0C_02:
+off_9FE3_0C_02_Main_Hall:
 - - - - - - 0x019FF3 06:9FE3: 00        .byte $00   ; 
-- D 0 - I - 0x019FF4 06:9FE4: E6 9F     .word _off047_9FE6_0C_02_00
+- D 0 - I - 0x019FF4 06:9FE4: E6 9F     .word _off047_9FE6_0C_02_00_Main_Hall
 ; stairs transition data (none for this blk)
 
 
 
-_off047_9FE6_0C_02_00:
+_off047_9FE6_0C_02_00_Main_Hall:
 - D 0 - I - 0x019FF6 06:9FE6: 05        .byte $05   ; cam_pos_hi
 - D 0 - I - 0x019FF7 06:9FE7: 07        .byte $07, $04, $00, $00, $1A, $07, $00, $00   ; 
 - D 0 - I - 0x019FFF 06:9FEF: 0B        .byte $0B, $20, $21, $20, $21, $0B, $00, $00   ; 
@@ -2459,7 +2459,7 @@ _off047_9FE6_0C_02_00:
 
 
 
-_off047_A107_0C_01_01:
+_off047_A107_0C_01_01_Main_Hall:
 - D 1 - I - 0x01A117 06:A107: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01A118 06:A108: 07        .byte $07, $05, $34, $3B, $34, $34, $34, $07   ; 
 - D 1 - I - 0x01A120 06:A110: 0B        .byte $0B, $30, $3B, $30, $30, $30, $30, $0B   ; 
@@ -2476,7 +2476,7 @@ _off047_A107_0C_01_01:
 
 
 
-_off047_A168_0C_00_01:
+_off047_A168_0C_00_01_Main_Hall:
 - D 1 - I - 0x01A178 06:A168: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01A179 06:A169: 02        .byte $02, $0B, $1A, $19, $0B, $08, $1A, $0B   ; 
 - D 1 - I - 0x01A181 06:A171: 06        .byte $06, $0B, $20, $21, $0B, $20, $21, $0B   ; 
@@ -2493,7 +2493,7 @@ _off047_A168_0C_00_01:
 
 
 
-_off047_A1C9_0C_01_00:
+_off047_A1C9_0C_01_00_Main_Hall:
 - D 1 - I - 0x01A1D9 06:A1C9: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01A1DA 06:A1CA: 05        .byte $05, $05, $07, $34, $3A, $34, $34, $07   ; 
 - D 1 - I - 0x01A1E2 06:A1D2: 05        .byte $05, $34, $0B, $33, $32, $3A, $30, $0B   ; 
@@ -2510,7 +2510,7 @@ _off047_A1C9_0C_01_00:
 
 
 
-_off047_A22A_0C_00_00:
+_off047_A22A_0C_00_00_Main_Hall:
 - D 1 - I - 0x01A23A 06:A22A: 03        .byte $03   ; cam_pos_hi
 - D 1 - I - 0x01A23B 06:A22B: 00        .byte $00, $07, $02, $00, $07, $06, $00, $01   ; 
 - D 1 - I - 0x01A243 06:A233: 00        .byte $00, $0B, $06, $04, $0B, $0A, $01, $01   ; 
@@ -2539,7 +2539,7 @@ _off047_A22A_0C_00_00:
 
 
 
-_off045_0x01A2FB_0C:
+_off045_0x01A2FB_0C_Main_Hall:
 ; 00 
 - D 1 - I - 0x01A2FB 06:A2EB: 95        .byte $95, $85, $94, $85   ; 
 - D 1 - I - 0x01A2FF 06:A2EF: 94        .byte $94, $84, $95, $84   ; 
@@ -3023,7 +3023,7 @@ _off045_0x01A2FB_0C:
 
 
 
-_off046_0x01A8FB_0C:
+_off046_0x01A8FB_0C_Main_Hall:
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01A8FB 06:A8EB: 55        .byte $55, $55, $A0, $FF, $55, $00, $AA, $55, $55, $55, $66, $55, $55, $55, $66, $55   ; 00 
 - D 1 - I - 0x01A90B 06:A8FB: 55        .byte $55, $55, $55, $55, $55, $55, $55, $55, $55, $55, $55, $55, $55, $55, $55, $55   ; 10 
@@ -3034,84 +3034,84 @@ _off046_0x01A8FB_0C:
 
 
 
-_off044_0x01A95B_0D:
+_off044_0x01A95B_0D_Castle_Tower:
 ; bank selected at 0x03C915
-- D 1 - I - 0x01A95B 06:A94B: 53 A9     .word off_A953_0D_00
-- D 1 - I - 0x01A95D 06:A94D: 60 A9     .word off_A960_0D_01
-- D 1 - I - 0x01A95F 06:A94F: 6D A9     .word off_A96D_0D_02
-- D 1 - I - 0x01A961 06:A951: 7A A9     .word off_A97A_0D_03
+- D 1 - I - 0x01A95B 06:A94B: 53 A9     .word off_A953_0D_00_Castle_Tower
+- D 1 - I - 0x01A95D 06:A94D: 60 A9     .word off_A960_0D_01_Castle_Tower
+- D 1 - I - 0x01A95F 06:A94F: 6D A9     .word off_A96D_0D_02_Castle_Tower
+- D 1 - I - 0x01A961 06:A951: 7A A9     .word off_A97A_0D_03_Castle_Tower
 
 
 
-off_A953_0D_00:
+off_A953_0D_00_Castle_Tower:
 - D 1 - I - 0x01A963 06:A953: 02        .byte $02   ; 
-- D 1 - I - 0x01A964 06:A954: DF A0     .word _off047_0x0220EF_0D_00_00
-- D 1 - I - 0x01A966 06:A956: EE 9F     .word _off047_0x021FFE_0D_00_01
-- D 1 - I - 0x01A968 06:A958: 59 AC     .word _off047_AC59_0D_00_02
+- D 1 - I - 0x01A964 06:A954: DF A0     .word _off047_0x0220EF_0D_00_00_Castle_Tower
+- D 1 - I - 0x01A966 06:A956: EE 9F     .word _off047_0x021FFE_0D_00_01_Castle_Tower
+- D 1 - I - 0x01A968 06:A958: 59 AC     .word _off047_AC59_0D_00_02_Castle_Tower
 ; stairs transition data
 ; 00 
-- - - - - - 0x01A96A 06:A95A: E0        .byte $E0   ; up
-- D 1 - I - 0x01A96B 06:A95B: 00        .byte $00   ; down
+- - - - - - 0x01A96A 06:A95A: E0        .byte $E0   ; down
+- D 1 - I - 0x01A96B 06:A95B: 00        .byte $00   ; up
 ; 01 
-- - - - - - 0x01A96C 06:A95C: 00        .byte $00   ; up
-- D 1 - I - 0x01A96D 06:A95D: FC        .byte $FC   ; down
+- - - - - - 0x01A96C 06:A95C: 00        .byte $00   ; down
+- D 1 - I - 0x01A96D 06:A95D: FC        .byte $FC   ; up
 ; 02 
-- - - - - - 0x01A96E 06:A95E: 04        .byte $04   ; up
-- - - - - - 0x01A96F 06:A95F: E0        .byte $E0   ; down
+- - - - - - 0x01A96E 06:A95E: 04        .byte $04   ; down
+- - - - - - 0x01A96F 06:A95F: E0        .byte $E0   ; up
 
 
 
-off_A960_0D_01:
+off_A960_0D_01_Castle_Tower:
 - D 1 - I - 0x01A970 06:A960: 02        .byte $02   ; 
-- D 1 - I - 0x01A971 06:A961: F8 AB     .word _off047_ABF8_0D_01_00
-- D 1 - I - 0x01A973 06:A963: 84 AA     .word _off047_AA84_0D_01_01
-- D 1 - I - 0x01A975 06:A965: 96 AB     .word _off047_AB96_0D_01_02
+- D 1 - I - 0x01A971 06:A961: F8 AB     .word _off047_ABF8_0D_01_00_Castle_Tower
+- D 1 - I - 0x01A973 06:A963: 84 AA     .word _off047_AA84_0D_01_01_Castle_Tower
+- D 1 - I - 0x01A975 06:A965: 96 AB     .word _off047_AB96_0D_01_02_Castle_Tower
 ; stairs transition data
 ; 00 
-- D 1 - I - 0x01A977 06:A967: E0        .byte $E0   ; up
-- D 1 - I - 0x01A978 06:A968: 81        .byte $80 + $01   ; down
+- D 1 - I - 0x01A977 06:A967: E0        .byte $E0   ; down
+- D 1 - I - 0x01A978 06:A968: 81        .byte $80 + $01   ; up
 ; 01 
-- - - - - - 0x01A979 06:A969: 00        .byte $00   ; up
-- D 1 - I - 0x01A97A 06:A96A: 20        .byte $02 * $10 + $00   ; down
+- - - - - - 0x01A979 06:A969: 00        .byte $00   ; down
+- D 1 - I - 0x01A97A 06:A96A: 20        .byte $02 * $10 + $00   ; up
 ; 02 
-- - - - - - 0x01A97B 06:A96B: 81        .byte $80 + $01   ; up
-- - - - - - 0x01A97C 06:A96C: E0        .byte $E0   ; down
+- - - - - - 0x01A97B 06:A96B: 81        .byte $80 + $01   ; down
+- - - - - - 0x01A97C 06:A96C: E0        .byte $E0   ; up
 
 
 
-off_A96D_0D_02:
+off_A96D_0D_02_Castle_Tower:
 - D 1 - I - 0x01A97D 06:A96D: 02        .byte $02   ; 
-- D 1 - I - 0x01A97E 06:A96E: C7 AB     .word _off047_ABC7_0D_02_00
-- D 1 - I - 0x01A980 06:A970: 83 A9     .word _off047_A983_0D_02_01
-- D 1 - I - 0x01A982 06:A972: 18 84     .word _off047_0x01C428_0D_02_02
+- D 1 - I - 0x01A97E 06:A96E: C7 AB     .word _off047_ABC7_0D_02_00_Castle_Tower
+- D 1 - I - 0x01A980 06:A970: 83 A9     .word _off047_A983_0D_02_01_Castle_Tower
+- D 1 - I - 0x01A982 06:A972: 18 84     .word _off047_0x01C428_0D_02_02_Castle_Tower
 ; stairs transition data
 ; 00 
-- - - - - - 0x01A984 06:A974: E0        .byte $E0   ; up
-- D 1 - I - 0x01A985 06:A975: 81        .byte $80 + $01   ; down
+- - - - - - 0x01A984 06:A974: E0        .byte $E0   ; down
+- D 1 - I - 0x01A985 06:A975: 81        .byte $80 + $01   ; up
 ; 01 
-- - - - - - 0x01A986 06:A976: 00        .byte $00   ; up
-- D 1 - I - 0x01A987 06:A977: 20        .byte $02 * $10 + $00   ; down
+- - - - - - 0x01A986 06:A976: 00        .byte $00   ; down
+- D 1 - I - 0x01A987 06:A977: 20        .byte $02 * $10 + $00   ; up
 ; 02 
-- - - - - - 0x01A988 06:A978: 81        .byte $80 + $01   ; up
-- - - - - - 0x01A989 06:A979: E0        .byte $E0   ; down
+- - - - - - 0x01A988 06:A978: 81        .byte $80 + $01   ; down
+- - - - - - 0x01A989 06:A979: E0        .byte $E0   ; up
 
 
 
-off_A97A_0D_03:
+off_A97A_0D_03_Castle_Tower:
 - D 1 - I - 0x01A98A 06:A97A: 01        .byte $01   ; 
-- D 1 - I - 0x01A98B 06:A97B: 87 83     .word _off047_0x01C397_0D_03_00
-- D 1 - I - 0x01A98D 06:A97D: 05 AB     .word _off047_AB05_0D_03_01
+- D 1 - I - 0x01A98B 06:A97B: 87 83     .word _off047_0x01C397_0D_03_00_Castle_Tower
+- D 1 - I - 0x01A98D 06:A97D: 05 AB     .word _off047_AB05_0D_03_01_Castle_Tower
 ; stairs transition data
 ; 00 
-- - - - - - 0x01A98F 06:A97F: E0        .byte $E0   ; up
-- D 1 - I - 0x01A990 06:A980: 00        .byte $00   ; down
+- - - - - - 0x01A98F 06:A97F: E0        .byte $E0   ; down
+- D 1 - I - 0x01A990 06:A980: 00        .byte $00   ; up
 ; 01 
-- - - - - - 0x01A991 06:A981: 00        .byte $00   ; up
-- - - - - - 0x01A992 06:A982: E0        .byte $E0   ; down
+- - - - - - 0x01A991 06:A981: 00        .byte $00   ; down
+- - - - - - 0x01A992 06:A982: E0        .byte $E0   ; up
 
 
 
-_off047_A983_0D_02_01:
+_off047_A983_0D_02_01_Castle_Tower:
 - D 1 - I - 0x01A993 06:A983: 03        .byte $03   ; cam_pos_hi
 - D 1 - I - 0x01A994 06:A984: 00        .byte $00, $10, $00, $00, $10, $07, $00, $00   ; 
 - D 1 - I - 0x01A99C 06:A98C: 00        .byte $00, $10, $00, $00, $10, $19, $07, $00   ; 
@@ -3148,7 +3148,7 @@ _off047_A983_0D_02_01:
 
 
 
-_off047_AA84_0D_01_01:
+_off047_AA84_0D_01_01_Castle_Tower:
 - D 1 - I - 0x01AA94 06:AA84: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01AA95 06:AA85: 00        .byte $00, $11, $4C, $4A, $31, $4E, $11, $00   ; 
 - D 1 - I - 0x01AA9D 06:AA8D: 34        .byte $34, $11, $33, $3D, $4A, $4C, $10, $4E   ; 
@@ -3169,7 +3169,7 @@ _off047_AA84_0D_01_01:
 
 
 
-_off047_AB05_0D_03_01:
+_off047_AB05_0D_03_01_Castle_Tower:
 - D 1 - I - 0x01AB15 06:AB05: 02        .byte $02   ; cam_pos_hi
 - D 1 - I - 0x01AB16 06:AB06: 05        .byte $05, $57, $5A, $00, $00, $5A, $57, $57   ; 
 - D 1 - I - 0x01AB1E 06:AB0E: 05        .byte $05, $00, $5A, $54, $54, $5A, $00, $00   ; 
@@ -3192,7 +3192,7 @@ _off047_AB05_0D_03_01:
 
 
 
-_off047_AB96_0D_01_02:
+_off047_AB96_0D_01_02_Castle_Tower:
 - D 1 - I - 0x01ABA6 06:AB96: 00        .byte $00   ; cam_pos_hi
 - D 1 - I - 0x01ABA7 06:AB97: 2E        .byte $2E, $2E, $23, $2D, $2D, $20, $2E, $01   ; 
 - D 1 - I - 0x01ABAF 06:AB9F: 21        .byte $21, $26, $27, $28, $28, $24, $25, $01   ; 
@@ -3203,7 +3203,7 @@ _off047_AB96_0D_01_02:
 
 
 
-_off047_ABC7_0D_02_00:
+_off047_ABC7_0D_02_00_Castle_Tower:
 - D 1 - I - 0x01ABD7 06:ABC7: 00        .byte $00   ; cam_pos_hi
 - D 1 - I - 0x01ABD8 06:ABC8: 21        .byte $21, $00, $07, $25, $20, $21, $22, $10   ; 
 - D 1 - I - 0x01ABE0 06:ABD0: 22        .byte $22, $11, $00, $1B, $19, $11, $25, $10   ; 
@@ -3214,7 +3214,7 @@ _off047_ABC7_0D_02_00:
 
 
 
-_off047_ABF8_0D_01_00:
+_off047_ABF8_0D_01_00_Castle_Tower:
 - D 1 - I - 0x01AC08 06:ABF8: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01AC09 06:ABF9: 21        .byte $21, $22, $21, $2B, $21, $29, $22, $29   ; 
 - D 1 - I - 0x01AC11 06:AC01: 22        .byte $22, $21, $06, $25, $2D, $20, $23, $2D   ; 
@@ -3231,7 +3231,7 @@ _off047_ABF8_0D_01_00:
 
 
 
-_off047_AC59_0D_00_02:
+_off047_AC59_0D_00_02_Castle_Tower:
 - D 1 - I - 0x01AC69 06:AC59: 00        .byte $00   ; cam_pos_hi
 - D 1 - I - 0x01AC6A 06:AC5A: 01        .byte $01, $29, $22, $29, $29, $29, $29, $29   ; 
 - D 1 - I - 0x01AC72 06:AC62: 01        .byte $01, $22, $29, $23, $2D, $20, $29, $21   ; 
@@ -3242,7 +3242,7 @@ _off047_AC59_0D_00_02:
 
 
 
-_off045_0x01AC9A_0D:
+_off045_0x01AC9A_0D_Castle_Tower:
 ; 00 
 - D 1 - I - 0x01AC9A 06:AC8A: 00        .byte $00, $00, $00, $00   ; 
 - D 1 - I - 0x01AC9E 06:AC8E: 00        .byte $00, $00, $00, $00   ; 
@@ -3726,7 +3726,7 @@ _off045_0x01AC9A_0D:
 
 
 
-_off046_0x01B29A_0D:
+_off046_0x01B29A_0D_Castle_Tower:
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01B29A 06:B28A: AA        .byte $AA, $FF, $0F, $F0, $F0, $FF, $FF, $FF, $FF, $FF, $0F, $0C, $EB, $BE, $08, $00   ; 00 
 - D 1 - I - 0x01B2AA 06:B29A: AA        .byte $AA, $AA, $FA, $AF, $55, $F5, $55, $5F, $55, $55, $7D, $D7, $F5, $F5, $FD, $F7   ; 10 
@@ -3737,61 +3737,61 @@ _off046_0x01B29A_0D:
 
 
 
-_off044_0x01B2FA_0E:
+_off044_0x01B2FA_0E_Final_Clock_Tower:
 ; bank selected at 0x03C915
-- D 1 - I - 0x01B2FA 06:B2EA: F0 B2     .word off_B2F0_0E_00
-- D 1 - I - 0x01B2FC 06:B2EC: FD B2     .word off_B2FD_0E_01
-- D 1 - I - 0x01B2FE 06:B2EE: 06 B3     .word off_B306_0E_02
+- D 1 - I - 0x01B2FA 06:B2EA: F0 B2     .word off_B2F0_0E_00_Final_Clock_Tower
+- D 1 - I - 0x01B2FC 06:B2EC: FD B2     .word off_B2FD_0E_01_Final_Clock_Tower
+- D 1 - I - 0x01B2FE 06:B2EE: 06 B3     .word off_B306_0E_02_Final_Clock_Tower
 
 
 
-off_B2F0_0E_00:
+off_B2F0_0E_00_Final_Clock_Tower:
 - D 1 - I - 0x01B300 06:B2F0: 02        .byte $02   ; 
-- D 1 - I - 0x01B301 06:B2F1: 54 B5     .word _off047_B554_0E_00_00
-- D 1 - I - 0x01B303 06:B2F3: 49 93     .word _off047_0x021359_0E_00_01
-- D 1 - I - 0x01B305 06:B2F5: A0 B3     .word _off047_B3A0_0E_00_02
+- D 1 - I - 0x01B301 06:B2F1: 54 B5     .word _off047_B554_0E_00_00_Final_Clock_Tower
+- D 1 - I - 0x01B303 06:B2F3: 49 93     .word _off047_0x021359_0E_00_01_Final_Clock_Tower
+- D 1 - I - 0x01B305 06:B2F5: A0 B3     .word _off047_B3A0_0E_00_02_Final_Clock_Tower
 ; stairs transition data
 ; 00 
-- - - - - - 0x01B307 06:B2F7: E0        .byte $E0   ; up
-- - - - - - 0x01B308 06:B2F8: 81        .byte $80 + $01   ; down
+- - - - - - 0x01B307 06:B2F7: E0        .byte $E0   ; down
+- - - - - - 0x01B308 06:B2F8: 81        .byte $80 + $01   ; up
 ; 01 
-- D 1 - I - 0x01B309 06:B2F9: 01        .byte $00 * $10 + $01   ; up
-- - - - - - 0x01B30A 06:B2FA: 20        .byte $20   ; down
+- D 1 - I - 0x01B309 06:B2F9: 01        .byte $00 * $10 + $01   ; down
+- - - - - - 0x01B30A 06:B2FA: 20        .byte $20   ; up
 ; 02 
-- D 1 - I - 0x01B30B 06:B2FB: 81        .byte $80 + $01   ; up
-- - - - - - 0x01B30C 06:B2FC: E0        .byte $E0   ; down
+- D 1 - I - 0x01B30B 06:B2FB: 81        .byte $80 + $01   ; down
+- - - - - - 0x01B30C 06:B2FC: E0        .byte $E0   ; up
 
 
 
-off_B2FD_0E_01:
+off_B2FD_0E_01_Final_Clock_Tower:
 - D 1 - I - 0x01B30D 06:B2FD: 01        .byte $01   ; 
-- D 1 - I - 0x01B30E 06:B2FE: F3 B4     .word _off047_B4F3_0E_01_00
-- D 1 - I - 0x01B310 06:B300: 62 B4     .word _off047_B462_0E_01_01
+- D 1 - I - 0x01B30E 06:B2FE: F3 B4     .word _off047_B4F3_0E_01_00_Final_Clock_Tower
+- D 1 - I - 0x01B310 06:B300: 62 B4     .word _off047_B462_0E_01_01_Final_Clock_Tower
 ; stairs transition data
 ; 00 
-- - - - - - 0x01B312 06:B302: E0        .byte $E0   ; up
-- D 1 - I - 0x01B313 06:B303: 01        .byte $01   ; down
+- - - - - - 0x01B312 06:B302: E0        .byte $E0   ; down
+- D 1 - I - 0x01B313 06:B303: 01        .byte $01   ; up
 ; 01 
-- - - - - - 0x01B314 06:B304: FF        .byte $FF   ; up
-- - - - - - 0x01B315 06:B305: E0        .byte $E0   ; down
+- - - - - - 0x01B314 06:B304: FF        .byte $FF   ; down
+- - - - - - 0x01B315 06:B305: E0        .byte $E0   ; up
 
 
 
-off_B306_0E_02:
+off_B306_0E_02_Final_Clock_Tower:
 - D 1 - I - 0x01B316 06:B306: 01        .byte $01   ; 
-- D 1 - I - 0x01B317 06:B307: 01 B4     .word _off047_B401_0E_02_00
-- D 1 - I - 0x01B319 06:B309: 0F B3     .word _off047_B30F_0E_02_01
+- D 1 - I - 0x01B317 06:B307: 01 B4     .word _off047_B401_0E_02_00_Final_Clock_Tower
+- D 1 - I - 0x01B319 06:B309: 0F B3     .word _off047_B30F_0E_02_01_Final_Clock_Tower
 ; stairs transition data
 ; 00 
-- - - - - - 0x01B31B 06:B30B: E0        .byte $E0   ; up
-- D 1 - I - 0x01B31C 06:B30C: 01        .byte $01   ; down
+- - - - - - 0x01B31B 06:B30B: E0        .byte $E0   ; down
+- D 1 - I - 0x01B31C 06:B30C: 01        .byte $01   ; up
 ; 01 
-- - - - - - 0x01B31D 06:B30D: FF        .byte $FF   ; up
-- - - - - - 0x01B31E 06:B30E: E0        .byte $E0   ; down
+- - - - - - 0x01B31D 06:B30D: FF        .byte $FF   ; down
+- - - - - - 0x01B31E 06:B30E: E0        .byte $E0   ; up
 
 
 
-_off047_B30F_0E_02_01:
+_off047_B30F_0E_02_01_Final_Clock_Tower:
 - D 1 - I - 0x01B31F 06:B30F: 02        .byte $02   ; cam_pos_hi
 - D 1 - I - 0x01B320 06:B310: 2F        .byte $2F, $00, $00, $00, $00, $00, $00, $25   ; 
 - D 1 - I - 0x01B328 06:B318: 1D        .byte $1D, $1C, $19, $00, $00, $17, $28, $29   ; 
@@ -3814,7 +3814,7 @@ _off047_B30F_0E_02_01:
 
 
 
-_off047_B3A0_0E_00_02:
+_off047_B3A0_0E_00_02_Final_Clock_Tower:
 - D 1 - I - 0x01B3B0 06:B3A0: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01B3B1 06:B3A1: 32        .byte $32, $32, $32, $32, $32, $32, $32, $32   ; 
 - D 1 - I - 0x01B3B9 06:B3A9: 33        .byte $33, $33, $33, $33, $33, $33, $33, $33   ; 
@@ -3831,7 +3831,7 @@ _off047_B3A0_0E_00_02:
 
 
 
-_off047_B401_0E_02_00:
+_off047_B401_0E_02_00_Final_Clock_Tower:
 - D 1 - I - 0x01B411 06:B401: 01        .byte $01   ; cam_pos_hi
 - - - - - - 0x01B412 06:B402: 00        .byte $00, $00, $00, $00, $00, $00, $47, $43   ; 
 - - - - - - 0x01B41A 06:B40A: 00        .byte $00, $00, $00, $00, $00, $00, $00, $4B   ; 
@@ -3848,7 +3848,7 @@ _off047_B401_0E_02_00:
 
 
 
-_off047_B462_0E_01_01:
+_off047_B462_0E_01_01_Final_Clock_Tower:
 - D 1 - I - 0x01B472 06:B462: 02        .byte $02   ; cam_pos_hi
 - D 1 - I - 0x01B473 06:B463: 21        .byte $21, $66, $67, $00, $00, $00, $00, $66   ; 
 - D 1 - I - 0x01B47B 06:B46B: 0B        .byte $0B, $66, $67, $00, $00, $00, $00, $66   ; 
@@ -3871,7 +3871,7 @@ _off047_B462_0E_01_01:
 
 
 
-_off047_B4F3_0E_01_00:
+_off047_B4F3_0E_01_00_Final_Clock_Tower:
 - D 1 - I - 0x01B503 06:B4F3: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01B504 06:B4F4: 21        .byte $21, $7A, $72, $09, $75, $74, $08, $66   ; 
 - D 1 - I - 0x01B50C 06:B4FC: 21        .byte $21, $07, $73, $74, $76, $08, $75, $66   ; 
@@ -3888,7 +3888,7 @@ _off047_B4F3_0E_01_00:
 
 
 
-_off047_B554_0E_00_00:
+_off047_B554_0E_00_00_Final_Clock_Tower:
 - D 1 - I - 0x01B564 06:B554: 01        .byte $01   ; cam_pos_hi
 - D 1 - I - 0x01B565 06:B555: 21        .byte $21, $74, $76, $76, $02, $00, $66, $67   ; 
 - D 1 - I - 0x01B56D 06:B55D: 21        .byte $21, $72, $79, $55, $00, $55, $66, $67   ; 
@@ -3905,7 +3905,7 @@ _off047_B554_0E_00_00:
 
 
 
-_off045_0x01B5C5_0E:
+_off045_0x01B5C5_0E_Final_Clock_Tower:
 ; 00 
 - D 1 - I - 0x01B5C5 06:B5B5: 00        .byte $00, $00, $00, $00   ; 
 - D 1 - I - 0x01B5C9 06:B5B9: 00        .byte $00, $00, $00, $00   ; 
@@ -4529,7 +4529,7 @@ _off045_0x01B5C5_0E:
 
 
 
-_off046_0x01BD85_0E:
+_off046_0x01BD85_0E_Final_Clock_Tower:
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
 - D 1 - I - 0x01BD85 06:BD75: AA        .byte $AA, $05, $AB, $55, $7D, $45, $57, $AE, $D7, $FF, $00, $01, $5F, $5D, $50, $00   ; 00 
 - D 1 - I - 0x01BD95 06:BD85: AA        .byte $AA, $AA, $AA, $AA, $55, $55, $55, $66, $99, $99, $11, $11, $45, $15, $55, $55   ; 10 

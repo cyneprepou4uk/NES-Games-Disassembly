@@ -255,13 +255,13 @@ C - - - - - 0x02C122 0B:8112: 60        RTS
 
 
 
-sub_8113:
+sub_8113_check_for_Sunken_City:
 ; out
     ; C
-        ; 0 = 
-        ; 1 = 
+        ; 0 = not Sunken City or 08-(00-02)-xx
+        ; 1 = if 08-(03-05)-xx
 C - - - - - 0x02C123 0B:8113: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x02C125 0B:8115: C9 08     CMP #$08
+C - - - - - 0x02C125 0B:8115: C9 08     CMP #$08    ; Sunken City
 C - - - - - 0x02C127 0B:8117: D0 05     BNE bra_811E
 C - - - - - 0x02C129 0B:8119: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x02C12B 0B:811B: C9 03     CMP #$03
@@ -281,8 +281,9 @@ ofs_039_8120_A0:
     ; C
         ; 0 = 
         ; 1 = 
-C D 0 J - - 0x02C130 0B:8120: 20 13 81  JSR sub_8113
+C D 0 J - - 0x02C130 0B:8120: 20 13 81  JSR sub_8113_check_for_Sunken_City
 C - - - - - 0x02C133 0B:8123: 90 FA     BCC bra_811F_RTS
+; if proper blk
 C - - - - - 0x02C135 0B:8125: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x02C138 0B:8128: C5 CA     CMP ram_00CA
 C - - - - - 0x02C13A 0B:812A: 90 F3     BCC bra_811F_RTS
@@ -670,12 +671,14 @@ C - - - - - 0x02C2F7 0B:82E7: 9D 8C 04  STA ram_obj_type,X
 C - - - - - 0x02C2FA 0B:82EA: B9 05 83  LDA tbl_8305,Y
 C - - - - - 0x02C2FD 0B:82ED: 9D 00 04  STA ram_obj_anim_id,X
 loc_82F0:
+; check for 05-03-xx
 C D 0 - - - 0x02C300 0B:82F0: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x02C302 0B:82F2: C9 05     CMP #$05
+C - - - - - 0x02C302 0B:82F2: C9 05     CMP #$05    ; Causeway
 C - - - - - 0x02C304 0B:82F4: D0 0E     BNE bra_8304_RTS
 C - - - - - 0x02C306 0B:82F6: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x02C308 0B:82F8: C9 03     CMP #$03
 C - - - - - 0x02C30A 0B:82FA: D0 08     BNE bra_8304_RTS
+; if 05-03-xx
 C - - - - - 0x02C30C 0B:82FC: BD 54 04  LDA ram_0454_obj,X
 C - - - - - 0x02C30F 0B:82FF: 09 03     ORA #$03
 C - - - - - 0x02C311 0B:8301: 9D 54 04  STA ram_0454_obj,X
@@ -1826,7 +1829,7 @@ C - - - - - 0x02C8F3 0B:88E3: C9 03     CMP #$03
 C - - - - - 0x02C8F5 0B:88E5: D0 16     BNE bra_88FD
 C - - - - - 0x02C8F7 0B:88E7: A0 00     LDY #$00
 C - - - - - 0x02C8F9 0B:88E9: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x02C8FB 0B:88EB: C9 08     CMP #$08
+C - - - - - 0x02C8FB 0B:88EB: C9 08     CMP #$08    ; Sunken City
 C - - - - - 0x02C8FD 0B:88ED: D0 06     BNE bra_88F5
 C - - - - - 0x02C8FF 0B:88EF: C8        INY ; 01
 C - - - - - 0x02C900 0B:88F0: A5 33     LDA ram_blk_id_lo
@@ -1852,10 +1855,10 @@ C - - - - - 0x02C923 0B:8913: 60        RTS
 bra_8914:
 - - - - - - 0x02C924 0B:8914: A0 00     LDY #$00
 - - - - - - 0x02C926 0B:8916: A5 32     LDA ram_blk_id_hi
-- - - - - - 0x02C928 0B:8918: C9 08     CMP #$08
-- - - - - - 0x02C92A 0B:891A: F0 01     BEQ bra_891D
+- - - - - - 0x02C928 0B:8918: C9 08     CMP #$08    ; Sunken City
+- - - - - - 0x02C92A 0B:891A: F0 01     BEQ bra_891D_Sunken_City
 - - - - - - 0x02C92C 0B:891C: C8        INY ; 01
-bra_891D:
+bra_891D_Sunken_City:
 - - - - - - 0x02C92D 0B:891D: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 - - - - - - 0x02C930 0B:8920: D9 35 89  CMP tbl_8935_pos_Y_hi,Y
 - - - - - - 0x02C933 0B:8923: 90 EE     BCC bra_8913_RTS
@@ -2113,7 +2116,9 @@ C - - - - - 0x02CA7D 0B:8A6D: F0 F2     BEQ bra_8A61
 C - - - - - 0x02CA7F 0B:8A6F: A0 01     LDY #$01
 C - - - - - 0x02CA81 0B:8A71: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x02CA83 0B:8A73: C9 09     CMP #$09
-C - - - - - 0x02CA85 0B:8A75: 90 02     BCC bra_8A79
+C - - - - - 0x02CA85 0B:8A75: 90 02     BCC bra_8A79    ; if 00-08
+; if 09-0E
+; bzk optimize, INY
 C - - - - - 0x02CA87 0B:8A77: A0 02     LDY #$02
 bra_8A79:
 C - - - - - 0x02CA89 0B:8A79: B1 02     LDA (ram_0002_t007_data),Y
@@ -2149,7 +2154,8 @@ C - - - - - 0x02CAC3 0B:8AB3: 29 01     AND #$01
 C - - - - - 0x02CAC5 0B:8AB5: 49 01     EOR #$01
 C - - - - - 0x02CAC7 0B:8AB7: A4 32     LDY ram_blk_id_hi
 C - - - - - 0x02CAC9 0B:8AB9: C0 09     CPY #$09
-C - - - - - 0x02CACB 0B:8ABB: 90 03     BCC bra_8AC0
+C - - - - - 0x02CACB 0B:8ABB: 90 03     BCC bra_8AC0    ; if 00-08
+; if 09-0E
 C - - - - - 0x02CACD 0B:8ABD: 18        CLC
 C - - - - - 0x02CACE 0B:8ABE: 69 10     ADC #$10
 bra_8AC0:
@@ -3372,7 +3378,7 @@ C - - - - - 0x02D16D 0B:915D: BD EF 05  LDA ram_obj_ai_script,X
 C - - - - - 0x02D170 0B:9160: C9 29     CMP #$29
 C - - - - - 0x02D172 0B:9162: D0 14     BNE bra_9178
 C - - - - - 0x02D174 0B:9164: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x02D176 0B:9166: C9 09     CMP #$09
+C - - - - - 0x02D176 0B:9166: C9 09     CMP #$09    ; Catacombs
 C - - - - - 0x02D178 0B:9168: D0 0E     BNE bra_9178
 - - - - - - 0x02D17A 0B:916A: A5 57     LDA ram_cam_pos_hi
 - - - - - - 0x02D17C 0B:916C: D0 0A     BNE bra_9178
@@ -3601,14 +3607,14 @@ C - - - - - 0x02D310 0B:9300: 9D 06 06  STA ram_obj_config,X
 C - - - - - 0x02D313 0B:9303: A9 14     LDA #$14
 C - - - - - 0x02D315 0B:9305: 20 7F 80  JSR sub_807F_increase_spd_Y
 C - - - - - 0x02D318 0B:9308: BD 20 05  LDA ram_obj_spd_Y_hi,X
-C - - - - - 0x02D31B 0B:930B: 30 0E     BMI bra_931B
+C - - - - - 0x02D31B 0B:930B: 30 0E     BMI bra_931B_01_Clock_Tower
 C - - - - - 0x02D31D 0B:930D: C9 02     CMP #$02
-C - - - - - 0x02D31F 0B:930F: 90 0A     BCC bra_931B
+C - - - - - 0x02D31F 0B:930F: 90 0A     BCC bra_931B_01_Clock_Tower
 C - - - - - 0x02D321 0B:9311: A9 02     LDA #> $0200
 C - - - - - 0x02D323 0B:9313: 9D 20 05  STA ram_obj_spd_Y_hi,X
 C - - - - - 0x02D326 0B:9316: A9 00     LDA #< $0200
 C - - - - - 0x02D328 0B:9318: 9D 37 05  STA ram_obj_spd_Y_lo,X
-bra_931B:
+bra_931B_01_Clock_Tower:
 C - - - - - 0x02D32B 0B:931B: 20 B0 93  JSR sub_93B0
 C - - - - - 0x02D32E 0B:931E: A0 10     LDY #$10    ; pos_Y_hi
 C - - - - - 0x02D330 0B:9320: 20 1E FC  JSR sub_0x03FC2E
@@ -6073,11 +6079,12 @@ C - - - - - 0x02DFDC 0B:9FCC: D0 15     BNE bra_9FE3_2nd_quest
 C - - - - - 0x02DFDE 0B:9FCE: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x02DFE0 0B:9FD0: A0 00     LDY #$00
 C - - - - - 0x02DFE2 0B:9FD2: C9 03     CMP #$03
-C - - - - - 0x02DFE4 0B:9FD4: 90 06     BCC bra_9FDC
+C - - - - - 0x02DFE4 0B:9FD4: 90 06     BCC bra_9FDC    ; if 00-02
 C - - - - - 0x02DFE6 0B:9FD6: C8        INY ; 01
 C - - - - - 0x02DFE7 0B:9FD7: C9 0C     CMP #$0C
-C - - - - - 0x02DFE9 0B:9FD9: 90 01     BCC bra_9FDC
+C - - - - - 0x02DFE9 0B:9FD9: 90 01     BCC bra_9FDC    ; if 03-0B
 C - - - - - 0x02DFEB 0B:9FDB: C8        INY ; 02
+; if 0C-0E
 bra_9FDC:
 C - - - - - 0x02DFEC 0B:9FDC: B9 E7 9F  LDA tbl_9FE7,Y
 bra_9FDF:
@@ -6090,9 +6097,9 @@ C - - - - - 0x02DFF5 0B:9FE5: D0 F8     BNE bra_9FDF    ; jmp
 
 
 tbl_9FE7:
-- D 0 - - - 0x02DFF7 0B:9FE7: 10        .byte $10   ; 00 
-- D 0 - - - 0x02DFF8 0B:9FE8: 20        .byte $20   ; 01 
-- D 0 - - - 0x02DFF9 0B:9FE9: 30        .byte $30   ; 02 
+- D 0 - - - 0x02DFF7 0B:9FE7: 10        .byte $10   ; 00 00-02
+- D 0 - - - 0x02DFF8 0B:9FE8: 20        .byte $20   ; 01 03-0B
+- D 0 - - - 0x02DFF9 0B:9FE9: 30        .byte $30   ; 02 0C-0E
 
 
 
@@ -6189,8 +6196,9 @@ C - - - - - 0x02E096 0B:A086: FE C1 05  INC ram_obj_ai_subscript,X
 bra_A089_RTS:
 C - - - - - 0x02E099 0B:A089: 60        RTS
 bra_A08A:
-C - - - - - 0x02E09A 0B:A08A: 20 13 81  JSR sub_8113
+C - - - - - 0x02E09A 0B:A08A: 20 13 81  JSR sub_8113_check_for_Sunken_City
 C - - - - - 0x02E09D 0B:A08D: 90 FA     BCC bra_A089_RTS
+; if proper blk
 C - - - - - 0x02E09F 0B:A08F: BD 1C 04  LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x02E0A2 0B:A092: C5 CA     CMP ram_00CA
 C - - - - - 0x02E0A4 0B:A094: 90 F3     BCC bra_A089_RTS
@@ -7035,12 +7043,14 @@ C - - - - - 0x02E487 0B:A477: B9 BF A4  LDA tbl_A4BF,Y
 C - - - - - 0x02E48A 0B:A47A: 9D D8 05  STA ram_05D8_obj,X
 C - - - - - 0x02E48D 0B:A47D: B9 C0 A4  LDA tbl_A4BF + $01,Y
 C - - - - - 0x02E490 0B:A480: 9D 45 06  STA ram_obj_0646,X
+; check for 02-04-xx
 C - - - - - 0x02E493 0B:A483: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x02E495 0B:A485: C9 02     CMP #$02
+C - - - - - 0x02E495 0B:A485: C9 02     CMP #$02    ; Forest of Madness
 C - - - - - 0x02E497 0B:A487: D0 1F     BNE bra_A4A8
 C - - - - - 0x02E499 0B:A489: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x02E49B 0B:A48B: C9 04     CMP #$04
 C - - - - - 0x02E49D 0B:A48D: D0 19     BNE bra_A4A8
+; if 02-04-xx
 C - - - - - 0x02E49F 0B:A48F: BD 38 04  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x02E4A2 0B:A492: 10 0B     BPL bra_A49F
 C - - - - - 0x02E4A4 0B:A494: 20 24 A5  JSR sub_A524_generate_random_number

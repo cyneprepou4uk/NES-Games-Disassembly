@@ -12761,9 +12761,9 @@ sub_B8B8:
         ; 1 = 
 C - - - - - 0x0378C8 0D:B8B8: A0 01     LDY #$01
 C - - - - - 0x0378CA 0D:B8BA: A5 32     LDA ram_blk_id_hi
-C - - - - - 0x0378CC 0D:B8BC: C9 07     CMP #$07
+C - - - - - 0x0378CC 0D:B8BC: C9 07     CMP #$07    ; Caves of Alucard
 C - - - - - 0x0378CE 0D:B8BE: F0 0B     BEQ bra_B8CB
-C - - - - - 0x0378D0 0D:B8C0: C9 0A     CMP #$0A
+C - - - - - 0x0378D0 0D:B8C0: C9 0A     CMP #$0A    ; Mountain Range
 C - - - - - 0x0378D2 0D:B8C2: D0 06     BNE bra_B8CA
 C - - - - - 0x0378D4 0D:B8C4: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x0378D6 0D:B8C6: C9 01     CMP #$01
@@ -13364,9 +13364,9 @@ sub_BB91:
     ; ram_0000_t055
 C - - - - - 0x037BA1 0D:BB91: A5 00     LDA ram_0000_t055
 C - - - - - 0x037BA3 0D:BB93: A4 32     LDY ram_blk_id_hi
-C - - - - - 0x037BA5 0D:BB95: C0 0A     CPY #$0A
+C - - - - - 0x037BA5 0D:BB95: C0 0A     CPY #$0A    ; Mountain Range
 C - - - - - 0x037BA7 0D:BB97: D0 11     BNE bra_BBAA
-C - - - - - 0x037BA9 0D:BB99: C9 0E     CMP #$0E
+C - - - - - 0x037BA9 0D:BB99: C9 0E     CMP #$0E    ; Final Clock Tower
 C - - - - - 0x037BAB 0D:BB9B: D0 28     BNE bra_BBC5_RTS
 - - - - - - 0x037BAD 0D:BB9D: A9 0D     LDA #$0D
 - - - - - - 0x037BAF 0D:BB9F: A4 0B     LDY ram_000B_t017
@@ -13661,34 +13661,34 @@ tbl_BBCA:
 
 
 tbl_BCC2:
-- - - - - - 0x037CD2 0D:BCC2: E0 BC     .word _off040_BCE0_00
-- - - - - - 0x037CD4 0D:BCC4: E0 BC     .word _off040_BCE0_01
-- - - - - - 0x037CD6 0D:BCC6: E0 BC     .word _off040_BCE0_02
-- D 1 - - - 0x037CD8 0D:BCC8: E0 BC     .word _off040_BCE0_03
-- - - - - - 0x037CDA 0D:BCCA: E0 BC     .word _off040_BCE0_04
-- - - - - - 0x037CDC 0D:BCCC: E0 BC     .word _off040_BCE0_05
-- - - - - - 0x037CDE 0D:BCCE: E0 BC     .word _off040_BCE0_06
-- D 1 - - - 0x037CE0 0D:BCD0: EF BC     .word _off040_BCEF_07
-- D 1 - - - 0x037CE2 0D:BCD2: 03 BD     .word _off040_BD03_08
-- - - - - - 0x037CE4 0D:BCD4: E0 BC     .word _off040_BCE0_09
-- D 1 - - - 0x037CE6 0D:BCD6: 21 BD     .word _off040_BD21_0A
-- D 1 - - - 0x037CE8 0D:BCD8: 67 BD     .word _off040_BD67_0B
-- - - - - - 0x037CEA 0D:BCDA: E0 BC     .word _off040_BCE0_0C
-- - - - - - 0x037CEC 0D:BCDC: E0 BC     .word _off040_BCE0_0D
-- D 1 - - - 0x037CEE 0D:BCDE: 80 BD     .word _off040_BD80_0E
+- - - - - - 0x037CD2 0D:BCC2: E0 BC     .word _off040_BCE0_00_Warakiya
+- - - - - - 0x037CD4 0D:BCC4: E0 BC     .word _off040_BCE0_01_Clock_Tower
+- - - - - - 0x037CD6 0D:BCC6: E0 BC     .word _off040_BCE0_02_Forest_of_Madness
+- D 1 - - - 0x037CD8 0D:BCC8: E0 BC     .word _off040_BCE0_03_Ship_of_Fools
+- - - - - - 0x037CDA 0D:BCCA: E0 BC     .word _off040_BCE0_04_Tower_of_Terror
+- - - - - - 0x037CDC 0D:BCCC: E0 BC     .word _off040_BCE0_05_Causeway
+- - - - - - 0x037CDE 0D:BCCE: E0 BC     .word _off040_BCE0_06_Murky_Marshes
+- D 1 - - - 0x037CE0 0D:BCD0: EF BC     .word _off040_BCEF_07_Caves_of_Alucard
+- D 1 - - - 0x037CE2 0D:BCD2: 03 BD     .word _off040_BD03_08_Sunken_City
+- - - - - - 0x037CE4 0D:BCD4: E0 BC     .word _off040_BCE0_09_Catacombs
+- D 1 - - - 0x037CE6 0D:BCD6: 21 BD     .word _off040_BD21_0A_Mountain_Range
+- D 1 - - - 0x037CE8 0D:BCD8: 67 BD     .word _off040_BD67_0B_Castle_Courtyard
+- - - - - - 0x037CEA 0D:BCDA: E0 BC     .word _off040_BCE0_0C_Main_Hall
+- - - - - - 0x037CEC 0D:BCDC: E0 BC     .word _off040_BCE0_0D_Castle_Tower
+- D 1 - - - 0x037CEE 0D:BCDE: 80 BD     .word _off040_BD80_0E_Final_Clock_Tower
 
 
 
-_off040_BCE0_00:
-_off040_BCE0_01:
-_off040_BCE0_02:
-_off040_BCE0_03:
-_off040_BCE0_04:
-_off040_BCE0_05:
-_off040_BCE0_06:
-_off040_BCE0_09:
-_off040_BCE0_0C:
-_off040_BCE0_0D:
+_off040_BCE0_00_Warakiya:
+_off040_BCE0_01_Clock_Tower:
+_off040_BCE0_02_Forest_of_Madness:
+_off040_BCE0_03_Ship_of_Fools:
+_off040_BCE0_04_Tower_of_Terror:
+_off040_BCE0_05_Causeway:
+_off040_BCE0_06_Murky_Marshes:
+_off040_BCE0_09_Catacombs:
+_off040_BCE0_0C_Main_Hall:
+_off040_BCE0_0D_Castle_Tower:
 ; first 4 bytes are 2x2 tile blocks, 5th byte is nametable attribute
 ; 00 
 - D 1 - I - 0x037CF0 0D:BCE0: 00        .byte $00, $00   ; 
@@ -13705,7 +13705,7 @@ _off040_BCE0_0D:
 
 
 
-_off040_BCEF_07:
+_off040_BCEF_07_Caves_of_Alucard:
 ; 00 
 - D 1 - I - 0x037CFF 0D:BCEF: 00        .byte $00, $00   ; 
 - D 1 - I - 0x037D01 0D:BCF1: 00        .byte $00, $00   ; 
@@ -13725,7 +13725,7 @@ _off040_BCEF_07:
 
 
 
-_off040_BD03_08:
+_off040_BD03_08_Sunken_City:
 ; 00 
 - - - - - - 0x037D13 0D:BD03: 00        .byte $00, $00   ; 
 - - - - - - 0x037D15 0D:BD05: 00        .byte $00, $00   ; 
@@ -13753,7 +13753,7 @@ _off040_BD03_08:
 
 
 
-_off040_BD21_0A:
+_off040_BD21_0A_Mountain_Range:
 ; 00 
 - D 1 - I - 0x037D31 0D:BD21: 00        .byte $00, $00   ; 
 - D 1 - I - 0x037D33 0D:BD23: 00        .byte $00, $00   ; 
@@ -13813,7 +13813,7 @@ _off040_BD21_0A:
 
 
 
-_off040_BD67_0B:
+_off040_BD67_0B_Castle_Courtyard:
 ; 00 
 - - - - - - 0x037D77 0D:BD67: 00        .byte $00, $00   ; 
 - - - - - - 0x037D79 0D:BD69: 00        .byte $00, $00   ; 
@@ -13837,7 +13837,7 @@ _off040_BD67_0B:
 
 
 
-_off040_BD80_0E:
+_off040_BD80_0E_Final_Clock_Tower:
 ; 00 
 - D 1 - I - 0x037D90 0D:BD80: 00        .byte $00, $00   ; 
 - D 1 - I - 0x037D92 0D:BD82: 00        .byte $00, $00   ; 
