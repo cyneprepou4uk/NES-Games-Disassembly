@@ -3975,7 +3975,7 @@ C - - - - - 0x000CB8 00:8CA8: 85 62     STA ram_ppu_address_hi
 C - - - - - 0x000CBA 00:8CAA: A9 67     LDA #< $2067
 C - - - - - 0x000CBC 00:8CAC: 85 61     STA ram_ppu_address_lo
 C - - - - - 0x000CBE 00:8CAE: A5 3C     LDA ram_hp_player
-C - - - - - 0x000CC0 00:8CB0: 85 08     STA ram_0008_t033_hp
+C - - - - - 0x000CC0 00:8CB0: 85 08     STA ram_0008_t06A_hp
 C - - - - - 0x000CC2 00:8CB2: A9 83     LDA #$83
 C - - - - - 0x000CC4 00:8CB4: 85 0A     STA ram_000A_t018_fill_tile_1
 C - - - - - 0x000CC6 00:8CB6: A9 84     LDA #$84
@@ -3986,7 +3986,7 @@ C - - - - - 0x000CCF 00:8CBF: 85 62     STA ram_ppu_address_hi
 C - - - - - 0x000CD1 00:8CC1: A9 87     LDA #< $2087
 C - - - - - 0x000CD3 00:8CC3: 85 61     STA ram_ppu_address_lo
 C - - - - - 0x000CD5 00:8CC5: A5 3D     LDA ram_hp_boss
-C - - - - - 0x000CD7 00:8CC7: 85 08     STA ram_0008_t033_hp
+C - - - - - 0x000CD7 00:8CC7: 85 08     STA ram_0008_t06A_hp
 C - - - - - 0x000CD9 00:8CC9: A9 93     LDA #$93
 C - - - - - 0x000CDB 00:8CCB: 85 0A     STA ram_000A_t018_fill_tile_1
 C - - - - - 0x000CDD 00:8CCD: A9 94     LDA #$94
@@ -3996,17 +3996,17 @@ C - - - - - 0x000CE1 00:8CD1: 20 B5 E8  JSR sub_0x03E8C5_set_buffer_mode_01
 C - - - - - 0x000CE4 00:8CD4: A9 08     LDA #$08
 C - - - - - 0x000CE6 00:8CD6: 85 09     STA ram_0009_t000_tiles_counter
 bra_8CD8_loop:
-C - - - - - 0x000CE8 00:8CD8: A5 08     LDA ram_0008_t033_hp
+C - - - - - 0x000CE8 00:8CD8: A5 08     LDA ram_0008_t06A_hp
 C - - - - - 0x000CEA 00:8CDA: F0 31     BEQ bra_8D0D
 C - - - - - 0x000CEC 00:8CDC: C9 08     CMP #$08
 C - - - - - 0x000CEE 00:8CDE: 90 13     BCC bra_8CF3
 C - - - - - 0x000CF0 00:8CE0: A5 0A     LDA ram_000A_t018_fill_tile_1
 C - - - - - 0x000CF2 00:8CE2: 9D 00 03  STA ram_ppu_buffer,X
 C - - - - - 0x000CF5 00:8CE5: E8        INX
-C - - - - - 0x000CF6 00:8CE6: A5 08     LDA ram_0008_t033_hp
+C - - - - - 0x000CF6 00:8CE6: A5 08     LDA ram_0008_t06A_hp
 C - - - - - 0x000CF8 00:8CE8: 38        SEC
 C - - - - - 0x000CF9 00:8CE9: E9 08     SBC #$08
-C - - - - - 0x000CFB 00:8CEB: 85 08     STA ram_0008_t033_hp
+C - - - - - 0x000CFB 00:8CEB: 85 08     STA ram_0008_t06A_hp
 C - - - - - 0x000CFD 00:8CED: C6 09     DEC ram_0009_t000_tiles_counter
 C - - - - - 0x000CFF 00:8CEF: F0 27     BEQ bra_8D18_close_buffer
 C - - - - - 0x000D01 00:8CF1: D0 E5     BNE bra_8CD8_loop    ; jmp
@@ -12170,8 +12170,9 @@ C - - - - - 0x003CAA 00:BC9A: 9D 00 03  STA ram_ppu_buffer,X
 C - - - - - 0x003CAD 00:BC9D: E8        INX
 C - - - - - 0x003CAE 00:BC9E: 86 1D     STX ram_index_ppu_buffer
 C - - - - - 0x003CB0 00:BCA0: 20 12 ED  JSR sub_0x03ED22_close_buffer
+; bzk optimize, useless LDA + STA
 C - - - - - 0x003CB3 00:BCA3: A9 02     LDA #$02
-C - - - - - 0x003CB5 00:BCA5: 85 01     STA ram_0001_temp   ; ???
+C - - - - - 0x003CB5 00:BCA5: 85 01     STA ram_0001_t077_useless
 C - - - - - 0x003CB7 00:BCA7: A6 0F     LDX ram_000F_t005
 C - - - - - 0x003CB9 00:BCA9: BD 85 07  LDA ram_0785,X
 C - - - - - 0x003CBC 00:BCAC: 0A        ASL

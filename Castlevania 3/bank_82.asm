@@ -195,7 +195,7 @@ C - - - - - 0x0040EC 01:80DC: 85 84     STA ram_hearts
 bra_80DE:
 C - - - - - 0x0040EE 01:80DE: 20 93 80  JSR sub_8093
 C - - - - - 0x0040F1 01:80E1: A9 20     LDA #$20
-C - - - - - 0x0040F3 01:80E3: 85 00     STA ram_0000_temp   ; ???
+C - - - - - 0x0040F3 01:80E3: 85 00     STA ram_0000_t098_score
 C - - - - - 0x0040F5 01:80E5: A9 1A     LDA #con_sound_heart_count
 C - - - - - 0x0040F7 01:80E7: 4C BE 83  JMP loc_83BE_play_sound
 
@@ -7211,6 +7211,7 @@ C - - - - - 0x006932 01:A922: 20 98 A7  JSR sub_A798
 C - - - - - 0x006935 01:A925: A5 08     LDA ram_0008_t058_counter
 C - - - - - 0x006937 01:A927: C9 09     CMP #$09
 C - - - - - 0x006939 01:A929: B0 04     BCS bra_A92F
+; bzk optimize, JMP
 C - - - - - 0x00693B 01:A92B: 20 45 A9  JSR sub_A945
 C - - - - - 0x00693E 01:A92E: 60        RTS
 bra_A92F:
@@ -9829,7 +9830,7 @@ C - - - - - 0x00783C 01:B82C: A2 00     LDX #$00
 bra_B82E_loop:
 ; 0008-000E, 07A1-07A8
 C - - - - - 0x00783E 01:B82E: BD A1 07  LDA ram_07A1,X
-C - - - - - 0x007841 01:B831: 95 08     STA ram_0008_temp,X
+C - - - - - 0x007841 01:B831: 95 08     STA ram_0008_t06B_array,X
 C - - - - - 0x007843 01:B833: E8        INX
 C - - - - - 0x007844 01:B834: E0 08     CPX #$08
 C - - - - - 0x007846 01:B836: 90 F6     BCC bra_B82E_loop
@@ -9839,9 +9840,9 @@ C - - - - - 0x00784C 01:B83C: 85 01     STA ram_0001_t046
 C - - - - - 0x00784E 01:B83E: A0 00     LDY #$00
 C - - - - - 0x007850 01:B840: A2 00     LDX #$00
 bra_B842_loop:
-C - - - - - 0x007852 01:B842: 56 08     LSR ram_0008_temp,X
+C - - - - - 0x007852 01:B842: 56 08     LSR ram_0008_t06B_array,X
 C - - - - - 0x007854 01:B844: 66 01     ROR ram_0001_t046
-C - - - - - 0x007856 01:B846: 56 08     LSR ram_0008_temp,X
+C - - - - - 0x007856 01:B846: 56 08     LSR ram_0008_t06B_array,X
 C - - - - - 0x007858 01:B848: 66 00     ROR ram_0000_t0E5
 C - - - - - 0x00785A 01:B84A: E8        INX
 C - - - - - 0x00785B 01:B84B: C8        INY
@@ -9942,19 +9943,19 @@ C D 1 - - - 0x0078D4 01:B8C4: AD 88 07  LDA ram_0788
 C - - - - - 0x0078D7 01:B8C7: 85 00     STA ram_0000_t074_lo
 C - - - - - 0x0078D9 01:B8C9: AD 89 07  LDA ram_0789
 C - - - - - 0x0078DC 01:B8CC: 85 01     STA ram_0001_t074_hi
-; bzk bug? should be 07?
+; bzk bug, should be LDX 07
 C - - - - - 0x0078DE 01:B8CE: A2 08     LDX #$08
 C - - - - - 0x0078E0 01:B8D0: A9 00     LDA #$00
 bra_B8D2_loop:
-C - - - - - 0x0078E2 01:B8D2: 95 08     STA ram_0008_temp,X ; 0008 0009 000A 000B 000C 000D 000E 000F 0010 
+C - - - - - 0x0078E2 01:B8D2: 95 08     STA ram_0008_t06C_array,X ; 0008 0009 000A 000B 000C 000D 000E 000F 0010 
 C - - - - - 0x0078E4 01:B8D4: CA        DEX
 C - - - - - 0x0078E5 01:B8D5: 10 FB     BPL bra_B8D2_loop
 C - - - - - 0x0078E7 01:B8D7: A2 00     LDX #$00
 bra_B8D9_loop:
 C - - - - - 0x0078E9 01:B8D9: 46 00     LSR ram_0000_t074_lo
-C - - - - - 0x0078EB 01:B8DB: 36 08     ROL ram_0008_temp,X ; 0008 0009 000A 000B 000C 000D 000E 000F 
+C - - - - - 0x0078EB 01:B8DB: 36 08     ROL ram_0008_t06C_array,X ; 0008 0009 000A 000B 000C 000D 000E 000F 
 C - - - - - 0x0078ED 01:B8DD: 46 01     LSR ram_0001_t074_hi
-C - - - - - 0x0078EF 01:B8DF: 36 08     ROL ram_0008_temp,X ; 0008 0009 000A 000B 000C 000D 000E 000F 
+C - - - - - 0x0078EF 01:B8DF: 36 08     ROL ram_0008_t06C_array,X ; 0008 0009 000A 000B 000C 000D 000E 000F 
 C - - - - - 0x0078F1 01:B8E1: E8        INX
 C - - - - - 0x0078F2 01:B8E2: E0 08     CPX #$08
 C - - - - - 0x0078F4 01:B8E4: 90 F3     BCC bra_B8D9_loop
@@ -9995,7 +9996,7 @@ C - - - - - 0x00792B 01:B91B: 29 03     AND #$03
 C - - - - - 0x00792D 01:B91D: 0A        ASL
 C - - - - - 0x00792E 01:B91E: 0A        ASL
 C - - - - - 0x00792F 01:B91F: 05 01     ORA ram_0001_t022
-C - - - - - 0x007931 01:B921: 15 08     ORA ram_0008_temp,X
+C - - - - - 0x007931 01:B921: 15 08     ORA ram_0008_t06C_array,X
 C - - - - - 0x007933 01:B923: 9D A1 07  STA ram_07A1,X
 C - - - - - 0x007936 01:B926: C8        INY
 C - - - - - 0x007937 01:B927: E8        INX

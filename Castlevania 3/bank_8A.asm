@@ -12275,7 +12275,7 @@ tbl_BEA6:
 sub_0x017EC6_bg_and_spr_palette:
 ; A = index for 2nd table
 C - - - - - 0x017EC6 05:BEB6: 48        PHA
-C - - - - - 0x017EC7 05:BEB7: 86 16     STX ram_0016_temp
+C - - - - - 0x017EC7 05:BEB7: 86 16     STX ram_0016_t010_save_X
 C - - - - - 0x017EC9 05:BEB9: A6 1D     LDX ram_index_ppu_buffer
 C - - - - - 0x017ECB 05:BEBB: A0 00     LDY #$00
 loc_BEBD_loop:
@@ -12305,7 +12305,7 @@ C - - - - - 0x017EF1 05:BEE1: C6 00     DEC ram_0000_t110_colors_counter
 C - - - - - 0x017EF3 05:BEE3: D0 F4     BNE bra_BED9_loop
 C - - - - - 0x017EF5 05:BEE5: A9 04     LDA #con_98E4_3F00_0000
 C - - - - - 0x017EF7 05:BEE7: 20 E9 EC  JSR sub_0x03ECF9_write_data_to_ppu_buffer
-C - - - - - 0x017EFA 05:BEEA: A6 16     LDX ram_0016_temp
+C - - - - - 0x017EFA 05:BEEA: A6 16     LDX ram_0016_t010_save_X
 C - - - - - 0x017EFC 05:BEEC: 60        RTS
 
 

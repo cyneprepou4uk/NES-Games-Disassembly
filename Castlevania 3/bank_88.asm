@@ -12061,13 +12061,13 @@ C - - - - - 0x0139A4 04:B994: F0 02     BEQ bra_B998_scroll_up
 ; bzk optimize, DEY
 C - - - - - 0x0139A6 04:B996: A0 FF     LDY #$FF
 bra_B998_scroll_up:
-C - - - - - 0x0139A8 04:B998: 84 04     STY ram_0004_temp
+C - - - - - 0x0139A8 04:B998: 84 04     STY ram_0004_t031
 C - - - - - 0x0139AA 04:B99A: 18        CLC
 C - - - - - 0x0139AB 04:B99B: BD 06 06  LDA ram_obj_config,X
 C - - - - - 0x0139AE 04:B99E: 65 6E     ADC ram_006E_cam_speed
 C - - - - - 0x0139B0 04:B9A0: 9D 06 06  STA ram_obj_config,X
 C - - - - - 0x0139B3 04:B9A3: BD 1D 06  LDA ram_061D_obj,X
-C - - - - - 0x0139B6 04:B9A6: 65 04     ADC ram_0004_temp
+C - - - - - 0x0139B6 04:B9A6: 65 04     ADC ram_0004_t031
 C - - - - - 0x0139B8 04:B9A8: 9D 1D 06  STA ram_061D_obj,X
 bra_B9AB_RTS:
 C - - - - - 0x0139BB 04:B9AB: 60        RTS

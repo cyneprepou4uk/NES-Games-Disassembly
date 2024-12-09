@@ -4601,6 +4601,7 @@ C - - - - - 0x023F0F 08:BEFF: C9 63     CMP #$63
 C - - - - - 0x023F11 08:BF01: D0 08     BNE bra_BF0B
 C - - - - - 0x023F13 08:BF03: BD C1 05  LDA ram_obj_ai_subscript,X
 C - - - - - 0x023F16 08:BF06: C9 02     CMP #$02
+; bzk optimize, BCC to RTS at 0x023F66
 C - - - - - 0x023F18 08:BF08: B0 01     BCS bra_BF0B
 C - - - - - 0x023F1A 08:BF0A: 60        RTS
 bra_BF0B:
@@ -4644,7 +4645,7 @@ C - - - - - 0x023F5F 08:BF4F: 8D EC 07  STA ram_07EC
 C - - - - - 0x023F62 08:BF52: A9 11     LDA #con_002A_11
 C - - - - - 0x023F64 08:BF54: 85 2A     STA ram_002A_script
 C - - - - - 0x023F66 08:BF56: 60        RTS
-bra_BF57_RTS:
+bra_BF57_RTS:   ; bzk optimize, use RTS at 0x023F66
 C - - - - - 0x023F67 08:BF57: 60        RTS
 
 
@@ -4652,15 +4653,17 @@ C - - - - - 0x023F67 08:BF57: 60        RTS
 sub_BF58:
 ; out
     ; ram_0000_t10A_pos_X_hi_distance
-C - - - - - 0x023F68 08:BF58: A9 00     LDA #$00
-C - - - - - 0x023F6A 08:BF5A: 85 17     STA ram_0017_temp
+; bzk optimize, useless LDA + STA
+C - - - - - 0x023F68 08:BF58: A9 00     LDA #$00    ; facing right
+C - - - - - 0x023F6A 08:BF5A: 85 17     STA ram_0017_t01D_useless
 C - - - - - 0x023F6C 08:BF5C: AD 38 04  LDA ram_plr_pos_X_hi
 C - - - - - 0x023F6F 08:BF5F: 38        SEC
 C - - - - - 0x023F70 08:BF60: FD 38 04  SBC ram_obj_pos_X_hi,X
 C - - - - - 0x023F73 08:BF63: 85 00     STA ram_0000_t10A_pos_X_hi_distance
 C - - - - - 0x023F75 08:BF65: B0 0D     BCS bra_BF74
-C - - - - - 0x023F77 08:BF67: A9 01     LDA #$01
-C - - - - - 0x023F79 08:BF69: 85 17     STA ram_0017_temp
+; bzk optimize, useless LDA + STA
+C - - - - - 0x023F77 08:BF67: A9 01     LDA #$01    ; facing left
+C - - - - - 0x023F79 08:BF69: 85 17     STA ram_0017_t01D_useless
 C - - - - - 0x023F7B 08:BF6B: A5 00     LDA ram_0000_t10A_pos_X_hi_distance
 C - - - - - 0x023F7D 08:BF6D: 49 FF     EOR #$FF
 C - - - - - 0x023F7F 08:BF6F: 18        CLC
@@ -4680,8 +4683,9 @@ C - - - - - 0x023F94 08:BF84: 90 0C     BCC bra_BF92_RTS
 - - - - - - 0x023F96 08:BF86: BD 4E 05  LDA ram_obj_id,X
 - - - - - - 0x023F99 08:BF89: C9 01     CMP #$01
 - - - - - - 0x023F9B 08:BF8B: D0 05     BNE bra_BF92_RTS
+; bzk optimize, useless LDA + STA
 - - - - - - 0x023F9D 08:BF8D: BD A8 04  LDA ram_obj_facing,X
-- - - - - - 0x023FA0 08:BF90: 85 17     STA ram_0017_temp
+- - - - - - 0x023FA0 08:BF90: 85 17     STA ram_0017_t01D_useless
 bra_BF92_RTS:
 C - - - - - 0x023FA2 08:BF92: 60        RTS
 

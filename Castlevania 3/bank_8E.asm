@@ -3900,7 +3900,7 @@ bra_B598_pressed_Up:
 C - - - - - 0x01F5A8 07:B598: 0A        ASL
 C - - - - - 0x01F5A9 07:B599: B0 51     BCS bra_B5EC
 bra_B59B:
-C - - - - - 0x01F5AB 07:B59B: 85 0A     STA ram_000A_temp   ; ???
+C - - - - - 0x01F5AB 07:B59B: 85 0A     STA ram_000A_t01F
 C - - - - - 0x01F5AD 07:B59D: 4A        LSR
 C - - - - - 0x01F5AE 07:B59E: 29 0F     AND #$0F
 C - - - - - 0x01F5B0 07:B5A0: 85 09     STA ram_0009_t009
@@ -4028,7 +4028,8 @@ C - - - - - 0x01F649 07:B639: C8        INY
 C - - - - - 0x01F64A 07:B63A: 85 0B     STA ram_000B_t006
 C - - - - - 0x01F64C 07:B63C: A5 08     LDA ram_0008_t061_cam_pos_hi
 C - - - - - 0x01F64E 07:B63E: F1 69     SBC (ram_data_stairs),Y
-C - - - - - 0x01F650 07:B640: 85 09     STA ram_0009_temp   ; ???
+; bzk optimize, useless STA
+C - - - - - 0x01F650 07:B640: 85 09     STA ram_0009_t02B_useless
 C - - - - - 0x01F652 07:B642: B0 15     BCS bra_B659
 C - - - - - 0x01F654 07:B644: C9 FF     CMP #$FF
 C - - - - - 0x01F656 07:B646: D0 20     BNE bra_B668

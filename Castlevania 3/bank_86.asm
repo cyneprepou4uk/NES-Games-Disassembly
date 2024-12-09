@@ -401,6 +401,7 @@ C - - - - - 0x00C267 03:8257: DE D8 05  DEC ram_05D8_obj,X
 ; triggers during 2 dragons boss fight
 C - - - - - 0x00C26A 03:825A: 20 C8 FE  JSR sub_0x03FED8_clear_speed
 ; A = 00
+; bzk optimize, useless STA
 C - - - - - 0x00C26D 03:825D: 85 12     STA ram_0012_t012_useless
 C - - - - - 0x00C26F 03:825F: 60        RTS
 bra_8260:
@@ -1236,7 +1237,8 @@ C - - - - - 0x00C7CC 03:87BC: 4C 76 86  JMP loc_8676
 
 
 sub_87BF:
-C - - - - - 0x00C7CF 03:87BF: 86 02     STX ram_0002_temp   ; ???
+; bzk optimize, useless STX
+C - - - - - 0x00C7CF 03:87BF: 86 02     STX ram_0002_t04E_useless
 C - - - - - 0x00C7D1 03:87C1: 18        CLC
 C - - - - - 0x00C7D2 03:87C2: 69 11     ADC #$11
 C - - - - - 0x00C7D4 03:87C4: 85 C1     STA ram_00C1
@@ -1536,12 +1538,12 @@ C - - - - - 0x00C9A5 03:8995: 18        CLC
 C - - - - - 0x00C9A6 03:8996: 79 C7 89  ADC tbl_89C7_offset,Y
 C - - - - - 0x00C9A9 03:8999: A8        TAY
 C - - - - - 0x00C9AA 03:899A: A9 08     LDA #$08
-C - - - - - 0x00C9AC 03:899C: 85 15     STA ram_0015_temp
+C - - - - - 0x00C9AC 03:899C: 85 15     STA ram_0015_t00B_loop_counter
 bra_899E_loop:
 C - - - - - 0x00C9AE 03:899E: B9 CA 89  LDA tbl_89CA_tiles,Y
 C - - - - - 0x00C9B1 03:89A1: 20 16 ED  JSR sub_0x03ED26_write_byte_to_buffer_X
 C - - - - - 0x00C9B4 03:89A4: C8        INY
-C - - - - - 0x00C9B5 03:89A5: C6 15     DEC ram_0015_temp
+C - - - - - 0x00C9B5 03:89A5: C6 15     DEC ram_0015_t00B_loop_counter
 C - - - - - 0x00C9B7 03:89A7: D0 F5     BNE bra_899E_loop
 C - - - - - 0x00C9B9 03:89A9: E6 61     INC ram_ppu_address_lo
 ; bzk optimize, no need for LDA to check overflow after INC
@@ -2030,13 +2032,15 @@ loc_8D2C:
 C D 0 - - - 0x00CD3C 03:8D2C: BD C1 05  LDA ram_obj_ai_subscript,X
 C - - - - - 0x00CD3F 03:8D2F: C9 02     CMP #$02
 C - - - - - 0x00CD41 03:8D31: D0 5A     BNE bra_8D8D_RTS
+; bzk optimize, useless code up to 0x00CD50,
+; 0008 and 0009 will be overwritten at 0x03EF8E
 C - - - - - 0x00CD43 03:8D33: BD A8 04  LDA ram_obj_facing,X
 C - - - - - 0x00CD46 03:8D36: 0A        ASL
 C - - - - - 0x00CD47 03:8D37: A8        TAY
-C - - - - - 0x00CD48 03:8D38: B9 9E 8D  LDA tbl_8D9E,Y
-C - - - - - 0x00CD4B 03:8D3B: 85 08     STA ram_0008_temp   ; ???
-C - - - - - 0x00CD4D 03:8D3D: B9 9F 8D  LDA tbl_8D9E + $01,Y
-C - - - - - 0x00CD50 03:8D40: 85 09     STA ram_0009_temp   ; ???
+C - - - - - 0x00CD48 03:8D38: B9 9E 8D  LDA tbl_8D9E_0000,Y
+C - - - - - 0x00CD4B 03:8D3B: 85 08     STA ram_0008_t033_useless_data
+C - - - - - 0x00CD4D 03:8D3D: B9 9F 8D  LDA tbl_8D9E_0000 + $01,Y
+C - - - - - 0x00CD50 03:8D40: 85 09     STA ram_0008_t033_useless_data + $01
 C - - - - - 0x00CD52 03:8D42: A9 01     LDA #$01
 C - - - - - 0x00CD54 03:8D44: 85 17     STA ram_0017_t015_obj_state
 bra_8D46_loop:
@@ -2101,13 +2105,10 @@ tbl_8D96:
 
 
 
-tbl_8D9E:
+tbl_8D9E_0000:
 ; bzk optimize, same bytes
-;                                              +---------- 
-;                                              |    +----- 
-;                                              |    |
-- D 0 - - - 0x00CDAE 03:8D9E: 00        .byte $00, $00   ; 00 facing right
-- D 0 - - - 0x00CDB0 03:8DA0: 00        .byte $00, $00   ; 01 facilg left
+- D 0 - - - 0x00CDAE 03:8D9E: 00 00     .word $0000 ; 00 facing right
+- D 0 - - - 0x00CDB0 03:8DA0: 00 00     .word $0000 ; 01 facing left
 
 
 
@@ -3300,8 +3301,9 @@ C - - - - - 0x00D602 03:95F2: B0 34     BCS bra_9628
 C - - - - - 0x00D604 03:95F4: A9 00     LDA #$00
 C - - - - - 0x00D606 03:95F6: 9D F2 04  STA ram_obj_spd_X_hi,X
 C - - - - - 0x00D609 03:95F9: 9D 09 05  STA ram_obj_spd_X_lo,X
+; bzk optimize, useless LDA + STA
 C - - - - - 0x00D60C 03:95FC: A9 00     LDA #$00
-C - - - - - 0x00D60E 03:95FE: 85 03     STA ram_0003_temp   ; ???
+C - - - - - 0x00D60E 03:95FE: 85 03     STA ram_0003_t024_useless
 C - - - - - 0x00D610 03:9600: BC 06 06  LDY ram_obj_config,X
 C - - - - - 0x00D613 03:9603: A9 B8     LDA #$B8
 C - - - - - 0x00D615 03:9605: 38        SEC
@@ -3567,6 +3569,7 @@ C - - - - - 0x00D7D9 03:97C9: 20 13 98  JSR sub_9813
 C - - - - - 0x00D7DC 03:97CC: A5 00     LDA ram_0000_t07B
 C - - - - - 0x00D7DE 03:97CE: BC A8 04  LDY ram_obj_facing,X
 C - - - - - 0x00D7E1 03:97D1: F0 29     BEQ bra_97FC_facing_right
+; if facing left
 C - - - - - 0x00D7E3 03:97D3: 29 10     AND #$10
 C - - - - - 0x00D7E5 03:97D5: D0 20     BNE bra_97F7
 - - - - - - 0x00D7E7 03:97D7: A0 00     LDY #$00
@@ -3583,7 +3586,8 @@ bra_97D9:
 - - - - - - 0x00D7FB 03:97EB: A8        TAY
 - - - - - - 0x00D7FC 03:97EC: 68        PLA
 - - - - - - 0x00D7FD 03:97ED: 59 04 98  EOR tbl_9804,Y
-- - - - - - 0x00D800 03:97F0: 85 00     STA ram_0000_temp   ; ???
+; bzk optimize, useless STA
+- - - - - - 0x00D800 03:97F0: 85 00     STA ram_0000_t12D_useless
 - - - - - - 0x00D802 03:97F2: 05 01     ORA ram_0001_t055
 - - - - - - 0x00D804 03:97F4: 85 05     STA ram_0005_t015_obj_state
 - - - - - - 0x00D806 03:97F6: 60        RTS

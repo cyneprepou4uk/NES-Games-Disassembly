@@ -1086,8 +1086,9 @@ C - - - - - 0x01065B 04:864B: 4C FA E1  JMP loc_0x03E20A
 
 loc_864E_FF:
 ; con_se_cb_1_FF
+; bzk optimize, useless LDA + STA
 C D 0 - - - 0x01065E 04:864E: BD 07 01  LDA ram_0107_se,X
-C - - - - - 0x010661 04:8651: 85 E4     STA ram_00E4_se_temp    ; ???
+C - - - - - 0x010661 04:8651: 85 E4     STA ram_00E4_se_t007_useless
 C - - - - - 0x010663 04:8653: A9 00     LDA #$00
 C - - - - - 0x010665 04:8655: 9D 07 01  STA ram_0107_se,X
 C - - - - - 0x010668 04:8658: 8A        TXA

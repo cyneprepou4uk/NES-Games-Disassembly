@@ -58,6 +58,7 @@ con_player_off                          = $FF ; con_player_off
 ; ram_subweapon_id
 ; handler at 0x03AEF0
 ; need comments 0x02E260
+; todo possible 0A at 0x0324D3 and 0x03257E
 con_subweapon_none                      = $00 ; 
 con_subweapon_axe                       = $01 ; Trevor only
 con_subweapon_cross                     = $02 ; 
@@ -1336,6 +1337,7 @@ con_9E7B_6E                             = $6E ;
 ; todo
 ; ram_obj_ai_script ?
 ; index for 0x02FEB1
+; is there a 80 value? see 0x02905C
 con_BEA1_00                             = $00 ; 
 con_BEA1_01                             = $01 ; 
 con_BEA1_02                             = $02 ; 
