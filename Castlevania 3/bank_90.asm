@@ -4583,13 +4583,13 @@ tbl_BE49:
 ofs_042_0x023EE9_16:
 C - - J - - 0x023EE9 08:BED9: A9 00     LDA #$00
 C - - - - - 0x023EEB 08:BEDB: 9D 57 06  STA ram_obj_0658,X
-C - - - - - 0x023EEE 08:BEDE: 9D F2 04  STA ram_obj_spd_X_hi,X
-C D 1 - - - 0x023EF1 08:BEE1: 9D 09 05  STA ram_obj_spd_X_lo,X
+C - - - - - 0x023EEE 08:BEDE: 9D F2 04  STA ram_obj_spd_X_lo,X
+C D 1 - - - 0x023EF1 08:BEE1: 9D 09 05  STA ram_obj_spd_X_fr,X
 C D 1 - - - 0x023EF4 08:BEE4: BD C1 05  LDA ram_obj_ai_subscript,X
 C - - - - - 0x023EF7 08:BEE7: C9 01     CMP #$01
 C D 1 - - - 0x023EF9 08:BEE9: D0 0F     BNE bra_BEFA
-C D 1 - - - 0x023EFB 08:BEEB: A9 00     LDA #$00    ; pos_X_hi
-C - - - - - 0x023EFD 08:BEED: A0 08     LDY #$08    ; pos_Y_hi
+C D 1 - - - 0x023EFB 08:BEEB: A9 00     LDA #$00    ; pos_X_lo
+C - - - - - 0x023EFD 08:BEED: A0 08     LDY #$08    ; pos_Y_lo
 C - - - - - 0x023EFF 08:BEEF: 20 1E FC  JSR sub_0x03FC2E
 C - - - - - 0x023F02 08:BEF2: F0 06     BEQ bra_BEFA
 C - - - - - 0x023F04 08:BEF4: 20 C8 FE  JSR sub_0x03FED8_clear_speed
@@ -4605,9 +4605,9 @@ C - - - - - 0x023F16 08:BF06: C9 02     CMP #$02
 C - - - - - 0x023F18 08:BF08: B0 01     BCS bra_BF0B
 C - - - - - 0x023F1A 08:BF0A: 60        RTS
 bra_BF0B:
-C - - - - - 0x023F1B 08:BF0B: AD 1C 04  LDA ram_plr_pos_Y_hi
+C - - - - - 0x023F1B 08:BF0B: AD 1C 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x023F1E 08:BF0E: 38        SEC
-C - - - - - 0x023F1F 08:BF0F: FD 1C 04  SBC ram_obj_pos_Y_hi,X
+C - - - - - 0x023F1F 08:BF0F: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x023F22 08:BF12: B0 05     BCS bra_BF19
 C - - - - - 0x023F24 08:BF14: 49 FF     EOR #$FF
 C - - - - - 0x023F26 08:BF16: 18        CLC
@@ -4616,7 +4616,7 @@ bra_BF19:
 C - - - - - 0x023F29 08:BF19: C9 10     CMP #$10
 C - - - - - 0x023F2B 08:BF1B: B0 3A     BCS bra_BF57_RTS
 C - - - - - 0x023F2D 08:BF1D: 20 58 BF  JSR sub_BF58
-C - - - - - 0x023F30 08:BF20: A5 00     LDA ram_0000_t10A_pos_X_hi_distance
+C - - - - - 0x023F30 08:BF20: A5 00     LDA ram_0000_t10A_pos_X_lo_distance
 C - - - - - 0x023F32 08:BF22: C9 08     CMP #$08
 C - - - - - 0x023F34 08:BF24: B0 31     BCS bra_BF57_RTS
 C - - - - - 0x023F36 08:BF26: 20 CE E5  JSR sub_0x03E5DE_forbid_pausing
@@ -4652,27 +4652,27 @@ C - - - - - 0x023F67 08:BF57: 60        RTS
 
 sub_BF58:
 ; out
-    ; ram_0000_t10A_pos_X_hi_distance
+    ; ram_0000_t10A_pos_X_lo_distance
 ; bzk optimize, useless LDA + STA
 C - - - - - 0x023F68 08:BF58: A9 00     LDA #$00    ; facing right
 C - - - - - 0x023F6A 08:BF5A: 85 17     STA ram_0017_t01D_useless
-C - - - - - 0x023F6C 08:BF5C: AD 38 04  LDA ram_plr_pos_X_hi
+C - - - - - 0x023F6C 08:BF5C: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x023F6F 08:BF5F: 38        SEC
-C - - - - - 0x023F70 08:BF60: FD 38 04  SBC ram_obj_pos_X_hi,X
-C - - - - - 0x023F73 08:BF63: 85 00     STA ram_0000_t10A_pos_X_hi_distance
+C - - - - - 0x023F70 08:BF60: FD 38 04  SBC ram_obj_pos_X_lo,X
+C - - - - - 0x023F73 08:BF63: 85 00     STA ram_0000_t10A_pos_X_lo_distance
 C - - - - - 0x023F75 08:BF65: B0 0D     BCS bra_BF74
 ; bzk optimize, useless LDA + STA
 C - - - - - 0x023F77 08:BF67: A9 01     LDA #$01    ; facing left
 C - - - - - 0x023F79 08:BF69: 85 17     STA ram_0017_t01D_useless
-C - - - - - 0x023F7B 08:BF6B: A5 00     LDA ram_0000_t10A_pos_X_hi_distance
+C - - - - - 0x023F7B 08:BF6B: A5 00     LDA ram_0000_t10A_pos_X_lo_distance
 C - - - - - 0x023F7D 08:BF6D: 49 FF     EOR #$FF
 C - - - - - 0x023F7F 08:BF6F: 18        CLC
 C - - - - - 0x023F80 08:BF70: 69 01     ADC #$01
-C - - - - - 0x023F82 08:BF72: 85 00     STA ram_0000_t10A_pos_X_hi_distance
+C - - - - - 0x023F82 08:BF72: 85 00     STA ram_0000_t10A_pos_X_lo_distance
 bra_BF74:
-C - - - - - 0x023F84 08:BF74: AD 1C 04  LDA ram_plr_pos_Y_hi
+C - - - - - 0x023F84 08:BF74: AD 1C 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x023F87 08:BF77: 38        SEC
-C - - - - - 0x023F88 08:BF78: FD 1C 04  SBC ram_obj_pos_Y_hi,X
+C - - - - - 0x023F88 08:BF78: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x023F8B 08:BF7B: B0 05     BCS bra_BF82
 C - - - - - 0x023F8D 08:BF7D: 49 FF     EOR #$FF
 C - - - - - 0x023F8F 08:BF7F: 18        CLC

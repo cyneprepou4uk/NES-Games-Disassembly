@@ -4685,9 +4685,9 @@ sub_0x01BE9E:
     ; ram_0000_t07B
 C - - - - - 0x01BE9E 06:BE8E: A9 00     LDA #$00
 C - - - - - 0x01BEA0 06:BE90: 85 00     STA ram_0000_t07A
-C - - - - - 0x01BEA2 06:BE92: A5 04     LDA ram_0004_t013_pos_X_hi
+C - - - - - 0x01BEA2 06:BE92: A5 04     LDA ram_0004_t013_pos_X_lo
 C - - - - - 0x01BEA4 06:BE94: 38        SEC
-C - - - - - 0x01BEA5 06:BE95: FD 38 04  SBC ram_obj_pos_X_hi,X
+C - - - - - 0x01BEA5 06:BE95: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x01BEA8 06:BE98: B0 0D     BCS bra_BEA7
 C - - - - - 0x01BEAA 06:BE9A: 85 01     STA ram_0001_t02C
 C - - - - - 0x01BEAC 06:BE9C: A9 01     LDA #$01
@@ -4703,9 +4703,9 @@ C - - - - - 0x01BEB8 06:BEA8: 4A        LSR
 C - - - - - 0x01BEB9 06:BEA9: 4A        LSR
 C - - - - - 0x01BEBA 06:BEAA: 4A        LSR
 C - - - - - 0x01BEBB 06:BEAB: 85 01     STA ram_0001_t02C
-C - - - - - 0x01BEBD 06:BEAD: A5 05     LDA ram_0005_t009_pos_Y_hi
+C - - - - - 0x01BEBD 06:BEAD: A5 05     LDA ram_0005_t009_pos_Y_lo
 C - - - - - 0x01BEBF 06:BEAF: 38        SEC
-C - - - - - 0x01BEC0 06:BEB0: FD 1C 04  SBC ram_obj_pos_Y_hi,X
+C - - - - - 0x01BEC0 06:BEB0: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x01BEC3 06:BEB3: B0 0F     BCS bra_BEC4
 C - - - - - 0x01BEC5 06:BEB5: 85 0A     STA ram_000A_t023
 C - - - - - 0x01BEC7 06:BEB7: A5 00     LDA ram_0000_t07A

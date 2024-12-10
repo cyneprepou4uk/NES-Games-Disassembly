@@ -5,11 +5,10 @@
 ; todo
     ; найти buffer mode 0x03ED2D
     ; переименовать музыку и звуки
-    ; разобраться какой адрес для схр банков за что отвечает, и переименовать JSR на запись
     ; найти индексы объектов, в частности 0x013A4E 0x013A56
-        ; видимо индекс не отвечает за поведение, а в основном за графику
-        ; возможно есть другой адрес
-    ; пометить все X для 0x03E8AA
+        ; видимо индекс не отвечает в основном за графику и интеллект,
+            ; но нет какого-то привычного мне обработчика интеллектов для всех индексов.
+            ; возможно есть и другой адрес
 
 
 
@@ -78,7 +77,7 @@ con_subweapon_stopwatch                 = $0B ;
 ; ram_ppu_buffer
 ; each mode is followed by 2006 lo, then 2006 hi
 ; bzk optimize, modes 01 and 02 probably have to do something
-; with Japanese leftovers. delete relevant codes
+; with Japanese leftovers, delete their relevant codes
 con_buf_mode_00                         = $00 ; buffer is closed and can't be read further
 con_buf_mode_01                         = $01 ; = 02. not FF = write it, FF = read following byte and write FF if >= 0B, otherwise quit (2006 +32)
 con_buf_mode_02                         = $02 ; = 01. not FF = write it, FF = read following byte and write FF if >= 0B, otherwise quit (2006 +32)

@@ -3774,7 +3774,7 @@ C - - - - - 0x01F4ED 07:B4DD: C8        INY
 C - - - - - 0x01F4EE 07:B4DE: B1 08     LDA (ram_0008_t014_data),Y
 C - - - - - 0x01F4F0 07:B4E0: C8        INY
 C - - - - - 0x01F4F1 07:B4E1: 38        SEC
-C - - - - - 0x01F4F2 07:B4E2: ED 1C 04  SBC ram_plr_pos_Y_hi
+C - - - - - 0x01F4F2 07:B4E2: ED 1C 04  SBC ram_plr_pos_Y_lo
 C - - - - - 0x01F4F5 07:B4E5: B0 02     BCS bra_B4E9
 C - - - - - 0x01F4F7 07:B4E7: 49 FF     EOR #$FF
 bra_B4E9:
@@ -3785,7 +3785,7 @@ bra_B4EF:
 ; door 2
 C - - - - - 0x01F4FF 07:B4EF: B1 08     LDA (ram_0008_t014_data),Y
 C - - - - - 0x01F501 07:B4F1: 38        SEC
-C - - - - - 0x01F502 07:B4F2: ED 1C 04  SBC ram_plr_pos_Y_hi
+C - - - - - 0x01F502 07:B4F2: ED 1C 04  SBC ram_plr_pos_Y_lo
 C - - - - - 0x01F505 07:B4F5: B0 02     BCS bra_B4F9
 C - - - - - 0x01F507 07:B4F7: 49 FF     EOR #$FF
 bra_B4F9:
@@ -3868,7 +3868,7 @@ loc_B568_vertical:
         ; 1 = 
 C D 1 - - - 0x01F578 07:B568: A5 57     LDA ram_cam_pos_hi
 C - - - - - 0x01F57A 07:B56A: 85 08     STA ram_0008_t048
-C - - - - - 0x01F57C 07:B56C: AD 1C 04  LDA ram_plr_pos_Y_hi
+C - - - - - 0x01F57C 07:B56C: AD 1C 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x01F57F 07:B56F: 38        SEC
 C - - - - - 0x01F580 07:B570: E9 33     SBC #$33
 C - - - - - 0x01F582 07:B572: 90 7C     BCC bra_B5F0
@@ -3934,7 +3934,7 @@ C - - - - - 0x01F5E0 07:B5D0: B0 1B     BCS bra_B5ED
 C - - - - - 0x01F5E2 07:B5D2: A2 00     LDX #$00    ; to the right
 C - - - - - 0x01F5E4 07:B5D4: 38        SEC
 C - - - - - 0x01F5E5 07:B5D5: B1 69     LDA (ram_data_stairs),Y
-C - - - - - 0x01F5E7 07:B5D7: ED 38 04  SBC ram_plr_pos_X_hi
+C - - - - - 0x01F5E7 07:B5D7: ED 38 04  SBC ram_plr_pos_X_lo
 C - - - - - 0x01F5EA 07:B5DA: B0 06     BCS bra_B5E2
 C - - - - - 0x01F5EC 07:B5DC: E8        INX ; 01    ; to the left
 C - - - - - 0x01F5ED 07:B5DD: 49 FF     EOR #$FF
@@ -3987,7 +3987,7 @@ C - - - - - 0x01F60C 07:B5FC: 10 03     BPL bra_B601_horisontal
 ; if vertical
 C - - - - - 0x01F60E 07:B5FE: 4C 68 B5  JMP loc_B568_vertical
 bra_B601_horisontal:
-C - - - - - 0x01F611 07:B601: AD 38 04  LDA ram_plr_pos_X_hi
+C - - - - - 0x01F611 07:B601: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x01F614 07:B604: 18        CLC
 C - - - - - 0x01F615 07:B605: 65 56     ADC ram_cam_pos_lo
 C - - - - - 0x01F617 07:B607: 85 0C     STA ram_000C_t006
@@ -4015,7 +4015,7 @@ C - - - - - 0x01F634 07:B624: 85 0A     STA ram_000A_t01F
 C - - - - - 0x01F636 07:B626: 0A        ASL
 C - - - - - 0x01F637 07:B627: 0A        ASL
 C - - - - - 0x01F638 07:B628: 0A        ASL
-C - - - - - 0x01F639 07:B629: ED 1C 04  SBC ram_plr_pos_Y_hi
+C - - - - - 0x01F639 07:B629: ED 1C 04  SBC ram_plr_pos_Y_lo
 C - - - - - 0x01F63C 07:B62C: B0 02     BCS bra_B630
 C - - - - - 0x01F63E 07:B62E: 49 FF     EOR #$FF
 bra_B630:
@@ -4086,8 +4086,8 @@ _off029_B68B_00_Warakiya:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F69B 07:B68B: 00        .byte $00, $02, $01, $B0, $B0, $00   ; 00 
@@ -4101,8 +4101,8 @@ _off029_B69E_01_Clock_Tower:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F6AE 07:B69E: 02        .byte $02, $01, $01, $70, $70, $00   ; 00 
@@ -4118,8 +4118,8 @@ _off029_B6BD_02_Forest_of_Madness:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F6CD 07:B6BD: E0        .byte $E0, $E0, $E0, $E0, $E0, $E0   ; 00 
@@ -4134,8 +4134,8 @@ _off029_B6D6_03_Ship_of_Fools:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F6E6 07:B6D6: 00        .byte $00, $01, $01, $90, $90, $00   ; 00 
@@ -4150,8 +4150,8 @@ _off029_B6EF_04_Tower_of_Terror:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F6FF 07:B6EF: 02        .byte $02, $00, $01, $80, $80, $00   ; 00 
@@ -4164,8 +4164,8 @@ _off029_B6FC_05_Causeway:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F70C 07:B6FC: 00        .byte $00, $01, $01, $70, $70, $00   ; 00 
@@ -4179,8 +4179,8 @@ _off029_B70F_06_Murky_Marshes:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F71F 07:B70F: 00        .byte $00, $01, $01, $90, $90, $00   ; 00 
@@ -4193,8 +4193,8 @@ _off029_B71C_07_Caves_of_Alucard:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F72C 07:B71C: 00        .byte $00, $01, $01, $60, $B0, $00   ; 00 
@@ -4211,8 +4211,8 @@ _off029_B741_08_Sunken_City:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F751 07:B741: 01        .byte $01, $00, $00, $90, $90, $00   ; 00 
@@ -4227,8 +4227,8 @@ _off029_B75A_09_Catacombs:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F76A 07:B75A: 01        .byte $01, $00, $00, $90, $90, $00   ; 00 
@@ -4240,8 +4240,8 @@ _off029_B761_0A_Mountain_Range:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F771 07:B761: 01        .byte $01, $00, $00, $70, $70, $00   ; 00 
@@ -4259,8 +4259,8 @@ _off029_B78C_0B_Castle_Courtyard:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F79C 07:B78C: 01        .byte $01, $01, $01, $70, $70, $00   ; 00 
@@ -4273,8 +4273,8 @@ _off029_B799_0D_Castle_Tower:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F7A9 07:B799: 02        .byte $02, $00, $00, $B0, $B0, $00   ; 00 
@@ -4288,8 +4288,8 @@ _off029_B7AC_0C_Main_Hall:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F7BC 07:B7AC: 01        .byte $01, $01, $01, $A0, $A0, $00   ; 00 
@@ -4302,8 +4302,8 @@ _off029_B7B9_0E_Final_Clock_Tower:
 ;                                              +------------------------------ compare blk_id_fr (E0 or FF = no doors in this blk)
 ;                                              |    +------------------------- compare cam_pos_hi
 ;                                              |    |    +-------------------- compare corner
-;                                              |    |    |    +--------------- compare pos_Y_hi (door 1)
-;                                              |    |    |    |    +---------- compare pos_Y_hi (door 2)
+;                                              |    |    |    +--------------- compare pos_Y_lo (door 1)
+;                                              |    |    |    |    +---------- compare pos_Y_lo (door 2)
 ;                                              |    |    |    |    |    +----- next blk_id_fr
 ;                                              |    |    |    |    |    |
 - D 1 - I - 0x01F7C9 07:B7B9: 00        .byte $00, $00, $00, $80, $80, $00   ; 00 
