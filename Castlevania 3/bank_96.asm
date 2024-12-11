@@ -9,7 +9,7 @@
 .export sub_0x02C011_move_object_XY_axis
 .export sub_0x02DFD9
 .export sub_0x02F20B
-.export sub_0x02FD09
+.export sub_0x02FD09_ai_script_handler
 
 
 
@@ -93,7 +93,7 @@ C - - - - - 0x02C07E 0B:806E: 60        RTS
 loc_806F_increase_spd_X:
 sub_806F_increase_spd_X:
 ; in
-    ; A = how much to add
+    ; A = spd_X_fr add
 C D 0 - - - 0x02C07F 0B:806F: 18        CLC
 C - - - - - 0x02C080 0B:8070: 7D 09 05  ADC ram_obj_spd_X_fr,X
 C - - - - - 0x02C083 0B:8073: 9D 09 05  STA ram_obj_spd_X_fr,X
@@ -107,7 +107,7 @@ C - - - - - 0x02C08E 0B:807E: 60        RTS
 sub_807F_increase_spd_Y:
 loc_807F_increase_spd_Y:
 ; in
-    ; A = how much to add
+    ; A = spd_Y_fr add
 C D 0 - - - 0x02C08F 0B:807F: 18        CLC
 C - - - - - 0x02C090 0B:8080: 7D 37 05  ADC ram_obj_spd_Y_fr,X
 C - - - - - 0x02C093 0B:8083: 9D 37 05  STA ram_obj_spd_Y_fr,X
@@ -120,6 +120,8 @@ C - - - - - 0x02C09E 0B:808E: 60        RTS
 
 loc_808F_decrease_spd_X:
 sub_808F_decrease_spd_X:
+; in
+    ; A = spd_X_fr add
 C D 0 - - - 0x02C09F 0B:808F: 49 FF     EOR #$FF
 C - - - - - 0x02C0A1 0B:8091: 38        SEC
 C - - - - - 0x02C0A2 0B:8092: 7D 09 05  ADC ram_obj_spd_X_fr,X
@@ -133,6 +135,8 @@ C - - - - - 0x02C0B0 0B:80A0: 60        RTS
 
 loc_80A1_decrease_spd_Y:
 sub_80A1_decrease_spd_Y:
+; in
+    ; A = spd_Y_fr add
 C D 0 - - - 0x02C0B1 0B:80A1: 49 FF     EOR #$FF
 C - - - - - 0x02C0B3 0B:80A3: 38        SEC
 C - - - - - 0x02C0B4 0B:80A4: 7D 37 05  ADC ram_obj_spd_Y_fr,X
@@ -245,13 +249,13 @@ bra_810C_RTS:
 
 
 loc_810D_clear_ai_script:   ; bzk optimize, single JMP to here
-ofs_039_810D_00:
-; con_BD4F_00
+ofs_039_ai_subscript_810D_00:
+; con_ai_subscr_00
 C D 0 J - - 0x02C11D 0B:810D: A9 00     LDA #$00
 C - - - - - 0x02C11F 0B:810F: 9D EF 05  STA ram_obj_ai_script,X
 bra_8112_RTS:
-ofs_039_8112_75_RTS:
-; con_BD4F_75
+ofs_039_ai_subscript_8112_75_RTS:
+; con_ai_subscr_75_infinte_loop
 C - - - - - 0x02C122 0B:8112: 60        RTS
 
 
@@ -276,8 +280,8 @@ C - - - - - 0x02C12F 0B:811F: 60        RTS
 
 sub_8120:
 loc_8120:
-ofs_039_8120_A0:
-; con_BD4F_A0
+ofs_039_ai_subscript_8120_A0:
+; con_ai_subscr_A0
 ; out
     ; C
         ; 0 = 
@@ -310,7 +314,7 @@ C - - - - - 0x02C14E 0B:813E: 20 E6 B6  JSR sub_B6E6
 C - - - - - 0x02C151 0B:8141: 18        CLC
 C - - - - - 0x02C152 0B:8142: A5 C7     LDA ram_00C7
 C - - - - - 0x02C154 0B:8144: 69 04     ADC #$04
-C - - - - - 0x02C156 0B:8146: 9D D8 05  STA ram_05D8_obj,X
+C - - - - - 0x02C156 0B:8146: 9D D8 05  STA ram_obj_drop_id,X
 C - - - - - 0x02C159 0B:8149: 20 8A FF  JSR sub_0x03FF9A
 C - - - - - 0x02C15C 0B:814C: A9 00     LDA #$00
 C - - - - - 0x02C15E 0B:814E: 60        RTS
@@ -320,45 +324,45 @@ C - - - - - 0x02C162 0B:8152: 60        RTS
 
 
 
-ofs_039_8153_6D:
-; con_BD4F_6D
+ofs_039_ai_subscript_8153_6D:
+; con_ai_subscr_6D
 C - - J - - 0x02C163 0B:8153: A9 10     LDA #$10
 C - - - - - 0x02C165 0B:8155: 20 7F 80  JSR sub_807F_increase_spd_Y
-C - - - - - 0x02C168 0B:8158: A0 06     LDY #$06
+C - - - - - 0x02C168 0B:8158: A0 06     LDY #con_B7BD_06
 C - - - - - 0x02C16A 0B:815A: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C16D 0B:815D: F0 B3     BEQ bra_8112_RTS
 C - - - - - 0x02C16F 0B:815F: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02C171 0B:8161: 20 91 8B  JSR sub_8B91_correct_pos_Y_lo
-loc_8164:
+loc_8164_prepare_next_ai_subscript_and_clear_XY_speed:
 C - - - - - 0x02C174 0B:8164: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02C177 0B:8167: 4C C8 FE  JMP loc_0x03FED8_clear_speed
+C - - - - - 0x02C177 0B:8167: 4C C8 FE  JMP loc_0x03FED8_clear_XY_speed
 
 
 
-ofs_039_816A_A1:
-; con_BD4F_A1
+ofs_039_ai_subscript_816A_A1:
+; con_ai_subscr_A1
 - - - - - - 0x02C17A 0B:816A: A9 10     LDA #$10
 - - - - - - 0x02C17C 0B:816C: 20 7F 80  JSR sub_807F_increase_spd_Y
-- - - - - - 0x02C17F 0B:816F: A0 0E     LDY #$0E
+- - - - - - 0x02C17F 0B:816F: A0 0E     LDY #con_B7BD_0E
 - - - - - - 0x02C181 0B:8171: 20 A6 B7  JSR sub_B7A6
 - - - - - - 0x02C184 0B:8174: F0 24     BEQ bra_819A_RTS
 - - - - - - 0x02C186 0B:8176: A6 6C     LDX ram_006C_object_index
 - - - - - - 0x02C188 0B:8178: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 - - - - - - 0x02C18B 0B:817B: 29 F8     AND #$F8
 - - - - - - 0x02C18D 0B:817D: 9D 1C 04  STA ram_obj_pos_Y_lo,X
-- - - - - - 0x02C190 0B:8180: 4C 64 81  JMP loc_8164
+- - - - - - 0x02C190 0B:8180: 4C 64 81  JMP loc_8164_prepare_next_ai_subscript_and_clear_XY_speed
 
 
 
-ofs_039_8183_9E:
-; con_BD4F_9E
-- - - - - - 0x02C193 0B:8183: 20 EF 81  JSR sub_81EF
+ofs_039_ai_subscript_8183_9E:
+; con_ai_subscr_9E
+- - - - - - 0x02C193 0B:8183: 20 EF 81  JSR sub_81EF_set_obj_flag_20
 - - - - - - 0x02C196 0B:8186: A9 10     LDA #$10
 - - - - - - 0x02C198 0B:8188: 20 7F 80  JSR sub_807F_increase_spd_Y
 - - - - - - 0x02C19B 0B:818B: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 - - - - - - 0x02C19E 0B:818E: C9 F8     CMP #$F8
 - - - - - - 0x02C1A0 0B:8190: 90 08     BCC bra_819A_RTS
-- - - - - - 0x02C1A2 0B:8192: A9 23     LDA #con_sound_water_splash_2
+- - - - - - 0x02C1A2 0B:8192: A9 23     LDA #con_sfx_water_splash_2
 - - - - - - 0x02C1A4 0B:8194: 20 5F E2  JSR sub_0x03E26F_play_sound
 - - - - - - 0x02C1A7 0B:8197: FE C1 05  INC ram_obj_ai_subscript,X
 bra_819A_RTS:
@@ -367,10 +371,10 @@ bra_819A_RTS:
 
 
 loc_819B:
-ofs_039_819B_01:
-; con_BD4F_01
+ofs_039_ai_subscript_819B_01:
+; con_ai_subscr_01
 C D 0 J - - 0x02C1AB 0B:819B: FE C1 05  INC ram_obj_ai_subscript,X
-sub_819E:
+sub_819E_clear_obj_flag_40:
 C - - - - - 0x02C1AE 0B:819E: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02C1B1 0B:81A1: 29 BF     AND #con_obj_flag_40 ^ $FF
 C - - - - - 0x02C1B3 0B:81A3: 9D 70 04  STA ram_obj_flags,X
@@ -378,11 +382,11 @@ C - - - - - 0x02C1B6 0B:81A6: 60        RTS
 
 
 
-sub_81A7:
-ofs_039_81A7_2A:
-; con_BD4F_2A
+sub_81A7_set_obj_flag_40:
+ofs_039_ai_subscript_81A7_2A_set_obj_flag_40:
+; con_ai_subscr_2A_set_obj_flag_40
 C - - J - - 0x02C1B7 0B:81A7: FE C1 05  INC ram_obj_ai_subscript,X
-sub_81AA:
+sub_81AA_set_obj_flag_40:
 C - - - - - 0x02C1BA 0B:81AA: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02C1BD 0B:81AD: 09 40     ORA #con_obj_flag_40
 C - - - - - 0x02C1BF 0B:81AF: 9D 70 04  STA ram_obj_flags,X
@@ -390,18 +394,18 @@ C - - - - - 0x02C1C2 0B:81B2: 60        RTS
 
 
 
-ofs_039_81B3_2B_invert_spd_X:
-; con_BD4F_invert_spd_X:
+ofs_039_ai_subscript_81B3_2B_invert_spd_X:
+; con_ai_subscr_invert_spd_X:
 C - - J - - 0x02C1C3 0B:81B3: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C1C6 0B:81B6: 4C 4B 80  JMP loc_804B_invert_spd_X
 
 
 
-loc_81B9:
-ofs_039_81B9_03:
-; con_BD4F_03
+loc_81B9_prepare_next_ai_subscript_and_clear_obj_flag_08:
+ofs_039_ai_subscript_81B9_03_clear_obj_flag_08:
+; con_ai_subscr_03_clear_obj_flag_08
 C D 0 - - - 0x02C1C9 0B:81B9: FE C1 05  INC ram_obj_ai_subscript,X
-sub_81BC:
+sub_81BC_clear_obj_flag_08:
 C - - - - - 0x02C1CC 0B:81BC: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02C1CF 0B:81BF: 29 F7     AND #con_obj_flag_08 ^ $FF
 C - - - - - 0x02C1D1 0B:81C1: 9D 70 04  STA ram_obj_flags,X
@@ -410,8 +414,8 @@ C - - - - - 0x02C1D4 0B:81C4: 60        RTS
 
 
 sub_81C5:
-ofs_039_81C5_0A:
-; con_BD4F_0A
+ofs_039_ai_subscript_81C5_0A:    ; unused
+; con_ai_subscr_0A
 C - - - - - 0x02C1D5 0B:81C5: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C1D8 0B:81C8: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02C1DB 0B:81CB: 09 88     ORA #con_obj_flag_08 + con_obj_flag_not_visible
@@ -420,11 +424,11 @@ C - - - - - 0x02C1E0 0B:81D0: 60        RTS
 
 
 
-ofs_039_81D1_54:
-; con_BD4F_54
+ofs_039_ai_subscript_81D1_54_set_obj_flag_10:
+; con_ai_subscr_54_set_obj_flag_10
 C - - J - - 0x02C1E1 0B:81D1: FE C1 05  INC ram_obj_ai_subscript,X
-loc_81D4:
-sub_81D4:
+loc_81D4_set_obj_flag_10:
+sub_81D4_set_obj_flag_10:
 C D 0 - - - 0x02C1E4 0B:81D4: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02C1E7 0B:81D7: 09 10     ORA #con_obj_flag_10
 C - - - - - 0x02C1E9 0B:81D9: 9D 70 04  STA ram_obj_flags,X
@@ -432,8 +436,8 @@ C - - - - - 0x02C1EC 0B:81DC: 60        RTS
 
 
 
-ofs_039_81DD_53:
-; con_BD4F_53
+ofs_039_ai_subscript_81DD_53_clear_obj_flag_10:
+; con_ai_subscr_53_clear_obj_flag_10
 C - - J - - 0x02C1ED 0B:81DD: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C1F0 0B:81E0: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02C1F3 0B:81E3: 29 EF     AND #con_obj_flag_10 ^ $FF
@@ -442,14 +446,14 @@ C - - - - - 0x02C1F8 0B:81E8: 60        RTS
 
 
 
-ofs_039_81E9_2D:
-; con_BD4F_2D
-C - - J - - 0x02C1F9 0B:81E9: 20 9E 81  JSR sub_819E
-sub_81EC:
-loc_81EC:
+ofs_039_ai_subscript_81E9_2D_clear_flag_40_set_flag_20:
+; con_ai_subscr_2D_clear_f40_set_f20
+C - - J - - 0x02C1F9 0B:81E9: 20 9E 81  JSR sub_819E_clear_obj_flag_40
+sub_81EC_prepare_next_ai_subscript_and_set_obj_flag_20:
+loc_81EC_prepare_next_ai_subscript_and_set_obj_flag_20:
 C D 0 - - - 0x02C1FC 0B:81EC: FE C1 05  INC ram_obj_ai_subscript,X
-loc_81EF:
-sub_81EF:
+loc_81EF_set_obj_flag_20:
+sub_81EF_set_obj_flag_20:
 C D 0 - - - 0x02C1FF 0B:81EF: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02C202 0B:81F2: 09 20     ORA #con_obj_flag_20
 C - - - - - 0x02C204 0B:81F4: 9D 70 04  STA ram_obj_flags,X
@@ -457,8 +461,8 @@ C - - - - - 0x02C207 0B:81F7: 60        RTS
 
 
 
-loc_81F8:
-sub_81F8:
+loc_81F8_clear_obj_flag_20:
+sub_81F8_clear_obj_flag_20:
 C D 0 - - - 0x02C208 0B:81F8: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02C20B 0B:81FB: 29 DF     AND #con_obj_flag_20 ^ $FF
 C - - - - - 0x02C20D 0B:81FD: 9D 70 04  STA ram_obj_flags,X
@@ -466,18 +470,19 @@ C - - - - - 0x02C210 0B:8200: 60        RTS
 
 
 
-ofs_039_8201_55:
-; con_BD4F_55
+ofs_039_ai_subscript_8201_55:
+; con_ai_subscr_55
 C - - J - - 0x02C211 0B:8201: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C214 0B:8204: A0 01     LDY #$01
 C - - - - - 0x02C216 0B:8206: B1 02     LDA (ram_0002_t007_data),Y
+; bzk optimize, A is always 01
 C - - - - - 0x02C218 0B:8208: 9D 57 06  STA ram_obj_0658,X
 C - - - - - 0x02C21B 0B:820B: 60        RTS
 
 
 
-ofs_039_820C_04:
-; con_BD4F_04
+ofs_039_ai_subscript_820C_04:
+; con_ai_subscr_04
 C - - J - - 0x02C21C 0B:820C: A0 01     LDY #$01
 C - - - - - 0x02C21E 0B:820E: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C220 0B:8210: 9D C1 05  STA ram_obj_ai_subscript,X
@@ -485,8 +490,8 @@ C - - - - - 0x02C223 0B:8213: 60        RTS
 
 
 
-ofs_039_8214_62:
-; con_BD4F_62
+ofs_039_ai_subscript_8214_62:
+; con_ai_subscr_62
 C - - J - - 0x02C224 0B:8214: A0 01     LDY #$01
 C - - - - - 0x02C226 0B:8216: 18        CLC
 C - - - - - 0x02C227 0B:8217: B1 02     LDA (ram_0002_t007_data),Y
@@ -498,14 +503,14 @@ C - - - - - 0x02C231 0B:8221: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C233 0B:8223: 7D 1C 04  ADC ram_obj_pos_Y_lo,X
 C - - - - - 0x02C236 0B:8226: 9D 1C 04  STA ram_obj_pos_Y_lo,X
 C - - - - - 0x02C239 0B:8229: FE C1 05  INC ram_obj_ai_subscript,X
-ofs_039_822C_72_RTS:
-; con_BD4F_72
+ofs_039_ai_subscript_822C_72_RTS:    ; unused
+; con_ai_subscr_72
 C - - - - - 0x02C23C 0B:822C: 60        RTS
 
 
 
-ofs_039_822D_05:
-; con_BD4F_05
+ofs_039_ai_subscript_822D_05:
+; con_ai_subscr_05
 C - - J - - 0x02C23D 0B:822D: FE C1 05  INC ram_obj_ai_subscript,X
 sub_8230_set_facing_towards_player:
 C - - - - - 0x02C240 0B:8230: A9 00     LDA #$00    ; facing right
@@ -521,8 +526,8 @@ C - - - - - 0x02C24F 0B:823F: 60        RTS
 
 
 sub_8240:
-ofs_039_8240_91:
-; con_BD4F_91
+ofs_039_ai_subscript_8240_91:
+; con_ai_subscr_91
 C - - J - - 0x02C250 0B:8240: FE C1 05  INC ram_obj_ai_subscript,X
 sub_8243:
 C - - - - - 0x02C253 0B:8243: 20 30 82  JSR sub_8230_set_facing_towards_player
@@ -537,8 +542,8 @@ C - - - - - 0x02C265 0B:8255: 60        RTS
 
 
 
-ofs_039_8256_06:
-; con_BD4F_06
+ofs_039_ai_subscript_8256_06:
+; con_ai_subscr_06
 C - - J - - 0x02C266 0B:8256: FE C1 05  INC ram_obj_ai_subscript,X
 sub_8259:
 C - - - - - 0x02C269 0B:8259: 38        SEC
@@ -581,8 +586,8 @@ tbl_826C:
 
 
 
-ofs_039_8284_13:
-; con_BD4F_13
+ofs_039_ai_subscript_8284_13:
+; con_ai_subscr_13
 C - - J - - 0x02C294 0B:8284: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C297 0B:8287: A0 01     LDY #$01
 C - - - - - 0x02C299 0B:8289: B1 02     LDA (ram_0002_t007_data),Y
@@ -591,16 +596,19 @@ C - - - - - 0x02C29D 0B:828D: C8        INY ; 01
 C - - - - - 0x02C29E 0B:828E: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C2A0 0B:8290: A8        TAY
 C - - - - - 0x02C2A1 0B:8291: A5 00     LDA ram_0000_t0CE
-loc_8293:
-sub_8293:
+loc_8293_animation_handler:
+sub_8293_animation_handler:
+; in
+    ; A = obj_type
+    ; Y = 
 C D 0 - - - 0x02C2A3 0B:8293: 20 5C EF  JSR sub_0x03EF6C_prepare_animation
 C - - - - - 0x02C2A6 0B:8296: 20 75 EF  JSR sub_0x03EF85_object_animation_handler
-C - - - - - 0x02C2A9 0B:8299: 4C F8 81  JMP loc_81F8
+C - - - - - 0x02C2A9 0B:8299: 4C F8 81  JMP loc_81F8_clear_obj_flag_20
 
 
 
-ofs_039_829C_8B:
-; con_BD4F_8B
+ofs_039_ai_subscript_829C_8B:
+; con_ai_subscr_8B
 C - - J - - 0x02C2AC 0B:829C: A0 07     LDY #$07
 C - - - - - 0x02C2AE 0B:829E: A5 48     LDA ram_chr_bank_5122
 C - - - - - 0x02C2B0 0B:82A0: C9 08     CMP #con__chr_bank + $08
@@ -611,20 +619,20 @@ C - - - - - 0x02C2B6 0B:82A6: A9 12     LDA #con_obj_type_12
 sub_82A8:
 bra_82A8:
 C - - - - - 0x02C2B8 0B:82A8: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02C2BB 0B:82AB: 4C 93 82  JMP loc_8293
+C - - - - - 0x02C2BB 0B:82AB: 4C 93 82  JMP loc_8293_animation_handler
 
 
 
-ofs_039_82AE_A5:
-; con_BD4F_A5
+ofs_039_ai_subscript_82AE_A5:
+; con_ai_subscr_A5
 - - - - - - 0x02C2BE 0B:82AE: A0 07     LDY #$07
 - - - - - - 0x02C2C0 0B:82B0: A9 14     LDA #con_obj_type_14
 - - - - - - 0x02C2C2 0B:82B2: D0 F4     BNE bra_82A8    ; jmp
 
 
 
-ofs_039_82B4_8C:
-; con_BD4F_8C
+ofs_039_ai_subscript_82B4_8C:
+; con_ai_subscr_8C
 C - - J - - 0x02C2C4 0B:82B4: A0 00     LDY #$00
 C - - - - - 0x02C2C6 0B:82B6: A5 48     LDA ram_chr_bank_5122
 C - - - - - 0x02C2C8 0B:82B8: C9 08     CMP #con__chr_bank + $08
@@ -657,10 +665,10 @@ tbl_82D1:
 
 
 
-ofs_039_82D5_8D:
-; con_BD4F_8D
+ofs_039_ai_subscript_82D5_8D:
+; con_ai_subscr_8D
 C - - J - - 0x02C2E5 0B:82D5: 20 30 82  JSR sub_8230_set_facing_towards_player
-C - - - - - 0x02C2E8 0B:82D8: 20 EC 81  JSR sub_81EC
+C - - - - - 0x02C2E8 0B:82D8: 20 EC 81  JSR sub_81EC_prepare_next_ai_subscript_and_set_obj_flag_20
 C - - - - - 0x02C2EB 0B:82DB: A0 00     LDY #$00
 C - - - - - 0x02C2ED 0B:82DD: A5 48     LDA ram_chr_bank_5122
 C - - - - - 0x02C2EF 0B:82DF: C9 08     CMP #con__chr_bank + $08
@@ -694,8 +702,8 @@ tbl_8305:
 
 
 
-ofs_039_8307_95:
-; con_BD4F_95
+ofs_039_ai_subscript_8307_95:
+; con_ai_subscr_95
 C - - J - - 0x02C317 0B:8307: A0 02     LDY #$02
 C - - - - - 0x02C319 0B:8309: A5 49     LDA ram_chr_bank_5123
 C - - - - - 0x02C31B 0B:830B: C9 0F     CMP #con__chr_bank + $0F
@@ -705,98 +713,100 @@ C - - - - - 0x02C320 0B:8310: 4C BD 82  JMP loc_82BD
 
 
 
-ofs_039_8313_4F:
-; con_BD4F_4F
+ofs_039_ai_subscript_8313_4F_set_item_animation_data:
+; con_ai_subscr_4F_set_item_anim_data
 C - - J - - 0x02C323 0B:8313: A9 01     LDA #$01    ; facing left
 C - - - - - 0x02C325 0B:8315: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x02C328 0B:8318: A9 00     LDA #$00
 C - - - - - 0x02C32A 0B:831A: 9D 54 04  STA ram_0454_obj,X
 C - - - - - 0x02C32D 0B:831D: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x02C330 0B:8320: 38        SEC
-C - - - - - 0x02C331 0B:8321: E9 93     SBC #$93
+C - - - - - 0x02C331 0B:8321: E9 93     SBC #con_index_all_items
 C - - - - - 0x02C333 0B:8323: A8        TAY
-C - - - - - 0x02C334 0B:8324: B9 33 83  LDA tbl_8333,Y
+C - - - - - 0x02C334 0B:8324: B9 33 83  LDA tbl_8333_obj_type,Y
 C - - - - - 0x02C337 0B:8327: 9D 8C 04  STA ram_obj_type,X
-C - - - - - 0x02C33A 0B:832A: B9 53 83  LDA tbl_8353,Y
+C - - - - - 0x02C33A 0B:832A: B9 53 83  LDA tbl_8353_animation,Y
 C - - - - - 0x02C33D 0B:832D: 9D 00 04  STA ram_obj_anim_id,X
-C - - - - - 0x02C340 0B:8330: 4C EC 81  JMP loc_81EC
+C - - - - - 0x02C340 0B:8330: 4C EC 81  JMP loc_81EC_prepare_next_ai_subscript_and_set_obj_flag_20
 
 
 
-tbl_8333:
-- D 0 - - - 0x02C343 0B:8333: 00        .byte con_obj_type_00   ; 93 
-- D 0 - - - 0x02C344 0B:8334: 00        .byte con_obj_type_00   ; 94 
-- D 0 - - - 0x02C345 0B:8335: 00        .byte con_obj_type_00   ; 95 
-- D 0 - - - 0x02C346 0B:8336: 00        .byte con_obj_type_00   ; 96 
-- D 0 - - - 0x02C347 0B:8337: 0E        .byte con_obj_type_0E   ; 97 
-- D 0 - - - 0x02C348 0B:8338: 0E        .byte con_obj_type_0E   ; 98 
-- D 0 - - - 0x02C349 0B:8339: 0E        .byte con_obj_type_0E   ; 99 
-- D 0 - - - 0x02C34A 0B:833A: 0E        .byte con_obj_type_0E   ; 9A 
-- - - - - - 0x02C34B 0B:833B: 00        .byte con_obj_type_00   ; 9B 
-- - - - - - 0x02C34C 0B:833C: 00        .byte con_obj_type_00   ; 9C 
-- D 0 - - - 0x02C34D 0B:833D: 00        .byte con_obj_type_00   ; 9D 
-- D 0 - - - 0x02C34E 0B:833E: 00        .byte con_obj_type_00   ; 9E 
-- - - - - - 0x02C34F 0B:833F: 0E        .byte con_obj_type_0E   ; 9F 
-- - - - - - 0x02C350 0B:8340: 0E        .byte con_obj_type_0E   ; A0 
-- D 0 - - - 0x02C351 0B:8341: 0E        .byte con_obj_type_0E   ; A1 
-- D 0 - - - 0x02C352 0B:8342: 0E        .byte con_obj_type_0E   ; A2 
-- D 0 - - - 0x02C353 0B:8343: 0E        .byte con_obj_type_0E   ; A3 
-- D 0 - - - 0x02C354 0B:8344: 0E        .byte con_obj_type_0E   ; A4 
-- D 0 - - - 0x02C355 0B:8345: 0E        .byte con_obj_type_0E   ; A5 
-- D 0 - - - 0x02C356 0B:8346: 0E        .byte con_obj_type_0E   ; A6 
-- D 0 - - - 0x02C357 0B:8347: 0E        .byte con_obj_type_0E   ; A7 
-- - - - - - 0x02C358 0B:8348: 0E        .byte con_obj_type_0E   ; A8 
-- - - - - - 0x02C359 0B:8349: 0E        .byte con_obj_type_0E   ; A9 
-- D 0 - - - 0x02C35A 0B:834A: 0E        .byte con_obj_type_0E   ; AA 
-- - - - - - 0x02C35B 0B:834B: 0E        .byte con_obj_type_0E   ; AB 
-- D 0 - - - 0x02C35C 0B:834C: 0E        .byte con_obj_type_0E   ; AC 
-- D 0 - - - 0x02C35D 0B:834D: 0E        .byte con_obj_type_0E   ; AD 
-- D 0 - - - 0x02C35E 0B:834E: 0E        .byte con_obj_type_0E   ; AE 
-- D 0 - - - 0x02C35F 0B:834F: 0E        .byte con_obj_type_0E   ; AF 
-- D 0 - - - 0x02C360 0B:8350: 0E        .byte con_obj_type_0E   ; B0 
-- - - - - - 0x02C361 0B:8351: 0E        .byte con_obj_type_0E   ; B1 
-- - - - - - 0x02C362 0B:8352: 0E        .byte con_obj_type_0E   ; B2 
+tbl_8333_obj_type:
+- D 0 - - - 0x02C343 0B:8333: 00        .byte con_obj_type_00   ; 93 con_obj_id_93
+- D 0 - - - 0x02C344 0B:8334: 00        .byte con_obj_type_00   ; 94 con_obj_id_94
+- D 0 - - - 0x02C345 0B:8335: 00        .byte con_obj_type_00   ; 95 con_obj_id_95
+- D 0 - - - 0x02C346 0B:8336: 00        .byte con_obj_type_00   ; 96 con_obj_id_96
+- D 0 - - - 0x02C347 0B:8337: 0E        .byte con_obj_type_0E   ; 97 con_obj_id_97
+- D 0 - - - 0x02C348 0B:8338: 0E        .byte con_obj_type_0E   ; 98 con_obj_id_98
+- D 0 - - - 0x02C349 0B:8339: 0E        .byte con_obj_type_0E   ; 99 con_obj_id_99
+- D 0 - - - 0x02C34A 0B:833A: 0E        .byte con_obj_type_0E   ; 9A con_obj_id_9A
+- - - - - - 0x02C34B 0B:833B: 00        .byte con_obj_type_00   ; 9B con_obj_id_9B
+- - - - - - 0x02C34C 0B:833C: 00        .byte con_obj_type_00   ; 9C con_obj_id_9C
+- D 0 - - - 0x02C34D 0B:833D: 00        .byte con_obj_type_00   ; 9D con_obj_id_9D
+- D 0 - - - 0x02C34E 0B:833E: 00        .byte con_obj_type_00   ; 9E con_obj_id_9E
+- - - - - - 0x02C34F 0B:833F: 0E        .byte con_obj_type_0E   ; 9F con_obj_id_9F
+- - - - - - 0x02C350 0B:8340: 0E        .byte con_obj_type_0E   ; A0 con_obj_id_A0
+- D 0 - - - 0x02C351 0B:8341: 0E        .byte con_obj_type_0E   ; A1 con_obj_id_A1
+- D 0 - - - 0x02C352 0B:8342: 0E        .byte con_obj_type_0E   ; A2 con_obj_id_A2
+- D 0 - - - 0x02C353 0B:8343: 0E        .byte con_obj_type_0E   ; A3 con_obj_id_A3
+- D 0 - - - 0x02C354 0B:8344: 0E        .byte con_obj_type_0E   ; A4 con_obj_id_A4
+- D 0 - - - 0x02C355 0B:8345: 0E        .byte con_obj_type_0E   ; A5 con_obj_id_A5
+- D 0 - - - 0x02C356 0B:8346: 0E        .byte con_obj_type_0E   ; A6 con_obj_id_A6
+- D 0 - - - 0x02C357 0B:8347: 0E        .byte con_obj_type_0E   ; A7 con_obj_id_A7
+- - - - - - 0x02C358 0B:8348: 0E        .byte con_obj_type_0E   ; A8 con_obj_id_A8
+- - - - - - 0x02C359 0B:8349: 0E        .byte con_obj_type_0E   ; A9 con_obj_id_A9
+- D 0 - - - 0x02C35A 0B:834A: 0E        .byte con_obj_type_0E   ; AA con_obj_id_AA
+- - - - - - 0x02C35B 0B:834B: 0E        .byte con_obj_type_0E   ; AB con_obj_id_AB
+- D 0 - - - 0x02C35C 0B:834C: 0E        .byte con_obj_type_0E   ; AC con_obj_id_AC
+- D 0 - - - 0x02C35D 0B:834D: 0E        .byte con_obj_type_0E   ; AD con_obj_id_AD
+- D 0 - - - 0x02C35E 0B:834E: 0E        .byte con_obj_type_0E   ; AE con_obj_id_AE
+- D 0 - - - 0x02C35F 0B:834F: 0E        .byte con_obj_type_0E   ; AF con_obj_id_AF
+- D 0 - - - 0x02C360 0B:8350: 0E        .byte con_obj_type_0E   ; B0 con_obj_id_B0
+; bzk garbage?
+- - - - - - 0x02C361 0B:8351: 0E        .byte con_obj_type_0E   ; B1 con_obj_id_B1
+- - - - - - 0x02C362 0B:8352: 0E        .byte con_obj_type_0E   ; B2 con_obj_id_B2
 
 
 
-tbl_8353:
-- D 0 - - - 0x02C363 0B:8353: 46        .byte $46   ; 93 
-- D 0 - - - 0x02C364 0B:8354: 42        .byte $42   ; 94 
-- D 0 - - - 0x02C365 0B:8355: 4E        .byte $4E   ; 95 
-- D 0 - - - 0x02C366 0B:8356: 50        .byte $50   ; 96 
-- D 0 - - - 0x02C367 0B:8357: 68        .byte $68   ; 97 
-- D 0 - - - 0x02C368 0B:8358: 54        .byte $54   ; 98 
-- D 0 - - - 0x02C369 0B:8359: 56        .byte $56   ; 99 
-- D 0 - - - 0x02C36A 0B:835A: 52        .byte $52   ; 9A 
-- - - - - - 0x02C36B 0B:835B: 4E        .byte $4E   ; 9B 
-- - - - - - 0x02C36C 0B:835C: 46        .byte $46   ; 9C 
-- D 0 - - - 0x02C36D 0B:835D: 54        .byte $54   ; 9D 
-- D 0 - - - 0x02C36E 0B:835E: 54        .byte $54   ; 9E 
-- - - - - - 0x02C36F 0B:835F: 6A        .byte $6A   ; 9F 
-- - - - - - 0x02C370 0B:8360: 1C        .byte $1C   ; A0 
-- D 0 - - - 0x02C371 0B:8361: 1E        .byte $1E   ; A1 
-- D 0 - - - 0x02C372 0B:8362: 20        .byte $20   ; A2 
-- D 0 - - - 0x02C373 0B:8363: 24        .byte $24   ; A3 
-- D 0 - - - 0x02C374 0B:8364: 24        .byte $24   ; A4 
-- D 0 - - - 0x02C375 0B:8365: 24        .byte $24   ; A5 
-- D 0 - - - 0x02C376 0B:8366: 24        .byte $24   ; A6 
-- D 0 - - - 0x02C377 0B:8367: 24        .byte $24   ; A7 
-- - - - - - 0x02C378 0B:8368: 24        .byte $24   ; A8 
-- - - - - - 0x02C379 0B:8369: 24        .byte $24   ; A9 
-- D 0 - - - 0x02C37A 0B:836A: 24        .byte $24   ; AA 
-- - - - - - 0x02C37B 0B:836B: 24        .byte $24   ; AB 
-- D 0 - - - 0x02C37C 0B:836C: 22        .byte $22   ; AC 
-- D 0 - - - 0x02C37D 0B:836D: 10        .byte $10   ; AD 
-- D 0 - - - 0x02C37E 0B:836E: 0E        .byte $0E   ; AE 
-- D 0 - - - 0x02C37F 0B:836F: 58        .byte $58   ; AF 
-- D 0 - - - 0x02C380 0B:8370: 5A        .byte $5A   ; B0 
-- - - - - - 0x02C381 0B:8371: 6A        .byte $6A   ; B1 
-- - - - - - 0x02C382 0B:8372: 10        .byte $10   ; B2 
+tbl_8353_animation:
+- D 0 - - - 0x02C363 0B:8353: 46        .byte $46   ; 93 con_obj_id_93
+- D 0 - - - 0x02C364 0B:8354: 42        .byte $42   ; 94 con_obj_id_94
+- D 0 - - - 0x02C365 0B:8355: 4E        .byte $4E   ; 95 con_obj_id_95
+- D 0 - - - 0x02C366 0B:8356: 50        .byte $50   ; 96 con_obj_id_96
+- D 0 - - - 0x02C367 0B:8357: 68        .byte $68   ; 97 con_obj_id_97
+- D 0 - - - 0x02C368 0B:8358: 54        .byte $54   ; 98 con_obj_id_98
+- D 0 - - - 0x02C369 0B:8359: 56        .byte $56   ; 99 con_obj_id_99
+- D 0 - - - 0x02C36A 0B:835A: 52        .byte $52   ; 9A con_obj_id_9A
+- - - - - - 0x02C36B 0B:835B: 4E        .byte $4E   ; 9B con_obj_id_9B
+- - - - - - 0x02C36C 0B:835C: 46        .byte $46   ; 9C con_obj_id_9C
+- D 0 - - - 0x02C36D 0B:835D: 54        .byte $54   ; 9D con_obj_id_9D
+- D 0 - - - 0x02C36E 0B:835E: 54        .byte $54   ; 9E con_obj_id_9E
+- - - - - - 0x02C36F 0B:835F: 6A        .byte $6A   ; 9F con_obj_id_9F
+- - - - - - 0x02C370 0B:8360: 1C        .byte $1C   ; A0 con_obj_id_A0
+- D 0 - - - 0x02C371 0B:8361: 1E        .byte $1E   ; A1 con_obj_id_A1
+- D 0 - - - 0x02C372 0B:8362: 20        .byte $20   ; A2 con_obj_id_A2
+- D 0 - - - 0x02C373 0B:8363: 24        .byte $24   ; A3 con_obj_id_A3
+- D 0 - - - 0x02C374 0B:8364: 24        .byte $24   ; A4 con_obj_id_A4
+- D 0 - - - 0x02C375 0B:8365: 24        .byte $24   ; A5 con_obj_id_A5
+- D 0 - - - 0x02C376 0B:8366: 24        .byte $24   ; A6 con_obj_id_A6
+- D 0 - - - 0x02C377 0B:8367: 24        .byte $24   ; A7 con_obj_id_A7
+- - - - - - 0x02C378 0B:8368: 24        .byte $24   ; A8 con_obj_id_A8
+- - - - - - 0x02C379 0B:8369: 24        .byte $24   ; A9 con_obj_id_A9
+- D 0 - - - 0x02C37A 0B:836A: 24        .byte $24   ; AA con_obj_id_AA
+- - - - - - 0x02C37B 0B:836B: 24        .byte $24   ; AB con_obj_id_AB
+- D 0 - - - 0x02C37C 0B:836C: 22        .byte $22   ; AC con_obj_id_AC
+- D 0 - - - 0x02C37D 0B:836D: 10        .byte $10   ; AD con_obj_id_AD
+- D 0 - - - 0x02C37E 0B:836E: 0E        .byte $0E   ; AE con_obj_id_AE
+- D 0 - - - 0x02C37F 0B:836F: 58        .byte $58   ; AF con_obj_id_AF
+- D 0 - - - 0x02C380 0B:8370: 5A        .byte $5A   ; B0 con_obj_id_B0
+; bzk garbage?
+- - - - - - 0x02C381 0B:8371: 6A        .byte $6A   ; B1 con_obj_id_B1
+- - - - - - 0x02C382 0B:8372: 10        .byte $10   ; B2 con_obj_id_B2
 
 
 
-ofs_039_8373_87:
-; con_BD4F_87
+ofs_039_ai_subscript_8373_87:
+; con_ai_subscr_87
 C - - J - - 0x02C383 0B:8373: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C386 0B:8376: A9 0E     LDA #con_obj_type_0E
 C - - - - - 0x02C388 0B:8378: 9D 8C 04  STA ram_obj_type,X
@@ -823,8 +833,8 @@ tbl_8389:
 
 
 
-ofs_039_8392_88:
-; con_BD4F_88
+ofs_039_ai_subscript_8392_88:
+; con_ai_subscr_88
 C - - J - - 0x02C3A2 0B:8392: A0 00     LDY #$00
 C - - - - - 0x02C3A4 0B:8394: A5 48     LDA ram_chr_bank_5122
 C - - - - - 0x02C3A6 0B:8396: C9 14     CMP #con__chr_bank + $14
@@ -842,9 +852,9 @@ C - - - - - 0x02C3BA 0B:83AA: 4C B7 83  JMP loc_83B7
 
 
 
-sub_83AD:
-ofs_039_83AD_0B:
-; con_BD4F_0B
+sub_83AD_set_obj_type_and_anim:
+ofs_039_ai_subscript_83AD_0B_set_obj_type_and_anim:
+; con_ai_subscr_set_obj_type_and_anim
 C - - J - - 0x02C3BD 0B:83AD: A0 01     LDY #$01
 C - - - - - 0x02C3BF 0B:83AF: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C3C1 0B:83B1: 9D 8C 04  STA ram_obj_type,X
@@ -852,21 +862,21 @@ C - - - - - 0x02C3C4 0B:83B4: C8        INY ; 02
 C - - - - - 0x02C3C5 0B:83B5: B1 02     LDA (ram_0002_t007_data),Y
 loc_83B7:
 C D 0 - - - 0x02C3C7 0B:83B7: 9D 00 04  STA ram_obj_anim_id,X
-C - - - - - 0x02C3CA 0B:83BA: 4C EC 81  JMP loc_81EC
+C - - - - - 0x02C3CA 0B:83BA: 4C EC 81  JMP loc_81EC_prepare_next_ai_subscript_and_set_obj_flag_20
 
 
 
-ofs_039_83BD_07:
-; con_BD4F_07
-C - - J - - 0x02C3CD 0B:83BD: 20 F8 81  JSR sub_81F8
+ofs_039_ai_subscript_83BD_07:
+; con_ai_subscr_07
+C - - J - - 0x02C3CD 0B:83BD: 20 F8 81  JSR sub_81F8_clear_obj_flag_20
 C - - - - - 0x02C3D0 0B:83C0: 20 59 82  JSR sub_8259
 loc_83C3:
-ofs_039_83C3_1E:
-; con_BD4F_1E
+ofs_039_ai_subscript_83C3_1E:
+; con_ai_subscr_1E
 C D 0 J - - 0x02C3D3 0B:83C3: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02C3D6 0B:83C6: 20 AA 81  JSR sub_81AA
+C - - - - - 0x02C3D6 0B:83C6: 20 AA 81  JSR sub_81AA_set_obj_flag_40
 C - - - - - 0x02C3D9 0B:83C9: 20 30 82  JSR sub_8230_set_facing_towards_player
-C - - - - - 0x02C3DC 0B:83CC: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02C3DC 0B:83CC: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02C3DF 0B:83CF: A0 01     LDY #$01
 C - - - - - 0x02C3E1 0B:83D1: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C3E3 0B:83D3: 9D F2 04  STA ram_obj_spd_X_lo,X
@@ -883,9 +893,9 @@ C - - - - - 0x02C3F4 0B:83E4: 60        RTS
 
 
 
-ofs_039_83E5_A6:
-; con_BD4F_A6
-C - - J - - 0x02C3F5 0B:83E5: 20 F8 81  JSR sub_81F8
+ofs_039_ai_subscript_83E5_A6:
+; con_ai_subscr_A6
+C - - J - - 0x02C3F5 0B:83E5: 20 F8 81  JSR sub_81F8_clear_obj_flag_20
 C - - - - - 0x02C3F8 0B:83E8: A0 08     LDY #$08
 C - - - - - 0x02C3FA 0B:83EA: A9 14     LDA #con_obj_type_14
 C - - - - - 0x02C3FC 0B:83EC: 20 5C EF  JSR sub_0x03EF6C_prepare_animation
@@ -894,14 +904,14 @@ C - - - - - 0x02C402 0B:83F2: 4C C3 83  JMP loc_83C3
 
 
 
-ofs_039_83F5_08:
-; con_BD4F_08
+ofs_039_ai_subscript_83F5_08:
+; con_ai_subscr_08
 C - - J - - 0x02C405 0B:83F5: A0 01     LDY #$01
 C - - - - - 0x02C407 0B:83F7: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C409 0B:83F9: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
 - D 0 - I - 0x02C40C 0B:83FC: 04 84     .word ofs_012_8404_00
 - D 0 - I - 0x02C40E 0B:83FE: 53 84     .word ofs_012_8453_01
-- - - - - - 0x02C410 0B:8400: 10 84     .word ofs_012_8410_02
+- - - - - - 0x02C410 0B:8400: 10 84     .word ofs_012_8410_02   ; unused, index doesn't exist
 - D 0 - I - 0x02C412 0B:8402: 28 84     .word ofs_012_8428_03
 
 
@@ -922,6 +932,7 @@ tbl_840C:
 
 
 ofs_012_8410_02:
+; bzk garbage
 - - - - - - 0x02C420 0B:8410: 20 1C 84  JSR sub_841C_get_random_value_00_03
 - - - - - - 0x02C423 0B:8413: B9 18 84  LDA tbl_8418,Y
 - - - - - - 0x02C426 0B:8416: D0 2D     BNE bra_8445    ; jmp
@@ -929,6 +940,7 @@ ofs_012_8410_02:
 
 
 tbl_8418:
+; bzk garbage
 - - - - - - 0x02C428 0B:8418: 48        .byte $48   ; 00 
 - - - - - - 0x02C429 0B:8419: 60        .byte $60   ; 01 
 - - - - - - 0x02C42A 0B:841A: 50        .byte $50   ; 02 
@@ -974,8 +986,8 @@ tbl_8439:
 
 
 
-ofs_039_8441_1F_set_timer:
-; con_BD4F_set_timer
+ofs_039_ai_subscript_8441_1F_set_timer:
+; con_ai_subscr_1F_set_timer
 C - - J - - 0x02C451 0B:8441: A0 01     LDY #$01
 C - - - - - 0x02C453 0B:8443: B1 02     LDA (ram_0002_t007_data),Y
 bra_8445:
@@ -988,8 +1000,8 @@ C - - - - - 0x02C45B 0B:844B: 60        RTS
 
 
 loc_844C:
-ofs_039_844C_20_count_down_timer:
-; con_BD4F_count_down_timer
+ofs_039_ai_subscript_844C_20_count_down_timer:
+; con_ai_subscr_20_count_down_timer
 C - - J - - 0x02C45C 0B:844C: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02C45F 0B:844F: D0 FA     BNE bra_844B_RTS
 C - - - - - 0x02C461 0B:8451: F0 F5     BEQ bra_8448    ; jmp
@@ -1039,8 +1051,8 @@ tbl_8475_offset:
 
 
 
-ofs_039_8477_9F_check_distance_Y_30_to_player:
-; con_BD4F_check_dist_Y_30_to_plr
+ofs_039_ai_subscript_8477_9F_check_distance_Y_30_to_player:
+; con_ai_subscr_check_dist_Y_30_to_plr
 C - - J - - 0x02C487 0B:8477: 20 D5 80  JSR sub_80D5_get_object_distance_Y_to_player
 C - - - - - 0x02C48A 0B:847A: C9 30     CMP #$30
 C - - - - - 0x02C48C 0B:847C: B0 03     BCS bra_8481_RTS
@@ -1051,8 +1063,8 @@ C - - - - - 0x02C491 0B:8481: 60        RTS
 
 
 
-ofs_039_8482_0C_compare_X_distance_to_player:
-; con_BD4F_comp_X_dist_to_plr
+ofs_039_ai_subscript_8482_0C_compare_X_distance_to_player:
+; con_ai_subscr_comp_X_dist_to_plr
 C - - J - - 0x02C492 0B:8482: A0 01     LDY #$01
 C - - - - - 0x02C494 0B:8484: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C496 0B:8486: 9D 06 06  STA ram_obj_config,X
@@ -1066,8 +1078,8 @@ C - - - - - 0x02C4A4 0B:8494: 60        RTS
 
 
 
-ofs_039_8495_4D_compare_XY_distance_to_player:
-; con_BD4F_comp_XY_dist_to_plr
+ofs_039_ai_subscript_8495_4D_compare_XY_distance_to_player:
+; con_ai_subscr_comp_XY_dist_to_plr
 C - - J - - 0x02C4A5 0B:8495: A0 01     LDY #$01
 C - - - - - 0x02C4A7 0B:8497: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C4A9 0B:8499: 85 09     STA ram_0009_t007_compare_distance_X
@@ -1088,19 +1100,19 @@ bra_84B0:
 C - - - - - 0x02C4C0 0B:84B0: A6 6C     LDX ram_006C_object_index
 loc_84B2_delete_object_and_clear_ai_script:
 sub_84B2_delete_object_and_clear_ai_script:
-ofs_039_84B2_27_delete_object_and_clear_ai_script:
-; con_BD4F_27
+ofs_039_ai_subscript_84B2_27_delete_object_and_clear_ai_script:
+; con_ai_subscr_delete_object
 C D 0 J - - 0x02C4C2 0B:84B2: 20 36 8E  JSR sub_8E36_delete_object
 C - - - - - 0x02C4C5 0B:84B5: 4C 0D 81  JMP loc_810D_clear_ai_script
 
 
 
 loc_84B8:
-ofs_039_84B8_2E:
-; con_BD4F_2E
+ofs_039_ai_subscript_84B8_2E:
+; con_ai_subscr_2E
 C D 0 - - - 0x02C4C8 0B:84B8: A0 04     LDY #$04    ; pos_Y_lo
 C - - - - - 0x02C4CA 0B:84BA: A9 00     LDA #$00    ; pos_X_lo
-C - - - - - 0x02C4CC 0B:84BC: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02C4CC 0B:84BC: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 ; bzk optimize, BNE without BEQ
 C - - - - - 0x02C4CF 0B:84BF: F0 02     BEQ bra_84C3
 C - - - - - 0x02C4D1 0B:84C1: D0 ED     BNE bra_84B0    ; jmp
@@ -1110,8 +1122,8 @@ C - - - - - 0x02C4D5 0B:84C5: 4C 20 8E  JMP loc_8E20
 
 
 
-ofs_039_84C8_21:
-; con_BD4F_21
+ofs_039_ai_subscript_84C8_21:
+; con_ai_subscr_21
 C - - J - - 0x02C4D8 0B:84C8: 20 40 82  JSR sub_8240
 C - - - - - 0x02C4DB 0B:84CB: BD 1D 06  LDA ram_061D_obj,X
 C - - - - - 0x02C4DE 0B:84CE: C9 05     CMP #$05
@@ -1120,7 +1132,7 @@ C - - - - - 0x02C4E2 0B:84D2: BD A8 04  LDA ram_obj_facing,X
 C - - - - - 0x02C4E5 0B:84D5: 49 01     EOR #$01
 C - - - - - 0x02C4E7 0B:84D7: 9D A8 04  STA ram_obj_facing,X
 bra_84DA:
-C - - - - - 0x02C4EA 0B:84DA: 20 AA 81  JSR sub_81AA
+C - - - - - 0x02C4EA 0B:84DA: 20 AA 81  JSR sub_81AA_set_obj_flag_40
 C - - - - - 0x02C4ED 0B:84DD: 20 B3 80  JSR sub_80B3_get_object_distance_X_to_player
 C - - - - - 0x02C4F0 0B:84E0: C9 50     CMP #$50
 C - - - - - 0x02C4F2 0B:84E2: B0 21     BCS bra_8505
@@ -1174,11 +1186,11 @@ C - - - - - 0x02C537 0B:8527: 60        RTS
 
 
 
-ofs_039_8528_0F:
-; con_BD4F_0F
+ofs_039_ai_subscript_8528_0F:
+; con_ai_subscr_0F
 C - - J - - 0x02C538 0B:8528: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C53B 0B:852B: 20 30 82  JSR sub_8230_set_facing_towards_player
-C - - - - - 0x02C53E 0B:852E: 20 AA 81  JSR sub_81AA
+C - - - - - 0x02C53E 0B:852E: 20 AA 81  JSR sub_81AA_set_obj_flag_40
 C - - - - - 0x02C541 0B:8531: 20 B3 80  JSR sub_80B3_get_object_distance_X_to_player
 C - - - - - 0x02C544 0B:8534: C9 40     CMP #$40
 C - - - - - 0x02C546 0B:8536: B0 CD     BCS bra_8505
@@ -1197,8 +1209,8 @@ C - - - - - 0x02C563 0B:8553: 4C FF 84  JMP loc_84FF_set_spd_X
 
 
 
-ofs_039_8556_44:
-; con_BD4F_44
+ofs_039_ai_subscript_8556_44_conditional_branch:
+; con_ai_subscr_44_conditional_branch
 C - - J - - 0x02C566 0B:8556: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x02C569 0B:8559: C9 F8     CMP #$F8
 C - - - - - 0x02C56B 0B:855B: 90 0F     BCC bra_856C
@@ -1207,32 +1219,32 @@ C - - - - - 0x02C56B 0B:855B: 90 0F     BCC bra_856C
 - - - - - - 0x02C572 0B:8562: A0 01     LDY #$01
 - - - - - - 0x02C574 0B:8564: B1 02     LDA (ram_0002_t007_data),Y
 - - - - - - 0x02C576 0B:8566: 9D C1 05  STA ram_obj_ai_subscript,X
-- - - - - - 0x02C579 0B:8569: 4C C8 FE  JMP loc_0x03FED8_clear_speed
+- - - - - - 0x02C579 0B:8569: 4C C8 FE  JMP loc_0x03FED8_clear_XY_speed
 bra_856C:
-ofs_039_856C_10:
-; con_BD4F_10
+ofs_039_ai_subscript_856C_10:
+; con_ai_subscr_10
 C - - J - - 0x02C57C 0B:856C: BD 06 06  LDA ram_obj_config,X
 C - - - - - 0x02C57F 0B:856F: 20 7F 80  JSR sub_807F_increase_spd_Y
-C - - - - - 0x02C582 0B:8572: A0 04     LDY #$04
+C - - - - - 0x02C582 0B:8572: A0 04     LDY #con_B7BD_04
 C - - - - - 0x02C584 0B:8574: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C587 0B:8577: D0 39     BNE bra_85B2
-C - - - - - 0x02C589 0B:8579: A0 02     LDY #$02
+C - - - - - 0x02C589 0B:8579: A0 02     LDY #con_B7BD_02
 C - - - - - 0x02C58B 0B:857B: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02C58D 0B:857D: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C590 0B:8580: D0 2B     BNE bra_85AD
 C - - - - - 0x02C592 0B:8582: BD 20 05  LDA ram_obj_spd_Y_lo,X
 C - - - - - 0x02C595 0B:8585: 30 25     BMI bra_85AC_RTS
-C - - - - - 0x02C597 0B:8587: A0 03     LDY #$03
+C - - - - - 0x02C597 0B:8587: A0 03     LDY #con_B7BD_03
 C - - - - - 0x02C599 0B:8589: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C59C 0B:858C: F0 1E     BEQ bra_85AC_RTS
 C - - - - - 0x02C59E 0B:858E: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x02C5A1 0B:8591: C9 53     CMP #$53
 C - - - - - 0x02C5A3 0B:8593: D0 05     BNE bra_859A
-C - - - - - 0x02C5A5 0B:8595: A9 0D     LDA #con_sound_0D
+C - - - - - 0x02C5A5 0B:8595: A9 0D     LDA #con_sfx_0D
 C - - - - - 0x02C5A7 0B:8597: 20 5F E2  JSR sub_0x03E26F_play_sound
 bra_859A:
 C - - - - - 0x02C5AA 0B:859A: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02C5AC 0B:859C: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02C5AC 0B:859C: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02C5AF 0B:859F: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C5B2 0B:85A2: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x02C5B5 0B:85A5: 29 F0     AND #$F0
@@ -1251,15 +1263,15 @@ C - - - - - 0x02C5C9 0B:85B9: 4C 5D 80  JMP loc_805D_invert_spd_Y
 
 
 
-ofs_039_85BC_8A:
-; con_BD4F_8A
+ofs_039_ai_subscript_85BC_8A:
+; con_ai_subscr_8A
 C - - J - - 0x02C5CC 0B:85BC: BD 06 06  LDA ram_obj_config,X
 C - - - - - 0x02C5CF 0B:85BF: 20 7F 80  JSR sub_807F_increase_spd_Y
 C - - - - - 0x02C5D2 0B:85C2: BD 20 05  LDA ram_obj_spd_Y_lo,X
 C - - - - - 0x02C5D5 0B:85C5: 30 20     BMI bra_85E7_RTS
 C - - - - - 0x02C5D7 0B:85C7: A9 16     LDA #$16
 C - - - - - 0x02C5D9 0B:85C9: 9D 00 04  STA ram_obj_anim_id,X
-C - - - - - 0x02C5DC 0B:85CC: A0 08     LDY #$08
+C - - - - - 0x02C5DC 0B:85CC: A0 08     LDY #con_B7BD_08
 C - - - - - 0x02C5DE 0B:85CE: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C5E1 0B:85D1: F0 14     BEQ bra_85E7_RTS
 C - - - - - 0x02C5E3 0B:85D3: C9 01     CMP #$01
@@ -1276,13 +1288,13 @@ C - - - - - 0x02C5F7 0B:85E7: 60        RTS
 
 
 
-ofs_039_85E8_5C:
-; con_BD4F_5C
+ofs_039_ai_subscript_85E8_5C:
+; con_ai_subscr_5C
 C - - J - - 0x02C5F8 0B:85E8: BD 06 06  LDA ram_obj_config,X
 C - - - - - 0x02C5FB 0B:85EB: 20 7F 80  JSR sub_807F_increase_spd_Y
 C - - - - - 0x02C5FE 0B:85EE: BD 20 05  LDA ram_obj_spd_Y_lo,X
 C - - - - - 0x02C601 0B:85F1: 30 B9     BMI bra_85AC_RTS
-C - - - - - 0x02C603 0B:85F3: A0 08     LDY #$08
+C - - - - - 0x02C603 0B:85F3: A0 08     LDY #con_B7BD_08
 C - - - - - 0x02C605 0B:85F5: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C608 0B:85F8: F0 B2     BEQ bra_85AC_RTS
 C - - - - - 0x02C60A 0B:85FA: C9 01     CMP #$01
@@ -1298,8 +1310,8 @@ loc_860C:
 C D 0 - - - 0x02C61C 0B:860C: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C61F 0B:860F: A9 14     LDA #$14
 C - - - - - 0x02C621 0B:8611: 9D 00 04  STA ram_obj_anim_id,X
-C - - - - - 0x02C624 0B:8614: 20 9E 81  JSR sub_819E
-C - - - - - 0x02C627 0B:8617: 4C C8 FE  JMP loc_0x03FED8_clear_speed
+C - - - - - 0x02C624 0B:8614: 20 9E 81  JSR sub_819E_clear_obj_flag_40
+C - - - - - 0x02C627 0B:8617: 4C C8 FE  JMP loc_0x03FED8_clear_XY_speed
 bra_861A:
 C - - - - - 0x02C62A 0B:861A: 18        CLC
 C - - - - - 0x02C62B 0B:861B: BD 1C 04  LDA ram_obj_pos_Y_lo,X
@@ -1321,18 +1333,19 @@ C - - - - - 0x02C64D 0B:863D: 60        RTS
 
 
 
-ofs_039_863E_A8:
-; con_BD4F_A8
+ofs_039_ai_subscript_863E_A8_delete_object:
+; con_ai_subscr_A8_delete_object
 C - - J - - 0x02C64E 0B:863E: A0 01     LDY #$01
 C - - - - - 0x02C650 0B:8640: B1 02     LDA (ram_0002_t007_data),Y
+; bzk optimize, A is always C0
 C - - - - - 0x02C652 0B:8642: DD 1C 04  CMP ram_obj_pos_Y_lo,X
 C - - - - - 0x02C655 0B:8645: B0 F6     BCS bra_863D_RTS
 C - - - - - 0x02C657 0B:8647: 4C B2 84  JMP loc_84B2_delete_object_and_clear_ai_script
 
 
 
-ofs_039_864A_73:
-; con_BD4F_73
+ofs_039_ai_subscript_864A_73:
+; con_ai_subscr_73
 C - - J - - 0x02C65A 0B:864A: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C65D 0B:864D: A9 00     LDA #$00
 C - - - - - 0x02C65F 0B:864F: 9D 33 06  STA ram_obj_0634,X
@@ -1342,14 +1355,14 @@ C - - - - - 0x02C668 0B:8658: 4C AC 86  JMP loc_86AC
 
 
 
-ofs_039_865B_58:
-; con_BD4F_58
+ofs_039_ai_subscript_865B_58:
+; con_ai_subscr_58
 C - - J - - 0x02C66B 0B:865B: A0 03     LDY #$03
 C - - - - - 0x02C66D 0B:865D: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C66F 0B:865F: 9D 1D 06  STA ram_061D_obj,X
 sub_8662:
-ofs_039_8662_11:
-; con_BD4F_11
+ofs_039_ai_subscript_8662_11:
+; con_ai_subscr_11
 C - - J - - 0x02C672 0B:8662: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C675 0B:8665: A0 01     LDY #$01
 C - - - - - 0x02C677 0B:8667: B1 02     LDA (ram_0002_t007_data),Y
@@ -1421,8 +1434,8 @@ tbl_869E:
 
 
 
-ofs_039_86A4_74:
-; con_BD4F_74
+ofs_039_ai_subscript_86A4_74:
+; con_ai_subscr_74
 C D 0 J - - 0x02C6B4 0B:86A4: DE 1D 06  DEC ram_061D_obj,X
 C - - - - - 0x02C6B7 0B:86A7: D0 22     BNE bra_86CB
 C - - - - - 0x02C6B9 0B:86A9: FE 33 06  INC ram_obj_0634,X
@@ -1440,15 +1453,15 @@ C - - - - - 0x02C6D1 0B:86C1: 60        RTS
 
 sub_86C2:
 loc_86C2:
-ofs_039_86C2_59:
-; con_BD4F_59
+ofs_039_ai_subscript_86C2_59:
+; con_ai_subscr_59
 C - - J - - 0x02C6D2 0B:86C2: DE 1D 06  DEC ram_061D_obj,X
 C - - - - - 0x02C6D5 0B:86C5: D0 04     BNE bra_86CB
 C - - - - - 0x02C6D7 0B:86C7: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C6DA 0B:86CA: 60        RTS
 bra_86CB:
-ofs_039_86CB_12:
-; con_BD4F_12
+ofs_039_ai_subscript_86CB_12:
+; con_ai_subscr_12
 C - - J - - 0x02C6DB 0B:86CB: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x02C6DD 0B:86CD: 10 09     BPL bra_86D8_horisontal
 ; if vertical
@@ -1478,14 +1491,14 @@ C - - - - - 0x02C709 0B:86F9: 60        RTS
 
 
 
-ofs_039_86FA_9C:
-; con_BD4F_9C
+ofs_039_ai_subscript_86FA_9C:
+; con_ai_subscr_9C
 C - - J - - 0x02C70A 0B:86FA: A9 01     LDA #$01
 C - - - - - 0x02C70C 0B:86FC: 9D 1D 06  STA ram_061D_obj,X
 C - - - - - 0x02C70F 0B:86FF: 20 62 86  JSR sub_8662
 bra_8702:
-ofs_039_8702_9D:
-; con_BD4F_9D
+ofs_039_ai_subscript_8702_9D:
+; con_ai_subscr_9D
 C - - - - - 0x02C712 0B:8702: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x02C714 0B:8704: 10 D2     BPL bra_86D8_horisontal
 ; if vertical
@@ -1500,8 +1513,8 @@ C - - - - - 0x02C726 0B:8716: 4C E8 86  JMP loc_86E8
 
 
 
-ofs_039_8719_A3:
-; con_BD4F_A3
+ofs_039_ai_subscript_8719_A3:
+; con_ai_subscr_A3
 C - - J - - 0x02C729 0B:8719: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C72C 0B:871C: A9 00     LDA #$00
 C - - - - - 0x02C72E 0B:871E: BC 1C 04  LDY ram_obj_pos_Y_lo,X
@@ -1509,7 +1522,7 @@ C - - - - - 0x02C731 0B:8721: 30 02     BMI bra_8725
 C - - - - - 0x02C733 0B:8723: A9 04     LDA #$04
 bra_8725:
 C - - - - - 0x02C735 0B:8725: 9D 45 06  STA ram_obj_0646,X
-C - - - - - 0x02C738 0B:8728: 20 3F 87  JSR sub_873F
+C - - - - - 0x02C738 0B:8728: 20 3F 87  JSR sub_873F_set_random_spd_Y_and_timer
 C - - - - - 0x02C73B 0B:872B: A9 01     LDA #$01
 C - - - - - 0x02C73D 0B:872D: 9D 33 06  STA ram_obj_0634,X
 C - - - - - 0x02C740 0B:8730: 9D 1D 06  STA ram_061D_obj,X
@@ -1519,11 +1532,11 @@ C - - - - - 0x02C749 0B:8739: 60        RTS
 
 
 
-ofs_039_873A_A4:
-; con_BD4F_A4
+ofs_039_ai_subscript_873A_A4:
+; con_ai_subscr_A4
 C - - J - - 0x02C74A 0B:873A: DE 33 06  DEC ram_obj_0634,X
 C - - - - - 0x02C74D 0B:873D: D0 C3     BNE bra_8702
-sub_873F:
+sub_873F_set_random_spd_Y_and_timer:
 C - - - - - 0x02C74F 0B:873F: A5 1F     LDA ram_random
 C - - - - - 0x02C751 0B:8741: 29 03     AND #$03
 C - - - - - 0x02C753 0B:8743: 18        CLC
@@ -1581,17 +1594,19 @@ tbl_876B:
 
 
 
-ofs_039_8773_6F:
-; con_BD4F_6F
+ofs_039_ai_subscript_8773_6F:
+; con_ai_subscr_6F
 C - - J - - 0x02C783 0B:8773: A0 01     LDY #$01
 C - - - - - 0x02C785 0B:8775: B1 02     LDA (ram_0002_t007_data),Y
+; bzk optimize, A is always 00
 C - - - - - 0x02C787 0B:8777: A8        TAY
-C - - - - - 0x02C788 0B:8778: B9 8F 87  LDA tbl_878F_spd_Y_lo,Y
+C - - - - - 0x02C788 0B:8778: B9 8F 87  LDA tbl_878F_spd_Y_lo_01,Y
 C - - - - - 0x02C78B 0B:877B: 9D 20 05  STA ram_obj_spd_Y_lo,X
-C - - - - - 0x02C78E 0B:877E: B9 91 87  LDA tbl_8791_spd_Y_fr,Y
+C - - - - - 0x02C78E 0B:877E: B9 91 87  LDA tbl_8791_spd_Y_fr_80,Y
 C - - - - - 0x02C791 0B:8781: 9D 37 05  STA ram_obj_spd_Y_fr,X
 C - - - - - 0x02C794 0B:8784: A0 02     LDY #$02
 C - - - - - 0x02C796 0B:8786: B1 02     LDA (ram_0002_t007_data),Y
+; bzk optimize, A is always 20
 C - - - - - 0x02C798 0B:8788: 9D 06 06  STA ram_obj_config,X
 bra_878B:
 C - - - - - 0x02C79B 0B:878B: FE C1 05  INC ram_obj_ai_subscript,X
@@ -1599,19 +1614,25 @@ C - - - - - 0x02C79E 0B:878E: 60        RTS
 
 
 
-tbl_878F_spd_Y_lo:
+tbl_878F_spd_Y_lo_01:
 - D 0 - - - 0x02C79F 0B:878F: 01        .byte > $0180   ; 00 
+
+
+; bzk garbage
 - - - - - - 0x02C7A0 0B:8790: 00        .byte > $0000   ; 01 
 
 
-tbl_8791_spd_Y_fr:
+tbl_8791_spd_Y_fr_80:
 - D 0 - - - 0x02C7A1 0B:8791: 80        .byte < $0180   ; 00 
+
+
+; bzk garbage
 - - - - - - 0x02C7A2 0B:8792: 00        .byte < $0000   ; 01 
 
 
 
-ofs_039_8793_70:
-; con_BD4F_70
+ofs_039_ai_subscript_8793_70:
+; con_ai_subscr_70
 C - - J - - 0x02C7A3 0B:8793: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02C7A6 0B:8796: F0 F3     BEQ bra_878B
 C - - - - - 0x02C7A8 0B:8798: A0 01     LDY #$01
@@ -1620,8 +1641,8 @@ C - - - - - 0x02C7AC 0B:879C: 4C A1 80  JMP loc_80A1_decrease_spd_Y
 
 
 
-ofs_039_879F_67:
-; con_BD4F_67
+ofs_039_ai_subscript_879F_67:
+; con_ai_subscr_67
 C - - J - - 0x02C7AF 0B:879F: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x02C7B1 0B:87A1: 29 01     AND #$01
 C - - - - - 0x02C7B3 0B:87A3: D0 08     BNE bra_87AD
@@ -1648,14 +1669,14 @@ C - - - - - 0x02C7CF 0B:87BF: 60        RTS
 
 
 
-ofs_039_87C3_60:
-; con_BD4F_60
+ofs_039_ai_subscript_87C3_60:
+; con_ai_subscr_60
 C - - J - - 0x02C7D3 0B:87C3: 20 C2 86  JSR sub_86C2
-C - - - - - 0x02C7D6 0B:87C6: A0 0A     LDY #$0A
+C - - - - - 0x02C7D6 0B:87C6: A0 0A     LDY #con_B7BD_0A
 C - - - - - 0x02C7D8 0B:87C8: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C7DB 0B:87CB: D0 0F     BNE bra_87DC
 C - - - - - 0x02C7DD 0B:87CD: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02C7DF 0B:87CF: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02C7DF 0B:87CF: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02C7E2 0B:87D2: A9 01     LDA #$01
 C - - - - - 0x02C7E4 0B:87D4: 9D 20 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x02C7E7 0B:87D7: A9 16     LDA #$16
@@ -1666,8 +1687,8 @@ C - - - - - 0x02C7EE 0B:87DE: 60        RTS
 
 
 
-ofs_039_87DF_61:
-; con_BD4F_61
+ofs_039_ai_subscript_87DF_61:
+; con_ai_subscr_61
 C - - J - - 0x02C7EF 0B:87DF: A9 14     LDA #$14
 C - - - - - 0x02C7F1 0B:87E1: 20 7F 80  JSR sub_807F_increase_spd_Y
 C - - - - - 0x02C7F4 0B:87E4: A0 01     LDY #$01
@@ -1685,10 +1706,10 @@ C - - - - - 0x02C80C 0B:87FC: 60        RTS
 
 
 
-ofs_039_87FD_63:
-; con_BD4F_63
+ofs_039_ai_subscript_87FD_63:
+; con_ai_subscr_63
 C - - J - - 0x02C80D 0B:87FD: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02C810 0B:8800: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02C810 0B:8800: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02C813 0B:8803: A0 01     LDY #$01
 C - - - - - 0x02C815 0B:8805: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C817 0B:8807: 9D 20 05  STA ram_obj_spd_Y_lo,X
@@ -1699,13 +1720,14 @@ C - - - - - 0x02C820 0B:8810: 60        RTS
 
 
 
-ofs_039_8811_98:
-; con_BD4F_98
+ofs_039_ai_subscript_8811_98:
+; con_ai_subscr_98
 C - - J - - 0x02C821 0B:8811: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02C824 0B:8814: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02C824 0B:8814: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02C827 0B:8817: A0 01     LDY #$01
 C - - - - - 0x02C829 0B:8819: B1 02     LDA (ram_0002_t007_data),Y
-C - - - - - 0x02C82B 0B:881B: D0 53     BNE bra_8870
+C - - - - - 0x02C82B 0B:881B: D0 53     BNE bra_8870_01
+; 00
 ; bzk optimize, DEY
 C - - - - - 0x02C82D 0B:881D: A0 00     LDY #$00
 C - - - - - 0x02C82F 0B:881F: 38        SEC
@@ -1734,19 +1756,19 @@ C - - - - - 0x02C855 0B:8845: B9 7F 88  LDA tbl_887F_spd_Y_lo,Y
 C - - - - - 0x02C858 0B:8848: 9D 20 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x02C85B 0B:884B: BD 38 04  LDA ram_obj_pos_X_lo,X
 C - - - - - 0x02C85E 0B:884E: BC 1C 04  LDY ram_obj_pos_Y_lo,X
-C - - - - - 0x02C861 0B:8851: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02C861 0B:8851: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02C864 0B:8854: D0 20     BNE bra_8876
 C - - - - - 0x02C866 0B:8856: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02C868 0B:8858: A9 22     LDA #con_sound_water_splash_1
+C - - - - - 0x02C868 0B:8858: A9 22     LDA #con_sfx_water_splash_1
 C - - - - - 0x02C86A 0B:885A: 20 5F E2  JSR sub_0x03E26F_play_sound
-C - - - - - 0x02C86D 0B:885D: 20 AA 81  JSR sub_81AA
+C - - - - - 0x02C86D 0B:885D: 20 AA 81  JSR sub_81AA_set_obj_flag_40
 C - - - - - 0x02C870 0B:8860: 20 30 82  JSR sub_8230_set_facing_towards_player
 C - - - - - 0x02C873 0B:8863: A9 08     LDA #con_obj_type_08
 C - - - - - 0x02C875 0B:8865: 9D 8C 04  STA ram_obj_type,X
 C - - - - - 0x02C878 0B:8868: A9 46     LDA #$46
 C - - - - - 0x02C87A 0B:886A: 9D 00 04  STA ram_obj_anim_id,X
-C - - - - - 0x02C87D 0B:886D: 4C EF 81  JMP loc_81EF
-bra_8870:
+C - - - - - 0x02C87D 0B:886D: 4C EF 81  JMP loc_81EF_set_obj_flag_20
+bra_8870_01:
 C - - - - - 0x02C880 0B:8870: A9 FF     LDA #$FF
 C - - - - - 0x02C882 0B:8872: 9D 20 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x02C885 0B:8875: 60        RTS
@@ -1776,13 +1798,14 @@ tbl_8884_spd_Y_fr:
 
 
 
-ofs_039_8889_99:
-; con_BD4F_99
+ofs_039_ai_subscript_8889_99:
+; con_ai_subscr_99
 C - - J - - 0x02C899 0B:8889: A9 20     LDA #$20
 C - - - - - 0x02C89B 0B:888B: 20 7F 80  JSR sub_807F_increase_spd_Y
 C - - - - - 0x02C89E 0B:888E: A0 01     LDY #$01
 C - - - - - 0x02C8A0 0B:8890: B1 02     LDA (ram_0002_t007_data),Y
-C - - - - - 0x02C8A2 0B:8892: F0 13     BEQ bra_88A7
+C - - - - - 0x02C8A2 0B:8892: F0 13     BEQ bra_88A7_00
+; 01
 C - - - - - 0x02C8A4 0B:8894: 38        SEC
 C - - - - - 0x02C8A5 0B:8895: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x02C8A8 0B:8898: E9 10     SBC #$10
@@ -1793,16 +1816,16 @@ C - - - - - 0x02C8B1 0B:88A1: 20 2B 99  JSR sub_992B
 C - - - - - 0x02C8B4 0B:88A4: A6 6C     LDX ram_006C_object_index
 bra_88A6_RTS:
 C - - - - - 0x02C8B6 0B:88A6: 60        RTS
-bra_88A7:
+bra_88A7_00:
 C - - - - - 0x02C8B7 0B:88A7: BD 20 05  LDA ram_obj_spd_Y_lo,X
 C - - - - - 0x02C8BA 0B:88AA: 30 FA     BMI bra_88A6_RTS
-C - - - - - 0x02C8BC 0B:88AC: A0 06     LDY #$06
+C - - - - - 0x02C8BC 0B:88AC: A0 06     LDY #con_B7BD_06
 C - - - - - 0x02C8BE 0B:88AE: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C8C1 0B:88B1: F0 09     BEQ bra_88BC
 loc_88B3:
 C D 0 - - - 0x02C8C3 0B:88B3: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02C8C6 0B:88B6: 20 95 8B  JSR sub_8B95
-C - - - - - 0x02C8C9 0B:88B9: 4C C8 FE  JMP loc_0x03FED8_clear_speed
+C - - - - - 0x02C8C9 0B:88B9: 4C C8 FE  JMP loc_0x03FED8_clear_XY_speed
 bra_88BC:
 C - - - - - 0x02C8CC 0B:88BC: 38        SEC
 C - - - - - 0x02C8CD 0B:88BD: BD 1C 04  LDA ram_obj_pos_Y_lo,X
@@ -1814,46 +1837,49 @@ C - - - - - 0x02C8D9 0B:88C9: 4C B2 84  JMP loc_84B2_delete_object_and_clear_ai_
 
 
 
-ofs_039_88CC_64:
-; con_BD4F_64
+ofs_039_ai_subscript_88CC_64_conditional_branch:
+; con_ai_subscr_64_conditional_branch
 C - - J - - 0x02C8DC 0B:88CC: BD 06 06  LDA ram_obj_config,X
 C - - - - - 0x02C8DF 0B:88CF: 20 7F 80  JSR sub_807F_increase_spd_Y
 C - - - - - 0x02C8E2 0B:88D2: A0 01     LDY #$01
 C - - - - - 0x02C8E4 0B:88D4: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C8E6 0B:88D6: C9 01     CMP #$01
-C - - - - - 0x02C8E8 0B:88D8: F0 2F     BEQ bra_8909
+C - - - - - 0x02C8E8 0B:88D8: F0 2F     BEQ bra_8909_01
 C - - - - - 0x02C8EA 0B:88DA: C9 02     CMP #$02
-C - - - - - 0x02C8EC 0B:88DC: F0 36     BEQ bra_8914
+C - - - - - 0x02C8EC 0B:88DC: F0 36     BEQ bra_8914_02
 C - - - - - 0x02C8EE 0B:88DE: BC 20 05  LDY ram_obj_spd_Y_lo,X
 C - - - - - 0x02C8F1 0B:88E1: 30 30     BMI bra_8913_RTS
 C - - - - - 0x02C8F3 0B:88E3: C9 03     CMP #$03
-C - - - - - 0x02C8F5 0B:88E5: D0 16     BNE bra_88FD
+C - - - - - 0x02C8F5 0B:88E5: D0 16     BNE bra_88FD_00
+; 03
 C - - - - - 0x02C8F7 0B:88E7: A0 00     LDY #$00
 C - - - - - 0x02C8F9 0B:88E9: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x02C8FB 0B:88EB: C9 08     CMP #$08    ; Sunken City
 C - - - - - 0x02C8FD 0B:88ED: D0 06     BNE bra_88F5
+; if 08-xx-xx
 C - - - - - 0x02C8FF 0B:88EF: C8        INY ; 01
 C - - - - - 0x02C900 0B:88F0: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x02C902 0B:88F2: D0 01     BNE bra_88F5
+; if 08-00-xx
 C - - - - - 0x02C904 0B:88F4: C8        INY ; 02
 bra_88F5:
 C - - - - - 0x02C905 0B:88F5: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x02C908 0B:88F8: D9 37 89  CMP tbl_8937_pos_Y_lo,Y
 C - - - - - 0x02C90B 0B:88FB: B0 2E     BCS bra_892B
-bra_88FD:
-C - - - - - 0x02C90D 0B:88FD: A0 06     LDY #$06
+bra_88FD_00:
+C - - - - - 0x02C90D 0B:88FD: A0 06     LDY #con_B7BD_06
 C - - - - - 0x02C90F 0B:88FF: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C912 0B:8902: F0 0F     BEQ bra_8913_RTS
 C - - - - - 0x02C914 0B:8904: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02C916 0B:8906: 4C B3 88  JMP loc_88B3
-bra_8909:
+bra_8909_01:
 - - - - - - 0x02C919 0B:8909: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 - - - - - - 0x02C91C 0B:890C: C9 F8     CMP #$F8
 - - - - - - 0x02C91E 0B:890E: 90 03     BCC bra_8913_RTS
 - - - - - - 0x02C920 0B:8910: FE C1 05  INC ram_obj_ai_subscript,X
 bra_8913_RTS:
 C - - - - - 0x02C923 0B:8913: 60        RTS
-bra_8914:
+bra_8914_02:
 - - - - - - 0x02C924 0B:8914: A0 00     LDY #$00
 - - - - - - 0x02C926 0B:8916: A5 32     LDA ram_blk_id_hi
 - - - - - - 0x02C928 0B:8918: C9 08     CMP #$08    ; Sunken City
@@ -1886,22 +1912,22 @@ tbl_8937_pos_Y_lo:
 
 
 
-ofs_039_893A_1C:
-; con_BD4F_1C
-C - - J - - 0x02C94A 0B:893A: A0 01     LDY #$01
+ofs_039_ai_subscript_893A_1C:
+; con_ai_subscr_1C
+C - - J - - 0x02C94A 0B:893A: A0 01     LDY #con_B7BD_01
 C - - - - - 0x02C94C 0B:893C: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C94F 0B:893F: D0 16     BNE bra_8957
 C - - - - - 0x02C951 0B:8941: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02C953 0B:8943: A0 06     LDY #$06
+C - - - - - 0x02C953 0B:8943: A0 06     LDY #con_B7BD_06
 C - - - - - 0x02C955 0B:8945: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C958 0B:8948: D0 0D     BNE bra_8957
 C - - - - - 0x02C95A 0B:894A: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02C95C 0B:894C: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02C95F 0B:894F: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02C95F 0B:894F: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02C962 0B:8952: A9 01     LDA #$01
 C - - - - - 0x02C964 0B:8954: 9D 20 05  STA ram_obj_spd_Y_lo,X
 bra_8957:
-C - - - - - 0x02C967 0B:8957: A0 00     LDY #$00
+C - - - - - 0x02C967 0B:8957: A0 00     LDY #con_B7BD_00
 C - - - - - 0x02C969 0B:8959: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C96C 0B:895C: F0 0B     BEQ bra_8969
 loc_895E_invert_facing_and_spd_X:
@@ -1923,8 +1949,8 @@ C - - - - - 0x02C98D 0B:897D: 60        RTS
 
 
 
-ofs_039_897E_1D:
-; con_BD4F_1D
+ofs_039_ai_subscript_897E_1D:
+; con_ai_subscr_1D
 C - - J - - 0x02C98E 0B:897E: A0 01     LDY #$01
 C - - - - - 0x02C990 0B:8980: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02C992 0B:8982: 9D 06 06  STA ram_obj_config,X
@@ -1934,8 +1960,8 @@ C - - - - - 0x02C998 0B:8988: A8        TAY
 C - - - - - 0x02C999 0B:8989: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02C99C 0B:898C: F0 17     BEQ bra_89A5
 C - - - - - 0x02C99E 0B:898E: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02C9A0 0B:8990: 20 C8 FE  JSR sub_0x03FED8_clear_speed
-C - - - - - 0x02C9A3 0B:8993: 20 F8 81  JSR sub_81F8
+C - - - - - 0x02C9A0 0B:8990: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
+C - - - - - 0x02C9A3 0B:8993: 20 F8 81  JSR sub_81F8_clear_obj_flag_20
 C - - - - - 0x02C9A6 0B:8996: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x02C9A9 0B:8999: 29 F0     AND #$F0
 C - - - - - 0x02C9AB 0B:899B: 9D 1C 04  STA ram_obj_pos_Y_lo,X
@@ -1949,13 +1975,13 @@ C - - - - - 0x02C9B9 0B:89A9: 4C 7F 80  JMP loc_807F_increase_spd_Y
 
 
 
-ofs_039_89AC_09:
-; con_BD4F_09
+ofs_039_ai_subscript_89AC_09:
+; con_ai_subscr_09
 ; in
     ; C (used in 0x02C9C1)
         ; 0 = 
         ; 1 = 
-C - - J - - 0x02C9BC 0B:89AC: 20 EC 81  JSR sub_81EC
+C - - J - - 0x02C9BC 0B:89AC: 20 EC 81  JSR sub_81EC_prepare_next_ai_subscript_and_set_obj_flag_20
 C - - - - - 0x02C9BF 0B:89AF: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x02C9C1 0B:89B1: 7D 38 04  ADC ram_obj_pos_X_lo,X
 C - - - - - 0x02C9C4 0B:89B4: 29 07     AND #$07
@@ -1976,7 +2002,7 @@ C - - - - - 0x02C9DF 0B:89CF: 9D 38 04  STA ram_obj_pos_X_lo,X
 C - - - - - 0x02C9E2 0B:89D2: BD EF 05  LDA ram_obj_ai_script,X
 C - - - - - 0x02C9E5 0B:89D5: C9 14     CMP #$14
 C - - - - - 0x02C9E7 0B:89D7: F0 03     BEQ bra_89DC_RTS
-C - - - - - 0x02C9E9 0B:89D9: 4C D4 81  JMP loc_81D4
+C - - - - - 0x02C9E9 0B:89D9: 4C D4 81  JMP loc_81D4_set_obj_flag_10
 bra_89DC_RTS:
 C - - - - - 0x02C9EC 0B:89DC: 60        RTS
 
@@ -2022,8 +2048,8 @@ tbl_89F5_offset:
 
 
 
-ofs_039_89F8_22:
-; con_BD4F_22
+ofs_039_ai_subscript_89F8_22:
+; con_ai_subscr_22
 C - - J - - 0x02CA08 0B:89F8: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CA0B 0B:89FB: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x02CA0D 0B:89FD: 6D 38 04  ADC ram_plr_pos_X_lo
@@ -2031,6 +2057,7 @@ C - - - - - 0x02CA10 0B:8A00: 29 07     AND #$07
 C - - - - - 0x02CA12 0B:8A02: 85 10     STA ram_0010_t02A
 C - - - - - 0x02CA14 0B:8A04: A0 01     LDY #$01
 C - - - - - 0x02CA16 0B:8A06: B1 02     LDA (ram_0002_t007_data),Y
+; bzk optimize, A is always 08
 C - - - - - 0x02CA18 0B:8A08: 18        CLC
 C - - - - - 0x02CA19 0B:8A09: 65 10     ADC ram_0010_t02A
 C - - - - - 0x02CA1B 0B:8A0B: A8        TAY
@@ -2042,6 +2069,8 @@ C - - - - - 0x02CA25 0B:8A15: 60        RTS
 
 
 tbl_8A16_pos_X_lo:
+; 00 
+; bzk garbage
 - - - - - - 0x02CA26 0B:8A16: 40        .byte $40   ; 00 
 - - - - - - 0x02CA27 0B:8A17: D0        .byte $D0   ; 01 
 - - - - - - 0x02CA28 0B:8A18: 70        .byte $70   ; 02 
@@ -2050,22 +2079,23 @@ tbl_8A16_pos_X_lo:
 - - - - - - 0x02CA2B 0B:8A1B: C0        .byte $C0   ; 05 
 - - - - - - 0x02CA2C 0B:8A1C: 50        .byte $50   ; 06 
 - - - - - - 0x02CA2D 0B:8A1D: A0        .byte $A0   ; 07 
-- D 0 - - - 0x02CA2E 0B:8A1E: 40        .byte $40   ; 08 
-- D 0 - - - 0x02CA2F 0B:8A1F: 20        .byte $20   ; 09 
-- D 0 - - - 0x02CA30 0B:8A20: E0        .byte $E0   ; 0A 
-- D 0 - - - 0x02CA31 0B:8A21: D0        .byte $D0   ; 0B 
-- D 0 - - - 0x02CA32 0B:8A22: 10        .byte $10   ; 0C 
-- D 0 - - - 0x02CA33 0B:8A23: F0        .byte $F0   ; 0D 
-- D 0 - - - 0x02CA34 0B:8A24: 50        .byte $50   ; 0E 
-- D 0 - - - 0x02CA35 0B:8A25: 70        .byte $70   ; 0F 
+; 08 
+- D 0 - - - 0x02CA2E 0B:8A1E: 40        .byte $40   ; 00 
+- D 0 - - - 0x02CA2F 0B:8A1F: 20        .byte $20   ; 01 
+- D 0 - - - 0x02CA30 0B:8A20: E0        .byte $E0   ; 02 
+- D 0 - - - 0x02CA31 0B:8A21: D0        .byte $D0   ; 03 
+- D 0 - - - 0x02CA32 0B:8A22: 10        .byte $10   ; 04 
+- D 0 - - - 0x02CA33 0B:8A23: F0        .byte $F0   ; 05 
+- D 0 - - - 0x02CA34 0B:8A24: 50        .byte $50   ; 06 
+- D 0 - - - 0x02CA35 0B:8A25: 70        .byte $70   ; 07 
 
 
 
-ofs_039_8A26_A7:
-; con_BD4F_A7
-C - - J - - 0x02CA36 0B:8A26: 20 EF 81  JSR sub_81EF
-ofs_039_8A29_26:
-; con_BD4F_26
+ofs_039_ai_subscript_8A26_A7:
+; con_ai_subscr_A7
+C - - J - - 0x02CA36 0B:8A26: 20 EF 81  JSR sub_81EF_set_obj_flag_20
+ofs_039_ai_subscript_8A29_26:
+; con_ai_subscr_26
 C - - J - - 0x02CA39 0B:8A29: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CA3C 0B:8A2C: A0 01     LDY #$01
 C - - - - - 0x02CA3E 0B:8A2E: B1 02     LDA (ram_0002_t007_data),Y
@@ -2078,8 +2108,8 @@ C - - - - - 0x02CA49 0B:8A39: 60        RTS
 
 
 
-ofs_039_8A3A_30:
-; con_BD4F_30
+ofs_039_ai_subscript_8A3A_30:
+; con_ai_subscr_30
 C - - J - - 0x02CA4A 0B:8A3A: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CA4D 0B:8A3D: A0 01     LDY #$01
 C - - - - - 0x02CA4F 0B:8A3F: B1 02     LDA (ram_0002_t007_data),Y
@@ -2088,12 +2118,13 @@ C - - - - - 0x02CA54 0B:8A44: 60        RTS
 
 
 
-ofs_039_8A45_23:
-; con_BD4F_23
+ofs_039_ai_subscript_8A45_23:
+; con_ai_subscr_23
 C - - J - - 0x02CA55 0B:8A45: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02CA58 0B:8A48: D0 1A     BNE bra_8A64_RTS
 C - - - - - 0x02CA5A 0B:8A4A: A0 01     LDY #$01
 C - - - - - 0x02CA5C 0B:8A4C: BD 54 04  LDA ram_0454_obj,X
+; bzk optimize, byte from data is always 03
 C - - - - - 0x02CA5F 0B:8A4F: 51 02     EOR (ram_0002_t007_data),Y
 C - - - - - 0x02CA61 0B:8A51: 9D 54 04  STA ram_0454_obj,X
 C - - - - - 0x02CA64 0B:8A54: 20 33 8A  JSR sub_8A33
@@ -2108,8 +2139,8 @@ C - - - - - 0x02CA74 0B:8A64: 60        RTS
 
 
 
-ofs_039_8A65_25:
-; con_BD4F_25
+ofs_039_ai_subscript_8A65_25:
+; con_ai_subscr_25
 C - - J - - 0x02CA75 0B:8A65: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02CA78 0B:8A68: D0 FA     BNE bra_8A64_RTS
 C - - - - - 0x02CA7A 0B:8A6A: DE 1D 06  DEC ram_061D_obj,X
@@ -2139,17 +2170,17 @@ bra_8A93:
 C - - - - - 0x02CAA3 0B:8A93: 18        CLC
 C - - - - - 0x02CAA4 0B:8A94: B9 C7 8A  LDA tbl_8AC7_pos_X_lo,Y
 C - - - - - 0x02CAA7 0B:8A97: 7D 38 04  ADC ram_obj_pos_X_lo,X
-C - - - - - 0x02CAAA 0B:8A9A: 85 01     STA ram_0001_t016_pos_X_lo
+C - - - - - 0x02CAAA 0B:8A9A: 85 01     STA ram_0001_t016_pos_X_lo_projectile
 C - - - - - 0x02CAAC 0B:8A9C: 18        CLC
 C - - - - - 0x02CAAD 0B:8A9D: B9 CB 8A  LDA tbl_8ACB_pos_Y_lo,Y
 C - - - - - 0x02CAB0 0B:8AA0: 7D 1C 04  ADC ram_obj_pos_Y_lo,X
-C - - - - - 0x02CAB3 0B:8AA3: 85 02     STA ram_0002_t025_pos_Y_lo
+C - - - - - 0x02CAB3 0B:8AA3: 85 02     STA ram_0002_t025_pos_Y_lo_projectile
 C - - - - - 0x02CAB5 0B:8AA5: B9 CF 8A  LDA tbl_8ACF_facing,Y
-C - - - - - 0x02CAB8 0B:8AA8: 85 0A     STA ram_000A_t01D_obj_facing
+C - - - - - 0x02CAB8 0B:8AA8: 85 0A     STA ram_000A_t01D_obj_facing_projectile
 C - - - - - 0x02CABA 0B:8AAA: A9 58     LDA #$58
-C - - - - - 0x02CABC 0B:8AAC: 85 07     STA ram_0007_t00B_ai_script
-C - - - - - 0x02CABE 0B:8AAE: A9 40     LDA #$40
-C - - - - - 0x02CAC0 0B:8AB0: 85 00     STA ram_0000_t05C_obj_id
+C - - - - - 0x02CABC 0B:8AAC: 85 07     STA ram_0007_t00B_ai_script_projectile
+C - - - - - 0x02CABE 0B:8AAE: A9 40     LDA #con_obj_id_40
+C - - - - - 0x02CAC0 0B:8AB0: 85 00     STA ram_0000_t05C_obj_id_projectile
 C - - - - - 0x02CAC2 0B:8AB2: 98        TYA
 C - - - - - 0x02CAC3 0B:8AB3: 29 01     AND #$01
 C - - - - - 0x02CAC5 0B:8AB5: 49 01     EOR #$01
@@ -2191,34 +2222,34 @@ tbl_8ACF_facing:
 
 
 
-ofs_039_8AD3_24:
-; con_BD4F_24
+ofs_039_ai_subscript_8AD3_24:
+; con_ai_subscr_24
 ; bzk garbage
 - - - - - - 0x02CAE3 0B:8AD3: 20 30 82  JSR sub_8230_set_facing_towards_player
 - - - - - - 0x02CAE6 0B:8AD6: 4C 4C 84  JMP loc_844C
 
 
 
-ofs_039_8AD9_6E:
-; con_BD4F_6E
-C - - J - - 0x02CAE9 0B:8AD9: 20 EC 81  JSR sub_81EC
+ofs_039_ai_subscript_8AD9_6E:
+; con_ai_subscr_6E
+C - - J - - 0x02CAE9 0B:8AD9: 20 EC 81  JSR sub_81EC_prepare_next_ai_subscript_and_set_obj_flag_20
 C - - - - - 0x02CAEC 0B:8ADC: BD 33 06  LDA ram_obj_0634,X
 C - - - - - 0x02CAEF 0B:8ADF: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x02CAF2 0B:8AE2: 60        RTS
 
 
 
-ofs_039_8AE3_52:
-; con_BD4F_52
+ofs_039_ai_subscript_8AE3_52:
+; con_ai_subscr_52
 C - - J - - 0x02CAF3 0B:8AE3: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CAF6 0B:8AE6: 4C 7E 8A  JMP loc_8A7E
 
 
 
-ofs_039_8AE9_31:
-; con_BD4F_31
-ofs_039_8AE9_32:
-; con_BD4F_32
+ofs_039_ai_subscript_8AE9_31:    ; unused
+; con_ai_subscr_31
+ofs_039_ai_subscript_8AE9_32:
+; con_ai_subscr_32
 C - - J - - 0x02CAF9 0B:8AE9: A0 01     LDY #$01
 C - - - - - 0x02CAFB 0B:8AEB: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02CAFD 0B:8AED: 20 7F 80  JSR sub_807F_increase_spd_Y
@@ -2226,8 +2257,8 @@ C - - - - - 0x02CB00 0B:8AF0: 4C 20 8E  JMP loc_8E20
 
 
 
-ofs_039_8AF3_92_Harpy_drops_enemy:
-; con_BD4F_92_Harpy_drops_enemy
+ofs_039_ai_subscript_8AF3_92_Harpy_drops_enemy:
+; con_ai_subscr_92_Harpy_drops_enemy
 C - - J - - 0x02CB03 0B:8AF3: 18        CLC
 C - - - - - 0x02CB04 0B:8AF4: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x02CB07 0B:8AF7: 69 10     ADC #$10
@@ -2244,8 +2275,8 @@ C - - - - - 0x02CB1E 0B:8B0E: 20 5A 8B  JSR sub_8B5A_search_for_empty_object_slo
 C - - - - - 0x02CB21 0B:8B11: D0 39     BNE bra_8B4C
 C - - - - - 0x02CB23 0B:8B13: 86 09     STX ram_0009_t00B_object_index
 C - - - - - 0x02CB25 0B:8B15: A6 08     LDX ram_0008_t04A_object_index
-C - - - - - 0x02CB27 0B:8B17: 20 9E 81  JSR sub_819E
-C - - - - - 0x02CB2A 0B:8B1A: 20 EF 81  JSR sub_81EF
+C - - - - - 0x02CB27 0B:8B17: 20 9E 81  JSR sub_819E_clear_obj_flag_40
+C - - - - - 0x02CB2A 0B:8B1A: 20 EF 81  JSR sub_81EF_set_obj_flag_20
 C - - - - - 0x02CB2D 0B:8B1D: A6 09     LDX ram_0009_t00B_object_index
 C - - - - - 0x02CB2F 0B:8B1F: 20 D7 FE  JSR sub_0x03FEE7_clear_object_speed_and_data
 C - - - - - 0x02CB32 0B:8B22: 20 4F 8B  JSR sub_8B4F_write_positions
@@ -2298,25 +2329,25 @@ C - - - - - 0x02CB78 0B:8B68: 60        RTS
 
 
 
-ofs_039_8B69_93:
-; con_BD4F_93
-C - - J - - 0x02CB79 0B:8B69: 20 A7 81  JSR sub_81A7
-C - - - - - 0x02CB7C 0B:8B6C: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+ofs_039_ai_subscript_8B69_93:
+; con_ai_subscr_93
+C - - J - - 0x02CB79 0B:8B69: 20 A7 81  JSR sub_81A7_set_obj_flag_40
+C - - - - - 0x02CB7C 0B:8B6C: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02CB7F 0B:8B6F: A9 14     LDA #$14
 C - - - - - 0x02CB81 0B:8B71: 9D 1D 06  STA ram_061D_obj,X
 C - - - - - 0x02CB84 0B:8B74: 60        RTS
 
 
 
-ofs_039_8B75_94:
-; con_BD4F_94
+ofs_039_ai_subscript_8B75_94:
+; con_ai_subscr_94
 C - - J - - 0x02CB85 0B:8B75: BD 1D 06  LDA ram_061D_obj,X
 C - - - - - 0x02CB88 0B:8B78: 20 7F 80  JSR sub_807F_increase_spd_Y
-C - - - - - 0x02CB8B 0B:8B7B: A0 0E     LDY #$0E
+C - - - - - 0x02CB8B 0B:8B7B: A0 0E     LDY #con_B7BD_0E
 C - - - - - 0x02CB8D 0B:8B7D: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02CB90 0B:8B80: F0 0C     BEQ bra_8B8E
 C - - - - - 0x02CB92 0B:8B82: 20 91 8B  JSR sub_8B91_correct_pos_Y_lo
-C - - - - - 0x02CB95 0B:8B85: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02CB95 0B:8B85: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02CB98 0B:8B88: 9D 1D 06  STA ram_061D_obj,X
 C - - - - - 0x02CB9B 0B:8B8B: FE C1 05  INC ram_obj_ai_subscript,X
 bra_8B8E:
@@ -2348,8 +2379,8 @@ C - - - - - 0x02CBBF 0B:8BAF: 60        RTS
 
 
 
-ofs_039_8BB0_90:
-; con_BD4F_90
+ofs_039_ai_subscript_8BB0_90:
+; con_ai_subscr_90
 C - - J - - 0x02CBC0 0B:8BB0: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CBC3 0B:8BB3: A0 00     LDY #$00
 C - - - - - 0x02CBC5 0B:8BB5: 20 B3 80  JSR sub_80B3_get_object_distance_X_to_player
@@ -2363,8 +2394,8 @@ C - - - - - 0x02CBD1 0B:8BC1: 60        RTS
 
 
 
-ofs_039_8BC2_8F:
-; con_BD4F_8F
+ofs_039_ai_subscript_8BC2_8F:
+; con_ai_subscr_8F
 C - - J - - 0x02CBD2 0B:8BC2: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CBD5 0B:8BC5: A9 32     LDA #$32
 C - - - - - 0x02CBD7 0B:8BC7: BC 00 04  LDY ram_obj_anim_id,X
@@ -2377,39 +2408,42 @@ C - - - - - 0x02CBE3 0B:8BD3: 60        RTS
 
 
 
-ofs_039_8BD4_3A:
-; con_BD4F_3A
-C - - J - - 0x02CBE4 0B:8BD4: 20 AD 83  JSR sub_83AD
+ofs_039_ai_subscript_8BD4_3A:
+; con_ai_subscr_3A
+C - - J - - 0x02CBE4 0B:8BD4: 20 AD 83  JSR sub_83AD_set_obj_type_and_anim
 C - - - - - 0x02CBE7 0B:8BD7: 18        CLC
 C - - - - - 0x02CBE8 0B:8BD8: A0 03     LDY #$03
 C - - - - - 0x02CBEA 0B:8BDA: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02CBEC 0B:8BDC: 7D A8 04  ADC ram_obj_facing,X
 C - - - - - 0x02CBEF 0B:8BDF: A8        TAY
-C - - - - - 0x02CBF0 0B:8BE0: B9 EF 8B  LDA tbl_8BEF_spd_X,Y
+C - - - - - 0x02CBF0 0B:8BE0: B9 EF 8B  LDA tbl_8BEF_spd_X_lo,Y
 C - - - - - 0x02CBF3 0B:8BE3: 9D F2 04  STA ram_obj_spd_X_lo,X
-C - - - - - 0x02CBF6 0B:8BE6: 20 9E 81  JSR sub_819E
+C - - - - - 0x02CBF6 0B:8BE6: 20 9E 81  JSR sub_819E_clear_obj_flag_40
 C - - - - - 0x02CBF9 0B:8BE9: 20 01 80  JSR sub_8001_move_object_XY_axis
-C - - - - - 0x02CBFC 0B:8BEC: 4C C8 FE  JMP loc_0x03FED8_clear_speed
+C - - - - - 0x02CBFC 0B:8BEC: 4C C8 FE  JMP loc_0x03FED8_clear_XY_speed
 
 
 
-tbl_8BEF_spd_X:
+tbl_8BEF_spd_X_lo:
 ;                                              +---------- facing right
 ;                                              |    +----- facing left
 ;                                              |    |
 - D 0 - - - 0x02CBFF 0B:8BEF: 08        .byte $08, $F8   ; 00 
-- D 0 - - - 0x02CC01 0B:8BF1: F8        .byte $F8, $08   ; 01 
-- - - - - - 0x02CC03 0B:8BF3: 10        .byte $10, $F0   ; 02 
-- - - - - - 0x02CC05 0B:8BF5: F0        .byte $F0, $10   ; 03 
+- D 0 - - - 0x02CC01 0B:8BF1: F8        .byte $F8, $08   ; 02 
+
+
+; bzk garbage, no such indexes
+- - - - - - 0x02CC03 0B:8BF3: 10        .byte $10, $F0   ; 04 
+- - - - - - 0x02CC05 0B:8BF5: F0        .byte $F0, $10   ; 08 
 
 
 
-ofs_039_8BF7_96:
-; con_BD4F_96
-C - - J - - 0x02CC07 0B:8BF7: 20 D4 81  JSR sub_81D4
+ofs_039_ai_subscript_8BF7_96:
+; con_ai_subscr_96
+C - - J - - 0x02CC07 0B:8BF7: 20 D4 81  JSR sub_81D4_set_obj_flag_10
 C - - - - - 0x02CC0A 0B:8BFA: 20 E3 80  JSR sub_80E3_find_empty_object_slot_09_0C
 C - - - - - 0x02CC0D 0B:8BFD: D0 20     BNE bra_8C1F_no_empty_slots
-C - - - - - 0x02CC0F 0B:8BFF: 20 D4 81  JSR sub_81D4
+C - - - - - 0x02CC0F 0B:8BFF: 20 D4 81  JSR sub_81D4_set_obj_flag_10
 C - - - - - 0x02CC12 0B:8C02: A9 68     LDA #$68
 C - - - - - 0x02CC14 0B:8C04: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x02CC17 0B:8C07: A9 00     LDA #$00
@@ -2420,18 +2454,18 @@ C - - - - - 0x02CC20 0B:8C10: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02CC22 0B:8C12: 9D 1D 06  STA ram_061D_obj,X
 C - - - - - 0x02CC25 0B:8C15: A9 08     LDA #con_obj_type_08
 C - - - - - 0x02CC27 0B:8C17: A0 0C     LDY #$0C
-C - - - - - 0x02CC29 0B:8C19: 20 93 82  JSR sub_8293
-C - - - - - 0x02CC2C 0B:8C1C: 4C B9 81  JMP loc_81B9
+C - - - - - 0x02CC29 0B:8C19: 20 93 82  JSR sub_8293_animation_handler
+C - - - - - 0x02CC2C 0B:8C1C: 4C B9 81  JMP loc_81B9_prepare_next_ai_subscript_and_clear_obj_flag_08
 bra_8C1F_no_empty_slots:
 - - - - - - 0x02CC2F 0B:8C1F: A6 6C     LDX ram_006C_object_index
 - - - - - - 0x02CC31 0B:8C21: 60        RTS
 
 
 
-ofs_039_8C22_50:
-; con_BD4F_50
-C - - J - - 0x02CC32 0B:8C22: 20 C8 FE  JSR sub_0x03FED8_clear_speed
-C - - - - - 0x02CC35 0B:8C25: 20 A7 81  JSR sub_81A7
+ofs_039_ai_subscript_8C22_50:
+; con_ai_subscr_50
+C - - J - - 0x02CC32 0B:8C22: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
+C - - - - - 0x02CC35 0B:8C25: 20 A7 81  JSR sub_81A7_set_obj_flag_40
 C - - - - - 0x02CC38 0B:8C28: A9 01     LDA #$01    ; facing left
 C - - - - - 0x02CC3A 0B:8C2A: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x02CC3D 0B:8C2D: A0 01     LDY #$01
@@ -2472,22 +2506,22 @@ tbl_8C62_spd_Y_fr:
 
 
 
-ofs_039_8C64_51:
-; con_BD4F_51
+ofs_039_ai_subscript_8C64_51:
+; con_ai_subscr_51
 C - - J - - 0x02CC74 0B:8C64: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x02CC77 0B:8C67: C9 30     CMP #$30
 C - - - - - 0x02CC79 0B:8C69: 90 0C     BCC bra_8C77
 C - - - - - 0x02CC7B 0B:8C6B: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02CC7E 0B:8C6E: D0 EF     BNE bra_8C5F_RTS
-C - - - - - 0x02CC80 0B:8C70: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02CC80 0B:8C70: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02CC83 0B:8C73: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CC86 0B:8C76: 60        RTS
 bra_8C77:
-C - - - - - 0x02CC87 0B:8C77: 20 D4 81  JSR sub_81D4
+C - - - - - 0x02CC87 0B:8C77: 20 D4 81  JSR sub_81D4_set_obj_flag_10
 C - - - - - 0x02CC8A 0B:8C7A: 20 C5 81  JSR sub_81C5
 C - - - - - 0x02CC8D 0B:8C7D: A9 30     LDA #$30
 C - - - - - 0x02CC8F 0B:8C7F: 9D 1C 04  STA ram_obj_pos_Y_lo,X
-C - - - - - 0x02CC92 0B:8C82: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02CC92 0B:8C82: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02CC95 0B:8C85: 9D DB 04  STA ram_obj_pos_Y_fr,X
 C - - - - - 0x02CC98 0B:8C88: BD 1D 06  LDA ram_061D_obj,X
 C - - - - - 0x02CC9B 0B:8C8B: AA        TAX
@@ -2500,8 +2534,8 @@ C - - - - - 0x02CCA9 0B:8C99: 60        RTS
 
 
 
-ofs_039_8C9A_9B:
-; con_BD4F_9B
+ofs_039_ai_subscript_8C9A_9B:
+; con_ai_subscr_9B
 C - - J - - 0x02CCAA 0B:8C9A: BD 06 06  LDA ram_obj_config,X
 C - - - - - 0x02CCAD 0B:8C9D: AA        TAX
 C - - - - - 0x02CCAE 0B:8C9E: BD 38 04  LDA ram_obj_pos_X_lo,X
@@ -2564,8 +2598,8 @@ tbl_8CE5_pos_Y_lo:
 
 
 
-ofs_039_8CEF_5D:
-; con_BD4F_5D
+ofs_039_ai_subscript_8CEF_5D:
+; con_ai_subscr_5D
 C - - J - - 0x02CCFF 0B:8CEF: A9 02     LDA #$02
 C - - - - - 0x02CD01 0B:8CF1: 9D 06 06  STA ram_obj_config,X
 bra_8CF4:
@@ -2603,10 +2637,11 @@ tbl_8D1F_pos_Y_lo:
 
 
 
-ofs_039_8D22_89:
-; con_BD4F_89
+ofs_039_ai_subscript_8D22_89:
+; con_ai_subscr_89
 C - - J - - 0x02CD32 0B:8D22: A0 01     LDY #$01
 C - - - - - 0x02CD34 0B:8D24: B1 02     LDA (ram_0002_t007_data),Y
+; bzk optimize, A is always A8
 C - - - - - 0x02CD36 0B:8D26: 9D 1C 04  STA ram_obj_pos_Y_lo,X
 C - - - - - 0x02CD39 0B:8D29: 18        CLC
 C - - - - - 0x02CD3A 0B:8D2A: 69 10     ADC #$10
@@ -2619,8 +2654,8 @@ C - - - - - 0x02CD47 0B:8D37: F0 39     BEQ bra_8D72_next_ai_subscript    ; jmp
 
 
 
-ofs_039_8D39_5F:
-; con_BD4F_5F
+ofs_039_ai_subscript_8D39_5F:
+; con_ai_subscr_5F
 C - - J - - 0x02CD49 0B:8D39: A9 A8     LDA #$A8
 C - - - - - 0x02CD4B 0B:8D3B: 9D 1C 04  STA ram_obj_pos_Y_lo,X
 C - - - - - 0x02CD4E 0B:8D3E: 18        CLC
@@ -2645,16 +2680,16 @@ C - - - - - 0x02CD72 0B:8D62: E9 08     SBC #$08
 C - - - - - 0x02CD74 0B:8D64: 9D 1C 04  STA ram_obj_pos_Y_lo,X
 C - - - - - 0x02CD77 0B:8D67: A9 00     LDA #$00
 C - - - - - 0x02CD79 0B:8D69: 9D 00 04  STA ram_obj_anim_id,X
-C - - - - - 0x02CD7C 0B:8D6C: 20 EF 81  JSR sub_81EF
-C - - - - - 0x02CD7F 0B:8D6F: 20 D4 81  JSR sub_81D4
+C - - - - - 0x02CD7C 0B:8D6C: 20 EF 81  JSR sub_81EF_set_obj_flag_20
+C - - - - - 0x02CD7F 0B:8D6F: 20 D4 81  JSR sub_81D4_set_obj_flag_10
 bra_8D72_next_ai_subscript:
 C - - - - - 0x02CD82 0B:8D72: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CD85 0B:8D75: 60        RTS
 
 
 
-ofs_039_8D76_8E:
-; con_BD4F_8E
+ofs_039_ai_subscript_8D76_8E:
+; con_ai_subscr_8E
 C - - J - - 0x02CD86 0B:8D76: 8A        TXA
 C - - - - - 0x02CD87 0B:8D77: 29 01     AND #$01
 C - - - - - 0x02CD89 0B:8D79: A8        TAY
@@ -2671,15 +2706,15 @@ tbl_8D84:
 
 
 
-ofs_039_8D86_65:
-; con_BD4F_65
+ofs_039_ai_subscript_8D86_65:
+; con_ai_subscr_65
 C - - J - - 0x02CD96 0B:8D86: A0 01     LDY #$01
 C - - - - - 0x02CD98 0B:8D88: B1 02     LDA (ram_0002_t007_data),Y  ; pos_Y_lo
 C - - - - - 0x02CD9A 0B:8D8A: 85 00     STA ram_0000_t0D2_pos_Y_lo
 C - - - - - 0x02CD9C 0B:8D8C: C8        INY ; 01
 C - - - - - 0x02CD9D 0B:8D8D: B1 02     LDA (ram_0002_t007_data),Y  ; pos_X_lo
 C - - - - - 0x02CD9F 0B:8D8F: A4 00     LDY ram_0000_t0D2_pos_Y_lo
-C - - - - - 0x02CDA1 0B:8D91: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02CDA1 0B:8D91: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02CDA4 0B:8D94: D0 C1     BNE bra_8D57_delete_object_and_clear_ai_script
 C - - - - - 0x02CDA6 0B:8D96: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02CDA8 0B:8D98: FE C1 05  INC ram_obj_ai_subscript,X
@@ -2687,11 +2722,11 @@ C - - - - - 0x02CDAB 0B:8D9B: 60        RTS
 
 
 
-ofs_039_8D9C_4E:
-; con_BD4F_4E
+ofs_039_ai_subscript_8D9C_4E:
+; con_ai_subscr_4E
 C - - J - - 0x02CDAC 0B:8D9C: A9 0E     LDA #con_obj_type_0E
 C - - - - - 0x02CDAE 0B:8D9E: A0 01     LDY #$01
-C - - - - - 0x02CDB0 0B:8DA0: 20 93 82  JSR sub_8293
+C - - - - - 0x02CDB0 0B:8DA0: 20 93 82  JSR sub_8293_animation_handler
 C - - - - - 0x02CDB3 0B:8DA3: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CDB6 0B:8DA6: A5 33     LDA ram_blk_id_lo
 C - - - - - 0x02CDB8 0B:8DA8: F0 14     BEQ bra_8DBE
@@ -2723,26 +2758,26 @@ C D 0 - - - 0x02CDDA 0B:8DCA: 20 E3 80  JSR sub_80E3_find_empty_object_slot_09_0
 C - - - - - 0x02CDDD 0B:8DCD: D0 3D     BNE bra_8E0C_no_empty_slots
 loc_8DCF:
 C D 0 - - - 0x02CDDF 0B:8DCF: 20 D7 FE  JSR sub_0x03FEE7_clear_object_speed_and_data
-C - - - - - 0x02CDE2 0B:8DD2: A5 01     LDA ram_0001_t016_pos_X_lo
+C - - - - - 0x02CDE2 0B:8DD2: A5 01     LDA ram_0001_t016_pos_X_lo_projectile
 C - - - - - 0x02CDE4 0B:8DD4: 9D 38 04  STA ram_obj_pos_X_lo,X
-C - - - - - 0x02CDE7 0B:8DD7: A5 02     LDA ram_0002_t025_pos_Y_lo
+C - - - - - 0x02CDE7 0B:8DD7: A5 02     LDA ram_0002_t025_pos_Y_lo_projectile
 C - - - - - 0x02CDE9 0B:8DD9: 9D 1C 04  STA ram_obj_pos_Y_lo,X
-C - - - - - 0x02CDEC 0B:8DDC: A5 03     LDA ram_0003_t009_spd_X_lo
+C - - - - - 0x02CDEC 0B:8DDC: A5 03     LDA ram_0003_t009_spd_X_lo_projectile
 C - - - - - 0x02CDEE 0B:8DDE: 9D F2 04  STA ram_obj_spd_X_lo,X
-C - - - - - 0x02CDF1 0B:8DE1: A5 04     LDA ram_0004_t00A_spd_X_fr
+C - - - - - 0x02CDF1 0B:8DE1: A5 04     LDA ram_0004_t00A_spd_X_fr_projectile
 C - - - - - 0x02CDF3 0B:8DE3: 9D 09 05  STA ram_obj_spd_X_fr,X
-C - - - - - 0x02CDF6 0B:8DE6: A5 05     LDA ram_0005_t007_spd_Y_lo
+C - - - - - 0x02CDF6 0B:8DE6: A5 05     LDA ram_0005_t007_spd_Y_lo_projectile
 C - - - - - 0x02CDF8 0B:8DE8: 9D 20 05  STA ram_obj_spd_Y_lo,X
-C - - - - - 0x02CDFB 0B:8DEB: A5 06     LDA ram_0006_t00C_spd_Y_fr
+C - - - - - 0x02CDFB 0B:8DEB: A5 06     LDA ram_0006_t00C_spd_Y_fr_projectile
 C - - - - - 0x02CDFD 0B:8DED: 9D 37 05  STA ram_obj_spd_Y_fr,X
 C - - - - - 0x02CE00 0B:8DF0: A9 60     LDA #con_obj_flag_20 + con_obj_flag_40
 C - - - - - 0x02CE02 0B:8DF2: 9D 70 04  STA ram_obj_flags,X
-C - - - - - 0x02CE05 0B:8DF5: A5 00     LDA ram_0000_t05C_obj_id
+C - - - - - 0x02CE05 0B:8DF5: A5 00     LDA ram_0000_t05C_obj_id_projectile
 C - - - - - 0x02CE07 0B:8DF7: 9D 4E 05  STA ram_obj_id,X
-C - - - - - 0x02CE0A 0B:8DFA: A5 0A     LDA ram_000A_t01D_obj_facing
+C - - - - - 0x02CE0A 0B:8DFA: A5 0A     LDA ram_000A_t01D_obj_facing_projectile
 C - - - - - 0x02CE0C 0B:8DFC: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x02CE0F 0B:8DFF: 20 C9 9F  JSR sub_9FC9
-C - - - - - 0x02CE12 0B:8E02: A5 07     LDA ram_0007_t00B_ai_script
+C - - - - - 0x02CE12 0B:8E02: A5 07     LDA ram_0007_t00B_ai_script_projectile
 C - - - - - 0x02CE14 0B:8E04: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x02CE17 0B:8E07: 86 08     STX ram_0008_t071
 C - - - - - 0x02CE19 0B:8E09: A6 6C     LDX ram_006C_object_index
@@ -2756,20 +2791,20 @@ C - - - - - 0x02CE20 0B:8E10: 60        RTS
 
 
 sub_8E11:
-C - - - - - 0x02CE21 0B:8E11: 20 6F 8E  JSR sub_8E6F_set_enemy_projectile_data
+C - - - - - 0x02CE21 0B:8E11: 20 6F 8E  JSR sub_8E6F_prepare_enemy_projectile_data
 C - - - - - 0x02CE24 0B:8E14: 20 B9 FE  JSR sub_0x03FEC9_find_empty_object_slot_01_0C
 C - - - - - 0x02CE27 0B:8E17: D0 F3     BNE bra_8E0C    ; if not found
 ; if found
 C - - - - - 0x02CE29 0B:8E19: A9 00     LDA #$00    ; facing right
-C - - - - - 0x02CE2B 0B:8E1B: 85 0A     STA ram_000A_t01D_obj_facing
+C - - - - - 0x02CE2B 0B:8E1B: 85 0A     STA ram_000A_t01D_obj_facing_projectile
 C - - - - - 0x02CE2D 0B:8E1D: 4C CF 8D  JMP loc_8DCF
 
 
 
 loc_8E20:
 sub_8E20:
-ofs_039_8E20_0E:
-; con_BD4F_0E
+ofs_039_ai_subscript_8E20_0E:
+; con_ai_subscr_0E
 C D 0 - - - 0x02CE30 0B:8E20: BD 38 04  LDA ram_obj_pos_X_lo,X
 C - - - - - 0x02CE33 0B:8E23: C9 04     CMP #$04
 C - - - - - 0x02CE35 0B:8E25: 90 0F     BCC bra_8E36
@@ -2790,8 +2825,8 @@ C - - - - - 0x02CE4E 0B:8E3E: 60        RTS
 
 
 
-ofs_039_8E3F_9A:
-; con_BD4F_9A
+ofs_039_ai_subscript_8E3F_9A:
+; con_ai_subscr_9A
 C - - J - - 0x02CE4F 0B:8E3F: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02CE52 0B:8E42: 29 81     AND #con_obj_flag_01 + con_obj_flag_not_visible
 C - - - - - 0x02CE54 0B:8E44: D0 0B     BNE bra_8E51
@@ -2804,10 +2839,10 @@ bra_8E51:
 C - - - - - 0x02CE61 0B:8E51: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CE64 0B:8E54: 60        RTS
 bra_8E55:
-C - - - - - 0x02CE65 0B:8E55: A9 32     LDA #con_sound_32
+C - - - - - 0x02CE65 0B:8E55: A9 32     LDA #con_sfx_32
 C - - - - - 0x02CE67 0B:8E57: 20 5F E2  JSR sub_0x03E26F_play_sound
-ofs_039_8E5A_0D:
-; con_BD4F_0D
+ofs_039_ai_subscript_8E5A_0D:
+; con_ai_subscr_0D
 C - - J - - 0x02CE6A 0B:8E5A: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CE6D 0B:8E5D: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02CE70 0B:8E60: 29 81     AND #con_obj_flag_01 + con_obj_flag_not_visible
@@ -2815,26 +2850,38 @@ C - - - - - 0x02CE72 0B:8E62: D0 DA     BNE bra_8E3E_RTS
 C - - - - - 0x02CE74 0B:8E64: A0 01     LDY #$01
 C - - - - - 0x02CE76 0B:8E66: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02CE78 0B:8E68: A8        TAY
-C - - - - - 0x02CE79 0B:8E69: 20 6F 8E  JSR sub_8E6F_set_enemy_projectile_data
+C - - - - - 0x02CE79 0B:8E69: 20 6F 8E  JSR sub_8E6F_prepare_enemy_projectile_data
 C - - - - - 0x02CE7C 0B:8E6C: 4C CA 8D  JMP loc_8DCA
 
 
 
-sub_8E6F_set_enemy_projectile_data:
+sub_8E6F_prepare_enemy_projectile_data:
+; in
+    ; Y = con_8E6F
+; out
+    ; ram_0000_t05C_obj_id_projectile
+    ; ram_0001_t016_pos_X_lo_projectile
+    ; ram_0002_t025_pos_Y_lo_projectile
+    ; ram_0003_t009_spd_X_lo_projectile
+    ; ram_0004_t00A_spd_X_fr_projectile
+    ; ram_0005_t007_spd_Y_lo_projectile
+    ; ram_0006_t00C_spd_Y_fr_projectile
+    ; ram_0007_t00B_ai_script_projectile
+    ; ram_000A_t01D_obj_facing_projectile
 C - - - - - 0x02CE7F 0B:8E6F: 18        CLC
 C - - - - - 0x02CE80 0B:8E70: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x02CE83 0B:8E73: 79 CC 8E  ADC tbl_8ECC_pos_Y_lo,Y
-C - - - - - 0x02CE86 0B:8E76: 85 02     STA ram_0002_t025_pos_Y_lo
+C - - - - - 0x02CE86 0B:8E76: 85 02     STA ram_0002_t025_pos_Y_lo_projectile
 C - - - - - 0x02CE88 0B:8E78: B9 D4 8E  LDA tbl_8ED4_ai_script,Y
-C - - - - - 0x02CE8B 0B:8E7B: 85 07     STA ram_0007_t00B_ai_script
+C - - - - - 0x02CE8B 0B:8E7B: 85 07     STA ram_0007_t00B_ai_script_projectile
 C - - - - - 0x02CE8D 0B:8E7D: B9 C4 8E  LDA tbl_8EC4_enemy_projectile_obj_id,Y
-C - - - - - 0x02CE90 0B:8E80: 85 00     STA ram_0000_t05C_obj_id
+C - - - - - 0x02CE90 0B:8E80: 85 00     STA ram_0000_t05C_obj_id_projectile
 C - - - - - 0x02CE92 0B:8E82: B9 BC 8E  LDA tbl_8EBC,Y
 C - - - - - 0x02CE95 0B:8E85: F0 06     BEQ bra_8E8D
 C - - - - - 0x02CE97 0B:8E87: BD A8 04  LDA ram_obj_facing,X
 C - - - - - 0x02CE9A 0B:8E8A: 59 B4 8E  EOR tbl_8EB4_facing,Y
 bra_8E8D:   ; A = 00
-C - - - - - 0x02CE9D 0B:8E8D: 85 0A     STA ram_000A_t01D_obj_facing
+C - - - - - 0x02CE9D 0B:8E8D: 85 0A     STA ram_000A_t01D_obj_facing_projectile
 ; bzk optimize, useless CLC because of ASL at 0x02CEA1
 C - - - - - 0x02CE9F 0B:8E8F: 18        CLC
 C - - - - - 0x02CEA0 0B:8E90: 98        TYA
@@ -2844,24 +2891,30 @@ C - - - - - 0x02CEA5 0B:8E95: A8        TAY
 C - - - - - 0x02CEA6 0B:8E96: 18        CLC
 C - - - - - 0x02CEA7 0B:8E97: B9 DC 8E  LDA tbl_8EDC_pos_X_lo,Y
 C - - - - - 0x02CEAA 0B:8E9A: 7D 38 04  ADC ram_obj_pos_X_lo,X
-C - - - - - 0x02CEAD 0B:8E9D: 85 01     STA ram_0001_t016_pos_X_lo
+C - - - - - 0x02CEAD 0B:8E9D: 85 01     STA ram_0001_t016_pos_X_lo_projectile
 sub_8E9F_prepare_XY_speed:
 ; in
-    ; Y = 
+    ; Y = table index
+; out
+    ; ram_0003_t009_spd_X_lo_projectile
+    ; ram_0004_t00A_spd_X_fr_projectile
+    ; ram_0005_t007_spd_Y_lo_projectile
+    ; ram_0006_t00C_spd_Y_fr_projectile
 C - - - - - 0x02CEAF 0B:8E9F: B9 EC 8E  LDA tbl_8EEC_spd_X_lo,Y
-C - - - - - 0x02CEB2 0B:8EA2: 85 03     STA ram_0003_t009_spd_X_lo
+C - - - - - 0x02CEB2 0B:8EA2: 85 03     STA ram_0003_t009_spd_X_lo_projectile
 C - - - - - 0x02CEB4 0B:8EA4: B9 FE 8E  LDA tbl_8EFE_spd_X_fr,Y
-C - - - - - 0x02CEB7 0B:8EA7: 85 04     STA ram_0004_t00A_spd_X_fr
+C - - - - - 0x02CEB7 0B:8EA7: 85 04     STA ram_0004_t00A_spd_X_fr_projectile
 C - - - - - 0x02CEB9 0B:8EA9: B9 10 8F  LDA tbl_8F10_spd_Y_lo,Y
-C - - - - - 0x02CEBC 0B:8EAC: 85 05     STA ram_0005_t007_spd_Y_lo
+C - - - - - 0x02CEBC 0B:8EAC: 85 05     STA ram_0005_t007_spd_Y_lo_projectile
 C - - - - - 0x02CEBE 0B:8EAE: B9 22 8F  LDA tbl_8F22_spd_Y_fr,Y
-C - - - - - 0x02CEC1 0B:8EB1: 85 06     STA ram_0006_t00C_spd_Y_fr
+C - - - - - 0x02CEC1 0B:8EB1: 85 06     STA ram_0006_t00C_spd_Y_fr_projectile
 C - - - - - 0x02CEC3 0B:8EB3: 60        RTS
 
 
 
 tbl_8EB4_facing:
-- - - - - - 0x02CEC4 0B:8EB4: 00        .byte $00   ; 00 
+; see con_8E6F
+- - - - - - 0x02CEC4 0B:8EB4: 00        .byte $00   ; 00 unused, index doesn't exist
 - - - - - - 0x02CEC5 0B:8EB5: 00        .byte $00   ; 01 throwing axe by knight
 - - - - - - 0x02CEC6 0B:8EB6: 00        .byte $00   ; 02 
 - D 0 - - - 0x02CEC7 0B:8EB7: 01        .byte $01   ; 03 
@@ -2873,7 +2926,8 @@ tbl_8EB4_facing:
 
 
 tbl_8EBC:
-- - - - - - 0x02CECC 0B:8EBC: 01        .byte $01   ; 00 
+; see con_8E6F
+- - - - - - 0x02CECC 0B:8EBC: 01        .byte $01   ; 00 unused, index doesn't exist
 - D 0 - - - 0x02CECD 0B:8EBD: 00        .byte $00   ; 01 throwing axe by knight
 - D 0 - - - 0x02CECE 0B:8EBE: 00        .byte $00   ; 02 
 - D 0 - - - 0x02CECF 0B:8EBF: 01        .byte $01   ; 03 
@@ -2885,19 +2939,21 @@ tbl_8EBC:
 
 
 tbl_8EC4_enemy_projectile_obj_id:
-- - - - - - 0x02CED4 0B:8EC4: 40        .byte $40   ; 00 
-- D 0 - - - 0x02CED5 0B:8EC5: 41        .byte $41   ; 01 throwing axe by knight
-- D 0 - - - 0x02CED6 0B:8EC6: 42        .byte $42   ; 02 
-- D 0 - - - 0x02CED7 0B:8EC7: 40        .byte $40   ; 03 
-- D 0 - - - 0x02CED8 0B:8EC8: 43        .byte $43   ; 04 bone by skeleton
-- D 0 - - - 0x02CED9 0B:8EC9: 44        .byte $44   ; 05 
-- D 0 - - - 0x02CEDA 0B:8ECA: 45        .byte $45   ; 06 
-- D 0 - - - 0x02CEDB 0B:8ECB: 41        .byte $41   ; 07 
+; see con_8E6F
+- - - - - - 0x02CED4 0B:8EC4: 40        .byte con_obj_id_40   ; 00 unused, index doesn't exist
+- D 0 - - - 0x02CED5 0B:8EC5: 41        .byte con_obj_id_41   ; 01 throwing axe by knight
+- D 0 - - - 0x02CED6 0B:8EC6: 42        .byte con_obj_id_42   ; 02 
+- D 0 - - - 0x02CED7 0B:8EC7: 40        .byte con_obj_id_40   ; 03 
+- D 0 - - - 0x02CED8 0B:8EC8: 43        .byte con_obj_id_43   ; 04 bone by skeleton
+- D 0 - - - 0x02CED9 0B:8EC9: 44        .byte con_obj_id_44   ; 05 
+- D 0 - - - 0x02CEDA 0B:8ECA: 45        .byte con_obj_id_45   ; 06 
+- D 0 - - - 0x02CEDB 0B:8ECB: 41        .byte con_obj_id_41   ; 07 
 
 
 
 tbl_8ECC_pos_Y_lo:
-- - - - - - 0x02CEDC 0B:8ECC: FE        .byte $FE   ; 00 
+; see con_8E6F
+- - - - - - 0x02CEDC 0B:8ECC: FE        .byte $FE   ; 00 unused, index doesn't exist
 - D 0 - - - 0x02CEDD 0B:8ECD: F6        .byte $F6   ; 01 throwing axe by knight
 - D 0 - - - 0x02CEDE 0B:8ECE: 04        .byte $04   ; 02 
 - D 0 - - - 0x02CEDF 0B:8ECF: F7        .byte $F7   ; 03 
@@ -2909,22 +2965,24 @@ tbl_8ECC_pos_Y_lo:
 
 
 tbl_8ED4_ai_script:
-- - - - - - 0x02CEE4 0B:8ED4: 58        .byte con_BEA1_58   ; 00 
-- D 0 - - - 0x02CEE5 0B:8ED5: 59        .byte con_BEA1_59   ; 01 throwing axe by knight
-- D 0 - - - 0x02CEE6 0B:8ED6: 5A        .byte con_BEA1_5A   ; 02 
-- D 0 - - - 0x02CEE7 0B:8ED7: 58        .byte con_BEA1_58   ; 03 
-- D 0 - - - 0x02CEE8 0B:8ED8: 5B        .byte con_BEA1_5B   ; 04 bone by skeleton
-- D 0 - - - 0x02CEE9 0B:8ED9: 5C        .byte con_BEA1_5C   ; 05 
-- D 0 - - - 0x02CEEA 0B:8EDA: 5D        .byte con_BEA1_5D   ; 06 
-- D 0 - - - 0x02CEEB 0B:8EDB: 59        .byte con_BEA1_59   ; 07 
+; see con_8E6F
+- - - - - - 0x02CEE4 0B:8ED4: 58        .byte con_ai_script_58   ; 00 unused, index doesn't exist
+- D 0 - - - 0x02CEE5 0B:8ED5: 59        .byte con_ai_script_59   ; 01 throwing axe by knight
+- D 0 - - - 0x02CEE6 0B:8ED6: 5A        .byte con_ai_script_5A   ; 02 
+- D 0 - - - 0x02CEE7 0B:8ED7: 58        .byte con_ai_script_58   ; 03 
+- D 0 - - - 0x02CEE8 0B:8ED8: 5B        .byte con_ai_script_5B   ; 04 bone by skeleton
+- D 0 - - - 0x02CEE9 0B:8ED9: 5C        .byte con_ai_script_5C   ; 05 
+- D 0 - - - 0x02CEEA 0B:8EDA: 5D        .byte con_ai_script_5D   ; 06 
+- D 0 - - - 0x02CEEB 0B:8EDB: 59        .byte con_ai_script_59   ; 07 
 
 
 
 tbl_8EDC_pos_X_lo:
+; see con_8E6F
 ;                                              +---------- facing right
 ;                                              |    +----- facing left
 ;                                              |    |
-- - - - - - 0x02CEEC 0B:8EDC: 08        .byte $08, $F8   ; 00 
+- - - - - - 0x02CEEC 0B:8EDC: 08        .byte $08, $F8   ; 00 unused, index doesn't exist
 - D 0 - - - 0x02CEEE 0B:8EDE: 14        .byte $14, $EC   ; 01 
 - D 0 - - - 0x02CEF0 0B:8EE0: 04        .byte $04, $FC   ; 02 
 - D 0 - - - 0x02CEF2 0B:8EE2: 08        .byte $08, $F8   ; 03 
@@ -3023,8 +3081,8 @@ tbl_8F22_spd_Y_fr:
 
 
 
-ofs_039_8F34_02:
-; con_BD4F_02
+ofs_039_ai_subscript_8F34_02:
+; con_ai_subscr_02
 C - - J - - 0x02CF44 0B:8F34: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CF47 0B:8F37: A9 04     LDA #$04
 C - - - - - 0x02CF49 0B:8F39: 85 08     STA ram_0008_t041
@@ -3096,15 +3154,15 @@ tbl_8F9C_spd_Y_lo:
 
 
 
-ofs_039_8FA1_A2:
-; con_BD4F_A2
-- - - - - - 0x02CFB1 0B:8FA1: A9 38     LDA #con_sound_38
+ofs_039_ai_subscript_8FA1_A2:
+; con_ai_subscr_A2
+- - - - - - 0x02CFB1 0B:8FA1: A9 38     LDA #con_sfx_38
 - - - - - - 0x02CFB3 0B:8FA3: 20 5F E2  JSR sub_0x03E26F_play_sound
 - - - - - - 0x02CFB6 0B:8FA6: BD 70 04  LDA ram_obj_flags,X
 - - - - - - 0x02CFB9 0B:8FA9: 29 F1     AND #(con_obj_flag_02 + con_obj_flag_04 + con_obj_flag_08) ^ $FF
 - - - - - - 0x02CFBB 0B:8FAB: 09 60     ORA #con_obj_flag_20 + con_obj_flag_40
 - - - - - - 0x02CFBD 0B:8FAD: 85 04     STA ram_0004_t009_some_obj_flags
-- - - - - - 0x02CFBF 0B:8FAF: 20 2F B5  JSR sub_B52F
+- - - - - - 0x02CFBF 0B:8FAF: 20 2F B5  JSR sub_B52F_clear_some_obj_data
 - - - - - - 0x02CFC2 0B:8FB2: 9D 4E 05  STA ram_obj_id,X
 - - - - - - 0x02CFC5 0B:8FB5: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 - - - - - - 0x02CFC8 0B:8FB8: 85 00     STA ram_0000_t059_pos_Y_lo
@@ -3124,7 +3182,7 @@ loc_8FC3_loop:
 - - - - - - 0x02CFE6 0B:8FD6: 9D EF 05  STA ram_obj_ai_script,X
 - - - - - - 0x02CFE9 0B:8FD9: A5 04     LDA ram_0004_t009_some_obj_flags
 - - - - - - 0x02CFEB 0B:8FDB: 9D 70 04  STA ram_obj_flags,X
-- - - - - - 0x02CFEE 0B:8FDE: 20 2F B5  JSR sub_B52F
+- - - - - - 0x02CFEE 0B:8FDE: 20 2F B5  JSR sub_B52F_clear_some_obj_data
 - - - - - - 0x02CFF1 0B:8FE1: 4C C3 8F  JMP loc_8FC3_loop
 bra_8FE4_no_empty_slots:
 bra_8FE4:
@@ -3133,8 +3191,8 @@ bra_8FE4:
 
 
 
-ofs_039_8FE7_6C_play_sound:
-; con_BD4F_play_sound
+ofs_039_ai_subscript_8FE7_6C_play_sound:
+; con_ai_subscr_play_sound
 C - - J - - 0x02CFF7 0B:8FE7: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02CFFA 0B:8FEA: A0 01     LDY #$01
 C - - - - - 0x02CFFC 0B:8FEC: B1 02     LDA (ram_0002_t007_data),Y
@@ -3142,24 +3200,24 @@ C - - - - - 0x02CFFE 0B:8FEE: 4C 5F E2  JMP loc_0x03E26F_play_sound
 
 
 
-ofs_039_8FF1_29:
-; con_BD4F_29:
+ofs_039_ai_subscript_8FF1_29:
+; con_ai_subscr_29:
 C - - J - - 0x02D001 0B:8FF1: 20 C2 90  JSR sub_90C2
-C - - - - - 0x02D004 0B:8FF4: 20 B0 93  JSR sub_93B0
+C - - - - - 0x02D004 0B:8FF4: 20 B0 93  JSR sub_93B0_get_pos_X_lo_from_spd_X___F8_or_08
 C - - - - - 0x02D007 0B:8FF7: A0 10     LDY #$10    ; pos_Y_lo
-C - - - - - 0x02D009 0B:8FF9: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02D009 0B:8FF9: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02D00C 0B:8FFC: F0 24     BEQ bra_9022
 C - - - - - 0x02D00E 0B:8FFE: C9 04     CMP #$04
 C - - - - - 0x02D010 0B:9000: F0 20     BEQ bra_9022
 C - - - - - 0x02D012 0B:9002: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D014 0B:9004: 20 B0 93  JSR sub_93B0
+C - - - - - 0x02D014 0B:9004: 20 B0 93  JSR sub_93B0_get_pos_X_lo_from_spd_X___F8_or_08
 C - - - - - 0x02D017 0B:9007: A0 08     LDY #$08    ; pos_Y_lo
-C - - - - - 0x02D019 0B:9009: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02D019 0B:9009: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02D01C 0B:900C: D0 14     BNE bra_9022
 C - - - - - 0x02D01E 0B:900E: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D020 0B:9010: 20 B0 93  JSR sub_93B0
+C - - - - - 0x02D020 0B:9010: 20 B0 93  JSR sub_93B0_get_pos_X_lo_from_spd_X___F8_or_08
 C - - - - - 0x02D023 0B:9013: A0 F8     LDY #$F8    ; pos_Y_lo
-C - - - - - 0x02D025 0B:9015: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02D025 0B:9015: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02D028 0B:9018: D0 08     BNE bra_9022
 C - - - - - 0x02D02A 0B:901A: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02D02C 0B:901C: DE 1D 06  DEC ram_061D_obj,X
@@ -3171,16 +3229,16 @@ C - - - - - 0x02D034 0B:9024: 4C 4B 80  JMP loc_804B_invert_spd_X
 
 
 
-ofs_039_9027_28:
-; con_BD4F_28
+ofs_039_ai_subscript_9027_28:
+; con_ai_subscr_28
 C - - J - - 0x02D037 0B:9027: 20 40 82  JSR sub_8240
-C - - - - - 0x02D03A 0B:902A: 20 AA 81  JSR sub_81AA
+C - - - - - 0x02D03A 0B:902A: 20 AA 81  JSR sub_81AA_set_obj_flag_40
 C - - - - - 0x02D03D 0B:902D: BD 57 06  LDA ram_obj_0658,X
 C - - - - - 0x02D040 0B:9030: 09 03     ORA #$03
 C - - - - - 0x02D042 0B:9032: 9D 57 06  STA ram_obj_0658,X
 C - - - - - 0x02D045 0B:9035: A9 08     LDA #con_obj_type_08
 C - - - - - 0x02D047 0B:9037: A0 0D     LDY #$0D
-C - - - - - 0x02D049 0B:9039: 20 93 82  JSR sub_8293
+C - - - - - 0x02D049 0B:9039: 20 93 82  JSR sub_8293_animation_handler
 bra_903C:
 C - - - - - 0x02D04C 0B:903C: BD 33 06  LDA ram_obj_0634,X
 C - - - - - 0x02D04F 0B:903F: 29 80     AND #$80
@@ -3227,8 +3285,8 @@ C - - - - - 0x02D093 0B:9083: 20 B9 FE  JSR sub_0x03FEC9_find_empty_object_slot_
 C - - - - - 0x02D096 0B:9086: D0 21     BNE bra_90A9_RTS    ; if not found
 ; if found
 C - - - - - 0x02D098 0B:9088: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D09A 0B:908A: 20 EF 81  JSR sub_81EF
-C - - - - - 0x02D09D 0B:908D: 20 9E 81  JSR sub_819E
+C - - - - - 0x02D09A 0B:908A: 20 EF 81  JSR sub_81EF_set_obj_flag_20
+C - - - - - 0x02D09D 0B:908D: 20 9E 81  JSR sub_819E_clear_obj_flag_40
 C - - - - - 0x02D0A0 0B:9090: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x02D0A2 0B:9092: 7D 38 04  ADC ram_obj_pos_X_lo,X
 C - - - - - 0x02D0A5 0B:9095: 29 01     AND #$01
@@ -3306,13 +3364,13 @@ C - - - - - 0x02D10E 0B:90FE: 60        RTS
 
 
 
-ofs_039_90FF_2C:
-; con_BD4F_2C
-C - - J - - 0x02D10F 0B:90FF: A0 01     LDY #$01
+ofs_039_ai_subscript_90FF_2C:
+; con_ai_subscr_2C
+C - - J - - 0x02D10F 0B:90FF: A0 01     LDY #con_8E6F_01
 C - - - - - 0x02D111 0B:9101: BD 00 04  LDA ram_obj_anim_id,X
 C - - - - - 0x02D114 0B:9104: C9 32     CMP #$32
 C - - - - - 0x02D116 0B:9106: F0 02     BEQ bra_910A
-C - - - - - 0x02D118 0B:9108: A0 07     LDY #$07
+C - - - - - 0x02D118 0B:9108: A0 07     LDY #con_8E6F_07
 bra_910A:
 C - - - - - 0x02D11A 0B:910A: 20 11 8E  JSR sub_8E11
 C - - - - - 0x02D11D 0B:910D: A5 08     LDA ram_0008_t071
@@ -3325,7 +3383,7 @@ C - - - - - 0x02D12A 0B:911A: 05 09     ORA ram_0009_t01F
 C - - - - - 0x02D12C 0B:911C: 9D 33 06  STA ram_obj_0634,X
 C - - - - - 0x02D12F 0B:911F: A9 00     LDA #$00
 C - - - - - 0x02D131 0B:9121: 9D C1 05  STA ram_obj_ai_subscript,X
-C - - - - - 0x02D134 0B:9124: 4C F8 81  JMP loc_81F8
+C - - - - - 0x02D134 0B:9124: 4C F8 81  JMP loc_81F8_clear_obj_flag_20
 
 
 
@@ -3359,19 +3417,19 @@ C - - - - - 0x02D150 0B:9140: 60        RTS
 
 
 
-ofs_039_9141_2F:
-; con_BD4F_2F
+ofs_039_ai_subscript_9141_2F:
+; con_ai_subscr_2F
 C - - J - - 0x02D151 0B:9141: BD EF 05  LDA ram_obj_ai_script,X
 C - - - - - 0x02D154 0B:9144: C9 14     CMP #$14
 C - - - - - 0x02D156 0B:9146: F0 04     BEQ bra_914C
 C - - - - - 0x02D158 0B:9148: C9 13     CMP #$13
 C - - - - - 0x02D15A 0B:914A: D0 07     BNE bra_9153
 bra_914C:
-C - - - - - 0x02D15C 0B:914C: A0 0D     LDY #$0D
+C - - - - - 0x02D15C 0B:914C: A0 0D     LDY #con_B7BD_0D
 C - - - - - 0x02D15E 0B:914E: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D161 0B:9151: F0 3F     BEQ bra_9192
 bra_9153:
-C - - - - - 0x02D163 0B:9153: A0 05     LDY #$05
+C - - - - - 0x02D163 0B:9153: A0 05     LDY #con_B7BD_05
 C - - - - - 0x02D165 0B:9155: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D168 0B:9158: F0 25     BEQ bra_917F
 C - - - - - 0x02D16A 0B:915A: 20 91 8B  JSR sub_8B91_correct_pos_Y_lo
@@ -3389,7 +3447,7 @@ C - - - - - 0x02D178 0B:9168: D0 0E     BNE bra_9178
 - - - - - - 0x02D184 0B:9174: C9 70     CMP #$70
 - - - - - - 0x02D186 0B:9176: 90 07     BCC bra_917F
 bra_9178:
-C - - - - - 0x02D188 0B:9178: A0 00     LDY #$00
+C - - - - - 0x02D188 0B:9178: A0 00     LDY #con_B7BD_00
 C - - - - - 0x02D18A 0B:917A: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D18D 0B:917D: F0 05     BEQ bra_9184
 bra_917F:
@@ -3399,12 +3457,12 @@ bra_9184:
 C - - - - - 0x02D194 0B:9184: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02D196 0B:9186: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02D199 0B:9189: D0 06     BNE bra_9191_RTS
-C - - - - - 0x02D19B 0B:918B: 20 9E 81  JSR sub_819E
+C - - - - - 0x02D19B 0B:918B: 20 9E 81  JSR sub_819E_clear_obj_flag_40
 C - - - - - 0x02D19E 0B:918E: FE C1 05  INC ram_obj_ai_subscript,X
 bra_9191_RTS:
 C - - - - - 0x02D1A1 0B:9191: 60        RTS
 bra_9192:
-C - - - - - 0x02D1A2 0B:9192: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D1A2 0B:9192: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D1A5 0B:9195: A9 01     LDA #$01
 C - - - - - 0x02D1A7 0B:9197: 9D 20 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x02D1AA 0B:919A: BD EF 05  LDA ram_obj_ai_script,X
@@ -3419,13 +3477,13 @@ bra_91A5:
 
 
 
-ofs_039_91AB_66:
-; con_BD4F_66
-C - - J - - 0x02D1BB 0B:91AB: A0 05     LDY #$05
+ofs_039_ai_subscript_91AB_66:
+; con_ai_subscr_66
+C - - J - - 0x02D1BB 0B:91AB: A0 05     LDY #con_B7BD_05
 C - - - - - 0x02D1BD 0B:91AD: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D1C0 0B:91B0: F0 CD     BEQ bra_917F
 C - - - - - 0x02D1C2 0B:91B2: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D1C4 0B:91B4: A0 00     LDY #$00
+C - - - - - 0x02D1C4 0B:91B4: A0 00     LDY #con_B7BD_00
 C - - - - - 0x02D1C6 0B:91B6: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D1C9 0B:91B9: D0 C4     BNE bra_917F
 C - - - - - 0x02D1CB 0B:91BB: A6 6C     LDX ram_006C_object_index
@@ -3452,7 +3510,7 @@ C - - - - - 0x02D1F7 0B:91E7: D0 64     BNE bra_924D
 C - - - - - 0x02D1F9 0B:91E9: BD 7C 05  LDA ram_obj_anim_timer,X
 C - - - - - 0x02D1FC 0B:91EC: C9 10     CMP #$10
 C - - - - - 0x02D1FE 0B:91EE: D0 5D     BNE bra_924D
-C - - - - - 0x02D200 0B:91F0: A0 0B     LDY #$0B
+C - - - - - 0x02D200 0B:91F0: A0 0B     LDY #con_B7BD_0B
 C - - - - - 0x02D202 0B:91F2: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D205 0B:91F5: F0 56     BEQ bra_924D
 C - - - - - 0x02D207 0B:91F7: A6 6C     LDX ram_006C_object_index
@@ -3490,7 +3548,7 @@ C - - - - - 0x02D24F 0B:923F: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x02D252 0B:9242: A9 5F     LDA #$5F
 C - - - - - 0x02D254 0B:9244: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x02D257 0B:9247: 20 C9 9F  JSR sub_9FC9
-C - - - - - 0x02D25A 0B:924A: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D25A 0B:924A: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 bra_924D:
 bra_924D_no_empty_slots:
 C - - - - - 0x02D25D 0B:924D: A6 6C     LDX ram_006C_object_index
@@ -3511,7 +3569,7 @@ tbl_9252:
 
 
 bra_9254:
-C - - - - - 0x02D264 0B:9254: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D264 0B:9254: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D267 0B:9257: A9 01     LDA #$01
 C - - - - - 0x02D269 0B:9259: 9D 20 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x02D26C 0B:925C: FE C1 05  INC ram_obj_ai_subscript,X
@@ -3519,27 +3577,27 @@ C - - - - - 0x02D26F 0B:925F: 60        RTS
 
 
 
-ofs_039_9260_3B:
-; con_BD4F_3B
-C - - J - - 0x02D270 0B:9260: 20 A6 93  JSR sub_93A6
+ofs_039_ai_subscript_9260_3B:
+; con_ai_subscr_3B
+C - - J - - 0x02D270 0B:9260: 20 A6 93  JSR sub_93A6_get_pos_X_lo_from_facing___FB_or_05
 C - - - - - 0x02D273 0B:9263: A0 10     LDY #$10    ; pos_Y_lo
-C - - - - - 0x02D275 0B:9265: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02D275 0B:9265: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02D278 0B:9268: F0 EA     BEQ bra_9254
 C - - - - - 0x02D27A 0B:926A: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D27C 0B:926C: 20 B0 93  JSR sub_93B0
+C - - - - - 0x02D27C 0B:926C: 20 B0 93  JSR sub_93B0_get_pos_X_lo_from_spd_X___F8_or_08
 C - - - - - 0x02D27F 0B:926F: A0 10     LDY #$10    ; pos_Y_lo
-C - - - - - 0x02D281 0B:9271: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02D281 0B:9271: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02D284 0B:9274: F0 60     BEQ bra_92D6
 C - - - - - 0x02D286 0B:9276: C9 04     CMP #$04
 C - - - - - 0x02D288 0B:9278: F0 5C     BEQ bra_92D6
 C - - - - - 0x02D28A 0B:927A: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D28C 0B:927C: 20 B0 93  JSR sub_93B0
+C - - - - - 0x02D28C 0B:927C: 20 B0 93  JSR sub_93B0_get_pos_X_lo_from_spd_X___F8_or_08
 C - - - - - 0x02D28F 0B:927F: A0 08     LDY #$08    ; pos_Y_lo
-C - - - - - 0x02D291 0B:9281: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02D291 0B:9281: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02D294 0B:9284: D0 50     BNE bra_92D6
 C - - - - - 0x02D296 0B:9286: DE 1D 06  DEC ram_061D_obj,X
 C - - - - - 0x02D299 0B:9289: D0 38     BNE bra_92C3
-C - - - - - 0x02D29B 0B:928B: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D29B 0B:928B: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D29E 0B:928E: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02D2A1 0B:9291: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02D2A4 0B:9294: FE C1 05  INC ram_obj_ai_subscript,X
@@ -3547,21 +3605,21 @@ C - - - - - 0x02D2A7 0B:9297: 60        RTS
 
 
 
-ofs_039_9298_34:
-; con_BD4F_34
-C - - J - - 0x02D2A8 0B:9298: 20 B0 93  JSR sub_93B0
+ofs_039_ai_subscript_9298_34:
+; con_ai_subscr_34
+C - - J - - 0x02D2A8 0B:9298: 20 B0 93  JSR sub_93B0_get_pos_X_lo_from_spd_X___F8_or_08
 C - - - - - 0x02D2AB 0B:929B: A0 10     LDY #$10    ; pos_Y_lo
-C - - - - - 0x02D2AD 0B:929D: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02D2AD 0B:929D: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02D2B0 0B:92A0: F0 39     BEQ bra_92DB
 C - - - - - 0x02D2B2 0B:92A2: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D2B4 0B:92A4: 20 BA 93  JSR sub_93BA
+C - - - - - 0x02D2B4 0B:92A4: 20 BA 93  JSR sub_93BA_get_pos_X_lo_from_spd_X___E8_or_18
 C - - - - - 0x02D2B7 0B:92A7: A0 08     LDY #$08    ; pos_Y_lo
-C - - - - - 0x02D2B9 0B:92A9: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02D2B9 0B:92A9: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02D2BC 0B:92AC: F0 0E     BEQ bra_92BC
 C - - - - - 0x02D2BE 0B:92AE: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D2C0 0B:92B0: 20 BA 93  JSR sub_93BA
+C - - - - - 0x02D2C0 0B:92B0: 20 BA 93  JSR sub_93BA_get_pos_X_lo_from_spd_X___E8_or_18
 C - - - - - 0x02D2C3 0B:92B3: A0 F8     LDY #$F8    ; pos_Y_lo
-C - - - - - 0x02D2C5 0B:92B5: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02D2C5 0B:92B5: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02D2C8 0B:92B8: D0 1C     BNE bra_92D6
 C - - - - - 0x02D2CA 0B:92BA: F0 1F     BEQ bra_92DB    ; jmp
 bra_92BC:
@@ -3596,12 +3654,12 @@ C - - - - - 0x02D2FE 0B:92EE: 9D 20 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x02D301 0B:92F1: A9 00     LDA #$00
 C - - - - - 0x02D303 0B:92F3: 9D 09 05  STA ram_obj_spd_X_fr,X
 C - - - - - 0x02D306 0B:92F6: 9D 37 05  STA ram_obj_spd_Y_fr,X
-C - - - - - 0x02D309 0B:92F9: 4C EF 81  JMP loc_81EF
+C - - - - - 0x02D309 0B:92F9: 4C EF 81  JMP loc_81EF_set_obj_flag_20
 
 
 
-ofs_039_92FC_33:
-; con_BD4F_33
+ofs_039_ai_subscript_92FC_33:
+; con_ai_subscr_33
 C - - J - - 0x02D30C 0B:92FC: A0 01     LDY #$01
 C - - - - - 0x02D30E 0B:92FE: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02D310 0B:9300: 9D 06 06  STA ram_obj_config,X
@@ -3616,18 +3674,18 @@ C - - - - - 0x02D323 0B:9313: 9D 20 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x02D326 0B:9316: A9 00     LDA #< $0200
 C - - - - - 0x02D328 0B:9318: 9D 37 05  STA ram_obj_spd_Y_fr,X
 bra_931B_01_Clock_Tower:
-C - - - - - 0x02D32B 0B:931B: 20 B0 93  JSR sub_93B0
+C - - - - - 0x02D32B 0B:931B: 20 B0 93  JSR sub_93B0_get_pos_X_lo_from_spd_X___F8_or_08
 C - - - - - 0x02D32E 0B:931E: A0 10     LDY #$10    ; pos_Y_lo
-C - - - - - 0x02D330 0B:9320: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02D330 0B:9320: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02D333 0B:9323: F0 1C     BEQ bra_9341_RTS
 C - - - - - 0x02D335 0B:9325: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D337 0B:9327: A0 06     LDY #$06
+C - - - - - 0x02D337 0B:9327: A0 06     LDY #con_B7BD_06
 C - - - - - 0x02D339 0B:9329: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D33C 0B:932C: F0 14     BEQ bra_9342
 C - - - - - 0x02D33E 0B:932E: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D340 0B:9330: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D340 0B:9330: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D343 0B:9333: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02D346 0B:9336: 20 F8 81  JSR sub_81F8
+C - - - - - 0x02D346 0B:9336: 20 F8 81  JSR sub_81F8_clear_obj_flag_20
 C - - - - - 0x02D349 0B:9339: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x02D34C 0B:933C: 29 F0     AND #$F0
 C - - - - - 0x02D34E 0B:933E: 9D 1C 04  STA ram_obj_pos_Y_lo,X
@@ -3635,7 +3693,7 @@ bra_9341_RTS:
 C - - - - - 0x02D351 0B:9341: 60        RTS
 bra_9342:
 - - - - - - 0x02D352 0B:9342: A6 6C     LDX ram_006C_object_index
-- - - - - - 0x02D354 0B:9344: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+- - - - - - 0x02D354 0B:9344: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 - - - - - - 0x02D357 0B:9347: A9 01     LDA #> $0180
 - - - - - - 0x02D359 0B:9349: 9D 20 05  STA ram_obj_spd_Y_lo,X
 - - - - - - 0x02D35C 0B:934C: A9 80     LDA #< $0180
@@ -3646,11 +3704,11 @@ bra_9342:
 
 
 
-ofs_039_9358_35:
-; con_BD4F_35
+ofs_039_ai_subscript_9358_35:
+; con_ai_subscr_35
 C - - J - - 0x02D368 0B:9358: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02D36B 0B:935B: 20 AA 81  JSR sub_81AA
-C - - - - - 0x02D36E 0B:935E: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D36B 0B:935B: 20 AA 81  JSR sub_81AA_set_obj_flag_40
+C - - - - - 0x02D36E 0B:935E: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D371 0B:9361: A9 28     LDA #$28
 C - - - - - 0x02D373 0B:9363: 9D 1D 06  STA ram_061D_obj,X
 C - - - - - 0x02D376 0B:9366: 20 30 82  JSR sub_8230_set_facing_towards_player
@@ -3701,58 +3759,63 @@ C - - - - - 0x02D3B3 0B:93A3: 4C 8B 93  JMP loc_938B
 
 
 
-sub_93A6:
+sub_93A6_get_pos_X_lo_from_facing___FB_or_05:
 ; out
     ; A = pos_X_lo
 C - - - - - 0x02D3B6 0B:93A6: A9 FB     LDA #$FB
 C - - - - - 0x02D3B8 0B:93A8: BC A8 04  LDY ram_obj_facing,X
 C - - - - - 0x02D3BB 0B:93AB: F0 0C     BEQ bra_93B9_RTS    ; if facing right
+; if facing left
 C - - - - - 0x02D3BD 0B:93AD: A9 05     LDA #$05
 C - - - - - 0x02D3BF 0B:93AF: 60        RTS
 
 
 
-sub_93B0:
+sub_93B0_get_pos_X_lo_from_spd_X___F8_or_08:
 ; out
     ; A = pos_X_lo
 C - - - - - 0x02D3C0 0B:93B0: A9 F8     LDA #$F8
 C - - - - - 0x02D3C2 0B:93B2: BC F2 04  LDY ram_obj_spd_X_lo,X
-C - - - - - 0x02D3C5 0B:93B5: 30 02     BMI bra_93B9_RTS
+C - - - - - 0x02D3C5 0B:93B5: 30 02     BMI bra_93B9_RTS    ; if moving left
+; if moving to the right
 C - - - - - 0x02D3C7 0B:93B7: A9 08     LDA #$08
 bra_93B9_RTS:
 C - - - - - 0x02D3C9 0B:93B9: 60        RTS
 
 
 
-sub_93BA:
+sub_93BA_get_pos_X_lo_from_spd_X___E8_or_18:
 ; out
-    ; A = 
+    ; A = pos_X_lo
 C - - - - - 0x02D3CA 0B:93BA: A9 E8     LDA #$E8
 C - - - - - 0x02D3CC 0B:93BC: BC F2 04  LDY ram_obj_spd_X_lo,X
-C - - - - - 0x02D3CF 0B:93BF: 30 F8     BMI bra_93B9_RTS
+C - - - - - 0x02D3CF 0B:93BF: 30 F8     BMI bra_93B9_RTS    ; if moving left
+; if moving to the right
 C - - - - - 0x02D3D1 0B:93C1: A9 18     LDA #$18
 C - - - - - 0x02D3D3 0B:93C3: 60        RTS
 
 
 
-ofs_039_93C4_36:
-; con_BD4F_36
+ofs_039_ai_subscript_93C4_36:
+; con_ai_subscr_36
 C - - J - - 0x02D3D4 0B:93C4: 20 B3 80  JSR sub_80B3_get_object_distance_X_to_player
 C - - - - - 0x02D3D7 0B:93C7: A0 01     LDY #$01
 C - - - - - 0x02D3D9 0B:93C9: D1 02     CMP (ram_0002_t007_data),Y
-C - - - - - 0x02D3DB 0B:93CB: B0 04     BCS bra_93D1
+C - - - - - 0x02D3DB 0B:93CB: B0 04     BCS bra_93D1    ; if too far
+; if close enough
 C - - - - - 0x02D3DD 0B:93CD: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02D3E0 0B:93D0: 60        RTS
 bra_93D1:
 C - - - - - 0x02D3E1 0B:93D1: A0 02     LDY #$02
 C - - - - - 0x02D3E3 0B:93D3: B1 02     LDA (ram_0002_t007_data),Y
+; bzk optimize, A is always 00
 C - - - - - 0x02D3E5 0B:93D5: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x02D3E8 0B:93D8: 60        RTS
 
 
 
-ofs_039_93D9_7E:
-; con_BD4F_7E
+ofs_039_ai_subscript_93D9_7E:
+; con_ai_subscr_7E
 C - - J - - 0x02D3E9 0B:93D9: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02D3EC 0B:93DC: A9 0F     LDA #$0F
 C - - - - - 0x02D3EE 0B:93DE: 9D 06 06  STA ram_obj_config,X
@@ -3786,8 +3849,8 @@ tbl_93FB:
 
 
 
-ofs_039_9403_7D:
-; con_BD4F_7D
+ofs_039_ai_subscript_9403_7D:
+; con_ai_subscr_7D
 C - - J - - 0x02D413 0B:9403: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02D416 0B:9406: 29 01     AND #con_obj_flag_01
 C - - - - - 0x02D418 0B:9408: D0 F0     BNE bra_93FA_RTS
@@ -3809,7 +3872,7 @@ C - - - - - 0x02D43B 0B:942B: DE 33 06  DEC ram_obj_0634,X
 C - - - - - 0x02D43E 0B:942E: D0 08     BNE bra_9438_RTS
 bra_9430:
 C - - - - - 0x02D440 0B:9430: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D442 0B:9432: 20 BC 81  JSR sub_81BC
+C - - - - - 0x02D442 0B:9432: 20 BC 81  JSR sub_81BC_clear_obj_flag_08
 C - - - - - 0x02D445 0B:9435: FE C1 05  INC ram_obj_ai_subscript,X
 bra_9438_RTS:
 C - - - - - 0x02D448 0B:9438: 60        RTS
@@ -3822,8 +3885,8 @@ tbl_9439:
 
 
 
-ofs_039_943B_7F:
-; con_BD4F_7F
+ofs_039_ai_subscript_943B_7F:
+; con_ai_subscr_7F
 C - - J - - 0x02D44B 0B:943B: 20 40 82  JSR sub_8240
 C - - - - - 0x02D44E 0B:943E: 20 B3 80  JSR sub_80B3_get_object_distance_X_to_player
 C - - - - - 0x02D451 0B:9441: 29 F0     AND #$F0
@@ -3913,13 +3976,13 @@ tbl_9491_spd_Y_fr:
 
 
 
-ofs_039_949B_80:
-; con_BD4F_80
+ofs_039_ai_subscript_949B_80:
+; con_ai_subscr_80
 C - - J - - 0x02D4AB 0B:949B: BD 20 05  LDA ram_obj_spd_Y_lo,X
 C - - - - - 0x02D4AE 0B:949E: 10 18     BPL bra_94B8
-C - - - - - 0x02D4B0 0B:94A0: A9 26     LDA #con_sound_26
+C - - - - - 0x02D4B0 0B:94A0: A9 26     LDA #con_sfx_26
 C - - - - - 0x02D4B2 0B:94A2: 20 5F E2  JSR sub_0x03E26F_play_sound
-C - - - - - 0x02D4B5 0B:94A5: 20 F8 81  JSR sub_81F8
+C - - - - - 0x02D4B5 0B:94A5: 20 F8 81  JSR sub_81F8_clear_obj_flag_20
 C - - - - - 0x02D4B8 0B:94A8: A0 06     LDY #$06
 C - - - - - 0x02D4BA 0B:94AA: A9 12     LDA #con_obj_type_12
 C - - - - - 0x02D4BC 0B:94AC: 20 5C EF  JSR sub_0x03EF6C_prepare_animation
@@ -3935,16 +3998,16 @@ C - - - - - 0x02D4CA 0B:94BA: 4C A1 80  JMP loc_80A1_decrease_spd_Y
 
 
 
-ofs_039_94BD_81:
-; con_BD4F_81
+ofs_039_ai_subscript_94BD_81_keep_decreasing_spd_Y_while_timer:
+; con_ai_subscr_81_dec_spd_Y_while_timer
 C - - J - - 0x02D4CD 0B:94BD: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02D4D0 0B:94C0: F0 F2     BEQ bra_94B4
 C - - - - - 0x02D4D2 0B:94C2: D0 F4     BNE bra_94B8    ; jmp
 
 
 
-ofs_039_94C4_82:
-; con_BD4F_82
+ofs_039_ai_subscript_94C4_82:
+; con_ai_subscr_82
 C - - J - - 0x02D4D4 0B:94C4: A9 10     LDA #$10
 C - - - - - 0x02D4D6 0B:94C6: 20 A1 80  JSR sub_80A1_decrease_spd_Y
 C - - - - - 0x02D4D9 0B:94C9: BD 1C 04  LDA ram_obj_pos_Y_lo,X
@@ -3962,18 +4025,18 @@ C - - - - - 0x02D4EF 0B:94DF: 4C B2 84  JMP loc_84B2_delete_object_and_clear_ai_
 
 
 
-ofs_039_94E2_83:
-; con_BD4F_83
+ofs_039_ai_subscript_94E2_83:
+; con_ai_subscr_83
 C - - J - - 0x02D4F2 0B:94E2: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02D4F5 0B:94E5: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D4F5 0B:94E5: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D4F8 0B:94E8: A9 FF     LDA #$FF
 C - - - - - 0x02D4FA 0B:94EA: 9D 20 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x02D4FD 0B:94ED: 60        RTS
 
 
 
-ofs_039_94EE_3C:
-; con_BD4F_3C
+ofs_039_ai_subscript_94EE_3C_conditional_branch:
+; con_ai_subscr_3C_conditional_branch
 C - - J - - 0x02D4FE 0B:94EE: A0 01     LDY #$01
 C - - - - - 0x02D500 0B:94F0: BD 33 06  LDA ram_obj_0634,X
 C - - - - - 0x02D503 0B:94F3: C9 01     CMP #$01
@@ -3988,9 +4051,9 @@ C - - - - - 0x02D512 0B:9502: 60        RTS
 
 
 
-ofs_039_9503_3E:
-; con_BD4F_3E
-C - - J - - 0x02D513 0B:9503: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+ofs_039_ai_subscript_9503_3E:
+; con_ai_subscr_3E
+C - - J - - 0x02D513 0B:9503: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D516 0B:9506: A9 FF     LDA #$FF
 C - - - - - 0x02D518 0B:9508: 9D 20 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x02D51B 0B:950B: FE C1 05  INC ram_obj_ai_subscript,X
@@ -3999,14 +4062,14 @@ C - - - - - 0x02D51E 0B:950E: 60        RTS
 
 
 
-ofs_039_950F_3D:
-; con_BD4F_3D
+ofs_039_ai_subscript_950F_3D_conditional_branch:
+; con_ai_subscr_3D_conditional_branch
 C - - J - - 0x02D51F 0B:950F: A9 10     LDA #$10
 C - - - - - 0x02D521 0B:9511: 20 A1 80  JSR sub_80A1_decrease_spd_Y
-C - - - - - 0x02D524 0B:9514: A0 04     LDY #$04
+C - - - - - 0x02D524 0B:9514: A0 04     LDY #con_B7BD_04
 C - - - - - 0x02D526 0B:9516: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D529 0B:9519: F0 07     BEQ bra_9522
-C - - - - - 0x02D52B 0B:951B: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D52B 0B:951B: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D52E 0B:951E: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02D531 0B:9521: 60        RTS
 bra_9522:
@@ -4016,7 +4079,7 @@ C - - - - - 0x02D535 0B:9525: C9 30     CMP #$30
 C - - - - - 0x02D537 0B:9527: B0 E5     BCS bra_950E_RTS
 C - - - - - 0x02D539 0B:9529: A9 00     LDA #$00
 C - - - - - 0x02D53B 0B:952B: 9D 00 04  STA ram_obj_anim_id,X
-C - - - - - 0x02D53E 0B:952E: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D53E 0B:952E: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D541 0B:9531: A0 01     LDY #$01
 C - - - - - 0x02D543 0B:9533: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02D545 0B:9535: 9D C1 05  STA ram_obj_ai_subscript,X
@@ -4024,8 +4087,8 @@ C - - - - - 0x02D548 0B:9538: 60        RTS
 
 
 
-ofs_039_9539_40:
-; con_BD4F_40
+ofs_039_ai_subscript_9539_40:
+; con_ai_subscr_40
 C - - J - - 0x02D549 0B:9539: 20 30 82  JSR sub_8230_set_facing_towards_player
 C - - - - - 0x02D54C 0B:953C: A9 00     LDA #> $00C0
 C - - - - - 0x02D54E 0B:953E: A0 C0     LDY #< $00C0
@@ -4039,9 +4102,9 @@ C - - - - - 0x02D55D 0B:954D: 60        RTS
 
 
 
-ofs_039_954E_41:
-; con_BD4F_41
-C - - J - - 0x02D55E 0B:954E: A0 04     LDY #$04
+ofs_039_ai_subscript_954E_41:
+; con_ai_subscr_41
+C - - J - - 0x02D55E 0B:954E: A0 04     LDY #con_B7BD_04
 C - - - - - 0x02D560 0B:9550: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D563 0B:9553: F0 08     BEQ bra_955D
 C - - - - - 0x02D565 0B:9555: A6 6C     LDX ram_006C_object_index
@@ -4065,7 +4128,7 @@ C - - - - - 0x02D57B 0B:956B: B0 E0     BCS bra_954D_RTS
 - - - - - - 0x02D58B 0B:957B: 9D 37 05  STA ram_obj_spd_Y_fr,X
 - - - - - - 0x02D58E 0B:957E: 60        RTS
 bra_957F:
-- - - - - - 0x02D58F 0B:957F: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+- - - - - - 0x02D58F 0B:957F: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 - - - - - - 0x02D592 0B:9582: 9D 00 04  STA ram_obj_anim_id,X
 - - - - - - 0x02D595 0B:9585: A9 17     LDA #$17
 - - - - - - 0x02D597 0B:9587: 9D C1 05  STA ram_obj_ai_subscript,X
@@ -4073,14 +4136,14 @@ bra_957F:
 
 
 
-ofs_039_958B_42:
-; con_BD4F_42
+ofs_039_ai_subscript_958B_42:
+; con_ai_subscr_42
 C - - J - - 0x02D59B 0B:958B: A9 30     LDA #$30
 C - - - - - 0x02D59D 0B:958D: 9D 1C 04  STA ram_obj_pos_Y_lo,X
 C - - - - - 0x02D5A0 0B:9590: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x02D5A3 0B:9593: 9D 38 04  STA ram_obj_pos_X_lo,X
-ofs_039_9596_43:
-; con_BD4F_43
+ofs_039_ai_subscript_9596_43:
+; con_ai_subscr_43
 C - - J - - 0x02D5A6 0B:9596: A0 01     LDY #$01
 C - - - - - 0x02D5A8 0B:9598: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02D5AA 0B:959A: 9D 20 05  STA ram_obj_spd_Y_lo,X
@@ -4092,13 +4155,13 @@ C - - - - - 0x02D5B6 0B:95A6: 60        RTS
 
 
 
-ofs_039_95A7_3F:
-; con_BD4F_3F
-C - - J - - 0x02D5B7 0B:95A7: A0 03     LDY #$03
+ofs_039_ai_subscript_95A7_3F:
+; con_ai_subscr_3F
+C - - J - - 0x02D5B7 0B:95A7: A0 03     LDY #con_B7BD_03
 C - - - - - 0x02D5B9 0B:95A9: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D5BC 0B:95AC: F0 07     BEQ bra_95B5
 loc_95AE:
-C D 0 - - - 0x02D5BE 0B:95AE: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C D 0 - - - 0x02D5BE 0B:95AE: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D5C1 0B:95B1: FE C1 05  INC ram_obj_ai_subscript,X
 bra_95B4_RTS:
 C - - - - - 0x02D5C4 0B:95B4: 60        RTS
@@ -4116,8 +4179,8 @@ C - - - - - 0x02D5DB 0B:95CB: 60        RTS
 
 
 
-ofs_039_95CC_45_water_splash:
-; con_BD4F_water_splash
+ofs_039_ai_subscript_95CC_45_water_splash:
+; con_ai_subscr_water_splash
 ; water splash of the fish-like enemy when it
 ; swims under the water and you can see its shadow
 ; and then it stands up and shoots straight foward
@@ -4206,8 +4269,8 @@ tbl_961B:
 
 
 
-ofs_039_9623_46:
-; con_BD4F_46
+ofs_039_ai_subscript_9623_46:
+; con_ai_subscr_46
 C - - J - - 0x02D633 0B:9623: DE 1D 06  DEC ram_061D_obj,X
 C - - - - - 0x02D636 0B:9626: F0 09     BEQ bra_9631
 C - - - - - 0x02D638 0B:9628: BD 06 06  LDA ram_obj_config,X
@@ -4218,8 +4281,8 @@ C - - - - - 0x02D641 0B:9631: 4C B2 84  JMP loc_84B2_delete_object_and_clear_ai_
 
 
 
-ofs_039_9634_5A:
-; con_BD4F_5A
+ofs_039_ai_subscript_9634_5A:
+; con_ai_subscr_5A
 C - - J - - 0x02D644 0B:9634: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x02D646 0B:9636: 9D 09 05  STA ram_obj_spd_X_fr,X
 C - - - - - 0x02D649 0B:9639: 8A        TXA
@@ -4230,20 +4293,20 @@ C - - - - - 0x02D651 0B:9641: 4C B8 84  JMP loc_84B8
 
 
 
-ofs_039_9644_47:
-; con_BD4F_47
-ofs_039_9644_4A:
-; con_BD4F_4A
-ofs_039_9644_4B:
-; con_BD4F_4B
-ofs_039_9644_4C:
-; con_BD4F_4C
+ofs_039_ai_subscript_9644_47:
+; con_ai_subscr_47
+ofs_039_ai_subscript_9644_4A:    ; unused
+; con_ai_subscr_4A
+ofs_039_ai_subscript_9644_4B:    ; unused
+; con_ai_subscr_4B
+ofs_039_ai_subscript_9644_4C:    ; unused
+; con_ai_subscr_4C
 C - - J - - 0x02D654 0B:9644: A9 00     LDA #$00
 C - - - - - 0x02D656 0B:9646: 9D 33 06  STA ram_obj_0634,X
-C - - - - - 0x02D659 0B:9649: 20 A7 81  JSR sub_81A7
+C - - - - - 0x02D659 0B:9649: 20 A7 81  JSR sub_81A7_set_obj_flag_40
 C - - - - - 0x02D65C 0B:964C: A9 00     LDA #$00
 C - - - - - 0x02D65E 0B:964E: 9D 1D 06  STA ram_061D_obj,X
-C - - - - - 0x02D661 0B:9651: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D661 0B:9651: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D664 0B:9654: 20 D5 80  JSR sub_80D5_get_object_distance_Y_to_player
 C - - - - - 0x02D667 0B:9657: C9 40     CMP #$40
 C - - - - - 0x02D669 0B:9659: B0 0C     BCS bra_9667
@@ -4280,8 +4343,8 @@ tbl_9677:
 
 
 
-ofs_039_967B_48:
-; con_BD4F_48
+ofs_039_ai_subscript_967B_48:
+; con_ai_subscr_48
 C - - J - - 0x02D68B 0B:967B: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02D68E 0B:967E: F0 06     BEQ bra_9686
 C - - - - - 0x02D690 0B:9680: 20 43 82  JSR sub_8243
@@ -4304,13 +4367,13 @@ tbl_9694:
 
 
 
-ofs_039_9698_49:
-; con_BD4F_49
+ofs_039_ai_subscript_9698_49:
+; con_ai_subscr_49
 C - - J - - 0x02D6A8 0B:9698: DE 06 06  DEC ram_obj_config,X
 ; bzk optimize, branch to RTS at 0x02D6D6 for readability
 C - - - - - 0x02D6AB 0B:969B: D0 D5     BNE bra_9672_RTS
-C - - - - - 0x02D6AD 0B:969D: 20 AA 81  JSR sub_81AA
-C - - - - - 0x02D6B0 0B:96A0: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D6AD 0B:969D: 20 AA 81  JSR sub_81AA_set_obj_flag_40
+C - - - - - 0x02D6B0 0B:96A0: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D6B3 0B:96A3: FE 33 06  INC ram_obj_0634,X
 C - - - - - 0x02D6B6 0B:96A6: BD 33 06  LDA ram_obj_0634,X
 C - - - - - 0x02D6B9 0B:96A9: C9 08     CMP #$08
@@ -4466,11 +4529,12 @@ C - - - - - 0x02D798 0B:9788: 60        RTS
 
 
 
-ofs_039_9789_56:
-; con_BD4F_56
+ofs_039_ai_subscript_9789_56:
+; con_ai_subscr_56
 C - - J - - 0x02D799 0B:9789: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02D79C 0B:978C: A0 01     LDY #$01
 C - - - - - 0x02D79E 0B:978E: B1 02     LDA (ram_0002_t007_data),Y
+; bzk optimize, A is always 01
 C - - - - - 0x02D7A0 0B:9790: 85 10     STA ram_0010_t025_useless_01
 C - - - - - 0x02D7A2 0B:9792: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x02D7A5 0B:9795: 85 04     STA ram_0004_t013_pos_X_lo
@@ -4482,7 +4546,7 @@ sub_97A1:
 C - - - - - 0x02D7B1 0B:97A1: 85 00     STA ram_0000_t07B
 C - - - - - 0x02D7B3 0B:97A3: A8        TAY
 C - - - - - 0x02D7B4 0B:97A4: B9 E0 97  LDA tbl_97E0_index,Y
-; bzk optimize
+; bzk optimize, always 01 from 0010
 C - - - - - 0x02D7B7 0B:97A7: A4 10     LDY ram_0010_t025_useless_01
 C - - - - - 0x02D7B9 0B:97A9: 18        CLC
 C - - - - - 0x02D7BA 0B:97AA: 79 00 98  ADC tbl_9800_offset_12,Y
@@ -4635,8 +4699,8 @@ tbl_9839_spd_X:
 
 
 
-ofs_039_986F_57:
-; con_BD4F_57
+ofs_039_ai_subscript_986F_57:
+; con_ai_subscr_57
 C - - J - - 0x02D87F 0B:986F: 20 40 82  JSR sub_8240
 C - - - - - 0x02D882 0B:9872: 18        CLC
 C - - - - - 0x02D883 0B:9873: AD F6 07  LDA ram_quest
@@ -4689,15 +4753,15 @@ tbl_98A9_spd_Y_fr:
 
 
 
-ofs_039_98AB_5E:
-; con_BD4F_5E
+ofs_039_ai_subscript_98AB_5E:
+; con_ai_subscr_5E
 C - - J - - 0x02D8BB 0B:98AB: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02D8BE 0B:98AE: F0 07     BEQ bra_98B7
-C - - - - - 0x02D8C0 0B:98B0: A0 03     LDY #$03
+C - - - - - 0x02D8C0 0B:98B0: A0 03     LDY #con_B7BD_03
 C - - - - - 0x02D8C2 0B:98B2: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D8C5 0B:98B5: F0 06     BEQ bra_98BD_RTS
 bra_98B7:
-C - - - - - 0x02D8C7 0B:98B7: 20 9E 81  JSR sub_819E
+C - - - - - 0x02D8C7 0B:98B7: 20 9E 81  JSR sub_819E_clear_obj_flag_40
 C - - - - - 0x02D8CA 0B:98BA: FE C1 05  INC ram_obj_ai_subscript,X
 bra_98BD_RTS:
 C - - - - - 0x02D8CD 0B:98BD: 60        RTS
@@ -4708,8 +4772,8 @@ C - - - - - 0x02D8D3 0B:98C3: 60        RTS
 
 
 
-ofs_039_98C4_5B:
-; con_BD4F_5B
+ofs_039_ai_subscript_98C4_5B:
+; con_ai_subscr_5B
 C - - J - - 0x02D8D4 0B:98C4: 20 D5 80  JSR sub_80D5_get_object_distance_Y_to_player
 C - - - - - 0x02D8D7 0B:98C7: C9 18     CMP #$18
 C - - - - - 0x02D8D9 0B:98C9: B0 07     BCS bra_98D2
@@ -4741,14 +4805,14 @@ C - - - - - 0x02D910 0B:9900: D0 05     BNE bra_9907
 C - - - - - 0x02D912 0B:9902: A9 29     LDA #$29
 C - - - - - 0x02D914 0B:9904: 9D C1 05  STA ram_obj_ai_subscript,X
 bra_9907:
-C - - - - - 0x02D917 0B:9907: A0 08     LDY #$08
+C - - - - - 0x02D917 0B:9907: A0 08     LDY #con_B7BD_08
 C - - - - - 0x02D919 0B:9909: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D91C 0B:990C: C9 01     CMP #$01
 C - - - - - 0x02D91E 0B:990E: F0 03     BEQ bra_9913
 C - - - - - 0x02D920 0B:9910: FE C1 05  INC ram_obj_ai_subscript,X
 bra_9913:
 C - - - - - 0x02D923 0B:9913: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02D926 0B:9916: 20 AA 81  JSR sub_81AA
+C - - - - - 0x02D926 0B:9916: 20 AA 81  JSR sub_81AA_set_obj_flag_40
 C - - - - - 0x02D929 0B:9919: BD A8 04  LDA ram_obj_facing,X
 C - - - - - 0x02D92C 0B:991C: F0 9F     BEQ bra_98BD_RTS    ; if facing right
 C - - - - - 0x02D92E 0B:991E: 4C 4B 80  JMP loc_804B_invert_spd_X
@@ -4802,8 +4866,8 @@ C - - - - - 0x02D953 0B:9943: 4C 36 99  JMP loc_9936_loop
 
 
 
-ofs_039_9946_68:
-; con_BD4F_68
+ofs_039_ai_subscript_9946_68:
+; con_ai_subscr_68
 C - - J - - 0x02D956 0B:9946: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02D959 0B:9949: 20 8E 99  JSR sub_998E
 C - - - - - 0x02D95C 0B:994C: A0 01     LDY #$01
@@ -4854,14 +4918,14 @@ C - - - - - 0x02D9AC 0B:999C: 60        RTS
 
 
 
-ofs_039_999D_6B:
-; con_BD4F_6B
+ofs_039_ai_subscript_999D_6B:
+; con_ai_subscr_6B
 C - - J - - 0x02D9AD 0B:999D: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D9AF 0B:999F: A0 06     LDY #$06
+C - - - - - 0x02D9AF 0B:999F: A0 06     LDY #con_B7BD_06
 C - - - - - 0x02D9B1 0B:99A1: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D9B4 0B:99A4: D0 0E     BNE bra_99B4
 C - - - - - 0x02D9B6 0B:99A6: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D9B8 0B:99A8: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02D9B8 0B:99A8: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02D9BB 0B:99AB: A9 01     LDA #$01
 C - - - - - 0x02D9BD 0B:99AD: 9D 20 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x02D9C0 0B:99B0: FE C1 05  INC ram_obj_ai_subscript,X
@@ -4869,11 +4933,11 @@ C - - - - - 0x02D9C3 0B:99B3: 60        RTS
 bra_99B4:
 C - - - - - 0x02D9C4 0B:99B4: 20 91 8B  JSR sub_8B91_correct_pos_Y_lo
 C - - - - - 0x02D9C7 0B:99B7: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D9C9 0B:99B9: A0 08     LDY #$08
+C - - - - - 0x02D9C9 0B:99B9: A0 08     LDY #con_B7BD_08
 C - - - - - 0x02D9CB 0B:99BB: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D9CE 0B:99BE: F0 2E     BEQ bra_99EE
 C - - - - - 0x02D9D0 0B:99C0: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02D9D2 0B:99C2: A0 0C     LDY #$0C
+C - - - - - 0x02D9D2 0B:99C2: A0 0C     LDY #con_B7BD_0C
 C - - - - - 0x02D9D4 0B:99C4: 20 A6 B7  JSR sub_B7A6
 C - - - - - 0x02D9D7 0B:99C7: D0 25     BNE bra_99EE
 C - - - - - 0x02D9D9 0B:99C9: BD EF 05  LDA ram_obj_ai_script,X
@@ -4935,7 +4999,7 @@ C - - - - - 0x02DA36 0B:9A26: A9 01     LDA #$01    ; facing left
 bra_9A28:
 C - - - - - 0x02DA38 0B:9A28: DD A8 04  CMP ram_obj_facing,X
 C - - - - - 0x02DA3B 0B:9A2B: D0 09     BNE bra_9A36
-C - - - - - 0x02DA3D 0B:9A2D: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02DA3D 0B:9A2D: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02DA40 0B:9A30: A9 05     LDA #$05
 C - - - - - 0x02DA42 0B:9A32: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x02DA45 0B:9A35: 60        RTS
@@ -4945,16 +5009,16 @@ C - - - - - 0x02DA48 0B:9A38: 60        RTS
 
 
 
-ofs_039_9A39_79:
-; con_BD4F_79
+ofs_039_ai_subscript_9A39_79:
+; con_ai_subscr_79
 C - - J - - 0x02DA49 0B:9A39: 20 C5 9D  JSR sub_9DC5
 C - - - - - 0x02DA4C 0B:9A3C: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02DA4E 0B:9A3E: 60        RTS
 
 
 
-ofs_039_9A3F_77:
-; con_BD4F_77
+ofs_039_ai_subscript_9A3F_77:
+; con_ai_subscr_77
 C - - J - - 0x02DA4F 0B:9A3F: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02DA52 0B:9A42: 29 01     AND #con_obj_flag_01
 C - - - - - 0x02DA54 0B:9A44: D0 29     BNE bra_9A6F_RTS
@@ -4962,8 +5026,8 @@ C - - - - - 0x02DA56 0B:9A46: BD 33 06  LDA ram_obj_0634,X
 C - - - - - 0x02DA59 0B:9A49: 8D ED 07  STA ram_07ED
 C - - - - - 0x02DA5C 0B:9A4C: A9 02     LDA #$02
 C - - - - - 0x02DA5E 0B:9A4E: 9D 1D 06  STA ram_061D_obj,X
-C - - - - - 0x02DA61 0B:9A51: 20 A7 81  JSR sub_81A7
-C - - - - - 0x02DA64 0B:9A54: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02DA61 0B:9A51: 20 A7 81  JSR sub_81A7_set_obj_flag_40
+C - - - - - 0x02DA64 0B:9A54: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02DA67 0B:9A57: A9 30     LDA #$30
 C - - - - - 0x02DA69 0B:9A59: 8D EE 07  STA ram_07EE
 C - - - - - 0x02DA6C 0B:9A5C: A9 00     LDA #$00
@@ -5003,8 +5067,8 @@ tbl_9A76_obj_config:
 
 
 
-ofs_039_9A78_76:
-; con_BD4F_76
+ofs_039_ai_subscript_9A78_76:
+; con_ai_subscr_76
 C - - J - - 0x02DA88 0B:9A78: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02DA8B 0B:9A7B: D0 F2     BNE bra_9A6F_RTS
 C - - - - - 0x02DA8D 0B:9A7D: BD 1D 06  LDA ram_061D_obj,X
@@ -5063,10 +5127,10 @@ C - - - - - 0x02DB0C 0B:9AFC: FE 1D 06  INC ram_061D_obj,X
 C - - - - - 0x02DB0F 0B:9AFF: 4C 6A 9A  JMP loc_9A6A
 bra_9B02:
 C - - - - - 0x02DB12 0B:9B02: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02DB15 0B:9B05: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02DB15 0B:9B05: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02DB18 0B:9B08: A9 00     LDA #$00
 C - - - - - 0x02DB1A 0B:9B0A: 8D EC 07  STA ram_07EC
-C - - - - - 0x02DB1D 0B:9B0D: 20 9E 81  JSR sub_819E
+C - - - - - 0x02DB1D 0B:9B0D: 20 9E 81  JSR sub_819E_clear_obj_flag_40
 C - - - - - 0x02DB20 0B:9B10: AC ED 07  LDY ram_07ED
 C - - - - - 0x02DB23 0B:9B13: B9 76 9A  LDA tbl_9A76_obj_config,Y
 C - - - - - 0x02DB26 0B:9B16: 85 07     STA ram_0007_t00A
@@ -5150,8 +5214,8 @@ tbl_9B72:
 
 
 
-ofs_039_9B74_78:
-; con_BD4F_78
+ofs_039_ai_subscript_9B74_78:
+; con_ai_subscr_78
 C - - J - - 0x02DB84 0B:9B74: 20 83 9B  JSR sub_9B83
 C - - - - - 0x02DB87 0B:9B77: 20 F8 9B  JSR sub_9BF8
 C - - - - - 0x02DB8A 0B:9B7A: 20 E9 9D  JSR sub_9DE9
@@ -5447,8 +5511,8 @@ tbl_9CC8_facing:
 
 
 
-ofs_039_9CE8_7A:
-; con_BD4F_7A
+ofs_039_ai_subscript_9CE8_7A:
+; con_ai_subscr_7A
 C - - J - - 0x02DCF8 0B:9CE8: A2 01     LDX #$01
 C - - - - - 0x02DCFA 0B:9CEA: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x02DCFC 0B:9CEC: 29 01     AND #$01
@@ -5765,8 +5829,8 @@ tbl_9E89_animation:
 
 
 
-ofs_039_9E8D_84:
-; con_BD4F_84
+ofs_039_ai_subscript_9E8D_84:
+; con_ai_subscr_84
 C - - J - - 0x02DE9D 0B:9E8D: BC 33 06  LDY ram_obj_0634,X
 C - - - - - 0x02DEA0 0B:9E90: B9 0D 9F  LDA tbl_9F0D,Y
 C - - - - - 0x02DEA3 0B:9E93: 9D 06 06  STA ram_obj_config,X
@@ -5774,7 +5838,7 @@ C - - - - - 0x02DEA6 0B:9E96: B9 15 9F  LDA tbl_9F15,Y
 C - - - - - 0x02DEA9 0B:9E99: 9D 1D 06  STA ram_061D_obj,X
 C - - - - - 0x02DEAC 0B:9E9C: B9 1D 9F  LDA tbl_9F1D,Y
 C - - - - - 0x02DEAF 0B:9E9F: 9D 33 06  STA ram_obj_0634,X
-C - - - - - 0x02DEB2 0B:9EA2: 20 A7 81  JSR sub_81A7
+C - - - - - 0x02DEB2 0B:9EA2: 20 A7 81  JSR sub_81A7_set_obj_flag_40
 loc_9EA5:
 C D 0 - - - 0x02DEB5 0B:9EA5: 18        CLC
 C - - - - - 0x02DEB6 0B:9EA6: BC 33 06  LDY ram_obj_0634,X
@@ -5933,8 +5997,8 @@ tbl_9F1D:
 
 
 
-ofs_039_9F25_85:
-; con_BD4F_85
+ofs_039_ai_subscript_9F25_85:
+; con_ai_subscr_85
 C - - J - - 0x02DF35 0B:9F25: 20 8E 9F  JSR sub_9F8E
 C - - - - - 0x02DF38 0B:9F28: 20 9B 9F  JSR sub_9F9B
 C - - - - - 0x02DF3B 0B:9F2B: F0 14     BEQ bra_9F41
@@ -5973,8 +6037,8 @@ tbl_9F49:
 
 
 
-ofs_039_9F59_86:
-; con_BD4F_86
+ofs_039_ai_subscript_9F59_86:
+; con_ai_subscr_86
 C - - J - - 0x02DF69 0B:9F59: 20 8E 9F  JSR sub_9F8E
 C - - - - - 0x02DF6C 0B:9F5C: 20 9B 9F  JSR sub_9F9B
 C - - - - - 0x02DF6F 0B:9F5F: D0 14     BNE bra_9F75
@@ -6029,7 +6093,7 @@ C - - - - - 0x02DFAC 0B:9F9C: B9 B9 9F  LDA tbl_9FB9_pos_Y_lo,Y
 C - - - - - 0x02DFAF 0B:9F9F: 85 00     STA ram_0000_t0D3_pos_Y_lo
 C - - - - - 0x02DFB1 0B:9FA1: B9 A9 9F  LDA tbl_9FA9_pos_X_lo,Y
 C - - - - - 0x02DFB4 0B:9FA4: A4 00     LDY ram_0000_t0D3_pos_Y_lo
-C - - - - - 0x02DFB6 0B:9FA6: 4C 1E FC  JMP loc_0x03FC2E
+C - - - - - 0x02DFB6 0B:9FA6: 4C 1E FC  JMP loc_0x03FC2E_check_for_reaching_position
 
 
 
@@ -6104,8 +6168,8 @@ tbl_9FE7:
 
 
 
-ofs_039_9FEA_69:
-; con_BD4F_69
+ofs_039_ai_subscript_9FEA_69:
+; con_ai_subscr_69
 C - - J - - 0x02DFFA 0B:9FEA: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02DFFD 0B:9FED: A0 01     LDY #$01
 C - - - - - 0x02DFFF 0B:9FEF: B1 02     LDA (ram_0002_t007_data),Y
@@ -6118,8 +6182,8 @@ C - - - - - 0x02E00A 0B:9FFA: 60        RTS
 
 
 
-ofs_039_9FFB_6A:
-; con_BD4F_6A
+ofs_039_ai_subscript_9FFB_6A:
+; con_ai_subscr_6A
 C - - J - - 0x02E00B 0B:9FFB: 20 20 81  JSR sub_8120
 C - - - - - 0x02E00E 0B:9FFE: B0 FA     BCS bra_9FFA_RTS
 C - - - - - 0x02E010 0B:A000: DE 06 06  DEC ram_obj_config,X
@@ -6155,8 +6219,8 @@ tbl_A039_spd_X_lo:
 
 
 
-ofs_039_A03B_37:
-; con_BD4F_37
+ofs_039_ai_subscript_A03B_37:
+; con_ai_subscr_37
 C - - J - - 0x02E04B 0B:A03B: A9 18     LDA #$18
 C - - - - - 0x02E04D 0B:A03D: 20 7F 80  JSR sub_807F_increase_spd_Y
 C - - - - - 0x02E050 0B:A040: 20 20 8E  JSR sub_8E20
@@ -6174,8 +6238,8 @@ C - - - - - 0x02E067 0B:A057: B0 0F     BCS bra_A068_too_far
 ; if close enough
 C - - - - - 0x02E069 0B:A059: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02E06C 0B:A05C: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02E06F 0B:A05F: 20 C8 FE  JSR sub_0x03FED8_clear_speed
-C - - - - - 0x02E072 0B:A062: 20 FC A0  JSR sub_A0FC
+C - - - - - 0x02E06F 0B:A05F: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
+C - - - - - 0x02E072 0B:A062: 20 FC A0  JSR sub_A0FC_item_pickup_handler
 C - - - - - 0x02E075 0B:A065: 4C 6C E7  JMP loc_0x03E77C
 bra_A068_too_far:
 C - - - - - 0x02E078 0B:A068: A9 00     LDA #$00    ; pos_X_lo
@@ -6187,10 +6251,11 @@ C - - - - - 0x02E083 0B:A073: D0 02     BNE bra_A077    ; jmp
 bra_A075:
 C - - - - - 0x02E085 0B:A075: A0 08     LDY #$08    ; pos_Y_lo
 bra_A077:
-C - - - - - 0x02E087 0B:A077: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02E087 0B:A077: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02E08A 0B:A07A: F0 0E     BEQ bra_A08A
 C - - - - - 0x02E08C 0B:A07C: A6 6C     LDX ram_006C_object_index
-C - - - - - 0x02E08E 0B:A07E: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02E08E 0B:A07E: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
+; set timer before item dissapears, decreased at 0x02E0B3
 C - - - - - 0x02E091 0B:A081: A9 A0     LDA #$A0
 C - - - - - 0x02E093 0B:A083: 9D 06 06  STA ram_obj_config,X
 C - - - - - 0x02E096 0B:A086: FE C1 05  INC ram_obj_ai_subscript,X
@@ -6212,28 +6277,35 @@ bra_A0A0:
 
 
 
-ofs_039_A0A3_38:
-; con_BD4F_38
+ofs_039_ai_subscript_A0A3_38_item_waits_for_pickup:
+; con_ai_subscr_38_item_waits_for_pickup
+; decrease timer before item dissapears
 C - - J - - 0x02E0B3 0B:A0A3: DE 06 06  DEC ram_obj_config,X
 C - - - - - 0x02E0B6 0B:A0A6: F0 0E     BEQ bra_A0B6
-ofs_039_A0A8_71:
-; con_BD4F_71
+ofs_039_ai_subscript_A0A8_71:    ; unused
+; con_ai_subscr_71
 C - - - - - 0x02E0B8 0B:A0A8: 20 EF A0  JSR sub_A0EF_check_object_distance_to_player
 C - - - - - 0x02E0BB 0B:A0AB: B0 15     BCS bra_A0C2_too_far
 ; if close enough
 C - - - - - 0x02E0BD 0B:A0AD: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02E0C0 0B:A0B0: 20 FC A0  JSR sub_A0FC
+C - - - - - 0x02E0C0 0B:A0B0: 20 FC A0  JSR sub_A0FC_item_pickup_handler
 C - - - - - 0x02E0C3 0B:A0B3: 4C 6C E7  JMP loc_0x03E77C
+
+
+
 bra_A0B6:
 C - - - - - 0x02E0C6 0B:A0B6: A9 00     LDA #$00
 C - - - - - 0x02E0C8 0B:A0B8: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x02E0CB 0B:A0BB: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x02E0CE 0B:A0BE: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x02E0D1 0B:A0C1: 60        RTS
+
+
+
 bra_A0C2_too_far:
 C - - - - - 0x02E0D2 0B:A0C2: A9 00     LDA #$00    ; pos_X_lo
 C - - - - - 0x02E0D4 0B:A0C4: A0 08     LDY #$08    ; pos_Y_lo
-C - - - - - 0x02E0D6 0B:A0C6: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x02E0D6 0B:A0C6: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x02E0D9 0B:A0C9: D0 08     BNE bra_A0D3
 C - - - - - 0x02E0DB 0B:A0CB: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02E0DD 0B:A0CD: A9 01     LDA #$01
@@ -6245,10 +6317,10 @@ C - - - - - 0x02E0E5 0B:A0D5: 4C 20 81  JMP loc_8120
 
 
 
-ofs_039_A0D8_39:
-; con_BD4F_39
-C - - J - - 0x02E0E8 0B:A0D8: 20 C8 FE  JSR sub_0x03FED8_clear_speed
-C - - - - - 0x02E0EB 0B:A0DB: 20 AA 81  JSR sub_81AA
+ofs_039_ai_subscript_A0D8_39:
+; con_ai_subscr_39
+C - - J - - 0x02E0E8 0B:A0D8: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
+C - - - - - 0x02E0EB 0B:A0DB: 20 AA 81  JSR sub_81AA_set_obj_flag_40
 C - - - - - 0x02E0EE 0B:A0DE: A0 01     LDY #$01
 C - - - - - 0x02E0F0 0B:A0E0: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02E0F2 0B:A0E2: 9D 20 05  STA ram_obj_spd_Y_lo,X
@@ -6275,53 +6347,57 @@ C - - - - - 0x02E10B 0B:A0FB: 60        RTS
 
 
 
-sub_A0FC:
-loc_A0FC:
+sub_A0FC_item_pickup_handler:
+loc_A0FC_item_pickup_handler:
 C D 1 - - - 0x02E10C 0B:A0FC: 38        SEC
 C - - - - - 0x02E10D 0B:A0FD: BD 4E 05  LDA ram_obj_id,X
-C - - - - - 0x02E110 0B:A100: E9 93     SBC #$93
+C - - - - - 0x02E110 0B:A100: E9 93     SBC #con_index_all_items
 C - - - - - 0x02E112 0B:A102: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
-- D 1 - I - 0x02E115 0B:A105: 50 A1     .word ofs_011_A150_93
-- D 1 - I - 0x02E117 0B:A107: 5E A1     .word ofs_011_A15E_94
-- D 1 - I - 0x02E119 0B:A109: 42 A1     .word ofs_011_A142_95
-- D 1 - I - 0x02E11B 0B:A10B: 5E A1     .word ofs_011_A15E_96
-- D 1 - I - 0x02E11D 0B:A10D: 5E A1     .word ofs_011_A15E_97
-- D 1 - I - 0x02E11F 0B:A10F: 5E A1     .word ofs_011_A15E_98
-- D 1 - I - 0x02E121 0B:A111: 5E A1     .word ofs_011_A15E_99
-- D 1 - I - 0x02E123 0B:A113: 5E A1     .word ofs_011_A15E_9A
-- - - - - - 0x02E125 0B:A115: 42 A1     .word ofs_011_A142_9B
-- - - - - - 0x02E127 0B:A117: 50 A1     .word ofs_011_A150_9C
-- D 1 - I - 0x02E129 0B:A119: 89 A1     .word ofs_011_A189_9D
-- D 1 - I - 0x02E12B 0B:A11B: 89 A1     .word ofs_011_A189_9E
+- D 1 - I - 0x02E115 0B:A105: 50 A1     .word ofs_011_A150_93_axe
+- D 1 - I - 0x02E117 0B:A107: 5E A1     .word ofs_011_A15E_94_boomerang
+- D 1 - I - 0x02E119 0B:A109: 42 A1     .word ofs_011_A142_95_dagger
+- D 1 - I - 0x02E11B 0B:A10B: 5E A1     .word ofs_011_A15E_96_holy_water
+- D 1 - I - 0x02E11D 0B:A10D: 5E A1     .word ofs_011_A15E_97_stopwatch
+- D 1 - I - 0x02E11F 0B:A10F: 5E A1     .word ofs_011_A15E_98_fire_magic
+- D 1 - I - 0x02E121 0B:A111: 5E A1     .word ofs_011_A15E_99_ice_magic
+- D 1 - I - 0x02E123 0B:A113: 5E A1     .word ofs_011_A15E_9A_lightning_magic
+- - - - - - 0x02E125 0B:A115: 42 A1     .word ofs_011_A142_9B_g_dagger
+- - - - - - 0x02E127 0B:A117: 50 A1     .word ofs_011_A150_9C_g_axe
+- D 1 - I - 0x02E129 0B:A119: 89 A1     .word ofs_011_A189_9D_weapon_upgrade_1
+- D 1 - I - 0x02E12B 0B:A11B: 89 A1     .word ofs_011_A189_9E_weapon_upgrade_2
 - - - - - - 0x02E12D 0B:A11D: 41 A1     .word ofs_011_A141_9F_RTS
 - - - - - - 0x02E12F 0B:A11F: 41 A1     .word ofs_011_A141_A0_RTS
-- D 1 - I - 0x02E131 0B:A121: A9 A1     .word ofs_011_A1A9_A1
-- D 1 - I - 0x02E133 0B:A123: B5 A1     .word ofs_011_A1B5_A2
-- D 1 - I - 0x02E135 0B:A125: EF A1     .word ofs_011_A1EF_A3
-- D 1 - I - 0x02E137 0B:A127: EF A1     .word ofs_011_A1EF_A4
-- D 1 - I - 0x02E139 0B:A129: EF A1     .word ofs_011_A1EF_A5
-- D 1 - I - 0x02E13B 0B:A12B: EF A1     .word ofs_011_A1EF_A6
-- D 1 - I - 0x02E13D 0B:A12D: EF A1     .word ofs_011_A1EF_A7
-- - - - - - 0x02E13F 0B:A12F: EF A1     .word ofs_011_A1EF_A8
-- - - - - - 0x02E141 0B:A131: EF A1     .word ofs_011_A1EF_A9
-- D 1 - I - 0x02E143 0B:A133: EF A1     .word ofs_011_A1EF_AA
-- - - - - - 0x02E145 0B:A135: EF A1     .word ofs_011_A1EF_AB
-- D 1 - I - 0x02E147 0B:A137: 21 A2     .word ofs_011_A221_AC
-- D 1 - I - 0x02E149 0B:A139: 2B A2     .word ofs_011_A22B_AD
-- D 1 - I - 0x02E14B 0B:A13B: 2B A2     .word ofs_011_A22B_AE
-- D 1 - I - 0x02E14D 0B:A13D: 42 A2     .word ofs_011_A242_AF
-- D 1 - I - 0x02E14F 0B:A13F: 42 A2     .word ofs_011_A242_B0
+- D 1 - I - 0x02E131 0B:A121: A9 A1     .word ofs_011_A1A9_A1_invincibility_potion
+- D 1 - I - 0x02E133 0B:A123: B5 A1     .word ofs_011_A1B5_A2_rosary
+- D 1 - I - 0x02E135 0B:A125: EF A1     .word ofs_011_A1EF_A3_money_bag____100
+- D 1 - I - 0x02E137 0B:A127: EF A1     .word ofs_011_A1EF_A4_money_bag____200
+- D 1 - I - 0x02E139 0B:A129: EF A1     .word ofs_011_A1EF_A5_money_bag____400
+- D 1 - I - 0x02E13B 0B:A12B: EF A1     .word ofs_011_A1EF_A6_money_bag____700
+- D 1 - I - 0x02E13D 0B:A12D: EF A1     .word ofs_011_A1EF_A7_money_bag___1000
+- - - - - - 0x02E13F 0B:A12F: EF A1     .word ofs_011_A1EF_A8_money_bag___2000
+- - - - - - 0x02E141 0B:A131: EF A1     .word ofs_011_A1EF_A9_money_bag___4000
+- D 1 - I - 0x02E143 0B:A133: EF A1     .word ofs_011_A1EF_AA_money_bag___7000
+- - - - - - 0x02E145 0B:A135: EF A1     .word ofs_011_A1EF_AB_money_bag_____10
+- D 1 - I - 0x02E147 0B:A137: 21 A2     .word ofs_011_A221_AC_extra_life
+- D 1 - I - 0x02E149 0B:A139: 2B A2     .word ofs_011_A22B_AD_big_heart
+- D 1 - I - 0x02E14B 0B:A13B: 2B A2     .word ofs_011_A22B_AE_small_heart
+- D 1 - I - 0x02E14D 0B:A13D: 42 A2     .word ofs_011_A242_AF_multiplier__II
+- D 1 - I - 0x02E14F 0B:A13F: 42 A2     .word ofs_011_A242_B0_multiplier_III
 
 
 
 ofs_011_A141_9F_RTS:
+; con_obj_id_9F
 ofs_011_A141_A0_RTS:
+; con_obj_id_A0
 - - - - - - 0x02E151 0B:A141: 60        RTS
 
 
 
-ofs_011_A142_95:
-ofs_011_A142_9B:
+ofs_011_A142_95_dagger:
+; con_obj_id_95
+ofs_011_A142_9B_g_dagger:
+; con_obj_id_9B
 C - - J - - 0x02E152 0B:A142: 20 7B A1  JSR sub_A17B_pick_up_weapon_sound
 C - - - - - 0x02E155 0B:A145: AC 4E 05  LDY ram_plr_id
 C - - - - - 0x02E158 0B:A148: B9 4D A1  LDA tbl_A14D,Y
@@ -6329,14 +6405,16 @@ C - - - - - 0x02E15B 0B:A14B: D0 1E     BNE bra_A16B    ; jmp
 
 
 tbl_A14D:
-- D 1 - - - 0x02E15D 0B:A14D: 03        .byte con_subweapon_knife   ; 00 Trevor
+- D 1 - - - 0x02E15D 0B:A14D: 03        .byte con_subweapon_dagger   ; 00 Trevor
 - - - - - - 0x02E15E 0B:A14E: 00        .byte $00   ; 01 placeholder
-- D 1 - - - 0x02E15F 0B:A14F: 08        .byte con_subweapon_g_knife   ; 02 Grant
+- D 1 - - - 0x02E15F 0B:A14F: 08        .byte con_subweapon_g_dagger   ; 02 Grant
 
 
 
-ofs_011_A150_93:
-ofs_011_A150_9C:
+ofs_011_A150_93_axe:
+; con_obj_id_93
+ofs_011_A150_9C_g_axe:
+; con_obj_id_9C
 C - - J - - 0x02E160 0B:A150: 20 7B A1  JSR sub_A17B_pick_up_weapon_sound
 C - - - - - 0x02E163 0B:A153: AC 4E 05  LDY ram_plr_id
 C - - - - - 0x02E166 0B:A156: B9 5B A1  LDA tbl_A15B_axe,Y
@@ -6351,16 +6429,22 @@ tbl_A15B_axe:
 
 
 
-ofs_011_A15E_94:
-ofs_011_A15E_96:
-ofs_011_A15E_97:
-ofs_011_A15E_98:
-ofs_011_A15E_99:
-ofs_011_A15E_9A:
+ofs_011_A15E_94_boomerang:
+; con_obj_id_94
+ofs_011_A15E_96_holy_water:
+; con_obj_id_96
+ofs_011_A15E_97_stopwatch:
+; con_obj_id_97
+ofs_011_A15E_98_fire_magic:
+; con_obj_id_98
+ofs_011_A15E_99_ice_magic:
+; con_obj_id_99
+ofs_011_A15E_9A_lightning_magic:
+; con_obj_id_9A
 C - - J - - 0x02E16E 0B:A15E: 20 7B A1  JSR sub_A17B_pick_up_weapon_sound
 C - - - - - 0x02E171 0B:A161: 38        SEC
 C - - - - - 0x02E172 0B:A162: BD 4E 05  LDA ram_obj_id,X
-C - - - - - 0x02E175 0B:A165: E9 93     SBC #$93
+C - - - - - 0x02E175 0B:A165: E9 93     SBC #con_index_all_items
 C - - - - - 0x02E177 0B:A167: A8        TAY
 C - - - - - 0x02E178 0B:A168: B9 71 A1  LDA tbl_A171_subweapon,Y
 bra_A16B:
@@ -6372,14 +6456,14 @@ C - - - - - 0x02E180 0B:A170: 60        RTS
 
 tbl_A171_subweapon:
 - D 1 - - - 0x02E181 0B:A171: 01        .byte con_subweapon_axe   ; 93 
-- D 1 - - - 0x02E182 0B:A172: 02        .byte con_subweapon_cross   ; 94 
-- D 1 - - - 0x02E183 0B:A173: 03        .byte con_subweapon_knife   ; 95 
+- D 1 - - - 0x02E182 0B:A172: 02        .byte con_subweapon_boomerang   ; 94 
+- D 1 - - - 0x02E183 0B:A173: 03        .byte con_subweapon_dagger   ; 95 
 - D 1 - - - 0x02E184 0B:A174: 04        .byte con_subweapon_holy_water   ; 96 
 - D 1 - - - 0x02E185 0B:A175: 0B        .byte con_subweapon_stopwatch   ; 97 
-- D 1 - - - 0x02E186 0B:A176: 05        .byte con_subweapon_fireball   ; 98 
-- D 1 - - - 0x02E187 0B:A177: 06        .byte con_subweapon_freeze   ; 99 
-- D 1 - - - 0x02E188 0B:A178: 07        .byte con_subweapon_blue_balls   ; 9A 
-- - - - - - 0x02E189 0B:A179: 08        .byte con_subweapon_g_knife   ; 9B 
+- D 1 - - - 0x02E186 0B:A176: 05        .byte con_subweapon_fire_magic   ; 98 
+- D 1 - - - 0x02E187 0B:A177: 06        .byte con_subweapon_ice_magic   ; 99 
+- D 1 - - - 0x02E188 0B:A178: 07        .byte con_subweapon_lightning_magic   ; 9A 
+- - - - - - 0x02E189 0B:A179: 08        .byte con_subweapon_g_dagger   ; 9B 
 - - - - - - 0x02E18A 0B:A17A: 09        .byte con_subweapon_g_axe   ; 9C 
 
 
@@ -6389,14 +6473,16 @@ C - - - - - 0x02E18B 0B:A17B: A9 00     LDA #$00
 C - - - - - 0x02E18D 0B:A17D: 85 9C     STA ram_009C
 C - - - - - 0x02E18F 0B:A17F: A4 3B     LDY ram_player
 C - - - - - 0x02E191 0B:A181: 99 87 00  STA ram_subweapon_multiplier,Y
-C - - - - - 0x02E194 0B:A184: A9 1C     LDA #con_sound_pick_up_weapon
+C - - - - - 0x02E194 0B:A184: A9 1C     LDA #con_sfx_pick_up_weapon
 C - - - - - 0x02E196 0B:A186: 4C 5F E2  JMP loc_0x03E26F_play_sound
 
 
 
-ofs_011_A189_9D:
-ofs_011_A189_9E:
-C - - J - - 0x02E199 0B:A189: A9 1C     LDA #con_sound_pick_up_weapon
+ofs_011_A189_9D_weapon_upgrade_1:
+; con_obj_id_9D
+ofs_011_A189_9E_weapon_upgrade_2:
+; con_obj_id_9E
+C - - J - - 0x02E199 0B:A189: A9 1C     LDA #con_sfx_pick_up_weapon
 C - - - - - 0x02E19B 0B:A18B: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x02E19E 0B:A18E: A9 01     LDA #$01
 C - - - - - 0x02E1A0 0B:A190: 85 B7     STA ram_00B7
@@ -6413,8 +6499,9 @@ C - - - - - 0x02E1B8 0B:A1A8: 60        RTS
 
 
 
-ofs_011_A1A9_A1:
-C - - J - - 0x02E1B9 0B:A1A9: A9 17     LDA #con_sound_17
+ofs_011_A1A9_A1_invincibility_potion:
+; con_obj_id_A1
+C - - J - - 0x02E1B9 0B:A1A9: A9 17     LDA #con_sfx_invincibility
 C - - - - - 0x02E1BB 0B:A1AB: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x02E1BE 0B:A1AE: A9 B4     LDA #$B4
 C - - - - - 0x02E1C0 0B:A1B0: 85 AD     STA ram_00AD_timer
@@ -6423,8 +6510,9 @@ C - - - - - 0x02E1C4 0B:A1B4: 60        RTS
 
 
 
-ofs_011_A1B5_A2:
-C - - J - - 0x02E1C5 0B:A1B5: A9 4A     LDA #con_sound_pick_up_cross
+ofs_011_A1B5_A2_rosary:
+; con_obj_id_A2
+C - - J - - 0x02E1C5 0B:A1B5: A9 4A     LDA #con_sfx_pick_up_rosary
 C - - - - - 0x02E1C7 0B:A1B7: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x02E1CA 0B:A1BA: A2 01     LDX #$01
 bra_A1BC_loop:
@@ -6435,17 +6523,17 @@ C - - - - - 0x02E1D3 0B:A1C3: C9 68     CMP #$68
 C - - - - - 0x02E1D5 0B:A1C5: B0 1C     BCS bra_A1E3
 C - - - - - 0x02E1D7 0B:A1C7: 8A        TXA
 C - - - - - 0x02E1D8 0B:A1C8: 48        PHA
-C - - - - - 0x02E1D9 0B:A1C9: 20 CC E7  JSR sub_0x03E7DC
+C - - - - - 0x02E1D9 0B:A1C9: 20 CC E7  JSR sub_0x03E7DC_add_points_for_killing
 C - - - - - 0x02E1DC 0B:A1CC: 68        PLA
 C - - - - - 0x02E1DD 0B:A1CD: AA        TAX
-C - - - - - 0x02E1DE 0B:A1CE: A9 6F     LDA #$6F
+C - - - - - 0x02E1DE 0B:A1CE: A9 6F     LDA #con_obj_id_6F
 C - - - - - 0x02E1E0 0B:A1D0: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x02E1E3 0B:A1D3: A9 18     LDA #$18
 C - - - - - 0x02E1E5 0B:A1D5: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x02E1E8 0B:A1D8: A9 00     LDA #$00
 C - - - - - 0x02E1EA 0B:A1DA: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x02E1ED 0B:A1DD: 9D 70 04  STA ram_obj_flags,X ; con_obj_flag_00
-C - - - - - 0x02E1F0 0B:A1E0: 20 2F B5  JSR sub_B52F
+C - - - - - 0x02E1F0 0B:A1E0: 20 2F B5  JSR sub_B52F_clear_some_obj_data
 bra_A1E3:
 C - - - - - 0x02E1F3 0B:A1E3: E8        INX
 C - - - - - 0x02E1F4 0B:A1E4: E0 0D     CPX #$0D
@@ -6457,27 +6545,36 @@ C - - - - - 0x02E1FE 0B:A1EE: 60        RTS
 
 
 
-ofs_011_A1EF_A3:
-ofs_011_A1EF_A4:
-ofs_011_A1EF_A5:
-ofs_011_A1EF_A6:
-ofs_011_A1EF_A7:
-ofs_011_A1EF_A8:
-ofs_011_A1EF_A9:
-ofs_011_A1EF_AA:
-ofs_011_A1EF_AB:
-C - - J - - 0x02E1FF 0B:A1EF: A9 18     LDA #con_sound_pick_up_money
+ofs_011_A1EF_A3_money_bag____100:
+; con_obj_id_A3
+ofs_011_A1EF_A4_money_bag____200:
+; con_obj_id_A4
+ofs_011_A1EF_A5_money_bag____400:
+; con_obj_id_A5
+ofs_011_A1EF_A6_money_bag____700:
+; con_obj_id_A6
+ofs_011_A1EF_A7_money_bag___1000:
+; con_obj_id_A7
+ofs_011_A1EF_A8_money_bag___2000:
+; con_obj_id_A8
+ofs_011_A1EF_A9_money_bag___4000:
+; con_obj_id_A9
+ofs_011_A1EF_AA_money_bag___7000:
+; con_obj_id_AA
+ofs_011_A1EF_AB_money_bag_____10:
+; con_obj_id_AB
+C - - J - - 0x02E1FF 0B:A1EF: A9 18     LDA #con_sfx_pick_up_money
 C - - - - - 0x02E201 0B:A1F1: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x02E204 0B:A1F4: 38        SEC
 C - - - - - 0x02E205 0B:A1F5: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x02E208 0B:A1F8: E9 A3     SBC #$A3
 C - - - - - 0x02E20A 0B:A1FA: A8        TAY
-loc_A1FB:   ; Y = 04
-C D 1 - - - 0x02E20B 0B:A1FB: B9 0F A2  LDA tbl_A20F,Y
+loc_A1FB_money_bag___1000:  ; Y = 04 (A7)
+C D 1 - - - 0x02E20B 0B:A1FB: B9 0F A2  LDA tbl_A20F_score_hundreds,Y
 C - - - - - 0x02E20E 0B:A1FE: 85 02     STA ram_0000_t046_add + $02
-C - - - - - 0x02E210 0B:A200: B9 18 A2  LDA tbl_A218,Y
+C - - - - - 0x02E210 0B:A200: B9 18 A2  LDA tbl_A218_score_tens,Y
 C - - - - - 0x02E213 0B:A203: 85 03     STA ram_0000_t046_add + $03
-C - - - - - 0x02E215 0B:A205: A9 00     LDA #$00
+C - - - - - 0x02E215 0B:A205: A9 00     LDA #$00    ; score thousands
 C - - - - - 0x02E217 0B:A207: 85 01     STA ram_0000_t046_add + $01
 C - - - - - 0x02E219 0B:A209: 20 77 E7  JSR sub_0x03E787_add_points
 C - - - - - 0x02E21C 0B:A20C: A6 6C     LDX ram_006C_object_index
@@ -6485,7 +6582,7 @@ C - - - - - 0x02E21E 0B:A20E: 60        RTS
 
 
 
-tbl_A20F:
+tbl_A20F_score_hundreds:
 - D 1 - - - 0x02E21F 0B:A20F: 01        .byte $01   ; A3 
 - D 1 - - - 0x02E220 0B:A210: 02        .byte $02   ; A4 
 - D 1 - - - 0x02E221 0B:A211: 04        .byte $04   ; A5 
@@ -6498,7 +6595,7 @@ tbl_A20F:
 
 
 
-tbl_A218:
+tbl_A218_score_tens:
 - D 1 - - - 0x02E228 0B:A218: 00        .byte $00   ; A3 
 - D 1 - - - 0x02E229 0B:A219: 00        .byte $00   ; A4 
 - D 1 - - - 0x02E22A 0B:A21A: 00        .byte $00   ; A5 
@@ -6511,18 +6608,21 @@ tbl_A218:
 
 
 
-ofs_011_A221_AC:
+ofs_011_A221_AC_extra_life:
+; con_obj_id_AC
 C - - J - - 0x02E231 0B:A221: A9 01     LDA #$01
-C - - - - - 0x02E233 0B:A223: 85 D7     STA ram_00D7
+C - - - - - 0x02E233 0B:A223: 85 D7     STA ram_00D7_extra_life_flag
 C - - - - - 0x02E235 0B:A225: 20 48 E7  JSR sub_0x03E758_add_1_life
 C - - - - - 0x02E238 0B:A228: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02E23A 0B:A22A: 60        RTS
 
 
 
-ofs_011_A22B_AD:
-ofs_011_A22B_AE:
-C - - J - - 0x02E23B 0B:A22B: A9 1B     LDA #con_sound_pick_up_heart
+ofs_011_A22B_AD_big_heart:
+; con_obj_id_AD
+ofs_011_A22B_AE_small_heart:
+; con_obj_id_AE
+C - - J - - 0x02E23B 0B:A22B: A9 1B     LDA #con_sfx_pick_up_heart
 C - - - - - 0x02E23D 0B:A22D: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x02E240 0B:A230: 38        SEC
 C - - - - - 0x02E241 0B:A231: BD 4E 05  LDA ram_obj_id,X
@@ -6536,14 +6636,16 @@ C - - - - - 0x02E24F 0B:A23F: 60        RTS
 
 
 tbl_A240_hearts:
-- D 1 - - - 0x02E250 0B:A240: 05        .byte $05   ; AD 
-- D 1 - - - 0x02E251 0B:A241: 01        .byte $01   ; AE 
+- D 1 - - - 0x02E250 0B:A240: 05        .byte $05   ; AD big heart
+- D 1 - - - 0x02E251 0B:A241: 01        .byte $01   ; AE small heart
 
 
 
-ofs_011_A242_AF:
-ofs_011_A242_B0:
-C - - J - - 0x02E252 0B:A242: A9 1C     LDA #con_sound_pick_up_weapon
+ofs_011_A242_AF_multiplier__II:
+; con_obj_id_AF
+ofs_011_A242_B0_multiplier_III:
+; con_obj_id_B0
+C - - J - - 0x02E252 0B:A242: A9 1C     LDA #con_sfx_pick_up_weapon
 C - - - - - 0x02E254 0B:A244: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x02E257 0B:A247: A4 3B     LDY ram_player
 C - - - - - 0x02E259 0B:A249: B9 85 00  LDA ram_subweapon_id,Y
@@ -6555,8 +6657,8 @@ C - - - - - 0x02E262 0B:A252: 90 04     BCC bra_A258
 - - - - - - 0x02E266 0B:A256: 90 0C     BCC bra_A264
 ; if
 ; con_subweapon_axe
-; con_subweapon_cross
-; con_subweapon_knife
+; con_subweapon_boomerang
+; con_subweapon_dagger
 ; con_subweapon_holy_water
 bra_A258:
 C - - - - - 0x02E268 0B:A258: 38        SEC
@@ -6566,28 +6668,29 @@ C - - - - - 0x02E26E 0B:A25E: A4 3B     LDY ram_player
 C - - - - - 0x02E270 0B:A260: 99 87 00  STA ram_subweapon_multiplier,Y
 C - - - - - 0x02E273 0B:A263: 60        RTS
 bra_A264:
-C - - - - - 0x02E274 0B:A264: A9 A7     LDA #$A7
+; convert to a money bag
+C - - - - - 0x02E274 0B:A264: A9 A7     LDA #con_obj_id_A7
 C - - - - - 0x02E276 0B:A266: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x02E279 0B:A269: A9 47     LDA #$47
 C - - - - - 0x02E27B 0B:A26B: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x02E27E 0B:A26E: A9 04     LDA #$04
 C - - - - - 0x02E280 0B:A270: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x02E283 0B:A273: A0 04     LDY #$04
-C - - - - - 0x02E285 0B:A275: 4C FB A1  JMP loc_A1FB
+C - - - - - 0x02E285 0B:A275: 4C FB A1  JMP loc_A1FB_money_bag___1000
 
 
 
 sub_A278:
 C - - - - - 0x02E288 0B:A278: AD 4E 05  LDA ram_plr_id
 C - - - - - 0x02E28B 0B:A27B: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
-- D 1 - I - 0x02E28E 0B:A27E: 86 A2     .word ofs_010_A286_00
-- D 1 - I - 0x02E290 0B:A280: B4 A3     .word ofs_010_A3B4_01
-- D 1 - I - 0x02E292 0B:A282: B4 A3     .word ofs_010_A3B4_02
-- D 1 - I - 0x02E294 0B:A284: B0 A2     .word ofs_010_A2B0_03
+- D 1 - I - 0x02E28E 0B:A27E: 86 A2     .word ofs_010_A286_00_Trevor
+- D 1 - I - 0x02E290 0B:A280: B4 A3     .word ofs_010_A3B4_01_Sypha
+- D 1 - I - 0x02E292 0B:A282: B4 A3     .word ofs_010_A3B4_02_Grant
+- D 1 - I - 0x02E294 0B:A284: B0 A2     .word ofs_010_A2B0_03_Alucard
 
 
 
-ofs_010_A286_00:
+ofs_010_A286_00_Trevor:
 C - - J - - 0x02E296 0B:A286: A0 00     LDY #$00
 C - - - - - 0x02E298 0B:A288: A5 8E     LDA ram_subweapon_power
 C - - - - - 0x02E29A 0B:A28A: F0 19     BEQ bra_A2A5
@@ -6619,7 +6722,7 @@ tbl_A2AE_object_id:
 
 
 
-ofs_010_A2B0_03:
+ofs_010_A2B0_03_Alucard:
 C - - J - - 0x02E2C0 0B:A2B0: A0 00     LDY #$00
 C - - - - - 0x02E2C2 0B:A2B2: A5 8F     LDA ram_subweapon_power + $01
 C - - - - - 0x02E2C4 0B:A2B4: F0 19     BEQ bra_A2CF
@@ -6642,8 +6745,9 @@ C - - - - - 0x02E2E1 0B:A2D1: C9 04     CMP #$04
 C - - - - - 0x02E2E3 0B:A2D3: B0 EC     BCS bra_A2C1
 - - - - - - 0x02E2E5 0B:A2D5: 4C B4 A3  JMP loc_A3B4
 bra_A2D8:
-C - - - - - 0x02E2E8 0B:A2D8: A4 D7     LDY ram_00D7
-C - - - - - 0x02E2EA 0B:A2DA: F0 20     BEQ bra_A2FC
+C - - - - - 0x02E2E8 0B:A2D8: A4 D7     LDY ram_00D7_extra_life_flag
+C - - - - - 0x02E2EA 0B:A2DA: F0 20     BEQ bra_A2FC    ; if wasn't
+; if extra life item was picked up
 bra_A2DC:
 C - - - - - 0x02E2EC 0B:A2DC: 20 78 A2  JSR sub_A278
 C - - - - - 0x02E2EF 0B:A2DF: 4C F9 A2  JMP loc_A2F9
@@ -6651,16 +6755,16 @@ C - - - - - 0x02E2EF 0B:A2DF: 4C F9 A2  JMP loc_A2F9
 
 
 loc_A2E2_90_92:
-C D 1 - - - 0x02E2F2 0B:A2E2: A9 33     LDA #con_sound_destroy_candle
+C D 1 - - - 0x02E2F2 0B:A2E2: A9 33     LDA #con_sfx_destroy_candle
 C - - - - - 0x02E2F4 0B:A2E4: 20 5F E2  JSR sub_0x03E26F_play_sound
-C - - - - - 0x02E2F7 0B:A2E7: BD D8 05  LDA ram_05D8_obj,X
-C - - - - - 0x02E2FA 0B:A2EA: C9 AC     CMP #$AC
+C - - - - - 0x02E2F7 0B:A2E7: BD D8 05  LDA ram_obj_drop_id,X
+C - - - - - 0x02E2FA 0B:A2EA: C9 AC     CMP #con_obj_id_AC
 C - - - - - 0x02E2FC 0B:A2EC: F0 EA     BEQ bra_A2D8
-C - - - - - 0x02E2FE 0B:A2EE: C9 AE     CMP #$AE
+C - - - - - 0x02E2FE 0B:A2EE: C9 AE     CMP #con_obj_id_AE
 C - - - - - 0x02E300 0B:A2F0: F0 EA     BEQ bra_A2DC
-C - - - - - 0x02E302 0B:A2F2: C9 98     CMP #$98
+C - - - - - 0x02E302 0B:A2F2: C9 98     CMP #con_index_Sypha_items
 C - - - - - 0x02E304 0B:A2F4: B0 06     BCS bra_A2FC
-C - - - - - 0x02E306 0B:A2F6: 20 0B A3  JSR sub_A30B
+C - - - - - 0x02E306 0B:A2F6: 20 0B A3  JSR sub_A30B_convert_weapon_items_based_on_player
 loc_A2F9:
 C D 1 - - - 0x02E309 0B:A2F9: BD 4E 05  LDA ram_obj_id,X
 bra_A2FC:
@@ -6673,67 +6777,67 @@ C - - - - - 0x02E318 0B:A308: 4C AA FF  JMP loc_0x03FFBA
 
 
 
-sub_A30B:
+sub_A30B_convert_weapon_items_based_on_player:
 C - - - - - 0x02E31B 0B:A30B: 38        SEC
-C - - - - - 0x02E31C 0B:A30C: E9 93     SBC #$93
+C - - - - - 0x02E31C 0B:A30C: E9 93     SBC #con_index_all_items
 C - - - - - 0x02E31E 0B:A30E: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
-- D 1 - I - 0x02E321 0B:A311: 1B A3     .word ofs_009_A31B_93
-- D 1 - I - 0x02E323 0B:A313: 29 A3     .word ofs_009_A329_94
-- D 1 - I - 0x02E325 0B:A315: 37 A3     .word ofs_009_A337_95
-- D 1 - I - 0x02E327 0B:A317: 45 A3     .word ofs_009_A345_96
-- D 1 - I - 0x02E329 0B:A319: 53 A3     .word ofs_009_A353_97
+- D 1 - I - 0x02E321 0B:A311: 1B A3     .word ofs_009_A31B_93_axe
+- D 1 - I - 0x02E323 0B:A313: 29 A3     .word ofs_009_A329_94_boomerang
+- D 1 - I - 0x02E325 0B:A315: 37 A3     .word ofs_009_A337_95_dagger
+- D 1 - I - 0x02E327 0B:A317: 45 A3     .word ofs_009_A345_96_holy_water
+- D 1 - I - 0x02E329 0B:A319: 53 A3     .word ofs_009_A353_97_stopwatch
 
 
 
-ofs_009_A31B_93:
+ofs_009_A31B_93_axe:
 C - - J - - 0x02E32B 0B:A31B: AD 4E 05  LDA ram_plr_id
 C - - - - - 0x02E32E 0B:A31E: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
-- D 1 - I - 0x02E331 0B:A321: 58 A3     .word ofs_008_93_A358_00_Trevor
-- D 1 - I - 0x02E333 0B:A323: 94 A3     .word ofs_008_93_A394_01_Sypha
-- D 1 - I - 0x02E335 0B:A325: 58 A3     .word ofs_008_93_A358_02_Grant
-- D 1 - I - 0x02E337 0B:A327: B4 A3     .word ofs_008_93_A3B4_03_Alucard
+- D 1 - I - 0x02E331 0B:A321: 58 A3     .word ofs_008_axe_A358_00_Trevor
+- D 1 - I - 0x02E333 0B:A323: 94 A3     .word ofs_008_axe_A394_01_Sypha
+- D 1 - I - 0x02E335 0B:A325: 58 A3     .word ofs_008_axe_A358_02_Grant
+- D 1 - I - 0x02E337 0B:A327: B4 A3     .word ofs_008_axe_A3B4_03_Alucard
 
 
 
-ofs_009_A329_94:
+ofs_009_A329_94_boomerang:
 C - - J - - 0x02E339 0B:A329: AD 4E 05  LDA ram_plr_id
 C - - - - - 0x02E33C 0B:A32C: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
-- D 1 - I - 0x02E33F 0B:A32F: 80 A3     .word ofs_008_94_A380_00_Trevor
-- D 1 - I - 0x02E341 0B:A331: 90 A3     .word ofs_008_94_A390_01_Sypha
-- D 1 - I - 0x02E343 0B:A333: 58 A3     .word ofs_008_94_A358_02_Grant
-- D 1 - I - 0x02E345 0B:A335: B4 A3     .word ofs_008_94_A3B4_03_Alucard
+- D 1 - I - 0x02E33F 0B:A32F: 80 A3     .word ofs_008_boomerang_A380_00_Trevor
+- D 1 - I - 0x02E341 0B:A331: 90 A3     .word ofs_008_boomerang_A390_01_Sypha
+- D 1 - I - 0x02E343 0B:A333: 58 A3     .word ofs_008_boomerang_A358_02_Grant
+- D 1 - I - 0x02E345 0B:A335: B4 A3     .word ofs_008_boomerang_A3B4_03_Alucard
 
 
 
-ofs_009_A337_95:
+ofs_009_A337_95_dagger:
 C - - J - - 0x02E347 0B:A337: AD 4E 05  LDA ram_plr_id
 C - - - - - 0x02E34A 0B:A33A: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
-- D 1 - I - 0x02E34D 0B:A33D: 71 A3     .word ofs_008_95_A371_00_Trevor
-- D 1 - I - 0x02E34F 0B:A33F: 94 A3     .word ofs_008_95_A394_01_Sypha
-- D 1 - I - 0x02E351 0B:A341: 71 A3     .word ofs_008_95_A371_02_Grant
-- D 1 - I - 0x02E353 0B:A343: B4 A3     .word ofs_008_95_A3B4_03_Alucard
+- D 1 - I - 0x02E34D 0B:A33D: 71 A3     .word ofs_008_dagger_A371_00_Trevor
+- D 1 - I - 0x02E34F 0B:A33F: 94 A3     .word ofs_008_dagger_A394_01_Sypha
+- D 1 - I - 0x02E351 0B:A341: 71 A3     .word ofs_008_dagger_A371_02_Grant
+- D 1 - I - 0x02E353 0B:A343: B4 A3     .word ofs_008_dagger_A3B4_03_Alucard
 
 
 
-ofs_009_A345_96:
+ofs_009_A345_96_holy_water:
 C - - J - - 0x02E355 0B:A345: AD 4E 05  LDA ram_plr_id
 C - - - - - 0x02E358 0B:A348: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
-- D 1 - I - 0x02E35B 0B:A34B: 88 A3     .word ofs_008_96_A388_00_Trevor
-- D 1 - I - 0x02E35D 0B:A34D: 8C A3     .word ofs_008_96_A38C_01_Sypha
-- D 1 - I - 0x02E35F 0B:A34F: 71 A3     .word ofs_008_96_A371_02_Grant
-- D 1 - I - 0x02E361 0B:A351: B4 A3     .word ofs_008_96_A3B4_03_Alucard
+- D 1 - I - 0x02E35B 0B:A34B: 88 A3     .word ofs_008_holy_water_A388_00_Trevor
+- D 1 - I - 0x02E35D 0B:A34D: 8C A3     .word ofs_008_holy_water_A38C_01_Sypha
+- D 1 - I - 0x02E35F 0B:A34F: 71 A3     .word ofs_008_holy_water_A371_02_Grant
+- D 1 - I - 0x02E361 0B:A351: B4 A3     .word ofs_008_holy_water_A3B4_03_Alucard
 
 
 
-ofs_009_A353_97:
-C - - J - - 0x02E363 0B:A353: A9 97     LDA #$97
+ofs_009_A353_97_stopwatch:
+C - - J - - 0x02E363 0B:A353: A9 97     LDA #con_obj_id_97
 C - - - - - 0x02E365 0B:A355: 4C 98 A3  JMP loc_A398
 
 
 
-ofs_008_93_A358_00_Trevor:
-ofs_008_93_A358_02_Grant:
-ofs_008_94_A358_02_Grant:
+ofs_008_axe_A358_00_Trevor:
+ofs_008_axe_A358_02_Grant:
+ofs_008_boomerang_A358_02_Grant:
 C - - J - - 0x02E368 0B:A358: AD 4E 05  LDA ram_plr_id
 C - - - - - 0x02E36B 0B:A35B: F0 0F     BEQ bra_A36C
 C - - - - - 0x02E36D 0B:A35D: A5 86     LDA ram_subweapon_id + $01
@@ -6742,62 +6846,62 @@ C - - - - - 0x02E371 0B:A361: D0 03     BNE bra_A366
 bra_A363:
 C - - - - - 0x02E373 0B:A363: 4C CE B5  JMP loc_B5CE
 bra_A366:
-C - - - - - 0x02E376 0B:A366: A9 93     LDA #$93
+C - - - - - 0x02E376 0B:A366: A9 93     LDA #con_obj_id_93
 bra_A368:
 C - - - - - 0x02E378 0B:A368: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x02E37B 0B:A36B: 60        RTS
 bra_A36C:
-C - - - - - 0x02E37C 0B:A36C: A9 93     LDA #$93
+C - - - - - 0x02E37C 0B:A36C: A9 93     LDA #con_obj_id_93
 C - - - - - 0x02E37E 0B:A36E: 4C 98 A3  JMP loc_A398
 
 
 
-ofs_008_95_A371_00_Trevor:
-ofs_008_95_A371_02_Grant:
-ofs_008_96_A371_02_Grant:
+ofs_008_dagger_A371_00_Trevor:
+ofs_008_dagger_A371_02_Grant:
+ofs_008_holy_water_A371_02_Grant:
 C - - J - - 0x02E381 0B:A371: AD 4E 05  LDA ram_plr_id
 C - - - - - 0x02E384 0B:A374: F0 0E     BEQ bra_A384
 C - - - - - 0x02E386 0B:A376: A5 86     LDA ram_subweapon_id + $01
-C - - - - - 0x02E388 0B:A378: C9 08     CMP #con_subweapon_g_knife
+C - - - - - 0x02E388 0B:A378: C9 08     CMP #con_subweapon_g_dagger
 C - - - - - 0x02E38A 0B:A37A: F0 E7     BEQ bra_A363
-C - - - - - 0x02E38C 0B:A37C: A9 95     LDA #$95
+C - - - - - 0x02E38C 0B:A37C: A9 95     LDA #con_obj_id_95
 C - - - - - 0x02E38E 0B:A37E: D0 E8     BNE bra_A368    ; jmp
 
 
 
-ofs_008_94_A380_00_Trevor:
-C - - J - - 0x02E390 0B:A380: A9 94     LDA #$94
+ofs_008_boomerang_A380_00_Trevor:
+C - - J - - 0x02E390 0B:A380: A9 94     LDA #con_obj_id_94
 C - - - - - 0x02E392 0B:A382: D0 14     BNE bra_A398    ; jmp
 
 
 
 bra_A384:
-C - - - - - 0x02E394 0B:A384: A9 95     LDA #$95
+C - - - - - 0x02E394 0B:A384: A9 95     LDA #con_obj_id_95
 C - - - - - 0x02E396 0B:A386: D0 10     BNE bra_A398    ; jmp
 
 
 
-ofs_008_96_A388_00_Trevor:
-C - - J - - 0x02E398 0B:A388: A9 96     LDA #$96
+ofs_008_holy_water_A388_00_Trevor:
+C - - J - - 0x02E398 0B:A388: A9 96     LDA #con_obj_id_96
 C - - - - - 0x02E39A 0B:A38A: D0 0C     BNE bra_A398    ; jmp
 
 
 
-ofs_008_96_A38C_01_Sypha:
-C - - J - - 0x02E39C 0B:A38C: A9 99     LDA #$99
+ofs_008_holy_water_A38C_01_Sypha:
+C - - J - - 0x02E39C 0B:A38C: A9 99     LDA #con_obj_id_99
 C - - - - - 0x02E39E 0B:A38E: D0 08     BNE bra_A398    ; jmp
 
 
 
-ofs_008_94_A390_01_Sypha:
-C - - J - - 0x02E3A0 0B:A390: A9 9A     LDA #$9A
+ofs_008_boomerang_A390_01_Sypha:
+C - - J - - 0x02E3A0 0B:A390: A9 9A     LDA #con_obj_id_9A
 C - - - - - 0x02E3A2 0B:A392: D0 04     BNE bra_A398    ; jmp
 
 
 
-ofs_008_93_A394_01_Sypha:
-ofs_008_95_A394_01_Sypha:
-C - - J - - 0x02E3A4 0B:A394: A9 98     LDA #$98
+ofs_008_axe_A394_01_Sypha:
+ofs_008_dagger_A394_01_Sypha:
+C - - J - - 0x02E3A4 0B:A394: A9 98     LDA #con_obj_id_98
 ; bzk optimize, useless branch
 C - - - - - 0x02E3A6 0B:A396: D0 00     BNE bra_A398    ; jmp
 
@@ -6808,7 +6912,7 @@ loc_A398:   ; A = 93 98
 C D 1 - - - 0x02E3A8 0B:A398: 85 10     STA ram_0010_t02B_obj_id
 C - - - - - 0x02E3AA 0B:A39A: A4 3B     LDY ram_player
 C - - - - - 0x02E3AC 0B:A39C: 38        SEC
-C - - - - - 0x02E3AD 0B:A39D: E9 93     SBC #$93
+C - - - - - 0x02E3AD 0B:A39D: E9 93     SBC #con_index_all_items
 C - - - - - 0x02E3AF 0B:A39F: A8        TAY
 C - - - - - 0x02E3B0 0B:A3A0: B9 71 A1  LDA tbl_A171_subweapon,Y
 C - - - - - 0x02E3B3 0B:A3A3: A4 3B     LDY ram_player
@@ -6822,54 +6926,57 @@ C - - - - - 0x02E3BF 0B:A3AF: 60        RTS
 
 
 ; bzk garbage
-- - - - - - 0x02E3C0 0B:A3B0: A9 AD     LDA #$AD
+- - - - - - 0x02E3C0 0B:A3B0: A9 AD     LDA #con_obj_id_AD
 - - - - - - 0x02E3C2 0B:A3B2: D0 F8     BNE bra_A3AC    ; jmp
 
 
 
 loc_A3B4:
-ofs_008_93_A3B4_03_Alucard:
-ofs_008_94_A3B4_03_Alucard:
-ofs_008_95_A3B4_03_Alucard:
-ofs_008_96_A3B4_03_Alucard:
-ofs_010_A3B4_01:
-ofs_010_A3B4_02:
+ofs_008_axe_A3B4_03_Alucard:
+ofs_008_boomerang_A3B4_03_Alucard:
+ofs_008_dagger_A3B4_03_Alucard:
+ofs_008_holy_water_A3B4_03_Alucard:
+ofs_010_A3B4_01_Sypha:
+ofs_010_A3B4_02_Grant:
 C D 1 - - - 0x02E3C4 0B:A3B4: 20 E8 A3  JSR sub_A3E8
-C - - - - - 0x02E3C7 0B:A3B7: D0 0A     BNE bra_A3C3
+C - - - - - 0x02E3C7 0B:A3B7: D0 0A     BNE bra_A3C3_drop_small_heart
 C - - - - - 0x02E3C9 0B:A3B9: A5 9E     LDA ram_009E_object_index
-C - - - - - 0x02E3CB 0B:A3BB: F0 06     BEQ bra_A3C3
+C - - - - - 0x02E3CB 0B:A3BB: F0 06     BEQ bra_A3C3_drop_small_heart
 C - - - - - 0x02E3CD 0B:A3BD: A5 9C     LDA ram_009C
 C - - - - - 0x02E3CF 0B:A3BF: C9 0A     CMP #$0A
 C - - - - - 0x02E3D1 0B:A3C1: B0 04     BCS bra_A3C7
-bra_A3C3:
-C - - - - - 0x02E3D3 0B:A3C3: A9 AE     LDA #$AE
+bra_A3C3_drop_small_heart:
+C - - - - - 0x02E3D3 0B:A3C3: A9 AE     LDA #con_obj_id_AE
 C - - - - - 0x02E3D5 0B:A3C5: D0 E5     BNE bra_A3AC    ; jmp
 bra_A3C7:
 C - - - - - 0x02E3D7 0B:A3C7: A9 00     LDA #$00
 C - - - - - 0x02E3D9 0B:A3C9: 85 9C     STA ram_009C
 C - - - - - 0x02E3DB 0B:A3CB: AD 4E 05  LDA ram_plr_id
 C - - - - - 0x02E3DE 0B:A3CE: 29 01     AND #$01
-C - - - - - 0x02E3E0 0B:A3D0: D0 F1     BNE bra_A3C3
+C - - - - - 0x02E3E0 0B:A3D0: D0 F1     BNE bra_A3C3_drop_small_heart    ; if Sypha/Alucard
+; if Trevor/Grant
 C - - - - - 0x02E3E2 0B:A3D2: A4 3B     LDY ram_player
 C - - - - - 0x02E3E4 0B:A3D4: B9 87 00  LDA ram_subweapon_multiplier,Y
-C - - - - - 0x02E3E7 0B:A3D7: D9 E6 A3  CMP tbl_A3E6,Y
-C - - - - - 0x02E3EA 0B:A3DA: B0 E7     BCS bra_A3C3
+C - - - - - 0x02E3E7 0B:A3D7: D9 E6 A3  CMP tbl_A3E6_02,Y
+C - - - - - 0x02E3EA 0B:A3DA: B0 E7     BCS bra_A3C3_drop_small_heart
 C - - - - - 0x02E3EC 0B:A3DC: A8        TAY
-C - - - - - 0x02E3ED 0B:A3DD: B9 E4 A3  LDA tbl_A3E4,Y
+C - - - - - 0x02E3ED 0B:A3DD: B9 E4 A3  LDA tbl_A3E4_subweapon_multipliers,Y
 C - - - - - 0x02E3F0 0B:A3E0: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x02E3F3 0B:A3E3: 60        RTS
 
 
 
-tbl_A3E4:
-- D 1 - - - 0x02E3F4 0B:A3E4: AF        .byte $AF   ; 00 
-- D 1 - - - 0x02E3F5 0B:A3E5: B0        .byte $B0   ; 01 
+tbl_A3E4_subweapon_multipliers:
+- D 1 - - - 0x02E3F4 0B:A3E4: AF        .byte con_obj_id_AF   ; 00 
+- D 1 - - - 0x02E3F5 0B:A3E5: B0        .byte con_obj_id_B0   ; 01 
 
 
 
-tbl_A3E6:
-- D 1 - - - 0x02E3F6 0B:A3E6: 02        .byte $02   ; 00 
-- - - - - - 0x02E3F7 0B:A3E7: 02        .byte $02   ; 01 
+tbl_A3E6_02:
+; bzk optimize, same bytes
+- D 1 - - - 0x02E3F6 0B:A3E6: 02        .byte $02   ; 00 Trevor/Grant
+; bzk garbage? 0x02E3DE
+- - - - - - 0x02E3F7 0B:A3E7: 02        .byte $02   ; 01 Sypha/Alucard
 
 
 
@@ -6906,142 +7013,144 @@ C - - - - - 0x02E41A 0B:A40A: 60        RTS
 
 
 
-_off034_A40B_60:
-; con_BEA1_60
+_off034_ai_script_A40B_60:
+; con_ai_script_60
+tbl__A40B:
 ; 00 
-- D 1 - I - 0x02E41B 0B:A40B: 97        .byte con_BD4F_97   ; 
-- - - - - - 0x02E41C 0B:A40C: 00        .byte $00   ; 
-- - - - - - 0x02E41D 0B:A40D: 00        .byte $00   ; 
-- - - - - - 0x02E41E 0B:A40E: 00        .byte $00   ; 
+- D 1 - I - 0x02E41B 0B:A40B: 97        .byte con_ai_subscr_97_clear_XY_speed   ; 
+- - - - - - 0x02E41C 0B:A40C: 00        .byte $00   ; placeholder
+- - - - - - 0x02E41D 0B:A40D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E41E 0B:A40E: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E41F 0B:A40F: 17        .byte con_BD4F_17   ; 
-- - - - - - 0x02E420 0B:A410: 00        .byte $00   ; 
-- - - - - - 0x02E421 0B:A411: 00        .byte $00   ; 
-- - - - - - 0x02E422 0B:A412: 00        .byte $00   ; 
+- D 1 - I - 0x02E41F 0B:A40F: 17        .byte con_ai_subscr_17   ; 
+- - - - - - 0x02E420 0B:A410: 00        .byte $00   ; placeholder
+- - - - - - 0x02E421 0B:A411: 00        .byte $00   ; placeholder
+- - - - - - 0x02E422 0B:A412: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E423 0B:A413: 14        .byte con_BD4F_14   ; 
-- - - - - - 0x02E424 0B:A414: 00        .byte $00   ; 
-- - - - - - 0x02E425 0B:A415: 00        .byte $00   ; 
-- - - - - - 0x02E426 0B:A416: 00        .byte $00   ; 
+- D 1 - I - 0x02E423 0B:A413: 14        .byte con_ai_subscr_14   ; 
+- - - - - - 0x02E424 0B:A414: 00        .byte $00   ; placeholder
+- - - - - - 0x02E425 0B:A415: 00        .byte $00   ; placeholder
+- - - - - - 0x02E426 0B:A416: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E427 0B:A417: 15        .byte con_BD4F_15   ; 
-- - - - - - 0x02E428 0B:A418: 00        .byte $00   ; 
-- - - - - - 0x02E429 0B:A419: 00        .byte $00   ; 
-- - - - - - 0x02E42A 0B:A41A: 00        .byte $00   ; 
+- D 1 - I - 0x02E427 0B:A417: 15        .byte con_ai_subscr_15   ; 
+- - - - - - 0x02E428 0B:A418: 00        .byte $00   ; placeholder
+- - - - - - 0x02E429 0B:A419: 00        .byte $00   ; placeholder
+- - - - - - 0x02E42A 0B:A41A: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E42B 0B:A41B: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E42B 0B:A41B: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E42C 0B:A41C: 0A        .byte con_obj_type_0A   ; 
 - D 1 - I - 0x02E42D 0B:A41D: 0B        .byte $0B   ; 
-- - - - - - 0x02E42E 0B:A41E: 00        .byte $00   ; 
+- - - - - - 0x02E42E 0B:A41E: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E42F 0B:A41F: 16        .byte con_BD4F_16   ; 
-- - - - - - 0x02E430 0B:A420: 00        .byte $00   ; 
-- - - - - - 0x02E431 0B:A421: 00        .byte $00   ; 
-- - - - - - 0x02E432 0B:A422: 00        .byte $00   ; 
+- D 1 - I - 0x02E42F 0B:A41F: 16        .byte con_ai_subscr_16   ; 
+- - - - - - 0x02E430 0B:A420: 00        .byte $00   ; placeholder
+- - - - - - 0x02E431 0B:A421: 00        .byte $00   ; placeholder
+- - - - - - 0x02E432 0B:A422: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E433 0B:A423: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02E434 0B:A424: 2D        .byte con_sound_2D   ; 
+off_A423_06:
+- D 1 - I - 0x02E433 0B:A423: 6C        .byte con_ai_subscr_play_sound   ; 
+- D 1 - I - 0x02E434 0B:A424: 2D        .byte con_sfx_2D   ; 
 - - - - - - 0x02E435 0B:A425: 00        .byte $00   ; placeholder
 - - - - - - 0x02E436 0B:A426: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E437 0B:A427: 30        .byte con_BD4F_30   ; 
+- D 1 - I - 0x02E437 0B:A427: 30        .byte con_ai_subscr_30   ; 
 - D 1 - I - 0x02E438 0B:A428: 02        .byte $02   ; 
-- - - - - - 0x02E439 0B:A429: 00        .byte $00   ; 
-- - - - - - 0x02E43A 0B:A42A: 00        .byte $00   ; 
+- - - - - - 0x02E439 0B:A429: 00        .byte $00   ; placeholder
+- - - - - - 0x02E43A 0B:A42A: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E43B 0B:A42B: 1A        .byte con_BD4F_1A   ; 
-- D 1 - I - 0x02E43C 0B:A42C: 04        .byte $04   ; 
-- - - - - - 0x02E43D 0B:A42D: 00        .byte $00   ; 
-- - - - - - 0x02E43E 0B:A42E: 00        .byte $00   ; 
+- D 1 - I - 0x02E43B 0B:A42B: 1A        .byte con_ai_subscr_1A_set_timer   ; 
+- D 1 - I - 0x02E43C 0B:A42C: 04        .byte $04   ; timer
+- - - - - - 0x02E43D 0B:A42D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E43E 0B:A42E: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02E43F 0B:A42F: 1B        .byte con_BD4F_1B   ; 
-- - - - - - 0x02E440 0B:A430: 00        .byte $00   ; 
-- - - - - - 0x02E441 0B:A431: 00        .byte $00   ; 
-- - - - - - 0x02E442 0B:A432: 00        .byte $00   ; 
+- D 1 - I - 0x02E43F 0B:A42F: 1B        .byte con_ai_subscr_1B_count_down_timer   ; 
+- - - - - - 0x02E440 0B:A430: 00        .byte $00   ; placeholder
+- - - - - - 0x02E441 0B:A431: 00        .byte $00   ; placeholder
+- - - - - - 0x02E442 0B:A432: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02E443 0B:A433: 17        .byte con_BD4F_17   ; 
-- - - - - - 0x02E444 0B:A434: 00        .byte $00   ; 
-- - - - - - 0x02E445 0B:A435: 00        .byte $00   ; 
-- - - - - - 0x02E446 0B:A436: 00        .byte $00   ; 
+- D 1 - I - 0x02E443 0B:A433: 17        .byte con_ai_subscr_17   ; 
+- - - - - - 0x02E444 0B:A434: 00        .byte $00   ; placeholder
+- - - - - - 0x02E445 0B:A435: 00        .byte $00   ; placeholder
+- - - - - - 0x02E446 0B:A436: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02E447 0B:A437: 1A        .byte con_BD4F_1A   ; 
-- D 1 - I - 0x02E448 0B:A438: 10        .byte $10   ; 
-- - - - - - 0x02E449 0B:A439: 00        .byte $00   ; 
-- - - - - - 0x02E44A 0B:A43A: 00        .byte $00   ; 
+- D 1 - I - 0x02E447 0B:A437: 1A        .byte con_ai_subscr_1A_set_timer   ; 
+- D 1 - I - 0x02E448 0B:A438: 10        .byte $10   ; timer
+- - - - - - 0x02E449 0B:A439: 00        .byte $00   ; placeholder
+- - - - - - 0x02E44A 0B:A43A: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02E44B 0B:A43B: 1B        .byte con_BD4F_1B   ; 
-- - - - - - 0x02E44C 0B:A43C: 00        .byte $00   ; 
-- - - - - - 0x02E44D 0B:A43D: 00        .byte $00   ; 
-- - - - - - 0x02E44E 0B:A43E: 00        .byte $00   ; 
+- D 1 - I - 0x02E44B 0B:A43B: 1B        .byte con_ai_subscr_1B_count_down_timer   ; 
+- - - - - - 0x02E44C 0B:A43C: 00        .byte $00   ; placeholder
+- - - - - - 0x02E44D 0B:A43D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E44E 0B:A43E: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02E44F 0B:A43F: 7B        .byte con_BD4F_7B   ; 
+- D 1 - I - 0x02E44F 0B:A43F: 7B        .byte con_ai_subscr_7B   ; 
 - D 1 - I - 0x02E450 0B:A440: 03        .byte $03   ; 
-- - - - - - 0x02E451 0B:A441: 00        .byte $00   ; 
-- - - - - - 0x02E452 0B:A442: 00        .byte $00   ; 
+- - - - - - 0x02E451 0B:A441: 00        .byte $00   ; placeholder
+- - - - - - 0x02E452 0B:A442: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02E453 0B:A443: 30        .byte con_BD4F_30   ; 
+- D 1 - I - 0x02E453 0B:A443: 30        .byte con_ai_subscr_30   ; 
 - D 1 - I - 0x02E454 0B:A444: 03        .byte $03   ; 
-- - - - - - 0x02E455 0B:A445: 00        .byte $00   ; 
-- - - - - - 0x02E456 0B:A446: 00        .byte $00   ; 
+- - - - - - 0x02E455 0B:A445: 00        .byte $00   ; placeholder
+- - - - - - 0x02E456 0B:A446: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02E457 0B:A447: 16        .byte con_BD4F_16   ; 
-- - - - - - 0x02E458 0B:A448: 00        .byte $00   ; 
-- - - - - - 0x02E459 0B:A449: 00        .byte $00   ; 
-- - - - - - 0x02E45A 0B:A44A: 00        .byte $00   ; 
+- D 1 - I - 0x02E457 0B:A447: 16        .byte con_ai_subscr_16   ; 
+- - - - - - 0x02E458 0B:A448: 00        .byte $00   ; placeholder
+- - - - - - 0x02E459 0B:A449: 00        .byte $00   ; placeholder
+- - - - - - 0x02E45A 0B:A44A: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02E45B 0B:A44B: 1A        .byte con_BD4F_1A   ; 
-- D 1 - I - 0x02E45C 0B:A44C: 01        .byte $01   ; 
-- - - - - - 0x02E45D 0B:A44D: 00        .byte $00   ; 
-- - - - - - 0x02E45E 0B:A44E: 00        .byte $00   ; 
+- D 1 - I - 0x02E45B 0B:A44B: 1A        .byte con_ai_subscr_1A_set_timer   ; 
+- D 1 - I - 0x02E45C 0B:A44C: 01        .byte $01   ; timer
+- - - - - - 0x02E45D 0B:A44D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E45E 0B:A44E: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02E45F 0B:A44F: 1B        .byte con_BD4F_1B   ; 
-- - - - - - 0x02E460 0B:A450: 00        .byte $00   ; 
-- - - - - - 0x02E461 0B:A451: 00        .byte $00   ; 
-- - - - - - 0x02E462 0B:A452: 00        .byte $00   ; 
+- D 1 - I - 0x02E45F 0B:A44F: 1B        .byte con_ai_subscr_1B_count_down_timer   ; 
+- - - - - - 0x02E460 0B:A450: 00        .byte $00   ; placeholder
+- - - - - - 0x02E461 0B:A451: 00        .byte $00   ; placeholder
+- - - - - - 0x02E462 0B:A452: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02E463 0B:A453: 17        .byte con_BD4F_17   ; 
-- - - - - - 0x02E464 0B:A454: 00        .byte $00   ; 
-- - - - - - 0x02E465 0B:A455: 00        .byte $00   ; 
-- - - - - - 0x02E466 0B:A456: 00        .byte $00   ; 
+- D 1 - I - 0x02E463 0B:A453: 17        .byte con_ai_subscr_17   ; 
+- - - - - - 0x02E464 0B:A454: 00        .byte $00   ; placeholder
+- - - - - - 0x02E465 0B:A455: 00        .byte $00   ; placeholder
+- - - - - - 0x02E466 0B:A456: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02E467 0B:A457: 1A        .byte con_BD4F_1A   ; 
-- D 1 - I - 0x02E468 0B:A458: 02        .byte $02   ; 
-- - - - - - 0x02E469 0B:A459: 00        .byte $00   ; 
-- - - - - - 0x02E46A 0B:A45A: 00        .byte $00   ; 
+- D 1 - I - 0x02E467 0B:A457: 1A        .byte con_ai_subscr_1A_set_timer   ; 
+- D 1 - I - 0x02E468 0B:A458: 02        .byte $02   ; timer
+- - - - - - 0x02E469 0B:A459: 00        .byte $00   ; placeholder
+- - - - - - 0x02E46A 0B:A45A: 00        .byte $00   ; placeholder
 ; 14 
-- D 1 - I - 0x02E46B 0B:A45B: 1B        .byte con_BD4F_1B   ; 
-- - - - - - 0x02E46C 0B:A45C: 00        .byte $00   ; 
-- - - - - - 0x02E46D 0B:A45D: 00        .byte $00   ; 
-- - - - - - 0x02E46E 0B:A45E: 00        .byte $00   ; 
+- D 1 - I - 0x02E46B 0B:A45B: 1B        .byte con_ai_subscr_1B_count_down_timer   ; 
+- - - - - - 0x02E46C 0B:A45C: 00        .byte $00   ; placeholder
+- - - - - - 0x02E46D 0B:A45D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E46E 0B:A45E: 00        .byte $00   ; placeholder
 ; 15 
-- D 1 - I - 0x02E46F 0B:A45F: 7C        .byte con_BD4F_7C   ; 
-- D 1 - I - 0x02E470 0B:A460: F9        .byte $F9   ; 
-- - - - - - 0x02E471 0B:A461: 00        .byte $00   ; 
-- - - - - - 0x02E472 0B:A462: 00        .byte $00   ; 
+- D 1 - I - 0x02E46F 0B:A45F: 7C        .byte con_ai_subscr_7C_conditional_branch   ; 
+- D 1 - I - 0x02E470 0B:A460: F9        .byte (off_A423_06 - tbl__A40B) / $04 ^ $FF   ; branch
+- - - - - - 0x02E471 0B:A461: 00        .byte $00   ; placeholder
+- - - - - - 0x02E472 0B:A462: 00        .byte $00   ; placeholder
 ; 16 
-- D 1 - I - 0x02E473 0B:A463: 18        .byte con_BD4F_18   ; 
-- - - - - - 0x02E474 0B:A464: 00        .byte $00   ; 
-- - - - - - 0x02E475 0B:A465: 00        .byte $00   ; 
-- - - - - - 0x02E476 0B:A466: 00        .byte $00   ; 
+- D 1 - I - 0x02E473 0B:A463: 18        .byte con_ai_subscr_18_repeat_from_beginning   ; 
+- - - - - - 0x02E474 0B:A464: 00        .byte $00   ; placeholder
+- - - - - - 0x02E475 0B:A465: 00        .byte $00   ; placeholder
+- - - - - - 0x02E476 0B:A466: 00        .byte $00   ; placeholder
 
 
 
-ofs_039_A467_97:
-; con_BD4F_97
+ofs_039_ai_subscript_A467_97_clear_XY_speed:
+; con_ai_subscr_97_clear_XY_speed
 C - - J - - 0x02E477 0B:A467: FE C1 05  INC ram_obj_ai_subscript,X
-C - - - - - 0x02E47A 0B:A46A: 4C C8 FE  JMP loc_0x03FED8_clear_speed
+C - - - - - 0x02E47A 0B:A46A: 4C C8 FE  JMP loc_0x03FED8_clear_XY_speed
 
 
 
-ofs_039_A46D_14:
-; con_BD4F_14
+ofs_039_ai_subscript_A46D_14:
+; con_ai_subscr_14
 C - - J - - 0x02E47D 0B:A46D: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02E480 0B:A470: 20 24 A5  JSR sub_A524_generate_random_number
 C - - - - - 0x02E483 0B:A473: 29 07     AND #$07
 C - - - - - 0x02E485 0B:A475: 0A        ASL
 C - - - - - 0x02E486 0B:A476: A8        TAY
 C - - - - - 0x02E487 0B:A477: B9 BF A4  LDA tbl_A4BF,Y
-C - - - - - 0x02E48A 0B:A47A: 9D D8 05  STA ram_05D8_obj,X
+C - - - - - 0x02E48A 0B:A47A: 9D D8 05  STA ram_obj_drop_id,X
 C - - - - - 0x02E48D 0B:A47D: B9 C0 A4  LDA tbl_A4BF + $01,Y
 C - - - - - 0x02E490 0B:A480: 9D 45 06  STA ram_obj_0646,X
 ; check for 02-04-xx
@@ -7102,11 +7211,11 @@ tbl_A4BF:
 
 
 
-ofs_039_A4CF_15:
-; con_BD4F_15
-C - - J - - 0x02E4DF 0B:A4CF: DE D8 05  DEC ram_05D8_obj,X
+ofs_039_ai_subscript_A4CF_15:
+; con_ai_subscr_15
+C - - J - - 0x02E4DF 0B:A4CF: DE D8 05  DEC ram_obj_drop_id,X
 C - - - - - 0x02E4E2 0B:A4D2: 10 0E     BPL bra_A4E2_RTS
-C - - - - - 0x02E4E4 0B:A4D4: BC D8 05  LDY ram_05D8_obj,X
+C - - - - - 0x02E4E4 0B:A4D4: BC D8 05  LDY ram_obj_drop_id,X
 C - - - - - 0x02E4E7 0B:A4D7: C8        INY
 C - - - - - 0x02E4E8 0B:A4D8: D0 08     BNE bra_A4E2_RTS
 C - - - - - 0x02E4EA 0B:A4DA: DE 45 06  DEC ram_obj_0646,X
@@ -7117,50 +7226,50 @@ C - - - - - 0x02E4F2 0B:A4E2: 60        RTS
 
 
 
-ofs_039_A4E3_16:
-; con_BD4F_16
+ofs_039_ai_subscript_A4E3_16:
+; con_ai_subscr_16
 C - - J - - 0x02E4F3 0B:A4E3: A9 50     LDA #con_obj_flag_10 + con_obj_flag_40
 C - - - - - 0x02E4F5 0B:A4E5: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x02E4F8 0B:A4E8: D0 25     BNE bra_A50F    ; jmp
 
 
 
-ofs_039_A4EA_17:
-; con_BD4F_17
+ofs_039_ai_subscript_A4EA_17:
+; con_ai_subscr_17
 C - - J - - 0x02E4FA 0B:A4EA: A9 58     LDA #con_obj_flag_08 + con_obj_flag_10 + con_obj_flag_40
 C - - - - - 0x02E4FC 0B:A4EC: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x02E4FF 0B:A4EF: D0 1E     BNE bra_A50F    ; jmp
 
 
 
-ofs_039_A4F1_18:
-; con_BD4F_18
+ofs_039_ai_subscript_A4F1_18_repeat_from_beginning:
+; con_ai_subscr_18_repeat_from_beginning
 C - - J - - 0x02E501 0B:A4F1: A9 00     LDA #$00
 C - - - - - 0x02E503 0B:A4F3: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x02E506 0B:A4F6: 60        RTS
 
 
 
-ofs_039_A4F7_1A:
-; con_BD4F_1A
+ofs_039_ai_subscript_A4F7_1A_set_timer:
+; con_ai_subscr_1A_set_timer
 C - - J - - 0x02E507 0B:A4F7: A0 01     LDY #$01
 C - - - - - 0x02E509 0B:A4F9: B1 02     LDA (ram_0002_t007_data),Y
-C - - - - - 0x02E50B 0B:A4FB: 9D D8 05  STA ram_05D8_obj,X
+C - - - - - 0x02E50B 0B:A4FB: 9D D8 05  STA ram_obj_drop_id,X
 C - - - - - 0x02E50E 0B:A4FE: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02E511 0B:A501: 60        RTS
 
 
 
-ofs_039_A502_1B:
-; con_BD4F_1B
-C - - J - - 0x02E512 0B:A502: DE D8 05  DEC ram_05D8_obj,X
+ofs_039_ai_subscript_A502_1B_count_down_timer:
+; con_ai_subscr_1B_count_down_timer
+C - - J - - 0x02E512 0B:A502: DE D8 05  DEC ram_obj_drop_id,X
 C - - - - - 0x02E515 0B:A505: F0 08     BEQ bra_A50F
 C - - - - - 0x02E517 0B:A507: 60        RTS
 
 
 
-ofs_039_A508_7B:
-; con_BD4F_7B
+ofs_039_ai_subscript_A508_7B:
+; con_ai_subscr_7B
 C - - J - - 0x02E518 0B:A508: A0 01     LDY #$01
 C - - - - - 0x02E51A 0B:A50A: B1 02     LDA (ram_0002_t007_data),Y
 C - - - - - 0x02E51C 0B:A50C: 9D 33 06  STA ram_obj_0634,X
@@ -7170,8 +7279,8 @@ C - - - - - 0x02E522 0B:A512: 60        RTS
 
 
 
-ofs_039_A513_7C:
-; con_BD4F_7C
+ofs_039_ai_subscript_A513_7C:
+; con_ai_subscr_7C_conditional_branch
 C - - J - - 0x02E523 0B:A513: DE 33 06  DEC ram_obj_0634,X
 C - - - - - 0x02E526 0B:A516: F0 F7     BEQ bra_A50F
 C - - - - - 0x02E528 0B:A518: A0 01     LDY #$01
@@ -7201,4137 +7310,4145 @@ C - - - - - 0x02E547 0B:A537: 60        RTS
 
 
 
-_off034_A538_6B:
-; con_BEA1_6B
+_off034_ai_script_A538_6B:
+; con_ai_script_6B
 ; 00 
-- - - - - - 0x02E548 0B:A538: 20        .byte con_BD4F_count_down_timer   ; 
+- - - - - - 0x02E548 0B:A538: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E549 0B:A539: 00        .byte $00   ; placeholder
 - - - - - - 0x02E54A 0B:A53A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E54B 0B:A53B: 00        .byte $00   ; placeholder
 ; 01 
-- - - - - - 0x02E54C 0B:A53C: A1        .byte con_BD4F_A1   ; 
-- - - - - - 0x02E54D 0B:A53D: 00        .byte $00   ; 
-- - - - - - 0x02E54E 0B:A53E: 00        .byte $00   ; 
-- - - - - - 0x02E54F 0B:A53F: 00        .byte $00   ; 
+- - - - - - 0x02E54C 0B:A53C: A1        .byte con_ai_subscr_A1   ; 
+- - - - - - 0x02E54D 0B:A53D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E54E 0B:A53E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E54F 0B:A53F: 00        .byte $00   ; placeholder
 ; 02 
-- - - - - - 0x02E550 0B:A540: A2        .byte con_BD4F_A2   ; 
-- - - - - - 0x02E551 0B:A541: 00        .byte $00   ; 
-- - - - - - 0x02E552 0B:A542: 00        .byte $00   ; 
-- - - - - - 0x02E553 0B:A543: 00        .byte $00   ; 
+- - - - - - 0x02E550 0B:A540: A2        .byte con_ai_subscr_A2   ; 
+- - - - - - 0x02E551 0B:A541: 00        .byte $00   ; placeholder
+- - - - - - 0x02E552 0B:A542: 00        .byte $00   ; placeholder
+- - - - - - 0x02E553 0B:A543: 00        .byte $00   ; placeholder
 
 
 
-_off034_A544_6C:
-; con_BEA1_6C
+_off034_ai_script_A544_6C:
+; con_ai_script_6C
 ; 00 
-- - - - - - 0x02E554 0B:A544: 0B        .byte con_BD4F_0B   ; 
+- - - - - - 0x02E554 0B:A544: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - - - - - - 0x02E555 0B:A545: 0E        .byte con_obj_type_0E   ; 
 - - - - - - 0x02E556 0B:A546: 46        .byte $46   ; 
-- - - - - - 0x02E557 0B:A547: 00        .byte $00   ; 
+- - - - - - 0x02E557 0B:A547: 00        .byte $00   ; placeholder
 ; 01 
-- - - - - - 0x02E558 0B:A548: 45        .byte con_BD4F_water_splash   ; 
+- - - - - - 0x02E558 0B:A548: 45        .byte con_ai_subscr_water_splash   ; 
 - - - - - - 0x02E559 0B:A549: 0F        .byte $0F   ; 
-- - - - - - 0x02E55A 0B:A54A: 00        .byte $00   ; 
-- - - - - - 0x02E55B 0B:A54B: 00        .byte $00   ; 
+- - - - - - 0x02E55A 0B:A54A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E55B 0B:A54B: 00        .byte $00   ; placeholder
 ; 02 
-- - - - - - 0x02E55C 0B:A54C: 46        .byte con_BD4F_46   ; 
-- - - - - - 0x02E55D 0B:A54D: 00        .byte $00   ; 
-- - - - - - 0x02E55E 0B:A54E: 00        .byte $00   ; 
-- - - - - - 0x02E55F 0B:A54F: 00        .byte $00   ; 
+- - - - - - 0x02E55C 0B:A54C: 46        .byte con_ai_subscr_46   ; 
+- - - - - - 0x02E55D 0B:A54D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E55E 0B:A54E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E55F 0B:A54F: 00        .byte $00   ; placeholder
 
 
 
-_off034_A550_2C:
-; con_BEA1_2C
+_off034_ai_script_A550_2C:
+; con_ai_script_2C
 ; 00 
-- D 1 - I - 0x02E560 0B:A550: 88        .byte con_BD4F_88   ; 
-- D 1 - I - 0x02E561 0B:A551: 3A        .byte $3A   ; 
-- - - - - - 0x02E562 0B:A552: 00        .byte $00   ; 
-- - - - - - 0x02E563 0B:A553: 00        .byte $00   ; 
+- D 1 - I - 0x02E560 0B:A550: 88        .byte con_ai_subscr_88   ; 
+- D 1 - I - 0x02E561 0B:A551: 3A        .byte $3A   ; animation
+- - - - - - 0x02E562 0B:A552: 00        .byte $00   ; placeholder
+- - - - - - 0x02E563 0B:A553: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E564 0B:A554: 77        .byte con_BD4F_77   ; 
-- - - - - - 0x02E565 0B:A555: 00        .byte $00   ; 
-- - - - - - 0x02E566 0B:A556: 00        .byte $00   ; 
-- - - - - - 0x02E567 0B:A557: 00        .byte $00   ; 
+- D 1 - I - 0x02E564 0B:A554: 77        .byte con_ai_subscr_77   ; 
+- - - - - - 0x02E565 0B:A555: 00        .byte $00   ; placeholder
+- - - - - - 0x02E566 0B:A556: 00        .byte $00   ; placeholder
+- - - - - - 0x02E567 0B:A557: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E568 0B:A558: 76        .byte con_BD4F_76   ; 
-- - - - - - 0x02E569 0B:A559: 00        .byte $00   ; 
-- - - - - - 0x02E56A 0B:A55A: 00        .byte $00   ; 
-- - - - - - 0x02E56B 0B:A55B: 00        .byte $00   ; 
+- D 1 - I - 0x02E568 0B:A558: 76        .byte con_ai_subscr_76   ; 
+- - - - - - 0x02E569 0B:A559: 00        .byte $00   ; placeholder
+- - - - - - 0x02E56A 0B:A55A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E56B 0B:A55B: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E56C 0B:A55C: 78        .byte con_BD4F_78   ; 
-- - - - - - 0x02E56D 0B:A55D: 00        .byte $00   ; 
-- - - - - - 0x02E56E 0B:A55E: 00        .byte $00   ; 
-- - - - - - 0x02E56F 0B:A55F: 00        .byte $00   ; 
+- D 1 - I - 0x02E56C 0B:A55C: 78        .byte con_ai_subscr_78   ; 
+- - - - - - 0x02E56D 0B:A55D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E56E 0B:A55E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E56F 0B:A55F: 00        .byte $00   ; placeholder
 
 
 
-_off034_A560_2D:
-; con_BEA1_2D
+_off034_ai_script_A560_2D:
+; con_ai_script_2D
 ; 00 
-- D 1 - I - 0x02E570 0B:A560: 88        .byte con_BD4F_88   ; 
-- D 1 - I - 0x02E571 0B:A561: 42        .byte $42   ; 
-- - - - - - 0x02E572 0B:A562: 00        .byte $00   ; 
-- - - - - - 0x02E573 0B:A563: 00        .byte $00   ; 
+- D 1 - I - 0x02E570 0B:A560: 88        .byte con_ai_subscr_88   ; 
+- D 1 - I - 0x02E571 0B:A561: 42        .byte $42   ; animation
+- - - - - - 0x02E572 0B:A562: 00        .byte $00   ; placeholder
+- - - - - - 0x02E573 0B:A563: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E574 0B:A564: 75        .byte con_BD4F_75   ; 
+- D 1 - I - 0x02E574 0B:A564: 75        .byte con_ai_subscr_75_infinte_loop   ; 
 - - - - - - 0x02E575 0B:A565: 00        .byte $00   ; placeholder
 - - - - - - 0x02E576 0B:A566: 00        .byte $00   ; placeholder
 - - - - - - 0x02E577 0B:A567: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E578 0B:A568: 79        .byte con_BD4F_79   ; 
+- D 1 - I - 0x02E578 0B:A568: 79        .byte con_ai_subscr_79   ; 
 - - - - - - 0x02E579 0B:A569: 00        .byte $00   ; placeholder
 - - - - - - 0x02E57A 0B:A56A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E57B 0B:A56B: 00        .byte $00   ; placeholder
 
 
 
-_off034_A56C_2E:
-; con_BEA1_2E
+_off034_ai_script_A56C_2E:
+; con_ai_script_2E
 ; 00 
-- D 1 - I - 0x02E57C 0B:A56C: 88        .byte con_BD4F_88   ; 
-- D 1 - I - 0x02E57D 0B:A56D: 42        .byte $42   ; 
-- - - - - - 0x02E57E 0B:A56E: 00        .byte $00   ; 
-- - - - - - 0x02E57F 0B:A56F: 00        .byte $00   ; 
+- D 1 - I - 0x02E57C 0B:A56C: 88        .byte con_ai_subscr_88   ; 
+- D 1 - I - 0x02E57D 0B:A56D: 42        .byte $42   ; animation
+- - - - - - 0x02E57E 0B:A56E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E57F 0B:A56F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E580 0B:A570: 75        .byte con_BD4F_75   ; 
+- D 1 - I - 0x02E580 0B:A570: 75        .byte con_ai_subscr_75_infinte_loop   ; 
 - - - - - - 0x02E581 0B:A571: 00        .byte $00   ; placeholder
 - - - - - - 0x02E582 0B:A572: 00        .byte $00   ; placeholder
 - - - - - - 0x02E583 0B:A573: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E584 0B:A574: 79        .byte con_BD4F_79   ; 
+- D 1 - I - 0x02E584 0B:A574: 79        .byte con_ai_subscr_79   ; 
 - - - - - - 0x02E585 0B:A575: 00        .byte $00   ; placeholder
 - - - - - - 0x02E586 0B:A576: 00        .byte $00   ; placeholder
 - - - - - - 0x02E587 0B:A577: 00        .byte $00   ; placeholder
 
 
 
-_off034_A578_61:
-; con_BEA1_61
+_off034_ai_script_A578_61:
+; con_ai_script_61
 ; 00 
-- D 1 - I - 0x02E588 0B:A578: 7A        .byte con_BD4F_7A   ; 
-- - - - - - 0x02E589 0B:A579: 00        .byte $00   ; 
-- - - - - - 0x02E58A 0B:A57A: 00        .byte $00   ; 
-- - - - - - 0x02E58B 0B:A57B: 00        .byte $00   ; 
+- D 1 - I - 0x02E588 0B:A578: 7A        .byte con_ai_subscr_7A   ; 
+- - - - - - 0x02E589 0B:A579: 00        .byte $00   ; placeholder
+- - - - - - 0x02E58A 0B:A57A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E58B 0B:A57B: 00        .byte $00   ; placeholder
 
 
 
-_off034_A57C_64:
-; con_BEA1_64
+_off034_ai_script_A57C_64:
+; con_ai_script_64
 ; 00 
-- D 1 - I - 0x02E58C 0B:A57C: 8B        .byte con_BD4F_8B   ; 
-- - - - - - 0x02E58D 0B:A57D: 00        .byte $00   ; 
-- - - - - - 0x02E58E 0B:A57E: 00        .byte $00   ; 
-- - - - - - 0x02E58F 0B:A57F: 00        .byte $00   ; 
+- D 1 - I - 0x02E58C 0B:A57C: 8B        .byte con_ai_subscr_8B   ; 
+- - - - - - 0x02E58D 0B:A57D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E58E 0B:A57E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E58F 0B:A57F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E590 0B:A580: 84        .byte con_BD4F_84   ; 
-- - - - - - 0x02E591 0B:A581: 00        .byte $00   ; 
-- - - - - - 0x02E592 0B:A582: 00        .byte $00   ; 
-- - - - - - 0x02E593 0B:A583: 00        .byte $00   ; 
+- D 1 - I - 0x02E590 0B:A580: 84        .byte con_ai_subscr_84   ; 
+- - - - - - 0x02E591 0B:A581: 00        .byte $00   ; placeholder
+- - - - - - 0x02E592 0B:A582: 00        .byte $00   ; placeholder
+- - - - - - 0x02E593 0B:A583: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E594 0B:A584: 85        .byte con_BD4F_85   ; 
-- - - - - - 0x02E595 0B:A585: 00        .byte $00   ; 
-- - - - - - 0x02E596 0B:A586: 00        .byte $00   ; 
-- - - - - - 0x02E597 0B:A587: 00        .byte $00   ; 
+- D 1 - I - 0x02E594 0B:A584: 85        .byte con_ai_subscr_85   ; 
+- - - - - - 0x02E595 0B:A585: 00        .byte $00   ; placeholder
+- - - - - - 0x02E596 0B:A586: 00        .byte $00   ; placeholder
+- - - - - - 0x02E597 0B:A587: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E598 0B:A588: 86        .byte con_BD4F_86   ; 
-- - - - - - 0x02E599 0B:A589: 00        .byte $00   ; 
-- - - - - - 0x02E59A 0B:A58A: 00        .byte $00   ; 
-- - - - - - 0x02E59B 0B:A58B: 00        .byte $00   ; 
+- D 1 - I - 0x02E598 0B:A588: 86        .byte con_ai_subscr_86   ; 
+- - - - - - 0x02E599 0B:A589: 00        .byte $00   ; placeholder
+- - - - - - 0x02E59A 0B:A58A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E59B 0B:A58B: 00        .byte $00   ; placeholder
 
 
 
-_off034_A58C_6F:
-; con_BEA1_6F
+_off034_ai_script_A58C_6F:
+; con_ai_script_6F
 ; 00 
-- - - - - - 0x02E59C 0B:A58C: A5        .byte con_BD4F_A5   ; 
-- - - - - - 0x02E59D 0B:A58D: 00        .byte $00   ; 
-- - - - - - 0x02E59E 0B:A58E: 00        .byte $00   ; 
-- - - - - - 0x02E59F 0B:A58F: 00        .byte $00   ; 
+- - - - - - 0x02E59C 0B:A58C: A5        .byte con_ai_subscr_A5   ; 
+- - - - - - 0x02E59D 0B:A58D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E59E 0B:A58E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E59F 0B:A58F: 00        .byte $00   ; placeholder
 ; 01 
-- - - - - - 0x02E5A0 0B:A590: 84        .byte con_BD4F_84   ; 
-- - - - - - 0x02E5A1 0B:A591: 00        .byte $00   ; 
-- - - - - - 0x02E5A2 0B:A592: 00        .byte $00   ; 
-- - - - - - 0x02E5A3 0B:A593: 00        .byte $00   ; 
+- - - - - - 0x02E5A0 0B:A590: 84        .byte con_ai_subscr_84   ; 
+- - - - - - 0x02E5A1 0B:A591: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5A2 0B:A592: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5A3 0B:A593: 00        .byte $00   ; placeholder
 ; 02 
-- - - - - - 0x02E5A4 0B:A594: 85        .byte con_BD4F_85   ; 
-- - - - - - 0x02E5A5 0B:A595: 00        .byte $00   ; 
-- - - - - - 0x02E5A6 0B:A596: 00        .byte $00   ; 
-- - - - - - 0x02E5A7 0B:A597: 00        .byte $00   ; 
+- - - - - - 0x02E5A4 0B:A594: 85        .byte con_ai_subscr_85   ; 
+- - - - - - 0x02E5A5 0B:A595: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5A6 0B:A596: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5A7 0B:A597: 00        .byte $00   ; placeholder
 ; 03 
-- - - - - - 0x02E5A8 0B:A598: 86        .byte con_BD4F_86   ; 
-- - - - - - 0x02E5A9 0B:A599: 00        .byte $00   ; 
-- - - - - - 0x02E5AA 0B:A59A: 00        .byte $00   ; 
-- - - - - - 0x02E5AB 0B:A59B: 00        .byte $00   ; 
+- - - - - - 0x02E5A8 0B:A598: 86        .byte con_ai_subscr_86   ; 
+- - - - - - 0x02E5A9 0B:A599: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5AA 0B:A59A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5AB 0B:A59B: 00        .byte $00   ; placeholder
 
 
 
-_off034_A59C_01:
-; con_BEA1_01
+_off034_ai_script_A59C_01:
+; con_ai_script_01
 ; 00 
-- D 1 - I - 0x02E5AC 0B:A59C: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02E5AC 0B:A59C: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02E5AD 0B:A59D: 00 80     .dbyt $0080 ; spd_X
-- - - - - - 0x02E5AF 0B:A59F: 00        .byte $00   ; 
+- - - - - - 0x02E5AF 0B:A59F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E5B0 0B:A5A0: 1C        .byte con_BD4F_1C   ; 
-- - - - - - 0x02E5B1 0B:A5A1: 00        .byte $00   ; 
-- - - - - - 0x02E5B2 0B:A5A2: 00        .byte $00   ; 
-- - - - - - 0x02E5B3 0B:A5A3: 00        .byte $00   ; 
+- D 1 - I - 0x02E5B0 0B:A5A0: 1C        .byte con_ai_subscr_1C   ; 
+- - - - - - 0x02E5B1 0B:A5A1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5B2 0B:A5A2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5B3 0B:A5A3: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E5B4 0B:A5A4: 1D        .byte con_BD4F_1D   ; 
+- D 1 - I - 0x02E5B4 0B:A5A4: 1D        .byte con_ai_subscr_1D   ; 
 - D 1 - I - 0x02E5B5 0B:A5A5: 00        .byte $00   ; 
-- D 1 - I - 0x02E5B6 0B:A5A6: 01        .byte $01   ; 
-- - - - - - 0x02E5B7 0B:A5A7: 00        .byte $00   ; 
+- D 1 - I - 0x02E5B6 0B:A5A6: 01        .byte con_B7BD_01   ; 
+- - - - - - 0x02E5B7 0B:A5A7: 00        .byte $00   ; placeholder
 
 
 
-_off034_A5A8_24:
-; con_BEA1_24
+_off034_ai_script_A5A8_24:
+; con_ai_script_24
 ; 00 
-- D 1 - I - 0x02E5B8 0B:A5A8: 5D        .byte con_BD4F_5D   ; 
-- - - - - - 0x02E5B9 0B:A5A9: 00        .byte $00   ; 
-- - - - - - 0x02E5BA 0B:A5AA: 00        .byte $00   ; 
-- - - - - - 0x02E5BB 0B:A5AB: 00        .byte $00   ; 
+- D 1 - I - 0x02E5B8 0B:A5A8: 5D        .byte con_ai_subscr_5D   ; 
+- - - - - - 0x02E5B9 0B:A5A9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5BA 0B:A5AA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5BB 0B:A5AB: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E5BC 0B:A5AC: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02E5BC 0B:A5AC: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02E5BD 0B:A5AD: 00 80     .dbyt $0080 ; spd_X
-- - - - - - 0x02E5BF 0B:A5AF: 00        .byte $00   ; 
+- - - - - - 0x02E5BF 0B:A5AF: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E5C0 0B:A5B0: 1C        .byte con_BD4F_1C   ; 
-- - - - - - 0x02E5C1 0B:A5B1: 00        .byte $00   ; 
-- - - - - - 0x02E5C2 0B:A5B2: 00        .byte $00   ; 
-- - - - - - 0x02E5C3 0B:A5B3: 00        .byte $00   ; 
+- D 1 - I - 0x02E5C0 0B:A5B0: 1C        .byte con_ai_subscr_1C   ; 
+- - - - - - 0x02E5C1 0B:A5B1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5C2 0B:A5B2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5C3 0B:A5B3: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E5C4 0B:A5B4: 1D        .byte con_BD4F_1D   ; 
+- D 1 - I - 0x02E5C4 0B:A5B4: 1D        .byte con_ai_subscr_1D   ; 
 - D 1 - I - 0x02E5C5 0B:A5B5: 01        .byte $01   ; 
-- D 1 - I - 0x02E5C6 0B:A5B6: 01        .byte $01   ; 
-- - - - - - 0x02E5C7 0B:A5B7: 00        .byte $00   ; 
+- D 1 - I - 0x02E5C6 0B:A5B6: 01        .byte con_B7BD_01   ; 
+- - - - - - 0x02E5C7 0B:A5B7: 00        .byte $00   ; placeholder
 
 
 
-_off034_A5B8_70:
-; con_BEA1_70
+_off034_ai_script_A5B8_70:
+; con_ai_script_70
 ; 00 
-- D 1 - I - 0x02E5C8 0B:A5B8: A6        .byte con_BD4F_A6   ; 
+- D 1 - I - 0x02E5C8 0B:A5B8: A6        .byte con_ai_subscr_A6   ; 
 - D 1 - I - 0x02E5C9 0B:A5B9: 00 A0     .dbyt $00A0 ; spd_X
-- - - - - - 0x02E5CB 0B:A5BB: 00        .byte $00   ; 
+- - - - - - 0x02E5CB 0B:A5BB: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E5CC 0B:A5BC: 1C        .byte con_BD4F_1C   ; 
-- - - - - - 0x02E5CD 0B:A5BD: 00        .byte $00   ; 
-- - - - - - 0x02E5CE 0B:A5BE: 00        .byte $00   ; 
-- - - - - - 0x02E5CF 0B:A5BF: 00        .byte $00   ; 
+- D 1 - I - 0x02E5CC 0B:A5BC: 1C        .byte con_ai_subscr_1C   ; 
+- - - - - - 0x02E5CD 0B:A5BD: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5CE 0B:A5BE: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5CF 0B:A5BF: 00        .byte $00   ; placeholder
 ; 02 
-- - - - - - 0x02E5D0 0B:A5C0: 1D        .byte con_BD4F_1D   ; 
+- - - - - - 0x02E5D0 0B:A5C0: 1D        .byte con_ai_subscr_1D   ; 
 - - - - - - 0x02E5D1 0B:A5C1: 00        .byte $00   ; 
-- - - - - - 0x02E5D2 0B:A5C2: 01        .byte $01   ; 
-- - - - - - 0x02E5D3 0B:A5C3: 00        .byte $00   ; 
+- - - - - - 0x02E5D2 0B:A5C2: 01        .byte con_B7BD_01   ; 
+- - - - - - 0x02E5D3 0B:A5C3: 00        .byte $00   ; placeholder
 
 
 
-_off034_A5C4_02:
-; con_BEA1_02
+_off034_ai_script_A5C4_02:
+; con_ai_script_02
 ; 00 
-- D 1 - I - 0x02E5D4 0B:A5C4: 09        .byte con_BD4F_09   ; 
-- - - - - - 0x02E5D5 0B:A5C5: 00        .byte $00   ; 
-- - - - - - 0x02E5D6 0B:A5C6: 00        .byte $00   ; 
-- - - - - - 0x02E5D7 0B:A5C7: 00        .byte $00   ; 
+- D 1 - I - 0x02E5D4 0B:A5C4: 09        .byte con_ai_subscr_09   ; 
+- - - - - - 0x02E5D5 0B:A5C5: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5D6 0B:A5C6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5D7 0B:A5C7: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E5D8 0B:A5C8: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02E5D9 0B:A5C9: 00        .byte $00   ; 
-- - - - - - 0x02E5DA 0B:A5CA: 00        .byte $00   ; 
-- - - - - - 0x02E5DB 0B:A5CB: 00        .byte $00   ; 
+- D 1 - I - 0x02E5D8 0B:A5C8: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02E5D9 0B:A5C9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5DA 0B:A5CA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5DB 0B:A5CB: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E5DC 0B:A5CC: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E5DC 0B:A5CC: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E5DD 0B:A5CD: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E5DE 0B:A5CE: 06        .byte $06   ; 
-- - - - - - 0x02E5DF 0B:A5CF: 00        .byte $00   ; 
+- - - - - - 0x02E5DF 0B:A5CF: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E5E0 0B:A5D0: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E5E1 0B:A5D1: 08        .byte $08   ; 
+- D 1 - I - 0x02E5E0 0B:A5D0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E5E1 0B:A5D1: 08        .byte $08   ; timer
 - - - - - - 0x02E5E2 0B:A5D2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E5E3 0B:A5D3: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E5E4 0B:A5D4: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E5E4 0B:A5D4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E5E5 0B:A5D5: 00        .byte $00   ; placeholder
 - - - - - - 0x02E5E6 0B:A5D6: 00        .byte $00   ; placeholder
 - - - - - - 0x02E5E7 0B:A5D7: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E5E8 0B:A5D8: 53        .byte con_BD4F_53   ; 
-- - - - - - 0x02E5E9 0B:A5D9: 00        .byte $00   ; 
-- - - - - - 0x02E5EA 0B:A5DA: 00        .byte $00   ; 
-- - - - - - 0x02E5EB 0B:A5DB: 00        .byte $00   ; 
+- D 1 - I - 0x02E5E8 0B:A5D8: 53        .byte con_ai_subscr_53_clear_obj_flag_10   ; 
+- - - - - - 0x02E5E9 0B:A5D9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5EA 0B:A5DA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5EB 0B:A5DB: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E5EC 0B:A5DC: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E5EC 0B:A5DC: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E5ED 0B:A5DD: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E5EE 0B:A5DE: 08        .byte $08   ; 
-- - - - - - 0x02E5EF 0B:A5DF: 00        .byte $00   ; 
+- - - - - - 0x02E5EF 0B:A5DF: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E5F0 0B:A5E0: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E5F1 0B:A5E1: 08        .byte $08   ; 
+- D 1 - I - 0x02E5F0 0B:A5E0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E5F1 0B:A5E1: 08        .byte $08   ; timer
 - - - - - - 0x02E5F2 0B:A5E2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E5F3 0B:A5E3: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E5F4 0B:A5E4: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E5F4 0B:A5E4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E5F5 0B:A5E5: 00        .byte $00   ; placeholder
 - - - - - - 0x02E5F6 0B:A5E6: 00        .byte $00   ; placeholder
 - - - - - - 0x02E5F7 0B:A5E7: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02E5F8 0B:A5E8: 08        .byte con_BD4F_08   ; 
-- D 1 - I - 0x02E5F9 0B:A5E9: 00        .byte $00   ; 
-- - - - - - 0x02E5FA 0B:A5EA: 00        .byte $00   ; 
-- - - - - - 0x02E5FB 0B:A5EB: 00        .byte $00   ; 
+- D 1 - I - 0x02E5F8 0B:A5E8: 08        .byte con_ai_subscr_08   ; 
+- D 1 - I - 0x02E5F9 0B:A5E9: 00        .byte $00   ; handler index
+- - - - - - 0x02E5FA 0B:A5EA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E5FB 0B:A5EB: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02E5FC 0B:A5EC: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02E5FC 0B:A5EC: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02E5FD 0B:A5ED: 00 80     .dbyt $0080 ; spd_X
-- - - - - - 0x02E5FF 0B:A5EF: 00        .byte $00   ; 
+- - - - - - 0x02E5FF 0B:A5EF: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02E600 0B:A5F0: 1C        .byte con_BD4F_1C   ; 
-- - - - - - 0x02E601 0B:A5F1: 00        .byte $00   ; 
-- - - - - - 0x02E602 0B:A5F2: 00        .byte $00   ; 
-- - - - - - 0x02E603 0B:A5F3: 00        .byte $00   ; 
+- D 1 - I - 0x02E600 0B:A5F0: 1C        .byte con_ai_subscr_1C   ; 
+- - - - - - 0x02E601 0B:A5F1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E602 0B:A5F2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E603 0B:A5F3: 00        .byte $00   ; placeholder
 ; 0C 
-- - - - - - 0x02E604 0B:A5F4: 1D        .byte con_BD4F_1D   ; 
+- - - - - - 0x02E604 0B:A5F4: 1D        .byte con_ai_subscr_1D   ; 
 - - - - - - 0x02E605 0B:A5F5: 09        .byte $09   ; 
-- - - - - - 0x02E606 0B:A5F6: 01        .byte $01   ; 
-- - - - - - 0x02E607 0B:A5F7: 00        .byte $00   ; 
+- - - - - - 0x02E606 0B:A5F6: 01        .byte con_B7BD_01   ; 
+- - - - - - 0x02E607 0B:A5F7: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02E608 0B:A5F8: 01        .byte con_BD4F_01   ; 
-- - - - - - 0x02E609 0B:A5F9: 00        .byte $00   ; 
-- - - - - - 0x02E60A 0B:A5FA: 00        .byte $00   ; 
-- - - - - - 0x02E60B 0B:A5FB: 00        .byte $00   ; 
+- D 1 - I - 0x02E608 0B:A5F8: 01        .byte con_ai_subscr_01   ; 
+- - - - - - 0x02E609 0B:A5F9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E60A 0B:A5FA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E60B 0B:A5FB: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02E60C 0B:A5FC: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E60C 0B:A5FC: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E60D 0B:A5FD: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E60E 0B:A5FE: 08        .byte $08   ; 
-- - - - - - 0x02E60F 0B:A5FF: 00        .byte $00   ; 
+- - - - - - 0x02E60F 0B:A5FF: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02E610 0B:A600: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E611 0B:A601: 08        .byte $08   ; 
+- D 1 - I - 0x02E610 0B:A600: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E611 0B:A601: 08        .byte $08   ; timer
 - - - - - - 0x02E612 0B:A602: 00        .byte $00   ; placeholder
 - - - - - - 0x02E613 0B:A603: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02E614 0B:A604: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E614 0B:A604: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E615 0B:A605: 00        .byte $00   ; placeholder
 - - - - - - 0x02E616 0B:A606: 00        .byte $00   ; placeholder
 - - - - - - 0x02E617 0B:A607: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02E618 0B:A608: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E618 0B:A608: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E619 0B:A609: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E61A 0B:A60A: 06        .byte $06   ; 
-- - - - - - 0x02E61B 0B:A60B: 00        .byte $00   ; 
+- - - - - - 0x02E61B 0B:A60B: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02E61C 0B:A60C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E61D 0B:A60D: 08        .byte $08   ; 
+- D 1 - I - 0x02E61C 0B:A60C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E61D 0B:A60D: 08        .byte $08   ; timer
 - - - - - - 0x02E61E 0B:A60E: 00        .byte $00   ; placeholder
 - - - - - - 0x02E61F 0B:A60F: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02E620 0B:A610: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E620 0B:A610: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E621 0B:A611: 00        .byte $00   ; placeholder
 - - - - - - 0x02E622 0B:A612: 00        .byte $00   ; placeholder
 - - - - - - 0x02E623 0B:A613: 00        .byte $00   ; placeholder
 ; 14 
-- D 1 - I - 0x02E624 0B:A614: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02E625 0B:A615: 00        .byte $00   ; 
-- - - - - - 0x02E626 0B:A616: 00        .byte $00   ; 
-- - - - - - 0x02E627 0B:A617: 00        .byte $00   ; 
+- D 1 - I - 0x02E624 0B:A614: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02E625 0B:A615: 00        .byte $00   ; placeholder
+- - - - - - 0x02E626 0B:A616: 00        .byte $00   ; placeholder
+- - - - - - 0x02E627 0B:A617: 00        .byte $00   ; placeholder
 
 
 
-_off034_A618_07:
-; con_BEA1_07
+_off034_ai_script_A618_07:
+; con_ai_script_07
 ; 00 
-- D 1 - I - 0x02E628 0B:A618: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02E629 0B:A619: 00        .byte $00   ; 
-- - - - - - 0x02E62A 0B:A61A: 00        .byte $00   ; 
-- - - - - - 0x02E62B 0B:A61B: 00        .byte $00   ; 
+- D 1 - I - 0x02E628 0B:A618: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02E629 0B:A619: 00        .byte $00   ; placeholder
+- - - - - - 0x02E62A 0B:A61A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E62B 0B:A61B: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E62C 0B:A61C: 1E        .byte con_BD4F_1E   ; 
+- D 1 - I - 0x02E62C 0B:A61C: 1E        .byte con_ai_subscr_1E   ; 
 - D 1 - I - 0x02E62D 0B:A61D: 01 10     .dbyt $0110 ; spd_X
-- - - - - - 0x02E62F 0B:A61F: 00        .byte $00   ; 
+- - - - - - 0x02E62F 0B:A61F: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E630 0B:A620: 95        .byte con_BD4F_95   ; 
-- - - - - - 0x02E631 0B:A621: 00        .byte $00   ; 
-- - - - - - 0x02E632 0B:A622: 00        .byte $00   ; 
-- - - - - - 0x02E633 0B:A623: 00        .byte $00   ; 
+- D 1 - I - 0x02E630 0B:A620: 95        .byte con_ai_subscr_95   ; 
+- - - - - - 0x02E631 0B:A621: 00        .byte $00   ; placeholder
+- - - - - - 0x02E632 0B:A622: 00        .byte $00   ; placeholder
+- - - - - - 0x02E633 0B:A623: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E634 0B:A624: 9C        .byte con_BD4F_9C   ; 
-- D 1 - I - 0x02E635 0B:A625: 07        .byte $07   ; 
+- D 1 - I - 0x02E634 0B:A624: 9C        .byte con_ai_subscr_9C   ; 
+- D 1 - I - 0x02E635 0B:A625: 07        .byte $07   ; index for spd_Y table
 - D 1 - I - 0x02E636 0B:A626: 00        .byte $00   ; 
-- - - - - - 0x02E637 0B:A627: 08        .byte $08   ; 
+- - - - - - 0x02E637 0B:A627: 08        .byte $08   ; placeholder
 ; 04 
-- D 1 - I - 0x02E638 0B:A628: 9D        .byte con_BD4F_9D   ; 
-- - - - - - 0x02E639 0B:A629: 00        .byte $00   ; 
-- - - - - - 0x02E63A 0B:A62A: 00        .byte $00   ; 
-- - - - - - 0x02E63B 0B:A62B: 00        .byte $00   ; 
+- D 1 - I - 0x02E638 0B:A628: 9D        .byte con_ai_subscr_9D   ; 
+- - - - - - 0x02E639 0B:A629: 00        .byte $00   ; placeholder
+- - - - - - 0x02E63A 0B:A62A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E63B 0B:A62B: 00        .byte $00   ; placeholder
 
 
 
-_off034_A62C_6D:
-; con_BEA1_6D
+_off034_ai_script_A62C_6D:
+; con_ai_script_6D
 ; 00 
-- D 1 - I - 0x02E63C 0B:A62C: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02E63D 0B:A62D: 00        .byte $00   ; 
-- - - - - - 0x02E63E 0B:A62E: 00        .byte $00   ; 
-- - - - - - 0x02E63F 0B:A62F: 00        .byte $00   ; 
+- D 1 - I - 0x02E63C 0B:A62C: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02E63D 0B:A62D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E63E 0B:A62E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E63F 0B:A62F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E640 0B:A630: 1E        .byte con_BD4F_1E   ; 
+- D 1 - I - 0x02E640 0B:A630: 1E        .byte con_ai_subscr_1E   ; 
 - D 1 - I - 0x02E641 0B:A631: 01 10     .dbyt $0110 ; spd_X
-- - - - - - 0x02E643 0B:A633: 00        .byte $00   ; 
+- - - - - - 0x02E643 0B:A633: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E644 0B:A634: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E644 0B:A634: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E645 0B:A635: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E646 0B:A636: 27        .byte $27   ; 
-- - - - - - 0x02E647 0B:A637: 00        .byte $00   ; 
+- - - - - - 0x02E647 0B:A637: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E648 0B:A638: A3        .byte con_BD4F_A3   ; 
-- - - - - - 0x02E649 0B:A639: 00        .byte $00   ; 
-- - - - - - 0x02E64A 0B:A63A: 00        .byte $00   ; 
-- - - - - - 0x02E64B 0B:A63B: 00        .byte $00   ; 
+- D 1 - I - 0x02E648 0B:A638: A3        .byte con_ai_subscr_A3   ; 
+- - - - - - 0x02E649 0B:A639: 00        .byte $00   ; placeholder
+- - - - - - 0x02E64A 0B:A63A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E64B 0B:A63B: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E64C 0B:A63C: A4        .byte con_BD4F_A4   ; 
-- - - - - - 0x02E64D 0B:A63D: 00        .byte $00   ; 
-- - - - - - 0x02E64E 0B:A63E: 00        .byte $00   ; 
-- - - - - - 0x02E64F 0B:A63F: 00        .byte $00   ; 
+- D 1 - I - 0x02E64C 0B:A63C: A4        .byte con_ai_subscr_A4   ; 
+- - - - - - 0x02E64D 0B:A63D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E64E 0B:A63E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E64F 0B:A63F: 00        .byte $00   ; placeholder
 
 
 
-_off034_A640_1E:
-; con_BEA1_1E
+_off034_ai_script_A640_1E:
+; con_ai_script_1E
 ; 00 
-- D 1 - I - 0x02E650 0B:A640: 6E        .byte con_BD4F_6E   ; 
-- - - - - - 0x02E651 0B:A641: 00        .byte $00   ; 
-- - - - - - 0x02E652 0B:A642: 00        .byte $00   ; 
-- - - - - - 0x02E653 0B:A643: 00        .byte $00   ; 
+- D 1 - I - 0x02E650 0B:A640: 6E        .byte con_ai_subscr_6E   ; 
+- - - - - - 0x02E651 0B:A641: 00        .byte $00   ; placeholder
+- - - - - - 0x02E652 0B:A642: 00        .byte $00   ; placeholder
+- - - - - - 0x02E653 0B:A643: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E654 0B:A644: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E654 0B:A644: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E655 0B:A645: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E656 0B:A646: 3E        .byte $3E   ; 
-- - - - - - 0x02E657 0B:A647: 00        .byte $00   ; 
+- - - - - - 0x02E657 0B:A647: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E658 0B:A648: 9F        .byte con_BD4F_check_dist_Y_30_to_plr   ; 
+- D 1 - I - 0x02E658 0B:A648: 9F        .byte con_ai_subscr_check_dist_Y_30_to_plr   ; 
 - - - - - - 0x02E659 0B:A649: 00        .byte $00   ; placeholder
 - - - - - - 0x02E65A 0B:A64A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E65B 0B:A64B: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E65C 0B:A64C: 26        .byte con_BD4F_26   ; 
+- D 1 - I - 0x02E65C 0B:A64C: 26        .byte con_ai_subscr_26   ; 
 - D 1 - I - 0x02E65D 0B:A64D: 08        .byte $08   ; 
 - D 1 - I - 0x02E65E 0B:A64E: 04        .byte $04   ; 
-- - - - - - 0x02E65F 0B:A64F: 00        .byte $00   ; 
+- - - - - - 0x02E65F 0B:A64F: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E660 0B:A650: 23        .byte con_BD4F_23   ; 
+- D 1 - I - 0x02E660 0B:A650: 23        .byte con_ai_subscr_23   ; 
 - D 1 - I - 0x02E661 0B:A651: 03        .byte $03   ; 
 - D 1 - I - 0x02E662 0B:A652: 04        .byte $04   ; 
-- - - - - - 0x02E663 0B:A653: 00        .byte $00   ; 
+- - - - - - 0x02E663 0B:A653: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E664 0B:A654: 52        .byte con_BD4F_52   ; 
-- - - - - - 0x02E665 0B:A655: 00        .byte $00   ; 
-- - - - - - 0x02E666 0B:A656: 00        .byte $00   ; 
-- - - - - - 0x02E667 0B:A657: 00        .byte $00   ; 
+- D 1 - I - 0x02E664 0B:A654: 52        .byte con_ai_subscr_52   ; 
+- - - - - - 0x02E665 0B:A655: 00        .byte $00   ; placeholder
+- - - - - - 0x02E666 0B:A656: 00        .byte $00   ; placeholder
+- - - - - - 0x02E667 0B:A657: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E668 0B:A658: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E669 0B:A659: 24        .byte $24   ; 
+- D 1 - I - 0x02E668 0B:A658: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E669 0B:A659: 24        .byte $24   ; timer
 - - - - - - 0x02E66A 0B:A65A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E66B 0B:A65B: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E66C 0B:A65C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E66C 0B:A65C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E66D 0B:A65D: 00        .byte $00   ; placeholder
 - - - - - - 0x02E66E 0B:A65E: 00        .byte $00   ; placeholder
 - - - - - - 0x02E66F 0B:A65F: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E670 0B:A660: 52        .byte con_BD4F_52   ; 
-- - - - - - 0x02E671 0B:A661: 00        .byte $00   ; 
-- - - - - - 0x02E672 0B:A662: 00        .byte $00   ; 
-- - - - - - 0x02E673 0B:A663: 00        .byte $00   ; 
+- D 1 - I - 0x02E670 0B:A660: 52        .byte con_ai_subscr_52   ; 
+- - - - - - 0x02E671 0B:A661: 00        .byte $00   ; placeholder
+- - - - - - 0x02E672 0B:A662: 00        .byte $00   ; placeholder
+- - - - - - 0x02E673 0B:A663: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02E674 0B:A664: 08        .byte con_BD4F_08   ; 
-- D 1 - I - 0x02E675 0B:A665: 01        .byte $01   ; 
-- - - - - - 0x02E676 0B:A666: 00        .byte $00   ; 
-- - - - - - 0x02E677 0B:A667: 00        .byte $00   ; 
+- D 1 - I - 0x02E674 0B:A664: 08        .byte con_ai_subscr_08   ; 
+- D 1 - I - 0x02E675 0B:A665: 01        .byte $01   ; handler index
+- - - - - - 0x02E676 0B:A666: 00        .byte $00   ; placeholder
+- - - - - - 0x02E677 0B:A667: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02E678 0B:A668: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E678 0B:A668: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E679 0B:A669: 00        .byte $00   ; placeholder
 - - - - - - 0x02E67A 0B:A66A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E67B 0B:A66B: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02E67C 0B:A66C: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E67C 0B:A66C: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E67D 0B:A66D: 01        .byte $01   ; 
-- - - - - - 0x02E67E 0B:A66E: 00        .byte $00   ; 
-- - - - - - 0x02E67F 0B:A66F: 00        .byte $00   ; 
+- - - - - - 0x02E67E 0B:A66E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E67F 0B:A66F: 00        .byte $00   ; placeholder
 
 
 
-_off034_A670_12:
-; con_BEA1_12
+_off034_ai_script_A670_12:
+; con_ai_script_12
 ; 00 
-- D 1 - I - 0x02E680 0B:A670: 6E        .byte con_BD4F_6E   ; 
-- - - - - - 0x02E681 0B:A671: 00        .byte $00   ; 
-- - - - - - 0x02E682 0B:A672: 00        .byte $00   ; 
-- - - - - - 0x02E683 0B:A673: 00        .byte $00   ; 
+- D 1 - I - 0x02E680 0B:A670: 6E        .byte con_ai_subscr_6E   ; 
+- - - - - - 0x02E681 0B:A671: 00        .byte $00   ; placeholder
+- - - - - - 0x02E682 0B:A672: 00        .byte $00   ; placeholder
+- - - - - - 0x02E683 0B:A673: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E684 0B:A674: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E684 0B:A674: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E685 0B:A675: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E686 0B:A676: 3E        .byte $3E   ; 
-- - - - - - 0x02E687 0B:A677: 00        .byte $00   ; 
+- - - - - - 0x02E687 0B:A677: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E688 0B:A678: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E689 0B:A679: 20        .byte $20   ; 
+- D 1 - I - 0x02E688 0B:A678: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E689 0B:A679: 20        .byte $20   ; timer
 - - - - - - 0x02E68A 0B:A67A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E68B 0B:A67B: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E68C 0B:A67C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E68C 0B:A67C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E68D 0B:A67D: 00        .byte $00   ; placeholder
 - - - - - - 0x02E68E 0B:A67E: 00        .byte $00   ; placeholder
 - - - - - - 0x02E68F 0B:A67F: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E690 0B:A680: 26        .byte con_BD4F_26   ; 
+- D 1 - I - 0x02E690 0B:A680: 26        .byte con_ai_subscr_26   ; 
 - D 1 - I - 0x02E691 0B:A681: 08        .byte $08   ; 
 - D 1 - I - 0x02E692 0B:A682: 04        .byte $04   ; 
-- - - - - - 0x02E693 0B:A683: 00        .byte $00   ; 
+- - - - - - 0x02E693 0B:A683: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E694 0B:A684: 23        .byte con_BD4F_23   ; 
+- D 1 - I - 0x02E694 0B:A684: 23        .byte con_ai_subscr_23   ; 
 - D 1 - I - 0x02E695 0B:A685: 03        .byte $03   ; 
 - D 1 - I - 0x02E696 0B:A686: 04        .byte $04   ; 
-- - - - - - 0x02E697 0B:A687: 00        .byte $00   ; 
+- - - - - - 0x02E697 0B:A687: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E698 0B:A688: 26        .byte con_BD4F_26   ; 
+- D 1 - I - 0x02E698 0B:A688: 26        .byte con_ai_subscr_26   ; 
 - D 1 - I - 0x02E699 0B:A689: 04        .byte $04   ; 
 - D 1 - I - 0x02E69A 0B:A68A: 08        .byte $08   ; 
-- - - - - - 0x02E69B 0B:A68B: 00        .byte $00   ; 
+- - - - - - 0x02E69B 0B:A68B: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E69C 0B:A68C: 25        .byte con_BD4F_25   ; 
+- D 1 - I - 0x02E69C 0B:A68C: 25        .byte con_ai_subscr_25   ; 
 - D 1 - I - 0x02E69D 0B:A68D: 28        .byte $28   ; 
 - D 1 - I - 0x02E69E 0B:A68E: 24        .byte $24   ; 
-- - - - - - 0x02E69F 0B:A68F: 00        .byte $00   ; 
+- - - - - - 0x02E69F 0B:A68F: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E6A0 0B:A690: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E6A0 0B:A690: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E6A1 0B:A691: 02        .byte $02   ; 
-- - - - - - 0x02E6A2 0B:A692: 00        .byte $00   ; 
-- - - - - - 0x02E6A3 0B:A693: 00        .byte $00   ; 
+- - - - - - 0x02E6A2 0B:A692: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6A3 0B:A693: 00        .byte $00   ; placeholder
 
 
 
-_off034_A694_2F:
-; con_BEA1_2F
+_off034_ai_script_A694_2F:
+; con_ai_script_2F
 ; 00 
-- D 1 - I - 0x02E6A4 0B:A694: 6E        .byte con_BD4F_6E   ; 
-- - - - - - 0x02E6A5 0B:A695: 00        .byte $00   ; 
-- - - - - - 0x02E6A6 0B:A696: 00        .byte $00   ; 
-- - - - - - 0x02E6A7 0B:A697: 00        .byte $00   ; 
+- D 1 - I - 0x02E6A4 0B:A694: 6E        .byte con_ai_subscr_6E   ; 
+- - - - - - 0x02E6A5 0B:A695: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6A6 0B:A696: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6A7 0B:A697: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E6A8 0B:A698: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E6A8 0B:A698: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E6A9 0B:A699: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E6AA 0B:A69A: 40        .byte $40   ; 
-- - - - - - 0x02E6AB 0B:A69B: 00        .byte $00   ; 
+- - - - - - 0x02E6AB 0B:A69B: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E6AC 0B:A69C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E6AD 0B:A69D: 20        .byte $20   ; 
+- D 1 - I - 0x02E6AC 0B:A69C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E6AD 0B:A69D: 20        .byte $20   ; timer
 - - - - - - 0x02E6AE 0B:A69E: 00        .byte $00   ; placeholder
 - - - - - - 0x02E6AF 0B:A69F: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E6B0 0B:A6A0: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E6B0 0B:A6A0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E6B1 0B:A6A1: 00        .byte $00   ; placeholder
 - - - - - - 0x02E6B2 0B:A6A2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E6B3 0B:A6A3: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E6B4 0B:A6A4: 26        .byte con_BD4F_26   ; 
+- D 1 - I - 0x02E6B4 0B:A6A4: 26        .byte con_ai_subscr_26   ; 
 - D 1 - I - 0x02E6B5 0B:A6A5: 08        .byte $08   ; 
 - D 1 - I - 0x02E6B6 0B:A6A6: 04        .byte $04   ; 
-- - - - - - 0x02E6B7 0B:A6A7: 00        .byte $00   ; 
+- - - - - - 0x02E6B7 0B:A6A7: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E6B8 0B:A6A8: 23        .byte con_BD4F_23   ; 
+- D 1 - I - 0x02E6B8 0B:A6A8: 23        .byte con_ai_subscr_23   ; 
 - D 1 - I - 0x02E6B9 0B:A6A9: 03        .byte $03   ; 
 - D 1 - I - 0x02E6BA 0B:A6AA: 04        .byte $04   ; 
-- - - - - - 0x02E6BB 0B:A6AB: 00        .byte $00   ; 
+- - - - - - 0x02E6BB 0B:A6AB: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E6BC 0B:A6AC: 26        .byte con_BD4F_26   ; 
+- D 1 - I - 0x02E6BC 0B:A6AC: 26        .byte con_ai_subscr_26   ; 
 - D 1 - I - 0x02E6BD 0B:A6AD: 04        .byte $04   ; 
 - D 1 - I - 0x02E6BE 0B:A6AE: 08        .byte $08   ; 
-- - - - - - 0x02E6BF 0B:A6AF: 00        .byte $00   ; 
+- - - - - - 0x02E6BF 0B:A6AF: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E6C0 0B:A6B0: 25        .byte con_BD4F_25   ; 
+- D 1 - I - 0x02E6C0 0B:A6B0: 25        .byte con_ai_subscr_25   ; 
 - D 1 - I - 0x02E6C1 0B:A6B1: 28        .byte $28   ; 
 - - - - - - 0x02E6C2 0B:A6B2: 24        .byte $24   ; 
-- - - - - - 0x02E6C3 0B:A6B3: 00        .byte $00   ; 
+- - - - - - 0x02E6C3 0B:A6B3: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E6C4 0B:A6B4: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E6C4 0B:A6B4: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E6C5 0B:A6B5: 02        .byte $02   ; 
-- - - - - - 0x02E6C6 0B:A6B6: 00        .byte $00   ; 
-- - - - - - 0x02E6C7 0B:A6B7: 00        .byte $00   ; 
+- - - - - - 0x02E6C6 0B:A6B6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6C7 0B:A6B7: 00        .byte $00   ; placeholder
 
 
 
-_off034_A6B8_69:
-; con_BEA1_69
+_off034_ai_script_A6B8_69:
+; con_ai_script_69
 ; 00 
-- D 1 - I - 0x02E6C8 0B:A6B8: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02E6C9 0B:A6B9: 00        .byte $00   ; 
-- - - - - - 0x02E6CA 0B:A6BA: 00        .byte $00   ; 
-- - - - - - 0x02E6CB 0B:A6BB: 00        .byte $00   ; 
+- D 1 - I - 0x02E6C8 0B:A6B8: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02E6C9 0B:A6B9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6CA 0B:A6BA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6CB 0B:A6BB: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E6CC 0B:A6BC: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E6CD 0B:A6BD: 10        .byte $10   ; 
+- D 1 - I - 0x02E6CC 0B:A6BC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E6CD 0B:A6BD: 10        .byte $10   ; timer
 - - - - - - 0x02E6CE 0B:A6BE: 00        .byte $00   ; placeholder
 - - - - - - 0x02E6CF 0B:A6BF: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E6D0 0B:A6C0: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E6D0 0B:A6C0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E6D1 0B:A6C1: 00        .byte $00   ; placeholder
 - - - - - - 0x02E6D2 0B:A6C2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E6D3 0B:A6C3: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E6D4 0B:A6C4: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E6D4 0B:A6C4: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E6D5 0B:A6C5: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E6D6 0B:A6C6: 4C        .byte $4C   ; 
-- - - - - - 0x02E6D7 0B:A6C7: 00        .byte $00   ; 
+- - - - - - 0x02E6D7 0B:A6C7: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E6D8 0B:A6C8: 93        .byte con_BD4F_93   ; 
-- - - - - - 0x02E6D9 0B:A6C9: 00        .byte $00   ; 
-- - - - - - 0x02E6DA 0B:A6CA: 00        .byte $00   ; 
-- - - - - - 0x02E6DB 0B:A6CB: 00        .byte $00   ; 
+- D 1 - I - 0x02E6D8 0B:A6C8: 93        .byte con_ai_subscr_93   ; 
+- - - - - - 0x02E6D9 0B:A6C9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6DA 0B:A6CA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6DB 0B:A6CB: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E6DC 0B:A6CC: 94        .byte con_BD4F_94   ; 
-- - - - - - 0x02E6DD 0B:A6CD: 00        .byte $00   ; 
-- - - - - - 0x02E6DE 0B:A6CE: 00        .byte $00   ; 
-- - - - - - 0x02E6DF 0B:A6CF: 00        .byte $00   ; 
+- D 1 - I - 0x02E6DC 0B:A6CC: 94        .byte con_ai_subscr_94   ; 
+- - - - - - 0x02E6DD 0B:A6CD: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6DE 0B:A6CE: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6DF 0B:A6CF: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E6E0 0B:A6D0: 21        .byte con_BD4F_21   ; 
-- - - - - - 0x02E6E1 0B:A6D1: 00        .byte $00   ; 
-- - - - - - 0x02E6E2 0B:A6D2: 00        .byte $00   ; 
-- - - - - - 0x02E6E3 0B:A6D3: 00        .byte $00   ; 
+- D 1 - I - 0x02E6E0 0B:A6D0: 21        .byte con_ai_subscr_21   ; 
+- - - - - - 0x02E6E1 0B:A6D1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6E2 0B:A6D2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6E3 0B:A6D3: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E6E4 0B:A6D4: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E6E4 0B:A6D4: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E6E5 0B:A6D5: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E6E6 0B:A6D6: 4E        .byte $4E   ; 
-- - - - - - 0x02E6E7 0B:A6D7: 00        .byte $00   ; 
+- - - - - - 0x02E6E7 0B:A6D7: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E6E8 0B:A6D8: 10        .byte con_BD4F_10   ; 
-- - - - - - 0x02E6E9 0B:A6D9: 00        .byte $00   ; 
-- - - - - - 0x02E6EA 0B:A6DA: 00        .byte $00   ; 
-- - - - - - 0x02E6EB 0B:A6DB: 00        .byte $00   ; 
+- D 1 - I - 0x02E6E8 0B:A6D8: 10        .byte con_ai_subscr_10   ; 
+- - - - - - 0x02E6E9 0B:A6D9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6EA 0B:A6DA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6EB 0B:A6DB: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02E6EC 0B:A6DC: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E6EC 0B:A6DC: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E6ED 0B:A6DD: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E6EE 0B:A6DE: 4C        .byte $4C   ; 
-- - - - - - 0x02E6EF 0B:A6DF: 00        .byte $00   ; 
+- - - - - - 0x02E6EF 0B:A6DF: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02E6F0 0B:A6E0: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E6F1 0B:A6E1: 08        .byte $08   ; 
+- D 1 - I - 0x02E6F0 0B:A6E0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E6F1 0B:A6E1: 08        .byte $08   ; timer
 - - - - - - 0x02E6F2 0B:A6E2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E6F3 0B:A6E3: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02E6F4 0B:A6E4: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E6F4 0B:A6E4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E6F5 0B:A6E5: 00        .byte $00   ; placeholder
 - - - - - - 0x02E6F6 0B:A6E6: 00        .byte $00   ; placeholder
 - - - - - - 0x02E6F7 0B:A6E7: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02E6F8 0B:A6E8: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E6F8 0B:A6E8: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E6F9 0B:A6E9: 06        .byte $06   ; 
-- - - - - - 0x02E6FA 0B:A6EA: 00        .byte $00   ; 
-- - - - - - 0x02E6FB 0B:A6EB: 00        .byte $00   ; 
+- - - - - - 0x02E6FA 0B:A6EA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6FB 0B:A6EB: 00        .byte $00   ; placeholder
 
 
 
-_off034_A6EC_0E:
-; con_BEA1_0E
+_off034_ai_script_A6EC_0E:
+; con_ai_script_0E
 ; 00 
-- D 1 - I - 0x02E6FC 0B:A6EC: 01        .byte con_BD4F_01   ; 
-- - - - - - 0x02E6FD 0B:A6ED: 00        .byte $00   ; 
-- - - - - - 0x02E6FE 0B:A6EE: 00        .byte $00   ; 
-- - - - - - 0x02E6FF 0B:A6EF: 00        .byte $00   ; 
+- D 1 - I - 0x02E6FC 0B:A6EC: 01        .byte con_ai_subscr_01   ; 
+- - - - - - 0x02E6FD 0B:A6ED: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6FE 0B:A6EE: 00        .byte $00   ; placeholder
+- - - - - - 0x02E6FF 0B:A6EF: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E700 0B:A6F0: 91        .byte con_BD4F_91   ; 
-- - - - - - 0x02E701 0B:A6F1: 00        .byte $00   ; 
-- - - - - - 0x02E702 0B:A6F2: 00        .byte $00   ; 
-- - - - - - 0x02E703 0B:A6F3: 00        .byte $00   ; 
+- D 1 - I - 0x02E700 0B:A6F0: 91        .byte con_ai_subscr_91   ; 
+- - - - - - 0x02E701 0B:A6F1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E702 0B:A6F2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E703 0B:A6F3: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E704 0B:A6F4: 06        .byte con_BD4F_06   ; 
-- - - - - - 0x02E705 0B:A6F5: 00        .byte $00   ; 
-- - - - - - 0x02E706 0B:A6F6: 00        .byte $00   ; 
-- - - - - - 0x02E707 0B:A6F7: 00        .byte $00   ; 
+- D 1 - I - 0x02E704 0B:A6F4: 06        .byte con_ai_subscr_06   ; 
+- - - - - - 0x02E705 0B:A6F5: 00        .byte $00   ; placeholder
+- - - - - - 0x02E706 0B:A6F6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E707 0B:A6F7: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E708 0B:A6F8: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E709 0B:A6F9: 28        .byte $28   ; 
+- D 1 - I - 0x02E708 0B:A6F8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E709 0B:A6F9: 28        .byte $28   ; timer
 - - - - - - 0x02E70A 0B:A6FA: 00        .byte $00   ; placeholder
 - - - - - - 0x02E70B 0B:A6FB: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E70C 0B:A6FC: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E70C 0B:A6FC: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E70D 0B:A6FD: 00        .byte $00   ; placeholder
 - - - - - - 0x02E70E 0B:A6FE: 00        .byte $00   ; placeholder
 - - - - - - 0x02E70F 0B:A6FF: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E710 0B:A700: 21        .byte con_BD4F_21   ; 
-- - - - - - 0x02E711 0B:A701: 00        .byte $00   ; 
-- - - - - - 0x02E712 0B:A702: 00        .byte $00   ; 
-- - - - - - 0x02E713 0B:A703: 00        .byte $00   ; 
+- D 1 - I - 0x02E710 0B:A700: 21        .byte con_ai_subscr_21   ; 
+- - - - - - 0x02E711 0B:A701: 00        .byte $00   ; placeholder
+- - - - - - 0x02E712 0B:A702: 00        .byte $00   ; placeholder
+- - - - - - 0x02E713 0B:A703: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E714 0B:A704: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E714 0B:A704: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E715 0B:A705: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E716 0B:A706: 4E        .byte $4E   ; 
-- - - - - - 0x02E717 0B:A707: 00        .byte $00   ; 
+- - - - - - 0x02E717 0B:A707: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E718 0B:A708: 10        .byte con_BD4F_10   ; 
-- - - - - - 0x02E719 0B:A709: 00        .byte $00   ; 
-- - - - - - 0x02E71A 0B:A70A: 00        .byte $00   ; 
-- - - - - - 0x02E71B 0B:A70B: 00        .byte $00   ; 
+- D 1 - I - 0x02E718 0B:A708: 10        .byte con_ai_subscr_10   ; 
+- - - - - - 0x02E719 0B:A709: 00        .byte $00   ; placeholder
+- - - - - - 0x02E71A 0B:A70A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E71B 0B:A70B: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E71C 0B:A70C: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E71C 0B:A70C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E71D 0B:A70D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E71E 0B:A70E: 4C        .byte $4C   ; 
-- - - - - - 0x02E71F 0B:A70F: 00        .byte $00   ; 
+- - - - - - 0x02E71F 0B:A70F: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02E720 0B:A710: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E721 0B:A711: 08        .byte $08   ; 
+- D 1 - I - 0x02E720 0B:A710: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E721 0B:A711: 08        .byte $08   ; timer
 - - - - - - 0x02E722 0B:A712: 00        .byte $00   ; placeholder
 - - - - - - 0x02E723 0B:A713: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02E724 0B:A714: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E724 0B:A714: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E725 0B:A715: 00        .byte $00   ; placeholder
 - - - - - - 0x02E726 0B:A716: 00        .byte $00   ; placeholder
 - - - - - - 0x02E727 0B:A717: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02E728 0B:A718: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E728 0B:A718: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E729 0B:A719: 05        .byte $05   ; 
-- - - - - - 0x02E72A 0B:A71A: 00        .byte $00   ; 
-- - - - - - 0x02E72B 0B:A71B: 00        .byte $00   ; 
+- - - - - - 0x02E72A 0B:A71A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E72B 0B:A71B: 00        .byte $00   ; placeholder
 
 
 
-_off034_A71C_05:
-; con_BEA1_05
+_off034_ai_script_A71C_05:
+; con_ai_script_05
 ; 00 
-- D 1 - I - 0x02E72C 0B:A71C: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02E72C 0B:A71C: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02E72D 0B:A71D: 01 40     .dbyt $0140 ; spd_X
-- - - - - - 0x02E72F 0B:A71F: 00        .byte $00   ; 
+- - - - - - 0x02E72F 0B:A71F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E730 0B:A720: 11        .byte con_BD4F_11   ; 
-- D 1 - I - 0x02E731 0B:A721: 04        .byte $04   ; 
-- D 1 - I - 0x02E732 0B:A722: 00        .byte $00   ; 
-- - - - - - 0x02E733 0B:A723: 00        .byte $00   ; 
+- D 1 - I - 0x02E730 0B:A720: 11        .byte con_ai_subscr_11   ; 
+- D 1 - I - 0x02E731 0B:A721: 04        .byte $04   ; table index for spd_Y
+- D 1 - I - 0x02E732 0B:A722: 00        .byte $00   ; pos_Y_lo
+- - - - - - 0x02E733 0B:A723: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E734 0B:A724: 12        .byte con_BD4F_12   ; 
-- - - - - - 0x02E735 0B:A725: 00        .byte $00   ; 
-- - - - - - 0x02E736 0B:A726: 00        .byte $00   ; 
-- - - - - - 0x02E737 0B:A727: 00        .byte $00   ; 
+- D 1 - I - 0x02E734 0B:A724: 12        .byte con_ai_subscr_12   ; 
+- - - - - - 0x02E735 0B:A725: 00        .byte $00   ; placeholder
+- - - - - - 0x02E736 0B:A726: 00        .byte $00   ; placeholder
+- - - - - - 0x02E737 0B:A727: 00        .byte $00   ; placeholder
 
 
 
-_off034_A728_66:
-; con_BEA1_66
+_off034_ai_script_A728_66:
+; con_ai_script_66
 ; 00 
-- D 1 - I - 0x02E738 0B:A728: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02E739 0B:A729: 00        .byte $00   ; 
-- - - - - - 0x02E73A 0B:A72A: 00        .byte $00   ; 
-- - - - - - 0x02E73B 0B:A72B: 00        .byte $00   ; 
+- D 1 - I - 0x02E738 0B:A728: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02E739 0B:A729: 00        .byte $00   ; placeholder
+- - - - - - 0x02E73A 0B:A72A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E73B 0B:A72B: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E73C 0B:A72C: 1E        .byte con_BD4F_1E   ; 
+- D 1 - I - 0x02E73C 0B:A72C: 1E        .byte con_ai_subscr_1E   ; 
 - D 1 - I - 0x02E73D 0B:A72D: 01 40     .dbyt $0140 ; spd_X
-- - - - - - 0x02E73F 0B:A72F: 00        .byte $00   ; 
+- - - - - - 0x02E73F 0B:A72F: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E740 0B:A730: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E740 0B:A730: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E741 0B:A731: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E742 0B:A732: 24        .byte $24   ; 
-- - - - - - 0x02E743 0B:A733: 00        .byte $00   ; 
+- - - - - - 0x02E743 0B:A733: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E744 0B:A734: 11        .byte con_BD4F_11   ; 
-- D 1 - I - 0x02E745 0B:A735: 04        .byte $04   ; 
-- D 1 - I - 0x02E746 0B:A736: 00        .byte $00   ; 
-- - - - - - 0x02E747 0B:A737: 00        .byte $00   ; 
+- D 1 - I - 0x02E744 0B:A734: 11        .byte con_ai_subscr_11   ; 
+- D 1 - I - 0x02E745 0B:A735: 04        .byte $04   ; table index for spd_Y
+- D 1 - I - 0x02E746 0B:A736: 00        .byte $00   ; pos_Y_lo
+- - - - - - 0x02E747 0B:A737: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E748 0B:A738: 12        .byte con_BD4F_12   ; 
-- - - - - - 0x02E749 0B:A739: 00        .byte $00   ; 
-- - - - - - 0x02E74A 0B:A73A: 00        .byte $00   ; 
-- - - - - - 0x02E74B 0B:A73B: 00        .byte $00   ; 
+- D 1 - I - 0x02E748 0B:A738: 12        .byte con_ai_subscr_12   ; 
+- - - - - - 0x02E749 0B:A739: 00        .byte $00   ; placeholder
+- - - - - - 0x02E74A 0B:A73A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E74B 0B:A73B: 00        .byte $00   ; placeholder
 
 
 
-_off034_A73C_06:
-; con_BEA1_06
+_off034_ai_script_A73C_06:
+; con_ai_script_06
 ; 00 
-- D 1 - I - 0x02E74C 0B:A73C: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E74C 0B:A73C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E74D 0B:A73D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E74E 0B:A73E: 1E        .byte $1E   ; 
-- - - - - - 0x02E74F 0B:A73F: 00        .byte $00   ; 
+- - - - - - 0x02E74F 0B:A73F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E750 0B:A740: 4D        .byte con_BD4F_comp_XY_dist_to_plr   ; 
-- D 1 - I - 0x02E751 0B:A741: 60        .byte $60   ; X
-- D 1 - I - 0x02E752 0B:A742: 20        .byte $20   ; Y
+- D 1 - I - 0x02E750 0B:A740: 4D        .byte con_ai_subscr_comp_XY_dist_to_plr   ; 
+- D 1 - I - 0x02E751 0B:A741: 60        .byte $60   ; pos_X_lo
+- D 1 - I - 0x02E752 0B:A742: 20        .byte $20   ; pos_Y_lo
 - - - - - - 0x02E753 0B:A743: 00        .byte $00   ; 
 ; 02 
-- D 1 - I - 0x02E754 0B:A744: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02E754 0B:A744: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02E755 0B:A745: 01 40     .dbyt $0140 ; spd_X
-- - - - - - 0x02E757 0B:A747: 00        .byte $00   ; 
+- - - - - - 0x02E757 0B:A747: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E758 0B:A748: 6F        .byte con_BD4F_6F   ; 
-- D 1 - I - 0x02E759 0B:A749: 00        .byte $00   ; 
+- D 1 - I - 0x02E758 0B:A748: 6F        .byte con_ai_subscr_6F   ; 
+- D 1 - I - 0x02E759 0B:A749: 00        .byte $00   ; index for spd_Y table
 - D 1 - I - 0x02E75A 0B:A74A: 20        .byte $20   ; 
-- - - - - - 0x02E75B 0B:A74B: 00        .byte $00   ; 
+- - - - - - 0x02E75B 0B:A74B: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E75C 0B:A74C: 70        .byte con_BD4F_70   ; 
-- D 1 - I - 0x02E75D 0B:A74D: 0A        .byte $0A   ; 
-- - - - - - 0x02E75E 0B:A74E: 00        .byte $00   ; 
-- - - - - - 0x02E75F 0B:A74F: 00        .byte $00   ; 
+- D 1 - I - 0x02E75C 0B:A74C: 70        .byte con_ai_subscr_70   ; 
+- D 1 - I - 0x02E75D 0B:A74D: 0A        .byte $0A   ; spd_Y_fr decrease
+- - - - - - 0x02E75E 0B:A74E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E75F 0B:A74F: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E760 0B:A750: 11        .byte con_BD4F_11   ; 
-- D 1 - I - 0x02E761 0B:A751: 04        .byte $04   ; 
-- D 1 - I - 0x02E762 0B:A752: 00        .byte $00   ; 
-- - - - - - 0x02E763 0B:A753: 00        .byte $00   ; 
+- D 1 - I - 0x02E760 0B:A750: 11        .byte con_ai_subscr_11   ; 
+- D 1 - I - 0x02E761 0B:A751: 04        .byte $04   ; table index for spd_Y
+- D 1 - I - 0x02E762 0B:A752: 00        .byte $00   ; pos_Y_lo
+- - - - - - 0x02E763 0B:A753: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E764 0B:A754: 12        .byte con_BD4F_12   ; 
-- - - - - - 0x02E765 0B:A755: 00        .byte $00   ; 
-- - - - - - 0x02E766 0B:A756: 00        .byte $00   ; 
-- - - - - - 0x02E767 0B:A757: 00        .byte $00   ; 
+- D 1 - I - 0x02E764 0B:A754: 12        .byte con_ai_subscr_12   ; 
+- - - - - - 0x02E765 0B:A755: 00        .byte $00   ; placeholder
+- - - - - - 0x02E766 0B:A756: 00        .byte $00   ; placeholder
+- - - - - - 0x02E767 0B:A757: 00        .byte $00   ; placeholder
 
 
 
-_off034_A758_6E:
-; con_BEA1_6E
+_off034_ai_script_A758_6E:
+; con_ai_script_6E
 ; 00 
-- - - - - - 0x02E768 0B:A758: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02E769 0B:A759: 00        .byte $00   ; 
-- - - - - - 0x02E76A 0B:A75A: 00        .byte $00   ; 
-- - - - - - 0x02E76B 0B:A75B: 00        .byte $00   ; 
+- - - - - - 0x02E768 0B:A758: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02E769 0B:A759: 00        .byte $00   ; placeholder
+- - - - - - 0x02E76A 0B:A75A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E76B 0B:A75B: 00        .byte $00   ; placeholder
 ; 01 
-- - - - - - 0x02E76C 0B:A75C: 1E        .byte con_BD4F_1E   ; 
+- - - - - - 0x02E76C 0B:A75C: 1E        .byte con_ai_subscr_1E   ; 
 - - - - - - 0x02E76D 0B:A75D: 01 40     .dbyt $0140 ; spd_X
-- - - - - - 0x02E76F 0B:A75F: 00        .byte $00   ; 
+- - - - - - 0x02E76F 0B:A75F: 00        .byte $00   ; placeholder
 ; 02 
-- - - - - - 0x02E770 0B:A760: 13        .byte con_BD4F_13   ; 
+- - - - - - 0x02E770 0B:A760: 13        .byte con_ai_subscr_13   ; 
 - - - - - - 0x02E771 0B:A761: 14        .byte con_obj_type_14   ; 
 - - - - - - 0x02E772 0B:A762: 06        .byte $06   ; 
-- - - - - - 0x02E773 0B:A763: 00        .byte $00   ; 
+- - - - - - 0x02E773 0B:A763: 00        .byte $00   ; placeholder
 ; 03 
-- - - - - - 0x02E774 0B:A764: 11        .byte con_BD4F_11   ; 
-- - - - - - 0x02E775 0B:A765: 04        .byte $04   ; 
-- - - - - - 0x02E776 0B:A766: 00        .byte $00   ; 
-- - - - - - 0x02E777 0B:A767: 00        .byte $00   ; 
+- - - - - - 0x02E774 0B:A764: 11        .byte con_ai_subscr_11   ; 
+- - - - - - 0x02E775 0B:A765: 04        .byte $04   ; table index for spd_Y
+- - - - - - 0x02E776 0B:A766: 00        .byte $00   ; pos_Y_lo
+- - - - - - 0x02E777 0B:A767: 00        .byte $00   ; placeholder
 ; 04 
-- - - - - - 0x02E778 0B:A768: 12        .byte con_BD4F_12   ; 
-- - - - - - 0x02E779 0B:A769: 00        .byte $00   ; 
-- - - - - - 0x02E77A 0B:A76A: 00        .byte $00   ; 
-- - - - - - 0x02E77B 0B:A76B: 00        .byte $00   ; 
+- - - - - - 0x02E778 0B:A768: 12        .byte con_ai_subscr_12   ; 
+- - - - - - 0x02E779 0B:A769: 00        .byte $00   ; placeholder
+- - - - - - 0x02E77A 0B:A76A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E77B 0B:A76B: 00        .byte $00   ; placeholder
 
 
 
-_off034_A76C_63:
-; con_BEA1_63
+_off034_ai_script_A76C_63:
+; con_ai_script_63
 ; 00 
-- D 1 - I - 0x02E77C 0B:A76C: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02E77D 0B:A76D: 00        .byte $00   ; 
-- - - - - - 0x02E77E 0B:A76E: 00        .byte $00   ; 
-- - - - - - 0x02E77F 0B:A76F: 00        .byte $00   ; 
+- D 1 - I - 0x02E77C 0B:A76C: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02E77D 0B:A76D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E77E 0B:A76E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E77F 0B:A76F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E780 0B:A770: 54        .byte con_BD4F_54   ; 
-- - - - - - 0x02E781 0B:A771: 00        .byte $00   ; 
-- - - - - - 0x02E782 0B:A772: 00        .byte $00   ; 
-- - - - - - 0x02E783 0B:A773: 00        .byte $00   ; 
+- D 1 - I - 0x02E780 0B:A770: 54        .byte con_ai_subscr_54_set_obj_flag_10   ; 
+- - - - - - 0x02E781 0B:A771: 00        .byte $00   ; placeholder
+- - - - - - 0x02E782 0B:A772: 00        .byte $00   ; placeholder
+- - - - - - 0x02E783 0B:A773: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E784 0B:A774: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E784 0B:A774: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E785 0B:A775: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02E786 0B:A776: 02        .byte $02   ; 
-- - - - - - 0x02E787 0B:A777: 00        .byte $00   ; 
+- - - - - - 0x02E787 0B:A777: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E788 0B:A778: 7E        .byte con_BD4F_7E   ; 
-- - - - - - 0x02E789 0B:A779: 00        .byte $00   ; 
-- - - - - - 0x02E78A 0B:A77A: 00        .byte $00   ; 
-- - - - - - 0x02E78B 0B:A77B: 00        .byte $00   ; 
+- D 1 - I - 0x02E788 0B:A778: 7E        .byte con_ai_subscr_7E   ; 
+- - - - - - 0x02E789 0B:A779: 00        .byte $00   ; placeholder
+- - - - - - 0x02E78A 0B:A77A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E78B 0B:A77B: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E78C 0B:A77C: 7D        .byte con_BD4F_7D   ; 
-- - - - - - 0x02E78D 0B:A77D: 40        .byte $40   ; 
-- - - - - - 0x02E78E 0B:A77E: 00        .byte $00   ; 
-- - - - - - 0x02E78F 0B:A77F: 00        .byte $00   ; 
+- D 1 - I - 0x02E78C 0B:A77C: 7D        .byte con_ai_subscr_7D   ; 
+- - - - - - 0x02E78D 0B:A77D: 40        .byte $40   ; placeholder
+- - - - - - 0x02E78E 0B:A77E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E78F 0B:A77F: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E790 0B:A780: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E790 0B:A780: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E791 0B:A781: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02E792 0B:A782: 04        .byte $04   ; 
-- - - - - - 0x02E793 0B:A783: 00        .byte $00   ; 
+- - - - - - 0x02E793 0B:A783: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E794 0B:A784: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E795 0B:A785: 03        .byte $03   ; 
+- D 1 - I - 0x02E794 0B:A784: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E795 0B:A785: 03        .byte $03   ; timer
 - - - - - - 0x02E796 0B:A786: 00        .byte $00   ; placeholder
 - - - - - - 0x02E797 0B:A787: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E798 0B:A788: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E798 0B:A788: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E799 0B:A789: 00        .byte $00   ; placeholder
 - - - - - - 0x02E79A 0B:A78A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E79B 0B:A78B: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E79C 0B:A78C: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E79C 0B:A78C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E79D 0B:A78D: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02E79E 0B:A78E: 06        .byte $06   ; 
-- - - - - - 0x02E79F 0B:A78F: 00        .byte $00   ; 
+- - - - - - 0x02E79F 0B:A78F: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02E7A0 0B:A790: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E7A1 0B:A791: 10        .byte $10   ; 
+- D 1 - I - 0x02E7A0 0B:A790: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E7A1 0B:A791: 10        .byte $10   ; timer
 - - - - - - 0x02E7A2 0B:A792: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7A3 0B:A793: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02E7A4 0B:A794: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E7A4 0B:A794: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E7A5 0B:A795: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7A6 0B:A796: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7A7 0B:A797: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02E7A8 0B:A798: 53        .byte con_BD4F_53   ; 
-- - - - - - 0x02E7A9 0B:A799: 00        .byte $00   ; 
-- - - - - - 0x02E7AA 0B:A79A: 00        .byte $00   ; 
-- - - - - - 0x02E7AB 0B:A79B: 00        .byte $00   ; 
+- D 1 - I - 0x02E7A8 0B:A798: 53        .byte con_ai_subscr_53_clear_obj_flag_10   ; 
+- - - - - - 0x02E7A9 0B:A799: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7AA 0B:A79A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7AB 0B:A79B: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02E7AC 0B:A79C: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E7AC 0B:A79C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E7AD 0B:A79D: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02E7AE 0B:A79E: 08        .byte $08   ; 
-- - - - - - 0x02E7AF 0B:A79F: 00        .byte $00   ; 
+- - - - - - 0x02E7AF 0B:A79F: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02E7B0 0B:A7A0: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E7B1 0B:A7A1: 10        .byte $10   ; 
+- D 1 - I - 0x02E7B0 0B:A7A0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E7B1 0B:A7A1: 10        .byte $10   ; timer
 - - - - - - 0x02E7B2 0B:A7A2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7B3 0B:A7A3: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02E7B4 0B:A7A4: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E7B4 0B:A7A4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E7B5 0B:A7A5: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7B6 0B:A7A6: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7B7 0B:A7A7: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02E7B8 0B:A7A8: 83        .byte con_BD4F_83   ; 
-- - - - - - 0x02E7B9 0B:A7A9: 00        .byte $00   ; 
-- - - - - - 0x02E7BA 0B:A7AA: 00        .byte $00   ; 
-- - - - - - 0x02E7BB 0B:A7AB: 00        .byte $00   ; 
+- D 1 - I - 0x02E7B8 0B:A7A8: 83        .byte con_ai_subscr_83   ; 
+- - - - - - 0x02E7B9 0B:A7A9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7BA 0B:A7AA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7BB 0B:A7AB: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02E7BC 0B:A7AC: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02E7BD 0B:A7AD: 00        .byte $00   ; 
-- - - - - - 0x02E7BE 0B:A7AE: 00        .byte $00   ; 
-- - - - - - 0x02E7BF 0B:A7AF: 00        .byte $00   ; 
+- D 1 - I - 0x02E7BC 0B:A7AC: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02E7BD 0B:A7AD: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7BE 0B:A7AE: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7BF 0B:A7AF: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02E7C0 0B:A7B0: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E7C1 0B:A7B1: 06        .byte $06   ; 
+- D 1 - I - 0x02E7C0 0B:A7B0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E7C1 0B:A7B1: 06        .byte $06   ; timer
 - - - - - - 0x02E7C2 0B:A7B2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7C3 0B:A7B3: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02E7C4 0B:A7B4: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E7C4 0B:A7B4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E7C5 0B:A7B5: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7C6 0B:A7B6: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7C7 0B:A7B7: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02E7C8 0B:A7B8: 01        .byte con_BD4F_01   ; 
-- - - - - - 0x02E7C9 0B:A7B9: 00        .byte $00   ; 
-- - - - - - 0x02E7CA 0B:A7BA: 00        .byte $00   ; 
-- - - - - - 0x02E7CB 0B:A7BB: 00        .byte $00   ; 
+- D 1 - I - 0x02E7C8 0B:A7B8: 01        .byte con_ai_subscr_01   ; 
+- - - - - - 0x02E7C9 0B:A7B9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7CA 0B:A7BA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7CB 0B:A7BB: 00        .byte $00   ; placeholder
 ; 14 
-- D 1 - I - 0x02E7CC 0B:A7BC: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E7CD 0B:A7BD: 04        .byte $04   ; 
+- D 1 - I - 0x02E7CC 0B:A7BC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E7CD 0B:A7BD: 04        .byte $04   ; timer
 - - - - - - 0x02E7CE 0B:A7BE: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7CF 0B:A7BF: 00        .byte $00   ; placeholder
 ; 15 
-- D 1 - I - 0x02E7D0 0B:A7C0: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E7D0 0B:A7C0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E7D1 0B:A7C1: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7D2 0B:A7C2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7D3 0B:A7C3: 00        .byte $00   ; placeholder
 ; 16 
-- D 1 - I - 0x02E7D4 0B:A7C4: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02E7D5 0B:A7C5: 00        .byte $00   ; 
-- - - - - - 0x02E7D6 0B:A7C6: 00        .byte $00   ; 
-- - - - - - 0x02E7D7 0B:A7C7: 00        .byte $00   ; 
+- D 1 - I - 0x02E7D4 0B:A7C4: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02E7D5 0B:A7C5: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7D6 0B:A7C6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7D7 0B:A7C7: 00        .byte $00   ; placeholder
 ; 17 
-- D 1 - I - 0x02E7D8 0B:A7C8: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E7D8 0B:A7C8: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E7D9 0B:A7C9: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02E7DA 0B:A7CA: 0A        .byte $0A   ; 
-- - - - - - 0x02E7DB 0B:A7CB: 00        .byte $00   ; 
+- - - - - - 0x02E7DB 0B:A7CB: 00        .byte $00   ; placeholder
 ; 18 
-- D 1 - I - 0x02E7DC 0B:A7CC: 7F        .byte con_BD4F_7F   ; 
-- - - - - - 0x02E7DD 0B:A7CD: 00        .byte $00   ; 
-- - - - - - 0x02E7DE 0B:A7CE: 00        .byte $00   ; 
-- - - - - - 0x02E7DF 0B:A7CF: 00        .byte $00   ; 
+- D 1 - I - 0x02E7DC 0B:A7CC: 7F        .byte con_ai_subscr_7F   ; 
+- - - - - - 0x02E7DD 0B:A7CD: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7DE 0B:A7CE: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7DF 0B:A7CF: 00        .byte $00   ; placeholder
 ; 19 
-- D 1 - I - 0x02E7E0 0B:A7D0: 80        .byte con_BD4F_80   ; 
-- - - - - - 0x02E7E1 0B:A7D1: 00        .byte $00   ; 
-- - - - - - 0x02E7E2 0B:A7D2: 00        .byte $00   ; 
-- - - - - - 0x02E7E3 0B:A7D3: 00        .byte $00   ; 
+- D 1 - I - 0x02E7E0 0B:A7D0: 80        .byte con_ai_subscr_80   ; 
+- - - - - - 0x02E7E1 0B:A7D1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7E2 0B:A7D2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7E3 0B:A7D3: 00        .byte $00   ; placeholder
 ; 1A 
-- D 1 - I - 0x02E7E4 0B:A7D4: 81        .byte con_BD4F_81   ; 
-- - - - - - 0x02E7E5 0B:A7D5: 00        .byte $00   ; 
-- - - - - - 0x02E7E6 0B:A7D6: 00        .byte $00   ; 
-- - - - - - 0x02E7E7 0B:A7D7: 00        .byte $00   ; 
+- D 1 - I - 0x02E7E4 0B:A7D4: 81        .byte con_ai_subscr_81_dec_spd_Y_while_timer   ; 
+- - - - - - 0x02E7E5 0B:A7D5: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7E6 0B:A7D6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7E7 0B:A7D7: 00        .byte $00   ; placeholder
 ; 1B 
-- D 1 - I - 0x02E7E8 0B:A7D8: 01        .byte con_BD4F_01   ; 
-- - - - - - 0x02E7E9 0B:A7D9: 00        .byte $00   ; 
-- - - - - - 0x02E7EA 0B:A7DA: 00        .byte $00   ; 
-- - - - - - 0x02E7EB 0B:A7DB: 00        .byte $00   ; 
+- D 1 - I - 0x02E7E8 0B:A7D8: 01        .byte con_ai_subscr_01   ; 
+- - - - - - 0x02E7E9 0B:A7D9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7EA 0B:A7DA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7EB 0B:A7DB: 00        .byte $00   ; placeholder
 ; 1C 
-- D 1 - I - 0x02E7EC 0B:A7DC: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02E7ED 0B:A7DD: 00        .byte $00   ; 
-- - - - - - 0x02E7EE 0B:A7DE: 00        .byte $00   ; 
-- - - - - - 0x02E7EF 0B:A7DF: 00        .byte $00   ; 
+- D 1 - I - 0x02E7EC 0B:A7DC: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02E7ED 0B:A7DD: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7EE 0B:A7DE: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7EF 0B:A7DF: 00        .byte $00   ; placeholder
 ; 1D 
-- D 1 - I - 0x02E7F0 0B:A7E0: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E7F1 0B:A7E1: 20        .byte $20   ; 
+- D 1 - I - 0x02E7F0 0B:A7E0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E7F1 0B:A7E1: 20        .byte $20   ; timer
 - - - - - - 0x02E7F2 0B:A7E2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7F3 0B:A7E3: 00        .byte $00   ; placeholder
 ; 1E 
-- D 1 - I - 0x02E7F4 0B:A7E4: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E7F4 0B:A7E4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E7F5 0B:A7E5: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7F6 0B:A7E6: 00        .byte $00   ; placeholder
 - - - - - - 0x02E7F7 0B:A7E7: 00        .byte $00   ; placeholder
 ; 1F 
-- D 1 - I - 0x02E7F8 0B:A7E8: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E7F8 0B:A7E8: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E7F9 0B:A7E9: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02E7FA 0B:A7EA: 0A        .byte $0A   ; 
-- - - - - - 0x02E7FB 0B:A7EB: 00        .byte $00   ; 
+- - - - - - 0x02E7FB 0B:A7EB: 00        .byte $00   ; placeholder
 ; 20 
-- D 1 - I - 0x02E7FC 0B:A7EC: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02E7FD 0B:A7ED: 00        .byte $00   ; 
-- - - - - - 0x02E7FE 0B:A7EE: 00        .byte $00   ; 
-- - - - - - 0x02E7FF 0B:A7EF: 00        .byte $00   ; 
+- D 1 - I - 0x02E7FC 0B:A7EC: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02E7FD 0B:A7ED: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7FE 0B:A7EE: 00        .byte $00   ; placeholder
+- - - - - - 0x02E7FF 0B:A7EF: 00        .byte $00   ; placeholder
 ; 21 
-- D 1 - I - 0x02E800 0B:A7F0: 7F        .byte con_BD4F_7F   ; 
-- - - - - - 0x02E801 0B:A7F1: 00        .byte $00   ; 
-- - - - - - 0x02E802 0B:A7F2: 00        .byte $00   ; 
-- - - - - - 0x02E803 0B:A7F3: 00        .byte $00   ; 
+- D 1 - I - 0x02E800 0B:A7F0: 7F        .byte con_ai_subscr_7F   ; 
+- - - - - - 0x02E801 0B:A7F1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E802 0B:A7F2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E803 0B:A7F3: 00        .byte $00   ; placeholder
 ; 22 
-- D 1 - I - 0x02E804 0B:A7F4: 80        .byte con_BD4F_80   ; 
-- - - - - - 0x02E805 0B:A7F5: 00        .byte $00   ; 
-- - - - - - 0x02E806 0B:A7F6: 00        .byte $00   ; 
-- - - - - - 0x02E807 0B:A7F7: 00        .byte $00   ; 
+- D 1 - I - 0x02E804 0B:A7F4: 80        .byte con_ai_subscr_80   ; 
+- - - - - - 0x02E805 0B:A7F5: 00        .byte $00   ; placeholder
+- - - - - - 0x02E806 0B:A7F6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E807 0B:A7F7: 00        .byte $00   ; placeholder
 ; 23 
-- D 1 - I - 0x02E808 0B:A7F8: 82        .byte con_BD4F_82   ; 
-- - - - - - 0x02E809 0B:A7F9: 00        .byte $00   ; 
-- - - - - - 0x02E80A 0B:A7FA: 00        .byte $00   ; 
-- - - - - - 0x02E80B 0B:A7FB: 00        .byte $00   ; 
+- D 1 - I - 0x02E808 0B:A7F8: 82        .byte con_ai_subscr_82   ; 
+- - - - - - 0x02E809 0B:A7F9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E80A 0B:A7FA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E80B 0B:A7FB: 00        .byte $00   ; placeholder
 
 
 
-_off034_A7FC_65:
-; con_BEA1_65
+_off034_ai_script_A7FC_65:
+; con_ai_script_65
 ; 00 
-- D 1 - I - 0x02E80C 0B:A7FC: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02E80D 0B:A7FD: 00        .byte $00   ; 
-- - - - - - 0x02E80E 0B:A7FE: 00        .byte $00   ; 
-- - - - - - 0x02E80F 0B:A7FF: 00        .byte $00   ; 
+- D 1 - I - 0x02E80C 0B:A7FC: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02E80D 0B:A7FD: 00        .byte $00   ; placeholder
+- - - - - - 0x02E80E 0B:A7FE: 00        .byte $00   ; placeholder
+- - - - - - 0x02E80F 0B:A7FF: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E810 0B:A800: 1E        .byte con_BD4F_1E   ; 
+- D 1 - I - 0x02E810 0B:A800: 1E        .byte con_ai_subscr_1E   ; 
 - D 1 - I - 0x02E811 0B:A801: 02 10     .dbyt $0210 ; spd_X
-- - - - - - 0x02E813 0B:A803: 00        .byte $00   ; 
+- - - - - - 0x02E813 0B:A803: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E814 0B:A804: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E814 0B:A804: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E815 0B:A805: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02E816 0B:A806: 08        .byte $08   ; 
-- - - - - - 0x02E817 0B:A807: 00        .byte $00   ; 
+- - - - - - 0x02E817 0B:A807: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E818 0B:A808: 0C        .byte con_BD4F_comp_X_dist_to_plr   ; 
+- D 1 - I - 0x02E818 0B:A808: 0C        .byte con_ai_subscr_comp_X_dist_to_plr   ; 
 - D 1 - I - 0x02E819 0B:A809: 40        .byte $40   ; X
 - - - - - - 0x02E81A 0B:A80A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E81B 0B:A80B: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E81C 0B:A80C: 92        .byte con_BD4F_92_Harpy_drops_enemy   ; 
+- D 1 - I - 0x02E81C 0B:A80C: 92        .byte con_ai_subscr_92_Harpy_drops_enemy   ; 
 - - - - - - 0x02E81D 0B:A80D: 00        .byte $00   ; placeholder
 - - - - - - 0x02E81E 0B:A80E: 00        .byte $00   ; placeholder
 - - - - - - 0x02E81F 0B:A80F: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E820 0B:A810: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E820 0B:A810: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E821 0B:A811: 00        .byte $00   ; placeholder
 - - - - - - 0x02E822 0B:A812: 00        .byte $00   ; placeholder
 - - - - - - 0x02E823 0B:A813: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E824 0B:A814: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E824 0B:A814: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E825 0B:A815: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02E826 0B:A816: 76        .byte $76   ; 
-- - - - - - 0x02E827 0B:A817: 00        .byte $00   ; 
+- - - - - - 0x02E827 0B:A817: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E828 0B:A818: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E829 0B:A819: 10        .byte $10   ; 
+- D 1 - I - 0x02E828 0B:A818: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E829 0B:A819: 10        .byte $10   ; timer
 - - - - - - 0x02E82A 0B:A81A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E82B 0B:A81B: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E82C 0B:A81C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E82C 0B:A81C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E82D 0B:A81D: 00        .byte $00   ; placeholder
 - - - - - - 0x02E82E 0B:A81E: 00        .byte $00   ; placeholder
 - - - - - - 0x02E82F 0B:A81F: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02E830 0B:A820: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02E831 0B:A821: 00        .byte $00   ; 
-- - - - - - 0x02E832 0B:A822: 00        .byte $00   ; 
-- - - - - - 0x02E833 0B:A823: 00        .byte $00   ; 
+- D 1 - I - 0x02E830 0B:A820: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02E831 0B:A821: 00        .byte $00   ; placeholder
+- - - - - - 0x02E832 0B:A822: 00        .byte $00   ; placeholder
+- - - - - - 0x02E833 0B:A823: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02E834 0B:A824: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E834 0B:A824: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E835 0B:A825: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02E836 0B:A826: 09        .byte $09   ; 
-- - - - - - 0x02E837 0B:A827: 00        .byte $00   ; 
+- - - - - - 0x02E837 0B:A827: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02E838 0B:A828: 00        .byte con_BD4F_00   ; 
+- D 1 - I - 0x02E838 0B:A828: 00        .byte con_ai_subscr_00   ; 
 - - - - - - 0x02E839 0B:A829: 00        .byte $00   ; placeholder
 - - - - - - 0x02E83A 0B:A82A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E83B 0B:A82B: 00        .byte $00   ; placeholder
 
 
 
-_off034_A82C_11:
-; con_BEA1_11
+_off034_ai_script_A82C_11:
+; con_ai_script_11
 ; 00 
-- D 1 - I - 0x02E83C 0B:A82C: 28        .byte con_BD4F_28   ; 
-- - - - - - 0x02E83D 0B:A82D: 00        .byte $00   ; 
-- - - - - - 0x02E83E 0B:A82E: 00        .byte $00   ; 
-- - - - - - 0x02E83F 0B:A82F: 00        .byte $00   ; 
+- D 1 - I - 0x02E83C 0B:A82C: 28        .byte con_ai_subscr_28   ; 
+- - - - - - 0x02E83D 0B:A82D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E83E 0B:A82E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E83F 0B:A82F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E840 0B:A830: 29        .byte con_BD4F_29   ; 
-- - - - - - 0x02E841 0B:A831: 00        .byte $00   ; 
-- - - - - - 0x02E842 0B:A832: 00        .byte $00   ; 
-- - - - - - 0x02E843 0B:A833: 00        .byte $00   ; 
+- D 1 - I - 0x02E840 0B:A830: 29        .byte con_ai_subscr_29   ; 
+- - - - - - 0x02E841 0B:A831: 00        .byte $00   ; placeholder
+- - - - - - 0x02E842 0B:A832: 00        .byte $00   ; placeholder
+- - - - - - 0x02E843 0B:A833: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E844 0B:A834: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E845 0B:A835: 0A        .byte $0A   ; 
+- D 1 - I - 0x02E844 0B:A834: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E845 0B:A835: 0A        .byte $0A   ; timer
 - - - - - - 0x02E846 0B:A836: 00        .byte $00   ; placeholder
 - - - - - - 0x02E847 0B:A837: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E848 0B:A838: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E848 0B:A838: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E849 0B:A839: 00        .byte $00   ; placeholder
 - - - - - - 0x02E84A 0B:A83A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E84B 0B:A83B: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E84C 0B:A83C: 8F        .byte con_BD4F_8F   ; 
-- - - - - - 0x02E84D 0B:A83D: 00        .byte $00   ; 
-- - - - - - 0x02E84E 0B:A83E: 00        .byte $00   ; 
-- - - - - - 0x02E84F 0B:A83F: 00        .byte $00   ; 
+- D 1 - I - 0x02E84C 0B:A83C: 8F        .byte con_ai_subscr_8F   ; 
+- - - - - - 0x02E84D 0B:A83D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E84E 0B:A83E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E84F 0B:A83F: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E850 0B:A840: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E851 0B:A841: 08        .byte $08   ; 
+- D 1 - I - 0x02E850 0B:A840: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E851 0B:A841: 08        .byte $08   ; timer
 - - - - - - 0x02E852 0B:A842: 00        .byte $00   ; placeholder
 - - - - - - 0x02E853 0B:A843: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E854 0B:A844: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E854 0B:A844: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E855 0B:A845: 00        .byte $00   ; placeholder
 - - - - - - 0x02E856 0B:A846: 00        .byte $00   ; placeholder
 - - - - - - 0x02E857 0B:A847: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E858 0B:A848: 2C        .byte con_BD4F_2C   ; 
-- - - - - - 0x02E859 0B:A849: 00        .byte $00   ; 
-- - - - - - 0x02E85A 0B:A84A: 00        .byte $00   ; 
-- - - - - - 0x02E85B 0B:A84B: 00        .byte $00   ; 
+- D 1 - I - 0x02E858 0B:A848: 2C        .byte con_ai_subscr_2C   ; 
+- - - - - - 0x02E859 0B:A849: 00        .byte $00   ; placeholder
+- - - - - - 0x02E85A 0B:A84A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E85B 0B:A84B: 00        .byte $00   ; placeholder
 
 
 
-_off034_A84C_2B:
-; con_BEA1_2B
+_off034_ai_script_A84C_2B:
+; con_ai_script_2B
 ; 00 
-- D 1 - I - 0x02E85C 0B:A84C: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E85C 0B:A84C: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E85D 0B:A84D: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02E85E 0B:A84E: 05        .byte $05   ; 
-- - - - - - 0x02E85F 0B:A84F: 00        .byte $00   ; 
+- - - - - - 0x02E85F 0B:A84F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E860 0B:A850: 1E        .byte con_BD4F_1E   ; 
+- D 1 - I - 0x02E860 0B:A850: 1E        .byte con_ai_subscr_1E   ; 
 - D 1 - I - 0x02E861 0B:A851: 00 60     .dbyt $0060 ; spd_X
-- - - - - - 0x02E863 0B:A853: 00        .byte $00   ; 
+- - - - - - 0x02E863 0B:A853: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E864 0B:A854: 6B        .byte con_BD4F_6B   ; 
-- - - - - - 0x02E865 0B:A855: 00        .byte $00   ; 
-- - - - - - 0x02E866 0B:A856: 00        .byte $00   ; 
-- - - - - - 0x02E867 0B:A857: 00        .byte $00   ; 
+- D 1 - I - 0x02E864 0B:A854: 6B        .byte con_ai_subscr_6B   ; 
+- - - - - - 0x02E865 0B:A855: 00        .byte $00   ; placeholder
+- - - - - - 0x02E866 0B:A856: 00        .byte $00   ; placeholder
+- - - - - - 0x02E867 0B:A857: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E868 0B:A858: 6D        .byte con_BD4F_6D   ; 
-- - - - - - 0x02E869 0B:A859: 00        .byte $00   ; 
-- - - - - - 0x02E86A 0B:A85A: 00        .byte $00   ; 
-- - - - - - 0x02E86B 0B:A85B: 00        .byte $00   ; 
+- D 1 - I - 0x02E868 0B:A858: 6D        .byte con_ai_subscr_6D   ; 
+- - - - - - 0x02E869 0B:A859: 00        .byte $00   ; placeholder
+- - - - - - 0x02E86A 0B:A85A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E86B 0B:A85B: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E86C 0B:A85C: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E86C 0B:A85C: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E86D 0B:A85D: 01        .byte $01   ; 
-- - - - - - 0x02E86E 0B:A85E: 00        .byte $00   ; 
-- - - - - - 0x02E86F 0B:A85F: 00        .byte $00   ; 
+- - - - - - 0x02E86E 0B:A85E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E86F 0B:A85F: 00        .byte $00   ; placeholder
 
 
 
-_off034_A860_71:
-; con_BEA1_71
+_off034_ai_script_A860_71:
+; con_ai_script_71
 ; 00 
-- D 1 - I - 0x02E870 0B:A860: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E870 0B:A860: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E871 0B:A861: 14        .byte con_obj_type_14   ; 
 - D 1 - I - 0x02E872 0B:A862: 09        .byte $09   ; 
-- - - - - - 0x02E873 0B:A863: 00        .byte $00   ; 
+- - - - - - 0x02E873 0B:A863: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E874 0B:A864: 1E        .byte con_BD4F_1E   ; 
+- D 1 - I - 0x02E874 0B:A864: 1E        .byte con_ai_subscr_1E   ; 
 - D 1 - I - 0x02E875 0B:A865: 00 90     .dbyt $0090 ; spd_X
-- - - - - - 0x02E877 0B:A867: 00        .byte $00   ; 
+- - - - - - 0x02E877 0B:A867: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E878 0B:A868: 6B        .byte con_BD4F_6B   ; 
-- - - - - - 0x02E879 0B:A869: 00        .byte $00   ; 
-- - - - - - 0x02E87A 0B:A86A: 00        .byte $00   ; 
-- - - - - - 0x02E87B 0B:A86B: 00        .byte $00   ; 
+- D 1 - I - 0x02E878 0B:A868: 6B        .byte con_ai_subscr_6B   ; 
+- - - - - - 0x02E879 0B:A869: 00        .byte $00   ; placeholder
+- - - - - - 0x02E87A 0B:A86A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E87B 0B:A86B: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E87C 0B:A86C: 6D        .byte con_BD4F_6D   ; 
-- - - - - - 0x02E87D 0B:A86D: 00        .byte $00   ; 
-- - - - - - 0x02E87E 0B:A86E: 00        .byte $00   ; 
-- - - - - - 0x02E87F 0B:A86F: 00        .byte $00   ; 
+- D 1 - I - 0x02E87C 0B:A86C: 6D        .byte con_ai_subscr_6D   ; 
+- - - - - - 0x02E87D 0B:A86D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E87E 0B:A86E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E87F 0B:A86F: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E880 0B:A870: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E880 0B:A870: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E881 0B:A871: 00        .byte $00   ; 
-- - - - - - 0x02E882 0B:A872: 00        .byte $00   ; 
-- - - - - - 0x02E883 0B:A873: 00        .byte $00   ; 
+- - - - - - 0x02E882 0B:A872: 00        .byte $00   ; placeholder
+- - - - - - 0x02E883 0B:A873: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E884 0B:A874: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E884 0B:A874: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E885 0B:A875: 14        .byte con_obj_type_14   ; 
 - D 1 - I - 0x02E886 0B:A876: 64        .byte $64   ; 
-- - - - - - 0x02E887 0B:A877: 00        .byte $00   ; 
+- - - - - - 0x02E887 0B:A877: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E888 0B:A878: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E889 0B:A879: 08        .byte $08   ; 
+- D 1 - I - 0x02E888 0B:A878: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E889 0B:A879: 08        .byte $08   ; timer
 - - - - - - 0x02E88A 0B:A87A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E88B 0B:A87B: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E88C 0B:A87C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E88C 0B:A87C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E88D 0B:A87D: 00        .byte $00   ; placeholder
 - - - - - - 0x02E88E 0B:A87E: 00        .byte $00   ; placeholder
 - - - - - - 0x02E88F 0B:A87F: 00        .byte $00   ; placeholder
 ; 08 
-- - - - - - 0x02E890 0B:A880: 0B        .byte con_BD4F_0B   ; 
+- - - - - - 0x02E890 0B:A880: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - - - - - - 0x02E891 0B:A881: 08        .byte con_obj_type_08   ; 
 - - - - - - 0x02E892 0B:A882: FE        .byte $FE   ; 
-- - - - - - 0x02E893 0B:A883: 00        .byte $00   ; 
+- - - - - - 0x02E893 0B:A883: 00        .byte $00   ; placeholder
 ; 09 
-- - - - - - 0x02E894 0B:A884: 1F        .byte con_BD4F_set_timer   ; 
-- - - - - - 0x02E895 0B:A885: 16        .byte $16   ; 
+- - - - - - 0x02E894 0B:A884: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- - - - - - 0x02E895 0B:A885: 16        .byte $16   ; timer
 - - - - - - 0x02E896 0B:A886: 00        .byte $00   ; placeholder
 - - - - - - 0x02E897 0B:A887: 00        .byte $00   ; placeholder
 ; 0A 
-- - - - - - 0x02E898 0B:A888: 20        .byte con_BD4F_count_down_timer   ; 
+- - - - - - 0x02E898 0B:A888: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E899 0B:A889: 00        .byte $00   ; placeholder
 - - - - - - 0x02E89A 0B:A88A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E89B 0B:A88B: 00        .byte $00   ; placeholder
 ; 0B 
-- - - - - - 0x02E89C 0B:A88C: 0B        .byte con_BD4F_0B   ; 
+- - - - - - 0x02E89C 0B:A88C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - - - - - - 0x02E89D 0B:A88D: 14        .byte con_obj_type_14   ; 
 - - - - - - 0x02E89E 0B:A88E: 64        .byte $64   ; 
-- - - - - - 0x02E89F 0B:A88F: 00        .byte $00   ; 
+- - - - - - 0x02E89F 0B:A88F: 00        .byte $00   ; placeholder
 ; 0C 
-- - - - - - 0x02E8A0 0B:A890: 1F        .byte con_BD4F_set_timer   ; 
-- - - - - - 0x02E8A1 0B:A891: 08        .byte $08   ; 
+- - - - - - 0x02E8A0 0B:A890: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- - - - - - 0x02E8A1 0B:A891: 08        .byte $08   ; timer
 - - - - - - 0x02E8A2 0B:A892: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8A3 0B:A893: 00        .byte $00   ; placeholder
 ; 0D 
-- - - - - - 0x02E8A4 0B:A894: 20        .byte con_BD4F_count_down_timer   ; 
+- - - - - - 0x02E8A4 0B:A894: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E8A5 0B:A895: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8A6 0B:A896: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8A7 0B:A897: 00        .byte $00   ; placeholder
 ; 0E 
-- - - - - - 0x02E8A8 0B:A898: 04        .byte con_BD4F_04   ; 
+- - - - - - 0x02E8A8 0B:A898: 04        .byte con_ai_subscr_04   ; 
 - - - - - - 0x02E8A9 0B:A899: 00        .byte $00   ; 
-- - - - - - 0x02E8AA 0B:A89A: 00        .byte $00   ; 
-- - - - - - 0x02E8AB 0B:A89B: 00        .byte $00   ; 
+- - - - - - 0x02E8AA 0B:A89A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8AB 0B:A89B: 00        .byte $00   ; placeholder
 
 
 
-_off034_A89C_68:
-; con_BEA1_68
+_off034_ai_script_A89C_68:
+; con_ai_script_68
 ; 00 
-- D 1 - I - 0x02E8AC 0B:A89C: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E8AC 0B:A89C: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E8AD 0B:A89D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E8AE 0B:A89E: 25        .byte $25   ; 
-- - - - - - 0x02E8AF 0B:A89F: 00        .byte $00   ; 
+- - - - - - 0x02E8AF 0B:A89F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E8B0 0B:A8A0: 54        .byte con_BD4F_54   ; 
-- - - - - - 0x02E8B1 0B:A8A1: 00        .byte $00   ; 
-- - - - - - 0x02E8B2 0B:A8A2: 00        .byte $00   ; 
-- - - - - - 0x02E8B3 0B:A8A3: 00        .byte $00   ; 
+- D 1 - I - 0x02E8B0 0B:A8A0: 54        .byte con_ai_subscr_54_set_obj_flag_10   ; 
+- - - - - - 0x02E8B1 0B:A8A1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8B2 0B:A8A2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8B3 0B:A8A3: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E8B4 0B:A8A4: 8E        .byte con_BD4F_8E   ; 
-- - - - - - 0x02E8B5 0B:A8A5: 00        .byte $00   ; 
-- - - - - - 0x02E8B6 0B:A8A6: 00        .byte $00   ; 
-- - - - - - 0x02E8B7 0B:A8A7: 00        .byte $00   ; 
+- D 1 - I - 0x02E8B4 0B:A8A4: 8E        .byte con_ai_subscr_8E   ; 
+- - - - - - 0x02E8B5 0B:A8A5: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8B6 0B:A8A6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8B7 0B:A8A7: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E8B8 0B:A8A8: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E8B8 0B:A8A8: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E8B9 0B:A8A9: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8BA 0B:A8AA: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8BB 0B:A8AB: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E8BC 0B:A8AC: 53        .byte con_BD4F_53   ; 
-- - - - - - 0x02E8BD 0B:A8AD: 00        .byte $00   ; 
-- - - - - - 0x02E8BE 0B:A8AE: 00        .byte $00   ; 
-- - - - - - 0x02E8BF 0B:A8AF: 00        .byte $00   ; 
+- D 1 - I - 0x02E8BC 0B:A8AC: 53        .byte con_ai_subscr_53_clear_obj_flag_10   ; 
+- - - - - - 0x02E8BD 0B:A8AD: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8BE 0B:A8AE: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8BF 0B:A8AF: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E8C0 0B:A8B0: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02E8C1 0B:A8B1: 00        .byte $00   ; 
-- - - - - - 0x02E8C2 0B:A8B2: 00        .byte $00   ; 
-- - - - - - 0x02E8C3 0B:A8B3: 00        .byte $00   ; 
+- D 1 - I - 0x02E8C0 0B:A8B0: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02E8C1 0B:A8B1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8C2 0B:A8B2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8C3 0B:A8B3: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E8C4 0B:A8B4: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E8C4 0B:A8B4: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E8C5 0B:A8B5: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E8C6 0B:A8B6: 23        .byte $23   ; 
-- - - - - - 0x02E8C7 0B:A8B7: 00        .byte $00   ; 
+- - - - - - 0x02E8C7 0B:A8B7: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E8C8 0B:A8B8: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E8C9 0B:A8B9: 16        .byte $16   ; 
+- D 1 - I - 0x02E8C8 0B:A8B8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E8C9 0B:A8B9: 16        .byte $16   ; timer
 - - - - - - 0x02E8CA 0B:A8BA: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8CB 0B:A8BB: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E8CC 0B:A8BC: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E8CC 0B:A8BC: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E8CD 0B:A8BD: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8CE 0B:A8BE: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8CF 0B:A8BF: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02E8D0 0B:A8C0: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E8D0 0B:A8C0: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E8D1 0B:A8C1: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E8D2 0B:A8C2: 02        .byte $02   ; 
-- - - - - - 0x02E8D3 0B:A8C3: 00        .byte $00   ; 
+- - - - - - 0x02E8D3 0B:A8C3: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02E8D4 0B:A8C4: 57        .byte con_BD4F_57   ; 
-- - - - - - 0x02E8D5 0B:A8C5: 00        .byte $00   ; 
-- - - - - - 0x02E8D6 0B:A8C6: 00        .byte $00   ; 
-- - - - - - 0x02E8D7 0B:A8C7: 00        .byte $00   ; 
+- D 1 - I - 0x02E8D4 0B:A8C4: 57        .byte con_ai_subscr_57   ; 
+- - - - - - 0x02E8D5 0B:A8C5: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8D6 0B:A8C6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8D7 0B:A8C7: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02E8D8 0B:A8C8: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E8D9 0B:A8C9: 20        .byte $20   ; 
+- D 1 - I - 0x02E8D8 0B:A8C8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E8D9 0B:A8C9: 20        .byte $20   ; timer
 - - - - - - 0x02E8DA 0B:A8CA: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8DB 0B:A8CB: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02E8DC 0B:A8CC: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E8DC 0B:A8CC: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E8DD 0B:A8CD: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8DE 0B:A8CE: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8DF 0B:A8CF: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02E8E0 0B:A8D0: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E8E0 0B:A8D0: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E8E1 0B:A8D1: 0A        .byte $0A   ; 
-- - - - - - 0x02E8E2 0B:A8D2: 00        .byte $00   ; 
-- - - - - - 0x02E8E3 0B:A8D3: 00        .byte $00   ; 
+- - - - - - 0x02E8E2 0B:A8D2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8E3 0B:A8D3: 00        .byte $00   ; placeholder
 
 
 
-_off034_A8D4_08:
-; con_BEA1_08
+_off034_ai_script_A8D4_08:
+; con_ai_script_08
 ; 00 
-- D 1 - I - 0x02E8E4 0B:A8D4: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E8E4 0B:A8D4: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E8E5 0B:A8D5: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E8E6 0B:A8D6: 23        .byte $23   ; 
-- - - - - - 0x02E8E7 0B:A8D7: 00        .byte $00   ; 
+- - - - - - 0x02E8E7 0B:A8D7: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E8E8 0B:A8D8: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02E8E9 0B:A8D9: 00        .byte $00   ; 
-- - - - - - 0x02E8EA 0B:A8DA: 00        .byte $00   ; 
-- - - - - - 0x02E8EB 0B:A8DB: 00        .byte $00   ; 
+- D 1 - I - 0x02E8E8 0B:A8D8: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02E8E9 0B:A8D9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8EA 0B:A8DA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8EB 0B:A8DB: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E8EC 0B:A8DC: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E8ED 0B:A8DD: 16        .byte $16   ; 
+- D 1 - I - 0x02E8EC 0B:A8DC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E8ED 0B:A8DD: 16        .byte $16   ; timer
 - - - - - - 0x02E8EE 0B:A8DE: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8EF 0B:A8DF: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E8F0 0B:A8E0: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E8F0 0B:A8E0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E8F1 0B:A8E1: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8F2 0B:A8E2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8F3 0B:A8E3: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E8F4 0B:A8E4: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E8F4 0B:A8E4: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E8F5 0B:A8E5: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E8F6 0B:A8E6: 02        .byte $02   ; 
-- - - - - - 0x02E8F7 0B:A8E7: 00        .byte $00   ; 
+- - - - - - 0x02E8F7 0B:A8E7: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E8F8 0B:A8E8: 57        .byte con_BD4F_57   ; 
-- - - - - - 0x02E8F9 0B:A8E9: 00        .byte $00   ; 
-- - - - - - 0x02E8FA 0B:A8EA: 00        .byte $00   ; 
-- - - - - - 0x02E8FB 0B:A8EB: 00        .byte $00   ; 
+- D 1 - I - 0x02E8F8 0B:A8E8: 57        .byte con_ai_subscr_57   ; 
+- - - - - - 0x02E8F9 0B:A8E9: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8FA 0B:A8EA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E8FB 0B:A8EB: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E8FC 0B:A8EC: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E8FD 0B:A8ED: 20        .byte $20   ; 
+- D 1 - I - 0x02E8FC 0B:A8EC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E8FD 0B:A8ED: 20        .byte $20   ; timer
 - - - - - - 0x02E8FE 0B:A8EE: 00        .byte $00   ; placeholder
 - - - - - - 0x02E8FF 0B:A8EF: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E900 0B:A8F0: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E900 0B:A8F0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E901 0B:A8F1: 00        .byte $00   ; placeholder
 - - - - - - 0x02E902 0B:A8F2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E903 0B:A8F3: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E904 0B:A8F4: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E904 0B:A8F4: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E905 0B:A8F5: 05        .byte $05   ; 
-- - - - - - 0x02E906 0B:A8F6: 00        .byte $00   ; 
-- - - - - - 0x02E907 0B:A8F7: 00        .byte $00   ; 
+- - - - - - 0x02E906 0B:A8F6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E907 0B:A8F7: 00        .byte $00   ; placeholder
 
 
 
-_off034_A8F8_13:
-; con_BEA1_13
+_off034_ai_script_A8F8_13:
+; con_ai_script_13
 ; 00 
-- D 1 - I - 0x02E908 0B:A8F8: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E908 0B:A8F8: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E909 0B:A8F9: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E90A 0B:A8FA: 26        .byte $26   ; 
-- - - - - - 0x02E90B 0B:A8FB: 00        .byte $00   ; 
+- - - - - - 0x02E90B 0B:A8FB: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E90C 0B:A8FC: 1E        .byte con_BD4F_1E   ; 
+- D 1 - I - 0x02E90C 0B:A8FC: 1E        .byte con_ai_subscr_1E   ; 
 - D 1 - I - 0x02E90D 0B:A8FD: 00 60     .dbyt $0060 ; spd_X
-- - - - - - 0x02E90F 0B:A8FF: 00        .byte $00   ; 
+- - - - - - 0x02E90F 0B:A8FF: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E910 0B:A900: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E911 0B:A901: C0        .byte $C0   ; 
+- D 1 - I - 0x02E910 0B:A900: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E911 0B:A901: C0        .byte $C0   ; timer
 - - - - - - 0x02E912 0B:A902: 00        .byte $00   ; placeholder
 - - - - - - 0x02E913 0B:A903: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E914 0B:A904: 2F        .byte con_BD4F_2F   ; 
-- - - - - - 0x02E915 0B:A905: 00        .byte $00   ; 
-- - - - - - 0x02E916 0B:A906: 00        .byte $00   ; 
-- - - - - - 0x02E917 0B:A907: 00        .byte $00   ; 
+- D 1 - I - 0x02E914 0B:A904: 2F        .byte con_ai_subscr_2F   ; 
+- - - - - - 0x02E915 0B:A905: 00        .byte $00   ; placeholder
+- - - - - - 0x02E916 0B:A906: 00        .byte $00   ; placeholder
+- - - - - - 0x02E917 0B:A907: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E918 0B:A908: 6D        .byte con_BD4F_6D   ; 
-- - - - - - 0x02E919 0B:A909: 00        .byte $00   ; 
-- - - - - - 0x02E91A 0B:A90A: 00        .byte $00   ; 
-- - - - - - 0x02E91B 0B:A90B: 00        .byte $00   ; 
+- D 1 - I - 0x02E918 0B:A908: 6D        .byte con_ai_subscr_6D   ; 
+- - - - - - 0x02E919 0B:A909: 00        .byte $00   ; placeholder
+- - - - - - 0x02E91A 0B:A90A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E91B 0B:A90B: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E91C 0B:A90C: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E91C 0B:A90C: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E91D 0B:A90D: 01        .byte $01   ; 
-- - - - - - 0x02E91E 0B:A90E: 00        .byte $00   ; 
-- - - - - - 0x02E91F 0B:A90F: 00        .byte $00   ; 
+- - - - - - 0x02E91E 0B:A90E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E91F 0B:A90F: 00        .byte $00   ; placeholder
 
 
 
-_off034_A910_09:
-; con_BEA1_09
+_off034_ai_script_A910_09:
+; con_ai_script_09
 ; 00 
-- D 1 - I - 0x02E920 0B:A910: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02E920 0B:A910: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02E921 0B:A911: 00 90     .dbyt $0090 ; spd_X
-- - - - - - 0x02E923 0B:A913: 00        .byte $00   ; 
+- - - - - - 0x02E923 0B:A913: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E924 0B:A914: 35        .byte con_BD4F_35   ; 
-- - - - - - 0x02E925 0B:A915: 00        .byte $00   ; 
-- - - - - - 0x02E926 0B:A916: 00        .byte $00   ; 
-- - - - - - 0x02E927 0B:A917: 00        .byte $00   ; 
+- D 1 - I - 0x02E924 0B:A914: 35        .byte con_ai_subscr_35   ; 
+- - - - - - 0x02E925 0B:A915: 00        .byte $00   ; placeholder
+- - - - - - 0x02E926 0B:A916: 00        .byte $00   ; placeholder
+- - - - - - 0x02E927 0B:A917: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E928 0B:A918: 34        .byte con_BD4F_34   ; 
-- - - - - - 0x02E929 0B:A919: 00        .byte $00   ; 
-- - - - - - 0x02E92A 0B:A91A: 00        .byte $00   ; 
-- - - - - - 0x02E92B 0B:A91B: 00        .byte $00   ; 
+- D 1 - I - 0x02E928 0B:A918: 34        .byte con_ai_subscr_34   ; 
+- - - - - - 0x02E929 0B:A919: 00        .byte $00   ; placeholder
+- - - - - - 0x02E92A 0B:A91A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E92B 0B:A91B: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E92C 0B:A91C: 33        .byte con_BD4F_33   ; 
+- D 1 - I - 0x02E92C 0B:A91C: 33        .byte con_ai_subscr_33   ; 
 - D 1 - I - 0x02E92D 0B:A91D: 0B        .byte $0B   ; 
-- - - - - - 0x02E92E 0B:A91E: 00        .byte $00   ; 
-- - - - - - 0x02E92F 0B:A91F: 00        .byte $00   ; 
+- - - - - - 0x02E92E 0B:A91E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E92F 0B:A91F: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E930 0B:A920: 97        .byte con_BD4F_97   ; 
-- - - - - - 0x02E931 0B:A921: 00        .byte $00   ; 
-- - - - - - 0x02E932 0B:A922: 00        .byte $00   ; 
-- - - - - - 0x02E933 0B:A923: 00        .byte $00   ; 
+- D 1 - I - 0x02E930 0B:A920: 97        .byte con_ai_subscr_97_clear_XY_speed   ; 
+- - - - - - 0x02E931 0B:A921: 00        .byte $00   ; placeholder
+- - - - - - 0x02E932 0B:A922: 00        .byte $00   ; placeholder
+- - - - - - 0x02E933 0B:A923: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E934 0B:A924: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E934 0B:A924: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E935 0B:A925: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E936 0B:A926: 17        .byte $17   ; 
-- - - - - - 0x02E937 0B:A927: 00        .byte $00   ; 
+- - - - - - 0x02E937 0B:A927: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E938 0B:A928: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E939 0B:A929: 0F        .byte $0F   ; 
+- D 1 - I - 0x02E938 0B:A928: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E939 0B:A929: 0F        .byte $0F   ; timer
 - - - - - - 0x02E93A 0B:A92A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E93B 0B:A92B: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E93C 0B:A92C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E93C 0B:A92C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E93D 0B:A92D: 00        .byte $00   ; placeholder
 - - - - - - 0x02E93E 0B:A92E: 00        .byte $00   ; placeholder
 - - - - - - 0x02E93F 0B:A92F: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E940 0B:A930: 0D        .byte con_BD4F_0D   ; 
-- D 1 - I - 0x02E941 0B:A931: 04        .byte $04   ; 
-- - - - - - 0x02E942 0B:A932: 00        .byte $00   ; 
-- - - - - - 0x02E943 0B:A933: 00        .byte $00   ; 
+- D 1 - I - 0x02E940 0B:A930: 0D        .byte con_ai_subscr_0D   ; 
+- D 1 - I - 0x02E941 0B:A931: 04        .byte con_8E6F_04   ; 
+- - - - - - 0x02E942 0B:A932: 00        .byte $00   ; placeholder
+- - - - - - 0x02E943 0B:A933: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02E944 0B:A934: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E945 0B:A935: 30        .byte $30   ; 
+- D 1 - I - 0x02E944 0B:A934: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E945 0B:A935: 30        .byte $30   ; timer
 - - - - - - 0x02E946 0B:A936: 00        .byte $00   ; placeholder
 - - - - - - 0x02E947 0B:A937: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02E948 0B:A938: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E948 0B:A938: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E949 0B:A939: 00        .byte $00   ; 
-- - - - - - 0x02E94A 0B:A93A: 00        .byte $00   ; 
-- - - - - - 0x02E94B 0B:A93B: 00        .byte $00   ; 
+- - - - - - 0x02E94A 0B:A93A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E94B 0B:A93B: 00        .byte $00   ; placeholder
 ; 0B 
-- - - - - - 0x02E94C 0B:A93C: 1D        .byte con_BD4F_1D   ; 
+- - - - - - 0x02E94C 0B:A93C: 1D        .byte con_ai_subscr_1D   ; 
 - - - - - - 0x02E94D 0B:A93D: 04        .byte $04   ; 
-- - - - - - 0x02E94E 0B:A93E: 06        .byte $06   ; 
-- - - - - - 0x02E94F 0B:A93F: 00        .byte $00   ; 
+- - - - - - 0x02E94E 0B:A93E: 06        .byte con_B7BD_06   ; 
+- - - - - - 0x02E94F 0B:A93F: 00        .byte $00   ; placeholder
 
 
 
-_off034_A940_17:
-; con_BEA1_17
+_off034_ai_script_A940_17:
+; con_ai_script_17
 ; 00 
-- D 1 - I - 0x02E950 0B:A940: 30        .byte con_BD4F_30   ; 
+- D 1 - I - 0x02E950 0B:A940: 30        .byte con_ai_subscr_30   ; 
 - D 1 - I - 0x02E951 0B:A941: 03        .byte $03   ; 
-- - - - - - 0x02E952 0B:A942: 00        .byte $00   ; 
-- - - - - - 0x02E953 0B:A943: 00        .byte $00   ; 
+- - - - - - 0x02E952 0B:A942: 00        .byte $00   ; placeholder
+- - - - - - 0x02E953 0B:A943: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E954 0B:A944: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02E954 0B:A944: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02E955 0B:A945: 00 80     .dbyt $0080 ; spd_X
-- - - - - - 0x02E957 0B:A947: 00        .byte $00   ; 
+- - - - - - 0x02E957 0B:A947: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E958 0B:A948: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E959 0B:A949: 60        .byte $60   ; 
+- D 1 - I - 0x02E958 0B:A948: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E959 0B:A949: 60        .byte $60   ; timer
 - - - - - - 0x02E95A 0B:A94A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E95B 0B:A94B: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E95C 0B:A94C: 2F        .byte con_BD4F_2F   ; 
-- - - - - - 0x02E95D 0B:A94D: 00        .byte $00   ; 
-- - - - - - 0x02E95E 0B:A94E: 00        .byte $00   ; 
-- - - - - - 0x02E95F 0B:A94F: 00        .byte $00   ; 
+- D 1 - I - 0x02E95C 0B:A94C: 2F        .byte con_ai_subscr_2F   ; 
+- - - - - - 0x02E95D 0B:A94D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E95E 0B:A94E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E95F 0B:A94F: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E960 0B:A950: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E960 0B:A950: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E961 0B:A951: 01        .byte $01   ; 
-- - - - - - 0x02E962 0B:A952: 00        .byte $00   ; 
-- - - - - - 0x02E963 0B:A953: 00        .byte $00   ; 
+- - - - - - 0x02E962 0B:A952: 00        .byte $00   ; placeholder
+- - - - - - 0x02E963 0B:A953: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02E964 0B:A954: 54        .byte con_BD4F_54   ; 
-- - - - - - 0x02E965 0B:A955: 00        .byte $00   ; 
-- - - - - - 0x02E966 0B:A956: 00        .byte $00   ; 
-- - - - - - 0x02E967 0B:A957: 00        .byte $00   ; 
+- D 1 - I - 0x02E964 0B:A954: 54        .byte con_ai_subscr_54_set_obj_flag_10   ; 
+- - - - - - 0x02E965 0B:A955: 00        .byte $00   ; placeholder
+- - - - - - 0x02E966 0B:A956: 00        .byte $00   ; placeholder
+- - - - - - 0x02E967 0B:A957: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E968 0B:A958: 01        .byte con_BD4F_01   ; 
-- - - - - - 0x02E969 0B:A959: 00        .byte $00   ; 
-- - - - - - 0x02E96A 0B:A95A: 00        .byte $00   ; 
-- - - - - - 0x02E96B 0B:A95B: 00        .byte $00   ; 
+- D 1 - I - 0x02E968 0B:A958: 01        .byte con_ai_subscr_01   ; 
+- - - - - - 0x02E969 0B:A959: 00        .byte $00   ; placeholder
+- - - - - - 0x02E96A 0B:A95A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E96B 0B:A95B: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E96C 0B:A95C: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E96C 0B:A95C: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E96D 0B:A95D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E96E 0B:A95E: 22        .byte $22   ; 
-- - - - - - 0x02E96F 0B:A95F: 00        .byte $00   ; 
+- - - - - - 0x02E96F 0B:A95F: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E970 0B:A960: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E971 0B:A961: 38        .byte $38   ; 
+- D 1 - I - 0x02E970 0B:A960: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E971 0B:A961: 38        .byte $38   ; timer
 - - - - - - 0x02E972 0B:A962: 00        .byte $00   ; placeholder
 - - - - - - 0x02E973 0B:A963: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02E974 0B:A964: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E974 0B:A964: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E975 0B:A965: 00        .byte $00   ; placeholder
 - - - - - - 0x02E976 0B:A966: 00        .byte $00   ; placeholder
 - - - - - - 0x02E977 0B:A967: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02E978 0B:A968: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02E979 0B:A969: 00        .byte $00   ; 
-- - - - - - 0x02E97A 0B:A96A: 00        .byte $00   ; 
-- - - - - - 0x02E97B 0B:A96B: 00        .byte $00   ; 
+- D 1 - I - 0x02E978 0B:A968: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02E979 0B:A969: 00        .byte $00   ; placeholder
+- - - - - - 0x02E97A 0B:A96A: 00        .byte $00   ; placeholder
+- - - - - - 0x02E97B 0B:A96B: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02E97C 0B:A96C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E97D 0B:A96D: 50        .byte $50   ; 
+- D 1 - I - 0x02E97C 0B:A96C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E97D 0B:A96D: 50        .byte $50   ; timer
 - - - - - - 0x02E97E 0B:A96E: 00        .byte $00   ; placeholder
 - - - - - - 0x02E97F 0B:A96F: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02E980 0B:A970: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E980 0B:A970: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E981 0B:A971: 00        .byte $00   ; placeholder
 - - - - - - 0x02E982 0B:A972: 00        .byte $00   ; placeholder
 - - - - - - 0x02E983 0B:A973: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02E984 0B:A974: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E984 0B:A974: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E985 0B:A975: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E986 0B:A976: 9E        .byte $9E   ; 
-- - - - - - 0x02E987 0B:A977: 00        .byte $00   ; 
+- - - - - - 0x02E987 0B:A977: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02E988 0B:A978: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E989 0B:A979: 18        .byte $18   ; 
+- D 1 - I - 0x02E988 0B:A978: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E989 0B:A979: 18        .byte $18   ; timer
 - - - - - - 0x02E98A 0B:A97A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E98B 0B:A97B: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02E98C 0B:A97C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E98C 0B:A97C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E98D 0B:A97D: 00        .byte $00   ; placeholder
 - - - - - - 0x02E98E 0B:A97E: 00        .byte $00   ; placeholder
 - - - - - - 0x02E98F 0B:A97F: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02E990 0B:A980: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E990 0B:A980: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E991 0B:A981: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E992 0B:A982: 9C        .byte $9C   ; 
-- - - - - - 0x02E993 0B:A983: 00        .byte $00   ; 
+- - - - - - 0x02E993 0B:A983: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02E994 0B:A984: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E995 0B:A985: 18        .byte $18   ; 
+- D 1 - I - 0x02E994 0B:A984: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E995 0B:A985: 18        .byte $18   ; timer
 - - - - - - 0x02E996 0B:A986: 00        .byte $00   ; placeholder
 - - - - - - 0x02E997 0B:A987: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02E998 0B:A988: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E998 0B:A988: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E999 0B:A989: 00        .byte $00   ; placeholder
 - - - - - - 0x02E99A 0B:A98A: 00        .byte $00   ; placeholder
 - - - - - - 0x02E99B 0B:A98B: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02E99C 0B:A98C: 53        .byte con_BD4F_53   ; 
-- - - - - - 0x02E99D 0B:A98D: 00        .byte $00   ; 
-- - - - - - 0x02E99E 0B:A98E: 00        .byte $00   ; 
-- - - - - - 0x02E99F 0B:A98F: 00        .byte $00   ; 
+- D 1 - I - 0x02E99C 0B:A98C: 53        .byte con_ai_subscr_53_clear_obj_flag_10   ; 
+- - - - - - 0x02E99D 0B:A98D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E99E 0B:A98E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E99F 0B:A98F: 00        .byte $00   ; placeholder
 ; 14 
-- D 1 - I - 0x02E9A0 0B:A990: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E9A0 0B:A990: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E9A1 0B:A991: 01        .byte $01   ; 
-- - - - - - 0x02E9A2 0B:A992: 00        .byte $00   ; 
-- - - - - - 0x02E9A3 0B:A993: 00        .byte $00   ; 
+- - - - - - 0x02E9A2 0B:A992: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9A3 0B:A993: 00        .byte $00   ; placeholder
 
 
 
-_off034_A994_21:
-; con_BEA1_21
+_off034_ai_script_A994_21:
+; con_ai_script_21
 ; 00 
-- D 1 - I - 0x02E9A4 0B:A994: 30        .byte con_BD4F_30   ; 
+- D 1 - I - 0x02E9A4 0B:A994: 30        .byte con_ai_subscr_30   ; 
 - D 1 - I - 0x02E9A5 0B:A995: 03        .byte $03   ; 
-- - - - - - 0x02E9A6 0B:A996: 00        .byte $00   ; 
-- - - - - - 0x02E9A7 0B:A997: 00        .byte $00   ; 
+- - - - - - 0x02E9A6 0B:A996: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9A7 0B:A997: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02E9A8 0B:A998: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02E9A8 0B:A998: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02E9A9 0B:A999: 00 80     .dbyt $0080 ; spd_X
-- - - - - - 0x02E9AB 0B:A99B: 00        .byte $00   ; 
+- - - - - - 0x02E9AB 0B:A99B: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02E9AC 0B:A99C: 35        .byte con_BD4F_35   ; 
-- - - - - - 0x02E9AD 0B:A99D: 00        .byte $00   ; 
-- - - - - - 0x02E9AE 0B:A99E: 00        .byte $00   ; 
-- - - - - - 0x02E9AF 0B:A99F: 00        .byte $00   ; 
+- D 1 - I - 0x02E9AC 0B:A99C: 35        .byte con_ai_subscr_35   ; 
+- - - - - - 0x02E9AD 0B:A99D: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9AE 0B:A99E: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9AF 0B:A99F: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02E9B0 0B:A9A0: 3B        .byte con_BD4F_3B   ; 
-- - - - - - 0x02E9B1 0B:A9A1: 00        .byte $00   ; 
-- - - - - - 0x02E9B2 0B:A9A2: 00        .byte $00   ; 
-- - - - - - 0x02E9B3 0B:A9A3: 00        .byte $00   ; 
+- D 1 - I - 0x02E9B0 0B:A9A0: 3B        .byte con_ai_subscr_3B   ; 
+- - - - - - 0x02E9B1 0B:A9A1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9B2 0B:A9A2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9B3 0B:A9A3: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02E9B4 0B:A9A4: 6D        .byte con_BD4F_6D   ; 
-- - - - - - 0x02E9B5 0B:A9A5: 00        .byte $00   ; 
-- - - - - - 0x02E9B6 0B:A9A6: 00        .byte $00   ; 
-- - - - - - 0x02E9B7 0B:A9A7: 00        .byte $00   ; 
+- D 1 - I - 0x02E9B4 0B:A9A4: 6D        .byte con_ai_subscr_6D   ; 
+- - - - - - 0x02E9B5 0B:A9A5: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9B6 0B:A9A6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9B7 0B:A9A7: 00        .byte $00   ; placeholder
 ; 05 
-- - - - - - 0x02E9B8 0B:A9A8: 04        .byte con_BD4F_04   ; 
+- - - - - - 0x02E9B8 0B:A9A8: 04        .byte con_ai_subscr_04   ; 
 - - - - - - 0x02E9B9 0B:A9A9: 00        .byte $00   ; 
-- - - - - - 0x02E9BA 0B:A9AA: 00        .byte $00   ; 
-- - - - - - 0x02E9BB 0B:A9AB: 00        .byte $00   ; 
+- - - - - - 0x02E9BA 0B:A9AA: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9BB 0B:A9AB: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02E9BC 0B:A9AC: 36        .byte con_BD4F_36   ; 
-- D 1 - I - 0x02E9BD 0B:A9AD: 48        .byte $48   ; 
-- D 1 - I - 0x02E9BE 0B:A9AE: 00        .byte $00   ; 
-- - - - - - 0x02E9BF 0B:A9AF: 00        .byte $00   ; 
+- D 1 - I - 0x02E9BC 0B:A9AC: 36        .byte con_ai_subscr_36   ; 
+- D 1 - I - 0x02E9BD 0B:A9AD: 48        .byte $48   ; pos_X_lo distance to player
+- D 1 - I - 0x02E9BE 0B:A9AE: 00        .byte $00   ; 00 = repeat from the beginning if not close enough
+- - - - - - 0x02E9BF 0B:A9AF: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02E9C0 0B:A9B0: 97        .byte con_BD4F_97   ; 
-- - - - - - 0x02E9C1 0B:A9B1: 00        .byte $00   ; 
-- - - - - - 0x02E9C2 0B:A9B2: 00        .byte $00   ; 
-- - - - - - 0x02E9C3 0B:A9B3: 00        .byte $00   ; 
+- D 1 - I - 0x02E9C0 0B:A9B0: 97        .byte con_ai_subscr_97_clear_XY_speed   ; 
+- - - - - - 0x02E9C1 0B:A9B1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9C2 0B:A9B2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9C3 0B:A9B3: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02E9C4 0B:A9B4: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E9C4 0B:A9B4: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E9C5 0B:A9B5: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E9C6 0B:A9B6: AC        .byte $AC   ; 
-- - - - - - 0x02E9C7 0B:A9B7: 00        .byte $00   ; 
+- - - - - - 0x02E9C7 0B:A9B7: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02E9C8 0B:A9B8: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E9C9 0B:A9B9: 08        .byte $08   ; 
+- D 1 - I - 0x02E9C8 0B:A9B8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E9C9 0B:A9B9: 08        .byte $08   ; timer
 - - - - - - 0x02E9CA 0B:A9BA: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9CB 0B:A9BB: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02E9CC 0B:A9BC: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E9CC 0B:A9BC: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E9CD 0B:A9BD: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9CE 0B:A9BE: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9CF 0B:A9BF: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02E9D0 0B:A9C0: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02E9D0 0B:A9C0: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02E9D1 0B:A9C1: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E9D2 0B:A9C2: EE        .byte $EE   ; 
-- - - - - - 0x02E9D3 0B:A9C3: 00        .byte $00   ; 
+- - - - - - 0x02E9D3 0B:A9C3: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02E9D4 0B:A9C4: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E9D5 0B:A9C5: 08        .byte $08   ; 
+- D 1 - I - 0x02E9D4 0B:A9C4: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E9D5 0B:A9C5: 08        .byte $08   ; timer
 - - - - - - 0x02E9D6 0B:A9C6: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9D7 0B:A9C7: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02E9D8 0B:A9C8: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E9D8 0B:A9C8: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E9D9 0B:A9C9: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9DA 0B:A9CA: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9DB 0B:A9CB: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02E9DC 0B:A9CC: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02E9DC 0B:A9CC: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02E9DD 0B:A9CD: 00        .byte $00   ; 
-- - - - - - 0x02E9DE 0B:A9CE: 00        .byte $00   ; 
-- - - - - - 0x02E9DF 0B:A9CF: 00        .byte $00   ; 
+- - - - - - 0x02E9DE 0B:A9CE: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9DF 0B:A9CF: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02E9E0 0B:A9D0: 54        .byte con_BD4F_54   ; 
-- - - - - - 0x02E9E1 0B:A9D1: 00        .byte $00   ; 
-- - - - - - 0x02E9E2 0B:A9D2: 00        .byte $00   ; 
-- - - - - - 0x02E9E3 0B:A9D3: 00        .byte $00   ; 
+- D 1 - I - 0x02E9E0 0B:A9D0: 54        .byte con_ai_subscr_54_set_obj_flag_10   ; 
+- - - - - - 0x02E9E1 0B:A9D1: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9E2 0B:A9D2: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9E3 0B:A9D3: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02E9E4 0B:A9D4: 97        .byte con_BD4F_97   ; 
-- - - - - - 0x02E9E5 0B:A9D5: 00        .byte $00   ; 
-- - - - - - 0x02E9E6 0B:A9D6: 00        .byte $00   ; 
-- - - - - - 0x02E9E7 0B:A9D7: 00        .byte $00   ; 
+- D 1 - I - 0x02E9E4 0B:A9D4: 97        .byte con_ai_subscr_97_clear_XY_speed   ; 
+- - - - - - 0x02E9E5 0B:A9D5: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9E6 0B:A9D6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9E7 0B:A9D7: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02E9E8 0B:A9D8: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02E9E8 0B:A9D8: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02E9E9 0B:A9D9: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02E9EA 0B:A9DA: 22        .byte $22   ; 
-- - - - - - 0x02E9EB 0B:A9DB: 00        .byte $00   ; 
+- - - - - - 0x02E9EB 0B:A9DB: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02E9EC 0B:A9DC: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E9ED 0B:A9DD: 38        .byte $38   ; 
+- D 1 - I - 0x02E9EC 0B:A9DC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E9ED 0B:A9DD: 38        .byte $38   ; timer
 - - - - - - 0x02E9EE 0B:A9DE: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9EF 0B:A9DF: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02E9F0 0B:A9E0: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E9F0 0B:A9E0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E9F1 0B:A9E1: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9F2 0B:A9E2: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9F3 0B:A9E3: 00        .byte $00   ; placeholder
 ; 14 
-- D 1 - I - 0x02E9F4 0B:A9E4: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02E9F5 0B:A9E5: 00        .byte $00   ; 
-- - - - - - 0x02E9F6 0B:A9E6: 00        .byte $00   ; 
-- - - - - - 0x02E9F7 0B:A9E7: 00        .byte $00   ; 
+- D 1 - I - 0x02E9F4 0B:A9E4: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02E9F5 0B:A9E5: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9F6 0B:A9E6: 00        .byte $00   ; placeholder
+- - - - - - 0x02E9F7 0B:A9E7: 00        .byte $00   ; placeholder
 ; 15 
-- D 1 - I - 0x02E9F8 0B:A9E8: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02E9F9 0B:A9E9: 50        .byte $50   ; 
+- D 1 - I - 0x02E9F8 0B:A9E8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02E9F9 0B:A9E9: 50        .byte $50   ; timer
 - - - - - - 0x02E9FA 0B:A9EA: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9FB 0B:A9EB: 00        .byte $00   ; placeholder
 ; 16 
-- D 1 - I - 0x02E9FC 0B:A9EC: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02E9FC 0B:A9EC: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02E9FD 0B:A9ED: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9FE 0B:A9EE: 00        .byte $00   ; placeholder
 - - - - - - 0x02E9FF 0B:A9EF: 00        .byte $00   ; placeholder
 ; 17 
-- D 1 - I - 0x02EA00 0B:A9F0: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EA00 0B:A9F0: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EA01 0B:A9F1: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EA02 0B:A9F2: 9E        .byte $9E   ; 
-- - - - - - 0x02EA03 0B:A9F3: 00        .byte $00   ; 
+- - - - - - 0x02EA03 0B:A9F3: 00        .byte $00   ; placeholder
 ; 18 
-- D 1 - I - 0x02EA04 0B:A9F4: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EA05 0B:A9F5: 18        .byte $18   ; 
+- D 1 - I - 0x02EA04 0B:A9F4: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EA05 0B:A9F5: 18        .byte $18   ; timer
 - - - - - - 0x02EA06 0B:A9F6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA07 0B:A9F7: 00        .byte $00   ; placeholder
 ; 19 
-- D 1 - I - 0x02EA08 0B:A9F8: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EA08 0B:A9F8: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EA09 0B:A9F9: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA0A 0B:A9FA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA0B 0B:A9FB: 00        .byte $00   ; placeholder
 ; 1A 
-- D 1 - I - 0x02EA0C 0B:A9FC: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EA0C 0B:A9FC: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EA0D 0B:A9FD: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EA0E 0B:A9FE: 9C        .byte $9C   ; 
-- - - - - - 0x02EA0F 0B:A9FF: 00        .byte $00   ; 
+- - - - - - 0x02EA0F 0B:A9FF: 00        .byte $00   ; placeholder
 ; 1B 
-- D 1 - I - 0x02EA10 0B:AA00: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EA11 0B:AA01: 18        .byte $18   ; 
+- D 1 - I - 0x02EA10 0B:AA00: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EA11 0B:AA01: 18        .byte $18   ; timer
 - - - - - - 0x02EA12 0B:AA02: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA13 0B:AA03: 00        .byte $00   ; placeholder
 ; 1C 
-- D 1 - I - 0x02EA14 0B:AA04: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EA14 0B:AA04: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EA15 0B:AA05: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA16 0B:AA06: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA17 0B:AA07: 00        .byte $00   ; placeholder
 ; 1D 
-- D 1 - I - 0x02EA18 0B:AA08: 53        .byte con_BD4F_53   ; 
-- - - - - - 0x02EA19 0B:AA09: 00        .byte $00   ; 
-- - - - - - 0x02EA1A 0B:AA0A: 00        .byte $00   ; 
-- - - - - - 0x02EA1B 0B:AA0B: 00        .byte $00   ; 
+- D 1 - I - 0x02EA18 0B:AA08: 53        .byte con_ai_subscr_53_clear_obj_flag_10   ; 
+- - - - - - 0x02EA19 0B:AA09: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA1A 0B:AA0A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA1B 0B:AA0B: 00        .byte $00   ; placeholder
 ; 1E 
-- D 1 - I - 0x02EA1C 0B:AA0C: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EA1C 0B:AA0C: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EA1D 0B:AA0D: 01        .byte $01   ; 
-- - - - - - 0x02EA1E 0B:AA0E: 00        .byte $00   ; 
-- - - - - - 0x02EA1F 0B:AA0F: 00        .byte $00   ; 
+- - - - - - 0x02EA1E 0B:AA0E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA1F 0B:AA0F: 00        .byte $00   ; placeholder
 
 
 
-_off034_AA10_0A:
-; con_BEA1_0A
+_off034_ai_script_AA10_0A:
+; con_ai_script_0A
 ; 00 
-- D 1 - I - 0x02EA20 0B:AA10: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02EA20 0B:AA10: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02EA21 0B:AA11: 00 90     .dbyt $0090 ; spd_X
-- - - - - - 0x02EA23 0B:AA13: 00        .byte $00   ; 
+- - - - - - 0x02EA23 0B:AA13: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EA24 0B:AA14: 35        .byte con_BD4F_35   ; 
-- - - - - - 0x02EA25 0B:AA15: 00        .byte $00   ; 
-- - - - - - 0x02EA26 0B:AA16: 00        .byte $00   ; 
-- - - - - - 0x02EA27 0B:AA17: 00        .byte $00   ; 
+- D 1 - I - 0x02EA24 0B:AA14: 35        .byte con_ai_subscr_35   ; 
+- - - - - - 0x02EA25 0B:AA15: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA26 0B:AA16: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA27 0B:AA17: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EA28 0B:AA18: 34        .byte con_BD4F_34   ; 
-- - - - - - 0x02EA29 0B:AA19: 00        .byte $00   ; 
-- - - - - - 0x02EA2A 0B:AA1A: 00        .byte $00   ; 
-- - - - - - 0x02EA2B 0B:AA1B: 00        .byte $00   ; 
+- D 1 - I - 0x02EA28 0B:AA18: 34        .byte con_ai_subscr_34   ; 
+- - - - - - 0x02EA29 0B:AA19: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA2A 0B:AA1A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA2B 0B:AA1B: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EA2C 0B:AA1C: 33        .byte con_BD4F_33   ; 
+- D 1 - I - 0x02EA2C 0B:AA1C: 33        .byte con_ai_subscr_33   ; 
 - D 1 - I - 0x02EA2D 0B:AA1D: 12        .byte $12   ; 
-- - - - - - 0x02EA2E 0B:AA1E: 00        .byte $00   ; 
-- - - - - - 0x02EA2F 0B:AA1F: 00        .byte $00   ; 
+- - - - - - 0x02EA2E 0B:AA1E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA2F 0B:AA1F: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EA30 0B:AA20: 36        .byte con_BD4F_36   ; 
-- D 1 - I - 0x02EA31 0B:AA21: 40        .byte $40   ; 
-- D 1 - I - 0x02EA32 0B:AA22: 00        .byte $00   ; 
-- - - - - - 0x02EA33 0B:AA23: 00        .byte $00   ; 
+- D 1 - I - 0x02EA30 0B:AA20: 36        .byte con_ai_subscr_36   ; 
+- D 1 - I - 0x02EA31 0B:AA21: 40        .byte $40   ; pos_X_lo distance to player
+- D 1 - I - 0x02EA32 0B:AA22: 00        .byte $00   ; 00 = repeat from the beginning if not close enough
+- - - - - - 0x02EA33 0B:AA23: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EA34 0B:AA24: 97        .byte con_BD4F_97   ; 
-- - - - - - 0x02EA35 0B:AA25: 00        .byte $00   ; 
-- - - - - - 0x02EA36 0B:AA26: 00        .byte $00   ; 
-- - - - - - 0x02EA37 0B:AA27: 00        .byte $00   ; 
+- D 1 - I - 0x02EA34 0B:AA24: 97        .byte con_ai_subscr_97_clear_XY_speed   ; 
+- - - - - - 0x02EA35 0B:AA25: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA36 0B:AA26: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA37 0B:AA27: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02EA38 0B:AA28: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EA38 0B:AA28: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EA39 0B:AA29: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EA3A 0B:AA2A: AC        .byte $AC   ; 
-- - - - - - 0x02EA3B 0B:AA2B: 00        .byte $00   ; 
+- - - - - - 0x02EA3B 0B:AA2B: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02EA3C 0B:AA2C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EA3D 0B:AA2D: 08        .byte $08   ; 
+- D 1 - I - 0x02EA3C 0B:AA2C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EA3D 0B:AA2D: 08        .byte $08   ; timer
 - - - - - - 0x02EA3E 0B:AA2E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA3F 0B:AA2F: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02EA40 0B:AA30: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EA40 0B:AA30: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EA41 0B:AA31: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA42 0B:AA32: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA43 0B:AA33: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02EA44 0B:AA34: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EA44 0B:AA34: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EA45 0B:AA35: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EA46 0B:AA36: EE        .byte $EE   ; 
-- - - - - - 0x02EA47 0B:AA37: 00        .byte $00   ; 
+- - - - - - 0x02EA47 0B:AA37: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02EA48 0B:AA38: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EA49 0B:AA39: 08        .byte $08   ; 
+- D 1 - I - 0x02EA48 0B:AA38: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EA49 0B:AA39: 08        .byte $08   ; timer
 - - - - - - 0x02EA4A 0B:AA3A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA4B 0B:AA3B: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02EA4C 0B:AA3C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EA4C 0B:AA3C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EA4D 0B:AA3D: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA4E 0B:AA3E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA4F 0B:AA3F: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02EA50 0B:AA40: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EA50 0B:AA40: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EA51 0B:AA41: 00        .byte $00   ; 
-- - - - - - 0x02EA52 0B:AA42: 00        .byte $00   ; 
-- - - - - - 0x02EA53 0B:AA43: 00        .byte $00   ; 
+- - - - - - 0x02EA52 0B:AA42: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA53 0B:AA43: 00        .byte $00   ; placeholder
 ; 0D 
-- - - - - - 0x02EA54 0B:AA44: 1D        .byte con_BD4F_1D   ; 
+- - - - - - 0x02EA54 0B:AA44: 1D        .byte con_ai_subscr_1D   ; 
 - - - - - - 0x02EA55 0B:AA45: 04        .byte $04   ; 
-- - - - - - 0x02EA56 0B:AA46: 06        .byte $06   ; 
-- - - - - - 0x02EA57 0B:AA47: 00        .byte $00   ; 
+- - - - - - 0x02EA56 0B:AA46: 06        .byte con_B7BD_06   ; 
+- - - - - - 0x02EA57 0B:AA47: 00        .byte $00   ; placeholder
 
 
 
-_off034_AA48_0B:
-; con_BEA1_0B
+_off034_ai_script_AA48_0B:
+; con_ai_script_0B
 ; 00 
-- D 1 - I - 0x02EA58 0B:AA48: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02EA58 0B:AA48: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02EA59 0B:AA49: 01 14     .dbyt $0114 ; spd_X
-- - - - - - 0x02EA5B 0B:AA4B: 00        .byte $00   ; 
+- - - - - - 0x02EA5B 0B:AA4B: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EA5C 0B:AA4C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EA5D 0B:AA4D: 20        .byte $20   ; 
+- D 1 - I - 0x02EA5C 0B:AA4C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EA5D 0B:AA4D: 20        .byte $20   ; timer
 - - - - - - 0x02EA5E 0B:AA4E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA5F 0B:AA4F: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EA60 0B:AA50: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EA60 0B:AA50: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EA61 0B:AA51: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA62 0B:AA52: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA63 0B:AA53: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EA64 0B:AA54: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02EA65 0B:AA55: 00        .byte $00   ; 
-- - - - - - 0x02EA66 0B:AA56: 00        .byte $00   ; 
-- - - - - - 0x02EA67 0B:AA57: 00        .byte $00   ; 
+- D 1 - I - 0x02EA64 0B:AA54: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02EA65 0B:AA55: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA66 0B:AA56: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA67 0B:AA57: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EA68 0B:AA58: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EA68 0B:AA58: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EA69 0B:AA59: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EA6A 0B:AA5A: 5C        .byte $5C   ; 
-- - - - - - 0x02EA6B 0B:AA5B: 00        .byte $00   ; 
+- - - - - - 0x02EA6B 0B:AA5B: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EA6C 0B:AA5C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EA6D 0B:AA5D: 10        .byte $10   ; 
+- D 1 - I - 0x02EA6C 0B:AA5C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EA6D 0B:AA5D: 10        .byte $10   ; timer
 - - - - - - 0x02EA6E 0B:AA5E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA6F 0B:AA5F: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02EA70 0B:AA60: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EA70 0B:AA60: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EA71 0B:AA61: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA72 0B:AA62: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA73 0B:AA63: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02EA74 0B:AA64: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EA74 0B:AA64: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EA75 0B:AA65: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EA76 0B:AA66: 5E        .byte $5E   ; 
-- - - - - - 0x02EA77 0B:AA67: 00        .byte $00   ; 
+- - - - - - 0x02EA77 0B:AA67: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02EA78 0B:AA68: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EA79 0B:AA69: 10        .byte $10   ; 
+- D 1 - I - 0x02EA78 0B:AA68: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EA79 0B:AA69: 10        .byte $10   ; timer
 - - - - - - 0x02EA7A 0B:AA6A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA7B 0B:AA6B: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02EA7C 0B:AA6C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EA7C 0B:AA6C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EA7D 0B:AA6D: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA7E 0B:AA6E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA7F 0B:AA6F: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02EA80 0B:AA70: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EA80 0B:AA70: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EA81 0B:AA71: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EA82 0B:AA72: 5C        .byte $5C   ; 
-- - - - - - 0x02EA83 0B:AA73: 00        .byte $00   ; 
+- - - - - - 0x02EA83 0B:AA73: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02EA84 0B:AA74: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EA85 0B:AA75: 04        .byte $04   ; 
+- D 1 - I - 0x02EA84 0B:AA74: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EA85 0B:AA75: 04        .byte $04   ; timer
 - - - - - - 0x02EA86 0B:AA76: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA87 0B:AA77: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02EA88 0B:AA78: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EA88 0B:AA78: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EA89 0B:AA79: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA8A 0B:AA7A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EA8B 0B:AA7B: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02EA8C 0B:AA7C: 0D        .byte con_BD4F_0D   ; 
-- D 1 - I - 0x02EA8D 0B:AA7D: 02        .byte $02   ; 
-- - - - - - 0x02EA8E 0B:AA7E: 00        .byte $00   ; 
-- - - - - - 0x02EA8F 0B:AA7F: 00        .byte $00   ; 
+- D 1 - I - 0x02EA8C 0B:AA7C: 0D        .byte con_ai_subscr_0D   ; 
+- D 1 - I - 0x02EA8D 0B:AA7D: 02        .byte con_8E6F_02   ; 
+- - - - - - 0x02EA8E 0B:AA7E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA8F 0B:AA7F: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02EA90 0B:AA80: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EA90 0B:AA80: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EA91 0B:AA81: 00        .byte $00   ; 
-- - - - - - 0x02EA92 0B:AA82: 00        .byte $00   ; 
-- - - - - - 0x02EA93 0B:AA83: 00        .byte $00   ; 
+- - - - - - 0x02EA92 0B:AA82: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA93 0B:AA83: 00        .byte $00   ; placeholder
 
 
 
-_off034_AA84_0C:
-; con_BEA1_0C
+_off034_ai_script_AA84_0C:
+; con_ai_script_0C
 ; 00 
-- D 1 - I - 0x02EA94 0B:AA84: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02EA94 0B:AA84: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02EA95 0B:AA85: 00 60     .dbyt $0060 ; spd_X
-- - - - - - 0x02EA97 0B:AA87: 00        .byte $00   ; 
+- - - - - - 0x02EA97 0B:AA87: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EA98 0B:AA88: 58        .byte con_BD4F_58   ; 
-- D 1 - I - 0x02EA99 0B:AA89: 04        .byte $04   ; 
-- D 1 - I - 0x02EA9A 0B:AA8A: FF        .byte $FF   ; 
+- D 1 - I - 0x02EA98 0B:AA88: 58        .byte con_ai_subscr_58   ; 
+- D 1 - I - 0x02EA99 0B:AA89: 04        .byte $04   ; table index for spd_Y
+- D 1 - I - 0x02EA9A 0B:AA8A: FF        .byte $FF   ; pos_Y_lo
 - D 1 - I - 0x02EA9B 0B:AA8B: FF        .byte $FF   ; 
 ; 02 
-- D 1 - I - 0x02EA9C 0B:AA8C: 59        .byte con_BD4F_59   ; 
-- - - - - - 0x02EA9D 0B:AA8D: 00        .byte $00   ; 
-- - - - - - 0x02EA9E 0B:AA8E: 00        .byte $00   ; 
-- - - - - - 0x02EA9F 0B:AA8F: 00        .byte $00   ; 
+- D 1 - I - 0x02EA9C 0B:AA8C: 59        .byte con_ai_subscr_59   ; 
+- - - - - - 0x02EA9D 0B:AA8D: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA9E 0B:AA8E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EA9F 0B:AA8F: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EAA0 0B:AA90: 57        .byte con_BD4F_57   ; 
-- - - - - - 0x02EAA1 0B:AA91: 00        .byte $00   ; 
-- - - - - - 0x02EAA2 0B:AA92: 00        .byte $00   ; 
-- - - - - - 0x02EAA3 0B:AA93: 00        .byte $00   ; 
+- D 1 - I - 0x02EAA0 0B:AA90: 57        .byte con_ai_subscr_57   ; 
+- - - - - - 0x02EAA1 0B:AA91: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAA2 0B:AA92: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAA3 0B:AA93: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EAA4 0B:AA94: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EAA5 0B:AA95: 20        .byte $20   ; 
+- D 1 - I - 0x02EAA4 0B:AA94: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EAA5 0B:AA95: 20        .byte $20   ; timer
 - - - - - - 0x02EAA6 0B:AA96: 00        .byte $00   ; placeholder
 - - - - - - 0x02EAA7 0B:AA97: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EAA8 0B:AA98: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EAA8 0B:AA98: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EAA9 0B:AA99: 00        .byte $00   ; placeholder
 - - - - - - 0x02EAAA 0B:AA9A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EAAB 0B:AA9B: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02EAAC 0B:AA9C: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EAAC 0B:AA9C: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EAAD 0B:AA9D: 00        .byte $00   ; 
-- - - - - - 0x02EAAE 0B:AA9E: 00        .byte $00   ; 
-- - - - - - 0x02EAAF 0B:AA9F: 00        .byte $00   ; 
+- - - - - - 0x02EAAE 0B:AA9E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAAF 0B:AA9F: 00        .byte $00   ; placeholder
 
 
 
-_off034_AAA0_22:
-; con_BEA1_22
+_off034_ai_script_AAA0_22:
+; con_ai_script_22
 ; 00 
-- D 1 - I - 0x02EAB0 0B:AAA0: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EAB0 0B:AAA0: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EAB1 0B:AAA1: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EAB2 0B:AAA2: 20        .byte $20   ; 
-- - - - - - 0x02EAB3 0B:AAA3: 00        .byte $00   ; 
+- - - - - - 0x02EAB3 0B:AAA3: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EAB4 0B:AAA4: 4D        .byte con_BD4F_comp_XY_dist_to_plr   ; 
-- D 1 - I - 0x02EAB5 0B:AAA5: 20        .byte $20   ; X
-- D 1 - I - 0x02EAB6 0B:AAA6: 20        .byte $20   ; Y
+- D 1 - I - 0x02EAB4 0B:AAA4: 4D        .byte con_ai_subscr_comp_XY_dist_to_plr   ; 
+- D 1 - I - 0x02EAB5 0B:AAA5: 20        .byte $20   ; pos_X_lo
+- D 1 - I - 0x02EAB6 0B:AAA6: 20        .byte $20   ; pos_Y_lo
 - - - - - - 0x02EAB7 0B:AAA7: 00        .byte $00   ; 
 
 
 
-_off034_AAA8_23:
-; con_BEA1_23
+_off034_ai_script_AAA8_23:
+; con_ai_script_23
 ; 00 
-- D 1 - I - 0x02EAB8 0B:AAA8: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EAB8 0B:AAA8: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EAB9 0B:AAA9: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EABA 0B:AAAA: 21        .byte $21   ; 
-- - - - - - 0x02EABB 0B:AAAB: 00        .byte $00   ; 
+- - - - - - 0x02EABB 0B:AAAB: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EABC 0B:AAAC: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EABD 0B:AAAD: 2E        .byte $2E   ; 
+- D 1 - I - 0x02EABC 0B:AAAC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EABD 0B:AAAD: 2E        .byte $2E   ; timer
 - - - - - - 0x02EABE 0B:AAAE: 00        .byte $00   ; placeholder
 - - - - - - 0x02EABF 0B:AAAF: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EAC0 0B:AAB0: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EAC0 0B:AAB0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EAC1 0B:AAB1: 00        .byte $00   ; placeholder
 - - - - - - 0x02EAC2 0B:AAB2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EAC3 0B:AAB3: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EAC4 0B:AAB4: 02        .byte con_BD4F_02   ; 
-- - - - - - 0x02EAC5 0B:AAB5: 00        .byte $00   ; 
-- - - - - - 0x02EAC6 0B:AAB6: 00        .byte $00   ; 
-- - - - - - 0x02EAC7 0B:AAB7: 00        .byte $00   ; 
+- D 1 - I - 0x02EAC4 0B:AAB4: 02        .byte con_ai_subscr_02   ; 
+- - - - - - 0x02EAC5 0B:AAB5: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAC6 0B:AAB6: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAC7 0B:AAB7: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EAC8 0B:AAB8: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02EAC9 0B:AAB9: 00        .byte $00   ; 
-- - - - - - 0x02EACA 0B:AABA: 00        .byte $00   ; 
-- - - - - - 0x02EACB 0B:AABB: 00        .byte $00   ; 
+- D 1 - I - 0x02EAC8 0B:AAB8: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02EAC9 0B:AAB9: 00        .byte $00   ; placeholder
+- - - - - - 0x02EACA 0B:AABA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EACB 0B:AABB: 00        .byte $00   ; placeholder
 
 
 
-_off034_AABC_20:
-; con_BEA1_20
+_off034_ai_script_AABC_20:
+; con_ai_script_20
 ; 00 
-- D 1 - I - 0x02EACC 0B:AABC: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EACC 0B:AABC: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EACD 0B:AABD: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EACE 0B:AABE: 1E        .byte $1E   ; 
-- - - - - - 0x02EACF 0B:AABF: 00        .byte $00   ; 
+- - - - - - 0x02EACF 0B:AABF: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EAD0 0B:AAC0: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EAD1 0B:AAC1: 2E        .byte $2E   ; 
+- D 1 - I - 0x02EAD0 0B:AAC0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EAD1 0B:AAC1: 2E        .byte $2E   ; timer
 - - - - - - 0x02EAD2 0B:AAC2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EAD3 0B:AAC3: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EAD4 0B:AAC4: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EAD4 0B:AAC4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EAD5 0B:AAC5: 00        .byte $00   ; placeholder
 - - - - - - 0x02EAD6 0B:AAC6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EAD7 0B:AAC7: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EAD8 0B:AAC8: 02        .byte con_BD4F_02   ; 
-- - - - - - 0x02EAD9 0B:AAC9: 00        .byte $00   ; 
-- - - - - - 0x02EADA 0B:AACA: 00        .byte $00   ; 
-- - - - - - 0x02EADB 0B:AACB: 00        .byte $00   ; 
+- D 1 - I - 0x02EAD8 0B:AAC8: 02        .byte con_ai_subscr_02   ; 
+- - - - - - 0x02EAD9 0B:AAC9: 00        .byte $00   ; placeholder
+- - - - - - 0x02EADA 0B:AACA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EADB 0B:AACB: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EADC 0B:AACC: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02EADD 0B:AACD: 00        .byte $00   ; 
-- - - - - - 0x02EADE 0B:AACE: 00        .byte $00   ; 
-- - - - - - 0x02EADF 0B:AACF: 00        .byte $00   ; 
+- D 1 - I - 0x02EADC 0B:AACC: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02EADD 0B:AACD: 00        .byte $00   ; placeholder
+- - - - - - 0x02EADE 0B:AACE: 00        .byte $00   ; placeholder
+- - - - - - 0x02EADF 0B:AACF: 00        .byte $00   ; placeholder
 
 
 
-_off034_AAD0_0D:
-; con_BEA1_0D
+_off034_ai_script_AAD0_0D:
+; con_ai_script_0D
 ; 00 
-- D 1 - I - 0x02EAE0 0B:AAD0: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02EAE0 0B:AAD0: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02EAE1 0B:AAD1: 01 10     .dbyt $0110 ; spd_X
-- - - - - - 0x02EAE3 0B:AAD3: 00        .byte $00   ; 
+- - - - - - 0x02EAE3 0B:AAD3: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EAE4 0B:AAD4: 73        .byte con_BD4F_73   ; 
-- - - - - - 0x02EAE5 0B:AAD5: 00        .byte $00   ; 
-- - - - - - 0x02EAE6 0B:AAD6: 00        .byte $00   ; 
-- - - - - - 0x02EAE7 0B:AAD7: 00        .byte $00   ; 
+- D 1 - I - 0x02EAE4 0B:AAD4: 73        .byte con_ai_subscr_73   ; 
+- - - - - - 0x02EAE5 0B:AAD5: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAE6 0B:AAD6: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAE7 0B:AAD7: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EAE8 0B:AAD8: 74        .byte con_BD4F_74   ; 
-- - - - - - 0x02EAE9 0B:AAD9: 00        .byte $00   ; 
-- - - - - - 0x02EAEA 0B:AADA: 00        .byte $00   ; 
-- - - - - - 0x02EAEB 0B:AADB: 00        .byte $00   ; 
+- D 1 - I - 0x02EAE8 0B:AAD8: 74        .byte con_ai_subscr_74   ; 
+- - - - - - 0x02EAE9 0B:AAD9: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAEA 0B:AADA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAEB 0B:AADB: 00        .byte $00   ; placeholder
 
 
 
-_off034_AADC_03:
-; con_BEA1_03
-_off034_AADC_04:
-; con_BEA1_04
+_off034_ai_script_AADC_03:
+; con_ai_script_03
+_off034_ai_script_AADC_04:
+; con_ai_script_04
 ; 00 
-- D 1 - I - 0x02EAEC 0B:AADC: 8D        .byte con_BD4F_8D   ; 
-- - - - - - 0x02EAED 0B:AADD: 00        .byte $00   ; 
-- - - - - - 0x02EAEE 0B:AADE: 00        .byte $00   ; 
-- - - - - - 0x02EAEF 0B:AADF: 00        .byte $00   ; 
+- D 1 - I - 0x02EAEC 0B:AADC: 8D        .byte con_ai_subscr_8D   ; 
+- - - - - - 0x02EAED 0B:AADD: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAEE 0B:AADE: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAEF 0B:AADF: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EAF0 0B:AAE0: 4D        .byte con_BD4F_comp_XY_dist_to_plr   ; 
-- D 1 - I - 0x02EAF1 0B:AAE1: 78        .byte $78   ; X
-- D 1 - I - 0x02EAF2 0B:AAE2: 80        .byte $80   ; Y
+- D 1 - I - 0x02EAF0 0B:AAE0: 4D        .byte con_ai_subscr_comp_XY_dist_to_plr   ; 
+- D 1 - I - 0x02EAF1 0B:AAE1: 78        .byte $78   ; pos_X_lo
+- D 1 - I - 0x02EAF2 0B:AAE2: 80        .byte $80   ; pos_Y_lo
 - - - - - - 0x02EAF3 0B:AAE3: 00        .byte $00   ; 
 ; 02 
-- D 1 - I - 0x02EAF4 0B:AAE4: 8C        .byte con_BD4F_8C   ; 
-- - - - - - 0x02EAF5 0B:AAE5: 00        .byte $00   ; 
-- - - - - - 0x02EAF6 0B:AAE6: 00        .byte $00   ; 
-- - - - - - 0x02EAF7 0B:AAE7: 00        .byte $00   ; 
+- D 1 - I - 0x02EAF4 0B:AAE4: 8C        .byte con_ai_subscr_8C   ; 
+- - - - - - 0x02EAF5 0B:AAE5: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAF6 0B:AAE6: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAF7 0B:AAE7: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EAF8 0B:AAE8: 47        .byte con_BD4F_47   ; 
-- - - - - - 0x02EAF9 0B:AAE9: 00        .byte $00   ; 
-- - - - - - 0x02EAFA 0B:AAEA: 00        .byte $00   ; 
-- - - - - - 0x02EAFB 0B:AAEB: 00        .byte $00   ; 
+- D 1 - I - 0x02EAF8 0B:AAE8: 47        .byte con_ai_subscr_47   ; 
+- - - - - - 0x02EAF9 0B:AAE9: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAFA 0B:AAEA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAFB 0B:AAEB: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EAFC 0B:AAEC: 48        .byte con_BD4F_48   ; 
-- - - - - - 0x02EAFD 0B:AAED: 00        .byte $00   ; 
-- - - - - - 0x02EAFE 0B:AAEE: 00        .byte $00   ; 
-- - - - - - 0x02EAFF 0B:AAEF: 00        .byte $00   ; 
+- D 1 - I - 0x02EAFC 0B:AAEC: 48        .byte con_ai_subscr_48   ; 
+- - - - - - 0x02EAFD 0B:AAED: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAFE 0B:AAEE: 00        .byte $00   ; placeholder
+- - - - - - 0x02EAFF 0B:AAEF: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EB00 0B:AAF0: 49        .byte con_BD4F_49   ; 
-- - - - - - 0x02EB01 0B:AAF1: 00        .byte $00   ; 
-- - - - - - 0x02EB02 0B:AAF2: 00        .byte $00   ; 
-- - - - - - 0x02EB03 0B:AAF3: 00        .byte $00   ; 
+- D 1 - I - 0x02EB00 0B:AAF0: 49        .byte con_ai_subscr_49   ; 
+- - - - - - 0x02EB01 0B:AAF1: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB02 0B:AAF2: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB03 0B:AAF3: 00        .byte $00   ; placeholder
 
 
 
-_off034_AAF4_0F:
-; con_BEA1_0F
+_off034_ai_script_AAF4_0F:
+; con_ai_script_0F
+tbl__AAF4:
 ; 00 
-- D 1 - I - 0x02EB04 0B:AAF4: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EB04 0B:AAF4: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EB05 0B:AAF5: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EB06 0B:AAF6: 62        .byte $62   ; 
-- - - - - - 0x02EB07 0B:AAF7: 00        .byte $00   ; 
+- - - - - - 0x02EB07 0B:AAF7: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EB08 0B:AAF8: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EB09 0B:AAF9: 20        .byte $20   ; 
+off_AAF8_01:
+- D 1 - I - 0x02EB08 0B:AAF8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EB09 0B:AAF9: 20        .byte $20   ; timer
 - - - - - - 0x02EB0A 0B:AAFA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB0B 0B:AAFB: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EB0C 0B:AAFC: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EB0C 0B:AAFC: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EB0D 0B:AAFD: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB0E 0B:AAFE: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB0F 0B:AAFF: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EB10 0B:AB00: 0F        .byte con_BD4F_0F   ; 
-- - - - - - 0x02EB11 0B:AB01: 00        .byte $00   ; 
-- - - - - - 0x02EB12 0B:AB02: 00        .byte $00   ; 
-- - - - - - 0x02EB13 0B:AB03: 00        .byte $00   ; 
+- D 1 - I - 0x02EB10 0B:AB00: 0F        .byte con_ai_subscr_0F   ; 
+- - - - - - 0x02EB11 0B:AB01: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB12 0B:AB02: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB13 0B:AB03: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EB14 0B:AB04: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EB14 0B:AB04: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EB15 0B:AB05: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EB16 0B:AB06: 64        .byte $64   ; 
-- - - - - - 0x02EB17 0B:AB07: 00        .byte $00   ; 
+- - - - - - 0x02EB17 0B:AB07: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EB18 0B:AB08: 44        .byte con_BD4F_44   ; 
-- - - - - - 0x02EB19 0B:AB09: 17        .byte $17   ; 
-- - - - - - 0x02EB1A 0B:AB0A: 00        .byte $00   ; 
-- - - - - - 0x02EB1B 0B:AB0B: 00        .byte $00   ; 
+- D 1 - I - 0x02EB18 0B:AB08: 44        .byte con_ai_subscr_44_conditional_branch   ; 
+- - - - - - 0x02EB19 0B:AB09: 17        .byte (off_AB50_17 - tbl__AAF4) / $04   ; branch
+- - - - - - 0x02EB1A 0B:AB0A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB1B 0B:AB0B: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02EB1C 0B:AB0C: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EB1C 0B:AB0C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EB1D 0B:AB0D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EB1E 0B:AB0E: 62        .byte $62   ; 
-- - - - - - 0x02EB1F 0B:AB0F: 00        .byte $00   ; 
+- - - - - - 0x02EB1F 0B:AB0F: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02EB20 0B:AB10: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EB21 0B:AB11: 10        .byte $10   ; 
+- D 1 - I - 0x02EB20 0B:AB10: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EB21 0B:AB11: 10        .byte $10   ; timer
 - - - - - - 0x02EB22 0B:AB12: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB23 0B:AB13: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02EB24 0B:AB14: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EB24 0B:AB14: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EB25 0B:AB15: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB26 0B:AB16: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB27 0B:AB17: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02EB28 0B:AB18: 3C        .byte con_BD4F_3C   ; 
-- D 1 - I - 0x02EB29 0B:AB19: 01        .byte $01   ; 
-- D 1 - I - 0x02EB2A 0B:AB1A: 0A        .byte $0A   ; 
-- - - - - - 0x02EB2B 0B:AB1B: 00        .byte $00   ; 
+- D 1 - I - 0x02EB28 0B:AB18: 3C        .byte con_ai_subscr_3C_conditional_branch   ; 
+- D 1 - I - 0x02EB29 0B:AB19: 01        .byte (off_AAF8_01 - tbl__AAF4) / $04   ; branch 1
+- D 1 - I - 0x02EB2A 0B:AB1A: 0A        .byte (off_AB1C_0A - tbl__AAF4) / $04   ; branch 2
+- - - - - - 0x02EB2B 0B:AB1B: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02EB2C 0B:AB1C: 0B        .byte con_BD4F_0B   ; 
+off_AB1C_0A:
+- D 1 - I - 0x02EB2C 0B:AB1C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EB2D 0B:AB1D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EB2E 0B:AB1E: 66        .byte $66   ; 
-- - - - - - 0x02EB2F 0B:AB1F: 00        .byte $00   ; 
+- - - - - - 0x02EB2F 0B:AB1F: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02EB30 0B:AB20: 3E        .byte con_BD4F_3E   ; 
-- - - - - - 0x02EB31 0B:AB21: 00        .byte $00   ; 
-- - - - - - 0x02EB32 0B:AB22: 00        .byte $00   ; 
-- - - - - - 0x02EB33 0B:AB23: 00        .byte $00   ; 
+- D 1 - I - 0x02EB30 0B:AB20: 3E        .byte con_ai_subscr_3E   ; 
+- - - - - - 0x02EB31 0B:AB21: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB32 0B:AB22: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB33 0B:AB23: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02EB34 0B:AB24: 3D        .byte con_BD4F_3D   ; 
-- D 1 - I - 0x02EB35 0B:AB25: 17        .byte $17   ; 
-- - - - - - 0x02EB36 0B:AB26: 00        .byte $00   ; 
-- - - - - - 0x02EB37 0B:AB27: 00        .byte $00   ; 
+- D 1 - I - 0x02EB34 0B:AB24: 3D        .byte con_ai_subscr_3D_conditional_branch   ; 
+- D 1 - I - 0x02EB35 0B:AB25: 17        .byte (off_AB50_17 - tbl__AAF4) / $04   ; branch
+- - - - - - 0x02EB36 0B:AB26: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB37 0B:AB27: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02EB38 0B:AB28: 0B        .byte con_BD4F_0B   ; 
+off_AB28_0D:
+- D 1 - I - 0x02EB38 0B:AB28: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EB39 0B:AB29: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EB3A 0B:AB2A: 38        .byte $38   ; 
-- - - - - - 0x02EB3B 0B:AB2B: 00        .byte $00   ; 
+- - - - - - 0x02EB3B 0B:AB2B: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02EB3C 0B:AB2C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EB3D 0B:AB2D: 10        .byte $10   ; 
+- D 1 - I - 0x02EB3C 0B:AB2C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EB3D 0B:AB2D: 10        .byte $10   ; timer
 - - - - - - 0x02EB3E 0B:AB2E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB3F 0B:AB2F: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02EB40 0B:AB30: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EB40 0B:AB30: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EB41 0B:AB31: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB42 0B:AB32: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB43 0B:AB33: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02EB44 0B:AB34: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EB44 0B:AB34: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EB45 0B:AB35: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EB46 0B:AB36: 3A        .byte $3A   ; 
-- - - - - - 0x02EB47 0B:AB37: 00        .byte $00   ; 
+- - - - - - 0x02EB47 0B:AB37: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02EB48 0B:AB38: 40        .byte con_BD4F_40   ; 
-- - - - - - 0x02EB49 0B:AB39: 00        .byte $00   ; 
-- - - - - - 0x02EB4A 0B:AB3A: 00        .byte $00   ; 
-- - - - - - 0x02EB4B 0B:AB3B: 00        .byte $00   ; 
+- D 1 - I - 0x02EB48 0B:AB38: 40        .byte con_ai_subscr_40   ; 
+- - - - - - 0x02EB49 0B:AB39: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB4A 0B:AB3A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB4B 0B:AB3B: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02EB4C 0B:AB3C: 41        .byte con_BD4F_41   ; 
-- - - - - - 0x02EB4D 0B:AB3D: 00        .byte $00   ; 
-- - - - - - 0x02EB4E 0B:AB3E: 00        .byte $00   ; 
-- - - - - - 0x02EB4F 0B:AB3F: 00        .byte $00   ; 
+- D 1 - I - 0x02EB4C 0B:AB3C: 41        .byte con_ai_subscr_41   ; 
+- - - - - - 0x02EB4D 0B:AB3D: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB4E 0B:AB3E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB4F 0B:AB3F: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02EB50 0B:AB40: 3C        .byte con_BD4F_3C   ; 
-- - - - - - 0x02EB51 0B:AB41: 0D        .byte $0D   ; 
-- D 1 - I - 0x02EB52 0B:AB42: 14        .byte $14   ; 
-- - - - - - 0x02EB53 0B:AB43: 00        .byte $00   ; 
+- D 1 - I - 0x02EB50 0B:AB40: 3C        .byte con_ai_subscr_3C_conditional_branch   ; 
+- - - - - - 0x02EB51 0B:AB41: 0D        .byte (off_AB28_0D - tbl__AAF4) / $04   ; branch 1
+- D 1 - I - 0x02EB52 0B:AB42: 14        .byte (off_AB44_14 - tbl__AAF4) / $04   ; branch 2
+- - - - - - 0x02EB53 0B:AB43: 00        .byte $00   ; placeholder
 ; 14 
-- D 1 - I - 0x02EB54 0B:AB44: 43        .byte con_BD4F_43   ; 
+off_AB44_14:
+- D 1 - I - 0x02EB54 0B:AB44: 43        .byte con_ai_subscr_43   ; 
 - D 1 - I - 0x02EB55 0B:AB45: 01 80     .dbyt $0180 ; spd_Y
-- - - - - - 0x02EB57 0B:AB47: 00        .byte $00   ; 
+- - - - - - 0x02EB57 0B:AB47: 00        .byte $00   ; placeholder
 ; 15 
-- D 1 - I - 0x02EB58 0B:AB48: 3F        .byte con_BD4F_3F   ; 
-- - - - - - 0x02EB59 0B:AB49: 00        .byte $00   ; 
-- - - - - - 0x02EB5A 0B:AB4A: 00        .byte $00   ; 
-- - - - - - 0x02EB5B 0B:AB4B: 00        .byte $00   ; 
+- D 1 - I - 0x02EB58 0B:AB48: 3F        .byte con_ai_subscr_3F   ; 
+- - - - - - 0x02EB59 0B:AB49: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB5A 0B:AB4A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB5B 0B:AB4B: 00        .byte $00   ; placeholder
 ; 16 
-- D 1 - I - 0x02EB5C 0B:AB4C: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EB5C 0B:AB4C: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EB5D 0B:AB4D: 00        .byte $00   ; 
-- - - - - - 0x02EB5E 0B:AB4E: 00        .byte $00   ; 
-- - - - - - 0x02EB5F 0B:AB4F: 00        .byte $00   ; 
+- - - - - - 0x02EB5E 0B:AB4E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB5F 0B:AB4F: 00        .byte $00   ; placeholder
 ; 17 
-- D 1 - I - 0x02EB60 0B:AB50: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EB61 0B:AB51: 40        .byte $40   ; 
+off_AB50_17:
+- D 1 - I - 0x02EB60 0B:AB50: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EB61 0B:AB51: 40        .byte $40   ; timer
 - - - - - - 0x02EB62 0B:AB52: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB63 0B:AB53: 00        .byte $00   ; placeholder
 ; 18 
-- D 1 - I - 0x02EB64 0B:AB54: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EB64 0B:AB54: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EB65 0B:AB55: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB66 0B:AB56: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB67 0B:AB57: 00        .byte $00   ; placeholder
 ; 19 
-- D 1 - I - 0x02EB68 0B:AB58: 42        .byte con_BD4F_42   ; 
+- D 1 - I - 0x02EB68 0B:AB58: 42        .byte con_ai_subscr_42   ; 
 - D 1 - I - 0x02EB69 0B:AB59: 01 80     .dbyt $0180 ; spd_Y
-- - - - - - 0x02EB6B 0B:AB5B: 00        .byte $00   ; 
+- - - - - - 0x02EB6B 0B:AB5B: 00        .byte $00   ; placeholder
 ; 1A 
-- D 1 - I - 0x02EB6C 0B:AB5C: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EB6C 0B:AB5C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EB6D 0B:AB5D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EB6E 0B:AB5E: 3C        .byte $3C   ; 
-- - - - - - 0x02EB6F 0B:AB5F: 00        .byte $00   ; 
+- - - - - - 0x02EB6F 0B:AB5F: 00        .byte $00   ; placeholder
 ; 1B 
-- D 1 - I - 0x02EB70 0B:AB60: 3F        .byte con_BD4F_3F   ; 
-- - - - - - 0x02EB71 0B:AB61: 00        .byte $00   ; 
-- - - - - - 0x02EB72 0B:AB62: 00        .byte $00   ; 
-- - - - - - 0x02EB73 0B:AB63: 00        .byte $00   ; 
+- D 1 - I - 0x02EB70 0B:AB60: 3F        .byte con_ai_subscr_3F   ; 
+- - - - - - 0x02EB71 0B:AB61: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB72 0B:AB62: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB73 0B:AB63: 00        .byte $00   ; placeholder
 ; 1C 
-- D 1 - I - 0x02EB74 0B:AB64: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EB74 0B:AB64: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EB75 0B:AB65: 00        .byte $00   ; 
-- - - - - - 0x02EB76 0B:AB66: 00        .byte $00   ; 
-- - - - - - 0x02EB77 0B:AB67: 00        .byte $00   ; 
+- - - - - - 0x02EB76 0B:AB66: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB77 0B:AB67: 00        .byte $00   ; placeholder
 
 
 
-_off034_AB68_10:
-; con_BEA1_10
+_off034_ai_script_AB68_10:
+; con_ai_script_10
 ; 00 
-- D 1 - I - 0x02EB78 0B:AB68: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02EB78 0B:AB68: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02EB79 0B:AB69: 00 80     .dbyt $0080 ; spd_X
-- - - - - - 0x02EB7B 0B:AB6B: 00        .byte $00   ; 
+- - - - - - 0x02EB7B 0B:AB6B: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EB7C 0B:AB6C: 35        .byte con_BD4F_35   ; 
-- - - - - - 0x02EB7D 0B:AB6D: 00        .byte $00   ; 
-- - - - - - 0x02EB7E 0B:AB6E: 00        .byte $00   ; 
-- - - - - - 0x02EB7F 0B:AB6F: 00        .byte $00   ; 
+- D 1 - I - 0x02EB7C 0B:AB6C: 35        .byte con_ai_subscr_35   ; 
+- - - - - - 0x02EB7D 0B:AB6D: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB7E 0B:AB6E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB7F 0B:AB6F: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EB80 0B:AB70: 3B        .byte con_BD4F_3B   ; 
-- - - - - - 0x02EB81 0B:AB71: 00        .byte $00   ; 
-- - - - - - 0x02EB82 0B:AB72: 00        .byte $00   ; 
-- - - - - - 0x02EB83 0B:AB73: 00        .byte $00   ; 
+- D 1 - I - 0x02EB80 0B:AB70: 3B        .byte con_ai_subscr_3B   ; 
+- - - - - - 0x02EB81 0B:AB71: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB82 0B:AB72: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB83 0B:AB73: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EB84 0B:AB74: 6D        .byte con_BD4F_6D   ; 
-- - - - - - 0x02EB85 0B:AB75: 00        .byte $00   ; 
-- - - - - - 0x02EB86 0B:AB76: 00        .byte $00   ; 
-- - - - - - 0x02EB87 0B:AB77: 00        .byte $00   ; 
+- D 1 - I - 0x02EB84 0B:AB74: 6D        .byte con_ai_subscr_6D   ; 
+- - - - - - 0x02EB85 0B:AB75: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB86 0B:AB76: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB87 0B:AB77: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EB88 0B:AB78: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EB88 0B:AB78: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EB89 0B:AB79: 00        .byte $00   ; 
-- - - - - - 0x02EB8A 0B:AB7A: 00        .byte $00   ; 
-- - - - - - 0x02EB8B 0B:AB7B: 00        .byte $00   ; 
+- - - - - - 0x02EB8A 0B:AB7A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EB8B 0B:AB7B: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EB8C 0B:AB7C: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EB8C 0B:AB7C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EB8D 0B:AB7D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EB8E 0B:AB7E: B4        .byte $B4   ; 
-- - - - - - 0x02EB8F 0B:AB7F: 00        .byte $00   ; 
+- - - - - - 0x02EB8F 0B:AB7F: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02EB90 0B:AB80: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EB91 0B:AB81: 08        .byte $08   ; 
+- D 1 - I - 0x02EB90 0B:AB80: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EB91 0B:AB81: 08        .byte $08   ; timer
 - - - - - - 0x02EB92 0B:AB82: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB93 0B:AB83: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02EB94 0B:AB84: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EB94 0B:AB84: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EB95 0B:AB85: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB96 0B:AB86: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB97 0B:AB87: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02EB98 0B:AB88: 3A        .byte con_BD4F_3A   ; 
-- D 1 - I - 0x02EB99 0B:AB89: 08        .byte $08   ; 
-- D 1 - I - 0x02EB9A 0B:AB8A: B6        .byte $B6   ; 
-- D 1 - I - 0x02EB9B 0B:AB8B: 00        .byte $00   ; 
+- D 1 - I - 0x02EB98 0B:AB88: 3A        .byte con_ai_subscr_3A   ; 
+- D 1 - I - 0x02EB99 0B:AB89: 08        .byte con_obj_type_08   ; 
+- D 1 - I - 0x02EB9A 0B:AB8A: B6        .byte $B6   ; animation
+- D 1 - I - 0x02EB9B 0B:AB8B: 00        .byte $00   ; index for spd_X_lo table
 ; 09 
-- D 1 - I - 0x02EB9C 0B:AB8C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EB9D 0B:AB8D: 08        .byte $08   ; 
+- D 1 - I - 0x02EB9C 0B:AB8C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EB9D 0B:AB8D: 08        .byte $08   ; timer
 - - - - - - 0x02EB9E 0B:AB8E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EB9F 0B:AB8F: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02EBA0 0B:AB90: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EBA0 0B:AB90: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EBA1 0B:AB91: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBA2 0B:AB92: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBA3 0B:AB93: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02EBA4 0B:AB94: 3A        .byte con_BD4F_3A   ; 
-- D 1 - I - 0x02EBA5 0B:AB95: 08        .byte $08   ; 
-- D 1 - I - 0x02EBA6 0B:AB96: F0        .byte $F0   ; 
-- D 1 - I - 0x02EBA7 0B:AB97: 00        .byte $00   ; 
+- D 1 - I - 0x02EBA4 0B:AB94: 3A        .byte con_ai_subscr_3A   ; 
+- D 1 - I - 0x02EBA5 0B:AB95: 08        .byte con_obj_type_08   ; 
+- D 1 - I - 0x02EBA6 0B:AB96: F0        .byte $F0   ; animation
+- D 1 - I - 0x02EBA7 0B:AB97: 00        .byte $00   ; index for spd_X_lo table
 ; 0C 
-- D 1 - I - 0x02EBA8 0B:AB98: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EBA9 0B:AB99: 10        .byte $10   ; 
+- D 1 - I - 0x02EBA8 0B:AB98: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EBA9 0B:AB99: 10        .byte $10   ; timer
 - - - - - - 0x02EBAA 0B:AB9A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBAB 0B:AB9B: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02EBAC 0B:AB9C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EBAC 0B:AB9C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EBAD 0B:AB9D: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBAE 0B:AB9E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBAF 0B:AB9F: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02EBB0 0B:ABA0: 3A        .byte con_BD4F_3A   ; 
-- D 1 - I - 0x02EBB1 0B:ABA1: 08        .byte $08   ; 
-- D 1 - I - 0x02EBB2 0B:ABA2: B4        .byte $B4   ; 
-- D 1 - I - 0x02EBB3 0B:ABA3: 02        .byte $02   ; 
+- D 1 - I - 0x02EBB0 0B:ABA0: 3A        .byte con_ai_subscr_3A   ; 
+- D 1 - I - 0x02EBB1 0B:ABA1: 08        .byte con_obj_type_08   ; 
+- D 1 - I - 0x02EBB2 0B:ABA2: B4        .byte $B4   ; animation
+- D 1 - I - 0x02EBB3 0B:ABA3: 02        .byte $02   ; index for spd_X_lo table
 ; 0F 
-- D 1 - I - 0x02EBB4 0B:ABA4: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EBB5 0B:ABA5: 08        .byte $08   ; 
+- D 1 - I - 0x02EBB4 0B:ABA4: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EBB5 0B:ABA5: 08        .byte $08   ; timer
 - - - - - - 0x02EBB6 0B:ABA6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBB7 0B:ABA7: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02EBB8 0B:ABA8: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EBB8 0B:ABA8: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EBB9 0B:ABA9: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBBA 0B:ABAA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBBB 0B:ABAB: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02EBBC 0B:ABAC: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EBBC 0B:ABAC: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EBBD 0B:ABAD: 00        .byte $00   ; 
-- - - - - - 0x02EBBE 0B:ABAE: 00        .byte $00   ; 
-- - - - - - 0x02EBBF 0B:ABAF: 00        .byte $00   ; 
+- - - - - - 0x02EBBE 0B:ABAE: 00        .byte $00   ; placeholder
+- - - - - - 0x02EBBF 0B:ABAF: 00        .byte $00   ; placeholder
 
 
 
-_off034_ABB0_1C:
-; con_BEA1_1C
+_off034_ai_script_ABB0_1C:
+; con_ai_script_1C
 ; 00 
-- D 1 - I - 0x02EBC0 0B:ABB0: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02EBC0 0B:ABB0: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02EBC1 0B:ABB1: 00 60     .dbyt $0060 ; spd_X
-- - - - - - 0x02EBC3 0B:ABB3: 00        .byte $00   ; 
+- - - - - - 0x02EBC3 0B:ABB3: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EBC4 0B:ABB4: 35        .byte con_BD4F_35   ; 
-- - - - - - 0x02EBC5 0B:ABB5: 00        .byte $00   ; 
-- - - - - - 0x02EBC6 0B:ABB6: 00        .byte $00   ; 
-- - - - - - 0x02EBC7 0B:ABB7: 00        .byte $00   ; 
+- D 1 - I - 0x02EBC4 0B:ABB4: 35        .byte con_ai_subscr_35   ; 
+- - - - - - 0x02EBC5 0B:ABB5: 00        .byte $00   ; placeholder
+- - - - - - 0x02EBC6 0B:ABB6: 00        .byte $00   ; placeholder
+- - - - - - 0x02EBC7 0B:ABB7: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EBC8 0B:ABB8: 3B        .byte con_BD4F_3B   ; 
-- - - - - - 0x02EBC9 0B:ABB9: 00        .byte $00   ; 
-- - - - - - 0x02EBCA 0B:ABBA: 00        .byte $00   ; 
-- - - - - - 0x02EBCB 0B:ABBB: 00        .byte $00   ; 
+- D 1 - I - 0x02EBC8 0B:ABB8: 3B        .byte con_ai_subscr_3B   ; 
+- - - - - - 0x02EBC9 0B:ABB9: 00        .byte $00   ; placeholder
+- - - - - - 0x02EBCA 0B:ABBA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EBCB 0B:ABBB: 00        .byte $00   ; placeholder
 ; 03 
-- - - - - - 0x02EBCC 0B:ABBC: 6D        .byte con_BD4F_6D   ; 
-- - - - - - 0x02EBCD 0B:ABBD: 00        .byte $00   ; 
-- - - - - - 0x02EBCE 0B:ABBE: 00        .byte $00   ; 
-- - - - - - 0x02EBCF 0B:ABBF: 00        .byte $00   ; 
+- - - - - - 0x02EBCC 0B:ABBC: 6D        .byte con_ai_subscr_6D   ; 
+- - - - - - 0x02EBCD 0B:ABBD: 00        .byte $00   ; placeholder
+- - - - - - 0x02EBCE 0B:ABBE: 00        .byte $00   ; placeholder
+- - - - - - 0x02EBCF 0B:ABBF: 00        .byte $00   ; placeholder
 ; 04 
-- - - - - - 0x02EBD0 0B:ABC0: 04        .byte con_BD4F_04   ; 
+- - - - - - 0x02EBD0 0B:ABC0: 04        .byte con_ai_subscr_04   ; 
 - - - - - - 0x02EBD1 0B:ABC1: 00        .byte $00   ; 
-- - - - - - 0x02EBD2 0B:ABC2: 00        .byte $00   ; 
-- - - - - - 0x02EBD3 0B:ABC3: 00        .byte $00   ; 
+- - - - - - 0x02EBD2 0B:ABC2: 00        .byte $00   ; placeholder
+- - - - - - 0x02EBD3 0B:ABC3: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EBD4 0B:ABC4: 3A        .byte con_BD4F_3A   ; 
-- D 1 - I - 0x02EBD5 0B:ABC5: 08        .byte $08   ; 
-- D 1 - I - 0x02EBD6 0B:ABC6: F2        .byte $F2   ; 
-- D 1 - I - 0x02EBD7 0B:ABC7: 00        .byte $00   ; 
+- D 1 - I - 0x02EBD4 0B:ABC4: 3A        .byte con_ai_subscr_3A   ; 
+- D 1 - I - 0x02EBD5 0B:ABC5: 08        .byte con_obj_type_08   ; 
+- D 1 - I - 0x02EBD6 0B:ABC6: F2        .byte $F2   ; animation
+- D 1 - I - 0x02EBD7 0B:ABC7: 00        .byte $00   ; index for spd_X_lo table
 ; 06 
-- D 1 - I - 0x02EBD8 0B:ABC8: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EBD9 0B:ABC9: 04        .byte $04   ; 
+- D 1 - I - 0x02EBD8 0B:ABC8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EBD9 0B:ABC9: 04        .byte $04   ; timer
 - - - - - - 0x02EBDA 0B:ABCA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBDB 0B:ABCB: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02EBDC 0B:ABCC: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EBDC 0B:ABCC: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EBDD 0B:ABCD: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBDE 0B:ABCE: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBDF 0B:ABCF: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02EBE0 0B:ABD0: 3A        .byte con_BD4F_3A   ; 
-- D 1 - I - 0x02EBE1 0B:ABD1: 08        .byte $08   ; 
-- D 1 - I - 0x02EBE2 0B:ABD2: F8        .byte $F8   ; 
-- D 1 - I - 0x02EBE3 0B:ABD3: 00        .byte $00   ; 
+- D 1 - I - 0x02EBE0 0B:ABD0: 3A        .byte con_ai_subscr_3A   ; 
+- D 1 - I - 0x02EBE1 0B:ABD1: 08        .byte con_obj_type_08   ; 
+- D 1 - I - 0x02EBE2 0B:ABD2: F8        .byte $F8   ; animation
+- D 1 - I - 0x02EBE3 0B:ABD3: 00        .byte $00   ; index for spd_X_lo table
 ; 09 
-- D 1 - I - 0x02EBE4 0B:ABD4: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EBE5 0B:ABD5: 04        .byte $04   ; 
+- D 1 - I - 0x02EBE4 0B:ABD4: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EBE5 0B:ABD5: 04        .byte $04   ; timer
 - - - - - - 0x02EBE6 0B:ABD6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBE7 0B:ABD7: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02EBE8 0B:ABD8: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EBE8 0B:ABD8: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EBE9 0B:ABD9: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBEA 0B:ABDA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBEB 0B:ABDB: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02EBEC 0B:ABDC: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EBEC 0B:ABDC: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EBED 0B:ABDD: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EBEE 0B:ABDE: F4        .byte $F4   ; 
-- - - - - - 0x02EBEF 0B:ABDF: 00        .byte $00   ; 
+- - - - - - 0x02EBEF 0B:ABDF: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02EBF0 0B:ABE0: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EBF1 0B:ABE1: 08        .byte $08   ; 
+- D 1 - I - 0x02EBF0 0B:ABE0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EBF1 0B:ABE1: 08        .byte $08   ; timer
 - - - - - - 0x02EBF2 0B:ABE2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBF3 0B:ABE3: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02EBF4 0B:ABE4: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EBF4 0B:ABE4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EBF5 0B:ABE5: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBF6 0B:ABE6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBF7 0B:ABE7: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02EBF8 0B:ABE8: 3A        .byte con_BD4F_3A   ; 
-- D 1 - I - 0x02EBF9 0B:ABE9: 08        .byte $08   ; 
-- D 1 - I - 0x02EBFA 0B:ABEA: F2        .byte $F2   ; 
-- D 1 - I - 0x02EBFB 0B:ABEB: 02        .byte $02   ; 
+- D 1 - I - 0x02EBF8 0B:ABE8: 3A        .byte con_ai_subscr_3A   ; 
+- D 1 - I - 0x02EBF9 0B:ABE9: 08        .byte con_obj_type_08   ; 
+- D 1 - I - 0x02EBFA 0B:ABEA: F2        .byte $F2   ; animation
+- D 1 - I - 0x02EBFB 0B:ABEB: 02        .byte $02   ; index for spd_X_lo table
 ; 0F 
-- D 1 - I - 0x02EBFC 0B:ABEC: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EBFD 0B:ABED: 04        .byte $04   ; 
+- D 1 - I - 0x02EBFC 0B:ABEC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EBFD 0B:ABED: 04        .byte $04   ; timer
 - - - - - - 0x02EBFE 0B:ABEE: 00        .byte $00   ; placeholder
 - - - - - - 0x02EBFF 0B:ABEF: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02EC00 0B:ABF0: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EC00 0B:ABF0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EC01 0B:ABF1: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC02 0B:ABF2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC03 0B:ABF3: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02EC04 0B:ABF4: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EC04 0B:ABF4: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EC05 0B:ABF5: 00        .byte $00   ; 
-- - - - - - 0x02EC06 0B:ABF6: 00        .byte $00   ; 
-- - - - - - 0x02EC07 0B:ABF7: 00        .byte $00   ; 
+- - - - - - 0x02EC06 0B:ABF6: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC07 0B:ABF7: 00        .byte $00   ; placeholder
 
 
 
-_off034_ABF8_6A:
-; con_BEA1_6A
+_off034_ai_script_ABF8_6A:
+; con_ai_script_6A
 ; 00 
-- D 1 - I - 0x02EC08 0B:ABF8: 98        .byte con_BD4F_98   ; 
+- D 1 - I - 0x02EC08 0B:ABF8: 98        .byte con_ai_subscr_98   ; 
 - D 1 - I - 0x02EC09 0B:ABF9: 00        .byte $00   ; 
-- - - - - - 0x02EC0A 0B:ABFA: 00        .byte $00   ; 
-- - - - - - 0x02EC0B 0B:ABFB: 00        .byte $00   ; 
+- - - - - - 0x02EC0A 0B:ABFA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC0B 0B:ABFB: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EC0C 0B:ABFC: 68        .byte con_BD4F_68   ; 
-- D 1 - I - 0x02EC0D 0B:ABFD: 18        .byte $18   ; 
+- D 1 - I - 0x02EC0C 0B:ABFC: 68        .byte con_ai_subscr_68   ; 
+- D 1 - I - 0x02EC0D 0B:ABFD: 18        .byte $18   ; pos_Y_lo
 - D 1 - I - 0x02EC0E 0B:ABFE: 2A        .byte $2A   ; 
-- - - - - - 0x02EC0F 0B:ABFF: 00        .byte $00   ; 
+- - - - - - 0x02EC0F 0B:ABFF: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EC10 0B:AC00: 99        .byte con_BD4F_99   ; 
+- D 1 - I - 0x02EC10 0B:AC00: 99        .byte con_ai_subscr_99   ; 
 - D 1 - I - 0x02EC11 0B:AC01: 00        .byte $00   ; 
-- - - - - - 0x02EC12 0B:AC02: 00        .byte $00   ; 
-- - - - - - 0x02EC13 0B:AC03: 00        .byte $00   ; 
+- - - - - - 0x02EC12 0B:AC02: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC13 0B:AC03: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EC14 0B:AC04: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EC14 0B:AC04: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EC15 0B:AC05: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EC16 0B:AC06: 48        .byte $48   ; 
-- - - - - - 0x02EC17 0B:AC07: 00        .byte $00   ; 
+- - - - - - 0x02EC17 0B:AC07: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EC18 0B:AC08: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EC19 0B:AC09: 06        .byte $06   ; 
+- D 1 - I - 0x02EC18 0B:AC08: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EC19 0B:AC09: 06        .byte $06   ; timer
 - - - - - - 0x02EC1A 0B:AC0A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC1B 0B:AC0B: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EC1C 0B:AC0C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EC1C 0B:AC0C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EC1D 0B:AC0D: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC1E 0B:AC0E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC1F 0B:AC0F: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02EC20 0B:AC10: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02EC20 0B:AC10: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02EC21 0B:AC11: 00 70     .dbyt $0070 ; spd_X
-- - - - - - 0x02EC23 0B:AC13: 00        .byte $00   ; 
+- - - - - - 0x02EC23 0B:AC13: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02EC24 0B:AC14: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EC25 0B:AC15: 90        .byte $90   ; 
+- D 1 - I - 0x02EC24 0B:AC14: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EC25 0B:AC15: 90        .byte $90   ; timer
 - - - - - - 0x02EC26 0B:AC16: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC27 0B:AC17: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02EC28 0B:AC18: 2F        .byte con_BD4F_2F   ; 
-- - - - - - 0x02EC29 0B:AC19: 00        .byte $00   ; 
-- - - - - - 0x02EC2A 0B:AC1A: 00        .byte $00   ; 
-- - - - - - 0x02EC2B 0B:AC1B: 00        .byte $00   ; 
+- D 1 - I - 0x02EC28 0B:AC18: 2F        .byte con_ai_subscr_2F   ; 
+- - - - - - 0x02EC29 0B:AC19: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC2A 0B:AC1A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC2B 0B:AC1B: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02EC2C 0B:AC1C: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02EC2D 0B:AC1D: 00        .byte $00   ; 
-- - - - - - 0x02EC2E 0B:AC1E: 00        .byte $00   ; 
-- - - - - - 0x02EC2F 0B:AC1F: 00        .byte $00   ; 
+- D 1 - I - 0x02EC2C 0B:AC1C: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02EC2D 0B:AC1D: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC2E 0B:AC1E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC2F 0B:AC1F: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02EC30 0B:AC20: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02EC31 0B:AC21: 00        .byte $00   ; 
-- - - - - - 0x02EC32 0B:AC22: 00        .byte $00   ; 
-- - - - - - 0x02EC33 0B:AC23: 00        .byte $00   ; 
+- D 1 - I - 0x02EC30 0B:AC20: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02EC31 0B:AC21: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC32 0B:AC22: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC33 0B:AC23: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02EC34 0B:AC24: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EC34 0B:AC24: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EC35 0B:AC25: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EC36 0B:AC26: 4A        .byte $4A   ; 
-- - - - - - 0x02EC37 0B:AC27: 00        .byte $00   ; 
+- - - - - - 0x02EC37 0B:AC27: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02EC38 0B:AC28: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EC39 0B:AC29: 18        .byte $18   ; 
+- D 1 - I - 0x02EC38 0B:AC28: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EC39 0B:AC29: 18        .byte $18   ; timer
 - - - - - - 0x02EC3A 0B:AC2A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC3B 0B:AC2B: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02EC3C 0B:AC2C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EC3C 0B:AC2C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EC3D 0B:AC2D: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC3E 0B:AC2E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC3F 0B:AC2F: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02EC40 0B:AC30: 0D        .byte con_BD4F_0D   ; 
-- D 1 - I - 0x02EC41 0B:AC31: 03        .byte $03   ; 
-- - - - - - 0x02EC42 0B:AC32: 00        .byte $00   ; 
-- - - - - - 0x02EC43 0B:AC33: 00        .byte $00   ; 
+- D 1 - I - 0x02EC40 0B:AC30: 0D        .byte con_ai_subscr_0D   ; 
+- D 1 - I - 0x02EC41 0B:AC31: 03        .byte con_8E6F_03   ; 
+- - - - - - 0x02EC42 0B:AC32: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC43 0B:AC33: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02EC44 0B:AC34: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EC45 0B:AC35: 18        .byte $18   ; 
+- D 1 - I - 0x02EC44 0B:AC34: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EC45 0B:AC35: 18        .byte $18   ; timer
 - - - - - - 0x02EC46 0B:AC36: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC47 0B:AC37: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02EC48 0B:AC38: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EC48 0B:AC38: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EC49 0B:AC39: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC4A 0B:AC3A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC4B 0B:AC3B: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02EC4C 0B:AC3C: 98        .byte con_BD4F_98   ; 
+- D 1 - I - 0x02EC4C 0B:AC3C: 98        .byte con_ai_subscr_98   ; 
 - D 1 - I - 0x02EC4D 0B:AC3D: 01        .byte $01   ; 
-- - - - - - 0x02EC4E 0B:AC3E: 00        .byte $00   ; 
-- - - - - - 0x02EC4F 0B:AC3F: 00        .byte $00   ; 
+- - - - - - 0x02EC4E 0B:AC3E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC4F 0B:AC3F: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02EC50 0B:AC40: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02EC51 0B:AC41: 00        .byte $00   ; 
-- - - - - - 0x02EC52 0B:AC42: 00        .byte $00   ; 
-- - - - - - 0x02EC53 0B:AC43: 00        .byte $00   ; 
+- D 1 - I - 0x02EC50 0B:AC40: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02EC51 0B:AC41: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC52 0B:AC42: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC53 0B:AC43: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02EC54 0B:AC44: 99        .byte con_BD4F_99   ; 
+- D 1 - I - 0x02EC54 0B:AC44: 99        .byte con_ai_subscr_99   ; 
 - D 1 - I - 0x02EC55 0B:AC45: 01        .byte $01   ; 
 - - - - - - 0x02EC56 0B:AC46: 00        .byte $00   ; 
 - - - - - - 0x02EC57 0B:AC47: 00        .byte $00   ; 
 ; 14 
-- D 1 - I - 0x02EC58 0B:AC48: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02EC59 0B:AC49: 23        .byte con_sound_water_splash_2   ; 
+- D 1 - I - 0x02EC58 0B:AC48: 6C        .byte con_ai_subscr_play_sound   ; 
+- D 1 - I - 0x02EC59 0B:AC49: 23        .byte con_sfx_water_splash_2   ; 
 - - - - - - 0x02EC5A 0B:AC4A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC5B 0B:AC4B: 00        .byte $00   ; placeholder
 ; 15 
-- D 1 - I - 0x02EC5C 0B:AC4C: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02EC5D 0B:AC4D: 00        .byte $00   ; 
-- - - - - - 0x02EC5E 0B:AC4E: 00        .byte $00   ; 
-- - - - - - 0x02EC5F 0B:AC4F: 00        .byte $00   ; 
+- D 1 - I - 0x02EC5C 0B:AC4C: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02EC5D 0B:AC4D: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC5E 0B:AC4E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC5F 0B:AC4F: 00        .byte $00   ; placeholder
 
 
 
-_off034_AC50_14:
-; con_BEA1_14
+_off034_ai_script_AC50_14:
+; con_ai_script_14
 ; 00 
-- D 1 - I - 0x02EC60 0B:AC50: 09        .byte con_BD4F_09   ; 
-- - - - - - 0x02EC61 0B:AC51: 00        .byte $00   ; 
-- - - - - - 0x02EC62 0B:AC52: 00        .byte $00   ; 
-- - - - - - 0x02EC63 0B:AC53: 00        .byte $00   ; 
+- D 1 - I - 0x02EC60 0B:AC50: 09        .byte con_ai_subscr_09   ; 
+- - - - - - 0x02EC61 0B:AC51: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC62 0B:AC52: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC63 0B:AC53: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EC64 0B:AC54: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02EC65 0B:AC55: 00        .byte $00   ; 
-- - - - - - 0x02EC66 0B:AC56: 00        .byte $00   ; 
-- - - - - - 0x02EC67 0B:AC57: 00        .byte $00   ; 
+- D 1 - I - 0x02EC64 0B:AC54: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02EC65 0B:AC55: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC66 0B:AC56: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC67 0B:AC57: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EC68 0B:AC58: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EC68 0B:AC58: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EC69 0B:AC59: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EC6A 0B:AC5A: 46        .byte $46   ; 
-- - - - - - 0x02EC6B 0B:AC5B: 00        .byte $00   ; 
+- - - - - - 0x02EC6B 0B:AC5B: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EC6C 0B:AC5C: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02EC6D 0B:AC5D: 00        .byte $00   ; 
-- - - - - - 0x02EC6E 0B:AC5E: 00        .byte $00   ; 
-- - - - - - 0x02EC6F 0B:AC5F: 00        .byte $00   ; 
+- D 1 - I - 0x02EC6C 0B:AC5C: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02EC6D 0B:AC5D: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC6E 0B:AC5E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC6F 0B:AC5F: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EC70 0B:AC60: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02EC71 0B:AC61: 22        .byte con_sound_water_splash_1   ; 
+- D 1 - I - 0x02EC70 0B:AC60: 6C        .byte con_ai_subscr_play_sound   ; 
+- D 1 - I - 0x02EC71 0B:AC61: 22        .byte con_sfx_water_splash_1   ; 
 - - - - - - 0x02EC72 0B:AC62: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC73 0B:AC63: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EC74 0B:AC64: 63        .byte con_BD4F_63   ; 
+- D 1 - I - 0x02EC74 0B:AC64: 63        .byte con_ai_subscr_63   ; 
 - D 1 - I - 0x02EC75 0B:AC65: F9        .byte $F9   ; spd_Y_lo
 - D 1 - I - 0x02EC76 0B:AC66: 2C        .byte $2C   ; 
-- - - - - - 0x02EC77 0B:AC67: 00        .byte $00   ; 
+- - - - - - 0x02EC77 0B:AC67: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02EC78 0B:AC68: 64        .byte con_BD4F_64   ; 
+- D 1 - I - 0x02EC78 0B:AC68: 64        .byte con_ai_subscr_64_conditional_branch   ; 
 - D 1 - I - 0x02EC79 0B:AC69: 00        .byte $00   ; 
 - - - - - - 0x02EC7A 0B:AC6A: 00        .byte $00   ; 
-- - - - - - 0x02EC7B 0B:AC6B: 00        .byte $00   ; 
+- - - - - - 0x02EC7B 0B:AC6B: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02EC7C 0B:AC6C: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EC7C 0B:AC6C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EC7D 0B:AC6D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EC7E 0B:AC6E: 48        .byte $48   ; 
-- - - - - - 0x02EC7F 0B:AC6F: 00        .byte $00   ; 
+- - - - - - 0x02EC7F 0B:AC6F: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02EC80 0B:AC70: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EC81 0B:AC71: 06        .byte $06   ; 
+- D 1 - I - 0x02EC80 0B:AC70: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EC81 0B:AC71: 06        .byte $06   ; timer
 - - - - - - 0x02EC82 0B:AC72: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC83 0B:AC73: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02EC84 0B:AC74: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EC84 0B:AC74: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EC85 0B:AC75: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC86 0B:AC76: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC87 0B:AC77: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02EC88 0B:AC78: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02EC88 0B:AC78: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02EC89 0B:AC79: 00 70     .dbyt $0070 ; spd_X
-- - - - - - 0x02EC8B 0B:AC7B: 00        .byte $00   ; 
+- - - - - - 0x02EC8B 0B:AC7B: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02EC8C 0B:AC7C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EC8D 0B:AC7D: 90        .byte $90   ; 
+- D 1 - I - 0x02EC8C 0B:AC7C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EC8D 0B:AC7D: 90        .byte $90   ; timer
 - - - - - - 0x02EC8E 0B:AC7E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EC8F 0B:AC7F: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02EC90 0B:AC80: 2F        .byte con_BD4F_2F   ; 
-- - - - - - 0x02EC91 0B:AC81: 00        .byte $00   ; 
-- - - - - - 0x02EC92 0B:AC82: 00        .byte $00   ; 
-- - - - - - 0x02EC93 0B:AC83: 00        .byte $00   ; 
+- D 1 - I - 0x02EC90 0B:AC80: 2F        .byte con_ai_subscr_2F   ; 
+- - - - - - 0x02EC91 0B:AC81: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC92 0B:AC82: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC93 0B:AC83: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02EC94 0B:AC84: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02EC95 0B:AC85: 00        .byte $00   ; 
-- - - - - - 0x02EC96 0B:AC86: 00        .byte $00   ; 
-- - - - - - 0x02EC97 0B:AC87: 00        .byte $00   ; 
+- D 1 - I - 0x02EC94 0B:AC84: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02EC95 0B:AC85: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC96 0B:AC86: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC97 0B:AC87: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02EC98 0B:AC88: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02EC99 0B:AC89: 00        .byte $00   ; 
-- - - - - - 0x02EC9A 0B:AC8A: 00        .byte $00   ; 
-- - - - - - 0x02EC9B 0B:AC8B: 00        .byte $00   ; 
+- D 1 - I - 0x02EC98 0B:AC88: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02EC99 0B:AC89: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC9A 0B:AC8A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EC9B 0B:AC8B: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02EC9C 0B:AC8C: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EC9C 0B:AC8C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EC9D 0B:AC8D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EC9E 0B:AC8E: 4A        .byte $4A   ; 
-- - - - - - 0x02EC9F 0B:AC8F: 00        .byte $00   ; 
+- - - - - - 0x02EC9F 0B:AC8F: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02ECA0 0B:AC90: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02ECA1 0B:AC91: 18        .byte $18   ; 
+- D 1 - I - 0x02ECA0 0B:AC90: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02ECA1 0B:AC91: 18        .byte $18   ; timer
 - - - - - - 0x02ECA2 0B:AC92: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECA3 0B:AC93: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02ECA4 0B:AC94: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02ECA4 0B:AC94: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02ECA5 0B:AC95: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECA6 0B:AC96: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECA7 0B:AC97: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02ECA8 0B:AC98: 0D        .byte con_BD4F_0D   ; 
-- D 1 - I - 0x02ECA9 0B:AC99: 03        .byte $03   ; 
-- - - - - - 0x02ECAA 0B:AC9A: 00        .byte $00   ; 
-- - - - - - 0x02ECAB 0B:AC9B: 00        .byte $00   ; 
+- D 1 - I - 0x02ECA8 0B:AC98: 0D        .byte con_ai_subscr_0D   ; 
+- D 1 - I - 0x02ECA9 0B:AC99: 03        .byte con_8E6F_03   ; 
+- - - - - - 0x02ECAA 0B:AC9A: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECAB 0B:AC9B: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02ECAC 0B:AC9C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02ECAD 0B:AC9D: 18        .byte $18   ; 
+- D 1 - I - 0x02ECAC 0B:AC9C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02ECAD 0B:AC9D: 18        .byte $18   ; timer
 - - - - - - 0x02ECAE 0B:AC9E: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECAF 0B:AC9F: 00        .byte $00   ; placeholder
 ; 14 
-- D 1 - I - 0x02ECB0 0B:ACA0: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02ECB0 0B:ACA0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02ECB1 0B:ACA1: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECB2 0B:ACA2: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECB3 0B:ACA3: 00        .byte $00   ; placeholder
 ; 15 
-- D 1 - I - 0x02ECB4 0B:ACA4: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02ECB4 0B:ACA4: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02ECB5 0B:ACA5: 00 70     .dbyt $0070 ; spd_X
-- - - - - - 0x02ECB7 0B:ACA7: 00        .byte $00   ; 
+- - - - - - 0x02ECB7 0B:ACA7: 00        .byte $00   ; placeholder
 ; 16 
-- D 1 - I - 0x02ECB8 0B:ACA8: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02ECB9 0B:ACA9: 90        .byte $90   ; 
+- D 1 - I - 0x02ECB8 0B:ACA8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02ECB9 0B:ACA9: 90        .byte $90   ; timer
 - - - - - - 0x02ECBA 0B:ACAA: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECBB 0B:ACAB: 00        .byte $00   ; placeholder
 ; 17 
-- D 1 - I - 0x02ECBC 0B:ACAC: 2F        .byte con_BD4F_2F   ; 
-- - - - - - 0x02ECBD 0B:ACAD: 00        .byte $00   ; 
-- - - - - - 0x02ECBE 0B:ACAE: 00        .byte $00   ; 
-- - - - - - 0x02ECBF 0B:ACAF: 00        .byte $00   ; 
+- D 1 - I - 0x02ECBC 0B:ACAC: 2F        .byte con_ai_subscr_2F   ; 
+- - - - - - 0x02ECBD 0B:ACAD: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECBE 0B:ACAE: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECBF 0B:ACAF: 00        .byte $00   ; placeholder
 ; 18 
-- - - - - - 0x02ECC0 0B:ACB0: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02ECC1 0B:ACB1: 00        .byte $00   ; 
-- - - - - - 0x02ECC2 0B:ACB2: 00        .byte $00   ; 
-- - - - - - 0x02ECC3 0B:ACB3: 00        .byte $00   ; 
+- - - - - - 0x02ECC0 0B:ACB0: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02ECC1 0B:ACB1: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECC2 0B:ACB2: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECC3 0B:ACB3: 00        .byte $00   ; placeholder
 ; 19 
-- - - - - - 0x02ECC4 0B:ACB4: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02ECC5 0B:ACB5: 00        .byte $00   ; 
-- - - - - - 0x02ECC6 0B:ACB6: 00        .byte $00   ; 
-- - - - - - 0x02ECC7 0B:ACB7: 00        .byte $00   ; 
+- - - - - - 0x02ECC4 0B:ACB4: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02ECC5 0B:ACB5: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECC6 0B:ACB6: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECC7 0B:ACB7: 00        .byte $00   ; placeholder
 ; 1A 
-- - - - - - 0x02ECC8 0B:ACB8: 0B        .byte con_BD4F_0B   ; 
+- - - - - - 0x02ECC8 0B:ACB8: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - - - - - - 0x02ECC9 0B:ACB9: 08        .byte con_obj_type_08   ; 
 - - - - - - 0x02ECCA 0B:ACBA: 4A        .byte $4A   ; 
-- - - - - - 0x02ECCB 0B:ACBB: 00        .byte $00   ; 
+- - - - - - 0x02ECCB 0B:ACBB: 00        .byte $00   ; placeholder
 ; 1B 
-- - - - - - 0x02ECCC 0B:ACBC: 1F        .byte con_BD4F_set_timer   ; 
-- - - - - - 0x02ECCD 0B:ACBD: 18        .byte $18   ; 
+- - - - - - 0x02ECCC 0B:ACBC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- - - - - - 0x02ECCD 0B:ACBD: 18        .byte $18   ; timer
 - - - - - - 0x02ECCE 0B:ACBE: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECCF 0B:ACBF: 00        .byte $00   ; placeholder
 ; 1C 
-- - - - - - 0x02ECD0 0B:ACC0: 20        .byte con_BD4F_count_down_timer   ; 
+- - - - - - 0x02ECD0 0B:ACC0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02ECD1 0B:ACC1: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECD2 0B:ACC2: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECD3 0B:ACC3: 00        .byte $00   ; placeholder
 ; 1D 
-- - - - - - 0x02ECD4 0B:ACC4: 0D        .byte con_BD4F_0D   ; 
-- - - - - - 0x02ECD5 0B:ACC5: 03        .byte $03   ; 
-- - - - - - 0x02ECD6 0B:ACC6: 00        .byte $00   ; 
-- - - - - - 0x02ECD7 0B:ACC7: 00        .byte $00   ; 
+- - - - - - 0x02ECD4 0B:ACC4: 0D        .byte con_ai_subscr_0D   ; 
+- - - - - - 0x02ECD5 0B:ACC5: 03        .byte con_8E6F_03   ; 
+- - - - - - 0x02ECD6 0B:ACC6: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECD7 0B:ACC7: 00        .byte $00   ; placeholder
 ; 1E 
-- - - - - - 0x02ECD8 0B:ACC8: 1F        .byte con_BD4F_set_timer   ; 
-- - - - - - 0x02ECD9 0B:ACC9: 18        .byte $18   ; 
+- - - - - - 0x02ECD8 0B:ACC8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- - - - - - 0x02ECD9 0B:ACC9: 18        .byte $18   ; timer
 - - - - - - 0x02ECDA 0B:ACCA: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECDB 0B:ACCB: 00        .byte $00   ; placeholder
 ; 1F 
-- - - - - - 0x02ECDC 0B:ACCC: 20        .byte con_BD4F_count_down_timer   ; 
+- - - - - - 0x02ECDC 0B:ACCC: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02ECDD 0B:ACCD: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECDE 0B:ACCE: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECDF 0B:ACCF: 00        .byte $00   ; placeholder
 ; 20 
-- - - - - - 0x02ECE0 0B:ACD0: 63        .byte con_BD4F_63   ; 
+- - - - - - 0x02ECE0 0B:ACD0: 63        .byte con_ai_subscr_63   ; 
 - - - - - - 0x02ECE1 0B:ACD1: FF        .byte $FF   ; spd_Y_lo
 - - - - - - 0x02ECE2 0B:ACD2: 20        .byte $20   ; 
-- - - - - - 0x02ECE3 0B:ACD3: 00        .byte $00   ; 
+- - - - - - 0x02ECE3 0B:ACD3: 00        .byte $00   ; placeholder
 ; 21 
-- - - - - - 0x02ECE4 0B:ACD4: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02ECE5 0B:ACD5: 00        .byte $00   ; 
-- - - - - - 0x02ECE6 0B:ACD6: 00        .byte $00   ; 
-- - - - - - 0x02ECE7 0B:ACD7: 00        .byte $00   ; 
+- - - - - - 0x02ECE4 0B:ACD4: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02ECE5 0B:ACD5: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECE6 0B:ACD6: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECE7 0B:ACD7: 00        .byte $00   ; placeholder
 ; 22 
-- - - - - - 0x02ECE8 0B:ACD8: 64        .byte con_BD4F_64   ; 
+- - - - - - 0x02ECE8 0B:ACD8: 64        .byte con_ai_subscr_64_conditional_branch   ; 
 - - - - - - 0x02ECE9 0B:ACD9: 01        .byte $01   ; 
 - - - - - - 0x02ECEA 0B:ACDA: 00        .byte $00   ; 
-- - - - - - 0x02ECEB 0B:ACDB: 00        .byte $00   ; 
+- - - - - - 0x02ECEB 0B:ACDB: 00        .byte $00   ; placeholder
 ; 23 
-- - - - - - 0x02ECEC 0B:ACDC: 6C        .byte con_BD4F_play_sound   ; 
-- - - - - - 0x02ECED 0B:ACDD: 23        .byte con_sound_water_splash_2   ; 
+- - - - - - 0x02ECEC 0B:ACDC: 6C        .byte con_ai_subscr_play_sound   ; 
+- - - - - - 0x02ECED 0B:ACDD: 23        .byte con_sfx_water_splash_2   ; 
 - - - - - - 0x02ECEE 0B:ACDE: 00        .byte $00   ; placeholder
 - - - - - - 0x02ECEF 0B:ACDF: 00        .byte $00   ; placeholder
 ; 24 
-- - - - - - 0x02ECF0 0B:ACE0: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02ECF1 0B:ACE1: 00        .byte $00   ; 
-- - - - - - 0x02ECF2 0B:ACE2: 00        .byte $00   ; 
-- - - - - - 0x02ECF3 0B:ACE3: 00        .byte $00   ; 
+- - - - - - 0x02ECF0 0B:ACE0: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02ECF1 0B:ACE1: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECF2 0B:ACE2: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECF3 0B:ACE3: 00        .byte $00   ; placeholder
 ; 25 
-- - - - - - 0x02ECF4 0B:ACE4: 9E        .byte con_BD4F_9E   ; 
-- - - - - - 0x02ECF5 0B:ACE5: 00        .byte $00   ; 
-- - - - - - 0x02ECF6 0B:ACE6: 00        .byte $00   ; 
-- - - - - - 0x02ECF7 0B:ACE7: 00        .byte $00   ; 
+- - - - - - 0x02ECF4 0B:ACE4: 9E        .byte con_ai_subscr_9E   ; 
+- - - - - - 0x02ECF5 0B:ACE5: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECF6 0B:ACE6: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECF7 0B:ACE7: 00        .byte $00   ; placeholder
 ; 26 
-- - - - - - 0x02ECF8 0B:ACE8: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02ECF9 0B:ACE9: 00        .byte $00   ; 
-- - - - - - 0x02ECFA 0B:ACEA: 00        .byte $00   ; 
-- - - - - - 0x02ECFB 0B:ACEB: 00        .byte $00   ; 
+- - - - - - 0x02ECF8 0B:ACE8: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02ECF9 0B:ACE9: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECFA 0B:ACEA: 00        .byte $00   ; placeholder
+- - - - - - 0x02ECFB 0B:ACEB: 00        .byte $00   ; placeholder
 
 
 
-_off034_ACEC_27:
-; con_BEA1_27
+_off034_ai_script_ACEC_27:
+; con_ai_script_27
 ; 00 
-- D 1 - I - 0x02ECFC 0B:ACEC: 65        .byte con_BD4F_65   ; 
-- D 1 - I - 0x02ECFD 0B:ACED: 00        .byte $00   ; 
-- D 1 - I - 0x02ECFE 0B:ACEE: 00        .byte $00   ; 
-- - - - - - 0x02ECFF 0B:ACEF: 00        .byte $00   ; 
+- D 1 - I - 0x02ECFC 0B:ACEC: 65        .byte con_ai_subscr_65   ; 
+- D 1 - I - 0x02ECFD 0B:ACED: 00        .byte $00   ; pos_Y_lo
+- D 1 - I - 0x02ECFE 0B:ACEE: 00        .byte $00   ; pos_Y_lo
+- - - - - - 0x02ECFF 0B:ACEF: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02ED00 0B:ACF0: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02ED00 0B:ACF0: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02ED01 0B:ACF1: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02ED02 0B:ACF2: 02        .byte $02   ; 
-- - - - - - 0x02ED03 0B:ACF3: 00        .byte $00   ; 
+- - - - - - 0x02ED03 0B:ACF3: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02ED04 0B:ACF4: 1E        .byte con_BD4F_1E   ; 
+- D 1 - I - 0x02ED04 0B:ACF4: 1E        .byte con_ai_subscr_1E   ; 
 - D 1 - I - 0x02ED05 0B:ACF5: 01 20     .dbyt $0120 ; spd_X
-- - - - - - 0x02ED07 0B:ACF7: 00        .byte $00   ; 
+- - - - - - 0x02ED07 0B:ACF7: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02ED08 0B:ACF8: 58        .byte con_BD4F_58   ; 
-- D 1 - I - 0x02ED09 0B:ACF9: 05        .byte $05   ; 
-- D 1 - I - 0x02ED0A 0B:ACFA: 00        .byte $00   ; 
+- D 1 - I - 0x02ED08 0B:ACF8: 58        .byte con_ai_subscr_58   ; 
+- D 1 - I - 0x02ED09 0B:ACF9: 05        .byte $05   ; table index for spd_Y
+- D 1 - I - 0x02ED0A 0B:ACFA: 00        .byte $00   ; pos_Y_lo
 - D 1 - I - 0x02ED0B 0B:ACFB: 60        .byte $60   ; 
 ; 04 
-- D 1 - I - 0x02ED0C 0B:ACFC: 60        .byte con_BD4F_60   ; 
-- - - - - - 0x02ED0D 0B:ACFD: 00        .byte $00   ; 
-- - - - - - 0x02ED0E 0B:ACFE: 00        .byte $00   ; 
-- - - - - - 0x02ED0F 0B:ACFF: 00        .byte $00   ; 
+- D 1 - I - 0x02ED0C 0B:ACFC: 60        .byte con_ai_subscr_60   ; 
+- - - - - - 0x02ED0D 0B:ACFD: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED0E 0B:ACFE: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED0F 0B:ACFF: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02ED10 0B:AD00: 01        .byte con_BD4F_01   ; 
-- - - - - - 0x02ED11 0B:AD01: 00        .byte $00   ; 
-- - - - - - 0x02ED12 0B:AD02: 00        .byte $00   ; 
-- - - - - - 0x02ED13 0B:AD03: 00        .byte $00   ; 
+- D 1 - I - 0x02ED10 0B:AD00: 01        .byte con_ai_subscr_01   ; 
+- - - - - - 0x02ED11 0B:AD01: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED12 0B:AD02: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED13 0B:AD03: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02ED14 0B:AD04: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02ED15 0B:AD05: 00        .byte $00   ; 
-- - - - - - 0x02ED16 0B:AD06: 00        .byte $00   ; 
-- - - - - - 0x02ED17 0B:AD07: 00        .byte $00   ; 
+- D 1 - I - 0x02ED14 0B:AD04: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02ED15 0B:AD05: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED16 0B:AD06: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED17 0B:AD07: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02ED18 0B:AD08: 62        .byte con_BD4F_62   ; 
-- D 1 - I - 0x02ED19 0B:AD09: 00        .byte $00   ; 
-- D 1 - I - 0x02ED1A 0B:AD0A: F8        .byte $F8   ; 
-- - - - - - 0x02ED1B 0B:AD0B: 00        .byte $00   ; 
+- D 1 - I - 0x02ED18 0B:AD08: 62        .byte con_ai_subscr_62   ; 
+- D 1 - I - 0x02ED19 0B:AD09: 00        .byte $00   ; pos_X_lo
+- D 1 - I - 0x02ED1A 0B:AD0A: F8        .byte $F8   ; pos_Y_lo
+- - - - - - 0x02ED1B 0B:AD0B: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02ED1C 0B:AD0C: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02ED1D 0B:AD0D: 00        .byte $00   ; 
-- - - - - - 0x02ED1E 0B:AD0E: 00        .byte $00   ; 
-- - - - - - 0x02ED1F 0B:AD0F: 00        .byte $00   ; 
+- D 1 - I - 0x02ED1C 0B:AD0C: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02ED1D 0B:AD0D: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED1E 0B:AD0E: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED1F 0B:AD0F: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02ED20 0B:AD10: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02ED20 0B:AD10: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02ED21 0B:AD11: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02ED22 0B:AD12: 42        .byte $42   ; 
-- - - - - - 0x02ED23 0B:AD13: 00        .byte $00   ; 
+- - - - - - 0x02ED23 0B:AD13: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02ED24 0B:AD14: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02ED25 0B:AD15: 22        .byte con_sound_water_splash_1   ; 
+- D 1 - I - 0x02ED24 0B:AD14: 6C        .byte con_ai_subscr_play_sound   ; 
+- D 1 - I - 0x02ED25 0B:AD15: 22        .byte con_sfx_water_splash_1   ; 
 - - - - - - 0x02ED26 0B:AD16: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED27 0B:AD17: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02ED28 0B:AD18: 68        .byte con_BD4F_68   ; 
-- D 1 - I - 0x02ED29 0B:AD19: 18        .byte $18   ; 
+- D 1 - I - 0x02ED28 0B:AD18: 68        .byte con_ai_subscr_68   ; 
+- D 1 - I - 0x02ED29 0B:AD19: 18        .byte $18   ; pos_Y_lo
 - D 1 - I - 0x02ED2A 0B:AD1A: 62        .byte $62   ; 
-- - - - - - 0x02ED2B 0B:AD1B: 00        .byte $00   ; 
+- - - - - - 0x02ED2B 0B:AD1B: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02ED2C 0B:AD1C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02ED2D 0B:AD1D: 18        .byte $18   ; 
+- D 1 - I - 0x02ED2C 0B:AD1C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02ED2D 0B:AD1D: 18        .byte $18   ; timer
 - - - - - - 0x02ED2E 0B:AD1E: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED2F 0B:AD1F: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02ED30 0B:AD20: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02ED30 0B:AD20: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02ED31 0B:AD21: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED32 0B:AD22: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED33 0B:AD23: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02ED34 0B:AD24: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02ED34 0B:AD24: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02ED35 0B:AD25: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02ED36 0B:AD26: 4A        .byte $4A   ; 
-- - - - - - 0x02ED37 0B:AD27: 00        .byte $00   ; 
+- - - - - - 0x02ED37 0B:AD27: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02ED38 0B:AD28: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02ED39 0B:AD29: 10        .byte $10   ; 
+- D 1 - I - 0x02ED38 0B:AD28: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02ED39 0B:AD29: 10        .byte $10   ; timer
 - - - - - - 0x02ED3A 0B:AD2A: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED3B 0B:AD2B: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02ED3C 0B:AD2C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02ED3C 0B:AD2C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02ED3D 0B:AD2D: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED3E 0B:AD2E: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED3F 0B:AD2F: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02ED40 0B:AD30: 0D        .byte con_BD4F_0D   ; 
-- D 1 - I - 0x02ED41 0B:AD31: 03        .byte $03   ; 
-- - - - - - 0x02ED42 0B:AD32: 00        .byte $00   ; 
-- - - - - - 0x02ED43 0B:AD33: 00        .byte $00   ; 
+- D 1 - I - 0x02ED40 0B:AD30: 0D        .byte con_ai_subscr_0D   ; 
+- D 1 - I - 0x02ED41 0B:AD31: 03        .byte con_8E6F_03   ; 
+- - - - - - 0x02ED42 0B:AD32: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED43 0B:AD33: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02ED44 0B:AD34: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02ED45 0B:AD35: 18        .byte $18   ; 
+- D 1 - I - 0x02ED44 0B:AD34: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02ED45 0B:AD35: 18        .byte $18   ; timer
 - - - - - - 0x02ED46 0B:AD36: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED47 0B:AD37: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02ED48 0B:AD38: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02ED48 0B:AD38: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02ED49 0B:AD39: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED4A 0B:AD3A: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED4B 0B:AD3B: 00        .byte $00   ; placeholder
 ; 14 
-- D 1 - I - 0x02ED4C 0B:AD3C: 62        .byte con_BD4F_62   ; 
-- D 1 - I - 0x02ED4D 0B:AD3D: 00        .byte $00   ; 
-- D 1 - I - 0x02ED4E 0B:AD3E: 08        .byte $08   ; 
-- - - - - - 0x02ED4F 0B:AD3F: 00        .byte $00   ; 
+- D 1 - I - 0x02ED4C 0B:AD3C: 62        .byte con_ai_subscr_62   ; 
+- D 1 - I - 0x02ED4D 0B:AD3D: 00        .byte $00   ; pos_X_lo
+- D 1 - I - 0x02ED4E 0B:AD3E: 08        .byte $08   ; pos_Y_lo
+- - - - - - 0x02ED4F 0B:AD3F: 00        .byte $00   ; placeholder
 ; 15 
-- D 1 - I - 0x02ED50 0B:AD40: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02ED50 0B:AD40: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02ED51 0B:AD41: 01        .byte $01   ; 
-- - - - - - 0x02ED52 0B:AD42: 00        .byte $00   ; 
-- - - - - - 0x02ED53 0B:AD43: 00        .byte $00   ; 
+- - - - - - 0x02ED52 0B:AD42: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED53 0B:AD43: 00        .byte $00   ; placeholder
 ; 16 
-- D 1 - I - 0x02ED54 0B:AD44: 61        .byte con_BD4F_61   ; 
+- D 1 - I - 0x02ED54 0B:AD44: 61        .byte con_ai_subscr_61   ; 
 - D 1 - I - 0x02ED55 0B:AD45: 01        .byte $01   ; 
-- D 1 - I - 0x02ED56 0B:AD46: 0A        .byte $0A   ; 
-- - - - - - 0x02ED57 0B:AD47: 00        .byte $00   ; 
+- D 1 - I - 0x02ED56 0B:AD46: 0A        .byte con_B7BD_0A   ; 
+- - - - - - 0x02ED57 0B:AD47: 00        .byte $00   ; placeholder
 
 
 
-_off034_AD48_29:
-; con_BEA1_29
+_off034_ai_script_AD48_29:
+; con_ai_script_29
+tbl__AD48:
 ; 00 
-- D 1 - I - 0x02ED58 0B:AD48: 65        .byte con_BD4F_65   ; 
-- D 1 - I - 0x02ED59 0B:AD49: 00        .byte $00   ; 
-- D 1 - I - 0x02ED5A 0B:AD4A: 00        .byte $00   ; 
-- - - - - - 0x02ED5B 0B:AD4B: 00        .byte $00   ; 
+- D 1 - I - 0x02ED58 0B:AD48: 65        .byte con_ai_subscr_65   ; 
+- D 1 - I - 0x02ED59 0B:AD49: 00        .byte $00   ; pos_Y_lo
+- D 1 - I - 0x02ED5A 0B:AD4A: 00        .byte $00   ; pos_Y_lo
+- - - - - - 0x02ED5B 0B:AD4B: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02ED5C 0B:AD4C: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02ED5C 0B:AD4C: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02ED5D 0B:AD4D: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02ED5E 0B:AD4E: 02        .byte $02   ; 
-- - - - - - 0x02ED5F 0B:AD4F: 00        .byte $00   ; 
+- - - - - - 0x02ED5F 0B:AD4F: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02ED60 0B:AD50: 1E        .byte con_BD4F_1E   ; 
+- D 1 - I - 0x02ED60 0B:AD50: 1E        .byte con_ai_subscr_1E   ; 
 - D 1 - I - 0x02ED61 0B:AD51: 01 80     .dbyt $0180 ; spd_X
-- - - - - - 0x02ED63 0B:AD53: 00        .byte $00   ; 
+- - - - - - 0x02ED63 0B:AD53: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02ED64 0B:AD54: 90        .byte con_BD4F_90   ; 
-- - - - - - 0x02ED65 0B:AD55: 06        .byte $06   ; 
-- - - - - - 0x02ED66 0B:AD56: 00        .byte $00   ; 
-- - - - - - 0x02ED67 0B:AD57: 60        .byte $60   ; 
+- D 1 - I - 0x02ED64 0B:AD54: 90        .byte con_ai_subscr_90   ; 
+- - - - - - 0x02ED65 0B:AD55: 06        .byte $06   ; placeholder
+- - - - - - 0x02ED66 0B:AD56: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED67 0B:AD57: 60        .byte $60   ; placeholder
 ; 04 
-- D 1 - I - 0x02ED68 0B:AD58: 67        .byte con_BD4F_67   ; 
-- - - - - - 0x02ED69 0B:AD59: 00        .byte $00   ; 
-- - - - - - 0x02ED6A 0B:AD5A: 00        .byte $00   ; 
-- - - - - - 0x02ED6B 0B:AD5B: 00        .byte $00   ; 
+- D 1 - I - 0x02ED68 0B:AD58: 67        .byte con_ai_subscr_67   ; 
+- - - - - - 0x02ED69 0B:AD59: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED6A 0B:AD5A: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED6B 0B:AD5B: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02ED6C 0B:AD5C: 03        .byte con_BD4F_03   ; 
-- - - - - - 0x02ED6D 0B:AD5D: 00        .byte $00   ; 
-- - - - - - 0x02ED6E 0B:AD5E: 00        .byte $00   ; 
-- - - - - - 0x02ED6F 0B:AD5F: 00        .byte $00   ; 
+- D 1 - I - 0x02ED6C 0B:AD5C: 03        .byte con_ai_subscr_03_clear_obj_flag_08   ; 
+- - - - - - 0x02ED6D 0B:AD5D: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED6E 0B:AD5E: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED6F 0B:AD5F: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02ED70 0B:AD60: 01        .byte con_BD4F_01   ; 
-- - - - - - 0x02ED71 0B:AD61: 00        .byte $00   ; 
-- - - - - - 0x02ED72 0B:AD62: 00        .byte $00   ; 
-- - - - - - 0x02ED73 0B:AD63: 00        .byte $00   ; 
+- D 1 - I - 0x02ED70 0B:AD60: 01        .byte con_ai_subscr_01   ; 
+- - - - - - 0x02ED71 0B:AD61: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED72 0B:AD62: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED73 0B:AD63: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02ED74 0B:AD64: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02ED75 0B:AD65: 00        .byte $00   ; 
-- - - - - - 0x02ED76 0B:AD66: 00        .byte $00   ; 
-- - - - - - 0x02ED77 0B:AD67: 00        .byte $00   ; 
+- D 1 - I - 0x02ED74 0B:AD64: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02ED75 0B:AD65: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED76 0B:AD66: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED77 0B:AD67: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02ED78 0B:AD68: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02ED78 0B:AD68: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02ED79 0B:AD69: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02ED7A 0B:AD6A: 46        .byte $46   ; 
-- - - - - - 0x02ED7B 0B:AD6B: 00        .byte $00   ; 
+- - - - - - 0x02ED7B 0B:AD6B: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02ED7C 0B:AD6C: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02ED7D 0B:AD6D: 00        .byte $00   ; 
-- - - - - - 0x02ED7E 0B:AD6E: 00        .byte $00   ; 
-- - - - - - 0x02ED7F 0B:AD6F: 00        .byte $00   ; 
+- D 1 - I - 0x02ED7C 0B:AD6C: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02ED7D 0B:AD6D: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED7E 0B:AD6E: 00        .byte $00   ; placeholder
+- - - - - - 0x02ED7F 0B:AD6F: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02ED80 0B:AD70: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02ED81 0B:AD71: 22        .byte con_sound_water_splash_1   ; 
+- D 1 - I - 0x02ED80 0B:AD70: 6C        .byte con_ai_subscr_play_sound   ; 
+- D 1 - I - 0x02ED81 0B:AD71: 22        .byte con_sfx_water_splash_1   ; 
 - - - - - - 0x02ED82 0B:AD72: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED83 0B:AD73: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02ED84 0B:AD74: 63        .byte con_BD4F_63   ; 
+- D 1 - I - 0x02ED84 0B:AD74: 63        .byte con_ai_subscr_63   ; 
 - D 1 - I - 0x02ED85 0B:AD75: FA        .byte $FA   ; spd_Y_lo
 - D 1 - I - 0x02ED86 0B:AD76: 24        .byte $24   ; 
-- - - - - - 0x02ED87 0B:AD77: 00        .byte $00   ; 
+- - - - - - 0x02ED87 0B:AD77: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02ED88 0B:AD78: 68        .byte con_BD4F_68   ; 
-- D 1 - I - 0x02ED89 0B:AD79: 18        .byte $18   ; 
+- D 1 - I - 0x02ED88 0B:AD78: 68        .byte con_ai_subscr_68   ; 
+- D 1 - I - 0x02ED89 0B:AD79: 18        .byte $18   ; pos_Y_lo
 - D 1 - I - 0x02ED8A 0B:AD7A: 2A        .byte $2A   ; 
-- - - - - - 0x02ED8B 0B:AD7B: 00        .byte $00   ; 
+- - - - - - 0x02ED8B 0B:AD7B: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02ED8C 0B:AD7C: 64        .byte con_BD4F_64   ; 
+- D 1 - I - 0x02ED8C 0B:AD7C: 64        .byte con_ai_subscr_64_conditional_branch   ; 
 - D 1 - I - 0x02ED8D 0B:AD7D: 03        .byte $03   ; 
-- D 1 - I - 0x02ED8E 0B:AD7E: 2A        .byte $2A   ; 
-- - - - - - 0x02ED8F 0B:AD7F: 00        .byte $00   ; 
+- D 1 - I - 0x02ED8E 0B:AD7E: 2A        .byte (off_ADF0_2A - tbl__AD48) / $04   ; branch
+- - - - - - 0x02ED8F 0B:AD7F: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02ED90 0B:AD80: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02ED90 0B:AD80: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02ED91 0B:AD81: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02ED92 0B:AD82: 48        .byte $48   ; 
-- - - - - - 0x02ED93 0B:AD83: 00        .byte $00   ; 
+- - - - - - 0x02ED93 0B:AD83: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02ED94 0B:AD84: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02ED95 0B:AD85: 06        .byte $06   ; 
+- D 1 - I - 0x02ED94 0B:AD84: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02ED95 0B:AD85: 06        .byte $06   ; timer
 - - - - - - 0x02ED96 0B:AD86: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED97 0B:AD87: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02ED98 0B:AD88: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02ED98 0B:AD88: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02ED99 0B:AD89: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED9A 0B:AD8A: 00        .byte $00   ; placeholder
 - - - - - - 0x02ED9B 0B:AD8B: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02ED9C 0B:AD8C: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02ED9C 0B:AD8C: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02ED9D 0B:AD8D: 00 70     .dbyt $0070 ; spd_X
-- - - - - - 0x02ED9F 0B:AD8F: 00        .byte $00   ; 
+- - - - - - 0x02ED9F 0B:AD8F: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02EDA0 0B:AD90: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EDA1 0B:AD91: 90        .byte $90   ; 
+- D 1 - I - 0x02EDA0 0B:AD90: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EDA1 0B:AD91: 90        .byte $90   ; timer
 - - - - - - 0x02EDA2 0B:AD92: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDA3 0B:AD93: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02EDA4 0B:AD94: 2F        .byte con_BD4F_2F   ; 
-- - - - - - 0x02EDA5 0B:AD95: 00        .byte $00   ; 
-- - - - - - 0x02EDA6 0B:AD96: 00        .byte $00   ; 
-- - - - - - 0x02EDA7 0B:AD97: 00        .byte $00   ; 
+- D 1 - I - 0x02EDA4 0B:AD94: 2F        .byte con_ai_subscr_2F   ; 
+- - - - - - 0x02EDA5 0B:AD95: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDA6 0B:AD96: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDA7 0B:AD97: 00        .byte $00   ; placeholder
 ; 14 
-- D 1 - I - 0x02EDA8 0B:AD98: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02EDA9 0B:AD99: 00        .byte $00   ; 
-- - - - - - 0x02EDAA 0B:AD9A: 00        .byte $00   ; 
-- - - - - - 0x02EDAB 0B:AD9B: 00        .byte $00   ; 
+- D 1 - I - 0x02EDA8 0B:AD98: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02EDA9 0B:AD99: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDAA 0B:AD9A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDAB 0B:AD9B: 00        .byte $00   ; placeholder
 ; 15 
-- D 1 - I - 0x02EDAC 0B:AD9C: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02EDAD 0B:AD9D: 00        .byte $00   ; 
-- - - - - - 0x02EDAE 0B:AD9E: 00        .byte $00   ; 
-- - - - - - 0x02EDAF 0B:AD9F: 00        .byte $00   ; 
+- D 1 - I - 0x02EDAC 0B:AD9C: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02EDAD 0B:AD9D: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDAE 0B:AD9E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDAF 0B:AD9F: 00        .byte $00   ; placeholder
 ; 16 
-- D 1 - I - 0x02EDB0 0B:ADA0: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EDB0 0B:ADA0: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EDB1 0B:ADA1: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EDB2 0B:ADA2: 4A        .byte $4A   ; 
-- - - - - - 0x02EDB3 0B:ADA3: 00        .byte $00   ; 
+- - - - - - 0x02EDB3 0B:ADA3: 00        .byte $00   ; placeholder
 ; 17 
-- D 1 - I - 0x02EDB4 0B:ADA4: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EDB5 0B:ADA5: 18        .byte $18   ; 
+- D 1 - I - 0x02EDB4 0B:ADA4: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EDB5 0B:ADA5: 18        .byte $18   ; timer
 - - - - - - 0x02EDB6 0B:ADA6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDB7 0B:ADA7: 00        .byte $00   ; placeholder
 ; 18 
-- D 1 - I - 0x02EDB8 0B:ADA8: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EDB8 0B:ADA8: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EDB9 0B:ADA9: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDBA 0B:ADAA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDBB 0B:ADAB: 00        .byte $00   ; placeholder
 ; 19 
-- D 1 - I - 0x02EDBC 0B:ADAC: 0D        .byte con_BD4F_0D   ; 
-- D 1 - I - 0x02EDBD 0B:ADAD: 03        .byte $03   ; 
-- - - - - - 0x02EDBE 0B:ADAE: 00        .byte $00   ; 
-- - - - - - 0x02EDBF 0B:ADAF: 00        .byte $00   ; 
+- D 1 - I - 0x02EDBC 0B:ADAC: 0D        .byte con_ai_subscr_0D   ; 
+- D 1 - I - 0x02EDBD 0B:ADAD: 03        .byte con_8E6F_03   ; 
+- - - - - - 0x02EDBE 0B:ADAE: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDBF 0B:ADAF: 00        .byte $00   ; placeholder
 ; 1A 
-- D 1 - I - 0x02EDC0 0B:ADB0: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EDC1 0B:ADB1: 18        .byte $18   ; 
+- D 1 - I - 0x02EDC0 0B:ADB0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EDC1 0B:ADB1: 18        .byte $18   ; timer
 - - - - - - 0x02EDC2 0B:ADB2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDC3 0B:ADB3: 00        .byte $00   ; placeholder
 ; 1B 
-- D 1 - I - 0x02EDC4 0B:ADB4: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EDC4 0B:ADB4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EDC5 0B:ADB5: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDC6 0B:ADB6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDC7 0B:ADB7: 00        .byte $00   ; placeholder
 ; 1C 
-- D 1 - I - 0x02EDC8 0B:ADB8: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02EDC8 0B:ADB8: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02EDC9 0B:ADB9: 00 70     .dbyt $0070 ; spd_X
-- - - - - - 0x02EDCB 0B:ADBB: 00        .byte $00   ; 
+- - - - - - 0x02EDCB 0B:ADBB: 00        .byte $00   ; placeholder
 ; 1D 
-- D 1 - I - 0x02EDCC 0B:ADBC: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EDCD 0B:ADBD: 90        .byte $90   ; 
+- D 1 - I - 0x02EDCC 0B:ADBC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EDCD 0B:ADBD: 90        .byte $90   ; timer
 - - - - - - 0x02EDCE 0B:ADBE: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDCF 0B:ADBF: 00        .byte $00   ; placeholder
 ; 1E 
-- D 1 - I - 0x02EDD0 0B:ADC0: 2F        .byte con_BD4F_2F   ; 
-- - - - - - 0x02EDD1 0B:ADC1: 00        .byte $00   ; 
-- - - - - - 0x02EDD2 0B:ADC2: 00        .byte $00   ; 
-- - - - - - 0x02EDD3 0B:ADC3: 00        .byte $00   ; 
+- D 1 - I - 0x02EDD0 0B:ADC0: 2F        .byte con_ai_subscr_2F   ; 
+- - - - - - 0x02EDD1 0B:ADC1: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDD2 0B:ADC2: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDD3 0B:ADC3: 00        .byte $00   ; placeholder
 ; 1F 
-- - - - - - 0x02EDD4 0B:ADC4: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02EDD5 0B:ADC5: 00        .byte $00   ; 
-- - - - - - 0x02EDD6 0B:ADC6: 00        .byte $00   ; 
-- - - - - - 0x02EDD7 0B:ADC7: 00        .byte $00   ; 
+- - - - - - 0x02EDD4 0B:ADC4: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02EDD5 0B:ADC5: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDD6 0B:ADC6: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDD7 0B:ADC7: 00        .byte $00   ; placeholder
 ; 20 
-- - - - - - 0x02EDD8 0B:ADC8: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02EDD9 0B:ADC9: 00        .byte $00   ; 
-- - - - - - 0x02EDDA 0B:ADCA: 00        .byte $00   ; 
-- - - - - - 0x02EDDB 0B:ADCB: 00        .byte $00   ; 
+- - - - - - 0x02EDD8 0B:ADC8: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02EDD9 0B:ADC9: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDDA 0B:ADCA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDDB 0B:ADCB: 00        .byte $00   ; placeholder
 ; 21 
-- - - - - - 0x02EDDC 0B:ADCC: 0B        .byte con_BD4F_0B   ; 
+- - - - - - 0x02EDDC 0B:ADCC: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - - - - - - 0x02EDDD 0B:ADCD: 08        .byte con_obj_type_08   ; 
 - - - - - - 0x02EDDE 0B:ADCE: 4A        .byte $4A   ; 
-- - - - - - 0x02EDDF 0B:ADCF: 00        .byte $00   ; 
+- - - - - - 0x02EDDF 0B:ADCF: 00        .byte $00   ; placeholder
 ; 22 
-- - - - - - 0x02EDE0 0B:ADD0: 1F        .byte con_BD4F_set_timer   ; 
-- - - - - - 0x02EDE1 0B:ADD1: 18        .byte $18   ; 
+- - - - - - 0x02EDE0 0B:ADD0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- - - - - - 0x02EDE1 0B:ADD1: 18        .byte $18   ; timer
 - - - - - - 0x02EDE2 0B:ADD2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDE3 0B:ADD3: 00        .byte $00   ; placeholder
 ; 23 
-- - - - - - 0x02EDE4 0B:ADD4: 20        .byte con_BD4F_count_down_timer   ; 
+- - - - - - 0x02EDE4 0B:ADD4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EDE5 0B:ADD5: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDE6 0B:ADD6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDE7 0B:ADD7: 00        .byte $00   ; placeholder
 ; 24 
-- - - - - - 0x02EDE8 0B:ADD8: 0D        .byte con_BD4F_0D   ; 
-- - - - - - 0x02EDE9 0B:ADD9: 03        .byte $03   ; 
-- - - - - - 0x02EDEA 0B:ADDA: 00        .byte $00   ; 
-- - - - - - 0x02EDEB 0B:ADDB: 00        .byte $00   ; 
+- - - - - - 0x02EDE8 0B:ADD8: 0D        .byte con_ai_subscr_0D   ; 
+- - - - - - 0x02EDE9 0B:ADD9: 03        .byte con_8E6F_03   ; 
+- - - - - - 0x02EDEA 0B:ADDA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDEB 0B:ADDB: 00        .byte $00   ; placeholder
 ; 25 
-- - - - - - 0x02EDEC 0B:ADDC: 1F        .byte con_BD4F_set_timer   ; 
-- - - - - - 0x02EDED 0B:ADDD: 18        .byte $18   ; 
+- - - - - - 0x02EDEC 0B:ADDC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- - - - - - 0x02EDED 0B:ADDD: 18        .byte $18   ; timer
 - - - - - - 0x02EDEE 0B:ADDE: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDEF 0B:ADDF: 00        .byte $00   ; placeholder
 ; 26 
-- - - - - - 0x02EDF0 0B:ADE0: 20        .byte con_BD4F_count_down_timer   ; 
+- - - - - - 0x02EDF0 0B:ADE0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EDF1 0B:ADE1: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDF2 0B:ADE2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EDF3 0B:ADE3: 00        .byte $00   ; placeholder
 ; 27 
-- - - - - - 0x02EDF4 0B:ADE4: 63        .byte con_BD4F_63   ; 
+- - - - - - 0x02EDF4 0B:ADE4: 63        .byte con_ai_subscr_63   ; 
 - - - - - - 0x02EDF5 0B:ADE5: FF        .byte $FF   ; spd_Y_lo
 - - - - - - 0x02EDF6 0B:ADE6: 20        .byte $20   ; 
-- - - - - - 0x02EDF7 0B:ADE7: 00        .byte $00   ; 
+- - - - - - 0x02EDF7 0B:ADE7: 00        .byte $00   ; placeholder
 ; 28 
-- - - - - - 0x02EDF8 0B:ADE8: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02EDF9 0B:ADE9: 00        .byte $00   ; 
-- - - - - - 0x02EDFA 0B:ADEA: 00        .byte $00   ; 
-- - - - - - 0x02EDFB 0B:ADEB: 00        .byte $00   ; 
+- - - - - - 0x02EDF8 0B:ADE8: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02EDF9 0B:ADE9: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDFA 0B:ADEA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EDFB 0B:ADEB: 00        .byte $00   ; placeholder
 ; 29 
-- - - - - - 0x02EDFC 0B:ADEC: 64        .byte con_BD4F_64   ; 
+- - - - - - 0x02EDFC 0B:ADEC: 64        .byte con_ai_subscr_64_conditional_branch   ; 
 - - - - - - 0x02EDFD 0B:ADED: 02        .byte $02   ; 
 - - - - - - 0x02EDFE 0B:ADEE: B0        .byte $B0   ; 
-- - - - - - 0x02EDFF 0B:ADEF: 00        .byte $00   ; 
+- - - - - - 0x02EDFF 0B:ADEF: 00        .byte $00   ; placeholder
 ; 2A 
-- D 1 - I - 0x02EE00 0B:ADF0: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02EE01 0B:ADF1: 23        .byte con_sound_water_splash_2   ; 
+off_ADF0_2A:
+- D 1 - I - 0x02EE00 0B:ADF0: 6C        .byte con_ai_subscr_play_sound   ; 
+- D 1 - I - 0x02EE01 0B:ADF1: 23        .byte con_sfx_water_splash_2   ; 
 - - - - - - 0x02EE02 0B:ADF2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE03 0B:ADF3: 00        .byte $00   ; placeholder
 ; 2B 
-- D 1 - I - 0x02EE04 0B:ADF4: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02EE05 0B:ADF5: 00        .byte $00   ; 
-- - - - - - 0x02EE06 0B:ADF6: 00        .byte $00   ; 
-- - - - - - 0x02EE07 0B:ADF7: 00        .byte $00   ; 
+- D 1 - I - 0x02EE04 0B:ADF4: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02EE05 0B:ADF5: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE06 0B:ADF6: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE07 0B:ADF7: 00        .byte $00   ; placeholder
 
 
 
-_off034_ADF8_28:
-; con_BEA1_28
+_off034_ai_script_ADF8_28:
+; con_ai_script_28
 ; 00 
-- D 1 - I - 0x02EE08 0B:ADF8: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EE08 0B:ADF8: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EE09 0B:ADF9: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EE0A 0B:ADFA: 03        .byte $03   ; 
-- - - - - - 0x02EE0B 0B:ADFB: 00        .byte $00   ; 
+- - - - - - 0x02EE0B 0B:ADFB: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EE0C 0B:ADFC: 1E        .byte con_BD4F_1E   ; 
+- D 1 - I - 0x02EE0C 0B:ADFC: 1E        .byte con_ai_subscr_1E   ; 
 - D 1 - I - 0x02EE0D 0B:ADFD: 00 80     .dbyt $0080 ; spd_X
-- - - - - - 0x02EE0F 0B:ADFF: 00        .byte $00   ; 
+- - - - - - 0x02EE0F 0B:ADFF: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EE10 0B:AE00: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EE11 0B:AE01: 40        .byte $40   ; 
+- D 1 - I - 0x02EE10 0B:AE00: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EE11 0B:AE01: 40        .byte $40   ; timer
 - - - - - - 0x02EE12 0B:AE02: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE13 0B:AE03: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EE14 0B:AE04: 66        .byte con_BD4F_66   ; 
-- - - - - - 0x02EE15 0B:AE05: 00        .byte $00   ; 
-- - - - - - 0x02EE16 0B:AE06: 00        .byte $00   ; 
-- - - - - - 0x02EE17 0B:AE07: 00        .byte $00   ; 
+- D 1 - I - 0x02EE14 0B:AE04: 66        .byte con_ai_subscr_66   ; 
+- - - - - - 0x02EE15 0B:AE05: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE16 0B:AE06: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE17 0B:AE07: 00        .byte $00   ; placeholder
 
 
 
-_off034_AE08_25:
-; con_BEA1_25
+_off034_ai_script_AE08_25:
+; con_ai_script_25
 ; 00 
-- D 1 - I - 0x02EE18 0B:AE08: 5F        .byte con_BD4F_5F   ; 
-- - - - - - 0x02EE19 0B:AE09: 00        .byte $00   ; 
-- - - - - - 0x02EE1A 0B:AE0A: 00        .byte $00   ; 
-- - - - - - 0x02EE1B 0B:AE0B: 00        .byte $00   ; 
+- D 1 - I - 0x02EE18 0B:AE08: 5F        .byte con_ai_subscr_5F   ; 
+- - - - - - 0x02EE19 0B:AE09: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE1A 0B:AE0A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE1B 0B:AE0B: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EE1C 0B:AE0C: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02EE1D 0B:AE0D: 0F        .byte con_sound_0F   ; 
+- D 1 - I - 0x02EE1C 0B:AE0C: 6C        .byte con_ai_subscr_play_sound   ; 
+- D 1 - I - 0x02EE1D 0B:AE0D: 0F        .byte con_sfx_0F   ; 
 - - - - - - 0x02EE1E 0B:AE0E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE1F 0B:AE0F: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EE20 0B:AE10: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EE20 0B:AE10: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EE21 0B:AE11: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EE22 0B:AE12: 20        .byte $20   ; 
-- - - - - - 0x02EE23 0B:AE13: 00        .byte $00   ; 
+- - - - - - 0x02EE23 0B:AE13: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EE24 0B:AE14: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EE25 0B:AE15: 12        .byte $12   ; 
+- D 1 - I - 0x02EE24 0B:AE14: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EE25 0B:AE15: 12        .byte $12   ; timer
 - - - - - - 0x02EE26 0B:AE16: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE27 0B:AE17: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EE28 0B:AE18: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EE28 0B:AE18: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EE29 0B:AE19: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE2A 0B:AE1A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE2B 0B:AE1B: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EE2C 0B:AE1C: 53        .byte con_BD4F_53   ; 
-- - - - - - 0x02EE2D 0B:AE1D: 00        .byte $00   ; 
-- - - - - - 0x02EE2E 0B:AE1E: 00        .byte $00   ; 
-- - - - - - 0x02EE2F 0B:AE1F: 00        .byte $00   ; 
+- D 1 - I - 0x02EE2C 0B:AE1C: 53        .byte con_ai_subscr_53_clear_obj_flag_10   ; 
+- - - - - - 0x02EE2D 0B:AE1D: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE2E 0B:AE1E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE2F 0B:AE1F: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02EE30 0B:AE20: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EE30 0B:AE20: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EE31 0B:AE21: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EE32 0B:AE22: 22        .byte $22   ; 
-- - - - - - 0x02EE33 0B:AE23: 00        .byte $00   ; 
+- - - - - - 0x02EE33 0B:AE23: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02EE34 0B:AE24: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EE35 0B:AE25: 08        .byte $08   ; 
+- D 1 - I - 0x02EE34 0B:AE24: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EE35 0B:AE25: 08        .byte $08   ; timer
 - - - - - - 0x02EE36 0B:AE26: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE37 0B:AE27: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02EE38 0B:AE28: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EE38 0B:AE28: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EE39 0B:AE29: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE3A 0B:AE2A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE3B 0B:AE2B: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02EE3C 0B:AE2C: 08        .byte con_BD4F_08   ; 
-- D 1 - I - 0x02EE3D 0B:AE2D: 01        .byte $01   ; 
-- - - - - - 0x02EE3E 0B:AE2E: 00        .byte $00   ; 
-- - - - - - 0x02EE3F 0B:AE2F: 00        .byte $00   ; 
+- D 1 - I - 0x02EE3C 0B:AE2C: 08        .byte con_ai_subscr_08   ; 
+- D 1 - I - 0x02EE3D 0B:AE2D: 01        .byte $01   ; handler index
+- - - - - - 0x02EE3E 0B:AE2E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE3F 0B:AE2F: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02EE40 0B:AE30: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EE40 0B:AE30: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EE41 0B:AE31: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EE42 0B:AE32: 00        .byte $00   ; 
-- - - - - - 0x02EE43 0B:AE33: 00        .byte $00   ; 
+- - - - - - 0x02EE43 0B:AE33: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02EE44 0B:AE34: 1E        .byte con_BD4F_1E   ; 
+- D 1 - I - 0x02EE44 0B:AE34: 1E        .byte con_ai_subscr_1E   ; 
 - D 1 - I - 0x02EE45 0B:AE35: 00 60     .dbyt $0060 ; spd_X
-- - - - - - 0x02EE47 0B:AE37: 00        .byte $00   ; 
+- - - - - - 0x02EE47 0B:AE37: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02EE48 0B:AE38: 5E        .byte con_BD4F_5E   ; 
-- - - - - - 0x02EE49 0B:AE39: 00        .byte $00   ; 
-- - - - - - 0x02EE4A 0B:AE3A: 00        .byte $00   ; 
-- - - - - - 0x02EE4B 0B:AE3B: 00        .byte $00   ; 
+- D 1 - I - 0x02EE48 0B:AE38: 5E        .byte con_ai_subscr_5E   ; 
+- - - - - - 0x02EE49 0B:AE39: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE4A 0B:AE3A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE4B 0B:AE3B: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02EE4C 0B:AE3C: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EE4C 0B:AE3C: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EE4D 0B:AE3D: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EE4E 0B:AE3E: 22        .byte $22   ; 
-- - - - - - 0x02EE4F 0B:AE3F: 00        .byte $00   ; 
+- - - - - - 0x02EE4F 0B:AE3F: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02EE50 0B:AE40: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EE51 0B:AE41: 08        .byte $08   ; 
+- D 1 - I - 0x02EE50 0B:AE40: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EE51 0B:AE41: 08        .byte $08   ; timer
 - - - - - - 0x02EE52 0B:AE42: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE53 0B:AE43: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02EE54 0B:AE44: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EE54 0B:AE44: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EE55 0B:AE45: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE56 0B:AE46: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE57 0B:AE47: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02EE58 0B:AE48: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EE58 0B:AE48: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EE59 0B:AE49: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EE5A 0B:AE4A: 20        .byte $20   ; 
-- - - - - - 0x02EE5B 0B:AE4B: 00        .byte $00   ; 
+- - - - - - 0x02EE5B 0B:AE4B: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02EE5C 0B:AE4C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EE5D 0B:AE4D: 08        .byte $08   ; 
+- D 1 - I - 0x02EE5C 0B:AE4C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EE5D 0B:AE4D: 08        .byte $08   ; timer
 - - - - - - 0x02EE5E 0B:AE4E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE5F 0B:AE4F: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02EE60 0B:AE50: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EE60 0B:AE50: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EE61 0B:AE51: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE62 0B:AE52: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE63 0B:AE53: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02EE64 0B:AE54: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02EE65 0B:AE55: 00        .byte $00   ; 
-- - - - - - 0x02EE66 0B:AE56: 00        .byte $00   ; 
-- - - - - - 0x02EE67 0B:AE57: 00        .byte $00   ; 
+- D 1 - I - 0x02EE64 0B:AE54: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02EE65 0B:AE55: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE66 0B:AE56: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE67 0B:AE57: 00        .byte $00   ; placeholder
 
 
 
-_off034_AE58_26_swamp_frog:
-; con_BEA1_swamp_frog
+_off034_ai_script_AE58_26_swamp_frog:
+; con_ai_script_swamp_frog
 ; 00 
-- D 1 - I - 0x02EE68 0B:AE58: A7        .byte con_BD4F_A7   ; 
+- D 1 - I - 0x02EE68 0B:AE58: A7        .byte con_ai_subscr_A7   ; 
 - D 1 - I - 0x02EE69 0B:AE59: 05        .byte $05   ; 
 - D 1 - I - 0x02EE6A 0B:AE5A: 00        .byte $00   ; 
-- - - - - - 0x02EE6B 0B:AE5B: 00        .byte $00   ; 
+- - - - - - 0x02EE6B 0B:AE5B: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EE6C 0B:AE5C: 89        .byte con_BD4F_89   ; 
-- D 1 - I - 0x02EE6D 0B:AE5D: A8        .byte $A8   ; 
-- - - - - - 0x02EE6E 0B:AE5E: 00        .byte $00   ; 
-- - - - - - 0x02EE6F 0B:AE5F: 00        .byte $00   ; 
+- D 1 - I - 0x02EE6C 0B:AE5C: 89        .byte con_ai_subscr_89   ; 
+- D 1 - I - 0x02EE6D 0B:AE5D: A8        .byte $A8   ; pos_Y_lo
+- - - - - - 0x02EE6E 0B:AE5E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE6F 0B:AE5F: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EE70 0B:AE60: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02EE71 0B:AE61: 00        .byte $00   ; 
-- - - - - - 0x02EE72 0B:AE62: 00        .byte $00   ; 
-- - - - - - 0x02EE73 0B:AE63: 00        .byte $00   ; 
+- D 1 - I - 0x02EE70 0B:AE60: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02EE71 0B:AE61: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE72 0B:AE62: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE73 0B:AE63: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EE74 0B:AE64: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02EE75 0B:AE65: 22        .byte con_sound_water_splash_1   ; 
+- D 1 - I - 0x02EE74 0B:AE64: 6C        .byte con_ai_subscr_play_sound   ; 
+- D 1 - I - 0x02EE75 0B:AE65: 22        .byte con_sfx_water_splash_1   ; 
 - - - - - - 0x02EE76 0B:AE66: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE77 0B:AE67: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EE78 0B:AE68: 5B        .byte con_BD4F_5B   ; 
-- D 1 - I - 0x02EE79 0B:AE69: 01        .byte $01   ; 
-- - - - - - 0x02EE7A 0B:AE6A: 00        .byte $00   ; 
-- - - - - - 0x02EE7B 0B:AE6B: 00        .byte $00   ; 
+- D 1 - I - 0x02EE78 0B:AE68: 5B        .byte con_ai_subscr_5B   ; 
+- D 1 - I - 0x02EE79 0B:AE69: 01        .byte $01   ; table index for object speed
+- - - - - - 0x02EE7A 0B:AE6A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE7B 0B:AE6B: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EE7C 0B:AE6C: 68        .byte con_BD4F_68   ; 
-- D 1 - I - 0x02EE7D 0B:AE6D: 00        .byte $00   ; 
+- D 1 - I - 0x02EE7C 0B:AE6C: 68        .byte con_ai_subscr_68   ; 
+- D 1 - I - 0x02EE7D 0B:AE6D: 00        .byte $00   ; pos_Y_lo
 - D 1 - I - 0x02EE7E 0B:AE6E: 67        .byte $67   ; 
-- - - - - - 0x02EE7F 0B:AE6F: 00        .byte $00   ; 
+- - - - - - 0x02EE7F 0B:AE6F: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02EE80 0B:AE70: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02EE81 0B:AE71: 00        .byte $00   ; 
-- - - - - - 0x02EE82 0B:AE72: 00        .byte $00   ; 
-- - - - - - 0x02EE83 0B:AE73: 00        .byte $00   ; 
+- D 1 - I - 0x02EE80 0B:AE70: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02EE81 0B:AE71: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE82 0B:AE72: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE83 0B:AE73: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02EE84 0B:AE74: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EE84 0B:AE74: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EE85 0B:AE75: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EE86 0B:AE76: 12        .byte $12   ; 
-- - - - - - 0x02EE87 0B:AE77: 00        .byte $00   ; 
+- - - - - - 0x02EE87 0B:AE77: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02EE88 0B:AE78: 5C        .byte con_BD4F_5C   ; 
-- - - - - - 0x02EE89 0B:AE79: 00        .byte $00   ; 
-- - - - - - 0x02EE8A 0B:AE7A: 00        .byte $00   ; 
-- - - - - - 0x02EE8B 0B:AE7B: 00        .byte $00   ; 
+- D 1 - I - 0x02EE88 0B:AE78: 5C        .byte con_ai_subscr_5C   ; 
+- - - - - - 0x02EE89 0B:AE79: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE8A 0B:AE7A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EE8B 0B:AE7B: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02EE8C 0B:AE7C: 68        .byte con_BD4F_68   ; 
-- D 1 - I - 0x02EE8D 0B:AE7D: 00        .byte $00   ; 
+- D 1 - I - 0x02EE8C 0B:AE7C: 68        .byte con_ai_subscr_68   ; 
+- D 1 - I - 0x02EE8D 0B:AE7D: 00        .byte $00   ; pos_Y_lo
 - D 1 - I - 0x02EE8E 0B:AE7E: 67        .byte $67   ; 
-- - - - - - 0x02EE8F 0B:AE7F: 00        .byte $00   ; 
+- - - - - - 0x02EE8F 0B:AE7F: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02EE90 0B:AE80: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EE91 0B:AE81: 06        .byte $06   ; 
+- D 1 - I - 0x02EE90 0B:AE80: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EE91 0B:AE81: 06        .byte $06   ; timer
 - - - - - - 0x02EE92 0B:AE82: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE93 0B:AE83: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02EE94 0B:AE84: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EE94 0B:AE84: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EE95 0B:AE85: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE96 0B:AE86: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE97 0B:AE87: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02EE98 0B:AE88: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EE98 0B:AE88: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EE99 0B:AE89: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EE9A 0B:AE8A: 10        .byte $10   ; 
-- - - - - - 0x02EE9B 0B:AE8B: 00        .byte $00   ; 
+- - - - - - 0x02EE9B 0B:AE8B: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02EE9C 0B:AE8C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EE9D 0B:AE8D: 20        .byte $20   ; 
+- D 1 - I - 0x02EE9C 0B:AE8C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EE9D 0B:AE8D: 20        .byte $20   ; timer
 - - - - - - 0x02EE9E 0B:AE8E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EE9F 0B:AE8F: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02EEA0 0B:AE90: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EEA0 0B:AE90: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EEA1 0B:AE91: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEA2 0B:AE92: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEA3 0B:AE93: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02EEA4 0B:AE94: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02EEA5 0B:AE95: 00        .byte $00   ; 
-- - - - - - 0x02EEA6 0B:AE96: 00        .byte $00   ; 
-- - - - - - 0x02EEA7 0B:AE97: 00        .byte $00   ; 
+- D 1 - I - 0x02EEA4 0B:AE94: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02EEA5 0B:AE95: 00        .byte $00   ; placeholder
+- - - - - - 0x02EEA6 0B:AE96: 00        .byte $00   ; placeholder
+- - - - - - 0x02EEA7 0B:AE97: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02EEA8 0B:AE98: 5B        .byte con_BD4F_5B   ; 
-- D 1 - I - 0x02EEA9 0B:AE99: 00        .byte $00   ; 
-- - - - - - 0x02EEAA 0B:AE9A: 00        .byte $00   ; 
-- - - - - - 0x02EEAB 0B:AE9B: 00        .byte $00   ; 
+- D 1 - I - 0x02EEA8 0B:AE98: 5B        .byte con_ai_subscr_5B   ; 
+- D 1 - I - 0x02EEA9 0B:AE99: 00        .byte $00   ; table index for object speed
+- - - - - - 0x02EEAA 0B:AE9A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EEAB 0B:AE9B: 00        .byte $00   ; placeholder
 ; 11 
-- D 1 - I - 0x02EEAC 0B:AE9C: 68        .byte con_BD4F_68   ; 
-- D 1 - I - 0x02EEAD 0B:AE9D: 00        .byte $00   ; 
+- D 1 - I - 0x02EEAC 0B:AE9C: 68        .byte con_ai_subscr_68   ; 
+- D 1 - I - 0x02EEAD 0B:AE9D: 00        .byte $00   ; pos_Y_lo
 - D 1 - I - 0x02EEAE 0B:AE9E: 67        .byte $67   ; 
-- - - - - - 0x02EEAF 0B:AE9F: 00        .byte $00   ; 
+- - - - - - 0x02EEAF 0B:AE9F: 00        .byte $00   ; placeholder
 ; 12 
-- D 1 - I - 0x02EEB0 0B:AEA0: 2A        .byte con_BD4F_2A   ; 
-- - - - - - 0x02EEB1 0B:AEA1: 00        .byte $00   ; 
-- - - - - - 0x02EEB2 0B:AEA2: 00        .byte $00   ; 
-- - - - - - 0x02EEB3 0B:AEA3: 00        .byte $00   ; 
+- D 1 - I - 0x02EEB0 0B:AEA0: 2A        .byte con_ai_subscr_2A_set_obj_flag_40   ; 
+- - - - - - 0x02EEB1 0B:AEA1: 00        .byte $00   ; placeholder
+- - - - - - 0x02EEB2 0B:AEA2: 00        .byte $00   ; placeholder
+- - - - - - 0x02EEB3 0B:AEA3: 00        .byte $00   ; placeholder
 ; 13 
-- D 1 - I - 0x02EEB4 0B:AEA4: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EEB4 0B:AEA4: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EEB5 0B:AEA5: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EEB6 0B:AEA6: 12        .byte $12   ; 
-- - - - - - 0x02EEB7 0B:AEA7: 00        .byte $00   ; 
+- - - - - - 0x02EEB7 0B:AEA7: 00        .byte $00   ; placeholder
 ; 14 
-- D 1 - I - 0x02EEB8 0B:AEA8: 5C        .byte con_BD4F_5C   ; 
-- - - - - - 0x02EEB9 0B:AEA9: 00        .byte $00   ; 
-- - - - - - 0x02EEBA 0B:AEAA: 00        .byte $00   ; 
-- - - - - - 0x02EEBB 0B:AEAB: 00        .byte $00   ; 
+- D 1 - I - 0x02EEB8 0B:AEA8: 5C        .byte con_ai_subscr_5C   ; 
+- - - - - - 0x02EEB9 0B:AEA9: 00        .byte $00   ; placeholder
+- - - - - - 0x02EEBA 0B:AEAA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EEBB 0B:AEAB: 00        .byte $00   ; placeholder
 ; 15 
-- D 1 - I - 0x02EEBC 0B:AEAC: 68        .byte con_BD4F_68   ; 
-- D 1 - I - 0x02EEBD 0B:AEAD: 00        .byte $00   ; 
+- D 1 - I - 0x02EEBC 0B:AEAC: 68        .byte con_ai_subscr_68   ; 
+- D 1 - I - 0x02EEBD 0B:AEAD: 00        .byte $00   ; pos_Y_lo
 - D 1 - I - 0x02EEBE 0B:AEAE: 67        .byte $67   ; 
-- - - - - - 0x02EEBF 0B:AEAF: 00        .byte $00   ; 
+- - - - - - 0x02EEBF 0B:AEAF: 00        .byte $00   ; placeholder
 ; 16 
-- D 1 - I - 0x02EEC0 0B:AEB0: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EEC0 0B:AEB0: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EEC1 0B:AEB1: 0A        .byte $0A   ; 
-- - - - - - 0x02EEC2 0B:AEB2: 00        .byte $00   ; 
-- - - - - - 0x02EEC3 0B:AEB3: 00        .byte $00   ; 
+- - - - - - 0x02EEC2 0B:AEB2: 00        .byte $00   ; placeholder
+- - - - - - 0x02EEC3 0B:AEB3: 00        .byte $00   ; placeholder
 ; 17 
-- D 1 - I - 0x02EEC4 0B:AEB4: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EEC4 0B:AEB4: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EEC5 0B:AEB5: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EEC6 0B:AEB6: 60        .byte $60   ; 
-- - - - - - 0x02EEC7 0B:AEB7: 00        .byte $00   ; 
+- - - - - - 0x02EEC7 0B:AEB7: 00        .byte $00   ; placeholder
 ; 18 
-- D 1 - I - 0x02EEC8 0B:AEB8: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EEC9 0B:AEB9: 02        .byte $02   ; 
+- D 1 - I - 0x02EEC8 0B:AEB8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EEC9 0B:AEB9: 02        .byte $02   ; timer
 - - - - - - 0x02EECA 0B:AEBA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EECB 0B:AEBB: 00        .byte $00   ; placeholder
 ; 19 
-- D 1 - I - 0x02EECC 0B:AEBC: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EECC 0B:AEBC: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EECD 0B:AEBD: 00        .byte $00   ; placeholder
 - - - - - - 0x02EECE 0B:AEBE: 00        .byte $00   ; placeholder
 - - - - - - 0x02EECF 0B:AEBF: 00        .byte $00   ; placeholder
 ; 1A 
-- D 1 - I - 0x02EED0 0B:AEC0: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EED0 0B:AEC0: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EED1 0B:AEC1: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EED2 0B:AEC2: 62        .byte $62   ; 
-- - - - - - 0x02EED3 0B:AEC3: 00        .byte $00   ; 
+- - - - - - 0x02EED3 0B:AEC3: 00        .byte $00   ; placeholder
 ; 1B 
-- D 1 - I - 0x02EED4 0B:AEC4: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EED5 0B:AEC5: 02        .byte $02   ; 
+- D 1 - I - 0x02EED4 0B:AEC4: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EED5 0B:AEC5: 02        .byte $02   ; timer
 - - - - - - 0x02EED6 0B:AEC6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EED7 0B:AEC7: 00        .byte $00   ; placeholder
 ; 1C 
-- D 1 - I - 0x02EED8 0B:AEC8: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EED8 0B:AEC8: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EED9 0B:AEC9: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEDA 0B:AECA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEDB 0B:AECB: 00        .byte $00   ; placeholder
 ; 1D 
-- D 1 - I - 0x02EEDC 0B:AECC: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EEDC 0B:AECC: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EEDD 0B:AECD: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EEDE 0B:AECE: FA        .byte $FA   ; 
-- - - - - - 0x02EEDF 0B:AECF: 00        .byte $00   ; 
+- - - - - - 0x02EEDF 0B:AECF: 00        .byte $00   ; placeholder
 ; 1E 
-- D 1 - I - 0x02EEE0 0B:AED0: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EEE1 0B:AED1: 02        .byte $02   ; 
+- D 1 - I - 0x02EEE0 0B:AED0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EEE1 0B:AED1: 02        .byte $02   ; timer
 - - - - - - 0x02EEE2 0B:AED2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEE3 0B:AED3: 00        .byte $00   ; placeholder
 ; 1F 
-- D 1 - I - 0x02EEE4 0B:AED4: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EEE4 0B:AED4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EEE5 0B:AED5: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEE6 0B:AED6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEE7 0B:AED7: 00        .byte $00   ; placeholder
 ; 20 
-- D 1 - I - 0x02EEE8 0B:AED8: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EEE8 0B:AED8: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EEE9 0B:AED9: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EEEA 0B:AEDA: FC        .byte $FC   ; 
-- - - - - - 0x02EEEB 0B:AEDB: 00        .byte $00   ; 
+- - - - - - 0x02EEEB 0B:AEDB: 00        .byte $00   ; placeholder
 ; 21 
-- D 1 - I - 0x02EEEC 0B:AEDC: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EEED 0B:AEDD: 02        .byte $02   ; 
+- D 1 - I - 0x02EEEC 0B:AEDC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EEED 0B:AEDD: 02        .byte $02   ; timer
 - - - - - - 0x02EEEE 0B:AEDE: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEEF 0B:AEDF: 00        .byte $00   ; placeholder
 ; 22 
-- D 1 - I - 0x02EEF0 0B:AEE0: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EEF0 0B:AEE0: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EEF1 0B:AEE1: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEF2 0B:AEE2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEF3 0B:AEE3: 00        .byte $00   ; placeholder
 ; 23 
-- D 1 - I - 0x02EEF4 0B:AEE4: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EEF4 0B:AEE4: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EEF5 0B:AEE5: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EEF6 0B:AEE6: FA        .byte $FA   ; 
-- - - - - - 0x02EEF7 0B:AEE7: 00        .byte $00   ; 
+- - - - - - 0x02EEF7 0B:AEE7: 00        .byte $00   ; placeholder
 ; 24 
-- D 1 - I - 0x02EEF8 0B:AEE8: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EEF9 0B:AEE9: 02        .byte $02   ; 
+- D 1 - I - 0x02EEF8 0B:AEE8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EEF9 0B:AEE9: 02        .byte $02   ; timer
 - - - - - - 0x02EEFA 0B:AEEA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEFB 0B:AEEB: 00        .byte $00   ; placeholder
 ; 25 
-- D 1 - I - 0x02EEFC 0B:AEEC: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EEFC 0B:AEEC: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EEFD 0B:AEED: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEFE 0B:AEEE: 00        .byte $00   ; placeholder
 - - - - - - 0x02EEFF 0B:AEEF: 00        .byte $00   ; placeholder
 ; 26 
-- D 1 - I - 0x02EF00 0B:AEF0: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EF00 0B:AEF0: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EF01 0B:AEF1: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02EF02 0B:AEF2: 62        .byte $62   ; 
-- - - - - - 0x02EF03 0B:AEF3: 00        .byte $00   ; 
+- - - - - - 0x02EF03 0B:AEF3: 00        .byte $00   ; placeholder
 ; 27 
-- D 1 - I - 0x02EF04 0B:AEF4: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EF05 0B:AEF5: 02        .byte $02   ; 
+- D 1 - I - 0x02EF04 0B:AEF4: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EF05 0B:AEF5: 02        .byte $02   ; timer
 - - - - - - 0x02EF06 0B:AEF6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF07 0B:AEF7: 00        .byte $00   ; placeholder
 ; 28 
-- D 1 - I - 0x02EF08 0B:AEF8: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EF08 0B:AEF8: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EF09 0B:AEF9: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF0A 0B:AEFA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF0B 0B:AEFB: 00        .byte $00   ; placeholder
 ; 29 
-- D 1 - I - 0x02EF0C 0B:AEFC: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EF0C 0B:AEFC: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EF0D 0B:AEFD: 0A        .byte $0A   ; 
-- - - - - - 0x02EF0E 0B:AEFE: 00        .byte $00   ; 
-- - - - - - 0x02EF0F 0B:AEFF: 00        .byte $00   ; 
+- - - - - - 0x02EF0E 0B:AEFE: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF0F 0B:AEFF: 00        .byte $00   ; placeholder
 ; 2A 
-- D 1 - I - 0x02EF10 0B:AF00: 68        .byte con_BD4F_68   ; 
-- D 1 - I - 0x02EF11 0B:AF01: 00        .byte $00   ; 
+- D 1 - I - 0x02EF10 0B:AF00: 68        .byte con_ai_subscr_68   ; 
+- D 1 - I - 0x02EF11 0B:AF01: 00        .byte $00   ; pos_Y_lo
 - D 1 - I - 0x02EF12 0B:AF02: 67        .byte $67   ; 
-- - - - - - 0x02EF13 0B:AF03: 00        .byte $00   ; 
+- - - - - - 0x02EF13 0B:AF03: 00        .byte $00   ; placeholder
 ; 2B 
-- D 1 - I - 0x02EF14 0B:AF04: 8A        .byte con_BD4F_8A   ; 
-- - - - - - 0x02EF15 0B:AF05: 00        .byte $00   ; 
-- - - - - - 0x02EF16 0B:AF06: 00        .byte $00   ; 
-- - - - - - 0x02EF17 0B:AF07: 00        .byte $00   ; 
+- D 1 - I - 0x02EF14 0B:AF04: 8A        .byte con_ai_subscr_8A   ; 
+- - - - - - 0x02EF15 0B:AF05: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF16 0B:AF06: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF17 0B:AF07: 00        .byte $00   ; placeholder
 ; 2C 
-- D 1 - I - 0x02EF18 0B:AF08: A8        .byte con_BD4F_A8   ; 
-- D 1 - I - 0x02EF19 0B:AF09: C0        .byte $C0   ; 
-- - - - - - 0x02EF1A 0B:AF0A: 00        .byte $00   ; 
-- - - - - - 0x02EF1B 0B:AF0B: 00        .byte $00   ; 
+- D 1 - I - 0x02EF18 0B:AF08: A8        .byte con_ai_subscr_A8_delete_object   ; 
+- D 1 - I - 0x02EF19 0B:AF09: C0        .byte $C0   ; pos_Y_lo compare
+- - - - - - 0x02EF1A 0B:AF0A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF1B 0B:AF0B: 00        .byte $00   ; placeholder
 
 
 
-_off034_AF0C_1D:
-; con_BEA1_1D
+_off034_ai_script_AF0C_1D:
+; con_ai_script_1D
 ; 00 
-- D 1 - I - 0x02EF1C 0B:AF0C: 96        .byte con_BD4F_96   ; 
-- - - - - - 0x02EF1D 0B:AF0D: 00        .byte $00   ; 
-- - - - - - 0x02EF1E 0B:AF0E: 00        .byte $00   ; 
-- - - - - - 0x02EF1F 0B:AF0F: 00        .byte $00   ; 
+- D 1 - I - 0x02EF1C 0B:AF0C: 96        .byte con_ai_subscr_96   ; 
+- - - - - - 0x02EF1D 0B:AF0D: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF1E 0B:AF0E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF1F 0B:AF0F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EF20 0B:AF10: 50        .byte con_BD4F_50   ; 
-- D 1 - I - 0x02EF21 0B:AF11: 00        .byte $00   ; 
-- - - - - - 0x02EF22 0B:AF12: 00        .byte $00   ; 
-- - - - - - 0x02EF23 0B:AF13: 00        .byte $00   ; 
+- D 1 - I - 0x02EF20 0B:AF10: 50        .byte con_ai_subscr_50   ; 
+- D 1 - I - 0x02EF21 0B:AF11: 00        .byte $00   ; table_index for_spd_Y
+- - - - - - 0x02EF22 0B:AF12: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF23 0B:AF13: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EF24 0B:AF14: 53        .byte con_BD4F_53   ; 
-- - - - - - 0x02EF25 0B:AF15: 00        .byte $00   ; 
-- - - - - - 0x02EF26 0B:AF16: 00        .byte $00   ; 
-- - - - - - 0x02EF27 0B:AF17: 00        .byte $00   ; 
+- D 1 - I - 0x02EF24 0B:AF14: 53        .byte con_ai_subscr_53_clear_obj_flag_10   ; 
+- - - - - - 0x02EF25 0B:AF15: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF26 0B:AF16: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF27 0B:AF17: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EF28 0B:AF18: 51        .byte con_BD4F_51   ; 
-- - - - - - 0x02EF29 0B:AF19: 00        .byte $00   ; 
-- - - - - - 0x02EF2A 0B:AF1A: 00        .byte $00   ; 
-- - - - - - 0x02EF2B 0B:AF1B: 00        .byte $00   ; 
+- D 1 - I - 0x02EF28 0B:AF18: 51        .byte con_ai_subscr_51   ; 
+- - - - - - 0x02EF29 0B:AF19: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF2A 0B:AF1A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF2B 0B:AF1B: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EF2C 0B:AF1C: 01        .byte con_BD4F_01   ; 
-- - - - - - 0x02EF2D 0B:AF1D: 00        .byte $00   ; 
-- - - - - - 0x02EF2E 0B:AF1E: 00        .byte $00   ; 
-- - - - - - 0x02EF2F 0B:AF1F: 00        .byte $00   ; 
+- D 1 - I - 0x02EF2C 0B:AF1C: 01        .byte con_ai_subscr_01   ; 
+- - - - - - 0x02EF2D 0B:AF1D: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF2E 0B:AF1E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF2F 0B:AF1F: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EF30 0B:AF20: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EF31 0B:AF21: 10        .byte $10   ; 
+- D 1 - I - 0x02EF30 0B:AF20: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EF31 0B:AF21: 10        .byte $10   ; timer
 - - - - - - 0x02EF32 0B:AF22: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF33 0B:AF23: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02EF34 0B:AF24: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EF34 0B:AF24: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EF35 0B:AF25: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF36 0B:AF26: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF37 0B:AF27: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02EF38 0B:AF28: 9A        .byte con_BD4F_9A   ; 
-- D 1 - I - 0x02EF39 0B:AF29: 06        .byte $06   ; 
-- - - - - - 0x02EF3A 0B:AF2A: 00        .byte $00   ; 
-- - - - - - 0x02EF3B 0B:AF2B: 00        .byte $00   ; 
+- D 1 - I - 0x02EF38 0B:AF28: 9A        .byte con_ai_subscr_9A   ; 
+- D 1 - I - 0x02EF39 0B:AF29: 06        .byte con_8E6F_06   ; 
+- - - - - - 0x02EF3A 0B:AF2A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF3B 0B:AF2B: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02EF3C 0B:AF2C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EF3D 0B:AF2D: 10        .byte $10   ; 
+- D 1 - I - 0x02EF3C 0B:AF2C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EF3D 0B:AF2D: 10        .byte $10   ; timer
 - - - - - - 0x02EF3E 0B:AF2E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF3F 0B:AF2F: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02EF40 0B:AF30: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EF40 0B:AF30: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EF41 0B:AF31: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF42 0B:AF32: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF43 0B:AF33: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02EF44 0B:AF34: 50        .byte con_BD4F_50   ; 
-- D 1 - I - 0x02EF45 0B:AF35: 01        .byte $01   ; 
-- - - - - - 0x02EF46 0B:AF36: 00        .byte $00   ; 
-- - - - - - 0x02EF47 0B:AF37: 00        .byte $00   ; 
+- D 1 - I - 0x02EF44 0B:AF34: 50        .byte con_ai_subscr_50   ; 
+- D 1 - I - 0x02EF45 0B:AF35: 01        .byte $01   ; table_index for_spd_Y
+- - - - - - 0x02EF46 0B:AF36: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF47 0B:AF37: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02EF48 0B:AF38: 51        .byte con_BD4F_51   ; 
-- - - - - - 0x02EF49 0B:AF39: 00        .byte $00   ; 
-- - - - - - 0x02EF4A 0B:AF3A: 00        .byte $00   ; 
-- - - - - - 0x02EF4B 0B:AF3B: 00        .byte $00   ; 
+- D 1 - I - 0x02EF48 0B:AF38: 51        .byte con_ai_subscr_51   ; 
+- - - - - - 0x02EF49 0B:AF39: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF4A 0B:AF3A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF4B 0B:AF3B: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02EF4C 0B:AF3C: 22        .byte con_BD4F_22   ; 
+- D 1 - I - 0x02EF4C 0B:AF3C: 22        .byte con_ai_subscr_22   ; 
 - D 1 - I - 0x02EF4D 0B:AF3D: 08        .byte $08   ; 
-- - - - - - 0x02EF4E 0B:AF3E: 00        .byte $00   ; 
-- - - - - - 0x02EF4F 0B:AF3F: 00        .byte $00   ; 
+- - - - - - 0x02EF4E 0B:AF3E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF4F 0B:AF3F: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02EF50 0B:AF40: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02EF51 0B:AF41: 00        .byte $00   ; 
-- - - - - - 0x02EF52 0B:AF42: 00        .byte $00   ; 
-- - - - - - 0x02EF53 0B:AF43: 00        .byte $00   ; 
+- D 1 - I - 0x02EF50 0B:AF40: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02EF51 0B:AF41: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF52 0B:AF42: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF53 0B:AF43: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02EF54 0B:AF44: 08        .byte con_BD4F_08   ; 
-- D 1 - I - 0x02EF55 0B:AF45: 00        .byte $00   ; 
-- - - - - - 0x02EF56 0B:AF46: 00        .byte $00   ; 
-- - - - - - 0x02EF57 0B:AF47: 00        .byte $00   ; 
+- D 1 - I - 0x02EF54 0B:AF44: 08        .byte con_ai_subscr_08   ; 
+- D 1 - I - 0x02EF55 0B:AF45: 00        .byte $00   ; handler index
+- - - - - - 0x02EF56 0B:AF46: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF57 0B:AF47: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02EF58 0B:AF48: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EF58 0B:AF48: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EF59 0B:AF49: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF5A 0B:AF4A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF5B 0B:AF4B: 00        .byte $00   ; placeholder
 ; 10 
-- D 1 - I - 0x02EF5C 0B:AF4C: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EF5C 0B:AF4C: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EF5D 0B:AF4D: 00        .byte $00   ; 
-- - - - - - 0x02EF5E 0B:AF4E: 00        .byte $00   ; 
-- - - - - - 0x02EF5F 0B:AF4F: 00        .byte $00   ; 
+- - - - - - 0x02EF5E 0B:AF4E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF5F 0B:AF4F: 00        .byte $00   ; placeholder
 
 
 
-_off034_AF50_16:
-; con_BEA1_16
+_off034_ai_script_AF50_16:
+; con_ai_script_16
 ; 00 
-- D 1 - I - 0x02EF60 0B:AF50: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EF60 0B:AF50: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EF61 0B:AF51: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EF62 0B:AF52: 14        .byte $14   ; 
-- - - - - - 0x02EF63 0B:AF53: 00        .byte $00   ; 
+- - - - - - 0x02EF63 0B:AF53: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EF64 0B:AF54: 54        .byte con_BD4F_54   ; 
-- - - - - - 0x02EF65 0B:AF55: 00        .byte $00   ; 
-- - - - - - 0x02EF66 0B:AF56: 00        .byte $00   ; 
-- - - - - - 0x02EF67 0B:AF57: 00        .byte $00   ; 
+- D 1 - I - 0x02EF64 0B:AF54: 54        .byte con_ai_subscr_54_set_obj_flag_10   ; 
+- - - - - - 0x02EF65 0B:AF55: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF66 0B:AF56: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF67 0B:AF57: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EF68 0B:AF58: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EF69 0B:AF59: 3A        .byte $3A   ; 
+- D 1 - I - 0x02EF68 0B:AF58: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EF69 0B:AF59: 3A        .byte $3A   ; timer
 - - - - - - 0x02EF6A 0B:AF5A: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF6B 0B:AF5B: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EF6C 0B:AF5C: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EF6C 0B:AF5C: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EF6D 0B:AF5D: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF6E 0B:AF5E: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF6F 0B:AF5F: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EF70 0B:AF60: 53        .byte con_BD4F_53   ; 
-- - - - - - 0x02EF71 0B:AF61: 00        .byte $00   ; 
-- - - - - - 0x02EF72 0B:AF62: 00        .byte $00   ; 
-- - - - - - 0x02EF73 0B:AF63: 00        .byte $00   ; 
+- D 1 - I - 0x02EF70 0B:AF60: 53        .byte con_ai_subscr_53_clear_obj_flag_10   ; 
+- - - - - - 0x02EF71 0B:AF61: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF72 0B:AF62: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF73 0B:AF63: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02EF74 0B:AF64: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EF75 0B:AF65: 20        .byte $20   ; 
+- D 1 - I - 0x02EF74 0B:AF64: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EF75 0B:AF65: 20        .byte $20   ; timer
 - - - - - - 0x02EF76 0B:AF66: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF77 0B:AF67: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02EF78 0B:AF68: 07        .byte con_BD4F_07   ; 
+- D 1 - I - 0x02EF78 0B:AF68: 07        .byte con_ai_subscr_07   ; 
 - D 1 - I - 0x02EF79 0B:AF69: 00 70     .dbyt $0070 ; spd_X
-- - - - - - 0x02EF7B 0B:AF6B: 00        .byte $00   ; 
+- - - - - - 0x02EF7B 0B:AF6B: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02EF7C 0B:AF6C: 2F        .byte con_BD4F_2F   ; 
-- - - - - - 0x02EF7D 0B:AF6D: 00        .byte $00   ; 
-- - - - - - 0x02EF7E 0B:AF6E: 00        .byte $00   ; 
-- - - - - - 0x02EF7F 0B:AF6F: 00        .byte $00   ; 
+- D 1 - I - 0x02EF7C 0B:AF6C: 2F        .byte con_ai_subscr_2F   ; 
+- - - - - - 0x02EF7D 0B:AF6D: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF7E 0B:AF6E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF7F 0B:AF6F: 00        .byte $00   ; placeholder
 ; 08 
-- D 1 - I - 0x02EF80 0B:AF70: 05        .byte con_BD4F_05   ; 
-- - - - - - 0x02EF81 0B:AF71: 00        .byte $00   ; 
-- - - - - - 0x02EF82 0B:AF72: 00        .byte $00   ; 
-- - - - - - 0x02EF83 0B:AF73: 00        .byte $00   ; 
+- D 1 - I - 0x02EF80 0B:AF70: 05        .byte con_ai_subscr_05   ; 
+- - - - - - 0x02EF81 0B:AF71: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF82 0B:AF72: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF83 0B:AF73: 00        .byte $00   ; placeholder
 ; 09 
-- D 1 - I - 0x02EF84 0B:AF74: 2D        .byte con_BD4F_2D   ; 
-- - - - - - 0x02EF85 0B:AF75: 00        .byte $00   ; 
-- - - - - - 0x02EF86 0B:AF76: 00        .byte $00   ; 
-- - - - - - 0x02EF87 0B:AF77: 00        .byte $00   ; 
+- D 1 - I - 0x02EF84 0B:AF74: 2D        .byte con_ai_subscr_2D_clear_f40_set_f20   ; 
+- - - - - - 0x02EF85 0B:AF75: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF86 0B:AF76: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF87 0B:AF77: 00        .byte $00   ; placeholder
 ; 0A 
-- D 1 - I - 0x02EF88 0B:AF78: 97        .byte con_BD4F_97   ; 
-- - - - - - 0x02EF89 0B:AF79: 00        .byte $00   ; 
-- - - - - - 0x02EF8A 0B:AF7A: 00        .byte $00   ; 
-- - - - - - 0x02EF8B 0B:AF7B: 00        .byte $00   ; 
+- D 1 - I - 0x02EF88 0B:AF78: 97        .byte con_ai_subscr_97_clear_XY_speed   ; 
+- - - - - - 0x02EF89 0B:AF79: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF8A 0B:AF7A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF8B 0B:AF7B: 00        .byte $00   ; placeholder
 ; 0B 
-- D 1 - I - 0x02EF8C 0B:AF7C: 0D        .byte con_BD4F_0D   ; 
-- D 1 - I - 0x02EF8D 0B:AF7D: 05        .byte $05   ; 
-- - - - - - 0x02EF8E 0B:AF7E: 00        .byte $00   ; 
-- - - - - - 0x02EF8F 0B:AF7F: 00        .byte $00   ; 
+- D 1 - I - 0x02EF8C 0B:AF7C: 0D        .byte con_ai_subscr_0D   ; 
+- D 1 - I - 0x02EF8D 0B:AF7D: 05        .byte con_8E6F_05   ; 
+- - - - - - 0x02EF8E 0B:AF7E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF8F 0B:AF7F: 00        .byte $00   ; placeholder
 ; 0C 
-- D 1 - I - 0x02EF90 0B:AF80: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EF91 0B:AF81: 18        .byte $18   ; 
+- D 1 - I - 0x02EF90 0B:AF80: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EF91 0B:AF81: 18        .byte $18   ; timer
 - - - - - - 0x02EF92 0B:AF82: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF93 0B:AF83: 00        .byte $00   ; placeholder
 ; 0D 
-- D 1 - I - 0x02EF94 0B:AF84: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EF94 0B:AF84: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EF95 0B:AF85: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF96 0B:AF86: 00        .byte $00   ; placeholder
 - - - - - - 0x02EF97 0B:AF87: 00        .byte $00   ; placeholder
 ; 0E 
-- D 1 - I - 0x02EF98 0B:AF88: 08        .byte con_BD4F_08   ; 
-- D 1 - I - 0x02EF99 0B:AF89: 03        .byte $03   ; 
-- - - - - - 0x02EF9A 0B:AF8A: 00        .byte $00   ; 
-- - - - - - 0x02EF9B 0B:AF8B: 00        .byte $00   ; 
+- D 1 - I - 0x02EF98 0B:AF88: 08        .byte con_ai_subscr_08   ; 
+- D 1 - I - 0x02EF99 0B:AF89: 03        .byte $03   ; handler index
+- - - - - - 0x02EF9A 0B:AF8A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF9B 0B:AF8B: 00        .byte $00   ; placeholder
 ; 0F 
-- D 1 - I - 0x02EF9C 0B:AF8C: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02EF9C 0B:AF8C: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02EF9D 0B:AF8D: 06        .byte $06   ; 
-- - - - - - 0x02EF9E 0B:AF8E: 00        .byte $00   ; 
-- - - - - - 0x02EF9F 0B:AF8F: 00        .byte $00   ; 
+- - - - - - 0x02EF9E 0B:AF8E: 00        .byte $00   ; placeholder
+- - - - - - 0x02EF9F 0B:AF8F: 00        .byte $00   ; placeholder
 
 
 
-_off034_AF90_30:
-; con_BEA1_30
+_off034_ai_script_AF90_30:
+; con_ai_script_30
 ; 00 
-- D 1 - I - 0x02EFA0 0B:AF90: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EFA0 0B:AF90: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EFA1 0B:AF91: 0E        .byte con_obj_type_0E   ; 
 - D 1 - I - 0x02EFA2 0B:AF92: 00        .byte $00   ; 
-- - - - - - 0x02EFA3 0B:AF93: 00        .byte $00   ; 
+- - - - - - 0x02EFA3 0B:AF93: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EFA4 0B:AF94: 55        .byte con_BD4F_55   ; 
+- D 1 - I - 0x02EFA4 0B:AF94: 55        .byte con_ai_subscr_55   ; 
 - D 1 - I - 0x02EFA5 0B:AF95: 01        .byte $01   ; 
-- - - - - - 0x02EFA6 0B:AF96: 00        .byte $00   ; 
-- - - - - - 0x02EFA7 0B:AF97: 00        .byte $00   ; 
+- - - - - - 0x02EFA6 0B:AF96: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFA7 0B:AF97: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EFA8 0B:AF98: A0        .byte con_BD4F_A0   ; 
-- - - - - - 0x02EFA9 0B:AF99: 00        .byte $00   ; 
-- - - - - - 0x02EFAA 0B:AF9A: 00        .byte $00   ; 
-- - - - - - 0x02EFAB 0B:AF9B: 00        .byte $00   ; 
+- D 1 - I - 0x02EFA8 0B:AF98: A0        .byte con_ai_subscr_A0   ; 
+- - - - - - 0x02EFA9 0B:AF99: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFAA 0B:AF9A: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFAB 0B:AF9B: 00        .byte $00   ; placeholder
 
 
 
-_off034_AF9C_31:
-; con_BEA1_31
+_off034_ai_script_AF9C_31:
+; con_ai_script_31
 ; 00 
-- D 1 - I - 0x02EFAC 0B:AF9C: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EFAC 0B:AF9C: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EFAD 0B:AF9D: 0E        .byte con_obj_type_0E   ; 
 - D 1 - I - 0x02EFAE 0B:AF9E: 02        .byte $02   ; 
-- - - - - - 0x02EFAF 0B:AF9F: 00        .byte $00   ; 
+- - - - - - 0x02EFAF 0B:AF9F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EFB0 0B:AFA0: 55        .byte con_BD4F_55   ; 
+- D 1 - I - 0x02EFB0 0B:AFA0: 55        .byte con_ai_subscr_55   ; 
 - D 1 - I - 0x02EFB1 0B:AFA1: 01        .byte $01   ; 
-- - - - - - 0x02EFB2 0B:AFA2: 00        .byte $00   ; 
-- - - - - - 0x02EFB3 0B:AFA3: 00        .byte $00   ; 
+- - - - - - 0x02EFB2 0B:AFA2: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFB3 0B:AFA3: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EFB4 0B:AFA4: 00        .byte con_BD4F_00   ; 
+- D 1 - I - 0x02EFB4 0B:AFA4: 00        .byte con_ai_subscr_00   ; 
 - - - - - - 0x02EFB5 0B:AFA5: 80        .byte $80   ; placeholder
 - - - - - - 0x02EFB6 0B:AFA6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EFB7 0B:AFA7: 00        .byte $00   ; placeholder
 
 
 
-_off034_AFA8_32:
-; con_BEA1_32
+_off034_ai_script_AFA8_32:
+; con_ai_script_32
 ; 00 
-- D 1 - I - 0x02EFB8 0B:AFA8: 4E        .byte con_BD4F_4E   ; 
-- - - - - - 0x02EFB9 0B:AFA9: 00        .byte $00   ; 
-- - - - - - 0x02EFBA 0B:AFAA: 00        .byte $00   ; 
-- - - - - - 0x02EFBB 0B:AFAB: 00        .byte $00   ; 
+- D 1 - I - 0x02EFB8 0B:AFA8: 4E        .byte con_ai_subscr_4E   ; 
+- - - - - - 0x02EFB9 0B:AFA9: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFBA 0B:AFAA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFBB 0B:AFAB: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EFBC 0B:AFAC: 55        .byte con_BD4F_55   ; 
+- D 1 - I - 0x02EFBC 0B:AFAC: 55        .byte con_ai_subscr_55   ; 
 - D 1 - I - 0x02EFBD 0B:AFAD: 01        .byte $01   ; 
-- - - - - - 0x02EFBE 0B:AFAE: 00        .byte $00   ; 
-- - - - - - 0x02EFBF 0B:AFAF: 00        .byte $00   ; 
+- - - - - - 0x02EFBE 0B:AFAE: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFBF 0B:AFAF: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EFC0 0B:AFB0: 00        .byte con_BD4F_00   ; 
+- D 1 - I - 0x02EFC0 0B:AFB0: 00        .byte con_ai_subscr_00   ; 
 - - - - - - 0x02EFC1 0B:AFB1: 80        .byte $80   ; placeholder
 - - - - - - 0x02EFC2 0B:AFB2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EFC3 0B:AFB3: 00        .byte $00   ; placeholder
 
 
 
-_off034_AFB4_58:
-; con_BEA1_58
+_off034_ai_script_AFB4_58:
+; con_ai_script_58
 ; 00 
-- D 1 - I - 0x02EFC4 0B:AFB4: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EFC4 0B:AFB4: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EFC5 0B:AFB5: 0E        .byte con_obj_type_0E   ; 
 - D 1 - I - 0x02EFC6 0B:AFB6: 14        .byte $14   ; 
-- - - - - - 0x02EFC7 0B:AFB7: 00        .byte $00   ; 
+- - - - - - 0x02EFC7 0B:AFB7: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EFC8 0B:AFB8: 0E        .byte con_BD4F_0E   ; 
+- D 1 - I - 0x02EFC8 0B:AFB8: 0E        .byte con_ai_subscr_0E   ; 
 - - - - - - 0x02EFC9 0B:AFB9: 00        .byte $00   ; placeholder
 - - - - - - 0x02EFCA 0B:AFBA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EFCB 0B:AFBB: 00        .byte $00   ; placeholder
 
 
 
-_off034_AFBC_59:
-; con_BEA1_59
+_off034_ai_script_AFBC_59:
+; con_ai_script_59
 ; 00 
-- D 1 - I - 0x02EFCC 0B:AFBC: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EFCC 0B:AFBC: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EFCD 0B:AFBD: 0E        .byte con_obj_type_0E   ; 
 - D 1 - I - 0x02EFCE 0B:AFBE: 03        .byte $03   ; 
-- - - - - - 0x02EFCF 0B:AFBF: 00        .byte $00   ; 
+- - - - - - 0x02EFCF 0B:AFBF: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EFD0 0B:AFC0: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02EFD1 0B:AFC1: 38        .byte $38   ; 
+- D 1 - I - 0x02EFD0 0B:AFC0: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02EFD1 0B:AFC1: 38        .byte $38   ; timer
 - - - - - - 0x02EFD2 0B:AFC2: 00        .byte $00   ; placeholder
 - - - - - - 0x02EFD3 0B:AFC3: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EFD4 0B:AFC4: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02EFD4 0B:AFC4: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02EFD5 0B:AFC5: 00        .byte $00   ; placeholder
 - - - - - - 0x02EFD6 0B:AFC6: 00        .byte $00   ; placeholder
 - - - - - - 0x02EFD7 0B:AFC7: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02EFD8 0B:AFC8: 2B        .byte con_BD4F_invert_spd_X   ; 
+- D 1 - I - 0x02EFD8 0B:AFC8: 2B        .byte con_ai_subscr_invert_spd_X   ; 
 - - - - - - 0x02EFD9 0B:AFC9: 00        .byte $00   ; placeholder
 - - - - - - 0x02EFDA 0B:AFCA: 00        .byte $00   ; placeholder
 - - - - - - 0x02EFDB 0B:AFCB: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02EFDC 0B:AFCC: 00        .byte con_BD4F_00   ; 
+- D 1 - I - 0x02EFDC 0B:AFCC: 00        .byte con_ai_subscr_00   ; 
 - - - - - - 0x02EFDD 0B:AFCD: 80        .byte $80   ; placeholder
 - - - - - - 0x02EFDE 0B:AFCE: 00        .byte $00   ; placeholder
 - - - - - - 0x02EFDF 0B:AFCF: 00        .byte $00   ; placeholder
 
 
 
-_off034_AFD0_5A:
-; con_BEA1_5A
+_off034_ai_script_AFD0_5A:
+; con_ai_script_5A
 ; 00 
-- D 1 - I - 0x02EFE0 0B:AFD0: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02EFE0 0B:AFD0: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02EFE1 0B:AFD1: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EFE2 0B:AFD2: 60        .byte $60   ; 
-- - - - - - 0x02EFE3 0B:AFD3: 00        .byte $00   ; 
+- - - - - - 0x02EFE3 0B:AFD3: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EFE4 0B:AFD4: 2E        .byte con_BD4F_2E   ; 
-- - - - - - 0x02EFE5 0B:AFD5: 00        .byte $00   ; 
-- - - - - - 0x02EFE6 0B:AFD6: 00        .byte $00   ; 
-- - - - - - 0x02EFE7 0B:AFD7: 00        .byte $00   ; 
+- D 1 - I - 0x02EFE4 0B:AFD4: 2E        .byte con_ai_subscr_2E   ; 
+- - - - - - 0x02EFE5 0B:AFD5: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFE6 0B:AFD6: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFE7 0B:AFD7: 00        .byte $00   ; placeholder
 
 
 
-_off034_AFD8_5B:
-; con_BEA1_5B
+_off034_ai_script_AFD8_5B:
+; con_ai_script_5B
 ; 00 
-- D 1 - I - 0x02EFE8 0B:AFD8: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EFE8 0B:AFD8: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EFE9 0B:AFD9: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EFEA 0B:AFDA: 16        .byte $16   ; 
-- - - - - - 0x02EFEB 0B:AFDB: 00        .byte $00   ; 
+- - - - - - 0x02EFEB 0B:AFDB: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EFEC 0B:AFDC: 32        .byte con_BD4F_32   ; 
-- D 1 - I - 0x02EFED 0B:AFDD: 1A        .byte $1A   ; 
-- - - - - - 0x02EFEE 0B:AFDE: 00        .byte $00   ; 
-- - - - - - 0x02EFEF 0B:AFDF: 00        .byte $00   ; 
+- D 1 - I - 0x02EFEC 0B:AFDC: 32        .byte con_ai_subscr_32   ; 
+- D 1 - I - 0x02EFED 0B:AFDD: 1A        .byte $1A   ; spd_Y_fr add
+- - - - - - 0x02EFEE 0B:AFDE: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFEF 0B:AFDF: 00        .byte $00   ; placeholder
 
 
 
-_off034_AFE0_5C:
-; con_BEA1_5C
+_off034_ai_script_AFE0_5C:
+; con_ai_script_5C
 ; 00 
-- D 1 - I - 0x02EFF0 0B:AFE0: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EFF0 0B:AFE0: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EFF1 0B:AFE1: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EFF2 0B:AFE2: 18        .byte $18   ; 
-- - - - - - 0x02EFF3 0B:AFE3: 00        .byte $00   ; 
+- - - - - - 0x02EFF3 0B:AFE3: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02EFF4 0B:AFE4: 11        .byte con_BD4F_11   ; 
-- D 1 - I - 0x02EFF5 0B:AFE5: 03        .byte $03   ; 
-- D 1 - I - 0x02EFF6 0B:AFE6: 00        .byte $00   ; 
-- - - - - - 0x02EFF7 0B:AFE7: 00        .byte $00   ; 
+- D 1 - I - 0x02EFF4 0B:AFE4: 11        .byte con_ai_subscr_11   ; 
+- D 1 - I - 0x02EFF5 0B:AFE5: 03        .byte $03   ; table index for spd_Y
+- D 1 - I - 0x02EFF6 0B:AFE6: 00        .byte $00   ; pos_Y_lo
+- - - - - - 0x02EFF7 0B:AFE7: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02EFF8 0B:AFE8: 12        .byte con_BD4F_12   ; 
-- - - - - - 0x02EFF9 0B:AFE9: 00        .byte $00   ; 
-- - - - - - 0x02EFFA 0B:AFEA: 00        .byte $00   ; 
-- - - - - - 0x02EFFB 0B:AFEB: 00        .byte $00   ; 
+- D 1 - I - 0x02EFF8 0B:AFE8: 12        .byte con_ai_subscr_12   ; 
+- - - - - - 0x02EFF9 0B:AFE9: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFFA 0B:AFEA: 00        .byte $00   ; placeholder
+- - - - - - 0x02EFFB 0B:AFEB: 00        .byte $00   ; placeholder
 
 
 
-_off034_AFEC_5D:
-; con_BEA1_5D
+_off034_ai_script_AFEC_5D:
+; con_ai_script_5D
 ; 00 
-- D 1 - I - 0x02EFFC 0B:AFEC: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02EFFC 0B:AFEC: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02EFFD 0B:AFED: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02EFFE 0B:AFEE: 1D        .byte $1D   ; 
-- - - - - - 0x02EFFF 0B:AFEF: 00        .byte $00   ; 
+- - - - - - 0x02EFFF 0B:AFEF: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F000 0B:AFF0: 56        .byte con_BD4F_56   ; 
-- D 1 - I - 0x02F001 0B:AFF1: 01        .byte $01   ; 
+- D 1 - I - 0x02F000 0B:AFF0: 56        .byte con_ai_subscr_56   ; 
+- D 1 - I - 0x02F001 0B:AFF1: 01        .byte $01   ; index for speed tables
 - - - - - - 0x02F002 0B:AFF2: 00        .byte $00   ; placeholder
 - - - - - - 0x02F003 0B:AFF3: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F004 0B:AFF4: 0E        .byte con_BD4F_0E   ; 
+- D 1 - I - 0x02F004 0B:AFF4: 0E        .byte con_ai_subscr_0E   ; 
 - - - - - - 0x02F005 0B:AFF5: 00        .byte $00   ; placeholder
 - - - - - - 0x02F006 0B:AFF6: 00        .byte $00   ; placeholder
 - - - - - - 0x02F007 0B:AFF7: 00        .byte $00   ; placeholder
 
 
 
-_off034_AFF8_18:
-; con_BEA1_18
-_off034_AFF8_72:
-; con_BEA1_72
+_off034_ai_script_AFF8_18:
+; con_ai_script_18
+_off034_ai_script_AFF8_72:
+; con_ai_script_72
 ; 00 
-- D 1 - I - 0x02F008 0B:AFF8: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02F008 0B:AFF8: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02F009 0B:AFF9: 0E        .byte con_obj_type_0E   ; 
 - D 1 - I - 0x02F00A 0B:AFFA: 04        .byte $04   ; 
-- - - - - - 0x02F00B 0B:AFFB: 00        .byte $00   ; 
+- - - - - - 0x02F00B 0B:AFFB: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F00C 0B:AFFC: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02F00D 0B:AFFD: 10        .byte $10   ; 
+- D 1 - I - 0x02F00C 0B:AFFC: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02F00D 0B:AFFD: 10        .byte $10   ; timer
 - - - - - - 0x02F00E 0B:AFFE: 00        .byte $00   ; placeholder
 - - - - - - 0x02F00F 0B:AFFF: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F010 0B:B000: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02F010 0B:B000: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02F011 0B:B001: 00        .byte $00   ; placeholder
 - - - - - - 0x02F012 0B:B002: 00        .byte $00   ; placeholder
 - - - - - - 0x02F013 0B:B003: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02F014 0B:B004: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02F015 0B:B005: 00        .byte $00   ; 
-- - - - - - 0x02F016 0B:B006: 00        .byte $00   ; 
-- - - - - - 0x02F017 0B:B007: 00        .byte $00   ; 
+- D 1 - I - 0x02F014 0B:B004: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02F015 0B:B005: 00        .byte $00   ; placeholder
+- - - - - - 0x02F016 0B:B006: 00        .byte $00   ; placeholder
+- - - - - - 0x02F017 0B:B007: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02F018 0B:B008: 04        .byte con_BD4F_04   ; 
+- D 1 - I - 0x02F018 0B:B008: 04        .byte con_ai_subscr_04   ; 
 - D 1 - I - 0x02F019 0B:B009: 00        .byte $00   ; 
-- - - - - - 0x02F01A 0B:B00A: 00        .byte $00   ; 
-- - - - - - 0x02F01B 0B:B00B: 00        .byte $00   ; 
+- - - - - - 0x02F01A 0B:B00A: 00        .byte $00   ; placeholder
+- - - - - - 0x02F01B 0B:B00B: 00        .byte $00   ; placeholder
 
 
 
-_off034_B00C_19:
-; con_BEA1_19
+_off034_ai_script_B00C_19:
+; con_ai_script_19
 ; 00 
-- D 1 - I - 0x02F01C 0B:B00C: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02F01C 0B:B00C: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02F01D 0B:B00D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02F01E 0B:B00E: 19        .byte $19   ; 
-- - - - - - 0x02F01F 0B:B00F: 00        .byte $00   ; 
+- - - - - - 0x02F01F 0B:B00F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F020 0B:B010: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02F021 0B:B011: 10        .byte $10   ; 
+- D 1 - I - 0x02F020 0B:B010: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02F021 0B:B011: 10        .byte $10   ; timer
 - - - - - - 0x02F022 0B:B012: 00        .byte $00   ; placeholder
 - - - - - - 0x02F023 0B:B013: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F024 0B:B014: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02F024 0B:B014: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02F025 0B:B015: 00        .byte $00   ; placeholder
 - - - - - - 0x02F026 0B:B016: 00        .byte $00   ; placeholder
 - - - - - - 0x02F027 0B:B017: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02F028 0B:B018: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02F029 0B:B019: 00        .byte $00   ; 
-- - - - - - 0x02F02A 0B:B01A: 00        .byte $00   ; 
-- - - - - - 0x02F02B 0B:B01B: 00        .byte $00   ; 
+- D 1 - I - 0x02F028 0B:B018: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02F029 0B:B019: 00        .byte $00   ; placeholder
+- - - - - - 0x02F02A 0B:B01A: 00        .byte $00   ; placeholder
+- - - - - - 0x02F02B 0B:B01B: 00        .byte $00   ; placeholder
 
 
 
-_off034_B01C_1A:
-; con_BEA1_1A
+_off034_ai_script_B01C_1A:
+; con_ai_script_1A
 ; 00 
-- D 1 - I - 0x02F02C 0B:B01C: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02F02C 0B:B01C: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02F02D 0B:B01D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02F02E 0B:B01E: 1A        .byte $1A   ; 
-- - - - - - 0x02F02F 0B:B01F: 00        .byte $00   ; 
+- - - - - - 0x02F02F 0B:B01F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F030 0B:B020: 6C        .byte con_BD4F_play_sound   ; 
-- D 1 - I - 0x02F031 0B:B021: 27        .byte con_sound_kill_enemy   ; 
+- D 1 - I - 0x02F030 0B:B020: 6C        .byte con_ai_subscr_play_sound   ; 
+- D 1 - I - 0x02F031 0B:B021: 27        .byte con_sfx_kill_enemy   ; 
 - - - - - - 0x02F032 0B:B022: 00        .byte $00   ; placeholder
 - - - - - - 0x02F033 0B:B023: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F034 0B:B024: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02F035 0B:B025: 20        .byte $20   ; 
+- D 1 - I - 0x02F034 0B:B024: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02F035 0B:B025: 20        .byte $20   ; timer
 - - - - - - 0x02F036 0B:B026: 00        .byte $00   ; placeholder
 - - - - - - 0x02F037 0B:B027: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02F038 0B:B028: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02F038 0B:B028: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02F039 0B:B029: 00        .byte $00   ; placeholder
 - - - - - - 0x02F03A 0B:B02A: 00        .byte $00   ; placeholder
 - - - - - - 0x02F03B 0B:B02B: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02F03C 0B:B02C: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02F03D 0B:B02D: 00        .byte $00   ; 
-- - - - - - 0x02F03E 0B:B02E: 00        .byte $00   ; 
-- - - - - - 0x02F03F 0B:B02F: 00        .byte $00   ; 
+- D 1 - I - 0x02F03C 0B:B02C: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02F03D 0B:B02D: 00        .byte $00   ; placeholder
+- - - - - - 0x02F03E 0B:B02E: 00        .byte $00   ; placeholder
+- - - - - - 0x02F03F 0B:B02F: 00        .byte $00   ; placeholder
 
 
 
-_off034_B030_1B:
-; con_BEA1_1B
+_off034_ai_script_B030_1B:
+; con_ai_script_1B
 ; 00 
-- D 1 - I - 0x02F040 0B:B030: 30        .byte con_BD4F_30   ; 
+- D 1 - I - 0x02F040 0B:B030: 30        .byte con_ai_subscr_30   ; 
 - D 1 - I - 0x02F041 0B:B031: 00        .byte $00   ; 
-- - - - - - 0x02F042 0B:B032: 00        .byte $00   ; 
-- - - - - - 0x02F043 0B:B033: 00        .byte $00   ; 
+- - - - - - 0x02F042 0B:B032: 00        .byte $00   ; placeholder
+- - - - - - 0x02F043 0B:B033: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F044 0B:B034: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02F044 0B:B034: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02F045 0B:B035: 0E        .byte con_obj_type_0E   ; 
 - D 1 - I - 0x02F046 0B:B036: 46        .byte $46   ; 
-- - - - - - 0x02F047 0B:B037: 00        .byte $00   ; 
+- - - - - - 0x02F047 0B:B037: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F048 0B:B038: 45        .byte con_BD4F_water_splash   ; 
+- D 1 - I - 0x02F048 0B:B038: 45        .byte con_ai_subscr_water_splash   ; 
 - D 1 - I - 0x02F049 0B:B039: 30        .byte $30   ; 
-- - - - - - 0x02F04A 0B:B03A: 00        .byte $00   ; 
-- - - - - - 0x02F04B 0B:B03B: 00        .byte $00   ; 
+- - - - - - 0x02F04A 0B:B03A: 00        .byte $00   ; placeholder
+- - - - - - 0x02F04B 0B:B03B: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02F04C 0B:B03C: 46        .byte con_BD4F_46   ; 
-- - - - - - 0x02F04D 0B:B03D: 00        .byte $00   ; 
-- - - - - - 0x02F04E 0B:B03E: 00        .byte $00   ; 
-- - - - - - 0x02F04F 0B:B03F: 00        .byte $00   ; 
+- D 1 - I - 0x02F04C 0B:B03C: 46        .byte con_ai_subscr_46   ; 
+- - - - - - 0x02F04D 0B:B03D: 00        .byte $00   ; placeholder
+- - - - - - 0x02F04E 0B:B03E: 00        .byte $00   ; placeholder
+- - - - - - 0x02F04F 0B:B03F: 00        .byte $00   ; placeholder
 
 
 
-_off034_B040_2A:
-; con_BEA1_2A
+_off034_ai_script_B040_2A:
+; con_ai_script_2A
 ; 00 
-- D 1 - I - 0x02F050 0B:B040: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02F050 0B:B040: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02F051 0B:B041: 0E        .byte con_obj_type_0E   ; 
 - D 1 - I - 0x02F052 0B:B042: 1A        .byte $1A   ; 
-- - - - - - 0x02F053 0B:B043: 00        .byte $00   ; 
+- - - - - - 0x02F053 0B:B043: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F054 0B:B044: 45        .byte con_BD4F_water_splash   ; 
+- D 1 - I - 0x02F054 0B:B044: 45        .byte con_ai_subscr_water_splash   ; 
 - D 1 - I - 0x02F055 0B:B045: 20        .byte $20   ; 
-- - - - - - 0x02F056 0B:B046: 00        .byte $00   ; 
-- - - - - - 0x02F057 0B:B047: 00        .byte $00   ; 
+- - - - - - 0x02F056 0B:B046: 00        .byte $00   ; placeholder
+- - - - - - 0x02F057 0B:B047: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F058 0B:B048: 46        .byte con_BD4F_46   ; 
-- - - - - - 0x02F059 0B:B049: 00        .byte $00   ; 
-- - - - - - 0x02F05A 0B:B04A: 00        .byte $00   ; 
-- - - - - - 0x02F05B 0B:B04B: 00        .byte $00   ; 
+- D 1 - I - 0x02F058 0B:B048: 46        .byte con_ai_subscr_46   ; 
+- - - - - - 0x02F059 0B:B049: 00        .byte $00   ; placeholder
+- - - - - - 0x02F05A 0B:B04A: 00        .byte $00   ; placeholder
+- - - - - - 0x02F05B 0B:B04B: 00        .byte $00   ; placeholder
 
 
 
-_off034_B04C_67:
-; con_BEA1_67
+_off034_ai_script_B04C_67:
+; con_ai_script_67
 ; 00 
-- D 1 - I - 0x02F05C 0B:B04C: 30        .byte con_BD4F_30   ; 
+- D 1 - I - 0x02F05C 0B:B04C: 30        .byte con_ai_subscr_30   ; 
 - D 1 - I - 0x02F05D 0B:B04D: 02        .byte $02   ; 
-- - - - - - 0x02F05E 0B:B04E: 00        .byte $00   ; 
-- - - - - - 0x02F05F 0B:B04F: 00        .byte $00   ; 
+- - - - - - 0x02F05E 0B:B04E: 00        .byte $00   ; placeholder
+- - - - - - 0x02F05F 0B:B04F: 00        .byte $00   ; placeholder
 
 
 
-_off034_B050_62:
-; con_BEA1_62
+_off034_ai_script_B050_62:
+; con_ai_script_62
 ; 00 
-- D 1 - I - 0x02F060 0B:B050: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02F060 0B:B050: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02F061 0B:B051: 0E        .byte con_obj_type_0E   ; 
 - D 1 - I - 0x02F062 0B:B052: 1A        .byte $1A   ; 
-- - - - - - 0x02F063 0B:B053: 00        .byte $00   ; 
+- - - - - - 0x02F063 0B:B053: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F064 0B:B054: 45        .byte con_BD4F_water_splash   ; 
+- D 1 - I - 0x02F064 0B:B054: 45        .byte con_ai_subscr_water_splash   ; 
 - D 1 - I - 0x02F065 0B:B055: 10        .byte $10   ; 
-- - - - - - 0x02F066 0B:B056: 00        .byte $00   ; 
-- - - - - - 0x02F067 0B:B057: 00        .byte $00   ; 
+- - - - - - 0x02F066 0B:B056: 00        .byte $00   ; placeholder
+- - - - - - 0x02F067 0B:B057: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F068 0B:B058: 46        .byte con_BD4F_46   ; 
-- - - - - - 0x02F069 0B:B059: 00        .byte $00   ; 
-- - - - - - 0x02F06A 0B:B05A: 00        .byte $00   ; 
-- - - - - - 0x02F06B 0B:B05B: 00        .byte $00   ; 
+- D 1 - I - 0x02F068 0B:B058: 46        .byte con_ai_subscr_46   ; 
+- - - - - - 0x02F069 0B:B059: 00        .byte $00   ; placeholder
+- - - - - - 0x02F06A 0B:B05A: 00        .byte $00   ; placeholder
+- - - - - - 0x02F06B 0B:B05B: 00        .byte $00   ; placeholder
 
 
 
-_off034_B05C_5E:
-; con_BEA1_5E
+_off034_ai_script_B05C_5E:
+; con_ai_script_5E
 ; 00 
-- D 1 - I - 0x02F06C 0B:B05C: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02F06C 0B:B05C: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02F06D 0B:B05D: 08        .byte con_obj_type_08   ; 
 - D 1 - I - 0x02F06E 0B:B05E: 1F        .byte $1F   ; 
-- - - - - - 0x02F06F 0B:B05F: 00        .byte $00   ; 
+- - - - - - 0x02F06F 0B:B05F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F070 0B:B060: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02F071 0B:B061: 28        .byte $28   ; 
+- D 1 - I - 0x02F070 0B:B060: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02F071 0B:B061: 28        .byte $28   ; timer
 - - - - - - 0x02F072 0B:B062: 00        .byte $00   ; placeholder
 - - - - - - 0x02F073 0B:B063: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F074 0B:B064: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02F074 0B:B064: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02F075 0B:B065: 00        .byte $00   ; placeholder
 - - - - - - 0x02F076 0B:B066: 00        .byte $00   ; placeholder
 - - - - - - 0x02F077 0B:B067: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02F078 0B:B068: 5A        .byte con_BD4F_5A   ; 
-- - - - - - 0x02F079 0B:B069: 08        .byte $08   ; 
-- - - - - - 0x02F07A 0B:B06A: 00        .byte $00   ; 
-- - - - - - 0x02F07B 0B:B06B: 00        .byte $00   ; 
+- D 1 - I - 0x02F078 0B:B068: 5A        .byte con_ai_subscr_5A   ; 
+- - - - - - 0x02F079 0B:B069: 08        .byte $08   ; placeholder
+- - - - - - 0x02F07A 0B:B06A: 00        .byte $00   ; placeholder
+- - - - - - 0x02F07B 0B:B06B: 00        .byte $00   ; placeholder
 
 
 
-_off034_B06C_5F:
-; con_BEA1_5F
+_off034_ai_script_B06C_5F:
+; con_ai_script_5F
 ; 00 
-- D 1 - I - 0x02F07C 0B:B06C: 13        .byte con_BD4F_13   ; 
+- D 1 - I - 0x02F07C 0B:B06C: 13        .byte con_ai_subscr_13   ; 
 - D 1 - I - 0x02F07D 0B:B06D: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02F07E 0B:B06E: 04        .byte $04   ; 
-- - - - - - 0x02F07F 0B:B06F: 00        .byte $00   ; 
+- - - - - - 0x02F07F 0B:B06F: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F080 0B:B070: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02F081 0B:B071: FF        .byte $FF   ; 
+- D 1 - I - 0x02F080 0B:B070: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02F081 0B:B071: FF        .byte $FF   ; timer
 - - - - - - 0x02F082 0B:B072: 00        .byte $00   ; placeholder
 - - - - - - 0x02F083 0B:B073: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F084 0B:B074: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02F084 0B:B074: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02F085 0B:B075: 00        .byte $00   ; placeholder
 - - - - - - 0x02F086 0B:B076: 00        .byte $00   ; placeholder
 - - - - - - 0x02F087 0B:B077: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02F088 0B:B078: 0B        .byte con_BD4F_0B   ; 
+- D 1 - I - 0x02F088 0B:B078: 0B        .byte con_ai_subscr_set_obj_type_and_anim   ; 
 - D 1 - I - 0x02F089 0B:B079: 12        .byte con_obj_type_12   ; 
 - D 1 - I - 0x02F08A 0B:B07A: 32        .byte $32   ; 
-- - - - - - 0x02F08B 0B:B07B: 00        .byte $00   ; 
+- - - - - - 0x02F08B 0B:B07B: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02F08C 0B:B07C: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02F08D 0B:B07D: 0A        .byte $0A   ; 
+- D 1 - I - 0x02F08C 0B:B07C: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02F08D 0B:B07D: 0A        .byte $0A   ; timer
 - - - - - - 0x02F08E 0B:B07E: 00        .byte $00   ; placeholder
 - - - - - - 0x02F08F 0B:B07F: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02F090 0B:B080: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02F090 0B:B080: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02F091 0B:B081: 00        .byte $00   ; placeholder
 - - - - - - 0x02F092 0B:B082: 00        .byte $00   ; placeholder
 - - - - - - 0x02F093 0B:B083: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02F094 0B:B084: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02F095 0B:B085: 00        .byte $00   ; 
-- - - - - - 0x02F096 0B:B086: 00        .byte $00   ; 
-- - - - - - 0x02F097 0B:B087: 00        .byte $00   ; 
+- D 1 - I - 0x02F094 0B:B084: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02F095 0B:B085: 00        .byte $00   ; placeholder
+- - - - - - 0x02F096 0B:B086: 00        .byte $00   ; placeholder
+- - - - - - 0x02F097 0B:B087: 00        .byte $00   ; placeholder
 
 
 
-_off034_B088_4E:
-; con_BEA1_4E
+_off034_ai_script_B088_4E:
+; con_ai_script_4E
 ; 00 
-- D 1 - I - 0x02F098 0B:B088: 4F        .byte con_BD4F_4F   ; 
-- - - - - - 0x02F099 0B:B089: 00        .byte $00   ; 
-- - - - - - 0x02F09A 0B:B08A: 00        .byte $00   ; 
-- - - - - - 0x02F09B 0B:B08B: 00        .byte $00   ; 
+- D 1 - I - 0x02F098 0B:B088: 4F        .byte con_ai_subscr_4F_set_item_anim_data   ; 
+- - - - - - 0x02F099 0B:B089: 00        .byte $00   ; placeholder
+- - - - - - 0x02F09A 0B:B08A: 00        .byte $00   ; placeholder
+- - - - - - 0x02F09B 0B:B08B: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F09C 0B:B08C: 39        .byte con_BD4F_39   ; 
+- D 1 - I - 0x02F09C 0B:B08C: 39        .byte con_ai_subscr_39   ; 
 - D 1 - I - 0x02F09D 0B:B08D: 00 40     .dbyt $0040 ; spd_Y
-- - - - - - 0x02F09F 0B:B08F: 00        .byte $00   ; 
+- - - - - - 0x02F09F 0B:B08F: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F0A0 0B:B090: 69        .byte con_BD4F_69   ; 
+- D 1 - I - 0x02F0A0 0B:B090: 69        .byte con_ai_subscr_69   ; 
 - D 1 - I - 0x02F0A1 0B:B091: 00        .byte $00   ; 
 - D 1 - I - 0x02F0A2 0B:B092: 01        .byte $01   ; 
-- - - - - - 0x02F0A3 0B:B093: 00        .byte $00   ; 
+- - - - - - 0x02F0A3 0B:B093: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02F0A4 0B:B094: 6A        .byte con_BD4F_6A   ; 
-- - - - - - 0x02F0A5 0B:B095: 00        .byte $00   ; 
-- - - - - - 0x02F0A6 0B:B096: 00        .byte $00   ; 
-- - - - - - 0x02F0A7 0B:B097: 00        .byte $00   ; 
+- D 1 - I - 0x02F0A4 0B:B094: 6A        .byte con_ai_subscr_6A   ; 
+- - - - - - 0x02F0A5 0B:B095: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0A6 0B:B096: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0A7 0B:B097: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02F0A8 0B:B098: 38        .byte con_BD4F_38   ; 
-- - - - - - 0x02F0A9 0B:B099: 00        .byte $00   ; 
-- - - - - - 0x02F0AA 0B:B09A: 00        .byte $00   ; 
-- - - - - - 0x02F0AB 0B:B09B: 00        .byte $00   ; 
+- D 1 - I - 0x02F0A8 0B:B098: 38        .byte con_ai_subscr_38_item_waits_for_pickup   ; 
+- - - - - - 0x02F0A9 0B:B099: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0AA 0B:B09A: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0AB 0B:B09B: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02F0AC 0B:B09C: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02F0AD 0B:B09D: 00        .byte $00   ; 
-- - - - - - 0x02F0AE 0B:B09E: 00        .byte $00   ; 
-- - - - - - 0x02F0AF 0B:B09F: 00        .byte $00   ; 
+- D 1 - I - 0x02F0AC 0B:B09C: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02F0AD 0B:B09D: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0AE 0B:B09E: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0AF 0B:B09F: 00        .byte $00   ; placeholder
 
 
 
-_off034_B0A0_33:
-; con_BEA1_33
-_off034_B0A0_34:
-; con_BEA1_34
-_off034_B0A0_35:
-; con_BEA1_35
-_off034_B0A0_36:
-; con_BEA1_36
-_off034_B0A0_37:
-; con_BEA1_37
-_off034_B0A0_38:
-; con_BEA1_38
-_off034_B0A0_39:
-; con_BEA1_39
-_off034_B0A0_3A:
-; con_BEA1_3A
-_off034_B0A0_3B:
-; con_BEA1_3B
-_off034_B0A0_3C:
-; con_BEA1_3C
-_off034_B0A0_3D:
-; con_BEA1_3D
-_off034_B0A0_3E:
-; con_BEA1_3E
-_off034_B0A0_3F:
-; con_BEA1_3F
-_off034_B0A0_40:
-; con_BEA1_40
-_off034_B0A0_41:
-; con_BEA1_41
-_off034_B0A0_42:
-; con_BEA1_42
-_off034_B0A0_4C:
-; con_BEA1_4C
-_off034_B0A0_4D:
-; con_BEA1_4D
-_off034_B0A0_4F:
-; con_BEA1_4F
-_off034_B0A0_50:
-; con_BEA1_50
+_off034_ai_script_B0A0_33:
+; con_ai_script_33
+_off034_ai_script_B0A0_34:
+; con_ai_script_34
+_off034_ai_script_B0A0_35:
+; con_ai_script_35
+_off034_ai_script_B0A0_36:
+; con_ai_script_36
+_off034_ai_script_B0A0_37:
+; con_ai_script_37
+_off034_ai_script_B0A0_38:
+; con_ai_script_38
+_off034_ai_script_B0A0_39:
+; con_ai_script_39
+_off034_ai_script_B0A0_3A:
+; con_ai_script_3A
+_off034_ai_script_B0A0_3B:
+; con_ai_script_3B
+_off034_ai_script_B0A0_3C:
+; con_ai_script_3C
+_off034_ai_script_B0A0_3D:
+; con_ai_script_3D
+_off034_ai_script_B0A0_3E:
+; con_ai_script_3E
+_off034_ai_script_B0A0_3F:
+; con_ai_script_3F
+_off034_ai_script_B0A0_40:
+; con_ai_script_40
+_off034_ai_script_B0A0_41:
+; con_ai_script_41
+_off034_ai_script_B0A0_42:
+; con_ai_script_42
+_off034_ai_script_B0A0_4C:
+; con_ai_script_4C
+_off034_ai_script_B0A0_4D:
+; con_ai_script_4D
+_off034_ai_script_B0A0_4F:
+; con_ai_script_4F
+_off034_ai_script_B0A0_50:
+; con_ai_script_50
 ; 00 
-- D 1 - I - 0x02F0B0 0B:B0A0: 4F        .byte con_BD4F_4F   ; 
-- - - - - - 0x02F0B1 0B:B0A1: 00        .byte $00   ; 
-- - - - - - 0x02F0B2 0B:B0A2: 00        .byte $00   ; 
-- - - - - - 0x02F0B3 0B:B0A3: 00        .byte $00   ; 
+- D 1 - I - 0x02F0B0 0B:B0A0: 4F        .byte con_ai_subscr_4F_set_item_anim_data   ; 
+- - - - - - 0x02F0B1 0B:B0A1: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0B2 0B:B0A2: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0B3 0B:B0A3: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F0B4 0B:B0A4: 39        .byte con_BD4F_39   ; 
+- D 1 - I - 0x02F0B4 0B:B0A4: 39        .byte con_ai_subscr_39   ; 
 - D 1 - I - 0x02F0B5 0B:B0A5: 01 00     .dbyt $0100 ; spd_Y
-- - - - - - 0x02F0B7 0B:B0A7: 00        .byte $00   ; 
+- - - - - - 0x02F0B7 0B:B0A7: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F0B8 0B:B0A8: 37        .byte con_BD4F_37   ; 
-- - - - - - 0x02F0B9 0B:B0A9: 00        .byte $00   ; 
-- - - - - - 0x02F0BA 0B:B0AA: 00        .byte $00   ; 
-- - - - - - 0x02F0BB 0B:B0AB: 00        .byte $00   ; 
+- D 1 - I - 0x02F0B8 0B:B0A8: 37        .byte con_ai_subscr_37   ; 
+- - - - - - 0x02F0B9 0B:B0A9: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0BA 0B:B0AA: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0BB 0B:B0AB: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02F0BC 0B:B0AC: 38        .byte con_BD4F_38   ; 
-- - - - - - 0x02F0BD 0B:B0AD: 00        .byte $00   ; 
-- - - - - - 0x02F0BE 0B:B0AE: 00        .byte $00   ; 
-- - - - - - 0x02F0BF 0B:B0AF: 00        .byte $00   ; 
+- D 1 - I - 0x02F0BC 0B:B0AC: 38        .byte con_ai_subscr_38_item_waits_for_pickup   ; 
+- - - - - - 0x02F0BD 0B:B0AD: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0BE 0B:B0AE: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0BF 0B:B0AF: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02F0C0 0B:B0B0: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02F0C1 0B:B0B1: 00        .byte $00   ; 
-- - - - - - 0x02F0C2 0B:B0B2: 00        .byte $00   ; 
-- - - - - - 0x02F0C3 0B:B0B3: 00        .byte $00   ; 
+- D 1 - I - 0x02F0C0 0B:B0B0: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02F0C1 0B:B0B1: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0C2 0B:B0B2: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0C3 0B:B0B3: 00        .byte $00   ; placeholder
 
 
 
-_off034_B0B4_43:
-; con_BEA1_43
-_off034_B0B4_44:
-; con_BEA1_44
-_off034_B0B4_45:
-; con_BEA1_45
-_off034_B0B4_46:
-; con_BEA1_46
-_off034_B0B4_47:
-; con_BEA1_47
-_off034_B0B4_48:
-; con_BEA1_48
-_off034_B0B4_49:
-; con_BEA1_49
-_off034_B0B4_4A:
-; con_BEA1_4A
-_off034_B0B4_4B:
-; con_BEA1_4B
+_off034_ai_script_B0B4_43:
+; con_ai_script_43
+_off034_ai_script_B0B4_44:
+; con_ai_script_44
+_off034_ai_script_B0B4_45:
+; con_ai_script_45
+_off034_ai_script_B0B4_46:
+; con_ai_script_46
+_off034_ai_script_B0B4_47:
+; con_ai_script_47
+_off034_ai_script_B0B4_48:
+; con_ai_script_48
+_off034_ai_script_B0B4_49:
+; con_ai_script_49
+_off034_ai_script_B0B4_4A:
+; con_ai_script_4A
+_off034_ai_script_B0B4_4B:
+; con_ai_script_4B
 ; 00 
-- D 1 - I - 0x02F0C4 0B:B0B4: 4F        .byte con_BD4F_4F   ; 
-- - - - - - 0x02F0C5 0B:B0B5: 00        .byte $00   ; 
-- - - - - - 0x02F0C6 0B:B0B6: 00        .byte $00   ; 
-- - - - - - 0x02F0C7 0B:B0B7: 00        .byte $00   ; 
+- D 1 - I - 0x02F0C4 0B:B0B4: 4F        .byte con_ai_subscr_4F_set_item_anim_data   ; 
+- - - - - - 0x02F0C5 0B:B0B5: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0C6 0B:B0B6: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0C7 0B:B0B7: 00        .byte $00   ; placeholder
 ; 01 
-- D 1 - I - 0x02F0C8 0B:B0B8: 39        .byte con_BD4F_39   ; 
+- D 1 - I - 0x02F0C8 0B:B0B8: 39        .byte con_ai_subscr_39   ; 
 - D 1 - I - 0x02F0C9 0B:B0B9: 01 00     .dbyt $0100 ; spd_Y
-- - - - - - 0x02F0CB 0B:B0BB: 00        .byte $00   ; 
+- - - - - - 0x02F0CB 0B:B0BB: 00        .byte $00   ; placeholder
 ; 02 
-- D 1 - I - 0x02F0CC 0B:B0BC: 37        .byte con_BD4F_37   ; 
-- - - - - - 0x02F0CD 0B:B0BD: 00        .byte $00   ; 
-- - - - - - 0x02F0CE 0B:B0BE: 00        .byte $00   ; 
-- - - - - - 0x02F0CF 0B:B0BF: 00        .byte $00   ; 
+- D 1 - I - 0x02F0CC 0B:B0BC: 37        .byte con_ai_subscr_37   ; 
+- - - - - - 0x02F0CD 0B:B0BD: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0CE 0B:B0BE: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0CF 0B:B0BF: 00        .byte $00   ; placeholder
 ; 03 
-- D 1 - I - 0x02F0D0 0B:B0C0: 38        .byte con_BD4F_38   ; 
-- - - - - - 0x02F0D1 0B:B0C1: 00        .byte $00   ; 
-- - - - - - 0x02F0D2 0B:B0C2: 00        .byte $00   ; 
-- - - - - - 0x02F0D3 0B:B0C3: 00        .byte $00   ; 
+- D 1 - I - 0x02F0D0 0B:B0C0: 38        .byte con_ai_subscr_38_item_waits_for_pickup   ; 
+- - - - - - 0x02F0D1 0B:B0C1: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0D2 0B:B0C2: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0D3 0B:B0C3: 00        .byte $00   ; placeholder
 ; 04 
-- D 1 - I - 0x02F0D4 0B:B0C4: 87        .byte con_BD4F_87   ; 
-- - - - - - 0x02F0D5 0B:B0C5: 00        .byte $00   ; 
-- - - - - - 0x02F0D6 0B:B0C6: 00        .byte $00   ; 
-- - - - - - 0x02F0D7 0B:B0C7: 00        .byte $00   ; 
+- D 1 - I - 0x02F0D4 0B:B0C4: 87        .byte con_ai_subscr_87   ; 
+- - - - - - 0x02F0D5 0B:B0C5: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0D6 0B:B0C6: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0D7 0B:B0C7: 00        .byte $00   ; placeholder
 ; 05 
-- D 1 - I - 0x02F0D8 0B:B0C8: 1F        .byte con_BD4F_set_timer   ; 
-- D 1 - I - 0x02F0D9 0B:B0C9: 38        .byte $38   ; 
+- D 1 - I - 0x02F0D8 0B:B0C8: 1F        .byte con_ai_subscr_1F_set_timer   ; 
+- D 1 - I - 0x02F0D9 0B:B0C9: 38        .byte $38   ; timer
 - - - - - - 0x02F0DA 0B:B0CA: 00        .byte $00   ; placeholder
 - - - - - - 0x02F0DB 0B:B0CB: 00        .byte $00   ; placeholder
 ; 06 
-- D 1 - I - 0x02F0DC 0B:B0CC: 20        .byte con_BD4F_count_down_timer   ; 
+- D 1 - I - 0x02F0DC 0B:B0CC: 20        .byte con_ai_subscr_20_count_down_timer   ; 
 - - - - - - 0x02F0DD 0B:B0CD: 00        .byte $00   ; placeholder
 - - - - - - 0x02F0DE 0B:B0CE: 00        .byte $00   ; placeholder
 - - - - - - 0x02F0DF 0B:B0CF: 00        .byte $00   ; placeholder
 ; 07 
-- D 1 - I - 0x02F0E0 0B:B0D0: 27        .byte con_BD4F_27   ; 
-- - - - - - 0x02F0E1 0B:B0D1: 00        .byte $00   ; 
-- - - - - - 0x02F0E2 0B:B0D2: 00        .byte $00   ; 
-- - - - - - 0x02F0E3 0B:B0D3: 00        .byte $00   ; 
+- D 1 - I - 0x02F0E0 0B:B0D0: 27        .byte con_ai_subscr_delete_object   ; 
+- - - - - - 0x02F0E1 0B:B0D1: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0E2 0B:B0D2: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0E3 0B:B0D3: 00        .byte $00   ; placeholder
 
 
 
-_off034_B0D4_51:
-; con_BEA1_51
-_off034_B0D4_52:
-; con_BEA1_52
-_off034_B0D4_53:
-; con_BEA1_53
+_off034_ai_script_B0D4_51:
+; con_ai_script_51
+_off034_ai_script_B0D4_52:
+; con_ai_script_52
+_off034_ai_script_B0D4_53:
+; con_ai_script_53
 ; 00 
-- - - - - - 0x02F0E4 0B:B0D4: 00        .byte con_BD4F_00   ; 
+- - - - - - 0x02F0E4 0B:B0D4: 00        .byte con_ai_subscr_00   ; 
 - - - - - - 0x02F0E5 0B:B0D5: 00        .byte $00   ; placeholder
 - - - - - - 0x02F0E6 0B:B0D6: 00        .byte $00   ; placeholder
 - - - - - - 0x02F0E7 0B:B0D7: 00        .byte $00   ; placeholder
 
 
 
-_off034_B0D8_57:
-; con_BEA1_57
+_off034_ai_script_B0D8_57:
+; con_ai_script_57
 ; 00 
-- D 1 - I - 0x02F0E8 0B:B0D8: 9B        .byte con_BD4F_9B   ; 
-- - - - - - 0x02F0E9 0B:B0D9: 00        .byte $00   ; 
-- - - - - - 0x02F0EA 0B:B0DA: 00        .byte $00   ; 
-- - - - - - 0x02F0EB 0B:B0DB: 00        .byte $00   ; 
+- D 1 - I - 0x02F0E8 0B:B0D8: 9B        .byte con_ai_subscr_9B   ; 
+- - - - - - 0x02F0E9 0B:B0D9: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0EA 0B:B0DA: 00        .byte $00   ; placeholder
+- - - - - - 0x02F0EB 0B:B0DB: 00        .byte $00   ; placeholder
 
 
 ; ???
@@ -11547,7 +11664,7 @@ C - - - - - 0x02F215 0B:B205: F0 F3     BEQ bra_B1FA_RTS
 C - - - - - 0x02F217 0B:B207: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x02F21A 0B:B20A: C9 1C     CMP #$1C
 C - - - - - 0x02F21C 0B:B20C: F0 EC     BEQ bra_B1FA_RTS
-C - - - - - 0x02F21E 0B:B20E: C9 93     CMP #$93
+C - - - - - 0x02F21E 0B:B20E: C9 93     CMP #con_index_all_items
 C - - - - - 0x02F220 0B:B210: B0 E8     BCS bra_B1FA_RTS
 C - - - - - 0x02F222 0B:B212: C9 90     CMP #$90
 C - - - - - 0x02F224 0B:B214: B0 49     BCS bra_B25F
@@ -11579,7 +11696,7 @@ C - - - - - 0x02F251 0B:B241: 85 81     STA ram_0081
 C - - - - - 0x02F253 0B:B243: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x02F256 0B:B246: C9 49     CMP #$49
 C - - - - - 0x02F258 0B:B248: D0 06     BNE bra_B250
-C - - - - - 0x02F25A 0B:B24A: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x02F25A 0B:B24A: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x02F25D 0B:B24D: 20 81 B5  JSR sub_B581
 bra_B250:
 loc_B250:
@@ -11959,7 +12076,7 @@ C - - - - - 0x02F4C6 0B:B4B6: 4C 97 B4  JMP loc_B497
 bra_B4B9:
 C - - - - - 0x02F4C9 0B:B4B9: C9 90     CMP #$90
 C - - - - - 0x02F4CB 0B:B4BB: 90 60     BCC bra_B51D_RTS    ; < 90
-C - - - - - 0x02F4CD 0B:B4BD: C9 93     CMP #$93
+C - - - - - 0x02F4CD 0B:B4BD: C9 93     CMP #con_index_all_items
 C - - - - - 0x02F4CF 0B:B4BF: B0 5C     BCS bra_B51D_RTS    ; 93+
 C - - - - - 0x02F4D1 0B:B4C1: 4C E2 A2  JMP loc_A2E2_90_92  ; 90-92
 
@@ -12000,7 +12117,7 @@ C - - - - - 0x02F50C 0B:B4FC: E5 01     SBC ram_0001_t00C
 C - - - - - 0x02F50E 0B:B4FE: 9D 7B 06  STA ram_obj_hp,X
 C - - - - - 0x02F511 0B:B501: F0 3B     BEQ bra_B53E_enemy_is_killed
 C - - - - - 0x02F513 0B:B503: 30 39     BMI bra_B53E_enemy_is_killed
-C - - - - - 0x02F515 0B:B505: A9 29     LDA #con_sound_hit_enemy
+C - - - - - 0x02F515 0B:B505: A9 29     LDA #con_sfx_hit_enemy
 C - - - - - 0x02F517 0B:B507: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x02F51A 0B:B50A: A0 00     LDY #$00
 C - - - - - 0x02F51C 0B:B50C: BD 4E 05  LDA ram_obj_id,X
@@ -12014,7 +12131,7 @@ C - - - - - 0x02F52A 0B:B51A: 9D 65 05  STA ram_obj_state,X
 bra_B51D_RTS:
 C - - - - - 0x02F52D 0B:B51D: 60        RTS
 bra_B51E:   ; 2D 2E
-C - - - - - 0x02F52E 0B:B51E: A9 28     LDA #con_sound_28
+C - - - - - 0x02F52E 0B:B51E: A9 28     LDA #con_sfx_28
 C - - - - - 0x02F530 0B:B520: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x02F533 0B:B523: A0 00     LDY #$00
 C - - - - - 0x02F535 0B:B525: F0 ED     BEQ bra_B514    ; jmp
@@ -12028,12 +12145,12 @@ tbl_B527:
 
 
 bra_B529:
-C - - - - - 0x02F539 0B:B529: 20 CC E7  JSR sub_0x03E7DC
+C - - - - - 0x02F539 0B:B529: 20 CC E7  JSR sub_0x03E7DC_add_points_for_killing
 C - - - - - 0x02F53C 0B:B52C: 4C 7A FF  JMP loc_0x03FF8A
 
 
 
-sub_B52F:
+sub_B52F_clear_some_obj_data:
 C - - - - - 0x02F53F 0B:B52F: A9 00     LDA #$00
 C - - - - - 0x02F541 0B:B531: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x02F544 0B:B534: 9D 00 04  STA ram_obj_anim_id,X
@@ -12044,7 +12161,7 @@ C - - - - - 0x02F54D 0B:B53D: 60        RTS
 
 
 bra_B53E_enemy_is_killed:
-C - - - - - 0x02F54E 0B:B53E: A9 27     LDA #con_sound_kill_enemy
+C - - - - - 0x02F54E 0B:B53E: A9 27     LDA #con_sfx_kill_enemy
 C - - - - - 0x02F550 0B:B540: BC 4E 05  LDY ram_obj_id,X
 C - - - - - 0x02F553 0B:B543: C0 4D     CPY #$4D
 C - - - - - 0x02F555 0B:B545: F0 0E     BEQ bra_B555
@@ -12054,7 +12171,7 @@ C - - - - - 0x02F55B 0B:B54B: C0 5B     CPY #$5B
 C - - - - - 0x02F55D 0B:B54D: F0 06     BEQ bra_B555
 C - - - - - 0x02F55F 0B:B54F: C0 57     CPY #$57
 C - - - - - 0x02F561 0B:B551: F0 02     BEQ bra_B555
-C - - - - - 0x02F563 0B:B553: A9 33     LDA #con_sound_destroy_candle
+C - - - - - 0x02F563 0B:B553: A9 33     LDA #con_sfx_destroy_candle
 bra_B555:
 C - - - - - 0x02F565 0B:B555: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x02F568 0B:B558: BD 4E 05  LDA ram_obj_id,X
@@ -12069,7 +12186,7 @@ C - - - - - 0x02F579 0B:B569: F0 51     BEQ bra_B5BC
 C - - - - - 0x02F57B 0B:B56B: C9 48     CMP #$48
 C - - - - - 0x02F57D 0B:B56D: 90 12     BCC bra_B581    ; < 48
 loc_B56F:
-C D 1 - - - 0x02F57F 0B:B56F: 20 CC E7  JSR sub_0x03E7DC
+C D 1 - - - 0x02F57F 0B:B56F: 20 CC E7  JSR sub_0x03E7DC_add_points_for_killing
 C - - - - - 0x02F582 0B:B572: A5 9E     LDA ram_009E_object_index
 C - - - - - 0x02F584 0B:B574: F0 05     BEQ bra_B57B
 C - - - - - 0x02F586 0B:B576: 20 DC E7  JSR sub_0x03E7EC
@@ -12077,10 +12194,11 @@ C - - - - - 0x02F589 0B:B579: B0 18     BCS bra_B593
 bra_B57B:
 C - - - - - 0x02F58B 0B:B57B: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x02F58D 0B:B57D: 29 07     AND #$07
-C - - - - - 0x02F58F 0B:B57F: F0 1B     BEQ bra_B59C
+C - - - - - 0x02F58F 0B:B57F: F0 1B     BEQ bra_B59C_enemy_drops_item
+; if you're out of luck
 bra_B581:
 sub_B581:
-C - - - - - 0x02F591 0B:B581: 20 C1 E7  JSR sub_0x03E7D1
+C - - - - - 0x02F591 0B:B581: 20 C1 E7  JSR sub_0x03E7D1_kill_enemy
 sub_B584:
 loc_B584:
 C D 1 - - - 0x02F594 0B:B584: A9 00     LDA #$00
@@ -12090,24 +12208,26 @@ C - - - - - 0x02F59C 0B:B58C: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x02F59F 0B:B58F: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x02F5A2 0B:B592: 60        RTS
 bra_B593:
-C - - - - - 0x02F5A3 0B:B593: 4C FC A0  JMP loc_A0FC
+C - - - - - 0x02F5A3 0B:B593: 4C FC A0  JMP loc_A0FC_item_pickup_handler
 bra_B596:
 C - - - - - 0x02F5A6 0B:B596: A9 05     LDA #$05
 loc_B598:
 C D 1 - - - 0x02F5A8 0B:B598: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x02F5AB 0B:B59B: 60        RTS
-bra_B59C:
+bra_B59C_enemy_drops_item:
+; 1 to 8 chance
 C - - - - - 0x02F5AC 0B:B59C: E6 CE     INC ram_drop_counter
 C - - - - - 0x02F5AE 0B:B59E: A5 CE     LDA ram_drop_counter
 C - - - - - 0x02F5B0 0B:B5A0: C9 05     CMP #$05
-C - - - - - 0x02F5B2 0B:B5A2: B0 03     BCS bra_B5A7
+C - - - - - 0x02F5B2 0B:B5A2: B0 03     BCS bra_B5A7_drop_special_item
+; if not enough previous drops, drop a regilar item
 C - - - - - 0x02F5B4 0B:B5A4: 4C CE B5  JMP loc_B5CE
-bra_B5A7:
+bra_B5A7_drop_special_item:
 C - - - - - 0x02F5B7 0B:B5A7: A9 00     LDA #$00
 C - - - - - 0x02F5B9 0B:B5A9: 85 CE     STA ram_drop_counter
-C - - - - - 0x02F5BB 0B:B5AB: 20 AB E7  JSR sub_0x03E7BB
+C - - - - - 0x02F5BB 0B:B5AB: 20 AB E7  JSR sub_0x03E7BB_calculate_weapon_drop
 C - - - - - 0x02F5BE 0B:B5AE: BD 4E 05  LDA ram_obj_id,X
-C - - - - - 0x02F5C1 0B:B5B1: 20 0B A3  JSR sub_A30B
+C - - - - - 0x02F5C1 0B:B5B1: 20 0B A3  JSR sub_A30B_convert_weapon_items_based_on_player
 C - - - - - 0x02F5C4 0B:B5B4: 4C D1 B5  JMP loc_B5D1
 bra_B5B7:
 C - - - - - 0x02F5C7 0B:B5B7: A9 0F     LDA #$0F
@@ -12498,7 +12618,7 @@ C - - - - - 0x02F7B5 0B:B7A5: 60        RTS
 
 sub_B7A6:
 ; in
-    ; Y = 
+    ; Y = con_B7BD
 ; out
     ; Z
         ; 0 = 
@@ -12517,11 +12637,12 @@ C - - - - - 0x02F7C4 0B:B7B4: 48        PHA
 C - - - - - 0x02F7C5 0B:B7B5: B9 E3 B7  LDA tbl_B7E3_pos_Y_lo,Y
 C - - - - - 0x02F7C8 0B:B7B8: A8        TAY
 C - - - - - 0x02F7C9 0B:B7B9: 68        PLA
-C - - - - - 0x02F7CA 0B:B7BA: 4C 1E FC  JMP loc_0x03FC2E
+C - - - - - 0x02F7CA 0B:B7BA: 4C 1E FC  JMP loc_0x03FC2E_check_for_reaching_position
 
 
 
 tbl_B7BD_pos_X_lo:
+; see con_B7BD
 ;                                              +---------- facing right
 ;                                              |    +----- facing left
 ;                                              |    |
@@ -12532,14 +12653,17 @@ tbl_B7BD_pos_X_lo:
 - D 1 - - - 0x02F7D5 0B:B7C5: 04        .byte $04, $FC   ; 04 
 - D 1 - - - 0x02F7D7 0B:B7C7: 08        .byte $08, $F8   ; 05 
 - D 1 - - - 0x02F7D9 0B:B7C9: 04        .byte $04, $FC   ; 06 
-- - - - - - 0x02F7DB 0B:B7CB: 10        .byte $10, $F0   ; 07 
+- - - - - - 0x02F7DB 0B:B7CB: 10        .byte $10, $F0   ; 07 unused, index doesn't exist
 - D 1 - - - 0x02F7DD 0B:B7CD: 08        .byte $08, $F8   ; 08 
-- - - - - - 0x02F7DF 0B:B7CF: 0C        .byte $0C, $F4   ; 09 
+- - - - - - 0x02F7DF 0B:B7CF: 0C        .byte $0C, $F4   ; 09 unused, index doesn't exist
 - D 1 - - - 0x02F7E1 0B:B7D1: FC        .byte $FC, $04   ; 0A 
 - D 1 - - - 0x02F7E3 0B:B7D3: EC        .byte $EC, $14   ; 0B 
 - D 1 - - - 0x02F7E5 0B:B7D5: 08        .byte $08, $F7   ; 0C 
 - D 1 - - - 0x02F7E7 0B:B7D7: 00        .byte $00, $00   ; 0D 
 - D 1 - - - 0x02F7E9 0B:B7D9: 00        .byte $00, $00   ; 0E 
+
+
+; bzk garbage, no such indexes
 - - - - - - 0x02F7EB 0B:B7DB: 10        .byte $10, $F0   ; 0F 
 - - - - - - 0x02F7ED 0B:B7DD: 18        .byte $18, $E8   ; 10 
 - - - - - - 0x02F7EF 0B:B7DF: 04        .byte $04, $FC   ; 11 
@@ -13727,7 +13851,7 @@ C D 1 - - - 0x02FD08 0B:BCF8: 60        RTS
 
 
 
-sub_0x02FD09:
+sub_0x02FD09_ai_script_handler:
 C - - - - - 0x02FD09 0B:BCF9: A5 AB     LDA ram_stopwatch_flag
 C - - - - - 0x02FD0B 0B:BCFB: F0 05     BEQ bra_BD02
 C - - - - - 0x02FD0D 0B:BCFD: 20 B6 E7  JSR sub_0x03E7C6
@@ -13737,17 +13861,17 @@ C - - - - - 0x02FD10 0B:BD00: B0 F6     BCS bra_BCF8_RTS
 ; don't know when this code was read, it's not in the movies
 bra_BD02:
 C D 1 - - - 0x02FD12 0B:BD02: BD EF 05  LDA ram_obj_ai_script,X
-C D 1 - - - 0x02FD15 0B:BD05: F0 F1     BEQ bra_BCF8_RTS    ; if con_BEA1_00
-C - - - - - 0x02FD17 0B:BD07: C9 27     CMP #con_BEA1_27
+C D 1 - - - 0x02FD15 0B:BD05: F0 F1     BEQ bra_BCF8_RTS    ; if con_ai_script_00
+C - - - - - 0x02FD17 0B:BD07: C9 27     CMP #con_ai_script_27
 C - - - - - 0x02FD19 0B:BD09: D0 05     BNE bra_BD10
 C - - - - - 0x02FD1B 0B:BD0B: 20 31 81  JSR sub_8131
 C D 1 - - - 0x02FD1E 0B:BD0E: F0 E8     BEQ bra_BCF8_RTS
 bra_BD10:
 C - - - - - 0x02FD20 0B:BD10: 0A        ASL
 C - - - - - 0x02FD21 0B:BD11: A8        TAY
-C - - - - - 0x02FD22 0B:BD12: B9 A1 BE  LDA tbl_BEA1,Y
+C - - - - - 0x02FD22 0B:BD12: B9 A1 BE  LDA tbl_BEA1_ai_scripts_data,Y
 C - - - - - 0x02FD25 0B:BD15: 85 02     STA ram_0002_t007_data
-C - - - - - 0x02FD27 0B:BD17: B9 A2 BE  LDA tbl_BEA1 + $01,Y
+C - - - - - 0x02FD27 0B:BD17: B9 A2 BE  LDA tbl_BEA1_ai_scripts_data + $01,Y
 C - - - - - 0x02FD2A 0B:BD1A: 85 03     STA ram_0002_t007_data + $01
 C - - - - - 0x02FD2C 0B:BD1C: BD C1 05  LDA ram_obj_ai_subscript,X
 ; * 04
@@ -13765,337 +13889,337 @@ C - - - - - 0x02FD40 0B:BD30: 0A        ASL
 C - - - - - 0x02FD41 0B:BD31: B0 0E     BCS bra_BD41_80_FF
 ; 00-7F
 C - - - - - 0x02FD43 0B:BD33: A8        TAY
-C - - - - - 0x02FD44 0B:BD34: B9 4F BD  LDA tbl_BD4F,Y
+C - - - - - 0x02FD44 0B:BD34: B9 4F BD  LDA tbl_BD4F_ai_subscript_handlers,Y
 C - - - - - 0x02FD47 0B:BD37: 85 00     STA ram_0000_t004_data
-C - - - - - 0x02FD49 0B:BD39: B9 50 BD  LDA tbl_BD4F + $01,Y
+C - - - - - 0x02FD49 0B:BD39: B9 50 BD  LDA tbl_BD4F_ai_subscript_handlers + $01,Y
 C - - - - - 0x02FD4C 0B:BD3C: 85 01     STA ram_0000_t004_data + $01
 C - - - - - 0x02FD4E 0B:BD3E: 6C 00 00  JMP (ram_0000_t004_data)
 bra_BD41_80_FF:
 C - - - - - 0x02FD51 0B:BD41: A8        TAY
-C - - - - - 0x02FD52 0B:BD42: B9 4F BE  LDA tbl_BD4F + $100,Y
+C - - - - - 0x02FD52 0B:BD42: B9 4F BE  LDA tbl_BD4F_ai_subscript_handlers + $100,Y
 C - - - - - 0x02FD55 0B:BD45: 85 00     STA ram_0000_t004_data
-C - - - - - 0x02FD57 0B:BD47: B9 50 BE  LDA tbl_BD4F + $100 + $01,Y
+C - - - - - 0x02FD57 0B:BD47: B9 50 BE  LDA tbl_BD4F_ai_subscript_handlers + $100 + $01,Y
 C - - - - - 0x02FD5A 0B:BD4A: 85 01     STA ram_0000_t004_data + $01
 C - - - - - 0x02FD5C 0B:BD4C: 6C 00 00  JMP (ram_0000_t004_data)
 
 
 
-tbl_BD4F:
-; see con_BD4F
-- D 1 - - - 0x02FD5F 0B:BD4F: 0D 81     .word ofs_039_810D_00
-- D 1 - - - 0x02FD61 0B:BD51: 9B 81     .word ofs_039_819B_01
-- D 1 - - - 0x02FD63 0B:BD53: 34 8F     .word ofs_039_8F34_02
-- D 1 - - - 0x02FD65 0B:BD55: B9 81     .word ofs_039_81B9_03
-- D 1 - - - 0x02FD67 0B:BD57: 0C 82     .word ofs_039_820C_04
-- D 1 - - - 0x02FD69 0B:BD59: 2D 82     .word ofs_039_822D_05
-- D 1 - - - 0x02FD6B 0B:BD5B: 56 82     .word ofs_039_8256_06
-- D 1 - - - 0x02FD6D 0B:BD5D: BD 83     .word ofs_039_83BD_07
-- D 1 - - - 0x02FD6F 0B:BD5F: F5 83     .word ofs_039_83F5_08
-- D 1 - - - 0x02FD71 0B:BD61: AC 89     .word ofs_039_89AC_09
-- - - - - - 0x02FD73 0B:BD63: C5 81     .word ofs_039_81C5_0A   ; unused, index doesn't exist
-- D 1 - - - 0x02FD75 0B:BD65: AD 83     .word ofs_039_83AD_0B
-- D 1 - - - 0x02FD77 0B:BD67: 82 84     .word ofs_039_8482_0C_compare_X_distance_to_player
-- D 1 - - - 0x02FD79 0B:BD69: 5A 8E     .word ofs_039_8E5A_0D
-- D 1 - - - 0x02FD7B 0B:BD6B: 20 8E     .word ofs_039_8E20_0E
-- D 1 - - - 0x02FD7D 0B:BD6D: 28 85     .word ofs_039_8528_0F
-- D 1 - - - 0x02FD7F 0B:BD6F: 6C 85     .word ofs_039_856C_10
-- D 1 - - - 0x02FD81 0B:BD71: 62 86     .word ofs_039_8662_11
-- D 1 - - - 0x02FD83 0B:BD73: CB 86     .word ofs_039_86CB_12
-- D 1 - - - 0x02FD85 0B:BD75: 84 82     .word ofs_039_8284_13
-- D 1 - - - 0x02FD87 0B:BD77: 6D A4     .word ofs_039_A46D_14
-- D 1 - - - 0x02FD89 0B:BD79: CF A4     .word ofs_039_A4CF_15
-- D 1 - - - 0x02FD8B 0B:BD7B: E3 A4     .word ofs_039_A4E3_16
-- D 1 - - - 0x02FD8D 0B:BD7D: EA A4     .word ofs_039_A4EA_17
-- D 1 - - - 0x02FD8F 0B:BD7F: F1 A4     .word ofs_039_A4F1_18
-- - - - - - 0x02FD91 0B:BD81: 8B BF     .word ofs_039_BF8B_19_RTS
-- D 1 - - - 0x02FD93 0B:BD83: F7 A4     .word ofs_039_A4F7_1A
-- D 1 - - - 0x02FD95 0B:BD85: 02 A5     .word ofs_039_A502_1B
-- D 1 - - - 0x02FD97 0B:BD87: 3A 89     .word ofs_039_893A_1C
-- D 1 - - - 0x02FD99 0B:BD89: 7E 89     .word ofs_039_897E_1D
-- D 1 - - - 0x02FD9B 0B:BD8B: C3 83     .word ofs_039_83C3_1E
-- D 1 - - - 0x02FD9D 0B:BD8D: 41 84     .word ofs_039_8441_1F_set_timer
-- D 1 - - - 0x02FD9F 0B:BD8F: 4C 84     .word ofs_039_844C_20_count_down_timer
-- D 1 - - - 0x02FDA1 0B:BD91: C8 84     .word ofs_039_84C8_21
-- D 1 - - - 0x02FDA3 0B:BD93: F8 89     .word ofs_039_89F8_22
-- D 1 - - - 0x02FDA5 0B:BD95: 45 8A     .word ofs_039_8A45_23
-- - - - - - 0x02FDA7 0B:BD97: D3 8A     .word ofs_039_8AD3_24   ; unused, index doesn't exist
-- D 1 - - - 0x02FDA9 0B:BD99: 65 8A     .word ofs_039_8A65_25
-- D 1 - - - 0x02FDAB 0B:BD9B: 29 8A     .word ofs_039_8A29_26
-- D 1 - - - 0x02FDAD 0B:BD9D: B2 84     .word ofs_039_84B2_27_delete_object_and_clear_ai_script
-- D 1 - - - 0x02FDAF 0B:BD9F: 27 90     .word ofs_039_9027_28
-- D 1 - - - 0x02FDB1 0B:BDA1: F1 8F     .word ofs_039_8FF1_29
-- D 1 - - - 0x02FDB3 0B:BDA3: A7 81     .word ofs_039_81A7_2A
-- D 1 - - - 0x02FDB5 0B:BDA5: B3 81     .word ofs_039_81B3_2B_invert_spd_X
-- D 1 - - - 0x02FDB7 0B:BDA7: FF 90     .word ofs_039_90FF_2C
-- D 1 - - - 0x02FDB9 0B:BDA9: E9 81     .word ofs_039_81E9_2D
-- D 1 - - - 0x02FDBB 0B:BDAB: B8 84     .word ofs_039_84B8_2E
-- D 1 - - - 0x02FDBD 0B:BDAD: 41 91     .word ofs_039_9141_2F
-- D 1 - - - 0x02FDBF 0B:BDAF: 3A 8A     .word ofs_039_8A3A_30
-- - - - - - 0x02FDC1 0B:BDB1: E9 8A     .word ofs_039_8AE9_31   ; unused, index doesn't exist
-- D 1 - - - 0x02FDC3 0B:BDB3: E9 8A     .word ofs_039_8AE9_32
-- D 1 - - - 0x02FDC5 0B:BDB5: FC 92     .word ofs_039_92FC_33
-- D 1 - - - 0x02FDC7 0B:BDB7: 98 92     .word ofs_039_9298_34
-- D 1 - - - 0x02FDC9 0B:BDB9: 58 93     .word ofs_039_9358_35
-- D 1 - - - 0x02FDCB 0B:BDBB: C4 93     .word ofs_039_93C4_36
-- D 1 - - - 0x02FDCD 0B:BDBD: 3B A0     .word ofs_039_A03B_37
-- D 1 - - - 0x02FDCF 0B:BDBF: A3 A0     .word ofs_039_A0A3_38
-- D 1 - - - 0x02FDD1 0B:BDC1: D8 A0     .word ofs_039_A0D8_39
-- D 1 - - - 0x02FDD3 0B:BDC3: D4 8B     .word ofs_039_8BD4_3A
-- D 1 - - - 0x02FDD5 0B:BDC5: 60 92     .word ofs_039_9260_3B
-- D 1 - - - 0x02FDD7 0B:BDC7: EE 94     .word ofs_039_94EE_3C
-- D 1 - - - 0x02FDD9 0B:BDC9: 0F 95     .word ofs_039_950F_3D
-- D 1 - - - 0x02FDDB 0B:BDCB: 03 95     .word ofs_039_9503_3E
-- D 1 - - - 0x02FDDD 0B:BDCD: A7 95     .word ofs_039_95A7_3F
-- D 1 - - - 0x02FDDF 0B:BDCF: 39 95     .word ofs_039_9539_40
-- D 1 - - - 0x02FDE1 0B:BDD1: 4E 95     .word ofs_039_954E_41
-- D 1 - - - 0x02FDE3 0B:BDD3: 8B 95     .word ofs_039_958B_42
-- D 1 - - - 0x02FDE5 0B:BDD5: 96 95     .word ofs_039_9596_43
-- D 1 - - - 0x02FDE7 0B:BDD7: 56 85     .word ofs_039_8556_44
-- D 1 - - - 0x02FDE9 0B:BDD9: CC 95     .word ofs_039_95CC_45_water_splash
-- D 1 - - - 0x02FDEB 0B:BDDB: 23 96     .word ofs_039_9623_46
-- D 1 - - - 0x02FDED 0B:BDDD: 44 96     .word ofs_039_9644_47
-- D 1 - - - 0x02FDEF 0B:BDDF: 7B 96     .word ofs_039_967B_48
-- D 1 - - - 0x02FDF1 0B:BDE1: 98 96     .word ofs_039_9698_49
-- - - - - - 0x02FDF3 0B:BDE3: 44 96     .word ofs_039_9644_4A   ; unused, index doesn't exist
-- - - - - - 0x02FDF5 0B:BDE5: 44 96     .word ofs_039_9644_4B   ; unused, index doesn't exist
-- - - - - - 0x02FDF7 0B:BDE7: 44 96     .word ofs_039_9644_4C   ; unused, index doesn't exist
-- D 1 - - - 0x02FDF9 0B:BDE9: 95 84     .word ofs_039_8495_4D_compare_XY_distance_to_player
-- D 1 - - - 0x02FDFB 0B:BDEB: 9C 8D     .word ofs_039_8D9C_4E
-- D 1 - - - 0x02FDFD 0B:BDED: 13 83     .word ofs_039_8313_4F
-- D 1 - - - 0x02FDFF 0B:BDEF: 22 8C     .word ofs_039_8C22_50
-- D 1 - - - 0x02FE01 0B:BDF1: 64 8C     .word ofs_039_8C64_51
-- D 1 - - - 0x02FE03 0B:BDF3: E3 8A     .word ofs_039_8AE3_52
-- D 1 - - - 0x02FE05 0B:BDF5: DD 81     .word ofs_039_81DD_53
-- D 1 - - - 0x02FE07 0B:BDF7: D1 81     .word ofs_039_81D1_54
-- D 1 - - - 0x02FE09 0B:BDF9: 01 82     .word ofs_039_8201_55
-- D 1 - - - 0x02FE0B 0B:BDFB: 89 97     .word ofs_039_9789_56
-- D 1 - - - 0x02FE0D 0B:BDFD: 6F 98     .word ofs_039_986F_57
-- D 1 - - - 0x02FE0F 0B:BDFF: 5B 86     .word ofs_039_865B_58
-- D 1 - - - 0x02FE11 0B:BE01: C2 86     .word ofs_039_86C2_59
-- D 1 - - - 0x02FE13 0B:BE03: 34 96     .word ofs_039_9634_5A
-- D 1 - - - 0x02FE15 0B:BE05: C4 98     .word ofs_039_98C4_5B
-- D 1 - - - 0x02FE17 0B:BE07: E8 85     .word ofs_039_85E8_5C
-- D 1 - - - 0x02FE19 0B:BE09: EF 8C     .word ofs_039_8CEF_5D
-- D 1 - - - 0x02FE1B 0B:BE0B: AB 98     .word ofs_039_98AB_5E
-- D 1 - - - 0x02FE1D 0B:BE0D: 39 8D     .word ofs_039_8D39_5F
-- D 1 - - - 0x02FE1F 0B:BE0F: C3 87     .word ofs_039_87C3_60
-- D 1 - - - 0x02FE21 0B:BE11: DF 87     .word ofs_039_87DF_61
-- D 1 - - - 0x02FE23 0B:BE13: 14 82     .word ofs_039_8214_62
-- D 1 - - - 0x02FE25 0B:BE15: FD 87     .word ofs_039_87FD_63
-- D 1 - - - 0x02FE27 0B:BE17: CC 88     .word ofs_039_88CC_64
-- D 1 - - - 0x02FE29 0B:BE19: 86 8D     .word ofs_039_8D86_65
-- D 1 - - - 0x02FE2B 0B:BE1B: AB 91     .word ofs_039_91AB_66
-- D 1 - - - 0x02FE2D 0B:BE1D: 9F 87     .word ofs_039_879F_67
-- D 1 - - - 0x02FE2F 0B:BE1F: 46 99     .word ofs_039_9946_68
-- D 1 - - - 0x02FE31 0B:BE21: EA 9F     .word ofs_039_9FEA_69
-- D 1 - - - 0x02FE33 0B:BE23: FB 9F     .word ofs_039_9FFB_6A
-- D 1 - - - 0x02FE35 0B:BE25: 9D 99     .word ofs_039_999D_6B
-- D 1 - - - 0x02FE37 0B:BE27: E7 8F     .word ofs_039_8FE7_6C_play_sound
-- D 1 - - - 0x02FE39 0B:BE29: 53 81     .word ofs_039_8153_6D
-- D 1 - - - 0x02FE3B 0B:BE2B: D9 8A     .word ofs_039_8AD9_6E
-- D 1 - - - 0x02FE3D 0B:BE2D: 73 87     .word ofs_039_8773_6F
-- D 1 - - - 0x02FE3F 0B:BE2F: 93 87     .word ofs_039_8793_70
-- - - - - - 0x02FE41 0B:BE31: A8 A0     .word ofs_039_A0A8_71   ; unused, index doesn't exist
-- - - - - - 0x02FE43 0B:BE33: 2C 82     .word ofs_039_822C_72_RTS   ; unused, index doesn't exist
-- D 1 - - - 0x02FE45 0B:BE35: 4A 86     .word ofs_039_864A_73
-- D 1 - - - 0x02FE47 0B:BE37: A4 86     .word ofs_039_86A4_74
-- D 1 - - - 0x02FE49 0B:BE39: 12 81     .word ofs_039_8112_75_RTS
-- D 1 - - - 0x02FE4B 0B:BE3B: 78 9A     .word ofs_039_9A78_76
-- D 1 - - - 0x02FE4D 0B:BE3D: 3F 9A     .word ofs_039_9A3F_77
-- D 1 - - - 0x02FE4F 0B:BE3F: 74 9B     .word ofs_039_9B74_78
-- D 1 - - - 0x02FE51 0B:BE41: 39 9A     .word ofs_039_9A39_79
-- D 1 - - - 0x02FE53 0B:BE43: E8 9C     .word ofs_039_9CE8_7A
-- D 1 - - - 0x02FE55 0B:BE45: 08 A5     .word ofs_039_A508_7B
-- D 1 - - - 0x02FE57 0B:BE47: 13 A5     .word ofs_039_A513_7C
-- D 1 - - - 0x02FE59 0B:BE49: 03 94     .word ofs_039_9403_7D
-- D 1 - - - 0x02FE5B 0B:BE4B: D9 93     .word ofs_039_93D9_7E
-- D 1 - - - 0x02FE5D 0B:BE4D: 3B 94     .word ofs_039_943B_7F
-- D 1 - - - 0x02FE5F 0B:BE4F: 9B 94     .word ofs_039_949B_80
-- D 1 - - - 0x02FE61 0B:BE51: BD 94     .word ofs_039_94BD_81
-- D 1 - - - 0x02FE63 0B:BE53: C4 94     .word ofs_039_94C4_82
-- D 1 - - - 0x02FE65 0B:BE55: E2 94     .word ofs_039_94E2_83
-- D 1 - - - 0x02FE67 0B:BE57: 8D 9E     .word ofs_039_9E8D_84
-- D 1 - - - 0x02FE69 0B:BE59: 25 9F     .word ofs_039_9F25_85
-- D 1 - - - 0x02FE6B 0B:BE5B: 59 9F     .word ofs_039_9F59_86
-- D 1 - - - 0x02FE6D 0B:BE5D: 73 83     .word ofs_039_8373_87
-- D 1 - - - 0x02FE6F 0B:BE5F: 92 83     .word ofs_039_8392_88
-- D 1 - - - 0x02FE71 0B:BE61: 22 8D     .word ofs_039_8D22_89
-- D 1 - - - 0x02FE73 0B:BE63: BC 85     .word ofs_039_85BC_8A
-- D 1 - - - 0x02FE75 0B:BE65: 9C 82     .word ofs_039_829C_8B
-- D 1 - - - 0x02FE77 0B:BE67: B4 82     .word ofs_039_82B4_8C
-- D 1 - - - 0x02FE79 0B:BE69: D5 82     .word ofs_039_82D5_8D
-- D 1 - - - 0x02FE7B 0B:BE6B: 76 8D     .word ofs_039_8D76_8E
-- D 1 - - - 0x02FE7D 0B:BE6D: C2 8B     .word ofs_039_8BC2_8F
-- D 1 - - - 0x02FE7F 0B:BE6F: B0 8B     .word ofs_039_8BB0_90
-- D 1 - - - 0x02FE81 0B:BE71: 40 82     .word ofs_039_8240_91
-- D 1 - - - 0x02FE83 0B:BE73: F3 8A     .word ofs_039_8AF3_92_Harpy_drops_enemy
-- D 1 - - - 0x02FE85 0B:BE75: 69 8B     .word ofs_039_8B69_93
-- D 1 - - - 0x02FE87 0B:BE77: 75 8B     .word ofs_039_8B75_94
-- D 1 - - - 0x02FE89 0B:BE79: 07 83     .word ofs_039_8307_95
-- D 1 - - - 0x02FE8B 0B:BE7B: F7 8B     .word ofs_039_8BF7_96
-- D 1 - - - 0x02FE8D 0B:BE7D: 67 A4     .word ofs_039_A467_97
-- D 1 - - - 0x02FE8F 0B:BE7F: 11 88     .word ofs_039_8811_98
-- D 1 - - - 0x02FE91 0B:BE81: 89 88     .word ofs_039_8889_99
-- D 1 - - - 0x02FE93 0B:BE83: 3F 8E     .word ofs_039_8E3F_9A
-- D 1 - - - 0x02FE95 0B:BE85: 9A 8C     .word ofs_039_8C9A_9B
-- D 1 - - - 0x02FE97 0B:BE87: FA 86     .word ofs_039_86FA_9C
-- D 1 - - - 0x02FE99 0B:BE89: 02 87     .word ofs_039_8702_9D
-- - - - - - 0x02FE9B 0B:BE8B: 83 81     .word ofs_039_8183_9E
-- D 1 - - - 0x02FE9D 0B:BE8D: 77 84     .word ofs_039_8477_9F_check_distance_Y_30_to_player
-- D 1 - - - 0x02FE9F 0B:BE8F: 20 81     .word ofs_039_8120_A0
-- - - - - - 0x02FEA1 0B:BE91: 6A 81     .word ofs_039_816A_A1
-- - - - - - 0x02FEA3 0B:BE93: A1 8F     .word ofs_039_8FA1_A2
-- D 1 - - - 0x02FEA5 0B:BE95: 19 87     .word ofs_039_8719_A3
-- D 1 - - - 0x02FEA7 0B:BE97: 3A 87     .word ofs_039_873A_A4
-- - - - - - 0x02FEA9 0B:BE99: AE 82     .word ofs_039_82AE_A5
-- D 1 - - - 0x02FEAB 0B:BE9B: E5 83     .word ofs_039_83E5_A6
-- D 1 - - - 0x02FEAD 0B:BE9D: 26 8A     .word ofs_039_8A26_A7
-- D 1 - - - 0x02FEAF 0B:BE9F: 3E 86     .word ofs_039_863E_A8
+tbl_BD4F_ai_subscript_handlers:
+; see con_ai_subscr
+- D 1 - - - 0x02FD5F 0B:BD4F: 0D 81     .word ofs_039_ai_subscript_810D_00
+- D 1 - - - 0x02FD61 0B:BD51: 9B 81     .word ofs_039_ai_subscript_819B_01
+- D 1 - - - 0x02FD63 0B:BD53: 34 8F     .word ofs_039_ai_subscript_8F34_02
+- D 1 - - - 0x02FD65 0B:BD55: B9 81     .word ofs_039_ai_subscript_81B9_03_clear_obj_flag_08
+- D 1 - - - 0x02FD67 0B:BD57: 0C 82     .word ofs_039_ai_subscript_820C_04
+- D 1 - - - 0x02FD69 0B:BD59: 2D 82     .word ofs_039_ai_subscript_822D_05
+- D 1 - - - 0x02FD6B 0B:BD5B: 56 82     .word ofs_039_ai_subscript_8256_06
+- D 1 - - - 0x02FD6D 0B:BD5D: BD 83     .word ofs_039_ai_subscript_83BD_07
+- D 1 - - - 0x02FD6F 0B:BD5F: F5 83     .word ofs_039_ai_subscript_83F5_08
+- D 1 - - - 0x02FD71 0B:BD61: AC 89     .word ofs_039_ai_subscript_89AC_09
+- - - - - - 0x02FD73 0B:BD63: C5 81     .word ofs_039_ai_subscript_81C5_0A   ; unused, index doesn't exist
+- D 1 - - - 0x02FD75 0B:BD65: AD 83     .word ofs_039_ai_subscript_83AD_0B_set_obj_type_and_anim
+- D 1 - - - 0x02FD77 0B:BD67: 82 84     .word ofs_039_ai_subscript_8482_0C_compare_X_distance_to_player
+- D 1 - - - 0x02FD79 0B:BD69: 5A 8E     .word ofs_039_ai_subscript_8E5A_0D
+- D 1 - - - 0x02FD7B 0B:BD6B: 20 8E     .word ofs_039_ai_subscript_8E20_0E
+- D 1 - - - 0x02FD7D 0B:BD6D: 28 85     .word ofs_039_ai_subscript_8528_0F
+- D 1 - - - 0x02FD7F 0B:BD6F: 6C 85     .word ofs_039_ai_subscript_856C_10
+- D 1 - - - 0x02FD81 0B:BD71: 62 86     .word ofs_039_ai_subscript_8662_11
+- D 1 - - - 0x02FD83 0B:BD73: CB 86     .word ofs_039_ai_subscript_86CB_12
+- D 1 - - - 0x02FD85 0B:BD75: 84 82     .word ofs_039_ai_subscript_8284_13
+- D 1 - - - 0x02FD87 0B:BD77: 6D A4     .word ofs_039_ai_subscript_A46D_14
+- D 1 - - - 0x02FD89 0B:BD79: CF A4     .word ofs_039_ai_subscript_A4CF_15
+- D 1 - - - 0x02FD8B 0B:BD7B: E3 A4     .word ofs_039_ai_subscript_A4E3_16
+- D 1 - - - 0x02FD8D 0B:BD7D: EA A4     .word ofs_039_ai_subscript_A4EA_17
+- D 1 - - - 0x02FD8F 0B:BD7F: F1 A4     .word ofs_039_ai_subscript_A4F1_18_repeat_from_beginning
+- - - - - - 0x02FD91 0B:BD81: 8B BF     .word ofs_039_ai_subscript_BF8B_19_RTS
+- D 1 - - - 0x02FD93 0B:BD83: F7 A4     .word ofs_039_ai_subscript_A4F7_1A_set_timer
+- D 1 - - - 0x02FD95 0B:BD85: 02 A5     .word ofs_039_ai_subscript_A502_1B_count_down_timer
+- D 1 - - - 0x02FD97 0B:BD87: 3A 89     .word ofs_039_ai_subscript_893A_1C
+- D 1 - - - 0x02FD99 0B:BD89: 7E 89     .word ofs_039_ai_subscript_897E_1D
+- D 1 - - - 0x02FD9B 0B:BD8B: C3 83     .word ofs_039_ai_subscript_83C3_1E
+- D 1 - - - 0x02FD9D 0B:BD8D: 41 84     .word ofs_039_ai_subscript_8441_1F_set_timer
+- D 1 - - - 0x02FD9F 0B:BD8F: 4C 84     .word ofs_039_ai_subscript_844C_20_count_down_timer
+- D 1 - - - 0x02FDA1 0B:BD91: C8 84     .word ofs_039_ai_subscript_84C8_21
+- D 1 - - - 0x02FDA3 0B:BD93: F8 89     .word ofs_039_ai_subscript_89F8_22
+- D 1 - - - 0x02FDA5 0B:BD95: 45 8A     .word ofs_039_ai_subscript_8A45_23
+- - - - - - 0x02FDA7 0B:BD97: D3 8A     .word ofs_039_ai_subscript_8AD3_24   ; unused, index doesn't exist
+- D 1 - - - 0x02FDA9 0B:BD99: 65 8A     .word ofs_039_ai_subscript_8A65_25
+- D 1 - - - 0x02FDAB 0B:BD9B: 29 8A     .word ofs_039_ai_subscript_8A29_26
+- D 1 - - - 0x02FDAD 0B:BD9D: B2 84     .word ofs_039_ai_subscript_84B2_27_delete_object_and_clear_ai_script
+- D 1 - - - 0x02FDAF 0B:BD9F: 27 90     .word ofs_039_ai_subscript_9027_28
+- D 1 - - - 0x02FDB1 0B:BDA1: F1 8F     .word ofs_039_ai_subscript_8FF1_29
+- D 1 - - - 0x02FDB3 0B:BDA3: A7 81     .word ofs_039_ai_subscript_81A7_2A_set_obj_flag_40
+- D 1 - - - 0x02FDB5 0B:BDA5: B3 81     .word ofs_039_ai_subscript_81B3_2B_invert_spd_X
+- D 1 - - - 0x02FDB7 0B:BDA7: FF 90     .word ofs_039_ai_subscript_90FF_2C
+- D 1 - - - 0x02FDB9 0B:BDA9: E9 81     .word ofs_039_ai_subscript_81E9_2D_clear_flag_40_set_flag_20
+- D 1 - - - 0x02FDBB 0B:BDAB: B8 84     .word ofs_039_ai_subscript_84B8_2E
+- D 1 - - - 0x02FDBD 0B:BDAD: 41 91     .word ofs_039_ai_subscript_9141_2F
+- D 1 - - - 0x02FDBF 0B:BDAF: 3A 8A     .word ofs_039_ai_subscript_8A3A_30
+- - - - - - 0x02FDC1 0B:BDB1: E9 8A     .word ofs_039_ai_subscript_8AE9_31   ; unused, index doesn't exist
+- D 1 - - - 0x02FDC3 0B:BDB3: E9 8A     .word ofs_039_ai_subscript_8AE9_32
+- D 1 - - - 0x02FDC5 0B:BDB5: FC 92     .word ofs_039_ai_subscript_92FC_33
+- D 1 - - - 0x02FDC7 0B:BDB7: 98 92     .word ofs_039_ai_subscript_9298_34
+- D 1 - - - 0x02FDC9 0B:BDB9: 58 93     .word ofs_039_ai_subscript_9358_35
+- D 1 - - - 0x02FDCB 0B:BDBB: C4 93     .word ofs_039_ai_subscript_93C4_36
+- D 1 - - - 0x02FDCD 0B:BDBD: 3B A0     .word ofs_039_ai_subscript_A03B_37
+- D 1 - - - 0x02FDCF 0B:BDBF: A3 A0     .word ofs_039_ai_subscript_A0A3_38_item_waits_for_pickup
+- D 1 - - - 0x02FDD1 0B:BDC1: D8 A0     .word ofs_039_ai_subscript_A0D8_39
+- D 1 - - - 0x02FDD3 0B:BDC3: D4 8B     .word ofs_039_ai_subscript_8BD4_3A
+- D 1 - - - 0x02FDD5 0B:BDC5: 60 92     .word ofs_039_ai_subscript_9260_3B
+- D 1 - - - 0x02FDD7 0B:BDC7: EE 94     .word ofs_039_ai_subscript_94EE_3C_conditional_branch
+- D 1 - - - 0x02FDD9 0B:BDC9: 0F 95     .word ofs_039_ai_subscript_950F_3D_conditional_branch
+- D 1 - - - 0x02FDDB 0B:BDCB: 03 95     .word ofs_039_ai_subscript_9503_3E
+- D 1 - - - 0x02FDDD 0B:BDCD: A7 95     .word ofs_039_ai_subscript_95A7_3F
+- D 1 - - - 0x02FDDF 0B:BDCF: 39 95     .word ofs_039_ai_subscript_9539_40
+- D 1 - - - 0x02FDE1 0B:BDD1: 4E 95     .word ofs_039_ai_subscript_954E_41
+- D 1 - - - 0x02FDE3 0B:BDD3: 8B 95     .word ofs_039_ai_subscript_958B_42
+- D 1 - - - 0x02FDE5 0B:BDD5: 96 95     .word ofs_039_ai_subscript_9596_43
+- D 1 - - - 0x02FDE7 0B:BDD7: 56 85     .word ofs_039_ai_subscript_8556_44_conditional_branch
+- D 1 - - - 0x02FDE9 0B:BDD9: CC 95     .word ofs_039_ai_subscript_95CC_45_water_splash
+- D 1 - - - 0x02FDEB 0B:BDDB: 23 96     .word ofs_039_ai_subscript_9623_46
+- D 1 - - - 0x02FDED 0B:BDDD: 44 96     .word ofs_039_ai_subscript_9644_47
+- D 1 - - - 0x02FDEF 0B:BDDF: 7B 96     .word ofs_039_ai_subscript_967B_48
+- D 1 - - - 0x02FDF1 0B:BDE1: 98 96     .word ofs_039_ai_subscript_9698_49
+- - - - - - 0x02FDF3 0B:BDE3: 44 96     .word ofs_039_ai_subscript_9644_4A   ; unused, index doesn't exist
+- - - - - - 0x02FDF5 0B:BDE5: 44 96     .word ofs_039_ai_subscript_9644_4B   ; unused, index doesn't exist
+- - - - - - 0x02FDF7 0B:BDE7: 44 96     .word ofs_039_ai_subscript_9644_4C   ; unused, index doesn't exist
+- D 1 - - - 0x02FDF9 0B:BDE9: 95 84     .word ofs_039_ai_subscript_8495_4D_compare_XY_distance_to_player
+- D 1 - - - 0x02FDFB 0B:BDEB: 9C 8D     .word ofs_039_ai_subscript_8D9C_4E
+- D 1 - - - 0x02FDFD 0B:BDED: 13 83     .word ofs_039_ai_subscript_8313_4F_set_item_animation_data
+- D 1 - - - 0x02FDFF 0B:BDEF: 22 8C     .word ofs_039_ai_subscript_8C22_50
+- D 1 - - - 0x02FE01 0B:BDF1: 64 8C     .word ofs_039_ai_subscript_8C64_51
+- D 1 - - - 0x02FE03 0B:BDF3: E3 8A     .word ofs_039_ai_subscript_8AE3_52
+- D 1 - - - 0x02FE05 0B:BDF5: DD 81     .word ofs_039_ai_subscript_81DD_53_clear_obj_flag_10
+- D 1 - - - 0x02FE07 0B:BDF7: D1 81     .word ofs_039_ai_subscript_81D1_54_set_obj_flag_10
+- D 1 - - - 0x02FE09 0B:BDF9: 01 82     .word ofs_039_ai_subscript_8201_55
+- D 1 - - - 0x02FE0B 0B:BDFB: 89 97     .word ofs_039_ai_subscript_9789_56
+- D 1 - - - 0x02FE0D 0B:BDFD: 6F 98     .word ofs_039_ai_subscript_986F_57
+- D 1 - - - 0x02FE0F 0B:BDFF: 5B 86     .word ofs_039_ai_subscript_865B_58
+- D 1 - - - 0x02FE11 0B:BE01: C2 86     .word ofs_039_ai_subscript_86C2_59
+- D 1 - - - 0x02FE13 0B:BE03: 34 96     .word ofs_039_ai_subscript_9634_5A
+- D 1 - - - 0x02FE15 0B:BE05: C4 98     .word ofs_039_ai_subscript_98C4_5B
+- D 1 - - - 0x02FE17 0B:BE07: E8 85     .word ofs_039_ai_subscript_85E8_5C
+- D 1 - - - 0x02FE19 0B:BE09: EF 8C     .word ofs_039_ai_subscript_8CEF_5D
+- D 1 - - - 0x02FE1B 0B:BE0B: AB 98     .word ofs_039_ai_subscript_98AB_5E
+- D 1 - - - 0x02FE1D 0B:BE0D: 39 8D     .word ofs_039_ai_subscript_8D39_5F
+- D 1 - - - 0x02FE1F 0B:BE0F: C3 87     .word ofs_039_ai_subscript_87C3_60
+- D 1 - - - 0x02FE21 0B:BE11: DF 87     .word ofs_039_ai_subscript_87DF_61
+- D 1 - - - 0x02FE23 0B:BE13: 14 82     .word ofs_039_ai_subscript_8214_62
+- D 1 - - - 0x02FE25 0B:BE15: FD 87     .word ofs_039_ai_subscript_87FD_63
+- D 1 - - - 0x02FE27 0B:BE17: CC 88     .word ofs_039_ai_subscript_88CC_64_conditional_branch
+- D 1 - - - 0x02FE29 0B:BE19: 86 8D     .word ofs_039_ai_subscript_8D86_65
+- D 1 - - - 0x02FE2B 0B:BE1B: AB 91     .word ofs_039_ai_subscript_91AB_66
+- D 1 - - - 0x02FE2D 0B:BE1D: 9F 87     .word ofs_039_ai_subscript_879F_67
+- D 1 - - - 0x02FE2F 0B:BE1F: 46 99     .word ofs_039_ai_subscript_9946_68
+- D 1 - - - 0x02FE31 0B:BE21: EA 9F     .word ofs_039_ai_subscript_9FEA_69
+- D 1 - - - 0x02FE33 0B:BE23: FB 9F     .word ofs_039_ai_subscript_9FFB_6A
+- D 1 - - - 0x02FE35 0B:BE25: 9D 99     .word ofs_039_ai_subscript_999D_6B
+- D 1 - - - 0x02FE37 0B:BE27: E7 8F     .word ofs_039_ai_subscript_8FE7_6C_play_sound
+- D 1 - - - 0x02FE39 0B:BE29: 53 81     .word ofs_039_ai_subscript_8153_6D
+- D 1 - - - 0x02FE3B 0B:BE2B: D9 8A     .word ofs_039_ai_subscript_8AD9_6E
+- D 1 - - - 0x02FE3D 0B:BE2D: 73 87     .word ofs_039_ai_subscript_8773_6F
+- D 1 - - - 0x02FE3F 0B:BE2F: 93 87     .word ofs_039_ai_subscript_8793_70
+- - - - - - 0x02FE41 0B:BE31: A8 A0     .word ofs_039_ai_subscript_A0A8_71   ; unused, index doesn't exist
+- - - - - - 0x02FE43 0B:BE33: 2C 82     .word ofs_039_ai_subscript_822C_72_RTS   ; unused, index doesn't exist
+- D 1 - - - 0x02FE45 0B:BE35: 4A 86     .word ofs_039_ai_subscript_864A_73
+- D 1 - - - 0x02FE47 0B:BE37: A4 86     .word ofs_039_ai_subscript_86A4_74
+- D 1 - - - 0x02FE49 0B:BE39: 12 81     .word ofs_039_ai_subscript_8112_75_RTS
+- D 1 - - - 0x02FE4B 0B:BE3B: 78 9A     .word ofs_039_ai_subscript_9A78_76
+- D 1 - - - 0x02FE4D 0B:BE3D: 3F 9A     .word ofs_039_ai_subscript_9A3F_77
+- D 1 - - - 0x02FE4F 0B:BE3F: 74 9B     .word ofs_039_ai_subscript_9B74_78
+- D 1 - - - 0x02FE51 0B:BE41: 39 9A     .word ofs_039_ai_subscript_9A39_79
+- D 1 - - - 0x02FE53 0B:BE43: E8 9C     .word ofs_039_ai_subscript_9CE8_7A
+- D 1 - - - 0x02FE55 0B:BE45: 08 A5     .word ofs_039_ai_subscript_A508_7B
+- D 1 - - - 0x02FE57 0B:BE47: 13 A5     .word ofs_039_ai_subscript_A513_7C
+- D 1 - - - 0x02FE59 0B:BE49: 03 94     .word ofs_039_ai_subscript_9403_7D
+- D 1 - - - 0x02FE5B 0B:BE4B: D9 93     .word ofs_039_ai_subscript_93D9_7E
+- D 1 - - - 0x02FE5D 0B:BE4D: 3B 94     .word ofs_039_ai_subscript_943B_7F
+- D 1 - - - 0x02FE5F 0B:BE4F: 9B 94     .word ofs_039_ai_subscript_949B_80
+- D 1 - - - 0x02FE61 0B:BE51: BD 94     .word ofs_039_ai_subscript_94BD_81_keep_decreasing_spd_Y_while_timer
+- D 1 - - - 0x02FE63 0B:BE53: C4 94     .word ofs_039_ai_subscript_94C4_82
+- D 1 - - - 0x02FE65 0B:BE55: E2 94     .word ofs_039_ai_subscript_94E2_83
+- D 1 - - - 0x02FE67 0B:BE57: 8D 9E     .word ofs_039_ai_subscript_9E8D_84
+- D 1 - - - 0x02FE69 0B:BE59: 25 9F     .word ofs_039_ai_subscript_9F25_85
+- D 1 - - - 0x02FE6B 0B:BE5B: 59 9F     .word ofs_039_ai_subscript_9F59_86
+- D 1 - - - 0x02FE6D 0B:BE5D: 73 83     .word ofs_039_ai_subscript_8373_87
+- D 1 - - - 0x02FE6F 0B:BE5F: 92 83     .word ofs_039_ai_subscript_8392_88
+- D 1 - - - 0x02FE71 0B:BE61: 22 8D     .word ofs_039_ai_subscript_8D22_89
+- D 1 - - - 0x02FE73 0B:BE63: BC 85     .word ofs_039_ai_subscript_85BC_8A
+- D 1 - - - 0x02FE75 0B:BE65: 9C 82     .word ofs_039_ai_subscript_829C_8B
+- D 1 - - - 0x02FE77 0B:BE67: B4 82     .word ofs_039_ai_subscript_82B4_8C
+- D 1 - - - 0x02FE79 0B:BE69: D5 82     .word ofs_039_ai_subscript_82D5_8D
+- D 1 - - - 0x02FE7B 0B:BE6B: 76 8D     .word ofs_039_ai_subscript_8D76_8E
+- D 1 - - - 0x02FE7D 0B:BE6D: C2 8B     .word ofs_039_ai_subscript_8BC2_8F
+- D 1 - - - 0x02FE7F 0B:BE6F: B0 8B     .word ofs_039_ai_subscript_8BB0_90
+- D 1 - - - 0x02FE81 0B:BE71: 40 82     .word ofs_039_ai_subscript_8240_91
+- D 1 - - - 0x02FE83 0B:BE73: F3 8A     .word ofs_039_ai_subscript_8AF3_92_Harpy_drops_enemy
+- D 1 - - - 0x02FE85 0B:BE75: 69 8B     .word ofs_039_ai_subscript_8B69_93
+- D 1 - - - 0x02FE87 0B:BE77: 75 8B     .word ofs_039_ai_subscript_8B75_94
+- D 1 - - - 0x02FE89 0B:BE79: 07 83     .word ofs_039_ai_subscript_8307_95
+- D 1 - - - 0x02FE8B 0B:BE7B: F7 8B     .word ofs_039_ai_subscript_8BF7_96
+- D 1 - - - 0x02FE8D 0B:BE7D: 67 A4     .word ofs_039_ai_subscript_A467_97_clear_XY_speed
+- D 1 - - - 0x02FE8F 0B:BE7F: 11 88     .word ofs_039_ai_subscript_8811_98
+- D 1 - - - 0x02FE91 0B:BE81: 89 88     .word ofs_039_ai_subscript_8889_99
+- D 1 - - - 0x02FE93 0B:BE83: 3F 8E     .word ofs_039_ai_subscript_8E3F_9A
+- D 1 - - - 0x02FE95 0B:BE85: 9A 8C     .word ofs_039_ai_subscript_8C9A_9B
+- D 1 - - - 0x02FE97 0B:BE87: FA 86     .word ofs_039_ai_subscript_86FA_9C
+- D 1 - - - 0x02FE99 0B:BE89: 02 87     .word ofs_039_ai_subscript_8702_9D
+- - - - - - 0x02FE9B 0B:BE8B: 83 81     .word ofs_039_ai_subscript_8183_9E
+- D 1 - - - 0x02FE9D 0B:BE8D: 77 84     .word ofs_039_ai_subscript_8477_9F_check_distance_Y_30_to_player
+- D 1 - - - 0x02FE9F 0B:BE8F: 20 81     .word ofs_039_ai_subscript_8120_A0
+- - - - - - 0x02FEA1 0B:BE91: 6A 81     .word ofs_039_ai_subscript_816A_A1
+- - - - - - 0x02FEA3 0B:BE93: A1 8F     .word ofs_039_ai_subscript_8FA1_A2
+- D 1 - - - 0x02FEA5 0B:BE95: 19 87     .word ofs_039_ai_subscript_8719_A3
+- D 1 - - - 0x02FEA7 0B:BE97: 3A 87     .word ofs_039_ai_subscript_873A_A4
+- - - - - - 0x02FEA9 0B:BE99: AE 82     .word ofs_039_ai_subscript_82AE_A5
+- D 1 - - - 0x02FEAB 0B:BE9B: E5 83     .word ofs_039_ai_subscript_83E5_A6
+- D 1 - - - 0x02FEAD 0B:BE9D: 26 8A     .word ofs_039_ai_subscript_8A26_A7
+- D 1 - - - 0x02FEAF 0B:BE9F: 3E 86     .word ofs_039_ai_subscript_863E_A8_delete_object
 
 
 
-tbl_BEA1:
-; see con_BEA1
-- - - - - - 0x02FEB1 0B:BEA1: 87 BF     .word _off034_BF87_00   ; unused 0x02FD15 0x02FD1E
-- D 1 - - - 0x02FEB3 0B:BEA3: 9C A5     .word _off034_A59C_01
-- D 1 - - - 0x02FEB5 0B:BEA5: C4 A5     .word _off034_A5C4_02
-- D 1 - - - 0x02FEB7 0B:BEA7: DC AA     .word _off034_AADC_03
-- D 1 - - - 0x02FEB9 0B:BEA9: DC AA     .word _off034_AADC_04
-- D 1 - - - 0x02FEBB 0B:BEAB: 1C A7     .word _off034_A71C_05
-- D 1 - - - 0x02FEBD 0B:BEAD: 3C A7     .word _off034_A73C_06
-- D 1 - - - 0x02FEBF 0B:BEAF: 18 A6     .word _off034_A618_07
-- D 1 - - - 0x02FEC1 0B:BEB1: D4 A8     .word _off034_A8D4_08
-- D 1 - - - 0x02FEC3 0B:BEB3: 10 A9     .word _off034_A910_09
-- D 1 - - - 0x02FEC5 0B:BEB5: 10 AA     .word _off034_AA10_0A
-- D 1 - - - 0x02FEC7 0B:BEB7: 48 AA     .word _off034_AA48_0B
-- D 1 - - - 0x02FEC9 0B:BEB9: 84 AA     .word _off034_AA84_0C
-- D 1 - - - 0x02FECB 0B:BEBB: D0 AA     .word _off034_AAD0_0D
-- D 1 - - - 0x02FECD 0B:BEBD: EC A6     .word _off034_A6EC_0E
-- D 1 - - - 0x02FECF 0B:BEBF: F4 AA     .word _off034_AAF4_0F
-- D 1 - - - 0x02FED1 0B:BEC1: 68 AB     .word _off034_AB68_10
-- D 1 - - - 0x02FED3 0B:BEC3: 2C A8     .word _off034_A82C_11
-- D 1 - - - 0x02FED5 0B:BEC5: 70 A6     .word _off034_A670_12
-- D 1 - - - 0x02FED7 0B:BEC7: F8 A8     .word _off034_A8F8_13
-- D 1 - - - 0x02FED9 0B:BEC9: 50 AC     .word _off034_AC50_14
-- - - - - - 0x02FEDB 0B:BECB: 87 BF     .word _off034_BF87_15
-- D 1 - - - 0x02FEDD 0B:BECD: 50 AF     .word _off034_AF50_16
-- D 1 - - - 0x02FEDF 0B:BECF: 40 A9     .word _off034_A940_17
-- D 1 - - - 0x02FEE1 0B:BED1: F8 AF     .word _off034_AFF8_18
-- D 1 - - - 0x02FEE3 0B:BED3: 0C B0     .word _off034_B00C_19
-- D 1 - - - 0x02FEE5 0B:BED5: 1C B0     .word _off034_B01C_1A
-- D 1 - - - 0x02FEE7 0B:BED7: 30 B0     .word _off034_B030_1B
-- D 1 - - - 0x02FEE9 0B:BED9: B0 AB     .word _off034_ABB0_1C
-- D 1 - - - 0x02FEEB 0B:BEDB: 0C AF     .word _off034_AF0C_1D
-- D 1 - - - 0x02FEED 0B:BEDD: 40 A6     .word _off034_A640_1E
-- - - - - - 0x02FEEF 0B:BEDF: 87 BF     .word _off034_BF87_1F
-- D 1 - - - 0x02FEF1 0B:BEE1: BC AA     .word _off034_AABC_20
-- D 1 - - - 0x02FEF3 0B:BEE3: 94 A9     .word _off034_A994_21
-- D 1 - - - 0x02FEF5 0B:BEE5: A0 AA     .word _off034_AAA0_22
-- D 1 - - - 0x02FEF7 0B:BEE7: A8 AA     .word _off034_AAA8_23
-- D 1 - - - 0x02FEF9 0B:BEE9: A8 A5     .word _off034_A5A8_24
-- D 1 - - - 0x02FEFB 0B:BEEB: 08 AE     .word _off034_AE08_25
-- D 1 - - - 0x02FEFD 0B:BEED: 58 AE     .word _off034_AE58_26_swamp_frog
-- D 1 - - - 0x02FEFF 0B:BEEF: EC AC     .word _off034_ACEC_27
-- D 1 - - - 0x02FF01 0B:BEF1: F8 AD     .word _off034_ADF8_28
-- D 1 - - - 0x02FF03 0B:BEF3: 48 AD     .word _off034_AD48_29
-- D 1 - - - 0x02FF05 0B:BEF5: 40 B0     .word _off034_B040_2A
-- D 1 - - - 0x02FF07 0B:BEF7: 4C A8     .word _off034_A84C_2B
-- D 1 - - - 0x02FF09 0B:BEF9: 50 A5     .word _off034_A550_2C
-- D 1 - - - 0x02FF0B 0B:BEFB: 60 A5     .word _off034_A560_2D
-- D 1 - - - 0x02FF0D 0B:BEFD: 6C A5     .word _off034_A56C_2E
-- D 1 - - - 0x02FF0F 0B:BEFF: 94 A6     .word _off034_A694_2F
-- D 1 - - - 0x02FF11 0B:BF01: 90 AF     .word _off034_AF90_30
-- D 1 - - - 0x02FF13 0B:BF03: 9C AF     .word _off034_AF9C_31
-- D 1 - - - 0x02FF15 0B:BF05: A8 AF     .word _off034_AFA8_32
-- D 1 - - - 0x02FF17 0B:BF07: A0 B0     .word _off034_B0A0_33
-- D 1 - - - 0x02FF19 0B:BF09: A0 B0     .word _off034_B0A0_34
-- D 1 - - - 0x02FF1B 0B:BF0B: A0 B0     .word _off034_B0A0_35
-- D 1 - - - 0x02FF1D 0B:BF0D: A0 B0     .word _off034_B0A0_36
-- D 1 - - - 0x02FF1F 0B:BF0F: A0 B0     .word _off034_B0A0_37
-- D 1 - - - 0x02FF21 0B:BF11: A0 B0     .word _off034_B0A0_38
-- D 1 - - - 0x02FF23 0B:BF13: A0 B0     .word _off034_B0A0_39
-- D 1 - - - 0x02FF25 0B:BF15: A0 B0     .word _off034_B0A0_3A
-- - - - - - 0x02FF27 0B:BF17: A0 B0     .word _off034_B0A0_3B
-- - - - - - 0x02FF29 0B:BF19: A0 B0     .word _off034_B0A0_3C
-- D 1 - - - 0x02FF2B 0B:BF1B: A0 B0     .word _off034_B0A0_3D
-- D 1 - - - 0x02FF2D 0B:BF1D: A0 B0     .word _off034_B0A0_3E
-- - - - - - 0x02FF2F 0B:BF1F: A0 B0     .word _off034_B0A0_3F
-- - - - - - 0x02FF31 0B:BF21: A0 B0     .word _off034_B0A0_40
-- D 1 - - - 0x02FF33 0B:BF23: A0 B0     .word _off034_B0A0_41
-- D 1 - - - 0x02FF35 0B:BF25: A0 B0     .word _off034_B0A0_42
-- D 1 - - - 0x02FF37 0B:BF27: B4 B0     .word _off034_B0B4_43
-- D 1 - - - 0x02FF39 0B:BF29: B4 B0     .word _off034_B0B4_44
-- D 1 - - - 0x02FF3B 0B:BF2B: B4 B0     .word _off034_B0B4_45
-- D 1 - - - 0x02FF3D 0B:BF2D: B4 B0     .word _off034_B0B4_46
-- D 1 - - - 0x02FF3F 0B:BF2F: B4 B0     .word _off034_B0B4_47
-- - - - - - 0x02FF41 0B:BF31: B4 B0     .word _off034_B0B4_48
-- - - - - - 0x02FF43 0B:BF33: B4 B0     .word _off034_B0B4_49
-- D 1 - - - 0x02FF45 0B:BF35: B4 B0     .word _off034_B0B4_4A
-- - - - - - 0x02FF47 0B:BF37: B4 B0     .word _off034_B0B4_4B
-- D 1 - - - 0x02FF49 0B:BF39: A0 B0     .word _off034_B0A0_4C
-- D 1 - - - 0x02FF4B 0B:BF3B: A0 B0     .word _off034_B0A0_4D
-- D 1 - - - 0x02FF4D 0B:BF3D: 88 B0     .word _off034_B088_4E
-- D 1 - - - 0x02FF4F 0B:BF3F: A0 B0     .word _off034_B0A0_4F
-- D 1 - - - 0x02FF51 0B:BF41: A0 B0     .word _off034_B0A0_50
-- - - - - - 0x02FF53 0B:BF43: D4 B0     .word _off034_B0D4_51
-- - - - - - 0x02FF55 0B:BF45: D4 B0     .word _off034_B0D4_52
-- - - - - - 0x02FF57 0B:BF47: D4 B0     .word _off034_B0D4_53
-- - - - - - 0x02FF59 0B:BF49: 87 BF     .word _off034_BF87_54
-- - - - - - 0x02FF5B 0B:BF4B: 87 BF     .word _off034_BF87_55
-- - - - - - 0x02FF5D 0B:BF4D: 87 BF     .word _off034_BF87_56
-- D 1 - - - 0x02FF5F 0B:BF4F: D8 B0     .word _off034_B0D8_57
-- D 1 - - - 0x02FF61 0B:BF51: B4 AF     .word _off034_AFB4_58
-- D 1 - - - 0x02FF63 0B:BF53: BC AF     .word _off034_AFBC_59
-- D 1 - - - 0x02FF65 0B:BF55: D0 AF     .word _off034_AFD0_5A
-- D 1 - - - 0x02FF67 0B:BF57: D8 AF     .word _off034_AFD8_5B
-- D 1 - - - 0x02FF69 0B:BF59: E0 AF     .word _off034_AFE0_5C
-- D 1 - - - 0x02FF6B 0B:BF5B: EC AF     .word _off034_AFEC_5D
-- D 1 - - - 0x02FF6D 0B:BF5D: 5C B0     .word _off034_B05C_5E
-- D 1 - - - 0x02FF6F 0B:BF5F: 6C B0     .word _off034_B06C_5F
-- D 1 - - - 0x02FF71 0B:BF61: 0B A4     .word _off034_A40B_60
-- D 1 - - - 0x02FF73 0B:BF63: 78 A5     .word _off034_A578_61
-- D 1 - - - 0x02FF75 0B:BF65: 50 B0     .word _off034_B050_62
-- D 1 - - - 0x02FF77 0B:BF67: 6C A7     .word _off034_A76C_63
-- D 1 - - - 0x02FF79 0B:BF69: 7C A5     .word _off034_A57C_64
-- D 1 - - - 0x02FF7B 0B:BF6B: FC A7     .word _off034_A7FC_65
-- D 1 - - - 0x02FF7D 0B:BF6D: 28 A7     .word _off034_A728_66
-- D 1 - - - 0x02FF7F 0B:BF6F: 4C B0     .word _off034_B04C_67
-- D 1 - - - 0x02FF81 0B:BF71: 9C A8     .word _off034_A89C_68
-- D 1 - - - 0x02FF83 0B:BF73: B8 A6     .word _off034_A6B8_69
-- D 1 - - - 0x02FF85 0B:BF75: F8 AB     .word _off034_ABF8_6A
-- - - - - - 0x02FF87 0B:BF77: 38 A5     .word _off034_A538_6B
-- - - - - - 0x02FF89 0B:BF79: 44 A5     .word _off034_A544_6C
-- D 1 - - - 0x02FF8B 0B:BF7B: 2C A6     .word _off034_A62C_6D
-- - - - - - 0x02FF8D 0B:BF7D: 58 A7     .word _off034_A758_6E
-- - - - - - 0x02FF8F 0B:BF7F: 8C A5     .word _off034_A58C_6F
-- D 1 - - - 0x02FF91 0B:BF81: B8 A5     .word _off034_A5B8_70
-- D 1 - - - 0x02FF93 0B:BF83: 60 A8     .word _off034_A860_71
-- - - - - - 0x02FF95 0B:BF85: F8 AF     .word _off034_AFF8_72
+tbl_BEA1_ai_scripts_data:
+; see con_ai_script
+- - - - - - 0x02FEB1 0B:BEA1: 87 BF     .word _off034_ai_script_BF87_00   ; unused 0x02FD15 0x02FD1E
+- D 1 - - - 0x02FEB3 0B:BEA3: 9C A5     .word _off034_ai_script_A59C_01
+- D 1 - - - 0x02FEB5 0B:BEA5: C4 A5     .word _off034_ai_script_A5C4_02
+- D 1 - - - 0x02FEB7 0B:BEA7: DC AA     .word _off034_ai_script_AADC_03
+- D 1 - - - 0x02FEB9 0B:BEA9: DC AA     .word _off034_ai_script_AADC_04
+- D 1 - - - 0x02FEBB 0B:BEAB: 1C A7     .word _off034_ai_script_A71C_05
+- D 1 - - - 0x02FEBD 0B:BEAD: 3C A7     .word _off034_ai_script_A73C_06
+- D 1 - - - 0x02FEBF 0B:BEAF: 18 A6     .word _off034_ai_script_A618_07
+- D 1 - - - 0x02FEC1 0B:BEB1: D4 A8     .word _off034_ai_script_A8D4_08
+- D 1 - - - 0x02FEC3 0B:BEB3: 10 A9     .word _off034_ai_script_A910_09
+- D 1 - - - 0x02FEC5 0B:BEB5: 10 AA     .word _off034_ai_script_AA10_0A
+- D 1 - - - 0x02FEC7 0B:BEB7: 48 AA     .word _off034_ai_script_AA48_0B
+- D 1 - - - 0x02FEC9 0B:BEB9: 84 AA     .word _off034_ai_script_AA84_0C
+- D 1 - - - 0x02FECB 0B:BEBB: D0 AA     .word _off034_ai_script_AAD0_0D
+- D 1 - - - 0x02FECD 0B:BEBD: EC A6     .word _off034_ai_script_A6EC_0E
+- D 1 - - - 0x02FECF 0B:BEBF: F4 AA     .word _off034_ai_script_AAF4_0F
+- D 1 - - - 0x02FED1 0B:BEC1: 68 AB     .word _off034_ai_script_AB68_10
+- D 1 - - - 0x02FED3 0B:BEC3: 2C A8     .word _off034_ai_script_A82C_11
+- D 1 - - - 0x02FED5 0B:BEC5: 70 A6     .word _off034_ai_script_A670_12
+- D 1 - - - 0x02FED7 0B:BEC7: F8 A8     .word _off034_ai_script_A8F8_13
+- D 1 - - - 0x02FED9 0B:BEC9: 50 AC     .word _off034_ai_script_AC50_14
+- - - - - - 0x02FEDB 0B:BECB: 87 BF     .word _off034_ai_script_BF87_15
+- D 1 - - - 0x02FEDD 0B:BECD: 50 AF     .word _off034_ai_script_AF50_16
+- D 1 - - - 0x02FEDF 0B:BECF: 40 A9     .word _off034_ai_script_A940_17
+- D 1 - - - 0x02FEE1 0B:BED1: F8 AF     .word _off034_ai_script_AFF8_18
+- D 1 - - - 0x02FEE3 0B:BED3: 0C B0     .word _off034_ai_script_B00C_19
+- D 1 - - - 0x02FEE5 0B:BED5: 1C B0     .word _off034_ai_script_B01C_1A
+- D 1 - - - 0x02FEE7 0B:BED7: 30 B0     .word _off034_ai_script_B030_1B
+- D 1 - - - 0x02FEE9 0B:BED9: B0 AB     .word _off034_ai_script_ABB0_1C
+- D 1 - - - 0x02FEEB 0B:BEDB: 0C AF     .word _off034_ai_script_AF0C_1D
+- D 1 - - - 0x02FEED 0B:BEDD: 40 A6     .word _off034_ai_script_A640_1E
+- - - - - - 0x02FEEF 0B:BEDF: 87 BF     .word _off034_ai_script_BF87_1F
+- D 1 - - - 0x02FEF1 0B:BEE1: BC AA     .word _off034_ai_script_AABC_20
+- D 1 - - - 0x02FEF3 0B:BEE3: 94 A9     .word _off034_ai_script_A994_21
+- D 1 - - - 0x02FEF5 0B:BEE5: A0 AA     .word _off034_ai_script_AAA0_22
+- D 1 - - - 0x02FEF7 0B:BEE7: A8 AA     .word _off034_ai_script_AAA8_23
+- D 1 - - - 0x02FEF9 0B:BEE9: A8 A5     .word _off034_ai_script_A5A8_24
+- D 1 - - - 0x02FEFB 0B:BEEB: 08 AE     .word _off034_ai_script_AE08_25
+- D 1 - - - 0x02FEFD 0B:BEED: 58 AE     .word _off034_ai_script_AE58_26_swamp_frog
+- D 1 - - - 0x02FEFF 0B:BEEF: EC AC     .word _off034_ai_script_ACEC_27
+- D 1 - - - 0x02FF01 0B:BEF1: F8 AD     .word _off034_ai_script_ADF8_28
+- D 1 - - - 0x02FF03 0B:BEF3: 48 AD     .word _off034_ai_script_AD48_29
+- D 1 - - - 0x02FF05 0B:BEF5: 40 B0     .word _off034_ai_script_B040_2A
+- D 1 - - - 0x02FF07 0B:BEF7: 4C A8     .word _off034_ai_script_A84C_2B
+- D 1 - - - 0x02FF09 0B:BEF9: 50 A5     .word _off034_ai_script_A550_2C
+- D 1 - - - 0x02FF0B 0B:BEFB: 60 A5     .word _off034_ai_script_A560_2D
+- D 1 - - - 0x02FF0D 0B:BEFD: 6C A5     .word _off034_ai_script_A56C_2E
+- D 1 - - - 0x02FF0F 0B:BEFF: 94 A6     .word _off034_ai_script_A694_2F
+- D 1 - - - 0x02FF11 0B:BF01: 90 AF     .word _off034_ai_script_AF90_30
+- D 1 - - - 0x02FF13 0B:BF03: 9C AF     .word _off034_ai_script_AF9C_31
+- D 1 - - - 0x02FF15 0B:BF05: A8 AF     .word _off034_ai_script_AFA8_32
+- D 1 - - - 0x02FF17 0B:BF07: A0 B0     .word _off034_ai_script_B0A0_33
+- D 1 - - - 0x02FF19 0B:BF09: A0 B0     .word _off034_ai_script_B0A0_34
+- D 1 - - - 0x02FF1B 0B:BF0B: A0 B0     .word _off034_ai_script_B0A0_35
+- D 1 - - - 0x02FF1D 0B:BF0D: A0 B0     .word _off034_ai_script_B0A0_36
+- D 1 - - - 0x02FF1F 0B:BF0F: A0 B0     .word _off034_ai_script_B0A0_37
+- D 1 - - - 0x02FF21 0B:BF11: A0 B0     .word _off034_ai_script_B0A0_38
+- D 1 - - - 0x02FF23 0B:BF13: A0 B0     .word _off034_ai_script_B0A0_39
+- D 1 - - - 0x02FF25 0B:BF15: A0 B0     .word _off034_ai_script_B0A0_3A
+- - - - - - 0x02FF27 0B:BF17: A0 B0     .word _off034_ai_script_B0A0_3B
+- - - - - - 0x02FF29 0B:BF19: A0 B0     .word _off034_ai_script_B0A0_3C
+- D 1 - - - 0x02FF2B 0B:BF1B: A0 B0     .word _off034_ai_script_B0A0_3D
+- D 1 - - - 0x02FF2D 0B:BF1D: A0 B0     .word _off034_ai_script_B0A0_3E
+- - - - - - 0x02FF2F 0B:BF1F: A0 B0     .word _off034_ai_script_B0A0_3F
+- - - - - - 0x02FF31 0B:BF21: A0 B0     .word _off034_ai_script_B0A0_40
+- D 1 - - - 0x02FF33 0B:BF23: A0 B0     .word _off034_ai_script_B0A0_41
+- D 1 - - - 0x02FF35 0B:BF25: A0 B0     .word _off034_ai_script_B0A0_42
+- D 1 - - - 0x02FF37 0B:BF27: B4 B0     .word _off034_ai_script_B0B4_43
+- D 1 - - - 0x02FF39 0B:BF29: B4 B0     .word _off034_ai_script_B0B4_44
+- D 1 - - - 0x02FF3B 0B:BF2B: B4 B0     .word _off034_ai_script_B0B4_45
+- D 1 - - - 0x02FF3D 0B:BF2D: B4 B0     .word _off034_ai_script_B0B4_46
+- D 1 - - - 0x02FF3F 0B:BF2F: B4 B0     .word _off034_ai_script_B0B4_47
+- - - - - - 0x02FF41 0B:BF31: B4 B0     .word _off034_ai_script_B0B4_48
+- - - - - - 0x02FF43 0B:BF33: B4 B0     .word _off034_ai_script_B0B4_49
+- D 1 - - - 0x02FF45 0B:BF35: B4 B0     .word _off034_ai_script_B0B4_4A
+- - - - - - 0x02FF47 0B:BF37: B4 B0     .word _off034_ai_script_B0B4_4B
+- D 1 - - - 0x02FF49 0B:BF39: A0 B0     .word _off034_ai_script_B0A0_4C
+- D 1 - - - 0x02FF4B 0B:BF3B: A0 B0     .word _off034_ai_script_B0A0_4D
+- D 1 - - - 0x02FF4D 0B:BF3D: 88 B0     .word _off034_ai_script_B088_4E
+- D 1 - - - 0x02FF4F 0B:BF3F: A0 B0     .word _off034_ai_script_B0A0_4F
+- D 1 - - - 0x02FF51 0B:BF41: A0 B0     .word _off034_ai_script_B0A0_50
+- - - - - - 0x02FF53 0B:BF43: D4 B0     .word _off034_ai_script_B0D4_51
+- - - - - - 0x02FF55 0B:BF45: D4 B0     .word _off034_ai_script_B0D4_52
+- - - - - - 0x02FF57 0B:BF47: D4 B0     .word _off034_ai_script_B0D4_53
+- - - - - - 0x02FF59 0B:BF49: 87 BF     .word _off034_ai_script_BF87_54
+- - - - - - 0x02FF5B 0B:BF4B: 87 BF     .word _off034_ai_script_BF87_55
+- - - - - - 0x02FF5D 0B:BF4D: 87 BF     .word _off034_ai_script_BF87_56
+- D 1 - - - 0x02FF5F 0B:BF4F: D8 B0     .word _off034_ai_script_B0D8_57
+- D 1 - - - 0x02FF61 0B:BF51: B4 AF     .word _off034_ai_script_AFB4_58
+- D 1 - - - 0x02FF63 0B:BF53: BC AF     .word _off034_ai_script_AFBC_59
+- D 1 - - - 0x02FF65 0B:BF55: D0 AF     .word _off034_ai_script_AFD0_5A
+- D 1 - - - 0x02FF67 0B:BF57: D8 AF     .word _off034_ai_script_AFD8_5B
+- D 1 - - - 0x02FF69 0B:BF59: E0 AF     .word _off034_ai_script_AFE0_5C
+- D 1 - - - 0x02FF6B 0B:BF5B: EC AF     .word _off034_ai_script_AFEC_5D
+- D 1 - - - 0x02FF6D 0B:BF5D: 5C B0     .word _off034_ai_script_B05C_5E
+- D 1 - - - 0x02FF6F 0B:BF5F: 6C B0     .word _off034_ai_script_B06C_5F
+- D 1 - - - 0x02FF71 0B:BF61: 0B A4     .word _off034_ai_script_A40B_60
+- D 1 - - - 0x02FF73 0B:BF63: 78 A5     .word _off034_ai_script_A578_61
+- D 1 - - - 0x02FF75 0B:BF65: 50 B0     .word _off034_ai_script_B050_62
+- D 1 - - - 0x02FF77 0B:BF67: 6C A7     .word _off034_ai_script_A76C_63
+- D 1 - - - 0x02FF79 0B:BF69: 7C A5     .word _off034_ai_script_A57C_64
+- D 1 - - - 0x02FF7B 0B:BF6B: FC A7     .word _off034_ai_script_A7FC_65
+- D 1 - - - 0x02FF7D 0B:BF6D: 28 A7     .word _off034_ai_script_A728_66
+- D 1 - - - 0x02FF7F 0B:BF6F: 4C B0     .word _off034_ai_script_B04C_67
+- D 1 - - - 0x02FF81 0B:BF71: 9C A8     .word _off034_ai_script_A89C_68
+- D 1 - - - 0x02FF83 0B:BF73: B8 A6     .word _off034_ai_script_A6B8_69
+- D 1 - - - 0x02FF85 0B:BF75: F8 AB     .word _off034_ai_script_ABF8_6A
+- - - - - - 0x02FF87 0B:BF77: 38 A5     .word _off034_ai_script_A538_6B
+- - - - - - 0x02FF89 0B:BF79: 44 A5     .word _off034_ai_script_A544_6C
+- D 1 - - - 0x02FF8B 0B:BF7B: 2C A6     .word _off034_ai_script_A62C_6D
+- - - - - - 0x02FF8D 0B:BF7D: 58 A7     .word _off034_ai_script_A758_6E
+- - - - - - 0x02FF8F 0B:BF7F: 8C A5     .word _off034_ai_script_A58C_6F
+- D 1 - - - 0x02FF91 0B:BF81: B8 A5     .word _off034_ai_script_A5B8_70
+- D 1 - - - 0x02FF93 0B:BF83: 60 A8     .word _off034_ai_script_A860_71
+- - - - - - 0x02FF95 0B:BF85: F8 AF     .word _off034_ai_script_AFF8_72
 
 
 
-_off034_BF87_00:
-; con_BEA1_00
-_off034_BF87_15:
-; con_BEA1_15
-_off034_BF87_1F:
-; con_BEA1_1F
-_off034_BF87_54:
-; con_BEA1_54
-_off034_BF87_55:
-; con_BEA1_55
-_off034_BF87_56:
-; con_BEA1_56
+_off034_ai_script_BF87_00:
+; con_ai_script_00
+_off034_ai_script_BF87_15:
+; con_ai_script_15
+_off034_ai_script_BF87_1F:
+; con_ai_script_1F
+_off034_ai_script_BF87_54:
+; con_ai_script_54
+_off034_ai_script_BF87_55:
+; con_ai_script_55
+_off034_ai_script_BF87_56:
+; con_ai_script_56
 ; 00 
-- - - - - - 0x02FF97 0B:BF87: 19        .byte con_BD4F_19   ; 
-- - - - - - 0x02FF98 0B:BF88: 00        .byte $00   ; 
-- - - - - - 0x02FF99 0B:BF89: 00        .byte $00   ; 
-- - - - - - 0x02FF9A 0B:BF8A: 00        .byte $00   ; 
+- - - - - - 0x02FF97 0B:BF87: 19        .byte con_ai_subscr_19   ; 
+- - - - - - 0x02FF98 0B:BF88: 00        .byte $00   ; placeholder
+- - - - - - 0x02FF99 0B:BF89: 00        .byte $00   ; placeholder
+- - - - - - 0x02FF9A 0B:BF8A: 00        .byte $00   ; placeholder
 
 
 
-ofs_039_BF8B_19_RTS:
-; con_BD4F_19
+ofs_039_ai_subscript_BF8B_19_RTS:
+; con_ai_subscr_19
 - - - - - - 0x02FF9B 0B:BF8B: 60        RTS
 
 

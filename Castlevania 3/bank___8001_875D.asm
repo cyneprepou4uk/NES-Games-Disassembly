@@ -91,18 +91,18 @@ C - - - - - 0x010085 04:8075: 4C A6 E1  JMP loc_0x03E1B6
 
 
 tbl_8078_sounds:
-- - - - - - 0x010088 04:8078: 01        .byte con_sound_01   ; 00 
-- D 0 - - - 0x010089 04:8079: 02        .byte con_sound_02   ; 01 
-- D 0 - - - 0x01008A 04:807A: 03        .byte con_sound_03   ; 02 
-- - - - - - 0x01008B 04:807B: 04        .byte con_sound_04   ; 03 
-- D 0 - - - 0x01008C 04:807C: 05        .byte con_sound_05   ; 04 
-- - - - - - 0x01008D 04:807D: 70        .byte con_dmc_70     ; 05 
-- D 0 - - - 0x01008E 04:807E: 79        .byte con_dmc_79     ; 06 
-- D 0 - - - 0x01008F 04:807F: 6D        .byte con_dmc_6D     ; 07 
-- D 0 - - - 0x010090 04:8080: 6E        .byte con_dmc_6E     ; 08 
-- D 0 - - - 0x010091 04:8081: 6F        .byte con_dmc_6F     ; 09 
-- D 0 - - - 0x010092 04:8082: 70        .byte con_dmc_70     ; 0A 
-- D 0 - - - 0x010093 04:8083: 71        .byte con_dmc_71     ; 0B 
+- - - - - - 0x010088 04:8078: 01        .byte con_sfx_01   ; 00 
+- D 0 - - - 0x010089 04:8079: 02        .byte con_sfx_02   ; 01 
+- D 0 - - - 0x01008A 04:807A: 03        .byte con_sfx_03   ; 02 
+- - - - - - 0x01008B 04:807B: 04        .byte con_sfx_04   ; 03 
+- D 0 - - - 0x01008C 04:807C: 05        .byte con_sfx_05   ; 04 
+- - - - - - 0x01008D 04:807D: 70        .byte con_dmc_70   ; 05 
+- D 0 - - - 0x01008E 04:807E: 79        .byte con_dmc_79   ; 06 
+- D 0 - - - 0x01008F 04:807F: 6D        .byte con_dmc_6D   ; 07 
+- D 0 - - - 0x010090 04:8080: 6E        .byte con_dmc_6E   ; 08 
+- D 0 - - - 0x010091 04:8081: 6F        .byte con_dmc_6F   ; 09 
+- D 0 - - - 0x010092 04:8082: 70        .byte con_dmc_70   ; 0A 
+- D 0 - - - 0x010093 04:8083: 71        .byte con_dmc_71   ; 0B 
 
 
 

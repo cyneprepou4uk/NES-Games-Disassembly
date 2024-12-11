@@ -4599,7 +4599,7 @@ sub_0x01BE31:
     ; C
         ; 0 = 
         ; 1 = 
-C - - - - - 0x01BE31 06:BE21: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+C - - - - - 0x01BE31 06:BE21: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 C - - - - - 0x01BE34 06:BE24: A4 9E     LDY ram_009E_object_index
 C - - - - - 0x01BE36 06:BE26: B9 4E 05  LDA ram_obj_id,Y
 C - - - - - 0x01BE39 06:BE29: A8        TAY

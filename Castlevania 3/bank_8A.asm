@@ -7,62 +7,62 @@
 
 
 
-.export off_ch_00_0x01476E_4E
-.export off_ch_01_0x014786_4E
-.export off_ch_02_0x01479D_4E
-.export off_ch_05_0x0147AE_4E
-.export off_ch_00_0x0147BC_4F
-.export off_ch_01_0x014A8F_4F
-.export off_ch_02_0x014C85_4F
-.export off_ch_05_0x014E53_4F
-.export off_ch_00_0x014FCE_50
-.export off_ch_01_0x015194_50
-.export off_ch_02_0x01532C_50
-.export off_ch_05_0x0154B4_50
-.export off_ch_00_0x015586_51
-.export off_ch_01_0x01570D_51
-.export off_ch_02_0x015878_51
-.export off_ch_05_0x01597D_51
-.export off_ch_00_0x015A13_52
-.export off_ch_01_0x015B6B_52
-.export off_ch_02_0x015CDD_52
-.export off_ch_05_0x015E11_52_FF
-.export off_ch_00_0x015E12_53
-.export off_ch_01_0x015FF6_53
-.export off_ch_02_0x016157_53
-.export off_ch_05_0x0161F2_53_FF
-.export off_ch_00_0x0161F3_54
-.export off_ch_00_0x0161F3_5A
-.export off_ch_01_0x016345_54
-.export off_ch_01_0x016345_5A
-.export off_ch_02_0x0164D6_54
-.export off_ch_02_0x0164D6_5A
-.export off_ch_05_0x016634_54
-.export off_ch_05_0x016634_5A
-.export off_ch_00_0x016702_55
-.export off_ch_01_0x016A58_55
-.export off_ch_02_0x016CD5_55
-.export off_ch_05_0x016DBA_55
-.export off_ch_00_0x016E4C_56
-.export off_ch_00_0x016E4C_59
-.export off_ch_01_0x016FF0_56
-.export off_ch_01_0x016FF0_59
-.export off_ch_02_0x01715D_56
-.export off_ch_02_0x01715D_59
-.export off_ch_05_0x017211_56
-.export off_ch_05_0x017211_59
-.export off_ch_00_0x0172DD_57
-.export off_ch_01_0x017386_57
-.export off_ch_02_0x01741E_57
-.export off_ch_05_0x017484_57_FF
-.export off_ch_00_0x017485_69
-.export off_ch_01_0x0175FA_69
-.export off_ch_02_0x0176A1_69
-.export off_ch_05_0x017759_69
-.export off_ch_00_0x0177B2_67
-.export off_ch_01_0x0177D9_67
-.export off_ch_02_0x017828_67
-.export off_ch_05_0x017840_67
+.export off_ch_00_0x01476E_4E_death
+.export off_ch_01_0x014786_4E_death
+.export off_ch_02_0x01479D_4E_death
+.export off_ch_05_0x0147AE_4E_death
+.export off_ch_00_0x0147BC_4F_beginning
+.export off_ch_01_0x014A8F_4F_beginning
+.export off_ch_02_0x014C85_4F_beginning
+.export off_ch_05_0x014E53_4F_beginning
+.export off_ch_00_0x014FCE_50_mad_forest
+.export off_ch_01_0x015194_50_mad_forest
+.export off_ch_02_0x01532C_50_mad_forest
+.export off_ch_05_0x0154B4_50_mad_forest
+.export off_ch_00_0x015586_51_stream
+.export off_ch_01_0x01570D_51_stream
+.export off_ch_02_0x015878_51_stream
+.export off_ch_05_0x01597D_51_stream
+.export off_ch_00_0x015A13_52_dead_beat
+.export off_ch_01_0x015B6B_52_dead_beat
+.export off_ch_02_0x015CDD_52_dead_beat
+.export off_ch_05_0x015E11_52_dead_beat_FF
+.export off_ch_00_0x015E12_53_clockwork
+.export off_ch_01_0x015FF6_53_clockwork
+.export off_ch_02_0x016157_53_clockwork
+.export off_ch_05_0x0161F2_53_clockwork_FF
+.export off_ch_00_0x0161F3_54_aquarius
+.export off_ch_00_0x0161F3_5A_copy_aquarius
+.export off_ch_01_0x016345_54_aquarius
+.export off_ch_01_0x016345_5A_copy_aquarius
+.export off_ch_02_0x0164D6_54_aquarius
+.export off_ch_02_0x0164D6_5A_copy_aquarius
+.export off_ch_05_0x016634_54_aquarius
+.export off_ch_05_0x016634_5A_copy_aquarius
+.export off_ch_00_0x016702_55_rising
+.export off_ch_01_0x016A58_55_rising
+.export off_ch_02_0x016CD5_55_rising
+.export off_ch_05_0x016DBA_55_rising
+.export off_ch_00_0x016E4C_56_anxiety
+.export off_ch_00_0x016E4C_59_copy_anxiety
+.export off_ch_01_0x016FF0_56_anxiety
+.export off_ch_01_0x016FF0_59_copy_anxiety
+.export off_ch_02_0x01715D_56_anxiety
+.export off_ch_02_0x01715D_59_copy_anxiety
+.export off_ch_05_0x017211_56_anxiety
+.export off_ch_05_0x017211_59_copy_anxiety
+.export off_ch_00_0x0172DD_57_nightmare
+.export off_ch_01_0x017386_57_nightmare
+.export off_ch_02_0x01741E_57_nightmare
+.export off_ch_05_0x017484_57_nightmare_FF
+.export off_ch_00_0x017485_69_flash_back
+.export off_ch_01_0x0175FA_69_flash_back
+.export off_ch_02_0x0176A1_69_flash_back
+.export off_ch_05_0x017759_69_flash_back
+.export off_ch_00_0x0177B2_67_prayer
+.export off_ch_01_0x0177D9_67_prayer
+.export off_ch_02_0x017828_67_prayer
+.export off_ch_05_0x017840_67_prayer
 .export _off005_0x017849_1C
 .export _off005_0x017A0A_10
 .export _off012_0x017A0C_02
@@ -89,7 +89,7 @@
 
 
 
-off_ch_00_0x01476E_4E:
+off_ch_00_0x01476E_4E_death:
 - D 0 - I - 0x01476E 05:875E: D8        .byte con_se_cb_1_D0 + $08, $76, con_9E25_02 + $80   ; 
 - D 0 - I - 0x014771 05:8761: 14        .byte $14   ; 
 - D 0 - I - 0x014772 05:8762: E9        .byte con_se_cb_1_E9, $B1   ; 
@@ -113,7 +113,7 @@ off_ch_00_0x01476E_4E:
 
 
 
-off_ch_01_0x014786_4E:
+off_ch_01_0x014786_4E_death:
 - D 0 - I - 0x014786 05:8776: D8        .byte con_se_cb_1_D0 + $08, $B9, con_9E25_05 + $80   ; 
 - D 0 - I - 0x014789 05:8779: 14        .byte $14   ; 
 - D 0 - I - 0x01478A 05:877A: E9        .byte con_se_cb_1_E9, $B4   ; 
@@ -136,7 +136,7 @@ off_ch_01_0x014786_4E:
 
 
 
-off_ch_02_0x01479D_4E:
+off_ch_02_0x01479D_4E_death:
 - D 0 - I - 0x01479D 05:878D: D8        .byte con_se_cb_1_D0 + $08, $13   ; 
 - D 0 - I - 0x01479F 05:878F: E3        .byte con_se_cb_1_E0 + $03   ; 
 - D 0 - I - 0x0147A0 05:8790: 40        .byte $40   ; 
@@ -156,7 +156,7 @@ off_ch_02_0x01479D_4E:
 
 
 
-off_ch_05_0x0147AE_4E:
+off_ch_05_0x0147AE_4E_death:
 - D 0 - I - 0x0147AE 05:879E: D1        .byte $D1   ; 
 - D 0 - I - 0x0147AF 05:879F: B0        .byte $B0   ; 
 - D 0 - I - 0x0147B0 05:87A0: 12        .byte $12   ; 
@@ -173,7 +173,7 @@ off_ch_05_0x0147AE_4E:
 
 
 
-off_ch_00_0x0147BC_4F:
+off_ch_00_0x0147BC_4F_beginning:
 - D 0 - I - 0x0147BC 05:87AC: D7        .byte con_se_cb_1_D0 + $07, $73, con_9E25_01   ; 
 - D 0 - I - 0x0147BF 05:87AF: 00        .byte $00   ; 
 - D 0 - I - 0x0147C0 05:87B0: C6        .byte con_se_cb_1_C0 + $06   ; 
@@ -728,7 +728,7 @@ off_FE_87B8:
 
 
 
-off_ch_01_0x014A8F_4F:
+off_ch_01_0x014A8F_4F_beginning:
 - D 0 - I - 0x014A8F 05:8A7F: D7        .byte con_se_cb_1_D0 + $07, $70, con_9E25_01   ; 
 - D 0 - I - 0x014A92 05:8A82: 00        .byte $00   ; 
 - D 0 - I - 0x014A93 05:8A83: C6        .byte con_se_cb_1_C0 + $06   ; 
@@ -1164,7 +1164,7 @@ off_FE_8A89:
 
 
 
-off_ch_02_0x014C85_4F:
+off_ch_02_0x014C85_4F_beginning:
 - D 0 - I - 0x014C85 05:8C75: D7        .byte con_se_cb_1_D0 + $07, $12   ; 
 - D 0 - I - 0x014C87 05:8C77: C6        .byte con_se_cb_1_C0 + $06   ; 
 - D 0 - I - 0x014C88 05:8C78: E4        .byte con_se_cb_1_E0 + $04   ; 
@@ -1619,7 +1619,7 @@ off_FE_8C7D:
 
 
 
-off_ch_05_0x014E53_4F:
+off_ch_05_0x014E53_4F_beginning:
 - D 0 - I - 0x014E53 05:8E43: D1        .byte $D1   ; 
 - D 0 - I - 0x014E54 05:8E44: 92        .byte $92   ; 
 - D 0 - I - 0x014E55 05:8E45: 93        .byte $93   ; 
@@ -1990,7 +1990,7 @@ off_FE_8E51:
 
 
 
-off_ch_00_0x014FCE_50:
+off_ch_00_0x014FCE_50_mad_forest:
 off_FE_8FBE:
 - D 0 - I - 0x014FCE 05:8FBE: D7        .byte con_se_cb_1_D0 + $07, $B8, con_9E25_05 + $80   ; 
 - D 0 - I - 0x014FD1 05:8FC1: 34        .byte $34   ; 
@@ -2408,7 +2408,7 @@ off_FE_8FBE:
 
 
 
-off_ch_01_0x015194_50:
+off_ch_01_0x015194_50_mad_forest:
 off_FE_9184:
 - D 0 - I - 0x015194 05:9184: D7        .byte con_se_cb_1_D0 + $07, $78, con_9E25_04 + $80   ; 
 - D 0 - I - 0x015197 05:9187: 46        .byte $46   ; 
@@ -2755,7 +2755,7 @@ off_FE_9184:
 
 
 
-off_ch_02_0x01532C_50:
+off_ch_02_0x01532C_50_mad_forest:
 off_FE_931C:
 - D 0 - I - 0x01532C 05:931C: D7        .byte con_se_cb_1_D0 + $07, $14   ; 
 - D 0 - I - 0x01532E 05:931E: E4        .byte con_se_cb_1_E0 + $04   ; 
@@ -3122,7 +3122,7 @@ off_FE_931C:
 
 
 
-off_ch_05_0x0154B4_50:
+off_ch_05_0x0154B4_50_mad_forest:
 off_FE_94A4:
 - D 0 - I - 0x0154B4 05:94A4: D7        .byte $D7   ; 
 - D 0 - I - 0x0154B5 05:94A5: FB        .byte con_se_cb_1_FB   ; 
@@ -3329,7 +3329,7 @@ off_FE_94A4:
 
 
 
-off_ch_00_0x015586_51:
+off_ch_00_0x015586_51_stream:
 off_FE_9576:
 - D 0 - I - 0x015586 05:9576: D7        .byte con_se_cb_1_D0 + $07, $76, con_9E25_04 + $80   ; 
 - D 0 - I - 0x015589 05:9579: 35        .byte $35   ; 
@@ -3651,7 +3651,7 @@ off_FE_9576:
 
 
 
-off_ch_01_0x01570D_51:
+off_ch_01_0x01570D_51_stream:
 off_FE_96FD:
 - D 0 - I - 0x01570D 05:96FD: D7        .byte con_se_cb_1_D0 + $07, $70, con_9E25_1E   ; 
 - D 0 - I - 0x015710 05:9700: 18        .byte $18   ; 
@@ -3939,7 +3939,7 @@ off_FE_96FD:
 
 
 
-off_ch_02_0x015878_51:
+off_ch_02_0x015878_51_stream:
 off_FE_9868:
 - D 0 - I - 0x015878 05:9868: D7        .byte con_se_cb_1_D0 + $07, $13   ; 
 - D 0 - I - 0x01587A 05:986A: E4        .byte con_se_cb_1_E0 + $04   ; 
@@ -4196,7 +4196,7 @@ off_FE_9868:
 
 
 
-off_ch_05_0x01597D_51:
+off_ch_05_0x01597D_51_stream:
 off_FE_996D:
 - D 0 - I - 0x01597D 05:996D: FB        .byte con_se_cb_1_FB   ; 
 - D 0 - I - 0x01597E 05:996E: D1        .byte $D1   ; 
@@ -4344,7 +4344,7 @@ off_FE_996D:
 
 
 
-off_ch_00_0x015A13_52:
+off_ch_00_0x015A13_52_dead_beat:
 off_FE_9A03:
 - D 0 - I - 0x015A13 05:9A03: D6        .byte con_se_cb_1_D0 + $06, $30, con_9E25_11   ; 
 - D 0 - I - 0x015A16 05:9A06: 35        .byte $35   ; 
@@ -4657,7 +4657,7 @@ off_FE_9A03:
 
 
 
-off_ch_01_0x015B6B_52:
+off_ch_01_0x015B6B_52_dead_beat:
 off_FE_9B5B:
 - D 0 - I - 0x015B6B 05:9B5B: D6        .byte con_se_cb_1_D0 + $06, $30, con_9E25_11   ; 
 - D 0 - I - 0x015B6E 05:9B5E: 28        .byte $28   ; 
@@ -4972,7 +4972,7 @@ off_FE_9B5B:
 
 
 
-off_ch_02_0x015CDD_52:
+off_ch_02_0x015CDD_52_dead_beat:
 off_FE_9CCD:
 - D 0 - I - 0x015CDD 05:9CCD: FB        .byte con_se_cb_1_FB   ; 
 - D 0 - I - 0x015CDE 05:9CCE: D6        .byte con_se_cb_1_D0 + $06, $98   ; 
@@ -5277,12 +5277,12 @@ off_FE_9CCD:
 
 
 
-off_ch_05_0x015E11_52_FF:
+off_ch_05_0x015E11_52_dead_beat_FF:
 - D 0 - I - 0x015E11 05:9E01: FF        .byte con_se_cb_1_FF   ; 
 
 
 
-off_ch_00_0x015E12_53:
+off_ch_00_0x015E12_53_clockwork:
 off_FE_9E02:
 - D 0 - I - 0x015E12 05:9E02: D7        .byte con_se_cb_1_D0 + $07, $36, con_9E25_03 + $80   ; 
 - D 0 - I - 0x015E15 05:9E05: 67        .byte $67   ; 
@@ -5725,7 +5725,7 @@ off_FE_9E02:
 
 
 
-off_ch_01_0x015FF6_53:
+off_ch_01_0x015FF6_53_clockwork:
 off_FE_9FE6:
 - D 0 - I - 0x015FF6 05:9FE6: D7        .byte con_se_cb_1_D0 + $07, $38, con_9E25_06 + $80   ; 
 - D 0 - I - 0x015FF9 05:9FE9: 46        .byte $46   ; 
@@ -6042,7 +6042,7 @@ off_FE_9FE6:
 
 
 
-off_ch_02_0x016157_53:
+off_ch_02_0x016157_53_clockwork:
 off_FE_A147:
 - D 1 - I - 0x016157 05:A147: D7        .byte con_se_cb_1_D0 + $07, $00   ; 
 - D 1 - I - 0x016159 05:A149: E4        .byte con_se_cb_1_E0 + $04   ; 
@@ -6184,13 +6184,13 @@ off_FE_A147:
 
 
 
-off_ch_05_0x0161F2_53_FF:
+off_ch_05_0x0161F2_53_clockwork_FF:
 - D 1 - I - 0x0161F2 05:A1E2: FF        .byte con_se_cb_1_FF   ; 
 
 
 
-off_ch_00_0x0161F3_54:
-off_ch_00_0x0161F3_5A:
+off_ch_00_0x0161F3_54_aquarius:
+off_ch_00_0x0161F3_5A_copy_aquarius:
 off_FE_A1E3:
 - D 1 - I - 0x0161F3 05:A1E3: D7        .byte con_se_cb_1_D0 + $07, $77, con_9E25_04 + $80   ; 
 - D 1 - I - 0x0161F6 05:A1E6: 64        .byte $64   ; 
@@ -6465,8 +6465,8 @@ off_FE_A1E3:
 
 
 
-off_ch_01_0x016345_54:
-off_ch_01_0x016345_5A:
+off_ch_01_0x016345_54_aquarius:
+off_ch_01_0x016345_5A_copy_aquarius:
 off_FE_A335:
 - D 1 - I - 0x016345 05:A335: D7        .byte con_se_cb_1_D0 + $07, $70, con_9E25_19   ; 
 - D 1 - I - 0x016348 05:A338: 48        .byte $48   ; 
@@ -6788,8 +6788,8 @@ off_FE_A335:
 
 
 
-off_ch_02_0x0164D6_54:
-off_ch_02_0x0164D6_5A:
+off_ch_02_0x0164D6_54_aquarius:
+off_ch_02_0x0164D6_5A_copy_aquarius:
 off_FE_A4C6:
 - D 1 - I - 0x0164D6 05:A4C6: D7        .byte con_se_cb_1_D0 + $07, $14   ; 
 - D 1 - I - 0x0164D8 05:A4C8: E3        .byte con_se_cb_1_E0 + $03   ; 
@@ -7123,8 +7123,8 @@ off_FE_A4C6:
 
 
 
-off_ch_05_0x016634_54:
-off_ch_05_0x016634_5A:
+off_ch_05_0x016634_54_aquarius:
+off_ch_05_0x016634_5A_copy_aquarius:
 off_FE_A624:
 - D 1 - I - 0x016634 05:A624: D1        .byte $D1   ; 
 - D 1 - I - 0x016635 05:A625: FB        .byte con_se_cb_1_FB   ; 
@@ -7329,7 +7329,7 @@ off_FE_A624:
 
 
 
-off_ch_00_0x016702_55:
+off_ch_00_0x016702_55_rising:
 off_FE_A6F2:
 - D 1 - I - 0x016702 05:A6F2: D9        .byte con_se_cb_1_D0 + $09, $B1, con_9E25_0A   ; 
 - D 1 - I - 0x016705 05:A6F5: 12        .byte $12   ; 
@@ -8065,7 +8065,7 @@ off_FE_A6F2:
 
 
 
-off_ch_01_0x016A58_55:
+off_ch_01_0x016A58_55_rising:
 off_FE_AA48:
 - D 1 - I - 0x016A58 05:AA48: D9        .byte con_se_cb_1_D0 + $09, $36, con_9E25_05 + $80   ; 
 - D 1 - I - 0x016A5B 05:AA4B: 17        .byte $17   ; 
@@ -8599,7 +8599,7 @@ off_FE_AA48:
 
 
 
-off_ch_02_0x016CD5_55:
+off_ch_02_0x016CD5_55_rising:
 off_FE_ACC5:
 - D 1 - I - 0x016CD5 05:ACC5: D9        .byte con_se_cb_1_D0 + $09, $11   ; 
 - D 1 - I - 0x016CD7 05:ACC7: E3        .byte con_se_cb_1_E0 + $03   ; 
@@ -8821,7 +8821,7 @@ off_FE_ACC5:
 
 
 
-off_ch_05_0x016DBA_55:
+off_ch_05_0x016DBA_55_rising:
 off_FE_ADAA:
 - D 1 - I - 0x016DBA 05:ADAA: D9        .byte $D9   ; 
 - D 1 - I - 0x016DBB 05:ADAB: FB        .byte con_se_cb_1_FB   ; 
@@ -8965,8 +8965,8 @@ off_FE_ADAA:
 
 
 
-off_ch_00_0x016E4C_56:
-off_ch_00_0x016E4C_59:
+off_ch_00_0x016E4C_56_anxiety:
+off_ch_00_0x016E4C_59_copy_anxiety:
 off_FE_AE3C:
 - D 1 - I - 0x016E4C 05:AE3C: D2        .byte con_se_cb_1_D0 + $02, $72, con_9E25_01 + $80   ; 
 - D 1 - I - 0x016E4F 05:AE3F: 00        .byte $00   ; 
@@ -9306,8 +9306,8 @@ off_FE_AE3C:
 
 
 
-off_ch_01_0x016FF0_56:
-off_ch_01_0x016FF0_59:
+off_ch_01_0x016FF0_56_anxiety:
+off_ch_01_0x016FF0_59_copy_anxiety:
 off_FE_AFE0:
 - D 1 - I - 0x016FF0 05:AFE0: D8        .byte con_se_cb_1_D0 + $08, $78, con_9E25_03 + $80   ; 
 - D 1 - I - 0x016FF3 05:AFE3: 8D        .byte $8D   ; 
@@ -9617,8 +9617,8 @@ off_FE_AFE0:
 
 
 
-off_ch_02_0x01715D_56:
-off_ch_02_0x01715D_59:
+off_ch_02_0x01715D_56_anxiety:
+off_ch_02_0x01715D_59_copy_anxiety:
 off_FE_B14D:
 - D 1 - I - 0x01715D 05:B14D: D8        .byte con_se_cb_1_D0 + $08, $00   ; 
 - D 1 - I - 0x01715F 05:B14F: FB        .byte con_se_cb_1_FB   ; 
@@ -9790,8 +9790,8 @@ off_FE_B14D:
 
 
 
-off_ch_05_0x017211_56:
-off_ch_05_0x017211_59:
+off_ch_05_0x017211_56_anxiety:
+off_ch_05_0x017211_59_copy_anxiety:
 off_FE_B201:
 - D 1 - I - 0x017211 05:B201: D8        .byte $D8   ; 
 - D 1 - I - 0x017212 05:B202: C3        .byte $C3   ; 
@@ -9995,7 +9995,7 @@ off_FE_B201:
 
 
 
-off_ch_00_0x0172DD_57:
+off_ch_00_0x0172DD_57_nightmare:
 - D 1 - I - 0x0172DD 05:B2CD: D8        .byte con_se_cb_1_D0 + $08, $B2, con_9E25_00 + $80   ; 
 - D 1 - I - 0x0172E0 05:B2D0: 00        .byte $00   ; 
 - D 1 - I - 0x0172E1 05:B2D1: ED        .byte con_se_cb_1_ED, $01   ; 
@@ -10132,7 +10132,7 @@ off_FE_B2D4:
 
 
 
-off_ch_01_0x017386_57:
+off_ch_01_0x017386_57_nightmare:
 - D 1 - I - 0x017386 05:B376: D8        .byte con_se_cb_1_D0 + $08, $B0, con_9E25_04   ; 
 - D 1 - I - 0x017389 05:B379: 12        .byte $12   ; 
 - D 1 - I - 0x01738A 05:B37A: C8        .byte con_se_cb_1_C0 + $08   ; 
@@ -10262,7 +10262,7 @@ off_FE_B37B:
 
 
 
-off_ch_02_0x01741E_57:
+off_ch_02_0x01741E_57_nightmare:
 - D 1 - I - 0x01741E 05:B40E: D8        .byte con_se_cb_1_D0 + $08, $00   ; 
 - D 1 - I - 0x017420 05:B410: E4        .byte con_se_cb_1_E0 + $04   ; 
 - D 1 - I - 0x017421 05:B411: 28        .byte $28   ; 
@@ -10359,12 +10359,12 @@ off_FE_B412:
 
 
 
-off_ch_05_0x017484_57_FF:
+off_ch_05_0x017484_57_nightmare_FF:
 - D 1 - I - 0x017484 05:B474: FF        .byte con_se_cb_1_FF   ; 
 
 
 
-off_ch_00_0x017485_69:
+off_ch_00_0x017485_69_flash_back:
 - D 1 - I - 0x017485 05:B475: D9        .byte con_se_cb_1_D0 + $09, $37, con_9E25_04 + $80   ; 
 - D 1 - I - 0x017488 05:B478: 18        .byte $18   ; 
 - D 1 - I - 0x017489 05:B479: EC        .byte con_se_cb_1_EC, $02   ; 
@@ -10692,7 +10692,7 @@ off_ch_00_0x017485_69:
 
 
 
-off_ch_01_0x0175FA_69:
+off_ch_01_0x0175FA_69_flash_back:
 - D 1 - I - 0x0175FA 05:B5EA: D9        .byte con_se_cb_1_D0 + $09, $77, con_9E25_04 + $80   ; 
 - D 1 - I - 0x0175FD 05:B5ED: 12        .byte $12   ; 
 - D 1 - I - 0x0175FE 05:B5EE: EB        .byte con_se_cb_1_EB, con_9E7B_53, $31   ; 
@@ -10840,7 +10840,7 @@ off_ch_01_0x0175FA_69:
 
 
 
-off_ch_02_0x0176A1_69:
+off_ch_02_0x0176A1_69_flash_back:
 - D 1 - I - 0x0176A1 05:B691: D9        .byte con_se_cb_1_D0 + $09, $00   ; 
 - D 1 - I - 0x0176A3 05:B693: E4        .byte con_se_cb_1_E0 + $04   ; 
 - D 1 - I - 0x0176A4 05:B694: 3E        .byte $3E   ; 
@@ -11016,7 +11016,7 @@ ofs_FD_B710:
 
 
 
-off_ch_05_0x017759_69:
+off_ch_05_0x017759_69_flash_back:
 - D 1 - I - 0x017759 05:B749: D9        .byte $D9   ; 
 - D 1 - I - 0x01775A 05:B74A: FB        .byte con_se_cb_1_FB   ; 
 - D 1 - I - 0x01775B 05:B74B: CF        .byte $CF   ; 
@@ -11107,7 +11107,7 @@ ofs_FD_B786:
 
 
 
-off_ch_00_0x0177B2_67:
+off_ch_00_0x0177B2_67_prayer:
 - D 1 - I - 0x0177B2 05:B7A2: D9        .byte con_se_cb_1_D0 + $09, $77, con_9E25_04 + $80   ; 
 - D 1 - I - 0x0177B5 05:B7A5: 63        .byte $63   ; 
 - D 1 - I - 0x0177B6 05:B7A6: E9        .byte con_se_cb_1_E9, $31   ; 
@@ -11139,7 +11139,7 @@ off_ch_00_0x0177B2_67:
 
 
 
-off_ch_01_0x0177D9_67:
+off_ch_01_0x0177D9_67_prayer:
 - D 1 - I - 0x0177D9 05:B7C9: D9        .byte con_se_cb_1_D0 + $09, $79, con_9E25_04 + $80   ; 
 - D 1 - I - 0x0177DC 05:B7CC: 64        .byte $64   ; 
 - D 1 - I - 0x0177DD 05:B7CD: EB        .byte con_se_cb_1_EB, con_9E7B_65, $31   ; 
@@ -11204,7 +11204,7 @@ off_ch_01_0x0177D9_67:
 
 
 
-off_ch_02_0x017828_67:
+off_ch_02_0x017828_67_prayer:
 - D 1 - I - 0x017828 05:B818: D9        .byte con_se_cb_1_D0 + $09, $00   ; 
 - D 1 - I - 0x01782A 05:B81A: E4        .byte con_se_cb_1_E0 + $04   ; 
 - D 1 - I - 0x01782B 05:B81B: 45        .byte $45   ; 
@@ -11230,7 +11230,7 @@ off_ch_02_0x017828_67:
 
 
 
-off_ch_05_0x017840_67:
+off_ch_05_0x017840_67_prayer:
 - D 1 - I - 0x017840 05:B830: D9        .byte $D9   ; 
 - D 1 - I - 0x017841 05:B831: FB        .byte con_se_cb_1_FB   ; 
 - D 1 - I - 0x017842 05:B832: B5        .byte $B5   ; 
@@ -11767,7 +11767,7 @@ _off012_0x017BCE_01:
 
 sub_0x017BD1:
 ofs_0x017BD1:
-C - - - - - 0x017BD1 05:BBC1: A9 38     LDA #con_sound_38
+C - - - - - 0x017BD1 05:BBC1: A9 38     LDA #con_sfx_38
 C - - - - - 0x017BD3 05:BBC3: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x017BD6 05:BBC6: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x017BD9 05:BBC9: C9 59     CMP #$59
@@ -11835,7 +11835,7 @@ bra_BC30_loop:
 - - - - - - 0x017C49 05:BC39: 29 FD     AND #con_obj_flag_02 ^ $FF
 - - - - - - 0x017C4B 05:BC3B: 09 40     ORA #con_obj_flag_40
 - - - - - - 0x017C4D 05:BC3D: 9D 70 04  STA ram_obj_flags,X
-- - - - - - 0x017C50 05:BC40: 20 C8 FE  JSR sub_0x03FED8_clear_speed
+- - - - - - 0x017C50 05:BC40: 20 C8 FE  JSR sub_0x03FED8_clear_XY_speed
 - - - - - - 0x017C53 05:BC43: A9 6C     LDA #$6C
 - - - - - - 0x017C55 05:BC45: 9D 4E 05  STA ram_obj_id,X
 - - - - - - 0x017C58 05:BC48: A9 6B     LDA #$6B
@@ -11895,7 +11895,7 @@ C - - - - - 0x017C88 05:BC78: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_
 
 
 ofs_017_BC85_00:
-C - - J - - 0x017C95 05:BC85: A9 44     LDA #con_sound_44
+C - - J - - 0x017C95 05:BC85: A9 44     LDA #con_sfx_44
 C - - - - - 0x017C97 05:BC87: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x017C9A 05:BC8A: 8A        TXA
 C - - - - - 0x017C9B 05:BC8B: A8        TAY
@@ -12081,7 +12081,7 @@ C - - - - - 0x017DB2 05:BDA2: 4C EA BD  JMP loc_BDEA
 bra_BDA5:
 C - - - - - 0x017DB5 05:BDA5: A9 00     LDA #$00    ; pos_X_lo
 C - - - - - 0x017DB7 05:BDA7: A8        TAY ; 00    ; pos_Y_lo
-C - - - - - 0x017DB8 05:BDA8: 20 1E FC  JSR sub_0x03FC2E
+C - - - - - 0x017DB8 05:BDA8: 20 1E FC  JSR sub_0x03FC2E_check_for_reaching_position
 C - - - - - 0x017DBB 05:BDAB: D0 17     BNE bra_BDC4
 C - - - - - 0x017DBD 05:BDAD: BD 38 04  LDA ram_obj_pos_X_lo,X
 C - - - - - 0x017DC0 05:BDB0: C9 04     CMP #$04

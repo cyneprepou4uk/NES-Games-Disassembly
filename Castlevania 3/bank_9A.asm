@@ -12601,19 +12601,19 @@ C - - - - - 0x0377CE 0D:B7BE: 60        RTS
 sub_0x0377CF_crumbling_blocks:
 ; in
     ; Y = 
-    ; ram_0010_t01D
+    ; ram_0010_t01D_pos_X_lo
 C - - - - - 0x0377CF 0D:B7BF: 84 09     STY ram_0009_t024
 C - - - - - 0x0377D1 0D:B7C1: A5 68     LDA ram_blk_scroll_type
 C - - - - - 0x0377D3 0D:B7C3: 10 36     BPL bra_B7FB_horisontal
 ; if vertical
-C - - - - - 0x0377D5 0D:B7C5: A5 10     LDA ram_0010_t01D
+C - - - - - 0x0377D5 0D:B7C5: A5 10     LDA ram_0010_t01D_pos_X_lo
 C - - - - - 0x0377D7 0D:B7C7: 85 0E     STA ram_000E_t015_pos_X_lo
 C - - - - - 0x0377D9 0D:B7C9: 20 65 B7  JSR sub_B765
 C - - - - - 0x0377DC 0D:B7CC: 20 B8 B8  JSR sub_B8B8
 C - - - - - 0x0377DF 0D:B7CF: D0 ED     BNE bra_B7BE_RTS
 C - - - - - 0x0377E1 0D:B7D1: 20 05 BA  JSR sub_BA05
 C - - - - - 0x0377E4 0D:B7D4: 30 0B     BMI bra_B7E1
-C - - - - - 0x0377E6 0D:B7D6: A9 10     LDA #con_sound_10
+C - - - - - 0x0377E6 0D:B7D6: A9 10     LDA #con_sfx_10
 C - - - - - 0x0377E8 0D:B7D8: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x0377EB 0D:B7DB: 20 A3 B9  JSR sub_B9A3_shift_ppu_address
 C - - - - - 0x0377EE 0D:B7DE: 4C 82 B9  JMP loc_B982_write_to_buffer
@@ -12638,7 +12638,7 @@ C - - - - - 0x037813 0D:B803: 20 B8 B8  JSR sub_B8B8
 C - - - - - 0x037816 0D:B806: D0 B6     BNE bra_B7BE_RTS
 C - - - - - 0x037818 0D:B808: 20 05 BA  JSR sub_BA05
 C - - - - - 0x03781B 0D:B80B: 30 0E     BMI bra_B81B
-C - - - - - 0x03781D 0D:B80D: A9 10     LDA #con_sound_10
+C - - - - - 0x03781D 0D:B80D: A9 10     LDA #con_sfx_10
 C - - - - - 0x03781F 0D:B80F: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x037822 0D:B812: 20 B2 B9  JSR sub_B9B2_calculate_ppu_address
 C - - - - - 0x037825 0D:B815: 20 A3 B9  JSR sub_B9A3_shift_ppu_address
@@ -12667,7 +12667,7 @@ sub_B831:
 C - - - - - 0x037841 0D:B831: 20 E4 B9  JSR sub_B9E4_calculate_ppu_address
 C - - - - - 0x037844 0D:B834: 20 DE B8  JSR sub_B8DE
 C - - - - - 0x037847 0D:B837: 20 4B B9  JSR sub_B94B
-C - - - - - 0x03784A 0D:B83A: A9 11     LDA #con_sound_block
+C - - - - - 0x03784A 0D:B83A: A9 11     LDA #con_sfx_block
 C - - - - - 0x03784C 0D:B83C: 4C 5F E2  JMP loc_0x03E26F_play_sound
 
 
