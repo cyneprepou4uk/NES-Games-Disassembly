@@ -88,6 +88,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 * Balloon Fight (J) [!] `A0DABE0A`
 * Bubble Bobble (U) [!] `D3A91B41`
 * Ghosts 'N Goblins (U) [!] `87ED54AA`
+* Kid Icarus (UE) [!] `0B30E036`
 * Kinnikuman - Muscle Tag Match (J) (PRG0) [!] `C296C8CE`
 * Mighty Final Fight (U) [!] `15EB0BEE`
 * Mitsume ga Tooru (J) [!] `E27EC1EC`
