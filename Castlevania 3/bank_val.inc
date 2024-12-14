@@ -20,6 +20,12 @@ con_chr_bank_bg                         = $00 ;
 con_chr_bank_spr                        = $00 ; 
 con_index_all_items                     = $93 ; start index for all objects
 con_index_Sypha_items                   = $98 ; start index for Sypha drops
+con_obj_index_weapon                    = $13 ; weapons 13-16
+con_obj_index_18                        = $18 ; 
+con_obj_index_19                        = $19 ; 
+con_obj_index_1A                        = $1A ; 
+con_obj_index_1B                        = $1B ; 
+con_max_obj_enemy_index                 = $12 ; enemies 01-12
 
 
 

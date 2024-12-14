@@ -9891,8 +9891,8 @@ C - - - - - 0x013246 04:B236: F0 2B     BEQ bra_B263    ; if con_plr_state_00
 C - - - - - 0x013248 04:B238: C9 12     CMP #con_plr_state_idle_on_stairs
 C - - - - - 0x01324A 04:B23A: D0 2C     BNE bra_B268_RTS
 C - - - - - 0x01324C 04:B23C: A9 00     LDA #$00
-C - - - - - 0x01324E 04:B23E: 8D 13 04  STA ram_obj_anim_id + $13
-C - - - - - 0x013251 04:B241: 8D 30 06  STA ram_061D_obj + $13
+C - - - - - 0x01324E 04:B23E: 8D 13 04  STA ram_wpn_anim_id + con_obj_index_weapon
+C - - - - - 0x013251 04:B241: 8D 30 06  STA ram_061D_wpn + con_obj_index_weapon
 C - - - - - 0x013254 04:B244: AD A8 04  LDA ram_plr_facing
 C - - - - - 0x013257 04:B247: F0 07     BEQ bra_B250_facing_right
 C - - - - - 0x013259 04:B249: AD EF 05  LDA ram_05EF_plr

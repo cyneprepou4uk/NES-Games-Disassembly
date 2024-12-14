@@ -273,11 +273,11 @@ C - - - - - 0x03819E 0E:818E: 60        RTS
 bra_818F:
 C - - - - - 0x03819F 0E:818F: 20 C4 BD  JSR sub_BDC4_clear_obj_animation_13
 C - - - - - 0x0381A2 0E:8192: A9 3C     LDA #$3C
-C - - - - - 0x0381A4 0E:8194: 8D D4 05  STA ram_obj_ai_subscript + $13
+C - - - - - 0x0381A4 0E:8194: 8D D4 05  STA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x0381A7 0E:8197: A9 28     LDA #con_plr_state_28
 C - - - - - 0x0381A9 0E:8199: 8D 65 05  STA ram_plr_state
 C - - - - - 0x0381AC 0E:819C: A9 00     LDA #$00
-C - - - - - 0x0381AE 0E:819E: 8D EB 05  STA ram_obj_drop_id + $13
+C - - - - - 0x0381AE 0E:819E: 8D EB 05  STA ram_05D8_wpn + con_obj_index_weapon
 C - - - - - 0x0381B1 0E:81A1: 60        RTS
 bra_81A2:
 ; bzk optimize, delete NOP
@@ -313,14 +313,14 @@ C - - - - - 0x0381E4 0E:81D4: B9 94 82  LDA tbl_8294_dmc_player_is_hit,Y
 C - - - - - 0x0381E7 0E:81D7: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x0381EA 0E:81DA: 20 C4 BD  JSR sub_BDC4_clear_obj_animation_13
 C - - - - - 0x0381ED 0E:81DD: A9 00     LDA #$00
-C - - - - - 0x0381EF 0E:81DF: 8D 54 04  STA ram_0454_plr
+C - - - - - 0x0381EF 0E:81DF: 8D 54 04  STA ram_plr_spr_A
 C - - - - - 0x0381F2 0E:81E2: AD 65 05  LDA ram_plr_state
 ; A = 12 14 1E 24 
-C - - - - - 0x0381F5 0E:81E5: 8D D4 05  STA ram_obj_ai_subscript + $13
+C - - - - - 0x0381F5 0E:81E5: 8D D4 05  STA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x0381F8 0E:81E8: A9 20     LDA #$20
-C - - - - - 0x0381FA 0E:81EA: 8D EB 05  STA ram_obj_drop_id + $13
+C - - - - - 0x0381FA 0E:81EA: 8D EB 05  STA ram_05D8_wpn + con_obj_index_weapon
 C - - - - - 0x0381FD 0E:81ED: A9 01     LDA #$01
-C - - - - - 0x0381FF 0E:81EF: 8D 02 06  STA ram_obj_ai_script + $13
+C - - - - - 0x0381FF 0E:81EF: 8D 02 06  STA ram_05EF_wpn + con_obj_index_weapon
 C - - - - - 0x038202 0E:81F2: A9 78     LDA #$78
 C - - - - - 0x038204 0E:81F4: 85 80     STA ram_invinc_timer
 C - - - - - 0x038206 0E:81F6: A9 26     LDA #con_plr_state_knockback
@@ -345,14 +345,14 @@ C - - - - - 0x03821E 0E:820E: B9 94 82  LDA tbl_8294_dmc_player_is_hit,Y
 C - - - - - 0x038221 0E:8211: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x038224 0E:8214: 20 C4 BD  JSR sub_BDC4_clear_obj_animation_13
 C - - - - - 0x038227 0E:8217: A9 00     LDA #$00
-C - - - - - 0x038229 0E:8219: 8D 54 04  STA ram_0454_plr
+C - - - - - 0x038229 0E:8219: 8D 54 04  STA ram_plr_spr_A
 C - - - - - 0x03822C 0E:821C: AD 65 05  LDA ram_plr_state
 ; A = 02 04 06 08 0A 0C 0E 12 18 1A 1C 20 30 32 
-C - - - - - 0x03822F 0E:821F: 8D D4 05  STA ram_obj_ai_subscript + $13
+C - - - - - 0x03822F 0E:821F: 8D D4 05  STA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x038232 0E:8222: A9 20     LDA #$20
-C - - - - - 0x038234 0E:8224: 8D EB 05  STA ram_obj_drop_id + $13
+C - - - - - 0x038234 0E:8224: 8D EB 05  STA ram_05D8_wpn + con_obj_index_weapon
 C - - - - - 0x038237 0E:8227: A9 00     LDA #$00
-C - - - - - 0x038239 0E:8229: 8D 02 06  STA ram_obj_ai_script + $13
+C - - - - - 0x038239 0E:8229: 8D 02 06  STA ram_05EF_wpn + con_obj_index_weapon
 C - - - - - 0x03823C 0E:822C: A9 78     LDA #$78
 C - - - - - 0x03823E 0E:822E: 85 80     STA ram_invinc_timer
 C - - - - - 0x038240 0E:8230: A9 26     LDA #con_plr_state_knockback
@@ -645,7 +645,7 @@ C - - - - - 0x038337 0E:8327: A0 00     LDY #$00
 bra_8329_loop:
 C - - - - - 0x038339 0E:8329: B9 A2 A6  LDA tbl_A6A2_plr_state,Y
 C - - - - - 0x03833C 0E:832C: 30 0E     BMI bra_833C
-C - - - - - 0x03833E 0E:832E: CD D4 05  CMP ram_obj_ai_subscript + $13
+C - - - - - 0x03833E 0E:832E: CD D4 05  CMP ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x038341 0E:8331: F0 03     BEQ bra_8336
 C - - - - - 0x038343 0E:8333: C8        INY
 C - - - - - 0x038344 0E:8334: D0 F3     BNE bra_8329_loop    ; jmp
@@ -654,11 +654,11 @@ C - - - - - 0x038346 0E:8336: A9 3C     LDA #con_plr_state_3C
 C - - - - - 0x038348 0E:8338: 8D 65 05  STA ram_plr_state
 C - - - - - 0x03834B 0E:833B: 60        RTS
 bra_833C:
-C - - - - - 0x03834C 0E:833C: AD 02 06  LDA ram_obj_ai_script + $13
+C - - - - - 0x03834C 0E:833C: AD 02 06  LDA ram_05EF_wpn + con_obj_index_weapon
 C - - - - - 0x03834F 0E:833F: F0 0C     BEQ bra_834D
-C - - - - - 0x038351 0E:8341: CE EB 05  DEC ram_obj_drop_id + $13
+C - - - - - 0x038351 0E:8341: CE EB 05  DEC ram_05D8_wpn + con_obj_index_weapon
 C - - - - - 0x038354 0E:8344: D0 06     BNE bra_834C_RTS
-C - - - - - 0x038356 0E:8346: AD D4 05  LDA ram_obj_ai_subscript + $13
+C - - - - - 0x038356 0E:8346: AD D4 05  LDA ram_05C1_wpn + con_obj_index_weapon
 ; A = 12 14 1E 24 
 C - - - - - 0x038359 0E:8349: 8D 65 05  STA ram_plr_state
 bra_834C_RTS:
@@ -1044,9 +1044,9 @@ C - - - - - 0x038546 0E:8536: C8        INY
 C - - - - - 0x038547 0E:8537: CD 65 05  CMP ram_plr_state
 C - - - - - 0x03854A 0E:853A: D0 F3     BNE bra_852F_loop
 bra_853C:
-C - - - - - 0x03854C 0E:853C: AD 54 04  LDA ram_0454_plr
-C - - - - - 0x03854F 0E:853F: 29 DF     AND #$DF
-C - - - - - 0x038551 0E:8541: 8D 54 04  STA ram_0454_plr
+C - - - - - 0x03854C 0E:853C: AD 54 04  LDA ram_plr_spr_A
+C - - - - - 0x03854F 0E:853F: 29 DF     AND #$20 ^ $FF
+C - - - - - 0x038551 0E:8541: 8D 54 04  STA ram_plr_spr_A
 C - - - - - 0x038554 0E:8544: 60        RTS
 bra_8545_FF:
 C - - - - - 0x038555 0E:8545: A5 7D     LDA ram_007D
@@ -1058,9 +1058,9 @@ C - - - - - 0x03855E 0E:854E: D9 68 85  CMP tbl_8568_pos_Y_lo,Y
 C - - - - - 0x038561 0E:8551: 90 E9     BCC bra_853C
 C - - - - - 0x038563 0E:8553: D9 69 85  CMP tbl_8568_pos_Y_lo + $01,Y
 C - - - - - 0x038566 0E:8556: B0 E4     BCS bra_853C
-C - - - - - 0x038568 0E:8558: AD 54 04  LDA ram_0454_plr
+C - - - - - 0x038568 0E:8558: AD 54 04  LDA ram_plr_spr_A
 C - - - - - 0x03856B 0E:855B: 09 20     ORA #$20
-C - - - - - 0x03856D 0E:855D: 8D 54 04  STA ram_0454_plr
+C - - - - - 0x03856D 0E:855D: 8D 54 04  STA ram_plr_spr_A
 C - - - - - 0x038570 0E:8560: 60        RTS
 
 
@@ -2202,7 +2202,7 @@ C - - - - - 0x038AF2 0E:8AE2: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_
 ofs_004_8AEB_00:
 C - - J - - 0x038AFB 0E:8AEB: A0 00     LDY #$00
 C - - - - - 0x038AFD 0E:8AED: 8C 93 05  STY ram_plr_anim_cnt
-C - - - - - 0x038B00 0E:8AF0: 8C 13 04  STY ram_obj_anim_id + $13
+C - - - - - 0x038B00 0E:8AF0: 8C 13 04  STY ram_wpn_anim_id + con_obj_index_weapon
 C - - - - - 0x038B03 0E:8AF3: 84 80     STY ram_invinc_timer
 C - - - - - 0x038B05 0E:8AF5: 8C 70 04  STY ram_plr_flags   ; con_obj_flag_00
 C - - - - - 0x038B08 0E:8AF8: C8        INY ; 01
@@ -2223,7 +2223,7 @@ C - - - - - 0x038B1A 0E:8B0A: A9 4E     LDA #con_music_death
 C - - - - - 0x038B1C 0E:8B0C: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x038B1F 0E:8B0F: 20 CE E5  JSR sub_0x03E5DE_forbid_pausing
 C - - - - - 0x038B22 0E:8B12: A9 64     LDA #$64
-C - - - - - 0x038B24 0E:8B14: 8D D4 05  STA ram_obj_ai_subscript + $13
+C - - - - - 0x038B24 0E:8B14: 8D D4 05  STA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x038B27 0E:8B17: E6 BF     INC ram_00BF
 C - - - - - 0x038B29 0E:8B19: 60        RTS
 
@@ -2328,7 +2328,7 @@ C - - - - - 0x038BA0 0E:8B90: D0 15     BNE bra_8BA7
 C - - - - - 0x038BA2 0E:8B92: A9 00     LDA #$00
 C - - - - - 0x038BA4 0E:8B94: 8D 00 04  STA ram_plr_anim_id
 C - - - - - 0x038BA7 0E:8B97: A9 80     LDA #$80
-C - - - - - 0x038BA9 0E:8B99: 8D D4 05  STA ram_obj_ai_subscript + $13
+C - - - - - 0x038BA9 0E:8B99: 8D D4 05  STA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x038BAC 0E:8B9C: A9 4E     LDA #con_music_death
 C - - - - - 0x038BAE 0E:8B9E: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x038BB1 0E:8BA1: 20 CE E5  JSR sub_0x03E5DE_forbid_pausing
@@ -2336,7 +2336,7 @@ C - - - - - 0x038BB4 0E:8BA4: E6 BF     INC ram_00BF
 C - - - - - 0x038BB6 0E:8BA6: 60        RTS
 loc_8BA7:
 bra_8BA7:
-C D 0 - - - 0x038BB7 0E:8BA7: CE D4 05  DEC ram_obj_ai_subscript + $13
+C D 0 - - - 0x038BB7 0E:8BA7: CE D4 05  DEC ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x038BBA 0E:8BAA: F0 01     BEQ bra_8BAD
 C - - - - - 0x038BBC 0E:8BAC: 60        RTS
 bra_8BAD:
@@ -2494,7 +2494,7 @@ C - - - - - 0x038CB8 0E:8CA8: A9 0C     LDA #$0C    ; drowning bubbles
 C - - - - - 0x038CBA 0E:8CAA: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x038CBD 0E:8CAD: A9 00     LDA #$00
 C - - - - - 0x038CBF 0E:8CAF: 9D 70 04  STA ram_obj_flags,X ; con_obj_flag_00
-C - - - - - 0x038CC2 0E:8CB2: 9D 65 05  STA ram_obj_state,X
+C - - - - - 0x038CC2 0E:8CB2: 9D 65 05  STA ram_obj_stun_timer,X
 C - - - - - 0x038CC5 0E:8CB5: E6 0F     INC ram_000F_t012
 C - - - - - 0x038CC7 0E:8CB7: E8        INX
 C - - - - - 0x038CC8 0E:8CB8: E0 17     CPX #$17
@@ -2655,7 +2655,7 @@ C - - - - - 0x038D95 0E:8D85: C9 09     CMP #$09
 C - - - - - 0x038D97 0E:8D87: F0 06     BEQ bra_8D8F
 bra_8D89:
 C - - - - - 0x038D99 0E:8D89: A9 00     LDA #$00
-C - - - - - 0x038D9B 0E:8D8B: 8D 1A 04  STA ram_obj_anim_id + $1A
+C - - - - - 0x038D9B 0E:8D8B: 8D 1A 04  STA ram_obj_anim_id + con_obj_index_1A
 loc_8D8E_RTS:   ; bzk optimize
 bra_8D8E_RTS:
 C D 0 - - - 0x038D9E 0E:8D8E: 60        RTS
@@ -2686,19 +2686,19 @@ C - - - - - 0x038DC5 0E:8DB5: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x038DC8 0E:8DB8: 18        CLC
 C - - - - - 0x038DC9 0E:8DB9: 71 08     ADC (ram_0008_t00B_data),Y
 loc_8DBB:
-C D 0 - - - 0x038DCB 0E:8DBB: 8D 52 04  STA ram_obj_pos_X_lo + $1A
+C D 0 - - - 0x038DCB 0E:8DBB: 8D 52 04  STA ram_obj_pos_X_lo + con_obj_index_1A
 C - - - - - 0x038DCE 0E:8DBE: C8        INY
 C - - - - - 0x038DCF 0E:8DBF: AD 1C 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x038DD2 0E:8DC2: 18        CLC
 C - - - - - 0x038DD3 0E:8DC3: 71 08     ADC (ram_0008_t00B_data),Y
 C - - - - - 0x038DD5 0E:8DC5: C9 38     CMP #$38
 C - - - - - 0x038DD7 0E:8DC7: 90 C0     BCC bra_8D89
-C - - - - - 0x038DD9 0E:8DC9: 8D 36 04  STA ram_obj_pos_Y_lo + $1A
+C - - - - - 0x038DD9 0E:8DC9: 8D 36 04  STA ram_obj_pos_Y_lo + con_obj_index_1A
 C - - - - - 0x038DDC 0E:8DCC: A9 62     LDA #$62
-C - - - - - 0x038DDE 0E:8DCE: 8D 1A 04  STA ram_obj_anim_id + $1A
+C - - - - - 0x038DDE 0E:8DCE: 8D 1A 04  STA ram_obj_anim_id + con_obj_index_1A
 C - - - - - 0x038DE1 0E:8DD1: A9 00     LDA #$00
-C - - - - - 0x038DE3 0E:8DD3: 8D 6E 04  STA ram_0454_obj + $1A
-C - - - - - 0x038DE6 0E:8DD6: 8D 8A 04  STA ram_obj_flags + $1A ; con_obj_flag_00
+C - - - - - 0x038DE3 0E:8DD3: 8D 6E 04  STA ram_obj_spr_A + con_obj_index_1A
+C - - - - - 0x038DE6 0E:8DD6: 8D 8A 04  STA ram_obj_flags + con_obj_index_1A ; con_obj_flag_00
 C - - - - - 0x038DE9 0E:8DD9: 60        RTS
 bra_8DDA_facing_right:
 C - - - - - 0x038DEA 0E:8DDA: AD 38 04  LDA ram_plr_pos_X_lo
@@ -3614,18 +3614,18 @@ ofs_Sypha_state_93B1_2A:
 ofs_Grant_state_93B1_2A:
 C - - J - - 0x0393C1 0E:93B1: A9 02     LDA #$02
 C - - - - - 0x0393C3 0E:93B3: 8D 00 04  STA ram_plr_anim_id
-C - - - - - 0x0393C6 0E:93B6: CE D4 05  DEC ram_obj_ai_subscript + $13
+C - - - - - 0x0393C6 0E:93B6: CE D4 05  DEC ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x0393C9 0E:93B9: F0 20     BEQ bra_93DB
 C - - - - - 0x0393CB 0E:93BB: A9 02     LDA #$02
-C - - - - - 0x0393CD 0E:93BD: 8D 54 04  STA ram_0454_plr
-C - - - - - 0x0393D0 0E:93C0: AD EB 05  LDA ram_obj_drop_id + $13
+C - - - - - 0x0393CD 0E:93BD: 8D 54 04  STA ram_plr_spr_A
+C - - - - - 0x0393D0 0E:93C0: AD EB 05  LDA ram_05D8_wpn + con_obj_index_weapon
 C - - - - - 0x0393D3 0E:93C3: D0 21     BNE bra_93E6
 C - - - - - 0x0393D5 0E:93C5: 20 21 84  JSR sub_8421    ; possible PLA PLA
 C - - - - - 0x0393D8 0E:93C8: 90 01     BCC bra_93CB
 C - - - - - 0x0393DA 0E:93CA: 60        RTS
 bra_93CB:
 C - - - - - 0x0393DB 0E:93CB: A9 01     LDA #$01
-C - - - - - 0x0393DD 0E:93CD: 8D EB 05  STA ram_obj_drop_id + $13
+C - - - - - 0x0393DD 0E:93CD: 8D EB 05  STA ram_05D8_wpn + con_obj_index_weapon
 C - - - - - 0x0393E0 0E:93D0: A9 0C     LDA #$0C
 C - - - - - 0x0393E2 0E:93D2: 8D D8 05  STA ram_05D8_plr
 C - - - - - 0x0393E5 0E:93D5: A9 01     LDA #$01
@@ -3633,7 +3633,7 @@ C - - - - - 0x0393E7 0E:93D7: 8D C1 05  STA ram_05C1_plr
 C - - - - - 0x0393EA 0E:93DA: 60        RTS
 bra_93DB:
 C - - - - - 0x0393EB 0E:93DB: A9 00     LDA #$00
-C - - - - - 0x0393ED 0E:93DD: 8D 54 04  STA ram_0454_plr
+C - - - - - 0x0393ED 0E:93DD: 8D 54 04  STA ram_plr_spr_A
 C - - - - - 0x0393F0 0E:93E0: A9 02     LDA #con_plr_state_idle_on_ground
 C - - - - - 0x0393F2 0E:93E2: 8D 65 05  STA ram_plr_state
 bra_93E5_RTS:
@@ -3654,7 +3654,7 @@ C - - - - - 0x039410 0E:9400: 60        RTS
 bra_9401:
 - - - - - - 0x039411 0E:9401: 20 02 8A  JSR sub_8A02
 - - - - - - 0x039414 0E:9404: A9 00     LDA #$00
-- - - - - - 0x039416 0E:9406: 8D EB 05  STA ram_obj_drop_id + $13
+- - - - - - 0x039416 0E:9406: 8D EB 05  STA ram_05D8_wpn + con_obj_index_weapon
 - - - - - - 0x039419 0E:9409: 60        RTS
 
 
@@ -3665,7 +3665,7 @@ C D 0 - - - 0x03941A 0E:940A: 8D 65 05  STA ram_plr_state
 C - - - - - 0x03941D 0E:940D: A9 72     LDA #con_dmc_whip
 C - - - - - 0x03941F 0E:940F: 20 5F E2  JSR sub_0x03E26F_play_sound
 C - - - - - 0x039422 0E:9412: A9 00     LDA #$00
-C - - - - - 0x039424 0E:9414: 8D 78 05  STA ram_obj_state + $13
+C - - - - - 0x039424 0E:9414: 8D 78 05  STA ram_0565_wpn + con_obj_index_weapon
 C - - - - - 0x039427 0E:9417: 60        RTS
 
 
@@ -3676,7 +3676,7 @@ C - - J - - 0x039428 0E:9418: 20 21 84  JSR sub_8421    ; possible PLA PLA
 C - - - - - 0x03942B 0E:941B: B0 08     BCS bra_9425
 loc_941D:
 C - - - - - 0x03942D 0E:941D: A9 00     LDA #$00
-C - - - - - 0x03942F 0E:941F: 8D 13 04  STA ram_obj_anim_id + $13
+C - - - - - 0x03942F 0E:941F: 8D 13 04  STA ram_wpn_anim_id + con_obj_index_weapon
 C - - - - - 0x039432 0E:9422: 4C 3A 97  JMP loc_973A
 bra_9425:
 C - - - - - 0x039435 0E:9425: 20 8E 91  JSR sub_918E
@@ -4941,10 +4941,13 @@ C - - - - - 0x039BB9 0E:9BA9: F0 04     BEQ bra_9BAF_facing_right
 C - - - - - 0x039BBB 0E:9BAB: C8        INY
 C - - - - - 0x039BBC 0E:9BAC: C8        INY
 C - - - - - 0x039BBD 0E:9BAD: C8        INY
-C - - - - - 0x039BBE 0E:9BAE: C8        INY
+C - - - - - 0x039BBE 0E:9BAE: C8        INY ; 04/0C
 bra_9BAF_facing_right:
 loc_9BAF:
 sub_0x039BBF:
+; in
+    ; X = animation counter
+    ; Y = index for speed tables
 C D 0 - - - 0x039BBF 0E:9BAF: 8E 93 05  STX ram_plr_anim_cnt
 C - - - - - 0x039BC2 0E:9BB2: B9 DC 9B  LDA tbl_9BDC_speed,Y
 C - - - - - 0x039BC5 0E:9BB5: 8D F2 04  STA ram_plr_spd_X_lo
@@ -4974,13 +4977,13 @@ tbl_9BDC_speed:
 ; 00 
 - D 0 - - - 0x039BEC 0E:9BDC: 00 80     .dbyt $0080 ; spd_X
 - D 0 - - - 0x039BEE 0E:9BDE: 00 80     .dbyt $0080 ; spd_Y
-; 01 
+; 04 
 - D 0 - - - 0x039BF0 0E:9BE0: FF 80     .dbyt $FF80 ; spd_X
 - D 0 - - - 0x039BF2 0E:9BE2: 00 80     .dbyt $0080 ; spd_Y
-; 02 
+; 08 
 - D 0 - - - 0x039BF4 0E:9BE4: 00 80     .dbyt $0080 ; spd_X
 - D 0 - - - 0x039BF6 0E:9BE6: FF 80     .dbyt $FF80 ; spd_Y
-; 03 
+; 0C 
 - D 0 - - - 0x039BF8 0E:9BE8: FF 80     .dbyt $FF80 ; spd_X
 - D 0 - - - 0x039BFA 0E:9BEA: FF 80     .dbyt $FF80 ; spd_Y
 
@@ -5108,7 +5111,7 @@ C - - J - - 0x039C9B 0E:9C8B: 20 1D 84  JSR sub_841D
 C - - - - - 0x039C9E 0E:9C8E: B0 08     BCS bra_9C98
 bra_9C90:
 C - - - - - 0x039CA0 0E:9C90: A9 00     LDA #$00
-C - - - - - 0x039CA2 0E:9C92: 8D 13 04  STA ram_obj_anim_id + $13
+C - - - - - 0x039CA2 0E:9C92: 8D 13 04  STA ram_wpn_anim_id + con_obj_index_weapon
 C - - - - - 0x039CA5 0E:9C95: 4C 8D A0  JMP loc_A08D
 bra_9C98:
 C - - - - - 0x039CA8 0E:9C98: 20 8E 91  JSR sub_918E
@@ -7963,7 +7966,7 @@ C - - - - - 0x03AE92 0E:AE82: B9 E0 AE  LDA tbl_AEE0_weapons,Y
 C - - - - - 0x03AE95 0E:AE85: 85 00     STA ram_0000_t012_data
 C - - - - - 0x03AE97 0E:AE87: B9 E1 AE  LDA tbl_AEE0_weapons + $01,Y
 C - - - - - 0x03AE9A 0E:AE8A: 85 01     STA ram_0000_t012_data + $01
-C - - - - - 0x03AE9C 0E:AE8C: BC 65 05  LDY ram_obj_state,X
+C - - - - - 0x03AE9C 0E:AE8C: BC 65 05  LDY ram_obj_stun_timer,X
 C - - - - - 0x03AE9F 0E:AE8F: B1 00     LDA (ram_0000_t012_data),Y
 C - - - - - 0x03AEA1 0E:AE91: 85 02     STA ram_0002_t00A_jmp
 C - - - - - 0x03AEA3 0E:AE93: C8        INY
@@ -7974,7 +7977,7 @@ C - - - - - 0x03AEA8 0E:AE98: 6C 02 00  JMP (ram_0002_t00A_jmp)
 
 
 ofs_AE9B:
-C - - - - - 0x03AEAB 0E:AE9B: BD 65 05  LDA ram_obj_state,X
+C - - - - - 0x03AEAB 0E:AE9B: BD 65 05  LDA ram_obj_stun_timer,X
 C - - - - - 0x03AEAE 0E:AE9E: C9 02     CMP #$02
 C - - - - - 0x03AEB0 0E:AEA0: F0 C3     BEQ bra_AE65
 C - - - - - 0x03AEB2 0E:AEA2: BD 38 04  LDA ram_obj_pos_X_lo,X
@@ -8140,8 +8143,8 @@ _off035_AF4E_0D_destroyed_hidden_block_piece:
 
 loc_AF54:
 C D 1 - - - 0x03AF64 0E:AF54: 20 55 BC  JSR sub_BC55
-C - - - - - 0x03AF67 0E:AF57: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03AF6A 0E:AF5A: FE 65 05  INC ram_obj_state,X
+C - - - - - 0x03AF67 0E:AF57: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03AF6A 0E:AF5A: FE 65 05  INC ram_obj_stun_timer,X
 C - - - - - 0x03AF6D 0E:AF5D: BC 4E 05  LDY ram_obj_id,X
 C - - - - - 0x03AF70 0E:AF60: B9 67 AF  LDA tbl_AF67,Y
 C - - - - - 0x03AF73 0E:AF63: 9D 06 06  STA ram_obj_config,X
@@ -8325,14 +8328,14 @@ C - - - - - 0x03B05E 0E:B04E: 9D 3A 04  STA ram_obj_pos_X_lo + $02,X
 C - - - - - 0x03B061 0E:B051: 9D 1C 04  STA ram_obj_pos_Y_lo,X
 C - - - - - 0x03B064 0E:B054: 9D 1D 04  STA ram_obj_pos_Y_lo + $01,X
 C - - - - - 0x03B067 0E:B057: 9D 1E 04  STA ram_obj_pos_Y_lo + $02,X
-C - - - - - 0x03B06A 0E:B05A: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B06D 0E:B05D: FE 65 05  INC ram_obj_state,X
+C - - - - - 0x03B06A 0E:B05A: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B06D 0E:B05D: FE 65 05  INC ram_obj_stun_timer,X
 C - - - - - 0x03B070 0E:B060: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x03B073 0E:B063: 9D 4F 05  STA ram_obj_id + $01,X
 C - - - - - 0x03B076 0E:B066: 9D 50 05  STA ram_obj_id + $02,X
-C - - - - - 0x03B079 0E:B069: BD 65 05  LDA ram_obj_state,X
-C - - - - - 0x03B07C 0E:B06C: 9D 66 05  STA ram_obj_state + $01,X
-C - - - - - 0x03B07F 0E:B06F: 9D 67 05  STA ram_obj_state + $02,X
+C - - - - - 0x03B079 0E:B069: BD 65 05  LDA ram_obj_stun_timer,X
+C - - - - - 0x03B07C 0E:B06C: 9D 66 05  STA ram_obj_stun_timer + $01,X
+C - - - - - 0x03B07F 0E:B06F: 9D 67 05  STA ram_obj_stun_timer + $02,X
 bra_B072_RTS:
 C - - - - - 0x03B082 0E:B072: 60        RTS
 
@@ -8431,8 +8434,8 @@ C - - J - - 0x03B10A 0E:B0FA: BD D8 05  LDA ram_obj_drop_id,X
 C - - - - - 0x03B10D 0E:B0FD: 30 07     BMI bra_B106
 bra_B0FF:
 loc_B0FF:
-C D 1 - - - 0x03B10F 0E:B0FF: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B112 0E:B102: FE 65 05  INC ram_obj_state,X
+C D 1 - - - 0x03B10F 0E:B0FF: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B112 0E:B102: FE 65 05  INC ram_obj_stun_timer,X
 C - - - - - 0x03B115 0E:B105: 60        RTS
 bra_B106:
 C - - - - - 0x03B116 0E:B106: 20 12 B1  JSR sub_B112
@@ -8590,16 +8593,16 @@ C - - - - - 0x03B1F3 0E:B1E3: A5 00     LDA ram_0000_t03F_spd_Y_fr
 C - - - - - 0x03B1F5 0E:B1E5: 9D 37 05  STA ram_obj_spd_Y_fr,X
 C - - - - - 0x03B1F8 0E:B1E8: A5 08     LDA ram_0008_t03B_spd_X_lo
 C - - - - - 0x03B1FA 0E:B1EA: 9D F2 04  STA ram_obj_spd_X_lo,X
-C - - - - - 0x03B1FD 0E:B1ED: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B200 0E:B1F0: FE 65 05  INC ram_obj_state,X
+C - - - - - 0x03B1FD 0E:B1ED: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B200 0E:B1F0: FE 65 05  INC ram_obj_stun_timer,X
 C - - - - - 0x03B203 0E:B1F3: 4C 82 B1  JMP loc_B182
 
 
 
 ofs_035_07_B1F6_05:
 C - - J - - 0x03B206 0E:B1F6: 20 08 B2  JSR sub_B208
-C - - - - - 0x03B209 0E:B1F9: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B20C 0E:B1FC: FE 65 05  INC ram_obj_state,X
+C - - - - - 0x03B209 0E:B1F9: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B20C 0E:B1FC: FE 65 05  INC ram_obj_stun_timer,X
 C - - - - - 0x03B20F 0E:B1FF: AD 7C B1  LDA tbl_B17C_spd_Y_lo_02
 C - - - - - 0x03B212 0E:B202: 9D 20 05  STA ram_obj_spd_Y_lo,X
 C - - - - - 0x03B215 0E:B205: 4C 82 B1  JMP loc_B182
@@ -8657,7 +8660,7 @@ C - - - - - 0x03B259 0E:B249: 90 0B     BCC bra_B256
 C - - - - - 0x03B25B 0E:B24B: AD 7B B1  LDA tbl_B17B_10
 C - - - - - 0x03B25E 0E:B24E: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x03B261 0E:B251: A9 08     LDA #$08
-C - - - - - 0x03B263 0E:B253: 9D 65 05  STA ram_obj_state,X
+C - - - - - 0x03B263 0E:B253: 9D 65 05  STA ram_obj_stun_timer,X
 bra_B256:
 C - - - - - 0x03B266 0E:B256: 4C 82 B1  JMP loc_B182
 
@@ -8992,8 +8995,8 @@ C - - J - - 0x03B46C 0E:B45C: 20 6E B4  JSR sub_B46E
 C - - - - - 0x03B46F 0E:B45F: A9 00     LDA #$00
 C - - - - - 0x03B471 0E:B461: 9D 38 04  STA ram_obj_pos_X_lo,X
 C - - - - - 0x03B474 0E:B464: 9D 1C 04  STA ram_obj_pos_Y_lo,X
-C - - - - - 0x03B477 0E:B467: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B47A 0E:B46A: FE 65 05  INC ram_obj_state,X
+C - - - - - 0x03B477 0E:B467: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B47A 0E:B46A: FE 65 05  INC ram_obj_stun_timer,X
 bra_B46D_RTS:
 C - - - - - 0x03B47D 0E:B46D: 60        RTS
 
@@ -9146,8 +9149,8 @@ C - - - - - 0x03B55A 0E:B54A: 9D 09 05  STA ram_obj_spd_X_fr,X
 C - - - - - 0x03B55D 0E:B54D: A9 00     LDA #$00
 C - - - - - 0x03B55F 0E:B54F: FD F2 04  SBC ram_obj_spd_X_lo,X
 C - - - - - 0x03B562 0E:B552: 9D F2 04  STA ram_obj_spd_X_lo,X
-C - - - - - 0x03B565 0E:B555: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B568 0E:B558: FE 65 05  INC ram_obj_state,X
+C - - - - - 0x03B565 0E:B555: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B568 0E:B558: FE 65 05  INC ram_obj_stun_timer,X
 bra_B55B:
 C - - - - - 0x03B56B 0E:B55B: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x03B56D 0E:B55D: 29 0F     AND #$0F
@@ -9516,8 +9519,8 @@ C - - - - - 0x03B7CF 0E:B7BF: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x03B7D2 0E:B7C2: A9 00     LDA #con_obj_type_00
 C - - - - - 0x03B7D4 0E:B7C4: A0 0C     LDY #$0C
 C - - - - - 0x03B7D6 0E:B7C6: 20 5C EF  JSR sub_0x03EF6C_prepare_animation
-C - - - - - 0x03B7D9 0E:B7C9: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B7DC 0E:B7CC: FE 65 05  INC ram_obj_state,X
+C - - - - - 0x03B7D9 0E:B7C9: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B7DC 0E:B7CC: FE 65 05  INC ram_obj_stun_timer,X
 C - - - - - 0x03B7DF 0E:B7CF: 60        RTS
 
 
@@ -9555,11 +9558,11 @@ C - - - - - 0x03B817 0E:B807: 9D 3A 04  STA ram_obj_pos_X_lo + $02,X
 C - - - - - 0x03B81A 0E:B80A: 9D 1C 04  STA ram_obj_pos_Y_lo,X
 C - - - - - 0x03B81D 0E:B80D: 9D 1D 04  STA ram_obj_pos_Y_lo + $01,X
 C - - - - - 0x03B820 0E:B810: 9D 1E 04  STA ram_obj_pos_Y_lo + $02,X
-C - - - - - 0x03B823 0E:B813: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B826 0E:B816: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B829 0E:B819: BD 65 05  LDA ram_obj_state,X
-C - - - - - 0x03B82C 0E:B81C: 9D 66 05  STA ram_obj_state + $01,X
-C - - - - - 0x03B82F 0E:B81F: 9D 67 05  STA ram_obj_state + $02,X
+C - - - - - 0x03B823 0E:B813: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B826 0E:B816: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B829 0E:B819: BD 65 05  LDA ram_obj_stun_timer,X
+C - - - - - 0x03B82C 0E:B81C: 9D 66 05  STA ram_obj_stun_timer + $01,X
+C - - - - - 0x03B82F 0E:B81F: 9D 67 05  STA ram_obj_stun_timer + $02,X
 C - - - - - 0x03B832 0E:B822: 60        RTS
 
 
@@ -9783,8 +9786,8 @@ C - - - - - 0x03B99E 0E:B98E: A9 00     LDA #con_obj_flag_00
 C - - - - - 0x03B9A0 0E:B990: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x03B9A3 0E:B993: A9 20     LDA #$20
 C - - - - - 0x03B9A5 0E:B995: 9D C1 05  STA ram_obj_ai_subscript,X
-C - - - - - 0x03B9A8 0E:B998: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B9AB 0E:B99B: FE 65 05  INC ram_obj_state,X
+C - - - - - 0x03B9A8 0E:B998: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B9AB 0E:B99B: FE 65 05  INC ram_obj_stun_timer,X
 C - - - - - 0x03B9AE 0E:B99E: 60        RTS
 
 
@@ -9798,16 +9801,16 @@ C - - - - - 0x03B9B9 0E:B9A9: A9 00     LDA #con_obj_flag_00
 C - - - - - 0x03B9BB 0E:B9AB: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x03B9BE 0E:B9AE: A9 20     LDA #$20
 C - - - - - 0x03B9C0 0E:B9B0: 9D C1 05  STA ram_obj_ai_subscript,X
-C - - - - - 0x03B9C3 0E:B9B3: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B9C6 0E:B9B6: FE 65 05  INC ram_obj_state,X
+C - - - - - 0x03B9C3 0E:B9B3: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B9C6 0E:B9B6: FE 65 05  INC ram_obj_stun_timer,X
 C - - - - - 0x03B9C9 0E:B9B9: 60        RTS
 
 
 
 ofs_035_0C_B9BA_01:
 ofs_035_0D_B9BA_01:
-C - - J - - 0x03B9CA 0E:B9BA: FE 65 05  INC ram_obj_state,X
-C - - - - - 0x03B9CD 0E:B9BD: FE 65 05  INC ram_obj_state,X
+C - - J - - 0x03B9CA 0E:B9BA: FE 65 05  INC ram_obj_stun_timer,X
+C - - - - - 0x03B9CD 0E:B9BD: FE 65 05  INC ram_obj_stun_timer,X
 ofs_035_0C_B9C0_02:
 ofs_035_0D_B9C0_02:
 C - - - - - 0x03B9D0 0E:B9C0: DE C1 05  DEC ram_obj_ai_subscript,X
@@ -9884,7 +9887,7 @@ C - - - - - 0x03BA3E 0E:BA2E: 20 AA BA  JSR sub_BAAA_decrease_hearts_from_subwea
 C - - - - - 0x03BA41 0E:BA31: A5 08     LDA ram_0008_t038_subweapon_id
 C - - - - - 0x03BA43 0E:BA33: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x03BA46 0E:BA36: A9 00     LDA #$00
-C - - - - - 0x03BA48 0E:BA38: 9D 65 05  STA ram_obj_state,X
+C - - - - - 0x03BA48 0E:BA38: 9D 65 05  STA ram_obj_stun_timer,X
 C - - - - - 0x03BA4B 0E:BA3B: 9D 1D 06  STA ram_061D_obj,X
 C - - - - - 0x03BA4E 0E:BA3E: 9D 70 04  STA ram_obj_flags,X ; con_obj_flag_00
 C - - - - - 0x03BA51 0E:BA41: 38        SEC
@@ -9951,7 +9954,7 @@ C - - - - - 0x03BAA2 0E:BA92: C8        INY
 C - - - - - 0x03BAA3 0E:BA93: A9 0A     LDA #$0A    ; Alucard fireball
 C - - - - - 0x03BAA5 0E:BA95: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x03BAA8 0E:BA98: A9 00     LDA #$00
-C - - - - - 0x03BAAA 0E:BA9A: 9D 65 05  STA ram_obj_state,X
+C - - - - - 0x03BAAA 0E:BA9A: 9D 65 05  STA ram_obj_stun_timer,X
 C - - - - - 0x03BAAD 0E:BA9D: 9D 1D 06  STA ram_061D_obj,X
 C - - - - - 0x03BAB0 0E:BAA0: F0 DB     BEQ bra_BA7D    ; jmp
 
@@ -10008,7 +10011,7 @@ bra_BACE_loop:
 C - - - - - 0x03BADE 0E:BACE: B9 6F BB  LDA tbl_BB6F,Y
 C - - - - - 0x03BAE1 0E:BAD1: C9 FF     CMP #$FF
 C - - - - - 0x03BAE3 0E:BAD3: F0 39     BEQ bra_BB0E_FF
-C - - - - - 0x03BAE5 0E:BAD5: DD 65 05  CMP ram_obj_state,X
+C - - - - - 0x03BAE5 0E:BAD5: DD 65 05  CMP ram_obj_stun_timer,X
 C - - - - - 0x03BAE8 0E:BAD8: F0 04     BEQ bra_BADE
 C - - - - - 0x03BAEA 0E:BADA: C8        INY
 C - - - - - 0x03BAEB 0E:BADB: C8        INY
@@ -10056,7 +10059,7 @@ bra_BB10_loop:
 C - - - - - 0x03BB20 0E:BB10: B9 64 BB  LDA tbl_BB64_obj_state,Y
 C - - - - - 0x03BB23 0E:BB13: C9 FF     CMP #$FF
 C - - - - - 0x03BB25 0E:BB15: F0 22     BEQ bra_BB39_FF
-C - - - - - 0x03BB27 0E:BB17: DD 65 05  CMP ram_obj_state,X
+C - - - - - 0x03BB27 0E:BB17: DD 65 05  CMP ram_obj_stun_timer,X
 C - - - - - 0x03BB2A 0E:BB1A: F0 04     BEQ bra_BB20
 C - - - - - 0x03BB2C 0E:BB1C: C8        INY
 C - - - - - 0x03BB2D 0E:BB1D: C8        INY
@@ -10457,7 +10460,7 @@ C - - - - - 0x03BC7C 0E:BC6C: BD 8D 06  LDA ram_obj_068E,X
 C - - - - - 0x03BC7F 0E:BC6F: 39 7D BC  AND tbl_BC7D,Y
 C - - - - - 0x03BC82 0E:BC72: 9D 8D 06  STA ram_obj_068E,X
 C - - - - - 0x03BC85 0E:BC75: E8        INX
-C - - - - - 0x03BC86 0E:BC76: E0 13     CPX #$13
+C - - - - - 0x03BC86 0E:BC76: E0 13     CPX #con_max_obj_enemy_index + $01
 C - - - - - 0x03BC88 0E:BC78: 90 F2     BCC bra_BC6C_loop
 bra_BC7A:
 C - - - - - 0x03BC8A 0E:BC7A: A6 B1     LDX ram_00B1_t000_save_X
@@ -10489,12 +10492,12 @@ sub_BC89:
         ; 1 = 
 C - - - - - 0x03BC99 0E:BC89: A9 00     LDA #$00
 C - - - - - 0x03BC9B 0E:BC8B: 85 10     STA ram_0010_t00D_object_index
-C - - - - - 0x03BC9D 0E:BC8D: A2 13     LDX #$13
+C - - - - - 0x03BC9D 0E:BC8D: A2 13     LDX #con_obj_index_weapon
 bra_BC8F:
 C - - - - - 0x03BC9F 0E:BC8F: A4 10     LDY ram_0010_t00D_object_index
 C - - - - - 0x03BCA1 0E:BC91: B9 4E 05  LDA ram_obj_id,Y
 C - - - - - 0x03BCA4 0E:BC94: 85 11     STA ram_0011_t013_copy_obj_id
-C - - - - - 0x03BCA6 0E:BC96: B9 65 05  LDA ram_obj_state,Y
+C - - - - - 0x03BCA6 0E:BC96: B9 65 05  LDA ram_obj_stun_timer,Y
 C - - - - - 0x03BCA9 0E:BC99: 85 12     STA ram_0012_t006_copy_obj_state
 C - - - - - 0x03BCAB 0E:BC9B: B9 A8 04  LDA ram_obj_facing,Y
 C - - - - - 0x03BCAE 0E:BC9E: 85 13     STA ram_0013_t006_copy_obj_facing
@@ -10504,7 +10507,7 @@ C - - - - - 0x03BCB5 0E:BCA5: B9 1C 04  LDA ram_obj_pos_Y_lo,Y
 C - - - - - 0x03BCB8 0E:BCA8: 85 15     STA ram_0015_t00D_pos_Y_lo
 C - - - - - 0x03BCBA 0E:BCAA: B9 EF 05  LDA ram_obj_ai_script,Y
 C - - - - - 0x03BCBD 0E:BCAD: 85 16     STA ram_0016_t00B
-C - - - - - 0x03BCBF 0E:BCAF: BD 65 05  LDA ram_obj_state,X
+C - - - - - 0x03BCBF 0E:BCAF: BD 65 05  LDA ram_obj_stun_timer,X
 C - - - - - 0x03BCC2 0E:BCB2: D0 44     BNE bra_BCF8
 C - - - - - 0x03BCC4 0E:BCB4: 20 62 BC  JSR sub_BC62
 C - - - - - 0x03BCC7 0E:BCB7: A5 11     LDA ram_0011_t013_copy_obj_id
@@ -10523,11 +10526,12 @@ C - - - - - 0x03BCDB 0E:BCCB: A5 8E     LDA ram_subweapon_power
 bra_BCCD:
 C - - - - - 0x03BCDD 0E:BCCD: A0 00     LDY #con_obj_flag_00
 bra_BCCF:
-C - - - - - 0x03BCDF 0E:BCCF: 8C 83 04  STY ram_obj_flags + $13
+C - - - - - 0x03BCDF 0E:BCCF: 8C 83 04  STY ram_wpn_flags + con_obj_index_weapon
 C - - - - - 0x03BCE2 0E:BCD2: 9D 4E 05  STA ram_obj_id,X
+; triggers when you begin attacking with a weapon
 C - - - - - 0x03BCE5 0E:BCD5: A9 00     LDA #$00
 C - - - - - 0x03BCE7 0E:BCD7: 9D 93 05  STA ram_obj_anim_cnt,X
-C - - - - - 0x03BCEA 0E:BCDA: 9D 54 04  STA ram_0454_obj,X
+C - - - - - 0x03BCEA 0E:BCDA: 9D 54 04  STA ram_obj_spr_A,X
 C - - - - - 0x03BCED 0E:BCDD: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x03BCF0 0E:BCE0: A9 01     LDA #$01
 C - - - - - 0x03BCF2 0E:BCE2: 9D 7C 05  STA ram_obj_anim_timer,X
@@ -10536,7 +10540,7 @@ C - - - - - 0x03BCF7 0E:BCE7: B9 8C 04  LDA ram_obj_type,Y
 C - - - - - 0x03BCFA 0E:BCEA: 9D 8C 04  STA ram_obj_type,X
 C - - - - - 0x03BCFD 0E:BCED: B9 A8 04  LDA ram_obj_facing,Y
 C - - - - - 0x03BD00 0E:BCF0: 9D A8 04  STA ram_obj_facing,X
-C - - - - - 0x03BD03 0E:BCF3: FE 65 05  INC ram_obj_state,X
+C - - - - - 0x03BD03 0E:BCF3: FE 65 05  INC ram_obj_stun_timer,X
 C - - - - - 0x03BD06 0E:BCF6: 18        CLC
 C - - - - - 0x03BD07 0E:BCF7: 60        RTS
 bra_BCF8:
@@ -10548,7 +10552,7 @@ C - - - - - 0x03BD11 0E:BD01: D0 07     BNE bra_BD0A
 bra_BD03:
 C - - - - - 0x03BD13 0E:BD03: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x03BD15 0E:BD05: 29 03     AND #$03
-C - - - - - 0x03BD17 0E:BD07: 9D 54 04  STA ram_0454_obj,X
+C - - - - - 0x03BD17 0E:BD07: 9D 54 04  STA ram_obj_spr_A,X
 bra_BD0A:
 C - - - - - 0x03BD1A 0E:BD0A: A5 11     LDA ram_0011_t013_copy_obj_id
 C - - - - - 0x03BD1C 0E:BD0C: 0A        ASL
@@ -10646,9 +10650,9 @@ C - - - - - 0x03BDB2 0E:BDA2: F0 2C     BEQ bra_BDD0
 bra_BDA4:
 C - - - - - 0x03BDB4 0E:BDA4: 0A        ASL
 C - - - - - 0x03BDB5 0E:BDA5: A8        TAY
-C - - - - - 0x03BDB6 0E:BDA6: B9 91 BE  LDA tbl_BE91_animation_data,Y
+C - - - - - 0x03BDB6 0E:BDA6: B9 91 BE  LDA tbl_BE91_weapon_animation_data,Y
 C - - - - - 0x03BDB9 0E:BDA9: 85 08     STA ram_0008_t004_animation_data
-C - - - - - 0x03BDBB 0E:BDAB: B9 92 BE  LDA tbl_BE91_animation_data + $01,Y
+C - - - - - 0x03BDBB 0E:BDAB: B9 92 BE  LDA tbl_BE91_weapon_animation_data + $01,Y
 C - - - - - 0x03BDBE 0E:BDAE: 85 09     STA ram_0008_t004_animation_data + $01
 C - - - - - 0x03BDC0 0E:BDB0: A5 0F     LDA ram_000F_t011_obj_anim_cnt
 C - - - - - 0x03BDC2 0E:BDB2: 0A        ASL
@@ -10657,7 +10661,7 @@ C - - - - - 0x03BDC4 0E:BDB4: B1 08     LDA (ram_0008_t004_animation_data),Y
 C - - - - - 0x03BDC6 0E:BDB6: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x03BDC9 0E:BDB9: C8        INY
 C - - - - - 0x03BDCA 0E:BDBA: B1 08     LDA (ram_0008_t004_animation_data),Y
-C - - - - - 0x03BDCC 0E:BDBC: 9D 1D 06  STA ram_061D_obj,X
+C - - - - - 0x03BDCC 0E:BDBC: 9D 1D 06  STA ram_061D_wpn,X
 C - - - - - 0x03BDCF 0E:BDBF: FE 93 05  INC ram_obj_anim_cnt,X
 C - - - - - 0x03BDD2 0E:BDC2: 18        CLC
 C - - - - - 0x03BDD3 0E:BDC3: 60        RTS
@@ -10665,13 +10669,12 @@ C - - - - - 0x03BDD3 0E:BDC3: 60        RTS
 
 
 sub_BDC4_clear_obj_animation_13:
-C - - - - - 0x03BDD4 0E:BDC4: A2 13     LDX #$13
+C - - - - - 0x03BDD4 0E:BDC4: A2 13     LDX #con_obj_index_weapon
 bra_BDC6_FF:
 loc_BDC6_FF:
 C D 1 - - - 0x03BDD6 0E:BDC6: A9 00     LDA #$00
 C - - - - - 0x03BDD8 0E:BDC8: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x03BDDB 0E:BDCB: 9D 1D 06  STA ram_061D_obj,X
-; bzk optimize, is this SEC necessary?
 C - - - - - 0x03BDDE 0E:BDCE: 38        SEC
 C - - - - - 0x03BDDF 0E:BDCF: 60        RTS
 
@@ -10917,7 +10920,7 @@ _off042_BE87_16:
 
 
 
-tbl_BE91_animation_data:
+tbl_BE91_weapon_animation_data:
 - D 1 - - - 0x03BEA1 0E:BE91: A5 BE     .word off_BEA5_00
 - D 1 - - - 0x03BEA3 0E:BE93: AD BE     .word off_BEAD_01
 - D 1 - - - 0x03BEA5 0E:BE95: B5 BE     .word off_BEB5_02
@@ -11012,7 +11015,7 @@ C - - - - - 0x03BEEF 0E:BEDF: B9 01 BE  LDA tbl_BE01,Y
 C - - - - - 0x03BEF2 0E:BEE2: 85 08     STA ram_0008_t003_data
 C - - - - - 0x03BEF4 0E:BEE4: B9 02 BE  LDA tbl_BE01 + $01,Y
 C - - - - - 0x03BEF7 0E:BEE7: 85 09     STA ram_0008_t003_data + $01
-C - - - - - 0x03BEF9 0E:BEE9: AC A6 05  LDY ram_obj_anim_cnt + $13
+C - - - - - 0x03BEF9 0E:BEE9: AC A6 05  LDY ram_wpn_anim_cnt + con_obj_index_weapon
 C - - - - - 0x03BEFC 0E:BEEC: 88        DEY
 C - - - - - 0x03BEFD 0E:BEED: 30 0D     BMI bra_BEFC_RTS
 C - - - - - 0x03BEFF 0E:BEEF: 98        TYA

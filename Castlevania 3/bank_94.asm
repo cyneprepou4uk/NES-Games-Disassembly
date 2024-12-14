@@ -638,7 +638,7 @@ bra_834F_loop:
 C - - - - - 0x02835F 0A:834F: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x028362 0A:8352: F0 3D     BEQ bra_8391_RTS
 C - - - - - 0x028364 0A:8354: E8        INX
-C - - - - - 0x028365 0A:8355: E0 13     CPX #$13
+C - - - - - 0x028365 0A:8355: E0 13     CPX #con_max_obj_enemy_index + $01
 C - - - - - 0x028367 0A:8357: 90 F6     BCC bra_834F_loop
 - - - - - - 0x028369 0A:8359: B0 34     BCS bra_838F    ; jmp
 
@@ -986,7 +986,7 @@ bra_84BD:
 C - - - - - 0x0284CD 0A:84BD: 20 D8 84  JSR sub_84D8_clear_obj_data
 bra_84C0:
 C - - - - - 0x0284D0 0A:84C0: E8        INX
-C - - - - - 0x0284D1 0A:84C1: E0 13     CPX #$13
+C - - - - - 0x0284D1 0A:84C1: E0 13     CPX #con_max_obj_enemy_index + $01
 C - - - - - 0x0284D3 0A:84C3: 90 DB     BCC bra_84A0_loop
 C - - - - - 0x0284D5 0A:84C5: A2 14     LDX #$14
 bra_84C7_loop:
@@ -3011,7 +3011,7 @@ C - - - - - 0x028E86 0A:8E76: C5 0D     CMP ram_000D_t007_max_same_objects
 C - - - - - 0x028E88 0A:8E78: B0 0C     BCS bra_8E86_too_many_same_objects
 ; if not enough same objects currently exist
 C - - - - - 0x028E8A 0A:8E7A: A5 0B     LDA ram_000B_t00C_max_object_index
-C - - - - - 0x028E8C 0A:8E7C: C9 13     CMP #$13
+C - - - - - 0x028E8C 0A:8E7C: C9 13     CMP #con_max_obj_enemy_index + $01
 C - - - - - 0x028E8E 0A:8E7E: F0 03     BEQ bra_8E83
 C - - - - - 0x028E90 0A:8E80: 4C B9 FE  JMP loc_0x03FEC9_find_empty_object_slot_01_0C
 bra_8E83:
@@ -3030,7 +3030,7 @@ sub_8E89_find_empty_object_slot___3:
     ; X = slot index
 C - - - - - 0x028E99 0A:8E89: A9 0D     LDA #$0D
 C - - - - - 0x028E9B 0A:8E8B: 85 0C     STA ram_000C_t00D_init_object_index
-C - - - - - 0x028E9D 0A:8E8D: A9 13     LDA #$13
+C - - - - - 0x028E9D 0A:8E8D: A9 13     LDA #con_max_obj_enemy_index + $01
 C - - - - - 0x028E9F 0A:8E8F: 85 0B     STA ram_000B_t00C_max_object_index
 C - - - - - 0x028EA1 0A:8E91: A9 02     LDA #$02
 C - - - - - 0x028EA3 0A:8E93: 85 0D     STA ram_000D_t007_max_same_objects
@@ -3043,11 +3043,11 @@ C - - - - - 0x028EA9 0A:8E99: 4C 64 8E  JMP loc_8E64_find_empty_object_slot___3
 sub_8E9C:
 C - - - - - 0x028EAC 0A:8E9C: BC C2 07  LDY ram_spawner_script,X
 C - - - - - 0x028EAF 0A:8E9F: B9 DA 92  LDA tbl_92DA_spawning_obj_id,Y
-C - - - - - 0x028EB2 0A:8EA2: 85 0A     STA ram_000A_t039_obj_id
+C - - - - - 0x028EB2 0A:8EA2: 85 0A     STA ram_000A_t039_spawning_obj_id
 C - - - - - 0x028EB4 0A:8EA4: A2 01     LDX #$01
 bra_8EA6_loop:
 C - - - - - 0x028EB6 0A:8EA6: BD 4E 05  LDA ram_obj_id,X
-C - - - - - 0x028EB9 0A:8EA9: C5 0A     CMP ram_000A_t039_obj_id
+C - - - - - 0x028EB9 0A:8EA9: C5 0A     CMP ram_000A_t039_spawning_obj_id
 C - - - - - 0x028EBB 0A:8EAB: D0 07     BNE bra_8EB4
 C - - - - - 0x028EBD 0A:8EAD: A5 6C     LDA ram_006C_object_index
 C - - - - - 0x028EBF 0A:8EAF: DD 45 06  CMP ram_obj_0646,X
@@ -15627,10 +15627,10 @@ ofs_016_B119_00:
 C - - J - - 0x02B129 0A:B119: 20 F7 E7  JSR sub_0x03E807_clear_all_objects_data
 C - - - - - 0x02B12C 0A:B11C: 20 DA E2  JSR sub_0x03E2EA_prg_bankswitch_dpcm_2
 C - - - - - 0x02B12F 0A:B11F: A9 00     LDA #$00
-C - - - - - 0x02B131 0A:B121: 8D 18 04  STA ram_obj_anim_id + $18
-C - - - - - 0x02B134 0A:B124: 8D 19 04  STA ram_obj_anim_id + $19
-C - - - - - 0x02B137 0A:B127: 8D 1A 04  STA ram_obj_anim_id + $1A
-C - - - - - 0x02B13A 0A:B12A: 8D 1B 04  STA ram_obj_anim_id + $1B
+C - - - - - 0x02B131 0A:B121: 8D 18 04  STA ram_obj_anim_id + con_obj_index_18
+C - - - - - 0x02B134 0A:B124: 8D 19 04  STA ram_obj_anim_id + con_obj_index_19
+C - - - - - 0x02B137 0A:B127: 8D 1A 04  STA ram_obj_anim_id + con_obj_index_1A
+C - - - - - 0x02B13A 0A:B12A: 8D 1B 04  STA ram_obj_anim_id + con_obj_index_1B
 C - - - - - 0x02B13D 0A:B12D: A9 01     LDA #$01
 C - - - - - 0x02B13F 0A:B12F: 8D 89 07  STA ram_0789
 C - - - - - 0x02B142 0A:B132: 4C D9 B4  JMP loc_B4D9

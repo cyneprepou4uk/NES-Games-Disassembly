@@ -4379,7 +4379,7 @@ C - - - - - 0x023E34 08:BE24: 0A        ASL
 C - - - - - 0x023E35 08:BE25: 0A        ASL
 C - - - - - 0x023E36 08:BE26: A8        TAY
 C - - - - - 0x023E37 08:BE27: B9 4C BE  LDA tbl_BE49 + $03,Y
-C - - - - - 0x023E3A 08:BE2A: 9D 54 04  STA ram_0454_obj,X
+C - - - - - 0x023E3A 08:BE2A: 9D 54 04  STA ram_obj_spr_A,X
 C - - - - - 0x023E3D 08:BE2D: B9 49 BE  LDA tbl_BE49,Y
 C - - - - - 0x023E40 08:BE30: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x023E43 08:BE33: B9 4A BE  LDA tbl_BE49 + $01,Y

@@ -43,7 +43,7 @@ C - - - - - 0x034031 0D:8021: BD 00 04  LDA ram_obj_anim_id,X
 C - - - - - 0x034034 0D:8024: F0 17     BEQ bra_803D_skip_object    ; if no animation
 C - - - - - 0x034036 0D:8026: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x034039 0D:8029: 30 12     BMI bra_803D_skip_object    ; if con_obj_flag_not_visible
-C - - - - - 0x03403B 0D:802B: BD 54 04  LDA ram_0454_obj,X
+C - - - - - 0x03403B 0D:802B: BD 54 04  LDA ram_obj_spr_A,X
 C - - - - - 0x03403E 0D:802E: 85 00     STA ram_0000_t0C7_spr_A_palette
 C - - - - - 0x034040 0D:8030: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x034043 0D:8033: 85 01     STA ram_0001_t007_pos_Y_lo
@@ -321,7 +321,7 @@ C - - - - - 0x0341A8 0D:8198: BD 00 04  LDA ram_obj_anim_id,X
 C - - - - - 0x0341AB 0D:819B: F0 17     BEQ bra_81B4_skip_object    ; if no animation
 C - - - - - 0x0341AD 0D:819D: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x0341B0 0D:81A0: 30 12     BMI bra_81B4_skip_object    ; if con_obj_flag_not_visible
-C - - - - - 0x0341B2 0D:81A2: BD 54 04  LDA ram_0454_obj,X
+C - - - - - 0x0341B2 0D:81A2: BD 54 04  LDA ram_obj_spr_A,X
 C - - - - - 0x0341B5 0D:81A5: 85 00     STA ram_0000_t051_spr_A_palette
 C - - - - - 0x0341B7 0D:81A7: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x0341BA 0D:81AA: 85 01     STA ram_0001_t006_pos_Y_lo
@@ -12755,7 +12755,7 @@ C - - - - - 0x0378BA 0D:B8AA: 9D A8 04  STA ram_obj_facing,X    ; facing left
 C - - - - - 0x0378BD 0D:B8AD: A9 60     LDA #con_obj_flag_20 + con_obj_flag_40
 C - - - - - 0x0378BF 0D:B8AF: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x0378C2 0D:B8B2: A9 03     LDA #$03
-C - - - - - 0x0378C4 0D:B8B4: 9D 54 04  STA ram_0454_obj,X
+C - - - - - 0x0378C4 0D:B8B4: 9D 54 04  STA ram_obj_spr_A,X
 C - - - - - 0x0378C7 0D:B8B7: 60        RTS
 
 

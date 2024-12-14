@@ -5200,6 +5200,9 @@ C - - - - - 0x03E718 0F:E708: 4C 7F E6  JMP loc_E67F_restore_prg_bank
 
 
 sub_0x03E71B:
+; in
+    ; X = animation counter
+    ; Y = index for speed tables
 C - - - - - 0x03E71B 0F:E70B: A9 9C     LDA #con_prg_bank + $9C
 C - - - - - 0x03E71D 0F:E70D: 20 E0 E2  JSR sub_E2E0_prg_bankswitch
 C - - - - - 0x03E720 0F:E710: 20 AF 9B  JSR sub_0x039BBF
@@ -5388,7 +5391,7 @@ bra_E7FB_loop:
 C - - - - - 0x03E80B 0F:E7FB: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x03E80E 0F:E7FE: 9D 1C 04  STA ram_obj_pos_Y_lo,X
 C - - - - - 0x03E811 0F:E801: 9D 38 04  STA ram_obj_pos_X_lo,X
-C - - - - - 0x03E814 0F:E804: 9D 54 04  STA ram_0454_obj,X
+C - - - - - 0x03E814 0F:E804: 9D 54 04  STA ram_obj_spr_A,X
 C - - - - - 0x03E817 0F:E807: 9D 70 04  STA ram_obj_flags,X ; con_obj_flag_00
 C - - - - - 0x03E81A 0F:E80A: 9D 8C 04  STA ram_obj_type,X  ; con_obj_type_00
 C - - - - - 0x03E81D 0F:E80D: 9D A8 04  STA ram_obj_facing,X
@@ -8394,11 +8397,11 @@ C - - - - - 0x03FA10 0F:FA00: A9 3C     LDA #$3C
 C - - - - - 0x03FA12 0F:FA02: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x03FA14 0F:FA04: A9 0C     LDA #con_obj_type_0C
 C - - - - - 0x03FA16 0F:FA06: A0 00     LDY #$00
-C - - - - - 0x03FA18 0F:FA08: A2 13     LDX #$13
+C - - - - - 0x03FA18 0F:FA08: A2 13     LDX #con_obj_index_weapon
 C - - - - - 0x03FA1A 0F:FA0A: 20 5C EF  JSR sub_EF5C_prepare_animation
 C - - - - - 0x03FA1D 0F:FA0D: A9 00     LDA #$00
 C - - - - - 0x03FA1F 0F:FA0F: 9D 00 04  STA ram_obj_anim_id,X
-C - - - - - 0x03FA22 0F:FA12: 9D 54 04  STA ram_0454_obj,X
+C - - - - - 0x03FA22 0F:FA12: 9D 54 04  STA ram_obj_spr_A,X
 C - - - - - 0x03FA25 0F:FA15: 9D 70 04  STA ram_obj_flags,X ; con_obj_flag_00
 C - - - - - 0x03FA28 0F:FA18: AD 1C 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x03FA2B 0F:FA1B: 69 08     ADC #$08
@@ -8452,9 +8455,9 @@ C - - - - - 0x03FA80 0F:FA70: 8A        TXA
 C - - - - - 0x03FA81 0F:FA71: 18        CLC
 C - - - - - 0x03FA82 0F:FA72: 65 62     ADC ram_ppu_address_hi
 C - - - - - 0x03FA84 0F:FA74: 85 62     STA ram_ppu_address_hi
-C - - - - - 0x03FA86 0F:FA76: 8D EB 05  STA ram_obj_drop_id + $13
+C - - - - - 0x03FA86 0F:FA76: 8D EB 05  STA ram_05D8_wpn + con_obj_index_weapon
 C - - - - - 0x03FA89 0F:FA79: A5 61     LDA ram_ppu_address_lo
-C - - - - - 0x03FA8B 0F:FA7B: 8D D4 05  STA ram_obj_ai_subscript + $13
+C - - - - - 0x03FA8B 0F:FA7B: 8D D4 05  STA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x03FA8E 0F:FA7E: 20 AF E8  JSR sub_E8AF_set_buffer_mode_02
 C - - - - - 0x03FA91 0F:FA81: A0 06     LDY #$06
 C - - - - - 0x03FA93 0F:FA83: A9 00     LDA #$00
@@ -8501,7 +8504,7 @@ C - - - - - 0x03FAB6 0F:FAA6: E6 6B     INC ram_006B_subscript
 bra_FAA8_RTS:
 C - - - - - 0x03FAB8 0F:FAA8: 60        RTS
 bra_FAA9:
-C - - - - - 0x03FAB9 0F:FAA9: A2 13     LDX #$13
+C - - - - - 0x03FAB9 0F:FAA9: A2 13     LDX #con_obj_index_weapon
 C - - - - - 0x03FABB 0F:FAAB: 20 75 EF  JSR sub_EF75_object_animation_handler
 C - - - - - 0x03FABE 0F:FAAE: BD 93 05  LDA ram_obj_anim_cnt,X
 C - - - - - 0x03FAC1 0F:FAB1: D0 F5     BNE bra_FAA8_RTS
@@ -8516,7 +8519,7 @@ C - - J - - 0x03FAC9 0F:FAB9: C6 30     DEC ram_screen_timer_lo
 C - - - - - 0x03FACB 0F:FABB: D0 0C     BNE bra_FAC9
 C - - - - - 0x03FACD 0F:FABD: A9 0C     LDA #con_obj_type_0C
 C - - - - - 0x03FACF 0F:FABF: A0 01     LDY #$01
-C - - - - - 0x03FAD1 0F:FAC1: A2 13     LDX #$13
+C - - - - - 0x03FAD1 0F:FAC1: A2 13     LDX #con_obj_index_weapon
 C - - - - - 0x03FAD3 0F:FAC3: 20 5C EF  JSR sub_EF5C_prepare_animation
 C - - - - - 0x03FAD6 0F:FAC6: E6 6B     INC ram_006B_subscript
 C - - - - - 0x03FAD8 0F:FAC8: 60        RTS
@@ -8539,7 +8542,7 @@ C - - - - - 0x03FAEE 0F:FADE: 4C 73 EF  JMP loc_EF73_player_animation_handler
 
 
 ofs_003_FAE1_06_close_door:
-C - - J - - 0x03FAF1 0F:FAE1: A2 13     LDX #$13
+C - - J - - 0x03FAF1 0F:FAE1: A2 13     LDX #con_obj_index_weapon
 C - - - - - 0x03FAF3 0F:FAE3: 20 75 EF  JSR sub_EF75_object_animation_handler
 C - - - - - 0x03FAF6 0F:FAE6: BD 93 05  LDA ram_obj_anim_cnt,X
 C - - - - - 0x03FAF9 0F:FAE9: D0 07     BNE bra_FAF2_RTS
@@ -8555,9 +8558,9 @@ C - - - - - 0x03FB07 0F:FAF7: 20 5F E2  JSR sub_E25F_play_sound
 C - - - - - 0x03FB0A 0F:FAFA: A9 00     LDA #$00
 C - - - - - 0x03FB0C 0F:FAFC: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x03FB0F 0F:FAFF: 20 76 CD  JSR sub_CD76
-C - - - - - 0x03FB12 0F:FB02: AD D4 05  LDA ram_obj_ai_subscript + $13
+C - - - - - 0x03FB12 0F:FB02: AD D4 05  LDA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x03FB15 0F:FB05: 85 61     STA ram_ppu_address_lo
-C - - - - - 0x03FB17 0F:FB07: AD EB 05  LDA ram_obj_drop_id + $13
+C - - - - - 0x03FB17 0F:FB07: AD EB 05  LDA ram_05D8_wpn + con_obj_index_weapon
 C - - - - - 0x03FB1A 0F:FB0A: 85 62     STA ram_ppu_address_hi
 C - - - - - 0x03FB1C 0F:FB0C: 20 AF E8  JSR sub_E8AF_set_buffer_mode_02
 C - - - - - 0x03FB1F 0F:FB0F: A0 00     LDY #$00
@@ -8653,8 +8656,8 @@ sub_0x03FB99:
 C - - - - - 0x03FB99 0F:FB89: A9 00     LDA #con_obj_flag_00
 bra_FB8B:
 C - - - - - 0x03FB9B 0F:FB8B: 8D 70 04  STA ram_plr_flags
-C - - - - - 0x03FB9E 0F:FB8E: 8D 88 04  STA ram_obj_flags + $18
-C - - - - - 0x03FBA1 0F:FB91: 8D 89 04  STA ram_obj_flags + $19
+C - - - - - 0x03FB9E 0F:FB8E: 8D 88 04  STA ram_obj_flags + con_obj_index_18
+C - - - - - 0x03FBA1 0F:FB91: 8D 89 04  STA ram_obj_flags + con_obj_index_19
 C - - - - - 0x03FBA4 0F:FB94: 60        RTS
 
 
@@ -9221,6 +9224,7 @@ sub_FDE3:
 ; before JSR to here. there is no need in doing that
 C - - - - - 0x03FDF3 0F:FDE3: E6 A3     INC ram_00A3_frm_cnt
 C - - - - - 0x03FDF5 0F:FDE5: A9 FF     LDA #$FF
+; bzk optimize, useless STA
 C - - - - - 0x03FDF7 0F:FDE7: 85 92     STA ram_0092_useless
 C - - - - - 0x03FDF9 0F:FDE9: A2 01     LDX #$01
 loc_FDEB_loop:
@@ -9299,10 +9303,11 @@ C - - - - - 0x03FE8B 0F:FE7B: 20 57 B8  JSR sub_0x013867
 loc_FE7E_next_object:
 bra_FE7E:
 C D 3 - - - 0x03FE8E 0F:FE7E: E8        INX
-C - - - - - 0x03FE8F 0F:FE7F: E0 13     CPX #$13
-C - - - - - 0x03FE91 0F:FE81: B0 03     BCS bra_FE86
+C - - - - - 0x03FE8F 0F:FE7F: E0 13     CPX #con_obj_index_weapon
+C - - - - - 0x03FE91 0F:FE81: B0 03     BCS bra_FE86_weapons
+; if not weapons
 C - - - - - 0x03FE93 0F:FE83: 4C EB FD  JMP loc_FDEB_loop
-bra_FE86:
+bra_FE86_weapons:
 C - - - - - 0x03FE96 0F:FE86: A9 94     LDA #con_prg_bank + $94
 C - - - - - 0x03FE98 0F:FE88: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03FE9B 0F:FE8B: 20 EA 84  JSR sub_0x0284FA_spawners_handler
@@ -9372,12 +9377,12 @@ C - - - - - 0x03FEE7 0F:FED7: 20 C8 FE  JSR sub_FEC8_clear_XY_speed
 C - - - - - 0x03FEEA 0F:FEDA: A9 00     LDA #$00
 C - - - - - 0x03FEEC 0F:FEDC: 9D 7B 06  STA ram_obj_hp,X
 C - - - - - 0x03FEEF 0F:FEDF: 9D 8D 06  STA ram_obj_068E,X
-C - - - - - 0x03FEF2 0F:FEE2: 9D 54 04  STA ram_0454_obj,X
+C - - - - - 0x03FEF2 0F:FEE2: 9D 54 04  STA ram_obj_spr_A,X
 C - - - - - 0x03FEF5 0F:FEE5: 9D 70 04  STA ram_obj_flags,X ; con_obj_flag_00
 C - - - - - 0x03FEF8 0F:FEE8: 9D 69 06  STA ram_obj_066A,X
 ; bzk optimize, loading the same A
 C - - - - - 0x03FEFB 0F:FEEB: A9 00     LDA #$00
-C - - - - - 0x03FEFD 0F:FEED: 9D 65 05  STA ram_obj_state,X
+C - - - - - 0x03FEFD 0F:FEED: 9D 65 05  STA ram_obj_stun_timer,X
 C - - - - - 0x03FF00 0F:FEF0: 9D C4 04  STA ram_obj_pos_X_fr,X
 C - - - - - 0x03FF03 0F:FEF3: 9D DB 04  STA ram_obj_pos_Y_fr,X
 C - - - - - 0x03FF06 0F:FEF6: 9D C1 05  STA ram_obj_ai_subscript,X
@@ -9401,15 +9406,15 @@ C - - - - - 0x03FF1F 0F:FF0F: C9 48     CMP #$48
 C - - - - - 0x03FF21 0F:FF11: 90 1C     BCC bra_FF2F_RTS
 C - - - - - 0x03FF23 0F:FF13: C9 68     CMP #$68
 C - - - - - 0x03FF25 0F:FF15: B0 17     BCS bra_FF2E
-C - - - - - 0x03FF27 0F:FF17: BD 65 05  LDA ram_obj_state,X
+C - - - - - 0x03FF27 0F:FF17: BD 65 05  LDA ram_obj_stun_timer,X
 C - - - - - 0x03FF2A 0F:FF1A: 29 3F     AND #$3F
 C - - - - - 0x03FF2C 0F:FF1C: F0 10     BEQ bra_FF2E
 C - - - - - 0x03FF2E 0F:FF1E: 85 17     STA ram_0017_t001
 C - - - - - 0x03FF30 0F:FF20: C6 17     DEC ram_0017_t001
-C - - - - - 0x03FF32 0F:FF22: BD 65 05  LDA ram_obj_state,X
+C - - - - - 0x03FF32 0F:FF22: BD 65 05  LDA ram_obj_stun_timer,X
 C - - - - - 0x03FF35 0F:FF25: 29 C0     AND #$C0
 C - - - - - 0x03FF37 0F:FF27: 05 17     ORA ram_0017_t001
-C - - - - - 0x03FF39 0F:FF29: 9D 65 05  STA ram_obj_state,X
+C - - - - - 0x03FF39 0F:FF29: 9D 65 05  STA ram_obj_stun_timer,X
 C - - - - - 0x03FF3C 0F:FF2C: 38        SEC
 C - - - - - 0x03FF3D 0F:FF2D: 60        RTS
 bra_FF2E:
@@ -9489,11 +9494,11 @@ C - - - - - 0x03FF97 0F:FF87: 4C E6 E2  JMP loc_E2E6_prg_bankswitch
 sub_0x03FF9A:
 loc_0x03FF9A:
 C D 3 - - - 0x03FF9A 0F:FF8A: A9 04     LDA #$04
-C - - - - - 0x03FF9C 0F:FF8C: 9D 54 04  STA ram_0454_obj,X
-C - - - - - 0x03FF9F 0F:FF8F: BD 65 05  LDA ram_obj_state,X
+C - - - - - 0x03FF9C 0F:FF8C: 9D 54 04  STA ram_obj_spr_A,X
+C - - - - - 0x03FF9F 0F:FF8F: BD 65 05  LDA ram_obj_stun_timer,X
 C - - - - - 0x03FFA2 0F:FF92: 29 3F     AND #$3F
 C - - - - - 0x03FFA4 0F:FF94: 09 40     ORA #$40
-C - - - - - 0x03FFA6 0F:FF96: 9D 65 05  STA ram_obj_state,X
+C - - - - - 0x03FFA6 0F:FF96: 9D 65 05  STA ram_obj_stun_timer,X
 C - - - - - 0x03FFA9 0F:FF99: 60        RTS
 
 
