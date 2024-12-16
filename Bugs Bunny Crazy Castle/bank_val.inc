@@ -152,6 +152,3 @@ con_sound_14                            = $14 ;
 con_music_stage_complete_2              = $15 ; bricks and concrete stage
 con_music_game_over                     = $16 ; 
 con_sound_throw_glove                   = $17 ; 
-
-
-
