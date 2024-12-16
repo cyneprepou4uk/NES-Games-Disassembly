@@ -467,6 +467,7 @@ C - - - - - 0x0003A9 00:C399: 4C 9E C3  JMP loc_C39E
 bra_C39C_not_max_speed_spawn:
 C - - - - - 0x0003AC 00:C39C: A5 85     LDA ram_stage
 loc_C39E:
+; * 04
 C D 2 - - - 0x0003AE 00:C39E: 0A        ASL
 C - - - - - 0x0003AF 00:C39F: 0A        ASL
 C - - - - - 0x0003B0 00:C3A0: 85 00     STA ram_0000_t01
@@ -764,6 +765,7 @@ C - - - - - 0x0005D3 00:C5C3: 85 00     STA ram_0000_t02
 C - - - - - 0x0005D5 00:C5C5: A9 03     LDA #$03
 C - - - - - 0x0005D7 00:C5C7: 38        SEC
 C - - - - - 0x0005D8 00:C5C8: E5 00     SBC ram_0000_t02
+; * 04
 C - - - - - 0x0005DA 00:C5CA: 0A        ASL
 C - - - - - 0x0005DB 00:C5CB: 0A        ASL
 C - - - - - 0x0005DC 00:C5CC: 18        CLC
@@ -823,6 +825,7 @@ C - - - - - 0x000642 00:C632: 20 70 D4  JSR sub_D470_disable_nmi
 C - - - - - 0x000645 00:C635: 20 7E D4  JSR sub_D47E_clear_0400_07FF
 C - - - - - 0x000648 00:C638: 20 B4 D7  JSR sub_D7B4_copy_400h_to_nametable
 C - - - - - 0x00064B 00:C63B: 20 67 D4  JSR sub_D467_enable_nmi
+; bzk optimize, JMP
 C - - - - - 0x00064E 00:C63E: 20 51 EA  JSR sub_EA51_clear_sound_engine_data
 C - - - - - 0x000651 00:C641: 60        RTS
 
@@ -1303,6 +1306,7 @@ C - - - - - 0x00090F 00:C8FF: 29 10     AND #$10
 C - - - - - 0x000911 00:C901: F0 43     BEQ bra_C946_RTS    ; show/hide each 16 frames
 C - - - - - 0x000913 00:C903: A9 03     LDA #$03
 C - - - - - 0x000915 00:C905: 85 04     STA ram_0004_t01_spr_A_palette
+; bzk optimize, useless LDA + STA?
 C - - - - - 0x000917 00:C907: A9 00     LDA #$00
 C - - - - - 0x000919 00:C909: 85 6E     STA ram_priority_spr_A
 C - - - - - 0x00091B 00:C90B: A2 64     LDX #$64    ; spr_X
@@ -1389,6 +1393,7 @@ C - - - - - 0x0009B5 00:C9A5: 18        CLC
 C - - - - - 0x0009B6 00:C9A6: 6D 06 01  ADC ram_go_msg_pos_Y
 C - - - - - 0x0009B9 00:C9A9: 8D 06 01  STA ram_go_msg_pos_Y
 bra_C9AC_stop_moving_timer:
+; bzk optimize, JMP
 C - - - - - 0x0009BC 00:C9AC: 20 47 C9  JSR sub_C947_display_game_over_text_with_sprites
 bra_C9AF_RTS:
 C - - - - - 0x0009BF 00:C9AF: 60        RTS
@@ -3019,7 +3024,7 @@ C - - - - - 0x001439 00:D429: A5 4F     LDA ram_scroll_pos_Y
 C - - - - - 0x00143B 00:D42B: 8D 05 20  STA $2005
 C - - - - - 0x00143E 00:D42E: A9 1E     LDA #$1E
 C - - - - - 0x001440 00:D430: 8D 01 20  STA $2001
-C - - - - - 0x001443 00:D433: 20 89 D6  JSR sub_D689_read_joysticks
+C - - - - - 0x001443 00:D433: 20 89 D6  JSR sub_D689_read_joy_regs
 C - - - - - 0x001446 00:D436: 20 93 DA  JSR sub_DA93_hide_unused_sprites
 C - - - - - 0x001449 00:D439: 20 7E EA  JSR sub_EA7E_sound_driver
 C - - - - - 0x00144C 00:D43C: E6 0B     INC ram_frm_cnt_lo
@@ -3042,6 +3047,7 @@ sub_D44D_generate_random_number:
 C - - - - - 0x00145D 00:D44D: 8A        TXA
 C - - - - - 0x00145E 00:D44E: 48        PHA
 C - - - - - 0x00145F 00:D44F: A5 0F     LDA ram_random
+; * 08
 C - - - - - 0x001461 00:D451: 0A        ASL
 C - - - - - 0x001462 00:D452: 0A        ASL
 C - - - - - 0x001463 00:D453: 0A        ASL
@@ -3173,6 +3179,7 @@ sub_D502:
 C - - - - - 0x001512 00:D502: 20 F5 D5  JSR sub_D5F5_wait_for_vblank
 C - - - - - 0x001515 00:D505: 20 3E D5  JSR sub_D53E_set_sprites_palette
 C - - - - - 0x001518 00:D508: A9 00     LDA #$00
+; bzk optimize, JMP
 C - - - - - 0x00151A 00:D50A: 20 0E D5  JSR sub_D50E_set_background_palette
 C - - - - - 0x00151D 00:D50D: 60        RTS
 
@@ -3235,48 +3242,47 @@ tbl_D555_sprites_palette:
 
 
 tbl_D565_background_palette:
-; see con_004D
-; 00 
+; 00 con_004D_00
 - D 2 - - - 0x001575 00:D565: 0F        .byte $0F, $17, $06, $00   ; 
 - D 2 - - - 0x001579 00:D569: 0F        .byte $0F, $3C, $10, $12   ; 
 - D 2 - - - 0x00157D 00:D56D: 0F        .byte $0F, $29, $09, $0B   ; 
 - D 2 - - - 0x001581 00:D571: 0F        .byte $0F, $00, $10, $20   ; 
-; 01 
+; 01 con_004D_01
 - D 2 - - - 0x001585 00:D575: 0F        .byte $0F, $17, $06, $00   ; 
 - D 2 - - - 0x001589 00:D579: 0F        .byte $0F, $3C, $12, $12   ; 
 - D 2 - - - 0x00158D 00:D57D: 0F        .byte $0F, $29, $09, $0B   ; 
 - D 2 - - - 0x001591 00:D581: 0F        .byte $0F, $00, $10, $20   ; 
-; 02 
+; 02 con_004D_02
 - D 2 - - - 0x001595 00:D585: 0F        .byte $0F, $17, $06, $00   ; 
 - D 2 - - - 0x001599 00:D589: 0F        .byte $0F, $12, $3C, $12   ; 
 - D 2 - - - 0x00159D 00:D58D: 0F        .byte $0F, $29, $09, $0B   ; 
 - D 2 - - - 0x0015A1 00:D591: 0F        .byte $0F, $00, $10, $20   ; 
-; 03 
+; 03 con_004D_03
 - D 2 - - - 0x0015A5 00:D595: 0F        .byte $0F, $16, $16, $30   ; 
 - D 2 - - - 0x0015A9 00:D599: 0F        .byte $0F, $3C, $10, $16   ; 
 - D 2 - - - 0x0015AD 00:D59D: 0F        .byte $0F, $29, $09, $27   ; 
 - D 2 - - - 0x0015B1 00:D5A1: 0F        .byte $0F, $00, $10, $20   ; 
-; 04 
+; 04 con_004D_04
 - D 2 - - - 0x0015B5 00:D5A5: 0F        .byte $0F, $17, $06, $00   ; 
 - D 2 - - - 0x0015B9 00:D5A9: 0F        .byte $0F, $3C, $10, $00   ; 
 - D 2 - - - 0x0015BD 00:D5AD: 0F        .byte $0F, $29, $09, $00   ; 
 - D 2 - - - 0x0015C1 00:D5B1: 0F        .byte $0F, $00, $10, $00   ; 
-; 05 
+; 05 con_004D_05
 - D 2 - - - 0x0015C5 00:D5B5: 0F        .byte $0F, $0F, $06, $00   ; 
 - D 2 - - - 0x0015C9 00:D5B9: 0F        .byte $0F, $3C, $10, $00   ; 
 - D 2 - - - 0x0015CD 00:D5BD: 0F        .byte $0F, $29, $09, $00   ; 
 - D 2 - - - 0x0015D1 00:D5C1: 0F        .byte $0F, $00, $10, $00   ; 
-; 06 
+; 06 con_004D_06
 - D 2 - - - 0x0015D5 00:D5C5: 0F        .byte $0F, $12, $06, $00   ; 
 - D 2 - - - 0x0015D9 00:D5C9: 0F        .byte $0F, $3C, $10, $00   ; 
 - D 2 - - - 0x0015DD 00:D5CD: 0F        .byte $0F, $29, $09, $00   ; 
 - D 2 - - - 0x0015E1 00:D5D1: 0F        .byte $0F, $00, $10, $00   ; 
-; 07 
+; 07 con_004D_07
 - D 2 - - - 0x0015E5 00:D5D5: 0F        .byte $0F, $00, $06, $00   ; 
 - D 2 - - - 0x0015E9 00:D5D9: 0F        .byte $0F, $3C, $10, $00   ; 
 - D 2 - - - 0x0015ED 00:D5DD: 0F        .byte $0F, $29, $09, $00   ; 
 - D 2 - - - 0x0015F1 00:D5E1: 0F        .byte $0F, $00, $10, $00   ; 
-; 08 
+; 08 con_004D_08
 - D 2 - - - 0x0015F5 00:D5E5: 0F        .byte $0F, $30, $06, $00   ; 
 - D 2 - - - 0x0015F9 00:D5E9: 0F        .byte $0F, $3C, $10, $00   ; 
 - D 2 - - - 0x0015FD 00:D5ED: 0F        .byte $0F, $29, $09, $00   ; 
@@ -3376,6 +3382,7 @@ C - - - - - 0x001675 00:D665: 0A        ASL
 C - - - - - 0x001676 00:D666: 29 F8     AND #$F8
 C - - - - - 0x001678 00:D668: 85 00     STA ram_0000_t14
 C - - - - - 0x00167A 00:D66A: 8A        TXA
+; / 04
 C - - - - - 0x00167B 00:D66B: 4A        LSR
 C - - - - - 0x00167C 00:D66C: 4A        LSR
 C - - - - - 0x00167D 00:D66D: 18        CLC
@@ -3394,7 +3401,12 @@ C - - - - - 0x001693 00:D683: 60        RTS
 
 
 sub_D684:
+; in
+    ; A = 
+; out
+    ; A = 
 ; bzk optimize
+; * 04
 C - - - - - 0x001694 00:D684: 0A        ASL
 C - - - - - 0x001695 00:D685: 0A        ASL
 C - - - - - 0x001696 00:D686: 05 04     ORA ram_0004_t02_nametable_attribute
@@ -3402,12 +3414,12 @@ C - - - - - 0x001698 00:D688: 60        RTS
 
 
 
-sub_D689_read_joysticks:
+sub_D689_read_joy_regs:
 C - - - - - 0x001699 00:D689: A2 01     LDX #$01
 C - - - - - 0x00169B 00:D68B: 8E 16 40  STX $4016
 C - - - - - 0x00169E 00:D68E: A0 00     LDY #$00
 C - - - - - 0x0016A0 00:D690: 8C 16 40  STY $4016
-bra_D693_loop:
+bra_D693_loop:  ; Y = 00
 C - - - - - 0x0016A3 00:D693: 84 00     STY ram_0000_t15
 C - - - - - 0x0016A5 00:D695: A0 08     LDY #$08
 bra_D697_loop:
@@ -3494,8 +3506,12 @@ C - - - - - 0x001715 00:D705: 60        RTS
 
 
 sub_D706_divide_by_08_and_calculate_pointer:
+; out
+    ; ram_0011_t14_data
 C - - - - - 0x001716 00:D706: 20 13 D7  JSR sub_D713_divide_XY_by_08
 sub_D709_calculate_pointer:
+; out
+    ; ram_0011_t14_data
 C - - - - - 0x001719 00:D709: 20 FB D5  JSR sub_D5FB_calculate_pointer
 C - - - - - 0x00171C 00:D70C: 85 12     STA ram_0011_t14_data + $01
 C - - - - - 0x00171E 00:D70E: 84 11     STY ram_0011_t14_data
@@ -3592,6 +3608,7 @@ C - - - - - 0x00176B 00:D75B: 60        RTS
 ; bzk garbage
 - - - - - - 0x00176C 00:D75C: A5 00     LDA ram_0000_t03
 - - - - - - 0x00176E 00:D75E: 11 11     ORA (ram_0011_t14_data),Y
+; bzk optimize, JMP
 - - - - - - 0x001770 00:D760: 20 84 D7  JSR sub_D784
 - - - - - - 0x001773 00:D763: 60        RTS
 
@@ -3651,7 +3668,12 @@ C - - - - - 0x0017B9 00:D7A9: 60        RTS
 sub_D7AA_increase_16bit_0011_by_A:
 ; in
     ; A = increase amount
-; bzk no custom links to temp addresses here, there could be many
+; ram_0011_t11_stage_data
+; ram_0011_t13_data
+; ram_0011_t14_data
+; ram_0011_t17_ppu_lo, ram_0012_t01_ppu_hi
+; ram_0011_t16_stage_data
+; ram_0011_t18_ppu_lo, ram_0012_t02_ppu_hi
 C - - - - - 0x0017BA 00:D7AA: 18        CLC
 C - - - - - 0x0017BB 00:D7AB: 65 11     ADC ram_0011_temp
 C - - - - - 0x0017BD 00:D7AD: 85 11     STA ram_0011_temp
@@ -3677,7 +3699,7 @@ C - - - - - 0x0017D0 00:D7C0: A9 01     LDA #$01
 ; bzk optimize, INC 0011 + BNE + INC 0012 will be faster
 C - - - - - 0x0017D2 00:D7C2: 20 AA D7  JSR sub_D7AA_increase_16bit_0011_by_A
 C - - - - - 0x0017D5 00:D7C5: A5 12     LDA ram_0011_t11_stage_data + $01
-C - - - - - 0x0017D7 00:D7C7: C9 08     CMP #$08    ; copy to ppu until 0800
+C - - - - - 0x0017D7 00:D7C7: C9 08     CMP #> $0800    ; copy to ppu until 0800
 C - - - - - 0x0017D9 00:D7C9: D0 F2     BNE bra_D7BD_loop
 C - - - - - 0x0017DB 00:D7CB: 60        RTS
 
@@ -4037,6 +4059,7 @@ sub_D9BE_score:
 ; in
     ; X = score index
 C - - - - - 0x0019CE 00:D9BE: 8A        TXA
+; * 08
 C - - - - - 0x0019CF 00:D9BF: 0A        ASL
 C - - - - - 0x0019D0 00:D9C0: 0A        ASL
 C - - - - - 0x0019D1 00:D9C1: 0A        ASL
@@ -4383,6 +4406,7 @@ C - - - - - 0x001B6F 00:DB5F: 85 82     STA ram_enemy_timer_before_spawn
 C - - - - - 0x001B71 00:DB61: 20 63 E3  JSR sub_E363_tank_spawn_handler
 C - - - - - 0x001B74 00:DB64: C6 7F     DEC ram_enemy_spawn_cnt
 C - - - - - 0x001B76 00:DB66: A5 7F     LDA ram_enemy_spawn_cnt
+; bzk optimize, JMP
 C - - - - - 0x001B78 00:DB68: 20 B1 C8  JSR sub_C8B1_erase_enemy_icon
 C - - - - - 0x001B7B 00:DB6B: 60        RTS
 bra_DB6C_cannot_spawn:
@@ -4541,6 +4565,7 @@ C - - - - - 0x001C5F 00:DC4F: 6C 11 00  JMP (ram_0011_t09_jmp)
 
 
 ofs_000_DC52_80:
+; con_tank_flag_80
 C - - J - - 0x001C62 00:DC52: E0 02     CPX #$02
 C - - - - - 0x001C64 00:DC54: B0 15     BCS bra_DC6B    ; if enemy
 ; if player
@@ -4561,6 +4586,7 @@ C - - - - - 0x001C80 00:DC70: 95 A0     STA ram_tank_flags,X
 C - - - - - 0x001C82 00:DC72: 29 0C     AND #$0C
 C - - - - - 0x001C84 00:DC74: D0 05     BNE bra_DC7B_RTS
 C - - - - - 0x001C86 00:DC76: A9 A0     LDA #con_tank_flag_A0
+; bzk optimize, JMP
 C - - - - - 0x001C88 00:DC78: 20 20 E4  JSR sub_E420_change_tank_status
 bra_DC7B_RTS:
 C - - - - - 0x001C8B 00:DC7B: 60        RTS
@@ -4568,6 +4594,7 @@ C - - - - - 0x001C8B 00:DC7B: 60        RTS
 
 
 ofs_000_DC7C_A0:
+; con_tank_flag_A0
 C - - J - - 0x001C8C 00:DC7C: E0 02     CPX #$02
 C - - - - - 0x001C8E 00:DC7E: 90 17     BCC bra_DC97    ; if player
 ; if enemy
@@ -4692,6 +4719,7 @@ C - - - - - 0x001D57 00:DD47: 60        RTS
 
 
 ofs_000_DD48_90:
+; con_tank_flag_90
 C - - J - - 0x001D58 00:DD48: 20 4D D4  JSR sub_D44D_generate_random_number
 C - - - - - 0x001D5B 00:DD4B: 29 01     AND #$01
 C - - - - - 0x001D5D 00:DD4D: F0 1B     BEQ bra_DD6A
@@ -4739,6 +4767,7 @@ C - - - - - 0x001D8D 00:DD7D: 60        RTS
 
 
 ofs_000_DD7E_D0_follow_p1:
+; con_tank_flag_follow_p1
 C - - J - - 0x001D8E 00:DD7E: A5 90     LDA ram_tank_pos_X
 C - - - - - 0x001D90 00:DD80: 85 71     STA ram_enemy_destination_X
 C - - - - - 0x001D92 00:DD82: A5 98     LDA ram_tank_pos_Y
@@ -4748,6 +4777,7 @@ C - - - - - 0x001D96 00:DD86: 4C 9C DD  JMP loc_DD9C
 
 
 ofs_000_DD89_C0_follow_p2:
+; con_tank_flag_follow_p2
 C - - J - - 0x001D99 00:DD89: A5 91     LDA ram_tank_pos_X + $01
 C - - - - - 0x001D9B 00:DD8B: 85 71     STA ram_enemy_destination_X
 C - - - - - 0x001D9D 00:DD8D: A5 99     LDA ram_tank_pos_Y + $01
@@ -4757,6 +4787,7 @@ C - - - - - 0x001DA1 00:DD91: 4C 9C DD  JMP loc_DD9C
 
 
 ofs_000_DD94_B0_follow_HQ:
+; con_tank_flag_follow_HQ
 C - - J - - 0x001DA4 00:DD94: A9 78     LDA #$78
 C - - - - - 0x001DA6 00:DD96: 85 71     STA ram_enemy_destination_X
 C - - - - - 0x001DA8 00:DD98: A9 D8     LDA #$D8
@@ -4830,6 +4861,7 @@ ofs_000_DDEA_40_explosion:
 ofs_000_DDEA_50_explosion:
 ofs_000_DDEA_60_explosion:
 ofs_000_DDEA_70_explosion:
+; con_tank_flag_explosion
 C - - J - - 0x001DFA 00:DDEA: D6 A0     DEC ram_tank_timer,X
 C - - - - - 0x001DFC 00:DDEC: B5 A0     LDA ram_tank_timer,X
 C - - - - - 0x001DFE 00:DDEE: 29 0F     AND #$0F
@@ -4857,6 +4889,7 @@ C - - - - - 0x001E1B 00:DE0B: B0 08     BCS bra_DE15_enemy
 ; if player
 C - - - - - 0x001E1D 00:DE0D: D6 51     DEC ram_lives,X
 C - - - - - 0x001E1F 00:DE0F: F0 07     BEQ bra_DE18_no_more_lives_left
+; bzk optimize, JMP
 C - - - - - 0x001E21 00:DE11: 20 63 E3  JSR sub_E363_tank_spawn_handler
 C - - - - - 0x001E24 00:DE14: 60        RTS
 bra_DE15_enemy:
@@ -4876,6 +4909,7 @@ C - - - - - 0x001E36 00:DE26: A9 03     LDA #$03    ; move right
 C - - - - - 0x001E38 00:DE28: 8D 07 01  STA ram_go_msg_mov_type
 C - - - - - 0x001E3B 00:DE2B: A9 20     LDA #$20
 C - - - - - 0x001E3D 00:DE2D: 8D 05 01  STA ram_go_msg_pos_X
+; bzk optimize, JMP
 C - - - - - 0x001E40 00:DE30: 20 46 DE  JSR sub_DE46_set_message_init_data
 C - - - - - 0x001E43 00:DE33: 60        RTS
 bra_DE34_it_is_p2:
@@ -4886,6 +4920,7 @@ C - - - - - 0x001E48 00:DE38: A9 01     LDA #$01    ; move left
 C - - - - - 0x001E4A 00:DE3A: 8D 07 01  STA ram_go_msg_mov_type
 C - - - - - 0x001E4D 00:DE3D: A9 C0     LDA #$C0
 C - - - - - 0x001E4F 00:DE3F: 8D 05 01  STA ram_go_msg_pos_X
+; bzk optimize, JMP
 C - - - - - 0x001E52 00:DE42: 20 46 DE  JSR sub_DE46_set_message_init_data
 bra_DE45_RTS:
 C - - - - - 0x001E55 00:DE45: 60        RTS
@@ -4904,6 +4939,7 @@ C - - - - - 0x001E64 00:DE54: 60        RTS
 
 
 ofs_000_DE55_F0_respawn:
+; con_tank_flag_respawn
 C - - J - - 0x001E65 00:DE55: F6 A0     INC ram_tank_flags,X
 C - - - - - 0x001E67 00:DE57: B5 A0     LDA ram_tank_flags,X
 C - - - - - 0x001E69 00:DE59: 29 0F     AND #$0F
@@ -4917,11 +4953,13 @@ C - - - - - 0x001E73 00:DE63: 60        RTS
 
 
 ofs_000_DE64_E0:
+; con_tank_flag_E0
 C - - J - - 0x001E74 00:DE64: F6 A0     INC ram_tank_flags,X
 C - - - - - 0x001E76 00:DE66: B5 A0     LDA ram_tank_flags,X
 C - - - - - 0x001E78 00:DE68: 29 0F     AND #$0F
 C - - - - - 0x001E7A 00:DE6A: C9 0E     CMP #$0E
 C - - - - - 0x001E7C 00:DE6C: D0 03     BNE bra_DE71_RTS
+; bzk optimize, JMP
 C - - - - - 0x001E7E 00:DE6E: 20 B8 E3  JSR sub_E3B8
 bra_DE71_RTS:
 C - - - - - 0x001E81 00:DE71: 60        RTS
@@ -4939,6 +4977,7 @@ C - - - - - 0x001E8A 00:DE7A: A9 B0     LDA #con_tank_flag_follow_HQ
 ; bzk optimize, BNE
 C - - - - - 0x001E8C 00:DE7C: 4C A2 DE  JMP loc_DEA2
 bra_DE7F:
+; / 02 (08)
 C - - - - - 0x001E8F 00:DE7F: 4A        LSR
 C - - - - - 0x001E90 00:DE80: C5 0A     CMP ram_frm_cnt_hi
 C - - - - - 0x001E92 00:DE82: 90 0A     BCC bra_DE8E
@@ -5003,6 +5042,7 @@ C - - - - - 0x001EDA 00:DECA: 6C 11 00  JMP (ram_0011_t08_jmp)
 ofs_001_DECD_50_explosion:
 ofs_001_DECD_60_explosion:
 ofs_001_DECD_70_explosion:
+; con_tank_flag_explosion
 C - - J - - 0x001EDD 00:DECD: A9 00     LDA #$00
 C - - - - - 0x001EDF 00:DECF: 85 6E     STA ram_priority_spr_A
 C - - - - - 0x001EE1 00:DED1: B5 A0     LDA ram_tank_flags,X
@@ -5183,11 +5223,17 @@ C - - - - - 0x001FC5 00:DFB5: 60        RTS
 
 
 ofs_001_DFB6_80:
+; con_tank_flag_80
 ofs_001_DFB6_90:
+; con_tank_flag_90
 ofs_001_DFB6_A0:
+; con_tank_flag_A0
 ofs_001_DFB6_B0_follow_HQ:
-ofs_001_DFB6_C0_follow_p1:
-ofs_001_DFB6_D0_follow_p2:
+; con_tank_flag_follow_HQ
+ofs_001_DFB6_C0_follow_p2:
+; con_tank_flag_follow_p2
+ofs_001_DFB6_D0_follow_p1:
+; con_tank_flag_follow_p1
 C - - J - - 0x001FC6 00:DFB6: E0 02     CPX #$02
 C - - - - - 0x001FC8 00:DFB8: 90 23     BCC bra_DFDD_player
 ; if enemy
@@ -5256,7 +5302,9 @@ tbl_E003_spr_A_palette:
 
 
 ofs_001_E00B_E0:
+; con_tank_flag_E0
 ofs_001_E00B_F0_respawn:
+; con_tank_flag_respawn
 C - - J - - 0x00201B 00:E00B: B5 A0     LDA ram_tank_flags,X
 C - - - - - 0x00201D 00:E00D: 29 0F     AND #$0F
 C - - - - - 0x00201F 00:E00F: 38        SEC
@@ -5318,6 +5366,7 @@ C - - - - - 0x002066 00:E056: 20 63 E0  JSR sub_E063
 C - - - - - 0x002069 00:E059: B5 D6     LDA ram_bullet_property,X
 C - - - - - 0x00206B 00:E05B: 29 01     AND #$01
 C - - - - - 0x00206D 00:E05D: F0 03     BEQ bra_E062_RTS
+; bzk optimize, JMP
 C - - - - - 0x00206F 00:E05F: 20 63 E0  JSR sub_E063
 bra_E062_RTS:
 C - - - - - 0x002072 00:E062: 60        RTS
@@ -5374,6 +5423,7 @@ C - - - - - 0x0020AD 00:E09D: A8        TAY
 C - - - - - 0x0020AE 00:E09E: 09 40     ORA #$40
 C - - - - - 0x0020B0 00:E0A0: 95 CC     STA ram_bullet_status,X
 C - - - - - 0x0020B2 00:E0A2: B9 6C E4  LDA tbl_E46C,Y
+; * 08
 C - - - - - 0x0020B5 00:E0A5: 0A        ASL
 C - - - - - 0x0020B6 00:E0A6: 0A        ASL
 C - - - - - 0x0020B7 00:E0A7: 0A        ASL
@@ -5468,6 +5518,7 @@ C - - - - - 0x002129 00:E119: AA        TAX
 C - - - - - 0x00212A 00:E11A: 68        PLA
 C - - - - - 0x00212B 00:E11B: 18        CLC
 C - - - - - 0x00212C 00:E11C: 69 40     ADC #$40
+; bzk optimize, JMP
 C - - - - - 0x00212E 00:E11E: 20 E2 DE  JSR sub_DEE2
 C - - - - - 0x002131 00:E121: 60        RTS
 
@@ -5675,6 +5726,7 @@ C - - - - - 0x00226D 00:E25D: F0 1C     BEQ bra_E27B_RTS    ; don't display bonu
 C - - - - - 0x00226F 00:E25F: A9 02     LDA #$02
 C - - - - - 0x002271 00:E261: 85 04     STA ram_0004_t01_spr_A_palette
 C - - - - - 0x002273 00:E263: A5 88     LDA ram_bonus_id
+; * 04
 C - - - - - 0x002275 00:E265: 0A        ASL
 C - - - - - 0x002276 00:E266: 0A        ASL
 C - - - - - 0x002277 00:E267: 18        CLC
@@ -5758,6 +5810,7 @@ C - - - - - 0x0022E8 00:E2D8: A9 03     LDA #$03            ; game over timer is
 C - - - - - 0x0022EA 00:E2DA: 85 04     STA ram_0004_t01_spr_A_palette
 C - - - - - 0x0022EC 00:E2DC: C6 68     DEC ram_game_over_flag
 C - - - - - 0x0022EE 00:E2DE: A5 68     LDA ram_game_over_flag
+; / 04
 C - - - - - 0x0022F0 00:E2E0: 4A        LSR
 C - - - - - 0x0022F1 00:E2E1: 4A        LSR
 C - - - - - 0x0022F2 00:E2E2: 38        SEC
@@ -6227,8 +6280,8 @@ tbl_E4B8_tank_status_handler:
 - D 3 - - - 0x0024DA 00:E4CA: B6 DF     .word ofs_001_DFB6_90
 - D 3 - - - 0x0024DC 00:E4CC: B6 DF     .word ofs_001_DFB6_A0
 - D 3 - - - 0x0024DE 00:E4CE: B6 DF     .word ofs_001_DFB6_B0_follow_HQ
-- D 3 - - - 0x0024E0 00:E4D0: B6 DF     .word ofs_001_DFB6_C0_follow_p1
-- D 3 - - - 0x0024E2 00:E4D2: B6 DF     .word ofs_001_DFB6_D0_follow_p2
+- D 3 - - - 0x0024E0 00:E4D0: B6 DF     .word ofs_001_DFB6_C0_follow_p2
+- D 3 - - - 0x0024E2 00:E4D2: B6 DF     .word ofs_001_DFB6_D0_follow_p1
 - D 3 - - - 0x0024E4 00:E4D4: 0B E0     .word ofs_001_E00B_E0
 - D 3 - - - 0x0024E6 00:E4D6: 0B E0     .word ofs_001_E00B_F0_respawn
 
@@ -6377,6 +6430,7 @@ C - - - - - 0x002649 00:E639: 18        CLC
 C - - - - - 0x00264A 00:E63A: 69 01     ADC #$01
 bra_E63C:
 C - - - - - 0x00264C 00:E63C: 85 55     STA ram_0055_t02_bullet_spd_X
+; * 04
 C - - - - - 0x00264E 00:E63E: 0A        ASL
 C - - - - - 0x00264F 00:E63F: 0A        ASL
 C - - - - - 0x002650 00:E640: 85 65     STA ram_0065_t02_bullet_next_pos_X
@@ -6827,13 +6881,17 @@ sub_E902_convert_random_number_to_position:
         ; 02 -> 90
         ; 03 -> C0
 ; bzk optimize, make a simple conversion table, X/Y are both free
+; * 03
 C - - - - - 0x002912 00:E902: 85 00     STA ram_0000_t10
 C - - - - - 0x002914 00:E904: 0A        ASL
+; bzk optimize, value is too low, no need for CLC after ASL
 C - - - - - 0x002915 00:E905: 18        CLC
 C - - - - - 0x002916 00:E906: 65 00     ADC ram_0000_t10
+; * 02
 C - - - - - 0x002918 00:E908: 0A        ASL
 C - - - - - 0x002919 00:E909: 18        CLC
 C - - - - - 0x00291A 00:E90A: 69 06     ADC #$06
+; * 08
 C - - - - - 0x00291C 00:E90C: 0A        ASL
 C - - - - - 0x00291D 00:E90D: 0A        ASL
 C - - - - - 0x00291E 00:E90E: 0A        ASL
@@ -7194,6 +7252,7 @@ C - - - - - 0x002B0E 00:EAFE: 8A        TXA
 C - - - - - 0x002B0F 00:EAFF: 0A        ASL
 C - - - - - 0x002B10 00:EB00: 0A        ASL
 C - - - - - 0x002B11 00:EB01: AA        TAX
+; * 02 (08)
 C - - - - - 0x002B12 00:EB02: 0A        ASL
 C - - - - - 0x002B13 00:EB03: 29 10     AND #$10
 C - - - - - 0x002B15 00:EB05: 49 10     EOR #$10
