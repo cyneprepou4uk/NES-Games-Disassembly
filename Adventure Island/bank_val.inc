@@ -70,10 +70,20 @@ con_add_score__5000                     = $0C ;
 
 
 
+; ram_0092_index
+; index for 
+con_0092_00                             = $00 ; 
+con_0092_0A                             = $0A ; 
+con_0092_14                             = $14 ; 
+con_0092_1B                             = $1B ; 
+
+
+
+; todo переименовать handlers
 ; ram_obj_id
 ; ram_0087_obj_id
 ; need comments 0x0012B4 0x000DD5
-; 0x00102E 0x000CC4 0x000CD4
+; 0x000CC4 0x000CD4
 ; most of id's are compressed inside stage data and not used
 ; directly, although I'm 99% sure which ones are unused
 ; see screenshots folder
@@ -83,7 +93,7 @@ con_obj_id_02                           = $02 ; 82 small rock lying on the groun
 con_obj_id_03                           = $03 ; 83 snake
 con_obj_id_04                           = $04 ; 84 big rolling rock (slow)
 con_obj_id_05                           = $05 ; 85 big rolling rock (fast)
-con_obj_id_06                           = $06 ; 86 white pig (slow) (медленная)
+con_obj_id_06                           = $06 ; 86 white pig (slow)
 con_obj_id_07                           = $07 ; 87 black frog (facing left)
 con_obj_id_08                           = $08 ; 88 black frog (facing right), same as 22
 con_obj_id_09                           = $09 ; 89 crow (flying low)
@@ -93,7 +103,7 @@ con_obj_id_0C                           = $0C ; 8C white pig (fast)
 con_obj_id_0D                           = $0D ; 8D green frog
 con_obj_id_0E                           = $0E ; 8E snail
 con_obj_id_0F                           = $0F ; 8F burning skull
-con_obj_id_10                           = $10 ; 90 banana (высокий)
+con_obj_id_10                           = $10 ; 90 banana
 con_obj_id_11                           = $11 ; 91 red apple (low)
 con_obj_id_12                           = $12 ; 92 red apple (high)
 con_obj_id_13                           = $13 ; 93 carrot
@@ -153,13 +163,14 @@ con_obj_id_47                           = $47 ; C7 fairy/eggplant
 
 
 ; ram_music_id
+; index for 0x004BF1
 con_music_off                           = $00 ; 
 con_music_title                         = $01 ; title screen
-con_music_ost_1                         = $02 ; soundtrack forest (day)
-con_music_ost_2                         = $03 ; soundtrack forest (night)
-con_music_ost_3                         = $04 ; soundtrack beach
-con_music_ost_4                         = $05 ; soundtrack dungeon
-con_music_ost_5                         = $06 ; soundtrack mountain
+con_music_ost_forest_day                = $02 ; soundtrack forest (day)
+con_music_ost_forest_night              = $03 ; soundtrack forest (night)
+con_music_ost_beach                     = $04 ; soundtrack beach
+con_music_ost_dungeon                   = $05 ; soundtrack dungeon
+con_music_ost_mountains                 = $06 ; soundtrack mountain
 con_music_bonus                         = $07 ; going into bonus stage/fairy is protecting you
 con_music_eggplant                      = $08 ; eggplant is eating your stamina 
 con_music_death                         = $09 ; death
@@ -172,6 +183,7 @@ con_music_stage_complete                = $0E ; stage complete
 
 
 ; ram_sound_id
+; index for 0x00453C 0x00458C
 con_sound_off                           = $00 ; 
 con_sound_plr_jump_high                 = $01 ; jump high
 con_sound_stumble                       = $02 ; trip over a stone
@@ -196,20 +208,58 @@ con_sound_plr_jump_low                  = $13 ; jump low
 
 
 ; music control bytes 0x00496D
-con_mcb_F2                              = $F2 ; ??? 
+con_mcb_F2                              = $F2 ; 
 con_mcb_rts                             = $F3 ; return from F6
-con_mcb_F4                              = $F4 ; ??? +1 following byte
-con_mcb_F5                              = $F5 ; ??? +1 following byte
+con_mcb_F4                              = $F4 ; 
+con_mcb_F5                              = $F5 ; 
 con_mcb_jsr                             = $F6 ; jump to a different pointer saving return address
 con_mcb_set_custom_pointer              = $F7 ; set main loop pointer (otherise default is used)
-con_mcb_F8                              = $F8 ; ??? +1 following byte
-con_mcb_F9                              = $F9 ; ??? 
-con_mcb_FA                              = $FA ; ??? +1 following byte
-con_mcb_FB                              = $FB ; ??? +1 following byte
-con_mcb_FC                              = $FC ; ??? 
-con_mcb_FD                              = $FD ; +1 following byte
+con_mcb_F8                              = $F8 ; 
+con_mcb_F9                              = $F9 ; 
+con_mcb_FA                              = $FA ; 
+con_mcb_FB                              = $FB ; 
+con_mcb_FC                              = $FC ; 
+con_mcb_FD                              = $FD ; 
 con_mcb_play_again                      = $FE ; jump to main loop pointer (F7)
 con_mcb_exit                            = $FF ; 
+
+
+
+; todo
+; index for 0x001DF0
+; нужны комменты 0x003147 -> 0x001D5A, 0x000662 -> 0x001D5A
+con_9DE0_00                             = $00 ; 
+con_9DE0_01                             = $01 ; 
+con_9DE0_02                             = $02 ; 
+con_9DE0_03                             = $03 ; 
+con_9DE0_04                             = $04 ; 
+con_9DE0_05                             = $05 ; 
+con_9DE0_06                             = $06 ; 
+con_9DE0_07                             = $07 ; 
+con_9DE0_08                             = $08 ; 
+con_9DE0_09                             = $09 ; 
+con_9DE0_0A                             = $0A ; 
+con_9DE0_0B                             = $0B ; 
+con_9DE0_0C                             = $0C ; 
+con_9DE0_0D                             = $0D ; 
+con_9DE0_0E                             = $0E ; 
+con_9DE0_0F                             = $0F ; 
+con_9DE0_10                             = $10 ; 
+con_9DE0_11                             = $11 ; 
+con_9DE0_12                             = $12 ; 
+con_9DE0_13                             = $13 ; 
+con_9DE0_14                             = $14 ; 
+con_9DE0_15                             = $15 ; 
+con_9DE0_16                             = $16 ; 
+con_9DE0_17                             = $17 ; 
+con_9DE0_18                             = $18 ; 
+con_9DE0_19                             = $19 ; 
+con_9DE0_1A                             = $1A ; 
+con_9DE0_1B                             = $1B ; 
+con_9DE0_1C                             = $1C ; 
+con_9DE0_1D                             = $1D ; 
+con_9DE0_1E                             = $1E ; 
+con_9DE0_1F                             = $1F ; 
 
 
 
@@ -437,7 +487,6 @@ con_C301_F5                             = $F5 ;
 con_C301_F6                             = $F6 ; 
 con_C301_F7                             = $F7 ; 
 con_C301_F8                             = $F8 ; 
-
 
 
 
