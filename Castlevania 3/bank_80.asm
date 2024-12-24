@@ -4890,7 +4890,7 @@ C - - - - - 0x001119 00:9109: 8D 20 05  STA ram_plr_spd_Y_lo
 C - - - - - 0x00111C 00:910C: 8D 37 05  STA ram_plr_spd_Y_fr
 C - - - - - 0x00111F 00:910F: 20 D6 90  JSR sub_90D6_clear_stopwatch_data
 C - - - - - 0x001122 00:9112: 20 62 E8  JSR sub_0x03E872_clear_00F0_00F7
-; bzk dangerous branch, better use JMP
+; bzk warning, dangerous branch (C = 1 from 0x03E87C), better use JMP
 C - - - - - 0x001125 00:9115: B0 19     BCS bra_9130    ; jmp
 
 
@@ -5599,12 +5599,12 @@ ofs_031_0C_9539_03:
 C - - J - - 0x001549 00:9539: 20 0B 95  JSR sub_950B
 C - - - - - 0x00154C 00:953C: B0 12     BCS bra_9550
 C - - - - - 0x00154E 00:953E: A9 0B     LDA #con_irq_0B
-C - - - - - 0x001550 00:9540: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x001550 00:9540: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x001552 00:9542: AD 1C 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x001555 00:9545: 38        SEC
 C - - - - - 0x001556 00:9546: E9 0C     SBC #$0C
 C - - - - - 0x001558 00:9548: 8D 19 06  STA ram_wpn_config + con_obj_index_weapon
-C - - - - - 0x00155B 00:954B: 85 7C     STA ram_007C
+C - - - - - 0x00155B 00:954B: 85 7C     STA ram_007C_scanline
 C - - - - - 0x00155D 00:954D: E6 6B     INC ram_006B_subscript
 C - - - - - 0x00155F 00:954F: 60        RTS
 bra_9550:
@@ -5774,7 +5774,7 @@ ofs_031_0C_9660_0C:
 C - - J - - 0x001670 00:9660: AD D4 05  LDA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x001673 00:9663: 8D 38 04  STA ram_plr_pos_X_lo
 C - - - - - 0x001676 00:9666: A9 05     LDA #con_irq_05
-C - - - - - 0x001678 00:9668: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x001678 00:9668: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x00167A 00:966A: A9 3C     LDA #$3C
 C - - - - - 0x00167C 00:966C: 85 30     STA ram_screen_timer_lo
 C - - - - - 0x00167E 00:966E: E6 6B     INC ram_006B_subscript
@@ -5799,7 +5799,7 @@ C - - - - - 0x00168F 00:967F: 4C AD 96  JMP loc_96AD
 ofs_031_0D_9682_07:
 ; restore values from 0x0131F6
 C - - J - - 0x001692 00:9682: A5 A6     LDA ram_00A6_copy_003F_copy_irq_handler
-C - - - - - 0x001694 00:9684: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x001694 00:9684: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x001696 00:9686: A5 A7     LDA ram_00A7_copy_0041_scanline
 C - - - - - 0x001698 00:9688: 85 41     STA ram_0041_scanline
 C - - - - - 0x00169A 00:968A: A5 A8     LDA ram_00A8_copy_0042
@@ -10908,8 +10908,8 @@ C - - - - - 0x003573 00:B563: 85 1C     STA ram_disable_rendering_timer
 C - - - - - 0x003575 00:B565: 20 CA E5  JSR sub_0x03E5DA_allow_pausing
 C - - - - - 0x003578 00:B568: 20 E3 B3  JSR sub_B3E3
 C - - - - - 0x00357B 00:B56B: A9 00     LDA #con_irq_00
-C - - - - - 0x00357D 00:B56D: 85 3F     STA ram_003F_copy_irq_handler
-C - - - - - 0x00357F 00:B56F: 85 6D     STA ram_006D_irq_handler
+C - - - - - 0x00357D 00:B56D: 85 3F     STA ram_next_irq_handler
+C - - - - - 0x00357F 00:B56F: 85 6D     STA ram_irq_handler
 C - - - - - 0x003581 00:B571: A9 40     LDA #$40
 C - - - - - 0x003583 00:B573: 85 3D     STA ram_hp_boss
 C - - - - - 0x003585 00:B575: 20 85 FB  JSR sub_0x03FB95
@@ -11838,7 +11838,7 @@ C - - - - - 0x003A9A 00:BA8A: D0 02     BNE bra_BA8E    ; jmp
 bra_BA8C:
 - - - - - - 0x003A9C 00:BA8C: A9 13     LDA #con_irq_13
 bra_BA8E:
-C - - - - - 0x003A9E 00:BA8E: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x003A9E 00:BA8E: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x003AA0 00:BA90: A9 03     LDA #con_002A_03
 C - - - - - 0x003AA2 00:BA92: 85 2A     STA ram_002A_script
 C - - - - - 0x003AA4 00:BA94: 60        RTS
@@ -11981,7 +11981,7 @@ C - - - - - 0x003B6D 00:BB5D: 8D 87 07  STA ram_0787
 C - - - - - 0x003B70 00:BB60: A9 0C     LDA #$0C
 C - - - - - 0x003B72 00:BB62: 8D 88 07  STA ram_0788
 C - - - - - 0x003B75 00:BB65: A9 01     LDA #con_irq_01
-C - - - - - 0x003B77 00:BB67: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x003B77 00:BB67: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x003B79 00:BB69: E6 6B     INC ram_006B_subscript
 C - - - - - 0x003B7B 00:BB6B: 60        RTS
 

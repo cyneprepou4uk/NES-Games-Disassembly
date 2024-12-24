@@ -7510,12 +7510,12 @@ tbl_9F56_spd_X:
 ofs_043_9F76_26:
 ; con_8671_26
 C - - J - - 0x025F86 09:9F76: A9 16     LDA #con_irq_16
-C - - - - - 0x025F88 09:9F78: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x025F88 09:9F78: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x025F8A 09:9F7A: BD D8 05  LDA ram_obj_drop_id,X
 C - - - - - 0x025F8D 09:9F7D: D0 08     BNE bra_9F87
 C - - - - - 0x025F8F 09:9F7F: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x025F92 09:9F82: A9 01     LDA #con_irq_01
-C - - - - - 0x025F94 09:9F84: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x025F94 09:9F84: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x025F96 09:9F86: 60        RTS
 bra_9F87:
 C - - - - - 0x025F97 09:9F87: A0 01     LDY #$01

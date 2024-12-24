@@ -1566,8 +1566,8 @@ ram_extra_life_score                    = $003E ; 000C18(R)  000C1E(R)  000C28(W
 
 
 
-; a copy of ram_006D_irq_handler
-ram_003F_copy_irq_handler               = $003F ; 001550(W)  001678(W)  001694(W)  00357D(W)  003A9E(W)  003B77(W)  0043C6(W)  006295(R)  006916(W)  006944(W)  00CC6B(W)  00D393(W)  0131F6(R)  025F88(W)  025F94(W)  03E03F(Wi) 03E120(R)  03E5D1(W)  03E684(W)  03E83C(Wx) 03F94B(W)  
+; a for ram_irq_handler
+ram_next_irq_handler                    = $003F ; 001550(W)  001678(W)  001694(W)  00357D(W)  003A9E(W)  003B77(W)  0043C6(W)  006295(R)  006916(W)  006944(W)  00CC6B(W)  00D393(W)  0131F6(R)  025F88(W)  025F94(W)  03E03F(Wi) 03E120(R)  03E5D1(W)  03E684(W)  03E83C(Wx) 03F94B(W)  
 
 
 
@@ -1771,7 +1771,7 @@ ram_006C_object_index                   = $006C ; 009D15(R)  009D63(R)  009D6B(W
 
 ; handler at 0x03E137
 ; see con_irq
-ram_006D_irq_handler                    = $006D ; 00357F(W)  00602E(W)  006128(W)  006147(W)  006175(W)  00619B(W)  0061CA(W)  0061F3(W)  006256(W)  00627F(W)  0062AC(W)  0062FD(W)  00639B(W)  0063DF(W)  0063F9(W)  006412(W)  00643C(W)  006463(W)  0064D0(W)  0064F1(W)  0065AB(W)  0065DD(W)  0065F0(W)  03E03F(Wi) 03E122(W)  03E137(R)  03E67C(W)  03E83C(Wx) 
+ram_irq_handler                         = $006D ; 00357F(W)  00602E(W)  006128(W)  006147(W)  006175(W)  00619B(W)  0061CA(W)  0061F3(W)  006256(W)  00627F(W)  0062AC(W)  0062FD(W)  00639B(W)  0063DF(W)  0063F9(W)  006412(W)  00643C(W)  006463(W)  0064D0(W)  0064F1(W)  0065AB(W)  0065DD(W)  0065F0(W)  03E03F(Wi) 03E122(W)  03E137(R)  03E67C(W)  03E83C(Wx) 
 
 
 
@@ -1849,7 +1849,7 @@ ram_007B                                = $007B ; 03CDEE(R)  03D176(W)  03D1B4(R
 
 
 ; something to do with irq/scanlines
-ram_007C                                = $007C ; 00155B(W)  006252(R)  006275(W)  03E03F(Wi) 03E83C(Wx) 
+ram_007C_scanline                       = $007C ; 00155B(W)  006252(R)  006275(W)  03E03F(Wi) 03E83C(Wx) 
 
 
 
@@ -2057,7 +2057,7 @@ ram_00A5                                = $00A5 ; 03785B(R)  03787D(R)  037906(R
 
 
 
-; a copy of ram_003F_copy_irq_handler
+; a copy of ram_next_irq_handler
 ram_00A6_copy_003F_copy_irq_handler     = $00A6 ; 001692(R)  0131F8(W)  03E03F(Wi) 03E83C(Wx) 
 
 

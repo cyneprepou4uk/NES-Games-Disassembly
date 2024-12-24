@@ -688,7 +688,7 @@ C - - - - - 0x0043BD 01:83AD: EE EC 07  INC ram_07EC
 C - - - - - 0x0043C0 01:83B0: A9 00     LDA #$00
 C - - - - - 0x0043C2 01:83B2: 85 72     STA ram_0072_chr_banks_config
 C - - - - - 0x0043C4 01:83B4: A9 80     LDA #con_irq_80
-C - - - - - 0x0043C6 01:83B6: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x0043C6 01:83B6: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x0043C8 01:83B8: A9 6B     LDA #con_music_encounter
 ; bzk optimize, JMP
 C - - - - - 0x0043CA 01:83BA: 20 5F E2  JSR sub_0x03E26F_play_sound
@@ -5623,7 +5623,7 @@ ofs_irq_handler_9FD1_23:
 ; con_irq_23
 C - - J - - 0x005FE1 01:9FD1: A9 7F     LDA #con__chr_bank + $7F
 C - - - - - 0x005FE3 01:9FD3: 8D 22 51  STA $5122
-C - - - - - 0x005FE6 01:9FD6: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x005FE6 01:9FD6: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -5649,7 +5649,7 @@ C - - - - - 0x006013 01:A003: A0 75     LDY #con__chr_bank + $75
 C - - - - - 0x006015 01:A005: 84 4B     STY ram_chr_bank______5129
 C - - - - - 0x006017 01:A007: C8        INY ; con__chr_bank + $76
 C - - - - - 0x006018 01:A008: 84 4C     STY ram_chr_bank_5126_512A
-C - - - - - 0x00601A 01:A00A: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x00601A 01:A00A: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -5662,8 +5662,8 @@ C - - - - - 0x006026 01:A016: 20 3C E3  JSR sub_0x03E34C_write_chr_banks___5120_
 C - - - - - 0x006029 01:A019: A5 89     LDA ram_0089_scanline
 C - - - - - 0x00602B 01:A01B: 8D 03 52  STA $5203
 ; -> con_irq_18
-C - - - - - 0x00602E 01:A01E: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x006030 01:A020: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x00602E 01:A01E: E6 6D     INC ram_irq_handler
+C - - - - - 0x006030 01:A020: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -5695,7 +5695,7 @@ C - - - - - 0x006060 01:A050: 29 01     AND #$01
 C - - - - - 0x006062 01:A052: D0 03     BNE bra_A057
 C - - - - - 0x006064 01:A054: 20 13 E3  JSR sub_0x03E323_write_chr_banks___7F_5120_5121_5122_5123
 bra_A057:
-C - - - - - 0x006067 01:A057: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x006067 01:A057: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -5732,7 +5732,7 @@ C - - - - - 0x00609A 01:A08A: 29 01     AND #$01
 C - - - - - 0x00609C 01:A08C: 05 FF     ORA ram_for_2000
 C - - - - - 0x00609E 01:A08E: 8D 00 20  STA $2000
 C - - - - - 0x0060A1 01:A091: 20 5D E3  JSR sub_0x03E36D_write_chr_banks___5124_5126_5127_5128_5129_512A_512B
-C - - - - - 0x0060A4 01:A094: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x0060A4 01:A094: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -5771,7 +5771,7 @@ C - - - - - 0x0060DF 01:A0CF: F0 03     BEQ bra_A0D4
 C - - - - - 0x0060E1 01:A0D1: 20 3C E3  JSR sub_0x03E34C_write_chr_banks___5120_5121_5122_5123_5125
 bra_A0D4:
 loc_A0D4:
-C D 1 - - - 0x0060E4 01:A0D4: 4C 3A E1  JMP loc_0x03E14A
+C D 1 - - - 0x0060E4 01:A0D4: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 bra_A0D7:
 C - - - - - 0x0060E7 01:A0D7: 20 8D 9F  JSR sub_9F8D
 C - - - - - 0x0060EA 01:A0DA: 4C D4 A0  JMP loc_A0D4
@@ -5813,8 +5813,8 @@ C - - - - - 0x006123 01:A113: 18        CLC
 C - - - - - 0x006124 01:A114: 65 89     ADC ram_0089_scanline
 C - - - - - 0x006126 01:A116: 85 43     STA ram_scanline
 ; -> con_irq_03
-C - - - - - 0x006128 01:A118: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x00612A 01:A11A: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x006128 01:A118: E6 6D     INC ram_irq_handler
+C - - - - - 0x00612A 01:A11A: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -5842,7 +5842,7 @@ C - - J - - 0x00613F 01:A12F: A2 01     LDX #$01
 C - - - - - 0x006141 01:A131: 20 01 E0  JSR sub_0x03E011_garbage_loop_X
 C - - - - - 0x006144 01:A134: 20 21 A1  JSR sub_A121_set_scroll
 ; -> con_irq_04
-C - - - - - 0x006147 01:A137: E6 6D     INC ram_006D_irq_handler
+C - - - - - 0x006147 01:A137: E6 6D     INC ram_irq_handler
 C - - - - - 0x006149 01:A139: 4C 44 A1  JMP loc_A144
 
 
@@ -5865,11 +5865,11 @@ C - - - - - 0x006168 01:A158: 18        CLC
 C - - - - - 0x006169 01:A159: 65 43     ADC ram_scanline
 C - - - - - 0x00616B 01:A15B: 85 43     STA ram_scanline
 C - - - - - 0x00616D 01:A15D: 20 DD A0  JSR sub_A0DD
-C - - - - - 0x006170 01:A160: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x006170 01:A160: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 bra_A163:
 C - - - - - 0x006173 01:A163: A9 2D     LDA #con_irq_2D
-C - - - - - 0x006175 01:A165: 85 6D     STA ram_006D_irq_handler
-C - - - - - 0x006177 01:A167: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x006175 01:A165: 85 6D     STA ram_irq_handler
+C - - - - - 0x006177 01:A167: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -5880,7 +5880,7 @@ C - - - - - 0x00617D 01:A16D: 20 CB 9F  JSR sub_9FCB_set_vertical_nametable_mapp
 ; bzk optimize, are these 2 STA's necessary?
 C - - - - - 0x006180 01:A170: 8D 05 51  STA $5105
 C - - - - - 0x006183 01:A173: 8D 05 51  STA $5105
-C - - - - - 0x006186 01:A176: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x006186 01:A176: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -5899,8 +5899,8 @@ C - - - - - 0x006197 01:A187: 65 89     ADC ram_0089_scanline
 C - - - - - 0x006199 01:A189: 85 43     STA ram_scanline
 ; -> con_irq_06
 ; -> con_irq_0C
-C - - - - - 0x00619B 01:A18B: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x00619D 01:A18D: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x00619B 01:A18B: E6 6D     INC ram_irq_handler
+C - - - - - 0x00619D 01:A18D: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -5932,8 +5932,8 @@ C - - - - - 0x0061C6 01:A1B6: 69 28     ADC #$28
 C - - - - - 0x0061C8 01:A1B8: 85 70     STA ram_copy_cam_pos_hi
 ; -> con_irq_07
 ; -> con_irq_0D
-C - - - - - 0x0061CA 01:A1BA: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x0061CC 01:A1BC: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x0061CA 01:A1BA: E6 6D     INC ram_irq_handler
+C - - - - - 0x0061CC 01:A1BC: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -5954,8 +5954,8 @@ C - - - - - 0x0061EB 01:A1DB: 8D 05 20  STA $2005
 C - - - - - 0x0061EE 01:A1DE: A9 B0     LDA #$B0
 C - - - - - 0x0061F0 01:A1E0: 8D 00 20  STA $2000
 ; -> con_irq_08
-C - - - - - 0x0061F3 01:A1E3: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x0061F5 01:A1E5: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x0061F3 01:A1E3: E6 6D     INC ram_irq_handler
+C - - - - - 0x0061F5 01:A1E5: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -5980,7 +5980,7 @@ C - - - - - 0x00621F 01:A20F: 29 F0     AND #$F0
 C - - - - - 0x006221 01:A211: C9 40     CMP #$40
 C - - - - - 0x006223 01:A213: F0 03     BEQ bra_A218
 loc_A215:
-C D 1 - - - 0x006225 01:A215: 4C 3A E1  JMP loc_0x03E14A
+C D 1 - - - 0x006225 01:A215: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 bra_A218:
 C - - - - - 0x006228 01:A218: 20 8D 9F  JSR sub_9F8D
 C - - - - - 0x00622B 01:A21B: 4C 15 A2  JMP loc_A215
@@ -6003,11 +6003,11 @@ C - - - - - 0x006247 01:A237: 8D 05 20  STA $2005
 C - - - - - 0x00624A 01:A23A: 8D 05 20  STA $2005
 C - - - - - 0x00624D 01:A23D: A9 B0     LDA #$B0
 C - - - - - 0x00624F 01:A23F: 8D 00 20  STA $2000
-C - - - - - 0x006252 01:A242: A5 7C     LDA ram_007C
+C - - - - - 0x006252 01:A242: A5 7C     LDA ram_007C_scanline
 C - - - - - 0x006254 01:A244: 85 43     STA ram_scanline
 ; -> con_irq_0E
-C - - - - - 0x006256 01:A246: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x006258 01:A248: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x006256 01:A246: E6 6D     INC ram_irq_handler
+C - - - - - 0x006258 01:A248: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -6023,13 +6023,13 @@ C - - - - - 0x00626B 01:A25B: 20 07 A3  JSR sub_A307
 C - - - - - 0x00626E 01:A25E: AD 19 06  LDA ram_wpn_config + con_obj_index_weapon
 C - - - - - 0x006271 01:A261: 38        SEC
 C - - - - - 0x006272 01:A262: ED 30 06  SBC ram_061D_wpn + con_obj_index_weapon
-C - - - - - 0x006275 01:A265: 85 7C     STA ram_007C
+C - - - - - 0x006275 01:A265: 85 7C     STA ram_007C_scanline
 C - - - - - 0x006277 01:A267: AD 30 06  LDA ram_061D_wpn + con_obj_index_weapon
 C - - - - - 0x00627A 01:A26A: 49 01     EOR #$01
 C - - - - - 0x00627C 01:A26C: 8D 30 06  STA ram_061D_wpn + con_obj_index_weapon
 ; -> con_irq_0F
-C - - - - - 0x00627F 01:A26F: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x006281 01:A271: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x00627F 01:A26F: E6 6D     INC ram_irq_handler
+C - - - - - 0x006281 01:A271: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -6041,7 +6041,7 @@ C - - - - - 0x00628A 01:A27A: 20 6D E3  JSR sub_0x03E37D_write_chr_banks___5126_
 C - - - - - 0x00628D 01:A27D: A5 89     LDA ram_0089_scanline
 C - - - - - 0x00628F 01:A27F: 8D 03 52  STA $5203
 C - - - - - 0x006292 01:A282: 20 07 A3  JSR sub_A307
-C - - - - - 0x006295 01:A285: A5 3F     LDA ram_003F_copy_irq_handler
+C - - - - - 0x006295 01:A285: A5 3F     LDA ram_next_irq_handler
 C - - - - - 0x006297 01:A287: C9 09     CMP #con_irq_09
 C - - - - - 0x006299 01:A289: D0 09     BNE bra_A294
 C - - - - - 0x00629B 01:A28B: AD 19 06  LDA ram_wpn_config + con_obj_index_weapon
@@ -6053,8 +6053,8 @@ C - - - - - 0x0062A4 01:A294: AD 30 06  LDA ram_061D_wpn + con_obj_index_weapon
 C - - - - - 0x0062A7 01:A297: 49 01     EOR #$01
 C - - - - - 0x0062A9 01:A299: 8D 30 06  STA ram_061D_wpn + con_obj_index_weapon
 ; -> con_irq_0A
-C - - - - - 0x0062AC 01:A29C: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x0062AE 01:A29E: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x0062AC 01:A29C: E6 6D     INC ram_irq_handler
+C - - - - - 0x0062AE 01:A29E: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -6086,7 +6086,7 @@ C - - - - - 0x0062E3 01:A2D3: D0 FD     BNE bra_A2D2_garbage_loop
 C - - - - - 0x0062E5 01:A2D5: EA        NOP
 C - - - - - 0x0062E6 01:A2D6: 88        DEY
 C - - - - - 0x0062E7 01:A2D7: D0 CA     BNE bra_A2A3_garbage_loop
-C - - - - - 0x0062E9 01:A2D9: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x0062E9 01:A2D9: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -6099,15 +6099,15 @@ C - - - - - 0x0062F5 01:A2E5: 20 52 E3  JSR sub_0x03E362_write_chr_banks___5120_
 C - - - - - 0x0062F8 01:A2E8: A5 89     LDA ram_0089_scanline
 C - - - - - 0x0062FA 01:A2EA: 8D 03 52  STA $5203
 ; -> con_irq_11
-C - - - - - 0x0062FD 01:A2ED: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x0062FF 01:A2EF: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x0062FD 01:A2ED: E6 6D     INC ram_irq_handler
+C - - - - - 0x0062FF 01:A2EF: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
 ofs_irq_handler_A2F2_11:
 ; con_irq_11
 C - - J - - 0x006302 01:A2F2: 20 22 E3  JSR sub_0x03E332_write_chr_banks___7F_5120_5121
-C - - - - - 0x006305 01:A2F5: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x006305 01:A2F5: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -6117,7 +6117,7 @@ C - - J - - 0x006308 01:A2F8: 20 97 A0  JSR sub_A097
 C - - - - - 0x00630B 01:A2FB: 20 CB 9F  JSR sub_9FCB_set_vertical_nametable_mapping
 C - - - - - 0x00630E 01:A2FE: 20 6D E3  JSR sub_0x03E37D_write_chr_banks___5126_5129_512A
 C - - - - - 0x006311 01:A301: 20 52 E3  JSR sub_0x03E362_write_chr_banks___5120_5121
-C - - - - - 0x006314 01:A304: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x006314 01:A304: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -6195,8 +6195,8 @@ C - - - - - 0x006397 01:A387: 65 89     ADC ram_0089_scanline
 C - - - - - 0x006399 01:A389: 85 43     STA ram_scanline
 ; -> con_irq_14
 ; -> con_irq_25
-C - - - - - 0x00639B 01:A38B: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x00639D 01:A38D: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x00639B 01:A38B: E6 6D     INC ram_irq_handler
+C - - - - - 0x00639D 01:A38D: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -6260,8 +6260,8 @@ bra_A3CF:
 ; -> con_irq_15
 ; -> con_irq_26
 ; -> con_irq_28
-C - - - - - 0x0063DF 01:A3CF: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x0063E1 01:A3D1: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x0063DF 01:A3CF: E6 6D     INC ram_irq_handler
+C - - - - - 0x0063E1 01:A3D1: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -6285,8 +6285,8 @@ C - - - - - 0x0063F4 01:A3E4: 18        CLC
 C - - - - - 0x0063F5 01:A3E5: 69 30     ADC #$30
 C - - - - - 0x0063F7 01:A3E7: 85 43     STA ram_scanline
 ; -> con_irq_27
-C - - - - - 0x0063F9 01:A3E9: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x0063FB 01:A3EB: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x0063F9 01:A3E9: E6 6D     INC ram_irq_handler
+C - - - - - 0x0063FB 01:A3EB: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -6295,7 +6295,7 @@ ofs_irq_handler_A3EE_15:
 ofs_irq_handler_A3EE_28:
 ; con_irq_28
 C - - J - - 0x0063FE 01:A3EE: 20 3C E3  JSR sub_0x03E34C_write_chr_banks___5120_5121_5122_5123_5125
-C - - - - - 0x006401 01:A3F1: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x006401 01:A3F1: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -6305,8 +6305,8 @@ C - - J - - 0x006404 01:A3F4: A5 89     LDA ram_0089_scanline
 C - - - - - 0x006406 01:A3F6: 8D 03 52  STA $5203
 C - - - - - 0x006409 01:A3F9: AC 82 07  LDY ram_0782
 C - - - - - 0x00640C 01:A3FC: 8C 89 07  STY ram_0789
-C - - - - - 0x00640F 01:A3FF: B9 1A A4  LDA tbl_A41A,Y
-C - - - - - 0x006412 01:A402: 85 6D     STA ram_006D_irq_handler
+C - - - - - 0x00640F 01:A3FF: B9 1A A4  LDA tbl_A41A_irq_handlers,Y
+C - - - - - 0x006412 01:A402: 85 6D     STA ram_irq_handler
 C - - - - - 0x006414 01:A404: AD 83 07  LDA ram_0783
 C - - - - - 0x006417 01:A407: 18        CLC
 C - - - - - 0x006418 01:A408: 65 89     ADC ram_0089_scanline
@@ -6315,11 +6315,11 @@ C - - - - - 0x00641D 01:A40D: AD 84 07  LDA ram_0784
 C - - - - - 0x006420 01:A410: 18        CLC
 C - - - - - 0x006421 01:A411: 6D 8A 07  ADC ram_078A
 C - - - - - 0x006424 01:A414: 8D 8B 07  STA ram_078B
-C - - - - - 0x006427 01:A417: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x006427 01:A417: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
-tbl_A41A:
+tbl_A41A_irq_handlers:
 - D 1 - - - 0x00642A 01:A41A: 1B        .byte con_irq_1B   ; 00 
 - D 1 - - - 0x00642B 01:A41B: 1B        .byte con_irq_1B   ; 01 
 - D 1 - - - 0x00642C 01:A41C: 1C        .byte con_irq_1C   ; 02 
@@ -6332,13 +6332,13 @@ C - - J - - 0x00642D 01:A41D: AD 8A 07  LDA ram_078A
 C - - - - - 0x006430 01:A420: 8D 03 52  STA $5203
 C - - - - - 0x006433 01:A423: 20 5E A4  JSR sub_A45E_write_fixed_chr_banks_2___5128_5129_512A_512B
 C - - - - - 0x006436 01:A426: AC 89 07  LDY ram_0789
-C - - - - - 0x006439 01:A429: B9 31 A4  LDA tbl_A431,Y
-C - - - - - 0x00643C 01:A42C: 85 6D     STA ram_006D_irq_handler
-C - - - - - 0x00643E 01:A42E: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x006439 01:A429: B9 31 A4  LDA tbl_A431_irq_handlers,Y
+C - - - - - 0x00643C 01:A42C: 85 6D     STA ram_irq_handler
+C - - - - - 0x00643E 01:A42E: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
-tbl_A431:
+tbl_A431_irq_handlers:
 - D 1 - - - 0x006441 01:A431: 1D        .byte con_irq_1D   ; 00 
 - D 1 - - - 0x006442 01:A432: 1C        .byte con_irq_1C   ; 01 
 - - - - - - 0x006443 01:A433: 1D        .byte con_irq_1D   ; 02 
@@ -6363,15 +6363,15 @@ C - - - - - 0x00645D 01:A44D: AD 8A 07  LDA ram_078A
 bra_A450:
 C - - - - - 0x006460 01:A450: 8D 03 52  STA $5203
 ; -> con_irq_1D
-C - - - - - 0x006463 01:A453: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x006465 01:A455: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x006463 01:A453: E6 6D     INC ram_irq_handler
+C - - - - - 0x006465 01:A455: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
 ofs_irq_handler_A458_1D:
 ; con_irq_1D
 C - - J - - 0x006468 01:A458: 20 2D E3  JSR sub_0x03E33D_write_chr_banks___7F_5128_5129_512A_512B
-C - - - - - 0x00646B 01:A45B: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x00646B 01:A45B: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -6432,10 +6432,10 @@ C - - - - - 0x0064CB 01:A4BB: AD 8A 07  LDA ram_078A
 C - - - - - 0x0064CE 01:A4BE: D0 05     BNE bra_A4C5
 ; -> con_irq_1F
 ; -> con_irq_22
-C - - - - - 0x0064D0 01:A4C0: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x0064D2 01:A4C2: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x0064D0 01:A4C0: E6 6D     INC ram_irq_handler
+C - - - - - 0x0064D2 01:A4C2: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 bra_A4C5:
-C - - - - - 0x0064D5 01:A4C5: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x0064D5 01:A4C5: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -6452,8 +6452,8 @@ C - - - - - 0x0064E9 01:A4D9: 20 5D E3  JSR sub_0x03E36D_write_chr_banks___5124_
 C - - - - - 0x0064EC 01:A4DC: AD 8B 07  LDA ram_078B
 C - - - - - 0x0064EF 01:A4DF: D0 E4     BNE bra_A4C5
 ; -> con_irq_20
-C - - - - - 0x0064F1 01:A4E1: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x0064F3 01:A4E3: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x0064F1 01:A4E1: E6 6D     INC ram_irq_handler
+C - - - - - 0x0064F3 01:A4E3: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -6470,7 +6470,7 @@ C - - - - - 0x006506 01:A4F6: 85 4A     STA ram_chr_bank_5124_5128
 C - - - - - 0x006508 01:A4F8: 85 4B     STA ram_chr_bank______5129
 C - - - - - 0x00650A 01:A4FA: 85 4C     STA ram_chr_bank_5126_512A
 C - - - - - 0x00650C 01:A4FC: 85 4D     STA ram_chr_bank_5127_512B
-C - - - - - 0x00650E 01:A4FE: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x00650E 01:A4FE: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -6498,7 +6498,7 @@ bra_A51A_garbage_loop:
 - - - - - - 0x00652F 01:A51F: E8        INX
 - - - - - - 0x006530 01:A520: E0 49     CPX #$49
 - - - - - - 0x006532 01:A522: D0 DF     BNE bra_A503_loop
-- - - - - - 0x006534 01:A524: 4C 3A E1  JMP loc_0x03E14A
+- - - - - - 0x006534 01:A524: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -6606,8 +6606,8 @@ C - - - - - 0x0065A4 01:A594: 18        CLC
 C - - - - - 0x0065A5 01:A595: 6D 8A 07  ADC ram_078A
 C - - - - - 0x0065A8 01:A598: 8D 8B 07  STA ram_078B
 ; -> con_irq_2A
-C - - - - - 0x0065AB 01:A59B: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x0065AD 01:A59D: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x0065AB 01:A59B: E6 6D     INC ram_irq_handler
+C - - - - - 0x0065AD 01:A59D: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -6630,8 +6630,8 @@ C - - - - - 0x0065D5 01:A5C5: A9 00     LDA #$00
 C - - - - - 0x0065D7 01:A5C7: 8D 05 20  STA $2005
 C - - - - - 0x0065DA 01:A5CA: 20 2D E3  JSR sub_0x03E33D_write_chr_banks___7F_5128_5129_512A_512B
 ; -> con_irq_2B
-C - - - - - 0x0065DD 01:A5CD: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x0065DF 01:A5CF: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x0065DD 01:A5CD: E6 6D     INC ram_irq_handler
+C - - - - - 0x0065DF 01:A5CF: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -6643,8 +6643,8 @@ C - - - - - 0x0065E8 01:A5D8: A2 0C     LDX #$0C
 C - - - - - 0x0065EA 01:A5DA: 20 01 E0  JSR sub_0x03E011_garbage_loop_X
 C - - - - - 0x0065ED 01:A5DD: 20 5D E3  JSR sub_0x03E36D_write_chr_banks___5124_5126_5127_5128_5129_512A_512B
 ; -> con_irq_2C
-C - - - - - 0x0065F0 01:A5E0: E6 6D     INC ram_006D_irq_handler
-C - - - - - 0x0065F2 01:A5E2: 4C 3F E1  JMP loc_0x03E14F
+C - - - - - 0x0065F0 01:A5E0: E6 6D     INC ram_irq_handler
+C - - - - - 0x0065F2 01:A5E2: 4C 3F E1  JMP loc_0x03E14F_exit_irq
 
 
 
@@ -6665,7 +6665,7 @@ C - - - - - 0x00660E 01:A5FE: 8D 05 20  STA $2005
 C - - - - - 0x006611 01:A601: 8D 05 20  STA $2005
 C - - - - - 0x006614 01:A604: A9 B0     LDA #$B0
 C - - - - - 0x006616 01:A606: 8D 00 20  STA $2000
-C - - - - - 0x006619 01:A609: 4C 3A E1  JMP loc_0x03E14A
+C - - - - - 0x006619 01:A609: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 
 
@@ -7190,7 +7190,7 @@ C - - - - - 0x00690C 01:A8FC: 20 90 A7  JSR sub_A790
 C - - - - - 0x00690F 01:A8FF: 90 19     BCC bra_A91A_RTS
 C - - - - - 0x006911 01:A901: 20 94 A7  JSR sub_A794
 C - - - - - 0x006914 01:A904: A9 21     LDA #con_irq_21
-C - - - - - 0x006916 01:A906: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x006916 01:A906: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x006918 01:A908: A9 01     LDA #$01
 C - - - - - 0x00691A 01:A90A: 8D 8F 07  STA ram_078F
 C - - - - - 0x00691D 01:A90D: A9 80     LDA #$80
@@ -7218,7 +7218,7 @@ C - - - - - 0x00693E 01:A92E: 60        RTS
 bra_A92F:
 C - - - - - 0x00693F 01:A92F: 20 88 AE  JSR sub_AE88_prepare_horisontal_nametable_mapping
 C - - - - - 0x006942 01:A932: A9 1E     LDA #con_irq_1E
-C - - - - - 0x006944 01:A934: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x006944 01:A934: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x006946 01:A936: A9 80     LDA #$80
 C - - - - - 0x006948 01:A938: 85 40     STA ram_for_5204
 C - - - - - 0x00694A 01:A93A: A9 01     LDA #$01

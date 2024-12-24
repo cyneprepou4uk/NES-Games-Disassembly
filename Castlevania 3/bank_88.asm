@@ -9830,7 +9830,7 @@ C - - - - - 0x0131F5 04:B1E5: 60        RTS
 
 sub_B1E6_save_some_values:
 ; will be restored at 0x001692
-C - - - - - 0x0131F6 04:B1E6: A5 3F     LDA ram_003F_copy_irq_handler
+C - - - - - 0x0131F6 04:B1E6: A5 3F     LDA ram_next_irq_handler
 C - - - - - 0x0131F8 04:B1E8: 85 A6     STA ram_00A6_copy_003F_copy_irq_handler
 C - - - - - 0x0131FA 04:B1EA: A5 41     LDA ram_0041_scanline
 C - - - - - 0x0131FC 04:B1EC: 85 A7     STA ram_00A7_copy_0041_scanline

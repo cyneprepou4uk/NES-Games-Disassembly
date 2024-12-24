@@ -1928,7 +1928,7 @@ C - - - - - 0x00CC62 03:8C52: AD F3 07  LDA ram_07F3
 C - - - - - 0x00CC65 03:8C55: C9 01     CMP #$01
 C - - - - - 0x00CC67 03:8C57: D0 42     BNE bra_8C9B
 C - - - - - 0x00CC69 03:8C59: A9 01     LDA #con_irq_01
-C - - - - - 0x00CC6B 03:8C5B: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x00CC6B 03:8C5B: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x00CC6D 03:8C5D: 20 09 95  JSR sub_9509
 C - - - - - 0x00CC70 03:8C60: C9 5B     CMP #$5B
 C - - - - - 0x00CC72 03:8C62: F0 14     BEQ bra_8C78
@@ -2953,7 +2953,7 @@ C - - - - - 0x00D38F 03:937F: C9 01     CMP #$01
 C - - - - - 0x00D391 03:9381: D0 2F     BNE bra_93B2
 ; A = 01
 ; con_irq_01
-C - - - - - 0x00D393 03:9383: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x00D393 03:9383: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x00D395 03:9385: A9 00     LDA #$00
 C - - - - - 0x00D397 03:9387: 9D 57 06  STA ram_obj_0658,X
 C - - - - - 0x00D39A 03:938A: 9D 69 06  STA ram_obj_066A,X

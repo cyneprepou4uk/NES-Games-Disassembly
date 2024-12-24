@@ -456,8 +456,8 @@ con_obj_id_FF                           = $FF ;
 
 
 
-; ram_006D_irq_handler
-; ram_003F_copy_irq_handler
+; ram_irq_handler
+; ram_next_irq_handler
 ; handlers at 0x03E137
 con_irq_00                              = $00 ; 
 con_irq_01                              = $01 ; 

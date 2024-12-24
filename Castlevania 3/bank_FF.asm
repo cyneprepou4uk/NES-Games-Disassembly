@@ -3638,9 +3638,9 @@ _off006_0x03DBCC_02:
 
 .export sub_0x03E011_garbage_loop_X
 .export sub_0x03E015_garbage_loop_0F
-.export loc_0x03E14A
+.export loc_0x03E14A_disable_and_exit_irq
 .export ofs_irq_handler_0x03E14A_00
-.export loc_0x03E14F
+.export loc_0x03E14F_exit_irq
 .export sub_0x03E192_disable_nmi_and_rendering
 .export sub_0x03E1A9
 .export loc_0x03E1B6
@@ -4003,8 +4003,8 @@ C - - - - - 0x03E116 0F:E106: A5 40     LDA ram_for_5204
 C - - - - - 0x03E118 0F:E108: 8D 04 52  STA $5204
 C - - - - - 0x03E11B 0F:E10B: A5 41     LDA ram_0041_scanline
 C - - - - - 0x03E11D 0F:E10D: 8D 03 52  STA $5203
-C - - - - - 0x03E120 0F:E110: A5 3F     LDA ram_003F_copy_irq_handler
-C - - - - - 0x03E122 0F:E112: 85 6D     STA ram_006D_irq_handler
+C - - - - - 0x03E120 0F:E110: A5 3F     LDA ram_next_irq_handler
+C - - - - - 0x03E122 0F:E112: 85 6D     STA ram_irq_handler
 C - - - - - 0x03E124 0F:E114: A5 42     LDA ram_0042
 C - - - - - 0x03E126 0F:E116: 85 89     STA ram_0089_scanline
 C - - - - - 0x03E128 0F:E118: 58        CLI
@@ -4021,7 +4021,7 @@ C - - - - - 0x03E12E 0F:E11E: 48        PHA
 C - - - - - 0x03E12F 0F:E11F: AD 04 52  LDA $5204
 C - - - - - 0x03E132 0F:E122: A9 82     LDA #con_prg_bank + $82
 C - - - - - 0x03E134 0F:E124: 20 E8 E2  JSR sub_E2E8_prg_bankswitch
-C - - - - - 0x03E137 0F:E127: A5 6D     LDA ram_006D_irq_handler
+C - - - - - 0x03E137 0F:E127: A5 6D     LDA ram_irq_handler
 C - - - - - 0x03E139 0F:E129: 0A        ASL
 C - - - - - 0x03E13A 0F:E12A: B0 0E     BCS bra_E13A_80
 C - - - - - 0x03E13C 0F:E12C: A8        TAY
@@ -4031,12 +4031,12 @@ C - - - - - 0x03E142 0F:E132: B9 32 9F  LDA tbl_0x005F41_irq_handlers + $01,Y
 C - - - - - 0x03E145 0F:E135: 85 45     STA ram_0044_t001_irq_handler_jmp + $01
 C - - - - - 0x03E147 0F:E137: 6C 44 00  JMP (ram_0044_t001_irq_handler_jmp)
 bra_E13A_80:
-loc_0x03E14A:
 ofs_irq_handler_0x03E14A_00:
+loc_0x03E14A_disable_and_exit_irq:
 ; con_irq_00
 C D 3 - - - 0x03E14A 0F:E13A: A9 00     LDA #$00
 C - - - - - 0x03E14C 0F:E13C: 8D 04 52  STA $5204
-loc_0x03E14F:
+loc_0x03E14F_exit_irq:
 C D 3 - - - 0x03E14F 0F:E13F: A5 21     LDA ram_prg_bank
 C - - - - - 0x03E151 0F:E141: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E154 0F:E144: 4C B8 E0  JMP loc_E0B8_exit_interrupt
@@ -4917,7 +4917,7 @@ loc_0x03E5CF:
 C D 3 - - - 0x03E5CF 0F:E5BF: 84 42     STY ram_0042
 sub_E5C1:
 sub_0x03E5D1:
-C - - - - - 0x03E5D1 0F:E5C1: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x03E5D1 0F:E5C1: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x03E5D3 0F:E5C3: 86 41     STX ram_0041_scanline
 C - - - - - 0x03E5D5 0F:E5C5: A9 80     LDA #$80
 C - - - - - 0x03E5D7 0F:E5C7: 85 40     STA ram_for_5204
@@ -5054,11 +5054,11 @@ sub_0x03E676:
 C - - - - - 0x03E676 0F:E666: A9 44     LDA #$44    ; vertical nametable mapping
 C - - - - - 0x03E678 0F:E668: 85 25     STA ram_for_5105
 C - - - - - 0x03E67A 0F:E66A: A9 00     LDA #$00
-C - - - - - 0x03E67C 0F:E66C: 85 6D     STA ram_006D_irq_handler    ; con_irq_00
+C - - - - - 0x03E67C 0F:E66C: 85 6D     STA ram_irq_handler    ; con_irq_00
 C - - - - - 0x03E67E 0F:E66E: 85 40     STA ram_for_5204
 C - - - - - 0x03E680 0F:E670: 85 72     STA ram_0072_chr_banks_config
 C - - - - - 0x03E682 0F:E672: A9 80     LDA #con_irq_80
-C - - - - - 0x03E684 0F:E674: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x03E684 0F:E674: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x03E686 0F:E676: 60        RTS
 
 
@@ -5421,7 +5421,7 @@ C - - - - - 0x03E836 0F:E826: D0 02     BNE bra_E82A    ; jmp
 sub_E828_clear_memory:
 sub_0x03E838_clear_memory:
 C - - - - - 0x03E838 0F:E828: A2 50     LDX #$50
-bra_E82A:
+bra_E82A:   ; X = 26
 C - - - - - 0x03E83A 0F:E82A: A9 00     LDA #$00
 bra_E82C_loop:
 ; 0026-00DF or 0050-00DF
@@ -5431,13 +5431,11 @@ C - - - - - 0x03E83F 0F:E82F: E0 E0     CPX #$E0
 C - - - - - 0x03E841 0F:E831: D0 F9     BNE bra_E82C_loop
 C - - - - - 0x03E843 0F:E833: A2 00     LDX #$00
 bra_E835_loop:
-; 0400-04FF, 0500-05FF, 0700-07F5
-C - - - - - 0x03E845 0F:E835: 9D 00 04  STA ram_obj_anim_id,X
-C - - - - - 0x03E848 0F:E838: 9D 00 05  STA ram_obj_spd_X_lo + $0E,X
+C - - - - - 0x03E845 0F:E835: 9D 00 04  STA $0400,X ; 0400-04FF
+C - - - - - 0x03E848 0F:E838: 9D 00 05  STA $0500,X ; 0500-05FF
 C - - - - - 0x03E84B 0F:E83B: E0 F6     CPX #$F6
-C - - - - - 0x03E84D 0F:E83D: B0 03     BCS bra_E842   ; skip 07F6-07FF
-; 0700-07F5
-C - - - - - 0x03E84F 0F:E83F: 9D 00 07  STA $0700,X
+C - - - - - 0x03E84D 0F:E83D: B0 03     BCS bra_E842    ; skip 07F6-07FF
+C - - - - - 0x03E84F 0F:E83F: 9D 00 07  STA $0700,X ; 0700-07F5
 bra_E842:
 C - - - - - 0x03E852 0F:E842: E8        INX
 C - - - - - 0x03E853 0F:E843: D0 F0     BNE bra_E835_loop
@@ -5474,7 +5472,7 @@ C - - - - - 0x03E877 0F:E867: E8        INX
 C - - - - - 0x03E878 0F:E868: E0 08     CPX #$08
 C - - - - - 0x03E87A 0F:E86A: 90 F9     BCC bra_E865_loop
 ; C = 1
-; bzk dangerous branch at 0x001125
+; bzk warning, dangerous branch at 0x001125
 C - - - - - 0x03E87C 0F:E86C: 60        RTS
 
 
@@ -8268,7 +8266,7 @@ C - - - - - 0x03F942 0F:F932: AD 65 05  LDA ram_plr_state
 C - - - - - 0x03F945 0F:F935: C9 02     CMP #con_plr_state_idle_on_ground
 C - - - - - 0x03F947 0F:F937: D0 06     BNE bra_F93F_RTS
 C - - - - - 0x03F949 0F:F939: A9 12     LDA #con_irq_12
-C - - - - - 0x03F94B 0F:F93B: 85 3F     STA ram_003F_copy_irq_handler
+C - - - - - 0x03F94B 0F:F93B: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x03F94D 0F:F93D: E6 6B     INC ram_006B_subscript
 bra_F93F_RTS:
 C - - - - - 0x03F94F 0F:F93F: 60        RTS
