@@ -6,53 +6,53 @@
 
 
 
-.export loc_0x00C010
-.export loc_0x00C013
-.export loc_0x00C016
-.export loc_0x00C019
-.export loc_0x00C01C
-.export loc_0x00C01F
-.export loc_0x00C022
+.export ofs_028_0x00C010_00
+.export ofs_028_0x00C013_02
+.export ofs_028_0x00C016_03
+.export ofs_028_0x00C019_13
+.export ofs_028_0x00C01C_1B
+.export ofs_028_0x00C01F_16
+.export ofs_028_0x00C022_11
 
 
 
-loc_0x00C010:
+ofs_028_0x00C010_00:
 ; bzk optimize
-C D 0 J - - 0x00C010 03:8000: 4C 15 80  JMP loc_8015
+- - - - - - 0x00C010 03:8000: 4C 15 80  JMP loc_8015
 
 
 
-loc_0x00C013:
+ofs_028_0x00C013_02:
 ; bzk optimize
 C - - J - - 0x00C013 03:8003: 4C 99 B9  JMP loc_B999
 
 
 
-loc_0x00C016:
+ofs_028_0x00C016_03:
 ; bzk optimize
 C - - J - - 0x00C016 03:8006: 4C 95 A9  JMP loc_A995
 
 
 
-loc_0x00C019:
+ofs_028_0x00C019_13:
 ; bzk optimize
 C - - J - - 0x00C019 03:8009: 4C F9 BA  JMP loc_BAF9
 
 
 
-loc_0x00C01C:
+ofs_028_0x00C01C_1B:
 ; bzk optimize
 C - - J - - 0x00C01C 03:800C: 4C F1 BC  JMP loc_BCF1
 
 
 
-loc_0x00C01F:
+ofs_028_0x00C01F_16:
 ; bzk optimize
 C - - J - - 0x00C01F 03:800F: 4C D4 BE  JMP loc_BED4
 
 
 
-loc_0x00C022:
+ofs_028_0x00C022_11:
 ; bzk optimize
 C - - J - - 0x00C022 03:8012: 4C 23 BF  JMP loc_BF23
 
@@ -572,7 +572,7 @@ tbl_8359:
 - D 0 - - - 0x00C371 03:8361: 34 87     .word ofs_014_8734_04
 - D 0 - - - 0x00C373 03:8363: CA 83     .word ofs_014_83CA_05
 - D 0 - - - 0x00C375 03:8365: F7 85     .word ofs_014_85F7_06
-- - - - - - 0x00C377 03:8367: B9 84     .word ofs_014_84B9_07
+- D 0 - - - 0x00C377 03:8367: B9 84     .word ofs_014_84B9_07
 - D 0 - - - 0x00C379 03:8369: D1 84     .word ofs_014_84D1_08
 - D 0 - - - 0x00C37B 03:836B: 29 85     .word ofs_014_8529_09
 - D 0 - - - 0x00C37D 03:836D: 36 86     .word ofs_014_8636_0A
@@ -1427,11 +1427,11 @@ C - - - - - 0x00C8F9 03:88E9: 20 37 AE  JSR sub_AE37
 C - - - - - 0x00C8FC 03:88EC: 20 5F 98  JSR sub_985F
 C - - - - - 0x00C8FF 03:88EF: BD 99 03  LDA ram_игрок_Z_hi,X
 C - - - - - 0x00C902 03:88F2: 10 0C     BPL bra_8900_RTS
-- - - - - - 0x00C904 03:88F4: BD 86 03  LDA ram_игрок_Z_lo,X
-- - - - - - 0x00C907 03:88F7: C9 FB     CMP #$FB
-- - - - - - 0x00C909 03:88F9: B0 05     BCS bra_8900_RTS
-- - - - - - 0x00C90B 03:88FB: A9 30     LDA #$30
-- - - - - - 0x00C90D 03:88FD: 9D 79 04  STA ram_игрок_номер_действия,X
+C - - - - - 0x00C904 03:88F4: BD 86 03  LDA ram_игрок_Z_lo,X
+C - - - - - 0x00C907 03:88F7: C9 FB     CMP #$FB
+C - - - - - 0x00C909 03:88F9: B0 05     BCS bra_8900_RTS
+C - - - - - 0x00C90B 03:88FB: A9 30     LDA #$30
+C - - - - - 0x00C90D 03:88FD: 9D 79 04  STA ram_игрок_номер_действия,X
 bra_8900_RTS:
 C - - - - - 0x00C910 03:8900: 60        RTS
 
@@ -1444,7 +1444,7 @@ tbl_8901:
 off_8905_00:
 - D 0 - I - 0x00C915 03:8905: 15 89     .word off_8915_00
 - D 0 - I - 0x00C917 03:8907: 35 89     .word off_8935_01
-- - - - - - 0x00C919 03:8909: 35 89     .word off_8935_02
+- D 0 - I - 0x00C919 03:8909: 35 89     .word off_8935_02
 - D 0 - I - 0x00C91B 03:890B: 55 89     .word off_8955_03
 
 off_890D_01:
@@ -1531,14 +1531,14 @@ off_8955_03:
 - - - - - - 0x00C966 03:8956: 99        .byte $99   ; 
 - - - - - - 0x00C967 03:8957: 00        .byte $00   ; 
 - - - - - - 0x00C968 03:8958: 92        .byte $92   ; 
-- - - - - - 0x00C969 03:8959: 00        .byte $00   ; 
-- - - - - - 0x00C96A 03:895A: 99        .byte $99   ; 
-- - - - - - 0x00C96B 03:895B: 00        .byte $00   ; 
-- - - - - - 0x00C96C 03:895C: A3        .byte $A3   ; 
-- - - - - - 0x00C96D 03:895D: 00        .byte $00   ; 
-- - - - - - 0x00C96E 03:895E: BB        .byte $BB   ; 
-- - - - - - 0x00C96F 03:895F: 00        .byte $00   ; 
-- - - - - - 0x00C970 03:8960: B1        .byte $B1   ; 
+- D 0 - I - 0x00C969 03:8959: 00        .byte $00   ; 
+- D 0 - I - 0x00C96A 03:895A: 99        .byte $99   ; 
+- D 0 - I - 0x00C96B 03:895B: 00        .byte $00   ; 
+- D 0 - I - 0x00C96C 03:895C: A3        .byte $A3   ; 
+- D 0 - I - 0x00C96D 03:895D: 00        .byte $00   ; 
+- D 0 - I - 0x00C96E 03:895E: BB        .byte $BB   ; 
+- D 0 - I - 0x00C96F 03:895F: 00        .byte $00   ; 
+- D 0 - I - 0x00C970 03:8960: B1        .byte $B1   ; 
 - D 0 - I - 0x00C971 03:8961: 00        .byte $00   ; 
 - D 0 - I - 0x00C972 03:8962: B9        .byte $B9   ; 
 - D 0 - I - 0x00C973 03:8963: 00        .byte $00   ; 
@@ -1636,10 +1636,10 @@ off_8995_02:
 
 
 off_89B5_03:
-- - - - - - 0x00C9C5 03:89B5: 03        .byte $03   ; 
-- - - - - - 0x00C9C6 03:89B6: 67        .byte $67   ; 
-- - - - - - 0x00C9C7 03:89B7: 00        .byte $00   ; 
-- - - - - - 0x00C9C8 03:89B8: 93        .byte $93   ; 
+- D 0 - I - 0x00C9C5 03:89B5: 03        .byte $03   ; 
+- D 0 - I - 0x00C9C6 03:89B6: 67        .byte $67   ; 
+- D 0 - I - 0x00C9C7 03:89B7: 00        .byte $00   ; 
+- D 0 - I - 0x00C9C8 03:89B8: 93        .byte $93   ; 
 - D 0 - I - 0x00C9C9 03:89B9: 03        .byte $03   ; 
 - D 0 - I - 0x00C9CA 03:89BA: 57        .byte $57   ; 
 - D 0 - I - 0x00C9CB 03:89BB: 00        .byte $00   ; 
@@ -1664,10 +1664,10 @@ off_89B5_03:
 - D 0 - I - 0x00C9DE 03:89CE: 6F        .byte $6F   ; 
 - D 0 - I - 0x00C9DF 03:89CF: 00        .byte $00   ; 
 - D 0 - I - 0x00C9E0 03:89D0: E7        .byte $E7   ; 
-- - - - - - 0x00C9E1 03:89D1: 03        .byte $03   ; 
-- - - - - - 0x00C9E2 03:89D2: 7F        .byte $7F   ; 
-- - - - - - 0x00C9E3 03:89D3: 00        .byte $00   ; 
-- - - - - - 0x00C9E4 03:89D4: F3        .byte $F3   ; 
+- D 0 - I - 0x00C9E1 03:89D1: 03        .byte $03   ; 
+- D 0 - I - 0x00C9E2 03:89D2: 7F        .byte $7F   ; 
+- D 0 - I - 0x00C9E3 03:89D3: 00        .byte $00   ; 
+- D 0 - I - 0x00C9E4 03:89D4: F3        .byte $F3   ; 
 
 
 
@@ -1881,7 +1881,7 @@ C - - - - - 0x00CB34 03:8B24: 90 07     BCC bra_8B2D
 C - - - - - 0x00CB36 03:8B26: A9 0F     LDA #$0F
 C - - - - - 0x00CB38 03:8B28: 4C 2D 8B  JMP loc_8B2D
 bra_8B2B:
-- - - - - - 0x00CB3B 03:8B2B: A9 00     LDA #$00
+C - - - - - 0x00CB3B 03:8B2B: A9 00     LDA #$00
 bra_8B2D:
 loc_8B2D:
 C D 0 - - - 0x00CB3D 03:8B2D: 4A        LSR
@@ -1989,13 +1989,13 @@ C - - - - - 0x00CBFA 03:8BEA: 4C 04 8D  JMP loc_8D04
 bra_8BED:
 C - - - - - 0x00CBFD 03:8BED: A5 2A     LDA ram_002A
 C - - - - - 0x00CBFF 03:8BEF: 30 0D     BMI bra_8BFE
-- - - - - - 0x00CC01 03:8BF1: A9 00     LDA #$00
-- - - - - - 0x00CC03 03:8BF3: 06 1C     ASL ram_001C
-- - - - - - 0x00CC05 03:8BF5: 2A        ROL
-- - - - - - 0x00CC06 03:8BF6: 06 1C     ASL ram_001C
-- - - - - - 0x00CC08 03:8BF8: 2A        ROL
-- - - - - - 0x00CC09 03:8BF9: 05 1C     ORA ram_001C
-- - - - - - 0x00CC0B 03:8BFB: 4C 08 8C  JMP loc_8C08
+C - - - - - 0x00CC01 03:8BF1: A9 00     LDA #$00
+C - - - - - 0x00CC03 03:8BF3: 06 1C     ASL ram_001C
+C - - - - - 0x00CC05 03:8BF5: 2A        ROL
+C - - - - - 0x00CC06 03:8BF6: 06 1C     ASL ram_001C
+C - - - - - 0x00CC08 03:8BF8: 2A        ROL
+C - - - - - 0x00CC09 03:8BF9: 05 1C     ORA ram_001C
+C - - - - - 0x00CC0B 03:8BFB: 4C 08 8C  JMP loc_8C08
 bra_8BFE:
 C - - - - - 0x00CC0E 03:8BFE: A9 00     LDA #$00
 C - - - - - 0x00CC10 03:8C00: 46 1C     LSR ram_001C
@@ -2004,7 +2004,7 @@ C - - - - - 0x00CC13 03:8C03: 46 1C     LSR ram_001C
 C - - - - - 0x00CC15 03:8C05: 6A        ROR
 C - - - - - 0x00CC16 03:8C06: 05 1C     ORA ram_001C
 loc_8C08:
-C - - - - - 0x00CC18 03:8C08: 85 1C     STA ram_001C
+C D 0 - - - 0x00CC18 03:8C08: 85 1C     STA ram_001C
 C - - - - - 0x00CC1A 03:8C0A: 20 70 8F  JSR sub_8F70
 C - - - - - 0x00CC1D 03:8C0D: D0 03     BNE bra_8C12
 C - - - - - 0x00CC1F 03:8C0F: 4C 04 8D  JMP loc_8D04
@@ -2231,9 +2231,9 @@ bra_8D89:
 C - - - - - 0x00CD99 03:8D89: BD 86 04  LDA ram_игрок_состояние,X
 C - - - - - 0x00CD9C 03:8D8C: 29 20     AND #$20
 C - - - - - 0x00CD9E 03:8D8E: F0 0C     BEQ bra_8D9C
-- - - - - - 0x00CDA0 03:8D90: BD 86 03  LDA ram_игрок_Z_lo,X
-- - - - - - 0x00CDA3 03:8D93: C9 F0     CMP #$F0
-- - - - - - 0x00CDA5 03:8D95: B0 05     BCS bra_8D9C
+C - - - - - 0x00CDA0 03:8D90: BD 86 03  LDA ram_игрок_Z_lo,X
+C - - - - - 0x00CDA3 03:8D93: C9 F0     CMP #$F0
+C - - - - - 0x00CDA5 03:8D95: B0 05     BCS bra_8D9C
 - - - - - - 0x00CDA7 03:8D97: A9 30     LDA #$30
 - - - - - - 0x00CDA9 03:8D99: 4C 9E 8D  JMP loc_8D9E
 bra_8D9C:
@@ -2292,7 +2292,7 @@ C - - - - - 0x00CE02 03:8DF2: 4C 12 98  JMP loc_9812
 tbl_8DF5:
 - D 0 - - - 0x00CE05 03:8DF5: 15 8E     .word off_8E15_00
 - D 0 - - - 0x00CE07 03:8DF7: 35 8E     .word off_8E35_01
-- - - - - - 0x00CE09 03:8DF9: 55 8E     .word off_8E55_02
+- D 0 - - - 0x00CE09 03:8DF9: 55 8E     .word off_8E55_02
 - D 0 - - - 0x00CE0B 03:8DFB: 35 8E     .word off_8E35_03
 - - - - - - 0x00CE0D 03:8DFD: 15 8E     .word off_8E15_04
 - D 0 - - - 0x00CE0F 03:8DFF: 35 8E     .word off_8E35_05
@@ -2304,7 +2304,7 @@ tbl_8DF5:
 - - - - - - 0x00CE1B 03:8E0B: 95 8E     .word off_8E95_0B
 - - - - - - 0x00CE1D 03:8E0D: 15 8E     .word off_8E15_0C
 - - - - - - 0x00CE1F 03:8E0F: 35 8E     .word off_8E35_0D
-- - - - - - 0x00CE21 03:8E11: 35 8E     .word off_8E35_0E
+- D 0 - - - 0x00CE21 03:8E11: 35 8E     .word off_8E35_0E
 - D 0 - - - 0x00CE23 03:8E13: 35 8E     .word off_8E35_0F
 
 
@@ -2365,9 +2365,9 @@ off_8E55_02:
 - - - - - - 0x00CE67 03:8E57: D9 8E     .word ofs_015_8ED9_01
 - - - - - - 0x00CE69 03:8E59: 0C 8F     .word ofs_015_8F0C_02
 - - - - - - 0x00CE6B 03:8E5B: 0C 8F     .word ofs_015_8F0C_03
-- - - - - - 0x00CE6D 03:8E5D: C7 8E     .word ofs_015_8EC7_04
-- - - - - - 0x00CE6F 03:8E5F: C7 8E     .word ofs_015_8EC7_05
-- - - - - - 0x00CE71 03:8E61: C7 8E     .word ofs_015_8EC7_06
+- D 0 - I - 0x00CE6D 03:8E5D: C7 8E     .word ofs_015_8EC7_04
+- D 0 - I - 0x00CE6F 03:8E5F: C7 8E     .word ofs_015_8EC7_05
+- D 0 - I - 0x00CE71 03:8E61: C7 8E     .word ofs_015_8EC7_06
 - - - - - - 0x00CE73 03:8E63: C7 8E     .word ofs_015_8EC7_07
 - - - - - - 0x00CE75 03:8E65: C7 8E     .word ofs_015_8EC7_08
 - - - - - - 0x00CE77 03:8E67: 12 8F     .word ofs_015_8F12_09
@@ -2554,8 +2554,8 @@ ofs_015_8F12_0C:
 C D 0 - - - 0x00CF22 03:8F12: BD 86 04  LDA ram_игрок_состояние,X
 C - - - - - 0x00CF25 03:8F15: 29 10     AND #$10
 C - - - - - 0x00CF27 03:8F17: F0 05     BEQ bra_8F1E
-- - - - - - 0x00CF29 03:8F19: A9 10     LDA #$10
-- - - - - - 0x00CF2B 03:8F1B: 4C 2A 8F  JMP loc_8F2A
+C - - - - - 0x00CF29 03:8F19: A9 10     LDA #$10
+C - - - - - 0x00CF2B 03:8F1B: 4C 2A 8F  JMP loc_8F2A
 bra_8F1E:
 C - - - - - 0x00CF2E 03:8F1E: BD 96 04  LDA ram_obj_current_angle,X
 C - - - - - 0x00CF31 03:8F21: C9 FF     CMP #$FF
@@ -2564,7 +2564,7 @@ C - - - - - 0x00CF33 03:8F23: D0 03     BNE bra_8F28
 bra_8F28:
 C - - - - - 0x00CF38 03:8F28: A9 30     LDA #$30
 loc_8F2A:
-C - - - - - 0x00CF3A 03:8F2A: 9D 79 04  STA ram_игрок_номер_действия,X
+C D 0 - - - 0x00CF3A 03:8F2A: 9D 79 04  STA ram_игрок_номер_действия,X
 C - - - - - 0x00CF3D 03:8F2D: 60        RTS
 
 
@@ -3170,7 +3170,7 @@ bra_92AD:
 loc_92AD:
 ofs_016_92AD_02:
 ofs_016_92AD_03:
-C D 0 - - - 0x00D2BD 03:92AD: BD 86 04  LDA ram_игрок_состояние,X
+C D 0 J - - 0x00D2BD 03:92AD: BD 86 04  LDA ram_игрок_состояние,X
 C - - - - - 0x00D2C0 03:92B0: 10 28     BPL bra_92DA
 C - - - - - 0x00D2C2 03:92B2: AD 46 00  LDA a: ram_рандом + $01
 C - - - - - 0x00D2C5 03:92B5: 30 09     BMI bra_92C0
@@ -3578,18 +3578,18 @@ C - - - - - 0x00D575 03:9565: C9 28     CMP #$28
 C - - - - - 0x00D577 03:9567: 90 1F     BCC bra_9588
 C - - - - - 0x00D579 03:9569: BD 7C 06  LDA ram_067C,X
 C - - - - - 0x00D57C 03:956C: 30 1A     BMI bra_9588
-- - - - - - 0x00D57E 03:956E: A9 00     LDA #$00
-- - - - - - 0x00D580 03:9570: 85 1E     STA ram_001E
-- - - - - - 0x00D582 03:9572: 85 1F     STA ram_001F
-- - - - - - 0x00D584 03:9574: 20 75 B1  JSR sub_B175
-- - - - - - 0x00D587 03:9577: BD B0 04  LDA ram_obj_new_angle,X
-- - - - - - 0x00D58A 03:957A: 29 80     AND #$80
-- - - - - - 0x00D58C 03:957C: 18        CLC
-- - - - - - 0x00D58D 03:957D: 69 40     ADC #$40
-- - - - - - 0x00D58F 03:957F: 9D B0 04  STA ram_obj_new_angle,X
-- - - - - - 0x00D592 03:9582: A9 41     LDA #$41
-- - - - - - 0x00D594 03:9584: 9D 79 04  STA ram_игрок_номер_действия,X
-- - - - - - 0x00D597 03:9587: 60        RTS
+C - - - - - 0x00D57E 03:956E: A9 00     LDA #$00
+C - - - - - 0x00D580 03:9570: 85 1E     STA ram_001E
+C - - - - - 0x00D582 03:9572: 85 1F     STA ram_001F
+C - - - - - 0x00D584 03:9574: 20 75 B1  JSR sub_B175
+C - - - - - 0x00D587 03:9577: BD B0 04  LDA ram_obj_new_angle,X
+C - - - - - 0x00D58A 03:957A: 29 80     AND #$80
+C - - - - - 0x00D58C 03:957C: 18        CLC
+C - - - - - 0x00D58D 03:957D: 69 40     ADC #$40
+C - - - - - 0x00D58F 03:957F: 9D B0 04  STA ram_obj_new_angle,X
+C - - - - - 0x00D592 03:9582: A9 41     LDA #$41
+C - - - - - 0x00D594 03:9584: 9D 79 04  STA ram_игрок_номер_действия,X
+C - - - - - 0x00D597 03:9587: 60        RTS
 bra_9588:
 C - - - - - 0x00D598 03:9588: A5 2B     LDA ram_002B
 C - - - - - 0x00D59A 03:958A: C9 08     CMP #$08
@@ -3831,15 +3831,15 @@ C - - - - - 0x00D75E 03:974E: C9 40     CMP #$40
 C - - - - - 0x00D760 03:9750: B0 1C     BCS bra_976E_RTS
 C - - - - - 0x00D762 03:9752: 29 03     AND #$03
 C - - - - - 0x00D764 03:9754: F0 09     BEQ bra_975F
-- - - - - - 0x00D766 03:9756: C9 02     CMP #$02
-- - - - - - 0x00D768 03:9758: B0 0A     BCS bra_9764
-- - - - - - 0x00D76A 03:975A: A9 38     LDA #$38
-- - - - - - 0x00D76C 03:975C: 4C 66 97  JMP loc_9766
+C - - - - - 0x00D766 03:9756: C9 02     CMP #$02
+C - - - - - 0x00D768 03:9758: B0 0A     BCS bra_9764
+C - - - - - 0x00D76A 03:975A: A9 38     LDA #$38
+C - - - - - 0x00D76C 03:975C: 4C 66 97  JMP loc_9766
 bra_975F:
 C - - - - - 0x00D76F 03:975F: A9 46     LDA #$46
 C - - - - - 0x00D771 03:9761: 4C 66 97  JMP loc_9766
 bra_9764:
-- - - - - - 0x00D774 03:9764: A9 37     LDA #$37
+C - - - - - 0x00D774 03:9764: A9 37     LDA #$37
 loc_9766:
 C D 0 - - - 0x00D776 03:9766: 9D 79 04  STA ram_игрок_номер_действия,X
 C - - - - - 0x00D779 03:9769: A9 FF     LDA #$FF
@@ -3893,8 +3893,8 @@ C - - - - - 0x00D7D4 03:97C4: F0 0A     BEQ bra_97D0
 C - - - - - 0x00D7D6 03:97C6: A9 21     LDA #$21
 C - - - - - 0x00D7D8 03:97C8: 4C DB 97  JMP loc_97DB
 bra_97CB:
-- - - - - - 0x00D7DB 03:97CB: A9 0F     LDA #$0F
-- - - - - - 0x00D7DD 03:97CD: 4C DB 97  JMP loc_97DB
+C - - - - - 0x00D7DB 03:97CB: A9 0F     LDA #$0F
+C - - - - - 0x00D7DD 03:97CD: 4C DB 97  JMP loc_97DB
 bra_97D0:
 C - - - - - 0x00D7E0 03:97D0: BD 59 04  LDA ram_игрок_номер_движения,X
 C - - - - - 0x00D7E3 03:97D3: 29 7F     AND #$7F
@@ -3926,8 +3926,8 @@ bra_9802:
 C - - - - - 0x00D812 03:9802: A9 10     LDA #$10
 C - - - - - 0x00D814 03:9804: 4C 0E 98  JMP loc_980E
 bra_9807:
-- - - - - - 0x00D817 03:9807: A9 0E     LDA #$0E
-- - - - - - 0x00D819 03:9809: 4C 0E 98  JMP loc_980E
+C - - - - - 0x00D817 03:9807: A9 0E     LDA #$0E
+C - - - - - 0x00D819 03:9809: 4C 0E 98  JMP loc_980E
 loc_980C:
 C D 0 - - - 0x00D81C 03:980C: A9 09     LDA #$09
 loc_980E:
@@ -4782,10 +4782,10 @@ C - - J - - 0x00DD83 03:9D73: 20 94 9E  JSR sub_9E94
 C - - - - - 0x00DD86 03:9D76: 20 4A 9E  JSR sub_9E4A
 C - - - - - 0x00DD89 03:9D79: 29 08     AND #$08
 C - - - - - 0x00DD8B 03:9D7B: F0 CF     BEQ bra_9D4C
-- - - - - - 0x00DD8D 03:9D7D: A9 34     LDA #$34
-- - - - - - 0x00DD8F 03:9D7F: 20 02 C0  JSR sub_0x01C012
-- - - - - - 0x00DD92 03:9D82: 20 02 9F  JSR sub_9F02
-- - - - - - 0x00DD95 03:9D85: 60        RTS
+C - - - - - 0x00DD8D 03:9D7D: A9 34     LDA #$34
+C - - - - - 0x00DD8F 03:9D7F: 20 02 C0  JSR sub_0x01C012
+C - - - - - 0x00DD92 03:9D82: 20 02 9F  JSR sub_9F02
+C - - - - - 0x00DD95 03:9D85: 60        RTS
 
 
 
@@ -4935,10 +4935,10 @@ C - - - - - 0x00DE8B 03:9E7B: C9 10     CMP #$10
 C - - - - - 0x00DE8D 03:9E7D: B0 08     BCS bra_9E87
 C - - - - - 0x00DE8F 03:9E7F: 4C 89 9E  JMP loc_9E89
 bra_9E82:
-- - - - - - 0x00DE92 03:9E82: A9 00     LDA #$00
-- - - - - - 0x00DE94 03:9E84: 4C 89 9E  JMP loc_9E89
+C - - - - - 0x00DE92 03:9E82: A9 00     LDA #$00
+C - - - - - 0x00DE94 03:9E84: 4C 89 9E  JMP loc_9E89
 bra_9E87:
-- - - - - - 0x00DE97 03:9E87: A9 0F     LDA #$0F
+C - - - - - 0x00DE97 03:9E87: A9 0F     LDA #$0F
 loc_9E89:
 C D 0 - - - 0x00DE99 03:9E89: 4A        LSR
 C - - - - - 0x00DE9A 03:9E8A: 4A        LSR
@@ -5074,26 +5074,26 @@ C - - - - - 0x00DF62 03:9F52: 60        RTS
 
 
 tbl_9F53:
-- - - - - - 0x00DF63 03:9F53: 06        .byte $06   ; 
-- - - - - - 0x00DF64 03:9F54: 22        .byte $22   ; 
-- - - - - - 0x00DF65 03:9F55: 08        .byte $08   ; 
-- - - - - - 0x00DF66 03:9F56: 03        .byte $03   ; 
-- - - - - - 0x00DF67 03:9F57: 15        .byte $15   ; 
-- - - - - - 0x00DF68 03:9F58: 1C        .byte $1C   ; 
-- - - - - - 0x00DF69 03:9F59: 01        .byte $01   ; 
-- - - - - - 0x00DF6A 03:9F5A: 06        .byte $06   ; 
+- D 0 - - - 0x00DF63 03:9F53: 06        .byte $06   ; 
+- D 0 - - - 0x00DF64 03:9F54: 22        .byte $22   ; 
+- D 0 - - - 0x00DF65 03:9F55: 08        .byte $08   ; 
+- D 0 - - - 0x00DF66 03:9F56: 03        .byte $03   ; 
+- D 0 - - - 0x00DF67 03:9F57: 15        .byte $15   ; 
+- D 0 - - - 0x00DF68 03:9F58: 1C        .byte $1C   ; 
+- D 0 - - - 0x00DF69 03:9F59: 01        .byte $01   ; 
+- D 0 - - - 0x00DF6A 03:9F5A: 06        .byte $06   ; 
 - - - - - - 0x00DF6B 03:9F5B: 23        .byte $23   ; 
 - - - - - - 0x00DF6C 03:9F5C: 33        .byte $33   ; 
 - - - - - - 0x00DF6D 03:9F5D: 34        .byte $34   ; 
 - - - - - - 0x00DF6E 03:9F5E: 06        .byte $06   ; 
-- - - - - - 0x00DF6F 03:9F5F: 0E        .byte $0E   ; 
-- - - - - - 0x00DF70 03:9F60: 27        .byte $27   ; 
+- D 0 - - - 0x00DF6F 03:9F5F: 0E        .byte $0E   ; 
+- D 0 - - - 0x00DF70 03:9F60: 27        .byte $27   ; 
 - - - - - - 0x00DF71 03:9F61: 33        .byte $33   ; 
 - - - - - - 0x00DF72 03:9F62: 17        .byte $17   ; 
 - D 0 - - - 0x00DF73 03:9F63: 07        .byte $07   ; 
 - D 0 - - - 0x00DF74 03:9F64: 08        .byte $08   ; 
 - D 0 - - - 0x00DF75 03:9F65: 16        .byte $16   ; 
-- - - - - - 0x00DF76 03:9F66: 07        .byte $07   ; 
+- D 0 - - - 0x00DF76 03:9F66: 07        .byte $07   ; 
 - D 0 - - - 0x00DF77 03:9F67: 00        .byte $00   ; 
 - D 0 - - - 0x00DF78 03:9F68: 01        .byte $01   ; 
 - D 0 - - - 0x00DF79 03:9F69: 03        .byte $03   ; 
@@ -5107,9 +5107,9 @@ tbl_9F53:
 - D 0 - - - 0x00DF81 03:9F71: 0E        .byte $0E   ; 
 - D 0 - - - 0x00DF82 03:9F72: 0D        .byte $0D   ; 
 - - - - - - 0x00DF83 03:9F73: 08        .byte $08   ; 
-- - - - - - 0x00DF84 03:9F74: 0C        .byte $0C   ; 
-- - - - - - 0x00DF85 03:9F75: 2C        .byte $2C   ; 
-- - - - - - 0x00DF86 03:9F76: 07        .byte $07   ; 
+- D 0 - - - 0x00DF84 03:9F74: 0C        .byte $0C   ; 
+- D 0 - - - 0x00DF85 03:9F75: 2C        .byte $2C   ; 
+- D 0 - - - 0x00DF86 03:9F76: 07        .byte $07   ; 
 - D 0 - - - 0x00DF87 03:9F77: 15        .byte $15   ; 
 - D 0 - - - 0x00DF88 03:9F78: 02        .byte $02   ; 
 - D 0 - - - 0x00DF89 03:9F79: 01        .byte $01   ; 
@@ -5124,7 +5124,7 @@ tbl_9F53:
 - D 0 - - - 0x00DF92 03:9F82: 15        .byte $15   ; 
 - D 0 - - - 0x00DF93 03:9F83: 07        .byte $07   ; 
 - D 0 - - - 0x00DF94 03:9F84: 08        .byte $08   ; 
-- - - - - - 0x00DF95 03:9F85: 16        .byte $16   ; 
+- D 0 - - - 0x00DF95 03:9F85: 16        .byte $16   ; 
 - D 0 - - - 0x00DF96 03:9F86: 0B        .byte $0B   ; 
 - D 0 - - - 0x00DF97 03:9F87: 00        .byte $00   ; 
 - D 0 - - - 0x00DF98 03:9F88: 01        .byte $01   ; 
@@ -5139,23 +5139,23 @@ tbl_9F53:
 - D 0 - - - 0x00DFA1 03:9F91: 0F        .byte $0F   ; 
 - D 0 - - - 0x00DFA2 03:9F92: 0E        .byte $0E   ; 
 - - - - - - 0x00DFA3 03:9F93: 23        .byte $23   ; 
-- - - - - - 0x00DFA4 03:9F94: 21        .byte $21   ; 
-- - - - - - 0x00DFA5 03:9F95: 15        .byte $15   ; 
+- D 0 - - - 0x00DFA4 03:9F94: 21        .byte $21   ; 
+- D 0 - - - 0x00DFA5 03:9F95: 15        .byte $15   ; 
 - - - - - - 0x00DFA6 03:9F96: 06        .byte $06   ; 
-- - - - - - 0x00DFA7 03:9F97: 15        .byte $15   ; 
-- - - - - - 0x00DFA8 03:9F98: 17        .byte $17   ; 
-- - - - - - 0x00DFA9 03:9F99: 11        .byte $11   ; 
-- - - - - - 0x00DFAA 03:9F9A: 03        .byte $03   ; 
+- D 0 - - - 0x00DFA7 03:9F97: 15        .byte $15   ; 
+- D 0 - - - 0x00DFA8 03:9F98: 17        .byte $17   ; 
+- D 0 - - - 0x00DFA9 03:9F99: 11        .byte $11   ; 
+- D 0 - - - 0x00DFAA 03:9F9A: 03        .byte $03   ; 
 - - - - - - 0x00DFAB 03:9F9B: 23        .byte $23   ; 
-- - - - - - 0x00DFAC 03:9F9C: 33        .byte $33   ; 
-- - - - - - 0x00DFAD 03:9F9D: 0E        .byte $0E   ; 
-- - - - - - 0x00DFAE 03:9F9E: 06        .byte $06   ; 
-- - - - - - 0x00DFAF 03:9F9F: 0F        .byte $0F   ; 
-- - - - - - 0x00DFB0 03:9FA0: 2A        .byte $2A   ; 
-- - - - - - 0x00DFB1 03:9FA1: 31        .byte $31   ; 
-- - - - - - 0x00DFB2 03:9FA2: 16        .byte $16   ; 
-- - - - - - 0x00DFB3 03:9FA3: 07        .byte $07   ; 
-- - - - - - 0x00DFB4 03:9FA4: 08        .byte $08   ; 
+- D 0 - - - 0x00DFAC 03:9F9C: 33        .byte $33   ; 
+- D 0 - - - 0x00DFAD 03:9F9D: 0E        .byte $0E   ; 
+- D 0 - - - 0x00DFAE 03:9F9E: 06        .byte $06   ; 
+- D 0 - - - 0x00DFAF 03:9F9F: 0F        .byte $0F   ; 
+- D 0 - - - 0x00DFB0 03:9FA0: 2A        .byte $2A   ; 
+- D 0 - - - 0x00DFB1 03:9FA1: 31        .byte $31   ; 
+- D 0 - - - 0x00DFB2 03:9FA2: 16        .byte $16   ; 
+- D 0 - - - 0x00DFB3 03:9FA3: 07        .byte $07   ; 
+- D 0 - - - 0x00DFB4 03:9FA4: 08        .byte $08   ; 
 - D 0 - - - 0x00DFB5 03:9FA5: 16        .byte $16   ; 
 - D 0 - - - 0x00DFB6 03:9FA6: 07        .byte $07   ; 
 - D 0 - - - 0x00DFB7 03:9FA7: 04        .byte $04   ; 
@@ -5167,13 +5167,13 @@ tbl_9F53:
 - D 0 - - - 0x00DFBD 03:9FAD: 17        .byte $17   ; 
 - D 0 - - - 0x00DFBE 03:9FAE: 12        .byte $12   ; 
 - D 0 - - - 0x00DFBF 03:9FAF: 11        .byte $11   ; 
-- - - - - - 0x00DFC0 03:9FB0: 10        .byte $10   ; 
+- D 0 - - - 0x00DFC0 03:9FB0: 10        .byte $10   ; 
 - D 0 - - - 0x00DFC1 03:9FB1: 0E        .byte $0E   ; 
 - D 0 - - - 0x00DFC2 03:9FB2: 11        .byte $11   ; 
-- - - - - - 0x00DFC3 03:9FB3: 08        .byte $08   ; 
-- - - - - - 0x00DFC4 03:9FB4: 0C        .byte $0C   ; 
+- D 0 - - - 0x00DFC3 03:9FB3: 08        .byte $08   ; 
+- D 0 - - - 0x00DFC4 03:9FB4: 0C        .byte $0C   ; 
 - - - - - - 0x00DFC5 03:9FB5: 2C        .byte $2C   ; 
-- - - - - - 0x00DFC6 03:9FB6: 07        .byte $07   ; 
+- D 0 - - - 0x00DFC6 03:9FB6: 07        .byte $07   ; 
 - D 0 - - - 0x00DFC7 03:9FB7: 07        .byte $07   ; 
 - D 0 - - - 0x00DFC8 03:9FB8: 05        .byte $05   ; 
 - D 0 - - - 0x00DFC9 03:9FB9: 06        .byte $06   ; 
@@ -5189,7 +5189,7 @@ tbl_9F53:
 - D 0 - - - 0x00DFD3 03:9FC3: 07        .byte $07   ; 
 - D 0 - - - 0x00DFD4 03:9FC4: 08        .byte $08   ; 
 - D 0 - - - 0x00DFD5 03:9FC5: 16        .byte $16   ; 
-- - - - - - 0x00DFD6 03:9FC6: 0B        .byte $0B   ; 
+- D 0 - - - 0x00DFD6 03:9FC6: 0B        .byte $0B   ; 
 - D 0 - - - 0x00DFD7 03:9FC7: 04        .byte $04   ; 
 - D 0 - - - 0x00DFD8 03:9FC8: 05        .byte $05   ; 
 - D 0 - - - 0x00DFD9 03:9FC9: 17        .byte $17   ; 
@@ -5242,28 +5242,28 @@ tbl_9FD3:
 
 
 tbl_9FF3:
-- - - - - - 0x00E003 03:9FF3: 0E        .byte $0E   ; 
+- D 0 - - - 0x00E003 03:9FF3: 0E        .byte $0E   ; 
 - D 0 - - - 0x00E004 03:9FF4: 01        .byte $01   ; 
 - D 0 - - - 0x00E005 03:9FF5: 02        .byte $02   ; 
-- - - - - - 0x00E006 03:9FF6: 04        .byte $04   ; 
-- - - - - - 0x00E007 03:9FF7: 00        .byte $00   ; 
+- D 0 - - - 0x00E006 03:9FF6: 04        .byte $04   ; 
+- D 0 - - - 0x00E007 03:9FF7: 00        .byte $00   ; 
 - D 0 - - - 0x00E008 03:9FF8: 00        .byte $00   ; 
 - D 0 - - - 0x00E009 03:9FF9: 00        .byte $00   ; 
-- - - - - - 0x00E00A 03:9FFA: 00        .byte $00   ; 
+- D 0 - - - 0x00E00A 03:9FFA: 00        .byte $00   ; 
 - D 0 - - - 0x00E00B 03:9FFB: 09        .byte $09   ; 
 - D 0 - - - 0x00E00C 03:9FFC: 04        .byte $04   ; 
 - D 0 - - - 0x00E00D 03:9FFD: 02        .byte $02   ; 
-- - - - - - 0x00E00E 03:9FFE: 01        .byte $01   ; 
+- D 0 - - - 0x00E00E 03:9FFE: 01        .byte $01   ; 
 - D 0 - - - 0x00E00F 03:9FFF: 01        .byte $01   ; 
 - D 1 - - - 0x00E010 03:A000: 01        .byte $01   ; 
 - D 1 - - - 0x00E011 03:A001: 00        .byte $00   ; 
-- - - - - - 0x00E012 03:A002: 01        .byte $01   ; 
+- D 1 - - - 0x00E012 03:A002: 01        .byte $01   ; 
 
 
 
 tbl_A003:
-- - - - - - 0x00E013 03:A003: 0B        .byte $0B   ; 
-- - - - - - 0x00E014 03:A004: 07        .byte $07   ; 
+- D 1 - - - 0x00E013 03:A003: 0B        .byte $0B   ; 
+- D 1 - - - 0x00E014 03:A004: 07        .byte $07   ; 
 - D 1 - - - 0x00E015 03:A005: 09        .byte $09   ; 
 - D 1 - - - 0x00E016 03:A006: 0A        .byte $0A   ; 
 
@@ -5280,7 +5280,7 @@ tbl_A007:
 - - - - - - 0x00E01E 03:A00E: FF        .byte $FF   ; 
 - D 1 - - - 0x00E01F 03:A00F: 00        .byte $00   ; 
 - D 1 - - - 0x00E020 03:A010: 20        .byte $20   ; 
-- - - - - - 0x00E021 03:A011: E0        .byte $E0   ; 
+- D 1 - - - 0x00E021 03:A011: E0        .byte $E0   ; 
 - - - - - - 0x00E022 03:A012: FF        .byte $FF   ; 
 - - - - - - 0x00E023 03:A013: FF        .byte $FF   ; 
 - - - - - - 0x00E024 03:A014: FF        .byte $FF   ; 
@@ -5457,8 +5457,8 @@ C - - - - - 0x00E11A 03:A10A: AC D6 04  LDY ram_игрок_с_мячом
 C - - - - - 0x00E11D 03:A10D: B9 86 04  LDA ram_игрок_состояние,Y
 C - - - - - 0x00E120 03:A110: 29 01     AND #$01
 C - - - - - 0x00E122 03:A112: F0 06     BEQ bra_A11A
-- - - - - - 0x00E124 03:A114: B9 CA 04  LDA ram_04CA,Y
-- - - - - - 0x00E127 03:A117: 8D D6 04  STA ram_игрок_с_мячом
+C - - - - - 0x00E124 03:A114: B9 CA 04  LDA ram_04CA,Y
+C - - - - - 0x00E127 03:A117: 8D D6 04  STA ram_игрок_с_мячом
 bra_A11A:
 C - - - - - 0x00E12A 03:A11A: AD D6 04  LDA ram_игрок_с_мячом
 C - - - - - 0x00E12D 03:A11D: A8        TAY
@@ -5549,8 +5549,8 @@ C - - - - - 0x00E1CD 03:A1BD: 85 2C     STA ram_002C
 C - - - - - 0x00E1CF 03:A1BF: B9 60 03  LDA ram_игрок_Y_hi,Y
 C - - - - - 0x00E1D2 03:A1C2: E9 00     SBC #$00
 C - - - - - 0x00E1D4 03:A1C4: 10 04     BPL bra_A1CA
-- - - - - - 0x00E1D6 03:A1C6: A9 00     LDA #$00
-- - - - - - 0x00E1D8 03:A1C8: 85 2C     STA ram_002C
+C - - - - - 0x00E1D6 03:A1C6: A9 00     LDA #$00
+C - - - - - 0x00E1D8 03:A1C8: 85 2C     STA ram_002C
 bra_A1CA:
 C - - - - - 0x00E1DA 03:A1CA: 85 2D     STA ram_002D
 C - - - - - 0x00E1DC 03:A1CC: A9 00     LDA #$00
@@ -5987,7 +5987,7 @@ C - - - - - 0x00E4C0 03:A4B0: 29 30     AND #$30
 C - - - - - 0x00E4C2 03:A4B2: F0 07     BEQ bra_A4BB
 C - - - - - 0x00E4C4 03:A4B4: C9 10     CMP #$10
 C - - - - - 0x00E4C6 03:A4B6: F0 19     BEQ bra_A4D1
-- - - - - - 0x00E4C8 03:A4B8: 4C DE A4  JMP loc_A4DE
+C - - - - - 0x00E4C8 03:A4B8: 4C DE A4  JMP loc_A4DE
 bra_A4BB:
 C - - - - - 0x00E4CB 03:A4BB: A4 2C     LDY ram_002C
 C - - - - - 0x00E4CD 03:A4BD: 20 05 C0  JSR sub_0x01C015
@@ -6008,7 +6008,7 @@ C - - - - - 0x00E4E8 03:A4D8: F0 E1     BEQ bra_A4BB
 C - - - - - 0x00E4EA 03:A4DA: C9 C0     CMP #$C0
 C - - - - - 0x00E4EC 03:A4DC: F0 DD     BEQ bra_A4BB
 loc_A4DE:
-C - - - - - 0x00E4EE 03:A4DE: BD D3 05  LDA ram_05D3,X
+C D 1 - - - 0x00E4EE 03:A4DE: BD D3 05  LDA ram_05D3,X
 C - - - - - 0x00E4F1 03:A4E1: 29 30     AND #$30
 C - - - - - 0x00E4F3 03:A4E3: C9 20     CMP #$20
 C - - - - - 0x00E4F5 03:A4E5: F0 0E     BEQ bra_A4F5
@@ -6036,7 +6036,7 @@ C - - - - - 0x00E51F 03:A50F: AD D3 05  LDA ram_05D3
 C - - - - - 0x00E522 03:A512: 29 30     AND #$30
 C - - - - - 0x00E524 03:A514: C9 10     CMP #$10
 C - - - - - 0x00E526 03:A516: F0 D8     BEQ bra_A4F0
-- - - - - - 0x00E528 03:A518: A9 07     LDA #$07
+C - - - - - 0x00E528 03:A518: A9 07     LDA #$07
 loc_A51A:
 C D 1 - - - 0x00E52A 03:A51A: A4 2C     LDY ram_002C
 C - - - - - 0x00E52C 03:A51C: 99 5C 06  STA ram_интеллект_бота,Y
@@ -6946,7 +6946,7 @@ tbl_AB4B:
 - D 1 - - - 0x00EB5E 03:AB4E: 0F        .byte $0F   ; 
 - D 1 - - - 0x00EB5F 03:AB4F: 14        .byte $14   ; 
 - D 1 - - - 0x00EB60 03:AB50: 19        .byte $19   ; 
-- - - - - - 0x00EB61 03:AB51: 1E        .byte $1E   ; 
+- D 1 - - - 0x00EB61 03:AB51: 1E        .byte $1E   ; 
 - D 1 - - - 0x00EB62 03:AB52: 23        .byte $23   ; 
 - D 1 - - - 0x00EB63 03:AB53: 28        .byte $28   ; 
 - D 1 - - - 0x00EB64 03:AB54: 2D        .byte $2D   ; 
@@ -7006,7 +7006,7 @@ tbl_AB66:
 - D 1 - - - 0x00EB7A 03:AB6A: 6C        .byte $6C   ; 
 - D 1 - - - 0x00EB7B 03:AB6B: 6D        .byte $6D   ; 
 - D 1 - - - 0x00EB7C 03:AB6C: 6E        .byte $6E   ; 
-- - - - - - 0x00EB7D 03:AB6D: 6F        .byte $6F   ; 
+- D 1 - - - 0x00EB7D 03:AB6D: 6F        .byte $6F   ; 
 - D 1 - - - 0x00EB7E 03:AB6E: 0F        .byte $0F   ; 
 
 
@@ -7063,7 +7063,7 @@ tbl_AB88:
 - D 1 - - - 0x00EBAA 03:AB9A: 37 AC     .word off_AC37_09
 - D 1 - - - 0x00EBAC 03:AB9C: 3C AC     .word off_AC3C_0A
 - D 1 - - - 0x00EBAE 03:AB9E: 41 AC     .word off_AC41_0B
-- - - - - - 0x00EBB0 03:ABA0: 46 AC     .word off_AC46_0C
+- D 1 - - - 0x00EBB0 03:ABA0: 46 AC     .word off_AC46_0C
 - D 1 - - - 0x00EBB2 03:ABA2: 4B AC     .word off_AC4B_0D
 - D 1 - - - 0x00EBB4 03:ABA4: 50 AC     .word off_AC50_0E
 - D 1 - - - 0x00EBB6 03:ABA6: 55 AC     .word off_AC55_0F
@@ -7228,11 +7228,11 @@ off_AC41_0B:
 
 
 off_AC46_0C:
-- - - - - - 0x00EC56 03:AC46: C0        .byte $C0   ; 
-- - - - - - 0x00EC57 03:AC47: A7        .byte $A7   ; 
-- - - - - - 0x00EC58 03:AC48: AF        .byte $AF   ; 
-- - - - - - 0x00EC59 03:AC49: CC        .byte $CC   ; 
-- - - - - - 0x00EC5A 03:AC4A: FF        .byte $FF   ; 
+- D 1 - I - 0x00EC56 03:AC46: C0        .byte $C0   ; 
+- D 1 - I - 0x00EC57 03:AC47: A7        .byte $A7   ; 
+- D 1 - I - 0x00EC58 03:AC48: AF        .byte $AF   ; 
+- D 1 - I - 0x00EC59 03:AC49: CC        .byte $CC   ; 
+- D 1 - I - 0x00EC5A 03:AC4A: FF        .byte $FF   ; 
 
 
 
@@ -7707,15 +7707,15 @@ off_AD4A_40:
 tbl_AD4F:
 - D 1 - - - 0x00ED5F 03:AD4F: 6F AD     .word off_AD6F_00
 - D 1 - - - 0x00ED61 03:AD51: 87 AD     .word off_AD87_01
-- - - - - - 0x00ED63 03:AD53: 9F AD     .word off_AD9F_02
+- D 1 - - - 0x00ED63 03:AD53: 9F AD     .word off_AD9F_02
 - D 1 - - - 0x00ED65 03:AD55: 93 AD     .word off_AD93_03
 - - - - - - 0x00ED67 03:AD57: 6F AD     .word off_AD6F_04
 - D 1 - - - 0x00ED69 03:AD59: AB AD     .word off_ADAB_05
-- - - - - - 0x00ED6B 03:AD5B: B7 AD     .word off_ADB7_06
+- D 1 - - - 0x00ED6B 03:AD5B: B7 AD     .word off_ADB7_06
 - D 1 - - - 0x00ED6D 03:AD5D: C3 AD     .word off_ADC3_07
 - - - - - - 0x00ED6F 03:AD5F: 6F AD     .word off_AD6F_08
 - D 1 - - - 0x00ED71 03:AD61: CF AD     .word off_ADCF_09
-- - - - - - 0x00ED73 03:AD63: DB AD     .word off_ADDB_0A
+- D 1 - - - 0x00ED73 03:AD63: DB AD     .word off_ADDB_0A
 - D 1 - - - 0x00ED75 03:AD65: E7 AD     .word off_ADE7_0B
 - - - - - - 0x00ED77 03:AD67: 6F AD     .word off_AD6F_0C
 - D 1 - - - 0x00ED79 03:AD69: F3 AD     .word off_ADF3_0D
@@ -7740,8 +7740,8 @@ off_AD6F_0C:
 - D 1 - I - 0x00ED88 03:AD78: 92        .byte $92   ; 
 - D 1 - I - 0x00ED89 03:AD79: 02        .byte $02   ; 
 - D 1 - I - 0x00ED8A 03:AD7A: 90        .byte $90   ; 
-- - - - - - 0x00ED8B 03:AD7B: 12        .byte $12   ; 
-- - - - - - 0x00ED8C 03:AD7C: 93        .byte $93   ; 
+- D 1 - I - 0x00ED8B 03:AD7B: 12        .byte $12   ; 
+- D 1 - I - 0x00ED8C 03:AD7C: 93        .byte $93   ; 
 - D 1 - I - 0x00ED8D 03:AD7D: 14        .byte $14   ; 
 - D 1 - I - 0x00ED8E 03:AD7E: 94        .byte $94   ; 
 - D 1 - I - 0x00ED8F 03:AD7F: 06        .byte $06   ; 
@@ -7766,8 +7766,8 @@ off_AD87_01:
 - D 1 - I - 0x00ED9E 03:AD8E: 93        .byte $93   ; 
 - D 1 - I - 0x00ED9F 03:AD8F: 28        .byte $28   ; 
 - D 1 - I - 0x00EDA0 03:AD90: 94        .byte $94   ; 
-- - - - - - 0x00EDA1 03:AD91: 2A        .byte $2A   ; 
-- - - - - - 0x00EDA2 03:AD92: 95        .byte $95   ; 
+- D 1 - I - 0x00EDA1 03:AD91: 2A        .byte $2A   ; 
+- D 1 - I - 0x00EDA2 03:AD92: 95        .byte $95   ; 
 
 
 
@@ -7788,18 +7788,18 @@ off_AD93_03:
 
 
 off_AD9F_02:
-- - - - - - 0x00EDAF 03:AD9F: 70        .byte $70   ; 
-- - - - - - 0x00EDB0 03:ADA0: 90        .byte $90   ; 
-- - - - - - 0x00EDB1 03:ADA1: 72        .byte $72   ; 
-- - - - - - 0x00EDB2 03:ADA2: 91        .byte $91   ; 
-- - - - - - 0x00EDB3 03:ADA3: 74        .byte $74   ; 
-- - - - - - 0x00EDB4 03:ADA4: 92        .byte $92   ; 
-- - - - - - 0x00EDB5 03:ADA5: 76        .byte $76   ; 
-- - - - - - 0x00EDB6 03:ADA6: 93        .byte $93   ; 
-- - - - - - 0x00EDB7 03:ADA7: 78        .byte $78   ; 
-- - - - - - 0x00EDB8 03:ADA8: 94        .byte $94   ; 
-- - - - - - 0x00EDB9 03:ADA9: 7A        .byte $7A   ; 
-- - - - - - 0x00EDBA 03:ADAA: 95        .byte $95   ; 
+- D 1 - I - 0x00EDAF 03:AD9F: 70        .byte $70   ; 
+- D 1 - I - 0x00EDB0 03:ADA0: 90        .byte $90   ; 
+- D 1 - I - 0x00EDB1 03:ADA1: 72        .byte $72   ; 
+- D 1 - I - 0x00EDB2 03:ADA2: 91        .byte $91   ; 
+- D 1 - I - 0x00EDB3 03:ADA3: 74        .byte $74   ; 
+- D 1 - I - 0x00EDB4 03:ADA4: 92        .byte $92   ; 
+- D 1 - I - 0x00EDB5 03:ADA5: 76        .byte $76   ; 
+- D 1 - I - 0x00EDB6 03:ADA6: 93        .byte $93   ; 
+- D 1 - I - 0x00EDB7 03:ADA7: 78        .byte $78   ; 
+- D 1 - I - 0x00EDB8 03:ADA8: 94        .byte $94   ; 
+- D 1 - I - 0x00EDB9 03:ADA9: 7A        .byte $7A   ; 
+- D 1 - I - 0x00EDBA 03:ADAA: 95        .byte $95   ; 
 
 
 
@@ -7820,16 +7820,16 @@ off_ADAB_05:
 
 
 off_ADB7_06:
-- - - - - - 0x00EDC7 03:ADB7: 50        .byte $50   ; 
-- - - - - - 0x00EDC8 03:ADB8: 90        .byte $90   ; 
-- - - - - - 0x00EDC9 03:ADB9: 52        .byte $52   ; 
-- - - - - - 0x00EDCA 03:ADBA: 91        .byte $91   ; 
-- - - - - - 0x00EDCB 03:ADBB: 54        .byte $54   ; 
-- - - - - - 0x00EDCC 03:ADBC: 92        .byte $92   ; 
-- - - - - - 0x00EDCD 03:ADBD: 56        .byte $56   ; 
-- - - - - - 0x00EDCE 03:ADBE: 93        .byte $93   ; 
-- - - - - - 0x00EDCF 03:ADBF: 58        .byte $58   ; 
-- - - - - - 0x00EDD0 03:ADC0: 94        .byte $94   ; 
+- D 1 - I - 0x00EDC7 03:ADB7: 50        .byte $50   ; 
+- D 1 - I - 0x00EDC8 03:ADB8: 90        .byte $90   ; 
+- D 1 - I - 0x00EDC9 03:ADB9: 52        .byte $52   ; 
+- D 1 - I - 0x00EDCA 03:ADBA: 91        .byte $91   ; 
+- D 1 - I - 0x00EDCB 03:ADBB: 54        .byte $54   ; 
+- D 1 - I - 0x00EDCC 03:ADBC: 92        .byte $92   ; 
+- D 1 - I - 0x00EDCD 03:ADBD: 56        .byte $56   ; 
+- D 1 - I - 0x00EDCE 03:ADBE: 93        .byte $93   ; 
+- D 1 - I - 0x00EDCF 03:ADBF: 58        .byte $58   ; 
+- D 1 - I - 0x00EDD0 03:ADC0: 94        .byte $94   ; 
 - - - - - - 0x00EDD1 03:ADC1: 5A        .byte $5A   ; 
 - - - - - - 0x00EDD2 03:ADC2: 95        .byte $95   ; 
 
@@ -7868,16 +7868,16 @@ off_ADCF_09:
 
 
 off_ADDB_0A:
-- - - - - - 0x00EDEB 03:ADDB: 70        .byte $70   ; 
-- - - - - - 0x00EDEC 03:ADDC: 90        .byte $90   ; 
-- - - - - - 0x00EDED 03:ADDD: 72        .byte $72   ; 
-- - - - - - 0x00EDEE 03:ADDE: 91        .byte $91   ; 
-- - - - - - 0x00EDEF 03:ADDF: 74        .byte $74   ; 
-- - - - - - 0x00EDF0 03:ADE0: 92        .byte $92   ; 
-- - - - - - 0x00EDF1 03:ADE1: 76        .byte $76   ; 
-- - - - - - 0x00EDF2 03:ADE2: 93        .byte $93   ; 
-- - - - - - 0x00EDF3 03:ADE3: 78        .byte $78   ; 
-- - - - - - 0x00EDF4 03:ADE4: 94        .byte $94   ; 
+- D 1 - I - 0x00EDEB 03:ADDB: 70        .byte $70   ; 
+- D 1 - I - 0x00EDEC 03:ADDC: 90        .byte $90   ; 
+- D 1 - I - 0x00EDED 03:ADDD: 72        .byte $72   ; 
+- D 1 - I - 0x00EDEE 03:ADDE: 91        .byte $91   ; 
+- D 1 - I - 0x00EDEF 03:ADDF: 74        .byte $74   ; 
+- D 1 - I - 0x00EDF0 03:ADE0: 92        .byte $92   ; 
+- D 1 - I - 0x00EDF1 03:ADE1: 76        .byte $76   ; 
+- D 1 - I - 0x00EDF2 03:ADE2: 93        .byte $93   ; 
+- D 1 - I - 0x00EDF3 03:ADE3: 78        .byte $78   ; 
+- D 1 - I - 0x00EDF4 03:ADE4: 94        .byte $94   ; 
 - - - - - - 0x00EDF5 03:ADE5: 7A        .byte $7A   ; 
 - - - - - - 0x00EDF6 03:ADE6: 95        .byte $95   ; 
 
@@ -7910,8 +7910,8 @@ off_ADF3_0D:
 - D 1 - I - 0x00EE0A 03:ADFA: 93        .byte $93   ; 
 - D 1 - I - 0x00EE0B 03:ADFB: 38        .byte $38   ; 
 - D 1 - I - 0x00EE0C 03:ADFC: 94        .byte $94   ; 
-- - - - - - 0x00EE0D 03:ADFD: 3A        .byte $3A   ; 
-- - - - - - 0x00EE0E 03:ADFE: 95        .byte $95   ; 
+- D 1 - I - 0x00EE0D 03:ADFD: 3A        .byte $3A   ; 
+- D 1 - I - 0x00EE0E 03:ADFE: 95        .byte $95   ; 
 
 
 
@@ -8622,7 +8622,7 @@ off_B1FE_01:
 - D 1 - I - 0x00F236 03:B226: 4A B3     .word off_B34A_14
 - D 1 - I - 0x00F238 03:B228: 5A B3     .word off_B35A_15
 - D 1 - I - 0x00F23A 03:B22A: 6A B3     .word off_B36A_16
-- - - - - - 0x00F23C 03:B22C: 7A B3     .word off_B37A_17
+- D 1 - I - 0x00F23C 03:B22C: 7A B3     .word off_B37A_17
 - D 1 - I - 0x00F23E 03:B22E: 8A B3     .word off_B38A_18
 - D 1 - I - 0x00F240 03:B230: 9A B3     .word off_B39A_19
 - D 1 - I - 0x00F242 03:B232: AA B3     .word off_B3AA_1A
@@ -8754,10 +8754,10 @@ off_B2AA_0A:
 - D 1 - I - 0x00F2C3 03:B2B3: 09        .byte $09   ; 
 - D 1 - I - 0x00F2C4 03:B2B4: 00        .byte $00   ; 
 - D 1 - I - 0x00F2C5 03:B2B5: DC        .byte $DC   ; 
-- - - - - - 0x00F2C6 03:B2B6: 02        .byte $02   ; 
-- - - - - - 0x00F2C7 03:B2B7: D3        .byte $D3   ; 
-- - - - - - 0x00F2C8 03:B2B8: 00        .byte $00   ; 
-- - - - - - 0x00F2C9 03:B2B9: 5B        .byte $5B   ; 
+- D 1 - I - 0x00F2C6 03:B2B6: 02        .byte $02   ; 
+- D 1 - I - 0x00F2C7 03:B2B7: D3        .byte $D3   ; 
+- D 1 - I - 0x00F2C8 03:B2B8: 00        .byte $00   ; 
+- D 1 - I - 0x00F2C9 03:B2B9: 5B        .byte $5B   ; 
 
 
 
@@ -9007,14 +9007,14 @@ off_B37A_17:
 - - - - - - 0x00F38B 03:B37B: D8        .byte $D8   ; 
 - - - - - - 0x00F38C 03:B37C: 00        .byte $00   ; 
 - - - - - - 0x00F38D 03:B37D: 96        .byte $96   ; 
-- - - - - - 0x00F38E 03:B37E: 03        .byte $03   ; 
-- - - - - - 0x00F38F 03:B37F: 5C        .byte $5C   ; 
-- - - - - - 0x00F390 03:B380: 00        .byte $00   ; 
-- - - - - - 0x00F391 03:B381: 6C        .byte $6C   ; 
-- - - - - - 0x00F392 03:B382: 03        .byte $03   ; 
-- - - - - - 0x00F393 03:B383: 3A        .byte $3A   ; 
-- - - - - - 0x00F394 03:B384: 00        .byte $00   ; 
-- - - - - - 0x00F395 03:B385: F1        .byte $F1   ; 
+- D 1 - I - 0x00F38E 03:B37E: 03        .byte $03   ; 
+- D 1 - I - 0x00F38F 03:B37F: 5C        .byte $5C   ; 
+- D 1 - I - 0x00F390 03:B380: 00        .byte $00   ; 
+- D 1 - I - 0x00F391 03:B381: 6C        .byte $6C   ; 
+- D 1 - I - 0x00F392 03:B382: 03        .byte $03   ; 
+- D 1 - I - 0x00F393 03:B383: 3A        .byte $3A   ; 
+- D 1 - I - 0x00F394 03:B384: 00        .byte $00   ; 
+- D 1 - I - 0x00F395 03:B385: F1        .byte $F1   ; 
 - - - - - - 0x00F396 03:B386: 03        .byte $03   ; 
 - - - - - - 0x00F397 03:B387: 0A        .byte $0A   ; 
 - - - - - - 0x00F398 03:B388: 00        .byte $00   ; 
@@ -9251,10 +9251,10 @@ off_B43A_23:
 - D 1 - I - 0x00F44F 03:B43F: 3F        .byte $3F   ; 
 - D 1 - I - 0x00F450 03:B440: 00        .byte $00   ; 
 - D 1 - I - 0x00F451 03:B441: AD        .byte $AD   ; 
-- - - - - - 0x00F452 03:B442: 03        .byte $03   ; 
-- - - - - - 0x00F453 03:B443: 6D        .byte $6D   ; 
-- - - - - - 0x00F454 03:B444: 01        .byte $01   ; 
-- - - - - - 0x00F455 03:B445: 52        .byte $52   ; 
+- D 1 - I - 0x00F452 03:B442: 03        .byte $03   ; 
+- D 1 - I - 0x00F453 03:B443: 6D        .byte $6D   ; 
+- D 1 - I - 0x00F454 03:B444: 01        .byte $01   ; 
+- D 1 - I - 0x00F455 03:B445: 52        .byte $52   ; 
 - - - - - - 0x00F456 03:B446: 02        .byte $02   ; 
 - - - - - - 0x00F457 03:B447: DC        .byte $DC   ; 
 - - - - - - 0x00F458 03:B448: 00        .byte $00   ; 
@@ -9355,10 +9355,10 @@ off_B48A_28:
 - D 1 - I - 0x00F4A3 03:B493: 6C        .byte $6C   ; 
 - D 1 - I - 0x00F4A4 03:B494: 01        .byte $01   ; 
 - D 1 - I - 0x00F4A5 03:B495: 43        .byte $43   ; 
-- - - - - - 0x00F4A6 03:B496: 02        .byte $02   ; 
-- - - - - - 0x00F4A7 03:B497: FF        .byte $FF   ; 
-- - - - - - 0x00F4A8 03:B498: 00        .byte $00   ; 
-- - - - - - 0x00F4A9 03:B499: CD        .byte $CD   ; 
+- D 1 - I - 0x00F4A6 03:B496: 02        .byte $02   ; 
+- D 1 - I - 0x00F4A7 03:B497: FF        .byte $FF   ; 
+- D 1 - I - 0x00F4A8 03:B498: 00        .byte $00   ; 
+- D 1 - I - 0x00F4A9 03:B499: CD        .byte $CD   ; 
 
 
 
@@ -9459,10 +9459,10 @@ off_B4DA_33:
 - D 1 - I - 0x00F4F3 03:B4E3: 65        .byte $65   ; 
 - D 1 - I - 0x00F4F4 03:B4E4: 01        .byte $01   ; 
 - D 1 - I - 0x00F4F5 03:B4E5: 43        .byte $43   ; 
-- - - - - - 0x00F4F6 03:B4E6: 02        .byte $02   ; 
-- - - - - - 0x00F4F7 03:B4E7: CD        .byte $CD   ; 
-- - - - - - 0x00F4F8 03:B4E8: 00        .byte $00   ; 
-- - - - - - 0x00F4F9 03:B4E9: EB        .byte $EB   ; 
+- D 1 - I - 0x00F4F6 03:B4E6: 02        .byte $02   ; 
+- D 1 - I - 0x00F4F7 03:B4E7: CD        .byte $CD   ; 
+- D 1 - I - 0x00F4F8 03:B4E8: 00        .byte $00   ; 
+- D 1 - I - 0x00F4F9 03:B4E9: EB        .byte $EB   ; 
 
 
 
@@ -9512,60 +9512,60 @@ off_B4FA_35:
 
 
 off_B50A_02:
-- - - - - - 0x00F51A 03:B50A: 76 B5     .word off_B576_00
-- - - - - - 0x00F51C 03:B50C: 82 B5     .word off_B582_01
+- D 1 - I - 0x00F51A 03:B50A: 76 B5     .word off_B576_00
+- D 1 - I - 0x00F51C 03:B50C: 82 B5     .word off_B582_01
 - - - - - - 0x00F51E 03:B50E: 8E B5     .word off_B58E_02
-- - - - - - 0x00F520 03:B510: 9A B5     .word off_B59A_03
+- D 1 - I - 0x00F520 03:B510: 9A B5     .word off_B59A_03
 - - - - - - 0x00F522 03:B512: A6 B5     .word off_B5A6_04
 - - - - - - 0x00F524 03:B514: B2 B5     .word off_B5B2_05
 - D 1 - I - 0x00F526 03:B516: 76 B5     .word off_B576_06
 - D 1 - I - 0x00F528 03:B518: 82 B5     .word off_B582_07
-- - - - - - 0x00F52A 03:B51A: 8E B5     .word off_B58E_08
-- - - - - - 0x00F52C 03:B51C: 9A B5     .word off_B59A_09
+- D 1 - I - 0x00F52A 03:B51A: 8E B5     .word off_B58E_08
+- D 1 - I - 0x00F52C 03:B51C: 9A B5     .word off_B59A_09
 - - - - - - 0x00F52E 03:B51E: A6 B5     .word off_B5A6_0A
 - - - - - - 0x00F530 03:B520: B2 B5     .word off_B5B2_0B
 - D 1 - I - 0x00F532 03:B522: BE B5     .word off_B5BE_0C
 - D 1 - I - 0x00F534 03:B524: CA B5     .word off_B5CA_0D
 - D 1 - I - 0x00F536 03:B526: D6 B5     .word off_B5D6_0E
-- - - - - - 0x00F538 03:B528: E2 B5     .word off_B5E2_0F
-- - - - - - 0x00F53A 03:B52A: EE B5     .word off_B5EE_10
+- D 1 - I - 0x00F538 03:B528: E2 B5     .word off_B5E2_0F
+- D 1 - I - 0x00F53A 03:B52A: EE B5     .word off_B5EE_10
 - - - - - - 0x00F53C 03:B52C: FA B5     .word off_B5FA_11
 - D 1 - I - 0x00F53E 03:B52E: 06 B6     .word off_B606_12
 - D 1 - I - 0x00F540 03:B530: 12 B6     .word off_B612_13
 - D 1 - I - 0x00F542 03:B532: 1E B6     .word off_B61E_14
-- - - - - - 0x00F544 03:B534: 2A B6     .word off_B62A_15
-- - - - - - 0x00F546 03:B536: 36 B6     .word off_B636_16
+- D 1 - I - 0x00F544 03:B534: 2A B6     .word off_B62A_15
+- D 1 - I - 0x00F546 03:B536: 36 B6     .word off_B636_16
 - - - - - - 0x00F548 03:B538: 42 B6     .word off_B642_17
 - D 1 - I - 0x00F54A 03:B53A: 4E B6     .word off_B64E_18
 - D 1 - I - 0x00F54C 03:B53C: 5A B6     .word off_B65A_19
 - D 1 - I - 0x00F54E 03:B53E: 66 B6     .word off_B666_1A
-- - - - - - 0x00F550 03:B540: 72 B6     .word off_B672_1B
+- D 1 - I - 0x00F550 03:B540: 72 B6     .word off_B672_1B
 - D 1 - I - 0x00F552 03:B542: 7E B6     .word off_B67E_1C
-- - - - - - 0x00F554 03:B544: 8A B6     .word off_B68A_1D
+- D 1 - I - 0x00F554 03:B544: 8A B6     .word off_B68A_1D
 - D 1 - I - 0x00F556 03:B546: 96 B6     .word off_B696_1E
 - D 1 - I - 0x00F558 03:B548: A2 B6     .word off_B6A2_1F
 - D 1 - I - 0x00F55A 03:B54A: AE B6     .word off_B6AE_20
 - D 1 - I - 0x00F55C 03:B54C: BA B6     .word off_B6BA_21
-- - - - - - 0x00F55E 03:B54E: C6 B6     .word off_B6C6_22
+- D 1 - I - 0x00F55E 03:B54E: C6 B6     .word off_B6C6_22
 - - - - - - 0x00F560 03:B550: D2 B6     .word off_B6D2_23
 - D 1 - I - 0x00F562 03:B552: DE B6     .word off_B6DE_24
 - D 1 - I - 0x00F564 03:B554: EA B6     .word off_B6EA_25
 - D 1 - I - 0x00F566 03:B556: F6 B6     .word off_B6F6_26
-- - - - - - 0x00F568 03:B558: 02 B7     .word off_B702_27
+- D 1 - I - 0x00F568 03:B558: 02 B7     .word off_B702_27
 - D 1 - I - 0x00F56A 03:B55A: 0E B7     .word off_B70E_28
-- - - - - - 0x00F56C 03:B55C: 1A B7     .word off_B71A_29
+- D 1 - I - 0x00F56C 03:B55C: 1A B7     .word off_B71A_29
 - D 1 - I - 0x00F56E 03:B55E: 26 B7     .word off_B726_2A
 - D 1 - I - 0x00F570 03:B560: 32 B7     .word off_B732_2B
 - D 1 - I - 0x00F572 03:B562: 3E B7     .word off_B73E_2C
-- - - - - - 0x00F574 03:B564: 4A B7     .word off_B74A_2D
-- - - - - - 0x00F576 03:B566: 56 B7     .word off_B756_2E
-- - - - - - 0x00F578 03:B568: 62 B7     .word off_B762_2F
+- D 1 - I - 0x00F574 03:B564: 4A B7     .word off_B74A_2D
+- D 1 - I - 0x00F576 03:B566: 56 B7     .word off_B756_2E
+- D 1 - I - 0x00F578 03:B568: 62 B7     .word off_B762_2F
 - - - - - - 0x00F57A 03:B56A: 26 B7     .word off_B726_30
 - - - - - - 0x00F57C 03:B56C: 32 B7     .word off_B732_31
 - D 1 - I - 0x00F57E 03:B56E: 3E B7     .word off_B73E_32
 - D 1 - I - 0x00F580 03:B570: 4A B7     .word off_B74A_33
 - - - - - - 0x00F582 03:B572: 56 B7     .word off_B756_34
-- - - - - - 0x00F584 03:B574: 62 B7     .word off_B762_35
+- D 1 - I - 0x00F584 03:B574: 62 B7     .word off_B762_35
 
 
 
@@ -9588,52 +9588,52 @@ off_B576_06:
 
 off_B582_01:
 off_B582_07:
-- - - - - - 0x00F592 03:B582: 02        .byte $02   ; 
-- - - - - - 0x00F593 03:B583: 08        .byte $08   ; 
-- - - - - - 0x00F594 03:B584: 00        .byte $00   ; 
-- - - - - - 0x00F595 03:B585: C2        .byte $C2   ; 
+- D 1 - I - 0x00F592 03:B582: 02        .byte $02   ; 
+- D 1 - I - 0x00F593 03:B583: 08        .byte $08   ; 
+- D 1 - I - 0x00F594 03:B584: 00        .byte $00   ; 
+- D 1 - I - 0x00F595 03:B585: C2        .byte $C2   ; 
 - D 1 - I - 0x00F596 03:B586: 02        .byte $02   ; 
 - D 1 - I - 0x00F597 03:B587: 4F        .byte $4F   ; 
 - D 1 - I - 0x00F598 03:B588: 00        .byte $00   ; 
 - D 1 - I - 0x00F599 03:B589: 85        .byte $85   ; 
-- - - - - - 0x00F59A 03:B58A: 01        .byte $01   ; 
-- - - - - - 0x00F59B 03:B58B: F8        .byte $F8   ; 
-- - - - - - 0x00F59C 03:B58C: 00        .byte $00   ; 
-- - - - - - 0x00F59D 03:B58D: 76        .byte $76   ; 
+- D 1 - I - 0x00F59A 03:B58A: 01        .byte $01   ; 
+- D 1 - I - 0x00F59B 03:B58B: F8        .byte $F8   ; 
+- D 1 - I - 0x00F59C 03:B58C: 00        .byte $00   ; 
+- D 1 - I - 0x00F59D 03:B58D: 76        .byte $76   ; 
 
 
 
 off_B58E_02:
 off_B58E_08:
-- - - - - - 0x00F59E 03:B58E: 02        .byte $02   ; 
-- - - - - - 0x00F59F 03:B58F: 5E        .byte $5E   ; 
-- - - - - - 0x00F5A0 03:B590: 00        .byte $00   ; 
-- - - - - - 0x00F5A1 03:B591: C2        .byte $C2   ; 
-- - - - - - 0x00F5A2 03:B592: 02        .byte $02   ; 
-- - - - - - 0x00F5A3 03:B593: A3        .byte $A3   ; 
-- - - - - - 0x00F5A4 03:B594: 00        .byte $00   ; 
-- - - - - - 0x00F5A5 03:B595: 86        .byte $86   ; 
-- - - - - - 0x00F5A6 03:B596: 02        .byte $02   ; 
-- - - - - - 0x00F5A7 03:B597: 2F        .byte $2F   ; 
-- - - - - - 0x00F5A8 03:B598: 00        .byte $00   ; 
-- - - - - - 0x00F5A9 03:B599: 76        .byte $76   ; 
+- D 1 - I - 0x00F59E 03:B58E: 02        .byte $02   ; 
+- D 1 - I - 0x00F59F 03:B58F: 5E        .byte $5E   ; 
+- D 1 - I - 0x00F5A0 03:B590: 00        .byte $00   ; 
+- D 1 - I - 0x00F5A1 03:B591: C2        .byte $C2   ; 
+- D 1 - I - 0x00F5A2 03:B592: 02        .byte $02   ; 
+- D 1 - I - 0x00F5A3 03:B593: A3        .byte $A3   ; 
+- D 1 - I - 0x00F5A4 03:B594: 00        .byte $00   ; 
+- D 1 - I - 0x00F5A5 03:B595: 86        .byte $86   ; 
+- D 1 - I - 0x00F5A6 03:B596: 02        .byte $02   ; 
+- D 1 - I - 0x00F5A7 03:B597: 2F        .byte $2F   ; 
+- D 1 - I - 0x00F5A8 03:B598: 00        .byte $00   ; 
+- D 1 - I - 0x00F5A9 03:B599: 76        .byte $76   ; 
 
 
 
 off_B59A_03:
 off_B59A_09:
-- - - - - - 0x00F5AA 03:B59A: 02        .byte $02   ; 
-- - - - - - 0x00F5AB 03:B59B: B4        .byte $B4   ; 
-- - - - - - 0x00F5AC 03:B59C: 00        .byte $00   ; 
-- - - - - - 0x00F5AD 03:B59D: B6        .byte $B6   ; 
-- - - - - - 0x00F5AE 03:B59E: 03        .byte $03   ; 
-- - - - - - 0x00F5AF 03:B59F: 0C        .byte $0C   ; 
-- - - - - - 0x00F5B0 03:B5A0: 00        .byte $00   ; 
-- - - - - - 0x00F5B1 03:B5A1: A5        .byte $A5   ; 
-- - - - - - 0x00F5B2 03:B5A2: 02        .byte $02   ; 
-- - - - - - 0x00F5B3 03:B5A3: AF        .byte $AF   ; 
-- - - - - - 0x00F5B4 03:B5A4: 00        .byte $00   ; 
-- - - - - - 0x00F5B5 03:B5A5: 76        .byte $76   ; 
+- D 1 - I - 0x00F5AA 03:B59A: 02        .byte $02   ; 
+- D 1 - I - 0x00F5AB 03:B59B: B4        .byte $B4   ; 
+- D 1 - I - 0x00F5AC 03:B59C: 00        .byte $00   ; 
+- D 1 - I - 0x00F5AD 03:B59D: B6        .byte $B6   ; 
+- D 1 - I - 0x00F5AE 03:B59E: 03        .byte $03   ; 
+- D 1 - I - 0x00F5AF 03:B59F: 0C        .byte $0C   ; 
+- D 1 - I - 0x00F5B0 03:B5A0: 00        .byte $00   ; 
+- D 1 - I - 0x00F5B1 03:B5A1: A5        .byte $A5   ; 
+- D 1 - I - 0x00F5B2 03:B5A2: 02        .byte $02   ; 
+- D 1 - I - 0x00F5B3 03:B5A3: AF        .byte $AF   ; 
+- D 1 - I - 0x00F5B4 03:B5A4: 00        .byte $00   ; 
+- D 1 - I - 0x00F5B5 03:B5A5: 76        .byte $76   ; 
 
 
 
@@ -9704,10 +9704,10 @@ off_B5CA_0D:
 
 
 off_B5D6_0E:
-- - - - - - 0x00F5E6 03:B5D6: 02        .byte $02   ; 
-- - - - - - 0x00F5E7 03:B5D7: 74        .byte $74   ; 
-- - - - - - 0x00F5E8 03:B5D8: 00        .byte $00   ; 
-- - - - - - 0x00F5E9 03:B5D9: CD        .byte $CD   ; 
+- D 1 - I - 0x00F5E6 03:B5D6: 02        .byte $02   ; 
+- D 1 - I - 0x00F5E7 03:B5D7: 74        .byte $74   ; 
+- D 1 - I - 0x00F5E8 03:B5D8: 00        .byte $00   ; 
+- D 1 - I - 0x00F5E9 03:B5D9: CD        .byte $CD   ; 
 - D 1 - I - 0x00F5EA 03:B5DA: 03        .byte $03   ; 
 - D 1 - I - 0x00F5EB 03:B5DB: 1E        .byte $1E   ; 
 - D 1 - I - 0x00F5EC 03:B5DC: 00        .byte $00   ; 
@@ -9724,14 +9724,14 @@ off_B5E2_0F:
 - - - - - - 0x00F5F3 03:B5E3: B5        .byte $B5   ; 
 - - - - - - 0x00F5F4 03:B5E4: 00        .byte $00   ; 
 - - - - - - 0x00F5F5 03:B5E5: CD        .byte $CD   ; 
-- - - - - - 0x00F5F6 03:B5E6: 03        .byte $03   ; 
-- - - - - - 0x00F5F7 03:B5E7: 3B        .byte $3B   ; 
-- - - - - - 0x00F5F8 03:B5E8: 00        .byte $00   ; 
-- - - - - - 0x00F5F9 03:B5E9: D3        .byte $D3   ; 
-- - - - - - 0x00F5FA 03:B5EA: 02        .byte $02   ; 
-- - - - - - 0x00F5FB 03:B5EB: B1        .byte $B1   ; 
-- - - - - - 0x00F5FC 03:B5EC: 00        .byte $00   ; 
-- - - - - - 0x00F5FD 03:B5ED: 59        .byte $59   ; 
+- D 1 - I - 0x00F5F6 03:B5E6: 03        .byte $03   ; 
+- D 1 - I - 0x00F5F7 03:B5E7: 3B        .byte $3B   ; 
+- D 1 - I - 0x00F5F8 03:B5E8: 00        .byte $00   ; 
+- D 1 - I - 0x00F5F9 03:B5E9: D3        .byte $D3   ; 
+- D 1 - I - 0x00F5FA 03:B5EA: 02        .byte $02   ; 
+- D 1 - I - 0x00F5FB 03:B5EB: B1        .byte $B1   ; 
+- D 1 - I - 0x00F5FC 03:B5EC: 00        .byte $00   ; 
+- D 1 - I - 0x00F5FD 03:B5ED: 59        .byte $59   ; 
 
 
 
@@ -9740,14 +9740,14 @@ off_B5EE_10:
 - - - - - - 0x00F5FF 03:B5EF: DA        .byte $DA   ; 
 - - - - - - 0x00F600 03:B5F0: 00        .byte $00   ; 
 - - - - - - 0x00F601 03:B5F1: CD        .byte $CD   ; 
-- - - - - - 0x00F602 03:B5F2: 03        .byte $03   ; 
-- - - - - - 0x00F603 03:B5F3: 41        .byte $41   ; 
-- - - - - - 0x00F604 03:B5F4: 00        .byte $00   ; 
-- - - - - - 0x00F605 03:B5F5: E6        .byte $E6   ; 
-- - - - - - 0x00F606 03:B5F6: 02        .byte $02   ; 
-- - - - - - 0x00F607 03:B5F7: D8        .byte $D8   ; 
-- - - - - - 0x00F608 03:B5F8: 00        .byte $00   ; 
-- - - - - - 0x00F609 03:B5F9: 59        .byte $59   ; 
+- D 1 - I - 0x00F602 03:B5F2: 03        .byte $03   ; 
+- D 1 - I - 0x00F603 03:B5F3: 41        .byte $41   ; 
+- D 1 - I - 0x00F604 03:B5F4: 00        .byte $00   ; 
+- D 1 - I - 0x00F605 03:B5F5: E6        .byte $E6   ; 
+- D 1 - I - 0x00F606 03:B5F6: 02        .byte $02   ; 
+- D 1 - I - 0x00F607 03:B5F7: D8        .byte $D8   ; 
+- D 1 - I - 0x00F608 03:B5F8: 00        .byte $00   ; 
+- D 1 - I - 0x00F609 03:B5F9: 59        .byte $59   ; 
 
 
 
@@ -9800,10 +9800,10 @@ off_B612_13:
 
 
 off_B61E_14:
-- - - - - - 0x00F62E 03:B61E: 02        .byte $02   ; 
-- - - - - - 0x00F62F 03:B61F: 73        .byte $73   ; 
-- - - - - - 0x00F630 03:B620: 00        .byte $00   ; 
-- - - - - - 0x00F631 03:B621: E8        .byte $E8   ; 
+- D 1 - I - 0x00F62E 03:B61E: 02        .byte $02   ; 
+- D 1 - I - 0x00F62F 03:B61F: 73        .byte $73   ; 
+- D 1 - I - 0x00F630 03:B620: 00        .byte $00   ; 
+- D 1 - I - 0x00F631 03:B621: E8        .byte $E8   ; 
 - D 1 - I - 0x00F632 03:B622: 03        .byte $03   ; 
 - D 1 - I - 0x00F633 03:B623: 2C        .byte $2C   ; 
 - D 1 - I - 0x00F634 03:B624: 00        .byte $00   ; 
@@ -9820,14 +9820,14 @@ off_B62A_15:
 - - - - - - 0x00F63B 03:B62B: C2        .byte $C2   ; 
 - - - - - - 0x00F63C 03:B62C: 00        .byte $00   ; 
 - - - - - - 0x00F63D 03:B62D: E8        .byte $E8   ; 
-- - - - - - 0x00F63E 03:B62E: 03        .byte $03   ; 
-- - - - - - 0x00F63F 03:B62F: 3D        .byte $3D   ; 
-- - - - - - 0x00F640 03:B630: 00        .byte $00   ; 
-- - - - - - 0x00F641 03:B631: E7        .byte $E7   ; 
-- - - - - - 0x00F642 03:B632: 02        .byte $02   ; 
-- - - - - - 0x00F643 03:B633: EF        .byte $EF   ; 
-- - - - - - 0x00F644 03:B634: 00        .byte $00   ; 
-- - - - - - 0x00F645 03:B635: 41        .byte $41   ; 
+- D 1 - I - 0x00F63E 03:B62E: 03        .byte $03   ; 
+- D 1 - I - 0x00F63F 03:B62F: 3D        .byte $3D   ; 
+- D 1 - I - 0x00F640 03:B630: 00        .byte $00   ; 
+- D 1 - I - 0x00F641 03:B631: E7        .byte $E7   ; 
+- D 1 - I - 0x00F642 03:B632: 02        .byte $02   ; 
+- D 1 - I - 0x00F643 03:B633: EF        .byte $EF   ; 
+- D 1 - I - 0x00F644 03:B634: 00        .byte $00   ; 
+- D 1 - I - 0x00F645 03:B635: 41        .byte $41   ; 
 
 
 
@@ -9836,14 +9836,14 @@ off_B636_16:
 - - - - - - 0x00F647 03:B637: E0        .byte $E0   ; 
 - - - - - - 0x00F648 03:B638: 00        .byte $00   ; 
 - - - - - - 0x00F649 03:B639: E8        .byte $E8   ; 
-- - - - - - 0x00F64A 03:B63A: 03        .byte $03   ; 
-- - - - - - 0x00F64B 03:B63B: 34        .byte $34   ; 
-- - - - - - 0x00F64C 03:B63C: 00        .byte $00   ; 
-- - - - - - 0x00F64D 03:B63D: F7        .byte $F7   ; 
-- - - - - - 0x00F64E 03:B63E: 02        .byte $02   ; 
-- - - - - - 0x00F64F 03:B63F: F1        .byte $F1   ; 
-- - - - - - 0x00F650 03:B640: 00        .byte $00   ; 
-- - - - - - 0x00F651 03:B641: 41        .byte $41   ; 
+- D 1 - I - 0x00F64A 03:B63A: 03        .byte $03   ; 
+- D 1 - I - 0x00F64B 03:B63B: 34        .byte $34   ; 
+- D 1 - I - 0x00F64C 03:B63C: 00        .byte $00   ; 
+- D 1 - I - 0x00F64D 03:B63D: F7        .byte $F7   ; 
+- D 1 - I - 0x00F64E 03:B63E: 02        .byte $02   ; 
+- D 1 - I - 0x00F64F 03:B63F: F1        .byte $F1   ; 
+- D 1 - I - 0x00F650 03:B640: 00        .byte $00   ; 
+- D 1 - I - 0x00F651 03:B641: 41        .byte $41   ; 
 
 
 
@@ -9916,22 +9916,22 @@ off_B672_1B:
 - - - - - - 0x00F683 03:B673: B6        .byte $B6   ; 
 - - - - - - 0x00F684 03:B674: 01        .byte $01   ; 
 - - - - - - 0x00F685 03:B675: 00        .byte $00   ; 
-- - - - - - 0x00F686 03:B676: 03        .byte $03   ; 
-- - - - - - 0x00F687 03:B677: 2B        .byte $2B   ; 
-- - - - - - 0x00F688 03:B678: 00        .byte $00   ; 
-- - - - - - 0x00F689 03:B679: 9B        .byte $9B   ; 
-- - - - - - 0x00F68A 03:B67A: 02        .byte $02   ; 
-- - - - - - 0x00F68B 03:B67B: B9        .byte $B9   ; 
-- - - - - - 0x00F68C 03:B67C: 00        .byte $00   ; 
-- - - - - - 0x00F68D 03:B67D: 77        .byte $77   ; 
+- D 1 - I - 0x00F686 03:B676: 03        .byte $03   ; 
+- D 1 - I - 0x00F687 03:B677: 2B        .byte $2B   ; 
+- D 1 - I - 0x00F688 03:B678: 00        .byte $00   ; 
+- D 1 - I - 0x00F689 03:B679: 9B        .byte $9B   ; 
+- D 1 - I - 0x00F68A 03:B67A: 02        .byte $02   ; 
+- D 1 - I - 0x00F68B 03:B67B: B9        .byte $B9   ; 
+- D 1 - I - 0x00F68C 03:B67C: 00        .byte $00   ; 
+- D 1 - I - 0x00F68D 03:B67D: 77        .byte $77   ; 
 
 
 
 off_B67E_1C:
-- - - - - - 0x00F68E 03:B67E: 02        .byte $02   ; 
-- - - - - - 0x00F68F 03:B67F: EA        .byte $EA   ; 
-- - - - - - 0x00F690 03:B680: 01        .byte $01   ; 
-- - - - - - 0x00F691 03:B681: 00        .byte $00   ; 
+- D 1 - I - 0x00F68E 03:B67E: 02        .byte $02   ; 
+- D 1 - I - 0x00F68F 03:B67F: EA        .byte $EA   ; 
+- D 1 - I - 0x00F690 03:B680: 01        .byte $01   ; 
+- D 1 - I - 0x00F691 03:B681: 00        .byte $00   ; 
 - D 1 - I - 0x00F692 03:B682: 03        .byte $03   ; 
 - D 1 - I - 0x00F693 03:B683: 31        .byte $31   ; 
 - D 1 - I - 0x00F694 03:B684: 00        .byte $00   ; 
@@ -9948,10 +9948,10 @@ off_B68A_1D:
 - - - - - - 0x00F69B 03:B68B: E8        .byte $E8   ; 
 - - - - - - 0x00F69C 03:B68C: 01        .byte $01   ; 
 - - - - - - 0x00F69D 03:B68D: 00        .byte $00   ; 
-- - - - - - 0x00F69E 03:B68E: 03        .byte $03   ; 
-- - - - - - 0x00F69F 03:B68F: 2B        .byte $2B   ; 
-- - - - - - 0x00F6A0 03:B690: 00        .byte $00   ; 
-- - - - - - 0x00F6A1 03:B691: 9D        .byte $9D   ; 
+- D 1 - I - 0x00F69E 03:B68E: 03        .byte $03   ; 
+- D 1 - I - 0x00F69F 03:B68F: 2B        .byte $2B   ; 
+- D 1 - I - 0x00F6A0 03:B690: 00        .byte $00   ; 
+- D 1 - I - 0x00F6A1 03:B691: 9D        .byte $9D   ; 
 - - - - - - 0x00F6A2 03:B692: 02        .byte $02   ; 
 - - - - - - 0x00F6A3 03:B693: DE        .byte $DE   ; 
 - - - - - - 0x00F6A4 03:B694: 00        .byte $00   ; 
@@ -10012,10 +10012,10 @@ off_B6BA_21:
 - D 1 - I - 0x00F6CB 03:B6BB: CC        .byte $CC   ; 
 - D 1 - I - 0x00F6CC 03:B6BC: 01        .byte $01   ; 
 - D 1 - I - 0x00F6CD 03:B6BD: 28        .byte $28   ; 
-- - - - - - 0x00F6CE 03:B6BE: 03        .byte $03   ; 
-- - - - - - 0x00F6CF 03:B6BF: 24        .byte $24   ; 
-- - - - - - 0x00F6D0 03:B6C0: 00        .byte $00   ; 
-- - - - - - 0x00F6D1 03:B6C1: A0        .byte $A0   ; 
+- D 1 - I - 0x00F6CE 03:B6BE: 03        .byte $03   ; 
+- D 1 - I - 0x00F6CF 03:B6BF: 24        .byte $24   ; 
+- D 1 - I - 0x00F6D0 03:B6C0: 00        .byte $00   ; 
+- D 1 - I - 0x00F6D1 03:B6C1: A0        .byte $A0   ; 
 - D 1 - I - 0x00F6D2 03:B6C2: 02        .byte $02   ; 
 - D 1 - I - 0x00F6D3 03:B6C3: C5        .byte $C5   ; 
 - D 1 - I - 0x00F6D4 03:B6C4: 00        .byte $00   ; 
@@ -10028,14 +10028,14 @@ off_B6C6_22:
 - - - - - - 0x00F6D7 03:B6C7: 04        .byte $04   ; 
 - - - - - - 0x00F6D8 03:B6C8: 01        .byte $01   ; 
 - - - - - - 0x00F6D9 03:B6C9: 31        .byte $31   ; 
-- - - - - - 0x00F6DA 03:B6CA: 03        .byte $03   ; 
-- - - - - - 0x00F6DB 03:B6CB: 4F        .byte $4F   ; 
-- - - - - - 0x00F6DC 03:B6CC: 00        .byte $00   ; 
-- - - - - - 0x00F6DD 03:B6CD: 9D        .byte $9D   ; 
-- - - - - - 0x00F6DE 03:B6CE: 02        .byte $02   ; 
-- - - - - - 0x00F6DF 03:B6CF: DC        .byte $DC   ; 
-- - - - - - 0x00F6E0 03:B6D0: 00        .byte $00   ; 
-- - - - - - 0x00F6E1 03:B6D1: A4        .byte $A4   ; 
+- D 1 - I - 0x00F6DA 03:B6CA: 03        .byte $03   ; 
+- D 1 - I - 0x00F6DB 03:B6CB: 4F        .byte $4F   ; 
+- D 1 - I - 0x00F6DC 03:B6CC: 00        .byte $00   ; 
+- D 1 - I - 0x00F6DD 03:B6CD: 9D        .byte $9D   ; 
+- D 1 - I - 0x00F6DE 03:B6CE: 02        .byte $02   ; 
+- D 1 - I - 0x00F6DF 03:B6CF: DC        .byte $DC   ; 
+- D 1 - I - 0x00F6E0 03:B6D0: 00        .byte $00   ; 
+- D 1 - I - 0x00F6E1 03:B6D1: A4        .byte $A4   ; 
 
 
 
@@ -10072,10 +10072,10 @@ off_B6DE_24:
 
 
 off_B6EA_25:
-- - - - - - 0x00F6FA 03:B6EA: 02        .byte $02   ; 
-- - - - - - 0x00F6FB 03:B6EB: 40        .byte $40   ; 
-- - - - - - 0x00F6FC 03:B6EC: 01        .byte $01   ; 
-- - - - - - 0x00F6FD 03:B6ED: 3E        .byte $3E   ; 
+- D 1 - I - 0x00F6FA 03:B6EA: 02        .byte $02   ; 
+- D 1 - I - 0x00F6FB 03:B6EB: 40        .byte $40   ; 
+- D 1 - I - 0x00F6FC 03:B6EC: 01        .byte $01   ; 
+- D 1 - I - 0x00F6FD 03:B6ED: 3E        .byte $3E   ; 
 - D 1 - I - 0x00F6FE 03:B6EE: 02        .byte $02   ; 
 - D 1 - I - 0x00F6FF 03:B6EF: AD        .byte $AD   ; 
 - D 1 - I - 0x00F700 03:B6F0: 00        .byte $00   ; 
@@ -10108,14 +10108,14 @@ off_B702_27:
 - - - - - - 0x00F713 03:B703: BD        .byte $BD   ; 
 - - - - - - 0x00F714 03:B704: 01        .byte $01   ; 
 - - - - - - 0x00F715 03:B705: 3E        .byte $3E   ; 
-- - - - - - 0x00F716 03:B706: 03        .byte $03   ; 
-- - - - - - 0x00F717 03:B707: 29        .byte $29   ; 
-- - - - - - 0x00F718 03:B708: 00        .byte $00   ; 
-- - - - - - 0x00F719 03:B709: A9        .byte $A9   ; 
-- - - - - - 0x00F71A 03:B70A: 02        .byte $02   ; 
-- - - - - - 0x00F71B 03:B70B: BE        .byte $BE   ; 
-- - - - - - 0x00F71C 03:B70C: 00        .byte $00   ; 
-- - - - - - 0x00F71D 03:B70D: C8        .byte $C8   ; 
+- D 1 - I - 0x00F716 03:B706: 03        .byte $03   ; 
+- D 1 - I - 0x00F717 03:B707: 29        .byte $29   ; 
+- D 1 - I - 0x00F718 03:B708: 00        .byte $00   ; 
+- D 1 - I - 0x00F719 03:B709: A9        .byte $A9   ; 
+- D 1 - I - 0x00F71A 03:B70A: 02        .byte $02   ; 
+- D 1 - I - 0x00F71B 03:B70B: BE        .byte $BE   ; 
+- D 1 - I - 0x00F71C 03:B70C: 00        .byte $00   ; 
+- D 1 - I - 0x00F71D 03:B70D: C8        .byte $C8   ; 
 
 
 
@@ -10140,14 +10140,14 @@ off_B71A_29:
 - - - - - - 0x00F72B 03:B71B: 1C        .byte $1C   ; 
 - - - - - - 0x00F72C 03:B71C: 01        .byte $01   ; 
 - - - - - - 0x00F72D 03:B71D: 43        .byte $43   ; 
-- - - - - - 0x00F72E 03:B71E: 03        .byte $03   ; 
-- - - - - - 0x00F72F 03:B71F: 2B        .byte $2B   ; 
-- - - - - - 0x00F730 03:B720: 00        .byte $00   ; 
-- - - - - - 0x00F731 03:B721: A2        .byte $A2   ; 
-- - - - - - 0x00F732 03:B722: 02        .byte $02   ; 
-- - - - - - 0x00F733 03:B723: DC        .byte $DC   ; 
-- - - - - - 0x00F734 03:B724: 00        .byte $00   ; 
-- - - - - - 0x00F735 03:B725: D4        .byte $D4   ; 
+- D 1 - I - 0x00F72E 03:B71E: 03        .byte $03   ; 
+- D 1 - I - 0x00F72F 03:B71F: 2B        .byte $2B   ; 
+- D 1 - I - 0x00F730 03:B720: 00        .byte $00   ; 
+- D 1 - I - 0x00F731 03:B721: A2        .byte $A2   ; 
+- D 1 - I - 0x00F732 03:B722: 02        .byte $02   ; 
+- D 1 - I - 0x00F733 03:B723: DC        .byte $DC   ; 
+- D 1 - I - 0x00F734 03:B724: 00        .byte $00   ; 
+- D 1 - I - 0x00F735 03:B725: D4        .byte $D4   ; 
 
 
 
@@ -10225,14 +10225,14 @@ off_B756_34:
 - - - - - - 0x00F767 03:B757: D9        .byte $D9   ; 
 - - - - - - 0x00F768 03:B758: 01        .byte $01   ; 
 - - - - - - 0x00F769 03:B759: 51        .byte $51   ; 
-- - - - - - 0x00F76A 03:B75A: 03        .byte $03   ; 
-- - - - - - 0x00F76B 03:B75B: 60        .byte $60   ; 
-- - - - - - 0x00F76C 03:B75C: 00        .byte $00   ; 
-- - - - - - 0x00F76D 03:B75D: D0        .byte $D0   ; 
-- - - - - - 0x00F76E 03:B75E: 02        .byte $02   ; 
-- - - - - - 0x00F76F 03:B75F: D9        .byte $D9   ; 
-- - - - - - 0x00F770 03:B760: 00        .byte $00   ; 
-- - - - - - 0x00F771 03:B761: CD        .byte $CD   ; 
+- D 1 - I - 0x00F76A 03:B75A: 03        .byte $03   ; 
+- D 1 - I - 0x00F76B 03:B75B: 60        .byte $60   ; 
+- D 1 - I - 0x00F76C 03:B75C: 00        .byte $00   ; 
+- D 1 - I - 0x00F76D 03:B75D: D0        .byte $D0   ; 
+- D 1 - I - 0x00F76E 03:B75E: 02        .byte $02   ; 
+- D 1 - I - 0x00F76F 03:B75F: D9        .byte $D9   ; 
+- D 1 - I - 0x00F770 03:B760: 00        .byte $00   ; 
+- D 1 - I - 0x00F771 03:B761: CD        .byte $CD   ; 
 
 
 
@@ -10242,14 +10242,14 @@ off_B762_35:
 - - - - - - 0x00F773 03:B763: E3        .byte $E3   ; 
 - - - - - - 0x00F774 03:B764: 01        .byte $01   ; 
 - - - - - - 0x00F775 03:B765: 4F        .byte $4F   ; 
-- - - - - - 0x00F776 03:B766: 03        .byte $03   ; 
-- - - - - - 0x00F777 03:B767: 3F        .byte $3F   ; 
-- - - - - - 0x00F778 03:B768: 00        .byte $00   ; 
-- - - - - - 0x00F779 03:B769: 96        .byte $96   ; 
-- - - - - - 0x00F77A 03:B76A: 02        .byte $02   ; 
-- - - - - - 0x00F77B 03:B76B: D9        .byte $D9   ; 
-- - - - - - 0x00F77C 03:B76C: 00        .byte $00   ; 
-- - - - - - 0x00F77D 03:B76D: CD        .byte $CD   ; 
+- D 1 - I - 0x00F776 03:B766: 03        .byte $03   ; 
+- D 1 - I - 0x00F777 03:B767: 3F        .byte $3F   ; 
+- D 1 - I - 0x00F778 03:B768: 00        .byte $00   ; 
+- D 1 - I - 0x00F779 03:B769: 96        .byte $96   ; 
+- D 1 - I - 0x00F77A 03:B76A: 02        .byte $02   ; 
+- D 1 - I - 0x00F77B 03:B76B: D9        .byte $D9   ; 
+- D 1 - I - 0x00F77C 03:B76C: 00        .byte $00   ; 
+- D 1 - I - 0x00F77D 03:B76D: CD        .byte $CD   ; 
 
 
 
@@ -10294,7 +10294,7 @@ tbl_B76E:
 - D 1 - - - 0x00F7C8 03:B7B8: 66 B8     .word off_B866_25
 - D 1 - - - 0x00F7CA 03:B7BA: A6 B8     .word off_B8A6_26
 - D 1 - - - 0x00F7CC 03:B7BC: A6 B8     .word off_B8A6_27
-- - - - - - 0x00F7CE 03:B7BE: C6 B8     .word off_B8C6_28
+- D 1 - - - 0x00F7CE 03:B7BE: C6 B8     .word off_B8C6_28
 - D 1 - - - 0x00F7D0 03:B7C0: C6 B8     .word off_B8C6_29
 - - - - - - 0x00F7D2 03:B7C2: 06 B8     .word off_B806_2A
 - - - - - - 0x00F7D4 03:B7C4: 26 B8     .word off_B826_2B
@@ -10317,15 +10317,15 @@ off_B7C6_1F:
 - D 1 - I - 0x00F7D8 03:B7C8: 98 B9     .word off_B998_01
 - D 1 - I - 0x00F7DA 03:B7CA: 44 B9     .word off_B944_02
 - D 1 - I - 0x00F7DC 03:B7CC: 98 B9     .word off_B998_03
-- - - - - - 0x00F7DE 03:B7CE: 50 B9     .word off_B950_04
-- - - - - - 0x00F7E0 03:B7D0: 30 B9     .word off_B930_05
-- - - - - - 0x00F7E2 03:B7D2: 2C B9     .word off_B92C_06
-- - - - - - 0x00F7E4 03:B7D4: 48 B9     .word off_B948_07
+- D 1 - I - 0x00F7DE 03:B7CE: 50 B9     .word off_B950_04
+- D 1 - I - 0x00F7E0 03:B7D0: 30 B9     .word off_B930_05
+- D 1 - I - 0x00F7E2 03:B7D2: 2C B9     .word off_B92C_06
+- D 1 - I - 0x00F7E4 03:B7D4: 48 B9     .word off_B948_07
 - D 1 - I - 0x00F7E6 03:B7D6: 64 B9     .word off_B964_08
 - D 1 - I - 0x00F7E8 03:B7D8: 54 B9     .word off_B954_09
 - D 1 - I - 0x00F7EA 03:B7DA: 44 B9     .word off_B944_0A
-- - - - - - 0x00F7EC 03:B7DC: 30 B9     .word off_B930_0B
-- - - - - - 0x00F7EE 03:B7DE: 70 B9     .word off_B970_0C
+- D 1 - I - 0x00F7EC 03:B7DC: 30 B9     .word off_B930_0B
+- D 1 - I - 0x00F7EE 03:B7DE: 70 B9     .word off_B970_0C
 - D 1 - I - 0x00F7F0 03:B7E0: 6C B9     .word off_B96C_0D
 - D 1 - I - 0x00F7F2 03:B7E2: 94 B9     .word off_B994_0E
 - D 1 - I - 0x00F7F4 03:B7E4: 64 B9     .word off_B964_0F
@@ -10337,8 +10337,8 @@ off_B7E6_05:
 off_B7E6_14:
 off_B7E6_15:
 - - - - - - 0x00F7F6 03:B7E6: 64 B9     .word off_B964_00
-- - - - - - 0x00F7F8 03:B7E8: 98 B9     .word off_B998_01
-- - - - - - 0x00F7FA 03:B7EA: 44 B9     .word off_B944_02
+- D 1 - I - 0x00F7F8 03:B7E8: 98 B9     .word off_B998_01
+- D 1 - I - 0x00F7FA 03:B7EA: 44 B9     .word off_B944_02
 - - - - - - 0x00F7FC 03:B7EC: 98 B9     .word off_B998_03
 - - - - - - 0x00F7FE 03:B7EE: 90 B9     .word off_B990_04
 - D 1 - I - 0x00F800 03:B7F0: 70 B9     .word off_B970_05
@@ -10349,7 +10349,7 @@ off_B7E6_15:
 - D 1 - I - 0x00F80A 03:B7FA: 44 B9     .word off_B944_0A
 - D 1 - I - 0x00F80C 03:B7FC: 30 B9     .word off_B930_0B
 - - - - - - 0x00F80E 03:B7FE: 48 B9     .word off_B948_0C
-- - - - - - 0x00F810 03:B800: 2C B9     .word off_B92C_0D
+- D 1 - I - 0x00F810 03:B800: 2C B9     .word off_B92C_0D
 - D 1 - I - 0x00F812 03:B802: 54 B9     .word off_B954_0E
 - D 1 - I - 0x00F814 03:B804: 64 B9     .word off_B964_0F
 
@@ -10363,10 +10363,10 @@ off_B806_2A:
 - - - - - - 0x00F818 03:B808: 54 B9     .word off_B954_01
 - - - - - - 0x00F81A 03:B80A: 48 B9     .word off_B948_02
 - - - - - - 0x00F81C 03:B80C: 98 B9     .word off_B998_03
-- - - - - - 0x00F81E 03:B80E: 4C B9     .word off_B94C_04
-- - - - - - 0x00F820 03:B810: 50 B9     .word off_B950_05
+- D 1 - I - 0x00F81E 03:B80E: 4C B9     .word off_B94C_04
+- D 1 - I - 0x00F820 03:B810: 50 B9     .word off_B950_05
 - - - - - - 0x00F822 03:B812: 44 B9     .word off_B944_06
-- - - - - - 0x00F824 03:B814: 48 B9     .word off_B948_07
+- D 1 - I - 0x00F824 03:B814: 48 B9     .word off_B948_07
 - - - - - - 0x00F826 03:B816: 38 B9     .word off_B938_08
 - D 1 - I - 0x00F828 03:B818: 60 B9     .word off_B960_09
 - D 1 - I - 0x00F82A 03:B81A: 54 B9     .word off_B954_0A
@@ -10386,10 +10386,10 @@ off_B826_2B:
 - - - - - - 0x00F838 03:B828: 94 B9     .word off_B994_01
 - - - - - - 0x00F83A 03:B82A: 88 B9     .word off_B988_02
 - - - - - - 0x00F83C 03:B82C: 98 B9     .word off_B998_03
-- - - - - - 0x00F83E 03:B82E: 8C B9     .word off_B98C_04
-- - - - - - 0x00F840 03:B830: 90 B9     .word off_B990_05
+- D 1 - I - 0x00F83E 03:B82E: 8C B9     .word off_B98C_04
+- D 1 - I - 0x00F840 03:B830: 90 B9     .word off_B990_05
 - - - - - - 0x00F842 03:B832: 84 B9     .word off_B984_06
-- - - - - - 0x00F844 03:B834: 88 B9     .word off_B988_07
+- D 1 - I - 0x00F844 03:B834: 88 B9     .word off_B988_07
 - - - - - - 0x00F846 03:B836: 78 B9     .word off_B978_08
 - D 1 - I - 0x00F848 03:B838: 70 B9     .word off_B970_09
 - D 1 - I - 0x00F84A 03:B83A: 94 B9     .word off_B994_0A
@@ -10408,11 +10408,11 @@ off_B846_20:
 - D 1 - I - 0x00F858 03:B848: 54 B9     .word off_B954_01
 - D 1 - I - 0x00F85A 03:B84A: 64 B9     .word off_B964_02
 - - - - - - 0x00F85C 03:B84C: 98 B9     .word off_B998_03
-- - - - - - 0x00F85E 03:B84E: 38 B9     .word off_B938_04
-- - - - - - 0x00F860 03:B850: 2C B9     .word off_B92C_05
+- D 1 - I - 0x00F85E 03:B84E: 38 B9     .word off_B938_04
+- D 1 - I - 0x00F860 03:B850: 2C B9     .word off_B92C_05
 - - - - - - 0x00F862 03:B852: 50 B9     .word off_B950_06
 - - - - - - 0x00F864 03:B854: 30 B9     .word off_B930_07
-- - - - - - 0x00F866 03:B856: 5C B9     .word off_B95C_08
+- D 1 - I - 0x00F866 03:B856: 5C B9     .word off_B95C_08
 - D 1 - I - 0x00F868 03:B858: 60 B9     .word off_B960_09
 - D 1 - I - 0x00F86A 03:B85A: 64 B9     .word off_B964_0A
 - - - - - - 0x00F86C 03:B85C: 44 B9     .word off_B944_0B
@@ -10427,10 +10427,10 @@ off_B866_16:
 off_B866_17:
 off_B866_24:
 off_B866_25:
-- - - - - - 0x00F876 03:B866: 98 B9     .word off_B998_00
+- D 1 - I - 0x00F876 03:B866: 98 B9     .word off_B998_00
 - D 1 - I - 0x00F878 03:B868: 94 B9     .word off_B994_01
-- - - - - - 0x00F87A 03:B86A: 64 B9     .word off_B964_02
-- - - - - - 0x00F87C 03:B86C: 98 B9     .word off_B998_03
+- D 1 - I - 0x00F87A 03:B86A: 64 B9     .word off_B964_02
+- D 1 - I - 0x00F87C 03:B86C: 98 B9     .word off_B998_03
 - D 1 - I - 0x00F87E 03:B86E: 78 B9     .word off_B978_04
 - D 1 - I - 0x00F880 03:B870: 6C B9     .word off_B96C_05
 - D 1 - I - 0x00F882 03:B872: 90 B9     .word off_B990_06
@@ -10454,17 +10454,17 @@ off_B886_21:
 - D 1 - I - 0x00F89A 03:B88A: 94 B9     .word off_B994_02
 - - - - - - 0x00F89C 03:B88C: 98 B9     .word off_B998_03
 - - - - - - 0x00F89E 03:B88E: 78 B9     .word off_B978_04
-- - - - - - 0x00F8A0 03:B890: 6C B9     .word off_B96C_05
+- D 1 - I - 0x00F8A0 03:B890: 6C B9     .word off_B96C_05
 - - - - - - 0x00F8A2 03:B892: 90 B9     .word off_B990_06
 - - - - - - 0x00F8A4 03:B894: 70 B9     .word off_B970_07
-- - - - - - 0x00F8A6 03:B896: 60 B9     .word off_B960_08
+- D 1 - I - 0x00F8A6 03:B896: 60 B9     .word off_B960_08
 - D 1 - I - 0x00F8A8 03:B898: 5C B9     .word off_B95C_09
 - D 1 - I - 0x00F8AA 03:B89A: 84 B9     .word off_B984_0A
 - - - - - - 0x00F8AC 03:B89C: 94 B9     .word off_B994_0B
-- - - - - - 0x00F8AE 03:B89E: 70 B9     .word off_B970_0C
+- D 1 - I - 0x00F8AE 03:B89E: 70 B9     .word off_B970_0C
 - D 1 - I - 0x00F8B0 03:B8A0: 6C B9     .word off_B96C_0D
 - D 1 - I - 0x00F8B2 03:B8A2: 88 B9     .word off_B988_0E
-- - - - - - 0x00F8B4 03:B8A4: 90 B9     .word off_B990_0F
+- D 1 - I - 0x00F8B4 03:B8A4: 90 B9     .word off_B990_0F
 
 
 
@@ -10472,17 +10472,17 @@ off_B8A6_06:
 off_B8A6_07:
 off_B8A6_26:
 off_B8A6_27:
-- - - - - - 0x00F8B6 03:B8A6: 5C B9     .word off_B95C_00
-- - - - - - 0x00F8B8 03:B8A8: 98 B9     .word off_B998_01
+- D 1 - I - 0x00F8B6 03:B8A6: 5C B9     .word off_B95C_00
+- D 1 - I - 0x00F8B8 03:B8A8: 98 B9     .word off_B998_01
 - D 1 - I - 0x00F8BA 03:B8AA: 60 B9     .word off_B960_02
-- - - - - - 0x00F8BC 03:B8AC: 98 B9     .word off_B998_03
-- - - - - - 0x00F8BE 03:B8AE: 3C B9     .word off_B93C_04
+- D 1 - I - 0x00F8BC 03:B8AC: 98 B9     .word off_B998_03
+- D 1 - I - 0x00F8BE 03:B8AE: 3C B9     .word off_B93C_04
 - D 1 - I - 0x00F8C0 03:B8B0: 58 B9     .word off_B958_05
 - D 1 - I - 0x00F8C2 03:B8B2: 34 B9     .word off_B934_06
 - D 1 - I - 0x00F8C4 03:B8B4: 28 B9     .word off_B928_07
 - - - - - - 0x00F8C6 03:B8B6: 34 B9     .word off_B934_08
-- - - - - - 0x00F8C8 03:B8B8: 5C B9     .word off_B95C_09
-- - - - - - 0x00F8CA 03:B8BA: 38 B9     .word off_B938_0A
+- D 1 - I - 0x00F8C8 03:B8B8: 5C B9     .word off_B95C_09
+- D 1 - I - 0x00F8CA 03:B8BA: 38 B9     .word off_B938_0A
 - - - - - - 0x00F8CC 03:B8BC: 60 B9     .word off_B960_0B
 - - - - - - 0x00F8CE 03:B8BE: 60 B9     .word off_B960_0C
 - D 1 - I - 0x00F8D0 03:B8C0: 38 B9     .word off_B938_0D
@@ -10502,14 +10502,14 @@ off_B8C6_29:
 - - - - - - 0x00F8DE 03:B8CE: 7C B9     .word off_B97C_04
 - D 1 - I - 0x00F8E0 03:B8D0: 58 B9     .word off_B958_05
 - D 1 - I - 0x00F8E2 03:B8D2: 74 B9     .word off_B974_06
-- - - - - - 0x00F8E4 03:B8D4: 68 B9     .word off_B968_07
+- D 1 - I - 0x00F8E4 03:B8D4: 68 B9     .word off_B968_07
 - - - - - - 0x00F8E6 03:B8D6: 74 B9     .word off_B974_08
 - D 1 - I - 0x00F8E8 03:B8D8: 5C B9     .word off_B95C_09
 - D 1 - I - 0x00F8EA 03:B8DA: 78 B9     .word off_B978_0A
 - D 1 - I - 0x00F8EC 03:B8DC: 60 B9     .word off_B960_0B
-- - - - - - 0x00F8EE 03:B8DE: 60 B9     .word off_B960_0C
+- D 1 - I - 0x00F8EE 03:B8DE: 60 B9     .word off_B960_0C
 - D 1 - I - 0x00F8F0 03:B8E0: 78 B9     .word off_B978_0D
-- - - - - - 0x00F8F2 03:B8E2: 70 B9     .word off_B970_0E
+- D 1 - I - 0x00F8F2 03:B8E2: 70 B9     .word off_B970_0E
 - - - - - - 0x00F8F4 03:B8E4: 84 B9     .word off_B984_0F
 
 
@@ -10523,10 +10523,10 @@ off_B8E6_18:
 - D 1 - I - 0x00F900 03:B8F0: 7C B9     .word off_B97C_05
 - D 1 - I - 0x00F902 03:B8F2: 3C B9     .word off_B93C_06
 - - - - - - 0x00F904 03:B8F4: 74 B9     .word off_B974_07
-- - - - - - 0x00F906 03:B8F6: 34 B9     .word off_B934_08
+- D 1 - I - 0x00F906 03:B8F6: 34 B9     .word off_B934_08
 - D 1 - I - 0x00F908 03:B8F8: 40 B9     .word off_B940_09
 - D 1 - I - 0x00F90A 03:B8FA: 5C B9     .word off_B95C_0A
-- - - - - - 0x00F90C 03:B8FC: 38 B9     .word off_B938_0B
+- D 1 - I - 0x00F90C 03:B8FC: 38 B9     .word off_B938_0B
 - - - - - - 0x00F90E 03:B8FE: 5C B9     .word off_B95C_0C
 - D 1 - I - 0x00F910 03:B900: 68 B9     .word off_B968_0D
 - D 1 - I - 0x00F912 03:B902: 6C B9     .word off_B96C_0E
@@ -10541,13 +10541,13 @@ off_B906_19:
 - - - - - - 0x00F91C 03:B90C: 64 B9     .word off_B964_03
 - - - - - - 0x00F91E 03:B90E: 5C B9     .word off_B95C_04
 - D 1 - I - 0x00F920 03:B910: 3C B9     .word off_B93C_05
-- - - - - - 0x00F922 03:B912: 7C B9     .word off_B97C_06
+- D 1 - I - 0x00F922 03:B912: 7C B9     .word off_B97C_06
 - - - - - - 0x00F924 03:B914: 34 B9     .word off_B934_07
 - - - - - - 0x00F926 03:B916: 74 B9     .word off_B974_08
-- - - - - - 0x00F928 03:B918: 80 B9     .word off_B980_09
+- D 1 - I - 0x00F928 03:B918: 80 B9     .word off_B980_09
 - D 1 - I - 0x00F92A 03:B91A: 60 B9     .word off_B960_0A
 - D 1 - I - 0x00F92C 03:B91C: 78 B9     .word off_B978_0B
-- - - - - - 0x00F92E 03:B91E: 4C B9     .word off_B94C_0C
+- D 1 - I - 0x00F92E 03:B91E: 4C B9     .word off_B94C_0C
 - D 1 - I - 0x00F930 03:B920: 28 B9     .word off_B928_0D
 - D 1 - I - 0x00F932 03:B922: 2C B9     .word off_B92C_0E
 - D 1 - I - 0x00F934 03:B924: 90 B9     .word off_B990_0F
@@ -10631,10 +10631,10 @@ off_B948_0E:
 - D 1 - I - 0x00F95B 03:B94B: 7D        .byte $7D   ; 
 off_B94C_04:
 off_B94C_0C:
-- - - - - - 0x00F95C 03:B94C: 02        .byte $02   ; 
-- - - - - - 0x00F95D 03:B94D: BE        .byte $BE   ; 
-- - - - - - 0x00F95E 03:B94E: 00        .byte $00   ; 
-- - - - - - 0x00F95F 03:B94F: A2        .byte $A2   ; 
+- D 1 - I - 0x00F95C 03:B94C: 02        .byte $02   ; 
+- D 1 - I - 0x00F95D 03:B94D: BE        .byte $BE   ; 
+- D 1 - I - 0x00F95E 03:B94E: 00        .byte $00   ; 
+- D 1 - I - 0x00F95F 03:B94F: A2        .byte $A2   ; 
 off_B950_04:
 off_B950_05:
 off_B950_0E:
@@ -10745,10 +10745,10 @@ off_B97C_06:
 - D 1 - I - 0x00F98E 03:B97E: 01        .byte $01   ; 
 - D 1 - I - 0x00F98F 03:B97F: 0A        .byte $0A   ; 
 off_B980_09:
-- - - - - - 0x00F990 03:B980: 02        .byte $02   ; 
-- - - - - - 0x00F991 03:B981: 7C        .byte $7C   ; 
-- - - - - - 0x00F992 03:B982: 01        .byte $01   ; 
-- - - - - - 0x00F993 03:B983: 0A        .byte $0A   ; 
+- D 1 - I - 0x00F990 03:B980: 02        .byte $02   ; 
+- D 1 - I - 0x00F991 03:B981: 7C        .byte $7C   ; 
+- D 1 - I - 0x00F992 03:B982: 01        .byte $01   ; 
+- D 1 - I - 0x00F993 03:B983: 0A        .byte $0A   ; 
 off_B984_06:
 off_B984_0A:
 off_B984_0F:
@@ -10765,10 +10765,10 @@ off_B988_0E:
 - D 1 - I - 0x00F99A 03:B98A: 01        .byte $01   ; 
 - D 1 - I - 0x00F99B 03:B98B: 0A        .byte $0A   ; 
 off_B98C_04:
-- - - - - - 0x00F99C 03:B98C: 02        .byte $02   ; 
-- - - - - - 0x00F99D 03:B98D: D6        .byte $D6   ; 
-- - - - - - 0x00F99E 03:B98E: 00        .byte $00   ; 
-- - - - - - 0x00F99F 03:B98F: E3        .byte $E3   ; 
+- D 1 - I - 0x00F99C 03:B98C: 02        .byte $02   ; 
+- D 1 - I - 0x00F99D 03:B98D: D6        .byte $D6   ; 
+- D 1 - I - 0x00F99E 03:B98E: 00        .byte $00   ; 
+- D 1 - I - 0x00F99F 03:B98F: E3        .byte $E3   ; 
 off_B990_04:
 off_B990_0E:
 off_B990_05:
@@ -11108,14 +11108,14 @@ C - - - - - 0x00FB79 03:BB69: A9 0C     LDA #$0C
 C - - - - - 0x00FB7B 03:BB6B: 8D AC 03  STA ram_объем_дождя
 C - - - - - 0x00FB7E 03:BB6E: 4C 94 BB  JMP loc_BB94
 bra_BB71:
-- - - - - - 0x00FB81 03:BB71: 20 05 C0  JSR sub_0x01C015
-- - - - - - 0x00FB84 03:BB74: C9 A0     CMP #$A0
-- - - - - - 0x00FB86 03:BB76: B0 1C     BCS bra_BB94
-- - - - - - 0x00FB88 03:BB78: A9 82     LDA #$82
-- - - - - - 0x00FB8A 03:BB7A: 8D 66 04  STA ram_погода_номер_эффекта
-- - - - - - 0x00FB8D 03:BB7D: A9 0C     LDA #$0C
-- - - - - - 0x00FB8F 03:BB7F: 8D AC 03  STA ram_объем_дождя
-- - - - - - 0x00FB92 03:BB82: 4C 94 BB  JMP loc_BB94
+C - - - - - 0x00FB81 03:BB71: 20 05 C0  JSR sub_0x01C015
+C - - - - - 0x00FB84 03:BB74: C9 A0     CMP #$A0
+C - - - - - 0x00FB86 03:BB76: B0 1C     BCS bra_BB94
+C - - - - - 0x00FB88 03:BB78: A9 82     LDA #$82
+C - - - - - 0x00FB8A 03:BB7A: 8D 66 04  STA ram_погода_номер_эффекта
+C - - - - - 0x00FB8D 03:BB7D: A9 0C     LDA #$0C
+C - - - - - 0x00FB8F 03:BB7F: 8D AC 03  STA ram_объем_дождя
+C - - - - - 0x00FB92 03:BB82: 4C 94 BB  JMP loc_BB94
 - - - - - - 0x00FB95 03:BB85: 20 05 C0  JSR sub_0x01C015
 - - - - - - 0x00FB98 03:BB88: 30 0A     BMI bra_BB94
 - - - - - - 0x00FB9A 03:BB8A: A9 00     LDA #$00
@@ -11141,7 +11141,7 @@ C - - - - - 0x00FBBC 03:BBAC: 18        CLC
 C - - - - - 0x00FBBD 03:BBAD: 65 1C     ADC ram_001C
 C - - - - - 0x00FBBF 03:BBAF: 8D FD 05  STA ram_сила_ветра
 loc_BBB2:
-C - - - - - 0x00FBC2 03:BBB2: AD 95 04  LDA ram_направление_молния_смерч
+C D 1 - - - 0x00FBC2 03:BBB2: AD 95 04  LDA ram_направление_молния_смерч
 C - - - - - 0x00FBC5 03:BBB5: 29 03     AND #$03
 C - - - - - 0x00FBC7 03:BBB7: F0 14     BEQ bra_BBCD
 C - - - - - 0x00FBC9 03:BBB9: C9 02     CMP #$02
@@ -11153,7 +11153,7 @@ C - - - - - 0x00FBD2 03:BBC2: A9 40     LDA #$40
 C - - - - - 0x00FBD4 03:BBC4: 8D FE 05  STA ram_сторона_ветра_дождя
 C - - - - - 0x00FBD7 03:BBC7: 4C D2 BB  JMP loc_BBD2
 bra_BBCA:
-- - - - - - 0x00FBDA 03:BBCA: 4C 19 BC  JMP loc_BC19
+C - - - - - 0x00FBDA 03:BBCA: 4C 19 BC  JMP loc_BC19
 bra_BBCD:
 C - - - - - 0x00FBDD 03:BBCD: A9 C0     LDA #$C0
 C - - - - - 0x00FBDF 03:BBCF: 8D FE 05  STA ram_сторона_ветра_дождя
@@ -11196,24 +11196,24 @@ C - - - - - 0x00FC26 03:BC16: 4C 40 BC  JMP loc_BC40
 
 
 loc_BC19:
-- - - - - - 0x00FC29 03:BC19: AD FD 05  LDA ram_сила_ветра
-- - - - - - 0x00FC2C 03:BC1C: D0 15     BNE bra_BC33
-- - - - - - 0x00FC2E 03:BC1E: 20 05 C0  JSR sub_0x01C015
-- - - - - - 0x00FC31 03:BC21: C9 C0     CMP #$C0
-- - - - - - 0x00FC33 03:BC23: B0 1B     BCS bra_BC40
+C D 1 - - - 0x00FC29 03:BC19: AD FD 05  LDA ram_сила_ветра
+C - - - - - 0x00FC2C 03:BC1C: D0 15     BNE bra_BC33
+C - - - - - 0x00FC2E 03:BC1E: 20 05 C0  JSR sub_0x01C015
+C - - - - - 0x00FC31 03:BC21: C9 C0     CMP #$C0
+C - - - - - 0x00FC33 03:BC23: B0 1B     BCS bra_BC40
 bra_BC25:
-- - - - - - 0x00FC35 03:BC25: 20 05 C0  JSR sub_0x01C015
-- - - - - - 0x00FC38 03:BC28: 29 03     AND #$03
-- - - - - - 0x00FC3A 03:BC2A: 18        CLC
-- - - - - - 0x00FC3B 03:BC2B: 69 06     ADC #$06
-- - - - - - 0x00FC3D 03:BC2D: 8D FD 05  STA ram_сила_ветра
-- - - - - - 0x00FC40 03:BC30: 4C B2 BB  JMP loc_BBB2
+C - - - - - 0x00FC35 03:BC25: 20 05 C0  JSR sub_0x01C015
+C - - - - - 0x00FC38 03:BC28: 29 03     AND #$03
+C - - - - - 0x00FC3A 03:BC2A: 18        CLC
+C - - - - - 0x00FC3B 03:BC2B: 69 06     ADC #$06
+C - - - - - 0x00FC3D 03:BC2D: 8D FD 05  STA ram_сила_ветра
+C - - - - - 0x00FC40 03:BC30: 4C B2 BB  JMP loc_BBB2
 bra_BC33:
-- - - - - - 0x00FC43 03:BC33: 20 05 C0  JSR sub_0x01C015
-- - - - - - 0x00FC46 03:BC36: 10 ED     BPL bra_BC25
-- - - - - - 0x00FC48 03:BC38: A9 00     LDA #$00
-- - - - - - 0x00FC4A 03:BC3A: 8D FD 05  STA ram_сила_ветра
-- - - - - - 0x00FC4D 03:BC3D: 4C B2 BB  JMP loc_BBB2
+C - - - - - 0x00FC43 03:BC33: 20 05 C0  JSR sub_0x01C015
+C - - - - - 0x00FC46 03:BC36: 10 ED     BPL bra_BC25
+C - - - - - 0x00FC48 03:BC38: A9 00     LDA #$00
+C - - - - - 0x00FC4A 03:BC3A: 8D FD 05  STA ram_сила_ветра
+C - - - - - 0x00FC4D 03:BC3D: 4C B2 BB  JMP loc_BBB2
 loc_BC40:
 bra_BC40:
 C D 1 - - - 0x00FC50 03:BC40: 20 84 BC  JSR sub_BC84
@@ -11256,8 +11256,8 @@ C - - - - - 0x00FC8F 03:BC7F: 60        RTS
 tbl_BC80:
 - - - - - - 0x00FC90 03:BC80: FF        .byte $FF   ; 
 - D 1 - - - 0x00FC91 03:BC81: E0        .byte $E0   ; 
-- - - - - - 0x00FC92 03:BC82: A0        .byte $A0   ; 
-- - - - - - 0x00FC93 03:BC83: 60        .byte $60   ; 
+- D 1 - - - 0x00FC92 03:BC82: A0        .byte $A0   ; 
+- D 1 - - - 0x00FC93 03:BC83: 60        .byte $60   ; 
 
 
 

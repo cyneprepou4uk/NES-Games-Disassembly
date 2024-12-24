@@ -6,7 +6,7 @@
 
 
 ; MISC
-con_prg_bank                            = $00 ; 
+con_prg_bank                            = $00 ; todo
 con_gk_id                               = $0A ; goalkeeper
 con_ball_id                             = $0C ; 
 
@@ -59,3 +59,6 @@ con_se_cb_DB                            = $DB ;
 ; con_se_cb_DD                          = $DD ; unused
 con_se_cb_DE                            = $DE ; 
 ; con_se_cb_DF                          = $DF ; unused
+
+
+
