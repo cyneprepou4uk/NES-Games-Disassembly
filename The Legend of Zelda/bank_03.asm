@@ -73,7 +73,7 @@ tbl_803C_counter:
 
 
 sub_0x00C054_fill_ppu_with_tiles_3:
-C - - - - - 0x00C054 03:8044: 20 25 E6  JSR sub_0x01E635_disable_rendering
+C - - - - - 0x00C054 03:8044: 20 25 E6  JSR sub_0x01E635_disable_rendering_and_nmi
 C - - - - - 0x00C057 03:8047: AD 02 20  LDA $2002
 C - - - - - 0x00C05A 03:804A: 20 5E 80  JSR sub_805E
 C - - - - - 0x00C05D 03:804D: A5 10     LDA ram_dungeon_level
@@ -106,6 +106,8 @@ C - - - - - 0x00C08D 03:807D: 4C 5E 80  JMP loc_805E
 
 
 sub_8080_select_tiles:
+; out
+    ; ram_0000_t12_ppu_data
 C - - - - - 0x00C090 03:8080: AD 1D 05  LDA ram_051D
 C - - - - - 0x00C093 03:8083: 0A        ASL
 C - - - - - 0x00C094 03:8084: AA        TAX
@@ -119,13 +121,17 @@ C - - - - - 0x00C0A0 03:8090: 60        RTS
 
 
 sub_8091_select_tiles_and_counter:
+; out
+    ; ram_0000_t12_ppu_data
+    ; ram_0002_t25_data_counter_hi
+    ; ram_0003_t05_data_counter_lo
 C - - - - - 0x00C0A1 03:8091: AD 1D 05  LDA ram_051D
 C - - - - - 0x00C0A4 03:8094: 0A        ASL
 C - - - - - 0x00C0A5 03:8095: AA        TAX
 C - - - - - 0x00C0A6 03:8096: BD 2C 80  LDA tbl_802C_tiles_overworld,X
 C - - - - - 0x00C0A9 03:8099: 85 00     STA ram_0000_t12_ppu_data
 C - - - - - 0x00C0AB 03:809B: BD 38 80  LDA tbl_8038_counter_overworld,X
-C - - - - - 0x00C0AE 03:809E: 85 02     STA ram_0002_t07_data_counter_hi
+C - - - - - 0x00C0AE 03:809E: 85 02     STA ram_0002_t25_data_counter_hi
 C - - - - - 0x00C0B0 03:80A0: E8        INX
 C - - - - - 0x00C0B1 03:80A1: BD 2C 80  LDA tbl_802C_tiles_overworld,X
 C - - - - - 0x00C0B4 03:80A4: 85 01     STA ram_0000_t12_ppu_data + $01
@@ -136,41 +142,51 @@ C - - - - - 0x00C0BB 03:80AB: 60        RTS
 
 
 sub_80AC_select_tiles:
+; out
+    ; ram_0000_t12_ppu_data
 C - - - - - 0x00C0BC 03:80AC: A5 10     LDA ram_dungeon_level
 C - - - - - 0x00C0BE 03:80AE: 0A        ASL
 C - - - - - 0x00C0BF 03:80AF: AA        TAX
 C - - - - - 0x00C0C0 03:80B0: BD 00 80  LDA tbl_8000_tiles,X
-C - - - - - 0x00C0C3 03:80B3: 85 00     STA ram_0000_temp
+C - - - - - 0x00C0C3 03:80B3: 85 00     STA ram_0000_t12_ppu_data
 C - - - - - 0x00C0C5 03:80B5: E8        INX
 C - - - - - 0x00C0C6 03:80B6: BD 00 80  LDA tbl_8000_tiles,X
-C - - - - - 0x00C0C9 03:80B9: 85 01     STA ram_0001_temp
+C - - - - - 0x00C0C9 03:80B9: 85 01     STA ram_0000_t12_ppu_data + $01
 C - - - - - 0x00C0CB 03:80BB: 60        RTS
 
 
 
 sub_80BC_select_tiles:
+; out
+    ; ram_0000_t12_ppu_data
 C - - - - - 0x00C0CC 03:80BC: A5 10     LDA ram_dungeon_level
 C - - - - - 0x00C0CE 03:80BE: 0A        ASL
 C - - - - - 0x00C0CF 03:80BF: AA        TAX
 C - - - - - 0x00C0D0 03:80C0: BD 14 80  LDA tbl_8014_tiles,X
-C - - - - - 0x00C0D3 03:80C3: 85 00     STA ram_0000_temp
+C - - - - - 0x00C0D3 03:80C3: 85 00     STA ram_0000_t12_ppu_data
 C - - - - - 0x00C0D5 03:80C5: E8        INX
 C - - - - - 0x00C0D6 03:80C6: BD 14 80  LDA tbl_8014_tiles,X
-C - - - - - 0x00C0D9 03:80C9: 85 01     STA ram_0001_temp
+C - - - - - 0x00C0D9 03:80C9: 85 01     STA ram_0000_t12_ppu_data + $01
 C - - - - - 0x00C0DB 03:80CB: 60        RTS
 
 
 
 sub_80CC_write_to_ppu:
+; in
+    ; ram_0000_t12_ppu_data
 C - - - - - 0x00C0DC 03:80CC: AD 1D 05  LDA ram_051D
 C - - - - - 0x00C0DF 03:80CF: 0A        ASL
 C - - - - - 0x00C0E0 03:80D0: AA        TAX
 C - - - - - 0x00C0E1 03:80D1: BD 3C 80  LDA tbl_803C_counter,X
-C - - - - - 0x00C0E4 03:80D4: 85 02     STA ram_0002_t07_data_counter_hi
+C - - - - - 0x00C0E4 03:80D4: 85 02     STA ram_0002_t25_data_counter_hi
 C - - - - - 0x00C0E6 03:80D6: E8        INX
 C - - - - - 0x00C0E7 03:80D7: BD 3C 80  LDA tbl_803C_counter,X
 C - - - - - 0x00C0EA 03:80DA: 85 03     STA ram_0003_t05_data_counter_lo
 sub_80DC_write_to_ppu:
+; in
+    ; ram_0002_t25_data_counter_hi
+    ; ram_0003_t05_data_counter_lo
+    ; ram_0000_t12_ppu_data
 C - - - - - 0x00C0EC 03:80DC: AD 1D 05  LDA ram_051D
 C - - - - - 0x00C0EF 03:80DF: 0A        ASL
 C - - - - - 0x00C0F0 03:80E0: AA        TAX
@@ -194,11 +210,11 @@ C - - - - - 0x00C112 03:8102: A5 03     LDA ram_0003_t05_data_counter_lo
 C - - - - - 0x00C114 03:8104: 38        SEC
 C - - - - - 0x00C115 03:8105: E9 01     SBC #< $0001
 C - - - - - 0x00C117 03:8107: 85 03     STA ram_0003_t05_data_counter_lo
-C - - - - - 0x00C119 03:8109: A5 02     LDA ram_0002_t07_data_counter_hi
+C - - - - - 0x00C119 03:8109: A5 02     LDA ram_0002_t25_data_counter_hi
 C - - - - - 0x00C11B 03:810B: E9 00     SBC #> $0001
-C - - - - - 0x00C11D 03:810D: 85 02     STA ram_0002_t07_data_counter_hi
+C - - - - - 0x00C11D 03:810D: 85 02     STA ram_0002_t25_data_counter_hi
 ; bzk optimize, useless LDA
-C - - - - - 0x00C11F 03:810F: A5 02     LDA ram_0002_t07_data_counter_hi
+C - - - - - 0x00C11F 03:810F: A5 02     LDA ram_0002_t25_data_counter_hi
 C - - - - - 0x00C121 03:8111: D0 DD     BNE bra_80F0_loop
 C - - - - - 0x00C123 03:8113: A5 03     LDA ram_0003_t05_data_counter_lo
 C - - - - - 0x00C125 03:8115: D0 D9     BNE bra_80F0_loop

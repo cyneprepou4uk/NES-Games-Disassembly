@@ -126,6 +126,7 @@ con_dir__RUD                            = $0D ; con_dir_Right + con_dir_Up + con
 
 
 ; ram_message
+; index for 0x004010
 con_msg_00                              = $00 ; IT'S DANGEROUS TO GO ALONE! TAKE THIS.
 con_msg_01                              = $01 ; MASTER USING IT AND YOU CAN HAVE THIS.
 con_msg_02                              = $02 ; TAKE ANY ONE YOU WANT.
@@ -236,6 +237,7 @@ con_ppu_buf_7C                          = $7C ; palette
 
 
 
+; todo
 ; ram_obj_id_enemy
 ; ram_copy_obj_id
 ; need comments at 0x01FBC4 0x01FD92
@@ -484,3 +486,6 @@ con_04C0_10                             = $10 ; Reverse when blocked. bzk there 
 con_04C0_20                             = $20 ; 
 con_04C0_40                             = $40 ; 
 con_04C0_80                             = $80 ; 
+
+
+
