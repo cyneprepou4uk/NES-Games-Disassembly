@@ -51,3 +51,18 @@ con_tank_flag_follow_p2                 = $C0 ;
 con_tank_flag_follow_p1                 = $D0 ; 
 con_tank_flag_E0                        = $E0 ; 
 con_tank_flag_respawn                   = $F0 ; 
+
+
+
+; ram_se_data
+con_se_index_00                         = $00 ; 
+con_se_index_01                         = $01 ; for 4000/4004/4008/400C
+con_se_index_02                         = $02 ; for 4001/4005/4009/400D
+con_se_index_03                         = $03 ; for 4002/4006/400A/400E
+con_se_index_04                         = $04 ; for 4003/4007/400B/400F
+con_se_index_05                         = $05 ; 
+con_se_index_06                         = $06 ; 
+con_se_index_07                         = $07 ; 
+
+
+

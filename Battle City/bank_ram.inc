@@ -831,7 +831,6 @@ ram_tank_stage_pos_hi                   = $00E8 ; 000781 00146E 0021B8 0021E2 00
 ram_00F0_temp                           = $00F0 ; 000781 00146E 002A6D 002A7E 002A82 002AAB 002AF4 002AF8 002B27 002B3F 002B43 
     ram_00F0_t01_se_data                    = ram_00F0_temp ; 2 addresses 00F0-00F1
     ram_00F0_t02_se_data                    = ram_00F0_temp ; 2 addresses 00F0-00F1
-    ram_00F0_t03_se_data                    = ram_00F0_temp ; 2 addresses 00F0-00F1
 
 
 
@@ -1604,238 +1603,281 @@ ram_sfx_bonus_1000                      = $031B ; 000E8E 000EE9 002A7A 002AB3 00
 
 
 
-; sound engine addresses
-; addresses used by the sound driver start here, probably up to 03FF
-; label used as indirect lo/hi address
-ram_se_data                             = $031C ; 000E91 000EEC 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-; ram_031D                              = $031D ; 000E94 000EEF 002AE9 002B74 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; SOUND ENGINE (start)
+; 031C-03FB (E0) 
+; each chunk has 8 addresses, see con_se_index
 
-ram_031E                                = $031E ; 002AE9 002B7B 
-ram_031F                                = $031F ; 002AE9 002BD8 
-ram_0320                                = $0320 ; 002AE9 002B82 002BCD 002BD3 
-ram_0321                                = $0321 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_0322                                = $0322 ; 002BA9 002BE9 
-ram_0323                                = $0323 ; 002B54 002B59 002BEC 
-ram_0324                                = $0324 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_0325                                = $0325 ; 002AE9 002B74 
-ram_0326                                = $0326 ; 002AE9 002B7B 
-ram_0327                                = $0327 ; 002AE9 002BD8 
-ram_0328                                = $0328 ; 002AE9 002B82 002BCD 002BD3 
-ram_0329                                = $0329 ; 002B63 002C27 002C2C 002CAB 002CB0 002CBA 002CD2 002CDC 
-ram_032A                                = $032A ; 002BA9 002BE9 
-ram_032B                                = $032B ; 002B54 002B59 002BEC 
-ram_032C                                = $032C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_032D                                = $032D ; 002AE9 002B74 
-ram_032E                                = $032E ; 002AE9 002B7B 
-ram_032F                                = $032F ; 002AE9 002BD8 
-ram_0330                                = $0330 ; 002AE9 002B82 002BCD 002BD3 
-ram_0331                                = $0331 ; 002B63 002C27 002C2C 002CAB 002CB0 002CBA 002CD2 002CDC 
-ram_0332                                = $0332 ; 002BA9 002BE9 
-ram_0333                                = $0333 ; 002B54 002B59 002BEC 
-ram_0334                                = $0334 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_0335                                = $0335 ; 002AE9 002B74 
-ram_0336                                = $0336 ; 002AE9 002B7B 
-ram_0337                                = $0337 ; 002AE9 002BD8 
-ram_0338                                = $0338 ; 002AE9 002B82 002BCD 002BD3 
-ram_0339                                = $0339 ; 002B63 002C27 002C2C 002CAB 002CB0 002CBA 002CD2 002CDC 
-ram_033A                                = $033A ; 002BA9 002BE9 
-ram_033B                                = $033B ; 002B54 002B59 002BEC 
-ram_033C                                = $033C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_033D                                = $033D ; 002AE9 002B74 
-ram_033E                                = $033E ; 002AE9 002B7B 
-ram_033F                                = $033F ; 002AE9 002BD8 
-ram_0340                                = $0340 ; 002AE9 002B82 002BCD 002BD3 
-ram_0341                                = $0341 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_0342                                = $0342 ; 002BA9 002BE9 
-ram_0343                                = $0343 ; 002B54 002B59 002BEC 
-ram_0344                                = $0344 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_0345                                = $0345 ; 002AE9 002B74 002C4A 002C50 
-ram_0346                                = $0346 ; 002AE9 002B7B 
-ram_0347                                = $0347 ; 002AE9 002BD8 
-ram_0348                                = $0348 ; 002AE9 002B82 002BCD 002BD3 
-ram_0349                                = $0349 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_034A                                = $034A ; 002BA9 002BE9 
-ram_034B                                = $034B ; 002B54 002B59 002BEC 
-ram_034C                                = $034C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_034D                                = $034D ; 002AE9 002B74 
-ram_034E                                = $034E ; 002AE9 002B7B 
-ram_034F                                = $034F ; 002AE9 002BD8 
-ram_0350                                = $0350 ; 002AE9 002B82 002BCD 002BD3 
-ram_0351                                = $0351 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_0352                                = $0352 ; 002BA9 002BE9 
-ram_0353                                = $0353 ; 002B54 002B59 002BEC 
-ram_0354                                = $0354 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_0355                                = $0355 ; 002AE9 002B74 002C4A 002C50 
-ram_0356                                = $0356 ; 002AE9 002B7B 
-ram_0357                                = $0357 ; 002AE9 002B91 002BD8 
-ram_0358                                = $0358 ; 002AE9 002B82 002BCD 002BD3 
-ram_0359                                = $0359 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_035A                                = $035A ; 002BA9 002BE9 
-ram_035B                                = $035B ; 002B54 002B59 002BEC 
-ram_035C                                = $035C ; 002A78 
-ram_035D                                = $035D ; 
-ram_035E                                = $035E ; 
-ram_035F                                = $035F ; 
-ram_0360                                = $0360 ; 
-ram_0361                                = $0361 ; 
-ram_0362                                = $0362 ; 
-ram_0363                                = $0363 ; 
-ram_0364                                = $0364 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_0365                                = $0365 ; 002AE9 002B74 
-ram_0366                                = $0366 ; 002AE9 002B7B 
-ram_0367                                = $0367 ; 002AE9 002BD8 
-ram_0368                                = $0368 ; 002AE9 002B82 002BCD 002BD3 
-ram_0369                                = $0369 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_036A                                = $036A ; 002BA9 002BE9 
-ram_036B                                = $036B ; 002B54 002B59 002BEC 
-ram_036C                                = $036C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_036D                                = $036D ; 002AE9 002B74 002C4A 002C50 
-ram_036E                                = $036E ; 002AE9 002B7B 
-ram_036F                                = $036F ; 002AE9 002B91 002BD8 
-ram_0370                                = $0370 ; 002AE9 002B82 002BCD 002BD3 
-ram_0371                                = $0371 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_0372                                = $0372 ; 002BA9 002BE9 
-ram_0373                                = $0373 ; 002B54 002B59 002BEC 
-ram_0374                                = $0374 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_0375                                = $0375 ; 002AE9 002B74 
-ram_0376                                = $0376 ; 002AE9 002B7B 
-ram_0377                                = $0377 ; 002AE9 002BD8 
-ram_0378                                = $0378 ; 002AE9 002B82 002BCD 002BD3 
-ram_0379                                = $0379 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_037A                                = $037A ; 002BA9 002BE9 
-ram_037B                                = $037B ; 002B54 002B59 002BEC 
-ram_037C                                = $037C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_037D                                = $037D ; 002AE9 002B74 
-ram_037E                                = $037E ; 002AE9 002B7B 
-ram_037F                                = $037F ; 002AE9 002BD8 
-ram_0380                                = $0380 ; 002AE9 002B82 002BCD 002BD3 
-ram_0381                                = $0381 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_0382                                = $0382 ; 002BA9 002BE9 
-ram_0383                                = $0383 ; 002B54 002B59 002BEC 
-ram_0384                                = $0384 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_0385                                = $0385 ; 002AE9 002B74 
-ram_0386                                = $0386 ; 002AE9 002B7B 
-ram_0387                                = $0387 ; 002AE9 002BD8 
-ram_0388                                = $0388 ; 002AE9 002B82 002BCD 002BD3 
-ram_0389                                = $0389 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_038A                                = $038A ; 002BA9 002BE9 
-ram_038B                                = $038B ; 002B54 002B59 002BEC 
-ram_038C                                = $038C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_038D                                = $038D ; 002AE9 002B74 002C4A 002C50 
-ram_038E                                = $038E ; 002AE9 002B7B 
-ram_038F                                = $038F ; 002AE9 002BD8 
-ram_0390                                = $0390 ; 002AE9 002B82 002BCD 002BD3 
-ram_0391                                = $0391 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_0392                                = $0392 ; 002BA9 002BE9 
-ram_0393                                = $0393 ; 002B54 002B59 002BEC 
-ram_0394                                = $0394 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002C23 
-ram_0395                                = $0395 ; 002AE9 002B74 
-ram_0396                                = $0396 ; 002AE9 002B7B 
-ram_0397                                = $0397 ; 002AE9 002BD8 
-ram_0398                                = $0398 ; 002AE9 002B82 002BCD 002BD3 
-ram_0399                                = $0399 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_039A                                = $039A ; 002BA9 002BE9 
-ram_039B                                = $039B ; 002B54 002B59 002BEC 
-ram_039C                                = $039C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_039D                                = $039D ; 002AE9 002B74 
-ram_039E                                = $039E ; 002AE9 002B7B 
-ram_039F                                = $039F ; 002AE9 002BD8 
-ram_03A0                                = $03A0 ; 002AE9 002B82 002BCD 002BD3 
-ram_03A1                                = $03A1 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_03A2                                = $03A2 ; 002BA9 002BE9 
-ram_03A3                                = $03A3 ; 002B54 002B59 002BEC 
-ram_03A4                                = $03A4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 
-ram_03A5                                = $03A5 ; 002AE9 002B74 
-ram_03A6                                = $03A6 ; 002AE9 002B7B 
-ram_03A7                                = $03A7 ; 002AE9 002BD8 
-ram_03A8                                = $03A8 ; 002AE9 002B82 002BCD 002BD3 
-ram_03A9                                = $03A9 ; 002B63 002CBA 002CD2 002CDC 
-ram_03AA                                = $03AA ; 002BA9 002BE9 
-ram_03AB                                = $03AB ; 002B54 002B59 002BEC 
-ram_03AC                                = $03AC ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 
-ram_03AD                                = $03AD ; 002AE9 002B74 
-ram_03AE                                = $03AE ; 002AE9 002B7B 
-ram_03AF                                = $03AF ; 002AE9 002BD8 
-ram_03B0                                = $03B0 ; 002AE9 002B82 002BCD 002BD3 
-ram_03B1                                = $03B1 ; 002B63 002CBA 002CD2 002CDC 
-ram_03B2                                = $03B2 ; 002BA9 002BE9 
-ram_03B3                                = $03B3 ; 002B54 002B59 002BEC 
-ram_03B4                                = $03B4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002C23 
-ram_03B5                                = $03B5 ; 002AE9 002B74 
-ram_03B6                                = $03B6 ; 002AE9 002B7B 
-ram_03B7                                = $03B7 ; 002AE9 002BD8 
-ram_03B8                                = $03B8 ; 002AE9 002B82 002BCD 002BD3 
-ram_03B9                                = $03B9 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_03BA                                = $03BA ; 002BA9 002BE9 
-ram_03BB                                = $03BB ; 002B54 002B59 002BEC 
-ram_03BC                                = $03BC ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002C23 
-ram_03BD                                = $03BD ; 002AE9 002B74 
-ram_03BE                                = $03BE ; 002AE9 002B7B 
-ram_03BF                                = $03BF ; 002AE9 002B91 002BD8 
-ram_03C0                                = $03C0 ; 002AE9 002B82 002BCD 002BD3 
-ram_03C1                                = $03C1 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_03C2                                = $03C2 ; 002BA9 002BE9 
-ram_03C3                                = $03C3 ; 002B54 002B59 002BEC 
-ram_03C4                                = $03C4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_03C5                                = $03C5 ; 002AE9 002B74 002C4A 002C50 
-ram_03C6                                = $03C6 ; 002AE9 002B7B 
-ram_03C7                                = $03C7 ; 002AE9 002BD8 
-ram_03C8                                = $03C8 ; 002AE9 002B82 002BCD 002BD3 
-ram_03C9                                = $03C9 ; 002B63 002C27 002C2C 002CAB 002CB0 002CBA 002CD2 002CDC 
-ram_03CA                                = $03CA ; 002BA9 002BE9 
-ram_03CB                                = $03CB ; 002B54 002B59 002BEC 
-ram_03CC                                = $03CC ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_03CD                                = $03CD ; 002AE9 002B74 002C4A 002C50 
-ram_03CE                                = $03CE ; 002AE9 002B7B 
-ram_03CF                                = $03CF ; 002AE9 002BD8 
-ram_03D0                                = $03D0 ; 002AE9 002B82 002BCD 002BD3 
-ram_03D1                                = $03D1 ; 002B63 002C27 002C2C 002CAB 002CB0 002CBA 002CD2 002CDC 
-ram_03D2                                = $03D2 ; 002BA9 002BE9 
-ram_03D3                                = $03D3 ; 002B54 002B59 002BEC 
-ram_03D4                                = $03D4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_03D5                                = $03D5 ; 002AE9 002B74 002C80 
-ram_03D6                                = $03D6 ; 002AE9 002B7B 
-ram_03D7                                = $03D7 ; 002AE9 002BD8 
-ram_03D8                                = $03D8 ; 002AE9 002B82 002BCD 002BD3 
-ram_03D9                                = $03D9 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_03DA                                = $03DA ; 002BA9 002BE9 
-ram_03DB                                = $03DB ; 002B54 002B59 002BEC 
-ram_03DC                                = $03DC ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_03DD                                = $03DD ; 002AE9 002B74 
-ram_03DE                                = $03DE ; 002AE9 002B7B 
-ram_03DF                                = $03DF ; 002AE9 002BD8 
-ram_03E0                                = $03E0 ; 002AE9 002B82 002BCD 002BD3 
-ram_03E1                                = $03E1 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_03E2                                = $03E2 ; 002BA9 002BE9 
-ram_03E3                                = $03E3 ; 002B54 002B59 002BEC 
-ram_03E4                                = $03E4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_03E5                                = $03E5 ; 002AE9 002B74 
-ram_03E6                                = $03E6 ; 002AE9 002B7B 
-ram_03E7                                = $03E7 ; 002AE9 002BD8 
-ram_03E8                                = $03E8 ; 002AE9 002B82 002BCD 002BD3 
-ram_03E9                                = $03E9 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_03EA                                = $03EA ; 002BA9 002BE9 
-ram_03EB                                = $03EB ; 002B54 002B59 002BEC 
-ram_03EC                                = $03EC ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_03ED                                = $03ED ; 002AE9 002B74 
-ram_03EE                                = $03EE ; 002AE9 002B7B 
-ram_03EF                                = $03EF ; 002AE9 002BD8 
-ram_03F0                                = $03F0 ; 002AE9 002B82 002BCD 002BD3 
-ram_03F1                                = $03F1 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_03F2                                = $03F2 ; 002BA9 002BE9 
-ram_03F3                                = $03F3 ; 002B54 002B59 002BEC 
-ram_03F4                                = $03F4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
-ram_03F5                                = $03F5 ; 002AE9 002B74 
-ram_03F6                                = $03F6 ; 002AE9 002B7B 
-ram_03F7                                = $03F7 ; 002AE9 002BD8 
-ram_03F8                                = $03F8 ; 002AE9 002B82 002BCD 002BD3 
-ram_03F9                                = $03F9 ; 002B63 002C27 002C2C 002CD2 002CDC 
-ram_03FA                                = $03FA ; 002BA9 002BE9 
-ram_03FB                                = $03FB ; 002B54 002B59 002BEC 
-ram_03FC                                = $03FC ; 
-ram_03FD                                = $03FD ; 
-ram_03FE                                = $03FE ; 
-ram_03FF                                = $03FF ; 
+
+
+; 
+ram_se_data                             = $031C ; for common links
+
+
+
+; 
+; ram_031C                              = $031C ; 000E91 000EEC 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_031D                              = $031D ; 000E94 000EEF 002AE9 002B74 
+; ram_031E                              = $031E ; 002AE9 002B7B 
+; ram_031F                              = $031F ; 002AE9 002BD8 
+; ram_0320                              = $0320 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0321                              = $0321 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_0322                              = $0322 ; 002BA9 002BE9 
+; ram_0323                              = $0323 ; 002B54 002B59 002BEC 
+; 
+; ram_0324                              = $0324 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_0325                              = $0325 ; 002AE9 002B74 
+; ram_0326                              = $0326 ; 002AE9 002B7B 
+; ram_0327                              = $0327 ; 002AE9 002BD8 
+; ram_0328                              = $0328 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0329                              = $0329 ; 002B63 002C27 002C2C 002CAB 002CB0 002CBA 002CD2 002CDC 
+; ram_032A                              = $032A ; 002BA9 002BE9 
+; ram_032B                              = $032B ; 002B54 002B59 002BEC 
+; 
+; ram_032C                              = $032C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_032D                              = $032D ; 002AE9 002B74 
+; ram_032E                              = $032E ; 002AE9 002B7B 
+; ram_032F                              = $032F ; 002AE9 002BD8 
+; ram_0330                              = $0330 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0331                              = $0331 ; 002B63 002C27 002C2C 002CAB 002CB0 002CBA 002CD2 002CDC 
+; ram_0332                              = $0332 ; 002BA9 002BE9 
+; ram_0333                              = $0333 ; 002B54 002B59 002BEC 
+; 
+; ram_0334                              = $0334 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_0335                              = $0335 ; 002AE9 002B74 
+; ram_0336                              = $0336 ; 002AE9 002B7B 
+; ram_0337                              = $0337 ; 002AE9 002BD8 
+; ram_0338                              = $0338 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0339                              = $0339 ; 002B63 002C27 002C2C 002CAB 002CB0 002CBA 002CD2 002CDC 
+; ram_033A                              = $033A ; 002BA9 002BE9 
+; ram_033B                              = $033B ; 002B54 002B59 002BEC 
+; 
+; ram_033C                              = $033C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_033D                              = $033D ; 002AE9 002B74 
+; ram_033E                              = $033E ; 002AE9 002B7B 
+; ram_033F                              = $033F ; 002AE9 002BD8 
+; ram_0340                              = $0340 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0341                              = $0341 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_0342                              = $0342 ; 002BA9 002BE9 
+; ram_0343                              = $0343 ; 002B54 002B59 002BEC 
+; 
+; ram_0344                              = $0344 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_0345                              = $0345 ; 002AE9 002B74 002C4A 002C50 
+; ram_0346                              = $0346 ; 002AE9 002B7B 
+; ram_0347                              = $0347 ; 002AE9 002BD8 
+; ram_0348                              = $0348 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0349                              = $0349 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_034A                              = $034A ; 002BA9 002BE9 
+; ram_034B                              = $034B ; 002B54 002B59 002BEC 
+; 
+; ram_034C                              = $034C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_034D                              = $034D ; 002AE9 002B74 
+; ram_034E                              = $034E ; 002AE9 002B7B 
+; ram_034F                              = $034F ; 002AE9 002BD8 
+; ram_0350                              = $0350 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0351                              = $0351 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_0352                              = $0352 ; 002BA9 002BE9 
+; ram_0353                              = $0353 ; 002B54 002B59 002BEC 
+; 
+; ram_0354                              = $0354 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_0355                              = $0355 ; 002AE9 002B74 002C4A 002C50 
+; ram_0356                              = $0356 ; 002AE9 002B7B 
+; ram_0357                              = $0357 ; 002AE9 002B91 002BD8 
+; ram_0358                              = $0358 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0359                              = $0359 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_035A                              = $035A ; 002BA9 002BE9 
+; ram_035B                              = $035B ; 002B54 002B59 002BEC 
+; 
+; ram_035C                              = $035C ; 002A78 
+; ram_035D                              = $035D ; 
+; ram_035E                              = $035E ; 
+; ram_035F                              = $035F ; 
+; ram_0360                              = $0360 ; 
+; ram_0361                              = $0361 ; 
+; ram_0362                              = $0362 ; 
+; ram_0363                              = $0363 ; 
+; 
+; ram_0364                              = $0364 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_0365                              = $0365 ; 002AE9 002B74 
+; ram_0366                              = $0366 ; 002AE9 002B7B 
+; ram_0367                              = $0367 ; 002AE9 002BD8 
+; ram_0368                              = $0368 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0369                              = $0369 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_036A                              = $036A ; 002BA9 002BE9 
+; ram_036B                              = $036B ; 002B54 002B59 002BEC 
+; 
+; ram_036C                              = $036C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_036D                              = $036D ; 002AE9 002B74 002C4A 002C50 
+; ram_036E                              = $036E ; 002AE9 002B7B 
+; ram_036F                              = $036F ; 002AE9 002B91 002BD8 
+; ram_0370                              = $0370 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0371                              = $0371 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_0372                              = $0372 ; 002BA9 002BE9 
+; ram_0373                              = $0373 ; 002B54 002B59 002BEC 
+; 
+; ram_0374                              = $0374 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_0375                              = $0375 ; 002AE9 002B74 
+; ram_0376                              = $0376 ; 002AE9 002B7B 
+; ram_0377                              = $0377 ; 002AE9 002BD8 
+; ram_0378                              = $0378 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0379                              = $0379 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_037A                              = $037A ; 002BA9 002BE9 
+; ram_037B                              = $037B ; 002B54 002B59 002BEC 
+; 
+; ram_037C                              = $037C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_037D                              = $037D ; 002AE9 002B74 
+; ram_037E                              = $037E ; 002AE9 002B7B 
+; ram_037F                              = $037F ; 002AE9 002BD8 
+; ram_0380                              = $0380 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0381                              = $0381 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_0382                              = $0382 ; 002BA9 002BE9 
+; ram_0383                              = $0383 ; 002B54 002B59 002BEC 
+; 
+; ram_0384                              = $0384 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_0385                              = $0385 ; 002AE9 002B74 
+; ram_0386                              = $0386 ; 002AE9 002B7B 
+; ram_0387                              = $0387 ; 002AE9 002BD8 
+; ram_0388                              = $0388 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0389                              = $0389 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_038A                              = $038A ; 002BA9 002BE9 
+; ram_038B                              = $038B ; 002B54 002B59 002BEC 
+; 
+; ram_038C                              = $038C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_038D                              = $038D ; 002AE9 002B74 002C4A 002C50 
+; ram_038E                              = $038E ; 002AE9 002B7B 
+; ram_038F                              = $038F ; 002AE9 002BD8 
+; ram_0390                              = $0390 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0391                              = $0391 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_0392                              = $0392 ; 002BA9 002BE9 
+; ram_0393                              = $0393 ; 002B54 002B59 002BEC 
+; 
+; ram_0394                              = $0394 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002C23 
+; ram_0395                              = $0395 ; 002AE9 002B74 
+; ram_0396                              = $0396 ; 002AE9 002B7B 
+; ram_0397                              = $0397 ; 002AE9 002BD8 
+; ram_0398                              = $0398 ; 002AE9 002B82 002BCD 002BD3 
+; ram_0399                              = $0399 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_039A                              = $039A ; 002BA9 002BE9 
+; ram_039B                              = $039B ; 002B54 002B59 002BEC 
+; 
+; ram_039C                              = $039C ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_039D                              = $039D ; 002AE9 002B74 
+; ram_039E                              = $039E ; 002AE9 002B7B 
+; ram_039F                              = $039F ; 002AE9 002BD8 
+; ram_03A0                              = $03A0 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03A1                              = $03A1 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_03A2                              = $03A2 ; 002BA9 002BE9 
+; ram_03A3                              = $03A3 ; 002B54 002B59 002BEC 
+; 
+; ram_03A4                              = $03A4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 
+; ram_03A5                              = $03A5 ; 002AE9 002B74 
+; ram_03A6                              = $03A6 ; 002AE9 002B7B 
+; ram_03A7                              = $03A7 ; 002AE9 002BD8 
+; ram_03A8                              = $03A8 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03A9                              = $03A9 ; 002B63 002CBA 002CD2 002CDC 
+; ram_03AA                              = $03AA ; 002BA9 002BE9 
+; ram_03AB                              = $03AB ; 002B54 002B59 002BEC 
+; 
+; ram_03AC                              = $03AC ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 
+; ram_03AD                              = $03AD ; 002AE9 002B74 
+; ram_03AE                              = $03AE ; 002AE9 002B7B 
+; ram_03AF                              = $03AF ; 002AE9 002BD8 
+; ram_03B0                              = $03B0 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03B1                              = $03B1 ; 002B63 002CBA 002CD2 002CDC 
+; ram_03B2                              = $03B2 ; 002BA9 002BE9 
+; ram_03B3                              = $03B3 ; 002B54 002B59 002BEC 
+; 
+; ram_03B4                              = $03B4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002C23 
+; ram_03B5                              = $03B5 ; 002AE9 002B74 
+; ram_03B6                              = $03B6 ; 002AE9 002B7B 
+; ram_03B7                              = $03B7 ; 002AE9 002BD8 
+; ram_03B8                              = $03B8 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03B9                              = $03B9 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_03BA                              = $03BA ; 002BA9 002BE9 
+; ram_03BB                              = $03BB ; 002B54 002B59 002BEC 
+; 
+; ram_03BC                              = $03BC ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002C23 
+; ram_03BD                              = $03BD ; 002AE9 002B74 
+; ram_03BE                              = $03BE ; 002AE9 002B7B 
+; ram_03BF                              = $03BF ; 002AE9 002B91 002BD8 
+; ram_03C0                              = $03C0 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03C1                              = $03C1 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_03C2                              = $03C2 ; 002BA9 002BE9 
+; ram_03C3                              = $03C3 ; 002B54 002B59 002BEC 
+; 
+; ram_03C4                              = $03C4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_03C5                              = $03C5 ; 002AE9 002B74 002C4A 002C50 
+; ram_03C6                              = $03C6 ; 002AE9 002B7B 
+; ram_03C7                              = $03C7 ; 002AE9 002BD8 
+; ram_03C8                              = $03C8 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03C9                              = $03C9 ; 002B63 002C27 002C2C 002CAB 002CB0 002CBA 002CD2 002CDC 
+; ram_03CA                              = $03CA ; 002BA9 002BE9 
+; ram_03CB                              = $03CB ; 002B54 002B59 002BEC 
+; 
+; ram_03CC                              = $03CC ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_03CD                              = $03CD ; 002AE9 002B74 002C4A 002C50 
+; ram_03CE                              = $03CE ; 002AE9 002B7B 
+; ram_03CF                              = $03CF ; 002AE9 002BD8 
+; ram_03D0                              = $03D0 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03D1                              = $03D1 ; 002B63 002C27 002C2C 002CAB 002CB0 002CBA 002CD2 002CDC 
+; ram_03D2                              = $03D2 ; 002BA9 002BE9 
+; ram_03D3                              = $03D3 ; 002B54 002B59 002BEC 
+; 
+; ram_03D4                              = $03D4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_03D5                              = $03D5 ; 002AE9 002B74 002C80 
+; ram_03D6                              = $03D6 ; 002AE9 002B7B 
+; ram_03D7                              = $03D7 ; 002AE9 002BD8 
+; ram_03D8                              = $03D8 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03D9                              = $03D9 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_03DA                              = $03DA ; 002BA9 002BE9 
+; ram_03DB                              = $03DB ; 002B54 002B59 002BEC 
+; 
+; ram_03DC                              = $03DC ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_03DD                              = $03DD ; 002AE9 002B74 
+; ram_03DE                              = $03DE ; 002AE9 002B7B 
+; ram_03DF                              = $03DF ; 002AE9 002BD8 
+; ram_03E0                              = $03E0 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03E1                              = $03E1 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_03E2                              = $03E2 ; 002BA9 002BE9 
+; ram_03E3                              = $03E3 ; 002B54 002B59 002BEC 
+; 
+; ram_03E4                              = $03E4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_03E5                              = $03E5 ; 002AE9 002B74 
+; ram_03E6                              = $03E6 ; 002AE9 002B7B 
+; ram_03E7                              = $03E7 ; 002AE9 002BD8 
+; ram_03E8                              = $03E8 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03E9                              = $03E9 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_03EA                              = $03EA ; 002BA9 002BE9 
+; ram_03EB                              = $03EB ; 002B54 002B59 002BEC 
+; 
+; ram_03EC                              = $03EC ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_03ED                              = $03ED ; 002AE9 002B74 
+; ram_03EE                              = $03EE ; 002AE9 002B7B 
+; ram_03EF                              = $03EF ; 002AE9 002BD8 
+; ram_03F0                              = $03F0 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03F1                              = $03F1 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_03F2                              = $03F2 ; 002BA9 002BE9 
+; ram_03F3                              = $03F3 ; 002B54 002B59 002BEC 
+; 
+; ram_03F4                              = $03F4 ; 002A78 002ABA 002ADE 002B6D 002B86 002BDC 002BE5 002C23 
+; ram_03F5                              = $03F5 ; 002AE9 002B74 
+; ram_03F6                              = $03F6 ; 002AE9 002B7B 
+; ram_03F7                              = $03F7 ; 002AE9 002BD8 
+; ram_03F8                              = $03F8 ; 002AE9 002B82 002BCD 002BD3 
+; ram_03F9                              = $03F9 ; 002B63 002C27 002C2C 002CD2 002CDC 
+; ram_03FA                              = $03FA ; 002BA9 002BE9 
+; ram_03FB                              = $03FB ; 002B54 002B59 002BEC 
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; SOUND ENGINE (end)
+
+
+
+; free addresses
+; ram_03FC                              = $03FC ; 
+; ram_03FD                              = $03FD ; 
+; ram_03FE                              = $03FE ; 
+; ram_03FF                              = $03FF ; 
 
 
 
