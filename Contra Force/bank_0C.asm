@@ -15686,6 +15686,7 @@ _off030_0x01BC5A_06:
 
 
 _off012_0x01BD19_0C_pause:
+; con_D22A_pause
 ; 00-7E = print byte xx times
 ; 80-FE = print a list of bytes xx times
 ; 7F = change ppu address
@@ -16035,6 +16036,7 @@ _off012_0x01BD19_0C_pause:
 
 
 ofs_006_0x01BFD9_22:
+; con_F3D6_22
 C - - J - - 0x01BFD9 06:BFC9: A2 00     LDX #$00
 C - - - - - 0x01BFDB 06:BFCB: A0 01     LDY #$01
 bra_BFCD_loop:

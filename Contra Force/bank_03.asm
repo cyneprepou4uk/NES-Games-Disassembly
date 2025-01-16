@@ -7765,6 +7765,7 @@ off_0D_BE9F_0C:
 
 
 _off012_0x007EDC_08_cutscene_phone:
+; con_D22A_cutscene_phone
 ; 00-7E = print byte xx times
 ; 80-FE = print a list of bytes xx times
 ; 7F = change ppu address
