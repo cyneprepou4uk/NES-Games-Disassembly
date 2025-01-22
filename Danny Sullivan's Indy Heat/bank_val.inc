@@ -3,6 +3,7 @@
 
 
 ; MISC
+con_bzk_hack                            = $00 ; set to 01 before hacking
 con_prg_bank_jsr                        = $00 ; 
 con_prg_bank_rts                        = $00 ; 
 
@@ -44,7 +45,7 @@ con_bsw_01_18                           = $18 ;
 con_bsw_01_1B                           = $1B ; 
 con_bsw_01_1E                           = $1E ; 
 ; con_bsw_01_21                         = $21 ; unused
-; con_bsw_01_24                         = $24 ; unused
+; con_bsw_01_24                         = $24 ; unused, fuel consumption
 con_bsw_01_27                           = $27 ; 
 con_bsw_01_2A                           = $2A ; 
 
@@ -71,7 +72,7 @@ con_bsw_02_36                           = $36 ;
 ; bank 03
 con_bsw_03_03                           = $03 ; 
 con_bsw_03_06                           = $06 ; 
-con_bsw_03_09                           = $09 ; 
+con_bsw_03_09_print_state_name          = $09 ; 
 
 
 
@@ -113,6 +114,18 @@ con_005B_1E                             = $1E ;
 
 
 
+; index for 0x0182A4
+con_8294_00                             = $00 ; 
+con_8294_02                             = $02 ; 
+con_8294_04                             = $04 ; 
+con_8294_06                             = $06 ; 
+con_8294_08                             = $08 ; 
+con_8294_0A                             = $0A ; 
+; con_8294_0C                           = $0C ; unused
+con_8294_0E                             = $0E ; 
+
+
+
 ; ram_music_id
 con_music_00                            = $00 ; 
 con_music_01                            = $01 ; 04 = ILLINOIS
@@ -130,3 +143,6 @@ con_music_0B                            = $0B ; 02 = S. CALIFORNIA
 con_music_0D                            = $0D ; 08 = TRADEWEST SPEEDBOWL
 con_music_0E                            = $0E ; 
 con_music_FF                            = $FF ; 
+
+
+
