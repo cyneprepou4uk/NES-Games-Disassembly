@@ -6,15 +6,15 @@
 
 
 
-.export _off028_0x018011_00
-.export _off029_0x018611_00
-.export _off030_0x018FA1_00
-.export _off028_0x01903A_02
-.export _off029_0x0196BA_02
-.export _off030_0x01A6AA_02
-.export _off028_0x01A7AA_06
-.export _off029_0x01B06A_06
-.export _off030_0x01BC5A_06
+.export _off028_0x018011_00_stage_1
+.export _off029_0x018611_00_stage_1
+.export _off030_0x018FA1_00_stage_1
+.export _off028_0x01903A_02_stage_2
+.export _off029_0x0196BA_02_stage_2
+.export _off030_0x01A6AA_02_stage_2
+.export _off028_0x01A7AA_06_stage_4
+.export _off029_0x01B06A_06_stage_4
+.export _off030_0x01BC5A_06_stage_4
 .export _off012_0x01BD19_0C_pause
 .export ofs_006_0x01BFD9_22
 
@@ -25,7 +25,7 @@
 
 
 
-_off028_0x018011_00:
+_off028_0x018011_00_stage_1:
 - D 0 - - - 0x018011 06:8001: 07        .byte $07   ; 
 - D 0 - I - 0x018012 06:8002: 08        .byte $08   ; 
 - D 0 - I - 0x018013 06:8003: 06        .byte $06   ; 
@@ -1565,7 +1565,7 @@ _off028_0x018011_00:
 
 
 
-_off029_0x018611_00:
+_off029_0x018611_00_stage_1:
 - D 0 - I - 0x018611 06:8601: 00        .byte $00   ; 
 - D 0 - I - 0x018612 06:8602: 00        .byte $00   ; 
 - D 0 - I - 0x018613 06:8603: 00        .byte $00   ; 
@@ -4017,7 +4017,7 @@ _off029_0x018611_00:
 
 
 
-_off030_0x018FA1_00:
+_off030_0x018FA1_00_stage_1:
 - D 0 - I - 0x018FA1 06:8F91: 00        .byte $00   ; 
 - D 0 - I - 0x018FA2 06:8F92: AA        .byte $AA   ; 
 - D 0 - I - 0x018FA3 06:8F93: AA        .byte $AA   ; 
@@ -4174,7 +4174,7 @@ _off030_0x018FA1_00:
 
 
 
-_off028_0x01903A_02:
+_off028_0x01903A_02_stage_2:
 - D 0 - I - 0x01903A 06:902A: 4D        .byte $4D   ; 
 - D 0 - I - 0x01903B 06:902B: 4D        .byte $4D   ; 
 - D 0 - I - 0x01903C 06:902C: 4D        .byte $4D   ; 
@@ -5842,7 +5842,7 @@ _off028_0x01903A_02:
 
 
 
-_off029_0x0196BA_02:
+_off029_0x0196BA_02_stage_2:
 - - - - - - 0x0196BA 06:96AA: 04        .byte $04   ; 
 - - - - - - 0x0196BB 06:96AB: 04        .byte $04   ; 
 - - - - - - 0x0196BC 06:96AC: 04        .byte $04   ; 
@@ -9926,7 +9926,7 @@ _off029_0x0196BA_02:
 
 
 
-_off030_0x01A6AA_02:
+_off030_0x01A6AA_02_stage_2:
 - D 1 - I - 0x01A6AA 06:A69A: 00        .byte $00   ; 
 - D 1 - I - 0x01A6AB 06:A69B: 00        .byte $00   ; 
 - D 1 - I - 0x01A6AC 06:A69C: 00        .byte $00   ; 
@@ -10186,7 +10186,7 @@ _off030_0x01A6AA_02:
 
 
 
-_off028_0x01A7AA_06:
+_off028_0x01A7AA_06_stage_4:
 - - - - - - 0x01A7AA 06:A79A: 01        .byte $01   ; 
 - - - - - - 0x01A7AB 06:A79B: 01        .byte $01   ; 
 - - - - - - 0x01A7AC 06:A79C: 01        .byte $01   ; 
@@ -12430,7 +12430,7 @@ _off028_0x01A7AA_06:
 
 
 
-_off029_0x01B06A_06:
+_off029_0x01B06A_06_stage_4:
 - - - - - - 0x01B06A 06:B05A: 00        .byte $00   ; 
 - - - - - - 0x01B06B 06:B05B: 00        .byte $00   ; 
 - - - - - - 0x01B06C 06:B05C: 00        .byte $00   ; 
@@ -15490,7 +15490,7 @@ _off029_0x01B06A_06:
 
 
 
-_off030_0x01BC5A_06:
+_off030_0x01BC5A_06_stage_4:
 - D 1 - I - 0x01BC5A 06:BC4A: AA        .byte $AA   ; 
 - D 1 - I - 0x01BC5B 06:BC4B: AA        .byte $AA   ; 
 - D 1 - I - 0x01BC5C 06:BC4C: 55        .byte $55   ; 

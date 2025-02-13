@@ -6,12 +6,12 @@
 
 
 
-.export _off028_0x006011_04
-.export _off029_0x006611_04
-.export _off030_0x006EE1_04
-.export _off028_0x006F6E_08
-.export _off029_0x00746E_08
-.export _off030_0x007C5E_08
+.export _off028_0x006011_04_stage_3
+.export _off029_0x006611_04_stage_3
+.export _off030_0x006EE1_04_stage_3
+.export _off028_0x006F6E_08_stage_5
+.export _off029_0x00746E_08_stage_5
+.export _off030_0x007C5E_08_stage_5
 .export _off032_0x007CDD_0D
 .export _off012_0x007EDC_08_cutscene_phone
 .export sub_0x007FA4
@@ -24,7 +24,7 @@
 
 
 
-_off028_0x006011_04:
+_off028_0x006011_04_stage_3:
 - D 1 - I - 0x006011 01:A001: 4D        .byte $4D   ; 
 - D 1 - I - 0x006012 01:A002: 01        .byte $01   ; 
 - D 1 - I - 0x006013 01:A003: 01        .byte $01   ; 
@@ -1564,7 +1564,7 @@ _off028_0x006011_04:
 
 
 
-_off029_0x006611_04:
+_off029_0x006611_04_stage_3:
 - D 1 - I - 0x006611 01:A601: 00        .byte $00   ; 
 - D 1 - I - 0x006612 01:A602: 00        .byte $00   ; 
 - D 1 - I - 0x006613 01:A603: 00        .byte $00   ; 
@@ -3824,7 +3824,7 @@ _off029_0x006611_04:
 
 
 
-_off030_0x006EE1_04:
+_off030_0x006EE1_04_stage_3:
 - D 1 - I - 0x006EE1 01:AED1: FF        .byte $FF   ; 
 - D 1 - I - 0x006EE2 01:AED2: AA        .byte $AA   ; 
 - D 1 - I - 0x006EE3 01:AED3: 66        .byte $66   ; 
@@ -3969,7 +3969,7 @@ _off030_0x006EE1_04:
 
 
 
-_off028_0x006F6E_08:
+_off028_0x006F6E_08_stage_5:
 - D 1 - I - 0x006F6E 01:AF5E: 01        .byte $01   ; 
 - D 1 - I - 0x006F6F 01:AF5F: 02        .byte $02   ; 
 - D 1 - I - 0x006F70 01:AF60: 02        .byte $02   ; 
@@ -5253,7 +5253,7 @@ _off028_0x006F6E_08:
 
 
 
-_off029_0x00746E_08:
+_off029_0x00746E_08_stage_5:
 - D 1 - I - 0x00746E 01:B45E: 00        .byte $00   ; 
 - D 1 - I - 0x00746F 01:B45F: 00        .byte $00   ; 
 - D 1 - I - 0x007470 01:B460: 00        .byte $00   ; 
@@ -7289,7 +7289,7 @@ _off029_0x00746E_08:
 
 
 
-_off030_0x007C5E_08:
+_off030_0x007C5E_08_stage_5:
 - D 1 - I - 0x007C5E 01:BC4E: 00        .byte $00   ; 
 - D 1 - I - 0x007C5F 01:BC4F: 00        .byte $00   ; 
 - D 1 - I - 0x007C60 01:BC50: 00        .byte $00   ; 

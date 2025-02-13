@@ -12,6 +12,7 @@ con_chr_pair                            = $00 ; see pairs at 0x01F465
 
 ; ram_btn_hold
 ; ram_btn_press
+; todo 0x01F34C, проверить что это действительно кнопки
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
