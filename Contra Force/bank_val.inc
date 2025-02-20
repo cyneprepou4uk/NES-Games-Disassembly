@@ -29,6 +29,13 @@ con_btns_ABSS                           = con_btn_A + con_btn_B + con_btn_Start 
 
 
 
+; cutscene control bytes for 0x014D6A
+con_cut_cb_end_of_cutscene              = $FD ; 
+con_cut_cb_new_line                     = $FE ; 
+con_cut_cb_end_of_text                  = $FF ; 
+
+
+
 ; ram_irq_handler
 ; for 0x01F78B
 ; need comments 0x0177FC
@@ -41,6 +48,36 @@ con_irq_05                              = $05 ;
 con_irq_06                              = $06 ; 
 con_irq_07                              = $07 ; 
 con_irq_08                              = $08 ; 
+
+
+
+; index for 0x014D6A
+; cutscene texts
+; need comments 0x014C4C
+con_8D5A_00                             = $00 ; 
+con_8D5A_01                             = $01 ; 
+con_8D5A_02                             = $02 ; 
+con_8D5A_03                             = $03 ; 
+con_8D5A_04                             = $04 ; 
+con_8D5A_05                             = $05 ; 
+con_8D5A_06                             = $06 ; 
+con_8D5A_07                             = $07 ; 
+con_8D5A_08                             = $08 ; 
+con_8D5A_09                             = $09 ; 
+con_8D5A_0A                             = $0A ; 
+con_8D5A_0B                             = $0B ; 
+con_8D5A_0C                             = $0C ; 
+con_8D5A_0D                             = $0D ; 
+con_8D5A_0E                             = $0E ; 
+con_8D5A_0F                             = $0F ; 
+con_8D5A_10                             = $10 ; 
+con_8D5A_11                             = $11 ; 
+con_8D5A_12                             = $12 ; 
+con_8D5A_13                             = $13 ; 
+con_8D5A_14                             = $14 ; 
+con_8D5A_15                             = $15 ; 
+con_8D5A_16                             = $16 ; 
+con_8D5A_17                             = $17 ; 
 
 
 

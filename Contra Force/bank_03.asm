@@ -7909,7 +7909,7 @@ C - - - - - 0x007FA6 01:BF96: 85 87     STA ram_0087
 C - - - - - 0x007FA8 01:BF98: 8D 43 03  STA ram_0343
 C - - - - - 0x007FAB 01:BF9B: 85 D0     STA ram_00D0
 C - - - - - 0x007FAD 01:BF9D: 85 BD     STA ram_00BD
-C - - - - - 0x007FAF 01:BF9F: 8D 59 03  STA ram_0359
+C - - - - - 0x007FAF 01:BF9F: 8D 59 03  STA ram_0359_flag
 C - - - - - 0x007FB2 01:BFA2: 85 C1     STA ram_00C1
 C - - - - - 0x007FB4 01:BFA4: 85 76     STA ram_irq_handler ; con_irq_00
 C - - - - - 0x007FB6 01:BFA6: 85 5A     STA ram_005A_flag
@@ -7918,7 +7918,7 @@ C - - - - - 0x007FBA 01:BFAA: 85 C6     STA ram_00C6
 C - - - - - 0x007FBC 01:BFAC: 85 A6     STA ram_00A6
 C - - - - - 0x007FBE 01:BFAE: 85 A7     STA ram_00A7
 C - - - - - 0x007FC0 01:BFB0: 85 A8     STA ram_00A8
-C - - - - - 0x007FC2 01:BFB2: 8D 4B 03  STA ram_034B
+C - - - - - 0x007FC2 01:BFB2: 8D 4B 03  STA ram_034B_useless
 C - - - - - 0x007FC5 01:BFB5: 85 C5     STA ram_00C5
 C - - - - - 0x007FC7 01:BFB7: A2 03     LDX #$03
 bra_BFB9_loop:
@@ -7928,9 +7928,9 @@ C - - - - - 0x007FCD 01:BFBD: 95 7F     STA ram_player_stats,X
 C - - - - - 0x007FCF 01:BFBF: C9 30     CMP #$30
 C - - - - - 0x007FD1 01:BFC1: 90 0A     BCC bra_BFCD
 C - - - - - 0x007FD3 01:BFC3: A9 05     LDA #$05
-C - - - - - 0x007FD5 01:BFC5: 8D 69 03  STA ram_0369
+C - - - - - 0x007FD5 01:BFC5: 8D 69 03  STA ram_0369_counter
 C - - - - - 0x007FD8 01:BFC8: A9 3E     LDA #$3E
-C - - - - - 0x007FDA 01:BFCA: 8D 6B 03  STA ram_036B
+C - - - - - 0x007FDA 01:BFCA: 8D 6B 03  STA ram_036B_counter_00_3E
 bra_BFCD:
 C - - - - - 0x007FDD 01:BFCD: 8A        TXA
 C - - - - - 0x007FDE 01:BFCE: F0 06     BEQ bra_BFD6
