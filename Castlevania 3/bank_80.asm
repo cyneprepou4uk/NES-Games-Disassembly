@@ -30,7 +30,7 @@
 .export sub_0x000C2A_add_1_life
 .export sub_0x000C3F_decrease_hearts
 .export sub_0x000C69_add_hearts
-.export sub_0x000D76
+.export sub_0x000D76_prepare_hud_info
 .export sub_0x000DA6_print_blk_number
 .export sub_0x000E71_display_subweapon
 .export sub_0x000F1B
@@ -3920,7 +3920,7 @@ C - - - - - 0x000C7B 00:8C6B: A2 00     LDX #$00
 sub_8C6D_add_X_to_score:
 ; in
     ; A = number
-    ; X = how much to add
+    ; X = 
     ; ram_0000_t046_add array
 ; out
     ; C
@@ -4089,7 +4089,7 @@ C - - - - - 0x000D75 00:8D65: 60        RTS
 
 
 
-sub_0x000D76:
+sub_0x000D76_prepare_hud_info:
 C - - - - - 0x000D76 00:8D66: 20 60 8D  JSR sub_8D60_wait_for_irq
 C - - - - - 0x000D79 00:8D69: 20 6A 8F  JSR sub_8F6A_clear_expansion_memory
 C - - - - - 0x000D7C 00:8D6C: A9 0E     LDA #con_98E4_hud
@@ -4100,7 +4100,7 @@ C - - - - - 0x000D87 00:8D77: 20 21 8D  JSR sub_8D21_print_timer_amount
 C - - - - - 0x000D8A 00:8D7A: 20 96 8D  JSR sub_8D96_print_blk_number
 C - - - - - 0x000D8D 00:8D7D: 20 97 8C  JSR sub_8C97_print_hearts_amount
 C - - - - - 0x000D90 00:8D80: 20 3C 8E  JSR sub_8E3C_print_lives_amount
-C - - - - - 0x000D93 00:8D83: 20 4B 8E  JSR sub_8E4B
+C - - - - - 0x000D93 00:8D83: 20 4B 8E  JSR sub_8E4B_print_partner_portrait
 C - - - - - 0x000D96 00:8D86: A9 24     LDA #$24
 C - - - - - 0x000D98 00:8D88: A6 68     LDX ram_blk_scroll_type
 C - - - - - 0x000D9A 00:8D8A: 10 03     BPL bra_8D8F_horisontal
@@ -4329,7 +4329,7 @@ C - - - - - 0x000E58 00:8E48: 4C FC E8  JMP loc_0x03E90C_print_number
 
 
 
-sub_8E4B:
+sub_8E4B_print_partner_portrait:
 C - - - - - 0x000E5B 00:8E4B: A5 3B     LDA ram_player
 C - - - - - 0x000E5D 00:8E4D: 49 01     EOR #$01
 C - - - - - 0x000E5F 00:8E4F: A8        TAY
@@ -4541,6 +4541,7 @@ loc_8F4E:
 bra_8F4E:
 C D 0 - - - 0x000F5E 00:8F4E: A5 1A     LDA ram_frm_cnt
 C - - - - - 0x000F60 00:8F50: 29 03     AND #$03
+; bzk optimize, BEQ first, then TAY
 C - - - - - 0x000F62 00:8F52: A8        TAY
 C - - - - - 0x000F63 00:8F53: F0 0C     BEQ bra_8F61_00
 C - - - - - 0x000F65 00:8F55: 88        DEY
@@ -5526,7 +5527,7 @@ C - - - - - 0x0014F1 00:94E1: 8D 02 06  STA ram_05EF_wpn + con_obj_index_weapon
 C - - - - - 0x0014F4 00:94E4: A9 10     LDA #$10
 C - - - - - 0x0014F6 00:94E6: 8D EB 05  STA ram_05D8_wpn + con_obj_index_weapon
 C - - - - - 0x0014F9 00:94E9: A9 01     LDA #$01
-C - - - - - 0x0014FB 00:94EB: 8D 30 06  STA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x0014FB 00:94EB: 8D 30 06  STA ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x0014FE 00:94EE: E6 6B     INC ram_006B_subscript
 C - - - - - 0x001500 00:94F0: 60        RTS
 
@@ -5619,7 +5620,7 @@ C - - - - - 0x001565 00:9555: A9 00     LDA #con_obj_flag_00
 C - - - - - 0x001567 00:9557: 8D 70 04  STA ram_plr_flags
 C - - - - - 0x00156A 00:955A: AD 05 05  LDA ram_wpn_spd_X_lo + con_obj_index_weapon
 C - - - - - 0x00156D 00:955D: 30 2A     BMI bra_9589
-C - - - - - 0x00156F 00:955F: AD 30 06  LDA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x00156F 00:955F: AD 30 06  LDA ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x001572 00:9562: F0 16     BEQ bra_957A
 C - - - - - 0x001574 00:9564: AD D4 05  LDA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x001577 00:9567: 38        SEC
@@ -5645,9 +5646,9 @@ bra_9589:
 bra_958C:
 C - - - - - 0x00159C 00:958C: 8D 38 04  STA ram_plr_pos_X_lo
 bra_958F:
-C - - - - - 0x00159F 00:958F: AD 30 06  LDA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x00159F 00:958F: AD 30 06  LDA ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x0015A2 00:9592: 49 01     EOR #$01
-C - - - - - 0x0015A4 00:9594: 8D 30 06  STA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x0015A4 00:9594: 8D 30 06  STA ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x0015A7 00:9597: 60        RTS
 
 
@@ -5714,7 +5715,7 @@ C - - - - - 0x00160B 00:95FB: 85 3B     STA ram_player
 C - - - - - 0x00160D 00:95FD: A8        TAY
 C - - - - - 0x00160E 00:95FE: B9 39 00  LDA ram_0039,Y
 C - - - - - 0x001611 00:9601: 8D 4E 05  STA ram_plr_id
-C - - - - - 0x001614 00:9604: 20 4B 8E  JSR sub_8E4B
+C - - - - - 0x001614 00:9604: 20 4B 8E  JSR sub_8E4B_print_partner_portrait
 C - - - - - 0x001617 00:9607: 20 61 8E  JSR sub_8E61_display_subweapon
 C - - - - - 0x00161A 00:960A: 20 1E E6  JSR sub_0x03E62E
 C - - - - - 0x00161D 00:960D: 20 01 80  JSR sub_8001
@@ -5838,7 +5839,7 @@ C - - - - - 0x0016CF 00:96BF: 8D D4 05  STA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x0016D2 00:96C2: 8D EB 05  STA ram_05D8_wpn + con_obj_index_weapon
 C - - - - - 0x0016D5 00:96C5: 8D 02 06  STA ram_05EF_wpn + con_obj_index_weapon
 C - - - - - 0x0016D8 00:96C8: 8D 19 06  STA ram_wpn_config + con_obj_index_weapon
-C - - - - - 0x0016DB 00:96CB: 8D 30 06  STA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x0016DB 00:96CB: 8D 30 06  STA ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x0016DE 00:96CE: 60        RTS
 
 

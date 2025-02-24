@@ -3,7 +3,7 @@
 .include "copy_bank_val.inc"
 .org $8000  ; for listing file
 ; 0x014010-0x01800F
-; code starts at 0x017BD1
+; code starts at 0x017BD3
 
 
 
@@ -11775,7 +11775,7 @@ C - - - - - 0x017BDB 05:BBCB: F0 5F     BEQ bra_BC2C_59
 C - - - - - 0x017BDD 05:BBCD: C9 5D     CMP #$5D
 C - - - - - 0x017BDF 05:BBCF: F0 49     BEQ bra_BC1A_5D
 loc_BBD1:
-C D 1 - - - 0x017BE1 05:BBD1: 20 0B BC  JSR sub_BC0B
+C D 1 - - - 0x017BE1 05:BBD1: 20 0B BC  JSR sub_BC0B_clear_some_object_data
 C - - - - - 0x017BE4 05:BBD4: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x017BE7 05:BBD7: BD 38 04  LDA ram_obj_pos_X_lo,X
 C - - - - - 0x017BEA 05:BBDA: 85 00     STA ram_0000_t10D_pos_X_lo
@@ -11796,7 +11796,7 @@ C - - - - - 0x017C08 05:BBF8: A9 1B     LDA #$1B
 C - - - - - 0x017C0A 05:BBFA: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x017C0D 05:BBFD: A9 60     LDA #con_obj_flag_20 + con_obj_flag_40
 C - - - - - 0x017C0F 05:BBFF: 9D 70 04  STA ram_obj_flags,X
-C - - - - - 0x017C12 05:BC02: 20 0B BC  JSR sub_BC0B
+C - - - - - 0x017C12 05:BC02: 20 0B BC  JSR sub_BC0B_clear_some_object_data
 C - - - - - 0x017C15 05:BC05: 4C E4 BB  JMP loc_BBE4_loop
 bra_BC08:
 C - - - - - 0x017C18 05:BC08: A6 6C     LDX ram_006C_object_index
@@ -11804,7 +11804,9 @@ C - - - - - 0x017C1A 05:BC0A: 60        RTS
 
 
 
-sub_BC0B:
+sub_BC0B_clear_some_object_data:
+; in
+    ; X = object index
 C - - - - - 0x017C1B 05:BC0B: A9 00     LDA #$00
 C - - - - - 0x017C1D 05:BC0D: 9D C1 05  STA ram_obj_ai_subscript,X
 C - - - - - 0x017C20 05:BC10: 9D 00 04  STA ram_obj_anim_id,X
@@ -11817,7 +11819,7 @@ C - - - - - 0x017C29 05:BC19: 60        RTS
 bra_BC1A_5D:
 C - - - - - 0x017C2A 05:BC1A: BD 1D 06  LDA ram_061D_obj,X
 C - - - - - 0x017C2D 05:BC1D: AA        TAX
-C - - - - - 0x017C2E 05:BC1E: 20 0B BC  JSR sub_BC0B
+C - - - - - 0x017C2E 05:BC1E: 20 0B BC  JSR sub_BC0B_clear_some_object_data
 C - - - - - 0x017C31 05:BC21: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x017C34 05:BC24: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x017C37 05:BC27: A6 6C     LDX ram_006C_object_index
@@ -11829,6 +11831,7 @@ bra_BC2C_59:
 - - - - - - 0x017C3C 05:BC2C: A2 01     LDX #$01
 - - - - - - 0x017C3E 05:BC2E: A0 00     LDY #$00
 bra_BC30_loop:
+; bzk optimize, use X for the table, change label to - $01, delete INY at 0x017C66
 - - - - - - 0x017C40 05:BC30: B9 5E BC  LDA tbl_BC5E,Y
 - - - - - - 0x017C43 05:BC33: 9D 06 06  STA ram_obj_config,X
 - - - - - - 0x017C46 05:BC36: BD 70 04  LDA ram_obj_flags,X

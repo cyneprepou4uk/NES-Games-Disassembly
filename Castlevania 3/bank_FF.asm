@@ -7476,7 +7476,7 @@ C D 3 - - - 0x03F493 0F:F483: 20 57 F7  JSR sub_F757_prepare_nametable_mapping_E
 loc_F486:
 C D 3 - - - 0x03F496 0F:F486: A9 80     LDA #con_prg_bank + $80
 C - - - - - 0x03F498 0F:F488: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
-C - - - - - 0x03F49B 0F:F48B: 20 66 8D  JSR sub_0x000D76
+C - - - - - 0x03F49B 0F:F48B: 20 66 8D  JSR sub_0x000D76_prepare_hud_info
 C - - - - - 0x03F49E 0F:F48E: E6 8D     INC ram_008D_flag
 C - - - - - 0x03F4A0 0F:F490: 60        RTS
 bra_F491:
@@ -9359,6 +9359,8 @@ C - - - - - 0x03FED7 0F:FEC7: 60        RTS
 sub_FEC8_clear_XY_speed:
 sub_0x03FED8_clear_XY_speed:
 loc_0x03FED8_clear_XY_speed:
+; in
+    ; X = object index
 C D 3 - - - 0x03FED8 0F:FEC8: A9 00     LDA #$00
 C - - - - - 0x03FEDA 0F:FECA: 9D F2 04  STA ram_obj_spd_X_lo,X
 C - - - - - 0x03FEDD 0F:FECD: 9D 09 05  STA ram_obj_spd_X_fr,X
@@ -9369,6 +9371,8 @@ C - - - - - 0x03FEE6 0F:FED6: 60        RTS
 
 
 sub_0x03FEE7_clear_object_speed_and_data:
+; in
+    ; X = object index
 ; out
     ; A = 00
 C - - - - - 0x03FEE7 0F:FED7: 20 C8 FE  JSR sub_FEC8_clear_XY_speed
@@ -9395,6 +9399,8 @@ C - - - - - 0x03FF1B 0F:FF0B: 60        RTS
 
 
 sub_FF0C:
+; in
+    ; X = object index
 ; out
     ; C
         ; 0 = 
@@ -9491,6 +9497,8 @@ C - - - - - 0x03FF97 0F:FF87: 4C E6 E2  JMP loc_E2E6_prg_bankswitch
 
 sub_0x03FF9A:
 loc_0x03FF9A:
+; in
+    ; X = 01+
 C D 3 - - - 0x03FF9A 0F:FF8A: A9 04     LDA #$04
 C - - - - - 0x03FF9C 0F:FF8C: 9D 54 04  STA ram_obj_spr_A,X
 C - - - - - 0x03FF9F 0F:FF8F: BD 65 05  LDA ram_obj_stun_timer,X

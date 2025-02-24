@@ -7,8 +7,8 @@
     ; переименовать музыку и звуки
     ; найти индексы объектов, в частности 0x013A4E 0x013A56
         ; видимо индекс не отвечает в основном за графику и интеллект,
-            ; но нет какого-то привычного мне обработчика интеллектов для всех индексов.
-            ; возможно есть и другой адрес
+        ; но нет какого-то привычного мне обработчика интеллектов для
+        ; всех индексов. возможно есть и другой адрес
 
 
 
@@ -76,7 +76,7 @@ con_subweapon_ice_magic                 = $06 ;
 con_subweapon_lightning_magic           = $07 ; 
 con_subweapon_g_dagger                  = $08 ; Grant only
 con_subweapon_g_axe                     = $09 ; Grant only
-; con_subweapon_0A                      = $0A ; ball of destruction
+; con_subweapon_ball_of_destruction     = $0A ; Alucard only (todo)
 con_subweapon_stopwatch                 = $0B ; 
 
 

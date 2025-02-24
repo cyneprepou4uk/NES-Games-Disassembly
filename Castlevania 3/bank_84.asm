@@ -9542,7 +9542,7 @@ C - - - - - 0x00B183 02:B173: D0 F8     BNE bra_B16D_RTS
 C - - - - - 0x00B185 02:B175: BD 8D 07  LDA ram_078D,X
 C - - - - - 0x00B188 02:B178: D0 CD     BNE bra_B147
 C - - - - - 0x00B18A 02:B17A: 20 A5 B2  JSR sub_B2A5
-C - - - - - 0x00B18D 02:B17D: AD 30 06  LDA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x00B18D 02:B17D: AD 30 06  LDA ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x00B190 02:B180: D0 03     BNE bra_B185
 C - - - - - 0x00B192 02:B182: 4C 3E B2  JMP loc_B23E
 bra_B185:

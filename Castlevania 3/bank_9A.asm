@@ -429,225 +429,225 @@ C - - - - - 0x03424D 0D:823D: 60        RTS
 
 tbl_823E_sprite_data:
 - D 0 - - - 0x03424E 0D:823E: 5C 82     .word _off039_825C_00
-- D 0 - - - 0x034250 0D:8240: CC 82     .word _off039_82CC_01
-- D 0 - - - 0x034252 0D:8242: 24 83     .word _off039_8324_02
-- D 0 - - - 0x034254 0D:8244: 78 83     .word _off039_8378_03
-- D 0 - - - 0x034256 0D:8246: E9 8B     .word _off039_8BE9_04
-- D 0 - - - 0x034258 0D:8248: A2 96     .word _off039_96A2_05
-- D 0 - - - 0x03425A 0D:824A: E7 AB     .word _off039_ABE7_06
-- D 0 - - - 0x03425C 0D:824C: 53 AD     .word _off039_AD53_07
-- D 0 - - - 0x03425E 0D:824E: D6 9F     .word _off039_9FD6_08
-- D 0 - - - 0x034260 0D:8250: E9 8C     .word _off039_8CE9_09
-- D 0 - - - 0x034262 0D:8252: E7 AC     .word _off039_ACE7_0A
-- D 0 - - - 0x034264 0D:8254: 5C 82     .word _off039_825C_0B
-- D 0 - - - 0x034266 0D:8256: CC 82     .word _off039_82CC_0C
-- D 0 - - - 0x034268 0D:8258: 24 83     .word _off039_8324_0D
-- D 0 - - - 0x03426A 0D:825A: 78 83     .word _off039_8378_0E
+- D 0 - - - 0x034250 0D:8240: CC 82     .word _off039_82CC_02
+- D 0 - - - 0x034252 0D:8242: 24 83     .word _off039_8324_04
+- D 0 - - - 0x034254 0D:8244: 78 83     .word _off039_8378_06
+- D 0 - - - 0x034256 0D:8246: E9 8B     .word _off039_8BE9_08
+- D 0 - - - 0x034258 0D:8248: A2 96     .word _off039_96A2_0A
+- D 0 - - - 0x03425A 0D:824A: E7 AB     .word _off039_ABE7_0C
+- D 0 - - - 0x03425C 0D:824C: 53 AD     .word _off039_AD53_0E
+- D 0 - - - 0x03425E 0D:824E: D6 9F     .word _off039_9FD6_10
+- D 0 - - - 0x034260 0D:8250: E9 8C     .word _off039_8CE9_12
+- D 0 - - - 0x034262 0D:8252: E7 AC     .word _off039_ACE7_14
+- D 0 - - - 0x034264 0D:8254: 5C 82     .word _off039_825C_16
+- D 0 - - - 0x034266 0D:8256: CC 82     .word _off039_82CC_18
+- D 0 - - - 0x034268 0D:8258: 24 83     .word _off039_8324_1A
+- D 0 - - - 0x03426A 0D:825A: 78 83     .word _off039_8378_1C
 
 
 
 _off039_825C_00:
-_off039_825C_0B:
-- - - - - - 0x03426C 0D:825C: BE 83     .word off_00_0B_83BE_00     ; unused
-- D 0 - I - 0x03426E 0D:825E: 02 84     .word off_00_0B_8402_01
-- D 0 - I - 0x034270 0D:8260: 10 84     .word off_00_0B_8410_02
-- D 0 - I - 0x034272 0D:8262: 1B 84     .word off_00_0B_841B_03
-- D 0 - I - 0x034274 0D:8264: 10 84     .word off_00_0B_8410_04
-- D 0 - I - 0x034276 0D:8266: 29 84     .word off_00_0B_8429_05
-- D 0 - I - 0x034278 0D:8268: 37 84     .word off_00_0B_8437_06
-- D 0 - I - 0x03427A 0D:826A: 53 84     .word off_00_0B_8453_07
-- D 0 - I - 0x03427C 0D:826C: 1E 85     .word off_00_0B_851E_08
-- D 0 - I - 0x03427E 0D:826E: 2C 85     .word off_00_0B_852C_09
-- D 0 - I - 0x034280 0D:8270: 3A 85     .word off_00_0B_853A_0A
-- D 0 - I - 0x034282 0D:8272: 45 84     .word off_00_0B_8445_0B
-- D 0 - I - 0x034284 0D:8274: 61 84     .word off_00_0B_8461_0C
-- D 0 - I - 0x034286 0D:8276: 6F 84     .word off_00_0B_846F_0D
-- D 0 - I - 0x034288 0D:8278: 7D 84     .word off_00_0B_847D_0E
-- D 0 - I - 0x03428A 0D:827A: 8E 84     .word off_00_0B_848E_0F
-- D 0 - I - 0x03428C 0D:827C: 9F 84     .word off_00_0B_849F_10
-- D 0 - I - 0x03428E 0D:827E: AD 84     .word off_00_0B_84AD_11
-- D 0 - I - 0x034290 0D:8280: 48 85     .word off_00_0B_8548_12
-- D 0 - I - 0x034292 0D:8282: 50 85     .word off_00_0B_8550_13
-- D 0 - I - 0x034294 0D:8284: 58 85     .word off_00_0B_8558_14
-- D 0 - I - 0x034296 0D:8286: 63 85     .word off_00_0B_8563_15
-- D 0 - I - 0x034298 0D:8288: 6B 85     .word off_00_0B_856B_16
-- D 0 - I - 0x03429A 0D:828A: 73 85     .word off_00_0B_8573_17
-- D 0 - I - 0x03429C 0D:828C: 7B 85     .word off_00_0B_857B_18
-- D 0 - I - 0x03429E 0D:828E: 86 85     .word off_00_0B_8586_19
-- D 0 - I - 0x0342A0 0D:8290: BE 84     .word off_00_0B_84BE_1A
-- D 0 - I - 0x0342A2 0D:8292: CF 84     .word off_00_0B_84CF_1B
-- D 0 - I - 0x0342A4 0D:8294: DD 84     .word off_00_0B_84DD_1C
-- D 0 - I - 0x0342A6 0D:8296: EE 84     .word off_00_0B_84EE_1D
-- D 0 - I - 0x0342A8 0D:8298: FF 84     .word off_00_0B_84FF_1E
-- D 0 - I - 0x0342AA 0D:829A: 0D 85     .word off_00_0B_850D_1F
-- D 0 - I - 0x0342AC 0D:829C: 97 85     .word off_00_0B_8597_20
-- D 0 - I - 0x0342AE 0D:829E: A0 85     .word off_00_0B_85A0_21
-- D 0 - I - 0x0342B0 0D:82A0: A8 85     .word off_00_0B_85A8_22
-- D 0 - I - 0x0342B2 0D:82A2: B0 85     .word off_00_0B_85B0_23
-- D 0 - I - 0x0342B4 0D:82A4: B8 85     .word off_00_0B_85B8_24
-- D 0 - I - 0x0342B6 0D:82A6: C0 85     .word off_00_0B_85C0_25
-- D 0 - I - 0x0342B8 0D:82A8: C8 85     .word off_00_0B_85C8_26
-- D 0 - I - 0x0342BA 0D:82AA: D0 85     .word off_00_0B_85D0_27
-- D 0 - I - 0x0342BC 0D:82AC: DD 85     .word off_00_0B_85DD_28
-- D 0 - I - 0x0342BE 0D:82AE: E5 85     .word off_00_0B_85E5_29
-- D 0 - I - 0x0342C0 0D:82B0: EA 85     .word off_00_0B_85EA_2A
-- D 0 - I - 0x0342C2 0D:82B2: CB 93     .word off_00_0B_93CB_2B
-- D 0 - I - 0x0342C4 0D:82B4: D0 93     .word off_00_0B_93D0_2C
-- D 0 - I - 0x0342C6 0D:82B6: D5 93     .word off_00_0B_93D5_2D
-- D 0 - I - 0x0342C8 0D:82B8: D0 93     .word off_00_0B_93D0_2E
-- D 0 - I - 0x0342CA 0D:82BA: F2 85     .word off_00_0B_85F2_2F
-- D 0 - I - 0x0342CC 0D:82BC: FB 85     .word off_00_0B_85FB_30
-- D 0 - I - 0x0342CE 0D:82BE: F9 83     .word off_00_0B_83F9_31
-- - - - - - 0x0342D0 0D:82C0: D8 85     .word off_00_0B_85D8_32
-- D 0 - I - 0x0342D2 0D:82C2: BE 83     .word off_00_0B_83BE_33
-- D 0 - I - 0x0342D4 0D:82C4: C7 83     .word off_00_0B_83C7_34
-- D 0 - I - 0x0342D6 0D:82C6: D2 83     .word off_00_0B_83D2_35
-- D 0 - I - 0x0342D8 0D:82C8: E0 83     .word off_00_0B_83E0_36
-- D 0 - I - 0x0342DA 0D:82CA: EB 83     .word off_00_0B_83EB_37
+_off039_825C_16:
+- - - - - - 0x03426C 0D:825C: BE 83     .word off_00_16_83BE_00     ; unused
+- D 0 - I - 0x03426E 0D:825E: 02 84     .word off_00_16_8402_02
+- D 0 - I - 0x034270 0D:8260: 10 84     .word off_00_16_8410_04
+- D 0 - I - 0x034272 0D:8262: 1B 84     .word off_00_16_841B_06
+- D 0 - I - 0x034274 0D:8264: 10 84     .word off_00_16_8410_08
+- D 0 - I - 0x034276 0D:8266: 29 84     .word off_00_16_8429_0A
+- D 0 - I - 0x034278 0D:8268: 37 84     .word off_00_16_8437_0C
+- D 0 - I - 0x03427A 0D:826A: 53 84     .word off_00_16_8453_0E
+- D 0 - I - 0x03427C 0D:826C: 1E 85     .word off_00_16_851E_10
+- D 0 - I - 0x03427E 0D:826E: 2C 85     .word off_00_16_852C_12
+- D 0 - I - 0x034280 0D:8270: 3A 85     .word off_00_16_853A_14
+- D 0 - I - 0x034282 0D:8272: 45 84     .word off_00_16_8445_16
+- D 0 - I - 0x034284 0D:8274: 61 84     .word off_00_16_8461_18
+- D 0 - I - 0x034286 0D:8276: 6F 84     .word off_00_16_846F_1A
+- D 0 - I - 0x034288 0D:8278: 7D 84     .word off_00_16_847D_1C
+- D 0 - I - 0x03428A 0D:827A: 8E 84     .word off_00_16_848E_1E
+- D 0 - I - 0x03428C 0D:827C: 9F 84     .word off_00_16_849F_20
+- D 0 - I - 0x03428E 0D:827E: AD 84     .word off_00_16_84AD_22
+- D 0 - I - 0x034290 0D:8280: 48 85     .word off_00_16_8548_24
+- D 0 - I - 0x034292 0D:8282: 50 85     .word off_00_16_8550_26
+- D 0 - I - 0x034294 0D:8284: 58 85     .word off_00_16_8558_28
+- D 0 - I - 0x034296 0D:8286: 63 85     .word off_00_16_8563_2A
+- D 0 - I - 0x034298 0D:8288: 6B 85     .word off_00_16_856B_2C
+- D 0 - I - 0x03429A 0D:828A: 73 85     .word off_00_16_8573_2E
+- D 0 - I - 0x03429C 0D:828C: 7B 85     .word off_00_16_857B_30
+- D 0 - I - 0x03429E 0D:828E: 86 85     .word off_00_16_8586_32
+- D 0 - I - 0x0342A0 0D:8290: BE 84     .word off_00_16_84BE_34
+- D 0 - I - 0x0342A2 0D:8292: CF 84     .word off_00_16_84CF_36
+- D 0 - I - 0x0342A4 0D:8294: DD 84     .word off_00_16_84DD_38
+- D 0 - I - 0x0342A6 0D:8296: EE 84     .word off_00_16_84EE_3A
+- D 0 - I - 0x0342A8 0D:8298: FF 84     .word off_00_16_84FF_3C
+- D 0 - I - 0x0342AA 0D:829A: 0D 85     .word off_00_16_850D_3E
+- D 0 - I - 0x0342AC 0D:829C: 97 85     .word off_00_16_8597_40
+- D 0 - I - 0x0342AE 0D:829E: A0 85     .word off_00_16_85A0_42
+- D 0 - I - 0x0342B0 0D:82A0: A8 85     .word off_00_16_85A8_44
+- D 0 - I - 0x0342B2 0D:82A2: B0 85     .word off_00_16_85B0_46
+- D 0 - I - 0x0342B4 0D:82A4: B8 85     .word off_00_16_85B8_48
+- D 0 - I - 0x0342B6 0D:82A6: C0 85     .word off_00_16_85C0_4A
+- D 0 - I - 0x0342B8 0D:82A8: C8 85     .word off_00_16_85C8_4C
+- D 0 - I - 0x0342BA 0D:82AA: D0 85     .word off_00_16_85D0_4E
+- D 0 - I - 0x0342BC 0D:82AC: DD 85     .word off_00_16_85DD_50
+- D 0 - I - 0x0342BE 0D:82AE: E5 85     .word off_00_16_85E5_52
+- D 0 - I - 0x0342C0 0D:82B0: EA 85     .word off_00_16_85EA_54
+- D 0 - I - 0x0342C2 0D:82B2: CB 93     .word off_00_16_93CB_56
+- D 0 - I - 0x0342C4 0D:82B4: D0 93     .word off_00_16_93D0_58
+- D 0 - I - 0x0342C6 0D:82B6: D5 93     .word off_00_16_93D5_5A
+- D 0 - I - 0x0342C8 0D:82B8: D0 93     .word off_00_16_93D0_5C
+- D 0 - I - 0x0342CA 0D:82BA: F2 85     .word off_00_16_85F2_5E
+- D 0 - I - 0x0342CC 0D:82BC: FB 85     .word off_00_16_85FB_60
+- D 0 - I - 0x0342CE 0D:82BE: F9 83     .word off_00_16_83F9_62
+- - - - - - 0x0342D0 0D:82C0: D8 85     .word off_00_16_85D8_64
+- D 0 - I - 0x0342D2 0D:82C2: BE 83     .word off_00_16_83BE_66
+- D 0 - I - 0x0342D4 0D:82C4: C7 83     .word off_00_16_83C7_68
+- D 0 - I - 0x0342D6 0D:82C6: D2 83     .word off_00_16_83D2_6A
+- D 0 - I - 0x0342D8 0D:82C8: E0 83     .word off_00_16_83E0_6C
+- D 0 - I - 0x0342DA 0D:82CA: EB 83     .word off_00_16_83EB_6E
 
 
 
-_off039_82CC_01:
-_off039_82CC_0C:
-- - - - - - 0x0342DC 0D:82CC: BE 83     .word off_01_0C_83BE_00     ; unused
-- D 0 - I - 0x0342DE 0D:82CE: 04 86     .word off_01_0C_8604_01
-- D 0 - I - 0x0342E0 0D:82D0: 12 86     .word off_01_0C_8612_02
-- D 0 - I - 0x0342E2 0D:82D2: 20 86     .word off_01_0C_8620_03
-- D 0 - I - 0x0342E4 0D:82D4: 12 86     .word off_01_0C_8612_04
-- D 0 - I - 0x0342E6 0D:82D6: 2E 86     .word off_01_0C_862E_05
-- D 0 - I - 0x0342E8 0D:82D8: 3C 86     .word off_01_0C_863C_06
-- D 0 - I - 0x0342EA 0D:82DA: 58 86     .word off_01_0C_8658_07
-- D 0 - I - 0x0342EC 0D:82DC: 66 86     .word off_01_0C_8666_08
-- D 0 - I - 0x0342EE 0D:82DE: 74 86     .word off_01_0C_8674_09
-- D 0 - I - 0x0342F0 0D:82E0: 82 86     .word off_01_0C_8682_0A
-- D 0 - I - 0x0342F2 0D:82E2: 4A 86     .word off_01_0C_864A_0B
-- D 0 - I - 0x0342F4 0D:82E4: 90 86     .word off_01_0C_8690_0C
-- D 0 - I - 0x0342F6 0D:82E6: 9E 86     .word off_01_0C_869E_0D
-- D 0 - I - 0x0342F8 0D:82E8: AC 86     .word off_01_0C_86AC_0E
-- D 0 - I - 0x0342FA 0D:82EA: BA 86     .word off_01_0C_86BA_0F
-- D 0 - I - 0x0342FC 0D:82EC: 00 87     .word off_01_0C_8700_10
-- D 0 - I - 0x0342FE 0D:82EE: 05 87     .word off_01_0C_8705_11
-- D 0 - I - 0x034300 0D:82F0: C8 86     .word off_01_0C_86C8_12
-- D 0 - I - 0x034302 0D:82F2: D6 86     .word off_01_0C_86D6_13
-- D 0 - I - 0x034304 0D:82F4: E4 86     .word off_01_0C_86E4_14
-- D 0 - I - 0x034306 0D:82F6: F2 86     .word off_01_0C_86F2_15
-- D 0 - I - 0x034308 0D:82F8: 37 87     .word off_01_0C_8737_16
-- - - - - - 0x03430A 0D:82FA: 0D 87     .word off_01_0C_870D_17
-- D 0 - I - 0x03430C 0D:82FC: 1B 87     .word off_01_0C_871B_18
-- D 0 - I - 0x03430E 0D:82FE: 29 87     .word off_01_0C_8729_19
-- D 0 - I - 0x034310 0D:8300: 45 87     .word off_01_0C_8745_1A
-- - - - - - 0x034312 0D:8302: 56 87     .word off_01_0C_8756_1B
-- D 0 - I - 0x034314 0D:8304: 67 87     .word off_01_0C_8767_1C
-- D 0 - I - 0x034316 0D:8306: 78 87     .word off_01_0C_8778_1D
-- D 0 - I - 0x034318 0D:8308: 89 87     .word off_01_0C_8789_1E
-- D 0 - I - 0x03431A 0D:830A: 8E 87     .word off_01_0C_878E_1F
-- D 0 - I - 0x03431C 0D:830C: 99 87     .word off_01_0C_8799_20
-- D 0 - I - 0x03431E 0D:830E: AA 87     .word off_01_0C_87AA_21
-- D 0 - I - 0x034320 0D:8310: B8 87     .word off_01_0C_87B8_22
-- D 0 - I - 0x034322 0D:8312: C8 87     .word off_01_0C_87C8_23
-- D 0 - I - 0x034324 0D:8314: CD 87     .word off_01_0C_87CD_24
-- D 0 - I - 0x034326 0D:8316: D6 87     .word off_01_0C_87D6_25
-- D 0 - I - 0x034328 0D:8318: DF 87     .word off_01_0C_87DF_26
-- D 0 - I - 0x03432A 0D:831A: E8 87     .word off_01_0C_87E8_27
-- D 0 - I - 0x03432C 0D:831C: F1 87     .word off_01_0C_87F1_28
-- D 0 - I - 0x03432E 0D:831E: FA 87     .word off_01_0C_87FA_29
-- D 0 - I - 0x034330 0D:8320: 02 88     .word off_01_0C_8802_2A
-- D 0 - I - 0x034332 0D:8322: C0 87     .word off_01_0C_87C0_2B
+_off039_82CC_02:
+_off039_82CC_18:
+- - - - - - 0x0342DC 0D:82CC: BE 83     .word off_02_18_83BE_00     ; unused
+- D 0 - I - 0x0342DE 0D:82CE: 04 86     .word off_02_18_8604_02
+- D 0 - I - 0x0342E0 0D:82D0: 12 86     .word off_02_18_8612_04
+- D 0 - I - 0x0342E2 0D:82D2: 20 86     .word off_02_18_8620_06
+- D 0 - I - 0x0342E4 0D:82D4: 12 86     .word off_02_18_8612_08
+- D 0 - I - 0x0342E6 0D:82D6: 2E 86     .word off_02_18_862E_0A
+- D 0 - I - 0x0342E8 0D:82D8: 3C 86     .word off_02_18_863C_0C
+- D 0 - I - 0x0342EA 0D:82DA: 58 86     .word off_02_18_8658_0E
+- D 0 - I - 0x0342EC 0D:82DC: 66 86     .word off_02_18_8666_10
+- D 0 - I - 0x0342EE 0D:82DE: 74 86     .word off_02_18_8674_12
+- D 0 - I - 0x0342F0 0D:82E0: 82 86     .word off_02_18_8682_14
+- D 0 - I - 0x0342F2 0D:82E2: 4A 86     .word off_02_18_864A_16
+- D 0 - I - 0x0342F4 0D:82E4: 90 86     .word off_02_18_8690_18
+- D 0 - I - 0x0342F6 0D:82E6: 9E 86     .word off_02_18_869E_1A
+- D 0 - I - 0x0342F8 0D:82E8: AC 86     .word off_02_18_86AC_1C
+- D 0 - I - 0x0342FA 0D:82EA: BA 86     .word off_02_18_86BA_1E
+- D 0 - I - 0x0342FC 0D:82EC: 00 87     .word off_02_18_8700_20
+- D 0 - I - 0x0342FE 0D:82EE: 05 87     .word off_02_18_8705_22
+- D 0 - I - 0x034300 0D:82F0: C8 86     .word off_02_18_86C8_24
+- D 0 - I - 0x034302 0D:82F2: D6 86     .word off_02_18_86D6_26
+- D 0 - I - 0x034304 0D:82F4: E4 86     .word off_02_18_86E4_28
+- D 0 - I - 0x034306 0D:82F6: F2 86     .word off_02_18_86F2_2A
+- D 0 - I - 0x034308 0D:82F8: 37 87     .word off_02_18_8737_2C
+- - - - - - 0x03430A 0D:82FA: 0D 87     .word off_02_18_870D_2E
+- D 0 - I - 0x03430C 0D:82FC: 1B 87     .word off_02_18_871B_30
+- D 0 - I - 0x03430E 0D:82FE: 29 87     .word off_02_18_8729_32
+- D 0 - I - 0x034310 0D:8300: 45 87     .word off_02_18_8745_34
+- - - - - - 0x034312 0D:8302: 56 87     .word off_02_18_8756_36
+- D 0 - I - 0x034314 0D:8304: 67 87     .word off_02_18_8767_38
+- D 0 - I - 0x034316 0D:8306: 78 87     .word off_02_18_8778_3A
+- D 0 - I - 0x034318 0D:8308: 89 87     .word off_02_18_8789_3C
+- D 0 - I - 0x03431A 0D:830A: 8E 87     .word off_02_18_878E_3E
+- D 0 - I - 0x03431C 0D:830C: 99 87     .word off_02_18_8799_40
+- D 0 - I - 0x03431E 0D:830E: AA 87     .word off_02_18_87AA_42
+- D 0 - I - 0x034320 0D:8310: B8 87     .word off_02_18_87B8_44
+- D 0 - I - 0x034322 0D:8312: C8 87     .word off_02_18_87C8_46
+- D 0 - I - 0x034324 0D:8314: CD 87     .word off_02_18_87CD_48
+- D 0 - I - 0x034326 0D:8316: D6 87     .word off_02_18_87D6_4A
+- D 0 - I - 0x034328 0D:8318: DF 87     .word off_02_18_87DF_4C
+- D 0 - I - 0x03432A 0D:831A: E8 87     .word off_02_18_87E8_4E
+- D 0 - I - 0x03432C 0D:831C: F1 87     .word off_02_18_87F1_50
+- D 0 - I - 0x03432E 0D:831E: FA 87     .word off_02_18_87FA_52
+- D 0 - I - 0x034330 0D:8320: 02 88     .word off_02_18_8802_54
+- D 0 - I - 0x034332 0D:8322: C0 87     .word off_02_18_87C0_56
 
 
 
-_off039_8324_02:
-_off039_8324_0D:
-- - - - - - 0x034334 0D:8324: BE 83     .word off_02_0D_83BE_00     ; unused
-- D 0 - I - 0x034336 0D:8326: 0A 88     .word off_02_0D_880A_01
-- D 0 - I - 0x034338 0D:8328: 18 88     .word off_02_0D_8818_02
-- D 0 - I - 0x03433A 0D:832A: 34 88     .word off_02_0D_8834_03
-- D 0 - I - 0x03433C 0D:832C: 18 88     .word off_02_0D_8818_04
-- D 0 - I - 0x03433E 0D:832E: 42 88     .word off_02_0D_8842_05
-- D 0 - I - 0x034340 0D:8330: 50 88     .word off_02_0D_8850_06
-- D 0 - I - 0x034342 0D:8332: 6C 88     .word off_02_0D_886C_07
-- D 0 - I - 0x034344 0D:8334: 74 88     .word off_02_0D_8874_08
-- D 0 - I - 0x034346 0D:8336: 82 88     .word off_02_0D_8882_09
-- D 0 - I - 0x034348 0D:8338: 8A 88     .word off_02_0D_888A_0A
-- D 0 - I - 0x03434A 0D:833A: 5E 88     .word off_02_0D_885E_0B
-- D 0 - I - 0x03434C 0D:833C: 95 88     .word off_02_0D_8895_0C
-- D 0 - I - 0x03434E 0D:833E: 9D 88     .word off_02_0D_889D_0D
-- D 0 - I - 0x034350 0D:8340: AB 88     .word off_02_0D_88AB_0E
-- D 0 - I - 0x034352 0D:8342: B6 88     .word off_02_0D_88B6_0F
-- D 0 - I - 0x034354 0D:8344: BE 88     .word off_02_0D_88BE_10
-- - - - - - 0x034356 0D:8346: C9 88     .word off_02_0D_88C9_11
-- D 0 - I - 0x034358 0D:8348: D4 88     .word off_02_0D_88D4_12
-- D 0 - I - 0x03435A 0D:834A: E2 88     .word off_02_0D_88E2_13
-- D 0 - I - 0x03435C 0D:834C: 9D 89     .word off_02_0D_899D_14
-- - - - - - 0x03435E 0D:834E: F3 88     .word off_02_0D_88F3_15
-- - - - - - 0x034360 0D:8350: 01 89     .word off_02_0D_8901_16
-- - - - - - 0x034362 0D:8352: 12 89     .word off_02_0D_8912_17
-- - - - - - 0x034364 0D:8354: 20 89     .word off_02_0D_8920_18
-- - - - - - 0x034366 0D:8356: 31 89     .word off_02_0D_8931_19
-- - - - - - 0x034368 0D:8358: 3F 89     .word off_02_0D_893F_1A
-- D 0 - I - 0x03436A 0D:835A: 50 89     .word off_02_0D_8950_1B
-- D 0 - I - 0x03436C 0D:835C: 58 89     .word off_02_0D_8958_1C
-- - - - - - 0x03436E 0D:835E: 66 89     .word off_02_0D_8966_1D
-- D 0 - I - 0x034370 0D:8360: 71 89     .word off_02_0D_8971_1E
-- - - - - - 0x034372 0D:8362: 7C 89     .word off_02_0D_897C_1F
-- D 0 - I - 0x034374 0D:8364: 87 89     .word off_02_0D_8987_20
-- D 0 - I - 0x034376 0D:8366: 92 89     .word off_02_0D_8992_21
-- D 0 - I - 0x034378 0D:8368: AB 89     .word off_02_0D_89AB_22
-- D 0 - I - 0x03437A 0D:836A: C0 89     .word off_02_0D_89C0_23
-- D 0 - I - 0x03437C 0D:836C: 26 88     .word off_02_0D_8826_24
-- D 0 - I - 0x03437E 0D:836E: CE 89     .word off_02_0D_89CE_25
-- D 0 - I - 0x034380 0D:8370: E3 89     .word off_02_0D_89E3_26
-- D 0 - I - 0x034382 0D:8372: F1 89     .word off_02_0D_89F1_27
-- D 0 - I - 0x034384 0D:8374: 06 8A     .word off_02_0D_8A06_28
-- D 0 - I - 0x034386 0D:8376: 14 8A     .word off_02_0D_8A14_29
+_off039_8324_04:
+_off039_8324_1A:
+- - - - - - 0x034334 0D:8324: BE 83     .word off_04_1A_83BE_00     ; unused
+- D 0 - I - 0x034336 0D:8326: 0A 88     .word off_04_1A_880A_02
+- D 0 - I - 0x034338 0D:8328: 18 88     .word off_04_1A_8818_04
+- D 0 - I - 0x03433A 0D:832A: 34 88     .word off_04_1A_8834_06
+- D 0 - I - 0x03433C 0D:832C: 18 88     .word off_04_1A_8818_08
+- D 0 - I - 0x03433E 0D:832E: 42 88     .word off_04_1A_8842_0A
+- D 0 - I - 0x034340 0D:8330: 50 88     .word off_04_1A_8850_0C
+- D 0 - I - 0x034342 0D:8332: 6C 88     .word off_04_1A_886C_0E
+- D 0 - I - 0x034344 0D:8334: 74 88     .word off_04_1A_8874_10
+- D 0 - I - 0x034346 0D:8336: 82 88     .word off_04_1A_8882_12
+- D 0 - I - 0x034348 0D:8338: 8A 88     .word off_04_1A_888A_14
+- D 0 - I - 0x03434A 0D:833A: 5E 88     .word off_04_1A_885E_16
+- D 0 - I - 0x03434C 0D:833C: 95 88     .word off_04_1A_8895_18
+- D 0 - I - 0x03434E 0D:833E: 9D 88     .word off_04_1A_889D_1A
+- D 0 - I - 0x034350 0D:8340: AB 88     .word off_04_1A_88AB_1C
+- D 0 - I - 0x034352 0D:8342: B6 88     .word off_04_1A_88B6_1E
+- D 0 - I - 0x034354 0D:8344: BE 88     .word off_04_1A_88BE_20
+- - - - - - 0x034356 0D:8346: C9 88     .word off_04_1A_88C9_22
+- D 0 - I - 0x034358 0D:8348: D4 88     .word off_04_1A_88D4_24
+- D 0 - I - 0x03435A 0D:834A: E2 88     .word off_04_1A_88E2_26
+- D 0 - I - 0x03435C 0D:834C: 9D 89     .word off_04_1A_899D_28
+- - - - - - 0x03435E 0D:834E: F3 88     .word off_04_1A_88F3_2A
+- - - - - - 0x034360 0D:8350: 01 89     .word off_04_1A_8901_2C
+- - - - - - 0x034362 0D:8352: 12 89     .word off_04_1A_8912_2E
+- - - - - - 0x034364 0D:8354: 20 89     .word off_04_1A_8920_30
+- - - - - - 0x034366 0D:8356: 31 89     .word off_04_1A_8931_32
+- - - - - - 0x034368 0D:8358: 3F 89     .word off_04_1A_893F_34
+- D 0 - I - 0x03436A 0D:835A: 50 89     .word off_04_1A_8950_36
+- D 0 - I - 0x03436C 0D:835C: 58 89     .word off_04_1A_8958_38
+- - - - - - 0x03436E 0D:835E: 66 89     .word off_04_1A_8966_3A
+- D 0 - I - 0x034370 0D:8360: 71 89     .word off_04_1A_8971_3C
+- - - - - - 0x034372 0D:8362: 7C 89     .word off_04_1A_897C_3E
+- D 0 - I - 0x034374 0D:8364: 87 89     .word off_04_1A_8987_40
+- D 0 - I - 0x034376 0D:8366: 92 89     .word off_04_1A_8992_42
+- D 0 - I - 0x034378 0D:8368: AB 89     .word off_04_1A_89AB_44
+- D 0 - I - 0x03437A 0D:836A: C0 89     .word off_04_1A_89C0_46
+- D 0 - I - 0x03437C 0D:836C: 26 88     .word off_04_1A_8826_48
+- D 0 - I - 0x03437E 0D:836E: CE 89     .word off_04_1A_89CE_4A
+- D 0 - I - 0x034380 0D:8370: E3 89     .word off_04_1A_89E3_4C
+- D 0 - I - 0x034382 0D:8372: F1 89     .word off_04_1A_89F1_4E
+- D 0 - I - 0x034384 0D:8374: 06 8A     .word off_04_1A_8A06_50
+- D 0 - I - 0x034386 0D:8376: 14 8A     .word off_04_1A_8A14_52
 
 
 
-_off039_8378_03:
-_off039_8378_0E:
-- - - - - - 0x034388 0D:8378: BE 83     .word off_03_0E_83BE_00     ; unused
-- D 0 - I - 0x03438A 0D:837A: 29 8A     .word off_03_0E_8A29_01
-- D 0 - I - 0x03438C 0D:837C: 3A 8A     .word off_03_0E_8A3A_02
-- D 0 - I - 0x03438E 0D:837E: 4B 8A     .word off_03_0E_8A4B_03
-- D 0 - I - 0x034390 0D:8380: 3A 8A     .word off_03_0E_8A3A_04
-- D 0 - I - 0x034392 0D:8382: 5C 8A     .word off_03_0E_8A5C_05
-- D 0 - I - 0x034394 0D:8384: 6D 8A     .word off_03_0E_8A6D_06
-- D 0 - I - 0x034396 0D:8386: CE 8A     .word off_03_0E_8ACE_07
-- D 0 - I - 0x034398 0D:8388: 15 8B     .word off_03_0E_8B15_08
-- D 0 - I - 0x03439A 0D:838A: 23 8B     .word off_03_0E_8B23_09
-- D 0 - I - 0x03439C 0D:838C: 31 8B     .word off_03_0E_8B31_0A
-- D 0 - I - 0x03439E 0D:838E: C0 8A     .word off_03_0E_8AC0_0B
-- D 0 - I - 0x0343A0 0D:8390: 7E 8A     .word off_03_0E_8A7E_0C
-- D 0 - I - 0x0343A2 0D:8392: 8F 8A     .word off_03_0E_8A8F_0D
-- D 0 - I - 0x0343A4 0D:8394: A9 8A     .word off_03_0E_8AA9_0E
-- D 0 - I - 0x0343A6 0D:8396: DC 8A     .word off_03_0E_8ADC_0F
-- D 0 - I - 0x0343A8 0D:8398: EA 8A     .word off_03_0E_8AEA_10
-- D 0 - I - 0x0343AA 0D:839A: 01 8B     .word off_03_0E_8B01_11
-- D 0 - I - 0x0343AC 0D:839C: 3F 8B     .word off_03_0E_8B3F_12
-- D 0 - I - 0x0343AE 0D:839E: 47 8B     .word off_03_0E_8B47_13
-- D 0 - I - 0x0343B0 0D:83A0: 4F 8B     .word off_03_0E_8B4F_14
-- D 0 - I - 0x0343B2 0D:83A2: 57 8B     .word off_03_0E_8B57_15
-- D 0 - I - 0x0343B4 0D:83A4: 6B 8B     .word off_03_0E_8B6B_16
-- D 0 - I - 0x0343B6 0D:83A6: 82 8B     .word off_03_0E_8B82_17
-- D 0 - I - 0x0343B8 0D:83A8: 90 8B     .word off_03_0E_8B90_18
-- D 0 - I - 0x0343BA 0D:83AA: 9E 8B     .word off_03_0E_8B9E_19
-- D 0 - I - 0x0343BC 0D:83AC: BA 8B     .word off_03_0E_8BBA_1A
-- D 0 - I - 0x0343BE 0D:83AE: 9E 8B     .word off_03_0E_8B9E_1B
-- D 0 - I - 0x0343C0 0D:83B0: 90 8B     .word off_03_0E_8B90_1C
-- D 0 - I - 0x0343C2 0D:83B2: 82 8B     .word off_03_0E_8B82_1D
-- D 0 - I - 0x0343C4 0D:83B4: 6B 8B     .word off_03_0E_8B6B_1E
-- D 0 - I - 0x0343C6 0D:83B6: 57 8B     .word off_03_0E_8B57_1F
-- D 0 - I - 0x0343C8 0D:83B8: D6 8B     .word off_03_0E_8BD6_20
-- D 0 - I - 0x0343CA 0D:83BA: DB 8B     .word off_03_0E_8BDB_21
-- - - - - - 0x0343CC 0D:83BC: E0 8B     .word off_03_0E_8BE0_22
+_off039_8378_06:
+_off039_8378_1C:
+- - - - - - 0x034388 0D:8378: BE 83     .word off_06_1C_83BE_00     ; unused
+- D 0 - I - 0x03438A 0D:837A: 29 8A     .word off_06_1C_8A29_02
+- D 0 - I - 0x03438C 0D:837C: 3A 8A     .word off_06_1C_8A3A_04
+- D 0 - I - 0x03438E 0D:837E: 4B 8A     .word off_06_1C_8A4B_06
+- D 0 - I - 0x034390 0D:8380: 3A 8A     .word off_06_1C_8A3A_08
+- D 0 - I - 0x034392 0D:8382: 5C 8A     .word off_06_1C_8A5C_0A
+- D 0 - I - 0x034394 0D:8384: 6D 8A     .word off_06_1C_8A6D_0C
+- D 0 - I - 0x034396 0D:8386: CE 8A     .word off_06_1C_8ACE_0E
+- D 0 - I - 0x034398 0D:8388: 15 8B     .word off_06_1C_8B15_10
+- D 0 - I - 0x03439A 0D:838A: 23 8B     .word off_06_1C_8B23_12
+- D 0 - I - 0x03439C 0D:838C: 31 8B     .word off_06_1C_8B31_14
+- D 0 - I - 0x03439E 0D:838E: C0 8A     .word off_06_1C_8AC0_16
+- D 0 - I - 0x0343A0 0D:8390: 7E 8A     .word off_06_1C_8A7E_18
+- D 0 - I - 0x0343A2 0D:8392: 8F 8A     .word off_06_1C_8A8F_1A
+- D 0 - I - 0x0343A4 0D:8394: A9 8A     .word off_06_1C_8AA9_1C
+- D 0 - I - 0x0343A6 0D:8396: DC 8A     .word off_06_1C_8ADC_1E
+- D 0 - I - 0x0343A8 0D:8398: EA 8A     .word off_06_1C_8AEA_20
+- D 0 - I - 0x0343AA 0D:839A: 01 8B     .word off_06_1C_8B01_22
+- D 0 - I - 0x0343AC 0D:839C: 3F 8B     .word off_06_1C_8B3F_24
+- D 0 - I - 0x0343AE 0D:839E: 47 8B     .word off_06_1C_8B47_26
+- D 0 - I - 0x0343B0 0D:83A0: 4F 8B     .word off_06_1C_8B4F_28
+- D 0 - I - 0x0343B2 0D:83A2: 57 8B     .word off_06_1C_8B57_2A
+- D 0 - I - 0x0343B4 0D:83A4: 6B 8B     .word off_06_1C_8B6B_2C
+- D 0 - I - 0x0343B6 0D:83A6: 82 8B     .word off_06_1C_8B82_2E
+- D 0 - I - 0x0343B8 0D:83A8: 90 8B     .word off_06_1C_8B90_30
+- D 0 - I - 0x0343BA 0D:83AA: 9E 8B     .word off_06_1C_8B9E_32
+- D 0 - I - 0x0343BC 0D:83AC: BA 8B     .word off_06_1C_8BBA_34
+- D 0 - I - 0x0343BE 0D:83AE: 9E 8B     .word off_06_1C_8B9E_36
+- D 0 - I - 0x0343C0 0D:83B0: 90 8B     .word off_06_1C_8B90_38
+- D 0 - I - 0x0343C2 0D:83B2: 82 8B     .word off_06_1C_8B82_3A
+- D 0 - I - 0x0343C4 0D:83B4: 6B 8B     .word off_06_1C_8B6B_3C
+- D 0 - I - 0x0343C6 0D:83B6: 57 8B     .word off_06_1C_8B57_3E
+- D 0 - I - 0x0343C8 0D:83B8: D6 8B     .word off_06_1C_8BD6_40
+- D 0 - I - 0x0343CA 0D:83BA: DB 8B     .word off_06_1C_8BDB_42
+- - - - - - 0x0343CC 0D:83BC: E0 8B     .word off_06_1C_8BE0_44
 
 
 
-off_00_0B_83BE_00:
-off_00_0B_83BE_33:
-off_01_0C_83BE_00:
-off_02_0D_83BE_00:
-off_03_0E_83BE_00:
+off_00_16_83BE_00:
+off_00_16_83BE_66:
+off_02_18_83BE_00:
+off_04_1A_83BE_00:
+off_06_1C_83BE_00:
 - D 0 - I - 0x0343CE 0D:83BE: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -659,7 +659,7 @@ off_03_0E_83BE_00:
 
 
 
-off_00_0B_83C7_34:
+off_00_16_83C7_68:
 - D 0 - I - 0x0343D7 0D:83C7: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -672,7 +672,7 @@ off_00_0B_83C7_34:
 
 
 
-off_00_0B_83D2_35:
+off_00_16_83D2_6A:
 - D 0 - I - 0x0343E2 0D:83D2: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -686,7 +686,7 @@ off_00_0B_83D2_35:
 
 
 
-off_00_0B_83E0_36:
+off_00_16_83E0_6C:
 - D 0 - I - 0x0343F0 0D:83E0: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -699,7 +699,7 @@ off_00_0B_83E0_36:
 
 
 
-off_00_0B_83EB_37:
+off_00_16_83EB_6E:
 - D 0 - I - 0x0343FB 0D:83EB: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -713,7 +713,7 @@ off_00_0B_83EB_37:
 
 
 
-off_00_0B_83F9_31:
+off_00_16_83F9_62:
 - D 0 - I - 0x034409 0D:83F9: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -725,7 +725,7 @@ off_00_0B_83F9_31:
 
 
 
-off_00_0B_8402_01:
+off_00_16_8402_02:
 - D 0 - I - 0x034412 0D:8402: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -739,8 +739,8 @@ off_00_0B_8402_01:
 
 
 
-off_00_0B_8410_02:
-off_00_0B_8410_04:
+off_00_16_8410_04:
+off_00_16_8410_08:
 - D 0 - I - 0x034420 0D:8410: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -753,7 +753,7 @@ off_00_0B_8410_04:
 
 
 
-off_00_0B_841B_03:
+off_00_16_841B_06:
 - D 0 - I - 0x03442B 0D:841B: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -767,7 +767,7 @@ off_00_0B_841B_03:
 
 
 
-off_00_0B_8429_05:
+off_00_16_8429_0A:
 - D 0 - I - 0x034439 0D:8429: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -781,7 +781,7 @@ off_00_0B_8429_05:
 
 
 
-off_00_0B_8437_06:
+off_00_16_8437_0C:
 - D 0 - I - 0x034447 0D:8437: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -795,7 +795,7 @@ off_00_0B_8437_06:
 
 
 
-off_00_0B_8445_0B:
+off_00_16_8445_16:
 - D 0 - I - 0x034455 0D:8445: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -809,7 +809,7 @@ off_00_0B_8445_0B:
 
 
 
-off_00_0B_8453_07:
+off_00_16_8453_0E:
 - D 0 - I - 0x034463 0D:8453: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -823,7 +823,7 @@ off_00_0B_8453_07:
 
 
 
-off_00_0B_8461_0C:
+off_00_16_8461_18:
 - D 0 - I - 0x034471 0D:8461: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -837,7 +837,7 @@ off_00_0B_8461_0C:
 
 
 
-off_00_0B_846F_0D:
+off_00_16_846F_1A:
 - D 0 - I - 0x03447F 0D:846F: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -851,7 +851,7 @@ off_00_0B_846F_0D:
 
 
 
-off_00_0B_847D_0E:
+off_00_16_847D_1C:
 - D 0 - I - 0x03448D 0D:847D: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -866,7 +866,7 @@ off_00_0B_847D_0E:
 
 
 
-off_00_0B_848E_0F:
+off_00_16_848E_1E:
 - D 0 - I - 0x03449E 0D:848E: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -881,7 +881,7 @@ off_00_0B_848E_0F:
 
 
 
-off_00_0B_849F_10:
+off_00_16_849F_20:
 - D 0 - I - 0x0344AF 0D:849F: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -895,7 +895,7 @@ off_00_0B_849F_10:
 
 
 
-off_00_0B_84AD_11:
+off_00_16_84AD_22:
 - D 0 - I - 0x0344BD 0D:84AD: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -910,7 +910,7 @@ off_00_0B_84AD_11:
 
 
 
-off_00_0B_84BE_1A:
+off_00_16_84BE_34:
 - D 0 - I - 0x0344CE 0D:84BE: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -925,7 +925,7 @@ off_00_0B_84BE_1A:
 
 
 
-off_00_0B_84CF_1B:
+off_00_16_84CF_36:
 - D 0 - I - 0x0344DF 0D:84CF: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -939,7 +939,7 @@ off_00_0B_84CF_1B:
 
 
 
-off_00_0B_84DD_1C:
+off_00_16_84DD_38:
 - D 0 - I - 0x0344ED 0D:84DD: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -954,7 +954,7 @@ off_00_0B_84DD_1C:
 
 
 
-off_00_0B_84EE_1D:
+off_00_16_84EE_3A:
 - D 0 - I - 0x0344FE 0D:84EE: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -969,7 +969,7 @@ off_00_0B_84EE_1D:
 
 
 
-off_00_0B_84FF_1E:
+off_00_16_84FF_3C:
 - D 0 - I - 0x03450F 0D:84FF: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -983,7 +983,7 @@ off_00_0B_84FF_1E:
 
 
 
-off_00_0B_850D_1F:
+off_00_16_850D_3E:
 - D 0 - I - 0x03451D 0D:850D: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -998,7 +998,7 @@ off_00_0B_850D_1F:
 
 
 
-off_00_0B_851E_08:
+off_00_16_851E_10:
 - D 0 - I - 0x03452E 0D:851E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1012,7 +1012,7 @@ off_00_0B_851E_08:
 
 
 
-off_00_0B_852C_09:
+off_00_16_852C_12:
 - D 0 - I - 0x03453C 0D:852C: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1026,7 +1026,7 @@ off_00_0B_852C_09:
 
 
 
-off_00_0B_853A_0A:
+off_00_16_853A_14:
 - D 0 - I - 0x03454A 0D:853A: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1040,7 +1040,7 @@ off_00_0B_853A_0A:
 
 
 
-off_00_0B_8548_12:
+off_00_16_8548_24:
 - D 0 - I - 0x034558 0D:8548: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1052,7 +1052,7 @@ off_00_0B_8548_12:
 
 
 
-off_00_0B_8550_13:
+off_00_16_8550_26:
 - D 0 - I - 0x034560 0D:8550: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1064,7 +1064,7 @@ off_00_0B_8550_13:
 
 
 
-off_00_0B_8558_14:
+off_00_16_8558_28:
 - D 0 - I - 0x034568 0D:8558: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1077,7 +1077,7 @@ off_00_0B_8558_14:
 
 
 
-off_00_0B_8563_15:
+off_00_16_8563_2A:
 - D 0 - I - 0x034573 0D:8563: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1089,7 +1089,7 @@ off_00_0B_8563_15:
 
 
 
-off_00_0B_856B_16:
+off_00_16_856B_2C:
 - D 0 - I - 0x03457B 0D:856B: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1101,7 +1101,7 @@ off_00_0B_856B_16:
 
 
 
-off_00_0B_8573_17:
+off_00_16_8573_2E:
 - D 0 - I - 0x034583 0D:8573: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1113,7 +1113,7 @@ off_00_0B_8573_17:
 
 
 
-off_00_0B_857B_18:
+off_00_16_857B_30:
 - D 0 - I - 0x03458B 0D:857B: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1126,7 +1126,7 @@ off_00_0B_857B_18:
 
 
 
-off_00_0B_8586_19:
+off_00_16_8586_32:
 - D 0 - I - 0x034596 0D:8586: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1141,7 +1141,7 @@ off_00_0B_8586_19:
 
 
 
-off_00_0B_8597_20:
+off_00_16_8597_40:
 - D 0 - I - 0x0345A7 0D:8597: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1153,7 +1153,7 @@ off_00_0B_8597_20:
 
 
 
-off_00_0B_85A0_21:
+off_00_16_85A0_42:
 - D 0 - I - 0x0345B0 0D:85A0: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1165,7 +1165,7 @@ off_00_0B_85A0_21:
 
 
 
-off_00_0B_85A8_22:
+off_00_16_85A8_44:
 - D 0 - I - 0x0345B8 0D:85A8: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1177,7 +1177,7 @@ off_00_0B_85A8_22:
 
 
 
-off_00_0B_85B0_23:
+off_00_16_85B0_46:
 - D 0 - I - 0x0345C0 0D:85B0: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1189,7 +1189,7 @@ off_00_0B_85B0_23:
 
 
 
-off_00_0B_85B8_24:
+off_00_16_85B8_48:
 - D 0 - I - 0x0345C8 0D:85B8: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1201,7 +1201,7 @@ off_00_0B_85B8_24:
 
 
 
-off_00_0B_85C0_25:
+off_00_16_85C0_4A:
 - D 0 - I - 0x0345D0 0D:85C0: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1213,7 +1213,7 @@ off_00_0B_85C0_25:
 
 
 
-off_00_0B_85C8_26:
+off_00_16_85C8_4C:
 - D 0 - I - 0x0345D8 0D:85C8: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1225,7 +1225,7 @@ off_00_0B_85C8_26:
 
 
 
-off_00_0B_85D0_27:
+off_00_16_85D0_4E:
 - D 0 - I - 0x0345E0 0D:85D0: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1237,7 +1237,7 @@ off_00_0B_85D0_27:
 
 
 
-off_00_0B_85D8_32:
+off_00_16_85D8_64:
 - - - - - - 0x0345E8 0D:85D8: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1248,7 +1248,7 @@ off_00_0B_85D8_32:
 
 
 
-off_00_0B_85DD_28:
+off_00_16_85DD_50:
 - D 0 - I - 0x0345ED 0D:85DD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1260,7 +1260,7 @@ off_00_0B_85DD_28:
 
 
 
-off_00_0B_85E5_29:
+off_00_16_85E5_52:
 - D 0 - I - 0x0345F5 0D:85E5: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1271,7 +1271,7 @@ off_00_0B_85E5_29:
 
 
 
-off_00_0B_85EA_2A:
+off_00_16_85EA_54:
 - D 0 - I - 0x0345FA 0D:85EA: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1283,7 +1283,7 @@ off_00_0B_85EA_2A:
 
 
 
-off_00_0B_85F2_2F:
+off_00_16_85F2_5E:
 - D 0 - I - 0x034602 0D:85F2: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1295,7 +1295,7 @@ off_00_0B_85F2_2F:
 
 
 
-off_00_0B_85FB_30:
+off_00_16_85FB_60:
 - D 0 - I - 0x03460B 0D:85FB: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1307,7 +1307,7 @@ off_00_0B_85FB_30:
 
 
 
-off_01_0C_8604_01:
+off_02_18_8604_02:
 - D 0 - I - 0x034614 0D:8604: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1321,8 +1321,8 @@ off_01_0C_8604_01:
 
 
 
-off_01_0C_8612_02:
-off_01_0C_8612_04:
+off_02_18_8612_04:
+off_02_18_8612_08:
 - D 0 - I - 0x034622 0D:8612: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1336,7 +1336,7 @@ off_01_0C_8612_04:
 
 
 
-off_01_0C_8620_03:
+off_02_18_8620_06:
 - D 0 - I - 0x034630 0D:8620: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1350,7 +1350,7 @@ off_01_0C_8620_03:
 
 
 
-off_01_0C_862E_05:
+off_02_18_862E_0A:
 - D 0 - I - 0x03463E 0D:862E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1364,7 +1364,7 @@ off_01_0C_862E_05:
 
 
 
-off_01_0C_863C_06:
+off_02_18_863C_0C:
 - D 0 - I - 0x03464C 0D:863C: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1378,7 +1378,7 @@ off_01_0C_863C_06:
 
 
 
-off_01_0C_864A_0B:
+off_02_18_864A_16:
 - D 0 - I - 0x03465A 0D:864A: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1392,7 +1392,7 @@ off_01_0C_864A_0B:
 
 
 
-off_01_0C_8658_07:
+off_02_18_8658_0E:
 - D 0 - I - 0x034668 0D:8658: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1406,7 +1406,7 @@ off_01_0C_8658_07:
 
 
 
-off_01_0C_8666_08:
+off_02_18_8666_10:
 - D 0 - I - 0x034676 0D:8666: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1420,7 +1420,7 @@ off_01_0C_8666_08:
 
 
 
-off_01_0C_8674_09:
+off_02_18_8674_12:
 - D 0 - I - 0x034684 0D:8674: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1434,7 +1434,7 @@ off_01_0C_8674_09:
 
 
 
-off_01_0C_8682_0A:
+off_02_18_8682_14:
 - D 0 - I - 0x034692 0D:8682: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1448,7 +1448,7 @@ off_01_0C_8682_0A:
 
 
 
-off_01_0C_8690_0C:
+off_02_18_8690_18:
 - D 0 - I - 0x0346A0 0D:8690: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1462,7 +1462,7 @@ off_01_0C_8690_0C:
 
 
 
-off_01_0C_869E_0D:
+off_02_18_869E_1A:
 - D 0 - I - 0x0346AE 0D:869E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1476,7 +1476,7 @@ off_01_0C_869E_0D:
 
 
 
-off_01_0C_86AC_0E:
+off_02_18_86AC_1C:
 - D 0 - I - 0x0346BC 0D:86AC: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1490,7 +1490,7 @@ off_01_0C_86AC_0E:
 
 
 
-off_01_0C_86BA_0F:
+off_02_18_86BA_1E:
 - D 0 - I - 0x0346CA 0D:86BA: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1504,7 +1504,7 @@ off_01_0C_86BA_0F:
 
 
 
-off_01_0C_86C8_12:
+off_02_18_86C8_24:
 - D 0 - I - 0x0346D8 0D:86C8: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1518,7 +1518,7 @@ off_01_0C_86C8_12:
 
 
 
-off_01_0C_86D6_13:
+off_02_18_86D6_26:
 - D 0 - I - 0x0346E6 0D:86D6: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1532,7 +1532,7 @@ off_01_0C_86D6_13:
 
 
 
-off_01_0C_86E4_14:
+off_02_18_86E4_28:
 - D 0 - I - 0x0346F4 0D:86E4: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1546,7 +1546,7 @@ off_01_0C_86E4_14:
 
 
 
-off_01_0C_86F2_15:
+off_02_18_86F2_2A:
 - D 0 - I - 0x034702 0D:86F2: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1560,7 +1560,7 @@ off_01_0C_86F2_15:
 
 
 
-off_01_0C_8700_10:
+off_02_18_8700_20:
 - D 0 - I - 0x034710 0D:8700: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1571,7 +1571,7 @@ off_01_0C_8700_10:
 
 
 
-off_01_0C_8705_11:
+off_02_18_8705_22:
 - D 0 - I - 0x034715 0D:8705: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1583,7 +1583,7 @@ off_01_0C_8705_11:
 
 
 
-off_01_0C_870D_17:
+off_02_18_870D_2E:
 - - - - - - 0x03471D 0D:870D: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1597,7 +1597,7 @@ off_01_0C_870D_17:
 
 
 
-off_01_0C_871B_18:
+off_02_18_871B_30:
 - D 0 - I - 0x03472B 0D:871B: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1611,7 +1611,7 @@ off_01_0C_871B_18:
 
 
 
-off_01_0C_8729_19:
+off_02_18_8729_32:
 - D 0 - I - 0x034739 0D:8729: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1625,7 +1625,7 @@ off_01_0C_8729_19:
 
 
 
-off_01_0C_8737_16:
+off_02_18_8737_2C:
 - D 0 - I - 0x034747 0D:8737: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1639,7 +1639,7 @@ off_01_0C_8737_16:
 
 
 
-off_01_0C_8745_1A:
+off_02_18_8745_34:
 - D 0 - I - 0x034755 0D:8745: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1654,7 +1654,7 @@ off_01_0C_8745_1A:
 
 
 
-off_01_0C_8756_1B:
+off_02_18_8756_36:
 - - - - - - 0x034766 0D:8756: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1669,7 +1669,7 @@ off_01_0C_8756_1B:
 
 
 
-off_01_0C_8767_1C:
+off_02_18_8767_38:
 - D 0 - I - 0x034777 0D:8767: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1684,7 +1684,7 @@ off_01_0C_8767_1C:
 
 
 
-off_01_0C_8778_1D:
+off_02_18_8778_3A:
 - D 0 - I - 0x034788 0D:8778: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1699,7 +1699,7 @@ off_01_0C_8778_1D:
 
 
 
-off_01_0C_8789_1E:
+off_02_18_8789_3C:
 - D 0 - I - 0x034799 0D:8789: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1710,7 +1710,7 @@ off_01_0C_8789_1E:
 
 
 
-off_01_0C_878E_1F:
+off_02_18_878E_3E:
 - D 0 - I - 0x03479E 0D:878E: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1723,7 +1723,7 @@ off_01_0C_878E_1F:
 
 
 
-off_01_0C_8799_20:
+off_02_18_8799_40:
 - D 0 - I - 0x0347A9 0D:8799: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1738,7 +1738,7 @@ off_01_0C_8799_20:
 
 
 
-off_01_0C_87AA_21:
+off_02_18_87AA_42:
 - D 0 - I - 0x0347BA 0D:87AA: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1752,7 +1752,7 @@ off_01_0C_87AA_21:
 
 
 
-off_01_0C_87B8_22:
+off_02_18_87B8_44:
 - D 0 - I - 0x0347C8 0D:87B8: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1764,7 +1764,7 @@ off_01_0C_87B8_22:
 
 
 
-off_01_0C_87C0_2B:
+off_02_18_87C0_56:
 - D 0 - I - 0x0347D0 0D:87C0: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1776,7 +1776,7 @@ off_01_0C_87C0_2B:
 
 
 
-off_01_0C_87C8_23:
+off_02_18_87C8_46:
 - D 0 - I - 0x0347D8 0D:87C8: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1787,7 +1787,7 @@ off_01_0C_87C8_23:
 
 
 
-off_01_0C_87CD_24:
+off_02_18_87CD_48:
 - D 0 - I - 0x0347DD 0D:87CD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1799,7 +1799,7 @@ off_01_0C_87CD_24:
 
 
 
-off_01_0C_87D6_25:
+off_02_18_87D6_4A:
 - D 0 - I - 0x0347E6 0D:87D6: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1811,7 +1811,7 @@ off_01_0C_87D6_25:
 
 
 
-off_01_0C_87DF_26:
+off_02_18_87DF_4C:
 - D 0 - I - 0x0347EF 0D:87DF: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1823,7 +1823,7 @@ off_01_0C_87DF_26:
 
 
 
-off_01_0C_87E8_27:
+off_02_18_87E8_4E:
 - D 0 - I - 0x0347F8 0D:87E8: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1835,7 +1835,7 @@ off_01_0C_87E8_27:
 
 
 
-off_01_0C_87F1_28:
+off_02_18_87F1_50:
 - D 0 - I - 0x034801 0D:87F1: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1847,7 +1847,7 @@ off_01_0C_87F1_28:
 
 
 
-off_01_0C_87FA_29:
+off_02_18_87FA_52:
 - D 0 - I - 0x03480A 0D:87FA: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1859,7 +1859,7 @@ off_01_0C_87FA_29:
 
 
 
-off_01_0C_8802_2A:
+off_02_18_8802_54:
 - D 0 - I - 0x034812 0D:8802: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1871,7 +1871,7 @@ off_01_0C_8802_2A:
 
 
 
-off_02_0D_880A_01:
+off_04_1A_880A_02:
 - D 0 - I - 0x03481A 0D:880A: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1885,8 +1885,8 @@ off_02_0D_880A_01:
 
 
 
-off_02_0D_8818_02:
-off_02_0D_8818_04:
+off_04_1A_8818_04:
+off_04_1A_8818_08:
 - D 0 - I - 0x034828 0D:8818: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1900,7 +1900,7 @@ off_02_0D_8818_04:
 
 
 
-off_02_0D_8826_24:
+off_04_1A_8826_48:
 - D 0 - I - 0x034836 0D:8826: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1914,7 +1914,7 @@ off_02_0D_8826_24:
 
 
 
-off_02_0D_8834_03:
+off_04_1A_8834_06:
 - D 0 - I - 0x034844 0D:8834: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1928,7 +1928,7 @@ off_02_0D_8834_03:
 
 
 
-off_02_0D_8842_05:
+off_04_1A_8842_0A:
 - D 0 - I - 0x034852 0D:8842: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1942,7 +1942,7 @@ off_02_0D_8842_05:
 
 
 
-off_02_0D_8850_06:
+off_04_1A_8850_0C:
 - D 0 - I - 0x034860 0D:8850: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1956,7 +1956,7 @@ off_02_0D_8850_06:
 
 
 
-off_02_0D_885E_0B:
+off_04_1A_885E_16:
 - D 0 - I - 0x03486E 0D:885E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1970,7 +1970,7 @@ off_02_0D_885E_0B:
 
 
 
-off_02_0D_886C_07:
+off_04_1A_886C_0E:
 - D 0 - I - 0x03487C 0D:886C: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1982,7 +1982,7 @@ off_02_0D_886C_07:
 
 
 
-off_02_0D_8874_08:
+off_04_1A_8874_10:
 - D 0 - I - 0x034884 0D:8874: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -1996,7 +1996,7 @@ off_02_0D_8874_08:
 
 
 
-off_02_0D_8882_09:
+off_04_1A_8882_12:
 - D 0 - I - 0x034892 0D:8882: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2008,7 +2008,7 @@ off_02_0D_8882_09:
 
 
 
-off_02_0D_888A_0A:
+off_04_1A_888A_14:
 - D 0 - I - 0x03489A 0D:888A: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2021,7 +2021,7 @@ off_02_0D_888A_0A:
 
 
 
-off_02_0D_8895_0C:
+off_04_1A_8895_18:
 - D 0 - I - 0x0348A5 0D:8895: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2033,7 +2033,7 @@ off_02_0D_8895_0C:
 
 
 
-off_02_0D_889D_0D:
+off_04_1A_889D_1A:
 - D 0 - I - 0x0348AD 0D:889D: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2047,7 +2047,7 @@ off_02_0D_889D_0D:
 
 
 
-off_02_0D_88AB_0E:
+off_04_1A_88AB_1C:
 - D 0 - I - 0x0348BB 0D:88AB: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2060,7 +2060,7 @@ off_02_0D_88AB_0E:
 
 
 
-off_02_0D_88B6_0F:
+off_04_1A_88B6_1E:
 - D 0 - I - 0x0348C6 0D:88B6: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2072,7 +2072,7 @@ off_02_0D_88B6_0F:
 
 
 
-off_02_0D_88BE_10:
+off_04_1A_88BE_20:
 - D 0 - I - 0x0348CE 0D:88BE: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2085,7 +2085,7 @@ off_02_0D_88BE_10:
 
 
 
-off_02_0D_88C9_11:
+off_04_1A_88C9_22:
 - - - - - - 0x0348D9 0D:88C9: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2098,7 +2098,7 @@ off_02_0D_88C9_11:
 
 
 
-off_02_0D_88D4_12:
+off_04_1A_88D4_24:
 - D 0 - I - 0x0348E4 0D:88D4: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2112,7 +2112,7 @@ off_02_0D_88D4_12:
 
 
 
-off_02_0D_88E2_13:
+off_04_1A_88E2_26:
 - D 0 - I - 0x0348F2 0D:88E2: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2127,7 +2127,7 @@ off_02_0D_88E2_13:
 
 
 
-off_02_0D_88F3_15:
+off_04_1A_88F3_2A:
 - - - - - - 0x034903 0D:88F3: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2141,7 +2141,7 @@ off_02_0D_88F3_15:
 
 
 
-off_02_0D_8901_16:
+off_04_1A_8901_2C:
 - - - - - - 0x034911 0D:8901: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2156,7 +2156,7 @@ off_02_0D_8901_16:
 
 
 
-off_02_0D_8912_17:
+off_04_1A_8912_2E:
 - - - - - - 0x034922 0D:8912: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2170,7 +2170,7 @@ off_02_0D_8912_17:
 
 
 
-off_02_0D_8920_18:
+off_04_1A_8920_30:
 - - - - - - 0x034930 0D:8920: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2185,7 +2185,7 @@ off_02_0D_8920_18:
 
 
 
-off_02_0D_8931_19:
+off_04_1A_8931_32:
 - - - - - - 0x034941 0D:8931: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2199,7 +2199,7 @@ off_02_0D_8931_19:
 
 
 
-off_02_0D_893F_1A:
+off_04_1A_893F_34:
 - - - - - - 0x03494F 0D:893F: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2214,7 +2214,7 @@ off_02_0D_893F_1A:
 
 
 
-off_02_0D_8950_1B:
+off_04_1A_8950_36:
 - D 0 - I - 0x034960 0D:8950: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2226,7 +2226,7 @@ off_02_0D_8950_1B:
 
 
 
-off_02_0D_8958_1C:
+off_04_1A_8958_38:
 - D 0 - I - 0x034968 0D:8958: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2240,7 +2240,7 @@ off_02_0D_8958_1C:
 
 
 
-off_02_0D_8966_1D:
+off_04_1A_8966_3A:
 - - - - - - 0x034976 0D:8966: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2253,7 +2253,7 @@ off_02_0D_8966_1D:
 
 
 
-off_02_0D_8971_1E:
+off_04_1A_8971_3C:
 - D 0 - I - 0x034981 0D:8971: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2266,7 +2266,7 @@ off_02_0D_8971_1E:
 
 
 
-off_02_0D_897C_1F:
+off_04_1A_897C_3E:
 - - - - - - 0x03498C 0D:897C: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2279,7 +2279,7 @@ off_02_0D_897C_1F:
 
 
 
-off_02_0D_8987_20:
+off_04_1A_8987_40:
 - D 0 - I - 0x034997 0D:8987: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2292,7 +2292,7 @@ off_02_0D_8987_20:
 
 
 
-off_02_0D_8992_21:
+off_04_1A_8992_42:
 - D 0 - I - 0x0349A2 0D:8992: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2305,7 +2305,7 @@ off_02_0D_8992_21:
 
 
 
-off_02_0D_899D_14:
+off_04_1A_899D_28:
 - D 0 - I - 0x0349AD 0D:899D: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2319,7 +2319,7 @@ off_02_0D_899D_14:
 
 
 
-off_02_0D_89AB_22:
+off_04_1A_89AB_44:
 - D 0 - I - 0x0349BB 0D:89AB: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2335,7 +2335,7 @@ off_02_0D_89AB_22:
 
 
 
-off_02_0D_89C0_23:
+off_04_1A_89C0_46:
 - D 0 - I - 0x0349D0 0D:89C0: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2349,7 +2349,7 @@ off_02_0D_89C0_23:
 
 
 
-off_02_0D_89CE_25:
+off_04_1A_89CE_4A:
 - D 0 - I - 0x0349DE 0D:89CE: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2365,7 +2365,7 @@ off_02_0D_89CE_25:
 
 
 
-off_02_0D_89E3_26:
+off_04_1A_89E3_4C:
 - D 0 - I - 0x0349F3 0D:89E3: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2379,7 +2379,7 @@ off_02_0D_89E3_26:
 
 
 
-off_02_0D_89F1_27:
+off_04_1A_89F1_4E:
 - D 0 - I - 0x034A01 0D:89F1: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2395,7 +2395,7 @@ off_02_0D_89F1_27:
 
 
 
-off_02_0D_8A06_28:
+off_04_1A_8A06_50:
 - D 0 - I - 0x034A16 0D:8A06: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2409,7 +2409,7 @@ off_02_0D_8A06_28:
 
 
 
-off_02_0D_8A14_29:
+off_04_1A_8A14_52:
 - D 0 - I - 0x034A24 0D:8A14: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2425,7 +2425,7 @@ off_02_0D_8A14_29:
 
 
 
-off_03_0E_8A29_01:
+off_06_1C_8A29_02:
 - D 0 - I - 0x034A39 0D:8A29: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2440,8 +2440,8 @@ off_03_0E_8A29_01:
 
 
 
-off_03_0E_8A3A_02:
-off_03_0E_8A3A_04:
+off_06_1C_8A3A_04:
+off_06_1C_8A3A_08:
 - D 0 - I - 0x034A4A 0D:8A3A: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2456,7 +2456,7 @@ off_03_0E_8A3A_04:
 
 
 
-off_03_0E_8A4B_03:
+off_06_1C_8A4B_06:
 - D 0 - I - 0x034A5B 0D:8A4B: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2471,7 +2471,7 @@ off_03_0E_8A4B_03:
 
 
 
-off_03_0E_8A5C_05:
+off_06_1C_8A5C_0A:
 - D 0 - I - 0x034A6C 0D:8A5C: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2486,7 +2486,7 @@ off_03_0E_8A5C_05:
 
 
 
-off_03_0E_8A6D_06:
+off_06_1C_8A6D_0C:
 - D 0 - I - 0x034A7D 0D:8A6D: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2501,7 +2501,7 @@ off_03_0E_8A6D_06:
 
 
 
-off_03_0E_8A7E_0C:
+off_06_1C_8A7E_18:
 - D 0 - I - 0x034A8E 0D:8A7E: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2516,7 +2516,7 @@ off_03_0E_8A7E_0C:
 
 
 
-off_03_0E_8A8F_0D:
+off_06_1C_8A8F_1A:
 - D 0 - I - 0x034A9F 0D:8A8F: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2534,7 +2534,7 @@ off_03_0E_8A8F_0D:
 
 
 
-off_03_0E_8AA9_0E:
+off_06_1C_8AA9_1C:
 - D 0 - I - 0x034AB9 0D:8AA9: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2551,7 +2551,7 @@ off_03_0E_8AA9_0E:
 
 
 
-off_03_0E_8AC0_0B:
+off_06_1C_8AC0_16:
 - D 0 - I - 0x034AD0 0D:8AC0: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2565,7 +2565,7 @@ off_03_0E_8AC0_0B:
 
 
 
-off_03_0E_8ACE_07:
+off_06_1C_8ACE_0E:
 - D 0 - I - 0x034ADE 0D:8ACE: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2579,7 +2579,7 @@ off_03_0E_8ACE_07:
 
 
 
-off_03_0E_8ADC_0F:
+off_06_1C_8ADC_1E:
 - D 0 - I - 0x034AEC 0D:8ADC: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2593,7 +2593,7 @@ off_03_0E_8ADC_0F:
 
 
 
-off_03_0E_8AEA_10:
+off_06_1C_8AEA_20:
 - D 0 - I - 0x034AFA 0D:8AEA: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2610,7 +2610,7 @@ off_03_0E_8AEA_10:
 
 
 
-off_03_0E_8B01_11:
+off_06_1C_8B01_22:
 - D 0 - I - 0x034B11 0D:8B01: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2626,7 +2626,7 @@ off_03_0E_8B01_11:
 
 
 
-off_03_0E_8B15_08:
+off_06_1C_8B15_10:
 - D 0 - I - 0x034B25 0D:8B15: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2640,7 +2640,7 @@ off_03_0E_8B15_08:
 
 
 
-off_03_0E_8B23_09:
+off_06_1C_8B23_12:
 - D 0 - I - 0x034B33 0D:8B23: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2654,7 +2654,7 @@ off_03_0E_8B23_09:
 
 
 
-off_03_0E_8B31_0A:
+off_06_1C_8B31_14:
 - D 0 - I - 0x034B41 0D:8B31: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2668,7 +2668,7 @@ off_03_0E_8B31_0A:
 
 
 
-off_03_0E_8B3F_12:
+off_06_1C_8B3F_24:
 - D 0 - I - 0x034B4F 0D:8B3F: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2680,7 +2680,7 @@ off_03_0E_8B3F_12:
 
 
 
-off_03_0E_8B47_13:
+off_06_1C_8B47_26:
 - D 0 - I - 0x034B57 0D:8B47: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2692,7 +2692,7 @@ off_03_0E_8B47_13:
 
 
 
-off_03_0E_8B4F_14:
+off_06_1C_8B4F_28:
 - D 0 - I - 0x034B5F 0D:8B4F: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2704,8 +2704,8 @@ off_03_0E_8B4F_14:
 
 
 
-off_03_0E_8B57_15:
-off_03_0E_8B57_1F:
+off_06_1C_8B57_2A:
+off_06_1C_8B57_3E:
 - D 0 - I - 0x034B67 0D:8B57: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2721,8 +2721,8 @@ off_03_0E_8B57_1F:
 
 
 
-off_03_0E_8B6B_16:
-off_03_0E_8B6B_1E:
+off_06_1C_8B6B_2C:
+off_06_1C_8B6B_3C:
 - D 0 - I - 0x034B7B 0D:8B6B: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2739,8 +2739,8 @@ off_03_0E_8B6B_1E:
 
 
 
-off_03_0E_8B82_17:
-off_03_0E_8B82_1D:
+off_06_1C_8B82_2E:
+off_06_1C_8B82_3A:
 - D 0 - I - 0x034B92 0D:8B82: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2754,8 +2754,8 @@ off_03_0E_8B82_1D:
 
 
 
-off_03_0E_8B90_18:
-off_03_0E_8B90_1C:
+off_06_1C_8B90_30:
+off_06_1C_8B90_38:
 - D 0 - I - 0x034BA0 0D:8B90: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2769,8 +2769,8 @@ off_03_0E_8B90_1C:
 
 
 
-off_03_0E_8B9E_19:
-off_03_0E_8B9E_1B:
+off_06_1C_8B9E_32:
+off_06_1C_8B9E_36:
 - D 0 - I - 0x034BAE 0D:8B9E: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2788,7 +2788,7 @@ off_03_0E_8B9E_1B:
 
 
 
-off_03_0E_8BBA_1A:
+off_06_1C_8BBA_34:
 - D 0 - I - 0x034BCA 0D:8BBA: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2806,7 +2806,7 @@ off_03_0E_8BBA_1A:
 
 
 
-off_03_0E_8BD6_20:
+off_06_1C_8BD6_40:
 - D 0 - I - 0x034BE6 0D:8BD6: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2817,7 +2817,7 @@ off_03_0E_8BD6_20:
 
 
 
-off_03_0E_8BDB_21:
+off_06_1C_8BDB_42:
 - D 0 - I - 0x034BEB 0D:8BDB: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2828,7 +2828,7 @@ off_03_0E_8BDB_21:
 
 
 
-off_03_0E_8BE0_22:
+off_06_1C_8BE0_44:
 - - - - - - 0x034BF0 0D:8BE0: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -2840,206 +2840,206 @@ off_03_0E_8BE0_22:
 
 
 
-_off039_8BE9_04:
-- - - - - - 0x034BF9 0D:8BE9: 7E 8D     .word off_04_8D7E_00     ; unused
-- D 0 - I - 0x034BFB 0D:8BEB: 7E 8D     .word off_04_8D7E_01
-- D 0 - I - 0x034BFD 0D:8BED: 8C 8D     .word off_04_8D8C_02
-- D 0 - I - 0x034BFF 0D:8BEF: 9A 8D     .word off_04_8D9A_03
-- D 0 - I - 0x034C01 0D:8BF1: A3 8D     .word off_04_8DA3_04
-- D 0 - I - 0x034C03 0D:8BF3: AB 8D     .word off_04_8DAB_05
-- D 0 - I - 0x034C05 0D:8BF5: B9 8D     .word off_04_8DB9_06
-- D 0 - I - 0x034C07 0D:8BF7: C1 8D     .word off_04_8DC1_07
-- D 0 - I - 0x034C09 0D:8BF9: B9 8D     .word off_04_8DB9_08
-- D 0 - I - 0x034C0B 0D:8BFB: CF 8D     .word off_04_8DCF_09
-- D 0 - I - 0x034C0D 0D:8BFD: 03 8E     .word off_04_8E03_0A
-- D 0 - I - 0x034C0F 0D:8BFF: 08 8E     .word off_04_8E08_0B
-- D 0 - I - 0x034C11 0D:8C01: 0D 8E     .word off_04_8E0D_0C
-- D 0 - I - 0x034C13 0D:8C03: 15 8E     .word off_04_8E15_0D
-- D 0 - I - 0x034C15 0D:8C05: 1D 8E     .word off_04_8E1D_0E
-- D 0 - I - 0x034C17 0D:8C07: 25 8E     .word off_04_8E25_0F
-- D 0 - I - 0x034C19 0D:8C09: 2E 8E     .word off_04_8E2E_10
-- D 0 - I - 0x034C1B 0D:8C0B: 36 8E     .word off_04_8E36_11
-- D 0 - I - 0x034C1D 0D:8C0D: 3E 8E     .word off_04_8E3E_12
-- D 0 - I - 0x034C1F 0D:8C0F: 36 8E     .word off_04_8E36_13
-- D 0 - I - 0x034C21 0D:8C11: 66 8E     .word off_04_8E66_14
-- D 0 - I - 0x034C23 0D:8C13: 6E 8E     .word off_04_8E6E_15
-- D 0 - I - 0x034C25 0D:8C15: 96 8E     .word off_04_8E96_16
-- D 0 - I - 0x034C27 0D:8C17: A7 8E     .word off_04_8EA7_17
-- D 0 - I - 0x034C29 0D:8C19: B8 8E     .word off_04_8EB8_18
-- D 0 - I - 0x034C2B 0D:8C1B: D3 8E     .word off_04_8ED3_19
-- D 0 - I - 0x034C2D 0D:8C1D: 19 8F     .word off_04_8F19_1A
-- D 0 - I - 0x034C2F 0D:8C1F: 27 8F     .word off_04_8F27_1B
-- D 0 - I - 0x034C31 0D:8C21: A5 90     .word off_04_90A5_1C
-- D 0 - I - 0x034C33 0D:8C23: AD 90     .word off_04_90AD_1D
-- D 0 - I - 0x034C35 0D:8C25: B5 90     .word off_04_90B5_1E
-- D 0 - I - 0x034C37 0D:8C27: 71 8F     .word off_04_8F71_1F
-- D 0 - I - 0x034C39 0D:8C29: 80 8F     .word off_04_8F80_20
-- D 0 - I - 0x034C3B 0D:8C2B: 8F 8F     .word off_04_8F8F_21
-- D 0 - I - 0x034C3D 0D:8C2D: 9D 8F     .word off_04_8F9D_22
-- D 0 - I - 0x034C3F 0D:8C2F: AB 8F     .word off_04_8FAB_23
-- D 0 - I - 0x034C41 0D:8C31: BC 8F     .word off_04_8FBC_24
-- D 0 - I - 0x034C43 0D:8C33: CA 8F     .word off_04_8FCA_25
-- D 0 - I - 0x034C45 0D:8C35: EE 8F     .word off_04_8FEE_26
-- D 0 - I - 0x034C47 0D:8C37: F6 8F     .word off_04_8FF6_27
-- - - - - - 0x034C49 0D:8C39: F6 8F     .word off_04_8FF6_28
-- D 0 - I - 0x034C4B 0D:8C3B: E7 8E     .word off_04_8EE7_29
-- D 0 - I - 0x034C4D 0D:8C3D: 05 8F     .word off_04_8F05_2A
-- - - - - - 0x034C4F 0D:8C3F: 7E 8D     .word off_04_8D7E_2B
-- D 0 - I - 0x034C51 0D:8C41: 68 90     .word off_04_9068_2C
-- D 0 - I - 0x034C53 0D:8C43: 70 90     .word off_04_9070_2D
-- D 0 - I - 0x034C55 0D:8C45: 78 90     .word off_04_9078_2E
-- D 0 - I - 0x034C57 0D:8C47: 80 90     .word off_04_9080_2F
-- D 0 - I - 0x034C59 0D:8C49: 88 90     .word off_04_9088_30
-- D 0 - I - 0x034C5B 0D:8C4B: 8D 90     .word off_04_908D_31
-- D 0 - I - 0x034C5D 0D:8C4D: 95 90     .word off_04_9095_32
-- D 0 - I - 0x034C5F 0D:8C4F: 9D 90     .word off_04_909D_33
-- D 0 - I - 0x034C61 0D:8C51: BD 90     .word off_04_90BD_34
-- D 0 - I - 0x034C63 0D:8C53: CE 90     .word off_04_90CE_35
-- D 0 - I - 0x034C65 0D:8C55: DF 90     .word off_04_90DF_36
-- D 0 - I - 0x034C67 0D:8C57: CE 90     .word off_04_90CE_37
-- D 0 - I - 0x034C69 0D:8C59: F0 90     .word off_04_90F0_38
-- D 0 - I - 0x034C6B 0D:8C5B: FE 90     .word off_04_90FE_39
-- D 0 - I - 0x034C6D 0D:8C5D: 06 91     .word off_04_9106_3A
-- D 0 - I - 0x034C6F 0D:8C5F: 23 91     .word off_04_9123_3B
-- D 0 - I - 0x034C71 0D:8C61: 40 91     .word off_04_9140_3C
-- D 0 - I - 0x034C73 0D:8C63: 5C 91     .word off_04_915C_3D
-- D 0 - I - 0x034C75 0D:8C65: 77 91     .word off_04_9177_3E
-- D 0 - I - 0x034C77 0D:8C67: 86 8E     .word off_04_8E86_3F
-- D 0 - I - 0x034C79 0D:8C69: 8E 8E     .word off_04_8E8E_40
-- - - - - - 0x034C7B 0D:8C6B: 7E 8D     .word off_04_8D7E_41
-- - - - - - 0x034C7D 0D:8C6D: 7E 8D     .word off_04_8D7E_42
-- - - - - - 0x034C7F 0D:8C6F: 7E 8D     .word off_04_8D7E_43
-- - - - - - 0x034C81 0D:8C71: 7E 8D     .word off_04_8D7E_44
-- - - - - - 0x034C83 0D:8C73: 7E 8D     .word off_04_8D7E_45
-- D 0 - I - 0x034C85 0D:8C75: 9E 91     .word off_04_919E_46
-- D 0 - I - 0x034C87 0D:8C77: B8 91     .word off_04_91B8_47
-- - - - - - 0x034C89 0D:8C79: B8 91     .word off_04_91B8_48
-- D 0 - I - 0x034C8B 0D:8C7B: D2 91     .word off_04_91D2_49
-- D 0 - I - 0x034C8D 0D:8C7D: E0 91     .word off_04_91E0_4A
-- D 0 - I - 0x034C8F 0D:8C7F: EE 91     .word off_04_91EE_4B
-- D 0 - I - 0x034C91 0D:8C81: FF 91     .word off_04_91FF_4C
-- D 0 - I - 0x034C93 0D:8C83: 0D 92     .word off_04_920D_4D
-- D 0 - I - 0x034C95 0D:8C85: 1E 92     .word off_04_921E_4E
-- D 0 - I - 0x034C97 0D:8C87: 2D 92     .word off_04_922D_4F
-- D 0 - I - 0x034C99 0D:8C89: 35 92     .word off_04_9235_50
-- D 0 - I - 0x034C9B 0D:8C8B: 3D 92     .word off_04_923D_51
-- D 0 - I - 0x034C9D 0D:8C8D: 45 92     .word off_04_9245_52
-- D 0 - I - 0x034C9F 0D:8C8F: 4A 92     .word off_04_924A_53
-- D 0 - I - 0x034CA1 0D:8C91: 52 92     .word off_04_9252_54
-- D 0 - I - 0x034CA3 0D:8C93: 69 92     .word off_04_9269_55
-- D 0 - I - 0x034CA5 0D:8C95: 81 92     .word off_04_9281_56
-- - - - - - 0x034CA7 0D:8C97: 81 92     .word off_04_9281_57
-- D 0 - I - 0x034CA9 0D:8C99: 8D 91     .word off_04_918D_58
-- D 0 - I - 0x034CAB 0D:8C9B: 95 91     .word off_04_9195_59
-- D 0 - I - 0x034CAD 0D:8C9D: 35 8F     .word off_04_8F35_5A
-- D 0 - I - 0x034CAF 0D:8C9F: 46 8F     .word off_04_8F46_5B
-- D 0 - I - 0x034CB1 0D:8CA1: B2 92     .word off_04_92B2_5C
-- D 0 - I - 0x034CB3 0D:8CA3: C4 92     .word off_04_92C4_5D
-- D 0 - I - 0x034CB5 0D:8CA5: 45 93     .word off_04_9345_5E
-- D 0 - I - 0x034CB7 0D:8CA7: 56 93     .word off_04_9356_5F
-- D 0 - I - 0x034CB9 0D:8CA9: 67 93     .word off_04_9367_60
-- D 0 - I - 0x034CBB 0D:8CAB: 6C 93     .word off_04_936C_61
-- D 0 - I - 0x034CBD 0D:8CAD: 75 93     .word off_04_9375_62
-- D 0 - I - 0x034CBF 0D:8CAF: 82 93     .word off_04_9382_63
-- D 0 - I - 0x034CC1 0D:8CB1: 93 93     .word off_04_9393_64
-- D 0 - I - 0x034CC3 0D:8CB3: C1 93     .word off_04_93C1_65
-- D 0 - I - 0x034CC5 0D:8CB5: C6 93     .word off_04_93C6_66
-- - - - - - 0x034CC7 0D:8CB7: 46 8E     .word off_04_8E46_67
-- D 0 - I - 0x034CC9 0D:8CB9: 4E 8E     .word off_04_8E4E_68
-- D 0 - I - 0x034CCB 0D:8CBB: 56 8E     .word off_04_8E56_69
-- D 0 - I - 0x034CCD 0D:8CBD: 5E 8E     .word off_04_8E5E_6A
-- D 0 - I - 0x034CCF 0D:8CBF: 56 8E     .word off_04_8E56_6B
-- D 0 - I - 0x034CD1 0D:8CC1: A8 93     .word off_04_93A8_6C
-- D 0 - I - 0x034CD3 0D:8CC3: A0 94     .word off_04_94A0_6D
-- D 0 - I - 0x034CD5 0D:8CC5: A5 94     .word off_04_94A5_6E
-- D 0 - I - 0x034CD7 0D:8CC7: 55 94     .word off_04_9455_6F
-- D 0 - I - 0x034CD9 0D:8CC9: 62 94     .word off_04_9462_70
-- D 0 - I - 0x034CDB 0D:8CCB: 6E 94     .word off_04_946E_71
-- D 0 - I - 0x034CDD 0D:8CCD: 7E 94     .word off_04_947E_72
-- D 0 - I - 0x034CDF 0D:8CCF: 8E 94     .word off_04_948E_73
-- D 0 - I - 0x034CE1 0D:8CD1: 97 94     .word off_04_9497_74
-- D 0 - I - 0x034CE3 0D:8CD3: AA 94     .word off_04_94AA_75
-- D 0 - I - 0x034CE5 0D:8CD5: B6 94     .word off_04_94B6_76
-- D 0 - I - 0x034CE7 0D:8CD7: 95 92     .word off_04_9295_77
-- D 0 - I - 0x034CE9 0D:8CD9: 5A 8F     .word off_04_8F5A_78
-- D 0 - I - 0x034CEB 0D:8CDB: D6 92     .word off_04_92D6_79
-- D 0 - I - 0x034CED 0D:8CDD: EB 92     .word off_04_92EB_7A
-- - - - - - 0x034CEF 0D:8CDF: 09 93     .word off_04_9309_7B
-- D 0 - I - 0x034CF1 0D:8CE1: 27 93     .word off_04_9327_7C
-- D 0 - I - 0x034CF3 0D:8CE3: 17 95     .word off_04_9517_7D
-- D 0 - I - 0x034CF5 0D:8CE5: 29 95     .word off_04_9529_7E
-- - - - - - 0x034CF7 0D:8CE7: 67 8D     .word off_04_8D67_7F
+_off039_8BE9_08:
+- - - - - - 0x034BF9 0D:8BE9: 7E 8D     .word off_08_8D7E_00     ; unused
+- D 0 - I - 0x034BFB 0D:8BEB: 7E 8D     .word off_08_8D7E_02
+- D 0 - I - 0x034BFD 0D:8BED: 8C 8D     .word off_08_8D8C_04
+- D 0 - I - 0x034BFF 0D:8BEF: 9A 8D     .word off_08_8D9A_06
+- D 0 - I - 0x034C01 0D:8BF1: A3 8D     .word off_08_8DA3_08
+- D 0 - I - 0x034C03 0D:8BF3: AB 8D     .word off_08_8DAB_0A
+- D 0 - I - 0x034C05 0D:8BF5: B9 8D     .word off_08_8DB9_0C
+- D 0 - I - 0x034C07 0D:8BF7: C1 8D     .word off_08_8DC1_0E
+- D 0 - I - 0x034C09 0D:8BF9: B9 8D     .word off_08_8DB9_10
+- D 0 - I - 0x034C0B 0D:8BFB: CF 8D     .word off_08_8DCF_12
+- D 0 - I - 0x034C0D 0D:8BFD: 03 8E     .word off_08_8E03_14
+- D 0 - I - 0x034C0F 0D:8BFF: 08 8E     .word off_08_8E08_16
+- D 0 - I - 0x034C11 0D:8C01: 0D 8E     .word off_08_8E0D_18
+- D 0 - I - 0x034C13 0D:8C03: 15 8E     .word off_08_8E15_1A
+- D 0 - I - 0x034C15 0D:8C05: 1D 8E     .word off_08_8E1D_1C
+- D 0 - I - 0x034C17 0D:8C07: 25 8E     .word off_08_8E25_1E
+- D 0 - I - 0x034C19 0D:8C09: 2E 8E     .word off_08_8E2E_20
+- D 0 - I - 0x034C1B 0D:8C0B: 36 8E     .word off_08_8E36_22
+- D 0 - I - 0x034C1D 0D:8C0D: 3E 8E     .word off_08_8E3E_24
+- D 0 - I - 0x034C1F 0D:8C0F: 36 8E     .word off_08_8E36_26
+- D 0 - I - 0x034C21 0D:8C11: 66 8E     .word off_08_8E66_28
+- D 0 - I - 0x034C23 0D:8C13: 6E 8E     .word off_08_8E6E_2A
+- D 0 - I - 0x034C25 0D:8C15: 96 8E     .word off_08_8E96_2C
+- D 0 - I - 0x034C27 0D:8C17: A7 8E     .word off_08_8EA7_2E
+- D 0 - I - 0x034C29 0D:8C19: B8 8E     .word off_08_8EB8_30
+- D 0 - I - 0x034C2B 0D:8C1B: D3 8E     .word off_08_8ED3_32
+- D 0 - I - 0x034C2D 0D:8C1D: 19 8F     .word off_08_8F19_34
+- D 0 - I - 0x034C2F 0D:8C1F: 27 8F     .word off_08_8F27_36
+- D 0 - I - 0x034C31 0D:8C21: A5 90     .word off_08_90A5_38
+- D 0 - I - 0x034C33 0D:8C23: AD 90     .word off_08_90AD_3A
+- D 0 - I - 0x034C35 0D:8C25: B5 90     .word off_08_90B5_3C
+- D 0 - I - 0x034C37 0D:8C27: 71 8F     .word off_08_8F71_3E
+- D 0 - I - 0x034C39 0D:8C29: 80 8F     .word off_08_8F80_40
+- D 0 - I - 0x034C3B 0D:8C2B: 8F 8F     .word off_08_8F8F_42
+- D 0 - I - 0x034C3D 0D:8C2D: 9D 8F     .word off_08_8F9D_44
+- D 0 - I - 0x034C3F 0D:8C2F: AB 8F     .word off_08_8FAB_46
+- D 0 - I - 0x034C41 0D:8C31: BC 8F     .word off_08_8FBC_48
+- D 0 - I - 0x034C43 0D:8C33: CA 8F     .word off_08_8FCA_4A
+- D 0 - I - 0x034C45 0D:8C35: EE 8F     .word off_08_8FEE_4C
+- D 0 - I - 0x034C47 0D:8C37: F6 8F     .word off_08_8FF6_4E
+- - - - - - 0x034C49 0D:8C39: F6 8F     .word off_08_8FF6_50
+- D 0 - I - 0x034C4B 0D:8C3B: E7 8E     .word off_08_8EE7_52
+- D 0 - I - 0x034C4D 0D:8C3D: 05 8F     .word off_08_8F05_54
+- - - - - - 0x034C4F 0D:8C3F: 7E 8D     .word off_08_8D7E_56
+- D 0 - I - 0x034C51 0D:8C41: 68 90     .word off_08_9068_58
+- D 0 - I - 0x034C53 0D:8C43: 70 90     .word off_08_9070_5A
+- D 0 - I - 0x034C55 0D:8C45: 78 90     .word off_08_9078_5C
+- D 0 - I - 0x034C57 0D:8C47: 80 90     .word off_08_9080_5E
+- D 0 - I - 0x034C59 0D:8C49: 88 90     .word off_08_9088_60
+- D 0 - I - 0x034C5B 0D:8C4B: 8D 90     .word off_08_908D_62
+- D 0 - I - 0x034C5D 0D:8C4D: 95 90     .word off_08_9095_64
+- D 0 - I - 0x034C5F 0D:8C4F: 9D 90     .word off_08_909D_66
+- D 0 - I - 0x034C61 0D:8C51: BD 90     .word off_08_90BD_68
+- D 0 - I - 0x034C63 0D:8C53: CE 90     .word off_08_90CE_6A
+- D 0 - I - 0x034C65 0D:8C55: DF 90     .word off_08_90DF_6C
+- D 0 - I - 0x034C67 0D:8C57: CE 90     .word off_08_90CE_6E
+- D 0 - I - 0x034C69 0D:8C59: F0 90     .word off_08_90F0_70
+- D 0 - I - 0x034C6B 0D:8C5B: FE 90     .word off_08_90FE_72
+- D 0 - I - 0x034C6D 0D:8C5D: 06 91     .word off_08_9106_74
+- D 0 - I - 0x034C6F 0D:8C5F: 23 91     .word off_08_9123_76
+- D 0 - I - 0x034C71 0D:8C61: 40 91     .word off_08_9140_78
+- D 0 - I - 0x034C73 0D:8C63: 5C 91     .word off_08_915C_7A
+- D 0 - I - 0x034C75 0D:8C65: 77 91     .word off_08_9177_7C
+- D 0 - I - 0x034C77 0D:8C67: 86 8E     .word off_08_8E86_7E
+- D 0 - I - 0x034C79 0D:8C69: 8E 8E     .word off_08_8E8E_80
+- - - - - - 0x034C7B 0D:8C6B: 7E 8D     .word off_08_8D7E_82
+- - - - - - 0x034C7D 0D:8C6D: 7E 8D     .word off_08_8D7E_84
+- - - - - - 0x034C7F 0D:8C6F: 7E 8D     .word off_08_8D7E_86
+- - - - - - 0x034C81 0D:8C71: 7E 8D     .word off_08_8D7E_88
+- - - - - - 0x034C83 0D:8C73: 7E 8D     .word off_08_8D7E_8A
+- D 0 - I - 0x034C85 0D:8C75: 9E 91     .word off_08_919E_8C
+- D 0 - I - 0x034C87 0D:8C77: B8 91     .word off_08_91B8_8E
+- - - - - - 0x034C89 0D:8C79: B8 91     .word off_08_91B8_90
+- D 0 - I - 0x034C8B 0D:8C7B: D2 91     .word off_08_91D2_92
+- D 0 - I - 0x034C8D 0D:8C7D: E0 91     .word off_08_91E0_94
+- D 0 - I - 0x034C8F 0D:8C7F: EE 91     .word off_08_91EE_96
+- D 0 - I - 0x034C91 0D:8C81: FF 91     .word off_08_91FF_98
+- D 0 - I - 0x034C93 0D:8C83: 0D 92     .word off_08_920D_9A
+- D 0 - I - 0x034C95 0D:8C85: 1E 92     .word off_08_921E_9C
+- D 0 - I - 0x034C97 0D:8C87: 2D 92     .word off_08_922D_9E
+- D 0 - I - 0x034C99 0D:8C89: 35 92     .word off_08_9235_A0
+- D 0 - I - 0x034C9B 0D:8C8B: 3D 92     .word off_08_923D_A2
+- D 0 - I - 0x034C9D 0D:8C8D: 45 92     .word off_08_9245_A4
+- D 0 - I - 0x034C9F 0D:8C8F: 4A 92     .word off_08_924A_A6
+- D 0 - I - 0x034CA1 0D:8C91: 52 92     .word off_08_9252_A8
+- D 0 - I - 0x034CA3 0D:8C93: 69 92     .word off_08_9269_AA
+- D 0 - I - 0x034CA5 0D:8C95: 81 92     .word off_08_9281_AC
+- - - - - - 0x034CA7 0D:8C97: 81 92     .word off_08_9281_AE
+- D 0 - I - 0x034CA9 0D:8C99: 8D 91     .word off_08_918D_B0
+- D 0 - I - 0x034CAB 0D:8C9B: 95 91     .word off_08_9195_B2
+- D 0 - I - 0x034CAD 0D:8C9D: 35 8F     .word off_08_8F35_B4
+- D 0 - I - 0x034CAF 0D:8C9F: 46 8F     .word off_08_8F46_B6
+- D 0 - I - 0x034CB1 0D:8CA1: B2 92     .word off_08_92B2_B8
+- D 0 - I - 0x034CB3 0D:8CA3: C4 92     .word off_08_92C4_BA
+- D 0 - I - 0x034CB5 0D:8CA5: 45 93     .word off_08_9345_BC
+- D 0 - I - 0x034CB7 0D:8CA7: 56 93     .word off_08_9356_BE
+- D 0 - I - 0x034CB9 0D:8CA9: 67 93     .word off_08_9367_C0
+- D 0 - I - 0x034CBB 0D:8CAB: 6C 93     .word off_08_936C_C2
+- D 0 - I - 0x034CBD 0D:8CAD: 75 93     .word off_08_9375_C4
+- D 0 - I - 0x034CBF 0D:8CAF: 82 93     .word off_08_9382_C6
+- D 0 - I - 0x034CC1 0D:8CB1: 93 93     .word off_08_9393_C8
+- D 0 - I - 0x034CC3 0D:8CB3: C1 93     .word off_08_93C1_CA
+- D 0 - I - 0x034CC5 0D:8CB5: C6 93     .word off_08_93C6_CC
+- - - - - - 0x034CC7 0D:8CB7: 46 8E     .word off_08_8E46_CE
+- D 0 - I - 0x034CC9 0D:8CB9: 4E 8E     .word off_08_8E4E_D0
+- D 0 - I - 0x034CCB 0D:8CBB: 56 8E     .word off_08_8E56_D2
+- D 0 - I - 0x034CCD 0D:8CBD: 5E 8E     .word off_08_8E5E_D4
+- D 0 - I - 0x034CCF 0D:8CBF: 56 8E     .word off_08_8E56_D6
+- D 0 - I - 0x034CD1 0D:8CC1: A8 93     .word off_08_93A8_D8
+- D 0 - I - 0x034CD3 0D:8CC3: A0 94     .word off_08_94A0_DA
+- D 0 - I - 0x034CD5 0D:8CC5: A5 94     .word off_08_94A5_DC
+- D 0 - I - 0x034CD7 0D:8CC7: 55 94     .word off_08_9455_DE
+- D 0 - I - 0x034CD9 0D:8CC9: 62 94     .word off_08_9462_E0
+- D 0 - I - 0x034CDB 0D:8CCB: 6E 94     .word off_08_946E_E2
+- D 0 - I - 0x034CDD 0D:8CCD: 7E 94     .word off_08_947E_E4
+- D 0 - I - 0x034CDF 0D:8CCF: 8E 94     .word off_08_948E_E6
+- D 0 - I - 0x034CE1 0D:8CD1: 97 94     .word off_08_9497_E8
+- D 0 - I - 0x034CE3 0D:8CD3: AA 94     .word off_08_94AA_EA
+- D 0 - I - 0x034CE5 0D:8CD5: B6 94     .word off_08_94B6_EC
+- D 0 - I - 0x034CE7 0D:8CD7: 95 92     .word off_08_9295_EE
+- D 0 - I - 0x034CE9 0D:8CD9: 5A 8F     .word off_08_8F5A_F0
+- D 0 - I - 0x034CEB 0D:8CDB: D6 92     .word off_08_92D6_F2
+- D 0 - I - 0x034CED 0D:8CDD: EB 92     .word off_08_92EB_F4
+- - - - - - 0x034CEF 0D:8CDF: 09 93     .word off_08_9309_F6
+- D 0 - I - 0x034CF1 0D:8CE1: 27 93     .word off_08_9327_F8
+- D 0 - I - 0x034CF3 0D:8CE3: 17 95     .word off_08_9517_FA
+- D 0 - I - 0x034CF5 0D:8CE5: 29 95     .word off_08_9529_FC
+- - - - - - 0x034CF7 0D:8CE7: 67 8D     .word off_08_8D67_FE
 
 
 
-_off039_8CE9_09:
-- - - - - - 0x034CF9 0D:8CE9: 7E 8D     .word off_09_8D7E_00     ; unused
-- D 0 - I - 0x034CFB 0D:8CEB: DA 93     .word off_09_93DA_01
-- D 0 - I - 0x034CFD 0D:8CED: E3 93     .word off_09_93E3_02
-- D 0 - I - 0x034CFF 0D:8CEF: EC 93     .word off_09_93EC_03
-- D 0 - I - 0x034D01 0D:8CF1: FD 93     .word off_09_93FD_04
-- D 0 - I - 0x034D03 0D:8CF3: 19 94     .word off_09_9419_05
-- D 0 - I - 0x034D05 0D:8CF5: 30 94     .word off_09_9430_06
-- D 0 - I - 0x034D07 0D:8CF7: 41 94     .word off_09_9441_07
-- D 0 - I - 0x034D09 0D:8CF9: C2 94     .word off_09_94C2_08
-- D 0 - I - 0x034D0B 0D:8CFB: CD 94     .word off_09_94CD_09
-- D 0 - I - 0x034D0D 0D:8CFD: E1 94     .word off_09_94E1_0A
-- D 0 - I - 0x034D0F 0D:8CFF: EC 94     .word off_09_94EC_0B
-- - - - - - 0x034D11 0D:8D01: 7E 8D     .word off_09_8D7E_0C
-- D 0 - I - 0x034D13 0D:8D03: 41 95     .word off_09_9541_0D
-- D 0 - I - 0x034D15 0D:8D05: 4F 95     .word off_09_954F_0E
-- D 0 - I - 0x034D17 0D:8D07: 5D 95     .word off_09_955D_0F
-- D 0 - I - 0x034D19 0D:8D09: 6B 95     .word off_09_956B_10
-- D 0 - I - 0x034D1B 0D:8D0B: 74 95     .word off_09_9574_11
-- D 0 - I - 0x034D1D 0D:8D0D: D8 8F     .word off_09_8FD8_12
-- D 0 - I - 0x034D1F 0D:8D0F: E3 8F     .word off_09_8FE3_13
-- D 0 - I - 0x034D21 0D:8D11: 7C 95     .word off_09_957C_14
-- D 0 - I - 0x034D23 0D:8D13: 8D 95     .word off_09_958D_15
-- D 0 - I - 0x034D25 0D:8D15: 9E 95     .word off_09_959E_16
-- D 0 - I - 0x034D27 0D:8D17: AF 95     .word off_09_95AF_17
-- D 0 - I - 0x034D29 0D:8D19: B4 95     .word off_09_95B4_18
-- D 0 - I - 0x034D2B 0D:8D1B: B9 95     .word off_09_95B9_19
-- D 0 - I - 0x034D2D 0D:8D1D: BE 95     .word off_09_95BE_1A
-- D 0 - I - 0x034D2F 0D:8D1F: CC 95     .word off_09_95CC_1B
-- D 0 - I - 0x034D31 0D:8D21: DA 95     .word off_09_95DA_1C
-- D 0 - I - 0x034D33 0D:8D23: FE 8F     .word off_09_8FFE_1D
-- D 0 - I - 0x034D35 0D:8D25: 06 90     .word off_09_9006_1E
-- - - - - - 0x034D37 0D:8D27: 1E 90     .word off_09_901E_1F
-- D 0 - I - 0x034D39 0D:8D29: 2E 90     .word off_09_902E_20
-- D 0 - I - 0x034D3B 0D:8D2B: 3E 90     .word off_09_903E_21
-- D 0 - I - 0x034D3D 0D:8D2D: 48 90     .word off_09_9048_22
-- - - - - - 0x034D3F 0D:8D2F: 58 90     .word off_09_9058_23
-- D 0 - I - 0x034D41 0D:8D31: 0E 90     .word off_09_900E_24
-- D 0 - I - 0x034D43 0D:8D33: 16 90     .word off_09_9016_25
-- - - - - - 0x034D45 0D:8D35: 26 90     .word off_09_9026_26
-- D 0 - I - 0x034D47 0D:8D37: 36 90     .word off_09_9036_27
-- D 0 - I - 0x034D49 0D:8D39: 43 90     .word off_09_9043_28
-- D 0 - I - 0x034D4B 0D:8D3B: 50 90     .word off_09_9050_29
-- - - - - - 0x034D4D 0D:8D3D: 60 90     .word off_09_9060_2A
-- D 0 - I - 0x034D4F 0D:8D3F: 12 96     .word off_09_9612_2B
-- D 0 - I - 0x034D51 0D:8D41: 1A 96     .word off_09_961A_2C
-- - - - - - 0x034D53 0D:8D43: E8 95     .word off_09_95E8_2D
-- - - - - - 0x034D55 0D:8D45: F6 95     .word off_09_95F6_2E
-- - - - - - 0x034D57 0D:8D47: 04 96     .word off_09_9604_2F
-- D 0 - I - 0x034D59 0D:8D49: FD 94     .word off_09_94FD_30
-- D 0 - I - 0x034D5B 0D:8D4B: 08 95     .word off_09_9508_31
-- D 0 - I - 0x034D5D 0D:8D4D: 22 96     .word off_09_9622_32
-- D 0 - I - 0x034D5F 0D:8D4F: 2A 96     .word off_09_962A_33
-- D 0 - I - 0x034D61 0D:8D51: D7 8D     .word off_09_8DD7_34
-- D 0 - I - 0x034D63 0D:8D53: E5 8D     .word off_09_8DE5_35
-- D 0 - I - 0x034D65 0D:8D55: ED 8D     .word off_09_8DED_36
-- D 0 - I - 0x034D67 0D:8D57: E5 8D     .word off_09_8DE5_37
-- D 0 - I - 0x034D69 0D:8D59: FB 8D     .word off_09_8DFB_38
-- D 0 - I - 0x034D6B 0D:8D5B: 32 96     .word off_09_9632_39
-- D 0 - I - 0x034D6D 0D:8D5D: 50 96     .word off_09_9650_3A
-- D 0 - I - 0x034D6F 0D:8D5F: 71 96     .word off_09_9671_3B
-- D 0 - I - 0x034D71 0D:8D61: 88 96     .word off_09_9688_3C
-- D 0 - I - 0x034D73 0D:8D63: 76 8E     .word off_09_8E76_3D
-- D 0 - I - 0x034D75 0D:8D65: 7E 8E     .word off_09_8E7E_3E
+_off039_8CE9_12:
+- - - - - - 0x034CF9 0D:8CE9: 7E 8D     .word off_12_8D7E_00     ; unused
+- D 0 - I - 0x034CFB 0D:8CEB: DA 93     .word off_12_93DA_02
+- D 0 - I - 0x034CFD 0D:8CED: E3 93     .word off_12_93E3_04
+- D 0 - I - 0x034CFF 0D:8CEF: EC 93     .word off_12_93EC_06
+- D 0 - I - 0x034D01 0D:8CF1: FD 93     .word off_12_93FD_08
+- D 0 - I - 0x034D03 0D:8CF3: 19 94     .word off_12_9419_0A
+- D 0 - I - 0x034D05 0D:8CF5: 30 94     .word off_12_9430_0C
+- D 0 - I - 0x034D07 0D:8CF7: 41 94     .word off_12_9441_0E
+- D 0 - I - 0x034D09 0D:8CF9: C2 94     .word off_12_94C2_10
+- D 0 - I - 0x034D0B 0D:8CFB: CD 94     .word off_12_94CD_12
+- D 0 - I - 0x034D0D 0D:8CFD: E1 94     .word off_12_94E1_14
+- D 0 - I - 0x034D0F 0D:8CFF: EC 94     .word off_12_94EC_16
+- - - - - - 0x034D11 0D:8D01: 7E 8D     .word off_12_8D7E_18
+- D 0 - I - 0x034D13 0D:8D03: 41 95     .word off_12_9541_1A
+- D 0 - I - 0x034D15 0D:8D05: 4F 95     .word off_12_954F_1C
+- D 0 - I - 0x034D17 0D:8D07: 5D 95     .word off_12_955D_1E
+- D 0 - I - 0x034D19 0D:8D09: 6B 95     .word off_12_956B_20
+- D 0 - I - 0x034D1B 0D:8D0B: 74 95     .word off_12_9574_22
+- D 0 - I - 0x034D1D 0D:8D0D: D8 8F     .word off_12_8FD8_24
+- D 0 - I - 0x034D1F 0D:8D0F: E3 8F     .word off_12_8FE3_26
+- D 0 - I - 0x034D21 0D:8D11: 7C 95     .word off_12_957C_28
+- D 0 - I - 0x034D23 0D:8D13: 8D 95     .word off_12_958D_2A
+- D 0 - I - 0x034D25 0D:8D15: 9E 95     .word off_12_959E_2C
+- D 0 - I - 0x034D27 0D:8D17: AF 95     .word off_12_95AF_2E
+- D 0 - I - 0x034D29 0D:8D19: B4 95     .word off_12_95B4_30
+- D 0 - I - 0x034D2B 0D:8D1B: B9 95     .word off_12_95B9_32
+- D 0 - I - 0x034D2D 0D:8D1D: BE 95     .word off_12_95BE_34
+- D 0 - I - 0x034D2F 0D:8D1F: CC 95     .word off_12_95CC_36
+- D 0 - I - 0x034D31 0D:8D21: DA 95     .word off_12_95DA_38
+- D 0 - I - 0x034D33 0D:8D23: FE 8F     .word off_12_8FFE_3A
+- D 0 - I - 0x034D35 0D:8D25: 06 90     .word off_12_9006_3C
+- - - - - - 0x034D37 0D:8D27: 1E 90     .word off_12_901E_3E
+- D 0 - I - 0x034D39 0D:8D29: 2E 90     .word off_12_902E_40
+- D 0 - I - 0x034D3B 0D:8D2B: 3E 90     .word off_12_903E_42
+- D 0 - I - 0x034D3D 0D:8D2D: 48 90     .word off_12_9048_44
+- - - - - - 0x034D3F 0D:8D2F: 58 90     .word off_12_9058_46
+- D 0 - I - 0x034D41 0D:8D31: 0E 90     .word off_12_900E_48
+- D 0 - I - 0x034D43 0D:8D33: 16 90     .word off_12_9016_4A
+- - - - - - 0x034D45 0D:8D35: 26 90     .word off_12_9026_4C
+- D 0 - I - 0x034D47 0D:8D37: 36 90     .word off_12_9036_4E
+- D 0 - I - 0x034D49 0D:8D39: 43 90     .word off_12_9043_50
+- D 0 - I - 0x034D4B 0D:8D3B: 50 90     .word off_12_9050_52
+- - - - - - 0x034D4D 0D:8D3D: 60 90     .word off_12_9060_54
+- D 0 - I - 0x034D4F 0D:8D3F: 12 96     .word off_12_9612_56
+- D 0 - I - 0x034D51 0D:8D41: 1A 96     .word off_12_961A_58
+- - - - - - 0x034D53 0D:8D43: E8 95     .word off_12_95E8_5A
+- - - - - - 0x034D55 0D:8D45: F6 95     .word off_12_95F6_5C
+- - - - - - 0x034D57 0D:8D47: 04 96     .word off_12_9604_5E
+- D 0 - I - 0x034D59 0D:8D49: FD 94     .word off_12_94FD_60
+- D 0 - I - 0x034D5B 0D:8D4B: 08 95     .word off_12_9508_62
+- D 0 - I - 0x034D5D 0D:8D4D: 22 96     .word off_12_9622_64
+- D 0 - I - 0x034D5F 0D:8D4F: 2A 96     .word off_12_962A_66
+- D 0 - I - 0x034D61 0D:8D51: D7 8D     .word off_12_8DD7_68
+- D 0 - I - 0x034D63 0D:8D53: E5 8D     .word off_12_8DE5_6A
+- D 0 - I - 0x034D65 0D:8D55: ED 8D     .word off_12_8DED_6C
+- D 0 - I - 0x034D67 0D:8D57: E5 8D     .word off_12_8DE5_6E
+- D 0 - I - 0x034D69 0D:8D59: FB 8D     .word off_12_8DFB_70
+- D 0 - I - 0x034D6B 0D:8D5B: 32 96     .word off_12_9632_72
+- D 0 - I - 0x034D6D 0D:8D5D: 50 96     .word off_12_9650_74
+- D 0 - I - 0x034D6F 0D:8D5F: 71 96     .word off_12_9671_76
+- D 0 - I - 0x034D71 0D:8D61: 88 96     .word off_12_9688_78
+- D 0 - I - 0x034D73 0D:8D63: 76 8E     .word off_12_8E76_7A
+- D 0 - I - 0x034D75 0D:8D65: 7E 8E     .word off_12_8E7E_7C
 
 
 
-off_04_8D67_7F:
+off_08_8D67_FE:
 - - - - - - 0x034D77 0D:8D67: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3056,16 +3056,16 @@ off_04_8D67_7F:
 
 
 
-off_04_8D7E_00:
-off_04_8D7E_01:
-off_04_8D7E_2B:
-off_04_8D7E_41:
-off_04_8D7E_42:
-off_04_8D7E_43:
-off_04_8D7E_44:
-off_04_8D7E_45:
-off_09_8D7E_00:
-off_09_8D7E_0C:
+off_08_8D7E_00:
+off_08_8D7E_02:
+off_08_8D7E_56:
+off_08_8D7E_82:
+off_08_8D7E_84:
+off_08_8D7E_86:
+off_08_8D7E_88:
+off_08_8D7E_8A:
+off_12_8D7E_00:
+off_12_8D7E_18:
 - D 0 - I - 0x034D8E 0D:8D7E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3079,7 +3079,7 @@ off_09_8D7E_0C:
 
 
 
-off_04_8D8C_02:
+off_08_8D8C_04:
 - D 0 - I - 0x034D9C 0D:8D8C: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3093,7 +3093,7 @@ off_04_8D8C_02:
 
 
 
-off_04_8D9A_03:
+off_08_8D9A_06:
 - D 0 - I - 0x034DAA 0D:8D9A: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3105,7 +3105,7 @@ off_04_8D9A_03:
 
 
 
-off_04_8DA3_04:
+off_08_8DA3_08:
 - D 0 - I - 0x034DB3 0D:8DA3: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3117,7 +3117,7 @@ off_04_8DA3_04:
 
 
 
-off_04_8DAB_05:
+off_08_8DAB_0A:
 - D 0 - I - 0x034DBB 0D:8DAB: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3131,8 +3131,8 @@ off_04_8DAB_05:
 
 
 
-off_04_8DB9_06:
-off_04_8DB9_08:
+off_08_8DB9_0C:
+off_08_8DB9_10:
 - D 0 - I - 0x034DC9 0D:8DB9: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3144,7 +3144,7 @@ off_04_8DB9_08:
 
 
 
-off_04_8DC1_07:
+off_08_8DC1_0E:
 - D 0 - I - 0x034DD1 0D:8DC1: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3158,7 +3158,7 @@ off_04_8DC1_07:
 
 
 
-off_04_8DCF_09:
+off_08_8DCF_12:
 - D 0 - I - 0x034DDF 0D:8DCF: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3170,7 +3170,7 @@ off_04_8DCF_09:
 
 
 
-off_09_8DD7_34:
+off_12_8DD7_68:
 - D 0 - I - 0x034DE7 0D:8DD7: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3184,8 +3184,8 @@ off_09_8DD7_34:
 
 
 
-off_09_8DE5_35:
-off_09_8DE5_37:
+off_12_8DE5_6A:
+off_12_8DE5_6E:
 - D 0 - I - 0x034DF5 0D:8DE5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3197,7 +3197,7 @@ off_09_8DE5_37:
 
 
 
-off_09_8DED_36:
+off_12_8DED_6C:
 - D 0 - I - 0x034DFD 0D:8DED: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3211,7 +3211,7 @@ off_09_8DED_36:
 
 
 
-off_09_8DFB_38:
+off_12_8DFB_70:
 - D 0 - I - 0x034E0B 0D:8DFB: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3223,7 +3223,7 @@ off_09_8DFB_38:
 
 
 
-off_04_8E03_0A:
+off_08_8E03_14:
 - D 0 - I - 0x034E13 0D:8E03: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3234,7 +3234,7 @@ off_04_8E03_0A:
 
 
 
-off_04_8E08_0B:
+off_08_8E08_16:
 - D 0 - I - 0x034E18 0D:8E08: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3245,7 +3245,7 @@ off_04_8E08_0B:
 
 
 
-off_04_8E0D_0C:
+off_08_8E0D_18:
 - D 0 - I - 0x034E1D 0D:8E0D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3257,7 +3257,7 @@ off_04_8E0D_0C:
 
 
 
-off_04_8E15_0D:
+off_08_8E15_1A:
 - D 0 - I - 0x034E25 0D:8E15: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3269,7 +3269,7 @@ off_04_8E15_0D:
 
 
 
-off_04_8E1D_0E:
+off_08_8E1D_1C:
 - D 0 - I - 0x034E2D 0D:8E1D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3281,7 +3281,7 @@ off_04_8E1D_0E:
 
 
 
-off_04_8E25_0F:
+off_08_8E25_1E:
 - D 0 - I - 0x034E35 0D:8E25: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3293,7 +3293,7 @@ off_04_8E25_0F:
 
 
 
-off_04_8E2E_10:
+off_08_8E2E_20:
 - D 0 - I - 0x034E3E 0D:8E2E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3305,8 +3305,8 @@ off_04_8E2E_10:
 
 
 
-off_04_8E36_11:
-off_04_8E36_13:
+off_08_8E36_22:
+off_08_8E36_26:
 - D 0 - I - 0x034E46 0D:8E36: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3318,7 +3318,7 @@ off_04_8E36_13:
 
 
 
-off_04_8E3E_12:
+off_08_8E3E_24:
 - D 0 - I - 0x034E4E 0D:8E3E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3330,7 +3330,7 @@ off_04_8E3E_12:
 
 
 
-off_04_8E46_67:
+off_08_8E46_CE:
 - - - - - - 0x034E56 0D:8E46: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3342,7 +3342,7 @@ off_04_8E46_67:
 
 
 
-off_04_8E4E_68:
+off_08_8E4E_D0:
 - D 0 - I - 0x034E5E 0D:8E4E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3354,8 +3354,8 @@ off_04_8E4E_68:
 
 
 
-off_04_8E56_69:
-off_04_8E56_6B:
+off_08_8E56_D2:
+off_08_8E56_D6:
 - D 0 - I - 0x034E66 0D:8E56: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3367,7 +3367,7 @@ off_04_8E56_6B:
 
 
 
-off_04_8E5E_6A:
+off_08_8E5E_D4:
 - D 0 - I - 0x034E6E 0D:8E5E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3379,7 +3379,7 @@ off_04_8E5E_6A:
 
 
 
-off_04_8E66_14:
+off_08_8E66_28:
 - D 0 - I - 0x034E76 0D:8E66: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3391,7 +3391,7 @@ off_04_8E66_14:
 
 
 
-off_04_8E6E_15:
+off_08_8E6E_2A:
 - D 0 - I - 0x034E7E 0D:8E6E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3403,7 +3403,7 @@ off_04_8E6E_15:
 
 
 
-off_09_8E76_3D:
+off_12_8E76_7A:
 - D 0 - I - 0x034E86 0D:8E76: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3415,7 +3415,7 @@ off_09_8E76_3D:
 
 
 
-off_09_8E7E_3E:
+off_12_8E7E_7C:
 - D 0 - I - 0x034E8E 0D:8E7E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3427,7 +3427,7 @@ off_09_8E7E_3E:
 
 
 
-off_04_8E86_3F:
+off_08_8E86_7E:
 - D 0 - I - 0x034E96 0D:8E86: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3439,7 +3439,7 @@ off_04_8E86_3F:
 
 
 
-off_04_8E8E_40:
+off_08_8E8E_80:
 - D 0 - I - 0x034E9E 0D:8E8E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3451,7 +3451,7 @@ off_04_8E8E_40:
 
 
 
-off_04_8E96_16:
+off_08_8E96_2C:
 - D 0 - I - 0x034EA6 0D:8E96: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3466,7 +3466,7 @@ off_04_8E96_16:
 
 
 
-off_04_8EA7_17:
+off_08_8EA7_2E:
 - D 0 - I - 0x034EB7 0D:8EA7: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3481,7 +3481,7 @@ off_04_8EA7_17:
 
 
 
-off_04_8EB8_18:
+off_08_8EB8_30:
 - D 0 - I - 0x034EC8 0D:8EB8: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3499,7 +3499,7 @@ off_04_8EB8_18:
 
 
 
-off_04_8ED3_19:
+off_08_8ED3_32:
 - D 0 - I - 0x034EE3 0D:8ED3: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3515,7 +3515,7 @@ off_04_8ED3_19:
 
 
 
-off_04_8EE7_29:
+off_08_8EE7_52:
 - D 0 - I - 0x034EF7 0D:8EE7: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3534,7 +3534,7 @@ off_04_8EE7_29:
 
 
 
-off_04_8F05_2A:
+off_08_8F05_54:
 - D 0 - I - 0x034F15 0D:8F05: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3550,7 +3550,7 @@ off_04_8F05_2A:
 
 
 
-off_04_8F19_1A:
+off_08_8F19_34:
 - D 0 - I - 0x034F29 0D:8F19: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3564,7 +3564,7 @@ off_04_8F19_1A:
 
 
 
-off_04_8F27_1B:
+off_08_8F27_36:
 - D 0 - I - 0x034F37 0D:8F27: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3578,7 +3578,7 @@ off_04_8F27_1B:
 
 
 
-off_04_8F35_5A:
+off_08_8F35_B4:
 - D 0 - I - 0x034F45 0D:8F35: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3593,7 +3593,7 @@ off_04_8F35_5A:
 
 
 
-off_04_8F46_5B:
+off_08_8F46_B6:
 - D 0 - I - 0x034F56 0D:8F46: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3609,7 +3609,7 @@ off_04_8F46_5B:
 
 
 
-off_04_8F5A_78:
+off_08_8F5A_F0:
 - D 0 - I - 0x034F6A 0D:8F5A: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3626,7 +3626,7 @@ off_04_8F5A_78:
 
 
 
-off_04_8F71_1F:
+off_08_8F71_3E:
 - D 0 - I - 0x034F81 0D:8F71: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3640,7 +3640,7 @@ off_04_8F71_1F:
 
 
 
-off_04_8F80_20:
+off_08_8F80_40:
 - D 0 - I - 0x034F90 0D:8F80: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3654,7 +3654,7 @@ off_04_8F80_20:
 
 
 
-off_04_8F8F_21:
+off_08_8F8F_42:
 - D 0 - I - 0x034F9F 0D:8F8F: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3668,7 +3668,7 @@ off_04_8F8F_21:
 
 
 
-off_04_8F9D_22:
+off_08_8F9D_44:
 - D 0 - I - 0x034FAD 0D:8F9D: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3682,7 +3682,7 @@ off_04_8F9D_22:
 
 
 
-off_04_8FAB_23:
+off_08_8FAB_46:
 - D 0 - I - 0x034FBB 0D:8FAB: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3697,7 +3697,7 @@ off_04_8FAB_23:
 
 
 
-off_04_8FBC_24:
+off_08_8FBC_48:
 - D 0 - I - 0x034FCC 0D:8FBC: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3711,7 +3711,7 @@ off_04_8FBC_24:
 
 
 
-off_04_8FCA_25:
+off_08_8FCA_4A:
 - D 0 - I - 0x034FDA 0D:8FCA: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3725,7 +3725,7 @@ off_04_8FCA_25:
 
 
 
-off_09_8FD8_12:
+off_12_8FD8_24:
 - D 0 - I - 0x034FE8 0D:8FD8: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3738,7 +3738,7 @@ off_09_8FD8_12:
 
 
 
-off_09_8FE3_13:
+off_12_8FE3_26:
 - D 0 - I - 0x034FF3 0D:8FE3: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3751,7 +3751,7 @@ off_09_8FE3_13:
 
 
 
-off_04_8FEE_26:
+off_08_8FEE_4C:
 - D 0 - I - 0x034FFE 0D:8FEE: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3763,8 +3763,8 @@ off_04_8FEE_26:
 
 
 
-off_04_8FF6_27:
-off_04_8FF6_28:
+off_08_8FF6_4E:
+off_08_8FF6_50:
 - D 0 - I - 0x035006 0D:8FF6: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3776,7 +3776,7 @@ off_04_8FF6_28:
 
 
 
-off_09_8FFE_1D:
+off_12_8FFE_3A:
 - D 0 - I - 0x03500E 0D:8FFE: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3788,7 +3788,7 @@ off_09_8FFE_1D:
 
 
 
-off_09_9006_1E:
+off_12_9006_3C:
 - D 0 - I - 0x035016 0D:9006: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3800,7 +3800,7 @@ off_09_9006_1E:
 
 
 
-off_09_900E_24:
+off_12_900E_48:
 - D 0 - I - 0x03501E 0D:900E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3812,7 +3812,7 @@ off_09_900E_24:
 
 
 
-off_09_9016_25:
+off_12_9016_4A:
 - D 0 - I - 0x035026 0D:9016: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3824,7 +3824,7 @@ off_09_9016_25:
 
 
 
-off_09_901E_1F:
+off_12_901E_3E:
 - - - - - - 0x03502E 0D:901E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3836,7 +3836,7 @@ off_09_901E_1F:
 
 
 
-off_09_9026_26:
+off_12_9026_4C:
 - - - - - - 0x035036 0D:9026: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3848,7 +3848,7 @@ off_09_9026_26:
 
 
 
-off_09_902E_20:
+off_12_902E_40:
 - D 0 - I - 0x03503E 0D:902E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3860,7 +3860,7 @@ off_09_902E_20:
 
 
 
-off_09_9036_27:
+off_12_9036_4E:
 - D 0 - I - 0x035046 0D:9036: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3872,7 +3872,7 @@ off_09_9036_27:
 
 
 
-off_09_903E_21:
+off_12_903E_42:
 - D 0 - I - 0x03504E 0D:903E: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3883,7 +3883,7 @@ off_09_903E_21:
 
 
 
-off_09_9043_28:
+off_12_9043_50:
 - D 0 - I - 0x035053 0D:9043: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3894,7 +3894,7 @@ off_09_9043_28:
 
 
 
-off_09_9048_22:
+off_12_9048_44:
 - D 0 - I - 0x035058 0D:9048: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3906,7 +3906,7 @@ off_09_9048_22:
 
 
 
-off_09_9050_29:
+off_12_9050_52:
 - D 0 - I - 0x035060 0D:9050: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3918,7 +3918,7 @@ off_09_9050_29:
 
 
 
-off_09_9058_23:
+off_12_9058_46:
 - - - - - - 0x035068 0D:9058: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3930,7 +3930,7 @@ off_09_9058_23:
 
 
 
-off_09_9060_2A:
+off_12_9060_54:
 - - - - - - 0x035070 0D:9060: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3942,7 +3942,7 @@ off_09_9060_2A:
 
 
 
-off_04_9068_2C:
+off_08_9068_58:
 - D 0 - I - 0x035078 0D:9068: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3954,7 +3954,7 @@ off_04_9068_2C:
 
 
 
-off_04_9070_2D:
+off_08_9070_5A:
 - D 0 - I - 0x035080 0D:9070: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3966,7 +3966,7 @@ off_04_9070_2D:
 
 
 
-off_04_9078_2E:
+off_08_9078_5C:
 - D 0 - I - 0x035088 0D:9078: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3978,7 +3978,7 @@ off_04_9078_2E:
 
 
 
-off_04_9080_2F:
+off_08_9080_5E:
 - D 0 - I - 0x035090 0D:9080: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -3990,7 +3990,7 @@ off_04_9080_2F:
 
 
 
-off_04_9088_30:
+off_08_9088_60:
 - D 0 - I - 0x035098 0D:9088: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4001,7 +4001,7 @@ off_04_9088_30:
 
 
 
-off_04_908D_31:
+off_08_908D_62:
 - D 0 - I - 0x03509D 0D:908D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4013,7 +4013,7 @@ off_04_908D_31:
 
 
 
-off_04_9095_32:
+off_08_9095_64:
 - D 0 - I - 0x0350A5 0D:9095: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4025,7 +4025,7 @@ off_04_9095_32:
 
 
 
-off_04_909D_33:
+off_08_909D_66:
 - D 0 - I - 0x0350AD 0D:909D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4037,7 +4037,7 @@ off_04_909D_33:
 
 
 
-off_04_90A5_1C:
+off_08_90A5_38:
 - D 0 - I - 0x0350B5 0D:90A5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4049,7 +4049,7 @@ off_04_90A5_1C:
 
 
 
-off_04_90AD_1D:
+off_08_90AD_3A:
 - D 0 - I - 0x0350BD 0D:90AD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4061,7 +4061,7 @@ off_04_90AD_1D:
 
 
 
-off_04_90B5_1E:
+off_08_90B5_3C:
 - D 0 - I - 0x0350C5 0D:90B5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4073,7 +4073,7 @@ off_04_90B5_1E:
 
 
 
-off_04_90BD_34:
+off_08_90BD_68:
 - D 0 - I - 0x0350CD 0D:90BD: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4088,8 +4088,8 @@ off_04_90BD_34:
 
 
 
-off_04_90CE_35:
-off_04_90CE_37:
+off_08_90CE_6A:
+off_08_90CE_6E:
 - D 0 - I - 0x0350DE 0D:90CE: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4104,7 +4104,7 @@ off_04_90CE_37:
 
 
 
-off_04_90DF_36:
+off_08_90DF_6C:
 - D 0 - I - 0x0350EF 0D:90DF: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4119,7 +4119,7 @@ off_04_90DF_36:
 
 
 
-off_04_90F0_38:
+off_08_90F0_70:
 - D 0 - I - 0x035100 0D:90F0: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4133,7 +4133,7 @@ off_04_90F0_38:
 
 
 
-off_04_90FE_39:
+off_08_90FE_72:
 - D 0 - I - 0x03510E 0D:90FE: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4145,7 +4145,7 @@ off_04_90FE_39:
 
 
 
-off_04_9106_3A:
+off_08_9106_74:
 - D 0 - I - 0x035116 0D:9106: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4163,7 +4163,7 @@ off_04_9106_3A:
 
 
 
-off_04_9123_3B:
+off_08_9123_76:
 - D 0 - I - 0x035133 0D:9123: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4181,7 +4181,7 @@ off_04_9123_3B:
 
 
 
-off_04_9140_3C:
+off_08_9140_78:
 - D 0 - I - 0x035150 0D:9140: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4199,7 +4199,7 @@ off_04_9140_3C:
 
 
 
-off_04_915C_3D:
+off_08_915C_7A:
 - D 0 - I - 0x03516C 0D:915C: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4217,7 +4217,7 @@ off_04_915C_3D:
 
 
 
-off_04_9177_3E:
+off_08_9177_7C:
 - D 0 - I - 0x035187 0D:9177: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4233,7 +4233,7 @@ off_04_9177_3E:
 
 
 
-off_04_918D_58:
+off_08_918D_B0:
 - D 0 - I - 0x03519D 0D:918D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4245,7 +4245,7 @@ off_04_918D_58:
 
 
 
-off_04_9195_59:
+off_08_9195_B2:
 - D 0 - I - 0x0351A5 0D:9195: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4257,7 +4257,7 @@ off_04_9195_59:
 
 
 
-off_04_919E_46:
+off_08_919E_8C:
 - D 0 - I - 0x0351AE 0D:919E: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4275,8 +4275,8 @@ off_04_919E_46:
 
 
 
-off_04_91B8_47:
-off_04_91B8_48:
+off_08_91B8_8E:
+off_08_91B8_90:
 - D 0 - I - 0x0351C8 0D:91B8: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4294,7 +4294,7 @@ off_04_91B8_48:
 
 
 
-off_04_91D2_49:
+off_08_91D2_92:
 - D 0 - I - 0x0351E2 0D:91D2: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4308,7 +4308,7 @@ off_04_91D2_49:
 
 
 
-off_04_91E0_4A:
+off_08_91E0_94:
 - D 0 - I - 0x0351F0 0D:91E0: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4322,7 +4322,7 @@ off_04_91E0_4A:
 
 
 
-off_04_91EE_4B:
+off_08_91EE_96:
 - D 0 - I - 0x0351FE 0D:91EE: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4337,7 +4337,7 @@ off_04_91EE_4B:
 
 
 
-off_04_91FF_4C:
+off_08_91FF_98:
 - D 0 - I - 0x03520F 0D:91FF: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4351,7 +4351,7 @@ off_04_91FF_4C:
 
 
 
-off_04_920D_4D:
+off_08_920D_9A:
 - D 0 - I - 0x03521D 0D:920D: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4366,7 +4366,7 @@ off_04_920D_4D:
 
 
 
-off_04_921E_4E:
+off_08_921E_9C:
 - D 0 - I - 0x03522E 0D:921E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4380,7 +4380,7 @@ off_04_921E_4E:
 
 
 
-off_04_922D_4F:
+off_08_922D_9E:
 - D 0 - I - 0x03523D 0D:922D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4392,7 +4392,7 @@ off_04_922D_4F:
 
 
 
-off_04_9235_50:
+off_08_9235_A0:
 - D 0 - I - 0x035245 0D:9235: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4404,7 +4404,7 @@ off_04_9235_50:
 
 
 
-off_04_923D_51:
+off_08_923D_A2:
 - D 0 - I - 0x03524D 0D:923D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4416,7 +4416,7 @@ off_04_923D_51:
 
 
 
-off_04_9245_52:
+off_08_9245_A4:
 - D 0 - I - 0x035255 0D:9245: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4427,7 +4427,7 @@ off_04_9245_52:
 
 
 
-off_04_924A_53:
+off_08_924A_A6:
 - D 0 - I - 0x03525A 0D:924A: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4439,7 +4439,7 @@ off_04_924A_53:
 
 
 
-off_04_9252_54:
+off_08_9252_A8:
 - D 0 - I - 0x035262 0D:9252: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4456,7 +4456,7 @@ off_04_9252_54:
 
 
 
-off_04_9269_55:
+off_08_9269_AA:
 - D 0 - I - 0x035279 0D:9269: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4473,8 +4473,8 @@ off_04_9269_55:
 
 
 
-off_04_9281_56:
-off_04_9281_57:
+off_08_9281_AC:
+off_08_9281_AE:
 - D 0 - I - 0x035291 0D:9281: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4490,7 +4490,7 @@ off_04_9281_57:
 
 
 
-off_04_9295_77:
+off_08_9295_EE:
 - D 0 - I - 0x0352A5 0D:9295: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4509,7 +4509,7 @@ off_04_9295_77:
 
 
 
-off_04_92B2_5C:
+off_08_92B2_B8:
 - D 0 - I - 0x0352C2 0D:92B2: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4524,7 +4524,7 @@ off_04_92B2_5C:
 
 
 
-off_04_92C4_5D:
+off_08_92C4_BA:
 - D 0 - I - 0x0352D4 0D:92C4: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4539,7 +4539,7 @@ off_04_92C4_5D:
 
 
 
-off_04_92D6_79:
+off_08_92D6_F2:
 - D 0 - I - 0x0352E6 0D:92D6: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4555,7 +4555,7 @@ off_04_92D6_79:
 
 
 
-off_04_92EB_7A:
+off_08_92EB_F4:
 - D 0 - I - 0x0352FB 0D:92EB: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4574,7 +4574,7 @@ off_04_92EB_7A:
 
 
 
-off_04_9309_7B:
+off_08_9309_F6:
 - - - - - - 0x035319 0D:9309: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4593,7 +4593,7 @@ off_04_9309_7B:
 
 
 
-off_04_9327_7C:
+off_08_9327_F8:
 - D 0 - I - 0x035337 0D:9327: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4612,7 +4612,7 @@ off_04_9327_7C:
 
 
 
-off_04_9345_5E:
+off_08_9345_BC:
 - D 0 - I - 0x035355 0D:9345: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4626,7 +4626,7 @@ off_04_9345_5E:
 
 
 
-off_04_9356_5F:
+off_08_9356_BE:
 - D 0 - I - 0x035366 0D:9356: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4640,7 +4640,7 @@ off_04_9356_5F:
 
 
 
-off_04_9367_60:
+off_08_9367_C0:
 - D 0 - I - 0x035377 0D:9367: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4651,7 +4651,7 @@ off_04_9367_60:
 
 
 
-off_04_936C_61:
+off_08_936C_C2:
 - D 0 - I - 0x03537C 0D:936C: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4663,7 +4663,7 @@ off_04_936C_61:
 
 
 
-off_04_9375_62:
+off_08_9375_C4:
 - D 0 - I - 0x035385 0D:9375: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4676,7 +4676,7 @@ off_04_9375_62:
 
 
 
-off_04_9382_63:
+off_08_9382_C6:
 - D 0 - I - 0x035392 0D:9382: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4690,7 +4690,7 @@ off_04_9382_63:
 
 
 
-off_04_9393_64:
+off_08_9393_C8:
 - D 0 - I - 0x0353A3 0D:9393: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4705,7 +4705,7 @@ off_04_9393_64:
 
 
 
-off_04_93A8_6C:
+off_08_93A8_D8:
 - D 0 - I - 0x0353B8 0D:93A8: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4721,7 +4721,7 @@ off_04_93A8_6C:
 
 
 
-off_04_93C1_65:
+off_08_93C1_CA:
 - D 0 - I - 0x0353D1 0D:93C1: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4732,7 +4732,7 @@ off_04_93C1_65:
 
 
 
-off_04_93C6_66:
+off_08_93C6_CC:
 - D 0 - I - 0x0353D6 0D:93C6: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4743,8 +4743,8 @@ off_04_93C6_66:
 
 
 
-off_00_0B_93CB_2B:
-off_07_93CB_1F:
+off_00_16_93CB_56:
+off_0E_93CB_3E:
 - D 0 - I - 0x0353DB 0D:93CB: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4755,10 +4755,10 @@ off_07_93CB_1F:
 
 
 
-off_00_0B_93D0_2C:
-off_00_0B_93D0_2E:
-off_07_93D0_20:
-off_07_93D0_22:
+off_00_16_93D0_58:
+off_00_16_93D0_5C:
+off_0E_93D0_40:
+off_0E_93D0_44:
 - D 0 - I - 0x0353E0 0D:93D0: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4769,8 +4769,8 @@ off_07_93D0_22:
 
 
 
-off_00_0B_93D5_2D:
-off_07_93D5_21:
+off_00_16_93D5_5A:
+off_0E_93D5_42:
 - D 0 - I - 0x0353E5 0D:93D5: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4781,7 +4781,7 @@ off_07_93D5_21:
 
 
 
-off_09_93DA_01:
+off_12_93DA_02:
 - D 0 - I - 0x0353EA 0D:93DA: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4793,7 +4793,7 @@ off_09_93DA_01:
 
 
 
-off_09_93E3_02:
+off_12_93E3_04:
 - D 0 - I - 0x0353F3 0D:93E3: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4805,7 +4805,7 @@ off_09_93E3_02:
 
 
 
-off_09_93EC_03:
+off_12_93EC_06:
 - D 0 - I - 0x0353FC 0D:93EC: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4819,7 +4819,7 @@ off_09_93EC_03:
 
 
 
-off_09_93FD_04:
+off_12_93FD_08:
 - D 0 - I - 0x03540D 0D:93FD: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4837,7 +4837,7 @@ off_09_93FD_04:
 
 
 
-off_09_9419_05:
+off_12_9419_0A:
 - D 0 - I - 0x035429 0D:9419: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4854,7 +4854,7 @@ off_09_9419_05:
 
 
 
-off_09_9430_06:
+off_12_9430_0C:
 - D 0 - I - 0x035440 0D:9430: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4869,7 +4869,7 @@ off_09_9430_06:
 
 
 
-off_09_9441_07:
+off_12_9441_0E:
 - D 0 - I - 0x035451 0D:9441: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4885,7 +4885,7 @@ off_09_9441_07:
 
 
 
-off_04_9455_6F:
+off_08_9455_DE:
 - D 0 - I - 0x035465 0D:9455: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4898,7 +4898,7 @@ off_04_9455_6F:
 
 
 
-off_04_9462_70:
+off_08_9462_E0:
 - D 0 - I - 0x035472 0D:9462: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4911,7 +4911,7 @@ off_04_9462_70:
 
 
 
-off_04_946E_71:
+off_08_946E_E2:
 - D 0 - I - 0x03547E 0D:946E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4925,7 +4925,7 @@ off_04_946E_71:
 
 
 
-off_04_947E_72:
+off_08_947E_E4:
 - D 0 - I - 0x03548E 0D:947E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4939,7 +4939,7 @@ off_04_947E_72:
 
 
 
-off_04_948E_73:
+off_08_948E_E6:
 - D 0 - I - 0x03549E 0D:948E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4951,7 +4951,7 @@ off_04_948E_73:
 
 
 
-off_04_9497_74:
+off_08_9497_E8:
 - D 0 - I - 0x0354A7 0D:9497: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4963,7 +4963,7 @@ off_04_9497_74:
 
 
 
-off_04_94A0_6D:
+off_08_94A0_DA:
 - D 0 - I - 0x0354B0 0D:94A0: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4974,7 +4974,7 @@ off_04_94A0_6D:
 
 
 
-off_04_94A5_6E:
+off_08_94A5_DC:
 - D 0 - I - 0x0354B5 0D:94A5: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4985,7 +4985,7 @@ off_04_94A5_6E:
 
 
 
-off_04_94AA_75:
+off_08_94AA_EA:
 - D 0 - I - 0x0354BA 0D:94AA: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -4998,7 +4998,7 @@ off_04_94AA_75:
 
 
 
-off_04_94B6_76:
+off_08_94B6_EC:
 - D 0 - I - 0x0354C6 0D:94B6: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5011,7 +5011,7 @@ off_04_94B6_76:
 
 
 
-off_09_94C2_08:
+off_12_94C2_10:
 - D 0 - I - 0x0354D2 0D:94C2: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5024,7 +5024,7 @@ off_09_94C2_08:
 
 
 
-off_09_94CD_09:
+off_12_94CD_12:
 - D 0 - I - 0x0354DD 0D:94CD: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5040,7 +5040,7 @@ off_09_94CD_09:
 
 
 
-off_09_94E1_0A:
+off_12_94E1_14:
 - D 0 - I - 0x0354F1 0D:94E1: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5053,7 +5053,7 @@ off_09_94E1_0A:
 
 
 
-off_09_94EC_0B:
+off_12_94EC_16:
 - D 0 - I - 0x0354FC 0D:94EC: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5068,7 +5068,7 @@ off_09_94EC_0B:
 
 
 
-off_09_94FD_30:
+off_12_94FD_60:
 - D 0 - I - 0x03550D 0D:94FD: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5081,7 +5081,7 @@ off_09_94FD_30:
 
 
 
-off_09_9508_31:
+off_12_9508_62:
 - D 0 - I - 0x035518 0D:9508: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5095,7 +5095,7 @@ off_09_9508_31:
 
 
 
-off_04_9517_7D:
+off_08_9517_FA:
 - D 0 - I - 0x035527 0D:9517: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5110,7 +5110,7 @@ off_04_9517_7D:
 
 
 
-off_04_9529_7E:
+off_08_9529_FC:
 - D 0 - I - 0x035539 0D:9529: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5127,7 +5127,7 @@ off_04_9529_7E:
 
 
 
-off_09_9541_0D:
+off_12_9541_1A:
 - D 0 - I - 0x035551 0D:9541: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5141,7 +5141,7 @@ off_09_9541_0D:
 
 
 
-off_09_954F_0E:
+off_12_954F_1C:
 - D 0 - I - 0x03555F 0D:954F: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5155,7 +5155,7 @@ off_09_954F_0E:
 
 
 
-off_09_955D_0F:
+off_12_955D_1E:
 - D 0 - I - 0x03556D 0D:955D: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5169,7 +5169,7 @@ off_09_955D_0F:
 
 
 
-off_09_956B_10:
+off_12_956B_20:
 - D 0 - I - 0x03557B 0D:956B: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5181,7 +5181,7 @@ off_09_956B_10:
 
 
 
-off_09_9574_11:
+off_12_9574_22:
 - D 0 - I - 0x035584 0D:9574: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5193,7 +5193,7 @@ off_09_9574_11:
 
 
 
-off_09_957C_14:
+off_12_957C_28:
 - D 0 - I - 0x03558C 0D:957C: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5208,7 +5208,7 @@ off_09_957C_14:
 
 
 
-off_09_958D_15:
+off_12_958D_2A:
 - D 0 - I - 0x03559D 0D:958D: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5223,7 +5223,7 @@ off_09_958D_15:
 
 
 
-off_09_959E_16:
+off_12_959E_2C:
 - D 0 - I - 0x0355AE 0D:959E: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5238,7 +5238,7 @@ off_09_959E_16:
 
 
 
-off_09_95AF_17:
+off_12_95AF_2E:
 - D 0 - I - 0x0355BF 0D:95AF: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5249,7 +5249,7 @@ off_09_95AF_17:
 
 
 
-off_09_95B4_18:
+off_12_95B4_30:
 - D 0 - I - 0x0355C4 0D:95B4: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5260,7 +5260,7 @@ off_09_95B4_18:
 
 
 
-off_09_95B9_19:
+off_12_95B9_32:
 - D 0 - I - 0x0355C9 0D:95B9: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5271,7 +5271,7 @@ off_09_95B9_19:
 
 
 
-off_09_95BE_1A:
+off_12_95BE_34:
 - D 0 - I - 0x0355CE 0D:95BE: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5285,7 +5285,7 @@ off_09_95BE_1A:
 
 
 
-off_09_95CC_1B:
+off_12_95CC_36:
 - D 0 - I - 0x0355DC 0D:95CC: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5299,7 +5299,7 @@ off_09_95CC_1B:
 
 
 
-off_09_95DA_1C:
+off_12_95DA_38:
 - D 0 - I - 0x0355EA 0D:95DA: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5313,7 +5313,7 @@ off_09_95DA_1C:
 
 
 
-off_09_95E8_2D:
+off_12_95E8_5A:
 - - - - - - 0x0355F8 0D:95E8: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5327,7 +5327,7 @@ off_09_95E8_2D:
 
 
 
-off_09_95F6_2E:
+off_12_95F6_5C:
 - - - - - - 0x035606 0D:95F6: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5341,7 +5341,7 @@ off_09_95F6_2E:
 
 
 
-off_09_9604_2F:
+off_12_9604_5E:
 - - - - - - 0x035614 0D:9604: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5355,7 +5355,7 @@ off_09_9604_2F:
 
 
 
-off_09_9612_2B:
+off_12_9612_56:
 - D 0 - I - 0x035622 0D:9612: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5367,7 +5367,7 @@ off_09_9612_2B:
 
 
 
-off_09_961A_2C:
+off_12_961A_58:
 - D 0 - I - 0x03562A 0D:961A: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5379,7 +5379,7 @@ off_09_961A_2C:
 
 
 
-off_09_9622_32:
+off_12_9622_64:
 - D 0 - I - 0x035632 0D:9622: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5391,7 +5391,7 @@ off_09_9622_32:
 
 
 
-off_09_962A_33:
+off_12_962A_66:
 - D 0 - I - 0x03563A 0D:962A: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5403,7 +5403,7 @@ off_09_962A_33:
 
 
 
-off_09_9632_39:
+off_12_9632_72:
 - D 0 - I - 0x035642 0D:9632: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5422,7 +5422,7 @@ off_09_9632_39:
 
 
 
-off_09_9650_3A:
+off_12_9650_74:
 - D 0 - I - 0x035660 0D:9650: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5442,7 +5442,7 @@ off_09_9650_3A:
 
 
 
-off_09_9671_3B:
+off_12_9671_76:
 - D 0 - I - 0x035681 0D:9671: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5459,7 +5459,7 @@ off_09_9671_3B:
 
 
 
-off_09_9688_3C:
+off_12_9688_78:
 - D 0 - I - 0x035698 0D:9688: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5477,131 +5477,131 @@ off_09_9688_3C:
 
 
 
-_off039_96A2_05:
-- - - - - - 0x0356B2 0D:96A2: 82 97     .word off_05_9782_00     ; unused
-- D 0 - I - 0x0356B4 0D:96A4: 82 97     .word off_05_9782_01
-- D 0 - I - 0x0356B6 0D:96A6: A9 97     .word off_05_97A9_02
-- D 0 - I - 0x0356B8 0D:96A8: CA 97     .word off_05_97CA_03
-- - - - - - 0x0356BA 0D:96AA: A9 97     .word off_05_97A9_04
-- D 0 - I - 0x0356BC 0D:96AC: EE 97     .word off_05_97EE_05
-- D 0 - I - 0x0356BE 0D:96AE: 15 98     .word off_05_9815_06
-- D 0 - I - 0x0356C0 0D:96B0: 36 98     .word off_05_9836_07
-- D 0 - I - 0x0356C2 0D:96B2: 60 98     .word off_05_9860_08
-- D 0 - I - 0x0356C4 0D:96B4: 81 98     .word off_05_9881_09
-- D 0 - I - 0x0356C6 0D:96B6: 89 98     .word off_05_9889_0A
-- D 0 - I - 0x0356C8 0D:96B8: 8E 98     .word off_05_988E_0B
-- D 0 - I - 0x0356CA 0D:96BA: 96 98     .word off_05_9896_0C
-- D 0 - I - 0x0356CC 0D:96BC: B7 98     .word off_05_98B7_0D
-- D 0 - I - 0x0356CE 0D:96BE: D8 98     .word off_05_98D8_0E
-- D 0 - I - 0x0356D0 0D:96C0: B7 98     .word off_05_98B7_0F
-- D 0 - I - 0x0356D2 0D:96C2: FC 98     .word off_05_98FC_10
-- D 0 - I - 0x0356D4 0D:96C4: 20 99     .word off_05_9920_11
-- - - - - - 0x0356D6 0D:96C6: 44 99     .word off_05_9944_12
-- D 0 - I - 0x0356D8 0D:96C8: 61 99     .word off_05_9961_13
-- D 0 - I - 0x0356DA 0D:96CA: 6F 99     .word off_05_996F_14
-- - - - - - 0x0356DC 0D:96CC: 82 97     .word off_05_9782_15
-- - - - - - 0x0356DE 0D:96CE: 82 97     .word off_05_9782_16
-- D 0 - I - 0x0356E0 0D:96D0: 78 99     .word off_05_9978_17
-- - - - - - 0x0356E2 0D:96D2: 82 97     .word off_05_9782_18
-- - - - - - 0x0356E4 0D:96D4: 82 97     .word off_05_9782_19
-- - - - - - 0x0356E6 0D:96D6: 82 97     .word off_05_9782_1A
-- - - - - - 0x0356E8 0D:96D8: 82 97     .word off_05_9782_1B
-- - - - - - 0x0356EA 0D:96DA: 82 97     .word off_05_9782_1C
-- D 0 - I - 0x0356EC 0D:96DC: F3 99     .word off_05_99F3_1D
-- D 0 - I - 0x0356EE 0D:96DE: 07 9A     .word off_05_9A07_1E
-- D 0 - I - 0x0356F0 0D:96E0: 1B 9A     .word off_05_9A1B_1F
-- D 0 - I - 0x0356F2 0D:96E2: 2F 9A     .word off_05_9A2F_20
-- D 0 - I - 0x0356F4 0D:96E4: 43 9A     .word off_05_9A43_21
-- D 0 - I - 0x0356F6 0D:96E6: 57 9A     .word off_05_9A57_22
-- - - - - - 0x0356F8 0D:96E8: 6E 9A     .word off_05_9A6E_23
-- - - - - - 0x0356FA 0D:96EA: 82 9A     .word off_05_9A82_24
-- D 0 - I - 0x0356FC 0D:96EC: 96 9A     .word off_05_9A96_25
-- D 0 - I - 0x0356FE 0D:96EE: A7 9A     .word off_05_9AA7_26
-- D 0 - I - 0x035700 0D:96F0: AF 9A     .word off_05_9AAF_27
-- D 0 - I - 0x035702 0D:96F2: B7 9A     .word off_05_9AB7_28
-- D 0 - I - 0x035704 0D:96F4: BF 9A     .word off_05_9ABF_29
-- D 0 - I - 0x035706 0D:96F6: C7 9A     .word off_05_9AC7_2A
-- D 0 - I - 0x035708 0D:96F8: F0 9A     .word off_05_9AF0_2B
-- D 0 - I - 0x03570A 0D:96FA: 17 9B     .word off_05_9B17_2C
-- D 0 - I - 0x03570C 0D:96FC: 31 9B     .word off_05_9B31_2D
-- D 0 - I - 0x03570E 0D:96FE: 48 9B     .word off_05_9B48_2E
-- D 0 - I - 0x035710 0D:9700: 5F 9B     .word off_05_9B5F_2F
-- D 0 - I - 0x035712 0D:9702: 6A 9B     .word off_05_9B6A_30
-- D 0 - I - 0x035714 0D:9704: 78 9B     .word off_05_9B78_31
-- D 0 - I - 0x035716 0D:9706: 80 9B     .word off_05_9B80_32
-- D 0 - I - 0x035718 0D:9708: 88 9B     .word off_05_9B88_33
-- D 0 - I - 0x03571A 0D:970A: 96 9B     .word off_05_9B96_34
-- D 0 - I - 0x03571C 0D:970C: BD 9B     .word off_05_9BBD_35
-- D 0 - I - 0x03571E 0D:970E: D7 9B     .word off_05_9BD7_36
-- D 0 - I - 0x035720 0D:9710: DC 9B     .word off_05_9BDC_37
-- D 0 - I - 0x035722 0D:9712: F6 9B     .word off_05_9BF6_38
-- D 0 - I - 0x035724 0D:9714: 17 9C     .word off_05_9C17_39
-- D 0 - I - 0x035726 0D:9716: 45 9C     .word off_05_9C45_3A
-- D 0 - I - 0x035728 0D:9718: 66 9C     .word off_05_9C66_3B
-- D 0 - I - 0x03572A 0D:971A: 87 9C     .word off_05_9C87_3C
-- D 0 - I - 0x03572C 0D:971C: B1 9C     .word off_05_9CB1_3D
-- D 0 - I - 0x03572E 0D:971E: BD 9C     .word off_05_9CBD_3E
-- D 0 - I - 0x035730 0D:9720: C6 9C     .word off_05_9CC6_3F
-- D 0 - I - 0x035732 0D:9722: CE 9C     .word off_05_9CCE_40
-- - - - - - 0x035734 0D:9724: D6 9C     .word off_05_9CD6_41
-- D 0 - I - 0x035736 0D:9726: DE 9C     .word off_05_9CDE_42
-- D 0 - I - 0x035738 0D:9728: FB 9C     .word off_05_9CFB_43
-- D 0 - I - 0x03573A 0D:972A: 15 9D     .word off_05_9D15_44
-- D 0 - I - 0x03573C 0D:972C: 26 9D     .word off_05_9D26_45
-- D 0 - I - 0x03573E 0D:972E: 37 9D     .word off_05_9D37_46
-- D 0 - I - 0x035740 0D:9730: 45 9D     .word off_05_9D45_47
-- D 0 - I - 0x035742 0D:9732: 53 9D     .word off_05_9D53_48
-- D 0 - I - 0x035744 0D:9734: 61 9D     .word off_05_9D61_49
-- D 0 - I - 0x035746 0D:9736: CF 9A     .word off_05_9ACF_4A
-- D 0 - I - 0x035748 0D:9738: DD 9A     .word off_05_9ADD_4B
-- D 0 - I - 0x03574A 0D:973A: E8 9A     .word off_05_9AE8_4C
-- D 0 - I - 0x03574C 0D:973C: 6F 9D     .word off_05_9D6F_4D
-- D 0 - I - 0x03574E 0D:973E: 7D 9D     .word off_05_9D7D_4E
-- D 0 - I - 0x035750 0D:9740: 88 9D     .word off_05_9D88_4F
-- D 0 - I - 0x035752 0D:9742: 93 9D     .word off_05_9D93_50
-- D 0 - I - 0x035754 0D:9744: A1 9D     .word off_05_9DA1_51
-- D 0 - I - 0x035756 0D:9746: AF 9D     .word off_05_9DAF_52
-- D 0 - I - 0x035758 0D:9748: B7 9D     .word off_05_9DB7_53
-- D 0 - I - 0x03575A 0D:974A: BF 9D     .word off_05_9DBF_54
-- D 0 - I - 0x03575C 0D:974C: C4 9D     .word off_05_9DC4_55
-- D 0 - I - 0x03575E 0D:974E: CC 9D     .word off_05_9DCC_56
-- D 0 - I - 0x035760 0D:9750: D4 9D     .word off_05_9DD4_57
-- D 0 - I - 0x035762 0D:9752: D9 9D     .word off_05_9DD9_58
-- D 0 - I - 0x035764 0D:9754: DE 9D     .word off_05_9DDE_59
-- D 0 - I - 0x035766 0D:9756: E3 9D     .word off_05_9DE3_5A
-- D 0 - I - 0x035768 0D:9758: E8 9D     .word off_05_9DE8_5B
-- D 0 - I - 0x03576A 0D:975A: ED 9D     .word off_05_9DED_5C
-- D 0 - I - 0x03576C 0D:975C: F2 9D     .word off_05_9DF2_5D
-- D 0 - I - 0x03576E 0D:975E: FB 9D     .word off_05_9DFB_5E
-- D 0 - I - 0x035770 0D:9760: 1A 9E     .word off_05_9E1A_5F
-- D 0 - I - 0x035772 0D:9762: 31 9E     .word off_05_9E31_60
-- D 0 - I - 0x035774 0D:9764: 40 9E     .word off_05_9E40_61
-- D 0 - I - 0x035776 0D:9766: 4F 9E     .word off_05_9E4F_62
-- D 0 - I - 0x035778 0D:9768: 75 9E     .word off_05_9E75_63
-- D 0 - I - 0x03577A 0D:976A: 95 9E     .word off_05_9E95_64
-- D 0 - I - 0x03577C 0D:976C: 75 9E     .word off_05_9E75_65
-- D 0 - I - 0x03577E 0D:976E: BB 9E     .word off_05_9EBB_66
-- D 0 - I - 0x035780 0D:9770: E1 9E     .word off_05_9EE1_67
-- D 0 - I - 0x035782 0D:9772: 0A 9F     .word off_05_9F0A_68
-- D 0 - I - 0x035784 0D:9774: 30 9F     .word off_05_9F30_69
-- D 0 - I - 0x035786 0D:9776: 56 9F     .word off_05_9F56_6A
-- D 0 - I - 0x035788 0D:9778: 82 9F     .word off_05_9F82_6B
-- D 0 - I - 0x03578A 0D:977A: 9F 9F     .word off_05_9F9F_6C
-- D 0 - I - 0x03578C 0D:977C: B3 9F     .word off_05_9FB3_6D
-- D 0 - I - 0x03578E 0D:977E: B9 A9     .word off_05_A9B9_6E
-- D 0 - I - 0x035790 0D:9780: 9B A9     .word off_05_A99B_6F
+_off039_96A2_0A:
+- - - - - - 0x0356B2 0D:96A2: 82 97     .word off_0A_9782_00     ; unused
+- D 0 - I - 0x0356B4 0D:96A4: 82 97     .word off_0A_9782_02
+- D 0 - I - 0x0356B6 0D:96A6: A9 97     .word off_0A_97A9_04
+- D 0 - I - 0x0356B8 0D:96A8: CA 97     .word off_0A_97CA_06
+- - - - - - 0x0356BA 0D:96AA: A9 97     .word off_0A_97A9_08
+- D 0 - I - 0x0356BC 0D:96AC: EE 97     .word off_0A_97EE_0A
+- D 0 - I - 0x0356BE 0D:96AE: 15 98     .word off_0A_9815_0C
+- D 0 - I - 0x0356C0 0D:96B0: 36 98     .word off_0A_9836_0E
+- D 0 - I - 0x0356C2 0D:96B2: 60 98     .word off_0A_9860_10
+- D 0 - I - 0x0356C4 0D:96B4: 81 98     .word off_0A_9881_12
+- D 0 - I - 0x0356C6 0D:96B6: 89 98     .word off_0A_9889_14
+- D 0 - I - 0x0356C8 0D:96B8: 8E 98     .word off_0A_988E_16
+- D 0 - I - 0x0356CA 0D:96BA: 96 98     .word off_0A_9896_18
+- D 0 - I - 0x0356CC 0D:96BC: B7 98     .word off_0A_98B7_1A
+- D 0 - I - 0x0356CE 0D:96BE: D8 98     .word off_0A_98D8_1C
+- D 0 - I - 0x0356D0 0D:96C0: B7 98     .word off_0A_98B7_1E
+- D 0 - I - 0x0356D2 0D:96C2: FC 98     .word off_0A_98FC_20
+- D 0 - I - 0x0356D4 0D:96C4: 20 99     .word off_0A_9920_22
+- - - - - - 0x0356D6 0D:96C6: 44 99     .word off_0A_9944_24
+- D 0 - I - 0x0356D8 0D:96C8: 61 99     .word off_0A_9961_26
+- D 0 - I - 0x0356DA 0D:96CA: 6F 99     .word off_0A_996F_28
+- - - - - - 0x0356DC 0D:96CC: 82 97     .word off_0A_9782_2A
+- - - - - - 0x0356DE 0D:96CE: 82 97     .word off_0A_9782_2C
+- D 0 - I - 0x0356E0 0D:96D0: 78 99     .word off_0A_9978_2E
+- - - - - - 0x0356E2 0D:96D2: 82 97     .word off_0A_9782_30
+- - - - - - 0x0356E4 0D:96D4: 82 97     .word off_0A_9782_32
+- - - - - - 0x0356E6 0D:96D6: 82 97     .word off_0A_9782_34
+- - - - - - 0x0356E8 0D:96D8: 82 97     .word off_0A_9782_36
+- - - - - - 0x0356EA 0D:96DA: 82 97     .word off_0A_9782_38
+- D 0 - I - 0x0356EC 0D:96DC: F3 99     .word off_0A_99F3_3A
+- D 0 - I - 0x0356EE 0D:96DE: 07 9A     .word off_0A_9A07_3C
+- D 0 - I - 0x0356F0 0D:96E0: 1B 9A     .word off_0A_9A1B_3E
+- D 0 - I - 0x0356F2 0D:96E2: 2F 9A     .word off_0A_9A2F_40
+- D 0 - I - 0x0356F4 0D:96E4: 43 9A     .word off_0A_9A43_42
+- D 0 - I - 0x0356F6 0D:96E6: 57 9A     .word off_0A_9A57_44
+- - - - - - 0x0356F8 0D:96E8: 6E 9A     .word off_0A_9A6E_46
+- - - - - - 0x0356FA 0D:96EA: 82 9A     .word off_0A_9A82_48
+- D 0 - I - 0x0356FC 0D:96EC: 96 9A     .word off_0A_9A96_4A
+- D 0 - I - 0x0356FE 0D:96EE: A7 9A     .word off_0A_9AA7_4C
+- D 0 - I - 0x035700 0D:96F0: AF 9A     .word off_0A_9AAF_4E
+- D 0 - I - 0x035702 0D:96F2: B7 9A     .word off_0A_9AB7_50
+- D 0 - I - 0x035704 0D:96F4: BF 9A     .word off_0A_9ABF_52
+- D 0 - I - 0x035706 0D:96F6: C7 9A     .word off_0A_9AC7_54
+- D 0 - I - 0x035708 0D:96F8: F0 9A     .word off_0A_9AF0_56
+- D 0 - I - 0x03570A 0D:96FA: 17 9B     .word off_0A_9B17_58
+- D 0 - I - 0x03570C 0D:96FC: 31 9B     .word off_0A_9B31_5A
+- D 0 - I - 0x03570E 0D:96FE: 48 9B     .word off_0A_9B48_5C
+- D 0 - I - 0x035710 0D:9700: 5F 9B     .word off_0A_9B5F_5E
+- D 0 - I - 0x035712 0D:9702: 6A 9B     .word off_0A_9B6A_60
+- D 0 - I - 0x035714 0D:9704: 78 9B     .word off_0A_9B78_62
+- D 0 - I - 0x035716 0D:9706: 80 9B     .word off_0A_9B80_64
+- D 0 - I - 0x035718 0D:9708: 88 9B     .word off_0A_9B88_66
+- D 0 - I - 0x03571A 0D:970A: 96 9B     .word off_0A_9B96_68
+- D 0 - I - 0x03571C 0D:970C: BD 9B     .word off_0A_9BBD_6A
+- D 0 - I - 0x03571E 0D:970E: D7 9B     .word off_0A_9BD7_6C
+- D 0 - I - 0x035720 0D:9710: DC 9B     .word off_0A_9BDC_6E
+- D 0 - I - 0x035722 0D:9712: F6 9B     .word off_0A_9BF6_70
+- D 0 - I - 0x035724 0D:9714: 17 9C     .word off_0A_9C17_72
+- D 0 - I - 0x035726 0D:9716: 45 9C     .word off_0A_9C45_74
+- D 0 - I - 0x035728 0D:9718: 66 9C     .word off_0A_9C66_76
+- D 0 - I - 0x03572A 0D:971A: 87 9C     .word off_0A_9C87_78
+- D 0 - I - 0x03572C 0D:971C: B1 9C     .word off_0A_9CB1_7A
+- D 0 - I - 0x03572E 0D:971E: BD 9C     .word off_0A_9CBD_7C
+- D 0 - I - 0x035730 0D:9720: C6 9C     .word off_0A_9CC6_7E
+- D 0 - I - 0x035732 0D:9722: CE 9C     .word off_0A_9CCE_80
+- - - - - - 0x035734 0D:9724: D6 9C     .word off_0A_9CD6_82
+- D 0 - I - 0x035736 0D:9726: DE 9C     .word off_0A_9CDE_84
+- D 0 - I - 0x035738 0D:9728: FB 9C     .word off_0A_9CFB_86
+- D 0 - I - 0x03573A 0D:972A: 15 9D     .word off_0A_9D15_88
+- D 0 - I - 0x03573C 0D:972C: 26 9D     .word off_0A_9D26_8A
+- D 0 - I - 0x03573E 0D:972E: 37 9D     .word off_0A_9D37_8C
+- D 0 - I - 0x035740 0D:9730: 45 9D     .word off_0A_9D45_8E
+- D 0 - I - 0x035742 0D:9732: 53 9D     .word off_0A_9D53_90
+- D 0 - I - 0x035744 0D:9734: 61 9D     .word off_0A_9D61_92
+- D 0 - I - 0x035746 0D:9736: CF 9A     .word off_0A_9ACF_94
+- D 0 - I - 0x035748 0D:9738: DD 9A     .word off_0A_9ADD_96
+- D 0 - I - 0x03574A 0D:973A: E8 9A     .word off_0A_9AE8_98
+- D 0 - I - 0x03574C 0D:973C: 6F 9D     .word off_0A_9D6F_9A
+- D 0 - I - 0x03574E 0D:973E: 7D 9D     .word off_0A_9D7D_9C
+- D 0 - I - 0x035750 0D:9740: 88 9D     .word off_0A_9D88_9E
+- D 0 - I - 0x035752 0D:9742: 93 9D     .word off_0A_9D93_A0
+- D 0 - I - 0x035754 0D:9744: A1 9D     .word off_0A_9DA1_A2
+- D 0 - I - 0x035756 0D:9746: AF 9D     .word off_0A_9DAF_A4
+- D 0 - I - 0x035758 0D:9748: B7 9D     .word off_0A_9DB7_A6
+- D 0 - I - 0x03575A 0D:974A: BF 9D     .word off_0A_9DBF_A8
+- D 0 - I - 0x03575C 0D:974C: C4 9D     .word off_0A_9DC4_AA
+- D 0 - I - 0x03575E 0D:974E: CC 9D     .word off_0A_9DCC_AC
+- D 0 - I - 0x035760 0D:9750: D4 9D     .word off_0A_9DD4_AE
+- D 0 - I - 0x035762 0D:9752: D9 9D     .word off_0A_9DD9_B0
+- D 0 - I - 0x035764 0D:9754: DE 9D     .word off_0A_9DDE_B2
+- D 0 - I - 0x035766 0D:9756: E3 9D     .word off_0A_9DE3_B4
+- D 0 - I - 0x035768 0D:9758: E8 9D     .word off_0A_9DE8_B6
+- D 0 - I - 0x03576A 0D:975A: ED 9D     .word off_0A_9DED_B8
+- D 0 - I - 0x03576C 0D:975C: F2 9D     .word off_0A_9DF2_BA
+- D 0 - I - 0x03576E 0D:975E: FB 9D     .word off_0A_9DFB_BC
+- D 0 - I - 0x035770 0D:9760: 1A 9E     .word off_0A_9E1A_BE
+- D 0 - I - 0x035772 0D:9762: 31 9E     .word off_0A_9E31_C0
+- D 0 - I - 0x035774 0D:9764: 40 9E     .word off_0A_9E40_C2
+- D 0 - I - 0x035776 0D:9766: 4F 9E     .word off_0A_9E4F_C4
+- D 0 - I - 0x035778 0D:9768: 75 9E     .word off_0A_9E75_C6
+- D 0 - I - 0x03577A 0D:976A: 95 9E     .word off_0A_9E95_C8
+- D 0 - I - 0x03577C 0D:976C: 75 9E     .word off_0A_9E75_CA
+- D 0 - I - 0x03577E 0D:976E: BB 9E     .word off_0A_9EBB_CC
+- D 0 - I - 0x035780 0D:9770: E1 9E     .word off_0A_9EE1_CE
+- D 0 - I - 0x035782 0D:9772: 0A 9F     .word off_0A_9F0A_D0
+- D 0 - I - 0x035784 0D:9774: 30 9F     .word off_0A_9F30_D2
+- D 0 - I - 0x035786 0D:9776: 56 9F     .word off_0A_9F56_D4
+- D 0 - I - 0x035788 0D:9778: 82 9F     .word off_0A_9F82_D6
+- D 0 - I - 0x03578A 0D:977A: 9F 9F     .word off_0A_9F9F_D8
+- D 0 - I - 0x03578C 0D:977C: B3 9F     .word off_0A_9FB3_DA
+- D 0 - I - 0x03578E 0D:977E: B9 A9     .word off_0A_A9B9_DC
+- D 0 - I - 0x035790 0D:9780: 9B A9     .word off_0A_A99B_DE
 
 
 
-off_05_9782_00:
-off_05_9782_01:
-off_05_9782_15:
-off_05_9782_16:
-off_05_9782_18:
-off_05_9782_19:
-off_05_9782_1A:
-off_05_9782_1B:
-off_05_9782_1C:
+off_0A_9782_00:
+off_0A_9782_02:
+off_0A_9782_2A:
+off_0A_9782_2C:
+off_0A_9782_30:
+off_0A_9782_32:
+off_0A_9782_34:
+off_0A_9782_36:
+off_0A_9782_38:
 - D 0 - I - 0x035792 0D:9782: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5623,8 +5623,8 @@ off_05_9782_1C:
 
 
 
-off_05_97A9_02:
-off_05_97A9_04:
+off_0A_97A9_04:
+off_0A_97A9_08:
 - D 0 - I - 0x0357B9 0D:97A9: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5644,7 +5644,7 @@ off_05_97A9_04:
 
 
 
-off_05_97CA_03:
+off_0A_97CA_06:
 - D 0 - I - 0x0357DA 0D:97CA: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5665,8 +5665,8 @@ off_05_97CA_03:
 
 
 
-off_05_97EE_05:
-off_08_97EE_04:
+off_0A_97EE_0A:
+off_10_97EE_08:
 - D 0 - I - 0x0357FE 0D:97EE: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5688,8 +5688,8 @@ off_08_97EE_04:
 
 
 
-off_05_9815_06:
-off_08_9815_05:
+off_0A_9815_0C:
+off_10_9815_0A:
 - D 0 - I - 0x035825 0D:9815: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5709,8 +5709,8 @@ off_08_9815_05:
 
 
 
-off_05_9836_07:
-off_08_9836_06:
+off_0A_9836_0E:
+off_10_9836_0C:
 - D 0 - I - 0x035846 0D:9836: 0D        .byte $0D   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5733,7 +5733,7 @@ off_08_9836_06:
 
 
 
-off_05_9860_08:
+off_0A_9860_10:
 - D 0 - I - 0x035870 0D:9860: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5753,7 +5753,7 @@ off_05_9860_08:
 
 
 
-off_05_9881_09:
+off_0A_9881_12:
 - D 0 - I - 0x035891 0D:9881: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5765,7 +5765,7 @@ off_05_9881_09:
 
 
 
-off_05_9889_0A:
+off_0A_9889_14:
 - D 0 - I - 0x035899 0D:9889: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5776,7 +5776,7 @@ off_05_9889_0A:
 
 
 
-off_05_988E_0B:
+off_0A_988E_16:
 - D 0 - I - 0x03589E 0D:988E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5788,8 +5788,8 @@ off_05_988E_0B:
 
 
 
-off_05_9896_0C:
-off_08_9896_07:
+off_0A_9896_18:
+off_10_9896_0E:
 - D 0 - I - 0x0358A6 0D:9896: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5809,8 +5809,8 @@ off_08_9896_07:
 
 
 
-off_05_98B7_0D:
-off_05_98B7_0F:
+off_0A_98B7_1A:
+off_0A_98B7_1E:
 - D 0 - I - 0x0358C7 0D:98B7: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5830,7 +5830,7 @@ off_05_98B7_0F:
 
 
 
-off_05_98D8_0E:
+off_0A_98D8_1C:
 - D 0 - I - 0x0358E8 0D:98D8: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5851,7 +5851,7 @@ off_05_98D8_0E:
 
 
 
-off_05_98FC_10:
+off_0A_98FC_20:
 - D 0 - I - 0x03590C 0D:98FC: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5872,7 +5872,7 @@ off_05_98FC_10:
 
 
 
-off_05_9920_11:
+off_0A_9920_22:
 - D 0 - I - 0x035930 0D:9920: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5893,7 +5893,7 @@ off_05_9920_11:
 
 
 
-off_05_9944_12:
+off_0A_9944_24:
 - - - - - - 0x035954 0D:9944: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5912,7 +5912,7 @@ off_05_9944_12:
 
 
 
-off_05_9961_13:
+off_0A_9961_26:
 - D 0 - I - 0x035971 0D:9961: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5926,7 +5926,7 @@ off_05_9961_13:
 
 
 
-off_05_996F_14:
+off_0A_996F_28:
 - D 0 - I - 0x03597F 0D:996F: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5938,7 +5938,7 @@ off_05_996F_14:
 
 
 
-off_05_9978_17:
+off_0A_9978_2E:
 - D 0 - I - 0x035988 0D:9978: 1B        .byte $1B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5975,7 +5975,7 @@ off_05_9978_17:
 
 
 
-off_08_99D8_08:
+off_10_99D8_10:
 - D 0 - I - 0x0359E8 0D:99D8: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -5993,7 +5993,7 @@ off_08_99D8_08:
 
 
 
-off_05_99F3_1D:
+off_0A_99F3_3A:
 - D 0 - I - 0x035A03 0D:99F3: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6009,7 +6009,7 @@ off_05_99F3_1D:
 
 
 
-off_05_9A07_1E:
+off_0A_9A07_3C:
 - D 0 - I - 0x035A17 0D:9A07: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6025,7 +6025,7 @@ off_05_9A07_1E:
 
 
 
-off_05_9A1B_1F:
+off_0A_9A1B_3E:
 - D 0 - I - 0x035A2B 0D:9A1B: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6041,7 +6041,7 @@ off_05_9A1B_1F:
 
 
 
-off_05_9A2F_20:
+off_0A_9A2F_40:
 - D 0 - I - 0x035A3F 0D:9A2F: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6057,7 +6057,7 @@ off_05_9A2F_20:
 
 
 
-off_05_9A43_21:
+off_0A_9A43_42:
 - D 0 - I - 0x035A53 0D:9A43: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6073,7 +6073,7 @@ off_05_9A43_21:
 
 
 
-off_05_9A57_22:
+off_0A_9A57_44:
 - D 0 - I - 0x035A67 0D:9A57: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6090,7 +6090,7 @@ off_05_9A57_22:
 
 
 
-off_05_9A6E_23:
+off_0A_9A6E_46:
 - - - - - - 0x035A7E 0D:9A6E: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6106,7 +6106,7 @@ off_05_9A6E_23:
 
 
 
-off_05_9A82_24:
+off_0A_9A82_48:
 - - - - - - 0x035A92 0D:9A82: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6122,7 +6122,7 @@ off_05_9A82_24:
 
 
 
-off_05_9A96_25:
+off_0A_9A96_4A:
 - D 0 - I - 0x035AA6 0D:9A96: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6137,7 +6137,7 @@ off_05_9A96_25:
 
 
 
-off_05_9AA7_26:
+off_0A_9AA7_4C:
 - D 0 - I - 0x035AB7 0D:9AA7: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6149,7 +6149,7 @@ off_05_9AA7_26:
 
 
 
-off_05_9AAF_27:
+off_0A_9AAF_4E:
 - D 0 - I - 0x035ABF 0D:9AAF: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6161,7 +6161,7 @@ off_05_9AAF_27:
 
 
 
-off_05_9AB7_28:
+off_0A_9AB7_50:
 - D 0 - I - 0x035AC7 0D:9AB7: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6173,7 +6173,7 @@ off_05_9AB7_28:
 
 
 
-off_05_9ABF_29:
+off_0A_9ABF_52:
 - D 0 - I - 0x035ACF 0D:9ABF: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6185,7 +6185,7 @@ off_05_9ABF_29:
 
 
 
-off_05_9AC7_2A:
+off_0A_9AC7_54:
 - D 0 - I - 0x035AD7 0D:9AC7: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6197,7 +6197,7 @@ off_05_9AC7_2A:
 
 
 
-off_05_9ACF_4A:
+off_0A_9ACF_94:
 - D 0 - I - 0x035ADF 0D:9ACF: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6211,7 +6211,7 @@ off_05_9ACF_4A:
 
 
 
-off_05_9ADD_4B:
+off_0A_9ADD_96:
 - D 0 - I - 0x035AED 0D:9ADD: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6224,7 +6224,7 @@ off_05_9ADD_4B:
 
 
 
-off_05_9AE8_4C:
+off_0A_9AE8_98:
 - D 0 - I - 0x035AF8 0D:9AE8: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6236,7 +6236,7 @@ off_05_9AE8_4C:
 
 
 
-off_05_9AF0_2B:
+off_0A_9AF0_56:
 - D 0 - I - 0x035B00 0D:9AF0: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6258,7 +6258,7 @@ off_05_9AF0_2B:
 
 
 
-off_05_9B17_2C:
+off_0A_9B17_58:
 - D 0 - I - 0x035B27 0D:9B17: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6276,7 +6276,7 @@ off_05_9B17_2C:
 
 
 
-off_05_9B31_2D:
+off_0A_9B31_5A:
 - D 0 - I - 0x035B41 0D:9B31: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6293,7 +6293,7 @@ off_05_9B31_2D:
 
 
 
-off_05_9B48_2E:
+off_0A_9B48_5C:
 - D 0 - I - 0x035B58 0D:9B48: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6310,7 +6310,7 @@ off_05_9B48_2E:
 
 
 
-off_05_9B5F_2F:
+off_0A_9B5F_5E:
 - D 0 - I - 0x035B6F 0D:9B5F: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6323,7 +6323,7 @@ off_05_9B5F_2F:
 
 
 
-off_05_9B6A_30:
+off_0A_9B6A_60:
 - D 0 - I - 0x035B7A 0D:9B6A: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6342,7 +6342,7 @@ off_05_9B6A_30:
 
 
 
-off_05_9B78_31:
+off_0A_9B78_62:
 - D 0 - I - 0x035B88 0D:9B78: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6354,7 +6354,7 @@ off_05_9B78_31:
 
 
 
-off_05_9B80_32:
+off_0A_9B80_64:
 - D 0 - I - 0x035B90 0D:9B80: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6366,7 +6366,7 @@ off_05_9B80_32:
 
 
 
-off_05_9B88_33:
+off_0A_9B88_66:
 - D 0 - I - 0x035B98 0D:9B88: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6380,7 +6380,7 @@ off_05_9B88_33:
 
 
 
-off_05_9B96_34:
+off_0A_9B96_68:
 - D 0 - I - 0x035BA6 0D:9B96: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6402,7 +6402,7 @@ off_05_9B96_34:
 
 
 
-off_05_9BBD_35:
+off_0A_9BBD_6A:
 - D 0 - I - 0x035BCD 0D:9BBD: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6420,7 +6420,7 @@ off_05_9BBD_35:
 
 
 
-off_05_9BD7_36:
+off_0A_9BD7_6C:
 - D 0 - I - 0x035BE7 0D:9BD7: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6431,7 +6431,7 @@ off_05_9BD7_36:
 
 
 
-off_05_9BDC_37:
+off_0A_9BDC_6E:
 - D 0 - I - 0x035BEC 0D:9BDC: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6449,7 +6449,7 @@ off_05_9BDC_37:
 
 
 
-off_05_9BF6_38:
+off_0A_9BF6_70:
 - D 0 - I - 0x035C06 0D:9BF6: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6469,7 +6469,7 @@ off_05_9BF6_38:
 
 
 
-off_05_9C17_39:
+off_0A_9C17_72:
 - D 0 - I - 0x035C27 0D:9C17: 0E        .byte $0E   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6493,7 +6493,7 @@ off_05_9C17_39:
 
 
 
-off_05_9C45_3A:
+off_0A_9C45_74:
 - D 0 - I - 0x035C55 0D:9C45: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6513,7 +6513,7 @@ off_05_9C45_3A:
 
 
 
-off_05_9C66_3B:
+off_0A_9C66_76:
 - D 0 - I - 0x035C76 0D:9C66: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6533,7 +6533,7 @@ off_05_9C66_3B:
 
 
 
-off_05_9C87_3C:
+off_0A_9C87_78:
 - D 0 - I - 0x035C97 0D:9C87: 0D        .byte $0D   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6556,7 +6556,7 @@ off_05_9C87_3C:
 
 
 
-off_05_9CB1_3D:
+off_0A_9CB1_7A:
 - D 0 - I - 0x035CC1 0D:9CB1: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6569,7 +6569,7 @@ off_05_9CB1_3D:
 
 
 
-off_05_9CBD_3E:
+off_0A_9CBD_7C:
 - D 0 - I - 0x035CCD 0D:9CBD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6581,7 +6581,7 @@ off_05_9CBD_3E:
 
 
 
-off_05_9CC6_3F:
+off_0A_9CC6_7E:
 - D 0 - I - 0x035CD6 0D:9CC6: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6593,7 +6593,7 @@ off_05_9CC6_3F:
 
 
 
-off_05_9CCE_40:
+off_0A_9CCE_80:
 - D 0 - I - 0x035CDE 0D:9CCE: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6605,7 +6605,7 @@ off_05_9CCE_40:
 
 
 
-off_05_9CD6_41:
+off_0A_9CD6_82:
 - - - - - - 0x035CE6 0D:9CD6: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6617,7 +6617,7 @@ off_05_9CD6_41:
 
 
 
-off_05_9CDE_42:
+off_0A_9CDE_84:
 - D 0 - I - 0x035CEE 0D:9CDE: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6636,7 +6636,7 @@ off_05_9CDE_42:
 
 
 
-off_05_9CFB_43:
+off_0A_9CFB_86:
 - D 0 - I - 0x035D0B 0D:9CFB: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6654,7 +6654,7 @@ off_05_9CFB_43:
 
 
 
-off_05_9D15_44:
+off_0A_9D15_88:
 - D 0 - I - 0x035D25 0D:9D15: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6669,7 +6669,7 @@ off_05_9D15_44:
 
 
 
-off_05_9D26_45:
+off_0A_9D26_8A:
 - D 0 - I - 0x035D36 0D:9D26: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6684,7 +6684,7 @@ off_05_9D26_45:
 
 
 
-off_05_9D37_46:
+off_0A_9D37_8C:
 - D 0 - I - 0x035D47 0D:9D37: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6698,7 +6698,7 @@ off_05_9D37_46:
 
 
 
-off_05_9D45_47:
+off_0A_9D45_8E:
 - D 0 - I - 0x035D55 0D:9D45: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6712,7 +6712,7 @@ off_05_9D45_47:
 
 
 
-off_05_9D53_48:
+off_0A_9D53_90:
 - D 0 - I - 0x035D63 0D:9D53: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6726,7 +6726,7 @@ off_05_9D53_48:
 
 
 
-off_05_9D61_49:
+off_0A_9D61_92:
 - D 0 - I - 0x035D71 0D:9D61: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6740,7 +6740,7 @@ off_05_9D61_49:
 
 
 
-off_05_9D6F_4D:
+off_0A_9D6F_9A:
 - D 0 - I - 0x035D7F 0D:9D6F: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6754,7 +6754,7 @@ off_05_9D6F_4D:
 
 
 
-off_05_9D7D_4E:
+off_0A_9D7D_9C:
 - D 0 - I - 0x035D8D 0D:9D7D: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6767,7 +6767,7 @@ off_05_9D7D_4E:
 
 
 
-off_05_9D88_4F:
+off_0A_9D88_9E:
 - D 0 - I - 0x035D98 0D:9D88: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6780,7 +6780,7 @@ off_05_9D88_4F:
 
 
 
-off_05_9D93_50:
+off_0A_9D93_A0:
 - D 0 - I - 0x035DA3 0D:9D93: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6794,7 +6794,7 @@ off_05_9D93_50:
 
 
 
-off_05_9DA1_51:
+off_0A_9DA1_A2:
 - D 0 - I - 0x035DB1 0D:9DA1: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6808,7 +6808,7 @@ off_05_9DA1_51:
 
 
 
-off_05_9DAF_52:
+off_0A_9DAF_A4:
 - D 0 - I - 0x035DBF 0D:9DAF: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6820,7 +6820,7 @@ off_05_9DAF_52:
 
 
 
-off_05_9DB7_53:
+off_0A_9DB7_A6:
 - D 0 - I - 0x035DC7 0D:9DB7: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6832,7 +6832,7 @@ off_05_9DB7_53:
 
 
 
-off_05_9DBF_54:
+off_0A_9DBF_A8:
 - D 0 - I - 0x035DCF 0D:9DBF: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6843,7 +6843,7 @@ off_05_9DBF_54:
 
 
 
-off_05_9DC4_55:
+off_0A_9DC4_AA:
 - D 0 - I - 0x035DD4 0D:9DC4: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6855,7 +6855,7 @@ off_05_9DC4_55:
 
 
 
-off_05_9DCC_56:
+off_0A_9DCC_AC:
 - D 0 - I - 0x035DDC 0D:9DCC: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6867,7 +6867,7 @@ off_05_9DCC_56:
 
 
 
-off_05_9DD4_57:
+off_0A_9DD4_AE:
 - D 0 - I - 0x035DE4 0D:9DD4: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6878,7 +6878,7 @@ off_05_9DD4_57:
 
 
 
-off_05_9DD9_58:
+off_0A_9DD9_B0:
 - D 0 - I - 0x035DE9 0D:9DD9: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6889,7 +6889,7 @@ off_05_9DD9_58:
 
 
 
-off_05_9DDE_59:
+off_0A_9DDE_B2:
 - D 0 - I - 0x035DEE 0D:9DDE: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6900,7 +6900,7 @@ off_05_9DDE_59:
 
 
 
-off_05_9DE3_5A:
+off_0A_9DE3_B4:
 - D 0 - I - 0x035DF3 0D:9DE3: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6911,7 +6911,7 @@ off_05_9DE3_5A:
 
 
 
-off_05_9DE8_5B:
+off_0A_9DE8_B6:
 - D 0 - I - 0x035DF8 0D:9DE8: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6922,7 +6922,7 @@ off_05_9DE8_5B:
 
 
 
-off_05_9DED_5C:
+off_0A_9DED_B8:
 - D 0 - I - 0x035DFD 0D:9DED: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6933,7 +6933,7 @@ off_05_9DED_5C:
 
 
 
-off_05_9DF2_5D:
+off_0A_9DF2_BA:
 - D 0 - I - 0x035E02 0D:9DF2: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6945,7 +6945,7 @@ off_05_9DF2_5D:
 
 
 
-off_05_9DFB_5E:
+off_0A_9DFB_BC:
 - D 0 - I - 0x035E0B 0D:9DFB: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6963,7 +6963,7 @@ off_05_9DFB_5E:
 
 
 
-off_05_9E1A_5F:
+off_0A_9E1A_BE:
 - D 0 - I - 0x035E2A 0D:9E1A: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6979,7 +6979,7 @@ off_05_9E1A_5F:
 
 
 
-off_05_9E31_60:
+off_0A_9E31_C0:
 - D 0 - I - 0x035E41 0D:9E31: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -6993,7 +6993,7 @@ off_05_9E31_60:
 
 
 
-off_05_9E40_61:
+off_0A_9E40_C2:
 - D 0 - I - 0x035E50 0D:9E40: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7007,7 +7007,7 @@ off_05_9E40_61:
 
 
 
-off_05_9E4F_62:
+off_0A_9E4F_C4:
 - D 0 - I - 0x035E5F 0D:9E4F: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7029,8 +7029,8 @@ off_05_9E4F_62:
 
 
 
-off_05_9E75_63:
-off_05_9E75_65:
+off_0A_9E75_C6:
+off_0A_9E75_CA:
 - D 0 - I - 0x035E85 0D:9E75: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7050,7 +7050,7 @@ off_05_9E75_65:
 
 
 
-off_05_9E95_64:
+off_0A_9E95_C8:
 - D 0 - I - 0x035EA5 0D:9E95: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7072,7 +7072,7 @@ off_05_9E95_64:
 
 
 
-off_05_9EBB_66:
+off_0A_9EBB_CC:
 - D 0 - I - 0x035ECB 0D:9EBB: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7094,7 +7094,7 @@ off_05_9EBB_66:
 
 
 
-off_05_9EE1_67:
+off_0A_9EE1_CE:
 - D 0 - I - 0x035EF1 0D:9EE1: 0D        .byte $0D   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7117,7 +7117,7 @@ off_05_9EE1_67:
 
 
 
-off_05_9F0A_68:
+off_0A_9F0A_D0:
 - D 0 - I - 0x035F1A 0D:9F0A: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7139,7 +7139,7 @@ off_05_9F0A_68:
 
 
 
-off_05_9F30_69:
+off_0A_9F30_D2:
 - D 0 - I - 0x035F40 0D:9F30: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7161,8 +7161,8 @@ off_05_9F30_69:
 
 
 
-off_05_9F56_6A:
-off_08_9F56_02:
+off_0A_9F56_D4:
+off_10_9F56_04:
 - D 0 - I - 0x035F66 0D:9F56: 0E        .byte $0E   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7186,7 +7186,7 @@ off_08_9F56_02:
 
 
 
-off_05_9F82_6B:
+off_0A_9F82_D6:
 - D 0 - I - 0x035F92 0D:9F82: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7205,7 +7205,7 @@ off_05_9F82_6B:
 
 
 
-off_05_9F9F_6C:
+off_0A_9F9F_D8:
 - D 0 - I - 0x035FAF 0D:9F9F: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7221,7 +7221,7 @@ off_05_9F9F_6C:
 
 
 
-off_05_9FB3_6D:
+off_0A_9FB3_DA:
 - D 0 - I - 0x035FC3 0D:9FB3: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7242,140 +7242,140 @@ off_05_9FB3_6D:
 
 
 
-_off039_9FD6_08:
-- - - - - - 0x035FE6 0D:9FD6: D6 A0     .word off_08_A0D6_00     ; unused
-- D 0 - I - 0x035FE8 0D:9FD8: DE A0     .word off_08_A0DE_01
-- D 0 - I - 0x035FEA 0D:9FDA: 56 9F     .word off_08_9F56_02
-- D 0 - I - 0x035FEC 0D:9FDC: D6 A0     .word off_08_A0D6_03
-- D 0 - I - 0x035FEE 0D:9FDE: EE 97     .word off_08_97EE_04
-- D 0 - I - 0x035FF0 0D:9FE0: 15 98     .word off_08_9815_05
-- D 0 - I - 0x035FF2 0D:9FE2: 36 98     .word off_08_9836_06
-- D 0 - I - 0x035FF4 0D:9FE4: 96 98     .word off_08_9896_07
-- D 0 - I - 0x035FF6 0D:9FE6: D8 99     .word off_08_99D8_08
-- D 0 - I - 0x035FF8 0D:9FE8: 04 A1     .word off_08_A104_09
-- D 0 - I - 0x035FFA 0D:9FEA: 12 A1     .word off_08_A112_0A
-- D 0 - I - 0x035FFC 0D:9FEC: 20 A1     .word off_08_A120_0B
-- D 0 - I - 0x035FFE 0D:9FEE: 2E A1     .word off_08_A12E_0C
-- D 0 - I - 0x036000 0D:9FF0: 3F A1     .word off_08_A13F_0D
-- D 0 - I - 0x036002 0D:9FF2: 47 A1     .word off_08_A147_0E
-- D 0 - I - 0x036004 0D:9FF4: C3 A9     .word off_08_A9C3_0F
-- D 0 - I - 0x036006 0D:9FF6: A5 A9     .word off_08_A9A5_10
-- D 0 - I - 0x036008 0D:9FF8: AF A9     .word off_08_A9AF_11
-- D 0 - I - 0x03600A 0D:9FFA: 4F A1     .word off_08_A14F_12
-- D 0 - I - 0x03600C 0D:9FFC: 5D A1     .word off_08_A15D_13
-- D 0 - I - 0x03600E 0D:9FFE: 71 A1     .word off_08_A171_14
-- D 1 - I - 0x036010 0D:A000: 8B A1     .word off_08_A18B_15
-- D 1 - I - 0x036012 0D:A002: AB A1     .word off_08_A1AB_16
-- D 1 - I - 0x036014 0D:A004: C8 A1     .word off_08_A1C8_17
-- D 1 - I - 0x036016 0D:A006: E5 A1     .word off_08_A1E5_18
-- D 1 - I - 0x036018 0D:A008: 02 A2     .word off_08_A202_19
-- D 1 - I - 0x03601A 0D:A00A: 25 A2     .word off_08_A225_1A
-- D 1 - I - 0x03601C 0D:A00C: 48 A2     .word off_08_A248_1B
-- D 1 - I - 0x03601E 0D:A00E: 6B A2     .word off_08_A26B_1C
-- D 1 - I - 0x036020 0D:A010: 91 A2     .word off_08_A291_1D
-- D 1 - I - 0x036022 0D:A012: B7 A2     .word off_08_A2B7_1E
-- D 1 - I - 0x036024 0D:A014: DD A2     .word off_08_A2DD_1F
-- D 1 - I - 0x036026 0D:A016: FB A2     .word off_08_A2FB_20
-- D 1 - I - 0x036028 0D:A018: 06 A3     .word off_08_A306_21
-- D 1 - I - 0x03602A 0D:A01A: 11 A3     .word off_08_A311_22
-- D 1 - I - 0x03602C 0D:A01C: 20 A3     .word off_08_A320_23
-- D 1 - I - 0x03602E 0D:A01E: 35 A3     .word off_08_A335_24
-- D 1 - I - 0x036030 0D:A020: 50 A3     .word off_08_A350_25
-- D 1 - I - 0x036032 0D:A022: 5B A3     .word off_08_A35B_26
-- D 1 - I - 0x036034 0D:A024: 63 A3     .word off_08_A363_27
-- D 1 - I - 0x036036 0D:A026: 68 A3     .word off_08_A368_28
-- D 1 - I - 0x036038 0D:A028: 6D A3     .word off_08_A36D_29
-- D 1 - I - 0x03603A 0D:A02A: 76 A3     .word off_08_A376_2A
-- D 1 - I - 0x03603C 0D:A02C: 88 A3     .word off_08_A388_2B
-- D 1 - I - 0x03603E 0D:A02E: A3 A3     .word off_08_A3A3_2C
-- D 1 - I - 0x036040 0D:A030: BE A3     .word off_08_A3BE_2D
-- D 1 - I - 0x036042 0D:A032: D5 A3     .word off_08_A3D5_2E
-- D 1 - I - 0x036044 0D:A034: EC A3     .word off_08_A3EC_2F
-- D 1 - I - 0x036046 0D:A036: 0D A4     .word off_08_A40D_30
-- D 1 - I - 0x036048 0D:A038: 31 A4     .word off_08_A431_31
-- D 1 - I - 0x03604A 0D:A03A: 4E A4     .word off_08_A44E_32
-- D 1 - I - 0x03604C 0D:A03C: 6B A4     .word off_08_A46B_33
-- D 1 - I - 0x03604E 0D:A03E: 88 A4     .word off_08_A488_34
-- D 1 - I - 0x036050 0D:A040: C9 A4     .word off_08_A4C9_35
-- D 1 - I - 0x036052 0D:A042: FE A4     .word off_08_A4FE_36
-- D 1 - I - 0x036054 0D:A044: C9 A4     .word off_08_A4C9_37
-- D 1 - I - 0x036056 0D:A046: 30 A5     .word off_08_A530_38
-- D 1 - I - 0x036058 0D:A048: 9A A5     .word off_08_A59A_39
-- D 1 - I - 0x03605A 0D:A04A: A2 A5     .word off_08_A5A2_3A
-- D 1 - I - 0x03605C 0D:A04C: AE A5     .word off_08_A5AE_3B
-- D 1 - I - 0x03605E 0D:A04E: C6 A5     .word off_08_A5C6_3C
-- D 1 - I - 0x036060 0D:A050: CB A5     .word off_08_A5CB_3D
-- D 1 - I - 0x036062 0D:A052: DF A5     .word off_08_A5DF_3E
-- D 1 - I - 0x036064 0D:A054: F0 A5     .word off_08_A5F0_3F
-- D 1 - I - 0x036066 0D:A056: 01 A6     .word off_08_A601_40
-- D 1 - I - 0x036068 0D:A058: 18 A6     .word off_08_A618_41
-- D 1 - I - 0x03606A 0D:A05A: 2C A6     .word off_08_A62C_42
-- D 1 - I - 0x03606C 0D:A05C: 3A A6     .word off_08_A63A_43
-- D 1 - I - 0x03606E 0D:A05E: 49 A6     .word off_08_A649_44
-- D 1 - I - 0x036070 0D:A060: 51 A6     .word off_08_A651_45
-- D 1 - I - 0x036072 0D:A062: 5A A6     .word off_08_A65A_46
-- D 1 - I - 0x036074 0D:A064: 6C A6     .word off_08_A66C_47
-- D 1 - I - 0x036076 0D:A066: 87 A6     .word off_08_A687_48
-- D 1 - I - 0x036078 0D:A068: A8 A6     .word off_08_A6A8_49
-- D 1 - I - 0x03607A 0D:A06A: C9 A6     .word off_08_A6C9_4A
-- D 1 - I - 0x03607C 0D:A06C: F6 A6     .word off_08_A6F6_4B
-- D 1 - I - 0x03607E 0D:A06E: FE A6     .word off_08_A6FE_4C
-- D 1 - I - 0x036080 0D:A070: 06 A7     .word off_08_A706_4D
-- D 1 - I - 0x036082 0D:A072: 12 A7     .word off_08_A712_4E
-- D 1 - I - 0x036084 0D:A074: 2B A7     .word off_08_A72B_4F
-- D 1 - I - 0x036086 0D:A076: 4F A7     .word off_08_A74F_50
-- D 1 - I - 0x036088 0D:A078: 79 A7     .word off_08_A779_51
-- D 1 - I - 0x03608A 0D:A07A: 7E A7     .word off_08_A77E_52
-- D 1 - I - 0x03608C 0D:A07C: 86 A7     .word off_08_A786_53
-- D 1 - I - 0x03608E 0D:A07E: 91 A7     .word off_08_A791_54
-- D 1 - I - 0x036090 0D:A080: 71 A5     .word off_08_A571_55
-- D 1 - I - 0x036092 0D:A082: BA A5     .word off_08_A5BA_56
-- D 1 - I - 0x036094 0D:A084: 9F A7     .word off_08_A79F_57
-- D 1 - I - 0x036096 0D:A086: D2 A7     .word off_08_A7D2_58
-- D 1 - I - 0x036098 0D:A088: 05 A8     .word off_08_A805_59
-- D 1 - I - 0x03609A 0D:A08A: 3E A8     .word off_08_A83E_5A
-- D 1 - I - 0x03609C 0D:A08C: 71 A8     .word off_08_A871_5B
-- D 1 - I - 0x03609E 0D:A08E: A6 A8     .word off_08_A8A6_5C
-- D 1 - I - 0x0360A0 0D:A090: AE A8     .word off_08_A8AE_5D
-- D 1 - I - 0x0360A2 0D:A092: B6 A8     .word off_08_A8B6_5E
-- D 1 - I - 0x0360A4 0D:A094: BE A8     .word off_08_A8BE_5F
-- D 1 - I - 0x0360A6 0D:A096: C6 A8     .word off_08_A8C6_60
-- D 1 - I - 0x0360A8 0D:A098: D1 A8     .word off_08_A8D1_61
-- D 1 - I - 0x0360AA 0D:A09A: DC A8     .word off_08_A8DC_62
-- D 1 - I - 0x0360AC 0D:A09C: E7 A8     .word off_08_A8E7_63
-- D 1 - I - 0x0360AE 0D:A09E: F2 A8     .word off_08_A8F2_64
-- D 1 - I - 0x0360B0 0D:A0A0: FD A8     .word off_08_A8FD_65
-- D 1 - I - 0x0360B2 0D:A0A2: 08 A9     .word off_08_A908_66
-- D 1 - I - 0x0360B4 0D:A0A4: 16 A9     .word off_08_A916_67
-- D 1 - I - 0x0360B6 0D:A0A6: 24 A9     .word off_08_A924_68
-- D 1 - I - 0x0360B8 0D:A0A8: 32 A9     .word off_08_A932_69
-- - - - - - 0x0360BA 0D:A0AA: 41 A9     .word off_08_A941_6A
-- D 1 - I - 0x0360BC 0D:A0AC: 50 A9     .word off_08_A950_6B
-- D 1 - I - 0x0360BE 0D:A0AE: 55 A9     .word off_08_A955_6C
-- D 1 - I - 0x0360C0 0D:A0B0: 5D A9     .word off_08_A95D_6D
-- D 1 - I - 0x0360C2 0D:A0B2: 65 A9     .word off_08_A965_6E
-- D 1 - I - 0x0360C4 0D:A0B4: 70 A9     .word off_08_A970_6F
-- D 1 - I - 0x0360C6 0D:A0B6: 7C A9     .word off_08_A97C_70
-- D 1 - I - 0x0360C8 0D:A0B8: 81 A9     .word off_08_A981_71
-- D 1 - I - 0x0360CA 0D:A0BA: 89 A9     .word off_08_A989_72
-- D 1 - I - 0x0360CC 0D:A0BC: 92 A9     .word off_08_A992_73
-- D 1 - I - 0x0360CE 0D:A0BE: A0 A9     .word off_08_A9A0_74
-- D 1 - I - 0x0360D0 0D:A0C0: AA A9     .word off_08_A9AA_75
-- D 1 - I - 0x0360D2 0D:A0C2: B4 A9     .word off_08_A9B4_76
-- D 1 - I - 0x0360D4 0D:A0C4: BE A9     .word off_08_A9BE_77
-- D 1 - I - 0x0360D6 0D:A0C6: C8 A9     .word off_08_A9C8_78
-- - - - - - 0x0360D8 0D:A0C8: CD A9     .word off_08_A9CD_79
-- D 1 - I - 0x0360DA 0D:A0CA: D2 A9     .word off_08_A9D2_7A
-- D 1 - I - 0x0360DC 0D:A0CC: D7 A9     .word off_08_A9D7_7B
-- D 1 - I - 0x0360DE 0D:A0CE: DC A9     .word off_08_A9DC_7C
-- D 1 - I - 0x0360E0 0D:A0D0: E1 A9     .word off_08_A9E1_7D
-- D 1 - I - 0x0360E2 0D:A0D2: E6 A9     .word off_08_A9E6_7E
-- D 1 - I - 0x0360E4 0D:A0D4: EB A9     .word off_08_A9EB_7F
+_off039_9FD6_10:
+- - - - - - 0x035FE6 0D:9FD6: D6 A0     .word off_10_A0D6_00     ; unused
+- D 0 - I - 0x035FE8 0D:9FD8: DE A0     .word off_10_A0DE_02
+- D 0 - I - 0x035FEA 0D:9FDA: 56 9F     .word off_10_9F56_04
+- D 0 - I - 0x035FEC 0D:9FDC: D6 A0     .word off_10_A0D6_06
+- D 0 - I - 0x035FEE 0D:9FDE: EE 97     .word off_10_97EE_08
+- D 0 - I - 0x035FF0 0D:9FE0: 15 98     .word off_10_9815_0A
+- D 0 - I - 0x035FF2 0D:9FE2: 36 98     .word off_10_9836_0C
+- D 0 - I - 0x035FF4 0D:9FE4: 96 98     .word off_10_9896_0E
+- D 0 - I - 0x035FF6 0D:9FE6: D8 99     .word off_10_99D8_10
+- D 0 - I - 0x035FF8 0D:9FE8: 04 A1     .word off_10_A104_12
+- D 0 - I - 0x035FFA 0D:9FEA: 12 A1     .word off_10_A112_14
+- D 0 - I - 0x035FFC 0D:9FEC: 20 A1     .word off_10_A120_16
+- D 0 - I - 0x035FFE 0D:9FEE: 2E A1     .word off_10_A12E_18
+- D 0 - I - 0x036000 0D:9FF0: 3F A1     .word off_10_A13F_1A
+- D 0 - I - 0x036002 0D:9FF2: 47 A1     .word off_10_A147_1C
+- D 0 - I - 0x036004 0D:9FF4: C3 A9     .word off_10_A9C3_1E
+- D 0 - I - 0x036006 0D:9FF6: A5 A9     .word off_10_A9A5_20
+- D 0 - I - 0x036008 0D:9FF8: AF A9     .word off_10_A9AF_22
+- D 0 - I - 0x03600A 0D:9FFA: 4F A1     .word off_10_A14F_24
+- D 0 - I - 0x03600C 0D:9FFC: 5D A1     .word off_10_A15D_26
+- D 0 - I - 0x03600E 0D:9FFE: 71 A1     .word off_10_A171_28
+- D 1 - I - 0x036010 0D:A000: 8B A1     .word off_10_A18B_2A
+- D 1 - I - 0x036012 0D:A002: AB A1     .word off_10_A1AB_2C
+- D 1 - I - 0x036014 0D:A004: C8 A1     .word off_10_A1C8_2E
+- D 1 - I - 0x036016 0D:A006: E5 A1     .word off_10_A1E5_30
+- D 1 - I - 0x036018 0D:A008: 02 A2     .word off_10_A202_32
+- D 1 - I - 0x03601A 0D:A00A: 25 A2     .word off_10_A225_34
+- D 1 - I - 0x03601C 0D:A00C: 48 A2     .word off_10_A248_36
+- D 1 - I - 0x03601E 0D:A00E: 6B A2     .word off_10_A26B_38
+- D 1 - I - 0x036020 0D:A010: 91 A2     .word off_10_A291_3A
+- D 1 - I - 0x036022 0D:A012: B7 A2     .word off_10_A2B7_3C
+- D 1 - I - 0x036024 0D:A014: DD A2     .word off_10_A2DD_3E
+- D 1 - I - 0x036026 0D:A016: FB A2     .word off_10_A2FB_40
+- D 1 - I - 0x036028 0D:A018: 06 A3     .word off_10_A306_42
+- D 1 - I - 0x03602A 0D:A01A: 11 A3     .word off_10_A311_44
+- D 1 - I - 0x03602C 0D:A01C: 20 A3     .word off_10_A320_46
+- D 1 - I - 0x03602E 0D:A01E: 35 A3     .word off_10_A335_48
+- D 1 - I - 0x036030 0D:A020: 50 A3     .word off_10_A350_4A
+- D 1 - I - 0x036032 0D:A022: 5B A3     .word off_10_A35B_4C
+- D 1 - I - 0x036034 0D:A024: 63 A3     .word off_10_A363_4E
+- D 1 - I - 0x036036 0D:A026: 68 A3     .word off_10_A368_50
+- D 1 - I - 0x036038 0D:A028: 6D A3     .word off_10_A36D_52
+- D 1 - I - 0x03603A 0D:A02A: 76 A3     .word off_10_A376_54
+- D 1 - I - 0x03603C 0D:A02C: 88 A3     .word off_10_A388_56
+- D 1 - I - 0x03603E 0D:A02E: A3 A3     .word off_10_A3A3_58
+- D 1 - I - 0x036040 0D:A030: BE A3     .word off_10_A3BE_5A
+- D 1 - I - 0x036042 0D:A032: D5 A3     .word off_10_A3D5_5C
+- D 1 - I - 0x036044 0D:A034: EC A3     .word off_10_A3EC_5E
+- D 1 - I - 0x036046 0D:A036: 0D A4     .word off_10_A40D_60
+- D 1 - I - 0x036048 0D:A038: 31 A4     .word off_10_A431_62
+- D 1 - I - 0x03604A 0D:A03A: 4E A4     .word off_10_A44E_64
+- D 1 - I - 0x03604C 0D:A03C: 6B A4     .word off_10_A46B_66
+- D 1 - I - 0x03604E 0D:A03E: 88 A4     .word off_10_A488_68
+- D 1 - I - 0x036050 0D:A040: C9 A4     .word off_10_A4C9_6A
+- D 1 - I - 0x036052 0D:A042: FE A4     .word off_10_A4FE_6C
+- D 1 - I - 0x036054 0D:A044: C9 A4     .word off_10_A4C9_6E
+- D 1 - I - 0x036056 0D:A046: 30 A5     .word off_10_A530_70
+- D 1 - I - 0x036058 0D:A048: 9A A5     .word off_10_A59A_72
+- D 1 - I - 0x03605A 0D:A04A: A2 A5     .word off_10_A5A2_74
+- D 1 - I - 0x03605C 0D:A04C: AE A5     .word off_10_A5AE_76
+- D 1 - I - 0x03605E 0D:A04E: C6 A5     .word off_10_A5C6_78
+- D 1 - I - 0x036060 0D:A050: CB A5     .word off_10_A5CB_7A
+- D 1 - I - 0x036062 0D:A052: DF A5     .word off_10_A5DF_7C
+- D 1 - I - 0x036064 0D:A054: F0 A5     .word off_10_A5F0_7E
+- D 1 - I - 0x036066 0D:A056: 01 A6     .word off_10_A601_80
+- D 1 - I - 0x036068 0D:A058: 18 A6     .word off_10_A618_82
+- D 1 - I - 0x03606A 0D:A05A: 2C A6     .word off_10_A62C_84
+- D 1 - I - 0x03606C 0D:A05C: 3A A6     .word off_10_A63A_86
+- D 1 - I - 0x03606E 0D:A05E: 49 A6     .word off_10_A649_88
+- D 1 - I - 0x036070 0D:A060: 51 A6     .word off_10_A651_8A
+- D 1 - I - 0x036072 0D:A062: 5A A6     .word off_10_A65A_8C
+- D 1 - I - 0x036074 0D:A064: 6C A6     .word off_10_A66C_8E
+- D 1 - I - 0x036076 0D:A066: 87 A6     .word off_10_A687_90
+- D 1 - I - 0x036078 0D:A068: A8 A6     .word off_10_A6A8_92
+- D 1 - I - 0x03607A 0D:A06A: C9 A6     .word off_10_A6C9_94
+- D 1 - I - 0x03607C 0D:A06C: F6 A6     .word off_10_A6F6_96
+- D 1 - I - 0x03607E 0D:A06E: FE A6     .word off_10_A6FE_98
+- D 1 - I - 0x036080 0D:A070: 06 A7     .word off_10_A706_9A
+- D 1 - I - 0x036082 0D:A072: 12 A7     .word off_10_A712_9C
+- D 1 - I - 0x036084 0D:A074: 2B A7     .word off_10_A72B_9E
+- D 1 - I - 0x036086 0D:A076: 4F A7     .word off_10_A74F_A0
+- D 1 - I - 0x036088 0D:A078: 79 A7     .word off_10_A779_A2
+- D 1 - I - 0x03608A 0D:A07A: 7E A7     .word off_10_A77E_A4
+- D 1 - I - 0x03608C 0D:A07C: 86 A7     .word off_10_A786_A6
+- D 1 - I - 0x03608E 0D:A07E: 91 A7     .word off_10_A791_A8
+- D 1 - I - 0x036090 0D:A080: 71 A5     .word off_10_A571_AA
+- D 1 - I - 0x036092 0D:A082: BA A5     .word off_10_A5BA_AC
+- D 1 - I - 0x036094 0D:A084: 9F A7     .word off_10_A79F_AE
+- D 1 - I - 0x036096 0D:A086: D2 A7     .word off_10_A7D2_B0
+- D 1 - I - 0x036098 0D:A088: 05 A8     .word off_10_A805_B2
+- D 1 - I - 0x03609A 0D:A08A: 3E A8     .word off_10_A83E_B4
+- D 1 - I - 0x03609C 0D:A08C: 71 A8     .word off_10_A871_B6
+- D 1 - I - 0x03609E 0D:A08E: A6 A8     .word off_10_A8A6_B8
+- D 1 - I - 0x0360A0 0D:A090: AE A8     .word off_10_A8AE_BA
+- D 1 - I - 0x0360A2 0D:A092: B6 A8     .word off_10_A8B6_BC
+- D 1 - I - 0x0360A4 0D:A094: BE A8     .word off_10_A8BE_BE
+- D 1 - I - 0x0360A6 0D:A096: C6 A8     .word off_10_A8C6_C0
+- D 1 - I - 0x0360A8 0D:A098: D1 A8     .word off_10_A8D1_C2
+- D 1 - I - 0x0360AA 0D:A09A: DC A8     .word off_10_A8DC_C4
+- D 1 - I - 0x0360AC 0D:A09C: E7 A8     .word off_10_A8E7_C6
+- D 1 - I - 0x0360AE 0D:A09E: F2 A8     .word off_10_A8F2_C8
+- D 1 - I - 0x0360B0 0D:A0A0: FD A8     .word off_10_A8FD_CA
+- D 1 - I - 0x0360B2 0D:A0A2: 08 A9     .word off_10_A908_CC
+- D 1 - I - 0x0360B4 0D:A0A4: 16 A9     .word off_10_A916_CE
+- D 1 - I - 0x0360B6 0D:A0A6: 24 A9     .word off_10_A924_D0
+- D 1 - I - 0x0360B8 0D:A0A8: 32 A9     .word off_10_A932_D2
+- - - - - - 0x0360BA 0D:A0AA: 41 A9     .word off_10_A941_D4
+- D 1 - I - 0x0360BC 0D:A0AC: 50 A9     .word off_10_A950_D6
+- D 1 - I - 0x0360BE 0D:A0AE: 55 A9     .word off_10_A955_D8
+- D 1 - I - 0x0360C0 0D:A0B0: 5D A9     .word off_10_A95D_DA
+- D 1 - I - 0x0360C2 0D:A0B2: 65 A9     .word off_10_A965_DC
+- D 1 - I - 0x0360C4 0D:A0B4: 70 A9     .word off_10_A970_DE
+- D 1 - I - 0x0360C6 0D:A0B6: 7C A9     .word off_10_A97C_E0
+- D 1 - I - 0x0360C8 0D:A0B8: 81 A9     .word off_10_A981_E2
+- D 1 - I - 0x0360CA 0D:A0BA: 89 A9     .word off_10_A989_E4
+- D 1 - I - 0x0360CC 0D:A0BC: 92 A9     .word off_10_A992_E6
+- D 1 - I - 0x0360CE 0D:A0BE: A0 A9     .word off_10_A9A0_E8
+- D 1 - I - 0x0360D0 0D:A0C0: AA A9     .word off_10_A9AA_EA
+- D 1 - I - 0x0360D2 0D:A0C2: B4 A9     .word off_10_A9B4_EC
+- D 1 - I - 0x0360D4 0D:A0C4: BE A9     .word off_10_A9BE_EE
+- D 1 - I - 0x0360D6 0D:A0C6: C8 A9     .word off_10_A9C8_F0
+- - - - - - 0x0360D8 0D:A0C8: CD A9     .word off_10_A9CD_F2
+- D 1 - I - 0x0360DA 0D:A0CA: D2 A9     .word off_10_A9D2_F4
+- D 1 - I - 0x0360DC 0D:A0CC: D7 A9     .word off_10_A9D7_F6
+- D 1 - I - 0x0360DE 0D:A0CE: DC A9     .word off_10_A9DC_F8
+- D 1 - I - 0x0360E0 0D:A0D0: E1 A9     .word off_10_A9E1_FA
+- D 1 - I - 0x0360E2 0D:A0D2: E6 A9     .word off_10_A9E6_FC
+- D 1 - I - 0x0360E4 0D:A0D4: EB A9     .word off_10_A9EB_FE
 
 
 
-off_08_A0D6_00:
-off_08_A0D6_03:
+off_10_A0D6_00:
+off_10_A0D6_06:
 - D 1 - I - 0x0360E6 0D:A0D6: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7387,7 +7387,7 @@ off_08_A0D6_03:
 
 
 
-off_08_A0DE_01:
+off_10_A0DE_02:
 - D 1 - I - 0x0360EE 0D:A0DE: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7409,7 +7409,7 @@ off_08_A0DE_01:
 
 
 
-off_08_A104_09:
+off_10_A104_12:
 - D 1 - I - 0x036114 0D:A104: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7423,7 +7423,7 @@ off_08_A104_09:
 
 
 
-off_08_A112_0A:
+off_10_A112_14:
 - D 1 - I - 0x036122 0D:A112: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7437,7 +7437,7 @@ off_08_A112_0A:
 
 
 
-off_08_A120_0B:
+off_10_A120_16:
 - D 1 - I - 0x036130 0D:A120: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7451,7 +7451,7 @@ off_08_A120_0B:
 
 
 
-off_08_A12E_0C:
+off_10_A12E_18:
 - D 1 - I - 0x03613E 0D:A12E: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7466,7 +7466,7 @@ off_08_A12E_0C:
 
 
 
-off_08_A13F_0D:
+off_10_A13F_1A:
 - D 1 - I - 0x03614F 0D:A13F: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7478,7 +7478,7 @@ off_08_A13F_0D:
 
 
 
-off_08_A147_0E:
+off_10_A147_1C:
 - D 1 - I - 0x036157 0D:A147: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7490,7 +7490,7 @@ off_08_A147_0E:
 
 
 
-off_08_A14F_12:
+off_10_A14F_24:
 - D 1 - I - 0x03615F 0D:A14F: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7504,7 +7504,7 @@ off_08_A14F_12:
 
 
 
-off_08_A15D_13:
+off_10_A15D_26:
 - D 1 - I - 0x03616D 0D:A15D: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7520,7 +7520,7 @@ off_08_A15D_13:
 
 
 
-off_08_A171_14:
+off_10_A171_28:
 - D 1 - I - 0x036181 0D:A171: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7538,7 +7538,7 @@ off_08_A171_14:
 
 
 
-off_08_A18B_15:
+off_10_A18B_2A:
 - D 1 - I - 0x03619B 0D:A18B: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7558,7 +7558,7 @@ off_08_A18B_15:
 
 
 
-off_08_A1AB_16:
+off_10_A1AB_2C:
 - D 1 - I - 0x0361BB 0D:A1AB: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7577,7 +7577,7 @@ off_08_A1AB_16:
 
 
 
-off_08_A1C8_17:
+off_10_A1C8_2E:
 - D 1 - I - 0x0361D8 0D:A1C8: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7596,7 +7596,7 @@ off_08_A1C8_17:
 
 
 
-off_08_A1E5_18:
+off_10_A1E5_30:
 - D 1 - I - 0x0361F5 0D:A1E5: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7615,7 +7615,7 @@ off_08_A1E5_18:
 
 
 
-off_08_A202_19:
+off_10_A202_32:
 - D 1 - I - 0x036212 0D:A202: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7636,7 +7636,7 @@ off_08_A202_19:
 
 
 
-off_08_A225_1A:
+off_10_A225_34:
 - D 1 - I - 0x036235 0D:A225: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7657,7 +7657,7 @@ off_08_A225_1A:
 
 
 
-off_08_A248_1B:
+off_10_A248_36:
 - D 1 - I - 0x036258 0D:A248: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7678,7 +7678,7 @@ off_08_A248_1B:
 
 
 
-off_08_A26B_1C:
+off_10_A26B_38:
 - D 1 - I - 0x03627B 0D:A26B: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7700,7 +7700,7 @@ off_08_A26B_1C:
 
 
 
-off_08_A291_1D:
+off_10_A291_3A:
 - D 1 - I - 0x0362A1 0D:A291: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7722,7 +7722,7 @@ off_08_A291_1D:
 
 
 
-off_08_A2B7_1E:
+off_10_A2B7_3C:
 - D 1 - I - 0x0362C7 0D:A2B7: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7744,7 +7744,7 @@ off_08_A2B7_1E:
 
 
 
-off_08_A2DD_1F:
+off_10_A2DD_3E:
 - D 1 - I - 0x0362ED 0D:A2DD: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7763,7 +7763,7 @@ off_08_A2DD_1F:
 
 
 
-off_08_A2FB_20:
+off_10_A2FB_40:
 - D 1 - I - 0x03630B 0D:A2FB: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7776,7 +7776,7 @@ off_08_A2FB_20:
 
 
 
-off_08_A306_21:
+off_10_A306_42:
 - D 1 - I - 0x036316 0D:A306: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7789,7 +7789,7 @@ off_08_A306_21:
 
 
 
-off_08_A311_22:
+off_10_A311_44:
 - D 1 - I - 0x036321 0D:A311: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7803,7 +7803,7 @@ off_08_A311_22:
 
 
 
-off_08_A320_23:
+off_10_A320_46:
 - D 1 - I - 0x036330 0D:A320: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7819,7 +7819,7 @@ off_08_A320_23:
 
 
 
-off_08_A335_24:
+off_10_A335_48:
 - D 1 - I - 0x036345 0D:A335: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7837,7 +7837,7 @@ off_08_A335_24:
 
 
 
-off_08_A350_25:
+off_10_A350_4A:
 - D 1 - I - 0x036360 0D:A350: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7850,7 +7850,7 @@ off_08_A350_25:
 
 
 
-off_08_A35B_26:
+off_10_A35B_4C:
 - D 1 - I - 0x03636B 0D:A35B: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7862,7 +7862,7 @@ off_08_A35B_26:
 
 
 
-off_08_A363_27:
+off_10_A363_4E:
 - D 1 - I - 0x036373 0D:A363: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7873,7 +7873,7 @@ off_08_A363_27:
 
 
 
-off_08_A368_28:
+off_10_A368_50:
 - D 1 - I - 0x036378 0D:A368: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7884,7 +7884,7 @@ off_08_A368_28:
 
 
 
-off_08_A36D_29:
+off_10_A36D_52:
 - D 1 - I - 0x03637D 0D:A36D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7896,7 +7896,7 @@ off_08_A36D_29:
 
 
 
-off_08_A376_2A:
+off_10_A376_54:
 - D 1 - I - 0x036386 0D:A376: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7911,7 +7911,7 @@ off_08_A376_2A:
 
 
 
-off_08_A388_2B:
+off_10_A388_56:
 - D 1 - I - 0x036398 0D:A388: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7929,7 +7929,7 @@ off_08_A388_2B:
 
 
 
-off_08_A3A3_2C:
+off_10_A3A3_58:
 - D 1 - I - 0x0363B3 0D:A3A3: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7947,7 +7947,7 @@ off_08_A3A3_2C:
 
 
 
-off_08_A3BE_2D:
+off_10_A3BE_5A:
 - D 1 - I - 0x0363CE 0D:A3BE: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7964,7 +7964,7 @@ off_08_A3BE_2D:
 
 
 
-off_08_A3D5_2E:
+off_10_A3D5_5C:
 - D 1 - I - 0x0363E5 0D:A3D5: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -7981,7 +7981,7 @@ off_08_A3D5_2E:
 
 
 
-off_08_A3EC_2F:
+off_10_A3EC_5E:
 - D 1 - I - 0x0363FC 0D:A3EC: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8001,7 +8001,7 @@ off_08_A3EC_2F:
 
 
 
-off_08_A40D_30:
+off_10_A40D_60:
 - D 1 - I - 0x03641D 0D:A40D: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8022,7 +8022,7 @@ off_08_A40D_30:
 
 
 
-off_08_A431_31:
+off_10_A431_62:
 - D 1 - I - 0x036441 0D:A431: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8041,7 +8041,7 @@ off_08_A431_31:
 
 
 
-off_08_A44E_32:
+off_10_A44E_64:
 - D 1 - I - 0x03645E 0D:A44E: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8060,7 +8060,7 @@ off_08_A44E_32:
 
 
 
-off_08_A46B_33:
+off_10_A46B_66:
 - D 1 - I - 0x03647B 0D:A46B: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8079,7 +8079,7 @@ off_08_A46B_33:
 
 
 
-off_08_A488_34:
+off_10_A488_68:
 - D 1 - I - 0x036498 0D:A488: 15        .byte $15   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8110,8 +8110,8 @@ off_08_A488_34:
 
 
 
-off_08_A4C9_35:
-off_08_A4C9_37:
+off_10_A4C9_6A:
+off_10_A4C9_6E:
 - D 1 - I - 0x0364D9 0D:A4C9: 11        .byte $11   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8138,7 +8138,7 @@ off_08_A4C9_37:
 
 
 
-off_08_A4FE_36:
+off_10_A4FE_6C:
 - D 1 - I - 0x03650E 0D:A4FE: 10        .byte $10   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8164,7 +8164,7 @@ off_08_A4FE_36:
 
 
 
-off_08_A530_38:
+off_10_A530_70:
 - D 1 - I - 0x036540 0D:A530: 15        .byte $15   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8195,7 +8195,7 @@ off_08_A530_38:
 
 
 
-off_08_A571_55:
+off_10_A571_AA:
 - D 1 - I - 0x036581 0D:A571: 0D        .byte $0D   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8218,7 +8218,7 @@ off_08_A571_55:
 
 
 
-off_08_A59A_39:
+off_10_A59A_72:
 - D 1 - I - 0x0365AA 0D:A59A: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8230,7 +8230,7 @@ off_08_A59A_39:
 
 
 
-off_08_A5A2_3A:
+off_10_A5A2_74:
 - D 1 - I - 0x0365B2 0D:A5A2: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8243,7 +8243,7 @@ off_08_A5A2_3A:
 
 
 
-off_08_A5AE_3B:
+off_10_A5AE_76:
 - D 1 - I - 0x0365BE 0D:A5AE: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8256,7 +8256,7 @@ off_08_A5AE_3B:
 
 
 
-off_08_A5BA_56:
+off_10_A5BA_AC:
 - D 1 - I - 0x0365CA 0D:A5BA: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8269,7 +8269,7 @@ off_08_A5BA_56:
 
 
 
-off_08_A5C6_3C:
+off_10_A5C6_78:
 - D 1 - I - 0x0365D6 0D:A5C6: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8280,7 +8280,7 @@ off_08_A5C6_3C:
 
 
 
-off_08_A5CB_3D:
+off_10_A5CB_7A:
 - D 1 - I - 0x0365DB 0D:A5CB: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8296,7 +8296,7 @@ off_08_A5CB_3D:
 
 
 
-off_08_A5DF_3E:
+off_10_A5DF_7C:
 - D 1 - I - 0x0365EF 0D:A5DF: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8311,7 +8311,7 @@ off_08_A5DF_3E:
 
 
 
-off_08_A5F0_3F:
+off_10_A5F0_7E:
 - D 1 - I - 0x036600 0D:A5F0: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8326,7 +8326,7 @@ off_08_A5F0_3F:
 
 
 
-off_08_A601_40:
+off_10_A601_80:
 - D 1 - I - 0x036611 0D:A601: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8343,7 +8343,7 @@ off_08_A601_40:
 
 
 
-off_08_A618_41:
+off_10_A618_82:
 - D 1 - I - 0x036628 0D:A618: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8359,7 +8359,7 @@ off_08_A618_41:
 
 
 
-off_08_A62C_42:
+off_10_A62C_84:
 - D 1 - I - 0x03663C 0D:A62C: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8373,7 +8373,7 @@ off_08_A62C_42:
 
 
 
-off_08_A63A_43:
+off_10_A63A_86:
 - D 1 - I - 0x03664A 0D:A63A: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8387,7 +8387,7 @@ off_08_A63A_43:
 
 
 
-off_08_A649_44:
+off_10_A649_88:
 - D 1 - I - 0x036659 0D:A649: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8399,7 +8399,7 @@ off_08_A649_44:
 
 
 
-off_08_A651_45:
+off_10_A651_8A:
 - D 1 - I - 0x036661 0D:A651: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8411,7 +8411,7 @@ off_08_A651_45:
 
 
 
-off_08_A65A_46:
+off_10_A65A_8C:
 - D 1 - I - 0x03666A 0D:A65A: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8426,7 +8426,7 @@ off_08_A65A_46:
 
 
 
-off_08_A66C_47:
+off_10_A66C_8E:
 - D 1 - I - 0x03667C 0D:A66C: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8444,7 +8444,7 @@ off_08_A66C_47:
 
 
 
-off_08_A687_48:
+off_10_A687_90:
 - D 1 - I - 0x036697 0D:A687: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8464,7 +8464,7 @@ off_08_A687_48:
 
 
 
-off_08_A6A8_49:
+off_10_A6A8_92:
 - D 1 - I - 0x0366B8 0D:A6A8: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8484,7 +8484,7 @@ off_08_A6A8_49:
 
 
 
-off_08_A6C9_4A:
+off_10_A6C9_94:
 - D 1 - I - 0x0366D9 0D:A6C9: 0E        .byte $0E   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8508,7 +8508,7 @@ off_08_A6C9_4A:
 
 
 
-off_08_A6F6_4B:
+off_10_A6F6_96:
 - D 1 - I - 0x036706 0D:A6F6: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8520,7 +8520,7 @@ off_08_A6F6_4B:
 
 
 
-off_08_A6FE_4C:
+off_10_A6FE_98:
 - D 1 - I - 0x03670E 0D:A6FE: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8532,7 +8532,7 @@ off_08_A6FE_4C:
 
 
 
-off_08_A706_4D:
+off_10_A706_9A:
 - D 1 - I - 0x036716 0D:A706: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8545,7 +8545,7 @@ off_08_A706_4D:
 
 
 
-off_08_A712_4E:
+off_10_A712_9C:
 - D 1 - I - 0x036722 0D:A712: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8562,7 +8562,7 @@ off_08_A712_4E:
 
 
 
-off_08_A72B_4F:
+off_10_A72B_9E:
 - D 1 - I - 0x03673B 0D:A72B: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8583,7 +8583,7 @@ off_08_A72B_4F:
 
 
 
-off_08_A74F_50:
+off_10_A74F_A0:
 - D 1 - I - 0x03675F 0D:A74F: 0D        .byte $0D   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8606,7 +8606,7 @@ off_08_A74F_50:
 
 
 
-off_08_A779_51:
+off_10_A779_A2:
 - D 1 - I - 0x036789 0D:A779: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8617,7 +8617,7 @@ off_08_A779_51:
 
 
 
-off_08_A77E_52:
+off_10_A77E_A4:
 - D 1 - I - 0x03678E 0D:A77E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8629,7 +8629,7 @@ off_08_A77E_52:
 
 
 
-off_08_A786_53:
+off_10_A786_A6:
 - D 1 - I - 0x036796 0D:A786: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8642,7 +8642,7 @@ off_08_A786_53:
 
 
 
-off_08_A791_54:
+off_10_A791_A8:
 - D 1 - I - 0x0367A1 0D:A791: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8656,7 +8656,7 @@ off_08_A791_54:
 
 
 
-off_08_A79F_57:
+off_10_A79F_AE:
 - D 1 - I - 0x0367AF 0D:A79F: 10        .byte $10   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8682,7 +8682,7 @@ off_08_A79F_57:
 
 
 
-off_08_A7D2_58:
+off_10_A7D2_B0:
 - D 1 - I - 0x0367E2 0D:A7D2: 10        .byte $10   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8708,7 +8708,7 @@ off_08_A7D2_58:
 
 
 
-off_08_A805_59:
+off_10_A805_B2:
 - D 1 - I - 0x036815 0D:A805: 12        .byte $12   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8736,7 +8736,7 @@ off_08_A805_59:
 
 
 
-off_08_A83E_5A:
+off_10_A83E_B4:
 - D 1 - I - 0x03684E 0D:A83E: 10        .byte $10   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8762,7 +8762,7 @@ off_08_A83E_5A:
 
 
 
-off_08_A871_5B:
+off_10_A871_B6:
 - D 1 - I - 0x036881 0D:A871: 11        .byte $11   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8789,7 +8789,7 @@ off_08_A871_5B:
 
 
 
-off_08_A8A6_5C:
+off_10_A8A6_B8:
 - D 1 - I - 0x0368B6 0D:A8A6: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8801,7 +8801,7 @@ off_08_A8A6_5C:
 
 
 
-off_08_A8AE_5D:
+off_10_A8AE_BA:
 - D 1 - I - 0x0368BE 0D:A8AE: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8813,7 +8813,7 @@ off_08_A8AE_5D:
 
 
 
-off_08_A8B6_5E:
+off_10_A8B6_BC:
 - D 1 - I - 0x0368C6 0D:A8B6: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8825,7 +8825,7 @@ off_08_A8B6_5E:
 
 
 
-off_08_A8BE_5F:
+off_10_A8BE_BE:
 - D 1 - I - 0x0368CE 0D:A8BE: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8837,7 +8837,7 @@ off_08_A8BE_5F:
 
 
 
-off_08_A8C6_60:
+off_10_A8C6_C0:
 - D 1 - I - 0x0368D6 0D:A8C6: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8850,7 +8850,7 @@ off_08_A8C6_60:
 
 
 
-off_08_A8D1_61:
+off_10_A8D1_C2:
 - D 1 - I - 0x0368E1 0D:A8D1: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8863,7 +8863,7 @@ off_08_A8D1_61:
 
 
 
-off_08_A8DC_62:
+off_10_A8DC_C4:
 - D 1 - I - 0x0368EC 0D:A8DC: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8876,7 +8876,7 @@ off_08_A8DC_62:
 
 
 
-off_08_A8E7_63:
+off_10_A8E7_C6:
 - D 1 - I - 0x0368F7 0D:A8E7: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8889,7 +8889,7 @@ off_08_A8E7_63:
 
 
 
-off_08_A8F2_64:
+off_10_A8F2_C8:
 - D 1 - I - 0x036902 0D:A8F2: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8902,7 +8902,7 @@ off_08_A8F2_64:
 
 
 
-off_08_A8FD_65:
+off_10_A8FD_CA:
 - D 1 - I - 0x03690D 0D:A8FD: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8915,7 +8915,7 @@ off_08_A8FD_65:
 
 
 
-off_08_A908_66:
+off_10_A908_CC:
 - D 1 - I - 0x036918 0D:A908: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8929,7 +8929,7 @@ off_08_A908_66:
 
 
 
-off_08_A916_67:
+off_10_A916_CE:
 - D 1 - I - 0x036926 0D:A916: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8943,7 +8943,7 @@ off_08_A916_67:
 
 
 
-off_08_A924_68:
+off_10_A924_D0:
 - D 1 - I - 0x036934 0D:A924: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8957,7 +8957,7 @@ off_08_A924_68:
 
 
 
-off_08_A932_69:
+off_10_A932_D2:
 - D 1 - I - 0x036942 0D:A932: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8971,7 +8971,7 @@ off_08_A932_69:
 
 
 
-off_08_A941_6A:
+off_10_A941_D4:
 - - - - - - 0x036951 0D:A941: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8985,7 +8985,7 @@ off_08_A941_6A:
 
 
 
-off_08_A950_6B:
+off_10_A950_D6:
 - D 1 - I - 0x036960 0D:A950: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -8996,7 +8996,7 @@ off_08_A950_6B:
 
 
 
-off_08_A955_6C:
+off_10_A955_D8:
 - D 1 - I - 0x036965 0D:A955: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9008,7 +9008,7 @@ off_08_A955_6C:
 
 
 
-off_08_A95D_6D:
+off_10_A95D_DA:
 - D 1 - I - 0x03696D 0D:A95D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9020,7 +9020,7 @@ off_08_A95D_6D:
 
 
 
-off_08_A965_6E:
+off_10_A965_DC:
 - D 1 - I - 0x036975 0D:A965: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9038,7 +9038,7 @@ off_08_A965_6E:
 
 
 
-off_08_A970_6F:
+off_10_A970_DE:
 - D 1 - I - 0x036980 0D:A970: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9057,7 +9057,7 @@ off_08_A970_6F:
 
 
 
-off_08_A97C_70:
+off_10_A97C_E0:
 - D 1 - I - 0x03698C 0D:A97C: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9068,7 +9068,7 @@ off_08_A97C_70:
 
 
 
-off_08_A981_71:
+off_10_A981_E2:
 - D 1 - I - 0x036991 0D:A981: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9080,7 +9080,7 @@ off_08_A981_71:
 
 
 
-off_08_A989_72:
+off_10_A989_E4:
 - D 1 - I - 0x036999 0D:A989: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9092,7 +9092,7 @@ off_08_A989_72:
 
 
 
-off_08_A992_73:
+off_10_A992_E6:
 - D 1 - I - 0x0369A2 0D:A992: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9104,7 +9104,7 @@ off_08_A992_73:
 
 
 
-off_05_A99B_6F:
+off_0A_A99B_DE:
 - D 1 - I - 0x0369AB 0D:A99B: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9115,7 +9115,7 @@ off_05_A99B_6F:
 
 
 
-off_08_A9A0_74:
+off_10_A9A0_E8:
 - D 1 - I - 0x0369B0 0D:A9A0: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9126,7 +9126,7 @@ off_08_A9A0_74:
 
 
 
-off_08_A9A5_10:
+off_10_A9A5_20:
 - D 1 - I - 0x0369B5 0D:A9A5: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9137,7 +9137,7 @@ off_08_A9A5_10:
 
 
 
-off_08_A9AA_75:
+off_10_A9AA_EA:
 - D 1 - I - 0x0369BA 0D:A9AA: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9148,7 +9148,7 @@ off_08_A9AA_75:
 
 
 
-off_08_A9AF_11:
+off_10_A9AF_22:
 - D 1 - I - 0x0369BF 0D:A9AF: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9159,7 +9159,7 @@ off_08_A9AF_11:
 
 
 
-off_08_A9B4_76:
+off_10_A9B4_EC:
 - D 1 - I - 0x0369C4 0D:A9B4: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9170,7 +9170,7 @@ off_08_A9B4_76:
 
 
 
-off_05_A9B9_6E:
+off_0A_A9B9_DC:
 - D 1 - I - 0x0369C9 0D:A9B9: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9181,7 +9181,7 @@ off_05_A9B9_6E:
 
 
 
-off_08_A9BE_77:
+off_10_A9BE_EE:
 - D 1 - I - 0x0369CE 0D:A9BE: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9192,7 +9192,7 @@ off_08_A9BE_77:
 
 
 
-off_08_A9C3_0F:
+off_10_A9C3_1E:
 - D 1 - I - 0x0369D3 0D:A9C3: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9203,7 +9203,7 @@ off_08_A9C3_0F:
 
 
 
-off_08_A9C8_78:
+off_10_A9C8_F0:
 - D 1 - I - 0x0369D8 0D:A9C8: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9214,7 +9214,7 @@ off_08_A9C8_78:
 
 
 
-off_08_A9CD_79:
+off_10_A9CD_F2:
 - - - - - - 0x0369DD 0D:A9CD: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9225,7 +9225,7 @@ off_08_A9CD_79:
 
 
 
-off_08_A9D2_7A:
+off_10_A9D2_F4:
 - D 1 - I - 0x0369E2 0D:A9D2: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9236,7 +9236,7 @@ off_08_A9D2_7A:
 
 
 
-off_08_A9D7_7B:
+off_10_A9D7_F6:
 - D 1 - I - 0x0369E7 0D:A9D7: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9247,7 +9247,7 @@ off_08_A9D7_7B:
 
 
 
-off_08_A9DC_7C:
+off_10_A9DC_F8:
 - D 1 - I - 0x0369EC 0D:A9DC: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9258,7 +9258,7 @@ off_08_A9DC_7C:
 
 
 
-off_08_A9E1_7D:
+off_10_A9E1_FA:
 - D 1 - I - 0x0369F1 0D:A9E1: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9269,7 +9269,7 @@ off_08_A9E1_7D:
 
 
 
-off_08_A9E6_7E:
+off_10_A9E6_FC:
 - D 1 - I - 0x0369F6 0D:A9E6: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9280,7 +9280,7 @@ off_08_A9E6_7E:
 
 
 
-off_08_A9EB_7F:
+off_10_A9EB_FE:
 - D 1 - I - 0x0369FB 0D:A9EB: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9291,7 +9291,7 @@ off_08_A9EB_7F:
 
 
 
-off_06_A9F0_50:
+off_0C_A9F0_A0:
 - D 1 - I - 0x036A00 0D:A9F0: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9307,7 +9307,7 @@ off_06_A9F0_50:
 
 
 
-off_06_AA06_51:
+off_0C_AA06_A2:
 - D 1 - I - 0x036A16 0D:AA06: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9320,7 +9320,7 @@ off_06_AA06_51:
 
 
 
-off_06_AA11_52:
+off_0C_AA11_A4:
 - D 1 - I - 0x036A21 0D:AA11: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9333,7 +9333,7 @@ off_06_AA11_52:
 
 
 
-off_06_AA1D_53:
+off_0C_AA1D_A6:
 - D 1 - I - 0x036A2D 0D:AA1D: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9352,7 +9352,7 @@ off_06_AA1D_53:
 
 
 
-off_06_AA3C_54:
+off_0C_AA3C_A8:
 - D 1 - I - 0x036A4C 0D:AA3C: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9365,7 +9365,7 @@ off_06_AA3C_54:
 
 
 
-off_06_AA48_55:
+off_0C_AA48_AA:
 - D 1 - I - 0x036A58 0D:AA48: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9387,7 +9387,7 @@ off_06_AA48_55:
 
 
 
-off_06_AA6E_56:
+off_0C_AA6E_AC:
 - D 1 - I - 0x036A7E 0D:AA6E: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9409,7 +9409,7 @@ off_06_AA6E_56:
 
 
 
-off_06_AA94_57:
+off_0C_AA94_AE:
 - D 1 - I - 0x036AA4 0D:AA94: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9421,7 +9421,7 @@ off_06_AA94_57:
 
 
 
-off_06_AA9D_58:
+off_0C_AA9D_B0:
 - D 1 - I - 0x036AAD 0D:AA9D: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9435,7 +9435,7 @@ off_06_AA9D_58:
 
 
 
-off_06_AAAB_59:
+off_0C_AAAB_B2:
 - D 1 - I - 0x036ABB 0D:AAAB: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9451,7 +9451,7 @@ off_06_AAAB_59:
 
 
 
-off_06_AAC1_5A:
+off_0C_AAC1_B4:
 - D 1 - I - 0x036AD1 0D:AAC1: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9467,7 +9467,7 @@ off_06_AAC1_5A:
 
 
 
-off_06_AAD5_5B:
+off_0C_AAD5_B6:
 - D 1 - I - 0x036AE5 0D:AAD5: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9480,7 +9480,7 @@ off_06_AAD5_5B:
 
 
 
-off_06_AAE1_5C:
+off_0C_AAE1_B8:
 - D 1 - I - 0x036AF1 0D:AAE1: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9499,7 +9499,7 @@ off_06_AAE1_5C:
 
 
 
-off_06_AB00_5D:
+off_0C_AB00_BA:
 - D 1 - I - 0x036B10 0D:AB00: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9513,8 +9513,8 @@ off_06_AB00_5D:
 
 
 
-off_06_AB0E_5E:
-off_06_AB0E_60:
+off_0C_AB0E_BC:
+off_0C_AB0E_C0:
 - D 1 - I - 0x036B1E 0D:AB0E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9528,7 +9528,7 @@ off_06_AB0E_60:
 
 
 
-off_06_AB1C_5F:
+off_0C_AB1C_BE:
 - D 1 - I - 0x036B2C 0D:AB1C: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9542,7 +9542,7 @@ off_06_AB1C_5F:
 
 
 
-off_06_AB2A_61:
+off_0C_AB2A_C2:
 - D 1 - I - 0x036B3A 0D:AB2A: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9556,8 +9556,8 @@ off_06_AB2A_61:
 
 
 
-off_06_AB38_62:
-off_06_AB38_64:
+off_0C_AB38_C4:
+off_0C_AB38_C8:
 - D 1 - I - 0x036B48 0D:AB38: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9571,7 +9571,7 @@ off_06_AB38_64:
 
 
 
-off_06_AB46_63:
+off_0C_AB46_C6:
 - D 1 - I - 0x036B56 0D:AB46: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9585,7 +9585,7 @@ off_06_AB46_63:
 
 
 
-off_06_AB54_65:
+off_0C_AB54_CA:
 - D 1 - I - 0x036B64 0D:AB54: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9600,8 +9600,8 @@ off_06_AB54_65:
 
 
 
-off_06_AB65_66:
-off_06_AB65_68:
+off_0C_AB65_CC:
+off_0C_AB65_D0:
 - D 1 - I - 0x036B75 0D:AB65: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9616,7 +9616,7 @@ off_06_AB65_68:
 
 
 
-off_06_AB76_67:
+off_0C_AB76_CE:
 - D 1 - I - 0x036B86 0D:AB76: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9631,9 +9631,9 @@ off_06_AB76_67:
 
 
 
-off_06_AB87_69:
-off_06_AB87_6A:
-off_06_AB87_6B:
+off_0C_AB87_D2:
+off_0C_AB87_D4:
+off_0C_AB87_D6:
 - D 1 - I - 0x036B97 0D:AB87: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9645,7 +9645,7 @@ off_06_AB87_6B:
 
 
 
-off_06_AB8F_6C:
+off_0C_AB8F_D8:
 - D 1 - I - 0x036B9F 0D:AB8F: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9657,7 +9657,7 @@ off_06_AB8F_6C:
 
 
 
-off_06_AB97_75:
+off_0C_AB97_EA:
 - D 1 - I - 0x036BA7 0D:AB97: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9668,7 +9668,7 @@ off_06_AB97_75:
 
 
 
-off_06_AB9C_76:
+off_0C_AB9C_EC:
 - D 1 - I - 0x036BAC 0D:AB9C: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9680,7 +9680,7 @@ off_06_AB9C_76:
 
 
 
-off_06_ABA5_77:
+off_0C_ABA5_EE:
 - D 1 - I - 0x036BB5 0D:ABA5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9692,7 +9692,7 @@ off_06_ABA5_77:
 
 
 
-off_06_ABAE_78:
+off_0C_ABAE_F0:
 - D 1 - I - 0x036BBE 0D:ABAE: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9704,7 +9704,7 @@ off_06_ABAE_78:
 
 
 
-off_06_ABB7_79:
+off_0C_ABB7_F2:
 - D 1 - I - 0x036BC7 0D:ABB7: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9716,7 +9716,7 @@ off_06_ABB7_79:
 
 
 
-off_06_ABC0_7A:
+off_0C_ABC0_F4:
 - D 1 - I - 0x036BD0 0D:ABC0: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9728,7 +9728,7 @@ off_06_ABC0_7A:
 
 
 
-off_06_ABC8_7B:
+off_0C_ABC8_F6:
 - D 1 - I - 0x036BD8 0D:ABC8: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9739,7 +9739,7 @@ off_06_ABC8_7B:
 
 
 
-off_06_ABCD_7C:
+off_0C_ABCD_F8:
 - D 1 - I - 0x036BDD 0D:ABCD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9751,7 +9751,7 @@ off_06_ABCD_7C:
 
 
 
-off_06_ABD6_7D:
+off_0C_ABD6_FA:
 - D 1 - I - 0x036BE6 0D:ABD6: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9763,7 +9763,7 @@ off_06_ABD6_7D:
 
 
 
-off_06_ABDF_7E:
+off_0C_ABDF_FC:
 - D 1 - I - 0x036BEF 0D:ABDF: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -9775,258 +9775,258 @@ off_06_ABDF_7E:
 
 
 
-_off039_ABE7_06:
-- - - - - - 0x036BF7 0D:ABE7: 99 AE     .word off_06_AE99_00     ; unused
-- D 1 - I - 0x036BF9 0D:ABE9: A7 AE     .word off_06_AEA7_01
-- D 1 - I - 0x036BFB 0D:ABEB: BB AE     .word off_06_AEBB_02
-- D 1 - I - 0x036BFD 0D:ABED: A7 AE     .word off_06_AEA7_03
-- D 1 - I - 0x036BFF 0D:ABEF: 75 B0     .word off_06_B075_04
-- D 1 - I - 0x036C01 0D:ABF1: 7D B0     .word off_06_B07D_05
-- D 1 - I - 0x036C03 0D:ABF3: 85 B0     .word off_06_B085_06
-- D 1 - I - 0x036C05 0D:ABF5: 8D B0     .word off_06_B08D_07
-- D 1 - I - 0x036C07 0D:ABF7: 95 B0     .word off_06_B095_08
-- D 1 - I - 0x036C09 0D:ABF9: 9D B0     .word off_06_B09D_09
-- D 1 - I - 0x036C0B 0D:ABFB: A5 B0     .word off_06_B0A5_0A
-- D 1 - I - 0x036C0D 0D:ABFD: AD B0     .word off_06_B0AD_0B
-- D 1 - I - 0x036C0F 0D:ABFF: B5 B0     .word off_06_B0B5_0C
-- D 1 - I - 0x036C11 0D:AC01: BD B0     .word off_06_B0BD_0D
-- D 1 - I - 0x036C13 0D:AC03: CB B0     .word off_06_B0CB_0E
-- D 1 - I - 0x036C15 0D:AC05: DC B0     .word off_06_B0DC_0F
-- D 1 - I - 0x036C17 0D:AC07: E4 B0     .word off_06_B0E4_10
-- D 1 - I - 0x036C19 0D:AC09: BD B0     .word off_06_B0BD_11
-- D 1 - I - 0x036C1B 0D:AC0B: F5 B0     .word off_06_B0F5_12
-- D 1 - I - 0x036C1D 0D:AC0D: 03 B1     .word off_06_B103_13
-- D 1 - I - 0x036C1F 0D:AC0F: 17 B1     .word off_06_B117_14
-- D 1 - I - 0x036C21 0D:AC11: 25 B1     .word off_06_B125_15
-- D 1 - I - 0x036C23 0D:AC13: 39 B1     .word off_06_B139_16
-- D 1 - I - 0x036C25 0D:AC15: 25 B1     .word off_06_B125_17
-- D 1 - I - 0x036C27 0D:AC17: 17 B1     .word off_06_B117_18
-- D 1 - I - 0x036C29 0D:AC19: 03 B1     .word off_06_B103_19
-- - - - - - 0x036C2B 0D:AC1B: F5 B0     .word off_06_B0F5_1A
-- D 1 - I - 0x036C2D 0D:AC1D: 47 B1     .word off_06_B147_1B
-- D 1 - I - 0x036C2F 0D:AC1F: 4C B1     .word off_06_B14C_1C
-- D 1 - I - 0x036C31 0D:AC21: 51 B1     .word off_06_B151_1D
-- D 1 - I - 0x036C33 0D:AC23: 56 B1     .word off_06_B156_1E
-- D 1 - I - 0x036C35 0D:AC25: 5B B1     .word off_06_B15B_1F
-- D 1 - I - 0x036C37 0D:AC27: 60 B1     .word off_06_B160_20
-- D 1 - I - 0x036C39 0D:AC29: 65 B1     .word off_06_B165_21
-- D 1 - I - 0x036C3B 0D:AC2B: 6A B1     .word off_06_B16A_22
-- D 1 - I - 0x036C3D 0D:AC2D: 6F B1     .word off_06_B16F_23
-- D 1 - I - 0x036C3F 0D:AC2F: 74 B1     .word off_06_B174_24
-- D 1 - I - 0x036C41 0D:AC31: 79 B1     .word off_06_B179_25
-- D 1 - I - 0x036C43 0D:AC33: 7E B1     .word off_06_B17E_26
-- D 1 - I - 0x036C45 0D:AC35: 86 B1     .word off_06_B186_27
-- D 1 - I - 0x036C47 0D:AC37: 8E B1     .word off_06_B18E_28
-- D 1 - I - 0x036C49 0D:AC39: 96 B1     .word off_06_B196_29
-- D 1 - I - 0x036C4B 0D:AC3B: B2 B1     .word off_06_B1B2_2A
-- D 1 - I - 0x036C4D 0D:AC3D: E6 B1     .word off_06_B1E6_2B
-- D 1 - I - 0x036C4F 0D:AC3F: EF B1     .word off_06_B1EF_2C
-- D 1 - I - 0x036C51 0D:AC41: F7 B1     .word off_06_B1F7_2D
-- D 1 - I - 0x036C53 0D:AC43: FF B1     .word off_06_B1FF_2E
-- D 1 - I - 0x036C55 0D:AC45: 04 B2     .word off_06_B204_2F
-- D 1 - I - 0x036C57 0D:AC47: 09 B2     .word off_06_B209_30
-- D 1 - I - 0x036C59 0D:AC49: 11 B2     .word off_06_B211_31
-- D 1 - I - 0x036C5B 0D:AC4B: 1A B2     .word off_06_B21A_32
-- D 1 - I - 0x036C5D 0D:AC4D: 22 B2     .word off_06_B222_33
-- D 1 - I - 0x036C5F 0D:AC4F: 2A B2     .word off_06_B22A_34
-- D 1 - I - 0x036C61 0D:AC51: 33 B2     .word off_06_B233_35
-- D 1 - I - 0x036C63 0D:AC53: 3C B2     .word off_06_B23C_36
-- D 1 - I - 0x036C65 0D:AC55: 45 B2     .word off_06_B245_37
-- D 1 - I - 0x036C67 0D:AC57: 4D B2     .word off_06_B24D_38
-- D 1 - I - 0x036C69 0D:AC59: 5B B2     .word off_06_B25B_39
-- D 1 - I - 0x036C6B 0D:AC5B: 66 B2     .word off_06_B266_3A
-- D 1 - I - 0x036C6D 0D:AC5D: 74 B2     .word off_06_B274_3B
-- D 1 - I - 0x036C6F 0D:AC5F: 82 B2     .word off_06_B282_3C
-- D 1 - I - 0x036C71 0D:AC61: 90 B2     .word off_06_B290_3D
-- D 1 - I - 0x036C73 0D:AC63: 9E B2     .word off_06_B29E_3E
-- D 1 - I - 0x036C75 0D:AC65: AC B2     .word off_06_B2AC_3F
-- D 1 - I - 0x036C77 0D:AC67: BA B2     .word off_06_B2BA_40
-- D 1 - I - 0x036C79 0D:AC69: C8 B2     .word off_06_B2C8_41
-- D 1 - I - 0x036C7B 0D:AC6B: E9 B2     .word off_06_B2E9_42
-- D 1 - I - 0x036C7D 0D:AC6D: 0A B3     .word off_06_B30A_43
-- D 1 - I - 0x036C7F 0D:AC6F: 18 B3     .word off_06_B318_44
-- D 1 - I - 0x036C81 0D:AC71: 29 B3     .word off_06_B329_45
-- D 1 - I - 0x036C83 0D:AC73: 3A B3     .word off_06_B33A_46
-- D 1 - I - 0x036C85 0D:AC75: 4B B3     .word off_06_B34B_47
-- D 1 - I - 0x036C87 0D:AC77: 6F B3     .word off_06_B36F_48
-- D 1 - I - 0x036C89 0D:AC79: 93 B3     .word off_06_B393_49
-- D 1 - I - 0x036C8B 0D:AC7B: A4 B3     .word off_06_B3A4_4A
-- D 1 - I - 0x036C8D 0D:AC7D: B2 B3     .word off_06_B3B2_4B
-- D 1 - I - 0x036C8F 0D:AC7F: C0 B3     .word off_06_B3C0_4C
-- D 1 - I - 0x036C91 0D:AC81: CE B3     .word off_06_B3CE_4D
-- D 1 - I - 0x036C93 0D:AC83: EF B3     .word off_06_B3EF_4E
-- D 1 - I - 0x036C95 0D:AC85: 10 B4     .word off_06_B410_4F
-- D 1 - I - 0x036C97 0D:AC87: F0 A9     .word off_06_A9F0_50
-- D 1 - I - 0x036C99 0D:AC89: 06 AA     .word off_06_AA06_51
-- D 1 - I - 0x036C9B 0D:AC8B: 11 AA     .word off_06_AA11_52
-- D 1 - I - 0x036C9D 0D:AC8D: 1D AA     .word off_06_AA1D_53
-- D 1 - I - 0x036C9F 0D:AC8F: 3C AA     .word off_06_AA3C_54
-- D 1 - I - 0x036CA1 0D:AC91: 48 AA     .word off_06_AA48_55
-- D 1 - I - 0x036CA3 0D:AC93: 6E AA     .word off_06_AA6E_56
-- D 1 - I - 0x036CA5 0D:AC95: 94 AA     .word off_06_AA94_57
-- D 1 - I - 0x036CA7 0D:AC97: 9D AA     .word off_06_AA9D_58
-- D 1 - I - 0x036CA9 0D:AC99: AB AA     .word off_06_AAAB_59
-- D 1 - I - 0x036CAB 0D:AC9B: C1 AA     .word off_06_AAC1_5A
-- D 1 - I - 0x036CAD 0D:AC9D: D5 AA     .word off_06_AAD5_5B
-- D 1 - I - 0x036CAF 0D:AC9F: E1 AA     .word off_06_AAE1_5C
-- D 1 - I - 0x036CB1 0D:ACA1: 00 AB     .word off_06_AB00_5D
-- D 1 - I - 0x036CB3 0D:ACA3: 0E AB     .word off_06_AB0E_5E
-- D 1 - I - 0x036CB5 0D:ACA5: 1C AB     .word off_06_AB1C_5F
-- D 1 - I - 0x036CB7 0D:ACA7: 0E AB     .word off_06_AB0E_60
-- D 1 - I - 0x036CB9 0D:ACA9: 2A AB     .word off_06_AB2A_61
-- D 1 - I - 0x036CBB 0D:ACAB: 38 AB     .word off_06_AB38_62
-- D 1 - I - 0x036CBD 0D:ACAD: 46 AB     .word off_06_AB46_63
-- D 1 - I - 0x036CBF 0D:ACAF: 38 AB     .word off_06_AB38_64
-- D 1 - I - 0x036CC1 0D:ACB1: 54 AB     .word off_06_AB54_65
-- D 1 - I - 0x036CC3 0D:ACB3: 65 AB     .word off_06_AB65_66
-- D 1 - I - 0x036CC5 0D:ACB5: 76 AB     .word off_06_AB76_67
-- D 1 - I - 0x036CC7 0D:ACB7: 65 AB     .word off_06_AB65_68
-- - - - - - 0x036CC9 0D:ACB9: 87 AB     .word off_06_AB87_69
-- - - - - - 0x036CCB 0D:ACBB: 87 AB     .word off_06_AB87_6A
-- D 1 - I - 0x036CCD 0D:ACBD: 87 AB     .word off_06_AB87_6B
-- D 1 - I - 0x036CCF 0D:ACBF: 8F AB     .word off_06_AB8F_6C
-- D 1 - I - 0x036CD1 0D:ACC1: 1E B4     .word off_06_B41E_6D
-- D 1 - I - 0x036CD3 0D:ACC3: 44 B4     .word off_06_B444_6E
-- D 1 - I - 0x036CD5 0D:ACC5: 52 B4     .word off_06_B452_6F
-- D 1 - I - 0x036CD7 0D:ACC7: 60 B4     .word off_06_B460_70
-- D 1 - I - 0x036CD9 0D:ACC9: 6E B4     .word off_06_B46E_71
-- D 1 - I - 0x036CDB 0D:ACCB: 88 B4     .word off_06_B488_72
-- D 1 - I - 0x036CDD 0D:ACCD: 9F B4     .word off_06_B49F_73
-- D 1 - I - 0x036CDF 0D:ACCF: AD B4     .word off_06_B4AD_74
-- D 1 - I - 0x036CE1 0D:ACD1: 97 AB     .word off_06_AB97_75
-- D 1 - I - 0x036CE3 0D:ACD3: 9C AB     .word off_06_AB9C_76
-- D 1 - I - 0x036CE5 0D:ACD5: A5 AB     .word off_06_ABA5_77
-- D 1 - I - 0x036CE7 0D:ACD7: AE AB     .word off_06_ABAE_78
-- D 1 - I - 0x036CE9 0D:ACD9: B7 AB     .word off_06_ABB7_79
-- D 1 - I - 0x036CEB 0D:ACDB: C0 AB     .word off_06_ABC0_7A
-- D 1 - I - 0x036CED 0D:ACDD: C8 AB     .word off_06_ABC8_7B
-- D 1 - I - 0x036CEF 0D:ACDF: CD AB     .word off_06_ABCD_7C
-- D 1 - I - 0x036CF1 0D:ACE1: D6 AB     .word off_06_ABD6_7D
-- D 1 - I - 0x036CF3 0D:ACE3: DF AB     .word off_06_ABDF_7E
-- D 1 - I - 0x036CF5 0D:ACE5: CC B1     .word off_06_B1CC_7F
+_off039_ABE7_0C:
+- - - - - - 0x036BF7 0D:ABE7: 99 AE     .word off_0C_AE99_00     ; unused
+- D 1 - I - 0x036BF9 0D:ABE9: A7 AE     .word off_0C_AEA7_02
+- D 1 - I - 0x036BFB 0D:ABEB: BB AE     .word off_0C_AEBB_04
+- D 1 - I - 0x036BFD 0D:ABED: A7 AE     .word off_0C_AEA7_06
+- D 1 - I - 0x036BFF 0D:ABEF: 75 B0     .word off_0C_B075_08
+- D 1 - I - 0x036C01 0D:ABF1: 7D B0     .word off_0C_B07D_0A
+- D 1 - I - 0x036C03 0D:ABF3: 85 B0     .word off_0C_B085_0C
+- D 1 - I - 0x036C05 0D:ABF5: 8D B0     .word off_0C_B08D_0E
+- D 1 - I - 0x036C07 0D:ABF7: 95 B0     .word off_0C_B095_10
+- D 1 - I - 0x036C09 0D:ABF9: 9D B0     .word off_0C_B09D_12
+- D 1 - I - 0x036C0B 0D:ABFB: A5 B0     .word off_0C_B0A5_14
+- D 1 - I - 0x036C0D 0D:ABFD: AD B0     .word off_0C_B0AD_16
+- D 1 - I - 0x036C0F 0D:ABFF: B5 B0     .word off_0C_B0B5_18
+- D 1 - I - 0x036C11 0D:AC01: BD B0     .word off_0C_B0BD_1A
+- D 1 - I - 0x036C13 0D:AC03: CB B0     .word off_0C_B0CB_1C
+- D 1 - I - 0x036C15 0D:AC05: DC B0     .word off_0C_B0DC_1E
+- D 1 - I - 0x036C17 0D:AC07: E4 B0     .word off_0C_B0E4_20
+- D 1 - I - 0x036C19 0D:AC09: BD B0     .word off_0C_B0BD_22
+- D 1 - I - 0x036C1B 0D:AC0B: F5 B0     .word off_0C_B0F5_24
+- D 1 - I - 0x036C1D 0D:AC0D: 03 B1     .word off_0C_B103_26
+- D 1 - I - 0x036C1F 0D:AC0F: 17 B1     .word off_0C_B117_28
+- D 1 - I - 0x036C21 0D:AC11: 25 B1     .word off_0C_B125_2A
+- D 1 - I - 0x036C23 0D:AC13: 39 B1     .word off_0C_B139_2C
+- D 1 - I - 0x036C25 0D:AC15: 25 B1     .word off_0C_B125_2E
+- D 1 - I - 0x036C27 0D:AC17: 17 B1     .word off_0C_B117_30
+- D 1 - I - 0x036C29 0D:AC19: 03 B1     .word off_0C_B103_32
+- - - - - - 0x036C2B 0D:AC1B: F5 B0     .word off_0C_B0F5_34
+- D 1 - I - 0x036C2D 0D:AC1D: 47 B1     .word off_0C_B147_36
+- D 1 - I - 0x036C2F 0D:AC1F: 4C B1     .word off_0C_B14C_38
+- D 1 - I - 0x036C31 0D:AC21: 51 B1     .word off_0C_B151_3A
+- D 1 - I - 0x036C33 0D:AC23: 56 B1     .word off_0C_B156_3C
+- D 1 - I - 0x036C35 0D:AC25: 5B B1     .word off_0C_B15B_3E
+- D 1 - I - 0x036C37 0D:AC27: 60 B1     .word off_0C_B160_40
+- D 1 - I - 0x036C39 0D:AC29: 65 B1     .word off_0C_B165_42
+- D 1 - I - 0x036C3B 0D:AC2B: 6A B1     .word off_0C_B16A_44
+- D 1 - I - 0x036C3D 0D:AC2D: 6F B1     .word off_0C_B16F_46
+- D 1 - I - 0x036C3F 0D:AC2F: 74 B1     .word off_0C_B174_48
+- D 1 - I - 0x036C41 0D:AC31: 79 B1     .word off_0C_B179_4A
+- D 1 - I - 0x036C43 0D:AC33: 7E B1     .word off_0C_B17E_4C
+- D 1 - I - 0x036C45 0D:AC35: 86 B1     .word off_0C_B186_4E
+- D 1 - I - 0x036C47 0D:AC37: 8E B1     .word off_0C_B18E_50
+- D 1 - I - 0x036C49 0D:AC39: 96 B1     .word off_0C_B196_52
+- D 1 - I - 0x036C4B 0D:AC3B: B2 B1     .word off_0C_B1B2_54
+- D 1 - I - 0x036C4D 0D:AC3D: E6 B1     .word off_0C_B1E6_56
+- D 1 - I - 0x036C4F 0D:AC3F: EF B1     .word off_0C_B1EF_58
+- D 1 - I - 0x036C51 0D:AC41: F7 B1     .word off_0C_B1F7_5A
+- D 1 - I - 0x036C53 0D:AC43: FF B1     .word off_0C_B1FF_5C
+- D 1 - I - 0x036C55 0D:AC45: 04 B2     .word off_0C_B204_5E
+- D 1 - I - 0x036C57 0D:AC47: 09 B2     .word off_0C_B209_60
+- D 1 - I - 0x036C59 0D:AC49: 11 B2     .word off_0C_B211_62
+- D 1 - I - 0x036C5B 0D:AC4B: 1A B2     .word off_0C_B21A_64
+- D 1 - I - 0x036C5D 0D:AC4D: 22 B2     .word off_0C_B222_66
+- D 1 - I - 0x036C5F 0D:AC4F: 2A B2     .word off_0C_B22A_68
+- D 1 - I - 0x036C61 0D:AC51: 33 B2     .word off_0C_B233_6A
+- D 1 - I - 0x036C63 0D:AC53: 3C B2     .word off_0C_B23C_6C
+- D 1 - I - 0x036C65 0D:AC55: 45 B2     .word off_0C_B245_6E
+- D 1 - I - 0x036C67 0D:AC57: 4D B2     .word off_0C_B24D_70
+- D 1 - I - 0x036C69 0D:AC59: 5B B2     .word off_0C_B25B_72
+- D 1 - I - 0x036C6B 0D:AC5B: 66 B2     .word off_0C_B266_74
+- D 1 - I - 0x036C6D 0D:AC5D: 74 B2     .word off_0C_B274_76
+- D 1 - I - 0x036C6F 0D:AC5F: 82 B2     .word off_0C_B282_78
+- D 1 - I - 0x036C71 0D:AC61: 90 B2     .word off_0C_B290_7A
+- D 1 - I - 0x036C73 0D:AC63: 9E B2     .word off_0C_B29E_7C
+- D 1 - I - 0x036C75 0D:AC65: AC B2     .word off_0C_B2AC_7E
+- D 1 - I - 0x036C77 0D:AC67: BA B2     .word off_0C_B2BA_80
+- D 1 - I - 0x036C79 0D:AC69: C8 B2     .word off_0C_B2C8_82
+- D 1 - I - 0x036C7B 0D:AC6B: E9 B2     .word off_0C_B2E9_84
+- D 1 - I - 0x036C7D 0D:AC6D: 0A B3     .word off_0C_B30A_86
+- D 1 - I - 0x036C7F 0D:AC6F: 18 B3     .word off_0C_B318_88
+- D 1 - I - 0x036C81 0D:AC71: 29 B3     .word off_0C_B329_8A
+- D 1 - I - 0x036C83 0D:AC73: 3A B3     .word off_0C_B33A_8C
+- D 1 - I - 0x036C85 0D:AC75: 4B B3     .word off_0C_B34B_8E
+- D 1 - I - 0x036C87 0D:AC77: 6F B3     .word off_0C_B36F_90
+- D 1 - I - 0x036C89 0D:AC79: 93 B3     .word off_0C_B393_92
+- D 1 - I - 0x036C8B 0D:AC7B: A4 B3     .word off_0C_B3A4_94
+- D 1 - I - 0x036C8D 0D:AC7D: B2 B3     .word off_0C_B3B2_96
+- D 1 - I - 0x036C8F 0D:AC7F: C0 B3     .word off_0C_B3C0_98
+- D 1 - I - 0x036C91 0D:AC81: CE B3     .word off_0C_B3CE_9A
+- D 1 - I - 0x036C93 0D:AC83: EF B3     .word off_0C_B3EF_9C
+- D 1 - I - 0x036C95 0D:AC85: 10 B4     .word off_0C_B410_9E
+- D 1 - I - 0x036C97 0D:AC87: F0 A9     .word off_0C_A9F0_A0
+- D 1 - I - 0x036C99 0D:AC89: 06 AA     .word off_0C_AA06_A2
+- D 1 - I - 0x036C9B 0D:AC8B: 11 AA     .word off_0C_AA11_A4
+- D 1 - I - 0x036C9D 0D:AC8D: 1D AA     .word off_0C_AA1D_A6
+- D 1 - I - 0x036C9F 0D:AC8F: 3C AA     .word off_0C_AA3C_A8
+- D 1 - I - 0x036CA1 0D:AC91: 48 AA     .word off_0C_AA48_AA
+- D 1 - I - 0x036CA3 0D:AC93: 6E AA     .word off_0C_AA6E_AC
+- D 1 - I - 0x036CA5 0D:AC95: 94 AA     .word off_0C_AA94_AE
+- D 1 - I - 0x036CA7 0D:AC97: 9D AA     .word off_0C_AA9D_B0
+- D 1 - I - 0x036CA9 0D:AC99: AB AA     .word off_0C_AAAB_B2
+- D 1 - I - 0x036CAB 0D:AC9B: C1 AA     .word off_0C_AAC1_B4
+- D 1 - I - 0x036CAD 0D:AC9D: D5 AA     .word off_0C_AAD5_B6
+- D 1 - I - 0x036CAF 0D:AC9F: E1 AA     .word off_0C_AAE1_B8
+- D 1 - I - 0x036CB1 0D:ACA1: 00 AB     .word off_0C_AB00_BA
+- D 1 - I - 0x036CB3 0D:ACA3: 0E AB     .word off_0C_AB0E_BC
+- D 1 - I - 0x036CB5 0D:ACA5: 1C AB     .word off_0C_AB1C_BE
+- D 1 - I - 0x036CB7 0D:ACA7: 0E AB     .word off_0C_AB0E_C0
+- D 1 - I - 0x036CB9 0D:ACA9: 2A AB     .word off_0C_AB2A_C2
+- D 1 - I - 0x036CBB 0D:ACAB: 38 AB     .word off_0C_AB38_C4
+- D 1 - I - 0x036CBD 0D:ACAD: 46 AB     .word off_0C_AB46_C6
+- D 1 - I - 0x036CBF 0D:ACAF: 38 AB     .word off_0C_AB38_C8
+- D 1 - I - 0x036CC1 0D:ACB1: 54 AB     .word off_0C_AB54_CA
+- D 1 - I - 0x036CC3 0D:ACB3: 65 AB     .word off_0C_AB65_CC
+- D 1 - I - 0x036CC5 0D:ACB5: 76 AB     .word off_0C_AB76_CE
+- D 1 - I - 0x036CC7 0D:ACB7: 65 AB     .word off_0C_AB65_D0
+- - - - - - 0x036CC9 0D:ACB9: 87 AB     .word off_0C_AB87_D2
+- - - - - - 0x036CCB 0D:ACBB: 87 AB     .word off_0C_AB87_D4
+- D 1 - I - 0x036CCD 0D:ACBD: 87 AB     .word off_0C_AB87_D6
+- D 1 - I - 0x036CCF 0D:ACBF: 8F AB     .word off_0C_AB8F_D8
+- D 1 - I - 0x036CD1 0D:ACC1: 1E B4     .word off_0C_B41E_DA
+- D 1 - I - 0x036CD3 0D:ACC3: 44 B4     .word off_0C_B444_DC
+- D 1 - I - 0x036CD5 0D:ACC5: 52 B4     .word off_0C_B452_DE
+- D 1 - I - 0x036CD7 0D:ACC7: 60 B4     .word off_0C_B460_E0
+- D 1 - I - 0x036CD9 0D:ACC9: 6E B4     .word off_0C_B46E_E2
+- D 1 - I - 0x036CDB 0D:ACCB: 88 B4     .word off_0C_B488_E4
+- D 1 - I - 0x036CDD 0D:ACCD: 9F B4     .word off_0C_B49F_E6
+- D 1 - I - 0x036CDF 0D:ACCF: AD B4     .word off_0C_B4AD_E8
+- D 1 - I - 0x036CE1 0D:ACD1: 97 AB     .word off_0C_AB97_EA
+- D 1 - I - 0x036CE3 0D:ACD3: 9C AB     .word off_0C_AB9C_EC
+- D 1 - I - 0x036CE5 0D:ACD5: A5 AB     .word off_0C_ABA5_EE
+- D 1 - I - 0x036CE7 0D:ACD7: AE AB     .word off_0C_ABAE_F0
+- D 1 - I - 0x036CE9 0D:ACD9: B7 AB     .word off_0C_ABB7_F2
+- D 1 - I - 0x036CEB 0D:ACDB: C0 AB     .word off_0C_ABC0_F4
+- D 1 - I - 0x036CED 0D:ACDD: C8 AB     .word off_0C_ABC8_F6
+- D 1 - I - 0x036CEF 0D:ACDF: CD AB     .word off_0C_ABCD_F8
+- D 1 - I - 0x036CF1 0D:ACE1: D6 AB     .word off_0C_ABD6_FA
+- D 1 - I - 0x036CF3 0D:ACE3: DF AB     .word off_0C_ABDF_FC
+- D 1 - I - 0x036CF5 0D:ACE5: CC B1     .word off_0C_B1CC_FE
 
 
 
-_off039_ACE7_0A:
-- - - - - - 0x036CF7 0D:ACE7: B5 B4     .word off_0A_B4B5_00     ; unused
-- D 1 - I - 0x036CF9 0D:ACE9: B5 B4     .word off_0A_B4B5_01
-- D 1 - I - 0x036CFB 0D:ACEB: C4 B4     .word off_0A_B4C4_02
-- D 1 - I - 0x036CFD 0D:ACED: D3 B4     .word off_0A_B4D3_03
-- D 1 - I - 0x036CFF 0D:ACEF: E1 B4     .word off_0A_B4E1_04
-- D 1 - I - 0x036D01 0D:ACF1: FE B4     .word off_0A_B4FE_05
-- D 1 - I - 0x036D03 0D:ACF3: 0C B5     .word off_0A_B50C_06
-- D 1 - I - 0x036D05 0D:ACF5: 1D B5     .word off_0A_B51D_07
-- D 1 - I - 0x036D07 0D:ACF7: 2B B5     .word off_0A_B52B_08
-- D 1 - I - 0x036D09 0D:ACF9: 34 B5     .word off_0A_B534_09
-- - - - - - 0x036D0B 0D:ACFB: 4F B5     .word off_0A_B54F_0A
-- D 1 - I - 0x036D0D 0D:ACFD: 81 B5     .word off_0A_B581_0B
-- D 1 - I - 0x036D0F 0D:ACFF: C2 B5     .word off_0A_B5C2_0C
-- D 1 - I - 0x036D11 0D:AD01: F4 B5     .word off_0A_B5F4_0D
-- D 1 - I - 0x036D13 0D:AD03: 05 B6     .word off_0A_B605_0E
-- D 1 - I - 0x036D15 0D:AD05: 16 B6     .word off_0A_B616_0F
-- D 1 - I - 0x036D17 0D:AD07: 2A B6     .word off_0A_B62A_10
-- D 1 - I - 0x036D19 0D:AD09: 3E B6     .word off_0A_B63E_11
-- D 1 - I - 0x036D1B 0D:AD0B: 4C B6     .word off_0A_B64C_12
-- D 1 - I - 0x036D1D 0D:AD0D: 5D B6     .word off_0A_B65D_13
-- D 1 - I - 0x036D1F 0D:AD0F: 6E B6     .word off_0A_B66E_14
-- D 1 - I - 0x036D21 0D:AD11: 82 B6     .word off_0A_B682_15
-- D 1 - I - 0x036D23 0D:AD13: 99 B6     .word off_0A_B699_16
-- D 1 - I - 0x036D25 0D:AD15: B0 B6     .word off_0A_B6B0_17
-- D 1 - I - 0x036D27 0D:AD17: C1 B6     .word off_0A_B6C1_18
-- D 1 - I - 0x036D29 0D:AD19: D3 B6     .word off_0A_B6D3_19
-- D 1 - I - 0x036D2B 0D:AD1B: EB B6     .word off_0A_B6EB_1A
-- D 1 - I - 0x036D2D 0D:AD1D: 00 B7     .word off_0A_B700_1B
-- D 1 - I - 0x036D2F 0D:AD1F: EB B6     .word off_0A_B6EB_1C
-- D 1 - I - 0x036D31 0D:AD21: D3 B6     .word off_0A_B6D3_1D
-- D 1 - I - 0x036D33 0D:AD23: EB B6     .word off_0A_B6EB_1E
-- D 1 - I - 0x036D35 0D:AD25: 15 B7     .word off_0A_B715_1F
-- D 1 - I - 0x036D37 0D:AD27: 36 B7     .word off_0A_B736_20
-- D 1 - I - 0x036D39 0D:AD29: 5D B7     .word off_0A_B75D_21
-- D 1 - I - 0x036D3B 0D:AD2B: C5 AD     .word off_0A_ADC5_22
-- D 1 - I - 0x036D3D 0D:AD2D: CA AD     .word off_0A_ADCA_23
-- D 1 - I - 0x036D3F 0D:AD2F: D2 AD     .word off_0A_ADD2_24
-- D 1 - I - 0x036D41 0D:AD31: DD AD     .word off_0A_ADDD_25
-- D 1 - I - 0x036D43 0D:AD33: EB AD     .word off_0A_ADEB_26
-- D 1 - I - 0x036D45 0D:AD35: FC AD     .word off_0A_ADFC_27
-- D 1 - I - 0x036D47 0D:AD37: 0D AE     .word off_0A_AE0D_28
-- - - - - - 0x036D49 0D:AD39: 15 AE     .word off_0A_AE15_29
-- - - - - - 0x036D4B 0D:AD3B: 1D AE     .word off_0A_AE1D_2A
-- - - - - - 0x036D4D 0D:AD3D: 25 AE     .word off_0A_AE25_2B
-- - - - - - 0x036D4F 0D:AD3F: 1D AE     .word off_0A_AE1D_2C
-- - - - - - 0x036D51 0D:AD41: 3A AE     .word off_0A_AE3A_2D
-- - - - - - 0x036D53 0D:AD43: 42 AE     .word off_0A_AE42_2E
-- D 1 - I - 0x036D55 0D:AD45: 4A AE     .word off_0A_AE4A_2F
-- D 1 - I - 0x036D57 0D:AD47: 58 AE     .word off_0A_AE58_30
-- D 1 - I - 0x036D59 0D:AD49: 66 AE     .word off_0A_AE66_31
-- D 1 - I - 0x036D5B 0D:AD4B: 77 AE     .word off_0A_AE77_32
-- D 1 - I - 0x036D5D 0D:AD4D: 88 AE     .word off_0A_AE88_33
-- D 1 - I - 0x036D5F 0D:AD4F: 2D AE     .word off_0A_AE2D_34
-- D 1 - I - 0x036D61 0D:AD51: 32 AE     .word off_0A_AE32_35
+_off039_ACE7_14:
+- - - - - - 0x036CF7 0D:ACE7: B5 B4     .word off_14_B4B5_00     ; unused
+- D 1 - I - 0x036CF9 0D:ACE9: B5 B4     .word off_14_B4B5_02
+- D 1 - I - 0x036CFB 0D:ACEB: C4 B4     .word off_14_B4C4_04
+- D 1 - I - 0x036CFD 0D:ACED: D3 B4     .word off_14_B4D3_06
+- D 1 - I - 0x036CFF 0D:ACEF: E1 B4     .word off_14_B4E1_08
+- D 1 - I - 0x036D01 0D:ACF1: FE B4     .word off_14_B4FE_0A
+- D 1 - I - 0x036D03 0D:ACF3: 0C B5     .word off_14_B50C_0C
+- D 1 - I - 0x036D05 0D:ACF5: 1D B5     .word off_14_B51D_0E
+- D 1 - I - 0x036D07 0D:ACF7: 2B B5     .word off_14_B52B_10
+- D 1 - I - 0x036D09 0D:ACF9: 34 B5     .word off_14_B534_12
+- - - - - - 0x036D0B 0D:ACFB: 4F B5     .word off_14_B54F_14
+- D 1 - I - 0x036D0D 0D:ACFD: 81 B5     .word off_14_B581_16
+- D 1 - I - 0x036D0F 0D:ACFF: C2 B5     .word off_14_B5C2_18
+- D 1 - I - 0x036D11 0D:AD01: F4 B5     .word off_14_B5F4_1A
+- D 1 - I - 0x036D13 0D:AD03: 05 B6     .word off_14_B605_1C
+- D 1 - I - 0x036D15 0D:AD05: 16 B6     .word off_14_B616_1E
+- D 1 - I - 0x036D17 0D:AD07: 2A B6     .word off_14_B62A_20
+- D 1 - I - 0x036D19 0D:AD09: 3E B6     .word off_14_B63E_22
+- D 1 - I - 0x036D1B 0D:AD0B: 4C B6     .word off_14_B64C_24
+- D 1 - I - 0x036D1D 0D:AD0D: 5D B6     .word off_14_B65D_26
+- D 1 - I - 0x036D1F 0D:AD0F: 6E B6     .word off_14_B66E_28
+- D 1 - I - 0x036D21 0D:AD11: 82 B6     .word off_14_B682_2A
+- D 1 - I - 0x036D23 0D:AD13: 99 B6     .word off_14_B699_2C
+- D 1 - I - 0x036D25 0D:AD15: B0 B6     .word off_14_B6B0_2E
+- D 1 - I - 0x036D27 0D:AD17: C1 B6     .word off_14_B6C1_30
+- D 1 - I - 0x036D29 0D:AD19: D3 B6     .word off_14_B6D3_32
+- D 1 - I - 0x036D2B 0D:AD1B: EB B6     .word off_14_B6EB_34
+- D 1 - I - 0x036D2D 0D:AD1D: 00 B7     .word off_14_B700_36
+- D 1 - I - 0x036D2F 0D:AD1F: EB B6     .word off_14_B6EB_38
+- D 1 - I - 0x036D31 0D:AD21: D3 B6     .word off_14_B6D3_3A
+- D 1 - I - 0x036D33 0D:AD23: EB B6     .word off_14_B6EB_3C
+- D 1 - I - 0x036D35 0D:AD25: 15 B7     .word off_14_B715_3E
+- D 1 - I - 0x036D37 0D:AD27: 36 B7     .word off_14_B736_40
+- D 1 - I - 0x036D39 0D:AD29: 5D B7     .word off_14_B75D_42
+- D 1 - I - 0x036D3B 0D:AD2B: C5 AD     .word off_14_ADC5_44
+- D 1 - I - 0x036D3D 0D:AD2D: CA AD     .word off_14_ADCA_46
+- D 1 - I - 0x036D3F 0D:AD2F: D2 AD     .word off_14_ADD2_48
+- D 1 - I - 0x036D41 0D:AD31: DD AD     .word off_14_ADDD_4A
+- D 1 - I - 0x036D43 0D:AD33: EB AD     .word off_14_ADEB_4C
+- D 1 - I - 0x036D45 0D:AD35: FC AD     .word off_14_ADFC_4E
+- D 1 - I - 0x036D47 0D:AD37: 0D AE     .word off_14_AE0D_50
+- - - - - - 0x036D49 0D:AD39: 15 AE     .word off_14_AE15_52
+- - - - - - 0x036D4B 0D:AD3B: 1D AE     .word off_14_AE1D_54
+- - - - - - 0x036D4D 0D:AD3D: 25 AE     .word off_14_AE25_56
+- - - - - - 0x036D4F 0D:AD3F: 1D AE     .word off_14_AE1D_58
+- - - - - - 0x036D51 0D:AD41: 3A AE     .word off_14_AE3A_5A
+- - - - - - 0x036D53 0D:AD43: 42 AE     .word off_14_AE42_5C
+- D 1 - I - 0x036D55 0D:AD45: 4A AE     .word off_14_AE4A_5E
+- D 1 - I - 0x036D57 0D:AD47: 58 AE     .word off_14_AE58_60
+- D 1 - I - 0x036D59 0D:AD49: 66 AE     .word off_14_AE66_62
+- D 1 - I - 0x036D5B 0D:AD4B: 77 AE     .word off_14_AE77_64
+- D 1 - I - 0x036D5D 0D:AD4D: 88 AE     .word off_14_AE88_66
+- D 1 - I - 0x036D5F 0D:AD4F: 2D AE     .word off_14_AE2D_68
+- D 1 - I - 0x036D61 0D:AD51: 32 AE     .word off_14_AE32_6A
 
 
 
-_off039_AD53_07:
-- - - - - - 0x036D63 0D:AD53: 99 AE     .word off_07_AE99_00     ; unused
-- D 1 - I - 0x036D65 0D:AD55: F8 AE     .word off_07_AEF8_01
-- D 1 - I - 0x036D67 0D:AD57: FD AE     .word off_07_AEFD_02
-- D 1 - I - 0x036D69 0D:AD59: 99 AE     .word off_07_AE99_03
-- - - - - - 0x036D6B 0D:AD5B: 99 AE     .word off_07_AE99_04
-- D 1 - I - 0x036D6D 0D:AD5D: 1D AF     .word off_07_AF1D_05
-- D 1 - I - 0x036D6F 0D:AD5F: 2E AF     .word off_07_AF2E_06
-- D 1 - I - 0x036D71 0D:AD61: 51 AF     .word off_07_AF51_07
-- D 1 - I - 0x036D73 0D:AD63: 56 AF     .word off_07_AF56_08
-- D 1 - I - 0x036D75 0D:AD65: 5F AF     .word off_07_AF5F_09
-- D 1 - I - 0x036D77 0D:AD67: 64 AF     .word off_07_AF64_0A
-- D 1 - I - 0x036D79 0D:AD69: 69 AF     .word off_07_AF69_0B
-- D 1 - I - 0x036D7B 0D:AD6B: 7F AF     .word off_07_AF7F_0C
-- D 1 - I - 0x036D7D 0D:AD6D: A0 AF     .word off_07_AFA0_0D
-- D 1 - I - 0x036D7F 0D:AD6F: A5 AF     .word off_07_AFA5_0E
-- D 1 - I - 0x036D81 0D:AD71: AD AF     .word off_07_AFAD_0F
-- D 1 - I - 0x036D83 0D:AD73: B5 AF     .word off_07_AFB5_10
-- D 1 - I - 0x036D85 0D:AD75: BD AF     .word off_07_AFBD_11
-- D 1 - I - 0x036D87 0D:AD77: C5 AF     .word off_07_AFC5_12
-- D 1 - I - 0x036D89 0D:AD79: CD AF     .word off_07_AFCD_13
-- D 1 - I - 0x036D8B 0D:AD7B: D5 AF     .word off_07_AFD5_14
-- D 1 - I - 0x036D8D 0D:AD7D: DD AF     .word off_07_AFDD_15
-- D 1 - I - 0x036D8F 0D:AD7F: E5 AF     .word off_07_AFE5_16
-- D 1 - I - 0x036D91 0D:AD81: ED AF     .word off_07_AFED_17
-- - - - - - 0x036D93 0D:AD83: F5 AF     .word off_07_AFF5_18
-- - - - - - 0x036D95 0D:AD85: FD AF     .word off_07_AFFD_19
-- D 1 - I - 0x036D97 0D:AD87: 05 B0     .word off_07_B005_1A
-- D 1 - I - 0x036D99 0D:AD89: D8 AE     .word off_07_AED8_1B
-- D 1 - I - 0x036D9B 0D:AD8B: E0 AE     .word off_07_AEE0_1C
-- D 1 - I - 0x036D9D 0D:AD8D: E8 AE     .word off_07_AEE8_1D
-- D 1 - I - 0x036D9F 0D:AD8F: F0 AE     .word off_07_AEF0_1E
-- D 1 - I - 0x036DA1 0D:AD91: CB 93     .word off_07_93CB_1F
-- D 1 - I - 0x036DA3 0D:AD93: D0 93     .word off_07_93D0_20
-- D 1 - I - 0x036DA5 0D:AD95: D5 93     .word off_07_93D5_21
-- D 1 - I - 0x036DA7 0D:AD97: D0 93     .word off_07_93D0_22
-- D 1 - I - 0x036DA9 0D:AD99: 58 B0     .word off_07_B058_23
-- D 1 - I - 0x036DAB 0D:AD9B: 84 AF     .word off_07_AF84_24
-- D 1 - I - 0x036DAD 0D:AD9D: 95 AF     .word off_07_AF95_25
-- D 1 - I - 0x036DAF 0D:AD9F: 3F AF     .word off_07_AF3F_26
-- D 1 - I - 0x036DB1 0D:ADA1: 48 AF     .word off_07_AF48_27
-- D 1 - I - 0x036DB3 0D:ADA3: 77 AF     .word off_07_AF77_28
-- D 1 - I - 0x036DB5 0D:ADA5: 5D B0     .word off_07_B05D_29
-- D 1 - I - 0x036DB7 0D:ADA7: 65 B0     .word off_07_B065_2A
-- D 1 - I - 0x036DB9 0D:ADA9: 6D B0     .word off_07_B06D_2B
-- D 1 - I - 0x036DBB 0D:ADAB: 18 B0     .word off_07_B018_2C
-- D 1 - I - 0x036DBD 0D:ADAD: 20 B0     .word off_07_B020_2D
-- D 1 - I - 0x036DBF 0D:ADAF: 38 B0     .word off_07_B038_2E
-- D 1 - I - 0x036DC1 0D:ADB1: 41 B0     .word off_07_B041_2F
-- D 1 - I - 0x036DC3 0D:ADB3: 02 AF     .word off_07_AF02_30
-- D 1 - I - 0x036DC5 0D:ADB5: 0B AF     .word off_07_AF0B_31
-- D 1 - I - 0x036DC7 0D:ADB7: 14 AF     .word off_07_AF14_32
-- D 1 - I - 0x036DC9 0D:ADB9: 0B AF     .word off_07_AF0B_33
-- D 1 - I - 0x036DCB 0D:ADBB: 28 B0     .word off_07_B028_34
-- - - - - - 0x036DCD 0D:ADBD: 30 B0     .word off_07_B030_35
-- - - - - - 0x036DCF 0D:ADBF: 99 AE     .word off_07_AE99_36
-- D 1 - I - 0x036DD1 0D:ADC1: 4A B0     .word off_07_B04A_37
-- - - - - - 0x036DD3 0D:ADC3: 0D B0     .word off_07_B00D_38
+_off039_AD53_0E:
+- - - - - - 0x036D63 0D:AD53: 99 AE     .word off_0E_AE99_00     ; unused
+- D 1 - I - 0x036D65 0D:AD55: F8 AE     .word off_0E_AEF8_02
+- D 1 - I - 0x036D67 0D:AD57: FD AE     .word off_0E_AEFD_04
+- D 1 - I - 0x036D69 0D:AD59: 99 AE     .word off_0E_AE99_06
+- - - - - - 0x036D6B 0D:AD5B: 99 AE     .word off_0E_AE99_08
+- D 1 - I - 0x036D6D 0D:AD5D: 1D AF     .word off_0E_AF1D_0A
+- D 1 - I - 0x036D6F 0D:AD5F: 2E AF     .word off_0E_AF2E_0C
+- D 1 - I - 0x036D71 0D:AD61: 51 AF     .word off_0E_AF51_0E
+- D 1 - I - 0x036D73 0D:AD63: 56 AF     .word off_0E_AF56_10
+- D 1 - I - 0x036D75 0D:AD65: 5F AF     .word off_0E_AF5F_12
+- D 1 - I - 0x036D77 0D:AD67: 64 AF     .word off_0E_AF64_14
+- D 1 - I - 0x036D79 0D:AD69: 69 AF     .word off_0E_AF69_16
+- D 1 - I - 0x036D7B 0D:AD6B: 7F AF     .word off_0E_AF7F_18
+- D 1 - I - 0x036D7D 0D:AD6D: A0 AF     .word off_0E_AFA0_1A
+- D 1 - I - 0x036D7F 0D:AD6F: A5 AF     .word off_0E_AFA5_1C
+- D 1 - I - 0x036D81 0D:AD71: AD AF     .word off_0E_AFAD_1E
+- D 1 - I - 0x036D83 0D:AD73: B5 AF     .word off_0E_AFB5_20
+- D 1 - I - 0x036D85 0D:AD75: BD AF     .word off_0E_AFBD_22
+- D 1 - I - 0x036D87 0D:AD77: C5 AF     .word off_0E_AFC5_24
+- D 1 - I - 0x036D89 0D:AD79: CD AF     .word off_0E_AFCD_26
+- D 1 - I - 0x036D8B 0D:AD7B: D5 AF     .word off_0E_AFD5_28
+- D 1 - I - 0x036D8D 0D:AD7D: DD AF     .word off_0E_AFDD_2A
+- D 1 - I - 0x036D8F 0D:AD7F: E5 AF     .word off_0E_AFE5_2C
+- D 1 - I - 0x036D91 0D:AD81: ED AF     .word off_0E_AFED_2E
+- - - - - - 0x036D93 0D:AD83: F5 AF     .word off_0E_AFF5_30
+- - - - - - 0x036D95 0D:AD85: FD AF     .word off_0E_AFFD_32
+- D 1 - I - 0x036D97 0D:AD87: 05 B0     .word off_0E_B005_34
+- D 1 - I - 0x036D99 0D:AD89: D8 AE     .word off_0E_AED8_36
+- D 1 - I - 0x036D9B 0D:AD8B: E0 AE     .word off_0E_AEE0_38
+- D 1 - I - 0x036D9D 0D:AD8D: E8 AE     .word off_0E_AEE8_3A
+- D 1 - I - 0x036D9F 0D:AD8F: F0 AE     .word off_0E_AEF0_3C
+- D 1 - I - 0x036DA1 0D:AD91: CB 93     .word off_0E_93CB_3E
+- D 1 - I - 0x036DA3 0D:AD93: D0 93     .word off_0E_93D0_40
+- D 1 - I - 0x036DA5 0D:AD95: D5 93     .word off_0E_93D5_42
+- D 1 - I - 0x036DA7 0D:AD97: D0 93     .word off_0E_93D0_44
+- D 1 - I - 0x036DA9 0D:AD99: 58 B0     .word off_0E_B058_46
+- D 1 - I - 0x036DAB 0D:AD9B: 84 AF     .word off_0E_AF84_48
+- D 1 - I - 0x036DAD 0D:AD9D: 95 AF     .word off_0E_AF95_4A
+- D 1 - I - 0x036DAF 0D:AD9F: 3F AF     .word off_0E_AF3F_4C
+- D 1 - I - 0x036DB1 0D:ADA1: 48 AF     .word off_0E_AF48_4E
+- D 1 - I - 0x036DB3 0D:ADA3: 77 AF     .word off_0E_AF77_50
+- D 1 - I - 0x036DB5 0D:ADA5: 5D B0     .word off_0E_B05D_52
+- D 1 - I - 0x036DB7 0D:ADA7: 65 B0     .word off_0E_B065_54
+- D 1 - I - 0x036DB9 0D:ADA9: 6D B0     .word off_0E_B06D_56
+- D 1 - I - 0x036DBB 0D:ADAB: 18 B0     .word off_0E_B018_58
+- D 1 - I - 0x036DBD 0D:ADAD: 20 B0     .word off_0E_B020_5A
+- D 1 - I - 0x036DBF 0D:ADAF: 38 B0     .word off_0E_B038_5C
+- D 1 - I - 0x036DC1 0D:ADB1: 41 B0     .word off_0E_B041_5E
+- D 1 - I - 0x036DC3 0D:ADB3: 02 AF     .word off_0E_AF02_60
+- D 1 - I - 0x036DC5 0D:ADB5: 0B AF     .word off_0E_AF0B_62
+- D 1 - I - 0x036DC7 0D:ADB7: 14 AF     .word off_0E_AF14_64
+- D 1 - I - 0x036DC9 0D:ADB9: 0B AF     .word off_0E_AF0B_66
+- D 1 - I - 0x036DCB 0D:ADBB: 28 B0     .word off_0E_B028_68
+- - - - - - 0x036DCD 0D:ADBD: 30 B0     .word off_0E_B030_6A
+- - - - - - 0x036DCF 0D:ADBF: 99 AE     .word off_0E_AE99_6C
+- D 1 - I - 0x036DD1 0D:ADC1: 4A B0     .word off_0E_B04A_6E
+- - - - - - 0x036DD3 0D:ADC3: 0D B0     .word off_0E_B00D_70
 
 
 
-off_0A_ADC5_22:
+off_14_ADC5_44:
 - D 1 - I - 0x036DD5 0D:ADC5: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10037,7 +10037,7 @@ off_0A_ADC5_22:
 
 
 
-off_0A_ADCA_23:
+off_14_ADCA_46:
 - D 1 - I - 0x036DDA 0D:ADCA: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10049,7 +10049,7 @@ off_0A_ADCA_23:
 
 
 
-off_0A_ADD2_24:
+off_14_ADD2_48:
 - D 1 - I - 0x036DE2 0D:ADD2: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10062,7 +10062,7 @@ off_0A_ADD2_24:
 
 
 
-off_0A_ADDD_25:
+off_14_ADDD_4A:
 - D 1 - I - 0x036DED 0D:ADDD: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10076,7 +10076,7 @@ off_0A_ADDD_25:
 
 
 
-off_0A_ADEB_26:
+off_14_ADEB_4C:
 - D 1 - I - 0x036DFB 0D:ADEB: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10091,7 +10091,7 @@ off_0A_ADEB_26:
 
 
 
-off_0A_ADFC_27:
+off_14_ADFC_4E:
 - D 1 - I - 0x036E0C 0D:ADFC: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10106,7 +10106,7 @@ off_0A_ADFC_27:
 
 
 
-off_0A_AE0D_28:
+off_14_AE0D_50:
 - D 1 - I - 0x036E1D 0D:AE0D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10118,7 +10118,7 @@ off_0A_AE0D_28:
 
 
 
-off_0A_AE15_29:
+off_14_AE15_52:
 - - - - - - 0x036E25 0D:AE15: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10130,8 +10130,8 @@ off_0A_AE15_29:
 
 
 
-off_0A_AE1D_2A:
-off_0A_AE1D_2C:
+off_14_AE1D_54:
+off_14_AE1D_58:
 - - - - - - 0x036E2D 0D:AE1D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10143,7 +10143,7 @@ off_0A_AE1D_2C:
 
 
 
-off_0A_AE25_2B:
+off_14_AE25_56:
 - - - - - - 0x036E35 0D:AE25: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10155,7 +10155,7 @@ off_0A_AE25_2B:
 
 
 
-off_0A_AE2D_34:
+off_14_AE2D_68:
 - D 1 - I - 0x036E3D 0D:AE2D: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10166,7 +10166,7 @@ off_0A_AE2D_34:
 
 
 
-off_0A_AE32_35:
+off_14_AE32_6A:
 - D 1 - I - 0x036E42 0D:AE32: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10178,7 +10178,7 @@ off_0A_AE32_35:
 
 
 
-off_0A_AE3A_2D:
+off_14_AE3A_5A:
 - - - - - - 0x036E4A 0D:AE3A: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10190,7 +10190,7 @@ off_0A_AE3A_2D:
 
 
 
-off_0A_AE42_2E:
+off_14_AE42_5C:
 - - - - - - 0x036E52 0D:AE42: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10202,7 +10202,7 @@ off_0A_AE42_2E:
 
 
 
-off_0A_AE4A_2F:
+off_14_AE4A_5E:
 - D 1 - I - 0x036E5A 0D:AE4A: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10216,7 +10216,7 @@ off_0A_AE4A_2F:
 
 
 
-off_0A_AE58_30:
+off_14_AE58_60:
 - D 1 - I - 0x036E68 0D:AE58: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10230,7 +10230,7 @@ off_0A_AE58_30:
 
 
 
-off_0A_AE66_31:
+off_14_AE66_62:
 - D 1 - I - 0x036E76 0D:AE66: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10245,7 +10245,7 @@ off_0A_AE66_31:
 
 
 
-off_0A_AE77_32:
+off_14_AE77_64:
 - D 1 - I - 0x036E87 0D:AE77: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10260,7 +10260,7 @@ off_0A_AE77_32:
 
 
 
-off_0A_AE88_33:
+off_14_AE88_66:
 - D 1 - I - 0x036E98 0D:AE88: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10275,11 +10275,11 @@ off_0A_AE88_33:
 
 
 
-off_06_AE99_00:
-off_07_AE99_00:
-off_07_AE99_03:
-off_07_AE99_04:
-off_07_AE99_36:
+off_0C_AE99_00:
+off_0E_AE99_00:
+off_0E_AE99_06:
+off_0E_AE99_08:
+off_0E_AE99_6C:
 - D 1 - I - 0x036EA9 0D:AE99: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10293,8 +10293,8 @@ off_07_AE99_36:
 
 
 
-off_06_AEA7_01:
-off_06_AEA7_03:
+off_0C_AEA7_02:
+off_0C_AEA7_06:
 - D 1 - I - 0x036EB7 0D:AEA7: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10310,7 +10310,7 @@ off_06_AEA7_03:
 
 
 
-off_06_AEBB_02:
+off_0C_AEBB_04:
 - D 1 - I - 0x036ECB 0D:AEBB: 09        .byte $09   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10329,7 +10329,7 @@ off_06_AEBB_02:
 
 
 
-off_07_AED8_1B:
+off_0E_AED8_36:
 - D 1 - I - 0x036EE8 0D:AED8: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10341,7 +10341,7 @@ off_07_AED8_1B:
 
 
 
-off_07_AEE0_1C:
+off_0E_AEE0_38:
 - D 1 - I - 0x036EF0 0D:AEE0: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10353,7 +10353,7 @@ off_07_AEE0_1C:
 
 
 
-off_07_AEE8_1D:
+off_0E_AEE8_3A:
 - D 1 - I - 0x036EF8 0D:AEE8: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10365,7 +10365,7 @@ off_07_AEE8_1D:
 
 
 
-off_07_AEF0_1E:
+off_0E_AEF0_3C:
 - D 1 - I - 0x036F00 0D:AEF0: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10377,7 +10377,7 @@ off_07_AEF0_1E:
 
 
 
-off_07_AEF8_01:
+off_0E_AEF8_02:
 - D 1 - I - 0x036F08 0D:AEF8: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10388,7 +10388,7 @@ off_07_AEF8_01:
 
 
 
-off_07_AEFD_02:
+off_0E_AEFD_04:
 - D 1 - I - 0x036F0D 0D:AEFD: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10399,7 +10399,7 @@ off_07_AEFD_02:
 
 
 
-off_07_AF02_30:
+off_0E_AF02_60:
 - D 1 - I - 0x036F12 0D:AF02: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10411,8 +10411,8 @@ off_07_AF02_30:
 
 
 
-off_07_AF0B_31:
-off_07_AF0B_33:
+off_0E_AF0B_62:
+off_0E_AF0B_66:
 - D 1 - I - 0x036F1B 0D:AF0B: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10424,7 +10424,7 @@ off_07_AF0B_33:
 
 
 
-off_07_AF14_32:
+off_0E_AF14_64:
 - D 1 - I - 0x036F24 0D:AF14: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10436,7 +10436,7 @@ off_07_AF14_32:
 
 
 
-off_07_AF1D_05:
+off_0E_AF1D_0A:
 - D 1 - I - 0x036F2D 0D:AF1D: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10450,7 +10450,7 @@ off_07_AF1D_05:
 
 
 
-off_07_AF2E_06:
+off_0E_AF2E_0C:
 - D 1 - I - 0x036F3E 0D:AF2E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10464,7 +10464,7 @@ off_07_AF2E_06:
 
 
 
-off_07_AF3F_26:
+off_0E_AF3F_4C:
 - D 1 - I - 0x036F4F 0D:AF3F: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10476,7 +10476,7 @@ off_07_AF3F_26:
 
 
 
-off_07_AF48_27:
+off_0E_AF48_4E:
 - D 1 - I - 0x036F58 0D:AF48: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10488,7 +10488,7 @@ off_07_AF48_27:
 
 
 
-off_07_AF51_07:
+off_0E_AF51_0E:
 - D 1 - I - 0x036F61 0D:AF51: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10499,7 +10499,7 @@ off_07_AF51_07:
 
 
 
-off_07_AF56_08:
+off_0E_AF56_10:
 - D 1 - I - 0x036F66 0D:AF56: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10511,7 +10511,7 @@ off_07_AF56_08:
 
 
 
-off_07_AF5F_09:
+off_0E_AF5F_12:
 - D 1 - I - 0x036F6F 0D:AF5F: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10522,7 +10522,7 @@ off_07_AF5F_09:
 
 
 
-off_07_AF64_0A:
+off_0E_AF64_14:
 - D 1 - I - 0x036F74 0D:AF64: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10533,7 +10533,7 @@ off_07_AF64_0A:
 
 
 
-off_07_AF69_0B:
+off_0E_AF69_16:
 - D 1 - I - 0x036F79 0D:AF69: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10547,7 +10547,7 @@ off_07_AF69_0B:
 
 
 
-off_07_AF77_28:
+off_0E_AF77_50:
 - D 1 - I - 0x036F87 0D:AF77: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10559,7 +10559,7 @@ off_07_AF77_28:
 
 
 
-off_07_AF7F_0C:
+off_0E_AF7F_18:
 - D 1 - I - 0x036F8F 0D:AF7F: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10570,7 +10570,7 @@ off_07_AF7F_0C:
 
 
 
-off_07_AF84_24:
+off_0E_AF84_48:
 - D 1 - I - 0x036F94 0D:AF84: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10585,7 +10585,7 @@ off_07_AF84_24:
 
 
 
-off_07_AF95_25:
+off_0E_AF95_4A:
 - D 1 - I - 0x036FA5 0D:AF95: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10598,7 +10598,7 @@ off_07_AF95_25:
 
 
 
-off_07_AFA0_0D:
+off_0E_AFA0_1A:
 - D 1 - I - 0x036FB0 0D:AFA0: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10609,7 +10609,7 @@ off_07_AFA0_0D:
 
 
 
-off_07_AFA5_0E:
+off_0E_AFA5_1C:
 - D 1 - I - 0x036FB5 0D:AFA5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10621,7 +10621,7 @@ off_07_AFA5_0E:
 
 
 
-off_07_AFAD_0F:
+off_0E_AFAD_1E:
 - D 1 - I - 0x036FBD 0D:AFAD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10633,7 +10633,7 @@ off_07_AFAD_0F:
 
 
 
-off_07_AFB5_10:
+off_0E_AFB5_20:
 - D 1 - I - 0x036FC5 0D:AFB5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10645,7 +10645,7 @@ off_07_AFB5_10:
 
 
 
-off_07_AFBD_11:
+off_0E_AFBD_22:
 - D 1 - I - 0x036FCD 0D:AFBD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10657,7 +10657,7 @@ off_07_AFBD_11:
 
 
 
-off_07_AFC5_12:
+off_0E_AFC5_24:
 - D 1 - I - 0x036FD5 0D:AFC5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10669,7 +10669,7 @@ off_07_AFC5_12:
 
 
 
-off_07_AFCD_13:
+off_0E_AFCD_26:
 - D 1 - I - 0x036FDD 0D:AFCD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10681,7 +10681,7 @@ off_07_AFCD_13:
 
 
 
-off_07_AFD5_14:
+off_0E_AFD5_28:
 - D 1 - I - 0x036FE5 0D:AFD5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10693,7 +10693,7 @@ off_07_AFD5_14:
 
 
 
-off_07_AFDD_15:
+off_0E_AFDD_2A:
 - D 1 - I - 0x036FED 0D:AFDD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10705,7 +10705,7 @@ off_07_AFDD_15:
 
 
 
-off_07_AFE5_16:
+off_0E_AFE5_2C:
 - D 1 - I - 0x036FF5 0D:AFE5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10717,7 +10717,7 @@ off_07_AFE5_16:
 
 
 
-off_07_AFED_17:
+off_0E_AFED_2E:
 - D 1 - I - 0x036FFD 0D:AFED: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10729,7 +10729,7 @@ off_07_AFED_17:
 
 
 
-off_07_AFF5_18:
+off_0E_AFF5_30:
 - - - - - - 0x037005 0D:AFF5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10741,7 +10741,7 @@ off_07_AFF5_18:
 
 
 
-off_07_AFFD_19:
+off_0E_AFFD_32:
 - - - - - - 0x03700D 0D:AFFD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10753,7 +10753,7 @@ off_07_AFFD_19:
 
 
 
-off_07_B005_1A:
+off_0E_B005_34:
 - D 1 - I - 0x037015 0D:B005: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10765,7 +10765,7 @@ off_07_B005_1A:
 
 
 
-off_07_B00D_38:
+off_0E_B00D_70:
 - - - - - - 0x03701D 0D:B00D: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10778,7 +10778,7 @@ off_07_B00D_38:
 
 
 
-off_07_B018_2C:
+off_0E_B018_58:
 - D 1 - I - 0x037028 0D:B018: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10790,7 +10790,7 @@ off_07_B018_2C:
 
 
 
-off_07_B020_2D:
+off_0E_B020_5A:
 - D 1 - I - 0x037030 0D:B020: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10802,7 +10802,7 @@ off_07_B020_2D:
 
 
 
-off_07_B028_34:
+off_0E_B028_68:
 - D 1 - I - 0x037038 0D:B028: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10814,7 +10814,7 @@ off_07_B028_34:
 
 
 
-off_07_B030_35:
+off_0E_B030_6A:
 - - - - - - 0x037040 0D:B030: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10826,7 +10826,7 @@ off_07_B030_35:
 
 
 
-off_07_B038_2E:
+off_0E_B038_5C:
 - D 1 - I - 0x037048 0D:B038: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10838,7 +10838,7 @@ off_07_B038_2E:
 
 
 
-off_07_B041_2F:
+off_0E_B041_5E:
 - D 1 - I - 0x037051 0D:B041: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10850,7 +10850,7 @@ off_07_B041_2F:
 
 
 
-off_07_B04A_37:
+off_0E_B04A_6E:
 - D 1 - I - 0x03705A 0D:B04A: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10864,7 +10864,7 @@ off_07_B04A_37:
 
 
 
-off_07_B058_23:
+off_0E_B058_46:
 - D 1 - I - 0x037068 0D:B058: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10875,7 +10875,7 @@ off_07_B058_23:
 
 
 
-off_07_B05D_29:
+off_0E_B05D_52:
 - D 1 - I - 0x03706D 0D:B05D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10887,7 +10887,7 @@ off_07_B05D_29:
 
 
 
-off_07_B065_2A:
+off_0E_B065_54:
 - D 1 - I - 0x037075 0D:B065: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10899,7 +10899,7 @@ off_07_B065_2A:
 
 
 
-off_07_B06D_2B:
+off_0E_B06D_56:
 - D 1 - I - 0x03707D 0D:B06D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10911,7 +10911,7 @@ off_07_B06D_2B:
 
 
 
-off_06_B075_04:
+off_0C_B075_08:
 - D 1 - I - 0x037085 0D:B075: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10923,7 +10923,7 @@ off_06_B075_04:
 
 
 
-off_06_B07D_05:
+off_0C_B07D_0A:
 - D 1 - I - 0x03708D 0D:B07D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10935,7 +10935,7 @@ off_06_B07D_05:
 
 
 
-off_06_B085_06:
+off_0C_B085_0C:
 - D 1 - I - 0x037095 0D:B085: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10947,7 +10947,7 @@ off_06_B085_06:
 
 
 
-off_06_B08D_07:
+off_0C_B08D_0E:
 - D 1 - I - 0x03709D 0D:B08D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10959,7 +10959,7 @@ off_06_B08D_07:
 
 
 
-off_06_B095_08:
+off_0C_B095_10:
 - D 1 - I - 0x0370A5 0D:B095: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10971,7 +10971,7 @@ off_06_B095_08:
 
 
 
-off_06_B09D_09:
+off_0C_B09D_12:
 - D 1 - I - 0x0370AD 0D:B09D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10983,7 +10983,7 @@ off_06_B09D_09:
 
 
 
-off_06_B0A5_0A:
+off_0C_B0A5_14:
 - D 1 - I - 0x0370B5 0D:B0A5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -10995,7 +10995,7 @@ off_06_B0A5_0A:
 
 
 
-off_06_B0AD_0B:
+off_0C_B0AD_16:
 - D 1 - I - 0x0370BD 0D:B0AD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11007,7 +11007,7 @@ off_06_B0AD_0B:
 
 
 
-off_06_B0B5_0C:
+off_0C_B0B5_18:
 - D 1 - I - 0x0370C5 0D:B0B5: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11019,8 +11019,8 @@ off_06_B0B5_0C:
 
 
 
-off_06_B0BD_0D:
-off_06_B0BD_11:
+off_0C_B0BD_1A:
+off_0C_B0BD_22:
 - D 1 - I - 0x0370CD 0D:B0BD: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11034,7 +11034,7 @@ off_06_B0BD_11:
 
 
 
-off_06_B0CB_0E:
+off_0C_B0CB_1C:
 - D 1 - I - 0x0370DB 0D:B0CB: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11049,7 +11049,7 @@ off_06_B0CB_0E:
 
 
 
-off_06_B0DC_0F:
+off_0C_B0DC_1E:
 - D 1 - I - 0x0370EC 0D:B0DC: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11061,7 +11061,7 @@ off_06_B0DC_0F:
 
 
 
-off_06_B0E4_10:
+off_0C_B0E4_20:
 - D 1 - I - 0x0370F4 0D:B0E4: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11076,8 +11076,8 @@ off_06_B0E4_10:
 
 
 
-off_06_B0F5_12:
-off_06_B0F5_1A:
+off_0C_B0F5_24:
+off_0C_B0F5_34:
 - D 1 - I - 0x037105 0D:B0F5: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11091,8 +11091,8 @@ off_06_B0F5_1A:
 
 
 
-off_06_B103_13:
-off_06_B103_19:
+off_0C_B103_26:
+off_0C_B103_32:
 - D 1 - I - 0x037113 0D:B103: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11108,8 +11108,8 @@ off_06_B103_19:
 
 
 
-off_06_B117_14:
-off_06_B117_18:
+off_0C_B117_28:
+off_0C_B117_30:
 - D 1 - I - 0x037127 0D:B117: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11123,8 +11123,8 @@ off_06_B117_18:
 
 
 
-off_06_B125_15:
-off_06_B125_17:
+off_0C_B125_2A:
+off_0C_B125_2E:
 - D 1 - I - 0x037135 0D:B125: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11140,7 +11140,7 @@ off_06_B125_17:
 
 
 
-off_06_B139_16:
+off_0C_B139_2C:
 - D 1 - I - 0x037149 0D:B139: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11154,7 +11154,7 @@ off_06_B139_16:
 
 
 
-off_06_B147_1B:
+off_0C_B147_36:
 - D 1 - I - 0x037157 0D:B147: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11165,7 +11165,7 @@ off_06_B147_1B:
 
 
 
-off_06_B14C_1C:
+off_0C_B14C_38:
 - D 1 - I - 0x03715C 0D:B14C: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11176,7 +11176,7 @@ off_06_B14C_1C:
 
 
 
-off_06_B151_1D:
+off_0C_B151_3A:
 - D 1 - I - 0x037161 0D:B151: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11187,7 +11187,7 @@ off_06_B151_1D:
 
 
 
-off_06_B156_1E:
+off_0C_B156_3C:
 - D 1 - I - 0x037166 0D:B156: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11198,7 +11198,7 @@ off_06_B156_1E:
 
 
 
-off_06_B15B_1F:
+off_0C_B15B_3E:
 - D 1 - I - 0x03716B 0D:B15B: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11209,7 +11209,7 @@ off_06_B15B_1F:
 
 
 
-off_06_B160_20:
+off_0C_B160_40:
 - D 1 - I - 0x037170 0D:B160: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11220,7 +11220,7 @@ off_06_B160_20:
 
 
 
-off_06_B165_21:
+off_0C_B165_42:
 - D 1 - I - 0x037175 0D:B165: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11231,7 +11231,7 @@ off_06_B165_21:
 
 
 
-off_06_B16A_22:
+off_0C_B16A_44:
 - D 1 - I - 0x03717A 0D:B16A: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11242,7 +11242,7 @@ off_06_B16A_22:
 
 
 
-off_06_B16F_23:
+off_0C_B16F_46:
 - D 1 - I - 0x03717F 0D:B16F: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11253,7 +11253,7 @@ off_06_B16F_23:
 
 
 
-off_06_B174_24:
+off_0C_B174_48:
 - D 1 - I - 0x037184 0D:B174: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11264,7 +11264,7 @@ off_06_B174_24:
 
 
 
-off_06_B179_25:
+off_0C_B179_4A:
 - D 1 - I - 0x037189 0D:B179: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11275,7 +11275,7 @@ off_06_B179_25:
 
 
 
-off_06_B17E_26:
+off_0C_B17E_4C:
 - D 1 - I - 0x03718E 0D:B17E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11287,7 +11287,7 @@ off_06_B17E_26:
 
 
 
-off_06_B186_27:
+off_0C_B186_4E:
 - D 1 - I - 0x037196 0D:B186: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11299,7 +11299,7 @@ off_06_B186_27:
 
 
 
-off_06_B18E_28:
+off_0C_B18E_50:
 - D 1 - I - 0x03719E 0D:B18E: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11311,7 +11311,7 @@ off_06_B18E_28:
 
 
 
-off_06_B196_29:
+off_0C_B196_52:
 - D 1 - I - 0x0371A6 0D:B196: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11329,7 +11329,7 @@ off_06_B196_29:
 
 
 
-off_06_B1B2_2A:
+off_0C_B1B2_54:
 - D 1 - I - 0x0371C2 0D:B1B2: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11347,7 +11347,7 @@ off_06_B1B2_2A:
 
 
 
-off_06_B1CC_7F:
+off_0C_B1CC_FE:
 - D 1 - I - 0x0371DC 0D:B1CC: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11365,7 +11365,7 @@ off_06_B1CC_7F:
 
 
 
-off_06_B1E6_2B:
+off_0C_B1E6_56:
 - D 1 - I - 0x0371F6 0D:B1E6: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11377,7 +11377,7 @@ off_06_B1E6_2B:
 
 
 
-off_06_B1EF_2C:
+off_0C_B1EF_58:
 - D 1 - I - 0x0371FF 0D:B1EF: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11389,7 +11389,7 @@ off_06_B1EF_2C:
 
 
 
-off_06_B1F7_2D:
+off_0C_B1F7_5A:
 - D 1 - I - 0x037207 0D:B1F7: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11401,7 +11401,7 @@ off_06_B1F7_2D:
 
 
 
-off_06_B1FF_2E:
+off_0C_B1FF_5C:
 - D 1 - I - 0x03720F 0D:B1FF: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11412,7 +11412,7 @@ off_06_B1FF_2E:
 
 
 
-off_06_B204_2F:
+off_0C_B204_5E:
 - D 1 - I - 0x037214 0D:B204: 01        .byte $01   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11423,7 +11423,7 @@ off_06_B204_2F:
 
 
 
-off_06_B209_30:
+off_0C_B209_60:
 - D 1 - I - 0x037219 0D:B209: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11435,7 +11435,7 @@ off_06_B209_30:
 
 
 
-off_06_B211_31:
+off_0C_B211_62:
 - D 1 - I - 0x037221 0D:B211: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11447,7 +11447,7 @@ off_06_B211_31:
 
 
 
-off_06_B21A_32:
+off_0C_B21A_64:
 - D 1 - I - 0x03722A 0D:B21A: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11459,7 +11459,7 @@ off_06_B21A_32:
 
 
 
-off_06_B222_33:
+off_0C_B222_66:
 - D 1 - I - 0x037232 0D:B222: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11471,7 +11471,7 @@ off_06_B222_33:
 
 
 
-off_06_B22A_34:
+off_0C_B22A_68:
 - D 1 - I - 0x03723A 0D:B22A: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11483,7 +11483,7 @@ off_06_B22A_34:
 
 
 
-off_06_B233_35:
+off_0C_B233_6A:
 - D 1 - I - 0x037243 0D:B233: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11495,7 +11495,7 @@ off_06_B233_35:
 
 
 
-off_06_B23C_36:
+off_0C_B23C_6C:
 - D 1 - I - 0x03724C 0D:B23C: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11507,7 +11507,7 @@ off_06_B23C_36:
 
 
 
-off_06_B245_37:
+off_0C_B245_6E:
 - D 1 - I - 0x037255 0D:B245: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11519,7 +11519,7 @@ off_06_B245_37:
 
 
 
-off_06_B24D_38:
+off_0C_B24D_70:
 - D 1 - I - 0x03725D 0D:B24D: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11533,7 +11533,7 @@ off_06_B24D_38:
 
 
 
-off_06_B25B_39:
+off_0C_B25B_72:
 - D 1 - I - 0x03726B 0D:B25B: 03        .byte $03   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11546,7 +11546,7 @@ off_06_B25B_39:
 
 
 
-off_06_B266_3A:
+off_0C_B266_74:
 - D 1 - I - 0x037276 0D:B266: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11560,7 +11560,7 @@ off_06_B266_3A:
 
 
 
-off_06_B274_3B:
+off_0C_B274_76:
 - D 1 - I - 0x037284 0D:B274: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11574,7 +11574,7 @@ off_06_B274_3B:
 
 
 
-off_06_B282_3C:
+off_0C_B282_78:
 - D 1 - I - 0x037292 0D:B282: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11588,7 +11588,7 @@ off_06_B282_3C:
 
 
 
-off_06_B290_3D:
+off_0C_B290_7A:
 - D 1 - I - 0x0372A0 0D:B290: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11602,7 +11602,7 @@ off_06_B290_3D:
 
 
 
-off_06_B29E_3E:
+off_0C_B29E_7C:
 - D 1 - I - 0x0372AE 0D:B29E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11616,7 +11616,7 @@ off_06_B29E_3E:
 
 
 
-off_06_B2AC_3F:
+off_0C_B2AC_7E:
 - D 1 - I - 0x0372BC 0D:B2AC: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11630,7 +11630,7 @@ off_06_B2AC_3F:
 
 
 
-off_06_B2BA_40:
+off_0C_B2BA_80:
 - D 1 - I - 0x0372CA 0D:B2BA: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11644,7 +11644,7 @@ off_06_B2BA_40:
 
 
 
-off_06_B2C8_41:
+off_0C_B2C8_82:
 - D 1 - I - 0x0372D8 0D:B2C8: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11664,7 +11664,7 @@ off_06_B2C8_41:
 
 
 
-off_06_B2E9_42:
+off_0C_B2E9_84:
 - D 1 - I - 0x0372F9 0D:B2E9: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11684,7 +11684,7 @@ off_06_B2E9_42:
 
 
 
-off_06_B30A_43:
+off_0C_B30A_86:
 - D 1 - I - 0x03731A 0D:B30A: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11698,7 +11698,7 @@ off_06_B30A_43:
 
 
 
-off_06_B318_44:
+off_0C_B318_88:
 - D 1 - I - 0x037328 0D:B318: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11713,7 +11713,7 @@ off_06_B318_44:
 
 
 
-off_06_B329_45:
+off_0C_B329_8A:
 - D 1 - I - 0x037339 0D:B329: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11728,7 +11728,7 @@ off_06_B329_45:
 
 
 
-off_06_B33A_46:
+off_0C_B33A_8C:
 - D 1 - I - 0x03734A 0D:B33A: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11743,7 +11743,7 @@ off_06_B33A_46:
 
 
 
-off_06_B34B_47:
+off_0C_B34B_8E:
 - D 1 - I - 0x03735B 0D:B34B: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11764,7 +11764,7 @@ off_06_B34B_47:
 
 
 
-off_06_B36F_48:
+off_0C_B36F_90:
 - D 1 - I - 0x03737F 0D:B36F: 0B        .byte $0B   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11785,7 +11785,7 @@ off_06_B36F_48:
 
 
 
-off_06_B393_49:
+off_0C_B393_92:
 - D 1 - I - 0x0373A3 0D:B393: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11800,7 +11800,7 @@ off_06_B393_49:
 
 
 
-off_06_B3A4_4A:
+off_0C_B3A4_94:
 - D 1 - I - 0x0373B4 0D:B3A4: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11814,7 +11814,7 @@ off_06_B3A4_4A:
 
 
 
-off_06_B3B2_4B:
+off_0C_B3B2_96:
 - D 1 - I - 0x0373C2 0D:B3B2: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11828,7 +11828,7 @@ off_06_B3B2_4B:
 
 
 
-off_06_B3C0_4C:
+off_0C_B3C0_98:
 - D 1 - I - 0x0373D0 0D:B3C0: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11842,7 +11842,7 @@ off_06_B3C0_4C:
 
 
 
-off_06_B3CE_4D:
+off_0C_B3CE_9A:
 - D 1 - I - 0x0373DE 0D:B3CE: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11862,7 +11862,7 @@ off_06_B3CE_4D:
 
 
 
-off_06_B3EF_4E:
+off_0C_B3EF_9C:
 - D 1 - I - 0x0373FF 0D:B3EF: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11882,7 +11882,7 @@ off_06_B3EF_4E:
 
 
 
-off_06_B410_4F:
+off_0C_B410_9E:
 - D 1 - I - 0x037420 0D:B410: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11896,7 +11896,7 @@ off_06_B410_4F:
 
 
 
-off_06_B41E_6D:
+off_0C_B41E_DA:
 - D 1 - I - 0x03742E 0D:B41E: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11918,7 +11918,7 @@ off_06_B41E_6D:
 
 
 
-off_06_B444_6E:
+off_0C_B444_DC:
 - D 1 - I - 0x037454 0D:B444: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11932,7 +11932,7 @@ off_06_B444_6E:
 
 
 
-off_06_B452_6F:
+off_0C_B452_DE:
 - D 1 - I - 0x037462 0D:B452: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11946,7 +11946,7 @@ off_06_B452_6F:
 
 
 
-off_06_B460_70:
+off_0C_B460_E0:
 - D 1 - I - 0x037470 0D:B460: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11960,7 +11960,7 @@ off_06_B460_70:
 
 
 
-off_06_B46E_71:
+off_0C_B46E_E2:
 - D 1 - I - 0x03747E 0D:B46E: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11978,7 +11978,7 @@ off_06_B46E_71:
 
 
 
-off_06_B488_72:
+off_0C_B488_E4:
 - D 1 - I - 0x037498 0D:B488: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -11995,7 +11995,7 @@ off_06_B488_72:
 
 
 
-off_06_B49F_73:
+off_0C_B49F_E6:
 - D 1 - I - 0x0374AF 0D:B49F: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12009,7 +12009,7 @@ off_06_B49F_73:
 
 
 
-off_06_B4AD_74:
+off_0C_B4AD_E8:
 - D 1 - I - 0x0374BD 0D:B4AD: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12021,8 +12021,8 @@ off_06_B4AD_74:
 
 
 
-off_0A_B4B5_00:
-off_0A_B4B5_01:
+off_14_B4B5_00:
+off_14_B4B5_02:
 - D 1 - I - 0x0374C5 0D:B4B5: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12036,7 +12036,7 @@ off_0A_B4B5_01:
 
 
 
-off_0A_B4C4_02:
+off_14_B4C4_04:
 - D 1 - I - 0x0374D4 0D:B4C4: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12050,7 +12050,7 @@ off_0A_B4C4_02:
 
 
 
-off_0A_B4D3_03:
+off_14_B4D3_06:
 - D 1 - I - 0x0374E3 0D:B4D3: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12064,7 +12064,7 @@ off_0A_B4D3_03:
 
 
 
-off_0A_B4E1_04:
+off_14_B4E1_08:
 - D 1 - I - 0x0374F1 0D:B4E1: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12082,7 +12082,7 @@ off_0A_B4E1_04:
 
 
 
-off_0A_B4FE_05:
+off_14_B4FE_0A:
 - D 1 - I - 0x03750E 0D:B4FE: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12096,7 +12096,7 @@ off_0A_B4FE_05:
 
 
 
-off_0A_B50C_06:
+off_14_B50C_0C:
 - D 1 - I - 0x03751C 0D:B50C: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12111,7 +12111,7 @@ off_0A_B50C_06:
 
 
 
-off_0A_B51D_07:
+off_14_B51D_0E:
 - D 1 - I - 0x03752D 0D:B51D: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12125,7 +12125,7 @@ off_0A_B51D_07:
 
 
 
-off_0A_B52B_08:
+off_14_B52B_10:
 - D 1 - I - 0x03753B 0D:B52B: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12137,7 +12137,7 @@ off_0A_B52B_08:
 
 
 
-off_0A_B534_09:
+off_14_B534_12:
 - D 1 - I - 0x037544 0D:B534: 08        .byte $08   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12155,7 +12155,7 @@ off_0A_B534_09:
 
 
 
-off_0A_B54F_0A:
+off_14_B54F_14:
 - - - - - - 0x03755F 0D:B54F: 10        .byte $10   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12181,7 +12181,7 @@ off_0A_B54F_0A:
 
 
 
-off_0A_B581_0B:
+off_14_B581_16:
 - D 1 - I - 0x037591 0D:B581: 15        .byte $15   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12212,7 +12212,7 @@ off_0A_B581_0B:
 
 
 
-off_0A_B5C2_0C:
+off_14_B5C2_18:
 - D 1 - I - 0x0375D2 0D:B5C2: 10        .byte $10   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12238,7 +12238,7 @@ off_0A_B5C2_0C:
 
 
 
-off_0A_B5F4_0D:
+off_14_B5F4_1A:
 - D 1 - I - 0x037604 0D:B5F4: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12253,7 +12253,7 @@ off_0A_B5F4_0D:
 
 
 
-off_0A_B605_0E:
+off_14_B605_1C:
 - D 1 - I - 0x037615 0D:B605: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12268,7 +12268,7 @@ off_0A_B605_0E:
 
 
 
-off_0A_B616_0F:
+off_14_B616_1E:
 - D 1 - I - 0x037626 0D:B616: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12284,7 +12284,7 @@ off_0A_B616_0F:
 
 
 
-off_0A_B62A_10:
+off_14_B62A_20:
 - D 1 - I - 0x03763A 0D:B62A: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12300,7 +12300,7 @@ off_0A_B62A_10:
 
 
 
-off_0A_B63E_11:
+off_14_B63E_22:
 - D 1 - I - 0x03764E 0D:B63E: 04        .byte $04   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12314,7 +12314,7 @@ off_0A_B63E_11:
 
 
 
-off_0A_B64C_12:
+off_14_B64C_24:
 - D 1 - I - 0x03765C 0D:B64C: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12329,7 +12329,7 @@ off_0A_B64C_12:
 
 
 
-off_0A_B65D_13:
+off_14_B65D_26:
 - D 1 - I - 0x03766D 0D:B65D: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12344,7 +12344,7 @@ off_0A_B65D_13:
 
 
 
-off_0A_B66E_14:
+off_14_B66E_28:
 - D 1 - I - 0x03767E 0D:B66E: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12360,7 +12360,7 @@ off_0A_B66E_14:
 
 
 
-off_0A_B682_15:
+off_14_B682_2A:
 - D 1 - I - 0x037692 0D:B682: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12377,7 +12377,7 @@ off_0A_B682_15:
 
 
 
-off_0A_B699_16:
+off_14_B699_2C:
 - D 1 - I - 0x0376A9 0D:B699: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12394,7 +12394,7 @@ off_0A_B699_16:
 
 
 
-off_0A_B6B0_17:
+off_14_B6B0_2E:
 - D 1 - I - 0x0376C0 0D:B6B0: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12409,7 +12409,7 @@ off_0A_B6B0_17:
 
 
 
-off_0A_B6C1_18:
+off_14_B6C1_30:
 - D 1 - I - 0x0376D1 0D:B6C1: 05        .byte $05   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12424,8 +12424,8 @@ off_0A_B6C1_18:
 
 
 
-off_0A_B6D3_19:
-off_0A_B6D3_1D:
+off_14_B6D3_32:
+off_14_B6D3_3A:
 - D 1 - I - 0x0376E3 0D:B6D3: 07        .byte $07   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12442,9 +12442,9 @@ off_0A_B6D3_1D:
 
 
 
-off_0A_B6EB_1A:
-off_0A_B6EB_1C:
-off_0A_B6EB_1E:
+off_14_B6EB_34:
+off_14_B6EB_38:
+off_14_B6EB_3C:
 - D 1 - I - 0x0376FB 0D:B6EB: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12460,7 +12460,7 @@ off_0A_B6EB_1E:
 
 
 
-off_0A_B700_1B:
+off_14_B700_36:
 - D 1 - I - 0x037710 0D:B700: 06        .byte $06   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12476,7 +12476,7 @@ off_0A_B700_1B:
 
 
 
-off_0A_B715_1F:
+off_14_B715_3E:
 - D 1 - I - 0x037725 0D:B715: 0A        .byte $0A   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12496,7 +12496,7 @@ off_0A_B715_1F:
 
 
 
-off_0A_B736_20:
+off_14_B736_40:
 - D 1 - I - 0x037746 0D:B736: 0C        .byte $0C   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
@@ -12518,7 +12518,7 @@ off_0A_B736_20:
 
 
 
-off_0A_B75D_21:
+off_14_B75D_42:
 - D 1 - I - 0x03776D 0D:B75D: 02        .byte $02   ; sprites counter
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T

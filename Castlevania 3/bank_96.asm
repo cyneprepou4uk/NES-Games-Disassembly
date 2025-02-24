@@ -11741,7 +11741,7 @@ C - - - - - 0x02F282 0B:B272: BD 8D 06  LDA ram_obj_068E,X
 C - - - - - 0x02F285 0B:B275: 29 01     AND #$01
 C - - - - - 0x02F287 0B:B277: D0 27     BNE bra_B2A0
 ; triggers only if there are some other objects on the screen
-C - - - - - 0x02F289 0B:B279: AD 30 06  LDA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x02F289 0B:B279: AD 30 06  LDA ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x02F28C 0B:B27C: F0 22     BEQ bra_B2A0
 ; if weapon is in the state when it can hit stuff
 C - - - - - 0x02F28E 0B:B27E: AD 13 04  LDA ram_wpn_anim_id + con_obj_index_weapon
@@ -11752,8 +11752,9 @@ C - - - - - 0x02F296 0B:B286: B0 18     BCS bra_B2A0    ; if too far
 C - - - - - 0x02F298 0B:B288: BD 8D 06  LDA ram_obj_068E,X
 C - - - - - 0x02F29B 0B:B28B: 09 01     ORA #$01
 C - - - - - 0x02F29D 0B:B28D: 9D 8D 06  STA ram_obj_068E,X
-C - - - - - 0x02F2A0 0B:B290: AD 30 06  LDA ram_061D_wpn + con_obj_index_weapon
-C - - - - - 0x02F2A3 0B:B293: 20 0B B3  JSR sub_B30B
+; triggers when damaging with normal weapon
+C - - - - - 0x02F2A0 0B:B290: AD 30 06  LDA ram_061D_wpn_damage + con_obj_index_weapon
+C - - - - - 0x02F2A3 0B:B293: 20 0B B3  JSR sub_B30B_set_damage
 C - - - - - 0x02F2A6 0B:B296: A9 00     LDA #$00
 C - - - - - 0x02F2A8 0B:B298: 85 9E     STA ram_009E_object_index
 C - - - - - 0x02F2AA 0B:B29A: 20 01 B6  JSR sub_B601
@@ -11774,10 +11775,11 @@ C - - - - - 0x02F2C8 0B:B2B8: 20 59 B7  JSR sub_B759
 C - - - - - 0x02F2CB 0B:B2BB: 20 01 B3  JSR sub_B301
 C - - - - - 0x02F2CE 0B:B2BE: 19 FE B2  ORA tbl_B2FE,Y
 C - - - - - 0x02F2D1 0B:B2C1: 9D 8D 06  STA ram_obj_068E,X
+; triggers when damaging with subweapon
 C - - - - - 0x02F2D4 0B:B2C4: A4 9E     LDY ram_009E_object_index
 C - - - - - 0x02F2D6 0B:B2C6: B9 06 06  LDA ram_obj_config,Y
 C - - - - - 0x02F2D9 0B:B2C9: 29 F0     AND #$F0
-C - - - - - 0x02F2DB 0B:B2CB: 20 0B B3  JSR sub_B30B
+C - - - - - 0x02F2DB 0B:B2CB: 20 0B B3  JSR sub_B30B_set_damage
 C - - - - - 0x02F2DE 0B:B2CE: 29 F0     AND #$F0
 C - - - - - 0x02F2E0 0B:B2D0: 85 13     STA ram_0013_t004
 C - - - - - 0x02F2E2 0B:B2D2: B9 06 06  LDA ram_obj_config,Y
@@ -11823,15 +11825,17 @@ C - - - - - 0x02F31A 0B:B30A: 60        RTS
 
 
 
-sub_B30B:
+sub_B30B_set_damage:
 ; in
+    ; A = 
+; out
     ; A = 
 C - - - - - 0x02F31B 0B:B30B: 18        CLC
 C - - - - - 0x02F31C 0B:B30C: 7D 69 06  ADC ram_obj_066A,X
-C - - - - - 0x02F31F 0B:B30F: 90 05     BCC bra_B316
+C - - - - - 0x02F31F 0B:B30F: 90 05     BCC bra_B316_not_overflow
 C - - - - - 0x02F321 0B:B311: BD 69 06  LDA ram_obj_066A,X
 C - - - - - 0x02F324 0B:B314: 09 F0     ORA #$F0
-bra_B316:
+bra_B316_not_overflow:
 C - - - - - 0x02F326 0B:B316: 9D 69 06  STA ram_obj_066A,X
 C - - - - - 0x02F329 0B:B319: 60        RTS
 
@@ -12126,13 +12130,13 @@ C - - - - - 0x02F4FA 0B:B4EA: 4A        LSR
 C - - - - - 0x02F4FB 0B:B4EB: 4A        LSR
 C - - - - - 0x02F4FC 0B:B4EC: 4A        LSR
 C - - - - - 0x02F4FD 0B:B4ED: 4A        LSR
-C - - - - - 0x02F4FE 0B:B4EE: 85 01     STA ram_0001_t00C
+C - - - - - 0x02F4FE 0B:B4EE: 85 01     STA ram_0001_t00C_damage
 C - - - - - 0x02F500 0B:B4F0: BD 69 06  LDA ram_obj_066A,X
 C - - - - - 0x02F503 0B:B4F3: 29 0F     AND #$0F
 C - - - - - 0x02F505 0B:B4F5: 9D 69 06  STA ram_obj_066A,X
 C - - - - - 0x02F508 0B:B4F8: 38        SEC
 C - - - - - 0x02F509 0B:B4F9: BD 7B 06  LDA ram_obj_hp,X
-C - - - - - 0x02F50C 0B:B4FC: E5 01     SBC ram_0001_t00C
+C - - - - - 0x02F50C 0B:B4FC: E5 01     SBC ram_0001_t00C_damage
 C - - - - - 0x02F50E 0B:B4FE: 9D 7B 06  STA ram_obj_hp,X
 C - - - - - 0x02F511 0B:B501: F0 3B     BEQ bra_B53E_enemy_is_killed
 C - - - - - 0x02F513 0B:B503: 30 39     BMI bra_B53E_enemy_is_killed

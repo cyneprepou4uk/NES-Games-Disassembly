@@ -8114,7 +8114,7 @@ _off035_AF3A_09_Grant_axe:
 
 
 _off035_AF40_0A_ball_of_destruction:
-; con_subweapon_0A
+; con_subweapon_ball_of_destruction
 - D 1 - I - 0x03AF50 0E:AF40: 5C B4     .word ofs_035_0A_B45C_00
 - D 1 - I - 0x03AF52 0E:AF42: 77 AF     .word ofs_035_0A_AF77_01
 - D 1 - I - 0x03AF54 0E:AF44: EA AF     .word ofs_035_0A_AFEA_02
@@ -8146,7 +8146,7 @@ C D 1 - - - 0x03AF64 0E:AF54: 20 55 BC  JSR sub_BC55
 C - - - - - 0x03AF67 0E:AF57: FE 65 05  INC ram_obj_stun_timer,X
 C - - - - - 0x03AF6A 0E:AF5A: FE 65 05  INC ram_obj_stun_timer,X
 C - - - - - 0x03AF6D 0E:AF5D: BC 4E 05  LDY ram_obj_id,X
-C - - - - - 0x03AF70 0E:AF60: B9 67 AF  LDA tbl_AF67,Y
+C - - - - - 0x03AF70 0E:AF60: B9 67 AF  LDA tbl_AF67_subweapon_damage,Y
 C - - - - - 0x03AF73 0E:AF63: 9D 06 06  STA ram_obj_config,X
 bra_AF66_RTS:
 ofs_035_0B_AF66_00_RTS:
@@ -8154,19 +8154,22 @@ C - - - - - 0x03AF76 0E:AF66: 60        RTS
 
 
 
-tbl_AF67:
-- - - - - - 0x03AF77 0E:AF67: 00        .byte $00   ; 00 
-- D 1 - - - 0x03AF78 0E:AF68: 60        .byte $60   ; 01 
-- D 1 - - - 0x03AF79 0E:AF69: 60        .byte $60   ; 02 
-- D 1 - - - 0x03AF7A 0E:AF6A: 40        .byte $40   ; 03 
-- D 1 - - - 0x03AF7B 0E:AF6B: 30        .byte $30   ; 04 
-- D 1 - - - 0x03AF7C 0E:AF6C: C0        .byte $C0   ; 05 
-- D 1 - - - 0x03AF7D 0E:AF6D: 02        .byte $02   ; 06 
-- D 1 - - - 0x03AF7E 0E:AF6E: C0        .byte $C0   ; 07 
-- D 1 - - - 0x03AF7F 0E:AF6F: 40        .byte $40   ; 08 
-- D 1 - - - 0x03AF80 0E:AF70: 60        .byte $60   ; 09 
-- D 1 - - - 0x03AF81 0E:AF71: 20        .byte $20   ; 0A 
-- - - - - - 0x03AF82 0E:AF72: 00        .byte $00   ; 0B 
+tbl_AF67_subweapon_damage:
+- - - - - - 0x03AF77 0E:AF67: 00        .byte $00   ; 00 con_subweapon_none
+- D 1 - - - 0x03AF78 0E:AF68: 60        .byte $60   ; 01 con_subweapon_axe
+- D 1 - - - 0x03AF79 0E:AF69: 60        .byte $60   ; 02 con_subweapon_boomerang
+- D 1 - - - 0x03AF7A 0E:AF6A: 40        .byte $40   ; 03 con_subweapon_dagger
+- D 1 - - - 0x03AF7B 0E:AF6B: 30        .byte $30   ; 04 con_subweapon_holy_water
+- D 1 - - - 0x03AF7C 0E:AF6C: C0        .byte $C0   ; 05 con_subweapon_fire_magic
+- D 1 - - - 0x03AF7D 0E:AF6D: 02        .byte $02   ; 06 con_subweapon_ice_magic
+- D 1 - - - 0x03AF7E 0E:AF6E: C0        .byte $C0   ; 07 con_subweapon_lightning_magic
+- D 1 - - - 0x03AF7F 0E:AF6F: 40        .byte $40   ; 08 con_subweapon_g_dagger
+- D 1 - - - 0x03AF80 0E:AF70: 60        .byte $60   ; 09 con_subweapon_g_axe
+- D 1 - - - 0x03AF81 0E:AF71: 20        .byte $20   ; 0A con_subweapon_ball_of_destruction
+- - - - - - 0x03AF82 0E:AF72: 00        .byte $00   ; 0B con_subweapon_stopwatch
+
+
+; bzk garbage
 - - - - - - 0x03AF83 0E:AF73: 00        .byte $00   ; 0C 
 - - - - - - 0x03AF84 0E:AF74: 00        .byte $00   ; 0D 
 - - - - - - 0x03AF85 0E:AF75: 00        .byte $00   ; 0E 
@@ -10647,21 +10650,21 @@ C - - - - - 0x03BDAA 0E:BD9A: A4 10     LDY ram_0010_t00D_object_index
 C - - - - - 0x03BDAC 0E:BD9C: 99 38 04  STA ram_obj_pos_X_lo,Y
 C - - - - - 0x03BDAF 0E:BD9F: BD 4E 05  LDA ram_obj_id,X
 C - - - - - 0x03BDB2 0E:BDA2: F0 2C     BEQ bra_BDD0
-bra_BDA4:
+bra_BDA4:   ; A = 05
 C - - - - - 0x03BDB4 0E:BDA4: 0A        ASL
 C - - - - - 0x03BDB5 0E:BDA5: A8        TAY
 C - - - - - 0x03BDB6 0E:BDA6: B9 91 BE  LDA tbl_BE91_weapon_animation_data,Y
-C - - - - - 0x03BDB9 0E:BDA9: 85 08     STA ram_0008_t004_animation_data
+C - - - - - 0x03BDB9 0E:BDA9: 85 08     STA ram_0008_t004_weapon_anim_data
 C - - - - - 0x03BDBB 0E:BDAB: B9 92 BE  LDA tbl_BE91_weapon_animation_data + $01,Y
-C - - - - - 0x03BDBE 0E:BDAE: 85 09     STA ram_0008_t004_animation_data + $01
+C - - - - - 0x03BDBE 0E:BDAE: 85 09     STA ram_0008_t004_weapon_anim_data + $01
 C - - - - - 0x03BDC0 0E:BDB0: A5 0F     LDA ram_000F_t011_obj_anim_cnt
 C - - - - - 0x03BDC2 0E:BDB2: 0A        ASL
 C - - - - - 0x03BDC3 0E:BDB3: A8        TAY
-C - - - - - 0x03BDC4 0E:BDB4: B1 08     LDA (ram_0008_t004_animation_data),Y
+C - - - - - 0x03BDC4 0E:BDB4: B1 08     LDA (ram_0008_t004_weapon_anim_data),Y
 C - - - - - 0x03BDC6 0E:BDB6: 9D 00 04  STA ram_obj_anim_id,X
 C - - - - - 0x03BDC9 0E:BDB9: C8        INY
-C - - - - - 0x03BDCA 0E:BDBA: B1 08     LDA (ram_0008_t004_animation_data),Y
-C - - - - - 0x03BDCC 0E:BDBC: 9D 1D 06  STA ram_061D_wpn,X
+C - - - - - 0x03BDCA 0E:BDBA: B1 08     LDA (ram_0008_t004_weapon_anim_data),Y
+C - - - - - 0x03BDCC 0E:BDBC: 9D 1D 06  STA ram_061D_wpn_damage,X
 C - - - - - 0x03BDCF 0E:BDBF: FE 93 05  INC ram_obj_anim_cnt,X
 C - - - - - 0x03BDD2 0E:BDC2: 18        CLC
 C - - - - - 0x03BDD3 0E:BDC3: 60        RTS
@@ -10921,18 +10924,18 @@ _off042_BE87_16:
 
 
 tbl_BE91_weapon_animation_data:
-- D 1 - - - 0x03BEA1 0E:BE91: A5 BE     .word off_BEA5_00
-- D 1 - - - 0x03BEA3 0E:BE93: AD BE     .word off_BEAD_01
-- D 1 - - - 0x03BEA5 0E:BE95: B5 BE     .word off_BEB5_02
-- D 1 - - - 0x03BEA7 0E:BE97: BD BE     .word off_BEBD_03
-- D 1 - - - 0x03BEA9 0E:BE99: 9D BE     .word off_BE9D_04
+- D 1 - - - 0x03BEA1 0E:BE91: A5 BE     .word off_BEA5_00_Trevor_whip___power_00
+- D 1 - - - 0x03BEA3 0E:BE93: AD BE     .word off_BEAD_01_Trevor_whip___power_01
+- D 1 - - - 0x03BEA5 0E:BE95: B5 BE     .word off_BEB5_02_Trevor_whip___power_02
+- D 1 - - - 0x03BEA7 0E:BE97: BD BE     .word off_BEBD_03_Sypha_wand
+- D 1 - - - 0x03BEA9 0E:BE99: 9D BE     .word off_BE9D_04_Grant_knife
 - D 1 - - - 0x03BEAB 0E:BE9B: C3 BE     .word off_BEC3_05
 
 
 
-off_BE9D_04:
+off_BE9D_04_Grant_knife:
 ;                                              +---------- animation
-;                                              |    +----- 
+;                                              |    +----- damage
 ;                                              |    |
 - D 1 - I - 0x03BEAD 0E:BE9D: 00        .byte $00, $00   ; 00 
 - D 1 - I - 0x03BEAF 0E:BE9F: 02        .byte $02, $40   ; 01 
@@ -10941,9 +10944,9 @@ off_BE9D_04:
 
 
 
-off_BEA5_00:
+off_BEA5_00_Trevor_whip___power_00:
 ;                                              +---------- animation
-;                                              |    +----- 
+;                                              |    +----- damage
 ;                                              |    |
 - D 1 - I - 0x03BEB5 0E:BEA5: 24        .byte $24, $00   ; 00 
 - D 1 - I - 0x03BEB7 0E:BEA7: 26        .byte $26, $00   ; 01 
@@ -10952,9 +10955,9 @@ off_BEA5_00:
 
 
 
-off_BEAD_01:
+off_BEAD_01_Trevor_whip___power_01:
 ;                                              +---------- animation
-;                                              |    +----- 
+;                                              |    +----- damage
 ;                                              |    |
 - D 1 - I - 0x03BEBD 0E:BEAD: 2C        .byte $2C, $00   ; 00 
 - D 1 - I - 0x03BEBF 0E:BEAF: 2E        .byte $2E, $00   ; 01 
@@ -10963,9 +10966,9 @@ off_BEAD_01:
 
 
 
-off_BEB5_02:
+off_BEB5_02_Trevor_whip___power_02:
 ;                                              +---------- animation
-;                                              |    +----- 
+;                                              |    +----- damage
 ;                                              |    |
 - D 1 - I - 0x03BEC5 0E:BEB5: 2C        .byte $2C, $00   ; 00 
 - D 1 - I - 0x03BEC7 0E:BEB7: 2E        .byte $2E, $00   ; 01 
@@ -10974,9 +10977,9 @@ off_BEB5_02:
 
 
 
-off_BEBD_03:
+off_BEBD_03_Sypha_wand:
 ;                                              +---------- animation
-;                                              |    +----- 
+;                                              |    +----- damage
 ;                                              |    |
 - D 1 - I - 0x03BECD 0E:BEBD: 20        .byte $20, $00   ; 00 
 - D 1 - I - 0x03BECF 0E:BEBF: 22        .byte $22, $40   ; 01 
@@ -10986,7 +10989,7 @@ off_BEBD_03:
 
 off_BEC3_05:
 ;                                              +---------- animation
-;                                              |    +----- 
+;                                              |    +----- damage
 ;                                              |    |
 - D 1 - I - 0x03BED3 0E:BEC3: 2A        .byte $2A, $00   ; 00 
 - D 1 - I - 0x03BED5 0E:BEC5: 26        .byte $26, $00   ; 01 

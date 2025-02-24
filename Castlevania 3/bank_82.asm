@@ -5770,7 +5770,7 @@ C - - - - - 0x0060DD 01:A0CD: A5 B0     LDA ram_00B0_oam_flag
 C - - - - - 0x0060DF 01:A0CF: F0 03     BEQ bra_A0D4
 C - - - - - 0x0060E1 01:A0D1: 20 3C E3  JSR sub_0x03E34C_write_chr_banks___5120_5121_5122_5123_5125
 bra_A0D4:
-loc_A0D4:
+loc_A0D4:   ; bzk optimize
 C D 1 - - - 0x0060E4 01:A0D4: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 bra_A0D7:
 C - - - - - 0x0060E7 01:A0D7: 20 8D 9F  JSR sub_9F8D
@@ -6022,11 +6022,11 @@ C - - - - - 0x006268 01:A258: 8D 03 52  STA $5203
 C - - - - - 0x00626B 01:A25B: 20 07 A3  JSR sub_A307
 C - - - - - 0x00626E 01:A25E: AD 19 06  LDA ram_wpn_config + con_obj_index_weapon
 C - - - - - 0x006271 01:A261: 38        SEC
-C - - - - - 0x006272 01:A262: ED 30 06  SBC ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x006272 01:A262: ED 30 06  SBC ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x006275 01:A265: 85 7C     STA ram_007C_scanline
-C - - - - - 0x006277 01:A267: AD 30 06  LDA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x006277 01:A267: AD 30 06  LDA ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x00627A 01:A26A: 49 01     EOR #$01
-C - - - - - 0x00627C 01:A26C: 8D 30 06  STA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x00627C 01:A26C: 8D 30 06  STA ram_061D_wpn_damage + con_obj_index_weapon
 ; -> con_irq_0F
 C - - - - - 0x00627F 01:A26F: E6 6D     INC ram_irq_handler
 C - - - - - 0x006281 01:A271: 4C 3F E1  JMP loc_0x03E14F_exit_irq
@@ -6046,12 +6046,12 @@ C - - - - - 0x006297 01:A287: C9 09     CMP #con_irq_09
 C - - - - - 0x006299 01:A289: D0 09     BNE bra_A294
 C - - - - - 0x00629B 01:A28B: AD 19 06  LDA ram_wpn_config + con_obj_index_weapon
 C - - - - - 0x00629E 01:A28E: 38        SEC
-C - - - - - 0x00629F 01:A28F: ED 30 06  SBC ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x00629F 01:A28F: ED 30 06  SBC ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x0062A2 01:A292: 85 42     STA ram_0042
 bra_A294:
-C - - - - - 0x0062A4 01:A294: AD 30 06  LDA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x0062A4 01:A294: AD 30 06  LDA ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x0062A7 01:A297: 49 01     EOR #$01
-C - - - - - 0x0062A9 01:A299: 8D 30 06  STA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x0062A9 01:A299: 8D 30 06  STA ram_061D_wpn_damage + con_obj_index_weapon
 ; -> con_irq_0A
 C - - - - - 0x0062AC 01:A29C: E6 6D     INC ram_irq_handler
 C - - - - - 0x0062AE 01:A29E: 4C 3F E1  JMP loc_0x03E14F_exit_irq
@@ -6126,7 +6126,7 @@ C - - - - - 0x006317 01:A307: A9 00     LDA #con_obj_flag_00
 C - - - - - 0x006319 01:A309: 8D 70 04  STA ram_plr_flags
 C - - - - - 0x00631C 01:A30C: AD 05 05  LDA ram_wpn_spd_X_lo + con_obj_index_weapon
 C - - - - - 0x00631F 01:A30F: 30 2D     BMI bra_A33E
-C - - - - - 0x006321 01:A311: AD 30 06  LDA ram_061D_wpn + con_obj_index_weapon
+C - - - - - 0x006321 01:A311: AD 30 06  LDA ram_061D_wpn_damage + con_obj_index_weapon
 C - - - - - 0x006324 01:A314: F0 17     BEQ bra_A32D
 C - - - - - 0x006326 01:A316: AD D4 05  LDA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x006329 01:A319: 38        SEC
