@@ -10968,6 +10968,7 @@ C - - - - - 0x01FE1D 07:FE0D: 4C D4 C3  JMP loc_C3D4
 
 
 .segment "DMC_DATA"
+.org $FE40  ; for listing file
 .incbin "DPCM.bin"
 ; - D 0 - - A 0x01FE50 07:FE40: FF        .byte $FF   ; 
 
@@ -11000,6 +11001,7 @@ C - - - - - 0x020007 07:FFF7: 4C D9 FC  JMP loc_FCD9_IRQ
 
 
 .segment "VECTORS"
+.org $FFFA  ; for listing file
 - D 3 - - - 0x02000A 07:FFFA: F1 FF     .word vec_FFF1_NMI
 - D 3 - - - 0x02000C 07:FFFC: F4 FF     .word vec_FFF4_RESET
 - D 3 - - - 0x02000E 07:FFFE: F7 FF     .word vec_FFF7_IRQ
