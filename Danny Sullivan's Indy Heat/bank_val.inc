@@ -4,8 +4,8 @@
 
 ; MISC
 con_bzk_hack                            = $00 ; set to 01 before hacking
-con_prg_bank_jsr                        = $00 ; 
-con_prg_bank_rts                        = $00 ; 
+con_prg_bank_jsr                        = $00 ; bank for bankswitching
+con_prg_bank_rts                        = $00 ; bank for returning
 
 
 
@@ -111,6 +111,59 @@ con_005B_18                             = $18 ;
 con_005B_1A                             = $1A ; 
 con_005B_1C                             = $1C ; 
 con_005B_1E                             = $1E ; 
+
+
+
+; todo
+; ram_script_handler
+; index for 0x0025CC
+; need comments 0x00A353 0x008D69 0x006AFA 0x006AE9 0x006A85
+;               0x006A0E 0x004402 0x0043E7 0x003D9B 0x003D44
+con_00CC_script_00                      = $00 ; 
+con_00CC_script_01                      = $01 ; 
+con_00CC_script_02                      = $02 ; 
+con_00CC_script_03                      = $03 ; 
+con_00CC_script_04                      = $04 ; 
+con_00CC_script_05                      = $05 ; 
+con_00CC_script_06                      = $06 ; 
+con_00CC_script_07                      = $07 ; 
+con_00CC_script_08                      = $08 ; 
+con_00CC_script_09                      = $09 ; 
+con_00CC_script_0A                      = $0A ; 
+con_00CC_script_0B                      = $0B ; 
+con_00CC_script_0C                      = $0C ; 
+con_00CC_script_0D                      = $0D ; 
+con_00CC_script_0E                      = $0E ; 
+con_00CC_script_0F                      = $0F ; 
+con_00CC_script_10                      = $10 ; 
+con_00CC_script_11                      = $11 ; 
+con_00CC_script_12                      = $12 ; 
+con_00CC_script_13                      = $13 ; 
+con_00CC_script_14                      = $14 ; 
+con_00CC_script_15                      = $15 ; 
+con_00CC_script_16                      = $16 ; 
+con_00CC_script_17                      = $17 ; 
+con_00CC_script_18                      = $18 ; 
+con_00CC_script_19                      = $19 ; 
+con_00CC_script_1A                      = $1A ; 
+con_00CC_script_1B                      = $1B ; 
+con_00CC_script_1C                      = $1C ; 
+con_00CC_script_1D                      = $1D ; 
+con_00CC_script_1E                      = $1E ; 
+con_00CC_script_1F                      = $1F ; 
+con_00CC_script_20                      = $20 ; 
+con_00CC_script_21                      = $21 ; 
+con_00CC_script_22                      = $22 ; 
+con_00CC_script_23                      = $23 ; 
+con_00CC_script_24                      = $24 ; 
+con_00CC_script_25                      = $25 ; 
+con_00CC_script_26                      = $26 ; 
+con_00CC_script_27                      = $27 ; 
+con_00CC_script_28                      = $28 ; 
+con_00CC_script_29                      = $29 ; 
+con_00CC_script_2A                      = $2A ; 
+con_00CC_script_2B                      = $2B ; 
+con_00CC_script_2C                      = $2C ; 
 
 
 

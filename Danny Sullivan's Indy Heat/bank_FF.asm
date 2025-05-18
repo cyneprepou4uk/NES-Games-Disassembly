@@ -36,13 +36,14 @@ C - - - - - 0x01802B 06:801B: 85 0D     STA ram_000D_t08_jmp
 C - - - - - 0x01802D 06:801D: A9 82     LDA #> ofs_8230_RTS
 C - - - - - 0x01802F 06:801F: 85 0E     STA ram_000D_t08_jmp + $01
 C - - - - - 0x018031 06:8021: A5 DC     LDA ram_race
+; * 05
 C - - - - - 0x018033 06:8023: 0A        ASL
 C - - - - - 0x018034 06:8024: 0A        ASL
 C - - - - - 0x018035 06:8025: 65 DC     ADC ram_race
 C - - - - - 0x018037 06:8027: A8        TAY
 C - - - - - 0x018038 06:8028: A2 04     LDX #$04
 bra_802A_loop:
-C - - - - - 0x01803A 06:802A: 84 21     STY ram_0021_temp
+C - - - - - 0x01803A 06:802A: 84 21     STY ram_0021_t16
 C - - - - - 0x01803C 06:802C: B9 09 01  LDA ram_0109,Y
 C - - - - - 0x01803F 06:802F: 20 E5 81  JSR sub_81E5_convert_letters_to_tiles
 C - - - - - 0x018042 06:8032: 20 9B 80  JSR sub_809B
@@ -64,7 +65,7 @@ C - - - - - 0x01805E 06:804E: C0 07     CPY #$07
 C - - - - - 0x018060 06:8050: D0 F6     BNE bra_8048_loop
 C - - - - - 0x018062 06:8052: A9 FF     LDA #$FF
 C - - - - - 0x018064 06:8054: 8D 07 20  STA $2007
-C - - - - - 0x018067 06:8057: A4 21     LDY ram_0021_temp
+C - - - - - 0x018067 06:8057: A4 21     LDY ram_0021_t16
 C - - - - - 0x018069 06:8059: C8        INY
 C - - - - - 0x01806A 06:805A: CA        DEX
 C - - - - - 0x01806B 06:805B: 10 CD     BPL bra_802A_loop
@@ -140,7 +141,8 @@ C - - - - - 0x01812A 06:811A: A9 30     LDA #< $1030
 C - - - - - 0x01812C 06:811C: 8D 06 20  STA $2006
 C - - - - - 0x01812F 06:811F: A2 00     LDX #$00
 bra_8121_loop:
-C - - - - - 0x018131 06:8121: 86 1F     STX ram_001F_temp
+; bzk optimize, useless STX
+C - - - - - 0x018131 06:8121: 86 1F     STX ram_001F_t17_useless
 C - - - - - 0x018133 06:8123: BC A2 81  LDY tbl_81A2,X
 C - - - - - 0x018136 06:8126: B9 74 81  LDA tbl_8174,Y
 C - - - - - 0x018139 06:8129: 85 0D     STA ram_000D_t08_jmp
@@ -154,15 +156,16 @@ C - - - - - 0x018149 06:8139: D0 E6     BNE bra_8121_loop
 C - - - - - 0x01814B 06:813B: A2 00     LDX #$00
 C - - - - - 0x01814D 06:813D: 86 16     STX ram_0016_temp
 bra_813F_loop:
-C - - - - - 0x01814F 06:813F: 86 1F     STX ram_001F_temp
+C - - - - - 0x01814F 06:813F: 86 1F     STX ram_001F_t16
 C - - - - - 0x018151 06:8141: B5 87     LDA ram_position,X
+; * 04
 C - - - - - 0x018153 06:8143: 0A        ASL
 C - - - - - 0x018154 06:8144: 0A        ASL
 C - - - - - 0x018155 06:8145: 75 87     ADC ram_position,X
 C - - - - - 0x018157 06:8147: A8        TAY
 C - - - - - 0x018158 06:8148: A2 04     LDX #$04
 bra_814A_loop:
-C - - - - - 0x01815A 06:814A: 84 21     STY ram_0021_temp
+C - - - - - 0x01815A 06:814A: 84 21     STY ram_0021_t17
 C - - - - - 0x01815C 06:814C: A4 16     LDY ram_0016_temp
 C - - - - - 0x01815E 06:814E: B9 CC 81  LDA tbl_81CC,Y
 C - - - - - 0x018161 06:8151: A8        TAY
@@ -171,14 +174,14 @@ C - - - - - 0x018165 06:8155: 85 0D     STA ram_000D_t08_jmp
 C - - - - - 0x018167 06:8157: B9 75 81  LDA tbl_8174 + $01,Y
 C - - - - - 0x01816A 06:815A: 85 0E     STA ram_000D_t08_jmp + $01
 C - - - - - 0x01816C 06:815C: E6 16     INC ram_0016_temp
-C - - - - - 0x01816E 06:815E: A4 21     LDY ram_0021_temp
+C - - - - - 0x01816E 06:815E: A4 21     LDY ram_0021_t17
 C - - - - - 0x018170 06:8160: B9 D4 03  LDA ram_nickname,Y
 C - - - - - 0x018173 06:8163: 20 E5 81  JSR sub_81E5_convert_letters_to_tiles
-C - - - - - 0x018176 06:8166: A4 21     LDY ram_0021_temp
+C - - - - - 0x018176 06:8166: A4 21     LDY ram_0021_t17
 C - - - - - 0x018178 06:8168: C8        INY
 C - - - - - 0x018179 06:8169: CA        DEX
 C - - - - - 0x01817A 06:816A: 10 DE     BPL bra_814A_loop
-C - - - - - 0x01817C 06:816C: A6 1F     LDX ram_001F_temp
+C - - - - - 0x01817C 06:816C: A6 1F     LDX ram_001F_t16
 C - - - - - 0x01817E 06:816E: E8        INX
 C - - - - - 0x01817F 06:816F: E0 05     CPX #$05
 C - - - - - 0x018181 06:8171: D0 CC     BNE bra_813F_loop
@@ -338,6 +341,7 @@ bra_8200:
 C - - - - - 0x018210 06:8200: 38        SEC
 C - - - - - 0x018211 06:8201: E9 41     SBC #$41    ; result 00+
 bra_8203:
+; * 08
 C - - - - - 0x018213 06:8203: 0A        ASL
 C - - - - - 0x018214 06:8204: 26 15     ROL ram_0015_temp
 C - - - - - 0x018216 06:8206: 0A        ASL
@@ -460,12 +464,13 @@ ofs_011_82A4_0E:
 ; huge letters?
 C - - J - - 0x0182B4 06:82A4: A0 00     LDY #$00
 bra_82A6_loop:
-C - - - - - 0x0182B6 06:82A6: 84 21     STY ram_0021_temp
+C - - - - - 0x0182B6 06:82A6: 84 21     STY ram_0021_t18
 C - - - - - 0x0182B8 06:82A8: A9 00     LDA #$00
 C - - - - - 0x0182BA 06:82AA: 85 19     STA ram_0019_t01_ptr_offset_hi
 C - - - - - 0x0182BC 06:82AC: B1 11     LDA (ram_0011_t23_data),Y
 C - - - - - 0x0182BE 06:82AE: 38        SEC
 C - - - - - 0x0182BF 06:82AF: E9 40     SBC #$40
+; * 08
 C - - - - - 0x0182C1 06:82B1: 0A        ASL
 C - - - - - 0x0182C2 06:82B2: 0A        ASL
 C - - - - - 0x0182C3 06:82B3: 0A        ASL
@@ -490,7 +495,7 @@ C - - - - - 0x0182E4 06:82D4: 85 14     STA ram_0013_t07_data + $01
                                         LDA #< tbl_9612
                                         STA ram_0013_t07_data
                                     .endif
-C - - - - - 0x0182E6 06:82D6: A4 21     LDY ram_0021_temp
+C - - - - - 0x0182E6 06:82D6: A4 21     LDY ram_0021_t18
 C - - - - - 0x0182E8 06:82D8: C8        INY
 C - - - - - 0x0182E9 06:82D9: C4 15     CPY ram_0015_t02_loop_counter
 C - - - - - 0x0182EB 06:82DB: D0 C9     BNE bra_82A6_loop
@@ -511,6 +516,7 @@ C - - - - - 0x0182F8 06:82E8: A9 04     LDA #$04
 C - - - - - 0x0182FA 06:82EA: 85 17     STA ram_0017_temp
 bra_82EC_loop:
 C - - - - - 0x0182FC 06:82EC: B1 13     LDA (ram_0013_t07_data),Y
+; / 10
 C - - - - - 0x0182FE 06:82EE: 4A        LSR
 C - - - - - 0x0182FF 06:82EF: 4A        LSR
 C - - - - - 0x018300 06:82F0: 4A        LSR
