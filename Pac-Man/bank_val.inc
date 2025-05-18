@@ -35,3 +35,6 @@ con_script_0A                           = $0A ;
 con_script_stage_clear                  = $0C ; all pellets were eaten
 con_script_0E                           = $0E ; 
 con_script_10                           = $10 ; 
+
+
+

@@ -4043,10 +4043,10 @@ C - - - - - 0x0019AE 00:D99E: C6 03     DEC ram_0003
 C - - - - - 0x0019B0 00:D9A0: 30 05     BMI bra_D9A7
 C - - - - - 0x0019B2 00:D9A2: 18        CLC
 C - - - - - 0x0019B3 00:D9A3: 69 01     ADC #$01
-C - - - - - 0x0019B5 00:D9A5: D0 F7     BNE bra_D99E_loop
+C - - - - - 0x0019B5 00:D9A5: D0 F7     BNE bra_D99E_loop    ; jmp
 bra_D9A7:
 C - - - - - 0x0019B7 00:D9A7: 85 02     STA ram_0002
-C - - - - - 0x0019B9 00:D9A9: 30 D8     BMI bra_D983    ; jmp?
+C - - - - - 0x0019B9 00:D9A9: 30 D8     BMI bra_D983    ; jmp
 
 
 
