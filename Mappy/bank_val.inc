@@ -10,10 +10,10 @@ con_ofs_obj                             = $00 ; object offset, for easier search
 ; ram_obj_1_data
 ; ram_obj_2_data
 ; ram_obj_3_data
-con_obj_pos_X_lo                        = $00 ; 
-con_obj_pos_X_hi                        = $01 ; 
-con_obj_pos_Y_lo                        = $02 ; 
-con_obj_pos_Y_hi                        = $03 ; 
+con_obj_pos_X_fr                        = $00 ; fractional
+con_obj_pos_X_lo                        = $01 ; 
+con_obj_pos_Y_fr                        = $02 ; fractional
+con_obj_pos_Y_lo                        = $03 ; 
 con_obj_animation                       = $04 ; 
 con_obj_type                            = $05 ; 
 con_obj_direction                       = $06 ; 
