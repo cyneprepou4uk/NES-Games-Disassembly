@@ -8293,6 +8293,7 @@ C - - - - - 0x016D28 05:AD18: 60        RTS
 
 sub_AD19:
 C - - - - - 0x016D29 05:AD19: AD CA 05  LDA ram_номер_опции
+; bzk optimize, the same LDA
 C - - - - - 0x016D2C 05:AD1C: AD CA 05  LDA ram_номер_опции
 C - - - - - 0x016D2F 05:AD1F: 8D D1 05  STA ram_05D1
 C - - - - - 0x016D32 05:AD22: 20 FF B1  JSR sub_B1FF
