@@ -67,3 +67,6 @@ con_sfx_3_kill_seal_or_ice              = $08 ; hit seal or ice piece with hamme
 ; con_plr_sub_07                          = $07  ; 
 ; con_plr_sub_08                          = $08  ; 
 ; con_plr_sub_09                          = $09  ; 
+
+
+
