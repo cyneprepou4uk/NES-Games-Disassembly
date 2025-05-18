@@ -75,6 +75,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 
 ### WIP
 * Battletoads & Double Dragon - The Ultimate Team (U) [!] `53B02F3D`
+* Captain America and The Avengers (U) [!].nes `7254D53D`
 * Galaga - Demons of Death (U) [!] `E36D5991`
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!] `BABD39FA`
 * R.C. Pro-Am II (U) [!] `03DB5562`
