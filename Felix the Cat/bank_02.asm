@@ -251,6 +251,7 @@ sub_812A_spr_X:
 ; in
     ; ram_000D = ram_0776_obj_flags
 C - - - - - 0x00413A 01:812A: A5 0D     LDA ram_000D
+; * 04
 C - - - - - 0x00413C 01:812C: 0A        ASL
 C - - - - - 0x00413D 01:812D: 0A        ASL
 C - - - - - 0x00413E 01:812E: B1 02     LDA (ram_0002_t03_data),Y
@@ -377,8 +378,8 @@ C - - - - - 0x0041E1 01:81D1: A8        TAY
 C - - - - - 0x0041E2 01:81D2: C8        INY
 C - - - - - 0x0041E3 01:81D3: B1 02     LDA (ram_0002_t03_data),Y
 C - - - - - 0x0041E5 01:81D5: 85 00     STA ram_0000_t36_data_index
-; bzk optimize, write DEY here, delete it from 0x004020 and 0x004050
-; it will save 1 byte of memory, but will add 2 cycles here 0x004075
+; bzk optimize, write DEY here, delete DEY at 0x004020 and 0x004050.
+; it will save 1 byte of memory, but will add 2 cycles here 0x004075,
 ; so pick your poison
 C - - - - - 0x0041E7 01:81D7: 60        RTS
 

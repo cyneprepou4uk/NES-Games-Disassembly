@@ -903,6 +903,7 @@ C - - - - - 0x010402 04:83F2: 85 E9     STA ram_brightness_flag
 bra_83F4:
 loc_83F4:
 C D 0 - - - 0x010404 04:83F4: A5 EB     LDA ram_brightness_degree
+; * 10
 C - - - - - 0x010406 04:83F6: 0A        ASL
 C - - - - - 0x010407 04:83F7: 0A        ASL
 C - - - - - 0x010408 04:83F8: 0A        ASL
