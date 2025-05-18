@@ -290,7 +290,7 @@ C - - - - - 0x00C19E 03:A18E: 99 68 06  STA ram_obj_pos_Y,Y
 C - - - - - 0x00C1A1 03:A191: 20 A3 A3  JSR sub_A3A3
 bra_A194:
 loc_A194:
-C - - - - - 0x00C1A4 03:A194: A4 06     LDY ram_0006_temp
+C - - - - - 0x00C1A4 03:A194: A4 06     LDY ram_0006_t13
 C - - - - - 0x00C1A6 03:A196: C8        INY
 C - - - - - 0x00C1A7 03:A197: 4C 2A A1  JMP loc_A12A_loop
 
@@ -638,12 +638,12 @@ C - - - - - 0x00C37D 03:A36D: 85 1C     STA ram_001C_temp
 C - - - - - 0x00C37F 03:A36F: C8        INY
 C - - - - - 0x00C380 03:A370: B1 0A     LDA (ram_000A_t02_data),Y
 C - - - - - 0x00C382 03:A372: 85 0D     STA ram_000D_temp
-C - - - - - 0x00C384 03:A374: 84 06     STY ram_0006_temp
+C - - - - - 0x00C384 03:A374: 84 06     STY ram_0006_t13
 C - - - - - 0x00C386 03:A376: 29 07     AND #$07
 C - - - - - 0x00C388 03:A378: 18        CLC
 C - - - - - 0x00C389 03:A379: 69 02     ADC #$02
 C - - - - - 0x00C38B 03:A37B: A8        TAY
-C - - - - - 0x00C38C 03:A37C: 84 07     STY ram_0007_temp
+C - - - - - 0x00C38C 03:A37C: 84 07     STY ram_0007_t08
 C - - - - - 0x00C38E 03:A37E: A5 1C     LDA ram_001C_temp
 C - - - - - 0x00C390 03:A380: C9 3B     CMP #$3B
 C - - - - - 0x00C392 03:A382: F0 05     BEQ bra_A389_RTS
@@ -703,7 +703,7 @@ C - - - - - 0x00C3EB 03:A3DB: 48        PHA
 C - - - - - 0x00C3EC 03:A3DC: B9 7D A5  LDA tbl_A57A + $03,Y
 C - - - - - 0x00C3EF 03:A3DF: 85 10     STA ram_0010_temp
 C - - - - - 0x00C3F1 03:A3E1: B9 7C A5  LDA tbl_A57A + $02,Y
-C - - - - - 0x00C3F4 03:A3E4: A4 07     LDY ram_0007_temp
+C - - - - - 0x00C3F4 03:A3E4: A4 07     LDY ram_0007_t08
 C - - - - - 0x00C3F6 03:A3E6: 99 BE 07  STA ram_07BE_unk,Y
 C - - - - - 0x00C3F9 03:A3E9: 68        PLA
 C - - - - - 0x00C3FA 03:A3EA: 99 D2 07  STA ram_07D2_unk,Y
@@ -715,7 +715,7 @@ C - - - - - 0x00C406 03:A3F6: 29 38     AND #$38
 C - - - - - 0x00C408 03:A3F8: 20 B5 93  JSR sub_0x0093C4_LSRx3_TAY
 C - - - - - 0x00C40B 03:A3FB: 84 11     STY ram_0011_temp
 C - - - - - 0x00C40D 03:A3FD: B9 1A A6  LDA tbl_A61A,Y
-C - - - - - 0x00C410 03:A400: A4 07     LDY ram_0007_temp
+C - - - - - 0x00C410 03:A400: A4 07     LDY ram_0007_t08
 C - - - - - 0x00C412 03:A402: 99 A0 07  STA ram_07A0_unk,Y
 C - - - - - 0x00C415 03:A405: B9 D2 07  LDA ram_07D2_unk,Y
 ; * 08
@@ -725,7 +725,7 @@ C - - - - - 0x00C41A 03:A40A: 0A        ASL
 C - - - - - 0x00C41B 03:A40B: 05 11     ORA ram_0011_temp
 C - - - - - 0x00C41D 03:A40D: A8        TAY
 C - - - - - 0x00C41E 03:A40E: B9 21 A6  LDA tbl_A621,Y
-C - - - - - 0x00C421 03:A411: A4 07     LDY ram_0007_temp
+C - - - - - 0x00C421 03:A411: A4 07     LDY ram_0007_t08
 C - - - - - 0x00C423 03:A413: 99 34 06  STA ram_obj_animation_hi,Y
 C - - - - - 0x00C426 03:A416: 4C 21 A4  JMP loc_A421
 bra_A419:
