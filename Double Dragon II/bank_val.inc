@@ -7,7 +7,7 @@ con_prg_bank                            = $00 ;
 con_chr_bank                            = $00 ; 
 con_anim_id                             = $00 ; 
 con_damage                              = $00 ; 
-con_8648                                = $00 ; for 0x018658
+con_8648                                = $00 ; index for 0x018658
 con_E2E6                                = $00 ; for 0x01E2F6
 con_weapon_id                           = $12 ; weapons start from this index for ram_obj_id
 
@@ -77,22 +77,41 @@ con_gf2_80                              = $80 ;
 
 
 
-; ram_mission_hi
-con_mission_id_00                       = $00 ; 
-con_mission_id_01                       = $01 ; 
-con_mission_id_02                       = $02 ; 
-con_mission_id_03                       = $03 ; 
-con_mission_id_04                       = $04 ; 
-con_mission_id_05                       = $05 ; 
-con_mission_id_06                       = $06 ; 
-con_mission_id_07                       = $07 ; 
-con_mission_id_08                       = $08 ; 
-con_mission_id_09                       = $09 ; 
-con_mission_id_0A                       = $0A ; 
-con_mission_id_0B                       = $0B ; 
-con_mission_id_0C                       = $0C ; 
-con_mission_id_0D                       = $0D ; 
-con_mission_id_0E                       = $0E ; 
+; ram_mission_id_hi
+con_mission_Into_the_Turf               = $00 ; Into the Turf
+con_mission_At_the_Heliport             = $01 ; At the Heliport
+con_mission_Battle_in_the_Chopper       = $02 ; Battle in the Chopper
+con_mission_Undersea_Base_pt1           = $03 ; Undersea Base, part 1
+con_mission_Undersea_Base_pt2           = $04 ; Undersea Base, part 2
+con_mission_Forest_of_Death             = $05 ; Forest of Death
+con_mission_Mansion_of_Terror           = $06 ; Mansion of Terror
+con_mission_Trap_Room_pt1               = $07 ; Trap Room, part 1
+con_mission_Trap_Room_pt2               = $08 ; Trap Room, part 2
+con_mission_Trap_Room_pt3               = $09 ; Trap Room, part 3
+con_mission_Trap_Room_pt4               = $0A ; Trap Room, part 4
+con_mission_Trap_Room_pt5               = $0B ; Trap Room, part 5
+con_mission_The_Double_Illusion         = $0C ; The Double Illusion
+con_mission_Final_Confrontation_pt1     = $0D ; Final Confrontation, part 1
+con_mission_Final_Confrontation_pt2     = $0E ; Final Confrontation, part 2
+con_mission_0F                          = $0F ; 
+
+
+; 00 = _Into_the_Turf
+; 01 = _At_the_Heliport
+; 02 = _Battle_in_the_Chopper
+; 03 = _Undersea_Base_pt1
+; 04 = _Undersea_Base_pt2
+; 05 = _Forest_of_Death
+; 06 = _Mansion_of_Terror
+; 07 = _Trap_Room_pt1
+; 08 = _Trap_Room_pt2
+; 09 = _Trap_Room_pt3
+; 0A = _Trap_Room_pt4
+; 0B = _Trap_Room_pt5
+; 0C = _The_Double_Illusion
+; 0D = _Final_Confrontation_pt1
+; 0E = _Final_Confrontation_pt2
+; 0F = 
 
 
 
@@ -337,6 +356,7 @@ con_state_hair_grabbed                  = $7F ; FF enemy is hair grabbed/player 
 ; players, enemies and weapons
 ; need comments at 0x00B4E2 0x010722
     ; 0x00A3AA
+; characters
 con_obj_billy                           = $00 ; Billy
 con_obj_jimmy                           = $01 ; Jimmy
 con_obj_williams                        = $02 ; punk with knives/batons
@@ -355,7 +375,7 @@ con_obj_doppelganger                    = $0C ; clone boss
 con_obj_ninja                           = $0F ; blue ninja with shurikens
 ; con_obj_10                            = $10 ; unused
 con_obj_shadow_warrior                  = $11 ; final boss (also falling flame from torch maybe?)
-; things
+; items
 con_obj_knife                           = $12 ; knife used by williams
 con_obj_13                              = $13 ; flames from tractor?
 con_obj_grenade                         = $14 ; grenade
@@ -381,6 +401,7 @@ con_nmi_1_irq_1                         = $C0 ; NMI = 1, IRQ = 1
 
 
 ; ram_irq_handler
+; index for 0x01EC74
 con_irq_default                         = $00 ; normal HUD
 con_irq_blue_heli                       = $01 ; blue helicopter, mission 2
 con_irq_green_heli                      = $02 ; green helicopter takes off, mission 2
@@ -401,9 +422,9 @@ con_music_mission_6                     = $07 ; mission 6 soundtrack
 con_music_boss_normal                   = $08 ; normal boss (mission 1-4)
 con_music_boss_tractor                  = $09 ; tractor boss (mission 5)
 con_music_mission_complete              = $0A ; mission complete
-con_music_0B                            = $0B ; unused = 13
+; con_music_0B                          = $0B ; unused
 con_music_mission_9                     = $0C ; mission 9 soundtrack (part 1)
-con_music_boss_clone                    = $0D ; clone boss (mission 8)
+con_music_boss_doppelganger             = $0D ; clone boss (mission 8)
 con_music_mission_info                  = $0E ; mission text
 con_music_mission_3                     = $0F ; mission 3
 con_music_mission_4                     = $10 ; mission 4
@@ -411,10 +432,10 @@ con_music_boss_final                    = $11 ; mission 9 soundtrack (part 2)
 con_music_game_over                     = $12 ; game over
 con_music_final_cutscene                = $13 ; final cutscene (part 1)
 con_music_credits                       = $14 ; final cutscene (part 2)
-con_music_15                            = $15 ; unused
-con_music_16                            = $16 ; unused
-con_music_17                            = $17 ; unused
-con_music_18                            = $18 ; unused
+; con_music_15                          = $15 ; unused
+; con_music_16                          = $16 ; unused
+; con_music_17                          = $17 ; unused
+; con_music_18                          = $18 ; unused
 ; sound effects
 con_sfx_hit                             = $19 ; 
 con_sfx_1A                              = $1A ; final hit
@@ -428,42 +449,42 @@ con_sfx_21                              = $21 ;
 con_sfx_22                              = $22 ; 
 con_sfx_23                              = $23 ; 
 con_sfx_fire                            = $24 ; 
-con_sfx_25                              = $25 ; 
+; con_sfx_25                            = $25 ; unused
 con_sfx_26                              = $26 ; 
 con_sfx_27                              = $27 ; 
-con_sfx_28                              = $28 ; 
+; con_sfx_28                            = $28 ; unused
 con_sfx_ninja_knife_hit                 = $29 ; 
-con_sfx_2A                              = $2A ; 
-con_sfx_2B                              = $2B ; 
-con_sfx_2C                              = $2C ; 
+; con_sfx_2A                            = $2A ; unused
+; con_sfx_2B                            = $2B ; unused
+; con_sfx_2C                            = $2C ; unused
 con_sfx_2D                              = $2D ; 
 con_sfx_2E                              = $2E ; 
-con_sfx_2F                              = $2F ; 
-con_sfx_30                              = $30 ; 
-con_sfx_31                              = $31 ; fall in water?
-con_sfx_32                              = $32 ; 
-con_sfx_33                              = $33 ; 
-con_sfx_34                              = $34 ; 
-con_sfx_35                              = $35 ; 
-con_sfx_36                              = $36 ; 
+; con_sfx_2F                            = $2F ; unused
+; con_sfx_30                            = $30 ; unused
+; con_sfx_31                            = $31 ; unused
+; con_sfx_32                            = $32 ; unused
+; con_sfx_33                            = $33 ; unused
+; con_sfx_34                            = $34 ; unused
+; con_sfx_35                            = $35 ; unused
+; con_sfx_36                            = $36 ; unused
 con_sfx_somersault                      = $37 ; used by williams
 con_sfx_illusion                        = $38 ; when walking through your girlfriend
 con_sfx_pause                           = $39 ; 
-con_sfx_clone_fireball                  = $3A ; 
+con_sfx_doppelganger_fireball           = $3A ; 
 con_sfx_hit_by_fireball                 = $3B ; 
 con_sfx_3C                              = $3C ; 
 con_sfx_helicopter_1                    = $3D ; 
 con_sfx_door                            = $3E ; 
 con_sfx_elevator                        = $3F ; 
 con_sfx_40                              = $40 ; 
-con_sfx_41                              = $41 ; 
-con_sfx_42                              = $42 ; 
+; con_sfx_41                            = $41 ; unused
+; con_sfx_42                            = $42 ; unused
 con_sfx_fall_in_water                   = $43 ; 
-con_sfx_44                              = $44 ; 
-con_sfx_45                              = $45 ; 
+; con_sfx_44                            = $44 ; unused
+; con_sfx_45                            = $45 ; unused
 con_sfx_fall_down                       = $46 ; 
-con_sfx_hand_cursor                     = $47 ; white hnd cursor
-con_sfx_48                              = $48 ; 
+con_sfx_hand_cursor                     = $47 ; white hand cursor
+; con_sfx_48                            = $48 ; unused
 con_sfx_move_cursor                     = $49 ; 
 con_sfx_dissappear                      = $4A ; 
 con_sfx_reappear                        = $4B ; 
@@ -524,7 +545,7 @@ con_004A_flag_knocked_down              = $80 ; player/enemy is knocked down aft
 
 
 ; ram_mission_script
-; handlers 0x01885D 0x018F7D 0x018FB5
+; handlers at 0x01885D 0x018F7D
 con_884D_script_00                      = $00 ; 
 con_884D_script_hand_cursor             = $01 ; white hand cursor
 con_884D_script_02                      = $02 ; 
@@ -553,6 +574,8 @@ con_884D_script_18                      = $18 ;
 con_884D_script_shadow_warrior          = $19 ; mission 0E only
 con_884D_script_1A                      = $1A ; 
 con_884D_script_1B                      = $1B ; 
+
+; handler at 0x018FB5
 con_884D_script_80                      = $80 ; 
 con_884D_script_81                      = $81 ; 
 
@@ -587,8 +610,8 @@ con_A48A_anim_0B                        = $0B ;
 con_A48A_anim_0C                        = $0C ; 
 con_A48A_anim_0D                        = $0D ; 
 con_A48A_anim_0E                        = $0E ; 
-; con_A48A_anim_0F                      = $0F ; unused, index not found
-; con_A48A_anim_10                      = $10 ; unused, index not found
+; con_A48A_anim_0F                      = $0F ; unused
+; con_A48A_anim_10                      = $10 ; unused
 con_A48A_anim_11                        = $11 ; 
 con_A48A_anim_12                        = $12 ; 
 con_A48A_anim_13                        = $13 ; 
@@ -747,11 +770,11 @@ con_A6C3_draw_big_eyes                  = $0B ; big eyes (mission 06)
 con_F709_screen_00                      = $00 ; 
 con_F709_screen_01                      = $01 ; 
 con_F709_screen_02                      = $02 ; 
-; con_F709_screen_03                    = $03 ; unused, index not found
+; con_F709_screen_03                    = $03 ; unused
 con_F709_screen_04                      = $04 ; 
-; con_F709_screen_05                    = $05 ; unused, index not found
-; con_F709_screen_06                    = $06 ; unused, index not found
-; con_F709_screen_07                    = $07 ; unused, index not found
+; con_F709_screen_05                    = $05 ; unused
+; con_F709_screen_06                    = $06 ; unused
+; con_F709_screen_07                    = $07 ; unused
 con_F709_screen_08                      = $08 ; 
 con_F709_screen_09                      = $09 ; 
 con_F709_screen_0A                      = $0A ; 
@@ -790,3 +813,6 @@ con_se_cb_DA                            = $DA ;
 con_se_cb_DB                            = $DB ; 
 con_se_cb_DC                            = $DC ; 
 con_se_cb_DD                            = $DD ; 
+
+
+
