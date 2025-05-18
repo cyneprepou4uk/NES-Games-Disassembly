@@ -1748,7 +1748,7 @@ C - - - - - 0x009131 02:9121: 20 EA EE  JSR sub_0x00EEFA_hide_unused_sprites
 C - - - - - 0x009134 02:9124: 20 8A 92  JSR sub_928A
 bra_9127_pressed_Left:
 C - - - - - 0x009137 02:9127: A9 00     LDA #$00
-C - - - - - 0x009139 02:9129: 85 62     STA ram_0062
+C - - - - - 0x009139 02:9129: 85 62     STA ram_0062_t01
 loc_912B:
 C D 0 - - - 0x00913B 02:912B: 20 6B 91  JSR sub_916B
 loc_912E_loop:
@@ -1779,13 +1779,13 @@ bra_914A_RTS:
 C - - - - - 0x00915A 02:914A: 60        RTS
 bra_914B_pressed_Right:
 C - - - - - 0x00915B 02:914B: A9 01     LDA #$01
-C - - - - - 0x00915D 02:914D: 85 62     STA ram_0062
+C - - - - - 0x00915D 02:914D: 85 62     STA ram_0062_t01
 C - - - - - 0x00915F 02:914F: 4C 2B 91  JMP loc_912B
 bra_9152_pressed_Select:
-C - - - - - 0x009162 02:9152: E6 62     INC ram_0062
-C - - - - - 0x009164 02:9154: A5 62     LDA ram_0062
+C - - - - - 0x009162 02:9152: E6 62     INC ram_0062_t01
+C - - - - - 0x009164 02:9154: A5 62     LDA ram_0062_t01
 C - - - - - 0x009166 02:9156: 29 01     AND #$01
-C - - - - - 0x009168 02:9158: 85 62     STA ram_0062
+C - - - - - 0x009168 02:9158: 85 62     STA ram_0062_t01
 C - - - - - 0x00916A 02:915A: 4C 2B 91  JMP loc_912B
 
 
@@ -1801,7 +1801,7 @@ C - - - - - 0x009178 02:9168: 4C 76 91  JMP loc_9176
 
 
 sub_916B:
-C - - - - - 0x00917B 02:916B: A4 62     LDY ram_0062
+C - - - - - 0x00917B 02:916B: A4 62     LDY ram_0062_t01
 C - - - - - 0x00917D 02:916D: B9 89 91  LDA tbl_9189_spr_X,Y
 C - - - - - 0x009180 02:9170: 85 20     STA ram_0020_t04_spr_X
 C - - - - - 0x009182 02:9172: A9 98     LDA #$98
@@ -2189,9 +2189,9 @@ sub_93CF_calculate_bcd_tiles:
     ; ram_001E_t03_data
 C - - - - - 0x0093DF 02:93CF: 85 65     STA ram_0065_tile
 C - - - - - 0x0093E1 02:93D1: A9 02     LDA #$02
-C - - - - - 0x0093E3 02:93D3: 85 62     STA ram_0062
+C - - - - - 0x0093E3 02:93D3: 85 62     STA ram_0062_t02
 C - - - - - 0x0093E5 02:93D5: A9 01     LDA #$01
-C - - - - - 0x0093E7 02:93D7: 85 63     STA ram_0063
+C - - - - - 0x0093E7 02:93D7: 85 63     STA ram_0062_t02 + $01
 C - - - - - 0x0093E9 02:93D9: A9 00     LDA #$00
 C - - - - - 0x0093EB 02:93DB: 85 64     STA ram_0064_tile
 loc_93DD_loop:
@@ -2209,9 +2209,9 @@ C - - - - - 0x0093FF 02:93EF: 85 64     STA ram_0064_tile
 C - - - - - 0x009401 02:93F1: A5 65     LDA ram_0065_tile
 C - - - - - 0x009403 02:93F3: 09 E0     ORA #$E0
 C - - - - - 0x009405 02:93F5: 85 65     STA ram_0065_tile
-C - - - - - 0x009407 02:93F7: A9 62     LDA #< ram_0062
+C - - - - - 0x009407 02:93F7: A9 62     LDA #< ram_0062_t02
 C - - - - - 0x009409 02:93F9: 85 1E     STA ram_001E_t03_data
-C - - - - - 0x00940B 02:93FB: A9 00     LDA #> ram_0062
+C - - - - - 0x00940B 02:93FB: A9 00     LDA #> ram_0062_t02
 C - - - - - 0x00940D 02:93FD: 85 1F     STA ram_001E_t03_data + $01
 C - - - - - 0x00940F 02:93FF: 60        RTS
 
@@ -2296,10 +2296,10 @@ ofs_000_9491_03_stage_complete:
 C - - J - - 0x0094A1 02:9491: A5 9E     LDA ram_009E
 ; bzk optimize, useless AND, values already 00-03 only
 C - - - - - 0x0094A3 02:9493: 29 03     AND #$03
-C - - - - - 0x0094A5 02:9495: 85 95     STA ram_0095
+C - - - - - 0x0094A5 02:9495: 85 95     STA ram_0095_msg_id
 C - - - - - 0x0094A7 02:9497: 98        TYA
 C - - - - - 0x0094A8 02:9498: 48        PHA
-C - - - - - 0x0094A9 02:9499: A5 95     LDA ram_0095
+C - - - - - 0x0094A9 02:9499: A5 95     LDA ram_0095_msg_id
 C - - - - - 0x0094AB 02:949B: C9 03     CMP #$03
 C - - - - - 0x0094AD 02:949D: D0 03     BNE bra_94A2
 C - - - - - 0x0094AF 02:949F: 4C 13 95  JMP loc_9513
@@ -2315,7 +2315,7 @@ C - - - - - 0x0094C1 02:94B1: 99 A2 00  STA ram_00A2,Y
 C - - - - - 0x0094C4 02:94B4: C8        INY
 C - - - - - 0x0094C5 02:94B5: C0 08     CPY #$08
 C - - - - - 0x0094C7 02:94B7: D0 EB     BNE bra_94A4_loop
-C - - - - - 0x0094C9 02:94B9: A5 95     LDA ram_0095
+C - - - - - 0x0094C9 02:94B9: A5 95     LDA ram_0095_msg_id
 C - - - - - 0x0094CB 02:94BB: F0 09     BEQ bra_94C6
 C - - - - - 0x0094CD 02:94BD: C9 01     CMP #$01
 C - - - - - 0x0094CF 02:94BF: F0 0A     BEQ bra_94CB
@@ -2369,7 +2369,7 @@ C - - - - - 0x00951F 02:950F: C0 08     CPY #$08
 C - - - - - 0x009521 02:9511: D0 F5     BNE bra_9508_loop
 bra_9513:
 loc_9513:
-C D 0 - - - 0x009523 02:9513: A5 95     LDA ram_0095
+C D 0 - - - 0x009523 02:9513: A5 95     LDA ram_0095_msg_id
 ; * 08
 C - - - - - 0x009525 02:9515: 0A        ASL
 C - - - - - 0x009526 02:9516: 0A        ASL
@@ -2390,7 +2390,7 @@ C - - - - - 0x009542 02:9532: E9 00     SBC #> $0010
 C - - - - - 0x009544 02:9534: 99 34 06  STA ram_pos_Y_hi_msg,Y
 C - - - - - 0x009547 02:9537: A9 00     LDA #$00
 C - - - - - 0x009549 02:9539: 99 35 06  STA ram_msg_timer,Y
-C - - - - - 0x00954C 02:953C: A5 95     LDA ram_0095
+C - - - - - 0x00954C 02:953C: A5 95     LDA ram_0095_msg_id
 C - - - - - 0x00954E 02:953E: 99 36 06  STA ram_msg_id,Y
 C - - - - - 0x009551 02:9541: 68        PLA
 C - - - - - 0x009552 02:9542: A8        TAY
@@ -7357,11 +7357,11 @@ C - - - - - 0x00B017 02:B007: A8        TAY
 C - - - - - 0x00B018 02:B008: B9 D8 B0  LDA tbl_B0D8_letter_tile,Y
 C - - - - - 0x00B01B 02:B00B: 85 64     STA ram_0064_tile
 C - - - - - 0x00B01D 02:B00D: A9 01     LDA #$01
-C - - - - - 0x00B01F 02:B00F: 85 62     STA ram_0062
-C - - - - - 0x00B021 02:B011: 85 63     STA ram_0063
-C - - - - - 0x00B023 02:B013: A9 62     LDA #< ram_0062
+C - - - - - 0x00B01F 02:B00F: 85 62     STA ram_0062_t02
+C - - - - - 0x00B021 02:B011: 85 63     STA ram_0062_t02 + $01
+C - - - - - 0x00B023 02:B013: A9 62     LDA #< ram_0062_t02
 C - - - - - 0x00B025 02:B015: 85 1E     STA ram_001E_t03_data
-C - - - - - 0x00B027 02:B017: A9 00     LDA #> ram_0062
+C - - - - - 0x00B027 02:B017: A9 00     LDA #> ram_0062_t02
 C - - - - - 0x00B029 02:B019: 85 1F     STA ram_001E_t03_data + $01
 C - - - - - 0x00B02B 02:B01B: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x00B02E 02:B01E: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
@@ -7433,9 +7433,9 @@ sub_B080:
     ; ram_001C_t04_ppu_addr_lo
     ; ram_001D_t01_ppu_addr_hi
 C - - - - - 0x00B090 02:B080: A9 04     LDA #$04
-C - - - - - 0x00B092 02:B082: 85 62     STA ram_0062
+C - - - - - 0x00B092 02:B082: 85 62     STA ram_0062_t02
 C - - - - - 0x00B094 02:B084: A9 01     LDA #$01
-C - - - - - 0x00B096 02:B086: 85 63     STA ram_0063
+C - - - - - 0x00B096 02:B086: 85 63     STA ram_0062_t02 + $01
 C - - - - - 0x00B098 02:B088: A9 00     LDA #$00
 C - - - - - 0x00B09A 02:B08A: 85 64     STA ram_0064_tile
 C - - - - - 0x00B09C 02:B08C: 85 65     STA ram_0065_tile
@@ -7481,9 +7481,9 @@ C - - - - - 0x00B0D4 02:B0C4: A5 67     LDA ram_0067_tile
 C - - - - - 0x00B0D6 02:B0C6: A8        TAY
 C - - - - - 0x00B0D7 02:B0C7: B9 D8 B0  LDA tbl_B0D8_letter_tile,Y
 C - - - - - 0x00B0DA 02:B0CA: 85 67     STA ram_0067_tile
-C - - - - - 0x00B0DC 02:B0CC: A9 62     LDA #< ram_0062
+C - - - - - 0x00B0DC 02:B0CC: A9 62     LDA #< ram_0062_t02
 C - - - - - 0x00B0DE 02:B0CE: 85 1E     STA ram_001E_t03_data
-C - - - - - 0x00B0E0 02:B0D0: A9 00     LDA #> ram_0062
+C - - - - - 0x00B0E0 02:B0D0: A9 00     LDA #> ram_0062_t02
 C - - - - - 0x00B0E2 02:B0D2: 85 1F     STA ram_001E_t03_data + $01
 ; bzk optimize, JSR
 C - - - - - 0x00B0E4 02:B0D4: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
