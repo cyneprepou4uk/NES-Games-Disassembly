@@ -39,11 +39,11 @@ _off000_bat_67F0_12:
 - D 0 - I - 0x019CEF 06:67F7: 0F        .byte $0F, $16, $27, $36   ; 
 - D 0 - I - 0x019CF3 06:67FB: 0F        .byte $0F, $0C, $1C, $2C   ; 
 - D 0 - I - 0x019CF7 06:67FF: 0F        .byte $0F, $12, $1C, $2C   ; 
-; ram_6804
+; ram_6804_tunic_color
 - D 0 - I - 0x019CFB 06:6803: 0F        .byte $0F, $29, $27, $07   ; 
-; ram_6808
+; ram_6804_tunic_color + $04
 - D 0 - I - 0x019CFF 06:6807: 0F        .byte $0F, $22, $27, $07   ; 
-; ram_680C
+; ram_6804_tunic_color + $08
 - D 0 - I - 0x019D03 06:680B: 0F        .byte $0F, $26, $27, $07   ; 
 ; ram_6810
 - D 0 - I - 0x019D07 06:680F: 0F        .byte $0F, $15, $27, $30   ; 

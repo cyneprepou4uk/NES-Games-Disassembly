@@ -112,7 +112,7 @@ C - - - - - 0x01808F 06:807F: 20 B5 80  JSR sub_80B5_set_copy_range_6B7E_6C7D
 C - - - - - 0x018092 06:8082: 20 D7 80  JSR sub_80D7_copy_bat_table_to_bat
 C - - - - - 0x018095 06:8085: A9 00     LDA #$00
 C - - - - - 0x018097 06:8087: 85 13     STA ram_subscript
-C - - - - - 0x018099 06:8089: E6 11     INC ram_0011
+C - - - - - 0x018099 06:8089: E6 11     INC ram_0011_screen_ready_flag
 C - - - - - 0x01809B 06:808B: 60        RTS
 
 
@@ -2961,7 +2961,7 @@ _off009_8A00_09:
 - D 0 - I - 0x018BE0 06:8BD0: 14        .byte $00 + $00 + con_obj_id_14   ; 50 
 - D 0 - I - 0x018BE1 06:8BD1: 11        .byte $00 + $00 + con_obj_id_11   ; 51 
 - D 0 - I - 0x018BE2 06:8BD2: 9B        .byte $00 + $80 + con_obj_id_5B - $40   ; 52 
-- D 0 - I - 0x018BE3 06:8BD3: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 53 
+- D 0 - I - 0x018BE3 06:8BD3: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 53 
 - D 0 - I - 0x018BE4 06:8BD4: 8C        .byte $00 + $80 + con_obj_id_4C - $40   ; 54 
 - D 0 - I - 0x018BE5 06:8BD5: 5A        .byte $40 + $00 + con_obj_id_1A   ; 55 
 - D 0 - I - 0x018BE6 06:8BD6: 99        .byte $00 + $80 + con_obj_id_59 - $40   ; 56 
@@ -3670,7 +3670,7 @@ _off011_8D00_06:
 - D 0 - I - 0x018E97 06:8E87: 04        .byte $00 + $00 + con_obj_id_04   ; 07 
 - D 0 - I - 0x018E98 06:8E88: 29        .byte $00 + $00 + con_obj_id_29   ; 08 
 - D 0 - I - 0x018E99 06:8E89: 3E        .byte $00 + $00 + con_obj_id_3E   ; 09 
-- D 0 - I - 0x018E9A 06:8E8A: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 0A 
+- D 0 - I - 0x018E9A 06:8E8A: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 0A 
 - D 0 - I - 0x018E9B 06:8E8B: 3F        .byte $00 + $00 + con_obj_id_3F   ; 0B 
 - D 0 - I - 0x018E9C 06:8E8C: A6        .byte $00 + $80 + con_obj_id_66 - $40   ; 0C 
 - D 0 - I - 0x018E9D 06:8E8D: A6        .byte $00 + $80 + con_obj_id_66 - $40   ; 0D 
@@ -3742,7 +3742,7 @@ _off011_8D00_06:
 - D 0 - I - 0x018EDF 06:8ECF: 29        .byte $00 + $00 + con_obj_id_29   ; 4F 
 - D 0 - I - 0x018EE0 06:8ED0: 95        .byte $00 + $80 + con_obj_id_55 - $40   ; 50 
 - D 0 - I - 0x018EE1 06:8ED1: C1        .byte $40 + $80 + con_obj_id_41 - $40   ; 51 
-- D 0 - I - 0x018EE2 06:8ED2: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 52 
+- D 0 - I - 0x018EE2 06:8ED2: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 52 
 - D 0 - I - 0x018EE3 06:8ED3: 95        .byte $00 + $80 + con_obj_id_55 - $40   ; 53 
 - D 0 - I - 0x018EE4 06:8ED4: A4        .byte $00 + $80 + con_obj_id_64 - $40   ; 54 
 - D 0 - I - 0x018EE5 06:8ED5: 11        .byte $00 + $00 + con_obj_id_11   ; 55 
@@ -3751,14 +3751,14 @@ _off011_8D00_06:
 - D 0 - I - 0x018EE8 06:8ED8: 3E        .byte $00 + $00 + con_obj_id_3E   ; 58 
 - D 0 - I - 0x018EE9 06:8ED9: 4A        .byte $40 + $00 + con_obj_id_0A   ; 59 
 - D 0 - I - 0x018EEA 06:8EDA: 1E        .byte $00 + $00 + con_obj_id_1E   ; 5A 
-- D 0 - I - 0x018EEB 06:8EDB: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 5B 
+- D 0 - I - 0x018EEB 06:8EDB: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 5B 
 - D 0 - I - 0x018EEC 06:8EDC: 9F        .byte $00 + $80 + con_obj_id_5F - $40   ; 5C 
 - D 0 - I - 0x018EED 06:8EDD: 04        .byte $00 + $00 + con_obj_id_04   ; 5D 
 - D 0 - I - 0x018EEE 06:8EDE: CD        .byte $40 + $80 + con_obj_id_4D - $40   ; 5E 
 - D 0 - I - 0x018EEF 06:8EDF: 24        .byte $00 + $00 + con_obj_id_24   ; 5F 
 - D 0 - I - 0x018EF0 06:8EE0: 97        .byte $00 + $80 + con_obj_id_57 - $40   ; 60 
 - D 0 - I - 0x018EF1 06:8EE1: 9D        .byte $00 + $80 + con_obj_id_5D - $40   ; 61 
-- D 0 - I - 0x018EF2 06:8EE2: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 62 
+- D 0 - I - 0x018EF2 06:8EE2: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 62 
 - D 0 - I - 0x018EF3 06:8EE3: 96        .byte $00 + $80 + con_obj_id_56 - $40   ; 63 
 - D 0 - I - 0x018EF4 06:8EE4: 8C        .byte $00 + $80 + con_obj_id_4C - $40   ; 64 
 - D 0 - I - 0x018EF5 06:8EE5: 0D        .byte $00 + $00 + con_obj_id_0D   ; 65 
@@ -4456,12 +4456,12 @@ _off011_9000_09:
 - D 0 - I - 0x01919E 06:918E: 0C        .byte $00 + $00 + con_obj_id_0C   ; 0E 
 - D 0 - I - 0x01919F 06:918F: 23        .byte $00 + $00 + con_obj_id_23   ; 0F 
 - D 0 - I - 0x0191A0 06:9190: 95        .byte $00 + $80 + con_obj_id_55 - $40   ; 10 
-- D 0 - I - 0x0191A1 06:9191: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 11 
+- D 0 - I - 0x0191A1 06:9191: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 11 
 - D 0 - I - 0x0191A2 06:9192: 99        .byte $00 + $80 + con_obj_id_59 - $40   ; 12 
 - D 0 - I - 0x0191A3 06:9193: A6        .byte $00 + $80 + con_obj_id_66 - $40   ; 13 
 - D 0 - I - 0x0191A4 06:9194: 00        .byte $00 + $00 + con_obj_id_null   ; 14 
 - D 0 - I - 0x0191A5 06:9195: CE        .byte $40 + $80 + con_obj_id_4E - $40   ; 15 
-- D 0 - I - 0x0191A6 06:9196: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 16 
+- D 0 - I - 0x0191A6 06:9196: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 16 
 - D 0 - I - 0x0191A7 06:9197: 28        .byte $00 + $00 + con_obj_id_28   ; 17 
 - D 0 - I - 0x0191A8 06:9198: 62        .byte $40 + $00 + con_obj_id_22   ; 18 
 - D 0 - I - 0x0191A9 06:9199: 4A        .byte $40 + $00 + con_obj_id_0A   ; 19 
@@ -4489,7 +4489,7 @@ _off011_9000_09:
 - D 0 - I - 0x0191BF 06:91AF: 26        .byte $00 + $00 + con_obj_id_26   ; 2F 
 - D 0 - I - 0x0191C0 06:91B0: 3E        .byte $00 + $00 + con_obj_id_3E   ; 30 
 - D 0 - I - 0x0191C1 06:91B1: 81        .byte $00 + $80 + con_obj_id_41 - $40   ; 31 
-- D 0 - I - 0x0191C2 06:91B2: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 32 
+- D 0 - I - 0x0191C2 06:91B2: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 32 
 - D 0 - I - 0x0191C3 06:91B3: 60        .byte $40 + $00 + con_obj_id_20   ; 33 
 - D 0 - I - 0x0191C4 06:91B4: 60        .byte $40 + $00 + con_obj_id_20   ; 34 
 - D 0 - I - 0x0191C5 06:91B5: 4A        .byte $40 + $00 + con_obj_id_0A   ; 35 
@@ -4507,10 +4507,10 @@ _off011_9000_09:
 - D 0 - I - 0x0191D1 06:91C1: 60        .byte $40 + $00 + con_obj_id_20   ; 41 
 - D 0 - I - 0x0191D2 06:91C2: 26        .byte $00 + $00 + con_obj_id_26   ; 42 
 - D 0 - I - 0x0191D3 06:91C3: 12        .byte $00 + $00 + con_obj_id_12   ; 43 
-- D 0 - I - 0x0191D4 06:91C4: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 44 
+- D 0 - I - 0x0191D4 06:91C4: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 44 
 - D 0 - I - 0x0191D5 06:91C5: E2        .byte $40 + $80 + con_obj_id_62 - $40   ; 45 
 - D 0 - I - 0x0191D6 06:91C6: A4        .byte $00 + $80 + con_obj_id_64 - $40   ; 46 
-- D 0 - I - 0x0191D7 06:91C7: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 47 
+- D 0 - I - 0x0191D7 06:91C7: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 47 
 - D 0 - I - 0x0191D8 06:91C8: 51        .byte $40 + $00 + con_obj_id_11   ; 48 
 - D 0 - I - 0x0191D9 06:91C9: C8        .byte $40 + $80 + con_obj_id_48 - $40   ; 49 
 - D 0 - I - 0x0191DA 06:91CA: 4A        .byte $40 + $00 + con_obj_id_0A   ; 4A 
@@ -4537,11 +4537,11 @@ _off011_9000_09:
 - D 0 - I - 0x0191EF 06:91DF: 51        .byte $40 + $00 + con_obj_id_11   ; 5F 
 - D 0 - I - 0x0191F0 06:91E0: 3E        .byte $00 + $00 + con_obj_id_3E   ; 60 
 - D 0 - I - 0x0191F1 06:91E1: 23        .byte $00 + $00 + con_obj_id_23   ; 61 
-- D 0 - I - 0x0191F2 06:91E2: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 62 
+- D 0 - I - 0x0191F2 06:91E2: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 62 
 - D 0 - I - 0x0191F3 06:91E3: 1D        .byte $00 + $00 + con_obj_id_1D   ; 63 
 - D 0 - I - 0x0191F4 06:91E4: A6        .byte $00 + $80 + con_obj_id_66 - $40   ; 64 
 - D 0 - I - 0x0191F5 06:91E5: 95        .byte $00 + $80 + con_obj_id_55 - $40   ; 65 
-- D 0 - I - 0x0191F6 06:91E6: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 66 
+- D 0 - I - 0x0191F6 06:91E6: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 66 
 - D 0 - I - 0x0191F7 06:91E7: 3E        .byte $00 + $00 + con_obj_id_3E   ; 67 
 - D 0 - I - 0x0191F8 06:91E8: 96        .byte $00 + $80 + con_obj_id_56 - $40   ; 68 
 - D 0 - I - 0x0191F9 06:91E9: 0F        .byte $00 + $00 + con_obj_id_0F   ; 69 
@@ -4561,7 +4561,7 @@ _off011_9000_09:
 - D 0 - I - 0x019207 06:91F7: 3F        .byte $00 + $00 + con_obj_id_3F   ; 77 
 - D 0 - I - 0x019208 06:91F8: DF        .byte $40 + $80 + con_obj_id_5F - $40   ; 78 
 - D 0 - I - 0x019209 06:91F9: 21        .byte $00 + $00 + con_obj_id_21   ; 79 
-- D 0 - I - 0x01920A 06:91FA: A3        .byte $00 + $80 + con_obj_id_63 - $40   ; 7A 
+- D 0 - I - 0x01920A 06:91FA: A3        .byte $00 + $80 + con_obj_id_breakable_wall - $40   ; 7A 
 - D 0 - I - 0x01920B 06:91FB: 93        .byte $00 + $80 + con_obj_id_53 - $40   ; 7B 
 - D 0 - I - 0x01920C 06:91FC: D1        .byte $40 + $80 + con_obj_id_51 - $40   ; 7C 
 - D 0 - I - 0x01920D 06:91FD: 46        .byte $40 + $00 + con_obj_id_06   ; 7D 
@@ -6409,7 +6409,7 @@ C - - - - - 0x01A097 06:A087: BD 01 A0  LDA tbl_A000_ppu_data + $01,X
 C - - - - - 0x01A09A 06:A08A: 85 01     STA ram_0000_t11_ppu_data + $01
 C - - - - - 0x01A09C 06:A08C: 20 F6 A0  JSR sub_A0F6_write_to_ppu
 C - - - - - 0x01A09F 06:A08F: A9 3F     LDA #$3F
-C - - - - - 0x01A0A1 06:A091: 8D 00 03  STA ram_0300
+C - - - - - 0x01A0A1 06:A091: 8D 00 03  STA ram_0300_useless
 C - - - - - 0x01A0A4 06:A094: A2 00     LDX #$00
 C - - - - - 0x01A0A6 06:A096: 86 14     STX ram_ppu_load_index  ; con_ppu_buf_00
 C - - - - - 0x01A0A8 06:A098: 86 5C     STX ram_005C
