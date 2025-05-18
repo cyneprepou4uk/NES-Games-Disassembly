@@ -18,6 +18,8 @@ con_btn_Select                          = $20 ;
 con_btn_B                               = $40 ; 
 con_btn_A                               = $80 ; 
 
+con_btns_AB                             = con_btn_A + con_btn_B ; C0
+
 
 
 ; ram_player_state
@@ -102,5 +104,6 @@ con_FF80_2F                             = $2F ;
 ; control bytes for 0x003966
 con_F956_repeat                         = $34 ; 1st byte = counter, 2nd byte = tile
 con_F956_end_token                      = $39 ; end token
+
 
 
