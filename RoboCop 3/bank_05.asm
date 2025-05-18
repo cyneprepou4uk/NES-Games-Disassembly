@@ -153,7 +153,8 @@ C - - - - - 0x0140EF 05:80DF: 8D B3 03  STA ram_03A9_obj + $0A
 C - - - - - 0x0140F2 05:80E2: A9 FF     LDA #$FF
 C - - - - - 0x0140F4 05:80E4: 8D B1 03  STA ram_03A9_obj + $08
 C - - - - - 0x0140F7 05:80E7: A9 08     LDA #$08
-C - - - - - 0x0140F9 05:80E9: 8D 21 03  STA ram_0321
+; bzk optimize, useless LDA + STA
+C - - - - - 0x0140F9 05:80E9: 8D 21 03  STA ram_0321_useless
 C - - - - - 0x0140FC 05:80EC: A9 80     LDA #$80
 C - - - - - 0x0140FE 05:80EE: 8D 00 20  STA $2000
 C - - - - - 0x014101 05:80F1: 4C 47 83  JMP loc_8347
@@ -171,8 +172,8 @@ C - - - - - 0x014115 05:8105: 8D 01 20  STA $2001
 C - - - - - 0x014118 05:8108: 8D A5 03  STA ram_039C_obj + $09
 C - - - - - 0x01411B 05:810B: A9 08     LDA #$08
 C - - - - - 0x01411D 05:810D: 8D B2 03  STA ram_03A9_obj + $09
-C - - - - - 0x014120 05:8110: A9 01     LDA #$01
-C - - - - - 0x014122 05:8112: 8D D3 03  STA ram_03D3
+C - - - - - 0x014120 05:8110: A9 01     LDA #con_btn2_A
+C - - - - - 0x014122 05:8112: 8D D3 03  STA ram_03D3_btn
 C - - - - - 0x014125 05:8115: A9 03     LDA #$03
 C - - - - - 0x014127 05:8117: 8D B3 03  STA ram_03A9_obj + $0A
 C - - - - - 0x01412A 05:811A: A9 FF     LDA #$FF
@@ -202,8 +203,8 @@ C - - - - - 0x01415F 05:814F: A9 04     LDA #$04
 C - - - - - 0x014161 05:8151: 8D B3 03  STA ram_03A9_obj + $0A
 C - - - - - 0x014164 05:8154: A9 FF     LDA #$FF
 C - - - - - 0x014166 05:8156: 8D B1 03  STA ram_03A9_obj + $08
-C - - - - - 0x014169 05:8159: A9 01     LDA #$01
-C - - - - - 0x01416B 05:815B: 8D D3 03  STA ram_03D3
+C - - - - - 0x014169 05:8159: A9 01     LDA #con_btn2_A
+C - - - - - 0x01416B 05:815B: 8D D3 03  STA ram_03D3_btn
 C - - - - - 0x01416E 05:815E: A9 07     LDA #$07
 C - - - - - 0x014170 05:8160: 8D A7 03  STA ram_039C_obj + $0B
 C - - - - - 0x014173 05:8163: 20 39 98  JSR sub_9839
@@ -323,8 +324,8 @@ C - - - - - 0x014287 05:8277: 8D A5 03  STA ram_039C_obj + $09
 C - - - - - 0x01428A 05:827A: 8D A6 03  STA ram_039C_obj + $0A
 C - - - - - 0x01428D 05:827D: A9 08     LDA #$08
 C - - - - - 0x01428F 05:827F: 8D B2 03  STA ram_03A9_obj + $09
-C - - - - - 0x014292 05:8282: A9 01     LDA #$01
-C - - - - - 0x014294 05:8284: 8D D3 03  STA ram_03D3
+C - - - - - 0x014292 05:8282: A9 01     LDA #con_btn2_A
+C - - - - - 0x014294 05:8284: 8D D3 03  STA ram_03D3_btn
 C - - - - - 0x014297 05:8287: A9 06     LDA #$06
 C - - - - - 0x014299 05:8289: 8D B3 03  STA ram_03A9_obj + $0A
 C - - - - - 0x01429C 05:828C: A9 FF     LDA #$FF
@@ -514,7 +515,7 @@ C - - J - - 0x014397 05:8387: AE A7 03  LDX ram_039C_obj + $0B
 C - - - - - 0x01439A 05:838A: BD 27 98  LDA tbl_9827,X
 C - - - - - 0x01439D 05:838D: CD A6 03  CMP ram_039C_obj + $0A
 C - - - - - 0x0143A0 05:8390: D0 08     BNE bra_839A
-C - - - - - 0x0143A2 05:8392: BD 30 98  LDA tbl_9830,X
+C - - - - - 0x0143A2 05:8392: BD 30 98  LDA tbl_9830_00,X
 C - - - - - 0x0143A5 05:8395: CD A5 03  CMP ram_039C_obj + $09
 C - - - - - 0x0143A8 05:8398: F0 03     BEQ bra_839D
 bra_839A:
@@ -528,7 +529,7 @@ C - - - - - 0x0143B5 05:83A5: CA        DEX
 C - - - - - 0x0143B6 05:83A6: 8E A7 03  STX ram_039C_obj + $0B
 C - - - - - 0x0143B9 05:83A9: BD 27 98  LDA tbl_9827,X
 C - - - - - 0x0143BC 05:83AC: 8D A6 03  STA ram_039C_obj + $0A
-C - - - - - 0x0143BF 05:83AF: BD 30 98  LDA tbl_9830,X
+C - - - - - 0x0143BF 05:83AF: BD 30 98  LDA tbl_9830_00,X
 C - - - - - 0x0143C2 05:83B2: 8D A5 03  STA ram_039C_obj + $09
 bra_83B5:
 C - - - - - 0x0143C5 05:83B5: 20 05 83  JSR sub_8305_hide_all_sprites
@@ -632,7 +633,7 @@ C - - - - - 0x014488 05:8478: F0 11     BEQ bra_848B
 - - - - - - 0x01448C 05:847C: 8E A7 03  STX ram_039C_obj + $0B
 - - - - - - 0x01448F 05:847F: BD 27 98  LDA tbl_9827,X
 - - - - - - 0x014492 05:8482: 8D A6 03  STA ram_039C_obj + $0A
-- - - - - - 0x014495 05:8485: BD 30 98  LDA tbl_9830,X
+- - - - - - 0x014495 05:8485: BD 30 98  LDA tbl_9830_00,X
 - - - - - - 0x014498 05:8488: 8D A5 03  STA ram_039C_obj + $09
 bra_848B:
 C - - - - - 0x01449B 05:848B: 20 B1 B7  JSR sub_B7B1
@@ -792,9 +793,9 @@ C - - - - - 0x0145D3 05:85C3: AD D2 03  LDA ram_03D2
 C - - - - - 0x0145D6 05:85C6: C9 02     CMP #$02
 C - - - - - 0x0145D8 05:85C8: D0 1D     BNE bra_85E7
 C - - - - - 0x0145DA 05:85CA: AD B0 03  LDA ram_menu_buttons
-C - - - - - 0x0145DD 05:85CD: CD D3 03  CMP ram_03D3
+C - - - - - 0x0145DD 05:85CD: CD D3 03  CMP ram_03D3_btn
 C - - - - - 0x0145E0 05:85D0: F0 15     BEQ bra_85E7
-C - - - - - 0x0145E2 05:85D2: 8D D3 03  STA ram_03D3
+C - - - - - 0x0145E2 05:85D2: 8D D3 03  STA ram_03D3_btn
 C - - - - - 0x0145E5 05:85D5: 29 09     AND #con_btn2_Start + con_btn2_A
 C - - - - - 0x0145E7 05:85D7: F0 0E     BEQ bra_85E7
 C - - - - - 0x0145E9 05:85D9: 20 3E 86  JSR sub_863E
@@ -809,9 +810,9 @@ C - - - - - 0x0145F7 05:85E7: AD D2 03  LDA ram_03D2
 C - - - - - 0x0145FA 05:85EA: C9 03     CMP #$03
 C - - - - - 0x0145FC 05:85EC: D0 2C     BNE bra_861A
 C - - - - - 0x0145FE 05:85EE: AD B0 03  LDA ram_menu_buttons
-C - - - - - 0x014601 05:85F1: CD D3 03  CMP ram_03D3
+C - - - - - 0x014601 05:85F1: CD D3 03  CMP ram_03D3_btn
 C - - - - - 0x014604 05:85F4: F0 24     BEQ bra_861A
-C - - - - - 0x014606 05:85F6: 8D D3 03  STA ram_03D3
+C - - - - - 0x014606 05:85F6: 8D D3 03  STA ram_03D3_btn
 C - - - - - 0x014609 05:85F9: 29 09     AND #con_btn2_Start + con_btn2_A
 C - - - - - 0x01460B 05:85FB: F0 1D     BEQ bra_861A
 C - - - - - 0x01460D 05:85FD: 20 3E 86  JSR sub_863E
@@ -858,7 +859,7 @@ C - - - - - 0x01464F 05:863F: 48        PHA
 C - - - - - 0x014650 05:8640: A2 02     LDX #$02    ; bzk optimize
 C - - - - - 0x014652 05:8642: BD 27 98  LDA tbl_9827,X
 C - - - - - 0x014655 05:8645: 8D A6 03  STA ram_039C_obj + $0A
-C - - - - - 0x014658 05:8648: BD 30 98  LDA tbl_9830,X
+C - - - - - 0x014658 05:8648: BD 30 98  LDA tbl_9830_00,X
 C - - - - - 0x01465B 05:864B: 8D A5 03  STA ram_039C_obj + $09
 C - - - - - 0x01465E 05:864E: 68        PLA
 C - - - - - 0x01465F 05:864F: AA        TAX
@@ -1277,9 +1278,9 @@ bra_8858:
 C - - - - - 0x014868 05:8858: 20 C1 94  JSR sub_94C1_read_joy_regs
 C - - - - - 0x01486B 05:885B: AD B0 03  LDA ram_menu_buttons
 C - - - - - 0x01486E 05:885E: 29 01     AND #con_btn2_A
-C - - - - - 0x014870 05:8860: CD D3 03  CMP ram_03D3
+C - - - - - 0x014870 05:8860: CD D3 03  CMP ram_03D3_btn
 C - - - - - 0x014873 05:8863: F0 0C     BEQ bra_8871
-C - - - - - 0x014875 05:8865: 8D D3 03  STA ram_03D3
+C - - - - - 0x014875 05:8865: 8D D3 03  STA ram_03D3_btn
 C - - - - - 0x014878 05:8868: C9 01     CMP #con_btn2_A
 C - - - - - 0x01487A 05:886A: D0 05     BNE bra_8871
 C - - - - - 0x01487C 05:886C: A9 03     LDA #$03
@@ -1357,18 +1358,19 @@ C - - - - - 0x0148E2 05:88D2: A9 02     LDA #$02
 C - - - - - 0x0148E4 05:88D4: 8D B3 03  STA ram_03A9_obj + $0A
 C - - - - - 0x0148E7 05:88D7: A9 FF     LDA #$FF
 C - - - - - 0x0148E9 05:88D9: 8D B1 03  STA ram_03A9_obj + $08
+; bzk optimize, useless LDA + STA
 C - - - - - 0x0148EC 05:88DC: A9 08     LDA #$08
-C - - - - - 0x0148EE 05:88DE: 8D 21 03  STA ram_0321
+C - - - - - 0x0148EE 05:88DE: 8D 21 03  STA ram_0321_useless
 C - - - - - 0x0148F1 05:88E1: A9 02     LDA #$02
 C - - - - - 0x0148F3 05:88E3: 8D A7 03  STA ram_039C_obj + $0B
 C - - - - - 0x0148F6 05:88E6: 20 39 98  JSR sub_9839
-; bzk optimize, same as 0x01491B
-C - - - - - 0x0148F9 05:88E9: A9 01     LDA #$01
-C - - - - - 0x0148FB 05:88EB: 8D D3 03  STA ram_03D3
+; bzk optimize, useless LDA + STA, same code at 0x01491B
+C - - - - - 0x0148F9 05:88E9: A9 01     LDA #con_btn2_A
+C - - - - - 0x0148FB 05:88EB: 8D D3 03  STA ram_03D3_btn
 C - - - - - 0x0148FE 05:88EE: A2 02     LDX #$02
-C - - - - - 0x014900 05:88F0: AD 29 98  LDA tbl_9827 + $02
+C - - - - - 0x014900 05:88F0: AD 29 98  LDA tbl_9827 + $02  ; 02
 C - - - - - 0x014903 05:88F3: 8D A6 03  STA ram_039C_obj + $0A
-C - - - - - 0x014906 05:88F6: AD 32 98  LDA tbl_9830 + $02
+C - - - - - 0x014906 05:88F6: AD 32 98  LDA tbl_9830_00 + $02  ; 00
 C - - - - - 0x014909 05:88F9: 8D A5 03  STA ram_039C_obj + $09
 C - - - - - 0x01490C 05:88FC: A9 80     LDA #$80
 C - - - - - 0x01490E 05:88FE: 8D 00 20  STA $2000
@@ -1376,7 +1378,7 @@ C - - - - - 0x014911 05:8901: A9 1D     LDA #con_sound_1D
 C - - - - - 0x014913 05:8903: 20 03 C0  JSR sub_0x01C013_prepare_sound
 C - - - - - 0x014916 05:8906: A9 01     LDA #$01
 C - - - - - 0x014918 05:8908: 8D B2 03  STA ram_03A9_obj + $09
-C - - - - - 0x01491B 05:890B: 8D D3 03  STA ram_03D3
+C - - - - - 0x01491B 05:890B: 8D D3 03  STA ram_03D3_btn    ; con_btn2_A
 C - - - - - 0x01491E 05:890E: 4C 47 83  JMP loc_8347
 
 
@@ -1739,9 +1741,9 @@ C - - - - - 0x014BC3 05:8BB3: D0 15     BNE bra_8BCA
 C - - - - - 0x014BC5 05:8BB5: 20 C1 94  JSR sub_94C1_read_joy_regs
 C - - - - - 0x014BC8 05:8BB8: AD B0 03  LDA ram_menu_buttons
 C - - - - - 0x014BCB 05:8BBB: 29 01     AND #con_btn2_A
-C - - - - - 0x014BCD 05:8BBD: CD D3 03  CMP ram_03D3
+C - - - - - 0x014BCD 05:8BBD: CD D3 03  CMP ram_03D3_btn
 C - - - - - 0x014BD0 05:8BC0: F0 08     BEQ bra_8BCA
-C - - - - - 0x014BD2 05:8BC2: 8D D3 03  STA ram_03D3
+C - - - - - 0x014BD2 05:8BC2: 8D D3 03  STA ram_03D3_btn
 C - - - - - 0x014BD5 05:8BC5: C9 01     CMP #con_btn2_A
 C - - - - - 0x014BD7 05:8BC7: D0 01     BNE bra_8BCA
 C - - - - - 0x014BD9 05:8BC9: 60        RTS
@@ -2629,7 +2631,7 @@ C - - - - - 0x015350 05:9340: 8D 01 20  STA $2001
 C - - - - - 0x015353 05:9343: AD D0 03  LDA ram_03D0
 C - - - - - 0x015356 05:9346: F0 12     BEQ bra_935A
 C - - - - - 0x015358 05:9348: A9 A8     LDA #$A8
-C - - - - - 0x01535A 05:934A: 0D 20 03  ORA ram_0320
+C - - - - - 0x01535A 05:934A: 0D 20 03  ORA ram_0320_useless_00
 C - - - - - 0x01535D 05:934D: 8D 00 20  STA $2000
 C - - - - - 0x015360 05:9350: EE AF 03  INC ram_03A9_obj + $06
 C - - - - - 0x015363 05:9353: A5 06     LDA ram_save_A
@@ -2714,7 +2716,7 @@ C - - - - - 0x0153FD 05:93ED: A9 00     LDA #< $2000
 C - - - - - 0x0153FF 05:93EF: 8D 06 20  STA $2006
 loc_93F2:
 C D 0 - - - 0x015402 05:93F2: A9 88     LDA #$88
-C - - - - - 0x015404 05:93F4: 0D 20 03  ORA ram_0320
+C - - - - - 0x015404 05:93F4: 0D 20 03  ORA ram_0320_useless_00
 C - - - - - 0x015407 05:93F7: 8D 00 20  STA $2000
 C - - - - - 0x01540A 05:93FA: EE AF 03  INC ram_03A9_obj + $06
 C - - - - - 0x01540D 05:93FD: A5 06     LDA ram_save_A
@@ -2764,7 +2766,8 @@ C - - - - - 0x015449 05:9439: 60        RTS
 
 sub_943A:
 C - - - - - 0x01544A 05:943A: 2C 02 20  BIT $2002
-C - - - - - 0x01544D 05:943D: AD 21 03  LDA ram_0321    ; bzk optimize, uselee load
+; bzk optimize, useless LDA
+C - - - - - 0x01544D 05:943D: AD 21 03  LDA ram_0321_useless
 C - - - - - 0x015450 05:9440: A9 00     LDA #$00
 C - - - - - 0x015452 05:9442: 8D 05 20  STA $2005
 C - - - - - 0x015455 05:9445: AD D1 03  LDA ram_03D1
@@ -3684,7 +3687,8 @@ tbl_9827:
 
 
 
-tbl_9830:
+tbl_9830_00:
+; bzk optimize, same bytes
 - D 0 - - - 0x015840 05:9830: 00        .byte $00   ; 00 
 - D 0 - - - 0x015841 05:9831: 00        .byte $00   ; 01 
 - D 0 - - - 0x015842 05:9832: 00        .byte $00   ; 02 
@@ -10367,8 +10371,8 @@ C - - - - - 0x0177E2 05:B7D2: 8D 01 20  STA $2001
 C - - - - - 0x0177E5 05:B7D5: 8D A5 03  STA ram_039C_obj + $09
 C - - - - - 0x0177E8 05:B7D8: A9 08     LDA #$08
 C - - - - - 0x0177EA 05:B7DA: 8D B2 03  STA ram_03A9_obj + $09
-C - - - - - 0x0177ED 05:B7DD: A9 01     LDA #$01
-C - - - - - 0x0177EF 05:B7DF: 8D D3 03  STA ram_03D3
+C - - - - - 0x0177ED 05:B7DD: A9 01     LDA #con_btn2_A
+C - - - - - 0x0177EF 05:B7DF: 8D D3 03  STA ram_03D3_btn
 C - - - - - 0x0177F2 05:B7E2: A9 07     LDA #$07
 C - - - - - 0x0177F4 05:B7E4: 8D B3 03  STA ram_03A9_obj + $0A
 C - - - - - 0x0177F7 05:B7E7: A9 FF     LDA #$FF

@@ -61,14 +61,22 @@ ram_nmi_handler                         = $000A ; 01C033 01C072 01C100 01C1B6 01
 
 
 ; ($indirect),Y
-ram_000C                                = $000C ; 01C033 01C378 01E0A0 01E0A4 
-ram_000D                                = $000D ; 01C033 01C37D 01E0A6 01E0AA 
+ram_000C_temp                           = $000C ; 01C033 01C378 01E0A0 01E0A4 
+
+
+
+; 
+ram_000D_temp                           = $000D ; 01C033 01C37D 01E0A6 01E0AA 
 
 
 
 ; ($indirect),Y
-ram_000E                                = $000E ; 01C033 01F649 01F691 01F6D7 01F6FA 01F741 
-ram_000F                                = $000F ; 01C033 01F64D 01F698 01F6BC 01F6C6 01F6DD 01F702 01F726 01F730 01F747 
+ram_000E_temp                           = $000E ; 01C033 01F649 01F691 01F6D7 01F6FA 01F741 
+
+
+
+; 
+ram_000F_temp                           = $000F ; 01C033 01F64D 01F698 01F6BC 01F6C6 01F6DD 01F702 01F726 01F730 01F747 
 
 
 
@@ -104,8 +112,8 @@ ram_0016                                = $0016 ; 01C033 01C387 01C807 01C80D 01
 
 
 
-; 
-ram_0017                                = $0017 ; 01C033 01C34F 01D2AE 01D33D 01D393 01D3C6 01D3D7 01D3F9 01D3FD 01D402 01D406 01D43C 01D440 01D457 01D512 01D516 01D570 01D78F 01D836 01D848 01D862 01D866 01D86B 01D86F 01D8A5 01D8A9 01D8B4 01D93D 01D941 01EFA4 
+; todo
+ram_0017_flags                          = $0017 ; 01C033 01C34F 01D2AE 01D33D 01D393 01D3C6 01D3D7 01D3F9 01D3FD 01D402 01D406 01D43C 01D440 01D457 01D512 01D516 01D570 01D78F 01D836 01D848 01D862 01D866 01D86B 01D86F 01D8A5 01D8A9 01D8B4 01D93D 01D941 01EFA4 
 
 
 
@@ -124,7 +132,7 @@ ram_0019                                = $0019 ; 01C033 01C93E 01C96B 01C971 01
 
 
 ; bzk optimize, useless address
-ram_001A                                = $001A ; 01C033 01CCC0 01CCC7 01CD16 01F5F9 
+ram_001A_useless                        = $001A ; 01C033 01CCC0 01CCC7 01CD16 01F5F9 
 
 
 
@@ -691,7 +699,7 @@ ram_00FF                                = $00FF ; 018115 018143 0182FE 018388 01
 
 
 ; 0100-01FF stack
-; not used directly, except ram_01B3
+; not used directly, except ram_01B3_useless
 ; ram_0100                              = $0100 ; 01C035 
 ; ram_0101                              = $0101 ; 01C035 
 ; ram_0102                              = $0102 ; 01C035 
@@ -875,7 +883,7 @@ ram_00FF                                = $00FF ; 018115 018143 0182FE 018388 01
 
 
 ; bzk optimize, useless address
-ram_01B3                                = $01B3 ; 01C02F 01C035 01C04F 01C499 01C4F7 01C4FA 01C4FD 01C500 01C503 01C506 01C509 01C50C 01C50F 01C512 01C515 01C518 01C51B 01C51E 
+ram_01B3_useless                        = $01B3 ; 01C02F 01C035 01C04F 01C499 01C4F7 01C4FA 01C4FD 01C500 01C503 01C506 01C509 01C50C 01C50F 01C512 01C515 01C518 01C51B 01C51E 
 
 
 
@@ -1258,12 +1266,12 @@ ram_0300_ppu_buffer                     = $0300 ; 015437 01596B 01C03B
 
 ; bzk optimize, useless address, always 00
 ; probably was supposed to have additional bits for 2000 register
-ram_0320                                = $0320 ; 01535A 015404 01C03B 
+ram_0320_useless_00                     = $0320 ; 01535A 015404 01C03B 
 
 
 
 ; bzk optimize, useless address
-ram_0321                                = $0321 ; 0140F9 0148EE 01544D 01C03B 
+ram_0321_useless                        = $0321 ; 0140F9 0148EE 01544D 01C03B 
 
 
 
@@ -1551,7 +1559,7 @@ ram_03D2                                = $03D2 ; 0142A8 0142B0 0144CD 014520 01
 
 
 ; buttons?
-ram_03D3                                = $03D3 ; 014122 01416B 014294 0145DD 0145E2 014601 014606 014870 014875 0148FB 01491B 014BCD 014BD2 0177EF 01C03B 
+ram_03D3_btn                            = $03D3 ; 014122 01416B 014294 0145DD 0145E2 014601 014606 014870 014875 0148FB 01491B 014BCD 014BD2 0177EF 01C03B 
 
 
 

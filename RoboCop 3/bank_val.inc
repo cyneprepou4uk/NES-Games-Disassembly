@@ -3,6 +3,7 @@
 ; todo найти очки и имя рекордов
 
 
+
 ; MISC
 con_prg_bank                            = $00 ; 
 con_chr_bank                            = $00 ; 
@@ -168,3 +169,6 @@ con_sound_24                            = $24 ; ost mission 3
 con_sound_25                            = $25 ; ost mission 4
 con_sound_26                            = $26 ; ost mission 5
 con_sound_FF                            = $FF ; if no sound needs to be player (default)
+
+
+
