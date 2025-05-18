@@ -2,7 +2,7 @@
 
 
 
-; enable ability to make changes in sertain banks without consequences
+; enable the ability to make changes in sertain banks without consequences
 con_bzk_hack                            = $00 ; set to 01
 
 
@@ -47,6 +47,7 @@ con_0052_80                             = $80 ;
 
 
 ; ram_06F5_music
+; index for 0x006271
 con_music_00                            = $00 ; 
 con_music_01                            = $01 ; 
 con_music_02                            = $02 ; 
@@ -115,7 +116,6 @@ con_sfx_3_04                            = $04 ;
 ; con_sfx_4_01                          = $01 ; unused
 con_sfx_4_02                            = $02 ; 
 con_sfx_4_03                            = $03 ; 
-
 
 
 
