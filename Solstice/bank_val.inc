@@ -12,7 +12,26 @@ con_room_id                             = $00 ;
 
 
 
-; bankswitch pointers, need comments at 0x007F8B
+; ram_buttons
+; ram_copy_buttons
+con_btn_Right                           = $01 ; 
+con_btn_Left                            = $02 ; 
+con_btn_Down                            = $04 ; 
+con_btn_Up                              = $08 ; 
+con_btn_Start                           = $10 ; 
+con_btn_Select                          = $20 ; 
+con_btn_B                               = $40 ; 
+con_btn_A                               = $80 ; 
+
+con_btns_UD                             = con_btn_Up + con_btn_Down                                 ; 0C
+con_btns_LR                             = con_btn_Left + con_btn_Right                              ; 03
+con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn_Down + con_btn_Up  ; 0F
+con_btns_SSAB                           = con_btn_Start + con_btn_Select + con_btn_A + con_btn_B    ; F0
+
+
+
+; bankswitch pointers
+; need comments at 0x007F8B
 con_bsw_00                              = $00 * $03 ; 00 
 con_bsw_01                              = $01 * $03 ; 03 
 con_bsw_02                              = $02 * $03 ; 06 
@@ -52,24 +71,6 @@ con_bsw_23                              = $23 * $03 ; 69
 con_bsw_24                              = $24 * $03 ; 6C 
 con_bsw_enter_cheat                     = $25 * $03 ; 6F 
 con_bsw_26                              = $26 * $03 ; 72 
-
-
-
-; ram_buttons
-; ram_copy_buttons
-con_btn_Right                           = $01 ; 
-con_btn_Left                            = $02 ; 
-con_btn_Down                            = $04 ; 
-con_btn_Up                              = $08 ; 
-con_btn_Start                           = $10 ; 
-con_btn_Select                          = $20 ; 
-con_btn_B                               = $40 ; 
-con_btn_A                               = $80 ; 
-
-con_btns_UD                             = con_btn_Up + con_btn_Down                                 ; 0C
-con_btns_LR                             = con_btn_Left + con_btn_Right                              ; 03
-con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn_Down + con_btn_Up  ; 0F
-con_btns_SSAB                           = con_btn_Start + con_btn_Select + con_btn_A + con_btn_B    ; F0
 
 
 
@@ -384,4 +385,6 @@ con_se_cb_90                            = $90 ;
 con_se_cb_loop                          = $92 ; 
 con_se_cb_93                            = $93 ; 
 con_se_cb_94                            = $94 ; 
+
+
 
