@@ -133,6 +133,14 @@ con_anim_16                             = $16 ;
 
 
 
+; control bytes for messages
+con_cb_msg_counter                      = $00 ; 
+con_cb_msg_pos_X                        = $00 ; 
+con_cb_msg_pos_Y                        = $00 ; 
+con_cb_msg_end                          = $00 ; 
+
+
+
 ; 0x000F90
 con_sfx_off                             = $01 ; выключить звук
 con_sfx_dead                            = $02 ; игрок умер от мяча или подката, или его затоптали
@@ -199,3 +207,6 @@ con_se_cb_FC                            = $FC ;
 ; con_se_cb_FD                          = $FD ; unused
 ; con_se_cb_FE                          = $FE ; unused
 con_se_cb_stop                          = $FF ; 
+
+
+

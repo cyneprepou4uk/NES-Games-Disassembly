@@ -2314,15 +2314,15 @@ C - - - - - 0x004CBD 01:8CAD: D0 01     BNE bra_8CB0
 C - - - - - 0x004CBF 01:8CAF: 60        RTS
 bra_8CB0:
 C - - - - - 0x004CC0 01:8CB0: 84 85     STY ram_copy_area_id
-C - - - - - 0x004CC2 01:8CB2: A9 27     LDA #< tbl_B727
+C - - - - - 0x004CC2 01:8CB2: A9 27     LDA #< tbl_B727_cpu_behavior
 C - - - - - 0x004CC4 01:8CB4: 85 2A     STA ram_002A_temp
-C - - - - - 0x004CC6 01:8CB6: A9 B7     LDA #> tbl_B727
+C - - - - - 0x004CC6 01:8CB6: A9 B7     LDA #> tbl_B727_cpu_behavior
 C - - - - - 0x004CC8 01:8CB8: 85 2B     STA ram_002B_temp
 C - - - - - 0x004CCA 01:8CBA: B1 88     LDA (ram_0088_temp),Y
 C - - - - - 0x004CCC 01:8CBC: 0A        ASL
-C - - - - - 0x004CCD 01:8CBD: 90 02     BCC bra_8CC1
+C - - - - - 0x004CCD 01:8CBD: 90 02     BCC bra_8CC1_not_overflow
 - - - - - - 0x004CCF 01:8CBF: E6 2B     INC ram_002B_temp
-bra_8CC1:
+bra_8CC1_not_overflow:
 C - - - - - 0x004CD1 01:8CC1: A8        TAY
 C - - - - - 0x004CD2 01:8CC2: B1 2A     LDA (ram_002A_temp),Y
 C - - - - - 0x004CD4 01:8CC4: AA        TAX
@@ -2335,7 +2335,7 @@ C - - - - - 0x004CDE 01:8CCE: B1 2A     LDA (ram_002A_temp),Y
 C - - - - - 0x004CE0 01:8CD0: F0 08     BEQ bra_8CDA
 C - - - - - 0x004CE2 01:8CD2: CD 7E 03  CMP ram_random
 C - - - - - 0x004CE5 01:8CD5: 90 03     BCC bra_8CDA
-C - - - - - 0x004CE7 01:8CD7: 4C 0A 8D  JMP loc_8D0A
+C - - - - - 0x004CE7 01:8CD7: 4C 0A 8D  JMP loc_8D0A_shoot_decision
 bra_8CDA:
 C - - - - - 0x004CEA 01:8CDA: C8        INY
 C - - - - - 0x004CEB 01:8CDB: B1 2A     LDA (ram_002A_temp),Y
@@ -2347,7 +2347,7 @@ C - - - - - 0x004CF5 01:8CE5: B1 2A     LDA (ram_002A_temp),Y
 C - - - - - 0x004CF7 01:8CE7: F0 20     BEQ bra_8D09_RTS
 C - - - - - 0x004CF9 01:8CE9: 85 2C     STA ram_002C_temp
 C - - - - - 0x004CFB 01:8CEB: C8        INY
-bra_8CEC:
+bra_8CEC_loop:
 C - - - - - 0x004CFC 01:8CEC: 0E 7E 03  ASL ram_random
 C - - - - - 0x004CFF 01:8CEF: 2E 7F 03  ROL ram_random + $01
 C - - - - - 0x004D02 01:8CF2: B1 2A     LDA (ram_002A_temp),Y
@@ -2358,16 +2358,16 @@ C - - - - - 0x004D0A 01:8CFA: C8        INY
 C - - - - - 0x004D0B 01:8CFB: 90 08     BCC bra_8D05
 C - - - - - 0x004D0D 01:8CFD: CD 29 04  CMP ram_player_with_ball
 C - - - - - 0x004D10 01:8D00: F0 03     BEQ bra_8D05
-C - - - - - 0x004D12 01:8D02: 4C 11 8D  JMP loc_8D11
+C - - - - - 0x004D12 01:8D02: 4C 11 8D  JMP loc_8D11_pass_decision
 bra_8D05:
 C - - - - - 0x004D15 01:8D05: C6 2C     DEC ram_002C_temp
-C - - - - - 0x004D17 01:8D07: D0 E3     BNE bra_8CEC
+C - - - - - 0x004D17 01:8D07: D0 E3     BNE bra_8CEC_loop
 bra_8D09_RTS:
 C - - - - - 0x004D19 01:8D09: 60        RTS
 
 
 
-loc_8D0A:
+loc_8D0A_shoot_decision:
 C D 0 - - - 0x004D1A 01:8D0A: A9 80     LDA #$80
 C - - - - - 0x004D1C 01:8D0C: 85 86     STA ram_cpu_player_decision
 C - - - - - 0x004D1E 01:8D0E: 68        PLA
@@ -2376,7 +2376,7 @@ C - - - - - 0x004D20 01:8D10: 60        RTS
 
 
 
-loc_8D11:
+loc_8D11_pass_decision:
 C D 0 - - - 0x004D21 01:8D11: 85 87     STA ram_cpu_teammate
 C - - - - - 0x004D23 01:8D13: A9 81     LDA #$81
 C - - - - - 0x004D25 01:8D15: 85 86     STA ram_cpu_player_decision
@@ -10443,7 +10443,7 @@ tbl_B4A7:
 
 
 
-tbl_B727:
+tbl_B727_cpu_behavior:
 - - - - - - 0x007737 01:B727: 27 B8     .word _off011_B827_00
 - D 1 - I - 0x007739 01:B729: 30 B8     .word _off011_B830_01
 - D 1 - I - 0x00773B 01:B72B: 39 B8     .word _off011_B839_02

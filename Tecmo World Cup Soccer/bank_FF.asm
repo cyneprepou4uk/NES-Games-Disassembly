@@ -104,7 +104,7 @@ C - - - - - 0x00C03A 03:C02A: 4C BD CA  JMP loc_CABD_bytes_after_JSR
 
 
 ; bzk garbage
-- - - - - - 0x00C040 03:C030: 4C 75 CB  JMP loc_CB75
+- - - - - - 0x00C040 03:C030: 4C 75 CB  JMP loc_CB75_multiply_16bit_by_16bit
 
 
 
@@ -795,8 +795,8 @@ C - - - - - 0x00C4B4 03:C4A4: 85 1D     STA ram_001D
 C - - - - - 0x00C4B6 03:C4A6: 85 1E     STA ram_001E
 C - - - - - 0x00C4B8 03:C4A8: A9 0B     LDA #con_sfx_time_up
 C - - - - - 0x00C4BA 03:C4AA: 20 10 C9  JSR sub_C910_prepare_sound
-C - - - - - 0x00C4BD 03:C4AD: A9 01     LDA #$01
-C - - - - - 0x00C4BF 03:C4AF: 20 DA F9  JSR sub_F9DA
+C - - - - - 0x00C4BD 03:C4AD: A9 01     LDA #$01    ; time up
+C - - - - - 0x00C4BF 03:C4AF: 20 DA F9  JSR sub_F9DA_display_message_with_sprites
 C - - - - - 0x00C4C2 03:C4B2: A9 A0     LDA #$A0
 C - - - - - 0x00C4C4 03:C4B4: 20 09 C6  JSR sub_C609_scripy_delay
 C - - - - - 0x00C4C7 03:C4B7: 60        RTS
@@ -896,7 +896,7 @@ C - - - - - 0x00C570 03:C560: F0 0A     BEQ bra_C56C
 C - - - - - 0x00C572 03:C562: A9 10     LDA #con_btn_Start
 C - - - - - 0x00C574 03:C564: 2D 26 00  AND a: ram_btn_press
 C - - - - - 0x00C577 03:C567: F0 03     BEQ bra_C56C
-C - - - - - 0x00C579 03:C569: 20 8E C5  JSR sub_C58E
+C - - - - - 0x00C579 03:C569: 20 8E C5  JSR sub_C58E_set_pause_and_wait
 bra_C56C:
 C - - - - - 0x00C57C 03:C56C: A2 01     LDX #$01
 bra_C56E_loop:
@@ -923,9 +923,9 @@ C - - - - - 0x00C59B 03:C58B: 4C 5B C5  JMP loc_C55B
 
 
 
-sub_C58E:
-C - - - - - 0x00C59E 03:C58E: A9 05     LDA #$05
-C - - - - - 0x00C5A0 03:C590: 20 DA F9  JSR sub_F9DA
+sub_C58E_set_pause_and_wait:
+C - - - - - 0x00C59E 03:C58E: A9 05     LDA #$05    ; pause
+C - - - - - 0x00C5A0 03:C590: 20 DA F9  JSR sub_F9DA_display_message_with_sprites
 C - - - - - 0x00C5A3 03:C593: 48        PHA
 C - - - - - 0x00C5A4 03:C594: A9 04     LDA #$04
 C - - - - - 0x00C5A6 03:C596: 85 67     STA ram_prg_bank_0
@@ -2077,8 +2077,8 @@ C - - - - - 0x00CB84 03:CB74: 60        RTS
 
 
 
-sub_CB75:
-loc_CB75:
+sub_CB75_multiply_16bit_by_16bit:
+loc_CB75_multiply_16bit_by_16bit:
 C - - - - - 0x00CB85 03:CB75: 8A        TXA
 C - - - - - 0x00CB86 03:CB76: 48        PHA
 C - - - - - 0x00CB87 03:CB77: A9 00     LDA #$00
@@ -2823,9 +2823,9 @@ ofs_002_D07A_00_throw_in:
 C - - J - - 0x00D08A 03:D07A: A9 00     LDA #$00
 C - - - - - 0x00D08C 03:D07C: 85 09     STA ram_0009
 C - - - - - 0x00D08E 03:D07E: 85 0A     STA ram_000A
-C - - - - - 0x00D090 03:D080: A9 02     LDA #$02
-C - - - - - 0x00D092 03:D082: 20 B8 F9  JSR sub_F9B8
-C - - - - - 0x00D095 03:D085: 20 9F D4  JSR sub_D49F
+C - - - - - 0x00D090 03:D080: A9 02     LDA #$02    ; throw in
+C - - - - - 0x00D092 03:D082: 20 B8 F9  JSR sub_F9B8_display_message_with_sprites_and_try_to_skip_it
+C - - - - - 0x00D095 03:D085: 20 9F D4  JSR sub_D49F_set_idle_state_for_all_players
 C - - - - - 0x00D098 03:D088: AE D8 03  LDX ram_ball_pos_X_lo
 C - - - - - 0x00D09B 03:D08B: AC DA 03  LDY ram_ball_pos_X_hi
 C - - - - - 0x00D09E 03:D08E: AD 28 04  LDA ram_last_team_with_ball
@@ -2847,15 +2847,15 @@ C - - - - - 0x00D0BF 03:D0AF: 84 2D     STY ram_002D_temp
 C - - - - - 0x00D0C1 03:D0B1: A2 00     LDX #$00
 C - - - - - 0x00D0C3 03:D0B3: A5 2B     LDA ram_002B_temp
 C - - - - - 0x00D0C5 03:D0B5: F0 01     BEQ bra_D0B8
-C - - - - - 0x00D0C7 03:D0B7: E8        INX
+C - - - - - 0x00D0C7 03:D0B7: E8        INX ; 01
 bra_D0B8:
 C - - - - - 0x00D0C8 03:D0B8: A5 2D     LDA ram_002D_temp
 C - - - - - 0x00D0CA 03:D0BA: C9 02     CMP #$02
 C - - - - - 0x00D0CC 03:D0BC: 90 02     BCC bra_D0C0
 C - - - - - 0x00D0CE 03:D0BE: E8        INX
-C - - - - - 0x00D0CF 03:D0BF: E8        INX
+C - - - - - 0x00D0CF 03:D0BF: E8        INX ; 02/03
 bra_D0C0:
-C - - - - - 0x00D0D0 03:D0C0: BD 6F D1  LDA tbl_D16F,X
+C - - - - - 0x00D0D0 03:D0C0: BD 6F D1  LDA tbl_D16F_player_id_throw_in,X
 C - - - - - 0x00D0D3 03:D0C3: 18        CLC
 C - - - - - 0x00D0D4 03:D0C4: 6D AD 03  ADC ram_team_w_ball
 C - - - - - 0x00D0D7 03:D0C7: 8D 29 04  STA ram_player_with_ball
@@ -2868,14 +2868,14 @@ C - - - - - 0x00D0E5 03:D0D5: E8        INX
 C - - - - - 0x00D0E6 03:D0D6: E8        INX ; 03
 bra_D0D7:
 C - - - - - 0x00D0E7 03:D0D7: A0 05     LDY #con_plr_pos_X_lo
-C - - - - - 0x00D0E9 03:D0D9: BD 69 D1  LDA tbl_D169,X
+C - - - - - 0x00D0E9 03:D0D9: BD 69 D1  LDA tbl_D169_player_data,X
 C - - - - - 0x00D0EC 03:D0DC: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00D0EE 03:D0DE: C8        INY
 C - - - - - 0x00D0EF 03:D0DF: C8        INY ; con_plr_pos_X_hi
-C - - - - - 0x00D0F0 03:D0E0: BD 6A D1  LDA tbl_D16A,X
+C - - - - - 0x00D0F0 03:D0E0: BD 6A D1  LDA tbl_D169_player_data + $01,X
 C - - - - - 0x00D0F3 03:D0E3: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00D0F5 03:D0E5: A0 13     LDY #con_plr_direction
-C - - - - - 0x00D0F7 03:D0E7: BD 6B D1  LDA tbl_D16B,X
+C - - - - - 0x00D0F7 03:D0E7: BD 6B D1  LDA tbl_D169_player_data + $02,X
 C - - - - - 0x00D0FA 03:D0EA: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00D0FC 03:D0EC: A0 0B     LDY #con_plr_pos_Y_lo
 C - - - - - 0x00D0FE 03:D0EE: AD DE 03  LDA ram_ball_pos_Y_lo
@@ -2929,7 +2929,7 @@ C - - - - - 0x00D156 03:D146: 8D 24 04  STA ram_ball_pos_Z_lo
 C - - - - - 0x00D159 03:D149: 8D 26 04  STA ram_ball_pos_Z_hi
 C - - - - - 0x00D15C 03:D14C: A9 01     LDA #$01
 C - - - - - 0x00D15E 03:D14E: 8D E4 03  STA ram_ball_anim_id
-C - - - - - 0x00D161 03:D151: 20 ED DC  JSR sub_DCED
+C - - - - - 0x00D161 03:D151: 20 ED DC  JSR sub_DCED_ball_shadow_position
 bra_D154_loop:
 C - - - - - 0x00D164 03:D154: A9 01     LDA #$01
 C - - - - - 0x00D166 03:D156: 20 09 C6  JSR sub_C609_scripy_delay
@@ -2942,23 +2942,21 @@ C - - - - - 0x00D176 03:D166: 4C D5 D4  JMP loc_D4D5
 
 
 
-tbl_D169:
-- D 2 - - - 0x00D179 03:D169: 0E        .byte $0E   ; 
-tbl_D16A:
-- D 2 - - - 0x00D17A 03:D16A: 00        .byte $00   ; 
-tbl_D16B:
-- D 2 - - - 0x00D17B 03:D16B: 40        .byte $40   ; 
-- D 2 - - - 0x00D17C 03:D16C: F2        .byte $F2   ; 
-- D 2 - - - 0x00D17D 03:D16D: 01        .byte $01   ; 
-- D 2 - - - 0x00D17E 03:D16E: C0        .byte $C0   ; 
+tbl_D169_player_data:
+; 00 
+- D 2 - - - 0x00D179 03:D169: 0E 00     .word $000E ; pos_X
+- D 2 - - - 0x00D17B 03:D16B: 40        .byte $40   ; direction (right)
+; 03 
+- D 2 - - - 0x00D17C 03:D16C: F2 01     .word $01F2 ; pos_X
+- D 2 - - - 0x00D17E 03:D16E: C0        .byte $C0   ; direction (left)
 
 
 
-tbl_D16F:
-- D 2 - - - 0x00D17F 03:D16F: 0A        .byte $0A   ; 
-- D 2 - - - 0x00D180 03:D170: 06        .byte $06   ; 
-- D 2 - - - 0x00D181 03:D171: 01        .byte $01   ; 
-- D 2 - - - 0x00D182 03:D172: 02        .byte $02   ; 
+tbl_D16F_player_id_throw_in:
+- D 2 - - - 0x00D17F 03:D16F: 0A        .byte $0A   ; 00 
+- D 2 - - - 0x00D180 03:D170: 06        .byte $06   ; 01 
+- D 2 - - - 0x00D181 03:D171: 01        .byte $01   ; 02 
+- D 2 - - - 0x00D182 03:D172: 02        .byte $02   ; 03 
 
 
 
@@ -2971,9 +2969,9 @@ C - - - - - 0x00D18B 03:D17B: 8D 24 04  STA ram_ball_pos_Z_lo
 C - - - - - 0x00D18E 03:D17E: 8D 26 04  STA ram_ball_pos_Z_hi
 C - - - - - 0x00D191 03:D181: A9 01     LDA #$01
 C - - - - - 0x00D193 03:D183: 8D E4 03  STA ram_ball_anim_id
-C - - - - - 0x00D196 03:D186: A9 03     LDA #$03
-C - - - - - 0x00D198 03:D188: 20 B8 F9  JSR sub_F9B8
-C - - - - - 0x00D19B 03:D18B: 20 9F D4  JSR sub_D49F
+C - - - - - 0x00D196 03:D186: A9 03     LDA #$03    ; goal kick
+C - - - - - 0x00D198 03:D188: 20 B8 F9  JSR sub_F9B8_display_message_with_sprites_and_try_to_skip_it
+C - - - - - 0x00D19B 03:D18B: 20 9F D4  JSR sub_D49F_set_idle_state_for_all_players
 C - - - - - 0x00D19E 03:D18E: AD 28 04  LDA ram_last_team_with_ball
 C - - - - - 0x00D1A1 03:D191: 49 0B     EOR #$0B
 C - - - - - 0x00D1A3 03:D193: 8D AD 03  STA ram_team_w_ball
@@ -3084,9 +3082,9 @@ C - - - - - 0x00D26F 03:D25F: 8D 24 04  STA ram_ball_pos_Z_lo
 C - - - - - 0x00D272 03:D262: 8D 26 04  STA ram_ball_pos_Z_hi
 C - - - - - 0x00D275 03:D265: A9 01     LDA #$01
 C - - - - - 0x00D277 03:D267: 8D E4 03  STA ram_ball_anim_id
-C - - - - - 0x00D27A 03:D26A: A9 04     LDA #$04
-C - - - - - 0x00D27C 03:D26C: 20 B8 F9  JSR sub_F9B8
-C - - - - - 0x00D27F 03:D26F: 20 9F D4  JSR sub_D49F
+C - - - - - 0x00D27A 03:D26A: A9 04     LDA #$04    ; corner kick
+C - - - - - 0x00D27C 03:D26C: 20 B8 F9  JSR sub_F9B8_display_message_with_sprites_and_try_to_skip_it
+C - - - - - 0x00D27F 03:D26F: 20 9F D4  JSR sub_D49F_set_idle_state_for_all_players
 C - - - - - 0x00D282 03:D272: AD 28 04  LDA ram_last_team_with_ball
 C - - - - - 0x00D285 03:D275: 49 0B     EOR #$0B
 C - - - - - 0x00D287 03:D277: 8D AD 03  STA ram_team_w_ball
@@ -3182,7 +3180,7 @@ C - - - - - 0x00D32E 03:D31E: 68        PLA
 C - - - - - 0x00D32F 03:D31F: 20 1E 80  JSR sub_0x00802E_set_players_positions_on_field
 C - - - - - 0x00D332 03:D322: A9 80     LDA #$80
 C - - - - - 0x00D334 03:D324: 8D 2A 04  STA ram_player_without_ball
-C - - - - - 0x00D337 03:D327: 20 ED DC  JSR sub_DCED
+C - - - - - 0x00D337 03:D327: 20 ED DC  JSR sub_DCED_ball_shadow_position
 bra_D32A_loop:
 C - - - - - 0x00D33A 03:D32A: A9 01     LDA #$01
 C - - - - - 0x00D33C 03:D32C: 20 09 C6  JSR sub_C609_scripy_delay
@@ -3405,7 +3403,7 @@ C - - - - - 0x00D4AC 03:D49C: 4C C4 CC  JMP loc_CCC4
 
 
 
-sub_D49F:
+sub_D49F_set_idle_state_for_all_players:
 C - - - - - 0x00D4AF 03:D49F: A9 00     LDA #$00
 C - - - - - 0x00D4B1 03:D4A1: 8D 24 04  STA ram_ball_pos_Z_lo
 C - - - - - 0x00D4B4 03:D4A4: 8D 26 04  STA ram_ball_pos_Z_hi
@@ -3669,7 +3667,7 @@ bra_D638_loop:
 C - - - - - 0x00D648 03:D638: A9 01     LDA #$01
 C - - - - - 0x00D64A 03:D63A: 20 09 C6  JSR sub_C609_scripy_delay
 C - - - - - 0x00D64D 03:D63D: 20 B1 D6  JSR sub_D6B1
-C - - - - - 0x00D650 03:D640: 20 68 DC  JSR sub_DC68
+C - - - - - 0x00D650 03:D640: 20 68 DC  JSR sub_DC68_move_ball_XY_axis
 C - - - - - 0x00D653 03:D643: CE 24 04  DEC ram_ball_pos_Z_lo
 C - - - - - 0x00D656 03:D646: D0 F0     BNE bra_D638_loop
 C - - - - - 0x00D658 03:D648: A9 08     LDA #$08
@@ -3711,7 +3709,7 @@ C - - - - - 0x00D69C 03:D68C: 8D DD 03  STA ram_ball_spd_Y_lo_current
 bra_D68F_loop:
 C - - - - - 0x00D69F 03:D68F: A9 01     LDA #$01
 C - - - - - 0x00D6A1 03:D691: 20 09 C6  JSR sub_C609_scripy_delay
-C - - - - - 0x00D6A4 03:D694: 20 68 DC  JSR sub_DC68
+C - - - - - 0x00D6A4 03:D694: 20 68 DC  JSR sub_DC68_move_ball_XY_axis
 C - - - - - 0x00D6A7 03:D697: AD DE 03  LDA ram_ball_pos_Y_lo
 C - - - - - 0x00D6AA 03:D69A: C9 10     CMP #$10
 C - - - - - 0x00D6AC 03:D69C: B0 F1     BCS bra_D68F_loop
@@ -3792,24 +3790,24 @@ tbl_D6D4:
 
 
 
-ofs_D6FA:
-C - - - - - 0x00D70A 03:D6FA: 20 F2 DD  JSR sub_DDF2
-C - - - - - 0x00D70D 03:D6FD: 20 36 DE  JSR sub_DE36
+ofs_D6FA_ball_physics_handler:
+C - - - - - 0x00D70A 03:D6FA: 20 F2 DD  JSR sub_DDF2_calculate_ball_flight_time
+C - - - - - 0x00D70D 03:D6FD: 20 36 DE  JSR sub_DE36_calcualte_ball_base_gravity
 C - - - - - 0x00D710 03:D700: A9 01     LDA #$01
 C - - - - - 0x00D712 03:D702: 20 09 C6  JSR sub_C609_scripy_delay
-C - - - - - 0x00D715 03:D705: 20 5E DB  JSR sub_DB5E
+C - - - - - 0x00D715 03:D705: 20 5E DB  JSR sub_DB5E_calculate_ball_landing_position
 C - - - - - 0x00D718 03:D708: AD D3 03  LDA ram_ball_flags
 C - - - - - 0x00D71B 03:D70B: 09 80     ORA #con_ball_flag_was_shooted
 C - - - - - 0x00D71D 03:D70D: 8D D3 03  STA ram_ball_flags
 bra_D710_loop:
 C - - - - - 0x00D720 03:D710: A9 01     LDA #$01
 C - - - - - 0x00D722 03:D712: 20 09 C6  JSR sub_C609_scripy_delay
-C - - - - - 0x00D725 03:D715: 20 BE DB  JSR sub_DBBE
-C - - - - - 0x00D728 03:D718: 20 17 DD  JSR sub_DD17
-C - - - - - 0x00D72B 03:D71B: 20 ED DC  JSR sub_DCED
-C - - - - - 0x00D72E 03:D71E: 20 1A DA  JSR sub_DA1A
-C - - - - - 0x00D731 03:D721: 20 B3 D8  JSR sub_D8B3
-C - - - - - 0x00D734 03:D724: 20 A3 D9  JSR sub_D9A3
+C - - - - - 0x00D725 03:D715: 20 BE DB  JSR sub_DBBE_move_ball_XYZ_axis
+C - - - - - 0x00D728 03:D718: 20 17 DD  JSR sub_DD17_ball_height_animation
+C - - - - - 0x00D72B 03:D71B: 20 ED DC  JSR sub_DCED_ball_shadow_position
+C - - - - - 0x00D72E 03:D71E: 20 1A DA  JSR sub_DA1A_net_after_goal_animation
+C - - - - - 0x00D731 03:D721: 20 B3 D8  JSR sub_D8B3_hit_goalspot_check
+C - - - - - 0x00D734 03:D724: 20 A3 D9  JSR sub_D9A3_hit_crossbar_check
 C - - - - - 0x00D737 03:D727: 2C D3 03  BIT ram_ball_flags
 C - - - - - 0x00D73A 03:D72A: 30 E4     BMI bra_D710_loop   ; if con_ball_flag_was_shooted
 C - - - - - 0x00D73C 03:D72C: 4C F1 C5  JMP loc_C5F1_clear_top_custom_stack
@@ -3903,7 +3901,7 @@ bra_D7B0_loop:
 loc_D7B0_loop:
 C D 2 - - - 0x00D7C0 03:D7B0: A9 01     LDA #$01
 C - - - - - 0x00D7C2 03:D7B2: 20 09 C6  JSR sub_C609_scripy_delay
-C - - - - - 0x00D7C5 03:D7B5: 20 ED DC  JSR sub_DCED
+C - - - - - 0x00D7C5 03:D7B5: 20 ED DC  JSR sub_DCED_ball_shadow_position
 C - - - - - 0x00D7C8 03:D7B8: 2C D3 03  BIT ram_ball_flags
 C - - - - - 0x00D7CB 03:D7BB: 50 F3     BVC bra_D7B0_loop    ; if not con_ball_flag_attached_to_player
 C - - - - - 0x00D7CD 03:D7BD: AD D3 03  LDA ram_ball_flags
@@ -4067,7 +4065,7 @@ C - - - - - 0x00D8C2 03:D8B2: 60        RTS
 
 
 
-sub_D8B3:
+sub_D8B3_hit_goalspot_check:
 C - - - - - 0x00D8C3 03:D8B3: AD 26 04  LDA ram_ball_pos_Z_hi
 C - - - - - 0x00D8C6 03:D8B6: F0 03     BEQ bra_D8BB
 - - - - - - 0x00D8C8 03:D8B8: 4C 38 D9  JMP loc_D938_RTS
@@ -4189,7 +4187,7 @@ C - - - - - 0x00D98A 03:D97A: 18        CLC
 C - - - - - 0x00D98B 03:D97B: 65 2A     ADC ram_002A_temp
 C - - - - - 0x00D98D 03:D97D: 8D E6 03  STA ram_ball_direction
 C - - - - - 0x00D990 03:D980: 20 DF DD  JSR sub_DDDF
-C - - - - - 0x00D993 03:D983: 20 5E DB  JSR sub_DB5E
+C - - - - - 0x00D993 03:D983: 20 5E DB  JSR sub_DB5E_calculate_ball_landing_position
 C - - - - - 0x00D996 03:D986: 20 5E DF  JSR sub_DF5E_select_2_players_to_follow_ball
 C - - - - - 0x00D999 03:D989: A9 0D     LDA #con_sfx_hit_goalspot
 C - - - - - 0x00D99B 03:D98B: 20 10 C9  JSR sub_C910_prepare_sound
@@ -4224,7 +4222,7 @@ tbl_D992:
 
 
 
-sub_D9A3:
+sub_D9A3_hit_crossbar_check:
 C - - - - - 0x00D9B3 03:D9A3: AD 26 04  LDA ram_ball_pos_Z_hi
 C - - - - - 0x00D9B6 03:D9A6: F0 03     BEQ bra_D9AB
 - - - - - - 0x00D9B8 03:D9A8: 4C 15 DA  JMP loc_DA15_RTS
@@ -4274,7 +4272,7 @@ C - - - - - 0x00DA04 03:D9F4: 90 1F     BCC bra_DA15_RTS
 - - - - - - 0x00DA12 03:DA02: 69 81     ADC #$81
 - - - - - - 0x00DA14 03:DA04: 8D E6 03  STA ram_ball_direction
 - - - - - - 0x00DA17 03:DA07: 20 DF DD  JSR sub_DDDF
-- - - - - - 0x00DA1A 03:DA0A: 20 5E DB  JSR sub_DB5E
+- - - - - - 0x00DA1A 03:DA0A: 20 5E DB  JSR sub_DB5E_calculate_ball_landing_position
 - - - - - - 0x00DA1D 03:DA0D: 20 5E DF  JSR sub_DF5E_select_2_players_to_follow_ball
 - - - - - - 0x00DA20 03:DA10: A9 0D     LDA #con_sfx_hit_goalspot
 - - - - - - 0x00DA22 03:DA12: 20 10 C9  JSR sub_C910_prepare_sound
@@ -4294,7 +4292,7 @@ tbl_DA18:
 
 
 
-sub_DA1A:
+sub_DA1A_net_after_goal_animation:
 C - - - - - 0x00DA2A 03:DA1A: AD D4 03  LDA ram_ball_spr_A
 C - - - - - 0x00DA2D 03:DA1D: 29 DF     AND #$DF
 C - - - - - 0x00DA2F 03:DA1F: 8D D4 03  STA ram_ball_spr_A
@@ -4446,7 +4444,7 @@ C - - - - - 0x00DB3C 03:DB2C: A9 00     LDA #$00
 C - - - - - 0x00DB3E 03:DB2E: 8D 21 04  STA ram_ball_gravity_lo
 C - - - - - 0x00DB41 03:DB31: 8D 23 04  STA ram_ball_gravity_hi
 C - - - - - 0x00DB44 03:DB34: 20 DF DD  JSR sub_DDDF
-C - - - - - 0x00DB47 03:DB37: 20 5E DB  JSR sub_DB5E
+C - - - - - 0x00DB47 03:DB37: 20 5E DB  JSR sub_DB5E_calculate_ball_landing_position
 bra_DB3A_RTS:
 loc_DB3A_RTS:
 C D 2 - - - 0x00DB4A 03:DB3A: 60        RTS
@@ -4500,10 +4498,10 @@ tbl_DB5C:
 
 
 
-sub_DB5E:
+sub_DB5E_calculate_ball_landing_position:
 C - - - - - 0x00DB6E 03:DB5E: AE D5 03  LDX ram_ball_spd_X_fr_current
 C - - - - - 0x00DB71 03:DB61: AC D7 03  LDY ram_ball_spd_X_lo_current
-C - - - - - 0x00DB74 03:DB64: 20 9B DB  JSR sub_DB9B
+C - - - - - 0x00DB74 03:DB64: 20 9B DB  JSR sub_DB9B_calculate_ball_flight_distance
 C - - - - - 0x00DB77 03:DB67: 18        CLC
 C - - - - - 0x00DB78 03:DB68: 8A        TXA
 C - - - - - 0x00DB79 03:DB69: 6D D8 03  ADC ram_ball_pos_X_lo
@@ -4518,7 +4516,7 @@ C - - - - - 0x00DB86 03:DB76: 8E 13 04  STX ram_ball_land_pos_X_lo
 C - - - - - 0x00DB89 03:DB79: 8D 14 04  STA ram_ball_land_pos_X_hi
 C - - - - - 0x00DB8C 03:DB7C: AE DB 03  LDX ram_ball_spd_Y_fr_current
 C - - - - - 0x00DB8F 03:DB7F: AC DD 03  LDY ram_ball_spd_Y_lo_current
-C - - - - - 0x00DB92 03:DB82: 20 9B DB  JSR sub_DB9B
+C - - - - - 0x00DB92 03:DB82: 20 9B DB  JSR sub_DB9B_calculate_ball_flight_distance
 C - - - - - 0x00DB95 03:DB85: 18        CLC
 C - - - - - 0x00DB96 03:DB86: 8A        TXA
 C - - - - - 0x00DB97 03:DB87: 6D DE 03  ADC ram_ball_pos_Y_lo
@@ -4535,7 +4533,7 @@ C - - - - - 0x00DBAA 03:DB9A: 60        RTS
 
 
 
-sub_DB9B:
+sub_DB9B_calculate_ball_flight_distance:
 C - - - - - 0x00DBAB 03:DB9B: 98        TYA
 C - - - - - 0x00DBAC 03:DB9C: 08        PHP
 C - - - - - 0x00DBAD 03:DB9D: 10 03     BPL bra_DBA2
@@ -4547,7 +4545,7 @@ C - - - - - 0x00DBB6 03:DBA6: AD 1F 04  LDA ram_ball_fly_timer_lo
 C - - - - - 0x00DBB9 03:DBA9: 85 4C     STA ram_004C
 C - - - - - 0x00DBBB 03:DBAB: AD 20 04  LDA ram_ball_fly_timer_hi
 C - - - - - 0x00DBBE 03:DBAE: 85 4D     STA ram_004D
-C - - - - - 0x00DBC0 03:DBB0: 20 75 CB  JSR sub_CB75
+C - - - - - 0x00DBC0 03:DBB0: 20 75 CB  JSR sub_CB75_multiply_16bit_by_16bit
 C - - - - - 0x00DBC3 03:DBB3: A6 4F     LDX ram_004F
 C - - - - - 0x00DBC5 03:DBB5: A4 50     LDY ram_0050
 C - - - - - 0x00DBC7 03:DBB7: 28        PLP
@@ -4558,8 +4556,8 @@ C - - - - - 0x00DBCD 03:DBBD: 60        RTS
 
 
 
-sub_DBBE:
-C - - - - - 0x00DBCE 03:DBBE: 20 68 DC  JSR sub_DC68
+sub_DBBE_move_ball_XYZ_axis:
+C - - - - - 0x00DBCE 03:DBBE: 20 68 DC  JSR sub_DC68_move_ball_XY_axis
 C - - - - - 0x00DBD1 03:DBC1: 18        CLC
 C - - - - - 0x00DBD2 03:DBC2: AD 21 04  LDA ram_ball_gravity_lo
 C - - - - - 0x00DBD5 03:DBC5: 6D 22 04  ADC ram_ball_gravity_fr
@@ -4577,10 +4575,10 @@ C - - - - - 0x00DBF0 03:DBE0: 8D 26 04  STA ram_ball_pos_Z_hi
 C - - - - - 0x00DBF3 03:DBE3: 30 12     BMI bra_DBF7
 C - - - - - 0x00DBF5 03:DBE5: 18        CLC
 C - - - - - 0x00DBF6 03:DBE6: AD 21 04  LDA ram_ball_gravity_lo
-C - - - - - 0x00DBF9 03:DBE9: 69 F7     ADC #$F7
+C - - - - - 0x00DBF9 03:DBE9: 69 F7     ADC #< $FFF7
 C - - - - - 0x00DBFB 03:DBEB: 8D 21 04  STA ram_ball_gravity_lo
 C - - - - - 0x00DBFE 03:DBEE: AD 23 04  LDA ram_ball_gravity_hi
-C - - - - - 0x00DC01 03:DBF1: 69 FF     ADC #$FF
+C - - - - - 0x00DC01 03:DBF1: 69 FF     ADC #> $FFF7
 C - - - - - 0x00DC03 03:DBF3: 8D 23 04  STA ram_ball_gravity_hi
 C - - - - - 0x00DC06 03:DBF6: 60        RTS
 bra_DBF7:
@@ -4611,8 +4609,8 @@ C - - - - - 0x00DC42 03:DC32: 6E 1B 04  ROR ram_shoot_height_lo
 C - - - - - 0x00DC45 03:DC35: EA        NOP
 C - - - - - 0x00DC46 03:DC36: EA        NOP
 C - - - - - 0x00DC47 03:DC37: EA        NOP
-C - - - - - 0x00DC48 03:DC38: 20 F2 DD  JSR sub_DDF2
-C - - - - - 0x00DC4B 03:DC3B: 20 5E DB  JSR sub_DB5E
+C - - - - - 0x00DC48 03:DC38: 20 F2 DD  JSR sub_DDF2_calculate_ball_flight_time
+C - - - - - 0x00DC4B 03:DC3B: 20 5E DB  JSR sub_DB5E_calculate_ball_landing_position
 C - - - - - 0x00DC4E 03:DC3E: AE 21 04  LDX ram_ball_gravity_lo
 C - - - - - 0x00DC51 03:DC41: AC 23 04  LDY ram_ball_gravity_hi
 C - - - - - 0x00DC54 03:DC44: 20 1E C9  JSR sub_C91E_EOR_16bit
@@ -4635,7 +4633,7 @@ C - - - - - 0x00DC77 03:DC67: 60        RTS
 
 
 
-sub_DC68:
+sub_DC68_move_ball_XY_axis:
 C - - - - - 0x00DC78 03:DC68: 18        CLC
 C - - - - - 0x00DC79 03:DC69: AD D5 03  LDA ram_ball_spd_X_fr_current
 C - - - - - 0x00DC7C 03:DC6C: 6D D6 03  ADC ram_ball_pos_X_fr
@@ -4709,7 +4707,7 @@ C - - - - - 0x00DCFC 03:DCEC: 60        RTS
 
 
 
-sub_DCED:
+sub_DCED_ball_shadow_position:
 C - - - - - 0x00DCFD 03:DCED: 18        CLC
 C - - - - - 0x00DCFE 03:DCEE: AD 24 04  LDA ram_ball_pos_Z_lo
 C - - - - - 0x00DD01 03:DCF1: 6D D8 03  ADC ram_ball_pos_X_lo
@@ -4730,18 +4728,18 @@ C - - - - - 0x00DD26 03:DD16: 60        RTS
 
 
 
-sub_DD17:
+sub_DD17_ball_height_animation:
 C - - - - - 0x00DD27 03:DD17: A2 00     LDX #$00
 bra_DD19_loop:
 C - - - - - 0x00DD29 03:DD19: 38        SEC
 C - - - - - 0x00DD2A 03:DD1A: AD 24 04  LDA ram_ball_pos_Z_lo
-C - - - - - 0x00DD2D 03:DD1D: FD 5D DD  SBC tbl_DD5D,X
+C - - - - - 0x00DD2D 03:DD1D: FD 5D DD  SBC tbl_DD5D_pos_Z,X
 C - - - - - 0x00DD30 03:DD20: AD 26 04  LDA ram_ball_pos_Z_hi
-C - - - - - 0x00DD33 03:DD23: FD 5E DD  SBC tbl_DD5E,X
+C - - - - - 0x00DD33 03:DD23: FD 5E DD  SBC tbl_DD5D_pos_Z + $01,X
 C - - - - - 0x00DD36 03:DD26: 90 04     BCC bra_DD2C
 C - - - - - 0x00DD38 03:DD28: E8        INX
 C - - - - - 0x00DD39 03:DD29: E8        INX
-C - - - - - 0x00DD3A 03:DD2A: D0 ED     BNE bra_DD19_loop
+C - - - - - 0x00DD3A 03:DD2A: D0 ED     BNE bra_DD19_loop   ; jmp
 bra_DD2C:
 C - - - - - 0x00DD3C 03:DD2C: 8A        TXA
 C - - - - - 0x00DD3D 03:DD2D: 4A        LSR
@@ -4771,22 +4769,14 @@ C - - - - - 0x00DD6C 03:DD5C: 60        RTS
 
 
 
-tbl_DD5D:
-- D 2 - - - 0x00DD6D 03:DD5D: 0C        .byte $0C   ; 
-tbl_DD5E:
-- D 2 - - - 0x00DD6E 03:DD5E: 00        .byte $00   ; 
-- D 2 - - - 0x00DD6F 03:DD5F: 18        .byte $18   ; 
-- D 2 - - - 0x00DD70 03:DD60: 00        .byte $00   ; 
-- D 2 - - - 0x00DD71 03:DD61: 24        .byte $24   ; 
-- D 2 - - - 0x00DD72 03:DD62: 00        .byte $00   ; 
-- D 2 - - - 0x00DD73 03:DD63: 30        .byte $30   ; 
-- D 2 - - - 0x00DD74 03:DD64: 00        .byte $00   ; 
-- D 2 - - - 0x00DD75 03:DD65: 3C        .byte $3C   ; 
-- D 2 - - - 0x00DD76 03:DD66: 00        .byte $00   ; 
-- D 2 - - - 0x00DD77 03:DD67: 48        .byte $48   ; 
-- D 2 - - - 0x00DD78 03:DD68: 00        .byte $00   ; 
-- D 2 - - - 0x00DD79 03:DD69: FF        .byte $FF   ; 
-- D 2 - - - 0x00DD7A 03:DD6A: FF        .byte $FF   ; 
+tbl_DD5D_pos_Z:
+- D 2 - - - 0x00DD6D 03:DD5D: 0C 00     .word $000C ; 00 
+- D 2 - - - 0x00DD6F 03:DD5F: 18 00     .word $0018 ; 02 
+- D 2 - - - 0x00DD71 03:DD61: 24 00     .word $0024 ; 04 
+- D 2 - - - 0x00DD73 03:DD63: 30 00     .word $0030 ; 06 
+- D 2 - - - 0x00DD75 03:DD65: 3C 00     .word $003C ; 08 
+- D 2 - - - 0x00DD77 03:DD67: 48 00     .word $0048 ; 0A 
+- D 2 - - - 0x00DD79 03:DD69: FF FF     .word $FFFF ; 0C 
 
 
 
@@ -4835,10 +4825,10 @@ C - - - - - 0x00DDC7 03:DDB7: 8C 1C 04  STY ram_shoot_height_hi
 C - - - - - 0x00DDCA 03:DDBA: 20 A4 CB  JSR sub_CBA4_divide_24bit_by_16bit
 C - - - - - 0x00DDCD 03:DDBD: A2 00     LDX #$00
 bra_DDBF_loop:
-C - - - - - 0x00DDCF 03:DDBF: BD FA FB  LDA tbl_FBFA,X
+C - - - - - 0x00DDCF 03:DDBF: BD FA FB  LDA tbl_FBFA_angle,X
 C - - - - - 0x00DDD2 03:DDC2: 38        SEC
 C - - - - - 0x00DDD3 03:DDC3: E5 52     SBC ram_quotient_sub
-C - - - - - 0x00DDD5 03:DDC5: BD FB FB  LDA tbl_FBFB,X
+C - - - - - 0x00DDD5 03:DDC5: BD FB FB  LDA tbl_FBFA_angle + $01,X
 C - - - - - 0x00DDD8 03:DDC8: E5 53     SBC ram_quotient_lo
 C - - - - - 0x00DDDA 03:DDCA: B0 04     BCS bra_DDD0
 C - - - - - 0x00DDDC 03:DDCC: E8        INX
@@ -4870,7 +4860,7 @@ C - - - - - 0x00DE01 03:DDF1: 60        RTS
 
 
 
-sub_DDF2:
+sub_DDF2_calculate_ball_flight_time:
 C - - - - - 0x00DE02 03:DDF2: 20 DF DD  JSR sub_DDDF
 C - - - - - 0x00DE05 03:DDF5: A9 00     LDA #$00
 C - - - - - 0x00DE07 03:DDF7: 85 52     STA ram_divident_sub
@@ -4908,7 +4898,7 @@ C - - - - - 0x00DE45 03:DE35: 60        RTS
 
 
 
-sub_DE36:
+sub_DE36_calcualte_ball_base_gravity:
 C - - - - - 0x00DE46 03:DE36: AD 1F 04  LDA ram_ball_fly_timer_lo
 C - - - - - 0x00DE49 03:DE39: 85 4A     STA ram_004A
 C - - - - - 0x00DE4B 03:DE3B: AD 20 04  LDA ram_ball_fly_timer_hi
@@ -4919,7 +4909,7 @@ C - - - - - 0x00DE53 03:DE43: A9 09     LDA #$09
 C - - - - - 0x00DE55 03:DE45: 85 4C     STA ram_004C
 C - - - - - 0x00DE57 03:DE47: A9 00     LDA #$00
 C - - - - - 0x00DE59 03:DE49: 85 4D     STA ram_004D
-C - - - - - 0x00DE5B 03:DE4B: 20 75 CB  JSR sub_CB75
+C - - - - - 0x00DE5B 03:DE4B: 20 75 CB  JSR sub_CB75_multiply_16bit_by_16bit
 C - - - - - 0x00DE5E 03:DE4E: A5 4E     LDA ram_004E
 C - - - - - 0x00DE60 03:DE50: 8D 21 04  STA ram_ball_gravity_lo
 C - - - - - 0x00DE63 03:DE53: A5 4F     LDA ram_004F
@@ -4954,7 +4944,7 @@ C - - - - - 0x00DE8E 03:DE7E: AD 1D 04  LDA ram_shoot_power_lo
 C - - - - - 0x00DE91 03:DE81: 85 4C     STA ram_004C
 C - - - - - 0x00DE93 03:DE83: AD 1E 04  LDA ram_shoot_power_hi
 C - - - - - 0x00DE96 03:DE86: 85 4D     STA ram_004D
-C - - - - - 0x00DE98 03:DE88: 20 75 CB  JSR sub_CB75
+C - - - - - 0x00DE98 03:DE88: 20 75 CB  JSR sub_CB75_multiply_16bit_by_16bit
 C - - - - - 0x00DE9B 03:DE8B: A6 4F     LDX ram_004F
 C - - - - - 0x00DE9D 03:DE8D: A4 50     LDY ram_0050
 C - - - - - 0x00DE9F 03:DE8F: 28        PLP
@@ -5193,9 +5183,9 @@ C - - - - - 0x00E01B 03:E00B: 20 50 CB  JSR sub_CB50_EOR_16bit_INYx4
 bra_E00E:
 C - - - - - 0x00E01E 03:E00E: 38        SEC
 C - - - - - 0x00E01F 03:E00F: 8A        TXA
-C - - - - - 0x00E020 03:E010: E9 40     SBC #$40
+C - - - - - 0x00E020 03:E010: E9 40     SBC #< $0140
 C - - - - - 0x00E022 03:E012: 98        TYA
-C - - - - - 0x00E023 03:E013: E9 01     SBC #$01
+C - - - - - 0x00E023 03:E013: E9 01     SBC #> $0140
 C - - - - - 0x00E025 03:E015: B0 05     BCS bra_E01C_RTS
 C - - - - - 0x00E027 03:E017: A5 2A     LDA ram_002A_temp
 C - - - - - 0x00E029 03:E019: 20 1D E0  JSR sub_E01D_set_aim_to_goal
@@ -5205,11 +5195,11 @@ C - - - - - 0x00E02C 03:E01C: 60        RTS
 
 
 sub_E01D_set_aim_to_goal:
-C - - - - - 0x00E02D 03:E01D: A2 00     LDX #$00
+C - - - - - 0x00E02D 03:E01D: A2 00     LDX #$00    ; 0100 (center)
 C - - - - - 0x00E02F 03:E01F: A0 01     LDY #$01
 C - - - - - 0x00E031 03:E021: C9 80     CMP #$80
 C - - - - - 0x00E033 03:E023: F0 09     BEQ bra_E02E
-C - - - - - 0x00E035 03:E025: A2 28     LDX #$28
+C - - - - - 0x00E035 03:E025: A2 28     LDX #$28    ; 0128 (corner)
 C - - - - - 0x00E037 03:E027: C9 A0     CMP #$A0
 C - - - - - 0x00E039 03:E029: D0 03     BNE bra_E02E
 C - - - - - 0x00E03B 03:E02B: 20 4A CB  JSR sub_CB4A_EOR_16bit_INYx2
@@ -5224,8 +5214,8 @@ C - - - - - 0x00E049 03:E039: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E04B 03:E03B: 88        DEY ; con_plr_aim_X_lo
 C - - - - - 0x00E04C 03:E03C: 8A        TXA
 C - - - - - 0x00E04D 03:E03D: 91 61     STA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E04F 03:E03F: A2 9C     LDX #$9C
-C - - - - - 0x00E051 03:E041: A0 00     LDY #$00
+C - - - - - 0x00E04F 03:E03F: A2 9C     LDX #< $009C
+C - - - - - 0x00E051 03:E041: A0 00     LDY #> $009C
 C - - - - - 0x00E053 03:E043: AD AD 03  LDA ram_team_w_ball
 C - - - - - 0x00E056 03:E046: F0 03     BEQ bra_E04B
 C - - - - - 0x00E058 03:E048: 20 50 CB  JSR sub_CB50_EOR_16bit_INYx4
@@ -5236,6 +5226,7 @@ C - - - - - 0x00E05E 03:E04E: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E060 03:E050: 88        DEY ; con_plr_aim_Y_lo
 C - - - - - 0x00E061 03:E051: 8A        TXA
 C - - - - - 0x00E062 03:E052: 91 61     STA (ram_0061_t01_player_data),Y
+; bzk optimize, JMP
 C - - - - - 0x00E064 03:E054: 20 13 E6  JSR sub_E613_set_player_movement_direction
 C - - - - - 0x00E067 03:E057: 60        RTS
 
@@ -5600,7 +5591,7 @@ C - - - - - 0x00E27A 03:E26A: D0 03     BNE bra_E26F
 C - - - - - 0x00E27C 03:E26C: 4C 42 E3  JMP loc_E342
 bra_E26F:
 C - - - - - 0x00E27F 03:E26F: A2 0C     LDX #$0C
-C - - - - - 0x00E281 03:E271: 20 43 FA  JSR sub_FA43
+C - - - - - 0x00E281 03:E271: 20 43 FA  JSR sub_FA43_check_collision_with_object
 C - - - - - 0x00E284 03:E274: 90 16     BCC bra_E28C
 C - - - - - 0x00E286 03:E276: AD 29 04  LDA ram_player_with_ball
 C - - - - - 0x00E289 03:E279: 20 E3 CB  JSR sub_CBE3_set_player_base_address_pointer
@@ -5646,7 +5637,7 @@ C - - - - - 0x00E2D0 03:E2C0: 7D 51 E3  ADC tbl_E351,X
 C - - - - - 0x00E2D3 03:E2C3: 91 61     STA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E2D5 03:E2C5: A9 16     LDA #$16
 C - - - - - 0x00E2D7 03:E2C7: A2 08     LDX #$08
-C - - - - - 0x00E2D9 03:E2C9: 20 43 FA  JSR sub_FA43
+C - - - - - 0x00E2D9 03:E2C9: 20 43 FA  JSR sub_FA43_check_collision_with_object
 C - - - - - 0x00E2DC 03:E2CC: A5 2A     LDA ram_002A_temp
 C - - - - - 0x00E2DE 03:E2CE: A0 05     LDY #con_plr_pos_X_lo
 C - - - - - 0x00E2E0 03:E2D0: 91 61     STA (ram_0061_t01_player_data),Y
@@ -5681,8 +5672,8 @@ C - - - - - 0x00E31A 03:E30A: A9 5A     LDA #$5A
 C - - - - - 0x00E31C 03:E30C: 95 01     STA ram_0001,X
 C - - - - - 0x00E31E 03:E30E: A9 0C     LDA #$0C
 C - - - - - 0x00E320 03:E310: 95 02     STA ram_0002,X
-C - - - - - 0x00E322 03:E312: A9 D6     LDA #> (ofs_D6FA - $01)
-C - - - - - 0x00E324 03:E314: A0 F9     LDY #< (ofs_D6FA - $01)
+C - - - - - 0x00E322 03:E312: A9 D6     LDA #> (ofs_D6FA_ball_physics_handler - $01)
+C - - - - - 0x00E324 03:E314: A0 F9     LDY #< (ofs_D6FA_ball_physics_handler - $01)
 C - - - - - 0x00E326 03:E316: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00E329 03:E319: AD 29 04  LDA ram_player_with_ball
 C - - - - - 0x00E32C 03:E31C: 30 24     BMI bra_E342
@@ -5790,8 +5781,8 @@ C - - - - - 0x00E3C4 03:E3B4: 20 9E C7  JSR sub_C79E
 bra_E3B7_loop:
 C - - - - - 0x00E3C7 03:E3B7: A9 01     LDA #$01
 C - - - - - 0x00E3C9 03:E3B9: 20 52 C6  JSR sub_C652_set_delay_and_save_return_address
-C - - - - - 0x00E3CC 03:E3BC: 20 17 DD  JSR sub_DD17
-C - - - - - 0x00E3CF 03:E3BF: 20 ED DC  JSR sub_DCED
+C - - - - - 0x00E3CC 03:E3BC: 20 17 DD  JSR sub_DD17_ball_height_animation
+C - - - - - 0x00E3CF 03:E3BF: 20 ED DC  JSR sub_DCED_ball_shadow_position
 C - - - - - 0x00E3D2 03:E3C2: CE 24 04  DEC ram_ball_pos_Z_lo
 C - - - - - 0x00E3D5 03:E3C5: D0 F0     BNE bra_E3B7_loop
 bra_E3C7:
@@ -6286,10 +6277,10 @@ bra_E664:
 C - - - - - 0x00E674 03:E664: 20 A4 CB  JSR sub_CBA4_divide_24bit_by_16bit
 C - - - - - 0x00E677 03:E667: A2 00     LDX #$00
 bra_E669_loop:
-C - - - - - 0x00E679 03:E669: BD FA FB  LDA tbl_FBFA,X
+C - - - - - 0x00E679 03:E669: BD FA FB  LDA tbl_FBFA_angle,X
 C - - - - - 0x00E67C 03:E66C: 38        SEC
 C - - - - - 0x00E67D 03:E66D: E5 52     SBC ram_quotient_sub
-C - - - - - 0x00E67F 03:E66F: BD FB FB  LDA tbl_FBFB,X
+C - - - - - 0x00E67F 03:E66F: BD FB FB  LDA tbl_FBFA_angle + $01,X
 C - - - - - 0x00E682 03:E672: E5 53     SBC ram_quotient_lo
 C - - - - - 0x00E684 03:E674: B0 04     BCS bra_E67A
 C - - - - - 0x00E686 03:E676: E8        INX
@@ -6338,7 +6329,7 @@ C - - - - - 0x00E6BD 03:E6AD: 85 4C     STA ram_004C
 C - - - - - 0x00E6BF 03:E6AF: C8        INY ; con_plr_spd_lo_init
 C - - - - - 0x00E6C0 03:E6B0: B1 61     LDA (ram_0061_t01_player_data),Y
 C - - - - - 0x00E6C2 03:E6B2: 85 4D     STA ram_004D
-C - - - - - 0x00E6C4 03:E6B4: 20 75 CB  JSR sub_CB75
+C - - - - - 0x00E6C4 03:E6B4: 20 75 CB  JSR sub_CB75_multiply_16bit_by_16bit
 C - - - - - 0x00E6C7 03:E6B7: A6 4F     LDX ram_004F
 C - - - - - 0x00E6C9 03:E6B9: A4 50     LDY ram_0050
 C - - - - - 0x00E6CB 03:E6BB: 28        PLP
@@ -6422,7 +6413,7 @@ C - - - - - 0x00E749 03:E739: 4D AD 03  EOR ram_team_w_ball
 C - - - - - 0x00E74C 03:E73C: F0 C3     BEQ bra_E701_loop
 C - - - - - 0x00E74E 03:E73E: A9 16     LDA #$16
 C - - - - - 0x00E750 03:E740: A2 0A     LDX #$0A
-C - - - - - 0x00E752 03:E742: 20 43 FA  JSR sub_FA43
+C - - - - - 0x00E752 03:E742: 20 43 FA  JSR sub_FA43_check_collision_with_object
 C - - - - - 0x00E755 03:E745: 90 BA     BCC bra_E701_loop
 C - - - - - 0x00E757 03:E747: 2C 29 04  BIT ram_player_with_ball
 C - - - - - 0x00E75A 03:E74A: 30 65     BMI bra_E7B1
@@ -6501,8 +6492,8 @@ C - - - - - 0x00E7F6 03:E7E6: A9 5A     LDA #$5A
 C - - - - - 0x00E7F8 03:E7E8: 95 01     STA ram_0001,X
 C - - - - - 0x00E7FA 03:E7EA: A9 0C     LDA #$0C
 C - - - - - 0x00E7FC 03:E7EC: 95 02     STA ram_0002,X
-C - - - - - 0x00E7FE 03:E7EE: A9 D6     LDA #> (ofs_D6FA - $01)
-C - - - - - 0x00E800 03:E7F0: A0 F9     LDY #< (ofs_D6FA - $01)
+C - - - - - 0x00E7FE 03:E7EE: A9 D6     LDA #> (ofs_D6FA_ball_physics_handler - $01)
+C - - - - - 0x00E800 03:E7F0: A0 F9     LDY #< (ofs_D6FA_ball_physics_handler - $01)
 C - - - - - 0x00E802 03:E7F2: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00E805 03:E7F5: A9 04     LDA #$04
 C - - - - - 0x00E807 03:E7F7: 20 52 C6  JSR sub_C652_set_delay_and_save_return_address
@@ -6528,12 +6519,12 @@ sub_E81C_automatically_return_GK_to_default_position:
 C - - - - - 0x00E82C 03:E81C: 38        SEC
 C - - - - - 0x00E82D 03:E81D: A0 05     LDY #con_plr_pos_X_lo
 C - - - - - 0x00E82F 03:E81F: B1 61     LDA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E831 03:E821: E9 00     SBC #$00
+C - - - - - 0x00E831 03:E821: E9 00     SBC #< $0100
 C - - - - - 0x00E833 03:E823: AA        TAX
 C - - - - - 0x00E834 03:E824: C8        INY
 C - - - - - 0x00E835 03:E825: C8        INY ; con_plr_pos_X_hi
 C - - - - - 0x00E836 03:E826: B1 61     LDA (ram_0061_t01_player_data),Y
-C - - - - - 0x00E838 03:E828: E9 01     SBC #$01
+C - - - - - 0x00E838 03:E828: E9 01     SBC #> $0100
 C - - - - - 0x00E83A 03:E82A: A8        TAY
 C - - - - - 0x00E83B 03:E82B: 08        PHP
 C - - - - - 0x00E83C 03:E82C: B0 03     BCS bra_E831
@@ -6604,7 +6595,7 @@ C - - - - - 0x00E8A8 03:E898: 4C 55 DF  JMP loc_DF55_check_next_player
 bra_E89B:
 C - - - - - 0x00E8AB 03:E89B: A9 16     LDA #$16
 C - - - - - 0x00E8AD 03:E89D: A2 0C     LDX #$0C
-C - - - - - 0x00E8AF 03:E89F: 20 43 FA  JSR sub_FA43
+C - - - - - 0x00E8AF 03:E89F: 20 43 FA  JSR sub_FA43_check_collision_with_object
 C - - - - - 0x00E8B2 03:E8A2: 90 D4     BCC bra_E878_loop
 C - - - - - 0x00E8B4 03:E8A4: AD 29 04  LDA ram_player_with_ball
 C - - - - - 0x00E8B7 03:E8A7: 30 10     BMI bra_E8B9
@@ -6710,7 +6701,7 @@ C - - - - - 0x00E989 03:E979: 2D 27 00  AND a: ram_btn_press + $01
 loc_E97C:
 C D 3 - - - 0x00E98C 03:E97C: F0 97     BEQ bra_E915_loop
 C - - - - - 0x00E98E 03:E97E: A2 04     LDX #$04
-C - - - - - 0x00E990 03:E980: 29 80     AND #$80
+C - - - - - 0x00E990 03:E980: 29 80     AND #con_btn_A
 C - - - - - 0x00E992 03:E982: D0 02     BNE bra_E986
 C - - - - - 0x00E994 03:E984: A2 00     LDX #$00
 bra_E986:
@@ -6769,8 +6760,8 @@ C - - - - - 0x00E9FC 03:E9EC: A9 5A     LDA #$5A
 C - - - - - 0x00E9FE 03:E9EE: 95 01     STA ram_0001,X
 C - - - - - 0x00EA00 03:E9F0: A9 0C     LDA #$0C
 C - - - - - 0x00EA02 03:E9F2: 95 02     STA ram_0002,X
-C - - - - - 0x00EA04 03:E9F4: A9 D6     LDA #> (ofs_D6FA - $01)
-C - - - - - 0x00EA06 03:E9F6: A0 F9     LDY #< (ofs_D6FA - $01)
+C - - - - - 0x00EA04 03:E9F4: A9 D6     LDA #> (ofs_D6FA_ball_physics_handler - $01)
+C - - - - - 0x00EA06 03:E9F6: A0 F9     LDY #< (ofs_D6FA_ball_physics_handler - $01)
 C - - - - - 0x00EA08 03:E9F8: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00EA0B 03:E9FB: A9 04     LDA #$04
 C - - - - - 0x00EA0D 03:E9FD: 20 52 C6  JSR sub_C652_set_delay_and_save_return_address
@@ -6934,7 +6925,7 @@ C - - - - - 0x00EB22 03:EB12: 4C 55 DF  JMP loc_DF55_check_next_player
 bra_EB15:
 C - - - - - 0x00EB25 03:EB15: A9 16     LDA #$16
 C - - - - - 0x00EB27 03:EB17: A2 0C     LDX #$0C
-C - - - - - 0x00EB29 03:EB19: 20 43 FA  JSR sub_FA43
+C - - - - - 0x00EB29 03:EB19: 20 43 FA  JSR sub_FA43_check_collision_with_object
 C - - - - - 0x00EB2C 03:EB1C: 90 99     BCC bra_EAB7_loop
 C - - - - - 0x00EB2E 03:EB1E: 4C 6E E3  JMP loc_E36E
 
@@ -7017,7 +7008,7 @@ C - - - - - 0x00EBC5 03:EBB5: 20 1E 80  JSR sub_0x00402E_set_animation
 loc_EBB8:
 C D 3 - - - 0x00EBC8 03:EBB8: A2 08     LDX #$08
 C - - - - - 0x00EBCA 03:EBBA: A9 16     LDA #$16
-C - - - - - 0x00EBCC 03:EBBC: 20 43 FA  JSR sub_FA43
+C - - - - - 0x00EBCC 03:EBBC: 20 43 FA  JSR sub_FA43_check_collision_with_object
 C - - - - - 0x00EBCF 03:EBBF: 90 3E     BCC bra_EBFF
 C - - - - - 0x00EBD1 03:EBC1: AD 29 04  LDA ram_player_with_ball
 C - - - - - 0x00EBD4 03:EBC4: 30 1A     BMI bra_EBE0
@@ -7169,7 +7160,7 @@ C - - - - - 0x00ECD2 03:ECC2: 20 1E 80  JSR sub_0x00402E_set_animation
 loc_ECC5:
 C D 3 - - - 0x00ECD5 03:ECC5: A2 09     LDX #$09
 C - - - - - 0x00ECD7 03:ECC7: A9 16     LDA #$16
-C - - - - - 0x00ECD9 03:ECC9: 20 60 FA  JSR sub_FA60
+C - - - - - 0x00ECD9 03:ECC9: 20 60 FA  JSR sub_FA60_check_collision_with_ball
 C - - - - - 0x00ECDC 03:ECCC: 90 0F     BCC bra_ECDD
 C - - - - - 0x00ECDE 03:ECCE: AD 26 04  LDA ram_ball_pos_Z_hi
 C - - - - - 0x00ECE1 03:ECD1: D0 85     BNE bra_EC58_loop
@@ -7180,7 +7171,7 @@ C - - - - - 0x00ECEA 03:ECDA: 4C E9 ED  JMP loc_EDE9
 bra_ECDD:
 C - - - - - 0x00ECED 03:ECDD: A2 14     LDX #$14
 C - - - - - 0x00ECEF 03:ECDF: A9 16     LDA #$16
-C - - - - - 0x00ECF1 03:ECE1: 20 60 FA  JSR sub_FA60
+C - - - - - 0x00ECF1 03:ECE1: 20 60 FA  JSR sub_FA60_check_collision_with_ball
 C - - - - - 0x00ECF4 03:ECE4: B0 03     BCS bra_ECE9
 C - - - - - 0x00ECF6 03:ECE6: 4C 58 EC  JMP loc_EC58_loop
 bra_ECE9:
@@ -7547,7 +7538,7 @@ bra_EF85:
 C - - - - - 0x00EF95 03:EF85: 8A        TXA
 C - - - - - 0x00EF96 03:EF86: 71 61     ADC (ram_0061_t01_player_data),Y
 C - - - - - 0x00EF98 03:EF88: 8D E0 03  STA ram_ball_pos_Y_hi
-C - - - - - 0x00EF9B 03:EF8B: 20 ED DC  JSR sub_DCED
+C - - - - - 0x00EF9B 03:EF8B: 20 ED DC  JSR sub_DCED_ball_shadow_position
 loc_EF8E_RTS:
 C D 3 - - - 0x00EF9E 03:EF8E: 60        RTS
 
@@ -7883,7 +7874,7 @@ C - - - - - 0x00F16F 03:F15F: 4A        LSR
 C - - - - - 0x00F170 03:F160: 90 16     BCC bra_F178
 C - - - - - 0x00F172 03:F162: A9 16     LDA #$16
 C - - - - - 0x00F174 03:F164: A2 20     LDX #$20
-C - - - - - 0x00F176 03:F166: 20 43 FA  JSR sub_FA43
+C - - - - - 0x00F176 03:F166: 20 43 FA  JSR sub_FA43_check_collision_with_object
 C - - - - - 0x00F179 03:F169: 90 B9     BCC bra_F124_loop
 C - - - - - 0x00F17B 03:F16B: AD 7E 03  LDA ram_random
 C - - - - - 0x00F17E 03:F16E: C9 E0     CMP #$E0
@@ -7893,7 +7884,7 @@ C - - - - - 0x00F185 03:F175: 4C 76 E1  JMP loc_E176
 bra_F178:
 C - - - - - 0x00F188 03:F178: A9 16     LDA #$16
 C - - - - - 0x00F18A 03:F17A: A2 0C     LDX #$0C
-C - - - - - 0x00F18C 03:F17C: 20 43 FA  JSR sub_FA43
+C - - - - - 0x00F18C 03:F17C: 20 43 FA  JSR sub_FA43_check_collision_with_object
 C - - - - - 0x00F18F 03:F17F: 90 A3     BCC bra_F124_loop
 C - - - - - 0x00F191 03:F181: AD 29 04  LDA ram_player_with_ball
 C - - - - - 0x00F194 03:F184: 30 26     BMI bra_F1AC
@@ -8253,8 +8244,8 @@ C - - - - - 0x00F45A 03:F44A: A9 5A     LDA #$5A
 C - - - - - 0x00F45C 03:F44C: 95 01     STA ram_0001,X
 C - - - - - 0x00F45E 03:F44E: A9 0C     LDA #$0C
 C - - - - - 0x00F460 03:F450: 95 02     STA ram_0002,X
-C - - - - - 0x00F462 03:F452: A9 D6     LDA #> (ofs_D6FA - $01)
-C - - - - - 0x00F464 03:F454: A0 F9     LDY #< (ofs_D6FA - $01)
+C - - - - - 0x00F462 03:F452: A9 D6     LDA #> (ofs_D6FA_ball_physics_handler - $01)
+C - - - - - 0x00F464 03:F454: A0 F9     LDY #< (ofs_D6FA_ball_physics_handler - $01)
 C - - - - - 0x00F466 03:F456: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00F469 03:F459: 60        RTS
 
@@ -8369,8 +8360,8 @@ C - - - - - 0x00F53A 03:F52A: A9 5A     LDA #$5A
 C - - - - - 0x00F53C 03:F52C: 95 01     STA ram_0001,X
 C - - - - - 0x00F53E 03:F52E: A9 0C     LDA #$0C
 C - - - - - 0x00F540 03:F530: 95 02     STA ram_0002,X
-C - - - - - 0x00F542 03:F532: A9 D6     LDA #> (ofs_D6FA - $01)
-C - - - - - 0x00F544 03:F534: A0 F9     LDY #< (ofs_D6FA - $01)
+C - - - - - 0x00F542 03:F532: A9 D6     LDA #> (ofs_D6FA_ball_physics_handler - $01)
+C - - - - - 0x00F544 03:F534: A0 F9     LDY #< (ofs_D6FA_ball_physics_handler - $01)
 C - - - - - 0x00F546 03:F536: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00F549 03:F539: A9 80     LDA #$80
 C - - - - - 0x00F54B 03:F53B: 8D 29 04  STA ram_player_with_ball
@@ -8440,7 +8431,7 @@ C - - - - - 0x00F5CD 03:F5BD: 20 1E 80  JSR sub_0x00402E_set_animation
 loc_F5C0:
 C D 3 - - - 0x00F5D0 03:F5C0: A9 04     LDA #$04
 C - - - - - 0x00F5D2 03:F5C2: 20 9E C7  JSR sub_C79E
-C - - - - - 0x00F5D5 03:F5C5: 20 ED DC  JSR sub_DCED
+C - - - - - 0x00F5D5 03:F5C5: 20 ED DC  JSR sub_DCED_ball_shadow_position
 C - - - - - 0x00F5D8 03:F5C8: AE AD 03  LDX ram_team_w_ball
 C - - - - - 0x00F5DB 03:F5CB: F0 14     BEQ bra_F5E1
 C - - - - - 0x00F5DD 03:F5CD: A2 01     LDX #$01
@@ -8496,8 +8487,8 @@ C - - - - - 0x00F647 03:F637: A9 5A     LDA #$5A
 C - - - - - 0x00F649 03:F639: 95 01     STA ram_0001,X
 C - - - - - 0x00F64B 03:F63B: A9 0C     LDA #$0C
 C - - - - - 0x00F64D 03:F63D: 95 02     STA ram_0002,X
-C - - - - - 0x00F64F 03:F63F: A9 D6     LDA #> (ofs_D6FA - $01)
-C - - - - - 0x00F651 03:F641: A0 F9     LDY #< (ofs_D6FA - $01)
+C - - - - - 0x00F64F 03:F63F: A9 D6     LDA #> (ofs_D6FA_ball_physics_handler - $01)
+C - - - - - 0x00F651 03:F641: A0 F9     LDY #< (ofs_D6FA_ball_physics_handler - $01)
 C - - - - - 0x00F653 03:F643: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00F656 03:F646: A9 80     LDA #$80
 C - - - - - 0x00F658 03:F648: 8D 29 04  STA ram_player_with_ball
@@ -8641,8 +8632,8 @@ C - - - - - 0x00F773 03:F763: A9 5A     LDA #$5A
 C - - - - - 0x00F775 03:F765: 95 01     STA ram_0001,X
 C - - - - - 0x00F777 03:F767: A9 0C     LDA #$0C
 C - - - - - 0x00F779 03:F769: 95 02     STA ram_0002,X
-C - - - - - 0x00F77B 03:F76B: A9 D6     LDA #> (ofs_D6FA - $01)
-C - - - - - 0x00F77D 03:F76D: A0 F9     LDY #< (ofs_D6FA - $01)
+C - - - - - 0x00F77B 03:F76B: A9 D6     LDA #> (ofs_D6FA_ball_physics_handler - $01)
+C - - - - - 0x00F77D 03:F76D: A0 F9     LDY #< (ofs_D6FA_ball_physics_handler - $01)
 C - - - - - 0x00F77F 03:F76F: 20 E1 C5  JSR sub_C5E1_prepare_return_address
 C - - - - - 0x00F782 03:F772: A9 03     LDA #con_sfx_shot
 C - - - - - 0x00F784 03:F774: 20 10 C9  JSR sub_C910_prepare_sound
@@ -8927,7 +8918,7 @@ C - - - - - 0x00F962 03:F952: C9 06     CMP #$06
 C - - - - - 0x00F964 03:F954: B0 2E     BCS bra_F984_RTS
 C - - - - - 0x00F966 03:F956: A9 16     LDA #$16
 C - - - - - 0x00F968 03:F958: A2 0D     LDX #$0D
-C - - - - - 0x00F96A 03:F95A: 20 60 FA  JSR sub_FA60
+C - - - - - 0x00F96A 03:F95A: 20 60 FA  JSR sub_FA60_check_collision_with_ball
 C - - - - - 0x00F96D 03:F95D: 90 25     BCC bra_F984_RTS
 C - - - - - 0x00F96F 03:F95F: A0 13     LDY #con_plr_direction
 C - - - - - 0x00F971 03:F961: B1 61     LDA (ram_0061_t01_player_data),Y
@@ -8994,8 +8985,8 @@ C - - - - - 0x00F9C7 03:F9B7: 60        RTS
 
 
 
-sub_F9B8:
-C - - - - - 0x00F9C8 03:F9B8: 20 DA F9  JSR sub_F9DA
+sub_F9B8_display_message_with_sprites_and_try_to_skip_it:
+C - - - - - 0x00F9C8 03:F9B8: 20 DA F9  JSR sub_F9DA_display_message_with_sprites
 C - - - - - 0x00F9CB 03:F9BB: A9 70     LDA #$70
 bra_F9BD_loop:
 C - - - - - 0x00F9CD 03:F9BD: 48        PHA
@@ -9003,22 +8994,22 @@ C - - - - - 0x00F9CE 03:F9BE: A9 01     LDA #$01
 C - - - - - 0x00F9D0 03:F9C0: 20 09 C6  JSR sub_C609_scripy_delay
 C - - - - - 0x00F9D3 03:F9C3: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00F9D5 03:F9C5: 2D 26 00  AND a: ram_btn_press
-C - - - - - 0x00F9D8 03:F9C8: D0 0E     BNE bra_F9D8
+C - - - - - 0x00F9D8 03:F9C8: D0 0E     BNE bra_F9D8_skip_message
 C - - - - - 0x00F9DA 03:F9CA: A9 C0     LDA #con_btns_AB
 C - - - - - 0x00F9DC 03:F9CC: 2D 27 00  AND a: ram_btn_press + $01
-C - - - - - 0x00F9DF 03:F9CF: D0 07     BNE bra_F9D8
+C - - - - - 0x00F9DF 03:F9CF: D0 07     BNE bra_F9D8_skip_message
 C - - - - - 0x00F9E1 03:F9D1: 68        PLA
 C - - - - - 0x00F9E2 03:F9D2: 38        SEC
 C - - - - - 0x00F9E3 03:F9D3: E9 01     SBC #$01
 C - - - - - 0x00F9E5 03:F9D5: D0 E6     BNE bra_F9BD_loop
 C - - - - - 0x00F9E7 03:F9D7: 48        PHA
-bra_F9D8:
+bra_F9D8_skip_message:
 C - - - - - 0x00F9E8 03:F9D8: 68        PLA
 C - - - - - 0x00F9E9 03:F9D9: 60        RTS
 
 
 
-sub_F9DA:
+sub_F9DA_display_message_with_sprites:
 C - - - - - 0x00F9EA 03:F9DA: A2 08     LDX #$08
 C - - - - - 0x00F9EC 03:F9DC: 86 6C     STX ram_chr_bank + $03
 C - - - - - 0x00F9EE 03:F9DE: 0A        ASL
@@ -9084,7 +9075,11 @@ C - - - - - 0x00FA52 03:FA42: 60        RTS
 
 
 
-sub_FA43:
+sub_FA43_check_collision_with_object:
+; out
+    ; C
+        ; 0 = no collision
+        ; 1 = collision
 C - - - - - 0x00FA53 03:FA43: C9 16     CMP #$16
 C - - - - - 0x00FA55 03:FA45: D0 19     BNE bra_FA60
 C - - - - - 0x00FA57 03:FA47: AC 26 04  LDY ram_ball_pos_Z_hi
@@ -9101,7 +9096,11 @@ bra_FA5E:
 C - - - - - 0x00FA6E 03:FA5E: 18        CLC
 C - - - - - 0x00FA6F 03:FA5F: 60        RTS
 bra_FA60:
-sub_FA60:
+sub_FA60_check_collision_with_ball:
+; out
+    ; C
+        ; 0 = no collision
+        ; 1 = collision
 C - - - - - 0x00FA70 03:FA60: 86 72     STX ram_0072_t01_hitbox_size
 C - - - - - 0x00FA72 03:FA62: 0A        ASL
 C - - - - - 0x00FA73 03:FA63: AA        TAX
@@ -9255,289 +9254,166 @@ tbl_FB74_sprite_text_messages:
 
 
 
-con_msg_counter     = $00
-con_msg_pos_X       = $00
-con_msg_pos_Y       = $00
-con_msg_end         = $00
-
-
-
 _message_FB80_00_kick_off:
-- - - - - - 0x00FB90 03:FB80: 08        .byte con_msg_counter + $08   ; 
-- - - - - - 0x00FB91 03:FB81: 60        .byte con_msg_pos_X   + $60   ; 
-- - - - - - 0x00FB92 03:FB82: 50        .byte con_msg_pos_Y   + $50   ; 
-- - - - - - 0x00FB93 03:FB83: 4B        .byte $4B   ; 
-- - - - - - 0x00FB94 03:FB84: 49        .byte $49   ; 
-- - - - - - 0x00FB95 03:FB85: 43        .byte $43   ; 
-- - - - - - 0x00FB96 03:FB86: 4B        .byte $4B   ; 
-- - - - - - 0x00FB97 03:FB87: 20        .byte $20   ; 
-- - - - - - 0x00FB98 03:FB88: 4F        .byte $4F   ; 
-- - - - - - 0x00FB99 03:FB89: 46        .byte $46   ; 
-- - - - - - 0x00FB9A 03:FB8A: 46        .byte $46   ; 
-- - - - - - 0x00FB9B 03:FB8B: 00        .byte con_msg_end
+- - - - - - 0x00FB90 03:FB80: 08        .byte con_cb_msg_counter + $08   ; 
+- - - - - - 0x00FB91 03:FB81: 60        .byte con_cb_msg_pos_X   + $60   ; 
+- - - - - - 0x00FB92 03:FB82: 50        .byte con_cb_msg_pos_Y   + $50   ; 
+- - - - - - 0x00FB93 03:FB83: 4B        .byte "KICK OFF"   ; 
+
+- - - - - - 0x00FB9B 03:FB8B: 00        .byte con_cb_msg_end   ; 
 
 
 
 _message_FB8C_01_time_up:
-- D 3 - I - 0x00FB9C 03:FB8C: 07        .byte con_msg_counter + $07   ; 
-- D 3 - I - 0x00FB9D 03:FB8D: 64        .byte con_msg_pos_X   + $64   ; 
-- D 3 - I - 0x00FB9E 03:FB8E: 50        .byte con_msg_pos_Y   + $50   ; 
-- D 3 - I - 0x00FB9F 03:FB8F: 54        .byte $54   ; 
-- D 3 - I - 0x00FBA0 03:FB90: 49        .byte $49   ; 
-- D 3 - I - 0x00FBA1 03:FB91: 4D        .byte $4D   ; 
-- D 3 - I - 0x00FBA2 03:FB92: 45        .byte $45   ; 
-- D 3 - I - 0x00FBA3 03:FB93: 20        .byte $20   ; 
-- D 3 - I - 0x00FBA4 03:FB94: 55        .byte $55   ; 
-- D 3 - I - 0x00FBA5 03:FB95: 50        .byte $50   ; 
-- D 3 - I - 0x00FBA6 03:FB96: 00        .byte con_msg_end
+- D 3 - I - 0x00FB9C 03:FB8C: 07        .byte con_cb_msg_counter + $07   ; 
+- D 3 - I - 0x00FB9D 03:FB8D: 64        .byte con_cb_msg_pos_X   + $64   ; 
+- D 3 - I - 0x00FB9E 03:FB8E: 50        .byte con_cb_msg_pos_Y   + $50   ; 
+- D 3 - I - 0x00FB9F 03:FB8F: 54        .byte "TIME UP"   ; 
+
+- D 3 - I - 0x00FBA6 03:FB96: 00        .byte con_cb_msg_end   ; 
 
 
 
 _message_FB97_02_throw_in:
-- D 3 - I - 0x00FBA7 03:FB97: 06        .byte con_msg_counter + $06   ; 
-- D 3 - I - 0x00FBA8 03:FB98: 68        .byte con_msg_pos_X   + $68   ; 
-- D 3 - I - 0x00FBA9 03:FB99: 50        .byte con_msg_pos_Y   + $50   ; 
-- D 3 - I - 0x00FBAA 03:FB9A: 4F        .byte $4F   ; 
-- D 3 - I - 0x00FBAB 03:FB9B: 55        .byte $55   ; 
-- D 3 - I - 0x00FBAC 03:FB9C: 54        .byte $54   ; 
-- D 3 - I - 0x00FBAD 03:FB9D: 20        .byte $20   ; 
-- D 3 - I - 0x00FBAE 03:FB9E: 4F        .byte $4F   ; 
-- D 3 - I - 0x00FBAF 03:FB9F: 46        .byte $46   ; 
-- D 3 - I - 0x00FBB0 03:FBA0: 04        .byte con_msg_counter + $04   ; 
-- D 3 - I - 0x00FBB1 03:FBA1: 70        .byte con_msg_pos_X   + $70   ; 
-- D 3 - I - 0x00FBB2 03:FBA2: 60        .byte con_msg_pos_Y   + $60   ; 
-- D 3 - I - 0x00FBB3 03:FBA3: 50        .byte $50   ; 
-- D 3 - I - 0x00FBB4 03:FBA4: 4C        .byte $4C   ; 
-- D 3 - I - 0x00FBB5 03:FBA5: 41        .byte $41   ; 
-- D 3 - I - 0x00FBB6 03:FBA6: 59        .byte $59   ; 
-- D 3 - I - 0x00FBB7 03:FBA7: 08        .byte con_msg_counter + $08   ; 
-- D 3 - I - 0x00FBB8 03:FBA8: 60        .byte con_msg_pos_X   + $60   ; 
-- D 3 - I - 0x00FBB9 03:FBA9: 80        .byte con_msg_pos_Y   + $80   ; 
-- D 3 - I - 0x00FBBA 03:FBAA: 54        .byte $54   ; 
-- D 3 - I - 0x00FBBB 03:FBAB: 48        .byte $48   ; 
-- D 3 - I - 0x00FBBC 03:FBAC: 52        .byte $52   ; 
-- D 3 - I - 0x00FBBD 03:FBAD: 4F        .byte $4F   ; 
-- D 3 - I - 0x00FBBE 03:FBAE: 57        .byte $57   ; 
-- D 3 - I - 0x00FBBF 03:FBAF: 20        .byte $20   ; 
-- D 3 - I - 0x00FBC0 03:FBB0: 49        .byte $49   ; 
-- D 3 - I - 0x00FBC1 03:FBB1: 4E        .byte $4E   ; 
-- D 3 - I - 0x00FBC2 03:FBB2: 00        .byte con_msg_end
+- D 3 - I - 0x00FBA7 03:FB97: 06        .byte con_cb_msg_counter + $06   ; 
+- D 3 - I - 0x00FBA8 03:FB98: 68        .byte con_cb_msg_pos_X   + $68   ; 
+- D 3 - I - 0x00FBA9 03:FB99: 50        .byte con_cb_msg_pos_Y   + $50   ; 
+- D 3 - I - 0x00FBAA 03:FB9A: 4F        .byte "OUT OF"   ; 
+
+- D 3 - I - 0x00FBB0 03:FBA0: 04        .byte con_cb_msg_counter + $04   ; 
+- D 3 - I - 0x00FBB1 03:FBA1: 70        .byte con_cb_msg_pos_X   + $70   ; 
+- D 3 - I - 0x00FBB2 03:FBA2: 60        .byte con_cb_msg_pos_Y   + $60   ; 
+- D 3 - I - 0x00FBB3 03:FBA3: 50        .byte "PLAY"   ; 
+
+- D 3 - I - 0x00FBB7 03:FBA7: 08        .byte con_cb_msg_counter + $08   ; 
+- D 3 - I - 0x00FBB8 03:FBA8: 60        .byte con_cb_msg_pos_X   + $60   ; 
+- D 3 - I - 0x00FBB9 03:FBA9: 80        .byte con_cb_msg_pos_Y   + $80   ; 
+- D 3 - I - 0x00FBBA 03:FBAA: 54        .byte "THROW IN"   ; 
+
+- D 3 - I - 0x00FBC2 03:FBB2: 00        .byte con_cb_msg_end   ; 
 
 
 
 _message_FBB3_03_goal_kick:
-- D 3 - I - 0x00FBC3 03:FBB3: 06        .byte con_msg_counter + $06   ; 
-- D 3 - I - 0x00FBC4 03:FBB4: 68        .byte con_msg_pos_X   + $68   ; 
-- D 3 - I - 0x00FBC5 03:FBB5: 50        .byte con_msg_pos_Y   + $50   ; 
-- D 3 - I - 0x00FBC6 03:FBB6: 4F        .byte $4F   ; 
-- D 3 - I - 0x00FBC7 03:FBB7: 55        .byte $55   ; 
-- D 3 - I - 0x00FBC8 03:FBB8: 54        .byte $54   ; 
-- D 3 - I - 0x00FBC9 03:FBB9: 20        .byte $20   ; 
-- D 3 - I - 0x00FBCA 03:FBBA: 4F        .byte $4F   ; 
-- D 3 - I - 0x00FBCB 03:FBBB: 46        .byte $46   ; 
-- D 3 - I - 0x00FBCC 03:FBBC: 04        .byte con_msg_counter + $04   ; 
-- D 3 - I - 0x00FBCD 03:FBBD: 70        .byte con_msg_pos_X   + $70   ; 
-- D 3 - I - 0x00FBCE 03:FBBE: 60        .byte con_msg_pos_Y   + $60   ; 
-- D 3 - I - 0x00FBCF 03:FBBF: 50        .byte $50   ; 
-- D 3 - I - 0x00FBD0 03:FBC0: 4C        .byte $4C   ; 
-- D 3 - I - 0x00FBD1 03:FBC1: 41        .byte $41   ; 
-- D 3 - I - 0x00FBD2 03:FBC2: 59        .byte $59   ; 
-- D 3 - I - 0x00FBD3 03:FBC3: 09        .byte con_msg_counter + $09   ; 
-- D 3 - I - 0x00FBD4 03:FBC4: 58        .byte con_msg_pos_X   + $58   ; 
-- D 3 - I - 0x00FBD5 03:FBC5: 80        .byte con_msg_pos_Y   + $80   ; 
-- D 3 - I - 0x00FBD6 03:FBC6: 47        .byte $47   ; 
-- D 3 - I - 0x00FBD7 03:FBC7: 4F        .byte $4F   ; 
-- D 3 - I - 0x00FBD8 03:FBC8: 41        .byte $41   ; 
-- D 3 - I - 0x00FBD9 03:FBC9: 4C        .byte $4C   ; 
-- D 3 - I - 0x00FBDA 03:FBCA: 20        .byte $20   ; 
-- D 3 - I - 0x00FBDB 03:FBCB: 4B        .byte $4B   ; 
-- D 3 - I - 0x00FBDC 03:FBCC: 49        .byte $49   ; 
-- D 3 - I - 0x00FBDD 03:FBCD: 43        .byte $43   ; 
-- D 3 - I - 0x00FBDE 03:FBCE: 4B        .byte $4B   ; 
-- D 3 - I - 0x00FBDF 03:FBCF: 00        .byte con_msg_end
+- D 3 - I - 0x00FBC3 03:FBB3: 06        .byte con_cb_msg_counter + $06   ; 
+- D 3 - I - 0x00FBC4 03:FBB4: 68        .byte con_cb_msg_pos_X   + $68   ; 
+- D 3 - I - 0x00FBC5 03:FBB5: 50        .byte con_cb_msg_pos_Y   + $50   ; 
+- D 3 - I - 0x00FBC6 03:FBB6: 4F        .byte "OUT OF"   ; 
+
+- D 3 - I - 0x00FBCC 03:FBBC: 04        .byte con_cb_msg_counter + $04   ; 
+- D 3 - I - 0x00FBCD 03:FBBD: 70        .byte con_cb_msg_pos_X   + $70   ; 
+- D 3 - I - 0x00FBCE 03:FBBE: 60        .byte con_cb_msg_pos_Y   + $60   ; 
+- D 3 - I - 0x00FBCF 03:FBBF: 50        .byte "PLAY"   ; 
+
+- D 3 - I - 0x00FBD3 03:FBC3: 09        .byte con_cb_msg_counter + $09   ; 
+- D 3 - I - 0x00FBD4 03:FBC4: 58        .byte con_cb_msg_pos_X   + $58   ; 
+- D 3 - I - 0x00FBD5 03:FBC5: 80        .byte con_cb_msg_pos_Y   + $80   ; 
+- D 3 - I - 0x00FBD6 03:FBC6: 47        .byte "GOAL KICK"   ; 
+
+- D 3 - I - 0x00FBDF 03:FBCF: 00        .byte con_cb_msg_end   ; 
 
 
 
 _message_FBD0_04_corner_kick:
-- D 3 - I - 0x00FBE0 03:FBD0: 06        .byte con_msg_counter + $06   ; 
-- D 3 - I - 0x00FBE1 03:FBD1: 68        .byte con_msg_pos_X   + $68   ; 
-- D 3 - I - 0x00FBE2 03:FBD2: 50        .byte con_msg_pos_Y   + $50   ; 
-- D 3 - I - 0x00FBE3 03:FBD3: 4F        .byte $4F   ; 
-- D 3 - I - 0x00FBE4 03:FBD4: 55        .byte $55   ; 
-- D 3 - I - 0x00FBE5 03:FBD5: 54        .byte $54   ; 
-- D 3 - I - 0x00FBE6 03:FBD6: 20        .byte $20   ; 
-- D 3 - I - 0x00FBE7 03:FBD7: 4F        .byte $4F   ; 
-- D 3 - I - 0x00FBE8 03:FBD8: 46        .byte $46   ; 
-- D 3 - I - 0x00FBE9 03:FBD9: 04        .byte con_msg_counter + $04   ; 
-- D 3 - I - 0x00FBEA 03:FBDA: 70        .byte con_msg_pos_X   + $70   ; 
-- D 3 - I - 0x00FBEB 03:FBDB: 60        .byte con_msg_pos_Y   + $60   ; 
-- D 3 - I - 0x00FBEC 03:FBDC: 50        .byte $50   ; 
-- D 3 - I - 0x00FBED 03:FBDD: 4C        .byte $4C   ; 
-- D 3 - I - 0x00FBEE 03:FBDE: 41        .byte $41   ; 
-- D 3 - I - 0x00FBEF 03:FBDF: 59        .byte $59   ; 
-- D 3 - I - 0x00FBF0 03:FBE0: 06        .byte con_msg_counter + $06   ; 
-- D 3 - I - 0x00FBF1 03:FBE1: 68        .byte con_msg_pos_X   + $68   ; 
-- D 3 - I - 0x00FBF2 03:FBE2: 80        .byte con_msg_pos_Y   + $80   ; 
-- D 3 - I - 0x00FBF3 03:FBE3: 43        .byte $43   ; 
-- D 3 - I - 0x00FBF4 03:FBE4: 4F        .byte $4F   ; 
-- D 3 - I - 0x00FBF5 03:FBE5: 52        .byte $52   ; 
-- D 3 - I - 0x00FBF6 03:FBE6: 4E        .byte $4E   ; 
-- D 3 - I - 0x00FBF7 03:FBE7: 45        .byte $45   ; 
-- D 3 - I - 0x00FBF8 03:FBE8: 52        .byte $52   ; 
-- D 3 - I - 0x00FBF9 03:FBE9: 04        .byte con_msg_counter + $04   ; 
-- D 3 - I - 0x00FBFA 03:FBEA: 70        .byte con_msg_pos_X   + $70   ; 
-- D 3 - I - 0x00FBFB 03:FBEB: 90        .byte con_msg_pos_Y   + $90   ; 
-- D 3 - I - 0x00FBFC 03:FBEC: 4B        .byte $4B   ; 
-- D 3 - I - 0x00FBFD 03:FBED: 49        .byte $49   ; 
-- D 3 - I - 0x00FBFE 03:FBEE: 43        .byte $43   ; 
-- D 3 - I - 0x00FBFF 03:FBEF: 4B        .byte $4B   ; 
-- D 3 - I - 0x00FC00 03:FBF0: 00        .byte con_msg_end
+- D 3 - I - 0x00FBE0 03:FBD0: 06        .byte con_cb_msg_counter + $06   ; 
+- D 3 - I - 0x00FBE1 03:FBD1: 68        .byte con_cb_msg_pos_X   + $68   ; 
+- D 3 - I - 0x00FBE2 03:FBD2: 50        .byte con_cb_msg_pos_Y   + $50   ; 
+- D 3 - I - 0x00FBE3 03:FBD3: 4F        .byte "OUT OF"   ; 
+
+- D 3 - I - 0x00FBE9 03:FBD9: 04        .byte con_cb_msg_counter + $04   ; 
+- D 3 - I - 0x00FBEA 03:FBDA: 70        .byte con_cb_msg_pos_X   + $70   ; 
+- D 3 - I - 0x00FBEB 03:FBDB: 60        .byte con_cb_msg_pos_Y   + $60   ; 
+- D 3 - I - 0x00FBEC 03:FBDC: 50        .byte "PLAY"   ; 
+
+- D 3 - I - 0x00FBF0 03:FBE0: 06        .byte con_cb_msg_counter + $06   ; 
+- D 3 - I - 0x00FBF1 03:FBE1: 68        .byte con_cb_msg_pos_X   + $68   ; 
+- D 3 - I - 0x00FBF2 03:FBE2: 80        .byte con_cb_msg_pos_Y   + $80   ; 
+- D 3 - I - 0x00FBF3 03:FBE3: 43        .byte "CORNER"   ; 
+
+- D 3 - I - 0x00FBF9 03:FBE9: 04        .byte con_cb_msg_counter + $04   ; 
+- D 3 - I - 0x00FBFA 03:FBEA: 70        .byte con_cb_msg_pos_X   + $70   ; 
+- D 3 - I - 0x00FBFB 03:FBEB: 90        .byte con_cb_msg_pos_Y   + $90   ; 
+- D 3 - I - 0x00FBFC 03:FBEC: 4B        .byte "KICK"   ; 
+
+- D 3 - I - 0x00FC00 03:FBF0: 00        .byte con_cb_msg_end   ; 
 
 
 
 _message_FBF1_05_pause:
-- D 3 - I - 0x00FC01 03:FBF1: 05        .byte con_msg_counter + $05   ; 
-- D 3 - I - 0x00FC02 03:FBF2: 6C        .byte con_msg_pos_X   + $6C   ; 
-- D 3 - I - 0x00FC03 03:FBF3: 50        .byte con_msg_pos_Y   + $50   ; 
-- D 3 - I - 0x00FC04 03:FBF4: 50        .byte $50   ; 
-- D 3 - I - 0x00FC05 03:FBF5: 41        .byte $41   ; 
-- D 3 - I - 0x00FC06 03:FBF6: 55        .byte $55   ; 
-- D 3 - I - 0x00FC07 03:FBF7: 53        .byte $53   ; 
-- D 3 - I - 0x00FC08 03:FBF8: 45        .byte $45   ; 
-- D 3 - I - 0x00FC09 03:FBF9: 00        .byte con_msg_end
+- D 3 - I - 0x00FC01 03:FBF1: 05        .byte con_cb_msg_counter + $05   ; 
+- D 3 - I - 0x00FC02 03:FBF2: 6C        .byte con_cb_msg_pos_X   + $6C   ; 
+- D 3 - I - 0x00FC03 03:FBF3: 50        .byte con_cb_msg_pos_Y   + $50   ; 
+- D 3 - I - 0x00FC04 03:FBF4: 50        .byte "PAUSE"   ; 
+
+- D 3 - I - 0x00FC09 03:FBF9: 00        .byte con_cb_msg_end   ; 
 
 
-; угол движения ботов
-tbl_FBFA:
-- D 3 - - - 0x00FC0A 03:FBFA: 06        .byte $06   ; 
-tbl_FBFB:
-- D 3 - - - 0x00FC0B 03:FBFB: 00        .byte $00   ; 
-- D 3 - - - 0x00FC0C 03:FBFC: 0D        .byte $0D   ; 
-- D 3 - - - 0x00FC0D 03:FBFD: 00        .byte $00   ; 
-- D 3 - - - 0x00FC0E 03:FBFE: 13        .byte $13   ; 
-- D 3 - - - 0x00FC0F 03:FBFF: 00        .byte $00   ; 
-- D 3 - - - 0x00FC10 03:FC00: 19        .byte $19   ; 
-- D 3 - - - 0x00FC11 03:FC01: 00        .byte $00   ; 
-- D 3 - - - 0x00FC12 03:FC02: 20        .byte $20   ; 
-- D 3 - - - 0x00FC13 03:FC03: 00        .byte $00   ; 
-- D 3 - - - 0x00FC14 03:FC04: 26        .byte $26   ; 
-- D 3 - - - 0x00FC15 03:FC05: 00        .byte $00   ; 
-- D 3 - - - 0x00FC16 03:FC06: 2C        .byte $2C   ; 
-- D 3 - - - 0x00FC17 03:FC07: 00        .byte $00   ; 
-- D 3 - - - 0x00FC18 03:FC08: 33        .byte $33   ; 
-- D 3 - - - 0x00FC19 03:FC09: 00        .byte $00   ; 
-- D 3 - - - 0x00FC1A 03:FC0A: 39        .byte $39   ; 
-- D 3 - - - 0x00FC1B 03:FC0B: 00        .byte $00   ; 
-- D 3 - - - 0x00FC1C 03:FC0C: 40        .byte $40   ; 
-- D 3 - - - 0x00FC1D 03:FC0D: 00        .byte $00   ; 
-- D 3 - - - 0x00FC1E 03:FC0E: 47        .byte $47   ; 
-- D 3 - - - 0x00FC1F 03:FC0F: 00        .byte $00   ; 
-- D 3 - - - 0x00FC20 03:FC10: 4E        .byte $4E   ; 
-- D 3 - - - 0x00FC21 03:FC11: 00        .byte $00   ; 
-- D 3 - - - 0x00FC22 03:FC12: 55        .byte $55   ; 
-- D 3 - - - 0x00FC23 03:FC13: 00        .byte $00   ; 
-- D 3 - - - 0x00FC24 03:FC14: 5C        .byte $5C   ; 
-- D 3 - - - 0x00FC25 03:FC15: 00        .byte $00   ; 
-- D 3 - - - 0x00FC26 03:FC16: 63        .byte $63   ; 
-- D 3 - - - 0x00FC27 03:FC17: 00        .byte $00   ; 
-- D 3 - - - 0x00FC28 03:FC18: 6A        .byte $6A   ; 
-- D 3 - - - 0x00FC29 03:FC19: 00        .byte $00   ; 
-- D 3 - - - 0x00FC2A 03:FC1A: 71        .byte $71   ; 
-- D 3 - - - 0x00FC2B 03:FC1B: 00        .byte $00   ; 
-- D 3 - - - 0x00FC2C 03:FC1C: 79        .byte $79   ; 
-- D 3 - - - 0x00FC2D 03:FC1D: 00        .byte $00   ; 
-- D 3 - - - 0x00FC2E 03:FC1E: 81        .byte $81   ; 
-- D 3 - - - 0x00FC2F 03:FC1F: 00        .byte $00   ; 
-- D 3 - - - 0x00FC30 03:FC20: 89        .byte $89   ; 
-- D 3 - - - 0x00FC31 03:FC21: 00        .byte $00   ; 
-- D 3 - - - 0x00FC32 03:FC22: 91        .byte $91   ; 
-- D 3 - - - 0x00FC33 03:FC23: 00        .byte $00   ; 
-- D 3 - - - 0x00FC34 03:FC24: 99        .byte $99   ; 
-- D 3 - - - 0x00FC35 03:FC25: 00        .byte $00   ; 
-- D 3 - - - 0x00FC36 03:FC26: A2        .byte $A2   ; 
-- D 3 - - - 0x00FC37 03:FC27: 00        .byte $00   ; 
-- D 3 - - - 0x00FC38 03:FC28: AB        .byte $AB   ; 
-- D 3 - - - 0x00FC39 03:FC29: 00        .byte $00   ; 
-- D 3 - - - 0x00FC3A 03:FC2A: B4        .byte $B4   ; 
-- D 3 - - - 0x00FC3B 03:FC2B: 00        .byte $00   ; 
-- D 3 - - - 0x00FC3C 03:FC2C: BE        .byte $BE   ; 
-- D 3 - - - 0x00FC3D 03:FC2D: 00        .byte $00   ; 
-- D 3 - - - 0x00FC3E 03:FC2E: C8        .byte $C8   ; 
-- D 3 - - - 0x00FC3F 03:FC2F: 00        .byte $00   ; 
-- D 3 - - - 0x00FC40 03:FC30: D2        .byte $D2   ; 
-- D 3 - - - 0x00FC41 03:FC31: 00        .byte $00   ; 
-- D 3 - - - 0x00FC42 03:FC32: DD        .byte $DD   ; 
-- D 3 - - - 0x00FC43 03:FC33: 00        .byte $00   ; 
-- D 3 - - - 0x00FC44 03:FC34: E8        .byte $E8   ; 
-- D 3 - - - 0x00FC45 03:FC35: 00        .byte $00   ; 
-- D 3 - - - 0x00FC46 03:FC36: F4        .byte $F4   ; 
-- D 3 - - - 0x00FC47 03:FC37: 00        .byte $00   ; 
-- D 3 - - - 0x00FC48 03:FC38: 00        .byte $00   ; 
-- D 3 - - - 0x00FC49 03:FC39: 01        .byte $01   ; 
-- D 3 - - - 0x00FC4A 03:FC3A: 0D        .byte $0D   ; 
-- D 3 - - - 0x00FC4B 03:FC3B: 01        .byte $01   ; 
-- D 3 - - - 0x00FC4C 03:FC3C: 1A        .byte $1A   ; 
-- D 3 - - - 0x00FC4D 03:FC3D: 01        .byte $01   ; 
-- D 3 - - - 0x00FC4E 03:FC3E: 29        .byte $29   ; 
-- D 3 - - - 0x00FC4F 03:FC3F: 01        .byte $01   ; 
-- D 3 - - - 0x00FC50 03:FC40: 38        .byte $38   ; 
-- D 3 - - - 0x00FC51 03:FC41: 01        .byte $01   ; 
-- D 3 - - - 0x00FC52 03:FC42: 48        .byte $48   ; 
-- D 3 - - - 0x00FC53 03:FC43: 01        .byte $01   ; 
-- D 3 - - - 0x00FC54 03:FC44: 59        .byte $59   ; 
-- D 3 - - - 0x00FC55 03:FC45: 01        .byte $01   ; 
-- D 3 - - - 0x00FC56 03:FC46: 6B        .byte $6B   ; 
-- D 3 - - - 0x00FC57 03:FC47: 01        .byte $01   ; 
-- D 3 - - - 0x00FC58 03:FC48: 7F        .byte $7F   ; 
-- D 3 - - - 0x00FC59 03:FC49: 01        .byte $01   ; 
-- D 3 - - - 0x00FC5A 03:FC4A: 94        .byte $94   ; 
-- D 3 - - - 0x00FC5B 03:FC4B: 01        .byte $01   ; 
-- D 3 - - - 0x00FC5C 03:FC4C: AB        .byte $AB   ; 
-- D 3 - - - 0x00FC5D 03:FC4D: 01        .byte $01   ; 
-- D 3 - - - 0x00FC5E 03:FC4E: C4        .byte $C4   ; 
-- D 3 - - - 0x00FC5F 03:FC4F: 01        .byte $01   ; 
-- D 3 - - - 0x00FC60 03:FC50: DF        .byte $DF   ; 
-- D 3 - - - 0x00FC61 03:FC51: 01        .byte $01   ; 
-- D 3 - - - 0x00FC62 03:FC52: FD        .byte $FD   ; 
-- D 3 - - - 0x00FC63 03:FC53: 01        .byte $01   ; 
-- D 3 - - - 0x00FC64 03:FC54: 1D        .byte $1D   ; 
-- D 3 - - - 0x00FC65 03:FC55: 02        .byte $02   ; 
-- D 3 - - - 0x00FC66 03:FC56: 42        .byte $42   ; 
-- D 3 - - - 0x00FC67 03:FC57: 02        .byte $02   ; 
-- D 3 - - - 0x00FC68 03:FC58: 6A        .byte $6A   ; 
-- D 3 - - - 0x00FC69 03:FC59: 02        .byte $02   ; 
-- D 3 - - - 0x00FC6A 03:FC5A: 98        .byte $98   ; 
-- D 3 - - - 0x00FC6B 03:FC5B: 02        .byte $02   ; 
-- D 3 - - - 0x00FC6C 03:FC5C: DB        .byte $DB   ; 
-- D 3 - - - 0x00FC6D 03:FC5D: 02        .byte $02   ; 
-- D 3 - - - 0x00FC6E 03:FC5E: 07        .byte $07   ; 
-- D 3 - - - 0x00FC6F 03:FC5F: 03        .byte $03   ; 
-- D 3 - - - 0x00FC70 03:FC60: 4C        .byte $4C   ; 
-- D 3 - - - 0x00FC71 03:FC61: 03        .byte $03   ; 
-- D 3 - - - 0x00FC72 03:FC62: 9D        .byte $9D   ; 
-- D 3 - - - 0x00FC73 03:FC63: 03        .byte $03   ; 
-- D 3 - - - 0x00FC74 03:FC64: FE        .byte $FE   ; 
-- D 3 - - - 0x00FC75 03:FC65: 03        .byte $03   ; 
-- D 3 - - - 0x00FC76 03:FC66: 74        .byte $74   ; 
-- D 3 - - - 0x00FC77 03:FC67: 04        .byte $04   ; 
-- D 3 - - - 0x00FC78 03:FC68: 07        .byte $07   ; 
-- D 3 - - - 0x00FC79 03:FC69: 05        .byte $05   ; 
-- D 3 - - - 0x00FC7A 03:FC6A: C3        .byte $C3   ; 
-- D 3 - - - 0x00FC7B 03:FC6B: 05        .byte $05   ; 
-- D 3 - - - 0x00FC7C 03:FC6C: BE        .byte $BE   ; 
-- D 3 - - - 0x00FC7D 03:FC6D: 06        .byte $06   ; 
-- D 3 - - - 0x00FC7E 03:FC6E: 1B        .byte $1B   ; 
-- D 3 - - - 0x00FC7F 03:FC6F: 08        .byte $08   ; 
-- D 3 - - - 0x00FC80 03:FC70: 27        .byte $27   ; 
-- D 3 - - - 0x00FC81 03:FC71: 0A        .byte $0A   ; 
-- D 3 - - - 0x00FC82 03:FC72: 8F        .byte $8F   ; 
-- D 3 - - - 0x00FC83 03:FC73: 0D        .byte $0D   ; 
-- D 3 - - - 0x00FC84 03:FC74: 5B        .byte $5B   ; 
-- D 3 - - - 0x00FC85 03:FC75: 20        .byte $20   ; 
-- D 3 - - - 0x00FC86 03:FC76: BC        .byte $BC   ; 
-- D 3 - - - 0x00FC87 03:FC77: 40        .byte $40   ; 
-- D 3 - - - 0x00FC88 03:FC78: FF        .byte $FF   ; 
-- D 3 - - - 0x00FC89 03:FC79: FF        .byte $FF   ; 
+
+tbl_FBFA_angle:
+- D 3 - - - 0x00FC0A 03:FBFA: 06 00     .word $0006 ; 00 
+- D 3 - - - 0x00FC0C 03:FBFC: 0D 00     .word $000D ; 02 
+- D 3 - - - 0x00FC0E 03:FBFE: 13 00     .word $0013 ; 04 
+- D 3 - - - 0x00FC10 03:FC00: 19 00     .word $0019 ; 06 
+- D 3 - - - 0x00FC12 03:FC02: 20 00     .word $0020 ; 08 
+- D 3 - - - 0x00FC14 03:FC04: 26 00     .word $0026 ; 0A 
+- D 3 - - - 0x00FC16 03:FC06: 2C 00     .word $002C ; 0C 
+- D 3 - - - 0x00FC18 03:FC08: 33 00     .word $0033 ; 0E 
+- D 3 - - - 0x00FC1A 03:FC0A: 39 00     .word $0039 ; 10 
+- D 3 - - - 0x00FC1C 03:FC0C: 40 00     .word $0040 ; 12 
+- D 3 - - - 0x00FC1E 03:FC0E: 47 00     .word $0047 ; 14 
+- D 3 - - - 0x00FC20 03:FC10: 4E 00     .word $004E ; 16 
+- D 3 - - - 0x00FC22 03:FC12: 55 00     .word $0055 ; 18 
+- D 3 - - - 0x00FC24 03:FC14: 5C 00     .word $005C ; 1A 
+- D 3 - - - 0x00FC26 03:FC16: 63 00     .word $0063 ; 1C 
+- D 3 - - - 0x00FC28 03:FC18: 6A 00     .word $006A ; 1E 
+- D 3 - - - 0x00FC2A 03:FC1A: 71 00     .word $0071 ; 20 
+- D 3 - - - 0x00FC2C 03:FC1C: 79 00     .word $0079 ; 22 
+- D 3 - - - 0x00FC2E 03:FC1E: 81 00     .word $0081 ; 24 
+- D 3 - - - 0x00FC30 03:FC20: 89 00     .word $0089 ; 26 
+- D 3 - - - 0x00FC32 03:FC22: 91 00     .word $0091 ; 28 
+- D 3 - - - 0x00FC34 03:FC24: 99 00     .word $0099 ; 2A 
+- D 3 - - - 0x00FC36 03:FC26: A2 00     .word $00A2 ; 2C 
+- D 3 - - - 0x00FC38 03:FC28: AB 00     .word $00AB ; 2E 
+- D 3 - - - 0x00FC3A 03:FC2A: B4 00     .word $00B4 ; 30 
+- D 3 - - - 0x00FC3C 03:FC2C: BE 00     .word $00BE ; 32 
+- D 3 - - - 0x00FC3E 03:FC2E: C8 00     .word $00C8 ; 34 
+- D 3 - - - 0x00FC40 03:FC30: D2 00     .word $00D2 ; 36 
+- D 3 - - - 0x00FC42 03:FC32: DD 00     .word $00DD ; 38 
+- D 3 - - - 0x00FC44 03:FC34: E8 00     .word $00E8 ; 3A 
+- D 3 - - - 0x00FC46 03:FC36: F4 00     .word $00F4 ; 3C 
+- D 3 - - - 0x00FC48 03:FC38: 00 01     .word $0100 ; 3E 
+- D 3 - - - 0x00FC4A 03:FC3A: 0D 01     .word $010D ; 40 
+- D 3 - - - 0x00FC4C 03:FC3C: 1A 01     .word $011A ; 42 
+- D 3 - - - 0x00FC4E 03:FC3E: 29 01     .word $0129 ; 44 
+- D 3 - - - 0x00FC50 03:FC40: 38 01     .word $0138 ; 46 
+- D 3 - - - 0x00FC52 03:FC42: 48 01     .word $0148 ; 48 
+- D 3 - - - 0x00FC54 03:FC44: 59 01     .word $0159 ; 4A 
+- D 3 - - - 0x00FC56 03:FC46: 6B 01     .word $016B ; 4C 
+- D 3 - - - 0x00FC58 03:FC48: 7F 01     .word $017F ; 4E 
+- D 3 - - - 0x00FC5A 03:FC4A: 94 01     .word $0194 ; 50 
+- D 3 - - - 0x00FC5C 03:FC4C: AB 01     .word $01AB ; 52 
+- D 3 - - - 0x00FC5E 03:FC4E: C4 01     .word $01C4 ; 54 
+- D 3 - - - 0x00FC60 03:FC50: DF 01     .word $01DF ; 56 
+- D 3 - - - 0x00FC62 03:FC52: FD 01     .word $01FD ; 58 
+- D 3 - - - 0x00FC64 03:FC54: 1D 02     .word $021D ; 5A 
+- D 3 - - - 0x00FC66 03:FC56: 42 02     .word $0242 ; 5C 
+- D 3 - - - 0x00FC68 03:FC58: 6A 02     .word $026A ; 5E 
+- D 3 - - - 0x00FC6A 03:FC5A: 98 02     .word $0298 ; 60 
+- D 3 - - - 0x00FC6C 03:FC5C: DB 02     .word $02DB ; 62 
+- D 3 - - - 0x00FC6E 03:FC5E: 07 03     .word $0307 ; 64 
+- D 3 - - - 0x00FC70 03:FC60: 4C 03     .word $034C ; 66 
+- D 3 - - - 0x00FC72 03:FC62: 9D 03     .word $039D ; 68 
+- D 3 - - - 0x00FC74 03:FC64: FE 03     .word $03FE ; 6A 
+- D 3 - - - 0x00FC76 03:FC66: 74 04     .word $0474 ; 6C 
+- D 3 - - - 0x00FC78 03:FC68: 07 05     .word $0507 ; 6E 
+- D 3 - - - 0x00FC7A 03:FC6A: C3 05     .word $05C3 ; 70 
+- D 3 - - - 0x00FC7C 03:FC6C: BE 06     .word $06BE ; 72 
+- D 3 - - - 0x00FC7E 03:FC6E: 1B 08     .word $081B ; 74 
+- D 3 - - - 0x00FC80 03:FC70: 27 0A     .word $0A27 ; 76 
+- D 3 - - - 0x00FC82 03:FC72: 8F 0D     .word $0D8F ; 78 
+- D 3 - - - 0x00FC84 03:FC74: 5B 20     .word $205B ; 7A 
+- D 3 - - - 0x00FC86 03:FC76: BC 40     .word $40BC ; 7C 
+- D 3 - - - 0x00FC88 03:FC78: FF FF     .word $FFFF ; 7E 
 
 
 ; bzk garbage
