@@ -169,31 +169,31 @@ C - - - - - 0x0080D4 02:80C4: 4C 9A A2  JMP loc_0x0062AA
 sub_80C7:
 C - - - - - 0x0080D7 02:80C7: BD 10 07  LDA ram_0710_obj,X
 sub_80CA:
-C - - - - - 0x0080DA 02:80CA: 85 0A     STA ram_000A
+C - - - - - 0x0080DA 02:80CA: 85 0A     STA ram_000A_temp
 C - - - - - 0x0080DC 02:80CC: BD 1E 07  LDA ram_obj_flags,X
 C - - - - - 0x0080DF 02:80CF: 29 03     AND #$03
 C - - - - - 0x0080E1 02:80D1: 0A        ASL
 C - - - - - 0x0080E2 02:80D2: A8        TAY
 C - - - - - 0x0080E3 02:80D3: B9 FD 80  LDA tbl_80FD,Y
-C - - - - - 0x0080E6 02:80D6: 85 08     STA ram_0008
+C - - - - - 0x0080E6 02:80D6: 85 08     STA ram_0008_temp
 C - - - - - 0x0080E8 02:80D8: B9 FE 80  LDA tbl_80FD + $01,Y
-C - - - - - 0x0080EB 02:80DB: 85 09     STA ram_0009
+C - - - - - 0x0080EB 02:80DB: 85 09     STA ram_0009_temp
 C - - - - - 0x0080ED 02:80DD: 98        TYA
 C - - - - - 0x0080EE 02:80DE: F0 13     BEQ bra_80F3
-C - - - - - 0x0080F0 02:80E0: A5 0A     LDA ram_000A
+C - - - - - 0x0080F0 02:80E0: A5 0A     LDA ram_000A_temp
 C - - - - - 0x0080F2 02:80E2: 0A        ASL
 C - - - - - 0x0080F3 02:80E3: A8        TAY
-C - - - - - 0x0080F4 02:80E4: B1 08     LDA (ram_0008),Y
-C - - - - - 0x0080F6 02:80E6: 85 0C     STA ram_000C
+C - - - - - 0x0080F4 02:80E4: B1 08     LDA (ram_0008_temp),Y
+C - - - - - 0x0080F6 02:80E6: 85 0C     STA ram_000C_temp
 C - - - - - 0x0080F8 02:80E8: C8        INY
-C - - - - - 0x0080F9 02:80E9: B1 08     LDA (ram_0008),Y
+C - - - - - 0x0080F9 02:80E9: B1 08     LDA (ram_0008_temp),Y
 C - - - - - 0x0080FB 02:80EB: A0 E0     LDY #$E0
 C - - - - - 0x0080FD 02:80ED: 20 A8 A8  JSR sub_0x0068B8
 C - - - - - 0x008100 02:80F0: A9 01     LDA #$01
 C - - - - - 0x008102 02:80F2: 60        RTS
 bra_80F3:
-C - - - - - 0x008103 02:80F3: A4 0A     LDY ram_000A
-C - - - - - 0x008105 02:80F5: B1 08     LDA (ram_0008),Y
+C - - - - - 0x008103 02:80F3: A4 0A     LDY ram_000A_temp
+C - - - - - 0x008105 02:80F5: B1 08     LDA (ram_0008_temp),Y
 C - - - - - 0x008107 02:80F7: 20 9A A8  JSR sub_0x0068AA
 C - - - - - 0x00810A 02:80FA: A9 01     LDA #$01
 C - - - - - 0x00810C 02:80FC: 60        RTS
@@ -360,6 +360,7 @@ C - - - - - 0x0081D9 02:81C9: 4C E0 A2  JMP loc_0x0062F0
 
 ofs_038_2A_81CC_02:
 C - - J - - 0x0081DC 02:81CC: BD E6 06  LDA ram_06E6_obj,X
+; / 04
 C - - - - - 0x0081DF 02:81CF: 4A        LSR
 C - - - - - 0x0081E0 02:81D0: 4A        LSR
 C - - - - - 0x0081E1 02:81D1: A9 A8     LDA #$A8
@@ -647,11 +648,11 @@ ofs_017_839F_00:
 C - - J - - 0x0083AF 02:839F: A9 10     LDA #$10
 C - - - - - 0x0083B1 02:83A1: 20 CB AA  JSR sub_0x006ADB_add_to_spd_Y
 C - - - - - 0x0083B4 02:83A4: BD 22 05  LDA ram_pos_Y_hi_enemy,X
-C - - - - - 0x0083B7 02:83A7: 85 08     STA ram_0008
+C - - - - - 0x0083B7 02:83A7: 85 08     STA ram_0008_temp
 C - - - - - 0x0083B9 02:83A9: 20 48 84  JSR sub_8448
 C - - - - - 0x0083BC 02:83AC: BD 22 05  LDA ram_pos_Y_hi_enemy,X
 C - - - - - 0x0083BF 02:83AF: 38        SEC
-C - - - - - 0x0083C0 02:83B0: E5 08     SBC ram_0008
+C - - - - - 0x0083C0 02:83B0: E5 08     SBC ram_0008_temp
 C - - - - - 0x0083C2 02:83B2: 85 9A     STA ram_009A
 C - - - - - 0x0083C4 02:83B4: BD 22 05  LDA ram_pos_Y_hi_enemy,X
 C - - - - - 0x0083C7 02:83B7: C9 A0     CMP #$A0
@@ -704,13 +705,13 @@ C - - - - - 0x00840C 02:83FC: B0 CA     BCS bra_83C8_RTS
 C - - - - - 0x00840E 02:83FE: A9 20     LDA #$20
 C - - - - - 0x008410 02:8400: 9D 22 05  STA ram_pos_Y_hi_enemy,X
 C - - - - - 0x008413 02:8403: A9 05     LDA #$05
-C - - - - - 0x008415 02:8405: 85 08     STA ram_0008
+C - - - - - 0x008415 02:8405: 85 08     STA ram_0008_temp
 bra_8407_loop:
 C - - - - - 0x008417 02:8407: A0 2A     LDY #con_obj_id_2A
 C - - - - - 0x008419 02:8409: 20 C8 AB  JSR sub_0x006BD8
 C - - - - - 0x00841C 02:840C: 90 1B     BCC bra_8429
 C - - - - - 0x00841E 02:840E: A6 11     LDX ram_0011
-C - - - - - 0x008420 02:8410: A4 08     LDY ram_0008
+C - - - - - 0x008420 02:8410: A4 08     LDY ram_0008_temp
 C - - - - - 0x008422 02:8412: B9 2E 84  LDA tbl_842E_pos_Y,Y
 C - - - - - 0x008425 02:8415: 9D 22 05  STA ram_pos_Y_hi_enemy,X
 C - - - - - 0x008428 02:8418: B9 34 84  LDA tbl_8434_pos_X,Y
@@ -718,7 +719,7 @@ C - - - - - 0x00842B 02:841B: 9D 3C 05  STA ram_pos_X_hi_enemy,X
 C - - - - - 0x00842E 02:841E: A9 01     LDA #$01
 C - - - - - 0x008430 02:8420: 9D 1E 07  STA ram_obj_flags,X
 C - - - - - 0x008433 02:8423: A6 10     LDX ram_0010
-C - - - - - 0x008435 02:8425: C6 08     DEC ram_0008
+C - - - - - 0x008435 02:8425: C6 08     DEC ram_0008_temp
 C - - - - - 0x008437 02:8427: 10 DE     BPL bra_8407_loop
 bra_8429:
 C - - - - - 0x008439 02:8429: A9 40     LDA #$40
@@ -942,13 +943,13 @@ ofs_038_38_8539_01_initialize_object:
 - - - - - - 0x00855E 02:854E: B9 8E 85  LDA tbl_858E,Y
 - - - - - - 0x008561 02:8551: 9D E6 06  STA ram_06E6_obj,X
 - - - - - - 0x008564 02:8554: B9 90 85  LDA tbl_8590,Y
-- - - - - - 0x008567 02:8557: 85 00     STA ram_0000
+- - - - - - 0x008567 02:8557: 85 00     STA ram_0000_temp
 - - - - - - 0x008569 02:8559: B9 92 85  LDA tbl_8592,Y
 - - - - - - 0x00856C 02:855C: BC 80 07  LDY ram_0780_obj,X
 - - - - - - 0x00856F 02:855F: 18        CLC
 - - - - - - 0x008570 02:8560: 79 3C 05  ADC ram_pos_X_hi_enemy,Y
 - - - - - - 0x008573 02:8563: 9D 3C 05  STA ram_pos_X_hi_enemy,X
-- - - - - - 0x008576 02:8566: A5 00     LDA ram_0000
+- - - - - - 0x008576 02:8566: A5 00     LDA ram_0000_temp
 - - - - - - 0x008578 02:8568: 18        CLC
 - - - - - - 0x008579 02:8569: 79 22 05  ADC ram_pos_Y_hi_enemy,Y
 - - - - - - 0x00857C 02:856C: 9D 22 05  STA ram_pos_Y_hi_enemy,X
@@ -1065,15 +1066,15 @@ C - - - - - 0x008615 02:8605: 20 99 88  JSR sub_8899
 C - - - - - 0x008618 02:8608: DE E6 06  DEC ram_06E6_obj,X
 C - - - - - 0x00861B 02:860B: D0 D6     BNE bra_85E3_RTS
 C - - - - - 0x00861D 02:860D: A9 02     LDA #$02
-C - - - - - 0x00861F 02:860F: 85 08     STA ram_0008
+C - - - - - 0x00861F 02:860F: 85 08     STA ram_0008_temp
 bra_8611_loop:
 C - - - - - 0x008621 02:8611: A0 6E     LDY #con_obj_id_6E
 C - - - - - 0x008623 02:8613: 20 C8 AB  JSR sub_0x006BD8
 C - - - - - 0x008626 02:8616: 90 0B     BCC bra_8623
 C - - - - - 0x008628 02:8618: A4 11     LDY ram_0011
-C - - - - - 0x00862A 02:861A: A5 08     LDA ram_0008
+C - - - - - 0x00862A 02:861A: A5 08     LDA ram_0008_temp
 C - - - - - 0x00862C 02:861C: 99 48 07  STA ram_0748_obj,Y
-C - - - - - 0x00862F 02:861F: C6 08     DEC ram_0008
+C - - - - - 0x00862F 02:861F: C6 08     DEC ram_0008_temp
 C - - - - - 0x008631 02:8621: 10 EE     BPL bra_8611_loop
 bra_8623:
 C - - - - - 0x008633 02:8623: 20 4C 88  JSR sub_884C
@@ -1283,13 +1284,13 @@ bra_87AD:
 C - - - - - 0x0087BD 02:87AD: 0A        ASL
 C - - - - - 0x0087BE 02:87AE: A8        TAY
 C - - - - - 0x0087BF 02:87AF: B9 CD 87  LDA tbl_87CD,Y
-C - - - - - 0x0087C2 02:87B2: 85 08     STA ram_0008
+C - - - - - 0x0087C2 02:87B2: 85 08     STA ram_0008_temp
 C - - - - - 0x0087C4 02:87B4: B9 CE 87  LDA tbl_87CD + $01,Y
-C - - - - - 0x0087C7 02:87B7: 85 09     STA ram_0009
+C - - - - - 0x0087C7 02:87B7: 85 09     STA ram_0009_temp
 C - - - - - 0x0087C9 02:87B9: A0 00     LDY #$00
 C - - - - - 0x0087CB 02:87BB: A6 1E     LDX ram_index_ppu_buffer
 bra_87BD_loop:
-C - - - - - 0x0087CD 02:87BD: B1 08     LDA (ram_0008),Y
+C - - - - - 0x0087CD 02:87BD: B1 08     LDA (ram_0008_temp),Y
 C - - - - - 0x0087CF 02:87BF: 9D 00 03  STA ram_nmt_buffer,X
 C - - - - - 0x0087D2 02:87C2: C8        INY
 C - - - - - 0x0087D3 02:87C3: E8        INX
@@ -1359,14 +1360,14 @@ C - - - - - 0x00880A 02:87FA: A0 05     LDY #$05
 C - - - - - 0x00880C 02:87FC: 20 57 A9  JSR sub_0x006967
 C - - - - - 0x00880F 02:87FF: A0 07     LDY #$07
 bra_8801_loop:
-C - - - - - 0x008811 02:8801: 84 08     STY ram_0008
+C - - - - - 0x008811 02:8801: 84 08     STY ram_0008_temp
 C - - - - - 0x008813 02:8803: A9 2B     LDA #con_obj_id_2B
 ; bzk optimize, load into Y directly
 C - - - - - 0x008815 02:8805: A8        TAY
 C - - - - - 0x008816 02:8806: 20 C8 AB  JSR sub_0x006BD8
 C - - - - - 0x008819 02:8809: 90 24     BCC bra_882F
 C - - - - - 0x00881B 02:880B: A4 11     LDY ram_0011
-C - - - - - 0x00881D 02:880D: A5 08     LDA ram_0008
+C - - - - - 0x00881D 02:880D: A5 08     LDA ram_0008_temp
 C - - - - - 0x00881F 02:880F: 99 48 07  STA ram_0748_obj,Y
 C - - - - - 0x008822 02:8812: BD A0 06  LDA ram_spd_Y_lo_obj,X
 C - - - - - 0x008825 02:8815: 99 A0 06  STA ram_spd_Y_lo_obj,Y
@@ -1376,7 +1377,7 @@ C - - - - - 0x00882E 02:881E: BD BC 06  LDA ram_spd_X_lo_obj,X
 C - - - - - 0x008831 02:8821: 99 BC 06  STA ram_spd_X_lo_obj,Y
 C - - - - - 0x008834 02:8824: BD CA 06  LDA ram_spd_X_hi_obj,X
 C - - - - - 0x008837 02:8827: 99 CA 06  STA ram_spd_X_hi_obj,Y
-C - - - - - 0x00883A 02:882A: A4 08     LDY ram_0008
+C - - - - - 0x00883A 02:882A: A4 08     LDY ram_0008_temp
 C - - - - - 0x00883C 02:882C: 88        DEY
 C - - - - - 0x00883D 02:882D: 10 D2     BPL bra_8801_loop
 bra_882F:
@@ -1410,25 +1411,26 @@ tbl_8848_spd_Y:
 
 sub_884C:
 C - - - - - 0x00885C 02:884C: A9 00     LDA #$00
-C - - - - - 0x00885E 02:884E: 85 00     STA ram_0000
+C - - - - - 0x00885E 02:884E: 85 00     STA ram_0000_temp
 C - - - - - 0x008860 02:8850: A4 1E     LDY ram_index_ppu_buffer
 C - - - - - 0x008862 02:8852: A9 03     LDA #con_buf_mode_03
 C - - - - - 0x008864 02:8854: 99 00 03  STA ram_nmt_buffer,Y
 C - - - - - 0x008867 02:8857: BD 1E 07  LDA ram_obj_flags,X
+; * 20
 C - - - - - 0x00886A 02:885A: 0A        ASL
-C - - - - - 0x00886B 02:885B: 26 00     ROL ram_0000
+C - - - - - 0x00886B 02:885B: 26 00     ROL ram_0000_temp
 C - - - - - 0x00886D 02:885D: 0A        ASL
-C - - - - - 0x00886E 02:885E: 26 00     ROL ram_0000
+C - - - - - 0x00886E 02:885E: 26 00     ROL ram_0000_temp
 C - - - - - 0x008870 02:8860: 0A        ASL
-C - - - - - 0x008871 02:8861: 26 00     ROL ram_0000
+C - - - - - 0x008871 02:8861: 26 00     ROL ram_0000_temp
 C - - - - - 0x008873 02:8863: 0A        ASL
-C - - - - - 0x008874 02:8864: 26 00     ROL ram_0000
+C - - - - - 0x008874 02:8864: 26 00     ROL ram_0000_temp
 C - - - - - 0x008876 02:8866: 0A        ASL
-C - - - - - 0x008877 02:8867: 26 00     ROL ram_0000
+C - - - - - 0x008877 02:8867: 26 00     ROL ram_0000_temp
 C - - - - - 0x008879 02:8869: 18        CLC
 C - - - - - 0x00887A 02:886A: 69 9C     ADC #< $209C
 C - - - - - 0x00887C 02:886C: 99 02 03  STA ram_nmt_buffer + $02,Y  ; ppu hi
-C - - - - - 0x00887F 02:886F: A5 00     LDA ram_0000
+C - - - - - 0x00887F 02:886F: A5 00     LDA ram_0000_temp
 C - - - - - 0x008881 02:8871: 69 20     ADC #> $209C
 C - - - - - 0x008883 02:8873: 99 01 03  STA ram_nmt_buffer + $01,Y  ; ppu lo
 C - - - - - 0x008886 02:8876: A9 04     LDA #$04    ; counter
@@ -1500,6 +1502,7 @@ C - - - - - 0x0088D8 02:88C8: 9D 56 05  STA ram_attr_spr_enemy,X
 C - - - - - 0x0088DB 02:88CB: BD 56 07  LDA ram_0756_obj,X
 C - - - - - 0x0088DE 02:88CE: D0 1A     BNE bra_88EA
 C - - - - - 0x0088E0 02:88D0: BD 1E 07  LDA ram_obj_flags,X
+; * 08
 C - - - - - 0x0088E3 02:88D3: 0A        ASL
 C - - - - - 0x0088E4 02:88D4: 0A        ASL
 C - - - - - 0x0088E5 02:88D5: 0A        ASL
@@ -1637,6 +1640,7 @@ C - - - - - 0x0089AD 02:899D: A0 00     LDY #$00
 C - - - - - 0x0089AF 02:899F: BD 48 07  LDA ram_0748_obj,X
 C - - - - - 0x0089B2 02:89A2: 38        SEC
 C - - - - - 0x0089B3 02:89A3: FD 76 06  SBC ram_obj_hp,X
+; * 20
 C - - - - - 0x0089B6 02:89A6: 0A        ASL
 C - - - - - 0x0089B7 02:89A7: 0A        ASL
 C - - - - - 0x0089B8 02:89A8: 0A        ASL
@@ -1958,6 +1962,7 @@ C - - J - - 0x008BBA 02:8BAA: A9 01     LDA #$01
 C - - - - - 0x008BBC 02:8BAC: 9D 48 07  STA ram_0748_obj,X
 C - - - - - 0x008BBF 02:8BAF: A5 23     LDA ram_random
 C - - - - - 0x008BC1 02:8BB1: 29 03     AND #$03
+; * 04
 C - - - - - 0x008BC3 02:8BB3: 0A        ASL
 C - - - - - 0x008BC4 02:8BB4: 0A        ASL
 C - - - - - 0x008BC5 02:8BB5: A8        TAY
@@ -2216,7 +2221,7 @@ C D 0 - - - 0x008D64 02:8D54: 84 0E     STY ram_000E
 ; A = 00-07
 C - - - - - 0x008D66 02:8D56: 0A        ASL
 C - - - - - 0x008D67 02:8D57: 0A        ASL
-C - - - - - 0x008D68 02:8D58: 85 0D     STA ram_000D
+C - - - - - 0x008D68 02:8D58: 85 0D     STA ram_000D_temp
 ; bzk optimize, check ram_index_ppu_buffer first
 C - - - - - 0x008D6A 02:8D5A: A5 1E     LDA ram_index_ppu_buffer
 C - - - - - 0x008D6C 02:8D5C: D0 33     BNE bra_8D91
@@ -2225,18 +2230,18 @@ bra_8D60_loop:
 C - - - - - 0x008D70 02:8D60: 84 0F     STY ram_000F
 C - - - - - 0x008D72 02:8D62: 98        TYA
 C - - - - - 0x008D73 02:8D63: 18        CLC
-C - - - - - 0x008D74 02:8D64: 65 0D     ADC ram_000D
+C - - - - - 0x008D74 02:8D64: 65 0D     ADC ram_000D_temp
 C - - - - - 0x008D76 02:8D66: A8        TAY
 C - - - - - 0x008D77 02:8D67: B9 94 8D  LDA tbl_8D94,Y
-C - - - - - 0x008D7A 02:8D6A: 85 08     STA ram_0008
+C - - - - - 0x008D7A 02:8D6A: 85 08     STA ram_0008_temp
 C - - - - - 0x008D7C 02:8D6C: A5 0F     LDA ram_000F
 C - - - - - 0x008D7E 02:8D6E: 18        CLC
 C - - - - - 0x008D7F 02:8D6F: 65 0E     ADC ram_000E    ; 00/04
 C - - - - - 0x008D81 02:8D71: A8        TAY
 C - - - - - 0x008D82 02:8D72: B9 B4 8D  LDA tbl_8DB4,Y
-C - - - - - 0x008D85 02:8D75: 85 0C     STA ram_000C
+C - - - - - 0x008D85 02:8D75: 85 0C     STA ram_000C_temp
 C - - - - - 0x008D87 02:8D77: B9 BC 8D  LDA tbl_8DBC,Y
-C - - - - - 0x008D8A 02:8D7A: A4 0C     LDY ram_000C
+C - - - - - 0x008D8A 02:8D7A: A4 0C     LDY ram_000C_temp
 C - - - - - 0x008D8C 02:8D7C: 20 A4 FE  JSR sub_0x01FEB4
 C - - - - - 0x008D8F 02:8D7F: 8A        TXA
 C - - - - - 0x008D90 02:8D80: 38        SEC
@@ -2401,7 +2406,7 @@ C - - - - - 0x008E65 02:8E55: 20 F0 F4  JSR sub_0x01F500
 C - - - - - 0x008E68 02:8E58: BC 1E 07  LDY ram_obj_flags,X
 C - - - - - 0x008E6B 02:8E5B: B9 7F 8E  LDA tbl_8E7F,Y
 C - - - - - 0x008E6E 02:8E5E: 18        CLC
-C - - - - - 0x008E6F 02:8E5F: 65 0C     ADC ram_000C
+C - - - - - 0x008E6F 02:8E5F: 65 0C     ADC ram_000C_temp
 C - - - - - 0x008E71 02:8E61: C9 18     CMP #$18
 C - - - - - 0x008E73 02:8E63: 90 02     BCC bra_8E67
 - - - - - - 0x008E75 02:8E65: A9 00     LDA #$00
@@ -2509,13 +2514,13 @@ C - - - - - 0x008F13 02:8F03: 20 FD AB  JSR sub_0x006C0D
 C - - - - - 0x008F16 02:8F06: BD 1E 07  LDA ram_obj_flags,X
 C - - - - - 0x008F19 02:8F09: 29 01     AND #$01
 C - - - - - 0x008F1B 02:8F0B: 0A        ASL
-C - - - - - 0x008F1C 02:8F0C: 85 00     STA ram_0000
+C - - - - - 0x008F1C 02:8F0C: 85 00     STA ram_0000_temp
 C - - - - - 0x008F1E 02:8F0E: BD CA 06  LDA ram_spd_X_hi_obj,X
 C - - - - - 0x008F21 02:8F11: 2A        ROL
 C - - - - - 0x008F22 02:8F12: 2A        ROL
 C - - - - - 0x008F23 02:8F13: 29 01     AND #$01
 C - - - - - 0x008F25 02:8F15: 18        CLC
-C - - - - - 0x008F26 02:8F16: 65 00     ADC ram_0000    ; 00/02
+C - - - - - 0x008F26 02:8F16: 65 00     ADC ram_0000_temp    ; 00/02
 C - - - - - 0x008F28 02:8F18: A8        TAY
 C - - - - - 0x008F29 02:8F19: BD 3C 05  LDA ram_pos_X_hi_enemy,X
 C - - - - - 0x008F2C 02:8F1C: D9 4D 8F  CMP tbl_8F4D,Y
@@ -2711,17 +2716,17 @@ C - - - - - 0x009059 02:9049: A5 FF     LDA ram_for_2000
 C - - - - - 0x00905B 02:904B: 85 FB     STA ram_00FB_for_2000
 C - - - - - 0x00905D 02:904D: A0 02     LDY #$02
 bra_904F_loop:
-C - - - - - 0x00905F 02:904F: 84 08     STY ram_0008
+C - - - - - 0x00905F 02:904F: 84 08     STY ram_0008_temp
 C - - - - - 0x009061 02:9051: B9 6E 90  LDA tbl_906E,Y
 C - - - - - 0x009064 02:9054: A8        TAY
 C - - - - - 0x009065 02:9055: 20 C8 AB  JSR sub_0x006BD8
 C - - - - - 0x009068 02:9058: 90 10     BCC bra_906A
 C - - - - - 0x00906A 02:905A: A4 11     LDY ram_0011
-C - - - - - 0x00906C 02:905C: A5 08     LDA ram_0008
+C - - - - - 0x00906C 02:905C: A5 08     LDA ram_0008_temp
 C - - - - - 0x00906E 02:905E: 99 1E 07  STA ram_obj_flags,Y
 C - - - - - 0x009071 02:9061: 8A        TXA
 C - - - - - 0x009072 02:9062: 99 80 07  STA ram_0780_obj,Y
-C - - - - - 0x009075 02:9065: A4 08     LDY ram_0008
+C - - - - - 0x009075 02:9065: A4 08     LDY ram_0008_temp
 C - - - - - 0x009077 02:9067: 88        DEY
 C - - - - - 0x009078 02:9068: 10 E5     BPL bra_904F_loop
 bra_906A:
@@ -2786,14 +2791,14 @@ C - - J - - 0x0090C5 02:90B5: DE F4 06  DEC ram_06F4_obj,X
 C - - - - - 0x0090C8 02:90B8: D0 17     BNE bra_90D1
 C - - - - - 0x0090CA 02:90BA: A0 02     LDY #$02
 bra_90BC_loop:
-C - - - - - 0x0090CC 02:90BC: 84 08     STY ram_0008
+C - - - - - 0x0090CC 02:90BC: 84 08     STY ram_0008_temp
 C - - - - - 0x0090CE 02:90BE: A0 55     LDY #con_obj_id_55
 C - - - - - 0x0090D0 02:90C0: 20 C8 AB  JSR sub_0x006BD8
 C - - - - - 0x0090D3 02:90C3: 90 0C     BCC bra_90D1
 C - - - - - 0x0090D5 02:90C5: A4 11     LDY ram_0011
-C - - - - - 0x0090D7 02:90C7: A5 08     LDA ram_0008
+C - - - - - 0x0090D7 02:90C7: A5 08     LDA ram_0008_temp
 C - - - - - 0x0090D9 02:90C9: 99 1E 07  STA ram_obj_flags,Y
-C - - - - - 0x0090DC 02:90CC: A4 08     LDY ram_0008
+C - - - - - 0x0090DC 02:90CC: A4 08     LDY ram_0008_temp
 C - - - - - 0x0090DE 02:90CE: 88        DEY
 C - - - - - 0x0090DF 02:90CF: 10 EB     BPL bra_90BC_loop
 bra_90D1:
@@ -2849,21 +2854,22 @@ C - - - - - 0x00912B 02:911B: 4C 54 8D  JMP loc_8D54
 
 
 sub_911E:
-C - - - - - 0x00912E 02:911E: 84 02     STY ram_0002
+C - - - - - 0x00912E 02:911E: 84 02     STY ram_0002_temp
 C - - - - - 0x009130 02:9120: A5 FD     LDA ram_scroll_X
+; / 10
 C - - - - - 0x009132 02:9122: 4A        LSR
 C - - - - - 0x009133 02:9123: 4A        LSR
 C - - - - - 0x009134 02:9124: 4A        LSR
 C - - - - - 0x009135 02:9125: 4A        LSR
-C - - - - - 0x009136 02:9126: 85 00     STA ram_0000
+C - - - - - 0x009136 02:9126: 85 00     STA ram_0000_temp
 C - - - - - 0x009138 02:9128: A0 00     LDY #$00
 C - - - - - 0x00913A 02:912A: A5 FC     LDA ram_scroll_Y
 C - - - - - 0x00913C 02:912C: 29 F0     AND #$F0
-C - - - - - 0x00913E 02:912E: 85 01     STA ram_0001
+C - - - - - 0x00913E 02:912E: 85 01     STA ram_0001_temp
 C - - - - - 0x009140 02:9130: D0 02     BNE bra_9134
-C - - - - - 0x009142 02:9132: A4 02     LDY ram_0002
+C - - - - - 0x009142 02:9132: A4 02     LDY ram_0002_temp
 bra_9134:
-C - - - - - 0x009144 02:9134: 84 02     STY ram_0002
+C - - - - - 0x009144 02:9134: 84 02     STY ram_0002_temp
 C - - - - - 0x009146 02:9136: A9 00     LDA #$00
 C - - - - - 0x009148 02:9138: A4 82     LDY ram_0082_area_config
 C - - - - - 0x00914A 02:913A: F0 06     BEQ bra_9142
@@ -2875,14 +2881,14 @@ C - - - - - 0x009150 02:9140: D0 FA     BNE bra_913C_loop
 bra_9142:
 C - - - - - 0x009152 02:9142: 18        CLC
 C - - - - - 0x009153 02:9143: 65 63     ADC ram_0063
-C - - - - - 0x009155 02:9145: 85 03     STA ram_0003
+C - - - - - 0x009155 02:9145: 85 03     STA ram_0003_temp
 bra_9147_RTS:
 C - - - - - 0x009157 02:9147: 60        RTS
 
 
 
 loc_0x009158_spawn_object_from_area_data:
-C D 0 - - - 0x009158 02:9148: A5 5C     LDA ram_area_end_flags
+C D 0 - - - 0x009158 02:9148: A5 5C     LDA ram_005C_t02_area_end_flags
 C - - - - - 0x00915A 02:914A: D0 FB     BNE bra_9147_RTS
 C - - - - - 0x00915C 02:914C: A5 61     LDA ram_0061_area_config
 C - - - - - 0x00915E 02:914E: D0 03     BNE bra_9153
@@ -2900,14 +2906,14 @@ C - - - - - 0x009173 02:9163: A9 07     LDA #$07
 C - - - - - 0x009175 02:9165: B0 02     BCS bra_9169
 C - - - - - 0x009177 02:9167: A9 0A     LDA #$0A
 bra_9169:
-C - - - - - 0x009179 02:9169: 85 04     STA ram_0004
+C - - - - - 0x009179 02:9169: 85 04     STA ram_0004_temp
 C - - - - - 0x00917B 02:916B: A5 FC     LDA ram_scroll_Y
 C - - - - - 0x00917D 02:916D: 29 0F     AND #$0F
-C - - - - - 0x00917F 02:916F: C5 04     CMP ram_0004
+C - - - - - 0x00917F 02:916F: C5 04     CMP ram_0004_temp
 C - - - - - 0x009181 02:9171: 6A        ROR
 C - - - - - 0x009182 02:9172: 45 72     EOR ram_cam_spd_Y
 C - - - - - 0x009184 02:9174: 10 D1     BPL bra_9147_RTS
-C - - - - - 0x009186 02:9176: A5 01     LDA ram_0001
+C - - - - - 0x009186 02:9176: A5 01     LDA ram_0001_temp
 C - - - - - 0x009188 02:9178: C5 8B     CMP ram_008B
 C - - - - - 0x00918A 02:917A: F0 CB     BEQ bra_9147_RTS
 C - - - - - 0x00918C 02:917C: 85 8B     STA ram_008B
@@ -2915,39 +2921,39 @@ C - - - - - 0x00918E 02:917E: A5 72     LDA ram_cam_spd_Y
 C - - - - - 0x009190 02:9180: 30 18     BMI bra_919A
 C - - - - - 0x009192 02:9182: A9 E0     LDA #$E0
 C - - - - - 0x009194 02:9184: 18        CLC
-C - - - - - 0x009195 02:9185: 65 01     ADC ram_0001
+C - - - - - 0x009195 02:9185: 65 01     ADC ram_0001_temp
 C - - - - - 0x009197 02:9187: B0 04     BCS bra_918D
 C - - - - - 0x009199 02:9189: C9 F0     CMP #$F0
 C - - - - - 0x00919B 02:918B: 90 0B     BCC bra_9198
 bra_918D:
 C - - - - - 0x00919D 02:918D: 69 0F     ADC #$0F
 C - - - - - 0x00919F 02:918F: A8        TAY
-C - - - - - 0x0091A0 02:9190: A5 03     LDA ram_0003
+C - - - - - 0x0091A0 02:9190: A5 03     LDA ram_0003_temp
 C - - - - - 0x0091A2 02:9192: 18        CLC
 C - - - - - 0x0091A3 02:9193: 65 89     ADC ram_data_area_columns
-C - - - - - 0x0091A5 02:9195: 85 03     STA ram_0003
+C - - - - - 0x0091A5 02:9195: 85 03     STA ram_0003_temp
 C - - - - - 0x0091A7 02:9197: 98        TYA
 bra_9198:
-C - - - - - 0x0091A8 02:9198: 85 01     STA ram_0001
+C - - - - - 0x0091A8 02:9198: 85 01     STA ram_0001_temp
 bra_919A:
 loc_919A_loop:
 C D 0 - - - 0x0091AA 02:919A: 20 29 92  JSR sub_9229_spawn_object_from_area_data
 C - - - - - 0x0091AD 02:919D: A0 00     LDY #$00
 bra_919F_loop:
-C - - - - - 0x0091AF 02:919F: B1 0A     LDA (ram_000A),Y
+C - - - - - 0x0091AF 02:919F: B1 0A     LDA (ram_000A_temp),Y
 C - - - - - 0x0091B1 02:91A1: C9 FF     CMP #$FF
 C - - - - - 0x0091B3 02:91A3: F0 25     BEQ bra_91CA_FF
 C - - - - - 0x0091B5 02:91A5: 29 F0     AND #$F0
-C - - - - - 0x0091B7 02:91A7: C5 01     CMP ram_0001
+C - - - - - 0x0091B7 02:91A7: C5 01     CMP ram_0001_temp
 C - - - - - 0x0091B9 02:91A9: F0 04     BEQ bra_91AF
 C - - - - - 0x0091BB 02:91AB: B0 18     BCS bra_91C5
 C - - - - - 0x0091BD 02:91AD: D0 11     BNE bra_91C0    ; jmp
 bra_91AF:
-C - - - - - 0x0091BF 02:91AF: B1 0A     LDA (ram_000A),Y
+C - - - - - 0x0091BF 02:91AF: B1 0A     LDA (ram_000A_temp),Y
 C - - - - - 0x0091C1 02:91B1: 29 0F     AND #$0F
-C - - - - - 0x0091C3 02:91B3: C5 00     CMP ram_0000
+C - - - - - 0x0091C3 02:91B3: C5 00     CMP ram_0000_temp
 C - - - - - 0x0091C5 02:91B5: 2A        ROL
-C - - - - - 0x0091C6 02:91B6: 45 02     EOR ram_0002
+C - - - - - 0x0091C6 02:91B6: 45 02     EOR ram_0002_temp
 C - - - - - 0x0091C8 02:91B8: 4A        LSR
 C - - - - - 0x0091C9 02:91B9: 90 05     BCC bra_91C0
 C - - - - - 0x0091CB 02:91BB: 20 57 92  JSR sub_9257
@@ -2958,16 +2964,16 @@ C - - - - - 0x0091D1 02:91C1: C8        INY
 C - - - - - 0x0091D2 02:91C2: C8        INY
 C - - - - - 0x0091D3 02:91C3: D0 DA     BNE bra_919F_loop    ; jmp?
 bra_91C5:
-C - - - - - 0x0091D5 02:91C5: A5 02     LDA ram_0002
+C - - - - - 0x0091D5 02:91C5: A5 02     LDA ram_0002_temp
 C - - - - - 0x0091D7 02:91C7: F0 01     BEQ bra_91CA
 bra_91C9_RTS:
 C - - - - - 0x0091D9 02:91C9: 60        RTS
 bra_91CA:
 bra_91CA_FF:
-C - - - - - 0x0091DA 02:91CA: A5 02     LDA ram_0002
+C - - - - - 0x0091DA 02:91CA: A5 02     LDA ram_0002_temp
 C - - - - - 0x0091DC 02:91CC: D0 FB     BNE bra_91C9_RTS
-C - - - - - 0x0091DE 02:91CE: E6 02     INC ram_0002
-C - - - - - 0x0091E0 02:91D0: E6 03     INC ram_0003
+C - - - - - 0x0091DE 02:91CE: E6 02     INC ram_0002_temp
+C - - - - - 0x0091E0 02:91D0: E6 03     INC ram_0003_temp
 C - - - - - 0x0091E2 02:91D2: 4C 9A 91  JMP loc_919A_loop
 
 
@@ -2984,23 +2990,23 @@ C - - - - - 0x0091F4 02:91E4: F0 E3     BEQ bra_91C9_RTS
 C - - - - - 0x0091F6 02:91E6: 85 8A     STA ram_008A
 C - - - - - 0x0091F8 02:91E8: 29 08     AND #$08
 C - - - - - 0x0091FA 02:91EA: F0 DD     BEQ bra_91C9_RTS
-C - - - - - 0x0091FC 02:91EC: E6 03     INC ram_0003
+C - - - - - 0x0091FC 02:91EC: E6 03     INC ram_0003_temp
 loc_91EE_loop:
 C D 0 - - - 0x0091FE 02:91EE: 20 29 92  JSR sub_9229_spawn_object_from_area_data
 C - - - - - 0x009201 02:91F1: A0 00     LDY #$00
 loc_91F3_loop:
 bra_91F3_loop:
-C D 0 - - - 0x009203 02:91F3: B1 0A     LDA (ram_000A),Y
+C D 0 - - - 0x009203 02:91F3: B1 0A     LDA (ram_000A_temp),Y
 C - - - - - 0x009205 02:91F5: C9 FF     CMP #$FF
 C - - - - - 0x009207 02:91F7: F0 20     BEQ bra_9219
-C - - - - - 0x009209 02:91F9: C5 01     CMP ram_0001
+C - - - - - 0x009209 02:91F9: C5 01     CMP ram_0001_temp
 C - - - - - 0x00920B 02:91FB: 2A        ROL
-C - - - - - 0x00920C 02:91FC: 45 02     EOR ram_0002
+C - - - - - 0x00920C 02:91FC: 45 02     EOR ram_0002_temp
 C - - - - - 0x00920E 02:91FE: 4A        LSR
 C - - - - - 0x00920F 02:91FF: 90 13     BCC bra_9214
-C - - - - - 0x009211 02:9201: B1 0A     LDA (ram_000A),Y
+C - - - - - 0x009211 02:9201: B1 0A     LDA (ram_000A_temp),Y
 C - - - - - 0x009213 02:9203: 29 0F     AND #$0F
-C - - - - - 0x009215 02:9205: C5 00     CMP ram_0000
+C - - - - - 0x009215 02:9205: C5 00     CMP ram_0000_temp
 C - - - - - 0x009217 02:9207: D0 06     BNE bra_920F
 C - - - - - 0x009219 02:9209: 20 57 92  JSR sub_9257
 C - - - - - 0x00921C 02:920C: 4C F3 91  JMP loc_91F3_loop
@@ -3010,18 +3016,18 @@ C - - - - - 0x009220 02:9210: C8        INY
 C - - - - - 0x009221 02:9211: C8        INY
 C - - - - - 0x009222 02:9212: D0 DF     BNE bra_91F3_loop    ; jmp?
 bra_9214:
-C - - - - - 0x009224 02:9214: A5 02     LDA ram_0002
+C - - - - - 0x009224 02:9214: A5 02     LDA ram_0002_temp
 C - - - - - 0x009226 02:9216: F0 F7     BEQ bra_920F
 bra_9218_RTS:
 C - - - - - 0x009228 02:9218: 60        RTS
 bra_9219:
-C - - - - - 0x009229 02:9219: A5 02     LDA ram_0002
+C - - - - - 0x009229 02:9219: A5 02     LDA ram_0002_temp
 C - - - - - 0x00922B 02:921B: D0 FB     BNE bra_9218_RTS
-C - - - - - 0x00922D 02:921D: E6 02     INC ram_0002
-C - - - - - 0x00922F 02:921F: A5 03     LDA ram_0003
+C - - - - - 0x00922D 02:921D: E6 02     INC ram_0002_temp
+C - - - - - 0x00922F 02:921F: A5 03     LDA ram_0003_temp
 C - - - - - 0x009231 02:9221: 18        CLC
 C - - - - - 0x009232 02:9222: 65 89     ADC ram_data_area_columns
-C - - - - - 0x009234 02:9224: 85 03     STA ram_0003
+C - - - - - 0x009234 02:9224: 85 03     STA ram_0003_temp
 C - - - - - 0x009236 02:9226: 4C EE 91  JMP loc_91EE_loop
 
 
@@ -3031,64 +3037,65 @@ C - - - - - 0x009239 02:9229: A5 50     LDA ram_area_index
 C - - - - - 0x00923B 02:922B: 0A        ASL
 C - - - - - 0x00923C 02:922C: A8        TAY
 C - - - - - 0x00923D 02:922D: B9 D4 F2  LDA tbl_0x01F2E4_area_objects_spawner,Y
-C - - - - - 0x009240 02:9230: 85 08     STA ram_0008
+C - - - - - 0x009240 02:9230: 85 08     STA ram_0008_temp
 C - - - - - 0x009242 02:9232: B9 D5 F2  LDA tbl_0x01F2E4_area_objects_spawner + $01,Y
-C - - - - - 0x009245 02:9235: 85 09     STA ram_0009
+C - - - - - 0x009245 02:9235: 85 09     STA ram_0009_temp
 C - - - - - 0x009247 02:9237: A9 00     LDA #$00
-C - - - - - 0x009249 02:9239: 85 0A     STA ram_000A
+C - - - - - 0x009249 02:9239: 85 0A     STA ram_000A_temp
 ; bzk optimize, max possible index in 0003 is 5A, no need for 16-bit multiplication
-C - - - - - 0x00924B 02:923B: A5 03     LDA ram_0003
+C - - - - - 0x00924B 02:923B: A5 03     LDA ram_0003_temp
 C - - - - - 0x00924D 02:923D: 0A        ASL
-C - - - - - 0x00924E 02:923E: 26 0A     ROL ram_000A
+C - - - - - 0x00924E 02:923E: 26 0A     ROL ram_000A_temp
 C - - - - - 0x009250 02:9240: 18        CLC
-C - - - - - 0x009251 02:9241: 65 08     ADC ram_0008
-C - - - - - 0x009253 02:9243: 85 08     STA ram_0008
-C - - - - - 0x009255 02:9245: A5 0A     LDA ram_000A
-C - - - - - 0x009257 02:9247: 65 09     ADC ram_0009
-C - - - - - 0x009259 02:9249: 85 09     STA ram_0009
+C - - - - - 0x009251 02:9241: 65 08     ADC ram_0008_temp
+C - - - - - 0x009253 02:9243: 85 08     STA ram_0008_temp
+C - - - - - 0x009255 02:9245: A5 0A     LDA ram_000A_temp
+C - - - - - 0x009257 02:9247: 65 09     ADC ram_0009_temp
+C - - - - - 0x009259 02:9249: 85 09     STA ram_0009_temp
 C - - - - - 0x00925B 02:924B: A0 00     LDY #$00
-C - - - - - 0x00925D 02:924D: B1 08     LDA (ram_0008),Y
-C - - - - - 0x00925F 02:924F: 85 0A     STA ram_000A
+C - - - - - 0x00925D 02:924D: B1 08     LDA (ram_0008_temp),Y
+C - - - - - 0x00925F 02:924F: 85 0A     STA ram_000A_temp
 C - - - - - 0x009261 02:9251: C8        INY
-C - - - - - 0x009262 02:9252: B1 08     LDA (ram_0008),Y
-C - - - - - 0x009264 02:9254: 85 0B     STA ram_000B
+C - - - - - 0x009262 02:9252: B1 08     LDA (ram_0008_temp),Y
+C - - - - - 0x009264 02:9254: 85 0B     STA ram_000B_temp
 C - - - - - 0x009266 02:9256: 60        RTS
 
 
 
 sub_9257:
-C - - - - - 0x009267 02:9257: B1 0A     LDA (ram_000A),Y
-C - - - - - 0x009269 02:9259: 85 0C     STA ram_000C    ; object position
+C - - - - - 0x009267 02:9257: B1 0A     LDA (ram_000A_temp),Y
+C - - - - - 0x009269 02:9259: 85 0C     STA ram_000C_temp    ; object position
 C - - - - - 0x00926B 02:925B: C8        INY
-C - - - - - 0x00926C 02:925C: B1 0A     LDA (ram_000A),Y
-C - - - - - 0x00926E 02:925E: 85 0D     STA ram_000D    ; object flags
+C - - - - - 0x00926C 02:925C: B1 0A     LDA (ram_000A_temp),Y
+C - - - - - 0x00926E 02:925E: 85 0D     STA ram_000D_temp    ; object flags
 C - - - - - 0x009270 02:9260: C8        INY
-C - - - - - 0x009271 02:9261: B1 0A     LDA (ram_000A),Y
-C - - - - - 0x009273 02:9263: 85 08     STA ram_0008    ; object id
+C - - - - - 0x009271 02:9261: B1 0A     LDA (ram_000A_temp),Y
+C - - - - - 0x009273 02:9263: 85 08     STA ram_0008_temp    ; object id
 C - - - - - 0x009275 02:9265: C8        INY
 C - - - - - 0x009276 02:9266: 84 07     STY ram_0007
 C - - - - - 0x009278 02:9268: 20 FD F6  JSR sub_0x01F70D_try_to_find_free_object_slot
 C - - - - - 0x00927B 02:926B: F0 12     BEQ bra_927F_place_object
 ; if no free objects found
-C - - - - - 0x00927D 02:926D: A5 0D     LDA ram_000D    ; object flags
+C - - - - - 0x00927D 02:926D: A5 0D     LDA ram_000D_temp    ; object flags
 C - - - - - 0x00927F 02:926F: 10 3D     BPL bra_92AE_failed_to_place_object
 ; if allowed to replace an enemy bullet with this object
 C - - - - - 0x009281 02:9271: 20 1C F7  JSR sub_0x01F72C_try_to_find_enemy_bullet
 C - - - - - 0x009284 02:9274: F0 09     BEQ bra_927F_place_object
 ; if no enemy bullets found
-C - - - - - 0x009286 02:9276: 24 0D     BIT ram_000D    ; object flags
+C - - - - - 0x009286 02:9276: 24 0D     BIT ram_000D_temp    ; object flags
 C - - - - - 0x009288 02:9278: 50 34     BVC bra_92AE_failed_to_place_object
 ; if allowed to forcibly create this object as a last resort
 - - - - - - 0x00928A 02:927A: A2 00     LDX #$00
 - - - - - - 0x00928C 02:927C: 20 3F F7  JSR sub_0x01F74F_start_preparing_new_object
 bra_927F_place_object:
-C - - - - - 0x00928F 02:927F: A5 0D     LDA ram_000D    ; object flags
+C - - - - - 0x00928F 02:927F: A5 0D     LDA ram_000D_temp    ; object flags
 C - - - - - 0x009291 02:9281: 29 7F     AND #$7F
 C - - - - - 0x009293 02:9283: 9D 1E 07  STA ram_obj_flags,X
-C - - - - - 0x009296 02:9286: A4 08     LDY ram_0008    ; object id
+C - - - - - 0x009296 02:9286: A4 08     LDY ram_0008_temp    ; object id
 C - - - - - 0x009298 02:9288: 20 9E F7  JSR sub_0x01F7AE_prepare_object
 C - - - - - 0x00929B 02:928B: A4 07     LDY ram_0007
-C - - - - - 0x00929D 02:928D: A5 0C     LDA ram_000C    ; object position
+C - - - - - 0x00929D 02:928D: A5 0C     LDA ram_000C_temp    ; object position
+; * 10
 C - - - - - 0x00929F 02:928F: 0A        ASL
 C - - - - - 0x0092A0 02:9290: 0A        ASL
 C - - - - - 0x0092A1 02:9291: 0A        ASL
@@ -3098,7 +3105,7 @@ C - - - - - 0x0092A4 02:9294: E5 FD     SBC ram_scroll_X
 C - - - - - 0x0092A6 02:9296: 18        CLC
 C - - - - - 0x0092A7 02:9297: 69 08     ADC #$08
 C - - - - - 0x0092A9 02:9299: 9D 3C 05  STA ram_pos_X_hi_enemy,X
-C - - - - - 0x0092AC 02:929C: A5 0C     LDA ram_000C    ; object position
+C - - - - - 0x0092AC 02:929C: A5 0C     LDA ram_000C_temp    ; object position
 C - - - - - 0x0092AE 02:929E: 29 F0     AND #$F0
 C - - - - - 0x0092B0 02:92A0: 09 08     ORA #$08
 C - - - - - 0x0092B2 02:92A2: 38        SEC
@@ -6637,6 +6644,7 @@ C - - - - - 0x009B4F 02:9B3F: 8D 34 05  STA ram_pos_X_hi_obj
 C - - - - - 0x009B52 02:9B42: A5 53     LDA ram_sound_mode_track_cur
 C - - - - - 0x009B54 02:9B44: 38        SEC
 C - - - - - 0x009B55 02:9B45: E5 54     SBC ram_sound_mode_track_min
+; * 08
 C - - - - - 0x009B57 02:9B47: 0A        ASL
 C - - - - - 0x009B58 02:9B48: 0A        ASL
 C - - - - - 0x009B59 02:9B49: 0A        ASL
@@ -6671,9 +6679,9 @@ bra_9B76_26:
 ; play all one by one
 C - - - - - 0x009B86 02:9B76: 20 0E FE  JSR sub_0x01FE1E_stop_sound_engine
 C - - - - - 0x009B89 02:9B79: AD 5E 9F  LDA tbl_9F5E_auto_playlist
-C - - - - - 0x009B8C 02:9B7C: 85 5C     STA ram_005C_sound_mode_data
+C - - - - - 0x009B8C 02:9B7C: 85 5C     STA ram_005C_t01_sound_mode_data
 C - - - - - 0x009B8E 02:9B7E: AD 5F 9F  LDA tbl_9F5E_auto_playlist + $01
-C - - - - - 0x009B91 02:9B81: 85 5D     STA ram_005C_sound_mode_data + $01
+C - - - - - 0x009B91 02:9B81: 85 5D     STA ram_005C_t01_sound_mode_data + $01
 ; bzk optimize, doesn't look like data from tbl_9FB7 will be read
 C - - - - - 0x009B93 02:9B83: AD 60 9F  LDA tbl_9F60
 C - - - - - 0x009B96 02:9B86: 85 60     STA ram_0060_sound_mode_data
@@ -6700,6 +6708,7 @@ C - - - - - 0x009BB6 02:9BA6: F0 1F     BEQ bra_9BC7_RTS
 C - - - - - 0x009BB8 02:9BA8: A0 20     LDY #$20
 bra_9BAA:
 C - - - - - 0x009BBA 02:9BAA: 84 58     STY ram_0058_sound_mode
+; / 08
 C - - - - - 0x009BBC 02:9BAC: 4A        LSR
 C - - - - - 0x009BBD 02:9BAD: 4A        LSR
 C - - - - - 0x009BBE 02:9BAE: 4A        LSR
@@ -6730,63 +6739,64 @@ C - - - - - 0x009BE7 02:9BD7: C6 54     DEC ram_sound_mode_track_min
 sub_9BD9_sound_mode:
 loc_9BD9:
 C D 0 - - - 0x009BE9 02:9BD9: A9 22     LDA #> $22A8
-C - - - - - 0x009BEB 02:9BDB: 85 01     STA ram_0001
+C - - - - - 0x009BEB 02:9BDB: 85 01     STA ram_0001_temp
 C - - - - - 0x009BED 02:9BDD: A9 A8     LDA #< $22A8
-C - - - - - 0x009BEF 02:9BDF: 85 00     STA ram_0000
+C - - - - - 0x009BEF 02:9BDF: 85 00     STA ram_0000_temp
 C - - - - - 0x009BF1 02:9BE1: A9 00     LDA #$00
-C - - - - - 0x009BF3 02:9BE3: 85 09     STA ram_0009
+C - - - - - 0x009BF3 02:9BE3: 85 09     STA ram_0009_temp
 C - - - - - 0x009BF5 02:9BE5: A5 54     LDA ram_sound_mode_track_min
+; * 08
 C - - - - - 0x009BF7 02:9BE7: 0A        ASL
-C - - - - - 0x009BF8 02:9BE8: 26 09     ROL ram_0009
+C - - - - - 0x009BF8 02:9BE8: 26 09     ROL ram_0009_temp
 C - - - - - 0x009BFA 02:9BEA: 0A        ASL
-C - - - - - 0x009BFB 02:9BEB: 26 09     ROL ram_0009
+C - - - - - 0x009BFB 02:9BEB: 26 09     ROL ram_0009_temp
 C - - - - - 0x009BFD 02:9BED: 0A        ASL
-C - - - - - 0x009BFE 02:9BEE: 26 09     ROL ram_0009
+C - - - - - 0x009BFE 02:9BEE: 26 09     ROL ram_0009_temp
 C - - - - - 0x009C00 02:9BF0: 6D CB 9C  ADC tbl_9CCB_track_names
-C - - - - - 0x009C03 02:9BF3: 85 08     STA ram_0008
+C - - - - - 0x009C03 02:9BF3: 85 08     STA ram_0008_temp
 C - - - - - 0x009C05 02:9BF5: AD CC 9C  LDA tbl_9CCB_track_names + $01
-C - - - - - 0x009C08 02:9BF8: 65 09     ADC ram_0009
-C - - - - - 0x009C0A 02:9BFA: 85 09     STA ram_0009
+C - - - - - 0x009C08 02:9BF8: 65 09     ADC ram_0009_temp
+C - - - - - 0x009C0A 02:9BFA: 85 09     STA ram_0009_temp
 C - - - - - 0x009C0C 02:9BFC: A6 1E     LDX ram_index_ppu_buffer
 C - - - - - 0x009C0E 02:9BFE: A9 06     LDA #con_buf_mode_06
 C - - - - - 0x009C10 02:9C00: 9D 00 03  STA ram_nmt_buffer,X
 C - - - - - 0x009C13 02:9C03: E8        INX
 C - - - - - 0x009C14 02:9C04: A9 06     LDA #$06
-C - - - - - 0x009C16 02:9C06: 85 0A     STA ram_000A
+C - - - - - 0x009C16 02:9C06: 85 0A     STA ram_000A_temp
 bra_9C08_loop:
 C - - - - - 0x009C18 02:9C08: A0 00     LDY #$00
-C - - - - - 0x009C1A 02:9C0A: A5 01     LDA ram_0001    ; ppu hi
+C - - - - - 0x009C1A 02:9C0A: A5 01     LDA ram_0001_temp    ; ppu hi
 C - - - - - 0x009C1C 02:9C0C: 9D 00 03  STA ram_nmt_buffer,X
 C - - - - - 0x009C1F 02:9C0F: E8        INX
-C - - - - - 0x009C20 02:9C10: A5 00     LDA ram_0000    ; ppu lo
+C - - - - - 0x009C20 02:9C10: A5 00     LDA ram_0000_temp    ; ppu lo
 C - - - - - 0x009C22 02:9C12: 9D 00 03  STA ram_nmt_buffer,X
 C - - - - - 0x009C25 02:9C15: E8        INX
 C - - - - - 0x009C26 02:9C16: A9 08     LDA #$08    ; counter
-C - - - - - 0x009C28 02:9C18: 85 0B     STA ram_000B
+C - - - - - 0x009C28 02:9C18: 85 0B     STA ram_000B_temp
 C - - - - - 0x009C2A 02:9C1A: 9D 00 03  STA ram_nmt_buffer,X
 C - - - - - 0x009C2D 02:9C1D: E8        INX
 bra_9C1E_loop:
-C - - - - - 0x009C2E 02:9C1E: B1 08     LDA (ram_0008),Y
+C - - - - - 0x009C2E 02:9C1E: B1 08     LDA (ram_0008_temp),Y
 C - - - - - 0x009C30 02:9C20: 9D 00 03  STA ram_nmt_buffer,X
 C - - - - - 0x009C33 02:9C23: E8        INX
 C - - - - - 0x009C34 02:9C24: C8        INY
-C - - - - - 0x009C35 02:9C25: C6 0B     DEC ram_000B
+C - - - - - 0x009C35 02:9C25: C6 0B     DEC ram_000B_temp
 C - - - - - 0x009C37 02:9C27: D0 F5     BNE bra_9C1E_loop
-C - - - - - 0x009C39 02:9C29: A5 08     LDA ram_0008
+C - - - - - 0x009C39 02:9C29: A5 08     LDA ram_0008_temp
 C - - - - - 0x009C3B 02:9C2B: 18        CLC
 C - - - - - 0x009C3C 02:9C2C: 69 08     ADC #$08
-C - - - - - 0x009C3E 02:9C2E: 85 08     STA ram_0008
+C - - - - - 0x009C3E 02:9C2E: 85 08     STA ram_0008_temp
 C - - - - - 0x009C40 02:9C30: 90 02     BCC bra_9C34
-C - - - - - 0x009C42 02:9C32: E6 09     INC ram_0009
+C - - - - - 0x009C42 02:9C32: E6 09     INC ram_0009_temp
 bra_9C34:
-C - - - - - 0x009C44 02:9C34: A5 00     LDA ram_0000
+C - - - - - 0x009C44 02:9C34: A5 00     LDA ram_0000_temp
 C - - - - - 0x009C46 02:9C36: 18        CLC
 C - - - - - 0x009C47 02:9C37: 69 20     ADC #$20
-C - - - - - 0x009C49 02:9C39: 85 00     STA ram_0000
+C - - - - - 0x009C49 02:9C39: 85 00     STA ram_0000_temp
 C - - - - - 0x009C4B 02:9C3B: 90 02     BCC bra_9C3F
-C - - - - - 0x009C4D 02:9C3D: E6 01     INC ram_0001
+C - - - - - 0x009C4D 02:9C3D: E6 01     INC ram_0001_temp
 bra_9C3F:
-C - - - - - 0x009C4F 02:9C3F: C6 0A     DEC ram_000A
+C - - - - - 0x009C4F 02:9C3F: C6 0A     DEC ram_000A_temp
 C - - - - - 0x009C51 02:9C41: 10 C5     BPL bra_9C08_loop
 C - - - - - 0x009C53 02:9C43: A9 FF     LDA #$FF
 C - - - - - 0x009C55 02:9C45: 4C 9D 9C  JMP loc_9C9D_close_buffer
@@ -6827,16 +6837,16 @@ C - - - - - 0x009C88 02:9C78: A5 55     LDA ram_0055_sound_mode    ; window line
 C - - - - - 0x009C8A 02:9C7A: 0A        ASL
 C - - - - - 0x009C8B 02:9C7B: A8        TAY
 C - - - - - 0x009C8C 02:9C7C: B9 05 9E  LDA tbl_9E05_sound_mode_window,Y
-C - - - - - 0x009C8F 02:9C7F: 85 08     STA ram_0008
+C - - - - - 0x009C8F 02:9C7F: 85 08     STA ram_0008_temp
 C - - - - - 0x009C91 02:9C81: B9 06 9E  LDA tbl_9E05_sound_mode_window + $01,Y
-C - - - - - 0x009C94 02:9C84: 85 09     STA ram_0009
+C - - - - - 0x009C94 02:9C84: 85 09     STA ram_0009_temp
 C - - - - - 0x009C96 02:9C86: A6 1E     LDX ram_index_ppu_buffer
 C - - - - - 0x009C98 02:9C88: A9 06     LDA #con_buf_mode_06
 C - - - - - 0x009C9A 02:9C8A: 9D 00 03  STA ram_nmt_buffer,X
 C - - - - - 0x009C9D 02:9C8D: E8        INX
 C - - - - - 0x009C9E 02:9C8E: A0 00     LDY #$00
 bra_9C90_loop:
-C - - - - - 0x009CA0 02:9C90: B1 08     LDA (ram_0008),Y
+C - - - - - 0x009CA0 02:9C90: B1 08     LDA (ram_0008_temp),Y
 C - - - - - 0x009CA2 02:9C92: C9 FF     CMP #$FF
 C - - - - - 0x009CA4 02:9C94: F0 07     BEQ bra_9C9D_FF
 C - - - - - 0x009CA6 02:9C96: 9D 00 03  STA ram_nmt_buffer,X
@@ -7141,35 +7151,36 @@ bra_9F1C_RTS:
 C - - - - - 0x009F2C 02:9F1C: 60        RTS
 bra_9F1D:
 C - - - - - 0x009F2D 02:9F1D: A0 00     LDY #$00
-C - - - - - 0x009F2F 02:9F1F: B1 5C     LDA (ram_005C_sound_mode_data),Y
+C - - - - - 0x009F2F 02:9F1F: B1 5C     LDA (ram_005C_t01_sound_mode_data),Y
 C - - - - - 0x009F31 02:9F21: C9 FF     CMP #$FF
 C - - - - - 0x009F33 02:9F23: F0 2C     BEQ bra_9F51_FF
-C - - - - - 0x009F35 02:9F25: 85 09     STA ram_0009
-; bzk optimize, no bytes >= 40 in there (except FF)
+C - - - - - 0x009F35 02:9F25: 85 09     STA ram_0009_temp
+; bzk optimize, useless AND 3F,
+; no bytes >= 40 in there (except FF)
 C - - - - - 0x009F37 02:9F27: 29 3F     AND #$3F
 C - - - - - 0x009F39 02:9F29: 85 5B     STA ram_005B_sound_mode
 C - - - - - 0x009F3B 02:9F2B: C8        INY
-C - - - - - 0x009F3C 02:9F2C: B1 5C     LDA (ram_005C_sound_mode_data),Y
+C - - - - - 0x009F3C 02:9F2C: B1 5C     LDA (ram_005C_t01_sound_mode_data),Y
 C - - - - - 0x009F3E 02:9F2E: 85 5A     STA ram_005A_sound_mode
 C - - - - - 0x009F40 02:9F30: C8        INY
-C - - - - - 0x009F41 02:9F31: B1 5C     LDA (ram_005C_sound_mode_data),Y
-C - - - - - 0x009F43 02:9F33: 85 08     STA ram_0008
-C - - - - - 0x009F45 02:9F35: A5 09     LDA ram_0009
+C - - - - - 0x009F41 02:9F31: B1 5C     LDA (ram_005C_t01_sound_mode_data),Y
+C - - - - - 0x009F43 02:9F33: 85 08     STA ram_0008_temp
+C - - - - - 0x009F45 02:9F35: A5 09     LDA ram_0009_temp
 C - - - - - 0x009F47 02:9F37: 0A        ASL
 ; bzk optimize, no bytes >= 80 in there
 C - - - - - 0x009F48 02:9F38: 30 03     BMI bra_9F3D
 C - - - - - 0x009F4A 02:9F3A: 20 0E FE  JSR sub_0x01FE1E_stop_sound_engine
 bra_9F3D:
-C - - - - - 0x009F4D 02:9F3D: A5 08     LDA ram_0008
+C - - - - - 0x009F4D 02:9F3D: A5 08     LDA ram_0008_temp
 C - - - - - 0x009F4F 02:9F3F: 20 DE FD  JSR sub_0x01FDEE_play_sound
 C - - - - - 0x009F52 02:9F42: 4C 45 9F  JMP loc_9F45    ; bzk optimize, useless JMP
 loc_9F45:
-C D 0 - - - 0x009F55 02:9F45: A5 5C     LDA ram_005C_sound_mode_data
+C D 0 - - - 0x009F55 02:9F45: A5 5C     LDA ram_005C_t01_sound_mode_data
 C - - - - - 0x009F57 02:9F47: 18        CLC
 C - - - - - 0x009F58 02:9F48: 69 03     ADC #$03
-C - - - - - 0x009F5A 02:9F4A: 85 5C     STA ram_005C_sound_mode_data
+C - - - - - 0x009F5A 02:9F4A: 85 5C     STA ram_005C_t01_sound_mode_data
 C - - - - - 0x009F5C 02:9F4C: 90 02     BCC bra_9F50_RTS
-- - - - - - 0x009F5E 02:9F4E: E6 5D     INC ram_005D_sound_mode
+- - - - - - 0x009F5E 02:9F4E: E6 5D     INC ram_005C_t01_sound_mode_data + $01
 bra_9F50_RTS:
 C - - - - - 0x009F60 02:9F50: 60        RTS
 bra_9F51_FF:
@@ -7178,8 +7189,8 @@ C - - - - - 0x009F61 02:9F51: A9 00     LDA #$00
 C - - - - - 0x009F63 02:9F53: 85 59     STA ram_play_all
 C - - - - - 0x009F65 02:9F55: 85 5A     STA ram_005A_sound_mode
 C - - - - - 0x009F67 02:9F57: 85 5B     STA ram_005B_sound_mode
-C - - - - - 0x009F69 02:9F59: 85 5E     STA ram_005E
-C - - - - - 0x009F6B 02:9F5B: 85 5F     STA ram_005F
+C - - - - - 0x009F69 02:9F59: 85 5E     STA ram_005E_useless
+C - - - - - 0x009F6B 02:9F5B: 85 5F     STA ram_005F_useless
 C - - - - - 0x009F6D 02:9F5D: 60        RTS
 
 
@@ -7602,7 +7613,7 @@ _off018_00_A498_12:
 
 
 _off006_0x00A4E8_00_area_1:
-; 00
+; 00 
 - D 1 - I - 0x00A4E8 02:A4D8: 00        .byte $00, $00, $00, $00   ; 
 - D 1 - I - 0x00A4EC 02:A4DC: 00        .byte $00, $00, $00, $00   ; 
 - D 1 - I - 0x00A4F0 02:A4E0: 00        .byte $00, $00, $00, $00   ; 
