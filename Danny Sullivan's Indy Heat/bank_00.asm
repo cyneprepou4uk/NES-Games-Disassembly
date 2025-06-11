@@ -3097,7 +3097,7 @@ C - - - - - 0x001429 00:9419: D0 03     BNE bra_941E
 C - - - - - 0x00142B 00:941B: 4C B4 94  JMP loc_94B4
 bra_941E:
 C - - - - - 0x00142E 00:941E: C8        INY
-C - - - - - 0x00142F 00:941F: 84 15     STY ram_0015_temp
+C - - - - - 0x00142F 00:941F: 84 15     STY ram_0015_t27
 C - - - - - 0x001431 00:9421: C0 09     CPY #$09
 C - - - - - 0x001433 00:9423: F0 36     BEQ bra_945B
 C - - - - - 0x001435 00:9425: A9 08     LDA #$08
@@ -3112,7 +3112,7 @@ C - - - - - 0x001443 00:9433: C8        INY
 C - - - - - 0x001444 00:9434: CA        DEX
 C - - - - - 0x001445 00:9435: 10 F6     BPL bra_942D_loop
 C - - - - - 0x001447 00:9437: A5 16     LDA ram_0016_temp
-C - - - - - 0x001449 00:9439: C5 15     CMP ram_0015_temp
+C - - - - - 0x001449 00:9439: C5 15     CMP ram_0015_t27
 C - - - - - 0x00144B 00:943B: F0 09     BEQ bra_9446
 C - - - - - 0x00144D 00:943D: C6 16     DEC ram_0016_temp
 C - - - - - 0x00144F 00:943F: 98        TYA
@@ -3127,16 +3127,16 @@ C - - - - - 0x001458 00:9448: B9 71 01  LDA ram_0171,Y
 C - - - - - 0x00145B 00:944B: 99 72 01  STA ram_0172,Y
 C - - - - - 0x00145E 00:944E: B9 7B 01  LDA ram_017B,Y
 C - - - - - 0x001461 00:9451: 99 7C 01  STA ram_017C,Y
-C - - - - - 0x001464 00:9454: C4 15     CPY ram_0015_temp
+C - - - - - 0x001464 00:9454: C4 15     CPY ram_0015_t27
 C - - - - - 0x001466 00:9456: F0 03     BEQ bra_945B
 C - - - - - 0x001468 00:9458: 88        DEY
 C - - - - - 0x001469 00:9459: 10 ED     BPL bra_9448_loop
 bra_945B:
-C - - - - - 0x00146B 00:945B: A5 15     LDA ram_0015_temp
+C - - - - - 0x00146B 00:945B: A5 15     LDA ram_0015_t27
 ; * 05
 C - - - - - 0x00146D 00:945D: 0A        ASL
 C - - - - - 0x00146E 00:945E: 0A        ASL
-C - - - - - 0x00146F 00:945F: 65 15     ADC ram_0015_temp
+C - - - - - 0x00146F 00:945F: 65 15     ADC ram_0015_t27
 C - - - - - 0x001471 00:9461: A8        TAY
 C - - - - - 0x001472 00:9462: A5 1C     LDA ram_001C_temp
 ; * 05
@@ -3156,7 +3156,7 @@ C - - - - - 0x001489 00:9479: E8        INX
 C - - - - - 0x00148A 00:947A: C8        INY
 C - - - - - 0x00148B 00:947B: C6 16     DEC ram_0016_temp
 C - - - - - 0x00148D 00:947D: D0 F4     BNE bra_9473_loop
-C - - - - - 0x00148F 00:947F: A4 15     LDY ram_0015_temp
+C - - - - - 0x00148F 00:947F: A4 15     LDY ram_0015_t27
 C - - - - - 0x001491 00:9481: A6 1C     LDX ram_001C_temp
 C - - - - - 0x001493 00:9483: BD D4 05  LDA ram_05D4,X
 C - - - - - 0x001496 00:9486: 99 71 01  STA ram_0171,Y
@@ -3680,7 +3680,7 @@ C - - - - - 0x0017E7 00:97D7: AD F2 05  LDA ram_05F2
 C - - - - - 0x0017EA 00:97DA: D0 5B     BNE bra_9837_RTS
 C - - - - - 0x0017EC 00:97DC: A5 2E     LDA ram_frm_cnt
 C - - - - - 0x0017EE 00:97DE: 29 02     AND #$02
-C - - - - - 0x0017F0 00:97E0: 85 15     STA ram_0015_temp
+C - - - - - 0x0017F0 00:97E0: 85 15     STA ram_0015_t28
 C - - - - - 0x0017F2 00:97E2: AA        TAX
 C - - - - - 0x0017F3 00:97E3: E8        INX
 bra_97E4_loop:
@@ -3717,7 +3717,7 @@ C - - - - - 0x00183C 00:982C: B9 42 98  LDA tbl_9840 + $02,Y
 C - - - - - 0x00183F 00:982F: 8D 07 20  STA $2007
 bra_9832_bot:
 C - - - - - 0x001842 00:9832: CA        DEX
-C - - - - - 0x001843 00:9833: E4 15     CPX ram_0015_temp
+C - - - - - 0x001843 00:9833: E4 15     CPX ram_0015_t28
 C - - - - - 0x001845 00:9835: 10 AD     BPL bra_97E4_loop
 bra_9837_RTS:
 C - - - - - 0x001847 00:9837: 60        RTS
@@ -4103,10 +4103,10 @@ bra_9B10:
 C - - - - - 0x001B20 00:9B10: C9 08     CMP #$08
 C - - - - - 0x001B22 00:9B12: 90 38     BCC bra_9B4C
 C - - - - - 0x001B24 00:9B14: D0 19     BNE bra_9B2F
-C - - - - - 0x001B26 00:9B16: BD F0 F8  LDA tbl_F8F0_ppu_hi_1,X
-C - - - - - 0x001B29 00:9B19: 85 16     STA ram_0016_temp
-C - - - - - 0x001B2B 00:9B1B: BD FC F8  LDA tbl_F8FC_ppu_lo_1,X
-C - - - - - 0x001B2E 00:9B1E: 85 15     STA ram_0015_temp
+C - - - - - 0x001B26 00:9B16: BD F0 F8  LDA tbl_F8F0_ppu_address_hi_1,X
+C - - - - - 0x001B29 00:9B19: 85 16     STA ram_0016_t10_ppu_address_hi
+C - - - - - 0x001B2B 00:9B1B: BD FC F8  LDA tbl_F8FC_ppu_address_lo_1,X
+C - - - - - 0x001B2E 00:9B1E: 85 15     STA ram_0015_t29_ppu_addr_lo
 C - - - - - 0x001B30 00:9B20: FE BA 04  INC ram_04BA_car,X
 C - - - - - 0x001B33 00:9B23: A2 07     LDX #$07
 C - - - - - 0x001B35 00:9B25: A0 00     LDY #$00
@@ -4116,10 +4116,10 @@ C - - - - - 0x001B3C 00:9B2C: 4C 52 9B  JMP loc_9B52
 bra_9B2F:
 C - - - - - 0x001B3F 00:9B2F: A9 03     LDA #con_00CC_script_03
 C - - - - - 0x001B41 00:9B31: 95 CC     STA ram_script_handler,X
-C - - - - - 0x001B43 00:9B33: BD F4 F8  LDA tbl_F8F4_ppu_hi_2,X
-C - - - - - 0x001B46 00:9B36: 85 16     STA ram_0016_temp
-C - - - - - 0x001B48 00:9B38: BD 00 F9  LDA tbl_F900_ppu_lo_2,X
-C - - - - - 0x001B4B 00:9B3B: 85 15     STA ram_0015_temp
+C - - - - - 0x001B43 00:9B33: BD F4 F8  LDA tbl_F8F4_ppu_address_hi_2,X
+C - - - - - 0x001B46 00:9B36: 85 16     STA ram_0016_t10_ppu_address_hi
+C - - - - - 0x001B48 00:9B38: BD 00 F9  LDA tbl_F900_ppu_address_lo_2,X
+C - - - - - 0x001B4B 00:9B3B: 85 15     STA ram_0015_t29_ppu_addr_lo
 C - - - - - 0x001B4D 00:9B3D: A9 FF     LDA #$FF
 C - - - - - 0x001B4F 00:9B3F: 9D BA 04  STA ram_04BA_car,X
 C - - - - - 0x001B52 00:9B42: A2 06     LDX #$06
@@ -4495,15 +4495,15 @@ C - - - - - 0x001E2E 00:9E1E: 60        RTS
 sub_9E1F:
 loc_9E1F:
 bra_9E1F_loop:
-C D 0 - - - 0x001E2F 00:9E1F: A5 16     LDA ram_0016_temp
+C D 0 - - - 0x001E2F 00:9E1F: A5 16     LDA ram_0016_t10_ppu_address_hi
 C - - - - - 0x001E31 00:9E21: 8D 06 20  STA $2006
-C - - - - - 0x001E34 00:9E24: A5 15     LDA ram_0015_temp
+C - - - - - 0x001E34 00:9E24: A5 15     LDA ram_0015_t29_ppu_addr_lo
 C - - - - - 0x001E36 00:9E26: 8D 06 20  STA $2006
 C - - - - - 0x001E39 00:9E29: 18        CLC
 C - - - - - 0x001E3A 00:9E2A: 69 20     ADC #$20
-C - - - - - 0x001E3C 00:9E2C: 85 15     STA ram_0015_temp
+C - - - - - 0x001E3C 00:9E2C: 85 15     STA ram_0015_t29_ppu_addr_lo
 C - - - - - 0x001E3E 00:9E2E: 90 02     BCC bra_9E32_not_overflow
-C - - - - - 0x001E40 00:9E30: E6 16     INC ram_0016_temp
+C - - - - - 0x001E40 00:9E30: E6 16     INC ram_0016_t10_ppu_address_hi
 bra_9E32_not_overflow:
 C - - - - - 0x001E42 00:9E32: B9 08 F9  LDA tbl_F908,Y
 C - - - - - 0x001E45 00:9E35: 8D 07 20  STA $2007
@@ -4651,10 +4651,10 @@ C - - - - - 0x001F53 00:9F43: 4C F2 8E  JMP loc_8EF2
 ofs_002_9F46_03:
 C - - J - - 0x001F56 00:9F46: FE CA 04  INC ram_04CA_car,X
 C - - - - - 0x001F59 00:9F49: A0 A9     LDY #$A9
-C - - - - - 0x001F5B 00:9F4B: BD F8 F8  LDA tbl_F8F8_ppu_hi_3,X
-C - - - - - 0x001F5E 00:9F4E: 85 16     STA ram_0016_temp
-C - - - - - 0x001F60 00:9F50: BD 04 F9  LDA tbl_F904_ppu_lo_3,X
-C - - - - - 0x001F63 00:9F53: 85 15     STA ram_0015_temp
+C - - - - - 0x001F5B 00:9F4B: BD F8 F8  LDA tbl_F8F8_ppu_address_hi_3,X
+C - - - - - 0x001F5E 00:9F4E: 85 16     STA ram_0016_t10_ppu_address_hi
+C - - - - - 0x001F60 00:9F50: BD 04 F9  LDA tbl_F904_ppu_address_lo_3,X
+C - - - - - 0x001F63 00:9F53: 85 15     STA ram_0015_t29_ppu_addr_lo
 C - - - - - 0x001F65 00:9F55: A2 07     LDX #$07
 C - - - - - 0x001F67 00:9F57: 20 1F 9E  JSR sub_9E1F
 C - - - - - 0x001F6A 00:9F5A: A6 20     LDX ram_0020_t05
@@ -4828,10 +4828,10 @@ C - - - - - 0x00205D 00:A04D: 60        RTS
 
 
 ofs_002_A04E_09:
-C - - J - - 0x00205E 00:A04E: BD F0 F8  LDA tbl_F8F0_ppu_hi_1,X
-C - - - - - 0x002061 00:A051: 85 16     STA ram_0016_temp
-C - - - - - 0x002063 00:A053: BD FC F8  LDA tbl_F8FC_ppu_lo_1,X
-C - - - - - 0x002066 00:A056: 85 15     STA ram_0015_temp
+C - - J - - 0x00205E 00:A04E: BD F0 F8  LDA tbl_F8F0_ppu_address_hi_1,X
+C - - - - - 0x002061 00:A051: 85 16     STA ram_0016_t10_ppu_address_hi
+C - - - - - 0x002063 00:A053: BD FC F8  LDA tbl_F8FC_ppu_address_lo_1,X
+C - - - - - 0x002066 00:A056: 85 15     STA ram_0015_t29_ppu_addr_lo
 C - - - - - 0x002068 00:A058: FE CA 04  INC ram_04CA_car,X
 C - - - - - 0x00206B 00:A05B: C6 2E     DEC ram_frm_cnt
 C - - - - - 0x00206D 00:A05D: A2 07     LDX #$07
@@ -4841,10 +4841,10 @@ C - - - - - 0x002071 00:A061: 4C 1F 9E  JMP loc_9E1F
 
 
 ofs_002_A064_0A:
-C - - J - - 0x002074 00:A064: BD F4 F8  LDA tbl_F8F4_ppu_hi_2,X
-C - - - - - 0x002077 00:A067: 85 16     STA ram_0016_temp
-C - - - - - 0x002079 00:A069: BD 00 F9  LDA tbl_F900_ppu_lo_2,X
-C - - - - - 0x00207C 00:A06C: 85 15     STA ram_0015_temp
+C - - J - - 0x002074 00:A064: BD F4 F8  LDA tbl_F8F4_ppu_address_hi_2,X
+C - - - - - 0x002077 00:A067: 85 16     STA ram_0016_t10_ppu_address_hi
+C - - - - - 0x002079 00:A069: BD 00 F9  LDA tbl_F900_ppu_address_lo_2,X
+C - - - - - 0x00207C 00:A06C: 85 15     STA ram_0015_t29_ppu_addr_lo
 C - - - - - 0x00207E 00:A06E: FE CA 04  INC ram_04CA_car,X
 C - - - - - 0x002081 00:A071: A2 06     LDX #$06
 C - - - - - 0x002083 00:A073: A0 5B     LDY #$5B
@@ -21770,7 +21770,7 @@ tbl_F8B4:
 
 
 
-tbl_F8F0_ppu_hi_1:
+tbl_F8F0_ppu_address_hi_1:
 - D 3 - - - 0x007900 01:F8F0: 20        .byte > $2022   ; 00 
 - D 3 - - - 0x007901 01:F8F1: 20        .byte > $2031   ; 01 
 - D 3 - - - 0x007902 01:F8F2: 21        .byte > $21E2   ; 02 
@@ -21778,7 +21778,7 @@ tbl_F8F0_ppu_hi_1:
 
 
 
-tbl_F8F4_ppu_hi_2:
+tbl_F8F4_ppu_address_hi_2:
 - D 3 - - - 0x007904 01:F8F4: 21        .byte > $2102   ; 00 
 - D 3 - - - 0x007905 01:F8F5: 21        .byte > $2111   ; 01 
 - D 3 - - - 0x007906 01:F8F6: 22        .byte > $22C2   ; 02 
@@ -21786,7 +21786,7 @@ tbl_F8F4_ppu_hi_2:
 
 
 
-tbl_F8F8_ppu_hi_3:
+tbl_F8F8_ppu_address_hi_3:
 - D 3 - - - 0x007908 01:F8F8: 20        .byte > $20E2   ; 00 
 - D 3 - - - 0x007909 01:F8F9: 20        .byte > $20F1   ; 01 
 - D 3 - - - 0x00790A 01:F8FA: 22        .byte > $22A2   ; 02 
@@ -21794,7 +21794,7 @@ tbl_F8F8_ppu_hi_3:
 
 
 
-tbl_F8FC_ppu_lo_1:
+tbl_F8FC_ppu_address_lo_1:
 - D 3 - - - 0x00790C 01:F8FC: 22        .byte < $2022   ; 00 
 - D 3 - - - 0x00790D 01:F8FD: 31        .byte < $2031   ; 01 
 - D 3 - - - 0x00790E 01:F8FE: E2        .byte < $21E2   ; 02 
@@ -21802,7 +21802,7 @@ tbl_F8FC_ppu_lo_1:
 
 
 
-tbl_F900_ppu_lo_2:
+tbl_F900_ppu_address_lo_2:
 - D 3 - - - 0x007910 01:F900: 02        .byte < $2102   ; 00 
 - D 3 - - - 0x007911 01:F901: 11        .byte < $2111   ; 01 
 - D 3 - - - 0x007912 01:F902: C2        .byte < $22C2   ; 02 
@@ -21810,7 +21810,7 @@ tbl_F900_ppu_lo_2:
 
 
 
-tbl_F904_ppu_lo_3:
+tbl_F904_ppu_address_lo_3:
 - D 3 - - - 0x007914 01:F904: E2        .byte < $20E2   ; 00 
 - D 3 - - - 0x007915 01:F905: F1        .byte < $20F1   ; 01 
 - D 3 - - - 0x007916 01:F906: A2        .byte < $22A2   ; 02 

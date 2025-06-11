@@ -198,6 +198,9 @@ ram_0015_temp                           = $0015 ; 000033 000554 000564 000611 00
     ram_0015_t24                            = ram_0015_temp ; 
     ram_0015_t25                            = ram_0015_temp ; 
     ram_0015_t26                            = ram_0015_temp ; 
+    ram_0015_t27                            = ram_0015_temp ; 
+    ram_0015_t28                            = ram_0015_temp ; 
+    ram_0015_t29_ppu_addr_lo                = ram_0015_temp ; 
 
 
 
@@ -212,6 +215,7 @@ ram_0016_temp                           = $0016 ; 000033 000802 00081E 000831 00
     ram_0016_t07                            = ram_0016_temp ; 
     ram_0016_t08_control_byte_for_00        = ram_0016_temp ; 
     ram_0016_t09_pos_X                      = ram_0016_temp ; 
+    ram_0016_t10_ppu_address_hi             = ram_0016_temp ; 
 
 
 
