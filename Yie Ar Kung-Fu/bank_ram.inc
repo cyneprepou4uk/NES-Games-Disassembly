@@ -386,14 +386,14 @@ ram_0080_temp                           = $0080 ; 000047 000049 00005A 0002CF 00
     ram_0080_t03_data                       = ram_0080_temp ; 2 addresses 0080-0081
     ram_0080_t04_data                       = ram_0080_temp ; 2 addresses 0080-0081
     ram_0080_t05_jmp                        = ram_0080_temp ; 2 addresses 0080-0081
-    ram_0080_t06_ppu_addr_lo                = ram_0080_temp ; in pair with ram_0081_t01_ppu_addr_hi
+    ram_0080_t06_ppu_addr_lo                = ram_0080_temp ; 
     ram_0080_t07_data                       = ram_0080_temp ; 2 addresses 0080-0081
 
 
 
 ; 
 ram_0081_temp                           = $0081 ; 000043 000049 00004E 00005A 0002D3 0003E8 000454 0004EC 000520 00052D 000607 00061F 0006AF 0006BC 0006E3 0008F3 001100 001108 002C25 002F9A 003DD0 
-    ram_0081_t01_ppu_addr_hi                = ram_0081_temp ; in pair with ram_0080_t06_ppu_addr_lo
+    ram_0081_t01_ppu_addr_hi                = ram_0081_temp ; 
 
 
 
