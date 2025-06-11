@@ -10373,6 +10373,10 @@ off_B570_00_title_screen:
 
 
 ofs_055_0x00B6DA_00:
+; in
+    ; X
+        ; 00 = title screen
+        ; 02 = credits logo screen
 C - - J - - 0x00B6DA 02:B6CA: BD DD B7  LDA tbl_B7DD_static_screen_data,X
 C - - - - - 0x00B6DD 02:B6CD: 85 00     STA ram_0000_t016_data
 C - - - - - 0x00B6DF 02:B6CF: BD DE B7  LDA tbl_B7DD_static_screen_data + $01,X
@@ -10539,7 +10543,7 @@ C - - - - - 0x00B7EC 02:B7DC: 60        RTS
 
 tbl_B7DD_static_screen_data:
 - D 1 - - - 0x00B7ED 02:B7DD: 70 B5     .word off_B570_00_title_screen
-- D 1 - - - 0x00B7EF 02:B7DF: 72 D7     .word off_0x03D782_01_credits_logo_screen
+- D 1 - - - 0x00B7EF 02:B7DF: 72 D7     .word off_0x03D782_02_credits_logo_screen
 
 
 

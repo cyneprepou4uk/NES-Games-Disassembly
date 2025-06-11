@@ -6848,6 +6848,8 @@ C - - - - - 0x00673E 01:A72E: 60        RTS
 
 
 sub_A72F:
+; in
+    ; A = 
 C - - - - - 0x00673F 01:A72F: A8        TAY
 C - - - - - 0x006740 01:A730: B9 64 A7  LDA tbl_A764_facing,Y
 C - - - - - 0x006743 01:A733: 8D A9 04  STA ram_obj_facing + $01
@@ -6907,6 +6909,8 @@ tbl_A764_facing:
 
 
 sub_A76D:
+; in
+    ; Y = 
 C - - - - - 0x00677D 01:A76D: B9 7E A7  LDA tbl_A77E,Y
 C - - - - - 0x006780 01:A770: 8D 00 04  STA ram_plr_anim_id
 C - - - - - 0x006783 01:A773: A9 0C     LDA #con_obj_type_0C
@@ -6924,6 +6928,10 @@ tbl_A77E:
 
 
 sub_A780:
+; in
+    ; X
+        ; 00 = title screen
+        ; 02 = credits logo screen
 C - - - - - 0x006790 01:A780: A0 00     LDY #$00
 C - - - - - 0x006792 01:A782: F0 1E     BEQ bra_A7A2    ; jmp
 
@@ -7261,7 +7269,7 @@ C - - - - - 0x006986 01:A976: 4C 9B A8  JMP loc_A89B
 
 ofs_056_A979_0B:
 C - - J - - 0x006989 01:A979: 20 34 AD  JSR sub_AD34
-C - - - - - 0x00698C 01:A97C: A2 02     LDX #$02
+C - - - - - 0x00698C 01:A97C: A2 02     LDX #$02    ; credits logo screen
 C - - - - - 0x00698E 01:A97E: 20 80 A7  JSR sub_A780
 C - - - - - 0x006991 01:A981: B0 E2     BCS bra_A965
 C - - - - - 0x006993 01:A983: 60        RTS
@@ -7270,7 +7278,7 @@ C - - - - - 0x006993 01:A983: 60        RTS
 
 ofs_056_A984_0C:
 C - - J - - 0x006994 01:A984: 20 34 AD  JSR sub_AD34
-C - - - - - 0x006997 01:A987: A2 00     LDX #$00
+C - - - - - 0x006997 01:A987: A2 00     LDX #$00    ; title screen
 C - - - - - 0x006999 01:A989: 20 80 A7  JSR sub_A780
 C - - - - - 0x00699C 01:A98C: B0 D7     BCS bra_A965
 C - - - - - 0x00699E 01:A98E: 60        RTS

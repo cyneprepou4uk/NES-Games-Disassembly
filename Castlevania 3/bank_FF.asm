@@ -11,7 +11,7 @@
 .export ofs_041_0x03D077_03
 .export ofs_041_0x03D108_04
 .export sub_0x03D5D3
-.export off_0x03D782_01_credits_logo_screen
+.export off_0x03D782_02_credits_logo_screen
 .export _off006_0x03D939_03
 .export _off006_0x03D9CC_04
 .export _off006_0x03DA84_00
@@ -189,6 +189,8 @@ C - - - - - 0x03C9D6 0F:C9C6: C9 80     CMP #$80
 C - - - - - 0x03C9D8 0F:C9C8: 90 08     BCC bra_C9D2_RTS
 C - - - - - 0x03C9DA 0F:C9CA: A9 08     LDA #$08
 sub_C9CC:
+; in
+    ; A = 
 C - - - - - 0x03C9DC 0F:C9CC: 8D A3 07  STA ram_unk_07A3_scroll_X
 C - - - - - 0x03C9DF 0F:C9CF: EE A4 07  INC ram_unk_07A4
 bra_C9D2_RTS:
@@ -781,7 +783,7 @@ bra_CD72_right:
 C - - - - - 0x03CD82 0F:CD72: A9 00     LDA #$00
 bra_CD74:
 C - - - - - 0x03CD84 0F:CD74: 85 5A     STA ram_section_ahead
-sub_CD76:
+sub_CD76_set_timer:
 C - - - - - 0x03CD86 0F:CD76: A9 0A     LDA #$0A
 C - - - - - 0x03CD88 0F:CD78: 85 64     STA ram_0064_timer
 C - - - - - 0x03CD8A 0F:CD7A: 60        RTS
@@ -1339,13 +1341,13 @@ C - - - - - 0x03D0D8 0F:D0C8: C9 03     CMP #$03
 C - - - - - 0x03D0DA 0F:D0CA: D0 DD     BNE bra_D0A9
 C - - - - - 0x03D0DC 0F:D0CC: A5 34     LDA ram_blk_id_fr
 C - - - - - 0x03D0DE 0F:D0CE: D0 D9     BNE bra_D0A9
-C - - - - - 0x03D0E0 0F:D0D0: A0 0A     LDY #$0A
+C - - - - - 0x03D0E0 0F:D0D0: A0 0A     LDY #$05 * $02
 C - - - - - 0x03D0E2 0F:D0D2: D0 D7     BNE bra_D0AB    ; jmp
 bra_D0D4:
 C - - - - - 0x03D0E4 0F:D0D4: A5 34     LDA ram_blk_id_fr
 C - - - - - 0x03D0E6 0F:D0D6: C9 02     CMP #$02
 C - - - - - 0x03D0E8 0F:D0D8: D0 CF     BNE bra_D0A9
-C - - - - - 0x03D0EA 0F:D0DA: A0 0A     LDY #$0A
+C - - - - - 0x03D0EA 0F:D0DA: A0 0A     LDY #$05 * $02
 C - - - - - 0x03D0EC 0F:D0DC: D0 CD     BNE bra_D0AB    ; jmp
 bra_D0DE:
 C - - - - - 0x03D0EE 0F:D0DE: A5 34     LDA ram_blk_id_fr
@@ -1353,7 +1355,7 @@ C - - - - - 0x03D0F0 0F:D0E0: F0 04     BEQ bra_D0E6
 C - - - - - 0x03D0F2 0F:D0E2: C9 01     CMP #$01
 C - - - - - 0x03D0F4 0F:D0E4: D0 C3     BNE bra_D0A9
 bra_D0E6:
-C - - - - - 0x03D0F6 0F:D0E6: A0 04     LDY #$04
+C - - - - - 0x03D0F6 0F:D0E6: A0 04     LDY #$02 * $02
 C - - - - - 0x03D0F8 0F:D0E8: D0 C1     BNE bra_D0AB    ; jmp
 bra_D0EA_0E_Final_Clock_Tower:
 C - - - - - 0x03D0FA 0F:D0EA: A5 33     LDA ram_blk_id_lo
@@ -1361,7 +1363,7 @@ C - - - - - 0x03D0FC 0F:D0EC: D0 BB     BNE bra_D0A9
 C - - - - - 0x03D0FE 0F:D0EE: A5 34     LDA ram_blk_id_fr
 C - - - - - 0x03D100 0F:D0F0: C9 01     CMP #$01
 C - - - - - 0x03D102 0F:D0F2: D0 B5     BNE bra_D0A9
-C - - - - - 0x03D104 0F:D0F4: A0 02     LDY #$02
+C - - - - - 0x03D104 0F:D0F4: A0 02     LDY #$01 * $02
 C - - - - - 0x03D106 0F:D0F6: D0 B3     BNE bra_D0AB    ; jmp
 
 
@@ -2848,7 +2850,7 @@ off_D770_D3:
 
 _off005_D772_22_credits_logo_screen:
 ; con_EC77_credits_logo
-off_0x03D782_01_credits_logo_screen:
+off_0x03D782_02_credits_logo_screen:
 ; castlevania logo before actual credits begin
 - D 2 - I - 0x03D782 0F:D772: 00 28     .word $2800 ; ppu address
 
@@ -4914,9 +4916,16 @@ sub_E5BF:
 loc_E5BF:
 sub_0x03E5CF:
 loc_0x03E5CF:
+; in
+    ; A = con_irq
+    ; X = 
+    ; Y = 
 C D 3 - - - 0x03E5CF 0F:E5BF: 84 42     STY ram_0042
 sub_E5C1:
 sub_0x03E5D1:
+; in
+    ; A = con_irq
+    ; X = 
 C - - - - - 0x03E5D1 0F:E5C1: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x03E5D3 0F:E5C3: 86 41     STX ram_0041_scanline
 C - - - - - 0x03E5D5 0F:E5C5: A9 80     LDA #$80
@@ -6186,6 +6195,8 @@ C - - - - - 0x03EBE2 0F:EBD2: 4C E9 EC  JMP loc_ECE9_write_data_to_ppu_buffer
 
 sub_EBD5_draw_screen:
 sub_0x03EBE5_draw_screen:
+; in
+    ; A = con_prg_bank
 C - - - - - 0x03EBE5 0F:EBD5: 20 E0 E2  JSR sub_E2E0_prg_bankswitch
 C - - - - - 0x03EBE8 0F:EBD8: 20 04 EC  JSR sub_EC04_draw_screen
 loc_EBDB_restore_prg_basnk:
@@ -8555,7 +8566,7 @@ C - - - - - 0x03FB05 0F:FAF5: A9 0C     LDA #con_sfx_door
 C - - - - - 0x03FB07 0F:FAF7: 20 5F E2  JSR sub_E25F_play_sound
 C - - - - - 0x03FB0A 0F:FAFA: A9 00     LDA #$00
 C - - - - - 0x03FB0C 0F:FAFC: 9D 00 04  STA ram_obj_anim_id,X
-C - - - - - 0x03FB0F 0F:FAFF: 20 76 CD  JSR sub_CD76
+C - - - - - 0x03FB0F 0F:FAFF: 20 76 CD  JSR sub_CD76_set_timer
 C - - - - - 0x03FB12 0F:FB02: AD D4 05  LDA ram_05C1_wpn + con_obj_index_weapon
 C - - - - - 0x03FB15 0F:FB05: 85 61     STA ram_ppu_address_lo
 C - - - - - 0x03FB17 0F:FB07: AD EB 05  LDA ram_05D8_wpn + con_obj_index_weapon
