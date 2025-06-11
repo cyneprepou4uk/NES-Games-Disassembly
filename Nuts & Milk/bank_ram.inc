@@ -13,13 +13,13 @@ ram_0000_temp                           = $0000 ; 0000AA(Wx) 00020A(Wx) 000393(W
     ram_0000_t07_jmp                        = ram_0000_temp ; 2 addresses 0000-0001
     ram_0000_t08_number_lo                  = ram_0000_temp ; 
     ram_0000_t09                            = ram_0000_temp ; 
-    ram_0000_t10_ppu_addr_lo                = ram_0000_temp ; in pair with ram_0001_t01_ppu_addr_hi
+    ram_0000_t10_ppu_addr_lo                = ram_0000_temp ; 
 
 
 
 ; 
 ram_0001_temp                           = $0001 ; 0000AA(Wx) 00020A(Wx) 000397(W)  000434(W)  000457(W)  000463(W)  000726(W)  000734(W)  000742(W)  000758(W)  000782(R)  000786(W)  000796(R)  00079A(W)  0007C9(R)  0007EB(W)  0008C9(R)  0008D3(W)  0008DC(R)  0008E0(W)  0008F1(R)  0008FB(W)  000904(R)  000908(W)  000CA3(W)  000CB6(W)  000CD0(W)  000CE3(W)  000D2B(W)  001B9B(W)  001BAE(W)  001BC1(W)  001BEC(W)  001C0B(W)  001C19(W)  0021A4(W)  00225B(W)  00226E(W)  00238F(W)  002458(W)  002467(W)  002477(W)  002485(W)  002958(R)  002976(W)  00297E(R)  002982(W)  002BD1(W)  002BE2(W)  002C66(W)  002CF4(W)  
-    ram_0001_t01_ppu_addr_hi                = ram_0001_temp ; in pair with ram_0000_t10_ppu_addr_lo
+    ram_0001_t01_ppu_addr_hi                = ram_0001_temp ; 
     ram_0001_t02_number_hi                  = ram_0001_temp ; 
 
 
@@ -31,19 +31,19 @@ ram_0002_temp                           = $0002 ; 0000AA(Wx) 00020A(Wx) 00075C(W
     ram_0002_t03_convertion_data            = ram_0002_temp ; 2 addresses 0002-0003
     ram_0002_t04_data                       = ram_0002_temp ; 2 addresses 0002-0003
     ram_0002_t05_data                       = ram_0002_temp ; 2 addresses 0002-0003
-    ram_0002_t09_ppu_addr_lo                = ram_0002_temp ; in pair with ram_0003_t01_ppu_addr_hi
-    ram_0002_t06_ppu_addr_lo                = ram_0002_temp ; in pair with ram_0003_t02_ppu_addr_hi
-    ram_0002_t07_lo                         = ram_0002_temp ; in pair with ram_0003_t03_hi
-    ram_0002_t08_ppu_addr_lo                = ram_0002_temp ; in pair with ram_0003_t04_ppu_addr_hi
+    ram_0002_t09_ppu_addr_lo                = ram_0002_temp ; 
+    ram_0002_t06_ppu_addr_lo                = ram_0002_temp ; 
+    ram_0002_t07_lo                         = ram_0002_temp ; 
+    ram_0002_t08_ppu_addr_lo                = ram_0002_temp ; 
 
 
 
 ; 
 ram_0003_temp                           = $0003 ; 0000AA(Wx) 00020A(Wx) 000760(W)  0007AB(R)  0007AF(W)  0007CB(W)  0008CB(W)  0008F3(W)  000999(R)  000C9B(W)  000CAE(W)  000CC8(W)  000CDB(W)  000D11(W)  000D1C(W)  00120E(W)  001251(W)  001BA3(W)  001BB6(W)  001BC9(W)  001C21(W)  001C2D(W)  0025ED(W)  00277B(R)  002788(W)  002BFF(R)  002C41(W)  002C4A(R)  002C6B(R)  
-    ram_0003_t01_ppu_addr_hi                = ram_0003_temp ; in pair with ram_0002_t09_ppu_addr_lo
-    ram_0003_t02_ppu_addr_hi                = ram_0003_temp ; in pair with ram_0002_t06_ppu_addr_lo
-    ram_0003_t03_hi                         = ram_0003_temp ; in pair with ram_0002_t07_lo
-    ram_0003_t04_ppu_addr_hi                = ram_0003_temp ; in pair with ram_0002_t08_ppu_addr_lo
+    ram_0003_t01_ppu_addr_hi                = ram_0003_temp ; 
+    ram_0003_t02_ppu_addr_hi                = ram_0003_temp ; 
+    ram_0003_t03_hi                         = ram_0003_temp ; 
+    ram_0003_t04_ppu_addr_hi                = ram_0003_temp ; 
 
 
 
@@ -52,7 +52,7 @@ ram_0004_temp                           = $0004 ; 0000AA(Wx) 00020A(Wx) 000774(W
     ram_0004_t01_data                       = ram_0004_temp ; 2 addresses 0004-0005
     ram_0004_t02_data_index                 = ram_0004_temp ; 
     ram_0004_t03_save_Y                     = ram_0004_temp ; 
-    ram_0004_t04_lo                         = ram_0004_temp ; in pair with ram_0005_t03_hi
+    ram_0004_t04_lo                         = ram_0004_temp ; 
     ram_0004_t05_data_index                 = ram_0004_temp ; 
     ram_0004_t06                            = ram_0004_temp ; 
     ram_0004_t07_data_index                 = ram_0004_temp ; 
@@ -64,7 +64,7 @@ ram_0004_temp                           = $0004 ; 0000AA(Wx) 00020A(Wx) 000774(W
 ram_0005_temp                           = $0005 ; 0000AA(Wx) 00020A(Wx) 000779(W)  000784(R)  000798(R)  0025F5(W)  0027B9(R)  0027C6(W)  00299B(W)  0029C5(W)  0029C7(R)  0029E3(W)  002A04(W)  002A19(W)  
     ram_0005_t01                            = ram_0005_temp ; 
     ram_0005_t02                            = ram_0005_temp ; 
-    ram_0005_t03_hi                         = ram_0005_temp ; in pair with ram_0004_t04_lo
+    ram_0005_t03_hi                         = ram_0005_temp ; 
     ram_0005_t04                            = ram_0005_temp ; 
     ram_0005_t05                            = ram_0005_temp ; 
 
@@ -299,13 +299,13 @@ ram_cursor_pos_Y                        = $002F ; 0000AA(Wx) 0001FA(W)  002D1D(R
 ; sound engine address
 ram_0030_se_temp                        = $0030 ; 0000AA(Wx) 000212(Wx) 0031DF(R)  00322A(R)  003284(R)  00333B(W)  00334A(W)  00335C(W)  003368(W)  00336D(R)  
     ram_0030_se_t01_data                    = ram_0030_se_temp ; 2 addresses 0030-0031
-    ram_0030_se_t02_timer_lo                = ram_0030_se_temp ; in pair with ram_0031_se_t01_timer_hi
+    ram_0030_se_t02_timer_lo                = ram_0030_se_temp ; 
 
 
 
 ; sound engine address
 ram_0031_se_temp                        = $0031 ; 0000AA(Wx) 000212(Wx) 0031E4(R)  00322F(R)  003289(R)  00333D(W)  003350(W)  00335A(W)  003366(W)  00336F(R)  
-    ram_0031_se_t01_timer_hi                = ram_0031_se_temp ; in pair with ram_0030_se_t02_timer_lo
+    ram_0031_se_t01_timer_hi                = ram_0031_se_temp ; 
 
 
 
