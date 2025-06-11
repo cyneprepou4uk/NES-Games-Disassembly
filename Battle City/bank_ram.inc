@@ -118,15 +118,15 @@ ram_0011_temp                           = $0011 ; 0004CE 0004E0 0004F2 000504 00
     ram_0011_t14_data                       = ram_0011_temp ; 2 addresses 0011-0012
     ram_0011_t15_data                       = ram_0011_temp ; 2 addresses 0011-0012
     ram_0011_t16_stage_data                 = ram_0011_temp ; 2 addresses 0011-0012
-    ram_0011_t17_ppu_lo                     = ram_0011_temp ; in pair with ram_0012_t01_ppu_hi
-    ram_0011_t18_ppu_lo                     = ram_0011_temp ; in pair with ram_0012_t02_ppu_hi
+    ram_0011_t17_ppu_lo                     = ram_0011_temp ; 
+    ram_0011_t18_ppu_lo                     = ram_0011_temp ; 
 
 
 
 ; 
 ram_0012_temp                           = $0012 ; 0004CA 0004DC 0004EE 000500 000512 000524 000536 000548 00055A 000771 000781 000788 0007E4 000804 000842 00085B 00086E 00087D 0008B7 0008C6 000A74 000B07 000B16 000B25 000B34 000B6F 000B7E 000BB0 000BBF 000BCE 000BDD 000C1A 000C29 000C3B 000C46 000C71 000C77 000E70 000E7F 000ECB 000EDA 000F33 000F4E 000F71 000F8C 000F9B 000FAA 000FB9 000FCF 000FEA 000FF9 001008 001017 001029 001038 001047 001056 00106C 00107B 00108A 001099 0010AB 0010BA 0011CB 0011E6 001205 001227 001236 001245 001257 001266 001278 00146E 00171C 001781 00179A 0017C1 0017CB 0017D5 001800 00187D 00188A 00195C 001C5D 001ED8 00205C 002106 0021B4 002222 002310 0029E6 003024 00303E 
-    ram_0012_t01_ppu_hi                     = ram_0012_temp ; in pair with ram_0011_t17_ppu_lo
-    ram_0012_t02_ppu_hi                     = ram_0012_temp ; in pair with ram_0011_t18_ppu_lo
+    ram_0012_t01_ppu_hi                     = ram_0012_temp ; 
+    ram_0012_t02_ppu_hi                     = ram_0012_temp ; 
 
 
 
@@ -886,13 +886,13 @@ ram_00FD_temp                           = $00FD ; 000781 00146E 002AE6 002AEF 00
     ram_00FD_t05_loop_counter               = ram_00FD_temp ; 
     ram_00FD_t06_loop_counter               = ram_00FD_temp ; 
     ram_00FD_t07                            = ram_00FD_temp ; 
-    ram_00FD_t08_lo                         = ram_00FD_temp ; in pair with ram_00FE_t01_hi
+    ram_00FD_t08_lo                         = ram_00FD_temp ; 
 
 
 
 ; 
 ram_00FE_temp                           = $00FE ; 000781 00146E 002BBC 002BC6 002BD5 002CE7 002CEF 
-    ram_00FE_t01_hi                         = ram_00FE_temp ; in pair with ram_00FD_t08_lo
+    ram_00FE_t01_hi                         = ram_00FE_temp ; 
 
 
 
