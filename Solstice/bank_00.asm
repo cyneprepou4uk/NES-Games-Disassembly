@@ -5044,6 +5044,7 @@ C - - - - - 0x001E4C 00:9E3C: B9 E5 9E  LDA tbl_9EE5_enemy_handler_lo,Y
 C - - - - - 0x001E4F 00:9E3F: 48        PHA
 bra_9E40_RTS:
 ofs_enemy_handler_9E40_00_RTS:
+; con_obj_id_00
 C - - - - - 0x001E50 00:9E40: 60        RTS
 bra_9E41_not_an_enemy:
 C - - - - - 0x001E51 00:9E41: 20 82 94  JSR sub_9482
@@ -5115,11 +5116,11 @@ tbl_9EA3_enemy_handler_hi:
 - D 0 - - - 0x001EB9 00:9EA9: A1        .byte > ( ofs_enemy_handler_A1CC_06 - $01 )   ; 
 - D 0 - - - 0x001EBA 00:9EAA: A0        .byte > ( ofs_enemy_handler_A072_07 - $01 )   ; 
 - D 0 - - - 0x001EBB 00:9EAB: A0        .byte > ( ofs_enemy_handler_A042_08 - $01 )   ; 
-- - - - - - 0x001EBC 00:9EAC: A0        .byte > ( ofs_enemy_handler_A080_09 - $01 )   ; 
+- - - - - - 0x001EBC 00:9EAC: A0        .byte > ( ofs_enemy_handler_A080_09 - $01 )   ; unused, index doesn't exist
 - D 0 - - - 0x001EBD 00:9EAD: A0        .byte > ( ofs_enemy_handler_A0FE_0A - $01 )   ; 
 - D 0 - - - 0x001EBE 00:9EAE: A1        .byte > ( ofs_enemy_handler_A104_0B - $01 )   ; 
 - D 0 - - - 0x001EBF 00:9EAF: A1        .byte > ( ofs_enemy_handler_A122_0C - $01 )   ; 
-- - - - - - 0x001EC0 00:9EB0: A1        .byte > ( ofs_enemy_handler_A128_0D - $01 )   ; 
+- - - - - - 0x001EC0 00:9EB0: A1        .byte > ( ofs_enemy_handler_A128_0D - $01 )   ; unused, index doesn't exist
 - D 0 - - - 0x001EC1 00:9EB1: A1        .byte > ( ofs_enemy_handler_A1C9_0E - $01 )   ; 
 - D 0 - - - 0x001EC2 00:9EB2: A1        .byte > ( ofs_enemy_handler_A146_0F - $01 )   ; 
 - D 0 - - - 0x001EC3 00:9EB3: A1        .byte > ( ofs_enemy_handler_A14C_10 - $01 )   ; 
@@ -5144,8 +5145,8 @@ tbl_9EA3_enemy_handler_hi:
 - D 0 - - - 0x001ED6 00:9EC6: 9F        .byte > ( ofs_enemy_handler_9FE6_23 - $01 )   ; 
 - D 0 - - - 0x001ED7 00:9EC7: A0        .byte > ( ofs_enemy_handler_A036_24 - $01 )   ; 
 - D 0 - - - 0x001ED8 00:9EC8: 9F        .byte > ( ofs_enemy_handler_9FC0_25 - $01 )   ; 
-- - - - - - 0x001ED9 00:9EC9: A0        .byte > ( ofs_enemy_handler_A0F2_26 - $01 )   ; 
-- - - - - - 0x001EDA 00:9ECA: A1        .byte > ( ofs_enemy_handler_A11C_27 - $01 )   ; 
+- - - - - - 0x001ED9 00:9EC9: A0        .byte > ( ofs_enemy_handler_A0F2_26 - $01 )   ; unused, index doesn't exist
+- - - - - - 0x001EDA 00:9ECA: A1        .byte > ( ofs_enemy_handler_A11C_27 - $01 )   ; unused, index doesn't exist
 - D 0 - - - 0x001EDB 00:9ECB: A1        .byte > ( ofs_enemy_handler_A140_28 - $01 )   ; 
 - D 0 - - - 0x001EDC 00:9ECC: 9F        .byte > ( ofs_enemy_handler_9F27_29 - $01 )   ; 
 - D 0 - - - 0x001EDD 00:9ECD: 9F        .byte > ( ofs_enemy_handler_9F52_2A - $01 )   ; 
@@ -5156,11 +5157,11 @@ tbl_9EA3_enemy_handler_hi:
 - D 0 - - - 0x001EE2 00:9ED2: A0        .byte > ( ofs_enemy_handler_A0EC_2F - $01 )   ; 
 - D 0 - - - 0x001EE3 00:9ED3: A1        .byte > ( ofs_enemy_handler_A116_30 - $01 )   ; 
 - D 0 - - - 0x001EE4 00:9ED4: A1        .byte > ( ofs_enemy_handler_A13A_31 - $01 )   ; 
-- - - - - - 0x001EE5 00:9ED5: A0        .byte > ( ofs_enemy_handler_A0E6_32 - $01 )   ; 
+- - - - - - 0x001EE5 00:9ED5: A0        .byte > ( ofs_enemy_handler_A0E6_32 - $01 )   ; unused, index doesn't exist
 - D 0 - - - 0x001EE6 00:9ED6: A1        .byte > ( ofs_enemy_handler_A110_33 - $01 )   ; 
 - D 0 - - - 0x001EE7 00:9ED7: A1        .byte > ( ofs_enemy_handler_A134_34 - $01 )   ; 
-- - - - - - 0x001EE8 00:9ED8: A0        .byte > ( ofs_enemy_handler_A0E0_35 - $01 )   ; 
-- - - - - - 0x001EE9 00:9ED9: A1        .byte > ( ofs_enemy_handler_A10A_36 - $01 )   ; 
+- - - - - - 0x001EE8 00:9ED8: A0        .byte > ( ofs_enemy_handler_A0E0_35 - $01 )   ; unused, index doesn't exist
+- - - - - - 0x001EE9 00:9ED9: A1        .byte > ( ofs_enemy_handler_A10A_36 - $01 )   ; unused, index doesn't exist
 - D 0 - - - 0x001EEA 00:9EDA: A1        .byte > ( ofs_enemy_handler_A12E_37 - $01 )   ; 
 - D 0 - - - 0x001EEB 00:9EDB: 9F        .byte > ( ofs_enemy_handler_9FE0_38 - $01 )   ; 
 - D 0 - - - 0x001EEC 00:9EDC: 9F        .byte > ( ofs_enemy_handler_9FE0_39 - $01 )   ; 
@@ -5185,11 +5186,11 @@ tbl_9EE5_enemy_handler_lo:
 - D 0 - - - 0x001EFB 00:9EEB: CB        .byte < ( ofs_enemy_handler_A1CC_06 - $01 )   ; 
 - D 0 - - - 0x001EFC 00:9EEC: 71        .byte < ( ofs_enemy_handler_A072_07 - $01 )   ; 
 - D 0 - - - 0x001EFD 00:9EED: 41        .byte < ( ofs_enemy_handler_A042_08 - $01 )   ; 
-- - - - - - 0x001EFE 00:9EEE: 7F        .byte < ( ofs_enemy_handler_A080_09 - $01 )   ; 
+- - - - - - 0x001EFE 00:9EEE: 7F        .byte < ( ofs_enemy_handler_A080_09 - $01 )   ; unused, index doesn't exist
 - D 0 - - - 0x001EFF 00:9EEF: FD        .byte < ( ofs_enemy_handler_A0FE_0A - $01 )   ; 
 - D 0 - - - 0x001F00 00:9EF0: 03        .byte < ( ofs_enemy_handler_A104_0B - $01 )   ; 
 - D 0 - - - 0x001F01 00:9EF1: 21        .byte < ( ofs_enemy_handler_A122_0C - $01 )   ; 
-- - - - - - 0x001F02 00:9EF2: 27        .byte < ( ofs_enemy_handler_A128_0D - $01 )   ; 
+- - - - - - 0x001F02 00:9EF2: 27        .byte < ( ofs_enemy_handler_A128_0D - $01 )   ; unused, index doesn't exist
 - D 0 - - - 0x001F03 00:9EF3: C8        .byte < ( ofs_enemy_handler_A1C9_0E - $01 )   ; 
 - D 0 - - - 0x001F04 00:9EF4: 45        .byte < ( ofs_enemy_handler_A146_0F - $01 )   ; 
 - D 0 - - - 0x001F05 00:9EF5: 4B        .byte < ( ofs_enemy_handler_A14C_10 - $01 )   ; 
@@ -5214,8 +5215,8 @@ tbl_9EE5_enemy_handler_lo:
 - D 0 - - - 0x001F18 00:9F08: E5        .byte < ( ofs_enemy_handler_9FE6_23 - $01 )   ; 
 - D 0 - - - 0x001F19 00:9F09: 35        .byte < ( ofs_enemy_handler_A036_24 - $01 )   ; 
 - D 0 - - - 0x001F1A 00:9F0A: BF        .byte < ( ofs_enemy_handler_9FC0_25 - $01 )   ; 
-- - - - - - 0x001F1B 00:9F0B: F1        .byte < ( ofs_enemy_handler_A0F2_26 - $01 )   ; 
-- - - - - - 0x001F1C 00:9F0C: 1B        .byte < ( ofs_enemy_handler_A11C_27 - $01 )   ; 
+- - - - - - 0x001F1B 00:9F0B: F1        .byte < ( ofs_enemy_handler_A0F2_26 - $01 )   ; unused, index doesn't exist
+- - - - - - 0x001F1C 00:9F0C: 1B        .byte < ( ofs_enemy_handler_A11C_27 - $01 )   ; unused, index doesn't exist
 - D 0 - - - 0x001F1D 00:9F0D: 3F        .byte < ( ofs_enemy_handler_A140_28 - $01 )   ; 
 - D 0 - - - 0x001F1E 00:9F0E: 26        .byte < ( ofs_enemy_handler_9F27_29 - $01 )   ; 
 - D 0 - - - 0x001F1F 00:9F0F: 51        .byte < ( ofs_enemy_handler_9F52_2A - $01 )   ; 
@@ -5226,11 +5227,11 @@ tbl_9EE5_enemy_handler_lo:
 - D 0 - - - 0x001F24 00:9F14: EB        .byte < ( ofs_enemy_handler_A0EC_2F - $01 )   ; 
 - D 0 - - - 0x001F25 00:9F15: 15        .byte < ( ofs_enemy_handler_A116_30 - $01 )   ; 
 - D 0 - - - 0x001F26 00:9F16: 39        .byte < ( ofs_enemy_handler_A13A_31 - $01 )   ; 
-- - - - - - 0x001F27 00:9F17: E5        .byte < ( ofs_enemy_handler_A0E6_32 - $01 )   ; 
+- - - - - - 0x001F27 00:9F17: E5        .byte < ( ofs_enemy_handler_A0E6_32 - $01 )   ; unused, index doesn't exist
 - D 0 - - - 0x001F28 00:9F18: 0F        .byte < ( ofs_enemy_handler_A110_33 - $01 )   ; 
 - D 0 - - - 0x001F29 00:9F19: 33        .byte < ( ofs_enemy_handler_A134_34 - $01 )   ; 
-- - - - - - 0x001F2A 00:9F1A: DF        .byte < ( ofs_enemy_handler_A0E0_35 - $01 )   ; 
-- - - - - - 0x001F2B 00:9F1B: 09        .byte < ( ofs_enemy_handler_A10A_36 - $01 )   ; 
+- - - - - - 0x001F2A 00:9F1A: DF        .byte < ( ofs_enemy_handler_A0E0_35 - $01 )   ; unused, index doesn't exist
+- - - - - - 0x001F2B 00:9F1B: 09        .byte < ( ofs_enemy_handler_A10A_36 - $01 )   ; unused, index doesn't exist
 - D 0 - - - 0x001F2C 00:9F1C: 2D        .byte < ( ofs_enemy_handler_A12E_37 - $01 )   ; 
 - D 0 - - - 0x001F2D 00:9F1D: DF        .byte < ( ofs_enemy_handler_9FE0_38 - $01 )   ; 
 - D 0 - - - 0x001F2E 00:9F1E: DF        .byte < ( ofs_enemy_handler_9FE0_39 - $01 )   ; 
@@ -5244,10 +5245,10 @@ tbl_9EE5_enemy_handler_lo:
 - D 0 - - - 0x001F36 00:9F26: E5        .byte < ( ofs_enemy_handler_9FE6_41 - $01 )   ; 
 
 
-; Enemy stuff
 
-; Detonator #1/room E4
 ofs_enemy_handler_9F27_29:
+; con_obj_id_detonator_00
+; Detonator #1/room E4
 C - - - - - 0x001F37 00:9F27: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x001F3A 00:9F2A: 29 20     AND #$20
 C - - - - - 0x001F3C 00:9F2C: F0 24     BEQ bra_9F52
@@ -5267,15 +5268,18 @@ C - - - - - 0x001F5A 00:9F4A: 8D 9C 07  STA ram_079C
 C - - - - - 0x001F5D 00:9F4D: A9 09     LDA #con_sfx_detonate
 C - - - - - 0x001F5F 00:9F4F: 8D 8E 07  STA ram_sfx_1
 bra_9F52:
-; Triggered detonator #1/room E4
 ofs_enemy_handler_9F52_2A:
+; con_obj_id_trig_det_00
+; Triggered detonator #1/room E4
 C - - - - - 0x001F62 00:9F52: A9 80     LDA #$80
 C - - - - - 0x001F64 00:9F54: 9D 40 07  STA ram_obj_direction_1,X
 C - - - - - 0x001F67 00:9F57: 4C 7E 99  JMP loc_997E
 
 
-; Detonator #2/room 46
+
 ofs_enemy_handler_9F5A_2B:
+; con_obj_id_detonator_01
+; Detonator #2/room 46
 ; bzk optimize, same as 0x001F37 except write to 079C
 C - - - - - 0x001F6A 00:9F5A: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x001F6D 00:9F5D: 29 20     AND #$20
@@ -5296,16 +5300,19 @@ C - - - - - 0x001F8D 00:9F7D: 8D 9C 07  STA ram_079C
 C - - - - - 0x001F90 00:9F80: A9 09     LDA #con_sfx_detonate
 C - - - - - 0x001F92 00:9F82: 8D 8E 07  STA ram_sfx_1
 bra_9F85:
-; triggered detonator #2/room 46
 ofs_enemy_handler_9F85_2C:
+; con_obj_id_trig_det_01
+; triggered detonator #2/room 46
 ; bzk optimize, same as 0x001F62
 C - - - - - 0x001F95 00:9F85: A9 80     LDA #$80
 C - - - - - 0x001F97 00:9F87: 9D 40 07  STA ram_obj_direction_1,X
 C - - - - - 0x001F9A 00:9F8A: 4C 7E 99  JMP loc_997E
 
 
-; Detonator #3/room FA
+
 ofs_enemy_handler_9F8D_2D:
+; con_obj_id_detonator_02
+; Detonator #3/room FA
 ; bzk optimize, same as 0x001F37 except write to 079C
 C - - - - - 0x001F9D 00:9F8D: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x001FA0 00:9F90: 29 20     AND #$20
@@ -5326,16 +5333,19 @@ C - - - - - 0x001FC0 00:9FB0: 8D 9C 07  STA ram_079C
 C - - - - - 0x001FC3 00:9FB3: A9 09     LDA #con_sfx_detonate
 C - - - - - 0x001FC5 00:9FB5: 8D 8E 07  STA ram_sfx_1
 bra_9FB8:
-; Triggered detonator #3/room FA
 ofs_enemy_handler_9FB8_2E:
+; con_obj_id_trig_det_02
+; Triggered detonator #3/room FA
 ; bzk optimize, same as 0x001F62
 C - - - - - 0x001FC8 00:9FB8: A9 80     LDA #$80
 C - - - - - 0x001FCA 00:9FBA: 9D 40 07  STA ram_obj_direction_1,X
 C - - - - - 0x001FCD 00:9FBD: 4C 7E 99  JMP loc_997E
 
 
-; Blasting bomb
+
 ofs_enemy_handler_9FC0_25:
+; Blasting bomb
+; con_obj_id_25
 C - - - - - 0x001FD0 00:9FC0: A5 21     LDA ram_frm_cnt
 C - - - - - 0x001FD2 00:9FC2: 4A        LSR
 C - - - - - 0x001FD3 00:9FC3: 4A        LSR
@@ -5353,44 +5363,66 @@ bra_9FD7:
 C - - - - - 0x001FE7 00:9FD7: 4C 7E 99  JMP loc_997E
 
 
-; spider, that moves counter-clock wise and climbs up walls, only used in room DD
+
 ofs_enemy_handler_9FDA_40:
-C - - - - - 0x001FEA 00:9FDA: 20 E4 A2  JSR sub_A2E4_set_animation_4    ; get graphics
-C - - - - - 0x001FED 00:9FDD: 4C EF 9F  JMP loc_9FEF                    ; jump to AI
+; con_obj_id_40
+; spider, that moves counter-clock wise and climbs up walls, only used in room DD
+C - - - - - 0x001FEA 00:9FDA: 20 E4 A2  JSR sub_A2E4_set_animation_4
+C - - - - - 0x001FED 00:9FDD: 4C EF 9F  JMP loc_9FEF
 
 
+
+ofs_enemy_handler_9FE0_1C:
+; con_obj_id_1C
+ofs_enemy_handler_9FE0_1F:
+; con_obj_id_1F
+ofs_enemy_handler_9FE0_38:
+; con_obj_id_38
+ofs_enemy_handler_9FE0_39:
+; con_obj_id_39
+ofs_enemy_handler_9FE0_3A:
+; con_obj_id_3A
 ; Troll that moves counter-clock wise and climbs up walls, only used in room 8A
 ; lots of duplicates? Removed sprites, as these ID's feel little random?
-ofs_enemy_handler_9FE0_1C:
-ofs_enemy_handler_9FE0_1F:
-ofs_enemy_handler_9FE0_38:
-ofs_enemy_handler_9FE0_39:
-ofs_enemy_handler_9FE0_3A:
-C - - - - - 0x001FF0 00:9FE0: 20 47 A3  JSR sub_A347_set_animation_7    ; get graphics
-C - - - - - 0x001FF3 00:9FE3: 4C EF 9F  JMP loc_9FEF                    ; jump to AI
+C - - - - - 0x001FF0 00:9FE0: 20 47 A3  JSR sub_A347_set_animation_7
+C - - - - - 0x001FF3 00:9FE3: 4C EF 9F  JMP loc_9FEF
 
 
+
+ofs_enemy_handler_9FE6_1D:
+; con_obj_id_1D
+ofs_enemy_handler_9FE6_20:
+; con_obj_id_20
+ofs_enemy_handler_9FE6_23:
+; con_obj_id_23
+ofs_enemy_handler_9FE6_3B:
+; con_obj_id_3B
+ofs_enemy_handler_9FE6_3C:
+; con_obj_id_3C
+ofs_enemy_handler_9FE6_3D:
+; con_obj_id_3D
+ofs_enemy_handler_9FE6_41:
+; con_obj_id_41
 ; ghost that moves counter-clock wise and climbs up walls, only used in room AC
 ; also lots of removed sprites
-ofs_enemy_handler_9FE6_1D:
-ofs_enemy_handler_9FE6_20:
-ofs_enemy_handler_9FE6_23:
-ofs_enemy_handler_9FE6_3B:
-ofs_enemy_handler_9FE6_3C:
-ofs_enemy_handler_9FE6_3D:
-ofs_enemy_handler_9FE6_41:
-C - - - - - 0x001FF6 00:9FE6: 20 2D A3  JSR sub_A32D_set_animation_6    ; get graphics
-C - - - - - 0x001FF9 00:9FE9: 4C EF 9F  JMP loc_9FEF                    ; jump to AI
+C - - - - - 0x001FF6 00:9FE6: 20 2D A3  JSR sub_A32D_set_animation_6
+C - - - - - 0x001FF9 00:9FE9: 4C EF 9F  JMP loc_9FEF
 
 
-; skeleton that moves counter-clock wise and climbs up walls, only used in room AC
+
 ofs_enemy_handler_9FEC_1E:
+; con_obj_id_1E
 ofs_enemy_handler_9FEC_21:
+; con_obj_id_21
 ofs_enemy_handler_9FEC_22:
+; con_obj_id_22
 ofs_enemy_handler_9FEC_3E:
+; con_obj_id_3E
 ofs_enemy_handler_9FEC_3F:
-C - - - - - 0x001FFC 00:9FEC: 20 0E A3  JSR sub_A30E_set_animation_5    ; get graphics
-loc_9FEF:    ; jump to this AI
+; con_obj_id_3F
+; skeleton that moves counter-clock wise and climbs up walls, only used in room AC
+C - - - - - 0x001FFC 00:9FEC: 20 0E A3  JSR sub_A30E_set_animation_5
+loc_9FEF:
 ; AI for enemy that has gravity and moves in circles,
 ; and changes direction when it hits wall or block
 ; or climbs it, its odd
@@ -5417,50 +5449,73 @@ C D 1 - - - 0x002024 00:A014: 20 7E 99  JSR sub_997E
 C - - - - - 0x002027 00:A017: 60        RTS
 
 
-; spike ball
+
 ofs_enemy_handler_A018_14:
+; con_obj_id_14
+; spike ball
 C - - - - - 0x002028 00:A018: A9 24     LDA #$24
 C - - - - - 0x00202A 00:A01A: A0 10     LDY #$10
 C - - - - - 0x00202C 00:A01C: D0 28     BNE bra_A046    ; jmp
 
-; spike ball, but starts one block higher
+
+
 ofs_enemy_handler_A01E_15:
+; con_obj_id_15
+; spike ball, but starts one block higher
 C - - - - - 0x00202E 00:A01E: A9 38     LDA #$38
 C - - - - - 0x002030 00:A020: A0 20     LDY #$20
 C - - - - - 0x002032 00:A022: D0 22     BNE bra_A046    ; jmp
 
-; another spike ball
+
+
 ofs_enemy_handler_A024_17:
+; con_obj_id_17
+; another spike ball
 C - - - - - 0x002034 00:A024: A9 20     LDA #$20
 C - - - - - 0x002036 00:A026: A0 10     LDY #$10
 C - - - - - 0x002038 00:A028: D0 1C     BNE bra_A046    ; jmp
 
-; ...spike ball
+
+
 ofs_enemy_handler_A02A_18:
+; con_obj_id_18
+; ...spike ball
 C - - - - - 0x00203A 00:A02A: A9 30     LDA #$30
 C - - - - - 0x00203C 00:A02C: A0 20     LDY #$20
 C - - - - - 0x00203E 00:A02E: D0 16     BNE bra_A046    ; jmp
 
-; Yet another spike ball
+
+
 ofs_enemy_handler_A030_19:
+; con_obj_id_19
+; Yet another spike ball
 C - - - - - 0x002040 00:A030: A9 40     LDA #$40
 C - - - - - 0x002042 00:A032: A0 30     LDY #$30
 C - - - - - 0x002044 00:A034: D0 10     BNE bra_A046    ; jmp
 
-; Z-moving block but doesnt go all the way to the celling (2 blocks less)
+
+
 ofs_enemy_handler_A036_24:
+; con_obj_id_24
+; Z-moving block but doesnt go all the way to the celling (2 blocks less)
 C - - - - - 0x002046 00:A036: A9 2C     LDA #$2C
 C - - - - - 0x002048 00:A038: A0 14     LDY #$14
 C - - - - - 0x00204A 00:A03A: D0 0A     BNE bra_A046    ; jmp
 
-; Z-moving block but doesnt go all the way to the celling (1 blocks less)
+
+
 ofs_enemy_handler_A03C_16:
+; con_obj_id_16
+; Z-moving block but doesnt go all the way to the celling (1 blocks less)
 C - - - - - 0x00204C 00:A03C: A9 2C     LDA #$2C
 C - - - - - 0x00204E 00:A03E: A0 08     LDY #$08
 C - - - - - 0x002050 00:A040: D0 04     BNE bra_A046    ; jmp
 
-; Z-moving block, goes all way to the celling
+
+
 ofs_enemy_handler_A042_08:
+; con_obj_id_08
+; Z-moving block, goes all way to the celling
 C - - - - - 0x002052 00:A042: A9 40     LDA #$40
 C - - - - - 0x002054 00:A044: A0 08     LDY #$08
 bra_A046:
@@ -5488,24 +5543,31 @@ bra_A06F:
 C - - - - - 0x00207F 00:A06F: 4C 7E 99  JMP loc_997E
 
 
-; Floating block that falls when you stand on top of it
+
 ofs_enemy_handler_A072_07:
+; con_obj_id_07
+; Floating block that falls when you stand on top of it
 C - - - - - 0x002082 00:A072: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x002085 00:A075: 09 80     ORA #$80
 C - - - - - 0x002087 00:A077: 9D 40 07  STA ram_obj_direction_1,X
 C - - - - - 0x00208A 00:A07A: 20 7E 99  JSR sub_997E
-C - - - - - 0x00208D 00:A07D: 4C 8D A0  JMP loc_A08D    ; jump to code that makes it fall down
+C - - - - - 0x00208D 00:A07D: 4C 8D A0  JMP loc_A08D
 
 
-; X/Y-moving thin platform that falls down when player stand on top of it
-; unused!
 ofs_enemy_handler_A080_09:
+; con_obj_id_09
+; X/Y-moving thin platform that falls down when player stand on top of it
+; bzk garbage
 - - - - - - 0x002090 00:A080: 20 CC A1  JSR sub_A1CC
 - - - - - - 0x002093 00:A083: DE 50 07  DEC ram_0750_obj,X
 - - - - - - 0x002096 00:A086: 10 27     BPL bra_A0AF_RTS
 - - - - - - 0x002098 00:A088: A9 04     LDA #$04
 - - - - - - 0x00209A 00:A08A: 9D 50 07  STA ram_0750_obj,X
-loc_A08D:    ; makes block/platform fall down when player stand on it
+
+
+
+loc_A08D:
+; makes block/platform fall down when player stand on it
 C D 1 - - - 0x00209D 00:A08D: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x0020A0 00:A090: 29 20     AND #$20
 C - - - - - 0x0020A2 00:A092: F0 1B     BEQ bra_A0AF_RTS
@@ -5524,19 +5586,21 @@ bra_A0AF_RTS:
 C - - - - - 0x0020BF 00:A0AF: 60        RTS
 
 
+
+ofs_enemy_handler_A0B0_1B:
+; con_obj_id_1B
 ; Crystal ball
 ; this variation is only used in room E2
 ; it kinda has gravity, so it goes down little if you hit it from below,
 ; but it doesnt work that well
-ofs_enemy_handler_A0B0_1B:
 C - - - - - 0x0020C0 00:A0B0: B5 35     LDA ram_pos_Z_obj,X
 C - - - - - 0x0020C2 00:A0B2: 29 F8     AND #$F8
 C - - - - - 0x0020C4 00:A0B4: 18        CLC
 C - - - - - 0x0020C5 00:A0B5: 69 01     ADC #$01
 C - - - - - 0x0020C7 00:A0B7: 95 35     STA ram_pos_Z_obj,X
-
-; "Normal" Crystal ball
 ofs_enemy_handler_A0B9_13:
+; con_obj_id_13
+; "Normal" Crystal ball
 C - - - - - 0x0020C9 00:A0B9: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x0020CC 00:A0BC: 09 80     ORA #$80
 C - - - - - 0x0020CE 00:A0BE: 9D 40 07  STA ram_obj_direction_1,X
@@ -5556,137 +5620,179 @@ bra_A0DD:
 C - - - - - 0x0020ED 00:A0DD: 4C 7E 99  JMP loc_997E
 
 
-; Leg monster, moves randomly
-; unused!
+
 ofs_enemy_handler_A0E0_35:
+; con_obj_id_35
+; Leg monster, moves randomly
+; bzk garbage
 - - - - - - 0x0020F0 00:A0E0: 20 96 A2  JSR sub_A296_set_animation_1
-- - - - - - 0x0020F3 00:A0E3: 4C F2 A1  JMP loc_A1F2
+- - - - - - 0x0020F3 00:A0E3: 4C F2 A1  JMP loc_A1F2_random_movement_ai
 
 
-; Tusk Demon, moves radomly
-; unused!
+
 ofs_enemy_handler_A0E6_32:
+; con_obj_id_32
+; Tusk Demon, moves radomly
+; bzk garbage
 - - - - - - 0x0020F6 00:A0E6: 20 B0 A2  JSR sub_A2B0_set_animation_2
-- - - - - - 0x0020F9 00:A0E9: 4C F2 A1  JMP loc_A1F2
+- - - - - - 0x0020F9 00:A0E9: 4C F2 A1  JMP loc_A1F2_random_movement_ai
 
 
-; Worm, moves randomly
+
 ofs_enemy_handler_A0EC_2F:
+; con_obj_id_2F
+; Worm, moves randomly
 C - - - - - 0x0020FC 00:A0EC: 20 CA A2  JSR sub_A2CA_set_animation_3
-C - - - - - 0x0020FF 00:A0EF: 4C F2 A1  JMP loc_A1F2
+C - - - - - 0x0020FF 00:A0EF: 4C F2 A1  JMP loc_A1F2_random_movement_ai
 
 
-; Lanky three legged spider, moves randomly
-; unused!
+
 ofs_enemy_handler_A0F2_26:
+; con_obj_id_26
+; Lanky three legged spider, moves randomly
+; bzk garbage
 - - - - - - 0x002102 00:A0F2: 20 E4 A2  JSR sub_A2E4_set_animation_4
-- - - - - - 0x002105 00:A0F5: 4C F2 A1  JMP loc_A1F2
+- - - - - - 0x002105 00:A0F5: 4C F2 A1  JMP loc_A1F2_random_movement_ai
 
 
-; Troll, moves randomly
+
 ofs_enemy_handler_A0F8_04:
+; con_obj_id_04
+; Troll, moves randomly
 C - - - - - 0x002108 00:A0F8: 20 47 A3  JSR sub_A347_set_animation_7
-C - - - - - 0x00210B 00:A0FB: 4C F2 A1  JMP loc_A1F2
+C - - - - - 0x00210B 00:A0FB: 4C F2 A1  JMP loc_A1F2_random_movement_ai
 
 
-; Ghost, moves randomly
+
 ofs_enemy_handler_A0FE_0A:
+; con_obj_id_0A
+; Ghost, moves randomly
 C - - - - - 0x00210E 00:A0FE: 20 2D A3  JSR sub_A32D_set_animation_6
-C - - - - - 0x002111 00:A101: 4C F2 A1  JMP loc_A1F2
+C - - - - - 0x002111 00:A101: 4C F2 A1  JMP loc_A1F2_random_movement_ai
 
 
-; Skeleton, moves randomly
 ofs_enemy_handler_A104_0B:
+; con_obj_id_0B
+; Skeleton, moves randomly
 C - - - - - 0x002114 00:A104: 20 0E A3  JSR sub_A30E_set_animation_5
-C - - - - - 0x002117 00:A107: 4C F2 A1  JMP loc_A1F2
+C - - - - - 0x002117 00:A107: 4C F2 A1  JMP loc_A1F2_random_movement_ai
 
 
-; Leg monster, moves back and forth
-; unused!
+
 ofs_enemy_handler_A10A_36:
+; con_obj_id_36
+; Leg monster, moves back and forth
+; bzk garbage
 - - - - - - 0x00211A 00:A10A: 20 96 A2  JSR sub_A296_set_animation_1
 - - - - - - 0x00211D 00:A10D: 4C CC A1  JMP loc_A1CC
 
 
-; Tusk Demon, moves back and forth
+
 ofs_enemy_handler_A110_33:
+; con_obj_id_33
+; Tusk Demon, moves back and forth
 C - - - - - 0x002120 00:A110: 20 B0 A2  JSR sub_A2B0_set_animation_2
 C - - - - - 0x002123 00:A113: 4C CC A1  JMP loc_A1CC
 
 
-; Worm, moves back and forth 
+
 ofs_enemy_handler_A116_30:
+; con_obj_id_30
+; Worm, moves back and forth 
 C - - - - - 0x002126 00:A116: 20 CA A2  JSR sub_A2CA_set_animation_3
 C - - - - - 0x002129 00:A119: 4C CC A1  JMP loc_A1CC
 
 
-; spider, moves back and forth
-; unused!
+
 ofs_enemy_handler_A11C_27:
+; con_obj_id_27
+; spider, moves back and forth
+; bzk garbage
 - - - - - - 0x00212C 00:A11C: 20 E4 A2  JSR sub_A2E4_set_animation_4
 - - - - - - 0x00212F 00:A11F: 4C CC A1  JMP loc_A1CC
 
 
-; Ghost that moves back and forth 
+
 ofs_enemy_handler_A122_0C:
+; con_obj_id_0C
+; Ghost that moves back and forth 
 C - - - - - 0x002132 00:A122: 20 2D A3  JSR sub_A32D_set_animation_6
 C - - - - - 0x002135 00:A125: 4C CC A1  JMP loc_A1CC
 
 
-; Skeleton that moves back and forth 
-; unused!
+
 ofs_enemy_handler_A128_0D:
+; con_obj_id_0D
+; Skeleton that moves back and forth 
+; bzk garbage
 - - - - - - 0x002138 00:A128: 20 0E A3  JSR sub_A30E_set_animation_5
 - - - - - - 0x00213B 00:A12B: 4C CC A1  JMP loc_A1CC
 
 
+
+ofs_enemy_handler_A12E_37:
+; con_obj_id_37
 ; Leg monster, chases you
 ; the only leg monster that gets used in one throw-away room :(
-ofs_enemy_handler_A12E_37:
 C - - - - - 0x00213E 00:A12E: 20 96 A2  JSR sub_A296_set_animation_1
-C - - - - - 0x002141 00:A131: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
+C - - - - - 0x002141 00:A131: 4C 5B A1  JMP loc_A15B_chasing_ai
 
 
-; Tusk Demon, chases you
+
 ofs_enemy_handler_A134_34:
+; con_obj_id_34
+; Tusk Demon, chases you
 C - - - - - 0x002144 00:A134: 20 B0 A2  JSR sub_A2B0_set_animation_2
-C - - - - - 0x002147 00:A137: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
+C - - - - - 0x002147 00:A137: 4C 5B A1  JMP loc_A15B_chasing_ai
 
 
-; Worm, chases you
+
 ofs_enemy_handler_A13A_31:
+; con_obj_id_31
+; Worm, chases you
 C - - - - - 0x00214A 00:A13A: 20 CA A2  JSR sub_A2CA_set_animation_3
-C - - - - - 0x00214D 00:A13D: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
+C - - - - - 0x00214D 00:A13D: 4C 5B A1  JMP loc_A15B_chasing_ai
 
 
-; spider, chases you
+
 ofs_enemy_handler_A140_28:
+; con_obj_id_28
+; spider, chases you
 C - - - - - 0x002150 00:A140: 20 E4 A2  JSR sub_A2E4_set_animation_4
-C - - - - - 0x002153 00:A143: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
+C - - - - - 0x002153 00:A143: 4C 5B A1  JMP loc_A15B_chasing_ai
 
 
-; Ghost that chases you
+
 ofs_enemy_handler_A146_0F:
+; con_obj_id_0F
+; Ghost that chases you
 C - - - - - 0x002156 00:A146: 20 2D A3  JSR sub_A32D_set_animation_6
-C - - - - - 0x002159 00:A149: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
+C - - - - - 0x002159 00:A149: 4C 5B A1  JMP loc_A15B_chasing_ai
 
 
-; Skeleton that chases you
+
 ofs_enemy_handler_A14C_10:
+; con_obj_id_10
+; Skeleton that chases you
 C - - - - - 0x00215C 00:A14C: 20 0E A3  JSR sub_A30E_set_animation_5
-C - - - - - 0x00215F 00:A14F: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
+C - - - - - 0x00215F 00:A14F: 4C 5B A1  JMP loc_A15B_chasing_ai
 
 
-; Troll that chases you
+
 ofs_enemy_handler_A152_11:
+; con_obj_id_11
+; Troll that chases you
 C - - - - - 0x002162 00:A152: 20 47 A3  JSR sub_A347_set_animation_7
-C - - - - - 0x002165 00:A155: 4C 5B A1  JMP loc_A15B ; Jump to chancing AI
+C - - - - - 0x002165 00:A155: 4C 5B A1  JMP loc_A15B_chasing_ai
 
 
-; Slime Ball that chases you
+
 ofs_enemy_handler_A158_12:
+; con_obj_id_12
+; Slime Ball that chases you
 C - - - - - 0x002168 00:A158: 20 66 A3  JSR sub_A366_set_animation_8
-loc_A15B:    ; AI for enemy that chases the player
+loc_A15B_chasing_ai:
+; AI for enemy that chases the player
 C D 1 - - - 0x00216B 00:A15B: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x00216E 00:A15E: 20 7C A3  JSR sub_A37C
 C - - - - - 0x002171 00:A161: A0 FF     LDY #$FF
@@ -5746,9 +5852,11 @@ bra_A1BA:
 C - - - - - 0x0021CA 00:A1BA: 4C 7E 99  JMP loc_997E
 
 
+
+ofs_enemy_handler_A1BD_1A:
+; con_obj_id_1A
 ; moving X/Y moving thin platform
 ; has same Z-gravity as the one-off crystall ball
-ofs_enemy_handler_A1BD_1A:
 C - - - - - 0x0021CD 00:A1BD: B5 35     LDA ram_pos_Z_obj,X
 C - - - - - 0x0021CF 00:A1BF: 29 F8     AND #$F8
 C - - - - - 0x0021D1 00:A1C1: 18        CLC
@@ -5757,12 +5865,15 @@ C - - - - - 0x0021D4 00:A1C4: 95 35     STA ram_pos_Z_obj,X
 C - - - - - 0x0021D6 00:A1C6: 4C CC A1  JMP loc_A1CC
 
 
-; Troll that moves back and forth 
+
 ofs_enemy_handler_A1C9_0E:
+; con_obj_id_0E
+; Troll that moves back and forth 
 C - - - - - 0x0021D9 00:A1C9: 20 47 A3  JSR sub_A347_set_animation_7
 loc_A1CC:
 sub_A1CC:
 ofs_enemy_handler_A1CC_06:
+; con_obj_id_06
 C D 1 - - - 0x0021DC 00:A1CC: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x0021DF 00:A1CF: 20 7C A3  JSR sub_A37C
 C - - - - - 0x0021E2 00:A1D2: B0 03     BCS bra_A1D7
@@ -5782,10 +5893,13 @@ bra_A1EE_RTS:
 C - - - - - 0x0021FE 00:A1EE: 60        RTS
 
 
-; Slime Ball that moves around randomly
+
 ofs_enemy_handler_A1EF_05:
+; con_obj_id_05
+; Slime Ball that moves around randomly
 C - - - - - 0x0021FF 00:A1EF: 20 66 A3  JSR sub_A366_set_animation_8
-loc_A1F2:    ; AI for enemies that move around randomly
+loc_A1F2_random_movement_ai:
+; AI for enemies that move around randomly
 C D 1 - - - 0x002202 00:A1F2: BD 40 07  LDA ram_obj_direction_1,X
 C - - - - - 0x002205 00:A1F5: 20 7C A3  JSR sub_A37C
 C - - - - - 0x002208 00:A1F8: 90 13     BCC bra_A20D
@@ -5814,8 +5928,10 @@ bra_A221:
 C - - - - - 0x002231 00:A221: 4C 7E 99  JMP loc_997E
 
 
-; Troll that moves in circles, but goes counter-clock wise
+
 ofs_enemy_handler_A224_02:
+; con_obj_id_02
+; Troll that moves in circles, but goes counter-clock wise
 C - - - - - 0x002234 00:A224: 20 47 A3  JSR sub_A347_set_animation_7
 C - - - - - 0x002237 00:A227: BD 48 07  LDA ram_0748_obj,X
 C - - - - - 0x00223A 00:A22A: C9 0A     CMP #$0A
@@ -5837,8 +5953,10 @@ bra_A248:
 C - - - - - 0x002258 00:A248: 4C 7E 99  JMP loc_997E
 
 
-; Troll that choses direction at random, only used in room 18
+
 ofs_enemy_handler_A24B_03:
+; con_obj_id_03
+; Troll that choses direction at random, only used in room 18
 C - - - - - 0x00225B 00:A24B: 20 47 A3  JSR sub_A347_set_animation_7
 C - - - - - 0x00225E 00:A24E: BD 48 07  LDA ram_0748_obj,X
 C - - - - - 0x002261 00:A251: C9 0A     CMP #$0A
@@ -5858,8 +5976,10 @@ bra_A26C:
 C - - - - - 0x00227C 00:A26C: 4C 7E 99  JMP loc_997E
 
 
-; Troll that moves in circles
+
 ofs_enemy_handler_A26F_01:
+; con_obj_id_01
+; Troll that moves in circles
 C - - - - - 0x00227F 00:A26F: 20 47 A3  JSR sub_A347_set_animation_7
 C - - - - - 0x002282 00:A272: BD 48 07  LDA ram_0748_obj,X
 C - - - - - 0x002285 00:A275: C9 0A     CMP #$0A
@@ -5881,10 +6001,10 @@ bra_A293:
 C - - - - - 0x0022A3 00:A293: 4C 7E 99  JMP loc_997E
 
 
-; Animations/graphics for enemies
 
-; Leg monster enemy
+
 sub_A296_set_animation_1:
+; Leg monster enemy
 ; bzk optimize, a common subroutine for all cases below
 ; copy from 0x0022A6 to 0x0022AD + RTS
 ; for 0x0022F4 it will work as well since C won't be overwritten by excess instructions
@@ -5911,8 +6031,9 @@ tbl_A2AC:
 - D 1 - - - 0x0022BF 00:A2AF: 40        .byte $40   ; 03 
 
 
-; Tusk demon enemy
+
 sub_A2B0_set_animation_2:
+; Tusk demon enemy
 C - - - - - 0x0022C0 00:A2B0: A5 21     LDA ram_frm_cnt
 C - - - - - 0x0022C2 00:A2B2: 4A        LSR
 C - - - - - 0x0022C3 00:A2B3: 4A        LSR
@@ -5936,8 +6057,9 @@ tbl_A2C6:
 - D 1 - - - 0x0022D9 00:A2C9: 75        .byte $75   ; 03 
 
 
-; Worm enemy
+
 sub_A2CA_set_animation_3:
+; Worm enemy
 C - - - - - 0x0022DA 00:A2CA: A5 21     LDA ram_frm_cnt
 C - - - - - 0x0022DC 00:A2CC: 4A        LSR
 C - - - - - 0x0022DD 00:A2CD: 4A        LSR
@@ -5961,8 +6083,9 @@ tbl_A2E0:
 - D 1 - - - 0x0022F3 00:A2E3: 6D        .byte $6D   ; 03 
 
 
-; Spider enemy
+
 sub_A2E4_set_animation_4:
+; Spider enemy
 C - - - - - 0x0022F4 00:A2E4: A5 21     LDA ram_frm_cnt
 C - - - - - 0x0022F6 00:A2E6: 4A        LSR
 C - - - - - 0x0022F7 00:A2E7: 4A        LSR
@@ -5991,8 +6114,9 @@ C - - - - - 0x00231A 00:A30A: 9D 38 07  STA ram_obj_anim_id,X
 C - - - - - 0x00231D 00:A30D: 60        RTS
 
 
-; skeleton enemy
+
 sub_A30E_set_animation_5:
+; skeleton enemy
 C - - - - - 0x00231E 00:A30E: A5 21     LDA ram_frm_cnt
 C - - - - - 0x002320 00:A310: 4A        LSR
 C - - - - - 0x002321 00:A311: 4A        LSR
@@ -6019,8 +6143,9 @@ tbl_A329:
 - D 1 - - - 0x00233C 00:A32C: 32        .byte $32   ; 03 
 
 
-; ghost enemy
+
 sub_A32D_set_animation_6:
+; ghost enemy
 C - - - - - 0x00233D 00:A32D: A5 21     LDA ram_frm_cnt
 C - - - - - 0x00233F 00:A32F: 4A        LSR
 C - - - - - 0x002340 00:A330: 4A        LSR
@@ -6044,8 +6169,9 @@ tbl_A343:
 - D 1 - - - 0x002356 00:A346: 2A        .byte $2A   ; 03 
 
 
-; troll enemy
+
 sub_A347_set_animation_7:
+; troll enemy
 C - - - - - 0x002357 00:A347: A5 21     LDA ram_frm_cnt
 C - - - - - 0x002359 00:A349: 4A        LSR
 C - - - - - 0x00235A 00:A34A: 4A        LSR
@@ -6072,8 +6198,9 @@ tbl_A362:
 - D 1 - - - 0x002375 00:A365: 0D        .byte $0D   ; 03 
 
 
-; slime ball enemy
+
 sub_A366_set_animation_8:
+; slime ball enemy
 C - - - - - 0x002376 00:A366: A5 21     LDA ram_frm_cnt
 C - - - - - 0x002378 00:A368: 4A        LSR
 C - - - - - 0x002379 00:A369: 4A        LSR
@@ -6094,8 +6221,8 @@ tbl_A375:
 
 
 
-; enemy is frozen by yellow potion?
 bra_A379_object_frozen:
+; enemy is frozen by yellow potion?
 C - - - - - 0x002389 00:A379: 68        PLA
 C - - - - - 0x00238A 00:A37A: 18        CLC
 C - - - - - 0x00238B 00:A37B: 60        RTS

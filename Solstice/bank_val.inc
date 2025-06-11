@@ -90,7 +90,7 @@ con_sfx_detonate                        = $09 ; activate Detonator
 
 
 
-; need comments at 0x0141F6
+; need comments at 0x0141F9
 con_music_story                         = $00 ; story sequence music
 con_music_gameplay                      = $01 ; gameplay music
 con_music_game_over                     = $02 ; game over screen
@@ -381,7 +381,7 @@ con_se_cb_8D                            = $8D ;
 con_se_cb_8E                            = $8E ; 
 con_se_cb_8F                            = $8F ; 
 con_se_cb_90                            = $90 ; 
-; con_se_cb_91                          = $91 ; 
+; con_se_cb_91                          = $91 ; unused
 con_se_cb_loop                          = $92 ; 
 con_se_cb_93                            = $93 ; 
 con_se_cb_94                            = $94 ; 
