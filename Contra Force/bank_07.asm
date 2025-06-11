@@ -2812,14 +2812,15 @@ C - - - - - 0x00EF41 03:AF31: 4C C0 8F  JMP loc_0x008FD0
 
 sub_AF34:
 C - - - - - 0x00EF44 03:AF34: 20 78 91  JSR sub_0x009188_stage_AND_01
-C - - - - - 0x00EF47 03:AF37: F0 0E     BEQ bra_AF47
+C - - - - - 0x00EF47 03:AF37: F0 0E     BEQ bra_AF47_side_view
+; if upper view
 C - - - - - 0x00EF49 03:AF39: 20 B1 93  JSR sub_0x0093C1_06B2x_LSRx4_TAY
 C - - - - - 0x00EF4C 03:AF3C: B9 71 AF  LDA tbl_AF71,Y
 C - - - - - 0x00EF4F 03:AF3F: 85 00     STA ram_0000_t53_pos_X
 C - - - - - 0x00EF51 03:AF41: B9 72 AF  LDA tbl_AF71 + $01,Y
 C - - - - - 0x00EF54 03:AF44: 85 01     STA ram_0001_t20_pos_Y
 C - - - - - 0x00EF56 03:AF46: 60        RTS
-bra_AF47:
+bra_AF47_side_view:
 C - - - - - 0x00EF57 03:AF47: A9 F0     LDA #$F0
 C - - - - - 0x00EF59 03:AF49: BC B2 06  LDY ram_06B2_obj,X
 C - - - - - 0x00EF5C 03:AF4C: 30 02     BMI bra_AF50
@@ -4393,12 +4394,12 @@ C - - - - - 0x00F677 03:B667: 60        RTS
 bra_B668:
 C - - - - - 0x00F678 03:B668: 20 55 9E  JSR sub_0x009E65
 C - - - - - 0x00F67B 03:B66B: 90 FA     BCC bra_B667_RTS
-C - - - - - 0x00F67D 03:B66D: 84 18     STY ram_0018_temp
+C - - - - - 0x00F67D 03:B66D: 84 18     STY ram_0018_t15
 C - - - - - 0x00F67F 03:B66F: A0 00     LDY #$00
 C - - - - - 0x00F681 03:B671: 20 0F F7  JSR sub_0x01F71F
 C - - - - - 0x00F684 03:B674: C8        INY ; 01
 C - - - - - 0x00F685 03:B675: 20 0F F7  JSR sub_0x01F71F
-C - - - - - 0x00F688 03:B678: A4 18     LDY ram_0018_temp
+C - - - - - 0x00F688 03:B678: A4 18     LDY ram_0018_t15
 C - - - - - 0x00F68A 03:B67A: 4C 05 9E  JMP loc_0x009E15
 bra_B67D:
 C - - - - - 0x00F68D 03:B67D: BD 68 06  LDA ram_obj_pos_Y,X
@@ -5880,7 +5881,6 @@ C - - - - - 0x00FFAD 03:BF9D: A9 07     LDA #$07
 C - - - - - 0x00FFAF 03:BF9F: 85 1C     STA ram_001C_t20_useless
 bra_BFA1:
 C - - - - - 0x00FFB1 03:BFA1: A9 00     LDA #$00
-; bzk optimize, useless STA
 C - - - - - 0x00FFB3 03:BFA3: 85 18     STA ram_0018_t07_lo
 C - - - - - 0x00FFB5 03:BFA5: 85 1A     STA ram_001A_t08_lo
 C - - - - - 0x00FFB7 03:BFA7: 85 1B     STA ram_001B_t02_hi

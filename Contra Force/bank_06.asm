@@ -237,7 +237,7 @@ bra_A12A_loop:
 C D 1 - - - 0x00C13A 03:A12A: B1 0A     LDA (ram_000A_t02_data),Y
 C - - - - - 0x00C13C 03:A12C: 18        CLC
 C - - - - - 0x00C13D 03:A12D: 69 01     ADC #$01
-C - - - - - 0x00C13F 03:A12F: F0 C4     BEQ bra_A0F5_RTS
+C - - - - - 0x00C13F 03:A12F: F0 C4     BEQ bra_A0F5_RTS    ; if was FF
 C - - - - - 0x00C141 03:A131: 29 FC     AND #$FC
 C - - - - - 0x00C143 03:A133: 85 00     STA ram_0000_t1D
 C - - - - - 0x00C145 03:A135: A5 61     LDA ram_0061
@@ -252,7 +252,7 @@ C - - - - - 0x00C153 03:A143: F0 04     BEQ bra_A149
 bra_A145_loop:
 C - - - - - 0x00C155 03:A145: C8        INY
 C - - - - - 0x00C156 03:A146: C8        INY
-C - - - - - 0x00C157 03:A147: D0 E1     BNE bra_A12A_loop   ; jmp?
+C - - - - - 0x00C157 03:A147: D0 E1     BNE bra_A12A_loop   ; jmp
 bra_A149:
 C - - - - - 0x00C159 03:A149: A5 69     LDA ram_0069
 C - - - - - 0x00C15B 03:A14B: 10 F8     BPL bra_A145_loop
@@ -332,7 +332,7 @@ C - - - - - 0x00C1CF 03:A1BF: 85 0E     STA ram_000E_t01_data
 C - - - - - 0x00C1D1 03:A1C1: B9 E6 A2  LDA tbl_A2E5 + $01,Y
 C - - - - - 0x00C1D4 03:A1C4: 85 0F     STA ram_000E_t01_data + $01
 C - - - - - 0x00C1D6 03:A1C6: A9 00     LDA #$00
-C - - - - - 0x00C1D8 03:A1C8: 85 19     STA ram_0019_temp
+C - - - - - 0x00C1D8 03:A1C8: 85 19     STA ram_0019_t06
 C - - - - - 0x00C1DA 03:A1CA: A5 23     LDA ram_frm_cnt
 C - - - - - 0x00C1DC 03:A1CC: 29 01     AND #$01
 C - - - - - 0x00C1DE 03:A1CE: D0 03     BNE bra_A1D3
@@ -342,7 +342,7 @@ C - - - - - 0x00C1E3 03:A1D3: A5 6B     LDA ram_006B
 C - - - - - 0x00C1E5 03:A1D5: 05 6C     ORA ram_006C
 C - - - - - 0x00C1E7 03:A1D7: F0 DD     BEQ bra_A1B6_RTS
 C - - - - - 0x00C1E9 03:A1D9: A5 60     LDA ram_0060
-C - - - - - 0x00C1EB 03:A1DB: 85 18     STA ram_0018_temp
+C - - - - - 0x00C1EB 03:A1DB: 85 18     STA ram_0018_t08
 loc_A1DD:
 C D 1 - - - 0x00C1ED 03:A1DD: A4 63     LDY ram_0063
 C - - - - - 0x00C1EF 03:A1DF: A5 6B     LDA ram_006B
@@ -360,7 +360,7 @@ C D 1 - - - 0x00C201 03:A1F1: A0 00     LDY #$00
 C - - - - - 0x00C203 03:A1F3: B1 0A     LDA (ram_000A_t02_data),Y
 C - - - - - 0x00C205 03:A1F5: C9 FF     CMP #$FF
 C - - - - - 0x00C207 03:A1F7: F0 60     BEQ bra_A259
-C - - - - - 0x00C209 03:A1F9: A5 19     LDA ram_0019_temp
+C - - - - - 0x00C209 03:A1F9: A5 19     LDA ram_0019_t06
 C - - - - - 0x00C20B 03:A1FB: F0 08     BEQ bra_A205
 C - - - - - 0x00C20D 03:A1FD: B1 0A     LDA (ram_000A_t02_data),Y
 C - - - - - 0x00C20F 03:A1FF: C5 1A     CMP ram_001A_t02
@@ -410,11 +410,11 @@ bra_A253:
 C - - - - - 0x00C263 03:A253: 20 CB A2  JSR sub_A2CB
 C - - - - - 0x00C266 03:A256: 4C F1 A1  JMP loc_A1F1
 bra_A259:
-C - - - - - 0x00C269 03:A259: E6 19     INC ram_0019_temp
-C - - - - - 0x00C26B 03:A25B: A5 19     LDA ram_0019_temp
+C - - - - - 0x00C269 03:A259: E6 19     INC ram_0019_t06
+C - - - - - 0x00C26B 03:A25B: A5 19     LDA ram_0019_t06
 C - - - - - 0x00C26D 03:A25D: 29 01     AND #$01
 C - - - - - 0x00C26F 03:A25F: F0 05     BEQ bra_A266_RTS
-C - - - - - 0x00C271 03:A261: E6 18     INC ram_0018_temp
+C - - - - - 0x00C271 03:A261: E6 18     INC ram_0018_t08
 C - - - - - 0x00C273 03:A263: 4C DD A1  JMP loc_A1DD
 bra_A266_RTS:
 C - - - - - 0x00C276 03:A266: 60        RTS
@@ -428,10 +428,10 @@ C - - - - - 0x00C27B 03:A26B: F0 F9     BEQ bra_A266_RTS
 C - - - - - 0x00C27D 03:A26D: A4 63     LDY ram_0063
 loc_A26F_loop:
 C D 1 - - - 0x00C27F 03:A26F: A5 60     LDA ram_0060
-C - - - - - 0x00C281 03:A271: 85 18     STA ram_0018_temp
+C - - - - - 0x00C281 03:A271: 85 18     STA ram_0018_t08
 C - - - - - 0x00C283 03:A273: A5 69     LDA ram_0069
 C - - - - - 0x00C285 03:A275: 30 02     BMI bra_A279
-C - - - - - 0x00C287 03:A277: E6 18     INC ram_0018_temp
+C - - - - - 0x00C287 03:A277: E6 18     INC ram_0018_t08
 bra_A279:
 C - - - - - 0x00C289 03:A279: 20 1F A3  JSR sub_A31F
 C - - - - - 0x00C28C 03:A27C: A5 64     LDA ram_0064
@@ -445,8 +445,8 @@ C - - - - - 0x00C298 03:A288: B1 0A     LDA (ram_000A_t02_data),Y
 C - - - - - 0x00C29A 03:A28A: 85 0D     STA ram_000D_t05
 C - - - - - 0x00C29C 03:A28C: C9 FF     CMP #$FF
 C - - - - - 0x00C29E 03:A28E: F0 47     BEQ bra_A2D7_FF
-C - - - - - 0x00C2A0 03:A290: C8        INY
-C - - - - - 0x00C2A1 03:A291: A5 19     LDA ram_0019_temp
+C - - - - - 0x00C2A0 03:A290: C8        INY ; 01
+C - - - - - 0x00C2A1 03:A291: A5 19     LDA ram_0019_t06
 C - - - - - 0x00C2A3 03:A293: F0 08     BEQ bra_A29D
 C - - - - - 0x00C2A5 03:A295: B1 0A     LDA (ram_000A_t02_data),Y
 C - - - - - 0x00C2A7 03:A297: C5 1A     CMP ram_001A_t03
@@ -486,8 +486,8 @@ C - - - - - 0x00C2E4 03:A2D4: E6 0B     INC ram_000A_t02_data + $01
 bra_A2D6_RTS:
 C - - - - - 0x00C2E6 03:A2D6: 60        RTS
 bra_A2D7_FF:
-C - - - - - 0x00C2E7 03:A2D7: E6 19     INC ram_0019_temp
-C - - - - - 0x00C2E9 03:A2D9: A5 19     LDA ram_0019_temp
+C - - - - - 0x00C2E7 03:A2D7: E6 19     INC ram_0019_t06
+C - - - - - 0x00C2E9 03:A2D9: A5 19     LDA ram_0019_t06
 C - - - - - 0x00C2EB 03:A2DB: 29 01     AND #$01
 C - - - - - 0x00C2ED 03:A2DD: F0 F7     BEQ bra_A2D6_RTS
 C - - - - - 0x00C2EF 03:A2DF: A4 63     LDY ram_0063
@@ -569,7 +569,7 @@ sub_A31F:
     ; ram_0008_t01_data
     ; ram_000E_t01_data
     ; ram_001E_t01_data
-C - - - - - 0x00C32F 03:A31F: A5 18     LDA ram_0018_temp
+C - - - - - 0x00C32F 03:A31F: A5 18     LDA ram_0018_t08
 C - - - - - 0x00C331 03:A321: 85 90     STA ram_0090
 C - - - - - 0x00C333 03:A323: 84 91     STY ram_0091
 C - - - - - 0x00C335 03:A325: A5 75     LDA ram_stage
@@ -579,9 +579,8 @@ C - - - - - 0x00C33B 03:A32B: C0 16     CPY #$16
 C - - - - - 0x00C33D 03:A32D: 90 0F     BCC bra_A33E
 C - - - - - 0x00C33F 03:A32F: B1 0E     LDA (ram_000E_t01_data),Y
 C - - - - - 0x00C341 03:A331: 18        CLC
-C - - - - - 0x00C342 03:A332: 65 18     ADC ram_0018_temp
+C - - - - - 0x00C342 03:A332: 65 18     ADC ram_0018_t08
 C - - - - - 0x00C344 03:A334: A8        TAY
-; !!! bzk warning
 C - - - - - 0x00C345 03:A335: E6 09     INC ram_0008_t01_data + $01
 C - - - - - 0x00C347 03:A337: B1 08     LDA (ram_0008_t01_data),Y
 C - - - - - 0x00C349 03:A339: C6 09     DEC ram_0008_t01_data + $01
@@ -589,7 +588,7 @@ C - - - - - 0x00C34B 03:A33B: 4C 46 A3  JMP loc_A346
 bra_A33E:
 C - - - - - 0x00C34E 03:A33E: B1 0E     LDA (ram_000E_t01_data),Y
 C - - - - - 0x00C350 03:A340: 18        CLC
-C - - - - - 0x00C351 03:A341: 65 18     ADC ram_0018_temp
+C - - - - - 0x00C351 03:A341: 65 18     ADC ram_0018_t08
 C - - - - - 0x00C353 03:A343: A8        TAY
 C - - - - - 0x00C354 03:A344: B1 08     LDA (ram_0008_t01_data),Y
 loc_A346:
@@ -1160,437 +1159,536 @@ _off015_A67D_00_stage_1:
 
 
 _off017_00_A6AD_00:
+; 
 - D 1 - I - 0x00C6BD 03:A6AD: 07        .byte $07   ; 
 - D 1 - I - 0x00C6BE 03:A6AE: 88        .byte $88   ; 
 - D 1 - I - 0x00C6BF 03:A6AF: 3E        .byte $3E   ; 
 - D 1 - I - 0x00C6C0 03:A6B0: 00        .byte $00   ; 
+; 
 - D 1 - I - 0x00C6C1 03:A6B1: 63        .byte $63   ; 
 - D 1 - I - 0x00C6C2 03:A6B2: 38        .byte $38   ; 
 - D 1 - I - 0x00C6C3 03:A6B3: 41        .byte $41   ; 
 - D 1 - I - 0x00C6C4 03:A6B4: 0A        .byte $0A   ; 
+; 
 - D 1 - I - 0x00C6C5 03:A6B5: 76        .byte $76   ; 
 - D 1 - I - 0x00C6C6 03:A6B6: A8        .byte $A8   ; 
 - D 1 - I - 0x00C6C7 03:A6B7: 3F        .byte $3F   ; 
 - D 1 - I - 0x00C6C8 03:A6B8: 03        .byte $03   ; 
+; 
 - D 1 - I - 0x00C6C9 03:A6B9: E7        .byte $E7   ; 
 - D 1 - I - 0x00C6CA 03:A6BA: A8        .byte $A8   ; 
 - D 1 - I - 0x00C6CB 03:A6BB: 3F        .byte $3F   ; 
 - D 1 - I - 0x00C6CC 03:A6BC: 04        .byte $04   ; 
-- D 1 - I - 0x00C6CD 03:A6BD: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C6CD 03:A6BD: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A6BE_01:
+; 
 - D 1 - I - 0x00C6CE 03:A6BE: 1C        .byte $1C   ; 
 - D 1 - I - 0x00C6CF 03:A6BF: 38        .byte $38   ; 
 - D 1 - I - 0x00C6D0 03:A6C0: 41        .byte $41   ; 
 - D 1 - I - 0x00C6D1 03:A6C1: 0D        .byte $0D   ; 
+; 
 - D 1 - I - 0x00C6D2 03:A6C2: 36        .byte $36   ; 
 - D 1 - I - 0x00C6D3 03:A6C3: A8        .byte $A8   ; 
 - D 1 - I - 0x00C6D4 03:A6C4: 3F        .byte $3F   ; 
 - D 1 - I - 0x00C6D5 03:A6C5: 06        .byte $06   ; 
+; 
 - D 1 - I - 0x00C6D6 03:A6C6: 84        .byte $84   ; 
 - D 1 - I - 0x00C6D7 03:A6C7: A8        .byte $A8   ; 
 - D 1 - I - 0x00C6D8 03:A6C8: 41        .byte $41   ; 
 - D 1 - I - 0x00C6D9 03:A6C9: 08        .byte $08   ; 
+; 
 - D 1 - I - 0x00C6DA 03:A6CA: DC        .byte $DC   ; 
 - D 1 - I - 0x00C6DB 03:A6CB: A8        .byte $A8   ; 
 - D 1 - I - 0x00C6DC 03:A6CC: 3F        .byte $3F   ; 
 - D 1 - I - 0x00C6DD 03:A6CD: 02        .byte $02   ; 
+; 
 - D 1 - I - 0x00C6DE 03:A6CE: D8        .byte $D8   ; 
 - D 1 - I - 0x00C6DF 03:A6CF: 38        .byte $38   ; 
 - D 1 - I - 0x00C6E0 03:A6D0: 41        .byte $41   ; 
 - D 1 - I - 0x00C6E1 03:A6D1: 0B        .byte $0B   ; 
-- D 1 - I - 0x00C6E2 03:A6D2: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C6E2 03:A6D2: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A6D3_02:
+; 
 - D 1 - I - 0x00C6E3 03:A6D3: 5A        .byte $5A   ; 
 - D 1 - I - 0x00C6E4 03:A6D4: A8        .byte $A8   ; 
 - D 1 - I - 0x00C6E5 03:A6D5: 3E        .byte $3E   ; 
 - D 1 - I - 0x00C6E6 03:A6D6: 04        .byte $04   ; 
-- D 1 - I - 0x00C6E7 03:A6D7: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C6E7 03:A6D7: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A6D8_03:
+; 
 - D 1 - I - 0x00C6E8 03:A6D8: 55        .byte $55   ; 
 - D 1 - I - 0x00C6E9 03:A6D9: 90        .byte $90   ; 
 - D 1 - I - 0x00C6EA 03:A6DA: 15        .byte $15   ; 
 - D 1 - I - 0x00C6EB 03:A6DB: 06        .byte $06   ; 
-- D 1 - I - 0x00C6EC 03:A6DC: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C6EC 03:A6DC: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A6DD_04:
+; 
 - D 1 - I - 0x00C6ED 03:A6DD: F7        .byte $F7   ; 
 - D 1 - I - 0x00C6EE 03:A6DE: 38        .byte $38   ; 
 - D 1 - I - 0x00C6EF 03:A6DF: 4C        .byte $4C   ; 
 - D 1 - I - 0x00C6F0 03:A6E0: 15        .byte $15   ; 
-- D 1 - I - 0x00C6F1 03:A6E1: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C6F1 03:A6E1: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A6E2_05:
+; 
 - D 1 - I - 0x00C6F2 03:A6E2: 65        .byte $65   ; 
 - D 1 - I - 0x00C6F3 03:A6E3: 68        .byte $68   ; 
 - D 1 - I - 0x00C6F4 03:A6E4: 4E        .byte $4E   ; 
 - D 1 - I - 0x00C6F5 03:A6E5: 36        .byte $36   ; 
+; 
 - D 1 - I - 0x00C6F6 03:A6E6: 8D        .byte $8D   ; 
 - D 1 - I - 0x00C6F7 03:A6E7: 30        .byte $30   ; 
 - D 1 - I - 0x00C6F8 03:A6E8: 30        .byte $30   ; 
 - D 1 - I - 0x00C6F9 03:A6E9: 00        .byte $00   ; 
+; 
 - D 1 - I - 0x00C6FA 03:A6EA: AD        .byte $AD   ; 
 - D 1 - I - 0x00C6FB 03:A6EB: 30        .byte $30   ; 
 - D 1 - I - 0x00C6FC 03:A6EC: 30        .byte $30   ; 
 - D 1 - I - 0x00C6FD 03:A6ED: 09        .byte $09   ; 
+; 
 - D 1 - I - 0x00C6FE 03:A6EE: CD        .byte $CD   ; 
 - D 1 - I - 0x00C6FF 03:A6EF: 30        .byte $30   ; 
 - D 1 - I - 0x00C700 03:A6F0: 30        .byte $30   ; 
 - D 1 - I - 0x00C701 03:A6F1: 12        .byte $12   ; 
+; 
 - D 1 - I - 0x00C702 03:A6F2: ED        .byte $ED   ; 
 - D 1 - I - 0x00C703 03:A6F3: 30        .byte $30   ; 
 - D 1 - I - 0x00C704 03:A6F4: 30        .byte $30   ; 
 - D 1 - I - 0x00C705 03:A6F5: 1B        .byte $1B   ; 
-- D 1 - I - 0x00C706 03:A6F6: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C706 03:A6F6: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A6F7_06:
+; 
 - D 1 - I - 0x00C707 03:A6F7: 3F        .byte $3F   ; 
 - D 1 - I - 0x00C708 03:A6F8: 78        .byte $78   ; 
 - D 1 - I - 0x00C709 03:A6F9: 47        .byte $47   ; 
 - D 1 - I - 0x00C70A 03:A6FA: 1C        .byte $1C   ; 
+; 
 - D 1 - I - 0x00C70B 03:A6FB: 84        .byte $84   ; 
 - D 1 - I - 0x00C70C 03:A6FC: 58        .byte $58   ; 
 - D 1 - I - 0x00C70D 03:A6FD: 47        .byte $47   ; 
 - D 1 - I - 0x00C70E 03:A6FE: 05        .byte $05   ; 
+; 
 - D 1 - I - 0x00C70F 03:A6FF: 88        .byte $88   ; 
 - D 1 - I - 0x00C710 03:A700: 98        .byte $98   ; 
 - D 1 - I - 0x00C711 03:A701: 47        .byte $47   ; 
 - D 1 - I - 0x00C712 03:A702: 06        .byte $06   ; 
+; 
 - D 1 - I - 0x00C713 03:A703: BB        .byte $BB   ; 
 - D 1 - I - 0x00C714 03:A704: 98        .byte $98   ; 
 - D 1 - I - 0x00C715 03:A705: 47        .byte $47   ; 
 - D 1 - I - 0x00C716 03:A706: 26        .byte $26   ; 
-- D 1 - I - 0x00C717 03:A707: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C717 03:A707: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A708_07:
+; 
 - D 1 - I - 0x00C718 03:A708: 81        .byte $81   ; 
 - D 1 - I - 0x00C719 03:A709: 00        .byte $00   ; 
 - D 1 - I - 0x00C71A 03:A70A: 9B        .byte $9B   ; 
 - D 1 - I - 0x00C71B 03:A70B: 09        .byte $09   ; 
-- D 1 - I - 0x00C71C 03:A70C: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C71C 03:A70C: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A70D_08:
+; 
 - D 1 - I - 0x00C71D 03:A70D: 62        .byte $62   ; 
 - D 1 - I - 0x00C71E 03:A70E: 00        .byte $00   ; 
 - D 1 - I - 0x00C71F 03:A70F: 9B        .byte $9B   ; 
 - D 1 - I - 0x00C720 03:A710: 0C        .byte $0C   ; 
+; 
 - D 1 - I - 0x00C721 03:A711: 45        .byte $45   ; 
 - D 1 - I - 0x00C722 03:A712: 78        .byte $78   ; 
 - D 1 - I - 0x00C723 03:A713: 46        .byte $46   ; 
 - D 1 - I - 0x00C724 03:A714: 03        .byte $03   ; 
+; 
 - D 1 - I - 0x00C725 03:A715: 77        .byte $77   ; 
 - D 1 - I - 0x00C726 03:A716: 78        .byte $78   ; 
 - D 1 - I - 0x00C727 03:A717: 47        .byte $47   ; 
 - D 1 - I - 0x00C728 03:A718: 1D        .byte $1D   ; 
+; 
 - D 1 - I - 0x00C729 03:A719: 86        .byte $86   ; 
 - D 1 - I - 0x00C72A 03:A71A: 68        .byte $68   ; 
 - D 1 - I - 0x00C72B 03:A71B: 47        .byte $47   ; 
 - D 1 - I - 0x00C72C 03:A71C: 05        .byte $05   ; 
+; 
 - D 1 - I - 0x00C72D 03:A71D: D3        .byte $D3   ; 
 - D 1 - I - 0x00C72E 03:A71E: 68        .byte $68   ; 
 - D 1 - I - 0x00C72F 03:A71F: 47        .byte $47   ; 
 - D 1 - I - 0x00C730 03:A720: 00        .byte $00   ; 
+; 
 - D 1 - I - 0x00C731 03:A721: 0D        .byte $0D   ; 
 - D 1 - I - 0x00C732 03:A722: A8        .byte $A8   ; 
 - D 1 - I - 0x00C733 03:A723: 31        .byte $31   ; 
 - D 1 - I - 0x00C734 03:A724: 02        .byte $02   ; 
-- D 1 - I - 0x00C735 03:A725: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C735 03:A725: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A726_09:
+; 
 - D 1 - I - 0x00C736 03:A726: 0A        .byte $0A   ; 
 - D 1 - I - 0x00C737 03:A727: 68        .byte $68   ; 
 - D 1 - I - 0x00C738 03:A728: 47        .byte $47   ; 
 - D 1 - I - 0x00C739 03:A729: 19        .byte $19   ; 
+; 
 - D 1 - I - 0x00C73A 03:A72A: 56        .byte $56   ; 
 - D 1 - I - 0x00C73B 03:A72B: 68        .byte $68   ; 
 - D 1 - I - 0x00C73C 03:A72C: 47        .byte $47   ; 
 - D 1 - I - 0x00C73D 03:A72D: 1A        .byte $1A   ; 
+; 
 - D 1 - I - 0x00C73E 03:A72E: 8F        .byte $8F   ; 
 - D 1 - I - 0x00C73F 03:A72F: B8        .byte $B8   ; 
 - D 1 - I - 0x00C740 03:A730: 98        .byte $98   ; 
 - D 1 - I - 0x00C741 03:A731: 03        .byte $03   ; 
+; 
 - D 1 - I - 0x00C742 03:A732: E6        .byte $E6   ; 
 - D 1 - I - 0x00C743 03:A733: A8        .byte $A8   ; 
 - D 1 - I - 0x00C744 03:A734: 47        .byte $47   ; 
 - D 1 - I - 0x00C745 03:A735: 1C        .byte $1C   ; 
-- D 1 - I - 0x00C746 03:A736: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C746 03:A736: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A737_0A:
+; 
 - D 1 - I - 0x00C747 03:A737: 2D        .byte $2D   ; 
 - D 1 - I - 0x00C748 03:A738: A8        .byte $A8   ; 
 - D 1 - I - 0x00C749 03:A739: 46        .byte $46   ; 
 - D 1 - I - 0x00C74A 03:A73A: 1E        .byte $1E   ; 
+; 
 - D 1 - I - 0x00C74B 03:A73B: 27        .byte $27   ; 
 - D 1 - I - 0x00C74C 03:A73C: A8        .byte $A8   ; 
 - D 1 - I - 0x00C74D 03:A73D: 47        .byte $47   ; 
 - D 1 - I - 0x00C74E 03:A73E: 1D        .byte $1D   ; 
+; 
 - D 1 - I - 0x00C74F 03:A73F: A5        .byte $A5   ; 
 - D 1 - I - 0x00C750 03:A740: A8        .byte $A8   ; 
 - D 1 - I - 0x00C751 03:A741: 46        .byte $46   ; 
 - D 1 - I - 0x00C752 03:A742: 1E        .byte $1E   ; 
-- D 1 - I - 0x00C753 03:A743: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C753 03:A743: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A744_0B:
+; 
 - D 1 - I - 0x00C754 03:A744: 74        .byte $74   ; 
 - D 1 - I - 0x00C755 03:A745: A8        .byte $A8   ; 
 - D 1 - I - 0x00C756 03:A746: 47        .byte $47   ; 
 - D 1 - I - 0x00C757 03:A747: 18        .byte $18   ; 
+; 
 - D 1 - I - 0x00C758 03:A748: 8C        .byte $8C   ; 
 - D 1 - I - 0x00C759 03:A749: 48        .byte $48   ; 
 - D 1 - I - 0x00C75A 03:A74A: 14        .byte $14   ; 
 - D 1 - I - 0x00C75B 03:A74B: 01        .byte $01   ; 
+; 
 - D 1 - I - 0x00C75C 03:A74C: AC        .byte $AC   ; 
 - D 1 - I - 0x00C75D 03:A74D: 48        .byte $48   ; 
 - D 1 - I - 0x00C75E 03:A74E: 14        .byte $14   ; 
 - D 1 - I - 0x00C75F 03:A74F: 02        .byte $02   ; 
-- D 1 - I - 0x00C760 03:A750: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C760 03:A750: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A751_0C:
+; 
 - D 1 - I - 0x00C761 03:A751: 4D        .byte $4D   ; 
 - D 1 - I - 0x00C762 03:A752: 50        .byte $50   ; 
 - D 1 - I - 0x00C763 03:A753: 9A        .byte $9A   ; 
 - D 1 - I - 0x00C764 03:A754: 04        .byte $04   ; 
+; 
 - D 1 - I - 0x00C765 03:A755: 73        .byte $73   ; 
 - D 1 - I - 0x00C766 03:A756: 98        .byte $98   ; 
 - D 1 - I - 0x00C767 03:A757: 47        .byte $47   ; 
 - D 1 - I - 0x00C768 03:A758: 20        .byte $20   ; 
+; 
 - D 1 - I - 0x00C769 03:A759: 8E        .byte $8E   ; 
 - D 1 - I - 0x00C76A 03:A75A: B8        .byte $B8   ; 
 - D 1 - I - 0x00C76B 03:A75B: 9A        .byte $9A   ; 
 - D 1 - I - 0x00C76C 03:A75C: 0D        .byte $0D   ; 
+; 
 - D 1 - I - 0x00C76D 03:A75D: D2        .byte $D2   ; 
 - D 1 - I - 0x00C76E 03:A75E: B8        .byte $B8   ; 
 - D 1 - I - 0x00C76F 03:A75F: 9A        .byte $9A   ; 
 - D 1 - I - 0x00C770 03:A760: 16        .byte $16   ; 
+; 
 - D 1 - I - 0x00C771 03:A761: F7        .byte $F7   ; 
 - D 1 - I - 0x00C772 03:A762: 78        .byte $78   ; 
 - D 1 - I - 0x00C773 03:A763: 47        .byte $47   ; 
 - D 1 - I - 0x00C774 03:A764: 20        .byte $20   ; 
-- D 1 - I - 0x00C775 03:A765: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C775 03:A765: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A766_0D:
+; 
 - D 1 - I - 0x00C776 03:A766: 16        .byte $16   ; 
 - D 1 - I - 0x00C777 03:A767: 88        .byte $88   ; 
 - D 1 - I - 0x00C778 03:A768: AB        .byte $AB   ; 
 - D 1 - I - 0x00C779 03:A769: 02        .byte $02   ; 
+; 
 - D 1 - I - 0x00C77A 03:A76A: 41        .byte $41   ; 
 - D 1 - I - 0x00C77B 03:A76B: 00        .byte $00   ; 
 - D 1 - I - 0x00C77C 03:A76C: 9B        .byte $9B   ; 
 - D 1 - I - 0x00C77D 03:A76D: 03        .byte $03   ; 
+; 
 - D 1 - I - 0x00C77E 03:A76E: 96        .byte $96   ; 
 - D 1 - I - 0x00C77F 03:A76F: 88        .byte $88   ; 
 - D 1 - I - 0x00C780 03:A770: AB        .byte $AB   ; 
 - D 1 - I - 0x00C781 03:A771: 05        .byte $05   ; 
-- D 1 - I - 0x00C782 03:A772: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C782 03:A772: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A773_0E:
+; 
 - D 1 - I - 0x00C783 03:A773: 3F        .byte $3F   ; 
 - D 1 - I - 0x00C784 03:A774: 75        .byte $75   ; 
 - D 1 - I - 0x00C785 03:A775: 98        .byte $98   ; 
 - D 1 - I - 0x00C786 03:A776: 08        .byte $08   ; 
+; 
 - D 1 - I - 0x00C787 03:A777: 5F        .byte $5F   ; 
 - D 1 - I - 0x00C788 03:A778: 9F        .byte $9F   ; 
 - D 1 - I - 0x00C789 03:A779: 98        .byte $98   ; 
 - D 1 - I - 0x00C78A 03:A77A: 11        .byte $11   ; 
+; 
 - D 1 - I - 0x00C78B 03:A77B: 8F        .byte $8F   ; 
 - D 1 - I - 0x00C78C 03:A77C: B7        .byte $B7   ; 
 - D 1 - I - 0x00C78D 03:A77D: 98        .byte $98   ; 
 - D 1 - I - 0x00C78E 03:A77E: 1A        .byte $1A   ; 
+; 
 - D 1 - I - 0x00C78F 03:A77F: DF        .byte $DF   ; 
 - D 1 - I - 0x00C790 03:A780: 9D        .byte $9D   ; 
 - D 1 - I - 0x00C791 03:A781: 98        .byte $98   ; 
 - D 1 - I - 0x00C792 03:A782: 23        .byte $23   ; 
+; 
 - D 1 - I - 0x00C793 03:A783: FD        .byte $FD   ; 
 - D 1 - I - 0x00C794 03:A784: 75        .byte $75   ; 
 - D 1 - I - 0x00C795 03:A785: 98        .byte $98   ; 
 - D 1 - I - 0x00C796 03:A786: 2C        .byte $2C   ; 
-- D 1 - I - 0x00C797 03:A787: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C797 03:A787: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A788_0F:
+; 
 - D 1 - I - 0x00C798 03:A788: 36        .byte $36   ; 
 - D 1 - I - 0x00C799 03:A789: 58        .byte $58   ; 
 - D 1 - I - 0x00C79A 03:A78A: 47        .byte $47   ; 
 - D 1 - I - 0x00C79B 03:A78B: 1D        .byte $1D   ; 
+; 
 - D 1 - I - 0x00C79C 03:A78C: D6        .byte $D6   ; 
 - D 1 - I - 0x00C79D 03:A78D: 98        .byte $98   ; 
 - D 1 - I - 0x00C79E 03:A78E: 47        .byte $47   ; 
 - D 1 - I - 0x00C79F 03:A78F: 1E        .byte $1E   ; 
-- D 1 - I - 0x00C7A0 03:A790: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C7A0 03:A790: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A791_10:
+; 
 - D 1 - I - 0x00C7A1 03:A791: 15        .byte $15   ; 
 - D 1 - I - 0x00C7A2 03:A792: 78        .byte $78   ; 
 - D 1 - I - 0x00C7A3 03:A793: 46        .byte $46   ; 
 - D 1 - I - 0x00C7A4 03:A794: 01        .byte $01   ; 
+; 
 - D 1 - I - 0x00C7A5 03:A795: 60        .byte $60   ; 
 - D 1 - I - 0x00C7A6 03:A796: 90        .byte $90   ; 
 - D 1 - I - 0x00C7A7 03:A797: 9C        .byte $9C   ; 
 - D 1 - I - 0x00C7A8 03:A798: 22        .byte $22   ; 
+; 
 - D 1 - I - 0x00C7A9 03:A799: 7B        .byte $7B   ; 
 - D 1 - I - 0x00C7AA 03:A79A: B0        .byte $B0   ; 
 - D 1 - I - 0x00C7AB 03:A79B: 9C        .byte $9C   ; 
 - D 1 - I - 0x00C7AC 03:A79C: 23        .byte $23   ; 
+; 
 - D 1 - I - 0x00C7AD 03:A79D: AA        .byte $AA   ; 
 - D 1 - I - 0x00C7AE 03:A79E: B0        .byte $B0   ; 
 - D 1 - I - 0x00C7AF 03:A79F: 9C        .byte $9C   ; 
 - D 1 - I - 0x00C7B0 03:A7A0: 24        .byte $24   ; 
+; 
 - D 1 - I - 0x00C7B1 03:A7A1: CA        .byte $CA   ; 
 - D 1 - I - 0x00C7B2 03:A7A2: 88        .byte $88   ; 
 - D 1 - I - 0x00C7B3 03:A7A3: 9C        .byte $9C   ; 
 - D 1 - I - 0x00C7B4 03:A7A4: 25        .byte $25   ; 
-- D 1 - I - 0x00C7B5 03:A7A5: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C7B5 03:A7A5: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A7A6_11:
+; 
 - D 1 - I - 0x00C7B6 03:A7A6: 32        .byte $32   ; 
 - D 1 - I - 0x00C7B7 03:A7A7: 38        .byte $38   ; 
 - D 1 - I - 0x00C7B8 03:A7A8: 47        .byte $47   ; 
 - D 1 - I - 0x00C7B9 03:A7A9: 1E        .byte $1E   ; 
+; 
 - D 1 - I - 0x00C7BA 03:A7AA: 41        .byte $41   ; 
 - D 1 - I - 0x00C7BB 03:A7AB: A9        .byte $A9   ; 
 - D 1 - I - 0x00C7BC 03:A7AC: 47        .byte $47   ; 
 - D 1 - I - 0x00C7BD 03:A7AD: 01        .byte $01   ; 
-- D 1 - I - 0x00C7BE 03:A7AE: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C7BE 03:A7AE: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A7AF_12:
+; 
 - D 1 - I - 0x00C7BF 03:A7AF: 27        .byte $27   ; 
 - D 1 - I - 0x00C7C0 03:A7B0: A8        .byte $A8   ; 
 - D 1 - I - 0x00C7C1 03:A7B1: 41        .byte $41   ; 
 - D 1 - I - 0x00C7C2 03:A7B2: 09        .byte $09   ; 
+; 
 - D 1 - I - 0x00C7C3 03:A7B3: 4D        .byte $4D   ; 
 - D 1 - I - 0x00C7C4 03:A7B4: A8        .byte $A8   ; 
 - D 1 - I - 0x00C7C5 03:A7B5: 45        .byte $45   ; 
 - D 1 - I - 0x00C7C6 03:A7B6: 32        .byte $32   ; 
+; 
 - D 1 - I - 0x00C7C7 03:A7B7: 87        .byte $87   ; 
 - D 1 - I - 0x00C7C8 03:A7B8: 38        .byte $38   ; 
 - D 1 - I - 0x00C7C9 03:A7B9: 41        .byte $41   ; 
 - D 1 - I - 0x00C7CA 03:A7BA: 0B        .byte $0B   ; 
+; 
 - D 1 - I - 0x00C7CB 03:A7BB: C8        .byte $C8   ; 
 - D 1 - I - 0x00C7CC 03:A7BC: 48        .byte $48   ; 
 - D 1 - I - 0x00C7CD 03:A7BD: 3F        .byte $3F   ; 
 - D 1 - I - 0x00C7CE 03:A7BE: 04        .byte $04   ; 
+; 
 - D 1 - I - 0x00C7CF 03:A7BF: E9        .byte $E9   ; 
 - D 1 - I - 0x00C7D0 03:A7C0: 48        .byte $48   ; 
 - D 1 - I - 0x00C7D1 03:A7C1: 45        .byte $45   ; 
 - D 1 - I - 0x00C7D2 03:A7C2: 35        .byte $35   ; 
-- D 1 - I - 0x00C7D3 03:A7C3: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C7D3 03:A7C3: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A7C4_13:
+; 
 - D 1 - I - 0x00C7D4 03:A7C4: 36        .byte $36   ; 
 - D 1 - I - 0x00C7D5 03:A7C5: 48        .byte $48   ; 
 - D 1 - I - 0x00C7D6 03:A7C6: 3F        .byte $3F   ; 
 - D 1 - I - 0x00C7D7 03:A7C7: 00        .byte $00   ; 
+; 
 - D 1 - I - 0x00C7D8 03:A7C8: 56        .byte $56   ; 
 - D 1 - I - 0x00C7D9 03:A7C9: 38        .byte $38   ; 
 - D 1 - I - 0x00C7DA 03:A7CA: 41        .byte $41   ; 
 - D 1 - I - 0x00C7DB 03:A7CB: 09        .byte $09   ; 
+; 
 - D 1 - I - 0x00C7DC 03:A7CC: E8        .byte $E8   ; 
 - D 1 - I - 0x00C7DD 03:A7CD: 48        .byte $48   ; 
 - D 1 - I - 0x00C7DE 03:A7CE: 41        .byte $41   ; 
 - D 1 - I - 0x00C7DF 03:A7CF: 0A        .byte $0A   ; 
+; 
 - D 1 - I - 0x00C7E0 03:A7D0: F9        .byte $F9   ; 
 - D 1 - I - 0x00C7E1 03:A7D1: 48        .byte $48   ; 
 - D 1 - I - 0x00C7E2 03:A7D2: 3E        .byte $3E   ; 
 - D 1 - I - 0x00C7E3 03:A7D3: 86        .byte $86   ; 
-- D 1 - I - 0x00C7E4 03:A7D4: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C7E4 03:A7D4: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A7D5_14:
+; 
 - D 1 - I - 0x00C7E5 03:A7D5: 05        .byte $05   ; 
 - D 1 - I - 0x00C7E6 03:A7D6: 77        .byte $77   ; 
 - D 1 - I - 0x00C7E7 03:A7D7: 3F        .byte $3F   ; 
 - D 1 - I - 0x00C7E8 03:A7D8: 13        .byte $13   ; 
+; 
 - D 1 - I - 0x00C7E9 03:A7D9: 96        .byte $96   ; 
 - D 1 - I - 0x00C7EA 03:A7DA: 88        .byte $88   ; 
 - D 1 - I - 0x00C7EB 03:A7DB: 3F        .byte $3F   ; 
 - D 1 - I - 0x00C7EC 03:A7DC: 14        .byte $14   ; 
+; 
 - D 1 - I - 0x00C7ED 03:A7DD: A7        .byte $A7   ; 
 - D 1 - I - 0x00C7EE 03:A7DE: 77        .byte $77   ; 
 - D 1 - I - 0x00C7EF 03:A7DF: 41        .byte $41   ; 
 - D 1 - I - 0x00C7F0 03:A7E0: 0D        .byte $0D   ; 
+; 
 - D 1 - I - 0x00C7F1 03:A7E1: B1        .byte $B1   ; 
 - D 1 - I - 0x00C7F2 03:A7E2: 78        .byte $78   ; 
 - D 1 - I - 0x00C7F3 03:A7E3: 3E        .byte $3E   ; 
 - D 1 - I - 0x00C7F4 03:A7E4: 06        .byte $06   ; 
+; 
 - D 1 - I - 0x00C7F5 03:A7E5: B7        .byte $B7   ; 
 - D 1 - I - 0x00C7F6 03:A7E6: 78        .byte $78   ; 
 - D 1 - I - 0x00C7F7 03:A7E7: 3E        .byte $3E   ; 
 - D 1 - I - 0x00C7F8 03:A7E8: 86        .byte $86   ; 
-- D 1 - I - 0x00C7F9 03:A7E9: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C7F9 03:A7E9: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A7EA_15:
+; 
 - D 1 - I - 0x00C7FA 03:A7EA: 0C        .byte $0C   ; 
 - D 1 - I - 0x00C7FB 03:A7EB: A8        .byte $A8   ; 
 - D 1 - I - 0x00C7FC 03:A7EC: 41        .byte $41   ; 
 - D 1 - I - 0x00C7FD 03:A7ED: 08        .byte $08   ; 
+; 
 - D 1 - I - 0x00C7FE 03:A7EE: 52        .byte $52   ; 
 - D 1 - I - 0x00C7FF 03:A7EF: A5        .byte $A5   ; 
 - D 1 - I - 0x00C800 03:A7F0: 3E        .byte $3E   ; 
 - D 1 - I - 0x00C801 03:A7F1: 01        .byte $01   ; 
+; 
 - D 1 - I - 0x00C802 03:A7F2: 38        .byte $38   ; 
 - D 1 - I - 0x00C803 03:A7F3: 38        .byte $38   ; 
 - D 1 - I - 0x00C804 03:A7F4: 41        .byte $41   ; 
 - D 1 - I - 0x00C805 03:A7F5: 0A        .byte $0A   ; 
+; 
 - D 1 - I - 0x00C806 03:A7F6: C6        .byte $C6   ; 
 - D 1 - I - 0x00C807 03:A7F7: 48        .byte $48   ; 
 - D 1 - I - 0x00C808 03:A7F8: 41        .byte $41   ; 
 - D 1 - I - 0x00C809 03:A7F9: 0B        .byte $0B   ; 
-- D 1 - I - 0x00C80A 03:A7FA: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C80A 03:A7FA: FF        .byte $FF   ; end token
 
 
 
 _off017_00_A7FB_16:
+; 
 - D 1 - I - 0x00C80B 03:A7FB: E8        .byte $E8   ; 
 - D 1 - I - 0x00C80C 03:A7FC: 28        .byte $28   ; 
 - D 1 - I - 0x00C80D 03:A7FD: 33        .byte $33   ; 
 - D 1 - I - 0x00C80E 03:A7FE: 40        .byte $40   ; 
-
-
-
 _off017_00_A7FF_17:
-- D 1 - I - 0x00C80F 03:A7FF: FF        .byte $FF   ; 
+; 
+- D 1 - I - 0x00C80F 03:A7FF: FF        .byte $FF   ; end token
 
 
 
@@ -2600,6 +2698,7 @@ _off015_AA61_03_stage_4:
 - - - - - - 0x00CB6E 03:AB5E: 00        .byte $00   ; 
 - - - - - - 0x00CB6F 03:AB5F: 00        .byte $00   ; 
 - - - - - - 0x00CB70 03:AB60: 00        .byte $00   ; 
+; bzk extra stage data, see 0x00C345
 - - - - - - 0x00CB71 03:AB61: 00        .byte $00   ; 
 - - - - - - 0x00CB72 03:AB62: 1E        .byte $1E   ; 
 - - - - - - 0x00CB73 03:AB63: 00        .byte $00   ; 
