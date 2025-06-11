@@ -1285,7 +1285,8 @@ C - - - - - 0x000905 00:88F5: 60        RTS
 
 sub_88F6_display_sprite_animtion:
 ; bzk optimize, delete CLC and use ASL instead of ROL
-; bzk bug, if nmi happens during this code, it messes up ram_0047_t18_sprite_data + $01 (0048) because of 0x0037DF
+; bzk bug, if nmi happens during this code,
+; it messes up ram_0047_t18_sprite_data + $01 (0048) because of 0x0037DF
 C - - - - - 0x000906 00:88F6: 18        CLC
 C - - - - - 0x000907 00:88F7: A5 53     LDA ram_spr_animation_id
 C - - - - - 0x000909 00:88F9: 2A        ROL
@@ -21181,7 +21182,7 @@ off_08_FAEB:
 .segment "DPCM"
 .org $FD00 ; for listing file, also necessary because it's a new segment (if edited, make sure address is the same as in ld65.cfg)
 .incbin "DPCM.bin"
-; unlogged dpcm data at FD71-FD7F
+; unlogged dpcm data in the middle of the binary at FD71-FD7F
 
 
 
