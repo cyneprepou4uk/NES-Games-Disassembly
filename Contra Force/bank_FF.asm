@@ -125,6 +125,8 @@ tbl_0x01C011_for_4010_4013:
 
 
 
+.segment "DPCM"
+.org $C040  ; for listing file
 .incbin "DPCM.bin"
 
 
