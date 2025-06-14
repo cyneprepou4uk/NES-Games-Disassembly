@@ -6153,7 +6153,7 @@ C - - - - - 0x005E2D 01:BE1D: 60        RTS
 bra_BE1E:
 C - - - - - 0x005E2E 01:BE1E: BC C8 07  LDY ram_07C8_unk,X
 C - - - - - 0x005E31 01:BE21: B9 F5 BE  LDA tbl_BEF5,Y
-C - - - - - 0x005E34 01:BE24: 85 1F     STA ram_001F_temp
+C - - - - - 0x005E34 01:BE24: 85 1F     STA ram_001F_t04
 C - - - - - 0x005E36 01:BE26: B9 09 BF  LDA tbl_BF09,Y
 C - - - - - 0x005E39 01:BE29: 18        CLC
 C - - - - - 0x005E3A 01:BE2A: 7D AA 07  ADC ram_07AA_unk,X
@@ -6180,7 +6180,7 @@ C - - - - - 0x005E5F 01:BE4F: 18        CLC
 C - - - - - 0x005E60 01:BE50: 7D BE 07  ADC ram_07BE_unk,X
 C - - - - - 0x005E63 01:BE53: A8        TAY
 C - - - - - 0x005E64 01:BE54: 84 02     STY ram_0002_t18_array_index
-C - - - - - 0x005E66 01:BE56: A5 1F     LDA ram_001F_temp
+C - - - - - 0x005E66 01:BE56: A5 1F     LDA ram_001F_t04
 C - - - - - 0x005E68 01:BE58: 20 0E FC  JSR sub_0x01FC1E
 loc_BE5B:
 C - - - - - 0x005E6B 01:BE5B: 20 4C 9A  JSR sub_0x009A5C
@@ -6193,7 +6193,7 @@ loc_BE68:
 C D 1 - - - 0x005E78 01:BE68: 4C 17 9A  JMP loc_0x009A27
 bra_BE6B:
 - - - - - - 0x005E7B 01:BE6B: 84 02     STY ram_0002_t18_array_index
-- - - - - - 0x005E7D 01:BE6D: A5 1F     LDA ram_001F_temp
+- - - - - - 0x005E7D 01:BE6D: A5 1F     LDA ram_001F_t04
 - - - - - - 0x005E7F 01:BE6F: 99 00 04  STA ram_0400,Y
 - - - - - - 0x005E82 01:BE72: 4C 5B BE  JMP loc_BE5B
 
