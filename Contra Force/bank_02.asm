@@ -5733,7 +5733,7 @@ bra_BB87:
 sub_BB8F:
 C - - - - - 0x005B9F 01:BB8F: A9 01     LDA #$01
 C - - - - - 0x005BA1 01:BB91: 9D F4 06  STA ram_06F4_obj,X
-C - - - - - 0x005BA4 01:BB94: 85 95     STA ram_0095
+C - - - - - 0x005BA4 01:BB94: 85 95     STA ram_0095_flag
 C - - - - - 0x005BA6 01:BB96: 60        RTS
 
 
@@ -5757,7 +5757,7 @@ C - - - - - 0x005BC3 01:BBB3: F0 3D     BEQ bra_BBF2_RTS
 bra_BBB5:
 C - - - - - 0x005BC5 01:BBB5: 4C 17 9A  JMP loc_0x009A27
 bra_BBB8:
-C - - - - - 0x005BC8 01:BBB8: A5 95     LDA ram_0095
+C - - - - - 0x005BC8 01:BBB8: A5 95     LDA ram_0095_flag
 C - - - - - 0x005BCA 01:BBBA: F0 BC     BEQ bra_BB78
 C - - - - - 0x005BCC 01:BBBC: 20 CA BC  JSR sub_BCCA
 C - - - - - 0x005BCF 01:BBBF: F0 32     BEQ bra_BBF3
@@ -5855,7 +5855,7 @@ C - - - - - 0x005C78 01:BC68: 4C D8 95  JMP loc_0x0095E8_play_music
 
 sub_BC6B:
 C - - - - - 0x005C7B 01:BC6B: BD 68 06  LDA ram_obj_pos_Y,X
-C - - - - - 0x005C7E 01:BC6E: 85 91     STA ram_0091
+C - - - - - 0x005C7E 01:BC6E: 85 91     STA ram_0091_pos_Y
 C - - - - - 0x005C80 01:BC70: BC D2 07  LDY ram_07D2_unk,X
 C - - - - - 0x005C83 01:BC73: B9 F0 BC  LDA tbl_BCF1 - $01,Y
 C - - - - - 0x005C86 01:BC76: 9D 68 06  STA ram_obj_pos_Y,X
@@ -5864,7 +5864,7 @@ C - - - - - 0x005C8B 01:BC7B: 9D A0 07  STA ram_07A0_unk,X
 C - - - - - 0x005C8E 01:BC7E: 20 94 84  JSR sub_0x0084A4
 C - - - - - 0x005C91 01:BC81: A9 00     LDA #$00
 C - - - - - 0x005C93 01:BC83: 99 20 07  STA ram_0720_obj,Y
-C - - - - - 0x005C96 01:BC86: A5 91     LDA ram_0091
+C - - - - - 0x005C96 01:BC86: A5 91     LDA ram_0091_pos_Y
 C - - - - - 0x005C98 01:BC88: 9D 68 06  STA ram_obj_pos_Y,X
 bra_BC8B:
 C - - - - - 0x005C9B 01:BC8B: 18        CLC
@@ -6104,7 +6104,7 @@ C - - - - - 0x005DCD 01:BDBD: 18        CLC
 C - - - - - 0x005DCE 01:BDBE: 69 40     ADC #$40
 C - - - - - 0x005DD0 01:BDC0: C9 60     CMP #$60
 C - - - - - 0x005DD2 01:BDC2: B0 09     BCS bra_BDCD
-C - - - - - 0x005DD4 01:BDC4: A5 61     LDA ram_0061
+C - - - - - 0x005DD4 01:BDC4: A5 61     LDA ram_0061_lo
 C - - - - - 0x005DD6 01:BDC6: 29 1F     AND #$1F
 C - - - - - 0x005DD8 01:BDC8: F0 03     BEQ bra_BDCD
 C - - - - - 0x005DDA 01:BDCA: 4C 68 BE  JMP loc_BE68

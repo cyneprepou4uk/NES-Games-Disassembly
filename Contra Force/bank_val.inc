@@ -37,6 +37,16 @@ con_cut_cb_end_of_text                  = $FF ;
 
 
 
+; ram_script_hi
+con_0020_00                             = $00 ; 
+con_0020_01                             = $01 ; 
+con_0020_02                             = $02 ; 
+con_0020_gameplay                       = $03 ; 
+con_0020_04                             = $04 ; 
+con_0020_game_over                      = $05 ; 
+
+
+
 ; ram_irq_handler
 ; for 0x01F78B
 ; need comments 0x0177FC

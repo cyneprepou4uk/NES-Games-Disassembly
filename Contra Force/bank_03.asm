@@ -14,7 +14,7 @@
 .export _off030_0x007C5E_08_stage_5
 .export _off032_0x007CDD_0D
 .export _off012_0x007EDC_08_cutscene_phone
-.export sub_0x007FA4
+.export sub_0x007FA4_clear_data
 .export sub_0x007FFE_copy_buttons
 
 
@@ -7903,23 +7903,25 @@ _off012_0x007EDC_08_cutscene_phone:
 
 
 
-sub_0x007FA4:
+sub_0x007FA4_clear_data:
 C - - - - - 0x007FA4 01:BF94: A9 00     LDA #$00
 C - - - - - 0x007FA6 01:BF96: 85 87     STA ram_0087
 C - - - - - 0x007FA8 01:BF98: 8D 43 03  STA ram_0343
 C - - - - - 0x007FAB 01:BF9B: 85 D0     STA ram_00D0
-C - - - - - 0x007FAD 01:BF9D: 85 BD     STA ram_00BD
+C - - - - - 0x007FAD 01:BF9D: 85 BD     STA ram_00BD_flag
 C - - - - - 0x007FAF 01:BF9F: 8D 59 03  STA ram_0359_flag
 C - - - - - 0x007FB2 01:BFA2: 85 C1     STA ram_00C1
 C - - - - - 0x007FB4 01:BFA4: 85 76     STA ram_irq_handler ; con_irq_00
 C - - - - - 0x007FB6 01:BFA6: 85 5A     STA ram_005A_flag
-C - - - - - 0x007FB8 01:BFA8: 85 BC     STA ram_00BC
+C - - - - - 0x007FB8 01:BFA8: 85 BC     STA ram_00BC_counter
 C - - - - - 0x007FBA 01:BFAA: 85 C6     STA ram_00C6
 C - - - - - 0x007FBC 01:BFAC: 85 A6     STA ram_00A6
+; bzk optimize, useless STA
 C - - - - - 0x007FBE 01:BFAE: 85 A7     STA ram_00A7
+; bzk optimize, useless STA
 C - - - - - 0x007FC0 01:BFB0: 85 A8     STA ram_00A8
 C - - - - - 0x007FC2 01:BFB2: 8D 4B 03  STA ram_034B_useless
-C - - - - - 0x007FC5 01:BFB5: 85 C5     STA ram_00C5
+C - - - - - 0x007FC5 01:BFB5: 85 C5     STA ram_00C5_flag
 C - - - - - 0x007FC7 01:BFB7: A2 03     LDX #$03
 bra_BFB9_loop:
 C - - - - - 0x007FC9 01:BFB9: A9 F0     LDA #$F0
