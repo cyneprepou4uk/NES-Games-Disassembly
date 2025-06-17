@@ -17,8 +17,8 @@ local game_file_name = "_excitebike.nes"
 local ram_nl_file_name = "copy_bank_ram.inc"
 
 -- regular expression to remove unnecessary for
--- ca65 assembler text on the left from my disassembler.
--- text example: C - - - - - 0x01D803 07:D7F3: AD F0 05 
+-- ca65 assembler text on the left from my disassembly.
+-- removed text example: C - - - - - 0x01D803 07:D7F3: AD F0 05 
 -- this regex purposely doesn't cover 1 space symbol right before
 -- the instructions, you can use ";" for commenting (deleting) them.
 -- do not edit this regex unless you know what you're doing
