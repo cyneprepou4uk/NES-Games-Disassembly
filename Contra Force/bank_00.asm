@@ -11300,6 +11300,7 @@ C - - - - - 0x00365A 00:B64A: 60        RTS
 
 
 sub_B64B:
+; ???
 ; bzk doesn't look like a color buffer usage
 C - - - - - 0x00365B 00:B64B: A9 E0     LDA #$E0
 bra_B64D:
@@ -11568,35 +11569,38 @@ tbl_B787:
 
 
 tbl_B797:
-- D 1 - - - 0x0037A7 00:B797: 89        .byte $89   ; 
-- D 1 - - - 0x0037A8 00:B798: 40        .byte $40   ; 
-- D 1 - - - 0x0037A9 00:B799: 41        .byte $41   ; 
-- D 1 - - - 0x0037AA 00:B79A: 12        .byte $12   ; 
-- D 1 - - - 0x0037AB 00:B79B: 94        .byte $94   ; 
+- D 1 - - - 0x0037A7 00:B797: 89        .byte $89   ; 00 
+- D 1 - - - 0x0037A8 00:B798: 40        .byte $40   ; 08 
+- D 1 - - - 0x0037A9 00:B799: 41        .byte $41   ; 10 
+- D 1 - - - 0x0037AA 00:B79A: 12        .byte $12   ; 18 
+- D 1 - - - 0x0037AB 00:B79B: 94        .byte $94   ; 20 
 
 
 
 tbl_B79C:
-- D 1 - - - 0x0037AC 00:B79C: 00        .byte $00   ; 
-- D 1 - - - 0x0037AD 00:B79D: 33        .byte $33   ; 
-- D 1 - - - 0x0037AE 00:B79E: 00        .byte $00   ; 
-- D 1 - - - 0x0037AF 00:B79F: 30        .byte $30   ; 
-- D 1 - - - 0x0037B0 00:B7A0: 00        .byte $00   ; 
-- D 1 - - - 0x0037B1 00:B7A1: 03        .byte $03   ; 
-- D 1 - - - 0x0037B2 00:B7A2: 37        .byte $37   ; 
-- D 1 - - - 0x0037B3 00:B7A3: 77        .byte $77   ; 
-- D 1 - - - 0x0037B4 00:B7A4: 70        .byte $70   ; 
-- D 1 - - - 0x0037B5 00:B7A5: 03        .byte $03   ; 
-- D 1 - - - 0x0037B6 00:B7A6: 37        .byte $37   ; 
-- - - - - - 0x0037B7 00:B7A7: 70        .byte $70   ; 
-- D 1 - - - 0x0037B8 00:B7A8: 03        .byte $03   ; 
-- D 1 - - - 0x0037B9 00:B7A9: 30        .byte $30   ; 
-- D 1 - - - 0x0037BA 00:B7AA: 03        .byte $03   ; 
-- D 1 - - - 0x0037BB 00:B7AB: 00        .byte $00   ; 
-- - - - - - 0x0037BC 00:B7AC: 00        .byte $00   ; 
-- D 1 - - - 0x0037BD 00:B7AD: 00        .byte $00   ; 
-- D 1 - - - 0x0037BE 00:B7AE: 00        .byte $00   ; 
-- D 1 - - - 0x0037BF 00:B7AF: 00        .byte $00   ; 
+;                                              +----------- 
+;                                              |     +----- 
+;                                              |     |
+- D 1 - - - 0x0037AC 00:B79C: 00        .byte $00 + $00   ; 01 
+- D 1 - - - 0x0037AD 00:B79D: 33        .byte $30 + $03   ; 03 
+- D 1 - - - 0x0037AE 00:B79E: 00        .byte $00 + $00   ; 05 
+- D 1 - - - 0x0037AF 00:B79F: 30        .byte $30 + $00   ; 07 
+- D 1 - - - 0x0037B0 00:B7A0: 00        .byte $00 + $00   ; 09 
+- D 1 - - - 0x0037B1 00:B7A1: 03        .byte $00 + $03   ; 0B 
+- D 1 - - - 0x0037B2 00:B7A2: 37        .byte $30 + $07   ; 0D 
+- D 1 - - - 0x0037B3 00:B7A3: 77        .byte $70 + $07   ; 0F 
+- D 1 - - - 0x0037B4 00:B7A4: 70        .byte $70 + $00   ; 11 
+- D 1 - - - 0x0037B5 00:B7A5: 03        .byte $00 + $03   ; 13 
+- D 1 - - - 0x0037B6 00:B7A6: 37        .byte $30 + $07   ; 15 
+- - - - - - 0x0037B7 00:B7A7: 70        .byte $70 + $00   ; 17 
+- D 1 - - - 0x0037B8 00:B7A8: 03        .byte $00 + $03   ; 19 
+- D 1 - - - 0x0037B9 00:B7A9: 30        .byte $30 + $00   ; 1B 
+- D 1 - - - 0x0037BA 00:B7AA: 03        .byte $00 + $03   ; 1D 
+- D 1 - - - 0x0037BB 00:B7AB: 00        .byte $00 + $00   ; 1F 
+- - - - - - 0x0037BC 00:B7AC: 00        .byte $00 + $00   ; 21 
+- D 1 - - - 0x0037BD 00:B7AD: 00        .byte $00 + $00   ; 23 
+- D 1 - - - 0x0037BE 00:B7AE: 00        .byte $00 + $00   ; 25 
+- D 1 - - - 0x0037BF 00:B7AF: 00        .byte $00 + $00   ; 27 
 
 
 
@@ -12719,6 +12723,7 @@ tbl_BE2F:
 
 off_BE39_00_stage_1:
 - D 1 - I - 0x003E49 00:BE39: 04        .byte $04   ; 
+
 - D 1 - I - 0x003E4A 00:BE3A: 00        .byte $00   ; 
 - D 1 - I - 0x003E4B 00:BE3B: 00        .byte $00   ; 
 - D 1 - I - 0x003E4C 00:BE3C: 80        .byte $80   ; 
@@ -12729,6 +12734,7 @@ off_BE39_00_stage_1:
 
 off_BE3F_02_stage_2:
 - D 1 - I - 0x003E4F 00:BE3F: 01        .byte $01   ; 
+
 - D 1 - I - 0x003E50 00:BE40: E8        .byte $E8   ; 
 - D 1 - I - 0x003E51 00:BE41: E8        .byte $E8   ; 
 - D 1 - I - 0x003E52 00:BE42: E8        .byte $E8   ; 
@@ -12748,6 +12754,7 @@ off_BE3F_02_stage_2:
 
 off_BE4E_08_stage_5:
 - D 1 - I - 0x003E5E 00:BE4E: 01        .byte $01   ; 
+
 - D 1 - I - 0x003E5F 00:BE4F: F0        .byte $F0   ; 
 - D 1 - I - 0x003E60 00:BE50: F0        .byte $F0   ; 
 - D 1 - I - 0x003E61 00:BE51: F1        .byte $F1   ; 
@@ -12760,6 +12767,7 @@ off_BE4E_08_stage_5:
 
 off_BE56_04_stage_3:
 - D 1 - I - 0x003E66 00:BE56: 01        .byte $01   ; 
+
 - D 1 - I - 0x003E67 00:BE57: FF        .byte $FF   ; 
 - D 1 - I - 0x003E68 00:BE58: F0        .byte $F0   ; 
 - D 1 - I - 0x003E69 00:BE59: F3        .byte $F3   ; 
@@ -12773,6 +12781,7 @@ off_BE56_04_stage_3:
 
 off_BE5F_06_stage_4:
 - D 1 - I - 0x003E6F 00:BE5F: 02        .byte $02   ; 
+
 - - - - - - 0x003E70 00:BE60: FF        .byte $FF   ; 
 - D 1 - I - 0x003E71 00:BE61: FC        .byte $FC   ; 
 - - - - - - 0x003E72 00:BE62: FF        .byte $FF   ; 

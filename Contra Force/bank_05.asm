@@ -5225,7 +5225,10 @@ C - - - - - 0x00BBA2 02:BB92: 60        RTS
 
 
 tbl_BB93:
+; bzk optimize
 - D 1 - - - 0x00BBA3 02:BB93: 95 BB     .word off_BB95
+
+
 
 off_BB95:
 - D 1 - I - 0x00BBA5 02:BB95: 04        .byte $04   ; 
@@ -5417,7 +5420,7 @@ tbl_0x00BC23:
 - - - - - - 0x00BC9B 02:BC8B: FF FF     .word $FFFF      ; 3D
 
 
-
+; ??? todo
 _off024_BC8D_02:
 - D 1 - I - 0x00BC9D 02:BC8D: 0E        .byte $0E   ; 
 - D 1 - I - 0x00BC9E 02:BC8E: 00        .byte $00   ; 

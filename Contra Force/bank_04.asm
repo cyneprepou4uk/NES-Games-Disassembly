@@ -680,6 +680,7 @@ C - - - - - 0x0082BC 02:82AC: C9 FE     CMP #$FE
 C - - - - - 0x0082BE 02:82AE: F0 15     BEQ bra_82C5_RTS
 C - - - - - 0x0082C0 02:82B0: C9 FF     CMP #$FF
 C - - - - - 0x0082C2 02:82B2: D0 12     BNE bra_82C6
+; FF
 - - - - - - 0x0082C4 02:82B4: A9 01     LDA #$01
 - - - - - - 0x0082C6 02:82B6: 9D 78 07  STA ram_0778_unk,X
 - - - - - - 0x0082C9 02:82B9: A0 02     LDY #$02
@@ -4550,9 +4551,10 @@ C - - - - - 0x0097DE 02:97CE: 85 13     STA ram_0012_t01_data + $01
 C - - - - - 0x0097E0 02:97D0: A0 00     LDY #$00
 C - - - - - 0x0097E2 02:97D2: B1 12     LDA (ram_0012_t01_data),Y
 C - - - - - 0x0097E4 02:97D4: C9 FC     CMP #$FC
-C - - - - - 0x0097E6 02:97D6: F0 2E     BEQ bra_9806
+C - - - - - 0x0097E6 02:97D6: F0 2E     BEQ bra_9806_FC
 C - - - - - 0x0097E8 02:97D8: C9 FD     CMP #$FD
 C - - - - - 0x0097EA 02:97DA: D0 4E     BNE bra_982A
+; FD
 C - - - - - 0x0097EC 02:97DC: C8        INY ; 01
 C - - - - - 0x0097ED 02:97DD: B1 12     LDA (ram_0012_t01_data),Y
 C - - - - - 0x0097EF 02:97DF: 1D F4 06  ORA ram_06F4_obj,X
@@ -4574,7 +4576,7 @@ C - - - - - 0x00980F 02:97FF: B1 12     LDA (ram_0012_t01_data),Y
 bra_9801:
 C - - - - - 0x009811 02:9801: 9D 1A 06  STA ram_obj_animation_lo,X
 C - - - - - 0x009814 02:9804: D0 52     BNE bra_9858
-bra_9806:
+bra_9806_FC:
 C - - - - - 0x009816 02:9806: C8        INY
 C - - - - - 0x009817 02:9807: B1 12     LDA (ram_0012_t01_data),Y
 C - - - - - 0x009819 02:9809: 1D F4 06  ORA ram_06F4_obj,X
@@ -4605,6 +4607,9 @@ C - - - - - 0x009846 02:9836: D0 04     BNE bra_983C
 bra_9838:
 loc_9838:
 loc_0x009848:
+; in
+    ; A = 
+; bzk optimize
 C D 0 - - - 0x009848 02:9838: 9D F4 06  STA ram_06F4_obj,X
 C - - - - - 0x00984B 02:983B: 60        RTS
 bra_983C:

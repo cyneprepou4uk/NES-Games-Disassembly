@@ -5867,6 +5867,7 @@ C - - - - - 0x005C93 01:BC83: 99 20 07  STA ram_0720_obj,Y
 C - - - - - 0x005C96 01:BC86: A5 91     LDA ram_0091_pos_Y
 C - - - - - 0x005C98 01:BC88: 9D 68 06  STA ram_obj_pos_Y,X
 bra_BC8B:
+; bzk optimize, useless CLC
 C - - - - - 0x005C9B 01:BC8B: 18        CLC
 C - - - - - 0x005C9C 01:BC8C: 60        RTS
 
@@ -5882,7 +5883,7 @@ C - - - - - 0x005CA6 01:BC96: C9 0C     CMP #$0C
 C - - - - - 0x005CA8 01:BC98: B0 04     BCS bra_BC9E
 ; 00-0B
 C - - - - - 0x005CAA 01:BC9A: A8        TAY
-C - - - - - 0x005CAB 01:BC9B: B9 E5 BC  LDA tbl_BCE5_index,Y
+C - - - - - 0x005CAB 01:BC9B: B9 E5 BC  LDA tbl_BCE5_table_index,Y
 bra_BC9E:
 ; * 04
 C - - - - - 0x005CAE 01:BC9E: 0A        ASL
@@ -5942,7 +5943,7 @@ tbl_BCD3:
 
 
 
-tbl_BCE5_index:
+tbl_BCE5_table_index:
 - D 1 - - - 0x005CF5 01:BCE5: 00        .byte $00   ; 00 
 - D 1 - - - 0x005CF6 01:BCE6: 01        .byte $01   ; 01 
 - D 1 - - - 0x005CF7 01:BCE7: 02        .byte $02   ; 02 
@@ -6189,7 +6190,7 @@ C - - - - - 0x005E71 01:BE61: BD C8 07  LDA ram_07C8_unk,X
 C - - - - - 0x005E74 01:BE64: C9 0A     CMP #$0A
 C - - - - - 0x005E76 01:BE66: 90 B5     BCC bra_BE1D_RTS
 bra_BE68:
-loc_BE68:
+loc_BE68:   ; bzk optimize
 C D 1 - - - 0x005E78 01:BE68: 4C 17 9A  JMP loc_0x009A27
 bra_BE6B:
 - - - - - - 0x005E7B 01:BE6B: 84 02     STY ram_0002_t18_array_index
