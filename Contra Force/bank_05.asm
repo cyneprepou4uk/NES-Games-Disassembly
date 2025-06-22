@@ -121,7 +121,7 @@ C - - - - - 0x00A08E 02:A07E: F0 0A     BEQ bra_A08A_side_view
 C - - - - - 0x00A090 02:A080: BD C8 07  LDA ram_07C8_unk,X
 C - - - - - 0x00A093 02:A083: 29 20     AND #$20
 C - - - - - 0x00A095 02:A085: D0 1A     BNE bra_A0A1_RTS
-C - - - - - 0x00A097 02:A087: 20 4C 9A  JSR sub_0x009A5C
+C - - - - - 0x00A097 02:A087: 20 4C 9A  JSR sub_0x009A5C_clear_animation
 bra_A08A_side_view:
 C - - - - - 0x00A09A 02:A08A: BD B4 07  LDA ram_07B4_unk,X
 C - - - - - 0x00A09D 02:A08D: D0 12     BNE bra_A0A1_RTS
@@ -152,7 +152,6 @@ C - - - - - 0x00A0B1 02:A0A1: 60        RTS
 
 
 sub_A0A2_07AAx_AND_0F:
-sub_A0A2:
 C - - - - - 0x00A0B2 02:A0A2: BD AA 07  LDA ram_07AA_unk,X
 C - - - - - 0x00A0B5 02:A0A5: 29 0F     AND #$0F
 C - - - - - 0x00A0B7 02:A0A7: 60        RTS
@@ -218,7 +217,7 @@ bra_A117:
 C - - - - - 0x00A127 02:A117: BD 00 06  LDA ram_0600_obj,X
 C - - - - - 0x00A12A 02:A11A: 29 01     AND #$01
 C - - - - - 0x00A12C 02:A11C: D0 2B     BNE bra_A149
-C - - - - - 0x00A12E 02:A11E: A5 BB     LDA ram_00BB_flag
+C - - - - - 0x00A12E 02:A11E: A5 BB     LDA ram_00BB
 C - - - - - 0x00A130 02:A120: D0 27     BNE bra_A149
 ; player was killed (stages 2 and 4)
 C - - - - - 0x00A132 02:A122: A9 20     LDA #$20
@@ -2455,12 +2454,12 @@ C - - - - - 0x00AD8F 02:AD7F: 90 0D     BCC bra_AD8E
 C - - - - - 0x00AD91 02:AD81: C9 B8     CMP #$B8
 C - - - - - 0x00AD93 02:AD83: 90 16     BCC bra_AD9B
 bra_AD85:
-- - - - - - 0x00AD95 02:AD85: 20 A2 A0  JSR sub_A0A2
+- - - - - - 0x00AD95 02:AD85: 20 A2 A0  JSR sub_A0A2_07AAx_AND_0F
 - - - - - - 0x00AD98 02:AD88: C9 05     CMP #$05
 - - - - - - 0x00AD9A 02:AD8A: B0 09     BCS bra_AD95
 - - - - - - 0x00AD9C 02:AD8C: 90 0D     BCC bra_AD9B    ; jmp
 bra_AD8E:
-- - - - - - 0x00AD9E 02:AD8E: 20 A2 A0  JSR sub_A0A2
+- - - - - - 0x00AD9E 02:AD8E: 20 A2 A0  JSR sub_A0A2_07AAx_AND_0F
 - - - - - - 0x00ADA1 02:AD91: C9 06     CMP #$06
 - - - - - - 0x00ADA3 02:AD93: B0 06     BCS bra_AD9B
 bra_AD95:
@@ -3107,9 +3106,9 @@ C - - - - - 0x00B156 02:B146: 60        RTS
 
 
 ofs_015_B147_00:
-C - - J - - 0x00B157 02:B147: A5 BB     LDA ram_00BB_flag
+C - - J - - 0x00B157 02:B147: A5 BB     LDA ram_00BB
 C - - - - - 0x00B159 02:B149: D0 02     BNE bra_B14D_RTS
-C - - - - - 0x00B15B 02:B14B: E6 BB     INC ram_00BB_flag   ; -> 01
+C - - - - - 0x00B15B 02:B14B: E6 BB     INC ram_00BB   ; -> 01
 bra_B14D_RTS:
 C - - - - - 0x00B15D 02:B14D: 60        RTS
 
@@ -3736,7 +3735,7 @@ C - - - - - 0x00B3F8 02:B3E8: 2A        ROL
 C - - - - - 0x00B3F9 02:B3E9: 90 06     BCC bra_B3F1_RTS
 bra_B3EB:
 loc_B3EB:
-C D 1 - - - 0x00B3FB 02:B3EB: 20 4C 9A  JSR sub_0x009A5C
+C D 1 - - - 0x00B3FB 02:B3EB: 20 4C 9A  JSR sub_0x009A5C_clear_animation
 C - - - - - 0x00B3FE 02:B3EE: 9D 82 06  STA ram_0682_obj,X
 bra_B3F1_RTS:
 C - - - - - 0x00B401 02:B3F1: 60        RTS
@@ -4647,6 +4646,9 @@ tbl_B83A:
 ofs_016_0x00B84F_09:
 C D 1 J - - 0x00B84F 02:B83F: 20 45 B8  JSR sub_B845
 C - - - - - 0x00B852 02:B842: 4C 10 8E  JMP loc_0x008E20
+
+
+
 sub_B845:
 C - - - - - 0x00B855 02:B845: BD 78 07  LDA ram_0778_unk,X
 C - - - - - 0x00B858 02:B848: D0 0D     BNE bra_B857

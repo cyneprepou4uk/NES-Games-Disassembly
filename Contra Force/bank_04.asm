@@ -144,7 +144,7 @@
 .export sub_0x009A27
 .export sub_0x009A57
 .export loc_0x009A57
-.export sub_0x009A5C
+.export sub_0x009A5C_clear_animation
 .export sub_0x009A62
 .export loc_0x009A62
 .export ofs_020_0x009A62_06
@@ -1394,7 +1394,7 @@ tbl_86E0:
 
 
 ofs_017_86E1_0A:
-C - - J - - 0x0086F1 02:86E1: 20 4C 9A  JSR sub_9A4C
+C - - J - - 0x0086F1 02:86E1: 20 4C 9A  JSR sub_9A4C_clear_animation
 C - - - - - 0x0086F4 02:86E4: A5 0A     LDA ram_000A_t03
 sub_0x0086F6:
 C - - - - - 0x0086F6 02:86E6: 85 7B     STA ram_chr_bank + $04
@@ -3041,6 +3041,10 @@ C - - - - - 0x008FF2 02:8FE2: 60        RTS
 
 
 sub_0x008FF3:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 ofs_017_8FE3_57:
 C - - - - - 0x008FF3 02:8FE3: BD 4C 07  LDA ram_074C_obj,X
 C - - - - - 0x008FF6 02:8FE6: 29 FC     AND #$FC
@@ -4457,7 +4461,7 @@ loc_0x009747:
 C D 0 - - - 0x009747 02:9737: 20 3E 85  JSR sub_853E
 loc_973A:
 loc_0x00974A:
-C D 0 - - - 0x00974A 02:973A: 20 4C 9A  JSR sub_9A4C
+C D 0 - - - 0x00974A 02:973A: 20 4C 9A  JSR sub_9A4C_clear_animation
 C - - - - - 0x00974D 02:973D: 9D 34 06  STA ram_obj_animation_hi,X
 C - - - - - 0x009750 02:9740: 9D 20 07  STA ram_0720_obj,X
 C - - - - - 0x009753 02:9743: A9 2C     LDA #$2C
@@ -4488,7 +4492,7 @@ sub_0x009772:
 loc_0x009772:
 C D 0 - - - 0x009772 02:9762: 9D 0A 07  STA ram_070A_obj,X
 C - - - - - 0x009775 02:9765: 20 61 98  JSR sub_9861
-C - - - - - 0x009778 02:9768: 20 4C 9A  JSR sub_9A4C
+C - - - - - 0x009778 02:9768: 20 4C 9A  JSR sub_9A4C_clear_animation
 C - - - - - 0x00977B 02:976B: E0 0A     CPX #$0A
 C - - - - - 0x00977D 02:976D: B0 F2     BCS bra_9761_RTS
 C - - - - - 0x00977F 02:976F: 9D F4 06  STA ram_06F4_obj,X
@@ -4954,7 +4958,7 @@ sub_0x009A27:
 ; out
     ; A = 00
 ofs_017_9A17_02:
-C D 0 - - - 0x009A27 02:9A17: 20 33 9A  JSR sub_9A33
+C D 0 - - - 0x009A27 02:9A17: 20 33 9A  JSR sub_9A33_clear_object_data
 ; A = 00
 C - - - - - 0x009A2A 02:9A1A: 9D 00 06  STA ram_0600_obj,X
 C - - - - - 0x009A2D 02:9A1D: 9D 82 07  STA ram_0782_unk,X
@@ -4968,7 +4972,7 @@ C - - - - - 0x009A42 02:9A32: 60        RTS
 
 
 
-sub_9A33:
+sub_9A33_clear_object_data:
 C - - - - - 0x009A43 02:9A33: A9 00     LDA #$00
 C - - - - - 0x009A45 02:9A35: 9D 34 06  STA ram_obj_animation_hi,X
 C - - - - - 0x009A48 02:9A38: 9D 82 06  STA ram_0682_obj,X
@@ -4981,8 +4985,8 @@ sub_0x009A57:
 loc_0x009A57:
 C D 0 - - - 0x009A57 02:9A47: A9 00     LDA #$00
 C - - - - - 0x009A59 02:9A49: 9D 0A 07  STA ram_070A_obj,X
-sub_9A4C:
-sub_0x009A5C:
+sub_9A4C_clear_animation:
+sub_0x009A5C_clear_animation:
 C - - - - - 0x009A5C 02:9A4C: A9 00     LDA #$00
 loc_9A4E:
 C - - - - - 0x009A5E 02:9A4E: 9D 1A 06  STA ram_obj_animation_lo,X
@@ -5001,7 +5005,7 @@ ofs_020_0x009A62_12:
 ofs_020_0x009A62_16:
 C D 0 - - - 0x009A62 02:9A52: BD 82 06  LDA ram_0682_obj,X
 C - - - - - 0x009A65 02:9A55: F0 20     BEQ bra_9A77_RTS
-C - - - - - 0x009A67 02:9A57: 20 33 9A  JSR sub_9A33
+C - - - - - 0x009A67 02:9A57: 20 33 9A  JSR sub_9A33_clear_object_data
 C - - - - - 0x009A6A 02:9A5A: A9 FF     LDA #$FF
 C - - - - - 0x009A6C 02:9A5C: 9D F4 06  STA ram_06F4_obj,X
 C - - - - - 0x009A6F 02:9A5F: E0 12     CPX #$12
@@ -5009,7 +5013,7 @@ C - - - - - 0x009A71 02:9A61: B0 14     BCS bra_9A77_RTS
 C - - - - - 0x009A73 02:9A63: A0 00     LDY #$00
 C - - - - - 0x009A75 02:9A65: E0 0E     CPX #$0E
 C - - - - - 0x009A77 02:9A67: 90 01     BCC bra_9A6A
-C - - - - - 0x009A79 02:9A69: C8        INY
+C - - - - - 0x009A79 02:9A69: C8        INY ; 01
 bra_9A6A:
 C - - - - - 0x009A7A 02:9A6A: B9 83 00  LDA ram_bullet_counter,Y
 C - - - - - 0x009A7D 02:9A6D: 38        SEC

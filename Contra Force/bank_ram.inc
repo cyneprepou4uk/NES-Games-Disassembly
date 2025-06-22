@@ -213,7 +213,7 @@ ram_0001_temp                           = $0001 ; 0033CA 00385C 003987 003CC0 00
     ram_0001_t48_ppu_addr_hi                = ram_0001_temp ; 
     ram_0001_t49_ppu_addr_hi                = ram_0001_temp ; 
     ram_0001_t50_ppu_addr_hi                = ram_0001_temp ; 
-    ram_0001_t51_meta_indexes_ptr_hi                         = ram_0001_temp ; 
+    ram_0001_t51_meta_indexes_ptr_hi        = ram_0001_temp ; 
     ram_0001_t52_hi                         = ram_0001_temp ; 
     ram_0001_t53_useless                    = ram_0001_temp ; bzk optimize
     ram_0001_t54_useless                    = ram_0001_temp ; bzk optimize
@@ -1542,7 +1542,12 @@ ram_00BA_ppu_addr_lo                    = $00BA ; 015888 0158AC 01DDAE 01E136 01
 
 ; 00 = 
 ; 01 = 
-ram_00BB_flag                           = $00BB ; 00A12E 00B157 00B15B 014661 014665 014685 01570D 015719 0157A2 0159D3 01D6F9 01D9A2 01D9BC 01E280 01E2D8 01F311 01FD5D 
+; 02 = 
+; 03 = 
+; 04 = 
+; 05 = 
+; 06 = 
+ram_00BB                                = $00BB ; 00A12E 00B157 00B15B 014661 014665 014685 01570D 015719 0157A2 0159D3 01D6F9 01D9A2 01D9BC 01E280 01E2D8 01F311 01FD5D 
 
 
 
@@ -1618,8 +1623,8 @@ ram_scanline                            = $00C9 ; 01F311 01FD5D 01FDFC 01FE48
 
 
 
-; bzk optimize, holds value for C000, but you can write any value to C000
-ram_00CA_useless                        = $00CA ; 01F311 01F7F8 01F821 01F838 01FD5D 01FE00 
+; 
+ram_00CA_scanline                       = $00CA ; 01F311 01F7F8 01F821 01F838 01FD5D 01FE00 
 
 
 

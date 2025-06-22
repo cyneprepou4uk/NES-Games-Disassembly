@@ -4171,7 +4171,7 @@ tbl_B10E:
 sub_B112:
 C - - - - - 0x00D122 03:B112: A0 00     LDY #$00
 C - - - - - 0x00D124 03:B114: 20 18 B1  JSR sub_B118
-C - - - - - 0x00D127 03:B117: C8        INY
+C - - - - - 0x00D127 03:B117: C8        INY ; 01
 sub_B118:
 C - - - - - 0x00D128 03:B118: BD 36 07  LDA ram_0736_obj,X
 C - - - - - 0x00D12B 03:B11B: 39 AE F5  AND tbl_0x01F5BE,Y

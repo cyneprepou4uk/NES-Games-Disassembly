@@ -1100,6 +1100,7 @@ C - - - - - 0x00E5AB 03:A59B: 60        RTS
 
 
 bra_A59E:
+; bzk optimize
 - - - - - - 0x00E5AE 03:A59E: 4C 61 A3  JMP loc_A361
 
 
@@ -5051,7 +5052,7 @@ bra_BA6B:
 C - - - - - 0x00FA7B 03:BA6B: BD 00 06  LDA ram_0600_obj,X
 C - - - - - 0x00FA7E 03:BA6E: 10 06     BPL bra_BA76
 bra_BA70:
-C - - - - - 0x00FA80 03:BA70: 20 4C 9A  JSR sub_0x009A5C
+C - - - - - 0x00FA80 03:BA70: 20 4C 9A  JSR sub_0x009A5C_clear_animation
 
 
 

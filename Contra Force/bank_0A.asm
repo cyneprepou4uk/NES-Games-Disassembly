@@ -594,7 +594,7 @@ ofs_020_823D_00:
 ; con_8113_00
 C - - J - - 0x01424D 05:823D: 20 CC 81  JSR sub_81CC
 C - - - - - 0x014250 05:8240: 20 9B F4  JSR sub_0x01F4AB
-C - - - - - 0x014253 05:8243: 20 97 D1  JSR sub_0x01D1A7
+C - - - - - 0x014253 05:8243: 20 97 D1  JSR sub_0x01D1A7_unpack_static_screen
 C - - - - - 0x014256 05:8246: A9 7C     LDA #con_chr_bank + $7C
 C - - - - - 0x014258 05:8248: 85 79     STA ram_chr_bank + $02
 C - - - - - 0x01425A 05:824A: A9 1C     LDA #con_chr_pair + $1C
@@ -615,7 +615,7 @@ C - - - - - 0x01426E 05:825E: 60        RTS
 
 ofs_020_825F_01:
 ; con_8113_01
-C - - J - - 0x01426F 05:825F: 20 97 D1  JSR sub_0x01D1A7
+C - - J - - 0x01426F 05:825F: 20 97 D1  JSR sub_0x01D1A7_unpack_static_screen
 C - - - - - 0x014272 05:8262: 38        SEC
 C - - - - - 0x014273 05:8263: 60        RTS
 
@@ -671,7 +671,7 @@ ofs_020_8290_17:
 C - - J - - 0x0142A0 05:8290: A9 1E     LDA #con_chr_pair + $1E
 C - - - - - 0x0142A2 05:8292: 20 48 F4  JSR sub_0x01F458_select_bg_chr_bank_pair
 C - - - - - 0x0142A5 05:8295: A2 0A     LDX #con_D22A_cutscene_crime
-C - - - - - 0x0142A7 05:8297: 20 A8 D1  JSR sub_0x01D1B8
+C - - - - - 0x0142A7 05:8297: 20 A8 D1  JSR sub_0x01D1B8_unpack_static_screen
 C - - - - - 0x0142AA 05:829A: A9 03     LDA #$03
 C - - - - - 0x0142AC 05:829C: D0 10     BNE bra_82AE    ; jmp
 
@@ -918,7 +918,7 @@ C - - - - - 0x01435B 05:834B: 4C 02 F7  JMP loc_0x01F712
 
 ofs_020_834E_2C:
 ; con_8113_2C
-C - - J - - 0x01435E 05:834E: 20 97 D1  JSR sub_0x01D1A7
+C - - J - - 0x01435E 05:834E: 20 97 D1  JSR sub_0x01D1A7_unpack_static_screen
 C - - - - - 0x014361 05:8351: A5 75     LDA ram_stage
 C - - - - - 0x014363 05:8353: C9 04     CMP #$04
 C - - - - - 0x014365 05:8355: F0 28     BEQ bra_837F
@@ -1358,9 +1358,9 @@ C - - - - - 0x014660 05:8650: 60        RTS
 
 ofs_020_8651_38:
 ; con_8113_38
-C - - J - - 0x014661 05:8651: A5 BB     LDA ram_00BB_flag
+C - - J - - 0x014661 05:8651: A5 BB     LDA ram_00BB
 C - - - - - 0x014663 05:8653: D0 17     BNE bra_866C
-C - - - - - 0x014665 05:8655: E6 BB     INC ram_00BB_flag   ; -> 01
+C - - - - - 0x014665 05:8655: E6 BB     INC ram_00BB   ; -> 01
 C - - - - - 0x014667 05:8657: A2 01     LDX #$01
 bra_8659_loop:
 C - - - - - 0x014669 05:8659: BD 82 07  LDA ram_0782_unk,X
@@ -1376,7 +1376,7 @@ bra_866C:
 C - - - - - 0x01467C 05:866C: 20 FD 96  JSR sub_96FD
 C - - - - - 0x01467F 05:866F: 20 69 9F  JSR sub_9F69
 C - - - - - 0x014682 05:8672: 20 C2 D9  JSR sub_0x01D9D2
-C - - - - - 0x014685 05:8675: A5 BB     LDA ram_00BB_flag
+C - - - - - 0x014685 05:8675: A5 BB     LDA ram_00BB
 C - - - - - 0x014687 05:8677: D0 CD     BNE bra_8646
 C - - - - - 0x014689 05:8679: A9 00     LDA #$00
 C - - - - - 0x01468B 05:867B: A0 07     LDY #$07
@@ -3706,9 +3706,10 @@ C - - - - - 0x01570A 05:96FA: 4C B3 F3  JMP loc_0x01F3C3_execute_script
 
 sub_96FD:
 sub_0x01570D:
-C - - - - - 0x01570D 05:96FD: A4 BB     LDY ram_00BB_flag
+C - - - - - 0x01570D 05:96FD: A4 BB     LDY ram_00BB
 C - - - - - 0x01570F 05:96FF: 88        DEY
 C - - - - - 0x015710 05:9700: D0 0A     BNE bra_970C
+; if was 01
 ; Y = 00
 C - - - - - 0x015712 05:9702: 84 BC     STY ram_00BC_counter
 C - - - - - 0x015714 05:9704: 20 1A F5  JSR sub_0x01F52A
@@ -3716,12 +3717,13 @@ loc_9707:
 C D 0 - - - 0x015717 05:9707: 90 02     BCC bra_970B_RTS
 bra_9709:
 loc_9709:
-C D 0 - - - 0x015719 05:9709: E6 BB     INC ram_00BB_flag
+C D 0 - - - 0x015719 05:9709: E6 BB     INC ram_00BB
 bra_970B_RTS:
 C - - - - - 0x01571B 05:970B: 60        RTS
 bra_970C:
 C - - - - - 0x01571C 05:970C: 88        DEY
 C - - - - - 0x01571D 05:970D: D0 28     BNE bra_9737
+; if was 02
 ; Y = 00
 C - - - - - 0x01571F 05:970F: 8C 61 03  STY ram_0361_counter
 C - - - - - 0x015722 05:9712: 84 5A     STY ram_005A_flag
@@ -3746,6 +3748,7 @@ C - - - - - 0x015745 05:9735: D0 D2     BNE bra_9709    ; jmp
 bra_9737:
 C - - - - - 0x015747 05:9737: 88        DEY
 C - - - - - 0x015748 05:9738: D0 43     BNE bra_977D
+; if was 03
 C - - - - - 0x01574A 05:973A: A0 14     LDY #$14
 C - - - - - 0x01574C 05:973C: A5 75     LDA ram_stage
 C - - - - - 0x01574E 05:973E: C9 03     CMP #$03
@@ -3781,17 +3784,20 @@ C - - - - - 0x01578B 05:977B: F0 8C     BEQ bra_9709    ; jmp
 bra_977D:
 C - - - - - 0x01578D 05:977D: 88        DEY
 C - - - - - 0x01578E 05:977E: D0 07     BNE bra_9787
+; if was 04
 C - - - - - 0x015790 05:9780: A9 01     LDA #$01
 C - - - - - 0x015792 05:9782: 85 5A     STA ram_005A_flag
 C - - - - - 0x015794 05:9784: 4C 09 97  JMP loc_9709
 bra_9787:
 C - - - - - 0x015797 05:9787: 88        DEY
 C - - - - - 0x015798 05:9788: D0 06     BNE bra_9790
+; if was 05
 C - - - - - 0x01579A 05:978A: 20 69 F5  JSR sub_0x01F579
 C - - - - - 0x01579D 05:978D: 4C 07 97  JMP loc_9707
 bra_9790:
+; if was 06
 C - - - - - 0x0157A0 05:9790: A9 00     LDA #$00
-C - - - - - 0x0157A2 05:9792: 85 BB     STA ram_00BB_flag
+C - - - - - 0x0157A2 05:9792: 85 BB     STA ram_00BB
 C - - - - - 0x0157A4 05:9794: 60        RTS
 
 
@@ -4233,7 +4239,7 @@ C - - - - - 0x0159CD 05:99BD: C9 05     CMP #$05
 C - - - - - 0x0159CF 05:99BF: 90 02     BCC bra_99C3
 C - - - - - 0x0159D1 05:99C1: 84 BC     STY ram_00BC_counter
 bra_99C3:
-C - - - - - 0x0159D3 05:99C3: A5 BB     LDA ram_00BB_flag
+C - - - - - 0x0159D3 05:99C3: A5 BB     LDA ram_00BB
 C - - - - - 0x0159D5 05:99C5: D0 29     BNE bra_99F0
 C - - - - - 0x0159D7 05:99C7: A5 C7     LDA ram_00C7_flag
 C - - - - - 0x0159D9 05:99C9: D0 25     BNE bra_99F0
@@ -6242,7 +6248,7 @@ C - - - - - 0x016406 05:A3F6: E6 5B     INC ram_005B_script
 C - - - - - 0x016408 05:A3F8: A9 00     LDA #$00
 C - - - - - 0x01640A 05:A3FA: 85 1E     STA ram_001E_t11
 C - - - - - 0x01640C 05:A3FC: 20 93 FE  JSR sub_0x01FEA3_disable_rendering
-C - - - - - 0x01640F 05:A3FF: 20 97 D1  JSR sub_0x01D1A7
+C - - - - - 0x01640F 05:A3FF: 20 97 D1  JSR sub_0x01D1A7_unpack_static_screen
 C - - - - - 0x016412 05:A402: A2 0C     LDX #con_D22A_pause
 C - - - - - 0x016414 05:A404: A9 19     LDA #con_F3D6_19
 C - - - - - 0x016416 05:A406: 20 B3 F3  JSR sub_0x01F3C3_execute_script
@@ -6560,7 +6566,7 @@ ofs_008_A603_09:
 ofs_008_A603_0A:
 C - - J - - 0x016613 05:A603: A9 04     LDA #con_chr_bank + $04
 C - - - - - 0x016615 05:A605: 85 79     STA ram_chr_bank + $02
-C - - - - - 0x016617 05:A607: 20 97 D1  JSR sub_0x01D1A7
+C - - - - - 0x016617 05:A607: 20 97 D1  JSR sub_0x01D1A7_unpack_static_screen
 C - - - - - 0x01661A 05:A60A: 20 95 97  JSR sub_9795
 C - - - - - 0x01661D 05:A60D: A9 00     LDA #$00
 C - - - - - 0x01661F 05:A60F: 85 2B     STA ram_002B_flags
