@@ -6496,6 +6496,7 @@ C - - - - - 0x00249E 00:E48E: A4 C1     LDY ram_00C1
 C - - - - - 0x0024A0 00:E490: D0 FB     BNE bra_E48D_RTS
 - - - - - - 0x0024A2 00:E492: A9 01     LDA #con_msg_out
 - - - - - - 0x0024A4 00:E494: 85 79     STA ram_mario_message
+; bzk optimize, useless branch
 - - - - - - 0x0024A6 00:E496: D0 00     BNE bra_E498    ; jmp
 bra_E498:
 loc_E498:
