@@ -15,7 +15,7 @@
 .export sub_0x01D184
 .export sub_0x01D192
 .export sub_0x01D19F
-.export sub_0x01D1A7_unpack_static_screen
+.export sub_0x01D1A7_clear_nametables
 .export sub_0x01D1B8_unpack_static_screen
 .export loc_0x01D1CE
 .export sub_0x01D225_prepare_pointers_for_static_screen
@@ -447,14 +447,14 @@ C - - J - - 0x01D079 07:D069: A5 42     LDA ram_btn_hold_1
 C - - - - - 0x01D07B 07:D06B: 05 40     ORA ram_btn_press_1
 C - - - - - 0x01D07D 07:D06D: 29 10     AND #con_btn_Start
 C - - - - - 0x01D07F 07:D06F: D0 D3     BNE bra_D044_RTS
-C - - - - - 0x01D081 07:D071: 20 97 D1  JSR sub_D197_unpack_static_screen
+C - - - - - 0x01D081 07:D071: 20 97 D1  JSR sub_D197_clear_nametables
 C - - - - - 0x01D084 07:D074: 4C 60 D0  JMP loc_D060_prepare_next_script
 
 
 
 ofs_000_D077_02:
 ; con_0020_02
-C - - J - - 0x01D087 07:D077: 20 97 D1  JSR sub_D197_unpack_static_screen
+C - - J - - 0x01D087 07:D077: 20 97 D1  JSR sub_D197_clear_nametables
 C - - - - - 0x01D08A 07:D07A: 20 FD F2  JSR sub_F2FD_clear_0060_00DF
 C - - - - - 0x01D08D 07:D07D: 4C 60 D0  JMP loc_D060_prepare_next_script
 
@@ -496,7 +496,7 @@ C - - - - - 0x01D0BC 07:D0AC: 85 77     STA ram_chr_bank
 C - - - - - 0x01D0BE 07:D0AE: A9 0A     LDA #con_prg_pair + $0A
 C - - - - - 0x01D0C0 07:D0B0: 20 4C F3  JSR sub_F34C_prg_bankswitch
 C - - - - - 0x01D0C3 07:D0B3: 20 94 BF  JSR sub_0x007FA4_clear_data
-C - - - - - 0x01D0C6 07:D0B6: 20 97 D1  JSR sub_D197_unpack_static_screen
+C - - - - - 0x01D0C6 07:D0B6: 20 97 D1  JSR sub_D197_clear_nametables
 C - - - - - 0x01D0C9 07:D0B9: 20 27 F3  JSR sub_F327
 C - - - - - 0x01D0CC 07:D0BC: A9 A4     LDA #con_music_A4
 C - - - - - 0x01D0CE 07:D0BE: 20 CA FE  JSR sub_FECA_add_music_to_queue
@@ -653,9 +653,9 @@ C - - - - - 0x01D1A4 07:D194: 4C A8 D1  JMP loc_D1A8_unpack_static_screen
 
 
 
-sub_D197_unpack_static_screen:
-loc_D197_unpack_static_screen:
-sub_0x01D1A7_unpack_static_screen:
+sub_D197_clear_nametables:
+loc_D197_clear_nametables:
+sub_0x01D1A7_clear_nametables:
 C D 2 - - - 0x01D1A7 07:D197: A5 36     LDA ram_prg_banks_pair
 C - - - - - 0x01D1A9 07:D199: 48        PHA
 C - - - - - 0x01D1AA 07:D19A: A9 01     LDA #con_prg_pair + $01
@@ -2074,7 +2074,7 @@ C - - - - - 0x01D906 07:D8F6: D0 0A     BNE bra_D902
 C - - - - - 0x01D908 07:D8F8: 20 1A F5  JSR sub_F51A
 C - - - - - 0x01D90B 07:D8FB: 90 26     BCC bra_D923_RTS
 C - - - - - 0x01D90D 07:D8FD: E6 21     INC ram_0021_t01
-C - - - - - 0x01D90F 07:D8FF: 4C 97 D1  JMP loc_D197_unpack_static_screen
+C - - - - - 0x01D90F 07:D8FF: 4C 97 D1  JMP loc_D197_clear_nametables
 bra_D902:
 C - - - - - 0x01D912 07:D902: 88        DEY
 C - - - - - 0x01D913 07:D903: D0 1F     BNE bra_D924
@@ -5093,7 +5093,7 @@ C - - - - - 0x01E8A6 07:E896: 85 10     STA ram_0010_t11
 C - - - - - 0x01E8A8 07:E898: A5 11     LDA ram_0011_t08
 C - - - - - 0x01E8AA 07:E89A: 29 03     AND #$03
 C - - - - - 0x01E8AC 07:E89C: 85 11     STA ram_0011_t09
-C - - - - - 0x01E8AE 07:E89E: 20 B5 ED  JSR sub_EDB5
+C - - - - - 0x01E8AE 07:E89E: 20 B5 ED  JSR sub_EDB5_prepare_metatiles_pointers
 C - - - - - 0x01E8B1 07:E8A1: 6C 1C 00  JMP (ram_001C_t01_jmp)
 
 
@@ -5166,7 +5166,7 @@ C - - - - - 0x01E919 07:E909: 85 10     STA ram_0010_t13
 C - - - - - 0x01E91B 07:E90B: A5 11     LDA ram_0011_t10
 C - - - - - 0x01E91D 07:E90D: 29 03     AND #$03
 C - - - - - 0x01E91F 07:E90F: 85 11     STA ram_0011_t11
-C - - - - - 0x01E921 07:E911: 20 B5 ED  JSR sub_EDB5
+C - - - - - 0x01E921 07:E911: 20 B5 ED  JSR sub_EDB5_prepare_metatiles_pointers
 C - - - - - 0x01E924 07:E914: 6C 1C 00  JMP (ram_001C_t02_jmp)
 
 
@@ -5340,7 +5340,7 @@ C - - - - - 0x01EA06 07:E9F6: 85 10     STA ram_0010_t13
 C - - - - - 0x01EA08 07:E9F8: A5 11     LDA ram_0011_t12
 C - - - - - 0x01EA0A 07:E9FA: 29 03     AND #$03
 C - - - - - 0x01EA0C 07:E9FC: 85 11     STA ram_0011_t11
-C - - - - - 0x01EA0E 07:E9FE: 20 B5 ED  JSR sub_EDB5
+C - - - - - 0x01EA0E 07:E9FE: 20 B5 ED  JSR sub_EDB5_prepare_metatiles_pointers
 C - - - - - 0x01EA11 07:EA01: A9 00     LDA #$00
 C - - - - - 0x01EA13 07:EA03: 8D 53 03  STA ram_0353_flag
 C - - - - - 0x01EA16 07:EA06: 6C 1C 00  JMP (ram_001C_t03_jmp)
@@ -5451,7 +5451,7 @@ C - - - - - 0x01EABB 07:EAAB: 85 10     STA ram_0010_t13
 C - - - - - 0x01EABD 07:EAAD: A5 11     LDA ram_0011_t13
 C - - - - - 0x01EABF 07:EAAF: 29 03     AND #$03
 C - - - - - 0x01EAC1 07:EAB1: 85 11     STA ram_0011_t11
-C - - - - - 0x01EAC3 07:EAB3: 20 B5 ED  JSR sub_EDB5
+C - - - - - 0x01EAC3 07:EAB3: 20 B5 ED  JSR sub_EDB5_prepare_metatiles_pointers
 C - - - - - 0x01EAC6 07:EAB6: A9 01     LDA #$01
 C - - - - - 0x01EAC8 07:EAB8: 8D 53 03  STA ram_0353_flag
 C - - - - - 0x01EACB 07:EABB: 6C 1C 00  JMP (ram_001C_t04_jmp)
@@ -6049,7 +6049,7 @@ tbl_EDAB:
 
 
 
-sub_EDB5:
+sub_EDB5_prepare_metatiles_pointers:
 ; out
     ; ram_0008_t17_metatiles_ptr
 C - - - - - 0x01EDC5 07:EDB5: A4 88     LDY ram_x2_stage
@@ -6782,7 +6782,7 @@ bra_F1EC:
 C - - - - - 0x01F1FC 07:F1EC: A9 01     LDA #$01
 bra_F1EE:
 C - - - - - 0x01F1FE 07:F1EE: A8        TAY
-C - - - - - 0x01F1FF 07:F1EF: B9 7D F2  LDA tbl_F27D,Y
+C - - - - - 0x01F1FF 07:F1EF: B9 7D F2  LDA tbl_F27D_ppu_address_hi,Y
 C - - - - - 0x01F202 07:F1F2: 05 05     ORA ram_0005_t15
 C - - - - - 0x01F204 07:F1F4: 85 05     STA ram_0005_t09_ppu_addr_hi
 C - - - - - 0x01F206 07:F1F6: A9 04     LDA #$04
@@ -6813,7 +6813,7 @@ C - - - - - 0x01F23A 07:F22A: 2A        ROL
 C - - - - - 0x01F23B 07:F22B: 88        DEY
 C - - - - - 0x01F23C 07:F22C: 10 FA     BPL bra_F228_loop
 C - - - - - 0x01F23E 07:F22E: 85 13     STA ram_0013_t01
-C - - - - - 0x01F240 07:F230: 20 B5 ED  JSR sub_EDB5
+C - - - - - 0x01F240 07:F230: 20 B5 ED  JSR sub_EDB5_prepare_metatiles_pointers
 C - - - - - 0x01F243 07:F233: A5 08     LDA ram_0008_t17_metatiles_ptr
 C - - - - - 0x01F245 07:F235: 18        CLC
 C - - - - - 0x01F246 07:F236: 65 12     ADC ram_0012_t03_data_index
@@ -6861,6 +6861,10 @@ C - - - - - 0x01F278 07:F268: 60        RTS
 
 
 sub_F269:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x01F279 07:F269: A4 75     LDY ram_stage
 C - - - - - 0x01F27B 07:F26B: C0 02     CPY #$02
 C - - - - - 0x01F27D 07:F26D: 60        RTS
@@ -6880,7 +6884,7 @@ tbl_F273:
 
 
 
-tbl_F27D:
+tbl_F27D_ppu_address_hi:
 - D 3 - - - 0x01F28D 07:F27D: 20        .byte $20   ; 00 
 - D 3 - - - 0x01F28E 07:F27E: 2C        .byte $2C   ; 01 
 - - - - - - 0x01F28F 07:F27F: 2C        .byte $2C   ; 02 
@@ -7662,8 +7666,16 @@ sub_F569:
 sub_0x01F579:
 ofs_020_0x01F579_04:
 ; con_8113_04
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - J - - 0x01F579 07:F569: 20 99 F5  JSR sub_F599
 sub_0x01F57C:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x01F57C 07:F56C: AD F2 03  LDA ram_03F2
 C - - - - - 0x01F57F 07:F56F: D0 F3     BNE bra_F564
 C - - - - - 0x01F581 07:F571: A9 08     LDA #$08
@@ -8776,6 +8788,7 @@ bra_FB5B:
 C - - - - - 0x01FB6B 07:FB5B: A4 17     LDY ram_0017_t08_player_index
 C - - - - - 0x01FB6D 07:FB5D: 19 62 07  ORA ram_0762_obj,Y
 C - - - - - 0x01FB70 07:FB60: 99 62 07  STA ram_0762_obj,Y
+; bzk optimize, useless branch
 C - - - - - 0x01FB73 07:FB63: D0 00     BNE bra_FB65
 bra_FB65:
 C - - - - - 0x01FB75 07:FB65: A5 17     LDA ram_0017_t08_player_index

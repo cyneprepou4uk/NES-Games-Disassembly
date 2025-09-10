@@ -1260,7 +1260,7 @@ ofs_017_0x00E670_2F:
 C - - J - - 0x00E670 03:A660: A0 00     LDY #$00
 C - - - - - 0x00E672 03:A662: 20 6E A6  JSR sub_A66E
 C - - - - - 0x00E675 03:A665: B0 06     BCS bra_A66D_RTS
-- - - - - - 0x00E677 03:A667: C8        INY
+- - - - - - 0x00E677 03:A667: C8        INY ; 01
 - - - - - - 0x00E678 03:A668: 20 6E A6  JSR sub_A66E
 - - - - - - 0x00E67B 03:A66B: 90 88     BCC bra_A5F5
 bra_A66D_RTS:
@@ -1269,6 +1269,10 @@ C - - - - - 0x00E67D 03:A66D: 60        RTS
 
 
 sub_A66E:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x00E67E 03:A66E: B9 82 07  LDA ram_0782_unk,Y
 C - - - - - 0x00E681 03:A671: F0 11     BEQ bra_A684
 C - - - - - 0x00E683 03:A673: B9 68 06  LDA ram_obj_pos_Y,Y
@@ -1352,6 +1356,10 @@ C - - - - - 0x00E6F9 03:A6E9: 60        RTS
 
 sub_A6EA:
 ofs_017_0x00E6FA_36:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x00E6FA 03:A6EA: A5 01     LDA ram_0001_t02_hi
 C - - - - - 0x00E6FC 03:A6EC: D9 F9 A6  CMP tbl_A6F8 + $01,Y
 C - - - - - 0x00E6FF 03:A6EF: F0 01     BEQ bra_A6F2

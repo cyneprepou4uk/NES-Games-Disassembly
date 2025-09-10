@@ -409,7 +409,7 @@ bra_814E:
 C - - - - - 0x00815E 02:814E: E8        INX
 C - - - - - 0x00815F 02:814F: E0 16     CPX #$16
 C - - - - - 0x008161 02:8151: 90 E6     BCC bra_8139_loop
-sub_8153:
+sub_8153_swap_prg_banks:
 C - - - - - 0x008163 02:8153: A9 02     LDA #con_prg_pair + $02
 C - - - - - 0x008165 02:8155: 4C 4C F3  JMP loc_0x01F35C_prg_bankswitch
 
@@ -451,7 +451,7 @@ C - - - - - 0x00819C 02:818C: 20 4C F3  JSR sub_0x01F35C_prg_bankswitch
 bra_818F:
 C - - - - - 0x00819F 02:818F: 6C 18 00  JMP (ram_0018_t04_jmp)
 bra_8192:
-C - - - - - 0x0081A2 02:8192: 20 53 81  JSR sub_8153
+C - - - - - 0x0081A2 02:8192: 20 53 81  JSR sub_8153_swap_prg_banks
 C - - - - - 0x0081A5 02:8195: BD 78 07  LDA ram_0778_unk,X
 C - - - - - 0x0081A8 02:8198: F0 28     BEQ bra_81C2
 C - - - - - 0x0081AA 02:819A: 20 26 B6  JSR sub_0x00B636
@@ -462,7 +462,7 @@ C - - - - - 0x0081B5 02:81A5: 20 F2 B3  JSR sub_0x00B402
 C - - - - - 0x0081B8 02:81A8: 20 10 8E  JSR sub_8E10
 C - - - - - 0x0081BB 02:81AB: 4C C0 B6  JMP loc_0x00B6D0
 bra_81AE:
-C - - - - - 0x0081BE 02:81AE: 20 53 81  JSR sub_8153
+C - - - - - 0x0081BE 02:81AE: 20 53 81  JSR sub_8153_swap_prg_banks
 C - - - - - 0x0081C1 02:81B1: BD 78 07  LDA ram_0778_unk,X
 C - - - - - 0x0081C4 02:81B4: F0 0C     BEQ bra_81C2
 loc_0x0081C6:
@@ -648,9 +648,9 @@ loc_8278:
 bra_8278_loop:
 C D 0 - - - 0x008288 02:8278: A5 36     LDA ram_prg_banks_pair
 C - - - - - 0x00828A 02:827A: C9 02     CMP #con_prg_pair + $02
-C - - - - - 0x00828C 02:827C: F0 03     BEQ bra_8281
-C - - - - - 0x00828E 02:827E: 20 53 81  JSR sub_8153
-bra_8281:
+C - - - - - 0x00828C 02:827C: F0 03     BEQ bra_8281_same_pair
+C - - - - - 0x00828E 02:827E: 20 53 81  JSR sub_8153_swap_prg_banks
+bra_8281_same_pair:
 C - - - - - 0x008291 02:8281: BD 82 07  LDA ram_0782_unk,X
 C - - - - - 0x008294 02:8284: F0 3F     BEQ bra_82C5_RTS
 C - - - - - 0x008296 02:8286: 0A        ASL
@@ -3061,7 +3061,7 @@ C - - - - - 0x009003 02:8FF3: A0 00     LDY #$00
 C - - - - - 0x009005 02:8FF5: BD 4C 07  LDA ram_074C_obj,X
 C - - - - - 0x009008 02:8FF8: 29 3C     AND #$3C
 C - - - - - 0x00900A 02:8FFA: D0 01     BNE bra_8FFD
-- - - - - - 0x00900C 02:8FFC: C8        INY
+- - - - - - 0x00900C 02:8FFC: C8        INY ; 01
 bra_8FFD:
 C - - - - - 0x00900D 02:8FFD: 98        TYA
 C - - - - - 0x00900E 02:8FFE: 9D B4 07  STA ram_07B4_unk,X
@@ -3325,6 +3325,10 @@ C - - - - - 0x00912B 02:911B: 4C EE 95  JMP loc_95EE
 
 
 sub_0x00912E:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x00912E 02:911E: 20 38 91  JSR sub_9138
 C - - - - - 0x009131 02:9121: 90 0D     BCC bra_9130
 C - - - - - 0x009133 02:9123: BD 68 06  LDA ram_obj_pos_Y,X
@@ -5081,6 +5085,10 @@ tbl_9ABB_positions:
 
 
 sub_9ACB:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x009ADB 02:9ACB: BD F4 06  LDA ram_06F4_obj,X
 C - - - - - 0x009ADE 02:9ACE: C9 16     CMP #$16
 C - - - - - 0x009AE0 02:9AD0: 90 13     BCC bra_9AE5
@@ -5582,6 +5590,9 @@ tbl_9CEF:
 
 
 tbl_9CF7:
+;                                              +---------- X
+;                                              |    +----- Y
+;                                              |    |
 - - - - - - 0x009D07 02:9CF7: 00        .byte $00, $00   ; 00 never used 0x009B3B
 - D 0 - - - 0x009D09 02:9CF9: 15        .byte $15, $F8   ; 01 
 - D 0 - - - 0x009D0B 02:9CFB: EB        .byte $EB, $F8   ; 02 

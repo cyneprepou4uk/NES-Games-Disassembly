@@ -5066,6 +5066,7 @@ sub_BA95:
 ; bzk optimize, useless LDY + CPY + BCC
 C - - - - - 0x00BAA5 02:BA95: BC 78 07  LDY ram_0778_unk,X
 C - - - - - 0x00BAA8 02:BA98: C0 02     CPY #$02
+; bzk optimize, useless branch
 C - - - - - 0x00BAAA 02:BA9A: 90 00     BCC bra_BA9C
 bra_BA9C:
 C - - - - - 0x00BAAC 02:BA9C: 85 01     STA ram_0001_t04_hi

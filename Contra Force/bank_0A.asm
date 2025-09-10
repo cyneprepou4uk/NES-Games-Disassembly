@@ -594,7 +594,7 @@ ofs_020_823D_00:
 ; con_8113_00
 C - - J - - 0x01424D 05:823D: 20 CC 81  JSR sub_81CC
 C - - - - - 0x014250 05:8240: 20 9B F4  JSR sub_0x01F4AB
-C - - - - - 0x014253 05:8243: 20 97 D1  JSR sub_0x01D1A7_unpack_static_screen
+C - - - - - 0x014253 05:8243: 20 97 D1  JSR sub_0x01D1A7_clear_nametables
 C - - - - - 0x014256 05:8246: A9 7C     LDA #con_chr_bank + $7C
 C - - - - - 0x014258 05:8248: 85 79     STA ram_chr_bank + $02
 C - - - - - 0x01425A 05:824A: A9 1C     LDA #con_chr_pair + $1C
@@ -615,7 +615,7 @@ C - - - - - 0x01426E 05:825E: 60        RTS
 
 ofs_020_825F_01:
 ; con_8113_01
-C - - J - - 0x01426F 05:825F: 20 97 D1  JSR sub_0x01D1A7_unpack_static_screen
+C - - J - - 0x01426F 05:825F: 20 97 D1  JSR sub_0x01D1A7_clear_nametables
 C - - - - - 0x014272 05:8262: 38        SEC
 C - - - - - 0x014273 05:8263: 60        RTS
 
@@ -918,7 +918,7 @@ C - - - - - 0x01435B 05:834B: 4C 02 F7  JMP loc_0x01F712
 
 ofs_020_834E_2C:
 ; con_8113_2C
-C - - J - - 0x01435E 05:834E: 20 97 D1  JSR sub_0x01D1A7_unpack_static_screen
+C - - J - - 0x01435E 05:834E: 20 97 D1  JSR sub_0x01D1A7_clear_nametables
 C - - - - - 0x014361 05:8351: A5 75     LDA ram_stage
 C - - - - - 0x014363 05:8353: C9 04     CMP #$04
 C - - - - - 0x014365 05:8355: F0 28     BEQ bra_837F
@@ -1243,14 +1243,14 @@ C - - - - - 0x0145C2 05:85B2: 4C 8A 82  JMP loc_828A
 
 
 tbl_85B5:
-- D 0 - - - 0x0145C5 05:85B5: 00        .byte $00   ; 
-- D 0 - - - 0x0145C6 05:85B6: 0C        .byte $0C   ; 
-- D 0 - - - 0x0145C7 05:85B7: 18        .byte $18   ; 
-- D 0 - - - 0x0145C8 05:85B8: 24        .byte $24   ; 
-- D 0 - - - 0x0145C9 05:85B9: 30        .byte $30   ; 
-- D 0 - - - 0x0145CA 05:85BA: 3C        .byte $3C   ; 
-- D 0 - - - 0x0145CB 05:85BB: 48        .byte $48   ; 
-- D 0 - - - 0x0145CC 05:85BC: 54        .byte $54   ; 
+- D 0 - - - 0x0145C5 05:85B5: 00        .byte $00   ; 00 
+- D 0 - - - 0x0145C6 05:85B6: 0C        .byte $0C   ; 01 
+- D 0 - - - 0x0145C7 05:85B7: 18        .byte $18   ; 02 
+- D 0 - - - 0x0145C8 05:85B8: 24        .byte $24   ; 03 
+- D 0 - - - 0x0145C9 05:85B9: 30        .byte $30   ; 04 
+- D 0 - - - 0x0145CA 05:85BA: 3C        .byte $3C   ; 05 
+- D 0 - - - 0x0145CB 05:85BB: 48        .byte $48   ; 06 
+- D 0 - - - 0x0145CC 05:85BC: 54        .byte $54   ; 07 
 
 
 
@@ -1325,15 +1325,15 @@ C - - - - - 0x014644 05:8634: C9 02     CMP #$02
 C - - - - - 0x014646 05:8636: D0 09     BNE bra_8641
 C - - - - - 0x014648 05:8638: 38        SEC
 C - - - - - 0x014649 05:8639: 60        RTS
+
+
+
 ofs_020_863A_31:
 ; con_8113_31
 C - - J - - 0x01464A 05:863A: 20 48 86  JSR sub_8648
 C - - - - - 0x01464D 05:863D: D0 02     BNE bra_8641
 C - - - - - 0x01464F 05:863F: 38        SEC
 C - - - - - 0x014650 05:8640: 60        RTS
-
-
-
 bra_8641:
 sub_8641:
 C - - - - - 0x014651 05:8641: A9 1A     LDA #con_chr_pair + $1A
@@ -6103,6 +6103,7 @@ C - - - - - 0x016335 05:A325: F0 71     BEQ bra_A398
 - - - - - - 0x016337 05:A327: 20 93 FE  JSR sub_0x01FEA3_disable_rendering
 - - - - - - 0x01633A 05:A32A: A9 00     LDA #$00
 - - - - - - 0x01633C 05:A32C: 8D 44 03  STA ram_0344
+; bzk optimize, LDX + LDY,X, delete TAY
 - - - - - - 0x01633F 05:A32F: A4 75     LDY ram_stage
 - - - - - - 0x016341 05:A331: B9 69 A3  LDA tbl_A369,Y
 - - - - - - 0x016344 05:A334: A8        TAY
@@ -6248,7 +6249,7 @@ C - - - - - 0x016406 05:A3F6: E6 5B     INC ram_005B_script
 C - - - - - 0x016408 05:A3F8: A9 00     LDA #$00
 C - - - - - 0x01640A 05:A3FA: 85 1E     STA ram_001E_t11
 C - - - - - 0x01640C 05:A3FC: 20 93 FE  JSR sub_0x01FEA3_disable_rendering
-C - - - - - 0x01640F 05:A3FF: 20 97 D1  JSR sub_0x01D1A7_unpack_static_screen
+C - - - - - 0x01640F 05:A3FF: 20 97 D1  JSR sub_0x01D1A7_clear_nametables
 C - - - - - 0x016412 05:A402: A2 0C     LDX #con_D22A_pause
 C - - - - - 0x016414 05:A404: A9 19     LDA #con_F3D6_19
 C - - - - - 0x016416 05:A406: 20 B3 F3  JSR sub_0x01F3C3_execute_script
@@ -6566,7 +6567,7 @@ ofs_008_A603_09:
 ofs_008_A603_0A:
 C - - J - - 0x016613 05:A603: A9 04     LDA #con_chr_bank + $04
 C - - - - - 0x016615 05:A605: 85 79     STA ram_chr_bank + $02
-C - - - - - 0x016617 05:A607: 20 97 D1  JSR sub_0x01D1A7_unpack_static_screen
+C - - - - - 0x016617 05:A607: 20 97 D1  JSR sub_0x01D1A7_clear_nametables
 C - - - - - 0x01661A 05:A60A: 20 95 97  JSR sub_9795
 C - - - - - 0x01661D 05:A60D: A9 00     LDA #$00
 C - - - - - 0x01661F 05:A60F: 85 2B     STA ram_002B_flags
@@ -7014,7 +7015,7 @@ _off012_0x0169B2_00_clear_nametables:
 _off012_0x0169B2_02:
 ; con_D22A_02
 _off012_0x0169B2_06:
-; con_D22A_02
+; con_D22A_06
 ; 00-7E = print byte xx times
 ; 80-FE = print a list of bytes xx times
 ; 7F = change ppu address
@@ -9177,6 +9178,7 @@ C - - - - - 0x017605 05:B5F5: B9 82 06  LDA ram_0682_obj,Y
 C - - - - - 0x017608 05:B5F8: F0 53     BEQ bra_B64D
 C - - - - - 0x01760A 05:B5FA: B9 00 06  LDA ram_0600_obj,Y
 C - - - - - 0x01760D 05:B5FD: 29 F0     AND #$F0
+; bzk optimize, useless branch
 C - - - - - 0x01760F 05:B5FF: F0 00     BEQ bra_B601
 bra_B601:
 C - - - - - 0x017611 05:B601: A4 1F     LDY ram_001F_t13_object_index
