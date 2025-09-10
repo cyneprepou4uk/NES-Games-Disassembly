@@ -2309,6 +2309,7 @@ C - - - - - 0x01D195 07:D185: A5 33     LDA ram_pause_flag
 C - - - - - 0x01D197 07:D187: F0 17     BEQ bra_D1A0_not_paused
 C - - - - - 0x01D199 07:D189: A5 00     LDA ram_buttons
 C - - - - - 0x01D19B 07:D18B: 29 20     AND #con_btn1_Select
+; bzk optimize, useless branch
 C - - - - - 0x01D19D 07:D18D: D0 00     BNE bra_D18F
 bra_D18F:
 C - - - - - 0x01D19F 07:D18F: A5 00     LDA ram_buttons
@@ -7177,6 +7178,7 @@ C - - - - - 0x01F0D8 07:F0C8: 85 E2     STA ram_00E2
 C - - - - - 0x01F0DA 07:F0CA: A9 F9     LDA #$F9
 C - - - - - 0x01F0DC 07:F0CC: 85 E3     STA ram_00E3
 C - - - - - 0x01F0DE 07:F0CE: B9 91 00  LDA ram_pos_Y_lo,Y
+; bzk optimize, useless branch
 C - - - - - 0x01F0E1 07:F0D1: 10 00     BPL bra_F0D3
 bra_F0D3:
 C - - - - - 0x01F0E3 07:F0D3: A9 04     LDA #$04

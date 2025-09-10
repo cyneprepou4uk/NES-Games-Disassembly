@@ -200,7 +200,8 @@ C - - - - - 0x018160 06:8150: 9D 00 14  STA ram_0400 + $1000,X
 C - - - - - 0x018163 06:8153: 60        RTS
 bra_8154:
 C - - - - - 0x018164 06:8154: C9 FC     CMP #$FC
-C - - - - - 0x018166 06:8156: D0 00     BNE bra_8158    ; bzk optimize, useless branch
+; bzk optimize, useless branch
+C - - - - - 0x018166 06:8156: D0 00     BNE bra_8158
 bra_8158:
 loc_8158:
 C D 0 - - - 0x018168 06:8158: C9 80     CMP #$80
