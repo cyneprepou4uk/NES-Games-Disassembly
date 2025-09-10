@@ -198,6 +198,7 @@ C - - - - - 0x02C0E5 0B:80D5: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x02C0E8 0B:80D8: 38        SEC
 C - - - - - 0x02C0E9 0B:80D9: ED 1C 04  SBC ram_plr_pos_Y_lo
 C - - - - - 0x02C0EC 0B:80DC: B0 04     BCS bra_80E2_RTS
+; C = 0
 C - - - - - 0x02C0EE 0B:80DE: 49 FF     EOR #$FF
 C - - - - - 0x02C0F0 0B:80E0: 69 01     ADC #$01
 bra_80E2_RTS:
@@ -1734,6 +1735,7 @@ C - - - - - 0x02C82F 0B:881F: 38        SEC
 C - - - - - 0x02C830 0B:8820: A5 CA     LDA ram_00CA
 C - - - - - 0x02C832 0B:8822: ED 1C 04  SBC ram_plr_pos_Y_lo
 C - - - - - 0x02C835 0B:8825: B0 04     BCS bra_882B
+; C = 0
 - - - - - - 0x02C837 0B:8827: 49 FF     EOR #$FF
 - - - - - - 0x02C839 0B:8829: 69 01     ADC #$01
 bra_882B:
@@ -12058,7 +12060,8 @@ C - - - - - 0x02F480 0B:B470: 20 CB 80  JSR sub_80CB_get_object_distance_X_to_00
 C - - - - - 0x02F483 0B:B473: C5 02     CMP ram_0002_t02E_compare_distance_X
 C - - - - - 0x02F485 0B:B475: B0 0D     BCS bra_B484_RTS
 ; if close enough
-; bzk optimize, C is already 0 here, no need for CLC
+; C = 0
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02F487 0B:B477: 18        CLC
 C - - - - - 0x02F488 0B:B478: B9 60 BC  LDA tbl_BC60_pos_Y_lo,Y
 C - - - - - 0x02F48B 0B:B47B: 65 01     ADC ram_0001_t01A
@@ -12840,8 +12843,11 @@ C - - - - - 0x02F8A5 0B:B895: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x02F8A8 0B:B898: 38        SEC
 C - - - - - 0x02F8A9 0B:B899: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x02F8AC 0B:B89C: B0 06     BCS bra_B8A4
+; C = 0
 C - - - - - 0x02F8AE 0B:B89E: C8        INY ; 01
+; EOR
 C - - - - - 0x02F8AF 0B:B89F: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02F8B1 0B:B8A1: 18        CLC
 C - - - - - 0x02F8B2 0B:B8A2: 69 01     ADC #$01
 bra_B8A4:
@@ -12853,8 +12859,11 @@ C - - - - - 0x02F8BC 0B:B8AC: A5 00     LDA ram_0000_t0D7_pos_Y_lo
 C - - - - - 0x02F8BE 0B:B8AE: 38        SEC
 C - - - - - 0x02F8BF 0B:B8AF: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x02F8C2 0B:B8B2: B0 06     BCS bra_B8BA
+; C = 0
 C - - - - - 0x02F8C4 0B:B8B4: C8        INY ; 01
+; EOR
 C - - - - - 0x02F8C5 0B:B8B5: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02F8C7 0B:B8B7: 18        CLC
 C - - - - - 0x02F8C8 0B:B8B8: 69 01     ADC #$01
 bra_B8BA:
@@ -12915,8 +12924,11 @@ C - - - - - 0x02F91E 0B:B90E: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x02F921 0B:B911: 38        SEC
 C - - - - - 0x02F922 0B:B912: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x02F925 0B:B915: B0 07     BCS bra_B91E
+; C = 0
 C - - - - - 0x02F927 0B:B917: A0 80     LDY #$80
+; EOR
 C - - - - - 0x02F929 0B:B919: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02F92B 0B:B91B: 18        CLC
 C - - - - - 0x02F92C 0B:B91C: 69 01     ADC #$01
 bra_B91E:
@@ -12962,8 +12974,11 @@ C - - - - - 0x02F96C 0B:B95C: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x02F96F 0B:B95F: 38        SEC
 C - - - - - 0x02F970 0B:B960: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x02F973 0B:B963: B0 07     BCS bra_B96C
+; C = 0
 C - - - - - 0x02F975 0B:B965: A0 80     LDY #$80
+; EOR
 C - - - - - 0x02F977 0B:B967: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02F979 0B:B969: 18        CLC
 C - - - - - 0x02F97A 0B:B96A: 69 01     ADC #$01
 bra_B96C:
@@ -13075,8 +13090,11 @@ C - - - - - 0x02FA05 0B:B9F5: A5 09     LDA ram_0009_t00D_pos_X_lo
 C - - - - - 0x02FA07 0B:B9F7: 38        SEC
 C - - - - - 0x02FA08 0B:B9F8: ED 38 04  SBC ram_plr_pos_X_lo
 C - - - - - 0x02FA0B 0B:B9FB: B0 06     BCS bra_BA03
+; C = 0
 C - - - - - 0x02FA0D 0B:B9FD: E8        INX ; 01
+; EOR
 C - - - - - 0x02FA0E 0B:B9FE: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02FA10 0B:BA00: 18        CLC
 C - - - - - 0x02FA11 0B:BA01: 69 01     ADC #$01
 bra_BA03:

@@ -39,7 +39,7 @@
 .export _off003_0x023DC1_5B
 .export _off003_0x023DE5_5C
 .export sub_0x023E31
-.export ofs_042_0x023EE9_16_red_orb
+.export ofs_063_0x023EE9_16_red_orb
 
 
 
@@ -4580,7 +4580,7 @@ tbl_BE49:
 ; index 26 (BEE1+) is not used in the movie
 
 
-ofs_042_0x023EE9_16_red_orb:
+ofs_063_0x023EE9_16_red_orb:
 ; red orb drops on the ground after boss is defeated
 C - - J - - 0x023EE9 08:BED9: A9 00     LDA #$00
 C - - - - - 0x023EEB 08:BEDB: 9D 57 06  STA ram_obj_0658,X
@@ -4612,7 +4612,10 @@ C - - - - - 0x023F1E 08:BF0E: 38        SEC
 C - - - - - 0x023F1F 08:BF0F: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x023F22 08:BF12: B0 05     BCS bra_BF19_orb_is_above
 ; if orb is below the player
+; C = 0
+; EOR
 C - - - - - 0x023F24 08:BF14: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x023F26 08:BF16: 18        CLC
 C - - - - - 0x023F27 08:BF17: 69 01     ADC #$01
 bra_BF19_orb_is_above:
@@ -4668,11 +4671,14 @@ C - - - - - 0x023F6F 08:BF5F: 38        SEC
 C - - - - - 0x023F70 08:BF60: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x023F73 08:BF63: 85 00     STA ram_0000_t10A_X_distance_to_orb
 C - - - - - 0x023F75 08:BF65: B0 0D     BCS bra_BF74
+; C = 0
 ; bzk optimize, useless LDA + STA
 C - - - - - 0x023F77 08:BF67: A9 01     LDA #$01    ; facing left
 C - - - - - 0x023F79 08:BF69: 85 17     STA ram_0017_t01D_useless
 C - - - - - 0x023F7B 08:BF6B: A5 00     LDA ram_0000_t10A_X_distance_to_orb
+; EOR
 C - - - - - 0x023F7D 08:BF6D: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x023F7F 08:BF6F: 18        CLC
 C - - - - - 0x023F80 08:BF70: 69 01     ADC #$01
 C - - - - - 0x023F82 08:BF72: 85 00     STA ram_0000_t10A_X_distance_to_orb
@@ -4685,7 +4691,10 @@ C - - - - - 0x023F84 08:BF74: AD 1C 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x023F87 08:BF77: 38        SEC
 C - - - - - 0x023F88 08:BF78: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x023F8B 08:BF7B: B0 05     BCS bra_BF82
+; C = 0
+; EOR
 C - - - - - 0x023F8D 08:BF7D: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x023F8F 08:BF7F: 18        CLC
 C - - - - - 0x023F90 08:BF80: 69 01     ADC #$01
 bra_BF82:

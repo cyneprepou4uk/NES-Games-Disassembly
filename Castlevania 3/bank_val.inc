@@ -524,8 +524,8 @@ con_0018_08                             = $08 ;
 con_0018_prayer                         = $09 ; 
 con_0018_name_password                  = $0A ; (set via 02 handler) enter your name screen, and password if selected in main menu
 con_0018_0B                             = $0B ; 
-con_0018_0C                             = $0C ; 
-con_0018_0D                             = $0D ; 
+con_0018_credits_1                      = $0C ; 
+con_0018_credits_2                      = $0D ; 
 con_0018_0E                             = $0E ; 
 con_0018_0F                             = $0F ; 
 

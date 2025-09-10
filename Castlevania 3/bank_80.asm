@@ -9583,6 +9583,8 @@ C - - - - - 0x002C7B 00:AC6B: A5 00     LDA ram_0000_t069
 C - - - - - 0x002C7D 00:AC6D: 38        SEC
 C - - - - - 0x002C7E 00:AC6E: ED 1C 04  SBC ram_plr_pos_Y_lo
 C - - - - - 0x002C81 00:AC71: B0 04     BCS bra_AC77
+; C = 0
+; EOR
 C - - - - - 0x002C83 00:AC73: 49 FF     EOR #$FF
 C - - - - - 0x002C85 00:AC75: 69 01     ADC #$01
 bra_AC77:
@@ -11388,7 +11390,10 @@ C - - - - - 0x003817 00:B807: BD 38 04  LDA ram_obj_pos_X_lo,X
 C - - - - - 0x00381A 00:B80A: 38        SEC
 C - - - - - 0x00381B 00:B80B: ED 38 04  SBC ram_plr_pos_X_lo
 C - - - - - 0x00381E 00:B80E: B0 05     BCS bra_B815
+; C = 0
+; EOR
 C - - - - - 0x003820 00:B810: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x003822 00:B812: 18        CLC
 C - - - - - 0x003823 00:B813: 69 01     ADC #$01
 bra_B815:
@@ -11398,6 +11403,9 @@ C - - - - - 0x003829 00:B819: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x00382C 00:B81C: 38        SEC
 C - - - - - 0x00382D 00:B81D: ED 1C 04  SBC ram_plr_pos_Y_lo
 C - - - - - 0x003830 00:B820: B0 05     BCS bra_B827
+; C = 0
+; EOR
+; bzk optimize, C is already 0, no need for CLC
 - - - - - - 0x003832 00:B822: 49 FF     EOR #$FF
 - - - - - - 0x003834 00:B824: 18        CLC
 - - - - - - 0x003835 00:B825: 69 01     ADC #$01

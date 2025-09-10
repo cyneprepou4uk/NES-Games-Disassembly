@@ -8406,7 +8406,10 @@ C - - - - - 0x03B0DC 0E:B0CC: B9 38 04  LDA ram_obj_pos_X_lo,Y
 C - - - - - 0x03B0DF 0E:B0CF: 38        SEC
 C - - - - - 0x03B0E0 0E:B0D0: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x03B0E3 0E:B0D3: B0 05     BCS bra_B0DA
+; C = 0
+; EOR
 C - - - - - 0x03B0E5 0E:B0D5: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x03B0E7 0E:B0D7: 18        CLC
 C - - - - - 0x03B0E8 0E:B0D8: 69 01     ADC #$01
 bra_B0DA:
@@ -8416,7 +8419,10 @@ C - - - - - 0x03B0EE 0E:B0DE: B9 1C 04  LDA ram_obj_pos_Y_lo,Y
 C - - - - - 0x03B0F1 0E:B0E1: 38        SEC
 C - - - - - 0x03B0F2 0E:B0E2: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x03B0F5 0E:B0E5: B0 05     BCS bra_B0EC
+; C = 0
+; EOR
 C - - - - - 0x03B0F7 0E:B0E7: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x03B0F9 0E:B0E9: 18        CLC
 C - - - - - 0x03B0FA 0E:B0EA: 69 01     ADC #$01
 bra_B0EC:
@@ -8569,7 +8575,10 @@ C - - - - - 0x03B1BF 0E:B1AF: B9 38 04  LDA ram_obj_pos_X_lo,Y
 C - - - - - 0x03B1C2 0E:B1B2: 38        SEC
 C - - - - - 0x03B1C3 0E:B1B3: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x03B1C6 0E:B1B6: B0 09     BCS bra_B1C1
+; C = 0
+; EOR
 C - - - - - 0x03B1C8 0E:B1B8: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x03B1CA 0E:B1BA: 18        CLC
 C - - - - - 0x03B1CB 0E:B1BB: 69 01     ADC #$01
 C - - - - - 0x03B1CD 0E:B1BD: E6 08     INC ram_0008_t03B_spd_X_lo
@@ -8580,7 +8589,10 @@ C - - - - - 0x03B1D3 0E:B1C3: B9 1C 04  LDA ram_obj_pos_Y_lo,Y
 C - - - - - 0x03B1D6 0E:B1C6: 38        SEC
 C - - - - - 0x03B1D7 0E:B1C7: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x03B1DA 0E:B1CA: B0 07     BCS bra_B1D3
+; C = 0
+; EOR
 C - - - - - 0x03B1DC 0E:B1CC: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x03B1DE 0E:B1CE: 18        CLC
 C - - - - - 0x03B1DF 0E:B1CF: 69 01     ADC #$01
 C - - - - - 0x03B1E1 0E:B1D1: E6 08     INC ram_0008_t03B_spd_X_lo   ; -> 01/03
@@ -8950,7 +8962,7 @@ C - - - - - 0x03B42F 0E:B41F: A5 00     LDA ram_0000_t03C_spd_X_lo
 C - - - - - 0x03B431 0E:B421: 49 FF     EOR #$FF
 C - - - - - 0x03B433 0E:B423: 18        CLC
 C - - - - - 0x03B434 0E:B424: 69 01     ADC #$01
-C - - - - - 0x03B436 0E:B426: D0 02     BNE bra_B42A
+C - - - - - 0x03B436 0E:B426: D0 02     BNE bra_B42A    ; jmp?
 bra_B428_facing_right:
 C - - - - - 0x03B438 0E:B428: A5 00     LDA ram_0000_t03C_spd_X_lo
 bra_B42A:
@@ -9173,7 +9185,10 @@ C - - - - - 0x03B581 0E:B571: B9 38 04  LDA ram_obj_pos_X_lo,Y
 C - - - - - 0x03B584 0E:B574: 38        SEC
 C - - - - - 0x03B585 0E:B575: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x03B588 0E:B578: B0 05     BCS bra_B57F
+; C = 0
+; EOR
 C - - - - - 0x03B58A 0E:B57A: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x03B58C 0E:B57C: 18        CLC
 C - - - - - 0x03B58D 0E:B57D: 69 01     ADC #$01
 bra_B57F:
@@ -9183,7 +9198,10 @@ C - - - - - 0x03B593 0E:B583: B9 1C 04  LDA ram_obj_pos_Y_lo,Y
 C - - - - - 0x03B596 0E:B586: 38        SEC
 C - - - - - 0x03B597 0E:B587: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x03B59A 0E:B58A: B0 05     BCS bra_B591
+; C = 0
+; EOR
 C - - - - - 0x03B59C 0E:B58C: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x03B59E 0E:B58E: 18        CLC
 C - - - - - 0x03B59F 0E:B58F: 69 01     ADC #$01
 bra_B591:

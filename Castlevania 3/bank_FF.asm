@@ -4494,8 +4494,8 @@ C - - - - - 0x03E38F 0F:E37F: 20 6D E8  JSR sub_E86D_jump_to_pointers_after_JSR_
 - D 3 - I - 0x03E3A4 0F:E394: 23 E5     .word ofs_000_E523_09_prayer
 - D 3 - I - 0x03E3A6 0F:E396: 4B E5     .word ofs_000_E54B_0A_enter_your_name___main
 - D 3 - I - 0x03E3A8 0F:E398: 53 E5     .word ofs_000_E553_0B
-- D 3 - I - 0x03E3AA 0F:E39A: 2B E5     .word ofs_000_E52B_0C
-- D 3 - I - 0x03E3AC 0F:E39C: 33 E5     .word ofs_000_E533_0D
+- D 3 - I - 0x03E3AA 0F:E39A: 2B E5     .word ofs_000_E52B_0C_credits_1
+- D 3 - I - 0x03E3AC 0F:E39C: 33 E5     .word ofs_000_E533_0D_credits_2
 - D 3 - I - 0x03E3AE 0F:E39E: 0A E5     .word ofs_000_E50A_0E
 - D 3 - I - 0x03E3B0 0F:E3A0: 3B E5     .word ofs_000_E53B_0F
 
@@ -4767,16 +4767,16 @@ C - - - - - 0x03E538 0F:E528: 4C 0C A6  JMP loc_0x00661C_prayer_handler
 
 
 
-ofs_000_E52B_0C:
-; con_0018_0C
+ofs_000_E52B_0C_credits_1:
+; con_0018_credits_1
 C - - J - - 0x03E53B 0F:E52B: A9 94     LDA #con_prg_bank + $94
 C - - - - - 0x03E53D 0F:E52D: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E540 0F:E530: 4C EA B0  JMP loc_0x02B0FA
 
 
 
-ofs_000_E533_0D:
-; con_0018_0D
+ofs_000_E533_0D_credits_2:
+; con_0018_credits_2
 C - - J - - 0x03E543 0F:E533: A9 94     LDA #con_prg_bank + $94
 C - - - - - 0x03E545 0F:E535: 20 E6 E2  JSR sub_E2E6_prg_bankswitch
 C - - - - - 0x03E548 0F:E538: 4C 31 B6  JMP loc_0x02B641

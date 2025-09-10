@@ -558,7 +558,7 @@ C - - - - - 0x028320 0A:8310: C9 B8     CMP #$B8
 C - - - - - 0x028322 0A:8312: B0 DD     BCS bra_82F1_false
 ; C = 0
 C - - - - - 0x028324 0A:8314: A5 02     LDA ram_0002_t03A_cam_pos_lo
-; bzk optimize, C is already 0
+    
 C - - - - - 0x028326 0A:8316: 18        CLC
 C - - - - - 0x028327 0A:8317: 69 37     ADC #$37
 C - - - - - 0x028329 0A:8319: 85 0A     STA ram_000A_t030_pos_Y_lo
@@ -2924,6 +2924,8 @@ C - - - - - 0x028E2A 0A:8E1A: 38        SEC
 C - - - - - 0x028E2B 0A:8E1B: BD DA 07  LDA ram_spawner_pos_X_lo,X
 C - - - - - 0x028E2E 0A:8E1E: ED 38 04  SBC ram_plr_pos_X_lo
 C - - - - - 0x028E31 0A:8E21: B0 04     BCS bra_8E27_RTS
+; C = 0
+; EOR
 C - - - - - 0x028E33 0A:8E23: 49 FF     EOR #$FF
 C - - - - - 0x028E35 0A:8E25: 69 01     ADC #$01
 bra_8E27_RTS:
@@ -16260,7 +16262,7 @@ C - - - - - 0x02B4D7 0A:B4C7: 4C AF FB  JMP loc_0x03FBBF_decrease_brightness
 ofs_016_B4CA_14:
 C - - J - - 0x02B4DA 0A:B4CA: AD 89 07  LDA ram_0789
 C - - - - - 0x02B4DD 0A:B4CD: 8D 81 07  STA ram_0781
-C - - - - - 0x02B4E0 0A:B4D0: A9 0D     LDA #con_0018_0D
+C - - - - - 0x02B4E0 0A:B4D0: A9 0D     LDA #con_0018_credits_2
 C - - - - - 0x02B4E2 0A:B4D2: 85 18     STA ram_main_script
 C - - - - - 0x02B4E4 0A:B4D4: A9 00     LDA #$00
 C - - - - - 0x02B4E6 0A:B4D6: 85 19     STA ram_0019_subscript

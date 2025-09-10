@@ -328,56 +328,57 @@ tbl_8178:
 tbl_81D4:
 ; prg banks are selected via 0x024158 table
 ; bzk optimize, replace unused exports with $FFFF, delete labels
-- - - - - - 0x0241E4 09:81D4: 30 82     .word ofs_042_8230_00_RTS
-- D 0 - - - 0x0241E6 09:81D6: F5 A1     .word ofs_042_A1F5_01
-- D 0 - - - 0x0241E8 09:81D8: DF A5     .word ofs_042_A5DF_02
-- D 0 - - - 0x0241EA 09:81DA: 12 8E     .word ofs_042_0x00CE22_03
-- D 0 - - - 0x0241EC 09:81DC: 92 A9     .word ofs_042_A992_04
-- D 0 - - - 0x0241EE 09:81DE: 3D AC     .word ofs_042_AC3D_05
-- D 0 - - - 0x0241F0 09:81E0: 86 AF     .word ofs_042_AF86_06
-- D 0 - - - 0x0241F2 09:81E2: 7C 93     .word ofs_042_0x00D38C_07
-- D 0 - - - 0x0241F4 09:81E4: 21 80     .word ofs_042_0x00C031_08
-- D 0 - - - 0x0241F6 09:81E6: 34 8A     .word ofs_042_0x00CA44_09
-- D 0 - - - 0x0241F8 09:81E8: 8F 96     .word ofs_042_0x00D69F_0A
-- D 0 - - - 0x0241FA 09:81EA: 10 A6     .word ofs_042_0x032620_0B
-- D 0 - - - 0x0241FC 09:81EC: 14 9A     .word ofs_042_0x00DA24_0C
-- D 0 - - - 0x0241FE 09:81EE: AC B5     .word ofs_042_B5AC_0D
-- D 0 - - - 0x024200 09:81F0: 3F 8A     .word ofs_042_0x00CA4F_0E
-- D 0 - - - 0x024202 09:81F2: 64 A4     .word ofs_042_0x032474_0F
+- - - - - - 0x0241E4 09:81D4: 30 82     .word ofs_063_8230_00_RTS
+- D 0 - - - 0x0241E6 09:81D6: F5 A1     .word ofs_063_A1F5_01
+- D 0 - - - 0x0241E8 09:81D8: DF A5     .word ofs_063_A5DF_02
+- D 0 - - - 0x0241EA 09:81DA: 12 8E     .word ofs_063_0x00CE22_03
+- D 0 - - - 0x0241EC 09:81DC: 92 A9     .word ofs_063_A992_04
+- D 0 - - - 0x0241EE 09:81DE: 3D AC     .word ofs_063_AC3D_05
+- D 0 - - - 0x0241F0 09:81E0: 86 AF     .word ofs_063_AF86_06
+- D 0 - - - 0x0241F2 09:81E2: 7C 93     .word ofs_063_0x00D38C_07
+- D 0 - - - 0x0241F4 09:81E4: 21 80     .word ofs_063_0x00C031_08
+- D 0 - - - 0x0241F6 09:81E6: 34 8A     .word ofs_063_0x00CA44_09
+- D 0 - - - 0x0241F8 09:81E8: 8F 96     .word ofs_063_0x00D69F_0A
+- D 0 - - - 0x0241FA 09:81EA: 10 A6     .word ofs_063_0x032620_0B
+- D 0 - - - 0x0241FC 09:81EC: 14 9A     .word ofs_063_0x00DA24_0C
+- D 0 - - - 0x0241FE 09:81EE: AC B5     .word ofs_063_B5AC_0D
+- D 0 - - - 0x024200 09:81F0: 3F 8A     .word ofs_063_0x00CA4F_0E
+- D 0 - - - 0x024202 09:81F2: 64 A4     .word ofs_063_0x032474_0F
 - - - - - - 0x024204 09:81F4: 9A A4     .word $A49A ; 10, bzk incorrect pointer into this bank, most likely unused
-- D 0 - - - 0x024206 09:81F6: 4B A4     .word ofs_042_A44B_11
-- D 0 - - - 0x024208 09:81F8: 03 A8     .word ofs_042_A803_12
-- D 0 - - - 0x02420A 09:81FA: 7F A8     .word ofs_042_A87F_13
-- D 0 - - - 0x02420C 09:81FC: 75 92     .word ofs_042_0x00D285_14
-- D 0 - - - 0x02420E 09:81FE: B9 92     .word ofs_042_0x00D2C9_15
-- D 0 - - - 0x024210 09:8200: D9 BE     .word ofs_042_0x023EE9_16_red_orb
-- D 0 - - - 0x024212 09:8202: BB AE     .word ofs_042_AEBB_17
-- D 0 - - - 0x024214 09:8204: BB 94     .word ofs_042_0x00D4CB_18
-- D 0 - - - 0x024216 09:8206: D4 94     .word ofs_042_0x00D4E4_19
-- D 0 - - - 0x024218 09:8208: B3 89     .word ofs_042_89B3_1A
-- D 0 - - - 0x02421A 09:820A: 16 84     .word ofs_042_0x00C426_1B_dragon_breathes_fire
-- D 0 - - - 0x02421C 09:820C: CA 84     .word ofs_042_0x00C4DA_1C
-- D 0 - - - 0x02421E 09:820E: 6A 98     .word ofs_042_0x00D87A_1D
-- D 0 - - - 0x024220 09:8210: EA 98     .word ofs_042_0x00D8FA_1E
-- D 0 - - - 0x024222 09:8212: 30 A5     .word ofs_042_A530_1F
-- D 0 - - - 0x024224 09:8214: 84 A5     .word ofs_042_A584_20
-- D 0 - - - 0x024226 09:8216: 01 AC     .word ofs_042_AC01_21
-- D 0 - - - 0x024228 09:8218: 93 A1     .word ofs_042_A193_22
-- D 0 - - - 0x02422A 09:821A: A2 8D     .word ofs_042_0x00CDB2_23
-- D 0 - - - 0x02422C 09:821C: A9 B8     .word ofs_042_B8A9_24
-- D 0 - - - 0x02422E 09:821E: 6E B5     .word ofs_042_B56E_25
-- D 0 - - - 0x024230 09:8220: 9F B4     .word ofs_042_B49F_26
-- D 0 - - - 0x024232 09:8222: 02 8C     .word ofs_042_0x00CC12_27
-- D 0 - - - 0x024234 09:8224: 8B 89     .word ofs_042_898B_28
-- D 0 - - - 0x024236 09:8226: B8 BC     .word ofs_042_BCB8_29
-- - - - - - 0x024238 09:8228: 20 80     .word ofs_042_0x00C030_2A_RTS
-- D 0 - - - 0x02423A 09:822A: F6 9C     .word ofs_042_0x00DD06_2B
-- D 0 - - - 0x02423C 09:822C: 75 BC     .word ofs_042_0x017C85_2C
-- D 0 - - - 0x02423E 09:822E: 46 B0     .word ofs_042_B046_2D
+- D 0 - - - 0x024206 09:81F6: 4B A4     .word ofs_063_A44B_11
+- D 0 - - - 0x024208 09:81F8: 03 A8     .word ofs_063_A803_12
+- D 0 - - - 0x02420A 09:81FA: 7F A8     .word ofs_063_A87F_13
+- D 0 - - - 0x02420C 09:81FC: 75 92     .word ofs_063_0x00D285_14
+- D 0 - - - 0x02420E 09:81FE: B9 92     .word ofs_063_0x00D2C9_15
+- D 0 - - - 0x024210 09:8200: D9 BE     .word ofs_063_0x023EE9_16_red_orb
+- D 0 - - - 0x024212 09:8202: BB AE     .word ofs_063_AEBB_17
+- D 0 - - - 0x024214 09:8204: BB 94     .word ofs_063_0x00D4CB_18
+- D 0 - - - 0x024216 09:8206: D4 94     .word ofs_063_0x00D4E4_19
+- D 0 - - - 0x024218 09:8208: B3 89     .word ofs_063_89B3_1A
+- D 0 - - - 0x02421A 09:820A: 16 84     .word ofs_063_0x00C426_1B_dragon_breathes_fire
+- D 0 - - - 0x02421C 09:820C: CA 84     .word ofs_063_0x00C4DA_1C
+- D 0 - - - 0x02421E 09:820E: 6A 98     .word ofs_063_0x00D87A_1D
+- D 0 - - - 0x024220 09:8210: EA 98     .word ofs_063_0x00D8FA_1E
+- D 0 - - - 0x024222 09:8212: 30 A5     .word ofs_063_A530_1F
+- D 0 - - - 0x024224 09:8214: 84 A5     .word ofs_063_A584_20
+- D 0 - - - 0x024226 09:8216: 01 AC     .word ofs_063_AC01_21
+- D 0 - - - 0x024228 09:8218: 93 A1     .word ofs_063_A193_22
+- D 0 - - - 0x02422A 09:821A: A2 8D     .word ofs_063_0x00CDB2_23
+- D 0 - - - 0x02422C 09:821C: A9 B8     .word ofs_063_B8A9_24
+- D 0 - - - 0x02422E 09:821E: 6E B5     .word ofs_063_B56E_25
+- D 0 - - - 0x024230 09:8220: 9F B4     .word ofs_063_B49F_26
+- D 0 - - - 0x024232 09:8222: 02 8C     .word ofs_063_0x00CC12_27
+- D 0 - - - 0x024234 09:8224: 8B 89     .word ofs_063_898B_28
+- D 0 - - - 0x024236 09:8226: B8 BC     .word ofs_063_BCB8_29
+- - - - - - 0x024238 09:8228: 20 80     .word ofs_063_0x00C030_2A_RTS
+- D 0 - - - 0x02423A 09:822A: F6 9C     .word ofs_063_0x00DD06_2B
+- D 0 - - - 0x02423C 09:822C: 75 BC     .word ofs_063_0x017C85_2C
+- D 0 - - - 0x02423E 09:822E: 46 B0     .word ofs_063_B046_2D
 
 
 
 ofs_042_8230_00_RTS:
+ofs_063_8230_00_RTS:
 ofs_042_8230_10_RTS:
 ofs_042_8230_11_RTS:
 ofs_042_8230_12_RTS:
@@ -1176,10 +1177,13 @@ C - - - - - 0x02461F 09:860F: 38        SEC
 C - - - - - 0x024620 09:8610: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x024623 09:8613: 85 00     STA ram_0000_t11B_pos_X_lo_distance
 C - - - - - 0x024625 09:8615: B0 0D     BCS bra_8624
+; C = 0
 C - - - - - 0x024627 09:8617: A9 01     LDA #$01    ; facing left
 C - - - - - 0x024629 09:8619: 85 17     STA ram_0017_t011_obj_facing
+; EOR
 C - - - - - 0x02462B 09:861B: A5 00     LDA ram_0000_t11B_pos_X_lo_distance
 C - - - - - 0x02462D 09:861D: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02462F 09:861F: 18        CLC
 C - - - - - 0x024630 09:8620: 69 01     ADC #$01
 C - - - - - 0x024632 09:8622: 85 00     STA ram_0000_t11B_pos_X_lo_distance
@@ -1188,7 +1192,10 @@ C - - - - - 0x024634 09:8624: AD 1C 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x024637 09:8627: 38        SEC
 C - - - - - 0x024638 09:8628: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x02463B 09:862B: B0 05     BCS bra_8632
+; C = 0
+; EOR
 C - - - - - 0x02463D 09:862D: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02463F 09:862F: 18        CLC
 C - - - - - 0x024640 09:8630: 69 01     ADC #$01
 bra_8632:
@@ -1826,6 +1833,7 @@ tbl_8953_damage:
 
 
 ofs_042_898B_28:
+ofs_063_898B_28:
 C - - J - - 0x02499B 09:898B: BD EF 05  LDA ram_obj_ai_script,X
 C - - - - - 0x02499E 09:898E: 29 7F     AND #$7F
 C - - - - - 0x0249A0 09:8990: C9 5C     CMP #$5C
@@ -1847,6 +1855,7 @@ C - - - - - 0x0249C0 09:89B0: 4C 4F 86  JMP loc_864F
 
 
 ofs_042_89B3_1A:
+ofs_063_89B3_1A:
 C - - J - - 0x0249C3 09:89B3: BD EF 05  LDA ram_obj_ai_script,X
 C - - - - - 0x0249C6 09:89B6: 29 7F     AND #$7F
 C - - - - - 0x0249C8 09:89B8: C9 30     CMP #$30
@@ -5208,7 +5217,10 @@ C - - - - - 0x025293 09:9283: BD 38 04  LDA ram_obj_pos_X_lo,X
 C - - - - - 0x025296 09:9286: 38        SEC
 C - - - - - 0x025297 09:9287: E5 04     SBC ram_0004_t013_pos_X_lo
 C - - - - - 0x025299 09:9289: B0 05     BCS bra_9290
+; C = 0
+; EOR
 C - - - - - 0x02529B 09:928B: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02529D 09:928D: 18        CLC
 C - - - - - 0x02529E 09:928E: 69 01     ADC #$01
 bra_9290:
@@ -5218,7 +5230,10 @@ C - - - - - 0x0252A4 09:9294: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x0252A7 09:9297: 38        SEC
 C - - - - - 0x0252A8 09:9298: E5 05     SBC ram_0005_t009_pos_Y_lo
 C - - - - - 0x0252AA 09:929A: B0 05     BCS bra_92A1
+; C = 0
+; EOR
 C - - - - - 0x0252AC 09:929C: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x0252AE 09:929E: 18        CLC
 C - - - - - 0x0252AF 09:929F: 69 01     ADC #$01
 bra_92A1:
@@ -7449,7 +7464,10 @@ C - - - - - 0x025F20 09:9F10: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x025F23 09:9F13: 38        SEC
 C - - - - - 0x025F24 09:9F14: F9 38 04  SBC ram_obj_pos_X_lo,Y
 C - - - - - 0x025F27 09:9F17: B0 05     BCS bra_9F1E
+; C = 0
+; EOR
 - - - - - - 0x025F29 09:9F19: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 - - - - - - 0x025F2B 09:9F1B: 18        CLC
 - - - - - - 0x025F2C 09:9F1C: 69 01     ADC #$01
 bra_9F1E:
@@ -7922,7 +7940,7 @@ C - - - - - 0x0261A2 09:A192: 60        RTS
 
 
 
-ofs_042_A193_22:
+ofs_063_A193_22:
 C - - J - - 0x0261A3 09:A193: A9 00     LDA #$00
 C - - - - - 0x0261A5 09:A195: 9D 69 06  STA ram_obj_066A,X
 C - - - - - 0x0261A8 09:A198: 9D 57 06  STA ram_obj_0658,X
@@ -7979,7 +7997,7 @@ C - - - - - 0x026203 09:A1F3: D0 F8     BNE bra_A1ED    ; jmp
 
 
 
-ofs_042_A1F5_01:
+ofs_063_A1F5_01:
 C - - J - - 0x026205 09:A1F5: 20 DE A1  JSR sub_A1DE
 C - - - - - 0x026208 09:A1F8: AC F3 07  LDY ram_07F3
 C - - - - - 0x02620B 09:A1FB: 88        DEY
@@ -8166,7 +8184,10 @@ C - - - - - 0x026351 09:A341: AD 1C 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x026354 09:A344: E9 08     SBC #$08
 C - - - - - 0x026356 09:A346: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x026359 09:A349: B0 05     BCS bra_A350
+; C = 0
+; EOR
 C - - - - - 0x02635B 09:A34B: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02635D 09:A34D: 18        CLC
 C - - - - - 0x02635E 09:A34E: 69 01     ADC #$01
 bra_A350:
@@ -8307,7 +8328,7 @@ C - - - - - 0x026458 09:A448: 4C 6E EF  JMP loc_0x03EF7E_object_animation_handle
 
 
 
-ofs_042_A44B_11:
+ofs_063_A44B_11:
 C - - J - - 0x02645B 09:A44B: 20 B6 A4  JSR sub_A4B6
 C - - - - - 0x02645E 09:A44E: BD 69 06  LDA ram_obj_066A,X
 C - - - - - 0x026461 09:A451: D0 40     BNE bra_A493
@@ -8452,7 +8473,7 @@ C - - - - - 0x02653D 09:A52D: 4C E7 A4  JMP loc_A4E7
 
 
 
-ofs_042_A530_1F:
+ofs_063_A530_1F:
 C - - J - - 0x026540 09:A530: AD F3 07  LDA ram_07F3
 C - - - - - 0x026543 09:A533: F0 03     BEQ bra_A538
 C - - - - - 0x026545 09:A535: 4C DC A5  JMP loc_A5DC
@@ -8495,7 +8516,7 @@ C - - - - - 0x026593 09:A583: 60        RTS
 
 
 
-ofs_042_A584_20:
+ofs_063_A584_20:
 C - - J - - 0x026594 09:A584: AD F3 07  LDA ram_07F3
 C - - - - - 0x026597 09:A587: D0 53     BNE bra_A5DC
 C - - - - - 0x026599 09:A589: BC 33 06  LDY ram_obj_0634,X
@@ -8540,7 +8561,7 @@ C D 1 - - - 0x0265EC 09:A5DC: 4C 3A 87  JMP loc_873A_clear_object_data
 
 
 
-ofs_042_A5DF_02:
+ofs_063_A5DF_02:
 C - - J - - 0x0265EF 09:A5DF: 20 C3 A4  JSR sub_A4C3
 C - - - - - 0x0265F2 09:A5E2: C9 2F     CMP #$2F
 C - - - - - 0x0265F4 09:A5E4: F0 7F     BEQ bra_A665
@@ -8601,7 +8622,10 @@ C - - - - - 0x02665C 09:A64C: 90 17     BCC bra_A665
 - - - - - - 0x026661 09:A651: 38        SEC
 - - - - - - 0x026662 09:A652: FD 38 04  SBC ram_obj_pos_X_lo,X
 - - - - - - 0x026665 09:A655: B0 05     BCS bra_A65C
+; C = 0
+; EOR
 - - - - - - 0x026667 09:A657: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 - - - - - - 0x026669 09:A659: 18        CLC
 - - - - - - 0x02666A 09:A65A: 69 01     ADC #$01
 bra_A65C:
@@ -8823,7 +8847,10 @@ C - - - - - 0x026802 09:A7F2: AD 1C 04  LDA ram_plr_pos_Y_lo
 C - - - - - 0x026805 09:A7F5: 38        SEC
 C - - - - - 0x026806 09:A7F6: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x026809 09:A7F9: B0 05     BCS bra_A800_RTS
+; C = 0
+; EOR
 C - - - - - 0x02680B 09:A7FB: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02680D 09:A7FD: 18        CLC
 C - - - - - 0x02680E 09:A7FE: 69 01     ADC #$01
 bra_A800_RTS:
@@ -8837,7 +8864,7 @@ tbl_A801:
 
 
 
-ofs_042_A803_12:
+ofs_063_A803_12:
 C - - J - - 0x026813 09:A803: AD F3 07  LDA ram_07F3
 C - - - - - 0x026816 09:A806: 10 03     BPL bra_A80B
 - - - - - - 0x026818 09:A808: 4C 3A 87  JMP loc_873A_clear_object_data
@@ -8914,7 +8941,7 @@ tbl_A86F:
 
 
 
-ofs_042_A87F_13:
+ofs_063_A87F_13:
 C - - J - - 0x02688F 09:A87F: 20 DE A1  JSR sub_A1DE
 C - - - - - 0x026892 09:A882: AD F3 07  LDA ram_07F3
 C - - - - - 0x026895 09:A885: F0 03     BEQ bra_A88A
@@ -9067,7 +9094,7 @@ C - - - - - 0x02699B 09:A98B: F0 EC     BEQ bra_A979    ; jmp
 
 
 
-ofs_042_A992_04:
+ofs_063_A992_04:
 C - - J - - 0x0269A2 09:A992: A5 3D     LDA ram_hp_boss
 C - - - - - 0x0269A4 09:A994: D0 03     BNE bra_A999
 C - - - - - 0x0269A6 09:A996: 4C A5 E6  JMP loc_0x03E6B5
@@ -9416,7 +9443,7 @@ C - - - - - 0x026C0E 09:ABFE: 4C AF AD  JMP loc_ADAF
 
 
 
-ofs_042_AC01_21:
+ofs_063_AC01_21:
 C - - J - - 0x026C11 09:AC01: AC EF 07  LDY ram_07EF
 C - - - - - 0x026C14 09:AC04: 88        DEY
 C - - - - - 0x026C15 09:AC05: F0 33     BEQ bra_AC3A_01
@@ -9449,7 +9476,7 @@ C - - - - - 0x026C4A 09:AC3A: 4C 3A 87  JMP loc_873A_clear_object_data
 
 
 
-ofs_042_AC3D_05:
+ofs_063_AC3D_05:
 C - - J - - 0x026C4D 09:AC3D: 20 DE A1  JSR sub_A1DE
 C - - - - - 0x026C50 09:AC40: A9 50     LDA #con_obj_flag_10 + con_obj_flag_40
 C - - - - - 0x026C52 09:AC42: 9D 70 04  STA ram_obj_flags,X
@@ -9784,7 +9811,7 @@ C - - - - - 0x026ECA 09:AEBA: 60        RTS
 
 
 
-ofs_042_AEBB_17:
+ofs_063_AEBB_17:
 C - - J - - 0x026ECB 09:AEBB: 20 DE A1  JSR sub_A1DE
 C - - - - - 0x026ECE 09:AEBE: BD 69 06  LDA ram_obj_066A,X
 C - - - - - 0x026ED1 09:AEC1: F0 08     BEQ bra_AECB
@@ -9904,7 +9931,7 @@ C - - - - - 0x026F95 09:AF85: 60        RTS
 
 
 
-ofs_042_AF86_06:
+ofs_063_AF86_06:
 C - - J - - 0x026F96 09:AF86: A9 60     LDA #con_obj_flag_20 + con_obj_flag_40
 C - - - - - 0x026F98 09:AF88: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x026F9B 09:AF8B: 20 DE A1  JSR sub_A1DE
@@ -10010,7 +10037,7 @@ C - - - - - 0x027054 09:B044: D0 08     BNE bra_B04E    ; jmp
 
 
 
-ofs_042_B046_2D:
+ofs_063_B046_2D:
 C - - J - - 0x027056 09:B046: A9 60     LDA #con_obj_flag_20 + con_obj_flag_40
 C - - - - - 0x027058 09:B048: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x02705B 09:B04B: 20 DE A1  JSR sub_A1DE
@@ -10438,7 +10465,10 @@ C - - - - - 0x027365 09:B355: A5 00     LDA ram_0000_t0E7_pos_lo
 C - - - - - 0x027367 09:B357: 38        SEC
 C - - - - - 0x027368 09:B358: E5 01     SBC ram_0001_t048
 C - - - - - 0x02736A 09:B35A: B0 05     BCS bra_B361
+; C = 0
+; EOR
 C - - - - - 0x02736C 09:B35C: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02736E 09:B35E: 18        CLC
 C - - - - - 0x02736F 09:B35F: 69 01     ADC #$01
 bra_B361:
@@ -10660,7 +10690,7 @@ C - - - - - 0x0274AE 09:B49E: 60        RTS
 
 
 
-ofs_042_B49F_26:
+ofs_063_B49F_26:
 C - - J - - 0x0274AF 09:B49F: BC 06 06  LDY ram_obj_config,X
 C - - - - - 0x0274B2 09:B4A2: B9 70 04  LDA ram_obj_flags,Y
 C - - - - - 0x0274B5 09:B4A5: 29 88     AND #con_obj_flag_08 + con_obj_flag_not_visible
@@ -10779,7 +10809,7 @@ C - - - - - 0x02757D 09:B56D: 60        RTS
 
 
 
-ofs_042_B56E_25:
+ofs_063_B56E_25:
 C - - J - - 0x02757E 09:B56E: A9 E8     LDA #con_obj_flag_08 + con_obj_flag_20 + con_obj_flag_40 + con_obj_flag_not_visible
 C - - - - - 0x027580 09:B570: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x027583 09:B573: A9 02     LDA #$02
@@ -10810,7 +10840,7 @@ C - - - - - 0x0275B9 09:B5A9: 4C 3A 87  JMP loc_873A_clear_object_data
 
 
 
-ofs_042_B5AC_0D:
+ofs_063_B5AC_0D:
 C - - J - - 0x0275BC 09:B5AC: A9 00     LDA #$00
 C - - - - - 0x0275BE 09:B5AE: 85 BB     STA ram_00BB
 C - - - - - 0x0275C0 09:B5B0: 85 BA     STA ram_00BA
@@ -11219,7 +11249,7 @@ tbl_B8A1:
 
 
 
-ofs_042_B8A9_24:
+ofs_063_B8A9_24:
 C - - J - - 0x0278B9 09:B8A9: A5 3D     LDA ram_hp_boss
 C - - - - - 0x0278BB 09:B8AB: D0 03     BNE bra_B8B0
 C - - - - - 0x0278BD 09:B8AD: 4C 3A 87  JMP loc_873A_clear_object_data
@@ -11241,7 +11271,10 @@ C - - - - - 0x0278DF 09:B8CF: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x0278E2 09:B8D2: 38        SEC
 C - - - - - 0x0278E3 09:B8D3: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x0278E6 09:B8D6: B0 16     BCS bra_B8EE
+; C = 0
+; EOR
 C - - - - - 0x0278E8 09:B8D8: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x0278EA 09:B8DA: 18        CLC
 C - - - - - 0x0278EB 09:B8DB: 69 01     ADC #$01
 C - - - - - 0x0278ED 09:B8DD: 4A        LSR
@@ -11278,7 +11311,10 @@ C - - - - - 0x027923 09:B913: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x027926 09:B916: 38        SEC
 C - - - - - 0x027927 09:B917: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x02792A 09:B91A: B0 05     BCS bra_B921
+; C = 0
+; EOR
 C - - - - - 0x02792C 09:B91C: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x02792E 09:B91E: 18        CLC
 C - - - - - 0x02792F 09:B91F: 69 01     ADC #$01
 bra_B921:
@@ -11305,7 +11341,10 @@ C - - - - - 0x027953 09:B943: BD 1C 04  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x027956 09:B946: 38        SEC
 C - - - - - 0x027957 09:B947: ED 1C 04  SBC ram_plr_pos_Y_lo
 C - - - - - 0x02795A 09:B94A: B0 05     BCS bra_B951
+; C = 0
+; EOR
 - - - - - - 0x02795C 09:B94C: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 - - - - - - 0x02795E 09:B94E: 18        CLC
 - - - - - - 0x02795F 09:B94F: 69 01     ADC #$01
 bra_B951:
@@ -11450,7 +11489,10 @@ C - - - - - 0x027A63 09:BA53: 38        SEC
 C - - - - - 0x027A64 09:BA54: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x027A67 09:BA57: 85 00     STA ram_0000_t0FE_pos_X_lo
 C - - - - - 0x027A69 09:BA59: B0 11     BCS bra_BA6C
+; C = 0
+; EOR
 C - - - - - 0x027A6B 09:BA5B: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x027A6D 09:BA5D: 18        CLC
 C - - - - - 0x027A6E 09:BA5E: 69 01     ADC #$01
 C - - - - - 0x027A70 09:BA60: 85 00     STA ram_0000_t0FE_pos_X_lo
@@ -11791,6 +11833,7 @@ C - - - - - 0x027CC7 09:BCB7: 60        RTS
 
 
 ofs_042_BCB8_29:
+ofs_063_BCB8_29:
 C - - J - - 0x027CC8 09:BCB8: AC F3 07  LDY ram_07F3
 C - - - - - 0x027CCB 09:BCBB: 88        DEY
 C - - - - - 0x027CCC 09:BCBC: D0 07     BNE bra_BCC5

@@ -22,7 +22,7 @@
 
 sub_0x034011_sprite_engine:
 C - - - - - 0x034011 0D:8001: A5 18     LDA ram_main_script
-C - - - - - 0x034013 0D:8003: C9 0C     CMP #con_0018_0C
+C - - - - - 0x034013 0D:8003: C9 0C     CMP #con_0018_credits_1
 C - - - - - 0x034015 0D:8005: D0 03     BNE bra_800A
 C - - - - - 0x034017 0D:8007: 4C 88 81  JMP loc_8188
 bra_800A:

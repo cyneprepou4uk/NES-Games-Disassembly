@@ -75,6 +75,7 @@
 .export sub_0x017BD1
 .export ofs_0x017BD1
 .export ofs_042_0x017C85_2C
+.export ofs_063_0x017C85_2C
 .export sub_0x017EC6_bg_and_spr_palette
 
 
@@ -11887,6 +11888,7 @@ C - - - - - 0x017C84 05:BC74: 60        RTS
 
 
 ofs_042_0x017C85_2C:
+ofs_063_0x017C85_2C:
 C - - J - - 0x017C85 05:BC75: BD C1 05  LDA ram_obj_ai_subscript,X
 C - - - - - 0x017C88 05:BC78: 20 6D E8  JSR sub_0x03E87D_jump_to_pointers_after_JSR_A
 - D 1 - I - 0x017C8B 05:BC7B: 85 BC     .word ofs_017_BC85_00
@@ -12125,9 +12127,10 @@ ofs_017_BDE9_04_RTS:
 
 
 loc_BDEA:
+; triggers for each piece of Dracula's laser every frame
 C D 1 - - - 0x017DFA 05:BDEA: BD 65 05  LDA ram_obj_stun_timer,X
 C - - - - - 0x017DFD 05:BDED: 4A        LSR
-C - - - - - 0x017DFE 05:BDEE: 85 02     STA ram_0002_t040_obj_state
+C - - - - - 0x017DFE 05:BDEE: 85 02     STA ram_0002_t040
 C - - - - - 0x017E00 05:BDF0: A8        TAY
 C - - - - - 0x017E01 05:BDF1: B9 96 BE  LDA tbl_BE96,Y
 C - - - - - 0x017E04 05:BDF4: 8D 05 52  STA $5205   ; multiplicand
@@ -12184,7 +12187,7 @@ sub_BE56:
     ; C
         ; 0 = 
         ; 1 = 
-C - - - - - 0x017E66 05:BE56: A4 02     LDY ram_0002_t040_obj_state
+C - - - - - 0x017E66 05:BE56: A4 02     LDY ram_0002_t040
 C - - - - - 0x017E68 05:BE58: B9 85 BE  LDA tbl_BE85,Y
 C - - - - - 0x017E6B 05:BE5B: F0 14     BEQ bra_BE71
 C - - - - - 0x017E6D 05:BE5D: BC 1D 06  LDY ram_061D_obj,X
@@ -12192,7 +12195,10 @@ C - - - - - 0x017E70 05:BE60: B9 1C 04  LDA ram_obj_pos_Y_lo,Y
 C - - - - - 0x017E73 05:BE63: 38        SEC
 C - - - - - 0x017E74 05:BE64: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x017E77 05:BE67: B0 05     BCS bra_BE6E
+; C = 0
+; EOR
 C - - - - - 0x017E79 05:BE69: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x017E7B 05:BE6B: 18        CLC
 C - - - - - 0x017E7C 05:BE6C: 69 01     ADC #$01
 bra_BE6E:
@@ -12204,6 +12210,9 @@ C - - - - - 0x017E84 05:BE74: B9 38 04  LDA ram_obj_pos_X_lo,Y
 C - - - - - 0x017E87 05:BE77: 38        SEC
 C - - - - - 0x017E88 05:BE78: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x017E8B 05:BE7B: B0 05     BCS bra_BE82
+; C = 0
+; EOR
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x017E8D 05:BE7D: 49 FF     EOR #$FF
 C - - - - - 0x017E8F 05:BE7F: 18        CLC
 C - - - - - 0x017E90 05:BE80: 69 01     ADC #$01
@@ -12214,24 +12223,24 @@ C - - - - - 0x017E94 05:BE84: 60        RTS
 
 
 tbl_BE85:
-- D 1 - - - 0x017E95 05:BE85: 01        .byte $01   ; 00 
-- D 1 - - - 0x017E96 05:BE86: 01        .byte $01   ; 02 
-- D 1 - - - 0x017E97 05:BE87: 00        .byte $00   ; 04 
-- D 1 - - - 0x017E98 05:BE88: 00        .byte $00   ; 06 
-- D 1 - - - 0x017E99 05:BE89: 00        .byte $00   ; 08 
-- D 1 - - - 0x017E9A 05:BE8A: 00        .byte $00   ; 0A 
-- D 1 - - - 0x017E9B 05:BE8B: 00        .byte $00   ; 0C 
-- D 1 - - - 0x017E9C 05:BE8C: 01        .byte $01   ; 0E 
-- D 1 - - - 0x017E9D 05:BE8D: 01        .byte $01   ; 10 
-- D 1 - - - 0x017E9E 05:BE8E: 01        .byte $01   ; 12 
-- D 1 - - - 0x017E9F 05:BE8F: 00        .byte $00   ; 14 
-- D 1 - - - 0x017EA0 05:BE90: 00        .byte $00   ; 16 
-- D 1 - - - 0x017EA1 05:BE91: 00        .byte $00   ; 18 
-- D 1 - - - 0x017EA2 05:BE92: 00        .byte $00   ; 1A 
-- D 1 - - - 0x017EA3 05:BE93: 00        .byte $00   ; 1C 
-- D 1 - - - 0x017EA4 05:BE94: 00        .byte $00   ; 1E 
+- D 1 - - - 0x017E95 05:BE85: 01        .byte $01   ; 00 (00) 
+- D 1 - - - 0x017E96 05:BE86: 01        .byte $01   ; 02 (01) 
+- D 1 - - - 0x017E97 05:BE87: 00        .byte $00   ; 04 (02) 
+- D 1 - - - 0x017E98 05:BE88: 00        .byte $00   ; 06 (03) 
+- D 1 - - - 0x017E99 05:BE89: 00        .byte $00   ; 08 (04) 
+- D 1 - - - 0x017E9A 05:BE8A: 00        .byte $00   ; 0A (05) 
+- D 1 - - - 0x017E9B 05:BE8B: 00        .byte $00   ; 0C (06) 
+- D 1 - - - 0x017E9C 05:BE8C: 01        .byte $01   ; 0E (07) 
+- D 1 - - - 0x017E9D 05:BE8D: 01        .byte $01   ; 10 (08) 
+- D 1 - - - 0x017E9E 05:BE8E: 01        .byte $01   ; 12 (09) 
+- D 1 - - - 0x017E9F 05:BE8F: 00        .byte $00   ; 14 (0A) 
+- D 1 - - - 0x017EA0 05:BE90: 00        .byte $00   ; 16 (0B) 
+- D 1 - - - 0x017EA1 05:BE91: 00        .byte $00   ; 18 (0C) 
+- D 1 - - - 0x017EA2 05:BE92: 00        .byte $00   ; 1A (0D) 
+- D 1 - - - 0x017EA3 05:BE93: 00        .byte $00   ; 1C (0E) 
+- D 1 - - - 0x017EA4 05:BE94: 00        .byte $00   ; 1E (0F) 
 ; bzk garbage?
-- - - - - - 0x017EA5 05:BE95: 01        .byte $01   ; 20
+- - - - - - 0x017EA5 05:BE95: 01        .byte $01   ; 20 (10) 
 
 
 

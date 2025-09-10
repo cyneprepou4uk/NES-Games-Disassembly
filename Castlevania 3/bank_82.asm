@@ -265,7 +265,7 @@ bra_814C:
 C - - - - - 0x00415C 01:814C: A5 32     LDA ram_blk_id_hi
 C - - - - - 0x00415E 01:814E: C9 0E     CMP #$0E    ; Final Clock Tower
 C - - - - - 0x004160 01:8150: D0 04     BNE bra_8156
-C - - - - - 0x004162 01:8152: A9 0C     LDA #con_0018_0C
+C - - - - - 0x004162 01:8152: A9 0C     LDA #con_0018_credits_1
 C - - - - - 0x004164 01:8154: D0 02     BNE bra_8158    ; jmp
 bra_8156:
 C - - - - - 0x004166 01:8156: A9 08     LDA #con_0018_08
@@ -4928,7 +4928,10 @@ C - - - - - 0x005CD4 01:9CC4: A9 70     LDA #$70
 C - - - - - 0x005CD6 01:9CC6: 38        SEC
 C - - - - - 0x005CD7 01:9CC7: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x005CDA 01:9CCA: B0 07     BCS bra_9CD3
+; C = 0
+; EOR
 C - - - - - 0x005CDC 01:9CCC: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x005CDE 01:9CCE: 18        CLC
 C - - - - - 0x005CDF 01:9CCF: 69 01     ADC #$01
 C - - - - - 0x005CE1 01:9CD1: E6 00     INC ram_0000_t0A0_obj_facing   ; -> 01 facing left

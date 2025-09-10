@@ -1735,7 +1735,10 @@ C - - - - - 0x008922 02:8912: 90 03     BCC bra_8917
 bra_8914:
 C - - - - - 0x008924 02:8914: 4C C3 89  JMP loc_89C3
 bra_8917:
+; C = 0
+; EOR
 C - - - - - 0x008927 02:8917: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x008929 02:8919: 18        CLC
 C - - - - - 0x00892A 02:891A: 69 01     ADC #$01
 C - - - - - 0x00892C 02:891C: C9 20     CMP #$20
@@ -1746,7 +1749,10 @@ C - - - - - 0x008933 02:8923: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x008936 02:8926: 38        SEC
 C - - - - - 0x008937 02:8927: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x00893A 02:892A: B0 05     BCS bra_8931
+; C = 0
+; EOR
 C - - - - - 0x00893C 02:892C: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x00893E 02:892E: 18        CLC
 C - - - - - 0x00893F 02:892F: 69 01     ADC #$01
 bra_8931:
@@ -2527,7 +2533,10 @@ C - - - - - 0x008E1A 02:8E0A: 9D 65 05  STA ram_obj_stun_timer,X
 C - - - - - 0x008E1D 02:8E0D: 38        SEC
 C - - - - - 0x008E1E 02:8E0E: E9 80     SBC #$80
 C - - - - - 0x008E20 02:8E10: B0 05     BCS bra_8E17
+; C = 0
+; EOR
 C - - - - - 0x008E22 02:8E12: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x008E24 02:8E14: 18        CLC
 C - - - - - 0x008E25 02:8E15: 69 01     ADC #$01
 bra_8E17:
@@ -3295,7 +3304,10 @@ C - - - - - 0x009466 02:9456: 38        SEC
 C - - - - - 0x009467 02:9457: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x00946A 02:945A: 85 01     STA ram_0001_t03D_pos_X_lo_distance
 C - - - - - 0x00946C 02:945C: B0 0B     BCS bra_9469_RTS
+; C = 0
+; EOR
 C - - - - - 0x00946E 02:945E: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x009470 02:9460: 18        CLC
 C - - - - - 0x009471 02:9461: 69 01     ADC #$01
 C - - - - - 0x009473 02:9463: 85 01     STA ram_0001_t03D_pos_X_lo_distance

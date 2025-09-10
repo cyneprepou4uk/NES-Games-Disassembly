@@ -3926,6 +3926,7 @@ C - - - - - 0x01F5D2 07:B5C2: A5 0F     LDA ram_000F_t00A
 C - - - - - 0x01F5D4 07:B5C4: D0 27     BNE bra_B5ED
 C - - - - - 0x01F5D6 07:B5C6: A5 09     LDA ram_0009_t009
 C - - - - - 0x01F5D8 07:B5C8: C5 08     CMP ram_0008_t048
+; bzk optimize, useless branch
 C - - - - - 0x01F5DA 07:B5CA: F0 00     BEQ bra_B5CC
 bra_B5CC:
 C - - - - - 0x01F5DC 07:B5CC: A5 0D     LDA ram_000D_t004
@@ -3936,8 +3937,11 @@ C - - - - - 0x01F5E4 07:B5D4: 38        SEC
 C - - - - - 0x01F5E5 07:B5D5: B1 69     LDA (ram_data_stairs),Y
 C - - - - - 0x01F5E7 07:B5D7: ED 38 04  SBC ram_plr_pos_X_lo
 C - - - - - 0x01F5EA 07:B5DA: B0 06     BCS bra_B5E2
+; C = 0
 C - - - - - 0x01F5EC 07:B5DC: E8        INX ; 01    ; to the left
+; EOR
 C - - - - - 0x01F5ED 07:B5DD: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x01F5EF 07:B5DF: 18        CLC
 C - - - - - 0x01F5F0 07:B5E0: 69 01     ADC #$01
 bra_B5E2:

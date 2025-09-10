@@ -4689,11 +4689,14 @@ C - - - - - 0x01BEA2 06:BE92: A5 04     LDA ram_0004_t013_pos_X_lo
 C - - - - - 0x01BEA4 06:BE94: 38        SEC
 C - - - - - 0x01BEA5 06:BE95: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x01BEA8 06:BE98: B0 0D     BCS bra_BEA7
+; C = 0
 C - - - - - 0x01BEAA 06:BE9A: 85 01     STA ram_0001_t02C
 C - - - - - 0x01BEAC 06:BE9C: A9 01     LDA #$01
 C - - - - - 0x01BEAE 06:BE9E: 85 00     STA ram_0000_t07A
+; EOR
 C - - - - - 0x01BEB0 06:BEA0: A5 01     LDA ram_0001_t02C
 C - - - - - 0x01BEB2 06:BEA2: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x01BEB4 06:BEA4: 18        CLC
 C - - - - - 0x01BEB5 06:BEA5: 69 01     ADC #$01
 bra_BEA7:
@@ -4707,10 +4710,13 @@ C - - - - - 0x01BEBD 06:BEAD: A5 05     LDA ram_0005_t009_pos_Y_lo
 C - - - - - 0x01BEBF 06:BEAF: 38        SEC
 C - - - - - 0x01BEC0 06:BEB0: FD 1C 04  SBC ram_obj_pos_Y_lo,X
 C - - - - - 0x01BEC3 06:BEB3: B0 0F     BCS bra_BEC4
+; C = 0
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x01BEC5 06:BEB5: 85 0A     STA ram_000A_t023
 C - - - - - 0x01BEC7 06:BEB7: A5 00     LDA ram_0000_t07A
 C - - - - - 0x01BEC9 06:BEB9: 09 02     ORA #$02
 C - - - - - 0x01BECB 06:BEBB: 85 00     STA ram_0000_t07A
+; EOR
 C - - - - - 0x01BECD 06:BEBD: A5 0A     LDA ram_000A_t023
 C - - - - - 0x01BECF 06:BEBF: 49 FF     EOR #$FF
 C - - - - - 0x01BED1 06:BEC1: 18        CLC

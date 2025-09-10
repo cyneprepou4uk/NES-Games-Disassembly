@@ -20,9 +20,9 @@
 .export loc_0x0321A0
 .export _off003_0x032295_67
 .export sub_0x03240E
-.export ofs_042_0x032474_0F
+.export ofs_063_0x032474_0F
 .export ofs_042_0x0325AB_0B
-.export ofs_042_0x032620_0B
+.export ofs_063_0x032620_0B
 .export _off005_0x032BB8_0C
 .export _off005_0x032D8C_1E
 .export ofs_0x032FEA
@@ -7446,7 +7446,7 @@ tbl_A452:
 
 
 
-ofs_042_0x032474_0F:
+ofs_063_0x032474_0F:
 C - - J - - 0x032474 0C:A464: BD 45 06  LDA ram_obj_0646,X
 C - - - - - 0x032477 0C:A467: F0 30     BEQ bra_A499_RTS
 C - - - - - 0x032479 0C:A469: C9 01     CMP #$01
@@ -7719,7 +7719,7 @@ C - - - - - 0x03261D 0C:A60D: 4C 20 A6  JMP loc_A620
 
 
 
-ofs_042_0x032620_0B:
+ofs_063_0x032620_0B:
 C - - J - - 0x032620 0C:A610: A9 03     LDA #$03    ; damage offset
 C - - - - - 0x032622 0C:A612: A2 08     LDX #con_A452_deal_damage_to_boss
 C - - - - - 0x032624 0C:A614: 20 40 A4  JSR sub_A440_deal_damage_to_boss
@@ -8113,7 +8113,9 @@ C - - - - - 0x032859 0C:A849: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x03285C 0C:A84C: 38        SEC
 C - - - - - 0x03285D 0C:A84D: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x032860 0C:A850: B0 03     BCS bra_A855_RTS
+; C = 0
 C - - - - - 0x032862 0C:A852: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x032864 0C:A854: 18        CLC
 bra_A855_RTS:
 C - - - - - 0x032865 0C:A855: 60        RTS
@@ -8756,8 +8758,8 @@ C - - - - - 0x032BB7 0C:ABA7: 60        RTS
 
 
 
-ofs_005_ABA8_14:
-ofs_005_ABA8_15:
+ofs_005_ABA8_14:    ; garbabe label
+ofs_005_ABA8_15:    ; garbabe label
 _off005_0x032BB8_0C:
 ; con_EC77_0C
 - D 1 - I - 0x032BB8 0C:ABA8: 00 20     .word $2000 ; ppu address
@@ -9512,7 +9514,10 @@ C - - - - - 0x0330B6 0C:B0A6: B9 C1 B2  LDA tbl_B2C1_pos_X_lo,Y
 C - - - - - 0x0330B9 0C:B0A9: 38        SEC
 C - - - - - 0x0330BA 0C:B0AA: FD 38 04  SBC ram_obj_pos_X_lo,X
 C - - - - - 0x0330BD 0C:B0AD: B0 05     BCS bra_B0B4
+; C = 0
+; EOR
 C - - - - - 0x0330BF 0C:B0AF: 49 FF     EOR #$FF
+; bzk optimize, C is already 0, no need for CLC
 C - - - - - 0x0330C1 0C:B0B1: 18        CLC
 C - - - - - 0x0330C2 0C:B0B2: 69 01     ADC #$01
 bra_B0B4:
