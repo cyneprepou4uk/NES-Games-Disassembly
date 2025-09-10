@@ -1878,6 +1878,7 @@ C - - - - - 0x01CC74 07:CC64: BD 04 03  LDA ram_0304,X
 C - - - - - 0x01CC77 07:CC67: 18        CLC
 C - - - - - 0x01CC78 07:CC68: 7D 0F 03  ADC ram_030F,X
 C - - - - - 0x01CC7B 07:CC6B: 9D 06 05  STA ram_0506,X
+; bzk optimize, useless branch
 C - - - - - 0x01CC7E 07:CC6E: 90 00     BCC bra_CC70
 bra_CC70:
 C - - - - - 0x01CC80 07:CC70: BD 00 03  LDA ram_0300,X
@@ -2952,6 +2953,7 @@ bra_D3CD:
 C - - - - - 0x01D3DD 07:D3CD: BD 01 03  LDA ram_0301,X
 C - - - - - 0x01D3E0 07:D3D0: 29 40     AND #$40
 C - - - - - 0x01D3E2 07:D3D2: D0 0F     BNE bra_D3E3
+; bzk optimize, useless branch
 C - - - - - 0x01D3E4 07:D3D4: F0 00     BEQ bra_D3D6
 bra_D3D6:
 C - - - - - 0x01D3E6 07:D3D6: BD 00 04  LDA ram_0400,X
