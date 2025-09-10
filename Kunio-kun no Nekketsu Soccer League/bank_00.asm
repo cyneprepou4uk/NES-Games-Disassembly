@@ -377,6 +377,7 @@ C - - - - - 0x000275 00:8265: 90 37     BCC bra_829E
 bra_8267:
 C - - - - - 0x000277 00:8267: E0 04     CPX #$04
 C - - - - - 0x000279 00:8269: B0 1F     BCS bra_828A
+; bzk optimize, useless branch
 C - - - - - 0x00027B 00:826B: 90 00     BCC bra_826D
 bra_826D:
 C - - - - - 0x00027D 00:826D: 9D 8A 07  STA ram_078A,X

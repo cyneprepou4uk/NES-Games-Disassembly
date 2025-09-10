@@ -2885,6 +2885,7 @@ C D 2 - - - 0x01D083 07:D073: 2C B2 05  BIT ram_флаг_яркости
 C - - - - - 0x01D086 07:D076: 30 52     BMI bra_D0CA_RTS
 C - - - - - 0x01D088 07:D078: 70 0E     BVS bra_D088
 C - - - - - 0x01D08A 07:D07A: AD B6 05  LDA ram_счетчик_яркости
+; bzk optimize, useless branch
 C - - - - - 0x01D08D 07:D07D: 10 00     BPL bra_D07F
 bra_D07F:
 C - - - - - 0x01D08F 07:D07F: AC B6 05  LDY ram_счетчик_яркости
