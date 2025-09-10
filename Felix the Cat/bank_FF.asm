@@ -622,6 +622,7 @@ C - - - - - 0x01C3BE 07:C3AE: 8D FB 03  STA ram_03FB
 C - - - - - 0x01C3C1 07:C3B1: 0D FC 03  ORA ram_03FC
 C - - - - - 0x01C3C4 07:C3B4: F0 35     BEQ bra_C3EB
 C - - - - - 0x01C3C6 07:C3B6: AD D1 03  LDA ram_03D1
+; bzk optimize, useless branch
 C - - - - - 0x01C3C9 07:C3B9: D0 00     BNE bra_C3BB
 bra_C3BB:
 C - - - - - 0x01C3CB 07:C3BB: A5 0F     LDA ram_000F

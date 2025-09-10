@@ -5543,6 +5543,7 @@ sub_A5E4:
 C - - - - - 0x01A5F4 06:A5E4: 20 74 89  JSR sub_8974_move_obj_X_axis
 C - - - - - 0x01A5F7 06:A5E7: 20 99 9F  JSR sub_9F99
 C - - - - - 0x01A5FA 06:A5EA: BD F2 06  LDA ram_obj_spd_Y_lo,X
+; bzk optimize, useless branch
 C - - - - - 0x01A5FD 06:A5ED: 10 00     BPL bra_A5EF
 bra_A5EF:
 C - - - - - 0x01A5FF 06:A5EF: 20 F6 A5  JSR sub_A5F6
