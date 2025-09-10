@@ -27,16 +27,16 @@ con_btns_SS                             = con_btn_Start + con_btn_Select        
 
 ; ram_bg_palette_id
 ; index for 0x001575
-con_004D_00                             = $00 ; 
-con_004D_01                             = $01 ; 
-con_004D_02                             = $02 ; 
-con_004D_03                             = $03 ; 
-con_004D_04                             = $04 ; 
-con_004D_05                             = $05 ; 
-con_004D_06                             = $06 ; 
-con_004D_07                             = $07 ; 
-con_004D_08                             = $08 ; 
-con_004D_FF                             = $FF ; skip palette
+con_bg_pal_00                           = $00 ; 
+con_bg_pal_01                           = $01 ; 
+con_bg_pal_02                           = $02 ; 
+con_bg_pal_03                           = $03 ; 
+con_bg_pal_04                           = $04 ; 
+con_bg_pal_05                           = $05 ; 
+con_bg_pal_06                           = $06 ; 
+con_bg_pal_07                           = $07 ; 
+con_bg_pal_08                           = $08 ; 
+con_bg_pal_FF                           = $FF ; skip palette
 
 
 

@@ -292,8 +292,9 @@ ram_004C_flag                           = $004C ; 000185 0002DB 00039F 000781 00
 
 
 
+; background palette
 ; 00-08 (id) or FF (palette was already set)
-; see con_004D
+; see con_bg_pal
 ram_bg_palette_id                       = $004D ; 00017D 000201 000339 00033E 0003CB 0004A0 0004A9 000781 0009D2 000A64 000F04 000F20 00117F 001426 00146E 0014AF 00153B 
 
 
@@ -346,8 +347,8 @@ ram_0056_temp                           = $0056 ; 0003F5 000408 00046D 000587 00
     ram_0056_t01                            = ram_0056_temp ; 
     ram_0056_t02                            = ram_0056_temp ; 
     ram_0056_t03_spr_X                      = ram_0056_temp ; 
-    ram_0056_t04                            = ram_0056_temp ; 
-    ram_0056_t05_pos_X                      = ram_0056_temp ; 
+    ram_0056_t04_pos_X                      = ram_0056_temp ; 
+    ram_0056_t05_useless_02                 = ram_0056_temp ; bzk optimize
 
 
 
@@ -356,10 +357,10 @@ ram_0057_temp                           = $0057 ; 0003F9 00040C 000471 00058B 00
     ram_0057_t01                            = ram_0057_temp ; 
     ram_0057_t02                            = ram_0057_temp ; 
     ram_0057_t03_spr_Y                      = ram_0057_temp ; 
-    ram_0057_t04                            = ram_0057_temp ; 
-    ram_0057_t05_pos_Y                      = ram_0057_temp ; 
+    ram_0057_t04_pos_Y                      = ram_0057_temp ; 
+    ram_0057_t05_open_curtain_counter       = ram_0057_temp ; 
     ram_0057_t06_close_curtain_counter      = ram_0057_temp ; 
-    ram_0057_t07_open_curtain_counter       = ram_0057_temp ; 
+    ram_0057_t07_useless_02                 = ram_0057_temp ; bzk optimize
 
 
 
@@ -400,13 +401,13 @@ ram_005A_temp                           = $005A ; 00058F 00059D 00059F 0005CA 00
     ram_005A_t20_player_index               = ram_005A_temp ; 
     ram_005A_t21                            = ram_005A_temp ; 
     ram_005A_t22_enemy_type_counter         = ram_005A_temp ; 
-    ram_005A_t23                            = ram_005A_temp ; 
+    ram_005A_t23_loop_counter               = ram_005A_temp ; 
 
 
 
 ; 
 ram_005B_temp                           = $005B ; 000781 0009CA 00146E 001804 00272F 002731 002782 002784 0027A1 0027A3 0027AC 002816 00283D 002862 002864 00286A 002877 0028C1 002907 002936 002938 002979 
-    ram_005B_t01                            = ram_005B_temp ; 
+    ram_005B_t01_data_index                 = ram_005B_temp ; 
     ram_005B_t02_enemy_bullet_index         = ram_005B_temp ; 
     ram_005B_t03_bullet_index               = ram_005B_temp ; 
     ram_005B_t04_bullet_index               = ram_005B_temp ; 
@@ -919,8 +920,8 @@ ram_0103_plr                            = $0103 ; 001BA4 001BC4 001BCF 001C66 00
 
 
 ; game over message, start position XY
-ram_go_msg_pos_X                        = $0105 ; 000749 00095F 00096C 0009AC 0009AF 001E3D 001E4F 002429 
-ram_go_msg_pos_Y                        = $0106 ; 000349 00074E 000962 000973 00099A 0009B6 0009B9 001E5D 002429 
+ram_game_over_msg_pos_X                 = $0105 ; 000749 00095F 00096C 0009AC 0009AF 001E3D 001E4F 002429 
+ram_game_over_msg_pos_Y                 = $0106 ; 000349 00074E 000962 000973 00099A 0009B6 0009B9 001E5D 002429 
 
 
 
@@ -929,13 +930,13 @@ ram_go_msg_pos_Y                        = $0106 ; 000349 00074E 000962 000973 00
 ; 01 = left
 ; 02 = down
 ; 03 = right
-ram_go_msg_mov_type                     = $0107 ; 000753 0009A4 001E38 001E4A 002429 
+ram_game_over_msg_mov_type              = $0107 ; 000753 0009A4 001E38 001E4A 002429 
 
 
 
 ; game over message, display timer
 ; decreases each 16 frames. if => 0A msg moves
-ram_go_msg_timer                        = $0108 ; 00023F 00034E 000758 000982 000993 00099D 001E58 002429 
+ram_game_over_msg_timer                 = $0108 ; 00023F 00034E 000758 000982 000993 00099D 001E58 002429 
 
 
 
