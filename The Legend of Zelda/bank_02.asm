@@ -1812,7 +1812,8 @@ tbl_9969_logo_blackout_palette:
 
 
 
-; 0E bzk garbage?
+; 0E
+; bzk garbage?
 - - - - - - 0x009B39 02:9B29: 0F        .byte $0F, $0F, $0F, $0F   ; 
 - - - - - - 0x009B3D 02:9B2D: 0F        .byte $0F, $0F, $0F, $0F   ; 
 - - - - - - 0x009B41 02:9B31: 0F        .byte $0F, $0F, $0F, $0F   ; 
@@ -1825,7 +1826,8 @@ tbl_9969_logo_blackout_palette:
 
 
 
-; 0F bzk garbage?
+; 0F
+; bzk garbage?
 - - - - - - 0x009B59 02:9B49: 0F        .byte $0F, $0F, $0F, $0F   ; 
 - - - - - - 0x009B5D 02:9B4D: 0F        .byte $0F, $0F, $0F, $0F   ; 
 - - - - - - 0x009B61 02:9B51: 0F        .byte $0F, $0F, $0F, $0F   ; 
