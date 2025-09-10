@@ -19,7 +19,7 @@ ram_0000_temp                           = $0000 ; 0003B0 0003B5 0005D3 0005D8 00
     ram_0000_t13                            = ram_0000_temp ; 
     ram_0000_t14                            = ram_0000_temp ; 
     ram_0000_t15                            = ram_0000_temp ; 
-    ram_0000_t16_table_index                = ram_0000_temp ; 
+    ram_0000_t16_tile_id                    = ram_0000_temp ; 
 
 
 
@@ -114,7 +114,7 @@ ram_0011_temp                           = $0011 ; 0004CE 0004E0 0004F2 000504 00
     ram_0011_t10_jmp                        = ram_0011_temp ; 2 addresses 0011-0012
     ram_0011_t11_stage_data                 = ram_0011_temp ; 2 addresses 0011-0012
     ram_0011_t12_data                       = ram_0011_temp ; 2 addresses 0011-0012
-    ram_0011_t13_data                       = ram_0011_temp ; 2 addresses 0011-0012
+    ram_0011_t13_stage_field_data           = ram_0011_temp ; 2 addresses 0011-0012
     ram_0011_t14_data                       = ram_0011_temp ; 2 addresses 0011-0012
     ram_0011_t15_data                       = ram_0011_temp ; 2 addresses 0011-0012
     ram_0011_t16_stage_data                 = ram_0011_temp ; 2 addresses 0011-0012
@@ -305,7 +305,7 @@ ram_bg_palette_id                       = $004D ; 00017D 000201 000339 00033E 00
 
 
 ; for 2005 register
-ram_scroll_pos_Y                        = $004F ; 00009E 0000EB 000175 0003D6 000464 0004B5 0005F2 000781 0007BD 0007C4 0007CC 0009EE 000F14 001439 00146E 
+ram_scroll_Y                            = $004F ; 00009E 0000EB 000175 0003D6 000464 0004B5 0005F2 000781 0007BD 0007C4 0007CC 0009EE 000F14 001439 00146E 
 
 
 
@@ -345,7 +345,7 @@ ram_0055_temp                           = $0055 ; 000781 00146E 001A8D 001A9D 00
 ; 
 ram_0056_temp                           = $0056 ; 0003F5 000408 00046D 000587 0005B2 0005E1 0005FB 00060E 000781 0009C2 00119B 0011AE 00146E 0017F9 0018EF 0018F9 0018FE 001963 001975 00197A 001CCA 001CEF 001D16 001D7E 00304B 003064 003071 003076 
     ram_0056_t01                            = ram_0056_temp ; 
-    ram_0056_t02                            = ram_0056_temp ; 
+    ram_0056_t02_pos_X_letter                            = ram_0056_temp ; 
     ram_0056_t03_spr_X                      = ram_0056_temp ; 
     ram_0056_t04_pos_X                      = ram_0056_temp ; 
     ram_0056_t05_useless_02                 = ram_0056_temp ; bzk optimize
@@ -355,7 +355,7 @@ ram_0056_temp                           = $0056 ; 0003F5 000408 00046D 000587 00
 ; 
 ram_0057_temp                           = $0057 ; 0003F9 00040C 000471 00058B 0005A8 0005B4 0005B9 0005E3 0005FF 000612 000781 0009C4 000CA6 000CAB 000CB3 000CB9 000CBB 000CC8 000CCD 000CD5 000CDB 000CDD 00119F 0011B2 00146E 0017FB 0018F1 001967 001CBA 001CD6 001CFB 001D1A 001D86 003044 003066 00307E 003083 
     ram_0057_t01                            = ram_0057_temp ; 
-    ram_0057_t02                            = ram_0057_temp ; 
+    ram_0057_t02_pos_Y_letter                            = ram_0057_temp ; 
     ram_0057_t03_spr_Y                      = ram_0057_temp ; 
     ram_0057_t04_pos_Y                      = ram_0057_temp ; 
     ram_0057_t05_open_curtain_counter       = ram_0057_temp ; 
@@ -407,11 +407,11 @@ ram_005A_temp                           = $005A ; 00058F 00059D 00059F 0005CA 00
 
 ; 
 ram_005B_temp                           = $005B ; 000781 0009CA 00146E 001804 00272F 002731 002782 002784 0027A1 0027A3 0027AC 002816 00283D 002862 002864 00286A 002877 0028C1 002907 002936 002938 002979 
-    ram_005B_t01_data_index                 = ram_005B_temp ; 
+    ram_005B_t01_bullet_index               = ram_005B_temp ; 
     ram_005B_t02_enemy_bullet_index         = ram_005B_temp ; 
     ram_005B_t03_bullet_index               = ram_005B_temp ; 
     ram_005B_t04_bullet_index               = ram_005B_temp ; 
-    ram_005B_t05_bullet_index               = ram_005B_temp ; 
+    ram_005B_t05_useless_1A                 = ram_005B_temp ; bzk optimize
 
 
 
@@ -1087,6 +1087,7 @@ ram_copyrights                          = $0110 ; 0014F8 001501
 
 
 ; 0180-01DA (5B) max usage up to 01DA was logged
+; format: ppu addr hi, ppu addr lo, list of bytes, end token FF
 ; index at ram_buffer_index
 ram_ppu_buffer                          = $0180 ; 000AB0 000C48 000C7C 001629 0016CD 0016F5 00179F 001911 001919 
 ; ram_0181                              = $0181 ; 000AB5 000C4E 000C82 001631 0016D2 0016FA 0017A5 001920 
@@ -1224,6 +1225,7 @@ ram_01FF                                = $01FF ;
 
 ; 0200-02FF (100) OAM sprites
 ; index at ram_index_oam
+ram_oam                                 = $0200 ; for common links
 ram_spr_Y                               = $0200 ; 001A5B 001AB5 
 ram_spr_T                               = $0201 ; 001A60 
 ram_spr_A                               = $0202 ; 001A65 

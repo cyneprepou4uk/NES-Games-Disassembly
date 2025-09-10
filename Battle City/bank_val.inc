@@ -5,6 +5,8 @@
 ; MISC
 con_flag_demo                           = $02 ; stored in ram_2nd_loop_flag
 con_not_game_over                       = $80 ; for ram_game_over_flag
+con_ppu_offset_2000                     = $1C ; 
+con_ppu_offset_2800                     = $24 ; 
 
 
 
