@@ -62,9 +62,32 @@ con_se_index_01                         = $01 ; for 4000/4004/4008/400C
 con_se_index_02                         = $02 ; for 4001/4005/4009/400D
 con_se_index_03                         = $03 ; for 4002/4006/400A/400E
 con_se_index_04                         = $04 ; for 4003/4007/400B/400F
-con_se_index_05                         = $05 ; 
+con_se_index_05_data_pointer            = $05 ; current data pointer?
 con_se_index_06                         = $06 ; 
 con_se_index_07                         = $07 ; 
+
+
+
+; sound engine control bytes 0x002BF6
+con_se_cb_60                            = $60 ; 
+con_se_cb_stop                          = $E8 ; 
+; con_se_cb_E9                          = $E9 ; unused
+con_se_cb_EA                            = $EA ; 
+; con_se_cb_EB                          = $EB ; unused
+; con_se_cb_EC                          = $EC ; unused
+; con_se_cb_ED                          = $ED ; unused
+con_se_cb_EE                            = $EE ; 
+con_se_cb_clear_loop_counters           = $EF ; 
+con_se_cb_loop_1                        = $F0 ; 
+con_se_cb_loop_2                        = $F1 ; 
+con_se_cb_loop_3                        = $F2 ; 
+; con_se_cb_F3                          = $F3 ; unused
+; con_se_cb_F4                          = $F4 ; unused
+; con_se_cb_F5                          = $F5 ; unused
+; con_se_cb_F6                          = $F6 ; unused
+; con_se_cb_F7                          = $F7 ; unused
+; con_se_cb_F8                          = $F8 ; unused
+con_se_cb_main_loop                     = $F9 ; 
 
 
 

@@ -25,15 +25,15 @@ ram_0000_temp                           = $0000 ; 0003B0 0003B5 0005D3 0005D8 00
 
 ; 
 ram_0001_temp                           = $0001 ; 000781 00146E 001672 001681 00168C 
-    ram_0001_t01                            = ram_0001_temp ; 
+    ram_0001_t01_attribute_mask             = ram_0001_temp ; 
 
 
 
 ; 
 ram_0002_temp                           = $0002 ; 000781 00146E 001650 001685 001687 00168E 0018A8 0018B5 
-    ram_0002_t01                            = ram_0002_temp ; 
+    ram_0002_t01_attribute                  = ram_0002_temp ; 
     ram_0002_t02                            = ram_0002_temp ; 
-    ram_0002_t03_useless                    = ram_0002_temp ; 
+    ram_0002_t03                            = ram_0002_temp ; 
 
 
 
@@ -211,7 +211,7 @@ ram_p2_temp_score                       = $002D ; 000781 00146E 0019DC 0019EA 00
 
 
 
-; 
+; decimal numbers
 ram_com_dec_number                      = $0035 ; 000781 00146E 0019D9 001A10 
 ; ram_0036                              = $0036 ; 000781 00146E 001944 0019D9 001A12 
 ; ram_0037                              = $0037 ; 000781 00146E 001944 0019D9 001A14 
@@ -257,7 +257,7 @@ ram_0047_temp                           = $0047 ; 000781 00146E 00172E 001743 00
     ram_0047_t02_pos_X                      = ram_0047_temp ; 
     ram_0047_t03_save_X                     = ram_0047_temp ; 
     ram_0047_t04_spr_X                      = ram_0047_temp ; 
-    ram_0047_t05                            = ram_0047_temp ; 
+    ram_0047_t05_player_index               = ram_0047_temp ; 
 
 
 
@@ -716,7 +716,8 @@ ram_tank_flags                          = $00A0 ; 0000DB 000781 0009E0 00146E 00
 
 
 
-; 
+; .... xxxx = 
+; xxxx .... = 
 ram_tank_type                           = $00A8 ; 0000DF 000781 0009E6 00146E 001F11 002000 0020CC 002146 002375 00240A 002412 00277D 002A24 
 ; ram_00A9                              = $00A9 ; 000781 00146E 001F11 002000 0020CC 002146 002375 00240A 002412 00277D 002A24 
 ; ram_00AA                              = $00AA ; 000781 00146E 001C35 001F11 001F15 001FCA 001FE2 002000 0020CC 002375 0023B3 00240A 002412 0027E1 0027EA 0027F0 0027F2 0027F8 00280B 002A42 
@@ -788,7 +789,7 @@ ram_2nd_bullet_status                   = $00D4 ; 000781 00146E 00204C 002061 00
 
 
 
-; 00D6-00DD (08) line 711 in russian disassembly
+; line 711 in russian disassembly
 ram_bullet_property                     = $00D6 ; 000781 00146E 002069 0020CA 0020E0 0020E5 002162 002622 0026E8 
 ; ram_00D7                              = $00D7 ; 000781 00146E 002069 0020CA 0020E0 0020E5 002162 002622 0026E8 
 ; ram_00D8                              = $00D8 ; 000781 00146E 002069 0020CA 0020E0 002622 0026E8 
@@ -852,7 +853,7 @@ ram_00F2_temp                           = $00F2 ; 000781 00146E 002CC6
 
 
 ; index for reading 0300+
-ram_sfx_check_index                     = $00F4 ; 000781 00146E 002AA7 002AB1 002AFE 002B00 002B23 002B2D 002B49 002B4B 002C1A 002CBF 002CCE 
+ram_sfx_array_index                     = $00F4 ; 000781 00146E 002AA7 002AB1 002AFE 002B00 002B23 002B2D 002B49 002B4B 002C1A 002CBF 002CCE 
 
 
 
@@ -864,7 +865,7 @@ ram_sfx_check_limit                     = $00F5 ; 000781 00146E 002A94 002A9A 00
 
 
 ; sound engine addresses
-ram_00F6_se                             = $00F6 ; 000781 00146E 002C89 002C9D 002C9F 002CA5 
+ram_00F6_se_loop_counter                = $00F6 ; 000781 00146E 002C89 002C9D 002C9F 002CA5 
 ; ram_00F7                              = $00F7 ; 000781 00146E 002C89 002C9D 002C9F 002CA5 
 ; ram_00F8                              = $00F8 ; 000781 00146E 002C89 002C9D 002C9F 002CA5 
 
