@@ -232,12 +232,12 @@ C - - - - - 0x0001F2 00:C1E2: 20 5D CB  JSR sub_CB5D_draw_default_eagle
 loc_C1E5:
 C D 2 - - - 0x0001F5 00:C1E5: A9 00     LDA #$00
 C - - - - - 0x0001F7 00:C1E7: 85 0C     STA ram_buffer_index
-C - - - - - 0x0001F9 00:C1E9: 20 27 CC  JSR sub_CC27_write_nametable_attributes_to_ppu_buffer
+C - - - - - 0x0001F9 00:C1E9: 20 27 CC  JSR sub_CC27_copy_nametable_attributes_to_ppu_buffer
 C - - - - - 0x0001FC 00:C1EC: 20 B2 CC  JSR sub_CCB2_open_grey_curtain
 C - - - - - 0x0001FF 00:C1EF: A9 00     LDA #con_bg_pal_00
 C - - - - - 0x000201 00:C1F1: 85 4D     STA ram_bg_palette_id
 C - - - - - 0x000203 00:C1F3: 20 F6 D8  JSR sub_D8F6_wait_1_frm
-C - - - - - 0x000206 00:C1F6: 20 31 C3  JSR sub_C331
+C - - - - - 0x000206 00:C1F6: 20 31 C3  JSR sub_C331_prepare_tanks_addresses_and_spawn_players_before_stage
 bra_C1F9_loop:
 C - - - - - 0x000209 00:C1F9: 20 F6 D8  JSR sub_D8F6_wait_1_frm
 C - - - - - 0x00020C 00:C1FC: A5 6D     LDA ram_pause_flag
@@ -361,7 +361,7 @@ C - - - - - 0x0002DD 00:C2CD: A9 03     LDA #$03
 C - - - - - 0x0002DF 00:C2CF: 85 51     STA ram_lives
 C - - - - - 0x0002E1 00:C2D1: 85 52     STA ram_lives + $01
 ; bzk optimize, useless write, it won't be read and will be overwritten
-C - - - - - 0x0002E3 00:C2D3: 85 6A     STA ram_enemy_spawn_pos
+C - - - - - 0x0002E3 00:C2D3: 85 6A     STA ram_enemy_spawn_pos_index
 C - - - - - 0x0002E5 00:C2D5: A5 83     LDA ram_game_mode
 C - - - - - 0x0002E7 00:C2D7: D0 04     BNE bra_C2DD_skip_disabling_player_2    ; if 2p mode
 ; if 1p mode, clear lives for player 2,
@@ -390,11 +390,11 @@ C - - - - - 0x00030B 00:C2FB: 20 22 E1  JSR sub_E122
 C - - - - - 0x00030E 00:C2FE: 20 62 E1  JSR sub_E162
 C - - - - - 0x000311 00:C301: 20 48 DB  JSR sub_DB48_enemy_spawn_handler
 C - - - - - 0x000314 00:C304: 20 04 E6  JSR sub_E604_bullets_movement
-C - - - - - 0x000317 00:C307: 20 10 E9  JSR sub_E910_bullets_collision_with_bullets
-C - - - - - 0x00031A 00:C30A: 20 0C E7  JSR sub_E70C_bullets_collision_with_tanks
+C - - - - - 0x000317 00:C307: 20 10 E9  JSR sub_E910_check_bullets_collision_with_bullets
+C - - - - - 0x00031A 00:C30A: 20 0C E7  JSR sub_E70C_check_bullets_collision_with_player_tanks
 C - - - - - 0x00031D 00:C30D: 20 72 E9  JSR sub_E972_try_to_pick_up_bonus
 C - - - - - 0x000320 00:C310: 20 72 C9  JSR sub_C972_game_over_text_handler
-C - - - - - 0x000323 00:C313: 20 0B DB  JSR sub_DB0B_plr_movement_sfx_handler
+C - - - - - 0x000323 00:C313: 20 0B DB  JSR sub_DB0B_player_movement_sfx_handler
 C - - - - - 0x000326 00:C316: 20 C8 C7  JSR sub_C7C8_print_lives_handler
 ; bzk optimize, JMP
 C - - - - - 0x000329 00:C319: 20 1D C3  JSR sub_C31D_water_palette_swap_handler
@@ -420,7 +420,7 @@ C - - - - - 0x000340 00:C330: 60        RTS
 
 
 
-sub_C331:
+sub_C331_prepare_tanks_addresses_and_spawn_players_before_stage:
 C - - - - - 0x000341 00:C331: 20 09 E4  JSR sub_E409_clear_bullet_status
 C - - - - - 0x000344 00:C334: 20 13 E4  JSR sub_E413_clear_some_tank_addresses
 C - - - - - 0x000347 00:C337: A9 F0     LDA #$F0
@@ -428,15 +428,15 @@ C - - - - - 0x000349 00:C339: 8D 06 01  STA ram_game_over_msg_pos_Y
 C - - - - - 0x00034C 00:C33C: A9 00     LDA #$00
 C - - - - - 0x00034E 00:C33E: 8D 08 01  STA ram_game_over_msg_timer
 C - - - - - 0x000351 00:C341: A5 51     LDA ram_lives
-C - - - - - 0x000353 00:C343: F0 05     BEQ bra_C34A
+C - - - - - 0x000353 00:C343: F0 05     BEQ bra_C34A_skip_respawn_p1
 C - - - - - 0x000355 00:C345: A2 00     LDX #$00
 C - - - - - 0x000357 00:C347: 20 63 E3  JSR sub_E363_tank_spawn_handler
-bra_C34A:
+bra_C34A_skip_respawn_p1:
 C - - - - - 0x00035A 00:C34A: A5 52     LDA ram_lives + $01
-C - - - - - 0x00035C 00:C34C: F0 05     BEQ bra_C353
+C - - - - - 0x00035C 00:C34C: F0 05     BEQ bra_C353_skip_respawn_p2
 C - - - - - 0x00035E 00:C34E: A2 01     LDX #$01
 C - - - - - 0x000360 00:C350: 20 63 E3  JSR sub_E363_tank_spawn_handler
-bra_C353:
+bra_C353_skip_respawn_p2:
 C - - - - - 0x000363 00:C353: A9 14     LDA #$14
 C - - - - - 0x000365 00:C355: 85 7F     STA ram_enemy_spawn_cnt
 C - - - - - 0x000367 00:C357: 85 80     STA ram_enemies_left_cnt
@@ -452,7 +452,7 @@ C - - - - - 0x000379 00:C369: 85 8A     STA ram_helmet_timer + $01
 C - - - - - 0x00037B 00:C36B: 85 82     STA ram_enemy_timer_before_spawn
 C - - - - - 0x00037D 00:C36D: 85 86     STA ram_bonus_pos_X
 C - - - - - 0x00037F 00:C36F: 8D 00 01  STA ram_clock_timer
-C - - - - - 0x000382 00:C372: 85 6A     STA ram_enemy_spawn_pos
+C - - - - - 0x000382 00:C372: 85 6A     STA ram_enemy_spawn_pos_index
 C - - - - - 0x000384 00:C374: 20 1E C7  JSR sub_C71E_clear_kill_counters
 C - - - - - 0x000387 00:C377: 20 C0 C8  JSR sub_C8C0_draw_20_enemy_icons
 C - - - - - 0x00038A 00:C37A: 20 F6 D8  JSR sub_D8F6_wait_1_frm
@@ -536,7 +536,7 @@ C - - - - - 0x000414 00:C404: 85 13     STA ram_0013_t02_huge_text_data
 C - - - - - 0x000416 00:C406: 20 D2 D8  JSR sub_D8D2_draw_huge_letters
 C - - - - - 0x000419 00:C409: 20 B4 D7  JSR sub_D7B4_copy_400h_to_nametable
 C - - - - - 0x00041C 00:C40C: 20 67 D4  JSR sub_D467_enable_nmi
-C - - - - - 0x00041F 00:C40F: 20 31 C3  JSR sub_C331
+C - - - - - 0x00041F 00:C40F: 20 31 C3  JSR sub_C331_prepare_tanks_addresses_and_spawn_players_before_stage
 C - - - - - 0x000422 00:C412: 20 F5 CA  JSR sub_CAF5_draw_default_base
 C - - - - - 0x000425 00:C415: 20 F6 D8  JSR sub_D8F6_wait_1_frm
 C - - - - - 0x000428 00:C418: A9 05     LDA #$05
@@ -551,7 +551,7 @@ C - - - - - 0x00042D 00:C41D: 20 F6 D8  JSR sub_D8F6_wait_1_frm
 C - - - - - 0x000430 00:C420: A5 08     LDA ram_btn_press
 C - - - - - 0x000432 00:C422: 29 0C     AND #con_btns_SS
 C - - - - - 0x000434 00:C424: D0 19     BNE bra_C43F
-C - - - - - 0x000436 00:C426: 20 42 C6  JSR sub_C642
+C - - - - - 0x000436 00:C426: 20 42 C6  JSR sub_C642_demo_players_ai_handler
 C - - - - - 0x000439 00:C429: 20 E6 C2  JSR sub_C2E6_main_battle_script
 C - - - - - 0x00043C 00:C42C: 20 3B E2  JSR sub_E23B_display_bonus_on_screen
 C - - - - - 0x00043F 00:C42F: 20 A6 DE  JSR sub_DEA6_tanks_handler
@@ -746,7 +746,7 @@ C - - - - - 0x000597 00:C587: 20 B0 C5  JSR sub_C5B0
 C - - - - - 0x00059A 00:C58A: 20 B0 C5  JSR sub_C5B0
 C - - - - - 0x00059D 00:C58D: E6 5A     INC ram_005A_t18
 C - - - - - 0x00059F 00:C58F: A5 5A     LDA ram_005A_t18
-C - - - - - 0x0005A1 00:C591: C9 07     CMP #$07
+C - - - - - 0x0005A1 00:C591: C9 07     CMP #$07    ; con_max_tanks ???
 C - - - - - 0x0005A3 00:C593: D0 EC     BNE bra_C581_loop
 bra_C595_loop:
 C - - - - - 0x0005A5 00:C595: 20 F6 D8  JSR sub_D8F6_wait_1_frm
@@ -849,8 +849,8 @@ C - - - - - 0x000651 00:C641: 60        RTS
 
 
 
-sub_C642:
-C - - - - - 0x000652 00:C642: A9 01     LDA #$01
+sub_C642_demo_players_ai_handler:
+C - - - - - 0x000652 00:C642: A9 01     LDA #con_max_players
 C - - - - - 0x000654 00:C644: 85 5A     STA ram_005A_t19_player_index
 bra_C646_loop:
 C - - - - - 0x000656 00:C646: A6 5A     LDX ram_005A_t19_player_index
@@ -867,9 +867,9 @@ C - - - - - 0x000668 00:C658: 20 A2 DD  JSR sub_DDA2
 C - - - - - 0x00066B 00:C65B: 4C A5 C6  JMP loc_C6A5
 bra_C65E_bonus_not_available:
 C - - - - - 0x00066E 00:C65E: B5 A2     LDA ram_tank_flags + $02,X
-C - - - - - 0x000670 00:C660: 10 12     BPL bra_C674
+C - - - - - 0x000670 00:C660: 10 12     BPL bra_C674    ; if tank is exploding
 C - - - - - 0x000672 00:C662: C9 E0     CMP #$E0
-C - - - - - 0x000674 00:C664: B0 0E     BCS bra_C674
+C - - - - - 0x000674 00:C664: B0 0E     BCS bra_C674    ; if tank is respawing
 C - - - - - 0x000676 00:C666: B5 92     LDA ram_tank_pos_X + $02,X
 C - - - - - 0x000678 00:C668: 85 71     STA ram_enemy_destination_X
 C - - - - - 0x00067A 00:C66A: B5 9A     LDA ram_tank_pos_Y + $02,X
@@ -878,9 +878,9 @@ C - - - - - 0x00067E 00:C66E: 20 A2 DD  JSR sub_DDA2
 C - - - - - 0x000681 00:C671: 4C A5 C6  JMP loc_C6A5
 bra_C674:
 C - - - - - 0x000684 00:C674: B5 A4     LDA ram_tank_flags + $04,X
-C - - - - - 0x000686 00:C676: 10 12     BPL bra_C68A
+C - - - - - 0x000686 00:C676: 10 12     BPL bra_C68A    ; if tank is exploding
 C - - - - - 0x000688 00:C678: C9 E0     CMP #$E0
-C - - - - - 0x00068A 00:C67A: B0 0E     BCS bra_C68A
+C - - - - - 0x00068A 00:C67A: B0 0E     BCS bra_C68A    ; if tank is respawing
 C - - - - - 0x00068C 00:C67C: B5 94     LDA ram_tank_pos_X + $04,X
 C - - - - - 0x00068E 00:C67E: 85 71     STA ram_enemy_destination_X
 C - - - - - 0x000690 00:C680: B5 9C     LDA ram_tank_pos_Y + $04,X
@@ -889,9 +889,9 @@ C - - - - - 0x000694 00:C684: 20 A2 DD  JSR sub_DDA2
 C - - - - - 0x000697 00:C687: 4C A5 C6  JMP loc_C6A5
 bra_C68A:
 C - - - - - 0x00069A 00:C68A: B5 A3     LDA ram_tank_flags + $03,X
-C - - - - - 0x00069C 00:C68C: 10 12     BPL bra_C6A0
+C - - - - - 0x00069C 00:C68C: 10 12     BPL bra_C6A0    ; if tank is exploding
 C - - - - - 0x00069E 00:C68E: C9 E0     CMP #$E0
-C - - - - - 0x0006A0 00:C690: B0 0E     BCS bra_C6A0
+C - - - - - 0x0006A0 00:C690: B0 0E     BCS bra_C6A0    ; if tank is respawing
 C - - - - - 0x0006A2 00:C692: B5 93     LDA ram_tank_pos_X + $03,X
 C - - - - - 0x0006A4 00:C694: 85 71     STA ram_enemy_destination_X
 C - - - - - 0x0006A6 00:C696: B5 9B     LDA ram_tank_pos_Y + $03,X
@@ -976,7 +976,7 @@ C - - - - - 0x00070F 00:C6FF: A5 06     LDA ram_btn_hold
 C - - - - - 0x000711 00:C701: 20 51 E4  JSR sub_E451_convert_Dpad_buttons
 loc_C704:
 C D 2 - - - 0x000714 00:C704: A8        TAY
-C - - - - - 0x000715 00:C705: B9 D5 D3  LDA tbl_D3D5_construction_cursor_speed_X,Y
+C - - - - - 0x000715 00:C705: B9 D5 D3  LDA tbl_D3D5_construction_cursor_spd_X,Y
 ; * 10
 C - - - - - 0x000718 00:C708: 0A        ASL
 C - - - - - 0x000719 00:C709: 0A        ASL
@@ -985,7 +985,7 @@ C - - - - - 0x00071B 00:C70B: 0A        ASL
 C - - - - - 0x00071C 00:C70C: 18        CLC
 C - - - - - 0x00071D 00:C70D: 65 90     ADC ram_tank_pos_X
 C - - - - - 0x00071F 00:C70F: 85 90     STA ram_tank_pos_X
-C - - - - - 0x000721 00:C711: B9 D9 D3  LDA tbl_D3D9_construction_cursor_speed_Y,Y
+C - - - - - 0x000721 00:C711: B9 D9 D3  LDA tbl_D3D9_construction_cursor_spd_Y,Y
 ; * 10
 C - - - - - 0x000724 00:C714: 0A        ASL
 C - - - - - 0x000725 00:C715: 0A        ASL
@@ -1000,7 +1000,7 @@ C - - - - - 0x00072D 00:C71D: 60        RTS
 
 
 sub_C71E_clear_kill_counters:
-C - - - - - 0x00072E 00:C71E: A2 07     LDX #$07
+C - - - - - 0x00072E 00:C71E: A2 07     LDX #con_max_tanks
 C - - - - - 0x000730 00:C720: A9 00     LDA #$00
 bra_C722_loop:
 C - - - - - 0x000732 00:C722: 95 73     STA ram_enemy_type_kill_cnt,X
@@ -1011,6 +1011,10 @@ C - - - - - 0x000737 00:C727: 60        RTS
 
 
 sub_C728_check_condition_for_stage_ending:
+; out
+    ; Z
+        ; 0 = stage is finished
+        ; 1 = stage is not finished
 C - - - - - 0x000738 00:C728: A5 68     LDA ram_game_over_flag
 C - - - - - 0x00073A 00:C72A: F0 0B     BEQ bra_C737_it_is_game_over
 C - - - - - 0x00073C 00:C72C: A5 80     LDA ram_enemies_left_cnt
@@ -1116,8 +1120,9 @@ C - - - - - 0x0007D5 00:C7C5: 4C A2 C0  JMP loc_C0A2_title_screen_and_demo_loop
 
 
 sub_C7C8_print_lives_handler:
-C - - - - - 0x0007D8 00:C7C8: A9 01     LDA #$01
+C - - - - - 0x0007D8 00:C7C8: A9 01     LDA #con_max_players
 C - - - - - 0x0007DA 00:C7CA: 85 5A     STA ram_005A_t20_player_index
+                                       ;LDA #$01
 C - - - - - 0x0007DC 00:C7CC: 85 6B     STA ram_006B_flag
 C - - - - - 0x0007DE 00:C7CE: A9 6E     LDA #$6E
 C - - - - - 0x0007E0 00:C7D0: 85 60     STA ram_0060_tile_id_offset
@@ -1407,13 +1412,14 @@ bra_C98D:
 C - - - - - 0x00099D 00:C98D: AD 08 01  LDA ram_game_over_msg_timer
 C - - - - - 0x0009A0 00:C990: C9 0A     CMP #$0A
 C - - - - - 0x0009A2 00:C992: 90 18     BCC bra_C9AC_stop_moving_timer
+; bzk optimize, LDY
 C - - - - - 0x0009A4 00:C994: AD 07 01  LDA ram_game_over_msg_mov_type
 C - - - - - 0x0009A7 00:C997: A8        TAY
-C - - - - - 0x0009A8 00:C998: B9 D5 D3  LDA tbl_D3D5_construction_cursor_speed_X,Y
+C - - - - - 0x0009A8 00:C998: B9 D5 D3  LDA tbl_D3D5_game_over_message_spd_X,Y
 C - - - - - 0x0009AB 00:C99B: 18        CLC
 C - - - - - 0x0009AC 00:C99C: 6D 05 01  ADC ram_game_over_msg_pos_X
 C - - - - - 0x0009AF 00:C99F: 8D 05 01  STA ram_game_over_msg_pos_X
-C - - - - - 0x0009B2 00:C9A2: B9 D9 D3  LDA tbl_D3D9_construction_cursor_speed_Y,Y
+C - - - - - 0x0009B2 00:C9A2: B9 D9 D3  LDA tbl_D3D9_game_over_message_spd_Y,Y
 C - - - - - 0x0009B5 00:C9A5: 18        CLC
 C - - - - - 0x0009B6 00:C9A6: 6D 06 01  ADC ram_game_over_msg_pos_Y
 C - - - - - 0x0009B9 00:C9A9: 8D 06 01  STA ram_game_over_msg_pos_Y
@@ -1543,14 +1549,14 @@ tbl_CA69_game_mode_handler:
 
 
 ofs_000_CA6F_00_1_player:
-C - - J - - 0x000A7F 00:CA6F: A9 05     LDA #$05
+C - - J - - 0x000A7F 00:CA6F: A9 05     LDA #con_max_tanks - $02
 ; bzk optimize, BNE
 C - - - - - 0x000A81 00:CA71: 4C 76 CA  JMP loc_CA76
 
 
 
 ofs_000_CA74_01_2_players:
-C - - J - - 0x000A84 00:CA74: A9 07     LDA #$07
+C - - J - - 0x000A84 00:CA74: A9 07     LDA #con_max_tanks
 loc_CA76:   ; A = 05
 C D 2 - - - 0x000A86 00:CA76: 85 6C     STA ram_enemy_limit
 C - - - - - 0x000A88 00:CA78: 20 B3 C2  JSR sub_C2B3_clear_score_and_prepare_player_data
@@ -1559,7 +1565,7 @@ C - - - - - 0x000A8B 00:CA7B: 4C 59 C1  JMP loc_C159
 
 
 ofs_000_CA7E_02_construction:
-C - - J - - 0x000A8E 00:CA7E: A9 07     LDA #$07
+C - - J - - 0x000A8E 00:CA7E: A9 07     LDA #con_max_tanks
 C - - - - - 0x000A90 00:CA80: 85 6C     STA ram_enemy_limit
 C - - - - - 0x000A92 00:CA82: 4C AE C0  JMP loc_C0AE_construction_handler
 
@@ -1674,12 +1680,12 @@ C - - - - - 0x000B49 00:CB39: A9 F3     LDA #< $23F3
 C - - - - - 0x000B4B 00:CB3B: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x000B4E 00:CB3E: E8        INX
 C - - - - - 0x000B4F 00:CB3F: A9 00     LDA #$00
-C - - - - - 0x000B51 00:CB41: 8D F3 07  STA ram_07F3
+C - - - - - 0x000B51 00:CB41: 8D F3 07  STA ram_nmt_attr_buffer + $33
 C - - - - - 0x000B54 00:CB44: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x000B57 00:CB47: E8        INX
-C - - - - - 0x000B58 00:CB48: AD F4 07  LDA ram_07F4
+C - - - - - 0x000B58 00:CB48: AD F4 07  LDA ram_nmt_attr_buffer + $34
 C - - - - - 0x000B5B 00:CB4B: 29 CC     AND #$CC
-C - - - - - 0x000B5D 00:CB4D: 8D F4 07  STA ram_07F4
+C - - - - - 0x000B5D 00:CB4D: 8D F4 07  STA ram_nmt_attr_buffer + $34
 C - - - - - 0x000B60 00:CB50: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x000B63 00:CB53: E8        INX
 C - - - - - 0x000B64 00:CB54: A9 FF     LDA #$FF
@@ -1712,9 +1718,9 @@ C - - - - - 0x000B92 00:CB82: E8        INX
 C - - - - - 0x000B93 00:CB83: A9 F3     LDA #< $23F3
 C - - - - - 0x000B95 00:CB85: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x000B98 00:CB88: E8        INX
-C - - - - - 0x000B99 00:CB89: AD F3 07  LDA ram_07F3
+C - - - - - 0x000B99 00:CB89: AD F3 07  LDA ram_nmt_attr_buffer + $33
 C - - - - - 0x000B9C 00:CB8C: 29 3F     AND #$3F
-C - - - - - 0x000B9E 00:CB8E: 8D F3 07  STA ram_07F3
+C - - - - - 0x000B9E 00:CB8E: 8D F3 07  STA ram_nmt_attr_buffer + $33
 C - - - - - 0x000BA1 00:CB91: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x000BA4 00:CB94: E8        INX
 C - - - - - 0x000BA5 00:CB95: A9 FF     LDA #$FF
@@ -1762,13 +1768,13 @@ C - - - - - 0x000BF2 00:CBE2: A9 F3     LDA #< $23F3
 C - - - - - 0x000BF4 00:CBE4: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x000BF7 00:CBE7: E8        INX
 C - - - - - 0x000BF8 00:CBE8: A9 3F     LDA #$3F
-C - - - - - 0x000BFA 00:CBEA: 8D F3 07  STA ram_07F3
+C - - - - - 0x000BFA 00:CBEA: 8D F3 07  STA ram_nmt_attr_buffer + $33
 C - - - - - 0x000BFD 00:CBED: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x000C00 00:CBF0: E8        INX
-C - - - - - 0x000C01 00:CBF1: AD F4 07  LDA ram_07F4
+C - - - - - 0x000C01 00:CBF1: AD F4 07  LDA ram_nmt_attr_buffer + $34
 C - - - - - 0x000C04 00:CBF4: 29 CC     AND #$CC
 C - - - - - 0x000C06 00:CBF6: 09 33     ORA #$33
-C - - - - - 0x000C08 00:CBF8: 8D F4 07  STA ram_07F4
+C - - - - - 0x000C08 00:CBF8: 8D F4 07  STA ram_nmt_attr_buffer + $34
 C - - - - - 0x000C0B 00:CBFB: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x000C0E 00:CBFE: E8        INX
 C - - - - - 0x000C0F 00:CBFF: A9 FF     LDA #$FF
@@ -1799,7 +1805,8 @@ C - - - - - 0x000C36 00:CC26: 60        RTS
 
 
 
-sub_CC27_write_nametable_attributes_to_ppu_buffer:
+sub_CC27_copy_nametable_attributes_to_ppu_buffer:
+; bzk optimize, rewrite without 0011 and 0012
 C - - - - - 0x000C37 00:CC27: A0 00     LDY #$00
 C - - - - - 0x000C39 00:CC29: A9 23     LDA #> $23C0
 C - - - - - 0x000C3B 00:CC2B: 85 12     STA ram_0012_t02_ppu_hi
@@ -1814,7 +1821,7 @@ C - - - - - 0x000C4B 00:CC3B: E8        INX
 C - - - - - 0x000C4C 00:CC3C: A5 11     LDA ram_0011_t18_ppu_lo
 C - - - - - 0x000C4E 00:CC3E: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x000C51 00:CC41: E8        INX
-C - - - - - 0x000C52 00:CC42: B9 C0 07  LDA ram_07C0_nmt_attr_buffer,Y
+C - - - - - 0x000C52 00:CC42: B9 C0 07  LDA ram_nmt_attr_buffer,Y
 C - - - - - 0x000C55 00:CC45: C8        INY
 C - - - - - 0x000C56 00:CC46: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x000C59 00:CC49: E8        INX
@@ -1944,8 +1951,8 @@ C - - - - - 0x000D12 00:CD02: 20 FE D9  JSR sub_D9FE_clear_bcd_number
 C - - - - - 0x000D15 00:CD05: A2 2D     LDX #< ram_p2_temp_score
 C - - - - - 0x000D17 00:CD07: 20 FE D9  JSR sub_D9FE_clear_bcd_number
 C - - - - - 0x000D1A 00:CD0A: A9 00     LDA #$00
-C - - - - - 0x000D1C 00:CD0C: 85 5D     STA ram_005D_t02
-C - - - - - 0x000D1E 00:CD0E: 85 5E     STA ram_005E_t02
+C - - - - - 0x000D1C 00:CD0C: 85 5D     STA ram_005D_t02_killed_enemies_cnt_p1
+C - - - - - 0x000D1E 00:CD0E: 85 5E     STA ram_005E_t02_killed_enemies_cnt_p2
 loc_CD10_loop:
 C D 2 - - - 0x000D20 00:CD10: 20 F6 D8  JSR sub_D8F6_wait_1_frm
 C - - - - - 0x000D23 00:CD13: 20 B8 D0  JSR sub_D0B8_display_4_enemy_tanks_with_sprites
@@ -1961,7 +1968,7 @@ C - - - - - 0x000D38 00:CD28: A9 01     LDA #$01
 C - - - - - 0x000D3A 00:CD2A: 8D 13 03  STA ram_sfx_score_count_1
 C - - - - - 0x000D3D 00:CD2D: 8D 14 03  STA ram_sfx_score_count_2
 C - - - - - 0x000D40 00:CD30: D6 73     DEC ram_p1_enemy_type_kill_cnt,X
-C - - - - - 0x000D42 00:CD32: E6 5D     INC ram_005D_t02
+C - - - - - 0x000D42 00:CD32: E6 5D     INC ram_005D_t02_killed_enemies_cnt_p1
 C - - - - - 0x000D44 00:CD34: A2 02     LDX #$02    ; ram_p1_temp_score
 C - - - - - 0x000D46 00:CD36: 20 BE D9  JSR sub_D9BE_add_score
 C - - - - - 0x000D49 00:CD39: A9 01     LDA #$01
@@ -1975,7 +1982,7 @@ C - - - - - 0x000D56 00:CD46: A9 01     LDA #$01
 C - - - - - 0x000D58 00:CD48: 8D 13 03  STA ram_sfx_score_count_1
 C - - - - - 0x000D5B 00:CD4B: 8D 14 03  STA ram_sfx_score_count_2
 C - - - - - 0x000D5E 00:CD4E: D6 77     DEC ram_p2_enemy_type_kill_cnt,X
-C - - - - - 0x000D60 00:CD50: E6 5E     INC ram_005E_t02
+C - - - - - 0x000D60 00:CD50: E6 5E     INC ram_005E_t02_killed_enemies_cnt_p2
 C - - - - - 0x000D62 00:CD52: A2 03     LDX #$03    ; ram_p2_temp_score
 C - - - - - 0x000D64 00:CD54: 20 BE D9  JSR sub_D9BE_add_score
 C - - - - - 0x000D67 00:CD57: A9 01     LDA #$01
@@ -1999,7 +2006,7 @@ C - - - - - 0x000D88 00:CD78: 69 0C     ADC #$0C
 C - - - - - 0x000D8A 00:CD7A: A8        TAY ; ppu pos_Y
 C - - - - - 0x000D8B 00:CD7B: 20 DD D6  JSR sub_D6DD
 C - - - - - 0x000D8E 00:CD7E: A6 5A     LDX ram_005A_t22_enemy_type_counter
-C - - - - - 0x000D90 00:CD80: A5 5D     LDA ram_005D_t02
+C - - - - - 0x000D90 00:CD80: A5 5D     LDA ram_005D_t02_killed_enemies_cnt_p1
 C - - - - - 0x000D92 00:CD82: 20 13 DA  JSR sub_DA13_calculate_decimal
 C - - - - - 0x000D95 00:CD85: A2 08     LDX #$08    ; ppu pos_X
 C - - - - - 0x000D97 00:CD87: A0 36     LDY #< (ram_com_dec_number + $01)
@@ -2032,7 +2039,7 @@ C - - - - - 0x000DC7 00:CDB7: 69 0C     ADC #$0C
 C - - - - - 0x000DC9 00:CDB9: A8        TAY ; ppu pos_Y
 C - - - - - 0x000DCA 00:CDBA: 20 DD D6  JSR sub_D6DD
 C - - - - - 0x000DCD 00:CDBD: A6 5A     LDX ram_005A_t22_enemy_type_counter
-C - - - - - 0x000DCF 00:CDBF: A5 5E     LDA ram_005E_t02
+C - - - - - 0x000DCF 00:CDBF: A5 5E     LDA ram_005E_t02_killed_enemies_cnt_p2
 C - - - - - 0x000DD1 00:CDC1: 20 13 DA  JSR sub_DA13_calculate_decimal
 C - - - - - 0x000DD4 00:CDC4: A2 0E     LDX #$0E    ; ppu pos_X
 C - - - - - 0x000DD6 00:CDC6: A0 36     LDY #< (ram_com_dec_number + $01)
@@ -2094,8 +2101,10 @@ bra_CE32_not_game_over_yet:
 C - - - - - 0x000E42 00:CE32: A5 7E     LDA ram_p2_total_kills
 C - - - - - 0x000E44 00:CE34: C5 7D     CMP ram_p1_total_kills
 C - - - - - 0x000E46 00:CE36: B0 55     BCS bra_CE8D
+; if p2 killed less than p1 did
 C - - - - - 0x000E48 00:CE38: A5 51     LDA ram_lives
 C - - - - - 0x000E4A 00:CE3A: F0 51     BEQ bra_CE8D
+; if p1 was still alive before stage ended
 C - - - - - 0x000E4C 00:CE3C: A9 00     LDA #$00
 C - - - - - 0x000E4E 00:CE3E: 20 E1 D9  JSR sub_D9E1_calculate_decimal_number
 C - - - - - 0x000E51 00:CE41: A2 00     LDX #$00    ; ram_p1_score
@@ -2124,6 +2133,7 @@ C - - - - - 0x000E83 00:CE73: 85 11     STA ram_0011_t02_ppu_data
 C - - - - - 0x000E85 00:CE75: A2 08     LDX #($0748 & $001F)    ; 2348
 C - - - - - 0x000E87 00:CE77: A0 1A     LDY #($0748 - $0400) / $20
 C - - - - - 0x000E89 00:CE79: 20 B3 D6  JSR sub_D6B3_fill_buffer_with_tiles
+; play sfx
 C - - - - - 0x000E8C 00:CE7C: A9 01     LDA #$01
 C - - - - - 0x000E8E 00:CE7E: 8D 1B 03  STA ram_sfx_bonus_1000
 ; bzk optimize, 2 useless STAs, they won't be read and will be overwritten
@@ -2135,8 +2145,10 @@ bra_CE8D:
 C - - - - - 0x000E9D 00:CE8D: A5 7D     LDA ram_p1_total_kills
 C - - - - - 0x000E9F 00:CE8F: C5 7E     CMP ram_p2_total_kills
 C - - - - - 0x000EA1 00:CE91: B0 52     BCS bra_CEE5
+; if p1 killed less than p2 did
 C - - - - - 0x000EA3 00:CE93: A5 52     LDA ram_lives + $01
 C - - - - - 0x000EA5 00:CE95: F0 4E     BEQ bra_CEE5
+; if p2 was still alive before stage ended
 C - - - - - 0x000EA7 00:CE97: A9 00     LDA #$00
 C - - - - - 0x000EA9 00:CE99: 20 E1 D9  JSR sub_D9E1_calculate_decimal_number
 C - - - - - 0x000EAC 00:CE9C: A2 01     LDX #$01    ; ram_p2_score
@@ -2165,6 +2177,7 @@ C - - - - - 0x000EDE 00:CECE: 85 11     STA ram_0011_t02_ppu_data
 C - - - - - 0x000EE0 00:CED0: A2 1B     LDX #($075B & $001F)    ; 235B
 C - - - - - 0x000EE2 00:CED2: A0 1A     LDY #($075B - $0400) / $20
 C - - - - - 0x000EE4 00:CED4: 20 B3 D6  JSR sub_D6B3_fill_buffer_with_tiles
+; play sfx
 C - - - - - 0x000EE7 00:CED7: A9 01     LDA #$01
 C - - - - - 0x000EE9 00:CED9: 8D 1B 03  STA ram_sfx_bonus_1000
 ; bzk optimize, 2 useless STAs, they won't be read and will be overwritten
@@ -2201,7 +2214,7 @@ C - - - - - 0x000F1E 00:CF0E: A9 03     LDA #con_bg_pal_03
 C - - - - - 0x000F20 00:CF10: 85 4D     STA ram_bg_palette_id
 C - - - - - 0x000F22 00:CF12: 20 70 D4  JSR sub_D470_disable_nmi
 C - - - - - 0x000F25 00:CF15: 20 7E D4  JSR sub_D47E_clear_0400_07FF
-C - - - - - 0x000F28 00:CF18: 20 D9 D0  JSR sub_D0D9
+C - - - - - 0x000F28 00:CF18: 20 D9 D0  JSR sub_D0D9_prepare_nametale_attributes
 C - - - - - 0x000F2B 00:CF1B: 20 B4 D7  JSR sub_D7B4_copy_400h_to_nametable
 C - - - - - 0x000F2E 00:CF1E: 20 67 D4  JSR sub_D467_enable_nmi
 C - - - - - 0x000F31 00:CF21: A9 D2     LDA #> tbl_D2BD_text___hi_score
@@ -2422,37 +2435,37 @@ C - - - - - 0x0010E8 00:D0D8: 60        RTS
 
 
 
-sub_D0D9:
+sub_D0D9_prepare_nametale_attributes:
 C - - - - - 0x0010E9 00:D0D9: A9 50     LDA #$50
-C - - - - - 0x0010EB 00:D0DB: 8D C0 07  STA ram_07C0_nmt_attr_buffer
-C - - - - - 0x0010EE 00:D0DE: 8D C1 07  STA ram_07C1
-C - - - - - 0x0010F1 00:D0E1: 8D C2 07  STA ram_07C2
-C - - - - - 0x0010F4 00:D0E4: 8D C3 07  STA ram_07C3
-C - - - - - 0x0010F7 00:D0E7: 8D C8 07  STA ram_07C8
-C - - - - - 0x0010FA 00:D0EA: 8D C9 07  STA ram_07C9
-C - - - - - 0x0010FD 00:D0ED: 8D CA 07  STA ram_07CA
-C - - - - - 0x001100 00:D0F0: 8D CD 07  STA ram_07CD
-C - - - - - 0x001103 00:D0F3: 8D CE 07  STA ram_07CE
-C - - - - - 0x001106 00:D0F6: 8D CF 07  STA ram_07CF
+C - - - - - 0x0010EB 00:D0DB: 8D C0 07  STA ram_nmt_attr_buffer
+C - - - - - 0x0010EE 00:D0DE: 8D C1 07  STA ram_nmt_attr_buffer + $01
+C - - - - - 0x0010F1 00:D0E1: 8D C2 07  STA ram_nmt_attr_buffer + $02
+C - - - - - 0x0010F4 00:D0E4: 8D C3 07  STA ram_nmt_attr_buffer + $03
+C - - - - - 0x0010F7 00:D0E7: 8D C8 07  STA ram_nmt_attr_buffer + $08
+C - - - - - 0x0010FA 00:D0EA: 8D C9 07  STA ram_nmt_attr_buffer + $09
+C - - - - - 0x0010FD 00:D0ED: 8D CA 07  STA ram_nmt_attr_buffer + $0A
+C - - - - - 0x001100 00:D0F0: 8D CD 07  STA ram_nmt_attr_buffer + $0D
+C - - - - - 0x001103 00:D0F3: 8D CE 07  STA ram_nmt_attr_buffer + $0E
+C - - - - - 0x001106 00:D0F6: 8D CF 07  STA ram_nmt_attr_buffer + $0F
 C - - - - - 0x001109 00:D0F9: A9 A0     LDA #$A0
-C - - - - - 0x00110B 00:D0FB: 8D C4 07  STA ram_07C4
-C - - - - - 0x00110E 00:D0FE: 8D C5 07  STA ram_07C5
-C - - - - - 0x001111 00:D101: 8D C6 07  STA ram_07C6
-C - - - - - 0x001114 00:D104: 8D C7 07  STA ram_07C7
+C - - - - - 0x00110B 00:D0FB: 8D C4 07  STA ram_nmt_attr_buffer + $04
+C - - - - - 0x00110E 00:D0FE: 8D C5 07  STA ram_nmt_attr_buffer + $05
+C - - - - - 0x001111 00:D101: 8D C6 07  STA ram_nmt_attr_buffer + $06
+C - - - - - 0x001114 00:D104: 8D C7 07  STA ram_nmt_attr_buffer + $07
 C - - - - - 0x001117 00:D107: A9 0A     LDA #$0A
-C - - - - - 0x001119 00:D109: 8D D0 07  STA ram_07D0
-C - - - - - 0x00111C 00:D10C: 8D D1 07  STA ram_07D1
-C - - - - - 0x00111F 00:D10F: 8D D2 07  STA ram_07D2
-C - - - - - 0x001122 00:D112: 8D D5 07  STA ram_07D5
-C - - - - - 0x001125 00:D115: 8D D6 07  STA ram_07D6
-C - - - - - 0x001128 00:D118: 8D D7 07  STA ram_07D7
+C - - - - - 0x001119 00:D109: 8D D0 07  STA ram_nmt_attr_buffer + $10
+C - - - - - 0x00111C 00:D10C: 8D D1 07  STA ram_nmt_attr_buffer + $11
+C - - - - - 0x00111F 00:D10F: 8D D2 07  STA ram_nmt_attr_buffer + $12
+C - - - - - 0x001122 00:D112: 8D D5 07  STA ram_nmt_attr_buffer + $15
+C - - - - - 0x001125 00:D115: 8D D6 07  STA ram_nmt_attr_buffer + $16
+C - - - - - 0x001128 00:D118: 8D D7 07  STA ram_nmt_attr_buffer + $17
 C - - - - - 0x00112B 00:D11B: A9 05     LDA #$05
-C - - - - - 0x00112D 00:D11D: 8D F0 07  STA ram_07F0
-C - - - - - 0x001130 00:D120: 8D F1 07  STA ram_07F1
-C - - - - - 0x001133 00:D123: 8D F2 07  STA ram_07F2
-C - - - - - 0x001136 00:D126: 8D F5 07  STA ram_07F5
-C - - - - - 0x001139 00:D129: 8D F6 07  STA ram_07F6
-C - - - - - 0x00113C 00:D12C: 8D F7 07  STA ram_07F7
+C - - - - - 0x00112D 00:D11D: 8D F0 07  STA ram_nmt_attr_buffer + $30
+C - - - - - 0x001130 00:D120: 8D F1 07  STA ram_nmt_attr_buffer + $31
+C - - - - - 0x001133 00:D123: 8D F2 07  STA ram_nmt_attr_buffer + $32
+C - - - - - 0x001136 00:D126: 8D F5 07  STA ram_nmt_attr_buffer + $35
+C - - - - - 0x001139 00:D129: 8D F6 07  STA ram_nmt_attr_buffer + $36
+C - - - - - 0x00113C 00:D12C: 8D F7 07  STA ram_nmt_attr_buffer + $37
 C - - - - - 0x00113F 00:D12F: 60        RTS
 
 
@@ -3007,7 +3020,8 @@ tbl_D3D1_points_for_killing_enemy:
 
 
 
-tbl_D3D5_construction_cursor_speed_X:
+tbl_D3D5_construction_cursor_spd_X:
+tbl_D3D5_game_over_message_spd_X:
 - D 2 - - - 0x0013E5 00:D3D5: 00        .byte $00   ; 00 Up
 - D 2 - - - 0x0013E6 00:D3D6: FF        .byte $FF   ; 01 Left
 - D 2 - - - 0x0013E7 00:D3D7: 00        .byte $00   ; 02 Down
@@ -3015,7 +3029,8 @@ tbl_D3D5_construction_cursor_speed_X:
 
 
 
-tbl_D3D9_construction_cursor_speed_Y:
+tbl_D3D9_construction_cursor_spd_Y:
+tbl_D3D9_game_over_message_spd_Y:
 - D 2 - - - 0x0013E9 00:D3D9: FF        .byte $FF   ; 00 Up
 - D 2 - - - 0x0013EA 00:D3DA: 00        .byte $00   ; 01 Left
 - D 2 - - - 0x0013EB 00:D3DB: 01        .byte $01   ; 02 Down
@@ -3375,7 +3390,7 @@ C - - - - - 0x00162E 00:D61E: 18        CLC
 C - - - - - 0x00162F 00:D61F: 69 C0     ADC #< $23C0
 C - - - - - 0x001631 00:D621: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x001634 00:D624: E8        INX
-C - - - - - 0x001635 00:D625: B9 C0 07  LDA ram_07C0_nmt_attr_buffer,Y
+C - - - - - 0x001635 00:D625: B9 C0 07  LDA ram_nmt_attr_buffer,Y
 C - - - - - 0x001638 00:D628: 9D 80 01  STA ram_ppu_buffer,X
 C - - - - - 0x00163B 00:D62B: E8        INX
 C - - - - - 0x00163C 00:D62C: A9 FF     LDA #$FF
@@ -3431,10 +3446,10 @@ C - - - - - 0x001681 00:D671: A5 01     LDA ram_0001_t01_attribute_mask
 C - - - - - 0x001683 00:D673: 49 FF     EOR #$FF
 C - - - - - 0x001685 00:D675: 25 02     AND ram_0002_t03
 C - - - - - 0x001687 00:D677: 85 02     STA ram_0002_t01_attribute
-C - - - - - 0x001689 00:D679: B9 C0 07  LDA ram_07C0_nmt_attr_buffer,Y
+C - - - - - 0x001689 00:D679: B9 C0 07  LDA ram_nmt_attr_buffer,Y
 C - - - - - 0x00168C 00:D67C: 25 01     AND ram_0001_t01_attribute_mask
 C - - - - - 0x00168E 00:D67E: 05 02     ORA ram_0002_t01_attribute
-C - - - - - 0x001690 00:D680: 99 C0 07  STA ram_07C0_nmt_attr_buffer,Y
+C - - - - - 0x001690 00:D680: 99 C0 07  STA ram_nmt_attr_buffer,Y
 C - - - - - 0x001693 00:D683: 60        RTS
 
 
@@ -3783,7 +3798,7 @@ C - - - - - 0x0017EF 00:D7DF: A9 00     LDA #$00
 C - - - - - 0x0017F1 00:D7E1: A2 C0     LDX #$C0
 bra_D7E3_loop:
 ; clear 07C0-07FF
-C - - - - - 0x0017F3 00:D7E3: 9D 00 07  STA ram_07C0_nmt_attr_buffer - $C0,X
+C - - - - - 0x0017F3 00:D7E3: 9D 00 07  STA ram_nmt_attr_buffer - $C0,X
 C - - - - - 0x0017F6 00:D7E6: E8        INX
 C - - - - - 0x0017F7 00:D7E7: D0 FA     BNE bra_D7E3_loop
 ; 0442
@@ -3948,6 +3963,7 @@ C - - - - - 0x0018E1 00:D8D1: 60        RTS
 
 sub_D8D2_draw_huge_letters:
 ; in
+    ; ram_0013_t02_huge_text_data
     ; ram_0056_t02_pos_X_letter
     ; ram_0057_t02_pos_Y_letter
 C - - - - - 0x0018E2 00:D8D2: A0 00     LDY #$00
@@ -4254,7 +4270,7 @@ C - - - - - 0x001A44 00:DA34: E9 08     SBC #$08
 C - - - - - 0x001A46 00:DA36: 85 48     STA ram_0048_t03_spr_Y
 C - - - - - 0x001A48 00:DA38: 20 06 D7  JSR sub_D706_divide_by_08_and_calculate_pointer
 C - - - - - 0x001A4B 00:DA3B: B1 11     LDA (ram_0011_t14_data),Y
-C - - - - - 0x001A4D 00:DA3D: C9 22     CMP #$22
+C - - - - - 0x001A4D 00:DA3D: C9 22     CMP #con_block_type + $22
 C - - - - - 0x001A4F 00:DA3F: D0 06     BNE bra_DA47
 C - - - - - 0x001A51 00:DA41: A5 04     LDA ram_0004_t01_spr_A_palette
 C - - - - - 0x001A53 00:DA43: 05 6E     ORA ram_priority_spr_A
@@ -4405,41 +4421,52 @@ tbl_DACB_block_data:
 - D 2 - - - 0x001ADF 00:DACF: 00        .byte $00, $00, $0F, $0F   ; 01 
 - D 2 - - - 0x001AE3 00:DAD3: 0F        .byte $0F, $00, $0F, $00   ; 02 
 - D 2 - - - 0x001AE7 00:DAD7: 0F        .byte $0F, $0F, $00, $00   ; 03 
-- D 2 - - - 0x001AEB 00:DADB: 0F        .byte $0F, $0F, $0F, $0F   ; 04 
+- D 2 - - - 0x001AEB 00:DADB: 0F        .byte $0F, $0F, $0F, $0F   ; 04 full brick block
 - D 2 - - - 0x001AEF 00:DADF: 20        .byte $20, $10, $20, $10   ; 05 
 - D 2 - - - 0x001AF3 00:DAE3: 20        .byte $20, $20, $10, $10   ; 06 
 - D 2 - - - 0x001AF7 00:DAE7: 10        .byte $10, $20, $10, $20   ; 07 
 - D 2 - - - 0x001AFB 00:DAEB: 10        .byte $10, $10, $20, $20   ; 08 
-- D 2 - - - 0x001AFF 00:DAEF: 10        .byte $10, $10, $10, $10   ; 09 
-- D 2 - - - 0x001B03 00:DAF3: 12        .byte $12, $12, $12, $12   ; 0A 
-- D 2 - - - 0x001B07 00:DAF7: 22        .byte $22, $22, $22, $22   ; 0B 
-- D 2 - - - 0x001B0B 00:DAFB: 21        .byte $21, $21, $21, $21   ; 0C 
-- D 2 - - - 0x001B0F 00:DAFF: 00        .byte $00, $00, $00, $00   ; 0D 
+- D 2 - - - 0x001AFF 00:DAEF: 10        .byte $10, $10, $10, $10   ; 09 full concrete block
+- D 2 - - - 0x001B03 00:DAF3: 12        .byte $12, $12, $12, $12   ; 0A full water block
+- D 2 - - - 0x001B07 00:DAF7: 22        .byte $22, $22, $22, $22   ; 0B full forest block
+- D 2 - - - 0x001B0B 00:DAFB: 21        .byte $21, $21, $21, $21   ; 0C full ice block
+- D 2 - - - 0x001B0F 00:DAFF: 00        .byte $00, $00, $00, $00   ; 0D full empty block
 - - - - - - 0x001B13 00:DB03: 00        .byte $00, $00, $00, $00   ; 0E unused?
 - D 2 - - - 0x001B17 00:DB07: 00        .byte $00, $00, $00, $00   ; 0F 
 
 
 
-sub_DB0B_plr_movement_sfx_handler:
+sub_DB0B_player_movement_sfx_handler:
 C - - - - - 0x001B1B 00:DB0B: AD 11 03  LDA ram_sfx_movement_player
-C - - - - - 0x001B1E 00:DB0E: F0 14     BEQ bra_DB24_no_sound_currently
+C - - - - - 0x001B1E 00:DB0E: F0 14     BEQ bra_DB24_no_movement_sfx_at_the_moment
+; if player movement sfx is already playing,
+; check if at least one of the players is moving
+; in order to keep it playing
 C - - - - - 0x001B20 00:DB10: A2 00     LDX #$00
-C - - - - - 0x001B22 00:DB12: 20 38 DB  JSR sub_DB38
-C - - - - - 0x001B25 00:DB15: D0 20     BNE bra_DB37_RTS
+C - - - - - 0x001B22 00:DB12: 20 38 DB  JSR sub_DB38_check_if_player_is_moving
+C - - - - - 0x001B25 00:DB15: D0 20     BNE bra_DB37_RTS    ; skip disabling sfx
+; if p1 is not moving
 C - - - - - 0x001B27 00:DB17: A2 01     LDX #$01
-C - - - - - 0x001B29 00:DB19: 20 38 DB  JSR sub_DB38
-C - - - - - 0x001B2C 00:DB1C: D0 19     BNE bra_DB37_RTS
+C - - - - - 0x001B29 00:DB19: 20 38 DB  JSR sub_DB38_check_if_player_is_moving
+C - - - - - 0x001B2C 00:DB1C: D0 19     BNE bra_DB37_RTS    ; skip disabling sfx
+; if p2 is also not moving,
+; disable moving sfx
 C - - - - - 0x001B2E 00:DB1E: A9 00     LDA #$00
 C - - - - - 0x001B30 00:DB20: 8D 11 03  STA ram_sfx_movement_player
 C - - - - - 0x001B33 00:DB23: 60        RTS
-bra_DB24_no_sound_currently:
+bra_DB24_no_movement_sfx_at_the_moment:
+; if player movement sfx is not playing at the moment,
+; check if at least one of the players is moving
+; in order to enable it
 C - - - - - 0x001B34 00:DB24: A2 00     LDX #$00
-C - - - - - 0x001B36 00:DB26: 20 38 DB  JSR sub_DB38
-C - - - - - 0x001B39 00:DB29: D0 07     BNE bra_DB32_play_sound
+C - - - - - 0x001B36 00:DB26: 20 38 DB  JSR sub_DB38_check_if_player_is_moving
+C - - - - - 0x001B39 00:DB29: D0 07     BNE bra_DB32_play_sfx
+; if p1 is not moving
 C - - - - - 0x001B3B 00:DB2B: A2 01     LDX #$01
-C - - - - - 0x001B3D 00:DB2D: 20 38 DB  JSR sub_DB38
+C - - - - - 0x001B3D 00:DB2D: 20 38 DB  JSR sub_DB38_check_if_player_is_moving
 C - - - - - 0x001B40 00:DB30: F0 05     BEQ bra_DB37_RTS
-bra_DB32_play_sound:
+; if p2 is moving
+bra_DB32_play_sfx:
 C - - - - - 0x001B42 00:DB32: A9 01     LDA #$01
 C - - - - - 0x001B44 00:DB34: 8D 11 03  STA ram_sfx_movement_player
 bra_DB37_RTS:
@@ -4447,19 +4474,22 @@ C - - - - - 0x001B47 00:DB37: 60        RTS
 
 
 
-sub_DB38:
+sub_DB38_check_if_player_is_moving:
+; in
+    ; X = player index
 ; out
     ; Z
-        ; 0 = 
-        ; 1 = 
+        ; 0 = player is moving
+        ; 1 = player is not moving
 C - - - - - 0x001B48 00:DB38: B5 06     LDA ram_btn_hold,X
 C - - - - - 0x001B4A 00:DB3A: 29 F0     AND #con_btns_Dpad
-C - - - - - 0x001B4C 00:DB3C: F0 07     BEQ bra_DB45
+C - - - - - 0x001B4C 00:DB3C: F0 07     BEQ bra_DB45_player_is_not_moving
 C - - - - - 0x001B4E 00:DB3E: B5 A0     LDA ram_tank_flags,X
-C - - - - - 0x001B50 00:DB40: F0 03     BEQ bra_DB45
+C - - - - - 0x001B50 00:DB40: F0 03     BEQ bra_DB45_player_is_not_moving
+; if player is moving
 C - - - - - 0x001B52 00:DB42: A9 01     LDA #$01
 C - - - - - 0x001B54 00:DB44: 60        RTS
-bra_DB45:
+bra_DB45_player_is_not_moving:
 C - - - - - 0x001B55 00:DB45: A9 00     LDA #$00
 C - - - - - 0x001B57 00:DB47: 60        RTS
 
@@ -4468,6 +4498,7 @@ C - - - - - 0x001B57 00:DB47: 60        RTS
 sub_DB48_enemy_spawn_handler:
 C - - - - - 0x001B58 00:DB48: A5 82     LDA ram_enemy_timer_before_spawn
 C - - - - - 0x001B5A 00:DB4A: F0 03     BEQ bra_DB4F_time_to_spawn
+; if timer hasn't run out yet
 C - - - - - 0x001B5C 00:DB4C: C6 82     DEC ram_enemy_timer_before_spawn
 C - - - - - 0x001B5E 00:DB4E: 60        RTS
 bra_DB4F_time_to_spawn:
@@ -4479,8 +4510,11 @@ bra_DB57_loop:
 C - - - - - 0x001B67 00:DB57: A6 5A     LDX ram_005A_t03_enemy_tank_index
 C - - - - - 0x001B69 00:DB59: B5 A0     LDA ram_tank_flags,X
 C - - - - - 0x001B6B 00:DB5B: D0 0F     BNE bra_DB6C_cannot_spawn
+; if enemy tank doesn't exist,
+; reload timer
 C - - - - - 0x001B6D 00:DB5D: A5 84     LDA ram_enemy_spawn_interval
 C - - - - - 0x001B6F 00:DB5F: 85 82     STA ram_enemy_timer_before_spawn
+; spawn enemy tank
 C - - - - - 0x001B71 00:DB61: 20 63 E3  JSR sub_E363_tank_spawn_handler
 C - - - - - 0x001B74 00:DB64: C6 7F     DEC ram_enemy_spawn_cnt
 C - - - - - 0x001B76 00:DB66: A5 7F     LDA ram_enemy_spawn_cnt
@@ -4508,15 +4542,15 @@ bra_DB81:
 C - - - - - 0x001B91 00:DB81: A2 01     LDX #$01
 bra_DB83_loop:
 C - - - - - 0x001B93 00:DB83: B5 A0     LDA ram_tank_flags,X
-C - - - - - 0x001B95 00:DB85: 10 66     BPL bra_DBED
+C - - - - - 0x001B95 00:DB85: 10 66     BPL bra_DBED    ; if tank is exploding
 C - - - - - 0x001B97 00:DB87: C9 E0     CMP #$E0
-C - - - - - 0x001B99 00:DB89: B0 62     BCS bra_DBED
+C - - - - - 0x001B99 00:DB89: B0 62     BCS bra_DBED    ; if tank is respawning
 C - - - - - 0x001B9B 00:DB8B: B5 6F     LDA ram_plr_stun_timer,X
 C - - - - - 0x001B9D 00:DB8D: F0 05     BEQ bra_DB94
 C - - - - - 0x001B9F 00:DB8F: D6 6F     DEC ram_plr_stun_timer,X
 C - - - - - 0x001BA1 00:DB91: 4C A6 DB  JMP loc_DBA6
 bra_DB94:
-C - - - - - 0x001BA4 00:DB94: BD 03 01  LDA ram_0103_plr,X
+C - - - - - 0x001BA4 00:DB94: BD 03 01  LDA ram_0103_plr_flags,X
 C - - - - - 0x001BA7 00:DB97: 10 04     BPL bra_DB9D
 C - - - - - 0x001BA9 00:DB99: 29 10     AND #$10
 C - - - - - 0x001BAB 00:DB9B: D0 09     BNE bra_DBA6
@@ -4532,24 +4566,26 @@ C - - - - - 0x001BB8 00:DBA8: 20 20 E4  JSR sub_E420_change_tank_status
 C - - - - - 0x001BBB 00:DBAB: A9 08     LDA #$08
 C - - - - - 0x001BBD 00:DBAD: 15 A0     ORA ram_tank_flags,X
 C - - - - - 0x001BBF 00:DBAF: 95 A0     STA ram_tank_flags,X
+; bzk optimize, BNE
 C - - - - - 0x001BC1 00:DBB1: 4C ED DB  JMP loc_DBED
 bra_DBB4:
-C - - - - - 0x001BC4 00:DBB4: BD 03 01  LDA ram_0103_plr,X
+C - - - - - 0x001BC4 00:DBB4: BD 03 01  LDA ram_0103_plr_flags,X
 C - - - - - 0x001BC7 00:DBB7: 10 0E     BPL bra_DBC7
 C - - - - - 0x001BC9 00:DBB9: 29 1F     AND #$1F
 C - - - - - 0x001BCB 00:DBBB: D0 0A     BNE bra_DBC7
 C - - - - - 0x001BCD 00:DBBD: A9 9C     LDA #$9C
-C - - - - - 0x001BCF 00:DBBF: 9D 03 01  STA ram_0103_plr,X
+C - - - - - 0x001BCF 00:DBBF: 9D 03 01  STA ram_0103_plr_flags,X
 C - - - - - 0x001BD2 00:DBC2: A9 01     LDA #$01
 C - - - - - 0x001BD4 00:DBC4: 8D 10 03  STA ram_sfx_movement_ice
 bra_DBC7:
 C - - - - - 0x001BD7 00:DBC7: B5 A0     LDA ram_tank_flags,X
 C - - - - - 0x001BD9 00:DBC9: 29 03     AND #$03
 C - - - - - 0x001BDB 00:DBCB: C5 00     CMP ram_0000_t07_converted_Dpad_btn
-C - - - - - 0x001BDD 00:DBCD: F0 18     BEQ bra_DBE7
+C - - - - - 0x001BDD 00:DBCD: F0 18     BEQ bra_DBE7_skip    ; if moving in the same direction
 C - - - - - 0x001BDF 00:DBCF: 49 02     EOR #$02
 C - - - - - 0x001BE1 00:DBD1: C5 00     CMP ram_0000_t07_converted_Dpad_btn
-C - - - - - 0x001BE3 00:DBD3: F0 12     BEQ bra_DBE7
+C - - - - - 0x001BE3 00:DBD3: F0 12     BEQ bra_DBE7_skip    ; if moving in the mirrored direction
+; aling player tank positions
 C - - - - - 0x001BE5 00:DBD5: B5 90     LDA ram_tank_pos_X,X
 C - - - - - 0x001BE7 00:DBD7: 18        CLC
 C - - - - - 0x001BE8 00:DBD8: 69 04     ADC #$04
@@ -4560,7 +4596,7 @@ C - - - - - 0x001BF0 00:DBE0: 18        CLC
 C - - - - - 0x001BF1 00:DBE1: 69 04     ADC #$04
 C - - - - - 0x001BF3 00:DBE3: 29 F8     AND #$F8
 C - - - - - 0x001BF5 00:DBE5: 95 98     STA ram_tank_pos_Y,X
-bra_DBE7:
+bra_DBE7_skip:
 C - - - - - 0x001BF7 00:DBE7: A5 00     LDA ram_0000_t07_converted_Dpad_btn
 C - - - - - 0x001BF9 00:DBE9: 09 A0     ORA #con_tank_flag_A0
 C - - - - - 0x001BFB 00:DBEB: 95 A0     STA ram_tank_flags,X
@@ -4579,7 +4615,7 @@ C - - J - - 0x001C00 00:DBF0: 60        RTS
 
 
 sub_DBF1_tank_movement:
-C - - - - - 0x001C01 00:DBF1: A9 07     LDA #$07
+C - - - - - 0x001C01 00:DBF1: A9 07     LDA #con_max_tanks
 C - - - - - 0x001C03 00:DBF3: 85 5A     STA ram_005A_t04_tank_index
 C - - - - - 0x001C05 00:DBF5: AD 00 01  LDA ram_clock_timer
 C - - - - - 0x001C08 00:DBF8: F0 09     BEQ bra_DC03
@@ -4604,9 +4640,9 @@ bra_DC18_enemy:
 C - - - - - 0x001C28 00:DC18: AD 00 01  LDA ram_clock_timer
 C - - - - - 0x001C2B 00:DC1B: F0 08     BEQ bra_DC25
 C - - - - - 0x001C2D 00:DC1D: B5 A0     LDA ram_tank_flags,X
-C - - - - - 0x001C2F 00:DC1F: 10 04     BPL bra_DC25
+C - - - - - 0x001C2F 00:DC1F: 10 04     BPL bra_DC25    ; if tank is exploding
 C - - - - - 0x001C31 00:DC21: C9 E0     CMP #$E0
-C - - - - - 0x001C33 00:DC23: 90 13     BCC bra_DC38
+C - - - - - 0x001C33 00:DC23: 90 13     BCC bra_DC38    ; if tank is not respawing
 bra_DC25:
 C - - - - - 0x001C35 00:DC25: B5 A8     LDA ram_tank_type,X
 C - - - - - 0x001C37 00:DC27: 29 F0     AND #$F0
@@ -4647,11 +4683,11 @@ ofs_000_DC52_80:
 C - - J - - 0x001C62 00:DC52: E0 02     CPX #$02
 C - - - - - 0x001C64 00:DC54: B0 15     BCS bra_DC6B    ; if enemy
 ; if player
-C - - - - - 0x001C66 00:DC56: BD 03 01  LDA ram_0103_plr,X
+C - - - - - 0x001C66 00:DC56: BD 03 01  LDA ram_0103_plr_flags,X
 C - - - - - 0x001C69 00:DC59: 10 10     BPL bra_DC6B
 C - - - - - 0x001C6B 00:DC5B: 29 7F     AND #$7F
 C - - - - - 0x001C6D 00:DC5D: F0 0C     BEQ bra_DC6B
-C - - - - - 0x001C6F 00:DC5F: DE 03 01  DEC ram_0103_plr,X
+C - - - - - 0x001C6F 00:DC5F: DE 03 01  DEC ram_0103_plr_flags,X
 C - - - - - 0x001C72 00:DC62: B5 B0     LDA ram_tank_wheels,X
 C - - - - - 0x001C74 00:DC64: 49 04     EOR #$04
 C - - - - - 0x001C76 00:DC66: 95 B0     STA ram_tank_wheels,X
@@ -4730,7 +4766,7 @@ C - - - - - 0x001CE2 00:DCD2: 20 06 D7  JSR sub_D706_divide_by_08_and_calculate_
 C - - - - - 0x001CE5 00:DCD5: B1 11     LDA (ram_0011_t14_data),Y
 C - - - - - 0x001CE7 00:DCD7: 30 38     BMI bra_DD11
 C - - - - - 0x001CE9 00:DCD9: F0 04     BEQ bra_DCDF
-C - - - - - 0x001CEB 00:DCDB: C9 20     CMP #$20
+C - - - - - 0x001CEB 00:DCDB: C9 20     CMP #con_block_type + $20
 C - - - - - 0x001CED 00:DCDD: 90 32     BCC bra_DD11
 bra_DCDF:
 C - - - - - 0x001CEF 00:DCDF: A5 56     LDA ram_0056_t04_pos_X
@@ -5523,13 +5559,13 @@ C - - - - - 0x0020C8 00:E0B8: A9 00     LDA #$00
 C - - - - - 0x0020CA 00:E0BA: 95 D6     STA ram_bullet_property,X
 C - - - - - 0x0020CC 00:E0BC: B5 A8     LDA ram_tank_type,X
 C - - - - - 0x0020CE 00:E0BE: 29 F0     AND #$F0
-C - - - - - 0x0020D0 00:E0C0: F0 15     BEQ bra_E0D7_RTS
+C - - - - - 0x0020D0 00:E0C0: F0 15     BEQ bra_E0D7_RTS    ; if ???
 C - - - - - 0x0020D2 00:E0C2: C9 C0     CMP #$C0
-C - - - - - 0x0020D4 00:E0C4: F0 08     BEQ bra_E0CE
+C - - - - - 0x0020D4 00:E0C4: F0 08     BEQ bra_E0CE    ; if 200 points enemy tank
 C - - - - - 0x0020D6 00:E0C6: C9 60     CMP #$60
-C - - - - - 0x0020D8 00:E0C8: F0 09     BEQ bra_E0D3
+C - - - - - 0x0020D8 00:E0C8: F0 09     BEQ bra_E0D3    ; if player tank 3 stars
 C - - - - - 0x0020DA 00:E0CA: 29 80     AND #$80
-C - - - - - 0x0020DC 00:E0CC: D0 09     BNE bra_E0D7_RTS
+C - - - - - 0x0020DC 00:E0CC: D0 09     BNE bra_E0D7_RTS    ; if not enemy tank
 bra_E0CE:
 C - - - - - 0x0020DE 00:E0CE: A9 01     LDA #$01
 C - - - - - 0x0020E0 00:E0D0: 95 D6     STA ram_bullet_property,X
@@ -5606,14 +5642,14 @@ C - - - - - 0x002131 00:E121: 60        RTS
 
 
 sub_E122:
-C - - - - - 0x002132 00:E122: A9 01     LDA #$01
-C - - - - - 0x002134 00:E124: 85 5A     STA ram_005A_t09
+C - - - - - 0x002132 00:E122: A9 01     LDA #con_max_players
+C - - - - - 0x002134 00:E124: 85 5A     STA ram_005A_t09_player_index
 bra_E126_loop:
-C - - - - - 0x002136 00:E126: A6 5A     LDX ram_005A_t09
+C - - - - - 0x002136 00:E126: A6 5A     LDX ram_005A_t09_player_index
 C - - - - - 0x002138 00:E128: B5 A0     LDA ram_tank_flags,X
-C - - - - - 0x00213A 00:E12A: 10 31     BPL bra_E15D
+C - - - - - 0x00213A 00:E12A: 10 31     BPL bra_E15D    ; if tank is exploding
 C - - - - - 0x00213C 00:E12C: C9 E0     CMP #$E0
-C - - - - - 0x00213E 00:E12E: B0 2D     BCS bra_E15D
+C - - - - - 0x00213E 00:E12E: B0 2D     BCS bra_E15D    ; if tank is respawing
 C - - - - - 0x002140 00:E130: B5 08     LDA ram_btn_press,X
 C - - - - - 0x002142 00:E132: 29 03     AND #con_btns_AB
 C - - - - - 0x002144 00:E134: F0 27     BEQ bra_E15D
@@ -5638,7 +5674,7 @@ C - - - - - 0x002168 00:E158: 95 CC     STA ram_bullet_status,X
 bra_E15A:
 C - - - - - 0x00216A 00:E15A: 20 8C E0  JSR sub_E08C_bullets
 bra_E15D:
-C - - - - - 0x00216D 00:E15D: C6 5A     DEC ram_005A_t09
+C - - - - - 0x00216D 00:E15D: C6 5A     DEC ram_005A_t09_player_index
 C - - - - - 0x00216F 00:E15F: 10 C5     BPL bra_E126_loop
 C - - - - - 0x002171 00:E161: 60        RTS
 
@@ -5647,12 +5683,12 @@ C - - - - - 0x002171 00:E161: 60        RTS
 sub_E162:
 C - - - - - 0x002172 00:E162: AD 00 01  LDA ram_clock_timer
 C - - - - - 0x002175 00:E165: D0 19     BNE bra_E180_RTS
-C - - - - - 0x002177 00:E167: A2 07     LDX #$07
+C - - - - - 0x002177 00:E167: A2 07     LDX #con_max_tanks
 bra_E169_loop:
 C - - - - - 0x002179 00:E169: B5 A0     LDA ram_tank_flags,X
-C - - - - - 0x00217B 00:E16B: 10 0E     BPL bra_E17B
+C - - - - - 0x00217B 00:E16B: 10 0E     BPL bra_E17B    ; if tank is exploding
 C - - - - - 0x00217D 00:E16D: C9 E0     CMP #$E0
-C - - - - - 0x00217F 00:E16F: B0 0A     BCS bra_E17B
+C - - - - - 0x00217F 00:E16F: B0 0A     BCS bra_E17B    ; if tank is respawing
 C - - - - - 0x002181 00:E171: 20 4D D4  JSR sub_D44D_generate_random_number
 C - - - - - 0x002184 00:E174: 29 1F     AND #$1F
 C - - - - - 0x002186 00:E176: D0 03     BNE bra_E17B
@@ -5667,14 +5703,17 @@ C - - - - - 0x002190 00:E180: 60        RTS
 
 
 sub_E181_ice_detection:
-C - - - - - 0x002191 00:E181: A9 07     LDA #$07
+; out
+    ; ram_tank_stage_pos_lo
+    ; ram_tank_stage_pos_hi
+C - - - - - 0x002191 00:E181: A9 07     LDA #con_max_tanks
 C - - - - - 0x002193 00:E183: 85 5A     STA ram_005A_t10_tank_index
 bra_E185_loop:
 C - - - - - 0x002195 00:E185: A6 5A     LDX ram_005A_t10_tank_index
 C - - - - - 0x002197 00:E187: B5 A0     LDA ram_tank_flags,X
-C - - - - - 0x002199 00:E189: 10 63     BPL bra_E1EE
+C - - - - - 0x002199 00:E189: 10 63     BPL bra_E1EE    ; if tank is exploding
 C - - - - - 0x00219B 00:E18B: C9 E0     CMP #$E0
-C - - - - - 0x00219D 00:E18D: B0 5F     BCS bra_E1EE
+C - - - - - 0x00219D 00:E18D: B0 5F     BCS bra_E1EE    ; if tank is respawing
 C - - - - - 0x00219F 00:E18F: B5 98     LDA ram_tank_pos_Y,X
 C - - - - - 0x0021A1 00:E191: 38        SEC
 C - - - - - 0x0021A2 00:E192: E9 08     SBC #$08
@@ -5695,16 +5734,16 @@ C - - - - - 0x0021BC 00:E1AC: E0 02     CPX #$02
 C - - - - - 0x0021BE 00:E1AE: B0 19     BCS bra_E1C9_enemy
 ; if player
 C - - - - - 0x0021C0 00:E1B0: B1 11     LDA (ram_0011_t14_data),Y
-C - - - - - 0x0021C2 00:E1B2: C9 21     CMP #$21
+C - - - - - 0x0021C2 00:E1B2: C9 21     CMP #con_block_type + $21    ; ice block
 C - - - - - 0x0021C4 00:E1B4: D0 0B     BNE bra_E1C1
 C - - - - - 0x0021C6 00:E1B6: A9 80     LDA #$80
-C - - - - - 0x0021C8 00:E1B8: 1D 03 01  ORA ram_0103_plr,X
-C - - - - - 0x0021CB 00:E1BB: 9D 03 01  STA ram_0103_plr,X
+C - - - - - 0x0021C8 00:E1B8: 1D 03 01  ORA ram_0103_plr_flags,X
+C - - - - - 0x0021CB 00:E1BB: 9D 03 01  STA ram_0103_plr_flags,X
 C - - - - - 0x0021CE 00:E1BE: 4C C9 E1  JMP loc_E1C9
 bra_E1C1:
-C - - - - - 0x0021D1 00:E1C1: BD 03 01  LDA ram_0103_plr,X
+C - - - - - 0x0021D1 00:E1C1: BD 03 01  LDA ram_0103_plr_flags,X
 C - - - - - 0x0021D4 00:E1C4: 29 7F     AND #$7F
-C - - - - - 0x0021D6 00:E1C6: 9D 03 01  STA ram_0103_plr,X
+C - - - - - 0x0021D6 00:E1C6: 9D 03 01  STA ram_0103_plr_flags,X
 bra_E1C9_enemy:
 loc_E1C9:
 C D 3 - - - 0x0021D9 00:E1C9: 20 F3 E1  JSR sub_E1F3_set_bit7
@@ -5741,14 +5780,14 @@ C - - - - - 0x002209 00:E1F9: 60        RTS
 
 
 sub_E1FA:
-C - - - - - 0x00220A 00:E1FA: A9 07     LDA #$07
+C - - - - - 0x00220A 00:E1FA: A9 07     LDA #con_max_tanks
 C - - - - - 0x00220C 00:E1FC: 85 5A     STA ram_005A_t11_tank_index
 bra_E1FE_loop:
 C - - - - - 0x00220E 00:E1FE: A6 5A     LDX ram_005A_t11_tank_index
 C - - - - - 0x002210 00:E200: B5 A0     LDA ram_tank_flags,X
-C - - - - - 0x002212 00:E202: 10 2B     BPL bra_E22F
+C - - - - - 0x002212 00:E202: 10 2B     BPL bra_E22F    ; if tank is exploding
 C - - - - - 0x002214 00:E204: C9 E0     CMP #$E0
-C - - - - - 0x002216 00:E206: B0 27     BCS bra_E22F
+C - - - - - 0x002216 00:E206: B0 27     BCS bra_E22F    ; if tank is respawing
 C - - - - - 0x002218 00:E208: B5 E0     LDA ram_tank_stage_pos_lo,X
 C - - - - - 0x00221A 00:E20A: 85 11     STA ram_0011_t15_data
 C - - - - - 0x00221C 00:E20C: B5 E8     LDA ram_tank_stage_pos_hi,X
@@ -5828,7 +5867,7 @@ C D 3 - - - 0x00228B 00:E27B: 60        RTS
 
 
 sub_E27C_players_invincibility_handler:
-C - - - - - 0x00228C 00:E27C: A9 01     LDA #$01
+C - - - - - 0x00228C 00:E27C: A9 01     LDA #con_max_players
 C - - - - - 0x00228E 00:E27E: 85 5A     STA ram_005A_t11_player_index
 bra_E280_loop:
 C - - - - - 0x002290 00:E280: A6 5A     LDX ram_005A_t11_player_index
@@ -6056,13 +6095,15 @@ C - - - - - 0x002385 00:E375: A9 00     LDA #$00
 C - - - - - 0x002387 00:E377: 95 6F     STA ram_plr_stun_timer,X
 C - - - - - 0x002389 00:E379: 4C A9 E3  JMP loc_E3A9
 bra_E37C_enemy:
-C - - - - - 0x00238C 00:E37C: E6 6A     INC ram_enemy_spawn_pos
-C - - - - - 0x00238E 00:E37E: A4 6A     LDY ram_enemy_spawn_pos
+; calculate next spawn position index
+C - - - - - 0x00238C 00:E37C: E6 6A     INC ram_enemy_spawn_pos_index
+C - - - - - 0x00238E 00:E37E: A4 6A     LDY ram_enemy_spawn_pos_index
 C - - - - - 0x002390 00:E380: C0 03     CPY #$03
 C - - - - - 0x002392 00:E382: D0 05     BNE bra_E389_not_overflow
+; if overflow
 C - - - - - 0x002394 00:E384: A9 00     LDA #$00
-C - - - - - 0x002396 00:E386: 85 6A     STA ram_enemy_spawn_pos
-C - - - - - 0x002398 00:E388: A8        TAY
+C - - - - - 0x002396 00:E386: 85 6A     STA ram_enemy_spawn_pos_index
+C - - - - - 0x002398 00:E388: A8        TAY ; 00
 bra_E389_not_overflow:
 C - - - - - 0x002399 00:E389: B9 74 E4  LDA tbl_E474_enemy_spawn_pos_X,Y
 C - - - - - 0x00239C 00:E38C: 95 90     STA ram_tank_pos_X,X
@@ -6161,7 +6202,7 @@ C - - - - - 0x002422 00:E412: 60        RTS
 
 sub_E413_clear_some_tank_addresses:
 C - - - - - 0x002423 00:E413: A9 00     LDA #$00
-C - - - - - 0x002425 00:E415: A2 07     LDX #$07
+C - - - - - 0x002425 00:E415: A2 07     LDX #con_max_tanks
 bra_E417_loop:
 C - - - - - 0x002427 00:E417: 95 A0     STA ram_tank_flags,X   ; con_tank_flag_00
 ; also
@@ -6170,8 +6211,8 @@ C - - - - - 0x002427 00:E417: 95 A0     STA ram_tank_flags,X   ; con_tank_flag_0
     ; ram_game_over_msg_timer
     ; ram_debug_address_index
     ; ram_010A
-; bzk bug, doesn't seem to be intended
-C - - - - - 0x002429 00:E419: 9D 03 01  STA ram_0103_plr,X
+        ; bzk bug, doesn't seem to be intended
+C - - - - - 0x002429 00:E419: 9D 03 01  STA ram_0103_plr_flags,X
 C - - - - - 0x00242C 00:E41C: CA        DEX
 C - - - - - 0x00242D 00:E41D: 10 F8     BPL bra_E417_loop
 C - - - - - 0x00242F 00:E41F: 60        RTS
@@ -6585,10 +6626,10 @@ C - - - - - 0x0026A7 00:E697: 20 06 D7  JSR sub_D706_divide_by_08_and_calculate_
 sub_E69A:
 C - - - - - 0x0026AA 00:E69A: 20 25 D7  JSR sub_D725
 C - - - - - 0x0026AD 00:E69D: 20 3C D7  JSR sub_D73C
-C - - - - - 0x0026B0 00:E6A0: F0 67     BEQ bra_E709_enemy
+C - - - - - 0x0026B0 00:E6A0: F0 67     BEQ bra_E709
 C - - - - - 0x0026B2 00:E6A2: B1 11     LDA (ram_0011_t14_data),Y
 C - - - - - 0x0026B4 00:E6A4: 29 FC     AND #$FC
-C - - - - - 0x0026B6 00:E6A6: C9 C8     CMP #$C8
+C - - - - - 0x0026B6 00:E6A6: C9 C8     CMP #$C8    ; con_block_type ???
 C - - - - - 0x0026B8 00:E6A8: D0 1C     BNE bra_E6C6
 C - - - - - 0x0026BA 00:E6AA: A5 68     LDA ram_game_over_flag
 C - - - - - 0x0026BC 00:E6AC: F0 18     BEQ bra_E6C6    ; game over
@@ -6604,13 +6645,13 @@ C - - - - - 0x0026D1 00:E6C1: 95 CC     STA ram_bullet_status,X
 C - - - - - 0x0026D3 00:E6C3: 4C 09 E7  JMP loc_E709
 bra_E6C6:
 C - - - - - 0x0026D6 00:E6C6: B1 11     LDA (ram_0011_t14_data),Y
-C - - - - - 0x0026D8 00:E6C8: C9 12     CMP #$12
-C - - - - - 0x0026DA 00:E6CA: B0 3D     BCS bra_E709_enemy
+C - - - - - 0x0026D8 00:E6C8: C9 12     CMP #con_block_type + $12
+C - - - - - 0x0026DA 00:E6CA: B0 3D     BCS bra_E709
 C - - - - - 0x0026DC 00:E6CC: A6 5A     LDX ram_005A_t06_bullet_index
 C - - - - - 0x0026DE 00:E6CE: A9 33     LDA #$33
 C - - - - - 0x0026E0 00:E6D0: 95 CC     STA ram_bullet_status,X
 C - - - - - 0x0026E2 00:E6D2: B1 11     LDA (ram_0011_t14_data),Y
-C - - - - - 0x0026E4 00:E6D4: C9 11     CMP #$11
+C - - - - - 0x0026E4 00:E6D4: C9 11     CMP #con_block_type + $11
 C - - - - - 0x0026E6 00:E6D6: F0 28     BEQ bra_E700
 C - - - - - 0x0026E8 00:E6D8: B5 D6     LDA ram_bullet_property,X
 C - - - - - 0x0026EA 00:E6DA: 29 02     AND #$02
@@ -6622,7 +6663,7 @@ C - - - - - 0x0026F5 00:E6E5: 8D 0C 03  STA ram_sfx_bullet_hit_brick
 C - - - - - 0x0026F8 00:E6E8: 4C 09 E7  JMP loc_E709
 bra_E6EB:
 C - - - - - 0x0026FB 00:E6EB: B1 11     LDA (ram_0011_t14_data),Y
-C - - - - - 0x0026FD 00:E6ED: C9 10     CMP #$10
+C - - - - - 0x0026FD 00:E6ED: C9 10     CMP #con_block_type + $10
 C - - - - - 0x0026FF 00:E6EF: F0 0F     BEQ bra_E700
 C - - - - - 0x002701 00:E6F1: E0 02     CPX #$02
 C - - - - - 0x002703 00:E6F3: B0 05     BCS bra_E6FA_enemy
@@ -6635,30 +6676,31 @@ C - - - - - 0x00270D 00:E6FD: A9 01     LDA #$01
 C - - - - - 0x00270F 00:E6FF: 60        RTS
 bra_E700:
 C - - - - - 0x002710 00:E700: E0 02     CPX #$02
-C - - - - - 0x002712 00:E702: B0 05     BCS bra_E709_enemy
-; if player
+C - - - - - 0x002712 00:E702: B0 05     BCS bra_E709    ; if enemy bullet
+; if player bullet
 C - - - - - 0x002714 00:E704: A9 01     LDA #$01
 C - - - - - 0x002716 00:E706: 8D 0D 03  STA ram_sfx_bullet_hit_wall
-bra_E709_enemy:
-loc_E709:
+bra_E709:
+loc_E709:   ; bzk optimize, replace JMPs with this code
 C D 3 - - - 0x002719 00:E709: A9 00     LDA #$00
 C - - - - - 0x00271B 00:E70B: 60        RTS
 
 
 
-sub_E70C_bullets_collision_with_tanks:
-C - - - - - 0x00271C 00:E70C: A9 01     LDA #$01
+sub_E70C_check_bullets_collision_with_player_tanks:
+C - - - - - 0x00271C 00:E70C: A9 01     LDA #con_max_players
 C - - - - - 0x00271E 00:E70E: 85 5A     STA ram_005A_t12_player_index
 bra_E710_loop:
 C - - - - - 0x002720 00:E710: A6 5A     LDX ram_005A_t12_player_index
 C - - - - - 0x002722 00:E712: B5 A0     LDA ram_tank_flags,X
-C - - - - - 0x002724 00:E714: 10 04     BPL bra_E71A
+C - - - - - 0x002724 00:E714: 10 04     BPL bra_E71A_player_is_dead    ; if tank is exploding
 C - - - - - 0x002726 00:E716: C9 E0     CMP #$E0
-C - - - - - 0x002728 00:E718: 90 03     BCC bra_E71D
-bra_E71A:
-C - - - - - 0x00272A 00:E71A: 4C 7A E7  JMP loc_E77A
-bra_E71D:
-C - - - - - 0x00272D 00:E71D: A9 07     LDA #$07
+C - - - - - 0x002728 00:E718: 90 03     BCC bra_E71D_player_is_not_respawning
+; if player is respawning
+bra_E71A_player_is_dead:
+C - - - - - 0x00272A 00:E71A: 4C 7A E7  JMP loc_E77A_next_player
+bra_E71D_player_is_not_respawning:
+C - - - - - 0x00272D 00:E71D: A9 07     LDA #con_max_tanks
 C - - - - - 0x00272F 00:E71F: 85 5B     STA ram_005B_t02_enemy_bullet_index
 bra_E721_loop:
 C - - - - - 0x002731 00:E721: A4 5B     LDY ram_005B_t02_enemy_bullet_index
@@ -6698,6 +6740,7 @@ C - - - - - 0x002769 00:E759: 99 CC 00  STA ram_bullet_status,Y
 ; bzk optimize, BEQ
 C - - - - - 0x00276C 00:E75C: 4C 72 E7  JMP loc_E772
 bra_E75F_helmet_is_off:
+; player tank is hit, begin explosion
 C - - - - - 0x00276F 00:E75F: A9 73     LDA #con_tank_flag_explosion + $03
 C - - - - - 0x002771 00:E761: 95 A0     STA ram_tank_flags,X
 C - - - - - 0x002773 00:E763: A9 01     LDA #$01
@@ -6705,24 +6748,24 @@ C - - - - - 0x002775 00:E765: 8D 07 03  STA ram_sfx_explosion_player
 C - - - - - 0x002778 00:E768: A9 00     LDA #$00
 C - - - - - 0x00277A 00:E76A: 9D 01 01  STA ram_tank_upgrade,X
 C - - - - - 0x00277D 00:E76D: 95 A8     STA ram_tank_type,X
-C - - - - - 0x00277F 00:E76F: 4C 7A E7  JMP loc_E77A
+C - - - - - 0x00277F 00:E76F: 4C 7A E7  JMP loc_E77A_next_player
 bra_E772:
 loc_E772:
 C D 3 - - - 0x002782 00:E772: C6 5B     DEC ram_005B_t02_enemy_bullet_index
 C - - - - - 0x002784 00:E774: A5 5B     LDA ram_005B_t02_enemy_bullet_index
 C - - - - - 0x002786 00:E776: C9 01     CMP #$01
 C - - - - - 0x002788 00:E778: D0 A7     BNE bra_E721_loop
-loc_E77A:
+loc_E77A_next_player:
 C D 3 - - - 0x00278A 00:E77A: C6 5A     DEC ram_005A_t12_player_index
 C - - - - - 0x00278C 00:E77C: 10 92     BPL bra_E710_loop
-C - - - - - 0x00278E 00:E77E: A9 07     LDA #$07
+C - - - - - 0x00278E 00:E77E: A9 07     LDA #con_max_tanks
 C - - - - - 0x002790 00:E780: 85 5A     STA ram_005A_t13_tank_index
 loc_E782:
 C D 3 - - - 0x002792 00:E782: A6 5A     LDX ram_005A_t13_tank_index
 C - - - - - 0x002794 00:E784: B5 A0     LDA ram_tank_flags,X
-C - - - - - 0x002796 00:E786: 10 04     BPL bra_E78C
+C - - - - - 0x002796 00:E786: 10 04     BPL bra_E78C    ; if tank is exploding
 C - - - - - 0x002798 00:E788: C9 E0     CMP #$E0
-C - - - - - 0x00279A 00:E78A: 90 03     BCC bra_E78F
+C - - - - - 0x00279A 00:E78A: 90 03     BCC bra_E78F    ; if tank is not respawing
 bra_E78C:
 C - - - - - 0x00279C 00:E78C: 4C 34 E8  JMP loc_E834
 bra_E78F:
@@ -6799,7 +6842,7 @@ C - - - - - 0x002813 00:E803: E9 04     SBC #$04
 C - - - - - 0x002815 00:E805: AA        TAX
 ; calculate whos bullet this is
 C - - - - - 0x002816 00:E806: A5 5B     LDA ram_005B_t03_bullet_index
-C - - - - - 0x002818 00:E808: 29 01     AND #$01
+C - - - - - 0x002818 00:E808: 29 01     AND #$01    ; con_max_players ???
 C - - - - - 0x00281A 00:E80A: 85 47     STA ram_0047_t05_player_index
 C - - - - - 0x00281C 00:E80C: D0 05     BNE bra_E813_2nd_player
 ; if 1st player
@@ -6832,18 +6875,18 @@ bra_E834:
 loc_E834:
 C D 3 - - - 0x002844 00:E834: C6 5A     DEC ram_005A_t13_tank_index
 C - - - - - 0x002846 00:E836: A5 5A     LDA ram_005A_t13_tank_index
-C - - - - - 0x002848 00:E838: C9 01     CMP #$01
+C - - - - - 0x002848 00:E838: C9 01     CMP #$01    ; con_max_players ???
 C - - - - - 0x00284A 00:E83A: F0 03     BEQ bra_E83F
 C - - - - - 0x00284C 00:E83C: 4C 82 E7  JMP loc_E782
 bra_E83F:
-C - - - - - 0x00284F 00:E83F: A9 01     LDA #$01
+C - - - - - 0x00284F 00:E83F: A9 01     LDA #con_max_players
 C - - - - - 0x002851 00:E841: 85 5A     STA ram_005A_t14_player_index
 bra_E843_loop:
 C - - - - - 0x002853 00:E843: A6 5A     LDX ram_005A_t14_player_index
 C - - - - - 0x002855 00:E845: B5 A0     LDA ram_tank_flags,X
-C - - - - - 0x002857 00:E847: 10 04     BPL bra_E84D
+C - - - - - 0x002857 00:E847: 10 04     BPL bra_E84D    ; if tank is exploding
 C - - - - - 0x002859 00:E849: C9 E0     CMP #$E0
-C - - - - - 0x00285B 00:E84B: 90 03     BCC bra_E850
+C - - - - - 0x00285B 00:E84B: 90 03     BCC bra_E850    ; if tank is not respawing
 bra_E84D:
 C - - - - - 0x00285D 00:E84D: 4C B5 E8  JMP loc_E8B5
 bra_E850:
@@ -6860,7 +6903,7 @@ C - - - - - 0x002871 00:E861: C9 40     CMP #$40
 C - - - - - 0x002873 00:E863: D0 4C     BNE bra_E8B1
 C - - - - - 0x002875 00:E865: A5 5A     LDA ram_005A_t14_player_index
 C - - - - - 0x002877 00:E867: 45 5B     EOR ram_005B_t04_bullet_index
-C - - - - - 0x002879 00:E869: 29 01     AND #$01
+C - - - - - 0x002879 00:E869: 29 01     AND #$01    ; con_max_players ???
 C - - - - - 0x00287B 00:E86B: F0 44     BEQ bra_E8B1
 C - - - - - 0x00287D 00:E86D: B9 B8 00  LDA ram_bullet_pos_X,Y
 C - - - - - 0x002880 00:E870: 38        SEC
@@ -6993,7 +7036,7 @@ C - - - - - 0x00291F 00:E90F: 60        RTS
 
 
 
-sub_E910_bullets_collision_with_bullets:
+sub_E910_check_bullets_collision_with_bullets:
 C - - - - - 0x002920 00:E910: A9 09     LDA #$09
 C - - - - - 0x002922 00:E912: 85 5A     STA ram_005A_t15_bullet_index
 bra_E914_loop:
@@ -7061,14 +7104,14 @@ C - - - - - 0x002984 00:E974: F0 6B     BEQ bra_E9E1_RTS
 C - - - - - 0x002986 00:E976: A5 62     LDA ram_0062_bonus_timer
 C - - - - - 0x002988 00:E978: D0 67     BNE bra_E9E1_RTS
 ; check only players
-C - - - - - 0x00298A 00:E97A: A9 01     LDA #$01
+C - - - - - 0x00298A 00:E97A: A9 01     LDA #con_max_players
 C - - - - - 0x00298C 00:E97C: 85 49     STA ram_0049_t01_player_index
 bra_E97E_loop:
 C - - - - - 0x00298E 00:E97E: A6 49     LDX ram_0049_t01_player_index
 C - - - - - 0x002990 00:E980: B5 A0     LDA ram_tank_flags,X
-C - - - - - 0x002992 00:E982: 10 59     BPL bra_E9DD_fail
+C - - - - - 0x002992 00:E982: 10 59     BPL bra_E9DD_fail    ; if tank is exploding
 C - - - - - 0x002994 00:E984: C9 E0     CMP #$E0
-C - - - - - 0x002996 00:E986: B0 55     BCS bra_E9DD_fail
+C - - - - - 0x002996 00:E986: B0 55     BCS bra_E9DD_fail    ; if tank is respawing
 ; check X position
 C - - - - - 0x002998 00:E988: B5 90     LDA ram_tank_pos_X,X
 C - - - - - 0x00299A 00:E98A: 38        SEC
@@ -7187,16 +7230,16 @@ C - - - - - 0x002A26 00:EA16: 60        RTS
 
 ofs_bonus_EA17_04_grenade:
 ; blow enemies up
-C - - J - - 0x002A27 00:EA17: A9 07     LDA #$07
+C - - J - - 0x002A27 00:EA17: A9 07     LDA #con_max_tanks
 C - - - - - 0x002A29 00:EA19: 85 5A     STA ram_005A_t16_enemy_tank_index
 C - - - - - 0x002A2B 00:EA1B: A9 01     LDA #$01
 C - - - - - 0x002A2D 00:EA1D: 8D 0A 03  STA ram_sfx_explosion_enemy
 bra_EA20_loop:
 C - - - - - 0x002A30 00:EA20: A4 5A     LDY ram_005A_t16_enemy_tank_index
 C - - - - - 0x002A32 00:EA22: B9 A0 00  LDA ram_tank_flags,Y
-C - - - - - 0x002A35 00:EA25: 10 0E     BPL bra_EA35
+C - - - - - 0x002A35 00:EA25: 10 0E     BPL bra_EA35    ; if tank is exploding
 C - - - - - 0x002A37 00:EA27: C9 E0     CMP #$E0
-C - - - - - 0x002A39 00:EA29: B0 0A     BCS bra_EA35
+C - - - - - 0x002A39 00:EA29: B0 0A     BCS bra_EA35    ; if tank is respawing
 C - - - - - 0x002A3B 00:EA2B: A9 73     LDA #con_tank_flag_explosion + $03
 C - - - - - 0x002A3D 00:EA2D: 99 A0 00  STA ram_tank_flags,Y
 C - - - - - 0x002A40 00:EA30: A9 00     LDA #$00
@@ -7204,7 +7247,7 @@ C - - - - - 0x002A42 00:EA32: 99 A8 00  STA ram_tank_type,Y
 bra_EA35:
 C - - - - - 0x002A45 00:EA35: C6 5A     DEC ram_005A_t16_enemy_tank_index
 C - - - - - 0x002A47 00:EA37: A5 5A     LDA ram_005A_t16_enemy_tank_index
-C - - - - - 0x002A49 00:EA39: C9 01     CMP #$01    ; 02-07
+C - - - - - 0x002A49 00:EA39: C9 01     CMP #con_max_players    ; 02-07
 C - - - - - 0x002A4B 00:EA3B: D0 E3     BNE bra_EA20_loop
 C - - - - - 0x002A4D 00:EA3D: 60        RTS
 
