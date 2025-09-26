@@ -4189,7 +4189,7 @@ C - - J - - 0x001BE4 00:9BD4: AD 27 07  LDA ram_plr_counter
 C - - - - - 0x001BE7 00:9BD7: C9 02     CMP #$02
 C - - - - - 0x001BE9 00:9BD9: D0 09     BNE bra_9BE4
 ; if 2 players mode
-C - - - - - 0x001BEB 00:9BDB: 20 E9 9B  JSR sub_9BE9
+C - - - - - 0x001BEB 00:9BDB: 20 E9 9B  JSR sub_9BE9_calculate_punishment_for_opponent
 C - - - - - 0x001BEE 00:9BDE: 20 01 9C  JSR sub_9C01
 C - - - - - 0x001BF1 00:9BE1: 4C E8 9B  JMP loc_9BE8_RTS
 bra_9BE4:
@@ -4200,20 +4200,22 @@ C D 0 - - - 0x001BF8 00:9BE8: 60        RTS
 
 
 
-sub_9BE9:
+sub_9BE9_calculate_punishment_for_opponent:
 C - - - - - 0x001BF9 00:9BE9: A5 8F     LDA ram_combo_counter_1
 C - - - - - 0x001BFB 00:9BEB: C9 02     CMP #$02
-C - - - - - 0x001BFD 00:9BED: 90 0D     BCC bra_9BFC
+C - - - - - 0x001BFD 00:9BED: 90 0D     BCC bra_9BFC_not_enough_combos
+; if 02+ combos, calculate falling blocks amount
 C - - - - - 0x001BFF 00:9BEF: 18        CLC
 C - - - - - 0x001C00 00:9BF0: 65 98     ADC ram_opponent_blocks
 C - - - - - 0x001C02 00:9BF2: 85 98     STA ram_opponent_blocks
+; also calculate proper sfx
 C - - - - - 0x001C04 00:9BF4: A5 58     LDA ram_0057_t01_data + $01
 C - - - - - 0x001C06 00:9BF6: 38        SEC
 C - - - - - 0x001C07 00:9BF7: E9 03     SBC #$03
 ; con_sfx_4_02
 ; con_sfx_4_03
 C - - - - - 0x001C09 00:9BF9: 8D F4 06  STA ram_sfx_4
-bra_9BFC:
+bra_9BFC_not_enough_combos:
 C - - - - - 0x001C0C 00:9BFC: A9 00     LDA #$00
 C - - - - - 0x001C0E 00:9BFE: 85 8F     STA ram_combo_counter_1
 C - - - - - 0x001C10 00:9C00: 60        RTS
