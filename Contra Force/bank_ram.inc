@@ -731,7 +731,7 @@ ram_0017_temp                           = $0017 ; 003C84 003CAF 01641B 01641F 01
     ram_0017_t06                            = ram_0017_temp ; 
     ram_0017_t07                            = ram_0017_temp ; 
     ram_0017_t08_player_index               = ram_0017_temp ; 
-    ram_0017_t09_useless                    = ram_0017_temp ; bzk optimize, useless because of 0x01EE54
+    ram_0017_t09                            = ram_0017_temp ; 
 
 
 
@@ -753,7 +753,7 @@ ram_0018_temp                           = $0018 ; 0033F7 003401 00340B 00340D 00
     ram_0018_t14                            = ram_0018_temp ; 
     ram_0018_t15                            = ram_0018_temp ; 
     ram_0018_t16                            = ram_0018_temp ; 
-    ram_0018_t17_ueless                     = ram_0018_temp ; bzk optimize
+    ram_0018_t17_useless                    = ram_0018_temp ; bzk optimize
 
 
 
@@ -1208,7 +1208,7 @@ ram_005A_flag                           = $005A ; 007FB6 014265 0146EC 015722 01
 
 
 ; handlers at 0x016314
-ram_005B_script                         = $005B ; 016303 0163A8 016406 01646E 0164EE 0165FF 01662A 016633 01BFFE 01D2F1 01F311 01FD5D 
+ram_pause_menu_script                   = $005B ; 016303 0163A8 016406 01646E 0164EE 0165FF 01662A 016633 01BFFE 01D2F1 01F311 01FD5D 
 
 
 

@@ -559,7 +559,7 @@ tbl_81C9:
 
 
 tbl_8204:
-- - - - - - 0x008214 02:8204: FF FF     .word $FFFF ; 00
+- - - - - - 0x008214 02:8204: FF FF     .word $FFFF ; 00 unused 0x008178
 - D 0 - - - 0x008216 02:8206: E1 B5     .word ofs_016_0x00F5F1_01
 - - - - - - 0x008218 02:8208: C8 81     .word ofs_016_81C8_02_RTS
 - D 0 - - - 0x00821A 02:820A: 45 BA     .word ofs_016_0x00FA55_03
@@ -897,6 +897,9 @@ C - - - - - 0x00842F 02:841F: 60        RTS
 
 
 tbl_8420:
+;                                              +---------- 
+;                                              |    +----- 
+;                                              |    |
 - D 0 - - - 0x008430 02:8420: 18        .byte $18, $00   ; 00 
 - D 0 - - - 0x008432 02:8422: 10        .byte $10, $03   ; 01 
 - D 0 - - - 0x008434 02:8424: 23        .byte $23, $02   ; 02 
@@ -998,6 +1001,7 @@ C - - - - - 0x0084C3 02:84B3: 99 34 06  STA ram_obj_animation_hi,Y
 C - - - - - 0x0084C6 02:84B6: 20 47 91  JSR sub_9147_copy_speed
 C - - - - - 0x0084C9 02:84B9: 20 54 91  JSR sub_9154_copy_position
 C - - - - - 0x0084CC 02:84BC: 20 61 91  JSR sub_9161
+; A = 00
 C - - - - - 0x0084CF 02:84BF: 99 F4 06  STA ram_06F4_obj,Y
 C - - - - - 0x0084D2 02:84C2: BD A0 07  LDA ram_07A0_unk,X
 C - - - - - 0x0084D5 02:84C5: 29 02     AND #$02
@@ -1733,7 +1737,7 @@ C - - - - - 0x0088AC 02:889C: A0 00     LDY #$00
 C - - - - - 0x0088AE 02:889E: BD 4C 07  LDA ram_074C_obj,X
 C - - - - - 0x0088B1 02:88A1: 29 3C     AND #$3C
 C - - - - - 0x0088B3 02:88A3: D0 01     BNE bra_88A6
-C - - - - - 0x0088B5 02:88A5: C8        INY
+C - - - - - 0x0088B5 02:88A5: C8        INY ; 01
 bra_88A6:
 C - - - - - 0x0088B6 02:88A6: 98        TYA
 C - - - - - 0x0088B7 02:88A7: 9D B4 07  STA ram_07B4_unk,X
@@ -1778,6 +1782,9 @@ C - - - - - 0x0088F3 02:88E3: E6 3C     INC ram_003C_t02_data_index
 bra_88E5:
 C - - - - - 0x0088F5 02:88E5: 38        SEC
 C - - - - - 0x0088F6 02:88E6: 60        RTS
+
+
+
 ofs_017_88E7_2B:
 C - - J - - 0x0088F7 02:88E7: A5 0A     LDA ram_000A_t03
 sub_0x0088F9:
@@ -2345,6 +2352,7 @@ C - - - - - 0x008BE3 02:8BD3: BD 00 06  LDA ram_0600_obj,X
 C - - - - - 0x008BE6 02:8BD6: 99 00 06  STA ram_0600_obj,Y
 C - - - - - 0x008BE9 02:8BD9: 20 47 91  JSR sub_9147_copy_speed
 C - - - - - 0x008BEC 02:8BDC: 20 61 91  JSR sub_9161
+; A = 00
 C - - - - - 0x008BEF 02:8BDF: 99 78 07  STA ram_0778_unk,Y
 C - - - - - 0x008BF2 02:8BE2: 99 AA 07  STA ram_07AA_unk,Y
 C - - - - - 0x008BF5 02:8BE5: 99 B4 07  STA ram_07B4_unk,Y
@@ -2747,7 +2755,7 @@ C - - - - - 0x008E40 02:8E30: A4 D0     LDY ram_00D0
 C - - - - - 0x008E42 02:8E32: F0 12     BEQ bra_8E46
 bra_8E34:
 C - - - - - 0x008E44 02:8E34: A9 10     LDA #$10
-C - - - - - 0x008E46 02:8E36: A8        TAY
+C - - - - - 0x008E46 02:8E36: A8        TAY ; 10
 C - - - - - 0x008E47 02:8E37: 20 4B 90  JSR sub_904B
 C - - - - - 0x008E4A 02:8E3A: B0 93     BCS bra_8DCF_RTS
 C - - - - - 0x008E4C 02:8E3C: A5 D0     LDA ram_00D0
@@ -3076,6 +3084,9 @@ sub_0x009013:
     ; C
         ; 0 = 
         ; 1 = 
+    ; Z
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x009013 02:9003: BD 36 07  LDA ram_0736_obj,X
 loc_9006:
 C D 0 - - - 0x009016 02:9006: 29 03     AND #$03
@@ -3383,6 +3394,8 @@ C - - - - - 0x009170 02:9160: 60        RTS
 
 
 sub_9161:
+; out
+    ; A = 00
 C - - - - - 0x009171 02:9161: A9 13     LDA #$13
 C - - - - - 0x009173 02:9163: 99 20 07  STA ram_0720_obj,Y
 C - - - - - 0x009176 02:9166: A9 00     LDA #$00
@@ -3675,7 +3688,6 @@ C - - - - - 0x0093B1 02:93A1: A9 04     LDA #$04
 C - - - - - 0x0093B3 02:93A3: 85 00     STA ram_0000_t99_useless_04
 C - - - - - 0x0093B5 02:93A5: B9 82 06  LDA ram_0682_obj,Y
 C - - - - - 0x0093B8 02:93A8: F0 DC     BEQ bra_9386
-; bzk optimize, useless INY + DEC
 C - - - - - 0x0093BA 02:93AA: C8        INY
 C - - - - - 0x0093BB 02:93AB: C6 00     DEC ram_0000_t99_useless_04
 C - - - - - 0x0093BD 02:93AD: D0 DF     BNE bra_938E    ; jmp
@@ -3737,6 +3749,7 @@ sub_93D8:
 sub_0x0093E8:
 ; in
     ; A = 
+    ; Y = 
 C - - - - - 0x0093E8 02:93D8: 85 0A     STA ram_000A_t09
 C - - - - - 0x0093EA 02:93DA: 4C CB 8B  JMP loc_8BCB
 
@@ -4466,6 +4479,7 @@ C D 0 - - - 0x009747 02:9737: 20 3E 85  JSR sub_853E
 loc_973A:
 loc_0x00974A:
 C D 0 - - - 0x00974A 02:973A: 20 4C 9A  JSR sub_9A4C_clear_animation
+; A = 00
 C - - - - - 0x00974D 02:973D: 9D 34 06  STA ram_obj_animation_hi,X
 C - - - - - 0x009750 02:9740: 9D 20 07  STA ram_0720_obj,X
 C - - - - - 0x009753 02:9743: A9 2C     LDA #$2C
@@ -4499,6 +4513,7 @@ C - - - - - 0x009775 02:9765: 20 61 98  JSR sub_9861
 C - - - - - 0x009778 02:9768: 20 4C 9A  JSR sub_9A4C_clear_animation
 C - - - - - 0x00977B 02:976B: E0 0A     CPX #$0A
 C - - - - - 0x00977D 02:976D: B0 F2     BCS bra_9761_RTS
+; A = 00
 C - - - - - 0x00977F 02:976F: 9D F4 06  STA ram_06F4_obj,X
 sub_9772:
 ofs_006_0x009782_16:

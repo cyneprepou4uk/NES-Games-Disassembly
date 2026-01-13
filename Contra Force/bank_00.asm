@@ -10022,9 +10022,6 @@ off_0A_AEA1_12:
 
 
 
-
-
-
 off_0A_AED6_13:
 - D 1 - I - 0x002EE6 00:AED6: 83        .byte $83   ; counter
 - D 1 - I - 0x002EE7 00:AED7: 01        .byte $01   ; spr_A
@@ -10502,9 +10499,6 @@ off_05_B193_15:
 
 
 off_05_B1A1_16:
-
-
-
 off_05_B1A1_17:
 - D 1 - I - 0x0031B1 00:B1A1: 82        .byte $82   ; counter
 - D 1 - I - 0x0031B2 00:B1A2: 03        .byte $03   ; spr_A
@@ -12343,10 +12337,12 @@ C - - - - - 0x003BC5 00:BBB5: 20 99 BB  JSR sub_BB99
 C - - - - - 0x003BC8 00:BBB8: 90 08     BCC bra_BBC2
 bra_BBBA:
 C - - - - - 0x003BCA 00:BBBA: A9 00     LDA #$00
+; bzk optimize, useless STA
 C - - - - - 0x003BCC 00:BBBC: 85 1C     STA ram_001C_t21_useless_00
 C - - - - - 0x003BCE 00:BBBE: 85 1D     STA ram_001D_t02
 C - - - - - 0x003BD0 00:BBC0: F0 26     BEQ bra_BBE8    ; jmp
 bra_BBC2:
+; bzk optimize, useless code up to 0x003BE3
 C - - - - - 0x003BD2 00:BBC2: AD 4E 06  LDA ram_obj_pos_X
 C - - - - - 0x003BD5 00:BBC5: 38        SEC
 C - - - - - 0x003BD6 00:BBC6: ED 4F 06  SBC ram_obj_pos_X + $01
@@ -12355,6 +12351,7 @@ C - - - - - 0x003BDB 00:BBCB: 49 FF     EOR #$FF
 bra_BBCD:
 C - - - - - 0x003BDD 00:BBCD: C9 80     CMP #$80
 C - - - - - 0x003BDF 00:BBCF: B0 04     BCS bra_BBD5
+; bzk optimize, useless LDA + STA
 C - - - - - 0x003BE1 00:BBD1: A9 00     LDA #$00
 C - - - - - 0x003BE3 00:BBD3: 85 1C     STA ram_001C_t21_useless_00
 bra_BBD5:

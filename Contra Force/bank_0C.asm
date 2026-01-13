@@ -4153,7 +4153,7 @@ C - - - - - 0x01BFF8 06:BFE8: 88        DEY
 C - - - - - 0x01BFF9 06:BFE9: E8        INX
 C - - - - - 0x01BFFA 06:BFEA: E0 02     CPX #$02
 C - - - - - 0x01BFFC 06:BFEC: D0 DF     BNE bra_BFCD_loop
-C - - - - - 0x01BFFE 06:BFEE: E6 5B     INC ram_005B_script
+C - - - - - 0x01BFFE 06:BFEE: E6 5B     INC ram_pause_menu_script
 C - - - - - 0x01C000 06:BFF0: A9 03     LDA #$03
 C - - - - - 0x01C002 06:BFF2: 8D A1 05  STA ram_059E_se + $03
 C - - - - - 0x01C005 06:BFF5: 60        RTS

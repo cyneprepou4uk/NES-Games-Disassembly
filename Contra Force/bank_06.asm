@@ -343,7 +343,7 @@ C - - - - - 0x00C1E5 03:A1D5: 05 6C     ORA ram_006C
 C - - - - - 0x00C1E7 03:A1D7: F0 DD     BEQ bra_A1B6_RTS
 C - - - - - 0x00C1E9 03:A1D9: A5 60     LDA ram_0060_hi
 C - - - - - 0x00C1EB 03:A1DB: 85 18     STA ram_0018_t08
-loc_A1DD:
+loc_A1DD_loop:
 C D 1 - - - 0x00C1ED 03:A1DD: A4 63     LDY ram_0063_hi
 C - - - - - 0x00C1EF 03:A1DF: A5 6B     LDA ram_006B
 C - - - - - 0x00C1F1 03:A1E1: 30 01     BMI bra_A1E4
@@ -355,7 +355,7 @@ C - - - - - 0x00C1F9 03:A1E9: 85 1A     STA ram_001A_t02
 C - - - - - 0x00C1FB 03:A1EB: A5 64     LDA ram_0064_lo
 C - - - - - 0x00C1FD 03:A1ED: 29 F8     AND #$F8
 C - - - - - 0x00C1FF 03:A1EF: 85 0C     STA ram_000C_t01_distance
-loc_A1F1:
+loc_A1F1_loop:
 C D 1 - - - 0x00C201 03:A1F1: A0 00     LDY #$00
 C - - - - - 0x00C203 03:A1F3: B1 0A     LDA (ram_000A_t02_data),Y
 C - - - - - 0x00C205 03:A1F5: C9 FF     CMP #$FF
@@ -408,14 +408,14 @@ C - - - - - 0x00C25D 03:A24D: 99 4E 06  STA ram_obj_pos_X,Y
 C - - - - - 0x00C260 03:A250: 20 A3 A3  JSR sub_A3A3
 bra_A253:
 C - - - - - 0x00C263 03:A253: 20 CB A2  JSR sub_A2CB
-C - - - - - 0x00C266 03:A256: 4C F1 A1  JMP loc_A1F1
+C - - - - - 0x00C266 03:A256: 4C F1 A1  JMP loc_A1F1_loop
 bra_A259:
 C - - - - - 0x00C269 03:A259: E6 19     INC ram_0019_t06
 C - - - - - 0x00C26B 03:A25B: A5 19     LDA ram_0019_t06
 C - - - - - 0x00C26D 03:A25D: 29 01     AND #$01
 C - - - - - 0x00C26F 03:A25F: F0 05     BEQ bra_A266_RTS
 C - - - - - 0x00C271 03:A261: E6 18     INC ram_0018_t08
-C - - - - - 0x00C273 03:A263: 4C DD A1  JMP loc_A1DD
+C - - - - - 0x00C273 03:A263: 4C DD A1  JMP loc_A1DD_loop
 bra_A266_RTS:
 C - - - - - 0x00C276 03:A266: 60        RTS
 
@@ -4244,7 +4244,7 @@ sub_B17C:
 C - - - - - 0x00D18C 03:B17C: A0 00     LDY #$00
 C - - - - - 0x00D18E 03:B17E: 20 84 B1  JSR sub_B184
 C - - - - - 0x00D191 03:B181: 90 0E     BCC bra_B191_RTS
-C - - - - - 0x00D193 03:B183: C8        INY
+C - - - - - 0x00D193 03:B183: C8        INY ; 01
 sub_B184:
 C - - - - - 0x00D194 03:B184: B9 82 07  LDA ram_0782_unk,Y
 C - - - - - 0x00D197 03:B187: F0 05     BEQ bra_B18E

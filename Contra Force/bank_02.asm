@@ -1220,10 +1220,10 @@ off_01_A540_70:
 off_01_A543_71:
 - D 1 - I - 0x004553 01:A543: FF        .byte $FF   ; 
 - D 1 - I - 0x004554 01:A544: 32 A5     .word off_FF_A532
+
+
+
 off_01_A546_72:
-
-
-
 - D 1 - I - 0x004556 01:A546: 04        .byte $04   ; counter
 - D 1 - I - 0x004557 01:A547: 01        .byte $01   ; spr_A
 - D 1 - I - 0x004558 01:A548: FA        .byte $FA, $2D, $FE   ; spr_X, spr_T, spr_Y
@@ -2201,8 +2201,6 @@ off_02_A9BA_39:
 - - - - - - 0x0049D3 01:A9C3: 81        .byte $81   ; 
 - - - - - - 0x0049D4 01:A9C4: F9        .byte $F9, $31, $F1   ; 
 
-
-
 - - - - - - 0x0049D7 01:A9C7: 01        .byte $01   ; 
 - - - - - - 0x0049D8 01:A9C8: C1        .byte $C1   ; 
 - - - - - - 0x0049D9 01:A9C9: 01        .byte $01, $31, $F1   ; 
@@ -2692,8 +2690,6 @@ off_02_ABC5_6E:
 - - - - - - 0x004BDA 01:ABCA: 81        .byte $81   ; 
 - - - - - - 0x004BDB 01:ABCB: 40        .byte $40   ; 
 - - - - - - 0x004BDC 01:ABCC: 01        .byte $01, $31, $00   ; 
-
-
 
 - - - - - - 0x004BDF 01:ABCF: 02        .byte $02   ; 
 - - - - - - 0x004BE0 01:ABD0: 00        .byte $00   ; 
@@ -4798,8 +4794,6 @@ off_08_B647_31:
 - D 1 - I - 0x0056A4 01:B694: 02        .byte $02   ; 
 - D 1 - I - 0x0056A5 01:B695: F9        .byte $F9, $93, $31   ; 
 
-
-
 - D 1 - I - 0x0056A8 01:B698: 01        .byte $01   ; 
 - D 1 - I - 0x0056A9 01:B699: 42        .byte $42   ; 
 - D 1 - I - 0x0056AA 01:B69A: 01        .byte $01, $93, $31   ; 
@@ -6027,7 +6021,7 @@ C - - - - - 0x005D46 01:BD36: 90 26     BCC bra_BD5E
 - - - - - - 0x005D4D 01:BD3D: CD 4F 06  CMP ram_obj_pos_X + $01
 - - - - - - 0x005D50 01:BD40: B0 01     BCS bra_BD43
 bra_BD42:
-- - - - - - 0x005D52 01:BD42: C8        INY
+- - - - - - 0x005D52 01:BD42: C8        INY ; 01
 bra_BD43:
 C - - - - - 0x005D53 01:BD43: 98        TYA
 C - - - - - 0x005D54 01:BD44: AA        TAX
@@ -6045,7 +6039,7 @@ bra_BD56:
 C - - - - - 0x005D66 01:BD56: A5 00     LDA ram_0000_t41_lo
 C - - - - - 0x005D68 01:BD58: C9 8B     CMP #$8B
 C - - - - - 0x005D6A 01:BD5A: 90 F9     BCC bra_BD55_RTS
-C - - - - - 0x005D6C 01:BD5C: C8        INY ; 02
+C - - - - - 0x005D6C 01:BD5C: C8        INY ; 01
 C - - - - - 0x005D6D 01:BD5D: 60        RTS
 bra_BD5E:
 C - - - - - 0x005D6E 01:BD5E: A0 00     LDY #$00
@@ -6252,44 +6246,44 @@ C - - - - - 0x005EDC 01:BECC: 60        RTS
 
 
 tbl_BECD:
-- D 1 - - - 0x005EDD 01:BECD: 00        .byte $00   ; E4
-- - - - - - 0x005EDE 01:BECE: FF        .byte $FF   ; E5
-- - - - - - 0x005EDF 01:BECF: F0        .byte $F0   ; E6
-- D 1 - - - 0x005EE0 01:BED0: E0        .byte $E0   ; E7
-- - - - - - 0x005EE1 01:BED1: EF        .byte $EF   ; E8
-- D 1 - - - 0x005EE2 01:BED2: DF        .byte $DF   ; E9
-- D 1 - - - 0x005EE3 01:BED3: D0        .byte $D0   ; EA
-- D 1 - - - 0x005EE4 01:BED4: CF        .byte $CF   ; EB
-- - - - - - 0x005EE5 01:BED5: C0        .byte $C0   ; EC
-- - - - - - 0x005EE6 01:BED6: BF        .byte $BF   ; ED
+- D 1 - - - 0x005EDD 01:BECD: 00        .byte $00   ; E4 
+- - - - - - 0x005EDE 01:BECE: FF        .byte $FF   ; E5 
+- - - - - - 0x005EDF 01:BECF: F0        .byte $F0   ; E6 
+- D 1 - - - 0x005EE0 01:BED0: E0        .byte $E0   ; E7 
+- - - - - - 0x005EE1 01:BED1: EF        .byte $EF   ; E8 
+- D 1 - - - 0x005EE2 01:BED2: DF        .byte $DF   ; E9 
+- D 1 - - - 0x005EE3 01:BED3: D0        .byte $D0   ; EA 
+- D 1 - - - 0x005EE4 01:BED4: CF        .byte $CF   ; EB 
+- - - - - - 0x005EE5 01:BED5: C0        .byte $C0   ; EC 
+- - - - - - 0x005EE6 01:BED6: BF        .byte $BF   ; ED 
 
 
 
 tbl_BED7:
-- D 1 - - - 0x005EE7 01:BED7: 00        .byte $00   ; E4
-- - - - - - 0x005EE8 01:BED8: E0        .byte $E0   ; E5
-- - - - - - 0x005EE9 01:BED9: 00        .byte $00   ; E6
-- D 1 - - - 0x005EEA 01:BEDA: 00        .byte $00   ; E7
-- - - - - - 0x005EEB 01:BEDB: E0        .byte $E0   ; E8
-- D 1 - - - 0x005EEC 01:BEDC: E0        .byte $E0   ; E9
-- D 1 - - - 0x005EED 01:BEDD: 00        .byte $00   ; EA
-- D 1 - - - 0x005EEE 01:BEDE: E0        .byte $E0   ; EB
-- - - - - - 0x005EEF 01:BEDF: 00        .byte $00   ; EC
-- - - - - - 0x005EF0 01:BEE0: E0        .byte $E0   ; ED
+- D 1 - - - 0x005EE7 01:BED7: 00        .byte $00   ; E4 
+- - - - - - 0x005EE8 01:BED8: E0        .byte $E0   ; E5 
+- - - - - - 0x005EE9 01:BED9: 00        .byte $00   ; E6 
+- D 1 - - - 0x005EEA 01:BEDA: 00        .byte $00   ; E7 
+- - - - - - 0x005EEB 01:BEDB: E0        .byte $E0   ; E8 
+- D 1 - - - 0x005EEC 01:BEDC: E0        .byte $E0   ; E9 
+- D 1 - - - 0x005EED 01:BEDD: 00        .byte $00   ; EA 
+- D 1 - - - 0x005EEE 01:BEDE: E0        .byte $E0   ; EB 
+- - - - - - 0x005EEF 01:BEDF: 00        .byte $00   ; EC 
+- - - - - - 0x005EF0 01:BEE0: E0        .byte $E0   ; ED 
 
 
 
 tbl_BEE1:
-- - - - - - 0x005EF1 01:BEE1: 00        .byte $00   ; E4
-- - - - - - 0x005EF2 01:BEE2: 00        .byte $00   ; E5
-- - - - - - 0x005EF3 01:BEE3: E0        .byte $E0   ; E6
-- D 1 - - - 0x005EF4 01:BEE4: C0        .byte $C0   ; E7
-- - - - - - 0x005EF5 01:BEE5: E0        .byte $E0   ; E8
-- D 1 - - - 0x005EF6 01:BEE6: C0        .byte $C0   ; E9
-- - - - - - 0x005EF7 01:BEE7: A0        .byte $A0   ; EA
-- D 1 - - - 0x005EF8 01:BEE8: A0        .byte $A0   ; EB
-- - - - - - 0x005EF9 01:BEE9: 80        .byte $80   ; EC
-- - - - - - 0x005EFA 01:BEEA: 80        .byte $80   ; ED
+- - - - - - 0x005EF1 01:BEE1: 00        .byte $00   ; E4 
+- - - - - - 0x005EF2 01:BEE2: 00        .byte $00   ; E5 
+- - - - - - 0x005EF3 01:BEE3: E0        .byte $E0   ; E6 
+- D 1 - - - 0x005EF4 01:BEE4: C0        .byte $C0   ; E7 
+- - - - - - 0x005EF5 01:BEE5: E0        .byte $E0   ; E8 
+- D 1 - - - 0x005EF6 01:BEE6: C0        .byte $C0   ; E9 
+- - - - - - 0x005EF7 01:BEE7: A0        .byte $A0   ; EA 
+- D 1 - - - 0x005EF8 01:BEE8: A0        .byte $A0   ; EB 
+- - - - - - 0x005EF9 01:BEE9: 80        .byte $80   ; EC 
+- - - - - - 0x005EFA 01:BEEA: 80        .byte $80   ; ED 
 
 
 ; bzk garbage

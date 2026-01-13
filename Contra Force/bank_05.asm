@@ -162,6 +162,9 @@ sub_A0A8:
 C - - - - - 0x00A0B8 02:A0A8: 20 A2 A0  JSR sub_A0A2_07AAx_AND_0F
 C - - - - - 0x00A0BB 02:A0AB: C9 05     CMP #$05
 C - - - - - 0x00A0BD 02:A0AD: 60        RTS
+
+
+
 bra_A0AE:
 C - - - - - 0x00A0BE 02:A0AE: BD 00 06  LDA ram_0600_obj,X
 C - - - - - 0x00A0C1 02:A0B1: 29 FD     AND #$FD
@@ -496,12 +499,14 @@ C - - - - - 0x00A2EB 02:A2DB: 60        RTS
 
 
 sub_A2DC:
+; out
+    ; Y = 
 C - - - - - 0x00A2EC 02:A2DC: A0 00     LDY #$00
 C - - - - - 0x00A2EE 02:A2DE: 20 A8 A0  JSR sub_A0A8
 C - - - - - 0x00A2F1 02:A2E1: 90 02     BCC bra_A2E5
 C - - - - - 0x00A2F3 02:A2E3: A0 03     LDY #$03
 bra_A2E5:
-C - - - - - 0x00A2F5 02:A2E5: C8        INY
+C - - - - - 0x00A2F5 02:A2E5: C8        INY ; 01/04
 C - - - - - 0x00A2F6 02:A2E6: 60        RTS
 
 
@@ -2231,7 +2236,7 @@ C - - - - - 0x00AC20 02:AC10: D0 03     BNE bra_AC15
 bra_AC15:
 ; bzk optimize, useless LDA + STA + STA
 C - - - - - 0x00AC25 02:AC15: A9 00     LDA #$00
-C - - - - - 0x00AC27 02:AC17: 85 18     STA ram_0018_t17_ueless
+C - - - - - 0x00AC27 02:AC17: 85 18     STA ram_0018_t17_useless
 C - - - - - 0x00AC29 02:AC19: 85 19     STA ram_0019_t08_useless
 C - - - - - 0x00AC2B 02:AC1B: 4C 69 AE  JMP loc_AE69
 bra_AC1E:
@@ -2489,7 +2494,7 @@ C - - - - - 0x00ADCA 02:ADBA: D0 09     BNE bra_ADC5    ; if upper view
 C - - - - - 0x00ADCC 02:ADBC: 20 A4 A1  JSR sub_A1A4
 C - - - - - 0x00ADCF 02:ADBF: F0 04     BEQ bra_ADC5
 C - - - - - 0x00ADD1 02:ADC1: A9 00     LDA #$00
-C - - - - - 0x00ADD3 02:ADC3: F0 02     BEQ bra_ADC7
+C - - - - - 0x00ADD3 02:ADC3: F0 02     BEQ bra_ADC7    ; jmp
 bra_ADC5:
 C - - - - - 0x00ADD5 02:ADC5: A5 1A     LDA ram_001A_t04
 bra_ADC7:
@@ -3736,6 +3741,7 @@ C - - - - - 0x00B3F9 02:B3E9: 90 06     BCC bra_B3F1_RTS
 bra_B3EB:
 loc_B3EB:
 C D 1 - - - 0x00B3FB 02:B3EB: 20 4C 9A  JSR sub_0x009A5C_clear_animation
+; A = 00
 C - - - - - 0x00B3FE 02:B3EE: 9D 82 06  STA ram_0682_obj,X
 bra_B3F1_RTS:
 C - - - - - 0x00B401 02:B3F1: 60        RTS
@@ -4610,6 +4616,9 @@ tbl_B81A:
 
 
 tbl_B820:
+;                                              +---------- 
+;                                              |    +----- 
+;                                              |    |
 - D 1 - - - 0x00B830 02:B820: 14        .byte $14, $04   ; 01 
 - D 1 - - - 0x00B832 02:B822: 11        .byte $11, $04   ; 02 
 - D 1 - - - 0x00B834 02:B824: 1D        .byte $1D, $04   ; 03 

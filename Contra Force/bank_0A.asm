@@ -4494,6 +4494,7 @@ C - - - - - 0x015B90 05:9B80: A5 AF     LDA ram_00AF_lo
 C - - - - - 0x015B92 05:9B82: C5 64     CMP ram_0064_lo
 C - - - - - 0x015B94 05:9B84: B0 07     BCS bra_9B8D
 C - - - - - 0x015B96 05:9B86: 20 F1 9C  JSR sub_9CF1
+; A = 00
 C - - - - - 0x015B99 05:9B89: 85 C6     STA ram_00C6
 C - - - - - 0x015B9B 05:9B8B: F0 66     BEQ bra_9BF3    ; jmp
 bra_9B8D:
@@ -6067,7 +6068,7 @@ tbl_A2EE:
 
 
 loc_0x016303:
-C D 1 - - - 0x016303 05:A2F3: A5 5B     LDA ram_005B_script
+C D 1 - - - 0x016303 05:A2F3: A5 5B     LDA ram_pause_menu_script
 C - - - - - 0x016305 05:A2F5: 0A        ASL
 C - - - - - 0x016306 05:A2F6: A8        TAY
 C - - - - - 0x016307 05:A2F7: B9 04 A3  LDA tbl_A304,Y
@@ -6099,7 +6100,7 @@ tbl_A304:
 
 ofs_008_A322_0B:
 C - - J - - 0x016332 05:A322: AD 43 03  LDA ram_0343
-C - - - - - 0x016335 05:A325: F0 71     BEQ bra_A398
+C - - - - - 0x016335 05:A325: F0 71     BEQ bra_A398_next_script
 - - - - - - 0x016337 05:A327: 20 93 FE  JSR sub_0x01FEA3_disable_rendering
 - - - - - - 0x01633A 05:A32A: A9 00     LDA #$00
 - - - - - - 0x01633C 05:A32C: 8D 44 03  STA ram_0344
@@ -6172,9 +6173,9 @@ ofs_008_A394_0C:
 C - - J - - 0x0163A4 05:A394: A9 01     LDA #$01
 bra_A396:
 C - - - - - 0x0163A6 05:A396: 85 5A     STA ram_005A_flag
-bra_A398:
+bra_A398_next_script:
 sub_A398:
-C - - - - - 0x0163A8 05:A398: E6 5B     INC ram_005B_script
+C - - - - - 0x0163A8 05:A398: E6 5B     INC ram_pause_menu_script
 C - - - - - 0x0163AA 05:A39A: 60        RTS
 
 
@@ -6188,7 +6189,7 @@ C - - - - - 0x0163B1 05:A3A1: 4C B6 A3  JMP loc_A3B6
 
 ofs_008_A3A4_00:
 C - - J - - 0x0163B4 05:A3A4: 20 1A F5  JSR sub_0x01F52A
-C - - - - - 0x0163B7 05:A3A7: B0 EF     BCS bra_A398
+C - - - - - 0x0163B7 05:A3A7: B0 EF     BCS bra_A398_next_script
 C - - - - - 0x0163B9 05:A3A9: 60        RTS
 
 
@@ -6197,10 +6198,13 @@ ofs_008_A3AA_03:
 C - - J - - 0x0163BA 05:A3AA: 20 B9 A3  JSR sub_A3B9_prepare_palette_pointers
 C - - - - - 0x0163BD 05:A3AD: 20 6C F5  JSR sub_0x01F57C
 C - - - - - 0x0163C0 05:A3B0: 4C B6 A3  JMP loc_A3B6
+
+
+
 ofs_008_A3B3_0D:
 C - - J - - 0x0163C3 05:A3B3: 20 69 F5  JSR sub_0x01F579
 loc_A3B6:
-C D 1 - - - 0x0163C6 05:A3B6: B0 E0     BCS bra_A398
+C D 1 - - - 0x0163C6 05:A3B6: B0 E0     BCS bra_A398_next_script
 C - - - - - 0x0163C8 05:A3B8: 60        RTS
 
 
@@ -6245,7 +6249,7 @@ C - - - - - 0x0163FE 05:A3EE: 85 22     STA ram_0022_t03_useless
 C - - - - - 0x016400 05:A3F0: A5 FF     LDA ram_for_2000
 C - - - - - 0x016402 05:A3F2: 29 FC     AND #$FC
 C - - - - - 0x016404 05:A3F4: 85 FF     STA ram_for_2000
-C - - - - - 0x016406 05:A3F6: E6 5B     INC ram_005B_script
+C - - - - - 0x016406 05:A3F6: E6 5B     INC ram_pause_menu_script
 C - - - - - 0x016408 05:A3F8: A9 00     LDA #$00
 C - - - - - 0x01640A 05:A3FA: 85 1E     STA ram_001E_t11
 C - - - - - 0x01640C 05:A3FC: 20 93 FE  JSR sub_0x01FEA3_disable_rendering
@@ -6305,7 +6309,7 @@ C - - - - - 0x016466 05:A456: CA        DEX
 C - - - - - 0x016467 05:A457: 10 F3     BPL bra_A44C_loop
 C - - - - - 0x016469 05:A459: A9 03     LDA #$03
 C - - - - - 0x01646B 05:A45B: 20 CD A6  JSR sub_A6CD
-C - - - - - 0x01646E 05:A45E: E6 5B     INC ram_005B_script
+C - - - - - 0x01646E 05:A45E: E6 5B     INC ram_pause_menu_script
 bra_A460_RTS:
 C - - - - - 0x016470 05:A460: 60        RTS
 
@@ -6333,6 +6337,7 @@ C - - - - - 0x01648D 05:A47D: 09 80     ORA #$80
 C - - - - - 0x01648F 05:A47F: 85 21     STA ram_0021_t02
 C - - - - - 0x016491 05:A481: B9 B3 00  LDA ram_lives,Y
 C - - - - - 0x016494 05:A484: D0 05     BNE bra_A48B
+; A = 00
 - - - - - - 0x016496 05:A486: 99 7F 00  STA ram_player_stats,Y
 - - - - - - 0x016499 05:A489: F0 E0     BEQ bra_A46B_loop    ; jmp
 bra_A48B:
@@ -6383,7 +6388,7 @@ C - - - - - 0x0164E6 05:A4D6: A5 42     LDA ram_btn_hold_1
 C - - - - - 0x0164E8 05:A4D8: 05 43     ORA ram_btn_hold_1 + $01
 C - - - - - 0x0164EA 05:A4DA: 29 10     AND #con_btn_Start
 C - - - - - 0x0164EC 05:A4DC: F0 02     BEQ bra_A4E0_RTS
-C - - - - - 0x0164EE 05:A4DE: E6 5B     INC ram_005B_script
+C - - - - - 0x0164EE 05:A4DE: E6 5B     INC ram_pause_menu_script
 bra_A4E0_RTS:
 C - - - - - 0x0164F0 05:A4E0: 60        RTS
 
@@ -6460,8 +6465,8 @@ bra_A556:
 - - - - - - 0x016566 05:A556: A9 01     LDA #$01
 bra_A558:
 - - - - - - 0x016568 05:A558: 20 CD A6  JSR sub_A6CD
-- - - - - - 0x01656B 05:A55B: C6 5B     DEC ram_005B_script
-- - - - - - 0x01656D 05:A55D: C6 5B     DEC ram_005B_script
+- - - - - - 0x01656B 05:A55B: C6 5B     DEC ram_pause_menu_script
+- - - - - - 0x01656D 05:A55D: C6 5B     DEC ram_pause_menu_script
 - - - - - - 0x01656F 05:A55F: A9 40     LDA #$40
 - - - - - - 0x016571 05:A561: 85 4B     STA ram_004B_cutscene_counter
 - - - - - - 0x016573 05:A563: 60        RTS
@@ -6487,6 +6492,7 @@ C - - - - - 0x016595 05:A585: A2 01     LDX #$01
 bra_A587_loop:
 C - - - - - 0x016597 05:A587: BD 82 07  LDA ram_0782_unk,X
 C - - - - - 0x01659A 05:A58A: D0 0A     BNE bra_A596
+; A = 00
 C - - - - - 0x01659C 05:A58C: 9D 1A 06  STA ram_obj_animation_lo,X
 C - - - - - 0x01659F 05:A58F: 9D 82 07  STA ram_0782_unk,X
 C - - - - - 0x0165A2 05:A592: 95 B1     STA ram_current_player,X
@@ -6537,7 +6543,7 @@ C - - - - - 0x0165F8 05:A5E8: F0 05     BEQ bra_A5EF
 C - - - - - 0x0165FA 05:A5EA: A9 FF     LDA #$FF
 C - - - - - 0x0165FC 05:A5EC: 8D 74 03  STA ram_0374_cpu
 bra_A5EF:
-C - - - - - 0x0165FF 05:A5EF: E6 5B     INC ram_005B_script
+C - - - - - 0x0165FF 05:A5EF: E6 5B     INC ram_pause_menu_script
 C - - - - - 0x016601 05:A5F1: 60        RTS
 
 
@@ -6574,7 +6580,7 @@ C - - - - - 0x01661F 05:A60F: 85 2B     STA ram_002B_flags
 C - - - - - 0x016621 05:A611: 8D 44 03  STA ram_0344
 C - - - - - 0x016624 05:A614: 20 C2 D9  JSR sub_0x01D9D2
 C - - - - - 0x016627 05:A617: 20 68 99  JSR sub_9968
-C - - - - - 0x01662A 05:A61A: E6 5B     INC ram_005B_script
+C - - - - - 0x01662A 05:A61A: E6 5B     INC ram_pause_menu_script
 C - - - - - 0x01662C 05:A61C: 4C F5 9B  JMP loc_9BF5_RTS
 
 
@@ -6582,7 +6588,7 @@ C - - - - - 0x01662C 05:A61C: 4C F5 9B  JMP loc_9BF5_RTS
 ofs_008_A61F_0E:
 C - - J - - 0x01662F 05:A61F: A9 00     LDA #$00
 C - - - - - 0x016631 05:A621: 85 45     STA ram_pause_flag
-C - - - - - 0x016633 05:A623: 85 5B     STA ram_005B_script
+C - - - - - 0x016633 05:A623: 85 5B     STA ram_pause_menu_script
 C - - - - - 0x016635 05:A625: 85 C3     STA ram_00C3
 C - - - - - 0x016637 05:A627: 85 95     STA ram_0095_flag
 C - - - - - 0x016639 05:A629: 85 9F     STA ram_009F
