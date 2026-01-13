@@ -315,7 +315,7 @@ C - - - - - 0x02C14E 0B:813E: 20 E6 B6  JSR sub_B6E6
 C - - - - - 0x02C151 0B:8141: 18        CLC
 C - - - - - 0x02C152 0B:8142: A5 C7     LDA ram_00C7
 C - - - - - 0x02C154 0B:8144: 69 04     ADC #$04
-C - - - - - 0x02C156 0B:8146: 9D D8 05  STA ram_obj_drop_id,X
+C - - - - - 0x02C156 0B:8146: 9D D8 05  STA ram_05D8_temp,X
 C - - - - - 0x02C159 0B:8149: 20 8A FF  JSR sub_0x03FF9A
 C - - - - - 0x02C15C 0B:814C: A9 00     LDA #$00
 C - - - - - 0x02C15E 0B:814E: 60        RTS
@@ -6771,7 +6771,7 @@ C - - - - - 0x02E2EF 0B:A2DF: 4C F9 A2  JMP loc_A2F9
 loc_A2E2_90_92:
 C D 1 - - - 0x02E2F2 0B:A2E2: A9 33     LDA #con_sfx_destroy_candle
 C - - - - - 0x02E2F4 0B:A2E4: 20 5F E2  JSR sub_0x03E26F_play_sound
-C - - - - - 0x02E2F7 0B:A2E7: BD D8 05  LDA ram_obj_drop_id,X
+C - - - - - 0x02E2F7 0B:A2E7: BD D8 05  LDA ram_05D8_temp,X
 C - - - - - 0x02E2FA 0B:A2EA: C9 AC     CMP #con_obj_id_AC
 C - - - - - 0x02E2FC 0B:A2EC: F0 EA     BEQ bra_A2D8
 C - - - - - 0x02E2FE 0B:A2EE: C9 AE     CMP #con_obj_id_AE
@@ -7169,7 +7169,7 @@ C - - - - - 0x02E483 0B:A473: 29 07     AND #$07
 C - - - - - 0x02E485 0B:A475: 0A        ASL
 C - - - - - 0x02E486 0B:A476: A8        TAY
 C - - - - - 0x02E487 0B:A477: B9 BF A4  LDA tbl_A4BF,Y
-C - - - - - 0x02E48A 0B:A47A: 9D D8 05  STA ram_obj_drop_id,X
+C - - - - - 0x02E48A 0B:A47A: 9D D8 05  STA ram_05D8_temp,X
 C - - - - - 0x02E48D 0B:A47D: B9 C0 A4  LDA tbl_A4BF + $01,Y
 C - - - - - 0x02E490 0B:A480: 9D 45 06  STA ram_obj_0646,X
 ; check for 02-04-xx
@@ -7232,9 +7232,9 @@ tbl_A4BF:
 
 ofs_039_ai_subscript_A4CF_15:
 ; con_ai_subscr_15
-C - - J - - 0x02E4DF 0B:A4CF: DE D8 05  DEC ram_obj_drop_id,X
+C - - J - - 0x02E4DF 0B:A4CF: DE D8 05  DEC ram_05D8_temp,X
 C - - - - - 0x02E4E2 0B:A4D2: 10 0E     BPL bra_A4E2_RTS
-C - - - - - 0x02E4E4 0B:A4D4: BC D8 05  LDY ram_obj_drop_id,X
+C - - - - - 0x02E4E4 0B:A4D4: BC D8 05  LDY ram_05D8_temp,X
 C - - - - - 0x02E4E7 0B:A4D7: C8        INY
 C - - - - - 0x02E4E8 0B:A4D8: D0 08     BNE bra_A4E2_RTS
 C - - - - - 0x02E4EA 0B:A4DA: DE 45 06  DEC ram_obj_0646,X
@@ -7273,7 +7273,7 @@ ofs_039_ai_subscript_A4F7_1A_set_timer:
 ; con_ai_subscr_1A_set_timer
 C - - J - - 0x02E507 0B:A4F7: A0 01     LDY #$01
 C - - - - - 0x02E509 0B:A4F9: B1 02     LDA (ram_0002_t007_data),Y
-C - - - - - 0x02E50B 0B:A4FB: 9D D8 05  STA ram_obj_drop_id,X
+C - - - - - 0x02E50B 0B:A4FB: 9D D8 05  STA ram_05D8_t003_delay,X
 C - - - - - 0x02E50E 0B:A4FE: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02E511 0B:A501: 60        RTS
 
@@ -7281,7 +7281,7 @@ C - - - - - 0x02E511 0B:A501: 60        RTS
 
 ofs_039_ai_subscript_A502_1B_count_down_timer:
 ; con_ai_subscr_1B_count_down_timer
-C - - J - - 0x02E512 0B:A502: DE D8 05  DEC ram_obj_drop_id,X
+C - - J - - 0x02E512 0B:A502: DE D8 05  DEC ram_05D8_t003_delay,X
 C - - - - - 0x02E515 0B:A505: F0 08     BEQ bra_A50F
 C - - - - - 0x02E517 0B:A507: 60        RTS
 

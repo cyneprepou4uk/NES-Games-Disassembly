@@ -11459,7 +11459,7 @@ tbl_B855:
 sub_B859:
 C - - - - - 0x003869 00:B859: A2 01     LDX #$01
 bra_B85B_loop:
-C - - - - - 0x00386B 00:B85B: BD D8 05  LDA ram_obj_drop_id,X
+C - - - - - 0x00386B 00:B85B: BD D8 05  LDA ram_05D8_t002_timer,X
 C - - - - - 0x00386E 00:B85E: D0 0B     BNE bra_B86B
 C - - - - - 0x003870 00:B860: A9 00     LDA #$00
 C - - - - - 0x003872 00:B862: 9D 00 04  STA ram_obj_anim_id,X
@@ -11469,7 +11469,7 @@ C - - - - - 0x003876 00:B866: E0 06     CPX #$06
 C - - - - - 0x003878 00:B868: 90 F1     BCC bra_B85B_loop
 C - - - - - 0x00387A 00:B86A: 60        RTS
 bra_B86B:
-C - - - - - 0x00387B 00:B86B: DE D8 05  DEC ram_obj_drop_id,X
+C - - - - - 0x00387B 00:B86B: DE D8 05  DEC ram_05D8_t002_timer,X
 C - - - - - 0x00387E 00:B86E: A9 40     LDA #$40
 C - - - - - 0x003880 00:B870: 18        CLC
 C - - - - - 0x003881 00:B871: 7D 37 05  ADC ram_obj_spd_Y_fr,X
@@ -11500,7 +11500,7 @@ C - - - - - 0x0038B5 00:B8A5: A2 01     LDX #$01
 C - - - - - 0x0038B7 00:B8A7: A0 00     LDY #$00
 bra_B8A9_loop:
 C - - - - - 0x0038B9 00:B8A9: A9 20     LDA #$20
-C - - - - - 0x0038BB 00:B8AB: 9D D8 05  STA ram_obj_drop_id,X
+C - - - - - 0x0038BB 00:B8AB: 9D D8 05  STA ram_05D8_t002_timer,X
 C - - - - - 0x0038BE 00:B8AE: A9 0E     LDA #con_obj_type_0E
 C - - - - - 0x0038C0 00:B8B0: 9D 8C 04  STA ram_obj_type,X
 C - - - - - 0x0038C3 00:B8B3: A9 18     LDA #$18

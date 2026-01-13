@@ -9399,7 +9399,7 @@ C - - - - - 0x03FEFD 0F:FEED: 9D 65 05  STA ram_obj_stun_timer,X
 C - - - - - 0x03FF00 0F:FEF0: 9D C4 04  STA ram_obj_pos_X_fr,X
 C - - - - - 0x03FF03 0F:FEF3: 9D DB 04  STA ram_obj_pos_Y_fr,X
 C - - - - - 0x03FF06 0F:FEF6: 9D C1 05  STA ram_obj_ai_subscript,X
-C - - - - - 0x03FF09 0F:FEF9: 9D D8 05  STA ram_obj_drop_id,X
+C - - - - - 0x03FF09 0F:FEF9: 9D D8 05  STA ram_05D8_t007,X
 C - - - - - 0x03FF0C 0F:FEFC: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x03FF0F 0F:FEFF: 9D 06 06  STA ram_obj_config,X
 C - - - - - 0x03FF12 0F:FF02: 9D 1D 06  STA ram_061D_obj,X

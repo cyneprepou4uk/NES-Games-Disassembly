@@ -336,7 +336,7 @@ C - - - - - 0x0281C0 0A:81B0: B1 00     LDA (ram_0000_t006_data),Y
 C - - - - - 0x0281C2 0A:81B2: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x0281C5 0A:81B5: C8        INY ; 01
 C - - - - - 0x0281C6 0A:81B6: B1 00     LDA (ram_0000_t006_data),Y
-C - - - - - 0x0281C8 0A:81B8: 9D D8 05  STA ram_obj_drop_id,X
+C - - - - - 0x0281C8 0A:81B8: 9D D8 05  STA ram_05D8_temp,X
 C - - - - - 0x0281CB 0A:81BB: C8        INY ; 02
 C - - - - - 0x0281CC 0A:81BC: B1 00     LDA (ram_0000_t006_data),Y
 C - - - - - 0x0281CE 0A:81BE: 18        CLC
@@ -495,7 +495,7 @@ C - - - - - 0x0282C9 0A:82B9: B1 98     LDA (ram_0098_t000_blk_spawner_data),Y
 C - - - - - 0x0282CB 0A:82BB: 9D 38 04  STA ram_obj_pos_X_lo,X
 C - - - - - 0x0282CE 0A:82BE: C8        INY
 C - - - - - 0x0282CF 0A:82BF: B1 98     LDA (ram_0098_t000_blk_spawner_data),Y
-C - - - - - 0x0282D1 0A:82C1: 9D D8 05  STA ram_obj_drop_id,X
+C - - - - - 0x0282D1 0A:82C1: 9D D8 05  STA ram_05D8_temp,X
 C - - - - - 0x0282D4 0A:82C4: A5 0A     LDA ram_000A_t030_pos_Y_lo
 C - - - - - 0x0282D6 0A:82C6: 9D 1C 04  STA ram_obj_pos_Y_lo,X
 C - - - - - 0x0282D9 0A:82C9: BD 4E 05  LDA ram_obj_id,X
@@ -3574,7 +3574,7 @@ C - - - - - 0x029183 0A:9173: 9D 06 06  STA ram_obj_config,X
 C - - - - - 0x029186 0A:9176: 0A        ASL
 C - - - - - 0x029187 0A:9177: 0A        ASL
 C - - - - - 0x029188 0A:9178: 0A        ASL
-C - - - - - 0x029189 0A:9179: 9D D8 05  STA ram_obj_drop_id,X
+C - - - - - 0x029189 0A:9179: 9D D8 05  STA ram_05D8_t001_delay,X
 C - - - - - 0x02918C 0A:917C: A9 80     LDA #$80
 C - - - - - 0x02918E 0A:917E: 9D EF 05  STA ram_obj_ai_script,X
 C - - - - - 0x029191 0A:9181: A4 16     LDY ram_0016_t017_loop_counter
