@@ -261,11 +261,12 @@ C - - - - - 0x0001A1 00:8191: 85 CF     STA ram_00CE_t01_data + $01
 C - - - - - 0x0001A3 00:8193: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001A5 00:8195: C8        INY ; 0B
 ; bzk optimize, useless STA
-C - - - - - 0x0001A6 00:8196: 85 02     STA ram_0002_t10_useless
+C - - - - - 0x0001A6 00:8196: 85 02     STA ram_0002_tFF_useless
 C - - - - - 0x0001A8 00:8198: 85 C8     STA ram_00C8_t01_data
 C - - - - - 0x0001AA 00:819A: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001AC 00:819C: C8        INY ; 0C
-C - - - - - 0x0001AD 00:819D: 85 03     STA ram_0003_temp
+; bzk optimize, useless STA
+C - - - - - 0x0001AD 00:819D: 85 03     STA ram_0003_tFF_useless
 C - - - - - 0x0001AF 00:819F: 85 C9     STA ram_00C8_t01_data + $01
 C - - - - - 0x0001B1 00:81A1: B1 00     LDA (ram_0000_t20_round_data),Y
 C - - - - - 0x0001B3 00:81A3: C8        INY ; 0D

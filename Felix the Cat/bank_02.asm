@@ -112,7 +112,7 @@ C - - - - - 0x00407D 01:806D: 29 04     AND #con_0776_04
 C - - - - - 0x00407F 01:806F: D0 51     BNE bra_80C2_RTS
 C - - - - - 0x004081 01:8071: 20 60 81  JSR sub_8160    ; possible PLA + PLA
 C - - - - - 0x004084 01:8074: A4 00     LDY ram_0000_t36_data_index
-C - - - - - 0x004086 01:8076: C6 03     DEC ram_0003_temp
+C - - - - - 0x004086 01:8076: C6 03     DEC ram_0002_t03_data + $01
 C - - - - - 0x004088 01:8078: B1 02     LDA (ram_0002_t03_data),Y
 C - - - - - 0x00408A 01:807A: F0 46     BEQ bra_80C2_RTS
 C - - - - - 0x00408C 01:807C: 30 45     BMI bra_80C3_80_FF
