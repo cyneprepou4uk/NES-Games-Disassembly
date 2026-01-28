@@ -24,6 +24,7 @@ con_btns_SSAB                           = con_btn_Start + con_btn_Select + con_b
 
 
 ; ram_ariel_status
+; handlers at 0x01C9FC
 con_ariel_default                       = $00 ; idle/moving/holding weapon
 con_ariel_turning                       = $01 ; turning around
 con_ariel_jumping_out_of_water          = $02 ; jumping out of water
@@ -139,6 +140,8 @@ con_obj_id_teleport                     = $5E ; one specific teleport at stage 5
 
 
 
+; ram_music_id
+; ram_sfx_queue
 ; music, melody
 ; need commments at 0x014A53
 con_music_title_screen                  = $00 ; logo
@@ -181,16 +184,19 @@ con_sfx_sand                            = $21 ;
 con_sfx_22                              = $22 ; 
 con_sfx_23                              = $23 ; 
 
-; music control bytes
+; 
+con_se_cb_88                            = $88 ; 
+
+; sound engine control bytes
 ; need commments at 0x0141C5
-con_sound_ctrl_F0                       = $F0 ; 
-; con_sound_ctrl_F1                     = $F1 ; 
-con_sound_ctrl_F2                       = $F2 ; 
-con_sound_ctrl_pause                    = $F3 ; 
-con_sound_ctrl_resume                   = $F4 ; 
-; con_sound_ctrl_F5                     = $F5 ; 
-; con_sound_ctrl_F6                     = $F6 ; 
-; con_sound_ctrl_F7                     = $F7 ; 
+con_se_cb__F0                           = $F0 ; 
+; con_se_cb__F1                         = $F1 ; 
+con_se_cb__F2                           = $F2 ; 
+con_se_cb__pause                        = $F3 ; 
+con_se_cb__resume                       = $F4 ; 
+; con_se_cb__F5                         = $F5 ; 
+; con_se_cb__F6                         = $F6 ; 
+; con_se_cb__F7                         = $F7 ; 
 
 
 
