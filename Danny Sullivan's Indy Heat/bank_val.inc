@@ -185,7 +185,7 @@ con_music_01                            = $01 ; 04 = ILLINOIS
 con_music_02                            = $02 ; 07 = COLORADO
 con_music_03                            = $03 ; 
 con_music_04                            = $04 ; 06 = E. CANADA
-con_music_05                            = $05 ; 
+con_music_05                            = $05 ; title screen
 con_music_06                            = $06 ; 
 con_music_07                            = $07 ; 00 = W. CANADA
 con_music_08                            = $08 ; 05 = OHIO
