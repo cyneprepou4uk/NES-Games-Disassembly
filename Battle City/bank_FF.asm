@@ -4585,7 +4585,7 @@ C - - - - - 0x001BDD 00:DBCD: F0 18     BEQ bra_DBE7_skip    ; if moving in the 
 C - - - - - 0x001BDF 00:DBCF: 49 02     EOR #$02
 C - - - - - 0x001BE1 00:DBD1: C5 00     CMP ram_0000_t07_converted_Dpad_btn
 C - - - - - 0x001BE3 00:DBD3: F0 12     BEQ bra_DBE7_skip    ; if moving in the mirrored direction
-; aling player tank positions
+; align player tank positions
 C - - - - - 0x001BE5 00:DBD5: B5 90     LDA ram_tank_pos_X,X
 C - - - - - 0x001BE7 00:DBD7: 18        CLC
 C - - - - - 0x001BE8 00:DBD8: 69 04     ADC #$04
