@@ -81,6 +81,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 * R.C. Pro-Am II (U) [!] `03DB5562`
 * River City Ransom (U) [!] `C3508F7E`
 * Super Mario Bros. (W) [!] `3337EC46`
+* Teenage Mutant Ninja Turtles III - The Manhattan Project (U) [!] `DBB3BC30`
 * Urban Champion (W) [!] `0770CDAA`
 
 
