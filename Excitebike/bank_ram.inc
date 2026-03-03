@@ -161,8 +161,8 @@ ram_000A_temp                           = $000A ; 0001C5 0004DF 000513 0006E3 00
     
     ram_000A_t02                            = ram_000A_temp ; 
     ram_000A_t03                            = ram_000A_temp ; 
-    ram_000A_t04_loop_counter               = ram_000A_temp ; 
-    ram_000A_t05                            = ram_000A_temp ; 
+    ram_000A_t04_loop_counter_1             = ram_000A_temp ; 
+    ram_000A_t05_lo                         = ram_000A_temp ; 
     ram_000A_t06                            = ram_000A_temp ; 
     ram_000A_t07                            = ram_000A_temp ; 
     ram_000A_t08                            = ram_000A_temp ; 
@@ -170,18 +170,34 @@ ram_000A_temp                           = $000A ; 0001C5 0004DF 000513 0006E3 00
 
 
 
-; todo
+; done
 ram_000B_temp                           = $000B ; 0001C5 0005FB 0006E7 0006F0 000BF1 000CD8 001035 001056 0010DF 0010FC 001213 002158 0021A5 0022AB 0022AD 002301 002507 00250D 002525 00277C 
+    ram_000B_t01                            = ram_000B_temp ; 
+    ram_000B_t02_loop_counter               = ram_000B_temp ; 
+    ram_000B_t03                            = ram_000B_temp ; 
+    ram_000B_t04                            = ram_000B_temp ; 
+    ram_000B_t05_loop_counter_2             = ram_000B_temp ; 
+    ram_000B_t06_hi                         = ram_000B_temp ; 
 
 
 
-; todo
+; done
 ram_000C_temp                           = $000C ; 0001C5 000668 000678 0010DB 0010F4 0010FA 0024DA 00251A 003662 00366B 003674 003676 00367E 
+    ram_000C_t01_data_index                 = ram_000C_temp ; 
+    ram_000C_t02                            = ram_000C_temp ; 
+    ram_000C_t03_loop_counter               = ram_000C_temp ; 
+    ram_000C_t04_loop_counter               = ram_000C_temp ; 
 
 
 
-; todo
+; done
 ram_000D_temp                           = $000D ; 0001C5 000713 000728 000738 000BE1 000C04 000C0E 00102C 001068 0010B8 002194 0021AD 00241B 002432 002436 002AAF 002AC2 
+    ram_000D_t01_max_index                  = ram_000D_temp ; 
+    ram_000D_t02_loop_counter               = ram_000D_temp ; 
+    ram_000D_t03_save_X                     = ram_000D_temp ; 
+    ram_000D_t04_table_index                = ram_000D_temp ; 
+    ram_000D_t05                            = ram_000D_temp ; 
+    ram_000D_t06_loop_counter               = ram_000D_temp ; 
 
 
 
