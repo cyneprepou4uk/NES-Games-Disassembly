@@ -1972,7 +1972,8 @@ C - - - - - 0x000D8C 00:8D7C: F0 16     BEQ bra_8D94
 bra_8D7E:
 C - - - - - 0x000D8E 00:8D7E: E6 92     INC ram_drop_timer
 C - - - - - 0x000D90 00:8D80: A5 8A     LDA ram_increase_speed
-; bzk optimize, ADC ram_increase_speed at 0x000D9A instead of using ram_copy_increase_speed as a middleman.
+; bzk optimize, ADC ram_increase_speed at 0x000D9A
+; instead of using ram_copy_increase_speed as a middleman.
 ; ram_copy_increase_speed won't be read later
 C - - - - - 0x000D92 00:8D82: 85 A0     STA ram_copy_increase_speed
 C - - - - - 0x000D94 00:8D84: A6 8B     LDX ram_speed
