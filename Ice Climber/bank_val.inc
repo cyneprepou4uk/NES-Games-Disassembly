@@ -2,6 +2,11 @@
 
 
 
+; MISC
+con_max_floor_09                        = $09 ; 
+
+
+
  ; ram_btn_hold
  ; ram_btn_press
 con_btn_Right                           = $01 ; 
@@ -53,6 +58,14 @@ con_sfx_3_plr_deadh                     = $01 ;
 con_sfx_3_bear_jump                     = $02 ; 
 con_sfx_3_plr_jump                      = $04 ; 
 con_sfx_3_kill_seal_or_ice              = $08 ; hit seal or ice piece with hammer
+
+
+
+; 
+con_buf_00                              = $00 ; horisontally write ?? tiles
+con_buf_40                              = $40 ; horisontally write a tile ?? times
+con_buf_80                              = $80 ; vertically write ?? tiles
+con_buf_C0                              = $C0 ; vertically write a tile ?? times
 
 
 
