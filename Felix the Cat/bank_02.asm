@@ -132,7 +132,7 @@ C - - - - - 0x0040A0 01:8090: C8        INY
 C - - - - - 0x0040A1 01:8091: B1 02     LDA (ram_0002_t03_data),Y
 C - - - - - 0x0040A3 01:8093: 9D 01 02  STA ram_spr_T,X
 C - - - - - 0x0040A6 01:8096: C8        INY
-C - - - - - 0x0040A7 01:8097: A5 0D     LDA ram_000D
+C - - - - - 0x0040A7 01:8097: A5 0D     LDA ram_000D_t01_copy_obj_flags
 ; bzk optimize, 20 is never set, should be AND C3
 C - - - - - 0x0040A9 01:8099: 29 E3     AND #con_0776_HV_flip + con_0776_spr_A + $03 + $20
 C - - - - - 0x0040AB 01:809B: 51 02     EOR (ram_0002_t03_data),Y
@@ -172,7 +172,7 @@ bra_80C3_80_FF:
 C - - - - - 0x0040D3 01:80C3: 29 7F     AND #$7F
 C - - - - - 0x0040D5 01:80C5: 85 00     STA ram_0000_t32_sprites_counter
 C - - - - - 0x0040D7 01:80C7: C8        INY
-C - - - - - 0x0040D8 01:80C8: A5 0D     LDA ram_000D
+C - - - - - 0x0040D8 01:80C8: A5 0D     LDA ram_000D_t01_copy_obj_flags
 ; bzk optimize, 20 is never set, should be AND C3
 C - - - - - 0x0040DA 01:80CA: 29 E3     AND #con_0776_HV_flip + con_0776_spr_A + $03 + $20
 C - - - - - 0x0040DC 01:80CC: 51 02     EOR (ram_0002_t03_data),Y
@@ -219,9 +219,7 @@ C - - - - - 0x004116 01:8106: 60        RTS
 
 
 sub_8107_spr_Y:
-; in
-    ; ram_000D = ram_0776_obj_flags
-C - - - - - 0x004117 01:8107: A5 0D     LDA ram_000D
+C - - - - - 0x004117 01:8107: A5 0D     LDA ram_000D_t01_copy_obj_flags
 C - - - - - 0x004119 01:8109: 0A        ASL
 C - - - - - 0x00411A 01:810A: B1 02     LDA (ram_0002_t03_data),Y
 C - - - - - 0x00411C 01:810C: 90 04     BCC bra_8112_not_flipped_V
@@ -248,9 +246,7 @@ C - - - - - 0x004139 01:8129: 60        RTS
 
 
 sub_812A_spr_X:
-; in
-    ; ram_000D = ram_0776_obj_flags
-C - - - - - 0x00413A 01:812A: A5 0D     LDA ram_000D
+C - - - - - 0x00413A 01:812A: A5 0D     LDA ram_000D_t01_copy_obj_flags
 ; * 04
 C - - - - - 0x00413C 01:812C: 0A        ASL
 C - - - - - 0x00413D 01:812D: 0A        ASL
@@ -265,14 +261,14 @@ C - - - - - 0x004146 01:8136: 30 0B     BMI bra_8143
 C - - - - - 0x004148 01:8138: 18        CLC
 C - - - - - 0x004149 01:8139: 65 04     ADC ram_0004_t09_spr_X_offset
 C - - - - - 0x00414B 01:813B: 9D 03 02  STA ram_spr_X,X
-C - - - - - 0x00414E 01:813E: A5 05     LDA ram_0005_temp
+C - - - - - 0x00414E 01:813E: A5 05     LDA ram_0005_t04_hi
 C - - - - - 0x004150 01:8140: 69 00     ADC #$00
 C - - - - - 0x004152 01:8142: 60        RTS
 bra_8143:
 C - - - - - 0x004153 01:8143: 18        CLC
 C - - - - - 0x004154 01:8144: 65 04     ADC ram_0004_t09_spr_X_offset
 C - - - - - 0x004156 01:8146: 9D 03 02  STA ram_spr_X,X
-C - - - - - 0x004159 01:8149: A5 05     LDA ram_0005_temp
+C - - - - - 0x004159 01:8149: A5 05     LDA ram_0005_t04_hi
 C - - - - - 0x00415B 01:814B: 69 FF     ADC #$FF
 C - - - - - 0x00415D 01:814D: 60        RTS
 
@@ -299,23 +295,23 @@ sub_8160:
 ; in
     ; X = object index
 C - - - - - 0x004170 01:8160: BD 76 07  LDA ram_0776_obj_flags,X
-C - - - - - 0x004173 01:8163: 85 0D     STA ram_000D
+C - - - - - 0x004173 01:8163: 85 0D     STA ram_000D_t01_copy_obj_flags
 C - - - - - 0x004175 01:8165: BD 42 06  LDA ram_obj_pos_X_lo,X
 C - - - - - 0x004178 01:8168: 38        SEC
 C - - - - - 0x004179 01:8169: E5 B9     SBC ram_cam_pos_X_lo
 C - - - - - 0x00417B 01:816B: 85 04     STA ram_0004_t09_spr_X_offset
 C - - - - - 0x00417D 01:816D: BD 58 06  LDA ram_obj_pos_X_hi,X
 C - - - - - 0x004180 01:8170: E5 B7     SBC ram_cam_pos_X_hi
-C - - - - - 0x004182 01:8172: 85 05     STA ram_0005_temp
+C - - - - - 0x004182 01:8172: 85 05     STA ram_0005_t05_pos_X_hi
 C - - - - - 0x004184 01:8174: D0 2A     BNE bra_81A0
 bra_8176:
 C - - - - - 0x004186 01:8176: A5 04     LDA ram_0004_t09_spr_X_offset
 C - - - - - 0x004188 01:8178: 18        CLC
 C - - - - - 0x004189 01:8179: 69 08     ADC #< $0008
 C - - - - - 0x00418B 01:817B: 85 04     STA ram_0004_t09_spr_X_offset
-C - - - - - 0x00418D 01:817D: A5 05     LDA ram_0005_temp
+C - - - - - 0x00418D 01:817D: A5 05     LDA ram_0005_t05_pos_X_hi
 C - - - - - 0x00418F 01:817F: 69 00     ADC #> $0008
-C - - - - - 0x004191 01:8181: 85 05     STA ram_0005_temp
+C - - - - - 0x004191 01:8181: 85 05     STA ram_0005_t04_hi
 C - - - - - 0x004193 01:8183: BD 84 06  LDA ram_obj_pos_Y_lo,X
 C - - - - - 0x004196 01:8186: 38        SEC
 C - - - - - 0x004197 01:8187: E5 BA     SBC ram_cam_pos_Y_lo
