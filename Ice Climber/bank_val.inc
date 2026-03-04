@@ -61,7 +61,7 @@ con_sfx_3_kill_seal_or_ice              = $08 ; hit seal or ice piece with hamme
 
 
 
-; 
+; buffer modes
 con_buf_00                              = $00 ; horisontally write ?? tiles
 con_buf_40                              = $40 ; horisontally write a tile ?? times
 con_buf_80                              = $80 ; vertically write ?? tiles
