@@ -5546,7 +5546,7 @@ tbl_0x005F41_irq_handlers:
 - D 0 - - - 0x005F7F 01:9F6F: C8 A4     .word ofs_irq_handler_A4C8_1F
 - D 0 - - - 0x005F81 01:9F71: E6 A4     .word ofs_irq_handler_A4E6_20
 - D 0 - - - 0x005F83 01:9F73: 88 A4     .word ofs_irq_handler_A488_21
-- - - - - - 0x005F85 01:9F75: 01 A5     .word ofs_irq_handler_A501_22   ; could be unused
+- - - - - - 0x005F85 01:9F75: 01 A5     .word ofs_irq_handler_A501_22   ; unused subroutine that plays the moving clouds animation in the intro, write
 - D 0 - - - 0x005F87 01:9F77: D1 9F     .word ofs_irq_handler_9FD1_23
 - D 0 - - - 0x005F89 01:9F79: 45 A3     .word ofs_irq_handler_A345_24
 - D 0 - - - 0x005F8B 01:9F7B: 9B A3     .word ofs_irq_handler_A39B_25
@@ -6479,6 +6479,7 @@ C - - - - - 0x00650E 01:A4FE: 4C 3A E1  JMP loc_0x03E14A_disable_and_exit_irq
 
 ofs_irq_handler_A501_22:
 ; con_irq_22
+; moves clouds during the intro, unused
 - - - - - - 0x006511 01:A501: A2 08     LDX #$08
 bra_A503_loop:
 - - - - - - 0x006513 01:A503: 8A        TXA
@@ -7200,7 +7201,7 @@ C - - J - - 0x006909 01:A8F9: 20 34 AD  JSR sub_AD34
 C - - - - - 0x00690C 01:A8FC: 20 90 A7  JSR sub_A790
 C - - - - - 0x00690F 01:A8FF: 90 19     BCC bra_A91A_RTS
 C - - - - - 0x006911 01:A901: 20 94 A7  JSR sub_A794
-C - - - - - 0x006914 01:A904: A9 21     LDA #con_irq_21
+C - - - - - 0x006914 01:A904: A9 21     LDA #con_irq_21            ; changing it to LDA #con_irq_22 will restore intro animation of moving clouds
 C - - - - - 0x006916 01:A906: 85 3F     STA ram_next_irq_handler
 C - - - - - 0x006918 01:A908: A9 01     LDA #$01
 C - - - - - 0x00691A 01:A90A: 8D 8F 07  STA ram_078F
