@@ -48,6 +48,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 * Adventure Island (U) [!] `B78C09A2`
 * Battle City (J) [!] `F599A07E`
 * Bugs Bunny Crazy Castle, The (U) [!] `DB0C3656`
+* Captain America and The Avengers (U) [!].nes `7254D53D`
 * Castlevania III - Dracula's Curse (U) [!] `7CC9C669`
 * Contra Force (U) [!] `83D69922`
 * Danny Sullivan's Indy Heat (U) [!] `311B5A58`
@@ -75,7 +76,6 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 
 ### WIP
 * Battletoads & Double Dragon - The Ultimate Team (U) [!] `53B02F3D`
-* Captain America and The Avengers (U) [!].nes `7254D53D`
 * Galaga - Demons of Death (U) [!] `E36D5991`
 * Ninja Gaiden III - The Ancient Ship of Doom (U) [!] `BABD39FA`
 * R.C. Pro-Am II (U) [!] `03DB5562`
