@@ -215,6 +215,7 @@ C - - - - - 0x00C11B 03:810B: E9 00     SBC #> $0001
 C - - - - - 0x00C11D 03:810D: 85 02     STA ram_0002_t25_data_counter_hi
 ; bzk optimize, useless LDA
 C - - - - - 0x00C11F 03:810F: A5 02     LDA ram_0002_t25_data_counter_hi
+; 
 C - - - - - 0x00C121 03:8111: D0 DD     BNE bra_80F0_loop
 C - - - - - 0x00C123 03:8113: A5 03     LDA ram_0003_t05_data_counter_lo
 C - - - - - 0x00C125 03:8115: D0 D9     BNE bra_80F0_loop

@@ -240,7 +240,8 @@ con_ppu_buf_7C                          = $7C ; palette
 ; todo
 ; ram_obj_id_enemy
 ; ram_copy_obj_id
-; need comments at 0x01FBC4 0x01FD92
+; handlers at 0x01FBC4 0x01FD92 
+; need comments at 0x010480
 con_obj_id_null                         = $00 ; 
 con_obj_id_01                           = $01 ; Lynel (blue)
 con_obj_id_02                           = $02 ; Lynel (red)
