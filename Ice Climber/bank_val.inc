@@ -69,17 +69,20 @@ con_buf_C0                              = $C0 ; vertically write a tile ?? times
 
 
 
-; todo
+
 ; ram_plr_handler
-; con_plr_sub_01                          = $01  ; 
-; con_plr_sub_02                          = $02  ; 
-; con_plr_sub_03                          = $03  ; 
-; con_plr_sub_04                          = $04  ; 
-; con_plr_sub_05                          = $05  ; 
-; con_plr_sub_06                          = $06  ; 
-; con_plr_sub_07                          = $07  ; 
-; con_plr_sub_08                          = $08  ; 
-; con_plr_sub_09                          = $09  ; 
+; handlers at 0x000D30
+; need comments 0x000EE2 0x001244 0x001279 0x001395 0x00217F 0x0034B9
+con_plr_sub_00                          = $00 ; 
+con_plr_sub_on_ground                   = $01 ; idle/walking
+con_plr_sub_fall_from_platform          = $02 ; when you walk off it
+con_plr_sub_stop_after_walking          = $03 ; stop after walking
+con_plr_sub_jump                        = $04 ; jump
+con_plr_sub_attack                      = $05 ; swing with hammer
+con_plr_sub_block_break_1               = $06 ; break block while jumping 1
+con_plr_sub_death                       = $07 ; death
+con_plr_sub_block_break_2               = $08 ; break block while jumping 2
+con_plr_sub_09                          = $09 ; unused but refered
 
 
 

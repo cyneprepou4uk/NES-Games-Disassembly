@@ -382,14 +382,14 @@ C - - - - - 0x000261 00:C251: A2 01     LDX #$01
 bra_C253_loop:
 C - - - - - 0x000263 00:C253: A9 00     LDA #$00
 C - - - - - 0x000265 00:C255: 95 5A     STA ram_005A_plr_floor,X
-C - - - - - 0x000267 00:C257: 95 6A     STA ram_plr_handler,X
+C - - - - - 0x000267 00:C257: 95 6A     STA ram_plr_handler,X   ; con_plr_sub_00
 C - - - - - 0x000269 00:C259: B5 20     LDA ram_plr_lives,X
 C - - - - - 0x00026B 00:C25B: 30 17     BMI bra_C274
 C - - - - - 0x00026D 00:C25D: A9 01     LDA #$01
 C - - - - - 0x00026F 00:C25F: 8D 7A 03  STA ram_037A_useless
 C - - - - - 0x000272 00:C262: 85 62     STA ram_0062_plr
 C - - - - - 0x000274 00:C264: 95 5A     STA ram_005A_plr_floor,X
-C - - - - - 0x000276 00:C266: 95 6A     STA ram_plr_handler,X
+C - - - - - 0x000276 00:C266: 95 6A     STA ram_plr_handler,X   ; con_plr_sub_on_ground
 C - - - - - 0x000278 00:C268: 4A        LSR ; 00
 C - - - - - 0x000279 00:C269: 95 2F     STA ram_002F_plr,X
 C - - - - - 0x00027B 00:C26B: 8D 3F 06  STA ram_0600_data + $3F
@@ -492,7 +492,7 @@ C - - - - - 0x000319 00:C309: 8D FE 07  STA ram_07FE
 C - - - - - 0x00031C 00:C30C: A6 58     LDX ram_game_mode
 bra_C30E_loop:
 C - - - - - 0x00031E 00:C30E: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x000320 00:C310: C9 07     CMP #$07
+C - - - - - 0x000320 00:C310: C9 07     CMP #con_plr_sub_death
 C - - - - - 0x000322 00:C312: D0 06     BNE bra_C31A
 - - - - - - 0x000324 00:C314: B5 5A     LDA ram_005A_plr_floor,X
 - - - - - - 0x000326 00:C316: F0 02     BEQ bra_C31A
@@ -530,8 +530,8 @@ C - - - - - 0x00035E 00:C34E: A2 0A     LDX #$0A
 C - - - - - 0x000360 00:C350: 4C 91 F6  JMP loc_F691
 bra_C353:
 C - - - - - 0x000363 00:C353: A9 00     LDA #$00
-C - - - - - 0x000365 00:C355: 85 6A     STA ram_plr_handler
-C - - - - - 0x000367 00:C357: 85 6B     STA ram_plr_handler + $01
+C - - - - - 0x000365 00:C355: 85 6A     STA ram_plr_handler ; con_plr_sub_00
+C - - - - - 0x000367 00:C357: 85 6B     STA ram_plr_handler + $01   ; con_plr_sub_00
 C - - - - - 0x000369 00:C359: 85 5A     STA ram_005A_plr_floor
 C - - - - - 0x00036B 00:C35B: 85 5B     STA ram_005A_plr_floor + $01
 C - - - - - 0x00036D 00:C35D: 8D 52 03  STA ram_0352_plr
@@ -572,7 +572,7 @@ C - - - - - 0x0003A7 00:C397: F0 06     BEQ bra_C39F    ; jmp
 
 sub_C399:
 C - - - - - 0x0003A9 00:C399: A9 01     LDA #$01
-C - - - - - 0x0003AB 00:C39B: 95 6A     STA ram_plr_handler,X
+C - - - - - 0x0003AB 00:C39B: 95 6A     STA ram_plr_handler,X   ; con_plr_sub_on_ground
 C - - - - - 0x0003AD 00:C39D: 95 5A     STA ram_005A_plr_floor,X
 bra_C39F:
 C - - - - - 0x0003AF 00:C39F: 86 5F     STX ram_plr_index
@@ -2248,7 +2248,7 @@ C - - - - - 0x000CAD 00:CC9D: 60        RTS
 
 
 ofs_001_CC9E_02:
-C - - J - - 0x000CAE 00:CC9E: A9 06     LDA #$06
+C - - J - - 0x000CAE 00:CC9E: A9 06     LDA #con_plr_sub_block_break_1
 C - - - - - 0x000CB0 00:CCA0: C5 6A     CMP ram_plr_handler
 C - - - - - 0x000CB2 00:CCA2: F0 49     BEQ bra_CCED
 C - - - - - 0x000CB4 00:CCA4: C5 6B     CMP ram_plr_handler + $01
@@ -2319,28 +2319,30 @@ C - - - - - 0x000D29 00:CD19: B4 6A     LDY ram_plr_handler,X
 C - - - - - 0x000D2B 00:CD1B: 88        DEY
 C - - - - - 0x000D2C 00:CD1C: 98        TYA
 C - - - - - 0x000D2D 00:CD1D: 20 28 C7  JSR sub_C728_jump_to_pointers_after_jsr
-- D 2 - I - 0x000D30 00:CD20: 32 CD     .word ofs_002_CD32_01
-- D 2 - I - 0x000D32 00:CD22: 5D CE     .word ofs_002_CE5D_02
-- D 2 - I - 0x000D34 00:CD24: 38 CD     .word ofs_002_CD38_03
-- D 2 - I - 0x000D36 00:CD26: 08 D0     .word ofs_002_D008_04
-- D 2 - I - 0x000D38 00:CD28: 5D D0     .word ofs_002_D05D_05
-- D 2 - I - 0x000D3A 00:CD2A: 08 D0     .word ofs_002_D008_06
-- D 2 - I - 0x000D3C 00:CD2C: AA D0     .word ofs_002_D0AA_07
-- D 2 - I - 0x000D3E 00:CD2E: 08 D0     .word ofs_002_D008_08
+- D 2 - I - 0x000D30 00:CD20: 32 CD     .word ofs_002_CD32_01_on_ground
+- D 2 - I - 0x000D32 00:CD22: 5D CE     .word ofs_002_CE5D_02_fall_from_platform
+- D 2 - I - 0x000D34 00:CD24: 38 CD     .word ofs_002_CD38_03_stop_after_walking
+- D 2 - I - 0x000D36 00:CD26: 08 D0     .word ofs_002_D008_04_jump
+- D 2 - I - 0x000D38 00:CD28: 5D D0     .word ofs_002_D05D_05_attack
+- D 2 - I - 0x000D3A 00:CD2A: 08 D0     .word ofs_002_D008_06_block_break_1
+- D 2 - I - 0x000D3C 00:CD2C: AA D0     .word ofs_002_D0AA_07_death
+- D 2 - I - 0x000D3E 00:CD2E: 08 D0     .word ofs_002_D008_08_block_break_2
 - - - - - - 0x000D40 00:CD30: 00 D5     .word ofs_002_D500_09_RTS
 
 
 
-ofs_002_CD32_01:
+ofs_002_CD32_01_on_ground:
+; con_plr_sub_on_ground
 C - - J - - 0x000D42 00:CD32: 20 B0 CD  JSR sub_CDB0
 C - - - - - 0x000D45 00:CD35: 4C 3B CD  JMP loc_CD3B
 
 
 
-ofs_002_CD38_03:
+ofs_002_CD38_03_stop_after_walking:
+; con_plr_sub_stop_after_walking
 C - - J - - 0x000D48 00:CD38: 20 C6 CF  JSR sub_CFC6
 loc_CD3B:
-C D 2 - - - 0x000D4B 00:CD3B: 20 62 CD  JSR sub_CD62
+C D 2 - - - 0x000D4B 00:CD3B: 20 62 CD  JSR sub_CD62_check_for_hole
 C - - - - - 0x000D4E 00:CD3E: B0 21     BCS bra_CD61_RTS
 C - - - - - 0x000D50 00:CD40: A9 05     LDA #$05
 C - - - - - 0x000D52 00:CD42: 95 E8     STA ram_00E8_plr,X
@@ -2348,7 +2350,7 @@ C - - - - - 0x000D54 00:CD44: 95 6E     STA ram_006E_plr,X
 C - - - - - 0x000D56 00:CD46: A9 04     LDA #$04
 C - - - - - 0x000D58 00:CD48: 95 E6     STA ram_00E6_plr,X
 C - - - - - 0x000D5A 00:CD4A: 4A        LSR ; 02
-C - - - - - 0x000D5B 00:CD4B: 95 6A     STA ram_plr_handler,X
+C - - - - - 0x000D5B 00:CD4B: 95 6A     STA ram_plr_handler,X   ; con_plr_sub_fall_from_platform
 C - - - - - 0x000D5D 00:CD4D: 4A        LSR ; 01
 C - - - - - 0x000D5E 00:CD4E: 95 E0     STA ram_00E0_plr,X
 C - - - - - 0x000D60 00:CD50: 95 86     STA ram_0086_plr,X
@@ -2365,7 +2367,11 @@ C - - - - - 0x000D71 00:CD61: 60        RTS
 
 
 
-sub_CD62:
+sub_CD62_check_for_hole:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x000D72 00:CD62: A9 00     LDA #$00
 C - - - - - 0x000D74 00:CD64: 95 82     STA ram_0082_plr,X
 C - - - - - 0x000D76 00:CD66: A9 06     LDA #$06
@@ -2442,7 +2448,7 @@ C - - - - - 0x000DC8 00:CDB8: A8        TAY
 C - - - - - 0x000DC9 00:CDB9: B9 14 00  LDA ram_btn_hold,Y
 C - - - - - 0x000DCC 00:CDBC: 29 40     AND #con_btn_B
 C - - - - - 0x000DCE 00:CDBE: F0 04     BEQ bra_CDC4
-C - - - - - 0x000DD0 00:CDC0: A9 05     LDA #$05
+C - - - - - 0x000DD0 00:CDC0: A9 05     LDA #con_plr_sub_attack
 C - - - - - 0x000DD2 00:CDC2: D0 17     BNE bra_CDDB    ; jmp
 bra_CDC4:
 C - - - - - 0x000DD4 00:CDC4: B5 70     LDA ram_0070_plr,X
@@ -2457,7 +2463,7 @@ C - - - - - 0x000DE2 00:CDD2: F0 2B     BEQ bra_CDFF
 C - - - - - 0x000DE4 00:CDD4: B5 6E     LDA ram_006E_plr,X
 C - - - - - 0x000DE6 00:CDD6: 4A        LSR
 C - - - - - 0x000DE7 00:CDD7: 95 32     STA ram_0032_plr_timer,X
-C - - - - - 0x000DE9 00:CDD9: A9 03     LDA #$03
+C - - - - - 0x000DE9 00:CDD9: A9 03     LDA #con_plr_sub_stop_after_walking
 bra_CDDB:
 C - - - - - 0x000DEB 00:CDDB: 95 6A     STA ram_plr_handler,X
 C - - - - - 0x000DED 00:CDDD: D0 20     BNE bra_CDFF    ; jmp
@@ -2531,7 +2537,7 @@ C - - - - - 0x000E5F 00:CE4F: D6 66     DEC ram_plr_pos_Y,X
 C - - - - - 0x000E61 00:CE51: A9 02     LDA #$02
 C - - - - - 0x000E63 00:CE53: 2C        .byte $2C   ; BIT opcode
 bra_CE54:
-C - - - - - 0x000E64 00:CE54: A9 04     LDA #$04
+C - - - - - 0x000E64 00:CE54: A9 04     LDA #con_plr_sub_jump
 C - - - - - 0x000E66 00:CE56: 95 6A     STA ram_plr_handler,X
 C - - - - - 0x000E68 00:CE58: A9 04     LDA #con_sfx_3_plr_jump
 C - - - - - 0x000E6A 00:CE5A: 85 FF     STA ram_sfx_3
@@ -2541,7 +2547,8 @@ C - - - - - 0x000E6C 00:CE5C: 60        RTS
 
 
 sub_CE5D:
-ofs_002_CE5D_02:
+ofs_002_CE5D_02_fall_from_platform:
+; con_plr_sub_fall_from_platform
 C - - - - - 0x000E6D 00:CE5D: A9 A8     LDA #$A8
 C - - - - - 0x000E6F 00:CE5F: 95 E2     STA ram_00E2_plr,X
 C - - - - - 0x000E71 00:CE61: A9 03     LDA #$03
@@ -2592,11 +2599,11 @@ C - - - - - 0x000EC0 00:CEB0: 95 86     STA ram_0086_plr,X
 C - - - - - 0x000EC2 00:CEB2: 95 88     STA ram_0088_plr,X
 C - - - - - 0x000EC4 00:CEB4: 95 60     STA ram_0060_plr,X
 C - - - - - 0x000EC6 00:CEB6: A6 5F     LDX ram_plr_index
-C - - - - - 0x000EC8 00:CEB8: A9 01     LDA #$01
+C - - - - - 0x000EC8 00:CEB8: A9 01     LDA #con_plr_sub_on_ground
 C - - - - - 0x000ECA 00:CEBA: 95 6A     STA ram_plr_handler,X
 C - - - - - 0x000ECC 00:CEBC: B5 68     LDA ram_0068_plr,X
 C - - - - - 0x000ECE 00:CEBE: F0 2E     BEQ bra_CEEE_RTS
-C - - - - - 0x000ED0 00:CEC0: A9 03     LDA #$03
+C - - - - - 0x000ED0 00:CEC0: A9 03     LDA #con_plr_sub_stop_after_walking
 C - - - - - 0x000ED2 00:CEC2: 95 6A     STA ram_plr_handler,X
 C - - - - - 0x000ED4 00:CEC4: B5 6E     LDA ram_006E_plr,X
 C - - - - - 0x000ED6 00:CEC6: B4 5A     LDY ram_005A_plr_floor,X
@@ -2610,6 +2617,10 @@ bra_CED0:
 C - - - - - 0x000EE0 00:CED0: B5 6A     LDA ram_plr_handler,X
 C - - - - - 0x000EE2 00:CED2: C9 04     CMP #$04
 C - - - - - 0x000EE4 00:CED4: B0 18     BCS bra_CEEE_RTS
+; if
+    ; con_plr_sub_on_ground
+    ; con_plr_sub_fall_from_platform
+    ; con_plr_sub_stop_after_walking
 C - - - - - 0x000EE6 00:CED6: A0 07     LDY #$07
 C - - - - - 0x000EE8 00:CED8: 4C 7C D1  JMP loc_D17C
 
@@ -2652,10 +2663,10 @@ C - - - - - 0x000F1C 00:CF0C: A4 0B     LDY ram_000B
 C - - - - - 0x000F1E 00:CF0E: F0 09     BEQ bra_CF19_RTS
 C - - - - - 0x000F20 00:CF10: D0 03     BNE bra_CF15    ; jmp
 bra_CF12:
-C - - - - - 0x000F22 00:CF12: A9 08     LDA #$08
+C - - - - - 0x000F22 00:CF12: A9 08     LDA #con_plr_sub_block_break_2
 C - - - - - 0x000F24 00:CF14: 2C        .byte $2C   ; BIT opcode
 bra_CF15:
-C - - - - - 0x000F25 00:CF15: A9 06     LDA #$06
+C - - - - - 0x000F25 00:CF15: A9 06     LDA #con_plr_sub_block_break_1
 C - - - - - 0x000F27 00:CF17: 95 6A     STA ram_plr_handler,X
 bra_CF19_RTS:
 C - - - - - 0x000F29 00:CF19: 60        RTS
@@ -2663,6 +2674,10 @@ C - - - - - 0x000F29 00:CF19: 60        RTS
 
 
 sub_CF1A:
+; out
+    ; C
+        ; 0 = 
+        ; 1 = 
 C - - - - - 0x000F2A 00:CF1A: B5 66     LDA ram_plr_pos_Y,X
 C - - - - - 0x000F2C 00:CF1C: 18        CLC
 C - - - - - 0x000F2D 00:CF1D: 69 18     ADC #$18
@@ -2680,7 +2695,7 @@ C - - - - - 0x000F44 00:CF34: B0 10     BCS bra_CF46
 C - - - - - 0x000F46 00:CF36: C9 02     CMP #$02
 C - - - - - 0x000F48 00:CF38: 90 1B     BCC bra_CF55
 C - - - - - 0x000F4A 00:CF3A: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x000F4C 00:CF3C: C9 08     CMP #$08
+C - - - - - 0x000F4C 00:CF3C: C9 08     CMP #con_plr_sub_block_break_2
 C - - - - - 0x000F4E 00:CF3E: F0 06     BEQ bra_CF46
 C - - - - - 0x000F50 00:CF40: B5 E8     LDA ram_00E8_plr,X
 C - - - - - 0x000F52 00:CF42: C9 C0     CMP #$C0
@@ -2688,7 +2703,7 @@ C - - - - - 0x000F54 00:CF44: 90 0F     BCC bra_CF55
 bra_CF46:
 C - - - - - 0x000F56 00:CF46: A4 07     LDY ram_0007_t05
 C - - - - - 0x000F58 00:CF48: 94 88     STY ram_0088_plr,X
-C - - - - - 0x000F5A 00:CF4A: 20 62 CD  JSR sub_CD62
+C - - - - - 0x000F5A 00:CF4A: 20 62 CD  JSR sub_CD62_check_for_hole
 C - - - - - 0x000F5D 00:CF4D: 90 06     BCC bra_CF55
 C - - - - - 0x000F5F 00:CF4F: 38        SEC
 C - - - - - 0x000F60 00:CF50: 60        RTS
@@ -2714,6 +2729,10 @@ tbl_CF59:
 
 
 sub_CF5B:
+; out
+    ; A
+        ; 00 = 
+        ; 01 = 
 C - - - - - 0x000F6B 00:CF5B: A9 01     LDA #$01
 C - - - - - 0x000F6D 00:CF5D: 95 82     STA ram_0082_plr,X
 C - - - - - 0x000F6F 00:CF5F: 4A        LSR ; 00
@@ -2807,7 +2826,7 @@ C - - - - - 0x000FF6 00:CFE6: F0 14     BEQ bra_CFFC
 - - - - - - 0x000FFA 00:CFEA: 2C        .byte $2C   ; BIT opcode
 bra_CFEB:
 sub_CFEB:
-C - - - - - 0x000FFB 00:CFEB: A9 01     LDA #$01
+C - - - - - 0x000FFB 00:CFEB: A9 01     LDA #con_plr_sub_on_ground
 C - - - - - 0x000FFD 00:CFED: 95 6A     STA ram_plr_handler,X
 loc_CFEF:
 C D 2 - - - 0x000FFF 00:CFEF: A9 00     LDA #$00
@@ -2827,13 +2846,16 @@ C - - - - - 0x001015 00:D005: 4C EF CF  JMP loc_CFEF
 
 
 
-ofs_002_D008_04:
-ofs_002_D008_06:
-ofs_002_D008_08:
+ofs_002_D008_04_jump:
+; con_plr_sub_jump
+ofs_002_D008_06_block_break_1:
+; con_plr_sub_block_break_1
+ofs_002_D008_08_block_break_2:
+; con_plr_sub_block_break_2
 C - - J - - 0x001018 00:D008: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x00101A 00:D00A: C9 06     CMP #$06
+C - - - - - 0x00101A 00:D00A: C9 06     CMP #con_plr_sub_block_break_1
 C - - - - - 0x00101C 00:D00C: F0 0A     BEQ bra_D018
-C - - - - - 0x00101E 00:D00E: C9 08     CMP #$08
+C - - - - - 0x00101E 00:D00E: C9 08     CMP #con_plr_sub_block_break_2
 C - - - - - 0x001020 00:D010: F0 0C     BEQ bra_D01E
 C - - - - - 0x001022 00:D012: 20 5D CE  JSR sub_CE5D
 C - - - - - 0x001025 00:D015: 4C 21 D0  JMP loc_D021
@@ -2849,7 +2871,7 @@ C - - - - - 0x001035 00:D025: A6 5F     LDX ram_plr_index
 C - - - - - 0x001037 00:D027: B5 86     LDA ram_0086_plr,X
 C - - - - - 0x001039 00:D029: D0 24     BNE bra_D04F
 C - - - - - 0x00103B 00:D02B: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x00103D 00:D02D: C9 04     CMP #$04
+C - - - - - 0x00103D 00:D02D: C9 04     CMP #con_plr_sub_jump
 C - - - - - 0x00103F 00:D02F: F0 1E     BEQ bra_D04F
 C - - - - - 0x001041 00:D031: A5 5F     LDA ram_plr_index
 C - - - - - 0x001043 00:D033: 0A        ASL
@@ -2879,7 +2901,8 @@ C - - - - - 0x00106A 00:D05A: 4C 7C D1  JMP loc_D17C
 
 
 
-ofs_002_D05D_05:
+ofs_002_D05D_05_attack:
+; con_plr_sub_attack
 C - - J - - 0x00106D 00:D05D: F6 60     INC ram_0060_plr,X
 C - - - - - 0x00106F 00:D05F: B5 60     LDA ram_0060_plr,X
 C - - - - - 0x001071 00:D061: C9 14     CMP #$14
@@ -2900,7 +2923,7 @@ C - - - - - 0x001089 00:D079: 4C 7C D1  JMP loc_D17C
 bra_D07C:
 loc_D07C:
 C D 2 - - - 0x00108C 00:D07C: A9 01     LDA #$01
-C - - - - - 0x00108E 00:D07E: 95 6A     STA ram_plr_handler,X
+C - - - - - 0x00108E 00:D07E: 95 6A     STA ram_plr_handler,X   ; con_plr_sub_on_ground
 C - - - - - 0x001090 00:D080: 4A        LSR ; 00
 C - - - - - 0x001091 00:D081: 95 60     STA ram_0060_plr,X
 C - - - - - 0x001093 00:D083: A8        TAY ; 00
@@ -2938,7 +2961,8 @@ tbl_D0A6_spr_A_flip:
 
 
 
-ofs_002_D0AA_07:
+ofs_002_D0AA_07_death:
+; con_plr_sub_death
 C - - J - - 0x0010BA 00:D0AA: B5 32     LDA ram_0032_plr_timer,X
 C - - - - - 0x0010BC 00:D0AC: F0 1C     BEQ bra_D0CA
 C - - - - - 0x0010BE 00:D0AE: C9 10     CMP #$10
@@ -3041,7 +3065,7 @@ C - - - - - 0x001152 00:D142: 60        RTS
 
 sub_D143:
 C - - - - - 0x001153 00:D143: B4 6A     LDY ram_plr_handler,X
-C - - - - - 0x001155 00:D145: C0 01     CPY #$01
+C - - - - - 0x001155 00:D145: C0 01     CPY #con_plr_sub_on_ground
 C - - - - - 0x001157 00:D147: D0 17     BNE bra_D160
 C - - - - - 0x001159 00:D149: B5 6E     LDA ram_006E_plr,X
 C - - - - - 0x00115B 00:D14B: C9 18     CMP #$18
@@ -3199,7 +3223,7 @@ C - - - - - 0x001226 00:D216: F0 F9     BEQ bra_D211_RTS
 C - - - - - 0x001228 00:D218: A5 2D     LDA ram_002D_plr
 C - - - - - 0x00122A 00:D21A: 05 2E     ORA ram_002D_plr + $01
 C - - - - - 0x00122C 00:D21C: D0 F3     BNE bra_D211_RTS
-C - - - - - 0x00122E 00:D21E: A9 07     LDA #$07
+C - - - - - 0x00122E 00:D21E: A9 07     LDA #con_plr_sub_death
 C - - - - - 0x001230 00:D220: C5 6A     CMP ram_plr_handler
 C - - - - - 0x001232 00:D222: F0 ED     BEQ bra_D211_RTS
 C - - - - - 0x001234 00:D224: C5 6B     CMP ram_plr_handler + $01
@@ -3364,10 +3388,10 @@ sub_D308:
 C - - - - - 0x001318 00:D308: B5 5A     LDA ram_005A_plr_floor,X
 C - - - - - 0x00131A 00:D30A: F0 65     BEQ bra_D371_RTS
 C - - - - - 0x00131C 00:D30C: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x00131E 00:D30E: F0 61     BEQ bra_D371_RTS
-C - - - - - 0x001320 00:D310: C9 07     CMP #$07
+C - - - - - 0x00131E 00:D30E: F0 61     BEQ bra_D371_RTS    ; if con_plr_sub_00
+C - - - - - 0x001320 00:D310: C9 07     CMP #con_plr_sub_death
 C - - - - - 0x001322 00:D312: F0 5D     BEQ bra_D371_RTS
-C - - - - - 0x001324 00:D314: C9 09     CMP #$09
+C - - - - - 0x001324 00:D314: C9 09     CMP #con_plr_sub_09
 C - - - - - 0x001326 00:D316: F0 59     BEQ bra_D371_RTS
 C - - - - - 0x001328 00:D318: B5 2D     LDA ram_002D_plr,X
 C - - - - - 0x00132A 00:D31A: D0 55     BNE bra_D371_RTS
@@ -3399,8 +3423,8 @@ C - - - - - 0x001350 00:D340: C9 02     CMP #$02
 C - - - - - 0x001352 00:D342: F0 4F     BEQ bra_D393
 C - - - - - 0x001354 00:D344: C0 01     CPY #$01
 C - - - - - 0x001356 00:D346: F0 2A     BEQ bra_D372
-C - - - - - 0x001358 00:D348: 20 46 D4  JSR sub_D446
 ; triggers when an enemy touches you
+C - - - - - 0x001358 00:D348: 20 46 D4  JSR sub_D446_kill_player
 C - - - - - 0x00135B 00:D34B: A9 20     LDA #$20
 C - - - - - 0x00135D 00:D34D: 99 91 00  STA ram_0091_obj,Y ; 0091 0093 
 C - - - - - 0x001360 00:D350: C0 02     CPY #$02
@@ -3500,11 +3524,11 @@ C - - - - - 0x0013E5 00:D3D5: C0 08     CPY #$08
 C - - - - - 0x0013E7 00:D3D7: 90 06     BCC bra_D3DF
 bra_D3D9:
 C - - - - - 0x0013E9 00:D3D9: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x0013EB 00:D3DB: C9 04     CMP #$04
+C - - - - - 0x0013EB 00:D3DB: C9 04     CMP #con_plr_sub_jump
 C - - - - - 0x0013ED 00:D3DD: F0 0C     BEQ bra_D3EB
 bra_D3DF:
 C - - - - - 0x0013EF 00:D3DF: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x0013F1 00:D3E1: C9 05     CMP #$05
+C - - - - - 0x0013F1 00:D3E1: C9 05     CMP #con_plr_sub_attack
 C - - - - - 0x0013F3 00:D3E3: D0 0D     BNE bra_D3F2
 C - - - - - 0x0013F5 00:D3E5: B5 60     LDA ram_0060_plr,X
 C - - - - - 0x0013F7 00:D3E7: C9 09     CMP #$09
@@ -3571,8 +3595,8 @@ C - - - - - 0x001455 00:D445: 60        RTS
 
 
 
-sub_D446:
-C - - - - - 0x001456 00:D446: A9 07     LDA #$07
+sub_D446_kill_player:
+C - - - - - 0x001456 00:D446: A9 07     LDA #con_plr_sub_death
 C - - - - - 0x001458 00:D448: 95 6A     STA ram_plr_handler,X
 C - - - - - 0x00145A 00:D44A: B5 5A     LDA ram_005A_plr_floor,X
 C - - - - - 0x00145C 00:D44C: 9D 82 03  STA ram_0382_obj,X
@@ -3705,6 +3729,7 @@ C - - - - - 0x00150B 00:D4FB: 0A        ASL ; 00
 C - - - - - 0x00150C 00:D4FC: 85 34     STA ram_0034_timer
 C - - - - - 0x00150E 00:D4FE: 85 51     STA ram_0051
 ofs_002_D500_09_RTS:
+; con_plr_sub_09
 C - - - - - 0x001510 00:D500: 60        RTS
 
 
@@ -3751,7 +3776,7 @@ C - - - - - 0x001546 00:D536: 95 64     STA ram_plr_pos_X,X
 C - - - - - 0x001548 00:D538: E8        INX
 C - - - - - 0x001549 00:D539: 86 1E     STX ram_001E
 C - - - - - 0x00154B 00:D53B: CA        DEX
-C - - - - - 0x00154C 00:D53C: A9 06     LDA #$06
+C - - - - - 0x00154C 00:D53C: A9 06     LDA #con_plr_sub_block_break_1
 C - - - - - 0x00154E 00:D53E: 95 6A     STA ram_plr_handler,X
 C - - - - - 0x001550 00:D540: A9 10     LDA #con_music_mountain_complete
 C - - - - - 0x001552 00:D542: 85 FB     STA ram_music_1
@@ -3770,11 +3795,11 @@ C - - - - - 0x001561 00:D551: 60        RTS
 
 sub_D552:
 C - - - - - 0x001562 00:D552: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x001564 00:D554: C9 01     CMP #$01
+C - - - - - 0x001564 00:D554: C9 01     CMP #con_plr_sub_on_ground
 C - - - - - 0x001566 00:D556: F0 09     BEQ bra_D561
-C - - - - - 0x001568 00:D558: C9 02     CMP #$02
+C - - - - - 0x001568 00:D558: C9 02     CMP #con_plr_sub_fall_from_platform
 C - - - - - 0x00156A 00:D55A: F0 0B     BEQ bra_D567
-C - - - - - 0x00156C 00:D55C: C9 03     CMP #$03
+C - - - - - 0x00156C 00:D55C: C9 03     CMP #con_plr_sub_stop_after_walking
 C - - - - - 0x00156E 00:D55E: F0 04     BEQ bra_D564
 C - - - - - 0x001570 00:D560: 60        RTS
 bra_D561:
@@ -3873,7 +3898,7 @@ bra_D603:
 C - - - - - 0x001613 00:D603: C8        INY
 C - - - - - 0x001614 00:D604: C0 1E     CPY #$1E
 C - - - - - 0x001616 00:D606: D0 CD     BNE bra_D5D5_loop
-C - - - - - 0x001618 00:D608: A9 02     LDA #$02
+C - - - - - 0x001618 00:D608: A9 02     LDA #con_plr_sub_fall_from_platform
 C - - - - - 0x00161A 00:D60A: D5 6A     CMP ram_plr_handler,X
 C - - - - - 0x00161C 00:D60C: F0 2D     BEQ bra_D63B
 C - - - - - 0x00161E 00:D60E: 95 6A     STA ram_plr_handler,X
@@ -3885,14 +3910,14 @@ bra_D617:
 C - - - - - 0x001627 00:D617: 98        TYA
 C - - - - - 0x001628 00:D618: 9D 83 07  STA ram_0783_plr,X
 C - - - - - 0x00162B 00:D61B: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x00162D 00:D61D: C9 01     CMP #$01
+C - - - - - 0x00162D 00:D61D: C9 01     CMP #con_plr_sub_on_ground
 C - - - - - 0x00162F 00:D61F: F0 0E     BEQ bra_D62F
-C - - - - - 0x001631 00:D621: C9 03     CMP #$03
+C - - - - - 0x001631 00:D621: C9 03     CMP #con_plr_sub_stop_after_walking
 C - - - - - 0x001633 00:D623: F0 16     BEQ bra_D63B
 C - - - - - 0x001635 00:D625: B5 E6     LDA ram_00E6_plr,X
 C - - - - - 0x001637 00:D627: C9 03     CMP #$03
 C - - - - - 0x001639 00:D629: 90 10     BCC bra_D63B
-C - - - - - 0x00163B 00:D62B: A9 03     LDA #$03
+C - - - - - 0x00163B 00:D62B: A9 03     LDA #con_plr_sub_stop_after_walking
 C - - - - - 0x00163D 00:D62D: 95 6A     STA ram_plr_handler,X
 bra_D62F:
 C - - - - - 0x00163F 00:D62F: B9 A4 06  LDA ram_06A4,Y
@@ -3915,7 +3940,7 @@ C - - - - - 0x001658 00:D648: A6 5F     LDX ram_plr_index
 C - - - - - 0x00165A 00:D64A: A9 00     LDA #$00
 C - - - - - 0x00165C 00:D64C: 9D 52 03  STA ram_0352_plr,X
 C - - - - - 0x00165F 00:D64F: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x001661 00:D651: F0 78     BEQ bra_D6CB_RTS
+C - - - - - 0x001661 00:D651: F0 78     BEQ bra_D6CB_RTS    ; if con_plr_sub_00
 C - - - - - 0x001663 00:D653: A5 13     LDA ram_scroll_Y
 C - - - - - 0x001665 00:D655: 15 2A     ORA ram_002A_plr,X
 C - - - - - 0x001667 00:D657: D0 10     BNE bra_D669
@@ -3995,7 +4020,7 @@ C - - - - - 0x0016D9 00:D6C9: 95 62     STA ram_0062_plr,X
 bra_D6CB_RTS:
 C - - - - - 0x0016DB 00:D6CB: 60        RTS
 bra_D6CC:
-C - - - - - 0x0016DC 00:D6CC: A9 02     LDA #$02
+C - - - - - 0x0016DC 00:D6CC: A9 02     LDA #con_plr_sub_fall_from_platform
 C - - - - - 0x0016DE 00:D6CE: D5 6A     CMP ram_plr_handler,X
 C - - - - - 0x0016E0 00:D6D0: F0 0A     BEQ bra_D6DC
 - - - - - - 0x0016E2 00:D6D2: 95 6A     STA ram_plr_handler,X
@@ -4056,7 +4081,7 @@ sub_D724:
 C - - - - - 0x001734 00:D724: A2 01     LDX #$01
 bra_D726_loop:
 C - - - - - 0x001736 00:D726: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x001738 00:D728: C9 06     CMP #$06
+C - - - - - 0x001738 00:D728: C9 06     CMP #con_plr_sub_block_break_1
 C - - - - - 0x00173A 00:D72A: F0 20     BEQ bra_D74C
 C - - - - - 0x00173C 00:D72C: B5 66     LDA ram_plr_pos_Y,X
 C - - - - - 0x00173E 00:D72E: C9 D4     CMP #$D4
@@ -4064,7 +4089,7 @@ C - - - - - 0x001740 00:D730: 90 1A     BCC bra_D74C
 C - - - - - 0x001742 00:D732: A9 F8     LDA #$F8
 C - - - - - 0x001744 00:D734: 95 66     STA ram_plr_pos_Y,X
 C - - - - - 0x001746 00:D736: A9 00     LDA #$00
-C - - - - - 0x001748 00:D738: 95 6A     STA ram_plr_handler,X
+C - - - - - 0x001748 00:D738: 95 6A     STA ram_plr_handler,X   ; con_plr_sub_00
 C - - - - - 0x00174A 00:D73A: 95 5A     STA ram_005A_plr_floor,X
 C - - - - - 0x00174C 00:D73C: B5 20     LDA ram_plr_lives,X
 C - - - - - 0x00174E 00:D73E: 30 0C     BMI bra_D74C
@@ -4079,9 +4104,9 @@ bra_D74C:
 C - - - - - 0x00175C 00:D74C: CA        DEX
 C - - - - - 0x00175D 00:D74D: 10 D7     BPL bra_D726_loop
 C - - - - - 0x00175F 00:D74F: A5 6A     LDA ram_plr_handler
-C - - - - - 0x001761 00:D751: D0 D0     BNE bra_D723_RTS
+C - - - - - 0x001761 00:D751: D0 D0     BNE bra_D723_RTS    ; if not con_plr_sub_00
 C - - - - - 0x001763 00:D753: A5 6B     LDA ram_plr_handler + $01
-C - - - - - 0x001765 00:D755: D0 CC     BNE bra_D723_RTS
+C - - - - - 0x001765 00:D755: D0 CC     BNE bra_D723_RTS    ; if not con_plr_sub_00
 C - - - - - 0x001767 00:D757: 85 1E     STA ram_001E
 C - - - - - 0x001769 00:D759: A9 03     LDA #$03
 C - - - - - 0x00176B 00:D75B: 4C F5 D4  JMP loc_D4F5
@@ -4299,7 +4324,7 @@ bra_D7FC:
 C - - - - - 0x00180C 00:D7FC: A2 01     LDX #$01
 bra_D7FE_loop:
 C - - - - - 0x00180E 00:D7FE: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x001810 00:D800: C9 01     CMP #$01
+C - - - - - 0x001810 00:D800: C9 01     CMP #con_plr_sub_on_ground
 C - - - - - 0x001812 00:D802: D0 06     BNE bra_D80A
 C - - - - - 0x001814 00:D804: A5 90     LDA ram_0090_upper_visible_floor
 C - - - - - 0x001816 00:D806: D5 5A     CMP ram_005A_plr_floor,X
@@ -4396,7 +4421,7 @@ C - - - - - 0x0018A2 00:D892: D0 11     BNE bra_D8A5_RTS
 C - - - - - 0x0018A4 00:D894: A2 01     LDX #$01
 bra_D896_loop:
 C - - - - - 0x0018A6 00:D896: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x0018A8 00:D898: C9 01     CMP #$01
+C - - - - - 0x0018A8 00:D898: C9 01     CMP #con_plr_sub_on_ground
 C - - - - - 0x0018AA 00:D89A: D0 06     BNE bra_D8A2
 C - - - - - 0x0018AC 00:D89C: B5 66     LDA ram_plr_pos_Y,X
 C - - - - - 0x0018AE 00:D89E: C9 60     CMP #$60
@@ -5004,9 +5029,9 @@ C - - - - - 0x001C1A 00:DC0A: D0 41     BNE bra_DC4D
 bra_DC0C:
 C - - - - - 0x001C1C 00:DC0C: 84 00     STY ram_0000_t25
 C - - - - - 0x001C1E 00:DC0E: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x001C20 00:DC10: C9 04     CMP #$04
+C - - - - - 0x001C20 00:DC10: C9 04     CMP #con_plr_sub_jump
 C - - - - - 0x001C22 00:DC12: F0 04     BEQ bra_DC18
-C - - - - - 0x001C24 00:DC14: C9 02     CMP #$02
+C - - - - - 0x001C24 00:DC14: C9 02     CMP #con_plr_sub_fall_from_platform
 C - - - - - 0x001C26 00:DC16: D0 1C     BNE bra_DC34
 bra_DC18:
 C - - - - - 0x001C28 00:DC18: B5 68     LDA ram_0068_plr,X
@@ -5914,7 +5939,7 @@ C - - - - - 0x0020D2 00:E0C2: D0 57     BNE bra_E11B
 C - - - - - 0x0020D4 00:E0C4: B5 5A     LDA ram_005A_plr_floor,X
 C - - - - - 0x0020D6 00:E0C6: F0 52     BEQ bra_E11A_RTS
 C - - - - - 0x0020D8 00:E0C8: B5 6A     LDA ram_plr_handler,X
-C - - - - - 0x0020DA 00:E0CA: C9 07     CMP #$07
+C - - - - - 0x0020DA 00:E0CA: C9 07     CMP #con_plr_sub_death
 C - - - - - 0x0020DC 00:E0CC: F0 4C     BEQ bra_E11A_RTS
 C - - - - - 0x0020DE 00:E0CE: B5 2D     LDA ram_002D_plr,X
 C - - - - - 0x0020E0 00:E0D0: D0 48     BNE bra_E11A_RTS
@@ -6256,9 +6281,9 @@ C - - - - - 0x0022D1 00:E2C1: 10 E0     BPL bra_E2A3_loop
 C - - - - - 0x0022D3 00:E2C3: A0 01     LDY #$01
 bra_E2C5_loop:
 C - - - - - 0x0022D5 00:E2C5: B9 6A 00  LDA ram_plr_handler,Y
-C - - - - - 0x0022D8 00:E2C8: C9 01     CMP #$01
+C - - - - - 0x0022D8 00:E2C8: C9 01     CMP #con_plr_sub_on_ground
 C - - - - - 0x0022DA 00:E2CA: F0 04     BEQ bra_E2D0
-C - - - - - 0x0022DC 00:E2CC: C9 03     CMP #$03
+C - - - - - 0x0022DC 00:E2CC: C9 03     CMP #con_plr_sub_stop_after_walking
 C - - - - - 0x0022DE 00:E2CE: D0 24     BNE bra_E2F4
 bra_E2D0:
 C - - - - - 0x0022E0 00:E2D0: B6 5A     LDX ram_005A_plr_floor,Y
@@ -6367,9 +6392,9 @@ C - - - - - 0x002373 00:E363: 10 DE     BPL bra_E343_loop
 C - - - - - 0x002375 00:E365: A0 01     LDY #$01
 bra_E367_loop:
 C - - - - - 0x002377 00:E367: B9 6A 00  LDA ram_plr_handler,Y
-C - - - - - 0x00237A 00:E36A: C9 01     CMP #$01
+C - - - - - 0x00237A 00:E36A: C9 01     CMP #con_plr_sub_on_ground
 C - - - - - 0x00237C 00:E36C: F0 04     BEQ bra_E372
-C - - - - - 0x00237E 00:E36E: C9 03     CMP #$03
+C - - - - - 0x00237E 00:E36E: C9 03     CMP #con_plr_sub_stop_after_walking
 C - - - - - 0x002380 00:E370: D0 0C     BNE bra_E37E
 bra_E372:
 C - - - - - 0x002382 00:E372: B9 83 07  LDA ram_0783_plr,Y
@@ -9491,8 +9516,9 @@ tbl_F46A:
 
 
 tbl_F46C:
+; bzk optimize, 01 is never used
 - D 3 - - - 0x00347C 00:F46C: 1E        .byte $1E   ; 00 
-- - - - - - 0x00347D 00:F46D: 00        .byte $00   ; 01 
+- - - - - - 0x00347D 00:F46D: 00        .byte $00   ; 01 placeholder
 - D 3 - - - 0x00347E 00:F46E: 10        .byte $10   ; 02 
 
 
@@ -9513,7 +9539,7 @@ C - - - - - 0x003489 00:F479: 94 6C     STY ram_006C_plr,X
 C - - - - - 0x00348B 00:F47B: C8        INY ; 01
 C - - - - - 0x00348C 00:F47C: 94 E4     STY ram_00E4_plr,X
 C - - - - - 0x00348E 00:F47E: C8        INY ; 02
-C - - - - - 0x00348F 00:F47F: 94 6A     STY ram_plr_handler,X
+C - - - - - 0x00348F 00:F47F: 94 6A     STY ram_unk_006A,X
 C - - - - - 0x003491 00:F481: A9 F0     LDA #$F0
 C - - - - - 0x003493 00:F483: 95 E2     STA ram_00E2_plr,X
 C - - - - - 0x003495 00:F485: A9 3F     LDA #$3F
@@ -9523,7 +9549,7 @@ C - - - - - 0x00349A 00:F48A: 10 EB     BPL bra_F477_loop
 C - - - - - 0x00349C 00:F48C: A6 1E     LDX ram_001E
 C - - - - - 0x00349E 00:F48E: F0 04     BEQ bra_F494
 C - - - - - 0x0034A0 00:F490: A9 00     LDA #$00
-C - - - - - 0x0034A2 00:F492: 95 69     STA ram_plr_handler - $01,X
+C - - - - - 0x0034A2 00:F492: 95 69     STA ram_unk_006A - $01,X
 bra_F494:
 C - - - - - 0x0034A4 00:F494: E6 84     INC ram_0084_plr
 C - - - - - 0x0034A6 00:F496: 4C 3B F6  JMP loc_F63B
@@ -9534,7 +9560,7 @@ C - - - - - 0x0034AD 00:F49D: 20 04 F5  JSR sub_F504
 bra_F4A0:
 C - - - - - 0x0034B0 00:F4A0: B5 66     LDA ram_plr_pos_Y,X
 C - - - - - 0x0034B2 00:F4A2: 85 01     STA ram_0001_t02_pos_Y
-C - - - - - 0x0034B4 00:F4A4: B5 6A     LDA ram_plr_handler,X
+C - - - - - 0x0034B4 00:F4A4: B5 6A     LDA ram_unk_006A,X
 C - - - - - 0x0034B6 00:F4A6: 15 6C     ORA ram_006C_plr,X
 C - - - - - 0x0034B8 00:F4A8: 48        PHA
 C - - - - - 0x0034B9 00:F4A9: C9 01     CMP #$01
@@ -9594,7 +9620,7 @@ C - - - - - 0x003513 00:F503: 60        RTS
 
 
 sub_F504:
-C - - - - - 0x003514 00:F504: B4 6A     LDY ram_plr_handler,X
+C - - - - - 0x003514 00:F504: B4 6A     LDY ram_unk_006A,X
 C - - - - - 0x003516 00:F506: B9 6C F4  LDA tbl_F46C,Y
 C - - - - - 0x003519 00:F509: 95 37     STA ram_0037_plr_timer,X
 C - - - - - 0x00351B 00:F50B: B5 6C     LDA ram_006C_plr,X
@@ -9969,7 +9995,7 @@ bra_F6DA_RTS:
 C - - - - - 0x0036EA 00:F6DA: 60        RTS
 bra_F6DB:
 C - - - - - 0x0036EB 00:F6DB: 85 1E     STA ram_001E
-C - - - - - 0x0036ED 00:F6DD: A9 06     LDA #$06
+C - - - - - 0x0036ED 00:F6DD: A9 06     LDA #con_plr_sub_block_break_1
 C - - - - - 0x0036EF 00:F6DF: 85 6A     STA ram_plr_handler
 C - - - - - 0x0036F1 00:F6E1: A9 0A     LDA #$0A
 C - - - - - 0x0036F3 00:F6E3: 85 4D     STA ram_004D_timer
