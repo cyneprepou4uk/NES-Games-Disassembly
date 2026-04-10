@@ -169,18 +169,18 @@ C - - - - - 0x0100F6 04:80E6: E8        INX
 C - - - - - 0x0100F7 04:80E7: A9 00     LDA #$00
 C - - - - - 0x0100F9 04:80E9: 8D 93 01  STA ram_0193_se
 C - - - - - 0x0100FC 04:80EC: AD 5D 01  LDA ram_015B_se + $02
-C - - - - - 0x0100FF 04:80EF: 85 E2     STA ram_00E2_se_t008_useless_01
+C - - - - - 0x0100FF 04:80EF: 85 E2     STA ram_00E2_se_tFFF_useless_01
 C - - - - - 0x010101 04:80F1: F0 17     BEQ bra_810A
 C - - - - - 0x010103 04:80F3: C9 80     CMP #$80
 C - - - - - 0x010105 04:80F5: B0 29     BCS bra_8120
 ; bzk optimize, always 01 if goes here
-C - - - - - 0x010107 04:80F7: E6 E2     INC ram_00E2_se_t008_useless_01    ; -> 01
-C - - - - - 0x010109 04:80F9: A5 E2     LDA ram_00E2_se_t008_useless_01
+C - - - - - 0x010107 04:80F7: E6 E2     INC ram_00E2_se_tFFF_useless_01    ; -> 01
+C - - - - - 0x010109 04:80F9: A5 E2     LDA ram_00E2_se_tFFF_useless_01
 loc_80FB_loop:
 C D 0 - - - 0x01010B 04:80FB: CA        DEX
 C - - - - - 0x01010C 04:80FC: F0 08     BEQ bra_8106
 C - - - - - 0x01010E 04:80FE: 18        CLC
-C - - - - - 0x01010F 04:80FF: 65 E2     ADC ram_00E2_se_t008_useless_01
+C - - - - - 0x01010F 04:80FF: 65 E2     ADC ram_00E2_se_tFFF_useless_01
 C - - - - - 0x010111 04:8101: B0 07     BCS bra_810A
 C - - - - - 0x010113 04:8103: 4C FB 80  JMP loc_80FB_loop
 bra_8106:
@@ -1088,7 +1088,7 @@ loc_864E_FF:
 ; con_se_cb_1_FF
 ; bzk optimize, useless LDA + STA
 C D 0 - - - 0x01065E 04:864E: BD 07 01  LDA ram_0107_se,X
-C - - - - - 0x010661 04:8651: 85 E4     STA ram_00E4_se_t007_useless
+C - - - - - 0x010661 04:8651: 85 E4     STA ram_00E4_se_tFFF_useless
 C - - - - - 0x010663 04:8653: A9 00     LDA #$00
 C - - - - - 0x010665 04:8655: 9D 07 01  STA ram_0107_se,X
 C - - - - - 0x010668 04:8658: 8A        TXA

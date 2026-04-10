@@ -4033,7 +4033,7 @@ C - - - - - 0x01F64A 07:B63A: 85 0B     STA ram_000B_t006
 C - - - - - 0x01F64C 07:B63C: A5 08     LDA ram_0008_t061_cam_pos_hi
 C - - - - - 0x01F64E 07:B63E: F1 69     SBC (ram_data_stairs),Y
 ; bzk optimize, useless STA
-C - - - - - 0x01F650 07:B640: 85 09     STA ram_0009_t02B_useless
+C - - - - - 0x01F650 07:B640: 85 09     STA ram_0009_tFFF_useless
 C - - - - - 0x01F652 07:B642: B0 15     BCS bra_B659
 C - - - - - 0x01F654 07:B644: C9 FF     CMP #$FF
 C - - - - - 0x01F656 07:B646: D0 20     BNE bra_B668

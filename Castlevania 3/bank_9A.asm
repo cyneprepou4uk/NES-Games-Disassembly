@@ -12563,7 +12563,7 @@ C D 1 - - - 0x037798 0D:B788: 29 F0     AND #$F0
 C - - - - - 0x03779A 0D:B78A: 4A        LSR
 C - - - - - 0x03779B 0D:B78B: 4A        LSR
 C - - - - - 0x03779C 0D:B78C: 4A        LSR
-C - - - - - 0x03779D 0D:B78D: 85 12     STA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x03779D 0D:B78D: 85 12     STA ram_0012_t011_ppu_lo
 C - - - - - 0x03779F 0D:B78F: 98        TYA
 C - - - - - 0x0377A0 0D:B790: A4 57     LDY ram_cam_pos_hi
 C - - - - - 0x0377A2 0D:B792: 38        SEC
@@ -12584,17 +12584,17 @@ bra_B7A6:
 C - - - - - 0x0377B6 0D:B7A6: 29 F0     AND #$F0
 C - - - - - 0x0377B8 0D:B7A8: 85 00     STA ram_0000_t0C5
 C - - - - - 0x0377BA 0D:B7AA: 85 0B     STA ram_000B_t017
-C - - - - - 0x0377BC 0D:B7AC: 84 0F     STY ram_000F_t018
+C - - - - - 0x0377BC 0D:B7AC: 84 0F     STY ram_000F_t015
 C - - - - - 0x0377BE 0D:B7AE: A9 0A     LDA #$0A
 ; * 04
 C - - - - - 0x0377C0 0D:B7B0: 06 00     ASL ram_0000_t0C5
 C - - - - - 0x0377C2 0D:B7B2: 2A        ROL
 C - - - - - 0x0377C3 0D:B7B3: 06 00     ASL ram_0000_t0C5
 C - - - - - 0x0377C5 0D:B7B5: 2A        ROL
-C - - - - - 0x0377C6 0D:B7B6: 85 13     STA ram_0013_t009_ppu_addr_hi
-C - - - - - 0x0377C8 0D:B7B8: A5 12     LDA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0377C6 0D:B7B6: 85 13     STA ram_0013_t009_ppu_hi
+C - - - - - 0x0377C8 0D:B7B8: A5 12     LDA ram_0012_t011_ppu_lo
 C - - - - - 0x0377CA 0D:B7BA: 05 00     ORA ram_0000_t0C5
-C - - - - - 0x0377CC 0D:B7BC: 85 12     STA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0377CC 0D:B7BC: 85 12     STA ram_0012_t011_ppu_lo
 bra_B7BE_RTS:
 C - - - - - 0x0377CE 0D:B7BE: 60        RTS
 
@@ -12635,7 +12635,7 @@ bra_B7FB_horisontal:
 C - - - - - 0x03780B 0D:B7FB: A5 13     LDA ram_0013_t003
 C - - - - - 0x03780D 0D:B7FD: 85 0E     STA ram_000E_t015_pos_X_lo
 C - - - - - 0x03780F 0D:B7FF: A5 14     LDA ram_0014_t002
-C - - - - - 0x037811 0D:B801: 85 0F     STA ram_000F_t018
+C - - - - - 0x037811 0D:B801: 85 0F     STA ram_000F_t015
 C - - - - - 0x037813 0D:B803: 20 B8 B8  JSR sub_B8B8
 C - - - - - 0x037816 0D:B806: D0 B6     BNE bra_B7BE_RTS
 C - - - - - 0x037818 0D:B808: 20 05 BA  JSR sub_BA05
@@ -12663,9 +12663,9 @@ sub_B831:
     ; ram_0009_t024
     ; ram_000B_t017
     ; ram_000D_t012
-    ; ram_000F_t018
+    ; ram_000F_t015
     ; ram_0011_t007_nametable_attribute
-    ; ram_0012_t011_ppu_addr_lo
+    ; ram_0012_t011_ppu_lo
 C - - - - - 0x037841 0D:B831: 20 E4 B9  JSR sub_B9E4_calculate_ppu_address
 C - - - - - 0x037844 0D:B834: 20 DE B8  JSR sub_B8DE
 C - - - - - 0x037847 0D:B837: 20 4B B9  JSR sub_B94B
@@ -12700,7 +12700,7 @@ loc_B85E:
 C D 1 - - - 0x03786E 0D:B85E: 20 83 B8  JSR sub_B883_find_empty_object_slot_01_11
 C - - - - - 0x037871 0D:B861: D0 1F     BNE bra_B882_RTS    ; if not found
 C - - - - - 0x037873 0D:B863: 20 91 B8  JSR sub_B891
-C - - - - - 0x037876 0D:B866: A5 12     LDA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x037876 0D:B866: A5 12     LDA ram_0012_t011_ppu_lo
 ; * 08
 C - - - - - 0x037878 0D:B868: 0A        ASL
 C - - - - - 0x037879 0D:B869: 0A        ASL
@@ -12806,12 +12806,12 @@ sub_B8DE:
     ; ram_0009_t024
     ; ram_000B_t017
     ; ram_000D_t012
-    ; ram_000F_t018
+    ; ram_000F_t015
     ; ram_0011_t007_nametable_attribute
-    ; ram_0012_t011_ppu_addr_lo
+    ; ram_0012_t011_ppu_lo
 C - - - - - 0x0378EE 0D:B8DE: A9 00     LDA #$00
 C - - - - - 0x0378F0 0D:B8E0: 85 04     STA ram_0004_t020
-C - - - - - 0x0378F2 0D:B8E2: A5 12     LDA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0378F2 0D:B8E2: A5 12     LDA ram_0012_t011_ppu_lo
 ; * 04
 C - - - - - 0x0378F4 0D:B8E4: 0A        ASL
 C - - - - - 0x0378F5 0D:B8E5: 0A        ASL
@@ -12899,20 +12899,20 @@ tbl_B947:
 
 sub_B94B:
 ; in
-    ; ram_0014_t008_ppu_addr_lo
-    ; ram_0015_t009_ppu_addr_hi
+    ; ram_0014_t008_ppu_lo
+    ; ram_0015_t009_ppu_hi
     ; ram_000C_t016_tile
 C - - - - - 0x03795B 0D:B94B: A0 00     LDY #$00
 C - - - - - 0x03795D 0D:B94D: 20 70 B9  JSR sub_B970_write_to_buffer
 C - - - - - 0x037960 0D:B950: A9 20     LDA #$20
-C - - - - - 0x037962 0D:B952: 05 12     ORA ram_0012_t011_ppu_addr_lo
-C - - - - - 0x037964 0D:B954: 85 12     STA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x037962 0D:B952: 05 12     ORA ram_0012_t011_ppu_lo
+C - - - - - 0x037964 0D:B954: 85 12     STA ram_0012_t011_ppu_lo
 C - - - - - 0x037966 0D:B956: 20 70 B9  JSR sub_B970_write_to_buffer
 C - - - - - 0x037969 0D:B959: A9 01     LDA #$01
 C - - - - - 0x03796B 0D:B95B: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x03796E 0D:B95E: A5 14     LDA ram_0014_t008_ppu_addr_lo
+C - - - - - 0x03796E 0D:B95E: A5 14     LDA ram_0014_t008_ppu_lo
 C - - - - - 0x037970 0D:B960: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x037973 0D:B963: A5 15     LDA ram_0015_t009_ppu_addr_hi
+C - - - - - 0x037973 0D:B963: A5 15     LDA ram_0015_t009_ppu_hi
 C - - - - - 0x037975 0D:B965: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
 C - - - - - 0x037978 0D:B968: A5 0C     LDA ram_000C_t016_tile
 C - - - - - 0x03797A 0D:B96A: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
@@ -12952,9 +12952,9 @@ tbl_B990:
 sub_B994_prepare_ppu_buffer:
 C - - - - - 0x0379A4 0D:B994: A9 01     LDA #$01
 C - - - - - 0x0379A6 0D:B996: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x0379A9 0D:B999: A5 12     LDA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0379A9 0D:B999: A5 12     LDA ram_0012_t011_ppu_lo
 C - - - - - 0x0379AB 0D:B99B: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x0379AE 0D:B99E: A5 13     LDA ram_0013_t009_ppu_addr_hi
+C - - - - - 0x0379AE 0D:B99E: A5 13     LDA ram_0013_t009_ppu_hi
 C - - - - - 0x0379B0 0D:B9A0: 4C 14 ED  JMP loc_0x03ED24_write_byte_to_buffer___unk_index
 
 
@@ -12963,8 +12963,8 @@ sub_B9A3_shift_ppu_address:
 C - - - - - 0x0379B3 0D:B9A3: A4 0A     LDY ram_000A_t01A
 C - - - - - 0x0379B5 0D:B9A5: B9 AE B9  LDA tbl_B9AE,Y
 C - - - - - 0x0379B8 0D:B9A8: 18        CLC
-C - - - - - 0x0379B9 0D:B9A9: 65 12     ADC ram_0012_t011_ppu_addr_lo
-C - - - - - 0x0379BB 0D:B9AB: 85 12     STA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0379B9 0D:B9A9: 65 12     ADC ram_0012_t011_ppu_lo
+C - - - - - 0x0379BB 0D:B9AB: 85 12     STA ram_0012_t011_ppu_lo
 C - - - - - 0x0379BD 0D:B9AD: 60        RTS
 
 
@@ -12982,11 +12982,11 @@ sub_B9B2_calculate_ppu_address:
     ; ram_0013_t003
     ; ram_0014_t002
 ; out
-    ; ram_0012_t011_ppu_addr_lo
-    ; ram_0013_t009_ppu_addr_hi
+    ; ram_0012_t011_ppu_lo
+    ; ram_0013_t009_ppu_hi
 C - - - - - 0x0379C2 0D:B9B2: A5 13     LDA ram_0013_t003
 C - - - - - 0x0379C4 0D:B9B4: 29 F0     AND #$F0
-C - - - - - 0x0379C6 0D:B9B6: 85 12     STA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0379C6 0D:B9B6: 85 12     STA ram_0012_t011_ppu_lo
 C - - - - - 0x0379C8 0D:B9B8: A5 14     LDA ram_0014_t002
 C - - - - - 0x0379CA 0D:B9BA: 45 75     EOR ram_0075
 C - - - - - 0x0379CC 0D:B9BC: 4A        LSR
@@ -12994,7 +12994,7 @@ C - - - - - 0x0379CD 0D:B9BD: A9 20     LDA #$20
 C - - - - - 0x0379CF 0D:B9BF: 90 02     BCC bra_B9C3
 C - - - - - 0x0379D1 0D:B9C1: A9 24     LDA #$24
 bra_B9C3:
-C - - - - - 0x0379D3 0D:B9C3: 85 13     STA ram_0013_t009_ppu_addr_hi
+C - - - - - 0x0379D3 0D:B9C3: 85 13     STA ram_0013_t009_ppu_hi
 C - - - - - 0x0379D5 0D:B9C5: AD 1C 04  LDA ram_plr_pos_Y_lo
 ; / 08
 C - - - - - 0x0379D8 0D:B9C8: 4A        LSR
@@ -13002,20 +13002,20 @@ C - - - - - 0x0379D9 0D:B9C9: 4A        LSR
 C - - - - - 0x0379DA 0D:B9CA: 4A        LSR
 ; / 08
 C - - - - - 0x0379DB 0D:B9CB: 4A        LSR
-C - - - - - 0x0379DC 0D:B9CC: 66 12     ROR ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0379DC 0D:B9CC: 66 12     ROR ram_0012_t011_ppu_lo
 C - - - - - 0x0379DE 0D:B9CE: 4A        LSR
-C - - - - - 0x0379DF 0D:B9CF: 66 12     ROR ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0379DF 0D:B9CF: 66 12     ROR ram_0012_t011_ppu_lo
 C - - - - - 0x0379E1 0D:B9D1: 4A        LSR
-C - - - - - 0x0379E2 0D:B9D2: 66 12     ROR ram_0012_t011_ppu_addr_lo
-C - - - - - 0x0379E4 0D:B9D4: 05 13     ORA ram_0013_t009_ppu_addr_hi
-C - - - - - 0x0379E6 0D:B9D6: 85 13     STA ram_0013_t009_ppu_addr_hi
+C - - - - - 0x0379E2 0D:B9D2: 66 12     ROR ram_0012_t011_ppu_lo
+C - - - - - 0x0379E4 0D:B9D4: 05 13     ORA ram_0013_t009_ppu_hi
+C - - - - - 0x0379E6 0D:B9D6: 85 13     STA ram_0013_t009_ppu_hi
 C - - - - - 0x0379E8 0D:B9D8: 18        CLC
 C - - - - - 0x0379E9 0D:B9D9: A9 40     LDA #$40
-C - - - - - 0x0379EB 0D:B9DB: 65 12     ADC ram_0012_t011_ppu_addr_lo
-C - - - - - 0x0379ED 0D:B9DD: 85 12     STA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x0379EB 0D:B9DB: 65 12     ADC ram_0012_t011_ppu_lo
+C - - - - - 0x0379ED 0D:B9DD: 85 12     STA ram_0012_t011_ppu_lo
 C - - - - - 0x0379EF 0D:B9DF: 90 02     BCC bra_B9E3_RTS
 ; if overflow
-C - - - - - 0x0379F1 0D:B9E1: E6 13     INC ram_0013_t009_ppu_addr_hi
+C - - - - - 0x0379F1 0D:B9E1: E6 13     INC ram_0013_t009_ppu_hi
 bra_B9E3_RTS:
 C - - - - - 0x0379F3 0D:B9E3: 60        RTS
 
@@ -13024,33 +13024,33 @@ C - - - - - 0x0379F3 0D:B9E3: 60        RTS
 sub_B9E4_calculate_ppu_address:
 ofs_062_0x0379F4_02_calculate_ppu_address:
 ; in
-    ; ram_0012_t011_ppu_addr_lo
-    ; ram_0013_t009_ppu_addr_hi
+    ; ram_0012_t011_ppu_lo
+    ; ram_0013_t009_ppu_hi
 ; out
-    ; ram_0014_t008_ppu_addr_lo
-    ; ram_0015_t009_ppu_addr_hi
-C - - - - - 0x0379F4 0D:B9E4: A5 13     LDA ram_0013_t009_ppu_addr_hi
+    ; ram_0014_t008_ppu_lo
+    ; ram_0015_t009_ppu_hi
+C - - - - - 0x0379F4 0D:B9E4: A5 13     LDA ram_0013_t009_ppu_hi
 C - - - - - 0x0379F6 0D:B9E6: 29 FC     AND #$FC
 C - - - - - 0x0379F8 0D:B9E8: 09 03     ORA #$03
-C - - - - - 0x0379FA 0D:B9EA: 85 15     STA ram_0015_t009_ppu_addr_hi
-C - - - - - 0x0379FC 0D:B9EC: A5 13     LDA ram_0013_t009_ppu_addr_hi
+C - - - - - 0x0379FA 0D:B9EA: 85 15     STA ram_0015_t009_ppu_hi
+C - - - - - 0x0379FC 0D:B9EC: A5 13     LDA ram_0013_t009_ppu_hi
 C - - - - - 0x0379FE 0D:B9EE: 29 03     AND #$03
 C - - - - - 0x037A00 0D:B9F0: 09 0C     ORA #$0C
-C - - - - - 0x037A02 0D:B9F2: 85 14     STA ram_0014_t008_ppu_addr_lo
-C - - - - - 0x037A04 0D:B9F4: A5 12     LDA ram_0012_t011_ppu_addr_lo
+C - - - - - 0x037A02 0D:B9F2: 85 14     STA ram_0014_t008_ppu_lo
+C - - - - - 0x037A04 0D:B9F4: A5 12     LDA ram_0012_t011_ppu_lo
 ; * 02
 C - - - - - 0x037A06 0D:B9F6: 0A        ASL
-C - - - - - 0x037A07 0D:B9F7: 26 14     ROL ram_0014_t008_ppu_addr_lo
+C - - - - - 0x037A07 0D:B9F7: 26 14     ROL ram_0014_t008_ppu_lo
 ; * 04
 C - - - - - 0x037A09 0D:B9F9: 0A        ASL
 C - - - - - 0x037A0A 0D:B9FA: 0A        ASL
 ; * 08
 C - - - - - 0x037A0B 0D:B9FB: 0A        ASL
-C - - - - - 0x037A0C 0D:B9FC: 26 14     ROL ram_0014_t008_ppu_addr_lo
+C - - - - - 0x037A0C 0D:B9FC: 26 14     ROL ram_0014_t008_ppu_lo
 C - - - - - 0x037A0E 0D:B9FE: 0A        ASL
-C - - - - - 0x037A0F 0D:B9FF: 26 14     ROL ram_0014_t008_ppu_addr_lo
+C - - - - - 0x037A0F 0D:B9FF: 26 14     ROL ram_0014_t008_ppu_lo
 C - - - - - 0x037A11 0D:BA01: 0A        ASL
-C - - - - - 0x037A12 0D:BA02: 26 14     ROL ram_0014_t008_ppu_addr_lo
+C - - - - - 0x037A12 0D:BA02: 26 14     ROL ram_0014_t008_ppu_lo
 C - - - - - 0x037A14 0D:BA04: 60        RTS
 
 
@@ -13215,7 +13215,7 @@ sub_BAE7:
         ; bzk bug, value from 0x0340A2
         ; must be properly written, like at 0x037AF1
     ; ram_000E_t015_pos_X_lo
-    ; ram_000F_t018
+    ; ram_000F_t015
 ; out
     ; ram_000D_t012
     ; C
@@ -13259,7 +13259,7 @@ bra_BB14:
 sub_BB14:
 ; in
     ; ram_000B_t017
-    ; ram_000F_t018
+    ; ram_000F_t015
 C - - - - - 0x037B24 0D:BB14: 85 00     STA ram_0000_t055
 C - - - - - 0x037B26 0D:BB16: 20 91 BB  JSR sub_BB91
 ; triggers when the block you stand on is falling after breaking completely.
@@ -13318,13 +13318,13 @@ C - - - - - 0x037B68 0D:BB58: 4C 5F BB  JMP loc_BB5F
 
 sub_BB5B:
 ; in
-    ; ram_000F_t018
+    ; ram_000F_t015
 ; out
     ; C
         ; 0 = perfect match
         ; 1 = no matches
     ; ram_0003_t006_last_match_index
-C - - - - - 0x037B6B 0D:BB5B: A5 0F     LDA ram_000F_t018
+C - - - - - 0x037B6B 0D:BB5B: A5 0F     LDA ram_000F_t015
 C - - - - - 0x037B6D 0D:BB5D: 85 07     STA ram_0004_t00B_match_test_array + $03
 loc_BB5F:
 C D 1 - - - 0x037B6F 0D:BB5F: A9 1F     LDA #$1F
@@ -13370,7 +13370,7 @@ sub_BB91:
 ; in
     ; ram_0000_t055
     ; ram_000B_t017
-    ; ram_000F_t018
+    ; ram_000F_t015
 ; out
     ; ram_0000_t055
 C - - - - - 0x037BA1 0D:BB91: A5 00     LDA ram_0000_t055
@@ -13390,7 +13390,7 @@ bra_BBA7:
 bra_BBAA:
 C - - - - - 0x037BBA 0D:BBAA: C0 0B     CPY #$0B
 C - - - - - 0x037BBC 0D:BBAC: D0 17     BNE bra_BBC5_RTS
-C - - - - - 0x037BBE 0D:BBAE: A4 0F     LDY ram_000F_t018
+C - - - - - 0x037BBE 0D:BBAE: A4 0F     LDY ram_000F_t015
 C - - - - - 0x037BC0 0D:BBB0: D0 13     BNE bra_BBC5_RTS
 C - - - - - 0x037BC2 0D:BBB2: 38        SEC
 C - - - - - 0x037BC3 0D:BBB3: E9 0D     SBC #$0D
@@ -13943,32 +13943,32 @@ C - - - - - 0x037E0E 0D:BDFE: AD F0 07  LDA ram_07F0
 C - - - - - 0x037E11 0D:BE01: 0A        ASL
 C - - - - - 0x037E12 0D:BE02: A8        TAY
 C - - - - - 0x037E13 0D:BE03: A9 00     LDA #$00
-C - - - - - 0x037E15 0D:BE05: 85 01     STA ram_0001_t02F_ppu_addr_hi
+C - - - - - 0x037E15 0D:BE05: 85 01     STA ram_0001_t02F_ppu_hi
 C - - - - - 0x037E17 0D:BE07: AD F1 07  LDA ram_07F1
 ; * 20
 C - - - - - 0x037E1A 0D:BE0A: 0A        ASL
-C - - - - - 0x037E1B 0D:BE0B: 26 01     ROL ram_0001_t02F_ppu_addr_hi
+C - - - - - 0x037E1B 0D:BE0B: 26 01     ROL ram_0001_t02F_ppu_hi
 C - - - - - 0x037E1D 0D:BE0D: 0A        ASL
-C - - - - - 0x037E1E 0D:BE0E: 26 01     ROL ram_0001_t02F_ppu_addr_hi
+C - - - - - 0x037E1E 0D:BE0E: 26 01     ROL ram_0001_t02F_ppu_hi
 C - - - - - 0x037E20 0D:BE10: 0A        ASL
-C - - - - - 0x037E21 0D:BE11: 26 01     ROL ram_0001_t02F_ppu_addr_hi
+C - - - - - 0x037E21 0D:BE11: 26 01     ROL ram_0001_t02F_ppu_hi
 C - - - - - 0x037E23 0D:BE13: 0A        ASL
-C - - - - - 0x037E24 0D:BE14: 26 01     ROL ram_0001_t02F_ppu_addr_hi
+C - - - - - 0x037E24 0D:BE14: 26 01     ROL ram_0001_t02F_ppu_hi
 C - - - - - 0x037E26 0D:BE16: 0A        ASL
-C - - - - - 0x037E27 0D:BE17: 26 01     ROL ram_0001_t02F_ppu_addr_hi
-C - - - - - 0x037E29 0D:BE19: 85 00     STA ram_0000_t050_ppu_addr_lo
+C - - - - - 0x037E27 0D:BE17: 26 01     ROL ram_0001_t02F_ppu_hi
+C - - - - - 0x037E29 0D:BE19: 85 00     STA ram_0000_t050_ppu_lo
 C - - - - - 0x037E2B 0D:BE1B: 18        CLC
 C - - - - - 0x037E2C 0D:BE1C: B9 5D BE  LDA tbl_BE5D_ppu_address,Y
-C - - - - - 0x037E2F 0D:BE1F: 65 00     ADC ram_0000_t050_ppu_addr_lo
-C - - - - - 0x037E31 0D:BE21: 85 00     STA ram_0000_t050_ppu_addr_lo
+C - - - - - 0x037E2F 0D:BE1F: 65 00     ADC ram_0000_t050_ppu_lo
+C - - - - - 0x037E31 0D:BE21: 85 00     STA ram_0000_t050_ppu_lo
 C - - - - - 0x037E33 0D:BE23: B9 5E BE  LDA tbl_BE5D_ppu_address + $01,Y
-C - - - - - 0x037E36 0D:BE26: 65 01     ADC ram_0001_t02F_ppu_addr_hi
-C - - - - - 0x037E38 0D:BE28: 85 01     STA ram_0001_t02F_ppu_addr_hi
+C - - - - - 0x037E36 0D:BE26: 65 01     ADC ram_0001_t02F_ppu_hi
+C - - - - - 0x037E38 0D:BE28: 85 01     STA ram_0001_t02F_ppu_hi
 C - - - - - 0x037E3A 0D:BE2A: A9 01     LDA #$01
 C - - - - - 0x037E3C 0D:BE2C: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x037E3F 0D:BE2F: A5 00     LDA ram_0000_t050_ppu_addr_lo
+C - - - - - 0x037E3F 0D:BE2F: A5 00     LDA ram_0000_t050_ppu_lo
 C - - - - - 0x037E41 0D:BE31: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
-C - - - - - 0x037E44 0D:BE34: A5 01     LDA ram_0001_t02F_ppu_addr_hi
+C - - - - - 0x037E44 0D:BE34: A5 01     LDA ram_0001_t02F_ppu_hi
 C - - - - - 0x037E46 0D:BE36: 20 14 ED  JSR sub_0x03ED24_write_byte_to_buffer___unk_index
 C - - - - - 0x037E49 0D:BE39: A0 20     LDY #$20
 C - - - - - 0x037E4B 0D:BE3B: A9 00     LDA #$00

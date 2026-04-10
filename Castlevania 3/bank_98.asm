@@ -802,7 +802,7 @@ bra_8C77:
 ofs_037_8C77_03:
 C - - J - - 0x030C87 0C:8C77: BD AC 06  LDA ram_06AC_se,X
 C - - - - - 0x030C8A 0C:8C7A: 30 2A     BMI bra_8CA6
-C - - - - - 0x030C8C 0C:8C7C: 84 E2     STY ram_00E2_se_t017_useless
+C - - - - - 0x030C8C 0C:8C7C: 84 E2     STY ram_00E2_se_tFFE_useless
 C - - - - - 0x030C8E 0C:8C7E: BD AC 06  LDA ram_06AC_se,X
 C - - - - - 0x030C91 0C:8C81: 29 0F     AND #$0F
 C - - - - - 0x030C93 0C:8C83: 85 E4     STA ram_00E4_se_t001
@@ -893,7 +893,7 @@ bra_8D1E_00_0F:
 C - - - - - 0x030D2E 0C:8D1E: FE A6 06  INC ram_06A6_se,X
 C - - - - - 0x030D31 0C:8D21: B1 E2     LDA (ram_00E2_se_t000_data),Y
 C - - - - - 0x030D33 0C:8D23: 29 0F     AND #$0F
-C - - - - - 0x030D35 0C:8D25: 85 E2     STA ram_00E2_se_t018
+C - - - - - 0x030D35 0C:8D25: 85 E2     STA ram_00E2_se_t017
 C - - - - - 0x030D37 0C:8D27: C9 08     CMP #$08
 C - - - - - 0x030D39 0C:8D29: B0 07     BCS bra_8D32
 C - - - - - 0x030D3B 0C:8D2B: 20 40 8D  JSR sub_8D40
@@ -903,8 +903,8 @@ C - - - - - 0x030D41 0C:8D31: 60        RTS
 bra_8D32:
 C - - - - - 0x030D42 0C:8D32: A9 10     LDA #$10
 C - - - - - 0x030D44 0C:8D34: 38        SEC
-C - - - - - 0x030D45 0C:8D35: E5 E2     SBC ram_00E2_se_t018
-C - - - - - 0x030D47 0C:8D37: 85 E2     STA ram_00E2_se_t018
+C - - - - - 0x030D45 0C:8D35: E5 E2     SBC ram_00E2_se_t017
+C - - - - - 0x030D47 0C:8D37: 85 E2     STA ram_00E2_se_t017
 C - - - - - 0x030D49 0C:8D39: 20 40 8D  JSR sub_8D40
 ; bzk optimize, JMP
 C - - - - - 0x030D4C 0C:8D3C: 20 6A 8D  JSR sub_8D6A
@@ -914,21 +914,21 @@ C - - - - - 0x030D4F 0C:8D3F: 60        RTS
 
 sub_8D40:
 ; in
-    ; ram_00E2_se_t018
+    ; ram_00E2_se_t017
 ; out
-    ; ram_00E2_se_t019
+    ; ram_00E2_se_t008
 C - - - - - 0x030D50 0C:8D40: BD E1 03  LDA ram_03E1_se,X
 C - - - - - 0x030D53 0C:8D43: AA        TAX
-C - - - - - 0x030D54 0C:8D44: A5 E2     LDA ram_00E2_se_t018
+C - - - - - 0x030D54 0C:8D44: A5 E2     LDA ram_00E2_se_t017
 loc_8D46_loop:
 C D 0 - - - 0x030D56 0C:8D46: CA        DEX
 C - - - - - 0x030D57 0C:8D47: F0 06     BEQ bra_8D4F
 C - - - - - 0x030D59 0C:8D49: 18        CLC
-C - - - - - 0x030D5A 0C:8D4A: 65 E2     ADC ram_00E2_se_t018
+C - - - - - 0x030D5A 0C:8D4A: 65 E2     ADC ram_00E2_se_t017
 C - - - - - 0x030D5C 0C:8D4C: 4C 46 8D  JMP loc_8D46_loop
 bra_8D4F:
 C - - - - - 0x030D5F 0C:8D4F: A6 EE     LDX ram_00EE_se_channel_index
-C - - - - - 0x030D61 0C:8D51: 85 E2     STA ram_00E2_se_t019
+C - - - - - 0x030D61 0C:8D51: 85 E2     STA ram_00E2_se_t008
 C - - - - - 0x030D63 0C:8D53: 60        RTS
 
 
@@ -952,7 +952,7 @@ C - - - - - 0x030D79 0C:8D69: 60        RTS
 sub_8D6A:
 C - - - - - 0x030D7A 0C:8D6A: BD 83 01  LDA ram_0183_se,X
 C - - - - - 0x030D7D 0C:8D6D: 38        SEC
-C - - - - - 0x030D7E 0C:8D6E: E5 E2     SBC ram_00E2_se_t019
+C - - - - - 0x030D7E 0C:8D6E: E5 E2     SBC ram_00E2_se_t008
 C - - - - - 0x030D80 0C:8D70: B0 0A     BCS bra_8D7C
 - - - - - - 0x030D82 0C:8D72: 85 EC     STA ram_00EC_se
 - - - - - - 0x030D84 0C:8D74: BD 86 01  LDA ram_0186_se,X

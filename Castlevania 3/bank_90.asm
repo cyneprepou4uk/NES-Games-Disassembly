@@ -4665,7 +4665,7 @@ sub_BF58_get_player_X_distance_to_orb:
 ; bzk optimize, single JSR to here
 ; bzk optimize, useless LDA + STA
 C - - - - - 0x023F68 08:BF58: A9 00     LDA #$00    ; facing right
-C - - - - - 0x023F6A 08:BF5A: 85 17     STA ram_0017_t01D_useless
+C - - - - - 0x023F6A 08:BF5A: 85 17     STA ram_0017_tFFF_useless
 C - - - - - 0x023F6C 08:BF5C: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x023F6F 08:BF5F: 38        SEC
 C - - - - - 0x023F70 08:BF60: FD 38 04  SBC ram_obj_pos_X_lo,X
@@ -4674,7 +4674,7 @@ C - - - - - 0x023F75 08:BF65: B0 0D     BCS bra_BF74
 ; C = 0
 ; bzk optimize, useless LDA + STA
 C - - - - - 0x023F77 08:BF67: A9 01     LDA #$01    ; facing left
-C - - - - - 0x023F79 08:BF69: 85 17     STA ram_0017_t01D_useless
+C - - - - - 0x023F79 08:BF69: 85 17     STA ram_0017_tFFF_useless
 C - - - - - 0x023F7B 08:BF6B: A5 00     LDA ram_0000_t10A_X_distance_to_orb
 ; EOR
 C - - - - - 0x023F7D 08:BF6D: 49 FF     EOR #$FF
@@ -4706,7 +4706,7 @@ C - - - - - 0x023F94 08:BF84: 90 0C     BCC bra_BF92_RTS    ; jmp
 - - - - - - 0x023F9B 08:BF8B: D0 05     BNE bra_BF92_RTS
 ; bzk optimize, useless LDA + STA
 - - - - - - 0x023F9D 08:BF8D: BD A8 04  LDA ram_obj_facing,X
-- - - - - - 0x023FA0 08:BF90: 85 17     STA ram_0017_t01D_useless
+- - - - - - 0x023FA0 08:BF90: 85 17     STA ram_0017_tFFF_useless
 bra_BF92_RTS:
 C - - - - - 0x023FA2 08:BF92: 60        RTS
 

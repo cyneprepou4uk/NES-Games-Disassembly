@@ -315,7 +315,7 @@ C - - - - - 0x02C14E 0B:813E: 20 E6 B6  JSR sub_B6E6
 C - - - - - 0x02C151 0B:8141: 18        CLC
 C - - - - - 0x02C152 0B:8142: A5 C7     LDA ram_00C7
 C - - - - - 0x02C154 0B:8144: 69 04     ADC #$04
-C - - - - - 0x02C156 0B:8146: 9D D8 05  STA ram_05D8_temp,X
+C - - - - - 0x02C156 0B:8146: 9D D8 05  STA ram_05D8_obj,X
 C - - - - - 0x02C159 0B:8149: 20 8A FF  JSR sub_0x03FF9A
 C - - - - - 0x02C15C 0B:814C: A9 00     LDA #$00
 C - - - - - 0x02C15E 0B:814E: 60        RTS
@@ -2781,7 +2781,7 @@ C - - - - - 0x02CE0C 0B:8DFC: 9D A8 04  STA ram_obj_facing,X
 C - - - - - 0x02CE0F 0B:8DFF: 20 C9 9F  JSR sub_9FC9
 C - - - - - 0x02CE12 0B:8E02: A5 07     LDA ram_0007_t00B_ai_script_projectile
 C - - - - - 0x02CE14 0B:8E04: 9D EF 05  STA ram_obj_ai_script,X
-C - - - - - 0x02CE17 0B:8E07: 86 08     STX ram_0008_t071
+C - - - - - 0x02CE17 0B:8E07: 86 08     STX ram_0008_t059
 C - - - - - 0x02CE19 0B:8E09: A6 6C     LDX ram_006C_object_index
 C - - - - - 0x02CE1B 0B:8E0B: 60        RTS
 bra_8E0C_no_empty_slots:
@@ -3375,7 +3375,7 @@ C - - - - - 0x02D116 0B:9106: F0 02     BEQ bra_910A
 C - - - - - 0x02D118 0B:9108: A0 07     LDY #con_8E6F_07
 bra_910A:
 C - - - - - 0x02D11A 0B:910A: 20 11 8E  JSR sub_8E11
-C - - - - - 0x02D11D 0B:910D: A5 08     LDA ram_0008_t071
+C - - - - - 0x02D11D 0B:910D: A5 08     LDA ram_0008_t059
 C - - - - - 0x02D11F 0B:910F: 29 0F     AND #$0F
 C - - - - - 0x02D121 0B:9111: 09 80     ORA #$80
 C - - - - - 0x02D123 0B:9113: 85 09     STA ram_0009_t01F
@@ -4537,7 +4537,7 @@ C - - J - - 0x02D799 0B:9789: FE C1 05  INC ram_obj_ai_subscript,X
 C - - - - - 0x02D79C 0B:978C: A0 01     LDY #$01
 C - - - - - 0x02D79E 0B:978E: B1 02     LDA (ram_0002_t007_data),Y
 ; bzk optimize, A is always 01
-C - - - - - 0x02D7A0 0B:9790: 85 10     STA ram_0010_t025_useless_01
+C - - - - - 0x02D7A0 0B:9790: 85 10     STA ram_0010_tFFE_useless_01
 C - - - - - 0x02D7A2 0B:9792: AD 38 04  LDA ram_plr_pos_X_lo
 C - - - - - 0x02D7A5 0B:9795: 85 04     STA ram_0004_t013_pos_X_lo
 C - - - - - 0x02D7A7 0B:9797: AD 1C 04  LDA ram_plr_pos_Y_lo
@@ -4549,7 +4549,7 @@ C - - - - - 0x02D7B1 0B:97A1: 85 00     STA ram_0000_t07B
 C - - - - - 0x02D7B3 0B:97A3: A8        TAY
 C - - - - - 0x02D7B4 0B:97A4: B9 E0 97  LDA tbl_97E0_index,Y
 ; bzk optimize, always 01 from 0010
-C - - - - - 0x02D7B7 0B:97A7: A4 10     LDY ram_0010_t025_useless_01
+C - - - - - 0x02D7B7 0B:97A7: A4 10     LDY ram_0010_tFFE_useless_01
 C - - - - - 0x02D7B9 0B:97A9: 18        CLC
 C - - - - - 0x02D7BA 0B:97AA: 79 00 98  ADC tbl_9800_offset_12,Y
 C - - - - - 0x02D7BD 0B:97AD: 0A        ASL
@@ -4620,7 +4620,7 @@ tbl_97E0_index:
 tbl_9800_offset_12:
 ; index for 0x02D813 and 0x02D849
 ; bzk optimize
-- - - - - - 0x02D810 0B:9800: 00        .byte $00   ; 00 never used, see ram_0010_t025_useless_01
+- - - - - - 0x02D810 0B:9800: 00        .byte $00   ; 00 never used, see ram_0010_tFFE_useless_01
 - D 0 - - - 0x02D811 0B:9801: 12        .byte $12   ; 01 
 
 
@@ -5088,12 +5088,12 @@ C - - - - - 0x02DAA8 0B:9A98: BC 1D 06  LDY ram_061D_obj,X
 C - - - - - 0x02DAAB 0B:9A9B: 99 38 04  STA ram_obj_pos_X_lo,Y
 C - - - - - 0x02DAAE 0B:9A9E: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02DAB1 0B:9AA1: 29 BE     AND #(con_obj_flag_01 + con_obj_flag_40) ^ $FF
-C - - - - - 0x02DAB3 0B:9AA3: 85 08     STA ram_0008_t070
+C - - - - - 0x02DAB3 0B:9AA3: 85 08     STA ram_0008_t033
 C - - - - - 0x02DAB5 0B:9AA5: BD 70 04  LDA ram_obj_flags,X
 C - - - - - 0x02DAB8 0B:9AA8: 29 01     AND #con_obj_flag_01
 C - - - - - 0x02DABA 0B:9AAA: 65 09     ADC ram_0009_t020
 C - - - - - 0x02DABC 0B:9AAC: 29 01     AND #$01
-C - - - - - 0x02DABE 0B:9AAE: 05 08     ORA ram_0008_t070
+C - - - - - 0x02DABE 0B:9AAE: 05 08     ORA ram_0008_t033
 C - - - - - 0x02DAC0 0B:9AB0: 99 70 04  STA ram_obj_flags,Y
 C - - - - - 0x02DAC3 0B:9AB3: A5 00     LDA ram_0000_t0D9_obj_facing
 C - - - - - 0x02DAC5 0B:9AB5: 99 A8 04  STA ram_obj_facing,Y
@@ -5772,7 +5772,7 @@ C - - - - - 0x02DE60 0B:9E50: 29 01     AND #$01    ; con_obj_flag_01
 C - - - - - 0x02DE62 0B:9E52: 05 09     ORA ram_0009_t021_some_obj_flags
 C - - - - - 0x02DE64 0B:9E54: 9D 70 04  STA ram_obj_flags,X
 C - - - - - 0x02DE67 0B:9E57: A9 01     LDA #$01
-C - - - - - 0x02DE69 0B:9E59: 85 10     STA ram_0010_t025_useless_01
+C - - - - - 0x02DE69 0B:9E59: 85 10     STA ram_0010_tFFE_useless_01
 C - - - - - 0x02DE6B 0B:9E5B: B9 75 9E  LDA tbl_9E75,Y
 C - - - - - 0x02DE6E 0B:9E5E: 20 A1 97  JSR sub_97A1
 bra_9E61:
@@ -6771,7 +6771,7 @@ C - - - - - 0x02E2EF 0B:A2DF: 4C F9 A2  JMP loc_A2F9
 loc_A2E2_90_92:
 C D 1 - - - 0x02E2F2 0B:A2E2: A9 33     LDA #con_sfx_destroy_candle
 C - - - - - 0x02E2F4 0B:A2E4: 20 5F E2  JSR sub_0x03E26F_play_sound
-C - - - - - 0x02E2F7 0B:A2E7: BD D8 05  LDA ram_05D8_temp,X
+C - - - - - 0x02E2F7 0B:A2E7: BD D8 05  LDA ram_05D8_obj,X
 C - - - - - 0x02E2FA 0B:A2EA: C9 AC     CMP #con_obj_id_AC
 C - - - - - 0x02E2FC 0B:A2EC: F0 EA     BEQ bra_A2D8
 C - - - - - 0x02E2FE 0B:A2EE: C9 AE     CMP #con_obj_id_AE
@@ -7169,7 +7169,7 @@ C - - - - - 0x02E483 0B:A473: 29 07     AND #$07
 C - - - - - 0x02E485 0B:A475: 0A        ASL
 C - - - - - 0x02E486 0B:A476: A8        TAY
 C - - - - - 0x02E487 0B:A477: B9 BF A4  LDA tbl_A4BF,Y
-C - - - - - 0x02E48A 0B:A47A: 9D D8 05  STA ram_05D8_temp,X
+C - - - - - 0x02E48A 0B:A47A: 9D D8 05  STA ram_05D8_obj,X
 C - - - - - 0x02E48D 0B:A47D: B9 C0 A4  LDA tbl_A4BF + $01,Y
 C - - - - - 0x02E490 0B:A480: 9D 45 06  STA ram_obj_0646,X
 ; check for 02-04-xx
@@ -7232,9 +7232,9 @@ tbl_A4BF:
 
 ofs_039_ai_subscript_A4CF_15:
 ; con_ai_subscr_15
-C - - J - - 0x02E4DF 0B:A4CF: DE D8 05  DEC ram_05D8_temp,X
+C - - J - - 0x02E4DF 0B:A4CF: DE D8 05  DEC ram_05D8_obj,X
 C - - - - - 0x02E4E2 0B:A4D2: 10 0E     BPL bra_A4E2_RTS
-C - - - - - 0x02E4E4 0B:A4D4: BC D8 05  LDY ram_05D8_temp,X
+C - - - - - 0x02E4E4 0B:A4D4: BC D8 05  LDY ram_05D8_obj,X
 C - - - - - 0x02E4E7 0B:A4D7: C8        INY
 C - - - - - 0x02E4E8 0B:A4D8: D0 08     BNE bra_A4E2_RTS
 C - - - - - 0x02E4EA 0B:A4DA: DE 45 06  DEC ram_obj_0646,X
@@ -12125,7 +12125,7 @@ C - - - - - 0x02F4ED 0B:B4DD: C9 2E     CMP #$2E
 C - - - - - 0x02F4EF 0B:B4DF: F0 3D     BEQ bra_B51E
 C - - - - - 0x02F4F1 0B:B4E1: BD 69 06  LDA ram_obj_066A,X
 ; bzk optimize, useless STA
-C - - - - - 0x02F4F4 0B:B4E4: 85 00     STA ram_0000_t12C_useless
+C - - - - - 0x02F4F4 0B:B4E4: 85 00     STA ram_0000_tFF9_useless
 C - - - - - 0x02F4F6 0B:B4E6: 29 F0     AND #$F0
 C - - - - - 0x02F4F8 0B:B4E8: F0 33     BEQ bra_B51D_RTS
 ; / 10

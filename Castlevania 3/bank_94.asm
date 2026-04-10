@@ -336,7 +336,7 @@ C - - - - - 0x0281C0 0A:81B0: B1 00     LDA (ram_0000_t006_data),Y
 C - - - - - 0x0281C2 0A:81B2: 9D 4E 05  STA ram_obj_id,X
 C - - - - - 0x0281C5 0A:81B5: C8        INY ; 01
 C - - - - - 0x0281C6 0A:81B6: B1 00     LDA (ram_0000_t006_data),Y
-C - - - - - 0x0281C8 0A:81B8: 9D D8 05  STA ram_05D8_temp,X
+C - - - - - 0x0281C8 0A:81B8: 9D D8 05  STA ram_05D8_obj,X
 C - - - - - 0x0281CB 0A:81BB: C8        INY ; 02
 C - - - - - 0x0281CC 0A:81BC: B1 00     LDA (ram_0000_t006_data),Y
 C - - - - - 0x0281CE 0A:81BE: 18        CLC
@@ -495,7 +495,7 @@ C - - - - - 0x0282C9 0A:82B9: B1 98     LDA (ram_0098_t000_blk_spawner_data),Y
 C - - - - - 0x0282CB 0A:82BB: 9D 38 04  STA ram_obj_pos_X_lo,X
 C - - - - - 0x0282CE 0A:82BE: C8        INY
 C - - - - - 0x0282CF 0A:82BF: B1 98     LDA (ram_0098_t000_blk_spawner_data),Y
-C - - - - - 0x0282D1 0A:82C1: 9D D8 05  STA ram_05D8_temp,X
+C - - - - - 0x0282D1 0A:82C1: 9D D8 05  STA ram_05D8_obj,X
 C - - - - - 0x0282D4 0A:82C4: A5 0A     LDA ram_000A_t030_pos_Y_lo
 C - - - - - 0x0282D6 0A:82C6: 9D 1C 04  STA ram_obj_pos_Y_lo,X
 C - - - - - 0x0282D9 0A:82C9: BD 4E 05  LDA ram_obj_id,X
@@ -15641,7 +15641,7 @@ C - - - - - 0x02B142 0A:B132: 4C D9 B4  JMP loc_B4D9
 
 ofs_016_B135_01:
 C - - J - - 0x02B145 0A:B135: 20 F3 B5  JSR sub_B5F3
-C - - - - - 0x02B148 0A:B138: A5 B4     LDA ram_00B4
+C - - - - - 0x02B148 0A:B138: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B14A 0A:B13A: C9 FF     CMP #$FF
 C - - - - - 0x02B14C 0A:B13C: F0 12     BEQ bra_B150_FF
 C - - - - - 0x02B14E 0A:B13E: A5 1D     LDA ram_index_ppu_buffer
@@ -16120,7 +16120,7 @@ C - - - - - 0x02B402 0A:B3F2: 4C D9 B4  JMP loc_B4D9
 
 
 ofs_016_B3F5_0E:
-C - - J - - 0x02B405 0A:B3F5: A5 B4     LDA ram_00B4
+C - - J - - 0x02B405 0A:B3F5: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B407 0A:B3F7: C9 FF     CMP #$FF
 C - - - - - 0x02B409 0A:B3F9: F0 1C     BEQ bra_B417_FF
 C - - - - - 0x02B40B 0A:B3FB: A5 1D     LDA ram_index_ppu_buffer
@@ -16205,7 +16205,7 @@ C - - - - - 0x02B482 0A:B472: E6 19     INC ram_0019_subscript
 bra_B474_RTS:
 C - - - - - 0x02B484 0A:B474: 60        RTS
 bra_B475:
-C - - - - - 0x02B485 0A:B475: A5 B4     LDA ram_00B4
+C - - - - - 0x02B485 0A:B475: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B487 0A:B477: C9 FF     CMP #$FF
 C - - - - - 0x02B489 0A:B479: F0 F9     BEQ bra_B474_RTS
 C - - - - - 0x02B48B 0A:B47B: A5 1D     LDA ram_index_ppu_buffer
@@ -16214,7 +16214,7 @@ C - - - - - 0x02B48E 0A:B47E: 20 91 B4  JSR sub_B491
 C - - - - - 0x02B491 0A:B481: 68        PLA
 C - - - - - 0x02B492 0A:B482: 85 15     STA ram_0015_t001_copy_index_ppu_buffer
 C - - - - - 0x02B494 0A:B484: 20 A4 FB  JSR sub_0x03FBB4_increase_brightness
-C - - - - - 0x02B497 0A:B487: A5 B4     LDA ram_00B4
+C - - - - - 0x02B497 0A:B487: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B499 0A:B489: C9 FF     CMP #$FF
 C - - - - - 0x02B49B 0A:B48B: D0 E7     BNE bra_B474_RTS
 C - - - - - 0x02B49D 0A:B48D: A5 15     LDA ram_0015_t001_copy_index_ppu_buffer
@@ -16242,7 +16242,7 @@ C - - - - - 0x02B4B9 0A:B4A9: 4C D9 B4  JMP loc_B4D9
 
 
 ofs_016_B4AC_13:
-C - - J - - 0x02B4BC 0A:B4AC: A5 B4     LDA ram_00B4
+C - - J - - 0x02B4BC 0A:B4AC: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B4BE 0A:B4AE: C9 FF     CMP #$FF
 C - - - - - 0x02B4C0 0A:B4B0: F0 C0     BEQ bra_B472_FF
 C - - - - - 0x02B4C2 0A:B4B2: A5 1D     LDA ram_index_ppu_buffer
@@ -16274,16 +16274,16 @@ C - - - - - 0x02B4E8 0A:B4D8: 60        RTS
 loc_B4D9:
 ofs_016_B4D9_08:
 C D 1 - - - 0x02B4E9 0A:B4D9: A0 00     LDY #$00
-C - - - - - 0x02B4EB 0A:B4DB: 84 B4     STY ram_00B4
+C - - - - - 0x02B4EB 0A:B4DB: 84 B4     STY ram_00B4_t001_flag
 C - - - - - 0x02B4ED 0A:B4DD: C8        INY ; 01
-C - - - - - 0x02B4EE 0A:B4DE: 84 B5     STY ram_00B5
+C - - - - - 0x02B4EE 0A:B4DE: 84 B5     STY ram_00B5_brightness_timer
 loc_B4E0:
 C D 1 - - - 0x02B4F0 0A:B4E0: 4C 1A B2  JMP loc_B21A_next_subscript
 
 
 
 ofs_016_B4E3_09:
-C - - J - - 0x02B4F3 0A:B4E3: A5 B4     LDA ram_00B4
+C - - J - - 0x02B4F3 0A:B4E3: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B4F5 0A:B4E5: C9 FF     CMP #$FF
 C - - - - - 0x02B4F7 0A:B4E7: F0 1E     BEQ bra_B507_FF
 C - - - - - 0x02B4F9 0A:B4E9: A5 1D     LDA ram_index_ppu_buffer
@@ -16649,9 +16649,9 @@ C - - - - - 0x02B66E 0A:B65E: 60        RTS
 
 sub_B65F:
 C - - - - - 0x02B66F 0A:B65F: A0 00     LDY #$00
-C - - - - - 0x02B671 0A:B661: 84 B4     STY ram_00B4
+C - - - - - 0x02B671 0A:B661: 84 B4     STY ram_00B4_t001_flag
 C - - - - - 0x02B673 0A:B663: C8        INY ; 01
-C - - - - - 0x02B674 0A:B664: 84 B5     STY ram_00B5
+C - - - - - 0x02B674 0A:B664: 84 B5     STY ram_00B5_brightness_timer
 C - - - - - 0x02B676 0A:B666: 60        RTS
 
 
@@ -16812,7 +16812,7 @@ C - - - - - 0x02B757 0A:B747: E6 19     INC ram_0019_subscript
 bra_B749_RTS:
 C - - - - - 0x02B759 0A:B749: 60        RTS
 bra_B74A:
-C - - - - - 0x02B75A 0A:B74A: A5 B4     LDA ram_00B4
+C - - - - - 0x02B75A 0A:B74A: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B75C 0A:B74C: C9 FF     CMP #$FF
 C - - - - - 0x02B75E 0A:B74E: F0 F9     BEQ bra_B749_RTS
 C - - - - - 0x02B760 0A:B750: A5 1D     LDA ram_index_ppu_buffer
@@ -16827,7 +16827,7 @@ C - - - - - 0x02B772 0A:B762: 68        PLA
 C - - - - - 0x02B773 0A:B763: 85 15     STA ram_0015_t001_copy_index_ppu_buffer
 C - - - - - 0x02B775 0A:B765: A9 07     LDA #con_B616_increase_brightness
 C - - - - - 0x02B777 0A:B767: 20 FF B5  JSR sub_B5FF_execute_script
-C - - - - - 0x02B77A 0A:B76A: A5 B4     LDA ram_00B4
+C - - - - - 0x02B77A 0A:B76A: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B77C 0A:B76C: C9 FF     CMP #$FF
 C - - - - - 0x02B77E 0A:B76E: D0 D9     BNE bra_B749_RTS
 C - - - - - 0x02B780 0A:B770: A5 15     LDA ram_0015_t001_copy_index_ppu_buffer
@@ -16858,7 +16858,7 @@ C - - - - - 0x02B7A0 0A:B790: E6 19     INC ram_0019_subscript
 bra_B792_RTS:
 C - - - - - 0x02B7A2 0A:B792: 60        RTS
 bra_B793:
-C - - - - - 0x02B7A3 0A:B793: A5 B4     LDA ram_00B4
+C - - - - - 0x02B7A3 0A:B793: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B7A5 0A:B795: C9 FF     CMP #$FF
 C - - - - - 0x02B7A7 0A:B797: F0 F9     BEQ bra_B792_RTS
 C - - - - - 0x02B7A9 0A:B799: A5 1D     LDA ram_index_ppu_buffer
@@ -16995,7 +16995,7 @@ C - - - - - 0x02B87B 0A:B86B: E6 6B     INC ram_006B_subscript
 bra_B86D_RTS:
 C - - - - - 0x02B87D 0A:B86D: 60        RTS
 bra_B86E:
-C - - - - - 0x02B87E 0A:B86E: A5 B4     LDA ram_00B4
+C - - - - - 0x02B87E 0A:B86E: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B880 0A:B870: C9 FF     CMP #$FF
 C - - - - - 0x02B882 0A:B872: F0 F9     BEQ bra_B86D_RTS
 C - - - - - 0x02B884 0A:B874: A5 1D     LDA ram_index_ppu_buffer
@@ -17006,7 +17006,7 @@ C - - - - - 0x02B88C 0A:B87C: 68        PLA
 C - - - - - 0x02B88D 0A:B87D: 85 15     STA ram_0015_t001_copy_index_ppu_buffer
 C - - - - - 0x02B88F 0A:B87F: A9 07     LDA #con_B616_increase_brightness
 C - - - - - 0x02B891 0A:B881: 20 FF B5  JSR sub_B5FF_execute_script
-C - - - - - 0x02B894 0A:B884: A5 B4     LDA ram_00B4
+C - - - - - 0x02B894 0A:B884: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B896 0A:B886: C9 FF     CMP #$FF
 C - - - - - 0x02B898 0A:B888: D0 E3     BNE bra_B86D_RTS
 C - - - - - 0x02B89A 0A:B88A: A5 15     LDA ram_0015_t001_copy_index_ppu_buffer
@@ -17129,7 +17129,7 @@ C - - - - - 0x02B93A 0A:B92A: E6 6B     INC ram_006B_subscript
 bra_B92C_RTS:
 C - - - - - 0x02B93C 0A:B92C: 60        RTS
 bra_B92D:
-C - - - - - 0x02B93D 0A:B92D: A5 B4     LDA ram_00B4
+C - - - - - 0x02B93D 0A:B92D: A5 B4     LDA ram_00B4_t001_flag
 C - - - - - 0x02B93F 0A:B92F: C9 FF     CMP #$FF
 C - - - - - 0x02B941 0A:B931: F0 F9     BEQ bra_B92C_RTS
 C - - - - - 0x02B943 0A:B933: A5 1D     LDA ram_index_ppu_buffer
