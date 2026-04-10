@@ -1,10 +1,4 @@
 ; keep your global constant values inside this file
-; https://www.nesx.ru/viewtopic.php?t=27
-
-
-
-; todo
-; скрины и ID объектов
 
 
 

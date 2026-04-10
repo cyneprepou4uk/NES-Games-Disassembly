@@ -9476,6 +9476,15 @@ C - - - - - 0x01F59F 07:F58F: D0 02     BNE bra_F593    ; jmp
 bra_F591:
 C - - - - - 0x01F5A1 07:F591: A9 20     LDA #$20    ; > 20xx
 bra_F593:
+; bzk optimize, instead of code up to 0x01F5BE use mine
+                                       ;STA ram_0085_ppu_hi
+                                       ;PLA ; 1
+; / 08
+                                       ;LSR
+                                       ;LSR
+                                       ;LSR
+                                       ;STA ram_0084_ppu_lo
+                                       ;RTS
 C - - - - - 0x01F5A3 07:F593: 85 67     STA ram_0067_t0F_ppu_hi
 C - - - - - 0x01F5A5 07:F595: 68        PLA ; 1
 ; / 08

@@ -4,7 +4,7 @@
 .org $A000  ; for listing file
 ; 0x01A010-0x01A80F
 
-
+; this bank can be in pair with bank 0A
 
 .export sub_0x01A010
 .export sub_0x01A013
@@ -1456,13 +1456,13 @@ C - - - - - 0x01A757 06:A747: 60        RTS
 
 
 tbl_A748:
-- - - - - - 0x01A758 06:A748: 0B        .byte $0B   ; 1C a
-- - - - - - 0x01A759 06:A749: 1D        .byte $1D   ; 1D a
-- - - - - - 0x01A75A 06:A74A: 0E        .byte $0E   ; 1E a
-- - - - - - 0x01A75B 06:A74B: 12        .byte $12   ; 1F a
-- - - - - - 0x01A75C 06:A74C: 13        .byte $13   ; 20 a
-- - - - - - 0x01A75D 06:A74D: 15        .byte $15   ; 21 a
-- - - - - - 0x01A75E 06:A74E: 16        .byte $16   ; 22 a
+- - - - - - 0x01A758 06:A748: 0B        .byte $0B   ; 1C 
+- - - - - - 0x01A759 06:A749: 1D        .byte $1D   ; 1D 
+- - - - - - 0x01A75A 06:A74A: 0E        .byte $0E   ; 1E 
+- - - - - - 0x01A75B 06:A74B: 12        .byte $12   ; 1F 
+- - - - - - 0x01A75C 06:A74C: 13        .byte $13   ; 20 
+- - - - - - 0x01A75D 06:A74D: 15        .byte $15   ; 21 
+- - - - - - 0x01A75E 06:A74E: 16        .byte $16   ; 22 
 
 
 ; bzk garbage
