@@ -217,7 +217,7 @@ con_0730_80                             = $80 ;
 
 
 
-; ram_state
+; ram_obj_state
 ; need comments at 0x0080DA 0x00BA42 0x0180B4
 con_state_idle                          = $00 ; 80 idle while standing
 con_state_walk                          = $01 ; 81 walking in any direction
@@ -399,6 +399,7 @@ con_nmi_1_irq_1                         = $C0 ; NMI = 1, IRQ = 1
 
 
 
+; ram_next_irq_handler
 ; ram_irq_handler
 ; index for 0x01EC74
 con_irq_default                         = $00 ; normal HUD
