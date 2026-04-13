@@ -16,7 +16,6 @@ con_weapon_id                           = $12 ; weapons start from this index fo
 ; CONFIG
 ; max mission id 0x01990B 0x019503
 con_hair_grab_max_hit_counter           = $03 ; 
-con_debug                               = $00 ; change bit5 and/or bit7 https://tcrf.net/Double_Dragon_II:_The_Revenge_(NES)#:~:text=Prerelease%20Info-,Debug%20Features,-There%20is%20a
 
 
 
@@ -406,6 +405,28 @@ con_irq_default                         = $00 ; normal HUD
 con_irq_blue_heli                       = $01 ; blue helicopter, mission 2
 con_irq_green_heli                      = $02 ; green helicopter takes off, mission 2
 con_irq_tractor                         = $03 ; tractor (or whatever it is), mission 5
+
+
+
+; handlers at 0x00AE76
+con_AE79_exit                           = $00 ; 
+; con_AE79_01                           = $01 ; unused
+con_AE79_decrease_hp                    = $02 ; 
+con_AE79_set_state_1                    = $03 ; 
+con_AE79_set_state_2                    = $04 ; 
+con_AE79_set_1st_or_2nd_state           = $05 ; set one of two following states
+con_AE79_set_fixed_state                = $06 ; set following state
+con_AE79_07                             = $07 ; 
+; con_AE79_08                           = $08 ; unused
+con_AE79_09                             = $09 ; 
+con_AE79_play_sound                     = $0A ; play following sound
+; con_AE79_0B                           = $0B ; unused
+con_AE79_0C                             = $0C ; 
+con_AE79_0D                             = $0D ; opposite of 0C
+con_AE79_change_direction               = $0E ; 
+con_AE79_set_if_not_new_state           = $0F ; 
+con_AE79_10                             = $10 ; 
+con_AE79_branch                         = $11 ; 
 
 
 

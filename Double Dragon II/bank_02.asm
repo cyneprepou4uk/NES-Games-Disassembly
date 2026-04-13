@@ -473,10 +473,10 @@ C - - - - - 0x0082CF 02:82BF: B0 04     BCS bra_82C5
 C - - - - - 0x0082D1 02:82C1: A9 00     LDA #$00
 C - - - - - 0x0082D3 02:82C3: 95 5C     STA ram_obj_amim_cnt,X
 bra_82C5:
-C - - - - - 0x0082D5 02:82C5: B5 A4     LDA ram_00A4_obj,X
+C - - - - - 0x0082D5 02:82C5: B5 A4     LDA ram_obj_pos_X_fr,X
 C - - - - - 0x0082D7 02:82C7: 18        CLC
 C - - - - - 0x0082D8 02:82C8: 69 80     ADC #< $0180
-C - - - - - 0x0082DA 02:82CA: 95 A4     STA ram_00A4_obj,X
+C - - - - - 0x0082DA 02:82CA: 95 A4     STA ram_obj_pos_X_fr,X
 C - - - - - 0x0082DC 02:82CC: B5 AD     LDA ram_obj_pos_Z_lo,X
 C - - - - - 0x0082DE 02:82CE: 69 01     ADC #> $0180
 C - - - - - 0x0082E0 02:82D0: 95 AD     STA ram_obj_pos_Z_lo,X
@@ -542,10 +542,10 @@ C - - - - - 0x008339 02:8329: B0 04     BCS bra_832F
 C - - - - - 0x00833B 02:832B: A9 00     LDA #$00
 C - - - - - 0x00833D 02:832D: 95 5C     STA ram_obj_amim_cnt,X
 bra_832F:
-C - - - - - 0x00833F 02:832F: B5 A4     LDA ram_00A4_obj,X
+C - - - - - 0x00833F 02:832F: B5 A4     LDA ram_obj_pos_X_fr,X
 C - - - - - 0x008341 02:8331: 38        SEC
 C - - - - - 0x008342 02:8332: E9 80     SBC #< $0180
-C - - - - - 0x008344 02:8334: 95 A4     STA ram_00A4_obj,X
+C - - - - - 0x008344 02:8334: 95 A4     STA ram_obj_pos_X_fr,X
 C - - - - - 0x008346 02:8336: B5 AD     LDA ram_obj_pos_Z_lo,X
 C - - - - - 0x008348 02:8338: E9 01     SBC #> $0180
 C - - - - - 0x00834A 02:833A: 95 AD     STA ram_obj_pos_Z_lo,X
@@ -811,7 +811,7 @@ C - - - - - 0x008512 02:8502: 99 4A 04  STA ram_044A_obj,Y
 C - - - - - 0x008515 02:8505: A9 00     LDA #$00
 C - - - - - 0x008517 02:8507: 9D 46 04  STA ram_0446_obj,X
 C - - - - - 0x00851A 02:850A: 85 29     STA ram_0029_t2D_pos_X_lo
-C - - - - - 0x00851C 02:850C: 85 2A     STA ram_002A_temp
+C - - - - - 0x00851C 02:850C: 85 2A     STA ram_002A_t14
 C - - - - - 0x00851E 02:850E: 20 EC 9F  JSR sub_9FEC
 C - - - - - 0x008521 02:8511: A9 78     LDA #con_state_78
 C - - - - - 0x008523 02:8513: 99 43 00  STA a: ram_state,Y
@@ -866,7 +866,7 @@ bra_855C:
 C - - - - - 0x00856C 02:855C: B5 55     LDA ram_obj_amim_dur,X
 C - - - - - 0x00856E 02:855E: D0 1E     BNE bra_857E
 C - - - - - 0x008570 02:8560: A9 00     LDA #$00
-C - - - - - 0x008572 02:8562: 85 2A     STA ram_002A_temp
+C - - - - - 0x008572 02:8562: 85 2A     STA ram_002A_t14
 C - - - - - 0x008574 02:8564: B5 5C     LDA ram_obj_amim_cnt,X
 C - - - - - 0x008576 02:8566: A8        TAY
 C - - - - - 0x008577 02:8567: B9 A7 85  LDA tbl_85A7,Y
@@ -2858,7 +2858,7 @@ C - - - - - 0x008FC6 02:8FB6: 99 4A 04  STA ram_044A_obj,Y
 C - - - - - 0x008FC9 02:8FB9: A9 20     LDA #$20
 C - - - - - 0x008FCB 02:8FBB: 85 29     STA ram_0029_t2D_pos_X_lo
 C - - - - - 0x008FCD 02:8FBD: A9 18     LDA #$18
-C - - - - - 0x008FCF 02:8FBF: 85 2A     STA ram_002A_temp
+C - - - - - 0x008FCF 02:8FBF: 85 2A     STA ram_002A_t14
 C - - - - - 0x008FD1 02:8FC1: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x008FD4 02:8FC4: 10 04     BPL bra_8FCA
 C - - - - - 0x008FD6 02:8FC6: A9 E0     LDA #$E0
@@ -2990,12 +2990,12 @@ C - - - - - 0x009095 02:9085: A9 F0     LDA #$F0
 C - - - - - 0x009097 02:9087: 85 29     STA ram_0029_t2D_pos_X_lo
 bra_9089:
 C - - - - - 0x009099 02:9089: A9 18     LDA #$18
-C - - - - - 0x00909B 02:908B: 85 2A     STA ram_002A_temp
+C - - - - - 0x00909B 02:908B: 85 2A     STA ram_002A_t14
 C - - - - - 0x00909D 02:908D: B9 BF 00  LDA a: ram_obj_id,Y
 C - - - - - 0x0090A0 02:9090: C9 17     CMP #con_obj_baton
 C - - - - - 0x0090A2 02:9092: F0 04     BEQ bra_9098
 C - - - - - 0x0090A4 02:9094: A9 20     LDA #$20
-C - - - - - 0x0090A6 02:9096: 85 2A     STA ram_002A_temp
+C - - - - - 0x0090A6 02:9096: 85 2A     STA ram_002A_t14
 bra_9098:
 C - - - - - 0x0090A8 02:9098: 20 EC 9F  JSR sub_9FEC
 C - - - - - 0x0090AB 02:909B: B9 0F 03  LDA ram_obj_direction,Y
@@ -3073,28 +3073,28 @@ bra_90DC:
 C - - - - - 0x0090EC 02:90DC: B5 55     LDA ram_obj_amim_dur,X
 C - - - - - 0x0090EE 02:90DE: D0 2E     BNE bra_910E
 C - - - - - 0x0090F0 02:90E0: B4 5C     LDY ram_obj_amim_cnt,X
-C - - - - - 0x0090F2 02:90E2: B9 30 91  LDA tbl_9130_pos_X_lo,Y
-C - - - - - 0x0090F5 02:90E5: 85 29     STA ram_0029_t2F_pos_X_lo
+C - - - - - 0x0090F2 02:90E2: B9 30 91  LDA tbl_9130_spd_X_lo,Y
+C - - - - - 0x0090F5 02:90E5: 85 29     STA ram_0029_t2F_spd_X_lo
 C - - - - - 0x0090F7 02:90E7: A9 00     LDA #$00
-C - - - - - 0x0090F9 02:90E9: 85 2A     STA ram_002A_temp
+C - - - - - 0x0090F9 02:90E9: 85 2A     STA ram_002A_t44_spd_X_hi
 C - - - - - 0x0090FB 02:90EB: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x0090FE 02:90EE: 30 11     BMI bra_9101
 C - - - - - 0x009100 02:90F0: 18        CLC
-C - - - - - 0x009101 02:90F1: A5 29     LDA ram_0029_t2F_pos_X_lo
+C - - - - - 0x009101 02:90F1: A5 29     LDA ram_0029_t2F_spd_X_lo
 C - - - - - 0x009103 02:90F3: 49 FF     EOR #$FF
 C - - - - - 0x009105 02:90F5: 69 01     ADC #< $0001
-C - - - - - 0x009107 02:90F7: 85 29     STA ram_0029_t2F_pos_X_lo
-C - - - - - 0x009109 02:90F9: A5 2A     LDA ram_002A_temp
+C - - - - - 0x009107 02:90F7: 85 29     STA ram_0029_t2F_spd_X_lo
+C - - - - - 0x009109 02:90F9: A5 2A     LDA ram_002A_t44_spd_X_hi
 C - - - - - 0x00910B 02:90FB: 49 FF     EOR #$FF
 C - - - - - 0x00910D 02:90FD: 69 00     ADC #> $0001
-C - - - - - 0x00910F 02:90FF: 85 2A     STA ram_002A_temp
+C - - - - - 0x00910F 02:90FF: 85 2A     STA ram_002A_t44_spd_X_hi
 bra_9101:
 C - - - - - 0x009111 02:9101: 18        CLC
 C - - - - - 0x009112 02:9102: B5 77     LDA ram_obj_pos_X_lo,X
-C - - - - - 0x009114 02:9104: 65 29     ADC ram_0029_t2F_pos_X_lo
+C - - - - - 0x009114 02:9104: 65 29     ADC ram_0029_t2F_spd_X_lo
 C - - - - - 0x009116 02:9106: 95 77     STA ram_obj_pos_X_lo,X
 C - - - - - 0x009118 02:9108: B5 80     LDA ram_obj_pos_X_hi,X
-C - - - - - 0x00911A 02:910A: 65 2A     ADC ram_002A_temp
+C - - - - - 0x00911A 02:910A: 65 2A     ADC ram_002A_t44_spd_X_hi
 C - - - - - 0x00911C 02:910C: 95 80     STA ram_obj_pos_X_hi,X
 bra_910E:
 C - - - - - 0x00911E 02:910E: A9 20     LDA #con_A48A_anim_20
@@ -3132,7 +3132,7 @@ _off001_912A_20:
 
 
 
-tbl_9130_pos_X_lo:
+tbl_9130_spd_X_lo:
 - D 0 - - - 0x009140 02:9130: 00        .byte $00   ; 00 
 - D 0 - - - 0x009141 02:9131: 1C        .byte $1C   ; 01 
 - D 0 - - - 0x009142 02:9132: 03        .byte $03   ; 02 
@@ -3432,28 +3432,28 @@ C - - - - - 0x009282 02:9272: D0 31     BNE bra_92A5
 C - - - - - 0x009284 02:9274: B5 5C     LDA ram_obj_amim_cnt,X
 C - - - - - 0x009286 02:9276: 0A        ASL
 C - - - - - 0x009287 02:9277: A8        TAY
-C - - - - - 0x009288 02:9278: B9 BE 92  LDA tbl_92BE_pos_X,Y
-C - - - - - 0x00928B 02:927B: 85 29     STA ram_0029_t30_pos_X_lo
-C - - - - - 0x00928D 02:927D: B9 BF 92  LDA tbl_92BE_pos_X + $01,Y
-C - - - - - 0x009290 02:9280: 85 2A     STA ram_002A_temp
+C - - - - - 0x009288 02:9278: B9 BE 92  LDA tbl_92BE_spd_X,Y
+C - - - - - 0x00928B 02:927B: 85 29     STA ram_0029_t30_spd_X_lo
+C - - - - - 0x00928D 02:927D: B9 BF 92  LDA tbl_92BE_spd_X + $01,Y
+C - - - - - 0x009290 02:9280: 85 2A     STA ram_002A_t16_spd_X_hi
 C - - - - - 0x009292 02:9282: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x009295 02:9285: 30 11     BMI bra_9298
 C - - - - - 0x009297 02:9287: 18        CLC
-C - - - - - 0x009298 02:9288: A5 29     LDA ram_0029_t30_pos_X_lo
+C - - - - - 0x009298 02:9288: A5 29     LDA ram_0029_t30_spd_X_lo
 C - - - - - 0x00929A 02:928A: 49 FF     EOR #$FF
 C - - - - - 0x00929C 02:928C: 69 01     ADC #< $0001
-C - - - - - 0x00929E 02:928E: 85 29     STA ram_0029_t30_pos_X_lo
-C - - - - - 0x0092A0 02:9290: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00929E 02:928E: 85 29     STA ram_0029_t30_spd_X_lo
+C - - - - - 0x0092A0 02:9290: A5 2A     LDA ram_002A_t16_spd_X_hi
 C - - - - - 0x0092A2 02:9292: 49 FF     EOR #$FF
 C - - - - - 0x0092A4 02:9294: 69 00     ADC #> $0001
-C - - - - - 0x0092A6 02:9296: 85 2A     STA ram_002A_temp
+C - - - - - 0x0092A6 02:9296: 85 2A     STA ram_002A_t16_spd_X_hi
 bra_9298:
 C - - - - - 0x0092A8 02:9298: 18        CLC
 C - - - - - 0x0092A9 02:9299: B5 77     LDA ram_obj_pos_X_lo,X
-C - - - - - 0x0092AB 02:929B: 65 29     ADC ram_0029_t30_pos_X_lo
+C - - - - - 0x0092AB 02:929B: 65 29     ADC ram_0029_t30_spd_X_lo
 C - - - - - 0x0092AD 02:929D: 95 77     STA ram_obj_pos_X_lo,X
 C - - - - - 0x0092AF 02:929F: B5 80     LDA ram_obj_pos_X_hi,X
-C - - - - - 0x0092B1 02:92A1: 65 2A     ADC ram_002A_temp
+C - - - - - 0x0092B1 02:92A1: 65 2A     ADC ram_002A_t16_spd_X_hi
 C - - - - - 0x0092B3 02:92A3: 95 80     STA ram_obj_pos_X_hi,X
 bra_92A5:
 C - - - - - 0x0092B5 02:92A5: A9 26     LDA #con_A48A_anim_26
@@ -3490,7 +3490,7 @@ _off001_92B5_26:
 
 
 
-tbl_92BE_pos_X:
+tbl_92BE_spd_X:
 - D 0 - - - 0x0092CE 02:92BE: E8 FF     .word $FFE8 ; 00 
 - D 0 - - - 0x0092D0 02:92C0: 08 00     .word $0008 ; 01 
 - D 0 - - - 0x0092D2 02:92C2: 00 00     .word $0000 ; 02 
@@ -3530,7 +3530,7 @@ C - - - - - 0x009310 02:9300: A9 68     LDA #con_state_68
 C - - - - - 0x009312 02:9302: 99 43 00  STA a: ram_state,Y
 C - - - - - 0x009315 02:9305: A9 10     LDA #$10
 C - - - - - 0x009317 02:9307: 85 29     STA ram_0029_t2D_pos_X_lo
-C - - - - - 0x009319 02:9309: 85 2A     STA ram_002A_temp
+C - - - - - 0x009319 02:9309: 85 2A     STA ram_002A_t14
 C - - - - - 0x00931B 02:930B: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x00931E 02:930E: 10 04     BPL bra_9314
 C - - - - - 0x009320 02:9310: A9 F0     LDA #$F0
@@ -3820,7 +3820,7 @@ C - - - - - 0x00950E 02:94FE: 20 06 C0  JSR sub_0x01C016_play_sound
 C - - - - - 0x009511 02:9501: A9 20     LDA #$20
 C - - - - - 0x009513 02:9503: 85 29     STA ram_0029_t2D_pos_X_lo
 C - - - - - 0x009515 02:9505: A9 10     LDA #$10
-C - - - - - 0x009517 02:9507: 85 2A     STA ram_002A_temp
+C - - - - - 0x009517 02:9507: 85 2A     STA ram_002A_t14
 C - - - - - 0x009519 02:9509: B5 63     LDA ram_0063_obj_facing,X
 C - - - - - 0x00951B 02:950B: 10 04     BPL bra_9511
 C - - - - - 0x00951D 02:950D: A9 E0     LDA #$E0
@@ -3899,7 +3899,7 @@ C - - - - - 0x009595 02:9585: 99 43 00  STA a: ram_state,Y
 C - - - - - 0x009598 02:9588: A9 20     LDA #$20
 C - - - - - 0x00959A 02:958A: 85 29     STA ram_0029_t2D_pos_X_lo
 C - - - - - 0x00959C 02:958C: A9 00     LDA #$00
-C - - - - - 0x00959E 02:958E: 85 2A     STA ram_002A_temp
+C - - - - - 0x00959E 02:958E: 85 2A     STA ram_002A_t14
 C - - - - - 0x0095A0 02:9590: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x0095A3 02:9593: 10 04     BPL bra_9599
 C - - - - - 0x0095A5 02:9595: A9 E0     LDA #$E0
@@ -3973,7 +3973,7 @@ C - - - - - 0x009613 02:9603: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x009616 02:9606: A9 28     LDA #$28
 C - - - - - 0x009618 02:9608: 85 29     STA ram_0029_t2D_pos_X_lo
 C - - - - - 0x00961A 02:960A: A9 20     LDA #$20
-C - - - - - 0x00961C 02:960C: 85 2A     STA ram_002A_temp
+C - - - - - 0x00961C 02:960C: 85 2A     STA ram_002A_t14
 C - - - - - 0x00961E 02:960E: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x009621 02:9611: 30 04     BMI bra_9617
 C - - - - - 0x009623 02:9613: A9 D8     LDA #$D8
@@ -4073,7 +4073,7 @@ C - - - - - 0x0096B5 02:96A5: 20 06 C0  JSR sub_0x01C016_play_sound
 C - - - - - 0x0096B8 02:96A8: A9 20     LDA #$20
 C - - - - - 0x0096BA 02:96AA: 85 29     STA ram_0029_t2D_pos_X_lo
 C - - - - - 0x0096BC 02:96AC: A9 10     LDA #$10
-C - - - - - 0x0096BE 02:96AE: 85 2A     STA ram_002A_temp
+C - - - - - 0x0096BE 02:96AE: 85 2A     STA ram_002A_t14
 C - - - - - 0x0096C0 02:96B0: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x0096C3 02:96B3: 10 04     BPL bra_96B9
 C - - - - - 0x0096C5 02:96B5: A9 E0     LDA #$E0
@@ -5537,8 +5537,8 @@ sub_9E10:
 C - - - - - 0x009E20 02:9E10: A4 19     LDY ram_0019_t03_obj_index
 C - - - - - 0x009E22 02:9E12: B9 1D 03  LDA ram_obj_gravity_lo,Y
 C - - - - - 0x009E25 02:9E15: 18        CLC
-C - - - - - 0x009E26 02:9E16: 79 A4 00  ADC a: ram_00A4_obj,Y
-C - - - - - 0x009E29 02:9E19: 99 A4 00  STA a: ram_00A4_obj,Y
+C - - - - - 0x009E26 02:9E16: 79 A4 00  ADC a: ram_obj_pos_X_fr,Y
+C - - - - - 0x009E29 02:9E19: 99 A4 00  STA a: ram_obj_pos_X_fr,Y
 C - - - - - 0x009E2C 02:9E1C: B9 25 03  LDA ram_obj_gravity_hi,Y
 C - - - - - 0x009E2F 02:9E1F: 08        PHP
 C - - - - - 0x009E30 02:9E20: 79 AD 00  ADC a: ram_obj_pos_Z_lo,Y
@@ -5592,46 +5592,46 @@ C - - - - - 0x009E88 02:9E78: 86 1A     STX ram_001A_t08
 bra_9E7A:
 C - - - - - 0x009E8A 02:9E7A: B9 16 03  LDA ram_0316_obj,Y
 C - - - - - 0x009E8D 02:9E7D: 85 29     STA ram_0029_t31_lo
-C - - - - - 0x009E8F 02:9E7F: 85 2D     STA ram_002D_t40_lo
+C - - - - - 0x009E8F 02:9E7F: 85 2D     STA ram_002D_t11_lo
 C - - - - - 0x009E91 02:9E81: A9 00     LDA #$00
-C - - - - - 0x009E93 02:9E83: 85 2A     STA ram_002A_temp
-C - - - - - 0x009E95 02:9E85: 85 2B     STA ram_002B_t23_lo
-C - - - - - 0x009E97 02:9E87: 85 2C     STA ram_002C_temp
+C - - - - - 0x009E93 02:9E83: 85 2A     STA ram_002A_t12_hi
+C - - - - - 0x009E95 02:9E85: 85 2B     STA ram_002B_t23_spd_Y_fr
+C - - - - - 0x009E97 02:9E87: 85 2C     STA ram_002C_t07_spd_Y_fr
 C - - - - - 0x009E99 02:9E89: 85 2E     STA ram_002E_t01_hi
-C - - - - - 0x009E9B 02:9E8B: 85 2F     STA ram_002F_temp
-C - - - - - 0x009E9D 02:9E8D: 85 30     STA ram_0030_temp
+C - - - - - 0x009E9B 02:9E8B: 85 2F     STA ram_002F_t12_spd_X_fr
+C - - - - - 0x009E9D 02:9E8D: 85 30     STA ram_0030_t01_spd_X_lo
 C - - - - - 0x009E9F 02:9E8F: A2 08     LDX #$08
 bra_9E91_loop:
 C - - - - - 0x009EA1 02:9E91: 46 1A     LSR ram_001A_t08
 C - - - - - 0x009EA3 02:9E93: 90 0D     BCC bra_9EA2
 C - - - - - 0x009EA5 02:9E95: A5 29     LDA ram_0029_t31_lo
 C - - - - - 0x009EA7 02:9E97: 18        CLC
-C - - - - - 0x009EA8 02:9E98: 65 2B     ADC ram_002B_t23_lo
-C - - - - - 0x009EAA 02:9E9A: 85 2B     STA ram_002B_t23_lo
-C - - - - - 0x009EAC 02:9E9C: A5 2A     LDA ram_002A_temp
-C - - - - - 0x009EAE 02:9E9E: 65 2C     ADC ram_002C_temp
-C - - - - - 0x009EB0 02:9EA0: 85 2C     STA ram_002C_temp
+C - - - - - 0x009EA8 02:9E98: 65 2B     ADC ram_002B_t23_spd_Y_fr
+C - - - - - 0x009EAA 02:9E9A: 85 2B     STA ram_002B_t23_spd_Y_fr
+C - - - - - 0x009EAC 02:9E9C: A5 2A     LDA ram_002A_t12_hi
+C - - - - - 0x009EAE 02:9E9E: 65 2C     ADC ram_002C_t07_spd_Y_fr
+C - - - - - 0x009EB0 02:9EA0: 85 2C     STA ram_002C_t07_spd_Y_fr
 bra_9EA2:
 C - - - - - 0x009EB2 02:9EA2: 06 29     ASL ram_0029_t31_lo
-C - - - - - 0x009EB4 02:9EA4: 26 2A     ROL ram_002A_temp
+C - - - - - 0x009EB4 02:9EA4: 26 2A     ROL ram_002A_t12_hi
 C - - - - - 0x009EB6 02:9EA6: 46 1B     LSR ram_001B_t09
 C - - - - - 0x009EB8 02:9EA8: 90 0D     BCC bra_9EB7
-C - - - - - 0x009EBA 02:9EAA: A5 2D     LDA ram_002D_t40_lo
+C - - - - - 0x009EBA 02:9EAA: A5 2D     LDA ram_002D_t11_lo
 C - - - - - 0x009EBC 02:9EAC: 18        CLC
-C - - - - - 0x009EBD 02:9EAD: 65 2F     ADC ram_002F_temp
-C - - - - - 0x009EBF 02:9EAF: 85 2F     STA ram_002F_temp
+C - - - - - 0x009EBD 02:9EAD: 65 2F     ADC ram_002F_t12_spd_X_fr
+C - - - - - 0x009EBF 02:9EAF: 85 2F     STA ram_002F_t12_spd_X_fr
 C - - - - - 0x009EC1 02:9EB1: A5 2E     LDA ram_002E_t01_hi
-C - - - - - 0x009EC3 02:9EB3: 65 30     ADC ram_0030_temp
-C - - - - - 0x009EC5 02:9EB5: 85 30     STA ram_0030_temp
+C - - - - - 0x009EC3 02:9EB3: 65 30     ADC ram_0030_t01_spd_X_lo
+C - - - - - 0x009EC5 02:9EB5: 85 30     STA ram_0030_t01_spd_X_lo
 bra_9EB7:
-C - - - - - 0x009EC7 02:9EB7: 06 2D     ASL ram_002D_t40_lo
+C - - - - - 0x009EC7 02:9EB7: 06 2D     ASL ram_002D_t11_lo
 C - - - - - 0x009EC9 02:9EB9: 26 2E     ROL ram_002E_t01_hi
 C - - - - - 0x009ECB 02:9EBB: CA        DEX
 C - - - - - 0x009ECC 02:9EBC: D0 D3     BNE bra_9E91_loop
-C - - - - - 0x009ECE 02:9EBE: 46 30     LSR ram_0030_temp
-C - - - - - 0x009ED0 02:9EC0: 66 2F     ROR ram_002F_temp
-C - - - - - 0x009ED2 02:9EC2: 46 2C     LSR ram_002C_temp
-C - - - - - 0x009ED4 02:9EC4: 66 2B     ROR ram_002B_t23_lo
+C - - - - - 0x009ECE 02:9EBE: 46 30     LSR ram_0030_t01_spd_X_lo
+C - - - - - 0x009ED0 02:9EC0: 66 2F     ROR ram_002F_t12_spd_X_fr
+C - - - - - 0x009ED2 02:9EC2: 46 2C     LSR ram_002C_t07_spd_Y_fr
+C - - - - - 0x009ED4 02:9EC4: 66 2B     ROR ram_002B_t23_spd_Y_fr
 C - - - - - 0x009ED6 02:9EC6: B9 0F 03  LDA ram_obj_direction,Y
 ; / 20
 C - - - - - 0x009ED9 02:9EC9: 4A        LSR
@@ -5759,12 +5759,15 @@ tbl_9F02:
 
 
 sub_9F43_increase_X_pos:
-C - - - - - 0x009F53 02:9F43: B9 A4 00  LDA a: ram_00A4_obj,Y
+; in
+    ; ram_002F_t12_spd_X_fr
+    ; ram_0030_t01_spd_X_lo
+C - - - - - 0x009F53 02:9F43: B9 A4 00  LDA a: ram_obj_pos_X_fr,Y
 C - - - - - 0x009F56 02:9F46: 18        CLC
-C - - - - - 0x009F57 02:9F47: 65 2F     ADC ram_002F_temp
-C - - - - - 0x009F59 02:9F49: 99 A4 00  STA a: ram_00A4_obj,Y
+C - - - - - 0x009F57 02:9F47: 65 2F     ADC ram_002F_t12_spd_X_fr
+C - - - - - 0x009F59 02:9F49: 99 A4 00  STA a: ram_obj_pos_X_fr,Y
 C - - - - - 0x009F5C 02:9F4C: B9 77 00  LDA a: ram_obj_pos_X_lo,Y
-C - - - - - 0x009F5F 02:9F4F: 65 30     ADC ram_0030_temp
+C - - - - - 0x009F5F 02:9F4F: 65 30     ADC ram_0030_t01_spd_X_lo
 C - - - - - 0x009F61 02:9F51: 99 77 00  STA a: ram_obj_pos_X_lo,Y
 C - - - - - 0x009F64 02:9F54: B9 80 00  LDA a: ram_obj_pos_X_hi,Y
 C - - - - - 0x009F67 02:9F57: 69 00     ADC #$00
@@ -5774,12 +5777,15 @@ C - - - - - 0x009F6C 02:9F5C: 60        RTS
 
 
 sub_9F5D_increase_Y_pos:
-C - - - - - 0x009F6D 02:9F5D: B9 89 00  LDA a: ram_0089_obj_pos_Y_fr,Y
+; in
+    ; ram_002B_t23_spd_Y_fr
+    ; ram_002C_t07_spd_Y_fr
+C - - - - - 0x009F6D 02:9F5D: B9 89 00  LDA a: ram_obj_pos_Y_fr,Y
 C - - - - - 0x009F70 02:9F60: 18        CLC
-C - - - - - 0x009F71 02:9F61: 65 2B     ADC ram_002B_t23_lo
-C - - - - - 0x009F73 02:9F63: 99 89 00  STA a: ram_0089_obj_pos_Y_fr,Y
+C - - - - - 0x009F71 02:9F61: 65 2B     ADC ram_002B_t23_spd_Y_fr
+C - - - - - 0x009F73 02:9F63: 99 89 00  STA a: ram_obj_pos_Y_fr,Y
 C - - - - - 0x009F76 02:9F66: B9 92 00  LDA a: ram_obj_pos_Y_lo,Y
-C - - - - - 0x009F79 02:9F69: 65 2C     ADC ram_002C_temp
+C - - - - - 0x009F79 02:9F69: 65 2C     ADC ram_002C_t07_spd_Y_fr
 C - - - - - 0x009F7B 02:9F6B: 99 92 00  STA a: ram_obj_pos_Y_lo,Y
 C - - - - - 0x009F7E 02:9F6E: B9 9B 00  LDA a: ram_obj_pos_Y_hi,Y
 C - - - - - 0x009F81 02:9F71: 69 00     ADC #$00
@@ -5789,12 +5795,15 @@ C - - - - - 0x009F86 02:9F76: 60        RTS
 
 
 sub_9F77_decrease_X_pos:
-C - - - - - 0x009F87 02:9F77: B9 A4 00  LDA a: ram_00A4_obj,Y
+; in
+    ; ram_002F_t12_spd_X_fr
+    ; ram_0030_t01_spd_X_lo
+C - - - - - 0x009F87 02:9F77: B9 A4 00  LDA a: ram_obj_pos_X_fr,Y
 C - - - - - 0x009F8A 02:9F7A: 38        SEC
-C - - - - - 0x009F8B 02:9F7B: E5 2F     SBC ram_002F_temp
-C - - - - - 0x009F8D 02:9F7D: 99 A4 00  STA a: ram_00A4_obj,Y
+C - - - - - 0x009F8B 02:9F7B: E5 2F     SBC ram_002F_t12_spd_X_fr
+C - - - - - 0x009F8D 02:9F7D: 99 A4 00  STA a: ram_obj_pos_X_fr,Y
 C - - - - - 0x009F90 02:9F80: B9 77 00  LDA a: ram_obj_pos_X_lo,Y
-C - - - - - 0x009F93 02:9F83: E5 30     SBC ram_0030_temp
+C - - - - - 0x009F93 02:9F83: E5 30     SBC ram_0030_t01_spd_X_lo
 C - - - - - 0x009F95 02:9F85: 99 77 00  STA a: ram_obj_pos_X_lo,Y
 C - - - - - 0x009F98 02:9F88: B9 80 00  LDA a: ram_obj_pos_X_hi,Y
 C - - - - - 0x009F9B 02:9F8B: E9 00     SBC #$00
@@ -5804,12 +5813,15 @@ C - - - - - 0x009FA0 02:9F90: 60        RTS
 
 
 sub_9F91_decrease_Y_pos:
-C - - - - - 0x009FA1 02:9F91: B9 89 00  LDA a: ram_0089_obj_pos_Y_fr,Y
+; in
+    ; ram_002B_t23_spd_Y_fr
+    ; ram_002C_t07_spd_Y_fr
+C - - - - - 0x009FA1 02:9F91: B9 89 00  LDA a: ram_obj_pos_Y_fr,Y
 C - - - - - 0x009FA4 02:9F94: 38        SEC
-C - - - - - 0x009FA5 02:9F95: E5 2B     SBC ram_002B_t23_lo
-C - - - - - 0x009FA7 02:9F97: 99 89 00  STA a: ram_0089_obj_pos_Y_fr,Y
+C - - - - - 0x009FA5 02:9F95: E5 2B     SBC ram_002B_t23_spd_Y_fr
+C - - - - - 0x009FA7 02:9F97: 99 89 00  STA a: ram_obj_pos_Y_fr,Y
 C - - - - - 0x009FAA 02:9F9A: B9 92 00  LDA a: ram_obj_pos_Y_lo,Y
-C - - - - - 0x009FAD 02:9F9D: E5 2C     SBC ram_002C_temp
+C - - - - - 0x009FAD 02:9F9D: E5 2C     SBC ram_002C_t07_spd_Y_fr
 C - - - - - 0x009FAF 02:9F9F: 99 92 00  STA a: ram_obj_pos_Y_lo,Y
 C - - - - - 0x009FB2 02:9FA2: B9 9B 00  LDA a: ram_obj_pos_Y_hi,Y
 C - - - - - 0x009FB5 02:9FA5: E9 00     SBC #$00
@@ -5903,7 +5915,7 @@ C - - - - - 0x00A01D 02:A00D: B5 9B     LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x00A01F 02:A00F: 99 9B 00  STA a: ram_obj_pos_Y_hi,Y
 C - - - - - 0x00A022 02:A012: B5 AD     LDA ram_obj_pos_Z_lo,X
 C - - - - - 0x00A024 02:A014: 18        CLC
-C - - - - - 0x00A025 02:A015: 65 2A     ADC ram_002A_temp
+C - - - - - 0x00A025 02:A015: 65 2A     ADC ram_002A_t14
 C - - - - - 0x00A027 02:A017: 99 AD 00  STA a: ram_obj_pos_Z_lo,Y
 C - - - - - 0x00A02A 02:A01A: B5 B6     LDA ram_obj_pos_Z_hi,X
 C - - - - - 0x00A02C 02:A01C: 69 00     ADC #$00
@@ -6543,7 +6555,7 @@ C - - - - - 0x00A382 02:A372: 29 DF     AND #con_004A_flag_20 ^ $FF
 C - - - - - 0x00A384 02:A374: 99 4A 00  STA a: ram_004A_obj_flags,Y
 C - - - - - 0x00A387 02:A377: A9 10     LDA #$10
 C - - - - - 0x00A389 02:A379: 85 29     STA ram_0029_t2D_pos_X_lo
-C - - - - - 0x00A38B 02:A37B: 85 2A     STA ram_002A_temp
+C - - - - - 0x00A38B 02:A37B: 85 2A     STA ram_002A_t14
 C - - - - - 0x00A38D 02:A37D: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x00A390 02:A380: 10 04     BPL bra_A386
 C - - - - - 0x00A392 02:A382: A9 F0     LDA #$F0
@@ -6616,14 +6628,14 @@ C - - - - - 0x00A3E2 02:A3D2: 75 AD     ADC ram_obj_pos_Z_lo,X
 C - - - - - 0x00A3E4 02:A3D4: 85 2B     STA ram_002B_t24_lo
 C - - - - - 0x00A3E6 02:A3D6: B5 9B     LDA ram_obj_pos_Y_hi,X
 C - - - - - 0x00A3E8 02:A3D8: 75 B6     ADC ram_obj_pos_Z_hi,X
-C - - - - - 0x00A3EA 02:A3DA: 85 2C     STA ram_002C_temp
+C - - - - - 0x00A3EA 02:A3DA: 85 2C     STA ram_002C_t08_hi
 C - - - - - 0x00A3EC 02:A3DC: A5 D0     LDA ram_cam_pos_X_lo
 C - - - - - 0x00A3EE 02:A3DE: 38        SEC
 C - - - - - 0x00A3EF 02:A3DF: F5 77     SBC ram_obj_pos_X_lo,X
 C - - - - - 0x00A3F1 02:A3E1: 85 29     STA ram_0029_t33_lo
 C - - - - - 0x00A3F3 02:A3E3: A5 D1     LDA ram_cam_pos_X_hi
 C - - - - - 0x00A3F5 02:A3E5: F5 80     SBC ram_obj_pos_X_hi,X
-C - - - - - 0x00A3F7 02:A3E7: 85 2A     STA ram_002A_temp
+C - - - - - 0x00A3F7 02:A3E7: 85 2A     STA ram_002A_t17_hi
 C - - - - - 0x00A3F9 02:A3E9: 90 03     BCC bra_A3EE
 C - - - - - 0x00A3FB 02:A3EB: 20 33 A4  JSR sub_A433
 bra_A3EE:
@@ -6633,10 +6645,10 @@ C - - - - - 0x00A401 02:A3F1: E5 D0     SBC ram_cam_pos_X_lo
 C - - - - - 0x00A403 02:A3F3: 85 29     STA ram_0029_t33_lo
 C - - - - - 0x00A405 02:A3F5: B5 80     LDA ram_obj_pos_X_hi,X
 C - - - - - 0x00A407 02:A3F7: E5 D1     SBC ram_cam_pos_X_hi
-C - - - - - 0x00A409 02:A3F9: 85 2A     STA ram_002A_temp
+C - - - - - 0x00A409 02:A3F9: 85 2A     STA ram_002A_t17_hi
 C - - - - - 0x00A40B 02:A3FB: F0 07     BEQ bra_A404
 C - - - - - 0x00A40D 02:A3FD: 90 05     BCC bra_A404
-C - - - - - 0x00A40F 02:A3FF: C6 2A     DEC ram_002A_temp
+C - - - - - 0x00A40F 02:A3FF: C6 2A     DEC ram_002A_t17_hi
 C - - - - - 0x00A411 02:A401: 20 33 A4  JSR sub_A433
 bra_A404:
 C - - - - - 0x00A414 02:A404: A5 D2     LDA ram_cam_pos_Y_lo
@@ -6644,8 +6656,8 @@ C - - - - - 0x00A416 02:A406: 38        SEC
 C - - - - - 0x00A417 02:A407: E5 2B     SBC ram_002B_t24_lo
 C - - - - - 0x00A419 02:A409: 85 29     STA ram_0029_t33_lo
 C - - - - - 0x00A41B 02:A40B: A5 D3     LDA ram_cam_pos_Y_hi
-C - - - - - 0x00A41D 02:A40D: E5 2C     SBC ram_002C_temp
-C - - - - - 0x00A41F 02:A40F: 85 2A     STA ram_002A_temp
+C - - - - - 0x00A41D 02:A40D: E5 2C     SBC ram_002C_t08_hi
+C - - - - - 0x00A41F 02:A40F: 85 2A     STA ram_002A_t17_hi
 C - - - - - 0x00A421 02:A411: 90 03     BCC bra_A416
 C - - - - - 0x00A423 02:A413: 20 33 A4  JSR sub_A433
 bra_A416:
@@ -6653,9 +6665,9 @@ C - - - - - 0x00A426 02:A416: A5 2B     LDA ram_002B_t24_lo
 C - - - - - 0x00A428 02:A418: 38        SEC
 C - - - - - 0x00A429 02:A419: E5 D2     SBC ram_cam_pos_Y_lo
 C - - - - - 0x00A42B 02:A41B: 85 29     STA ram_0029_t33_lo
-C - - - - - 0x00A42D 02:A41D: A5 2C     LDA ram_002C_temp
+C - - - - - 0x00A42D 02:A41D: A5 2C     LDA ram_002C_t08_hi
 C - - - - - 0x00A42F 02:A41F: E5 D3     SBC ram_cam_pos_Y_hi
-C - - - - - 0x00A431 02:A421: 85 2A     STA ram_002A_temp
+C - - - - - 0x00A431 02:A421: 85 2A     STA ram_002A_t17_hi
 C - - - - - 0x00A433 02:A423: F0 05     BEQ bra_A42A
 C - - - - - 0x00A435 02:A425: 90 03     BCC bra_A42A
 C - - - - - 0x00A437 02:A427: 20 33 A4  JSR sub_A433
@@ -6672,10 +6684,11 @@ C - - - - - 0x00A442 02:A432: 60        RTS
 sub_A433:
 ; in
     ; ram_0029_t33_lo
+    ; ram_002A_t17_hi
 C - - - - - 0x00A443 02:A433: A5 29     LDA ram_0029_t33_lo
 C - - - - - 0x00A445 02:A435: 38        SEC
 C - - - - - 0x00A446 02:A436: E9 60     SBC #< $0060
-C - - - - - 0x00A448 02:A438: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00A448 02:A438: A5 2A     LDA ram_002A_t17_hi
 C - - - - - 0x00A44A 02:A43A: E9 00     SBC #> $0060
 C - - - - - 0x00A44C 02:A43C: 90 04     BCC bra_A442_RTS
 C - - - - - 0x00A44E 02:A43E: A9 00     LDA #con_003C_flag_00
@@ -7914,7 +7927,7 @@ C - - - - - 0x00ADE1 02:ADD1: BD 0F 03  LDA ram_obj_direction,X
 C - - - - - 0x00ADE4 02:ADD4: 85 25     STA ram_001F_t01_array + $06
 C - - - - - 0x00ADE6 02:ADD6: A6 1A     LDX ram_001A_t09_obj_index
 C - - - - - 0x00ADE8 02:ADD8: B5 43     LDA ram_state,X
-C - - - - - 0x00ADEA 02:ADDA: 85 26     STA ram_0026_temp
+C - - - - - 0x00ADEA 02:ADDA: 85 26     STA ram_0020_t01_array + $06
 C - - - - - 0x00ADEC 02:ADDC: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x00ADEF 02:ADDF: 85 27     STA ram_0027_temp
 C - - - - - 0x00ADF1 02:ADE1: BD 0F 03  LDA ram_obj_direction,X
@@ -7922,7 +7935,7 @@ C - - - - - 0x00ADF4 02:ADE4: 85 28     STA ram_0028_temp
 C - - - - - 0x00ADF6 02:ADE6: A5 05     LDA ram_0005_t02_flags
 C - - - - - 0x00ADF8 02:ADE8: 29 02     AND #$02
 C - - - - - 0x00ADFA 02:ADEA: F0 17     BEQ bra_AE03
-C - - - - - 0x00ADFC 02:ADEC: A5 26     LDA ram_0026_temp
+C - - - - - 0x00ADFC 02:ADEC: A5 26     LDA ram_0020_t01_array + $06
 C - - - - - 0x00ADFE 02:ADEE: 85 0E     STA ram_0008_t02_array + $06
 C - - - - - 0x00AE00 02:ADF0: A5 27     LDA ram_0027_temp
 C - - - - - 0x00AE02 02:ADF2: 85 0F     STA ram_000F_t02
@@ -8013,20 +8026,20 @@ C - - - - - 0x00AE86 02:AE76: 6C 2B 00  JMP (ram_002B_t15_jmp)
 
 tbl_AE79:
 - D 1 - - - 0x00AE89 02:AE79: 9D AE     .word ofs_003_AE9D_00_RTS
-- - - - - - 0x00AE8B 02:AE7B: 9E AE     .word ofs_003_AE9E_01   ; unused
+- - - - - - 0x00AE8B 02:AE7B: 9E AE     .word ofs_003_AE9E_01   ; unused, index doesn't exist
 - D 1 - - - 0x00AE8D 02:AE7D: C0 AE     .word ofs_003_AEC0_02_decrease_hp
 - D 1 - - - 0x00AE8F 02:AE7F: DA AE     .word ofs_003_AEDA_03_set_state_1
 - D 1 - - - 0x00AE91 02:AE81: 2B AF     .word ofs_003_AF2B_04_set_state_2
 - D 1 - - - 0x00AE93 02:AE83: 97 AF     .word ofs_003_AF97_05_set_1_or_2_state
 - D 1 - - - 0x00AE95 02:AE85: B5 AF     .word ofs_003_AFB5_06_set_fixed_state
 - D 1 - - - 0x00AE97 02:AE87: C2 AF     .word ofs_003_AFC2_07
-- - - - - - 0x00AE99 02:AE89: 19 B0     .word ofs_003_B019_08   ; unused
+- - - - - - 0x00AE99 02:AE89: 19 B0     .word ofs_003_B019_08   ; unused, index doesn't exist
 - D 1 - - - 0x00AE9B 02:AE8B: 72 B0     .word ofs_003_B072_09
 - D 1 - - - 0x00AE9D 02:AE8D: 8A B0     .word ofs_003_B08A_0A_play_sound
-- - - - - - 0x00AE9F 02:AE8F: 96 B0     .word ofs_003_B096_0B   ; unused
+- - - - - - 0x00AE9F 02:AE8F: 96 B0     .word ofs_003_B096_0B   ; unused, index doesn't exist
 - D 1 - - - 0x00AEA1 02:AE91: AB B0     .word ofs_003_B0AB_0C
 - D 1 - - - 0x00AEA3 02:AE93: BE B0     .word ofs_003_B0BE_0D
-- D 1 - - - 0x00AEA5 02:AE95: C9 B0     .word ofs_003_B0C9_0E
+- D 1 - - - 0x00AEA5 02:AE95: C9 B0     .word ofs_003_B0C9_0E_change_direction
 - D 1 - - - 0x00AEA7 02:AE97: EE B0     .word ofs_003_B0EE_0F_set_if_not_new_state
 - D 1 - - - 0x00AEA9 02:AE99: FF B0     .word ofs_003_B0FF_10
 - D 1 - - - 0x00AEAB 02:AE9B: 0F B1     .word ofs_003_B10F_11_branch
@@ -8034,22 +8047,24 @@ tbl_AE79:
 
 
 ofs_003_AE9D_00_RTS:
+; con_AE79_exit
 C - - J - - 0x00AEAD 02:AE9D: 60        RTS
 
 
 
 ofs_003_AE9E_01:
+; con_AE79_01
 - - - - - - 0x00AEAE 02:AE9E: A6 12     LDX ram_0012_t01_obj_index_2
 - - - - - - 0x00AEB0 02:AEA0: A9 02     LDA #$02
 - - - - - - 0x00AEB2 02:AEA2: 18        CLC
 - - - - - - 0x00AEB3 02:AEA3: 75 BF     ADC ram_obj_id,X
 - - - - - - 0x00AEB5 02:AEA5: A8        TAY
 - - - - - - 0x00AEB6 02:AEA6: B1 29     LDA (ram_0029_t13_data_state_outcome),Y
-- - - - - - 0x00AEB8 02:AEA8: 85 2B     STA ram_002B_temp
+- - - - - - 0x00AEB8 02:AEA8: 85 2B     STA ram_002B_t31_damage
 - - - - - - 0x00AEBA 02:AEAA: A6 11     LDX ram_0011_t02_obj_index_1
 - - - - - - 0x00AEBC 02:AEAC: BD 1E 04  LDA ram_hp,X
 - - - - - - 0x00AEBF 02:AEAF: 38        SEC
-- - - - - - 0x00AEC0 02:AEB0: E5 2B     SBC ram_002B_temp
+- - - - - - 0x00AEC0 02:AEB0: E5 2B     SBC ram_002B_t31_damage
 - - - - - - 0x00AEC2 02:AEB2: B0 02     BCS bra_AEB6
 - - - - - - 0x00AEC4 02:AEB4: A9 00     LDA #$00
 bra_AEB6:
@@ -8061,13 +8076,14 @@ bra_AEB6:
 
 
 ofs_003_AEC0_02_decrease_hp:
+; con_AE79_decrease_hp
 C - - J - - 0x00AED0 02:AEC0: A6 11     LDX ram_0011_t02_obj_index_1
 C - - - - - 0x00AED2 02:AEC2: A0 01     LDY #$01
 C - - - - - 0x00AED4 02:AEC4: B1 29     LDA (ram_0029_t13_data_state_outcome),Y
-C - - - - - 0x00AED6 02:AEC6: 85 2B     STA ram_002B_temp
+C - - - - - 0x00AED6 02:AEC6: 85 2B     STA ram_002B_t32_damage
 C - - - - - 0x00AED8 02:AEC8: BD 1E 04  LDA ram_hp,X
 C - - - - - 0x00AEDB 02:AECB: 38        SEC
-C - - - - - 0x00AEDC 02:AECC: E5 2B     SBC ram_002B_temp
+C - - - - - 0x00AEDC 02:AECC: E5 2B     SBC ram_002B_t32_damage
 C - - - - - 0x00AEDE 02:AECE: B0 02     BCS bra_AED2_not_underflow
 C - - - - - 0x00AEE0 02:AED0: A9 00     LDA #$00
 bra_AED2_not_underflow:
@@ -8078,6 +8094,7 @@ C - - - - - 0x00AEE7 02:AED7: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 ofs_003_AEDA_03_set_state_1:
+; con_AE79_set_state_1
 C - - J - - 0x00AEEA 02:AEDA: A6 11     LDX ram_0011_t02_obj_index_1
 C - - - - - 0x00AEEC 02:AEDC: B5 4A     LDA ram_004A_obj_flags,X
 C - - - - - 0x00AEEE 02:AEDE: 10 0B     BPL bra_AEEB    ; if not con_004A_flag_knocked_down
@@ -8111,9 +8128,9 @@ bra_AF12:
 C - - - - - 0x00AF22 02:AF12: A0 01     LDY #$01
 C - - - - - 0x00AF24 02:AF14: B1 29     LDA (ram_0029_t13_data_state_outcome),Y
 C - - - - - 0x00AF26 02:AF16: A0 02     LDY #$02
-C - - - - - 0x00AF28 02:AF18: 85 2B     STA ram_002B_temp
+C - - - - - 0x00AF28 02:AF18: 85 2B     STA ram_002B_t33_hit_counter
 C - - - - - 0x00AF2A 02:AF1A: BD E7 03  LDA ram_hit_counter,X
-C - - - - - 0x00AF2D 02:AF1D: C5 2B     CMP ram_002B_temp
+C - - - - - 0x00AF2D 02:AF1D: C5 2B     CMP ram_002B_t33_hit_counter
 C - - - - - 0x00AF2F 02:AF1F: 90 01     BCC bra_AF22_not_enough_hits
 C - - - - - 0x00AF31 02:AF21: C8        INY ; 03
 bra_AF22_not_enough_hits:
@@ -8125,6 +8142,7 @@ C - - - - - 0x00AF38 02:AF28: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 ofs_003_AF2B_04_set_state_2:
+; con_AE79_set_state_2
 C - - J - - 0x00AF3B 02:AF2B: A6 11     LDX ram_0011_t02_obj_index_1
 C - - - - - 0x00AF3D 02:AF2D: B5 4A     LDA ram_004A_obj_flags,X
 C - - - - - 0x00AF3F 02:AF2F: 10 0B     BPL bra_AF3C    ; if not con_004A_flag_knocked_down
@@ -8157,26 +8175,26 @@ C - - - - - 0x00AF70 02:AF60: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 bra_AF63:
 C - - - - - 0x00AF73 02:AF63: A0 01     LDY #$01
 C - - - - - 0x00AF75 02:AF65: B1 29     LDA (ram_0029_t13_data_state_outcome),Y
-C - - - - - 0x00AF77 02:AF67: 85 2B     STA ram_002B_temp
+C - - - - - 0x00AF77 02:AF67: 85 2B     STA ram_002B_t34_hit_counter
 C - - - - - 0x00AF79 02:AF69: A0 02     LDY #$02
 C - - - - - 0x00AF7B 02:AF6B: BD E7 03  LDA ram_hit_counter,X
-C - - - - - 0x00AF7E 02:AF6E: C5 2B     CMP ram_002B_temp
+C - - - - - 0x00AF7E 02:AF6E: C5 2B     CMP ram_002B_t34_hit_counter
 C - - - - - 0x00AF80 02:AF70: 90 02     BCC bra_AF74_not_enough_hits
 C - - - - - 0x00AF82 02:AF72: A0 04     LDY #$04
 bra_AF74_not_enough_hits:
-C - - - - - 0x00AF84 02:AF74: 84 2B     STY ram_002B_temp
+C - - - - - 0x00AF84 02:AF74: 84 2B     STY ram_002B_t35_data_index
 C - - - - - 0x00AF86 02:AF76: A0 00     LDY #$00
 C - - - - - 0x00AF88 02:AF78: B1 29     LDA (ram_0029_t13_data_state_outcome),Y
-C - - - - - 0x00AF8A 02:AF7A: 85 2C     STA ram_002C_temp
+C - - - - - 0x00AF8A 02:AF7A: 85 2C     STA ram_002C_t09
 C - - - - - 0x00AF8C 02:AF7C: BD 63 00  LDA a: ram_0063_obj_facing,X
 C - - - - - 0x00AF8F 02:AF7F: A6 12     LDX ram_0012_t01_obj_index_2
 C - - - - - 0x00AF91 02:AF81: 5D 63 00  EOR a: ram_0063_obj_facing,X
-C - - - - - 0x00AF94 02:AF84: 45 2C     EOR ram_002C_temp
+C - - - - - 0x00AF94 02:AF84: 45 2C     EOR ram_002C_t09
 C - - - - - 0x00AF96 02:AF86: 30 02     BMI bra_AF8A
-C - - - - - 0x00AF98 02:AF88: E6 2B     INC ram_002B_temp
+C - - - - - 0x00AF98 02:AF88: E6 2B     INC ram_002B_t35_data_index
 bra_AF8A:
 C - - - - - 0x00AF9A 02:AF8A: A6 11     LDX ram_0011_t02_obj_index_1
-C - - - - - 0x00AF9C 02:AF8C: A4 2B     LDY ram_002B_temp
+C - - - - - 0x00AF9C 02:AF8C: A4 2B     LDY ram_002B_t35_data_index
 C - - - - - 0x00AF9E 02:AF8E: B1 29     LDA (ram_0029_t13_data_state_outcome),Y
 C - - - - - 0x00AFA0 02:AF90: 95 43     STA ram_state,X
 C - - - - - 0x00AFA2 02:AF92: A9 08     LDA #$08
@@ -8185,6 +8203,7 @@ C - - - - - 0x00AFA4 02:AF94: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 ofs_003_AF97_05_set_1_or_2_state:
+; con_AE79_set_1st_or_2nd_state
 C - - J - - 0x00AFA7 02:AF97: A0 00     LDY #$00
 C - - - - - 0x00AFA9 02:AF99: B1 29     LDA (ram_0029_t13_data_state_outcome),Y
 C - - - - - 0x00AFAB 02:AF9B: A0 01     LDY #$01
@@ -8204,6 +8223,7 @@ C - - - - - 0x00AFC2 02:AFB2: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 ofs_003_AFB5_06_set_fixed_state:
+; con_AE79_set_fixed_state
 C - - J - - 0x00AFC5 02:AFB5: A0 01     LDY #$01
 C - - - - - 0x00AFC7 02:AFB7: B1 29     LDA (ram_0029_t13_data_state_outcome),Y
 C - - - - - 0x00AFC9 02:AFB9: A6 11     LDX ram_0011_t02_obj_index_1
@@ -8214,6 +8234,7 @@ C - - - - - 0x00AFCF 02:AFBF: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 ofs_003_AFC2_07:
+; con_AE79_07
 C - - J - - 0x00AFD2 02:AFC2: A6 11     LDX ram_0011_t02_obj_index_1
 C - - - - - 0x00AFD4 02:AFC4: B4 BF     LDY ram_obj_id,X
 C - - - - - 0x00AFD6 02:AFC6: A5 12     LDA ram_0012_t01_obj_index_2
@@ -8292,6 +8313,7 @@ tbl_B007:
 
 
 ofs_003_B019_08:
+; con_AE79_08
 - - - - - - 0x00B029 02:B019: A6 11     LDX ram_0011_t02_obj_index_1
 - - - - - - 0x00B02B 02:B01B: B4 BF     LDY ram_obj_id,X
 - - - - - - 0x00B02D 02:B01D: A5 12     LDA ram_0012_t01_obj_index_2
@@ -8370,6 +8392,7 @@ tbl_B060:
 
 
 ofs_003_B072_09:
+; con_AE79_09
 C - - J - - 0x00B082 02:B072: A5 12     LDA ram_0012_t01_obj_index_2
 C - - - - - 0x00B084 02:B074: C9 02     CMP #$02
 C - - - - - 0x00B086 02:B076: B0 0D     BCS bra_B085
@@ -8391,6 +8414,7 @@ C - - - - - 0x00B097 02:B087: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 ofs_003_B08A_0A_play_sound:
+; con_AE79_play_sound
 C - - J - - 0x00B09A 02:B08A: A0 01     LDY #$01
 C - - - - - 0x00B09C 02:B08C: B1 29     LDA (ram_0029_t13_data_state_outcome),Y
 C - - - - - 0x00B09E 02:B08E: 20 06 C0  JSR sub_0x01C016_play_sound
@@ -8400,6 +8424,7 @@ C - - - - - 0x00B0A3 02:B093: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 ofs_003_B096_0B:
+; con_AE79_0B
 - - - - - - 0x00B0A6 02:B096: A6 12     LDX ram_0012_t01_obj_index_2
 - - - - - - 0x00B0A8 02:B098: 18        CLC
 - - - - - - 0x00B0A9 02:B099: A9 02     LDA #$02
@@ -8414,6 +8439,7 @@ ofs_003_B096_0B:
 
 
 ofs_003_B0AB_0C:
+; con_AE79_0C
 C - - J - - 0x00B0BB 02:B0AB: A0 40     LDY #$40
 C - - - - - 0x00B0BD 02:B0AD: A5 0F     LDA ram_000F_t02
 C - - - - - 0x00B0BF 02:B0AF: 10 02     BPL bra_B0B3
@@ -8429,6 +8455,7 @@ C - - - - - 0x00B0CB 02:B0BB: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 ofs_003_B0BE_0D:
+; con_AE79_0D
 C - - J - - 0x00B0CE 02:B0BE: A0 40     LDY #$40
 C - - - - - 0x00B0D0 02:B0C0: A5 0F     LDA ram_000F_t02
 C - - - - - 0x00B0D2 02:B0C2: 30 EF     BMI bra_B0B3
@@ -8437,11 +8464,12 @@ C - - - - - 0x00B0D6 02:B0C6: 4C B3 B0  JMP loc_B0B3
 
 
 
-ofs_003_B0C9_0E:
+ofs_003_B0C9_0E_change_direction:
+; con_AE79_change_direction
 C - - J - - 0x00B0D9 02:B0C9: A6 12     LDX ram_0012_t01_obj_index_2
 C - - - - - 0x00B0DB 02:B0CB: A4 11     LDY ram_0011_t02_obj_index_1
 C - - - - - 0x00B0DD 02:B0CD: A9 40     LDA #$40
-C - - - - - 0x00B0DF 02:B0CF: 85 2B     STA ram_002B_temp
+C - - - - - 0x00B0DF 02:B0CF: 85 2B     STA ram_002B_t36_direction
 C - - - - - 0x00B0E1 02:B0D1: BD 77 00  LDA a: ram_obj_pos_X_lo,X
 C - - - - - 0x00B0E4 02:B0D4: 38        SEC
 C - - - - - 0x00B0E5 02:B0D5: F9 77 00  SBC a: ram_obj_pos_X_lo,Y
@@ -8449,9 +8477,9 @@ C - - - - - 0x00B0E8 02:B0D8: BD 80 00  LDA a: ram_obj_pos_X_hi,X
 C - - - - - 0x00B0EB 02:B0DB: F9 80 00  SBC a: ram_obj_pos_X_hi,Y
 C - - - - - 0x00B0EE 02:B0DE: 90 04     BCC bra_B0E4
 C - - - - - 0x00B0F0 02:B0E0: A9 C0     LDA #$C0
-C - - - - - 0x00B0F2 02:B0E2: 85 2B     STA ram_002B_temp
+C - - - - - 0x00B0F2 02:B0E2: 85 2B     STA ram_002B_t36_direction
 bra_B0E4:
-C - - - - - 0x00B0F4 02:B0E4: A5 2B     LDA ram_002B_temp
+C - - - - - 0x00B0F4 02:B0E4: A5 2B     LDA ram_002B_t36_direction
 C - - - - - 0x00B0F6 02:B0E6: 99 0F 03  STA ram_obj_direction,Y
 C - - - - - 0x00B0F9 02:B0E9: A9 01     LDA #$01
 C - - - - - 0x00B0FB 02:B0EB: 4C 39 B1  JMP loc_B139_increase_0029_pointer
@@ -8459,6 +8487,7 @@ C - - - - - 0x00B0FB 02:B0EB: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 ofs_003_B0EE_0F_set_if_not_new_state:
+; con_AE79_set_if_not_new_state
 C - - J - - 0x00B0FE 02:B0EE: A6 12     LDX ram_0012_t01_obj_index_2
 C - - - - - 0x00B100 02:B0F0: B5 43     LDA ram_state,X
 C - - - - - 0x00B102 02:B0F2: 10 06     BPL bra_B0FA
@@ -8472,6 +8501,7 @@ C - - - - - 0x00B10C 02:B0FC: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 ofs_003_B0FF_10:
+; con_AE79_10
 C - - J - - 0x00B10F 02:B0FF: A6 12     LDX ram_0012_t01_obj_index_2
 C - - - - - 0x00B111 02:B101: BD 0F 03  LDA ram_obj_direction,X
 C - - - - - 0x00B114 02:B104: 18        CLC
@@ -8483,10 +8513,13 @@ C - - - - - 0x00B11C 02:B10C: 4C 39 B1  JMP loc_B139_increase_0029_pointer
 
 
 ofs_003_B10F_11_branch:
+; con_AE79_branch
+; save pointers
 C - - J - - 0x00B11F 02:B10F: A5 29     LDA ram_0029_t13_data_state_outcome
 C - - - - - 0x00B121 02:B111: 48        PHA
 C - - - - - 0x00B122 02:B112: A5 2A     LDA ram_0029_t13_data_state_outcome + $01
 C - - - - - 0x00B124 02:B114: 48        PHA
+; 
 C - - - - - 0x00B125 02:B115: A6 12     LDX ram_0012_t01_obj_index_2
 C - - - - - 0x00B127 02:B117: B5 BF     LDA ram_obj_id,X
 C - - - - - 0x00B129 02:B119: 0A        ASL
@@ -8501,10 +8534,12 @@ C - - - - - 0x00B134 02:B124: 85 2A     STA ram_0029_t13_data_state_outcome + $0
 C - - - - - 0x00B136 02:B126: 68        PLA
 C - - - - - 0x00B137 02:B127: 85 29     STA ram_0029_t13_data_state_outcome
 C - - - - - 0x00B139 02:B129: 20 66 AE  JSR sub_AE66_read_next_0029_byte
+; restore pointers
 C - - - - - 0x00B13C 02:B12C: 68        PLA
 C - - - - - 0x00B13D 02:B12D: 85 2A     STA ram_0029_t13_data_state_outcome + $01
 C - - - - - 0x00B13F 02:B12F: 68        PLA
 C - - - - - 0x00B140 02:B130: 85 29     STA ram_0029_t13_data_state_outcome
+; 
 C - - - - - 0x00B142 02:B132: A0 01     LDY #$01
 C - - - - - 0x00B144 02:B134: B1 29     LDA (ram_0029_t13_data_state_outcome),Y
 C - - - - - 0x00B146 02:B136: 4C 39 B1  JMP loc_B139_increase_0029_pointer
@@ -8670,13 +8705,13 @@ C - - - - - 0x00B231 02:B221: E5 08     SBC ram_0008_t02_array
 C - - - - - 0x00B233 02:B223: 85 29     STA ram_0029_t34_lo
 C - - - - - 0x00B235 02:B225: A5 0F     LDA ram_0009_t01_array + $06
 C - - - - - 0x00B237 02:B227: E5 09     SBC ram_0009_t01_array
-C - - - - - 0x00B239 02:B229: 85 2A     STA ram_002A_temp
+C - - - - - 0x00B239 02:B229: 85 2A     STA ram_002A_t13
 C - - - - - 0x00B23B 02:B22B: 10 07     BPL bra_B234
-C - - - - - 0x00B23D 02:B22D: 20 44 B3  JSR sub_B344
+C - - - - - 0x00B23D 02:B22D: 20 44 B3  JSR sub_B344_EOR_16bit
 C - - - - - 0x00B240 02:B230: A5 10     LDA ram_000A_t01_array + $06
 C - - - - - 0x00B242 02:B232: 85 1B     STA ram_001B_t12
 bra_B234:
-C - - - - - 0x00B244 02:B234: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00B244 02:B234: A5 2A     LDA ram_002A_t13
 C - - - - - 0x00B246 02:B236: D0 3E     BNE bra_B276
 C - - - - - 0x00B248 02:B238: A5 29     LDA ram_0029_t34_lo
 C - - - - - 0x00B24A 02:B23A: C5 1C     CMP ram_001C_t06
@@ -8689,13 +8724,13 @@ C - - - - - 0x00B255 02:B245: E5 0B     SBC ram_000B_t02_array
 C - - - - - 0x00B257 02:B247: 85 29     STA ram_0029_t34_lo
 C - - - - - 0x00B259 02:B249: A5 12     LDA ram_000C_t01_array + $06
 C - - - - - 0x00B25B 02:B24B: E5 0C     SBC ram_000C_t01_array
-C - - - - - 0x00B25D 02:B24D: 85 2A     STA ram_002A_temp
+C - - - - - 0x00B25D 02:B24D: 85 2A     STA ram_002A_t13
 C - - - - - 0x00B25F 02:B24F: 10 07     BPL bra_B258
-C - - - - - 0x00B261 02:B251: 20 44 B3  JSR sub_B344
+C - - - - - 0x00B261 02:B251: 20 44 B3  JSR sub_B344_EOR_16bit
 C - - - - - 0x00B264 02:B254: A5 13     LDA ram_000D_t02_array + $06
 C - - - - - 0x00B266 02:B256: 85 1B     STA ram_001B_t12
 bra_B258:
-C - - - - - 0x00B268 02:B258: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00B268 02:B258: A5 2A     LDA ram_002A_t13
 C - - - - - 0x00B26A 02:B25A: D0 1A     BNE bra_B276
 C - - - - - 0x00B26C 02:B25C: A5 29     LDA ram_0029_t34_lo
 C - - - - - 0x00B26E 02:B25E: C5 1B     CMP ram_001B_t12
@@ -8721,13 +8756,13 @@ C - - - - - 0x00B293 02:B283: E5 1D     SBC ram_001D_t05_array
 C - - - - - 0x00B295 02:B285: 85 29     STA ram_0029_t34_lo
 C - - - - - 0x00B297 02:B287: A5 0F     LDA ram_0009_t01_array + $06
 C - - - - - 0x00B299 02:B289: E5 1E     SBC ram_001E_t04_array
-C - - - - - 0x00B29B 02:B28B: 85 2A     STA ram_002A_temp
+C - - - - - 0x00B29B 02:B28B: 85 2A     STA ram_002A_t13
 C - - - - - 0x00B29D 02:B28D: 10 07     BPL bra_B296
-C - - - - - 0x00B29F 02:B28F: 20 44 B3  JSR sub_B344
+C - - - - - 0x00B29F 02:B28F: 20 44 B3  JSR sub_B344_EOR_16bit
 C - - - - - 0x00B2A2 02:B292: A5 10     LDA ram_000A_t01_array + $06
 C - - - - - 0x00B2A4 02:B294: 85 1B     STA ram_001B_t13
 bra_B296:
-C - - - - - 0x00B2A6 02:B296: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00B2A6 02:B296: A5 2A     LDA ram_002A_t13
 C - - - - - 0x00B2A8 02:B298: D0 3E     BNE bra_B2D8
 C - - - - - 0x00B2AA 02:B29A: A5 29     LDA ram_0029_t34_lo
 C - - - - - 0x00B2AC 02:B29C: C5 1B     CMP ram_001B_t13
@@ -8736,17 +8771,17 @@ C - - - - - 0x00B2B0 02:B2A0: A5 22     LDA ram_0022_temp
 C - - - - - 0x00B2B2 02:B2A2: 85 1B     STA ram_001B_t14
 C - - - - - 0x00B2B4 02:B2A4: A5 11     LDA ram_000B_t02_array + $06
 C - - - - - 0x00B2B6 02:B2A6: 38        SEC
-C - - - - - 0x00B2B7 02:B2A7: E5 20     SBC ram_0020_temp
+C - - - - - 0x00B2B7 02:B2A7: E5 20     SBC ram_0020_t01_array
 C - - - - - 0x00B2B9 02:B2A9: 85 29     STA ram_0029_t34_lo
 C - - - - - 0x00B2BB 02:B2AB: A5 12     LDA ram_000C_t01_array + $06
 C - - - - - 0x00B2BD 02:B2AD: E5 21     SBC ram_0021_temp
-C - - - - - 0x00B2BF 02:B2AF: 85 2A     STA ram_002A_temp
+C - - - - - 0x00B2BF 02:B2AF: 85 2A     STA ram_002A_t13
 C - - - - - 0x00B2C1 02:B2B1: 10 07     BPL bra_B2BA
-C - - - - - 0x00B2C3 02:B2B3: 20 44 B3  JSR sub_B344
+C - - - - - 0x00B2C3 02:B2B3: 20 44 B3  JSR sub_B344_EOR_16bit
 C - - - - - 0x00B2C6 02:B2B6: A5 13     LDA ram_000D_t02_array + $06
 C - - - - - 0x00B2C8 02:B2B8: 85 1B     STA ram_001B_t14
 bra_B2BA:
-C - - - - - 0x00B2CA 02:B2BA: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00B2CA 02:B2BA: A5 2A     LDA ram_002A_t13
 C - - - - - 0x00B2CC 02:B2BC: D0 1A     BNE bra_B2D8
 C - - - - - 0x00B2CE 02:B2BE: A5 29     LDA ram_0029_t34_lo
 C - - - - - 0x00B2D0 02:B2C0: C5 1B     CMP ram_001B_t14
@@ -8772,32 +8807,32 @@ C - - - - - 0x00B2F5 02:B2E5: E5 08     SBC ram_0008_t02_array
 C - - - - - 0x00B2F7 02:B2E7: 85 29     STA ram_0029_t34_lo
 C - - - - - 0x00B2F9 02:B2E9: A5 24     LDA ram_001E_t04_array + $06
 C - - - - - 0x00B2FB 02:B2EB: E5 09     SBC ram_0009_t01_array
-C - - - - - 0x00B2FD 02:B2ED: 85 2A     STA ram_002A_temp
+C - - - - - 0x00B2FD 02:B2ED: 85 2A     STA ram_002A_t13
 C - - - - - 0x00B2FF 02:B2EF: 10 07     BPL bra_B2F8
-C - - - - - 0x00B301 02:B2F1: 20 44 B3  JSR sub_B344
+C - - - - - 0x00B301 02:B2F1: 20 44 B3  JSR sub_B344_EOR_16bit
 C - - - - - 0x00B304 02:B2F4: A5 25     LDA ram_001F_t01_array + $06
 C - - - - - 0x00B306 02:B2F6: 85 1B     STA ram_001B_t15
 bra_B2F8:
-C - - - - - 0x00B308 02:B2F8: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00B308 02:B2F8: A5 2A     LDA ram_002A_t13
 C - - - - - 0x00B30A 02:B2FA: D0 3E     BNE bra_B33A
 C - - - - - 0x00B30C 02:B2FC: A5 29     LDA ram_0029_t34_lo
 C - - - - - 0x00B30E 02:B2FE: C5 1B     CMP ram_001B_t15
 C - - - - - 0x00B310 02:B300: B0 38     BCS bra_B33A
 C - - - - - 0x00B312 02:B302: A5 0D     LDA ram_000D_t02_array
 C - - - - - 0x00B314 02:B304: 85 1B     STA ram_001B_t16
-C - - - - - 0x00B316 02:B306: A5 26     LDA ram_0026_temp
+C - - - - - 0x00B316 02:B306: A5 26     LDA ram_0020_t01_array + $06
 C - - - - - 0x00B318 02:B308: 38        SEC
 C - - - - - 0x00B319 02:B309: E5 0B     SBC ram_000B_t02_array
 C - - - - - 0x00B31B 02:B30B: 85 29     STA ram_0029_t34_lo
 C - - - - - 0x00B31D 02:B30D: A5 27     LDA ram_0027_temp
 C - - - - - 0x00B31F 02:B30F: E5 0C     SBC ram_000C_t01_array
-C - - - - - 0x00B321 02:B311: 85 2A     STA ram_002A_temp
+C - - - - - 0x00B321 02:B311: 85 2A     STA ram_002A_t13
 C - - - - - 0x00B323 02:B313: 10 07     BPL bra_B31C
-C - - - - - 0x00B325 02:B315: 20 44 B3  JSR sub_B344
+C - - - - - 0x00B325 02:B315: 20 44 B3  JSR sub_B344_EOR_16bit
 C - - - - - 0x00B328 02:B318: A5 28     LDA ram_0028_temp
 C - - - - - 0x00B32A 02:B31A: 85 1B     STA ram_001B_t16
 bra_B31C:
-C - - - - - 0x00B32C 02:B31C: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00B32C 02:B31C: A5 2A     LDA ram_002A_t13
 C - - - - - 0x00B32E 02:B31E: D0 1A     BNE bra_B33A
 C - - - - - 0x00B330 02:B320: A5 29     LDA ram_0029_t34_lo
 C - - - - - 0x00B332 02:B322: C5 1B     CMP ram_001B_t16
@@ -8823,18 +8858,24 @@ C - - - - - 0x00B353 02:B343: 60        RTS
 
 
 
-sub_B344:
-C - - - - - 0x00B354 02:B344: A5 2A     LDA ram_002A_temp
+sub_B344_EOR_16bit:
+; in
+    ; ram_002A_t13
+    ; ram_0029_t34_lo
+; out
+    ; ram_002A_t13
+    ; ram_0029_t34_lo
+C - - - - - 0x00B354 02:B344: A5 2A     LDA ram_002A_t13
 C - - - - - 0x00B356 02:B346: 49 FF     EOR #$FF
-C - - - - - 0x00B358 02:B348: 85 2A     STA ram_002A_temp
+C - - - - - 0x00B358 02:B348: 85 2A     STA ram_002A_t18
 C - - - - - 0x00B35A 02:B34A: A5 29     LDA ram_0029_t34_lo
 C - - - - - 0x00B35C 02:B34C: 49 FF     EOR #$FF
 C - - - - - 0x00B35E 02:B34E: 18        CLC
 C - - - - - 0x00B35F 02:B34F: 69 01     ADC #< $0001
 C - - - - - 0x00B361 02:B351: 85 29     STA ram_0029_t34_lo
-C - - - - - 0x00B363 02:B353: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00B363 02:B353: A5 2A     LDA ram_002A_t18
 C - - - - - 0x00B365 02:B355: 69 00     ADC #> $0001
-C - - - - - 0x00B367 02:B357: 85 2A     STA ram_002A_temp
+C - - - - - 0x00B367 02:B357: 85 2A     STA ram_002A_t13
 C - - - - - 0x00B369 02:B359: 60        RTS
 
 
@@ -8852,21 +8893,21 @@ C - - - - - 0x00B372 02:B362: FD 92 00  SBC a: ram_obj_pos_Y_lo,X
 C - - - - - 0x00B375 02:B365: 85 29     STA ram_0029_t35_pos_Y_lo
 C - - - - - 0x00B377 02:B367: B9 9B 00  LDA a: ram_obj_pos_Y_hi,Y
 C - - - - - 0x00B37A 02:B36A: FD 9B 00  SBC a: ram_obj_pos_Y_hi,X
-C - - - - - 0x00B37D 02:B36D: 85 2A     STA ram_002A_temp
+C - - - - - 0x00B37D 02:B36D: 85 2A     STA ram_002A_t19
 C - - - - - 0x00B37F 02:B36F: 10 15     BPL bra_B386
 C - - - - - 0x00B381 02:B371: A9 FF     LDA #$FF
-C - - - - - 0x00B383 02:B373: 45 2A     EOR ram_002A_temp
-C - - - - - 0x00B385 02:B375: 85 2A     STA ram_002A_temp
+C - - - - - 0x00B383 02:B373: 45 2A     EOR ram_002A_t19
+C - - - - - 0x00B385 02:B375: 85 2A     STA ram_002A_t20
 C - - - - - 0x00B387 02:B377: A9 FF     LDA #$FF
 C - - - - - 0x00B389 02:B379: 45 29     EOR ram_0029_t35_pos_Y_lo
 C - - - - - 0x00B38B 02:B37B: 18        CLC
 C - - - - - 0x00B38C 02:B37C: 69 01     ADC #< $0001
 C - - - - - 0x00B38E 02:B37E: 85 29     STA ram_0029_t35_pos_Y_lo
-C - - - - - 0x00B390 02:B380: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00B390 02:B380: A5 2A     LDA ram_002A_t20
 C - - - - - 0x00B392 02:B382: 69 00     ADC #> $0001
-C - - - - - 0x00B394 02:B384: 85 2A     STA ram_002A_temp
+C - - - - - 0x00B394 02:B384: 85 2A     STA ram_002A_t19
 bra_B386:
-C - - - - - 0x00B396 02:B386: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00B396 02:B386: A5 2A     LDA ram_002A_t19
 C - - - - - 0x00B398 02:B388: D0 08     BNE bra_B392
 C - - - - - 0x00B39A 02:B38A: A5 29     LDA ram_0029_t35_pos_Y_lo
 C - - - - - 0x00B39C 02:B38C: C9 04     CMP #$04
@@ -8974,7 +9015,7 @@ C - - - - - 0x00B429 02:B419: B1 2B     LDA (ram_002B_t02_data),Y
 C - - - - - 0x00B42B 02:B41B: 95 1F     STA ram_001F_t01_array,X
 C - - - - - 0x00B42D 02:B41D: C8        INY ; 02
 C - - - - - 0x00B42E 02:B41E: B1 2B     LDA (ram_002B_t02_data),Y
-C - - - - - 0x00B430 02:B420: 95 20     STA ram_0020_temp,X
+C - - - - - 0x00B430 02:B420: 95 20     STA ram_0020_t01_array,X
 C - - - - - 0x00B432 02:B422: C8        INY ; 03
 C - - - - - 0x00B433 02:B423: B1 2B     LDA (ram_002B_t02_data),Y
 C - - - - - 0x00B435 02:B425: 95 22     STA ram_0022_temp,X
@@ -9009,11 +9050,11 @@ C - - - - - 0x00B463 02:B453: 05 04     ORA ram_0004_t03
 C - - - - - 0x00B465 02:B455: 85 04     STA ram_0004_t03
 bra_B457_7F:
 C - - - - - 0x00B467 02:B457: A4 1B     LDY ram_001B_t11_obj_index
-C - - - - - 0x00B469 02:B459: B5 20     LDA ram_0020_temp,X
+C - - - - - 0x00B469 02:B459: B5 20     LDA ram_0020_t01_array,X
 C - - - - - 0x00B46B 02:B45B: 08        PHP
 C - - - - - 0x00B46C 02:B45C: 18        CLC
 C - - - - - 0x00B46D 02:B45D: 79 AD 00  ADC a: ram_obj_pos_Z_lo,Y
-C - - - - - 0x00B470 02:B460: 95 20     STA ram_0020_temp,X
+C - - - - - 0x00B470 02:B460: 95 20     STA ram_0020_t01_array,X
 C - - - - - 0x00B472 02:B462: B9 B6 00  LDA a: ram_obj_pos_Z_hi,Y
 C - - - - - 0x00B475 02:B465: 69 00     ADC #$00
 C - - - - - 0x00B477 02:B467: 28        PLP
@@ -10427,36 +10468,14 @@ tbl_BA32_state_outcome:
 
 
 
-; handlers at 0x00AE76
-con_sub_exit                            = $00 ; 
-; con_sub_01                            = $01 ; unused
-con_sub_decrease_hp                     = $02 ; 
-con_sub_set_state_1                     = $03 ; 
-con_sub_set_state_2                     = $04 ; 
-con_sub_set_1st_or_2nd_state            = $05 ; set one of two following states
-con_sub_set_fixed_state                 = $06 ; set following state
-con_sub_07                              = $07 ; 
-; con_sub_08                            = $08 ; unused
-con_sub_09                              = $09 ; 
-con_sub_play_sound                      = $0A ; play following sound
-; con_sub_0B                            = $0B ; unused
-con_sub_0C                              = $0C ; 
-con_sub_0D                              = $0D ; opposite of 0C
-con_sub_0E                              = $0E ; 
-con_sub_set_if_not_new_state            = $0F ; 
-con_sub_10                              = $10 ; 
-con_sub_branch                          = $11 ; 
-
-
-
 _off004_BB2A_do_nothing:
-- D 1 - I - 0x00BB3A 02:BB2A: 00        .byte con_sub_exit
+- D 1 - I - 0x00BB3A 02:BB2A: 00        .byte con_AE79_exit
 
 
 
 _off004_BB2B_2D:
 ; con_state_punch_normal
-- D 1 - I - 0x00BB3B 02:BB2B: 11        .byte con_sub_branch, @end - @start + $02
+- D 1 - I - 0x00BB3B 02:BB2B: 11        .byte con_AE79_branch, @end - @start + $02
 @start:
 - D 1 - I - 0x00BB3D 02:BB2D: 53 BB     .word ofs_BB53_00
 - D 1 - I - 0x00BB3F 02:BB2F: 53 BB     .word ofs_BB53_01
@@ -10477,31 +10496,31 @@ _off004_BB2B_2D:
 - - - - - - 0x00BB5D 02:BB4D: 9E BB     .word ofs_BB9E_10
 - D 1 - I - 0x00BB5F 02:BB4F: A5 BB     .word ofs_BBA5_11
 @end:
-- D 1 - I - 0x00BB61 02:BB51: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BB62 02:BB52: 00        .byte con_sub_exit
+- D 1 - I - 0x00BB61 02:BB51: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BB62 02:BB52: 00        .byte con_AE79_exit
 
 
 
 ofs_BB53_00:
 ofs_BB53_01:
-- D 1 - I - 0x00BB63 02:BB53: 0A        .byte con_sub_play_sound, con_sfx_hit
-- D 1 - I - 0x00BB65 02:BB55: 02        .byte con_sub_decrease_hp, $02
-- D 1 - I - 0x00BB67 02:BB57: 07        .byte con_sub_07
+- D 1 - I - 0x00BB63 02:BB53: 0A        .byte con_AE79_play_sound, con_sfx_hit
+- D 1 - I - 0x00BB65 02:BB55: 02        .byte con_AE79_decrease_hp, $02
+- D 1 - I - 0x00BB67 02:BB57: 07        .byte con_AE79_07
 - D 1 - I - 0x00BB68 02:BB58: 63 BB     .word off_BB63_00
 - D 1 - I - 0x00BB6A 02:BB5A: B2 BB     .word off_BBB2_01
 - - - - - - 0x00BB6C 02:BB5C: 63 BB     .word off_BB63_02
 - - - - - - 0x00BB6E 02:BB5E: B2 BB     .word off_BBB2_03
-- D 1 - I - 0x00BB70 02:BB60: 09        .byte con_sub_09, $01
-- D 1 - I - 0x00BB72 02:BB62: 00        .byte con_sub_exit
+- D 1 - I - 0x00BB70 02:BB60: 09        .byte con_AE79_09, $01
+- D 1 - I - 0x00BB72 02:BB62: 00        .byte con_AE79_exit
 
 
 
 off_BB63_00:
 off_BB63_02:
-- D 1 - I - 0x00BB73 02:BB63: 0A        .byte con_sub_play_sound, con_sfx_hit
-- D 1 - I - 0x00BB75 02:BB65: 02        .byte con_sub_decrease_hp, $02
+- D 1 - I - 0x00BB73 02:BB63: 0A        .byte con_AE79_play_sound, con_sfx_hit
+- D 1 - I - 0x00BB75 02:BB65: 02        .byte con_AE79_decrease_hp, $02
 
-- D 1 - I - 0x00BB77 02:BB67: 04        .byte con_sub_set_state_2
+- D 1 - I - 0x00BB77 02:BB67: 04        .byte con_AE79_set_state_2
 - D 1 - I - 0x00BB78 02:BB68: 02        .byte $02   ; compare hit counter
 - D 1 - I - 0x00BB79 02:BB69: 14        .byte con_state_14   ; 
 - D 1 - I - 0x00BB7A 02:BB6A: 16        .byte con_state_16   ; 
@@ -10510,17 +10529,17 @@ off_BB63_02:
 - D 1 - I - 0x00BB7D 02:BB6D: 1A        .byte con_state_1A   ; 
 - D 1 - I - 0x00BB7E 02:BB6E: 1A        .byte con_state_1A   ; you knock player/enemy with a punch while he is midair
 
-- D 1 - I - 0x00BB7F 02:BB6F: 00        .byte con_sub_exit
+- D 1 - I - 0x00BB7F 02:BB6F: 00        .byte con_AE79_exit
 
 
 
 ofs_BB70_02:
 ofs_BB70_03:
 ofs_BB70_04:
-- D 1 - I - 0x00BB80 02:BB70: 0A        .byte con_sub_play_sound, con_sfx_hit
-- D 1 - I - 0x00BB82 02:BB72: 02        .byte con_sub_decrease_hp, $01
+- D 1 - I - 0x00BB80 02:BB70: 0A        .byte con_AE79_play_sound, con_sfx_hit
+- D 1 - I - 0x00BB82 02:BB72: 02        .byte con_AE79_decrease_hp, $01
 
-- D 1 - I - 0x00BB84 02:BB74: 04        .byte con_sub_set_state_2
+- D 1 - I - 0x00BB84 02:BB74: 04        .byte con_AE79_set_state_2
 - D 1 - I - 0x00BB85 02:BB75: 02        .byte $02   ; compare hit counter
 - D 1 - I - 0x00BB86 02:BB76: 14        .byte con_state_14   ; 
 - D 1 - I - 0x00BB87 02:BB77: 16        .byte con_state_16   ; 
@@ -10529,17 +10548,17 @@ ofs_BB70_04:
 - D 1 - I - 0x00BB8A 02:BB7A: 1A        .byte con_state_1A   ; 
 - D 1 - I - 0x00BB8B 02:BB7B: 1A        .byte con_state_1A   ; 
 
-- D 1 - I - 0x00BB8C 02:BB7C: 00        .byte con_sub_exit
+- D 1 - I - 0x00BB8C 02:BB7C: 00        .byte con_AE79_exit
 
 
 
 ofs_BB7D_05:
 ofs_BB7D_06:
 ofs_BB7D_07:
-- D 1 - I - 0x00BB8D 02:BB7D: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BB8F 02:BB7F: 02        .byte con_sub_decrease_hp, $02
+- D 1 - I - 0x00BB8D 02:BB7D: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BB8F 02:BB7F: 02        .byte con_AE79_decrease_hp, $02
 
-- D 1 - I - 0x00BB91 02:BB81: 04        .byte con_sub_set_state_2
+- D 1 - I - 0x00BB91 02:BB81: 04        .byte con_AE79_set_state_2
 - D 1 - I - 0x00BB92 02:BB82: 01        .byte $01   ; compare hit counter
 - D 1 - I - 0x00BB93 02:BB83: 14        .byte con_state_14   ; 
 - D 1 - I - 0x00BB94 02:BB84: 1A        .byte con_state_1A   ; 
@@ -10548,15 +10567,15 @@ ofs_BB7D_07:
 - - - - - - 0x00BB97 02:BB87: 1B        .byte con_state_1B   ; 
 - D 1 - I - 0x00BB98 02:BB88: 1B        .byte con_state_1B   ; 
 
-- D 1 - I - 0x00BB99 02:BB89: 00        .byte con_sub_exit
+- D 1 - I - 0x00BB99 02:BB89: 00        .byte con_AE79_exit
 
 
 
 ofs_BB8A_08:
-- D 1 - I - 0x00BB9A 02:BB8A: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BB9C 02:BB8C: 02        .byte con_sub_decrease_hp, $04
-- D 1 - I - 0x00BB9E 02:BB8E: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BBA0 02:BB90: 00        .byte con_sub_exit
+- D 1 - I - 0x00BB9A 02:BB8A: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BB9C 02:BB8C: 02        .byte con_AE79_decrease_hp, $04
+- D 1 - I - 0x00BB9E 02:BB8E: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BBA0 02:BB90: 00        .byte con_AE79_exit
 
 
 
@@ -10566,10 +10585,10 @@ ofs_BB91_0B:
 ofs_BB91_0C:
 ofs_BB91_0D:
 ofs_BB91_0E:
-- D 1 - I - 0x00BBA1 02:BB91: 0A        .byte con_sub_play_sound, con_sfx_hit
-- D 1 - I - 0x00BBA3 02:BB93: 02        .byte con_sub_decrease_hp, $03
+- D 1 - I - 0x00BBA1 02:BB91: 0A        .byte con_AE79_play_sound, con_sfx_hit
+- D 1 - I - 0x00BBA3 02:BB93: 02        .byte con_AE79_decrease_hp, $03
 
-- D 1 - I - 0x00BBA5 02:BB95: 04        .byte con_sub_set_state_2
+- D 1 - I - 0x00BBA5 02:BB95: 04        .byte con_AE79_set_state_2
 - D 1 - I - 0x00BBA6 02:BB96: 03        .byte $03   ; compare hit counter
 - D 1 - I - 0x00BBA7 02:BB97: 14        .byte con_state_14   ; 
 - D 1 - I - 0x00BBA8 02:BB98: 16        .byte con_state_16   ; 
@@ -10578,24 +10597,24 @@ ofs_BB91_0E:
 - D 1 - I - 0x00BBAB 02:BB9B: 1B        .byte con_state_1B   ; 
 - D 1 - I - 0x00BBAC 02:BB9C: 1B        .byte con_state_1B   ; 
 
-- D 1 - I - 0x00BBAD 02:BB9D: 00        .byte con_sub_exit
+- D 1 - I - 0x00BBAD 02:BB9D: 00        .byte con_AE79_exit
 
 
 
 ofs_BB9E_0F:
 ofs_BB9E_10:
-- D 1 - I - 0x00BBAE 02:BB9E: 0A        .byte con_sub_play_sound, con_sfx_hit
-- D 1 - I - 0x00BBB0 02:BBA0: 02        .byte con_sub_decrease_hp, $08
-- D 1 - I - 0x00BBB2 02:BBA2: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BBB4 02:BBA4: 00        .byte con_sub_exit
+- D 1 - I - 0x00BBAE 02:BB9E: 0A        .byte con_AE79_play_sound, con_sfx_hit
+- D 1 - I - 0x00BBB0 02:BBA0: 02        .byte con_AE79_decrease_hp, $08
+- D 1 - I - 0x00BBB2 02:BBA2: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BBB4 02:BBA4: 00        .byte con_AE79_exit
 
 
 
 ofs_BBA5_11:
-- D 1 - I - 0x00BBB5 02:BBA5: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BBB7 02:BBA7: 02        .byte con_sub_decrease_hp, $04
+- D 1 - I - 0x00BBB5 02:BBA5: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BBB7 02:BBA7: 02        .byte con_AE79_decrease_hp, $04
 
-- D 1 - I - 0x00BBB9 02:BBA9: 04        .byte con_sub_set_state_2
+- D 1 - I - 0x00BBB9 02:BBA9: 04        .byte con_AE79_set_state_2
 - D 1 - I - 0x00BBBA 02:BBAA: 03        .byte $03   ; compare hit counter
 - D 1 - I - 0x00BBBB 02:BBAB: 14        .byte con_state_14   ; 
 - D 1 - I - 0x00BBBC 02:BBAC: 16        .byte con_state_16   ; 
@@ -10604,16 +10623,16 @@ ofs_BBA5_11:
 - - - - - - 0x00BBBF 02:BBAF: 1B        .byte con_state_1B   ; 
 - D 1 - I - 0x00BBC0 02:BBB0: 1B        .byte con_state_1B   ; 
 
-- D 1 - I - 0x00BBC1 02:BBB1: 00        .byte con_sub_exit
+- D 1 - I - 0x00BBC1 02:BBB1: 00        .byte con_AE79_exit
 
 
 
 off_BBB2_01:
 off_BBB2_03:
-- D 1 - I - 0x00BBC2 02:BBB2: 0A        .byte con_sub_play_sound, con_sfx_hit
-- D 1 - I - 0x00BBC4 02:BBB4: 02        .byte con_sub_decrease_hp, $03
+- D 1 - I - 0x00BBC2 02:BBB2: 0A        .byte con_AE79_play_sound, con_sfx_hit
+- D 1 - I - 0x00BBC4 02:BBB4: 02        .byte con_AE79_decrease_hp, $03
 
-- D 1 - I - 0x00BBC6 02:BBB6: 04        .byte con_sub_set_state_2
+- D 1 - I - 0x00BBC6 02:BBB6: 04        .byte con_AE79_set_state_2
 - D 1 - I - 0x00BBC7 02:BBB7: 05        .byte $05   ; compare hit counter
 - D 1 - I - 0x00BBC8 02:BBB8: 14        .byte con_state_14   ; 
 - D 1 - I - 0x00BBC9 02:BBB9: 16        .byte con_state_16   ; 
@@ -10622,38 +10641,38 @@ off_BBB2_03:
 - D 1 - I - 0x00BBCC 02:BBBC: 1A        .byte con_state_1A   ; 
 - D 1 - I - 0x00BBCD 02:BBBD: 1A        .byte con_state_1A   ; 
 
-- D 1 - I - 0x00BBCE 02:BBBE: 00        .byte con_sub_exit
+- D 1 - I - 0x00BBCE 02:BBBE: 00        .byte con_AE79_exit
 
 
 
 _off004_BBBF_2E:
 ; con_state_ninja_knife
-- D 1 - I - 0x00BBCF 02:BBBF: 02        .byte con_sub_decrease_hp, $06
-- D 1 - I - 0x00BBD1 02:BBC1: 0A        .byte con_sub_play_sound, con_sfx_ninja_knife_hit
-- D 1 - I - 0x00BBD3 02:BBC3: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BBD5 02:BBC5: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BBD6 02:BBC6: 00        .byte con_sub_exit
+- D 1 - I - 0x00BBCF 02:BBBF: 02        .byte con_AE79_decrease_hp, $06
+- D 1 - I - 0x00BBD1 02:BBC1: 0A        .byte con_AE79_play_sound, con_sfx_ninja_knife_hit
+- D 1 - I - 0x00BBD3 02:BBC3: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BBD5 02:BBC5: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BBD6 02:BBC6: 00        .byte con_AE79_exit
 
 
 
 _off004_BBC7_2F:
 ; con_state_uppercut_normal
-- D 1 - I - 0x00BBD7 02:BBC7: 02        .byte con_sub_decrease_hp, $06
-- D 1 - I - 0x00BBD9 02:BBC9: 0A        .byte con_sub_play_sound, con_sfx_1A
+- D 1 - I - 0x00BBD7 02:BBC7: 02        .byte con_AE79_decrease_hp, $06
+- D 1 - I - 0x00BBD9 02:BBC9: 0A        .byte con_AE79_play_sound, con_sfx_1A
 
-- D 1 - I - 0x00BBDB 02:BBCB: 05        .byte con_sub_set_1st_or_2nd_state
+- D 1 - I - 0x00BBDB 02:BBCB: 05        .byte con_AE79_set_1st_or_2nd_state
 - D 1 - I - 0x00BBDC 02:BBCC: 1F        .byte con_state_1F   ; 
 - D 1 - I - 0x00BBDD 02:BBCD: 1A        .byte con_state_1A   ; 
 
-- D 1 - I - 0x00BBDE 02:BBCE: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BBDF 02:BBCF: 09        .byte con_sub_09, $10
-- D 1 - I - 0x00BBE1 02:BBD1: 00        .byte con_sub_exit
+- D 1 - I - 0x00BBDE 02:BBCE: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BBDF 02:BBCF: 09        .byte con_AE79_09, $10
+- D 1 - I - 0x00BBE1 02:BBD1: 00        .byte con_AE79_exit
 
 
 
 _off004_BBD2_30:
 ; con_state_30
-- D 1 - I - 0x00BBE2 02:BBD2: 11        .byte con_sub_branch, @end - @start + $02
+- D 1 - I - 0x00BBE2 02:BBD2: 11        .byte con_AE79_branch, @end - @start + $02
 @start:
 - D 1 - I - 0x00BBE4 02:BBD4: 01 BC     .word ofs_BC01_00
 - - - - - - 0x00BBE6 02:BBD6: 01 BC     .word ofs_BC01_01
@@ -10670,8 +10689,8 @@ _off004_BBD2_30:
 - D 1 - I - 0x00BBFC 02:BBEC: 01 BC     .word ofs_BC01_0C
 - - - - - - 0x00BBFE 02:BBEE: F2 BB     .word ofs_BBF2_0D
 @end:
-- D 1 - I - 0x00BC00 02:BBF0: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BC01 02:BBF1: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC00 02:BBF0: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BC01 02:BBF1: 00        .byte con_AE79_exit
 
 
 
@@ -10681,22 +10700,22 @@ ofs_BBF2_08:
 ofs_BBF2_09:
 ofs_BBF2_0B:
 ofs_BBF2_0D:
-- D 1 - I - 0x00BC02 02:BBF2: 02        .byte con_sub_decrease_hp, $06
-- D 1 - I - 0x00BC04 02:BBF4: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BC06 02:BBF6: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BC08 02:BBF8: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC02 02:BBF2: 02        .byte con_AE79_decrease_hp, $06
+- D 1 - I - 0x00BC04 02:BBF4: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BC06 02:BBF6: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BC08 02:BBF8: 00        .byte con_AE79_exit
 
 
 
 ofs_BBF9_0A:
-- - - - - - 0x00BC09 02:BBF9: 02        .byte con_sub_decrease_hp, $06
-- - - - - - 0x00BC0B 02:BBFB: 0A        .byte con_sub_play_sound, con_sfx_1A
+- - - - - - 0x00BC09 02:BBF9: 02        .byte con_AE79_decrease_hp, $06
+- - - - - - 0x00BC0B 02:BBFB: 0A        .byte con_AE79_play_sound, con_sfx_1A
 
-- - - - - - 0x00BC0D 02:BBFD: 05        .byte con_sub_set_1st_or_2nd_state
+- - - - - - 0x00BC0D 02:BBFD: 05        .byte con_AE79_set_1st_or_2nd_state
 - - - - - - 0x00BC0E 02:BBFE: 1B        .byte con_state_1B   ; 
 - - - - - - 0x00BC0F 02:BBFF: 1C        .byte con_state_1C   ; 
 
-- - - - - - 0x00BC10 02:BC00: 00        .byte con_sub_exit
+- - - - - - 0x00BC10 02:BC00: 00        .byte con_AE79_exit
 
 
 
@@ -10707,10 +10726,10 @@ ofs_BC01_03:
 ofs_BC01_04:
 ofs_BC01_05:
 ofs_BC01_0C:
-- D 1 - I - 0x00BC11 02:BC01: 02        .byte con_sub_decrease_hp, $04
-- D 1 - I - 0x00BC13 02:BC03: 0A        .byte con_sub_play_sound, con_sfx_1A
+- D 1 - I - 0x00BC11 02:BC01: 02        .byte con_AE79_decrease_hp, $04
+- D 1 - I - 0x00BC13 02:BC03: 0A        .byte con_AE79_play_sound, con_sfx_1A
 
-- D 1 - I - 0x00BC15 02:BC05: 04        .byte con_sub_set_state_2
+- D 1 - I - 0x00BC15 02:BC05: 04        .byte con_AE79_set_state_2
 - D 1 - I - 0x00BC16 02:BC06: 00        .byte $00   ; compare hit counter
 - - - - - - 0x00BC17 02:BC07: 16        .byte con_state_16   ; 
 - - - - - - 0x00BC18 02:BC08: 1A        .byte con_state_1A   ; 
@@ -10719,13 +10738,13 @@ ofs_BC01_0C:
 - D 1 - I - 0x00BC1B 02:BC0B: 1A        .byte con_state_1A   ; 
 - D 1 - I - 0x00BC1C 02:BC0C: 1A        .byte con_state_1A   ; 
 
-- D 1 - I - 0x00BC1D 02:BC0D: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC1D 02:BC0D: 00        .byte con_AE79_exit
 
 
 
 _off004_BC0E_31:
 ; con_state_31
-- D 1 - I - 0x00BC1E 02:BC0E: 11        .byte con_sub_branch, @end - @start + $02
+- D 1 - I - 0x00BC1E 02:BC0E: 11        .byte con_AE79_branch, @end - @start + $02
 @start:
 - D 1 - I - 0x00BC20 02:BC10: 35 BC     .word ofs_BC35_00
 - - - - - - 0x00BC22 02:BC12: 35 BC     .word ofs_BC35_01
@@ -10746,7 +10765,7 @@ _off004_BC0E_31:
 - - - - - - 0x00BC40 02:BC30: 35 BC     .word ofs_BC35_10
 - D 1 - I - 0x00BC42 02:BC32: 35 BC     .word ofs_BC35_11
 @end:
-- D 1 - I - 0x00BC44 02:BC34: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC44 02:BC34: 00        .byte con_AE79_exit
 
 
 
@@ -10767,22 +10786,22 @@ ofs_BC35_0E:
 ofs_BC35_0F:
 ofs_BC35_10:
 ofs_BC35_11:
-- D 1 - I - 0x00BC45 02:BC35: 02        .byte con_sub_decrease_hp, $06
-- D 1 - I - 0x00BC47 02:BC37: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BC49 02:BC39: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BC4B 02:BC3B: 0D        .byte con_sub_0D
-- D 1 - I - 0x00BC4C 02:BC3C: 09        .byte con_sub_09, $10
-- D 1 - I - 0x00BC4E 02:BC3E: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC45 02:BC35: 02        .byte con_AE79_decrease_hp, $06
+- D 1 - I - 0x00BC47 02:BC37: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BC49 02:BC39: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BC4B 02:BC3B: 0D        .byte con_AE79_0D
+- D 1 - I - 0x00BC4C 02:BC3C: 09        .byte con_AE79_09, $10
+- D 1 - I - 0x00BC4E 02:BC3E: 00        .byte con_AE79_exit
 
 
 
 ofs_BC3F_04:
-- D 1 - I - 0x00BC4F 02:BC3F: 02        .byte con_sub_decrease_hp, $06
-- D 1 - I - 0x00BC51 02:BC41: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BC53 02:BC43: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BC55 02:BC45: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BC56 02:BC46: 09        .byte con_sub_09, $10
-- D 1 - I - 0x00BC58 02:BC48: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC4F 02:BC3F: 02        .byte con_AE79_decrease_hp, $06
+- D 1 - I - 0x00BC51 02:BC41: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BC53 02:BC43: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BC55 02:BC45: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BC56 02:BC46: 09        .byte con_AE79_09, $10
+- D 1 - I - 0x00BC58 02:BC48: 00        .byte con_AE79_exit
 
 
 
@@ -10790,22 +10809,22 @@ _off004_BC49_32:
 ; con_state_32
 _off004_BC49_33:
 ; con_state_33
-- D 1 - I - 0x00BC59 02:BC49: 07        .byte con_sub_07
+- D 1 - I - 0x00BC59 02:BC49: 07        .byte con_AE79_07
 - D 1 - I - 0x00BC5A 02:BC4A: 63 BC     .word off_BC63_00
 - D 1 - I - 0x00BC5C 02:BC4C: 53 BC     .word off_BC53_01
 - D 1 - I - 0x00BC5E 02:BC4E: 71 BC     .word off_BC71_02
 - - - - - - 0x00BC60 02:BC50: 71 BC     .word off_BC71_03
-- D 1 - I - 0x00BC62 02:BC52: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC62 02:BC52: 00        .byte con_AE79_exit
 
 
 
 off_BC53_01:
-- D 1 - I - 0x00BC63 02:BC53: 0A        .byte con_sub_play_sound, con_sfx_hit
-- D 1 - I - 0x00BC65 02:BC55: 02        .byte con_sub_decrease_hp, $02
-- D 1 - I - 0x00BC67 02:BC57: 0D        .byte con_sub_0D
-- D 1 - I - 0x00BC68 02:BC58: 09        .byte con_sub_09, $01
+- D 1 - I - 0x00BC63 02:BC53: 0A        .byte con_AE79_play_sound, con_sfx_hit
+- D 1 - I - 0x00BC65 02:BC55: 02        .byte con_AE79_decrease_hp, $02
+- D 1 - I - 0x00BC67 02:BC57: 0D        .byte con_AE79_0D
+- D 1 - I - 0x00BC68 02:BC58: 09        .byte con_AE79_09, $01
 
-- D 1 - I - 0x00BC6A 02:BC5A: 04        .byte con_sub_set_state_2
+- D 1 - I - 0x00BC6A 02:BC5A: 04        .byte con_AE79_set_state_2
 - D 1 - I - 0x00BC6B 02:BC5B: 01        .byte $01   ; compare hit counter
 - D 1 - I - 0x00BC6C 02:BC5C: 14        .byte con_state_14   ; 
 - D 1 - I - 0x00BC6D 02:BC5D: 14        .byte con_state_14   ; 
@@ -10814,72 +10833,72 @@ off_BC53_01:
 - D 1 - I - 0x00BC70 02:BC60: 1A        .byte con_state_1A   ; 
 - D 1 - I - 0x00BC71 02:BC61: 1A        .byte con_state_1A   ; 
 
-- D 1 - I - 0x00BC72 02:BC62: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC72 02:BC62: 00        .byte con_AE79_exit
 
 
 
 off_BC63_00:
-- D 1 - I - 0x00BC73 02:BC63: 0A        .byte con_sub_play_sound, con_sfx_hit
-- D 1 - I - 0x00BC75 02:BC65: 02        .byte con_sub_decrease_hp, $02
-- D 1 - I - 0x00BC77 02:BC67: 0D        .byte con_sub_0D
-- D 1 - I - 0x00BC78 02:BC68: 09        .byte con_sub_09, $01
+- D 1 - I - 0x00BC73 02:BC63: 0A        .byte con_AE79_play_sound, con_sfx_hit
+- D 1 - I - 0x00BC75 02:BC65: 02        .byte con_AE79_decrease_hp, $02
+- D 1 - I - 0x00BC77 02:BC67: 0D        .byte con_AE79_0D
+- D 1 - I - 0x00BC78 02:BC68: 09        .byte con_AE79_09, $01
 
-- D 1 - I - 0x00BC7A 02:BC6A: 03        .byte con_sub_set_state_1
+- D 1 - I - 0x00BC7A 02:BC6A: 03        .byte con_AE79_set_state_1
 - D 1 - I - 0x00BC7B 02:BC6B: 00        .byte $00   ; compare hit counter
 - - - - - - 0x00BC7C 02:BC6C: 16        .byte con_state_16   ; 
 - D 1 - I - 0x00BC7D 02:BC6D: 16        .byte con_state_16   ; 
 - D 1 - I - 0x00BC7E 02:BC6E: 1A        .byte con_state_1A   ; 
 - - - - - - 0x00BC7F 02:BC6F: 1A        .byte con_state_1A   ; you knock player/enemy with a kick while he is midair
 
-- D 1 - I - 0x00BC80 02:BC70: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC80 02:BC70: 00        .byte con_AE79_exit
 
 
 
 off_BC71_02:
 off_BC71_03:
-- D 1 - I - 0x00BC81 02:BC71: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BC83 02:BC73: 02        .byte con_sub_decrease_hp, $05
-- D 1 - I - 0x00BC85 02:BC75: 0C        .byte con_sub_0C
+- D 1 - I - 0x00BC81 02:BC71: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BC83 02:BC73: 02        .byte con_AE79_decrease_hp, $05
+- D 1 - I - 0x00BC85 02:BC75: 0C        .byte con_AE79_0C
 
-- D 1 - I - 0x00BC86 02:BC76: 03        .byte con_sub_set_state_1
+- D 1 - I - 0x00BC86 02:BC76: 03        .byte con_AE79_set_state_1
 - D 1 - I - 0x00BC87 02:BC77: 00        .byte $00   ; compare hit counter
 - - - - - - 0x00BC88 02:BC78: 16        .byte con_state_16   ; 
 - D 1 - I - 0x00BC89 02:BC79: 16        .byte con_state_16   ; 
 - D 1 - I - 0x00BC8A 02:BC7A: 1A        .byte con_state_1A   ; 
 - D 1 - I - 0x00BC8B 02:BC7B: 1A        .byte con_state_1A   ; 
 
-- D 1 - I - 0x00BC8C 02:BC7C: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC8C 02:BC7C: 00        .byte con_AE79_exit
 
 
 
 _off004_BC7D_34:
 ; con_state_34
-- D 1 - I - 0x00BC8D 02:BC7D: 02        .byte con_sub_decrease_hp, $05
-- D 1 - I - 0x00BC8F 02:BC7F: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BC91 02:BC81: 06        .byte con_sub_set_fixed_state, con_state_1C
-- D 1 - I - 0x00BC93 02:BC83: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BC94 02:BC84: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC8D 02:BC7D: 02        .byte con_AE79_decrease_hp, $05
+- D 1 - I - 0x00BC8F 02:BC7F: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BC91 02:BC81: 06        .byte con_AE79_set_fixed_state, con_state_1C
+- D 1 - I - 0x00BC93 02:BC83: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BC94 02:BC84: 00        .byte con_AE79_exit
 
 
 
 _off004_BC85_35:
 ; con_state_35
-- D 1 - I - 0x00BC95 02:BC85: 02        .byte con_sub_decrease_hp, $08
-- D 1 - I - 0x00BC97 02:BC87: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BC99 02:BC89: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BC9B 02:BC8B: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BC9C 02:BC8C: 09        .byte con_sub_09, $03
-- D 1 - I - 0x00BC9E 02:BC8E: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC95 02:BC85: 02        .byte con_AE79_decrease_hp, $08
+- D 1 - I - 0x00BC97 02:BC87: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BC99 02:BC89: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BC9B 02:BC8B: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BC9C 02:BC8C: 09        .byte con_AE79_09, $03
+- D 1 - I - 0x00BC9E 02:BC8E: 00        .byte con_AE79_exit
 
 
 
 _off004_BC8F_36:
 ; con_state_36
-- D 1 - I - 0x00BC9F 02:BC8F: 02        .byte con_sub_decrease_hp, $1A
-- D 1 - I - 0x00BCA1 02:BC91: 0A        .byte con_sub_play_sound, con_sfx_1B
-- D 1 - I - 0x00BCA3 02:BC93: 06        .byte con_sub_set_fixed_state, con_state_1D
-- D 1 - I - 0x00BCA5 02:BC95: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BCA6 02:BC96: 00        .byte con_sub_exit
+- D 1 - I - 0x00BC9F 02:BC8F: 02        .byte con_AE79_decrease_hp, $1A
+- D 1 - I - 0x00BCA1 02:BC91: 0A        .byte con_AE79_play_sound, con_sfx_1B
+- D 1 - I - 0x00BCA3 02:BC93: 06        .byte con_AE79_set_fixed_state, con_state_1D
+- D 1 - I - 0x00BCA5 02:BC95: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BCA6 02:BC96: 00        .byte con_AE79_exit
 
 
 
@@ -10887,7 +10906,7 @@ _off004_BC97_37:
 ; con_state_37
 _off004_BC97_38:
 ; con_state_38
-- D 1 - I - 0x00BCA7 02:BC97: 11        .byte con_sub_branch, @end - @start + $02
+- D 1 - I - 0x00BCA7 02:BC97: 11        .byte con_AE79_branch, @end - @start + $02
 @start:
 - - - - - - 0x00BCA9 02:BC99: 00 00     .word $0000 ; 
 - - - - - - 0x00BCAB 02:BC9B: 00 00     .word $0000 ; 
@@ -10902,79 +10921,79 @@ _off004_BC97_38:
 - D 1 - I - 0x00BCBD 02:BCAD: BA BC     .word ofs_BCBA_0A
 - - - - - - 0x00BCBF 02:BCAF: BA BC     .word ofs_BCBA_0B
 @end:
-- D 1 - I - 0x00BCC1 02:BCB1: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BCC2 02:BCB2: 00        .byte con_sub_exit
+- D 1 - I - 0x00BCC1 02:BCB1: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BCC2 02:BCB2: 00        .byte con_AE79_exit
 
 
 
 ofs_BCB3_02:
 ofs_BCB3_03:
-- D 1 - I - 0x00BCC3 02:BCB3: 02        .byte con_sub_decrease_hp, $02
-- D 1 - I - 0x00BCC5 02:BCB5: 0A        .byte con_sub_play_sound, con_sfx_hit
-- D 1 - I - 0x00BCC7 02:BCB7: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BCC9 02:BCB9: 00        .byte con_sub_exit
+- D 1 - I - 0x00BCC3 02:BCB3: 02        .byte con_AE79_decrease_hp, $02
+- D 1 - I - 0x00BCC5 02:BCB5: 0A        .byte con_AE79_play_sound, con_sfx_hit
+- D 1 - I - 0x00BCC7 02:BCB7: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BCC9 02:BCB9: 00        .byte con_AE79_exit
 
 
 
 ofs_BCBA_0A:
 ofs_BCBA_0B:
-- D 1 - I - 0x00BCCA 02:BCBA: 02        .byte con_sub_decrease_hp, $0A
-- D 1 - I - 0x00BCCC 02:BCBC: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BCCE 02:BCBE: 06        .byte con_sub_set_fixed_state, con_state_1C
-- D 1 - I - 0x00BCD0 02:BCC0: 00        .byte con_sub_exit
+- D 1 - I - 0x00BCCA 02:BCBA: 02        .byte con_AE79_decrease_hp, $0A
+- D 1 - I - 0x00BCCC 02:BCBC: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BCCE 02:BCBE: 06        .byte con_AE79_set_fixed_state, con_state_1C
+- D 1 - I - 0x00BCD0 02:BCC0: 00        .byte con_AE79_exit
 
 
 
 _off004_BCC1_39:
 ; con_state_cyclone_kick
-- D 1 - I - 0x00BCD1 02:BCC1: 02        .byte con_sub_decrease_hp, $10
-- D 1 - I - 0x00BCD3 02:BCC3: 06        .byte con_sub_set_fixed_state, con_state_22
-- D 1 - I - 0x00BCD5 02:BCC5: 09        .byte con_sub_09, $50
-- D 1 - I - 0x00BCD7 02:BCC7: 0A        .byte con_sub_play_sound, con_sfx_1B
-- D 1 - I - 0x00BCD9 02:BCC9: 0E        .byte con_sub_0E
-- D 1 - I - 0x00BCDA 02:BCCA: 00        .byte con_sub_exit
+- D 1 - I - 0x00BCD1 02:BCC1: 02        .byte con_AE79_decrease_hp, $10
+- D 1 - I - 0x00BCD3 02:BCC3: 06        .byte con_AE79_set_fixed_state, con_state_22
+- D 1 - I - 0x00BCD5 02:BCC5: 09        .byte con_AE79_09, $50
+- D 1 - I - 0x00BCD7 02:BCC7: 0A        .byte con_AE79_play_sound, con_sfx_1B
+- D 1 - I - 0x00BCD9 02:BCC9: 0E        .byte con_AE79_change_direction
+- D 1 - I - 0x00BCDA 02:BCCA: 00        .byte con_AE79_exit
 
 
 
 _off004_BCCB_3A:
 ; con_state_high_jump_kick
-- D 1 - I - 0x00BCDB 02:BCCB: 02        .byte con_sub_decrease_hp, $1E
-- D 1 - I - 0x00BCDD 02:BCCD: 0A        .byte con_sub_play_sound, con_sfx_1B
-- D 1 - I - 0x00BCDF 02:BCCF: 06        .byte con_sub_set_fixed_state, con_state_20
-- D 1 - I - 0x00BCE1 02:BCD1: 09        .byte con_sub_09, $50
-- D 1 - I - 0x00BCE3 02:BCD3: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BCE4 02:BCD4: 00        .byte con_sub_exit
+- D 1 - I - 0x00BCDB 02:BCCB: 02        .byte con_AE79_decrease_hp, $1E
+- D 1 - I - 0x00BCDD 02:BCCD: 0A        .byte con_AE79_play_sound, con_sfx_1B
+- D 1 - I - 0x00BCDF 02:BCCF: 06        .byte con_AE79_set_fixed_state, con_state_20
+- D 1 - I - 0x00BCE1 02:BCD1: 09        .byte con_AE79_09, $50
+- D 1 - I - 0x00BCE3 02:BCD3: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BCE4 02:BCD4: 00        .byte con_AE79_exit
 
 
 
 _off004_BCD5_3B:
 ; con_state_uppercut_sudden
-- D 1 - I - 0x00BCE5 02:BCD5: 02        .byte con_sub_decrease_hp, $14
-- D 1 - I - 0x00BCE7 02:BCD7: 0A        .byte con_sub_play_sound, con_sfx_1B
-- D 1 - I - 0x00BCE9 02:BCD9: 06        .byte con_sub_set_fixed_state, con_state_21
-- D 1 - I - 0x00BCEB 02:BCDB: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BCEC 02:BCDC: 09        .byte con_sub_09, $50
-- D 1 - I - 0x00BCEE 02:BCDE: 00        .byte con_sub_exit
+- D 1 - I - 0x00BCE5 02:BCD5: 02        .byte con_AE79_decrease_hp, $14
+- D 1 - I - 0x00BCE7 02:BCD7: 0A        .byte con_AE79_play_sound, con_sfx_1B
+- D 1 - I - 0x00BCE9 02:BCD9: 06        .byte con_AE79_set_fixed_state, con_state_21
+- D 1 - I - 0x00BCEB 02:BCDB: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BCEC 02:BCDC: 09        .byte con_AE79_09, $50
+- D 1 - I - 0x00BCEE 02:BCDE: 00        .byte con_AE79_exit
 
 
 
 _off004_BCDF_3C:
 ; con_state_elbow
-- D 1 - I - 0x00BCEF 02:BCDF: 02        .byte con_sub_decrease_hp, $03
-- D 1 - I - 0x00BCF1 02:BCE1: 0A        .byte con_sub_play_sound, con_sfx_hit
-- D 1 - I - 0x00BCF3 02:BCE3: 0D        .byte con_sub_0D
+- D 1 - I - 0x00BCEF 02:BCDF: 02        .byte con_AE79_decrease_hp, $03
+- D 1 - I - 0x00BCF1 02:BCE1: 0A        .byte con_AE79_play_sound, con_sfx_hit
+- D 1 - I - 0x00BCF3 02:BCE3: 0D        .byte con_AE79_0D
 
-- D 1 - I - 0x00BCF4 02:BCE4: 05        .byte con_sub_set_1st_or_2nd_state
+- D 1 - I - 0x00BCF4 02:BCE4: 05        .byte con_AE79_set_1st_or_2nd_state
 - D 1 - I - 0x00BCF5 02:BCE5: 1A        .byte con_state_1A   ; 
 - D 1 - I - 0x00BCF6 02:BCE6: 1B        .byte con_state_1B   ; 
 
-- D 1 - I - 0x00BCF7 02:BCE7: 00        .byte con_sub_exit
+- D 1 - I - 0x00BCF7 02:BCE7: 00        .byte con_AE79_exit
 
 
 
 _off004_BCE8_3D:
 ; con_state_punch_strong
-- D 1 - I - 0x00BCF8 02:BCE8: 11        .byte con_sub_branch, @end - @start + $02
+- D 1 - I - 0x00BCF8 02:BCE8: 11        .byte con_AE79_branch, @end - @start + $02
 @start:
 - - - - - - 0x00BCFA 02:BCEA: 00 00     .word $0000 ; 
 - - - - - - 0x00BCFC 02:BCEC: 00 00     .word $0000 ; 
@@ -10987,40 +11006,40 @@ _off004_BCE8_3D:
 - D 1 - I - 0x00BD0A 02:BCFA: 0B BD     .word ofs_BD0B_08
 - - - - - - 0x00BD0C 02:BCFC: 00 00     .word $0000 ; 
 @end:
-- D 1 - I - 0x00BD0E 02:BCFE: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BD0F 02:BCFF: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD0E 02:BCFE: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BD0F 02:BCFF: 00        .byte con_AE79_exit
 
 
 
 ofs_BD00_02:
-- D 1 - I - 0x00BD10 02:BD00: 02        .byte con_sub_decrease_hp, $02
-- D 1 - I - 0x00BD12 02:BD02: 0A        .byte con_sub_play_sound, con_sfx_hit
+- D 1 - I - 0x00BD10 02:BD00: 02        .byte con_AE79_decrease_hp, $02
+- D 1 - I - 0x00BD12 02:BD02: 0A        .byte con_AE79_play_sound, con_sfx_hit
 
-- D 1 - I - 0x00BD14 02:BD04: 03        .byte con_sub_set_state_1
+- D 1 - I - 0x00BD14 02:BD04: 03        .byte con_AE79_set_state_1
 - D 1 - I - 0x00BD15 02:BD05: 01        .byte $01   ; compare hit counter
 - D 1 - I - 0x00BD16 02:BD06: 16        .byte con_state_16   ; 
 - D 1 - I - 0x00BD17 02:BD07: 1A        .byte con_state_1A   ; 
 - D 1 - I - 0x00BD18 02:BD08: 1A        .byte con_state_1A   ; 
 - D 1 - I - 0x00BD19 02:BD09: 1A        .byte con_state_1A   ; 
 
-- D 1 - I - 0x00BD1A 02:BD0A: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD1A 02:BD0A: 00        .byte con_AE79_exit
 
 
 
 ofs_BD0B_08:
-- D 1 - I - 0x00BD1B 02:BD0B: 02        .byte con_sub_decrease_hp, $08
-- D 1 - I - 0x00BD1D 02:BD0D: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BD1F 02:BD0F: 06        .byte con_sub_set_fixed_state, con_state_1C
-- D 1 - I - 0x00BD21 02:BD11: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD1B 02:BD0B: 02        .byte con_AE79_decrease_hp, $08
+- D 1 - I - 0x00BD1D 02:BD0D: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BD1F 02:BD0F: 06        .byte con_AE79_set_fixed_state, con_state_1C
+- D 1 - I - 0x00BD21 02:BD11: 00        .byte con_AE79_exit
 
 
 
 _off004_BD12_3E:
 ; con_state_chin_taimei_sword
-- D 1 - I - 0x00BD22 02:BD12: 02        .byte con_sub_decrease_hp, $03
-- D 1 - I - 0x00BD24 02:BD14: 0A        .byte con_sub_play_sound, con_sfx_hit
+- D 1 - I - 0x00BD22 02:BD12: 02        .byte con_AE79_decrease_hp, $03
+- D 1 - I - 0x00BD24 02:BD14: 0A        .byte con_AE79_play_sound, con_sfx_hit
 
-- D 1 - I - 0x00BD26 02:BD16: 04        .byte con_sub_set_state_2
+- D 1 - I - 0x00BD26 02:BD16: 04        .byte con_AE79_set_state_2
 - D 1 - I - 0x00BD27 02:BD17: 03        .byte $03   ; compare hit counter
 - D 1 - I - 0x00BD28 02:BD18: 14        .byte con_state_14   ; 
 - D 1 - I - 0x00BD29 02:BD19: 1B        .byte con_state_1B   ; 
@@ -11029,8 +11048,8 @@ _off004_BD12_3E:
 - - - - - - 0x00BD2C 02:BD1C: 1B        .byte con_state_1B   ; 
 - D 1 - I - 0x00BD2D 02:BD1D: 1B        .byte con_state_1B   ; 
 
-- D 1 - I - 0x00BD2E 02:BD1E: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BD2F 02:BD1F: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD2E 02:BD1E: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BD2F 02:BD1F: 00        .byte con_AE79_exit
 
 
 
@@ -11044,11 +11063,11 @@ _off004_BD20_42:
 ; con_state_42
 _off004_BD20_43:
 ; con_state_43
-- D 1 - I - 0x00BD30 02:BD20: 02        .byte con_sub_decrease_hp, $04
-- D 1 - I - 0x00BD32 02:BD22: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BD34 02:BD24: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BD36 02:BD26: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BD37 02:BD27: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD30 02:BD20: 02        .byte con_AE79_decrease_hp, $04
+- D 1 - I - 0x00BD32 02:BD22: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BD34 02:BD24: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BD36 02:BD26: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BD37 02:BD27: 00        .byte con_AE79_exit
 
 
 
@@ -11056,7 +11075,7 @@ _off004_BD28_44:
 ; con_state_44
 _off004_BD28_45:
 ; con_state_45
-- D 1 - I - 0x00BD38 02:BD28: 11        .byte con_sub_branch, @end - @start + $02
+- D 1 - I - 0x00BD38 02:BD28: 11        .byte con_AE79_branch, @end - @start + $02
 @start:
 - D 1 - I - 0x00BD3A 02:BD2A: 38 BD     .word ofs_BD38_00
 - - - - - - 0x00BD3C 02:BD2C: 38 BD     .word ofs_BD38_01
@@ -11065,60 +11084,60 @@ _off004_BD28_45:
 - D 1 - I - 0x00BD42 02:BD32: 3F BD     .word ofs_BD3F_04
 - - - - - - 0x00BD44 02:BD34: 00 00     .word $0000 ; 
 @end:
-- D 1 - I - 0x00BD46 02:BD36: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BD47 02:BD37: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD46 02:BD36: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BD47 02:BD37: 00        .byte con_AE79_exit
 
 
 
 ofs_BD38_00:
 ofs_BD38_01:
-- D 1 - I - 0x00BD48 02:BD38: 02        .byte con_sub_decrease_hp, $14
-- D 1 - I - 0x00BD4A 02:BD3A: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BD4C 02:BD3C: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BD4E 02:BD3E: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD48 02:BD38: 02        .byte con_AE79_decrease_hp, $14
+- D 1 - I - 0x00BD4A 02:BD3A: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BD4C 02:BD3C: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BD4E 02:BD3E: 00        .byte con_AE79_exit
 
 
 
 ofs_BD3F_04:
-- D 1 - I - 0x00BD4F 02:BD3F: 02        .byte con_sub_decrease_hp, $05
-- D 1 - I - 0x00BD51 02:BD41: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BD53 02:BD43: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BD55 02:BD45: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD4F 02:BD3F: 02        .byte con_AE79_decrease_hp, $05
+- D 1 - I - 0x00BD51 02:BD41: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BD53 02:BD43: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BD55 02:BD45: 00        .byte con_AE79_exit
 
 
 
 _off004_BD46_46:
 ; con_state_46
-- - - - - - 0x00BD56 02:BD46: 02        .byte con_sub_decrease_hp, $03
-- - - - - - 0x00BD58 02:BD48: 0A        .byte con_sub_play_sound, con_sfx_hit
-- - - - - - 0x00BD5A 02:BD4A: 06        .byte con_sub_set_fixed_state, con_state_1B
-- - - - - - 0x00BD5C 02:BD4C: 00        .byte con_sub_exit
+- - - - - - 0x00BD56 02:BD46: 02        .byte con_AE79_decrease_hp, $03
+- - - - - - 0x00BD58 02:BD48: 0A        .byte con_AE79_play_sound, con_sfx_hit
+- - - - - - 0x00BD5A 02:BD4A: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- - - - - - 0x00BD5C 02:BD4C: 00        .byte con_AE79_exit
 
 
 
 _off004_BD4D_47:
 ; con_state_47
-- D 1 - I - 0x00BD5D 02:BD4D: 02        .byte con_sub_decrease_hp, $08
-- D 1 - I - 0x00BD5F 02:BD4F: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BD61 02:BD51: 06        .byte con_sub_set_fixed_state, con_state_1C
-- D 1 - I - 0x00BD63 02:BD53: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BD64 02:BD54: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD5D 02:BD4D: 02        .byte con_AE79_decrease_hp, $08
+- D 1 - I - 0x00BD5F 02:BD4F: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BD61 02:BD51: 06        .byte con_AE79_set_fixed_state, con_state_1C
+- D 1 - I - 0x00BD63 02:BD53: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BD64 02:BD54: 00        .byte con_AE79_exit
 
 
 
 _off004_BD55_48:
 ; con_state_48
-- D 1 - I - 0x00BD65 02:BD55: 02        .byte con_sub_decrease_hp, $08
-- D 1 - I - 0x00BD67 02:BD57: 0A        .byte con_sub_play_sound, con_sfx_1A
+- D 1 - I - 0x00BD65 02:BD55: 02        .byte con_AE79_decrease_hp, $08
+- D 1 - I - 0x00BD67 02:BD57: 0A        .byte con_AE79_play_sound, con_sfx_1A
 
-- D 1 - I - 0x00BD69 02:BD59: 05        .byte con_sub_set_1st_or_2nd_state
+- D 1 - I - 0x00BD69 02:BD59: 05        .byte con_AE79_set_1st_or_2nd_state
 - D 1 - I - 0x00BD6A 02:BD5A: 1B        .byte con_state_1B   ; 
 - D 1 - I - 0x00BD6B 02:BD5B: 1C        .byte con_state_1C   ; 
 
-- D 1 - I - 0x00BD6C 02:BD5C: 0F        .byte con_sub_set_if_not_new_state, con_state_49
-- D 1 - I - 0x00BD6E 02:BD5E: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BD6F 02:BD5F: 10        .byte con_sub_10
-- D 1 - I - 0x00BD70 02:BD60: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD6C 02:BD5C: 0F        .byte con_AE79_set_if_not_new_state, con_state_49
+- D 1 - I - 0x00BD6E 02:BD5E: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BD6F 02:BD5F: 10        .byte con_AE79_10
+- D 1 - I - 0x00BD70 02:BD60: 00        .byte con_AE79_exit
 
 
 
@@ -11130,11 +11149,11 @@ _off004_BD61_4B:
 ; con_state_4B
 _off004_BD61_4C:
 ; con_state_4C
-- D 1 - I - 0x00BD71 02:BD61: 02        .byte con_sub_decrease_hp, $08
-- D 1 - I - 0x00BD73 02:BD63: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BD75 02:BD65: 06        .byte con_sub_set_fixed_state, con_state_20
-- D 1 - I - 0x00BD77 02:BD67: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BD78 02:BD68: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD71 02:BD61: 02        .byte con_AE79_decrease_hp, $08
+- D 1 - I - 0x00BD73 02:BD63: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BD75 02:BD65: 06        .byte con_AE79_set_fixed_state, con_state_20
+- D 1 - I - 0x00BD77 02:BD67: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BD78 02:BD68: 00        .byte con_AE79_exit
 
 
 
@@ -11168,11 +11187,11 @@ _off004_BD69_5A:
 ; con_state_5A
 _off004_BD69_5B:
 ; con_state_5B
-- D 1 - I - 0x00BD79 02:BD69: 02        .byte con_sub_decrease_hp, $06
-- D 1 - I - 0x00BD7B 02:BD6B: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BD7D 02:BD6D: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BD7F 02:BD6F: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BD80 02:BD70: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD79 02:BD69: 02        .byte con_AE79_decrease_hp, $06
+- D 1 - I - 0x00BD7B 02:BD6B: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BD7D 02:BD6D: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BD7F 02:BD6F: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BD80 02:BD70: 00        .byte con_AE79_exit
 
 
 
@@ -11180,28 +11199,28 @@ _off004_BD71_5C:
 ; con_state_5C
 _off004_BD71_5D:
 ; con_state_5D
-- D 1 - I - 0x00BD81 02:BD71: 02        .byte con_sub_decrease_hp, $36
-- D 1 - I - 0x00BD83 02:BD73: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BD85 02:BD75: 06        .byte con_sub_set_fixed_state, con_state_1D
-- D 1 - I - 0x00BD87 02:BD77: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BD88 02:BD78: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD81 02:BD71: 02        .byte con_AE79_decrease_hp, $36
+- D 1 - I - 0x00BD83 02:BD73: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BD85 02:BD75: 06        .byte con_AE79_set_fixed_state, con_state_1D
+- D 1 - I - 0x00BD87 02:BD77: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BD88 02:BD78: 00        .byte con_AE79_exit
 
 
 
 _off004_BD79_5E:
 ; con_state_5E
-- D 1 - I - 0x00BD89 02:BD79: 02        .byte con_sub_decrease_hp, $08
-- D 1 - I - 0x00BD8B 02:BD7B: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BD8D 02:BD7D: 0C        .byte con_sub_0C
+- D 1 - I - 0x00BD89 02:BD79: 02        .byte con_AE79_decrease_hp, $08
+- D 1 - I - 0x00BD8B 02:BD7B: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BD8D 02:BD7D: 0C        .byte con_AE79_0C
 
-- D 1 - I - 0x00BD8E 02:BD7E: 03        .byte con_sub_set_state_1
+- D 1 - I - 0x00BD8E 02:BD7E: 03        .byte con_AE79_set_state_1
 - D 1 - I - 0x00BD8F 02:BD7F: 03        .byte $03   ; compare hit counter
 - D 1 - I - 0x00BD90 02:BD80: 14        .byte con_state_14   ; 
 - D 1 - I - 0x00BD91 02:BD81: 1C        .byte con_state_1C   ; 
 - D 1 - I - 0x00BD92 02:BD82: 1B        .byte con_state_1B   ; 
 - D 1 - I - 0x00BD93 02:BD83: 1B        .byte con_state_1B   ; 
 
-- D 1 - I - 0x00BD94 02:BD84: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD94 02:BD84: 00        .byte con_AE79_exit
 
 
 
@@ -11221,11 +11240,11 @@ _off004_BD85_65:
 ; con_state_weapon_on_the_ground
 _off004_BD85_66:
 ; con_state_66
-- D 1 - I - 0x00BD95 02:BD85: 02        .byte con_sub_decrease_hp, $14
-- D 1 - I - 0x00BD97 02:BD87: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BD99 02:BD89: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BD9A 02:BD8A: 06        .byte con_sub_set_fixed_state, con_state_1C
-- D 1 - I - 0x00BD9C 02:BD8C: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD95 02:BD85: 02        .byte con_AE79_decrease_hp, $14
+- D 1 - I - 0x00BD97 02:BD87: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BD99 02:BD89: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BD9A 02:BD8A: 06        .byte con_AE79_set_fixed_state, con_state_1C
+- D 1 - I - 0x00BD9C 02:BD8C: 00        .byte con_AE79_exit
 
 
 
@@ -11235,22 +11254,22 @@ _off004_BD8D_68:
 ; con_state_68
 _off004_BD8D_78:
 ; con_state_78
-- D 1 - I - 0x00BD9D 02:BD8D: 02        .byte con_sub_decrease_hp, $06
-- D 1 - I - 0x00BD9F 02:BD8F: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BDA1 02:BD91: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BDA3 02:BD93: 0F        .byte con_sub_set_if_not_new_state, con_state_76
-- D 1 - I - 0x00BDA5 02:BD95: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BDA6 02:BD96: 00        .byte con_sub_exit
+- D 1 - I - 0x00BD9D 02:BD8D: 02        .byte con_AE79_decrease_hp, $06
+- D 1 - I - 0x00BD9F 02:BD8F: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BDA1 02:BD91: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BDA3 02:BD93: 0F        .byte con_AE79_set_if_not_new_state, con_state_76
+- D 1 - I - 0x00BDA5 02:BD95: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BDA6 02:BD96: 00        .byte con_AE79_exit
 
 
 
 _off004_BD97_69:
 ; con_state_69
-- D 1 - I - 0x00BDA7 02:BD97: 02        .byte con_sub_decrease_hp, $04
-- D 1 - I - 0x00BDA9 02:BD99: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BDAB 02:BD9B: 06        .byte con_sub_set_fixed_state, con_state_1A
-- D 1 - I - 0x00BDAD 02:BD9D: 0F        .byte con_sub_set_if_not_new_state, con_state_76
-- D 1 - I - 0x00BDAF 02:BD9F: 00        .byte con_sub_exit
+- D 1 - I - 0x00BDA7 02:BD97: 02        .byte con_AE79_decrease_hp, $04
+- D 1 - I - 0x00BDA9 02:BD99: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BDAB 02:BD9B: 06        .byte con_AE79_set_fixed_state, con_state_1A
+- D 1 - I - 0x00BDAD 02:BD9D: 0F        .byte con_AE79_set_if_not_new_state, con_state_76
+- D 1 - I - 0x00BDAF 02:BD9F: 00        .byte con_AE79_exit
 
 
 
@@ -11262,93 +11281,93 @@ _off004_BDA0_6C:
 ; con_state_6C
 _off004_BDA0_6D:
 ; con_state_6D
-- D 1 - I - 0x00BDB0 02:BDA0: 02        .byte con_sub_decrease_hp, $0A
-- D 1 - I - 0x00BDB2 02:BDA2: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BDB4 02:BDA4: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BDB6 02:BDA6: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BDB7 02:BDA7: 0F        .byte con_sub_set_if_not_new_state, con_state_76
-- D 1 - I - 0x00BDB9 02:BDA9: 00        .byte con_sub_exit
+- D 1 - I - 0x00BDB0 02:BDA0: 02        .byte con_AE79_decrease_hp, $0A
+- D 1 - I - 0x00BDB2 02:BDA2: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BDB4 02:BDA4: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BDB6 02:BDA6: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BDB7 02:BDA7: 0F        .byte con_AE79_set_if_not_new_state, con_state_76
+- D 1 - I - 0x00BDB9 02:BDA9: 00        .byte con_AE79_exit
 
 
 
 _off004_BDAA_6E:
 ; con_state_6E
-- D 1 - I - 0x00BDBA 02:BDAA: 0F        .byte con_sub_set_if_not_new_state, con_state_6F
-- D 1 - I - 0x00BDBC 02:BDAC: 0A        .byte con_sub_play_sound, con_sfx_23
+- D 1 - I - 0x00BDBA 02:BDAA: 0F        .byte con_AE79_set_if_not_new_state, con_state_6F
+- D 1 - I - 0x00BDBC 02:BDAC: 0A        .byte con_AE79_play_sound, con_sfx_23
 
-- D 1 - I - 0x00BDBE 02:BDAE: 03        .byte con_sub_set_state_1
+- D 1 - I - 0x00BDBE 02:BDAE: 03        .byte con_AE79_set_state_1
 - D 1 - I - 0x00BDBF 02:BDAF: 00        .byte $00   ; compare hit counter
 - - - - - - 0x00BDC0 02:BDB0: 14        .byte con_state_14   ; 
 - D 1 - I - 0x00BDC1 02:BDB1: 14        .byte con_state_14   ; getting hit by unarmed fire grenade
 - D 1 - I - 0x00BDC2 02:BDB2: 1A        .byte con_state_1A   ; 
 - D 1 - I - 0x00BDC3 02:BDB3: 1A        .byte con_state_1A   ; 
 
-- D 1 - I - 0x00BDC4 02:BDB4: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BDC5 02:BDB5: 00        .byte con_sub_exit
+- D 1 - I - 0x00BDC4 02:BDB4: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BDC5 02:BDB5: 00        .byte con_AE79_exit
 
 
 
 _off004_BDB6_6F:
 ; con_state_6F
-- D 1 - I - 0x00BDC6 02:BDB6: 02        .byte con_sub_decrease_hp, $10
-- D 1 - I - 0x00BDC8 02:BDB8: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BDCA 02:BDBA: 06        .byte con_sub_set_fixed_state, con_state_1C
-- D 1 - I - 0x00BDCC 02:BDBC: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BDCD 02:BDBD: 00        .byte con_sub_exit
+- D 1 - I - 0x00BDC6 02:BDB6: 02        .byte con_AE79_decrease_hp, $10
+- D 1 - I - 0x00BDC8 02:BDB8: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BDCA 02:BDBA: 06        .byte con_AE79_set_fixed_state, con_state_1C
+- D 1 - I - 0x00BDCC 02:BDBC: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BDCD 02:BDBD: 00        .byte con_AE79_exit
 
 
 
 _off004_BDBE_70:
 ; con_state_70
-- D 1 - I - 0x00BDCE 02:BDBE: 02        .byte con_sub_decrease_hp, $08
-- D 1 - I - 0x00BDD0 02:BDC0: 0A        .byte con_sub_play_sound, con_sfx_hit_by_fireball
-- D 1 - I - 0x00BDD2 02:BDC2: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BDD4 02:BDC4: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BDD5 02:BDC5: 0F        .byte con_sub_set_if_not_new_state, con_state_7E
-- D 1 - I - 0x00BDD7 02:BDC7: 00        .byte con_sub_exit
+- D 1 - I - 0x00BDCE 02:BDBE: 02        .byte con_AE79_decrease_hp, $08
+- D 1 - I - 0x00BDD0 02:BDC0: 0A        .byte con_AE79_play_sound, con_sfx_hit_by_fireball
+- D 1 - I - 0x00BDD2 02:BDC2: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BDD4 02:BDC4: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BDD5 02:BDC5: 0F        .byte con_AE79_set_if_not_new_state, con_state_7E
+- D 1 - I - 0x00BDD7 02:BDC7: 00        .byte con_AE79_exit
 
 
 
 _off004_BDC8_71:
 ; con_state_71
-- D 1 - I - 0x00BDD8 02:BDC8: 02        .byte con_sub_decrease_hp, $08
-- D 1 - I - 0x00BDDA 02:BDCA: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BDDC 02:BDCC: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BDDE 02:BDCE: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BDDF 02:BDCF: 0F        .byte con_sub_set_if_not_new_state, con_state_7E
-- D 1 - I - 0x00BDE1 02:BDD1: 00        .byte con_sub_exit
+- D 1 - I - 0x00BDD8 02:BDC8: 02        .byte con_AE79_decrease_hp, $08
+- D 1 - I - 0x00BDDA 02:BDCA: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BDDC 02:BDCC: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BDDE 02:BDCE: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BDDF 02:BDCF: 0F        .byte con_AE79_set_if_not_new_state, con_state_7E
+- D 1 - I - 0x00BDE1 02:BDD1: 00        .byte con_AE79_exit
 
 
 
 _off004_BDD2_72:
 ; con_state_72
-- D 1 - I - 0x00BDE2 02:BDD2: 02        .byte con_sub_decrease_hp, $08
-- D 1 - I - 0x00BDE4 02:BDD4: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BDE6 02:BDD6: 06        .byte con_sub_set_fixed_state, con_state_1A
-- D 1 - I - 0x00BDE8 02:BDD8: 0E        .byte con_sub_0E
-- D 1 - I - 0x00BDE9 02:BDD9: 0F        .byte con_sub_set_if_not_new_state, con_state_67
-- D 1 - I - 0x00BDEB 02:BDDB: 00        .byte con_sub_exit
+- D 1 - I - 0x00BDE2 02:BDD2: 02        .byte con_AE79_decrease_hp, $08
+- D 1 - I - 0x00BDE4 02:BDD4: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BDE6 02:BDD6: 06        .byte con_AE79_set_fixed_state, con_state_1A
+- D 1 - I - 0x00BDE8 02:BDD8: 0E        .byte con_AE79_change_direction
+- D 1 - I - 0x00BDE9 02:BDD9: 0F        .byte con_AE79_set_if_not_new_state, con_state_67
+- D 1 - I - 0x00BDEB 02:BDDB: 00        .byte con_AE79_exit
 
 
 
 _off004_BDDC_73:
 ; con_state_73
-- D 1 - I - 0x00BDEC 02:BDDC: 02        .byte con_sub_decrease_hp, $06
-- D 1 - I - 0x00BDEE 02:BDDE: 0A        .byte con_sub_play_sound, con_sfx_2E
-- D 1 - I - 0x00BDF0 02:BDE0: 06        .byte con_sub_set_fixed_state, con_state_1C
-- D 1 - I - 0x00BDF2 02:BDE2: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BDF3 02:BDE3: 00        .byte con_sub_exit
+- D 1 - I - 0x00BDEC 02:BDDC: 02        .byte con_AE79_decrease_hp, $06
+- D 1 - I - 0x00BDEE 02:BDDE: 0A        .byte con_AE79_play_sound, con_sfx_2E
+- D 1 - I - 0x00BDF0 02:BDE0: 06        .byte con_AE79_set_fixed_state, con_state_1C
+- D 1 - I - 0x00BDF2 02:BDE2: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BDF3 02:BDE3: 00        .byte con_AE79_exit
 
 
 
 _off004_BDE4_74:
 ; con_state_74
-- D 1 - I - 0x00BDF4 02:BDE4: 02        .byte con_sub_decrease_hp, $08
-- D 1 - I - 0x00BDF6 02:BDE6: 0A        .byte con_sub_play_sound, con_sfx_1A
-- D 1 - I - 0x00BDF8 02:BDE8: 06        .byte con_sub_set_fixed_state, con_state_1B
-- D 1 - I - 0x00BDFA 02:BDEA: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BDFB 02:BDEB: 0F        .byte con_sub_set_if_not_new_state, con_state_75
-- D 1 - I - 0x00BDFD 02:BDED: 00        .byte con_sub_exit
+- D 1 - I - 0x00BDF4 02:BDE4: 02        .byte con_AE79_decrease_hp, $08
+- D 1 - I - 0x00BDF6 02:BDE6: 0A        .byte con_AE79_play_sound, con_sfx_1A
+- D 1 - I - 0x00BDF8 02:BDE8: 06        .byte con_AE79_set_fixed_state, con_state_1B
+- D 1 - I - 0x00BDFA 02:BDEA: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BDFB 02:BDEB: 0F        .byte con_AE79_set_if_not_new_state, con_state_75
+- D 1 - I - 0x00BDFD 02:BDED: 00        .byte con_AE79_exit
 
 
 
@@ -11358,12 +11377,12 @@ _off004_BDEE_76:
 ; con_state_76
 _off004_BDEE_77:
 ; con_state_77
-- D 1 - I - 0x00BDFE 02:BDEE: 02        .byte con_sub_decrease_hp, $14
-- D 1 - I - 0x00BE00 02:BDF0: 0A        .byte con_sub_play_sound, con_sfx_26
-- D 1 - I - 0x00BE02 02:BDF2: 0C        .byte con_sub_0C
-- D 1 - I - 0x00BE03 02:BDF3: 0F        .byte con_sub_set_if_not_new_state, con_state_6C
-- D 1 - I - 0x00BE05 02:BDF5: 06        .byte con_sub_set_fixed_state, con_state_1C
-- D 1 - I - 0x00BE07 02:BDF7: 00        .byte con_sub_exit
+- D 1 - I - 0x00BDFE 02:BDEE: 02        .byte con_AE79_decrease_hp, $14
+- D 1 - I - 0x00BE00 02:BDF0: 0A        .byte con_AE79_play_sound, con_sfx_26
+- D 1 - I - 0x00BE02 02:BDF2: 0C        .byte con_AE79_0C
+- D 1 - I - 0x00BE03 02:BDF3: 0F        .byte con_AE79_set_if_not_new_state, con_state_6C
+- D 1 - I - 0x00BE05 02:BDF5: 06        .byte con_AE79_set_fixed_state, con_state_1C
+- D 1 - I - 0x00BE07 02:BDF7: 00        .byte con_AE79_exit
 
 
 _off004_BDF8_79:
@@ -11583,7 +11602,7 @@ C - - - - - 0x00BF74 02:BF64: 85 29     STA ram_0029_t36_lo
 C - - - - - 0x00BF76 02:BF66: A5 1E     LDA ram_001E_t04_array
 ; bzk optimize, always 02
 C - - - - - 0x00BF78 02:BF68: E5 0F     SBC ram_000F_tFF_useless_02
-C - - - - - 0x00BF7A 02:BF6A: 85 2A     STA ram_002A_temp
+C - - - - - 0x00BF7A 02:BF6A: 85 2A     STA ram_002A_t21_hi
 C - - - - - 0x00BF7C 02:BF6C: B0 15     BCS bra_BF83
 C - - - - - 0x00BF7E 02:BF6E: A5 1F     LDA ram_001F_t01_array
 C - - - - - 0x00BF80 02:BF70: 85 1B     STA ram_001B_t17
@@ -11592,27 +11611,27 @@ C - - - - - 0x00BF84 02:BF74: 49 FF     EOR #$FF
 C - - - - - 0x00BF86 02:BF76: 18        CLC
 C - - - - - 0x00BF87 02:BF77: 69 01     ADC #< $0001
 C - - - - - 0x00BF89 02:BF79: 85 29     STA ram_0029_t36_lo
-C - - - - - 0x00BF8B 02:BF7B: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00BF8B 02:BF7B: A5 2A     LDA ram_002A_t21_hi
 C - - - - - 0x00BF8D 02:BF7D: 49 FF     EOR #$FF
 C - - - - - 0x00BF8F 02:BF7F: 69 00     ADC #> $0001
-C - - - - - 0x00BF91 02:BF81: 85 2A     STA ram_002A_temp
+C - - - - - 0x00BF91 02:BF81: 85 2A     STA ram_002A_t21_hi
 bra_BF83:
 C - - - - - 0x00BF93 02:BF83: A5 29     LDA ram_0029_t36_lo
 C - - - - - 0x00BF95 02:BF85: 38        SEC
 C - - - - - 0x00BF96 02:BF86: E5 1B     SBC ram_001B_t17
-C - - - - - 0x00BF98 02:BF88: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00BF98 02:BF88: A5 2A     LDA ram_002A_t21_hi
 C - - - - - 0x00BF9A 02:BF8A: E9 00     SBC #$00
 C - - - - - 0x00BF9C 02:BF8C: B0 44     BCS bra_BFD2_RTS
 C - - - - - 0x00BF9E 02:BF8E: A5 13     LDA ram_0013_t02
 C - - - - - 0x00BFA0 02:BF90: 85 1B     STA ram_001B_t18
-C - - - - - 0x00BFA2 02:BF92: A5 20     LDA ram_0020_temp
+C - - - - - 0x00BFA2 02:BF92: A5 20     LDA ram_0020_t01_array
 C - - - - - 0x00BFA4 02:BF94: 38        SEC
 C - - - - - 0x00BFA5 02:BF95: E5 11     SBC ram_0011_t03
 C - - - - - 0x00BFA7 02:BF97: 85 29     STA ram_0029_t37_lo
 C - - - - - 0x00BFA9 02:BF99: A5 21     LDA ram_0021_temp
 ; bzk optimize, always 00
 C - - - - - 0x00BFAB 02:BF9B: E5 12     SBC ram_0012_tFF_useless_00
-C - - - - - 0x00BFAD 02:BF9D: 85 2A     STA ram_002A_temp
+C - - - - - 0x00BFAD 02:BF9D: 85 2A     STA ram_002A_t22_hi
 C - - - - - 0x00BFAF 02:BF9F: B0 15     BCS bra_BFB6
 C - - - - - 0x00BFB1 02:BFA1: A5 22     LDA ram_0022_temp
 C - - - - - 0x00BFB3 02:BFA3: 85 1B     STA ram_001B_t18
@@ -11621,15 +11640,15 @@ C - - - - - 0x00BFB7 02:BFA7: 49 FF     EOR #$FF
 C - - - - - 0x00BFB9 02:BFA9: 18        CLC
 C - - - - - 0x00BFBA 02:BFAA: 69 01     ADC #< $0001
 C - - - - - 0x00BFBC 02:BFAC: 85 29     STA ram_0029_t37_lo
-C - - - - - 0x00BFBE 02:BFAE: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00BFBE 02:BFAE: A5 2A     LDA ram_002A_t22_hi
 C - - - - - 0x00BFC0 02:BFB0: 49 FF     EOR #$FF
 C - - - - - 0x00BFC2 02:BFB2: 69 00     ADC #> $0001
-C - - - - - 0x00BFC4 02:BFB4: 85 2A     STA ram_002A_temp
+C - - - - - 0x00BFC4 02:BFB4: 85 2A     STA ram_002A_t22_hi
 bra_BFB6:
 C - - - - - 0x00BFC6 02:BFB6: A5 29     LDA ram_0029_t37_lo
 C - - - - - 0x00BFC8 02:BFB8: 38        SEC
 C - - - - - 0x00BFC9 02:BFB9: E5 1B     SBC ram_001B_t18
-C - - - - - 0x00BFCB 02:BFBB: A5 2A     LDA ram_002A_temp
+C - - - - - 0x00BFCB 02:BFBB: A5 2A     LDA ram_002A_t22_hi
 C - - - - - 0x00BFCD 02:BFBD: E9 00     SBC #$00
 C - - - - - 0x00BFCF 02:BFBF: B0 11     BCS bra_BFD2_RTS
 C - - - - - 0x00BFD1 02:BFC1: A9 1A     LDA #con_sfx_1A
