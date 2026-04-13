@@ -459,7 +459,7 @@ ram_0021_temp                           = $0021 ; 00B2BD 00B47D 00BFA9 01D2DC 01
     ram_0021_t01_array                      = ram_0021_temp ; 2 addresses 0021 0027
     ram_0021_t02_lo                         = ram_0021_temp ; 
     ram_0021_t03_lo                         = ram_0021_temp ; 
-    ram_0021_t04_pos_Y_lo                    = ram_0021_temp ; 
+    ram_0021_t04_pos_Y_lo                   = ram_0021_temp ; 
     ram_0021_t05_pos_Y_lo                   = ram_0021_temp ; 
 
 
@@ -1719,10 +1719,10 @@ ram_01FF                                = $01FF ;
 
 ; 0200-02FF (100) OAM
 ram_oam                                 = $0200 ; for common links
-ram_spr_Y                               = $0200 ; 01D0FE 01D105 01D852 01FD6B 
-ram_spr_T                               = $0201 ; 01D10E 01D115 01FD6B 
-ram_spr_A                               = $0202 ; 01D11E 01D125 01FD6B 
-ram_spr_X                               = $0203 ; 01D12E 01D135 01FD6B 
+    ram_spr_Y                               = $0200 ; 01D0FE 01D105 01D852 01FD6B 
+    ram_spr_T                               = $0201 ; 01D10E 01D115 01FD6B 
+    ram_spr_A                               = $0202 ; 01D11E 01D125 01FD6B 
+    ram_spr_X                               = $0203 ; 01D12E 01D135 01FD6B 
 ; ram_0204                              = $0204 ; 01D0FE 01D105 01D852 01EB22 01FD6B 
 ; ram_0205                              = $0205 ; 01D10E 01D115 01EA17 01FD6B 
 ; ram_0206                              = $0206 ; 01D11E 01D125 01EA1E 01FD6B 

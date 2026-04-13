@@ -166,7 +166,7 @@ tbl_80CA_state_handler:
 - D 0 - - - 0x0080E8 02:80D8: 70 83     .word ofs_000_8370_07_fall_from_platform
 - D 0 - - - 0x0080EA 02:80DA: BB 83     .word ofs_000_83BB_08_jump_foward_player
 - D 0 - - - 0x0080EC 02:80DC: F9 83     .word ofs_000_83F9_09_jump_foward_enemy
-- - - - - - 0x0080EE 02:80DE: 26 84     .word ofs_000_8426_0A
+- - - - - - 0x0080EE 02:80DE: 26 84     .word ofs_000_8426_0A   ; unused, index doesn't exist
 - D 0 - - - 0x0080F0 02:80E0: 53 84     .word ofs_000_8453_0B_ninja_jump_low
 - D 0 - - - 0x0080F2 02:80E2: 9B 84     .word ofs_000_849B_0C_ninja_jump_high
 - D 0 - - - 0x0080F4 02:80E4: 50 85     .word ofs_000_8550_0D_somersault_run
@@ -226,7 +226,7 @@ tbl_80CA_state_handler:
 - D 0 - - - 0x008160 02:8150: B8 90     .word ofs_000_90B8_43
 - D 0 - - - 0x008162 02:8152: CF 90     .word ofs_000_90CF_44
 - D 0 - - - 0x008164 02:8154: 37 91     .word ofs_000_9137_45
-- - - - - - 0x008166 02:8156: 7E 91     .word ofs_000_917E_46
+- - - - - - 0x008166 02:8156: 7E 91     .word ofs_000_917E_46   ; unused?
 - D 0 - - - 0x008168 02:8158: 90 91     .word ofs_000_9190_47
 - D 0 - - - 0x00816A 02:815A: D2 91     .word ofs_000_91D2_48
 - D 0 - - - 0x00816C 02:815C: 08 92     .word ofs_000_9208_49
@@ -241,7 +241,7 @@ tbl_80CA_state_handler:
 - D 0 - - - 0x00817E 02:816E: 26 95     .word ofs_000_9526_52
 - D 0 - - - 0x008180 02:8170: AF 95     .word ofs_000_95AF_53_bolo_throw
 - D 0 - - - 0x008182 02:8172: 25 96     .word ofs_000_9625_54_burnov_grab
-- D 0 - - - 0x008184 02:8174: 67 96     .word ofs_000_9667_55_burnov_kicks
+- D 0 - - - 0x008184 02:8174: 67 96     .word ofs_000_9667_55_burnov_punch
 - D 0 - - - 0x008186 02:8176: ED 96     .word ofs_000_96ED_56_using_elevator
 - D 0 - - - 0x008188 02:8178: 98 97     .word ofs_000_9798_57
 - D 0 - - - 0x00818A 02:817A: D9 97     .word ofs_000_97D9_58
@@ -252,11 +252,11 @@ tbl_80CA_state_handler:
 - D 0 - - - 0x008194 02:8184: A4 98     .word ofs_000_98A4_5D
 - D 0 - - - 0x008196 02:8186: CE 98     .word ofs_000_98CE_5E
 - D 0 - - - 0x008198 02:8188: 01 99     .word ofs_000_9901_5F
-- - - - - - 0x00819A 02:818A: 41 99     .word ofs_000_9941_60
-- - - - - - 0x00819C 02:818C: 41 99     .word ofs_000_9941_61
-- - - - - - 0x00819E 02:818E: 41 99     .word ofs_000_9941_62
-- - - - - - 0x0081A0 02:8190: 41 99     .word ofs_000_9941_63
-- - - - - - 0x0081A2 02:8192: 41 99     .word ofs_000_9941_64
+- - - - - - 0x00819A 02:818A: 41 99     .word ofs_000_9941_60   ; unused, index doesn't exist
+- - - - - - 0x00819C 02:818C: 41 99     .word ofs_000_9941_61   ; unused, index doesn't exist
+- - - - - - 0x00819E 02:818E: 41 99     .word ofs_000_9941_62   ; unused, index doesn't exist
+- - - - - - 0x0081A0 02:8190: 41 99     .word ofs_000_9941_63   ; unused, index doesn't exist
+- - - - - - 0x0081A2 02:8192: 41 99     .word ofs_000_9941_64   ; unused, index doesn't exist
 - D 0 - - - 0x0081A4 02:8194: 41 99     .word ofs_000_9941_65_weapon_on_the_ground
 - D 0 - - - 0x0081A6 02:8196: 7E 99     .word ofs_000_997E_66
 - D 0 - - - 0x0081A8 02:8198: D1 99     .word ofs_000_99D1_67
@@ -277,17 +277,18 @@ tbl_80CA_state_handler:
 - D 0 - - - 0x0081C6 02:81B6: 20 9D     .word ofs_000_9D20_76
 - D 0 - - - 0x0081C8 02:81B8: 3E 9D     .word ofs_000_9D3E_77
 - D 0 - - - 0x0081CA 02:81BA: 59 9D     .word ofs_000_9D59_78
-- - - - - - 0x0081CC 02:81BC: AE 9D     .word ofs_000_9DAE_79_RTS
-- - - - - - 0x0081CE 02:81BE: AE 9D     .word ofs_000_9DAE_7A_RTS
-- - - - - - 0x0081D0 02:81C0: AE 9D     .word ofs_000_9DAE_7B_RTS
-- - - - - - 0x0081D2 02:81C2: AE 9D     .word ofs_000_9DAE_7C_RTS
-- - - - - - 0x0081D4 02:81C4: AF 9D     .word ofs_000_9DAF_7D
+- - - - - - 0x0081CC 02:81BC: AE 9D     .word ofs_000_9DAE_79_RTS   ; unused, index doesn't exist
+- - - - - - 0x0081CE 02:81BE: AE 9D     .word ofs_000_9DAE_7A_RTS   ; unused, index doesn't exist
+- - - - - - 0x0081D0 02:81C0: AE 9D     .word ofs_000_9DAE_7B_RTS   ; unused, index doesn't exist
+- - - - - - 0x0081D2 02:81C2: AE 9D     .word ofs_000_9DAE_7C_RTS   ; unused, index doesn't exist
+- - - - - - 0x0081D4 02:81C4: AF 9D     .word ofs_000_9DAF_7D   ; unused, index doesn't exist
 - D 0 - - - 0x0081D6 02:81C6: C8 9D     .word ofs_000_9DC8_7E
 - D 0 - - - 0x0081D8 02:81C8: CE 9D     .word ofs_000_9DCE_7F
 
 
 
 ofs_000_81CA_00_idle:
+; con_state_idle
 ; idle while standing
 C - - J - - 0x0081DA 02:81CA: BD 16 03  LDA ram_0316_obj,X
 C - - - - - 0x0081DD 02:81CD: 4A        LSR
@@ -314,6 +315,7 @@ C - - - - - 0x008201 02:81F1: 60        RTS
 
 
 ofs_000_81F2_01_walking:
+; con_state_walk
 C - - J - - 0x008202 02:81F2: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008204 02:81F4: 30 23     BMI bra_8219
 C - - - - - 0x008206 02:81F6: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -398,6 +400,7 @@ tbl_8258_animation_id:
 
 
 ofs_000_825C_02_running:
+; con_state_run
 ; williams, ninja
 C - - J - - 0x00826C 02:825C: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00826E 02:825E: 30 11     BMI bra_8271
@@ -441,6 +444,7 @@ _off001_8281_00:
 
 
 ofs_000_8287_03_ladder_climb_up:
+; con_state_ladder_climb_up
 C - - J - - 0x008297 02:8287: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008299 02:8289: 30 1A     BMI bra_82A5
 C - - - - - 0x00829B 02:828B: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -494,6 +498,7 @@ tbl_82D9_animation_id:
 
 
 ofs_000_82DB_04_ladder_climb_idle:
+; con_state_ladder_climb_idle
 C - - J - - 0x0082EB 02:82DB: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0082ED 02:82DD: 30 13     BMI bra_82F2_RTS
 C - - - - - 0x0082EF 02:82DF: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -511,6 +516,7 @@ C - - - - - 0x008302 02:82F2: 60        RTS
 
 
 ofs_000_82F3_05_ladder_climb_down:
+; con_state_ladder_climb_down
 C - - J - - 0x008303 02:82F3: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008305 02:82F5: 30 18     BMI bra_830F
 C - - - - - 0x008307 02:82F7: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -557,6 +563,7 @@ C - - - - - 0x008352 02:8342: 60        RTS
 
 
 ofs_000_8343_06_jump_up:
+; con_state_jump_up
 C - - J - - 0x008353 02:8343: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008355 02:8345: 30 1F     BMI bra_8366
 C - - - - - 0x008357 02:8347: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -582,6 +589,7 @@ C - - - - - 0x00837F 02:836F: 60        RTS
 
 
 ofs_000_8370_07_fall_from_platform:
+; con_state_fall_from_platform
 C - - J - - 0x008380 02:8370: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008382 02:8372: 30 31     BMI bra_83A5
 C - - - - - 0x008384 02:8374: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -621,6 +629,7 @@ C - - - - - 0x0083CA 02:83BA: 60        RTS
 
 
 ofs_000_83BB_08_jump_foward_player:
+; con_state_jump_foward_player
 ; also jumping up (enemy)
 C - - J - - 0x0083CB 02:83BB: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0083CD 02:83BD: 30 2D     BMI bra_83EC
@@ -655,6 +664,7 @@ C - - - - - 0x008408 02:83F8: 60        RTS
 
 
 ofs_000_83F9_09_jump_foward_enemy:
+; con_state_jump_foward_enemy
 C - - J - - 0x008409 02:83F9: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00840B 02:83FB: 30 1F     BMI bra_841C
 C - - - - - 0x00840D 02:83FD: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -680,6 +690,8 @@ C - - - - - 0x008435 02:8425: 60        RTS
 
 
 ofs_000_8426_0A:
+; con_state_0A
+; bzk garbage
 - - - - - - 0x008436 02:8426: B5 43     LDA ram_obj_state,X
 - - - - - - 0x008438 02:8428: 30 1F     BMI bra_8449
 - - - - - - 0x00843A 02:842A: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -705,6 +717,7 @@ bra_8449:
 
 
 ofs_000_8453_0B_ninja_jump_low:
+; con_state_ninja_jump_low
 C - - J - - 0x008463 02:8453: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008465 02:8455: 30 36     BMI bra_848D
 C - - - - - 0x008467 02:8457: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -758,6 +771,7 @@ _off001_8497_01:
 
 
 ofs_000_849B_0C_ninja_jump_high:
+; con_state_ninja_jump_high
 C - - J - - 0x0084AB 02:849B: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0084AD 02:849D: 30 36     BMI bra_84D5
 C - - - - - 0x0084AF 02:849F: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -857,6 +871,7 @@ _off001_854C_02:
 
 
 ofs_000_8550_0D_somersault_run:
+; con_state_somersault_run
 C - - J - - 0x008560 02:8550: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008562 02:8552: 30 08     BMI bra_855C
 C - - - - - 0x008564 02:8554: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -934,6 +949,7 @@ tbl_85A7:
 
 
 ofs_000_85AE_0E_doppelganger_despawn:
+; con_state_doppelganger_dispawn
 C - - J - - 0x0085BE 02:85AE: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0085C0 02:85B0: 30 0E     BMI bra_85C0
 C - - - - - 0x0085C2 02:85B2: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -967,6 +983,7 @@ _off001_85CD_04:
 
 
 ofs_000_85D0_0F_doppelganger_invisible:
+; con_state_doppelganger_invisible
 C - - J - - 0x0085E0 02:85D0: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0085E2 02:85D2: 30 0B     BMI bra_85DF
 C - - - - - 0x0085E4 02:85D4: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1000,6 +1017,7 @@ C D 0 - - - 0x008616 02:8606: 60        RTS
 
 
 ofs_000_8607_10_doppelganger_spawn:
+; con_state_doppelganger_spawn
 C - - J - - 0x008617 02:8607: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008619 02:8609: 30 08     BMI bra_8613
 C - - - - - 0x00861B 02:860B: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1036,6 +1054,7 @@ _off001_862A_05:
 
 
 ofs_000_862D_11_pick_up_weapon:
+; con_state_pick_up_weapon
 C - - J - - 0x00863D 02:862D: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00863F 02:862F: 30 3C     BMI bra_866D
 C - - - - - 0x008641 02:8631: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1076,6 +1095,7 @@ C - - - - - 0x008688 02:8678: 60        RTS
 
 
 ofs_000_8679_12_land_after_jump:
+; con_state_land_after_jump
 C - - J - - 0x008689 02:8679: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00868B 02:867B: 30 14     BMI bra_8691
 C - - - - - 0x00868D 02:867D: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1102,6 +1122,7 @@ C - - - - - 0x0086B0 02:86A0: 60        RTS
 
 
 ofs_000_86A1_13_fall_after_action:
+; con_state_fall_after_action
 C - - J - - 0x0086B1 02:86A1: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0086B3 02:86A3: 30 0E     BMI bra_86B3
 C - - - - - 0x0086B5 02:86A5: 09 80     ORA #$80
@@ -1122,6 +1143,7 @@ C - - - - - 0x0086CF 02:86BF: 60        RTS
 
 
 ofs_000_86C0_14:
+; con_state_14
 C - - J - - 0x0086D0 02:86C0: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0086D2 02:86C2: 30 11     BMI bra_86D5
 C - - - - - 0x0086D4 02:86C4: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1146,6 +1168,7 @@ C - - - - - 0x0086F4 02:86E4: 60        RTS
 
 
 ofs_000_86E5_15:
+; con_state_15
 C - - J - - 0x0086F5 02:86E5: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0086F7 02:86E7: 30 0F     BMI bra_86F8
 C - - - - - 0x0086F9 02:86E9: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1169,6 +1192,7 @@ C - - - - - 0x008717 02:8707: 60        RTS
 
 
 ofs_000_8708_16:
+; con_state_16
 C - - J - - 0x008718 02:8708: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00871A 02:870A: 30 0F     BMI bra_871B
 C - - - - - 0x00871C 02:870C: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1192,6 +1216,7 @@ C - - - - - 0x00873A 02:872A: 60        RTS
 
 
 ofs_000_872B_17:
+; con_state_17
 C - - J - - 0x00873B 02:872B: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00873D 02:872D: 30 0F     BMI bra_873E
 C - - - - - 0x00873F 02:872F: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1215,6 +1240,7 @@ C - - - - - 0x00875D 02:874D: 60        RTS
 
 
 ofs_000_874E_18:
+; con_state_18
 C - - J - - 0x00875E 02:874E: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008760 02:8750: 30 1B     BMI bra_876D
 C - - - - - 0x008762 02:8752: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1243,6 +1269,7 @@ C - - - - - 0x008788 02:8778: 60        RTS
 
 
 ofs_000_8779_19_lie_on_the_ground:
+; con_state_lie_on_the_ground
 C - - J - - 0x008789 02:8779: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00878B 02:877B: 30 26     BMI bra_87A3
 C - - - - - 0x00878D 02:877D: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1295,6 +1322,7 @@ C - - - - - 0x0087DC 02:87CC: 60        RTS
 
 
 ofs_000_87CD_1A:
+; con_state_1A
 C - - J - - 0x0087DD 02:87CD: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0087DF 02:87CF: 30 2E     BMI bra_87FF
 C - - - - - 0x0087E1 02:87D1: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1333,6 +1361,7 @@ C - - - - - 0x008820 02:8810: 60        RTS
 
 
 ofs_000_8811_1B:
+; con_state_1B
 C - - J - - 0x008821 02:8811: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008823 02:8813: 30 2E     BMI bra_8843
 C - - - - - 0x008825 02:8815: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1360,6 +1389,7 @@ C - - - - - 0x008853 02:8843: 4C FF 87  JMP loc_87FF
 
 
 ofs_000_8846_1C:
+; con_state_1C
 C - - J - - 0x008856 02:8846: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008858 02:8848: 30 2E     BMI bra_8878
 C - - - - - 0x00885A 02:884A: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1387,6 +1417,7 @@ C - - - - - 0x008888 02:8878: 4C FF 87  JMP loc_87FF
 
 
 ofs_000_887B_1D:
+; con_state_1D
 C - - J - - 0x00888B 02:887B: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00888D 02:887D: 30 29     BMI bra_88A8
 C - - - - - 0x00888F 02:887F: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1412,6 +1443,7 @@ C - - - - - 0x0088B8 02:88A8: 4C FF 87  JMP loc_87FF
 
 
 ofs_000_88AB_1E_thrown_by_hair_throw:
+; con_state_thrown_by_hair_throw
 C - - J - - 0x0088BB 02:88AB: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0088BD 02:88AD: 30 34     BMI bra_88E3
 C - - - - - 0x0088BF 02:88AF: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1479,6 +1511,7 @@ _off001_890A_07:
 
 
 ofs_000_890D_1F:
+; con_state_1F
 C - - J - - 0x00891D 02:890D: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00891F 02:890F: 30 2C     BMI bra_893D
 C - - - - - 0x008921 02:8911: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1505,6 +1538,7 @@ C - - - - - 0x00894D 02:893D: 4C FF 87  JMP loc_87FF
 
 
 ofs_000_8940_20:
+; con_state_20
 C - - J - - 0x008950 02:8940: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008952 02:8942: 30 24     BMI bra_8968
 C - - - - - 0x008954 02:8944: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1537,6 +1571,7 @@ C - - - - - 0x008989 02:8979: 60        RTS
 
 
 ofs_000_897A_21:
+; con_state_21
 C - - J - - 0x00898A 02:897A: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00898C 02:897C: 30 24     BMI bra_89A2
 C - - - - - 0x00898E 02:897E: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1569,6 +1604,7 @@ C - - - - - 0x0089C3 02:89B3: 60        RTS
 
 
 ofs_000_89B4_22:
+; con_state_22
 C - - J - - 0x0089C4 02:89B4: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0089C6 02:89B6: 30 24     BMI bra_89DC
 C - - - - - 0x0089C8 02:89B8: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1601,6 +1637,7 @@ C - - - - - 0x0089FD 02:89ED: 60        RTS
 
 
 ofs_000_89EE_23:
+; con_state_23
 C - - J - - 0x0089FE 02:89EE: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008A00 02:89F0: 30 18     BMI bra_8A0A
 C - - - - - 0x008A02 02:89F2: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1623,6 +1660,7 @@ C - - - - - 0x008A23 02:8A13: 60        RTS
 
 
 ofs_000_8A14_24:
+; con_state_24
 C - - J - - 0x008A24 02:8A14: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008A26 02:8A16: 30 09     BMI bra_8A21
 C - - - - - 0x008A28 02:8A18: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1693,6 +1731,7 @@ _off001_8A4D_08:
 
 
 ofs_000_8A5F_25_player_respawn:
+; con_state_player_respawn
 C - - J - - 0x008A6F 02:8A5F: A6 19     LDX ram_0019_t03_obj_index
 C - - - - - 0x008A71 02:8A61: A9 C0     LDA #$C0
 C - - - - - 0x008A73 02:8A63: 9D CC 03  STA ram_plr_invincibility_timer,X
@@ -1703,6 +1742,7 @@ C - - - - - 0x008A7A 02:8A6A: 60        RTS
 
 
 ofs_000_8A6B_26_death_normal:
+; con_state_death_normal
 C - - J - - 0x008A7B 02:8A6B: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008A7D 02:8A6D: 30 40     BMI bra_8AAF
 C - - - - - 0x008A7F 02:8A6F: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1867,6 +1907,7 @@ _off001_8B3E_3E:
 
 
 ofs_000_8B3F_27_death_water:
+; con_state_death_water
 C - - J - - 0x008B4F 02:8B3F: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008B51 02:8B41: 30 1C     BMI bra_8B5F
 C - - - - - 0x008B53 02:8B43: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -1935,6 +1976,7 @@ _off001_8B8F_0B:
 
 
 ofs_000_8B97_28_death_burnov:
+; con_state_death_burnov
 C - - J - - 0x008BA7 02:8B97: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008BA9 02:8B99: 30 09     BMI bra_8BA4
 C - - - - - 0x008BAB 02:8B9B: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2006,6 +2048,7 @@ _off001_8BDF_0C:
 
 
 ofs_000_8BED_29_burnov_helmet:
+; con_state_burnov_helmet
 C - - J - - 0x008BFD 02:8BED: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008BFF 02:8BEF: 30 10     BMI bra_8C01
 C - - - - - 0x008C01 02:8BF1: 09 80     ORA #$80
@@ -2028,6 +2071,7 @@ C - - - - - 0x008C1B 02:8C0B: 60        RTS
 
 
 ofs_000_8C0C_2A_burnov_revives:
+; con_state_burnov_revives
 C - - J - - 0x008C1C 02:8C0C: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008C1E 02:8C0E: 30 0E     BMI bra_8C1E
 C - - - - - 0x008C20 02:8C10: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2088,6 +2132,7 @@ _off001_8C4E_0D:
 
 
 ofs_000_8C57_2B_hit_by_spikes_on_the_ceiling:
+; con_state_hit_by_spikes_on_the_ceiling
 C - - J - - 0x008C67 02:8C57: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008C69 02:8C59: 30 12     BMI bra_8C6D
 C - - - - - 0x008C6B 02:8C5B: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2106,6 +2151,7 @@ C - - - - - 0x008C80 02:8C70: 60        RTS
 
 
 ofs_000_8C71_2C_shadow_warrior_appears:
+; con_state_shadow_warrior_appears
 C - - J - - 0x008C81 02:8C71: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008C83 02:8C73: 30 08     BMI bra_8C7D
 C - - - - - 0x008C85 02:8C75: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2145,6 +2191,7 @@ _off001_8C8C_0E:
 
 
 ofs_000_8C94_2D_punch_normal:
+; con_state_punch_normal
 C - - J - - 0x008CA4 02:8C94: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008CA6 02:8C96: 30 0D     BMI bra_8CA5
 C - - - - - 0x008CA8 02:8C98: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2252,6 +2299,7 @@ tbl_8CF9:
 
 
 ofs_000_8D08_2E_ninja_knife:
+; con_state_ninja_knife
 C - - J - - 0x008D18 02:8D08: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008D1A 02:8D0A: 30 03     BMI bra_8D0F
 C - - - - - 0x008D1C 02:8D0C: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2280,6 +2328,7 @@ _off001_8D19_11:
 
 loc_8D1C_uppercut_sudden:
 ofs_000_8D1C_2F_uppercut_normal:
+; con_state_uppercut_normal
 C D 0 - - - 0x008D2C 02:8D1C: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008D2E 02:8D1E: 30 03     BMI bra_8D23
 C - - - - - 0x008D30 02:8D20: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2309,6 +2358,7 @@ _off000_8D2D_12:
 
 
 ofs_000_8D32_30:
+; con_state_30
 C - - J - - 0x008D42 02:8D32: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008D44 02:8D34: 30 11     BMI bra_8D47
 C - - - - - 0x008D46 02:8D36: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2333,6 +2383,7 @@ C - - - - - 0x008D66 02:8D56: 60        RTS
 
 
 ofs_000_8D57_31:
+; con_state_31
 C - - J - - 0x008D67 02:8D57: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008D69 02:8D59: 30 14     BMI bra_8D6F
 C - - - - - 0x008D6B 02:8D5B: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2379,6 +2430,7 @@ _off000_8D89_13:
 
 
 ofs_000_8D8E_32:
+; con_state_32
 C - - J - - 0x008D9E 02:8D8E: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008DA0 02:8D90: 30 03     BMI bra_8D95
 C - - - - - 0x008DA2 02:8D92: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2399,6 +2451,7 @@ _off000_8D9B_14:
 
 
 ofs_000_8D9F_33:
+; con_state_33
 C - - J - - 0x008DAF 02:8D9F: A6 19     LDX ram_0019_t03_obj_index
 C - - - - - 0x008DB1 02:8DA1: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008DB3 02:8DA3: 30 1E     BMI bra_8DC3
@@ -2440,6 +2493,7 @@ _off001_8DCD_15:
 
 
 ofs_000_8DD0_34:
+; con_state_34
 C - - J - - 0x008DE0 02:8DD0: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008DE2 02:8DD2: 30 03     BMI bra_8DD7
 C - - - - - 0x008DE4 02:8DD4: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2480,6 +2534,7 @@ _off001_8DF7_16:
 
 
 ofs_000_8DFC_35:
+; con_state_35
 C - - J - - 0x008E0C 02:8DFC: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008E0E 02:8DFE: 30 0C     BMI bra_8E0C
 C - - - - - 0x008E10 02:8E00: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2504,6 +2559,7 @@ C - - - - - 0x008E31 02:8E21: 60        RTS
 
 
 ofs_000_8E22_36:
+; con_state_36
 C - - J - - 0x008E32 02:8E22: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008E34 02:8E24: 30 03     BMI bra_8E29
 C - - - - - 0x008E36 02:8E26: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2541,6 +2597,7 @@ _off001_8E38_17:
 
 
 ofs_000_8E40_37:
+; con_state_37
 - - - - - - 0x008E50 02:8E40: B5 43     LDA ram_obj_state,X
 - - - - - - 0x008E52 02:8E42: 30 03     BMI bra_8E47
 - - - - - - 0x008E54 02:8E44: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2570,6 +2627,7 @@ _off001_8E57_18:
 
 
 ofs_000_8E5A_38:
+; con_state_38
 C - - J - - 0x008E6A 02:8E5A: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008E6C 02:8E5C: 30 13     BMI bra_8E71
 C - - - - - 0x008E6E 02:8E5E: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2600,6 +2658,7 @@ _off000_8E78_19:
 
 
 ofs_000_8E7B_39_cyclone_kick:
+; con_state_cyclone_kick
 C - - J - - 0x008E8B 02:8E7B: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008E8D 02:8E7D: 30 08     BMI bra_8E87
 C - - - - - 0x008E8F 02:8E7F: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2639,6 +2698,7 @@ _off001_8E96_1A:
 
 
 ofs_000_8E9E_3A_high_jump_kick:
+; con_state_high_jump_kick
 C - - J - - 0x008EAE 02:8E9E: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008EB0 02:8EA0: 30 25     BMI bra_8EC7
 C - - - - - 0x008EB2 02:8EA2: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2676,11 +2736,13 @@ C - - - - - 0x008EF2 02:8EE2: 60        RTS
 
 
 ofs_000_8EE3_3B_uppercut_sudden:
+; con_state_uppercut_sudden
 C - - J - - 0x008EF3 02:8EE3: 4C 1C 8D  JMP loc_8D1C_uppercut_sudden
 
 
 
 ofs_000_8EE6_3C_elbow:
+; con_state_elbow
 C - - J - - 0x008EF6 02:8EE6: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008EF8 02:8EE8: 30 03     BMI bra_8EED
 C - - - - - 0x008EFA 02:8EEA: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2720,6 +2782,7 @@ _off001_8F10_1B:
 
 
 ofs_000_8F13_3D_punch_strong:
+; con_state_punch_strong
 C - - J - - 0x008F23 02:8F13: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008F25 02:8F15: 30 03     BMI bra_8F1A
 C - - - - - 0x008F27 02:8F17: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2789,6 +2852,7 @@ off_8F5D_07:
 
 
 ofs_000_8F5F_3E_chin_taimei_sword:
+; con_state_chin_taimei_sword
 C - - J - - 0x008F6F 02:8F5F: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008F71 02:8F61: 30 03     BMI bra_8F66
 C - - - - - 0x008F73 02:8F63: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2829,6 +2893,7 @@ _off001_8F7D_1D:
 
 
 ofs_000_8F80_3F:
+; con_state_3F
 C - - J - - 0x008F90 02:8F80: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008F92 02:8F82: 30 08     BMI bra_8F8C
 C - - - - - 0x008F94 02:8F84: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2896,6 +2961,7 @@ _off001_8FDE_1E:
 
 
 ofs_000_8FE4_40:
+; con_state_40
 C - - J - - 0x008FF4 02:8FE4: B5 43     LDA ram_obj_state,X
 C - - - - - 0x008FF6 02:8FE6: 30 10     BMI bra_8FF8_RTS
 C - - - - - 0x008FF8 02:8FE8: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2911,6 +2977,7 @@ C - - - - - 0x009008 02:8FF8: 60        RTS
 
 
 ofs_000_8FF9_41:
+; con_state_41
 C - - J - - 0x009009 02:8FF9: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00900B 02:8FFB: 30 03     BMI bra_9000
 C - - - - - 0x00900D 02:8FFD: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -2929,6 +2996,7 @@ C - - - - - 0x009021 02:9011: 60        RTS
 
 
 ofs_000_9012_42:
+; con_state_42
 C - - J - - 0x009022 02:9012: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009024 02:9014: 30 22     BMI bra_9038
 C - - - - - 0x009026 02:9016: BD 4A 04  LDA ram_044A_obj,X
@@ -3028,6 +3096,7 @@ tbl_90AF_weapons_throw:
 
 
 ofs_000_90B8_43:
+; con_state_43
 C - - J - - 0x0090C8 02:90B8: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0090CA 02:90BA: 30 03     BMI bra_90BF
 C - - - - - 0x0090CC 02:90BC: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3063,6 +3132,7 @@ _off001_90CC_1F:
 
 
 ofs_000_90CF_44:
+; con_state_44
 C - - J - - 0x0090DF 02:90CF: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0090E1 02:90D1: 30 09     BMI bra_90DC
 C - - - - - 0x0090E3 02:90D3: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3144,6 +3214,7 @@ tbl_9130_spd_X_lo:
 
 
 ofs_000_9137_45:
+; con_state_45
 C - - J - - 0x009147 02:9137: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009149 02:9139: 30 03     BMI bra_913E
 C - - - - - 0x00914B 02:913B: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3217,6 +3288,7 @@ off_917A_04_linda:
 
 
 ofs_000_917E_46:
+; con_state_46
 - - - - - - 0x00918E 02:917E: B5 43     LDA ram_obj_state,X
 - - - - - - 0x009190 02:9180: 30 03     BMI bra_9185
 - - - - - - 0x009192 02:9182: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3242,6 +3314,7 @@ _off001_918E_21:
 
 
 ofs_000_9190_47:
+; con_state_47
 C - - J - - 0x0091A0 02:9190: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0091A2 02:9192: 30 03     BMI bra_9197
 C - - - - - 0x0091A4 02:9194: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3293,6 +3366,7 @@ _off001_91D0_22:
 
 
 ofs_000_91D2_48:
+; con_state_48
 C - - J - - 0x0091E2 02:91D2: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0091E4 02:91D4: 30 18     BMI bra_91EE
 C - - - - - 0x0091E6 02:91D6: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3337,6 +3411,7 @@ _off001_9203_23:
 
 
 ofs_000_9208_49:
+; con_state_49
 C - - J - - 0x009218 02:9208: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00921A 02:920A: 30 11     BMI bra_921D
 C - - - - - 0x00921C 02:920C: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3372,6 +3447,7 @@ _off001_9228_24:
 
 
 ofs_000_922D_4A:
+; con_state_4A
 C - - J - - 0x00923D 02:922D: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00923F 02:922F: 30 08     BMI bra_9239
 C - - - - - 0x009241 02:9231: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3408,6 +3484,7 @@ _off001_9252_25:
 
 
 ofs_000_9255_4B:
+; con_state_4B
 C - - J - - 0x009265 02:9255: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009267 02:9257: 30 0C     BMI bra_9265
 C - - - - - 0x009269 02:9259: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3423,6 +3500,7 @@ C - - - - - 0x009278 02:9268: 60        RTS
 
 
 ofs_000_9269_4C:
+; con_state_4C
 C - - J - - 0x009279 02:9269: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00927B 02:926B: 30 03     BMI bra_9270
 C - - - - - 0x00927D 02:926D: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3505,6 +3583,7 @@ tbl_92BE_spd_X:
 
 
 ofs_000_92D2_4D:
+; con_state_4D
 C - - J - - 0x0092E2 02:92D2: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0092E4 02:92D4: 30 03     BMI bra_92D9
 C - - - - - 0x0092E6 02:92D6: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3567,6 +3646,7 @@ _off001_932B_27:
 
 
 ofs_000_932F_4E:
+; con_state_4E
 C - - J - - 0x00933F 02:932F: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009341 02:9331: 30 4E     BMI bra_9381
 C - - - - - 0x009343 02:9333: BD 4A 04  LDA ram_044A_obj,X
@@ -3624,6 +3704,7 @@ tbl_9391:
 
 
 ofs_000_9393_4F:
+; con_state_4F
 C - - J - - 0x0093A3 02:9393: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0093A5 02:9395: 30 2D     BMI bra_93C4
 C - - - - - 0x0093A7 02:9397: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3705,6 +3786,7 @@ C - - - - - 0x009440 02:9430: 60        RTS
 
 
 ofs_000_9431_50:
+; con_state_50
 C - - J - - 0x009441 02:9431: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009443 02:9433: 30 17     BMI bra_944C
 C - - - - - 0x009445 02:9435: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3783,6 +3865,7 @@ _off001_94B2_28:
 
 
 ofs_000_94B5_51:
+; con_state_51
 C - - J - - 0x0094C5 02:94B5: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0094C7 02:94B7: 30 17     BMI bra_94D0
 C - - - - - 0x0094C9 02:94B9: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3852,6 +3935,7 @@ _off001_9524_29:
 
 
 ofs_000_9526_52:
+; con_state_52
 C - - J - - 0x009536 02:9526: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009538 02:9528: 30 20     BMI bra_954A
 C - - - - - 0x00953A 02:952A: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -3931,6 +4015,7 @@ _off001_95AD_2A:
 
 
 ofs_000_95AF_53_bolo_throw:
+; con_state_bolo_throw
 C - - J - - 0x0095BF 02:95AF: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0095C1 02:95B1: 30 29     BMI bra_95DC
 C - - - - - 0x0095C3 02:95B3: BD 4A 04  LDA ram_044A_obj,X
@@ -4003,6 +4088,7 @@ _off001_9622_2B:
 
 
 ofs_000_9625_54_burnov_grab:
+; con_state_burnov_grab
 C - - J - - 0x009635 02:9625: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009637 02:9627: 30 32     BMI bra_965B
 C - - - - - 0x009639 02:9629: BD 4A 04  LDA ram_044A_obj,X
@@ -4031,7 +4117,7 @@ C - - - - - 0x009669 02:9659: 95 C7     STA ram_animation_id,X
 bra_965B:
 C - - - - - 0x00966B 02:965B: D6 55     DEC ram_obj_amim_dur,X
 C - - - - - 0x00966D 02:965D: 10 04     BPL bra_9663
-C - - - - - 0x00966F 02:965F: A9 55     LDA #con_state_burnov_kicks
+C - - - - - 0x00966F 02:965F: A9 55     LDA #con_state_burnov_punch
 C - - - - - 0x009671 02:9661: 95 43     STA ram_obj_state,X
 bra_9663:
 ; bzk optimize, JMP
@@ -4040,7 +4126,8 @@ C - - - - - 0x009676 02:9666: 60        RTS
 
 
 
-ofs_000_9667_55_burnov_kicks:
+ofs_000_9667_55_burnov_punch:
+; con_state_burnov_punch
 C - - J - - 0x009677 02:9667: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009679 02:9669: 30 03     BMI bra_966E
 C - - - - - 0x00967B 02:966B: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4131,6 +4218,7 @@ tbl_96E7:
 
 
 ofs_000_96ED_56_using_elevator:
+; con_state_using_elevator
 C - - J - - 0x0096FD 02:96ED: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0096FF 02:96EF: 30 35     BMI bra_9726
 C - - - - - 0x009701 02:96F1: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4227,6 +4315,7 @@ C - - - - - 0x0097A7 02:9797: 60        RTS
 
 
 ofs_000_9798_57:
+; con_state_57
 C - - J - - 0x0097A8 02:9798: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0097AA 02:979A: 30 27     BMI bra_97C3
 C - - - - - 0x0097AC 02:979C: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4277,6 +4366,7 @@ tbl_97C7:
 
 
 ofs_000_97D9_58:
+; con_state_58
 C - - J - - 0x0097E9 02:97D9: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0097EB 02:97DB: 30 1E     BMI bra_97FB
 C - - - - - 0x0097ED 02:97DD: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4305,6 +4395,7 @@ C - - - - - 0x009818 02:9808: 60        RTS
 
 
 ofs_000_9809_59:
+; con_state_59
 C - - J - - 0x009819 02:9809: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00981B 02:980B: 30 07     BMI bra_9814
 C - - - - - 0x00981D 02:980D: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4350,6 +4441,7 @@ _off001_9826_2D:
 
 
 ofs_000_9831_5A:
+; con_state_5A
 C - - J - - 0x009841 02:9831: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009843 02:9833: 30 09     BMI bra_983E
 C - - - - - 0x009845 02:9835: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4403,6 +4495,7 @@ _off001_9861_2E:
 
 
 ofs_000_986B_5B:
+; con_state_5B
 C - - J - - 0x00987B 02:986B: B5 43     LDA ram_obj_state,X
 C - - - - - 0x00987D 02:986D: 30 0B     BMI bra_987A
 C - - - - - 0x00987F 02:986F: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4423,6 +4516,7 @@ C - - - - - 0x009895 02:9885: 60        RTS
 
 
 ofs_000_9886_5C:
+; con_state_5C
 C - - J - - 0x009896 02:9886: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009898 02:9888: 30 03     BMI bra_988D
 C - - - - - 0x00989A 02:988A: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4443,6 +4537,7 @@ C - - - - - 0x0098B3 02:98A3: 60        RTS
 
 
 ofs_000_98A4_5D:
+; con_state_5D
 C - - J - - 0x0098B4 02:98A4: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0098B6 02:98A6: 30 18     BMI bra_98C0
 C - - - - - 0x0098B8 02:98A8: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4479,6 +4574,7 @@ _off001_98CA_3B:
 
 
 ofs_000_98CE_5E:
+; con_state_5E
 C - - J - - 0x0098DE 02:98CE: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0098E0 02:98D0: 30 03     BMI bra_98D5
 C - - - - - 0x0098E2 02:98D2: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4529,6 +4625,7 @@ _off001_98F6_3C:
 
 
 ofs_000_9901_5F:
+; con_state_5F
 C - - J - - 0x009911 02:9901: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009913 02:9903: 30 03     BMI bra_9908
 C - - - - - 0x009915 02:9905: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4573,11 +4670,17 @@ _off001_993F_3D:
 
 
 ofs_000_9941_60:
+; con_state_60
 ofs_000_9941_61:
+; con_state_61
 ofs_000_9941_62:
+; con_state_62
 ofs_000_9941_63:
+; con_state_63
 ofs_000_9941_64:
+; con_state_64
 ofs_000_9941_65_weapon_on_the_ground:
+; con_state_weapon_on_the_ground
 C - - J - - 0x009951 02:9941: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009953 02:9943: 30 11     BMI bra_9956
 C - - - - - 0x009955 02:9945: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4625,6 +4728,7 @@ tbl_9971_weapons_state:
 
 
 ofs_000_997E_66:
+; con_state_66
 C - - J - - 0x00998E 02:997E: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009990 02:9980: 30 03     BMI bra_9985
 C - - - - - 0x009992 02:9982: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4704,6 +4808,7 @@ _off001_99BB_30:
 
 
 ofs_000_99D1_67:
+; con_state_67
 C - - J - - 0x0099E1 02:99D1: B5 43     LDA ram_obj_state,X
 C - - - - - 0x0099E3 02:99D3: 30 07     BMI bra_99DC
 C - - - - - 0x0099E5 02:99D5: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4742,6 +4847,7 @@ _off001_99F5_31:
 
 
 ofs_000_99F9_68:
+; con_state_68
 C - - J - - 0x009A09 02:99F9: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009A0B 02:99FB: 30 0F     BMI bra_9A0C
 C - - - - - 0x009A0D 02:99FD: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4758,6 +4864,7 @@ C - - - - - 0x009A1F 02:9A0F: 60        RTS
 
 
 ofs_000_9A10_69:
+; con_state_69
 C - - J - - 0x009A20 02:9A10: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009A22 02:9A12: 30 16     BMI bra_9A2A
 C - - - - - 0x009A24 02:9A14: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4799,6 +4906,7 @@ _off001_9A39_32:
 
 
 ofs_000_9A3F_6A:
+; con_state_6A
 C - - J - - 0x009A4F 02:9A3F: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009A51 02:9A41: 30 22     BMI bra_9A65
 C - - - - - 0x009A53 02:9A43: B5 BF     LDA ram_obj_id,X
@@ -4875,6 +4983,7 @@ tbl_9A7F_weapons_state:
 
 
 ofs_000_9A8B_6B:
+; con_state_6B
 C - - J - - 0x009A9B 02:9A8B: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009A9D 02:9A8D: 30 D6     BMI bra_9A65
 C - - - - - 0x009A9F 02:9A8F: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4894,6 +5003,7 @@ C - - - - - 0x009AB9 02:9AA9: 4C 65 9A  JMP loc_9A65
 
 
 ofs_000_9AAC_6C:
+; con_state_6C
 C - - J - - 0x009ABC 02:9AAC: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009ABE 02:9AAE: 30 30     BMI bra_9AE0
 C - - - - - 0x009AC0 02:9AB0: B5 BF     LDA ram_obj_id,X
@@ -4959,6 +5069,7 @@ tbl_9AEF_weapons:
 
 
 ofs_000_9AFB_6D:
+; con_state_6D
 C - - J - - 0x009B0B 02:9AFB: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009B0D 02:9AFD: 30 1E     BMI bra_9B1D
 C - - - - - 0x009B0F 02:9AFF: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4979,6 +5090,7 @@ C - - - - - 0x009B2D 02:9B1D: 4C 65 9A  JMP loc_9A65
 
 
 ofs_000_9B20_6E:
+; con_state_6E
 C - - J - - 0x009B30 02:9B20: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009B32 02:9B22: 30 16     BMI bra_9B3A
 C - - - - - 0x009B34 02:9B24: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -4996,6 +5108,7 @@ C - - - - - 0x009B4A 02:9B3A: 4C 65 9A  JMP loc_9A65
 
 
 ofs_000_9B3D_6F:
+; con_state_6F
 C - - J - - 0x009B4D 02:9B3D: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009B4F 02:9B3F: 30 13     BMI bra_9B54
 C - - - - - 0x009B51 02:9B41: B5 BF     LDA ram_obj_id,X
@@ -5050,6 +5163,7 @@ _off001_9B70_34:
 
 
 ofs_000_9B79_70:
+; con_state_70
 C - - J - - 0x009B89 02:9B79: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009B8B 02:9B7B: 30 11     BMI bra_9B8E
 C - - - - - 0x009B8D 02:9B7D: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -5088,6 +5202,7 @@ _off001_9BA7_35:
 
 
 ofs_000_9BA9_71:
+; con_state_71
 C - - J - - 0x009BB9 02:9BA9: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009BBB 02:9BAB: 30 4E     BMI bra_9BFB
 C - - - - - 0x009BBD 02:9BAD: 09 80     ORA #$80
@@ -5144,6 +5259,7 @@ _off001_9C03_36:
 
 
 ofs_000_9C05_72:
+; con_state_72
 C - - J - - 0x009C15 02:9C05: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009C17 02:9C07: 30 1C     BMI bra_9C25
 C - - - - - 0x009C19 02:9C09: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -5182,6 +5298,7 @@ _off001_9C31_37:
 
 
 ofs_000_9C33_73:
+; con_state_73
 C - - J - - 0x009C43 02:9C33: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009C45 02:9C35: 30 15     BMI bra_9C4C
 C - - - - - 0x009C47 02:9C37: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -5262,6 +5379,7 @@ _off001_9C88_38:
 
 
 ofs_000_9C92_74:
+; con_state_74
 C - - J - - 0x009CA2 02:9C92: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009CA4 02:9C94: 30 29     BMI bra_9CBF
 C - - - - - 0x009CA6 02:9C96: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -5330,6 +5448,7 @@ _off001_9CFB_39:
 
 
 ofs_000_9CFF_75:
+; con_state_75
 C - - J - - 0x009D0F 02:9CFF: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009D11 02:9D01: 30 08     BMI bra_9D0B
 C - - - - - 0x009D13 02:9D03: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -5362,6 +5481,7 @@ _off001_9D1E_3A:
 
 
 ofs_000_9D20_76:
+; con_state_76
 C - - J - - 0x009D30 02:9D20: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009D32 02:9D22: 30 11     BMI bra_9D35
 C - - - - - 0x009D34 02:9D24: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -5383,6 +5503,7 @@ C - - - - - 0x009D4D 02:9D3D: 60        RTS
 
 
 ofs_000_9D3E_77:
+; con_state_77
 C - - J - - 0x009D4E 02:9D3E: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009D50 02:9D40: 30 13     BMI bra_9D55
 C - - - - - 0x009D52 02:9D42: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -5401,6 +5522,7 @@ C - - - - - 0x009D68 02:9D58: 60        RTS
 
 
 ofs_000_9D59_78:
+; con_state_78
 C - - J - - 0x009D69 02:9D59: B5 43     LDA ram_obj_state,X
 C - - - - - 0x009D6B 02:9D5B: 30 11     BMI bra_9D6E
 C - - - - - 0x009D6D 02:9D5D: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -5459,14 +5581,20 @@ _off001_9DAC_3F:
 
 
 ofs_000_9DAE_79_RTS:
+; con_state_79
 ofs_000_9DAE_7A_RTS:
+; con_state_7A
 ofs_000_9DAE_7B_RTS:
+; con_state_7B
 ofs_000_9DAE_7C_RTS:
+; con_state_7C
 - - - - - - 0x009DBE 02:9DAE: 60        RTS
 
 
 
 ofs_000_9DAF_7D:
+; con_state_7D
+; bzk garbage
 - - - - - - 0x009DBF 02:9DAF: B5 43     LDA ram_obj_state,X
 - - - - - - 0x009DC1 02:9DB1: 30 0E     BMI bra_9DC1
 - - - - - - 0x009DC3 02:9DB3: 20 39 A0  JSR sub_A039_acknowledge_current_state_and_clear_stuff
@@ -5484,10 +5612,12 @@ bra_9DC1:
 
 
 ofs_000_9DC8_7E:
+; con_state_7E
 C - - J - - 0x009DD8 02:9DC8: A9 00     LDA #$00    ; con_003C_flag_00    con_004A_flag_00
 C - - - - - 0x009DDA 02:9DCA: 95 3C     STA ram_003C_obj_flags,X ; 0040 0041 0042
 C - - - - - 0x009DDC 02:9DCC: 95 4A     STA ram_004A_obj_flags,X
 ofs_000_9DCE_7F:
+; con_state_hair_grabbed
 C - - J - - 0x009DDE 02:9DCE: B5 4A     LDA ram_004A_obj_flags,X
 C - - - - - 0x009DE0 02:9DD0: 29 7F     AND #con_004A_flag_knocked_down ^ $FF
 C - - - - - 0x009DE2 02:9DD2: 95 4A     STA ram_004A_obj_flags,X
@@ -10465,8 +10595,8 @@ tbl_BA32_state_outcome:
 - - - - - - 0x00BB2E 02:BB1E: EE BD     .word _off004_BDEE_76
 - D 1 - - - 0x00BB30 02:BB20: EE BD     .word _off004_BDEE_77
 - D 1 - - - 0x00BB32 02:BB22: 8D BD     .word _off004_BD8D_78
-- - - - - - 0x00BB34 02:BB24: F8 BD     .word _off004_BDF8_79   ; unused, index doesn't exist   ; unused, index doesn't exist
-- - - - - - 0x00BB36 02:BB26: F8 BD     .word _off004_BDF8_7A   ; unused, index doesn't exist   ; unused, index doesn't exist
+- - - - - - 0x00BB34 02:BB24: F8 BD     .word _off004_BDF8_79   ; unused, index doesn't exist
+- - - - - - 0x00BB36 02:BB26: F8 BD     .word _off004_BDF8_7A   ; unused, index doesn't exist
 - - - - - - 0x00BB38 02:BB28: F8 BD     .word _off004_BDF8_7B   ; unused, index doesn't exist
 
 
@@ -11177,7 +11307,7 @@ _off004_BD69_53:
 _off004_BD69_54:
 ; con_state_burnov_grab
 _off004_BD69_55:
-; con_state_burnov_kicks
+; con_state_burnov_punch
 _off004_BD69_56:
 ; con_state_using_elevator
 _off004_BD69_57:

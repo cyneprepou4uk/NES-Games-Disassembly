@@ -95,24 +95,6 @@ con_mission_Final_Confrontation_pt2     = $0E ; Final Confrontation, part 2
 con_mission_0F                          = $0F ; 
 
 
-; 00 = _Into_the_Turf
-; 01 = _At_the_Heliport
-; 02 = _Battle_in_the_Chopper
-; 03 = _Undersea_Base_pt1
-; 04 = _Undersea_Base_pt2
-; 05 = _Forest_of_Death
-; 06 = _Mansion_of_Terror
-; 07 = _Trap_Room_pt1
-; 08 = _Trap_Room_pt2
-; 09 = _Trap_Room_pt3
-; 0A = _Trap_Room_pt4
-; 0B = _Trap_Room_pt5
-; 0C = _The_Double_Illusion
-; 0D = _Final_Confrontation_pt1
-; 0E = _Final_Confrontation_pt2
-; 0F = 
-
-
 
 ; ram_enemy_ai_template
 ; need comments 0x01284E 0x01298E
@@ -133,7 +115,7 @@ con_006C_0A                             = $0A ;
 ; ram_0359_obj
 ; ram_0381_obj
 ; need comments 0x01D185 0x018763 0x013EFC 0x0109EE 0x010513 0x0102DE
-; 0x0102C4 0x01026B 0x0101DA 0x0101AC 0x010140
+;               0x0102C4 0x01026B 0x0101DA 0x0101AC 0x010140
 con_0359_00                             = $00 ; 
 con_0359_01                             = $01 ; 
 con_0359_02                             = $02 ; 
@@ -169,7 +151,7 @@ con_0359_1D                             = $1D ;
 
 ; ram_0361_obj
 ; need comments 0x010AAB 0x010A35 0x0105CC
-; 0x01055B 0x0102E3 0x010270 0x0101DF 0x0101B1 0x010145
+;               0x01055B 0x0102E3 0x010270 0x0101DF 0x0101B1 0x010145
 con_0361_00                             = $00 ; 
 con_0361_01                             = $01 ; falling into water?
 con_0361_02                             = $02 ; 
@@ -304,7 +286,7 @@ con_state_51                            = $51 ; D1 upper kick (while hair grab)
 con_state_52                            = $52 ; D2 elbow drop (while hair grab)
 con_state_bolo_throw                    = $53 ; D3 bolo throw
 con_state_burnov_grab                   = $54 ; D4 burnov grabs a player by his head
-con_state_burnov_kicks                  = $55 ; D5 burnov kicks a player while grabbing
+con_state_burnov_punch                  = $55 ; D5 burnov punches a player while grabbing
 con_state_using_elevator                = $56 ; D6 standing inside elevator
 con_state_57                            = $57 ; D7 hair grab completed (can be 5F later)
 con_state_58                            = $58 ; D8 falling into helicopter door
@@ -314,7 +296,7 @@ con_state_5B                            = $5B ; DB right arm punch
 con_state_5C                            = $5C ; DC throw baton
 con_state_5D                            = $5D ; DD shadow warrior spin punch + jump
 con_state_5E                            = $5E ; DE shadow warrior several punches in a row
-con_state_5F                            = $5F ; DF failed hair grabif you can't grab enemy because he has a lot of hp
+con_state_5F                            = $5F ; DF failed hair grab if you can't grab enemy because he has a lot of hp
 ; con_state_60                          = $60 ; E0 unused
 ; con_state_61                          = $61 ; E1 unused
 ; con_state_62                          = $62 ; E2 unused
