@@ -10351,7 +10351,7 @@ C - - - - - 0x012B8E 04:AB7E: 90 19     BCC bra_AB99
 C - - - - - 0x012B90 04:AB80: AD 07 03  LDA ram_0307_se
 C - - - - - 0x012B93 04:AB83: A2 00     LDX #$00
 ; bzk optimize, useless STX
-C - - - - - 0x012B95 04:AB85: 86 ED     STX ram_00ED_se_t02_useless
+C - - - - - 0x012B95 04:AB85: 86 ED     STX ram_00ED_se_tFF_useless
 C - - - - - 0x012B97 04:AB87: 20 CE AE  JSR sub_AECE
 bra_AB8A:
 C - - - - - 0x012B9A 04:AB8A: AD 99 05  LDA ram_0599_se

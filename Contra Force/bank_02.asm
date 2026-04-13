@@ -5890,18 +5890,18 @@ C - - - - - 0x005CB4 01:BCA4: 85 02     STA ram_0002_t02_ppu_data
 C - - - - - 0x005CB6 01:BCA6: B9 F4 BC  LDA tbl_BCF3 + $01,Y
 C - - - - - 0x005CB9 01:BCA9: 85 03     STA ram_0002_t02_ppu_data + $01
 C - - - - - 0x005CBB 01:BCAB: B9 F5 BC  LDA tbl_BCF3 + $02,Y
-C - - - - - 0x005CBE 01:BCAE: 85 06     STA ram_0006_t05_ppu_addr_lo
+C - - - - - 0x005CBE 01:BCAE: 85 06     STA ram_0006_t05_ppu_lo
 C - - - - - 0x005CC0 01:BCB0: B9 F6 BC  LDA tbl_BCF3 + $03,Y
-C - - - - - 0x005CC3 01:BCB3: 85 07     STA ram_0007_t01_ppu_addr_hi
+C - - - - - 0x005CC3 01:BCB3: 85 07     STA ram_0007_t01_ppu_hi
 C - - - - - 0x005CC5 01:BCB5: 20 B1 93  JSR sub_0x0093C1_06B2x_LSRx4_TAY
 ; * 04
 C - - - - - 0x005CC8 01:BCB8: 0A        ASL
 C - - - - - 0x005CC9 01:BCB9: 0A        ASL
 C - - - - - 0x005CCA 01:BCBA: 18        CLC
-C - - - - - 0x005CCB 01:BCBB: 65 06     ADC ram_0006_t05_ppu_addr_lo
-C - - - - - 0x005CCD 01:BCBD: 85 06     STA ram_0006_t05_ppu_addr_lo
+C - - - - - 0x005CCB 01:BCBB: 65 06     ADC ram_0006_t05_ppu_lo
+C - - - - - 0x005CCD 01:BCBD: 85 06     STA ram_0006_t05_ppu_lo
 C - - - - - 0x005CCF 01:BCBF: 90 02     BCC bra_BCC3_not_overflow
-- - - - - - 0x005CD1 01:BCC1: E6 07     INC ram_0007_t01_ppu_addr_hi
+- - - - - - 0x005CD1 01:BCC1: E6 07     INC ram_0007_t01_ppu_hi
 bra_BCC3_not_overflow:
 C - - - - - 0x005CD3 01:BCC3: A5 26     LDA ram_buffer_index
 C - - - - - 0x005CD5 01:BCC5: D0 C4     BNE bra_BC8B
