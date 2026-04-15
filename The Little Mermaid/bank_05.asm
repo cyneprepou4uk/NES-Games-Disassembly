@@ -231,11 +231,11 @@ bra_8118:
 sub_8118:
 C - - - - - 0x014128 05:8118: 0A        ASL
 C - - - - - 0x014129 05:8119: AA        TAX
-C - - - - - 0x01412A 05:811A: BC 44 8A  LDY tbl_8A43_music_pointers + $01,X
+C - - - - - 0x01412A 05:811A: BC 44 8A  LDY tbl_8A43_music_and_sfx_pointers + $01,X
 C - - - - - 0x01412D 05:811D: 98        TYA
-C - - - - - 0x01412E 05:811E: 1D 43 8A  ORA tbl_8A43_music_pointers,X
+C - - - - - 0x01412E 05:811E: 1D 43 8A  ORA tbl_8A43_music_and_sfx_pointers,X
 C - - - - - 0x014131 05:8121: F0 4B     BEQ bra_816E_RTS
-C - - - - - 0x014133 05:8123: BD 43 8A  LDA tbl_8A43_music_pointers,X
+C - - - - - 0x014133 05:8123: BD 43 8A  LDA tbl_8A43_music_and_sfx_pointers,X
 C - - - - - 0x014136 05:8126: 20 3A 80  JSR sub_803A_set_pointer_and_read_music_data
 C - - - - - 0x014139 05:8129: A8        TAY
 C - - - - - 0x01413A 05:812A: F0 43     BEQ bra_816F_00
@@ -323,20 +323,22 @@ C D 0 - - - 0x0141BE 05:81AE: 84 C3     STY ram_00C3
 C - - - - - 0x0141C0 05:81B0: 29 07     AND #$07
 C - - - - - 0x0141C2 05:81B2: 20 23 80  JSR sub_8023_jump_to_pointers_after_jsr
 - D 0 - I - 0x0141C5 05:81B5: C5 81     .word ofs_000_81C5_F0
-- - - - - - 0x0141C7 05:81B7: C8 81     .word ofs_000_81C8_F1
+- - - - - - 0x0141C7 05:81B7: C8 81     .word ofs_000_81C8_F1   ; unused, index doesn't exist
 - D 0 - I - 0x0141C9 05:81B9: E4 81     .word ofs_000_81E4_F2
-- D 0 - I - 0x0141CB 05:81BB: 1E 82     .word ofs_000_821E_F3
-- D 0 - I - 0x0141CD 05:81BD: 26 82     .word ofs_000_8226_F4
-- - - - - - 0x0141CF 05:81BF: 2D 82     .word ofs_000_822D_F5
-- - - - - - 0x0141D1 05:81C1: 34 82     .word ofs_000_8234_F6
-- - - - - - 0x0141D3 05:81C3: 4A 82     .word ofs_000_824A_F7
+- D 0 - I - 0x0141CB 05:81BB: 1E 82     .word ofs_000_821E_F3_pause
+- D 0 - I - 0x0141CD 05:81BD: 26 82     .word ofs_000_8226_F4_resume
+- - - - - - 0x0141CF 05:81BF: 2D 82     .word ofs_000_822D_F5   ; unused, index doesn't exist
+- - - - - - 0x0141D1 05:81C1: 34 82     .word ofs_000_8234_F6   ; unused, index doesn't exist
+- - - - - - 0x0141D3 05:81C3: 4A 82     .word ofs_000_824A_F7   ; unused, index doesn't exist
 
 
 
 ofs_000_81C5_F0:
+; con_se_cb__F0
 C - - J - - 0x0141D5 05:81C5: 20 E4 81  JSR sub_81E4
 loc_81C8:
 ofs_000_81C8_F1:
+; con_se_cb__F1
 C D 0 - - - 0x0141D8 05:81C8: A9 00     LDA #$00
 C - - - - - 0x0141DA 05:81CA: 85 CE     STA ram_00CE
 C - - - - - 0x0141DC 05:81CC: 85 D0     STA ram_00D0
@@ -358,6 +360,7 @@ C - - - - - 0x0141F3 05:81E3: 60        RTS
 
 sub_81E4:
 ofs_000_81E4_F2:
+; con_se_cb__F2
 C - - J - - 0x0141F4 05:81E4: A9 00     LDA #$00
 C - - - - - 0x0141F6 05:81E6: A2 03     LDX #$03
 bra_81E8_loop:
@@ -393,7 +396,8 @@ C - - - - - 0x01422D 05:821D: 60        RTS
 
 
 
-ofs_000_821E_F3:
+ofs_000_821E_F3_pause:
+; con_se_cb__pause
 C - - J - - 0x01422E 05:821E: A5 C0     LDA ram_00C0
 C - - - - - 0x014230 05:8220: 09 02     ORA #$02
 C - - - - - 0x014232 05:8222: 85 C0     STA ram_00C0
@@ -401,7 +405,8 @@ C - - - - - 0x014234 05:8224: D0 CB     BNE bra_81F1   ; jmp
 
 
 
-ofs_000_8226_F4:
+ofs_000_8226_F4_resume:
+; con_se_cb__resume
 C - - J - - 0x014236 05:8226: A5 C0     LDA ram_00C0
 C - - - - - 0x014238 05:8228: 29 FD     AND #$FD
 C - - - - - 0x01423A 05:822A: 85 C0     STA ram_00C0
@@ -831,18 +836,21 @@ C - - - - - 0x0144B4 05:84A4: 20 23 80  JSR sub_8023_jump_to_pointers_after_jsr
 
 
 ofs_002_84D9_00:
+; con_se_cb_00
 C - - J - - 0x0144E9 05:84D9: A9 20     LDA #$20
 C - - - - - 0x0144EB 05:84DB: D0 0D     BNE bra_84EA   ; jmp
 
 
 
 ofs_002_84DD_01:
+; con_se_cb_01
 C - - J - - 0x0144ED 05:84DD: A9 40     LDA #$40
 C - - - - - 0x0144EF 05:84DF: D0 09     BNE bra_84EA   ; jmp
 
 
 
 ofs_002_84E1_02:
+; con_se_cb_02
 C - - J - - 0x0144F1 05:84E1: A9 10     LDA #$10
 C - - - - - 0x0144F3 05:84E3: 1D 30 07  ORA ram_0730,X
 C - - - - - 0x0144F6 05:84E6: D0 05     BNE bra_84ED   ; jmp
@@ -850,6 +858,7 @@ C - - - - - 0x0144F6 05:84E6: D0 05     BNE bra_84ED   ; jmp
 
 
 ofs_002_84E8_03:
+; con_se_cb_03
 C - - J - - 0x0144F8 05:84E8: A9 08     LDA #$08
 bra_84EA:
 C - - - - - 0x0144FA 05:84EA: 5D 30 07  EOR ram_0730,X
@@ -860,6 +869,7 @@ C - - - - - 0x014500 05:84F0: 60        RTS
 
 
 ofs_002_84F1_05:
+; con_se_cb_05
 C - - J - - 0x014501 05:84F1: A9 00     LDA #$00
 C - - - - - 0x014503 05:84F3: 85 C8     STA ram_00C8
 C - - - - - 0x014505 05:84F5: 20 92 85  JSR sub_8592_increase_pointer_and_read_music_data_2
@@ -871,6 +881,7 @@ C - - - - - 0x01450E 05:84FE: 60        RTS
 
 
 ofs_002_84FF_06:
+; con_se_cb_06
 C - - J - - 0x01450F 05:84FF: A5 C3     LDA ram_00C3
 C - - - - - 0x014511 05:8501: 9D 3C 07  STA ram_073C,X
 C - - - - - 0x014514 05:8504: 60        RTS
@@ -878,6 +889,7 @@ C - - - - - 0x014514 05:8504: 60        RTS
 
 
 ofs_002_8505_09:
+; con_se_cb_09
 C - - J - - 0x014515 05:8505: BD 30 07  LDA ram_0730,X
 C - - - - - 0x014518 05:8508: 29 F8     AND #$F8
 C - - - - - 0x01451A 05:850A: 05 C3     ORA ram_00C3
@@ -887,6 +899,7 @@ C - - - - - 0x01451F 05:850F: 60        RTS
 
 
 ofs_002_8510_0A:
+; con_se_cb_0A
 C - - J - - 0x014520 05:8510: A5 C3     LDA ram_00C3
 C - - - - - 0x014522 05:8512: 85 CB     STA ram_00CB
 C - - - - - 0x014524 05:8514: 60        RTS
@@ -894,6 +907,7 @@ C - - - - - 0x014524 05:8514: 60        RTS
 
 
 ofs_002_8515_0B:
+; con_se_cb_0B
 - - - - - - 0x014525 05:8515: A5 C3     LDA ram_00C3
 - - - - - - 0x014527 05:8517: 9D 34 07  STA ram_0734,X
 - - - - - - 0x01452A 05:851A: 60        RTS
@@ -901,28 +915,36 @@ ofs_002_8515_0B:
 
 
 ofs_002_851B_0E:
+; con_se_cb_0E
 ofs_002_851B_12:
+; con_se_cb_12
 C - - J - - 0x01452B 05:851B: A9 00     LDA #$00
 C - - - - - 0x01452D 05:851D: F0 0A     BEQ bra_8529   ; jmp
 
 
 
 ofs_002_851F_0F:
+; con_se_cb_0F
 ofs_002_851F_13:
+; con_se_cb_13
 C - - J - - 0x01452F 05:851F: A9 04     LDA #$04
 C - - - - - 0x014531 05:8521: D0 06     BNE bra_8529   ; jmp
 
 
 
 ofs_002_8523_10:
+; con_se_cb_10
 ofs_002_8523_14:
+; con_se_cb_14
 C - - J - - 0x014533 05:8523: A9 08     LDA #$08
 C - - - - - 0x014535 05:8525: D0 02     BNE bra_8529   ; jmp
 
 
 
 ofs_002_8527_11:
+; con_se_cb_11
 ofs_002_8527_15:
+; con_se_cb_15
 - - - - - - 0x014537 05:8527: A9 0C     LDA #$0C
 bra_8529:
 C - - - - - 0x014539 05:8529: 85 C2     STA ram_music_data + $01
@@ -954,6 +976,7 @@ bra_8555:
 C - - - - - 0x014565 05:8555: 20 92 85  JSR sub_8592_increase_pointer_and_read_music_data_2
 C - - - - - 0x014568 05:8558: 85 C3     STA ram_00C3
 ofs_002_855A_16_jmp:
+; con_se_cb_mp
 C - - J - - 0x01456A 05:855A: 20 92 85  JSR sub_8592_increase_pointer_and_read_music_data_2
 C - - - - - 0x01456D 05:855D: 9D 28 07  STA ram_0728,X
 C - - - - - 0x014570 05:8560: A5 C3     LDA ram_00C3
@@ -973,6 +996,7 @@ C - - - - - 0x014584 05:8574: 60        RTS
 
 sub_8575:
 ofs_002_8575_04:
+; con_se_cb_04
 C - - J - - 0x014585 05:8575: BD 30 07  LDA ram_0730,X
 C - - - - - 0x014588 05:8578: 29 97     AND #$97
 C - - - - - 0x01458A 05:857A: 05 C3     ORA ram_00C3
@@ -982,6 +1006,7 @@ C - - - - - 0x01458F 05:857F: 60        RTS
 
 
 ofs_002_8580_17_stop:
+; con_se_cb_stop
 C - - J - - 0x014590 05:8580: 68        PLA
 C - - - - - 0x014591 05:8581: 68        PLA
 C - - - - - 0x014592 05:8582: A9 00     LDA #$00
@@ -1120,6 +1145,7 @@ C - - - - - 0x014669 05:8659: 60        RTS
 
 ofs_001_865A_02:
 ofs_002_865A_07:
+; con_se_cb_07
 C - - J - - 0x01466A 05:865A: E0 01     CPX #$01
 C - - - - - 0x01466C 05:865C: D0 04     BNE bra_8662
 C - - - - - 0x01466E 05:865E: A5 C3     LDA ram_00C3
@@ -1137,6 +1163,7 @@ C - - - - - 0x01467E 05:866E: 60        RTS
 
 ofs_001_866F_00:
 ofs_002_866F_08:
+; con_se_cb_08
 C - - J - - 0x01467F 05:866F: E6 C3     INC ram_00C3
 C - - - - - 0x014681 05:8671: A5 C3     LDA ram_00C3
 C - - - - - 0x014683 05:8673: DD 00 07  CMP ram_0700,X
@@ -1172,6 +1199,7 @@ C - - - - - 0x0146B0 05:86A0: 60        RTS
 
 ofs_001_86A1_04:
 ofs_002_86A1_0C:
+; con_se_cb_0C
 C - - J - - 0x0146B1 05:86A1: A5 C3     LDA ram_00C3
 C - - - - - 0x0146B3 05:86A3: 9D 14 07  STA ram_0714,X
 C - - - - - 0x0146B6 05:86A6: 60        RTS
@@ -1180,6 +1208,7 @@ C - - - - - 0x0146B6 05:86A6: 60        RTS
 
 ofs_001_86A7_03:
 ofs_002_86A7_0D:
+; con_se_cb_0D
 C - - J - - 0x0146B7 05:86A7: A5 C3     LDA ram_00C3
 C - - - - - 0x0146B9 05:86A9: 9D 18 07  STA ram_0718,X
 C - - - - - 0x0146BC 05:86AC: 60        RTS
@@ -1188,6 +1217,7 @@ C - - - - - 0x0146BC 05:86AC: 60        RTS
 
 ofs_001_86AD_01:
 ofs_002_86AD_18:
+; con_se_cb_18
 C - - J - - 0x0146BD 05:86AD: BD 0C 07  LDA ram_070C,X
 C - - - - - 0x0146C0 05:86B0: 29 0F     AND #$0F
 C - - - - - 0x0146C2 05:86B2: 05 C3     ORA ram_00C3
@@ -1800,9 +1830,10 @@ tbl_8A41:
 
 
 
-tbl_8A43_music_pointers:
+tbl_8A43_music_and_sfx_pointers:
+; see con_music
 - D 0 - - - 0x014A53 05:8A43: 8C 33     .dbyt _music_8C33_00_title_screen
-- D 0 - - - 0x014A55 05:8A45: 92 F6     .dbyt _music_92F6_01_cutscene_00
+- D 0 - - - 0x014A55 05:8A45: 92 F6     .dbyt _music_92F6_01_cutscene_1
 - D 0 - - - 0x014A57 05:8A47: 96 27     .dbyt _music_9627_02_stage_00
 - D 0 - - - 0x014A59 05:8A49: 98 67     .dbyt _music_9867_03_stage_01
 - D 0 - - - 0x014A5B 05:8A4B: 9A E3     .dbyt _music_9AE3_04_stage_02
@@ -1811,13 +1842,14 @@ tbl_8A43_music_pointers:
 - D 0 - - - 0x014A61 05:8A51: A1 24     .dbyt _music_A124_07_stage_coplete
 - D 0 - - - 0x014A63 05:8A53: A1 7C     .dbyt _music_A17C_08_boss_fight
 - D 0 - - - 0x014A65 05:8A55: A3 08     .dbyt _music_A308_09_stage_05_final_boss_fight
-- D 0 - - - 0x014A67 05:8A57: A5 01     .dbyt _music_A501_0A_cutscene_01
+- D 0 - - - 0x014A67 05:8A57: A5 01     .dbyt _music_A501_0A_cutscene_2
 - D 0 - - - 0x014A69 05:8A59: A5 F3     .dbyt _music_A5F3_0B_game_over
 - D 0 - - - 0x014A6B 05:8A5B: A6 43     .dbyt _music_A643_0C_stage_preview
-- - - - - - 0x014A6D 05:8A5D: 00 00     .dbyt $0000     ; 0D
-- - - - - - 0x014A6F 05:8A5F: 00 00     .dbyt $0000     ; 0E
-- - - - - - 0x014A71 05:8A61: 00 00     .dbyt $0000     ; 0F
-- - - - - - 0x014A73 05:8A63: 00 00     .dbyt $0000     ; 10
+- - - - - - 0x014A6D 05:8A5D: 00 00     .dbyt $0000     ; 0D unused, index doesn't exist
+- - - - - - 0x014A6F 05:8A5F: 00 00     .dbyt $0000     ; 0E unused, index doesn't exist
+- - - - - - 0x014A71 05:8A61: 00 00     .dbyt $0000     ; 0F unused, index doesn't exist
+- - - - - - 0x014A73 05:8A63: 00 00     .dbyt $0000     ; 10 unused, index doesn't exist
+; see con_sfx
 - D 0 - - - 0x014A75 05:8A65: A6 AC     .dbyt _sfx_A6AC_11
 - D 0 - - - 0x014A77 05:8A67: A6 BE     .dbyt _sfx_A6BE_12_shoot
 - D 0 - - - 0x014A79 05:8A69: A6 CA     .dbyt _sfx_A6CA_13_bubble_hit
@@ -1833,7 +1865,7 @@ tbl_8A43_music_pointers:
 - D 0 - - - 0x014A8D 05:8A7D: A7 BB     .dbyt _sfx_A7BB_1D_get_hit
 - D 0 - - - 0x014A8F 05:8A7F: A7 D3     .dbyt _sfx_A7D3_1E_option_select
 - D 0 - - - 0x014A91 05:8A81: A7 DE     .dbyt _sfx_A7DE_1F
-- - - - - - 0x014A93 05:8A83: 00 00     .dbyt $0000 ; 
+- - - - - - 0x014A93 05:8A83: 00 00     .dbyt $0000   ; 20 unused, index doesn't exist
 - D 0 - - - 0x014A95 05:8A85: A8 A4     .dbyt _sfx_A8A4_21_sand
 - D 0 - - - 0x014A97 05:8A87: A8 AF     .dbyt _sfx_A8AF_22
 - D 0 - - - 0x014A99 05:8A89: A8 C0     .dbyt _sfx_A8C0_23
@@ -2322,6 +2354,7 @@ tbl_8A8B:
 
 
 _music_8C33_00_title_screen:
+; con_music_title_screen
 - D 0 - I - 0x014C43 05:8C33: 00        .byte $00   ; 
 - D 0 - I - 0x014C44 05:8C34: 8C 3C     .dbyt _off019_00_8C3C_00
 - D 0 - I - 0x014C46 05:8C36: 8E A3     .dbyt _off019_00_8EA3_01
@@ -4550,7 +4583,8 @@ _off019_00_92F5_03_disable:
 
 
 
-_music_92F6_01_cutscene_00:
+_music_92F6_01_cutscene_1:
+; con_music_cutscene_1
 - D 0 - I - 0x015306 05:92F6: 00        .byte $00   ; 
 - D 0 - I - 0x015307 05:92F7: 92 FF     .dbyt _off019_01_92FF_00
 - D 0 - I - 0x015309 05:92F9: 93 F8     .dbyt _off019_01_93F8_01
@@ -5627,6 +5661,7 @@ _off019_01_9626_03_disable:
 
 
 _music_9627_02_stage_00:
+; con_music_stage_00
 - D 0 - I - 0x015637 05:9627: 00        .byte $00   ; 
 - D 0 - I - 0x015638 05:9628: 96 30     .dbyt _off019_02_9630_00
 - D 0 - I - 0x01563A 05:962A: 97 0B     .dbyt _off019_02_970B_01
@@ -6366,6 +6401,7 @@ _off019_02_9866_03_disable:
 
 
 _music_9867_03_stage_01:
+; con_music_stage_01
 - D 0 - I - 0x015877 05:9867: 00        .byte $00   ; 
 - D 0 - I - 0x015878 05:9868: 98 70     .dbyt _off019_03_9870_00
 - D 0 - I - 0x01587A 05:986A: 99 3D     .dbyt _off019_03_993D_01
@@ -7070,6 +7106,7 @@ _off019_03_9AE2_03_disable:
 
 
 _music_9AE3_04_stage_02:
+; con_music_stage_02
 - D 0 - I - 0x015AF3 05:9AE3: 00        .byte $00   ; 
 - D 0 - I - 0x015AF4 05:9AE4: 9A EC     .dbyt _off019_04_9AEC_00
 - D 0 - I - 0x015AF6 05:9AE6: 9B 93     .dbyt _off019_04_9B93_01
@@ -7708,6 +7745,7 @@ _off019_04_9CF5_03_disable:
 
 
 _music_9CF6_05_stage_03:
+; con_music_stage_03
 - D 0 - I - 0x015D06 05:9CF6: 00        .byte $00   ; 
 - D 0 - I - 0x015D07 05:9CF7: 9C FF     .dbyt _off019_05_9CFF_00
 - D 0 - I - 0x015D09 05:9CF9: 9D 88     .dbyt _off019_05_9D88_01
@@ -8241,6 +8279,7 @@ _off019_05_9EAC_03_disable:
 
 
 _music_9EAD_06_stage_04:
+; con_music_stage_04
 - D 0 - I - 0x015EBD 05:9EAD: 00        .byte $00   ; 
 - D 0 - I - 0x015EBE 05:9EAE: 9E B6     .dbyt _off019_06_9EB6_00
 - D 0 - I - 0x015EC0 05:9EB0: 9F BB     .dbyt _off019_06_9FBB_01
@@ -8956,6 +8995,7 @@ _off019_06_A123_03_disable:
 
 
 _music_A124_07_stage_coplete:
+; con_music_stage_complete
 - D 1 - I - 0x016134 05:A124: 00        .byte $00   ; 
 - D 1 - I - 0x016135 05:A125: A1 2D     .dbyt _off019_07_A12D_00
 - D 1 - I - 0x016137 05:A127: A1 4C     .dbyt _off019_07_A14C_01
@@ -9061,6 +9101,7 @@ _off019_07_A17B_03_disable:
 
 
 _music_A17C_08_boss_fight:
+; con_music_boss_fight
 - D 1 - I - 0x01618C 05:A17C: 00        .byte $00   ; 
 - D 1 - I - 0x01618D 05:A17D: A1 85     .dbyt _off019_08_A185_00
 - D 1 - I - 0x01618F 05:A17F: A2 1D     .dbyt _off019_08_A21D_01
@@ -9510,6 +9551,7 @@ _off019_08_A307_03_disable:
 
 
 _music_A308_09_stage_05_final_boss_fight:
+; con_music_stage_05
 - D 1 - I - 0x016318 05:A308: 00        .byte $00   ; 
 - D 1 - I - 0x016319 05:A309: A3 11     .dbyt _off019_09_A311_00
 - D 1 - I - 0x01631B 05:A30B: A3 9A     .dbyt _off019_09_A39A_01
@@ -10029,7 +10071,8 @@ off_0E_A4D3:
 
 
 
-_music_A501_0A_cutscene_01:
+_music_A501_0A_cutscene_2:
+; con_music_cutscene_2
 - D 1 - I - 0x016511 05:A501: 00        .byte $00   ; 
 - D 1 - I - 0x016512 05:A502: A5 0A     .dbyt _off019_0A_A50A_00
 - D 1 - I - 0x016514 05:A504: A5 65     .dbyt _off019_0A_A565_01
@@ -10321,6 +10364,7 @@ _off019_0A_A5F2_03_disable:
 
 
 _music_A5F3_0B_game_over:
+; con_music_game_over
 - D 1 - I - 0x016603 05:A5F3: 00        .byte $00   ; 
 - D 1 - I - 0x016604 05:A5F4: A5 FC     .dbyt _off019_0B_A5FC_00
 - D 1 - I - 0x016606 05:A5F6: A6 20     .dbyt _off019_0B_A620_01
@@ -10409,6 +10453,7 @@ _off019_0B_A642_03_disable:
 
 
 _music_A643_0C_stage_preview:
+; con_music_stage_preview
 - D 1 - I - 0x016653 05:A643: 00        .byte $00   ; 
 - D 1 - I - 0x016654 05:A644: A6 4C     .dbyt _off019_0C_A64C_00
 - D 1 - I - 0x016656 05:A646: A6 6E     .dbyt _off019_0C_A66E_01
@@ -10522,6 +10567,7 @@ _off019_0C_A6AB_03_disable:
 
 
 _sfx_A6AC_11:
+; con_sfx_11
 - D 1 - I - 0x0166BC 05:A6AC: 06        .byte $06   ; 
 - D 1 - I - 0x0166BD 05:A6AD: 02        .byte $02   ; 
 - D 1 - I - 0x0166BE 05:A6AE: 5F        .byte $5F   ; 
@@ -10544,6 +10590,7 @@ _sfx_A6AC_11:
 
 
 _sfx_A6BE_12_shoot:
+; con_sfx_shoot
 - D 1 - I - 0x0166CE 05:A6BE: 07        .byte $07   ; 
 - D 1 - I - 0x0166CF 05:A6BF: 02        .byte $02   ; 
 - D 1 - I - 0x0166D0 05:A6C0: FF        .byte $FF   ; 
@@ -10560,6 +10607,7 @@ _sfx_A6BE_12_shoot:
 
 
 _sfx_A6CA_13_bubble_hit:
+; con_sfx_bubble_hit
 - D 1 - I - 0x0166DA 05:A6CA: 07        .byte $07   ; 
 - D 1 - I - 0x0166DB 05:A6CB: 02        .byte $02   ; 
 - D 1 - I - 0x0166DC 05:A6CC: FF        .byte $FF   ; 
@@ -10576,6 +10624,7 @@ _sfx_A6CA_13_bubble_hit:
 
 
 _sfx_A6D6_14_bubble_burst:
+; con_sfx_bubble_burst
 - D 1 - I - 0x0166E6 05:A6D6: 07        .byte $07   ; 
 - D 1 - I - 0x0166E7 05:A6D7: 02        .byte $02   ; 
 - D 1 - I - 0x0166E8 05:A6D8: 01        .byte $01   ; 
@@ -10600,6 +10649,7 @@ _sfx_A6D6_14_bubble_burst:
 
 
 _sfx_A6EA_15:
+; con_sfx_15
 - D 1 - I - 0x0166FA 05:A6EA: 07        .byte $07   ; 
 - D 1 - I - 0x0166FB 05:A6EB: 02        .byte $02   ; 
 - D 1 - I - 0x0166FC 05:A6EC: 5D        .byte $5D   ; 
@@ -10624,6 +10674,7 @@ _sfx_A6EA_15:
 
 
 _sfx_A6FE_16:
+; con_sfx_16
 - D 1 - I - 0x01670E 05:A6FE: 07        .byte $07   ; 
 - D 1 - I - 0x01670F 05:A6FF: 02        .byte $02   ; 
 - D 1 - I - 0x016710 05:A700: FF        .byte $FF   ; 
@@ -10640,6 +10691,7 @@ _sfx_A6FE_16:
 
 
 _sfx_A70A_17:
+;con_sfx_17
 - D 1 - I - 0x01671A 05:A70A: 07        .byte $07   ; 
 - D 1 - I - 0x01671B 05:A70B: 02        .byte $02   ; 
 - D 1 - I - 0x01671C 05:A70C: 7F        .byte $7F   ; 
@@ -10662,6 +10714,7 @@ _sfx_A70A_17:
 
 
 _sfx_A71C_18:
+;con_sfx_18
 - D 1 - I - 0x01672C 05:A71C: 08        .byte $08   ; 
 - D 1 - I - 0x01672D 05:A71D: 02        .byte $02   ; 
 - D 1 - I - 0x01672E 05:A71E: FF        .byte $FF   ; 
@@ -10686,6 +10739,7 @@ _sfx_A71C_18:
 
 
 _sfx_A730_19_item_pickup:
+; con_sfx_item_pickup
 - D 1 - I - 0x016740 05:A730: 07        .byte $07   ; 
 - D 1 - I - 0x016741 05:A731: 02        .byte $02   ; 
 - D 1 - I - 0x016742 05:A732: FF        .byte $FF   ; 
@@ -10733,6 +10787,7 @@ _sfx_A730_19_item_pickup:
 
 
 _sfx_A75B_1A:
+; con_sfx_1A
 - D 1 - I - 0x01676B 05:A75B: 15        .byte $15   ; 
 - D 1 - I - 0x01676C 05:A75C: 02        .byte $02   ; 
 - D 1 - I - 0x01676D 05:A75D: FF        .byte $FF   ; 
@@ -10748,6 +10803,7 @@ _sfx_A75B_1A:
 
 
 _sfx_A766_1B:
+; con_sfx_enemy_killed
 - D 1 - I - 0x016776 05:A766: 09        .byte $09   ; 
 - D 1 - I - 0x016777 05:A767: 02        .byte $02   ; 
 - D 1 - I - 0x016778 05:A768: FF        .byte $FF   ; 
@@ -10793,6 +10849,7 @@ _sfx_A766_1B:
 
 
 _sfx_A78F_1C_pause_menu:
+; con_sfx_pause_menu
 - D 1 - I - 0x01679F 05:A78F: 10        .byte $10   ; 
 off_A790:
 - D 1 - I - 0x0167A0 05:A790: 02        .byte $02   ; 
@@ -10841,6 +10898,7 @@ off_A790:
 
 
 _sfx_A7BB_1D_get_hit:
+; con_sfx_get_hit
 - D 1 - I - 0x0167CB 05:A7BB: 08        .byte $08   ; 
 - D 1 - I - 0x0167CC 05:A7BC: 02        .byte $02   ; 
 - D 1 - I - 0x0167CD 05:A7BD: FF        .byte $FF   ; 
@@ -10869,6 +10927,7 @@ _sfx_A7BB_1D_get_hit:
 
 
 _sfx_A7D3_1E_option_select:
+; con_sfx_option_select
 - D 1 - I - 0x0167E3 05:A7D3: 06        .byte $06   ; 
 - D 1 - I - 0x0167E4 05:A7D4: 02        .byte $02   ; 
 - D 1 - I - 0x0167E5 05:A7D5: 4B        .byte $4B   ; 
@@ -10884,6 +10943,7 @@ _sfx_A7D3_1E_option_select:
 
 
 _sfx_A7DE_1F:
+; con_sfx_1F
 - D 1 - I - 0x0167EE 05:A7DE: 11        .byte $11   ; 
 - D 1 - I - 0x0167EF 05:A7DF: 02        .byte $02   ; 
 - D 1 - I - 0x0167F0 05:A7E0: EB        .byte $EB   ; 
@@ -11086,6 +11146,7 @@ _sfx_A7DE_1F:
 
 
 _sfx_A8A4_21_sand:
+; con_sfx_sand
 - D 1 - I - 0x0168B4 05:A8A4: 07        .byte $07   ; 
 - D 1 - I - 0x0168B5 05:A8A5: 02        .byte $02   ; 
 - D 1 - I - 0x0168B6 05:A8A6: 85        .byte $85   ; 
@@ -11101,6 +11162,7 @@ _sfx_A8A4_21_sand:
 
 
 _sfx_A8AF_22:
+; con_sfx_22
 - D 1 - I - 0x0168BF 05:A8AF: 08        .byte $08   ; 
 - D 1 - I - 0x0168C0 05:A8B0: 02        .byte $02   ; 
 - D 1 - I - 0x0168C1 05:A8B1: FF        .byte $FF   ; 
@@ -11122,6 +11184,7 @@ _sfx_A8AF_22:
 
 
 _sfx_A8C0_23:
+; con_sfx_23
 - D 1 - I - 0x0168D0 05:A8C0: 08        .byte $08   ; 
 - D 1 - I - 0x0168D1 05:A8C1: 02        .byte $02   ; 
 - D 1 - I - 0x0168D2 05:A8C2: FF        .byte $FF   ; 

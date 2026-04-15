@@ -2,6 +2,7 @@
 
 ; MISC
 con_prg_bank                            = $00 ; 
+con_se_cb_88                            = $88 ; sound engine special control byte (not included in other con_se_cb)
 
 
 
@@ -157,10 +158,10 @@ con_music_stage_05                      = $09 ; stage 6 final boss fight
 con_music_cutscene_2                    = $0A ; cutscene 2
 con_music_game_over                     = $0B ; game over
 con_music_stage_preview                 = $0C ; stage preview (name and number)
-; con_music_0D                          = $0D ; 
-; con_music_0E                          = $0E ; 
-; con_music_0F                          = $0F ; 
-; con_music_10                          = $10 ; 
+; con_music_0D                          = $0D ; unused
+; con_music_0E                          = $0E ; unused
+; con_music_0F                          = $0F ; unused
+; con_music_10                          = $10 ; unused
 
 ; sound effects
 ; need commments at 0x014A53
@@ -179,24 +180,23 @@ con_sfx_pause_menu                      = $1C ; going in and out
 con_sfx_get_hit                         = $1D ; player or boss is taking damage
 con_sfx_option_select                   = $1E ; select option in menus
 con_sfx_1F                              = $1F ; 
-; con_sfx_20                            = $20 ; 
+; con_sfx_20                            = $20 ; unused
 con_sfx_sand                            = $21 ; 
 con_sfx_22                              = $22 ; 
 con_sfx_23                              = $23 ; 
 
-; 
-con_se_cb_88                            = $88 ; 
+
 
 ; sound engine control bytes
 ; need commments at 0x0141C5
 con_se_cb__F0                           = $F0 ; 
-; con_se_cb__F1                         = $F1 ; 
+; con_se_cb__F1                         = $F1 ; unused
 con_se_cb__F2                           = $F2 ; 
 con_se_cb__pause                        = $F3 ; 
 con_se_cb__resume                       = $F4 ; 
-; con_se_cb__F5                         = $F5 ; 
-; con_se_cb__F6                         = $F6 ; 
-; con_se_cb__F7                         = $F7 ; 
+; con_se_cb__F5                         = $F5 ; unused
+; con_se_cb__F6                         = $F6 ; unused
+; con_se_cb__F7                         = $F7 ; unused
 
 
 

@@ -84,8 +84,8 @@ C - - - - - 0x018086 06:8076: F0 23     BEQ bra_809B
 C - - - - - 0x018088 06:8078: A9 08     LDA #$08
 C - - - - - 0x01808A 06:807A: 8D 30 04  STA ram_0430_obj
 C - - - - - 0x01808D 06:807D: A9 00     LDA #$00
-C - - - - - 0x01808F 06:807F: 8D 18 04  STA ram_animation_cnt
-C - - - - - 0x018092 06:8082: 8D 48 04  STA ram_0448
+C - - - - - 0x01808F 06:807F: 8D 18 04  STA ram_obj_animation_cnt
+C - - - - - 0x018092 06:8082: 8D 48 04  STA ram_0448_obj
 C - - - - - 0x018095 06:8085: 8D 60 04  STA ram_0460_obj
 C - - - - - 0x018098 06:8088: C0 02     CPY #$02
 C - - - - - 0x01809A 06:808A: D0 0F     BNE bra_809B
@@ -241,8 +241,8 @@ C - - - - - 0x0181AB 06:819B: BD C0 03  LDA ram_03C0_obj,X
 C - - - - - 0x0181AE 06:819E: 29 1F     AND #$1F
 C - - - - - 0x0181B0 06:81A0: 9D C0 03  STA ram_03C0_obj,X
 C - - - - - 0x0181B3 06:81A3: A9 00     LDA #$00
-C - - - - - 0x0181B5 06:81A5: 9D 18 04  STA ram_animation_cnt,X
-C - - - - - 0x0181B8 06:81A8: 9D 48 04  STA ram_0448,X
+C - - - - - 0x0181B5 06:81A5: 9D 18 04  STA ram_obj_animation_cnt,X
+C - - - - - 0x0181B8 06:81A8: 9D 48 04  STA ram_0448_obj,X
 C - - - - - 0x0181BB 06:81AB: 9D 60 04  STA ram_0460_obj,X
 C - - - - - 0x0181BE 06:81AE: 9D 70 04  STA ram_obj_timer,X
 C - - - - - 0x0181C1 06:81B1: 9D 80 04  STA ram_0480_obj,X
@@ -259,13 +259,13 @@ C - - - - - 0x0181D3 06:81C3: 60        RTS
 
 
 sub_81C4:
-C - - - - - 0x0181D4 06:81C4: 86 04     STX ram_0004_temp
+C - - - - - 0x0181D4 06:81C4: 86 04     STX ram_0004_t03_obj_index
 C - - - - - 0x0181D6 06:81C6: BD 00 04  LDA ram_0400_obj_flags,X
 C - - - - - 0x0181D9 06:81C9: 30 03     BMI bra_81CE
 C - - - - - 0x0181DB 06:81CB: 4C 84 82  JMP loc_8284
 bra_81CE:
 C - - - - - 0x0181DE 06:81CE: A9 00     LDA #$00
-C - - - - - 0x0181E0 06:81D0: 85 07     STA ram_0007_temp
+C - - - - - 0x0181E0 06:81D0: 85 07     STA ram_0007_t01_pos_X_hi_offset
 C - - - - - 0x0181E2 06:81D2: BD C0 03  LDA ram_03C0_obj,X
 C - - - - - 0x0181E5 06:81D5: 29 1F     AND #$1F
 C - - - - - 0x0181E7 06:81D7: C9 02     CMP #$02
@@ -274,7 +274,7 @@ C - - - - - 0x0181EB 06:81DB: C9 03     CMP #$03
 C - - - - - 0x0181ED 06:81DD: D0 04     BNE bra_81E3
 bra_81DF:
 C - - - - - 0x0181EF 06:81DF: A9 08     LDA #$08
-C - - - - - 0x0181F1 06:81E1: 85 07     STA ram_0007_temp
+C - - - - - 0x0181F1 06:81E1: 85 07     STA ram_0007_t01_pos_X_hi_offset
 bra_81E3:
 C - - - - - 0x0181F3 06:81E3: A0 0F     LDY #$0F
 C - - - - - 0x0181F5 06:81E5: BD 60 03  LDA ram_pos_Y_lo,X
@@ -284,7 +284,7 @@ C - - - - - 0x0181FB 06:81EB: B0 03     BCS bra_81F0
 C - - - - - 0x0181FD 06:81ED: E9 0F     SBC #$0F
 C - - - - - 0x0181FF 06:81EF: 18        CLC
 bra_81F0:
-C - - - - - 0x018200 06:81F0: 85 05     STA ram_0005_temp
+C - - - - - 0x018200 06:81F0: 85 05     STA ram_0005_t06
 C - - - - - 0x018202 06:81F2: BD 70 03  LDA ram_pos_Y_hi,X
 C - - - - - 0x018205 06:81F5: E5 FB     SBC ram_scroll_Y_hi
 C - - - - - 0x018207 06:81F7: 29 01     AND #$01
@@ -292,7 +292,7 @@ C - - - - - 0x018209 06:81F9: F0 03     BEQ bra_81FE
 C - - - - - 0x01820B 06:81FB: 4C 84 82  JMP loc_8284
 bra_81FE:
 loc_81FE:
-C D 0 - - - 0x01820E 06:81FE: C4 04     CPY ram_0004_temp
+C D 0 - - - 0x01820E 06:81FE: C4 04     CPY ram_0004_t03_obj_index
 C - - - - - 0x018210 06:8200: F0 7A     BEQ bra_827C
 C - - - - - 0x018212 06:8202: B9 00 03  LDA ram_obj_flags,Y
 C - - - - - 0x018215 06:8205: 10 75     BPL bra_827C
@@ -313,14 +313,14 @@ C - - - - - 0x018237 06:8227: 29 1F     AND #$1F
 C - - - - - 0x018239 06:8229: AA        TAX
 C - - - - - 0x01823A 06:822A: BD 80 FB  LDA tbl_0x01FB90_pos_X_hi,X
 C - - - - - 0x01823D 06:822D: 18        CLC
-C - - - - - 0x01823E 06:822E: 65 07     ADC ram_0007_temp
-C - - - - - 0x018240 06:8230: 85 02     STA ram_0002_t06
-C - - - - - 0x018242 06:8232: C6 02     DEC ram_0002_t06
+C - - - - - 0x01823E 06:822E: 65 07     ADC ram_0007_t01_pos_X_hi_offset
+C - - - - - 0x018240 06:8230: 85 02     STA ram_0002_t06_pos_X_hi
+C - - - - - 0x018242 06:8232: C6 02     DEC ram_0002_t06_pos_X_hi
 C - - - - - 0x018244 06:8234: BD 60 FB  LDA tbl_0x01FB70,X
 C - - - - - 0x018247 06:8237: 18        CLC
-C - - - - - 0x018248 06:8238: 65 07     ADC ram_0007_temp
-C - - - - - 0x01824A 06:823A: 85 03     STA ram_0003_temp
-C - - - - - 0x01824C 06:823C: A6 04     LDX ram_0004_temp
+C - - - - - 0x018248 06:8238: 65 07     ADC ram_0007_t01_pos_X_hi_offset
+C - - - - - 0x01824A 06:823A: 85 03     STA ram_0003_t03
+C - - - - - 0x01824C 06:823C: A6 04     LDX ram_0004_t03_obj_index
 C - - - - - 0x01824E 06:823E: B9 30 03  LDA ram_pos_X_lo,Y
 C - - - - - 0x018251 06:8241: 38        SEC
 C - - - - - 0x018252 06:8242: FD 30 03  SBC ram_pos_X_lo,X
@@ -332,7 +332,7 @@ C - - - - - 0x01825D 06:824D: B0 04     BCS bra_8253
 C - - - - - 0x01825F 06:824F: 49 FF     EOR #$FF
 C - - - - - 0x018261 06:8251: 69 01     ADC #$01
 bra_8253:
-C - - - - - 0x018263 06:8253: C5 02     CMP ram_0002_t06
+C - - - - - 0x018263 06:8253: C5 02     CMP ram_0002_t06_pos_X_hi
 C - - - - - 0x018265 06:8255: B0 25     BCS bra_827C
 C - - - - - 0x018267 06:8257: B9 60 03  LDA ram_pos_Y_lo,Y
 C - - - - - 0x01826A 06:825A: 38        SEC
@@ -348,12 +348,12 @@ C - - - - - 0x018279 06:8269: 29 01     AND #$01
 C - - - - - 0x01827B 06:826B: D0 0F     BNE bra_827C
 C - - - - - 0x01827D 06:826D: A5 1F     LDA ram_001F
 C - - - - - 0x01827F 06:826F: 38        SEC
-C - - - - - 0x018280 06:8270: E5 05     SBC ram_0005_temp
+C - - - - - 0x018280 06:8270: E5 05     SBC ram_0005_t06
 C - - - - - 0x018282 06:8272: B0 04     BCS bra_8278
 C - - - - - 0x018284 06:8274: 49 FF     EOR #$FF
 C - - - - - 0x018286 06:8276: 69 01     ADC #$01
 bra_8278:
-C - - - - - 0x018288 06:8278: C5 03     CMP ram_0003_temp
+C - - - - - 0x018288 06:8278: C5 03     CMP ram_0003_t03
 C - - - - - 0x01828A 06:827A: 90 12     BCC bra_828E
 bra_827C:
 C - - - - - 0x01828C 06:827C: 88        DEY
@@ -362,7 +362,7 @@ C - - - - - 0x01828F 06:827F: F0 03     BEQ bra_8284
 C - - - - - 0x018291 06:8281: 4C FE 81  JMP loc_81FE
 bra_8284:
 loc_8284:
-C D 0 - - - 0x018294 06:8284: A6 04     LDX ram_0004_temp
+C D 0 - - - 0x018294 06:8284: A6 04     LDX ram_0004_t03_obj_index
 C - - - - - 0x018296 06:8286: 38        SEC
 C - - - - - 0x018297 06:8287: 60        RTS
 bra_8288:
@@ -388,7 +388,7 @@ C - - - - - 0x0182BD 06:82AD: F0 04     BEQ bra_82B3
 C - - - - - 0x0182BF 06:82AF: C9 0A     CMP #con_obj_id_octopus
 C - - - - - 0x0182C1 06:82B1: D0 15     BNE bra_82C8
 bra_82B3:
-C - - - - - 0x0182C3 06:82B3: A6 04     LDX ram_0004_temp
+C - - - - - 0x0182C3 06:82B3: A6 04     LDX ram_0004_t03_obj_index
 C - - - - - 0x0182C5 06:82B5: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x0182C8 06:82B8: C9 73     CMP #$73
 C - - - - - 0x0182CA 06:82BA: F0 1B     BEQ bra_82D7
@@ -401,7 +401,7 @@ C - - - - - 0x0182D6 06:82C6: F0 0F     BEQ bra_82D7
 bra_82C8:
 C - - - - - 0x0182D8 06:82C8: A9 1D     LDA #con_sfx_get_hit
 C - - - - - 0x0182DA 06:82CA: 20 A0 FC  JSR sub_0x01FCB0_play_sfx
-C - - - - - 0x0182DD 06:82CD: A6 04     LDX ram_0004_temp
+C - - - - - 0x0182DD 06:82CD: A6 04     LDX ram_0004_t03_obj_index
 C - - - - - 0x0182DF 06:82CF: A9 BC     LDA #$BC
 C - - - - - 0x0182E1 06:82D1: 99 A0 04  STA ram_04A0_obj,Y
 C - - - - - 0x0182E4 06:82D4: 4C 5F 83  JMP loc_835F
@@ -410,8 +410,8 @@ C - - - - - 0x0182E7 06:82D7: BE 10 03  LDX ram_obj_id,Y
 C - - - - - 0x0182EA 06:82DA: BD C0 84  LDA tbl_84C0,X
 C - - - - - 0x0182ED 06:82DD: 99 30 04  STA ram_0430_obj,Y
 C - - - - - 0x0182F0 06:82E0: A9 00     LDA #$00
-C - - - - - 0x0182F2 06:82E2: 99 48 04  STA ram_0448,Y
-C - - - - - 0x0182F5 06:82E5: 99 18 04  STA ram_animation_cnt,Y
+C - - - - - 0x0182F2 06:82E2: 99 48 04  STA ram_0448_obj,Y
+C - - - - - 0x0182F5 06:82E5: 99 18 04  STA ram_obj_animation_cnt,Y
 C - - - - - 0x0182F8 06:82E8: 99 F0 03  STA ram_03F0_obj,Y
 C - - - - - 0x0182FB 06:82EB: A9 1B     LDA #con_sfx_enemy_killed
 C - - - - - 0x0182FD 06:82ED: 20 A0 FC  JSR sub_0x01FCB0_play_sfx
@@ -425,7 +425,7 @@ C - - - - - 0x01830D 06:82FD: F0 04     BEQ bra_8303
 C - - - - - 0x01830F 06:82FF: C9 55     CMP #$55
 C - - - - - 0x018311 06:8301: D0 33     BNE bra_8336
 bra_8303:
-C - - - - - 0x018313 06:8303: A6 04     LDX ram_0004_temp
+C - - - - - 0x018313 06:8303: A6 04     LDX ram_0004_t03_obj_index
 C - - - - - 0x018315 06:8305: A9 00     LDA #$00
 C - - - - - 0x018317 06:8307: 99 80 03  STA ram_spd_X_lo,Y
 C - - - - - 0x01831A 06:830A: 99 A0 03  STA ram_spd_Y_lo,Y
@@ -447,14 +447,14 @@ C - - - - - 0x01833D 06:832D: 99 C0 03  STA ram_03C0_obj,Y
 C - - - - - 0x018340 06:8330: 99 A0 04  STA ram_04A0_obj,Y
 C - - - - - 0x018343 06:8333: 4C 5F 83  JMP loc_835F
 bra_8336:
-C - - - - - 0x018346 06:8336: A6 04     LDX ram_0004_temp
-C - - - - - 0x018348 06:8338: A9 DD     LDA #$DD
+C - - - - - 0x018346 06:8336: A6 04     LDX ram_0004_t03_obj_index
+C - - - - - 0x018348 06:8338: A9 DD     LDA #< $00DD
 C - - - - - 0x01834A 06:833A: 99 80 03  STA ram_spd_X_lo,Y
-C - - - - - 0x01834D 06:833D: A9 00     LDA #$00
+C - - - - - 0x01834D 06:833D: A9 00     LDA #> $00DD
 C - - - - - 0x01834F 06:833F: 99 90 03  STA ram_spd_X_hi,Y
-C - - - - - 0x018352 06:8342: A9 77     LDA #$77
+C - - - - - 0x018352 06:8342: A9 77     LDA #< $0377
 C - - - - - 0x018354 06:8344: 99 A0 03  STA ram_spd_Y_lo,Y
-C - - - - - 0x018357 06:8347: A9 03     LDA #$03
+C - - - - - 0x018357 06:8347: A9 03     LDA #> $0377
 C - - - - - 0x018359 06:8349: 99 B0 03  STA ram_spd_Y_hi,Y
 C - - - - - 0x01835C 06:834C: A9 42     LDA #con_obj_id_dead_enemy
 C - - - - - 0x01835E 06:834E: 99 10 03  STA ram_obj_id,Y
@@ -493,19 +493,19 @@ C - - - - - 0x0183A2 06:8392: A9 00     LDA #$00
 C - - - - - 0x0183A4 06:8394: 9D C0 03  STA ram_03C0_obj,X
 C - - - - - 0x0183A7 06:8397: 9D A0 04  STA ram_04A0_obj,X
 C - - - - - 0x0183AA 06:839A: A9 10     LDA #$10
-C - - - - - 0x0183AC 06:839C: 85 06     STA ram_0006_temp
+C - - - - - 0x0183AC 06:839C: 85 06     STA ram_0006_t01
 C - - - - - 0x0183AE 06:839E: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x0183B1 06:83A1: C9 7B     CMP #$7B
 C - - - - - 0x0183B3 06:83A3: B0 13     BCS bra_83B8
 C - - - - - 0x0183B5 06:83A5: A9 14     LDA #$14
-C - - - - - 0x0183B7 06:83A7: 85 06     STA ram_0006_temp
+C - - - - - 0x0183B7 06:83A7: 85 06     STA ram_0006_t01
 C - - - - - 0x0183B9 06:83A9: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x0183BC 06:83AC: C9 75     CMP #$75
 C - - - - - 0x0183BE 06:83AE: F0 17     BEQ bra_83C7
 C - - - - - 0x0183C0 06:83B0: C9 73     CMP #$73
 C - - - - - 0x0183C2 06:83B2: 90 13     BCC bra_83C7
 C - - - - - 0x0183C4 06:83B4: A9 4F     LDA #$4F
-C - - - - - 0x0183C6 06:83B6: 85 06     STA ram_0006_temp
+C - - - - - 0x0183C6 06:83B6: 85 06     STA ram_0006_t01
 bra_83B8:
 C - - - - - 0x0183C8 06:83B8: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x0183CB 06:83BB: C9 81     CMP #$81
@@ -513,9 +513,9 @@ C - - - - - 0x0183CD 06:83BD: F0 08     BEQ bra_83C7
 C - - - - - 0x0183CF 06:83BF: C9 7F     CMP #$7F
 C - - - - - 0x0183D1 06:83C1: 90 04     BCC bra_83C7
 C - - - - - 0x0183D3 06:83C3: A9 11     LDA #$11
-C - - - - - 0x0183D5 06:83C5: 85 06     STA ram_0006_temp
+C - - - - - 0x0183D5 06:83C5: 85 06     STA ram_0006_t01
 bra_83C7:
-C - - - - - 0x0183D7 06:83C7: A5 06     LDA ram_0006_temp
+C - - - - - 0x0183D7 06:83C7: A5 06     LDA ram_0006_t01
 C - - - - - 0x0183D9 06:83C9: 20 45 FC  JSR sub_0x01FC55
 C - - - - - 0x0183DC 06:83CC: E4 3A     CPX ram_003A
 C - - - - - 0x0183DE 06:83CE: D0 04     BNE bra_83D4
@@ -536,8 +536,8 @@ C - - - - - 0x0183EF 06:83DF: F0 22     BEQ bra_8403
 C - - - - - 0x0183F1 06:83E1: A9 7A     LDA #$7A
 C - - - - - 0x0183F3 06:83E3: 99 30 04  STA ram_0430_obj,Y
 C - - - - - 0x0183F6 06:83E6: A9 00     LDA #$00
-C - - - - - 0x0183F8 06:83E8: 99 18 04  STA ram_animation_cnt,Y
-C - - - - - 0x0183FB 06:83EB: 99 48 04  STA ram_0448,Y
+C - - - - - 0x0183F8 06:83E8: 99 18 04  STA ram_obj_animation_cnt,Y
+C - - - - - 0x0183FB 06:83EB: 99 48 04  STA ram_0448_obj,Y
 C - - - - - 0x0183FE 06:83EE: A9 3C     LDA #$3C
 C - - - - - 0x018400 06:83F0: 99 80 04  STA ram_0480_obj,Y
 C - - - - - 0x018403 06:83F3: B9 C0 03  LDA ram_03C0_obj,Y
@@ -794,216 +794,220 @@ tbl_84C0:
 
 
 tbl_8520_lo:
+; see con_obj_id
 ; !!! внимательно проверить чтобы где индекс объекта считывается в Y,
 ; чтоб были правильно подправлены addr,Y как в случае с 38 39, а также 17-1B
 ; see screenshots inside misc folder
-- D 0 - - - 0x018530 06:8520: E0        .byte < ofs_005_85E0_00_RTS   ; 
-- D 0 - - - 0x018531 06:8521: E1        .byte < ofs_005_85E1_01_projectile_player   ; 
-- D 0 - - - 0x018532 06:8522: 8F        .byte < ofs_005_888F_02_enemy_inside_bubble   ; 
-- D 0 - - - 0x018533 06:8523: 14        .byte < ofs_005_8A14_03_piranha_stupid   ; 
-- D 0 - - - 0x018534 06:8524: 7A        .byte < ofs_005_867A_04_sand_splashes_player   ; 
-- D 0 - - - 0x018535 06:8525: 65        .byte < ofs_005_8A65_05_seahorse   ; 
-- D 0 - - - 0x018536 06:8526: 9B        .byte < ofs_005_8A9B_06_piranha_ghost    ; 
-- D 0 - - - 0x018537 06:8527: DC        .byte < ofs_005_8BDC_07_ghost_sheet   ; 
-- D 0 - - - 0x018538 06:8528: E2        .byte < ofs_005_8BE2_08_shooting_fish   ; 
-- D 0 - - - 0x018539 06:8529: A3        .byte < ofs_005_8CA3_09_projectile_shooting_fish   ; 
-- D 0 - - - 0x01853A 06:852A: BA        .byte < ofs_005_8CBA_0A_octopus   ; 
-- D 0 - - - 0x01853B 06:852B: C5        .byte < ofs_005_8DC5_0B_projectile_octopus   ; 
-- D 0 - - - 0x01853C 06:852C: A7        .byte < ofs_005_9BA7_0C_boss_shark_1   ; 
-- D 0 - - - 0x01853D 06:852D: C4        .byte < ofs_005_9CC4_0D_boss_shark_2   ; 
-- D 0 - - - 0x01853E 06:852E: 37        .byte < ofs_005_9D37_0E_piranha_minion_shark   ; 
-- D 0 - - - 0x01853F 06:852F: B3        .byte < ofs_005_A3B3_0F_cannon   ; 
-- D 0 - - - 0x018540 06:8530: 89        .byte < ofs_005_8F89_10_sea_urchin_1   ; 
-- D 0 - - - 0x018541 06:8531: C7        .byte < ofs_005_8FC7_11_spawner_sea_urchin   ; 
-- D 0 - - - 0x018542 06:8532: 46        .byte < ofs_005_9046_12_piranha_smart   ; 
-- D 0 - - - 0x018543 06:8533: F0        .byte < ofs_005_A5F0_13_sea_urchin_2   ; 
-- D 0 - - - 0x018544 06:8534: F0        .byte < ofs_005_A5F0_14_starfish_3   ; 
-- D 0 - - - 0x018545 06:8535: 8F        .byte < ofs_005_908F_15_crab_naked   ; 
-- D 0 - - - 0x018546 06:8536: D9        .byte < ofs_005_91D9_16_mini_fish_1   ; 
-- - - - - - 0x018547 06:8537: 3F        .byte < ofs_005_913F_17   ; unused but exists 0x013C1B
-- - - - - - 0x018548 06:8538: 3F        .byte < ofs_005_913F_18   ; unused
-- - - - - - 0x018549 06:8539: 3F        .byte < ofs_005_913F_19   ; unused
-- - - - - - 0x01854A 06:853A: 3F        .byte < ofs_005_913F_1A   ; unused
-- - - - - - 0x01854B 06:853B: 3F        .byte < ofs_005_913F_1B   ; unused
-- D 0 - - - 0x01854C 06:853C: A9        .byte < ofs_005_92A9_1C_sleeping_fish   ; 
-- D 0 - - - 0x01854D 06:853D: 29        .byte < ofs_005_9229_1D_mini_fish_2   ; 
-- D 0 - - - 0x01854E 06:853E: 67        .byte < ofs_005_9367_1E_mother_fish   ; 
-- D 0 - - - 0x01854F 06:853F: 74        .byte < ofs_005_9274_1F_mini_fish_3   ; 
-- D 0 - - - 0x018550 06:8540: 0C        .byte < ofs_005_940C_20_shrimp   ; 
-- D 0 - - - 0x018551 06:8541: 60        .byte < ofs_005_9460_21_RTS_green_snake   ; 
-- D 0 - - - 0x018552 06:8542: 61        .byte < ofs_005_9461_22_spawner_starfish   ; 
-- D 0 - - - 0x018553 06:8543: 4F        .byte < ofs_005_954F_23_starfish_1   ; 
-- D 0 - - - 0x018554 06:8544: 04        .byte < ofs_005_9604_24_ice_cube_fish   ; 
-- D 0 - - - 0x018555 06:8545: 8F        .byte < ofs_005_908F_25_crab_helmet   ; 
-- D 0 - - - 0x018556 06:8546: 9D        .byte < ofs_005_869D_26_weapon_power_00   ; 
-- D 0 - - - 0x018557 06:8547: C1        .byte < ofs_005_86C1_27_weapon_power_01   ; 
-- D 0 - - - 0x018558 06:8548: F1        .byte < ofs_005_86F1_28_weapon_power_02   ; 
-- D 0 - - - 0x018559 06:8549: 15        .byte < ofs_005_8715_29_weapon_power_03   ; 
-- D 0 - - - 0x01855A 06:854A: 3A        .byte < ofs_005_9D3A_2A_boss_walrus    ; 
-- D 0 - - - 0x01855B 06:854B: C7        .byte < ofs_005_9EC7_2B_weapon_walrus   ; 
-- D 0 - - - 0x01855C 06:854C: 60        .byte < ofs_005_9F60_2C_boss_eel_1   ; 
-- D 0 - - - 0x01855D 06:854D: 60        .byte < ofs_005_9F60_2D_boss_eel_2   ; 
-- D 0 - - - 0x01855E 06:854E: CF        .byte < ofs_005_A1CF_2E_boss_seahorse   ; 
-- D 0 - - - 0x01855F 06:854F: 24        .byte < ofs_005_A324_2F_piranha_cannon   ; 
-- D 0 - - - 0x018560 06:8550: 6D        .byte < ofs_005_986D_30_shell   ; 
-- D 0 - - - 0x018561 06:8551: D5        .byte < ofs_005_97D5_31_rock_small   ; 
-- D 0 - - - 0x018562 06:8552: D5        .byte < ofs_005_97D5_32_rock_big   ; 
-- D 0 - - - 0x018563 06:8553: 5D        .byte < ofs_005_975D_33_barrel   ; 
-- D 0 - - - 0x018564 06:8554: 36        .byte < ofs_005_9A36_34_heart_big   ; 
-- D 0 - - - 0x018565 06:8555: 36        .byte < ofs_005_9A36_35_heart_small   ; 
-- D 0 - - - 0x018566 06:8556: 11        .byte < ofs_005_9A11_36_extra_life   ; 
-- D 0 - - - 0x018567 06:8557: EE        .byte < ofs_005_87EE_37_jar   ; 
-- D 0 - - - 0x018568 06:8558: 8B        .byte < ofs_005_998B_38_chest_pearl_purple   ; 
-- D 0 - - - 0x018569 06:8559: 8B        .byte < ofs_005_998B_39_chest_pearl_green   ; 
-- D 0 - - - 0x01856A 06:855A: 69        .byte < ofs_005_9A69_3A_item_fork   ; 
-- D 0 - - - 0x01856B 06:855B: 69        .byte < ofs_005_9A69_3B_item_pipe   ; 
-- D 0 - - - 0x01856C 06:855C: CB        .byte < ofs_005_8DCB_3C_spawner_volcano_bottom   ; 
-- D 0 - - - 0x01856D 06:855D: 8B        .byte < ofs_005_878B_3D_dead_boss   ; 
-- D 0 - - - 0x01856E 06:855E: 3D        .byte < ofs_005_A63D_3E_boss_ursula_small_dead   ; 
-- - - - - - 0x01856F 06:855F: 8E        .byte < ofs_005_888E_3F_RTS   ; unused but exists 0x013C37
-- D 0 - - - 0x018570 06:8560: 8E        .byte < ofs_005_888E_40_RTS_chest_empty   ; 
-- D 0 - - - 0x018571 06:8561: E3        .byte < ofs_005_8EE3_41_spawner_mini_fish   ; 
-- D 0 - - - 0x018572 06:8562: 7D        .byte < ofs_005_877D_42_dead_enemy   ; 
-- D 0 - - - 0x018573 06:8563: CB        .byte < ofs_005_8DCB_43_spawner_volcano_top   ; 
-- D 0 - - - 0x018574 06:8564: 8C        .byte < ofs_005_8E8C_44_projectile_volcano   ; 
-- D 0 - - - 0x018575 06:8565: 54        .byte < ofs_005_9654_45_sand_fish   ; 
-- D 0 - - - 0x018576 06:8566: E1        .byte < ofs_005_96E1_46_sand_splashes_fish   ; 
-- D 0 - - - 0x018577 06:8567: D9        .byte < ofs_005_A3D9_47_boss_ursula_small_top   ; 
-- D 0 - - - 0x018578 06:8568: 4F        .byte < ofs_005_A54F_48_projectile_ursula_fake   ; 
-- D 0 - - - 0x018579 06:8569: F0        .byte < ofs_005_A5F0_49_projectile_ursula_real   ; 
-- D 0 - - - 0x01857A 06:856A: F6        .byte < ofs_005_A5F6_4A_boss_ursula_small_bottom   ; 
-- D 0 - - - 0x01857B 06:856B: 6E        .byte < ofs_005_8F6E_4B_mini_fish_4   ; 
-- D 0 - - - 0x01857C 06:856C: 6B        .byte < ofs_005_876B_4C_bubble_burst   ; 
-- D 0 - - - 0x01857D 06:856D: A1        .byte < ofs_005_9AA1_4D_secret_heart_sand   ; 
-- D 0 - - - 0x01857E 06:856E: A1        .byte < ofs_005_9AA1_4E_secret_heart_left   ; 
-- D 0 - - - 0x01857F 06:856F: A1        .byte < ofs_005_9AA1_4F_secret_heart_right   ; 
-- D 0 - - - 0x018580 06:8570: A1        .byte < ofs_005_9AA1_50_secret_heart_down   ; 
-- D 0 - - - 0x018581 06:8571: A1        .byte < ofs_005_9AA1_51_secret_heart_up   ; 
-- D 0 - - - 0x018582 06:8572: 0A        .byte < ofs_005_9B0A_52_secret_item_sand   ; 
-- D 0 - - - 0x018583 06:8573: 0A        .byte < ofs_005_9B0A_53_secret_item_left   ; 
-- - - - - - 0x018584 06:8574: 0A        .byte < ofs_005_9B0A_54_secret_item_right   ;  unused but working
-- D 0 - - - 0x018585 06:8575: 0A        .byte < ofs_005_9B0A_55_secret_item_down   ; 
-- D 0 - - - 0x018586 06:8576: 0A        .byte < ofs_005_9B0A_56_secret_item_up   ; 
-- D 0 - - - 0x018587 06:8577: 92        .byte < ofs_005_A692_57_boss_ursula_big_alive   ; 
-- D 0 - - - 0x018588 06:8578: 3E        .byte < ofs_005_A83E_58_piranha_minion_ursula   ; 
-- D 0 - - - 0x018589 06:8579: 79        .byte < ofs_005_A879_59_boss_ursula_big_dead   ; 
-- D 0 - - - 0x01858A 06:857A: D8        .byte < ofs_005_A0D8_5A_spawner_crabs   ; 
-- D 0 - - - 0x01858B 06:857B: 24        .byte < ofs_005_A324_5B_starfish_2   ; 
-- D 0 - - - 0x01858C 06:857C: 21        .byte < ofs_005_8821_5C_half_trapped_enemy   ; 
-- D 0 - - - 0x01858D 06:857D: 72        .byte < ofs_005_8872_5D_swimming_bubbles   ; 
-- D 0 - - - 0x01858E 06:857E: 7F        .byte < ofs_005_887F_5E_teleport   ; 
-- - - - - - 0x01858F 06:857F: 8E        .byte < ofs_005_888E_5F_RTS   ; unused
+- D 0 - - - 0x018530 06:8520: E0        .byte < ofs_005_obj_hadler_85E0_00_RTS
+- D 0 - - - 0x018531 06:8521: E1        .byte < ofs_005_obj_hadler_85E1_01_projectile_player
+- D 0 - - - 0x018532 06:8522: 8F        .byte < ofs_005_obj_hadler_888F_02_enemy_inside_bubble
+- D 0 - - - 0x018533 06:8523: 14        .byte < ofs_005_obj_hadler_8A14_03_piranha_stupid
+- D 0 - - - 0x018534 06:8524: 7A        .byte < ofs_005_obj_hadler_867A_04_sand_splashes_player
+- D 0 - - - 0x018535 06:8525: 65        .byte < ofs_005_obj_hadler_8A65_05_seahorse
+- D 0 - - - 0x018536 06:8526: 9B        .byte < ofs_005_obj_hadler_8A9B_06_piranha_ghost 
+- D 0 - - - 0x018537 06:8527: DC        .byte < ofs_005_obj_hadler_8BDC_07_ghost_sheet
+- D 0 - - - 0x018538 06:8528: E2        .byte < ofs_005_obj_hadler_8BE2_08_shooting_fish
+- D 0 - - - 0x018539 06:8529: A3        .byte < ofs_005_obj_hadler_8CA3_09_projectile_shooting_fish
+- D 0 - - - 0x01853A 06:852A: BA        .byte < ofs_005_obj_hadler_8CBA_0A_octopus
+- D 0 - - - 0x01853B 06:852B: C5        .byte < ofs_005_obj_hadler_8DC5_0B_projectile_octopus
+- D 0 - - - 0x01853C 06:852C: A7        .byte < ofs_005_obj_hadler_9BA7_0C_boss_shark_1
+- D 0 - - - 0x01853D 06:852D: C4        .byte < ofs_005_obj_hadler_9CC4_0D_boss_shark_2
+- D 0 - - - 0x01853E 06:852E: 37        .byte < ofs_005_obj_hadler_9D37_0E_piranha_minion_shark
+- D 0 - - - 0x01853F 06:852F: B3        .byte < ofs_005_obj_hadler_A3B3_0F_cannon
+- D 0 - - - 0x018540 06:8530: 89        .byte < ofs_005_obj_hadler_8F89_10_sea_urchin_1
+- D 0 - - - 0x018541 06:8531: C7        .byte < ofs_005_obj_hadler_8FC7_11_spawner_sea_urchin
+- D 0 - - - 0x018542 06:8532: 46        .byte < ofs_005_obj_hadler_9046_12_piranha_smart
+- D 0 - - - 0x018543 06:8533: F0        .byte < ofs_005_obj_hadler_A5F0_13_sea_urchin_2
+- D 0 - - - 0x018544 06:8534: F0        .byte < ofs_005_obj_hadler_A5F0_14_starfish_3
+- D 0 - - - 0x018545 06:8535: 8F        .byte < ofs_005_obj_hadler_908F_15_crab_naked
+- D 0 - - - 0x018546 06:8536: D9        .byte < ofs_005_obj_hadler_91D9_16_mini_fish_1
+- - - - - - 0x018547 06:8537: 3F        .byte < ofs_005_obj_hadler_913F_17   ; unused but exists 0x013C1B
+- - - - - - 0x018548 06:8538: 3F        .byte < ofs_005_obj_hadler_913F_18   ; unused, index doesn't exist
+- - - - - - 0x018549 06:8539: 3F        .byte < ofs_005_obj_hadler_913F_19   ; unused, index doesn't exist
+- - - - - - 0x01854A 06:853A: 3F        .byte < ofs_005_obj_hadler_913F_1A   ; unused, index doesn't exist
+- - - - - - 0x01854B 06:853B: 3F        .byte < ofs_005_obj_hadler_913F_1B   ; unused, index doesn't exist
+- D 0 - - - 0x01854C 06:853C: A9        .byte < ofs_005_obj_hadler_92A9_1C_sleeping_fish
+- D 0 - - - 0x01854D 06:853D: 29        .byte < ofs_005_obj_hadler_9229_1D_mini_fish_2
+- D 0 - - - 0x01854E 06:853E: 67        .byte < ofs_005_obj_hadler_9367_1E_mother_fish
+- D 0 - - - 0x01854F 06:853F: 74        .byte < ofs_005_obj_hadler_9274_1F_mini_fish_3
+- D 0 - - - 0x018550 06:8540: 0C        .byte < ofs_005_obj_hadler_940C_20_shrimp
+- D 0 - - - 0x018551 06:8541: 60        .byte < ofs_005_obj_hadler_9460_21_RTS_green_snake
+- D 0 - - - 0x018552 06:8542: 61        .byte < ofs_005_obj_hadler_9461_22_spawner_starfish
+- D 0 - - - 0x018553 06:8543: 4F        .byte < ofs_005_obj_hadler_954F_23_starfish_1
+- D 0 - - - 0x018554 06:8544: 04        .byte < ofs_005_obj_hadler_9604_24_ice_cube_fish
+- D 0 - - - 0x018555 06:8545: 8F        .byte < ofs_005_obj_hadler_908F_25_crab_helmet
+- D 0 - - - 0x018556 06:8546: 9D        .byte < ofs_005_obj_hadler_869D_26_weapon_power_00
+- D 0 - - - 0x018557 06:8547: C1        .byte < ofs_005_obj_hadler_86C1_27_weapon_power_01
+- D 0 - - - 0x018558 06:8548: F1        .byte < ofs_005_obj_hadler_86F1_28_weapon_power_02
+- D 0 - - - 0x018559 06:8549: 15        .byte < ofs_005_obj_hadler_8715_29_weapon_power_03
+- D 0 - - - 0x01855A 06:854A: 3A        .byte < ofs_005_obj_hadler_9D3A_2A_boss_walrus 
+- D 0 - - - 0x01855B 06:854B: C7        .byte < ofs_005_obj_hadler_9EC7_2B_weapon_walrus
+- D 0 - - - 0x01855C 06:854C: 60        .byte < ofs_005_obj_hadler_9F60_2C_boss_eel_1
+- D 0 - - - 0x01855D 06:854D: 60        .byte < ofs_005_obj_hadler_9F60_2D_boss_eel_2
+- D 0 - - - 0x01855E 06:854E: CF        .byte < ofs_005_obj_hadler_A1CF_2E_boss_seahorse
+- D 0 - - - 0x01855F 06:854F: 24        .byte < ofs_005_obj_hadler_A324_2F_piranha_cannon
+- D 0 - - - 0x018560 06:8550: 6D        .byte < ofs_005_obj_hadler_986D_30_shell
+- D 0 - - - 0x018561 06:8551: D5        .byte < ofs_005_obj_hadler_97D5_31_rock_small
+- D 0 - - - 0x018562 06:8552: D5        .byte < ofs_005_obj_hadler_97D5_32_rock_big
+- D 0 - - - 0x018563 06:8553: 5D        .byte < ofs_005_obj_hadler_975D_33_barrel
+- D 0 - - - 0x018564 06:8554: 36        .byte < ofs_005_obj_hadler_9A36_34_heart_big
+- D 0 - - - 0x018565 06:8555: 36        .byte < ofs_005_obj_hadler_9A36_35_heart_small
+- D 0 - - - 0x018566 06:8556: 11        .byte < ofs_005_obj_hadler_9A11_36_extra_life
+- D 0 - - - 0x018567 06:8557: EE        .byte < ofs_005_obj_hadler_87EE_37_jar
+- D 0 - - - 0x018568 06:8558: 8B        .byte < ofs_005_obj_hadler_998B_38_chest_pearl_purple
+- D 0 - - - 0x018569 06:8559: 8B        .byte < ofs_005_obj_hadler_998B_39_chest_pearl_green
+- D 0 - - - 0x01856A 06:855A: 69        .byte < ofs_005_obj_hadler_9A69_3A_item_fork
+- D 0 - - - 0x01856B 06:855B: 69        .byte < ofs_005_obj_hadler_9A69_3B_item_pipe
+- D 0 - - - 0x01856C 06:855C: CB        .byte < ofs_005_obj_hadler_8DCB_3C_spawner_volcano_bottom
+- D 0 - - - 0x01856D 06:855D: 8B        .byte < ofs_005_obj_hadler_878B_3D_dead_boss
+- D 0 - - - 0x01856E 06:855E: 3D        .byte < ofs_005_obj_hadler_A63D_3E_boss_ursula_small_dead
+- - - - - - 0x01856F 06:855F: 8E        .byte < ofs_005_obj_hadler_888E_3F_RTS   ; unused but exists 0x013C37
+- D 0 - - - 0x018570 06:8560: 8E        .byte < ofs_005_obj_hadler_888E_40_RTS_chest_empty
+- D 0 - - - 0x018571 06:8561: E3        .byte < ofs_005_obj_hadler_8EE3_41_spawner_mini_fish
+- D 0 - - - 0x018572 06:8562: 7D        .byte < ofs_005_obj_hadler_877D_42_dead_enemy
+- D 0 - - - 0x018573 06:8563: CB        .byte < ofs_005_obj_hadler_8DCB_43_spawner_volcano_top
+- D 0 - - - 0x018574 06:8564: 8C        .byte < ofs_005_obj_hadler_8E8C_44_projectile_volcano
+- D 0 - - - 0x018575 06:8565: 54        .byte < ofs_005_obj_hadler_9654_45_sand_fish
+- D 0 - - - 0x018576 06:8566: E1        .byte < ofs_005_obj_hadler_96E1_46_sand_splashes_fish
+- D 0 - - - 0x018577 06:8567: D9        .byte < ofs_005_obj_hadler_A3D9_47_boss_ursula_small_top
+- D 0 - - - 0x018578 06:8568: 4F        .byte < ofs_005_obj_hadler_A54F_48_projectile_ursula_fake
+- D 0 - - - 0x018579 06:8569: F0        .byte < ofs_005_obj_hadler_A5F0_49_projectile_ursula_real
+- D 0 - - - 0x01857A 06:856A: F6        .byte < ofs_005_obj_hadler_A5F6_4A_boss_ursula_small_bottom
+- D 0 - - - 0x01857B 06:856B: 6E        .byte < ofs_005_obj_hadler_8F6E_4B_mini_fish_4
+- D 0 - - - 0x01857C 06:856C: 6B        .byte < ofs_005_obj_hadler_876B_4C_bubble_burst
+- D 0 - - - 0x01857D 06:856D: A1        .byte < ofs_005_obj_hadler_9AA1_4D_secret_heart_sand
+- D 0 - - - 0x01857E 06:856E: A1        .byte < ofs_005_obj_hadler_9AA1_4E_secret_heart_left
+- D 0 - - - 0x01857F 06:856F: A1        .byte < ofs_005_obj_hadler_9AA1_4F_secret_heart_right
+- D 0 - - - 0x018580 06:8570: A1        .byte < ofs_005_obj_hadler_9AA1_50_secret_heart_down
+- D 0 - - - 0x018581 06:8571: A1        .byte < ofs_005_obj_hadler_9AA1_51_secret_heart_up
+- D 0 - - - 0x018582 06:8572: 0A        .byte < ofs_005_obj_hadler_9B0A_52_secret_item_sand
+- D 0 - - - 0x018583 06:8573: 0A        .byte < ofs_005_obj_hadler_9B0A_53_secret_item_left
+- - - - - - 0x018584 06:8574: 0A        .byte < ofs_005_obj_hadler_9B0A_54_secret_item_right   ;  unused but working
+- D 0 - - - 0x018585 06:8575: 0A        .byte < ofs_005_obj_hadler_9B0A_55_secret_item_down
+- D 0 - - - 0x018586 06:8576: 0A        .byte < ofs_005_obj_hadler_9B0A_56_secret_item_up
+- D 0 - - - 0x018587 06:8577: 92        .byte < ofs_005_obj_hadler_A692_57_boss_ursula_big_alive
+- D 0 - - - 0x018588 06:8578: 3E        .byte < ofs_005_obj_hadler_A83E_58_piranha_minion_ursula
+- D 0 - - - 0x018589 06:8579: 79        .byte < ofs_005_obj_hadler_A879_59_boss_ursula_big_dead
+- D 0 - - - 0x01858A 06:857A: D8        .byte < ofs_005_obj_hadler_A0D8_5A_spawner_crabs
+- D 0 - - - 0x01858B 06:857B: 24        .byte < ofs_005_obj_hadler_A324_5B_starfish_2
+- D 0 - - - 0x01858C 06:857C: 21        .byte < ofs_005_obj_hadler_8821_5C_half_trapped_enemy
+- D 0 - - - 0x01858D 06:857D: 72        .byte < ofs_005_obj_hadler_8872_5D_swimming_bubbles
+- D 0 - - - 0x01858E 06:857E: 7F        .byte < ofs_005_obj_hadler_887F_5E_teleport
+- - - - - - 0x01858F 06:857F: 8E        .byte < ofs_005_obj_hadler_888E_5F_RTS   ; unused, index doesn't exist
 
 
 
 tbl_8580_hi:
+; see con_obj_id
 ; see screenshots inside misc folder
-- D 0 - - - 0x018590 06:8580: 85        .byte > ofs_005_85E0_00_RTS   ; 
-- D 0 - - - 0x018591 06:8581: 85        .byte > ofs_005_85E1_01_projectile_player   ; 
-- D 0 - - - 0x018592 06:8582: 88        .byte > ofs_005_888F_02_enemy_inside_bubble   ; 
-- D 0 - - - 0x018593 06:8583: 8A        .byte > ofs_005_8A14_03_piranha_stupid   ; 
-- D 0 - - - 0x018594 06:8584: 86        .byte > ofs_005_867A_04_sand_splashes_player   ; 
-- D 0 - - - 0x018595 06:8585: 8A        .byte > ofs_005_8A65_05_seahorse   ; 
-- D 0 - - - 0x018596 06:8586: 8A        .byte > ofs_005_8A9B_06_piranha_ghost    ; 
-- D 0 - - - 0x018597 06:8587: 8B        .byte > ofs_005_8BDC_07_ghost_sheet   ; 
-- D 0 - - - 0x018598 06:8588: 8B        .byte > ofs_005_8BE2_08_shooting_fish   ; 
-- D 0 - - - 0x018599 06:8589: 8C        .byte > ofs_005_8CA3_09_projectile_shooting_fish   ; 
-- D 0 - - - 0x01859A 06:858A: 8C        .byte > ofs_005_8CBA_0A_octopus   ; 
-- D 0 - - - 0x01859B 06:858B: 8D        .byte > ofs_005_8DC5_0B_projectile_octopus   ; 
-- D 0 - - - 0x01859C 06:858C: 9B        .byte > ofs_005_9BA7_0C_boss_shark_1   ; 
-- D 0 - - - 0x01859D 06:858D: 9C        .byte > ofs_005_9CC4_0D_boss_shark_2   ; 
-- D 0 - - - 0x01859E 06:858E: 9D        .byte > ofs_005_9D37_0E_piranha_minion_shark   ; 
-- D 0 - - - 0x01859F 06:858F: A3        .byte > ofs_005_A3B3_0F_cannon   ; 
-- D 0 - - - 0x0185A0 06:8590: 8F        .byte > ofs_005_8F89_10_sea_urchin_1   ; 
-- D 0 - - - 0x0185A1 06:8591: 8F        .byte > ofs_005_8FC7_11_spawner_sea_urchin   ; 
-- D 0 - - - 0x0185A2 06:8592: 90        .byte > ofs_005_9046_12_piranha_smart   ; 
-- D 0 - - - 0x0185A3 06:8593: A5        .byte > ofs_005_A5F0_13_sea_urchin_2   ; 
-- D 0 - - - 0x0185A4 06:8594: A5        .byte > ofs_005_A5F0_14_starfish_3   ; 
-- D 0 - - - 0x0185A5 06:8595: 90        .byte > ofs_005_908F_15_crab_naked   ; 
-- D 0 - - - 0x0185A6 06:8596: 91        .byte > ofs_005_91D9_16_mini_fish_1   ; 
-- - - - - - 0x0185A7 06:8597: 91        .byte > ofs_005_913F_17   ; unused but exists 0x013C1B
-- - - - - - 0x0185A8 06:8598: 91        .byte > ofs_005_913F_18   ; unused
-- - - - - - 0x0185A9 06:8599: 91        .byte > ofs_005_913F_19   ; unused
-- - - - - - 0x0185AA 06:859A: 91        .byte > ofs_005_913F_1A   ; unused
-- - - - - - 0x0185AB 06:859B: 91        .byte > ofs_005_913F_1B   ; unused
-- D 0 - - - 0x0185AC 06:859C: 92        .byte > ofs_005_92A9_1C_sleeping_fish   ; 
-- D 0 - - - 0x0185AD 06:859D: 92        .byte > ofs_005_9229_1D_mini_fish_2   ; 
-- D 0 - - - 0x0185AE 06:859E: 93        .byte > ofs_005_9367_1E_mother_fish   ; 
-- D 0 - - - 0x0185AF 06:859F: 92        .byte > ofs_005_9274_1F_mini_fish_3   ; 
-- D 0 - - - 0x0185B0 06:85A0: 94        .byte > ofs_005_940C_20_shrimp   ; 
-- D 0 - - - 0x0185B1 06:85A1: 94        .byte > ofs_005_9460_21_RTS_green_snake   ; 
-- D 0 - - - 0x0185B2 06:85A2: 94        .byte > ofs_005_9461_22_spawner_starfish   ; 
-- D 0 - - - 0x0185B3 06:85A3: 95        .byte > ofs_005_954F_23_starfish_1   ; 
-- D 0 - - - 0x0185B4 06:85A4: 96        .byte > ofs_005_9604_24_ice_cube_fish   ; 
-- D 0 - - - 0x0185B5 06:85A5: 90        .byte > ofs_005_908F_25_crab_helmet   ; 
-- D 0 - - - 0x0185B6 06:85A6: 86        .byte > ofs_005_869D_26_weapon_power_00   ; 
-- D 0 - - - 0x0185B7 06:85A7: 86        .byte > ofs_005_86C1_27_weapon_power_01   ; 
-- D 0 - - - 0x0185B8 06:85A8: 86        .byte > ofs_005_86F1_28_weapon_power_02   ; 
-- D 0 - - - 0x0185B9 06:85A9: 87        .byte > ofs_005_8715_29_weapon_power_03   ; 
-- D 0 - - - 0x0185BA 06:85AA: 9D        .byte > ofs_005_9D3A_2A_boss_walrus    ; 
-- D 0 - - - 0x0185BB 06:85AB: 9E        .byte > ofs_005_9EC7_2B_weapon_walrus   ; 
-- D 0 - - - 0x0185BC 06:85AC: 9F        .byte > ofs_005_9F60_2C_boss_eel_1   ; 
-- D 0 - - - 0x0185BD 06:85AD: 9F        .byte > ofs_005_9F60_2D_boss_eel_2   ; 
-- D 0 - - - 0x0185BE 06:85AE: A1        .byte > ofs_005_A1CF_2E_boss_seahorse   ; 
-- D 0 - - - 0x0185BF 06:85AF: A3        .byte > ofs_005_A324_2F_piranha_cannon   ; 
-- D 0 - - - 0x0185C0 06:85B0: 98        .byte > ofs_005_986D_30_shell   ; 
-- D 0 - - - 0x0185C1 06:85B1: 97        .byte > ofs_005_97D5_31_rock_small   ; 
-- D 0 - - - 0x0185C2 06:85B2: 97        .byte > ofs_005_97D5_32_rock_big   ; 
-- D 0 - - - 0x0185C3 06:85B3: 97        .byte > ofs_005_975D_33_barrel   ; 
-- D 0 - - - 0x0185C4 06:85B4: 9A        .byte > ofs_005_9A36_34_heart_big   ; 
-- D 0 - - - 0x0185C5 06:85B5: 9A        .byte > ofs_005_9A36_35_heart_small   ; 
-- D 0 - - - 0x0185C6 06:85B6: 9A        .byte > ofs_005_9A11_36_extra_life   ; 
-- D 0 - - - 0x0185C7 06:85B7: 87        .byte > ofs_005_87EE_37_jar   ; 
-- D 0 - - - 0x0185C8 06:85B8: 99        .byte > ofs_005_998B_38_chest_pearl_purple   ; 
-- D 0 - - - 0x0185C9 06:85B9: 99        .byte > ofs_005_998B_39_chest_pearl_green   ; 
-- D 0 - - - 0x0185CA 06:85BA: 9A        .byte > ofs_005_9A69_3A_item_fork   ; 
-- D 0 - - - 0x0185CB 06:85BB: 9A        .byte > ofs_005_9A69_3B_item_pipe   ; 
-- D 0 - - - 0x0185CC 06:85BC: 8D        .byte > ofs_005_8DCB_3C_spawner_volcano_bottom   ; 
-- D 0 - - - 0x0185CD 06:85BD: 87        .byte > ofs_005_878B_3D_dead_boss   ; 
-- D 0 - - - 0x0185CE 06:85BE: A6        .byte > ofs_005_A63D_3E_boss_ursula_small_dead   ; 
-- - - - - - 0x0185CF 06:85BF: 88        .byte > ofs_005_888E_3F_RTS   ; unused but exists 0x013C37
-- D 0 - - - 0x0185D0 06:85C0: 88        .byte > ofs_005_888E_40_RTS_chest_empty   ; 
-- D 0 - - - 0x0185D1 06:85C1: 8E        .byte > ofs_005_8EE3_41_spawner_mini_fish   ; 
-- D 0 - - - 0x0185D2 06:85C2: 87        .byte > ofs_005_877D_42_dead_enemy   ; 
-- D 0 - - - 0x0185D3 06:85C3: 8D        .byte > ofs_005_8DCB_43_spawner_volcano_top   ; 
-- D 0 - - - 0x0185D4 06:85C4: 8E        .byte > ofs_005_8E8C_44_projectile_volcano   ; 
-- D 0 - - - 0x0185D5 06:85C5: 96        .byte > ofs_005_9654_45_sand_fish   ; 
-- D 0 - - - 0x0185D6 06:85C6: 96        .byte > ofs_005_96E1_46_sand_splashes_fish   ; 
-- D 0 - - - 0x0185D7 06:85C7: A3        .byte > ofs_005_A3D9_47_boss_ursula_small_top   ; 
-- D 0 - - - 0x0185D8 06:85C8: A5        .byte > ofs_005_A54F_48_projectile_ursula_fake   ; 
-- D 0 - - - 0x0185D9 06:85C9: A5        .byte > ofs_005_A5F0_49_projectile_ursula_real   ; 
-- D 0 - - - 0x0185DA 06:85CA: A5        .byte > ofs_005_A5F6_4A_boss_ursula_small_bottom   ; 
-- D 0 - - - 0x0185DB 06:85CB: 8F        .byte > ofs_005_8F6E_4B_mini_fish_4   ; 
-- D 0 - - - 0x0185DC 06:85CC: 87        .byte > ofs_005_876B_4C_bubble_burst   ; 
-- D 0 - - - 0x0185DD 06:85CD: 9A        .byte > ofs_005_9AA1_4D_secret_heart_sand   ; 
-- D 0 - - - 0x0185DE 06:85CE: 9A        .byte > ofs_005_9AA1_4E_secret_heart_left   ; 
-- D 0 - - - 0x0185DF 06:85CF: 9A        .byte > ofs_005_9AA1_4F_secret_heart_right   ; 
-- D 0 - - - 0x0185E0 06:85D0: 9A        .byte > ofs_005_9AA1_50_secret_heart_down   ; 
-- D 0 - - - 0x0185E1 06:85D1: 9A        .byte > ofs_005_9AA1_51_secret_heart_up   ; 
-- D 0 - - - 0x0185E2 06:85D2: 9B        .byte > ofs_005_9B0A_52_secret_item_sand   ; 
-- D 0 - - - 0x0185E3 06:85D3: 9B        .byte > ofs_005_9B0A_53_secret_item_left   ; 
-- - - - - - 0x0185E4 06:85D4: 9B        .byte > ofs_005_9B0A_54_secret_item_right   ;  unused but working
-- D 0 - - - 0x0185E5 06:85D5: 9B        .byte > ofs_005_9B0A_55_secret_item_down   ; 
-- D 0 - - - 0x0185E6 06:85D6: 9B        .byte > ofs_005_9B0A_56_secret_item_up   ; 
-- D 0 - - - 0x0185E7 06:85D7: A6        .byte > ofs_005_A692_57_boss_ursula_big_alive   ; 
-- D 0 - - - 0x0185E8 06:85D8: A8        .byte > ofs_005_A83E_58_piranha_minion_ursula   ; 
-- D 0 - - - 0x0185E9 06:85D9: A8        .byte > ofs_005_A879_59_boss_ursula_big_dead   ; 
-- D 0 - - - 0x0185EA 06:85DA: A0        .byte > ofs_005_A0D8_5A_spawner_crabs   ; 
-- D 0 - - - 0x0185EB 06:85DB: A3        .byte > ofs_005_A324_5B_starfish_2   ; 
-- D 0 - - - 0x0185EC 06:85DC: 88        .byte > ofs_005_8821_5C_half_trapped_enemy   ; 
-- D 0 - - - 0x0185ED 06:85DD: 88        .byte > ofs_005_8872_5D_swimming_bubbles   ; 
-- D 0 - - - 0x0185EE 06:85DE: 88        .byte > ofs_005_887F_5E_teleport   ; 
-- - - - - - 0x0185EF 06:85DF: 88        .byte > ofs_005_888E_5F_RTS   ; unused
+- D 0 - - - 0x018590 06:8580: 85        .byte > ofs_005_obj_hadler_85E0_00_RTS
+- D 0 - - - 0x018591 06:8581: 85        .byte > ofs_005_obj_hadler_85E1_01_projectile_player
+- D 0 - - - 0x018592 06:8582: 88        .byte > ofs_005_obj_hadler_888F_02_enemy_inside_bubble
+- D 0 - - - 0x018593 06:8583: 8A        .byte > ofs_005_obj_hadler_8A14_03_piranha_stupid
+- D 0 - - - 0x018594 06:8584: 86        .byte > ofs_005_obj_hadler_867A_04_sand_splashes_player
+- D 0 - - - 0x018595 06:8585: 8A        .byte > ofs_005_obj_hadler_8A65_05_seahorse
+- D 0 - - - 0x018596 06:8586: 8A        .byte > ofs_005_obj_hadler_8A9B_06_piranha_ghost 
+- D 0 - - - 0x018597 06:8587: 8B        .byte > ofs_005_obj_hadler_8BDC_07_ghost_sheet
+- D 0 - - - 0x018598 06:8588: 8B        .byte > ofs_005_obj_hadler_8BE2_08_shooting_fish
+- D 0 - - - 0x018599 06:8589: 8C        .byte > ofs_005_obj_hadler_8CA3_09_projectile_shooting_fish
+- D 0 - - - 0x01859A 06:858A: 8C        .byte > ofs_005_obj_hadler_8CBA_0A_octopus
+- D 0 - - - 0x01859B 06:858B: 8D        .byte > ofs_005_obj_hadler_8DC5_0B_projectile_octopus
+- D 0 - - - 0x01859C 06:858C: 9B        .byte > ofs_005_obj_hadler_9BA7_0C_boss_shark_1
+- D 0 - - - 0x01859D 06:858D: 9C        .byte > ofs_005_obj_hadler_9CC4_0D_boss_shark_2
+- D 0 - - - 0x01859E 06:858E: 9D        .byte > ofs_005_obj_hadler_9D37_0E_piranha_minion_shark
+- D 0 - - - 0x01859F 06:858F: A3        .byte > ofs_005_obj_hadler_A3B3_0F_cannon
+- D 0 - - - 0x0185A0 06:8590: 8F        .byte > ofs_005_obj_hadler_8F89_10_sea_urchin_1
+- D 0 - - - 0x0185A1 06:8591: 8F        .byte > ofs_005_obj_hadler_8FC7_11_spawner_sea_urchin
+- D 0 - - - 0x0185A2 06:8592: 90        .byte > ofs_005_obj_hadler_9046_12_piranha_smart
+- D 0 - - - 0x0185A3 06:8593: A5        .byte > ofs_005_obj_hadler_A5F0_13_sea_urchin_2
+- D 0 - - - 0x0185A4 06:8594: A5        .byte > ofs_005_obj_hadler_A5F0_14_starfish_3
+- D 0 - - - 0x0185A5 06:8595: 90        .byte > ofs_005_obj_hadler_908F_15_crab_naked
+- D 0 - - - 0x0185A6 06:8596: 91        .byte > ofs_005_obj_hadler_91D9_16_mini_fish_1
+- - - - - - 0x0185A7 06:8597: 91        .byte > ofs_005_obj_hadler_913F_17   ; unused but exists 0x013C1B
+- - - - - - 0x0185A8 06:8598: 91        .byte > ofs_005_obj_hadler_913F_18   ; unused, index doesn't exist
+- - - - - - 0x0185A9 06:8599: 91        .byte > ofs_005_obj_hadler_913F_19   ; unused, index doesn't exist
+- - - - - - 0x0185AA 06:859A: 91        .byte > ofs_005_obj_hadler_913F_1A   ; unused, index doesn't exist
+- - - - - - 0x0185AB 06:859B: 91        .byte > ofs_005_obj_hadler_913F_1B   ; unused, index doesn't exist
+- D 0 - - - 0x0185AC 06:859C: 92        .byte > ofs_005_obj_hadler_92A9_1C_sleeping_fish
+- D 0 - - - 0x0185AD 06:859D: 92        .byte > ofs_005_obj_hadler_9229_1D_mini_fish_2
+- D 0 - - - 0x0185AE 06:859E: 93        .byte > ofs_005_obj_hadler_9367_1E_mother_fish
+- D 0 - - - 0x0185AF 06:859F: 92        .byte > ofs_005_obj_hadler_9274_1F_mini_fish_3
+- D 0 - - - 0x0185B0 06:85A0: 94        .byte > ofs_005_obj_hadler_940C_20_shrimp
+- D 0 - - - 0x0185B1 06:85A1: 94        .byte > ofs_005_obj_hadler_9460_21_RTS_green_snake
+- D 0 - - - 0x0185B2 06:85A2: 94        .byte > ofs_005_obj_hadler_9461_22_spawner_starfish
+- D 0 - - - 0x0185B3 06:85A3: 95        .byte > ofs_005_obj_hadler_954F_23_starfish_1
+- D 0 - - - 0x0185B4 06:85A4: 96        .byte > ofs_005_obj_hadler_9604_24_ice_cube_fish
+- D 0 - - - 0x0185B5 06:85A5: 90        .byte > ofs_005_obj_hadler_908F_25_crab_helmet
+- D 0 - - - 0x0185B6 06:85A6: 86        .byte > ofs_005_obj_hadler_869D_26_weapon_power_00
+- D 0 - - - 0x0185B7 06:85A7: 86        .byte > ofs_005_obj_hadler_86C1_27_weapon_power_01
+- D 0 - - - 0x0185B8 06:85A8: 86        .byte > ofs_005_obj_hadler_86F1_28_weapon_power_02
+- D 0 - - - 0x0185B9 06:85A9: 87        .byte > ofs_005_obj_hadler_8715_29_weapon_power_03
+- D 0 - - - 0x0185BA 06:85AA: 9D        .byte > ofs_005_obj_hadler_9D3A_2A_boss_walrus 
+- D 0 - - - 0x0185BB 06:85AB: 9E        .byte > ofs_005_obj_hadler_9EC7_2B_weapon_walrus
+- D 0 - - - 0x0185BC 06:85AC: 9F        .byte > ofs_005_obj_hadler_9F60_2C_boss_eel_1
+- D 0 - - - 0x0185BD 06:85AD: 9F        .byte > ofs_005_obj_hadler_9F60_2D_boss_eel_2
+- D 0 - - - 0x0185BE 06:85AE: A1        .byte > ofs_005_obj_hadler_A1CF_2E_boss_seahorse
+- D 0 - - - 0x0185BF 06:85AF: A3        .byte > ofs_005_obj_hadler_A324_2F_piranha_cannon
+- D 0 - - - 0x0185C0 06:85B0: 98        .byte > ofs_005_obj_hadler_986D_30_shell
+- D 0 - - - 0x0185C1 06:85B1: 97        .byte > ofs_005_obj_hadler_97D5_31_rock_small
+- D 0 - - - 0x0185C2 06:85B2: 97        .byte > ofs_005_obj_hadler_97D5_32_rock_big
+- D 0 - - - 0x0185C3 06:85B3: 97        .byte > ofs_005_obj_hadler_975D_33_barrel
+- D 0 - - - 0x0185C4 06:85B4: 9A        .byte > ofs_005_obj_hadler_9A36_34_heart_big
+- D 0 - - - 0x0185C5 06:85B5: 9A        .byte > ofs_005_obj_hadler_9A36_35_heart_small
+- D 0 - - - 0x0185C6 06:85B6: 9A        .byte > ofs_005_obj_hadler_9A11_36_extra_life
+- D 0 - - - 0x0185C7 06:85B7: 87        .byte > ofs_005_obj_hadler_87EE_37_jar
+- D 0 - - - 0x0185C8 06:85B8: 99        .byte > ofs_005_obj_hadler_998B_38_chest_pearl_purple
+- D 0 - - - 0x0185C9 06:85B9: 99        .byte > ofs_005_obj_hadler_998B_39_chest_pearl_green
+- D 0 - - - 0x0185CA 06:85BA: 9A        .byte > ofs_005_obj_hadler_9A69_3A_item_fork
+- D 0 - - - 0x0185CB 06:85BB: 9A        .byte > ofs_005_obj_hadler_9A69_3B_item_pipe
+- D 0 - - - 0x0185CC 06:85BC: 8D        .byte > ofs_005_obj_hadler_8DCB_3C_spawner_volcano_bottom
+- D 0 - - - 0x0185CD 06:85BD: 87        .byte > ofs_005_obj_hadler_878B_3D_dead_boss
+- D 0 - - - 0x0185CE 06:85BE: A6        .byte > ofs_005_obj_hadler_A63D_3E_boss_ursula_small_dead
+- - - - - - 0x0185CF 06:85BF: 88        .byte > ofs_005_obj_hadler_888E_3F_RTS   ; unused but exists 0x013C37
+- D 0 - - - 0x0185D0 06:85C0: 88        .byte > ofs_005_obj_hadler_888E_40_RTS_chest_empty
+- D 0 - - - 0x0185D1 06:85C1: 8E        .byte > ofs_005_obj_hadler_8EE3_41_spawner_mini_fish
+- D 0 - - - 0x0185D2 06:85C2: 87        .byte > ofs_005_obj_hadler_877D_42_dead_enemy
+- D 0 - - - 0x0185D3 06:85C3: 8D        .byte > ofs_005_obj_hadler_8DCB_43_spawner_volcano_top
+- D 0 - - - 0x0185D4 06:85C4: 8E        .byte > ofs_005_obj_hadler_8E8C_44_projectile_volcano
+- D 0 - - - 0x0185D5 06:85C5: 96        .byte > ofs_005_obj_hadler_9654_45_sand_fish
+- D 0 - - - 0x0185D6 06:85C6: 96        .byte > ofs_005_obj_hadler_96E1_46_sand_splashes_fish
+- D 0 - - - 0x0185D7 06:85C7: A3        .byte > ofs_005_obj_hadler_A3D9_47_boss_ursula_small_top
+- D 0 - - - 0x0185D8 06:85C8: A5        .byte > ofs_005_obj_hadler_A54F_48_projectile_ursula_fake
+- D 0 - - - 0x0185D9 06:85C9: A5        .byte > ofs_005_obj_hadler_A5F0_49_projectile_ursula_real
+- D 0 - - - 0x0185DA 06:85CA: A5        .byte > ofs_005_obj_hadler_A5F6_4A_boss_ursula_small_bottom
+- D 0 - - - 0x0185DB 06:85CB: 8F        .byte > ofs_005_obj_hadler_8F6E_4B_mini_fish_4
+- D 0 - - - 0x0185DC 06:85CC: 87        .byte > ofs_005_obj_hadler_876B_4C_bubble_burst
+- D 0 - - - 0x0185DD 06:85CD: 9A        .byte > ofs_005_obj_hadler_9AA1_4D_secret_heart_sand
+- D 0 - - - 0x0185DE 06:85CE: 9A        .byte > ofs_005_obj_hadler_9AA1_4E_secret_heart_left
+- D 0 - - - 0x0185DF 06:85CF: 9A        .byte > ofs_005_obj_hadler_9AA1_4F_secret_heart_right
+- D 0 - - - 0x0185E0 06:85D0: 9A        .byte > ofs_005_obj_hadler_9AA1_50_secret_heart_down
+- D 0 - - - 0x0185E1 06:85D1: 9A        .byte > ofs_005_obj_hadler_9AA1_51_secret_heart_up
+- D 0 - - - 0x0185E2 06:85D2: 9B        .byte > ofs_005_obj_hadler_9B0A_52_secret_item_sand
+- D 0 - - - 0x0185E3 06:85D3: 9B        .byte > ofs_005_obj_hadler_9B0A_53_secret_item_left
+- - - - - - 0x0185E4 06:85D4: 9B        .byte > ofs_005_obj_hadler_9B0A_54_secret_item_right   ;  unused but working
+- D 0 - - - 0x0185E5 06:85D5: 9B        .byte > ofs_005_obj_hadler_9B0A_55_secret_item_down
+- D 0 - - - 0x0185E6 06:85D6: 9B        .byte > ofs_005_obj_hadler_9B0A_56_secret_item_up
+- D 0 - - - 0x0185E7 06:85D7: A6        .byte > ofs_005_obj_hadler_A692_57_boss_ursula_big_alive
+- D 0 - - - 0x0185E8 06:85D8: A8        .byte > ofs_005_obj_hadler_A83E_58_piranha_minion_ursula
+- D 0 - - - 0x0185E9 06:85D9: A8        .byte > ofs_005_obj_hadler_A879_59_boss_ursula_big_dead
+- D 0 - - - 0x0185EA 06:85DA: A0        .byte > ofs_005_obj_hadler_A0D8_5A_spawner_crabs
+- D 0 - - - 0x0185EB 06:85DB: A3        .byte > ofs_005_obj_hadler_A324_5B_starfish_2
+- D 0 - - - 0x0185EC 06:85DC: 88        .byte > ofs_005_obj_hadler_8821_5C_half_trapped_enemy
+- D 0 - - - 0x0185ED 06:85DD: 88        .byte > ofs_005_obj_hadler_8872_5D_swimming_bubbles
+- D 0 - - - 0x0185EE 06:85DE: 88        .byte > ofs_005_obj_hadler_887F_5E_teleport
+- - - - - - 0x0185EF 06:85DF: 88        .byte > ofs_005_obj_hadler_888E_5F_RTS   ; unused, index doesn't exist
 
 
 
-ofs_005_85E0_00_RTS:
+ofs_005_obj_hadler_85E0_00_RTS:
+; con_obj_id_00
 bra_85E0_RTS:
 C - - J - - 0x0185F0 06:85E0: 60        RTS
 
 
 
-ofs_005_85E1_01_projectile_player:
+ofs_005_obj_hadler_85E1_01_projectile_player:
+; con_obj_id_projectile_player
 ; enemy in a bubble or a shell
 C - - J - - 0x0185F1 06:85E1: 20 C4 81  JSR sub_81C4
 C - - - - - 0x0185F4 06:85E4: B0 0A     BCS bra_85F0
@@ -1026,7 +1030,7 @@ C - - - - - 0x018614 06:8604: 20 B9 FC  JSR sub_0x01FCC9
 C - - - - - 0x018617 06:8607: B0 0E     BCS bra_8617
 C - - - - - 0x018619 06:8609: A0 06     LDY #$06
 C - - - - - 0x01861B 06:860B: 20 CC FC  JSR sub_0x01FCDC
-C - - - - - 0x01861E 06:860E: A5 10     LDA ram_0010
+C - - - - - 0x01861E 06:860E: A5 10     LDA ram_0010_temp
 C - - - - - 0x018620 06:8610: F0 05     BEQ bra_8617
 C - - - - - 0x018622 06:8612: B0 03     BCS bra_8617
 C - - - - - 0x018624 06:8614: 4C 4E 98  JMP loc_984E
@@ -1050,7 +1054,7 @@ C - - - - - 0x018649 06:8639: 4C 47 86  JMP loc_8647
 bra_863C:
 C - - - - - 0x01864C 06:863C: A0 06     LDY #$06
 C - - - - - 0x01864E 06:863E: 20 CC FC  JSR sub_0x01FCDC
-C - - - - - 0x018651 06:8641: A5 10     LDA ram_0010
+C - - - - - 0x018651 06:8641: A5 10     LDA ram_0010_temp
 C - - - - - 0x018653 06:8643: F0 02     BEQ bra_8647
 C - - - - - 0x018655 06:8645: 90 32     BCC bra_8679_RTS
 bra_8647:
@@ -1085,13 +1089,14 @@ C - - - - - 0x018689 06:8679: 60        RTS
 
 
 
-ofs_005_867A_04_sand_splashes_player:
+ofs_005_obj_hadler_867A_04_sand_splashes_player:
+; con_obj_id_sand_splashes_player
 ; caused by player's tail
 C - - J - - 0x01868A 06:867A: BD 60 04  LDA ram_0460_obj,X
 C - - - - - 0x01868D 06:867D: F0 09     BEQ bra_8688
 C - - - - - 0x01868F 06:867F: DE 60 04  DEC ram_0460_obj,X
 C - - - - - 0x018692 06:8682: A9 00     LDA #$00
-C - - - - - 0x018694 06:8684: 9D 48 04  STA ram_0448,X
+C - - - - - 0x018694 06:8684: 9D 48 04  STA ram_0448_obj,X
 C - - - - - 0x018697 06:8687: 60        RTS
 bra_8688:
 C - - - - - 0x018698 06:8688: BD 00 04  LDA ram_0400_obj_flags,X
@@ -1107,7 +1112,8 @@ C - - - - - 0x0186AC 06:869C: 60        RTS
 
 
 
-ofs_005_869D_26_weapon_power_00:
+ofs_005_obj_hadler_869D_26_weapon_power_00:
+; con_obj_id_weapon_power_00
 ; player weapon power 0 (default)
 C - - J - - 0x0186AD 06:869D: A0 0C     LDY #$0C
 C - - - - - 0x0186AF 06:869F: 20 B9 FC  JSR sub_0x01FCC9
@@ -1129,7 +1135,8 @@ C - - - - - 0x0186D0 06:86C0: 60        RTS
 
 
 
-ofs_005_86C1_27_weapon_power_01:
+ofs_005_obj_hadler_86C1_27_weapon_power_01:
+; con_obj_id_weapon_power_01
 ; player weapon power 1
 C - - J - - 0x0186D1 06:86C1: A0 0C     LDY #$0C
 C - - - - - 0x0186D3 06:86C3: 20 B9 FC  JSR sub_0x01FCC9
@@ -1147,17 +1154,18 @@ C - - - - - 0x0186EC 06:86DC: 9D 10 03  STA ram_obj_id,X
 C - - - - - 0x0186EF 06:86DF: A9 14     LDA #con_sfx_bubble_burst
 C - - - - - 0x0186F1 06:86E1: 4C A0 FC  JMP loc_0x01FCB0_play_sfx
 bra_86E4:
-C - - - - - 0x0186F4 06:86E4: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x0186F4 06:86E4: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x0186F7 06:86E7: C9 02     CMP #$02
 C - - - - - 0x0186F9 06:86E9: D0 05     BNE bra_86F0_RTS
 C - - - - - 0x0186FB 06:86EB: A9 00     LDA #$00
-C - - - - - 0x0186FD 06:86ED: 9D 48 04  STA ram_0448,X
+C - - - - - 0x0186FD 06:86ED: 9D 48 04  STA ram_0448_obj,X
 bra_86F0_RTS:
 C - - - - - 0x018700 06:86F0: 60        RTS
 
 
 
-ofs_005_86F1_28_weapon_power_02:
+ofs_005_obj_hadler_86F1_28_weapon_power_02:
+; con_obj_id_weapon_power_02
 ; player weapon power 2
 C - - J - - 0x018701 06:86F1: A0 0C     LDY #$0C
 C - - - - - 0x018703 06:86F3: 20 B9 FC  JSR sub_0x01FCC9
@@ -1179,7 +1187,8 @@ C - - - - - 0x018724 06:8714: 60        RTS
 
 
 
-ofs_005_8715_29_weapon_power_03:
+ofs_005_obj_hadler_8715_29_weapon_power_03:
+; con_obj_id_weapon_power_03
 ; player weapon power 3
 C - - J - - 0x018725 06:8715: BD 70 04  LDA ram_obj_timer,X
 C - - - - - 0x018728 06:8718: D0 23     BNE bra_873D
@@ -1228,16 +1237,18 @@ tbl_8767:
 
 
 
-ofs_005_876B_4C_bubble_burst:
+ofs_005_obj_hadler_876B_4C_bubble_burst:
+; con_obj_id_bubble_burst
 ; bubble projectile with trapped enemy when it expires or hits something
-C - - J - - 0x01877B 06:876B: BD 18 04  LDA ram_animation_cnt,X
+C - - J - - 0x01877B 06:876B: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x01877E 06:876E: C9 03     CMP #$03
 C - - - - - 0x018780 06:8770: D0 18     BNE bra_878A_RTS
 C - - - - - 0x018782 06:8772: BD 90 04  LDA ram_0490_obj,X
 C - - - - - 0x018785 06:8775: 20 45 FC  JSR sub_0x01FC55
 C - - - - - 0x018788 06:8778: A9 42     LDA #con_obj_id_dead_enemy
 C - - - - - 0x01878A 06:877A: 9D 10 03  STA ram_obj_id,X
-ofs_005_877D_42_dead_enemy:
+ofs_005_obj_hadler_877D_42_dead_enemy:
+; con_obj_id_dead_enemy
 ; corpses of any enemy (not bosses)
 C - - J - - 0x01878D 06:877D: A9 40     LDA #$40
 C - - - - - 0x01878F 06:877F: 85 99     STA ram_0099
@@ -1249,7 +1260,8 @@ C - - - - - 0x01879A 06:878A: 60        RTS
 
 
 
-ofs_005_878B_3D_dead_boss:
+ofs_005_obj_hadler_878B_3D_dead_boss:
+; con_obj_id_dead_boss
 ; bosses from stages 1-4, they fly away off screen, then jar 37 appears
 C - - J - - 0x01879B 06:878B: 20 DF FC  JSR sub_0x01FCEF_move_object_X_axis
 C - - - - - 0x01879E 06:878E: 20 00 FD  JSR sub_0x01FD10_move_object_Y_axis
@@ -1303,7 +1315,8 @@ C - - - - - 0x0187FB 06:87EB: 4C 45 FC  JMP loc_0x01FC55
 
 
 
-ofs_005_87EE_37_jar:
+ofs_005_obj_hadler_87EE_37_jar:
+; con_obj_id_jar
 ; appears from the top of the screen and drops down after boss is defeated
 C - - J - - 0x0187FE 06:87EE: BD 60 04  LDA ram_0460_obj,X
 C - - - - - 0x018801 06:87F1: F0 0D     BEQ bra_8800
@@ -1332,10 +1345,11 @@ C - - - - - 0x018830 06:8820: 60        RTS
 
 
 
-ofs_005_8821_5C_half_trapped_enemy:
+ofs_005_obj_hadler_8821_5C_half_trapped_enemy:
+; con_obj_id_half_trapped_enemy
 ; half-bubbled with default weapon, drawing on top of the enemy
 C - - J - - 0x018831 06:8821: A9 00     LDA #$00
-C - - - - - 0x018833 06:8823: 9D 48 04  STA ram_0448,X
+C - - - - - 0x018833 06:8823: 9D 48 04  STA ram_0448_obj,X
 C - - - - - 0x018836 06:8826: BC 60 04  LDY ram_0460_obj,X
 C - - - - - 0x018839 06:8829: B9 A0 04  LDA ram_04A0_obj,Y
 C - - - - - 0x01883C 06:882C: D0 F2     BNE bra_8820_RTS
@@ -1351,7 +1365,7 @@ C - - - - - 0x018847 06:8837: B0 36     BCS bra_886F
 C - - - - - 0x018849 06:8839: A9 12     LDA #$12
 C - - - - - 0x01884B 06:883B: 20 51 FC  JSR sub_0x01FC61
 C - - - - - 0x01884E 06:883E: A9 01     LDA #$01
-C - - - - - 0x018850 06:8840: 99 18 04  STA ram_animation_cnt,Y
+C - - - - - 0x018850 06:8840: 99 18 04  STA ram_obj_animation_cnt,Y
 C - - - - - 0x018853 06:8843: BD 30 03  LDA ram_pos_X_lo,X
 C - - - - - 0x018856 06:8846: 99 30 03  STA ram_pos_X_lo,Y
 C - - - - - 0x018859 06:8849: BD 40 03  LDA ram_pos_X_hi,X
@@ -1374,7 +1388,8 @@ C - - - - - 0x018881 06:8871: 60        RTS
 
 
 
-ofs_005_8872_5D_swimming_bubbles:
+ofs_005_obj_hadler_8872_5D_swimming_bubbles:
+; con_obj_id_swimming_bubbles
 ; bubbles during stage 6 boss fight, swim at the bottom
 C - - J - - 0x018882 06:8872: A5 7E     LDA ram_007E
 C - - - - - 0x018884 06:8874: F0 03     BEQ bra_8879
@@ -1386,7 +1401,8 @@ C - - - - - 0x01888E 06:887E: 60        RTS
 
 
 
-ofs_005_887F_5E_teleport:
+ofs_005_obj_hadler_887F_5E_teleport:
+; con_obj_id_teleport
 ; one specific teleport at stage 5
 C - - J - - 0x01888F 06:887F: A5 28     LDA ram_0028
 C - - - - - 0x018891 06:8881: C9 01     CMP #$01
@@ -1399,15 +1415,19 @@ C - - - - - 0x01889D 06:888D: 60        RTS
 
 
 
-ofs_005_888E_3F_RTS:
-ofs_005_888E_40_RTS_chest_empty:
+ofs_005_obj_hadler_888E_3F_RTS:
+; con_obj_id_3F
+ofs_005_obj_hadler_888E_40_RTS_chest_empty:
+; con_obj_id_chest_empty
 ; empty chest, can be opened with shell/rock/barrel
-ofs_005_888E_5F_RTS:
+ofs_005_obj_hadler_888E_5F_RTS:
+; con_obj_id_5F
 C - - J - - 0x01889E 06:888E: 60        RTS
 
 
 
-ofs_005_888F_02_enemy_inside_bubble:
+ofs_005_obj_hadler_888F_02_enemy_inside_bubble:
+; con_obj_id_enemy_inside_bubble
 ; any bubbled enemy has 02 index but different graphics
 ; player can pick up and carry this bubble
 ; you can open hidden spots with it
@@ -1477,7 +1497,7 @@ C - - - - - 0x018928 06:8918: 20 CC FC  JSR sub_0x01FCDC
 C - - - - - 0x01892B 06:891B: B0 22     BCS bra_893F
 C - - - - - 0x01892D 06:891D: A9 00     LDA #$00
 C - - - - - 0x01892F 06:891F: 9D 80 04  STA ram_0480_obj,X
-C - - - - - 0x018932 06:8922: A5 10     LDA ram_0010
+C - - - - - 0x018932 06:8922: A5 10     LDA ram_0010_temp
 C - - - - - 0x018934 06:8924: F0 25     BEQ bra_894B
 C - - - - - 0x018936 06:8926: 20 DF FC  JSR sub_0x01FCEF_move_object_X_axis
 C - - - - - 0x018939 06:8929: 20 4E 98  JSR sub_984E
@@ -1523,7 +1543,7 @@ C - - - - - 0x018981 06:8971: F0 06     BEQ bra_8979   ; jmp
 bra_8973:
 C - - - - - 0x018983 06:8973: 98        TYA
 C - - - - - 0x018984 06:8974: 18        CLC
-C - - - - - 0x018985 06:8975: 6D 18 04  ADC ram_animation_cnt
+C - - - - - 0x018985 06:8975: 6D 18 04  ADC ram_obj_animation_cnt
 C - - - - - 0x018988 06:8978: A8        TAY
 bra_8979:
 C - - - - - 0x018989 06:8979: AD 70 03  LDA ram_pos_Y_hi
@@ -1560,7 +1580,7 @@ loc_89BB:
 C D 0 - - - 0x0189CB 06:89BB: AD 30 04  LDA ram_0430_obj
 C - - - - - 0x0189CE 06:89BE: C9 03     CMP #$03
 C - - - - - 0x0189D0 06:89C0: D0 0F     BNE bra_89D1
-C - - - - - 0x0189D2 06:89C2: AD 18 04  LDA ram_animation_cnt
+C - - - - - 0x0189D2 06:89C2: AD 18 04  LDA ram_obj_animation_cnt
 C - - - - - 0x0189D5 06:89C5: C9 02     CMP #$02
 C - - - - - 0x0189D7 06:89C7: D0 08     BNE bra_89D1
 C - - - - - 0x0189D9 06:89C9: AD 00 04  LDA ram_0400_obj_flags
@@ -1621,7 +1641,8 @@ tbl_8A09_pos_X_lo:
 
 
 
-ofs_005_8A14_03_piranha_stupid:
+ofs_005_obj_hadler_8A14_03_piranha_stupid:
+; con_obj_id_piranha_stupid
 ; swims with zig-zag movements, accelerates straight foward when notices a player
 C - - J - - 0x018A24 06:8A14: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x018A27 06:8A17: 29 0F     AND #$0F
@@ -1663,7 +1684,8 @@ C - - - - - 0x018A72 06:8A62: 4C DF FC  JMP loc_0x01FCEF_move_object_X_axis
 
 
 
-ofs_005_8A65_05_seahorse:
+ofs_005_obj_hadler_8A65_05_seahorse:
+; con_obj_id_seahorse
 ; normal enemy, not boss
 C - - J - - 0x018A75 06:8A65: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x018A78 06:8A68: 29 0F     AND #$0F
@@ -1693,7 +1715,8 @@ C - - - - - 0x018AA8 06:8A98: 4C 1E 8A  JMP loc_8A1E
 
 
 
-ofs_005_8A9B_06_piranha_ghost:
+ofs_005_obj_hadler_8A9B_06_piranha_ghost:
+; con_obj_id_piranha_ghost
 ; transforms into 03 when sheet is thrown off
 C - - J - - 0x018AAB 06:8A9B: 20 A0 FB  JSR sub_0x01FBB0
 C - - - - - 0x018AAE 06:8A9E: B0 03     BCS bra_8AA3
@@ -1801,7 +1824,7 @@ C - - - - - 0x018B6A 06:8B5A: A9 1F     LDA #$1F
 C - - - - - 0x018B6C 06:8B5C: 9D 70 04  STA ram_obj_timer,X
 C - - - - - 0x018B6F 06:8B5F: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x018B72 06:8B62: B0 53     BCS bra_8BB7_RTS
-C - - - - - 0x018B74 06:8B64: 86 0F     STX ram_000F
+C - - - - - 0x018B74 06:8B64: 86 0F     STX ram_000F_temp
 C - - - - - 0x018B76 06:8B66: A9 3F     LDA #$3F
 C - - - - - 0x018B78 06:8B68: 20 51 FC  JSR sub_0x01FC61
 C - - - - - 0x018B7B 06:8B6B: A9 07     LDA #con_obj_id_ghost_sheet
@@ -1833,7 +1856,7 @@ C - - - - - 0x018BBD 06:8BAD: 99 D0 03  STA ram_direction,Y
 C - - - - - 0x018BC0 06:8BB0: 98        TYA
 C - - - - - 0x018BC1 06:8BB1: AA        TAX
 C - - - - - 0x018BC2 06:8BB2: 20 89 FC  JSR sub_0x01FC99
-C - - - - - 0x018BC5 06:8BB5: A6 0F     LDX ram_000F
+C - - - - - 0x018BC5 06:8BB5: A6 0F     LDX ram_000F_temp
 bra_8BB7_RTS:
 C - - - - - 0x018BC7 06:8BB7: 60        RTS
 
@@ -1858,14 +1881,16 @@ C - - - - - 0x018BE9 06:8BD9: 4C 4D 8A  JMP loc_8A4D
 
 
 
-ofs_005_8BDC_07_ghost_sheet:
+ofs_005_obj_hadler_8BDC_07_ghost_sheet:
+; con_obj_id_ghost_sheet
 ; the thing you throw off from piranha ghost 06
 C - - J - - 0x018BEC 06:8BDC: 20 C3 F8  JSR sub_0x01F8D3_move_object_down
 C - - - - - 0x018BEF 06:8BDF: 4C DF FC  JMP loc_0x01FCEF_move_object_X_axis
 
 
 
-ofs_005_8BE2_08_shooting_fish:
+ofs_005_obj_hadler_8BE2_08_shooting_fish:
+; con_obj_id_shooting_fish
 ; floats on the surface of the water
 ; shoots with 09 (spit)
 C - - J - - 0x018BF2 06:8BE2: 20 6F FC  JSR sub_0x01FC7F
@@ -1897,9 +1922,9 @@ C - - - - - 0x018C29 06:8C19: D0 1D     BNE bra_8C38_RTS
 C - - - - - 0x018C2B 06:8C1B: A9 38     LDA #$38
 C - - - - - 0x018C2D 06:8C1D: 4C 45 FC  JMP loc_0x01FC55
 bra_8C20:
-C - - - - - 0x018C30 06:8C20: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x018C30 06:8C20: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x018C33 06:8C23: F0 13     BEQ bra_8C38_RTS
-C - - - - - 0x018C35 06:8C25: BD 48 04  LDA ram_0448,X
+C - - - - - 0x018C35 06:8C25: BD 48 04  LDA ram_0448_obj,X
 C - - - - - 0x018C38 06:8C28: F0 0F     BEQ bra_8C39
 C - - - - - 0x018C3A 06:8C2A: C9 10     CMP #$10
 C - - - - - 0x018C3C 06:8C2C: D0 0A     BNE bra_8C38_RTS
@@ -1912,7 +1937,7 @@ C - - - - - 0x018C48 06:8C38: 60        RTS
 bra_8C39:
 C - - - - - 0x018C49 06:8C39: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x018C4C 06:8C3C: B0 FA     BCS bra_8C38_RTS
-C - - - - - 0x018C4E 06:8C3E: 86 0F     STX ram_000F
+C - - - - - 0x018C4E 06:8C3E: 86 0F     STX ram_000F_temp
 C - - - - - 0x018C50 06:8C40: A9 6A     LDA #$6A
 C - - - - - 0x018C52 06:8C42: 99 80 03  STA ram_spd_X_lo,Y
 C - - - - - 0x018C55 06:8C45: 99 A0 03  STA ram_spd_Y_lo,Y
@@ -1949,7 +1974,7 @@ C - - - - - 0x018CA0 06:8C90: 99 30 03  STA ram_pos_X_lo,Y
 C - - - - - 0x018CA3 06:8C93: B9 40 03  LDA ram_pos_X_hi,Y
 C - - - - - 0x018CA6 06:8C96: 7D A0 8C  ADC tbl_8C9F_pos_X + $01,X
 C - - - - - 0x018CA9 06:8C99: 99 40 03  STA ram_pos_X_hi,Y
-C - - - - - 0x018CAC 06:8C9C: A6 0F     LDX ram_000F
+C - - - - - 0x018CAC 06:8C9C: A6 0F     LDX ram_000F_temp
 C - - - - - 0x018CAE 06:8C9E: 60        RTS
 
 
@@ -1960,7 +1985,8 @@ tbl_8C9F_pos_X:
 
 
 
-ofs_005_8CA3_09_projectile_shooting_fish:
+ofs_005_obj_hadler_8CA3_09_projectile_shooting_fish:
+; con_obj_id_projectile_shooting_fish
 ; projectile made by a shooting fish 08 (spit)
 C - - J - - 0x018CB3 06:8CA3: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x018CB6 06:8CA6: C9 3A     CMP #$3A
@@ -1977,7 +2003,8 @@ bra_8CB9_RTS:
 
 
 
-ofs_005_8CBA_0A_octopus:
+ofs_005_obj_hadler_8CBA_0A_octopus:
+; con_obj_id_octopus
 ; moves up and down, shoots 2 small rocks 0A
 C - - J - - 0x018CCA 06:8CBA: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x018CCD 06:8CBD: 29 0F     AND #$0F
@@ -2003,8 +2030,8 @@ C - - - - - 0x018CF9 06:8CE9: 20 00 FD  JSR sub_0x01FD10_move_object_Y_axis
 C - - - - - 0x018CFC 06:8CEC: BD D0 03  LDA ram_direction,X
 C - - - - - 0x018CFF 06:8CEF: 29 08     AND #$08
 C - - - - - 0x018D01 06:8CF1: D0 06     BNE bra_8CF9
-C - - - - - 0x018D03 06:8CF3: 9D 48 04  STA ram_0448,X
-C - - - - - 0x018D06 06:8CF6: 9D 18 04  STA ram_animation_cnt,X
+C - - - - - 0x018D03 06:8CF3: 9D 48 04  STA ram_0448_obj,X
+C - - - - - 0x018D06 06:8CF6: 9D 18 04  STA ram_obj_animation_cnt,X
 bra_8CF9:
 C - - - - - 0x018D09 06:8CF9: DE 60 04  DEC ram_0460_obj,X
 C - - - - - 0x018D0C 06:8CFC: D0 2C     BNE bra_8D2A
@@ -2028,9 +2055,9 @@ C - - - - - 0x018D32 06:8D22: 9D B0 03  STA ram_spd_Y_hi,X
 C - - - - - 0x018D35 06:8D25: A9 30     LDA #$30
 C - - - - - 0x018D37 06:8D27: 9D 60 04  STA ram_0460_obj,X
 bra_8D2A:
-C - - - - - 0x018D3A 06:8D2A: BD 48 04  LDA ram_0448,X
+C - - - - - 0x018D3A 06:8D2A: BD 48 04  LDA ram_0448_obj,X
 C - - - - - 0x018D3D 06:8D2D: D0 07     BNE bra_8D36_RTS
-C - - - - - 0x018D3F 06:8D2F: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x018D3F 06:8D2F: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x018D42 06:8D32: C9 01     CMP #$01
 C - - - - - 0x018D44 06:8D34: F0 01     BEQ bra_8D37
 bra_8D36_RTS:
@@ -2123,16 +2150,19 @@ tbl_8DC3_pos_X_hi:
 
 
 
-ofs_005_8DC5_0B_projectile_octopus:
+ofs_005_obj_hadler_8DC5_0B_projectile_octopus:
+; con_obj_id_projectile_octopus
 ; projectile made by octopus 0A (purple small rocks)
 C - - J - - 0x018DD5 06:8DC5: 20 11 F9  JSR sub_0x01F921
 C - - - - - 0x018DD8 06:8DC8: 4C DF FC  JMP loc_0x01FCEF_move_object_X_axis
 
 
 
-ofs_005_8DCB_3C_spawner_volcano_bottom:
+ofs_005_obj_hadler_8DCB_3C_spawner_volcano_bottom:
+; con_obj_id_spawner_volcano_bottom
 ; object constantly spawns 3 44, facing up
-ofs_005_8DCB_43_spawner_volcano_top:
+ofs_005_obj_hadler_8DCB_43_spawner_volcano_top:
+; con_obj_id_spawner_volcano_top
 ; object constantly spawns 3 44, facing down
 C - - J - - 0x018DDB 06:8DCB: A9 00     LDA #$00
 C - - - - - 0x018DDD 06:8DCD: 85 00     STA ram_0000_t15_counter
@@ -2144,11 +2174,11 @@ C - - - - - 0x018DE6 06:8DD6: B9 30 04  LDA ram_0430_obj,Y
 C - - - - - 0x018DE9 06:8DD9: C9 5E     CMP #$5E
 C - - - - - 0x018DEB 06:8DDB: D0 0E     BNE bra_8DEB
 C - - - - - 0x018DED 06:8DDD: E6 00     INC ram_0000_t15_counter
-C - - - - - 0x018DEF 06:8DDF: B9 18 04  LDA ram_animation_cnt,Y
+C - - - - - 0x018DEF 06:8DDF: B9 18 04  LDA ram_obj_animation_cnt,Y
 C - - - - - 0x018DF2 06:8DE2: C9 03     CMP #$03
 C - - - - - 0x018DF4 06:8DE4: D0 05     BNE bra_8DEB
 C - - - - - 0x018DF6 06:8DE6: A9 00     LDA #$00
-C - - - - - 0x018DF8 06:8DE8: 99 48 04  STA ram_0448,Y
+C - - - - - 0x018DF8 06:8DE8: 99 48 04  STA ram_0448_obj,Y
 bra_8DEB:
 C - - - - - 0x018DFB 06:8DEB: 88        DEY
 C - - - - - 0x018DFC 06:8DEC: C0 02     CPY #$02
@@ -2164,11 +2194,14 @@ bra_8DFC:
 C - - - - - 0x018E0C 06:8DFC: A9 23     LDA #con_sfx_23
 C - - - - - 0x018E0E 06:8DFE: 20 A0 FC  JSR sub_0x01FCB0_play_sfx
 C - - - - - 0x018E11 06:8E01: A9 02     LDA #$02
-C - - - - - 0x018E13 06:8E03: 85 0F     STA ram_000F
-C - - - - - 0x018E15 06:8E05: 86 0E     STX ram_000E
+C - - - - - 0x018E13 06:8E03: 85 0F     STA ram_000F_temp
+C - - - - - 0x018E15 06:8E05: 86 0E     STX ram_000E_t01_obj_index
 C - - - - - 0x018E17 06:8E07: BD 10 03  LDA ram_obj_id,X
 C - - - - - 0x018E1A 06:8E0A: 29 01     AND #$01
-C - - - - - 0x018E1C 06:8E0C: 85 0D     STA ram_000D    ; 00 if 3C, 01 if 43
+; A = 
+    ; 00 if con_obj_id_spawner_volcano_bottom
+    ; 01 if con_obj_id_spawner_volcano_top
+C - - - - - 0x018E1C 06:8E0C: 85 0D     STA ram_000D_t01_volcano_spawner_type
 bra_8E0E_loop:
 C - - - - - 0x018E1E 06:8E0E: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x018E21 06:8E11: B0 E8     BCS bra_8DFB_RTS
@@ -2192,15 +2225,15 @@ C - - - - - 0x018E4F 06:8E3F: A9 BE     LDA #< $01BE
 C - - - - - 0x018E51 06:8E41: 99 A0 03  STA ram_spd_Y_lo,Y
 C - - - - - 0x018E54 06:8E44: A9 01     LDA #> $01BE
 C - - - - - 0x018E56 06:8E46: 99 B0 03  STA ram_spd_Y_hi,Y
-C - - - - - 0x018E59 06:8E49: A6 0D     LDX ram_000D    ; 00 if 3C, 01 if 43
+C - - - - - 0x018E59 06:8E49: A6 0D     LDX ram_000D_t01_volcano_spawner_type
 C - - - - - 0x018E5B 06:8E4B: BD 7B 8E  LDA tbl_8E7B,X
 C - - - - - 0x018E5E 06:8E4E: 99 60 04  STA ram_0460_obj,Y
-C - - - - - 0x018E61 06:8E51: A6 0F     LDX ram_000F
+C - - - - - 0x018E61 06:8E51: A6 0F     LDX ram_000F_temp
 C - - - - - 0x018E63 06:8E53: BD 7D 8E  LDA tbl_8E7D_direction,X
 C - - - - - 0x018E66 06:8E56: 99 D0 03  STA ram_direction,Y
-C - - - - - 0x018E69 06:8E59: A5 0D     LDA ram_000D    ; 00 if 3C, 01 if 43
-C - - - - - 0x018E6B 06:8E5B: F0 03     BEQ bra_8E60
-; if 43 volcano
+C - - - - - 0x018E69 06:8E59: A5 0D     LDA ram_000D_t01_volcano_spawner_type
+C - - - - - 0x018E6B 06:8E5B: F0 03     BEQ bra_8E60    ; if con_obj_id_spawner_volcano_bottom
+; if con_obj_id_spawner_volcano_top
 C - - - - - 0x018E6D 06:8E5D: E8        INX
 C - - - - - 0x018E6E 06:8E5E: E8        INX
 C - - - - - 0x018E6F 06:8E5F: E8        INX
@@ -2212,16 +2245,16 @@ C - - - - - 0x018E79 06:8E69: 99 90 03  STA ram_spd_X_hi,Y
 C - - - - - 0x018E7C 06:8E6C: B9 00 04  LDA ram_0400_obj_flags,Y
 C - - - - - 0x018E7F 06:8E6F: 29 FB     AND #$04 ^ $FF
 C - - - - - 0x018E81 06:8E71: 99 00 04  STA ram_0400_obj_flags,Y
-C - - - - - 0x018E84 06:8E74: A6 0E     LDX ram_000E
-C - - - - - 0x018E86 06:8E76: C6 0F     DEC ram_000F
+C - - - - - 0x018E84 06:8E74: A6 0E     LDX ram_000E_t01_obj_index
+C - - - - - 0x018E86 06:8E76: C6 0F     DEC ram_000F_temp
 C - - - - - 0x018E88 06:8E78: 10 94     BPL bra_8E0E_loop
 C - - - - - 0x018E8A 06:8E7A: 60        RTS
 
 
 
 tbl_8E7B:
-- D 0 - - - 0x018E8B 06:8E7B: 80        .byte $80   ; 3C 
-- D 0 - - - 0x018E8C 06:8E7C: 40        .byte $40   ; 43 
+- D 0 - - - 0x018E8B 06:8E7B: 80        .byte $80   ; 00 con_obj_id_spawner_volcano_bottom
+- D 0 - - - 0x018E8C 06:8E7C: 40        .byte $40   ; 01 con_obj_id_spawner_volcano_top
 
 
 
@@ -2256,7 +2289,8 @@ tbl_8E86_spd_X_hi:
 
 
 
-ofs_005_8E8C_44_projectile_volcano:
+ofs_005_obj_hadler_8E8C_44_projectile_volcano:
+; con_obj_id_projectile_volcano
 ; spawns from 3C and 43
 C - - J - - 0x018E9C 06:8E8C: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x018E9F 06:8E8F: C9 14     CMP #$14
@@ -2301,7 +2335,8 @@ C - - - - - 0x018EF2 06:8EE2: 60        RTS
 
 
 
-ofs_005_8EE3_41_spawner_mini_fish:
+ofs_005_obj_hadler_8EE3_41_spawner_mini_fish:
+; con_obj_id_spawner_mini_fish
 ; object constantly spawns mini fishes 4B, some sea plant
 C - - J - - 0x018EF3 06:8EE3: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x018EF6 06:8EE6: 29 0F     AND #$0F
@@ -2311,10 +2346,10 @@ C - - - - - 0x018EFD 06:8EED: C9 40     CMP #$40
 C - - - - - 0x018EFF 06:8EEF: B0 DB     BCS bra_8ECC_RTS
 C - - - - - 0x018F01 06:8EF1: FE 00 03  INC ram_obj_flags,X
 bra_8EF4:
-C - - - - - 0x018F04 06:8EF4: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x018F04 06:8EF4: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x018F07 06:8EF7: C9 0E     CMP #$0E
 C - - - - - 0x018F09 06:8EF9: D0 D1     BNE bra_8ECC_RTS
-C - - - - - 0x018F0B 06:8EFB: BD 48 04  LDA ram_0448,X
+C - - - - - 0x018F0B 06:8EFB: BD 48 04  LDA ram_0448_obj,X
 C - - - - - 0x018F0E 06:8EFE: D0 CC     BNE bra_8ECC_RTS
 C - - - - - 0x018F10 06:8F00: FE 60 04  INC ram_0460_obj,X
 C - - - - - 0x018F13 06:8F03: BD 60 04  LDA ram_0460_obj,X
@@ -2323,8 +2358,8 @@ C - - - - - 0x018F18 06:8F08: F0 C2     BEQ bra_8ECC_RTS
 C - - - - - 0x018F1A 06:8F0A: A9 80     LDA #$80
 C - - - - - 0x018F1C 06:8F0C: 9D 00 03  STA ram_obj_flags,X
 C - - - - - 0x018F1F 06:8F0F: A9 01     LDA #$01
-C - - - - - 0x018F21 06:8F11: 85 0F     STA ram_000F
-C - - - - - 0x018F23 06:8F13: 86 0E     STX ram_000E
+C - - - - - 0x018F21 06:8F11: 85 0F     STA ram_000F_temp
+C - - - - - 0x018F23 06:8F13: 86 0E     STX ram_000E_t02_obj_index
 bra_8F15_loop:
 C - - - - - 0x018F25 06:8F15: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x018F28 06:8F18: B0 B2     BCS bra_8ECC_RTS
@@ -2354,11 +2389,11 @@ C - - - - - 0x018F63 06:8F53: A9 44     LDA #$44
 C - - - - - 0x018F65 06:8F55: 99 80 03  STA ram_spd_X_lo,Y
 C - - - - - 0x018F68 06:8F58: A9 00     LDA #$00
 C - - - - - 0x018F6A 06:8F5A: 99 90 03  STA ram_spd_X_hi,Y
-C - - - - - 0x018F6D 06:8F5D: A6 0F     LDX ram_000F
+C - - - - - 0x018F6D 06:8F5D: A6 0F     LDX ram_000F_temp
 C - - - - - 0x018F6F 06:8F5F: BD 6C 8F  LDA tbl_8F6C_direction,X
 C - - - - - 0x018F72 06:8F62: 99 D0 03  STA ram_direction,Y
-C - - - - - 0x018F75 06:8F65: A6 0E     LDX ram_000E
-C - - - - - 0x018F77 06:8F67: C6 0F     DEC ram_000F
+C - - - - - 0x018F75 06:8F65: A6 0E     LDX ram_000E_t02_obj_index
+C - - - - - 0x018F77 06:8F67: C6 0F     DEC ram_000F_temp
 C - - - - - 0x018F79 06:8F69: 10 AA     BPL bra_8F15_loop
 C - - - - - 0x018F7B 06:8F6B: 60        RTS
 
@@ -2370,7 +2405,8 @@ tbl_8F6C_direction:
 
 
 
-ofs_005_8F6E_4B_mini_fish_4:
+ofs_005_obj_hadler_8F6E_4B_mini_fish_4:
+; con_obj_id_mini_fish_4
 ; newborn minifish from 41 sea plant, transforms into 16 later
 C - - J - - 0x018F7E 06:8F6E: 20 DF FC  JSR sub_0x01FCEF_move_object_X_axis
 C - - - - - 0x018F81 06:8F71: 20 11 F9  JSR sub_0x01F921
@@ -2387,7 +2423,8 @@ C - - - - - 0x018F98 06:8F88: 60        RTS
 
 
 
-ofs_005_8F89_10_sea_urchin_1:
+ofs_005_obj_hadler_8F89_10_sea_urchin_1:
+; con_obj_id_sea_urchin_1
 ; created by a spawner 11
 C - - J - - 0x018F99 06:8F89: A0 00     LDY #$00
 C - - - - - 0x018F9B 06:8F8B: 20 2F F8  JSR sub_0x01F83F
@@ -2424,7 +2461,8 @@ C - - - - - 0x018FD6 06:8FC6: 60        RTS
 
 
 
-ofs_005_8FC7_11_spawner_sea_urchin:
+ofs_005_obj_hadler_8FC7_11_spawner_sea_urchin:
+; con_obj_id_spawner_sea_urchin
 ; object constantly spawns sea urchins 10
 C - - J - - 0x018FD7 06:8FC7: 20 33 FD  JSR sub_0x01FD43
 C - - - - - 0x018FDA 06:8FCA: C9 60     CMP #$60
@@ -2463,8 +2501,8 @@ C - - - - - 0x01902C 06:901C: 99 80 03  STA ram_spd_X_lo,Y
 C - - - - - 0x01902F 06:901F: A9 00     LDA #$00
 C - - - - - 0x019031 06:9021: 99 90 03  STA ram_spd_X_hi,Y
 C - - - - - 0x019034 06:9024: A9 00     LDA #$00
-C - - - - - 0x019036 06:9026: 99 18 04  STA ram_animation_cnt,Y
-C - - - - - 0x019039 06:9029: 99 48 04  STA ram_0448,Y
+C - - - - - 0x019036 06:9026: 99 18 04  STA ram_obj_animation_cnt,Y
+C - - - - - 0x019039 06:9029: 99 48 04  STA ram_0448_obj,Y
 C - - - - - 0x01903C 06:902C: 99 D0 03  STA ram_direction,Y
 C - - - - - 0x01903F 06:902F: 99 60 04  STA ram_0460_obj,Y
 C - - - - - 0x019042 06:9032: 99 70 04  STA ram_obj_timer,Y
@@ -2485,7 +2523,8 @@ C - - - - - 0x019053 06:9043: 60        RTS
 
 
 
-ofs_005_9046_12_piranha_smart:
+ofs_005_obj_hadler_9046_12_piranha_smart:
+; con_obj_id_piranha_smart
 ; swims back and forth, accelerates towards player position when notices
 C - - J - - 0x019056 06:9046: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x019059 06:9049: 29 0F     AND #$0F
@@ -2522,9 +2561,11 @@ C - - - - - 0x01909C 06:908C: 4C 00 FD  JMP loc_0x01FD10_move_object_Y_axis
 
 
 
-ofs_005_908F_15_crab_naked:
+ofs_005_obj_hadler_908F_15_crab_naked:
+; con_obj_id_crab_naked
 ; crab without a white helmet
-ofs_005_908F_25_crab_helmet:
+ofs_005_obj_hadler_908F_25_crab_helmet:
+; con_obj_id_crab_helmet
 ; crab with a white helmet
 C - - J - - 0x01909F 06:908F: A0 00     LDY #$00
 C - - - - - 0x0190A1 06:9091: 20 2F F8  JSR sub_0x01F83F
@@ -2619,11 +2660,16 @@ tbl_913B:
 
 
 
-ofs_005_913F_17:
-ofs_005_913F_18:
-ofs_005_913F_19:
-ofs_005_913F_1A:
-ofs_005_913F_1B:
+ofs_005_obj_hadler_913F_17:
+; con_obj_id_17
+ofs_005_obj_hadler_913F_18:
+; con_obj_id_18
+ofs_005_obj_hadler_913F_19:
+; con_obj_id_19
+ofs_005_obj_hadler_913F_1A:
+; con_obj_id_1A
+ofs_005_obj_hadler_913F_1B:
+; con_obj_id_1B
 - - - - - - 0x01914F 06:913F: BD 00 03  LDA ram_obj_flags,X
 - - - - - - 0x019152 06:9142: 29 0F     AND #$0F
 - - - - - - 0x019154 06:9144: D0 2A     BNE bra_9170
@@ -2696,9 +2742,10 @@ C - - - - - 0x0191E8 06:91D8: 60        RTS
 
 
 
-ofs_005_91D9_16_mini_fish_1:
+ofs_005_obj_hadler_91D9_16_mini_fish_1:
+; con_obj_id_mini_fish_1
 ; a couple of times tries to follow a player,
-; then give ups and keeps swimming away
+; then give ups and keeps swimming away.
 ; this is basically a smart mini fish, others do a fixed swim pattern
 C - - J - - 0x0191E9 06:91D9: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x0191EC 06:91DC: 29 0F     AND #$0F
@@ -2742,7 +2789,8 @@ C - - - - - 0x019236 06:9226: 4C 00 FD  JMP loc_0x01FD10_move_object_Y_axis
 
 
 
-ofs_005_9229_1D_mini_fish_2:
+ofs_005_obj_hadler_9229_1D_mini_fish_2:
+; con_obj_id_mini_fish_2
 ; spawns from 1C sleeping fish and goes back to its mouth
 ; transforms into 16 if player is close enough
 C - - J - - 0x019239 06:9229: BD 60 04  LDA ram_0460_obj,X
@@ -2783,7 +2831,8 @@ C - - - - - 0x019283 06:9273: 60        RTS
 
 
 
-ofs_005_9274_1F_mini_fish_3:
+ofs_005_obj_hadler_9274_1F_mini_fish_3:
+; con_obj_id_mini_fish_3
 ; spawns from 1E mother fish
 ; swims diagonally in 1 of 4 directions
 ; transforms into 16 if player is close enough
@@ -2846,11 +2895,12 @@ tbl_92A4_spd_Y_hi:
 
 
 
-ofs_005_92A9_1C_sleeping_fish:
+ofs_005_obj_hadler_92A9_1C_sleeping_fish:
+; con_obj_id_sleeping_fish
 ; spawns spawns 3 1D mini fishes from its mouth,
 ; which return to its mouth later if not disturbed
-C - - J - - 0x0192B9 06:92A9: BD 48 04  LDA ram_0448,X
-C - - - - - 0x0192BC 06:92AC: 1D 18 04  ORA ram_animation_cnt,X
+C - - J - - 0x0192B9 06:92A9: BD 48 04  LDA ram_0448_obj,X
+C - - - - - 0x0192BC 06:92AC: 1D 18 04  ORA ram_obj_animation_cnt,X
 C - - - - - 0x0192BF 06:92AF: D0 DC     BNE bra_928D_RTS
 C - - - - - 0x0192C1 06:92B1: A0 0F     LDY #$0F
 bra_92B3_loop:
@@ -2865,13 +2915,13 @@ C - - - - - 0x0192D0 06:92C0: C0 02     CPY #$02
 C - - - - - 0x0192D2 06:92C2: D0 EF     BNE bra_92B3_loop
 C - - - - - 0x0192D4 06:92C4: 86 00     STX ram_0000_t17_save_X
 C - - - - - 0x0192D6 06:92C6: A9 01     LDA #$01
-C - - - - - 0x0192D8 06:92C8: 85 05     STA ram_0005_temp
+C - - - - - 0x0192D8 06:92C8: 85 05     STA ram_0005_t07
 C - - - - - 0x0192DA 06:92CA: A0 00     LDY #$00
 C - - - - - 0x0192DC 06:92CC: BD 00 04  LDA ram_0400_obj_flags,X
 C - - - - - 0x0192DF 06:92CF: 29 40     AND #$40
 C - - - - - 0x0192E1 06:92D1: D0 04     BNE bra_92D7
 C - - - - - 0x0192E3 06:92D3: A0 02     LDY #$02
-C - - - - - 0x0192E5 06:92D5: 84 05     STY ram_0005_temp
+C - - - - - 0x0192E5 06:92D5: 84 05     STY ram_0005_t07
 bra_92D7:
 C - - - - - 0x0192E7 06:92D7: BD 30 03  LDA ram_pos_X_lo,X
 C - - - - - 0x0192EA 06:92DA: 18        CLC
@@ -2883,9 +2933,9 @@ C - - - - - 0x0192F6 06:92E6: 85 02     STA ram_0002_t08_pos_X_hi
 C - - - - - 0x0192F8 06:92E8: BD 60 03  LDA ram_pos_Y_lo,X
 C - - - - - 0x0192FB 06:92EB: 38        SEC
 C - - - - - 0x0192FC 06:92EC: E9 06     SBC #$06
-C - - - - - 0x0192FE 06:92EE: 85 03     STA ram_0003_temp
+C - - - - - 0x0192FE 06:92EE: 85 03     STA ram_0003_t04_pos_Y_lo
 C - - - - - 0x019300 06:92F0: BD 70 03  LDA ram_pos_Y_hi,X
-C - - - - - 0x019303 06:92F3: 85 04     STA ram_0004_temp
+C - - - - - 0x019303 06:92F3: 85 04     STA ram_0004_t04_pos_Y_hi
 C - - - - - 0x019305 06:92F5: A0 02     LDY #$02
 bra_92F7_loop:
 C - - - - - 0x019307 06:92F7: 20 44 FE  JSR sub_0x01FE54
@@ -2902,7 +2952,7 @@ C - - - - - 0x019320 06:9310: A9 01     LDA #$01
 C - - - - - 0x019322 06:9312: 9D F0 03  STA ram_03F0_obj,X
 C - - - - - 0x019325 06:9315: A9 33     LDA #$33
 C - - - - - 0x019327 06:9317: 20 45 FC  JSR sub_0x01FC55
-C - - - - - 0x01932A 06:931A: A5 05     LDA ram_0005_temp
+C - - - - - 0x01932A 06:931A: A5 05     LDA ram_0005_t07
 C - - - - - 0x01932C 06:931C: 09 08     ORA #$08
 C - - - - - 0x01932E 06:931E: 9D D0 03  STA ram_direction,X
 C - - - - - 0x019331 06:9321: B9 5D 93  LDA tbl_935D_spd_Y_lo,Y
@@ -2913,9 +2963,9 @@ C - - - - - 0x01933D 06:932D: A5 01     LDA ram_0001_t04_pos_X_lo
 C - - - - - 0x01933F 06:932F: 9D 30 03  STA ram_pos_X_lo,X
 C - - - - - 0x019342 06:9332: A5 02     LDA ram_0002_t08_pos_X_hi
 C - - - - - 0x019344 06:9334: 9D 40 03  STA ram_pos_X_hi,X
-C - - - - - 0x019347 06:9337: A5 03     LDA ram_0003_temp
+C - - - - - 0x019347 06:9337: A5 03     LDA ram_0003_t04_pos_Y_lo
 C - - - - - 0x019349 06:9339: 9D 60 03  STA ram_pos_Y_lo,X
-C - - - - - 0x01934C 06:933C: A5 04     LDA ram_0004_temp
+C - - - - - 0x01934C 06:933C: A5 04     LDA ram_0004_t04_pos_Y_hi
 C - - - - - 0x01934E 06:933E: 9D 70 03  STA ram_pos_Y_hi,X
 C - - - - - 0x019351 06:9341: A9 20     LDA #$20
 C - - - - - 0x019353 06:9343: 9D 60 04  STA ram_0460_obj,X
@@ -2954,12 +3004,13 @@ tbl_9363_pos_X:
 
 
 
-ofs_005_9367_1E_mother_fish:
+ofs_005_obj_hadler_9367_1E_mother_fish:
+; con_obj_id_mother_fish
 ; spawns 4 1F mini fishes 1-2 times while swimming
 C - - J - - 0x019377 06:9367: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x01937A 06:936A: C9 3C     CMP #$3C
 C - - - - - 0x01937C 06:936C: D0 0C     BNE bra_937A
-C - - - - - 0x01937E 06:936E: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x01937E 06:936E: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x019381 06:9371: C9 02     CMP #$02
 C - - - - - 0x019383 06:9373: D0 E7     BNE bra_935C_RTS
 C - - - - - 0x019385 06:9375: A9 3B     LDA #$3B
@@ -2981,9 +3032,9 @@ C - - - - - 0x0193A6 06:9396: 85 01     STA ram_0001_t05_pos_X_lo
 C - - - - - 0x0193A8 06:9398: BD 40 03  LDA ram_pos_X_hi,X
 C - - - - - 0x0193AB 06:939B: 85 02     STA ram_0002_t09_pos_X_hi
 C - - - - - 0x0193AD 06:939D: BD 60 03  LDA ram_pos_Y_lo,X
-C - - - - - 0x0193B0 06:93A0: 85 03     STA ram_0003_temp
+C - - - - - 0x0193B0 06:93A0: 85 03     STA ram_0003_t05_pos_Y_lo
 C - - - - - 0x0193B2 06:93A2: BD 70 03  LDA ram_pos_Y_hi,X
-C - - - - - 0x0193B5 06:93A5: 85 04     STA ram_0004_temp
+C - - - - - 0x0193B5 06:93A5: 85 04     STA ram_0004_t05_pos_Y_hi
 C - - - - - 0x0193B7 06:93A7: A0 03     LDY #$03
 bra_93A9_loop:
 C - - - - - 0x0193B9 06:93A9: 20 44 FE  JSR sub_0x01FE54
@@ -3009,9 +3060,9 @@ C - - - - - 0x0193EA 06:93DA: A5 01     LDA ram_0001_t05_pos_X_lo
 C - - - - - 0x0193EC 06:93DC: 9D 30 03  STA ram_pos_X_lo,X
 C - - - - - 0x0193EF 06:93DF: A5 02     LDA ram_0002_t09_pos_X_hi
 C - - - - - 0x0193F1 06:93E1: 9D 40 03  STA ram_pos_X_hi,X
-C - - - - - 0x0193F4 06:93E4: A5 03     LDA ram_0003_temp
+C - - - - - 0x0193F4 06:93E4: A5 03     LDA ram_0003_t05_pos_Y_lo
 C - - - - - 0x0193F6 06:93E6: 9D 60 03  STA ram_pos_Y_lo,X
-C - - - - - 0x0193F9 06:93E9: A5 04     LDA ram_0004_temp
+C - - - - - 0x0193F9 06:93E9: A5 04     LDA ram_0004_t05_pos_Y_hi
 C - - - - - 0x0193FB 06:93EB: 9D 70 03  STA ram_pos_Y_hi,X
 C - - - - - 0x0193FE 06:93EE: A9 00     LDA #$00
 C - - - - - 0x019400 06:93F0: 9D 60 04  STA ram_0460_obj,X
@@ -3036,15 +3087,16 @@ tbl_9408:
 
 
 
-ofs_005_940C_20_shrimp:
+ofs_005_obj_hadler_940C_20_shrimp:
+; con_obj_id_shrimp
 ; quickly swims to player position if close enough
 C - - J - - 0x01941C 06:940C: A9 00     LDA #$00
-C - - - - - 0x01941E 06:940E: 9D 48 04  STA ram_0448,X
+C - - - - - 0x01941E 06:940E: 9D 48 04  STA ram_0448_obj,X
 C - - - - - 0x019421 06:9411: BD 60 04  LDA ram_0460_obj,X
 C - - - - - 0x019424 06:9414: D0 38     BNE bra_944E
-C - - - - - 0x019426 06:9416: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x019426 06:9416: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x019429 06:9419: F0 23     BEQ bra_943E
-C - - - - - 0x01942B 06:941B: DE 18 04  DEC ram_animation_cnt,X
+C - - - - - 0x01942B 06:941B: DE 18 04  DEC ram_obj_animation_cnt,X
 C - - - - - 0x01942E 06:941E: A5 E4     LDA ram_random
 C - - - - - 0x019430 06:9420: 65 E5     ADC ram_random + $01
 C - - - - - 0x019432 06:9422: 85 E5     STA ram_random + $01
@@ -3065,9 +3117,9 @@ C - - - - - 0x019451 06:9441: A0 00     LDY #$00
 C - - - - - 0x019453 06:9443: 20 E5 FD  JSR sub_0x01FDF5
 C - - - - - 0x019456 06:9446: A9 20     LDA #$20
 C - - - - - 0x019458 06:9448: 9D 60 04  STA ram_0460_obj,X
-C - - - - - 0x01945B 06:944B: FE 18 04  INC ram_animation_cnt,X
+C - - - - - 0x01945B 06:944B: FE 18 04  INC ram_obj_animation_cnt,X
 bra_944E:
-C - - - - - 0x01945E 06:944E: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x01945E 06:944E: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x019461 06:9451: F0 03     BEQ bra_9456
 C - - - - - 0x019463 06:9453: 20 DF FC  JSR sub_0x01FCEF_move_object_X_axis
 bra_9456:
@@ -3084,13 +3136,15 @@ tbl_945C:
 
 
 
-ofs_005_9460_21_RTS_green_snake:
+ofs_005_obj_hadler_9460_21_RTS_green_snake:
+; con_obj_id_green_snake
 ; green snake with a big head at the room before final boss
 C - - J - - 0x019470 06:9460: 60        RTS
 
 
 
-ofs_005_9461_22_spawner_starfish:
+ofs_005_obj_hadler_9461_22_spawner_starfish:
+; con_obj_id_spawner_starfish
 ; object constantly spawns starfishes 23
 C - - J - - 0x019471 06:9461: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x019474 06:9464: 29 0F     AND #$0F
@@ -3206,13 +3260,14 @@ C - - - - - 0x01955E 06:954E: 60        RTS
 
 
 
-ofs_005_954F_23_starfish_1:
+ofs_005_obj_hadler_954F_23_starfish_1:
+; con_obj_id_starfish_1
 ; spawns from 22, flies up, then drops down at a random spot
 C - - J - - 0x01955F 06:954F: BD D0 03  LDA ram_direction,X
 C - - - - - 0x019562 06:9552: 29 08     AND #$08
 C - - - - - 0x019564 06:9554: F0 43     BEQ bra_9599
 C - - - - - 0x019566 06:9556: A9 00     LDA #$00
-C - - - - - 0x019568 06:9558: 9D 48 04  STA ram_0448,X
+C - - - - - 0x019568 06:9558: 9D 48 04  STA ram_0448_obj,X
 C - - - - - 0x01956B 06:955B: BD 60 03  LDA ram_pos_Y_lo,X
 C - - - - - 0x01956E 06:955E: C9 08     CMP #$08
 C - - - - - 0x019570 06:9560: D0 37     BNE bra_9599
@@ -3385,7 +3440,8 @@ tbl_95F8:
 
 
 
-ofs_005_9604_24_ice_cube_fish:
+ofs_005_obj_hadler_9604_24_ice_cube_fish:
+; con_obj_id_ice_cube_fish
 ; drops down from heaven, transforms into 03 after landing and unfreezing
 C - - J - - 0x019614 06:9604: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x019617 06:9607: 29 0F     AND #$0F
@@ -3432,7 +3488,8 @@ tbl_9650:
 
 
 
-ofs_005_9654_45_sand_fish:
+ofs_005_obj_hadler_9654_45_sand_fish:
+; con_obj_id_sand_fish
 ; hides inside sand, moves when player is close enough
 C - - J - - 0x019664 06:9654: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x019667 06:9657: 29 0F     AND #$0F
@@ -3499,12 +3556,13 @@ C - - - - - 0x0196EE 06:96DE: 4C DF FC  JMP loc_0x01FCEF_move_object_X_axis
 
 
 
-ofs_005_96E1_46_sand_splashes_fish:
+ofs_005_obj_hadler_96E1_46_sand_splashes_fish:
+; con_obj_id_sand_splashes_fish
 ; caused by 45 sand fish
-C - - J - - 0x0196F1 06:96E1: BD 18 04  LDA ram_animation_cnt,X
+C - - J - - 0x0196F1 06:96E1: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x0196F4 06:96E4: C9 02     CMP #$02
 C - - - - - 0x0196F6 06:96E6: D0 AA     BNE bra_9692_RTS
-C - - - - - 0x0196F8 06:96E8: BD 48 04  LDA ram_0448,X
+C - - - - - 0x0196F8 06:96E8: BD 48 04  LDA ram_0448_obj,X
 C - - - - - 0x0196FB 06:96EB: D0 A5     BNE bra_9692_RTS
 C - - - - - 0x0196FD 06:96ED: FE 80 04  INC ram_0480_obj,X
 C - - - - - 0x019700 06:96F0: BD 80 04  LDA ram_0480_obj,X
@@ -3515,7 +3573,7 @@ C - - - - - 0x019709 06:96F9: 9D 00 03  STA ram_obj_flags,X
 C - - - - - 0x01970C 06:96FC: 60        RTS
 bra_96FD:
 loc_96FD:
-C D 0 - - - 0x01970D 06:96FD: 86 0F     STX ram_000F
+C D 0 - - - 0x01970D 06:96FD: 86 0F     STX ram_000F_temp
 C - - - - - 0x01970F 06:96FF: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x019712 06:9702: B0 8E     BCS bra_9692_RTS
 C - - - - - 0x019714 06:9704: A9 14     LDA #$14
@@ -3547,7 +3605,7 @@ C - - - - - 0x019755 06:9745: FD 58 97  SBC tbl_9758_pos_X_lo,X
 C - - - - - 0x019758 06:9748: 99 30 03  STA ram_pos_X_lo,Y
 C - - - - - 0x01975B 06:974B: A9 21     LDA #con_sfx_sand
 C - - - - - 0x01975D 06:974D: 20 A0 FC  JSR sub_0x01FCB0_play_sfx
-C - - - - - 0x019760 06:9750: A6 0F     LDX ram_000F
+C - - - - - 0x019760 06:9750: A6 0F     LDX ram_000F_temp
 C - - - - - 0x019762 06:9752: 60        RTS
 
 
@@ -3570,8 +3628,9 @@ tbl_9758_pos_X_lo:
 
 
 
-ofs_005_975D_33_barrel:
-; can be moved with 27, 28 or 29
+ofs_005_obj_hadler_975D_33_barrel:
+; con_obj_id_barrel
+; can be moved with 27, 28 or 29 weapons
 C - - J - - 0x01976D 06:975D: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x019770 06:9760: 29 0F     AND #$0F
 C - - - - - 0x019772 06:9762: D0 27     BNE bra_978B
@@ -3632,9 +3691,11 @@ C - - - - - 0x0197E4 06:97D4: 60        RTS
 
 
 
-ofs_005_97D5_31_rock_small:
+ofs_005_obj_hadler_97D5_31_rock_small:
+; con_obj_id_rock_small
 ; can be moved with weapon 28 or 29
-ofs_005_97D5_32_rock_big:
+ofs_005_obj_hadler_97D5_32_rock_big:
+; con_obj_id_rock_big
 ; can be moved with weapon 29
 C - - J - - 0x0197E5 06:97D5: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x0197E8 06:97D8: 29 0F     AND #$0F
@@ -3727,13 +3788,14 @@ tbl_986B:
 
 
 
-ofs_005_986D_30_shell:
+ofs_005_obj_hadler_986D_30_shell:
+; con_obj_id_shell
 ; can be hidden in sand
 ; can be used as a weapon
 ; can open chests and hidden spots with it
 C - - J - - 0x01987D 06:986D: A0 05     LDY #$05
 C - - - - - 0x01987F 06:986F: 20 7F E2  JSR sub_0x01E28F
-C - - - - - 0x019882 06:9872: A5 10     LDA ram_0010
+C - - - - - 0x019882 06:9872: A5 10     LDA ram_0010_temp
 C - - - - - 0x019884 06:9874: D0 04     BNE bra_987A
 C - - - - - 0x019886 06:9876: A9 40     LDA #$40
 C - - - - - 0x019888 06:9878: 85 99     STA ram_0099
@@ -3868,16 +3930,18 @@ C - - - - - 0x01999A 06:998A: 60        RTS
 
 
 
-ofs_005_998B_38_chest_pearl_purple:
+ofs_005_obj_hadler_998B_38_chest_pearl_purple:
+; con_obj_id_chest_pearl_purple
 ; a chest with a purple pearl, can be opened with shell/rock/barrel
-ofs_005_998B_39_chest_pearl_green:
+ofs_005_obj_hadler_998B_39_chest_pearl_green:
+; con_obj_id_chest_pearl_green
 ; a chest with a green pearl, can be opened with shell/rock/barrel
 C - - J - - 0x01999B 06:998B: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x01999E 06:998E: 29 0F     AND #$0F
 C - - - - - 0x0199A0 06:9990: D0 2D     BNE bra_99BF
 C - - - - - 0x0199A2 06:9992: A0 05     LDY #$05
 C - - - - - 0x0199A4 06:9994: 20 7F E2  JSR sub_0x01E28F
-C - - - - - 0x0199A7 06:9997: A5 10     LDA ram_0010
+C - - - - - 0x0199A7 06:9997: A5 10     LDA ram_0010_temp
 C - - - - - 0x0199A9 06:9999: C9 30     CMP #$30
 C - - - - - 0x0199AB 06:999B: F0 73     BEQ bra_9A10_RTS
 C - - - - - 0x0199AD 06:999D: BD 00 04  LDA ram_0400_obj_flags,X
@@ -3942,7 +4006,8 @@ C - - - - - 0x019A20 06:9A10: 60        RTS
 
 
 
-ofs_005_9A11_36_extra_life:
+ofs_005_obj_hadler_9A11_36_extra_life:
+; con_obj_id_extra_life
 ; extra life, can be found trapped by rocks/barrels or inside secret areas
 C - - J - - 0x019A21 06:9A11: 20 F2 FA  JSR sub_0x01FB02
 C - - - - - 0x019A24 06:9A14: B0 FA     BCS bra_9A10_RTS
@@ -3964,9 +4029,11 @@ C - - - - - 0x019A45 06:9A35: 60        RTS
 
 
 
-ofs_005_9A36_34_heart_big:
+ofs_005_obj_hadler_9A36_34_heart_big:
+; con_obj_id_heart_big
 ; hidden item heart big
-ofs_005_9A36_35_heart_small:
+ofs_005_obj_hadler_9A36_35_heart_small:
+; con_obj_id_heart_small
 ; hidden item heart small
 C - - J - - 0x019A46 06:9A36: BD 60 04  LDA ram_0460_obj,X
 C - - - - - 0x019A49 06:9A39: F0 04     BEQ bra_9A3F
@@ -4002,9 +4069,11 @@ tbl_9A67:
 
 
 
-ofs_005_9A69_3A_item_fork:
+ofs_005_obj_hadler_9A69_3A_item_fork:
+; con_obj_id_item_fork
 ; hidden item fork, can be found in corners or sand
-ofs_005_9A69_3B_item_pipe:
+ofs_005_obj_hadler_9A69_3B_item_pipe:
+; con_obj_id_item_pipe
 ; hidden item pipe, can be found in corners or sand
 C - - J - - 0x019A79 06:9A69: BD 60 04  LDA ram_0460_obj,X
 C - - - - - 0x019A7C 06:9A6C: F0 04     BEQ bra_9A72
@@ -4036,15 +4105,20 @@ C - - - - - 0x019AB0 06:9AA0: 60        RTS
 
 
 
-ofs_005_9AA1_4D_secret_heart_sand:
+ofs_005_obj_hadler_9AA1_4D_secret_heart_sand:
+; con_obj_id_secret_heart_sand
 ; hidden small/big heart in a sand
-ofs_005_9AA1_4E_secret_heart_left:
+ofs_005_obj_hadler_9AA1_4E_secret_heart_left:
+; con_obj_id_secret_heart_left
 ; hidden small/big heart left side, moves right when unlocked
-ofs_005_9AA1_4F_secret_heart_right:
+ofs_005_obj_hadler_9AA1_4F_secret_heart_right:
+; con_obj_id_secret_heart_right
 ; hidden small/big heart right side, moves left when unlocked
-ofs_005_9AA1_50_secret_heart_down:
+ofs_005_obj_hadler_9AA1_50_secret_heart_down:
+; con_obj_id_secret_heart_down
 ; hidden small/big heart down side, moves up when unlocked
-ofs_005_9AA1_51_secret_heart_up:
+ofs_005_obj_hadler_9AA1_51_secret_heart_up:
+; con_obj_id_secret_heart_up
 ; hidden small/big heart up side, moves down when unlocked
 C - - J - - 0x019AB1 06:9AA1: BD 00 04  LDA ram_0400_obj_flags,X
 C - - - - - 0x019AB4 06:9AA4: 29 04     AND #$04
@@ -4056,7 +4130,7 @@ C - - - - - 0x019ABF 06:9AAF: DD 30 04  CMP ram_0430_obj,X
 C - - - - - 0x019AC2 06:9AB2: F0 03     BEQ bra_9AB7
 C - - - - - 0x019AC4 06:9AB4: 20 45 FC  JSR sub_0x01FC55
 bra_9AB7:
-C - - - - - 0x019AC7 06:9AB7: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x019AC7 06:9AB7: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x019ACA 06:9ABA: C9 05     CMP #$05
 C - - - - - 0x019ACC 06:9ABC: D0 4B     BNE bra_9B09_RTS
 C - - - - - 0x019ACE 06:9ABE: A5 E4     LDA ram_random
@@ -4097,15 +4171,20 @@ C - - - - - 0x019B19 06:9B09: 60        RTS
 
 
 
-ofs_005_9B0A_52_secret_item_sand:
+ofs_005_obj_hadler_9B0A_52_secret_item_sand:
+; con_obj_id_secret_item_sand
 ; hidden fork/pipe in a sand
-ofs_005_9B0A_53_secret_item_left:
+ofs_005_obj_hadler_9B0A_53_secret_item_left:
+; con_obj_id_secret_item_left
 ; hidden fork/pipe left side, moves right when unlocked
-ofs_005_9B0A_54_secret_item_right:
+ofs_005_obj_hadler_9B0A_54_secret_item_right:
+; con_obj_id_secret_item_right
 ; hidden fork/pipe right side, moves left when unlocked (unused but working)
-ofs_005_9B0A_55_secret_item_down:
+ofs_005_obj_hadler_9B0A_55_secret_item_down:
+; con_obj_id_secret_item_down
 ; hidden fork/pipe down side, moves up when unlocked
-ofs_005_9B0A_56_secret_item_up:
+ofs_005_obj_hadler_9B0A_56_secret_item_up:
+; con_obj_id_secret_item_up
 ; hidden fork/pipe up side, moves down when unlocked
 C - - J - - 0x019B1A 06:9B0A: BD 00 04  LDA ram_0400_obj_flags,X
 C - - - - - 0x019B1D 06:9B0D: 29 04     AND #$04
@@ -4117,7 +4196,7 @@ C - - - - - 0x019B28 06:9B18: DD 30 04  CMP ram_0430_obj,X
 C - - - - - 0x019B2B 06:9B1B: F0 03     BEQ bra_9B20
 C - - - - - 0x019B2D 06:9B1D: 20 45 FC  JSR sub_0x01FC55
 bra_9B20:
-C - - - - - 0x019B30 06:9B20: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x019B30 06:9B20: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x019B33 06:9B23: C9 05     CMP #$05
 C - - - - - 0x019B35 06:9B25: D0 4B     BNE bra_9B72_RTS
 C - - - - - 0x019B37 06:9B27: A5 E4     LDA ram_random
@@ -4198,7 +4277,8 @@ tbl_9B97_points:
 
 
 
-ofs_005_9BA7_0C_boss_shark_1:
+ofs_005_obj_hadler_9BA7_0C_boss_shark_1:
+; con_obj_id_boss_shark_1
 ; stage 1 boss when he spawns minions
 C - - J - - 0x019BB7 06:9BA7: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x019BBA 06:9BAA: 29 0F     AND #$0F
@@ -4279,7 +4359,7 @@ C - - - - - 0x019C51 06:9C41: DE 60 04  DEC ram_0460_obj,X
 C - - - - - 0x019C54 06:9C44: D0 75     BNE bra_9CBB_RTS
 C - - - - - 0x019C56 06:9C46: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x019C59 06:9C49: B0 70     BCS bra_9CBB_RTS
-C - - - - - 0x019C5B 06:9C4B: 86 0F     STX ram_000F
+C - - - - - 0x019C5B 06:9C4B: 86 0F     STX ram_000F_temp
 C - - - - - 0x019C5D 06:9C4D: A9 20     LDA #$20
 C - - - - - 0x019C5F 06:9C4F: 20 51 FC  JSR sub_0x01FC61
 C - - - - - 0x019C62 06:9C52: BD 60 03  LDA ram_pos_Y_lo,X
@@ -4294,14 +4374,14 @@ C - - - - - 0x019C7A 06:9C6A: 29 01     AND #$01
 C - - - - - 0x019C7C 06:9C6C: AA        TAX
 C - - - - - 0x019C7D 06:9C6D: BD BC 9C  LDA tbl_9CBC,X
 C - - - - - 0x019C80 06:9C70: 99 30 03  STA ram_pos_X_lo,Y
-C - - - - - 0x019C83 06:9C73: A6 0F     LDX ram_000F
+C - - - - - 0x019C83 06:9C73: A6 0F     LDX ram_000F_temp
 C - - - - - 0x019C85 06:9C75: BD 80 04  LDA ram_0480_obj,X
 C - - - - - 0x019C88 06:9C78: AA        TAX
 C - - - - - 0x019C89 06:9C79: B9 60 03  LDA ram_pos_Y_lo,Y
 C - - - - - 0x019C8C 06:9C7C: 18        CLC
 C - - - - - 0x019C8D 06:9C7D: 7D BE 9C  ADC tbl_9CBE_pos_X_lo,X
 C - - - - - 0x019C90 06:9C80: 99 60 03  STA ram_pos_Y_lo,Y
-C - - - - - 0x019C93 06:9C83: A6 0F     LDX ram_000F
+C - - - - - 0x019C93 06:9C83: A6 0F     LDX ram_000F_temp
 C - - - - - 0x019C95 06:9C85: C9 08     CMP #$08
 C - - - - - 0x019C97 06:9C87: 90 86     BCC bra_9C0F
 C - - - - - 0x019C99 06:9C89: C9 E8     CMP #$E8
@@ -4345,7 +4425,8 @@ tbl_9CBE_pos_X_lo:
 
 
 
-ofs_005_9CC4_0D_boss_shark_2:
+ofs_005_obj_hadler_9CC4_0D_boss_shark_2:
+; con_obj_id_boss_shark_2
 ; stage 1 boss boss when accelerates straight foward
 C - - J - - 0x019CD4 06:9CC4: BD 60 04  LDA ram_0460_obj,X
 C - - - - - 0x019CD7 06:9CC7: F0 41     BEQ bra_9D0A
@@ -4403,13 +4484,15 @@ C - - - - - 0x019D44 06:9D34: 4C 5A 9E  JMP loc_9E5A
 
 
 
-ofs_005_9D37_0E_piranha_minion_shark:
+ofs_005_obj_hadler_9D37_0E_piranha_minion_shark:
+; con_obj_id_piranha_minion_shark
 ; piranha fish during stage 1 boss fight, just swims straight foward
 C - - J - - 0x019D47 06:9D37: 4C DF FC  JMP loc_0x01FCEF_move_object_X_axis
 
 
 
-ofs_005_9D3A_2A_boss_walrus:
+ofs_005_obj_hadler_9D3A_2A_boss_walrus:
+; con_obj_id_boss_walrus
 ; stage 3 boss
 C - - J - - 0x019D4A 06:9D3A: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x019D4D 06:9D3D: 29 0F     AND #$0F
@@ -4456,7 +4539,7 @@ bra_9D90:
 C - - - - - 0x019DA0 06:9D90: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x019DA3 06:9D93: C9 58     CMP #$58
 C - - - - - 0x019DA5 06:9D95: D0 08     BNE bra_9D9F
-C - - - - - 0x019DA7 06:9D97: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x019DA7 06:9D97: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x019DAA 06:9D9A: F0 03     BEQ bra_9D9F
 C - - - - - 0x019DAC 06:9D9C: DE 30 04  DEC ram_0430_obj,X
 bra_9D9F:
@@ -4506,16 +4589,16 @@ C - - - - - 0x019E06 06:9DF6: D0 02     BNE bra_9DFA
 bra_9DF8:
 C - - - - - 0x019E08 06:9DF8: A0 01     LDY #$01
 bra_9DFA:
-C - - - - - 0x019E0A 06:9DFA: 84 0E     STY ram_000E
-C - - - - - 0x019E0C 06:9DFC: 86 0F     STX ram_000F
+C - - - - - 0x019E0A 06:9DFA: 84 0E     STY ram_000E_t03_table_index
+C - - - - - 0x019E0C 06:9DFC: 86 0F     STX ram_000F_temp
 C - - - - - 0x019E0E 06:9DFE: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x019E11 06:9E01: B0 85     BCS bra_9D88_RTS
 C - - - - - 0x019E13 06:9E03: 84 BC     STY ram_00BC
-C - - - - - 0x019E15 06:9E05: A6 0E     LDX ram_000E
+C - - - - - 0x019E15 06:9E05: A6 0E     LDX ram_000E_t03_table_index
 C - - - - - 0x019E17 06:9E07: BD C5 9E  LDA tbl_9EC5,X
 C - - - - - 0x019E1A 06:9E0A: 99 C0 03  STA ram_03C0_obj,Y
 C - - - - - 0x019E1D 06:9E0D: BD C3 9E  LDA tbl_9EC3,X
-C - - - - - 0x019E20 06:9E10: A6 0F     LDX ram_000F
+C - - - - - 0x019E20 06:9E10: A6 0F     LDX ram_000F_temp
 C - - - - - 0x019E22 06:9E12: 20 51 FC  JSR sub_0x01FC61
 C - - - - - 0x019E25 06:9E15: A9 08     LDA #$08
 C - - - - - 0x019E27 06:9E17: 99 60 03  STA ram_pos_Y_lo,Y
@@ -4637,7 +4720,8 @@ tbl_9EC5:
 
 
 
-ofs_005_9EC7_2B_weapon_walrus:
+ofs_005_obj_hadler_9EC7_2B_weapon_walrus:
+; con_obj_id_weapon_walrus
 ; spawns 24 or 30 but with 2B index
 ; they change index to normal when stop sliding
 C - - J - - 0x019ED7 06:9EC7: BD 00 03  LDA ram_obj_flags,X
@@ -4715,9 +4799,11 @@ C - - - - - 0x019F6F 06:9F5F: 60        RTS
 
 
 
-ofs_005_9F60_2C_boss_eel_1:
+ofs_005_obj_hadler_9F60_2C_boss_eel_1:
+; con_obj_id_boss_eel_1
 ; stage 2 boss, 1st eel
-ofs_005_9F60_2D_boss_eel_2:
+ofs_005_obj_hadler_9F60_2D_boss_eel_2:
+; con_obj_id_boss_eel_2
 ; stage 2 boss, 2nd eel
 C - - J - - 0x019F70 06:9F60: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x019F73 06:9F63: 29 0F     AND #$0F
@@ -4768,9 +4854,9 @@ C - - - - - 0x019FCC 06:9FBC: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x019FCF 06:9FBF: C9 59     CMP #$59
 C - - - - - 0x019FD1 06:9FC1: D0 30     BNE bra_9FF3
 C - - - - - 0x019FD3 06:9FC3: A9 08     LDA #$08
-C - - - - - 0x019FD5 06:9FC5: DD 18 04  CMP ram_animation_cnt,X
+C - - - - - 0x019FD5 06:9FC5: DD 18 04  CMP ram_obj_animation_cnt,X
 C - - - - - 0x019FD8 06:9FC8: D0 BE     BNE bra_9F88_RTS
-C - - - - - 0x019FDA 06:9FCA: DD 48 04  CMP ram_0448,X
+C - - - - - 0x019FDA 06:9FCA: DD 48 04  CMP ram_0448_obj,X
 C - - - - - 0x019FDD 06:9FCD: D0 B9     BNE bra_9F88_RTS
 C - - - - - 0x019FDF 06:9FCF: A9 5A     LDA #$5A
 C - - - - - 0x019FE1 06:9FD1: 20 45 FC  JSR sub_0x01FC55
@@ -4792,7 +4878,7 @@ bra_9FF3:
 C - - - - - 0x01A003 06:9FF3: C9 45     CMP #$45
 C - - - - - 0x01A005 06:9FF5: D0 12     BNE bra_A009
 C - - - - - 0x01A007 06:9FF7: A9 02     LDA #$02
-C - - - - - 0x01A009 06:9FF9: DD 18 04  CMP ram_animation_cnt,X
+C - - - - - 0x01A009 06:9FF9: DD 18 04  CMP ram_obj_animation_cnt,X
 C - - - - - 0x01A00C 06:9FFC: D0 8A     BNE bra_9F88_RTS
 C - - - - - 0x01A00E 06:9FFE: FE 00 03  INC ram_obj_flags,X
 C - - - - - 0x01A011 06:A001: A9 00     LDA #$00
@@ -4911,7 +4997,8 @@ C - - - - - 0x01A0E7 06:A0D7: 60        RTS
 
 
 
-ofs_005_A0D8_5A_spawner_crabs:
+ofs_005_obj_hadler_A0D8_5A_spawner_crabs:
+; con_obj_id_spawner_crabs
 ; object constantly spawns crabs 15 during boss fight at stage 2
 C - - J - - 0x01A0E8 06:A0D8: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x01A0EB 06:A0DB: 29 0F     AND #$0F
@@ -4966,7 +5053,7 @@ C - - - - - 0x01A147 06:A137: 9D 60 04  STA ram_0460_obj,X
 bra_A13A:
 C - - - - - 0x01A14A 06:A13A: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x01A14D 06:A13D: B0 98     BCS bra_A0D7_RTS
-C - - - - - 0x01A14F 06:A13F: 86 0F     STX ram_000F
+C - - - - - 0x01A14F 06:A13F: 86 0F     STX ram_000F_temp
 C - - - - - 0x01A151 06:A141: A9 26     LDA #$26
 C - - - - - 0x01A153 06:A143: 20 51 FC  JSR sub_0x01FC61
 C - - - - - 0x01A156 06:A146: BD 70 03  LDA ram_pos_Y_hi,X
@@ -5005,7 +5092,7 @@ C - - - - - 0x01A1A1 06:A191: A9 01     LDA #$01
 C - - - - - 0x01A1A3 06:A193: 99 F0 03  STA ram_03F0_obj,Y
 C - - - - - 0x01A1A6 06:A196: A9 15     LDA #con_obj_id_crab_naked
 C - - - - - 0x01A1A8 06:A198: 99 10 03  STA ram_obj_id,Y
-C - - - - - 0x01A1AB 06:A19B: A6 0F     LDX ram_000F
+C - - - - - 0x01A1AB 06:A19B: A6 0F     LDX ram_000F_temp
 C - - - - - 0x01A1AD 06:A19D: DE 60 04  DEC ram_0460_obj,X
 C - - - - - 0x01A1B0 06:A1A0: 60        RTS
 
@@ -5079,7 +5166,8 @@ tbl_A1CB_pos_Y_lo:
 
 
 
-ofs_005_A1CF_2E_boss_seahorse:
+ofs_005_obj_hadler_A1CF_2E_boss_seahorse:
+; con_obj_id_boss_seahorse
 ; stage 4 boss
 C - - J - - 0x01A1DF 06:A1CF: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x01A1E2 06:A1D2: 29 0F     AND #$0F
@@ -5087,7 +5175,7 @@ C - - - - - 0x01A1E4 06:A1D4: D0 2F     BNE bra_A205
 C - - - - - 0x01A1E6 06:A1D6: 20 09 A6  JSR sub_A609
 C - - - - - 0x01A1E9 06:A1D9: 90 29     BCC bra_A204_RTS
 C - - - - - 0x01A1EB 06:A1DB: A9 00     LDA #$00
-C - - - - - 0x01A1ED 06:A1DD: 9D 48 04  STA ram_0448,X
+C - - - - - 0x01A1ED 06:A1DD: 9D 48 04  STA ram_0448_obj,X
 C - - - - - 0x01A1F0 06:A1E0: A9 04     LDA #$04
 C - - - - - 0x01A1F2 06:A1E2: 9D D0 03  STA ram_direction,X
 C - - - - - 0x01A1F5 06:A1E5: A9 B0     LDA #$B0
@@ -5109,9 +5197,9 @@ C - - - - - 0x01A215 06:A205: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x01A218 06:A208: C9 56     CMP #$56
 C - - - - - 0x01A21A 06:A20A: D0 11     BNE bra_A21D
 C - - - - - 0x01A21C 06:A20C: A9 06     LDA #$06
-C - - - - - 0x01A21E 06:A20E: DD 18 04  CMP ram_animation_cnt,X
+C - - - - - 0x01A21E 06:A20E: DD 18 04  CMP ram_obj_animation_cnt,X
 C - - - - - 0x01A221 06:A211: D0 0A     BNE bra_A21D
-C - - - - - 0x01A223 06:A213: DD 48 04  CMP ram_0448,X
+C - - - - - 0x01A223 06:A213: DD 48 04  CMP ram_0448_obj,X
 C - - - - - 0x01A226 06:A216: D0 05     BNE bra_A21D
 C - - - - - 0x01A228 06:A218: A9 55     LDA #$55
 C - - - - - 0x01A22A 06:A21A: 20 45 FC  JSR sub_0x01FC55
@@ -5154,14 +5242,14 @@ C - - - - - 0x01A26E 06:A25E: 20 45 FC  JSR sub_0x01FC55
 C - - - - - 0x01A271 06:A261: A9 18     LDA #con_sfx_18
 C - - - - - 0x01A273 06:A263: 20 A0 FC  JSR sub_0x01FCB0_play_sfx
 C - - - - - 0x01A276 06:A266: A9 01     LDA #$01
-C - - - - - 0x01A278 06:A268: 85 0E     STA ram_000E
-C - - - - - 0x01A27A 06:A26A: 86 0F     STX ram_000F
+C - - - - - 0x01A278 06:A268: 85 0E     STA ram_000E_t04_loop_counter
+C - - - - - 0x01A27A 06:A26A: 86 0F     STX ram_000F_temp
 bra_A26C_loop:
 C - - - - - 0x01A27C 06:A26C: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x01A27F 06:A26F: B0 93     BCS bra_A204_RTS
 C - - - - - 0x01A281 06:A271: A9 0A     LDA #$0A
 C - - - - - 0x01A283 06:A273: 99 D0 03  STA ram_direction,Y
-C - - - - - 0x01A286 06:A276: A6 0E     LDX ram_000E
+C - - - - - 0x01A286 06:A276: A6 0E     LDX ram_000E_t04_loop_counter
 C - - - - - 0x01A288 06:A278: BD 8C A3  LDA tbl_A38C_pos_Y_lo,X
 C - - - - - 0x01A28B 06:A27B: 99 60 03  STA ram_pos_Y_lo,Y
 C - - - - - 0x01A28E 06:A27E: BD 8A A3  LDA tbl_A38A_pos_X_lo,X
@@ -5194,16 +5282,16 @@ C - - - - - 0x01A2CD 06:A2BD: 99 90 03  STA ram_spd_X_hi,Y
 C - - - - - 0x01A2D0 06:A2C0: 99 B0 03  STA ram_spd_Y_hi,Y
 C - - - - - 0x01A2D3 06:A2C3: BD A8 A3  LDA tbl_A3A8,X
 C - - - - - 0x01A2D6 06:A2C6: 99 60 04  STA ram_0460_obj,Y
-C - - - - - 0x01A2D9 06:A2C9: A6 0F     LDX ram_000F
+C - - - - - 0x01A2D9 06:A2C9: A6 0F     LDX ram_000F_temp
 C - - - - - 0x01A2DB 06:A2CB: BD 70 03  LDA ram_pos_Y_hi,X
 C - - - - - 0x01A2DE 06:A2CE: 99 70 03  STA ram_pos_Y_hi,Y
 C - - - - - 0x01A2E1 06:A2D1: BD 40 03  LDA ram_pos_X_hi,X
 C - - - - - 0x01A2E4 06:A2D4: 99 40 03  STA ram_pos_X_hi,Y
-C - - - - - 0x01A2E7 06:A2D7: C6 0E     DEC ram_000E
+C - - - - - 0x01A2E7 06:A2D7: C6 0E     DEC ram_000E_t04_loop_counter
 C - - - - - 0x01A2E9 06:A2D9: 10 91     BPL bra_A26C_loop
 C - - - - - 0x01A2EB 06:A2DB: A9 01     LDA #$01
-C - - - - - 0x01A2ED 06:A2DD: 85 0E     STA ram_000E
-C - - - - - 0x01A2EF 06:A2DF: 86 0F     STX ram_000F
+C - - - - - 0x01A2ED 06:A2DD: 85 0E     STA ram_000E_t05_loop_counter
+C - - - - - 0x01A2EF 06:A2DF: 86 0F     STX ram_000F_temp
 bra_A2E1_loop:
 C - - - - - 0x01A2F1 06:A2E1: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x01A2F4 06:A2E4: B0 65     BCS bra_A34B_RTS
@@ -5215,13 +5303,13 @@ C - - - - - 0x01A300 06:A2F0: BD 70 03  LDA ram_pos_Y_hi,X
 C - - - - - 0x01A303 06:A2F3: 99 70 03  STA ram_pos_Y_hi,Y
 C - - - - - 0x01A306 06:A2F6: BD 40 03  LDA ram_pos_X_hi,X
 C - - - - - 0x01A309 06:A2F9: 99 40 03  STA ram_pos_X_hi,Y
-C - - - - - 0x01A30C 06:A2FC: A6 0E     LDX ram_000E
+C - - - - - 0x01A30C 06:A2FC: A6 0E     LDX ram_000E_t05_loop_counter
 C - - - - - 0x01A30E 06:A2FE: BD AB A3  LDA tbl_A3AB_pos_X_lo,X
 C - - - - - 0x01A311 06:A301: 99 30 03  STA ram_pos_X_lo,Y
 C - - - - - 0x01A314 06:A304: BD AD A3  LDA tbl_A3AD_pos_Y_lo,X
 C - - - - - 0x01A317 06:A307: 99 60 03  STA ram_pos_Y_lo,Y
-C - - - - - 0x01A31A 06:A30A: A6 0F     LDX ram_000F
-C - - - - - 0x01A31C 06:A30C: C6 0E     DEC ram_000E
+C - - - - - 0x01A31A 06:A30A: A6 0F     LDX ram_000F_temp
+C - - - - - 0x01A31C 06:A30C: C6 0E     DEC ram_000E_t05_loop_counter
 C - - - - - 0x01A31E 06:A30E: 10 D1     BPL bra_A2E1_loop
 C - - - - - 0x01A320 06:A310: A0 0F     LDY #$0F
 bra_A312_loop:
@@ -5239,9 +5327,11 @@ C - - - - - 0x01A333 06:A323: 60        RTS
 
 
 
-ofs_005_A324_2F_piranha_cannon:
+ofs_005_obj_hadler_A324_2F_piranha_cannon:
+; con_obj_id_piranha_cannon
 ; spawns from 0F, transforms into 12 later
-ofs_005_A324_5B_starfish_2:
+ofs_005_obj_hadler_A324_5B_starfish_2:
+; con_obj_id_starfish_2
 ; spawns from 0F, transforms into 10 later
 C - - J - - 0x01A334 06:A324: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x01A337 06:A327: 29 0F     AND #$0F
@@ -5389,7 +5479,8 @@ tbl_A3B1:
 
 
 
-ofs_005_A3B3_0F_cannon:
+ofs_005_obj_hadler_A3B3_0F_cannon:
+; con_obj_id_cannon
 ; sinked ship cannon during stage 4 boss fight
 ; as soon as it shoots for the first time, Y coordinates are cleared,
 ; but it's still working as intended 
@@ -5408,7 +5499,7 @@ C - - - - - 0x01A3D5 06:A3C5: D0 EE     BNE bra_A3B5_loop
 C - - - - - 0x01A3D7 06:A3C7: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x01A3DA 06:A3CA: C9 77     CMP #$77
 C - - - - - 0x01A3DC 06:A3CC: D0 0A     BNE bra_A3D8_RTS
-C - - - - - 0x01A3DE 06:A3CE: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x01A3DE 06:A3CE: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x01A3E1 06:A3D1: F0 05     BEQ bra_A3D8_RTS
 C - - - - - 0x01A3E3 06:A3D3: A9 64     LDA #$64
 C - - - - - 0x01A3E5 06:A3D5: 4C 45 FC  JMP loc_0x01FC55
@@ -5417,7 +5508,8 @@ C - - - - - 0x01A3E8 06:A3D8: 60        RTS
 
 
 
-ofs_005_A3D9_47_boss_ursula_small_top:
+ofs_005_obj_hadler_A3D9_47_boss_ursula_small_top:
+; con_obj_id_boss_ursula_small_top
 ; stage 5 boss, upper half of the body
 ; this is her hurtbox and actual spawner of 48 and 49
 C - - J - - 0x01A3E9 06:A3D9: BD 60 03  LDA ram_pos_Y_lo,X
@@ -5502,8 +5594,8 @@ C - - - - - 0x01A487 06:A477: C0 02     CPY #$02
 C - - - - - 0x01A489 06:A479: D0 EF     BNE bra_A46A_loop
 bra_A47B:
 C - - - - - 0x01A48B 06:A47B: A9 01     LDA #$01
-C - - - - - 0x01A48D 06:A47D: 99 18 04  STA ram_animation_cnt,Y
-C - - - - - 0x01A490 06:A480: 99 48 04  STA ram_0448,Y
+C - - - - - 0x01A48D 06:A47D: 99 18 04  STA ram_obj_animation_cnt,Y
+C - - - - - 0x01A490 06:A480: 99 48 04  STA ram_0448_obj,Y
 C - - - - - 0x01A493 06:A483: A9 5A     LDA #$5A
 C - - - - - 0x01A495 06:A485: 99 60 04  STA ram_0460_obj,Y
 C - - - - - 0x01A498 06:A488: A0 00     LDY #$00
@@ -5522,8 +5614,8 @@ C - - - - - 0x01A4AC 06:A49C: 85 00     STA ram_0000_t29_pos_X_lo
 C - - - - - 0x01A4AE 06:A49E: C9 E0     CMP #$E0
 C - - - - - 0x01A4B0 06:A4A0: D0 EC     BNE bra_A48E_loop
 bra_A4A2:
-C - - - - - 0x01A4B2 06:A4A2: 84 0F     STY ram_000F
-C - - - - - 0x01A4B4 06:A4A4: 86 0E     STX ram_000E
+C - - - - - 0x01A4B2 06:A4A2: 84 0F     STY ram_000F_temp
+C - - - - - 0x01A4B4 06:A4A4: 86 0E     STX ram_000E_t06_obj_index
 bra_A4A6_loop:
 C - - - - - 0x01A4B6 06:A4A6: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x01A4B9 06:A4A9: B0 6B     BCS bra_A516_RTS
@@ -5544,7 +5636,7 @@ C - - - - - 0x01A4D9 06:A4C9: D0 05     BNE bra_A4D0
 C - - - - - 0x01A4DB 06:A4CB: A9 49     LDA #con_obj_id_projectile_ursula_real
 C - - - - - 0x01A4DD 06:A4CD: 99 10 03  STA ram_obj_id,Y
 bra_A4D0:
-C - - - - - 0x01A4E0 06:A4D0: A6 0E     LDX ram_000E
+C - - - - - 0x01A4E0 06:A4D0: A6 0E     LDX ram_000E_t06_obj_index
 C - - - - - 0x01A4E2 06:A4D2: A9 28     LDA #$28
 C - - - - - 0x01A4E4 06:A4D4: 20 51 FC  JSR sub_0x01FC61
 C - - - - - 0x01A4E7 06:A4D7: BD 70 03  LDA ram_pos_Y_hi,X
@@ -5557,7 +5649,7 @@ C - - - - - 0x01A4F8 06:A4E8: A9 00     LDA #$00
 C - - - - - 0x01A4FA 06:A4EA: 99 90 03  STA ram_spd_X_hi,Y
 C - - - - - 0x01A4FD 06:A4ED: A9 01     LDA #$01
 C - - - - - 0x01A4FF 06:A4EF: 99 B0 03  STA ram_spd_Y_hi,Y
-C - - - - - 0x01A502 06:A4F2: A6 0F     LDX ram_000F
+C - - - - - 0x01A502 06:A4F2: A6 0F     LDX ram_000F_temp
 C - - - - - 0x01A504 06:A4F4: BD 17 A5  LDA tbl_A517_pos_X_lo,X
 C - - - - - 0x01A507 06:A4F7: 99 30 03  STA ram_pos_X_lo,Y
 C - - - - - 0x01A50A 06:A4FA: BD 23 A5  LDA tbl_A523_direction,X
@@ -5566,9 +5658,9 @@ C - - - - - 0x01A510 06:A500: BD 2F A5  LDA tbl_A52F_spd_X_lo,X
 C - - - - - 0x01A513 06:A503: 99 80 03  STA ram_spd_X_lo,Y
 C - - - - - 0x01A516 06:A506: BD 3B A5  LDA tbl_A53B_spd_Y_lo,X
 C - - - - - 0x01A519 06:A509: 99 A0 03  STA ram_spd_Y_lo,Y
-C - - - - - 0x01A51C 06:A50C: A6 0E     LDX ram_000E
-C - - - - - 0x01A51E 06:A50E: E6 0F     INC ram_000F
-C - - - - - 0x01A520 06:A510: A5 0F     LDA ram_000F
+C - - - - - 0x01A51C 06:A50C: A6 0E     LDX ram_000E_t06_obj_index
+C - - - - - 0x01A51E 06:A50E: E6 0F     INC ram_000F_temp
+C - - - - - 0x01A520 06:A510: A5 0F     LDA ram_000F_temp
 C - - - - - 0x01A522 06:A512: 29 01     AND #$01
 C - - - - - 0x01A524 06:A514: D0 90     BNE bra_A4A6_loop
 bra_A516_RTS:
@@ -5652,7 +5744,8 @@ tbl_A547:
 
 
 
-ofs_005_A54F_48_projectile_ursula_fake:
+ofs_005_obj_hadler_A54F_48_projectile_ursula_fake:
+; con_obj_id_projectile_ursula_fake
 ; stage 5 boss projectile, transorms into 03, 05, 12, 13 or 14
 C - - J - - 0x01A55F 06:A54F: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x01A562 06:A552: 29 0F     AND #$0F
@@ -5766,28 +5859,32 @@ tbl_A5E0:
 
 
 
-ofs_005_A5F0_13_sea_urchin_2:
+ofs_005_obj_hadler_A5F0_13_sea_urchin_2:
+; con_obj_id_sea_urchin_2
 ; created by projectile 48
-ofs_005_A5F0_14_starfish_3:
+ofs_005_obj_hadler_A5F0_14_starfish_3:
+; con_obj_id_starfish_3
 ; created by projectile 48
-ofs_005_A5F0_49_projectile_ursula_real:
-; stage 5 boss projectile, looks like 48 but doesn't transform, just drops down
+ofs_005_obj_hadler_A5F0_49_projectile_ursula_real:
+; con_obj_id_projectile_ursula_real
+; stage 5 boss projectile, visually looks like 48 but doesn't transform, just drops down
 C - - J - - 0x01A600 06:A5F0: 20 DF FC  JSR sub_0x01FCEF_move_object_X_axis
 C - - - - - 0x01A603 06:A5F3: 4C 11 F9  JMP loc_0x01F921
 
 
 
-ofs_005_A5F6_4A_boss_ursula_small_bottom:
+ofs_005_obj_hadler_A5F6_4A_boss_ursula_small_bottom:
+; con_obj_id_boss_ursula_small_bottom
 ; stage 5 boss, lower half of the body
 ; lights up when spawner is activated
-C - - J - - 0x01A606 06:A5F6: BD 18 04  LDA ram_animation_cnt,X
+C - - J - - 0x01A606 06:A5F6: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x01A609 06:A5F9: F0 08     BEQ bra_A603
 C - - - - - 0x01A60B 06:A5FB: DE 60 04  DEC ram_0460_obj,X
 C - - - - - 0x01A60E 06:A5FE: D0 03     BNE bra_A603
-C - - - - - 0x01A610 06:A600: DE 18 04  DEC ram_animation_cnt,X
+C - - - - - 0x01A610 06:A600: DE 18 04  DEC ram_obj_animation_cnt,X
 bra_A603:
 C - - - - - 0x01A613 06:A603: A9 00     LDA #$00
-C - - - - - 0x01A615 06:A605: 9D 48 04  STA ram_0448,X
+C - - - - - 0x01A615 06:A605: 9D 48 04  STA ram_0448_obj,X
 C - - - - - 0x01A618 06:A608: 60        RTS
 
 
@@ -5805,7 +5902,7 @@ C - - - - - 0x01A627 06:A617: A5 30     LDA ram_ariel_status
 C - - - - - 0x01A629 06:A619: 8D 70 04  STA ram_obj_timer
 C - - - - - 0x01A62C 06:A61C: A9 08     LDA #$08    ; con_music_boss_fight
 C - - - - - 0x01A62E 06:A61E: 85 30     STA ram_ariel_status    ; con_ariel_waiting_for_boss
-C - - - - - 0x01A630 06:A620: 85 53     STA ram_0053
+C - - - - - 0x01A630 06:A620: 85 53     STA ram_0053_flag
 C - - - - - 0x01A632 06:A622: 20 9E FC  JSR sub_0x01FCAE_play_music
 C - - - - - 0x01A635 06:A625: A9 60     LDA #$60
 C - - - - - 0x01A637 06:A627: 85 5F     STA ram_005F
@@ -5816,7 +5913,7 @@ C - - - - - 0x01A63E 06:A62E: F0 0B     BEQ bra_A63B
 C - - - - - 0x01A640 06:A630: C6 5F     DEC ram_005F
 C - - - - - 0x01A642 06:A632: D0 05     BNE bra_A639
 C - - - - - 0x01A644 06:A634: A9 00     LDA #$00
-C - - - - - 0x01A646 06:A636: 9D 48 04  STA ram_0448,X
+C - - - - - 0x01A646 06:A636: 9D 48 04  STA ram_0448_obj,X
 bra_A639:
 C - - - - - 0x01A649 06:A639: 18        CLC
 C - - - - - 0x01A64A 06:A63A: 60        RTS
@@ -5826,7 +5923,8 @@ C - - - - - 0x01A64C 06:A63C: 60        RTS
 
 
 
-ofs_005_A63D_3E_boss_ursula_small_dead:
+ofs_005_obj_hadler_A63D_3E_boss_ursula_small_dead:
+; con_obj_id_boss_ursula_small_dead
 ; replaces 47 when defeated
 C - - J - - 0x01A64D 06:A63D: BD 00 04  LDA ram_0400_obj_flags,X
 C - - - - - 0x01A650 06:A640: 29 04     AND #$04
@@ -5876,7 +5974,8 @@ C - - - - - 0x01A6A1 06:A691: 60        RTS
 
 
 
-ofs_005_A692_57_boss_ursula_big_alive:
+ofs_005_obj_hadler_A692_57_boss_ursula_big_alive:
+; con_obj_id_boss_ursula_big_alive
 ; stage 6 boss while alive (hurtbox)
 C - - J - - 0x01A6A2 06:A692: BD 60 03  LDA ram_pos_Y_lo,X
 C - - - - - 0x01A6A5 06:A695: 48        PHA
@@ -5921,7 +6020,7 @@ C - - - - - 0x01A6EB 06:A6DB: 20 95 A7  JSR sub_A795
 C - - - - - 0x01A6EE 06:A6DE: BD 00 03  LDA ram_obj_flags,X
 C - - - - - 0x01A6F1 06:A6E1: 29 0F     AND #$0F
 C - - - - - 0x01A6F3 06:A6E3: D0 1D     BNE bra_A702
-C - - - - - 0x01A6F5 06:A6E5: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x01A6F5 06:A6E5: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x01A6F8 06:A6E8: D0 31     BNE bra_A71B_RTS
 C - - - - - 0x01A6FA 06:A6EA: FE 90 04  INC ram_0490_obj,X
 C - - - - - 0x01A6FD 06:A6ED: BD 90 04  LDA ram_0490_obj,X
@@ -5932,14 +6031,14 @@ C - - - - - 0x01A706 06:A6F6: 9D 90 04  STA ram_0490_obj,X
 C - - - - - 0x01A709 06:A6F9: FE 00 03  INC ram_obj_flags,X
 bra_A6FC:
 C - - - - - 0x01A70C 06:A6FC: A9 00     LDA #$00
-C - - - - - 0x01A70E 06:A6FE: 9D 48 04  STA ram_0448,X
+C - - - - - 0x01A70E 06:A6FE: 9D 48 04  STA ram_0448_obj,X
 C - - - - - 0x01A711 06:A701: 60        RTS
 bra_A702:
-C - - - - - 0x01A712 06:A702: BD 18 04  LDA ram_animation_cnt,X
+C - - - - - 0x01A712 06:A702: BD 18 04  LDA ram_obj_animation_cnt,X
 C - - - - - 0x01A715 06:A705: C9 02     CMP #$02
 C - - - - - 0x01A717 06:A707: D0 12     BNE bra_A71B_RTS
 C - - - - - 0x01A719 06:A709: A9 00     LDA #$00
-C - - - - - 0x01A71B 06:A70B: 9D 48 04  STA ram_0448,X
+C - - - - - 0x01A71B 06:A70B: 9D 48 04  STA ram_0448_obj,X
 C - - - - - 0x01A71E 06:A70E: BD 90 04  LDA ram_0490_obj,X
 C - - - - - 0x01A721 06:A711: F0 09     BEQ bra_A71C
 C - - - - - 0x01A723 06:A713: DE 90 04  DEC ram_0490_obj,X
@@ -6007,8 +6106,8 @@ C - - - - - 0x01A796 06:A786: A9 89     LDA #$89
 C - - - - - 0x01A798 06:A788: 99 30 04  STA ram_0430_obj,Y
 loc_A78B:
 C D 1 - - - 0x01A79B 06:A78B: A9 00     LDA #$00
-C - - - - - 0x01A79D 06:A78D: 99 48 04  STA ram_0448,Y
-C - - - - - 0x01A7A0 06:A790: 99 18 04  STA ram_animation_cnt,Y
+C - - - - - 0x01A79D 06:A78D: 99 48 04  STA ram_0448_obj,Y
+C - - - - - 0x01A7A0 06:A790: 99 18 04  STA ram_obj_animation_cnt,Y
 C - - - - - 0x01A7A3 06:A793: F0 CD     BEQ bra_A762   ; jmp
 
 
@@ -6047,7 +6146,7 @@ C - - - - - 0x01A7DC 06:A7CC: 9D 60 04  STA ram_0460_obj,X
 bra_A7CF_RTS:
 C - - - - - 0x01A7DF 06:A7CF: 60        RTS
 bra_A7D0:
-C - - - - - 0x01A7E0 06:A7D0: 86 0F     STX ram_000F
+C - - - - - 0x01A7E0 06:A7D0: 86 0F     STX ram_000F_temp
 C - - - - - 0x01A7E2 06:A7D2: 20 54 FE  JSR sub_0x01FE64
 C - - - - - 0x01A7E5 06:A7D5: B0 59     BCS bra_A830_RTS
 C - - - - - 0x01A7E7 06:A7D7: A9 58     LDA #con_obj_id_piranha_minion_ursula
@@ -6076,12 +6175,12 @@ C - - - - - 0x01A81E 06:A80E: 29 01     AND #$01
 C - - - - - 0x01A820 06:A810: AA        TAX
 C - - - - - 0x01A821 06:A811: BD 33 A8  LDA tbl_A833_pos_X_lo,X
 C - - - - - 0x01A824 06:A814: 99 30 03  STA ram_pos_X_lo,Y
-C - - - - - 0x01A827 06:A817: A6 0F     LDX ram_000F
+C - - - - - 0x01A827 06:A817: A6 0F     LDX ram_000F_temp
 C - - - - - 0x01A829 06:A819: BD 80 04  LDA ram_0480_obj,X
 C - - - - - 0x01A82C 06:A81C: AA        TAX
 C - - - - - 0x01A82D 06:A81D: BD 35 A8  LDA tbl_A835_pos_Y_lo,X
 C - - - - - 0x01A830 06:A820: 99 60 03  STA ram_pos_Y_lo,Y
-C - - - - - 0x01A833 06:A823: A6 0F     LDX ram_000F
+C - - - - - 0x01A833 06:A823: A6 0F     LDX ram_000F_temp
 C - - - - - 0x01A835 06:A825: FE 80 04  INC ram_0480_obj,X
 C - - - - - 0x01A838 06:A828: DE 70 04  DEC ram_obj_timer,X
 C - - - - - 0x01A83B 06:A82B: A9 20     LDA #$20
@@ -6120,7 +6219,8 @@ tbl_A83A:
 
 
 
-ofs_005_A83E_58_piranha_minion_ursula:
+ofs_005_obj_hadler_A83E_58_piranha_minion_ursula:
+; con_obj_id_piranha_minion_ursula
 ; piranha fish during stage 6 boss fight, swims at the bottom
 C - - J - - 0x01A84E 06:A83E: A9 00     LDA #$00
 C - - - - - 0x01A850 06:A840: 9D 80 03  STA ram_spd_X_lo,X
@@ -6152,7 +6252,8 @@ C D 1 - - - 0x01A886 06:A876: 4C DF FC  JMP loc_0x01FCEF_move_object_X_axis
 
 
 
-ofs_005_A879_59_boss_ursula_big_dead:
+ofs_005_obj_hadler_A879_59_boss_ursula_big_dead:
+; con_obj_id_boss_ursula_big_dead
 ; stage 6 boss when dead, she begins to dissapear
 C - - J - - 0x01A889 06:A879: BD 80 04  LDA ram_0480_obj,X
 C - - - - - 0x01A88C 06:A87C: F0 10     BEQ bra_A88E
@@ -6414,8 +6515,10 @@ tbl_AC65_cursor_pos:
 
 sub_0x01B010_draw_static_screen:
 C - - - - - 0x01B010 06:B000: A9 00     LDA #$00
-C - - - - - 0x01B012 06:B002: 85 03     STA ram_0003_temp
+C - - - - - 0x01B012 06:B002: 85 03     STA ram_0003_t06_ppu_hi_offset
 sub_0x01B014_draw_static_screen:
+; in
+    ; ram_0003_t06_ppu_hi_offset
 C - - - - - 0x01B014 06:B004: BD 43 B0  LDA tbl_B043_static_screen_data_lo,X
 C - - - - - 0x01B017 06:B007: 85 00     STA ram_0000_t02_data_static_screen
 C - - - - - 0x01B019 06:B009: BD 5A B0  LDA tbl_B05A_static_screen_data_hi,X
@@ -6425,7 +6528,7 @@ bra_B010:
 C - - - - - 0x01B020 06:B010: AD 02 20  LDA $2002
 C - - - - - 0x01B023 06:B013: B1 00     LDA (ram_0000_t02_data_static_screen),Y
 C - - - - - 0x01B025 06:B015: F0 25     BEQ bra_B03C_RTS
-C - - - - - 0x01B027 06:B017: 05 03     ORA ram_0003_temp
+C - - - - - 0x01B027 06:B017: 05 03     ORA ram_0003_t06_ppu_hi_offset
 C - - - - - 0x01B029 06:B019: 8D 06 20  STA $2006
 C - - - - - 0x01B02C 06:B01C: 20 3D B0  JSR sub_B03D_adjust_index
 C - - - - - 0x01B02F 06:B01F: B1 00     LDA (ram_0000_t02_data_static_screen),Y
