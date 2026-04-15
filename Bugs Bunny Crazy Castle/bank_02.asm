@@ -36,20 +36,22 @@ C - - - - - 0x008023 02:8013: A9 FF     LDA #$FF    ; fill byte
 C - - - - - 0x008025 02:8015: 20 B0 F1  JSR sub_0x00F1C0_clear_background_and_sprites
 C - - - - - 0x008028 02:8018: A9 00     LDA #$00
 C - - - - - 0x00802A 02:801A: 20 65 F5  JSR sub_0x00F575
-C - - - - - 0x00802D 02:801D: 20 C1 F5  JSR sub_0x00F5D1
+C - - - - - 0x00802D 02:801D: 20 C1 F5  JSR sub_0x00F5D1_prepare_nametable_attributes_update
 C - - - - - 0x008030 02:8020: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
 C - - - - - 0x008033 02:8023: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
 C - - - - - 0x008036 02:8026: 20 3D 8D  JSR sub_8D3D_draw_logo_screen
+; 
 C - - - - - 0x008039 02:8029: A9 02     LDA #$02
 C - - - - - 0x00803B 02:802B: 85 33     STA ram_chr_bank_1
 C - - - - - 0x00803D 02:802D: 85 34     STA ram_chr_bank_2
-C - - - - - 0x00803F 02:802F: 20 00 ED  JSR sub_0x00ED10
-C - - - - - 0x008042 02:8032: 20 53 80  JSR sub_8053_wait_30_frames_
+C - - - - - 0x00803F 02:802F: 20 00 ED  JSR sub_0x00ED10_update_chr_banks
+; 
+C - - - - - 0x008042 02:8032: 20 53 80  JSR sub_8053_wait_30_frms
 C - - - - - 0x008045 02:8035: 20 77 80  JSR sub_8077_lightening_kemco_logo
 C - - - - - 0x008048 02:8038: A2 F0     LDX #$F0
 C - - - - - 0x00804A 02:803A: 20 5E 80  JSR sub_805E_skipping_kemco_logo
 C - - - - - 0x00804D 02:803D: 20 A8 80  JSR sub_80A8_darkening_kemco_logo
-C - - - - - 0x008050 02:8040: 4C 53 80  JMP loc_8053_wait_30_frames_
+C - - - - - 0x008050 02:8040: 4C 53 80  JMP loc_8053_wait_30_frms
 
 
 
@@ -57,23 +59,24 @@ sub_8043:
 C - - - - - 0x008053 02:8043: A2 00     LDX #$00
 bra_8045_loop:
 C - - - - - 0x008055 02:8045: A9 0F     LDA #$0F
-C - - - - - 0x008057 02:8047: 9D 00 04  STA ram_pal_buffer_2,X
+C - - - - - 0x008057 02:8047: 9D 00 04  STA ram_pal_buffer,X
 C - - - - - 0x00805A 02:804A: E8        INX
 C - - - - - 0x00805B 02:804B: E0 20     CPX #$20
 C - - - - - 0x00805D 02:804D: D0 F6     BNE bra_8045_loop
 ; bzk optimize, JMP
-C - - - - - 0x00805F 02:804F: 20 F6 F5  JSR sub_0x00F606
+C - - - - - 0x00805F 02:804F: 20 F6 F5  JSR sub_0x00F606_prepare_palette_update
 C - - - - - 0x008062 02:8052: 60        RTS
 
 
 
-sub_8053_wait_30_frames_:
-loc_8053_wait_30_frames_:
+loc_8053_wait_30_frms:
+sub_8053_wait_30_frms:
+; wait 30 frames
 C D 0 - - - 0x008063 02:8053: A2 00     LDX #$00
 bra_8055_loop:
 C - - - - - 0x008065 02:8055: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
 C - - - - - 0x008068 02:8058: E8        INX
-C - - - - - 0x008069 02:8059: E0 1E     CPX #$1E
+C - - - - - 0x008069 02:8059: E0 1E     CPX #$1E    ; 30
 C - - - - - 0x00806B 02:805B: D0 F8     BNE bra_8055_loop
 C - - - - - 0x00806D 02:805D: 60        RTS
 
@@ -102,12 +105,12 @@ sub_8077_lightening_kemco_logo:
 C - - - - - 0x008087 02:8077: A2 00     LDX #$00
 bra_8079_loop:
 C - - - - - 0x008089 02:8079: BD 99 80  LDA tbl_8099_logo_pal_light,X
-C - - - - - 0x00808C 02:807C: 8D 01 04  STA ram_pal_buffer_2 + $01
+C - - - - - 0x00808C 02:807C: 8D 01 04  STA ram_pal_buffer + $01
 C - - - - - 0x00808F 02:807F: BD 9A 80  LDA tbl_8099_logo_pal_light + $01,X
-C - - - - - 0x008092 02:8082: 8D 02 04  STA ram_pal_buffer_2 + $02
+C - - - - - 0x008092 02:8082: 8D 02 04  STA ram_pal_buffer + $02
 C - - - - - 0x008095 02:8085: BD 9B 80  LDA tbl_8099_logo_pal_light + $02,X
-C - - - - - 0x008098 02:8088: 8D 03 04  STA ram_pal_buffer_2 + $03
-C - - - - - 0x00809B 02:808B: 20 F6 F5  JSR sub_0x00F606
+C - - - - - 0x008098 02:8088: 8D 03 04  STA ram_pal_buffer + $03
+C - - - - - 0x00809B 02:808B: 20 F6 F5  JSR sub_0x00F606_prepare_palette_update
 C - - - - - 0x00809E 02:808E: 20 D9 80  JSR sub_80D9_wait_6_frames_
 C - - - - - 0x0080A1 02:8091: E8        INX
 C - - - - - 0x0080A2 02:8092: E8        INX
@@ -131,12 +134,12 @@ sub_80A8_darkening_kemco_logo:
 C - - - - - 0x0080B8 02:80A8: A2 00     LDX #$00
 bra_80AA_loop:
 C - - - - - 0x0080BA 02:80AA: BD CA 80  LDA tbl_80CA_logo_pal_dark,X
-C - - - - - 0x0080BD 02:80AD: 8D 01 04  STA ram_pal_buffer_2 + $01
+C - - - - - 0x0080BD 02:80AD: 8D 01 04  STA ram_pal_buffer + $01
 C - - - - - 0x0080C0 02:80B0: BD CB 80  LDA tbl_80CA_logo_pal_dark + $01,X
-C - - - - - 0x0080C3 02:80B3: 8D 02 04  STA ram_pal_buffer_2 + $02
+C - - - - - 0x0080C3 02:80B3: 8D 02 04  STA ram_pal_buffer + $02
 C - - - - - 0x0080C6 02:80B6: BD CC 80  LDA tbl_80CA_logo_pal_dark + $02,X
-C - - - - - 0x0080C9 02:80B9: 8D 03 04  STA ram_pal_buffer_2 + $03
-C - - - - - 0x0080CC 02:80BC: 20 F6 F5  JSR sub_0x00F606
+C - - - - - 0x0080C9 02:80B9: 8D 03 04  STA ram_pal_buffer + $03
+C - - - - - 0x0080CC 02:80BC: 20 F6 F5  JSR sub_0x00F606_prepare_palette_update
 C - - - - - 0x0080CF 02:80BF: 20 D9 80  JSR sub_80D9_wait_6_frames_
 C - - - - - 0x0080D2 02:80C2: E8        INX
 C - - - - - 0x0080D3 02:80C3: E8        INX
@@ -185,14 +188,15 @@ C D 0 - - - 0x008107 02:80F7: A9 03     LDA #$03
 C - - - - - 0x008109 02:80F9: 85 34     STA ram_chr_bank_2
 C - - - - - 0x00810B 02:80FB: A9 02     LDA #$02
 C - - - - - 0x00810D 02:80FD: 85 33     STA ram_chr_bank_1
-C - - - - - 0x00810F 02:80FF: 20 00 ED  JSR sub_0x00ED10
+C - - - - - 0x00810F 02:80FF: 20 00 ED  JSR sub_0x00ED10_update_chr_banks
+; 
 C - - - - - 0x008112 02:8102: 20 87 85  JSR sub_8587_draw_title_screen
 C - - - - - 0x008115 02:8105: 20 EC 80  JSR sub_80EC_hide_all_sprites
 C - - - - - 0x008118 02:8108: A9 E7     LDA #< tbl_83E7_palette
 C - - - - - 0x00811A 02:810A: 85 1E     STA ram_001E_t01_palette_data
 C - - - - - 0x00811C 02:810C: A9 83     LDA #> tbl_83E7_palette
 C - - - - - 0x00811E 02:810E: 85 1F     STA ram_001E_t01_palette_data + $01
-C - - - - - 0x008120 02:8110: 20 FB F5  JSR sub_0x00F60B_write_palette
+C - - - - - 0x008120 02:8110: 20 FB F5  JSR sub_0x00F60B_increase_brightness
 C - - - - - 0x008123 02:8113: A9 01     LDA #con_music_title
 C - - - - - 0x008125 02:8115: 20 A2 F7  JSR sub_0x00F7B2_play_sound
 C - - - - - 0x008128 02:8118: 20 69 81  JSR sub_8169_falling_bricks_handler
@@ -215,7 +219,7 @@ C - - - - - 0x00813E 02:812E: 90 10     BCC bra_8140
 C - - - - - 0x008140 02:8130: C8        INY
 C - - - - - 0x008141 02:8131: C0 1E     CPY #$1E
 C - - - - - 0x008143 02:8133: 90 EB     BCC bra_8120_loop
-C - - - - - 0x008145 02:8135: 20 38 F6  JSR sub_0x00F648
+C - - - - - 0x008145 02:8135: 20 38 F6  JSR sub_0x00F648_decrease_brightness
 C - - - - - 0x008148 02:8138: 4C F7 80  JMP loc_80F7
 bra_813B:
 C - - - - - 0x00814B 02:813B: A9 00     LDA #$00
@@ -239,13 +243,13 @@ sub_8156:
 ; in
     ; A
 ; bzk optimize, A is always 00
-C - - - - - 0x008166 02:8156: 85 22     STA ram_0022_t04_useless_00
+C - - - - - 0x008166 02:8156: 85 22     STA ram_0022_tFF_useless_00
 C - - - - - 0x008168 02:8158: A9 88     LDA #$88
 C - - - - - 0x00816A 02:815A: 85 20     STA ram_0020_t04_spr_X
 C - - - - - 0x00816C 02:815C: A9 64     LDA #$64
 C - - - - - 0x00816E 02:815E: 85 21     STA ram_0021_t01_spr_Y
 ; bzk optimize, 0022 is always 00
-C - - - - - 0x008170 02:8160: A5 22     LDA ram_0022_t04_useless_00
+C - - - - - 0x008170 02:8160: A5 22     LDA ram_0022_tFF_useless_00
 C - - - - - 0x008172 02:8162: 18        CLC
 C - - - - - 0x008173 02:8163: 69 01     ADC #$01
 ; bzk optimize, JMP
@@ -278,8 +282,8 @@ C - - - - - 0x00819A 02:818A: C8        INY
 C - - - - - 0x00819B 02:818B: 4C 76 81  JMP loc_8176_loop
 bra_818E_FF:
 C - - - - - 0x00819E 02:818E: 20 EA EE  JSR sub_0x00EEFA_hide_unused_sprites
-C - - - - - 0x0081A1 02:8191: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
-C - - - - - 0x0081A4 02:8194: 20 C1 F5  JSR sub_0x00F5D1
+C - - - - - 0x0081A1 02:8191: 20 2B F2  JSR sub_0x00F23B_prepare_to_copy_buffer_to_ppu
+C - - - - - 0x0081A4 02:8194: 20 C1 F5  JSR sub_0x00F5D1_prepare_nametable_attributes_update
 C - - - - - 0x0081A7 02:8197: 20 CA 81  JSR sub_81CA
 C - - - - - 0x0081AA 02:819A: E6 67     INC ram_falling_bricks_0067
 C - - - - - 0x0081AC 02:819C: A5 67     LDA ram_falling_bricks_0067
@@ -314,7 +318,7 @@ C - - - - - 0x0081CC 02:81BC: 85 20     STA ram_0020_t04_spr_X
 C - - - - - 0x0081CE 02:81BE: B5 62     LDA ram_falling_brick_pos_Y,X
 C - - - - - 0x0081D0 02:81C0: 85 21     STA ram_0021_t01_spr_Y
 C - - - - - 0x0081D2 02:81C2: A9 00     LDA #$00
-C - - - - - 0x0081D4 02:81C4: 85 22     STA ram_0022_t04_useless_00
+C - - - - - 0x0081D4 02:81C4: 85 22     STA ram_0022_tFF_useless_00
 ; bzk optimize, JMP
 C - - - - - 0x0081D6 02:81C6: 20 65 84  JSR sub_8465
 C - - - - - 0x0081D9 02:81C9: 60        RTS
@@ -441,38 +445,38 @@ C - - - - - 0x00827A 02:826A: A5 60     LDA ram_falling_bricks_counter
 C - - - - - 0x00827C 02:826C: 0A        ASL
 C - - - - - 0x00827D 02:826D: A8        TAY
 C - - - - - 0x00827E 02:826E: B9 F7 82  LDA tbl_82F7_ppu_address,Y
-C - - - - - 0x008281 02:8271: 85 69     STA ram_falling_bricks_ppu_addr_lo
-C - - - - - 0x008283 02:8273: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x008281 02:8271: 85 69     STA ram_falling_bricks_ppu_lo
+C - - - - - 0x008283 02:8273: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x008285 02:8275: B9 F8 82  LDA tbl_82F7_ppu_address + $01,Y
-C - - - - - 0x008288 02:8278: 85 6A     STA ram_falling_bricks_ppu_addr_hi
-C - - - - - 0x00828A 02:827A: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x008288 02:8278: 85 6A     STA ram_falling_bricks_ppu_hi
+C - - - - - 0x00828A 02:827A: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x00828C 02:827C: B9 33 83  LDA tbl_8333,Y
-C - - - - - 0x00828F 02:827F: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x00828F 02:827F: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x008291 02:8281: B9 34 83  LDA tbl_8333 + $01,Y
-C - - - - - 0x008294 02:8284: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x008294 02:8284: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x008296 02:8286: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
-C - - - - - 0x008299 02:8289: A5 69     LDA ram_falling_bricks_ppu_addr_lo
-C - - - - - 0x00829B 02:828B: 85 1C     STA ram_001C_t04_ppu_addr_lo
-C - - - - - 0x00829D 02:828D: A5 6A     LDA ram_falling_bricks_ppu_addr_hi
-C - - - - - 0x00829F 02:828F: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x008299 02:8289: A5 69     LDA ram_falling_bricks_ppu_lo
+C - - - - - 0x00829B 02:828B: 85 1C     STA ram_001C_t04_ppu_lo
+C - - - - - 0x00829D 02:828D: A5 6A     LDA ram_falling_bricks_ppu_hi
+C - - - - - 0x00829F 02:828F: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x0082A1 02:8291: B9 15 83  LDA tbl_8315,Y
-C - - - - - 0x0082A4 02:8294: 85 22     STA ram_0022_t03
+C - - - - - 0x0082A4 02:8294: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x0082A6 02:8296: A9 02     LDA #$02
-C - - - - - 0x0082A8 02:8298: 85 20     STA ram_0020_t05
-C - - - - - 0x0082AA 02:829A: 85 21     STA ram_0021_t02
+C - - - - - 0x0082A8 02:8298: 85 20     STA ram_0020_t05_columns
+C - - - - - 0x0082AA 02:829A: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x0082AC 02:829C: 20 88 F4  JSR sub_0x00F498
-C - - - - - 0x0082AF 02:829F: A5 69     LDA ram_falling_bricks_ppu_addr_lo
+C - - - - - 0x0082AF 02:829F: A5 69     LDA ram_falling_bricks_ppu_lo
 C - - - - - 0x0082B1 02:82A1: 18        CLC
 C - - - - - 0x0082B2 02:82A2: 69 02     ADC #< $0002
-C - - - - - 0x0082B4 02:82A4: 85 1C     STA ram_001C_t04_ppu_addr_lo
-C - - - - - 0x0082B6 02:82A6: A5 6A     LDA ram_falling_bricks_ppu_addr_hi
+C - - - - - 0x0082B4 02:82A4: 85 1C     STA ram_001C_t04_ppu_lo
+C - - - - - 0x0082B6 02:82A6: A5 6A     LDA ram_falling_bricks_ppu_hi
 C - - - - - 0x0082B8 02:82A8: 69 00     ADC #> $0002
-C - - - - - 0x0082BA 02:82AA: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x0082BA 02:82AA: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x0082BC 02:82AC: B9 16 83  LDA tbl_8315 + $01,Y
-C - - - - - 0x0082BF 02:82AF: 85 22     STA ram_0022_t03
+C - - - - - 0x0082BF 02:82AF: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x0082C1 02:82B1: A9 02     LDA #$02
-C - - - - - 0x0082C3 02:82B3: 85 20     STA ram_0020_t05
-C - - - - - 0x0082C5 02:82B5: 85 21     STA ram_0021_t02
+C - - - - - 0x0082C3 02:82B3: 85 20     STA ram_0020_t05_columns
+C - - - - - 0x0082C5 02:82B5: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x0082C7 02:82B7: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x0082CA 02:82BA: 68        PLA
 C - - - - - 0x0082CB 02:82BB: A8        TAY
@@ -735,11 +739,13 @@ C - - - - - 0x008419 02:8409: 85 26     STA ram_cam_pos_X_lo
 C - - - - - 0x00841B 02:840B: 85 27     STA ram_cam_pos_X_hi
 C - - - - - 0x00841D 02:840D: 85 28     STA ram_cam_pos_Y_lo
 C - - - - - 0x00841F 02:840F: 85 29     STA ram_cam_pos_Y_hi
+; 
 C - - - - - 0x008421 02:8411: A9 04     LDA #$04
 C - - - - - 0x008423 02:8413: 85 33     STA ram_chr_bank_1
 C - - - - - 0x008425 02:8415: A9 05     LDA #$05
 C - - - - - 0x008427 02:8417: 85 34     STA ram_chr_bank_2
-C - - - - - 0x008429 02:8419: 20 00 ED  JSR sub_0x00ED10
+C - - - - - 0x008429 02:8419: 20 00 ED  JSR sub_0x00ED10_update_chr_banks
+; 
 C - - - - - 0x00842C 02:841C: 20 56 89  JSR sub_8956_draw_final_screen
 C - - - - - 0x00842F 02:841F: A9 03     LDA #con_music_final
 C - - - - - 0x008431 02:8421: 20 A2 F7  JSR sub_0x00F7B2_play_sound
@@ -748,7 +754,7 @@ C - - - - - 0x008437 02:8427: A9 45     LDA #< tbl_8445_palette
 C - - - - - 0x008439 02:8429: 85 1E     STA ram_001E_t01_palette_data
 C - - - - - 0x00843B 02:842B: A9 84     LDA #> tbl_8445_palette
 C - - - - - 0x00843D 02:842D: 85 1F     STA ram_001E_t01_palette_data + $01
-C - - - - - 0x00843F 02:842F: 20 FB F5  JSR sub_0x00F60B_write_palette
+C - - - - - 0x00843F 02:842F: 20 FB F5  JSR sub_0x00F60B_increase_brightness
 bra_8432_loop:
 C - - - - - 0x008442 02:8432: 20 72 EE  JSR sub_0x00EE82_read_joystick_regs
 C - - - - - 0x008445 02:8435: A5 F5     LDA ram_btn_press
@@ -780,30 +786,30 @@ tbl_8445_palette:
 sub_8465:
 ; in
     ; A = 
-    ; ram_0022_t04_useless_00
-    ; ram_0023_t05
-C - - - - - 0x008475 02:8465: 85 23     STA ram_0023_t05
+    ; ram_0022_tFF_useless_00
+    ; ram_0023_t03
+C - - - - - 0x008475 02:8465: 85 23     STA ram_0023_t03
 C - - - - - 0x008477 02:8467: 8A        TXA
 C - - - - - 0x008478 02:8468: 48        PHA
-C - - - - - 0x008479 02:8469: A5 23     LDA ram_0023_t05
+C - - - - - 0x008479 02:8469: A5 23     LDA ram_0023_t03
 C - - - - - 0x00847B 02:846B: 0A        ASL
 C - - - - - 0x00847C 02:846C: AA        TAX
 C - - - - - 0x00847D 02:846D: BD 8B 84  LDA tbl_848B_sprites_data,X
 C - - - - - 0x008480 02:8470: 85 1E     STA ram_001E_t04_sprite_data
 C - - - - - 0x008482 02:8472: BD 8C 84  LDA tbl_848B_sprites_data + $01,X
 C - - - - - 0x008485 02:8475: 85 1F     STA ram_001E_t04_sprite_data + $01
-C - - - - - 0x008487 02:8477: A5 23     LDA ram_0023_t05
+C - - - - - 0x008487 02:8477: A5 23     LDA ram_0023_t03
 C - - - - - 0x008489 02:8479: 29 80     AND #$80
 ; / 02
 C - - - - - 0x00848B 02:847B: 4A        LSR
 C - - - - - 0x00848C 02:847C: 4A        LSR
 ; bzk optimize, 0022 is always 00
-C - - - - - 0x00848D 02:847D: 05 22     ORA ram_0022_t04_useless_00
+C - - - - - 0x00848D 02:847D: 05 22     ORA ram_0022_tFF_useless_00
 C - - - - - 0x00848F 02:847F: 85 22     STA ram_0022_t01_spr_A
 C - - - - - 0x008491 02:8481: 20 12 F7  JSR sub_0x00F722_sprite_engine
 ; bzk optimize, useless LDA + STA
 C - - - - - 0x008494 02:8484: A9 00     LDA #$00
-C - - - - - 0x008496 02:8486: 85 22     STA ram_0022_t02_useless
+C - - - - - 0x008496 02:8486: 85 22     STA ram_0022_tFE_useless
 C - - - - - 0x008498 02:8488: 68        PLA
 C - - - - - 0x008499 02:8489: AA        TAX
 C - - - - - 0x00849A 02:848A: 60        RTS
@@ -1289,24 +1295,24 @@ C - - J - - 0x008DFA 02:8DEA: 20 CD 91  JSR sub_91CD
 C - - - - - 0x008DFD 02:8DED: A9 09     LDA #con_music_menu
 C - - - - - 0x008DFF 02:8DEF: 20 A2 F7  JSR sub_0x00F7B2_play_sound
 C - - - - - 0x008E02 02:8DF2: A9 61     LDA #< tbl_8F61
-C - - - - - 0x008E04 02:8DF4: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x008E04 02:8DF4: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x008E06 02:8DF6: A9 8F     LDA #> tbl_8F61
-C - - - - - 0x008E08 02:8DF8: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x008E08 02:8DF8: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x008E0A 02:8DFA: A9 CC     LDA #< $21CC
-C - - - - - 0x008E0C 02:8DFC: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x008E0C 02:8DFC: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x008E0E 02:8DFE: A9 21     LDA #> $21CC
-C - - - - - 0x008E10 02:8E00: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x008E10 02:8E00: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x008E12 02:8E02: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x008E15 02:8E05: A9 01     LDA #$01
-C - - - - - 0x008E17 02:8E07: 85 22     STA ram_0022_t03
+C - - - - - 0x008E17 02:8E07: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x008E19 02:8E09: A9 0A     LDA #$0A
-C - - - - - 0x008E1B 02:8E0B: 85 20     STA ram_0020_t05
+C - - - - - 0x008E1B 02:8E0B: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x008E1D 02:8E0D: A9 08     LDA #$08
-C - - - - - 0x008E1F 02:8E0F: 85 21     STA ram_0021_t02
+C - - - - - 0x008E1F 02:8E0F: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x008E21 02:8E11: 20 88 F4  JSR sub_0x00F498
-C - - - - - 0x008E24 02:8E14: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
+C - - - - - 0x008E24 02:8E14: 20 2B F2  JSR sub_0x00F23B_prepare_to_copy_buffer_to_ppu
 C - - - - - 0x008E27 02:8E17: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
-C - - - - - 0x008E2A 02:8E1A: 20 C1 F5  JSR sub_0x00F5D1
+C - - - - - 0x008E2A 02:8E1A: 20 C1 F5  JSR sub_0x00F5D1_prepare_nametable_attributes_update
 C - - - - - 0x008E2D 02:8E1D: A9 00     LDA #$00
 C - - - - - 0x008E2F 02:8E1F: 85 24     STA ram_0024_t01_sprites_counter
 C - - - - - 0x008E31 02:8E21: 20 EA EE  JSR sub_0x00EEFA_hide_unused_sprites
@@ -1362,15 +1368,15 @@ C - - - - - 0x008E74 02:8E64: 85 69     STA ram_stage_id_2
 C - - - - - 0x008E76 02:8E66: 60        RTS
 bra_8E67:
 C - - - - - 0x008E77 02:8E67: A9 55     LDA #< tbl_8F55
-C - - - - - 0x008E79 02:8E69: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x008E79 02:8E69: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x008E7B 02:8E6B: A9 8F     LDA #> tbl_8F55
-C - - - - - 0x008E7D 02:8E6D: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x008E7D 02:8E6D: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x008E7F 02:8E6F: A9 6C     LDA #< $226C
-C - - - - - 0x008E81 02:8E71: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x008E81 02:8E71: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x008E83 02:8E73: A9 22     LDA #> $226C
-C - - - - - 0x008E85 02:8E75: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x008E85 02:8E75: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x008E87 02:8E77: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
-C - - - - - 0x008E8A 02:8E7A: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
+C - - - - - 0x008E8A 02:8E7A: 20 2B F2  JSR sub_0x00F23B_prepare_to_copy_buffer_to_ppu
 C - - - - - 0x008E8D 02:8E7D: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
 C - - - - - 0x008E90 02:8E80: A9 00     LDA #$00
 C - - - - - 0x008E92 02:8E82: AA        TAX ; 00
@@ -1529,14 +1535,14 @@ C - - - - - 0x008F59 02:8F49: 60        RTS
 
 sub_8F4A_prepare_ppu_address:
 ; out
-    ; ram_001C_t04_ppu_addr_lo
-    ; ram_001D_t01_ppu_addr_hi
+    ; ram_001C_t04_ppu_lo
+    ; ram_001D_t01_ppu_hi
 C - - - - - 0x008F5A 02:8F4A: 8A        TXA
 C - - - - - 0x008F5B 02:8F4B: 18        CLC
 C - - - - - 0x008F5C 02:8F4C: 69 6E     ADC #< $226E
-C - - - - - 0x008F5E 02:8F4E: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x008F5E 02:8F4E: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x008F60 02:8F50: A9 22     LDA #> $226E
-C - - - - - 0x008F62 02:8F52: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x008F62 02:8F52: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x008F64 02:8F54: 60        RTS
 
 
@@ -1568,72 +1574,72 @@ C - - - - - 0x008FB2 02:8FA2: 20 CD 91  JSR sub_91CD
 C - - - - - 0x008FB5 02:8FA5: A9 09     LDA #con_music_menu
 C - - - - - 0x008FB7 02:8FA7: 20 A2 F7  JSR sub_0x00F7B2_play_sound
 C - - - - - 0x008FBA 02:8FAA: A9 90     LDA #< tbl_9190
-C - - - - - 0x008FBC 02:8FAC: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x008FBC 02:8FAC: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x008FBE 02:8FAE: A9 91     LDA #> tbl_9190
-C - - - - - 0x008FC0 02:8FB0: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x008FC0 02:8FB0: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x008FC2 02:8FB2: A9 87     LDA #< $2187
-C - - - - - 0x008FC4 02:8FB4: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x008FC4 02:8FB4: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x008FC6 02:8FB6: A9 21     LDA #> $2187
-C - - - - - 0x008FC8 02:8FB8: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x008FC8 02:8FB8: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x008FCA 02:8FBA: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x008FCD 02:8FBD: A9 01     LDA #$01
-C - - - - - 0x008FCF 02:8FBF: 85 22     STA ram_0022_t03
+C - - - - - 0x008FCF 02:8FBF: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x008FD1 02:8FC1: A9 11     LDA #$11
-C - - - - - 0x008FD3 02:8FC3: 85 20     STA ram_0020_t05
+C - - - - - 0x008FD3 02:8FC3: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x008FD5 02:8FC5: A9 02     LDA #$02
-C - - - - - 0x008FD7 02:8FC7: 85 21     STA ram_0021_t02
+C - - - - - 0x008FD7 02:8FC7: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x008FD9 02:8FC9: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x008FDC 02:8FCC: A9 A3     LDA #< tbl_91A3
-C - - - - - 0x008FDE 02:8FCE: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x008FDE 02:8FCE: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x008FE0 02:8FD0: A9 91     LDA #> tbl_91A3
-C - - - - - 0x008FE2 02:8FD2: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x008FE2 02:8FD2: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x008FE4 02:8FD4: A9 EC     LDA #< $21EC
-C - - - - - 0x008FE6 02:8FD6: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x008FE6 02:8FD6: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x008FE8 02:8FD8: A9 21     LDA #> $21EC
-C - - - - - 0x008FEA 02:8FDA: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x008FEA 02:8FDA: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x008FEC 02:8FDC: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x008FEF 02:8FDF: A9 00     LDA #$00
-C - - - - - 0x008FF1 02:8FE1: 85 22     STA ram_0022_t03
+C - - - - - 0x008FF1 02:8FE1: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x008FF3 02:8FE3: A9 08     LDA #$08
-C - - - - - 0x008FF5 02:8FE5: 85 20     STA ram_0020_t05
+C - - - - - 0x008FF5 02:8FE5: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x008FF7 02:8FE7: A9 02     LDA #$02
-C - - - - - 0x008FF9 02:8FE9: 85 21     STA ram_0021_t02
+C - - - - - 0x008FF9 02:8FE9: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x008FFB 02:8FEB: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x008FFE 02:8FEE: A9 2E     LDA #< $222E
-C - - - - - 0x009000 02:8FF0: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x009000 02:8FF0: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x009002 02:8FF2: A9 22     LDA #> $222E
-C - - - - - 0x009004 02:8FF4: 85 1D     STA ram_001D_t01_ppu_addr_hi
-C - - - - - 0x009006 02:8FF6: 20 80 B0  JSR sub_B080
+C - - - - - 0x009004 02:8FF4: 85 1D     STA ram_001D_t01_ppu_hi
+C - - - - - 0x009006 02:8FF6: 20 80 B0  JSR sub_B080_draw_stage_number
 C - - - - - 0x009009 02:8FF9: A9 2E     LDA #< $222E
-C - - - - - 0x00900B 02:8FFB: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x00900B 02:8FFB: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x00900D 02:8FFD: A9 22     LDA #> $222E
-C - - - - - 0x00900F 02:8FFF: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x00900F 02:8FFF: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x009011 02:9001: A9 03     LDA #$03
-C - - - - - 0x009013 02:9003: 85 22     STA ram_0022_t03
+C - - - - - 0x009013 02:9003: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x009015 02:9005: A9 04     LDA #$04
-C - - - - - 0x009017 02:9007: 85 20     STA ram_0020_t05
+C - - - - - 0x009017 02:9007: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x009019 02:9009: A9 02     LDA #$02
-C - - - - - 0x00901B 02:900B: 85 21     STA ram_0021_t02
+C - - - - - 0x00901B 02:900B: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x00901D 02:900D: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x009020 02:9010: A9 52     LDA #< tbl_9052
-C - - - - - 0x009022 02:9012: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x009022 02:9012: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x009024 02:9014: A9 90     LDA #> tbl_9052
-C - - - - - 0x009026 02:9016: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x009026 02:9016: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x009028 02:9018: A9 8B     LDA #< $228B
-C - - - - - 0x00902A 02:901A: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x00902A 02:901A: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x00902C 02:901C: A9 22     LDA #> $228B
-C - - - - - 0x00902E 02:901E: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x00902E 02:901E: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x009030 02:9020: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x009033 02:9023: A9 01     LDA #$01
-C - - - - - 0x009035 02:9025: 85 22     STA ram_0022_t03
+C - - - - - 0x009035 02:9025: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x009037 02:9027: A9 0B     LDA #$0B
-C - - - - - 0x009039 02:9029: 85 20     STA ram_0020_t05
+C - - - - - 0x009039 02:9029: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x00903B 02:902B: A9 02     LDA #$02
-C - - - - - 0x00903D 02:902D: 85 21     STA ram_0021_t02
+C - - - - - 0x00903D 02:902D: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x00903F 02:902F: 20 88 F4  JSR sub_0x00F498
-C - - - - - 0x009042 02:9032: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
+C - - - - - 0x009042 02:9032: 20 2B F2  JSR sub_0x00F23B_prepare_to_copy_buffer_to_ppu
 C - - - - - 0x009045 02:9035: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
-C - - - - - 0x009048 02:9038: 20 C1 F5  JSR sub_0x00F5D1
+C - - - - - 0x009048 02:9038: 20 C1 F5  JSR sub_0x00F5D1_prepare_nametable_attributes_update
 C - - - - - 0x00904B 02:903B: A9 00     LDA #$00
 C - - - - - 0x00904D 02:903D: 85 24     STA ram_0024_t01_sprites_counter
 C - - - - - 0x00904F 02:903F: 20 EA EE  JSR sub_0x00EEFA_hide_unused_sprites
@@ -1644,7 +1650,7 @@ C - - - - - 0x009058 02:9048: A5 F5     LDA ram_btn_press
 C - - - - - 0x00905A 02:904A: 29 F0     AND #con_btns_AB + con_btns_SS
 C - - - - - 0x00905C 02:904C: F0 F7     BEQ bra_9045_loop
 ; bzk optimize, JMP
-C - - - - - 0x00905E 02:904E: 20 38 F6  JSR sub_0x00F648
+C - - - - - 0x00905E 02:904E: 20 38 F6  JSR sub_0x00F648_decrease_brightness
 C - - - - - 0x009061 02:9051: 60        RTS
 
 
@@ -1664,9 +1670,9 @@ C - - - - - 0x009074 02:9064: 20 A2 F7  JSR sub_0x00F7B2_play_sound
 C - - - - - 0x009077 02:9067: 20 21 93  JSR sub_9321
 C - - - - - 0x00907A 02:906A: 20 00 94  JSR sub_9400
 C - - - - - 0x00907D 02:906D: 20 DF 92  JSR sub_92DF
-C - - - - - 0x009080 02:9070: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
+C - - - - - 0x009080 02:9070: 20 2B F2  JSR sub_0x00F23B_prepare_to_copy_buffer_to_ppu
 C - - - - - 0x009083 02:9073: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
-C - - - - - 0x009086 02:9076: 20 C1 F5  JSR sub_0x00F5D1
+C - - - - - 0x009086 02:9076: 20 C1 F5  JSR sub_0x00F5D1_prepare_nametable_attributes_update
 C - - - - - 0x009089 02:9079: A9 00     LDA #$00
 C - - - - - 0x00908B 02:907B: 85 24     STA ram_0024_t01_sprites_counter
 C - - - - - 0x00908D 02:907D: 20 EA EE  JSR sub_0x00EEFA_hide_unused_sprites
@@ -1681,67 +1687,67 @@ C - - - - - 0x00909F 02:908F: A9 07     LDA #con_music_07
 C - - - - - 0x0090A1 02:9091: 20 A2 F7  JSR sub_0x00F7B2_play_sound
 C - - - - - 0x0090A4 02:9094: 20 DF 92  JSR sub_92DF
 C - - - - - 0x0090A7 02:9097: A9 A3     LDA #< tbl_91A3
-C - - - - - 0x0090A9 02:9099: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x0090A9 02:9099: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x0090AB 02:909B: A9 91     LDA #> tbl_91A3
-C - - - - - 0x0090AD 02:909D: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x0090AD 02:909D: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x0090AF 02:909F: A9 8C     LDA #< $218C
-C - - - - - 0x0090B1 02:90A1: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x0090B1 02:90A1: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x0090B3 02:90A3: A9 21     LDA #> $218C
-C - - - - - 0x0090B5 02:90A5: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x0090B5 02:90A5: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x0090B7 02:90A7: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x0090BA 02:90AA: A9 00     LDA #$00
-C - - - - - 0x0090BC 02:90AC: 85 22     STA ram_0022_t03
+C - - - - - 0x0090BC 02:90AC: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x0090BE 02:90AE: A9 08     LDA #$08
-C - - - - - 0x0090C0 02:90B0: 85 20     STA ram_0020_t05
+C - - - - - 0x0090C0 02:90B0: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x0090C2 02:90B2: A9 02     LDA #$02
-C - - - - - 0x0090C4 02:90B4: 85 21     STA ram_0021_t02
+C - - - - - 0x0090C4 02:90B4: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x0090C6 02:90B6: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x0090C9 02:90B9: A9 CE     LDA #< $21CE
-C - - - - - 0x0090CB 02:90BB: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x0090CB 02:90BB: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x0090CD 02:90BD: A9 21     LDA #> $21CE
-C - - - - - 0x0090CF 02:90BF: 85 1D     STA ram_001D_t01_ppu_addr_hi
-C - - - - - 0x0090D1 02:90C1: 20 80 B0  JSR sub_B080
+C - - - - - 0x0090CF 02:90BF: 85 1D     STA ram_001D_t01_ppu_hi
+C - - - - - 0x0090D1 02:90C1: 20 80 B0  JSR sub_B080_draw_stage_number
 C - - - - - 0x0090D4 02:90C4: A9 03     LDA #$03
-C - - - - - 0x0090D6 02:90C6: 85 22     STA ram_0022_t03
+C - - - - - 0x0090D6 02:90C6: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x0090D8 02:90C8: A9 04     LDA #$04
-C - - - - - 0x0090DA 02:90CA: 85 20     STA ram_0020_t05
+C - - - - - 0x0090DA 02:90CA: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x0090DC 02:90CC: A9 02     LDA #$02
-C - - - - - 0x0090DE 02:90CE: 85 21     STA ram_0021_t02
+C - - - - - 0x0090DE 02:90CE: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x0090E0 02:90D0: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x0090E3 02:90D3: A9 AD     LDA #< tbl_91AD
-C - - - - - 0x0090E5 02:90D5: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x0090E5 02:90D5: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x0090E7 02:90D7: A9 91     LDA #> tbl_91AD
-C - - - - - 0x0090E9 02:90D9: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x0090E9 02:90D9: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x0090EB 02:90DB: A9 2B     LDA #< $222B
-C - - - - - 0x0090ED 02:90DD: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x0090ED 02:90DD: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x0090EF 02:90DF: A9 22     LDA #> $222B
-C - - - - - 0x0090F1 02:90E1: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x0090F1 02:90E1: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x0090F3 02:90E3: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x0090F6 02:90E6: A9 0B     LDA #< $220B
-C - - - - - 0x0090F8 02:90E8: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x0090F8 02:90E8: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x0090FA 02:90EA: A9 22     LDA #> $220B
-C - - - - - 0x0090FC 02:90EC: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x0090FC 02:90EC: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x0090FE 02:90EE: A9 02     LDA #$02
-C - - - - - 0x009100 02:90F0: 85 22     STA ram_0022_t03
+C - - - - - 0x009100 02:90F0: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x009102 02:90F2: A9 0A     LDA #$0A
-C - - - - - 0x009104 02:90F4: 85 20     STA ram_0020_t05
+C - - - - - 0x009104 02:90F4: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x009106 02:90F6: A9 02     LDA #$02
-C - - - - - 0x009108 02:90F8: 85 21     STA ram_0021_t02
+C - - - - - 0x009108 02:90F8: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x00910A 02:90FA: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x00910D 02:90FD: A9 4B     LDA #< $224B
-C - - - - - 0x00910F 02:90FF: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x00910F 02:90FF: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x009111 02:9101: A9 22     LDA #> $224B
-C - - - - - 0x009113 02:9103: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x009113 02:9103: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x009115 02:9105: A9 01     LDA #$01
-C - - - - - 0x009117 02:9107: 85 22     STA ram_0022_t03
+C - - - - - 0x009117 02:9107: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x009119 02:9109: A9 0A     LDA #$0A
-C - - - - - 0x00911B 02:910B: 85 20     STA ram_0020_t05
+C - - - - - 0x00911B 02:910B: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x00911D 02:910D: A9 02     LDA #$02
-C - - - - - 0x00911F 02:910F: 85 21     STA ram_0021_t02
+C - - - - - 0x00911F 02:910F: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x009121 02:9111: 20 88 F4  JSR sub_0x00F498
-C - - - - - 0x009124 02:9114: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
+C - - - - - 0x009124 02:9114: 20 2B F2  JSR sub_0x00F23B_prepare_to_copy_buffer_to_ppu
 C - - - - - 0x009127 02:9117: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
-C - - - - - 0x00912A 02:911A: 20 C1 F5  JSR sub_0x00F5D1
+C - - - - - 0x00912A 02:911A: 20 C1 F5  JSR sub_0x00F5D1_prepare_nametable_attributes_update
 C - - - - - 0x00912D 02:911D: A9 00     LDA #$00
 C - - - - - 0x00912F 02:911F: 85 24     STA ram_0024_t01_sprites_counter
 C - - - - - 0x009131 02:9121: 20 EA EE  JSR sub_0x00EEFA_hide_unused_sprites
@@ -1872,7 +1878,7 @@ tbl_91AD:
 
 
 sub_91CD:
-C - - - - - 0x0091DD 02:91CD: 20 38 F6  JSR sub_0x00F648
+C - - - - - 0x0091DD 02:91CD: 20 38 F6  JSR sub_0x00F648_decrease_brightness
 C - - - - - 0x0091E0 02:91D0: A9 00     LDA #$00
 C - - - - - 0x0091E2 02:91D2: 85 26     STA ram_cam_pos_X_lo
 C - - - - - 0x0091E4 02:91D4: 85 27     STA ram_cam_pos_X_hi
@@ -1912,7 +1918,7 @@ C - - - - - 0x009214 02:9204: 20 21 93  JSR sub_9321
 C - - - - - 0x009217 02:9207: 20 00 94  JSR sub_9400
 C - - - - - 0x00921A 02:920A: 20 8B 93  JSR sub_938B
 C - - - - - 0x00921D 02:920D: 20 52 92  JSR sub_9252
-C - - - - - 0x009220 02:9210: 20 C1 F5  JSR sub_0x00F5D1
+C - - - - - 0x009220 02:9210: 20 C1 F5  JSR sub_0x00F5D1_prepare_nametable_attributes_update
 C - - - - - 0x009223 02:9213: 20 8A 92  JSR sub_928A
 loc_9216_loop:
 bra_9216_loop:
@@ -1961,7 +1967,7 @@ C - - - - - 0x009264 02:9254: 85 20     STA ram_0020_t04_spr_X
 C - - - - - 0x009266 02:9256: A9 98     LDA #$98
 C - - - - - 0x009268 02:9258: 85 21     STA ram_0021_t01_spr_Y
 C - - - - - 0x00926A 02:925A: A9 00     LDA #$00
-C - - - - - 0x00926C 02:925C: 85 22     STA ram_0022_t05
+C - - - - - 0x00926C 02:925C: 85 22     STA ram_0022_t02
 C - - - - - 0x00926E 02:925E: E6 7E     INC ram_007E
 C - - - - - 0x009270 02:9260: A5 7E     LDA ram_007E
 C - - - - - 0x009272 02:9262: C9 03     CMP #$03
@@ -1997,14 +2003,14 @@ tbl_9282:
 
 
 sub_928A:
-C - - - - - 0x00929A 02:928A: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
+C - - - - - 0x00929A 02:928A: 20 2B F2  JSR sub_0x00F23B_prepare_to_copy_buffer_to_ppu
 C - - - - - 0x00929D 02:928D: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
 C - - - - - 0x0092A0 02:9290: A9 9C     LDA #< tbl_929C_palette
 C - - - - - 0x0092A2 02:9292: 85 1E     STA ram_001E_t01_palette_data
 C - - - - - 0x0092A4 02:9294: A9 92     LDA #> tbl_929C_palette
 C - - - - - 0x0092A6 02:9296: 85 1F     STA ram_001E_t01_palette_data + $01
 ; bzk optimize, JMP
-C - - - - - 0x0092A8 02:9298: 20 FB F5  JSR sub_0x00F60B_write_palette
+C - - - - - 0x0092A8 02:9298: 20 FB F5  JSR sub_0x00F60B_increase_brightness
 C - - - - - 0x0092AB 02:929B: 60        RTS
 
 
@@ -2034,35 +2040,35 @@ tbl_92BC:
 
 sub_92DF:
 C - - - - - 0x0092EF 02:92DF: A9 BC     LDA #< tbl_92BC
-C - - - - - 0x0092F1 02:92E1: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x0092F1 02:92E1: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x0092F3 02:92E3: A9 92     LDA #> tbl_92BC
-C - - - - - 0x0092F5 02:92E5: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x0092F5 02:92E5: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x0092F7 02:92E7: A9 6B     LDA #< $226B
-C - - - - - 0x0092F9 02:92E9: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x0092F9 02:92E9: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x0092FB 02:92EB: A9 22     LDA #> $226B
-C - - - - - 0x0092FD 02:92ED: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x0092FD 02:92ED: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x0092FF 02:92EF: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x009302 02:92F2: A9 4A     LDA #< $224A
-C - - - - - 0x009304 02:92F4: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x009304 02:92F4: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x009306 02:92F6: A9 22     LDA #> $224A
-C - - - - - 0x009308 02:92F8: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x009308 02:92F8: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x00930A 02:92FA: A9 02     LDA #$02
-C - - - - - 0x00930C 02:92FC: 85 22     STA ram_0022_t03
+C - - - - - 0x00930C 02:92FC: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x00930E 02:92FE: A9 0C     LDA #$0C
-C - - - - - 0x009310 02:9300: 85 20     STA ram_0020_t05
+C - - - - - 0x009310 02:9300: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x009312 02:9302: A9 02     LDA #$02
-C - - - - - 0x009314 02:9304: 85 21     STA ram_0021_t02
+C - - - - - 0x009314 02:9304: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x009316 02:9306: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x009319 02:9309: A9 8A     LDA #< $228A
-C - - - - - 0x00931B 02:930B: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x00931B 02:930B: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x00931D 02:930D: A9 22     LDA #> $228A
-C - - - - - 0x00931F 02:930F: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x00931F 02:930F: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x009321 02:9311: A9 01     LDA #$01
-C - - - - - 0x009323 02:9313: 85 22     STA ram_0022_t03
+C - - - - - 0x009323 02:9313: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x009325 02:9315: A9 0C     LDA #$0C
-C - - - - - 0x009327 02:9317: 85 20     STA ram_0020_t05
+C - - - - - 0x009327 02:9317: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x009329 02:9319: A9 02     LDA #$02
-C - - - - - 0x00932B 02:931B: 85 21     STA ram_0021_t02
+C - - - - - 0x00932B 02:931B: 85 21     STA ram_0021_t02_rows
 ; bzk optimize, JMP
 C - - - - - 0x00932D 02:931D: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x009330 02:9320: 60        RTS
@@ -2071,52 +2077,52 @@ C - - - - - 0x009330 02:9320: 60        RTS
 
 sub_9321:
 C - - - - - 0x009331 02:9321: A9 84     LDA #< tbl_9384
-C - - - - - 0x009333 02:9323: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x009333 02:9323: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x009335 02:9325: A9 93     LDA #> tbl_9384
-C - - - - - 0x009337 02:9327: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x009337 02:9327: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x009339 02:9329: A9 6C     LDA #< $216C
-C - - - - - 0x00933B 02:932B: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x00933B 02:932B: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x00933D 02:932D: A9 21     LDA #> $216C
-C - - - - - 0x00933F 02:932F: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x00933F 02:932F: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x009341 02:9331: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x009344 02:9334: A9 4C     LDA #< $214C
-C - - - - - 0x009346 02:9336: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x009346 02:9336: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x009348 02:9338: A9 21     LDA #> $214C
-C - - - - - 0x00934A 02:933A: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x00934A 02:933A: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x00934C 02:933C: A9 03     LDA #$03
-C - - - - - 0x00934E 02:933E: 85 22     STA ram_0022_t03
+C - - - - - 0x00934E 02:933E: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x009350 02:9340: A9 08     LDA #$08
-C - - - - - 0x009352 02:9342: 85 20     STA ram_0020_t05
+C - - - - - 0x009352 02:9342: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x009354 02:9344: A9 02     LDA #$02
-C - - - - - 0x009356 02:9346: 85 21     STA ram_0021_t02
+C - - - - - 0x009356 02:9346: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x009358 02:9348: 20 88 F4  JSR sub_0x00F498
 sub_934B:
 ; in
-    ; ram_001E_t03_data
+    ; ram_001E_t03_ppu_data
 C - - - - - 0x00935B 02:934B: A9 72     LDA #< $2172
-C - - - - - 0x00935D 02:934D: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x00935D 02:934D: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x00935F 02:934F: A9 21     LDA #> $2172
-C - - - - - 0x009361 02:9351: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x009361 02:9351: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x009363 02:9353: A5 68     LDA ram_stage_id_1
 C - - - - - 0x009365 02:9355: 18        CLC
 C - - - - - 0x009366 02:9356: 69 01     ADC #$01
 C - - - - - 0x009368 02:9358: 20 CF 93  JSR sub_93CF_calculate_bcd_tiles
-C - - - - - 0x00936B 02:935B: A5 64     LDA ram_0064_tile
+C - - - - - 0x00936B 02:935B: A5 64     LDA ram_metatile_buffer + $02
 C - - - - - 0x00936D 02:935D: C9 E6     CMP #$E6
 C - - - - - 0x00936F 02:935F: D0 14     BNE bra_9375
-C - - - - - 0x009371 02:9361: A5 65     LDA ram_0065_tile
+C - - - - - 0x009371 02:9361: A5 65     LDA ram_metatile_buffer + $03
 C - - - - - 0x009373 02:9363: C9 E0     CMP #$E0
 C - - - - - 0x009375 02:9365: F0 0E     BEQ bra_9375
 C - - - - - 0x009377 02:9367: A9 D2     LDA #$D2
-C - - - - - 0x009379 02:9369: 85 64     STA ram_0064_tile
-C - - - - - 0x00937B 02:936B: A5 65     LDA ram_0065_tile
+C - - - - - 0x009379 02:9369: 85 64     STA ram_metatile_buffer + $02
+C - - - - - 0x00937B 02:936B: A5 65     LDA ram_metatile_buffer + $03
 C - - - - - 0x00937D 02:936D: 29 0F     AND #$0F
 C - - - - - 0x00937F 02:936F: A8        TAY
 C - - - - - 0x009380 02:9370: B9 7F 93  LDA tbl_937F,Y
-C - - - - - 0x009383 02:9373: 85 65     STA ram_0065_tile
+C - - - - - 0x009383 02:9373: 85 65     STA ram_metatile_buffer + $03
 bra_9375:
 C - - - - - 0x009385 02:9375: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
-C - - - - - 0x009388 02:9378: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
+C - - - - - 0x009388 02:9378: 20 2B F2  JSR sub_0x00F23B_prepare_to_copy_buffer_to_ppu
 ; bzk optimize, JMP
 C - - - - - 0x00938B 02:937B: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
 C - - - - - 0x00938E 02:937E: 60        RTS
@@ -2141,33 +2147,33 @@ tbl_9384:
 
 sub_938B:
 C - - - - - 0x00939B 02:938B: A9 CC     LDA #< tbl_93CC
-C - - - - - 0x00939D 02:938D: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x00939D 02:938D: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x00939F 02:938F: A9 93     LDA #> tbl_93CC
-C - - - - - 0x0093A1 02:9391: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x0093A1 02:9391: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x0093A3 02:9393: A9 8F     LDA #< $228F
-C - - - - - 0x0093A5 02:9395: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x0093A5 02:9395: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x0093A7 02:9397: A9 22     LDA #> $228F
-C - - - - - 0x0093A9 02:9399: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x0093A9 02:9399: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x0093AB 02:939B: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x0093AE 02:939E: A9 91     LDA #< $2291
-C - - - - - 0x0093B0 02:93A0: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x0093B0 02:93A0: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x0093B2 02:93A2: A9 22     LDA #> $2291
-C - - - - - 0x0093B4 02:93A4: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x0093B4 02:93A4: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x0093B6 02:93A6: A5 7C     LDA ram_lives
 C - - - - - 0x0093B8 02:93A8: 20 CF 93  JSR sub_93CF_calculate_bcd_tiles
 C - - - - - 0x0093BB 02:93AB: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
-C - - - - - 0x0093BE 02:93AE: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
+C - - - - - 0x0093BE 02:93AE: 20 2B F2  JSR sub_0x00F23B_prepare_to_copy_buffer_to_ppu
 C - - - - - 0x0093C1 02:93B1: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
 C - - - - - 0x0093C4 02:93B4: A9 8F     LDA #< $228F
-C - - - - - 0x0093C6 02:93B6: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x0093C6 02:93B6: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x0093C8 02:93B8: A9 22     LDA #> $228F
-C - - - - - 0x0093CA 02:93BA: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x0093CA 02:93BA: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x0093CC 02:93BC: A9 04     LDA #$04
-C - - - - - 0x0093CE 02:93BE: 85 20     STA ram_0020_t05
+C - - - - - 0x0093CE 02:93BE: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x0093D0 02:93C0: A9 02     LDA #$02
-C - - - - - 0x0093D2 02:93C2: 85 21     STA ram_0021_t02
+C - - - - - 0x0093D2 02:93C2: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x0093D4 02:93C4: A9 00     LDA #$00
-C - - - - - 0x0093D6 02:93C6: 85 22     STA ram_0022_t03
+C - - - - - 0x0093D6 02:93C6: 85 22     STA ram_0022_t03_metatile_attr
 ; bzk optimize, JMP
 C - - - - - 0x0093D8 02:93C8: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x0093DB 02:93CB: 60        RTS
@@ -2186,66 +2192,67 @@ sub_93CF_calculate_bcd_tiles:
 ; in
     ; A = 
 ; out
-    ; ram_001E_t03_data
-C - - - - - 0x0093DF 02:93CF: 85 65     STA ram_0065_tile
+    ; ram_001E_t03_ppu_data
+C - - - - - 0x0093DF 02:93CF: 85 65     STA ram_metatile_buffer + $03
 C - - - - - 0x0093E1 02:93D1: A9 02     LDA #$02
-C - - - - - 0x0093E3 02:93D3: 85 62     STA ram_0062_t02
+C - - - - - 0x0093E3 02:93D3: 85 62     STA ram_metatile_buffer
 C - - - - - 0x0093E5 02:93D5: A9 01     LDA #$01
-C - - - - - 0x0093E7 02:93D7: 85 63     STA ram_0062_t02 + $01
+C - - - - - 0x0093E7 02:93D7: 85 63     STA ram_metatile_buffer + $01
 C - - - - - 0x0093E9 02:93D9: A9 00     LDA #$00
-C - - - - - 0x0093EB 02:93DB: 85 64     STA ram_0064_tile
+C - - - - - 0x0093EB 02:93DB: 85 64     STA ram_metatile_buffer + $02
 loc_93DD_loop:
-C D 0 - - - 0x0093ED 02:93DD: A5 65     LDA ram_0065_tile
+C D 0 - - - 0x0093ED 02:93DD: A5 65     LDA ram_metatile_buffer + $03
 C - - - - - 0x0093EF 02:93DF: 38        SEC
 C - - - - - 0x0093F0 02:93E0: E9 0A     SBC #$0A
 C - - - - - 0x0093F2 02:93E2: 90 07     BCC bra_93EB
-C - - - - - 0x0093F4 02:93E4: 85 65     STA ram_0065_tile
-C - - - - - 0x0093F6 02:93E6: E6 64     INC ram_0064_tile
+C - - - - - 0x0093F4 02:93E4: 85 65     STA ram_metatile_buffer + $03
+C - - - - - 0x0093F6 02:93E6: E6 64     INC ram_metatile_buffer + $02
 C - - - - - 0x0093F8 02:93E8: 4C DD 93  JMP loc_93DD_loop
 bra_93EB:
-C - - - - - 0x0093FB 02:93EB: A5 64     LDA ram_0064_tile
+C - - - - - 0x0093FB 02:93EB: A5 64     LDA ram_metatile_buffer + $02
 C - - - - - 0x0093FD 02:93ED: 09 E0     ORA #$E0
-C - - - - - 0x0093FF 02:93EF: 85 64     STA ram_0064_tile
-C - - - - - 0x009401 02:93F1: A5 65     LDA ram_0065_tile
+C - - - - - 0x0093FF 02:93EF: 85 64     STA ram_metatile_buffer + $02
+C - - - - - 0x009401 02:93F1: A5 65     LDA ram_metatile_buffer + $03
 C - - - - - 0x009403 02:93F3: 09 E0     ORA #$E0
-C - - - - - 0x009405 02:93F5: 85 65     STA ram_0065_tile
-C - - - - - 0x009407 02:93F7: A9 62     LDA #< ram_0062_t02
-C - - - - - 0x009409 02:93F9: 85 1E     STA ram_001E_t03_data
-C - - - - - 0x00940B 02:93FB: A9 00     LDA #> ram_0062_t02
-C - - - - - 0x00940D 02:93FD: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x009405 02:93F5: 85 65     STA ram_metatile_buffer + $03
+; 
+C - - - - - 0x009407 02:93F7: A9 62     LDA #< ram_metatile_buffer
+C - - - - - 0x009409 02:93F9: 85 1E     STA ram_001E_t03_ppu_data
+C - - - - - 0x00940B 02:93FB: A9 00     LDA #> ram_metatile_buffer
+C - - - - - 0x00940D 02:93FD: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x00940F 02:93FF: 60        RTS
 
 
 
 sub_9400:
 C - - - - - 0x009410 02:9400: A9 98     LDA #< tbl_9598
-C - - - - - 0x009412 02:9402: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x009412 02:9402: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x009414 02:9404: A9 95     LDA #> tbl_9598
-C - - - - - 0x009416 02:9406: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x009416 02:9406: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x009418 02:9408: A9 AC     LDA #< $21AC
-C - - - - - 0x00941A 02:940A: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x00941A 02:940A: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x00941C 02:940C: A9 21     LDA #> $21AC
-C - - - - - 0x00941E 02:940E: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x00941E 02:940E: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x009420 02:9410: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x009423 02:9413: A9 A2     LDA #< tbl_95A2
-C - - - - - 0x009425 02:9415: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x009425 02:9415: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x009427 02:9417: A9 95     LDA #> tbl_95A2
-C - - - - - 0x009429 02:9419: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x009429 02:9419: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x00942B 02:941B: A9 0C     LDA #< $220C
-C - - - - - 0x00942D 02:941D: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x00942D 02:941D: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x00942F 02:941F: A9 22     LDA #> $220C
-C - - - - - 0x009431 02:9421: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x009431 02:9421: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x009433 02:9423: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x009436 02:9426: A9 8C     LDA #< $218C
-C - - - - - 0x009438 02:9428: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x009438 02:9428: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x00943A 02:942A: A9 21     LDA #> $218C
-C - - - - - 0x00943C 02:942C: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x00943C 02:942C: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x00943E 02:942E: A9 00     LDA #$00
-C - - - - - 0x009440 02:9430: 85 22     STA ram_0022_t03
+C - - - - - 0x009440 02:9430: 85 22     STA ram_0022_t03_metatile_attr
 C - - - - - 0x009442 02:9432: A9 08     LDA #$08
-C - - - - - 0x009444 02:9434: 85 20     STA ram_0020_t05
+C - - - - - 0x009444 02:9434: 85 20     STA ram_0020_t05_columns
 C - - - - - 0x009446 02:9436: A9 06     LDA #$06
-C - - - - - 0x009448 02:9438: 85 21     STA ram_0021_t02
+C - - - - - 0x009448 02:9438: 85 21     STA ram_0021_t02_rows
 C - - - - - 0x00944A 02:943A: 20 88 F4  JSR sub_0x00F498
 C - - - - - 0x00944D 02:943D: A9 08     LDA #$08
 C - - - - - 0x00944F 02:943F: 85 A0     STA ram_00A0
@@ -2267,24 +2274,24 @@ C - - - - - 0x00946F 02:945F: C8        INY
 C - - - - - 0x009470 02:9460: C0 08     CPY #$08
 C - - - - - 0x009472 02:9462: D0 E7     BNE bra_944B_loop
 C - - - - - 0x009474 02:9464: A9 A0     LDA #< ram_00A0
-C - - - - - 0x009476 02:9466: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x009476 02:9466: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x009478 02:9468: A9 00     LDA #> ram_00A0
-C - - - - - 0x00947A 02:946A: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x00947A 02:946A: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x00947C 02:946C: A9 CC     LDA #< $21CC
-C - - - - - 0x00947E 02:946E: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x00947E 02:946E: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x009480 02:9470: A9 21     LDA #> $21CC
-C - - - - - 0x009482 02:9472: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x009482 02:9472: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x009484 02:9474: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x009487 02:9477: A9 B0     LDA #< ram_00B0
-C - - - - - 0x009489 02:9479: 85 1E     STA ram_001E_t03_data
+C - - - - - 0x009489 02:9479: 85 1E     STA ram_001E_t03_ppu_data
 C - - - - - 0x00948B 02:947B: A9 00     LDA #> ram_00B0
-C - - - - - 0x00948D 02:947D: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x00948D 02:947D: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x00948F 02:947F: A9 2C     LDA #< $222C
-C - - - - - 0x009491 02:9481: 85 1C     STA ram_001C_t04_ppu_addr_lo
+C - - - - - 0x009491 02:9481: 85 1C     STA ram_001C_t04_ppu_lo
 C - - - - - 0x009493 02:9483: A9 22     LDA #> $222C
-C - - - - - 0x009495 02:9485: 85 1D     STA ram_001D_t01_ppu_addr_hi
+C - - - - - 0x009495 02:9485: 85 1D     STA ram_001D_t01_ppu_hi
 C - - - - - 0x009497 02:9487: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
-C - - - - - 0x00949A 02:948A: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
+C - - - - - 0x00949A 02:948A: 20 2B F2  JSR sub_0x00F23B_prepare_to_copy_buffer_to_ppu
 ; bzk optimize, JMP
 C - - - - - 0x00949D 02:948D: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
 C - - - - - 0x0094A0 02:9490: 60        RTS
@@ -7349,22 +7356,22 @@ off_ch_01_AFB8_03:
 sub_B003:
 ; in
     ; A = letter index
-    ; ram_001C_t04_ppu_addr_lo
-    ; ram_001D_t01_ppu_addr_hi
+    ; ram_001C_t04_ppu_lo
+    ; ram_001D_t01_ppu_hi
 C - - - - - 0x00B013 02:B003: A8        TAY
 C - - - - - 0x00B014 02:B004: B9 FD B0  LDA tbl_B0FD,Y
 C - - - - - 0x00B017 02:B007: A8        TAY
 C - - - - - 0x00B018 02:B008: B9 D8 B0  LDA tbl_B0D8_letter_tile,Y
-C - - - - - 0x00B01B 02:B00B: 85 64     STA ram_0064_tile
+C - - - - - 0x00B01B 02:B00B: 85 64     STA ram_metatile_buffer + $02
 C - - - - - 0x00B01D 02:B00D: A9 01     LDA #$01
-C - - - - - 0x00B01F 02:B00F: 85 62     STA ram_0062_t02
-C - - - - - 0x00B021 02:B011: 85 63     STA ram_0062_t02 + $01
-C - - - - - 0x00B023 02:B013: A9 62     LDA #< ram_0062_t02
-C - - - - - 0x00B025 02:B015: 85 1E     STA ram_001E_t03_data
-C - - - - - 0x00B027 02:B017: A9 00     LDA #> ram_0062_t02
-C - - - - - 0x00B029 02:B019: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x00B01F 02:B00F: 85 62     STA ram_metatile_buffer
+C - - - - - 0x00B021 02:B011: 85 63     STA ram_metatile_buffer + $01
+C - - - - - 0x00B023 02:B013: A9 62     LDA #< ram_metatile_buffer
+C - - - - - 0x00B025 02:B015: 85 1E     STA ram_001E_t03_ppu_data
+C - - - - - 0x00B027 02:B017: A9 00     LDA #> ram_metatile_buffer
+C - - - - - 0x00B029 02:B019: 85 1F     STA ram_001E_t03_ppu_data + $01
 C - - - - - 0x00B02B 02:B01B: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
-C - - - - - 0x00B02E 02:B01E: 20 2B F2  JSR sub_0x00F23B_set_0018_08_flag
+C - - - - - 0x00B02E 02:B01E: 20 2B F2  JSR sub_0x00F23B_prepare_to_copy_buffer_to_ppu
 ; bzk optimize, JSR
 C - - - - - 0x00B031 02:B021: 20 CD EE  JSR sub_0x00EEDD_wait_1_frm
 C - - - - - 0x00B034 02:B024: 60        RTS
@@ -7428,63 +7435,64 @@ C - - - - - 0x00B08F 02:B07F: 60        RTS
 
 
 
-sub_B080:
+sub_B080_draw_stage_number:
 ; in
-    ; ram_001C_t04_ppu_addr_lo
-    ; ram_001D_t01_ppu_addr_hi
+    ; ram_001C_t04_ppu_lo
+    ; ram_001D_t01_ppu_hi
 C - - - - - 0x00B090 02:B080: A9 04     LDA #$04
-C - - - - - 0x00B092 02:B082: 85 62     STA ram_0062_t02
+C - - - - - 0x00B092 02:B082: 85 62     STA ram_metatile_buffer
 C - - - - - 0x00B094 02:B084: A9 01     LDA #$01
-C - - - - - 0x00B096 02:B086: 85 63     STA ram_0062_t02 + $01
+C - - - - - 0x00B096 02:B086: 85 63     STA ram_metatile_buffer + $01
 C - - - - - 0x00B098 02:B088: A9 00     LDA #$00
-C - - - - - 0x00B09A 02:B08A: 85 64     STA ram_0064_tile
-C - - - - - 0x00B09C 02:B08C: 85 65     STA ram_0065_tile
+C - - - - - 0x00B09A 02:B08A: 85 64     STA ram_metatile_buffer + $02
+C - - - - - 0x00B09C 02:B08C: 85 65     STA ram_metatile_buffer + $03
 C - - - - - 0x00B09E 02:B08E: A0 00     LDY #$00
 C - - - - - 0x00B0A0 02:B090: A5 69     LDA ram_stage_id_2
 bra_B092_loop:
 ; * 04
 C - - - - - 0x00B0A2 02:B092: 0A        ASL
-C - - - - - 0x00B0A3 02:B093: 26 64     ROL ram_0064_tile
+C - - - - - 0x00B0A3 02:B093: 26 64     ROL ram_metatile_buffer + $02
 C - - - - - 0x00B0A5 02:B095: 0A        ASL
-C - - - - - 0x00B0A6 02:B096: 26 65     ROL ram_0065_tile
+C - - - - - 0x00B0A6 02:B096: 26 65     ROL ram_metatile_buffer + $03
 C - - - - - 0x00B0A8 02:B098: C8        INY
 C - - - - - 0x00B0A9 02:B099: C0 04     CPY #$04
 C - - - - - 0x00B0AB 02:B09B: D0 F5     BNE bra_B092_loop
+; 
 C - - - - - 0x00B0AD 02:B09D: A5 69     LDA ram_stage_id_2
 C - - - - - 0x00B0AF 02:B09F: 29 0F     AND #$0F
 C - - - - - 0x00B0B1 02:B0A1: 0A        ASL
-C - - - - - 0x00B0B2 02:B0A2: 85 66     STA ram_0066_tile
+C - - - - - 0x00B0B2 02:B0A2: 85 66     STA ram_metatile_buffer + $04
 C - - - - - 0x00B0B4 02:B0A4: A5 69     LDA ram_stage_id_2
 ; / 10
 C - - - - - 0x00B0B6 02:B0A6: 4A        LSR
 C - - - - - 0x00B0B7 02:B0A7: 4A        LSR
 C - - - - - 0x00B0B8 02:B0A8: 4A        LSR
 C - - - - - 0x00B0B9 02:B0A9: 4A        LSR
-C - - - - - 0x00B0BA 02:B0AA: 85 67     STA ram_0067_tile
+C - - - - - 0x00B0BA 02:B0AA: 85 67     STA ram_metatile_buffer + $05
 ; bzk optimize, LDY
-C - - - - - 0x00B0BC 02:B0AC: A5 64     LDA ram_0064_tile
+C - - - - - 0x00B0BC 02:B0AC: A5 64     LDA ram_metatile_buffer + $02
 C - - - - - 0x00B0BE 02:B0AE: A8        TAY
 C - - - - - 0x00B0BF 02:B0AF: B9 D8 B0  LDA tbl_B0D8_letter_tile,Y
-C - - - - - 0x00B0C2 02:B0B2: 85 64     STA ram_0064_tile
+C - - - - - 0x00B0C2 02:B0B2: 85 64     STA ram_metatile_buffer + $02
 ; bzk optimize, LDY
-C - - - - - 0x00B0C4 02:B0B4: A5 65     LDA ram_0065_tile
+C - - - - - 0x00B0C4 02:B0B4: A5 65     LDA ram_metatile_buffer + $03
 C - - - - - 0x00B0C6 02:B0B6: A8        TAY
 C - - - - - 0x00B0C7 02:B0B7: B9 D8 B0  LDA tbl_B0D8_letter_tile,Y
-C - - - - - 0x00B0CA 02:B0BA: 85 65     STA ram_0065_tile
+C - - - - - 0x00B0CA 02:B0BA: 85 65     STA ram_metatile_buffer + $03
 ; bzk optimize, LDY
-C - - - - - 0x00B0CC 02:B0BC: A5 66     LDA ram_0066_tile
+C - - - - - 0x00B0CC 02:B0BC: A5 66     LDA ram_metatile_buffer + $04
 C - - - - - 0x00B0CE 02:B0BE: A8        TAY
 C - - - - - 0x00B0CF 02:B0BF: B9 D8 B0  LDA tbl_B0D8_letter_tile,Y
-C - - - - - 0x00B0D2 02:B0C2: 85 66     STA ram_0066_tile
+C - - - - - 0x00B0D2 02:B0C2: 85 66     STA ram_metatile_buffer + $04
 ; bzk optimize, LDY
-C - - - - - 0x00B0D4 02:B0C4: A5 67     LDA ram_0067_tile
+C - - - - - 0x00B0D4 02:B0C4: A5 67     LDA ram_metatile_buffer + $05
 C - - - - - 0x00B0D6 02:B0C6: A8        TAY
 C - - - - - 0x00B0D7 02:B0C7: B9 D8 B0  LDA tbl_B0D8_letter_tile,Y
-C - - - - - 0x00B0DA 02:B0CA: 85 67     STA ram_0067_tile
-C - - - - - 0x00B0DC 02:B0CC: A9 62     LDA #< ram_0062_t02
-C - - - - - 0x00B0DE 02:B0CE: 85 1E     STA ram_001E_t03_data
-C - - - - - 0x00B0E0 02:B0D0: A9 00     LDA #> ram_0062_t02
-C - - - - - 0x00B0E2 02:B0D2: 85 1F     STA ram_001E_t03_data + $01
+C - - - - - 0x00B0DA 02:B0CA: 85 67     STA ram_metatile_buffer + $05
+C - - - - - 0x00B0DC 02:B0CC: A9 62     LDA #< ram_metatile_buffer
+C - - - - - 0x00B0DE 02:B0CE: 85 1E     STA ram_001E_t03_ppu_data
+C - - - - - 0x00B0E0 02:B0D0: A9 00     LDA #> ram_metatile_buffer
+C - - - - - 0x00B0E2 02:B0D2: 85 1F     STA ram_001E_t03_ppu_data + $01
 ; bzk optimize, JSR
 C - - - - - 0x00B0E4 02:B0D4: 20 30 F2  JSR sub_0x00F240_replace_tiles_with_new
 C - - - - - 0x00B0E7 02:B0D7: 60        RTS

@@ -40,28 +40,28 @@ con_script_generate_password            = $07 ;
 
 
 
-; ram_0018_flag
-con_0018_01                             = $01 ; 
-con_0018_02                             = $02 ; never used
-con_0018_04                             = $04 ; 
-con_0018_08                             = $08 ; 
-con_0018_10                             = $10 ; 
-con_0018_20                             = $20 ; 
-con_0018_40                             = $40 ; 
-; con_0018_80                           = $80 ; unused
+; ram_ppu_update_flags
+con_ppu_uptate_2001                     = $01 ; update 2001 register (enable NMI?)
+con_ppu_02_useless                      = $02 ; bzk optimize, never used
+con_ppu_black_screen                    = $04 ; all 32 black colors (0F)
+con_ppu_copy_buffer                     = $08 ; ram_ppu_buffer
+con_ppu_copy_attr_2                     = $10 ; ram_nmt_attr_buffer_2
+con_ppu_copy_attr_1                     = $20 ; ram_nmt_attr_buffer_1
+con_ppu_copy_palette                    = $40 ; ram_pal_buffer
+; con_ppu_80                            = $80 ; unused
 
 
 
 ; ram_00F0_flag
 con_00F0_00                             = $00 ; 
 ; con_00F0_01                           = $01 ; 
-con_00F0_02                             = $02 ; 
-con_00F0_04                             = $04 ; 
+con_00F0_nmi                            = $02 ; cleared at the end of NMI
+con_00F0_04                             = $04 ; something to do with sound engine
 con_00F0_08_bsw_in_progress             = $08 ; prg bankswitch is in progress if set
 ; con_00F0_10                           = $10 ; 
 ; con_00F0_20                           = $20 ; 
-con_00F0_40                             = $40 ; useless flag, never set
-con_00F0_80                             = $80 ; 
+con_00F0_40_useless                     = $40 ; bzk optimize, never set
+con_00F0_se_not_updated                 = $80 ; if set, sound engine could not be updated during previous frame
 
 
 
@@ -121,9 +121,9 @@ con_0700_00                             = $00 ;
 ; con_0700_04                           = $04 ; unused
 ; con_0700_08                           = $08 ; unused
 ; con_0700_10                           = $10 ; unused
-con_0700_20                             = $20 ; 
-con_0700_40                             = $40 ; 
-con_0700_80                             = $80 ; 
+con_0700_channel_disabled               = $20 ; if set, don't enable channel bit in 4015?
+con_0700_update_channel                 = $40 ; if not set, skip writing to 4001x/4002x/4003x ?
+con_0700_channel_enabled                = $80 ; if not set, skip writing to 4000x ?
 
 
 
