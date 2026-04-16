@@ -7,7 +7,7 @@
 
 
 .export sub_0x010010
-.export sub_0x010013
+.export sub_0x010013_sprite_engine
 .export tbl_0x013010_palette
 .export sub_0x013130_prepare_sprite_data_pointers
 .export sub_0x013610_spawn_objects
@@ -31,8 +31,10 @@ C - - - - - 0x010010 04:8000: 4C 3B 81  JMP loc_813B
 
 
 
-sub_0x010013:
-C - - - - - 0x010013 04:8003: 20 4D 80  JSR sub_804D_display_hearts_with_spr
+sub_0x010013_sprite_engine:
+; in
+    ; ram_0010_t01_spr_A
+C - - - - - 0x010013 04:8003: 20 4D 80  JSR sub_804D_display_player_hearts_with_sprites
 C - - - - - 0x010016 04:8006: E6 95     INC ram_frm_cnt_2
 C - - - - - 0x010018 04:8008: A5 95     LDA ram_frm_cnt_2
 C - - - - - 0x01001A 04:800A: 4A        LSR
@@ -76,25 +78,28 @@ C - - - - - 0x01005C 04:804C: 60        RTS
 
 
 
-sub_804D_display_hearts_with_spr:
-C - - - - - 0x01005D 04:804D: A5 BA     LDA ram_total_hearts
+sub_804D_display_player_hearts_with_sprites:
+; bzk optimize, always 05
+C - - - - - 0x01005D 04:804D: A5 BA     LDA ram_useless_max_hearts_05
 C - - - - - 0x01005F 04:804F: 0A        ASL
 C - - - - - 0x010060 04:8050: 0A        ASL
 C - - - - - 0x010061 04:8051: 85 97     STA ram_oam_index
 C - - - - - 0x010063 04:8053: AA        TAX
 bra_8054_loop:
-C - - - - - 0x010064 04:8054: BD 6F 80  LDA tbl_8070 - $01,X
+; prepare sprite data for 5 empty hearts
+C - - - - - 0x010064 04:8054: BD 6F 80  LDA tbl_8070_hearts_sprite_data - $01,X
 C - - - - - 0x010067 04:8057: 9D FF 01  STA ram_oam - $01,X
 C - - - - - 0x01006A 04:805A: CA        DEX
 C - - - - - 0x01006B 04:805B: D0 F7     BNE bra_8054_loop
 ; display full hearts
 C - - - - - 0x01006D 04:805D: A5 B1     LDA ram_hearts
 C - - - - - 0x01006F 04:805F: F0 0E     BEQ bra_806F_RTS
-; if not dead
+; if not dead, calculate oam index
 C - - - - - 0x010071 04:8061: 0A        ASL
 C - - - - - 0x010072 04:8062: 0A        ASL
 C - - - - - 0x010073 04:8063: AA        TAX
 bra_8064_loop:
+; replace empty heart tiles with full heart tiles
 C - - - - - 0x010074 04:8064: A9 98     LDA #$98
 C - - - - - 0x010076 04:8066: 9D FD 01  STA ram_spr_T - $04,X
 C - - - - - 0x010079 04:8069: CA        DEX
@@ -107,16 +112,23 @@ C - - - - - 0x01007F 04:806F: 60        RTS
 
 
 
-tbl_8070:
-- D 0 - - - 0x010080 04:8070: 18        .byte $18, $9F, $00, $10   ; 
-- D 0 - - - 0x010084 04:8074: 18        .byte $18, $9F, $00, $18   ; 
-- D 0 - - - 0x010088 04:8078: 18        .byte $18, $9F, $00, $20   ; 
-- D 0 - - - 0x01008C 04:807C: 18        .byte $18, $9F, $00, $28   ; 
-- D 0 - - - 0x010090 04:8080: 18        .byte $18, $9F, $00, $30   ; 
+tbl_8070_hearts_sprite_data:
+;                                              +-------------------- spr_Y
+;                                              |    +--------------- spr_T
+;                                              |    |    +---------- spr_A
+;                                              |    |    |    +----- spr_X
+;                                              |    |    |    |
+- D 0 - - - 0x010080 04:8070: 18        .byte $18, $9F, $00, $10   ; 1st heart
+- D 0 - - - 0x010084 04:8074: 18        .byte $18, $9F, $00, $18   ; 2nd heart
+- D 0 - - - 0x010088 04:8078: 18        .byte $18, $9F, $00, $20   ; 3rd heart
+- D 0 - - - 0x01008C 04:807C: 18        .byte $18, $9F, $00, $28   ; 4th heart
+- D 0 - - - 0x010090 04:8080: 18        .byte $18, $9F, $00, $30   ; 5th heart
 
 
 
 sub_8084:
+; in
+    ; ram_0010_t01_spr_A
 C - - - - - 0x010094 04:8084: BD 60 03  LDA ram_pos_Y_lo,X
 C - - - - - 0x010097 04:8087: 85 12     STA ram_0012_temp
 C - - - - - 0x010099 04:8089: BD 30 03  LDA ram_pos_X_lo,X
@@ -200,7 +212,7 @@ bra_8120:
 C - - - - - 0x010130 04:8120: A0 00     LDY #$00
 C - - - - - 0x010132 04:8122: BD 00 04  LDA ram_0400_obj_flags,X
 C - - - - - 0x010135 04:8125: 29 40     AND #$40
-C - - - - - 0x010137 04:8127: 85 10     STA ram_0010_temp
+C - - - - - 0x010137 04:8127: 85 10     STA ram_0010_t01_spr_A
 C - - - - - 0x010139 04:8129: F0 01     BEQ bra_812C
 C - - - - - 0x01013B 04:812B: C8        INY ; 01
 bra_812C:
@@ -209,7 +221,7 @@ C - - - - - 0x01013E 04:812E: BD 30 04  LDA ram_0430_obj,X
 C - - - - - 0x010141 04:8131: C9 51     CMP #$51
 C - - - - - 0x010143 04:8133: D0 06     BNE bra_813B
 C - - - - - 0x010145 04:8135: A9 00     LDA #$00
-C - - - - - 0x010147 04:8137: 85 10     STA ram_0010_temp
+C - - - - - 0x010147 04:8137: 85 10     STA ram_0010_t01_spr_A
 C - - - - - 0x010149 04:8139: 85 11     STA ram_0011_t01_00_or_01
 bra_813B:
 loc_813B:
@@ -320,7 +332,7 @@ C - - - - - 0x010207 04:81F7: 65 11     ADC ram_0011_t01_00_or_01
 C - - - - - 0x010209 04:81F9: 48        PHA
 C - - - - - 0x01020A 04:81FA: BD 00 04  LDA ram_0400_obj_flags,X
 C - - - - - 0x01020D 04:81FD: 29 20     AND #$20
-C - - - - - 0x01020F 04:81FF: 85 11     STA ram_0011_t02_spr_priority
+C - - - - - 0x01020F 04:81FF: 85 11     STA ram_0011_t02_spr_A_priority
 C - - - - - 0x010211 04:8201: 68        PLA
 C - - - - - 0x010212 04:8202: AA        TAX
 C - - - - - 0x010213 04:8203: BD 1D A3  LDA tbl_A31D_spr_data_YX_lo,X
@@ -349,8 +361,8 @@ C - - - - - 0x01023C 04:822C: 90 29     BCC bra_8257
 bra_822E:
 C - - - - - 0x01023E 04:822E: C8        INY
 C - - - - - 0x01023F 04:822F: B1 02     LDA (ram_0002_t01_data_spr),Y
-C - - - - - 0x010241 04:8231: 45 10     EOR ram_0010_temp
-C - - - - - 0x010243 04:8233: 05 11     ORA ram_0011_t02_spr_priority
+C - - - - - 0x010241 04:8231: 45 10     EOR ram_0010_t01_spr_A
+C - - - - - 0x010243 04:8233: 05 11     ORA ram_0011_t02_spr_A_priority
 C - - - - - 0x010245 04:8235: 9D 02 02  STA ram_spr_A,X
 C - - - - - 0x010248 04:8238: A5 13     LDA ram_0013_temp
 C - - - - - 0x01024A 04:823A: 18        CLC
@@ -9825,7 +9837,7 @@ C - - - - - 0x013802 04:B7F2: 9D 70 04  STA ram_obj_timer,X
 C - - - - - 0x013805 04:B7F5: 9D 80 04  STA ram_0480_obj,X
 C - - - - - 0x013808 04:B7F8: 9D 90 04  STA ram_0490_obj,X
 C - - - - - 0x01380B 04:B7FB: 9D A0 04  STA ram_04A0_obj,X
-C - - - - - 0x01380E 04:B7FE: 20 99 F9  JSR sub_0x01F9A9
+C - - - - - 0x01380E 04:B7FE: 20 99 F9  JSR sub_0x01F9A9_set_spd_Y_FFC0
 C - - - - - 0x013811 04:B801: 4C 6F FC  JMP loc_0x01FC7F
 
 
