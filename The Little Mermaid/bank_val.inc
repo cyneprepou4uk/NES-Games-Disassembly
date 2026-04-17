@@ -200,6 +200,35 @@ con_se_cb__resume                       = $F4 ;
 
 
 
+; static screen indexes for 0x01B053
+con_screen_title                        = $00 ; 
+con_screen_pause                        = $01 ; 
+con_screen_stage_clear                  = $02 ; 
+con_screen___cutscene                   = $03 ; 
+    ; con_screen_03                         = $03 ; 
+    ; con_screen_04                         = $04 ; 
+    ; con_screen_05                         = $05 ; 
+    ; con_screen_06                         = $06 ; 
+    ; con_screen_07                         = $07 ; 
+    ; con_screen_08                         = $08 ; 
+    ; con_screen_09                         = $09 ; 
+    ; con_screen_0A                         = $0A ; 
+    ; con_screen_0B                         = $0B ; 
+    ; con_screen_0C                         = $0C ; 
+    ; con_screen_0D                         = $0D ; 
+    ; con_screen_0E                         = $0E ; 
+    ; con_screen_0F                         = $0F ; 
+con_screen_copyrights                   = $10 ; 
+con_screen_game_over                    = $11 ; game over
+con_screen___stage                      = $12 ; 
+    ; con_screen_12                         = $12 ; 
+    ; con_screen_13                         = $13 ; 
+    ; con_screen_14                         = $14 ; 
+    ; con_screen_15                         = $15 ; 
+    ; con_screen_16                         = $16 ; 
+
+
+
 ; 0x01C2D4
 con_C2C4_00                             = $00 ; 
 con_C2C4_01                             = $01 ; 

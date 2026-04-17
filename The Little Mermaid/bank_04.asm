@@ -129,21 +129,23 @@ tbl_8070_hearts_sprite_data:
 sub_8084:
 ; in
     ; ram_0010_t01_spr_A
+    ; ram_0012_t02_spr_Y
+    ; ram_0013_t02_spr_X
 C - - - - - 0x010094 04:8084: BD 60 03  LDA ram_pos_Y_lo,X
-C - - - - - 0x010097 04:8087: 85 12     STA ram_0012_temp
+C - - - - - 0x010097 04:8087: 85 12     STA ram_0012_t02_spr_Y
 C - - - - - 0x010099 04:8089: BD 30 03  LDA ram_pos_X_lo,X
-C - - - - - 0x01009C 04:808C: 85 13     STA ram_0013_temp
+C - - - - - 0x01009C 04:808C: 85 13     STA ram_0013_t02_spr_X
 C - - - - - 0x01009E 04:808E: BD 00 04  LDA ram_0400_obj_flags,X
 C - - - - - 0x0100A1 04:8091: 29 10     AND #$10
 C - - - - - 0x0100A3 04:8093: F0 71     BEQ bra_8106
 C - - - - - 0x0100A5 04:8095: BD 60 03  LDA ram_pos_Y_lo,X
 C - - - - - 0x0100A8 04:8098: 38        SEC
 C - - - - - 0x0100A9 04:8099: E5 FA     SBC ram_scroll_Y_lo
-C - - - - - 0x0100AB 04:809B: 85 12     STA ram_0012_temp
+C - - - - - 0x0100AB 04:809B: 85 12     STA ram_0012_t02_spr_Y
 C - - - - - 0x0100AD 04:809D: B0 06     BCS bra_80A5
 C - - - - - 0x0100AF 04:809F: 08        PHP
 C - - - - - 0x0100B0 04:80A0: E9 0F     SBC #$0F
-C - - - - - 0x0100B2 04:80A2: 85 12     STA ram_0012_temp
+C - - - - - 0x0100B2 04:80A2: 85 12     STA ram_0012_t02_spr_Y
 C - - - - - 0x0100B4 04:80A4: 28        PLP
 bra_80A5:
 C - - - - - 0x0100B5 04:80A5: BD 70 03  LDA ram_pos_Y_hi,X
@@ -172,7 +174,7 @@ bra_80CF:
 C - - - - - 0x0100DF 04:80CF: BD 30 03  LDA ram_pos_X_lo,X
 C - - - - - 0x0100E2 04:80D2: 38        SEC
 C - - - - - 0x0100E3 04:80D3: E5 FC     SBC ram_scroll_X_lo
-C - - - - - 0x0100E5 04:80D5: 85 13     STA ram_0013_temp
+C - - - - - 0x0100E5 04:80D5: 85 13     STA ram_0013_t02_spr_X
 C - - - - - 0x0100E7 04:80D7: BD 40 03  LDA ram_pos_X_hi,X
 C - - - - - 0x0100EA 04:80DA: E5 FD     SBC ram_scroll_X_hi
 C - - - - - 0x0100EC 04:80DC: F0 28     BEQ bra_8106
@@ -217,7 +219,7 @@ C - - - - - 0x010139 04:8129: F0 01     BEQ bra_812C
 C - - - - - 0x01013B 04:812B: C8        INY ; 01
 bra_812C:
 C - - - - - 0x01013C 04:812C: 84 11     STY ram_0011_t01_00_or_01
-C - - - - - 0x01013E 04:812E: BD 30 04  LDA ram_0430_obj,X
+C - - - - - 0x01013E 04:812E: BD 30 04  LDA ram_0430_obj_animation,X
 C - - - - - 0x010141 04:8131: C9 51     CMP #$51
 C - - - - - 0x010143 04:8133: D0 06     BNE bra_813B
 C - - - - - 0x010145 04:8135: A9 00     LDA #$00
@@ -225,13 +227,13 @@ C - - - - - 0x010147 04:8137: 85 10     STA ram_0010_t01_spr_A
 C - - - - - 0x010149 04:8139: 85 11     STA ram_0011_t01_00_or_01
 bra_813B:
 loc_813B:
-C D 0 - - - 0x01014B 04:813B: BC 30 04  LDY ram_0430_obj,X
+C D 0 - - - 0x01014B 04:813B: BC 30 04  LDY ram_0430_obj_animation,X
 C - - - - - 0x01014E 04:813E: F0 53     BEQ bra_8193
 ; 01+
-C - - - - - 0x010150 04:8140: B9 1C A7  LDA tbl_A71C_lo,Y
-C - - - - - 0x010153 04:8143: 85 00     STA ram_0000_t01_data
-C - - - - - 0x010155 04:8145: B9 A7 A7  LDA tbl_A7A7_hi,Y
-C - - - - - 0x010158 04:8148: 85 01     STA ram_0000_t01_data + $01
+C - - - - - 0x010150 04:8140: B9 1C A7  LDA tbl_A71C_animation_data_lo,Y
+C - - - - - 0x010153 04:8143: 85 00     STA ram_0000_t01_animation_data
+C - - - - - 0x010155 04:8145: B9 A7 A7  LDA tbl_A7A7_animation_data_hi,Y
+C - - - - - 0x010158 04:8148: 85 01     STA ram_0000_t01_animation_data + $01
 C - - - - - 0x01015A 04:814A: E0 10     CPX #$10
 C - - - - - 0x01015C 04:814C: B0 0B     BCS bra_8159
 C - - - - - 0x01015E 04:814E: A5 B1     LDA ram_hearts
@@ -246,7 +248,7 @@ C - - - - - 0x01016C 04:815C: 30 22     BMI bra_8180
 C - - - - - 0x01016E 04:815E: 29 7F     AND #$7F
 C - - - - - 0x010170 04:8160: FE 48 04  INC ram_0448_obj,X
 C - - - - - 0x010173 04:8163: A0 01     LDY #$01
-C - - - - - 0x010175 04:8165: D1 00     CMP (ram_0000_t01_data),Y
+C - - - - - 0x010175 04:8165: D1 00     CMP (ram_0000_t01_animation_data),Y
 C - - - - - 0x010177 04:8167: D0 17     BNE bra_8180
 C - - - - - 0x010179 04:8169: A9 00     LDA #$00
 C - - - - - 0x01017B 04:816B: 9D 48 04  STA ram_0448_obj,X
@@ -254,7 +256,7 @@ C - - - - - 0x01017E 04:816E: BD 18 04  LDA ram_obj_animation_cnt,X     ; includ
 C - - - - - 0x010181 04:8171: 29 7F     AND #$7F
 C - - - - - 0x010183 04:8173: FE 18 04  INC ram_obj_animation_cnt,X     ; including ram_0428_unk
 C - - - - - 0x010186 04:8176: 88        DEY ; 00
-C - - - - - 0x010187 04:8177: D1 00     CMP (ram_0000_t01_data),Y
+C - - - - - 0x010187 04:8177: D1 00     CMP (ram_0000_t01_animation_data),Y
 C - - - - - 0x010189 04:8179: D0 05     BNE bra_8180
 C - - - - - 0x01018B 04:817B: A9 00     LDA #$00
 C - - - - - 0x01018D 04:817D: 9D 18 04  STA ram_obj_animation_cnt,X     ; including ram_0428_unk
@@ -303,7 +305,7 @@ C - - - - - 0x0101D4 04:81C4: 29 7F     AND #$7F
 C - - - - - 0x0101D6 04:81C6: 18        CLC
 C - - - - - 0x0101D7 04:81C7: 69 02     ADC #$02
 C - - - - - 0x0101D9 04:81C9: A8        TAY
-C - - - - - 0x0101DA 04:81CA: B1 00     LDA (ram_0000_t01_data),Y
+C - - - - - 0x0101DA 04:81CA: B1 00     LDA (ram_0000_t01_animation_data),Y
 C - - - - - 0x0101DC 04:81CC: D0 14     BNE bra_81E2
 ; 00
 C - - - - - 0x0101DE 04:81CE: 9D 00 03  STA ram_obj_flags,X
@@ -348,7 +350,7 @@ bra_8216_loop:
 C - - - - - 0x010226 04:8216: C8        INY
 C - - - - - 0x010227 04:8217: B1 02     LDA (ram_0002_t01_data_spr),Y
 C - - - - - 0x010229 04:8219: 9D 01 02  STA ram_spr_T,X
-C - - - - - 0x01022C 04:821C: A5 12     LDA ram_0012_temp
+C - - - - - 0x01022C 04:821C: A5 12     LDA ram_0012_t02_spr_Y
 C - - - - - 0x01022E 04:821E: 18        CLC
 C - - - - - 0x01022F 04:821F: 71 05     ADC (ram_0005_t02_data_spr_YX),Y
 C - - - - - 0x010231 04:8221: 9D 00 02  STA ram_spr_Y,X
@@ -364,7 +366,7 @@ C - - - - - 0x01023F 04:822F: B1 02     LDA (ram_0002_t01_data_spr),Y
 C - - - - - 0x010241 04:8231: 45 10     EOR ram_0010_t01_spr_A
 C - - - - - 0x010243 04:8233: 05 11     ORA ram_0011_t02_spr_A_priority
 C - - - - - 0x010245 04:8235: 9D 02 02  STA ram_spr_A,X
-C - - - - - 0x010248 04:8238: A5 13     LDA ram_0013_temp
+C - - - - - 0x010248 04:8238: A5 13     LDA ram_0013_t02_spr_X
 C - - - - - 0x01024A 04:823A: 18        CLC
 C - - - - - 0x01024B 04:823B: 71 05     ADC (ram_0005_t02_data_spr_YX),Y
 C - - - - - 0x01024D 04:823D: 9D 03 02  STA ram_spr_X,X
@@ -7199,8 +7201,8 @@ tbl_A3D5_spr_data_YX_hi:
 
 
 
-_off004_A48D_01:
-_off004_A48D_02:
+_off004_animation_A48D_01:
+_off004_animation_A48D_02:
 @start:
 - D 1 - I - 0x01249D 04:A48D: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01249E 04:A48E: 08        .byte $08   ; ??? 001
@@ -7212,7 +7214,7 @@ _off004_A48D_02:
 
 
 
-_off004_A493_03:
+_off004_animation_A493_03:
 @start:
 - D 1 - I - 0x0124A3 04:A493: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124A4 04:A494: 12        .byte $12   ; ??? 001
@@ -7224,7 +7226,7 @@ _off004_A493_03:
 
 
 
-_off004_A499_04:
+_off004_animation_A499_04:
 @start:
 - D 1 - I - 0x0124A9 04:A499: 02        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124AA 04:A49A: 0A        .byte $0A   ; ??? 001
@@ -7235,7 +7237,7 @@ _off004_A499_04:
 
 
 
-_off004_A49E_09:
+_off004_animation_A49E_09:
 @start:
 - D 1 - I - 0x0124AE 04:A49E: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124AF 04:A49F: 08        .byte $08   ; ??? 001
@@ -7244,7 +7246,7 @@ _off004_A49E_09:
 
 
 
-_off004_A4A1_0A:
+_off004_animation_A4A1_0A:
 @start:
 - D 1 - I - 0x0124B1 04:A4A1: 05        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124B2 04:A4A2: 04        .byte $04   ; ??? 001
@@ -7258,7 +7260,7 @@ _off004_A4A1_0A:
 
 
 
-_off004_A4A9_0B:
+_off004_animation_A4A9_0B:
 @start:
 - D 1 - I - 0x0124B9 04:A4A9: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124BA 04:A4AA: 08        .byte $08   ; ??? 001
@@ -7270,7 +7272,7 @@ _off004_A4A9_0B:
 
 
 
-_off004_A4AF_0C:
+_off004_animation_A4AF_0C:
 @start:
 - D 1 - I - 0x0124BF 04:A4AF: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124C0 04:A4B0: 03        .byte $03   ; ??? 001
@@ -7282,8 +7284,8 @@ _off004_A4AF_0C:
 
 
 
-_off004_A4B5_05:
-_off004_A4B5_0D:
+_off004_animation_A4B5_05:
+_off004_animation_A4B5_0D:
 @start:
 - D 1 - I - 0x0124C5 04:A4B5: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124C6 04:A4B6: 07        .byte $07   ; ??? 001
@@ -7293,8 +7295,8 @@ _off004_A4B5_0D:
 
 
 
-_off004_A4B9_06:
-_off004_A4B9_0E:
+_off004_animation_A4B9_06:
+_off004_animation_A4B9_0E:
 @start:
 - D 1 - I - 0x0124C9 04:A4B9: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124CA 04:A4BA: 06        .byte $06   ; ??? 001
@@ -7304,8 +7306,8 @@ _off004_A4B9_0E:
 
 
 
-_off004_A4BD_07:
-_off004_A4BD_0F:
+_off004_animation_A4BD_07:
+_off004_animation_A4BD_0F:
 @start:
 - D 1 - I - 0x0124CD 04:A4BD: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124CE 04:A4BE: 06        .byte $06   ; ??? 001
@@ -7314,8 +7316,8 @@ _off004_A4BD_0F:
 
 
 
-_off004_A4C0_08:
-_off004_A4C0_10:
+_off004_animation_A4C0_08:
+_off004_animation_A4C0_10:
 @start:
 - D 1 - I - 0x0124D0 04:A4C0: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124D1 04:A4C1: 06        .byte $06   ; ??? 001
@@ -7325,7 +7327,7 @@ _off004_A4C0_10:
 
 
 
-_off004_A4C4_11:
+_off004_animation_A4C4_11:
 @start:
 - D 1 - I - 0x0124D4 04:A4C4: 06        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124D5 04:A4C5: 03        .byte $03   ; ??? 001
@@ -7340,7 +7342,7 @@ _off004_A4C4_11:
 
 
 
-_off004_A4CD_12:
+_off004_animation_A4CD_12:
 @start:
 - D 1 - I - 0x0124DD 04:A4CD: 06        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124DE 04:A4CE: 03        .byte $03   ; ??? 001
@@ -7355,7 +7357,7 @@ _off004_A4CD_12:
 
 
 
-_off004_A4D6_13:
+_off004_animation_A4D6_13:
 @start:
 - D 1 - I - 0x0124E6 04:A4D6: 02        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124E7 04:A4D7: 08        .byte $08   ; ??? 001
@@ -7366,7 +7368,7 @@ _off004_A4D6_13:
 
 
 
-_off004_A4DB_14:
+_off004_animation_A4DB_14:
 @start:
 - D 1 - I - 0x0124EB 04:A4DB: 06        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124EC 04:A4DC: 06        .byte $06   ; ??? 001
@@ -7381,7 +7383,7 @@ _off004_A4DB_14:
 
 
 
-_off004_A4E4_15:
+_off004_animation_A4E4_15:
 @start:
 - D 1 - I - 0x0124F4 04:A4E4: 04        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124F5 04:A4E5: 06        .byte $06   ; ??? 001
@@ -7394,7 +7396,7 @@ _off004_A4E4_15:
 
 
 
-_off004_A4EB_16:
+_off004_animation_A4EB_16:
 @start:
 - D 1 - I - 0x0124FB 04:A4EB: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0124FC 04:A4EC: 06        .byte $06   ; ??? 001
@@ -7404,7 +7406,7 @@ _off004_A4EB_16:
 
 
 
-_off004_A4EF_17:
+_off004_animation_A4EF_17:
 @start:
 - D 1 - I - 0x0124FF 04:A4EF: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012500 04:A4F0: 05        .byte $05   ; ??? 001
@@ -7416,7 +7418,7 @@ _off004_A4EF_17:
 
 
 
-_off004_A4F5_18:
+_off004_animation_A4F5_18:
 @start:
 - D 1 - I - 0x012505 04:A4F5: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012506 04:A4F6: 04        .byte $04   ; ??? 001
@@ -7428,7 +7430,7 @@ _off004_A4F5_18:
 
 
 
-_off004_A4FB_19:
+_off004_animation_A4FB_19:
 @start:
 - D 1 - I - 0x01250B 04:A4FB: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01250C 04:A4FC: 04        .byte $04   ; ??? 001
@@ -7440,7 +7442,7 @@ _off004_A4FB_19:
 
 
 
-_off004_A501_1A:
+_off004_animation_A501_1A:
 @start:
 - D 1 - I - 0x012511 04:A501: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012512 04:A502: 06        .byte $06   ; ??? 001
@@ -7452,7 +7454,7 @@ _off004_A501_1A:
 
 
 
-_off004_A507_1B:
+_off004_animation_A507_1B:
 @start:
 - D 1 - I - 0x012517 04:A507: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012518 04:A508: 08        .byte $08   ; ??? 001
@@ -7464,7 +7466,7 @@ _off004_A507_1B:
 
 
 
-_off004_A50D_1C:
+_off004_animation_A50D_1C:
 @start:
 - D 1 - I - 0x01251D 04:A50D: 09        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01251E 04:A50E: 03        .byte $03   ; ??? 001
@@ -7482,7 +7484,7 @@ _off004_A50D_1C:
 
 
 
-_off004_A519_1D:
+_off004_animation_A519_1D:
 @start:
 - D 1 - I - 0x012529 04:A519: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01252A 04:A51A: 10        .byte $10   ; ??? 001
@@ -7492,7 +7494,7 @@ _off004_A519_1D:
 
 
 
-_off004_A51D_1E:
+_off004_animation_A51D_1E:
 @start:
 - D 1 - I - 0x01252D 04:A51D: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01252E 04:A51E: 08        .byte $08   ; ??? 001
@@ -7501,7 +7503,7 @@ _off004_A51D_1E:
 
 
 
-_off004_A520_1F:
+_off004_animation_A520_1F:
 @start:
 - D 1 - I - 0x012530 04:A520: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012531 04:A521: 0C        .byte $0C   ; ??? 001
@@ -7511,7 +7513,7 @@ _off004_A520_1F:
 
 
 
-_off004_A524_20:
+_off004_animation_A524_20:
 @start:
 - D 1 - I - 0x012534 04:A524: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012535 04:A525: 08        .byte $08   ; ??? 001
@@ -7520,7 +7522,7 @@ _off004_A524_20:
 
 
 
-_off004_A527_21:
+_off004_animation_A527_21:
 @start:
 - D 1 - I - 0x012537 04:A527: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012538 04:A528: 0C        .byte $0C   ; ??? 001
@@ -7530,7 +7532,7 @@ _off004_A527_21:
 
 
 
-_off004_A52B_22:
+_off004_animation_A52B_22:
 @start:
 - - - - - - 0x01253B 04:A52B: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01253C 04:A52C: 08        .byte $08   ; ??? 001
@@ -7540,7 +7542,7 @@ _off004_A52B_22:
 
 
 
-_off004_A52F_23:
+_off004_animation_A52F_23:
 @start:
 - D 1 - I - 0x01253F 04:A52F: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012540 04:A530: 08        .byte $08   ; ??? 001
@@ -7549,7 +7551,7 @@ _off004_A52F_23:
 
 
 
-_off004_A532_24:
+_off004_animation_A532_24:
 @start:
 - D 1 - I - 0x012542 04:A532: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012543 04:A533: 0C        .byte $0C   ; ??? 001
@@ -7559,7 +7561,7 @@ _off004_A532_24:
 
 
 
-_off004_A536_25:
+_off004_animation_A536_25:
 @start:
 - - - - - - 0x012546 04:A536: 01        .byte @end - @start - $03   ; 
 - - - - - - 0x012547 04:A537: 06        .byte $06   ; ??? 001
@@ -7569,7 +7571,7 @@ _off004_A536_25:
 
 
 
-_off004_A53A_26:
+_off004_animation_A53A_26:
 @start:
 - - - - - - 0x01254A 04:A53A: 01        .byte @end - @start - $03   ; 
 - - - - - - 0x01254B 04:A53B: 06        .byte $06   ; ??? 001
@@ -7579,7 +7581,7 @@ _off004_A53A_26:
 
 
 
-_off004_A53E_27:
+_off004_animation_A53E_27:
 @start:
 - D 1 - I - 0x01254E 04:A53E: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01254F 04:A53F: 0C        .byte $0C   ; ??? 001
@@ -7589,7 +7591,7 @@ _off004_A53E_27:
 
 
 
-_off004_A542_28:
+_off004_animation_A542_28:
 @start:
 - D 1 - I - 0x012552 04:A542: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012553 04:A543: 08        .byte $08   ; ??? 001
@@ -7598,7 +7600,7 @@ _off004_A542_28:
 
 
 
-_off004_A545_29:
+_off004_animation_A545_29:
 @start:
 - D 1 - I - 0x012555 04:A545: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012556 04:A546: 06        .byte $06   ; ??? 001
@@ -7608,7 +7610,7 @@ _off004_A545_29:
 
 
 
-_off004_A549_2A:
+_off004_animation_A549_2A:
 @start:
 - D 1 - I - 0x012559 04:A549: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01255A 04:A54A: 10        .byte $10   ; ??? 001
@@ -7618,7 +7620,7 @@ _off004_A549_2A:
 
 
 
-_off004_A54D_2B:
+_off004_animation_A54D_2B:
 @start:
 - - - - - - 0x01255D 04:A54D: 01        .byte @end - @start - $03   ; 
 - - - - - - 0x01255E 04:A54E: 0C        .byte $0C   ; ??? 001
@@ -7628,7 +7630,7 @@ _off004_A54D_2B:
 
 
 
-_off004_A551_2C:
+_off004_animation_A551_2C:
 @start:
 - - - - - - 0x012561 04:A551: 01        .byte @end - @start - $03   ; 
 - - - - - - 0x012562 04:A552: 0C        .byte $0C   ; ??? 001
@@ -7638,7 +7640,7 @@ _off004_A551_2C:
 
 
 
-_off004_A555_2D:
+_off004_animation_A555_2D:
 @start:
 - - - - - - 0x012565 04:A555: 00        .byte @end - @start - $03   ; 
 - - - - - - 0x012566 04:A556: 08        .byte $08   ; ??? 001
@@ -7647,7 +7649,7 @@ _off004_A555_2D:
 
 
 
-_off004_A558_2E:
+_off004_animation_A558_2E:
 @start:
 - - - - - - 0x012568 04:A558: 01        .byte @end - @start - $03   ; 
 - - - - - - 0x012569 04:A559: 0C        .byte $0C   ; ??? 001
@@ -7657,7 +7659,7 @@ _off004_A558_2E:
 
 
 
-_off004_A55C_2F:
+_off004_animation_A55C_2F:
 @start:
 - - - - - - 0x01256C 04:A55C: 01        .byte @end - @start - $03   ; 
 - - - - - - 0x01256D 04:A55D: 0C        .byte $0C   ; ??? 001
@@ -7667,7 +7669,7 @@ _off004_A55C_2F:
 
 
 
-_off004_A560_30:
+_off004_animation_A560_30:
 @start:
 - - - - - - 0x012570 04:A560: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012571 04:A561: 0C        .byte $0C   ; ??? 001
@@ -7677,7 +7679,7 @@ _off004_A560_30:
 
 
 
-_off004_A564_31:
+_off004_animation_A564_31:
 @start:
 - D 1 - I - 0x012574 04:A564: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012575 04:A565: 0C        .byte $0C   ; ??? 001
@@ -7687,7 +7689,7 @@ _off004_A564_31:
 
 
 
-_off004_A568_32:
+_off004_animation_A568_32:
 @start:
 - D 1 - I - 0x012578 04:A568: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012579 04:A569: 10        .byte $10   ; ??? 001
@@ -7697,7 +7699,7 @@ _off004_A568_32:
 
 
 
-_off004_A56C_33:
+_off004_animation_A56C_33:
 @start:
 - D 1 - I - 0x01257C 04:A56C: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01257D 04:A56D: 08        .byte $08   ; ??? 001
@@ -7709,7 +7711,7 @@ _off004_A56C_33:
 
 
 
-_off004_A572_34:
+_off004_animation_A572_34:
 @start:
 - D 1 - I - 0x012582 04:A572: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012583 04:A573: 08        .byte $08   ; ??? 001
@@ -7719,7 +7721,7 @@ _off004_A572_34:
 
 
 
-_off004_A576_35:
+_off004_animation_A576_35:
 @start:
 - D 1 - I - 0x012586 04:A576: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012587 04:A577: 0C        .byte $0C   ; ??? 001
@@ -7729,7 +7731,7 @@ _off004_A576_35:
 
 
 
-_off004_A57A_36:
+_off004_animation_A57A_36:
 @start:
 - D 1 - I - 0x01258A 04:A57A: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01258B 04:A57B: 40        .byte $40   ; ??? 001
@@ -7739,7 +7741,7 @@ _off004_A57A_36:
 
 
 
-_off004_A57E_37:
+_off004_animation_A57E_37:
 @start:
 - D 1 - I - 0x01258E 04:A57E: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01258F 04:A57F: 0C        .byte $0C   ; ??? 001
@@ -7749,7 +7751,7 @@ _off004_A57E_37:
 
 
 
-_off004_A582_38:
+_off004_animation_A582_38:
 @start:
 - D 1 - I - 0x012592 04:A582: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012593 04:A583: 10        .byte $10   ; ??? 001
@@ -7759,7 +7761,7 @@ _off004_A582_38:
 
 
 
-_off004_A586_39:
+_off004_animation_A586_39:
 @start:
 - D 1 - I - 0x012596 04:A586: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012597 04:A587: 10        .byte $10   ; ??? 001
@@ -7769,7 +7771,7 @@ _off004_A586_39:
 
 
 
-_off004_A58A_3A:
+_off004_animation_A58A_3A:
 @start:
 - D 1 - I - 0x01259A 04:A58A: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01259B 04:A58B: 08        .byte $08   ; ??? 001
@@ -7778,7 +7780,7 @@ _off004_A58A_3A:
 
 
 
-_off004_A58D_3B:
+_off004_animation_A58D_3B:
 @start:
 - D 1 - I - 0x01259D 04:A58D: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01259E 04:A58E: 08        .byte $08   ; ??? 001
@@ -7787,7 +7789,7 @@ _off004_A58D_3B:
 
 
 
-_off004_A590_3C:
+_off004_animation_A590_3C:
 @start:
 - D 1 - I - 0x0125A0 04:A590: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125A1 04:A591: 10        .byte $10   ; ??? 001
@@ -7797,7 +7799,7 @@ _off004_A590_3C:
 
 
 
-_off004_A594_3D:
+_off004_animation_A594_3D:
 @start:
 - D 1 - I - 0x0125A4 04:A594: 02        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125A5 04:A595: 10        .byte $10   ; ??? 001
@@ -7808,7 +7810,7 @@ _off004_A594_3D:
 
 
 
-_off004_A599_3E:
+_off004_animation_A599_3E:
 @start:
 - D 1 - I - 0x0125A9 04:A599: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125AA 04:A59A: 08        .byte $08   ; ??? 001
@@ -7820,7 +7822,7 @@ _off004_A599_3E:
 
 
 
-_off004_A59F_3F:
+_off004_animation_A59F_3F:
 @start:
 - D 1 - I - 0x0125AF 04:A59F: 02        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125B0 04:A5A0: 08        .byte $08   ; ??? 001
@@ -7831,7 +7833,7 @@ _off004_A59F_3F:
 
 
 
-_off004_A5A4_40:
+_off004_animation_A5A4_40:
 @start:
 - D 1 - I - 0x0125B4 04:A5A4: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125B5 04:A5A5: 04        .byte $04   ; ??? 001
@@ -7843,7 +7845,7 @@ _off004_A5A4_40:
 
 
 
-_off004_A5AA_41:
+_off004_animation_A5AA_41:
 @start:
 - D 1 - I - 0x0125BA 04:A5AA: 0A        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125BB 04:A5AB: 05        .byte $05   ; ??? 001
@@ -7862,7 +7864,7 @@ _off004_A5AA_41:
 
 
 
-_off004_A5B7_42:
+_off004_animation_A5B7_42:
 @start:
 - D 1 - I - 0x0125C7 04:A5B7: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125C8 04:A5B8: 08        .byte $08   ; ??? 001
@@ -7871,7 +7873,7 @@ _off004_A5B7_42:
 
 
 
-_off004_A5BA_43:
+_off004_animation_A5BA_43:
 @start:
 - D 1 - I - 0x0125CA 04:A5BA: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125CB 04:A5BB: 08        .byte $08   ; ??? 001
@@ -7880,7 +7882,7 @@ _off004_A5BA_43:
 
 
 
-_off004_A5BD_44:
+_off004_animation_A5BD_44:
 @start:
 - D 1 - I - 0x0125CD 04:A5BD: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125CE 04:A5BE: 08        .byte $08   ; ??? 001
@@ -7889,7 +7891,7 @@ _off004_A5BD_44:
 
 
 
-_off004_A5C0_45:
+_off004_animation_A5C0_45:
 @start:
 - D 1 - I - 0x0125D0 04:A5C0: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125D1 04:A5C1: 08        .byte $08   ; ??? 001
@@ -7901,7 +7903,7 @@ _off004_A5C0_45:
 
 
 
-_off004_A5C6_46:
+_off004_animation_A5C6_46:
 @start:
 - D 1 - I - 0x0125D6 04:A5C6: 02        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125D7 04:A5C7: 08        .byte $08   ; ??? 001
@@ -7912,7 +7914,7 @@ _off004_A5C6_46:
 
 
 
-_off004_A5CB_47:
+_off004_animation_A5CB_47:
 @start:
 - D 1 - I - 0x0125DB 04:A5CB: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125DC 04:A5CC: 08        .byte $08   ; ??? 001
@@ -7921,7 +7923,7 @@ _off004_A5CB_47:
 
 
 
-_off004_A5CE_48:
+_off004_animation_A5CE_48:
 @start:
 - D 1 - I - 0x0125DE 04:A5CE: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125DF 04:A5CF: 08        .byte $08   ; ??? 001
@@ -7930,7 +7932,7 @@ _off004_A5CE_48:
 
 
 
-_off004_A5D1_49:
+_off004_animation_A5D1_49:
 @start:
 - D 1 - I - 0x0125E1 04:A5D1: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125E2 04:A5D2: 08        .byte $08   ; ??? 001
@@ -7939,7 +7941,7 @@ _off004_A5D1_49:
 
 
 
-_off004_A5D4_4A:
+_off004_animation_A5D4_4A:
 @start:
 - D 1 - I - 0x0125E4 04:A5D4: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125E5 04:A5D5: 08        .byte $08   ; ??? 001
@@ -7948,7 +7950,7 @@ _off004_A5D4_4A:
 
 
 
-_off004_A5D7_4B:
+_off004_animation_A5D7_4B:
 @start:
 - D 1 - I - 0x0125E7 04:A5D7: 0A        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125E8 04:A5D8: 04        .byte $04   ; ??? 001
@@ -7967,7 +7969,7 @@ _off004_A5D7_4B:
 
 
 
-_off004_A5E4_4C:
+_off004_animation_A5E4_4C:
 @start:
 - D 1 - I - 0x0125F4 04:A5E4: 0A        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0125F5 04:A5E5: 04        .byte $04   ; ??? 001
@@ -7986,7 +7988,7 @@ _off004_A5E4_4C:
 
 
 
-_off004_A5F1_4D:
+_off004_animation_A5F1_4D:
 @start:
 - D 1 - I - 0x012601 04:A5F1: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012602 04:A5F2: 08        .byte $08   ; ??? 001
@@ -7995,7 +7997,7 @@ _off004_A5F1_4D:
 
 
 
-_off004_A5F4_4E:
+_off004_animation_A5F4_4E:
 @start:
 - D 1 - I - 0x012604 04:A5F4: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012605 04:A5F5: 08        .byte $08   ; ??? 001
@@ -8004,7 +8006,7 @@ _off004_A5F4_4E:
 
 
 
-_off004_A5F7_4F:
+_off004_animation_A5F7_4F:
 @start:
 - D 1 - I - 0x012607 04:A5F7: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012608 04:A5F8: 08        .byte $08   ; ??? 001
@@ -8016,7 +8018,7 @@ _off004_A5F7_4F:
 
 
 
-_off004_A5FD_50:
+_off004_animation_A5FD_50:
 @start:
 - D 1 - I - 0x01260D 04:A5FD: 06        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01260E 04:A5FE: 03        .byte $03   ; ??? 001
@@ -8031,7 +8033,7 @@ _off004_A5FD_50:
 
 
 
-_off004_A606_51:
+_off004_animation_A606_51:
 @start:
 - D 1 - I - 0x012616 04:A606: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012617 04:A607: 10        .byte $10   ; ??? 001
@@ -8041,7 +8043,7 @@ _off004_A606_51:
 
 
 
-_off004_A60A_52:
+_off004_animation_A60A_52:
 @start:
 - D 1 - I - 0x01261A 04:A60A: 04        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01261B 04:A60B: 05        .byte $05   ; ??? 001
@@ -8054,7 +8056,7 @@ _off004_A60A_52:
 
 
 
-_off004_A611_53:
+_off004_animation_A611_53:
 @start:
 - D 1 - I - 0x012621 04:A611: 02        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012622 04:A612: 08        .byte $08   ; ??? 001
@@ -8065,7 +8067,7 @@ _off004_A611_53:
 
 
 
-_off004_A616_54:
+_off004_animation_A616_54:
 @start:
 - D 1 - I - 0x012626 04:A616: 02        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012627 04:A617: 03        .byte $03   ; ??? 001
@@ -8076,7 +8078,7 @@ _off004_A616_54:
 
 
 
-_off004_A61B_55:
+_off004_animation_A61B_55:
 @start:
 - D 1 - I - 0x01262B 04:A61B: 0A        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01262C 04:A61C: 06        .byte $06   ; ??? 001
@@ -8095,7 +8097,7 @@ _off004_A61B_55:
 
 
 
-_off004_A628_56:
+_off004_animation_A628_56:
 @start:
 - D 1 - I - 0x012638 04:A628: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012639 04:A629: 10        .byte $10   ; ??? 001
@@ -8105,7 +8107,7 @@ _off004_A628_56:
 
 
 
-_off004_A62C_57:
+_off004_animation_A62C_57:
 @start:
 - D 1 - I - 0x01263C 04:A62C: 06        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01263D 04:A62D: 06        .byte $06   ; ??? 001
@@ -8120,7 +8122,7 @@ _off004_A62C_57:
 
 
 
-_off004_A635_58:
+_off004_animation_A635_58:
 @start:
 - D 1 - I - 0x012645 04:A635: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012646 04:A636: 10        .byte $10   ; ??? 001
@@ -8130,7 +8132,7 @@ _off004_A635_58:
 
 
 
-_off004_A639_59:
+_off004_animation_A639_59:
 @start:
 - D 1 - I - 0x012649 04:A639: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01264A 04:A63A: 18        .byte $18   ; ??? 001
@@ -8140,7 +8142,7 @@ _off004_A639_59:
 
 
 
-_off004_A63D_5A:
+_off004_animation_A63D_5A:
 @start:
 - D 1 - I - 0x01264D 04:A63D: 08        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01264E 04:A63E: 08        .byte $08   ; ??? 001
@@ -8157,7 +8159,7 @@ _off004_A63D_5A:
 
 
 
-_off004_A648_5B:
+_off004_animation_A648_5B:
 @start:
 - D 1 - I - 0x012658 04:A648: 02        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012659 04:A649: 0A        .byte $0A   ; ??? 001
@@ -8168,7 +8170,7 @@ _off004_A648_5B:
 
 
 
-_off004_A64D_5C:
+_off004_animation_A64D_5C:
 @start:
 - D 1 - I - 0x01265D 04:A64D: 02        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01265E 04:A64E: 06        .byte $06   ; ??? 001
@@ -8179,7 +8181,7 @@ _off004_A64D_5C:
 
 
 
-_off004_A652_5D:
+_off004_animation_A652_5D:
 @start:
 - D 1 - I - 0x012662 04:A652: 09        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012663 04:A653: 04        .byte $04   ; ??? 001
@@ -8197,7 +8199,7 @@ _off004_A652_5D:
 
 
 
-_off004_A65E_5E:
+_off004_animation_A65E_5E:
 @start:
 - D 1 - I - 0x01266E 04:A65E: 09        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01266F 04:A65F: 02        .byte $02   ; ??? 001
@@ -8215,7 +8217,7 @@ _off004_A65E_5E:
 
 
 
-_off004_A66A_5F:
+_off004_animation_A66A_5F:
 @start:
 - D 1 - I - 0x01267A 04:A66A: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01267B 04:A66B: 10        .byte $10   ; ??? 001
@@ -8227,7 +8229,7 @@ _off004_A66A_5F:
 
 
 
-_off004_A670_60:
+_off004_animation_A670_60:
 @start:
 - D 1 - I - 0x012680 04:A670: 11        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012681 04:A671: 08        .byte $08   ; ??? 001
@@ -8253,7 +8255,7 @@ _off004_A670_60:
 
 
 
-_off004_A684_61:
+_off004_animation_A684_61:
 @start:
 - D 1 - I - 0x012694 04:A684: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012695 04:A685: 08        .byte $08   ; ??? 001
@@ -8262,7 +8264,7 @@ _off004_A684_61:
 
 
 
-_off004_A687_62:
+_off004_animation_A687_62:
 @start:
 - D 1 - I - 0x012697 04:A687: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012698 04:A688: 08        .byte $08   ; ??? 001
@@ -8271,7 +8273,7 @@ _off004_A687_62:
 
 
 
-_off004_A68A_63:
+_off004_animation_A68A_63:
 @start:
 - D 1 - I - 0x01269A 04:A68A: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01269B 04:A68B: 08        .byte $08   ; ??? 001
@@ -8280,7 +8282,7 @@ _off004_A68A_63:
 
 
 
-_off004_A68D_64:
+_off004_animation_A68D_64:
 @start:
 - D 1 - I - 0x01269D 04:A68D: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01269E 04:A68E: 08        .byte $08   ; ??? 001
@@ -8289,7 +8291,7 @@ _off004_A68D_64:
 
 
 
-_off004_A690_65:
+_off004_animation_A690_65:
 @start:
 - D 1 - I - 0x0126A0 04:A690: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126A1 04:A691: 08        .byte $08   ; ??? 001
@@ -8298,7 +8300,7 @@ _off004_A690_65:
 
 
 
-_off004_A693_66:
+_off004_animation_A693_66:
 @start:
 - D 1 - I - 0x0126A3 04:A693: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126A4 04:A694: 08        .byte $08   ; ??? 001
@@ -8307,7 +8309,7 @@ _off004_A693_66:
 
 
 
-_off004_A696_67:
+_off004_animation_A696_67:
 @start:
 - D 1 - I - 0x0126A6 04:A696: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126A7 04:A697: 08        .byte $08   ; ??? 001
@@ -8316,7 +8318,7 @@ _off004_A696_67:
 
 
 
-_off004_A699_68:
+_off004_animation_A699_68:
 @start:
 - D 1 - I - 0x0126A9 04:A699: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126AA 04:A69A: 08        .byte $08   ; ??? 001
@@ -8325,7 +8327,7 @@ _off004_A699_68:
 
 
 
-_off004_A69C_69:
+_off004_animation_A69C_69:
 @start:
 - D 1 - I - 0x0126AC 04:A69C: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126AD 04:A69D: 08        .byte $08   ; ??? 001
@@ -8334,7 +8336,7 @@ _off004_A69C_69:
 
 
 
-_off004_A69F_6A:
+_off004_animation_A69F_6A:
 @start:
 - D 1 - I - 0x0126AF 04:A69F: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126B0 04:A6A0: 08        .byte $08   ; ??? 001
@@ -8343,7 +8345,7 @@ _off004_A69F_6A:
 
 
 
-_off004_A6A2_6B:
+_off004_animation_A6A2_6B:
 @start:
 - D 1 - I - 0x0126B2 04:A6A2: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126B3 04:A6A3: 08        .byte $08   ; ??? 001
@@ -8352,7 +8354,7 @@ _off004_A6A2_6B:
 
 
 
-_off004_A6A5_6C:
+_off004_animation_A6A5_6C:
 @start:
 - D 1 - I - 0x0126B5 04:A6A5: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126B6 04:A6A6: 08        .byte $08   ; ??? 001
@@ -8361,7 +8363,7 @@ _off004_A6A5_6C:
 
 
 
-_off004_A6A8_6D:
+_off004_animation_A6A8_6D:
 @start:
 - D 1 - I - 0x0126B8 04:A6A8: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126B9 04:A6A9: 08        .byte $08   ; ??? 001
@@ -8370,7 +8372,7 @@ _off004_A6A8_6D:
 
 
 
-_off004_A6AB_6E:
+_off004_animation_A6AB_6E:
 @start:
 - D 1 - I - 0x0126BB 04:A6AB: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126BC 04:A6AC: 08        .byte $08   ; ??? 001
@@ -8379,7 +8381,7 @@ _off004_A6AB_6E:
 
 
 
-_off004_A6AE_6F:
+_off004_animation_A6AE_6F:
 @start:
 - D 1 - I - 0x0126BE 04:A6AE: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126BF 04:A6AF: 20        .byte $20   ; ??? 001
@@ -8389,7 +8391,7 @@ _off004_A6AE_6F:
 
 
 
-_off004_A6B2_70:
+_off004_animation_A6B2_70:
 @start:
 - D 1 - I - 0x0126C2 04:A6B2: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126C3 04:A6B3: 08        .byte $08   ; ??? 001
@@ -8398,7 +8400,7 @@ _off004_A6B2_70:
 
 
 
-_off004_A6B5_71:
+_off004_animation_A6B5_71:
 @start:
 - D 1 - I - 0x0126C5 04:A6B5: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126C6 04:A6B6: 08        .byte $08   ; ??? 001
@@ -8407,7 +8409,7 @@ _off004_A6B5_71:
 
 
 
-_off004_A6B8_72:
+_off004_animation_A6B8_72:
 @start:
 - D 1 - I - 0x0126C8 04:A6B8: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126C9 04:A6B9: 08        .byte $08   ; ??? 001
@@ -8416,7 +8418,7 @@ _off004_A6B8_72:
 
 
 
-_off004_A6BB_73:
+_off004_animation_A6BB_73:
 @start:
 - D 1 - I - 0x0126CB 04:A6BB: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126CC 04:A6BC: 08        .byte $08   ; ??? 001
@@ -8425,7 +8427,7 @@ _off004_A6BB_73:
 
 
 
-_off004_A6BE_74:
+_off004_animation_A6BE_74:
 @start:
 - D 1 - I - 0x0126CE 04:A6BE: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126CF 04:A6BF: 08        .byte $08   ; ??? 001
@@ -8434,7 +8436,7 @@ _off004_A6BE_74:
 
 
 
-_off004_A6C1_75:
+_off004_animation_A6C1_75:
 @start:
 - D 1 - I - 0x0126D1 04:A6C1: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126D2 04:A6C2: 08        .byte $08   ; ??? 001
@@ -8443,7 +8445,7 @@ _off004_A6C1_75:
 
 
 
-_off004_A6C4_76:
+_off004_animation_A6C4_76:
 @start:
 - D 1 - I - 0x0126D4 04:A6C4: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126D5 04:A6C5: 08        .byte $08   ; ??? 001
@@ -8452,7 +8454,7 @@ _off004_A6C4_76:
 
 
 
-_off004_A6C7_77:
+_off004_animation_A6C7_77:
 @start:
 - D 1 - I - 0x0126D7 04:A6C7: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126D8 04:A6C8: 08        .byte $08   ; ??? 001
@@ -8461,7 +8463,7 @@ _off004_A6C7_77:
 
 
 
-_off004_A6CA_78:
+_off004_animation_A6CA_78:
 @start:
 - D 1 - I - 0x0126DA 04:A6CA: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126DB 04:A6CB: 18        .byte $18   ; ??? 001
@@ -8471,7 +8473,7 @@ _off004_A6CA_78:
 
 
 
-_off004_A6CE_79:
+_off004_animation_A6CE_79:
 @start:
 - D 1 - I - 0x0126DE 04:A6CE: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126DF 04:A6CF: 08        .byte $08   ; ??? 001
@@ -8480,7 +8482,7 @@ _off004_A6CE_79:
 
 
 
-_off004_A6D1_7A:
+_off004_animation_A6D1_7A:
 @start:
 - D 1 - I - 0x0126E1 04:A6D1: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126E2 04:A6D2: 08        .byte $08   ; ??? 001
@@ -8489,7 +8491,7 @@ _off004_A6D1_7A:
 
 
 
-_off004_A6D4_7B:
+_off004_animation_A6D4_7B:
 @start:
 - D 1 - I - 0x0126E4 04:A6D4: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126E5 04:A6D5: 06        .byte $06   ; ??? 001
@@ -8499,7 +8501,7 @@ _off004_A6D4_7B:
 
 
 
-_off004_A6D8_7C:
+_off004_animation_A6D8_7C:
 @start:
 - D 1 - I - 0x0126E8 04:A6D8: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126E9 04:A6D9: 08        .byte $08   ; ??? 001
@@ -8508,7 +8510,7 @@ _off004_A6D8_7C:
 
 
 
-_off004_A6DB_7D:
+_off004_animation_A6DB_7D:
 @start:
 - D 1 - I - 0x0126EB 04:A6DB: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126EC 04:A6DC: 08        .byte $08   ; ??? 001
@@ -8517,7 +8519,7 @@ _off004_A6DB_7D:
 
 
 
-_off004_A6DE_7E:
+_off004_animation_A6DE_7E:
 @start:
 - D 1 - I - 0x0126EE 04:A6DE: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126EF 04:A6DF: 0C        .byte $0C   ; ??? 001
@@ -8526,7 +8528,7 @@ _off004_A6DE_7E:
 
 
 
-_off004_A6E1_7F:
+_off004_animation_A6E1_7F:
 @start:
 - D 1 - I - 0x0126F1 04:A6E1: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126F2 04:A6E2: 08        .byte $08   ; ??? 001
@@ -8535,7 +8537,7 @@ _off004_A6E1_7F:
 
 
 
-_off004_A6E4_80:
+_off004_animation_A6E4_80:
 @start:
 - - - - - - 0x0126F4 04:A6E4: 00        .byte @end - @start - $03   ; 
 - - - - - - 0x0126F5 04:A6E5: 20        .byte $20   ; ??? 001
@@ -8544,7 +8546,7 @@ _off004_A6E4_80:
 
 
 
-_off004_A6E7_81:
+_off004_animation_A6E7_81:
 @start:
 - - - - - - 0x0126F7 04:A6E7: 00        .byte @end - @start - $03   ; 
 - - - - - - 0x0126F8 04:A6E8: 08        .byte $08   ; ??? 001
@@ -8553,7 +8555,7 @@ _off004_A6E7_81:
 
 
 
-_off004_A6EA_82:
+_off004_animation_A6EA_82:
 @start:
 - - - - - - 0x0126FA 04:A6EA: 00        .byte @end - @start - $03   ; 
 - - - - - - 0x0126FB 04:A6EB: 08        .byte $08   ; ??? 001
@@ -8562,7 +8564,7 @@ _off004_A6EA_82:
 
 
 
-_off004_A6ED_83:
+_off004_animation_A6ED_83:
 @start:
 - D 1 - I - 0x0126FD 04:A6ED: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x0126FE 04:A6EE: 08        .byte $08   ; ??? 001
@@ -8571,7 +8573,7 @@ _off004_A6ED_83:
 
 
 
-_off004_A6F0_84:
+_off004_animation_A6F0_84:
 @start:
 - D 1 - I - 0x012700 04:A6F0: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012701 04:A6F1: 08        .byte $08   ; ??? 001
@@ -8580,7 +8582,7 @@ _off004_A6F0_84:
 
 
 
-_off004_A6F3_85:
+_off004_animation_A6F3_85:
 @start:
 - D 1 - I - 0x012703 04:A6F3: 02        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012704 04:A6F4: 0A        .byte $0A   ; ??? 001
@@ -8591,7 +8593,7 @@ _off004_A6F3_85:
 
 
 
-_off004_A6F8_86:
+_off004_animation_A6F8_86:
 @start:
 - D 1 - I - 0x012708 04:A6F8: 0B        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012709 04:A6F9: 02        .byte $02   ; ??? 001
@@ -8611,7 +8613,7 @@ _off004_A6F8_86:
 
 
 
-_off004_A706_87:
+_off004_animation_A706_87:
 @start:
 - D 1 - I - 0x012716 04:A706: 03        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012717 04:A707: 08        .byte $08   ; ??? 001
@@ -8623,7 +8625,7 @@ _off004_A706_87:
 
 
 
-_off004_A70C_88:
+_off004_animation_A70C_88:
 @start:
 - D 1 - I - 0x01271C 04:A70C: 00        .byte @end - @start - $03   ; 
 - D 1 - I - 0x01271D 04:A70D: 08        .byte $08   ; ??? 001
@@ -8632,7 +8634,7 @@ _off004_A70C_88:
 
 
 
-_off004_A70F_89:
+_off004_animation_A70F_89:
 @start:
 - D 1 - I - 0x01271F 04:A70F: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012720 04:A710: 0A        .byte $0A   ; ??? 001
@@ -8642,7 +8644,7 @@ _off004_A70F_89:
 
 
 
-_off004_A713_8A:
+_off004_animation_A713_8A:
 @start:
 - D 1 - I - 0x012723 04:A713: 01        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012724 04:A714: 0A        .byte $0A   ; ??? 001
@@ -8652,7 +8654,7 @@ _off004_A713_8A:
 
 
 
-_off004_A717_8B:
+_off004_animation_A717_8B:
 @start:
 - D 1 - I - 0x012727 04:A717: 02        .byte @end - @start - $03   ; 
 - D 1 - I - 0x012728 04:A718: 05        .byte $05   ; ??? 001
@@ -8663,289 +8665,289 @@ _off004_A717_8B:
 
 
 
-tbl_A71C_lo:
-- - - - - - 0x01272C 04:A71C: 8D        .byte < _off004_A48D_01  ; 
-- D 1 - - - 0x01272D 04:A71D: 8D        .byte < _off004_A48D_02  ; 
-- D 1 - - - 0x01272E 04:A71E: 93        .byte < _off004_A493_03  ; 
-- D 1 - - - 0x01272F 04:A71F: 99        .byte < _off004_A499_04  ; 
-- D 1 - - - 0x012730 04:A720: B5        .byte < _off004_A4B5_05  ; 
-- D 1 - - - 0x012731 04:A721: B9        .byte < _off004_A4B9_06  ; 
-- D 1 - - - 0x012732 04:A722: BD        .byte < _off004_A4BD_07  ; 
-- D 1 - - - 0x012733 04:A723: C0        .byte < _off004_A4C0_08  ; 
-- D 1 - - - 0x012734 04:A724: 9E        .byte < _off004_A49E_09  ; 
-- D 1 - - - 0x012735 04:A725: A1        .byte < _off004_A4A1_0A  ; 
-- D 1 - - - 0x012736 04:A726: A9        .byte < _off004_A4A9_0B  ; 
-- D 1 - - - 0x012737 04:A727: AF        .byte < _off004_A4AF_0C  ; 
-- - - - - - 0x012738 04:A728: B5        .byte < _off004_A4B5_0D  ; 
-- - - - - - 0x012739 04:A729: B9        .byte < _off004_A4B9_0E  ; 
-- - - - - - 0x01273A 04:A72A: BD        .byte < _off004_A4BD_0F  ; 
-- - - - - - 0x01273B 04:A72B: C0        .byte < _off004_A4C0_10  ; 
-- D 1 - - - 0x01273C 04:A72C: C4        .byte < _off004_A4C4_11  ; 
-- D 1 - - - 0x01273D 04:A72D: CD        .byte < _off004_A4CD_12  ; 
-- D 1 - - - 0x01273E 04:A72E: D6        .byte < _off004_A4D6_13  ; 
-- D 1 - - - 0x01273F 04:A72F: DB        .byte < _off004_A4DB_14  ; 
-- D 1 - - - 0x012740 04:A730: E4        .byte < _off004_A4E4_15  ; 
-- D 1 - - - 0x012741 04:A731: EB        .byte < _off004_A4EB_16  ; 
-- D 1 - - - 0x012742 04:A732: EF        .byte < _off004_A4EF_17  ; 
-- D 1 - - - 0x012743 04:A733: F5        .byte < _off004_A4F5_18  ; 
-- D 1 - - - 0x012744 04:A734: FB        .byte < _off004_A4FB_19  ; 
-- D 1 - - - 0x012745 04:A735: 01        .byte < _off004_A501_1A  ; 
-- D 1 - - - 0x012746 04:A736: 07        .byte < _off004_A507_1B  ; 
-- D 1 - - - 0x012747 04:A737: 0D        .byte < _off004_A50D_1C  ; 
-- D 1 - - - 0x012748 04:A738: 19        .byte < _off004_A519_1D  ; 
-- D 1 - - - 0x012749 04:A739: 1D        .byte < _off004_A51D_1E  ; 
-- D 1 - - - 0x01274A 04:A73A: 20        .byte < _off004_A520_1F  ; 
-- D 1 - - - 0x01274B 04:A73B: 24        .byte < _off004_A524_20  ; 
-- D 1 - - - 0x01274C 04:A73C: 27        .byte < _off004_A527_21  ; 
-- D 1 - - - 0x01274D 04:A73D: 2B        .byte < _off004_A52B_22  ; 
-- D 1 - - - 0x01274E 04:A73E: 2F        .byte < _off004_A52F_23  ; 
-- D 1 - - - 0x01274F 04:A73F: 32        .byte < _off004_A532_24  ; 
-- - - - - - 0x012750 04:A740: 36        .byte < _off004_A536_25  ; 
-- - - - - - 0x012751 04:A741: 3A        .byte < _off004_A53A_26  ; 
-- D 1 - - - 0x012752 04:A742: 3E        .byte < _off004_A53E_27  ; 
-- D 1 - - - 0x012753 04:A743: 42        .byte < _off004_A542_28  ; 
-- D 1 - - - 0x012754 04:A744: 45        .byte < _off004_A545_29  ; 
-- D 1 - - - 0x012755 04:A745: 49        .byte < _off004_A549_2A  ; 
-- - - - - - 0x012756 04:A746: 4D        .byte < _off004_A54D_2B  ; 
-- - - - - - 0x012757 04:A747: 51        .byte < _off004_A551_2C  ; 
-- - - - - - 0x012758 04:A748: 55        .byte < _off004_A555_2D  ; 
-- - - - - - 0x012759 04:A749: 58        .byte < _off004_A558_2E  ; 
-- - - - - - 0x01275A 04:A74A: 5C        .byte < _off004_A55C_2F  ; 
-- D 1 - - - 0x01275B 04:A74B: 60        .byte < _off004_A560_30  ; 
-- D 1 - - - 0x01275C 04:A74C: 64        .byte < _off004_A564_31  ; 
-- D 1 - - - 0x01275D 04:A74D: 68        .byte < _off004_A568_32  ; 
-- D 1 - - - 0x01275E 04:A74E: 6C        .byte < _off004_A56C_33  ; 
-- D 1 - - - 0x01275F 04:A74F: 72        .byte < _off004_A572_34  ; 
-- D 1 - - - 0x012760 04:A750: 76        .byte < _off004_A576_35  ; 
-- D 1 - - - 0x012761 04:A751: 7A        .byte < _off004_A57A_36  ; 
-- D 1 - - - 0x012762 04:A752: 7E        .byte < _off004_A57E_37  ; 
-- D 1 - - - 0x012763 04:A753: 82        .byte < _off004_A582_38  ; 
-- D 1 - - - 0x012764 04:A754: 86        .byte < _off004_A586_39  ; 
-- D 1 - - - 0x012765 04:A755: 8A        .byte < _off004_A58A_3A  ; 
-- D 1 - - - 0x012766 04:A756: 8D        .byte < _off004_A58D_3B  ; 
-- D 1 - - - 0x012767 04:A757: 90        .byte < _off004_A590_3C  ; 
-- D 1 - - - 0x012768 04:A758: 94        .byte < _off004_A594_3D  ; 
-- D 1 - - - 0x012769 04:A759: 99        .byte < _off004_A599_3E  ; 
-- D 1 - - - 0x01276A 04:A75A: 9F        .byte < _off004_A59F_3F  ; 
-- D 1 - - - 0x01276B 04:A75B: A4        .byte < _off004_A5A4_40  ; 
-- D 1 - - - 0x01276C 04:A75C: AA        .byte < _off004_A5AA_41  ; 
-- D 1 - - - 0x01276D 04:A75D: B7        .byte < _off004_A5B7_42  ; 
-- D 1 - - - 0x01276E 04:A75E: BA        .byte < _off004_A5BA_43  ; 
-- D 1 - - - 0x01276F 04:A75F: BD        .byte < _off004_A5BD_44  ; 
-- D 1 - - - 0x012770 04:A760: C0        .byte < _off004_A5C0_45  ; 
-- D 1 - - - 0x012771 04:A761: C6        .byte < _off004_A5C6_46  ; 
-- D 1 - - - 0x012772 04:A762: CB        .byte < _off004_A5CB_47  ; 
-- D 1 - - - 0x012773 04:A763: CE        .byte < _off004_A5CE_48  ; 
-- D 1 - - - 0x012774 04:A764: D1        .byte < _off004_A5D1_49  ; 
-- D 1 - - - 0x012775 04:A765: D4        .byte < _off004_A5D4_4A  ; 
-- D 1 - - - 0x012776 04:A766: D7        .byte < _off004_A5D7_4B  ; 
-- D 1 - - - 0x012777 04:A767: E4        .byte < _off004_A5E4_4C  ; 
-- D 1 - - - 0x012778 04:A768: F1        .byte < _off004_A5F1_4D  ; 
-- D 1 - - - 0x012779 04:A769: F4        .byte < _off004_A5F4_4E  ; 
-- D 1 - - - 0x01277A 04:A76A: F7        .byte < _off004_A5F7_4F  ; 
-- D 1 - - - 0x01277B 04:A76B: FD        .byte < _off004_A5FD_50  ; 
-- D 1 - - - 0x01277C 04:A76C: 06        .byte < _off004_A606_51  ; 
-- D 1 - - - 0x01277D 04:A76D: 0A        .byte < _off004_A60A_52  ; 
-- D 1 - - - 0x01277E 04:A76E: 11        .byte < _off004_A611_53  ; 
-- D 1 - - - 0x01277F 04:A76F: 16        .byte < _off004_A616_54  ; 
-- D 1 - - - 0x012780 04:A770: 1B        .byte < _off004_A61B_55  ; 
-- D 1 - - - 0x012781 04:A771: 28        .byte < _off004_A628_56  ; 
-- D 1 - - - 0x012782 04:A772: 2C        .byte < _off004_A62C_57  ; 
-- D 1 - - - 0x012783 04:A773: 35        .byte < _off004_A635_58  ; 
-- D 1 - - - 0x012784 04:A774: 39        .byte < _off004_A639_59  ; 
-- D 1 - - - 0x012785 04:A775: 3D        .byte < _off004_A63D_5A  ; 
-- D 1 - - - 0x012786 04:A776: 48        .byte < _off004_A648_5B  ; 
-- D 1 - - - 0x012787 04:A777: 4D        .byte < _off004_A64D_5C  ; 
-- D 1 - - - 0x012788 04:A778: 52        .byte < _off004_A652_5D  ; 
-- D 1 - - - 0x012789 04:A779: 5E        .byte < _off004_A65E_5E  ; 
-- D 1 - - - 0x01278A 04:A77A: 6A        .byte < _off004_A66A_5F  ; 
-- D 1 - - - 0x01278B 04:A77B: 70        .byte < _off004_A670_60  ; 
-- D 1 - - - 0x01278C 04:A77C: 84        .byte < _off004_A684_61  ; 
-- D 1 - - - 0x01278D 04:A77D: 87        .byte < _off004_A687_62  ; 
-- D 1 - - - 0x01278E 04:A77E: 8A        .byte < _off004_A68A_63  ; 
-- D 1 - - - 0x01278F 04:A77F: 8D        .byte < _off004_A68D_64  ; 
-- D 1 - - - 0x012790 04:A780: 90        .byte < _off004_A690_65  ; 
-- D 1 - - - 0x012791 04:A781: 93        .byte < _off004_A693_66  ; 
-- D 1 - - - 0x012792 04:A782: 96        .byte < _off004_A696_67  ; 
-- D 1 - - - 0x012793 04:A783: 99        .byte < _off004_A699_68  ; 
-- D 1 - - - 0x012794 04:A784: 9C        .byte < _off004_A69C_69  ; 
-- D 1 - - - 0x012795 04:A785: 9F        .byte < _off004_A69F_6A  ; 
-- D 1 - - - 0x012796 04:A786: A2        .byte < _off004_A6A2_6B  ; 
-- D 1 - - - 0x012797 04:A787: A5        .byte < _off004_A6A5_6C  ; 
-- D 1 - - - 0x012798 04:A788: A8        .byte < _off004_A6A8_6D  ; 
-- D 1 - - - 0x012799 04:A789: AB        .byte < _off004_A6AB_6E  ; 
-- D 1 - - - 0x01279A 04:A78A: AE        .byte < _off004_A6AE_6F  ; 
-- D 1 - - - 0x01279B 04:A78B: B2        .byte < _off004_A6B2_70  ; 
-- D 1 - - - 0x01279C 04:A78C: B5        .byte < _off004_A6B5_71  ; 
-- D 1 - - - 0x01279D 04:A78D: B8        .byte < _off004_A6B8_72  ; 
-- D 1 - - - 0x01279E 04:A78E: BB        .byte < _off004_A6BB_73  ; 
-- D 1 - - - 0x01279F 04:A78F: BE        .byte < _off004_A6BE_74  ; 
-- D 1 - - - 0x0127A0 04:A790: C1        .byte < _off004_A6C1_75  ; 
-- D 1 - - - 0x0127A1 04:A791: C4        .byte < _off004_A6C4_76  ; 
-- D 1 - - - 0x0127A2 04:A792: C7        .byte < _off004_A6C7_77  ; 
-- D 1 - - - 0x0127A3 04:A793: CA        .byte < _off004_A6CA_78  ; 
-- D 1 - - - 0x0127A4 04:A794: CE        .byte < _off004_A6CE_79  ; 
-- D 1 - - - 0x0127A5 04:A795: D1        .byte < _off004_A6D1_7A  ; 
-- D 1 - - - 0x0127A6 04:A796: D4        .byte < _off004_A6D4_7B  ; 
-- D 1 - - - 0x0127A7 04:A797: D8        .byte < _off004_A6D8_7C  ; 
-- D 1 - - - 0x0127A8 04:A798: DB        .byte < _off004_A6DB_7D  ; 
-- D 1 - - - 0x0127A9 04:A799: DE        .byte < _off004_A6DE_7E  ; 
-- D 1 - - - 0x0127AA 04:A79A: E1        .byte < _off004_A6E1_7F  ; 
-- - - - - - 0x0127AB 04:A79B: E4        .byte < _off004_A6E4_80  ; 
-- - - - - - 0x0127AC 04:A79C: E7        .byte < _off004_A6E7_81  ; 
-- - - - - - 0x0127AD 04:A79D: EA        .byte < _off004_A6EA_82  ; 
-- D 1 - - - 0x0127AE 04:A79E: ED        .byte < _off004_A6ED_83  ; 
-- D 1 - - - 0x0127AF 04:A79F: F0        .byte < _off004_A6F0_84  ; 
-- D 1 - - - 0x0127B0 04:A7A0: F3        .byte < _off004_A6F3_85  ; 
-- D 1 - - - 0x0127B1 04:A7A1: F8        .byte < _off004_A6F8_86  ; 
-- D 1 - - - 0x0127B2 04:A7A2: 06        .byte < _off004_A706_87  ; 
-- D 1 - - - 0x0127B3 04:A7A3: 0C        .byte < _off004_A70C_88  ; 
-- D 1 - - - 0x0127B4 04:A7A4: 0F        .byte < _off004_A70F_89  ; 
-- D 1 - - - 0x0127B5 04:A7A5: 13        .byte < _off004_A713_8A  ; 
-- D 1 - - - 0x0127B6 04:A7A6: 17        .byte < _off004_A717_8B  ; 
+tbl_A71C_animation_data_lo:
+- - - - - - 0x01272C 04:A71C: 8D        .byte < _off004_animation_A48D_01  ; 
+- D 1 - - - 0x01272D 04:A71D: 8D        .byte < _off004_animation_A48D_02  ; 
+- D 1 - - - 0x01272E 04:A71E: 93        .byte < _off004_animation_A493_03  ; 
+- D 1 - - - 0x01272F 04:A71F: 99        .byte < _off004_animation_A499_04  ; 
+- D 1 - - - 0x012730 04:A720: B5        .byte < _off004_animation_A4B5_05  ; 
+- D 1 - - - 0x012731 04:A721: B9        .byte < _off004_animation_A4B9_06  ; 
+- D 1 - - - 0x012732 04:A722: BD        .byte < _off004_animation_A4BD_07  ; 
+- D 1 - - - 0x012733 04:A723: C0        .byte < _off004_animation_A4C0_08  ; 
+- D 1 - - - 0x012734 04:A724: 9E        .byte < _off004_animation_A49E_09  ; 
+- D 1 - - - 0x012735 04:A725: A1        .byte < _off004_animation_A4A1_0A  ; 
+- D 1 - - - 0x012736 04:A726: A9        .byte < _off004_animation_A4A9_0B  ; 
+- D 1 - - - 0x012737 04:A727: AF        .byte < _off004_animation_A4AF_0C  ; 
+- - - - - - 0x012738 04:A728: B5        .byte < _off004_animation_A4B5_0D  ; 
+- - - - - - 0x012739 04:A729: B9        .byte < _off004_animation_A4B9_0E  ; 
+- - - - - - 0x01273A 04:A72A: BD        .byte < _off004_animation_A4BD_0F  ; 
+- - - - - - 0x01273B 04:A72B: C0        .byte < _off004_animation_A4C0_10  ; 
+- D 1 - - - 0x01273C 04:A72C: C4        .byte < _off004_animation_A4C4_11  ; 
+- D 1 - - - 0x01273D 04:A72D: CD        .byte < _off004_animation_A4CD_12  ; 
+- D 1 - - - 0x01273E 04:A72E: D6        .byte < _off004_animation_A4D6_13  ; 
+- D 1 - - - 0x01273F 04:A72F: DB        .byte < _off004_animation_A4DB_14  ; 
+- D 1 - - - 0x012740 04:A730: E4        .byte < _off004_animation_A4E4_15  ; 
+- D 1 - - - 0x012741 04:A731: EB        .byte < _off004_animation_A4EB_16  ; 
+- D 1 - - - 0x012742 04:A732: EF        .byte < _off004_animation_A4EF_17  ; 
+- D 1 - - - 0x012743 04:A733: F5        .byte < _off004_animation_A4F5_18  ; 
+- D 1 - - - 0x012744 04:A734: FB        .byte < _off004_animation_A4FB_19  ; 
+- D 1 - - - 0x012745 04:A735: 01        .byte < _off004_animation_A501_1A  ; 
+- D 1 - - - 0x012746 04:A736: 07        .byte < _off004_animation_A507_1B  ; 
+- D 1 - - - 0x012747 04:A737: 0D        .byte < _off004_animation_A50D_1C  ; 
+- D 1 - - - 0x012748 04:A738: 19        .byte < _off004_animation_A519_1D  ; 
+- D 1 - - - 0x012749 04:A739: 1D        .byte < _off004_animation_A51D_1E  ; 
+- D 1 - - - 0x01274A 04:A73A: 20        .byte < _off004_animation_A520_1F  ; 
+- D 1 - - - 0x01274B 04:A73B: 24        .byte < _off004_animation_A524_20  ; 
+- D 1 - - - 0x01274C 04:A73C: 27        .byte < _off004_animation_A527_21  ; 
+- D 1 - - - 0x01274D 04:A73D: 2B        .byte < _off004_animation_A52B_22  ; 
+- D 1 - - - 0x01274E 04:A73E: 2F        .byte < _off004_animation_A52F_23  ; 
+- D 1 - - - 0x01274F 04:A73F: 32        .byte < _off004_animation_A532_24  ; 
+- - - - - - 0x012750 04:A740: 36        .byte < _off004_animation_A536_25  ; 
+- - - - - - 0x012751 04:A741: 3A        .byte < _off004_animation_A53A_26  ; 
+- D 1 - - - 0x012752 04:A742: 3E        .byte < _off004_animation_A53E_27  ; 
+- D 1 - - - 0x012753 04:A743: 42        .byte < _off004_animation_A542_28  ; 
+- D 1 - - - 0x012754 04:A744: 45        .byte < _off004_animation_A545_29  ; 
+- D 1 - - - 0x012755 04:A745: 49        .byte < _off004_animation_A549_2A  ; 
+- - - - - - 0x012756 04:A746: 4D        .byte < _off004_animation_A54D_2B  ; 
+- - - - - - 0x012757 04:A747: 51        .byte < _off004_animation_A551_2C  ; 
+- - - - - - 0x012758 04:A748: 55        .byte < _off004_animation_A555_2D  ; 
+- - - - - - 0x012759 04:A749: 58        .byte < _off004_animation_A558_2E  ; 
+- - - - - - 0x01275A 04:A74A: 5C        .byte < _off004_animation_A55C_2F  ; 
+- D 1 - - - 0x01275B 04:A74B: 60        .byte < _off004_animation_A560_30  ; 
+- D 1 - - - 0x01275C 04:A74C: 64        .byte < _off004_animation_A564_31  ; 
+- D 1 - - - 0x01275D 04:A74D: 68        .byte < _off004_animation_A568_32  ; 
+- D 1 - - - 0x01275E 04:A74E: 6C        .byte < _off004_animation_A56C_33  ; 
+- D 1 - - - 0x01275F 04:A74F: 72        .byte < _off004_animation_A572_34  ; 
+- D 1 - - - 0x012760 04:A750: 76        .byte < _off004_animation_A576_35  ; 
+- D 1 - - - 0x012761 04:A751: 7A        .byte < _off004_animation_A57A_36  ; 
+- D 1 - - - 0x012762 04:A752: 7E        .byte < _off004_animation_A57E_37  ; 
+- D 1 - - - 0x012763 04:A753: 82        .byte < _off004_animation_A582_38  ; 
+- D 1 - - - 0x012764 04:A754: 86        .byte < _off004_animation_A586_39  ; 
+- D 1 - - - 0x012765 04:A755: 8A        .byte < _off004_animation_A58A_3A  ; 
+- D 1 - - - 0x012766 04:A756: 8D        .byte < _off004_animation_A58D_3B  ; 
+- D 1 - - - 0x012767 04:A757: 90        .byte < _off004_animation_A590_3C  ; 
+- D 1 - - - 0x012768 04:A758: 94        .byte < _off004_animation_A594_3D  ; 
+- D 1 - - - 0x012769 04:A759: 99        .byte < _off004_animation_A599_3E  ; 
+- D 1 - - - 0x01276A 04:A75A: 9F        .byte < _off004_animation_A59F_3F  ; 
+- D 1 - - - 0x01276B 04:A75B: A4        .byte < _off004_animation_A5A4_40  ; 
+- D 1 - - - 0x01276C 04:A75C: AA        .byte < _off004_animation_A5AA_41  ; 
+- D 1 - - - 0x01276D 04:A75D: B7        .byte < _off004_animation_A5B7_42  ; 
+- D 1 - - - 0x01276E 04:A75E: BA        .byte < _off004_animation_A5BA_43  ; 
+- D 1 - - - 0x01276F 04:A75F: BD        .byte < _off004_animation_A5BD_44  ; 
+- D 1 - - - 0x012770 04:A760: C0        .byte < _off004_animation_A5C0_45  ; 
+- D 1 - - - 0x012771 04:A761: C6        .byte < _off004_animation_A5C6_46  ; 
+- D 1 - - - 0x012772 04:A762: CB        .byte < _off004_animation_A5CB_47  ; 
+- D 1 - - - 0x012773 04:A763: CE        .byte < _off004_animation_A5CE_48  ; 
+- D 1 - - - 0x012774 04:A764: D1        .byte < _off004_animation_A5D1_49  ; 
+- D 1 - - - 0x012775 04:A765: D4        .byte < _off004_animation_A5D4_4A  ; 
+- D 1 - - - 0x012776 04:A766: D7        .byte < _off004_animation_A5D7_4B  ; 
+- D 1 - - - 0x012777 04:A767: E4        .byte < _off004_animation_A5E4_4C  ; 
+- D 1 - - - 0x012778 04:A768: F1        .byte < _off004_animation_A5F1_4D  ; 
+- D 1 - - - 0x012779 04:A769: F4        .byte < _off004_animation_A5F4_4E  ; 
+- D 1 - - - 0x01277A 04:A76A: F7        .byte < _off004_animation_A5F7_4F  ; 
+- D 1 - - - 0x01277B 04:A76B: FD        .byte < _off004_animation_A5FD_50  ; 
+- D 1 - - - 0x01277C 04:A76C: 06        .byte < _off004_animation_A606_51  ; 
+- D 1 - - - 0x01277D 04:A76D: 0A        .byte < _off004_animation_A60A_52  ; 
+- D 1 - - - 0x01277E 04:A76E: 11        .byte < _off004_animation_A611_53  ; 
+- D 1 - - - 0x01277F 04:A76F: 16        .byte < _off004_animation_A616_54  ; 
+- D 1 - - - 0x012780 04:A770: 1B        .byte < _off004_animation_A61B_55  ; 
+- D 1 - - - 0x012781 04:A771: 28        .byte < _off004_animation_A628_56  ; 
+- D 1 - - - 0x012782 04:A772: 2C        .byte < _off004_animation_A62C_57  ; 
+- D 1 - - - 0x012783 04:A773: 35        .byte < _off004_animation_A635_58  ; 
+- D 1 - - - 0x012784 04:A774: 39        .byte < _off004_animation_A639_59  ; 
+- D 1 - - - 0x012785 04:A775: 3D        .byte < _off004_animation_A63D_5A  ; 
+- D 1 - - - 0x012786 04:A776: 48        .byte < _off004_animation_A648_5B  ; 
+- D 1 - - - 0x012787 04:A777: 4D        .byte < _off004_animation_A64D_5C  ; 
+- D 1 - - - 0x012788 04:A778: 52        .byte < _off004_animation_A652_5D  ; 
+- D 1 - - - 0x012789 04:A779: 5E        .byte < _off004_animation_A65E_5E  ; 
+- D 1 - - - 0x01278A 04:A77A: 6A        .byte < _off004_animation_A66A_5F  ; 
+- D 1 - - - 0x01278B 04:A77B: 70        .byte < _off004_animation_A670_60  ; 
+- D 1 - - - 0x01278C 04:A77C: 84        .byte < _off004_animation_A684_61  ; 
+- D 1 - - - 0x01278D 04:A77D: 87        .byte < _off004_animation_A687_62  ; 
+- D 1 - - - 0x01278E 04:A77E: 8A        .byte < _off004_animation_A68A_63  ; 
+- D 1 - - - 0x01278F 04:A77F: 8D        .byte < _off004_animation_A68D_64  ; 
+- D 1 - - - 0x012790 04:A780: 90        .byte < _off004_animation_A690_65  ; 
+- D 1 - - - 0x012791 04:A781: 93        .byte < _off004_animation_A693_66  ; 
+- D 1 - - - 0x012792 04:A782: 96        .byte < _off004_animation_A696_67  ; 
+- D 1 - - - 0x012793 04:A783: 99        .byte < _off004_animation_A699_68  ; 
+- D 1 - - - 0x012794 04:A784: 9C        .byte < _off004_animation_A69C_69  ; 
+- D 1 - - - 0x012795 04:A785: 9F        .byte < _off004_animation_A69F_6A  ; 
+- D 1 - - - 0x012796 04:A786: A2        .byte < _off004_animation_A6A2_6B  ; 
+- D 1 - - - 0x012797 04:A787: A5        .byte < _off004_animation_A6A5_6C  ; 
+- D 1 - - - 0x012798 04:A788: A8        .byte < _off004_animation_A6A8_6D  ; 
+- D 1 - - - 0x012799 04:A789: AB        .byte < _off004_animation_A6AB_6E  ; 
+- D 1 - - - 0x01279A 04:A78A: AE        .byte < _off004_animation_A6AE_6F  ; 
+- D 1 - - - 0x01279B 04:A78B: B2        .byte < _off004_animation_A6B2_70  ; 
+- D 1 - - - 0x01279C 04:A78C: B5        .byte < _off004_animation_A6B5_71  ; 
+- D 1 - - - 0x01279D 04:A78D: B8        .byte < _off004_animation_A6B8_72  ; 
+- D 1 - - - 0x01279E 04:A78E: BB        .byte < _off004_animation_A6BB_73  ; 
+- D 1 - - - 0x01279F 04:A78F: BE        .byte < _off004_animation_A6BE_74  ; 
+- D 1 - - - 0x0127A0 04:A790: C1        .byte < _off004_animation_A6C1_75  ; 
+- D 1 - - - 0x0127A1 04:A791: C4        .byte < _off004_animation_A6C4_76  ; 
+- D 1 - - - 0x0127A2 04:A792: C7        .byte < _off004_animation_A6C7_77  ; 
+- D 1 - - - 0x0127A3 04:A793: CA        .byte < _off004_animation_A6CA_78  ; 
+- D 1 - - - 0x0127A4 04:A794: CE        .byte < _off004_animation_A6CE_79  ; 
+- D 1 - - - 0x0127A5 04:A795: D1        .byte < _off004_animation_A6D1_7A  ; 
+- D 1 - - - 0x0127A6 04:A796: D4        .byte < _off004_animation_A6D4_7B  ; 
+- D 1 - - - 0x0127A7 04:A797: D8        .byte < _off004_animation_A6D8_7C  ; 
+- D 1 - - - 0x0127A8 04:A798: DB        .byte < _off004_animation_A6DB_7D  ; 
+- D 1 - - - 0x0127A9 04:A799: DE        .byte < _off004_animation_A6DE_7E  ; 
+- D 1 - - - 0x0127AA 04:A79A: E1        .byte < _off004_animation_A6E1_7F  ; 
+- - - - - - 0x0127AB 04:A79B: E4        .byte < _off004_animation_A6E4_80  ; 
+- - - - - - 0x0127AC 04:A79C: E7        .byte < _off004_animation_A6E7_81  ; 
+- - - - - - 0x0127AD 04:A79D: EA        .byte < _off004_animation_A6EA_82  ; 
+- D 1 - - - 0x0127AE 04:A79E: ED        .byte < _off004_animation_A6ED_83  ; 
+- D 1 - - - 0x0127AF 04:A79F: F0        .byte < _off004_animation_A6F0_84  ; 
+- D 1 - - - 0x0127B0 04:A7A0: F3        .byte < _off004_animation_A6F3_85  ; 
+- D 1 - - - 0x0127B1 04:A7A1: F8        .byte < _off004_animation_A6F8_86  ; 
+- D 1 - - - 0x0127B2 04:A7A2: 06        .byte < _off004_animation_A706_87  ; 
+- D 1 - - - 0x0127B3 04:A7A3: 0C        .byte < _off004_animation_A70C_88  ; 
+- D 1 - - - 0x0127B4 04:A7A4: 0F        .byte < _off004_animation_A70F_89  ; 
+- D 1 - - - 0x0127B5 04:A7A5: 13        .byte < _off004_animation_A713_8A  ; 
+- D 1 - - - 0x0127B6 04:A7A6: 17        .byte < _off004_animation_A717_8B  ; 
 
 
 
-tbl_A7A7_hi:
-- - - - - - 0x0127B7 04:A7A7: A4        .byte > _off004_A48D_01   ; 
-- D 1 - - - 0x0127B8 04:A7A8: A4        .byte > _off004_A48D_02   ; 
-- D 1 - - - 0x0127B9 04:A7A9: A4        .byte > _off004_A493_03   ; 
-- D 1 - - - 0x0127BA 04:A7AA: A4        .byte > _off004_A499_04   ; 
-- D 1 - - - 0x0127BB 04:A7AB: A4        .byte > _off004_A4B5_05   ; 
-- D 1 - - - 0x0127BC 04:A7AC: A4        .byte > _off004_A4B9_06   ; 
-- D 1 - - - 0x0127BD 04:A7AD: A4        .byte > _off004_A4BD_07   ; 
-- D 1 - - - 0x0127BE 04:A7AE: A4        .byte > _off004_A4C0_08   ; 
-- D 1 - - - 0x0127BF 04:A7AF: A4        .byte > _off004_A49E_09   ; 
-- D 1 - - - 0x0127C0 04:A7B0: A4        .byte > _off004_A4A1_0A   ; 
-- D 1 - - - 0x0127C1 04:A7B1: A4        .byte > _off004_A4A9_0B   ; 
-- D 1 - - - 0x0127C2 04:A7B2: A4        .byte > _off004_A4AF_0C   ; 
-- - - - - - 0x0127C3 04:A7B3: A4        .byte > _off004_A4B5_0D   ; 
-- - - - - - 0x0127C4 04:A7B4: A4        .byte > _off004_A4B9_0E   ; 
-- - - - - - 0x0127C5 04:A7B5: A4        .byte > _off004_A4BD_0F   ; 
-- - - - - - 0x0127C6 04:A7B6: A4        .byte > _off004_A4C0_10   ; 
-- D 1 - - - 0x0127C7 04:A7B7: A4        .byte > _off004_A4C4_11   ; 
-- D 1 - - - 0x0127C8 04:A7B8: A4        .byte > _off004_A4CD_12   ; 
-- D 1 - - - 0x0127C9 04:A7B9: A4        .byte > _off004_A4D6_13   ; 
-- D 1 - - - 0x0127CA 04:A7BA: A4        .byte > _off004_A4DB_14   ; 
-- D 1 - - - 0x0127CB 04:A7BB: A4        .byte > _off004_A4E4_15   ; 
-- D 1 - - - 0x0127CC 04:A7BC: A4        .byte > _off004_A4EB_16   ; 
-- D 1 - - - 0x0127CD 04:A7BD: A4        .byte > _off004_A4EF_17   ; 
-- D 1 - - - 0x0127CE 04:A7BE: A4        .byte > _off004_A4F5_18   ; 
-- D 1 - - - 0x0127CF 04:A7BF: A4        .byte > _off004_A4FB_19   ; 
-- D 1 - - - 0x0127D0 04:A7C0: A5        .byte > _off004_A501_1A   ; 
-- D 1 - - - 0x0127D1 04:A7C1: A5        .byte > _off004_A507_1B   ; 
-- D 1 - - - 0x0127D2 04:A7C2: A5        .byte > _off004_A50D_1C   ; 
-- D 1 - - - 0x0127D3 04:A7C3: A5        .byte > _off004_A519_1D   ; 
-- D 1 - - - 0x0127D4 04:A7C4: A5        .byte > _off004_A51D_1E   ; 
-- D 1 - - - 0x0127D5 04:A7C5: A5        .byte > _off004_A520_1F   ; 
-- D 1 - - - 0x0127D6 04:A7C6: A5        .byte > _off004_A524_20   ; 
-- D 1 - - - 0x0127D7 04:A7C7: A5        .byte > _off004_A527_21   ; 
-- D 1 - - - 0x0127D8 04:A7C8: A5        .byte > _off004_A52B_22   ; 
-- D 1 - - - 0x0127D9 04:A7C9: A5        .byte > _off004_A52F_23   ; 
-- D 1 - - - 0x0127DA 04:A7CA: A5        .byte > _off004_A532_24   ; 
-- - - - - - 0x0127DB 04:A7CB: A5        .byte > _off004_A536_25   ; 
-- - - - - - 0x0127DC 04:A7CC: A5        .byte > _off004_A53A_26   ; 
-- D 1 - - - 0x0127DD 04:A7CD: A5        .byte > _off004_A53E_27   ; 
-- D 1 - - - 0x0127DE 04:A7CE: A5        .byte > _off004_A542_28   ; 
-- D 1 - - - 0x0127DF 04:A7CF: A5        .byte > _off004_A545_29   ; 
-- D 1 - - - 0x0127E0 04:A7D0: A5        .byte > _off004_A549_2A   ; 
-- - - - - - 0x0127E1 04:A7D1: A5        .byte > _off004_A54D_2B   ; 
-- - - - - - 0x0127E2 04:A7D2: A5        .byte > _off004_A551_2C   ; 
-- - - - - - 0x0127E3 04:A7D3: A5        .byte > _off004_A555_2D   ; 
-- - - - - - 0x0127E4 04:A7D4: A5        .byte > _off004_A558_2E   ; 
-- - - - - - 0x0127E5 04:A7D5: A5        .byte > _off004_A55C_2F   ; 
-- D 1 - - - 0x0127E6 04:A7D6: A5        .byte > _off004_A560_30   ; 
-- D 1 - - - 0x0127E7 04:A7D7: A5        .byte > _off004_A564_31   ; 
-- D 1 - - - 0x0127E8 04:A7D8: A5        .byte > _off004_A568_32   ; 
-- D 1 - - - 0x0127E9 04:A7D9: A5        .byte > _off004_A56C_33   ; 
-- D 1 - - - 0x0127EA 04:A7DA: A5        .byte > _off004_A572_34   ; 
-- D 1 - - - 0x0127EB 04:A7DB: A5        .byte > _off004_A576_35   ; 
-- D 1 - - - 0x0127EC 04:A7DC: A5        .byte > _off004_A57A_36   ; 
-- D 1 - - - 0x0127ED 04:A7DD: A5        .byte > _off004_A57E_37   ; 
-- D 1 - - - 0x0127EE 04:A7DE: A5        .byte > _off004_A582_38   ; 
-- D 1 - - - 0x0127EF 04:A7DF: A5        .byte > _off004_A586_39   ; 
-- D 1 - - - 0x0127F0 04:A7E0: A5        .byte > _off004_A58A_3A   ; 
-- D 1 - - - 0x0127F1 04:A7E1: A5        .byte > _off004_A58D_3B   ; 
-- D 1 - - - 0x0127F2 04:A7E2: A5        .byte > _off004_A590_3C   ; 
-- D 1 - - - 0x0127F3 04:A7E3: A5        .byte > _off004_A594_3D   ; 
-- D 1 - - - 0x0127F4 04:A7E4: A5        .byte > _off004_A599_3E   ; 
-- D 1 - - - 0x0127F5 04:A7E5: A5        .byte > _off004_A59F_3F   ; 
-- D 1 - - - 0x0127F6 04:A7E6: A5        .byte > _off004_A5A4_40   ; 
-- D 1 - - - 0x0127F7 04:A7E7: A5        .byte > _off004_A5AA_41   ; 
-- D 1 - - - 0x0127F8 04:A7E8: A5        .byte > _off004_A5B7_42   ; 
-- D 1 - - - 0x0127F9 04:A7E9: A5        .byte > _off004_A5BA_43   ; 
-- D 1 - - - 0x0127FA 04:A7EA: A5        .byte > _off004_A5BD_44   ; 
-- D 1 - - - 0x0127FB 04:A7EB: A5        .byte > _off004_A5C0_45   ; 
-- D 1 - - - 0x0127FC 04:A7EC: A5        .byte > _off004_A5C6_46   ; 
-- D 1 - - - 0x0127FD 04:A7ED: A5        .byte > _off004_A5CB_47   ; 
-- D 1 - - - 0x0127FE 04:A7EE: A5        .byte > _off004_A5CE_48   ; 
-- D 1 - - - 0x0127FF 04:A7EF: A5        .byte > _off004_A5D1_49   ; 
-- D 1 - - - 0x012800 04:A7F0: A5        .byte > _off004_A5D4_4A   ; 
-- D 1 - - - 0x012801 04:A7F1: A5        .byte > _off004_A5D7_4B   ; 
-- D 1 - - - 0x012802 04:A7F2: A5        .byte > _off004_A5E4_4C   ; 
-- D 1 - - - 0x012803 04:A7F3: A5        .byte > _off004_A5F1_4D   ; 
-- D 1 - - - 0x012804 04:A7F4: A5        .byte > _off004_A5F4_4E   ; 
-- D 1 - - - 0x012805 04:A7F5: A5        .byte > _off004_A5F7_4F   ; 
-- D 1 - - - 0x012806 04:A7F6: A5        .byte > _off004_A5FD_50   ; 
-- D 1 - - - 0x012807 04:A7F7: A6        .byte > _off004_A606_51   ; 
-- D 1 - - - 0x012808 04:A7F8: A6        .byte > _off004_A60A_52   ; 
-- D 1 - - - 0x012809 04:A7F9: A6        .byte > _off004_A611_53   ; 
-- D 1 - - - 0x01280A 04:A7FA: A6        .byte > _off004_A616_54   ; 
-- D 1 - - - 0x01280B 04:A7FB: A6        .byte > _off004_A61B_55   ; 
-- D 1 - - - 0x01280C 04:A7FC: A6        .byte > _off004_A628_56   ; 
-- D 1 - - - 0x01280D 04:A7FD: A6        .byte > _off004_A62C_57   ; 
-- D 1 - - - 0x01280E 04:A7FE: A6        .byte > _off004_A635_58   ; 
-- D 1 - - - 0x01280F 04:A7FF: A6        .byte > _off004_A639_59   ; 
-- D 1 - - - 0x012810 04:A800: A6        .byte > _off004_A63D_5A   ; 
-- D 1 - - - 0x012811 04:A801: A6        .byte > _off004_A648_5B   ; 
-- D 1 - - - 0x012812 04:A802: A6        .byte > _off004_A64D_5C   ; 
-- D 1 - - - 0x012813 04:A803: A6        .byte > _off004_A652_5D   ; 
-- D 1 - - - 0x012814 04:A804: A6        .byte > _off004_A65E_5E   ; 
-- D 1 - - - 0x012815 04:A805: A6        .byte > _off004_A66A_5F   ; 
-- D 1 - - - 0x012816 04:A806: A6        .byte > _off004_A670_60   ; 
-- D 1 - - - 0x012817 04:A807: A6        .byte > _off004_A684_61   ; 
-- D 1 - - - 0x012818 04:A808: A6        .byte > _off004_A687_62   ; 
-- D 1 - - - 0x012819 04:A809: A6        .byte > _off004_A68A_63   ; 
-- D 1 - - - 0x01281A 04:A80A: A6        .byte > _off004_A68D_64   ; 
-- D 1 - - - 0x01281B 04:A80B: A6        .byte > _off004_A690_65   ; 
-- D 1 - - - 0x01281C 04:A80C: A6        .byte > _off004_A693_66   ; 
-- D 1 - - - 0x01281D 04:A80D: A6        .byte > _off004_A696_67   ; 
-- D 1 - - - 0x01281E 04:A80E: A6        .byte > _off004_A699_68   ; 
-- D 1 - - - 0x01281F 04:A80F: A6        .byte > _off004_A69C_69   ; 
-- D 1 - - - 0x012820 04:A810: A6        .byte > _off004_A69F_6A   ; 
-- D 1 - - - 0x012821 04:A811: A6        .byte > _off004_A6A2_6B   ; 
-- D 1 - - - 0x012822 04:A812: A6        .byte > _off004_A6A5_6C   ; 
-- D 1 - - - 0x012823 04:A813: A6        .byte > _off004_A6A8_6D   ; 
-- D 1 - - - 0x012824 04:A814: A6        .byte > _off004_A6AB_6E   ; 
-- D 1 - - - 0x012825 04:A815: A6        .byte > _off004_A6AE_6F   ; 
-- D 1 - - - 0x012826 04:A816: A6        .byte > _off004_A6B2_70   ; 
-- D 1 - - - 0x012827 04:A817: A6        .byte > _off004_A6B5_71   ; 
-- D 1 - - - 0x012828 04:A818: A6        .byte > _off004_A6B8_72   ; 
-- D 1 - - - 0x012829 04:A819: A6        .byte > _off004_A6BB_73   ; 
-- D 1 - - - 0x01282A 04:A81A: A6        .byte > _off004_A6BE_74   ; 
-- D 1 - - - 0x01282B 04:A81B: A6        .byte > _off004_A6C1_75   ; 
-- D 1 - - - 0x01282C 04:A81C: A6        .byte > _off004_A6C4_76   ; 
-- D 1 - - - 0x01282D 04:A81D: A6        .byte > _off004_A6C7_77   ; 
-- D 1 - - - 0x01282E 04:A81E: A6        .byte > _off004_A6CA_78   ; 
-- D 1 - - - 0x01282F 04:A81F: A6        .byte > _off004_A6CE_79   ; 
-- D 1 - - - 0x012830 04:A820: A6        .byte > _off004_A6D1_7A   ; 
-- D 1 - - - 0x012831 04:A821: A6        .byte > _off004_A6D4_7B   ; 
-- D 1 - - - 0x012832 04:A822: A6        .byte > _off004_A6D8_7C   ; 
-- D 1 - - - 0x012833 04:A823: A6        .byte > _off004_A6DB_7D   ; 
-- D 1 - - - 0x012834 04:A824: A6        .byte > _off004_A6DE_7E   ; 
-- D 1 - - - 0x012835 04:A825: A6        .byte > _off004_A6E1_7F   ; 
-- - - - - - 0x012836 04:A826: A6        .byte > _off004_A6E4_80   ; 
-- - - - - - 0x012837 04:A827: A6        .byte > _off004_A6E7_81   ; 
-- - - - - - 0x012838 04:A828: A6        .byte > _off004_A6EA_82   ; 
-- D 1 - - - 0x012839 04:A829: A6        .byte > _off004_A6ED_83   ; 
-- D 1 - - - 0x01283A 04:A82A: A6        .byte > _off004_A6F0_84   ; 
-- D 1 - - - 0x01283B 04:A82B: A6        .byte > _off004_A6F3_85   ; 
-- D 1 - - - 0x01283C 04:A82C: A6        .byte > _off004_A6F8_86   ; 
-- D 1 - - - 0x01283D 04:A82D: A7        .byte > _off004_A706_87   ; 
-- D 1 - - - 0x01283E 04:A82E: A7        .byte > _off004_A70C_88   ; 
-- D 1 - - - 0x01283F 04:A82F: A7        .byte > _off004_A70F_89   ; 
-- D 1 - - - 0x012840 04:A830: A7        .byte > _off004_A713_8A   ; 
-- D 1 - - - 0x012841 04:A831: A7        .byte > _off004_A717_8B   ; 
+tbl_A7A7_animation_data_hi:
+- - - - - - 0x0127B7 04:A7A7: A4        .byte > _off004_animation_A48D_01   ; 
+- D 1 - - - 0x0127B8 04:A7A8: A4        .byte > _off004_animation_A48D_02   ; 
+- D 1 - - - 0x0127B9 04:A7A9: A4        .byte > _off004_animation_A493_03   ; 
+- D 1 - - - 0x0127BA 04:A7AA: A4        .byte > _off004_animation_A499_04   ; 
+- D 1 - - - 0x0127BB 04:A7AB: A4        .byte > _off004_animation_A4B5_05   ; 
+- D 1 - - - 0x0127BC 04:A7AC: A4        .byte > _off004_animation_A4B9_06   ; 
+- D 1 - - - 0x0127BD 04:A7AD: A4        .byte > _off004_animation_A4BD_07   ; 
+- D 1 - - - 0x0127BE 04:A7AE: A4        .byte > _off004_animation_A4C0_08   ; 
+- D 1 - - - 0x0127BF 04:A7AF: A4        .byte > _off004_animation_A49E_09   ; 
+- D 1 - - - 0x0127C0 04:A7B0: A4        .byte > _off004_animation_A4A1_0A   ; 
+- D 1 - - - 0x0127C1 04:A7B1: A4        .byte > _off004_animation_A4A9_0B   ; 
+- D 1 - - - 0x0127C2 04:A7B2: A4        .byte > _off004_animation_A4AF_0C   ; 
+- - - - - - 0x0127C3 04:A7B3: A4        .byte > _off004_animation_A4B5_0D   ; 
+- - - - - - 0x0127C4 04:A7B4: A4        .byte > _off004_animation_A4B9_0E   ; 
+- - - - - - 0x0127C5 04:A7B5: A4        .byte > _off004_animation_A4BD_0F   ; 
+- - - - - - 0x0127C6 04:A7B6: A4        .byte > _off004_animation_A4C0_10   ; 
+- D 1 - - - 0x0127C7 04:A7B7: A4        .byte > _off004_animation_A4C4_11   ; 
+- D 1 - - - 0x0127C8 04:A7B8: A4        .byte > _off004_animation_A4CD_12   ; 
+- D 1 - - - 0x0127C9 04:A7B9: A4        .byte > _off004_animation_A4D6_13   ; 
+- D 1 - - - 0x0127CA 04:A7BA: A4        .byte > _off004_animation_A4DB_14   ; 
+- D 1 - - - 0x0127CB 04:A7BB: A4        .byte > _off004_animation_A4E4_15   ; 
+- D 1 - - - 0x0127CC 04:A7BC: A4        .byte > _off004_animation_A4EB_16   ; 
+- D 1 - - - 0x0127CD 04:A7BD: A4        .byte > _off004_animation_A4EF_17   ; 
+- D 1 - - - 0x0127CE 04:A7BE: A4        .byte > _off004_animation_A4F5_18   ; 
+- D 1 - - - 0x0127CF 04:A7BF: A4        .byte > _off004_animation_A4FB_19   ; 
+- D 1 - - - 0x0127D0 04:A7C0: A5        .byte > _off004_animation_A501_1A   ; 
+- D 1 - - - 0x0127D1 04:A7C1: A5        .byte > _off004_animation_A507_1B   ; 
+- D 1 - - - 0x0127D2 04:A7C2: A5        .byte > _off004_animation_A50D_1C   ; 
+- D 1 - - - 0x0127D3 04:A7C3: A5        .byte > _off004_animation_A519_1D   ; 
+- D 1 - - - 0x0127D4 04:A7C4: A5        .byte > _off004_animation_A51D_1E   ; 
+- D 1 - - - 0x0127D5 04:A7C5: A5        .byte > _off004_animation_A520_1F   ; 
+- D 1 - - - 0x0127D6 04:A7C6: A5        .byte > _off004_animation_A524_20   ; 
+- D 1 - - - 0x0127D7 04:A7C7: A5        .byte > _off004_animation_A527_21   ; 
+- D 1 - - - 0x0127D8 04:A7C8: A5        .byte > _off004_animation_A52B_22   ; 
+- D 1 - - - 0x0127D9 04:A7C9: A5        .byte > _off004_animation_A52F_23   ; 
+- D 1 - - - 0x0127DA 04:A7CA: A5        .byte > _off004_animation_A532_24   ; 
+- - - - - - 0x0127DB 04:A7CB: A5        .byte > _off004_animation_A536_25   ; 
+- - - - - - 0x0127DC 04:A7CC: A5        .byte > _off004_animation_A53A_26   ; 
+- D 1 - - - 0x0127DD 04:A7CD: A5        .byte > _off004_animation_A53E_27   ; 
+- D 1 - - - 0x0127DE 04:A7CE: A5        .byte > _off004_animation_A542_28   ; 
+- D 1 - - - 0x0127DF 04:A7CF: A5        .byte > _off004_animation_A545_29   ; 
+- D 1 - - - 0x0127E0 04:A7D0: A5        .byte > _off004_animation_A549_2A   ; 
+- - - - - - 0x0127E1 04:A7D1: A5        .byte > _off004_animation_A54D_2B   ; 
+- - - - - - 0x0127E2 04:A7D2: A5        .byte > _off004_animation_A551_2C   ; 
+- - - - - - 0x0127E3 04:A7D3: A5        .byte > _off004_animation_A555_2D   ; 
+- - - - - - 0x0127E4 04:A7D4: A5        .byte > _off004_animation_A558_2E   ; 
+- - - - - - 0x0127E5 04:A7D5: A5        .byte > _off004_animation_A55C_2F   ; 
+- D 1 - - - 0x0127E6 04:A7D6: A5        .byte > _off004_animation_A560_30   ; 
+- D 1 - - - 0x0127E7 04:A7D7: A5        .byte > _off004_animation_A564_31   ; 
+- D 1 - - - 0x0127E8 04:A7D8: A5        .byte > _off004_animation_A568_32   ; 
+- D 1 - - - 0x0127E9 04:A7D9: A5        .byte > _off004_animation_A56C_33   ; 
+- D 1 - - - 0x0127EA 04:A7DA: A5        .byte > _off004_animation_A572_34   ; 
+- D 1 - - - 0x0127EB 04:A7DB: A5        .byte > _off004_animation_A576_35   ; 
+- D 1 - - - 0x0127EC 04:A7DC: A5        .byte > _off004_animation_A57A_36   ; 
+- D 1 - - - 0x0127ED 04:A7DD: A5        .byte > _off004_animation_A57E_37   ; 
+- D 1 - - - 0x0127EE 04:A7DE: A5        .byte > _off004_animation_A582_38   ; 
+- D 1 - - - 0x0127EF 04:A7DF: A5        .byte > _off004_animation_A586_39   ; 
+- D 1 - - - 0x0127F0 04:A7E0: A5        .byte > _off004_animation_A58A_3A   ; 
+- D 1 - - - 0x0127F1 04:A7E1: A5        .byte > _off004_animation_A58D_3B   ; 
+- D 1 - - - 0x0127F2 04:A7E2: A5        .byte > _off004_animation_A590_3C   ; 
+- D 1 - - - 0x0127F3 04:A7E3: A5        .byte > _off004_animation_A594_3D   ; 
+- D 1 - - - 0x0127F4 04:A7E4: A5        .byte > _off004_animation_A599_3E   ; 
+- D 1 - - - 0x0127F5 04:A7E5: A5        .byte > _off004_animation_A59F_3F   ; 
+- D 1 - - - 0x0127F6 04:A7E6: A5        .byte > _off004_animation_A5A4_40   ; 
+- D 1 - - - 0x0127F7 04:A7E7: A5        .byte > _off004_animation_A5AA_41   ; 
+- D 1 - - - 0x0127F8 04:A7E8: A5        .byte > _off004_animation_A5B7_42   ; 
+- D 1 - - - 0x0127F9 04:A7E9: A5        .byte > _off004_animation_A5BA_43   ; 
+- D 1 - - - 0x0127FA 04:A7EA: A5        .byte > _off004_animation_A5BD_44   ; 
+- D 1 - - - 0x0127FB 04:A7EB: A5        .byte > _off004_animation_A5C0_45   ; 
+- D 1 - - - 0x0127FC 04:A7EC: A5        .byte > _off004_animation_A5C6_46   ; 
+- D 1 - - - 0x0127FD 04:A7ED: A5        .byte > _off004_animation_A5CB_47   ; 
+- D 1 - - - 0x0127FE 04:A7EE: A5        .byte > _off004_animation_A5CE_48   ; 
+- D 1 - - - 0x0127FF 04:A7EF: A5        .byte > _off004_animation_A5D1_49   ; 
+- D 1 - - - 0x012800 04:A7F0: A5        .byte > _off004_animation_A5D4_4A   ; 
+- D 1 - - - 0x012801 04:A7F1: A5        .byte > _off004_animation_A5D7_4B   ; 
+- D 1 - - - 0x012802 04:A7F2: A5        .byte > _off004_animation_A5E4_4C   ; 
+- D 1 - - - 0x012803 04:A7F3: A5        .byte > _off004_animation_A5F1_4D   ; 
+- D 1 - - - 0x012804 04:A7F4: A5        .byte > _off004_animation_A5F4_4E   ; 
+- D 1 - - - 0x012805 04:A7F5: A5        .byte > _off004_animation_A5F7_4F   ; 
+- D 1 - - - 0x012806 04:A7F6: A5        .byte > _off004_animation_A5FD_50   ; 
+- D 1 - - - 0x012807 04:A7F7: A6        .byte > _off004_animation_A606_51   ; 
+- D 1 - - - 0x012808 04:A7F8: A6        .byte > _off004_animation_A60A_52   ; 
+- D 1 - - - 0x012809 04:A7F9: A6        .byte > _off004_animation_A611_53   ; 
+- D 1 - - - 0x01280A 04:A7FA: A6        .byte > _off004_animation_A616_54   ; 
+- D 1 - - - 0x01280B 04:A7FB: A6        .byte > _off004_animation_A61B_55   ; 
+- D 1 - - - 0x01280C 04:A7FC: A6        .byte > _off004_animation_A628_56   ; 
+- D 1 - - - 0x01280D 04:A7FD: A6        .byte > _off004_animation_A62C_57   ; 
+- D 1 - - - 0x01280E 04:A7FE: A6        .byte > _off004_animation_A635_58   ; 
+- D 1 - - - 0x01280F 04:A7FF: A6        .byte > _off004_animation_A639_59   ; 
+- D 1 - - - 0x012810 04:A800: A6        .byte > _off004_animation_A63D_5A   ; 
+- D 1 - - - 0x012811 04:A801: A6        .byte > _off004_animation_A648_5B   ; 
+- D 1 - - - 0x012812 04:A802: A6        .byte > _off004_animation_A64D_5C   ; 
+- D 1 - - - 0x012813 04:A803: A6        .byte > _off004_animation_A652_5D   ; 
+- D 1 - - - 0x012814 04:A804: A6        .byte > _off004_animation_A65E_5E   ; 
+- D 1 - - - 0x012815 04:A805: A6        .byte > _off004_animation_A66A_5F   ; 
+- D 1 - - - 0x012816 04:A806: A6        .byte > _off004_animation_A670_60   ; 
+- D 1 - - - 0x012817 04:A807: A6        .byte > _off004_animation_A684_61   ; 
+- D 1 - - - 0x012818 04:A808: A6        .byte > _off004_animation_A687_62   ; 
+- D 1 - - - 0x012819 04:A809: A6        .byte > _off004_animation_A68A_63   ; 
+- D 1 - - - 0x01281A 04:A80A: A6        .byte > _off004_animation_A68D_64   ; 
+- D 1 - - - 0x01281B 04:A80B: A6        .byte > _off004_animation_A690_65   ; 
+- D 1 - - - 0x01281C 04:A80C: A6        .byte > _off004_animation_A693_66   ; 
+- D 1 - - - 0x01281D 04:A80D: A6        .byte > _off004_animation_A696_67   ; 
+- D 1 - - - 0x01281E 04:A80E: A6        .byte > _off004_animation_A699_68   ; 
+- D 1 - - - 0x01281F 04:A80F: A6        .byte > _off004_animation_A69C_69   ; 
+- D 1 - - - 0x012820 04:A810: A6        .byte > _off004_animation_A69F_6A   ; 
+- D 1 - - - 0x012821 04:A811: A6        .byte > _off004_animation_A6A2_6B   ; 
+- D 1 - - - 0x012822 04:A812: A6        .byte > _off004_animation_A6A5_6C   ; 
+- D 1 - - - 0x012823 04:A813: A6        .byte > _off004_animation_A6A8_6D   ; 
+- D 1 - - - 0x012824 04:A814: A6        .byte > _off004_animation_A6AB_6E   ; 
+- D 1 - - - 0x012825 04:A815: A6        .byte > _off004_animation_A6AE_6F   ; 
+- D 1 - - - 0x012826 04:A816: A6        .byte > _off004_animation_A6B2_70   ; 
+- D 1 - - - 0x012827 04:A817: A6        .byte > _off004_animation_A6B5_71   ; 
+- D 1 - - - 0x012828 04:A818: A6        .byte > _off004_animation_A6B8_72   ; 
+- D 1 - - - 0x012829 04:A819: A6        .byte > _off004_animation_A6BB_73   ; 
+- D 1 - - - 0x01282A 04:A81A: A6        .byte > _off004_animation_A6BE_74   ; 
+- D 1 - - - 0x01282B 04:A81B: A6        .byte > _off004_animation_A6C1_75   ; 
+- D 1 - - - 0x01282C 04:A81C: A6        .byte > _off004_animation_A6C4_76   ; 
+- D 1 - - - 0x01282D 04:A81D: A6        .byte > _off004_animation_A6C7_77   ; 
+- D 1 - - - 0x01282E 04:A81E: A6        .byte > _off004_animation_A6CA_78   ; 
+- D 1 - - - 0x01282F 04:A81F: A6        .byte > _off004_animation_A6CE_79   ; 
+- D 1 - - - 0x012830 04:A820: A6        .byte > _off004_animation_A6D1_7A   ; 
+- D 1 - - - 0x012831 04:A821: A6        .byte > _off004_animation_A6D4_7B   ; 
+- D 1 - - - 0x012832 04:A822: A6        .byte > _off004_animation_A6D8_7C   ; 
+- D 1 - - - 0x012833 04:A823: A6        .byte > _off004_animation_A6DB_7D   ; 
+- D 1 - - - 0x012834 04:A824: A6        .byte > _off004_animation_A6DE_7E   ; 
+- D 1 - - - 0x012835 04:A825: A6        .byte > _off004_animation_A6E1_7F   ; 
+- - - - - - 0x012836 04:A826: A6        .byte > _off004_animation_A6E4_80   ; 
+- - - - - - 0x012837 04:A827: A6        .byte > _off004_animation_A6E7_81   ; 
+- - - - - - 0x012838 04:A828: A6        .byte > _off004_animation_A6EA_82   ; 
+- D 1 - - - 0x012839 04:A829: A6        .byte > _off004_animation_A6ED_83   ; 
+- D 1 - - - 0x01283A 04:A82A: A6        .byte > _off004_animation_A6F0_84   ; 
+- D 1 - - - 0x01283B 04:A82B: A6        .byte > _off004_animation_A6F3_85   ; 
+- D 1 - - - 0x01283C 04:A82C: A6        .byte > _off004_animation_A6F8_86   ; 
+- D 1 - - - 0x01283D 04:A82D: A7        .byte > _off004_animation_A706_87   ; 
+- D 1 - - - 0x01283E 04:A82E: A7        .byte > _off004_animation_A70C_88   ; 
+- D 1 - - - 0x01283F 04:A82F: A7        .byte > _off004_animation_A70F_89   ; 
+- D 1 - - - 0x012840 04:A830: A7        .byte > _off004_animation_A713_8A   ; 
+- D 1 - - - 0x012841 04:A831: A7        .byte > _off004_animation_A717_8B   ; 
 
 
 ; bzk garbage
@@ -9209,39 +9211,39 @@ sub_0x013130_prepare_sprite_data_pointers:
     ; ram_0000_t04_data_spr
 C - - - - - 0x013130 04:B120: B9 2B B1  LDA tbl_B12B_sprite_data_lo,Y
 C - - - - - 0x013133 04:B123: 85 00     STA ram_0000_t04_data_spr
-C - - - - - 0x013135 04:B125: B9 34 B1  LDA tbl_B134_sprite_hi,Y
+C - - - - - 0x013135 04:B125: B9 34 B1  LDA tbl_B134_sprite_data_hi,Y
 C - - - - - 0x013138 04:B128: 85 01     STA ram_0000_t04_data_spr + $01
 C - - - - - 0x01313A 04:B12A: 60        RTS
 
 
 
 tbl_B12B_sprite_data_lo:
-- D 1 - - - 0x01313B 04:B12B: 3D        .byte < _off006_B13D_00   ; 
-- D 1 - - - 0x01313C 04:B12C: 92        .byte < _off006_B192_01   ; 
-- D 1 - - - 0x01313D 04:B12D: B7        .byte < _off006_B1B7_02   ; 
-- D 1 - - - 0x01313E 04:B12E: E0        .byte < _off006_B1E0_03   ; 
-- D 1 - - - 0x01313F 04:B12F: FD        .byte < _off006_B1FD_04   ; 
-- D 1 - - - 0x013140 04:B130: 56        .byte < _off006_B256_05   ; 
-- D 1 - - - 0x013141 04:B131: 87        .byte < _off006_B287_06   ; 
-- D 1 - - - 0x013142 04:B132: 68        .byte < _off006_B368_07   ; 
-- D 1 - - - 0x013143 04:B133: 71        .byte < _off006_B371_08   ; 
+- D 1 - - - 0x01313B 04:B12B: 3D        .byte < _off006_spr_data_B13D_00   ; 
+- D 1 - - - 0x01313C 04:B12C: 92        .byte < _off006_spr_data_B192_01   ; 
+- D 1 - - - 0x01313D 04:B12D: B7        .byte < _off006_spr_data_B1B7_02   ; 
+- D 1 - - - 0x01313E 04:B12E: E0        .byte < _off006_spr_data_B1E0_03   ; 
+- D 1 - - - 0x01313F 04:B12F: FD        .byte < _off006_spr_data_B1FD_04   ; 
+- D 1 - - - 0x013140 04:B130: 56        .byte < _off006_spr_data_B256_05   ; 
+- D 1 - - - 0x013141 04:B131: 87        .byte < _off006_spr_data_B287_06   ; 
+- D 1 - - - 0x013142 04:B132: 68        .byte < _off006_spr_data_B368_07   ; 
+- D 1 - - - 0x013143 04:B133: 71        .byte < _off006_spr_data_B371_08   ; 
 
 
 
-tbl_B134_sprite_hi:
-- D 1 - - - 0x013144 04:B134: B1        .byte > _off006_B13D_00   ; 
-- D 1 - - - 0x013145 04:B135: B1        .byte > _off006_B192_01   ; 
-- D 1 - - - 0x013146 04:B136: B1        .byte > _off006_B1B7_02   ; 
-- D 1 - - - 0x013147 04:B137: B1        .byte > _off006_B1E0_03   ; 
-- D 1 - - - 0x013148 04:B138: B1        .byte > _off006_B1FD_04   ; 
-- D 1 - - - 0x013149 04:B139: B2        .byte > _off006_B256_05   ; 
-- D 1 - - - 0x01314A 04:B13A: B2        .byte > _off006_B287_06   ; 
-- D 1 - - - 0x01314B 04:B13B: B3        .byte > _off006_B368_07   ; 
-- D 1 - - - 0x01314C 04:B13C: B3        .byte > _off006_B371_08   ; 
+tbl_B134_sprite_data_hi:
+- D 1 - - - 0x013144 04:B134: B1        .byte > _off006_spr_data_B13D_00   ; 
+- D 1 - - - 0x013145 04:B135: B1        .byte > _off006_spr_data_B192_01   ; 
+- D 1 - - - 0x013146 04:B136: B1        .byte > _off006_spr_data_B1B7_02   ; 
+- D 1 - - - 0x013147 04:B137: B1        .byte > _off006_spr_data_B1E0_03   ; 
+- D 1 - - - 0x013148 04:B138: B1        .byte > _off006_spr_data_B1FD_04   ; 
+- D 1 - - - 0x013149 04:B139: B2        .byte > _off006_spr_data_B256_05   ; 
+- D 1 - - - 0x01314A 04:B13A: B2        .byte > _off006_spr_data_B287_06   ; 
+- D 1 - - - 0x01314B 04:B13B: B3        .byte > _off006_spr_data_B368_07   ; 
+- D 1 - - - 0x01314C 04:B13C: B3        .byte > _off006_spr_data_B371_08   ; 
 
 
 
-_off006_B13D_00:
+_off006_spr_data_B13D_00:
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
 ;                                              |    |    +---------- spr_A
@@ -9272,7 +9274,7 @@ _off006_B13D_00:
 
 
 
-_off006_B192_01:
+_off006_spr_data_B192_01:
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
 ;                                              |    |    +---------- spr_A
@@ -9291,7 +9293,7 @@ _off006_B192_01:
 
 
 
-_off006_B1B7_02:
+_off006_spr_data_B1B7_02:
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
 ;                                              |    |    +---------- spr_A
@@ -9311,7 +9313,7 @@ _off006_B1B7_02:
 
 
 
-_off006_B1E0_03:
+_off006_spr_data_B1E0_03:
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
 ;                                              |    |    +---------- spr_A
@@ -9328,7 +9330,7 @@ _off006_B1E0_03:
 
 
 
-_off006_B1FD_04:
+_off006_spr_data_B1FD_04:
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
 ;                                              |    |    +---------- spr_A
@@ -9360,7 +9362,7 @@ _off006_B1FD_04:
 
 
 
-_off006_B256_05:
+_off006_spr_data_B256_05:
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
 ;                                              |    |    +---------- spr_A
@@ -9382,7 +9384,7 @@ _off006_B256_05:
 
 
 
-_off006_B287_06:
+_off006_spr_data_B287_06:
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
 ;                                              |    |    +---------- spr_A
@@ -9448,7 +9450,7 @@ _off006_B287_06:
 
 
 
-_off006_B368_07:
+_off006_spr_data_B368_07:
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
 ;                                              |    |    +---------- spr_A
@@ -9460,7 +9462,7 @@ _off006_B368_07:
 
 
 
-_off006_B371_08:
+_off006_spr_data_B371_08:
 ;                                              +-------------------- spr_Y
 ;                                              |    +--------------- spr_T
 ;                                              |    |    +---------- spr_A
