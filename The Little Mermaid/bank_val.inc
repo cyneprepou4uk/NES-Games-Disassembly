@@ -6,8 +6,14 @@ con_se_cb_88                            = $88 ; sound engine special control byt
 
 
 
+; CONFIG
+; con_trapped_in_bubble_timer           = $E0 ; 
+
+
+
 ; ram_btn_press
 ; ram_btn_hold
+; ram_005C_btns_LR
 con_btn_Right                           = $01 ; 
 con_btn_Left                            = $02 ; 
 con_btn_Down                            = $04 ; 
@@ -262,6 +268,14 @@ con_C2C4_1C                             = $1C ;
 con_C2C4_1D                             = $1D ; 
 ; con_C2C4_1E                           = $1E ; unused?
 ; con_C2C4_1F                           = $1F ; unused
+
+
+
+; cutscene text control bytes, see 0x01F1DC
+con_ct_cb_control_bytes                 = $FD ; 
+    con_ct_cb_new_line                      = $FD ; 
+    con_ct_cb_wait_for_input                = $FE ; 
+    con_ct_cb_end_of_cutscene               = $FF ; 
 
 
 

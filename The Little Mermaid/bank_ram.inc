@@ -265,7 +265,7 @@ ram_000D_temp                           = $000D ; 018E1C 018E59 018E69 01C201 01
     ram_000D_t02_brightness_add             = ram_000D_temp ; 10 or F0
     ram_000D_t03_loop_counter               = ram_000D_temp ; 
     ram_000D_t04_loop_counter               = ram_000D_temp ; 
-    ram_000D_t05                            = ram_000D_temp ; 
+    ram_000D_t05_blinging_cursor_frm_cnt    = ram_000D_temp ; frame counter
 
 
 
@@ -323,7 +323,7 @@ ram_0010_temp                           = $0010 ; 010137 010147 010241 01861E 01
 ram_0011_temp                           = $0011 ; 01013C 010149 010207 01020F 010243 01CC3A 01CE40 01CFFE 01D493 01E2A8 01E2AF 01E2B5 01E2B9 01E2E8 01E2EC 01E310 01E324 01E432 01E43F 01E466 01E46B 01E485 01E4F4 01E500 01E508 01E510 01E6DD 01E6FF 01E704 01E70A 01E724 01E739 01E750 01E79F 01EC5D 01EF63 01F101 01F411 01F677 01F70F 01F727 01F73C 01F796 01F7A9 01F7B8 01F811 01F822 01F837 01FA51 01FA57 01FA5F 01FA9B 01FAE9 01FAF6 01FAFF 01FEF7 
     ram_0011_t01_00_or_01                   = ram_0011_temp ; 
     ram_0011_t02_spr_A_priority             = ram_0011_temp ; 
-    ram_0011_t03                            = ram_0011_temp ; 
+    ram_0011_t03_pos_X_lo                   = ram_0011_temp ; 
     ram_0011_t04_pos_Y_lo                   = ram_0011_temp ; 
     ram_0011_t05                            = ram_0011_temp ; 
     ram_0011_t06                            = ram_0011_temp ; 
@@ -376,9 +376,9 @@ ram_0018_flag                           = $0018 ; 01A695 01A6E9 01A8DE 01C047 01
 
 
 
-; 00 = 
-; not 00 = 
-ram_0019_flag                           = $0019 ; 01AC1F 01C033 01C0DD 01D70B 01D8A7 01E72D 01EEAB 01F1A5 01F21D 01F25D 01F27A 01FEF7 
+; 00 = not ready
+; not 00 = ram_ppu_buffer is ready for reading
+ram_buffer_ready_flag               = $0019 ; 01AC1F 01C033 01C0DD 01D70B 01D8A7 01E72D 01EEAB 01F1A5 01F21D 01F25D 01F27A 01FEF7 
 
 
 
@@ -452,8 +452,10 @@ ram_0026_counter                        = $0026 ; 01D6CF 01D6F5 01FEF7
 
 
 
-; 
-ram_0027                                = $0027 ; 01C896 01C993 01D7B9 01D8A9 01DCCD 01DD36 01DD52 01DD77 01DE2A 01DEC2 01DEF2 01E01E 01E0C7 01E110 01E195 01E209 01E512 01E969 01E999 01EAC9 01EBCD 01EC04 01FEF7 
+;   08
+; 02  01
+;   04
+ram_0027_camera_movement_direction      = $0027 ; 01C896 01C993 01D7B9 01D8A9 01DCCD 01DD36 01DD52 01DD77 01DE2A 01DEC2 01DEF2 01E01E 01E0C7 01E110 01E195 01E209 01E512 01E969 01E999 01EAC9 01EBCD 01EC04 01FEF7 
 
 
 
@@ -565,19 +567,16 @@ ram_003C_flag                           = $003C ; 01CACC 01CDC2 01CDCE 01FEF7
 
 ; 
 ram_weapon_stats                        = $003D ; for common links (ram_weapon_power, ram_weapon_range)
-
-
-
-; 00 = small bubbles
-; 01 = 1 big bubble
-; 02 = 3 bubbles
-; 03 = heavy bubble
-ram_weapon_power                        = $003D ; 0180EE 01812F 018173 018188 019774 0197EF 0199F1 0199F8 0199FE 01D02E 01D363 01EC22 01EC32 01FEF7 
-
-
-
-; 
-ram_weapon_range                        = $003E ; 0199F1 0199F8 0199FE 019A07 01D026 01D365 01EC3C 01FEF7 
+    
+    ; 00 = small bubbles
+    ; 01 = 1 big bubble
+    ; 02 = 3 bubbles
+    ; 03 = heavy bubble
+    ram_weapon_power                        = $003D ; 0180EE 01812F 018173 018188 019774 0197EF 0199F1 0199F8 0199FE 01D02E 01D363 01EC22 01EC32 01FEF7 
+    
+    ; values from 00 (lowest) to 03 (highest)
+    ; affects how far your weapon shoots
+    ram_weapon_range                        = $003E ; 0199F1 0199F8 0199FE 019A07 01D026 01D365 01EC3C 01FEF7 
 
 
 
@@ -642,21 +641,55 @@ ram_0053_flag                           = $0053 ; 01A630 01C71A 01C83E 01C8A2 01
 
 ; done
 ram_0054_temp                           = $0054 ; 01EFDB 01EFFF 01F00D 01F039 01F065 01F084 01F0B0 01F149 01F1AE 01F386 01F3C8 01F3CA 01F3D5 01F3D7 01F3FB 01F4BB 01F4BD 01F4C2 01F4C4 01FEF7 
-    ram_0054_t01                            = ram_0054_temp ; 
+    ram_0054_t01_table_index                = ram_0054_temp ; 
     
     ram_0054_tFF_useless_5C                 = ram_0054_temp ; bzk optimize
 
 
 
-; todo
-ram_0055                                = $0055 ; 01F061 01F0F0 01FEF7 
-ram_0056                                = $0056 ; 01F142 01F16B 01F16D 01F225 01FEF7 
-ram_0057                                = $0057 ; 01F144 01F157 01F1E0 01F22D 01FEF7 
-ram_0058                                = $0058 ; 01F14E 01FEF7 
-ram_0059                                = $0059 ; 01F153 01F169 01FEF7 
-ram_005A                                = $005A ; 01F02C 01F119 01F1D9 01FEF7 
-ram_005B                                = $005B ; 01F155 01F167 01F171 01FEF7 
-ram_005C                                = $005C ; 01CEE9 01D0E8 01D0F9 01D103 01D133 01D13D 01D153 01D16C 01D1A5 01FEF7 
+; done
+ram_0055_temp                           = $0055 ; 01F061 01F0F0 01FEF7 
+    ram_0055_t01_oam_index                  = ram_0055_temp ; 
+
+
+
+; done
+ram_0056_temp                           = $0056 ; 01F142 01F16B 01F16D 01F225 01FEF7 
+    ram_0056_t01_data_index                 = ram_0056_temp ; 
+
+
+
+; done
+ram_0057_temp                           = $0057 ; 01F144 01F157 01F1E0 01F22D 01FEF7 
+    ram_0057_t01_table_index                = ram_0057_temp ; 
+
+
+
+; done
+ram_0058_temp                           = $0058 ; 01F14E 01FEF7 
+    ram_0058_t01_cutscene_text_data         = ram_0058_temp ; 2 addresses 0058-0059
+
+
+
+; used only in pair with ram_0058_temp
+; ram_0059                              = $0059 ; 01F153 01F169 01FEF7 
+
+
+
+; done
+ram_005A_temp                           = $005A ; 01F02C 01F119 01F1D9 01FEF7 
+    ram_005A_t01_counter                    = ram_005A_temp ; 
+
+
+
+; done
+ram_005B_temp                           = $005B ; 01F155 01F167 01F171 01FEF7 
+    ram_005B_t01_data_ptr_hi                = ram_005B_temp ; bzk optimize
+
+
+
+; 
+ram_005C_btns_LR                        = $005C ; 01CEE9 01D0E8 01D0F9 01D103 01D133 01D13D 01D153 01D16C 01D1A5 01FEF7 
 
 
 
@@ -2064,8 +2097,8 @@ ram_03E0_obj_data_index                 = $03E0 ; 01FF00
 
 
 
-; 03F0-03FF (10) 
-ram_03F0_obj                            = $03F0 ; 01FF00 
+; 03F0-03FF (10) health points
+ram_obj_hp                              = $03F0 ; 01FF00 
 ; ram_03F1                              = $03F1 ; 01FF00 
 ; ram_03F2                              = $03F2 ; 01FF00 
 ; ram_03F3                              = $03F3 ; 01FF00 
@@ -2218,6 +2251,9 @@ ram_0458_unk                            = $0458 ; 010169 010170 01017B 01EB71 01
 
 ; 0460-046F (10) sometimes contains obj_id
 ram_0460_obj                            = $0460 ; 018076 018095 01A639 01D2BD 01D2F8 01D379 01F079 01FF03 
+    ram_0460_t01_boss_timer_wait            = ram_0460_obj ; 
+    ram_0460_t02_ariel_status               = ram_0460_obj ; 
+    ram_0460_t03_obj_bubble_trap_timer      = ram_0460_obj ; timer before it floats/sinks
 ; ram_0461                              = $0461 ; 0186E0 018762 01D02B 01F079 01FF03 
 ; ram_0462                              = $0462 ; 0186BC 0186E0 018710 018762 01D02B 01F079 01FF03 
 ; ram_0463                              = $0463 ; 01F079 01FF03 
@@ -2403,7 +2439,7 @@ ram_04FE                                = $04FE ; 01FF03
 ram_04FF                                = $04FF ; 01FF03 
 
 
-; 0500-0506 (07) 1.234.567
+; 0500-0506 (07) format 1.234.567
 ram_score_total                         = $0500 ; 01EB1E 01ECF9 01EF12 01F586 01FF06 
 ; ram_0501                              = $0501 ; 01EB1E 01ECF9 01EF12 01F586 01FF06 
 ; ram_0502                              = $0502 ; 01EB1E 01EB2F 01ECF9 01ED0A 01EECC 01EED1 01EF12 01EF25 01F586 01FF06 
@@ -2418,7 +2454,7 @@ ram_score_obj                           = $0507 ; for common links (fork, pipe, 
 
 
 
-; 0507-050A (04) 1.234
+; 0507-050A (04) format 1.234
 ram_score_fork                          = $0507 ; 019B92 019B9E 01C743 01ED4E 01EE43 01EE5B 01EE64 01EE75 01EE8B 01FF06 
 ; ram_0508                              = $0508 ; 019B92 019B9E 01C743 01ED4E 01EE46 01EE5B 01EE64 01EE75 01EE8B 01FF06 
 ; ram_0509                              = $0509 ; 019B92 019B9E 01C743 01ED4E 01EE49 01EE75 01EE8B 01FF06 
@@ -2426,7 +2462,7 @@ ram_score_fork                          = $0507 ; 019B92 019B9E 01C743 01ED4E 01
 
 
 
-; 050B-050E (04) 1.234
+; 050B-050E (04) format 1.234
 ram_score_pipe                          = $050B ; 019B92 019B9E 01C746 01ED4E 01EE43 01EE5B 01EE64 01EE75 01EE8B 01FF06 
 ; ram_050C                              = $050C ; 019B92 019B9E 01C746 01ED4E 01EE46 01EE5B 01EE64 01EE75 01EE8B 01FF06 
 ; ram_050D                              = $050D ; 019B92 019B9E 01C746 01ED4E 01EE49 01EE75 01EE8B 01FF06 
@@ -2434,7 +2470,7 @@ ram_score_pipe                          = $050B ; 019B92 019B9E 01C746 01ED4E 01
 
 
 
-; 050F-0512 (04) 1.234
+; 050F-0512 (04) format 1.234
 ram_score_pearl_purple                  = $050F ; 019B92 019B9E 01C749 01ED4E 01EE43 01EE5B 01EE64 01EE75 01EE8B 01FF06 
 ; ram_0510                              = $0510 ; 019B92 019B9E 01C749 01ED4E 01EE46 01EE5B 01EE64 01EE75 01EE8B 01FF06 
 ; ram_0511                              = $0511 ; 019B92 019B9E 01C749 01ED4E 01EE49 01EE75 01EE8B 01FF06 
@@ -2442,7 +2478,7 @@ ram_score_pearl_purple                  = $050F ; 019B92 019B9E 01C749 01ED4E 01
 
 
 
-; 0513-0516 (04) 1.234
+; 0513-0516 (04) format 1.234
 ram_score_pearl_green                   = $0513 ; 019B92 019B9E 01C74C 01ED4E 01EE43 01EE5B 01EE64 01EE75 01EE8B 01FF06 
 ; ram_0514                              = $0514 ; 019B92 019B9E 01C74C 01ED4E 01EE46 01EE5B 01EE64 01EE75 01EE8B 01FF06 
 ; ram_0515                              = $0515 ; 019B92 019B9E 01C74C 01ED4E 01EE49 01EE75 01EE8B 01FF06 

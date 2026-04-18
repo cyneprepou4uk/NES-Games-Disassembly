@@ -9821,8 +9821,8 @@ C - - - - - 0x0137CF 04:B7BF: B9 04 BC  LDA tbl_BC04,Y
 C - - - - - 0x0137D2 04:B7C2: 9D 10 03  STA ram_obj_id,X
 C - - - - - 0x0137D5 04:B7C5: B9 44 BC  LDA tbl_BC44,Y
 C - - - - - 0x0137D8 04:B7C8: 9D C0 03  STA ram_03C0_obj,X
-C - - - - - 0x0137DB 04:B7CB: B9 C4 BC  LDA tbl_BCC4,Y
-C - - - - - 0x0137DE 04:B7CE: 9D F0 03  STA ram_03F0_obj,X
+C - - - - - 0x0137DB 04:B7CB: B9 C4 BC  LDA tbl_BCC4_enemy_health,Y
+C - - - - - 0x0137DE 04:B7CE: 9D F0 03  STA ram_obj_hp,X
 C - - - - - 0x0137E1 04:B7D1: B9 84 BC  LDA tbl_BC84,Y
 C - - - - - 0x0137E4 04:B7D4: 20 45 FC  JSR sub_0x01FC55
 C - - - - - 0x0137E7 04:B7D7: B9 04 BD  LDA tbl_BD04_index,Y
@@ -11172,7 +11172,7 @@ tbl_BC84:
 
 
 
-tbl_BCC4:
+tbl_BCC4_enemy_health:
 - - - - - - 0x013CD4 04:BCC4: 01        .byte $01   ; 00 
 - D 1 - - - 0x013CD5 04:BCC5: 01        .byte $01   ; 01 
 - D 1 - - - 0x013CD6 04:BCC6: 01        .byte $01   ; 02 

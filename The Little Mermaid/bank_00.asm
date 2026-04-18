@@ -11611,68 +11611,61 @@ off_0x002D10_chr:
 
 
 tbl_0x003510_cutscene_text_lo:
-- D 1 - - - 0x003510 00:B500: 1C        .byte < _off000_B51C_00   ; 
-- D 1 - - - 0x003511 00:B501: D1        .byte < _off000_B5D1_01   ; 
-- D 1 - - - 0x003512 00:B502: 22        .byte < _off000_B622_02   ; 
-- D 1 - - - 0x003513 00:B503: D5        .byte < _off000_B6D5_03   ; 
-- D 1 - - - 0x003514 00:B504: A0        .byte < _off000_B7A0_04   ; 
-- D 1 - - - 0x003515 00:B505: 27        .byte < _off000_B827_05   ; 
-- D 1 - - - 0x003516 00:B506: 43        .byte < _off000_B943_06   ; 
-- D 1 - - - 0x003517 00:B507: B7        .byte < _off000_B9B7_07   ; 
-- D 1 - - - 0x003518 00:B508: FB        .byte < _off000_B9FB_08   ; 
-- D 1 - - - 0x003519 00:B509: 36        .byte < _off000_BA36_09   ; 
-- D 1 - - - 0x00351A 00:B50A: 81        .byte < _off000_BA81_0A   ; 
-- D 1 - - - 0x00351B 00:B50B: F2        .byte < _off000_BAF2_0B   ; 
-- D 1 - - - 0x00351C 00:B50C: 9A        .byte < _off000_BB9A_0C   ; 
-- - - - - - 0x00351D 00:B50D: DE        .byte < _off000_BBDE_0D   ; 
+- D 1 - - - 0x003510 00:B500: 1C        .byte < _off000_cutscene_text_B51C_00   ; 
+- D 1 - - - 0x003511 00:B501: D1        .byte < _off000_cutscene_text_B5D1_01   ; 
+- D 1 - - - 0x003512 00:B502: 22        .byte < _off000_cutscene_text_B622_02   ; 
+- D 1 - - - 0x003513 00:B503: D5        .byte < _off000_cutscene_text_B6D5_03   ; 
+- D 1 - - - 0x003514 00:B504: A0        .byte < _off000_cutscene_text_B7A0_04   ; 
+- D 1 - - - 0x003515 00:B505: 27        .byte < _off000_cutscene_text_B827_05   ; 
+- D 1 - - - 0x003516 00:B506: 43        .byte < _off000_cutscene_text_B943_06   ; 
+- D 1 - - - 0x003517 00:B507: B7        .byte < _off000_cutscene_text_B9B7_07   ; 
+- D 1 - - - 0x003518 00:B508: FB        .byte < _off000_cutscene_text_B9FB_08   ; 
+- D 1 - - - 0x003519 00:B509: 36        .byte < _off000_cutscene_text_BA36_09   ; 
+- D 1 - - - 0x00351A 00:B50A: 81        .byte < _off000_cutscene_text_BA81_0A   ; 
+- D 1 - - - 0x00351B 00:B50B: F2        .byte < _off000_cutscene_text_BAF2_0B   ; 
+- D 1 - - - 0x00351C 00:B50C: 9A        .byte < _off000_cutscene_text_BB9A_0C   ; 
+- - - - - - 0x00351D 00:B50D: DE        .byte < _off000_cutscene_text_BBDE_0D   ; 
 
 
 
 tbl_0x00351E_cutscene_text_hi:
-- D 1 - - - 0x00351E 00:B50E: B5        .byte > _off000_B51C_00   ; 
-- D 1 - - - 0x00351F 00:B50F: B5        .byte > _off000_B5D1_01   ; 
-- D 1 - - - 0x003520 00:B510: B6        .byte > _off000_B622_02   ; 
-- D 1 - - - 0x003521 00:B511: B6        .byte > _off000_B6D5_03   ; 
-- D 1 - - - 0x003522 00:B512: B7        .byte > _off000_B7A0_04   ; 
-- D 1 - - - 0x003523 00:B513: B8        .byte > _off000_B827_05   ; 
-- D 1 - - - 0x003524 00:B514: B9        .byte > _off000_B943_06   ; 
-- D 1 - - - 0x003525 00:B515: B9        .byte > _off000_B9B7_07   ; 
-- D 1 - - - 0x003526 00:B516: B9        .byte > _off000_B9FB_08   ; 
-- D 1 - - - 0x003527 00:B517: BA        .byte > _off000_BA36_09   ; 
-- D 1 - - - 0x003528 00:B518: BA        .byte > _off000_BA81_0A   ; 
-- D 1 - - - 0x003529 00:B519: BA        .byte > _off000_BAF2_0B   ; 
-- D 1 - - - 0x00352A 00:B51A: BB        .byte > _off000_BB9A_0C   ; 
-- - - - - - 0x00352B 00:B51B: BB        .byte > _off000_BBDE_0D   ; 
+- D 1 - - - 0x00351E 00:B50E: B5        .byte > _off000_cutscene_text_B51C_00   ; 
+- D 1 - - - 0x00351F 00:B50F: B5        .byte > _off000_cutscene_text_B5D1_01   ; 
+- D 1 - - - 0x003520 00:B510: B6        .byte > _off000_cutscene_text_B622_02   ; 
+- D 1 - - - 0x003521 00:B511: B6        .byte > _off000_cutscene_text_B6D5_03   ; 
+- D 1 - - - 0x003522 00:B512: B7        .byte > _off000_cutscene_text_B7A0_04   ; 
+- D 1 - - - 0x003523 00:B513: B8        .byte > _off000_cutscene_text_B827_05   ; 
+- D 1 - - - 0x003524 00:B514: B9        .byte > _off000_cutscene_text_B943_06   ; 
+- D 1 - - - 0x003525 00:B515: B9        .byte > _off000_cutscene_text_B9B7_07   ; 
+- D 1 - - - 0x003526 00:B516: B9        .byte > _off000_cutscene_text_B9FB_08   ; 
+- D 1 - - - 0x003527 00:B517: BA        .byte > _off000_cutscene_text_BA36_09   ; 
+- D 1 - - - 0x003528 00:B518: BA        .byte > _off000_cutscene_text_BA81_0A   ; 
+- D 1 - - - 0x003529 00:B519: BA        .byte > _off000_cutscene_text_BAF2_0B   ; 
+- D 1 - - - 0x00352A 00:B51A: BB        .byte > _off000_cutscene_text_BB9A_0C   ; 
+- - - - - - 0x00352B 00:B51B: BB        .byte > _off000_cutscene_text_BBDE_0D   ; 
 
 
 
-; see 0x01F1DC
-con_new_line                            = $FD ; 
-con_wait_for_input                      = $FE ; 
-con_end_of_cutscene                     = $FF ; 
-
-
-
-_off000_B51C_00:
+_off000_cutscene_text_B51C_00:
 ; ARIEL, PRINCESS OF THE
 ; SEA, FELL IN LOVE WITH
 ; ERIC AT FIRST SIGHT.
 ; SHE ASKED URSULA TO
 - D 1 - I - 0x00352C 00:B51C: 14        .byte $14, $25, $1C, $18, $1F, $3D, $00, $23, $25, $1C, $21, $16, $18, $26, $26, $00   ; 
 - D 1 - I - 0x00353C 00:B52C: 22        .byte $22, $19, $00, $27, $1B, $18   ; 
-- D 1 - I - 0x003542 00:B532: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003542 00:B532: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003543 00:B533: 26        .byte $26, $18, $14, $3D, $00, $19, $18, $1F, $1F, $00, $1C, $21, $00, $1F, $22, $29   ; 
 - D 1 - I - 0x003553 00:B543: 18        .byte $18, $00, $2A, $1C, $27, $1B   ; 
-- D 1 - I - 0x003559 00:B549: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003559 00:B549: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x00355A 00:B54A: 18        .byte $18, $25, $1C, $16, $00, $14, $27, $00, $19, $1C, $25, $26, $27, $00, $26, $1C   ; 
 - D 1 - I - 0x00356A 00:B55A: 1A        .byte $1A, $1B, $27, $3C   ; 
-- D 1 - I - 0x00356E 00:B55E: FD        .byte con_new_line   ; 
+- D 1 - I - 0x00356E 00:B55E: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x00356F 00:B55F: 26        .byte $26, $1B, $18, $00, $14, $26, $1E, $18, $17, $00, $28, $25, $26, $28, $1F, $14   ; 
 - D 1 - I - 0x00357F 00:B56F: 00        .byte $00, $27, $22   ; 
-- D 1 - I - 0x003582 00:B572: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003582 00:B572: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; MAKE HER HUMAN SO SHE
 ; COULD MEET HIM. HE FELL
@@ -11680,68 +11673,68 @@ _off000_B51C_00:
 ; PLANNED TO MARRY HER.
 - D 1 - I - 0x003583 00:B573: 20        .byte $20, $14, $1E, $18, $00, $1B, $18, $25, $00, $1B, $28, $20, $14, $21, $00, $26   ; 
 - D 1 - I - 0x003593 00:B583: 22        .byte $22, $00, $26, $1B, $18   ; 
-- D 1 - I - 0x003598 00:B588: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003598 00:B588: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003599 00:B589: 16        .byte $16, $22, $28, $1F, $17, $00, $20, $18, $18, $27, $00, $1B, $1C, $20, $3C, $00   ; 
 - D 1 - I - 0x0035A9 00:B599: 1B        .byte $1B, $18, $00, $19, $18, $1F, $1F   ; 
-- D 1 - I - 0x0035B0 00:B5A0: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0035B0 00:B5A0: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0035B1 00:B5A1: 1C        .byte $1C, $21, $00, $1F, $22, $29, $18, $00, $2A, $1C, $27, $1B, $00, $1B, $18, $25   ; 
 - D 1 - I - 0x0035C1 00:B5B1: 00        .byte $00, $27, $22, $22, $00, $14, $21, $17   ; 
-- D 1 - I - 0x0035C9 00:B5B9: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0035C9 00:B5B9: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0035CA 00:B5BA: 23        .byte $23, $1F, $14, $21, $21, $18, $17, $00, $27, $22, $00, $20, $14, $25, $25, $2C   ; 
 - D 1 - I - 0x0035DA 00:B5CA: 00        .byte $00, $1B, $18, $25, $3C   ; 
-- D 1 - I - 0x0035DF 00:B5CF: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x0035DF 00:B5CF: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x0035E0 00:B5D0: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x0035E0 00:B5D0: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_B5D1_01:
+_off000_cutscene_text_B5D1_01:
 ; THEN ONE DAY, SEBASTIAN,
 ; FLOUNDER AND SCUTTLE
 ; CAME TO SEE ARIEL IN A
 ; BIG HURRY.
 - D 1 - I - 0x0035E1 00:B5D1: 27        .byte $27, $1B, $18, $21, $00, $22, $21, $18, $00, $17, $14, $2C, $3D, $00, $26, $18   ; 
 - D 1 - I - 0x0035F1 00:B5E1: 15        .byte $15, $14, $26, $27, $1C, $14, $21, $3D   ; 
-- D 1 - I - 0x0035F9 00:B5E9: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0035F9 00:B5E9: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0035FA 00:B5EA: 19        .byte $19, $1F, $22, $28, $21, $17, $18, $25, $00, $14, $21, $17, $00, $26, $16, $28   ; 
 - D 1 - I - 0x00360A 00:B5FA: 27        .byte $27, $27, $1F, $18   ; 
-- D 1 - I - 0x00360E 00:B5FE: FD        .byte con_new_line   ; 
+- D 1 - I - 0x00360E 00:B5FE: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x00360F 00:B5FF: 16        .byte $16, $14, $20, $18, $00, $27, $22, $00, $26, $18, $18, $00, $14, $25, $1C, $18   ; 
 - D 1 - I - 0x00361F 00:B60F: 1F        .byte $1F, $00, $1C, $21, $00, $14   ; 
-- D 1 - I - 0x003625 00:B615: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003625 00:B615: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003626 00:B616: 15        .byte $15, $1C, $1A, $00, $1B, $28, $25, $25, $2C, $3C   ; 
-- D 1 - I - 0x003630 00:B620: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003630 00:B620: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x003631 00:B621: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x003631 00:B621: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_B622_02:
+_off000_cutscene_text_B622_02:
 ; THEY EXPLAINED THAT
 ; URSULA HAD CAST A SPELL
 ; OVER THE FISH OF THE SEA
 ; SO THEY WOULD HAVE TO
 - D 1 - I - 0x003632 00:B622: 27        .byte $27, $1B, $18, $2C, $00, $18, $2B, $23, $1F, $14, $1C, $21, $18, $17, $00, $27   ; 
 - D 1 - I - 0x003642 00:B632: 1B        .byte $1B, $14, $27   ; 
-- D 1 - I - 0x003645 00:B635: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003645 00:B635: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003646 00:B636: 28        .byte $28, $25, $26, $28, $1F, $14, $00, $1B, $14, $17, $00, $16, $14, $26, $27, $00   ; 
 - D 1 - I - 0x003656 00:B646: 14        .byte $14, $00, $26, $23, $18, $1F, $1F   ; 
-- D 1 - I - 0x00365D 00:B64D: FD        .byte con_new_line   ; 
+- D 1 - I - 0x00365D 00:B64D: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x00365E 00:B64E: 22        .byte $22, $29, $18, $25, $00, $27, $1B, $18, $00, $19, $1C, $26, $1B, $00, $22, $19   ; 
 - D 1 - I - 0x00366E 00:B65E: 00        .byte $00, $27, $1B, $18, $00, $26, $18, $14   ; 
-- D 1 - I - 0x003676 00:B666: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003676 00:B666: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003677 00:B667: 26        .byte $26, $22, $00, $27, $1B, $18, $2C, $00, $2A, $22, $28, $1F, $17, $00, $1B, $14   ; 
 - D 1 - I - 0x003687 00:B677: 29        .byte $29, $18, $00, $27, $22   ; 
-- D 1 - I - 0x00368C 00:B67C: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x00368C 00:B67C: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; DO WHAT SHE WANTED. IF
 ; SHE WASN`T STOPPED,
@@ -11749,44 +11742,44 @@ _off000_B622_02:
 ; OVER THE WHOLE SEA.
 - D 1 - I - 0x00368D 00:B67D: 17        .byte $17, $22, $00, $2A, $1B, $14, $27, $00, $26, $1B, $18, $00, $2A, $14, $21, $27   ; 
 - D 1 - I - 0x00369D 00:B68D: 18        .byte $18, $17, $3C, $00, $1C, $19   ; 
-- D 1 - I - 0x0036A3 00:B693: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0036A3 00:B693: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0036A4 00:B694: 26        .byte $26, $1B, $18, $00, $2A, $14, $26, $21, $3E, $27, $00, $26, $27, $22, $23, $23   ; 
 - D 1 - I - 0x0036B4 00:B6A4: 18        .byte $18, $17, $3D   ; 
-- D 1 - I - 0x0036B7 00:B6A7: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0036B7 00:B6A7: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0036B8 00:B6A8: 26        .byte $26, $1B, $18, $00, $2A, $22, $28, $1F, $17, $00, $23, $25, $22, $15, $14, $15   ; 
 - D 1 - I - 0x0036C8 00:B6B8: 1F        .byte $1F, $2C, $00, $27, $14, $1E, $18   ; 
-- D 1 - I - 0x0036CF 00:B6BF: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0036CF 00:B6BF: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0036D0 00:B6C0: 22        .byte $22, $29, $18, $25, $00, $27, $1B, $18, $00, $2A, $1B, $22, $1F, $18, $00, $26   ; 
 - D 1 - I - 0x0036E0 00:B6D0: 18        .byte $18, $14, $3C   ; 
-- D 1 - I - 0x0036E3 00:B6D3: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x0036E3 00:B6D3: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x0036E4 00:B6D4: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x0036E4 00:B6D4: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_B6D5_03:
+_off000_cutscene_text_B6D5_03:
 ; ARIEL DECIDED TO GO TO
 ; URSULA`S CASTLE TO TRY
 ; AND RELEASE THE FISH
 ; FROM URSULA`S SPELL.
 - D 1 - I - 0x0036E5 00:B6D5: 14        .byte $14, $25, $1C, $18, $1F, $00, $17, $18, $16, $1C, $17, $18, $17, $00, $27, $22   ; 
 - D 1 - I - 0x0036F5 00:B6E5: 00        .byte $00, $1A, $22, $00, $27, $22   ; 
-- D 1 - I - 0x0036FB 00:B6EB: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0036FB 00:B6EB: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0036FC 00:B6EC: 28        .byte $28, $25, $26, $28, $1F, $14, $3E, $26, $00, $16, $14, $26, $27, $1F, $18, $00   ; 
 - D 1 - I - 0x00370C 00:B6FC: 27        .byte $27, $22, $00, $27, $25, $2C   ; 
-- D 1 - I - 0x003712 00:B702: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003712 00:B702: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003713 00:B703: 14        .byte $14, $21, $17, $00, $25, $18, $1F, $18, $14, $26, $18, $00, $27, $1B, $18, $00   ; 
 - D 1 - I - 0x003723 00:B713: 19        .byte $19, $1C, $26, $1B   ; 
-- D 1 - I - 0x003727 00:B717: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003727 00:B717: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003728 00:B718: 19        .byte $19, $25, $22, $20, $00, $28, $25, $26, $28, $1F, $14, $3E, $26, $00, $26, $23   ; 
 - D 1 - I - 0x003738 00:B728: 18        .byte $18, $1F, $1F, $3C   ; 
-- D 1 - I - 0x00373C 00:B72C: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x00373C 00:B72C: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; SHE EXPLAINED TO ERIC
 ; THAT SHE WAS A MERMAID
@@ -11794,83 +11787,83 @@ _off000_B6D5_03:
 ; SEA AND THAT SHE MUST
 - D 1 - I - 0x00373D 00:B72D: 26        .byte $26, $1B, $18, $00, $18, $2B, $23, $1F, $14, $1C, $21, $18, $17, $00, $27, $22   ; 
 - D 1 - I - 0x00374D 00:B73D: 00        .byte $00, $18, $25, $1C, $16   ; 
-- D 1 - I - 0x003752 00:B742: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003752 00:B742: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003753 00:B743: 27        .byte $27, $1B, $14, $27, $00, $26, $1B, $18, $00, $2A, $14, $26, $00, $14, $00, $20   ; 
 - D 1 - I - 0x003763 00:B753: 18        .byte $18, $25, $20, $14, $1C, $17   ; 
-- D 1 - I - 0x003769 00:B759: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003769 00:B759: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x00376A 00:B75A: 14        .byte $14, $21, $17, $00, $14, $00, $23, $25, $1C, $21, $16, $18, $26, $26, $00, $22   ; 
 - D 1 - I - 0x00377A 00:B76A: 19        .byte $19, $00, $27, $1B, $18   ; 
-- D 1 - I - 0x00377F 00:B76F: FD        .byte con_new_line   ; 
+- D 1 - I - 0x00377F 00:B76F: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003780 00:B770: 26        .byte $26, $18, $14, $00, $14, $21, $17, $00, $27, $1B, $14, $27, $00, $26, $1B, $18   ; 
 - D 1 - I - 0x003790 00:B780: 00        .byte $00, $20, $28, $26, $27   ; 
-- D 1 - I - 0x003795 00:B785: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003795 00:B785: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; TRY TO SAVE HER FRIENDS.
 - D 1 - I - 0x003796 00:B786: 27        .byte $27, $25, $2C, $00, $27, $22, $00, $26, $14, $29, $18, $00, $1B, $18, $25, $00   ; 
 - D 1 - I - 0x0037A6 00:B796: 19        .byte $19, $25, $1C, $18, $21, $17, $26, $3C   ; 
-- D 1 - I - 0x0037AE 00:B79E: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x0037AE 00:B79E: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x0037AF 00:B79F: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x0037AF 00:B79F: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_B7A0_04:
+_off000_cutscene_text_B7A0_04:
 ; ERIC TRIED TO CONVINCE
 ; HER NOT TO GO BUT SHE
 ; TURNED BACK INTO A
 ; MERMAID, DOVE INTO THE
 - D 1 - I - 0x0037B0 00:B7A0: 18        .byte $18, $25, $1C, $16, $00, $27, $25, $1C, $18, $17, $00, $27, $22, $00, $16, $22   ; 
 - D 1 - I - 0x0037C0 00:B7B0: 21        .byte $21, $29, $1C, $21, $16, $18   ; 
-- D 1 - I - 0x0037C6 00:B7B6: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0037C6 00:B7B6: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0037C7 00:B7B7: 1B        .byte $1B, $18, $25, $00, $21, $22, $27, $00, $27, $22, $00, $1A, $22, $00, $15, $28   ; 
 - D 1 - I - 0x0037D7 00:B7C7: 27        .byte $27, $00, $26, $1B, $18   ; 
-- D 1 - I - 0x0037DC 00:B7CC: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0037DC 00:B7CC: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0037DD 00:B7CD: 27        .byte $27, $28, $25, $21, $18, $17, $00, $15, $14, $16, $1E, $00, $1C, $21, $27, $22   ; 
 - D 1 - I - 0x0037ED 00:B7DD: 00        .byte $00, $14   ; 
-- D 1 - I - 0x0037EF 00:B7DF: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0037EF 00:B7DF: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0037F0 00:B7E0: 20        .byte $20, $18, $25, $20, $14, $1C, $17, $3D, $00, $17, $22, $29, $18, $00, $1C, $21   ; 
 - D 1 - I - 0x003800 00:B7F0: 27        .byte $27, $22, $00, $27, $1B, $18   ; 
-- D 1 - I - 0x003806 00:B7F6: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003806 00:B7F6: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; SEA AND BEGAN TO SWIM
 ; TOWARDS URSULA`S CASTLE.
 - D 1 - I - 0x003807 00:B7F7: 26        .byte $26, $18, $14, $00, $14, $21, $17, $00, $15, $18, $1A, $14, $21, $00, $27, $22   ; 
 - D 1 - I - 0x003817 00:B807: 00        .byte $00, $26, $2A, $1C, $20   ; 
-- D 1 - I - 0x00381C 00:B80C: FD        .byte con_new_line   ; 
+- D 1 - I - 0x00381C 00:B80C: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x00381D 00:B80D: 27        .byte $27, $22, $2A, $14, $25, $17, $26, $00, $28, $25, $26, $28, $1F, $14, $3E, $26   ; 
 - D 1 - I - 0x00382D 00:B81D: 00        .byte $00, $16, $14, $26, $27, $1F, $18, $3C   ; 
-- D 1 - I - 0x003835 00:B825: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003835 00:B825: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x003836 00:B826: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x003836 00:B826: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_B827_05:
+_off000_cutscene_text_B827_05:
 ; ARIEL DEFEATED URSULA
 ; AND RELEASED HER
 ; FRIENDS FROM THE SPELL
 ; BUT THERE WAS NO WAY
 - D 1 - I - 0x003837 00:B827: 14        .byte $14, $25, $1C, $18, $1F, $00, $17, $18, $19, $18, $14, $27, $18, $17, $00, $28   ; 
 - D 1 - I - 0x003847 00:B837: 25        .byte $25, $26, $28, $1F, $14   ; 
-- D 1 - I - 0x00384C 00:B83C: FD        .byte con_new_line   ; 
+- D 1 - I - 0x00384C 00:B83C: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x00384D 00:B83D: 14        .byte $14, $21, $17, $00, $25, $18, $1F, $18, $14, $26, $18, $17, $00, $1B, $18, $25   ; 
-- D 1 - I - 0x00385D 00:B84D: FD        .byte con_new_line   ; 
+- D 1 - I - 0x00385D 00:B84D: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x00385E 00:B84E: 19        .byte $19, $25, $1C, $18, $21, $17, $26, $00, $19, $25, $22, $20, $00, $27, $1B, $18   ; 
 - D 1 - I - 0x00386E 00:B85E: 00        .byte $00, $26, $23, $18, $1F, $1F   ; 
-- D 1 - I - 0x003874 00:B864: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003874 00:B864: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003875 00:B865: 15        .byte $15, $28, $27, $00, $27, $1B, $18, $25, $18, $00, $2A, $14, $26, $00, $21, $22   ; 
 - D 1 - I - 0x003885 00:B875: 00        .byte $00, $2A, $14, $2C   ; 
-- D 1 - I - 0x003889 00:B879: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003889 00:B879: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; FOR HER TO BECOME HUMAN
 ; AGAIN. ARIEL SPENT EVERY
@@ -11878,19 +11871,19 @@ _off000_B827_05:
 ; LAND WITH TEARS IN HER
 - D 1 - I - 0x00388A 00:B87A: 19        .byte $19, $22, $25, $00, $1B, $18, $25, $00, $27, $22, $00, $15, $18, $16, $22, $20   ; 
 - D 1 - I - 0x00389A 00:B88A: 18        .byte $18, $00, $1B, $28, $20, $14, $21   ; 
-- D 1 - I - 0x0038A1 00:B891: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0038A1 00:B891: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0038A2 00:B892: 14        .byte $14, $1A, $14, $1C, $21, $3C, $00, $14, $25, $1C, $18, $1F, $00, $26, $23, $18   ; 
 - D 1 - I - 0x0038B2 00:B8A2: 21        .byte $21, $27, $00, $18, $29, $18, $25, $2C   ; 
-- D 1 - I - 0x0038BA 00:B8AA: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0038BA 00:B8AA: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0038BB 00:B8AB: 17        .byte $17, $14, $2C, $00, $1F, $22, $22, $1E, $1C, $21, $1A, $00, $28, $23, $00, $14   ; 
 - D 1 - I - 0x0038CB 00:B8BB: 27        .byte $27, $00, $27, $1B, $18   ; 
-- D 1 - I - 0x0038D0 00:B8C0: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0038D0 00:B8C0: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0038D1 00:B8C1: 1F        .byte $1F, $14, $21, $17, $00, $2A, $1C, $27, $1B, $00, $27, $18, $14, $25, $26, $00   ; 
 - D 1 - I - 0x0038E1 00:B8D1: 1C        .byte $1C, $21, $00, $1B, $18, $25   ; 
-- D 1 - I - 0x0038E7 00:B8D7: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x0038E7 00:B8D7: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; EYES. KING TRITON SAW
 ; THAT HIS DAUGHTER WAS IN
@@ -11898,232 +11891,232 @@ _off000_B827_05:
 ; HER TO MAKE HER HUMAN
 - D 1 - I - 0x0038E8 00:B8D8: 18        .byte $18, $2C, $18, $26, $3C, $00, $1E, $1C, $21, $1A, $00, $27, $25, $1C, $27, $22   ; 
 - D 1 - I - 0x0038F8 00:B8E8: 21        .byte $21, $00, $26, $14, $2A   ; 
-- D 1 - I - 0x0038FD 00:B8ED: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0038FD 00:B8ED: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0038FE 00:B8EE: 27        .byte $27, $1B, $14, $27, $00, $1B, $1C, $26, $00, $17, $14, $28, $1A, $1B, $27, $18   ; 
 - D 1 - I - 0x00390E 00:B8FE: 25        .byte $25, $00, $2A, $14, $26, $00, $1C, $21   ; 
-- D 1 - I - 0x003916 00:B906: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003916 00:B906: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003917 00:B907: 1F        .byte $1F, $22, $29, $18, $00, $14, $21, $17, $00, $16, $14, $26, $27, $00, $14, $00   ; 
 - D 1 - I - 0x003927 00:B917: 26        .byte $26, $23, $18, $1F, $1F, $00, $22, $21   ; 
-- D 1 - I - 0x00392F 00:B91F: FD        .byte con_new_line   ; 
+- D 1 - I - 0x00392F 00:B91F: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003930 00:B920: 1B        .byte $1B, $18, $25, $00, $27, $22, $00, $20, $14, $1E, $18, $00, $1B, $18, $25, $00   ; 
 - D 1 - I - 0x003940 00:B930: 1B        .byte $1B, $28, $20, $14, $21   ; 
-- D 1 - I - 0x003945 00:B935: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003945 00:B935: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; ONCE AGAIN.
 - D 1 - I - 0x003946 00:B936: 22        .byte $22, $21, $16, $18, $00, $14, $1A, $14, $1C, $21, $3C   ; 
-- D 1 - I - 0x003951 00:B941: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003951 00:B941: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x003952 00:B942: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x003952 00:B942: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_B943_06:
+_off000_cutscene_text_B943_06:
 ; ARIEL RETURNED TO THE
 ; LAND AND WENT TO SEE
 ; ERIC. HE WAS VERY HAPPY
 ; WHEN HE SAW HER AND HE
 - D 1 - I - 0x003953 00:B943: 14        .byte $14, $25, $1C, $18, $1F, $00, $25, $18, $27, $28, $25, $21, $18, $17, $00, $27   ; 
 - D 1 - I - 0x003963 00:B953: 22        .byte $22, $00, $27, $1B, $18   ; 
-- D 1 - I - 0x003968 00:B958: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003968 00:B958: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003969 00:B959: 1F        .byte $1F, $14, $21, $17, $00, $14, $21, $17, $00, $2A, $18, $21, $27, $00, $27, $22   ; 
 - D 1 - I - 0x003979 00:B969: 00        .byte $00, $26, $18, $18   ; 
-- D 1 - I - 0x00397D 00:B96D: FD        .byte con_new_line   ; 
+- D 1 - I - 0x00397D 00:B96D: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x00397E 00:B96E: 18        .byte $18, $25, $1C, $16, $3C, $00, $1B, $18, $00, $2A, $14, $26, $00, $29, $18, $25   ; 
 - D 1 - I - 0x00398E 00:B97E: 2C        .byte $2C, $00, $1B, $14, $23, $23, $2C   ; 
-- D 1 - I - 0x003995 00:B985: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003995 00:B985: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003996 00:B986: 2A        .byte $2A, $1B, $18, $21, $00, $1B, $18, $00, $26, $14, $2A, $00, $1B, $18, $25, $00   ; 
 - D 1 - I - 0x0039A6 00:B996: 14        .byte $14, $21, $17, $00, $1B, $18   ; 
-- D 1 - I - 0x0039AC 00:B99C: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x0039AC 00:B99C: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; SWEPT HER INTO HIS ARMS.
 - D 1 - I - 0x0039AD 00:B99D: 26        .byte $26, $2A, $18, $23, $27, $00, $1B, $18, $25, $00, $1C, $21, $27, $22, $00, $1B   ; 
 - D 1 - I - 0x0039BD 00:B9AD: 1C        .byte $1C, $26, $00, $14, $25, $20, $26, $3C   ; 
-- D 1 - I - 0x0039C5 00:B9B5: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x0039C5 00:B9B5: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x0039C6 00:B9B6: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x0039C6 00:B9B6: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_B9B7_07:
+_off000_cutscene_text_B9B7_07:
 ; THEY GOT MARRIED AND
 ; LIVED HAPPILY EVER AFTER.
 - D 1 - I - 0x0039C7 00:B9B7: 27        .byte $27, $1B, $18, $2C, $00, $1A, $22, $27, $00, $20, $14, $25, $25, $1C, $18, $17   ; 
 - D 1 - I - 0x0039D7 00:B9C7: 00        .byte $00, $14, $21, $17   ; 
-- D 1 - I - 0x0039DB 00:B9CB: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0039DB 00:B9CB: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0039DC 00:B9CC: 1F        .byte $1F, $1C, $29, $18, $17, $00, $1B, $14, $23, $23, $1C, $1F, $2C, $00, $18, $29   ; 
 - D 1 - I - 0x0039EC 00:B9DC: 18        .byte $18, $25, $00, $14, $19, $27, $18, $25, $3C   ; 
-- D 1 - I - 0x0039F5 00:B9E5: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x0039F5 00:B9E5: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; 
 ; 
 ;         THE END.
 - D 1 - I - 0x0039F6 00:B9E6: 00        .byte $00   ; 
-- D 1 - I - 0x0039F7 00:B9E7: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0039F7 00:B9E7: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0039F8 00:B9E8: 00        .byte $00   ; 
-- D 1 - I - 0x0039F9 00:B9E9: FD        .byte con_new_line   ; 
+- D 1 - I - 0x0039F9 00:B9E9: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x0039FA 00:B9EA: 00        .byte $00, $00, $00, $00, $00, $00, $00, $00, $27, $1B, $18, $00, $18, $21, $17, $3C   ; 
-- D 1 - I - 0x003A0A 00:B9FA: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x003A0A 00:B9FA: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_B9FB_08:
+_off000_cutscene_text_B9FB_08:
 ; URSULA IS GOING TOWARD
 ; THE SUNKEN SHIP. WATCH
 ; OUT, ARIEL!
 - D 1 - I - 0x003A0B 00:B9FB: 28        .byte $28, $25, $26, $28, $1F, $14, $00, $1C, $26, $00, $1A, $22, $1C, $21, $1A, $00   ; 
 - D 1 - I - 0x003A1B 00:BA0B: 27        .byte $27, $22, $2A, $14, $25, $17   ; 
-- D 1 - I - 0x003A21 00:BA11: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003A21 00:BA11: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003A22 00:BA12: 27        .byte $27, $1B, $18, $00, $26, $28, $21, $1E, $18, $21, $00, $26, $1B, $1C, $23, $3C   ; 
 - D 1 - I - 0x003A32 00:BA22: 00        .byte $00, $2A, $14, $27, $16, $1B   ; 
-- D 1 - I - 0x003A38 00:BA28: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003A38 00:BA28: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003A39 00:BA29: 22        .byte $22, $28, $27, $3D, $00, $14, $25, $1C, $18, $1F, $3B   ; 
-- D 1 - I - 0x003A44 00:BA34: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003A44 00:BA34: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x003A45 00:BA35: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x003A45 00:BA35: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_BA36_09:
+_off000_cutscene_text_BA36_09:
 ; THAT FIENDISH URSULA
 ; FROZE THE SEA.
 ; BE CAREFUL. THE ICE IS
 ; VERY SLIPPERY.
 - D 1 - I - 0x003A46 00:BA36: 27        .byte $27, $1B, $14, $27, $00, $19, $1C, $18, $21, $17, $1C, $26, $1B, $00, $28, $25   ; 
 - D 1 - I - 0x003A56 00:BA46: 26        .byte $26, $28, $1F, $14   ; 
-- D 1 - I - 0x003A5A 00:BA4A: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003A5A 00:BA4A: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003A5B 00:BA4B: 19        .byte $19, $25, $22, $2D, $18, $00, $27, $1B, $18, $00, $26, $18, $14, $3C   ; 
-- D 1 - I - 0x003A69 00:BA59: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003A69 00:BA59: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003A6A 00:BA5A: 15        .byte $15, $18, $00, $16, $14, $25, $18, $19, $28, $1F, $3C, $00, $27, $1B, $18, $00   ; 
 - D 1 - I - 0x003A7A 00:BA6A: 1C        .byte $1C, $16, $18, $00, $1C, $26   ; 
-- D 1 - I - 0x003A80 00:BA70: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003A80 00:BA70: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003A81 00:BA71: 29        .byte $29, $18, $25, $2C, $00, $26, $1F, $1C, $23, $23, $18, $25, $2C, $3C   ; 
-- D 1 - I - 0x003A8F 00:BA7F: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003A8F 00:BA7F: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x003A90 00:BA80: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x003A90 00:BA80: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_BA81_0A:
+_off000_cutscene_text_BA81_0A:
 ; THERE IS SOMETHING
 ; STRANGE GOING ON AROUND
 ; THE SEA VOLCANOES.
 ; BE CAREFUL!
 - D 1 - I - 0x003A91 00:BA81: 27        .byte $27, $1B, $18, $25, $18, $00, $1C, $26, $00, $26, $22, $20, $18, $27, $1B, $1C   ; 
 - D 1 - I - 0x003AA1 00:BA91: 21        .byte $21, $1A   ; 
-- D 1 - I - 0x003AA3 00:BA93: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003AA3 00:BA93: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003AA4 00:BA94: 26        .byte $26, $27, $25, $14, $21, $1A, $18, $00, $1A, $22, $1C, $21, $1A, $00, $22, $21   ; 
 - D 1 - I - 0x003AB4 00:BAA4: 00        .byte $00, $14, $25, $22, $28, $21, $17   ; 
-- D 1 - I - 0x003ABB 00:BAAB: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003ABB 00:BAAB: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003ABC 00:BAAC: 27        .byte $27, $1B, $18, $00, $26, $18, $14, $00, $29, $22, $1F, $16, $14, $21, $22, $18   ; 
 - D 1 - I - 0x003ACC 00:BABC: 26        .byte $26, $3C   ; 
-- D 1 - I - 0x003ACE 00:BABE: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003ACE 00:BABE: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003ACF 00:BABF: 15        .byte $15, $18, $00, $16, $14, $25, $18, $19, $28, $1F, $3B   ; 
-- D 1 - I - 0x003ADA 00:BACA: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003ADA 00:BACA: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; SOMETHING BAD MAY BE
 ; WAITING FOR YOU.
 - D 1 - I - 0x003ADB 00:BACB: 26        .byte $26, $22, $20, $18, $27, $1B, $1C, $21, $1A, $00, $15, $14, $17, $00, $20, $14   ; 
 - D 1 - I - 0x003AEB 00:BADB: 2C        .byte $2C, $00, $15, $18   ; 
-- D 1 - I - 0x003AEF 00:BADF: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003AEF 00:BADF: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003AF0 00:BAE0: 2A        .byte $2A, $14, $1C, $27, $1C, $21, $1A, $00, $19, $22, $25, $00, $2C, $22, $28, $3C   ; 
-- D 1 - I - 0x003B00 00:BAF0: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003B00 00:BAF0: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x003B01 00:BAF1: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x003B01 00:BAF1: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_BAF2_0B:
+_off000_cutscene_text_BAF2_0B:
 ; URSULA`S CASTLE IS LIKE
 ; A MAGICAL MAZE. SOMETIMES
 ; YOU WILL WALK THROUGH A
 ; DOOR INTO A ROOM AND
 - D 1 - I - 0x003B02 00:BAF2: 28        .byte $28, $25, $26, $28, $1F, $14, $3E, $26, $00, $16, $14, $26, $27, $1F, $18, $00   ; 
 - D 1 - I - 0x003B12 00:BB02: 1C        .byte $1C, $26, $00, $1F, $1C, $1E, $18   ; 
-- D 1 - I - 0x003B19 00:BB09: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003B19 00:BB09: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003B1A 00:BB0A: 14        .byte $14, $00, $20, $14, $1A, $1C, $16, $14, $1F, $00, $20, $14, $2D, $18, $3C, $00   ; 
 - D 1 - I - 0x003B2A 00:BB1A: 26        .byte $26, $22, $20, $18, $27, $1C, $20, $18, $26   ; 
-- D 1 - I - 0x003B33 00:BB23: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003B33 00:BB23: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003B34 00:BB24: 2C        .byte $2C, $22, $28, $00, $2A, $1C, $1F, $1F, $00, $2A, $14, $1F, $1E, $00, $27, $1B   ; 
 - D 1 - I - 0x003B44 00:BB34: 25        .byte $25, $22, $28, $1A, $1B, $00, $14   ; 
-- D 1 - I - 0x003B4B 00:BB3B: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003B4B 00:BB3B: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003B4C 00:BB3C: 17        .byte $17, $22, $22, $25, $00, $1C, $21, $27, $22, $00, $14, $00, $25, $22, $22, $20   ; 
 - D 1 - I - 0x003B5C 00:BB4C: 00        .byte $00, $14, $21, $17   ; 
-- D 1 - I - 0x003B60 00:BB50: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003B60 00:BB50: FE        .byte con_ct_cb_wait_for_input   ; 
 
 ; WHEN YOU WALK BACK OUT
 ; THE SAME DOOR, YOU WILL
 ; BE IN A DIFFERENT PLACE.
 - D 1 - I - 0x003B61 00:BB51: 2A        .byte $2A, $1B, $18, $21, $00, $2C, $22, $28, $00, $2A, $14, $1F, $1E, $00, $15, $14   ; 
 - D 1 - I - 0x003B71 00:BB61: 16        .byte $16, $1E, $00, $22, $28, $27   ; 
-- D 1 - I - 0x003B77 00:BB67: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003B77 00:BB67: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003B78 00:BB68: 27        .byte $27, $1B, $18, $00, $26, $14, $20, $18, $00, $17, $22, $22, $25, $3D, $00, $2C   ; 
 - D 1 - I - 0x003B88 00:BB78: 22        .byte $22, $28, $00, $2A, $1C, $1F, $1F   ; 
-- D 1 - I - 0x003B8F 00:BB7F: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003B8F 00:BB7F: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003B90 00:BB80: 15        .byte $15, $18, $00, $1C, $21, $00, $14, $00, $17, $1C, $19, $19, $18, $25, $18, $21   ; 
 - D 1 - I - 0x003BA0 00:BB90: 27        .byte $27, $00, $23, $1F, $14, $16, $18, $3C   ; 
-- D 1 - I - 0x003BA8 00:BB98: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003BA8 00:BB98: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x003BA9 00:BB99: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x003BA9 00:BB99: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 
-_off000_BB9A_0C:
+_off000_cutscene_text_BB9A_0C:
 ; ARIEL, IT LOOKS LIKE
 ; URSULA IS BACK. BUT THIS
 ; TIME SHE IS GIGANTIC.
 - D 1 - I - 0x003BAA 00:BB9A: 14        .byte $14, $25, $1C, $18, $1F, $3D, $00, $1C, $27, $00, $1F, $22, $22, $1E, $26, $00   ; 
 - D 1 - I - 0x003BBA 00:BBAA: 1F        .byte $1F, $1C, $1E, $18   ; 
-- D 1 - I - 0x003BBE 00:BBAE: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003BBE 00:BBAE: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003BBF 00:BBAF: 28        .byte $28, $25, $26, $28, $1F, $14, $00, $1C, $26, $00, $15, $14, $16, $1E, $3C, $00   ; 
 - D 1 - I - 0x003BCF 00:BBBF: 15        .byte $15, $28, $27, $00, $27, $1B, $1C, $26   ; 
-- D 1 - I - 0x003BD7 00:BBC7: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003BD7 00:BBC7: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003BD8 00:BBC8: 27        .byte $27, $1C, $20, $18, $00, $26, $1B, $18, $00, $1C, $26, $00, $1A, $1C, $1A, $14   ; 
 - D 1 - I - 0x003BE8 00:BBD8: 21        .byte $21, $27, $1C, $16, $3C   ; 
-- D 1 - I - 0x003BED 00:BBDD: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003BED 00:BBDD: FE        .byte con_ct_cb_wait_for_input   ; 
 
 
 
-_off000_BBDE_0D:
+_off000_cutscene_text_BBDE_0D:
 ; WHAT SHOULD WE DO, ARIEL?
 ; URSULA HAS BECOME MUCH
 ; MORE POWERFUL.
 - D 1 - I - 0x003BEE 00:BBDE: 2A        .byte $2A, $1B, $14, $27, $00, $26, $1B, $22, $28, $1F, $17, $00, $2A, $18, $00, $17   ; 
 - D 1 - I - 0x003BFE 00:BBEE: 22        .byte $22, $3D, $00, $14, $25, $1C, $18, $1F, $3A   ; 
-- D 1 - I - 0x003C07 00:BBF7: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003C07 00:BBF7: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003C08 00:BBF8: 28        .byte $28, $25, $26, $28, $1F, $14, $00, $1B, $14, $26, $00, $15, $18, $16, $22, $20   ; 
 - D 1 - I - 0x003C18 00:BC08: 18        .byte $18, $00, $20, $28, $16, $1B   ; 
-- D 1 - I - 0x003C1E 00:BC0E: FD        .byte con_new_line   ; 
+- D 1 - I - 0x003C1E 00:BC0E: FD        .byte con_ct_cb_new_line   ; 
 
 - D 1 - I - 0x003C1F 00:BC0F: 20        .byte $20, $22, $25, $18, $00, $23, $22, $2A, $18, $25, $19, $28, $1F, $3C   ; 
-- D 1 - I - 0x003C2D 00:BC1D: FE        .byte con_wait_for_input   ; 
+- D 1 - I - 0x003C2D 00:BC1D: FE        .byte con_ct_cb_wait_for_input   ; 
 
-- D 1 - I - 0x003C2E 00:BC1E: FF        .byte con_end_of_cutscene   ; 
+- D 1 - I - 0x003C2E 00:BC1E: FF        .byte con_ct_cb_end_of_cutscene   ; 
 
 
 ; bzk garbage
