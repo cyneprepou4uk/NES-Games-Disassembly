@@ -9584,7 +9584,7 @@ C - - - - - 0x01365D 04:B64D: A5 50     LDA ram_stage_config
 C - - - - - 0x01365F 04:B64F: 30 51     BMI bra_B6A2_vertical_up
 ; if horisontal or vertical down
 bra_B651_loop:
-C - - - - - 0x013661 04:B651: A4 9F     LDY ram_009F
+C - - - - - 0x013661 04:B651: A4 9F     LDY ram_009F_data_index
 C - - - - - 0x013663 04:B653: F0 24     BEQ bra_B679
 C - - - - - 0x013665 04:B655: 88        DEY
 C - - - - - 0x013666 04:B656: B1 72     LDA (ram_0072_t01_data),Y
@@ -9605,7 +9605,7 @@ C - - - - - 0x01367E 04:B66E: C5 00     CMP ram_0000_t09_scroll_X
 C - - - - - 0x013680 04:B670: 90 07     BCC bra_B679
 bra_B672:
 C - - - - - 0x013682 04:B672: 20 55 B7  JSR sub_B755_spawn_object
-C - - - - - 0x013685 04:B675: C6 9F     DEC ram_009F
+C - - - - - 0x013685 04:B675: C6 9F     DEC ram_009F_data_index
 C - - - - - 0x013687 04:B677: D0 D8     BNE bra_B651_loop
 bra_B679:
 C - - - - - 0x013689 04:B679: A4 9E     LDY ram_009E_data_index
@@ -9636,7 +9636,7 @@ C - - - - - 0x0136AD 04:B69D: 84 9E     STY ram_009E_data_index
 C - - - - - 0x0136AF 04:B69F: 4C 54 B7  JMP loc_B754_RTS
 bra_B6A2_vertical_up:
 bra_B6A2_loop:
-C - - - - - 0x0136B2 04:B6A2: A4 9F     LDY ram_009F
+C - - - - - 0x0136B2 04:B6A2: A4 9F     LDY ram_009F_data_index
 C - - - - - 0x0136B4 04:B6A4: F0 18     BEQ bra_B6BE
 C - - - - - 0x0136B6 04:B6A6: 88        DEY
 C - - - - - 0x0136B7 04:B6A7: B1 72     LDA (ram_0072_t01_data),Y
@@ -9649,7 +9649,7 @@ C - - - - - 0x0136C3 04:B6B3: F0 02     BEQ bra_B6B7
 C - - - - - 0x0136C5 04:B6B5: B0 07     BCS bra_B6BE
 bra_B6B7:
 C - - - - - 0x0136C7 04:B6B7: 20 55 B7  JSR sub_B755_spawn_object
-C - - - - - 0x0136CA 04:B6BA: C6 9F     DEC ram_009F
+C - - - - - 0x0136CA 04:B6BA: C6 9F     DEC ram_009F_data_index
 C - - - - - 0x0136CC 04:B6BC: D0 E4     BNE bra_B6A2_loop
 bra_B6BE:
 C - - - - - 0x0136CE 04:B6BE: A4 9E     LDY ram_009E_data_index
@@ -9699,7 +9699,7 @@ C - - - - - 0x013709 04:B6F9: 20 55 B7  JSR sub_B755_spawn_object
 C - - - - - 0x01370C 04:B6FC: E6 9E     INC ram_009E_data_index
 C - - - - - 0x01370E 04:B6FE: D0 D7     BNE bra_B6D7_loop   ; jmp?
 bra_B700:
-C - - - - - 0x013710 04:B700: A4 9F     LDY ram_009F
+C - - - - - 0x013710 04:B700: A4 9F     LDY ram_009F_data_index
 bra_B702_loop:
 C - - - - - 0x013712 04:B702: A5 01     LDA ram_0001_t01_scroll_sum
 C - - - - - 0x013714 04:B704: D1 72     CMP (ram_0072_t01_data),Y
@@ -9721,7 +9721,7 @@ bra_B71E:
 C - - - - - 0x01372E 04:B71E: C8        INY
 C - - - - - 0x01372F 04:B71F: D0 E1     BNE bra_B702_loop
 bra_B721:
-C - - - - - 0x013731 04:B721: 84 9F     STY ram_009F
+C - - - - - 0x013731 04:B721: 84 9F     STY ram_009F_data_index
 C - - - - - 0x013733 04:B723: 60        RTS
 bra_B724_vertical_up:
 bra_B724_loop:
@@ -9739,7 +9739,7 @@ C - - - - - 0x013746 04:B736: 20 55 B7  JSR sub_B755_spawn_object
 C - - - - - 0x013749 04:B739: E6 9E     INC ram_009E_data_index
 C - - - - - 0x01374B 04:B73B: D0 E7     BNE bra_B724_loop   ; jmp?
 bra_B73D:
-C - - - - - 0x01374D 04:B73D: A4 9F     LDY ram_009F
+C - - - - - 0x01374D 04:B73D: A4 9F     LDY ram_009F_data_index
 bra_B73F_loop:
 C - - - - - 0x01374F 04:B73F: A5 01     LDA ram_0001_t01_scroll_sum
 C - - - - - 0x013751 04:B741: D1 72     CMP (ram_0072_t01_data),Y
@@ -9753,7 +9753,7 @@ bra_B74F:
 C - - - - - 0x01375F 04:B74F: C8        INY
 C - - - - - 0x013760 04:B750: D0 ED     BNE bra_B73F_loop
 bra_B752:
-C - - - - - 0x013762 04:B752: 84 9F     STY ram_009F
+C - - - - - 0x013762 04:B752: 84 9F     STY ram_009F_data_index
 bra_B754_RTS:
 loc_B754_RTS:
 C D 1 - - - 0x013764 04:B754: 60        RTS

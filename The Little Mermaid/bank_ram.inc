@@ -54,7 +54,7 @@ ram_0000_temp                           = $0000 ; 010153 013133 013621 013638 01
     ram_0000_t45_obj_index                  = ram_0000_temp ; 
     ram_0000_t46                            = ram_0000_temp ; 
     ram_0000_t47                            = ram_0000_temp ; 
-    ram_0000_t48                            = ram_0000_temp ; 
+    ram_0000_t48_direction                  = ram_0000_temp ; 
     ram_0000_t49_save_X                     = ram_0000_temp ; 
     ram_0000_t50                            = ram_0000_temp ; 
     ram_0000_t51                            = ram_0000_temp ; 
@@ -634,7 +634,7 @@ ram_0052                                = $0052 ; 01C961 01DCA2 01DCA6 01DD09 01
 
 
 ; 00 = 
-; 08 = 
+; not 00 = 
 ram_0053_flag                           = $0053 ; 01A630 01C71A 01C83E 01C8A2 01C8E6 01C96F 01DA2D 01F582 01FEF7 
 
 
@@ -975,16 +975,29 @@ ram_009E_data_index                     = $009E ; 013689 0136AD 0136CE 0136E4 01
 
 
 
-; todo
-ram_009F                                = $009F ; 013661 013685 0136B2 0136CA 013710 013731 01374D 013762 01C842 01E104 01E175 01E9F6 01FEF7 
-ram_00A0                                = $00A0 ; 01C53A 01FEF7 
-ram_00A1                                = $00A1 ; 01C548 01C551 01C56F 01FEF7 
+; 
+ram_009F_data_index                     = $009F ; 013661 013685 0136B2 0136CA 013710 013731 01374D 013762 01C842 01E104 01E175 01E9F6 01FEF7 
 
 
 
-; ($indirect),Y
-ram_00A2                                = $00A2 ; 01C53F 01FEF7 
-ram_00A3                                = $00A3 ; 01C544 01FEF7 
+; bzk optimize, useless address
+ram_00A0_useless                        = $00A0 ; 01C53A 01FEF7 
+
+
+
+; 
+ram_00A1_data_index                     = $00A1 ; 01C548 01C551 01C56F 01FEF7 
+
+
+
+; done
+ram_00A2_temp                           = $00A2 ; 01C53F 01FEF7 
+    ram_00A2_t01_chr_data                   = ram_00A2_temp ; 2 adresses 00A2-00A3
+
+
+
+; used only in pair with ram_00A2_temp
+; ram_00A3                              = $00A3 ; 01C544 01FEF7 
 
 
 
@@ -994,24 +1007,24 @@ ram_00A4_prg_bank                       = $00A4 ; 01C557 01C57B 01FEF7
 
 
 ; 
-ram_00A5                                = $00A5 ; 01C54A 01C54D 01C55C 01C58D 01FEF7 
+ram_00A5_counter                        = $00A5 ; 01C54A 01C54D 01C55C 01C58D 01FEF7 
 
 
 
-; todo
-; ($indirect),Y
-ram_00A6                                = $00A6 ; 01C561 01C59C 01C59E 01FEF7 
-ram_00A7                                = $00A7 ; 01C567 01C5A0 01C5A4 01FEF7 
+; done
+ram_00A6_temp                           = $00A6 ; 01C561 01C59C 01C59E 01FEF7 
+    ram_00A6_t01_chr_data                   = ram_00A6_temp ; 2 addresses 00A6-00A7
+
+
+
+; used only in pair with ram_00A6_temp
+; ram_00A7                              = $00A7 ; 01C567 01C5A0 01C5A4 01FEF7 
 
 
 
 ; 
-ram_00A8                                = $00A8 ; 01C563 01C576 01C5A8 01C5AA 01FEF7 
-
-
-
-; 
-ram_00A9                                = $00A9 ; 01C56C 01C571 01C5AC 01C5B0 01FEF7 
+ram_00A8_ppu_lo                         = $00A8 ; 01C563 01C576 01C5A8 01C5AA 01FEF7 
+ram_00A9_ppu_hi                         = $00A9 ; 01C56C 01C571 01C5AC 01C5B0 01FEF7 
 
 
 
@@ -1092,49 +1105,155 @@ ram_00C0                                = $00C0 ; 01407C 0140A9 0140BC 0140BE 01
 
 
 
-; todo
-; ($indirect)   ($indirect),Y
-ram_music_data                          = $00C1 ; 01401E 014029 01402D 014037 014045 01404A 01415F 014161 014199 01419F 0141A9 0141AF 0142CD 0142D6 01442F 014434 0145D4 0145DE 014794 014799 0147DF 0147E4 014815 014817 014855 014862 014866 01486E 014877 014890 014892 01489F 01FEF7 
-; ram_00C2                              = $00C2 ; 014018 01401C 014023 014027 01403A 014042 014052 014169 0141A1 0141B1 014539 01453D 0147E7 0147EA 0147ED 0147F0 0147F3 0147FD 014802 01480E 014810 01481F 014851 014879 01488B 01488D 014896 01FEF7 
+; sound engine address
+ram_00C1_se_temp                        = $00C1 ; 01401E 014029 01402D 014037 014045 01404A 01415F 014161 014199 01419F 0141A9 0141AF 0142CD 0142D6 01442F 014434 0145D4 0145DE 014794 014799 0147DF 0147E4 014815 014817 014855 014862 014866 01486E 014877 014890 014892 01489F 01FEF7 
+    ram_00C1_se_t01_data                    = ram_00C1_se_temp ; 2 addresses 00C1-00C2
+    ram_00C1_se_t02_data                    = ram_00C1_se_temp ; 2 addresses 00C1-00C2
+    ram_00C1_se_t03_jmp                     = ram_00C1_se_temp ; 2 addresses 00C1-00C2
+    
+    ram_00C1_se_t04_hi                      = ram_00C1_se_temp ; 
+    ram_00C1_se_t05                         = ram_00C1_se_temp ; 
+    ram_00C1_se_t06_hi                      = ram_00C1_se_temp ; 
+    ram_00C1_se_t07                         = ram_00C1_se_temp ; 
+    ram_00C1_se_t08_hi                      = ram_00C1_se_temp ; 
 
 
 
-; mostly a copy of the following byte after music data control byte
-ram_00C3                                = $00C3 ; 0141BE 014328 014387 014406 014410 014414 014457 014462 014469 014476 014482 0144B0 014508 01450F 01451A 014520 01454E 014568 014570 01458A 0145F4 0145F6 014601 014635 01463A 01463C 014641 014649 01466E 014677 01467F 014681 014697 01469B 01469E 0146A1 0146A9 0146B1 0146B7 0146C2 014779 0147A1 0147A5 0147AF 01FEF7 
+; sound engine address
+ram_00C2_se_temp                        = $00C2 ; 014018 01401C 014023 014027 01403A 014042 014052 014169 0141A1 0141B1 014539 01453D 0147E7 0147EA 0147ED 0147F0 0147F3 0147FD 014802 01480E 014810 01481F 014851 014879 01488B 01488D 014896 01FEF7 
+    ram_00C2_se_t01_lo                      = ram_00C2_se_temp ; 
+    ram_00C2_se_t02_lo                      = ram_00C2_se_temp ; 
+    ram_00C2_se_t03                         = ram_00C2_se_temp ; 
 
 
 
-; mostly a copy of music data control byte
-ram_00C4                                = $00C4 ; 014025 014104 014106 01413F 014157 01426E 014283 0142B6 0142BF 0142D1 01431C 01432A 014332 01442A 014495 01449A 0144AB 0144B2 014540 0145D9 0146CD 0146E6 0146FD 014720 014783 0147A9 0147B1 0147CE 01FEF7 
+; sound engine address
+ram_00C3_se_temp                        = $00C3 ; 0141BE 014328 014387 014406 014410 014414 014457 014462 014469 014476 014482 0144B0 014508 01450F 01451A 014520 01454E 014568 014570 01458A 0145F4 0145F6 014601 014635 01463A 01463C 014641 014649 01466E 014677 01467F 014681 014697 01469B 01469E 0146A1 0146A9 0146B1 0146B7 0146C2 014779 0147A1 0147A5 0147AF 01FEF7 
+    ram_00C3_se_t01_music_speed_hi          = ram_00C3_se_temp ; 
+    ram_00C3_se_t02                         = ram_00C3_se_temp ; 
+    ram_00C3_se_t03                         = ram_00C3_se_temp ; 
+    ram_00C3_se_t04                         = ram_00C3_se_temp ; 
+    ram_00C3_se_t05                         = ram_00C3_se_temp ; 
+    ram_00C3_se_t06_table_index             = ram_00C3_se_temp ; 
+    ram_00C3_se_t07_data_ptr_hi             = ram_00C3_se_temp ; 
+    ram_00C3_se_t08                         = ram_00C3_se_temp ; 
+    
+    ram_00C3_se_tFF_useless                 = ram_00C3_se_temp ; bzk optimize
 
 
 
-; todo
-; ($indirect),Y
-ram_00C5                                = $00C5 ; 0146A7 01FEF7 
-ram_00C6                                = $00C6 ; 0146AE 01FEF7 
+; sound engine address
+ram_00C4_se_temp                        = $00C4 ; 014025 014104 014106 01413F 014157 01426E 014283 0142B6 0142BF 0142D1 01431C 01432A 014332 01442A 014495 01449A 0144AB 0144B2 014540 0145D9 0146CD 0146E6 0146FD 014720 014783 0147A9 0147B1 0147CE 01FEF7 
+    ram_00C4_se_t01_offset                  = ram_00C4_se_temp ; 
+    ram_00C4_se_t02                         = ram_00C4_se_temp ; 
+    ram_00C4_se_t03                         = ram_00C4_se_temp ; 
+    ram_00C4_se_t04_lo                      = ram_00C4_se_temp ; 
+    ram_00C4_se_t05                         = ram_00C4_se_temp ; 
+    ram_00C4_se_t06                         = ram_00C4_se_temp ; 
+    ram_00C4_se_t07                         = ram_00C4_se_temp ; 
+    ram_00C4_se_t08                         = ram_00C4_se_temp ; 
+    ram_00C4_se_t09                         = ram_00C4_se_temp ; 
 
 
 
-; todo
-ram_00C7                                = $00C7 ; 014095 0143C3 0143D3 01FEF7 
-ram_00C8                                = $00C8 ; 01408D 01408F 014187 014503 01FEF7 
-ram_00C9                                = $00C9 ; 014091 014181 01450C 01FEF7 
-ram_00CA                                = $00CA ; 01408B 014185 01450A 01FEF7 
-ram_00CB                                = $00CB ; 014189 014485 014522 01FEF7 
-ram_00CC                                = $00CC ; 0140C0 01418B 01473D 01FEF7 
-ram_00CD                                = $00CD ; 01418D 01473B 01FEF7 
-ram_00CE                                = $00CE ; 014143 014147 0141DA 014273 01FEF7 
-ram_00CF                                = $00CF ; 014097 01409C 0140A0 0140A4 0140BA 0141E4 0141EA 0141F1 014201 014206 01421E 0142E1 0142E5 0142EB 014453 01459A 014734 01FEF7 
-ram_00D0                                = $00D0 ; 014081 014163 0141DC 0142A0 0142AE 0142B0 014396 01439A 01FEF7 
-ram_00D1                                = $00D1 ; 014083 01416B 0141DE 0142A2 014398 01439E 01FEF7 
-ram_00D2                                = $00D2 ; 01416E 014391 01FEF7 
-ram_00D3                                = $00D3 ; 014170 014262 014266 0142CB 0142FE 0145D2 01FEF7 
-ram_00D4                                = $00D4 ; 014172 0142BD 0142CF 01FEF7 
-ram_00D5                                = $00D5 ; 014174 014268 0142D9 014306 01FEF7 
-ram_00D6                                = $00D6 ; 01414B 014155 014159 01428D 014290 014295 014297 0142A9 014828 01FEF7 
-ram_00D7                                = $00D7 ; 0141E0 014275 01FEF7 
-ram_00D8                                = $00D8 ; 0141E2 01FEF7 
+; sound engine address
+ram_00C5_se_temp                        = $00C5 ; 0146A7 01FEF7 
+    ram_00C5_se_t01_data                    = ram_00C5_se_temp ; 2 addresses 00C5-00C6
+
+
+
+; used only in pair with ram_00C5_se_temp
+; ram_00C6                              = $00C6 ; 0146AE 01FEF7 
+
+
+
+; sound engine address
+ram_00C7_se_temp                        = $00C7 ; 014095 0143C3 0143D3 01FEF7 
+    ram_00C7_se_t01_music_speed_hi                      = ram_00C7_se_temp ; 
+
+
+
+; sound engine addresses
+; the higher, the faster music will play
+ram_music_speed_lo                      = $00C8 ; 01408D 01408F 014187 014503 01FEF7 
+ram_music_speed_hi                      = $00C9 ; 014091 014181 01450C 01FEF7 
+
+
+
+; sound engine address
+ram_00CA_music_speed_lo                 = $00CA ; 01408B 014185 01450A 01FEF7 
+
+
+
+; sound engine address
+ram_00CB_music_speed_hi                 = $00CB ; 014189 014485 014522 01FEF7 
+
+
+
+; sound engine address
+; 00 = 
+; 80 = 
+; bzk optimize, probably always 00
+ram_00CC_se_flag                        = $00CC ; 0140C0 01418B 01473D 01FEF7 
+
+
+
+; sound engine address
+ram_00CD_se_hi                          = $00CD ; 01418D 01473B 01FEF7 
+
+
+
+; sound engine address
+ram_00CE_se                             = $00CE ; 014143 014147 0141DA 014273 01FEF7 
+
+
+
+; sound engine address
+; flag for each channel?
+ram_00CF_se_flag                        = $00CF ; 014097 01409C 0140A0 0140A4 0140BA 0141E4 0141EA 0141F1 014201 014206 01421E 0142E1 0142E5 0142EB 014453 01459A 014734 01FEF7 
+
+
+
+; sound engine addresses
+ram_00D0_se_data_ptr_lo                 = $00D0 ; 014081 014163 0141DC 0142A0 0142AE 0142B0 014396 01439A 01FEF7 
+ram_00D1_se_data_ptr_hi                 = $00D1 ; 014083 01416B 0141DE 0142A2 014398 01439E 01FEF7 
+
+
+
+; sound engine address
+; bzk optimize, always 00?
+ram_00D2_se                             = $00D2 ; 01416E 014391 01FEF7 
+
+
+
+; sound engine address
+ram_00D3_se_hi                          = $00D3 ; 014170 014262 014266 0142CB 0142FE 0145D2 01FEF7 
+
+
+
+; sound engine address
+ram_00D4_se_offset                      = $00D4 ; 014172 0142BD 0142CF 01FEF7 
+
+
+
+; sound engine address
+ram_00D5_se                             = $00D5 ; 014174 014268 0142D9 014306 01FEF7 
+
+
+
+; sound engine address
+ram_00D6_se_hi                          = $00D6 ; 01414B 014155 014159 01428D 014290 014295 014297 0142A9 014828 01FEF7 
+
+
+
+; sound engine address
+ram_00D7_se                             = $00D7 ; 0141E0 014275 01FEF7 
+
+
+
+; sound engine address
+; bzk optimize, useless address
+ram_00D8_se_useless                     = $00D8 ; 0141E2 01FEF7 
 
 
 
@@ -1143,7 +1262,7 @@ ram_music_id                            = $00D9 ; 01A619 01FCAE 01FEF7
 
 
 
-; 
+; indexes for ram_sfx_queue
 ram_queue_index_1                       = $00DA ; 01FCB2 01FCC4 01FEF7 
 ram_queue_index_2                       = $00DB ; 01C0B2 01C0C3 01FEF7 
 
@@ -1203,7 +1322,8 @@ ram_rendering_flag                      = $00EE ; 01C016 01C114 01C11E 01C6F7 01
 
 
 ; 
-ram_00EF                                = $00EF ; 018016 018046 018048 01FEF7 
+ram_00EF_temp                           = $00EF ; 018016 018046 018048 01FEF7 
+    ram_00EF_t01_obj_index                  = ram_00EF_temp ; 
 
 
 
@@ -2997,6 +3117,8 @@ ram_06FF                                = $06FF ; 01FF09
 
 
 
+; todo
+; sound engine RAM
 ram_0700                                = $0700 ; 014178 0142EE 014683 014688 01FF0C 
 ram_0701                                = $0701 ; 014178 0142EE 014683 014688 01FF0C 
 ram_0702                                = $0702 ; 014178 0142EE 014683 014688 01FF0C 
@@ -3053,7 +3175,7 @@ ram_0734                                = $0734 ; 014191 014672 01467B 0147AB 01
 ram_0735                                = $0735 ; 014191 014672 01467B 01FF0C 
 ram_0736                                = $0736 ; 014191 014672 01467B 0146BD 0146C6 0147AB 0147B5 01FF0C 
 ram_0737                                = $0737 ; 014191 014672 01467B 0146BD 0146C6 0147AB 0147B5 01FF0C 
-ram_0738                                = $0738 ; 014191 0145E8 0146CA 01472D 014770 01FF0C 
+ram_0738_se_channel_speed               = $0738 ; 014191 0145E8 0146CA 01472D 014770 01FF0C 
 ram_0739                                = $0739 ; 014191 0145E8 0146CA 01472D 014762 01FF0C 
 ram_073A                                = $073A ; 014191 0145E8 0146CA 01472D 014770 01FF0C 
 ram_073B                                = $073B ; 014191 0145E8 0146CA 01472D 014770 01FF0C 
@@ -3061,7 +3183,7 @@ ram_073C                                = $073C ; 014191 01FF0C
 ram_073D                                = $073D ; 014191 014882 01FF0C 
 ram_073E                                = $073E ; 014191 0146B3 014882 01FF0C 
 ram_073F                                = $073F ; 014191 014882 01FF0C 
-ram_0740                                = $0740 ; 014191 01FF0C 
+ram_0740_se_channel_speed               = $0740 ; 014191 01FF0C 
 ram_0741                                = $0741 ; 014191 014445 01460C 01FF0C 
 ram_0742                                = $0742 ; 014191 014445 01460C 01FF0C 
 ram_0743                                = $0743 ; 014191 014445 01460C 01FF0C 

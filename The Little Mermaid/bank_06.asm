@@ -18,7 +18,7 @@ C - - - - - 0x018010 06:8000: A5 B1     LDA ram_hearts
 C - - - - - 0x018012 06:8002: F0 3A     BEQ bra_803E_RTS
 ; if not dead
 C - - - - - 0x018014 06:8004: A2 01     LDX #$01
-C - - - - - 0x018016 06:8006: 86 EF     STX ram_00EF    ; counter
+C - - - - - 0x018016 06:8006: 86 EF     STX ram_00EF_t01_obj_index
 bra_8008_loop:
 C - - - - - 0x018018 06:8008: A9 06     LDA #$06
 C - - - - - 0x01801A 06:800A: 85 99     STA ram_0099
@@ -43,8 +43,8 @@ C - - - - - 0x01803E 06:802E: 90 06     BCC bra_8036
 C - - - - - 0x018040 06:8030: 20 3F 80  JSR sub_803F
 C - - - - - 0x018043 06:8033: 20 FF 80  JSR sub_80FF
 bra_8036:
-C - - - - - 0x018046 06:8036: E6 EF     INC ram_00EF    ; counter
-C - - - - - 0x018048 06:8038: A6 EF     LDX ram_00EF    ; counter
+C - - - - - 0x018046 06:8036: E6 EF     INC ram_00EF_t01_obj_index
+C - - - - - 0x018048 06:8038: A6 EF     LDX ram_00EF_t01_obj_index
 C - - - - - 0x01804A 06:803A: E0 10     CPX #$10
 C - - - - - 0x01804C 06:803C: D0 CA     BNE bra_8008_loop
 bra_803E_RTS:
@@ -4052,6 +4052,7 @@ C - - - - - 0x019A5A 06:9A4A: 79 33 9A  ADC tbl_9A67 - $34,Y
 C - - - - - 0x019A5D 06:9A4D: 85 B1     STA ram_hearts
 C - - - - - 0x019A5F 06:9A4F: C9 05     CMP #$05
 C - - - - - 0x019A61 06:9A51: 90 04     BCC bra_9A57_not_overflow
+; if overflow
 C - - - - - 0x019A63 06:9A53: A9 05     LDA #$05
 C - - - - - 0x019A65 06:9A55: 85 B1     STA ram_hearts
 bra_9A57_not_overflow:
