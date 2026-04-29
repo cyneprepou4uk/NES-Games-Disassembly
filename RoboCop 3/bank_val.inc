@@ -43,6 +43,13 @@ con_btns2_Dpad                          = con_btn2_Right + con_btn2_Left + con_b
 
 
 
+; ram_0017_flags
+con_0017_00                             = $00 ; 
+con_0017_01                             = $01 ; 
+con_0017_02                             = $02 ; 
+
+
+
 ; for 0x01785C
 ; control bytes while printing text
 con_B84C_condition                      = $F9 ; accept/reallocate repairs

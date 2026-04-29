@@ -156,13 +156,13 @@ bra_80FA_00:
 loc_80FA:
 C D 0 - - - 0x01810A 06:80FA: BC 19 14  LDY ram_0419 + $1000,X
 C - - - - - 0x01810D 06:80FD: B9 F8 85  LDA tbl_85F8_lo,Y
-C - - - - - 0x018110 06:8100: 85 FE     STA ram_00FE
+C - - - - - 0x018110 06:8100: 85 FE     STA ram_00FE_temp
 C - - - - - 0x018112 06:8102: B9 3C 86  LDA tbl_863C_hi,Y
 C - - - - - 0x018115 06:8105: 85 FF     STA ram_00FF
 C - - - - - 0x018117 06:8107: A9 00     LDA #$00
 C - - - - - 0x018119 06:8109: 9D 7D 14  STA ram_047D + $1000,X
 C - - - - - 0x01811C 06:810C: BC 05 14  LDY ram_0405 + $1000,X
-C - - - - - 0x01811F 06:810F: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x01811F 06:810F: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x018121 06:8111: C9 FF     CMP #$FF
 C - - - - - 0x018123 06:8113: F0 03     BEQ bra_8118_FF
 C - - - - - 0x018125 06:8115: 4C 9D 81  JMP loc_819D
@@ -172,24 +172,24 @@ C - - - - - 0x01812B 06:811B: F0 0B     BEQ bra_8128_00
 C - - - - - 0x01812D 06:811D: A9 00     LDA #$00
 C - - - - - 0x01812F 06:811F: 9D 05 14  STA ram_0405 + $1000,X
 C - - - - - 0x018132 06:8122: A8        TAY
-C - - - - - 0x018133 06:8123: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x018133 06:8123: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x018135 06:8125: 4C 9D 81  JMP loc_819D
 bra_8128_00:
 C - - - - - 0x018138 06:8128: BC 0F 14  LDY ram_040F + $1000,X
 C - - - - - 0x01813B 06:812B: B9 08 85  LDA tbl_8508,Y
-C - - - - - 0x01813E 06:812E: 85 FE     STA ram_00FE
+C - - - - - 0x01813E 06:812E: 85 FE     STA ram_00FE_temp
 C - - - - - 0x018140 06:8130: B9 09 85  LDA tbl_8508 + $01,Y
 C - - - - - 0x018143 06:8133: 85 FF     STA ram_00FF
 C - - - - - 0x018145 06:8135: BC 0A 14  LDY ram_040A + $1000,X
-C - - - - - 0x018148 06:8138: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x018148 06:8138: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x01814A 06:813A: C9 FF     CMP #$FF
 C - - - - - 0x01814C 06:813C: D0 0C     BNE bra_814A
 ; FF
 C - - - - - 0x01814E 06:813E: C8        INY
-C - - - - - 0x01814F 06:813F: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x01814F 06:813F: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x018151 06:8141: 9D 0A 14  STA ram_040A + $1000,X
 C - - - - - 0x018154 06:8144: A8        TAY
-C - - - - - 0x018155 06:8145: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x018155 06:8145: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x018157 06:8147: 4C 58 81  JMP loc_8158
 bra_814A:
 C - - - - - 0x01815A 06:814A: C9 FE     CMP #$FE
@@ -210,7 +210,7 @@ C - - - - - 0x01816A 06:815A: 90 0A     BCC bra_8166_00_7F
 C - - - - - 0x01816C 06:815C: 29 7F     AND #$7F
 C - - - - - 0x01816E 06:815E: 9D 55 14  STA ram_0455 + $1000,X
 C - - - - - 0x018171 06:8161: C8        INY
-C - - - - - 0x018172 06:8162: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x018172 06:8162: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x018174 06:8164: 30 28     BMI bra_818E
 bra_8166_00_7F:
 C - - - - - 0x018176 06:8166: C9 70     CMP #$70
@@ -219,7 +219,7 @@ C - - - - - 0x018178 06:8168: 90 08     BCC bra_8172_00_6F
 C - - - - - 0x01817A 06:816A: 29 0F     AND #$0F
 C - - - - - 0x01817C 06:816C: 9D 5A 14  STA ram_045A + $1000,X
 C - - - - - 0x01817F 06:816F: C8        INY
-C - - - - - 0x018180 06:8170: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x018180 06:8170: B1 FE     LDA (ram_00FE_temp),Y
 bra_8172_00_6F:
 C - - - - - 0x018182 06:8172: C9 60     CMP #$60
 C - - - - - 0x018184 06:8174: 90 08     BCC bra_817E_00_5F
@@ -227,7 +227,7 @@ C - - - - - 0x018184 06:8174: 90 08     BCC bra_817E_00_5F
 C - - - - - 0x018186 06:8176: 29 0F     AND #$0F
 C - - - - - 0x018188 06:8178: 9D 14 14  STA ram_0414 + $1000,X
 C - - - - - 0x01818B 06:817B: C8        INY
-C - - - - - 0x01818C 06:817C: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x01818C 06:817C: B1 FE     LDA (ram_00FE_temp),Y
 bra_817E_00_5F:
 C - - - - - 0x01818E 06:817E: C9 50     CMP #$50
 C - - - - - 0x018190 06:8180: 90 08     BCC bra_818A_00_4F
@@ -235,7 +235,7 @@ C - - - - - 0x018190 06:8180: 90 08     BCC bra_818A_00_4F
 C - - - - - 0x018192 06:8182: 29 0F     AND #$0F
 C - - - - - 0x018194 06:8184: 9D 5F 14  STA ram_045F + $1000,X
 C - - - - - 0x018197 06:8187: C8        INY
-C - - - - - 0x018198 06:8188: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x018198 06:8188: B1 FE     LDA (ram_00FE_temp),Y
 bra_818A_00_4F:
 C - - - - - 0x01819A 06:818A: 9D 19 14  STA ram_0419 + $1000,X
 C - - - - - 0x01819D 06:818D: C8        INY
@@ -255,15 +255,15 @@ C D 0 - - - 0x0181AD 06:819D: C9 FD     CMP #$FD
 C - - - - - 0x0181AF 06:819F: D0 1E     BNE bra_81BF
 ; FD
 C - - - - - 0x0181B1 06:81A1: C8        INY
-C - - - - - 0x0181B2 06:81A2: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x0181B2 06:81A2: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x0181B4 06:81A4: 9D 7D 14  STA ram_047D + $1000,X
 C - - - - - 0x0181B7 06:81A7: C8        INY
-C - - - - - 0x0181B8 06:81A8: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x0181B8 06:81A8: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x0181BA 06:81AA: 18        CLC
 C - - - - - 0x0181BB 06:81AB: 7D 55 14  ADC ram_0455 + $1000,X
 C - - - - - 0x0181BE 06:81AE: 9D 46 14  STA ram_0446 + $1000,X
 C - - - - - 0x0181C1 06:81B1: C8        INY
-C - - - - - 0x0181C2 06:81B2: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x0181C2 06:81B2: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x0181C4 06:81B4: 18        CLC
 C - - - - - 0x0181C5 06:81B5: 7D 55 14  ADC ram_0455 + $1000,X
 C - - - - - 0x0181C8 06:81B8: 9D 8C 14  STA ram_048C + $1000,X
@@ -293,7 +293,7 @@ C - - - - - 0x0181F2 06:81E2: 0A        ASL
 C - - - - - 0x0181F3 06:81E3: 0A        ASL
 C - - - - - 0x0181F4 06:81E4: 9D 32 14  STA ram_0432 + $1000,X
 C - - - - - 0x0181F7 06:81E7: C8        INY
-C - - - - - 0x0181F8 06:81E8: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x0181F8 06:81E8: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x0181FA 06:81EA: C9 FD     CMP #$FD
 C - - - - - 0x0181FC 06:81EC: F0 AF     BEQ bra_819D_FD
 C - - - - - 0x0181FE 06:81EE: C9 C0     CMP #$C0
@@ -305,7 +305,7 @@ C - - - - - 0x018204 06:81F4: 90 10     BCC bra_8206_00_7F
 C - - - - - 0x018206 06:81F6: 29 7F     AND #$7F
 C - - - - - 0x018208 06:81F8: 9D 3C 14  STA ram_043C + $1000,X
 C - - - - - 0x01820B 06:81FB: C8        INY
-C - - - - - 0x01820C 06:81FC: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x01820C 06:81FC: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x01820E 06:81FE: C9 FD     CMP #$FD
 C - - - - - 0x018210 06:8200: F0 9B     BEQ bra_819D_FD
 C - - - - - 0x018212 06:8202: C9 80     CMP #$80
@@ -319,7 +319,7 @@ C - - - - - 0x01821C 06:820C: 18        CLC
 C - - - - - 0x01821D 06:820D: 7D 5F 14  ADC ram_045F + $1000,X
 C - - - - - 0x018220 06:8210: 9D 69 14  STA ram_0469 + $1000,X
 C - - - - - 0x018223 06:8213: C8        INY
-C - - - - - 0x018224 06:8214: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x018224 06:8214: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x018226 06:8216: C9 60     CMP #$60
 C - - - - - 0x018228 06:8218: B0 08     BCS bra_8222_60_7F
 bra_821A_00_5F:
@@ -432,11 +432,11 @@ C D 0 - - - 0x0182F0 06:82E0: BD B4 14  LDA ram_04B4 + $1000,X
 C - - - - - 0x0182F3 06:82E3: 29 7F     AND #$7F
 C - - - - - 0x0182F5 06:82E5: A8        TAY
 C - - - - - 0x0182F6 06:82E6: B9 80 86  LDA tbl_8680_lo,Y
-C - - - - - 0x0182F9 06:82E9: 85 FE     STA ram_00FE
+C - - - - - 0x0182F9 06:82E9: 85 FE     STA ram_00FE_temp
 C - - - - - 0x0182FB 06:82EB: B9 98 86  LDA tbl_8698_hi,Y
 C - - - - - 0x0182FE 06:82EE: 85 FF     STA ram_00FF
 C - - - - - 0x018300 06:82F0: BC A5 14  LDY ram_04A5 + $1000,X
-C - - - - - 0x018303 06:82F3: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x018303 06:82F3: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x018305 06:82F5: C9 FE     CMP #$FE
 C - - - - - 0x018307 06:82F7: F0 06     BEQ bra_82FF_FE
 C - - - - - 0x018309 06:82F9: 9D A0 14  STA ram_04A0 + $1000,X
@@ -495,26 +495,26 @@ C - - - - - 0x01837A 06:836A: BD AA 14  LDA ram_04AA + $1000,X
 C - - - - - 0x01837D 06:836D: 29 0F     AND #$0F
 C - - - - - 0x01837F 06:836F: A8        TAY
 C - - - - - 0x018380 06:8370: B9 AF 86  LDA tbl_86B0_lo - $01,Y
-C - - - - - 0x018383 06:8373: 85 FE     STA ram_00FE
+C - - - - - 0x018383 06:8373: 85 FE     STA ram_00FE_temp
 C - - - - - 0x018385 06:8375: B9 B3 86  LDA tbl_86B4_hi - $01,Y
 C - - - - - 0x018388 06:8378: 85 FF     STA ram_00FF
 C - - - - - 0x01838A 06:837A: BC 96 14  LDY ram_0496 + $1000,X
-C - - - - - 0x01838D 06:837D: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x01838D 06:837D: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x01838F 06:837F: C9 80     CMP #$80
 C - - - - - 0x018391 06:8381: D0 02     BNE bra_8385
 ; 80
 C - - - - - 0x018393 06:8383: A0 00     LDY #$00
 bra_8385:
-C - - - - - 0x018395 06:8385: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x018395 06:8385: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x018397 06:8387: 10 18     BPL bra_83A1_00_7F
 ; 80-FF
 C - - - - - 0x018399 06:8389: 49 FF     EOR #$FF
 C - - - - - 0x01839B 06:838B: 18        CLC
 C - - - - - 0x01839C 06:838C: 69 01     ADC #$01
-C - - - - - 0x01839E 06:838E: 85 FE     STA ram_00FE
+C - - - - - 0x01839E 06:838E: 85 FE     STA ram_00FE_temp
 C - - - - - 0x0183A0 06:8390: BD 4B 14  LDA ram_044B + $1000,X
 C - - - - - 0x0183A3 06:8393: 38        SEC
-C - - - - - 0x0183A4 06:8394: E5 FE     SBC ram_00FE
+C - - - - - 0x0183A4 06:8394: E5 FE     SBC ram_00FE_temp
 C - - - - - 0x0183A6 06:8396: 9D 4B 14  STA ram_044B + $1000,X
 C - - - - - 0x0183A9 06:8399: B0 03     BCS bra_839E
 C - - - - - 0x0183AB 06:839B: DE 50 14  DEC ram_0450 + $1000,X
@@ -523,7 +523,7 @@ C - - - - - 0x0183AE 06:839E: 4C AF 83  JMP loc_83AF
 bra_83A1_00_7F:
 C - - - - - 0x0183B1 06:83A1: BD 4B 14  LDA ram_044B + $1000,X
 C - - - - - 0x0183B4 06:83A4: 18        CLC
-C - - - - - 0x0183B5 06:83A5: 71 FE     ADC (ram_00FE),Y
+C - - - - - 0x0183B5 06:83A5: 71 FE     ADC (ram_00FE_temp),Y
 C - - - - - 0x0183B7 06:83A7: 9D 4B 14  STA ram_044B + $1000,X
 C - - - - - 0x0183BA 06:83AA: 90 03     BCC bra_83AF
 C - - - - - 0x0183BC 06:83AC: FE 50 14  INC ram_0450 + $1000,X
@@ -541,17 +541,17 @@ C - - - - - 0x0183CB 06:83BB: 29 0F     AND #$0F
 C - - - - - 0x0183CD 06:83BD: F0 26     BEQ bra_83E5
 C - - - - - 0x0183CF 06:83BF: A8        TAY
 C - - - - - 0x0183D0 06:83C0: B9 B7 86  LDA tbl_86B8_lo - $01,Y
-C - - - - - 0x0183D3 06:83C3: 85 FE     STA ram_00FE
+C - - - - - 0x0183D3 06:83C3: 85 FE     STA ram_00FE_temp
 C - - - - - 0x0183D5 06:83C5: B9 BD 86  LDA tbl_86BE_hi - $01,Y
 C - - - - - 0x0183D8 06:83C8: 85 FF     STA ram_00FF
 C - - - - - 0x0183DA 06:83CA: BC C3 14  LDY ram_04C3 + $1000,X
-C - - - - - 0x0183DD 06:83CD: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x0183DD 06:83CD: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x0183DF 06:83CF: C9 FF     CMP #$FF
 C - - - - - 0x0183E1 06:83D1: D0 06     BNE bra_83D9
 C - - - - - 0x0183E3 06:83D3: C8        INY
-C - - - - - 0x0183E4 06:83D4: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x0183E4 06:83D4: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x0183E6 06:83D6: A8        TAY
-C - - - - - 0x0183E7 06:83D7: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x0183E7 06:83D7: B1 FE     LDA (ram_00FE_temp),Y
 bra_83D9:
 C - - - - - 0x0183E9 06:83D9: C9 FE     CMP #$FE
 C - - - - - 0x0183EB 06:83DB: F0 08     BEQ bra_83E5_FE
@@ -566,12 +566,12 @@ C - - - - - 0x0183F8 06:83E8: 29 40     AND #$40
 C - - - - - 0x0183FA 06:83EA: F0 71     BEQ bra_845D_RTS
 C - - - - - 0x0183FC 06:83EC: BC 69 14  LDY ram_0469 + $1000,X
 C - - - - - 0x0183FF 06:83EF: B9 C4 86  LDA tbl_86C4_lo,Y
-C - - - - - 0x018402 06:83F2: 85 FE     STA ram_00FE
+C - - - - - 0x018402 06:83F2: 85 FE     STA ram_00FE_temp
 C - - - - - 0x018404 06:83F4: B9 E6 86  LDA tbl_86E6_hi,Y
 C - - - - - 0x018407 06:83F7: 85 FF     STA ram_00FF
 C - - - - - 0x018409 06:83F9: BC 64 14  LDY ram_0464 + $1000,X
 C - - - - - 0x01840C 06:83FC: D0 09     BNE bra_8407
-C - - - - - 0x01840E 06:83FE: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x01840E 06:83FE: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x018410 06:8400: 9D 6E 14  STA ram_046E + $1000,X
 C - - - - - 0x018413 06:8403: C8        INY
 C - - - - - 0x018414 06:8404: 4C 1C 84  JMP loc_841C
@@ -582,20 +582,20 @@ C - - - - - 0x01841B 06:840B: E9 10     SBC #$10
 C - - - - - 0x01841D 06:840D: 9D 6E 14  STA ram_046E + $1000,X
 C - - - - - 0x018420 06:8410: 10 31     BPL bra_8443
 C - - - - - 0x018422 06:8412: A0 00     LDY #$00
-C - - - - - 0x018424 06:8414: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x018424 06:8414: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x018426 06:8416: 9D 6E 14  STA ram_046E + $1000,X
 C - - - - - 0x018429 06:8419: BC 64 14  LDY ram_0464 + $1000,X
 loc_841C:
-C D 0 - - - 0x01842C 06:841C: B1 FE     LDA (ram_00FE),Y
+C D 0 - - - 0x01842C 06:841C: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x01842E 06:841E: C9 FF     CMP #$FF
 C - - - - - 0x018430 06:8420: D0 0A     BNE bra_842C
 ; FF
 C - - - - - 0x018432 06:8422: A0 00     LDY #$00
-C - - - - - 0x018434 06:8424: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x018434 06:8424: B1 FE     LDA (ram_00FE_temp),Y
 C - - - - - 0x018436 06:8426: 29 0F     AND #$0F
 C - - - - - 0x018438 06:8428: A8        TAY
 C - - - - - 0x018439 06:8429: C8        INY
-C - - - - - 0x01843A 06:842A: B1 FE     LDA (ram_00FE),Y
+C - - - - - 0x01843A 06:842A: B1 FE     LDA (ram_00FE_temp),Y
 bra_842C:
 C - - - - - 0x01843C 06:842C: C9 FE     CMP #$FE
 C - - - - - 0x01843E 06:842E: F0 2D     BEQ bra_845D_RTS
