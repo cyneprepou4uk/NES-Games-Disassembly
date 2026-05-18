@@ -3,6 +3,7 @@
 ; MISC
 con_prg_bank                            = $00 ; 
 con_se_cb_88                            = $88 ; sound engine special control byte (not included in other con_se_cb)
+con_index_se_28                         = $28 ; offset for sfx addresses?
 
 
 
