@@ -5851,7 +5851,7 @@ C - - - - - 0x005C78 01:BC68: 4C D8 95  JMP loc_0x0095E8_play_music
 
 sub_BC6B:
 C - - - - - 0x005C7B 01:BC6B: BD 68 06  LDA ram_obj_pos_Y,X
-C - - - - - 0x005C7E 01:BC6E: 85 91     STA ram_0091_pos_Y
+C - - - - - 0x005C7E 01:BC6E: 85 91     STA ram_0091_t03
 C - - - - - 0x005C80 01:BC70: BC D2 07  LDY ram_07D2_unk,X
 C - - - - - 0x005C83 01:BC73: B9 F0 BC  LDA tbl_BCF1 - $01,Y
 C - - - - - 0x005C86 01:BC76: 9D 68 06  STA ram_obj_pos_Y,X
@@ -5860,7 +5860,7 @@ C - - - - - 0x005C8B 01:BC7B: 9D A0 07  STA ram_07A0_unk,X
 C - - - - - 0x005C8E 01:BC7E: 20 94 84  JSR sub_0x0084A4
 C - - - - - 0x005C91 01:BC81: A9 00     LDA #$00
 C - - - - - 0x005C93 01:BC83: 99 20 07  STA ram_0720_obj,Y
-C - - - - - 0x005C96 01:BC86: A5 91     LDA ram_0091_pos_Y
+C - - - - - 0x005C96 01:BC86: A5 91     LDA ram_0091_t03
 C - - - - - 0x005C98 01:BC88: 9D 68 06  STA ram_obj_pos_Y,X
 bra_BC8B:
 ; bzk optimize, useless CLC

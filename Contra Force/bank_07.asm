@@ -1355,9 +1355,9 @@ C - - - - - 0x00E6E9 03:A6D9: 38        SEC
 C - - - - - 0x00E6EA 03:A6DA: 60        RTS
 bra_A6DB:
 C - - - - - 0x00E6EB 03:A6DB: B9 4E 06  LDA ram_obj_pos_X,Y
-C - - - - - 0x00E6EE 03:A6DE: 85 90     STA ram_0090_pos_X
+C - - - - - 0x00E6EE 03:A6DE: 85 90     STA ram_0090_t01_pos_X
 C - - - - - 0x00E6F0 03:A6E0: B9 68 06  LDA ram_obj_pos_Y,Y
-C - - - - - 0x00E6F3 03:A6E3: 85 91     STA ram_0091_pos_Y
+C - - - - - 0x00E6F3 03:A6E3: 85 91     STA ram_0091_t01_pos_Y
 C - - - - - 0x00E6F5 03:A6E5: 20 F5 91  JSR sub_0x009205
 bra_A6E8:
 C - - - - - 0x00E6F8 03:A6E8: 38        SEC
@@ -1462,7 +1462,7 @@ C - - - - - 0x00E758 03:A748: B0 54     BCS bra_A79E
 C - - - - - 0x00E75A 03:A74A: A9 02     LDA #$02
 C - - - - - 0x00E75C 03:A74C: 20 72 93  JSR sub_0x009382
 C - - - - - 0x00E75F 03:A74F: B0 4D     BCS bra_A79E
-C - - - - - 0x00E761 03:A751: 84 91     STY ram_0091_pos_Y
+C - - - - - 0x00E761 03:A751: 84 91     STY ram_0091_t09
 C - - - - - 0x00E763 03:A753: BD AA 07  LDA ram_07AA_unk,X
 C - - - - - 0x00E766 03:A756: 0A        ASL
 C - - - - - 0x00E767 03:A757: A8        TAY
@@ -1474,7 +1474,7 @@ C - - - - - 0x00E771 03:A761: B9 AF A7  LDA tbl_A7AE + $01,Y
 C - - - - - 0x00E774 03:A764: 38        SEC
 C - - - - - 0x00E775 03:A765: E5 64     SBC ram_0064_lo
 C - - - - - 0x00E777 03:A767: 9D 68 06  STA ram_obj_pos_Y,X
-C - - - - - 0x00E77A 03:A76A: A4 91     LDY ram_0091_pos_Y
+C - - - - - 0x00E77A 03:A76A: A4 91     LDY ram_0091_t09
 C - - - - - 0x00E77C 03:A76C: A9 92     LDA #$92
 C - - - - - 0x00E77E 03:A76E: 20 D8 93  JSR sub_0x0093E8
 C - - - - - 0x00E781 03:A771: 98        TYA
@@ -2726,7 +2726,7 @@ C - - - - - 0x00EEB5 03:AEA5: A9 0A     LDA #$0A
 C - - - - - 0x00EEB7 03:AEA7: 8D A1 05  STA ram_059E_se + $03
 bra_AEAA:
 C - - - - - 0x00EEBA 03:AEAA: A9 FF     LDA #$FF
-C - - - - - 0x00EEBC 03:AEAC: 85 D3     STA ram_00D3
+C - - - - - 0x00EEBC 03:AEAC: 85 D3     STA ram_00D3_hi
 bra_AEAE_CLC_RTS:
 C - - - - - 0x00EEBE 03:AEAE: 18        CLC
 C - - - - - 0x00EEBF 03:AEAF: 60        RTS
@@ -2797,17 +2797,17 @@ C - - - - - 0x00EEF6 03:AEE6: B0 C6     BCS bra_AEAE_CLC_RTS
 C - - - - - 0x00EEF8 03:AEE8: A4 75     LDY ram_stage
 C - - - - - 0x00EEFA 03:AEEA: B9 29 AF  LDA tbl_AF29,Y
 C - - - - - 0x00EEFD 03:AEED: A8        TAY
-C - - - - - 0x00EEFE 03:AEEE: 84 91     STY ram_0091_pos_Y
+C - - - - - 0x00EEFE 03:AEEE: 84 91     STY ram_0091_t10
 C - - - - - 0x00EF00 03:AEF0: A9 00     LDA #$00
 C - - - - - 0x00EF02 03:AEF2: 20 BC 8F  JSR sub_0x008FCC
 C - - - - - 0x00EF05 03:AEF5: 90 24     BCC bra_AF1B
 C - - - - - 0x00EF07 03:AEF7: A5 75     LDA ram_stage
 C - - - - - 0x00EF09 03:AEF9: F0 12     BEQ bra_AF0D
-C - - - - - 0x00EF0B 03:AEFB: A4 91     LDY ram_0091_pos_Y
+C - - - - - 0x00EF0B 03:AEFB: A4 91     LDY ram_0091_t10
 C - - - - - 0x00EF0D 03:AEFD: A9 08     LDA #$08
 C - - - - - 0x00EF0F 03:AEFF: 20 BC 8F  JSR sub_0x008FCC
 C - - - - - 0x00EF12 03:AF02: 90 17     BCC bra_AF1B
-C - - - - - 0x00EF14 03:AF04: A4 91     LDY ram_0091_pos_Y
+C - - - - - 0x00EF14 03:AF04: A4 91     LDY ram_0091_t10
 C - - - - - 0x00EF16 03:AF06: A9 F8     LDA #$F8
 C - - - - - 0x00EF18 03:AF08: 20 BC 8F  JSR sub_0x008FCC
 C - - - - - 0x00EF1B 03:AF0B: 90 0E     BCC bra_AF1B

@@ -122,7 +122,7 @@ ram_0000_temp                           = $0000 ; 003398 0033AD 003438 003487 00
     ram_0000_t72_lo                         = ram_0000_temp ; 
     ram_0000_t73_ppu_lo                     = ram_0000_temp ; 
     ram_0000_t74_table_index                = ram_0000_temp ; 
-    ram_0000_t75                            = ram_0000_temp ; 
+    ram_0000_t75_pos_Y                      = ram_0000_temp ; 
     ram_0000_t76                            = ram_0000_temp ; 
     ram_0000_t77                            = ram_0000_temp ; 
     ram_0000_t78                            = ram_0000_temp ; 
@@ -785,7 +785,7 @@ ram_0018_temp                           = $0018 ; 0033F7 003401 00340B 00340D 00
     ram_0018_t09_object_index               = ram_0018_temp ; 
     ram_0018_t10                            = ram_0018_temp ; 
     ram_0018_t11                            = ram_0018_temp ; 
-    ram_0018_t12                            = ram_0018_temp ; 
+    ram_0018_t12_lo                         = ram_0018_temp ; 
     ram_0018_t13                            = ram_0018_temp ; 
     ram_0018_t14                            = ram_0018_temp ; 
     ram_0018_t15                            = ram_0018_temp ; 
@@ -800,7 +800,7 @@ ram_0019_temp                           = $0019 ; 003429 003A91 003AA7 003B08 00
     ram_0019_t01                            = ram_0019_temp ; 
     ram_0019_t02_spr_A                      = ram_0019_temp ; 
     ram_0019_t03_hi                         = ram_0019_temp ; 
-    ram_0019_t04                            = ram_0019_temp ; 
+    ram_0019_t04_hi                         = ram_0019_temp ; 
     ram_0019_t05                            = ram_0019_temp ; 
     ram_0019_t06                            = ram_0019_temp ; 
     
@@ -1193,7 +1193,7 @@ ram_next_scanline                       = $004E ; 0146E4 015AB1 017814 017839 01
 
 
 ; 
-ram_004F                                = $004F ; 0146E8 015AB8 01787C 017ABC 017AD3 017B66 01F311 01F8E2 01FD5D 01FDFE 
+ram_004F_scanline                       = $004F ; 0146E8 015AB8 01787C 017ABC 017AD3 017B66 01F311 01F8E2 01FD5D 01FDFE 
 
 
 
@@ -1312,7 +1312,7 @@ ram_0067                                = $0067 ; 003DC9 003DDB 0093DB 014658 01
 
 
 
-; 
+; todo
 ram_0069                                = $0069 ; 003A99 003C64 003D05 003DF3 003DFA 003E0A 003E10 0099DC 009E41 00A058 00AD79 00B3BB 00B942 00C10A 00C120 00C159 00C1BD 00C277 00C283 00FC66 00FDC4 015C6D 015C79 015CE3 015DC2 015DF9 01D917 01D98E 01E1D2 01E1DF 01E274 01E29F 01E2B1 01E3D9 01F311 01F670 01FD5D 
 ram_006A                                = $006A ; 003A9B 003C60 003CFE 003DF5 0099D8 009E3B 009E4A 00AD7B 00B3B9 00C10C 00C279 00FDC2 015C74 015CDC 01D990 01F311 01F674 01FD5D 
 ram_006B                                = $006B ; 003A9D 003CE2 003D4C 003DF3 003DFA 0099E9 009E55 00A05D 00C10E 00C1E3 00C1EF 00C237 0159E2 015B42 015B5A 015C6D 015C79 015CE3 01D98A 01E3E2 01E3F4 01E40B 01F311 01F672 01FD5D 
@@ -1447,12 +1447,25 @@ ram_008D                                = $008D ; 008018 00E15C 00E74A 00E8EA 00
 
 
 ; 
-ram_0090_pos_X                          = $0090 ; 003A7E 0091FE 009219 00997F 009E1E 009E3D 009F64 009F83 00B87B 00B899 00B8AD 00B8D7 00C331 00C476 00D1F0 00D202 00E6EE 0173C9 0174AE 01766F 01F311 01FD5D 
+ram_0090_temp                           = $0090 ; 003A7E 0091FE 009219 00997F 009E1E 009E3D 009F64 009F83 00B87B 00B899 00B8AD 00B8D7 00C331 00C476 00D1F0 00D202 00E6EE 0173C9 0174AE 01766F 01F311 01FD5D 
+    ram_0090_t01_pos_X                      = ram_0090_temp ; 
+    ram_0090_t02                            = ram_0090_temp ; 
+    ram_0090_t03_pos_X                      = ram_0090_temp ; 
 
 
 
 ; 
-ram_0091_pos_Y                          = $0091 ; 003709 00371F 00375B 003A83 005C7E 005C96 00804C 008053 008055 00807F 008DE5 008EA5 008EB5 008EC1 008EC9 008F0A 008F21 008F23 009203 00921D 009983 009E1E 009E43 009F66 009F85 00B86D 00B872 00B8BA 00B8C2 00B8D5 00BAD9 00BADB 00BB11 00C333 00C481 00D1F5 00D20C 00E6F3 00E761 00E77A 00EEFE 00EF0B 00EF14 0173DB 0174B3 017674 01F311 01FD5D 
+ram_0091_temp                           = $0091 ; 003709 00371F 00375B 003A83 005C7E 005C96 00804C 008053 008055 00807F 008DE5 008EA5 008EB5 008EC1 008EC9 008F0A 008F21 008F23 009203 00921D 009983 009E1E 009E43 009F66 009F85 00B86D 00B872 00B8BA 00B8C2 00B8D5 00BAD9 00BADB 00BB11 00C333 00C481 00D1F5 00D20C 00E6F3 00E761 00E77A 00EEFE 00EF0B 00EF14 0173DB 0174B3 017674 01F311 01FD5D 
+    ram_0091_t01_pos_Y                      = ram_0091_temp ; 
+    ram_0091_t02                            = ram_0091_temp ; 
+    ram_0091_t03                            = ram_0091_temp ; 
+    ram_0091_t04                            = ram_0091_temp ; 
+    ram_0091_t05                            = ram_0091_temp ; 
+    ram_0091_t06_pos_Y                      = ram_0091_temp ; 
+    ram_0091_t07                            = ram_0091_temp ; 
+    ram_0091_t08_pos_Y                      = ram_0091_temp ; 
+    ram_0091_t09                            = ram_0091_temp ; 
+    ram_0091_t10                            = ram_0091_temp ; 
 
 
 
@@ -1710,20 +1723,52 @@ ram_00D1_counter                        = $00D1 ; 017762 01778F 017791 0178CA 01
 
 
 
-; todo
-ram_00D2                                = $00D2 ; 003AB3 003ABF 01597E 01772F 01F311 01FD5D 
-ram_00D3                                = $00D3 ; 003AAF 00EEBC 01597C 01772D 01F311 01F6C1 01FD5D 
-ram_00D4                                = $00D4 ; 003AA9 003ABB 00AEFD 015982 01771E 01F311 01FD5D 
-ram_00D5                                = $00D5 ; 003AA5 00AEDE 00AEFB 015980 01771A 01F311 01FD5D 
-ram_00D6                                = $00D6 ; 01F311 01F79D 01F7C4 01FD5D 01FE04 
-ram_00D7                                = $00D7 ; 01F311 01F807 01FD5D 01FE14 
-ram_00D8                                = $00D8 ; 01F311 01F80C 01FD5D 01FE18 
-ram_00D9                                = $00D9 ; 01F311 01F7DE 01FD5D 01FE08 
-ram_00DA                                = $00DA ; 017893 01F311 01F7F0 01FD5D 
-ram_00DB                                = $00DB ; 017899 01F311 01F7EB 01FD5D 
-ram_00DC                                = $00DC ; 003EC5 003EDE 003EE2 003F52 01588A 015899 017AC4 01DDB5 01F12A 01F311 01F618 01F635 01FD5D 
-ram_00DD                                = $00DD ; 003EB3 003ED5 003F50 00AF3C 01588C 01589D 017AC0 01DDB9 01F0A8 01F0AD 01F12E 01F311 01F61C 01F623 01FD5D 
+; 
+ram_00D2_lo                             = $00D2 ; 003AB3 003ABF 01597E 01772F 01F311 01FD5D 
+ram_00D3_hi                             = $00D3 ; 003AAF 00EEBC 01597C 01772D 01F311 01F6C1 01FD5D 
+
+
+
+; 
+ram_00D4_lo                             = $00D4 ; 003AA9 003ABB 00AEFD 015982 01771E 01F311 01FD5D 
+ram_00D5_hi                             = $00D5 ; 003AA5 00AEDE 00AEFB 015980 01771A 01F311 01FD5D 
+
+
+
+; 
+ram_00D6_scanline                       = $00D6 ; 01F311 01F79D 01F7C4 01FD5D 01FE04 
+
+
+
+; 
+ram_00D7_ppu_hi                         = $00D7 ; 01F311 01F807 01FD5D 01FE14 
+ram_00D8_ppu_lo                         = $00D8 ; 01F311 01F80C 01FD5D 01FE18 
+
+
+
+; 
+ram_00D9_scanline                       = $00D9 ; 01F311 01F7DE 01FD5D 01FE08 
+
+
+
+; 
+ram_00DA_ppu_lo                         = $00DA ; 017893 01F311 01F7F0 01FD5D 
+ram_00DB_ppu_hi                         = $00DB ; 017899 01F311 01F7EB 01FD5D 
+
+
+
+; 
+ram_00DC_hi                             = $00DC ; 003EC5 003EDE 003EE2 003F52 01588A 015899 017AC4 01DDB5 01F12A 01F311 01F618 01F635 01FD5D 
+ram_00DD_lo                             = $00DD ; 003EB3 003ED5 003F50 00AF3C 01588C 01589D 017AC0 01DDB9 01F0A8 01F0AD 01F12E 01F311 01F61C 01F623 01FD5D 
+
+
+
+; 
 ram_00DE                                = $00DE ; 0158A2 01DD00 01DD70 01F311 01FD5D 
+
+
+
+; 
 ram_00DF                                = $00DF ; 0158A4 01DD0A 01E12E 01F311 01FD5D 
 
 
