@@ -2,13 +2,18 @@
 
 
 
-; 
-ram_0000                                = $0000 ; 000011 000464 0004A5 0004BA 000564 0005AE 000612 000714 000915 002815 002B41 002B7A 002BDF 002C0D 002C11 002C16 002C18 003D75 0082C3 0082CB 0086AC 00871C 01338C 0133F9 01431F 0147C5 014A09 014B8C 
+; done
+ram_0000_temp                           = $0000 ; 000011 000464 0004A5 0004BA 000564 0005AE 000612 000714 000915 002815 002B41 002B7A 002BDF 002C0D 002C11 002C16 002C18 003D75 0082C3 0082CB 0086AC 00871C 01338C 0133F9 01431F 0147C5 014A09 014B8C 
+    ram_0000_t01_oam_index                  = ram_0000_temp ; 
+    ram_0000_t02_oam_index                  = ram_0000_temp ; 
+    ram_0000_t03_oam_index                  = ram_0000_temp ; 
+    ram_0000_t04                            = ram_0000_temp ; 
 
 
 
-; 
-ram_0001                                = $0001 ; 000011 01435D 014456 014803 0148F2 014A47 014BA5 014C80 
+; free address
+; bzk bug? can be referred via several addresses
+; ram_0001                              = $0001 ; 000011 01435D 014456 014803 0148F2 014A47 014BA5 014C80 
 
 
 
@@ -17,20 +22,31 @@ ram_0001                                = $0001 ; 000011 01435D 014456 014803 01
 
 
 
-; ($indirect),Y
-; todo
+; done
 ram_0003_temp                           = $0003 ; 000011 00818A 0081F0 0148F2 014C80 
+    ram_0003_t01_data                       = ram_0003_temp ; 2 addresses 0003-0004
+    ram_0003_t02_data                       = ram_0003_temp ; 2 addresses 0003-0004
 
 
 
-; todo
+; done
 ram_0004_temp                           = $0004 ; 000011 00817C 00817F 008182 008185 00818C 008190 0081E2 0081E5 0081E8 0081EB 0081F2 0081F6 014C80 
+    ram_0004_t01_ptr_hi                     = ram_0004_temp ; 
+    ram_0004_t05_ptr_hi                     = ram_0004_temp ; 
 
 
 
-; save/restore during reading from ppu
-ram_save_X_1                            = $0005 ; 000011 008217 00821E 0148F2 014C80 
-ram_save_Y_1                            = $0006 ; 000011 008219 008220 014C80 
+; done
+ram_0005_temp                           = $0005 ; 000011 008217 00821E 0148F2 014C80 
+    ram_0005_t01_save_X                     = ram_0005_temp ; during reading from ppu
+    ram_0005_t02_save_X                     = ram_0005_temp ; 
+
+
+
+; done
+ram_0006_temp                           = $0006 ; 000011 008219 008220 014C80 
+    ram_0006_t01_save_Y                     = ram_0006_temp ; during reading from ppu
+    ram_0006_t02_save_Y                     = ram_0006_temp ; 
 
 
 
@@ -39,13 +55,43 @@ ram_0007                                = $0007 ; 000011 002849 0028E0 0029DA 00
 
 
 
-; 
-ram_0008                                = $0008 ; 000011 00047B 00049B 0019AD 0019CA 0019D3 0019DE 0019EA 001A11 001AE3 001BB5 001CF5 001D3D 001D4D 00279C 0027A1 002857 002862 00288A 002890 0028B8 0028C7 0029B7 0029C9 0029D8 002B3F 002B5F 002B84 002B9A 002BC4 002F50 002F68 0040A9 0040B4 008359 0083BD 0085BD 0085C2 014C80 0182C0 0182CA 018320 018326 
+; done
+ram_0008_temp                           = $0008 ; 000011 00047B 00049B 0019AD 0019CA 0019D3 0019DE 0019EA 001A11 001AE3 001BB5 001CF5 001D3D 001D4D 00279C 0027A1 002857 002862 00288A 002890 0028B8 0028C7 0029B7 0029C9 0029D8 002B3F 002B5F 002B84 002B9A 002BC4 002F50 002F68 0040A9 0040B4 008359 0083BD 0085BD 0085C2 014C80 0182C0 0182CA 018320 018326 
+    ram_0008_t01_table_index                = ram_0008_temp ; 
+    ram_0008_t02                            = ram_0008_temp ; 
+    ram_0008_t03_save_Y                     = ram_0008_temp ; 
+    ram_0008_t04_save_Y                     = ram_0008_temp ; 
+    ram_0008_t05_data_index                 = ram_0008_temp ; 
+    ram_0008_t06_save_Y                     = ram_0008_temp ; 
+    ram_0008_t07_save_Y                     = ram_0008_temp ; 
+    ram_0008_t08_data_index                 = ram_0008_temp ; 
+    ram_0008_t09_save_Y                     = ram_0008_temp ; 
+    ram_0008_t10_data_index                 = ram_0008_temp ; 
+    ram_0008_t11_loop_counter               = ram_0008_temp ; 
+    ram_0008_t12_data_index                 = ram_0008_temp ; 
+    ram_0008_t13_data_index                 = ram_0008_temp ; 
+    ram_0008_t14_data_index                 = ram_0008_temp ; 
 
 
 
-; 
-ram_0009                                = $0009 ; 000011 000705 000710 000779 0012B0 0012BB 001492 0014DC 0014EB 001938 0019A8 0019BC 0019F1 0023F4 00270D 002713 0028C2 0029D3 002AF0 002B4B 002B8E 002C60 004007 004011 004030 00803A 008051 008095 0080AC 008355 0083C8 0083DF 00853B 008571 008580 008638 008661 008688 014C80 
+; done
+ram_0009_temp                           = $0009 ; 000011 000705 000710 000779 0012B0 0012BB 001492 0014DC 0014EB 001938 0019A8 0019BC 0019F1 0023F4 00270D 002713 0028C2 0029D3 002AF0 002B4B 002B8E 002C60 004007 004011 004030 00803A 008051 008095 0080AC 008355 0083C8 0083DF 00853B 008571 008580 008638 008661 008688 014C80 
+    ram_0009_t01_save_X                     = ram_0009_temp ; 
+    ram_0009_t02_table_index                = ram_0009_temp ; 
+    ram_0009_t03_save_X                     = ram_0009_temp ; 
+    ram_0009_t04_save_X                     = ram_0009_temp ; 
+    ram_0009_t05_obj_index                  = ram_0009_temp ; 
+    ram_0009_t06_obj_index                  = ram_0009_temp ; 
+    ram_0009_t07_obj_index                  = ram_0009_temp ; 
+    ram_0009_t08_save_X                     = ram_0009_temp ; 
+    ram_0009_t09_save_X                     = ram_0009_temp ; 
+    ram_0009_t10_loop_counter               = ram_0009_temp ; 
+    
+    ram_0009_tFB_useless_00                 = ram_0009_temp ; bzk optimize
+    ram_0009_tFC_useless                    = ram_0009_temp ; bzk optimize
+    ram_0009_tFD_useless                    = ram_0009_temp ; bzk optimize
+    ram_0009_tFE_useless                    = ram_0009_temp ; bzk optimize
+    ram_0009_tFF_useless                    = ram_0009_temp ; bzk optimize
 
 
 
@@ -59,7 +105,7 @@ ram_copy_buttons                        = $000B ; 000011 0008A2 0008A7 000B0B 00
 
 
 
-; used only in 1 subroutine
+; todo
 ram_000C_temp                           = $000C ; 000011 000B02 000B13 000B15 014C80 
 
 

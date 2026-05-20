@@ -654,28 +654,28 @@ C - - - - - 0x0182B1 06:82A1: 69 00     ADC #$00
 C - - - - - 0x0182B3 06:82A3: 85 23     STA ram_0023_temp
 C - - - - - 0x0182B5 06:82A5: 20 34 83  JSR sub_8334
 C - - - - - 0x0182B8 06:82A8: A0 00     LDY #$00
-bra_82AA:
+bra_82AA_loop:
 C - - - - - 0x0182BA 06:82AA: A9 04     LDA #$04
 C - - - - - 0x0182BC 06:82AC: 85 0E     STA ram_000E_temp
-bra_82AE:
+bra_82AE_loop:
 C - - - - - 0x0182BE 06:82AE: B1 22     LDA (ram_0022_temp),Y
-C - - - - - 0x0182C0 06:82B0: 84 08     STY ram_0008
+C - - - - - 0x0182C0 06:82B0: 84 08     STY ram_0008_t13_data_index
 C - - - - - 0x0182C2 06:82B2: A6 13     LDX ram_0013_temp
 C - - - - - 0x0182C4 06:82B4: A4 14     LDY ram_0014_temp
 C - - - - - 0x0182C6 06:82B6: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x0182C9 06:82B9: 09        .byte con_bsw_03
-C - - - - - 0x0182CA 06:82BA: A4 08     LDY ram_0008
+C - - - - - 0x0182CA 06:82BA: A4 08     LDY ram_0008_t13_data_index
 C - - - - - 0x0182CC 06:82BC: E6 13     INC ram_0013_temp
 C - - - - - 0x0182CE 06:82BE: C8        INY
 C - - - - - 0x0182CF 06:82BF: C6 0E     DEC ram_000E_temp
-C - - - - - 0x0182D1 06:82C1: D0 EB     BNE bra_82AE
+C - - - - - 0x0182D1 06:82C1: D0 EB     BNE bra_82AE_loop
 C - - - - - 0x0182D3 06:82C3: A5 13     LDA ram_0013_temp
 C - - - - - 0x0182D5 06:82C5: 38        SEC
 C - - - - - 0x0182D6 06:82C6: E9 04     SBC #$04
 C - - - - - 0x0182D8 06:82C8: 85 13     STA ram_0013_temp
 C - - - - - 0x0182DA 06:82CA: E6 14     INC ram_0014_temp
 C - - - - - 0x0182DC 06:82CC: C0 0C     CPY #$0C
-C - - - - - 0x0182DE 06:82CE: D0 DA     BNE bra_82AA
+C - - - - - 0x0182DE 06:82CE: D0 DA     BNE bra_82AA_loop
 C - - - - - 0x0182E0 06:82D0: A5 14     LDA ram_0014_temp
 C - - - - - 0x0182E2 06:82D2: 38        SEC
 C - - - - - 0x0182E3 06:82D3: E9 03     SBC #$03
@@ -713,26 +713,26 @@ sub_8304:
 C - - - - - 0x018314 06:8304: A5 0F     LDA ram_000F_temp
 C - - - - - 0x018316 06:8306: C9 05     CMP #$05
 C - - - - - 0x018318 06:8308: F0 29     BEQ bra_8333_RTS
-bra_830A:
+bra_830A_loop:
 C - - - - - 0x01831A 06:830A: A9 04     LDA #$04
 C - - - - - 0x01831C 06:830C: 85 0E     STA ram_000E_temp
-bra_830E:
+bra_830E_loop:
 C - - - - - 0x01831E 06:830E: B1 22     LDA (ram_0022_temp),Y
-C - - - - - 0x018320 06:8310: 84 08     STY ram_0008
+C - - - - - 0x018320 06:8310: 84 08     STY ram_0008_t14_data_index
 C - - - - - 0x018322 06:8312: 20 26 FE  JSR sub_inc_0x007E36_prg_bankswitch
 - D 0 - I - 0x018325 06:8315: 0F        .byte con_bsw_05
-C - - - - - 0x018326 06:8316: A4 08     LDY ram_0008
+C - - - - - 0x018326 06:8316: A4 08     LDY ram_0008_t14_data_index
 C - - - - - 0x018328 06:8318: E6 13     INC ram_0013_temp
 C - - - - - 0x01832A 06:831A: C8        INY
 C - - - - - 0x01832B 06:831B: C6 0E     DEC ram_000E_temp
-C - - - - - 0x01832D 06:831D: D0 EF     BNE bra_830E
+C - - - - - 0x01832D 06:831D: D0 EF     BNE bra_830E_loop
 C - - - - - 0x01832F 06:831F: A5 13     LDA ram_0013_temp
 C - - - - - 0x018331 06:8321: 38        SEC
 C - - - - - 0x018332 06:8322: E9 04     SBC #$04
 C - - - - - 0x018334 06:8324: 85 13     STA ram_0013_temp
 C - - - - - 0x018336 06:8326: E6 14     INC ram_0014_temp
 C - - - - - 0x018338 06:8328: C0 18     CPY #$18
-C - - - - - 0x01833A 06:832A: D0 DE     BNE bra_830A
+C - - - - - 0x01833A 06:832A: D0 DE     BNE bra_830A_loop
 C - - - - - 0x01833C 06:832C: A5 14     LDA ram_0014_temp
 C - - - - - 0x01833E 06:832E: 38        SEC
 C - - - - - 0x01833F 06:832F: E9 03     SBC #$03

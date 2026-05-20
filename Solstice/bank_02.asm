@@ -3292,7 +3292,7 @@ C D 1 - I - 0x013383 04:B373: BD 14 03  LDA ram_0314,X
 C D 1 - I - 0x013386 04:B376: 85 0F     STA ram_000F_temp
 C D 1 - I - 0x013388 04:B378: BD 0F 03  LDA ram_030F,X
 C D 1 - I - 0x01338B 04:B37B: A8        TAY
-C D 1 - I - 0x01338C 04:B37C: A6 00     LDX ram_0000
+C D 1 - I - 0x01338C 04:B37C: A6 00     LDX ram_0000_t01_oam_index
 C D 1 - I - 0x01338E 04:B37E: B9 FC BA  LDA tbl_BAFC_spr_data_lo,Y
 C D 1 - I - 0x013391 04:B381: 85 22     STA ram_0022_temp
 C D 1 - I - 0x013393 04:B383: B9 11 BB  LDA tbl_BB11_spr_data_hi,Y
@@ -3300,7 +3300,7 @@ C D 1 - I - 0x013396 04:B386: 85 23     STA ram_0023_temp
 C D 1 - I - 0x013398 04:B388: A0 00     LDY #$00
 C D 1 - I - 0x01339A 04:B38A: B1 22     LDA (ram_0022_temp),Y
 C D 1 - I - 0x01339C 04:B38C: 85 11     STA ram_0011_temp
-C D 1 - I - 0x01339E 04:B38E: C8        INY
+C D 1 - I - 0x01339E 04:B38E: C8        INY ; 01
 C D 1 - I - 0x01339F 04:B38F: B1 22     LDA (ram_0022_temp),Y
 C D 1 - I - 0x0133A1 04:B391: 85 0E     STA ram_000E_temp
 bra_B393_loop:
@@ -3350,7 +3350,7 @@ C D 1 - I - 0x0133F2 04:B3E2: 68        PLA
 C D 1 - I - 0x0133F3 04:B3E3: 85 13     STA ram_0013_temp
 C D 1 - I - 0x0133F5 04:B3E5: C6 0E     DEC ram_000E_temp
 C D 1 - I - 0x0133F7 04:B3E7: D0 AA     BNE bra_B393_loop
-C D 1 - I - 0x0133F9 04:B3E9: 86 00     STX ram_0000
+C D 1 - I - 0x0133F9 04:B3E9: 86 00     STX ram_0000_t01_oam_index
 C D 1 - I - 0x0133FB 04:B3EB: 60        RTS
 
 
@@ -3951,10 +3951,12 @@ C - - - - - 0x014314 05:C304: 18        CLC
 C - - - - - 0x014315 05:C305: 65 4F     ADC ram_004F_temp
 C - - - - - 0x014317 05:C307: 85 4F     STA ram_004F_temp
 C - - - - - 0x014319 05:C309: 90 02     BCC bra_C30D    ; if not overflow
+; if overflow
 C - - - - - 0x01431B 05:C30B: E6 50     INC ram_0050_temp
 bra_C30D:
 loc_C30D_read_byte_from_new_location:
 C D 2 - - - 0x01431D 05:C30D: A0 00     LDY #$00
+; bzk bug, can refer to ram_0000_t03_oam_index
 C - - - - - 0x01431F 05:C30F: B1 4F     LDA (ram_004F_temp),Y
 C - - - - - 0x014321 05:C311: 10 0B     BPL bra_C31E_00_7F
 ; control bytes 80-FF
@@ -4546,10 +4548,12 @@ C - - - - - 0x0147BA 05:C7AA: 18        CLC
 C - - - - - 0x0147BB 05:C7AB: 65 51     ADC ram_0051_temp
 C - - - - - 0x0147BD 05:C7AD: 85 51     STA ram_0051_temp
 C - - - - - 0x0147BF 05:C7AF: 90 02     BCC bra_C7B3    ; if not overflow
+; if overflow
 C - - - - - 0x0147C1 05:C7B1: E6 52     INC ram_0052_temp
 bra_C7B3:
 loc_C7B3_read_byte_from_new_location:
 C D 2 - - - 0x0147C3 05:C7B3: A0 00     LDY #$00
+; bzk bug, can refer to ram_0000_t03_oam_index
 C - - - - - 0x0147C5 05:C7B5: B1 51     LDA (ram_0051_temp),Y
 C - - - - - 0x0147C7 05:C7B7: 10 0B     BPL bra_C7C4_00_7F
 ; control bytes 80-FF
@@ -4837,10 +4841,12 @@ C - - - - - 0x0149FE 05:C9EE: 18        CLC
 C - - - - - 0x0149FF 05:C9EF: 65 53     ADC ram_0053_temp
 C - - - - - 0x014A01 05:C9F1: 85 53     STA ram_0053_temp
 C - - - - - 0x014A03 05:C9F3: 90 02     BCC bra_C9F7    ; if not overflow
+; if overflow
 - - - - - - 0x014A05 05:C9F5: E6 54     INC ram_0054_temp
 bra_C9F7:
 loc_C9F7_read_byte_from_new_location:
 C D 2 - - - 0x014A07 05:C9F7: A0 00     LDY #$00
+; bzk bug, can refer to ram_0000_t03_oam_index
 C - - - - - 0x014A09 05:C9F9: B1 53     LDA (ram_0053_temp),Y
 C - - - - - 0x014A0B 05:C9FB: 10 0B     BPL bra_CA08_00_7F
 ; control bytes 80-FF
@@ -5041,10 +5047,12 @@ C - - - - - 0x014B81 05:CB71: 18        CLC
 C - - - - - 0x014B82 05:CB72: 65 55     ADC ram_0055_temp
 C - - - - - 0x014B84 05:CB74: 85 55     STA ram_0055_temp
 C - - - - - 0x014B86 05:CB76: 90 02     BCC bra_CB7A    ; if not overflow
+; if overflow
 C - - - - - 0x014B88 05:CB78: E6 56     INC ram_0056_temp
 bra_CB7A:
 loc_CB7A_read_byte_from_new_location:
 C D 2 - - - 0x014B8A 05:CB7A: A0 00     LDY #$00
+; bzk bug, can refer to ram_0000_t03_oam_index
 C - - - - - 0x014B8C 05:CB7C: B1 55     LDA (ram_0055_temp),Y
 C - - - - - 0x014B8E 05:CB7E: 10 0B     BPL bra_CB8B_00_7F
 ; control bytes 80-FF
@@ -5167,6 +5175,10 @@ bra_CC68:
 C - - - - - 0x014C78 05:CC68: CE 40 01  DEC ram_0140
 C - - - - - 0x014C7B 05:CC6B: D0 19     BNE bra_CC86
 C - - - - - 0x014C7D 05:CC6D: AC 2A 01  LDY ram_012A
+; bzk optimize, can refer to
+    ; ram_0003_t01_data
+    ; ram_0003_t02_data
+    ; ram_0008_t11_loop_counter
 C - - - - - 0x014C80 05:CC70: B1 5F     LDA (ram_005F_se_t01_data),Y
 C - - - - - 0x014C82 05:CC72: 30 12     BMI bra_CC86
 C - - - - - 0x014C84 05:CC74: C9 10     CMP #$10
