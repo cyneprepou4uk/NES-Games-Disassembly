@@ -1061,7 +1061,7 @@ ram_00F6_temp                           = $00F6 ; 000035 00558C 005784 005790
 
 
 
-; used on;y in pair with ram_00F6_temp
+; used only in pair with ram_00F6_temp
 ; ram_00F7                              = $00F7 ; 000035 005590 
 
 
