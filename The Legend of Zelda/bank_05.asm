@@ -564,7 +564,7 @@ C - - - - - 0x01428F 05:827F: C5 01     CMP ram_0001_t27
 C - - - - - 0x014291 05:8281: D0 04     BNE bra_8287_RTS
 sub_8283:
 C - - - - - 0x014293 05:8283: A9 01     LDA #$01
-C - - - - - 0x014295 05:8285: 85 5F     STA ram_005F
+C - - - - - 0x014295 05:8285: 85 5F     STA ram_nametable
 bra_8287_RTS:
 C - - - - - 0x014297 05:8287: 60        RTS
 bra_8288:
@@ -1021,7 +1021,7 @@ C - - - - - 0x014503 05:84F3: A5 98     LDA ram_dir_link
 C - - - - - 0x014505 05:84F5: C9 04     CMP #$04
 C - - - - - 0x014507 05:84F7: B0 04     BCS bra_84FD    ; con_dir_Down or con_dir_Up ?
 C - - - - - 0x014509 05:84F9: A9 00     LDA #$00
-C - - - - - 0x01450B 05:84FB: 85 5F     STA ram_005F
+C - - - - - 0x01450B 05:84FB: 85 5F     STA ram_nametable
 bra_84FD:
 C - - - - - 0x01450D 05:84FD: 68        PLA
 C - - - - - 0x01450E 05:84FE: 20 8C 84  JSR sub_848C
@@ -1053,8 +1053,9 @@ C - - - - - 0x014530 05:8520: 60        RTS
 
 sub_0x014531:
 bra_8521_infinite_loop:
+; bzk optimize, BIT + BVC
 C - - - - - 0x014531 05:8521: AD 02 20  LDA $2002
-C - - - - - 0x014534 05:8524: 29 40     AND #$40    ; bzk optimize, BIT + BVC
+C - - - - - 0x014534 05:8524: 29 40     AND #$40
 C - - - - - 0x014536 05:8526: F0 F9     BEQ bra_8521_infinite_loop
 C - - - - - 0x014538 05:8528: AD 02 20  LDA $2002
 C - - - - - 0x01453B 05:852B: A0 03     LDY #$03
@@ -1065,7 +1066,6 @@ C - - - - - 0x01453F 05:852F: CA        DEX
 C - - - - - 0x014540 05:8530: 10 FD     BPL bra_852F_garbage_loop
 C - - - - - 0x014542 05:8532: 88        DEY
 C - - - - - 0x014543 05:8533: 10 F8     BPL bra_852D_garbage_loop
-; Y = FF
 C - - - - - 0x014545 05:8535: EA        NOP
 C - - - - - 0x014546 05:8536: EA        NOP
 C - - - - - 0x014547 05:8537: EA        NOP
@@ -1078,10 +1078,12 @@ C - - - - - 0x01454D 05:853D: EA        NOP
 C - - - - - 0x01454E 05:853E: A5 12     LDA ram_script
 C - - - - - 0x014550 05:8540: C9 08     CMP #$08
 C - - - - - 0x014552 05:8542: B0 48     BCS bra_858C
+; if con_script_screen_trans_in_prog
 C - - - - - 0x014554 05:8544: A5 13     LDA ram_subscript
 C - - - - - 0x014556 05:8546: F0 43     BEQ bra_858B_RTS
+   ; check for either con_dir_Right or con_dir_Left
 C - - - - - 0x014558 05:8548: A5 98     LDA ram_dir_link
-C - - - - - 0x01455A 05:854A: C9 04     CMP #$04    ; check for either con_dir_Right or con_dir_Left
+C - - - - - 0x01455A 05:854A: C9 04     CMP #$04 
 C - - - - - 0x01455C 05:854C: 90 1F     BCC bra_856D
 C - - - - - 0x01455E 05:854E: A0 5E     LDY #$5E
 bra_8550_garbage_loop:
@@ -1112,7 +1114,7 @@ C - - - - - 0x014584 05:8574: EA        NOP
 C - - - - - 0x014585 05:8575: EA        NOP
 C - - - - - 0x014586 05:8576: A5 FF     LDA ram_for_2000
 C - - - - - 0x014588 05:8578: 29 FE     AND #$FE
-C - - - - - 0x01458A 05:857A: 05 5F     ORA ram_005F
+C - - - - - 0x01458A 05:857A: 05 5F     ORA ram_nametable
 C - - - - - 0x01458C 05:857C: 85 FF     STA ram_for_2000
 C - - - - - 0x01458E 05:857E: 8D 00 20  STA $2000
 C - - - - - 0x014591 05:8581: A5 FD     LDA ram_scroll_X
@@ -1124,6 +1126,10 @@ C - - - - - 0x01459B 05:858B: 60        RTS
 bra_858C:
 C - - - - - 0x01459C 05:858C: C9 11     CMP #$11
 C - - - - - 0x01459E 05:858E: B0 03     BCS bra_8593
+; if
+    ; con_script_0A
+    ; con_script_0B
+    ; con_script_0C
 C - - - - - 0x0145A0 05:8590: 4C 25 E6  JMP loc_0x01E635_disable_rendering_and_nmi
 bra_8593:
 C - - - - - 0x0145A3 05:8593: A5 FF     LDA ram_for_2000
@@ -5512,6 +5518,7 @@ C - - - - - 0x01693B 05:A92B: 18        CLC
 C - - - - - 0x01693C 05:A92C: 69 30     ADC #< ram_6530
 C - - - - - 0x01693E 05:A92E: 85 00     STA ram_0000_t0B_data
 C - - - - - 0x016940 05:A930: 90 02     BCC bra_A934_not_overflow
+; if overflow
 - - - - - - 0x016942 05:A932: E6 01     INC ram_0000_t0B_data + $01
 bra_A934_not_overflow:
 C - - - - - 0x016944 05:A934: A9 20     LDA #> $20E0
@@ -5524,10 +5531,12 @@ C - - - - - 0x016951 05:A941: 18        CLC
 C - - - - - 0x016952 05:A942: 69 20     ADC #$20
 C - - - - - 0x016954 05:A944: 8D 03 03  STA ram_ppu_buffer + $01
 C - - - - - 0x016957 05:A947: 90 03     BCC bra_A94C_not_overflow
+; if overflow
 C - - - - - 0x016959 05:A949: EE 02 03  INC ram_ppu_buffer ; ppu hi
 bra_A94C_not_overflow:
 C - - - - - 0x01695C 05:A94C: CA        DEX
 C - - - - - 0x01695D 05:A94D: 10 EF     BPL bra_A93E_loop
+; 
 C - - - - - 0x01695F 05:A94F: A9 20     LDA #$20
 C - - - - - 0x016961 05:A951: 8D 04 03  STA ram_ppu_buffer + $02
 C - - - - - 0x016964 05:A954: 8E 25 03  STX ram_ppu_buffer + $23
@@ -5805,6 +5814,7 @@ sub_AABF:
     ; A = metatile
 ; out
     ; A = metatile
+    ; ram_052B_special_metatile_id
 C - - - - - 0x016ACF 05:AABF: A2 EA     LDX #$EA
 C - - - - - 0x016AD1 05:AAC1: 86 0A     STX ram_000A_t04_metatile
 C - - - - - 0x016AD3 05:AAC3: A2 05     LDX #$05
@@ -5817,7 +5827,7 @@ C - - - - - 0x016ADC 05:AACC: 10 F7     BPL bra_AAC5_loop
 C - - - - - 0x016ADE 05:AACE: 30 20     BMI bra_AAF0_RTS    ; jmp
 bra_AAD0:
 C - - - - - 0x016AE0 05:AAD0: BD 76 A9  LDA tbl_A976_replace_metatile,X
-C - - - - - 0x016AE3 05:AAD3: 48        PHA
+C - - - - - 0x016AE3 05:AAD3: 48        PHA ; 1
 C - - - - - 0x016AE4 05:AAD4: BD 70 A9  LDA tbl_A970,X
 C - - - - - 0x016AE7 05:AAD7: 8D 2B 05  STA ram_052B_special_metatile_id
 C - - - - - 0x016AEA 05:AADA: A5 06     LDA ram_0006_t06_special_metatile_pos_X
@@ -5836,7 +5846,7 @@ C - - - - - 0x016AF8 05:AAE8: 0A        ASL
 C - - - - - 0x016AF9 05:AAE9: 18        CLC
 C - - - - - 0x016AFA 05:AAEA: 69 40     ADC #$40
 C - - - - - 0x016AFC 05:AAEC: 8D 2D 05  STA ram_052D_special_metatile_pos_Y
-C - - - - - 0x016AFF 05:AAEF: 68        PLA
+C - - - - - 0x016AFF 05:AAEF: 68        PLA ; 1
 bra_AAF0_RTS:
 C - - - - - 0x016B00 05:AAF0: 60        RTS
 
@@ -5845,6 +5855,7 @@ C - - - - - 0x016B00 05:AAF0: 60        RTS
 sub_AAF1_unpack_and_write_2x2_block:
 ; in
     ; A = 
+    ; ram_000D_t02
 C - - - - - 0x016B01 05:AAF1: A6 0D     LDX ram_000D_t02
 C - - - - - 0x016B03 05:AAF3: E0 10     CPX #$10
 C - - - - - 0x016B05 05:AAF5: 90 17     BCC bra_AB0E_00_0F
@@ -5988,7 +5999,7 @@ C - - - - - 0x016BB2 05:ABA2: F0 17     BEQ bra_ABBB_RTS
 C - - - - - 0x016BB4 05:ABA4: C9 D8     CMP #$D8
 C - - - - - 0x016BB6 05:ABA6: D0 14     BNE bra_ABBC
 C - - - - - 0x016BB8 05:ABA8: AD 2B 05  LDA ram_052B_special_metatile_id
-C - - - - - 0x016BBB 05:ABAB: C9 62     CMP #$62
+C - - - - - 0x016BBB 05:ABAB: C9 62     CMP #con_obj_id_62
 C - - - - - 0x016BBD 05:ABAD: F0 0D     BEQ bra_ABBC
 - - - - - - 0x016BBF 05:ABAF: A9 00     LDA #$00
 - - - - - - 0x016BC1 05:ABB1: 8D 2B 05  STA ram_052B_special_metatile_id
@@ -6008,6 +6019,8 @@ C - - - - - 0x016BD2 05:ABC2: D0 F4     BNE bra_ABB8    ; jmp
 
 
 sub_0x016BD4:
+; in
+    ; ram_0005_t07
 C - - - - - 0x016BD4 05:ABC4: 8A        TXA
 C - - - - - 0x016BD5 05:ABC5: 48        PHA
 C - - - - - 0x016BD6 05:ABC6: B5 70     LDA ram_pos_X_enemy,X
@@ -6021,7 +6034,7 @@ C - - - - - 0x016BE0 05:ABD0: 85 00     STA ram_0000_t03_block_address
 C - - - - - 0x016BE2 05:ABD2: BD 01 E4  LDA tbl_0x01E410_block_addresses + $01,X
 C - - - - - 0x016BE5 05:ABD5: 85 01     STA ram_0000_t03_block_address + $1
 C - - - - - 0x016BE7 05:ABD7: 68        PLA
-C - - - - - 0x016BE8 05:ABD8: 48        PHA
+C - - - - - 0x016BE8 05:ABD8: 48        PHA ; 1
 C - - - - - 0x016BE9 05:ABD9: AA        TAX
 C - - - - - 0x016BEA 05:ABDA: B5 84     LDA ram_pos_Y_enemy,X
 C - - - - - 0x016BEC 05:ABDC: 29 F0     AND #$F0
@@ -6049,7 +6062,7 @@ C - - - - - 0x016C0D 05:ABFD: D0 F8     BNE bra_ABF7_loop
 bra_ABFF:
 C - - - - - 0x016C0F 05:ABFF: 86 0D     STX ram_000D_t02
 C - - - - - 0x016C11 05:AC01: 20 F1 AA  JSR sub_AAF1_unpack_and_write_2x2_block
-C - - - - - 0x016C14 05:AC04: 68        PLA
+C - - - - - 0x016C14 05:AC04: 68        PLA ; 1
 C - - - - - 0x016C15 05:AC05: AA        TAX
 C - - - - - 0x016C16 05:AC06: 60        RTS
 
