@@ -3082,7 +3082,7 @@ C - - - - - 0x001175 00:D165: CA        DEX
 C - - - - - 0x001176 00:D166: D0 F7     BNE bra_D15F_loop
 C - - - - - 0x001178 00:D168: B1 12     LDA (ram_0012_t02_data),Y
 C - - - - - 0x00117A 00:D16A: F0 10     BEQ bra_D17C
-C - - - - - 0x00117C 00:D16C: 10 02     BPL bra_D170    ; jmp
+C - - - - - 0x00117C 00:D16C: 10 02     BPL bra_D170
 - - - - - - 0x00117E 00:D16E: C6 15     DEC ram_0015_t04_ppu_hi
 bra_D170:
 C - - - - - 0x001180 00:D170: C8        INY
