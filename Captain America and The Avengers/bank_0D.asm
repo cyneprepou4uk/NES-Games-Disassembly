@@ -1,6 +1,6 @@
 .segment "BANK_0D_1"
-.include "bank_ram.inc"
-.include "bank_val.inc"
+.include "copy_bank_ram.inc"
+.include "copy_bank_val.inc"
 .org $A000  ; for listing file
 ; 0x01A010-0x01A80F
 
@@ -208,19 +208,19 @@ C - - - - - 0x01A013 06:A003: 4C 86 A6  JMP loc_A686
 
 
 loc_A006:
-; bzk optimize
+; bzk garbage
 - - - - - - 0x01A016 06:A006: 4C 06 A0  JMP loc_A006
 
 
 
 loc_A009:
-; bzk optimize
+; bzk garbage
 - - - - - - 0x01A019 06:A009: 4C 09 A0  JMP loc_A009
 
 
 
 loc_A00C:
-; bzk optimize
+; bzk garbage
 - - - - - - 0x01A01C 06:A00C: 4C 0C A0  JMP loc_A00C
 
 
@@ -238,7 +238,7 @@ C - - - - - 0x01A022 06:A012: 4C 87 A1  JMP loc_A187
 
 
 loc_A015:
-; bzk optimize
+; bzk garbage
 - - - - - - 0x01A025 06:A015: 4C 15 A0  JMP loc_A015
 
 
@@ -1097,6 +1097,9 @@ C - - - - - 0x01A51A 06:A50A: A9 00     LDA #con_05E0_00
 C - - - - - 0x01A51C 06:A50C: 8D E0 05  STA ram_05E0_flags
 ; bzk optimize, BEQ
 C - - - - - 0x01A51F 06:A50F: 4C 27 A5  JMP loc_A527
+
+
+
 loc_A512:
 C D 1 - - - 0x01A522 06:A512: A5 3C     LDA ram_city
 C - - - - - 0x01A524 06:A514: F0 05     BEQ bra_A51B
@@ -5884,7 +5887,7 @@ sub_9883:
 sub_0x01B893:
 C - - - - - 0x01B893 06:9883: 20 79 98  JSR sub_9879
 C - - - - - 0x01B896 06:9886: D0 21     BNE bra_98A9
-; Z = 0
+; Z = 0 (for 0x01BDC8)
 C - - - - - 0x01B898 06:9888: 60        RTS
 
 

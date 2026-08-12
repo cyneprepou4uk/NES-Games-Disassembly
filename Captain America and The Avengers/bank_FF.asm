@@ -1,6 +1,6 @@
 .segment "BANK_FF"
-.include "bank_ram.inc"
-.include "bank_val.inc"
+.include "copy_bank_ram.inc"
+.include "copy_bank_val.inc"
 .org $C000  ; for listing file
 ; 0x01C010-0x02000F
 
@@ -6370,6 +6370,9 @@ C - - - - - 0x01E2DE 07:E2CE: 48        PHA
 C - - - - - 0x01E2DF 07:E2CF: A9 D4     LDA #< (ofs_E2D5_return - $01)
 C - - - - - 0x01E2E1 07:E2D1: 48        PHA
 C - - - - - 0x01E2E2 07:E2D2: 6C 03 00  JMP (ram_0003_t01_buffer_handler_jmp)
+
+
+
 ofs_E2D5_return:
 C - - - - - 0x01E2E5 07:E2D5: 68        PLA
 C - - - - - 0x01E2E6 07:E2D6: AA        TAX
@@ -9702,7 +9705,7 @@ C - - - - - 0x01F6C1 07:F6B1: 85 5E     STA ram_005E_t05_ppu_hi
 C - - - - - 0x01F6C3 07:F6B3: A9 C0     LDA #$C0    ; < xxC0
 C - - - - - 0x01F6C5 07:F6B5: 85 5D     STA ram_005D_t29_ppu_lo
 C - - - - - 0x01F6C7 07:F6B7: A9 02     LDA #$02
-C - - - - - 0x01F6C9 07:F6B9: 85 60     STA ram_0060_t04_useless_02
+C - - - - - 0x01F6C9 07:F6B9: 85 60     STA ram_0060_tFE_useless_02
 C - - - - - 0x01F6CB 07:F6BB: 68        PLA ; 1
 ; / 20
 C - - - - - 0x01F6CC 07:F6BC: 4A        LSR
@@ -9723,7 +9726,7 @@ C - - - - - 0x01F6E0 07:F6D0: 18        CLC
 C - - - - - 0x01F6E1 07:F6D1: 65 5F     ADC ram_005F_t14
 C - - - - - 0x01F6E3 07:F6D3: 85 5F     STA ram_005F_t10_data
 ; bzk optimize, always 02
-C - - - - - 0x01F6E5 07:F6D5: A5 60     LDA ram_0060_t04_useless_02
+C - - - - - 0x01F6E5 07:F6D5: A5 60     LDA ram_0060_tFE_useless_02
 C - - - - - 0x01F6E7 07:F6D7: 69 00     ADC #$00
 C - - - - - 0x01F6E9 07:F6D9: 85 60     STA ram_005F_t10_data + $01
 C - - - - - 0x01F6EB 07:F6DB: A9 04     LDA #con_prg_bank + $04
@@ -10218,7 +10221,7 @@ C - - - - - 0x01F990 07:F980: 85 5E     STA ram_005E_t07_ppu_hi
 C - - - - - 0x01F992 07:F982: A9 C0     LDA #$C0    ; < xxC0
 C - - - - - 0x01F994 07:F984: 85 5D     STA ram_005D_t31_ppu_lo
 C - - - - - 0x01F996 07:F986: A9 02     LDA #$02
-C - - - - - 0x01F998 07:F988: 85 60     STA ram_0060_t05_useless_02
+C - - - - - 0x01F998 07:F988: 85 60     STA ram_0060_tFF_useless_02
 C - - - - - 0x01F99A 07:F98A: A5 67     LDA ram_0067_t72_lo
 ; / 20
 C - - - - - 0x01F99C 07:F98C: 4A        LSR
@@ -10249,7 +10252,7 @@ C - - - - - 0x01F9BC 07:F9AC: 65 5F     ADC ram_005F_t15
 C - - - - - 0x01F9BE 07:F9AE: 85 5F     STA ram_005F_t12_data
 C - - - - - 0x01F9C0 07:F9B0: 85 63     STA ram_0063_t02_data
 ; bzk optimize, always 02
-C - - - - - 0x01F9C2 07:F9B2: A5 60     LDA ram_0060_t05_useless_02
+C - - - - - 0x01F9C2 07:F9B2: A5 60     LDA ram_0060_tFF_useless_02
 C - - - - - 0x01F9C4 07:F9B4: 69 00     ADC #$00
 C - - - - - 0x01F9C6 07:F9B6: 85 60     STA ram_005F_t12_data + $01
 C - - - - - 0x01F9C8 07:F9B8: 85 64     STA ram_0063_t02_data + $01

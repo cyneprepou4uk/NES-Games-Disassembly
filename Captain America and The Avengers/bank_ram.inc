@@ -54,7 +54,7 @@ ram_rendefing_flag                      = $0009 ; 01E05B(Wi) 01E0C8(W)  01E0D6(W
 
 
 ; flag is checked during NMI
-; 00 = reset in progress (inivialization code is executing)
+; 00 = reset in progress (initialization code is executing)
 ; FF = reset is done
 ram_reset_flag                          = $000A ; 01E017(W)  01E05B(Wi) 01E084(W)  01E221(R)  
 
@@ -563,8 +563,9 @@ ram_0060_temp                           = $0060 ; 008F39(W)  009107(R)  00BF43(W
     ram_0060_t01_ppu_hi                     = ram_0060_temp ; 
     ram_0060_t02_ppu_hi                     = ram_0060_temp ; 
     ram_0060_t03_hi                         = ram_0060_temp ; 
-    ram_0060_t04_useless_02                 = ram_0060_temp ; bzk optimize
-    ram_0060_t05_useless_02                 = ram_0060_temp ; bzk optimize
+    
+    ram_0060_tFE_useless_02                 = ram_0060_temp ; bzk optimize
+    ram_0060_tFF_useless_02                 = ram_0060_temp ; bzk optimize
 
 
 
@@ -1258,7 +1259,7 @@ ram_0085_ppu_hi                         = $0085 ; 01E05B(Wi) 01E3A4(R)  01F5BC(W
 
 
 ; index for ram_0308_ppu_buffer
-; bzk optimize, useless address?, supposedly always 18, see 0x01F517
+; bzk optimize, useless address?, supposedly always 1E, see 0x01F517
 ram_0087_useless_buffer_index_1E        = $0087 ; 01E05B(Wi) 01E3B4(R)  01F517(W)  
 
 
@@ -1305,7 +1306,7 @@ ram_0090_array_index                    = $0090 ; 01E05B(Wi) 01F3D2(W)  01F401(W
 
 
 
-; not read anywhere
+; bzk optimize, not read anywhere
 ram_0091_useless                        = $0091 ; 01E05B(Wi) 01F3D4(W)  01F403(W)  
 
 
@@ -3885,7 +3886,7 @@ ram_05C4_temp                           = $05C4 ; 01C4AB(W)  01C4C2(W)  01C4D2(W
 
 ; 
 ram_05C5_temp                           = $05C5 ; 01C4AE(W)  01C558(R)  01C580(R)  01C586(W)  01D545(W)  01E05B(Wi) 
-    ram_05C5_t01_bg_pal_data_index                            = ram_05C5_temp ; 
+    ram_05C5_t01_bg_pal_data_index          = ram_05C5_temp ; 
     
     ram_05C5_tFF_useless                    = ram_05C5_temp ; bzk optimize
 
