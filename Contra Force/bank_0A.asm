@@ -987,7 +987,7 @@ C - - - - - 0x0143C4 05:83B4: B9 02 84  LDA tbl_8402_ppu_data,Y
 C - - - - - 0x0143C7 05:83B7: 85 00     STA ram_0000_t12_ppu_data
 C - - - - - 0x0143C9 05:83B9: B9 03 84  LDA tbl_8402_ppu_data + $01,Y
 C - - - - - 0x0143CC 05:83BC: 85 01     STA ram_0000_t12_ppu_data + $01
-C - - - - - 0x0143CE 05:83BE: A6 26     LDX ram_buffer_index
+C - - - - - 0x0143CE 05:83BE: A6 26     LDX ram_buffer_index_1
 ; bzk optimize, put LDY 02 at 0x0143D7 for readability
 C - - - - - 0x0143D0 05:83C0: A0 02     LDY #$02
 C - - - - - 0x0143D2 05:83C2: A9 04     LDA #$04
@@ -1004,7 +1004,7 @@ C - - - - - 0x0143E2 05:83D2: 20 C9 DA  JSR sub_0x01DAD9_write_byte_to_ppu_buffe
 C - - - - - 0x0143E5 05:83D5: C8        INY
 C - - - - - 0x0143E6 05:83D6: C6 02     DEC ram_0002_t40_data_counter
 C - - - - - 0x0143E8 05:83D8: D0 F6     BNE bra_83D0_loop
-C - - - - - 0x0143EA 05:83DA: 86 26     STX ram_buffer_index
+C - - - - - 0x0143EA 05:83DA: 86 26     STX ram_buffer_index_1
 C - - - - - 0x0143EC 05:83DC: 4C 02 F7  JMP loc_0x01F712
 
 
@@ -2075,7 +2075,7 @@ C - - - - - 0x014A9D 05:8A8D: 90 15     BCC bra_8AA4
 C - - - - - 0x014A9F 05:8A8F: BD 6E 03  LDA ram_036E,X
 C - - - - - 0x014AA2 05:8A92: 29 7F     AND #$7F
 C - - - - - 0x014AA4 05:8A94: D0 1F     BNE bra_8AB5
-C - - - - - 0x014AA6 05:8A96: 86 53     STX ram_0053
+C - - - - - 0x014AA6 05:8A96: 86 53     STX ram_obj_index
 C - - - - - 0x014AA8 05:8A98: 20 C6 88  JSR sub_88C6
 C - - - - - 0x014AAB 05:8A9B: 90 03     BCC bra_8AA0
 C - - - - - 0x014AAD 05:8A9D: FE 6E 03  INC ram_036E,X
@@ -2409,7 +2409,7 @@ C - - - - - 0x014C9E 05:8C8E: A5 03     LDA ram_0003_t13_ppu_hi
 C - - - - - 0x014CA0 05:8C90: 65 06     ADC ram_0006_t15
 C - - - - - 0x014CA2 05:8C92: 85 03     STA ram_0003_t13_ppu_hi
 bra_8C94_FD_or_FF:
-C - - - - - 0x014CA4 05:8C94: A6 26     LDX ram_buffer_index
+C - - - - - 0x014CA4 05:8C94: A6 26     LDX ram_buffer_index_1
 C - - - - - 0x014CA6 05:8C96: 20 F3 8C  JSR sub_8CF3_write_ppu_address_to_buffer
 C - - - - - 0x014CA9 05:8C99: B1 00     LDA (ram_0000_t0D_cutscene_text_data),Y
 C - - - - - 0x014CAB 05:8C9B: C9 FF     CMP #con_cut_cb_end_of_text
@@ -2421,7 +2421,7 @@ C - - - - - 0x014CB4 05:8CA4: E9 30     SBC #$30
 C - - - - - 0x014CB6 05:8CA6: 20 C9 DA  JSR sub_0x01DAD9_write_byte_to_ppu_buffer
 C - - - - - 0x014CB9 05:8CA9: A9 FF     LDA #$FF
 C - - - - - 0x014CBB 05:8CAB: 20 C9 DA  JSR sub_0x01DAD9_write_byte_to_ppu_buffer
-C - - - - - 0x014CBE 05:8CAE: 86 26     STX ram_buffer_index
+C - - - - - 0x014CBE 05:8CAE: 86 26     STX ram_buffer_index_1
 C - - - - - 0x014CC0 05:8CB0: E6 5C     INC ram_005C_cutscene_line
 C - - - - - 0x014CC2 05:8CB2: E6 58     INC ram_0058
 C - - - - - 0x014CC4 05:8CB4: C8        INY
@@ -4551,7 +4551,7 @@ C - - - - - 0x015BF4 05:9BE4: C9 03     CMP #$03
 C - - - - - 0x015BF6 05:9BE6: F0 0D     BEQ bra_9BF5_RTS
 C - - - - - 0x015BF8 05:9BE8: A5 1F     LDA ram_001F_t11
 bra_9BEA:
-C - - - - - 0x015BFA 05:9BEA: A6 26     LDX ram_buffer_index
+C - - - - - 0x015BFA 05:9BEA: A6 26     LDX ram_buffer_index_1
 C - - - - - 0x015BFC 05:9BEC: E0 20     CPX #$20
 C - - - - - 0x015BFE 05:9BEE: B0 05     BCS bra_9BF5_RTS
 C - - - - - 0x015C00 05:9BF0: 20 C9 96  JSR sub_96C9
@@ -7338,7 +7338,8 @@ _off011_0x016B9A_06:
 
 
 
-_off011_0x016BB4_08:    ; never used, no such index
+_off011_0x016BB4_08:    ; unused, no such index
+; bzk garbage
 - - - - - - 0x016BB4 05:ABA4: 04        .byte $04   ; size X
 - - - - - - 0x016BB5 05:ABA5: 04        .byte $04   ; size Y
 - - - - - - 0x016BB6 05:ABA6: 00        .byte $00, $00, $00, $00   ; 01 

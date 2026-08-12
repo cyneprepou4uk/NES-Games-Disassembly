@@ -316,7 +316,7 @@ con_DA9D_11                             = $11 ;
 
 ; 0x01F3E6 bankswitch routines
 con_F3D6_00                             = $00 ; 
-con_F3D6_01                             = $01 ; 
+con_F3D6_01_disable_sound_engine        = $01 ; 
 ; con_F3D6_02                           = $02 ; unused (update sound engine)
 ; con_F3D6_03                           = $03 ; unused
 con_F3D6_04                             = $04 ; 

@@ -4350,7 +4350,7 @@ C - - - - - 0x00D229 03:B219: 4C 1F B2  JMP loc_B21F
 bra_B21C:
 C - - - - - 0x00D22C 03:B21C: 20 17 9A  JSR sub_0x009A27
 loc_B21F:
-C D 1 - - - 0x00D22F 03:B21F: A6 53     LDX ram_0053
+C D 1 - - - 0x00D22F 03:B21F: A6 53     LDX ram_obj_index
 bra_B221_RTS:
 C - - - - - 0x00D231 03:B221: 60        RTS
 

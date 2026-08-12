@@ -5721,7 +5721,7 @@ bra_BB87:
 - - - - - - 0x005B97 01:BB87: E8        INX
 - - - - - - 0x005B98 01:BB88: E0 0A     CPX #$0A
 - - - - - - 0x005B9A 01:BB8A: 90 EE     BCC bra_BB7A_loop
-- - - - - - 0x005B9C 01:BB8C: A6 53     LDX ram_0053
+- - - - - - 0x005B9C 01:BB8C: A6 53     LDX ram_obj_index
 - - - - - - 0x005B9E 01:BB8E: 60        RTS
 
 
@@ -5783,7 +5783,7 @@ C - - - - - 0x005BFF 01:BBEF: 9D D2 07  STA ram_07D2_unk,X
 bra_BBF2_RTS:
 C - - - - - 0x005C02 01:BBF2: 60        RTS
 bra_BBF3:
-C - - - - - 0x005C03 01:BBF3: A5 26     LDA ram_buffer_index
+C - - - - - 0x005C03 01:BBF3: A5 26     LDA ram_buffer_index_1
 C - - - - - 0x005C05 01:BBF5: D0 FB     BNE bra_BBF2_RTS
 C - - - - - 0x005C07 01:BBF7: 20 D6 90  JSR sub_0x0090E6_0600x_AND_F0
 C - - - - - 0x005C0A 01:BBFA: F0 2C     BEQ bra_BC28
@@ -5903,7 +5903,7 @@ C - - - - - 0x005CCD 01:BCBD: 85 06     STA ram_0006_t05_ppu_lo
 C - - - - - 0x005CCF 01:BCBF: 90 02     BCC bra_BCC3_not_overflow
 - - - - - - 0x005CD1 01:BCC1: E6 07     INC ram_0007_t01_ppu_hi
 bra_BCC3_not_overflow:
-C - - - - - 0x005CD3 01:BCC3: A5 26     LDA ram_buffer_index
+C - - - - - 0x005CD3 01:BCC3: A5 26     LDA ram_buffer_index_1
 C - - - - - 0x005CD5 01:BCC5: D0 C4     BNE bra_BC8B
 C - - - - - 0x005CD7 01:BCC7: 4C 92 87  JMP loc_0x0087A2
 
@@ -6026,7 +6026,7 @@ bra_BD43:
 C - - - - - 0x005D53 01:BD43: 98        TYA
 C - - - - - 0x005D54 01:BD44: AA        TAX
 C - - - - - 0x005D55 01:BD45: 20 7C 96  JSR sub_0x00968C
-C - - - - - 0x005D58 01:BD48: A6 53     LDX ram_0053
+C - - - - - 0x005D58 01:BD48: A6 53     LDX ram_obj_index
 C - - - - - 0x005D5A 01:BD4A: A0 00     LDY #$00
 C - - - - - 0x005D5C 01:BD4C: A5 01     LDA ram_0001_t02_hi
 C - - - - - 0x005D5E 01:BD4E: C9 0D     CMP #$0D
@@ -6464,7 +6464,7 @@ bra_BFE8:
 - - - - - - 0x005FF8 01:BFE8: 98        TYA
 - - - - - - 0x005FF9 01:BFE9: AA        TAX
 - - - - - - 0x005FFA 01:BFEA: 20 52 9A  JSR sub_0x009A62
-- - - - - - 0x005FFD 01:BFED: A6 53     LDX ram_0053
+- - - - - - 0x005FFD 01:BFED: A6 53     LDX ram_obj_index
 - - - - - - 0x005FFF 01:BFEF: 60        RTS
 
 

@@ -10989,13 +10989,13 @@ C - - - - - 0x003447 00:B437: F0 03     BEQ bra_B43C
 bra_B439:
 C - - - - - 0x003449 00:B439: 4C F7 B4  JMP loc_B4F7
 bra_B43C:
-C - - - - - 0x00344C 00:B43C: A5 26     LDA ram_buffer_index
+C - - - - - 0x00344C 00:B43C: A5 26     LDA ram_buffer_index_1
 C - - - - - 0x00344E 00:B43E: D0 1A     BNE bra_B45A
 C - - - - - 0x003450 00:B440: 20 3F B5  JSR sub_B53F
 loc_B443:
 C D 1 - - - 0x003453 00:B443: E8        INX
 C - - - - - 0x003454 00:B444: 86 8A     STX ram_008A
-C - - - - - 0x003456 00:B446: A6 53     LDX ram_0053
+C - - - - - 0x003456 00:B446: A6 53     LDX ram_obj_index
 C - - - - - 0x003458 00:B448: A5 8A     LDA ram_008A
 C - - - - - 0x00345A 00:B44A: F0 ED     BEQ bra_B439
 C - - - - - 0x00345C 00:B44C: A0 09     LDY #$09
@@ -11048,7 +11048,7 @@ C - - - - - 0x0034A8 00:B498: 99 BE 07  STA ram_07BE_unk,Y
 C - - - - - 0x0034AB 00:B49B: 20 D0 8D  JSR sub_0x008DE0
 C - - - - - 0x0034AE 00:B49E: 20 E5 B6  JSR sub_B6E5
 bra_B4A1:
-C - - - - - 0x0034B1 00:B4A1: A6 53     LDX ram_0053
+C - - - - - 0x0034B1 00:B4A1: A6 53     LDX ram_obj_index
 C - - - - - 0x0034B3 00:B4A3: 4C FC B4  JMP loc_B4FC
 
 
@@ -11415,7 +11415,7 @@ C - - - - - 0x0036D0 00:B6C0: 18        CLC
 C - - - - - 0x0036D1 00:B6C1: 65 94     ADC ram_0094_array_index
 C - - - - - 0x0036D3 00:B6C3: 85 94     STA ram_0094_array_index
 C - - - - - 0x0036D5 00:B6C5: 85 1D     STA ram_001D_t01
-C - - - - - 0x0036D7 00:B6C7: A4 53     LDY ram_0053
+C - - - - - 0x0036D7 00:B6C7: A4 53     LDY ram_obj_index
 C - - - - - 0x0036D9 00:B6C9: 6A        ROR
 C - - - - - 0x0036DA 00:B6CA: 45 1F     EOR ram_001F_t02
 C - - - - - 0x0036DC 00:B6CC: 2A        ROL

@@ -479,7 +479,7 @@ C - - - - - 0x00E26F 03:A25F: BD 68 06  LDA ram_obj_pos_Y,X
 C - - - - - 0x00E272 03:A262: 99 68 06  STA ram_obj_pos_Y,Y
 bra_A265:
 loc_A265:
-C - - - - - 0x00E275 03:A265: A6 53     LDX ram_0053
+C - - - - - 0x00E275 03:A265: A6 53     LDX ram_obj_index
 C - - - - - 0x00E277 03:A267: 4C 30 A1  JMP loc_A130
 
 
@@ -1491,7 +1491,7 @@ C - - - - - 0x00E790 03:A780: 9D D2 07  STA ram_07D2_unk,X
 C - - - - - 0x00E793 03:A783: A9 00     LDA #$00
 C - - - - - 0x00E795 03:A785: 9D 20 07  STA ram_0720_obj,X
 C - - - - - 0x00E798 03:A788: 9D 00 06  STA ram_0600_obj,X
-C - - - - - 0x00E79B 03:A78B: A6 53     LDX ram_0053
+C - - - - - 0x00E79B 03:A78B: A6 53     LDX ram_obj_index
 C - - - - - 0x00E79D 03:A78D: 20 B9 8F  JSR sub_0x008FC9
 C - - - - - 0x00E7A0 03:A790: BC AA 07  LDY ram_07AA_unk,X
 C - - - - - 0x00E7A3 03:A793: B9 A0 A7  LDA tbl_A7A0,Y
@@ -1716,7 +1716,7 @@ C - - - - - 0x00E8D5 03:A8C5: A9 08     LDA #$08
 C - - - - - 0x00E8D7 03:A8C7: 9D 68 06  STA ram_obj_pos_Y,X
 bra_A8CA:
 loc_A8CA:
-C D 1 - - - 0x00E8DA 03:A8CA: A6 53     LDX ram_0053
+C D 1 - - - 0x00E8DA 03:A8CA: A6 53     LDX ram_obj_index
 C - - - - - 0x00E8DC 03:A8CC: 38        SEC
 C - - - - - 0x00E8DD 03:A8CD: 60        RTS
 
@@ -2073,10 +2073,10 @@ C - - - - - 0x00EAE4 03:AAD4: A2 03     LDX #$03
 C - - - - - 0x00EAE6 03:AAD6: A9 41     LDA #$41
 C - - - - - 0x00EAE8 03:AAD8: 20 1F 97  JSR sub_0x00972F
 C - - - - - 0x00EAEB 03:AADB: 90 05     BCC bra_AAE2
-C - - - - - 0x00EAED 03:AADD: A6 53     LDX ram_0053
+C - - - - - 0x00EAED 03:AADD: A6 53     LDX ram_obj_index
 C - - - - - 0x00EAEF 03:AADF: 4C A4 A9  JMP loc_A9A4
 bra_AAE2:
-C - - - - - 0x00EAF2 03:AAE2: A6 53     LDX ram_0053
+C - - - - - 0x00EAF2 03:AAE2: A6 53     LDX ram_obj_index
 C - - - - - 0x00EAF4 03:AAE4: B9 4E 06  LDA ram_obj_pos_X,Y
 C - - - - - 0x00EAF7 03:AAE7: 18        CLC
 C - - - - - 0x00EAF8 03:AAE8: 69 D8     ADC #$D8
@@ -2134,7 +2134,7 @@ C - - - - - 0x00EB40 03:AB30: 60        RTS
 
 ofs_017_0x00EB41_4D:
 C - - J - - 0x00EB41 03:AB31: 20 B1 91  JSR sub_0x0091C1
-C - - - - - 0x00EB44 03:AB34: A6 53     LDX ram_0053
+C - - - - - 0x00EB44 03:AB34: A6 53     LDX ram_obj_index
 C - - - - - 0x00EB46 03:AB36: A5 60     LDA ram_0060_hi
 C - - - - - 0x00EB48 03:AB38: D0 59     BNE bra_AB93
 C - - - - - 0x00EB4A 03:AB3A: A5 61     LDA ram_0061_lo
@@ -2309,7 +2309,7 @@ C - - - - - 0x00EC53 03:AC43: 99 78 07  STA ram_0778_unk,Y
 C - - - - - 0x00EC56 03:AC46: 99 79 07  STA ram_0778_unk + $01,Y
 bra_AC49:
 loc_AC49:
-C D 1 - - - 0x00EC59 03:AC49: A6 53     LDX ram_0053
+C D 1 - - - 0x00EC59 03:AC49: A6 53     LDX ram_obj_index
 C - - - - - 0x00EC5B 03:AC4B: 18        CLC
 C - - - - - 0x00EC5C 03:AC4C: 60        RTS
 bra_AC4D:
@@ -2471,8 +2471,8 @@ C - - - - - 0x00ED55 03:AD45: 20 C8 90  JSR sub_0x0090D8_0600x_write_08
 C - - - - - 0x00ED58 03:AD48: 20 16 AD  JSR sub_AD16
 C - - - - - 0x00ED5B 03:AD4B: A9 80     LDA #$80
 C - - - - - 0x00ED5D 03:AD4D: 8D 40 03  STA ram_0340_flag
-C - - - - - 0x00ED60 03:AD50: 20 BF FE  JSR sub_0x01FECF
-C - - - - - 0x00ED63 03:AD53: A6 53     LDX ram_0053
+C - - - - - 0x00ED60 03:AD50: 20 BF FE  JSR sub_0x01FECF_disable_sound_engine
+C - - - - - 0x00ED63 03:AD53: A6 53     LDX ram_obj_index
 C - - - - - 0x00ED65 03:AD55: A9 1A     LDA #$1A
 C - - - - - 0x00ED67 03:AD57: 38        SEC
 C - - - - - 0x00ED68 03:AD58: E9 01     SBC #$01
@@ -3876,7 +3876,7 @@ C - - - - - 0x00F346 03:B336: D0 28     BNE bra_B360
 - - - - - - 0x00F36B 03:B35B: F0 03     BEQ bra_B360
 - - - - - - 0x00F36D 03:B35D: 20 17 9A  JSR sub_0x009A27
 bra_B360:
-C - - - - - 0x00F370 03:B360: A6 53     LDX ram_0053
+C - - - - - 0x00F370 03:B360: A6 53     LDX ram_obj_index
 C - - - - - 0x00F372 03:B362: 60        RTS
 
 
@@ -4106,7 +4106,7 @@ tbl_B4BB:
 - D 1 - - - 0x00F4CD 03:B4BD: 24 AB     .word _off011_0x016B34_02
 - D 1 - - - 0x00F4CF 03:B4BF: 70 AB     .word _off011_0x016B80_04
 - D 1 - - - 0x00F4D1 03:B4C1: 8A AB     .word _off011_0x016B9A_06
-- - - - - - 0x00F4D3 03:B4C3: A4 AB     .word _off011_0x016BB4_08   ; never used, no such index
+- - - - - - 0x00F4D3 03:B4C3: A4 AB     .word _off011_0x016BB4_08   ; unused, no such index
 - D 1 - - - 0x00F4D5 03:B4C5: 06 AC     .word _off011_0x016C16_0A
 - D 1 - - - 0x00F4D7 03:B4C7: D8 AB     .word _off011_0x016BE8_0C
 - D 1 - - - 0x00F4D9 03:B4C9: 58 AC     .word _off011_0x016C68_0E
@@ -4233,7 +4233,7 @@ C - - - - - 0x00F57E 03:B56E: AA        TAX
 C - - - - - 0x00F57F 03:B56F: C6 1F     DEC ram_001F_t08_loop_counter
 C - - - - - 0x00F581 03:B571: D0 EC     BNE bra_B55F_loop
 bra_B573:
-C - - - - - 0x00F583 03:B573: A6 53     LDX ram_0053
+C - - - - - 0x00F583 03:B573: A6 53     LDX ram_obj_index
 C - - - - - 0x00F585 03:B575: FE 78 07  INC ram_0778_unk,X
 bra_B578_RTS:
 C - - - - - 0x00F588 03:B578: 60        RTS
@@ -4469,7 +4469,7 @@ C - - - - - 0x00F6B0 03:B6A0: C8        INY
 C - - - - - 0x00F6B1 03:B6A1: E8        INX
 C - - - - - 0x00F6B2 03:B6A2: E0 05     CPX #$05
 C - - - - - 0x00F6B4 03:B6A4: 90 F5     BCC bra_B69B_loop
-C - - - - - 0x00F6B6 03:B6A6: A6 53     LDX ram_0053
+C - - - - - 0x00F6B6 03:B6A6: A6 53     LDX ram_obj_index
 C - - - - - 0x00F6B8 03:B6A8: 20 83 80  JSR sub_0x008093
 C - - - - - 0x00F6BB 03:B6AB: 90 16     BCC bra_B6C3
 C - - - - - 0x00F6BD 03:B6AD: 20 D6 90  JSR sub_0x0090E6_0600x_AND_F0
@@ -4870,11 +4870,11 @@ C - - - - - 0x00F91A 03:B90A: 20 85 90  JSR sub_0x009095
 C - - - - - 0x00F91D 03:B90D: B0 1C     BCS bra_B92B_RTS
 C - - - - - 0x00F91F 03:B90F: A9 E1     LDA #$E1
 C - - - - - 0x00F921 03:B911: 20 70 90  JSR sub_0x009080
-C - - - - - 0x00F924 03:B914: A6 53     LDX ram_0053
+C - - - - - 0x00F924 03:B914: A6 53     LDX ram_obj_index
 C - - - - - 0x00F926 03:B916: 9D A0 07  STA ram_07A0_unk,X
 C - - - - - 0x00F929 03:B919: A9 E2     LDA #$E2
 C - - - - - 0x00F92B 03:B91B: 20 70 90  JSR sub_0x009080
-C - - - - - 0x00F92E 03:B91E: A6 53     LDX ram_0053
+C - - - - - 0x00F92E 03:B91E: A6 53     LDX ram_obj_index
 C - - - - - 0x00F930 03:B920: 9D 82 06  STA ram_0682_obj,X
 loc_B923:
 C D 1 - - - 0x00F933 03:B923: A9 18     LDA #$18
@@ -4974,7 +4974,7 @@ C - - - - - 0x00F9C5 03:B9B5: BD 68 06  LDA ram_obj_pos_Y,X
 C - - - - - 0x00F9C8 03:B9B8: 18        CLC
 C - - - - - 0x00F9C9 03:B9B9: 79 C3 B9  ADC tbl_B9C2 + $01,Y
 C - - - - - 0x00F9CC 03:B9BC: 9D 68 06  STA ram_obj_pos_Y,X
-C - - - - - 0x00F9CF 03:B9BF: A6 53     LDX ram_0053
+C - - - - - 0x00F9CF 03:B9BF: A6 53     LDX ram_obj_index
 bra_B9C1_RTS:
 C - - - - - 0x00F9D1 03:B9C1: 60        RTS
 
@@ -5049,7 +5049,7 @@ C - - - - - 0x00FA43 03:BA33: 98        TYA
 C - - - - - 0x00FA44 03:BA34: AA        TAX
 C - - - - - 0x00FA45 03:BA35: 20 17 9A  JSR sub_0x009A27
 bra_BA38:
-C - - - - - 0x00FA48 03:BA38: A6 53     LDX ram_0053
+C - - - - - 0x00FA48 03:BA38: A6 53     LDX ram_obj_index
 C - - - - - 0x00FA4A 03:BA3A: DE D2 07  DEC ram_07D2_unk,X
 bra_BA3D_RTS:
 C - - - - - 0x00FA4D 03:BA3D: 60        RTS
@@ -5169,7 +5169,7 @@ C - - - - - 0x00FB09 03:BAF9: 90 03     BCC bra_BAFE
 bra_BAFB:
 - - - - - - 0x00FB0B 03:BAFB: 20 52 9A  JSR sub_0x009A62
 bra_BAFE:
-C - - - - - 0x00FB0E 03:BAFE: A6 53     LDX ram_0053
+C - - - - - 0x00FB0E 03:BAFE: A6 53     LDX ram_obj_index
 C - - - - - 0x00FB10 03:BB00: 4C 73 BA  JMP loc_BA73
 
 
@@ -5296,7 +5296,7 @@ C - - - - - 0x00FBA3 03:BB93: 45 00     EOR ram_0000_t21_pos_X
 C - - - - - 0x00FBA5 03:BB95: 90 03     BCC bra_BB9A
 C - - - - - 0x00FBA7 03:BB97: 20 52 9A  JSR sub_0x009A62
 bra_BB9A:
-C - - - - - 0x00FBAA 03:BB9A: A6 53     LDX ram_0053
+C - - - - - 0x00FBAA 03:BB9A: A6 53     LDX ram_obj_index
 C - - - - - 0x00FBAC 03:BB9C: 4C C8 90  JMP loc_0x0090D8_0600x_write_08
 
 
@@ -5775,7 +5775,7 @@ C - - - - - 0x00FEA1 03:BE91: A5 02     LDA ram_0002_t39_lo
 C - - - - - 0x00FEA3 03:BE93: C9 A0     CMP #$A0
 C - - - - - 0x00FEA5 03:BE95: 90 58     BCC bra_BEEF_RTS
 bra_BE97:
-C - - - - - 0x00FEA7 03:BE97: A5 26     LDA ram_buffer_index
+C - - - - - 0x00FEA7 03:BE97: A5 26     LDA ram_buffer_index_1
 C - - - - - 0x00FEA9 03:BE99: C9 20     CMP #$20
 C - - - - - 0x00FEAB 03:BE9B: B0 52     BCS bra_BEEF_RTS
 C - - - - - 0x00FEAD 03:BE9D: BD BE 07  LDA ram_07BE_unk,X

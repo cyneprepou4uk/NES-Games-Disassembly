@@ -11,7 +11,7 @@
 .export ofs_006_0x013261_1E
 .export sub_0x013296
 .export ofs_006_0x013296_03
-.export ofs_006_0x0133E6_01
+.export ofs_006_0x0133E6_01_disable_sound_engine
 .export ofs_006_0x013FCB_25
 
 
@@ -10178,7 +10178,7 @@ tbl_AA44:
 sub_AA4A:
 C - - - - - 0x012A5A 04:AA4A: C9 01     CMP #$01
 C - - - - - 0x012A5C 04:AA4C: D0 03     BNE bra_AA51
-C - - - - - 0x012A5E 04:AA4E: 4C D6 B3  JMP loc_B3D6
+C - - - - - 0x012A5E 04:AA4E: 4C D6 B3  JMP loc_B3D6_disable_sound_engine
 bra_AA51:
 C - - - - - 0x012A61 04:AA51: C9 02     CMP #$02
 C - - - - - 0x012A63 04:AA53: D0 0C     BNE bra_AA61
@@ -10267,7 +10267,7 @@ C - - - - - 0x012AF1 04:AAE1: 9D F4 05  STA ram_05F4_se,X
 C - - - - - 0x012AF4 04:AAE4: E0 02     CPX #$02
 C - - - - - 0x012AF6 04:AAE6: D0 06     BNE bra_AAEE
 ; 02
-C - - - - - 0x012AF8 04:AAE8: 20 2E AB  JSR sub_AB2E
+C - - - - - 0x012AF8 04:AAE8: 20 2E AB  JSR sub_AB2E_disable_triangle_channel
 C - - - - - 0x012AFB 04:AAEB: 4C 9E AC  JMP loc_AC9E
 bra_AAEE:
 C - - - - - 0x012AFE 04:AAEE: 20 1F AB  JSR sub_AB1F
@@ -10297,13 +10297,13 @@ sub_AB1F:
 C - - - - - 0x012B2F 04:AB1F: A9 30     LDA #$30
 C - - - - - 0x012B31 04:AB21: 4C 02 AF  JMP loc_AF02
 bra_AB24:
-sub_AB24:
+sub_AB24_disable_dpcm_and_triangle_channels:
 C - - - - - 0x012B34 04:AB24: A9 0B     LDA #$0B
 C - - - - - 0x012B36 04:AB26: 8D 15 40  STA $4015
 C - - - - - 0x012B39 04:AB29: A9 0F     LDA #$0F
 C - - - - - 0x012B3B 04:AB2B: 8D 15 40  STA $4015
-sub_AB2E:
-loc_AB2E:
+sub_AB2E_disable_triangle_channel:
+loc_AB2E_disable_triangle_channel:
 C D 1 - - - 0x012B3E 04:AB2E: A9 00     LDA #$00
 C - - - - - 0x012B40 04:AB30: 8D 08 40  STA $4008
 bra_AB33_RTS:
@@ -10644,7 +10644,7 @@ C - - - - - 0x012DB7 04:ADA7: 4C C7 AE  JMP loc_AEC7
 loc_ADAA:
 C D 1 - - - 0x012DBA 04:ADAA: E0 02     CPX #$02
 C - - - - - 0x012DBC 04:ADAC: D0 03     BNE bra_ADB1
-C - - - - - 0x012DBE 04:ADAE: 4C 2E AB  JMP loc_AB2E
+C - - - - - 0x012DBE 04:ADAE: 4C 2E AB  JMP loc_AB2E_disable_triangle_channel
 bra_ADB1:
 C - - - - - 0x012DC1 04:ADB1: BD F7 05  LDA ram_05F7_se,X
 ; / 10
@@ -11503,7 +11503,7 @@ C - - - - - 0x0132F9 04:B2E9: D0 03     BNE bra_B2EE
 ; 50/55
 bra_B2EB:
 loc_B2EB:
-C D 1 - - - 0x0132FB 04:B2EB: 20 D6 B3  JSR sub_B3D6
+C D 1 - - - 0x0132FB 04:B2EB: 20 D6 B3  JSR sub_B3D6_disable_sound_engine
 bra_B2EE:
 C - - - - - 0x0132FE 04:B2EE: AD D4 B3  LDA tbl_B3D4
 C - - - - - 0x013301 04:B2F1: 85 E6     STA ram_00E6_se_t01_data
@@ -11645,10 +11645,10 @@ tbl_B3D4:
 
 
 
-loc_B3D6:
-sub_B3D6:
-ofs_006_0x0133E6_01:
-; con_F3D6_01
+loc_B3D6_disable_sound_engine:
+sub_B3D6_disable_sound_engine:
+ofs_006_0x0133E6_01_disable_sound_engine:
+; con_F3D6_01_disable_sound_engine
 C D 1 J - - 0x0133E6 04:B3D6: A2 07     LDX #$07
 C - - - - - 0x0133E8 04:B3D8: A9 00     LDA #$00
 bra_B3DA_loop:
@@ -11661,7 +11661,7 @@ C - - - - - 0x0133EE 04:B3DE: D0 FA     BNE bra_B3DA_loop
 C - - - - - 0x0133F0 04:B3E0: 8D A1 05  STA ram_059E_se + $03
 C - - - - - 0x0133F3 04:B3E3: 8D 9C 05  STA ram_0599_se + $03
 C - - - - - 0x0133F6 04:B3E6: 8D AD 05  STA ram_05AD_se
-C - - - - - 0x0133F9 04:B3E9: 20 24 AB  JSR sub_AB24
+C - - - - - 0x0133F9 04:B3E9: 20 24 AB  JSR sub_AB24_disable_dpcm_and_triangle_channels
 C - - - - - 0x0133FC 04:B3EC: A9 30     LDA #$30
 C - - - - - 0x0133FE 04:B3EE: 8D 00 40  STA $4000
 C - - - - - 0x013401 04:B3F1: 8D 04 40  STA $4004
