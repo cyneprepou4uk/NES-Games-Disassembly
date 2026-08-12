@@ -13,6 +13,7 @@ local files_list = {
     "bank_3C.asm",
     "bank_3E.asm",
     "bank_ram.inc",
+    "bank_val.inc",
 }
 
 -- name of your assembled ROM file,
