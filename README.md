@@ -48,7 +48,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 * Adventure Island (U) [!] `B78C09A2`
 * Battle City (J) [!] `F599A07E`
 * Bugs Bunny Crazy Castle, The (U) [!] `DB0C3656`
-* Captain America and The Avengers (U) [!].nes `7254D53D`
+* Captain America and The Avengers (U) [!] `7254D53D`
 * Castlevania III - Dracula's Curse (U) [!] `7CC9C669`
 * Contra Force (U) [!] `83D69922`
 * Danny Sullivan's Indy Heat (U) [!] `311B5A58`
