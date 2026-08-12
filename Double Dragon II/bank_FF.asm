@@ -8670,9 +8670,9 @@ C - - - - - 0x01F3C3 07:F3B3: 8A        TXA
 C - - - - - 0x01F3C4 07:F3B4: 0A        ASL
 C - - - - - 0x01F3C5 07:F3B5: AA        TAX
 C - - - - - 0x01F3C6 07:F3B6: AD 02 20  LDA $2002
-C - - - - - 0x01F3C9 07:F3B9: BD D8 F3  LDA tbl_F3D7 + $01,X
+C - - - - - 0x01F3C9 07:F3B9: BD D8 F3  LDA tbl_F3D7_ppu_address + $01,X
 C - - - - - 0x01F3CC 07:F3BC: 8D 06 20  STA $2006
-C - - - - - 0x01F3CF 07:F3BF: BD D7 F3  LDA tbl_F3D7,X
+C - - - - - 0x01F3CF 07:F3BF: BD D7 F3  LDA tbl_F3D7_ppu_address,X
 C - - - - - 0x01F3D2 07:F3C2: 8D 06 20  STA $2006
 C - - - - - 0x01F3D5 07:F3C5: A9 00     LDA #$00
 C - - - - - 0x01F3D7 07:F3C7: F0 07     BEQ bra_F3D0    ; jmp
@@ -8692,7 +8692,7 @@ C - - - - - 0x01F3E6 07:F3D6: 60        RTS
 
 
 
-tbl_F3D7:
+tbl_F3D7_ppu_address:
 - D 3 - - - 0x01F3E7 07:F3D7: 0A 21     .word $210A ; 00 
 - D 3 - - - 0x01F3E9 07:F3D9: 8A 21     .word $218A ; 01 
 
@@ -8934,9 +8934,9 @@ C - - - - - 0x01F55F 07:F54F: AD 34 04  LDA ram_0434
 C - - - - - 0x01F562 07:F552: 0A        ASL
 C - - - - - 0x01F563 07:F553: AA        TAX
 C - - - - - 0x01F564 07:F554: AD 02 20  LDA $2002
-C - - - - - 0x01F567 07:F557: BD 69 F5  LDA tbl_F568_ppu + $01,X
+C - - - - - 0x01F567 07:F557: BD 69 F5  LDA tbl_F568_ppu_address + $01,X
 C - - - - - 0x01F56A 07:F55A: 8D 06 20  STA $2006
-C - - - - - 0x01F56D 07:F55D: BD 68 F5  LDA tbl_F568_ppu,X
+C - - - - - 0x01F56D 07:F55D: BD 68 F5  LDA tbl_F568_ppu_address,X
 C - - - - - 0x01F570 07:F560: 8D 06 20  STA $2006
 C - - - - - 0x01F573 07:F563: 68        PLA
 C - - - - - 0x01F574 07:F564: 8D 07 20  STA $2007
@@ -8944,7 +8944,7 @@ C - - - - - 0x01F577 07:F567: 60        RTS
 
 
 
-tbl_F568_ppu:
+tbl_F568_ppu_address:
 - D 3 - - - 0x01F578 07:F568: 09 21     .word $2109 ; 00 
 - D 3 - - - 0x01F57A 07:F56A: 49 21     .word $2149 ; 01 
 - D 3 - - - 0x01F57C 07:F56C: 89 21     .word $2189 ; 02 
