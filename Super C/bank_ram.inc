@@ -200,7 +200,7 @@ ram_0029_temp                           = $0029 ; 01E0A0 01FB03
 
 
 
-; used on;y in pair with ram_0029_temp
+; used only in pair with ram_0029_temp
 ; ram_002A                              = $002A ; 01E0A5 01FB03 
 
 
